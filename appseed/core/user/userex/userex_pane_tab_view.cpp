@@ -101,7 +101,7 @@ namespace userex
       if(iTab < 0)
          return;
 
-      pane * ppane = (pane *)get_data()->m_panea.element_at(iTab);
+      ::user::tab_pane * ppane = (::user::tab_pane *)get_data()->m_panea.element_at(iTab);
 
       if(ppane == NULL)
          return;
@@ -122,7 +122,7 @@ namespace userex
    {
       if(!::user::place_holder_container::on_hold(pui,pholder))
          return false;
-      ::user::tab::pane_array & panea = get_data()->m_panea;
+      ::user::tab_pane_array & panea = get_data()->m_panea;
       for(int32_t iTab = 0; iTab < panea.get_count(); iTab++)
       {
          if(panea[iTab]->m_pholder == pholder)

@@ -604,6 +604,15 @@ namespace user
 
    }
 
+   void schema::_001TabOnDrawSchema01(::draw2d::graphics * pdc,tab * ptab)
+   {
+
+   }
+
+   void schema::_001OnTabPaneDrawTitle(::user::tab_pane & pane,::user::tab * ptab,::draw2d::graphics * pdc,LPCRECT lpcrect,::draw2d::brush_sp & brushText)
+   {
+
+   }
 
 } // namespace user
 

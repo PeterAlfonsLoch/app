@@ -143,7 +143,7 @@ struct Q4
 public:
 
 
-   double a;
+   double w;
    double x;
    double y;
    double z;

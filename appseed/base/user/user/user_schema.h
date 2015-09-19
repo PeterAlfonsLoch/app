@@ -4,6 +4,10 @@
 namespace user
 {
 
+   class tab;
+
+   class tab_pane;
+
    enum e_color
    {
 
@@ -62,6 +66,11 @@ namespace user
       virtual bool select_font(::draw2d::graphics * pgraphics);
 
       virtual bool simple_ui_draw_focus_rect(::user::interaction * pui,::draw2d::graphics * pgraphics);
+
+
+      virtual void _001TabOnDrawSchema01(::draw2d::graphics * pdc,tab * ptab);
+      
+      virtual void _001OnTabPaneDrawTitle(::user::tab_pane & pane,::user::tab * ptab,::draw2d::graphics * pdc,LPCRECT lpcrect,::draw2d::brush_sp & brushText);
 
    };
 

@@ -130,9 +130,9 @@ namespace user
 
       id id3 = var(id1).get_string() + "->:<-" + var(id2).get_string();
 
-      pane * ppane1 = get_pane_by_id(id1);
+      tab_pane * ppane1 = get_pane_by_id(id1);
 
-      pane * ppane2 = get_pane_by_id(id2);
+      tab_pane * ppane2 = get_pane_by_id(id2);
 
       string strName1 = ppane1->m_istrTitleEx;
 
@@ -464,7 +464,7 @@ namespace user
             pcreatordata->m_pwnd->SetParent(this);
             pcreatordata->m_pwnd->ModifyStyle(0, WS_CHILD, NULL);
          }*/
-         pane * ppane = get_pane_by_id(id);
+         tab_pane * ppane = get_pane_by_id(id);
          if(ppane != NULL)
          {
             if(pcreatordata->m_strTitle.has_char())

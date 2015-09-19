@@ -56,7 +56,7 @@ namespace user
    {
    }
 
-   tab::pane * tab::data::get_pane_by_id(id id)
+   tab_pane * tab::data::get_pane_by_id(id id)
    {
       return m_panea.get_by_id(id);
    }
@@ -118,19 +118,19 @@ namespace user
 
    /*bool tab::add_tab(UINT uiIdTitle, int32_t iId)
    {
-      pane pane;
-      pane.m_uiId = uiIdTitle;
-      pane.m_istrTitleEx = L"";
-      pane.m_iId = iId == -1 ? get_data()->m_panea.get_size() : iId;
-      if(!pane.m_wstrTitle.load_string(uiIdTitle))
+      tab_pane tab_pane;
+      tab_pane.m_uiId = uiIdTitle;
+      tab_pane.m_istrTitleEx = L"";
+      tab_pane.m_iId = iId == -1 ? get_data()->m_panea.get_size() : iId;
+      if(!tab_pane.m_wstrTitle.load_string(uiIdTitle))
       {
          return false;
       }*/
-   //   pane.m_pcontainer = pcontainer;
-     // pane.m_typeinfo = NULL;
-     /* pane.m_iImage = -1;
+   //   tab_pane.m_pcontainer = pcontainer;
+     // tab_pane.m_typeinfo = NULL;
+     /* tab_pane.m_iImage = -1;
 
-      get_data()->m_panea.add(pane);
+      get_data()->m_panea.add(tab_pane);
       return true;
    }*/
 
@@ -154,7 +154,7 @@ namespace user
    bool tab::add_tab(const char * lpcsz, id id, bool bVisible, bool bPermanent)
    {
 
-      pane * ppane = new pane(get_app());
+      tab_pane * ppane = new tab_pane(get_app());
 
       ppane->m_istrTitleEx       = lpcsz;
       ppane->m_bVisible         = bVisible;
@@ -217,7 +217,7 @@ namespace user
    bool tab::add_image_tab(const char * lpcszTitle, const char * pszImage, id id, bool bVisible, bool bPermanent)
    {
 
-      pane * ppane = new pane(get_app());
+      tab_pane * ppane = new tab_pane(get_app());
 
       if(ppane == NULL)
          return false;
@@ -440,8 +440,19 @@ namespace user
 
       if(get_data()->is_locked())
          return;
+      
+      if(m_puserschema == NULL)
+      {
+         
+         _001OnDrawStandard(pdc);
 
-      _001OnDrawSchema01(pdc);
+         return;
+
+      }
+      
+
+      m_puserschema->_001TabOnDrawSchema01(pdc,this);
+//      _001OnDrawSchema01(pdc);
 
    }
 
@@ -473,9 +484,9 @@ namespace user
       for(int32_t iPane = 0; iPane < get_data()->m_panea.get_size(); iPane++)
       {
 
-         pane & pane = get_data()->m_panea(iPane);
+         tab_pane & tab_pane = get_data()->m_panea(iPane);
 
-         if(!pane.m_bVisible)
+         if(!tab_pane.m_bVisible)
             continue;
 
 
@@ -495,7 +506,7 @@ namespace user
             if(get_element_rect(iVisiblePane, rectIcon, element_icon))
             {
                pdc->set_alpha_mode(::draw2d::alpha_mode_blend);
-               pane.m_dib->bitmap_blend(pdc, rectIcon);
+               tab_pane.m_dib->bitmap_blend(pdc, rectIcon);
             }
 
             if(get_data()->m_iaSel.contains(iPane))
@@ -553,7 +564,7 @@ namespace user
             if(get_element_rect(iVisiblePane, rectIcon, element_icon))
             {
                pdc->set_alpha_mode(::draw2d::alpha_mode_blend);
-               pane.m_dib->bitmap_blend(pdc, rectIcon);
+               tab_pane.m_dib->bitmap_blend(pdc, rectIcon);
             }
 
             if(get_data()->m_iaSel.contains(iPane))
@@ -612,7 +623,7 @@ namespace user
 
             pdc->SelectObject(brushText);
 
-            pdc->_DrawText(pane.get_title(), pane.get_title().get_length(), rectText, DT_LEFT | DT_BOTTOM);
+            pdc->_DrawText(tab_pane.get_title(), tab_pane.get_title().get_length(), rectText, DT_LEFT | DT_BOTTOM);
 
          }
 
@@ -640,287 +651,13 @@ namespace user
 
    }
 
-   void tab::_001OnDrawSchema01(::draw2d::graphics * pdc)
-   {
-
-      class rect rect;
-      class rect rectBorder;
-      class rect rectText;
-      class rect rectClient;
-      class rect rectIcon;
-      class rect rectClose;
-
-      get_data()->m_pen->create_solid(1,RGB(32,32,32));
-
-      pdc->set_text_rendering(::draw2d::text_rendering_anti_alias_grid_fit);
-
-      pdc->set_alpha_mode(::draw2d::alpha_mode_blend);
-
-      int32_t iVisiblePane = 0;
-
-      ::draw2d::brush_sp brushText;
-
-      for(int32_t iPane = 0; iPane < get_data()->m_panea.get_size(); iPane++)
-      {
-
-         pane & pane = get_data()->m_panea(iPane);
-
-         if(!pane.m_bVisible)
-            continue;
-
-         if(!get_element_rect(iVisiblePane, rect, element_tab))
-            continue;
-
-         if(!get_element_rect(iVisiblePane, rectBorder, element_border))
-            continue;
-
-         if(!get_element_rect(iVisiblePane, rectClient, element_client))
-            continue;
-
-
-         if(get_data()->m_bVertical)
-         {
-            if(get_element_rect(iVisiblePane, rectIcon, element_icon))
-            {
-               pdc->set_alpha_mode(::draw2d::alpha_mode_blend);
-               pane.m_dib->bitmap_blend(pdc, rectIcon);
-            }
-
-            ::draw2d::path_sp path(allocer());
-
-            if(get_data()->m_iaSel.contains(iPane))
-            {
-
-               //path->start_figure();
-
-               path->add_line(rectBorder.right, rectBorder.bottom, rectBorder.left + 1, rectBorder.bottom);
-               //path->add_line(rectClient.right, rectBorder.top);
-               path->add_line(rectBorder.left, rectBorder.top - (rectBorder.left - rectClient.left));
-               path->add_line(rectClient.left, rectBorder.top);
-               path->add_line(rectBorder.right, rectBorder.top);
-
-               //path->close_figure();
-
-               pane.m_brushFillSel->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), ARGB(230, 235, 235, 230), ARGB(250, 255, 255, 250));
-
-               pdc->SelectObject(pane.m_brushFillSel);
-
-               pdc->fill_path(path);
-
-               pdc->SelectObject(get_data()->m_penBorderSel);
-
-               pdc->draw_path(path);
-
-               pdc->set_font(get_data()->m_font);
-
-               brushText = get_data()->m_brushTextSel;
-
-            }
-            else
-            {
-
-
-               //path->start_figure();
-
-
-               path->add_line(rectBorder.right, rectBorder.bottom, rectBorder.left + 1, rectBorder.bottom);
-               path->add_line(rectBorder.left, rectBorder.top - (rectBorder.left - rectClient.left));
-               path->add_line(rectText.left, rectBorder.top);
-               path->add_line(rectBorder.right, rectBorder.top);
-               path->add_line(rectBorder.right, rectBorder.bottom);
-
-
-               //path->close_figure();
-
-               if(iVisiblePane == m_iHover && m_eelementHover != element_close_tab_button && m_eelementHover < element_split && m_eelementHover >(element_split + 100))
-               {
-
-                  pane.m_brushFillHover->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), ARGB(230, 215, 215, 210), ARGB(250, 235, 235, 230));
-
-                  pdc->SelectObject(pane.m_brushFillHover);
-
-                  pdc->fill_path(path);
-
-                  pdc->SelectObject(get_data()->m_penBorderHover);
-
-                  pdc->draw_path(path);
-
-                  pdc->set_font(get_data()->m_fontUnderline);
-
-                  brushText = get_data()->m_brushTextHover;
-
-               }
-               else
-               {
-
-                  pane.m_brushFill->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), ARGB(230, 175, 175, 170), ARGB(250, 195, 195, 190));
-
-                  pdc->SelectObject(pane.m_brushFill);
-
-                  pdc->fill_path(path);
-
-                  pdc->SelectObject(get_data()->m_penBorder);
-
-                  pdc->draw_path(path);
-
-                  pdc->set_font(get_data()->m_font);
-
-                  brushText = get_data()->m_brushText;
-
-               }
-
-            }
-
-         }
-         else
-         {
-
-            if(get_element_rect(iVisiblePane, rectIcon, element_icon))
-            {
-
-               pdc->set_alpha_mode(::draw2d::alpha_mode_blend);
-
-               pane.m_dib->bitmap_blend(pdc, rectIcon);
-
-            }
-
-            if(true)
-            {
-
-            ::draw2d::path_sp path(allocer());
-
-            if(get_data()->m_iaSel.contains(iPane))
-            {
-
-               path->add_line(rectBorder.left, rectClient.bottom, rectBorder.left, rectBorder.top);
-
-               path->add_line(rectClient.right, rectBorder.top);
-
-               path->add_line(rectBorder.right, rectBorder.top + (rectBorder.right - rectClient.right));
-
-               path->add_line(rectBorder.right - 1, rectClient.bottom);
-
-               path->end_figure(false);
-
-               pane.m_brushFillSel->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), ARGB(230, 235, 235, 230), ARGB(250, 255, 255, 250));
-
-               pdc->SelectObject(pane.m_brushFillSel);
-
-               pdc->fill_path(path);
-
-               get_data()->m_penBorderSel->create_solid(1.0, ARGB(255, 0, 0, 0));
-
-               pdc->SelectObject(get_data()->m_penBorderSel);
-
-               pdc->draw_path(path);
-
-               pdc->set_font(get_data()->m_font);
-
-               brushText = get_data()->m_brushTextSel;
-
-            }
-            else
-            {
-
-               //path->begin_figure(true, ::draw2d::fill_mode_winding);
-
-               path->add_line(rectBorder.left, rectClient.bottom, rectBorder.left, rectBorder.top);
-
-               path->add_line(rectClient.right, rectBorder.top);
-
-               path->add_line(rectBorder.right, rectBorder.top + (rectBorder.right - rectClient.right));
-
-               path->add_line(rectBorder.right - 1, rectClient.bottom);
-
-               path->end_figure(true);
-
-               if(iVisiblePane == m_iHover && m_eelementHover != element_close_tab_button && (m_eelementHover < element_split || m_eelementHover > (element_split + 100)))
-               {
-
-                  pane.m_brushFillHover->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), ARGB(230, 215, 215, 210), ARGB(250, 235, 235, 230));
-
-                  pdc->SelectObject(pane.m_brushFillHover);
-
-                  pdc->fill_path(path);
-
-                  pdc->SelectObject(get_data()->m_penBorderHover);
-
-                  pdc->draw_path(path);
-
-                  pdc->set_font(get_data()->m_fontUnderline);
-
-                  brushText = get_data()->m_brushTextHover;
-
-               }
-               else
-               {
-
-                  pane.m_brushFill->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), ARGB(230, 175, 175, 170), ARGB(250, 195, 195, 190));
-
-                  pdc->SelectObject(pane.m_brushFill);
-
-                  pdc->fill_path(path);
-
-                  pdc->SelectObject(get_data()->m_penBorder);
-
-                  pdc->draw_path(path);
-
-                  pdc->set_font(get_data()->m_font);
-
-                  brushText = get_data()->m_brushTextSel;
-
-               }
-
-            }
-
-         }
-
-            }
-         if(get_element_rect(iVisiblePane, rectText, element_text))
-         {
-
-            pane.draw_title(this, pdc, rectText, brushText);
-
-         }
-
-         if(get_element_rect(iVisiblePane, rectClose, element_close_tab_button))
-         {
-
-            pdc->set_font(get_data()->m_fontBold);
-
-            if(iVisiblePane == m_iHover && m_eelementHover == element_close_tab_button)
-            {
-
-               brushText = get_data()->m_brushCloseHover;
-
-            }
-            else
-            {
-
-               brushText = get_data()->m_brushClose;
-
-            }
-
-            pdc->SelectObject(brushText);
-
-            pdc->draw_text("x", rectClose, DT_CENTER | DT_VCENTER);
-
-         }
-
-
-         iVisiblePane++;
-
-      }
-      //pdc->SelectObject(hOldPen);
-
-   }
 
    void tab::get_title(int iPane,stringa & stra)
    {
 
-      pane & pane = get_data()->m_panea(iPane);
+      tab_pane & tab_pane = get_data()->m_panea(iPane);
 
-      stra = pane.m_straTitle;
+      stra = tab_pane.m_straTitle;
 
    }
 
@@ -970,15 +707,15 @@ namespace user
          for(int32_t iPane = 0; iPane < get_data()->m_panea.get_size(); iPane++)
          {
 
-            pane & pane = get_data()->m_panea(iPane);
+            tab_pane & tab_pane = get_data()->m_panea(iPane);
 
-            if(!pane.m_bVisible)
+            if(!tab_pane.m_bVisible)
                continue;
 
 
-            string str = pane.get_title();
+            string str = tab_pane.get_title();
 
-            pane.do_split_layout(m_dcextension, pdc);
+            tab_pane.do_split_layout(m_dcextension, pdc);
 
             ::size size;
 
@@ -986,14 +723,14 @@ namespace user
 
 
 
-            if(pane.m_dib.is_set())
+            if(tab_pane.m_dib.is_set())
             {
-               size.cx += pane.m_dib->m_size.cx+ 2;
-               size.cy = MAX(size.cy, pane.m_dib->m_size.cy);
+               size.cx += tab_pane.m_dib->m_size.cx+ 2;
+               size.cy = MAX(size.cy, tab_pane.m_dib->m_size.cy);
             }
             cx = size.cx + 2;
 
-            if(!pane.m_bPermanent)
+            if(!tab_pane.m_bPermanent)
             {
                cx += 2 + 16 + 2;
             }
@@ -1067,22 +804,22 @@ namespace user
          for(int32_t iPane = 0; iPane < get_data()->m_panea.get_size(); iPane++)
          {
 
-            pane & pane = get_data()->m_panea(iPane);
+            tab_pane & tab_pane = get_data()->m_panea(iPane);
 
-            if(!pane.m_bVisible)
+            if(!tab_pane.m_bVisible)
                return;
 
-            string str = pane.get_title();
+            string str = tab_pane.get_title();
 
-            pane.do_split_layout(m_dcextension,pdc);
+            tab_pane.do_split_layout(m_dcextension,pdc);
 
             size size;
 
             m_dcextension.GetTextExtent(pdc, str, size);
 
-            if(pane.m_dib.m_p != NULL)
+            if(tab_pane.m_dib.m_p != NULL)
             {
-               size.cy = MAX(size.cy, pane.m_dib->size().cy);
+               size.cy = MAX(size.cy, tab_pane.m_dib->size().cy);
             }
             cy = size.cy + 2;
 
@@ -1091,23 +828,23 @@ namespace user
                iTabHeight = cy;
             }
 
-            pane.m_pt.x = x;
-            pane.m_pt.y = rectClient.top;
+            tab_pane.m_pt.x = x;
+            tab_pane.m_pt.y = rectClient.top;
 
 
-//            string str = pane.get_title();
+//            string str = tab_pane.get_title();
 
 //            size size;
 
             ixAdd = 5;
 
-            if (pane.m_dib.is_set())
+            if (tab_pane.m_dib.is_set())
             {
                //::image_list::info ii;
-               ixAdd += pane.m_dib->m_size.cx + 2;
+               ixAdd += tab_pane.m_dib->m_size.cx + 2;
             }
 
-            if (!pane.m_bPermanent)
+            if (!tab_pane.m_bPermanent)
             {
                ixAdd += 2 + 16 + 2;
             }
@@ -1115,12 +852,12 @@ namespace user
 
 
 
-            pane.m_size.cx = size.cx + ixAdd
+            tab_pane.m_size.cx = size.cx + ixAdd
                                      + get_data()->m_rectBorder.left + get_data()->m_rectBorder.right
                                      + get_data()->m_rectMargin.left + get_data()->m_rectMargin.right
                                      + get_data()->m_rectTextMargin.left + get_data()->m_rectTextMargin.right;
 
-            x += pane.m_size.cx;
+            x += tab_pane.m_size.cx;
          }
 
          // close tab button
@@ -1138,9 +875,9 @@ namespace user
          for (int32_t iPane = 0; iPane < get_data()->m_panea.get_size(); iPane++)
          {
 
-            pane & pane = get_data()->m_panea(iPane);
+            tab_pane & tab_pane = get_data()->m_panea(iPane);
 
-            pane.m_size.cy = iTabHeight;
+            tab_pane.m_size.cy = iTabHeight;
 
          }
 
@@ -1415,11 +1152,11 @@ namespace user
       }
       else
       {
-         pane & pane = get_data()->m_panea(iTabParam);
-         lprect->left = pane.m_pt.x;
-         lprect->top = pane.m_pt.y;
-         lprect->right = pane.m_pt.x + pane.m_size.cx;
-         lprect->bottom = pane.m_pt.y + pane.m_size.cy;
+         tab_pane & tab_pane = get_data()->m_panea(iTabParam);
+         lprect->left = tab_pane.m_pt.x;
+         lprect->top = tab_pane.m_pt.y;
+         lprect->right = tab_pane.m_pt.x + tab_pane.m_size.cx;
+         lprect->bottom = tab_pane.m_pt.y + tab_pane.m_size.cy;
          ///*ASSERT(iTabParam >= 0);
          //ASSERT(iTabParam < GetTabCount());
          ////::draw2d::graphics_sp graphics(allocer());
@@ -1439,24 +1176,24 @@ namespace user
 
          //   rect.left = rect.right;
 
-         //   pane & pane = get_data()->m_panea(iPane);
+         //   tab_pane & tab_pane = get_data()->m_panea(iPane);
 
-         //   if(!pane.m_bVisible)
+         //   if(!tab_pane.m_bVisible)
          //      continue;
 
-         //   //string str = pane.get_title();
+         //   //string str = tab_pane.get_title();
 
          //   //size size;
 
          //   ixAdd = 5;
 
-         //   if(pane.m_dib.is_set())
+         //   if(tab_pane.m_dib.is_set())
          //   {
          //      //::image_list::info ii;
-         //      ixAdd += pane.m_dib->m_size.cx + 2;
+         //      ixAdd += tab_pane.m_dib->m_size.cx + 2;
          //   }
 
-         //   if(!pane.m_bPermanent)
+         //   if(!tab_pane.m_bPermanent)
          //   {
          //      ixAdd += 2 + 16 + 2;
          //   }
@@ -1495,7 +1232,7 @@ namespace user
       rect rect;
       for(int32_t iPane = 0; iPane < get_data()->m_panea.get_size(); iPane++)
       {
-         pane & p = *get_data()->m_panea[iPane];
+         tab_pane & p = *get_data()->m_panea[iPane];
 
          if(p.m_straTitle.get_size() > 1)
          {
@@ -1569,6 +1306,7 @@ namespace user
       if(pobj->previous())
          return;
 
+      m_puserschema = Session.m_puserschema;
    //  m_pimagelist = new image_list(get_app());
 
       get_data()->m_bCreated = true;
@@ -1648,7 +1386,7 @@ namespace user
    }
 
 
-   tab::pane::pane(::aura::application * papp) :
+   tab_pane::tab_pane(::aura::application * papp) :
       object(papp),
       m_brushFill(allocer()),
       m_brushFillSel(allocer()),
@@ -1660,41 +1398,41 @@ namespace user
       m_pholder      = NULL;
    }
 
-   tab::pane::pane(const pane & pane) :
-      m_istrTitleEx(pane.get_app())
+   tab_pane::tab_pane(const tab_pane & tab_pane) :
+      m_istrTitleEx(tab_pane.get_app())
    {
-      operator = (pane);
+      operator = (tab_pane);
    }
 
-   tab::pane::~pane()
+   tab_pane::~tab_pane()
    {
    }
 
-   tab::pane & tab::pane::operator = (const pane & pane)
+   tab_pane & tab_pane::operator = (const tab_pane & tab_pane)
    {
 
-      if(this != &pane)
+      if(this != &tab_pane)
       {
-         m_id              = pane.m_id;
-         m_istrTitleEx     = pane.m_istrTitleEx;
-         m_dib             = pane.m_dib;
-         m_pholder         = pane.m_pholder;
-         m_bVisible        = pane.m_bVisible;
-         m_bPermanent      = pane.m_bPermanent;
+         m_id              = tab_pane.m_id;
+         m_istrTitleEx     = tab_pane.m_istrTitleEx;
+         m_dib             = tab_pane.m_dib;
+         m_pholder         = tab_pane.m_pholder;
+         m_bVisible        = tab_pane.m_bVisible;
+         m_bPermanent      = tab_pane.m_bPermanent;
       }
 
       return *this;
 
    }
 
-   string tab::pane::get_title()
+   string tab_pane::get_title()
    {
 
       return m_istrTitleEx;
 
    }
 
-   void tab::pane::do_split_layout(::visual::graphics_extension & dc, ::draw2d::graphics * pdc)
+   void tab_pane::do_split_layout(::visual::graphics_extension & dc, ::draw2d::graphics * pdc)
    {
 
       stringa & straTitle = m_straTitle;
@@ -1712,79 +1450,21 @@ namespace user
 
    }
 
-   void tab::pane::draw_title(tab * ptab,::draw2d::graphics * pdc,LPCRECT lpcrect, ::draw2d::brush_sp & brushText)
-   {
-
-      stringa & straTitle = m_straTitle;
-
-      pdc->SelectObject(brushText);
-
-      if(straTitle.get_count() <= 1)
-      {
-
-         pdc->_DrawText(get_title(),*lpcrect,DT_LEFT | DT_BOTTOM | DT_NOPREFIX);
-
-      }
-      else
-      {
-
-         ::rect rectText(lpcrect);
-
-         ::draw2d::font_sp font;
-         font = pdc->get_current_font();
-         size sSep = ptab->get_data()->m_sizeSep;
-         ::rect rectEmp;
-         for(index i = 0; i < straTitle.get_size(); i++)
-         {
-            string str = straTitle[i];
-            size s = m_sizeaText[i];
-            rectText.right =rectText.left + s.cx;
-            pdc->_DrawText(str,rectText,DT_LEFT | DT_BOTTOM | DT_NOPREFIX);
-            rectText.left += s.cx;
-            if(i < straTitle.get_upper_bound())
-            {
-               rectText.right = rectText.left + sSep.cx;
-               rectEmp = rectText;
-               rectEmp.deflate(1,1);
-               ::draw2d::e_alpha_mode emode = pdc->m_ealphamode;
-               pdc->set_alpha_mode(::draw2d::alpha_mode_blend);
-               if(ptab->m_eelementHover == (int)element_split + i)
-               {
-                  pdc->FillSolidRect(rectEmp,ARGB(128,149,184,255));
-                  pdc->SelectObject(ptab->get_data()->m_brushTextHover);
-               }
-               else
-               {
-                  //pdc->FillSolidRect(rectEmp,ARGB(128,208,223,233));
-                  pdc->SelectObject(ptab->get_data()->m_brushText);
-               }
-               pdc->set_font(ptab->get_data()->m_fontBigBold);
-               pdc->set_alpha_mode(emode);
-               pdc->_DrawText(MAGIC_PALACE_TAB_TEXT,rectText,DT_CENTER | DT_VCENTER | DT_NOPREFIX);
-               rectText.left += sSep.cx;
-               pdc->selectFont(font);
-               pdc->SelectObject(brushText);
-            }
-         }
-
-      }
-
-   }
 
 
 
-   tab::pane_array::pane_array(::aura::application * papp) :
+   tab_pane_array::tab_pane_array(::aura::application * papp) :
       object(papp)
    {
    }
 
-   tab::pane_array::~pane_array()
+   tab_pane_array::~tab_pane_array()
    {
    }
 
 
 
-   tab::pane * tab::pane_array::get_by_id(id id)
+   tab_pane * tab_pane_array::get_by_id(id id)
    {
       for(int32_t i = 0; i < this->get_count(); i++)
       {
@@ -1796,7 +1476,7 @@ namespace user
       return NULL;
    }
 
-   ::count tab::pane_array::get_visible_count()
+   ::count tab_pane_array::get_visible_count()
    {
 
       ::count count = 0;
@@ -1886,7 +1566,7 @@ namespace user
 
    bool tab::show_tab_by_id(id id, bool bShow)
    {
-      pane * ppane = get_pane_by_id(id);
+      tab_pane * ppane = get_pane_by_id(id);
       if(ppane == NULL)
          return false;
 
@@ -1898,7 +1578,7 @@ namespace user
 
    bool tab::show_tab(::index iTab, bool bShow)
    {
-      pane * ppane = get_pane(iTab, !bShow);
+      tab_pane * ppane = get_pane(iTab, !bShow);
       if(ppane == NULL)
          return !bShow;
 
@@ -1920,13 +1600,13 @@ namespace user
 
    ::user::place_holder * tab::get_tab_holder(::index iPane, bool bVisible)
    {
-      pane * ppane = get_pane(iPane, bVisible);
+      tab_pane * ppane = get_pane(iPane, bVisible);
       if(ppane == NULL)
          return NULL;
       return ppane->m_pholder;
    }
 
-   tab::pane * tab::get_pane(::index iPane, bool bVisible)
+   tab_pane * tab::get_pane(::index iPane, bool bVisible)
    {
       if(iPane < 0 || iPane >= get_data()->m_panea.get_count())
          return NULL;
@@ -2287,12 +1967,12 @@ namespace user
       return m_spdata;
    }
 
-   tab::pane * tab::get_pane_by_id(id id)
+   tab_pane * tab::get_pane_by_id(id id)
    {
       return get_data()->get_pane_by_id(id);
    }
 
-   tab::pane * tab::ensure_pane_by_id(id id)
+   tab_pane * tab::ensure_pane_by_id(id id)
    {
       ensure_tab_by_id(id);
       return get_data()->get_pane_by_id(id);
@@ -2337,11 +2017,11 @@ namespace user
       string strPrefix(pszPrefix);
       string strSuffix(pszSuffix);
       string strPath;
-      pane_array & panea = get_data()->m_panea;
+      tab_pane_array & panea = get_data()->m_panea;
       for(int32_t i = 0; i < panea.get_count(); i++)
       {
-         pane & pane = panea(i);
-         strPath = pane.m_id;
+         tab_pane & tab_pane = panea(i);
+         strPath = tab_pane.m_id;
          if(strPrefix.is_empty() || ::str::begins_ci(strPath, strPrefix))
          {
             if(strSuffix.is_empty() || ::str::ends_ci(strPath, strSuffix))
@@ -2367,11 +2047,11 @@ namespace user
       string strPrefix(pszPrefix);
       string strSuffix(pszSuffix);
       string strPath;
-      pane_array & panea = get_data()->m_panea;
+      tab_pane_array & panea = get_data()->m_panea;
       for(int32_t i = 0; i < panea.get_count(); i++)
       {
-         pane & pane = panea(i);
-         strPath = pane.m_id;
+         tab_pane & tab_pane = panea(i);
+         strPath = tab_pane.m_id;
          if(strPrefix.is_empty() || ::str::begins_ci(strPath, strPrefix))
          {
             if(strSuffix.is_empty() || ::str::ends_ci(strPath, strSuffix))
@@ -2388,7 +2068,7 @@ namespace user
       if(matchany.get_count() == 0)
          return;
       var varId;
-      pane_array & panea = get_data()->m_panea;
+      tab_pane_array & panea = get_data()->m_panea;
       for(int32_t i = 0; i < panea.get_count(); i++)
       {
          varId = panea[i]->m_id;
@@ -2405,7 +2085,7 @@ namespace user
       if(matchany.get_count() == 0)
          return false;
       var varId;
-      pane_array & panea = get_data()->m_panea;
+      tab_pane_array & panea = get_data()->m_panea;
       for(int32_t i = 0; i < panea.get_count(); i++)
       {
          varId = panea[i]->m_id;

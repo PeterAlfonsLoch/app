@@ -36,7 +36,7 @@ namespace user
                set_control_box_button_id(button_notify_icon, "frame::button_notify_icon");
                set_control_box_button_id(button_dock,"frame::button_dock");
                m_bDrag = false;
-               m_iButtonMargin = 3;
+               m_iDefaultButtonMargin = 3;
 
                m_fontMarlett->create_pixel_font("Marlett", 16.0);
 
@@ -346,7 +346,8 @@ namespace user
 
             appearance * pappearance = workset_get_appearance();
 
-            int32_t iButtonSize = get_button_size();
+            size sizeButton = get_button_size(button_close);
+            rect rectMargin = get_button_margin(button_close);
 
             ::rect rectClient;
 
@@ -356,10 +357,6 @@ namespace user
 
             ::rect rect;
 
-            rect.left = m_iButtonMargin;
-            rect.right = iWidth - m_iButtonMargin;
-            rect.top = m_iButtonMargin;
-            rect.bottom = iButtonSize + rect.top;
 
 
             if(!has_button(button_close))
@@ -368,9 +365,13 @@ namespace user
             }
             else
             {
-               rect.left = rect.right - iButtonSize;
+               rect.top = rectMargin.top;
+               rect.bottom = sizeButton.cy + rect.top;
+               rect.right = iWidth - rectMargin.right;
+               rect.left = rect.right - sizeButton.cx;
                get_box_button(button_close)->::user::interaction::SetWindowPos(ZORDER_TOP,rect.left,rect.top,rect.width(),rect.height(),SWP_SHOWWINDOW);
                get_box_button(button_close)->UpdateWndRgn();
+               rect.left -= rectMargin.left;
             }
 
 
@@ -382,10 +383,17 @@ namespace user
             }
             else if(pinterface->WndFrameworkDownUpGetUpEnable())
             {
-               rect.right = rect.left - m_iButtonMargin;
-               rect.left = rect.right - iButtonSize;
-               get_box_button(button_up)->::user::interaction::SetWindowPos(ZORDER_TOP, rect.left, rect.top, rect.width(), rect.height(), SWP_SHOWWINDOW);
+               sizeButton = get_button_size(button_up);
+               rectMargin = get_button_margin(button_up);
+
+               rect.top = rectMargin.top;
+               rect.bottom = sizeButton.cy + rect.top;
+               rect.right = rect.left - rectMargin.right;
+               rect.left = rect.right - sizeButton.cx;
+
+               get_box_button(button_up)->::user::interaction::SetWindowPos(ZORDER_TOP, rect.left , rect.top, rect.width(), rect.height(), SWP_SHOWWINDOW);
                get_box_button(button_up)->UpdateWndRgn();
+               rect.left -= rectMargin.left;
             }
             else
             {
@@ -398,8 +406,14 @@ namespace user
             }
             else if(pinterface->WndFrameworkDownUpGetDownEnable())
             {
-               rect.right = rect.left - m_iButtonMargin;
-               rect.left = rect.right - iButtonSize;
+               sizeButton = get_button_size(button_down);
+               rectMargin = get_button_margin(button_down);
+
+               rect.top = rectMargin.top;
+               rect.bottom = sizeButton.cy + rect.top;
+               rect.right = rect.left - rectMargin.right;
+               rect.left = rect.right - sizeButton.cx;
+
                get_box_button(button_down)->::user::interaction::SetWindowPos(
                   ZORDER_TOP,
                   rect.left,
@@ -408,6 +422,7 @@ namespace user
                   rect.height(),
                   SWP_SHOWWINDOW);
                get_box_button(button_down)->UpdateWndRgn();
+               rect.left -= rectMargin.left;
             }
             else
             {
@@ -424,8 +439,14 @@ namespace user
             }
             else
             {
-               rect.right = rect.left - m_iButtonMargin;
-               rect.left = rect.right - iButtonSize;
+               sizeButton = get_button_size(button_maximize);
+               rectMargin = get_button_margin(button_maximize);
+
+               rect.top = rectMargin.top;
+               rect.bottom = sizeButton.cy + rect.top;
+               rect.right = rect.left - rectMargin.right;
+               rect.left = rect.right - sizeButton.cx;
+
                get_box_button(button_maximize)->::user::interaction::SetWindowPos(
                   ZORDER_TOP,
                   rect.left,
@@ -434,6 +455,7 @@ namespace user
                   rect.height(),
                   SWP_SHOWWINDOW);
                get_box_button(button_maximize)->UpdateWndRgn();
+               rect.left -= rectMargin.left;
             }
 
             if(!has_button(button_restore))
@@ -445,8 +467,14 @@ namespace user
                || pappearance->IsZoomed()
                || pappearance->IsDocked())
             {
-               rect.right = rect.left - m_iButtonMargin;
-               rect.left = rect.right - iButtonSize;
+               sizeButton = get_button_size(button_restore);
+               rectMargin = get_button_margin(button_restore);
+
+               rect.top = rectMargin.top;
+               rect.bottom = sizeButton.cy + rect.top;
+               rect.right = rect.left - rectMargin.right;
+               rect.left = rect.right - sizeButton.cx;
+
                get_box_button(button_restore)->::user::interaction::SetWindowPos(
                   ZORDER_TOP,
                   rect.left,
@@ -455,6 +483,7 @@ namespace user
                   rect.height(),
                   SWP_SHOWWINDOW);
                get_box_button(button_restore)->UpdateWndRgn();
+               rect.left -= rectMargin.left;
             }
             else
             {
@@ -467,10 +496,17 @@ namespace user
             }
             else
             {
-               rect.right = rect.left - m_iButtonMargin;
-               rect.left = rect.right - iButtonSize;
+               sizeButton = get_button_size(button_minimize);
+               rectMargin = get_button_margin(button_minimize);
+
+               rect.top = rectMargin.top;
+               rect.bottom = sizeButton.cy + rect.top;
+               rect.right = rect.left - rectMargin.right;
+               rect.left = rect.right - sizeButton.cx;
+
                get_box_button(button_minimize)->::user::interaction::SetWindowPos(ZORDER_TOP, rect.left, rect.top, rect.width(), rect.height(), SWP_SHOWWINDOW);
                get_box_button(button_minimize)->UpdateWndRgn();
+               rect.left -= rectMargin.left;
             }
 
             if(!has_button(button_notify_icon))
@@ -479,10 +515,17 @@ namespace user
             }
             else if(pappearance->IsNotifyIconEnabled())
             {
-               rect.right = rect.left - m_iButtonMargin;
-               rect.left = rect.right - iButtonSize;
+               sizeButton = get_button_size(button_notify_icon);
+               rectMargin = get_button_margin(button_notify_icon);
+
+               rect.top = rectMargin.top;
+               rect.bottom = sizeButton.cy + rect.top;
+               rect.right = rect.left - rectMargin.right;
+               rect.left = rect.right - sizeButton.cx;
+
                get_box_button(button_notify_icon)->::user::interaction::SetWindowPos(ZORDER_TOP, rect.left, rect.top, rect.width(), rect.height(), SWP_SHOWWINDOW);
                get_box_button(button_notify_icon)->UpdateWndRgn();
+               rect.left -= rectMargin.left;
             }
             else
             {
@@ -495,11 +538,17 @@ namespace user
             }
             else
             {
-               rect.right = rect.left - m_iButtonMargin;
-               rect.left = rect.right - iButtonSize;
+               sizeButton = get_button_size(button_dock);
+               rectMargin = get_button_margin(button_dock);
+
+               rect.top = rectMargin.top;
+               rect.bottom = sizeButton.cy + rect.top;
+               rect.right = rect.left - rectMargin.right;
+               rect.left = rect.right - sizeButton.cx;
+
                get_box_button(button_dock)->::user::interaction::SetWindowPos(ZORDER_TOP,rect.left,rect.top,rect.width(),rect.height(),SWP_SHOWWINDOW);
                get_box_button(button_dock)->UpdateWndRgn();
-
+               rect.left -= rectMargin.left;
             }
 
          }
@@ -711,15 +760,32 @@ namespace user
          void control_box::reset_layout()
          {
 
-            m_iButtonSize = calc_button_size();
+            int iDefaultButtonSize = calc_button_size();
+
+            m_sizeButtonDefault = size(iDefaultButtonSize,iDefaultButtonSize);
 
          }
 
 
-         int32_t control_box::get_button_size()
+         size control_box::get_button_size(e_button ebutton)
          {
 
-            return m_iButtonSize;
+            return m_sizeButtonDefault;
+
+         }
+         
+
+         rect control_box::get_button_margin(e_button ebutton)
+         {
+            
+            rect rectMargin;
+
+            rectMargin.left = 0;
+            rectMargin.top = m_iDefaultButtonMargin;
+            rectMargin.right = m_iDefaultButtonMargin;
+            rectMargin.bottom = m_iDefaultButtonMargin;
+
+            return rectMargin;
 
          }
 
@@ -737,7 +803,7 @@ namespace user
 
             pdc->get_text_metrics(&tm);
 
-            int32_t iButtonSize = tm.tmHeight + m_iButtonMargin * 3;
+            int32_t iButtonSize = tm.tmHeight + m_iDefaultButtonMargin * 3;
 
             return iButtonSize;
 
@@ -747,7 +813,18 @@ namespace user
          int32_t control_box::calc_control_box_height()
          {
 
-            return calc_button_size() + m_iButtonMargin * 2;
+            int iHeight = 0;
+
+            auto p = m_buttonmap.PGetFirstAssoc();
+
+            for(; p != NULL; p = m_buttonmap.PGetNextAssoc(p))
+            {
+
+               iHeight = MAX(iHeight,get_button_size(p->m_element1).cy + get_button_margin(p->m_element1).top + get_button_margin(p->m_element1).bottom);
+
+            }
+
+            return iHeight;
 
          }
 
@@ -757,7 +834,7 @@ namespace user
 
             int iWidth;
 
-            iWidth = (m_iButtonSize + m_iButtonMargin) * 8;
+            iWidth = (m_sizeButtonDefault.cx + m_iDefaultButtonMargin) * 8;
 
             return iWidth;
 
@@ -769,7 +846,7 @@ namespace user
 
             int iWidth;
 
-            iWidth = (m_iButtonSize + m_iButtonMargin) * 8;
+            iWidth = (m_sizeButtonDefault.cx + m_iDefaultButtonMargin) * 8;
 
             return iWidth;
 
@@ -781,19 +858,19 @@ namespace user
 
             int iWidth;
 
-            iWidth = (m_iButtonSize + m_iButtonMargin) * 13;
+            iWidth = (m_sizeButtonDefault.cx + m_iDefaultButtonMargin) * 13;
 
             return iWidth;
 
          }
 
 
-         int32_t control_box::get_button_margin()
-         {
+         //int32_t control_box::get_button_margin()
+         //{
 
-            return m_iButtonMargin;
+         //   return m_iDefaultButtonSize;
 
-         }
+         //}
 
 
          sp(control_box_button) control_box::get_button(e_button ebutton)

@@ -7,6 +7,57 @@ namespace user
 
    class tab_callback;
 
+   class CLASS_DECL_CORE tab_pane:
+      virtual public ::object
+   {
+   public:
+
+
+      ::draw2d::brush_sp                  m_brushFill;
+      ::draw2d::brush_sp                  m_brushFillSel;
+      ::draw2d::brush_sp                  m_brushFillHover;
+      id                                  m_id;
+      istring                             m_istrTitleEx;
+      ::visual::dib_sp                    m_dib;
+      sp(place_holder)                    m_pholder;
+      bool                                m_bVisible;
+      bool                                m_bPermanent;
+      size                                m_size;
+      stringa                             m_straTitle;
+      array<size>                         m_sizeaText;
+      point                               m_pt;
+
+
+      tab_pane(::aura::application * papp);
+      tab_pane(const tab_pane & tab_pane);
+      virtual ~tab_pane();
+
+
+      tab_pane & operator = (const tab_pane & tab_pane);
+
+
+      string get_title();
+
+      virtual void do_split_layout(::visual::graphics_extension & dc,::draw2d::graphics * pdc);
+
+   };
+
+
+   class CLASS_DECL_CORE tab_pane_array:
+      public spa(tab_pane)
+   {
+   public:
+
+
+      tab_pane_array(::aura::application * papp);
+      virtual ~tab_pane_array();
+
+
+      virtual tab_pane * get_by_id(id id);
+      ::count get_visible_count();
+
+
+   };
 
    class CLASS_DECL_CORE tab :
       virtual public control,
@@ -22,59 +73,7 @@ namespace user
 
 
 
-      class CLASS_DECL_CORE pane :
-         virtual public ::object
-      {
-      public:
-
-
-         ::draw2d::brush_sp                  m_brushFill;
-         ::draw2d::brush_sp                  m_brushFillSel;
-         ::draw2d::brush_sp                  m_brushFillHover;
-         id                                  m_id;
-         istring                             m_istrTitleEx;
-         ::visual::dib_sp                    m_dib;
-         sp(place_holder)                    m_pholder;
-         bool                                m_bVisible;
-         bool                                m_bPermanent;
-         size                                m_size;
-         stringa                             m_straTitle;
-         array<size>                         m_sizeaText;
-         point                               m_pt;
-
-
-         pane(::aura::application * papp);
-         pane(const pane & pane);
-         virtual ~pane();
-
-
-         pane & operator = (const pane & pane);
-
-
-         string get_title();
-
-         virtual void do_split_layout(::visual::graphics_extension & dc, ::draw2d::graphics * pdc);
-         virtual void draw_title(tab * ptab,::draw2d::graphics * pdc,LPCRECT lprect,::draw2d::brush_sp & brushText);
-
-      };
-
-
-      class CLASS_DECL_CORE pane_array :
-         public spa(pane)
-      {
-      public:
-
-
-         pane_array(::aura::application * papp);
-         virtual ~pane_array();
-
-
-         virtual pane * get_by_id(id id);
-         ::count get_visible_count();
-
-
-      };
-
+      
 
       class CLASS_DECL_CORE data :
          virtual public ::data::data
@@ -100,7 +99,7 @@ namespace user
          bool                                m_bCreated;
          int32_t                              m_iTabHeight;
          int32_t                              m_iTabWidth;
-         pane_array                       m_panea;
+         tab_pane_array                       m_panea;
          rect                             m_rectTab;
          rect                             m_rectTabClient;
          visual::graphics_extension       m_dcextension;
@@ -121,7 +120,7 @@ namespace user
          data(::aura::application * papp);
          virtual ~data();
 
-         virtual pane * get_pane_by_id(id id);
+         virtual tab_pane * get_pane_by_id(id id);
 
          ::count get_visible_tab_count();
 
@@ -166,7 +165,7 @@ namespace user
       virtual void  _001SetVertical(bool bSet = true);
       virtual void _001SelectTab(::index iTab);
       virtual void _001CloseTab(::index iTab);
-      virtual pane * get_pane(::index iTab, bool bVisible = true);
+      virtual tab_pane * get_pane(::index iTab, bool bVisible = true);
       virtual ::user::interaction * get_tab_window(::index iTab, bool bVisible = true);
       virtual ::user::place_holder * get_tab_holder(::index iTab, bool bVisible = true);
 
@@ -220,8 +219,8 @@ namespace user
 
       virtual ::index get_tab_by_id(id id);
       virtual id get_id_by_tab(::index iTab, bool bVisible = true);
-      virtual pane * get_pane_by_id(id id);
-      virtual pane * ensure_pane_by_id(id id);
+      virtual tab_pane * get_pane_by_id(id id);
+      virtual tab_pane * ensure_pane_by_id(id id);
       virtual void ensure_tab_by_id(id id);
 
       virtual void on_change_pane_count();

@@ -588,23 +588,22 @@ namespace user
 
 //            int32_t iCaptionHeight = get_caption_height();
 
-            int32_t iButtonSize = m_spcontrolbox->get_button_size();
-
             rect rectClient;
 
             pwndDraw->GetWindowRect(rectClient);
 
             int32_t cx = rectClient.width();
 
+            int iControlBoxHeight = m_spcontrolbox->calc_control_box_height();
+
             rect rect;
 
             m_rectCaption.left = rectClient.left + prectMargin->left + prectControlBoxMargin->left;
             m_rectCaption.top = rectClient.top + prectMargin->top + prectControlBoxMargin->top;
             m_rectCaption.right = rectClient.right - +prectMargin->right + prectControlBoxMargin->right;
-            m_rectCaption.bottom = m_rectCaption.top + iButtonSize;
+            m_rectCaption.bottom = m_rectCaption.top + iControlBoxHeight;
 
 
-            int iControlBoxHeight = m_spcontrolbox->calc_control_box_height();
 
 
             bool bShow = true;

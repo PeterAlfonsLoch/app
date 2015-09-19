@@ -23,8 +23,8 @@ namespace user
             bool                          m_bShowAttempt;
             bool                          m_bDrag;
             point                         m_ptDrag;
-            int32_t                       m_iButtonMargin;
-            int32_t                       m_iButtonSize;
+            int32_t                       m_iDefaultButtonMargin;
+            size                          m_sizeButtonDefault;
             ::draw2d::font_sp             m_fontMarlett;
 
             ::draw2d::brush_sp            m_brushButtonBack;
@@ -77,6 +77,10 @@ namespace user
 
             virtual void layout();
 
+            virtual size get_button_size(e_button ebutton);
+
+            virtual rect get_button_margin(e_button ebutton);
+
             virtual int32_t calc_button_size();
 
             virtual int32_t calc_control_box_height();
@@ -91,11 +95,8 @@ namespace user
 
             virtual void reset_layout();
 
-            virtual int32_t get_button_margin();
-
             virtual bool has_button(e_button ebutton);
             virtual void hide_button(e_button ebutton, bool bHide = true);
-            virtual int32_t get_button_size();
             virtual bool create_buttons();
             virtual void update_control_box_button(e_button ebutton);
             virtual void update_control_box_buttons();
