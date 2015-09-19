@@ -74,6 +74,10 @@ namespace user
 
       virtual void _001OnTabLayout(::user::tab * ptab);
 
+      virtual bool _001GetMainFrameTranslucency(::user::ETranslucency & etranslucency);
+
+      virtual bool _001OnDrawMainFrameBackground(::draw2d::graphics * pdc,::user::frame_window * pframe);
+
    };
 
 

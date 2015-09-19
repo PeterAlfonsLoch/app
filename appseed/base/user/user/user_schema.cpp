@@ -622,6 +622,22 @@ namespace user
    }
 
 
+   bool schema::_001GetMainFrameTranslucency(::user::ETranslucency & etranslucency)
+   {
+
+      return false;
+
+   }
+
+   
+   bool schema::_001OnDrawMainFrameBackground(::draw2d::graphics * pdc,::user::frame_window * pframe)
+   {
+
+      return false;
+
+   }
+
+
 } // namespace user
 
 

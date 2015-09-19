@@ -237,6 +237,9 @@ void simple_frame_window::_001OnCreate(signal_details * pobj)
    if (pobj->previous())
       return;
 
+   m_puserschema = Session.m_puserschema;
+
+
    sp(::user::place_holder) pplaceholder = GetParent();
 
    if (pplaceholder != NULL)
@@ -1145,9 +1148,12 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics * pdcParam)
    pdc->set_alpha_mode(::draw2d::alpha_mode_set);
    
 
-
-
-   if (m_bblur_Background)
+   if(m_puserschema != NULL && m_puserschema->_001OnDrawMainFrameBackground(pdc,this))
+   {
+      _001DrawThis(pdc);
+      _001DrawChildren(pdc);
+   }
+   else if (m_bblur_Background)
    {
       _001DrawThis(pdc);
       _001DrawChildren(pdc);
@@ -1197,7 +1203,7 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics * pdc)
 {
    single_lock sl(m_pmutex, true);
 
-
+   
    if(m_bblur_Background)
    {
       class imaging & imaging = System.visual().imaging();
