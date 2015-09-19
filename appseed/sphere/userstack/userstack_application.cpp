@@ -327,7 +327,7 @@ namespace userstack
 
             string strAppName(pszAppId);
 
-            ::user::tab::pane * ppane = ppaneview->get_pane_by_id("app:" + strAppName);
+            ::user::tab_pane * ppane = ppaneview->get_pane_by_id("app:" + strAppName);
 
             if(ppane != NULL)
             {

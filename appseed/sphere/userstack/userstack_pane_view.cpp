@@ -245,7 +245,7 @@ namespace userstack
          string strTypeId = typeid(*pappCurrent).name();
 
          string strIcon = Sess(pappCurrent).dir().matter("mainframe/icon48.png");
-         pane * ppane = (pane *) get_pane_by_id(pcreatordata->m_id);
+         ::user::tab_pane * ppane = (::user::tab_pane *) get_pane_by_id(pcreatordata->m_id);
 
          pappCurrent = Session.m_pappCurrent;
 
