@@ -27,6 +27,9 @@
 #include "draw2d/draw2d.h"
 
 
+#include "draw3d/draw3d.h"
+
+
 #include "visual/visual.h"
 
 

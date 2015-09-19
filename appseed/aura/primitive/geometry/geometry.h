@@ -138,6 +138,22 @@ typedef const RECTD * LPCRECTD;
 
 
 
+struct Q4
+{
+public:
+
+
+   double a;
+   double x;
+   double y;
+   double z;
+
+
+};
+
+
+
+
 CLASS_DECL_AURA int64_t MulDiv(int64_t nNumber, int64_t nNumerator, int64_t nDenominator);
 CLASS_DECL_AURA inline bool is64integer(int64_t i)
 {
@@ -258,9 +274,10 @@ CLASS_DECL_AURA bool deflate(LPRECT prect, const RECT & rect);
 #include "geometry_rect.h"
 
 
+#include "geometry_quaternions.h"
+
 
 #include "geometry_types.h"
-
 
 
 

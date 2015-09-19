@@ -271,3 +271,29 @@ LPARAM pointd::lparam() const throw()
 {
    return MAKELPARAM((int32_t) x, (int32_t) y);
 }
+
+
+
+
+point3d point3d::rotate(point3d p)
+{
+
+   point3d p1;
+   p1.x = x *cos(p.z) - y * sin(p.z) ;
+   p1.y = x *sin(p.z) + y * cos(p.z) ;
+   p1.z = z;
+
+   point3d p2;
+   p2.y = p1.y*cos(p.x) - p1.z * sin(p.x) ;
+   p2.z = p1.y *sin(p.x) + p1.z * cos(p.x) ;
+   p2.x = p1.x;
+
+   point3d p3;
+   p3.z = p2.z *cos(p.y) - p2.x * sin(p.y) ;
+   p3.x = p2.z *sin(p.y) + p2.x * cos(p.y) ;
+   p3.y = p2.y;
+
+   return p3;
+}
+
+

@@ -763,3 +763,24 @@ template<> inline UINT HashKey<rect> (rect key)
 {
    return key.left | key.top | key.bottom | key.right;
 }
+
+
+
+
+
+
+class CLASS_DECL_AURA rect3d
+{
+public:
+
+   rect3d() {};
+   rect3d(double x,double y,double z,double x2,double y2,double z2,double,double cx,double cy): m_p(x,y,z),m_d(x2,y2,z2),m_size(cx,cy) {}
+
+   point3d    m_p;
+   point3d    m_d; // direction
+   pointd     m_size; // size
+
+
+};
+
+

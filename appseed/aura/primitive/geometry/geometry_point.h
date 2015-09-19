@@ -447,3 +447,54 @@ template<> inline UINT HashKey<point> (point key)
 
 
 
+struct CLASS_DECL_AURA POINT3D
+{
+   double x;
+   double y;
+   double z;
+};
+
+class CLASS_DECL_AURA point3d:
+   public POINT3D
+{
+public:
+
+   point3d() {}
+   point3d(double xP,double yP,double zP) { x = xP; y=yP; z=zP; }
+
+   point3d  operator +(const point3d &p1) const
+   {
+      point3d p;
+      p.x =x + p1.x;
+      p.y =y + p1.y;
+      p.z =z + p1.z;
+      return p;
+   }
+   point3d & operator +=(const point3d &p)
+   {
+      x += p.x;
+      y += p.y;
+      z += p.z;
+      return *this;
+   }
+
+   point3d & operator -=(const point3d &p)
+   {
+      x -= p.x;
+      y -= p.y;
+      z -= p.z;
+      return *this;
+   }
+
+   point3d & operator = (const point3d & p)
+   {
+      x = p.x;
+      y = p.y;
+      z = p.z;
+      return *this;
+   }
+
+   point3d rotate(point3d d);
+
+};
+

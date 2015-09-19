@@ -264,6 +264,12 @@
     <Filter Include="Source Files\aura\os\windows_common">
       <UniqueIdentifier>{47304b31-5aaa-4323-a2e1-070743f2f4aa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\graphics\draw3d">
+      <UniqueIdentifier>{c411d3a5-d754-4646-90ff-f307c91abb27}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics\draw3d">
+      <UniqueIdentifier>{38a2d500-9811-43ea-8c10-36a5795a80af}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="primitive\primitive_id.h">
@@ -2105,6 +2111,18 @@
     <ClInclude Include="primitive\math\math_std_template.h">
       <Filter>Header Files\primitive\math</Filter>
     </ClInclude>
+    <ClInclude Include="primitive\geometry\geometry_box.h">
+      <Filter>Header Files\primitive\geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw3d\draw3d_ortho.h">
+      <Filter>Header Files\graphics\draw3d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw3d\draw3d.h">
+      <Filter>Header Files\graphics\draw3d</Filter>
+    </ClInclude>
+    <ClInclude Include="geometry_quaternions.h">
+      <Filter>Header Files\primitive\geometry</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="multithreading\multithreading_condition.cpp">
@@ -3540,6 +3558,12 @@
     </ClCompile>
     <ClCompile Include="aura\os\windows_common\_windows_common.cpp">
       <Filter>Source Files\aura\os\windows_common</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\geometry\geometry_box.cpp">
+      <Filter>Source Files\primitive\geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw3d\draw3d_ortho.cpp">
+      <Filter>Source Files\graphics\draw3d</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

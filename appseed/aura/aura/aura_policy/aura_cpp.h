@@ -800,6 +800,9 @@ namespace file
 #include "aura/primitive/collection/collection.h"
 
 
+#include "aura/primitive/geometry/geometry_box.h"
+
+
 #include "aura/aura/aura/aura_cmp.h"
 
 
@@ -896,7 +899,6 @@ CLASS_DECL_AURA string get_system_error_message(uint32_t dwError);
 #include "aura/primitive/primitive_type.h"
 
 
-//#include "graphics/graphics.h"
 //#include "user/user/user_enum.h"
 //#include "user/user/user_keyboard_focus.h"
 //#include "user/user/user_mouse_focus.h"
@@ -1636,6 +1638,9 @@ CLASS_DECL_AURA void dappy(const char * psz);
 
 
 #include "aura/primitive/primitive_color.h"
+
+
+#include "aura/graphics/graphics.h"
 
 
 #include "aura/aura/aura/aura_str_context.h"

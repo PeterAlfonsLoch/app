@@ -129,6 +129,7 @@
 #include "geometry/geometry_point.cpp"
 #include "geometry/geometry_rect.cpp"
 #include "geometry/geometry_size.cpp"
+#include "geometry/geometry_box.cpp"
 #include "geometry/geometry_types.cpp"
  //              5 arquivo(s)         74.155 bytes
 
