@@ -446,8 +446,8 @@ namespace dynamic_source
       {
          library_class * plib;
          string strClass;
-         m_pcompiler->m_mapLib.get_next_assoc(pos, strClass, (void * &) plib);
-         memfile.transfer_from(plib->m_memfileError);
+//         m_pcompiler->m_mapLib.get_next_assoc(pos, strClass, (void * &) plib);
+//         memfile.transfer_from(plib->m_memfileError);
       }
 
       memfile << m_strPersistentError;

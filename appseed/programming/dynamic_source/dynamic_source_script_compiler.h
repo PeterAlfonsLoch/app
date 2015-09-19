@@ -8,7 +8,39 @@ namespace dynamic_source
    class script;
    class script_instance;
 
-   class script_compiler :
+   class library  :
+      virtual public ::object
+   {
+   public:
+      mutex m_mutex;
+      string m_strError;
+      file::plain_text_stream_memory_buffer     m_memfileError;
+            file::plain_text_stream_memory_buffer     m_memfileLibError;
+          ::file::listing                             m_straLibSourcePath;
+      ::file::patha                             m_straLibSourceRelPath;
+        ::file::patha                             m_straLibCppPath;
+      ::file::listing                             m_straLibIncludePath;
+      ::file::patha                             m_straLibIncludeRelPath;
+            ::file::patha                             m_straLibHppPath;
+          ::file::path                              m_strLibraryPath;
+
+        uint32_t                                  m_dwLastLibraryVersionCheck;
+            bool                                      m_bLastLibraryVersionCheck;
+            ::aura::library                           m_libraryLib;
+
+
+            raw_array < __time_t >                    m_ftaLibCreation;
+          raw_array < __time_t >                    m_ftaLibAccess;
+        raw_array < __time_t >                    m_ftaLibModified;
+
+        library(::aura::application * papp);
+        virtual ~library();
+
+          void load_library();
+        void unload_library();
+   };
+
+   class CLASS_DECL_PROGRAMMING script_compiler :
       virtual public ::object,
       virtual public ::file_watcher::listener_thread
    {
@@ -23,38 +55,21 @@ namespace dynamic_source
       };
 
 
-      
+      string_map < sp(library) > m_mapLib;
 
-//      file::plain_text_stream_memory_buffer     m_memfileLibError;
-  //    ::file::listing                             m_straLibSourcePath;
-      //::file::patha                             m_straLibSourceRelPath;
-    //  ::file::patha                             m_straLibCppPath;
-      //::file::listing                             m_straLibIncludePath;
-      //::file::patha                             m_straLibIncludeRelPath;
-//      ::file::patha                             m_straLibHppPath;
-  //    ::file::path                              m_strLibraryPath;
-                                                
-    //  uint32_t                                  m_dwLastLibraryVersionCheck;
-//      bool                                      m_bLastLibraryVersionCheck;
-                                                
+
+
                                                 
       string                                    m_strDynamicSourceConfiguration;
       ::file::path                              m_strDynamicSourceStage;
       ::file::path                              m_strDynamicSourceStageFolder;
                                                 
                                                 
-//      ::aura::library                           m_libraryLib;
-
-
-//      raw_array < __time_t >                    m_ftaLibCreation;
-  //    raw_array < __time_t >                    m_ftaLibAccess;
-    //  raw_array < __time_t >                    m_ftaLibModified;
-              
-
+      string      m_strLibPlatform;
 
                                                 
       stringa                                   m_straSync;
-      map_string_to_ptr                         m_mapLib;
+//      map_string_to_ptr                         m_mapLib;
       string                                    m_strLibsLibs;
       string                                    m_strEnv;
       sp(script_manager)                        m_pmanager;
@@ -70,6 +85,8 @@ namespace dynamic_source
 
 
       mutex                                     m_mutex;
+
+      mutex                                     m_mutexLibrary;
 
 
       script_compiler(::aura::application * papp);
@@ -99,12 +116,10 @@ namespace dynamic_source
 
       void folder_watch();
 
-//      void compile_library();
+      library & lib(const char * pszLibrary);
       void process_include(const char * pszInclude);
 
   //    bool library_DoesMatchVersion();
-    //  void load_library();
-      //void unload_library();
 
 
       virtual void handle_file_action(::file_watcher::id watchid, const char * dir, const char * filename, ::file_watcher::e_action action);

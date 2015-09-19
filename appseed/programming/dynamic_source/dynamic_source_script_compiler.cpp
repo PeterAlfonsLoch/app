@@ -190,21 +190,21 @@ namespace dynamic_source
       m_strPlat1     = "64";
       m_strPlatform = "x86";
       m_strStagePlatform = "x86";
-      //m_strLibPlatform = "x86/";
+      m_strLibPlatform = "x86/";
 #else
       m_strPlat1     = "64";
       //m_strPlat2 = "  x86_amd64";
       m_strPlat2 = "amd64";
       m_strPlatform = "x64";
       m_strStagePlatform = "x64";
-      //m_strLibPlatform = "x64/";
+      m_strLibPlatform = "x64/";
       #endif
 #else
       m_strPlat1     = "32";
       strPlat2 = " x86";
       m_strPlatform = "Win32";
       m_strStagePlatform = "x86";
-      //m_strLibPlatform = "x86/";
+      m_strLibPlatform = "x86/";
 #endif
 
       //System.file().lines(m_straSync, "C:\\core\\database\\text\\dynamic_source\\syncer.txt", get_app());
@@ -1341,264 +1341,463 @@ namespace dynamic_source
 
    }
 
-//   void script_compiler::compile_library()
-//   {
-//      return;
-//
-//      single_lock slLibrary(&m_mutexLibrary,TRUE);
-//
-//      unload_library();
-//
-//      ::file::path strName = "library";
-//
-//      m_strLibsLibs = System.dir().element() / "time/library" / m_strStagePlatform / "/library/library.lib";
-//
-//      m_memfileLibError.set_length(0);
-//      string strFolder;
-//      strFolder = System.dir().element();
-//
-//      m_straLibSourcePath.m_pprovider=get_app();
-//      m_straLibSourcePath.clear_results();
-//      m_straLibSourcePath.rls(m_pmanager->m_strNetseedDsCa2Path / "library/source");
-//      for(int32_t i = 0; i < m_straLibSourcePath.get_size();)
-//      {
-//         if(m_straLibSourcePath[i].ext() != "ds")
-//         {
-//            m_straLibSourcePath.remove_at(i);
-//         }
-//         else
-//         {
-//            i++;
-//         }
-//      }
-//      m_straLibCppPath.remove_all();
-//      for(int32_t i = 0; i < m_straLibSourcePath.get_size(); i++)
-//      {
-//         string str = m_straLibSourcePath[i].relative();
-//         ::str::ends_eat_ci(str,".ds");
-//         str.replace(":","");
-//         m_straLibCppPath.add(m_strTime / "dynamic_source/library/source" / str + ".cpp");
-//      }
-//      m_straLibIncludePath.m_pprovider=get_app();
-//      m_straLibIncludePath.clear_results();
-//      m_straLibIncludePath.rls(m_pmanager->m_strNetseedDsCa2Path / "library/include");
-//      for(int32_t i = 0; i < m_straLibIncludePath.get_size();)
-//      {
-//         if(m_straLibIncludePath[i].ext() != "ds"
-//            || ::str::find_ci(m_straLibIncludePath[i],"\\.svn\\") >= 0
-//            || Application.dir().is(m_straLibIncludePath[i]))
-//         {
-//            m_straLibIncludePath.remove_at(i);
-//         }
-//         else
-//         {
-//            i++;
-//         }
-//      }
-//      m_straLibHppPath.remove_all();
-//      for(int32_t i = 0; i < m_straLibIncludePath.get_size(); i++)
-//      {
-//         string str = m_straLibIncludePath[i].relative();
-//         ::str::ends_eat_ci(str,".ds");
-//         str.replace(":","");
-//         m_straLibHppPath.add(m_strTime / "dynamic_source/library/include" / str + ".h");
-//      }
-//
-//      string strLib(strName.name());
-//
-//
-//      //#ifdef DEBUG
-//#ifdef LINUX
-//      m_strLibraryPath = "/core/" / m_strDynamicSourceStage / "x86/libnetnodelibrary.so";
-//#else
-//      m_strLibraryPath = System.dir().element() / m_strDynamicSourceStage / m_strStagePlatform / "dynamic_source/library" / strLib + ".dll";
-//#endif
-//      //#else
-//      // plib->m_strLibraryPath.Format(strFolder, "app/stage/core/fontopus/app/main/front/Release/%s.dll", false), strName);
-//      //#endif
-//
-//      Application.dir().mk(m_strLibraryPath.folder());
-//      Application.dir().mk(m_strTime / "intermediate" / m_strPlatform / m_strDynamicSourceConfiguration / m_pmanager->m_strNamespace + "_dynamic_source_library/library");
-//
-//      for(int32_t i = 0; i < m_straLibIncludePath.get_size(); i++)
-//      {
-//         cppize(m_straLibIncludePath[i],m_straLibHppPath[i],cpptype_include);
-//      }
-//
-//
+   library & script_compiler::lib(const char * pszLibrary)
+   {
+
+      single_lock slLibrary(&m_mutexLibrary,TRUE);
+
+      auto p = m_mapLib.PLookup(pszLibrary);
+
+      if(p != NULL)
+      {
+         return *p->m_element2;
+      }
+
+      m_mapLib[pszLibrary] = canew(library(get_app()));
+
+      library & l = *m_mapLib[pszLibrary];
+
+      
+      string strV(System.dir().element());
+      strV.replace("\\","/");
+      if(!::str::ends(strV,"/") && !::str::ends(strV,"\\"))
+         strV += "/";
+
+      string strN = m_pmanager->m_strNetnodePath;
+      strN.replace("\\","/");
+      if(!::str::ends(strN,"/") && !::str::ends(strN,"\\"))
+         strN += "/";
+
+
+      //unload_library();
+
+      string strLibrary(pszLibrary);
+
+      ::file::path strName = strLibrary;
+
+      m_strLibsLibs = System.dir().element() / "time/library" / m_strStagePlatform / "/library/"+strLibrary+".lib";
+
+      //m_memfileLibError.set_length(0);
+      string strFolder;
+      strFolder = System.dir().element();
+
+      l.m_straLibSourcePath.m_pprovider=get_app();
+      l.m_straLibSourcePath.clear_results();
+      l.m_straLibSourcePath.rls(m_pmanager->m_strNetseedDsCa2Path / "library" / strName);
+      for(int32_t i = 0; i < l.m_straLibSourcePath.get_size();)
+      {
+         if(l.m_straLibSourcePath[i].ext() != "ds" && l.m_straLibSourcePath[i].ext() != "cpp")
+         {
+            l.m_straLibSourcePath.remove_at(i);
+         }
+         else
+         {
+            i++;
+         }
+      }
+      l.m_straLibCppPath.remove_all();
+      ::file::path strLibRel = ::file::path("dynamic_source/library") / strName;
+      for(int32_t i = 0; i < l.m_straLibSourcePath.get_size(); i++)
+      {
+         string str = l.m_straLibSourcePath[i].relative();
+         ::str::ends_eat_ci(str,".ds");
+         str.replace(":","");
+         l.m_straLibCppPath.add(m_strTime / strLibRel / str + ".cpp");
+      }
+      l.m_straLibIncludePath.m_pprovider=get_app();
+      l.m_straLibIncludePath.clear_results();
+      l.m_straLibIncludePath.rls(m_pmanager->m_strNetseedDsCa2Path / "library" / strName);
+      for(int32_t i = 0; i < l.m_straLibIncludePath.get_size();)
+      {
+         if(l.m_straLibIncludePath[i].ext() != "h"
+            || ::str::find_ci(l.m_straLibIncludePath[i],"\\.svn\\") >= 0
+            || Application.dir().is(l.m_straLibIncludePath[i]))
+         {
+            l.m_straLibIncludePath.remove_at(i);
+         }
+         else
+         {
+            i++;
+         }
+      }
+      l.m_straLibHppPath.remove_all();
+      for(int32_t i = 0; i < l.m_straLibIncludePath.get_size(); i++)
+      {
+         string str = l.m_straLibIncludePath[i].relative();
+         ::str::ends_eat_ci(str,".ds");
+         str.replace(":","");
+         l.m_straLibHppPath.add(m_strTime / strLibRel / str + ".h");
+      }
+
+      string strLib(strName.name());
+
+
+      //#ifdef DEBUG
+#ifdef LINUX
+      l.m_strLibraryPath = "/core/" / m_strDynamicSourceStage / "x86/libnetnodelibrary.so";
+#else
+      l.m_strLibraryPath = System.dir().element() / m_strDynamicSourceStage / m_strStagePlatform / "dynamic_source/" / strName / strLib + ".dll";
+#endif
+      //#else
+      // plib->m_strLibraryPath.Format(strFolder, "app/stage/core/fontopus/app/main/front/Release/%s.dll", false), strName);
+      //#endif
+
+      Application.dir().mk(l.m_strLibraryPath.folder());
+      Application.dir().mk(m_strTime / "intermediate" / m_strPlatform / m_strDynamicSourceConfiguration / m_pmanager->m_strNamespace + "_dynamic_source_library/library");
+
+      for(int32_t i = 0; i < l.m_straLibIncludePath.get_size(); i++)
+      {
+         cppize(l.m_straLibIncludePath[i],l.m_straLibHppPath[i],cpptype_include);
+      }
+
+
 //      string strN = m_pmanager->m_strNetnodePath;
-//      strN.replace("\\","/");
-//      if(!::str::ends(strN,"/") && !::str::ends(strN,"\\"))
-//         strN += "/";
-//
-//
-//#ifdef WINDOWS
-//      string vars1batSrc;
-//      string vars2batSrc;
-//      string vars1batDst;
-//      string vars2batDst;
-//      vars1batSrc = System.dir().element() / "nodeapp/stage/dynamic_source/vc_vars.bat";
-//      vars2batSrc = System.dir().element() / "nodeapp/stage/dynamic_source/vc_vars_query_registry.bat";
-//      vars1batDst = System.dir().element() / m_strDynamicSourceStage / "front/vc_vars.bat";
-//      vars2batDst = System.dir().element() / m_strDynamicSourceStage / "front/vc_vars_query_registry.bat";
-//      try
-//      {
-//         Application.file().copy(vars1batDst,vars1batSrc,false);
-//      }
-//      catch(...)
-//      {
-//      }
-//      try
-//      {
-//         Application.file().copy(vars2batDst,vars2batSrc,false);
-//      }
-//      catch(...)
-//      {
-//      }
-//
-//#endif
-//
-//      for(int32_t i = 0; i < m_straLibSourcePath.get_size(); i++)
-//      {
-//         cppize(m_straLibSourcePath[i],m_straLibCppPath[i],cpptype_source);
-//         string strRel = m_straLibSourcePath[i].relative();
-//         ::str::ends_eat_ci(strRel,".ds");
-//         strRel.replace("\\","/");
-//         ::file::path str1;
-//         str1 = "library/source" / strRel;
-//         string strCmd;
-//         //#ifdef DEBUG
+  //    strN.replace("\\","/");
+    //  if(!::str::ends(strN,"/") && !::str::ends(strN,"\\"))
+      //   strN += "/";
+
+
+#ifdef WINDOWS
+      string vars1batSrc;
+      string vars2batSrc;
+      string vars1batDst;
+      string vars2batDst;
+      vars1batSrc = System.dir().element() / "nodeapp/stage/dynamic_source/vc_vars.bat";
+      vars2batSrc = System.dir().element() / "nodeapp/stage/dynamic_source/vc_vars_query_registry.bat";
+      vars1batDst = System.dir().element() / m_strDynamicSourceStage / "front/vc_vars.bat";
+      vars2batDst = System.dir().element() / m_strDynamicSourceStage / "front/vc_vars_query_registry.bat";
+      try
+      {
+         Application.file().copy(vars1batDst,vars1batSrc,false);
+      }
+      catch(...)
+      {
+      }
+      try
+      {
+         Application.file().copy(vars2batDst,vars2batSrc,false);
+      }
+      catch(...)
+      {
+      }
+
+#endif
+
+      for(int32_t i = 0; i < l.m_straLibSourcePath.get_size(); i++)
+      {
+         if(l.m_straLibSourcePath[i].ext() == "cpp")
+         {
+            ::CopyFile(l.m_straLibSourcePath[i],l.m_straLibCppPath[i], FALSE);
+         }
+         else
+         {
+            cppize(l.m_straLibSourcePath[i],l.m_straLibCppPath[i],cpptype_source);
+
+         }
+         string strRel = l.m_straLibSourcePath[i].relative();
+         ::str::ends_eat_ci(strRel,".ds");
+         ::str::ends_eat_ci(strRel,".cpp");
+         strRel.replace("\\","/");
+         ::file::path str1;
+         str1 = "library/source" / strRel;
+         string strCmd;
+         //#ifdef DEBUG
 //#ifdef LINUX
 //         strCmd = System.dir().element()/ m_strDynamicSourceStage / "front"/ m_strDynamicSourceConfiguration + "_libc" + m_strPlat1 + ".bash";
 //#else
 //         strCmd = System.dir().element() / m_strDynamicSourceStage / "front" / m_strDynamicSourceConfiguration + "_libc" + m_strPlat1 + ".bat";
 //#endif
-//         //#else
-//         //    strCmd.Format(strFolder, "app\\stage\\core\\fontopus\\app\\main\\front\\dynamic_source_cl.bat", false));
-//         //#endif
-//         string str = Application.file().as_string(strCmd);
-//         str.replace("%ITEM_NAME%",::str::replace("\\","/",string(str1)));
-//         str.replace("%ITEM_DIR%",::str::replace("\\", "/", string(str1.folder())) +"/" );
-//         str.replace("%PLATFORM%",m_strPlatform);
-//         str.replace("%STAGEPLATFORM%",m_strStagePlatform);
-//         str.replace("%NETNODE_ROOT%",strN);
-//         str.replace("%LIBPLATFORM%",m_strLibPlatform);
-//         str.replace("%CONFIGURATION_NAME%",m_strDynamicSourceConfiguration);
-//         str.replace("%CONFIGURATION%",m_strDynamicSourceConfiguration);
-//         str.replace("%SDK1%",m_strSdk1);
-//         Application.dir().mk(m_strTime / "intermediate" / m_strPlatform / m_strDynamicSourceConfiguration / m_pmanager->m_strNamespace + "_dynamic_source_library" / str1.folder());
-//         Application.dir().mk(m_strTime / "library" / m_strStagePlatform / str1.folder());
-//
-//         string strFormat = "libc-" + str1;
-//
-//         strFormat.replace("/","-");
-//         strFormat.replace("\\","-");
-//
-//#ifdef LINUX
-//         strFormat += ".bash";
-//#else
-//         strFormat += ".bat";
-//#endif
-//         strCmd = System.dir().element() / m_strDynamicSourceStage / "front" / strFormat;
-//
-//         //Application.file().put_contents_utf8(strCmd, str);
-//         Application.file().put_contents(strCmd,str);
-//
-//         ::process::process_sp process(allocer());
-//
-//         process->create_child_process(strCmd,false,System.dir().element() / m_strDynamicSourceStage / "front",::multithreading::priority_highest);
-//
-//
-//         uint32_t dwExitCode;
-//         while(true)
-//         {
-//            if(process->has_exited(&dwExitCode))
-//               break;
-//            Sleep(100);
-//         }
-//
-//         m_memfileLibError << "<html><head></head><body><pre>";
-//         str = m_strTime / "dynamic_source\\library\\" + str1 + "-compile-log.txt";
-//         str = Application.file().as_string(str);
-//         str.replace("\r\n","</pre><pre>");
-//         m_memfileLibError << str;
-//         //system(strCmd);
-//      }
-//
-//      string strObjs;
-//      for(int32_t i = 0; i < m_straLibSourcePath.get_size(); i++)
-//      {
-//         strObjs += " ";
-//         ::file::path strRel = m_straLibSourcePath[i].relative();
-//         ::str::ends_eat_ci(strRel,".ds");
-//         strObjs += m_strTime / "intermediate" / m_strPlatform / m_strDynamicSourceConfiguration / m_pmanager->m_strNamespace + "_dynamic_source_library/library\\source";
-//         strObjs += m_strTime.sep();
-//         strObjs += strRel;
-//#ifdef LINUX
-//         strObjs+=".o";
-//#else
-//         strObjs+=".obj";
-//#endif
-//         strObjs += " ";
-//      }
-//      ::file::path strCmd;
-//      //#ifdef DEBUG
+#ifdef LINUX
+         strCmd.Format(System.dir().element() / "nodeapp\\stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_libc" + m_strPlat1 + ".bash");
+#else
+         strCmd.Format(System.dir().element() / "nodeapp\\stage\\dynamic_source" / m_strDynamicSourceConfiguration + ::file::path("_libc") + m_strPlat1 + ".bat");
+#endif
+
+         //#else
+         //    strCmd.Format(strFolder, "app\\stage\\core\\fontopus\\app\\main\\front\\dynamic_source_cl.bat", false));
+         //#endif
+         string str = Application.file().as_string(strCmd);
+
+
+         str.replace("%ITEM_NAME%",::str::replace("\\","/",string(l.m_straLibCppPath[i])));
+         str.replace("%ITEM_TITLE%",l.m_straLibCppPath[i].name());
+         str.replace("%ITEM_DIR%",::str::replace("\\","/",string(l.m_straLibCppPath[i].folder())) + "/");
+         str.replace("%LIBS_LIBS%",m_strLibsLibs);
+         str.replace("%VS_VARS%",m_strEnv);
+         str.replace("%VS_VARS_PLAT2%",m_strPlat2);
+
+
+         str.replace("%CA2_ROOT%",strV);
+         str.replace("%NETNODE_ROOT%",strN);
+         str.replace("%CONFIGURATION_NAME%",m_strDynamicSourceConfiguration);
+         str.replace("%CONFIGURATION%",m_strDynamicSourceConfiguration);
+         str.replace("%PLATFORM%",m_strPlatform);
+         str.replace("%STAGEPLATFORM%",m_strStagePlatform);
+         //      str.replace("%LIBPLATFORM%", m_strLibPlatform);
+         str.replace("%SDK1%",m_strSdk1);
+
+
+         //str.replace("%ITEM_NAME%",::str::replace("\\","/",string(str1)));
+         //str.replace("%ITEM_DIR%",::str::replace("\\", "/", string(str1.folder())) +"/" );
+         str.replace("%PLATFORM%",m_strPlatform);
+         str.replace("%STAGEPLATFORM%",m_strStagePlatform);
+         str.replace("%NETNODE_ROOT%",strN);
+         str.replace("%LIBPLATFORM%",m_strLibPlatform);
+         str.replace("%CONFIGURATION_NAME%",m_strDynamicSourceConfiguration);
+         str.replace("%CONFIGURATION%",m_strDynamicSourceConfiguration);
+         str.replace("%SDK1%",m_strSdk1);
+         Application.dir().mk(m_strTime / "intermediate" / m_strPlatform / m_strDynamicSourceConfiguration / m_pmanager->m_strNamespace + "_dynamic_source_library" / str1.folder());
+         Application.dir().mk(m_strTime / "library" / m_strStagePlatform / str1.folder());
+
+         string strFormat = "libc-" + str1;
+
+         strFormat.replace("/","-");
+         strFormat.replace("\\","-");
+
+#ifdef LINUX
+         strFormat += ".bash";
+#else
+         strFormat += ".bat";
+#endif
+         strCmd = System.dir().element() / m_strDynamicSourceStage / "front" / strFormat;
+
+         bool bTimeout = false;
+
+         ::process::process_sp process(allocer());
+
+         set_thread_priority(::multithreading::priority_highest);
+
+         process->create_child_process(str,true,NULL,::multithreading::priority_highest);
+
+         uint32_t dwStart = ::get_tick_count();
+
+         uint32_t dwExitCode;
+
+         string strLog;
+
+         while(true)
+         {
+
+            strLog += process->read();
+
+            if(process->has_exited(&dwExitCode))
+               break;
+
+            Sleep(100);
+
+            if(::get_tick_count() - dwStart > 840 * 1000) // 14 minutes
+            {
+
+               bTimeout = true;
+
+               break;
+
+            }
+
+         }
+
+         strLog += process->read();
+
+         if(bTimeout)
+         {
+
+            process->kill();
+
+         }
+         string strClog;
+         strClog = m_strTime / strLibRel / strRel +"-compile-log.txt";
+
+         if(!bTimeout && strLog.has_char())
+         {
+
+#ifdef LINUX
+
+            //Sleep(1984);
+
+#endif
+
+
+
+            str = strLog;
+
+            str.trim();
+
+
+            if(str.has_char())
+            {
+
+               Application.file().put_contents_utf8(strClog,strLog);
+
+               l.m_memfileError << "<pre>";
+
+               l.m_memfileError << "Compiling...\n";
+               l.m_memfileError << l.m_straLibCppPath[i];
+               l.m_memfileError << "\n";
+               if(bTimeout)
+               {
+                  l.m_memfileError << "error: Timeout during compilation (If there are the compilation or link errors about the file \"" + l.m_straLibCppPath[i] + "\" following this message, they may be out-of-date)";
+               }
+               str.replace("\r\n","\n");
+               l.m_memfileError << str;
+
+            }
+
+
+
+            l.m_strError = l.m_memfileError.m_spmemorybuffer->get_memory()->to_string();
+
+            l.m_strError.trim();
+
+         }
+
+
+      }
+
+      string strObjs;
+      for(int32_t i = 0; i < l.m_straLibSourcePath.get_size(); i++)
+      {
+         strObjs += " ";
+         ::file::path strRel = l.m_straLibSourcePath[i].relative();
+         ::str::ends_eat_ci(strRel,".ds");
+         strObjs += m_strTime / "intermediate" / m_strPlatform / m_strDynamicSourceConfiguration / m_pmanager->m_strNamespace + "_dynamic_source_library/library" / strName;
+         strObjs += m_strTime.sep();
+         strObjs += strRel;
+#ifdef LINUX
+         strObjs+=".o";
+#else
+         strObjs+=".obj";
+#endif
+         strObjs += " ";
+      }
+      ::file::path strCmd;
+      //#ifdef DEBUG
 //      strCmd = System.dir().element() / m_strDynamicSourceStage / "front" / m_strDynamicSourceConfiguration + "_libl" + m_strPlat1 +
 //#ifdef LINUX
 //         ".bash";
 //#else
 //         ".bat";
 //#endif
-//      //#else
-//      // strCmd.Format(strFolder, "app\\stage\\core\\fontopus\\app\\main\\front\\dynamic_source_libl.bat", false));
-//      //#endif
-//      string str = Application.file().as_string(strCmd);
-//      str.replace("%ITEM_NAME%",::file::path("library")/strName);
-//      str.replace("%ITEM_DIR%","library");
-//      str.replace("%OBJS%",strObjs);
-//      str.replace("%PLATFORM%",m_strPlatform);
-//      str.replace("%STAGEPLATFORM%",m_strStagePlatform);
-//      str.replace("%NETNODE_ROOT%",strN);
-//      str.replace("%LIBPLATFORM%",m_strLibPlatform);
-//      str.replace("%CONFIGURATION_NAME%",m_strDynamicSourceConfiguration);
-//      str.replace("%CONFIGURATION%",m_strDynamicSourceConfiguration);
-//      str.replace("%SDK1%",m_strSdk1);
-//      string strTargetName = m_strLibraryPath;
-//      ::str::ends_eat_ci(strTargetName,".dll");
-//      str.replace("%TARGET_NAME%", strTargetName);
-//      Application.dir().mk(System.dir().element()/ m_strDynamicSourceStage / m_strStagePlatform /"library");
+#ifdef LINUX
+      strCmd.Format(System.dir().element() / "nodeapp\\stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_libl" + m_strPlat1 + ".bash");
+#else
+      strCmd.Format(System.dir().element() / "nodeapp\\stage\\dynamic_source" / m_strDynamicSourceConfiguration + ::file::path("_libl") + m_strPlat1 + ".bat");
+#endif
+      //#else
+      // strCmd.Format(strFolder, "app\\stage\\core\\fontopus\\app\\main\\front\\dynamic_source_libl.bat", false));
+      //#endif
+      string str = Application.file().as_string(strCmd);
+      str.replace("%ITEM_NAME%",::file::path("library")/strName);
+      str.replace("%ITEM_DIR%","library");
+      str.replace("%OBJECTS%",strObjs);
+      str.replace("%PLATFORM%",m_strPlatform);
+      str.replace("%STAGEPLATFORM%",m_strStagePlatform);
+      str.replace("%NETNODE_ROOT%",strN);
+      str.replace("%LIBPLATFORM%",m_strLibPlatform);
+      str.replace("%CONFIGURATION_NAME%",m_strDynamicSourceConfiguration);
+      str.replace("%CONFIGURATION%",m_strDynamicSourceConfiguration);
+      str.replace("%SDK1%",m_strSdk1);
+      string strTargetName = l.m_strLibraryPath;
+      ::str::ends_eat_ci(strTargetName,".dll");
+      str.replace("%TARGET_NAME%", strTargetName);
+      Application.dir().mk(System.dir().element()/ m_strDynamicSourceStage / m_strStagePlatform /"library");
 //#ifdef LINUX
 //      //Sleep(1984);
 //      strCmd = System.dir().element()/m_strDynamicSourceStage/ "front\\libl1.bash";
 //#else
 //      strCmd = System.dir().element()/ m_strDynamicSourceStage / "front\\libl1.bat";
 //#endif
-//      //Application.file().put_contents_utf8(strCmd, str);
-//      Application.file().put_contents(strCmd, str);
-//
-//      ::process::process_sp process(allocer());
-//
-//
-//      process->create_child_process(strCmd, false, strCmd.folder(), ::multithreading::priority_highest);
-//
-//      uint32_t dwExitCode;
-//      while(true)
-//      {
-//         if(process->has_exited(&dwExitCode))
-//            break;
-//         Sleep(100);
-//      }
-//
-//
-//      str = m_strTime / "dynamic_source\\library\\"+strName+"-link-log.txt";
-//      //str.Format("V:\\time\\core\\fontopus\\net\\dynamic_source\\%s-build-log.txt", lpcszName);
-//      str = Application.file().as_string(str);
-//      str.replace("\r\n", "</pre><pre>");
-//      m_memfileLibError << str;
-//      m_memfileLibError << "</pre></body></html>";
-//      load_library();
-//   }
-//
+
+      //Application.file().put_contents_utf8(strCmd, str);
+      bool bTimeout = false;
+
+      ::process::process_sp process(allocer());
+
+      set_thread_priority(::multithreading::priority_highest);
+
+      process->create_child_process(str,true,NULL,::multithreading::priority_highest);
+
+      uint32_t dwStart = ::get_tick_count();
+
+      uint32_t dwExitCode;
+
+      string strLog;
+
+      while(true)
+      {
+
+         strLog += process->read();
+
+         if(process->has_exited(&dwExitCode))
+            break;
+
+         Sleep(100);
+
+         if(::get_tick_count() - dwStart > 840 * 1000) // 14 minutes
+         {
+
+            bTimeout = true;
+
+            break;
+
+         }
+
+      }
+
+      strLog += process->read();
+
+      if(bTimeout)
+      {
+
+         process->kill();
+
+      }
+
+      string strLlog;
+
+      strLlog = m_strTime / strLibRel /"link-log.txt";
+
+
+      if(!bTimeout && strLog.has_char())
+      {
+
+#ifdef LINUX
+
+         //Sleep(1984);
+
+#endif
+
+
+
+         str = strLog;
+
+         str.trim();
+
+         if(str.has_char())
+         {
+
+            Application.file().put_contents_utf8(strLlog,strLog);
+            l.m_memfileError << "Linking...\n";
+            str.replace("\r\n","\n");
+            l.m_memfileError << str;
+            l.m_memfileError << "</pre>";
+
+
+         }
+
+         l.m_strError = l.m_memfileError.m_spmemorybuffer->get_memory()->to_string();
+
+         l.m_strError.trim();
+
+      }
+
+
+
+      l.load_library();
+
+      return l;
+
+   }
+
 
 
    void script_compiler::cppize(const ::file::path & lpcszSource,const ::file::path & lpcszDest,ecpptype e_type)
@@ -2522,46 +2721,59 @@ ch_else:
    //   return true;
 
    //}
-   //void script_compiler::load_library()
-   //{
+   void library::load_library()
+   {
 
-   //   single_lock slLibrary(&m_mutexLibrary, TRUE);
+      single_lock slLibrary(&m_mutex, TRUE);
 
-   //   if(!m_libraryLib.open(m_strLibraryPath))
-   //      return;
+      if(!m_libraryLib.open(m_strLibraryPath))
+         return;
 
-   //   m_ftaLibCreation.allocate(m_straLibSourcePath.get_size());
-   //   m_ftaLibAccess.allocate(m_straLibSourcePath.get_size());
-   //   m_ftaLibModified.allocate(m_straLibSourcePath.get_size());
+      m_ftaLibCreation.allocate(m_straLibSourcePath.get_size());
+      m_ftaLibAccess.allocate(m_straLibSourcePath.get_size());
+      m_ftaLibModified.allocate(m_straLibSourcePath.get_size());
 
-   //   for(int32_t i = 0; i < m_straLibSourcePath.get_size(); i++)
-   //   {
+      for(int32_t i = 0; i < m_straLibSourcePath.get_size(); i++)
+      {
 
-   //      struct stat st;
+         struct stat st;
 
-   //      stat(m_straLibSourcePath[i], &st);
+         stat(m_straLibSourcePath[i], &st);
 
-   //      m_ftaLibCreation[i]  = st.st_ctime;
-   //      m_ftaLibAccess[i]    = st.st_atime;
-   //      m_ftaLibModified[i]  = st.st_mtime;
+         m_ftaLibCreation[i]  = st.st_ctime;
+         m_ftaLibAccess[i]    = st.st_atime;
+         m_ftaLibModified[i]  = st.st_mtime;
 
-   //      //HANDLE h = ::CreateFile(m_straLibSourcePath[i], GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
-   //      //memset(&m_ftaLibCreation[i], 0, sizeof(FILETIME));
-   //      //memset(&m_ftaLibAccess[i], 0, sizeof(FILETIME));
-   //      //memset(&m_ftaLibModified[i], 0, sizeof(FILETIME));
-   //      //GetFileTime(h , &m_ftaLibCreation[i], &m_ftaLibAccess[i], &m_ftaLibModified[i]);
-   //      //::CloseHandle(h);
+         //HANDLE h = ::CreateFile(m_straLibSourcePath[i], GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+         //memset(&m_ftaLibCreation[i], 0, sizeof(FILETIME));
+         //memset(&m_ftaLibAccess[i], 0, sizeof(FILETIME));
+         //memset(&m_ftaLibModified[i], 0, sizeof(FILETIME));
+         //GetFileTime(h , &m_ftaLibCreation[i], &m_ftaLibAccess[i], &m_ftaLibModified[i]);
+         //::CloseHandle(h);
 
-   //   }
+      }
 
-   //}
+   }
+
+   library::library(::aura::application * papp):
+      object(papp),
+      m_memfileError(papp),
+      m_memfileLibError(papp),
+      m_mutex(papp),
+      m_libraryLib(papp)
+
+   {
+   }
+   library::~library()
+   {
+   }
 
 
-   //void script_compiler::unload_library()
-   //{
-   //   single_lock slLibrary(&m_mutexLibrary, TRUE);
-   //   m_libraryLib.close();
-   //}
+   void library::unload_library()
+   {
+      single_lock slLibrary(&m_mutex, TRUE);
+      m_libraryLib.close();
+   }
 
    string script_compiler::get_ds_print(const char *psz)
    {
