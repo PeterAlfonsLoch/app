@@ -677,7 +677,15 @@ namespace user
    void tab::layout()
    {
 
-      
+
+      if(m_puserschema != NULL)
+      {
+         
+         m_puserschema->_001OnTabLayout(this);
+         
+         return;
+
+      }
 
       {
 

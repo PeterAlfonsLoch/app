@@ -609,10 +609,18 @@ namespace user
 
    }
 
+
    void schema::_001OnTabPaneDrawTitle(::user::tab_pane & pane,::user::tab * ptab,::draw2d::graphics * pdc,LPCRECT lpcrect,::draw2d::brush_sp & brushText)
    {
 
    }
+
+
+   void schema::_001OnTabLayout(::user::tab * ptab)
+   {
+
+   }
+
 
 } // namespace user
 

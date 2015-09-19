@@ -180,8 +180,8 @@ namespace draw2d
       e->m_etype               = element::type_arc;
       e->u.m_arc.m_xCenter     = (rect.right + rect.left) / 2.0;
       e->u.m_arc.m_yCenter     = (rect.bottom + rect.top) / 2.0;
-      e->u.m_arc.m_dRadiusX    = rect.right - e->u.m_arc.m_xCenter;
-      e->u.m_arc.m_dRadiusY    = rect.bottom - e->u.m_arc.m_yCenter;
+      e->u.m_arc.m_dRadiusX    = fabs(rect.right - rect.left) / 2.0;
+      e->u.m_arc.m_dRadiusY    = fabs(rect.bottom - rect.top) / 2.0;
       e->u.m_arc.m_dAngle1     = dStart * g_dPi / 180.0;
       e->u.m_arc.m_dAngle      = dAngle * g_dPi / 180.0;
       e->u.m_arc.m_dAngle2     = e->u.m_arc.m_dAngle1 + e->u.m_arc.m_dAngle;
