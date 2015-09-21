@@ -126,8 +126,14 @@
     <ClCompile Include="pixman\pixman-edge.c" />
     <ClCompile Include="pixman\pixman-region16.c" />
     <ClCompile Include="pixman\pixman-region32.c" />
-    <ClCompile Include="pixman\pixman-sse2.c" />
-    <ClCompile Include="pixman\pixman-ssse3.c" />
+    <ClCompile Include="pixman\pixman-sse2.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="pixman\pixman-ssse3.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="pixman\_pixman.c" />
   </ItemGroup>
   <ItemGroup>
