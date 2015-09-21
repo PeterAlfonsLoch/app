@@ -1325,7 +1325,7 @@ static BOOL libavcodec_init(H264_CONTEXT* h264)
 		goto EXCEPTION;
 	}
 
-	sys->videoFrame = avcodec_alloc_frame();
+	sys->videoFrame = av_frame_alloc();
 
 	if (!sys->videoFrame)
 	{

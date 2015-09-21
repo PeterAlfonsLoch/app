@@ -50,6 +50,10 @@ namespace fontopus
 
       DECL_GEN_SIGNAL(_001OnCreate);
 
+      virtual void _000OnDraw(::draw2d::graphics * pgraphics);
+
+      virtual void _001DrawChildren(::draw2d::graphics *pdc);
+
    };
 
 

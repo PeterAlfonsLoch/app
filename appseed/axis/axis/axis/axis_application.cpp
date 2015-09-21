@@ -154,7 +154,7 @@ namespace axis
       ::xml::document doc(this);
       if(!doc.load(id))
       {
-         return load_cached_string_by_id(str,id,"",bLoadStringTable);
+         return load_cached_string_by_id(str,id,(const string &) *((const string *) NULL),bLoadStringTable);
       }
       sp(::xml::node) pnodeRoot = doc.get_root();
       if(pnodeRoot->get_name() == "string")
@@ -206,7 +206,9 @@ namespace axis
          load_string_table(strTable,"");
          return load_cached_string_by_id(str,id,pszFallbackValue,false);
       }
-      if(pszFallbackValue.is_empty())
+      if(&pszFallbackValue == NULL)
+         return false;
+      else if(pszFallbackValue.is_empty())
          str = strId;
       else
          str = pszFallbackValue;

@@ -1285,6 +1285,13 @@ namespace user
 
       int iLineUBound = MIN(iLineEnd,m_iaLineLen.get_size() - iLineStart - 1);
 
+      if(m_iLineOffset < 0)
+      {
+
+         return;
+
+      }
+
       m_iViewOffset = m_iaLineBeg[m_iLineOffset];
 
       m_iViewSize = 0;

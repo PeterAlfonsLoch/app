@@ -136,6 +136,12 @@
     <Filter Include="Source Files\base\os\cross\windows">
       <UniqueIdentifier>{e6651ba8-11eb-4d61-a421-cb6145bc0df9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\user\fontopus">
+      <UniqueIdentifier>{324b0a3d-ef80-4315-9028-1670ef3a2d32}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\user\simple_ui">
+      <UniqueIdentifier>{b9fbd78a-be3d-406e-abb6-82f3403f6802}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -278,6 +284,42 @@
     </ClInclude>
     <ClInclude Include="base\os\cross\cross.h">
       <Filter>Header Files\base\os\cross</Filter>
+    </ClInclude>
+    <ClInclude Include="user\fontopus\fontopus.h">
+      <Filter>Header Files\user\fontopus</Filter>
+    </ClInclude>
+    <ClInclude Include="user\fontopus\fontopus_login.h">
+      <Filter>Header Files\user\fontopus</Filter>
+    </ClInclude>
+    <ClInclude Include="user\fontopus\fontopus_simple_ui.h">
+      <Filter>Header Files\user\fontopus</Filter>
+    </ClInclude>
+    <ClInclude Include="user\fontopus\simple_ui_style.h">
+      <Filter>Header Files\user\fontopus</Filter>
+    </ClInclude>
+    <ClInclude Include="user\simple_ui\simple_ui.h">
+      <Filter>Header Files\user\simple_ui</Filter>
+    </ClInclude>
+    <ClInclude Include="user\simple_ui\simple_ui_edit_box.h">
+      <Filter>Header Files\user\simple_ui</Filter>
+    </ClInclude>
+    <ClInclude Include="user\simple_ui\simple_ui_interaction.h">
+      <Filter>Header Files\user\simple_ui</Filter>
+    </ClInclude>
+    <ClInclude Include="user\simple_ui\simple_ui_label.h">
+      <Filter>Header Files\user\simple_ui</Filter>
+    </ClInclude>
+    <ClInclude Include="user\simple_ui\simple_ui_message_box.h">
+      <Filter>Header Files\user\simple_ui</Filter>
+    </ClInclude>
+    <ClInclude Include="user\simple_ui\simple_ui_password.h">
+      <Filter>Header Files\user\simple_ui</Filter>
+    </ClInclude>
+    <ClInclude Include="user\simple_ui\simple_ui_style.h">
+      <Filter>Header Files\user\simple_ui</Filter>
+    </ClInclude>
+    <ClInclude Include="user\simple_ui\simple_ui_tap.h">
+      <Filter>Header Files\user\simple_ui</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

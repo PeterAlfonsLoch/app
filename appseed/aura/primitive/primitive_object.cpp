@@ -697,6 +697,15 @@ object * object::clone()
 }
 
 
+string object::lstr(id id,const string & strDefault)
+{
+
+   return m_pauraapp->lstr(id,strDefault);
+
+}
+
+
+
 namespace aura
 {
 

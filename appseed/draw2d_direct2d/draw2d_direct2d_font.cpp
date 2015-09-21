@@ -87,7 +87,10 @@ namespace draw2d_direct2d
 
 
          if(FAILED(hr) || m_pformat == NULL)
+         {
+            trace_hr("font::get_os_font", hr);
             return false;
+         }
 
       }
 

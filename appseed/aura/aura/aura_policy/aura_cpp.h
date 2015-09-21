@@ -1661,7 +1661,7 @@ CLASS_DECL_AURA void dappy(const char * psz);
 #include "aura/filesystem/file/file_edit_buffer.h"
 
 
-
+CLASS_DECL_AURA int trace_hr(const char * psz,HRESULT hr);
 
 
 

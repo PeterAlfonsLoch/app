@@ -2,17 +2,10 @@
 //#include "base/user/user.h"
 
 
-CLASS_DECL_BASE void draw_ca2(::draw2d::graphics * pdc, int x, int y, int z, COLORREF crBk, COLORREF cr);
-CLASS_DECL_BASE void draw_ca2_with_border(::draw2d::graphics * pdc, int x, int y, int z, int b, COLORREF crBk, COLORREF cr, COLORREF crOut);
-CLASS_DECL_BASE void draw_ca2_border2(::draw2d::graphics * pdc, int x, int y, int z, int bOut, int bIn, COLORREF crBk, COLORREF cr, COLORREF crBorderOut, COLORREF crIn);
-CLASS_DECL_BASE void draw_ca2_with_border2(::draw2d::graphics * pdc, int x, int y, int z, int bOut, int bIn, COLORREF crBk, COLORREF cr, COLORREF crBorderOut, COLORREF crIn);
 
 
 namespace fontopus
 {
-
-
-   UINT c_cdecl thread_proc_defer_translate_login(void * p);
 
 
    simple_ui::simple_ui(::aura::application * papp, const string & strRequestUrl) :
@@ -22,8 +15,11 @@ namespace fontopus
    {
 
       ASSERT(m_login.m_strRequestUrl.has_char());
-
+#ifdef METROWIN
+      m_bMayProDevian = true;
+#else
       m_bMayProDevian = false;
+#endif
       m_eschema = schema_normal;
       m_login.m_pstyle = this;
       m_bLButtonDown = false;
@@ -74,17 +70,19 @@ namespace fontopus
 
       }
 
-      {
+      string strUser;
 
-         add_ref();
+      string strPass;
 
-         m_psimpleuiDeferTranslate = new simple_ui *;
+      string strOpen;
 
-         *m_psimpleuiDeferTranslate = this;
+      strUser = lstr("fontopus::login::email","e-mail");
 
-         __begin_thread(get_app(),thread_proc_defer_translate_login,m_psimpleuiDeferTranslate);
+      strPass = lstr("fontopus::login::password","password");
 
-      }
+      strOpen = lstr("fontopus::login::open","open");
+
+      m_login.defer_translate(strUser,strPass,strOpen);
 
    }
 
@@ -498,333 +496,71 @@ namespace fontopus
 
 
 
-   UINT c_cdecl thread_proc_defer_translate_login(void * p)
+
+   void simple_ui::_000OnDraw(::draw2d::graphics * pdc)
    {
 
-      int iRet = -1;
-
-      simple_ui ** ppsimpleui = (simple_ui **)p;
-
-      simple_ui * psimpleui = *ppsimpleui;
-
-      login * plogin = &psimpleui->m_login;
-
-      string strRequestUrl = plogin->m_strRequestUrl;
-
-      string strFontopusServer;
-
-      string strUser;
-
-      string strPass;
-
-      string strOpen;
-
-      if(strRequestUrl.has_char())
-      {
-
-         strFontopusServer = Sess(plogin->get_app()).fontopus()->get_server(strRequestUrl);
-
-         strUser = Sess(plogin->get_app()).fontopus()->m_mapLabelUser[strFontopusServer];
-
-         strPass = Sess(plogin->get_app()).fontopus()->m_mapLabelPass[strFontopusServer];
-
-         strOpen = Sess(plogin->get_app()).fontopus()->m_mapLabelOpen[strFontopusServer];
-
-      }
-      else
-      {
+      //simple_ui::interaction::_000OnDraw(pdc);
 
 
-      }
+      if(!m_bVisible)
+         return;
 
+      _001DrawThis(pdc);
 
       try
       {
 
-         plogin->defer_translate(strUser,strPass,strOpen);
-
-         iRet = 0;
+         _001DrawChildren(pdc);
 
       }
       catch(...)
       {
 
-      }
-
-
-      try
-      {
-
-         psimpleui->release();
+         throw simple_exception(::get_thread_app(),"no more a window");
 
       }
-      catch(...)
-      {
-
-      }
-
-      try
-      {
-
-         delete ppsimpleui;
-
-      }
-      catch(...)
-      {
-
-      }
-
-      return iRet;
 
    }
+
+
+   void simple_ui::_001DrawChildren(::draw2d::graphics *pdc)
+   {
+
+      //single_lock sl(m_pmutex, true);
+
+      //int i = 1;
+
+      sp(interaction) pui;
+
+      //while((pui = get_child(pui)).is_set() && i > 0)
+      while((pui = get_child(pui)).is_set())
+      {
+
+         //i--;
+
+         try
+         {
+
+            if(pui->m_bVisible && !pui->is_custom_draw())
+            {
+
+               pui->_000OnDraw(pdc);
+
+            }
+
+         }
+         catch(...)
+         {
+
+         }
+
+      }
+
+   }
+
 
 
 } // namespace fontopus
 
-
-CLASS_DECL_BASE void draw_ca2_border2(::draw2d::graphics * pdc, int x, int y, int z, int bOut, int bIn, COLORREF crBk, COLORREF cr, COLORREF crOut, COLORREF crIn)
-{
-   int w = z / 19;
-
-   if(w < 1)
-      w = 1;
-
-   z = w * 19;
-
-
-   rect r(x + bIn + bOut, y + bIn + bOut, x + bIn + bOut + z-1, y + bIn + bOut + z-1);
-
-   ::draw2d::pen_sp p(pdc->allocer());
-
-   p->create_solid(1.0, crIn);
-
-   for (int i = 0; i < bIn; i++)
-   {
-
-      r.inflate(1, 1);
-
-      pdc->DrawRect(r, p);
-
-   }
-
-   p->create_solid(1.0, crOut);
-
-   for (int i = 0; i < bOut; i++)
-   {
-
-      r.inflate(1, 1);
-
-      pdc->DrawRect(r, p);
-
-   }
-
-
-}
-
-CLASS_DECL_BASE void draw_ca2_with_border2(::draw2d::graphics * pdc, int x, int y, int z, int bOut, int bIn, COLORREF crBk, COLORREF cr, COLORREF crOut, COLORREF crIn)
-{
-
-   draw_ca2(pdc, x + bIn + bOut, y + bIn + bOut, z, crBk, cr);
-
-   draw_ca2_border2(pdc, x, y, z, bOut, bIn, crBk, cr, crOut, crIn);
-
-}
-
-
-CLASS_DECL_BASE void draw_ca2_with_border(::draw2d::graphics * pdc, int x, int y, int z, int b, COLORREF crBk, COLORREF cr, COLORREF crBorder)
-{
-
-   draw_ca2(pdc, x + b, y + b, z, crBk, cr);
-
-   int w = z / 19;
-
-   if (w < 1)
-      w = 1;
-
-   z = w * 19;
-
-   rect r(x + b, y + b, x + b + z, y + b + z);
-
-   ::draw2d::pen_sp p(pdc->allocer());
-
-   p->create_solid(1.0, crBorder);
-
-   for(int i = 0; i < b; i++)
-   {
-
-      r.inflate(1, 1);
-
-      pdc->DrawRect(r, p);
-
-   }
-
-
-
-}
-
-
-CLASS_DECL_BASE void draw_ca2(::draw2d::graphics * pdc, int x, int y, int z, COLORREF crBk, COLORREF cr)
-{
-
-   ::draw2d::brush_sp b(pdc->allocer());
-
-   // black rectangle
-
-   int w = z / 19;
-
-   if (w < 1)
-      w = 1;
-
-   z = w * 19;
-
-   b->create_solid(crBk);
-
-   rect r(x, y, x + z, y + z);
-
-   pdc->FillRect(r, b);
-
-
-
-
-
-
-
-
-   // bottom line
-
-   b->create_solid(cr);
-
-   r.top += w * 13;
-   r.bottom -= w;
-
-
-
-
-
-
-
-
-
-   // c
-
-   r.left += w;
-   r.right = r.left + w * 5;
-
-   rect c = r;
-
-   // c vertical
-
-   c.right = c.left + w;
-
-   pdc->FillRect(c, b);
-
-   c = r;
-
-   c.bottom = c.top + w;
-
-   pdc->FillRect(c, b);
-
-   c = r;
-
-   c.top = c.bottom - w;
-
-   pdc->FillRect(c, b);
-
-
-
-
-
-
-
-
-   // a
-
-   r.left += w * 6;
-   r.right = r.left + w * 5;
-
-   c = r;
-
-   c.bottom = c.top + w;
-
-   pdc->FillRect(c, b);
-
-   c = r;
-
-   c.top = c.bottom - w;
-
-   pdc->FillRect(c, b);
-
-   c = r;
-
-   c.right = c.left + w * 2;
-   c.top += w * 2;
-   c.bottom = c.top + w;
-
-   pdc->FillRect(c, b);
-
-   c = r;
-
-   c.left += w * 5 / 2;
-   c.right = c.left + w;
-   c.top += w * 2;
-   c.bottom = c.top + w;
-
-   pdc->FillRect(c, b);
-
-   c = r;
-
-   c.left = c.right - w;
-
-   pdc->FillRect(c, b);
-
-   c = r;
-
-   c.right = c.left + w;
-   c.top += w * 2;
-
-   pdc->FillRect(c, b);
-
-
-
-
-
-   // 2
-
-   r.left += w * 6;
-   r.right = r.left + w * 5;
-
-   c = r;
-
-   c.bottom = c.top + w;
-
-   pdc->FillRect(c, b);
-
-   c = r;
-
-   c.top = c.bottom - w;
-
-   pdc->FillRect(c, b);
-
-   c = r;
-
-   c.top += w * 2;
-   c.bottom = c.top + w;
-
-   pdc->FillRect(c, b);
-
-   c = r;
-
-   c.right = c.left + w;
-   c.top += w * 2;
-
-   pdc->FillRect(c, b);
-
-   c = r;
-
-   c.left = c.right - w;
-   c.bottom -= w * 2;
-
-   pdc->FillRect(c, b);
-
-}
 

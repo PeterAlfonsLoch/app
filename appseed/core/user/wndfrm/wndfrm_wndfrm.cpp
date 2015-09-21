@@ -146,7 +146,14 @@ namespace user
             if(strConfig.is_empty())
             {
 
-               strConfig = "core";
+               strConfig = Application.directrix()->m_varTopicQuery["wndfrm"];
+
+               if(strConfig.is_empty())
+               {
+
+                  strConfig = "core";
+
+               }
 
             }
 

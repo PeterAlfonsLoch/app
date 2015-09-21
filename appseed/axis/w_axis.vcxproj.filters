@@ -678,9 +678,6 @@
     <ClInclude Include="axis\node\metrowin\metrowin_factory_exchange.h">
       <Filter>Header Files\axis\node\metrowin</Filter>
     </ClInclude>
-    <ClInclude Include="axis\node\metrowin\metrowin_file_set.h">
-      <Filter>Header Files\axis\node\metrowin</Filter>
-    </ClInclude>
     <ClInclude Include="axis\node\metrowin\metrowin_axis_file_system.h">
       <Filter>Header Files\axis\node\metrowin</Filter>
     </ClInclude>
@@ -1475,9 +1472,6 @@
       <Filter>Source Files\axis\node\metrowin</Filter>
     </ClCompile>
     <ClCompile Include="axis\node\metrowin\metrowin_factory_exchange.cpp">
-      <Filter>Source Files\axis\node\metrowin</Filter>
-    </ClCompile>
-    <ClCompile Include="axis\node\metrowin\metrowin_file_set.cpp">
       <Filter>Source Files\axis\node\metrowin</Filter>
     </ClCompile>
     <ClCompile Include="axis\node\metrowin\metrowin_axis_file_system.cpp">

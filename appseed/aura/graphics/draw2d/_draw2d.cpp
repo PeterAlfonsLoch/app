@@ -22,3 +22,6 @@
 //2015-01-05  08:18                 0 _draw2d.cpp"
 //              11 arquivo(s)        283.368 bytes
 //               0 pasta(s)   35.778.203.648 bytes dispon¡veis
+
+
+#include "draw2d_debug.cpp"

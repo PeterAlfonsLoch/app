@@ -12,7 +12,7 @@ namespace metrowin
          ::object(papp)
       {
 
-         System.factory().creatable_small < file_set              >(System.template type_info < ::file::set                 >());
+//         System.factory().creatable_small < file_set              >(System.template type_info < ::file::set                 >());
          System.factory().cloneable       < axis::file_system     >(System.template type_info < ::file::system              >(),1);
          System.factory().cloneable       < axis::dir             >(System.template type_info < ::file::dir::system         >(),1);
          System.factory().cloneable_small < folder_watch          >(System.template type_info < ::file::folder_watch        >());

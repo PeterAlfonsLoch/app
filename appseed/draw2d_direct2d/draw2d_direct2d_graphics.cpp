@@ -147,6 +147,8 @@ namespace draw2d_direct2d
 
       Microsoft::WRL::ComPtr<ID2D1RenderTarget> prendertarget;
 
+      HRESULT hr;
+
       if(pgraphics == NULL || pgraphics->get_os_data() == NULL)
       {
          if(System.m_pdevicecontext == NULL)
@@ -155,7 +157,13 @@ namespace draw2d_direct2d
          }
          else
          {
-            System.m_pdevicecontext->QueryInterface(IID_ID2D1RenderTarget,(void **)&prendertarget);
+            hr = System.m_pdevicecontext->QueryInterface(IID_ID2D1RenderTarget,(void **)&prendertarget);
+            if(FAILED(hr))
+            {
+
+               trace_hr("graphics::CreateCompatibleDC, QueryInterface (1) ",hr);
+
+            }
          }
       }
       else
@@ -204,14 +212,21 @@ namespace draw2d_direct2d
       pixelformat.alphaMode = D2D1_ALPHA_MODE_PREMULTIPLIED;
       pixelformat.format = DXGI_FORMAT_B8G8R8A8_UNORM;
 
-      prendertarget->CreateCompatibleRenderTarget(NULL, &sizeu, &pixelformat, D2D1_COMPATIBLE_RENDER_TARGET_OPTIONS_NONE, &m_pbitmaprendertarget);
+      hr = prendertarget->CreateCompatibleRenderTarget(NULL, &sizeu, &pixelformat, D2D1_COMPATIBLE_RENDER_TARGET_OPTIONS_NONE, &m_pbitmaprendertarget);
+
+      if(FAILED(hr))
+      {
+
+         trace_hr("graphics::CreateCompatibleDC, CreateCompatibleRenderTarget (1) ",hr);
+
+      }
 
       if(m_pbitmaprendertarget == NULL)
       {
          return false;
       }
 
-      HRESULT hr = m_pbitmaprendertarget.As(&m_prendertarget);
+      hr = m_pbitmaprendertarget.As(&m_prendertarget);
 
       if(FAILED(hr))
       {
@@ -634,7 +649,6 @@ namespace draw2d_direct2d
 
       m_prendertarget->FillRectangle(&r, (dynamic_cast < ::draw2d_direct2d::brush * > (pbrush))->get_os_brush((graphics *) this));
 
-
    }
 
 
@@ -950,6 +964,7 @@ namespace draw2d_direct2d
       ellipse.radiusY = ((FLOAT) (y2 - y1)) / ((FLOAT) 2.0);
 
       m_pdevicecontext->DrawEllipse(&ellipse, (dynamic_cast < ::draw2d_direct2d::pen * > (m_sppen.m_p))->get_os_pen_brush(this), (FLOAT) m_sppen->m_dWidth);
+
 
       return true;
 
@@ -4037,6 +4052,9 @@ namespace draw2d_direct2d
    int graphics::draw_text(const string & str,const RECT & lpRect,UINT nFormat)
    { 
 
+      if(str.is_empty())
+         return TRUE;
+
       try
       {
 
@@ -4129,7 +4147,11 @@ namespace draw2d_direct2d
 
       m_prendertarget->SetTransform(&m);
 
-      m_prendertarget->DrawText(wstr, (UINT32) wstr.get_length(), get_os_font(m_spfont), &rectf, get_os_brush(m_spbrush));
+      IDWriteTextFormat * pformat = get_os_font(m_spfont);
+
+      ID2D1Brush * pbrush = get_os_brush(m_spbrush);
+
+      m_prendertarget->DrawText(wstr, (UINT32) wstr.get_length(), pformat, &rectf, pbrush);
 
       m_prendertarget->SetTransform(&mOriginal);
       
@@ -4463,9 +4485,20 @@ namespace draw2d_direct2d
 
       D2D1_RECT_F rectf = D2D1::RectF((FLOAT) x, (FLOAT)y, (FLOAT)(x + sd.cx + 1) , (FLOAT)y+ sd.cy + 1);
 
-      get_os_font(m_spfont)->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_LEADING);
+      HRESULT  hr = get_os_font(m_spfont)->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_LEADING);
 
-      get_os_font(m_spfont)->SetParagraphAlignment(DWRITE_PARAGRAPH_ALIGNMENT_NEAR);
+      if(FAILED(hr))
+      {
+         trace_hr("TextOut, SetTextAlignment",hr);
+      }
+
+      hr = get_os_font(m_spfont)->SetParagraphAlignment(DWRITE_PARAGRAPH_ALIGNMENT_NEAR);
+
+      if(FAILED(hr))
+      {
+         trace_hr("TextOut, SetTextAlignment",hr);
+      }
+
 
       string str(lpszString, nCount);
 

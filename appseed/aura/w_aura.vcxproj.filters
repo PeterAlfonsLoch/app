@@ -3487,6 +3487,9 @@
     <ClCompile Include="aura\os\windows_common\windows_common_base.cpp">
       <Filter>Source Files\aura\os\windows_common</Filter>
     </ClCompile>
+    <ClCompile Include="graphics\draw2d\draw2d_debug.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="aura.rc">

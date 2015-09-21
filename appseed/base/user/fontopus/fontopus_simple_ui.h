@@ -48,6 +48,10 @@ namespace fontopus
       virtual void layout();
 
 
+      virtual void _000OnDraw(::draw2d::graphics * pgraphics);
+
+      virtual void _001DrawChildren(::draw2d::graphics *pdc);
+
    };
 
 

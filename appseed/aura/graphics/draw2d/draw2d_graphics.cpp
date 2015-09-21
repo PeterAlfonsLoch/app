@@ -4316,23 +4316,256 @@ namespace draw2d
 
    }
 
+   void graphics::draw_ca2_with_border2(int x,int y,int z,int bOut,int bIn,COLORREF crBk,COLORREF cr,COLORREF crOut,COLORREF crIn)
+   {
+
+      draw_ca2(x + bIn + bOut,y + bIn + bOut,z,crBk,cr);
+
+      draw_ca2_border2(x,y,z,bOut,bIn,crBk,cr,crOut,crIn);
+
+   }
+
+
+   void graphics::draw_ca2_with_border(int x,int y,int z,int b,COLORREF crBk,COLORREF cr,COLORREF crBorder)
+   {
+
+      draw_ca2(x + b,y + b,z,crBk,cr);
+
+      int w = z / 19;
+
+      if(w < 1)
+         w = 1;
+
+      z = w * 19;
+
+      rect r(x + b,y + b,x + b + z,y + b + z);
+
+      ::draw2d::pen_sp p(allocer());
+
+      p->create_solid(1.0,crBorder);
+
+      for(int i = 0; i < b; i++)
+      {
+
+         r.inflate(1,1);
+
+         DrawRect(r,p);
+
+      }
+
+
+
+   }
+
+
+   void graphics::draw_ca2(int x,int y,int z,COLORREF crBk,COLORREF cr)
+   {
+
+      ::draw2d::brush_sp b(allocer());
+
+      // black rectangle
+
+      int w = z / 19;
+
+      if(w < 1)
+         w = 1;
+
+      z = w * 19;
+
+      b->create_solid(crBk);
+
+      rect r(x,y,x + z,y + z);
+
+      FillRect(r,b);
+
+
+
+
+
+
+
+
+      // bottom line
+
+      b->create_solid(cr);
+
+      r.top += w * 13;
+      r.bottom -= w;
+
+
+
+
+
+
+
+
+
+      // c
+
+      r.left += w;
+      r.right = r.left + w * 5;
+
+      rect c = r;
+
+      // c vertical
+
+      c.right = c.left + w;
+
+      FillRect(c,b);
+
+      c = r;
+
+      c.bottom = c.top + w;
+
+      FillRect(c,b);
+
+      c = r;
+
+      c.top = c.bottom - w;
+
+      FillRect(c,b);
+
+
+
+
+
+
+
+
+      // a
+
+      r.left += w * 6;
+      r.right = r.left + w * 5;
+
+      c = r;
+
+      c.bottom = c.top + w;
+
+      FillRect(c,b);
+
+      c = r;
+
+      c.top = c.bottom - w;
+
+      FillRect(c,b);
+
+      c = r;
+
+      c.right = c.left + w * 2;
+      c.top += w * 2;
+      c.bottom = c.top + w;
+
+      FillRect(c,b);
+
+      c = r;
+
+      c.left += w * 5 / 2;
+      c.right = c.left + w;
+      c.top += w * 2;
+      c.bottom = c.top + w;
+
+      FillRect(c,b);
+
+      c = r;
+
+      c.left = c.right - w;
+
+      FillRect(c,b);
+
+      c = r;
+
+      c.right = c.left + w;
+      c.top += w * 2;
+
+      FillRect(c,b);
+
+
+
+
+
+      // 2
+
+      r.left += w * 6;
+      r.right = r.left + w * 5;
+
+      c = r;
+
+      c.bottom = c.top + w;
+
+      FillRect(c,b);
+
+      c = r;
+
+      c.top = c.bottom - w;
+
+      FillRect(c,b);
+
+      c = r;
+
+      c.top += w * 2;
+      c.bottom = c.top + w;
+
+      FillRect(c,b);
+
+      c = r;
+
+      c.right = c.left + w;
+      c.top += w * 2;
+
+      FillRect(c,b);
+
+      c = r;
+
+      c.left = c.right - w;
+      c.bottom -= w * 2;
+
+      FillRect(c,b);
+
+   }
+
+
+   void graphics::draw_ca2_border2(int x,int y,int z,int bOut,int bIn,COLORREF crBk,COLORREF cr,COLORREF crOut,COLORREF crIn)
+   {
+      int w = z / 19;
+
+      if(w < 1)
+         w = 1;
+
+      z = w * 19;
+
+
+      rect r(x + bIn + bOut,y + bIn + bOut,x + bIn + bOut + z - 1,y + bIn + bOut + z - 1);
+
+      ::draw2d::pen_sp p(allocer());
+
+      p->create_solid(1.0,crIn);
+
+      for(int i = 0; i < bIn; i++)
+      {
+
+         r.inflate(1,1);
+
+         DrawRect(r,p);
+
+      }
+
+      p->create_solid(1.0,crOut);
+
+      for(int i = 0; i < bOut; i++)
+      {
+
+         r.inflate(1,1);
+
+         DrawRect(r,p);
+
+      }
+
+
+
+   }
+
+
+
 } // namespace draw2d
-
-
-dump_context & operator<<(dump_context & dumpcontext, SIZE size)
-{
-   return dumpcontext << "(" << size.cx << " x " << size.cy << ")";
-}
-
-dump_context & operator<<(dump_context & dumpcontext, POINT point)
-{
-   return dumpcontext << "(" << point.x << ", " << point.y << ")";
-}
-
-dump_context & operator<<(dump_context & dumpcontext, const RECT& rect)
-{
-   return dumpcontext << "(L " << rect.left << ", T " << rect.top << ", R " <<
-      rect.right << ", B " << rect.bottom << ")";
-}
 
 

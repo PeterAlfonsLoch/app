@@ -155,6 +155,8 @@ namespace draw2d_direct2d
 
       ((ID2D1DeviceContext *) m_spgraphics->get_os_data())->BeginDraw();
 
+      m_hrEndDraw = S_OK;
+
       return true;
 
    }
@@ -2802,10 +2804,6 @@ namespace draw2d_direct2d
       srcRect.right = m_size.cx;
       srcRect.top = 0;
       srcRect.bottom = m_size.cy;
-
-      //hr = METROWIN_BITMAP(m_spbitmap.m_p)->m_pbitmap->CopyFromBitmap(&p, METROWIN_BITMAP(m_spbitmapMap.m_p)->m_pbitmap, &srcRect);
-
-      //((ID2D1DeviceContext *)((dib *) this)->m_spgraphics->get_os_data())->BeginDraw();
 
       return true;
 

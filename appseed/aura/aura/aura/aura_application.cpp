@@ -302,6 +302,31 @@ namespace aura
 
    }
 
+   // lang string
+   // load string
+   string application::lstr(id id, const string & strDefault)
+   {
+      
+      string str;
+
+      if(!load_string(str,id))
+      {
+            
+         if(&strDefault == NULL)
+            return (const string &)id;
+
+         if(strDefault.has_char())
+            return strDefault;
+
+         return "";
+
+      }
+
+      return str;
+
+   }
+
+
    string application::load_string(id id)
    {
       string str;

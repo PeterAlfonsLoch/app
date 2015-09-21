@@ -240,35 +240,27 @@ namespace metrowin
 
    string copydesk::get_plain_text()
    {
-#ifdef WINDOWSEX
-      if (IsClipboardFormatAvailable(CF_UNICODETEXT))
+      
+      auto dataPackage = ::Windows::ApplicationModel::DataTransfer::Clipboard::GetContent();
+
+      if(dataPackage == nullptr)
       {
-         if(!m_p->OpenClipboard())
-            return "";
-         HGLOBAL hglb = GetClipboardData(CF_UNICODETEXT);
-         string str(::str::international::unicode_to_utf8((const unichar *) GlobalLock(hglb)));
-         GlobalUnlock(hglb);
-         VERIFY(::CloseClipboard());
-         return str;
-      }
-      else if (IsClipboardFormatAvailable(CF_TEXT))
-      {
-         if(!m_p->OpenClipboard())
-            return "";
-         HGLOBAL hglb = GetClipboardData(CF_TEXT);
-         string str((char *) GlobalLock(hglb));
-         GlobalUnlock(hglb);
-         VERIFY(::CloseClipboard());
-         return str;
-      }
-      else
-      {
+
          return "";
+
       }
-#else
-      throw todo(get_app());
-#endif
+
+      if(!dataPackage->Contains(::Windows::ApplicationModel::DataTransfer::StandardDataFormats::Text))
+      {
+
+         return "";
+
+      }
+
+      return ::wait(dataPackage->GetTextAsync());
+
    }
+
 
    bool copydesk::desk_to_dib(::draw2d::dib * pdib)
    {

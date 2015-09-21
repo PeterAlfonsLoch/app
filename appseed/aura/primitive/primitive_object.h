@@ -225,6 +225,7 @@ public:
    object(const object & objectSrc);              // no implementation
    virtual ~object();  // virtual destructors are necessary
 
+   virtual string lstr(id id, const string & strDefault = (const string &) *((const string *) NULL ));
 
    // OBJECT :: object :> is a object
 

@@ -1422,7 +1422,12 @@ namespace user
          m_pauraapp->add(this);
 
 
-         if(GetParent() == NULL && !is_message_only_window())
+         if((GetParent() == NULL
+#ifdef METROWIN
+            || GetParent() == System.m_posdata->m_pui
+#endif
+            )
+            && !is_message_only_window())
          {
 
 //            synch_lock slUser(m_pmutex);

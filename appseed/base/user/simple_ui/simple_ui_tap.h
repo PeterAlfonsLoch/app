@@ -41,6 +41,11 @@ namespace simple_ui
 
       virtual void layout();
 
+
+      virtual void _000OnDraw(::draw2d::graphics * pgraphics);
+      virtual void _001DrawThis(::draw2d::graphics * pgraphics);
+      virtual void _001CallOnDraw(::draw2d::graphics * pgraphics);
+
    };
 
 

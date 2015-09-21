@@ -114,6 +114,18 @@
     <ClInclude Include="database\simpledb\simpledb.h" />
     <ClInclude Include="database\simpledb\simpledb_file_system_size.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="user\fontopus\fontopus.h" />
+    <ClInclude Include="user\fontopus\fontopus_login.h" />
+    <ClInclude Include="user\fontopus\fontopus_simple_ui.h" />
+    <ClInclude Include="user\fontopus\simple_ui_style.h" />
+    <ClInclude Include="user\simple_ui\simple_ui.h" />
+    <ClInclude Include="user\simple_ui\simple_ui_edit_box.h" />
+    <ClInclude Include="user\simple_ui\simple_ui_interaction.h" />
+    <ClInclude Include="user\simple_ui\simple_ui_label.h" />
+    <ClInclude Include="user\simple_ui\simple_ui_message_box.h" />
+    <ClInclude Include="user\simple_ui\simple_ui_password.h" />
+    <ClInclude Include="user\simple_ui\simple_ui_style.h" />
+    <ClInclude Include="user\simple_ui\simple_ui_tap.h" />
     <ClInclude Include="user\user\user_plain_edit.h" />
     <ClInclude Include="user\user\user_plain_text_data.h" />
   </ItemGroup>

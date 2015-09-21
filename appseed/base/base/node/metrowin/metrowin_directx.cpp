@@ -802,6 +802,8 @@ namespace metrowin
 
       sl.unlock();
 
+      //dc->FillSolidRect(100,100,100,100,ARGB(255,128,137,208));
+
       //::os::simple_ui * psimpleui = System.m_psimpleui;
 
       //if (psimpleui != NULL && psimpleui->m_bVisible)
@@ -828,19 +830,19 @@ namespace metrowin
          if(hr == D2DERR_RECREATE_TARGET)
          {
 
-            TRACE("directx_base::Render, EndDraw Failure : \"D2DERR_RECREATE_TARGET\"");
+            trace_hr("directx_base::Render, EndDraw", hr);
 
          }
          else if(hr == D2DERR_WRONG_STATE)
          {
 
-            TRACE("directx_base::Render, EndDraw Failure : \"D2DERR_WRONG_STATE\"");
+            trace_hr("directx_base::Render, EndDraw",hr);
 
          }
          else
          {
 
-            TRACE("directx_base::Render, EndDraw Failure : \"%d\"",hr);
+            trace_hr("directx_base::Render, EndDraw",hr);
 
          }
 

@@ -2,12 +2,6 @@
 //#include "base/user/user.h"
 
 
-CLASS_DECL_BASE void draw_ca2(::draw2d::graphics * pdc, int x, int y, int z, COLORREF crBk, COLORREF cr);
-CLASS_DECL_BASE void draw_ca2_with_border(::draw2d::graphics * pdc, int x, int y, int z, int b, COLORREF crBk, COLORREF cr, COLORREF crOut);
-CLASS_DECL_BASE void draw_ca2_border2(::draw2d::graphics * pdc, int x, int y, int z, int bOut, int bIn, COLORREF crBk, COLORREF cr, COLORREF crBorderOut, COLORREF crIn);
-CLASS_DECL_BASE void draw_ca2_with_border2(::draw2d::graphics * pdc, int x, int y, int z, int bOut, int bIn, COLORREF crBk, COLORREF cr, COLORREF crBorderOut, COLORREF crIn);
-
-
 namespace fontopus
 {
 
@@ -218,6 +212,7 @@ namespace fontopus
 
    void login::_001OnDraw(::draw2d::graphics * pgraphics)
    {
+      //return;
 
       simple_ui_draw_frame_window_rect(pgraphics);
 
@@ -328,7 +323,7 @@ namespace fontopus
       else if (m_picon95)
       {
 
-         draw_ca2_border2(pgraphics, (int)(49 * rx), (int)(49 * ry) - 11, (int)((91 + 2 + 2) * ry), 1, 1, crBk, cr, crBorderOut, crBorderIn);
+         pgraphics->draw_ca2_border2((int)(49 * rx), (int)(49 * ry) - 11, (int)((91 + 2 + 2) * ry), 1, 1, crBk, cr, crBorderOut, crBorderIn);
 
          pgraphics->DrawIcon((int)(49 * rx) + 2, (int)(49 * ry) + 2 - 11, m_picon95, (int)((91 + 2 + 2) * ry), (int)((91 + 2 + 2) * ry), 0, NULL, 0);
 
@@ -336,7 +331,7 @@ namespace fontopus
       else
       {
 
-         draw_ca2_with_border2(pgraphics, (int)(49 * rx), (int)(49 * ry) - 23, (int)((91 + 2 + 2) * ry), 1, 1, crBk, cr, crBorderOut, crBorderIn);
+         pgraphics->draw_ca2_with_border2((int)(49 * rx), (int)(49 * ry) - 23, (int)((91 + 2 + 2) * ry), 1, 1, crBk, cr, crBorderOut, crBorderIn);
 
       }
 
@@ -451,6 +446,70 @@ namespace fontopus
    //   return 0;
 
    //}
+
+
+   void login::_000OnDraw(::draw2d::graphics * pdc)
+   {
+
+      //simple_ui::interaction::_000OnDraw(pdc);
+
+
+      if(!m_bVisible)
+         return;
+
+      _001DrawThis(pdc);
+
+      try
+      {
+
+         _001DrawChildren(pdc);
+
+      }
+      catch(...)
+      {
+
+         throw simple_exception(::get_thread_app(),"no more a window");
+
+      }
+
+   }
+
+
+   void login::_001DrawChildren(::draw2d::graphics *pdc)
+   {
+
+      //single_lock sl(m_pmutex, true);
+
+      //int i = 5;
+
+      sp(interaction) pui;
+
+      //while((pui = get_child(pui)).is_set() && i > 0)
+      while((pui = get_child(pui)).is_set())
+      {
+
+         //i--;
+
+         try
+         {
+
+            if(pui->m_bVisible && !pui->is_custom_draw())
+            {
+
+               pui->_000OnDraw(pdc);
+
+            }
+
+         }
+         catch(...)
+         {
+
+         }
+
+      }
+
+   }
+
 
 } // namespace fontopus
 

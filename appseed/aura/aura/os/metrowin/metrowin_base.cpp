@@ -381,7 +381,7 @@ string get_system_error_message(uint32_t dwError)
       dwError,
       0,
       (LPWSTR) (LPCWSTR) wstr,
-      wstr.get_storage_size(),
+      wstr.get_storage_size() / sizeof(unichar),
       NULL);
    string str(wstr);
    return str;

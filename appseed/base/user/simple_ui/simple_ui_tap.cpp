@@ -308,7 +308,6 @@ namespace simple_ui
 
       }
 
-
       if(m_estockicon == stock_icon_none)
       {
 
@@ -409,6 +408,101 @@ namespace simple_ui
 
    }
 
+
+   void tap::_000OnDraw(::draw2d::graphics * pdc)
+   {
+
+      //simple_ui::interaction::_000OnDraw(pdc);
+
+
+      if(!m_bVisible)
+         return;
+
+      _001DrawThis(pdc);
+
+      return;
+
+      try
+      {
+
+         _001DrawChildren(pdc);
+
+      }
+      catch(...)
+      {
+
+         throw simple_exception(::get_thread_app(),"no more a window");
+
+      }
+
+   }
+
+   void tap::_001DrawThis(::draw2d::graphics * pgraphics)
+   {
+
+      /*point ptOrg =  pgraphics->GetViewportOrg();*/
+
+      try
+      {
+
+         if(!is_custom_draw())
+         {
+
+            set_viewport_org(pgraphics);
+
+         }
+
+         pgraphics->m_dFontFactor = 1.0;
+
+         try
+         {
+
+            pgraphics->SelectClipRgn(NULL);
+
+         }
+         catch(...)
+         {
+
+            throw simple_exception(::get_thread_app(),"no more a window");
+
+         }
+
+         {
+
+            synch_lock sl(m_pmutex);
+
+            _001OnNcDraw(pgraphics);
+
+         }
+
+         _001OnClip(pgraphics);
+
+         _001CallOnDraw(pgraphics);
+
+
+      }
+      catch(...)
+      {
+
+         //         pgraphics->SetViewportOrg(ptOrg);
+
+         throw simple_exception(::get_thread_app(),"no more a window");
+
+      }
+
+      //pgraphics->SetViewportOrg(ptOrg);
+
+   }
+
+   void tap::_001CallOnDraw(::draw2d::graphics * pgraphics)
+   {
+
+      on_viewport_offset(pgraphics);
+
+      synch_lock sl(m_pmutex);
+      _001OnDraw(pgraphics);
+
+   }
 
 } // namespace simple_ui
 

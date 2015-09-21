@@ -164,9 +164,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\app-core\appseed\multimedia\m_multimedia.vcxproj">
-      <Project>{2c8b3100-192e-423f-a651-66ee6ccb6604}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\app\appseed\base\m_base.vcxproj">
       <Project>{5487686f-8a2f-401a-a38e-fda8900e1984}</Project>
     </ProjectReference>
