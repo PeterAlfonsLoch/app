@@ -92,7 +92,7 @@
     <None Include="html_lite.def" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{35b6ad98-4d2b-4852-add6-9edcad095524}</ProjectGuid>
+    <ProjectGuid>{3B814DAF-FD98-487D-917E-9D708BE3BC61}</ProjectGuid>
     <Keyword>Android</Keyword>
     <RootNamespace>html_lite</RootNamespace>
     <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
