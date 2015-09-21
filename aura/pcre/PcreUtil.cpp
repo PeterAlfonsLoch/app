@@ -1,4 +1,6 @@
+#define index bsd_index
 #include "app/aura/pcre/src/pcre2.h"
+#undef index
 #include "PcreUtil.h"
 
 

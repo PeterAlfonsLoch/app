@@ -2,22 +2,22 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Header Files">
-      <UniqueIdentifier>{651a34bc-f134-45ac-8a47-77a5f7eab4b1}</UniqueIdentifier>
+      <UniqueIdentifier>{9da40660-a611-4af2-b708-a9f130541790}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\html_lite">
-      <UniqueIdentifier>{0c3e19d1-ee5f-419f-98c5-086305fa5b99}</UniqueIdentifier>
+      <UniqueIdentifier>{084614f1-0430-4c63-8e4d-02e17c8619bb}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\html">
-      <UniqueIdentifier>{181828b3-bb9a-4fe7-a1e4-6c52b272e211}</UniqueIdentifier>
+      <UniqueIdentifier>{1639c512-989d-47bd-823b-d3278b50e7fc}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{d18dba9c-e427-4188-9e52-ba75bdd4cdbf}</UniqueIdentifier>
+      <UniqueIdentifier>{31bb6a91-daa8-4709-9f75-e8013dc1ed77}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\html_lite">
-      <UniqueIdentifier>{58078a59-ac21-44ea-a40b-405e658383af}</UniqueIdentifier>
+      <UniqueIdentifier>{f5f1475b-7b18-418e-93ae-28b56744f499}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\html">
-      <UniqueIdentifier>{e2415feb-3327-4e0b-8f2d-24aabfde2e1d}</UniqueIdentifier>
+      <UniqueIdentifier>{f0473ea8-dd0a-429d-8150-6fc4a96761c8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
