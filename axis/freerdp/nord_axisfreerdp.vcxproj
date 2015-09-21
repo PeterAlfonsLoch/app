@@ -344,9 +344,10 @@
     </ClCompile>
     <Link />
     <Link>
-      <LibraryDependencies>WelsDecPlus;WelsEncPlus;axisopenssl;axiscrypto;axiswinpr;axiszlib;aura;$(StlLibraryName);m</LibraryDependencies>
+      <LibraryDependencies>axisopenssl;axiscrypto;axiswinpr;axiszlib;aura;$(StlLibraryName);m</LibraryDependencies>
       <SharedLibrarySearchPath>$(OutDir);$(NDKRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\lib;%(SharedLibrarySearchPath)</SharedLibrarySearchPath>
       <AdditionalLibraryDirectories>$(OutDir);$(NDKRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\lib;$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\4.8;$(StlLibraryPath);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>$(SolutionDir)../../thirdparty/library/x86/libavcodec.a;$(SolutionDir)../../thirdparty/library/x86/libavutil.a;$(SolutionDir)../../thirdparty/library/x86/libswresample.a</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">

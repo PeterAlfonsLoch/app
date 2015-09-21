@@ -27,6 +27,8 @@
 
 #include <freerdp/gdi/gfx.h>
 
+#if !defined(ANDROID)
+
 void af_OnChannelConnectedEventHandler(rdpContext* context, ChannelConnectedEventArgs* e)
 {
 	wfContext* wfc = (wfContext*) context;
@@ -82,3 +84,5 @@ void af_OnChannelDisconnectedEventHandler(rdpContext* context, ChannelDisconnect
 		
 	}
 }
+
+#endif

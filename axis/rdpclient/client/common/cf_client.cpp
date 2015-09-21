@@ -873,11 +873,20 @@ CLASS_DECL_EXPORT BOOL af_pre_connect(freerdp* instance)
 //   return (DWORD)NULL;
 //}
 
+
+#if !defined(ANDROID)
+
+
 rdpSettings* freerdp_client_get_settings(rdp_context* wfc)
 {
-   //return wfc->instance->settings;
+   
    return wfc->settings;
+
 }
+
+
+#endif
+
 
 //int freerdp_client_focus_in(wfContext* wfc)
 //{

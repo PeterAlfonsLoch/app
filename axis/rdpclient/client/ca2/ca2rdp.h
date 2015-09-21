@@ -20,6 +20,9 @@
 #ifndef __DFREERDP_H
 #define __DFREERDP_H
 #include "axis/rdpclient/config.h"
+#if defined(ANDROID)
+#include <pthread.h>
+#endif
 #if defined(_WIN32) && !defined(METROWIN)
 #include "axis/rdpclient/client/Windows/wf_client.h"
 //#elif defined(ANDROID)
