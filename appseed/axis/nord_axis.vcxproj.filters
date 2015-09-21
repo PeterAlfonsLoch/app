@@ -106,9 +106,6 @@
     <ClCompile Include="axis\node\android\android_factory_exchange.cpp">
       <Filter>Source Files\axis\node\android</Filter>
     </ClCompile>
-    <ClCompile Include="axis\node\android\android_file_set.cpp">
-      <Filter>Source Files\axis\node\android</Filter>
-    </ClCompile>
     <ClCompile Include="axis\node\android\android_ip_enum.cpp">
       <Filter>Source Files\axis\node\android</Filter>
     </ClCompile>
@@ -745,6 +742,9 @@
     <ClCompile Include="axis\node\android\android_copydesk.cpp">
       <Filter>Source Files\axis\node\android</Filter>
     </ClCompile>
+    <ClCompile Include="axis\node\android\aaa_want_to_remove_android_file_set.cpp">
+      <Filter>Source Files\axis\node\android</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -1224,9 +1224,6 @@
     <ClInclude Include="axis\node\android\android_factory_exchange.h">
       <Filter>Header Files\axis\node\android</Filter>
     </ClInclude>
-    <ClInclude Include="axis\node\android\android_file_set.h">
-      <Filter>Header Files\axis\node\android</Filter>
-    </ClInclude>
     <ClInclude Include="axis\node\android\android_ip_enum.h">
       <Filter>Header Files\axis\node\android</Filter>
     </ClInclude>
@@ -1516,6 +1513,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="axis\node\android\android_copydesk.h">
+      <Filter>Header Files\axis\node\android</Filter>
+    </ClInclude>
+    <ClInclude Include="axis\node\android\aaa_want_to_remove_android_file_set.h">
       <Filter>Header Files\axis\node\android</Filter>
     </ClInclude>
   </ItemGroup>

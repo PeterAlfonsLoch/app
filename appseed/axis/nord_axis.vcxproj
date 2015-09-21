@@ -63,7 +63,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x86'">
     <OutDir>$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">
     <OutDir>$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\</OutDir>
@@ -247,7 +247,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="axis\node\android\android_file_set.cpp">
+    <ClCompile Include="axis\node\android\aaa_want_to_remove_android_file_set.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
@@ -1541,7 +1541,7 @@
     <ClInclude Include="axis\node\android\android_copydesk.h" />
     <ClInclude Include="axis\node\android\android_crypto.h" />
     <ClInclude Include="axis\node\android\android_factory_exchange.h" />
-    <ClInclude Include="axis\node\android\android_file_set.h" />
+    <ClInclude Include="axis\node\android\aaa_want_to_remove_android_file_set.h" />
     <ClInclude Include="axis\node\android\android_ip_enum.h" />
     <ClInclude Include="axis\node\android\android_port_forward.h" />
     <ClInclude Include="axis\node\ansios\ansios.h" />

@@ -865,6 +865,9 @@
     <ClCompile Include="aura\exception\exception_void_implementation.cpp">
       <Filter>Source Files\aura\exception</Filter>
     </ClCompile>
+    <ClCompile Include="primitive\str\str_format.cpp">
+      <Filter>Source Files\primitive\str</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">

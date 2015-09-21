@@ -5424,6 +5424,14 @@ namespace android
    }
 
 
+   ::user::interaction * interaction_impl::from_handle(oswindow oswindow)
+   {
+
+      return ::window_from_handle(oswindow);
+
+   }
+
+
 } // namespace android
 
 

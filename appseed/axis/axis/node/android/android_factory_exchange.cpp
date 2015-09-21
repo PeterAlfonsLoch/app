@@ -14,7 +14,7 @@ namespace android
          ::object(papp)
       {
 
-         System.factory().creatable_large < file_set                 >(System. type_info < ::file::set            >());
+         //System.factory().creatable_large < file_set                 >(System. type_info < ::file::set            >());
          System.factory().creatable < ::android::axis::file_system   >(System. type_info < ::file::system         >(),1);
          System.factory().creatable < ::android::axis::dir           >(System. type_info < ::file::dir::system    >(),1);
          System.factory().creatable_small < crypto                   >(System. type_info < ::crypto::crypto       >(),1);

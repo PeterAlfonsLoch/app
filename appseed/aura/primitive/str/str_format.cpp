@@ -11,6 +11,11 @@
 
 #endif
 
+#ifdef ANDROID
+
+#include <stdlib.h>
+
+#endif
 
 void string_format::construct(string_format_printer * pprinter, string_format_printer::PRINTER pfnPrinter, void * pvoidPrinter)
 {
@@ -486,7 +491,7 @@ bool string_format::parse(const char * & s)
                pformat->append(::str::from(d));
                return;
             }
-#elif defined(LINUX) || defined(MACOS)
+#elif defined(LINUX) || defined(MACOS) 
             if(gcvt(fabs(d),digits, sz))
             {
                pformat->append(::str::from(d));
@@ -494,7 +499,8 @@ bool string_format::parse(const char * & s)
             }
 
 #else
-            if(max_cvt_dup(sz,sizeof(sz),d,1024,&decimal_point,&negative,sizeof(sz)-1) != 0)
+            int iSize = sizeof(sz) - 1;
+            if(max_cvt_dup(sz,sizeof(sz),d,1024,&decimal_point,&negative,&iSize) != 0)
             {
                pformat->append(::str::from(d));
                return;

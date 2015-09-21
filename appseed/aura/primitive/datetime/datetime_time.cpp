@@ -531,7 +531,7 @@ namespace datetime
    string time::Format(string & str, const string & strFormat) const
    {
 
-#if defined(LINUX)
+#if defined(LINUX) || defined(ANDROID) || defined(SOLARIS)
       char * szBuffer = str.GetBufferSetLength(maxTimeBufferSize);
       struct tm* ptmTemp = localtime(&m_time);
       if (ptmTemp == NULL || !strftime(szBuffer, maxTimeBufferSize, strFormat, ptmTemp))
@@ -567,17 +567,17 @@ namespace datetime
 
       }
 
-#elif defined(ANDROID) || defined(SOLARIS)
-
-      struct tm* ptmTemp = localtime(&m_time);
-
-      if (ptmTemp == NULL || !strftime(szBuffer, maxTimeBufferSize, strFormat, ptmTemp))
-      {
-
-         szBuffer[0] = '\0';
-
-      }
-
+//#elif defined(ANDROID) || defined(SOLARIS)
+//
+//      struct tm* ptmTemp = localtime(&m_time);
+//
+//      if (ptmTemp == NULL || !strftime(szBuffer, maxTimeBufferSize, strFormat, ptmTemp))
+//      {
+//
+//         szBuffer[0] = '\0';
+//
+//      }
+//
 #else
 
       str = strFormat;
