@@ -135,6 +135,12 @@
 /* use ARM SIMD assembly optimizations */
 #undef USE_ARM_SIMD
 
+#ifdef __ARM_ARCH_7A__
+#define USE_ARM_NEON 1
+#define USE_ARM_SIMD 1
+#endif
+
+
 /* use GNU-style inline assembler */
 #undef USE_GCC_INLINE_ASM
 

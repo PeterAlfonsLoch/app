@@ -79,7 +79,7 @@
 #include "rand/_rand.c"
 #include "rc2/_rc2.c"
 //#if (defined(_M_IX86)  || defined(__i386__)) && defined(OPENSSL_NO_ASM)
-#if (defined(_M_IX86)  || defined(__i386__))&& defined(OPENSSL_NO_ASM)
+#if defined(OPENSSL_NO_ASM)
 #include "rc4/rc4_enc.c"
 #include "rc4/rc4_skey.c"
 #endif

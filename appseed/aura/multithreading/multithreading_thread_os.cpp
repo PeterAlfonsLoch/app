@@ -392,14 +392,16 @@
 //   return g_uiMainThread;
 //}
 
+typedef uint32_t THREAD_FUNCTION(void *);
+typedef THREAD_FUNCTION * PFN_THREAD_FUNCTION;
 
 struct create_thread_data
 {
-   uint32_t(*m_pfn)(void *);
-   void * m_pv;
+   PFN_THREAD_FUNCTION     m_pfn;
+   void *                  m_pv;
 
 
-   create_thread_data(uint32_t(*pfn)(void *), void * pv)
+   create_thread_data(PFN_THREAD_FUNCTION pfn, void * pv)
    {
       m_pfn = pfn;
       m_pv = pv;
@@ -449,7 +451,7 @@ struct create_thread_data
 };
 
 
-CLASS_DECL_AURA HTHREAD create_thread(LPSECURITY_ATTRIBUTES lpsa,uint_ptr cbStack,uint32_t(*pfn)(void *),void * pv,uint32_t uiFlags,IDTHREAD * puiId)
+CLASS_DECL_AURA HTHREAD create_thread(LPSECURITY_ATTRIBUTES lpsa,uint_ptr cbStack,PFN_THREAD_FUNCTION pfn,void * pv,uint32_t uiFlags,IDTHREAD * puiId)
 {
 
 #ifdef WINDOWS

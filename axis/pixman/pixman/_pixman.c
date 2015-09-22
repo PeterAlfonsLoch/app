@@ -26,7 +26,7 @@
 #include "pixman-arm-simd.c"
 #endif
 #if defined(USE_ARM_NEON) || defined(USE_ARM_SIMD)
-#include "pixman-arm.c"
+//#include "pixman-arm.c"
 #endif
 #include "pixman-bits-image.c"
 //#include "pixman-combine-float.c"
