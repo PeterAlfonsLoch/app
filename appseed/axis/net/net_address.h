@@ -64,11 +64,11 @@ namespace net
 
 
       address();
-      address(int32_t family, port_t port = 0);
-      address(const string & strAddress, port_t port = 0);
-      address(::aura::application * papp, const string & strAddress, const string & strServiceName);
-      address(const in_addr & a, port_t port = 0);
-      address(const in6_addr & a, port_t port = 0);
+      address(int32_t family,port_t port = 0);
+      address(const string & strAddress,port_t port = 0);
+      address(::aura::application * papp,const string & strAddress,const string & strServiceName);
+      address(const in_addr & a,port_t port = 0);
+      address(const in6_addr & a,port_t port = 0);
       address(const sockaddr_in & a);
       address(const sockaddr_in6 & a);
       address(const sockaddr & sa);
@@ -88,7 +88,7 @@ namespace net
       inline void set_service_number(port_t iPort);
 
 
-      bool is_in_same_net(const address & addr, const address & addrMask) const;
+      bool is_in_same_net(const address & addr,const address & addrMask) const;
       bool is_equal(const address & addr) const;
 
 
@@ -133,12 +133,26 @@ namespace net
 
    }
 
+   inline port_t address::get_service_number() const
+   {
+
+      return ntohs(u.s.m_port);
+
+   }
+
+
+   inline void address::set_service_number(port_t port)
+   {
+
+      u.s.m_port = htons(port);
+
+   }
 
 
    inline void address::copy(const address & address)
    {
 
-      memcpy(this, &address, sizeof(u.m_sa));
+      memcpy(this,&address,sizeof(u.m_sa));
 
       sync_os_address();
       sync_os_service();

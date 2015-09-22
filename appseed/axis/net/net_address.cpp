@@ -420,20 +420,6 @@ namespace net
    }*/
 
 
-   port_t address::get_service_number() const
-   {
-
-      return ntohs(u.s.m_port);
-
-   }
-
-
-   void address::set_service_number(port_t port)
-   {
-
-      u.s.m_port = htons(port);
-
-   }
 
 
 } // namespace net
