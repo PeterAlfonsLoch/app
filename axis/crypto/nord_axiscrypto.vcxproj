@@ -96,7 +96,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">
     <ClCompile>
-      <AdditionalOptions>-Wno-unknown-pragmas -Wno-unused-function -Wno-implicit-int  -Wno-unused-variable  -Wno-pointer-sign</AdditionalOptions>
+      <AdditionalOptions>-Wno-unknown-pragmas -Wno-unused-function -Wno-implicit-int  -Wno-unused-variable  -Wno-pointer-sign -Wno-unused-but-set-variable -Wno-unused-value</AdditionalOptions>
       <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>
       <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include;.;$(SolutionDir)../../..;$(SolutionDir)../../../app/base/include;crypto;crypto/asn1;crypto/evp;crypto/modes;$(NDKRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>NO_WINDOWS_BRAINDEATH;OPENSSL_NO_ASM;USE_SOCKETS;OPENSSL_NO_INLINE_ASM;OPENSSL_BUILD_SHLIBCRYPTO;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -210,6 +210,7 @@
     <ClInclude Include="crypto\ebcdic.h" />
     <ClInclude Include="crypto\fips_err.h" />
     <ClInclude Include="crypto\md32_common.h" />
+    <ClInclude Include="crypto\modes\modes_lcl.h" />
     <ClInclude Include="crypto\opensslconf.h" />
     <ClInclude Include="crypto\opensslv.h" />
     <ClInclude Include="crypto\ossl_typ.h" />

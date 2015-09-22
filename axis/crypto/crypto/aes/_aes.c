@@ -7,7 +7,9 @@
 #include "aes_cbc.c"
 #endif
 #include "aes_cfb.c"
+//#ifdef __ARM_ARCH_7A__
 //#include "aes_core.c"
+//#endif
 #include "aes_ctr.c"
 #include "aes_ecb.c"
 #include "aes_ige.c"

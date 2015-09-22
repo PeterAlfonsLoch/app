@@ -414,8 +414,9 @@ namespace core
 } // namespace core
 
 
-#ifndef VSNORD
-thread_object < _TEB > t_teb;
+#if !defined(VSNORD) || defined(__arm__)
+
+::thread_object < _TEB > t_pteb;
 
 struct _TEB * WINAPI NtCurrentTeb(void)
 {
@@ -423,7 +424,11 @@ struct _TEB * WINAPI NtCurrentTeb(void)
    return t_pteb;
 
 }
+
 #endif
+
+
+
 
 
 

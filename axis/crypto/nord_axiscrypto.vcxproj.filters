@@ -295,6 +295,9 @@
     <ClInclude Include="..\..\include\openssl\x509_vfy.h">
       <Filter>Header Files\include</Filter>
     </ClInclude>
+    <ClInclude Include="crypto\modes\modes_lcl.h">
+      <Filter>Header Files\crypto\modes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
@@ -545,6 +548,9 @@
     </Filter>
     <Filter Include="Source Files\engines\ccgost">
       <UniqueIdentifier>{f819fdbb-e8fa-4a97-af52-d5ac9d32e056}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\crypto\modes">
+      <UniqueIdentifier>{4a4cfba0-6e0c-4aaa-a097-c6d22795a213}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
