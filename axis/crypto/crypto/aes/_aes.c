@@ -23,7 +23,7 @@
 // G: Passcrypt (No Weblang...) : on a Terminal t (.i.e. type, and press enter): clang -arch arm -dM -E - < /dev/null 
 #if !defined(_M_X64) && !defined(_LP64) && !defined(__ARM_ARCH)
 //#error "I know how to issue an error too!"
-#include "aes_x86core.c"
+//#include "aes_x86core.c"
 #endif
 //2015-02-03  04:55                 0 _aes.c"
 //              11 arquivo(s)        136.139 bytes
