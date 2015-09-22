@@ -5,6 +5,8 @@ namespace user
 {
 
 
+   using edit_plain_text_view = ::user::show < ::user::scroll < ::user::plain_edit > >;
+
    //class CLASS_DECL_CORE edit_plain_text_view :
    //   virtual public scroll_view,
    //   virtual public plain_edit

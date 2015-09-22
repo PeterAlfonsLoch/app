@@ -16,7 +16,7 @@ istring::~istring()
 void istring::update_string()
 {
 
-   m_pauraapp->load_string(m_str, m_strTemplate);
+   m_str = m_pauraapp->lstr(m_strTemplate, m_strTemplate);
 
 }
 

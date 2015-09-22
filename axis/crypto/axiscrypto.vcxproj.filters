@@ -264,6 +264,9 @@
     <Filter Include="Assembler Files\x64\whrlpool">
       <UniqueIdentifier>{5b4aa46f-1c3f-45d5-a91b-5092318e7b80}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Assembler Files\x64\engine">
+      <UniqueIdentifier>{34e97589-d06b-4bb2-96f2-eda8fcac096c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="crypto\aes\aes_cbc.c">
@@ -2813,17 +2816,41 @@
     <CustomBuild Include="asm\x64-win32-masm\whrlpool\wp-x86_64.asm">
       <Filter>Assembler Files\x64\whrlpool</Filter>
     </CustomBuild>
-    <CustomBuild Include="asm\x64-win32-masm\aes\aes-x86_64.asm" />
-    <CustomBuild Include="asm\x64-win32-masm\aes\aesni-sha1-x86_64.asm" />
-    <CustomBuild Include="asm\x64-win32-masm\aes\aesni-x86_64.asm" />
-    <CustomBuild Include="asm\x64-win32-masm\bn\modexp512-x86_64.asm" />
-    <CustomBuild Include="asm\x64-win32-masm\bn\x86_64-mont.asm" />
-    <CustomBuild Include="asm\x64-win32-masm\camellia\cmll-x86_64.asm" />
-    <CustomBuild Include="asm\x64-win32-masm\md5\md5-x86_64.asm" />
-    <CustomBuild Include="asm\x64-win32-masm\rc4\rc4-md5-x86_64.asm" />
-    <CustomBuild Include="asm\x64-win32-masm\rc4\rc4-x86_64.asm" />
-    <CustomBuild Include="asm\x64-win32-masm\sha\sha1-x86_64.asm" />
-    <CustomBuild Include="asm\x64-win32-masm\sha\sha512-x86_64.asm" />
-    <CustomBuild Include="asm\x64-win32-masm\x86_64cpuid.asm" />
+    <CustomBuild Include="asm\x64-win32-masm\aes\aesni-sha1-x86_64.asm">
+      <Filter>Assembler Files\x64\aes</Filter>
+    </CustomBuild>
+    <CustomBuild Include="asm\x64-win32-masm\aes\aesni-x86_64.asm">
+      <Filter>Assembler Files\x64\aes</Filter>
+    </CustomBuild>
+    <CustomBuild Include="asm\x64-win32-masm\aes\aes-x86_64.asm">
+      <Filter>Assembler Files\x64\aes</Filter>
+    </CustomBuild>
+    <CustomBuild Include="asm\x64-win32-masm\camellia\cmll-x86_64.asm">
+      <Filter>Assembler Files\x64\camellia</Filter>
+    </CustomBuild>
+    <CustomBuild Include="asm\x64-win32-masm\md5\md5-x86_64.asm">
+      <Filter>Assembler Files\x64\md5</Filter>
+    </CustomBuild>
+    <CustomBuild Include="asm\x64-win32-masm\rc4\rc4-md5-x86_64.asm">
+      <Filter>Assembler Files\x64\rc4</Filter>
+    </CustomBuild>
+    <CustomBuild Include="asm\x64-win32-masm\rc4\rc4-x86_64.asm">
+      <Filter>Assembler Files\x64\rc4</Filter>
+    </CustomBuild>
+    <CustomBuild Include="asm\x64-win32-masm\sha\sha1-x86_64.asm">
+      <Filter>Assembler Files\x64\sha</Filter>
+    </CustomBuild>
+    <CustomBuild Include="asm\x64-win32-masm\sha\sha512-x86_64.asm">
+      <Filter>Assembler Files\x64\sha</Filter>
+    </CustomBuild>
+    <CustomBuild Include="asm\x64-win32-masm\bn\x86_64-mont.asm">
+      <Filter>Assembler Files\x64\bn</Filter>
+    </CustomBuild>
+    <CustomBuild Include="asm\x64-win32-masm\x86_64cpuid.asm">
+      <Filter>Assembler Files\x64</Filter>
+    </CustomBuild>
+    <CustomBuild Include="asm\x64-win32-masm\bn\modexp512-x86_64.asm">
+      <Filter>Assembler Files\x64\engine</Filter>
+    </CustomBuild>
   </ItemGroup>
 </Project>
