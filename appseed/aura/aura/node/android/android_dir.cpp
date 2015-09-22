@@ -38,28 +38,15 @@ namespace android
 
    ::file::listing & dir::root_ones(::file::listing & listing, ::aura::application *  papp)
    {
+      
       listing.add("/");
-	  listing.m_straTitle.add("File System");
-/*      DWORD dwSize = ::GetLogicalDriveStrings(0, NULL);
-      LPTSTR lpszAlloc = (LPTSTR) malloc(dwSize + 1);
-      LPTSTR lpsz = lpszAlloc;
-      dwSize = ::GetLogicalDriveStrings(dwSize + 1, lpsz);
+	   
+      listing.m_straTitle.add("File System");
 
-      string str;
-      while(*lpsz)
-      {
-         str.Empty();
-         while(*lpsz)
-         {
-            str += *lpsz;
-            lpsz++;
-         }
-         stra.add(str);
-         lpsz++;
-      }
+      return listing;
 
-      free(lpszAlloc);*/
    }
+
 
    ::file::listing & dir::ls(::aura::application * papp, ::file::listing & listing)
    {

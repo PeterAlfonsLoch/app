@@ -22,8 +22,8 @@ namespace file
 
       system::system(::aura::application * papp) :
          ::object(papp),
-         m_mutex(papp),
-         m_isdirmap(papp)
+         m_isdirmap(papp),
+         m_mutex(papp)
       {
 //         m_pziputil = new zip::Util;
          m_isdirmap.m_dwTimeOut = 15000;

@@ -1025,10 +1025,10 @@ public:
    explicit string_buffer(simple_string& str ) THROWS :
    m_str( str ),
       m_pszBuffer( NULL ),
-#ifdef DEBUG
-      m_nBufferLength( str.get_length() ),
-#endif
       m_nLength( str.get_length() )
+#ifdef DEBUG
+      ,m_nBufferLength(str.get_length())
+#endif
    {
       m_pszBuffer = m_str.GetBuffer();
    }
@@ -1036,10 +1036,10 @@ public:
    string_buffer(simple_string & str,strsize nMinLength,uint32_t dwFlags = AUTO_LENGTH ) THROWS :
    m_str( str ),
       m_pszBuffer( NULL ),
-#ifdef DEBUG
-      m_nBufferLength( nMinLength ),
-#endif
       m_nLength( (dwFlags&AUTO_LENGTH) ? -1 : nMinLength )
+#ifdef DEBUG
+      ,m_nBufferLength(nMinLength)
+#endif
    {
       if( dwFlags&SET_LENGTH )
       {

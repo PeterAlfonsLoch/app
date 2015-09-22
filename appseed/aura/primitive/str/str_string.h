@@ -936,15 +936,24 @@ inline string & string::operator=(const simple_string& strSrc )
    return *this;
 }
 
+
 template < class InputIterator >
 string & string::assign ( InputIterator first, InputIterator last )
 {
+   
    Empty();
+
    for(InputIterator it = first; it <= last; it++)
    {
+
       *this += *it;
+
    }
+
+   return *this;
+
 }
+
 
 inline strsize string::find_first_in(const string & str, strsize pos) const RELEASENOTHROW
 {

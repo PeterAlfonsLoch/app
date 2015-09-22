@@ -450,6 +450,8 @@ bool open_url::open()
 
 #endif
 
+   return true;
+
 }
 
 

@@ -141,7 +141,6 @@ void CLASS_DECL_lnx AfxGlobalFree(HGLOBAL hGlobal)
 #define MIN_MALLOC_OVERHEAD 4   // LocalAlloc or other overhead
 
 int32_t __CDECL AfxCriticalNewHandler(size_t nSize)
-   // nSize is already rounded
 {
    // called during critical primitive::memory allocation
    //  free up part of the cast's safety cache
@@ -171,6 +170,9 @@ int32_t __CDECL AfxCriticalNewHandler(size_t nSize)
 */
 //   TRACE(::ca2::trace::category_Memory, 0, "ERROR: Critical primitive::memory allocation from safety pool failed!\n");
 //   AfxThrowMemoryException();      // oops
+
+   return 1;
+
 }
 #endif // !_AFX_PORTABLE
 

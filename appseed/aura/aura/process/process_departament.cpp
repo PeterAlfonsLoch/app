@@ -89,10 +89,10 @@ namespace process
       object(papp),
       thread(papp),
       simple_thread(papp),
+      m_strCmdLine(strCmdLine),
       m_spprocess(allocer()),
-      m_pstrRead(pstrRead),
-      m_strCmdLine(strCmdLine)
-   {
+      m_pstrRead(pstrRead)
+      {
 
       if(dur.is_pos_infinity())
       {

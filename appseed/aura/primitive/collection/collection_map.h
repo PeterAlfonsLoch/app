@@ -439,25 +439,38 @@ public:
    bool remove_key_array(ARRAY a)
    {
 
+      bool bRemoved = false;
+
       for(index i = 0; i < a.get_count(); i++)
       {
 
-         remove_key(a[i]);
+         bRemoved |= remove_key(a[i]);
 
       }
+
+      return bRemoved;
 
    }
 
    template < class ARRAY >
-   bool remove_assoc_array(ARRAY a)
+   ::count remove_assoc_array(ARRAY a)
    {
+
+      ::count countRemoved = 0;
 
       for(index i = 0; i < a.get_count(); i++)
       {
 
-         remove_assoc(a[i]);
+         if(remove_assoc(a[i]))
+         {
+
+            countRemoved++;
+
+         }
 
       }
+
+      return countRemoved;
 
    }
 

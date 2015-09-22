@@ -548,3 +548,11 @@ inline  int cmp(const float & f1,const float & f2)
 {
    return sgn(f1 - f2);
 }
+
+
+
+template < >
+inline int cmp(const int & t1,const unsigned int & t2)
+{
+   return (t1 < 0) ? -1 : ((unsigned int) t1 < t2) ? 1 : 0;
+}

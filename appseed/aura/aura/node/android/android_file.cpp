@@ -219,11 +219,11 @@ namespace android
          /* size of the table */
 #define ERRTABLESIZE (sizeof(errtable)/sizeof(errtable[0]))
          SetLastError(-1);
-         for (int i = 0; i < ERRTABLESIZE; i++)
+         for (size_t ui = 0; ui < ERRTABLESIZE; ui++)
          {
-            if (errno == errtable[i].sysv_errno)
+            if (errno == errtable[ui].sysv_errno)
             {
-               SetLastError(errtable[i].oscode);
+               SetLastError(errtable[ui].oscode);
                break;
             }
          }

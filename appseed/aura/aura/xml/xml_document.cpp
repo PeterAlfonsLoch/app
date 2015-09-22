@@ -7,8 +7,8 @@ namespace xml
 
    document::document(::aura::application * papp, parse_info * pparseinfo) :
       object(papp != NULL ? papp : get_thread_app()),
-      data(papp != NULL ? papp : get_thread_app()),
-      node(papp != NULL ? papp : get_thread_app())
+      node(papp != NULL ? papp : get_thread_app()),
+      data(papp != NULL ? papp : get_thread_app())
    {
 
       m_pdoc         = this;

@@ -153,7 +153,7 @@ namespace str
          uchar * source = (uchar *) pszUtf8;
          int64_t ch = 0;
          uchar c;
-         char len = 0;
+         int len = 0;
          char extraBytesToRead = utf8_e(*source);
          if(*source == '\0') return -1;
          switch(extraBytesToRead)

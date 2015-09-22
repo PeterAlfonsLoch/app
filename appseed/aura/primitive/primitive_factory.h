@@ -26,8 +26,8 @@ public:
 
    factory_allocator(::aura::application * papp, int32_t iCount, UINT uiAllocSize, id idType, bool bAligned) :
       object(papp),
-      m_iCount(iCount),
       m_uiAllocSize(uiAllocSize),
+      m_iCount(iCount),
       m_idType(idType),
       m_bAligned(bAligned)
    {

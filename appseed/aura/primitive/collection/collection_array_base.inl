@@ -450,9 +450,9 @@ template < class TYPE,class ALLOCATOR >
       // create buffer big enough to hold number of requested elements or
       // m_nGrowBy elements, whichever is larger.
 #ifdef SIZE_T_MAX
-      if(nNewSize > SIZE_T_MAX / sizeof(TYPE))
+      if(::compare::gt(nNewSize, SIZE_T_MAX / sizeof(TYPE)))
          throw memory_exception(get_app());
-      ASSERT(nNewSize <= SIZE_T_MAX / sizeof(TYPE));    // no overflow
+      ASSERT(::compare::lt(nNewSize, SIZE_T_MAX / sizeof(TYPE)));    // no overflow
 #endif
 
       ::count nAllocSize = MAX(nNewSize,m_nGrowBy);
@@ -508,7 +508,7 @@ template < class TYPE,class ALLOCATOR >
          throw invalid_argument_exception(get_app());
 
 #ifdef SIZE_T_MAX
-      ASSERT(nNewMax <= SIZE_T_MAX / sizeof(TYPE)); // no overflow
+      ASSERT(::compare::lt(nNewMax, SIZE_T_MAX / sizeof(TYPE))); // no overflow
 #endif
       TYPE* pNewData = (TYPE *)memory_alloc(nNewMax * sizeof(TYPE));
 
