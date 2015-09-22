@@ -12,6 +12,7 @@
 #include <sys/select.h>
 #include <sys/types.h>
 #include <sys/socket.h>
+#include <sys/endian.h>
 #include <netdb.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>

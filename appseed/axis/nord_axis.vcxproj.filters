@@ -727,9 +727,6 @@
     <ClCompile Include="axis\axis\_axis_axis_axis.cpp">
       <Filter>Source Files\axis\axis</Filter>
     </ClCompile>
-    <ClCompile Include="axis\geoip\_geoip.cpp">
-      <Filter>Source Files\axis\install</Filter>
-    </ClCompile>
     <ClCompile Include="axis\os\_os.cpp">
       <Filter>Source Files\axis\os</Filter>
     </ClCompile>
@@ -744,6 +741,9 @@
     </ClCompile>
     <ClCompile Include="axis\node\android\aaa_want_to_remove_android_file_set.cpp">
       <Filter>Source Files\axis\node\android</Filter>
+    </ClCompile>
+    <ClCompile Include="axis\geoip\_geoip.cpp">
+      <Filter>Source Files\axis\geoip</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

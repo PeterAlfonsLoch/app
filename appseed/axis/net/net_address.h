@@ -133,20 +133,6 @@ namespace net
 
    }
 
-   inline port_t address::get_service_number() const
-   {
-
-      return ntohs(u.s.m_port);
-
-   }
-
-
-   inline void address::set_service_number(port_t port)
-   {
-
-      u.s.m_port = htons(port);
-
-   }
 
 
    inline void address::copy(const address & address)

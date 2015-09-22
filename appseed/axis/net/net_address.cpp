@@ -1,6 +1,12 @@
 #include "framework.h" // from "axis/net/net_sockets.h"
 #include "axis/net/net_sockets.h"
 
+#if defined(__arm__)
+
+#include <sys/endian.h>
+#include <arpa/inet.h>
+
+#endif
 
 namespace net
 {
@@ -412,6 +418,22 @@ namespace net
    return tmp;
 
    }*/
+
+
+   port_t address::get_service_number() const
+   {
+
+      return ntohs(u.s.m_port);
+
+   }
+
+
+   void address::set_service_number(port_t port)
+   {
+
+      u.s.m_port = htons(port);
+
+   }
 
 
 } // namespace net
