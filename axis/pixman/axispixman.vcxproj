@@ -374,6 +374,7 @@
   <ItemGroup>
     <ClCompile Include="pixman\pixman-access-accessors.c" />
     <ClCompile Include="pixman\pixman-access.c" />
+    <ClCompile Include="pixman\pixman-arm.c" />
     <ClCompile Include="pixman\pixman-combine-float.c" />
     <ClCompile Include="pixman\pixman-combine32.c" />
     <ClCompile Include="pixman\pixman-edge-accessors.c" />

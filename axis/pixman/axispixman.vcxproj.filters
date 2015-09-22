@@ -51,6 +51,9 @@
     <ClCompile Include="pixman\pixman-access-accessors.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="pixman\pixman-arm.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pixman\loongson-mmintrin.h">
