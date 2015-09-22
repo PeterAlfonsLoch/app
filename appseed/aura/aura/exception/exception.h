@@ -288,7 +288,9 @@ inline void c_cdecl __trace(...) { }
    ASSERT(((p) == NULL) || __is_valid_address((p), sizeof(type), FALSE))
 
 
-#ifdef __GNUC__
+#if defined(__arm__)
+#  define UNUSED_ALWAYS(x)
+#elif defined(__GNUC__)
 #  define UNUSED_ALWAYS(x) __attribute__((__unused__))
 #elif defined(_MSC_VER)
 #  define UNUSED_ALWAYS(x)
