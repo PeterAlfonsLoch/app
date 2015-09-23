@@ -26,7 +26,7 @@ namespace file
    }
 
 
-   plain_text_stream_memory_buffer::plain_text_stream_memory_buffer(::aura::application * papp, const void * data, ::primitive::memory_size c)
+   plain_text_stream_memory_buffer::plain_text_stream_memory_buffer(::aura::application * papp, const void * data, memory_size_t c)
    {
 
       m_spmemorybuffer = canew(memory_buffer(papp, (void *) data, c));
@@ -42,7 +42,7 @@ namespace file
    }
 
 
-   file_size plain_text_stream_memory_buffer::get_length()
+   file_size_t plain_text_stream_memory_buffer::get_length()
    {
       
       return m_spmemorybuffer->get_size();

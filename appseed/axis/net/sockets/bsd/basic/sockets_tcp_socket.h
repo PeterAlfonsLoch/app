@@ -155,7 +155,7 @@ namespace sockets
       \param len Length of data
       \param f Dummy flags -- not used */
       using ::sockets::socket::write;
-      void write(const void *buf, ::primitive::memory_size c);
+      void write(const void *buf, memory_size_t c);
       /** This callback is executed after a successful read from the socket.
       \param buf Pointer to the data
       \param len Length of the data */
@@ -232,8 +232,8 @@ namespace sockets
       
       void OnRead();
       using ::sockets::stream_socket::read;
-      virtual primitive::memory_size read(void * buf, ::primitive::memory_size n);
-      virtual primitive::memory_size recv(void * buf, ::primitive::memory_size n);
+      virtual memory_size_t read(void * buf, memory_size_t n);
+      virtual memory_size_t recv(void * buf, memory_size_t n);
       virtual void on_read(const void * buf, int_ptr n );
       void OnWrite();
 
@@ -272,9 +272,9 @@ namespace sockets
 
 
       /** the actual send() */
-      ::primitive::memory_size try_write(const void * buf, ::primitive::memory_size len);
+      memory_size_t try_write(const void * buf, memory_size_t len);
       /** add data to output buffer top */
-      void buffer(const void * buf, ::primitive::memory_size len);
+      void buffer(const void * buf, memory_size_t len);
 
 
    };

@@ -34,7 +34,7 @@
 #define _WIN32_WINNT 0x0600
 #endif
 
-#include <stdint.h>
+#include "_stdint.h"
 #include <d3d9.h>
 #include <dxva2api.h>
 

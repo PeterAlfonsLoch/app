@@ -755,7 +755,7 @@ namespace user
 
       ::count iCount = m_nItemCount;
       int32_t iMaxWidth = 0;
-      int32_t iWidth;
+      //int32_t iWidth;
 
       m_iTopIndex       = _001CalcDisplayTopIndex();
 
@@ -1075,7 +1075,7 @@ namespace user
 
       synch_lock sl(&m_mutexData);
 
-      index iColumn;
+//      index iColumn;
 
       index_array iaVisible;
 

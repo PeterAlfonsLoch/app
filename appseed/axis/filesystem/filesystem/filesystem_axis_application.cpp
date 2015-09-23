@@ -212,7 +212,7 @@ namespace file
          return m_pauraapp->m_paurasystem->m_spfile->as_string(varFile, varQuery, m_pauraapp);
       }
 
-      void application::as_memory(var varFile, primitive::memory & mem)
+      void application::as_memory(var varFile, memory & mem)
       {
          return m_pauraapp->m_paurasystem->m_spfile->as_memory(varFile, mem, m_pauraapp);
       }
@@ -237,7 +237,7 @@ namespace file
          return m_pauraapp->m_paurasystem->m_spfile->put_contents(varFile, reader, m_pauraapp);
       }
 
-      bool application::put_contents(var varFile, primitive::memory & mem)
+      bool application::put_contents(var varFile, memory & mem)
       {
          return m_pauraapp->m_paurasystem->m_spfile->put_contents(varFile, mem, m_pauraapp);
       }

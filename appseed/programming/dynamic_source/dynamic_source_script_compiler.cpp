@@ -965,7 +965,7 @@ namespace dynamic_source
       if(spfile->open(pscript->m_strSourcePath, ::file::type_binary | ::file::mode_read | ::file::share_deny_none).failed())
       return;
 
-      primitive::memory memstorage;
+      memory memstorage;
       memstorage.allocate(spfile->get_length() + 1);
       memstorage.get_data()[memstorage.get_size() - 1] = '\0';
       memstorage.read(file);*/

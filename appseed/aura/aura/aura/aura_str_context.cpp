@@ -565,7 +565,7 @@ namespace aura
    bool str::load_uistr_file(const ::id & pszLang, const ::id & pszStyle, const char * pszFilePath)
    {
 
-      ::primitive::memory mem;
+      memory mem;
 
       Application.file().as_memory(pszFilePath,mem);
 

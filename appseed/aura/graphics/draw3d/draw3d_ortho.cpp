@@ -306,9 +306,9 @@ namespace draw3d
 
             pdib->Fill((int)(dA * (184.0 - r * 128.0)),ca.m_uchR,ca.m_uchG,ca.m_uchB);
 
-            pt[0]=point(p[f[iMax][0]].x,p[f[iMax][0]].y);
-            pt[1]=point(p[f[iMax][1]].x,p[f[iMax][1]].y);
-            pt[2]=point(p[f[iMax][2]].x,p[f[iMax][2]].y);
+            pt[0]=point((int64_t)p[f[iMax][0]].x,(int64_t)p[f[iMax][0]].y);
+            pt[1]=point((int64_t)p[f[iMax][1]].x,(int64_t)p[f[iMax][1]].y);
+            pt[2]=point((int64_t)p[f[iMax][2]].x,(int64_t)p[f[iMax][2]].y);
 
             m_pdc->PlgBlt(pt,pdib->get_graphics(),0,0,pdib->m_size.cx,pdib->m_size.cx,bm,0,0);
          }

@@ -332,7 +332,7 @@ namespace exception
       {
 #ifdef WINDOWSEX
       case EXCEPTION_NO_MEMORY:
-         str = "The allocation attempt failed because of a lack of available primitive::memory or heap corruption.";
+         str = "The allocation attempt failed because of a lack of available memory or heap corruption.";
          break;
 #endif
       case EXCEPTION_ACCESS_VIOLATION:

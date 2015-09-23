@@ -28,11 +28,61 @@ namespace compare
 	{
 		return a <= b;
 	}
-	template < typename A, typename B >
+	
+   
+   template < typename A, typename B >
 	inline bool gt(A a, B b)
 	{
 		return a > b;
 	}
+
+
+   template < >
+   inline bool gt(int i,unsigned int ui)
+   {
+
+      return i < 0 ? false : ((unsigned int)i) > ui;
+
+   }
+
+
+   template < >
+   inline bool gt(int i,unsigned long ul)
+   {
+
+      return i < 0 ? false : ((unsigned int)i) > ul;
+
+   }
+
+
+
+   template < >
+   inline bool gt(unsigned int ui, int i)
+   {
+
+      return i < 0 ? true : ui >((unsigned int)i);
+
+   }
+
+
+   template < >
+   inline bool gt(int64_t i, uint64_t ui)
+   {
+
+      return i < 0 ? false : ((uint64_t)i) > ui;
+
+   }
+
+
+#ifdef WINDOWS
+   template < >
+   inline bool gt(DWORD dw,int i)
+   {
+      return i < 0 ? true : dw >((unsigned int)dw);
+   }
+
+#endif
+
 	template < typename A, typename B >
 	inline bool ge(A a, B b)
 	{
@@ -66,7 +116,7 @@ namespace compare
    template < >
    inline bool ge(unsigned int ui,short sh)
    {
-      return sh < 0 ? false : ui <= (unsigned int)sh;
+      return sh < 0 ? true : ui <= (unsigned int)sh;
    }
 
    template < >
@@ -83,6 +133,13 @@ namespace compare
 	}
 
    template < >
+   inline bool lt(int i,unsigned long ul)
+   {
+      return i < 0 ? true : (unsigned long)i < ul;
+   }
+
+
+   template < >
    inline bool lt(int i,unsigned int ui)
    {
       return i < 0 ? true : (unsigned int) i < ui;
@@ -94,17 +151,19 @@ namespace compare
       return i < 0 ? false : ui < (unsigned int)i;
    }
 
+   template < >
+   inline bool lt(uint64_t ui64,uint32_t ui32)
+   {
+      return ui64 > 0xffffffffull ? false : (uint64_t) ui64 < ui32;
+   }
+   
+
 	template < >
 	inline bool le(int i, unsigned long long ul)
 	{
 		return i < 0 ? true : ((unsigned long)i) <= ul;
 	}
 
-   template < >
-   inline bool gt(int i,unsigned int ui)
-   {
-      return i < 0 ? false : ((unsigned int)i) > ui;
-   }
 } // namespace compare
 
 

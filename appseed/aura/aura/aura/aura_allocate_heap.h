@@ -43,138 +43,145 @@ CLASS_DECL_AURA void   system_heap_free(void * pvoid);
 
 #if defined(__cplusplus)
 
-class CLASS_DECL_AURA default_memory_allocator
+namespace heap
 {
-public:
 
-
-   inline static void * alloc(size_t iSize)
+   class CLASS_DECL_AURA default_memory_allocator
    {
-
-      //TODO("jai"); jas = Jonathan Blow 
-      return memory_alloc(iSize);
-
-   }
+   public:
 
 
-   inline static void free(void * p)
-   {
-
-      //TODO("jai"); jas = Jonathan Blow
-      memory_free(p);
-
-   }
-
-
-};
-
-
-class CLASS_DECL_AURA heap_base
-{
-public:
-
-
-   void *         m_p;
-   uint_ptr       m_uiSize;
-
-
-   heap_base()
-   {
-
-      m_p         = NULL;
-      m_uiSize    = 0;
-
-   }
-
-   heap_base(uint_ptr uiSize)
-   {
-
-      m_p         = NULL;
-      m_uiSize    = 0;
-
-      size(uiSize);
-
-   }
-
-   virtual ~heap_base()
-   {
-
-      free();
-
-   }
-
-   uint_ptr size()
-   {
-
-      return m_uiSize;
-
-   }
-
-   virtual uint_ptr size(uint_ptr uiSize)
-   {
-
-      if(m_p == NULL)
+      inline static void * alloc(size_t iSize)
       {
 
-         m_p = memory_alloc(uiSize);
-
-      }
-      else
-      {
-
-         m_p = memory_realloc(m_p, uiSize);
+         //TODO("jai"); jas = Jonathan Blow 
+         return memory_alloc(iSize);
 
       }
 
-      if(m_p != NULL)
+
+      inline static void free(void * p)
       {
 
-         m_uiSize = uiSize;
+         //TODO("jai"); jas = Jonathan Blow
+         memory_free(p);
 
       }
 
-      return m_uiSize;
 
-   }
+   };
 
 
-   void free()
+   class CLASS_DECL_AURA heap_base
    {
+   public:
 
-      if(m_p != NULL)
+
+      void *         m_p;
+      uint_ptr       m_uiSize;
+
+
+      heap_base()
       {
 
-         memory_free(m_p);
-
-         m_p = NULL;
+         m_p         = NULL;
+         m_uiSize    = 0;
 
       }
 
-   }
+      heap_base(uint_ptr uiSize)
+      {
+
+         m_p         = NULL;
+         m_uiSize    = 0;
+
+         size(uiSize);
+
+      }
+
+      virtual ~heap_base()
+      {
+
+         free();
+
+      }
+
+      uint_ptr size()
+      {
+
+         return m_uiSize;
+
+      }
+
+      virtual uint_ptr size(uint_ptr uiSize)
+      {
+
+         if(m_p == NULL)
+         {
+
+            m_p = memory_alloc(uiSize);
+
+         }
+         else
+         {
+
+            m_p = memory_realloc(m_p,uiSize);
+
+         }
+
+         if(m_p != NULL)
+         {
+
+            m_uiSize = uiSize;
+
+         }
+
+         return m_uiSize;
+
+      }
 
 
-};
+      void free()
+      {
+
+         if(m_p != NULL)
+         {
+
+            memory_free(m_p);
+
+            m_p = NULL;
+
+         }
+
+      }
 
 
-template < typename T >
-class heap :
-   public heap_base
-{
-public:
+   };
 
 
-   heap()   {   }
+   template < typename T >
+   class heap:
+      public heap_base
+   {
+   public:
 
-   heap(uint_ptr iCount): heap_base(iCount * sizeof(T))   {   }
 
-   operator T * () { return (T *) m_p;}
-   operator const T * () const  { return (T *) m_p; }
+      heap() {   }
 
-   uint_ptr count() { return size() / sizeof(T); }
+      heap(uint_ptr iCount): heap_base(iCount * sizeof(T)) {   }
 
-};
+      operator T * () { return (T *)m_p; }
+      operator const T * () const { return (T *)m_p; }
 
-typedef heap < char > hstring_base;
+      uint_ptr count() { return size() / sizeof(T); }
+
+   };
+
+} // namespace heap
+
+
+
+typedef ::heap::heap < char > hstring_base;
 
 class CLASS_DECL_AURA hstring:
    public hstring_base
@@ -187,7 +194,7 @@ public:
 };
 
 
-typedef heap < unichar > hwstring_base;
+typedef ::heap::heap < unichar > hwstring_base;
 
 class CLASS_DECL_AURA hwstring:
    public hwstring_base

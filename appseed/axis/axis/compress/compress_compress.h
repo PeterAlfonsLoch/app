@@ -19,7 +19,7 @@ namespace axis
 
       bool ungz(::file::memory_buffer & memoryfile);
 
-      bool ungz(::primitive::memory & memory);
+      bool ungz(memory & memory);
 
       bool unbz(::aura::application * papp,const ::file::path & lpcszUncompressed,const ::file::path & lpcszBzFileCompressed);
       bool bz(::aura::application * papp,const ::file::path & lpcszBzFileCompressed,const ::file::path & lpcszUncompressed);
@@ -29,8 +29,8 @@ namespace axis
 
       bool bz_stream(::file::ostream & ostreamBzFileCompressed, ::file::istream & istreamFileUncompressed);
 
-      bool _compress(class primitive::memory & memory, void * pdata, ::primitive::memory_size ulSizeUncompressed);
-      bool _uncompress(primitive::memory & memoryUncompressed, primitive::memory & memoryCompressed, ::primitive::memory_size ulSizeUncompressed);
+      bool _compress(class memory & memory, void * pdata, memory_size_t ulSizeUncompressed);
+      bool _uncompress(memory & memoryUncompressed, memory & memoryCompressed, memory_size_t ulSizeUncompressed);
 
       bool null(::file::ostream & ostream, ::file::istream & istream);
 

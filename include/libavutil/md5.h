@@ -21,7 +21,7 @@
 #ifndef AVUTIL_MD5_H
 #define AVUTIL_MD5_H
 
-#include <stdint.h>
+#include "_stdint.h"
 
 #include "attributes.h"
 #include "version.h"

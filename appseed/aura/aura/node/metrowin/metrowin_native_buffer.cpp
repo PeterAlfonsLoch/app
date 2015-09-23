@@ -242,14 +242,14 @@ namespace metrowin
    }
 
 
-   ::primitive::memory_size native_buffer::read(void *  lpBuf,::primitive::memory_size nCount)
+   memory_size_t native_buffer::read(void *  lpBuf,memory_size_t nCount)
    {
 
       ::Windows::Storage::Streams::IBuffer ^ buffer = ref new ::Windows::Storage::Streams::Buffer(nCount);
 
       ::Windows::Storage::Streams::IBuffer ^ buffer2 = ::wait(m_stream->ReadAsync(buffer,nCount,::Windows::Storage::Streams::InputStreamOptions::None));
 
-      primitive::memory memory(get_app());
+      memory memory(get_app());
 
       memory.set_os_buffer(buffer2);
 
@@ -259,7 +259,7 @@ namespace metrowin
 
    }
 
-   void native_buffer::write(const void * lpBuf,::primitive::memory_size nCount)
+   void native_buffer::write(const void * lpBuf,memory_size_t nCount)
    {
       //ASSERT_VALID(this);
       //ASSERT(m_hnative_buffer != (UINT)hnative_bufferNull);
@@ -279,7 +279,7 @@ namespace metrowin
       //   ::file::throw_exception(get_app(),::file::exception::diskFull,-1,m_strFileName);
    }
 
-   file_position native_buffer::seek(file_offset lOff,::file::e_seek nFrom)
+   file_position_t native_buffer::seek(file_offset_t lOff,::file::e_seek nFrom)
    {
       if(nFrom == ::file::seek_begin)
       {
@@ -297,7 +297,7 @@ namespace metrowin
       return m_stream->Position;
    }
 
-   file_position native_buffer::get_position() const
+   file_position_t native_buffer::get_position() const
    {
 
       return m_stream->Position;
@@ -328,7 +328,7 @@ namespace metrowin
       //m_strFileName.Empty();
    }
 
-   void native_buffer::LockRange(file_position dwPos,file_size dwCount)
+   void native_buffer::LockRange(file_position_t dwPos,file_size_t dwCount)
    {
       //ASSERT_VALID(this);
       //ASSERT(m_hnative_buffer != (UINT)hnative_bufferNull);
@@ -337,7 +337,7 @@ namespace metrowin
       ////       WinFileException::ThrowOsError(get_app(), (LONG)::GetLastError());
    }
 
-   void native_buffer::UnlockRange(file_position dwPos,file_size dwCount)
+   void native_buffer::UnlockRange(file_position_t dwPos,file_size_t dwCount)
    {
       //ASSERT_VALID(this);
       //ASSERT(m_hnative_buffer != (UINT)hnative_bufferNull);
@@ -346,7 +346,7 @@ namespace metrowin
       ////   WinFileException::ThrowOsError(get_app(), (LONG)::GetLastError());
    }
 
-   void native_buffer::set_length(file_size dwNewLen)
+   void native_buffer::set_length(file_size_t dwNewLen)
    {
       //ASSERT_VALID(this);
       //ASSERT(m_hnative_buffer != (UINT)hnative_bufferNull);
@@ -357,19 +357,19 @@ namespace metrowin
       //   WinFileException::ThrowOsError(get_app(),(LONG)::GetLastError());
    }
 
-   file_size native_buffer::get_length() const
+   file_size_t native_buffer::get_length() const
    {
       ASSERT_VALID(this);
 
-      file_position dwLen,dwCur;
+      file_position_t dwLen,dwCur;
 
       // seek is a non const operation
       native_buffer* pnative_buffer = (native_buffer*)this;
       dwCur = pnative_buffer->seek(0L,::file::seek_current);
       dwLen = pnative_buffer->seek_to_end();
-      VERIFY(dwCur == (uint64_t)pnative_buffer->seek((file_offset)dwCur,::file::seek_begin));
+      VERIFY(dwCur == (uint64_t)pnative_buffer->seek((file_offset_t)dwCur,::file::seek_begin));
 
-      return (file_size)dwLen;
+      return (file_size_t)dwLen;
    }
 
    // native_buffer does not support direct buffering (CMemnative_buffer does)

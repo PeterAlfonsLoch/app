@@ -250,7 +250,7 @@ namespace sockets
 
 
    /** send to connected address */
-   void udp_socket::write(const void *data, ::primitive::memory_size len)
+   void udp_socket::write(const void *data, memory_size_t len)
    {
 
       if (!IsConnected())

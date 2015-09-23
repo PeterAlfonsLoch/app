@@ -26,12 +26,12 @@ namespace android
    }
 
 
-   //bool crypto::decrypt(primitive::memory & storageDecrypt, const primitive::memory & storageEncrypt, const char * pszSalt)
+   //bool crypto::decrypt(memory & storageDecrypt, const memory & storageEncrypt, const char * pszSalt)
    //{
 
-   //   ::primitive::memory memOut;
+   //   memory memOut;
 
-   //   ::primitive::memory memIn;
+   //   memory memIn;
 
    //   memIn.assign(storageEncrypt.get_data(), storageEncrypt.get_size());
 
@@ -45,12 +45,12 @@ namespace android
 
    //}
 
-   //bool crypto::encrypt(primitive::memory & storageEncrypt, const primitive::memory & storageDecrypt, const char * pszSalt)
+   //bool crypto::encrypt(memory & storageEncrypt, const memory & storageDecrypt, const char * pszSalt)
    //{
 
-   //   ::primitive::memory memOut;
+   //   memory memOut;
 
-   //   ::primitive::memory memIn;
+   //   memory memIn;
 
    //   memIn.assign(storageDecrypt.get_data(), storageDecrypt.get_size());
 

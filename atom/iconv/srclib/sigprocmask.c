@@ -21,7 +21,7 @@
 #include <signal.h>
 
 #include <errno.h>
-#include <stdint.h>
+#include "_stdint.h"
 #include <stdlib.h>
 
 /* We assume that a platform without POSIX signal blocking functions

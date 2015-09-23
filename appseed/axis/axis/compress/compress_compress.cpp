@@ -33,7 +33,7 @@ namespace axis
 
       }
 
-      class primitive::memory memory;
+      class memory memory;
 
       memory.allocate(1024 * 256);
 
@@ -69,7 +69,7 @@ namespace axis
       strm.zfree = Z_NULL;
 
       ::file::memory_buffer memoryfileOut(get_app());
-      class primitive::memory memory;
+      class memory memory;
       memory.allocate(1024 * 256);
       ASSERT(memory.get_size() <= UINT_MAX);
 
@@ -111,10 +111,10 @@ namespace axis
 
    }
 
-   bool compress::ungz(::primitive::memory & memory)
+   bool compress::ungz(memory & memory)
    {
 
-      ::primitive::memory dest;
+      ::memory dest;
 
       int iRate = 1;
       while(true)
@@ -160,10 +160,10 @@ namespace axis
          return false;
       }
       gzip_stream gz(ostreamCompressed);
-      class primitive::memory memory;
+      class memory memory;
       memory.allocate(1024 * 256);
-      ::primitive::memory_size uncomprLen;
-      while ((uncomprLen = (::primitive::memory_size) fread(memory, 1, (size_t)memory.get_size(), fileUn)) > 0)
+      memory_size_t uncomprLen;
+      while ((uncomprLen = (memory_size_t) fread(memory, 1, (size_t)memory.get_size(), fileUn)) > 0)
       {
          gz.write(memory, uncomprLen);
       }
@@ -203,7 +203,7 @@ namespace axis
 
       }
 
-      primitive::memory memory;
+      memory memory;
 
       memory.allocate(1024 * 16 * 1024);
 
@@ -245,9 +245,9 @@ namespace axis
    bool compress::bz_stream(::file::ostream & ostreamBzFileCompressed, ::file::istream & istreamFileUncompressed)
    {
       bzip_stream bz(ostreamBzFileCompressed);
-      class primitive::memory memory;
+      class memory memory;
       memory.allocate(1024 * 256);
-      ::primitive::memory_size uncomprLen;
+      memory_size_t uncomprLen;
       while ((uncomprLen = istreamFileUncompressed.read(memory, memory.get_size())) > 0)
       {
          bz.write(memory, uncomprLen);
@@ -266,7 +266,7 @@ namespace axis
       return System.file().output(papp, lpcszGzFileCompressed, this, &compress::bz, lpcszUncompressed);
    }
 
-   bool compress::_compress(class primitive::memory & memory, void * pdata, ::primitive::memory_size ulSize)
+   bool compress::_compress(class memory & memory, void * pdata, memory_size_t ulSize)
    {
       memory.allocate(compressBound((uLong)ulSize) * 2);
       uLongf ulDestSize = (uLongf)memory.get_size();
@@ -275,7 +275,7 @@ namespace axis
       return i == Z_OK;
    }
 
-   bool compress::_uncompress(primitive::memory & memoryUncompressed, primitive::memory & memoryCompressed, ::primitive::memory_size sizeUncompressed)
+   bool compress::_uncompress(memory & memoryUncompressed, memory & memoryCompressed, memory_size_t sizeUncompressed)
    {
       memoryUncompressed.allocate(sizeUncompressed);
       uLongf ulSizeUncompressed = (uLongf)sizeUncompressed;
@@ -340,9 +340,9 @@ namespace axis
 
    bool compress::null(::file::ostream & ostream, ::file::istream & istream)
    {
-      class primitive::memory memory;
+      class memory memory;
       memory.allocate(1024 * 256);
-      ::primitive::memory_size  uiRead;
+      memory_size_t  uiRead;
       while ((uiRead = istream.read(memory, memory.get_size())) > 0)
       {
          ostream.write(memory, uiRead);

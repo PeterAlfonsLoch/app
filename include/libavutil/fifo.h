@@ -24,7 +24,7 @@
 #ifndef AVUTIL_FIFO_H
 #define AVUTIL_FIFO_H
 
-#include <stdint.h>
+#include "_stdint.h"
 #include "avutil.h"
 #include "attributes.h"
 

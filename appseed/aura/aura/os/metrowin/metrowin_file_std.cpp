@@ -194,7 +194,7 @@ size_t fread_dup(void *buffer, size_t size, size_t count, _FILE *str)
 	HANDLE hFile = (HANDLE) ((_FILE*)str)->_base;
 	int32_t textMode = ((_FILE*)str)->_flag & _FILE_TEXT;
 
-   primitive::memory buf;
+   memory buf;
    buf.allocate(size*count);
 	char *src;
 	if (textMode)
@@ -364,7 +364,7 @@ unichar *fgetws_dup(unichar *str, int32_t n, _FILE *s)
 	// Text-mode fgetws converts MBCS->Unicode
 	if (((_FILE*)str)->_flag & _FILE_TEXT)
 	{
-      ::primitive::memory buf;
+      memory buf;
       buf.allocate(n);
       char *bfr = (char*)buf.get_data();
 		fgets_dup(bfr, n, s);
@@ -1038,7 +1038,7 @@ int_bool file_ftd_dup(const char * pszDir,const char * pszFile)
    string strMd5;
    string strMd5New;
    int32_t iBufSize = 1024 * 1024;
-   primitive::memory mem;
+   memory mem;
    mem.allocate(iBufSize);
    uchar * buf = (uchar *)mem.get_data();
    int32_t iLen;
@@ -1118,7 +1118,7 @@ void file_read_ex1_string_dup(HANDLE hfile,::md5::md5 * pctx,string & str)
 {
    int32_t iLen;
    file_read_n_number_dup(hfile,pctx,iLen);
-   primitive::memory mem;
+   memory mem;
    mem.allocate(MAX(iLen,64));
    LPSTR lpsz = (LPSTR)mem.get_data();
    DWORD dwRead;

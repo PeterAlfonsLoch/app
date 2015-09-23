@@ -34,15 +34,15 @@ string get_error_message(DWORD dwError);
 CLASS_DECL_AURA WINBOOL AfxInitialize(WINBOOL bDLL = FALSE, DWORD dwVersion = 0);
 
 /////////////////////////////////////////////////////////////////////////////
-// stop on a specific primitive::memory request
+// stop on a specific memory request
 
 // Debugger hook on specified allocation request - Obsolete
 CLASS_DECL_AURA void AfxSetAllocStop(LONG lRequestNumber);
 
-// Return TRUE if primitive::memory is sane or print out what is wrong
+// Return TRUE if memory is sane or print out what is wrong
 CLASS_DECL_AURA bool __check_memory();
 
-// Return TRUE if valid primitive::memory block of nBytes
+// Return TRUE if valid memory block of nBytes
 CLASS_DECL_AURA WINBOOL AfxIsMemoryBlock(const void * p, UINT nBytes,
                                         LONG* plRequestNumber = NULL);
 

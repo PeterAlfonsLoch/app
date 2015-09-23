@@ -117,7 +117,7 @@ namespace sockets
       if(read(&uiLen, 4) != 4)
          throw simple_exception(get_app());
       ntohl((u_long) uiLen);
-      primitive::memory memory;
+      memory memory;
       memory.allocate(uiLen);
       if(read(memory, uiLen) != uiLen)
         throw simple_exception(get_app());

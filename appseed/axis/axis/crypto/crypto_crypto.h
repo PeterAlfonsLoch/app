@@ -22,15 +22,15 @@ namespace crypto
       virtual ~crypto();
 
 
-      virtual bool encrypt(primitive::memory & storageEncrypt, const primitive::memory & storageDecrypt, const char * pszSalt);
-      virtual bool decrypt(primitive::memory & storageDecrypt, const primitive::memory & storageEncrypt, const char * pszSalt);
-      virtual bool encrypt(primitive::memory & storageEncrypt, const char * pszDecrypt, const char * pszSalt);
-      virtual bool decrypt(string & strDecrypt, const primitive::memory & storageEncrypt, const char * pszSalt);
+      virtual bool encrypt(memory & storageEncrypt, const memory & storageDecrypt, const char * pszSalt);
+      virtual bool decrypt(memory & storageDecrypt, const memory & storageEncrypt, const char * pszSalt);
+      virtual bool encrypt(memory & storageEncrypt, const char * pszDecrypt, const char * pszSalt);
+      virtual bool decrypt(string & strDecrypt, const memory & storageEncrypt, const char * pszSalt);
 
 
-      virtual int32_t key(primitive::memory & storage);
-      virtual bool encrypt(primitive::memory & storageEncrypt, const primitive::memory & storageDecrypt, const primitive::memory & storageKey);
-      virtual bool decrypt(primitive::memory & storageDecrypt, const primitive::memory & storageEncrypt, const primitive::memory & storageKey);
+      virtual int32_t key(memory & storage);
+      virtual bool encrypt(memory & storageEncrypt, const memory & storageDecrypt, const memory & storageKey);
+      virtual bool decrypt(memory & storageDecrypt, const memory & storageEncrypt, const memory & storageKey);
 
       virtual string strkey();
       virtual int32_t encrypt(string & str,const char * psz,const char * pszKey);
@@ -41,16 +41,16 @@ namespace crypto
       virtual string sha1(const char * psz);
       virtual string nessie(const char * psz);
 
-      virtual string md5(const primitive::memory & mem);
-      virtual string sha1(const primitive::memory & mem);
-      virtual string nessie(const primitive::memory & mem);
+      virtual string md5(const memory & mem);
+      virtual string sha1(const memory & mem);
+      virtual string nessie(const memory & mem);
 
-      virtual void md5(primitive::memory & memMd5,const primitive::memory & mem);
-      virtual void sha1(primitive::memory & memSha1,const primitive::memory & mem);
-      virtual void nessie(primitive::memory & memNessie,const primitive::memory & mem);
+      virtual void md5(memory & memMd5,const memory & mem);
+      virtual void sha1(memory & memSha1,const memory & mem);
+      virtual void nessie(memory & memNessie,const memory & mem);
 
       // result is 20-byte digest
-      virtual void hmac(void * result,const ::primitive::memory & memMessage,const ::primitive::memory & key);
+      virtual void hmac(void * result,const memory & memMessage,const memory & key);
       virtual void hmac(void * result,const string & memMessage,const string & key);
 
       virtual bool file_set(var varFile,const char * pszData,const char * pszSalt,::aura::application * papp);
@@ -87,7 +87,7 @@ namespace crypto
 
       virtual void err_load_crypto_strings();
 
-      /*int rsa_private_decrypt(::primitive::memory & out, const ::primitive::memory & in,
+      /*int rsa_private_decrypt(memory & out, const memory & in,
          const string & n,
          const string & e,
          const string & d,
@@ -148,10 +148,10 @@ namespace crypto
          const string & iqmp);
       virtual ~rsa();
 
-      int public_encrypt(::primitive::memory & out, const ::primitive::memory & in, string & strError);
-      int private_decrypt(::primitive::memory & out, const ::primitive::memory & in, string & strError);
-      int public_decrypt(::primitive::memory & out,const ::primitive::memory & in,string & strError);
-      int private_encrypt(::primitive::memory & out,const ::primitive::memory & in,string & strError);
+      int public_encrypt(memory & out, const memory & in, string & strError);
+      int private_decrypt(memory & out, const memory & in, string & strError);
+      int public_decrypt(memory & out,const memory & in,string & strError);
+      int private_encrypt(memory & out,const memory & in,string & strError);
 
    };
 

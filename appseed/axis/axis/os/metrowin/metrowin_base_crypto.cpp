@@ -2,7 +2,7 @@
 
 
 
-int crypto_decrypt(::primitive::memory & storageDecrypt, const ::primitive::memory & storageEncrypt, ::primitive::memory & memSalt)
+int crypto_decrypt(memory & storageDecrypt, const memory & storageEncrypt, memory & memSalt)
 {
 
    UNREFERENCED_PARAMETER(memSalt);
@@ -19,7 +19,7 @@ int crypto_decrypt(::primitive::memory & storageDecrypt, const ::primitive::memo
 
 }
 
-int crypto_encrypt(::primitive::memory & storageEncrypt, const ::primitive::memory & storageDecrypt, ::primitive::memory & memSalt)
+int crypto_encrypt(memory & storageEncrypt, const memory & storageDecrypt, memory & memSalt)
 {
 
    UNREFERENCED_PARAMETER(memSalt);

@@ -71,7 +71,7 @@ static char *aSCSIDevTypes[] = {
     "Write-once device",
     "CD-ROM device",
     "Scanner device",
-    "Optical primitive::memory device",
+    "Optical memory device",
     "Medium changer device",
     "Communication device",
     "ASC IT8 device",

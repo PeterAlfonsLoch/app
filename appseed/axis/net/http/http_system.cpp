@@ -1086,13 +1086,13 @@ retry:
             if(paxis != NULL)
             {
 
-               paxis->assign(::primitive::memory(psession->GetDataPtr(),psession->GetContentLength()));
+               paxis->assign(memory(psession->GetDataPtr(),psession->GetContentLength()));
 
             }
             else
             {
 
-               set["get_memory"] = canew(::primitive::memory(psession->GetDataPtr(),psession->GetContentLength()));
+               set["get_memory"] = canew(memory(psession->GetDataPtr(),psession->GetContentLength()));
 
             }
 
@@ -1611,7 +1611,7 @@ retry:
          else
          {
 
-            set["get_memory"] = canew(::primitive::memory(psocket->GetDataPtr(), psocket->GetContentLength()));
+            set["get_memory"] = canew(memory(psocket->GetDataPtr(), psocket->GetContentLength()));
 
          }
 

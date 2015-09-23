@@ -9,7 +9,7 @@ local_memory_map::local_memory_map()
 }
 
 
-local_memory_map::local_memory_map(const char * psz,bool bRead,bool bWrite, bool bCreate,::primitive::memory_size size)
+local_memory_map::local_memory_map(const char * psz,bool bRead,bool bWrite, bool bCreate,memory_size_t size)
 {
 
    construct();
@@ -52,7 +52,7 @@ string local_memory_map::get_path()
 }
 
 
-bool local_memory_map::open(const char * psz,bool bRead,bool bWrite,bool bCreate,::primitive::memory_size size)
+bool local_memory_map::open(const char * psz,bool bRead,bool bWrite,bool bCreate,memory_size_t size)
 {
 
    m_strName   = psz;

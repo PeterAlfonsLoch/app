@@ -52,7 +52,7 @@ namespace hex
    }
 
 
-/*   string lower_from(void * p, primitive::memory_size s)
+/*   string lower_from(void * p, memory_size_t s)
    {
       string str;
       char * lpsz = str.GetBufferSetLength(s * 2);
@@ -63,7 +63,7 @@ namespace hex
    }
 
 
-   string upper_from(void * p, primitive::memory_size s)
+   string upper_from(void * p, memory_size_t s)
    {
       string str;
       char * lpsz = str.GetBufferSetLength(s * 2);

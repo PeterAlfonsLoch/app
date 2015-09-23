@@ -31,7 +31,7 @@
  * assembly.
  */
 
-#include <stdint.h>
+#include "_stdint.h"
 
 /* vectors are stored in 64-bit floating-point registers */
 typedef double __m64;

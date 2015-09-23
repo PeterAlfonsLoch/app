@@ -180,7 +180,7 @@ namespace copier
 } // namespace copier
 
 
-namespace memory
+namespace heap
 {
 
    template < class TYPE,class POOL >
@@ -274,7 +274,7 @@ namespace allocator
       inline static TYPE * alloc(::count c)
       {
 
-         return memory::def < TYPE >::alloc(c);
+         return heap::def < TYPE >::alloc(c);
 
       }
 
@@ -282,7 +282,7 @@ namespace allocator
       inline static void free(TYPE * p)
       {
 
-         memory::def < TYPE >::alloc(p);
+         heap::def < TYPE >::alloc(p);
 
       }
 
@@ -334,7 +334,7 @@ namespace allocator
       inline static TYPE * alloc(::count c)
       {
 
-         return memory::def < TYPE >::alloc(c);
+         return heap::def < TYPE >::alloc(c);
 
       }
 
@@ -342,7 +342,7 @@ namespace allocator
       inline static void free(TYPE * p)
       {
 
-         memory::def < TYPE >::alloc(p);
+         heap::def < TYPE >::alloc(p);
 
       }
 
@@ -394,7 +394,7 @@ namespace allocator
       inline static TYPE * alloc(::count c)
       {
 
-         return memory::def < TYPE >::alloc(c);
+         return heap::def < TYPE >::alloc(c);
 
       }
 
@@ -402,7 +402,7 @@ namespace allocator
       inline static void free(TYPE * p)
       {
 
-         memory::def < TYPE >::alloc(p);
+         heap::def < TYPE >::alloc(p);
 
       }
 
@@ -455,7 +455,7 @@ namespace allocator
       inline static TYPE * alloc(::count c)
       {
 
-         return memory::def < TYPE >::alloc(c);
+         return heap::def < TYPE >::alloc(c);
 
       }
 
@@ -463,7 +463,7 @@ namespace allocator
       inline static void free(TYPE * p)
       {
 
-         memory::def < TYPE >::alloc(p);
+         heap::def < TYPE >::alloc(p);
 
       }
 

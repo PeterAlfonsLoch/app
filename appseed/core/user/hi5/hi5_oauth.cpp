@@ -1000,12 +1000,12 @@ void CSHA1::GetHash(UINT_8 *puDest)
       //secretSigningKey ="MCD8BKwGdgPHvAuvgvz4EQpqDAtx89grbuNMRd7Eh98&J6zix3FfA9LofH0awS24M3HcBYXO5nI1iYe8EfBA";
 
       /* SHA 1 digest is 160 bits */
-      ::primitive::memory memKey;
+      memory memKey;
       memKey.from_hex(secretSigningKey);
 
 
 
-      ::primitive::memory memHmac;
+      memory memHmac;
       memHmac.allocate(1024 * 16);
 
       //hmac_context context;

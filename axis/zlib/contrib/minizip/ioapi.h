@@ -72,7 +72,7 @@
   #ifdef _WIN32
                 #define ZPOS64_T fpos_t
   #else
-    #include <stdint.h>
+    #include "_stdint.h"
     #define ZPOS64_T uint64_t
   #endif
 #endif

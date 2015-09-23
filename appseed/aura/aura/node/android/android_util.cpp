@@ -142,9 +142,9 @@ void CLASS_DECL_lnx AfxGlobalFree(HGLOBAL hGlobal)
 
 int32_t __CDECL AfxCriticalNewHandler(size_t nSize)
 {
-   // called during critical primitive::memory allocation
+   // called during critical memory allocation
    //  free up part of the cast's safety cache
-//   TRACE(::ca2::trace::category_Memory, 0, "Warning: Critical primitive::memory allocation failed!\n");
+//   TRACE(::ca2::trace::category_Memory, 0, "Warning: Critical memory allocation failed!\n");
 /*   ___THREAD_STATE* pThreadState = __get_thread_state();
    if (pThreadState != NULL && pThreadState->m_pSafetyPoolBuffer != NULL)
    {
@@ -152,7 +152,7 @@ int32_t __CDECL AfxCriticalNewHandler(size_t nSize)
       if (nOldBufferSize <= nSize + MIN_MALLOC_OVERHEAD)
       {
          // give it all up
-  ///       TRACE(::ca2::trace::category_Memory, 0, "Warning: Freeing application's primitive::memory safety pool!\n");
+  ///       TRACE(::ca2::trace::category_Memory, 0, "Warning: Freeing application's memory safety pool!\n");
          free(pThreadState->m_pSafetyPoolBuffer);
          pThreadState->m_pSafetyPoolBuffer = NULL;
       }
@@ -168,7 +168,7 @@ int32_t __CDECL AfxCriticalNewHandler(size_t nSize)
       return 1;       // retry it
    }
 */
-//   TRACE(::ca2::trace::category_Memory, 0, "ERROR: Critical primitive::memory allocation from safety pool failed!\n");
+//   TRACE(::ca2::trace::category_Memory, 0, "ERROR: Critical memory allocation from safety pool failed!\n");
 //   AfxThrowMemoryException();      // oops
 
    return 1;

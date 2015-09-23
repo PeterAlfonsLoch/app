@@ -622,9 +622,9 @@ class var & var::operator = (const int_array & ia)
    return *this;
 }
 
-class var & var::operator = (const class primitive::memory & memoryParam)
+class var & var::operator = (const class memory & memoryParam)
 {
-   primitive::memory() = memoryParam;
+   memory() = memoryParam;
    return *this;
 }
 
@@ -1804,7 +1804,7 @@ double var::get_double(double dDefault) const
 }
 
 
-class primitive::memory & var::memory()
+class ::memory & var::memory()
 {
    if(get_type() != type_memory)
    {
@@ -1812,9 +1812,9 @@ class primitive::memory & var::memory()
    }
    if(m_sp.is_null())
    {
-      m_sp = canew(class primitive::memory());
+      m_sp = canew(class memory());
    }
-   return *dynamic_cast < class primitive::memory * > (m_sp.m_p);
+   return *dynamic_cast < class memory * > (m_sp.m_p);
 }
 
 
@@ -1911,13 +1911,13 @@ duration & var::duration()
 }
 
 
-const class primitive::memory & var::memory() const
+const class memory & var::memory() const
 {
    if(get_type() != type_memory)
    {
       throw 0;
    }
-   return *dynamic_cast < const class primitive::memory * > (m_sp.m_p);
+   return *dynamic_cast < const class memory * > (m_sp.m_p);
 }
 
 

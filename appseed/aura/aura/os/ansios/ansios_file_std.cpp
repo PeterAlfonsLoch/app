@@ -305,7 +305,7 @@ int32_t fflush_dup(_FILE * fp)
 
 }
 
-file_position fseek_dup(_FILE *fp, file_offset offset, int32_t origin)
+file_position_t fseek_dup(_FILE *fp, file_offset_t offset, int32_t origin)
 {
 
 #ifdef WINDOWS

@@ -13,7 +13,7 @@ public:
    virtual ~std_out_buffer(){}
 
 
-   void write(const void * lpBuf,::primitive::memory_size nCount);
+   void write(const void * lpBuf,memory_size_t nCount);
 
 
 };
@@ -93,7 +93,7 @@ namespace console
       virtual void SetTextColor(int color)  { m_p->SetTextColor(color); }
       virtual void SetScreenColor(int color,int iLineStart = 0,int iLineCount = -1)  { m_p->SetScreenColor(color,iLineStart,iLineCount); }
       virtual void write(const char * psz)  { m_p->write(psz); }
-      //virtual void write(const void * lpBuf,::primitive::memory_size nCount);
+      //virtual void write(const void * lpBuf,memory_size_t nCount);
 
    };
 

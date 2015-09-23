@@ -26,7 +26,7 @@ namespace file
    }
 
 
-   void circular_buffer::write(const void * pdata, ::primitive::memory_size l)
+   void circular_buffer::write(const void * pdata, memory_size_t l)
    {
 
       const char * s = (const char *) pdata;
@@ -56,7 +56,7 @@ namespace file
    }
 
 
-   ::primitive::memory_size circular_buffer::read(void * pbuffer, primitive::memory_size l)
+   memory_size_t circular_buffer::read(void * pbuffer, memory_size_t l)
    {
 
       byte * s = (byte *) pbuffer;
@@ -137,7 +137,7 @@ namespace file
    }
 
 
-   file_size circular_buffer::get_length() const
+   file_size_t circular_buffer::get_length() const
    {
 
       return m_q;

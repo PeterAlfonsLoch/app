@@ -2,13 +2,6 @@
 
 
 
-namespace primitive
-{
-
-   class memory;
-
-} // namespace primitive
-
 enum para_return
 {
    e_fail = 0x80000000,
@@ -196,7 +189,7 @@ public:
    string                           to_string() const;
    id                               get_id(const char * pszOnNull = NULL)   const;
    id &                             get_ref_id(const char * pszOnNull = NULL);
-   class primitive::memory &        memory();
+   class memory &        memory();
    stringa &                        stra();
    int_array &                      inta();
    int64_array &                    int64a();
@@ -204,7 +197,7 @@ public:
    class duration &                 duration();
    property_set &                   propset(::aura::application * papp = NULL);
    property &                       prop();
-   const class primitive::memory &  memory() const;
+   const class memory &  memory() const;
    const stringa &                  stra() const;
    const int_array &                inta() const;
    const int64_array &              int64a() const;
@@ -345,7 +338,7 @@ public:
    var & operator = (const var & var);
    var & operator = (const int_array & ia);
    var & operator = (const stringa & stra);
-   var & operator = (const class primitive::memory & memory);
+   var & operator = (const class memory & memory);
    var & operator = (const var_array & vara);
    var & operator = (const property_set & propset);
    var & operator = (const pair_set_interface & propset);

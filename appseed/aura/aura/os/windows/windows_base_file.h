@@ -23,7 +23,7 @@ int_bool StopAndUninstallDrv( HANDLE hDrvHandle );
 
 HANDLE ExtractAndInstallDrv();
 
-int ftruncate(int file, file_size len);
+int ftruncate(int file, file_size_t len);
 
 
 

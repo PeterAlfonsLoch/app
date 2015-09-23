@@ -13,8 +13,8 @@
 #include "windows_crypto.h"
 //#include "windows_ip_enum.h"
 
-int32_t crypto_encrypt(::primitive::memory & storageEncrypt,const ::primitive::memory & storageDecrypt,::primitive::memory & key);
-int32_t crypto_decrypt(::primitive::memory & storageDecrypt,const ::primitive::memory & storageEncrypt,::primitive::memory & key);
+int32_t crypto_encrypt(memory & storageEncrypt,const memory & storageDecrypt,memory & key);
+int32_t crypto_decrypt(memory & storageDecrypt,const memory & storageEncrypt,memory & key);
 
 namespace windows
 {
@@ -42,7 +42,7 @@ namespace windows
    }
 
 
-   bool crypto::decrypt(primitive::memory & storageDecrypt, const primitive::memory & storageEncrypt, const char * pszSalt)
+   bool crypto::decrypt(memory & storageDecrypt, const memory & storageEncrypt, const char * pszSalt)
    {
 
       return ::crypto::crypto::decrypt(storageDecrypt, storageEncrypt, pszSalt);
@@ -56,7 +56,7 @@ namespace windows
          pszSalt = "";
 
       DATA_BLOB DataSalt;
-      primitive::memory memorySalt;
+      memory memorySalt;
       memorySalt.from_string(pszSalt);
       DataSalt.pbData = memorySalt.get_data();
       DataSalt.cbData = (DWORD) memorySalt.get_size();
@@ -99,13 +99,13 @@ namespace windows
          return false;
       }
 #else
-      ::primitive::memory memOut;
+      memory memOut;
 
-      ::primitive::memory memIn;
+      memory memIn;
 
       memIn.append(storageEncrypt.get_data(),storageEncrypt.get_size());
 
-      ::primitive::memory memSalt;
+      memory memSalt;
 
       memSalt.append(pszSalt,strlen(pszSalt));
 
@@ -120,7 +120,7 @@ namespace windows
 #endif
    }
 
-   bool crypto::encrypt(primitive::memory & storageEncrypt, const primitive::memory & storageDecrypt, const char * pszSalt)
+   bool crypto::encrypt(memory & storageEncrypt, const memory & storageDecrypt, const char * pszSalt)
    {
 
       return ::crypto::crypto::encrypt(storageEncrypt, storageDecrypt, pszSalt);
@@ -132,7 +132,7 @@ namespace windows
          pszSalt = "";
 
       DATA_BLOB DataSalt;
-      primitive::memory memorySalt;
+      memory memorySalt;
       memorySalt.from_string(pszSalt);
       DataSalt.pbData = memorySalt.get_data();
       DataSalt.cbData = (DWORD) memorySalt.get_size();
@@ -175,13 +175,13 @@ namespace windows
       }
 #else
 
-      ::primitive::memory memOut;
+      memory memOut;
 
-      ::primitive::memory memIn;
+      memory memIn;
 
       memIn.append(storageDecrypt.get_data(),storageDecrypt.get_size());
 
-      ::primitive::memory memSalt;
+      memory memSalt;
 
       memSalt.append(pszSalt,strlen(pszSalt));
 

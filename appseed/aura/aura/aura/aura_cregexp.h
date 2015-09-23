@@ -141,7 +141,7 @@ public:
   union{
     EMetaSymbols metaSymbol;
     string *symbol;
-    string *uint16_t;
+    string *ui;
     ::str::ch_class *charclass;
     SRegInfo *param;
   }un;

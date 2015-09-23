@@ -263,7 +263,7 @@ bool DBFileSystemSizeSet::get_cache_fs_size(int64_t & i64Size, const char * pszP
    }
    return  false;
 
-    // Fill shared primitive::memory
+    // Fill shared memory
     //::ZeroMemory(&m_pMsg, sizeof(TSharedMemory));
     //m_pMsg->m_dwProcessID = m_dwProcessId;
 /*    _tcscpy(m_table.m_pgetfssize->m_szPath, pszPath);

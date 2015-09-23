@@ -21,6 +21,7 @@ inline int32_t msb(N n)
 
 
 class bstring_manager;
+class memory;
 
 
 namespace primitive
@@ -28,7 +29,6 @@ namespace primitive
 
 
    class memory_container;
-   class memory;
    class shared_memory;
    class virtual_memory;
 
@@ -47,10 +47,10 @@ namespace primitive
       LPBYTE                  m_pbStorage;
       LPBYTE                  m_pbComputed;
 
-      memory_offset           m_iOffset;
-      memory_size             m_cbStorage;
-      memory_size             m_dwAllocation;
-      memory_size             m_dwAllocationAddUp;
+      memory_offset_t           m_iOffset;
+      memory_size_t             m_cbStorage;
+      memory_size_t             m_dwAllocation;
+      memory_size_t             m_dwAllocationAddUp;
 
       memory_container *      m_pcontainer;
 
@@ -70,38 +70,38 @@ namespace primitive
       inline bool is_enabled() const;
       inline bool is_locked() const;
 
-      virtual bool allocate(memory_size dwNewLength);
-      virtual bool allocate_internal(memory_size dwNewLength);
+      virtual bool allocate(memory_size_t dwNewLength);
+      virtual bool allocate_internal(memory_size_t dwNewLength);
 
 
-      virtual void reserve(memory_size dwNewLength);
+      virtual void reserve(memory_size_t dwNewLength);
 
 
       virtual void remove_offset();
 
       //virtual void FullLoad(::file::stream_buffer & buffer);
 
-      //::primitive::memory_size read(::file::stream_buffer & buffer);
+      //memory_size_t read(::file::stream_buffer & buffer);
 
 
       virtual void write(::file::ostream & ostream) const;
       virtual void read(::file::istream & istream);
 
 
-      virtual void transfer_to(::file::writer & writer, ::primitive::memory_size uiBufferSize = 1024 * 1024) const;
-      virtual void transfer_from(::file::reader & reader, ::primitive::memory_size uiBufferSize = 1024 * 1024);
-      virtual void transfer_from_begin(::file::reader & reader, ::primitive::memory_size uiBufferSize = 1024 * 1024);
+      virtual void transfer_to(::file::writer & writer, memory_size_t uiBufferSize = 1024 * 1024) const;
+      virtual void transfer_from(::file::reader & reader, memory_size_t uiBufferSize = 1024 * 1024);
+      virtual void transfer_from_begin(::file::reader & reader, memory_size_t uiBufferSize = 1024 * 1024);
 
 
-      inline  void allocate_add_up(memory_size dwAddUp);
+      inline  void allocate_add_up(memory_size_t dwAddUp);
 
 
       inline LPBYTE           internal_get_data() const;
-      inline memory_size      get_size() const;
+      inline memory_size_t      get_size() const;
       inline const LPBYTE     get_data() const;
       inline LPBYTE           get_data();
 
-      inline memory_size      size() const;
+      inline memory_size_t      size() const;
       inline const LPBYTE     data() const;
       inline LPBYTE           data();
 
@@ -119,22 +119,22 @@ namespace primitive
       inline void to_string(string & str) const;
       inline string to_string() const;
 
-      void delete_begin(memory_size iSize);
-      inline void eat_begin(void * pdata, memory_size iSize);
-      inline void set_data(void * pdata, memory_size uiSize);
+      void delete_begin(memory_size_t iSize);
+      inline void eat_begin(void * pdata, memory_size_t iSize);
+      inline void set_data(void * pdata, memory_size_t uiSize);
       inline void copy_from(const memory_base * pstorage);
-      inline void set(byte b,memory_position iStart = 0,memory_size uiSize = -1);
-      inline void zero(memory_position iStart = 0, memory_size uiSize = -1);
+      inline void set(byte b,memory_position_t iStart = 0,memory_size_t uiSize = -1);
+      inline void zero(memory_position_t iStart = 0, memory_size_t uiSize = -1);
 
-      inline void append(const memory_base & memory, memory_position iStart = 0, memory_size iCount = -1);
-      inline void append(const void * pdata, memory_size iCount);
-      inline void assign(const void * pdata, memory_size iCount);
-      inline void assign(const void * pdata, memory_position iStart, memory_size iCount);
-      inline void append(memory_size iCount, uchar uch);
-      inline void assign(memory_size iCount, uchar uch);
+      inline void append(const memory_base & memory, memory_position_t iStart = 0, memory_size_t iCount = -1);
+      inline void append(const void * pdata, memory_size_t iCount);
+      inline void assign(const void * pdata, memory_size_t iCount);
+      inline void assign(const void * pdata, memory_position_t iStart, memory_size_t iCount);
+      inline void append(memory_size_t iCount, uchar uch);
+      inline void assign(memory_size_t iCount, uchar uch);
 
-      void move_and_grow(memory_offset offset);
-      void move(memory_offset offset, bool bGrow = false);
+      void move_and_grow(memory_offset_t offset);
+      void move(memory_offset_t offset, bool bGrow = false);
 
       inline void assign(const char * psz);
 
@@ -153,8 +153,8 @@ namespace primitive
       inline operator void *();
 
 
-      inline void to_hex(string & str, memory_position iStart = 0, memory_size size = -1);
-      inline string to_hex(memory_position iStart = 0, memory_size size = -1);
+      inline void to_hex(string & str, memory_position_t iStart = 0, memory_size_t size = -1);
+      inline string to_hex(memory_position_t iStart = 0, memory_size_t size = -1);
       inline void from_hex(const char * psz, strsize nCount = -1);
 
       inline void to_asc(string & str);
@@ -172,27 +172,27 @@ namespace primitive
       memory_base & prefix_der_uint();
       memory_base & prefix_der_sequence();
 
-      inline ::primitive::memory_size get_length() const;
-      inline ::primitive::memory_size length() const;
+      inline memory_size_t get_length() const;
+      inline memory_size_t length() const;
 
 
 #if defined(METROWIN) && defined(__cplusplus_winrt)
 
-      inline Array < uchar, 1U > ^ get_os_bytes(memory_position pos = 0, memory_size size = -1) const;
-      inline ::Windows::Storage::Streams::IBuffer ^ get_os_crypt_buffer(memory_position pos = 0, memory_size size = -1) const;
-      inline ::Windows::Storage::Streams::IBuffer ^ get_os_buffer(memory_position pos = 0, memory_size size = -1) const;
-      inline void set_os_bytes(Array < uchar, 1U > ^ a, memory_position pos = 0, memory_size size = -1);
-      inline void set_os_crypt_buffer(::Windows::Storage::Streams::IBuffer ^ ibuf, memory_position pos = 0, memory_size size = -1);
-      inline void set_os_buffer(::Windows::Storage::Streams::IBuffer ^ ibuf, memory_position pos = 0, memory_size size = -1);
+      inline Array < uchar, 1U > ^ get_os_bytes(memory_position_t pos = 0, memory_size_t size = -1) const;
+      inline ::Windows::Storage::Streams::IBuffer ^ get_os_crypt_buffer(memory_position_t pos = 0, memory_size_t size = -1) const;
+      inline ::Windows::Storage::Streams::IBuffer ^ get_os_buffer(memory_position_t pos = 0, memory_size_t size = -1) const;
+      inline void set_os_bytes(Array < uchar, 1U > ^ a, memory_position_t pos = 0, memory_size_t size = -1);
+      inline void set_os_crypt_buffer(::Windows::Storage::Streams::IBuffer ^ ibuf, memory_position_t pos = 0, memory_size_t size = -1);
+      inline void set_os_buffer(::Windows::Storage::Streams::IBuffer ^ ibuf, memory_position_t pos = 0, memory_size_t size = -1);
 
 #elif defined(APPLEOS)
 
-       inline CFDataRef get_os_cf_data(memory_position pos = 0, memory_size size = -1) const;
-       inline void set_os_cf_data(CFDataRef data, memory_position pos = 0, memory_size size = -1);
+       inline CFDataRef get_os_cf_data(memory_position_t pos = 0, memory_size_t size = -1) const;
+       inline void set_os_cf_data(CFDataRef data, memory_position_t pos = 0, memory_size_t size = -1);
 
 #endif
 
-       memory_base & erase(::primitive::memory_offset pos = 0,::primitive::memory_offset len = -1);
+       memory_base & erase(memory_offset_t pos = 0,memory_offset_t len = -1);
 
 #ifdef WINDOWS
        IStream * CreateIStream();
@@ -227,7 +227,7 @@ namespace primitive
 
    }
 
-   inline void memory_base::allocate_add_up(memory_size dwAddUp)
+   inline void memory_base::allocate_add_up(memory_size_t dwAddUp)
    {
       allocate(m_cbStorage + dwAddUp);
    }
@@ -238,12 +238,12 @@ namespace primitive
       return m_pbComputed;
    }
 
-   inline memory_size memory_base::get_size() const
+   inline memory_size_t memory_base::get_size() const
    {
       return m_cbStorage;
    }
 
-   inline memory_size memory_base::size() const
+   inline memory_size_t memory_base::size() const
    {
       return get_size();
    }
@@ -337,25 +337,25 @@ namespace primitive
       memcpy(get_data(), pstorage->get_data(), (size_t) this->get_size());
    }
 
-   inline void memory_base::set_data(void *pdata, memory_size uiSize)
+   inline void memory_base::set_data(void *pdata, memory_size_t uiSize)
    {
       allocate(uiSize);
       memcpy(get_data(), pdata, (size_t) uiSize);
    }
 
-   inline void memory_base::set(byte b, memory_position iStart, memory_size uiSize)
+   inline void memory_base::set(byte b, memory_position_t iStart, memory_size_t uiSize)
    {
       if(uiSize + iStart > get_size())
          uiSize = get_size() - iStart;
       memset(get_data() + iStart, b, (size_t) uiSize);
    }
 
-   inline void memory_base::zero(memory_position iStart,memory_size uiSize)
+   inline void memory_base::zero(memory_position_t iStart,memory_size_t uiSize)
    {
       set(0,iStart,uiSize);
    }
 
-   inline void memory_base::eat_begin(void * pdata, memory_size iSize)
+   inline void memory_base::eat_begin(void * pdata, memory_size_t iSize)
    {
       ASSERT(iSize <= this->get_size());
       if(iSize <= this->get_size())
@@ -393,7 +393,7 @@ namespace primitive
       return *this;
    }
 
-   inline void memory_base::to_hex(string & str, memory_position pos, memory_size size)
+   inline void memory_base::to_hex(string & str, memory_position_t pos, memory_size_t size)
    {
       if(pos > this->get_size())
          throw invalid_argument_exception(get_app());
@@ -418,7 +418,7 @@ namespace primitive
       str.ReleaseBuffer();
    }
 
-   inline string memory_base::to_hex(memory_position pos, memory_size size)
+   inline string memory_base::to_hex(memory_position_t pos, memory_size_t size)
    {
 
       string str;
@@ -609,14 +609,14 @@ namespace primitive
 
    }
 
-   inline void memory_base::move_and_grow(memory_offset offset)
+   inline void memory_base::move_and_grow(memory_offset_t offset)
    {
 
       move(offset, true);
 
    }
 
-   inline void memory_base::move(memory_offset offset, bool bGrow)
+   inline void memory_base::move(memory_offset_t offset, bool bGrow)
    {
 
       if(offset > 0)
@@ -625,7 +625,7 @@ namespace primitive
          {
             this->allocate_add_up(offset);
          }
-         if((memory_size) offset > this->get_size())
+         if((memory_size_t) offset > this->get_size())
             return;
          memmove(&this->get_data()[offset], this->get_data(), this->get_size() - offset);
       }
@@ -636,18 +636,18 @@ namespace primitive
          {
             this->allocate_add_up(offset);
          }
-         if((memory_size) offset > this->get_size())
+         if((memory_size_t) offset > this->get_size())
             return;
          memmove(this->get_data(), &this->get_data()[offset], this->get_size() - offset);
       }
 
    }
 
-   inline void memory_base::append(const memory_base & mem, memory_position iStart, memory_size iCount)
+   inline void memory_base::append(const memory_base & mem, memory_position_t iStart, memory_size_t iCount)
    {
 
-      if((memory_offset)iStart < 0)
-         *((memory_offset*)iStart) += this->get_size();
+      if((memory_offset_t)iStart < 0)
+         *((memory_offset_t*)iStart) += this->get_size();
 
       if(iStart > this->get_size())
          return;
@@ -665,7 +665,7 @@ namespace primitive
    }
 
 
-   inline void memory_base::append(const void * pdata, memory_size iCount)
+   inline void memory_base::append(const void * pdata, memory_size_t iCount)
    {
 
       if(iCount <= 0)
@@ -677,7 +677,7 @@ namespace primitive
 
    }
 
-   inline void memory_base::assign(const void * pdata, memory_size iCount)
+   inline void memory_base::assign(const void * pdata, memory_size_t iCount)
    {
 
       allocate(iCount);
@@ -686,7 +686,7 @@ namespace primitive
 
    }
 
-   inline void memory_base::assign(const void * pdata, memory_position iStart, memory_size iCount)
+   inline void memory_base::assign(const void * pdata, memory_position_t iStart, memory_size_t iCount)
    {
 
       allocate(iCount);
@@ -695,16 +695,16 @@ namespace primitive
 
    }
 
-   inline void memory_base::append(memory_size iCount, uchar uch)
+   inline void memory_base::append(memory_size_t iCount, uchar uch)
    {
 
       allocate_add_up(iCount);
 
-      memory_position iStart = this->get_size() - iCount;
+      memory_position_t iStart = this->get_size() - iCount;
 
-      memory_position iEnd = iStart + iCount -1;
+      memory_position_t iEnd = iStart + iCount -1;
 
-      for(memory_position i = iStart; i <= iEnd; i++)
+      for(memory_position_t i = iStart; i <= iEnd; i++)
       {
 
          get_data()[i] = uch;
@@ -713,14 +713,14 @@ namespace primitive
 
    }
 
-   inline void memory_base::assign(memory_size iCount, uchar uch)
+   inline void memory_base::assign(memory_size_t iCount, uchar uch)
    {
 
       allocate(iCount);
 
-      memory_position iEnd = iCount - 1;
+      memory_position_t iEnd = iCount - 1;
 
-      for(memory_position i = 0; i <= iEnd; i++)
+      for(memory_position_t i = 0; i <= iEnd; i++)
       {
 
          this->get_data()[i] = uch;
@@ -732,14 +732,14 @@ namespace primitive
    inline uchar memory_base::operator [] (uint64_t ui) const
    {
 
-      return this->get_data()[(primitive::memory_position)ui];
+      return this->get_data()[(memory_position_t)ui];
 
    }
 
    inline uchar & memory_base::operator [] (uint64_t ui)
    {
 
-      return this->get_data()[(primitive::memory_position)ui];
+      return this->get_data()[(memory_position_t)ui];
 
    }
 
@@ -796,7 +796,7 @@ namespace primitive
 
 #if defined(METROWIN) && defined(__cplusplus_winrt)
 
-   inline Array < uchar, 1U > ^ memory_base::get_os_bytes(memory_position pos, memory_size size) const
+   inline Array < uchar, 1U > ^ memory_base::get_os_bytes(memory_position_t pos, memory_size_t size) const
    {
       if(pos > get_size())
          throw invalid_argument_exception(get_app());
@@ -805,12 +805,12 @@ namespace primitive
       return ref new Array < uchar, 1U > ((uchar *) &get_data()[pos], size);
    }
 
-   inline ::Windows::Storage::Streams::IBuffer ^ memory_base::get_os_crypt_buffer(memory_position pos, memory_size size) const
+   inline ::Windows::Storage::Streams::IBuffer ^ memory_base::get_os_crypt_buffer(memory_position_t pos, memory_size_t size) const
    {
       return ::Windows::Security::Cryptography::CryptographicBuffer::CreateFromByteArray(get_os_bytes(pos, size));
    }
 
-   inline ::Windows::Storage::Streams::IBuffer ^ memory_base::get_os_buffer(memory_position pos, memory_size size) const
+   inline ::Windows::Storage::Streams::IBuffer ^ memory_base::get_os_buffer(memory_position_t pos, memory_size_t size) const
    {
       ::Windows::Storage::Streams::DataWriter ^ writer = ref new ::Windows::Storage::Streams::DataWriter();
       writer->WriteBytes(get_os_bytes(pos, size));
@@ -818,7 +818,7 @@ namespace primitive
    }
 
 
-   inline void memory_base::set_os_bytes(Array < uchar, 1U > ^ a, memory_position pos, memory_size size)
+   inline void memory_base::set_os_bytes(Array < uchar, 1U > ^ a, memory_position_t pos, memory_size_t size)
    {
       
       if (!a)
@@ -840,14 +840,14 @@ namespace primitive
    }
 
 
-   inline void memory_base::set_os_crypt_buffer(::Windows::Storage::Streams::IBuffer ^ ibuf, memory_position pos, memory_size size)
+   inline void memory_base::set_os_crypt_buffer(::Windows::Storage::Streams::IBuffer ^ ibuf, memory_position_t pos, memory_size_t size)
    {
       Array < uchar, 1U > ^ a = nullptr;
       ::Windows::Security::Cryptography::CryptographicBuffer::CopyToByteArray(ibuf, &a);
       return set_os_bytes(a, pos, size);
    }
 
-   inline void memory_base::set_os_buffer(::Windows::Storage::Streams::IBuffer ^ ibuf, memory_position pos, memory_size size)
+   inline void memory_base::set_os_buffer(::Windows::Storage::Streams::IBuffer ^ ibuf, memory_position_t pos, memory_size_t size)
    {
       Windows::Storage::Streams::DataReader^ r = Windows::Storage::Streams::DataReader::FromBuffer(ibuf);
       Array<uchar,1U>^ a = ref new Array<uchar,1U>(ibuf->Length);
@@ -857,7 +857,7 @@ namespace primitive
 
 #elif defined(APPLEOS)
 
-    inline CFDataRef memory_base::get_os_cf_data(memory_position pos, memory_size size) const
+    inline CFDataRef memory_base::get_os_cf_data(memory_position_t pos, memory_size_t size) const
     {
         if(pos > get_size())
             throw invalid_argument_exception(get_app());
@@ -866,7 +866,7 @@ namespace primitive
         return CFDataCreate(kCFAllocatorDefault, (const UInt8 *) &get_data()[pos], (CFIndex) size);
     }
 
-    inline void memory_base::set_os_cf_data(CFDataRef data, memory_position pos, memory_size size)
+    inline void memory_base::set_os_cf_data(CFDataRef data, memory_position_t pos, memory_size_t size)
     {
         if(pos > CFDataGetLength(data))
             throw invalid_argument_exception(get_app());
@@ -891,7 +891,7 @@ namespace primitive
    }
    
    
-   inline ::primitive::memory_size memory_base::get_length() const
+   inline memory_size_t memory_base::get_length() const
    {
 
       return get_size();
@@ -899,7 +899,7 @@ namespace primitive
    }
 
    
-   inline ::primitive::memory_size memory_base::length() const
+   inline memory_size_t memory_base::length() const
    {
 
       return get_size();

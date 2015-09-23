@@ -51,14 +51,14 @@ namespace file
    }
 
 
-   ::primitive::memory_size istream::read(void * lpBuf, ::primitive::memory_size nCount)
+   memory_size_t istream::read(void * lpBuf, memory_size_t nCount)
    {
       
       return m_gcount = m_spbuffer->read(lpBuf, nCount);
       
    }
 
-   void istream::full_read(void * lpBuf, ::primitive::memory_size nCount)
+   void istream::full_read(void * lpBuf, memory_size_t nCount)
    {
 
       if(fail())
@@ -344,10 +344,10 @@ namespace file
    }
 
 
-   void istream::read_to_hex(string & str, file_position dwStart, file_position dwEnd)
+   void istream::read_to_hex(string & str, file_position_t dwStart, file_position_t dwEnd)
    {
-      primitive::memory memory(get_app());
-      if(dwStart == (file_position) -1)
+      memory memory(get_app());
+      if(dwStart == (file_position_t) -1)
       {
 		   dwStart = tellg();
 	   }
@@ -355,13 +355,13 @@ namespace file
       {
          seek_from_begin(dwStart);
       }
-      ::primitive::memory_position uiPos = 0;
-      ::primitive::memory_size uiRead;
+      memory_position_t uiPos = 0;
+      memory_size_t uiRead;
       memory.allocate(1024);
 
       strsize nCount;
       
-      if (dwEnd == (file_position)-1)
+      if (dwEnd == (file_position_t)-1)
       {
 
          nCount = ::numeric_info< strsize >::max();
@@ -374,13 +374,13 @@ namespace file
 
       }
        
-      while((uiRead = read(&memory.get_data()[uiPos], MIN(memory.get_size() - uiPos, (::primitive::memory_size) nCount))) > 0)
+      while((uiRead = read(&memory.get_data()[uiPos], MIN(memory.get_size() - uiPos, (memory_size_t) nCount))) > 0)
       {
          uiPos += uiRead;
          nCount -= uiRead;
          memory.allocate_add_up(1024 * 1024);
       }
-      memory.allocate((::primitive::memory_size) uiPos);
+      memory.allocate((memory_size_t) uiPos);
       memory.to_hex(str);
    }
 

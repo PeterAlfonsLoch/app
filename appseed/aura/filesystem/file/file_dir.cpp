@@ -1153,7 +1153,7 @@ void dir::ls_dir(::file::patha & stra,const ::file::path & psz)
 
 #else
 
-   ::primitive::memory mem;
+   memory mem;
 
    mem.allocate(512);
 

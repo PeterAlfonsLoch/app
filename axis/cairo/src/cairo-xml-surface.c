@@ -463,7 +463,7 @@ _cairo_xml_surface_emit_clip_boxes (cairo_xml_surface_t *surface,
 				    const cairo_clip_t *clip)
 {
     cairo_box_t *box;
-    cairo_status_t status;
+    //cairo_status_t status;
     cairo_xml_t *xml;
     int n;
 

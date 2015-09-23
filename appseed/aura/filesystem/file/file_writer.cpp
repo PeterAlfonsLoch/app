@@ -15,23 +15,23 @@ namespace file
    }
 
 
-   void writer::write(const void *lpBuf, ::primitive::memory_size nCount)
+   void writer::write(const void *lpBuf, memory_size_t nCount)
    {
 
-      ::primitive::memory_size memory_size;
-
+      memory_size_t memory_size;
+      
       write(lpBuf, nCount, &memory_size);
 
    }
 
-   void writer::write(const void *lpBuf, ::primitive::memory_size nCount, ::primitive::memory_size * dwWritten)
+   void writer::write(const void *lpBuf, memory_size_t nCount, memory_size_t * dwWritten)
    {
 
       ::exception::throw_interface_only(get_app());
 
    }
 
-   void writer::transfer_from_begin(reader & reader, ::primitive::memory_size uiBufSize)
+   void writer::transfer_from_begin(reader & reader, memory_size_t uiBufSize)
    {
 
       reader.seek_to_begin();
@@ -40,25 +40,25 @@ namespace file
 
    }
 
-   void writer::transfer_from(reader & reader, ::primitive::memory_size uiBufSize)
+   void writer::transfer_from(reader & reader, memory_size_t uiBufSize)
    {
 
 
       if(reader.get_internal_data() != NULL && reader.get_internal_data_size() > reader.get_position())
       {
 
-         write((byte *) reader.get_internal_data() + reader.get_position(), (::primitive::memory_size) (reader.get_internal_data_size() - reader.get_position()));
+         write((byte *) reader.get_internal_data() + reader.get_position(), (memory_size_t) (reader.get_internal_data_size() - reader.get_position()));
 
          return;
 
       }
 
 
-      ::primitive::memory_size uiRead;
-      ::primitive::memory_size uiSize = 0;
+      memory_size_t uiRead;
+      memory_size_t uiSize = 0;
       uiBufSize = MAX(8 * 1024, uiBufSize);
 
-      ::primitive::memory buf;
+      memory buf;
 
       buf.allocate(uiBufSize);
 
@@ -109,7 +109,7 @@ namespace file
    /*
    void writer::from_hex(const char * psz)
    {
-      primitive::memory memory(get_app());
+      memory memory(get_app());
       memory.from_hex(psz);
       write(memory.get_data(), memory.get_size());
    }*/
@@ -241,7 +241,7 @@ namespace file
    */
 
 
-   HRESULT write(writer * pwriter, const void * data, ::primitive::memory_size size)
+   HRESULT write(writer * pwriter, const void * data, memory_size_t size)
    {
       HRESULT res = S_OK;
       try

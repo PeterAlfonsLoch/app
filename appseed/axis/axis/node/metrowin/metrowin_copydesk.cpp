@@ -50,7 +50,7 @@ namespace metrowin
 
             stream->ReadAsync(buffer, sizeof(HGLOBAL), ::Windows::Storage::Streams::InputStreamOptions::None);
 
-            primitive::memory memory(get_app());
+            memory memory(get_app());
 
             memory.set_os_buffer(buffer);
 

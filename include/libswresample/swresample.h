@@ -120,7 +120,7 @@
  * swr_free().
  */
 
-#include <stdint.h>
+#include "_stdint.h"
 #include "libavutil/frame.h"
 #include "libavutil/samplefmt.h"
 

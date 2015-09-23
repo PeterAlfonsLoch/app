@@ -9,7 +9,7 @@ extern plex_heap_alloc_array * g_pheap;
 plex* plex::create(plex*& pHead, uint_ptr nMax, uint_ptr cbElement)
 {
 
-   ::primitive::memory_size size = sizeof(plex) + nMax * cbElement + CA2_PALACE_SAFE_ZONE_BORDER_SIZE * 2;
+   memory_size_t size = sizeof(plex) + nMax * cbElement + CA2_PALACE_SAFE_ZONE_BORDER_SIZE * 2;
    plex* p = (plex*) memory_alloc(size);
    // may throw exception
    p->pNext = pHead;

@@ -93,7 +93,7 @@ long __TellProc (fi_handle handle)
 uint32_t DLL_CALLCONV  __ReadProc2 (void *buffer, uint32_t size, uint32_t count, fi_handle handle)
 {
    
-   primitive::memory_size dwRead;
+   memory_size_t dwRead;
 
    ::file::buffer_sp  pfile = (::file::stream_buffer * ) handle;
 
@@ -197,7 +197,7 @@ long DLL_CALLCONV __TellProc2(fi_handle handle)
 uint32_t _stdcall  ___Ex1File__ReadProc (void *buffer, uint32_t size, uint32_t count, fi_handle handle)
 {
    
-   primitive::memory_size dwRead;
+   memory_size_t dwRead;
    
    ::file::buffer_sp  pfile = (::file::stream_buffer * ) handle;
 

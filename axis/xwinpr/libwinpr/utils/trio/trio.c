@@ -319,7 +319,7 @@ typedef unsigned long int trio_ulonglong_t;
 
 /* Maximal and fixed integer types */
 #if defined(PREDEF_STANDARD_C99)
-# include <stdint.h>
+# include "_stdint.h"
 typedef intmax_t trio_intmax_t;
 typedef uintmax_t trio_uintmax_t;
 typedef int8_t trio_int8_t;

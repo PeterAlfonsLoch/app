@@ -5,7 +5,7 @@
 // references a string of at least the given length in characters.
 // A length of -1 (the default parameter) means that the string
 // buffer's minimum length isn't known, and the function will
-// return TRUE no matter how long the string is. The primitive::memory
+// return TRUE no matter how long the string is. The memory
 // used by the string can be read-only.
 
 //bool __is_valid_string(const unichar * psz, int32_t nLength /* = -1 */)
@@ -21,8 +21,8 @@
 //}*/
 //
 //// __is_valid_address() returns TRUE if the passed parameter points
-//// to at least nBytes of accessible primitive::memory. If bReadWrite is TRUE,
-//// the primitive::memory must be writeable; if bReadWrite is FALSE, the primitive::memory
+//// to at least nBytes of accessible memory. If bReadWrite is TRUE,
+//// the memory must be writeable; if bReadWrite is FALSE, the memory
 //// may be const.
 //
 //bool __is_valid_address(const void * p, uint_ptr nBytes,
@@ -38,7 +38,7 @@ typedef int32_t HRes;
 
 
 /////////////////////////////////////////////////////////////////////////////
-// Verify that a NULL-terminated string points to valid primitive::memory
+// Verify that a NULL-terminated string points to valid memory
 inline bool __is_valid_string(const unichar * psz, size_t nMaxLength = INT_MAX)
 {
 #ifdef WINDOWS
@@ -47,7 +47,7 @@ inline bool __is_valid_string(const unichar * psz, size_t nMaxLength = INT_MAX)
    return (psz != NULL);
 }
 
-// Verify that a NULL-terminated string points to valid primitive::memory
+// Verify that a NULL-terminated string points to valid memory
 inline bool __is_valid_string(const char * psz, size_t nMaxLength = UINT_MAX)
 {
 #ifdef WINDOWS
@@ -56,7 +56,7 @@ inline bool __is_valid_string(const char * psz, size_t nMaxLength = UINT_MAX)
    return (psz != NULL);
 }
 
-// Verify that a pointer points to valid primitive::memory
+// Verify that a pointer points to valid memory
 inline bool __is_valid_address(const void * p, size_t nBytes, bool bReadWrite = TRUE)
 {
 #ifdef WINDOWS
@@ -109,7 +109,7 @@ __try
 InitializeCriticalSection(&m_sec);
 hRes = S_OK;
 }
-// structured exception may be raised in low primitive::memory situations
+// structured exception may be raised in low memory situations
 __except(STATUS_NO_MEMORY == GetExceptionCode())
 {
 hRes = E_OUTOFMEMORY;

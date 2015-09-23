@@ -273,7 +273,7 @@ namespace windows
 
          m_bRunning = true;
 
-         MSG msg;
+//         MSG msg;
          uint32_t ui1;
          uint32_t ui2;
          while(m_bRun)
@@ -328,7 +328,7 @@ namespace windows
             }
 
          }
-      exit:;
+//      exit:;
 
       }
       catch(...)

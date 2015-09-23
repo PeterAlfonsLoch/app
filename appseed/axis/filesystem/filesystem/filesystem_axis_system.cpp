@@ -405,7 +405,7 @@ namespace file
 
       string system::as_string(var varFile, var & varQuery, ::aura::application * papp)
       {
-         primitive::memory storage;
+         memory storage;
          if (varFile.cast < ::file::stream_buffer >() != NULL)
          {
             ::file::byte_istream is(varFile.cast < ::file::stream_buffer >());
@@ -566,15 +566,15 @@ namespace file
             if (spfile.is_null())
                return;
 
-            ::file_size filesize = spfile->get_length();
+            file_size_t filesize = spfile->get_length();
 
             mem.allocate(filesize);
 
             byte * pdata = mem.get_data();
 
-            ::primitive::memory_size memsize = mem.get_size();
+            memory_size_t memsize = mem.get_size();
 
-            ::file_size uiRead = spfile->read(pdata, memsize);
+            file_size_t uiRead = spfile->read(pdata, memsize);
 
             mem.allocate(uiRead);
 
@@ -656,9 +656,9 @@ namespace file
          spfile = App(papp).file().get_file(varFile, ::file::type_binary | ::file::mode_write | ::file::mode_create | ::file::share_deny_none | ::file::defer_create_directory);
          if (spfile.is_null())
             return false;
-         primitive::memory mem;
+         memory mem;
          mem.allocate(1024 * 1024 * 8);
-         ::primitive::memory_size uiRead;
+         memory_size_t uiRead;
          while ((uiRead = reader.read(mem.get_data(), mem.get_size())) > 0)
          {
             spfile->write(mem.get_data(), uiRead);
@@ -666,7 +666,7 @@ namespace file
          return true;
       }
 
-      bool system::put_contents(var varFile, primitive::memory & mem, ::aura::application * papp)
+      bool system::put_contents(var varFile, memory & mem, ::aura::application * papp)
       {
          return put_contents(varFile, mem.get_data(), (count)mem.get_size(), papp);
       }
@@ -1405,7 +1405,7 @@ namespace file
 
          int32_t iBufSize = 1024 * 256;
 
-         primitive::memory buf;
+         memory buf;
 
          buf.allocate(1024 * 256);
 
@@ -1445,11 +1445,11 @@ namespace file
 
          ::file::buffer_sp file2(allocer());
 
-         ::primitive::memory_size iBufSize = 1024 * 1024;
+         memory_size_t iBufSize = 1024 * 1024;
 
-         ::primitive::memory_size uiRead;
+         memory_size_t uiRead;
 
-         primitive::memory buf;
+         memory buf;
 
          buf.allocate(iBufSize);
 
@@ -1508,12 +1508,12 @@ namespace file
          string strMd5;
          string strMd5New;
          int32_t iBufSize = 1024 * 1024;
-         primitive::memory buf;
+         memory buf;
          buf.allocate(iBufSize);
          int64_t iLen;
          MD5_CTX ctx;
          ::file::buffer_sp file2(allocer());
-         ::primitive::memory_size uiRead;
+         memory_size_t uiRead;
          if (strVersion == "fileset v1")
          {
             while (true)
@@ -1616,7 +1616,7 @@ namespace file
          int64_t iLen;
          read_n_number(pfile, pctx, iLen);
          LPSTR lpsz = str.GetBufferSetLength((strsize)(iLen + 1));
-         pfile->read(lpsz, (primitive::memory_size) iLen);
+         pfile->read(lpsz, (memory_size_t) iLen);
          if (pctx != NULL)
          {
             int64_t iProcessed = 0;
@@ -1687,7 +1687,7 @@ namespace file
       string system::nessie(::file::buffer_sp  pfile)
       {
 
-         ::primitive::memory mem(get_app());
+         memory mem(get_app());
 
          mem.allocate(1024 * 256);
 
@@ -1695,7 +1695,7 @@ namespace file
 
          WHIRLPOOL_Init(&ns);
 
-         file_size iRead;
+         file_size_t iRead;
 
          while ((iRead = pfile->read(mem.get_data(), mem.get_size())) > 0)
          {

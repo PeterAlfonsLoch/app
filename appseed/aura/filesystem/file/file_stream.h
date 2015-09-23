@@ -25,9 +25,9 @@ namespace file
       virtual void close();
 
       virtual void * get_internal_data();
-      virtual ::primitive::memory_size get_internal_data_size() const;
-      virtual bool set_internal_data_size(::primitive::memory_size c);
-      virtual file_position get_position() const;
+      virtual memory_size_t get_internal_data_size() const;
+      virtual bool set_internal_data_size(memory_size_t c);
+      virtual file_position_t get_position() const;
 
 
    };

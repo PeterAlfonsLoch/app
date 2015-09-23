@@ -97,7 +97,7 @@ stdstring < simple_string >(string_trait::GetDefaultManager())
          ncharCharLen = string_trait::GetcharLength(pszCh);
       }
 
-      primitive::memory buffcharChar;
+      memory buffcharChar;
       buffcharChar.allocate(ncharCharLen + 1);
       string_trait::ConvertTochar((char*)buffcharChar.get_data(),ncharCharLen + 1,pszCh,1);
       //allocate enough characters in string and flood (replicate) with the (converted character)*nLength

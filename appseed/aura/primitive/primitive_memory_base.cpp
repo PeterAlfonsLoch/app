@@ -91,7 +91,7 @@ namespace primitive
 
 
 
-   inline bool memory_base::allocate(memory_size dwNewLength)
+   inline bool memory_base::allocate(memory_size_t dwNewLength)
    {
 
       if(!is_enabled())
@@ -123,13 +123,13 @@ namespace primitive
       return true;
    }
 
-   bool memory_base::allocate_internal(memory_size dwNewLength)
+   bool memory_base::allocate_internal(memory_size_t dwNewLength)
    {
       return false;
    }
 
 
-   void memory_base::reserve(memory_size dwNewLength)
+   void memory_base::reserve(memory_size_t dwNewLength)
    {
 
       if(dwNewLength <= m_dwAllocation)
@@ -151,7 +151,7 @@ namespace primitive
    }
 
    uint64_t dwTemp;
-   memory_size cbStorage = (memory_size) file.get_length();
+   memory_size_t cbStorage = (memory_size_t) file.get_length();
    file.seek_to_begin();
    allocate(cbStorage);
    try
@@ -183,11 +183,11 @@ namespace primitive
 
       transfer_from(istream);
 
-      /*memory_size uiRead;
+      /*memory_size_t uiRead;
 
-      memory_size uiBufSize = 1024 + 1024;
+      memory_size_t uiBufSize = 1024 + 1024;
 
-      memory_size uiSize = 0;
+      memory_size_t uiSize = 0;
 
       while(true)
       {
@@ -221,18 +221,18 @@ namespace primitive
 
 
 
-   /*   ::primitive::memory_size memory_base::read(::file::binary_buffer & file)
+   /*   memory_size_t memory_base::read(::file::binary_buffer & file)
       {
 
-      file_size dwEnd = file.get_length();
+      file_size_t dwEnd = file.get_length();
 
-      file_position dwPos = file.get_position();
+      file_position_t dwPos = file.get_position();
 
-      memory_size dwRemain = (memory_size)(dwEnd - dwPos);
+      memory_size_t dwRemain = (memory_size_t)(dwEnd - dwPos);
 
-      allocate((memory_size) dwRemain);
+      allocate((memory_size_t) dwRemain);
 
-      memory_size dwRead = file.read(get_data(), dwRemain);
+      memory_size_t dwRead = file.read(get_data(), dwRemain);
 
       allocate(dwRead);
 
@@ -241,7 +241,7 @@ namespace primitive
       }
       */
 
-   void memory_base::delete_begin(memory_size iSize)
+   void memory_base::delete_begin(memory_size_t iSize)
    {
 
       iSize = MAX(0,MIN(get_size(),iSize));
@@ -251,7 +251,7 @@ namespace primitive
       if(m_pcontainer != NULL)
       {
 
-         m_pcontainer->offset_kept_pointers((::primitive::memory_offset) iSize);
+         m_pcontainer->offset_kept_pointers((memory_offset_t) iSize);
 
       }
 
@@ -280,7 +280,7 @@ namespace primitive
    }
 
 
-   void memory_base::transfer_to(::file::writer & writer,::primitive::memory_size uiBufferSize) const
+   void memory_base::transfer_to(::file::writer & writer,memory_size_t uiBufferSize) const
    {
 
       if(get_data() == NULL || get_size() <= 0)
@@ -306,7 +306,7 @@ namespace primitive
 
    }
 
-   void memory_base::transfer_from_begin(::file::reader & reader,::primitive::memory_size uiBufferSize)
+   void memory_base::transfer_from_begin(::file::reader & reader,memory_size_t uiBufferSize)
    {
 
       reader.seek_to_begin();
@@ -315,21 +315,21 @@ namespace primitive
 
    }
 
-   void memory_base::transfer_from(::file::reader & reader,::primitive::memory_size uiBufferSize)
+   void memory_base::transfer_from(::file::reader & reader,memory_size_t uiBufferSize)
    {
 
       if(reader.get_internal_data() != NULL && reader.get_internal_data_size() > reader.get_position())
       {
 
-         append((byte *)reader.get_internal_data() + reader.get_position(),(::primitive::memory_size) (reader.get_internal_data_size() - reader.get_position()));
+         append((byte *)reader.get_internal_data() + reader.get_position(),(memory_size_t) (reader.get_internal_data_size() - reader.get_position()));
 
       }
       else
       {
 
-         memory_size uiRead;
+         memory_size_t uiRead;
 
-         memory_size uiSize = 0;
+         memory_size_t uiSize = 0;
 
          while(true)
          {
@@ -356,7 +356,7 @@ namespace primitive
    }
 
 
-   memory_base & memory_base::erase(::primitive::memory_offset pos,::primitive::memory_offset len)
+   memory_base & memory_base::erase(memory_offset_t pos,memory_offset_t len)
    {
 
       if(pos < 0)
@@ -446,7 +446,7 @@ namespace primitive
          && get_data()[0] == 255
          && get_data()[1] == 60)
       {
-         ::primitive::memory mem;
+         memory mem;
          mem = *this;
          allocate(utf8_len_len((const unichar *)&get_data()[2],get_size() - 2));
          utf16_to_utf8_len((char *) get_data(),(const unichar *)&mem.get_data()[2],(int32_t)(mem.get_size() - 2));
@@ -458,7 +458,7 @@ namespace primitive
          && get_data()[1] == 254
          && get_data()[2] == 0x73)
       {
-         ::primitive::memory mem;
+         memory mem;
          mem = *this;
          allocate(utf8_len_len((const unichar *)&get_data()[3],get_size() - 3));
          utf16_to_utf8_len((char *)get_data(),(const unichar *)&mem.get_data()[3],(int32_t)(mem.get_size() - 3));

@@ -37,7 +37,7 @@ thread::file_info * thread::get_file_info()
 DWORD thread::get_file_sharing_violation_timeout_total_milliseconds()
 {
    
-   return get_file_info()->m_durationFileSharingViolationTimeout.get_total_milliseconds();
+   return (DWORD) get_file_info()->m_durationFileSharingViolationTimeout.get_total_milliseconds();
 
 }
 

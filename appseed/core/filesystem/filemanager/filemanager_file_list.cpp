@@ -940,7 +940,7 @@ namespace filemanager
       UNREFERENCED_PARAMETER(psz);
       if(!IsWindowVisible())
          return;
-   //   file_size * psize = new file_size;
+   //   file_size_t * psize = new file_size_t;
      // psize->m_pview = this;
       //psize->m_str = psz;
       //__begin_thread(ThreadProc4, psize, THREAD_PRIORITY_IDLE);

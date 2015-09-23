@@ -20,14 +20,14 @@ namespace fs
       virtual ~remote_native_file();
 
       using ::sockets::http_batch_buffer::read;
-      virtual ::primitive::memory_size read(void *lpBuf, ::primitive::memory_size nCount);
+      virtual memory_size_t read(void *lpBuf, memory_size_t nCount);
       
       using ::sockets::http_batch_buffer::write;
-      virtual void write(const void * lpBuf, ::primitive::memory_size nCount);
+      virtual void write(const void * lpBuf, memory_size_t nCount);
 
-      file_position seek(file_offset lOff, ::file::e_seek  nFrom);
+      file_position_t seek(file_offset_t lOff, ::file::e_seek  nFrom);
 
-      virtual file_size get_length() const;
+      virtual file_size_t get_length() const;
 
       virtual void get_file_data();
       virtual void set_file_data();

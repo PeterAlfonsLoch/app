@@ -280,7 +280,7 @@ namespace file
    void byte_istream::read(sp(type) info)
    {
 
-      ::primitive::memory m;
+      memory m;
 
 
       {
@@ -353,7 +353,7 @@ namespace file
    }
 
 
-   /*file_position byte_istream::seek(file_offset offset, e_seek seekOrigin)
+   /*file_position_t byte_istream::seek(file_offset_t offset, e_seek seekOrigin)
    {
    return m_spbuffer->seek(offset, seekOrigin);
    }*/
@@ -372,20 +372,20 @@ namespace file
 
          spseekable->seek_to_end();
 
-         ::file_position uiLength = spseekable->get_position();
+         file_position_t uiLength = spseekable->get_position();
 
          spseekable->seek_to_begin();
 
          ::strsize uiCount = ::numeric_info< strsize >::natural(uiLength);
 
-         ::file_position uiPos = 0;
+         file_position_t uiPos = 0;
 
          LPSTR lpstr = str.GetBufferSetLength((strsize) (uiLength + 1));
 
          while(uiCount > 0)
          {
 
-            ::primitive::memory_size uiRead =  m_spbuffer->read(&lpstr[uiPos], (::primitive::memory_size) uiCount);
+            memory_size_t uiRead =  m_spbuffer->read(&lpstr[uiPos], (memory_size_t) uiCount);
 
             uiCount -= uiRead;
 
@@ -403,7 +403,7 @@ namespace file
 
          ::strsize uiPos = 0;
 
-         ::primitive::memory_size uiRead;
+         memory_size_t uiRead;
 
          do
          {
@@ -421,7 +421,7 @@ namespace file
 
             }
 
-            uiRead =  m_spbuffer->read((void *) &((const char *) strbuffer)[uiPos], (::primitive::memory_size) (strbuffer.get_allocation_size() - uiPos));
+            uiRead =  m_spbuffer->read((void *) &((const char *) strbuffer)[uiPos], (memory_size_t) (strbuffer.get_allocation_size() - uiPos));
 
             uiPos += uiRead;
 

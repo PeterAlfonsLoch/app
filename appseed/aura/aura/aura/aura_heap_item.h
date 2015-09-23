@@ -23,9 +23,9 @@ public:
 
 
 #ifdef METROWIN
-   inline heap_item(void * p,::primitive::memory_size iSize,DWORD64 dwTick)
+   inline heap_item(void * p,memory_size_t iSize,DWORD64 dwTick)
 #else
-   inline heap_item(void * p,::primitive::memory_size iSize,uint32_t dwTick)
+   inline heap_item(void * p,memory_size_t iSize,uint32_t dwTick)
 #endif
    {
       m_pbStart = (byte *)p;

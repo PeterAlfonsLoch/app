@@ -46,7 +46,7 @@ namespace http
    ::file::ostream & ostream::operator << (::file::memory_buffer & memfile)
    {
 
-      write(memfile.get_data(), (::primitive::memory_size) memfile.get_length());
+      write(memfile.get_data(), (memory_size_t) memfile.get_length());
 
       return *this;
 
@@ -91,7 +91,7 @@ namespace http
    ::file::ostream & ostream::operator << (::file::buffer_sp spbuf)
    {
       uint_ptr nRead;
-      primitive::memory mem;
+      memory mem;
       if(!mem.allocate(1024 * 1024))
       {
          throw memory_exception(get_app());

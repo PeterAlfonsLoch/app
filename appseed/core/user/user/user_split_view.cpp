@@ -150,7 +150,7 @@ namespace user
    void split_view::_001OnDraw(::draw2d::graphics *pgraphics)
    {
 
-      int32_t i;
+//      int32_t i;
       
       rect rect;
       

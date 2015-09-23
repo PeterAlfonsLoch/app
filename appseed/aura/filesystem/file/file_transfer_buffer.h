@@ -23,8 +23,8 @@ namespace file
       virtual ~transfer_buffer();
 
 
-      //      virtual file_position seek(file_offset lOff, ::file::e_seek  nFrom);
-      //    virtual file_size get_length() const;
+      //      virtual file_position_t seek(file_offset_t lOff, ::file::e_seek  nFrom);
+      //    virtual file_size_t get_length() const;
 
 
    };

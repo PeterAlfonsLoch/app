@@ -203,7 +203,7 @@ LEndParse:
 /**
 * lite_html_reader::read
 * The read method parses an HTML document from an
-* in-primitive::memory string buffer and raises events defined
+* in-memory string buffer and raises events defined
 * in ILiteHTMLReaderEvents to notify about variours
 * elements.
 *
@@ -227,7 +227,7 @@ uint_ptr lite_html_reader::read(const string & str)
 * lite_html_reader::read
 * This method is similar to the read(const char *) method,
 * except that, it accepts a file HANDLE instead of
-* an in-primitive::memory string buffer containing HTML text.
+* an in-memory string buffer containing HTML text.
 *
 * @param hFile - file handle
 *
@@ -303,7 +303,7 @@ LCleanExit:
 * lite_html_reader::read
 * This method is similar to the read(const char *) method,
 * except that, it accepts a file HANDLE instead of
-* an in-primitive::memory string buffer containing HTML text.
+* an in-memory string buffer containing HTML text.
 *
 * @param hFile - file handle
 *
@@ -390,7 +390,7 @@ LCleanExit:
 * lite_html_reader::read
 * This method is similar to the read(const char *) method,
 * except that, it accepts a file HANDLE instead of
-* an in-primitive::memory string buffer containing HTML text.
+* an in-memory string buffer containing HTML text.
 *
 * @param fd - file descriptor
 *

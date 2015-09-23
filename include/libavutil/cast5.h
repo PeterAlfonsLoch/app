@@ -22,7 +22,7 @@
 #ifndef AVUTIL_CAST5_H
 #define AVUTIL_CAST5_H
 
-#include <stdint.h>
+#include "_stdint.h"
 
 
 /**

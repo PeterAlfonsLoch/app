@@ -131,7 +131,7 @@ using std::memmove;
 
 // uintptr_t
 #if !defined(_MSC_VER) || _MSC_VER >= 1600
-#	include <stdint.h>
+#	include "_stdint.h"
 #else
 #	ifndef _UINTPTR_T_DEFINED
 // No native uintptr_t in MSVC6 and in some WinCE versions

@@ -21,7 +21,7 @@
 #ifndef AVUTIL_MATHEMATICS_H
 #define AVUTIL_MATHEMATICS_H
 
-#include <stdint.h>
+#include "_stdint.h"
 #include <math.h>
 #include "attributes.h"
 #include "rational.h"

@@ -107,7 +107,7 @@ void utf8_to_utf16(unichar * pwsz, const char * psz)
    while(psz != NULL && *psz != '\0')
    {
       
-      *pwsz++ = ::str::ch::uni_index_len(psz, len);
+      *pwsz++ = (unichar) ::str::ch::uni_index_len(psz, len);
 
       psz += len;
 
@@ -130,7 +130,7 @@ void utf8_to_utf16_len(unichar * pwsz,const char * psz, strsize srclen)
    while(srclen > 0 && psz != NULL && *psz != '\0')
    {
 
-      *pwsz++ = ::str::ch::uni_index_len(psz,len);
+      *pwsz++ = (unichar) ::str::ch::uni_index_len(psz,len);
 
       psz += len;
 

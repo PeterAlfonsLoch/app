@@ -2767,9 +2767,9 @@ namespace axis
 
       psession = System.http().request(psession,strUrl,set);
 
-      ::file::memory_buffer file(get_app(),set["get_memory"].cast < primitive::memory >());
+      ::file::memory_buffer file(get_app(),set["get_memory"].cast < memory >());
 
-      if(set["get_memory"].cast < primitive::memory >() != NULL && set["get_memory"].cast < primitive::memory >()->get_size() > 0)
+      if(set["get_memory"].cast < memory >() != NULL && set["get_memory"].cast < memory >()->get_size() > 0)
       {
 
          zip::Util util;

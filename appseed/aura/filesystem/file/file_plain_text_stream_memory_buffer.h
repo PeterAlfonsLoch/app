@@ -16,11 +16,11 @@ namespace file
 
       plain_text_stream_memory_buffer(::aura::application * papp);
       plain_text_stream_memory_buffer(::primitive::memory_base * pbase);
-      plain_text_stream_memory_buffer(::aura::application * papp, const void * data, ::primitive::memory_size c);
+      plain_text_stream_memory_buffer(::aura::application * papp, const void * data, memory_size_t c);
       virtual ~plain_text_stream_memory_buffer();
 
 
-      virtual file_size get_length();
+      virtual file_size_t get_length();
       virtual void * get_data();
       virtual string to_string();
 

@@ -112,7 +112,7 @@ namespace windows
       return ::no_exception;
    }
 
-   ::primitive::memory_size stdio_file::read(void * lpBuf, ::primitive::memory_size nCount)
+   memory_size_t stdio_file::read(void * lpBuf, memory_size_t nCount)
    {
       ASSERT_VALID(this);
       ASSERT(m_pStream != NULL);
@@ -122,7 +122,7 @@ namespace windows
 
       ASSERT(__is_valid_address(lpBuf, nCount));
 
-      primitive::memory_size nRead = 0;
+      memory_size_t nRead = 0;
 
       if ((nRead = fread(lpBuf, sizeof(BYTE), nCount, m_pStream)) == 0 && !feof(m_pStream))
          throw_file_exception(get_app(), ::file::exception::type_generic, _doserrno, m_strFileName);
@@ -134,7 +134,7 @@ namespace windows
       return nRead;
    }
 
-   void stdio_file::write(const void * lpBuf, ::primitive::memory_size nCount)
+   void stdio_file::write(const void * lpBuf, memory_size_t nCount)
    {
       ASSERT_VALID(this);
       ASSERT(m_pStream != NULL);
@@ -177,7 +177,7 @@ namespace windows
       const int32_t nMaxSize = 128;
       char * lpsz = rString.GetBuffer(nMaxSize);
       char * lpszResult;
-      ::primitive::memory_size nLen = 0;
+      memory_size_t nLen = 0;
       for (;;)
       {
          lpszResult = fgets(lpsz, nMaxSize+1, m_pStream);
@@ -234,7 +234,7 @@ namespace windows
    return lpszResult;
    }*/
 
-   file_position stdio_file::seek(file_offset lOff, ::file::e_seek nFrom)
+   file_position_t stdio_file::seek(file_offset_t lOff, ::file::e_seek nFrom)
    {
       ASSERT_VALID(this);
       ASSERT(nFrom == ::file::seek_begin || nFrom == ::file::seek_end || nFrom == ::file::seek_current);
@@ -248,7 +248,7 @@ namespace windows
       return pos;
    }
 
-   file_position stdio_file::get_position() const
+   file_position_t stdio_file::get_position() const
    {
       ASSERT_VALID(this);
       ASSERT(m_pStream != NULL);
@@ -317,7 +317,7 @@ namespace windows
       return NULL;
    }
 
-   void stdio_file::LockRange(file_position /* dwPos */, file_size /* dwCount */)
+   void stdio_file::LockRange(file_position_t /* dwPos */, file_size_t /* dwCount */)
    {
       ASSERT_VALID(this);
       ASSERT(m_pStream != NULL);
@@ -325,7 +325,7 @@ namespace windows
       throw not_supported_exception(get_app());
    }
 
-   void stdio_file::UnlockRange(file_position /* dwPos */, file_size /* dwCount */)
+   void stdio_file::UnlockRange(file_position_t /* dwPos */, file_size_t /* dwCount */)
    {
       ASSERT_VALID(this);
       ASSERT(m_pStream != NULL);
@@ -345,7 +345,7 @@ namespace windows
 
 
 
-   file_size stdio_file::get_length() const
+   file_size_t stdio_file::get_length() const
    {
       ASSERT_VALID(this);
 

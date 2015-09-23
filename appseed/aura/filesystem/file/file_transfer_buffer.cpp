@@ -14,7 +14,7 @@ namespace file
       else
          m_spmutex = pmutex;
 
-      m_pmemory = new primitive::memory;
+      m_pmemory = new memory;
       m_pmemory->set_app(papp);
       m_pmemory->m_spmutex = m_spmutex;
 
@@ -65,12 +65,12 @@ namespace file
    }
 
    /*
-   file_position transfer_buffer::seek(file_offset lOff, ::file::e_seek nFrom)
+   file_position_t transfer_buffer::seek(file_offset_t lOff, ::file::e_seek nFrom)
    {
    return m_ptimeoutfile->seek(lOff, nFrom);
    }
 
-   file_size transfer_buffer::get_length() const
+   file_size_t transfer_buffer::get_length() const
    {
    return m_ptimeoutfile->get_length();
    }*/

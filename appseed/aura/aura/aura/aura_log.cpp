@@ -87,7 +87,7 @@ namespace aura
       set_trace_category(::aura::trace::category_Database , "category_Database", 0);     // special database trace
       set_trace_category(::aura::trace::category_Internet , "category_Internet", 0);     // special Internet client trace
       set_trace_category(::aura::trace::category_dumpContext , "category_dumpContext", 0);   // traces from dump_context
-      set_trace_category(::aura::trace::category_Memory , "category_Memory", 0);      // generic non-kernel primitive::memory traces
+      set_trace_category(::aura::trace::category_Memory , "category_Memory", 0);      // generic non-kernel memory traces
       set_trace_category(::aura::trace::category_Html , "category_Html", 0);         // Html traces
       set_trace_category(::aura::trace::category_Socket , "category_Socket", 0);      // socket traces
 

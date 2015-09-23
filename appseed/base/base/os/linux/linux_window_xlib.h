@@ -10,7 +10,7 @@ public:
 
    oswindow                      m_window;
    device_context *              m_pdc;
-   ::primitive::memory           m_mem;
+   memory           m_mem;
    size                          m_size;
    int                           m_iScan;
    XImage *                      m_pimage;

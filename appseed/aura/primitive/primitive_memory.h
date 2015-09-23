@@ -4,54 +4,48 @@
 
 
 
-namespace primitive
+class CLASS_DECL_AURA memory :
+   public ::primitive::memory_base
 {
-
-
-   class CLASS_DECL_AURA memory :
-      public memory_base
-   {
-   public:
+public:
    
-      typedef memory data_type;
+   typedef memory data_type;
 
 
-      bool m_bAligned;
+   bool m_bAligned;
 
 
-      memory(manager * pmanager);
-      memory(const memory & strSrc,manager * pmanager);
-      memory(const memory * pmemory,manager * pmanager);
-      memory(const byte * pchSrc,strsize nLength,manager * pmanager);
+   memory(manager * pmanager);
+   memory(const memory & strSrc,manager * pmanager);
+   memory(const memory * pmemory,manager * pmanager);
+   memory(const byte * pchSrc,strsize nLength,manager * pmanager);
 
-      memory(::aura::application * papp);
-      memory(::aura::application * papp, bool bAligned);
-      memory(const byte *,memory_size iCount);
-      memory(const void *, memory_size iCount);
-      memory(const memory_base & memorybase);
-      memory(const memory & memory);
-      memory(const char * psz);
-      memory(primitive::memory_container * pmsc = NULL, memory_size dwAllocationAddUp = 0, UINT nAllocFlags = 0);
-      memory(primitive::memory_container * pmsc, void * pMemory, memory_size dwSize);
-      virtual ~memory();
+   memory(::aura::application * papp);
+   memory(::aura::application * papp, bool bAligned);
+   memory(const byte *,memory_size_t iCount);
+   memory(const void *, memory_size_t iCount);
+   memory(const memory_base & memorybase);
+   memory(const memory & memory);
+   memory(const char * psz);
+   memory(primitive::memory_container * pmsc = NULL, memory_size_t dwAllocationAddUp = 0, UINT nAllocFlags = 0);
+   memory(primitive::memory_container * pmsc, void * pMemory, memory_size_t dwSize);
+   virtual ~memory();
 
       
-      LPBYTE detach();
+   LPBYTE detach();
 
 
-      virtual bool allocate_internal(memory_size dwNewLength);
-      void free_data();
+   virtual bool allocate_internal(memory_size_t dwNewLength);
+   void free_data();
 
 
-   };
-
-
-} // namespace primitive
+};
 
 
 
 
-typedef stdstring < ::primitive::memory > bstring; // binary string (may contain nulls)
+
+typedef stdstring < memory > bstring; // binary string (may contain nulls)
 
 
 

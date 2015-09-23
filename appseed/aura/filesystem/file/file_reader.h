@@ -21,23 +21,23 @@ namespace file
       virtual ~reader();
 
 
-      virtual ::primitive::memory_size read(void *lpBuf, ::primitive::memory_size nCount);
-      virtual file_position find(const void * pFind, ::primitive::memory_size size, const file_position * limit);
+      virtual memory_size_t read(void *lpBuf, memory_size_t nCount);
+      virtual file_position_t find(const void * pFind, memory_size_t size, const file_position_t * limit);
 
-      virtual void transfer_to(writer & writer, ::primitive::memory_size uiBufferSize = 1024 * 1024);
+      virtual void transfer_to(writer & writer, memory_size_t uiBufferSize = 1024 * 1024);
 
-      virtual file_position get_position() const;
+      virtual file_position_t get_position() const;
 
-      file_position tellg() { return get_position(); }
+      file_position_t tellg() { return get_position(); }
 
    };
 
 
    typedef reader readable;
 
-   CLASS_DECL_AURA HRESULT read(reader * preader, void * data, ::primitive::memory_size * size);
-   CLASS_DECL_AURA HRESULT read_false(reader * preader, void * data, ::primitive::memory_size size);
-   CLASS_DECL_AURA HRESULT read_fail(reader * preader, void * data, ::primitive::memory_size size);
+   CLASS_DECL_AURA HRESULT read(reader * preader, void * data, memory_size_t * size);
+   CLASS_DECL_AURA HRESULT read_false(reader * preader, void * data, memory_size_t size);
+   CLASS_DECL_AURA HRESULT read_fail(reader * preader, void * data, memory_size_t size);
 
 
 } // namespace file

@@ -31,7 +31,7 @@ namespace file
 
    }
 
-   ::primitive::memory_size stream_buffer_base::get_internal_data_size() const
+   memory_size_t stream_buffer_base::get_internal_data_size() const
    {
 
       return 0;
@@ -39,14 +39,14 @@ namespace file
    }
 
 
-   bool stream_buffer_base::set_internal_data_size(::primitive::memory_size c)
+   bool stream_buffer_base::set_internal_data_size(memory_size_t c)
    {
 
       return false;
       
    }
 
-   bool stream_buffer_base::increase_internal_data_size(::primitive::memory_size c)
+   bool stream_buffer_base::increase_internal_data_size(memory_size_t c)
    {
 
       return set_internal_data_size(c + get_internal_data_size());

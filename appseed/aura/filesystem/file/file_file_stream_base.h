@@ -10,7 +10,7 @@ namespace file
    public:
 
 
-      ::primitive::memory_size      m_gcount;
+      memory_size_t      m_gcount;
 
 
       file_stream_base();

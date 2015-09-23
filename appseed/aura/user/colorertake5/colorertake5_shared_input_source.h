@@ -56,7 +56,7 @@ public:
 
   void closeStream(){ is->closeStream(); }
 
-  ::primitive::memory_size get_length() const{ return is->get_length(); }
+  memory_size_t get_length() const{ return is->get_length(); }
 
 private:
 

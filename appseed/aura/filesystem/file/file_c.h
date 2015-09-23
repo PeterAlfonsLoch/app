@@ -18,9 +18,9 @@ CLASS_DECL_AURA int_bool dir_appdata(char * psz, size_t size);
 CLASS_DECL_AURA int_bool is_absolute_path(const char * psz);
 
 
-typedef uint64_t  file_size;
-typedef uint64_t  file_position;
-typedef int64_t   file_offset;
+#define file_size_t uint64_t
+#define file_position_t uint64_t
+#define file_offset_t int64_t
 
 CLASS_DECL_AURA int_bool file_path_is_relative_dup(const char * psz);
 
@@ -111,7 +111,7 @@ CLASS_DECL_AURA _FILE * fopen_dup(const char *path, const char *attrs);
 CLASS_DECL_AURA int32_t fprintf_dup(_FILE *fp, const char *s, ...);
 CLASS_DECL_AURA int32_t fclose_dup(_FILE *fp);
 CLASS_DECL_AURA int32_t feof_dup(_FILE *fp);
-CLASS_DECL_AURA file_position fseek_dup(_FILE *str, file_offset offset, int32_t origin);
+CLASS_DECL_AURA file_position_t fseek_dup(_FILE *str, file_offset_t offset, int32_t origin);
 CLASS_DECL_AURA long ftell_dup(_FILE *fp);
 CLASS_DECL_AURA size_t fread_dup(void *buffer, size_t size, size_t count, _FILE *str);
 CLASS_DECL_AURA size_t fwrite_dup(const void *buffer, size_t size, size_t count, _FILE *str);
@@ -150,9 +150,9 @@ END_EXTERN_C
 
 
 
-//typedef uint64_t  file_size;
-//typedef uint64_t  file_position;
-//typedef int64_t   file_offset;
+//typedef uint64_t  file_size_t;
+//typedef uint64_t  file_position_t;
+//typedef int64_t   file_offset_t;
 
 
 
@@ -253,7 +253,7 @@ CLASS_DECL_AURA _FILE * fopen_dup(const char *path, const char *attrs);
 CLASS_DECL_AURA int32_t fprintf_dup(_FILE *fp, const char *s, ...);
 CLASS_DECL_AURA int32_t fclose_dup(_FILE *fp);
 CLASS_DECL_AURA int32_t feof_dup(_FILE *fp);
-CLASS_DECL_AURA file_position fseek_dup(_FILE *str, file_offset offset, int32_t origin);
+CLASS_DECL_AURA file_position_t fseek_dup(_FILE *str, file_offset_t offset, int32_t origin);
 CLASS_DECL_AURA long ftell_dup(_FILE *fp);
 CLASS_DECL_AURA size_t fread_dup(void *buffer, size_t size, size_t count, _FILE *str);
 CLASS_DECL_AURA size_t fwrite_dup(const void *buffer, size_t size, size_t count, _FILE *str);

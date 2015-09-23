@@ -259,7 +259,7 @@ namespace http
       return System.http().download(pszUrl, varFile, process_set(set, pszUrl));
    }
 
-   bool application::put(const char * pszUrl, primitive::memory & memory, property_set & set)
+   bool application::put(const char * pszUrl, memory & memory, property_set & set)
    {
 
       return System.http().put(pszUrl, memory, process_set(set, pszUrl));

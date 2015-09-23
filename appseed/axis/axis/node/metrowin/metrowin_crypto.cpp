@@ -39,7 +39,7 @@ namespace metrowin
    }
 
 
-   bool crypto::decrypt(primitive::memory & storageDecrypt, const primitive::memory & storageEncrypt, const char * pszSalt)
+   bool crypto::decrypt(memory & storageDecrypt, const memory & storageEncrypt, const char * pszSalt)
    {
 
 
@@ -60,7 +60,7 @@ namespace metrowin
 
    }
 
-   bool crypto::encrypt(primitive::memory & storageEncrypt, const primitive::memory & storageDecrypt, const char * pszSalt)
+   bool crypto::encrypt(memory & storageEncrypt, const memory & storageDecrypt, const char * pszSalt)
    {
 
       UNREFERENCED_PARAMETER(pszSalt);
@@ -82,7 +82,7 @@ namespace metrowin
 
 
 
-      void crypto::md5(primitive::memory & memMd5,const primitive::memory & mem)
+      void crypto::md5(memory & memMd5,const memory & mem)
       {
 
          ::Windows::Security::Cryptography::Core::HashAlgorithmProvider ^ hasher =
@@ -93,7 +93,7 @@ namespace metrowin
       }
 
 
-      void crypto::sha1(primitive::memory & memSha1,const primitive::memory & mem)
+      void crypto::sha1(memory & memSha1,const memory & mem)
       {
 
          ::Windows::Security::Cryptography::Core::HashAlgorithmProvider ^ hasher =
@@ -181,7 +181,7 @@ namespace metrowin
             }
             }*/
 
-            //primitive::memory memstorage;
+            //memory memstorage;
             //memstorage.allocate(5000);
             //memstorage.allocate(5000);
             //System.math().gen_rand(memstorage.get_data(), memstorage.get_size());

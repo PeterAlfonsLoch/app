@@ -121,14 +121,14 @@ namespace sockets
    }
 
 
-   void AjpBaseSocket::OnRawData(char *buf, primitive::memory_size sz)
+   void AjpBaseSocket::OnRawData(char *buf, memory_size_t sz)
    {
 
    TRACE("OnRawData: %d bytes\n", sz);
-      primitive::memory_size ptr = 0;
+      memory_size_t ptr = 0;
       while (true)
       {
-         primitive::memory_size left = sz - ptr;
+         memory_size_t left = sz - ptr;
    TRACE(" left: %d bytes\n", left);
    TRACE(" state: %d\n", m_state);
          switch (m_state)

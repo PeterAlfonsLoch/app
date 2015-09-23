@@ -46,13 +46,13 @@ namespace file
 
          virtual string as_string(var varFile);
          virtual string as_string(var varFile,var & varQuery);
-         virtual void as_memory(var varFile,primitive::memory & mem);
+         virtual void as_memory(var varFile,memory & mem);
          virtual void lines(stringa & stra,var varFile);
 
          virtual bool put_contents(var varFile,const void * pvoidContents,::count count);
          virtual bool put_contents(var varFile,const char * lpcszContents);
          virtual bool put_contents(var varFile,::file::reader & reader);
-         virtual bool put_contents(var varFile,primitive::memory & mem);
+         virtual bool put_contents(var varFile,memory & mem);
          virtual bool put_contents_utf8(var varFile,const char * lpcszContents);
 
 

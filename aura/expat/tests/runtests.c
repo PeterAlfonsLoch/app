@@ -12,7 +12,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include <stdint.h>
+#include "_stdint.h"
 
 #include "expat.h"
 #include "chardata.h"

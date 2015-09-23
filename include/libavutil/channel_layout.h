@@ -22,7 +22,7 @@
 #ifndef AVUTIL_CHANNEL_LAYOUT_H
 #define AVUTIL_CHANNEL_LAYOUT_H
 
-#include <stdint.h>
+#include "_stdint.h"
 
 /**
  * @file

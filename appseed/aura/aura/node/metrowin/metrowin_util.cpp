@@ -162,9 +162,9 @@ void CLASS_DECL_AURA __global_free(HGLOBAL hGlobal)
 int c_cdecl __critical_new_handler(size_t nSize)
    // nSize is already rounded
 {
-//   // called during critical primitive::memory allocation
+//   // called during critical memory allocation
 //   //  free up part of the cast's safety cache
-////   TRACE(::core::trace::category_Memory, 0, "Warning: Critical primitive::memory allocation failed!\n");
+////   TRACE(::core::trace::category_Memory, 0, "Warning: Critical memory allocation failed!\n");
 //   ___THREAD_STATE* pThreadState = __get_thread_state();
 //   if (pThreadState != NULL && pThreadState->m_pSafetyPoolBuffer != NULL)
 //   {
@@ -172,7 +172,7 @@ int c_cdecl __critical_new_handler(size_t nSize)
 //      if (nOldBufferSize <= nSize + MIN_MALLOC_OVERHEAD)
 //      {
 //         // give it all up
-//  ///       TRACE(::core::trace::category_Memory, 0, "Warning: Freeing application's primitive::memory safety pool!\n");
+//  ///       TRACE(::core::trace::category_Memory, 0, "Warning: Freeing application's memory safety pool!\n");
 //         free(pThreadState->m_pSafetyPoolBuffer);
 //         pThreadState->m_pSafetyPoolBuffer = NULL;
 //      }
@@ -188,7 +188,7 @@ int c_cdecl __critical_new_handler(size_t nSize)
 //      return 1;       // retry it
 //   }
 //
-////   TRACE(::core::trace::category_Memory, 0, "ERROR: Critical primitive::memory allocation from safety pool failed!\n");
+////   TRACE(::core::trace::category_Memory, 0, "ERROR: Critical memory allocation from safety pool failed!\n");
    throw memory_exception(NULL);      // oops
 }
 #endif // !___PORTABLE

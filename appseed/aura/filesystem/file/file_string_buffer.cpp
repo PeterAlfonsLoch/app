@@ -46,17 +46,17 @@ namespace file
    }
 
 
-   ::primitive::memory_size string_buffer::read(void *lpBuf, ::primitive::memory_size nCount)
+   memory_size_t string_buffer::read(void *lpBuf, memory_size_t nCount)
    {
       if(m_iPos >= m_iSize)
          return 0;
-      primitive::memory_size uiRead = MIN(nCount, (primitive::memory_size) (m_iSize - m_iPos));
+      memory_size_t uiRead = MIN(nCount, (memory_size_t) (m_iSize - m_iPos));
       memcpy(lpBuf, &m_psz[m_iPos], uiRead);
       m_iPos += uiRead;
       return uiRead;
    };
 
-   void string_buffer::write(const void *lpBuf, ::primitive::memory_size nCount)
+   void string_buffer::write(const void *lpBuf, memory_size_t nCount)
    {
       append((const char *) lpBuf, nCount);
    }
@@ -87,7 +87,7 @@ namespace file
 
    }
 
-   file_position string_buffer::get_position() const
+   file_position_t string_buffer::get_position() const
    {
 
       return m_iPos;

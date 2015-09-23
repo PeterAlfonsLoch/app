@@ -36,7 +36,7 @@
 #ifdef _LIBC
 # include <libintl.h>
 # include <stdbool.h>
-# include <stdint.h>
+# include "_stdint.h"
 # include <wchar.h>
 # define mbsrtowcs __mbsrtowcs
 #endif

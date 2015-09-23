@@ -222,7 +222,7 @@ namespace str
    string base64::encode(const char * psz)
    {
       
-      primitive::memory storage;
+      memory storage;
 
       strsize iLen = strlen(psz);
 
@@ -237,7 +237,7 @@ namespace str
    string base64::encode(byte * p, ::count ca)
    {
 
-      primitive::memory storage;
+      memory storage;
 
       storage.allocate(ca);
 
@@ -267,7 +267,7 @@ namespace str
    string base64::decode(const char * pszBase64)
    {
       
-      primitive::memory storage;
+      memory storage;
       
       decode(storage, pszBase64);
       
@@ -284,7 +284,7 @@ namespace str
 
    }
 
-   void base64::decode(primitive::memory & storageBinary, const char * pszBase64)
+   void base64::decode(::primitive::memory_base & storageBinary, const char * pszBase64)
    {
 
       string str(pszBase64);
@@ -304,7 +304,7 @@ namespace str
    string base64::serialize(::file::serializable & serializable)
    {
 
-      ::primitive::memory storageBinary;
+      memory storageBinary;
       
       ::file::memory_buffer buf(get_app(), &storageBinary);
 
@@ -331,7 +331,7 @@ namespace str
 
       ::file::plain_text_istream istream(&bufIn);
 
-      ::primitive::memory storageBinary;
+      memory storageBinary;
       
       ::file::memory_buffer buf(get_app(), &storageBinary);
 

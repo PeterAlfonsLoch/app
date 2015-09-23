@@ -418,7 +418,7 @@ restart:
 
    string system::as_string(var varFile, var & varQuery, ::aura::application * papp)
    {
-      primitive::memory storage;
+      memory storage;
       if(varFile.cast < ::file::stream_buffer > () != NULL)
       {
          ::file::byte_istream is(varFile.cast < ::file::stream_buffer >());
@@ -642,9 +642,9 @@ restart:
       spfile = App(papp).file().get_file(varFile, ::file::type_binary | ::file::mode_write | ::file::mode_create | ::file::share_deny_none | ::file::defer_create_directory);
       if(spfile.is_null())
          return false;
-      primitive::memory mem;
+      memory mem;
       mem.allocate(1024 * 1024 * 8);
-      ::primitive::memory_size uiRead;
+      memory_size_t uiRead;
       while((uiRead = reader.read(mem.get_data(), mem.get_size())) > 0)
       {
          spfile->write(mem.get_data(), uiRead);
@@ -652,7 +652,7 @@ restart:
       return true;
    }
 
-   bool system::put_contents(var varFile, primitive::memory & mem, ::aura::application * papp)
+   bool system::put_contents(var varFile, memory & mem, ::aura::application * papp)
    {
       return put_contents(varFile, mem.get_data(), (count) mem.get_size(), papp);
    }

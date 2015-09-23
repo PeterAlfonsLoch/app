@@ -40,12 +40,12 @@ namespace file
 
 
       using ::file::reader::read;
-      virtual ::primitive::memory_size read(void *lpBuf, ::primitive::memory_size nCount);
+      virtual memory_size_t read(void *lpBuf, memory_size_t nCount);
       void read(istream & istream);
 
 
       using ::file::writer::write;
-      virtual void write(const void *lpBuf, ::primitive::memory_size nCount);
+      virtual void write(const void *lpBuf, memory_size_t nCount);
       void write(ostream & ostream);
 
       ::string str() const;
@@ -59,7 +59,7 @@ namespace file
 
 
 
-      file_size get_length() const
+      file_size_t get_length() const
       {
          return m_iSize;
       }
@@ -70,7 +70,7 @@ namespace file
       }
 
 
-      virtual file_position get_position() const;
+      virtual file_position_t get_position() const;
 
       void destroy();
       void alloc(strsize iSize);

@@ -247,7 +247,7 @@ bool WriteMemory( BYTE* pTarget, const BYTE* pSource, uint32_t size )
    }
 
 
-   // Modify protection attributes of the target primitive::memory page
+   // Modify protection attributes of the target memory page
 
    uint32_t OldProtect = 0;
 
@@ -259,12 +259,12 @@ bool WriteMemory( BYTE* pTarget, const BYTE* pSource, uint32_t size )
    }
 
 
-   // write primitive::memory
+   // write memory
 
    memcpy( pTarget, pSource, size );
 
 
-   // Restore primitive::memory protection attributes of the target primitive::memory page
+   // Restore memory protection attributes of the target memory page
 
    uint32_t Temp = 0;
 

@@ -344,7 +344,7 @@ namespace file
    void byte_ostream::write_from_hex(const char * psz, strsize iLen)
    {
 
-      //primitive::memory memory(get_app());
+      //memory memory(get_app());
 
       //memory.from_hex(psz);
 

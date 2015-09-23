@@ -88,7 +88,7 @@ PIXMAN_BEGIN_DECLS
 #if !defined (PIXMAN_DONT_DEFINE_STDINT)
 
 #if defined (_SVR4) || defined (SVR4) || defined (__OpenBSD__) || defined (_sgi) || defined (__sun) || defined (sun) || defined (__digital__) || defined (__HP_cc)
-#  include <inttypes.h>
+#  include "_inttypes.h"
 /* VS 2010 (_MSC_VER 1600) has stdint.h */
 #elif defined (_MSC_VER) && _MSC_VER < 1600
 typedef __int8 int8_t;
@@ -102,7 +102,7 @@ typedef unsigned __int64 uint64_t;
 #elif defined (_AIX)
 #  include <sys/inttypes.h>
 #else
-#  include <stdint.h>
+#  include "_stdint.h"
 #endif
 
 #endif

@@ -74,7 +74,7 @@ namespace hex
 
 
    // sz buffer should have twice size of s (p)
-   inline CLASS_DECL_AURA void lower_from(char * sz, const void * p, ::primitive::memory_size s)
+   inline CLASS_DECL_AURA void lower_from(char * sz, const void * p, memory_size_t s)
    {
        const byte * pb = (const byte *) p;
        while(s)
@@ -86,7 +86,7 @@ namespace hex
        }
    }
 
-   inline CLASS_DECL_AURA void upper_from(char * sz, const void * p, ::primitive::memory_size s)
+   inline CLASS_DECL_AURA void upper_from(char * sz, const void * p, memory_size_t s)
    {
        const byte * pb = (const byte *) p;
        while(s)
@@ -99,7 +99,7 @@ namespace hex
    }
 
    // sz buffer should have twice size of s (p)
-   inline CLASS_DECL_AURA string lower_from(const void * p, ::primitive::memory_size s)
+   inline CLASS_DECL_AURA string lower_from(const void * p, memory_size_t s)
    {
       string str;
       lower_from(str.GetBufferSetLength(s * 2), p, s);
@@ -107,7 +107,7 @@ namespace hex
       return str;
    }
 
-   inline CLASS_DECL_AURA string upper_from(const void * p, ::primitive::memory_size s)
+   inline CLASS_DECL_AURA string upper_from(const void * p, memory_size_t s)
    {
       string str;
       upper_from(str.GetBufferSetLength(s * 2), p, s);

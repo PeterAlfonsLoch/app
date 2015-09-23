@@ -15,6 +15,8 @@ void __term_threading();
 void __term_windowing();
 
 
+CLASS_DECL_AURA int32_t __cdecl _memory_type(const void * p);
+
 Gdiplus::GdiplusStartupInput *   g_pgdiplusStartupInput     = NULL;
 Gdiplus::GdiplusStartupOutput *  g_pgdiplusStartupOutput    = NULL;
 DWORD_PTR                        g_gdiplusToken             = NULL;
@@ -544,7 +546,7 @@ int_bool is_windows_native_unicode()
 
 
 /////////////////////////////////////////////////////////////////////////////
-// stop on a specific primitive::memory request
+// stop on a specific memory request
 
 // Obsolete API
 /*
@@ -568,10 +570,22 @@ END_EXTERN_C
 
 #ifdef DEBUG
 
+
+CLASS_DECL_AURA int32_t __cdecl _CrtDumpMemoryLeaks()
+{
+   return TRUE;
+}
+
+CLASS_DECL_AURA int32_t DECL_C _check_memory()
+{
+   return 1;
+}
+
+
 CLASS_DECL_AURA bool  __check_memory()
 {
 
-   return _CrtCheckMemory() != FALSE;
+   return _check_memory() != FALSE;
 
 }
 
@@ -581,7 +595,7 @@ void __cdecl __crt_dump_client(void * pvData,size_t nBytes)
    try
    {
 
-      if(_CrtReportBlockType(pvData) != ___CLIENT_BLOCK)
+      if(_memory_type(pvData) != ___CLIENT_BLOCK)
          return;
 
       //      object * pca = (object * ) pvData;
@@ -658,6 +672,10 @@ int32_t __cdecl __crt_report_hook(int32_t nRptType,__in char *szMsg,int32_t* pRe
    return FALSE;
 }
 
+CLASS_DECL_AURA int32_t __cdecl _memory_type(const void * p)
+{
+   return ___CLIENT_BLOCK;
+}
 
 #endif
 

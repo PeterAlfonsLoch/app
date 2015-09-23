@@ -13,7 +13,7 @@ namespace draw2d_xlib
 
 //      ::simple_ui::interaction   m_ui;
       ::Pixmap                m_pixmap;
-      ::primitive::memory     m_mem;
+      memory     m_mem;
       ::size                  m_size;
 
 

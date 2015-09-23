@@ -25,14 +25,14 @@ namespace ios
    }
 
 
-   bool crypto::decrypt(primitive::memory & storageDecrypt, const primitive::memory & storageEncrypt, const char * pszSalt)
+   bool crypto::decrypt(memory & storageDecrypt, const memory & storageEncrypt, const char * pszSalt)
    {
       
       return ::crypto::crypto::decrypt(storageDecrypt, storageEncrypt, pszSalt);
       
-      //      ::primitive::memory memOut;
+      //      memory memOut;
       //
-      //      ::primitive::memory memIn;
+      //      memory memIn;
       //
       //      memIn.append(storageEncrypt.get_data(), storageEncrypt.get_size());
       //
@@ -46,15 +46,15 @@ namespace ios
    }
    
    
-   bool crypto::encrypt(primitive::memory & storageEncrypt, const primitive::memory & storageDecrypt, const char * pszSalt)
+   bool crypto::encrypt(memory & storageEncrypt, const memory & storageDecrypt, const char * pszSalt)
    {
       
       return ::crypto::crypto::encrypt(storageEncrypt, storageDecrypt, pszSalt);
       
       
-      //      ::primitive::memory memOut;
+      //      memory memOut;
       //
-      //      ::primitive::memory memIn;
+      //      memory memIn;
       //
       //      memIn.append(storageDecrypt.get_data(), storageDecrypt.get_size());
       //

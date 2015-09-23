@@ -243,7 +243,7 @@ STDMETHOD_(ULONG, Release)();
 HRes QueryInterface)(REFIID, LPVOID*);
 
 HRes read)(void *, ULONG, ULONG*);
-HRes write)(const void *, ::primitive::memory_size cb, ::primitive::memory_size*);
+HRes write)(const void *, memory_size_t cb, memory_size_t*);
 HRes seek)(LARGE_INTEGER, uint32_t, ULARGE_INTEGER*);
 HRes set_size)(ULARGE_INTEGER);
 HRes CopyTo)(LPSTREAM, ULARGE_INTEGER, ULARGE_INTEGER*,

@@ -14,7 +14,7 @@ namespace file
    }
 
 
-   ::primitive::memory_size reader::read(void * lpBuf, ::primitive::memory_size nCount)
+   memory_size_t reader::read(void * lpBuf, memory_size_t nCount)
    {
       
       ::exception::throw_interface_only(get_app());
@@ -23,10 +23,10 @@ namespace file
 
    }
 
-   file_position reader::find(const void * pFind, ::primitive::memory_size size, const file_position * limit)
+   file_position_t reader::find(const void * pFind, memory_size_t size, const file_position_t * limit)
    {
       byte * signature = (byte *) pFind;
-      primitive::memory_size signatureSize = size;
+      memory_size_t signatureSize = size;
       uint64_t resPos = 0;
       byte_buffer byteBuffer2;
       byteBuffer2.SetCapacity(signatureSize);
@@ -40,7 +40,7 @@ namespace file
       byte_buffer byteBuffer;
       byteBuffer.SetCapacity(kBufferSize);
       byte *buffer = byteBuffer;
-      primitive::memory_size numPrevBytes = signatureSize - 1;
+      memory_size_t numPrevBytes = signatureSize - 1;
       memcpy(buffer, (const byte *)byteBuffer2 + 1, numPrevBytes);
       resPos = 1;
       for (;;)
@@ -50,8 +50,8 @@ namespace file
                throw simple_exception(get_app());
          do
          {
-            ::primitive::memory_size numReadBytes = kBufferSize - numPrevBytes;
-            ::primitive::memory_size processedSize;
+            memory_size_t numReadBytes = kBufferSize - numPrevBytes;
+            memory_size_t processedSize;
             processedSize = read(buffer + numPrevBytes, numReadBytes);
             numPrevBytes += processedSize;
             if (processedSize == 0)
@@ -78,7 +78,7 @@ namespace file
 
    }
 
-   void reader::transfer_to(writer & writer, ::primitive::memory_size uiBufMax)
+   void reader::transfer_to(writer & writer, memory_size_t uiBufMax)
    {
 
 
@@ -108,11 +108,11 @@ namespace file
       }
 
       uiBufMax = MAX(8 * 1024, uiBufMax);
-      ::primitive::memory_size uiBufMin = uiBufMax / 8;
-      ::primitive::memory_size uiBufSize = uiBufMax;
-      ::primitive::memory_size uiBufInc = uiBufSize;
-      ::primitive::memory_size uiRead;
-      ::primitive::memory_size uiSize = writer.get_internal_data_size();
+      memory_size_t uiBufMin = uiBufMax / 8;
+      memory_size_t uiBufSize = uiBufMax;
+      memory_size_t uiBufInc = uiBufSize;
+      memory_size_t uiRead;
+      memory_size_t uiSize = writer.get_internal_data_size();
 
       while(writer.increase_internal_data_size(uiBufInc) && writer.get_internal_data() != NULL)
       {
@@ -130,13 +130,13 @@ namespace file
       if(uiBufSize > 0)
       {
          memmove(((byte *) writer.get_internal_data()) + writer.get_position(), ((byte *) writer.get_internal_data()) + writer.get_position() + uiBufSize, uiBufSize);
-         writer.increase_internal_data_size(-(::primitive::memory_offset)uiBufSize);
+         writer.increase_internal_data_size(-(memory_offset_t)uiBufSize);
       }
 
-      ::primitive::memory buf;
+      memory buf;
       buf.allocate(uiBufMax);
       if(buf.get_data() == NULL)
-         throw "no primitive::memory";
+         throw "no memory";
       try
       {
          while(true)
@@ -158,24 +158,24 @@ namespace file
    }
 
 
-   file_position reader::get_position() const
+   file_position_t reader::get_position() const
    {
       ::exception::throw_interface_only(get_app());
       return 0;
    }
 
 
-   static const ::primitive::memory_size kBlockSize = ((uint32_t)1 << 31);
+   static const memory_size_t kBlockSize = ((uint32_t)1 << 31);
 
 
-   HRESULT read(reader * preader, void * data, ::primitive::memory_size * processedSize)
+   HRESULT read(reader * preader, void * data, memory_size_t * processedSize)
    {
-      ::primitive::memory_size size = *processedSize;
+      memory_size_t size = *processedSize;
       *processedSize = 0;
       while (size != 0)
       {
-         ::primitive::memory_size curSize = MIN(size, kBlockSize);
-         ::primitive::memory_size processedSizeLoc;
+         memory_size_t curSize = MIN(size, kBlockSize);
+         memory_size_t processedSizeLoc;
          HRESULT res = S_OK;
          try
          {
@@ -195,16 +195,16 @@ namespace file
       return S_OK;
    }
 
-   HRESULT read_false(reader * preader, void * data, ::primitive::memory_size size)
+   HRESULT read_false(reader * preader, void * data, memory_size_t size)
    {
-      ::primitive::memory_size processedSize = size;
+      memory_size_t processedSize = size;
       RINOK(read(preader, data, &processedSize));
       return (size == processedSize) ? S_OK : S_FALSE;
    }
 
-   HRESULT read_fail(reader * preader, void * data, ::primitive::memory_size size)
+   HRESULT read_fail(reader * preader, void * data, memory_size_t size)
    {
-      ::primitive::memory_size processedSize = size;
+      memory_size_t processedSize = size;
       RINOK(read(preader, data, &processedSize));
       return (size == processedSize) ? S_OK : E_FAIL;
    }

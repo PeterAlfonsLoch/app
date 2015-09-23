@@ -71,7 +71,7 @@ namespace zip
 
       //      operator HFILE() const;
 
-      virtual file_position get_position() const;
+      virtual file_position_t get_position() const;
 
       virtual bool zip_open(const char *,UINT);
       virtual bool zip_open(File * pzfile,const char * lpcszFileName);
@@ -91,18 +91,18 @@ namespace zip
       File * get_zip_file();
       const File * get_zip_file() const;
 
-      virtual file_position seek(file_offset lOff,::file::e_seek nFrom);
-      virtual void set_length(file_size dwNewLen);
-      virtual file_size get_length() const;
+      virtual file_position_t seek(file_offset_t lOff,::file::e_seek nFrom);
+      virtual void set_length(file_size_t dwNewLen);
+      virtual file_size_t get_length() const;
 
       using ::file::stream_buffer::read;
-      virtual ::primitive::memory_size read(void * lpBuf,::primitive::memory_size nCount);
+      virtual memory_size_t read(void * lpBuf,memory_size_t nCount);
 
       using ::file::stream_buffer::write;
-      virtual void write(const void * lpBuf,::primitive::memory_size nCount);
+      virtual void write(const void * lpBuf,memory_size_t nCount);
 
-      virtual void LockRange(file_position dwPos,file_size dwCount);
-      virtual void UnlockRange(file_position dwPos,file_size dwCount);
+      virtual void LockRange(file_position_t dwPos,file_size_t dwCount);
+      virtual void UnlockRange(file_position_t dwPos,file_size_t dwCount);
 
       virtual void Abort();
       virtual void flush();

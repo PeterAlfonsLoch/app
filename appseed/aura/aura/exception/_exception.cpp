@@ -4,15 +4,6 @@
 #include <pthread.h>
 
 #endif
-#ifdef LINUX
-#include <execinfo.h>
-#include <cxxabi.h>
-#include <unistd.h>
-#elif defined(APPLEOS)
-#include <execinfo.h>
-#elif defined(ANDROID) 
-#include <unistd.h>
-#endif
 
 
 #if defined(LINUX) || defined(ANDROID)
@@ -47,7 +38,7 @@
 #include "exception_dump_context.cpp"
 #include "exception_dump_floating_point.cpp"
 #include "exception_dump_output.cpp"
-#include "exception_engine.cpp"
+//#include "exception_engine.cpp"
 #include "exception_error.cpp"
 #include "exception_exit.cpp"
 #include "exception_hresult.cpp"

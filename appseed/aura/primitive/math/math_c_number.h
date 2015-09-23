@@ -155,10 +155,7 @@ inline c_number<T> operator - (const c_number<T> & n1, const c_number<T> & n2)
 
 
 
-#ifdef WINDOWS
-
-
-#define DEFINE_C_NUMBER(e, ca, T) \
+#define DEFINE_UNIT(e, ca, T) \
    class e ca : \
       public c_number < T > \
    { \
@@ -167,142 +164,22 @@ inline c_number<T> operator - (const c_number<T> & n1, const c_number<T> & n2)
       { \
       } \
       \
-      ca(const ca & ca) : \
+      ca(const T & ca) : \
          c_number < T > ((const c_number < T > &) ca) \
-      { \
-      } \
-      \
-      ca(char ch) : \
-         c_number < T > (throw_cast < T > (ch)) \
-      { \
-      } \
-      \
-      ca(uchar uch) : \
-         c_number < T > (throw_cast < T > (uch)) \
-      { \
-      } \
-      \
-      ca(int16_t sh) : \
-         c_number < T > (throw_cast < T > (sh)) \
-      { \
-      } \
-      \
-      ca(uint16_t uint16_t) : \
-         c_number < T > (throw_cast < T > (uint16_t)) \
-      { \
-      } \
-      \
-      ca(int32_t i) : \
-         c_number < T > (throw_cast < T > (i)) \
-      { \
-      } \
-      \
-      ca(uint32_t ui) : \
-         c_number < T > (throw_cast < T > (ui)) \
-      { \
-      } \
-      \
-      ca(int64_t i64) : \
-         c_number < T > (throw_cast < T > (i64)) \
-      { \
-      } \
-      \
-      ca(uint64_t ui64) : \
-         c_number < T > (throw_cast < T > (ui64)) \
-      { \
-      } \
-      \
-      ca(float f) : \
-         c_number < T > (throw_cast < T > (f)) \
-      { \
-      } \
-      \
-      ca(double d) : \
-         c_number < T > (throw_cast < T > (d)) \
       { \
       } \
       \
    };
 
-#else
-
-#define DEFINE_C_NUMBER(e, ca, T) \
-   class e ca : \
-      public c_number < T > \
-   { \
-   public: \
-      ca() \
-      { \
-      } \
-      \
-      ca(const ca & ca) : \
-         c_number < T > ((const c_number < T > &) ca) \
-      { \
-      } \
-      \
-      ca(char ch) : \
-         c_number < T > (throw_cast < T > (ch)) \
-      { \
-      } \
-      \
-      ca(uchar uch) : \
-         c_number < T > (throw_cast < T > (uch)) \
-      { \
-      } \
-      \
-      ca(int16_t i) : \
-         c_number < T > (throw_cast < T > (i)) \
-      { \
-      } \
-      \
-      ca(uint16_t ui) : \
-         c_number < T > (throw_cast < T > (ui)) \
-      { \
-      } \
-      \
-      ca(int32_t i) : \
-         c_number < T > (throw_cast < T > (i)) \
-      { \
-      } \
-      \
-      ca(uint32_t ui) : \
-         c_number < T > (throw_cast < T > (ui)) \
-      { \
-      } \
-      \
-      ca(int64_t i) : \
-         c_number < T > (throw_cast < T > (i)) \
-      { \
-      } \
-      \
-      ca(uint64_t ui) : \
-         c_number < T > (throw_cast < T > (ui)) \
-      { \
-      } \
-      \
-      ca(float f) : \
-         c_number < T > (throw_cast < T > (f)) \
-      { \
-      } \
-      \
-      ca(double d) : \
-         c_number < T > (throw_cast < T > (d)) \
-      { \
-      } \
-      \
-   };
-
-
-#endif
 
 //#ifdef WINDOWS
-DEFINE_C_NUMBER(CLASS_DECL_AURA,lock_duration,uint32_t)
-DEFINE_C_NUMBER(CLASS_DECL_AURA,tick_duration,uint32_t)
+DEFINE_UNIT(CLASS_DECL_AURA,lock_duration,uint32_t)
+DEFINE_UNIT(CLASS_DECL_AURA,tick_duration,uint32_t)
 //#endif
 
-//DEFINE_C_NUMBER(CLASS_DECL_AURA, file_size        , uint64_t)
-//DEFINE_C_NUMBER(CLASS_DECL_AURA, file_position    , uint64_t)
-//DEFINE_C_NUMBER(CLASS_DECL_AURA, file_offset      ,  int64_t)
+//DEFINE_C_NUMBER(CLASS_DECL_AURA, file_size_t        , uint64_t)
+//DEFINE_C_NUMBER(CLASS_DECL_AURA, file_position_t    , uint64_t)
+//DEFINE_C_NUMBER(CLASS_DECL_AURA, file_offset_t      ,  int64_t)
 
 
 /*namespace numeric_info
@@ -310,31 +187,31 @@ DEFINE_C_NUMBER(CLASS_DECL_AURA,tick_duration,uint32_t)
 
 
    template <>
-   inline file_size get_maximum_value < file_size > ()
+   inline file_size_t get_maximum_value < file_size_t > ()
    {
-      return static_cast < file_size > (0xffffffffffffffff);
+      return static_cast < file_size_t > (0xffffffffffffffff);
    }
 
    template <>
-   inline file_size get_minimum_value < file_size > ()
+   inline file_size_t get_minimum_value < file_size_t > ()
    {
       return static_cast < uint64_t > (0);
    }
 
    template <>
-   inline file_size get_allset_value < file_size > ()
+   inline file_size_t get_allset_value < file_size_t > ()
    {
-      return static_cast < file_size > (0xffffffffffffffff);
+      return static_cast < file_size_t > (0xffffffffffffffff);
    }
 
    template <>
-   inline file_size get_null_value < file_size > ()
+   inline file_size_t get_null_value < file_size_t > ()
    {
       return 0;
    }
 
    template <>
-   inline file_size get_unitary_value < file_size >()
+   inline file_size_t get_unitary_value < file_size_t >()
    {
       return 1;
    }

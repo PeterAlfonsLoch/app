@@ -479,7 +479,7 @@ namespace sockets
             //int n = reader->UnconsumedBufferLength;
             Array < unsigned char, 1U > ^ ucha = ref new Array < unsigned char, 1U >(reader->UnconsumedBufferLength);
             reader->ReadBytes(ucha);
-            ::primitive::memory mem;
+            memory mem;
             mem.assign(ucha->Data, ucha->Length);
             on_read((char *) mem.get_data(), mem.get_size());
          }

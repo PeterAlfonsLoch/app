@@ -9,9 +9,9 @@ namespace file
    {
    public:
 
-      set_width(::file_size n = 0) { m_width = n; }
+      set_width(file_size_t n = 0) { m_width = n; }
 
-      ::file_size m_width;
+      file_size_t m_width;
 
    };
 
@@ -85,8 +85,8 @@ namespace file
       buffer_sp                  m_spbuffer;
       e_iostate                  m_iostate;
       fmtflags                   m_fmtflags;
-      file_size                  m_width;
-      file_size                  m_precision;
+      file_size_t                  m_width;
+      file_size_t                  m_precision;
 
       stream_base();
       stream_base(buffer_sp pbuffer);
@@ -153,16 +153,16 @@ namespace file
       virtual void close();
 
       using seekable::seek;
-      virtual file_position seek(file_offset offset, e_seek eseek);
+      virtual file_position_t seek(file_offset_t offset, e_seek eseek);
 
 
-      file_size precision() const;
+      file_size_t precision() const;
 
-      file_size precision(file_size prec);
+      file_size_t precision(file_size_t prec);
 
-      file_size width() const;
+      file_size_t width() const;
 
-      file_size width(file_size wide);
+      file_size_t width(file_size_t wide);
 
       stream_base & operator << (const set_width & w) { width(w.m_width); return *this;  }
 

@@ -33,7 +33,7 @@ namespace file
       return m_pfile != NULL;
    }
 
-   file_position timeout_buffer::seek(file_offset lOff, ::file::e_seek nFrom)
+   file_position_t timeout_buffer::seek(file_offset_t lOff, ::file::e_seek nFrom)
    {
       single_lock sl(m_spmutex, TRUE);
       uint64_t dwFuture;
@@ -62,7 +62,7 @@ namespace file
       }
          break;
       default:
-         return ::numeric_info < file_size >::allset();
+         return ::numeric_info < file_size_t >::allset();
       }
       m_dwLastCall = ::get_tick_count();
       while (true)
@@ -77,13 +77,13 @@ namespace file
       return m_pfile->get_position();
    }
 
-   file_position timeout_buffer::get_position() const
+   file_position_t timeout_buffer::get_position() const
    {
       single_lock sl((const_cast < timeout_buffer * > (this))->m_spmutex, TRUE);
       return m_pfile->get_position();
    }
 
-   file_size timeout_buffer::get_length() const
+   file_size_t timeout_buffer::get_length() const
    {
       if (m_uiExpectedSize == (uint64_t)-2)
          return (uint64_t)-2;
@@ -105,7 +105,7 @@ namespace file
    }
 
 
-   file_size timeout_buffer::get_length(single_lock * psl) const
+   file_size_t timeout_buffer::get_length(single_lock * psl) const
    {
       bool bAcquired = psl->IsLocked();
       if (bAcquired)
@@ -132,13 +132,13 @@ namespace file
          return m_uiExpectedSize;
    }
 
-   ::primitive::memory_size timeout_buffer::read(void *lpBuf, ::primitive::memory_size nCount)
+   memory_size_t timeout_buffer::read(void *lpBuf, memory_size_t nCount)
    {
       single_lock sl(m_spmutex);
       if (m_pfile == NULL)
          return 0;
-      ::primitive::memory_size uiRead = 0;
-      ::primitive::memory_size uiReadNow = 0;
+      memory_size_t uiRead = 0;
+      memory_size_t uiReadNow = 0;
       m_dwLastCall = ::get_tick_count();
       while (nCount > 0)
       {
@@ -161,7 +161,7 @@ namespace file
       return uiRead;
    }
 
-   void timeout_buffer::write(const void * lpBuf, ::primitive::memory_size nCount)
+   void timeout_buffer::write(const void * lpBuf, memory_size_t nCount)
    {
       single_lock sl(m_spmutex, TRUE);
       m_pfile->write(lpBuf, nCount);
@@ -174,7 +174,7 @@ namespace file
       m_pfile->flush();
    }
 
-   void timeout_buffer::set_length(file_size dwNewLen)
+   void timeout_buffer::set_length(file_size_t dwNewLen)
    {
       single_lock sl(m_spmutex, TRUE);
       m_uiExpectedSize = dwNewLen;

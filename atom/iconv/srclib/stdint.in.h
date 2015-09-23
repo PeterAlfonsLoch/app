@@ -50,7 +50,7 @@
 #  define __STDINT_H__
 # endif
   /* Other systems may have an incomplete or buggy <stdint.h>.
-     Include it before <inttypes.h>, since any "#include <stdint.h>"
+     Include it before <inttypes.h>, since any "#include "_stdint.h""
      in <inttypes.h> would reinclude us, skipping our contents because
      _@GUARD_PREFIX@_STDINT_H is defined.
      The include_next requires a split double-inclusion guard.  */

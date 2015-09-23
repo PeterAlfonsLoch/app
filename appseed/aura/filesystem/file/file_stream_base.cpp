@@ -59,7 +59,7 @@ namespace file
    }
 
 
-   file_position stream_base::seek(file_offset offset, e_seek eseek)
+   file_position_t stream_base::seek(file_offset_t offset, e_seek eseek)
    {
 
       return m_spbuffer->seek(offset, eseek);
@@ -106,28 +106,28 @@ namespace file
 
 
 
-   file_size stream_base::precision() const
+   file_size_t stream_base::precision() const
    {
 
       return m_precision;
 
    }
 
-   file_size stream_base::precision(file_size prec)
+   file_size_t stream_base::precision(file_size_t prec)
    {
 
       return m_precision = prec;
 
    }
 
-   file_size stream_base::width() const
+   file_size_t stream_base::width() const
    {
 
       return m_width;
 
    }
 
-   file_size stream_base::width(file_size prec)
+   file_size_t stream_base::width(file_size_t prec)
    {
 
       return m_width = prec;

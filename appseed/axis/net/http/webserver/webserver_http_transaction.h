@@ -41,8 +41,8 @@ namespace http
       void SetContentType(const string & value);
       string ContentType();
 
-      void SetContentLength(primitive::memory_size value);
-      primitive::memory_size ContentLength();
+      void SetContentLength(memory_size_t value);
+      memory_size_t ContentLength();
 
       void SetHost(const string & value);
       string Host();

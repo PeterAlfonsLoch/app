@@ -157,7 +157,7 @@ int LOL(string & strOut, const string & str)
    FILE *file = NULL;
    int ch;
 
-   ::primitive::memory m;
+   memory m;
 
    m.assign(str);
    m.allocate(str.length() + 1);

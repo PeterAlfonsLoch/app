@@ -15,7 +15,7 @@ namespace draw2d_direct2d
       Microsoft::WRL::ComPtr<ID2D1Bitmap>    m_pbitmap;
       Microsoft::WRL::ComPtr<ID2D1Bitmap1>   m_pbitmap1;
       D2D1_MAPPED_RECT                       m_map;
-      primitive::memory                      m_memory;
+      memory                      m_memory;
       //      ::Gdiplus::Bitmap *  m_pbitmap;
       //    void *               m_pdata;
 

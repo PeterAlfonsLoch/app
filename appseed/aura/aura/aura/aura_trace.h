@@ -2,22 +2,10 @@
 
 
 
-#ifdef WINDOWS
-
-extern "C" IMAGE_DOS_HEADER __ImageBase;
-
-#endif
-
-
 namespace aura
 {
 
-   //typedef void ( * PFN_trace_v)(const char *pszFileName, int32_t nLine, uint32_t dwCategory, uint32_t nLevel, const char * pszFmt, va_list args);
-
-   CLASS_DECL_AURA void raw_trace_v(const char *pszFileName, int32_t nLine, uint32_t dwCategory, uint32_t nLevel, const char * pszFmt, va_list args);
-   //CLASS_DECL_AURA void system_log_trace_v(const char *pszFileName, int32_t nLine, uint32_t dwCategory, uint32_t nLevel, const char * pszFmt, va_list args);
-
-   //extern CLASS_DECL_AURA PFN_trace_v trace_v;
+   CLASS_DECL_AURA void raw_trace_v(const char *pszFileName,int32_t nLine,uint32_t dwCategory,uint32_t nLevel,const char * pszFmt,va_list args);
 
    namespace trace
    {
@@ -64,25 +52,25 @@ namespace aura
          category_Database,     // special database trace
          category_Internet,     // special Internet client trace
          category_dumpContext,   // traces from dump_context
-         category_Memory,      // generic non-kernel primitive::memory traces
+         category_Memory,      // generic non-kernel memory traces
          category_Html,         // Html traces
          category_Socket      // socket traces
-            
+
       };
-      
+
 
       class trace;
 
-      
+
       // Declare a global instance of this class to automatically register a custom trace category at startup
       class CLASS_DECL_AURA category
       {
       public:
 
-         
+
          category();
          ~category();
-         
+
 
          UINT GetLevel() const throw();
          void SetLevel(UINT nLevel) throw();
@@ -118,7 +106,7 @@ namespace aura
             return m_map[dwCategory];
          }
 
-         void TraceV(const char *pszFileName, int32_t nLine, uint_ptr dwCategory, UINT nLevel, const char * pszFmt, va_list args) const;
+         void TraceV(const char *pszFileName,int32_t nLine,uint_ptr dwCategory,UINT nLevel,const char * pszFmt,va_list args) const;
 
 
          /*bool LoadSettings(const char * pszFileName = NULL) const
@@ -126,90 +114,23 @@ namespace aura
          void SaveSettings(const char * pszFileName = NULL) const
          { gen_TraceSaveSettings(pszFileName);}*/
 
-         map < uint_ptr, uint_ptr, category, category > m_map;
+         map < uint_ptr,uint_ptr,category,category > m_map;
+
+
       };
 
 
 
-#ifndef _NO_DEBUG_CRT
-      class CNoUIAssertHook
-      {
-      public:
-         CNoUIAssertHook()
-         {
-            ASSERT(s_pfnPrevHook == NULL);
-#ifdef VC6
-            //s_pfnPrevHook = _CrtGetReportHook();
-            _CrtSetReportHook(CrtHookProc);
-#else
-            s_pfnPrevHook = _CrtSetReportHook(CrtHookProc);
-#endif
-         }
-         ~CNoUIAssertHook()
-         {
-            _CrtSetReportHook(s_pfnPrevHook);
-            s_pfnPrevHook = NULL;
-         }
-
-      private:
-         static int32_t __cdecl CrtHookProc(int32_t eReportType, char* pszMessage, int32_t* pnRetVal)
-         {
-
-            if (eReportType == _CRT_ASSERT)
-            {
-               ::OutputDebugStringA("ASSERTION FAILED\n");
-               ::OutputDebugStringA(pszMessage);
-               //If caller doesn't want retVal, so be it.
-               if (pnRetVal != NULL)
-               {
-                  *pnRetVal = 1;
-               }
-               return TRUE;
-            }
-
-            if (s_pfnPrevHook != NULL)
-            {
-               return s_pfnPrevHook(eReportType, pszMessage, pnRetVal);
-            }
-            else
-            {
-               return FALSE;
-            }
-         }
-
-      private:
-         static _CRT_REPORT_HOOK s_pfnPrevHook;
-      };
-
-#ifdef WINDOWS
-
-      __declspec(selectany) _CRT_REPORT_HOOK CNoUIAssertHook::s_pfnPrevHook = NULL;
-
-#endif
-
-#define DECLARE_NOUIASSERT() ::core::CNoUIAssertHook _g_NoUIAssertHook;
-
-#endif  // _NO_DEBUG_CRT
-
-
-      CLASS_DECL_AURA void __cdecl __trace(const char * pszFormat, ...);
-      CLASS_DECL_AURA void __cdecl __trace(const unichar * pszFormat, ...);
-      CLASS_DECL_AURA void __cdecl __trace(uint_ptr dwCategory, UINT nLevel, const char * pszFormat, ...);
-      CLASS_DECL_AURA void __cdecl __trace(uint_ptr dwCategory, UINT nLevel, const unichar * pszFormat, ...);
-#define TRACENOTIMPL(funcname)  do { TRACE(::core::atlTraceNotImpl, 0, "core: %s not implemented.\n", funcname); return E_NOTIMPL; } while(0)
+      CLASS_DECL_AURA void __cdecl __trace(const char * pszFormat,...);
+      CLASS_DECL_AURA void __cdecl __trace(const unichar * pszFormat,...);
+      CLASS_DECL_AURA void __cdecl __trace(uint_ptr dwCategory,UINT nLevel,const char * pszFormat,...);
+      CLASS_DECL_AURA void __cdecl __trace(uint_ptr dwCategory,UINT nLevel,const unichar * pszFormat,...);
+      
    } // namespace trace
 
 
 };  // namespace aura
 
 
-
-struct CLASS_DECL_AURA __MAP_MESSAGE
-{
-   UINT    nMsg;
-   const char *  lpszMsg;
-};
-
-
-extern CLASS_DECL_AURA const __MAP_MESSAGE * allMessages;
+CLASS_DECL_AURA const char * get_windows_message_name(UINT nMsg);
 

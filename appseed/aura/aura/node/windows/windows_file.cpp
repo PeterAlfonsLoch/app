@@ -211,7 +211,7 @@ namespace windows
    }
 
 
-   ::primitive::memory_size file::read(void * lpBuf, ::primitive::memory_size nCount)
+   memory_size_t file::read(void * lpBuf, memory_size_t nCount)
    {
       ASSERT_VALID(this);
       ASSERT(m_hFile != (UINT)hFileNull);
@@ -229,7 +229,7 @@ namespace windows
       return (UINT)dwRead;
    }
 
-   void file::write(const void * lpBuf, ::primitive::memory_size nCount)
+   void file::write(const void * lpBuf, memory_size_t nCount)
    {
       ASSERT_VALID(this);
       ASSERT(m_hFile != (UINT)hFileNull);
@@ -249,7 +249,7 @@ namespace windows
          throw_file_exception(get_app(), ::file::exception::diskFull, -1, m_strFileName);
    }
 
-   file_position file::seek(file_offset lOff, ::file::e_seek nFrom)
+   file_position_t file::seek(file_offset_t lOff, ::file::e_seek nFrom)
    {
 
       if(m_hFile == (UINT)hFileNull)
@@ -263,15 +263,15 @@ namespace windows
       LONG lLoOffset = lOff & 0xffffffff;
       LONG lHiOffset = (lOff >> 32) & 0xffffffff;
 
-      file_position posNew = ::SetFilePointer((HANDLE)m_hFile, lLoOffset, &lHiOffset, (DWORD)nFrom);
-      posNew |= ((file_position) lHiOffset) << 32;
-      if(posNew  == (file_position)-1)
+      file_position_t posNew = ::SetFilePointer((HANDLE)m_hFile, lLoOffset, &lHiOffset, (DWORD)nFrom);
+      posNew |= ((file_position_t) lHiOffset) << 32;
+      if(posNew  == (file_position_t)-1)
          file_exception::ThrowOsError(get_app(), (LONG)::GetLastError());
 
       return posNew;
    }
 
-   file_position file::get_position() const
+   file_position_t file::get_position() const
    {
       ASSERT_VALID(this);
       ASSERT(m_hFile != (UINT)hFileNull);
@@ -279,9 +279,9 @@ namespace windows
       LONG lLoOffset = 0;
       LONG lHiOffset = 0;
 
-      file_position pos = ::SetFilePointer((HANDLE)m_hFile, lLoOffset, &lHiOffset, FILE_CURRENT);
-      pos |= ((file_position)lHiOffset) << 32;
-      if(pos  == (file_position)-1)
+      file_position_t pos = ::SetFilePointer((HANDLE)m_hFile, lLoOffset, &lHiOffset, FILE_CURRENT);
+      pos |= ((file_position_t)lHiOffset) << 32;
+      if(pos  == (file_position_t)-1)
          file_exception::ThrowOsError(get_app(), (LONG)::GetLastError());
 
       return pos;
@@ -348,7 +348,7 @@ namespace windows
       m_strFileName.Empty();
    }
 
-   void file::LockRange(file_position dwPos, file_size dwCount)
+   void file::LockRange(file_position_t dwPos, file_size_t dwCount)
    {
       ASSERT_VALID(this);
       ASSERT(m_hFile != (UINT)hFileNull);
@@ -357,7 +357,7 @@ namespace windows
          file_exception::ThrowOsError(get_app(), (LONG)::GetLastError());
    }
 
-   void file::UnlockRange(file_position dwPos, file_size dwCount)
+   void file::UnlockRange(file_position_t dwPos, file_size_t dwCount)
    {
       ASSERT_VALID(this);
       ASSERT(m_hFile != (UINT)hFileNull);
@@ -366,7 +366,7 @@ namespace windows
          file_exception::ThrowOsError(get_app(), (LONG)::GetLastError());
    }
 
-   void file::set_length(file_size dwNewLen)
+   void file::set_length(file_size_t dwNewLen)
    {
       ASSERT_VALID(this);
       ASSERT(m_hFile != (UINT)hFileNull);
@@ -377,19 +377,19 @@ namespace windows
          file_exception::ThrowOsError(get_app(), (LONG)::GetLastError());
    }
 
-   file_size file::get_length() const
+   file_size_t file::get_length() const
    {
       ASSERT_VALID(this);
 
-      file_position dwLen, dwCur;
+      file_position_t dwLen, dwCur;
 
       // seek is a non const operation
       sp(::windows::file) pFile = (::windows::file *)this;
       dwCur = pFile->seek(0L, ::file::seek_current);
       dwLen = pFile->seek_to_end();
-      VERIFY(dwCur == (uint64_t)pFile->seek((file_offset) dwCur, ::file::seek_begin));
+      VERIFY(dwCur == (uint64_t)pFile->seek((file_offset_t) dwCur, ::file::seek_begin));
 
-      return (file_size) dwLen;
+      return (file_size_t) dwLen;
    }
 
    // file does not support direct buffering (CMemFile does)

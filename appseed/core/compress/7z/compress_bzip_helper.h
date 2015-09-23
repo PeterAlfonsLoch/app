@@ -20,7 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////
   Introduce:
      This file includes two classes CA2GZIP and CGZIP2A which do compressing and
-    uncompressing in primitive::memory. and It 's very easy to use for small data compressing.
+    uncompressing in memory. and It 's very easy to use for small data compressing.
     Some compress and uncompress codes came from gzip  unzip function of zlib 1.1.x.
 
   Usage:
@@ -51,7 +51,7 @@ class bzip
 {
 public:
    ::ca::byte_output_stream m_ostream;
-   primitive::memory m_memory;
+   memory m_memory;
    int32_t m_CurrentBufferSize;
    bz_stream m_zstream;
    int32_t      m_z_err;   /* error code for last stream operation */

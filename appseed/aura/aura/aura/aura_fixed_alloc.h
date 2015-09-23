@@ -27,8 +27,8 @@ public:
    UINT GetAllocSize() { return m_nAllocSize; }
 
 
-   inline void * Alloc();  // return a chunk of primitive::memory of nAllocSize
-   inline void Free(void * p); // free chunk of primitive::memory returned from Alloc
+   inline void * Alloc();  // return a chunk of memory of nAllocSize
+   inline void Free(void * p); // free chunk of memory returned from Alloc
    void FreeAll(); // free everything allocated from this allocator
 
 
@@ -78,8 +78,8 @@ public:
    ~fixed_alloc_sync();
 
 
-   inline void * Alloc();   // return a chunk of primitive::memory of nAllocSize
-   inline void Free(void * p);   // free chunk of primitive::memory returned from Alloc
+   inline void * Alloc();   // return a chunk of memory of nAllocSize
+   inline void Free(void * p);   // free chunk of memory returned from Alloc
    void FreeAll();   // free everything allocated from this allocator
 
 
@@ -102,8 +102,8 @@ public:
    ~fixed_alloc();
 
 
-   inline void * Alloc();   // return a chunk of primitive::memory of nAllocSize
-   inline void Free(void * p);   // free chunk of primitive::memory returned from Alloc
+   inline void * Alloc();   // return a chunk of memory of nAllocSize
+   inline void Free(void * p);   // free chunk of memory returned from Alloc
    void FreeAll();   // free everything allocated from this allocator
 
 

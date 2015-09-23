@@ -102,20 +102,20 @@ CLASS_DECL_AURA dump_context & operator<<(dump_context & dumpcontext, const ::da
 
 
 
-// Return TRUE if primitive::memory is sane or print out what is wrong
+// Return TRUE if memory is sane or print out what is wrong
 CLASS_DECL_AURA bool __check_memory();
 
-// Return TRUE if valid primitive::memory block of nBytes
+// Return TRUE if valid memory block of nBytes
 CLASS_DECL_AURA bool __is_memory_block(const void * p,UINT nBytes,LONG* plRequestNumber = NULL);
 
 
 
 #define afxMemDF _crtDbgFlag
 
-enum e_memdbg // primitive::memory debug/diagnostic flags
+enum e_memdbg // memory debug/diagnostic flags
 {
    memdbg_alloc            = _CRTDBG_ALLOC_MEM_DF,         // turn on debugging allocator
-   memdbg_delay_free       = _CRTDBG_DELAY_FREE_MEM_DF,         // delay freeing primitive::memory
+   memdbg_delay_free       = _CRTDBG_DELAY_FREE_MEM_DF,         // delay freeing memory
    memdbg_check_always     = _CRTDBG_CHECK_ALWAYS_DF,          // __check_memory on every alloc/free
    memdbg_check_every16    = _CRTDBG_CHECK_EVERY_16_DF,
    memdbg_check_every128   = _CRTDBG_CHECK_EVERY_128_DF,
@@ -130,7 +130,7 @@ CLASS_DECL_AURA bool __enable_memory_tracking(bool bTrack);
 
 // Turn on/off the global flag gen_MemoryLeakOverride. if bEnable is TRUE
 // then further calls to __enable_memory_tracking() wont change the current
-// primitive::memory tracking state, until __enable_memory_leak_override(bool bEnable)
+// memory tracking state, until __enable_memory_leak_override(bool bEnable)
 // is called again with bEnable == FALSE.
 CLASS_DECL_AURA bool __enable_memory_leak_override(bool bEnable);
 

@@ -21,7 +21,7 @@ namespace primitive
 
    }
 
-   shared_memory::shared_memory(primitive::memory_container * pcontainer, memory_size dwAllocationAddUp, UINT nAllocFlags)
+   shared_memory::shared_memory(primitive::memory_container * pcontainer, memory_size_t dwAllocationAddUp, UINT nAllocFlags)
    {
 
       m_nAllocFlags        = nAllocFlags;
@@ -33,7 +33,7 @@ namespace primitive
 
    }
 
-   shared_memory::shared_memory(primitive::memory_container * pcontainer, void * pMemory, memory_size dwSize)
+   shared_memory::shared_memory(primitive::memory_container * pcontainer, void * pMemory, memory_size_t dwSize)
    {
 
       m_nAllocFlags     = 0;
@@ -50,7 +50,7 @@ namespace primitive
 
    }
 
-   shared_memory::shared_memory(const void * pMemory, memory_size dwSize)
+   shared_memory::shared_memory(const void * pMemory, memory_size_t dwSize)
    {
 
       m_nAllocFlags     = 0;
@@ -100,7 +100,7 @@ namespace primitive
    }
 
 
-   bool shared_memory::allocate_internal(memory_size dwNewLength)
+   bool shared_memory::allocate_internal(memory_size_t dwNewLength)
    {
 
       if(!is_enabled())
@@ -122,7 +122,7 @@ namespace primitive
       {
 
          m_iOffset = 0;
-         memory_size dwAllocation = dwNewLength + m_dwAllocationAddUp;
+         memory_size_t dwAllocation = dwNewLength + m_dwAllocationAddUp;
          m_pbStorage = (LPBYTE) Alloc((SIZE_T) dwAllocation);
          if(m_pbStorage != NULL)
          {
@@ -144,7 +144,7 @@ namespace primitive
          if(m_iOffset > 0)
          {
             m_iOffset = 0;
-            memory_size dwAllocation = dwNewLength + m_dwAllocationAddUp;
+            memory_size_t dwAllocation = dwNewLength + m_dwAllocationAddUp;
             LPVOID lpVoid = Alloc((SIZE_T) dwAllocation);
             if(lpVoid == NULL)
             {
@@ -153,7 +153,7 @@ namespace primitive
             else
             {
                memcpy(lpVoid, m_pbComputed, m_cbStorage);
-               memory_offset iOffset = (LPBYTE) lpVoid - m_pbStorage;
+               memory_offset_t iOffset = (LPBYTE) lpVoid - m_pbStorage;
                if(m_pcontainer != NULL)
                {
                   m_pcontainer->offset_kept_pointers(iOffset);
@@ -168,7 +168,7 @@ namespace primitive
          }
          else if(dwNewLength > m_dwAllocation)
          {
-            memory_size dwAllocation = dwNewLength + m_dwAllocationAddUp;
+            memory_size_t dwAllocation = dwNewLength + m_dwAllocationAddUp;
             LPVOID lpVoid = Realloc(m_pbStorage, (SIZE_T) dwAllocation);
             if(lpVoid == NULL)
             {
@@ -176,7 +176,7 @@ namespace primitive
             }
             else
             {
-               memory_offset iOffset = (LPBYTE) lpVoid - m_pbStorage;
+               memory_offset_t iOffset = (LPBYTE) lpVoid - m_pbStorage;
                if(m_pcontainer != NULL)
                {
                   m_pcontainer->offset_kept_pointers(iOffset);
@@ -315,20 +315,20 @@ namespace primitive
 
    }
 
-   void shared_memory::set_data(void *pdata, memory_size uiSize)
+   void shared_memory::set_data(void *pdata, memory_size_t uiSize)
    {
       allocate(uiSize);
       memcpy(get_data(), pdata, (size_t) uiSize);
    }
    */
 
-   /*void shared_memory::To(string & str, memory_position iStart, memory_position iEnd)
+   /*void shared_memory::To(string & str, memory_position_t iStart, memory_position_t iEnd)
    {
       iStart = MAX(iStart, 0);
       if(iEnd == -1)
          iEnd = this->get_size() - 1;
       char * pch = (char *) get_data();
-      for(memory_position i = iStart; i <= iEnd; i++)
+      for(memory_position_t i = iStart; i <= iEnd; i++)
       {
          if(((pch[i] & 0xf0) >> 4) < 10)
             str += (char)(((pch[i] & 0xf0) >> 4) + '0');

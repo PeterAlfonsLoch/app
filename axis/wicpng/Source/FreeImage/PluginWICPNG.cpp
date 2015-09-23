@@ -399,7 +399,7 @@ Load(FreeImageIO *io,fi_handle handle,int page,int flags,void *data) {
 
    IStream * pstream = NULL;
 
-   ::primitive::memory mem;
+   memory mem;
 
    io->seek_proc(handle,0,SEEK_END);
 
@@ -968,7 +968,7 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 
 //   IStream * pstream = SHCreateMemStream(mem.get_data(),mem.get_size());
 
-   primitive::memory mem;
+   memory mem;
 
 //#ifdef WINDOWSEX
 //
@@ -1031,7 +1031,7 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 //   //pbitmap->Save(pstream,&encoderClsid,NULL);
 ////}
 //
-//::primitive::memory mem;
+//memory mem;
 //STATSTG stg;
 //ZERO(stg);
 //pstream->Stat(&stg,STATFLAG_NONAME);

@@ -6,6 +6,7 @@
 
 template < class ENUM >
 class flags :
+   virtual public ::object,
    virtual public ::file::serializable
 {
 public:
@@ -163,7 +164,7 @@ void flags_listener < ENUM > ::on_change_signalization(int32_t iEnum)
 
 template < class ENUM >
 class flags_ex :
-   public flags < ENUM >
+   virtual public flags < ENUM >
 {
 public:
 

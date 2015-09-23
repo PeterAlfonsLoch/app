@@ -64,7 +64,7 @@ service_base::~service_base()
 //      Name:           run
 //      Description:    Provides the main entry point for an executable that
 //                      contains a single service. Loads the service into
-//                      primitive::memory so it can be started. This method blocks until
+//                      memory so it can be started. This method blocks until
 //                      the service has stopped.
 //
 //*****************************************************************************

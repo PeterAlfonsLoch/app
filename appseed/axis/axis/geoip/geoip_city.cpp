@@ -220,7 +220,7 @@ int32_t GeoIP_init_record_iter (GeoIP* gi) {
 
 int32_t GeoIP_next_record (GeoIP* gi, GeoIPRecord **gir, int32_t *record_iter) {
    if (gi->cache != NULL) {
-      debug_print("GeoIP_next_record not supported in primitive::memory cache mode\n");
+      debug_print("GeoIP_next_record not supported in memory cache mode\n");
       return 1;
    }
    *gir = _extract_record(gi, *record_iter, record_iter);

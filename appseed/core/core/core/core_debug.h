@@ -31,27 +31,6 @@ uint_ptr __stdcall gen_TraceOpenProcess( uint32_t idProcess );
 void __stdcall gen_TraceCloseProcess( uint_ptr dwProcess );
 void __stdcall gen_TraceSnapshotProcess( uint_ptr dwProcess );
 
-/*uint_ptr __stdcall gen_TraceRegister(HINSTANCE hInst,
-   int32_t (__cdecl *fnCrtDbgReport)(int32_t,const char *,int32_t,const char *,const char *,va_list));
-bool __stdcall gen_TraceUnregister(uint_ptr dwModule);*/
-
-/*uint_ptr __stdcall gen_TraceRegisterCategoryA(uint_ptr dwModule, const CHAR szCategoryName[TRACE_MAX_NAME_SIZE]);
-uint_ptr __stdcall gen_TraceRegisterCategoryU(uint_ptr dwModule, const WCHAR szCategoryName[TRACE_MAX_NAME_SIZE]);*/
-
-/*bool __stdcall gen_TraceModifyProcess(uint_ptr dwProcess, UINT nLevel, bool bEnabled, bool bFuncAndCategoryNames, bool bFileNameAndLineNo);
-bool __stdcall gen_TraceModifyModule(uint_ptr dwProcess, uint_ptr dwModule, UINT nLevel, trace::e_status eStatus);
-bool __stdcall gen_TraceModifyCategory(uint_ptr dwProcess, uint_ptr dwCategory, UINT nLevel, TRACESTATUS eStatus);
-bool __stdcall gen_TraceGetProcess(uint_ptr dwProcess, UINT *pnLevel, bool *pbEnabled, bool *pbFuncAndCategoryNames, bool *pbFileNameAndLineNo);
-bool __stdcall gen_TraceGetModule(uint_ptr dwProcess, uint_ptr dwModule, UINT *pnLevel, TRACESTATUS *pStatus);
-bool __stdcall gen_TraceGetCategory(uint_ptr dwProcess, uint_ptr dwCategory, UINT *pnLevel, TRACESTATUS *pStatus);
-
-_INSECURE_DEPRECATE("ca_TraceGetUpdateEventNameA is unsafe. Instead use AtlTraceGetUpdateEventNameA_s") 
-void __stdcall gen_TraceGetUpdateEventNameA(CHAR *pszEventName);
-_INSECURE_DEPRECATE("ca_TraceGetUpdateEventNameU is unsafe. Instead use AtlTraceGetUpdateEventNameU_s") 
-void __stdcall gen_TraceGetUpdateEventNameU(WCHAR *pszEventName);
-
-void __stdcall gen_TraceGetUpdateEventNameA_s(CHAR *pszEventName, size_t cchEventName);
-void __stdcall gen_TraceGetUpdateEventNameU_s(WCHAR *pszEventName, size_t cchEventName);*/
 
 void __cdecl gen_TraceVA(uint_ptr dwModule, const char *pszFileName, int32_t nLineNo,
                   uint_ptr dwCategory, UINT nLevel, const CHAR *pszFormat, va_list ptr);

@@ -33,9 +33,9 @@
 #include "visual/visual.h"
 
 
-#ifdef WINDOWSEX
-
-
-CLASS_DECL_AURA int GetEncoderClsid(const WCHAR* format,CLSID* pClsid);
-
-#endif
+//#ifdef WINDOWSEX
+//
+//
+//CLASS_DECL_AURA int GetEncoderClsid(const WCHAR* format,CLSID* pClsid);
+//
+//#endif

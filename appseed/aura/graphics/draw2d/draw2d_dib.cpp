@@ -2535,7 +2535,7 @@ namespace draw2d
       else if(version == 1)*/
       {
 
-         primitive::memory mem;
+         memory mem;
 
          mem.allocate((iRadius * iRadius) + 4);
 
@@ -2999,7 +2999,7 @@ namespace draw2d
       if(iScan <= 0 || iHeight <= 0)
          return;
 
-      memset(get_data(), uch, (::primitive::memory_size) (iScan * iHeight));
+      memset(get_data(), uch, (memory_size_t) (iScan * iHeight));
 
    }
 
@@ -3550,7 +3550,7 @@ namespace draw2d
       }
       else
       {
-         ::primitive::memory mem;
+         memory mem;
          mem.allocate(wc *m_size.cy);
          ::draw2d::copy_colorref(m_size.cx,m_size.cy,(COLORREF *) mem.get_data(),m_iScan,get_data(),wc);
          ostream.write(mem.get_data(),wc * m_size.cy);
@@ -3587,7 +3587,7 @@ namespace draw2d
       }
       else
       {
-         ::primitive::memory mem;
+         memory mem;
          mem.allocate(wc *m_size.cy);
          istream.read(mem.get_data(),wc * m_size.cy);
          ::draw2d::copy_colorref(width,height,get_data(),m_iScan,(COLORREF *)mem.get_data(),wc);

@@ -239,12 +239,9 @@ namespace visual
 
 } // namespace visual
 
-namespace primitive
-{
 
-   class memory;
+class memory;
 
-} // namespace primitive
 
 //namespace plane
 //{
@@ -1544,9 +1541,9 @@ namespace std
    }
 
 
-   using streamsize = ::file_size;
-   using streampos = ::file_position;
-   using streamoff = ::file_offset;
+   using streamsize = file_size_t;
+   using streampos = file_position_t;
+   using streamoff = file_offset_t;
 
    using setw = ::file::set_width;
 

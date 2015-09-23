@@ -23,21 +23,21 @@ namespace file
    }
 
 
-   file_position edit_buffer::Item::get_position(bool bForward) { UNREFERENCED_PARAMETER(bForward); return m_dwPosition; };
+   file_position_t edit_buffer::Item::get_position(bool bForward) { UNREFERENCED_PARAMETER(bForward); return m_dwPosition; };
 
    BYTE * edit_buffer::Item::get_data() { return NULL; }
    edit_buffer::EItemType edit_buffer::Item::get_type() { return ItemTypeUndefined; }
-   ::primitive::memory_size edit_buffer::Item::get_extent() { return 0; }
-   ::primitive::memory_size edit_buffer::Item::get_file_extent() { return 0; }
+   memory_size_t edit_buffer::Item::get_extent() { return 0; }
+   memory_size_t edit_buffer::Item::get_file_extent() { return 0; }
    BYTE * edit_buffer::Item::reverse_get_data() { return NULL; }
    edit_buffer::EItemType edit_buffer::Item::reverse_get_type() { return ItemTypeUndefined; }
-   ::primitive::memory_size edit_buffer::Item::reverse_get_extent() { return 0; }
-   ::primitive::memory_size edit_buffer::Item::reverse_get_file_extent() { return 0; }
-   ::primitive::memory_size edit_buffer::Item::get_extent(bool bForward) { return bForward ? get_extent() : reverse_get_extent(); }
+   memory_size_t edit_buffer::Item::reverse_get_extent() { return 0; }
+   memory_size_t edit_buffer::Item::reverse_get_file_extent() { return 0; }
+   memory_size_t edit_buffer::Item::get_extent(bool bForward) { return bForward ? get_extent() : reverse_get_extent(); }
    edit_buffer::EItemType edit_buffer::Item::get_type(bool bForward) { return bForward ? get_type() : reverse_get_type(); }
-   ::primitive::memory_size edit_buffer::Item::get_file_extent(bool bForward) { return bForward ? get_file_extent() : reverse_get_file_extent(); }
+   memory_size_t edit_buffer::Item::get_file_extent(bool bForward) { return bForward ? get_file_extent() : reverse_get_file_extent(); }
    BYTE * edit_buffer::Item::get_data(bool bForward) { return bForward ? get_data() : reverse_get_data(); }
-   ::primitive::memory_offset edit_buffer::Item::get_delta_length()  { return 0; }
+   memory_offset_t edit_buffer::Item::get_delta_length()  { return 0; }
 
 
 
@@ -46,12 +46,12 @@ namespace file
       return ItemTypeDelete;
    }
 
-   ::primitive::memory_size edit_buffer::DeleteItem::get_extent()
+   memory_size_t edit_buffer::DeleteItem::get_extent()
    {
       return 0;
    }
 
-   ::primitive::memory_size edit_buffer::DeleteItem::get_file_extent()
+   memory_size_t edit_buffer::DeleteItem::get_file_extent()
    {
       return m_memstorage.get_size();
    }
@@ -66,12 +66,12 @@ namespace file
       return ItemTypeInsert;
    }
 
-   ::primitive::memory_size edit_buffer::DeleteItem::reverse_get_extent()
+   memory_size_t edit_buffer::DeleteItem::reverse_get_extent()
    {
       return m_memstorage.get_size();
    }
 
-   ::primitive::memory_size edit_buffer::DeleteItem::reverse_get_file_extent()
+   memory_size_t edit_buffer::DeleteItem::reverse_get_file_extent()
    {
       return 0;
    }
@@ -81,9 +81,9 @@ namespace file
       return m_memstorage.get_data();
    }
 
-   ::primitive::memory_offset edit_buffer::DeleteItem::get_delta_length()
+   memory_offset_t edit_buffer::DeleteItem::get_delta_length()
    {
-      return - (::primitive::memory_offset) m_memstorage.get_size();
+      return - (memory_offset_t) m_memstorage.get_size();
    }
 
    UINT edit_buffer::DeleteItem::read_ch(::file::edit_buffer * pfile)
@@ -125,12 +125,12 @@ namespace file
       return ItemTypeInsert;
    }
 
-   ::primitive::memory_size edit_buffer::InsertItem::get_extent()
+   memory_size_t edit_buffer::InsertItem::get_extent()
    {
       return m_memstorage.get_size();
    }
 
-   ::primitive::memory_size edit_buffer::InsertItem::get_file_extent()
+   memory_size_t edit_buffer::InsertItem::get_file_extent()
    {
       return 0;
    }
@@ -145,12 +145,12 @@ namespace file
       return ItemTypeDelete;
    }
 
-   ::primitive::memory_size edit_buffer::InsertItem::reverse_get_extent()
+   memory_size_t edit_buffer::InsertItem::reverse_get_extent()
    {
       return 0;
    }
 
-   ::primitive::memory_size edit_buffer::InsertItem::reverse_get_file_extent()
+   memory_size_t edit_buffer::InsertItem::reverse_get_file_extent()
    {
       return m_memstorage.get_size();
    }
@@ -160,9 +160,9 @@ namespace file
       return NULL;
    }
 
-   ::primitive::memory_offset edit_buffer::InsertItem::get_delta_length()
+   memory_offset_t edit_buffer::InsertItem::get_delta_length()
    {
-      return (::primitive::memory_offset) m_memstorage.get_size();
+      return (memory_offset_t) m_memstorage.get_size();
    }
 
 
@@ -207,12 +207,12 @@ namespace file
       return ItemTypeEdit;
    }
 
-   ::primitive::memory_size edit_buffer::EditItem::get_extent()
+   memory_size_t edit_buffer::EditItem::get_extent()
    {
       return m_memstorage.get_size();
    }
 
-   ::primitive::memory_size edit_buffer::EditItem::get_file_extent()
+   memory_size_t edit_buffer::EditItem::get_file_extent()
    {
       return get_extent();
    }
@@ -227,12 +227,12 @@ namespace file
       return ItemTypeEdit;
    }
 
-   ::primitive::memory_size edit_buffer::EditItem::reverse_get_extent()
+   memory_size_t edit_buffer::EditItem::reverse_get_extent()
    {
       return m_memstorageReverse.get_size();
    }
 
-   ::primitive::memory_size edit_buffer::EditItem::reverse_get_file_extent()
+   memory_size_t edit_buffer::EditItem::reverse_get_file_extent()
    {
       return get_extent();
    }
@@ -242,7 +242,7 @@ namespace file
       return m_memstorageReverse.get_data();
    }
 
-   ::primitive::memory_offset edit_buffer::EditItem::get_delta_length()
+   memory_offset_t edit_buffer::EditItem::get_delta_length()
    {
       return 0;
    }
@@ -263,12 +263,12 @@ namespace file
       return ItemTypeGroup;
    }
 
-   ::primitive::memory_size edit_buffer::GroupItem::get_extent()
+   memory_size_t edit_buffer::GroupItem::get_extent()
    {
       return 0;
    }
 
-   ::primitive::memory_size edit_buffer::GroupItem::get_file_extent()
+   memory_size_t edit_buffer::GroupItem::get_file_extent()
    {
       return 0;
    }
@@ -283,12 +283,12 @@ namespace file
       return ItemTypeGroup;
    }
 
-   ::primitive::memory_size edit_buffer::GroupItem::reverse_get_extent()
+   memory_size_t edit_buffer::GroupItem::reverse_get_extent()
    {
       return 0;
    }
 
-   ::primitive::memory_size edit_buffer::GroupItem::reverse_get_file_extent()
+   memory_size_t edit_buffer::GroupItem::reverse_get_file_extent()
    {
       return 0;
    }
@@ -298,9 +298,9 @@ namespace file
       return 0;
    }
 
-   ::primitive::memory_offset edit_buffer::GroupItem::get_delta_length()
+   memory_offset_t edit_buffer::GroupItem::get_delta_length()
    {
-      ::primitive::memory_offset iLen = 0;
+      memory_offset_t iLen = 0;
       for(int32_t i = 0; i < this->get_count(); i++)
       {
          iLen += this->element_at(i)->get_delta_length();
@@ -377,7 +377,7 @@ namespace file
    }
 
 
-   ::primitive::memory_size edit_buffer::read(void *lpBuf,::primitive::memory_size nCount)
+   memory_size_t edit_buffer::read(void *lpBuf,memory_size_t nCount)
    {
       byte * buf = (byte *)lpBuf;
       UINT uiRead = 0;
@@ -423,8 +423,8 @@ namespace file
          uiReadCount = 0;
          while(nCount > 0 && m_dwPosition < m_dwFileLength)
          {
-            m_pfile->seek((file_offset)m_dwPosition,::file::seek_begin);
-            uiReadCount = m_pfile->read(&buf[uiRead],MAX(0, MIN(m_dwFileLength - m_dwPosition, nCount)));
+            m_pfile->seek((file_offset_t)m_dwPosition,::file::seek_begin);
+            uiReadCount = m_pfile->read(&buf[uiRead],(memory_size_t) MAX(0, MIN(m_dwFileLength - m_dwPosition, nCount)));
             if(uiReadCount <= 0)
                break;
             nCount-=uiReadCount;
@@ -464,7 +464,7 @@ namespace file
 
    }
 
-   void edit_buffer::write(const void * lpBuf,::primitive::memory_size nCount)
+   void edit_buffer::write(const void * lpBuf,memory_size_t nCount)
    {
       EditItem * pedit;
       pedit = new EditItem;
@@ -475,7 +475,7 @@ namespace file
       m_dwPosition += nCount;
    }
 
-   void edit_buffer::Insert(const void * lpBuf,::primitive::memory_size nCount)
+   void edit_buffer::Insert(const void * lpBuf,memory_size_t nCount)
    {
       InsertItem * pinsert;
       pinsert = new InsertItem;
@@ -486,19 +486,19 @@ namespace file
       m_dwFileLength += nCount;
    }
 
-   void edit_buffer::Delete(::primitive::memory_size uiCount)
+   void edit_buffer::Delete(memory_size_t uiCount)
    {
 
       DeleteItem * pdelete;
 
-      uiCount = MIN(uiCount,(::primitive::memory_size) (get_length() - m_dwPosition));
+      uiCount = MIN(uiCount,(memory_size_t) (get_length() - m_dwPosition));
       if(uiCount == 0)
          return;
 
       pdelete = new DeleteItem;
       pdelete->m_dwPosition = m_dwPosition;
       pdelete->m_memstorage.allocate(uiCount);
-      seek((file_offset)m_dwPosition,::file::seek_begin);
+      seek((file_offset_t)m_dwPosition,::file::seek_begin);
       read(pdelete->m_memstorage.get_data(),uiCount);
       TreeInsert(pdelete);
       m_dwFileLength -= uiCount;
@@ -506,7 +506,7 @@ namespace file
    }
 
 
-   file_position edit_buffer::get_position() const
+   file_position_t edit_buffer::get_position() const
    {
       return m_dwPosition;
    }
@@ -516,18 +516,18 @@ namespace file
       return true;
    }
 
-   file_position edit_buffer::seek(file_offset lOff,::file::e_seek nFrom)
+   file_position_t edit_buffer::seek(file_offset_t lOff,::file::e_seek nFrom)
    {
       ASSERT(IsValid());
       ASSERT(nFrom == ::file::seek_begin || nFrom == ::file::seek_end || nFrom == ::file::seek_current);
       ASSERT(::file::seek_begin == FILE_BEGIN && ::file::seek_end == FILE_END && ::file::seek_current == FILE_CURRENT);
 
-      file_position dwNew = (uint32_t)-1;
+      file_position_t dwNew = (uint32_t)-1;
 
       switch(nFrom)
       {
       case ::file::seek_begin:
-         dwNew = (file_position)lOff;
+         dwNew = (file_position_t)lOff;
          break;
       case ::file::seek_end:
          dwNew = get_length() - lOff;
@@ -546,7 +546,7 @@ namespace file
 
          break;
       default:
-         return (file_position)-1;
+         return (file_position_t)-1;
       }
 
       m_dwPosition = dwNew;
@@ -555,7 +555,7 @@ namespace file
    }
 
 
-   file_size edit_buffer::get_length() const
+   file_size_t edit_buffer::get_length() const
    {
       return m_dwFileLength;
    }
@@ -577,7 +577,7 @@ namespace file
       Save(*spfile);
 
       char buf[4096];
-      primitive::memory_size uiRead;
+      memory_size_t uiRead;
       m_pfile->set_length(0);
       spfile->seek(0,::file::seek_begin);
       while((uiRead = spfile->read(buf,sizeof(buf))) > 0)
@@ -592,7 +592,7 @@ namespace file
    bool edit_buffer::SaveTo(::file::ostream & ostream)
    {
       char buf[4096];
-      primitive::memory_size uiRead;
+      memory_size_t uiRead;
       seek(0,::file::seek_begin);
       while((uiRead = read(buf,sizeof(buf))) > 0)
       {
@@ -606,7 +606,7 @@ namespace file
    bool edit_buffer::Save(::file::stream_buffer & file)
    {
       char buf[4096];
-      primitive::memory_size uiRead;
+      memory_size_t uiRead;
       file.set_length(0);
       seek(0,::file::seek_begin);
       while((uiRead = read(buf,sizeof(buf))) > 0)
@@ -622,7 +622,7 @@ namespace file
    {
       char buf[4096];
       string str;
-      primitive::memory_size uiRead;
+      memory_size_t uiRead;
       file.set_length(0);
       seek(0,::file::seek_begin);
       while((uiRead = read(buf,sizeof(buf))) > 0)

@@ -21,7 +21,7 @@
 #ifndef AVUTIL_BASE64_H
 #define AVUTIL_BASE64_H
 
-#include <stdint.h>
+#include "_stdint.h"
 
 /**
  * @defgroup lavu_base64 Base64

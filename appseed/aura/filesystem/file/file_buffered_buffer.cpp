@@ -5,7 +5,7 @@ namespace file
 {
 
 
-   buffered_buffer::buffered_buffer(::aura::application * papp, ::file::buffer_sp pfile, ::primitive::memory_size iBufferSize) :
+   buffered_buffer::buffered_buffer(::aura::application * papp, ::file::buffer_sp pfile, memory_size_t iBufferSize) :
       object(papp)
    {
       m_storage.allocate(iBufferSize);
@@ -63,7 +63,7 @@ namespace file
    {
    }*/
 
-   file_position buffered_buffer::seek(file_offset lOff, ::file::e_seek nFrom)
+   file_position_t buffered_buffer::seek(file_offset_t lOff, ::file::e_seek nFrom)
    {
       uint64_t uiBegBufPosition = m_uiBufLPos;
       uint64_t uiEndBufPosition = m_uiBufUPos;
@@ -85,7 +85,7 @@ namespace file
          int64_t iNewPos = m_uiPosition + lOff;
          if(iNewPos < 0)
             iNewPos = 0;
-         else if(iNewPos > m_pfile->get_length())
+         else if(::compare::gt(iNewPos, m_pfile->get_length()))
             iNewPos = m_pfile->get_length();
          uiNewPos = iNewPos;
       }
@@ -112,12 +112,12 @@ namespace file
       return m_uiPosition;
    }
 
-   file_position buffered_buffer::get_position() const
+   file_position_t buffered_buffer::get_position() const
    {
       return m_uiPosition;
    }
 
-   file_size buffered_buffer::get_length() const
+   file_size_t buffered_buffer::get_length() const
    {
       return m_pfile->get_length();
    }
@@ -132,17 +132,17 @@ namespace file
       m_pfile->clear();
    }*/
 
-   ::primitive::memory_size buffered_buffer:: read(void *lpBufParam, ::primitive::memory_size nCount)
+   memory_size_t buffered_buffer:: read(void *lpBufParam, memory_size_t nCount)
    {
       if(nCount == 0)
          return 0;
-      ::primitive::memory_size uiRead = 0;
-      ::primitive::memory_size uiReadNow = 0;
+      memory_size_t uiRead = 0;
+      memory_size_t uiReadNow = 0;
       while(uiRead < nCount)
       {
          if(m_uiPosition >= m_uiBufLPos && m_uiPosition <= m_uiBufUPos && m_uiBufUPos != 0xFFFFFFFF)
          {
-            uiReadNow = MIN(nCount - uiRead, (::primitive::memory_size) (m_uiBufUPos - m_uiPosition + 1));
+            uiReadNow = MIN(nCount - uiRead, (memory_size_t) (m_uiBufUPos - m_uiPosition + 1));
             if(nCount == 1)
             {
                ((LPBYTE)lpBufParam)[uiRead] = m_storage.get_data()[m_uiPosition - m_uiBufLPos];
@@ -163,7 +163,7 @@ namespace file
       return uiRead;
    }
 
-   bool buffered_buffer::buffer(::primitive::memory_size uiGrow)
+   bool buffered_buffer::buffer(memory_size_t uiGrow)
    {
       if(m_bDirty)
       {
@@ -171,13 +171,13 @@ namespace file
       }
       //if(uiGrow == 0 && m_uiPosition > m_pfile->get_length())
         // return false;
-      m_pfile->seek((file_offset) m_uiPosition, seek_begin);
-      ::primitive::memory_size uiCopy;
+      m_pfile->seek((file_offset_t) m_uiPosition, seek_begin);
+      memory_size_t uiCopy;
       if(uiGrow > 0)
          uiCopy = MIN(m_uiBufferSize, uiGrow);
       else
          uiCopy = m_uiBufferSize;
-      ::primitive::memory_size uiRead    = m_pfile->read(m_storage.get_data(), uiCopy);
+      memory_size_t uiRead    = m_pfile->read(m_storage.get_data(), uiCopy);
       m_uiBufLPos     = m_uiPosition;
       m_uiBufUPos     = m_uiPosition + uiRead - 1;
       m_uiWriteLPos   = 0xffffffff;
@@ -186,16 +186,16 @@ namespace file
    }
 
 
-   void buffered_buffer::write(const void * lpBuf, ::primitive::memory_size nCount)
+   void buffered_buffer::write(const void * lpBuf, memory_size_t nCount)
    {
-      ::primitive::memory_size uiWrite = 0;
-      ::primitive::memory_size uiWriteNow = 0;
+      memory_size_t uiWrite = 0;
+      memory_size_t uiWriteNow = 0;
       while(uiWrite < nCount)
       {
          if(m_uiPosition >= m_uiBufLPos && m_uiPosition < (m_uiBufLPos + m_uiBufferSize))
          {
             m_bDirty = true;
-            uiWriteNow = MIN(nCount - uiWrite, (::primitive::memory_size) ((m_uiBufLPos + m_uiBufferSize) - m_uiPosition + 1));
+            uiWriteNow = MIN(nCount - uiWrite, (memory_size_t) ((m_uiBufLPos + m_uiBufferSize) - m_uiPosition + 1));
             if(m_uiWriteLPos == 0xffffffff || m_uiWriteLPos > m_uiPosition)
                m_uiWriteLPos = m_uiPosition;
             if(m_uiWriteUPos == 0xffffffff || m_uiWriteUPos < (m_uiPosition + uiWriteNow - 1))
@@ -215,8 +215,8 @@ namespace file
    {
       if(m_bDirty)
       {
-         m_pfile->seek((file_offset) m_uiWriteLPos, seek_begin);
-         m_pfile->write(&m_storage.get_data()[m_uiWriteLPos - m_uiBufLPos], (::primitive::memory_size) (m_uiWriteUPos - m_uiWriteLPos + 1));
+         m_pfile->seek((file_offset_t) m_uiWriteLPos, seek_begin);
+         m_pfile->write(&m_storage.get_data()[m_uiWriteLPos - m_uiBufLPos], (memory_size_t) (m_uiWriteUPos - m_uiWriteLPos + 1));
          m_bDirty = false;
          m_uiWriteLPos = 0xffffffff;
          m_uiWriteUPos = 0xffffffff;
@@ -224,7 +224,7 @@ namespace file
    }
 
 
-   void buffered_buffer::set_length(file_size dwNewLen)
+   void buffered_buffer::set_length(file_size_t dwNewLen)
    {
       m_pfile->set_length(dwNewLen);
    }

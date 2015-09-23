@@ -21,7 +21,7 @@
 #ifndef AVUTIL_HMAC_H
 #define AVUTIL_HMAC_H
 
-#include <stdint.h>
+#include "_stdint.h"
 
 /**
  * @defgroup lavu_hmac HMAC

@@ -28,7 +28,7 @@
 #ifndef AVUTIL_RATIONAL_H
 #define AVUTIL_RATIONAL_H
 
-#include <stdint.h>
+#include "_stdint.h"
 #include <limits.h>
 #include "attributes.h"
 

@@ -3,7 +3,7 @@
 
  //Pasta de Z:\ca2\app\axis\crypto\crypto\aes
 
-#if !defined(_M_X64) && !defined(_LP64)
+#if defined(OPENSSL_NO_ASM)
 #include "aes_cbc.c"
 #endif
 #include "aes_cfb.c"

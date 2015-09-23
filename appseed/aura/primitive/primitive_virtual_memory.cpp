@@ -12,7 +12,7 @@ namespace primitive
       m_pbComputed = NULL;
    }
 
-   virtual_memory::virtual_memory(const void * pdata, memory_size iCount)
+   virtual_memory::virtual_memory(const void * pdata, memory_size_t iCount)
    {
       m_pbStorage = NULL;
       m_pbComputed = NULL;
@@ -33,7 +33,7 @@ namespace primitive
       from_string(psz);
    }
 
-   virtual_memory::virtual_memory(primitive::memory_container * pcontainer, void * pmemory, memory_size dwSize) :
+   virtual_memory::virtual_memory(primitive::memory_container * pcontainer, void * pmemory, memory_size_t dwSize) :
       object(pcontainer->get_app())
    {
       m_pbStorage          = NULL;
@@ -44,7 +44,7 @@ namespace primitive
    }
 
 
-   virtual_memory::virtual_memory(primitive::memory_container * pcontainer, memory_size dwAllocationAddUp, UINT nAllocFlags)
+   virtual_memory::virtual_memory(primitive::memory_container * pcontainer, memory_size_t dwAllocationAddUp, UINT nAllocFlags)
    {
       UNREFERENCED_PARAMETER(nAllocFlags);
       m_pbStorage          = NULL;
@@ -82,7 +82,7 @@ namespace primitive
    }
 
 
-   bool virtual_memory::allocate_internal(memory_size dwNewLength)
+   bool virtual_memory::allocate_internal(memory_size_t dwNewLength)
    {
       if(!is_enabled())
       {
@@ -100,7 +100,7 @@ namespace primitive
       if(m_pbStorage == NULL)
       {
          m_iOffset = 0;
-         memory_size dwAllocation = dwNewLength + m_dwAllocationAddUp;
+         memory_size_t dwAllocation = dwNewLength + m_dwAllocationAddUp;
          m_pbStorage = (LPBYTE) ::MidAlloc((size_t) dwAllocation);
          if(m_pbStorage == NULL)
          {
@@ -123,7 +123,7 @@ namespace primitive
          if(m_iOffset > 0)
          {
             m_iOffset = 0;
-            memory_size dwAllocation = dwNewLength + m_dwAllocationAddUp;
+            memory_size_t dwAllocation = dwNewLength + m_dwAllocationAddUp;
             LPVOID lpVoid = ::MidAlloc(dwAllocation);
             if(lpVoid == NULL)
             {
@@ -132,7 +132,7 @@ namespace primitive
             else
             {
                memcpy(lpVoid, m_pbComputed, m_cbStorage);
-               memory_size iOffset = (LPBYTE) lpVoid - m_pbStorage;
+               memory_size_t iOffset = (LPBYTE) lpVoid - m_pbStorage;
                if(m_pcontainer != NULL)
                {
                   m_pcontainer->offset_kept_pointers(iOffset);
@@ -147,7 +147,7 @@ namespace primitive
          }
          else if(dwNewLength > m_dwAllocation)
          {
-            memory_size dwAllocation = dwNewLength + m_dwAllocationAddUp;
+            memory_size_t dwAllocation = dwNewLength + m_dwAllocationAddUp;
             LPVOID lpVoid = ::MidRealloc(m_pbStorage, m_dwAllocation, (size_t) dwAllocation);
             if(lpVoid == NULL)
             {
@@ -155,7 +155,7 @@ namespace primitive
             }
             else
             {
-               memory_size iOffset = (LPBYTE) lpVoid - m_pbStorage;
+               memory_size_t iOffset = (LPBYTE) lpVoid - m_pbStorage;
                if(m_pcontainer != NULL)
                {
                   m_pcontainer->offset_kept_pointers(iOffset);

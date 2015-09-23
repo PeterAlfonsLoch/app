@@ -45,10 +45,10 @@ bzip_stream::~bzip_stream()
 {
 }
 
-void bzip_stream::write(const void * buf,::primitive::memory_size len)
+void bzip_stream::write(const void * buf,memory_size_t len)
 {
 
-   ::primitive::memory_size n,n2,ret;
+   memory_size_t n,n2,ret;
 
    m_z_err = BZ_OK;
 

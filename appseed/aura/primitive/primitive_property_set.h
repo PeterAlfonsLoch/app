@@ -520,7 +520,7 @@ inline var var::operator[] (var varKey) const
 {
    if(varKey.is_integer())
    {
-      return at(varKey.int64());
+      return at((index)varKey.int64());
    }
    else
    {
@@ -532,7 +532,7 @@ inline var var::operator[] (var varKey)
 {
    if(varKey.is_integer())
    {
-      return at(varKey.int64());
+      return at((index)varKey.int64());
    }
    else
    {
@@ -560,7 +560,7 @@ inline var var::operator[] (id idKey)
 {
    if(idKey.m_etype == id::type_integer)
    {
-      return at(idKey.m_i);
+      return at((index) idKey.m_i);
    }
    else
    {
@@ -572,7 +572,7 @@ inline var var::operator[] (id idKey) const
 {
    if(idKey.m_etype == id::type_integer)
    {
-      return at(idKey.m_i);
+      return at((index) idKey.m_i);
    }
    else
    {

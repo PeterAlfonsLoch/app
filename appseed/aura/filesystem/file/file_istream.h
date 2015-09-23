@@ -19,7 +19,7 @@ namespace file
    public:
 
 
-      ::primitive::memory_size   m_gcount;
+      memory_size_t   m_gcount;
 
 
       istream();
@@ -29,8 +29,8 @@ namespace file
 
 
 
-      virtual ::primitive::memory_size read(void *lpBuf, ::primitive::memory_size nCount);
-      virtual void full_read(void *lpBuf, ::primitive::memory_size nCount);
+      virtual memory_size_t read(void *lpBuf, memory_size_t nCount);
+      virtual void full_read(void *lpBuf, memory_size_t nCount);
       template < typename TYPE >
       void full_fill(TYPE & t)
       {
@@ -43,7 +43,7 @@ namespace file
       virtual bool is_reader_null();
       virtual bool is_reader_set();
 
-      virtual void read_to_hex(string & str, file_position iStart = -1, file_position iEnd = -1);
+      virtual void read_to_hex(string & str, file_position_t iStart = -1, file_position_t iEnd = -1);
 
 
       inline istream & operator >> (bool            & b               ) { read(b              ); return *this; }
@@ -86,7 +86,7 @@ namespace file
       virtual void read (unichar & wch);
 #endif
       virtual void read (int16_t & sh);
-      virtual void read (uint16_t & uint16_t);
+      virtual void read (uint16_t & ui);
       virtual void read (int32_t & i);
       virtual void read (uint32_t & ui);
       virtual void read (int64_t & i);
@@ -109,12 +109,12 @@ namespace file
       virtual int get();
       virtual int peek();
 
-      ::primitive::memory_size gcount() { return m_gcount; }
-      ::file_position tellg() { return m_spbuffer->tell(); }
-      istream & seekg(file_position position) { m_spbuffer->seek_from_begin(position); return *this; }
-      istream & seekg(file_offset offset, e_seek eseek) { m_spbuffer->seek(offset, eseek); return *this; }
+      memory_size_t gcount() { return m_gcount; }
+      file_position_t tellg() { return m_spbuffer->tell(); }
+      istream & seekg(file_position_t position) { m_spbuffer->seek_from_begin(position); return *this; }
+      istream & seekg(file_offset_t offset, e_seek eseek) { m_spbuffer->seek(offset, eseek); return *this; }
 
-      ::file_size get_left() { return m_spbuffer->get_length() - m_spbuffer->get_position(); }
+      file_size_t get_left() { return m_spbuffer->get_length() - m_spbuffer->get_position(); }
 
    };
 

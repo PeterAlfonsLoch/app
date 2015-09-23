@@ -19,7 +19,7 @@
 #ifndef AVCODEC_DV_PROFILE_H
 #define AVCODEC_DV_PROFILE_H
 
-#include <stdint.h>
+#include "_stdint.h"
 
 #include "libavutil/pixfmt.h"
 #include "libavutil/rational.h"

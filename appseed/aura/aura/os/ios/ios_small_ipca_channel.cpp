@@ -63,7 +63,7 @@ namespace aura
          
          ::count cSend;
          
-         primitive::memory m;
+         memory m;
          
          m.assign(pszMessage, c);
          
@@ -100,7 +100,7 @@ namespace aura
          if(!is_tx_ok())
             return false;
          
-         ::primitive::memory m(pdata, len);
+         memory m(pdata, len);
          
          ::count c = len;
          
@@ -158,7 +158,7 @@ namespace aura
          if(messageID == 0x80000000)
          {
             
-            ::primitive::memory m;
+            memory m;
             
             m.set_os_cf_data(data);
             
@@ -168,7 +168,7 @@ namespace aura
          else
          {
             
-            ::primitive::memory m;
+            memory m;
             
             m.set_os_cf_data(data);
             
@@ -349,7 +349,7 @@ namespace aura
          //            /* The length is essentially the size of the structure minus sizeof(mtype) */
          //            length = sizeof(data) - sizeof(data.message);
          //
-         //            ::primitive::memory mem;
+         //            memory mem;
          //
          //            do
          //            {

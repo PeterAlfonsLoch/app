@@ -29,7 +29,7 @@
 #include <string.h>
 
 #ifdef HAVE_STDINT_H
-#include <stdint.h>
+#include "_stdint.h"
 #endif
 
 #include <winpr/crt.h>

@@ -19,7 +19,7 @@ ifs_file::~ifs_file()
 }
 
 
-::primitive::memory_size ifs_file::read(void *lpBuf, ::primitive::memory_size nCount)
+memory_size_t ifs_file::read(void *lpBuf, memory_size_t nCount)
 {
 
    return m_httpfile->read(lpBuf, nCount);
@@ -27,7 +27,7 @@ ifs_file::~ifs_file()
 }
 
 
-void ifs_file::write(const void * lpBuf, ::primitive::memory_size nCount)
+void ifs_file::write(const void * lpBuf, memory_size_t nCount)
 {
 
    m_memfile.write(lpBuf, nCount);
@@ -35,7 +35,7 @@ void ifs_file::write(const void * lpBuf, ::primitive::memory_size nCount)
 }
 
 
-file_size ifs_file::get_length() const
+file_size_t ifs_file::get_length() const
 {
    if((m_nOpenFlags & ::file::mode_read) != 0)
    {
@@ -47,7 +47,7 @@ file_size ifs_file::get_length() const
    }
 }
 
-file_position ifs_file::seek(file_offset lOff, ::file::e_seek nFrom)
+file_position_t ifs_file::seek(file_offset_t lOff, ::file::e_seek nFrom)
 {
    if((m_nOpenFlags & ::file::mode_read) != 0)
    {

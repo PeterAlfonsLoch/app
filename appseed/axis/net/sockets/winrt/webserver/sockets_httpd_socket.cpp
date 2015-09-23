@@ -47,7 +47,7 @@ namespace sockets
       }
       else*/
       {
-         primitive::memory mem;
+         memory mem;
          System.base64().decode(mem, str64);
          m_response.attr("http_status_code") = 200;
          m_response.attr("http_status") = "OK";

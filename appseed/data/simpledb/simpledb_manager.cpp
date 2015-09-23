@@ -42,7 +42,7 @@ namespace simpledb
 
    bool manager::handle(socket * psocket)
    {
-      primitive::memory memory;
+      memory memory;
       if(!get_output_internal(psocket->inattr("request_uri"), memory))
       {
          string strError;
@@ -55,7 +55,7 @@ namespace simpledb
       return true;
    }
 
-   bool manager::get_output_internal(const char * pszCommand, primitive::memory & memory)
+   bool manager::get_output_internal(const char * pszCommand, memory & memory)
    {
       UNREFERENCED_PARAMETER(pszCommand);
       UNREFERENCED_PARAMETER(memory);

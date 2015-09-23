@@ -29,7 +29,7 @@ SRegInfo::~SRegInfo()
       delete un.charclass;
       break;
     case ReWord:
-      delete un.uint16_t;
+      delete un.ui;
       break;
     case ReSymb:
       delete un.symbol;
@@ -158,7 +158,7 @@ SRegInfo *next = tree_root;
       break;
     };
     if (next->op == ReWord){
-      firstChar = (*next->un.uint16_t)[0];
+      firstChar = (*next->un.ui)[0];
     }
     break;
   };
@@ -528,7 +528,7 @@ SRegInfo *next, *temp;
         if (idx > 0) delete retmp;
       }
       reword->op = ReWord;
-      wcword.implode(*reword->un.uint16_t);
+      wcword.implode(*reword->un.ui);
       reword->next = reafterword;
       if (reafterword)
          reafterword->prev = reword;
@@ -777,17 +777,17 @@ const string pattern = global_pattern;
         if (!checkMetaSymbol(re->un.metaSymbol, toParse)) return false;
         break;
       case ReWord:
-        wlen = re->un.uint16_t->get_length();
+        wlen = re->un.ui->get_length();
         if (toParse+wlen > end) return false;
         if (ignoreCase)
         {
            string strAnalyze = pattern.Mid(toParse, wlen);
-            if(strAnalyze.CompareNoCase(*re->un.uint16_t))
+            if(strAnalyze.CompareNoCase(*re->un.ui))
                return false;
           toParse += wlen;
         }else{
           for(i = 0; i < wlen; i++){
-            if(((const char *)pattern)[toParse+i] != (*re->un.uint16_t)[i]) return false;
+            if(((const char *)pattern)[toParse+i] != (*re->un.ui)[i]) return false;
           };
           toParse += wlen;
         }

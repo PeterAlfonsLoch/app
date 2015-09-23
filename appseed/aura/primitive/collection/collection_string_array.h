@@ -111,7 +111,7 @@ public:
    void insert_empty(index nIndex, ::count c);
 
 
-   primitive::memory GetFormatV004();
+   class ::memory GetFormatV004();
    ::count remove_empty();
    index add_normal(const char * lpcsz);
    void trim_right(const char * pszChars);

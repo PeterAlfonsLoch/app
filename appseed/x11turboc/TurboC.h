@@ -70,7 +70,7 @@
 #include <signal.h>
 //#if defined(linux)
 //#include <endian.h>
-//#include <stdint.h>
+//#include "_stdint.h"
 //#elif defined(__FreeBSD__) || defined(__APPLE__)
 //#include <machine/endian.h>
 //#include <inttypes.h>

@@ -17,12 +17,12 @@ namespace primitive
 
       sp(memory_base)                        m_spmemory;
       ptr_array < void * > *                 m_pvppa;
-      memory_size                            m_dwAllocationAddUp;
+      memory_size_t                            m_dwAllocationAddUp;
 
    public:
 
       memory_container(::aura::application * papp);
-      memory_container(::aura::application * papp, void * pMemory, memory_size dwSize);
+      memory_container(::aura::application * papp, void * pMemory, memory_size_t dwSize);
       memory_container(::aura::application * papp, memory_base * pmemory);
       memory_container(const memory_container & container);
       virtual ~memory_container();
@@ -30,14 +30,14 @@ namespace primitive
 
       
 
-      void allocate_add_up(memory_size dwAddUp);
-      void allocate(memory_size dwNewLength);
-      void allocate_internal(memory_size dwNewLength);
+      void allocate_add_up(memory_size_t dwAddUp);
+      void allocate(memory_size_t dwNewLength);
+      void allocate_internal(memory_size_t dwNewLength);
 
       virtual memory_base * create_memory();
       memory_base * get_memory();
 
-      memory_size get_size() const;
+      memory_size_t get_size() const;
 
       void from_string(const unichar * pwsz);
       void from_string(const char * psz);
@@ -49,7 +49,7 @@ namespace primitive
       void read(::file::istream & is);
 
       void keep_pointer(void **ppvoid);
-      void offset_kept_pointers(memory_offset iOffset);
+      void offset_kept_pointers(memory_offset_t iOffset);
 
       LPBYTE get_data();
       const LPBYTE get_data() const;
@@ -110,7 +110,7 @@ namespace primitive
 
    }
 
-   inline memory_size memory_container ::get_size() const
+   inline memory_size_t memory_container ::get_size() const
    {
       return m_spmemory.is_set() ? m_spmemory->get_size() : 0;
    }

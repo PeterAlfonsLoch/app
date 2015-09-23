@@ -1755,7 +1755,7 @@ namespace user
 
       ::exception::throw_interface_only(get_app());
 
-      return -1;
+      return false;
 
    }
 

@@ -154,9 +154,9 @@ have stdint.h (e.g. Solaris) may have inttypes.h. The macro int64_t may be set
 by "configure". */
 
 #if defined HAVE_STDINT_H
-#include <stdint.h>
+#include "_stdint.h"
 #elif defined HAVE_INTTYPES_H
-#include <inttypes.h>
+#include "_inttypes.h"
 #endif
 
 #if defined INT64_MAX || defined int64_t

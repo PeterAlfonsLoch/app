@@ -691,10 +691,10 @@ LOCAL(void)
 do_sarray_io (j_common_ptr cinfo, jvirt_sarray_ptr ptr, boolean writing)
 /* Do backing store read or write of a virtual sample array */
 {
-  long bytesperrow, file_offset, byte_count, rows, thisrow, i;
+  long bytesperrow, file_offset_t, byte_count, rows, thisrow, i;
 
   bytesperrow = (long) ptr->samplesperrow * SIZEOF(JSAMPLE);
-  file_offset = ptr->cur_start_row * bytesperrow;
+  file_offset_t = ptr->cur_start_row * bytesperrow;
   /* Loop to read or write each allocation chunk in mem_buffer */
   for (i = 0; i < (long) ptr->rows_in_mem; i += ptr->rowsperchunk) {
     /* One chunk, but check for short chunk at end of buffer */
@@ -710,12 +710,12 @@ do_sarray_io (j_common_ptr cinfo, jvirt_sarray_ptr ptr, boolean writing)
     if (writing)
       (*ptr->b_s_info.write_backing_store) (cinfo, & ptr->b_s_info,
 					    (void FAR *) ptr->mem_buffer[i],
-					    file_offset, byte_count);
+					    file_offset_t, byte_count);
     else
       (*ptr->b_s_info.read_backing_store) (cinfo, & ptr->b_s_info,
 					   (void FAR *) ptr->mem_buffer[i],
-					   file_offset, byte_count);
-    file_offset += byte_count;
+					   file_offset_t, byte_count);
+    file_offset_t += byte_count;
   }
 }
 
@@ -724,10 +724,10 @@ LOCAL(void)
 do_barray_io (j_common_ptr cinfo, jvirt_barray_ptr ptr, boolean writing)
 /* Do backing store read or write of a virtual coefficient-block array */
 {
-  long bytesperrow, file_offset, byte_count, rows, thisrow, i;
+  long bytesperrow, file_offset_t, byte_count, rows, thisrow, i;
 
   bytesperrow = (long) ptr->blocksperrow * SIZEOF(JBLOCK);
-  file_offset = ptr->cur_start_row * bytesperrow;
+  file_offset_t = ptr->cur_start_row * bytesperrow;
   /* Loop to read or write each allocation chunk in mem_buffer */
   for (i = 0; i < (long) ptr->rows_in_mem; i += ptr->rowsperchunk) {
     /* One chunk, but check for short chunk at end of buffer */
@@ -743,12 +743,12 @@ do_barray_io (j_common_ptr cinfo, jvirt_barray_ptr ptr, boolean writing)
     if (writing)
       (*ptr->b_s_info.write_backing_store) (cinfo, & ptr->b_s_info,
 					    (void FAR *) ptr->mem_buffer[i],
-					    file_offset, byte_count);
+					    file_offset_t, byte_count);
     else
       (*ptr->b_s_info.read_backing_store) (cinfo, & ptr->b_s_info,
 					   (void FAR *) ptr->mem_buffer[i],
-					   file_offset, byte_count);
-    file_offset += byte_count;
+					   file_offset_t, byte_count);
+    file_offset_t += byte_count;
   }
 }
 

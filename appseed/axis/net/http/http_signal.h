@@ -11,7 +11,7 @@ namespace http
    public:
 
 
-      primitive::memory          m_memoryRet;
+      memory          m_memoryRet;
       e_status                   m_estatusRet;
 
 

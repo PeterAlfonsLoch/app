@@ -26,7 +26,7 @@
 #ifndef AVUTIL_BSWAP_H
 #define AVUTIL_BSWAP_H
 
-#include <stdint.h>
+#include "_stdint.h"
 #include "libavutil/avconfig.h"
 #include "attributes.h"
 

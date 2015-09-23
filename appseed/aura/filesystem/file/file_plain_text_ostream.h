@@ -25,7 +25,7 @@ namespace file
       virtual void write (unichar wch);
 #endif
       virtual void write (int16_t sh);
-      virtual void write (uint16_t uint16_t);
+      virtual void write (uint16_t ui);
       virtual void write (int32_t i);
       virtual void write (uint32_t ui);
       virtual void write (int64_t i);

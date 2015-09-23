@@ -581,7 +581,7 @@ void memory_free(void * pvoid)
 }
 
 
-size_t memory_size(void * pvoid)
+size_t memory_size_t(void * pvoid)
 {
 #ifdef WINDOWS
    return _msize(pvoid);

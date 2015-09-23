@@ -65,8 +65,8 @@ inline string & to_string(string & str, MD5_CTX & ctx)
 
 
 
-//CLASS_DECL_AXIS bool hex_to_memory(primitive::memory & memory, const char * pszHex);
-//CLASS_DECL_AXIS void memory_to_hex(string & strHex, primitive::memory & memory);
+//CLASS_DECL_AXIS bool hex_to_memory(memory & memory, const char * pszHex);
+//CLASS_DECL_AXIS void memory_to_hex(string & strHex, memory & memory);
 
 
 

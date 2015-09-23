@@ -163,7 +163,7 @@ UINT lite_html_tag::parseFromStr(::lite_html_reader * preader, const string & st
          // instantiate collection ...
          if ((pcollAttr = new LiteHTMLAttributes) == NULL)
          {
-//            TRACE0("(Error) lite_html_tag::parseFromStr: Out of primitive::memory.\n");
+//            TRACE0("(Error) lite_html_tag::parseFromStr: Out of memory.\n");
             throw memory_exception(get_thread_app());
             return (0U);
          }

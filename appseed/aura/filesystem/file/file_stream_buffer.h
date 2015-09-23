@@ -57,8 +57,8 @@ namespace file
       virtual ~stream_buffer();
 
 
-      virtual file_position get_position() const;
-      virtual file_position tell() const;
+      virtual file_position_t get_position() const;
+      virtual file_position_t tell() const;
       virtual bool GetStatus(file_status& rStatus) const;
       virtual string GetFileName() const;
       virtual string GetFileTitle() const;
@@ -74,23 +74,23 @@ namespace file
 
       virtual ::file::buffer_sp  Duplicate() const;
 
-      virtual file_position seek(file_offset lOff, ::file::e_seek  nFrom);
-      virtual file_position seek_from_begin(file_position lPos);
-      virtual void set_length(file_size dwNewLen);
-      virtual file_size get_length() const;
+      virtual file_position_t seek(file_offset_t lOff, ::file::e_seek  nFrom);
+      virtual file_position_t seek_from_begin(file_position_t lPos);
+      virtual void set_length(file_size_t dwNewLen);
+      virtual file_size_t get_length() const;
 
-      virtual void LockRange(file_position dwPos, file_size dwCount);
-      virtual void UnlockRange(file_position dwPos, file_size dwCount);
+      virtual void LockRange(file_position_t dwPos, file_size_t dwCount);
+      virtual void UnlockRange(file_position_t dwPos, file_size_t dwCount);
 
       virtual void Abort();
       virtual void flush();
       virtual void close();
 
 
-      virtual ::primitive::memory_size read(void *lpBuf, ::primitive::memory_size nCount);
-      virtual bool full_read(void *lpBuf, ::primitive::memory_size nCount);
-      virtual void write_from_hex(const void * lpBuf,::primitive::memory_size nCount);
-      virtual void write(const void * lpBuf, ::primitive::memory_size nCount);
+      virtual memory_size_t read(void *lpBuf, memory_size_t nCount);
+      virtual bool full_read(void *lpBuf, memory_size_t nCount);
+      virtual void write_from_hex(const void * lpBuf,memory_size_t nCount);
+      virtual void write(const void * lpBuf, memory_size_t nCount);
       virtual string get_location() const;
 
 
@@ -127,7 +127,7 @@ namespace file
       void writef(const char *format, ...);
 
       /** Common interface for write used by Tcp and Udp sockets. */
-//      virtual void write(const void *, primitive::memory_size c);
+//      virtual void write(const void *, memory_size_t c);
 
       /** Common interface for Send used by Tcp and Udp sockets. */
       virtual void write(const string &);

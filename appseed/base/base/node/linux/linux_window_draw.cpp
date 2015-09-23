@@ -1124,7 +1124,7 @@ throw not_implemented(get_app());
    /*
 
    bool window_draw::ScreenOutput(
-      // pdc is the source primitive::memory device context
+      // pdc is the source memory device context
       // from which bitmap the screen is updated.
       user::buffer * pbuffer,
       // hwndParam ::user::interaction_impl device context

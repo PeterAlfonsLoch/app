@@ -4262,7 +4262,7 @@ namespace draw2d
                   int A = (dib->m_pcolorref[x + dib->m_iScan * y / sizeof(COLORREF)] >> 24) & 0xff;
                   double fy = 1.0 - fmod(fabs(dy),1.0);
                   double fx = 1.0 - fmod(fabs(dx),1.0);
-                  A = (A + ((fx * fy) * 255.0 * dStep*dTint));
+                  A = (int) (A + ((fx * fy) * 255.0 * dStep*dTint));
                   A = MIN(A,255);
                   dib->m_pcolorref[x + dib->m_iScan * y / sizeof(COLORREF)] =  ARGB((A * iA) / 255,iB,iG,iR);
                }
@@ -4281,7 +4281,7 @@ namespace draw2d
                   int A = (dib->m_pcolorref[x + dib->m_iScan * y / sizeof(COLORREF)] >> 24) & 0xff;
                   double fy = 1.0 - fmod(fabs(dy),1.0);
                   double fx = 1.0 - fmod(fabs(dx),1.0);
-                  A = (A + ((fx * fy) * 255.0 * dStep*dTint));
+                  A = (int) (A + ((fx * fy) * 255.0 * dStep*dTint));
                   A = MIN(A,255);
                   dib->m_pcolorref[x + dib->m_iScan * y / sizeof(COLORREF)] =  ARGB((A * iA) / 255,iB,iG,iR);
                }
@@ -4300,7 +4300,7 @@ namespace draw2d
                   int A = (dib->m_pcolorref[x + dib->m_iScan * y / sizeof(COLORREF)] >> 24) & 0xff;
                   double fy = 1.0 - fmod(fabs(dy),1.0);
                   double fx = 1.0 - fmod(fabs(dx),1.0);
-                  A = (A + ((fx * fy) * 255.0 * dStep*dTint));
+                  A = (int) (A + ((fx * fy) * 255.0 * dStep*dTint));
                   A = MIN(A,255);
                   dib->m_pcolorref[x + dib->m_iScan * y / sizeof(COLORREF)] =  ARGB((A * iA) / 255,iB,iG,iR);
                }

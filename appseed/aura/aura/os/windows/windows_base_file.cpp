@@ -1039,7 +1039,7 @@ void EnumerateLoadedModules( string& csPath, OF_CALLBACK CallBackProc, uint_ptr 
 
 
 
-int ftruncate(int file, file_size len)
+int ftruncate(int file, file_size_t len)
 {
   return _chsize_s (file, len);
 }

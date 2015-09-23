@@ -9,7 +9,7 @@ public:
 
    //cairo_t *                     m_cairoSource;
    //cairo_surface_t *             m_cairosurfaceSource;
-   ::primitive::memory                 m_mem;
+   memory                 m_mem;
    size                                m_size;
 
 

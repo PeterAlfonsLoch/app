@@ -21,17 +21,17 @@ public:
    bool                       m_bRead;
    bool                       m_bWrite;
    bool                       m_bCreate;
-   ::primitive::memory_size   m_size;
+   memory_size_t   m_size;
 
    local_memory_map();
-   local_memory_map(const char * psz,bool bRead,bool bWrite,bool bCreate, ::primitive::memory_size size);
+   local_memory_map(const char * psz,bool bRead,bool bWrite,bool bCreate, memory_size_t size);
    virtual ~local_memory_map();
 
 
    void construct();
 
    bool open();
-   bool open(const char * psz,bool bRead,bool bWrite,bool bCreate, ::primitive::memory_size size);
+   bool open(const char * psz,bool bRead,bool bWrite,bool bCreate, memory_size_t size);
    bool close();
 
    void * get_data();

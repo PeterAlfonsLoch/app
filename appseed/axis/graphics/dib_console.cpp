@@ -113,7 +113,7 @@ void dib_console::write(const char * psz)
 }
 
 
-void dib_console::write(const void * lpBuf,::primitive::memory_size nCount)
+void dib_console::write(const void * lpBuf,memory_size_t nCount)
 {
 #ifdef WINDOWS
    string str((const char *)lpBuf,MIN(strnlen_s((const char *)lpBuf,nCount),nCount));

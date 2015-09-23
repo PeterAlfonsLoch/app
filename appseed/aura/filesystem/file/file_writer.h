@@ -20,11 +20,11 @@ namespace file
       virtual ~writer();
 
       
-      virtual void write(const void *lpBuf, ::primitive::memory_size nCount);
-      virtual void write(const void *lpBuf, ::primitive::memory_size nCount, ::primitive::memory_size * dwWritten);
+      virtual void write(const void *lpBuf, memory_size_t nCount);
+      virtual void write(const void *lpBuf, memory_size_t nCount, memory_size_t * dwWritten);
 
-      virtual void transfer_from(reader & reader, ::primitive::memory_size uiBufferSize = 1024 * 1024);
-      virtual void transfer_from_begin(reader & reader, ::primitive::memory_size uiBufSize = 1024 * 1024);
+      virtual void transfer_from(reader & reader, memory_size_t uiBufferSize = 1024 * 1024);
+      virtual void transfer_from_begin(reader & reader, memory_size_t uiBufSize = 1024 * 1024);
 
       virtual void close();
 
@@ -37,7 +37,7 @@ namespace file
    typedef writer writable;
 
    
-   CLASS_DECL_AURA HRESULT write(writer * pwriter, const void * data, ::primitive::memory_size size);
+   CLASS_DECL_AURA HRESULT write(writer * pwriter, const void * data, memory_size_t size);
 
 
 

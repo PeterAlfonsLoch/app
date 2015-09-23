@@ -91,7 +91,7 @@ namespace windows
 
       unichar * pstrRoot = wstrRoot.alloc(_MAX_PATH);
 
-      const unichar * pstr = ::windows::shell::_fullpath(pstrRoot, wstrName, _MAX_PATH);
+      const unichar * pstr = ::windows::shell::FullPath(pstrRoot, wstrName, _MAX_PATH);
 
       // passed name isn't a valid path but was found by the API
 

@@ -756,13 +756,13 @@ null_dacl_security_attributes::null_dacl_security_attributes()
    // declare and initialize a security descriptor
    ZERO(m_securitydescriptor);
 
-   bool bInitOk = InitializeSecurityDescriptor(&m_securitydescriptor,SECURITY_DESCRIPTOR_REVISION);
+   bool bInitOk = InitializeSecurityDescriptor(&m_securitydescriptor,SECURITY_DESCRIPTOR_REVISION) != FALSE;
 
    if(bInitOk)
    {
       // give the security descriptor a Null Dacl
       // done using the  "TRUE, (PACL)NULL" here
-      bool bSetOk = SetSecurityDescriptorDacl(&m_securitydescriptor,TRUE,(PACL)NULL,FALSE);
+      bool bSetOk = SetSecurityDescriptorDacl(&m_securitydescriptor,TRUE,(PACL)NULL,FALSE) != FALSE;
 
       if(bSetOk)
       {

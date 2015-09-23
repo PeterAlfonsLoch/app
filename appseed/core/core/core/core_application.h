@@ -165,7 +165,7 @@ namespace core
 #ifdef WINDOWS
       HENHMETAFILE LoadEnhMetaFile(UINT uiResource);
 #endif
-      bool GetResourceData(UINT nID,const char * lcszType,primitive::memory & storage);
+      bool GetResourceData(UINT nID,const char * lcszType,memory & storage);
 
 #ifdef WINDOWS
       virtual bool OnMessageWindowMessage(LPMESSAGE lpmsg);

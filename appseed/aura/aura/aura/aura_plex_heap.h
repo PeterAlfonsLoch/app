@@ -11,7 +11,7 @@ public:
 
    static plex_heap* create(plex_heap*& head, uint_ptr nMax, uint_ptr cbElement);
          // like 'calloc' but no zero fill
-         // may throw primitive::memory exceptions
+         // may throw memory exceptions
 
    void FreeDataChain();       // free this one and links
 };
@@ -41,8 +41,8 @@ public:
 
    UINT GetAllocSize() { return m_nAllocSize; }
 
-   inline void * Alloc();               // return a chunk of primitive::memory of nAllocSize
-   inline void Free(void * p);          // free chunk of primitive::memory returned from Alloc
+   inline void * Alloc();               // return a chunk of memory of nAllocSize
+   inline void Free(void * p);          // free chunk of memory returned from Alloc
    void FreeAll();               // free everything allocated from this allocator
 
    void NewBlock();

@@ -1093,7 +1093,7 @@ imple_frame_window * pframe = dynamic_cast < simple_frame_window * > (pwnd);
 
 
    bool window_draw::ScreenOutput(
-                                  // pdc is the source primitive::memory device context
+                                  // pdc is the source memory device context
                                   // from which bitmap the screen is updated.
                                   user::buffer * pbuffer,
                                   // hwndParam ::window device context

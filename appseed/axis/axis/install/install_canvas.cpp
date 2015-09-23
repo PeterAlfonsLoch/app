@@ -366,7 +366,7 @@ void canvas::on_paint(::draw2d::graphics * pgraphics, const RECT & rectParam)
                   }
                   iLine--;
                   pgraphics->TextOut(10, 10 + iLine * size.cy, strLine);
-                  skip_text_out1:
+//                  skip_text_out1:
                   strLine = ch;
                }
                else

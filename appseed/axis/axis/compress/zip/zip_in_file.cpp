@@ -238,7 +238,7 @@ namespace zip
       if(m_strFileName.is_empty())
          return false;
       BYTE buf[1024];
-      ::primitive::memory_size iRead;
+      memory_size_t iRead;
       while((iRead = read(buf,sizeof(buf))) > 0)
       {
          pfile->write(buf,iRead);
@@ -246,7 +246,7 @@ namespace zip
       return true;
    }
 
-   ::primitive::memory_size InFile::read(void * lpBuf,::primitive::memory_size nCount)
+   memory_size_t InFile::read(void * lpBuf,memory_size_t nCount)
    {
       //   ASSERT_VALID(this);
       ASSERT(get_zip_file() != NULL);
@@ -264,7 +264,7 @@ namespace zip
       return (UINT)iRead;
    }
 
-   void InFile::write(const void * lpBuf,::primitive::memory_size nCount)
+   void InFile::write(const void * lpBuf,memory_size_t nCount)
    {
       UNREFERENCED_PARAMETER(lpBuf);
       UNREFERENCED_PARAMETER(nCount);
@@ -274,7 +274,7 @@ namespace zip
       ASSERT(FALSE);
    }
 
-   file_position InFile::seek(file_offset lOff,::file::e_seek nFrom)
+   file_position_t InFile::seek(file_offset_t lOff,::file::e_seek nFrom)
    {
       //   ASSERT_VALID(this);
       //ASSERT(get_zip_file() != NULL);
@@ -308,9 +308,9 @@ namespace zip
       if(iNewPos < m_iPosition)
       {
          if(unzCloseCurrentFile(get_zip_file()->m_pfUnzip) != UNZ_OK)
-            return ::numeric_info < file_size >::allset();
+            return ::numeric_info < file_size_t >::allset();
          if(unzOpenCurrentFile(get_zip_file()->m_pfUnzip) != UNZ_OK)
-            return ::numeric_info < file_size >::allset();
+            return ::numeric_info < file_size_t >::allset();
          m_iPosition = 0;
       }
 
@@ -336,7 +336,7 @@ namespace zip
       return iNewPos;
    }
 
-   file_position InFile::get_position() const
+   file_position_t InFile::get_position() const
    {
       return m_iPosition;
    }
@@ -372,19 +372,19 @@ namespace zip
    {
    }
 
-   void InFile::LockRange(file_position dwPos,file_size dwCount)
+   void InFile::LockRange(file_position_t dwPos,file_size_t dwCount)
    {
       UNREFERENCED_PARAMETER(dwPos);
       UNREFERENCED_PARAMETER(dwCount);
    }
 
-   void InFile::UnlockRange(file_position dwPos,file_size dwCount)
+   void InFile::UnlockRange(file_position_t dwPos,file_size_t dwCount)
    {
       UNREFERENCED_PARAMETER(dwPos);
       UNREFERENCED_PARAMETER(dwCount);
    }
 
-   void InFile::set_length(file_size dwNewLen)
+   void InFile::set_length(file_size_t dwNewLen)
    {
       UNREFERENCED_PARAMETER(dwNewLen);
       //   ASSERT_VALID(this);
@@ -392,7 +392,7 @@ namespace zip
       ASSERT(FALSE);
    }
 
-   file_size InFile::get_length() const
+   file_size_t InFile::get_length() const
    {
       return m_fi.uncompressed_size;
    }
@@ -639,11 +639,11 @@ namespace zip
 
       zipOpenNewFileInZip(get_zip_file()->m_pfZip,pszRelative,&zipfi,NULL,0,NULL,0,NULL,Z_DEFLATED,Z_DEFAULT_COMPRESSION);
 
-      ::primitive::memory mem(get_app());
+      memory mem(get_app());
 
       mem.allocate(256 * 1024);
 
-      primitive::memory_size uiRead;
+      memory_size_t uiRead;
       while((uiRead = file->read(mem,mem.get_size())) > 0)
       {
          zipWriteInFileInZip(get_zip_file()->m_pfZip,mem.get_data(),(uint32_t)uiRead);

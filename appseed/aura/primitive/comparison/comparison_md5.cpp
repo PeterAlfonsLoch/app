@@ -391,7 +391,7 @@
 //   }
 //
 //
-//   void md5::get(::primitive::memory & mem)
+//   void md5::get(memory & mem)
 //   {
 //
 //      mem.assign(m_uchaDigest, 16);

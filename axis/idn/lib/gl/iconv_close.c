@@ -19,7 +19,7 @@
 /* Specification.  */
 #include <iconv.h>
 
-#include <stdint.h>
+#include "_stdint.h"
 #ifndef uintptr_t
 # define uintptr_t unsigned long
 #endif

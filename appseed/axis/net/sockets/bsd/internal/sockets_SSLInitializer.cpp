@@ -145,7 +145,7 @@ namespace sockets
             }
          }*/
 
-         //primitive::memory memstorage;
+         //memory memstorage;
          //memstorage.allocate(5000);
          //memstorage.allocate(5000);
          //System.math().gen_rand(memstorage.get_data(), memstorage.get_size());

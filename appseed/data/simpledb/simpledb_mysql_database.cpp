@@ -46,7 +46,7 @@ namespace mysql
       m_pmysql = mysql_init (NULL);
       if(m_pmysql == NULL)
       {
-         trace_error1("mysql_init() failed (probably out of primitive::memory)\n");
+         trace_error1("mysql_init() failed (probably out of memory)\n");
        m_pmysql = NULL;
          return false;
       }

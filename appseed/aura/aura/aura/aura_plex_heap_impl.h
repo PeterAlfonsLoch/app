@@ -118,8 +118,8 @@ public:
 
    inline UINT GetAllocSize() { return m_uiAllocSize; }
 
-   inline void * Alloc();               // return a chunk of primitive::memory of nAllocSize
-   inline void Free(void * p);          // free chunk of primitive::memory returned from Alloc
+   inline void * Alloc();               // return a chunk of memory of nAllocSize
+   inline void Free(void * p);          // free chunk of memory returned from Alloc
    void FreeAll();               // free everything allocated from this allocator
 
    void NewBlock();

@@ -1,13 +1,17 @@
 #pragma once
 
 
+
+
+
 // Memory state for snapshots/leak detection
-struct CLASS_DECL_AURA memory_state
+struct CLASS_DECL_AURA memory_state :
+   public MEMORY_STATE
 {
 // Attributes
    enum blockUsage
    {
-      freeBlock,    // primitive::memory not used
+      freeBlock,    // memory not used
       objectBlock,  // contains a object derived class object
       bitBlock,     // contains ::operator new data
       crtBlock,
@@ -15,11 +19,6 @@ struct CLASS_DECL_AURA memory_state
       nBlockUseMax  // total number of usages
    };
 
-   _CrtMemState m_memState;
-   int_ptr m_lCounts[nBlockUseMax];
-   int_ptr m_lSizes[nBlockUseMax];
-   int_ptr m_lHighWaterCount;
-   int_ptr m_lTotalCount;
 
    memory_state();
 
@@ -32,4 +31,7 @@ struct CLASS_DECL_AURA memory_state
    // Output to g_dumpcontext
    void dumpStatistics() const;
    void dumpAllObjectsSince() const;
+
 };
+
+

@@ -13,7 +13,7 @@ namespace hotplugin
 
       ::hotplugin::composer *       m_pbasecomposer;
       plugin *                      m_pplugin;
-      ::primitive::memory           m_memory;
+      memory           m_memory;
       double                        m_dProgressRate;
       bool                          m_bShowProgress;
 

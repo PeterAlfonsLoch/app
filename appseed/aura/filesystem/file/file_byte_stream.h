@@ -26,7 +26,7 @@ namespace file
 
       virtual void close();
 
-      virtual file_position get_position() const;
+      virtual file_position_t get_position() const;
 
    };
 

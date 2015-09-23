@@ -5644,23 +5644,23 @@ namespace windows
             if(GetClassLong((oswindow)wParam,GCL_STYLE) & CS_IME)
                goto lCallNextHook;
 
-            // get class name of the interaction_impl that is being created
-            const char * pszClassName;
-            char szClassName[_countof("ime") + 1];
-            if(uint_ptr(lpcs->lpszClass) > 0xffff)
-            {
-               pszClassName = lpcs->lpszClass;
-            }
-            else
-            {
-               szClassName[0] = '\0';
-               GlobalGetAtomName((ATOM)lpcs->lpszClass,szClassName,_countof(szClassName));
-               pszClassName = szClassName;
-            }
+            //// get class name of the interaction_impl that is being created
+            //const char * pszClassName;
+            //char szClassName[_countof("ime") + 1];
+            //if(uint_ptr(lpcs->lpszClass) > 0xffff)
+            //{
+            //   pszClassName = lpcs->lpszClass;
+            //}
+            //else
+            //{
+            //   szClassName[0] = '\0';
+            //   GlobalGetAtomName((ATOM)lpcs->lpszClass,szClassName,_countof(szClassName));
+            //   pszClassName = szClassName;
+            //}
 
-            // a little more expensive to test this way, but necessary...
-            if(::__invariant_stricmp(pszClassName,"ime") == 0)
-               goto lCallNextHook;
+            //// a little more expensive to test this way, but necessary...
+            //if(::__invariant_stricmp(pszClassName,"ime") == 0)
+            //   goto lCallNextHook;
 
          }
 

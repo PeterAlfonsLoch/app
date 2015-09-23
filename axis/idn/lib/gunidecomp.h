@@ -6,7 +6,7 @@
 #define DECOMP_H
 
 
-typedef unsigned short guint16;
+//typedef unsigned short guint16;
 
 #define G_UNICODE_LAST_CHAR 0x10ffff
 

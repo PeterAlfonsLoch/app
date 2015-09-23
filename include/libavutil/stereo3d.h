@@ -21,7 +21,7 @@
 #ifndef AVUTIL_STEREO3D_H
 #define AVUTIL_STEREO3D_H
 
-#include <stdint.h>
+#include "_stdint.h"
 
 #include "frame.h"
 

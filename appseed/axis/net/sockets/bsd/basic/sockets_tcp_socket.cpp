@@ -353,10 +353,10 @@ void ssl_sigpipe_handle( int x );
 
 
 
-   ::primitive::memory_size tcp_socket::recv(void * buf, ::primitive::memory_size nBufSize)
+   memory_size_t tcp_socket::recv(void * buf, memory_size_t nBufSize)
    {
 
-      ::primitive::memory_size n = nBufSize;
+      memory_size_t n = nBufSize;
 
 #ifdef HAVE_OPENSSL
 
@@ -473,10 +473,10 @@ void ssl_sigpipe_handle( int x );
    }
 
 
-   ::primitive::memory_size tcp_socket::read(void * buf, ::primitive::memory_size nBufSize)
+   memory_size_t tcp_socket::read(void * buf, memory_size_t nBufSize)
    {
 
-      ::primitive::memory_size n = nBufSize;
+      memory_size_t n = nBufSize;
 
       n = recv(buf, nBufSize);
 
@@ -681,10 +681,10 @@ void ssl_sigpipe_handle( int x );
    }
 
 
-   ::primitive::memory_size tcp_socket::try_write(const void * buf, ::primitive::memory_size len)
+   memory_size_t tcp_socket::try_write(const void * buf, memory_size_t len)
    {
 
-      ::primitive::memory_size n = 0;
+      memory_size_t n = 0;
 
    #ifdef HAVE_OPENSSL
 
@@ -769,12 +769,12 @@ void ssl_sigpipe_handle( int x );
    }
 
 
-   void tcp_socket::buffer(const void * pdata, primitive::memory_size len)
+   void tcp_socket::buffer(const void * pdata, memory_size_t len)
    {
 
       const char * buf = (const char *) pdata;
 
-      ::primitive::memory_size ptr = 0;
+      memory_size_t ptr = 0;
 
       m_output_length += len;
 
@@ -818,7 +818,7 @@ void ssl_sigpipe_handle( int x );
    }
 */
 
-   void tcp_socket::write(const void * pdata, primitive::memory_size len)
+   void tcp_socket::write(const void * pdata, memory_size_t len)
    {
 
       const byte * buf = (const byte *) pdata;

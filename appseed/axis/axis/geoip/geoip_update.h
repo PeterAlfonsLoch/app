@@ -11,7 +11,7 @@ typedef enum {
    GEOIP_GZIP_IO_ERR             = -15, /* Unable to write GeoIP.dat.gz file */
   GEOIP_TEST_IO_ERR             = -16, /* Unable to write GeoIP.dat.test file */
    GEOIP_GZIP_READ_ERR           = -17, /* Unable to read gzip data */
-   GEOIP_OUT_OF_MEMORY_ERR       = -18, /* Out of primitive::memory error */
+   GEOIP_OUT_OF_MEMORY_ERR       = -18, /* Out of memory error */
    GEOIP_SOCKET_READ_ERR         = -19, /* Error reading from socket, see errno */
    GEOIP_SANITY_OPEN_ERR         = -20, /* Sanity check GeoIP_open error */
    GEOIP_SANITY_INFO_FAIL        = -21, /* Sanity check database_info string failed */

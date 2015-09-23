@@ -20,7 +20,7 @@
 
 #endif
 
-#ifdef HAVE_OPENSSL || defined(METROWIN)
+#if defined(HAVE_OPENSSL) || defined(METROWIN)
 
 #include <openssl/ssl.h>
 
@@ -44,7 +44,7 @@ namespace crypto
    }
 
 
-   bool crypto::decrypt(primitive::memory & storageDecrypt, const primitive::memory & storageEncrypt, const char * pszSalt)
+   bool crypto::decrypt(memory & storageDecrypt, const memory & storageEncrypt, const char * pszSalt)
    {
 
       // default implementation - OS may implement its own HOME/UserDir encryption
@@ -56,7 +56,7 @@ namespace crypto
 
       str += pszSalt;
 
-      primitive::memory key(get_app());
+      memory key(get_app());
 
       key.from_string(str);
 
@@ -64,7 +64,7 @@ namespace crypto
 
    }
 
-   bool crypto::encrypt(primitive::memory & storageEncrypt, const primitive::memory & storageDecrypt, const char * pszSalt)
+   bool crypto::encrypt(memory & storageEncrypt, const memory & storageDecrypt, const char * pszSalt)
    {
 
       // default implementation - OS may implement its own HOME/UserDir encryption
@@ -76,7 +76,7 @@ namespace crypto
 
       str += pszSalt;
 
-      primitive::memory key(get_app());
+      memory key(get_app());
 
       key.from_string(str);
 
@@ -86,10 +86,10 @@ namespace crypto
 
 
 
-   int32_t crypto::key(primitive::memory & storage)
+   int32_t crypto::key(memory & storage)
    {
       storage.allocate(16);
-      for (primitive::memory_position i = 0; i < storage.get_size(); i++)
+      for (memory_position_t i = 0; i < storage.get_size(); i++)
       {
          storage.get_data()[i] = rand() & 0xff;
       }
@@ -106,14 +106,14 @@ namespace crypto
    **/
    //http://stackoverflow.com/questions/10366950/openssl-using-evp-vs-algorithm-api-for-symmetric-crypto
 
-   bool crypto::encrypt(primitive::memory & storageEncrypt, const primitive::memory & storageDecrypt, const primitive::memory & memKeyData)
+   bool crypto::encrypt(memory & storageEncrypt, const memory & storageDecrypt, const memory & memKeyData)
    {
 
-      primitive::memory memSha1(get_app());
+      memory memSha1(get_app());
 
       nessie(memSha1,memKeyData);
 
-      primitive::memory iv(get_app());
+      memory iv(get_app());
 
       iv.allocate(32);
 
@@ -318,7 +318,7 @@ namespace crypto
 
       }
 
-      ::primitive::memory memory;
+      memory memory;
 
       storageEncrypt.set_os_cf_data(data);
 
@@ -344,14 +344,14 @@ namespace crypto
    }
 
 
-   bool crypto::decrypt(primitive::memory & storageDecrypt, const primitive::memory & storageEncrypt, const primitive::memory & memKeyData)
+   bool crypto::decrypt(memory & storageDecrypt, const memory & storageEncrypt, const memory & memKeyData)
    {
 
-      primitive::memory memSha1;
+      memory memSha1;
 
       nessie(memSha1, memKeyData);
 
-      primitive::memory iv;
+      memory iv;
 
       iv.allocate(32);
 
@@ -502,7 +502,7 @@ namespace crypto
 //
 //      }
 //
-//      ::primitive::memory memory;
+//      memory memory;
 //
 //      storageDecrypt.set_os_cf_data(data);
 //
@@ -581,16 +581,16 @@ namespace crypto
 
    string crypto::strkey()
    {
-      primitive::memory storage;
+      memory storage;
       key(storage);
       return System.base64().encode(storage);
    }
 
    int32_t crypto::encrypt(string & strEncrypt, const char * pszDecrypt, const char * pszKey)
    {
-      primitive::memory storageDecrypt;
-      primitive::memory storageEncrypt;
-      primitive::memory storageKey;
+      memory storageDecrypt;
+      memory storageEncrypt;
+      memory storageKey;
       if (pszDecrypt == NULL || strlen(pszDecrypt) == 0)
       {
          strEncrypt = "";
@@ -605,9 +605,9 @@ namespace crypto
 
    int32_t crypto::decrypt(string & strDecrypt, const char * pszEncrypt, const char * pszKey)
    {
-      primitive::memory storageEncrypt;
-      primitive::memory storageDecrypt;
-      primitive::memory storageKey;
+      memory storageEncrypt;
+      memory storageDecrypt;
+      memory storageKey;
       System.base64().decode(storageEncrypt, pszEncrypt);
       System.base64().decode(storageKey, pszKey);
       int32_t plainlen = decrypt(storageDecrypt, storageEncrypt, storageKey);
@@ -619,7 +619,7 @@ namespace crypto
    string crypto::md5(const char * psz)
    {
 
-      primitive::memory mem;
+      memory mem;
 
       mem.assign(psz,strlen(psz));
 
@@ -631,7 +631,7 @@ namespace crypto
    string crypto::sha1(const char * psz)
    {
 
-      primitive::memory mem;
+      memory mem;
 
       mem.assign(psz,strlen(psz));
 
@@ -643,7 +643,7 @@ namespace crypto
    string crypto::nessie(const char * psz)
    {
 
-      primitive::memory mem;
+      memory mem;
 
       mem.assign(psz,strlen(psz));
 
@@ -652,10 +652,10 @@ namespace crypto
    }
 
 
-   string crypto::md5(const primitive::memory & mem)
+   string crypto::md5(const memory & mem)
    {
 
-      primitive::memory memMd5;
+      memory memMd5;
 
       md5(memMd5, mem);
 
@@ -666,10 +666,10 @@ namespace crypto
 
 
 
-   string crypto::sha1(const primitive::memory & mem)
+   string crypto::sha1(const memory & mem)
    {
 
-      primitive::memory memSha1;
+      memory memSha1;
 
       sha1(memSha1, mem);
 
@@ -677,10 +677,10 @@ namespace crypto
 
    }
 
-   string crypto::nessie(const primitive::memory & mem)
+   string crypto::nessie(const memory & mem)
    {
 
-      primitive::memory memNessie;
+      memory memNessie;
 
       nessie(memNessie,mem);
 
@@ -689,7 +689,7 @@ namespace crypto
    }
 
 
-   void crypto::md5(primitive::memory & memMd5,const primitive::memory & mem)
+   void crypto::md5(memory & memMd5,const memory & mem)
    {
 
 //#ifdef METROWIN
@@ -707,7 +707,7 @@ namespace crypto
    }
 
 
-   void crypto::sha1(primitive::memory & memSha1, const primitive::memory & mem)
+   void crypto::sha1(memory & memSha1, const memory & mem)
    {
 
 //#ifdef METROWIN
@@ -724,7 +724,7 @@ namespace crypto
 
    }
 
-   void crypto::nessie(primitive::memory & memNessie,const primitive::memory & mem)
+   void crypto::nessie(memory & memNessie,const memory & mem)
    {
 
       memNessie.allocate(WHIRLPOOL_DIGEST_LENGTH);
@@ -738,7 +738,7 @@ namespace crypto
 
    bool crypto::file_set(var varFile, const char * pszData, const char * pszSalt, ::aura::application * papp)
    {
-      primitive::memory memoryEncrypt;
+      memory memoryEncrypt;
       encrypt(memoryEncrypt, pszData, pszSalt);
       Sess(papp).file().put_contents(varFile, memoryEncrypt);
       return true;
@@ -746,22 +746,22 @@ namespace crypto
 
    bool crypto::file_get(var varFile, string & str, const char * pszSalt, ::aura::application * papp)
    {
-      primitive::memory memoryEncrypt;
+      memory memoryEncrypt;
       Sess(papp).file().as_memory(varFile, memoryEncrypt);
       decrypt(str, memoryEncrypt, pszSalt);
       return true;
    }
 
-   bool crypto::encrypt(primitive::memory & storageEncrypt, const char * pszDecrypt, const char * pszSalt)
+   bool crypto::encrypt(memory & storageEncrypt, const char * pszDecrypt, const char * pszSalt)
    {
-      primitive::memory memoryDecrypt;
+      memory memoryDecrypt;
       memoryDecrypt.from_asc(pszDecrypt);
       return encrypt(storageEncrypt, memoryDecrypt, pszSalt);
    }
 
-   bool crypto::decrypt(string & strDecrypt, const primitive::memory & storageEncrypt, const char * pszSalt)
+   bool crypto::decrypt(string & strDecrypt, const memory & storageEncrypt, const char * pszSalt)
    {
-      primitive::memory memoryDecrypt;
+      memory memoryDecrypt;
       if (!decrypt(memoryDecrypt, storageEncrypt, pszSalt))
          return false;
       memoryDecrypt.to_asc(strDecrypt);
@@ -840,7 +840,7 @@ namespace crypto
    }
 
 
-   void crypto::hmac(void * result, const primitive::memory & memMessage, const primitive::memory & memKey)
+   void crypto::hmac(void * result, const memory & memMessage, const memory & memKey)
    {
 
 //#ifndef METROWIN
@@ -1081,7 +1081,7 @@ namespace crypto
 
       // not needed, defaults to true    CFDictionaryAddValue(parameters, kSecAttrCanEncrypt, kCFBooleanTrue);
 
-      primitive::memory memKeyData;
+      memory memKeyData;
 
       memKeyData.from_hex(strPass);
 
@@ -1133,7 +1133,7 @@ namespace crypto
       blob.cbPrime1 = 0;
       blob.cbPrime2 = 0;
 
-//      primitive::memory memVer(get_app());
+//      memory memVer(get_app());
 
   //    memVer.from_hex("00");
 
@@ -1141,7 +1141,7 @@ namespace crypto
 
       memfile.write(&blob, sizeof(blob));
 
-      primitive::memory memMod(get_app());
+      memory memMod(get_app());
 
       string strRsaModulus(nParam);
 
@@ -1153,7 +1153,7 @@ namespace crypto
 
       //memMod.prefix_der_uint();
 
-      primitive::memory memExp(get_app());
+      memory memExp(get_app());
 
       memExp.from_hex("010001");
 
@@ -1169,7 +1169,7 @@ namespace crypto
          ::Windows::Security::Cryptography::Core::AsymmetricKeyAlgorithmProvider::OpenAlgorithm(::Windows::Security::Cryptography::Core::AsymmetricAlgorithmNames::RsaPkcs1);
 
 
-      //primitive::memory memKey(get_app());
+      //memory memKey(get_app());
 
       //memKey = memVer;
       //memKey += memMod;
@@ -1260,7 +1260,7 @@ namespace crypto
 
    }
    
-   int rsa::public_encrypt(::primitive::memory & out, const ::primitive::memory & in, string & strError)
+   int rsa::public_encrypt(memory & out, const memory & in, string & strError)
    {
 #ifdef MACOS_DEPRECATED
 
@@ -1289,7 +1289,7 @@ namespace crypto
 
       }
 
-      primitive::memory memDataIn;
+      memory memDataIn;
 
       memDataIn.from_hex(strRsaModulus);
 
@@ -1330,7 +1330,7 @@ namespace crypto
 
       string strHex;
 
-      primitive::memory memory;
+      memory memory;
 
       memory.set_os_cf_data(data);
 
@@ -1368,7 +1368,7 @@ namespace crypto
 
    }
 
-   int rsa::private_decrypt(::primitive::memory & out, const ::primitive::memory & in, string & strError)
+   int rsa::private_decrypt(memory & out, const memory & in, string & strError)
    {
 
 
@@ -1410,7 +1410,7 @@ out.set_os_crypt_buffer(::Windows::Security::Cryptography::Core::CryptographicEn
 
    }
 
-   int rsa::private_encrypt(::primitive::memory & out,const ::primitive::memory & in,string & strError)
+   int rsa::private_encrypt(memory & out,const memory & in,string & strError)
    {
 #ifdef MACOS_DEPRECATED
 
@@ -1439,7 +1439,7 @@ out.set_os_crypt_buffer(::Windows::Security::Cryptography::Core::CryptographicEn
 
       }
 
-      primitive::memory memDataIn;
+      memory memDataIn;
 
       memDataIn.from_hex(strRsaModulus);
 
@@ -1480,7 +1480,7 @@ out.set_os_crypt_buffer(::Windows::Security::Cryptography::Core::CryptographicEn
 
       string strHex;
 
-      primitive::memory memory;
+      memory memory;
 
       memory.set_os_cf_data(data);
 
@@ -1518,7 +1518,7 @@ out.set_os_crypt_buffer(::Windows::Security::Cryptography::Core::CryptographicEn
 
    }
 
-   int rsa::public_decrypt(::primitive::memory & out,const ::primitive::memory & in,string & strError)
+   int rsa::public_decrypt(memory & out,const memory & in,string & strError)
    {
 
 
@@ -1566,9 +1566,9 @@ out.set_os_crypt_buffer(::Windows::Security::Cryptography::Core::CryptographicEn
 
       sp(::crypto::rsa) prsa = canew(::crypto::rsa(get_app(), strRsa));
 
-      primitive::memory memory;
+      memory memory;
 
-      primitive::memory memIn;
+      ::memory memIn;
 
       memIn.from_hex(psz);
 
@@ -1597,9 +1597,9 @@ out.set_os_crypt_buffer(::Windows::Security::Cryptography::Core::CryptographicEn
 
       sp(::crypto::rsa) prsa = canew(::crypto::rsa(get_app(),strRsa));
 
-      primitive::memory memory;
+      memory memory;
 
-      primitive::memory memIn;
+      ::memory memIn;
 
       memIn.from_hex(psz);
 
@@ -1624,9 +1624,9 @@ out.set_os_crypt_buffer(::Windows::Security::Cryptography::Core::CryptographicEn
    string crypto::spa_auth_decrypt(const char * psz,rsa * prsa)
    {
 
-      primitive::memory memory;
+      memory memory;
 
-      primitive::memory memIn;
+      ::memory memIn;
 
       memIn.from_hex(psz);
 
@@ -1654,9 +1654,9 @@ out.set_os_crypt_buffer(::Windows::Security::Cryptography::Core::CryptographicEn
 
       sp(::crypto::rsa) prsa = canew(::crypto::rsa(get_app(),strRsa));
 
-      primitive::memory memory;
+      memory memory;
 
-      primitive::memory memIn;
+      ::memory memIn;
 
       memIn.from_hex(psz);
 
@@ -1683,9 +1683,9 @@ out.set_os_crypt_buffer(::Windows::Security::Cryptography::Core::CryptographicEn
    string crypto::spa_auth_crypt(const char * psz,rsa * prsa)
    {
 
-      primitive::memory memory;
+      memory memory;
 
-      primitive::memory memIn;
+      ::memory memIn;
 
       memIn.from_hex(psz);
 
@@ -1797,9 +1797,9 @@ out.set_os_crypt_buffer(::Windows::Security::Cryptography::Core::CryptographicEn
    string crypto::txt_encrypt(const char * psz,rsa * prsa)
    {
 
-      primitive::memory memory;
+      memory memory;
 
-      primitive::memory memIn;
+      ::memory memIn;
 
       memIn.assign(psz,strlen(psz));
 
@@ -1826,9 +1826,9 @@ out.set_os_crypt_buffer(::Windows::Security::Cryptography::Core::CryptographicEn
    string crypto::txt_decrypt(const char * psz,rsa * prsa)
    {
 
-      primitive::memory memory;
+      memory memory;
 
-      primitive::memory memIn;
+      ::memory memIn;
 
       memIn.from_hex(psz);
 

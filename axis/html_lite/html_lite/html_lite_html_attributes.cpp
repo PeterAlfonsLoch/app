@@ -219,9 +219,9 @@ uint_ptr LiteHTMLAttributes::parseFromStr(::lite_html_reader * preader, const ch
       {
          // instantiate now
          if ((pcoll = new CElemAttrArray) == NULL)
-            // out of primitive::memory?
+            // out of memory?
          {
-            //            TRACE0("(Error) LiteHTMLAttributes::parseFromStr: Out of primitive::memory.\n");
+            //            TRACE0("(Error) LiteHTMLAttributes::parseFromStr: Out of memory.\n");
             goto LError;
          }
       }
@@ -273,7 +273,7 @@ LiteHTMLElemAttr* LiteHTMLAttributes::addAttribute(const char * lpszName, const 
          if ((m_parrAttrib = new CElemAttrArray) == NULL)
          {
             SAFE_DELETE_POINTER(pItem);
-            //               TRACE0("(Error) LiteHTMLAttributes::addAttribute: Out of primitive::memory.\n");
+            //               TRACE0("(Error) LiteHTMLAttributes::addAttribute: Out of memory.\n");
             return (NULL);
          }
       }

@@ -923,15 +923,15 @@ namespace user
 
       synch_lock lock(m_ptree->m_pmutex);
       
-      file_size iSize = m_ptree->m_editfile.get_length();
+      file_size_t iSize = m_ptree->m_editfile.get_length();
 
       char * psz = str.GetBufferSetLength((strsize)(iSize + 1));
 
       m_ptree->m_editfile.seek(0,::file::seek_begin);
 
-      m_ptree->m_editfile.read(psz,(::primitive::memory_size) iSize);
+      m_ptree->m_editfile.read(psz,(memory_size_t) iSize);
 
-      psz[(::primitive::memory_position) iSize] = '\0';
+      psz[(memory_position_t) iSize] = '\0';
 
       str.ReleaseBuffer();
 
@@ -941,9 +941,9 @@ namespace user
    void plain_edit::_001GetSelText(string & str) const
    {
 
-      file_position iEnd;
+      file_position_t iEnd;
 
-      file_position iStart;
+      file_position_t iStart;
 
       if(m_ptree->m_iSelEnd < 0)
       {
@@ -951,7 +951,7 @@ namespace user
          if(m_ptree->m_iSelStart < 0)
          {
 
-            iEnd = (file_position)m_ptree->m_editfile.get_length();
+            iEnd = (file_position_t)m_ptree->m_editfile.get_length();
 
             iStart = 0;
 
@@ -961,7 +961,7 @@ namespace user
 
             iStart = m_ptree->m_iSelStart;
 
-            iEnd = (file_position)m_ptree->m_editfile.get_length();
+            iEnd = (file_position_t)m_ptree->m_editfile.get_length();
 
          }
 
@@ -991,7 +991,7 @@ namespace user
       if(iEnd < iStart)
       {
 
-         file_position iSwap   = iEnd;
+         file_position_t iSwap   = iEnd;
 
          iEnd        = iStart;
 
@@ -999,15 +999,15 @@ namespace user
 
       }
 
-      file_position iSize = iEnd - iStart;
+      file_position_t iSize = iEnd - iStart;
 
       char * psz = str.GetBufferSetLength((strsize)(iSize + 1));
 
-      m_ptree->m_editfile.seek((file_offset)iStart,::file::seek_begin);
+      m_ptree->m_editfile.seek((file_offset_t)iStart,::file::seek_begin);
 
-      m_ptree->m_editfile.read(psz,(::primitive::memory_size) (iSize));
+      m_ptree->m_editfile.read(psz,(memory_size_t) (iSize));
 
-      psz[(::primitive::memory_position)iSize] = '\0';
+      psz[(memory_position_t)iSize] = '\0';
 
       str.ReleaseBuffer();
 
@@ -1021,7 +1021,7 @@ namespace user
 
       m_ptree->m_editfile.seek(m_ptree->m_iSelStart,::file::seek_begin);
 
-      m_ptree->m_editfile.Delete((::primitive::memory_size) (m_ptree->m_iSelEnd - m_ptree->m_iSelStart));
+      m_ptree->m_editfile.Delete((memory_size_t) (m_ptree->m_iSelEnd - m_ptree->m_iSelStart));
 
       m_ptree->m_editfile.seek(m_ptree->m_iSelStart,::file::seek_begin);
 
@@ -1309,7 +1309,7 @@ namespace user
 
       string strLine;
 
-      ::primitive::memory mem;
+      memory mem;
 
       mem.allocate(m_iViewSize + 1);
 
@@ -1945,13 +1945,13 @@ namespace user
 
 
 
-      ::primitive::memory m;
+      memory m;
 
       m.allocate(1024 * 1024);
 
       char * buf = (char *) m.get_data();
 
-      ::primitive::memory_size uiRead;
+      memory_size_t uiRead;
 
       char * lpsz;
 
@@ -2159,7 +2159,7 @@ namespace user
                      psetsel->m_iPreviousSelEnd = m_ptree->m_iSelEnd;
                      ::sort::sort(i1,i2);
                      m_ptree->m_editfile.seek(i1,::file::seek_begin);
-                     m_ptree->m_editfile.Delete((::primitive::memory_size)(i2 - i1));
+                     m_ptree->m_editfile.Delete((memory_size_t)(i2 - i1));
                      IndexRegisterDelete(i1,i2 - i1);
                      m_ptree->m_iSelEnd = i1;
                      m_ptree->m_iSelStart = m_ptree->m_iSelEnd;
@@ -2189,7 +2189,7 @@ namespace user
                      strsize iMultiByteUtf8DeleteCount = &buf[iCur] - psz;
                      m_ptree->m_iSelEnd -= iMultiByteUtf8DeleteCount;
                      m_ptree->m_editfile.seek(m_ptree->m_iSelEnd,::file::seek_begin);
-                     m_ptree->m_editfile.Delete((::primitive::memory_size) iMultiByteUtf8DeleteCount);
+                     m_ptree->m_editfile.Delete((memory_size_t) iMultiByteUtf8DeleteCount);
                      IndexRegisterDelete(m_ptree->m_iSelEnd,iMultiByteUtf8DeleteCount);
                      m_ptree->m_iSelStart = m_ptree->m_iSelEnd;
                      psetsel->m_iSelStart = m_ptree->m_iSelStart;
@@ -2215,7 +2215,7 @@ namespace user
                      psetsel->m_iPreviousSelEnd = m_ptree->m_iSelEnd;
                      ::sort::sort(i1,i2);
                      m_ptree->m_editfile.seek(i1,::file::seek_begin);
-                     m_ptree->m_editfile.Delete((::primitive::memory_size) (i2 - i1));
+                     m_ptree->m_editfile.Delete((memory_size_t) (i2 - i1));
                      m_ptree->m_iSelEnd = i1;
                      m_ptree->m_iSelStart = m_ptree->m_iSelEnd;
                      psetsel->m_iSelStart = m_ptree->m_iSelStart;
@@ -2237,7 +2237,7 @@ namespace user
                      const char * psz = ::str::utf8_dec(buf,&buf[iCur]);
                      strsize iMultiByteUtf8DeleteCount = &buf[iCur] - psz;
                      m_ptree->m_editfile.seek(m_ptree->m_iSelEnd,::file::seek_begin);
-                     m_ptree->m_editfile.Delete((::primitive::memory_size) (iMultiByteUtf8DeleteCount));
+                     m_ptree->m_editfile.Delete((memory_size_t) (iMultiByteUtf8DeleteCount));
                      IndexRegisterDelete(m_ptree->m_iSelEnd,iMultiByteUtf8DeleteCount);
                      m_ptree->m_iSelStart = m_ptree->m_iSelEnd;
                      MacroBegin();
@@ -2283,7 +2283,7 @@ namespace user
                {
                   char buf[32];
                   m_ptree->m_editfile.seek(m_ptree->m_iSelEnd,::file::seek_begin);
-                  ::primitive::memory_size uiRead = m_ptree->m_editfile.read(buf,32);
+                  memory_size_t uiRead = m_ptree->m_editfile.read(buf,32);
                   if(uiRead == 2 &&
                      buf[0] == '\r' &&
                      buf[1] == '\n')
@@ -2318,7 +2318,7 @@ namespace user
                      char * psz;
                      m_ptree->m_editfile.seek(MAX(0,m_ptree->m_iSelEnd - 32),::file::seek_begin);
                      psz = &buf[MIN(32,m_ptree->m_iSelEnd)];
-                     ::primitive::memory_size uiRead = m_ptree->m_editfile.read(buf,64);
+                     memory_size_t uiRead = m_ptree->m_editfile.read(buf,64);
                      if(uiRead == 2 &&
                         psz[0] == '\r' &&
                         psz[1] == '\n')
@@ -2378,7 +2378,7 @@ namespace user
                   strsize i2 = m_ptree->m_iSelEnd;
                   ::sort::sort(i1,i2);
                   m_ptree->m_editfile.seek(i1,::file::seek_begin);
-                  m_ptree->m_editfile.Delete((::primitive::memory_size) (i2 - i1));
+                  m_ptree->m_editfile.Delete((memory_size_t) (i2 - i1));
                   IndexRegisterDelete(i1,i2 - i1);
                   m_ptree->m_iSelEnd = i1;
                   m_ptree->m_editfile.seek(m_ptree->m_iSelEnd,::file::seek_begin);
@@ -2474,7 +2474,7 @@ namespace user
             {
                ::sort::sort(i1,i2);
                m_ptree->m_editfile.seek(i1,::file::seek_begin);
-               m_ptree->m_editfile.Delete((::primitive::memory_size) (i2 - i1));
+               m_ptree->m_editfile.Delete((memory_size_t) (i2 - i1));
                m_ptree->m_iSelEnd = i1;
                m_ptree->m_iSelStart = m_ptree->m_iSelEnd;
             }
@@ -2489,7 +2489,7 @@ namespace user
                const char * psz = ::str::utf8_dec(buf,&buf[iCur]);
                strsize iMultiByteUtf8DeleteCount = &buf[iCur] - psz;
                m_ptree->m_editfile.seek(m_ptree->m_iSelEnd,::file::seek_begin);
-               m_ptree->m_editfile.Delete((::primitive::memory_size) (iMultiByteUtf8DeleteCount));
+               m_ptree->m_editfile.Delete((memory_size_t) (iMultiByteUtf8DeleteCount));
                IndexRegisterDelete(m_ptree->m_iSelEnd,iMultiByteUtf8DeleteCount);
                m_ptree->m_iSelStart = m_ptree->m_iSelEnd;
             }
@@ -2785,7 +2785,7 @@ namespace user
    {
       synch_lock lockRoot(m_ptree == NULL ? NULL:m_ptree->m_pmutex);
       m_ptree->m_editfile.seek(0,::file::seek_begin);
-      m_ptree->m_editfile.Delete((::primitive::memory_size)m_ptree->m_editfile.get_length());
+      m_ptree->m_editfile.Delete((memory_size_t)m_ptree->m_editfile.get_length());
       m_ptree->m_editfile.seek(0,::file::seek_begin);
       m_ptree->m_editfile.Insert(str,str.get_length());
       _001OnSetText(actioncontext);

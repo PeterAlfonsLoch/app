@@ -63,9 +63,9 @@ typedef const POINT64 * LPCPOINT64;
 
 
 typedef uchar      byte;
-typedef uint16_t     uint16_t;
+//typedef uint16_t     uint16_t;
 //typedef unsigned long      dword;
-typedef uint64_t         qword;
+//typedef uint64_t         qword;
 
 struct POINT64;
 struct SIZE64;

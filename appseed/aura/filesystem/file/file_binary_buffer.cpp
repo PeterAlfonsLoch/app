@@ -10,12 +10,12 @@ namespace file
    }
 
 
-   ::primitive::memory_size binary_buffer::read(void *lpBuf, ::primitive::memory_size nCount)
+   memory_size_t binary_buffer::read(void *lpBuf, memory_size_t nCount)
    {
       return ::file::reader::read(lpBuf, nCount);
    }
 
-   void binary_buffer::write(const void * lpBuf, ::primitive::memory_size nCount)
+   void binary_buffer::write(const void * lpBuf, memory_size_t nCount)
    {
       ::file::writer::write(lpBuf, nCount);
    }
@@ -57,14 +57,14 @@ namespace file
       return canew(::file::exception(get_app()));
    }
 
-   file_position binary_buffer::seek(file_offset lOff, ::file::e_seek nFrom)
+   file_position_t binary_buffer::seek(file_offset_t lOff, ::file::e_seek nFrom)
    {
       UNREFERENCED_PARAMETER(lOff);
       UNREFERENCED_PARAMETER(nFrom);
       return 0;
    }
 
-   file_position binary_buffer::get_position() const
+   file_position_t binary_buffer::get_position() const
    {
       return ((binary_buffer *) this)->seek(0, ::file::seek_current);
    }
@@ -81,24 +81,24 @@ namespace file
    {
    }
 
-   void binary_buffer::LockRange(file_position dwPos, file_size dwCount)
+   void binary_buffer::LockRange(file_position_t dwPos, file_size_t dwCount)
    {
       UNREFERENCED_PARAMETER(dwPos);
       UNREFERENCED_PARAMETER(dwCount);
    }
 
-   void binary_buffer::UnlockRange(file_position dwPos, file_size dwCount)
+   void binary_buffer::UnlockRange(file_position_t dwPos, file_size_t dwCount)
    {
       UNREFERENCED_PARAMETER(dwPos);
       UNREFERENCED_PARAMETER(dwCount);
    }
 
-   void binary_buffer::set_length(file_size dwNewLen)
+   void binary_buffer::set_length(file_size_t dwNewLen)
    {
       UNREFERENCED_PARAMETER(dwNewLen);
    }
 
-   file_size binary_buffer::get_length() const
+   file_size_t binary_buffer::get_length() const
    {
       return 0;
    }

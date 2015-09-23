@@ -91,12 +91,12 @@ namespace http
       return header(__id(content_type));
    }
 
-   void transaction::SetContentLength(primitive::memory_size value)
+   void transaction::SetContentLength(memory_size_t value)
    {
       header(__id(content_length)) = value;
    }
 
-   primitive::memory_size transaction::ContentLength()
+   memory_size_t transaction::ContentLength()
    {
       return atol(header(__id(content_length)));
    }

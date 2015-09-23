@@ -177,10 +177,10 @@ inline tick_duration duration::tick_duration() const
 
    auto uiTotal = get_total_milliseconds();
 
-   if(uiTotal >= ::numeric_info < decltype(uiTotal) >::max())
-      return ::numeric_info < decltype(uiTotal) >::max();
+   if(uiTotal >= ::numeric_info < tick_duration::TYPE >::max())
+      return ::numeric_info < tick_duration::TYPE >::max();
 
-   return (uint32_t)uiTotal;
+   return (tick_duration::TYPE) uiTotal;
 
 }
 

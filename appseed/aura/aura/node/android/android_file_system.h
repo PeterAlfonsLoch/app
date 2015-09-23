@@ -60,7 +60,7 @@ namespace android
       //bool put_contents(var varFile, const void * pvoidContents, count count, ::aura::application * papp);
       //bool put_contents(var varFile, const char * lpcszContents, ::aura::application * papp);
       //bool put_contents(var varFile, ::file::reader & file, ::aura::application * papp);
-      //bool put_contents(var varFile, primitive::memory & mem, ::aura::application * papp);
+      //bool put_contents(var varFile, memory & mem, ::aura::application * papp);
       //bool put_contents_utf8(var varFile, const char * lpcszContents, ::aura::application * papp);
 
       //bool is_read_only(const char * psz);

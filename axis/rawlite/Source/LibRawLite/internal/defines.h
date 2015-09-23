@@ -61,7 +61,7 @@ it under the terms of the one of three licenses as you choose:
 #include <unistd.h>
 #include <utime.h>
 #include <netinet/in.h>
-#include <stdint.h>
+#include "_stdint.h"
 
 #ifndef __APPLE__
 

@@ -9,7 +9,7 @@ namespace primitive
       object(papp)
    {
       
-//      m_spmemory = canew(primitive::memory(papp));
+//      m_spmemory = canew(memory(papp));
       
       m_dwAllocationAddUp = 1024;
       m_pvppa = NULL;
@@ -17,11 +17,11 @@ namespace primitive
    }
 
 
-   memory_container ::memory_container(::aura::application * papp, void * pmemory, memory_size dwSize) :
+   memory_container ::memory_container(::aura::application * papp, void * pmemory, memory_size_t dwSize) :
       object(papp)
    {
       m_pvppa = NULL;
-      m_spmemory = canew(primitive::memory(this, pmemory, dwSize));
+      m_spmemory = canew(memory(this, pmemory, dwSize));
    }
 
 
@@ -52,13 +52,13 @@ namespace primitive
    }
 
 
-   void memory_container ::allocate_add_up(memory_size dwAddUp)
+   void memory_container ::allocate_add_up(memory_size_t dwAddUp)
    {
       allocate(this->get_size() + dwAddUp);
    }
 
 
-   void memory_container::allocate(memory_size dwNewLength)
+   void memory_container::allocate(memory_size_t dwNewLength)
    {
 
       if(dwNewLength <= 0)
@@ -82,7 +82,7 @@ namespace primitive
       if(m_spmemory.is_null())
       {
 
-         m_spmemory = new primitive::memory(this);
+         m_spmemory = new memory(this);
 
          if(m_spmemory.is_null())
          {
@@ -105,11 +105,11 @@ namespace primitive
    }
 
 
-   void memory_container ::allocate_internal(memory_size dwNewLength)
+   void memory_container ::allocate_internal(memory_size_t dwNewLength)
    {
       if(m_spmemory == NULL)
       {
-         m_spmemory = new primitive::memory(this);
+         m_spmemory = new memory(this);
          if(m_spmemory.is_null())
          {
             throw new memory_exception(get_app());
@@ -135,7 +135,7 @@ namespace primitive
    ::primitive::memory_base * memory_container::create_memory()
    {
 
-      return canew(primitive::memory(this));
+      return canew(memory(this));
 
    }
 
@@ -146,7 +146,7 @@ namespace primitive
    {
       if(m_spmemory.is_null())
       {
-         m_spmemory = new primitive::memory(this);
+         m_spmemory = new memory(this);
       }
       m_spmemory->copy_from(pmemory);
    }
@@ -156,7 +156,7 @@ namespace primitive
    {
       if(m_spmemory.is_null())
       {
-         m_spmemory = new primitive::memory(this);
+         m_spmemory = new memory(this);
       }
       m_spmemory->read(is);
    }
@@ -168,7 +168,7 @@ namespace primitive
    }
 
 
-   void memory_container ::offset_kept_pointers(memory_offset iOffset)
+   void memory_container ::offset_kept_pointers(memory_offset_t iOffset)
    {
       if(m_pvppa == NULL)
          return;
@@ -190,7 +190,7 @@ namespace primitive
          m_spmemory.release();
       else
       {
-         m_spmemory = new primitive::memory(this);
+         m_spmemory = new memory(this);
          m_spmemory->copy_from(container.m_spmemory);
       }
 
@@ -232,7 +232,7 @@ namespace primitive
    {
       
       if (m_spmemory.is_null())
-         m_spmemory = canew(::primitive::memory(get_app()));
+         m_spmemory = canew(memory(get_app()));
 
       return m_spmemory->m_pprimitivememory;
 
@@ -257,12 +257,12 @@ namespace primitive
       ::primitive::memory_base * pmemorybase = m_spmemory.detach();
       if(pmemorybase != NULL)
          return NULL;
-      ::primitive::memory * pmemory = pmemorybase->m_pprimitivememory;
+      memory * pmemory = pmemorybase->m_pprimitivememory;
       if(pmemory != NULL)
       {
          return pmemory;
       }
-      pmemory = new ::primitive::memory(*pmemorybase);
+      pmemory = new memory(*pmemorybase);
       delete pmemorybase;
       return pmemory;
    }
@@ -302,7 +302,7 @@ namespace primitive
 
    LPBYTE            memory_container::detach_primitive_storage()
    {
-      ::primitive::memory * pmemory = detach_primitive_memory();
+      memory * pmemory = detach_primitive_memory();
       LPBYTE p = pmemory->detach();
       delete pmemory;
       return p;

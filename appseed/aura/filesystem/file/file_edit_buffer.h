@@ -26,28 +26,28 @@ namespace file
       {
       public:
 
-         file_position m_dwPosition;
+         file_position_t m_dwPosition;
 
 
          Item();
 
          virtual UINT read_ch(::file::edit_buffer * pfile);
 
-         virtual file_position get_position(bool bForward);
+         virtual file_position_t get_position(bool bForward);
 
          virtual BYTE * get_data() ;
          virtual EItemType get_type();
-         virtual ::primitive::memory_size get_extent();
-         virtual ::primitive::memory_size get_file_extent();
+         virtual memory_size_t get_extent();
+         virtual memory_size_t get_file_extent();
          virtual BYTE * reverse_get_data();
          virtual EItemType reverse_get_type();
-         virtual ::primitive::memory_size reverse_get_extent() ;
-         virtual ::primitive::memory_size reverse_get_file_extent() ;
-         virtual ::primitive::memory_size get_extent(bool bForward);
+         virtual memory_size_t reverse_get_extent() ;
+         virtual memory_size_t reverse_get_file_extent() ;
+         virtual memory_size_t get_extent(bool bForward);
          virtual EItemType get_type(bool bForward);
-         virtual ::primitive::memory_size get_file_extent(bool bForward);
+         virtual memory_size_t get_file_extent(bool bForward);
          virtual BYTE * get_data(bool bForward);
-         virtual ::primitive::memory_offset get_delta_length() ;
+         virtual memory_offset_t get_delta_length() ;
 
 #undef new
          DECLARE_AND_IMPLEMENT_DEFAULT_ALLOCATION
@@ -61,21 +61,21 @@ namespace file
       public:
 
 
-         primitive::memory m_memstorage;
+         memory m_memstorage;
 
 
          virtual UINT read_ch(::file::edit_buffer * pfile);
 
          virtual EItemType get_type();
-         virtual ::primitive::memory_size get_extent() ;
-         virtual ::primitive::memory_size get_file_extent();
+         virtual memory_size_t get_extent() ;
+         virtual memory_size_t get_file_extent();
          virtual BYTE * get_data() ;
          virtual EItemType reverse_get_type() ;
-         virtual ::primitive::memory_size reverse_get_extent();
-         virtual ::primitive::memory_size reverse_get_file_extent();
+         virtual memory_size_t reverse_get_extent();
+         virtual memory_size_t reverse_get_file_extent();
          virtual BYTE * reverse_get_data();
 
-         virtual ::primitive::memory_offset get_delta_length() ;
+         virtual memory_offset_t get_delta_length() ;
       };
 
       class InsertItem: public Item
@@ -83,20 +83,20 @@ namespace file
       public:
 
 
-         primitive::memory m_memstorage;
+         memory m_memstorage;
 
 
          virtual UINT read_ch(::file::edit_buffer * pfile);
 
          virtual EItemType get_type() ;
-         virtual ::primitive::memory_size get_extent() ;
-         virtual ::primitive::memory_size get_file_extent() ;
+         virtual memory_size_t get_extent() ;
+         virtual memory_size_t get_file_extent() ;
          virtual BYTE * get_data() ;
          virtual EItemType reverse_get_type() ;
-         virtual ::primitive::memory_size reverse_get_extent() ;
-         virtual ::primitive::memory_size reverse_get_file_extent() ;
+         virtual memory_size_t reverse_get_extent() ;
+         virtual memory_size_t reverse_get_file_extent() ;
          virtual BYTE * reverse_get_data();
-         virtual ::primitive::memory_offset get_delta_length();
+         virtual memory_offset_t get_delta_length();
 
       };
 
@@ -105,19 +105,19 @@ namespace file
       public:
 
 
-         primitive::memory m_memstorage;
-         primitive::memory m_memstorageReverse;
+         memory m_memstorage;
+         memory m_memstorageReverse;
 
 
          virtual EItemType get_type();
-         virtual ::primitive::memory_size get_extent() ;
-         virtual ::primitive::memory_size get_file_extent();
+         virtual memory_size_t get_extent() ;
+         virtual memory_size_t get_file_extent();
          virtual BYTE * get_data() ;
          virtual EItemType reverse_get_type();
-         virtual ::primitive::memory_size reverse_get_extent() ;
-         virtual ::primitive::memory_size reverse_get_file_extent();
+         virtual memory_size_t reverse_get_extent() ;
+         virtual memory_size_t reverse_get_file_extent();
          virtual BYTE * reverse_get_data() ;
-         virtual ::primitive::memory_offset get_delta_length();
+         virtual memory_offset_t get_delta_length();
 
       };
 
@@ -135,14 +135,14 @@ namespace file
 
 
          virtual EItemType get_type();
-         virtual ::primitive::memory_size get_extent();
-         virtual ::primitive::memory_size get_file_extent();
+         virtual memory_size_t get_extent();
+         virtual memory_size_t get_file_extent();
          virtual BYTE * get_data() ;
          virtual EItemType reverse_get_type();
-         virtual ::primitive::memory_size reverse_get_extent() ;
-         virtual ::primitive::memory_size reverse_get_file_extent();
+         virtual memory_size_t reverse_get_extent() ;
+         virtual memory_size_t reverse_get_file_extent();
          virtual BYTE * reverse_get_data() ;
-         virtual ::primitive::memory_offset get_delta_length();
+         virtual memory_offset_t get_delta_length();
 
          virtual UINT read_ch(::file::edit_buffer * pfile);
 
@@ -152,16 +152,16 @@ namespace file
 
       };
 
-      file_position           m_dwPosition;
-      file_size               m_dwInternalFilePosition;
-      file_size               m_dwFileLength;
-      file_position           m_dwReadPosition;
-      file_offset             m_iCurItem;
+      file_position_t           m_dwPosition;
+      file_size_t               m_dwInternalFilePosition;
+      file_size_t               m_dwFileLength;
+      file_position_t           m_dwReadPosition;
+      file_offset_t             m_iCurItem;
 
 
       sp(::data::tree_item)   m_ptreeitem;
       sp(::data::tree_item)   m_ptreeitemFlush;
-      ::primitive::memory_offset              m_iBranch;
+      memory_offset_t              m_iBranch;
       ::file::buffer_sp           m_pfile;
       GroupItem *          m_pgroupitem;
       bool                 m_bRootDirection;
@@ -175,20 +175,20 @@ namespace file
 
       virtual bool IsValid() const;
       //void load_string(string & str);
-      //void create(::primitive::memory_offset iSize = -1);
+      //void create(memory_offset_t iSize = -1);
       //void seek_to_begin();
-      file_position seek(file_offset lOff,::file::e_seek  nFrom);
-      file_position get_position() const;
+      file_position_t seek(file_offset_t lOff,::file::e_seek  nFrom);
+      file_position_t get_position() const;
 
       //virtual string GetFilePath() const;
 
-      file_size get_length() const;
-      //void Truncate(::primitive::memory_offset iPosition);
+      file_size_t get_length() const;
+      //void Truncate(memory_offset_t iPosition);
       //void clear();
-      virtual ::primitive::memory_size read(void *lpBuf,::primitive::memory_size nCount);
-      virtual void write(const void * lpBuf,::primitive::memory_size nCount);
-      virtual void Insert(const void * lpBuf,::primitive::memory_size nCount);
-      virtual void Delete(::primitive::memory_size uiCount);
+      virtual memory_size_t read(void *lpBuf,memory_size_t nCount);
+      virtual void write(const void * lpBuf,memory_size_t nCount);
+      virtual void Insert(const void * lpBuf,memory_size_t nCount);
+      virtual void Delete(memory_size_t uiCount);
 
 
 

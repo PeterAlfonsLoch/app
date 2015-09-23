@@ -251,7 +251,7 @@ namespace simpledb
          if(prangea->get_count() > 1)
          {
             primitive::memory_size uiTotal = 0;
-            primitive::memory mem;
+            memory mem;
             mem.allocate(128 * 1024 * 1024);
             for(int32_t i = 0; i < prangea->get_count(); i++)
             {
@@ -306,7 +306,7 @@ namespace simpledb
          else
          {
             primitive::memory_size uiTotal = 0;
-            primitive::memory mem;
+            memory mem;
             mem.allocate(128 * 1024 * 1024);
             primitive::memory_position iStart = prangea->element_at(0)->element_at(0);
             primitive::memory_position iEnd = prangea->element_at(0)->element_at(1);

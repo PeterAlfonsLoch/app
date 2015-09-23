@@ -21,7 +21,7 @@
 #ifndef AVUTIL_MURMUR3_H
 #define AVUTIL_MURMUR3_H
 
-#include <stdint.h>
+#include "_stdint.h"
 
 struct AVMurMur3 *av_murmur3_alloc(void);
 void av_murmur3_init_seeded(struct AVMurMur3 *c, uint64_t seed);

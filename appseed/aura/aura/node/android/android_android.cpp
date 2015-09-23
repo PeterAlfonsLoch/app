@@ -17,7 +17,7 @@ void CLASS_DECL_AURA __abort()
 
 #ifdef DEBUG
 bool CLASS_DECL_AURA __check_memory()
-// check all of primitive::memory (look for primitive::memory tromps)
+// check all of memory (look for memory tromps)
 {
    //return _CrtCheckMemory() != FALSE;
    return true;

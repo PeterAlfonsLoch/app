@@ -19,7 +19,7 @@
       CLASS_DECL_AXIS e_http_method string_http_method(const string & str);
 
 
-      /** get http response to file or primitive::memory.
+      /** get http response to file or memory.
       \ingroup http */
       class CLASS_DECL_AXIS http_client_socket :
          virtual public http_tunnel,
@@ -36,12 +36,12 @@
          e_http_method                 m_emethod;
 
 
-         //primitive::memory    m_memoryData; ///< Ptr to buffer where to store response
+         //memory    m_memoryData; ///< Ptr to buffer where to store response
          //size_t m_data_size; ///< Max size of data buffer
-         ::primitive::memory_size m_content_length; ///< Content-length header received from remote
+         memory_size_t m_content_length; ///< Content-length header received from remote
          string m_content; ///< Received http headers
          //bool m_data_ptr_set; ///< buffer set from outside, do not delete
-         ::primitive::memory_position m_content_ptr; ///< Number of bytes received from body
+         memory_position_t m_content_ptr; ///< Number of bytes received from body
          bool m_b_complete; ///< The entire content-length number of bytes has been received
          bool m_b_close_when_complete; ///< close when the full response has been received
          string m_protocol; ///< Protocol part of url_in

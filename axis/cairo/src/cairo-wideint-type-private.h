@@ -44,9 +44,9 @@
 #endif
 
 #if   HAVE_STDINT_H
-# include <stdint.h>
+# include "_stdint.h"
 #elif HAVE_INTTYPES_H
-# include <inttypes.h>
+# include "_inttypes.h"
 #elif HAVE_SYS_INT_TYPES_H
 # include <sys/int_types.h>
 #elif defined(_MSC_VER)

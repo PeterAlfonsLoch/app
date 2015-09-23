@@ -45,7 +45,7 @@ namespace http
       bool download(const char * pszUrl, var varFile, property_set & set);
 
 
-      bool put(const char * pszUrl, primitive::memory & memory, property_set & set);
+      bool put(const char * pszUrl, memory & memory, property_set & set);
       bool put(const char * pszUrl, ::file::buffer_sp  pfile, property_set & set);
 
       virtual string locale_schema_url(const char * pszUrl, const char * pszLocale, const char * pszSchema);

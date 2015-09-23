@@ -267,6 +267,9 @@
     <Filter Include="Assembler Files\x64\engine">
       <UniqueIdentifier>{34e97589-d06b-4bb2-96f2-eda8fcac096c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Assembler Files\x86\aes">
+      <UniqueIdentifier>{bcbe7c7d-0c38-49e3-bbbf-b143b0553468}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="crypto\aes\aes_cbc.c">
@@ -2851,6 +2854,12 @@
     </CustomBuild>
     <CustomBuild Include="asm\x64-win32-masm\bn\modexp512-x86_64.asm">
       <Filter>Assembler Files\x64\engine</Filter>
+    </CustomBuild>
+    <CustomBuild Include="asm\x86-win32-masm\aes\aes-586.asm">
+      <Filter>Assembler Files\x86\aes</Filter>
+    </CustomBuild>
+    <CustomBuild Include="asm\x86-win32-masm\aes\aesni-x86.asm">
+      <Filter>Assembler Files\x86\aes</Filter>
     </CustomBuild>
   </ItemGroup>
 </Project>

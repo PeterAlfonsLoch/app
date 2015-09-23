@@ -26,7 +26,7 @@
  * Buffered I/O operations
  */
 
-#include <stdint.h>
+#include "_stdint.h"
 
 #include "libavutil/common.h"
 #include "libavutil/dict.h"

@@ -15,20 +15,20 @@ It is provided "as is" without express or implied warranty.
 
 */
 
-//#include "framework.h"
+#include "framework.h"
 #ifdef WINDOWSEX
 #pragma warning(disable: 4091) 
 #include <ImageHlp.h>
 
 
 #elif defined(LINUX)
-//#include <execinfo.h>
-//#include <cxxabi.h>
-//#include <unistd.h>
+#include <execinfo.h>
+#include <cxxabi.h>
+#include <unistd.h>
 #elif defined(APPLEOS)
-//#include <execinfo.h>
+#include <execinfo.h>
 #elif defined(ANDROID) 
-//#include <unistd.h>
+#include <unistd.h>
 #endif
 
 
@@ -555,7 +555,7 @@ retry_get_base:
 
 #ifdef WINDOWSEX
 
-
+#include <malloc.h>
 
    bool engine::load_modules()
    {

@@ -30,7 +30,7 @@
  * Public libavcodec VA API header.
  */
 
-#include <stdint.h>
+#include "_stdint.h"
 
 /**
  * @defgroup lavc_codec_hwaccel_vaapi VA API Decoding

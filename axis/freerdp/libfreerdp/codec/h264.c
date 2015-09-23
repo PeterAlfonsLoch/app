@@ -699,7 +699,7 @@ static H264_CONTEXT_SUBSYSTEM g_Subsystem_MF =
 #define NAL_PRIORITY_HIGH	X264_NAL_PRIORITY_HIGH
 #define NAL_PRIORITY_HIGHEST	X264_NAL_PRIORITY_HIGHEST
 
-#include <stdint.h>
+#include "_stdint.h"
 #include <x264.h>
 
 struct _H264_CONTEXT_X264

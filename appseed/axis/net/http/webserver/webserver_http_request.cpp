@@ -61,7 +61,7 @@ namespace http
 
 
    // --------------------------------------------------------------------------------------
-   void request::write( const char *buf, ::primitive::memory_size sz )
+   void request::write( const char *buf, memory_size_t sz )
    {
          m_memfileBody.write(buf, sz);
    }

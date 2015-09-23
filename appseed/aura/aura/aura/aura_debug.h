@@ -1,14 +1,23 @@
+#pragma once
+
+
 #ifndef __AXIS_AXIS_DEBUG_H__
 #define __AXIS_AXIS_DEBUG_H__
 
 
-#pragma once
+
 
 
 #define _NORMAL_BLOCK 1
 
 
-
+CLASS_DECL_AURA int32_t DECL_C debug_report(
+   int32_t _ReportType,
+   const char * _Filename,
+   int32_t _LineNumber,
+   const char * _ModuleName,
+   const char * _Format,
+   ...);
 
 //////////////////////////////////////////////////////////////////////////////////
 //
@@ -91,6 +100,20 @@ for some applications. You can still turn this feature on manually.
 
 
 
+struct MEMORY_BLOCK_HEADER;
+
+typedef struct _MEMORY_STATE
+{
+
+   struct MEMORY_BLOCK_HEADER * pBlockHeader;
+   size_t lCounts[_MAX_BLOCKS];
+   size_t lSizes[_MAX_BLOCKS];
+   size_t lHighWaterCount;
+   size_t lTotalCount;
+
+} MEMORY_STATE;
+
+
 /****************************************************************************
  *
  * Declarations, prototype and function-like macros
@@ -152,17 +175,9 @@ for some applications. You can still turn this feature on manually.
 //
 #define _ASSERT_EXPR(expr, msg) \
         (void) ((!!(expr)) || \
-                (1 != _CrtDbgReport(_CRT_ASSERT, __FILE__, __LINE__, NULL, msg)) || \
-                (_CrtDbgBreak(), 0))
-#define _RPT_AXIS(args) \
-        () ((1 != _CrtDbgReport args) || \
-                (_CrtDbgBreak(), 0))
+                (1 != debug_report(_CRT_ASSERT, __FILE__, __LINE__, NULL, msg)) || \
+                (debug_break(), 0))
 
-#define _RPT_AXIS_W(args) \
-        () ((1 != _CrtDbgReportW args) || \
-                (_CrtDbgBreak(), 0))
-
-#endif
 
 #ifndef _ASSERT
 #define _ASSERT(expr)   _ASSERT_EXPR((expr), NULL)
@@ -174,7 +189,7 @@ for some applications. You can still turn this feature on manually.
 
 
 #if !defined(WINDOWSEX) && !defined(METROWIN)
-#define _CrtDbgBreak() debug_break()
+#define debug_break() debug_break()
 #endif
 
 //  

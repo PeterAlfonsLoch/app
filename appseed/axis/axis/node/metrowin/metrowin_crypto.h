@@ -56,16 +56,16 @@ namespace metrowin
       virtual ~crypto();
 
 
-      virtual bool encrypt(primitive::memory & storageEncrypt, const primitive::memory & storageDecrypt, const char * pszSalt);
-      virtual bool decrypt(primitive::memory & storageDecrypt, const primitive::memory & storageEncrypt, const char * pszSalt);
+      virtual bool encrypt(memory & storageEncrypt, const memory & storageDecrypt, const char * pszSalt);
+      virtual bool decrypt(memory & storageDecrypt, const memory & storageEncrypt, const char * pszSalt);
 	  static_function uint32_t crc32(uint32_t dwPrevious,const char * psz);
       
-      void md5(primitive::memory & memMd5,const primitive::memory & mem);
-      void sha1(primitive::memory & memSha1,const primitive::memory & mem);
-      //void nessie(primitive::memory & memSha1,const primitive::memory & mem);
+      void md5(memory & memMd5,const memory & mem);
+      void sha1(memory & memSha1,const memory & mem);
+      //void nessie(memory & memSha1,const memory & mem);
 
       //// result is 20-byte digest
-      //void hmac(void * result,const ::primitive::memory & memMessage,const ::primitive::memory & key);
+      //void hmac(void * result,const memory & memMessage,const memory & key);
       //void hmac(void * result,const string & memMessage,const string & key);
 
 

@@ -29,7 +29,7 @@ namespace windows
          
          bool QueryValue(const char * lpcszValueName, string &strVAlue);
 
-         bool QueryValue(const char * lpcszValueName, primitive::memory & mem);
+         bool QueryValue(const char * lpcszValueName, memory & mem);
 
          bool SetValue(const char * lpcszValueName, const char * lpcszValue);
 

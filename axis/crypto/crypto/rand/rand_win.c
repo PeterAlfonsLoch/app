@@ -698,7 +698,6 @@ DWORD get_tick_count()
 static void readtimer(void)
 {
 	DWORD w;
-	LARGE_INTEGER l;
 	static int have_perfc = 1;
 #if defined(_MSC_VER) && defined(_M_X86)
 	static int have_tsc = 1;
@@ -721,7 +720,8 @@ static void readtimer(void)
 #endif
 
 #ifdef METROWIN
-	if (have_perfc) {
+   LARGE_INTEGER l;
+   if (have_perfc) {
 	  if (QueryPerformanceCounter(&l) == 0)
 	    have_perfc = 0;
 	  else

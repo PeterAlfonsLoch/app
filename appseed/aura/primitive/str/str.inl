@@ -455,37 +455,37 @@ inline void std_string_assign(stdstring < verisimple_wstring > & t,const bstring
 
 
 template < >
-inline void std_string_assign(stdstring < ::primitive::memory > & t,const char * psz)
+inline void std_string_assign(stdstring < memory > & t,const char * psz)
 {
    t.assign(psz);
 }
 
 template < >
-inline void std_string_assign(stdstring < ::primitive::memory > & t,const unichar * psz)
+inline void std_string_assign(stdstring < memory > & t,const unichar * psz)
 {
    t.assign(::str::international::unicode_to_utf8(psz));
 }
 
 template < >
-inline void std_string_bassign(stdstring < ::primitive::memory > & t,const byte * psz,strsize nsize)
+inline void std_string_bassign(stdstring < memory > & t,const byte * psz,strsize nsize)
 {
    t.assign(string((const char *)psz,MIN(nsize,strlen_s_dup((const char *)psz,nsize))));
 }
 
 template < >
-inline void std_string_assign(stdstring < ::primitive::memory > & t,const string * pstr)
+inline void std_string_assign(stdstring < memory > & t,const string * pstr)
 {
    t = (const char *) *pstr;
 }
 
 template < >
-inline void std_string_assign(stdstring < ::primitive::memory > & t,const wstring * pwstr)
+inline void std_string_assign(stdstring < memory > & t,const wstring * pwstr)
 {
    t = (const char *) ::str::international::unicode_to_utf8(*pwstr);
 }
 
 template < >
-inline void std_string_assign(stdstring < ::primitive::memory > & t,const bstring * pbstr)
+inline void std_string_assign(stdstring < memory > & t,const bstring * pbstr)
 {
    t = *pbstr;
 }
@@ -732,7 +732,7 @@ inline string::string(const string_interface & stri) :stdstring< simple_string> 
 
 
 template < typename Type, typename RawType >
-primitive::memory string_array < Type, RawType > ::GetFormatV004()
+memory string_array < Type, RawType > ::GetFormatV004()
 {
 
    strsize iTotalLength = 0;
@@ -754,7 +754,7 @@ primitive::memory string_array < Type, RawType > ::GetFormatV004()
       iTotalLength++;
    }
 
-   primitive::memory mem;
+   memory mem;
 
    mem.allocate(iTotalLength * sizeof(char));
 

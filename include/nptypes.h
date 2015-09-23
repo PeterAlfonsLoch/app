@@ -95,7 +95,7 @@
    * it. Can't do the same for stdbool.h tho, since some systems ship
    * with a stdbool.h file that doesn't compile!
    */
-  #include <stdint.h>
+  #include "_stdint.h"
 
   #ifndef __cplusplus
     #if !defined(__GNUC__) || (__GNUC__ > 2 || __GNUC_MINOR__ > 95)

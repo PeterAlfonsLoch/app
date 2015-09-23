@@ -26,7 +26,7 @@
 #ifndef AVUTIL_FRAME_H
 #define AVUTIL_FRAME_H
 
-#include <stdint.h>
+#include "_stdint.h"
 
 #include "avutil.h"
 #include "buffer.h"

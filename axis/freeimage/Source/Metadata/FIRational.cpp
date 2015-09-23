@@ -74,7 +74,7 @@ FIRational::FIRational(float value) {
 		int k, count;
 		LONG n[4];
 
-		float x = fabs(value);
+		float x = (float) fabs(value);
 		int sign = (value > 0) ? 1 : -1;
 
 		// make a continued-fraction expansion of x

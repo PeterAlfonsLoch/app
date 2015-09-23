@@ -1,5 +1,10 @@
 #define index bsd_index
-#include "app/aura/pcre/src/pcre2.h"
+#ifdef HAVE_CONFIG_H
+#include "src/config.h"
+#endif
+
+
+#include "app/aura/pcre/src/pcre2_internal.h"
 #undef index
 #include "PcreUtil.h"
 
@@ -45,7 +50,7 @@ pcre_code::~pcre_code()
 }
 
 
-class CLASS_DECL_AURA_PCRE pcre_context_impl:
+class pcre_context_impl:
    virtual public pcre_context
 {
 public:
@@ -127,7 +132,7 @@ public:
 
 
 
-class CLASS_DECL_AURA_PCRE pcre_code_impl :
+class pcre_code_impl :
    virtual public pcre_code
 {
 public:
@@ -260,7 +265,7 @@ public:
 };
 
 
-class CLASS_DECL_AURA_PCRE pcre_util_impl:
+class pcre_util_impl:
    virtual public pcre_code_impl
 {
 public:

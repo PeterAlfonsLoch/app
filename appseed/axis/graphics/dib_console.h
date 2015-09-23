@@ -35,7 +35,7 @@ public:
    virtual void SetTextColor(int color);
    virtual void SetScreenColor(int color, int iLineStart = 0, int iLineCount = -1);
    virtual void write(const char * psz);
-   virtual void write(const void * lpBuf,::primitive::memory_size nCount);
+   virtual void write(const void * lpBuf,memory_size_t nCount);
 
    virtual bool defer_write(char ch,int x,int y,int cx,int cy, int iColor);
 

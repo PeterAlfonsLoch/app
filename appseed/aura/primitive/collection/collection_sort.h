@@ -1516,7 +1516,7 @@ namespace sort
       index iLowerBound = iStart;
       index iMaxBound = iEnd;
       index iUpperBound = iMaxBound;
-      ::primitive::memory_offset iCompare;
+      memory_offset_t iCompare;
       // do binary search
       iIndex = (iUpperBound + iLowerBound) / 2;
       while(iUpperBound - iLowerBound >= 8)

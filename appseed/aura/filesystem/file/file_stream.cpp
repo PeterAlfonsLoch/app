@@ -63,7 +63,7 @@ namespace file
    }
 
 
-   ::primitive::memory_size stream::get_internal_data_size() const
+   memory_size_t stream::get_internal_data_size() const
    {
       
       return m_spbuffer->get_internal_data_size();
@@ -71,7 +71,7 @@ namespace file
    }
 
 
-   bool stream::set_internal_data_size(::primitive::memory_size c)
+   bool stream::set_internal_data_size(memory_size_t c)
    {
       
       return m_spbuffer->set_internal_data_size(c);
@@ -79,7 +79,7 @@ namespace file
    }
 
 
-   file_position stream::get_position() const
+   file_position_t stream::get_position() const
    {
       
       return m_spbuffer->get_position();

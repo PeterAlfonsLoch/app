@@ -11,7 +11,7 @@ struct CLASS_DECL_AURA string_data
    strsize nDataLength;  // Length of currently used data in XCHARs (not including terminating NULL)
    strsize nAllocLength;  // Length of allocated data in XCHARs (not including terminating NULL)
    long nRefs;     // Reference count: negative == locked
-   // char data[nAllocLength+1]  // A string_data is always followed in primitive::memory by the actual array of character data
+   // char data[nAllocLength+1]  // A string_data is always followed in memory by the actual array of character data
 
    inline char * data() NOTHROW;
    inline void AddRef() RELEASENOTHROW;

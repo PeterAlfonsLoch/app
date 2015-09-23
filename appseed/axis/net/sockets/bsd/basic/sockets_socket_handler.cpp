@@ -362,7 +362,7 @@ namespace sockets
             EBADF  An invalid file descriptor was given in one of the sets.
             EINTR  A non blocked signal was caught.
             EINVAL n is negative. Or struct timeval contains bad time values (<0).
-            ENOMEM select was unable to allocate primitive::memory for internal tables.
+            ENOMEM select was unable to allocate memory for internal tables.
          */
          if(Errno != m_preverror || m_errcnt++ % 10000 == 0)
          {

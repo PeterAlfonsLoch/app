@@ -21,7 +21,7 @@
 #ifndef AVUTIL_INTFLOAT_H
 #define AVUTIL_INTFLOAT_H
 
-#include <stdint.h>
+#include "_stdint.h"
 #include "attributes.h"
 
 union av_intfloat32 {

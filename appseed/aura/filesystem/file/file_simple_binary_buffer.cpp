@@ -93,7 +93,7 @@ namespace file
 
    }
 
-   ::primitive::memory_size simple_binary_buffer::read(void * lpBuf, ::primitive::memory_size nCount)
+   memory_size_t simple_binary_buffer::read(void * lpBuf, memory_size_t nCount)
    {
       ASSERT_VALID(this);
       ASSERT(m_pfile != NULL);
@@ -103,7 +103,7 @@ namespace file
 
       ASSERT(__is_valid_address(lpBuf, nCount));
 
-      primitive::memory_size nRead = 0;
+      memory_size_t nRead = 0;
 
 
       if ((nRead = fread(lpBuf, sizeof(BYTE), nCount, m_pfile)) == 0 && !feof(m_pfile))
@@ -116,7 +116,7 @@ namespace file
       return nRead;
    }
 
-   void simple_binary_buffer::write(const void * lpBuf, ::primitive::memory_size nCount)
+   void simple_binary_buffer::write(const void * lpBuf, memory_size_t nCount)
    {
       ASSERT_VALID(this);
       ASSERT(m_pfile != NULL);
@@ -163,7 +163,7 @@ namespace file
       const int32_t nMaxSize = 128;
       char * lpsz = rString.GetBuffer(nMaxSize);
       char * lpszResult;
-      ::primitive::memory_size nLen = 0;
+      memory_size_t nLen = 0;
       for (;;)
       {
          lpszResult = fgets(lpsz, nMaxSize+1, m_pfile);
@@ -220,7 +220,7 @@ namespace file
    return lpszResult;
    }*/
 
-   file_position simple_binary_buffer::seek(file_offset lOff, ::file::e_seek nFrom)
+   file_position_t simple_binary_buffer::seek(file_offset_t lOff, ::file::e_seek nFrom)
    {
       ASSERT_VALID(this);
       ASSERT(nFrom == ::file::seek_begin || nFrom == ::file::seek_end || nFrom == ::file::seek_current);
@@ -234,7 +234,7 @@ namespace file
       return pos;
    }
 
-   file_position simple_binary_buffer::get_position() const
+   file_position_t simple_binary_buffer::get_position() const
    {
       ASSERT_VALID(this);
       ASSERT(m_pfile != NULL);
@@ -288,7 +288,7 @@ namespace file
       return NULL;
    }
 
-   void simple_binary_buffer::LockRange(file_position /* dwPos */, file_size /* dwCount */)
+   void simple_binary_buffer::LockRange(file_position_t /* dwPos */, file_size_t /* dwCount */)
    {
       ASSERT_VALID(this);
       ASSERT(m_pfile != NULL);
@@ -296,7 +296,7 @@ namespace file
       throw not_supported_exception(get_app());
    }
 
-   void simple_binary_buffer::UnlockRange(file_position /* dwPos */, file_size /* dwCount */)
+   void simple_binary_buffer::UnlockRange(file_position_t /* dwPos */, file_size_t /* dwCount */)
    {
       ASSERT_VALID(this);
       ASSERT(m_pfile != NULL);
@@ -306,7 +306,7 @@ namespace file
 
 
 
-   file_size simple_binary_buffer::get_length() const
+   file_size_t simple_binary_buffer::get_length() const
    {
       ASSERT_VALID(this);
 
@@ -556,7 +556,7 @@ namespace file
    }
 
 
-   void simple_binary_buffer::set_length(file_size dwNewLen)
+   void simple_binary_buffer::set_length(file_size_t dwNewLen)
    {
 
       ASSERT_VALID(this);

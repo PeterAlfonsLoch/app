@@ -1827,13 +1827,13 @@ namespace sockets
       if (LineProtocol())
       {
          buf[n] = 0;
-         size_t i = 0;
+         int i = 0;
          if (m_skip_c && (buf[i] == 13 || buf[i] == 10) && buf[i] != m_c)
          {
             m_skip_c = false;
             i++;
          }
-         size_t x = i;
+         int x = i;
          for (; i < n && LineProtocol(); i++)
          {
             while ((buf[i] == 13 || buf[i] == 10) && LineProtocol())

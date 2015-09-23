@@ -19,7 +19,7 @@ namespace file
    }
 
 
-   file_position composite::get_position() const
+   file_position_t composite::get_position() const
    {
 
       return m_spfile->get_position();
@@ -89,35 +89,35 @@ namespace file
 
    }
 
-   file_position composite::seek(file_offset lOff, ::file::e_seek  nFrom)
+   file_position_t composite::seek(file_offset_t lOff, ::file::e_seek  nFrom)
    {
 
       return m_spfile->seek(lOff, nFrom);
 
    }
 
-   void composite::set_length(file_size dwNewLen)
+   void composite::set_length(file_size_t dwNewLen)
    {
 
       return m_spfile->set_length(dwNewLen);
 
    }
    
-   file_size composite::get_length() const
+   file_size_t composite::get_length() const
    {
 
       return m_spfile->get_length();
 
    }
 
-   void composite::LockRange(file_position dwPos, file_size dwCount)
+   void composite::LockRange(file_position_t dwPos, file_size_t dwCount)
    {
 
       return m_spfile->LockRange(dwPos, dwCount);
 
    }
 
-   void composite::UnlockRange(file_position dwPos, file_size dwCount)
+   void composite::UnlockRange(file_position_t dwPos, file_size_t dwCount)
    {
 
       return m_spfile->UnlockRange(dwPos, dwCount);
@@ -145,14 +145,14 @@ namespace file
 
    }
 
-   ::primitive::memory_size composite::read(void *lpBuf, ::primitive::memory_size nCount)
+   memory_size_t composite::read(void *lpBuf, memory_size_t nCount)
    {
 
       return m_spfile->read(lpBuf, nCount);
 
    }
 
-   void composite::write(const void * lpBuf, ::primitive::memory_size nCount)
+   void composite::write(const void * lpBuf, memory_size_t nCount)
    {
 
       return m_spfile->write(lpBuf, nCount);

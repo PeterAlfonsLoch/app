@@ -320,7 +320,7 @@ namespace ios
    //
    //   string file_system::as_string(var varFile, var & varQuery, ::aura::application *  papp)
    //   {
-   //      primitive::memory storage;
+   //      memory storage;
    //      if(varFile.cast < ::file::reader > () != NULL)
    //      {
    //         storage.transfer_from(*varFile.cast < ::file::reader >());
@@ -527,7 +527,7 @@ namespace ios
    //      spfile = App(papp).file().get_file(varFile, ::file::type_binary | ::file::mode_write | ::file::mode_create | ::file::share_deny_none | ::file::defer_create_directory);
    //      if(spfile.is_null())
    //         return false;
-   //      primitive::memory mem;
+   //      memory mem;
    //      mem.allocate(1024 * 1024 * 8);
    //      ::primitive::memory_size uiRead;
    //      while((uiRead = reader.read(mem.get_data(), mem.get_size())) > 0)
@@ -537,7 +537,7 @@ namespace ios
    //      return true;
    //   }
    //
-   //   bool file_system::put_contents(var varFile, primitive::memory & mem, ::aura::application *  papp)
+   //   bool file_system::put_contents(var varFile, memory & mem, ::aura::application *  papp)
    //   {
    //      return put_contents(varFile, mem.get_data(), (count) mem.get_size(), papp);
    //   }

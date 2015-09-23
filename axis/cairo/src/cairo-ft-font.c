@@ -69,7 +69,9 @@
 #if HAVE_UNISTD_H
 #include <unistd.h>
 #else
+#ifndef _WIN32
 #define access(p, m) 0
+#endif
 #endif
 
 /* Fontconfig version older than 2.6 didn't have these options */

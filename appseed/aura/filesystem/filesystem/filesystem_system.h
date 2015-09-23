@@ -90,7 +90,7 @@ namespace file
       virtual bool put_contents(var varFile,const void * pvoidContents,::count count,::aura::application * papp);
       virtual bool put_contents(var varFile,const char * lpcszContents,::aura::application * papp);
       virtual bool put_contents(var varFile,reader & reader,::aura::application * papp);
-      virtual bool put_contents(var varFile,primitive::memory & mem,::aura::application * papp);
+      virtual bool put_contents(var varFile,memory & mem,::aura::application * papp);
       virtual bool put_contents_utf8(var varFile,const char * lpcszContents,::aura::application * papp);
 
       virtual bool add_contents(var varFile,const void * pvoidContents,::count count,::aura::application * papp);

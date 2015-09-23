@@ -29,12 +29,12 @@ namespace file
    public:
 
       virtual void seek_to_begin();
-      virtual file_position seek_to_end();
+      virtual file_position_t seek_to_end();
 
 
-      virtual file_position seek_from_begin(file_position position);
-      virtual file_position seek(file_offset offset, e_seek seekOrigin);
-      virtual file_position get_position() const;
+      virtual file_position_t seek_from_begin(file_position_t position);
+      virtual file_position_t seek(file_offset_t offset, e_seek seekOrigin);
+      virtual file_position_t get_position() const;
 
    };
 

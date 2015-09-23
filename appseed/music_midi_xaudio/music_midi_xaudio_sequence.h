@@ -50,7 +50,7 @@ namespace music
 
 
                MIDIHDR              m_midihdr;
-               primitive::memory    m_storage;
+               memory    m_storage;
                bool                 m_bPrepared;
 
                bool IsPrepared();
@@ -176,7 +176,7 @@ namespace music
             e_result OpenFile(::music::midi::sequence & sequence, int32_t iOpenMode);
             e_result OpenFile(::file::stream_buffer & ar, int32_t openMode);
             e_result OpenFile(const char * lpFileName, int32_t openMode);
-            e_result OpenFile(primitive::memory * pmemorystorage, int32_t openMode, ::music::e_storage estorage);
+            e_result OpenFile(memory * pmemorystorage, int32_t openMode, ::music::e_storage estorage);
 
             e_result CloseFile();
             e_result SaveFile(const char * lpFileName);

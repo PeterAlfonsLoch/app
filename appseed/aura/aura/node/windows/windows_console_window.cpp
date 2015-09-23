@@ -122,7 +122,7 @@ namespace windows
       window.Bottom = height - 1;
       window.Right = width - 1;
       SetConsoleWindowInfo(GetStdHandle(STD_OUTPUT_HANDLE),TRUE,&window);
-      COORD buffer ={width,height};
+      COORD buffer ={(SHORT)width,(SHORT)height};
       SetConsoleScreenBufferSize(GetStdHandle(STD_OUTPUT_HANDLE),buffer);
 
    }
@@ -137,7 +137,7 @@ namespace windows
 
    void console::SetCursorPosition(int y,int x)
    {
-      COORD cursor ={x,y};
+      COORD cursor ={(SHORT)x,(SHORT)y};
       SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),cursor);
    }
 
@@ -148,7 +148,7 @@ namespace windows
 
    void console::SetScreenColor(int color, int iLineStart, int iLineCount)
    {
-      COORD coord ={0,iLineStart};
+      COORD coord ={0,(SHORT)iLineStart};
       DWORD dwWritten;
       if(iLineCount < 0)
          iLineCount = m_iH + iLineCount + 1;

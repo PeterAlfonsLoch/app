@@ -294,7 +294,7 @@ GetLastError());
 pszOutBuffer = new char[dwSize+1];
 if (!pszOutBuffer)
 {
-printf("Out of primitive::memory\n");
+printf("Out of memory\n");
 dwSize=0;
 }
 else
@@ -312,7 +312,7 @@ g_dwDownloadLen += dwSize;
 strResult += pszOutBuffer;
 }
 
-// Free the primitive::memory allocated to the buffer.
+// Free the memory allocated to the buffer.
 delete [] pszOutBuffer;
 }
 

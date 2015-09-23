@@ -147,7 +147,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
          /** Send to connected address */
          using ::sockets::socket::write;
-         void write(const void *data, ::primitive::memory_size c);
+         void write(const void *data, memory_size_t c);
          /** Send string to connected address. */
          //void Send(const string &);
 

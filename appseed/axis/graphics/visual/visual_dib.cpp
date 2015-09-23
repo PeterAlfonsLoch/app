@@ -303,7 +303,7 @@ bool windows_load_dib_from_file(::draw2d::dib * pdib,::file::buffer_sp pfile,::a
 
    int iSize = pfile->get_length();
 
-   primitive::memory mem(papp);
+   memory mem(papp);
 
    mem.allocate(iSize);
 
@@ -719,7 +719,7 @@ bool windows_write_dib_to_file(::file::buffer_sp pfile,::draw2d::dib * pdib,::vi
    pstream->Seek(l,STREAM_SEEK_SET,NULL);
 
 
-   primitive::memory mem(papp);
+   memory mem(papp);
 
    mem.allocate(1024 * 1024);
 

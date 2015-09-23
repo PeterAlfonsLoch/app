@@ -16,7 +16,7 @@ public:
 
   const byte *openStream();
   void closeStream();
-  file_size get_length() const;
+  file_size_t get_length() const;
 protected:
   ::file::istream & createRelative(string relPath);
 

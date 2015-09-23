@@ -90,7 +90,7 @@ in read operations - helps on ECOS */
 #else
 #ifdef SOLARIS
 #else
-# include <stdint.h>
+# include "_stdint.h"
 #endif
 #endif
 

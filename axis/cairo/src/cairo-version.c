@@ -42,6 +42,9 @@
 
 /* get the "real" version info instead of dummy cairo-version.h */
 #undef CAIRO_VERSION_H
+#undef CAIRO_VERSION_MAJOR
+#undef CAIRO_VERSION_MINOR
+#undef CAIRO_VERSION_MICRO
 #include "../cairo-version.h"
 
 /**

@@ -22,7 +22,7 @@
 #ifndef AVUTIL_XTEA_H
 #define AVUTIL_XTEA_H
 
-#include <stdint.h>
+#include "_stdint.h"
 
 /**
  * @file

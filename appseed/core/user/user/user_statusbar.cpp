@@ -240,7 +240,9 @@ namespace user
          }
 
          // determine right edge of each pane
-         int32_t* rgRights = (int32_t*)_alloca(m_panea.get_count() * sizeof(int32_t));
+         memory rgRightsMem;
+         rgRightsMem.allocate(m_panea.get_count() * sizeof(int32_t));
+         int32_t* rgRights = (int32_t*)rgRightsMem.get_data();
          int32_t right = rgBorders[0];
    //      pSBP = _GetPanePtr(0);
          for (i = 0; i < m_panea.get_count(); i++)

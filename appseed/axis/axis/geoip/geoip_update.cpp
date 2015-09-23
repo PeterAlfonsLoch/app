@@ -62,7 +62,7 @@ const char * GeoIP_get_error_message(int32_t i) {
   case GEOIP_GZIP_READ_ERR:
     return "Unable to read gzip data";
   case GEOIP_OUT_OF_MEMORY_ERR:
-    return "Out of primitive::memory error";
+    return "Out of memory error";
   case GEOIP_SOCKET_READ_ERR:
     return "Error reading from socket, see errno";
   case GEOIP_SANITY_OPEN_ERR:
@@ -179,7 +179,7 @@ int16_t parse_http_proxy(char **proxy_host, int32_t *port) {
       *proxy_host = _strdup(http_proxy);
 #endif
       if ( *proxy_host == NULL )
-         return 0; /* let the other functions deal with the primitive::memory error */
+         return 0; /* let the other functions deal with the memory error */
 
       if ((port_value = strchr(*proxy_host, ':'))) {
          *port_value++ = '\0';

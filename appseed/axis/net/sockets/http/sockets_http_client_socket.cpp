@@ -391,7 +391,7 @@ namespace sockets
       if (escalar == scalar_download_size)
       {
 
-         m_content_ptr = (::primitive::memory_position) iValue;
+         m_content_ptr = (memory_position_t) iValue;
 
       }
       else

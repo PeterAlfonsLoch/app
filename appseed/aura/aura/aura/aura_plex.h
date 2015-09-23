@@ -11,7 +11,7 @@ struct CLASS_DECL_AURA plex     // warning var length structure
 
    static plex* create(plex*& head, uint_ptr nMax, uint_ptr cbElement);
          // like 'calloc' but no zero fill
-         // may throw primitive::memory exceptions
+         // may throw memory exceptions
 
    void FreeDataChain();       // free this one and links
 };

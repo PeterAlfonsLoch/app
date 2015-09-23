@@ -9,31 +9,31 @@ namespace primitive
 #if defined(__LP64__)  // X64
 
 
-   typedef uint64_t  memory_size;
-   typedef uint64_t  memory_position;
-   typedef int64_t   memory_offset;
+#define memory_size_t uint64_t
+#define memory_position_t uint64_t
+#define memory_offset_t int64_t 
 
 #elif defined(_M_X64) // X64
 
 
-//DEFINE_C_NUMBER(CLASS_DECL_AURA, memory_size         , uint64_t)
-//DEFINE_C_NUMBER(CLASS_DECL_AURA, memory_position     , uint64_t)
-//DEFINE_C_NUMBER(CLASS_DECL_AURA, memory_offset       ,  int64_t)
+//DEFINE_C_NUMBER(CLASS_DECL_AURA, memory_size_t         , uint64_t)
+//DEFINE_C_NUMBER(CLASS_DECL_AURA, memory_position_t     , uint64_t)
+//DEFINE_C_NUMBER(CLASS_DECL_AURA, memory_offset_t       ,  int64_t)
 
-typedef uint64_t  memory_size;
-typedef uint64_t  memory_position;
-typedef int64_t   memory_offset;
+#define memory_size_t uint64_t
+#define memory_position_t uint64_t
+#define memory_offset_t int64_t 
 
 
 #else
 
-//DEFINE_C_NUMBER(CLASS_DECL_AURA,   memory_size         , uint32_t)
-//DEFINE_C_NUMBER(CLASS_DECL_AURA,   memory_position     , uint32_t)
-//DEFINE_C_NUMBER(CLASS_DECL_AURA,   memory_offset       ,  int32_t)
+//DEFINE_C_NUMBER(CLASS_DECL_AURA,   memory_size_t         , uint32_t)
+//DEFINE_C_NUMBER(CLASS_DECL_AURA,   memory_position_t     , uint32_t)
+//DEFINE_C_NUMBER(CLASS_DECL_AURA,   memory_offset_t       ,  int32_t)
 
-typedef uint32_t  memory_size;
-typedef uint32_t  memory_position;
-typedef int32_t   memory_offset;
+#define memory_size_t uint32_t
+#define memory_position_t uint32_t
+#define memory_offset_t int32_t 
 
 
 #endif

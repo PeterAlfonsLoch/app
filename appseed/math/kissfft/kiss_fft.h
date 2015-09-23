@@ -45,7 +45,7 @@ typedef struct kiss_fft_state* kiss_fft_cfg;
  *  by the fft routine or NULL.
  *
  *  If lenmem is NULL, then kiss_fft_alloc will allocate a cfg buffer using malloc.
- *  The returned value should be free()d when done to avoid primitive::memory leaks.
+ *  The returned value should be free()d when done to avoid memory leaks.
  *
  *  The state can be placed in a ::fontopus::user supplied buffer 'mem':
  *  If lenmem is not NULL and mem is not NULL and *lenmem is large enough,

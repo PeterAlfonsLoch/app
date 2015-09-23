@@ -87,7 +87,7 @@ public:
   API for XML) implementation, which is an XML DOM parser. Like
   SAX, the lite_html_reader class reads a departament of HTML text,
   generates an event, and moves on to the next departament. This
-  results in low primitive::memory consumption.
+  results in low memory consumption.
 
   @version 1.0 (Mar 26, 2004)
   @author Gurmeet S. Kochar

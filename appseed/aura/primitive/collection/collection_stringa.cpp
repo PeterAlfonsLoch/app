@@ -567,7 +567,7 @@ int32_t g_add_smallest_tokens = 0;
 //   return count;
 //}
 //
-//primitive::memory stringa::GetFormatV004()
+//memory stringa::GetFormatV004()
 //{
 //
 //   strsize iTotalLength = 0;
@@ -589,7 +589,7 @@ int32_t g_add_smallest_tokens = 0;
 //      iTotalLength++;
 //   }
 //
-//   primitive::memory mem;
+//   memory mem;
 //
 //   mem.allocate(iTotalLength * sizeof(char));
 //

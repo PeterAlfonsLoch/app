@@ -30,9 +30,9 @@
 #ifndef OPENSSL_NO_EC_NISTP_64_GCC_128
 
 #ifndef OPENSSL_SYS_VMS
-#include <stdint.h>
+#include "_stdint.h"
 #else
-#include <inttypes.h>
+#include "_inttypes.h"
 #endif
 
 #include <string.h>

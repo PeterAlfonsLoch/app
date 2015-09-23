@@ -28,7 +28,7 @@
 
 #include "opj_config.h"
 #ifdef OPJ_HAVE_STDINT_H
-#include <stdint.h>
+#include "_stdint.h"
 #else
 #if defined(_WIN32)
 typedef   signed __int8   int8_t;

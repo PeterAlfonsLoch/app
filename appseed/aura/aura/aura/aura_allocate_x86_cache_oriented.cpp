@@ -1,6 +1,6 @@
 
 
-CLASS_DECL_AURA void * x86_memory_pool_alloc(::primitive::memory_size s);
+CLASS_DECL_AURA void * x86_memory_pool_alloc(memory_size_t s);
 CLASS_DECL_AURA void x86_memory_pool_freec(void * p);
 
 
@@ -212,7 +212,7 @@ static_inline void x86_cache_oriented_destroy_all_memory_pools()
 }
 
 
-CLASS_DECL_AURA void * x86_cache_oriented_memory_alloc(::primitive::memory_size s)
+CLASS_DECL_AURA void * x86_cache_oriented_memory_alloc(memory_size_t s)
 {
    
    return x86_cache_oriented_get_thread_memory_pool()->alloc(s);

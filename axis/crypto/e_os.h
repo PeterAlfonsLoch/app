@@ -297,7 +297,9 @@ static unsigned int _strlen31(const char *str)
 	return len&0x7FFFFFFF;
 	}
 #    endif
+#ifndef _WIN32
 #    include <malloc.h>
+#endif
 #    if defined(_MSC_VER) && _MSC_VER<=1200 && defined(_MT) && defined(isspace)
        /* compensate for bug in VC6 ctype.h */
 #      undef isspace

@@ -18,7 +18,7 @@
 #define _UNITYPES_H
 
 /* Get uint8_t, uint16_t, uint32_t.  */
-#include <stdint.h>
+#include "_stdint.h"
 
 /* Type representing a Unicode character.  */
 typedef uint32_t ucs4_t;

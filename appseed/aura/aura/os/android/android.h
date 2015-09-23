@@ -3,7 +3,7 @@
 
 
 //#include <unistd.h>
-//#include <stdint.h>
+//#include "_stdint.h"
 //#include <asm/byteorder.h>
 
 BEGIN_EXTERN_C

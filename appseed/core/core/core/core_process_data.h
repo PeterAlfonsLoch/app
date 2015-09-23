@@ -50,27 +50,27 @@ public:
       }
    }
 
-   //WriteData is used to copy data to primitive::memory in the foreign process
+   //WriteData is used to copy data to memory in the foreign process
    bool WriteData(const T& data)
    {
       return (m_hProcess && m_lpData) ? WriteProcessMemory(m_hProcess, m_lpData,
          (LPCVOID)&data, sizeof T, NULL) : FALSE;
    }
 
-   //ReadData reads back data from primitive::memory in the foreign process
+   //ReadData reads back data from memory in the foreign process
    bool ReadData(T* data)
    {
       return (m_hProcess && m_lpData) ? ReadProcessMemory(m_hProcess, m_lpData, (LPVOID)data, sizeof T, NULL) != FALSE : false;
    }
 
    //Templated ReadData that's used to read a specific data type from
-   //a primitive::memory address located in the foreign process
+   //a memory address located in the foreign process
    template<typename TSUBTYPE> bool ReadData(TSUBTYPE* data, LPCVOID lpData)
    {
       return m_hProcess ? ReadProcessMemory(m_hProcess, lpData, (LPVOID)data, sizeof TSUBTYPE, NULL) != FALSE : false;
    }
 
-   //Gets the address of the allocated primitive::memory in the foreign process
+   //Gets the address of the allocated memory in the foreign process
    const T* get_data()
    {
       return (m_hProcess && m_lpData) ? (T*)m_lpData : NULL;

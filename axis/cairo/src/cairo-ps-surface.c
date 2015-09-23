@@ -186,7 +186,9 @@ typedef struct _cairo_page_media {
 static void
 _cairo_ps_surface_emit_header (cairo_ps_surface_t *surface)
 {
+#ifdef HAVE_CTIME_R
     char ctime_buf[26];
+#endif
     time_t now;
     char **comments;
     int i, num_comments;

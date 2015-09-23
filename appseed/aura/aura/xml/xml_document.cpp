@@ -50,7 +50,7 @@ namespace xml
    bool document::load(::file::istream & is)
    {
 
-      primitive::memory memory;
+      memory memory;
 
       memory.read(is);
 

@@ -52,7 +52,7 @@ namespace file
    }
 
 
-   void ostream::write_from_hex(const void *lpBuf,::primitive::memory_size nCount)
+   void ostream::write_from_hex(const void *lpBuf,memory_size_t nCount)
    {
 
       m_spbuffer->write_from_hex(lpBuf,nCount);
@@ -60,14 +60,14 @@ namespace file
    }
 
 
-   void ostream::write(const void *lpBuf,::primitive::memory_size nCount)
+   void ostream::write(const void *lpBuf,memory_size_t nCount)
    {
       
       m_spbuffer->write(lpBuf, nCount);
 
    }
 
-   void ostream::write(const void *lpBuf, ::primitive::memory_size nCount, ::primitive::memory_size * dwWritten)
+   void ostream::write(const void *lpBuf, memory_size_t nCount, memory_size_t * dwWritten)
    {
 
       m_spbuffer->write(lpBuf, nCount, dwWritten);
@@ -279,7 +279,7 @@ namespace file
 
    }
 
-   void ostream::set_length(file_size len)
+   void ostream::set_length(file_size_t len)
    {
    
       m_spbuffer->set_length(len);

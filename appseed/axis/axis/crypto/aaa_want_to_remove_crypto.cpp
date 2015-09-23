@@ -6,7 +6,7 @@
 #endif
 
 
-//bool hex_to_memory(primitive::memory & memory, const char * pszHex)
+//bool hex_to_memory(memory & memory, const char * pszHex)
 //{
 //   ::count len = strlen(pszHex);
 //   ::count count = (len + 1) / 2;
@@ -56,7 +56,7 @@
 //}
 //
 //
-//void memory_to_hex(string & strHex, primitive::memory & memory)
+//void memory_to_hex(string & strHex, memory & memory)
 //{
 //   ::count count = memory.get_size();
 //   LPSTR lpsz = strHex.GetBufferSetLength(count * 2);
@@ -72,14 +72,14 @@
 
 
 
-//CLASS_DECL_AXIS int32_t crypto_encrypt(::primitive::memory & storageEncrypt, const ::primitive::memory & storageDecrypt, ::primitive::memory & key);
+//CLASS_DECL_AXIS int32_t crypto_encrypt(memory & storageEncrypt, const memory & storageDecrypt, memory & key);
 //
-//CLASS_DECL_AXIS int32_t crypto_decrypt(::primitive::memory & storageDecrypt, const ::primitive::memory & storageEncrypt, ::primitive::memory & key);
+//CLASS_DECL_AXIS int32_t crypto_decrypt(memory & storageDecrypt, const memory & storageEncrypt, memory & key);
 //
-//bool crypto_encrypt(::primitive::memory & storageEncrypt, const ::primitive::memory & storageDecrypt, const char * pszSalt)
+//bool crypto_encrypt(memory & storageEncrypt, const memory & storageDecrypt, const char * pszSalt)
 //{
 //
-//   ::primitive::memory key;
+//   memory key;
 //
 //   key.from_string(get_md5(pszSalt));
 //
@@ -88,10 +88,10 @@
 //}
 //
 //
-//bool crypto_decrypt(::primitive::memory & storageDecrypt, const ::primitive::memory & storageEncrypt, const char * pszSalt)
+//bool crypto_decrypt(memory & storageDecrypt, const memory & storageEncrypt, const char * pszSalt)
 //{
 //
-//   ::primitive::memory key;
+//   memory key;
 //
 //   key.from_string(get_md5(pszSalt));
 //
@@ -102,9 +102,9 @@
 
 //int32_t crypto_encrypt(string & strEncrypt, const char * pszDecrypt, const char * pszKey)
 //{
-//   ::primitive::memory storageDecrypt;
-//   ::primitive::memory storageEncrypt;
-//   ::primitive::memory storageKey;
+//   memory storageDecrypt;
+//   memory storageEncrypt;
+//   memory storageKey;
 //   if (pszDecrypt == NULL || strlen(pszDecrypt) == 0)
 //   {
 //      strEncrypt = "";
@@ -118,25 +118,25 @@
 //}
 //
 
-//bool crypto_decrypt(string & strDecrypt, const ::primitive::memory & storageEncrypt, const char * pszSalt)
+//bool crypto_decrypt(string & strDecrypt, const memory & storageEncrypt, const char * pszSalt)
 //{
-//   ::primitive::memory memoryDecrypt;
+//   memory memoryDecrypt;
 //   if (!crypto_decrypt(memoryDecrypt, storageEncrypt, pszSalt))
 //      return false;
 //   memoryDecrypt.to_asc(strDecrypt);
 //   return true;
 //}
 //
-//bool crypto_encrypt(::primitive::memory & storageEncrypt, const char * pszDecrypt, const char * pszSalt)
+//bool crypto_encrypt(memory & storageEncrypt, const char * pszDecrypt, const char * pszSalt)
 //{
-//   ::primitive::memory memoryDecrypt;
+//   memory memoryDecrypt;
 //   memoryDecrypt.from_asc(pszDecrypt);
 //   return crypto_encrypt(storageEncrypt, memoryDecrypt, pszSalt);
 //}
 //
 //bool crypto_file_get(const char * pszFile, string & str, const char * pszSalt)
 //{
-//   ::primitive::memory memoryEncrypt;
+//   memory memoryEncrypt;
 //   if (!file_get_memory_dup(memoryEncrypt, pszFile))
 //      return false;
 //   if (memoryEncrypt.get_size() <= 0)
@@ -147,7 +147,7 @@
 //
 //bool crypto_file_set(const char * pszFile, const char * pszData, const char * pszSalt)
 //{
-//   ::primitive::memory memoryEncrypt;
+//   memory memoryEncrypt;
 //   crypto_encrypt(memoryEncrypt, pszData, pszSalt);
 //   file_put_contents_dup(pszFile, memoryEncrypt);
 //   return true;

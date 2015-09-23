@@ -269,28 +269,28 @@ namespace str
          return str;
       }
 
-      bool MultiByteToMultiByte(UINT uiCodePageDst, primitive::memory & str, UINT uiCodePageSrc, const char * lpcsz)
+      bool MultiByteToMultiByte(UINT uiCodePageDst, memory & str, UINT uiCodePageSrc, const char * lpcsz)
       {
          return UnicodeToMultiByte(uiCodePageDst, str, MultiByteToUnicode(uiCodePageSrc, lpcsz));
       }
 
-      bool MultiByteToMultiByte(UINT uiCodePageDst, primitive::memory & str, UINT uiCodePageSrc, const char * lpcsz, strsize nCount)
+      bool MultiByteToMultiByte(UINT uiCodePageDst, memory & str, UINT uiCodePageSrc, const char * lpcsz, strsize nCount)
       {
          return UnicodeToMultiByte(uiCodePageDst, str, MultiByteToUnicode(uiCodePageSrc, lpcsz, nCount));
       }
 
-      bool UnicodeToMultiByte(UINT uiCodePage, primitive::memory & memstorage, const unichar * lpcsz)
+      bool UnicodeToMultiByte(UINT uiCodePage, memory & memstorage, const unichar * lpcsz)
       {
          memstorage.allocate(UnicodeToMultiByteCount(uiCodePage, lpcsz));
          return UnicodeToMultiByte(uiCodePage, (char *) memstorage.get_data(), (strsize) memstorage.get_size(), lpcsz);
       }
 
-      //bool OEMToMultiByte(UINT uiCodePage, primitive::memory & str, const char * lpcsz)
+      //bool OEMToMultiByte(UINT uiCodePage, memory & str, const char * lpcsz)
       //{
       //   return MultiByteToMultiByte(uiCodePage, str, ::GetOEMCP(), lpcsz);
       //}
 
-      //bool OEMToMultiByte(UINT uiCodePage, primitive::memory & str, const char * lpcsz, strsize nCount)
+      //bool OEMToMultiByte(UINT uiCodePage, memory & str, const char * lpcsz, strsize nCount)
       //{
       //   return MultiByteToMultiByte(uiCodePage, str, ::GetOEMCP(), lpcsz, nCount);
       //}

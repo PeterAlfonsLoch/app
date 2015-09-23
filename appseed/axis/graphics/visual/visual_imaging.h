@@ -193,7 +193,7 @@ public:
       ::draw2d::graphics *pdc,
       BITMAP & bm,
       BITMAPINFO & bmi,
-      primitive::memory & memomrystorage,
+      memory & memomrystorage,
       ::draw2d::bitmap * pbitmap,
       const RECT & rect,
       int32_t & iWidth,

@@ -26,7 +26,7 @@ namespace file
       virtual void read (unichar & wch);
 #endif
       virtual void read (int16_t & sh);
-      virtual void read (uint16_t & uint16_t);
+      virtual void read (uint16_t & ui);
       virtual void read (int32_t & i);
       virtual void read (uint32_t & ui);
       virtual void read (int64_t & i);

@@ -60,7 +60,7 @@ CLASS_DECL_AURA bool __enable_memory_leak_override(bool bEnable);
 CLASS_DECL_AURA bool __enable_memory_tracking(bool bTrack);
 
 /////////////////////////////////////////////////////////////////////////////
-// Enumerate all objects allocated in the diagnostic primitive::memory heap
+// Enumerate all objects allocated in the diagnostic memory heap
 
 struct CLASS_DECL_AURA ___ENUM_CONTEXT
 {
@@ -72,7 +72,7 @@ CLASS_DECL_AURA __STATIC void __do_for_all_objects_proxy(void * pObject, void * 
 CLASS_DECL_AURA void __do_for_all_objects(void (c_cdecl *pfn)(object*, void *), void * pContext);
 
 /////////////////////////////////////////////////////////////////////////////
-// Automatic debug primitive::memory diagnostics
+// Automatic debug memory diagnostics
 
 CLASS_DECL_AURA bool __dump_memory_leaks();
 
@@ -80,7 +80,7 @@ CLASS_DECL_AURA bool __dump_memory_leaks();
 #endif // DEBUG
 
 /////////////////////////////////////////////////////////////////////////////
-// Non-diagnostic primitive::memory routines
+// Non-diagnostic memory routines
 
 CLASS_DECL_AURA int32_t c_cdecl __new_handler(size_t /* nSize */);
 

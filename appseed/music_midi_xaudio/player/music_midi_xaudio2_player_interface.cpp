@@ -66,7 +66,7 @@ namespace music
                }
                catch(memory_exception *pe)
                {
-                  System.simple_message_box(NULL, _T("No primitive::memory to perform this operation." ));
+                  System.simple_message_box(NULL, _T("No memory to perform this operation." ));
                   pe->Delete();
                   return false;
                }

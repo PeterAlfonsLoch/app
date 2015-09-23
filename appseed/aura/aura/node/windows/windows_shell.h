@@ -181,7 +181,7 @@ namespace windows
       static HANDLE FindFirstFile(const unichar * lpcsz, WIN32_FIND_DATAW * lpdata);
       static bool WINAPI FindNextFile(HANDLE handle, WIN32_FIND_DATAW * lpdata);
       static bool MoveFile(const unichar * lpExistingFileName, const unichar * lpNewFileName);
-      static WCHAR * __cdecl _fullpath(WCHAR *UserBuf, const WCHAR *path, size_t maxlen);
+      static unichar * FullPath(unichar *UserBuf, const unichar *path, size_t maxlen);
       static DWORD GetFullPathName(const unichar * lpFileName, DWORD nBufferLength, unichar * lpBuffer, unichar ** lpFilePart);
       static bool GetVolumeInformation(
          const unichar * lpRootPathName,           // root directory
@@ -303,7 +303,7 @@ namespace windows
       return (*theWindowsShell.m_pfnFindNextFile)(handle, lpdata) != FALSE;
    }
 
-   inline WCHAR * shell::_fullpath(WCHAR *UserBuf, const WCHAR *path, size_t maxlen)
+   inline WCHAR * shell::FullPath(WCHAR *UserBuf, const WCHAR *path, size_t maxlen)
    {
       return (*theWindowsShell.m_pfn_fullpath)(UserBuf, path, maxlen);
    }

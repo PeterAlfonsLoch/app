@@ -115,7 +115,7 @@
 
 #include <stdlib.h>
 #ifdef _WIN32
-# include <malloc.h>
+//# include <malloc.h>
 # ifndef alloca
 #  define alloca _alloca
 # endif

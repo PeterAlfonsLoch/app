@@ -321,8 +321,8 @@ namespace windows
       DWORD dwWidth,dwHeight;
       BITMAPINFOHEADER bi;
       // HBITMAP hOldBitmap;
-      HBITMAP hBitmap;
-      void *lpBits;
+//      HBITMAP hBitmap;
+//      void *lpBits;
       HCURSOR hAlphaCursor = NULL;
 
       dwWidth  = pdib->m_size.cx;  // width of the Bitmap V5 Dib bitmap

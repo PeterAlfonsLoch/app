@@ -237,8 +237,10 @@ namespace windows
 
          }
 
-         return status.dwRunningState & SPRS_IS_SPEAKING;
+         return (status.dwRunningState & SPRS_IS_SPEAKING) != FALSE;
+
       }
+
 
       bool speaker::stop()
       {

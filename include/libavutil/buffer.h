@@ -25,7 +25,7 @@
 #ifndef AVUTIL_BUFFER_H
 #define AVUTIL_BUFFER_H
 
-#include <stdint.h>
+#include "_stdint.h"
 
 /**
  * @defgroup lavu_buffer AVBuffer

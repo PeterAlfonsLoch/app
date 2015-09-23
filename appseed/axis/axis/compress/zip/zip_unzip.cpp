@@ -881,8 +881,8 @@ extern int32_t CLASS_DECL_AXIS unzLocateFile (
 // I need random access
 //
 // Further optimization could be realized by adding an ability
-// to cache the directory in primitive::memory. The goal being a single
-// comprehensive file read to put the file I need in a primitive::memory.
+// to cache the directory in memory. The goal being a single
+// comprehensive file read to put the file I need in a memory.
 */
 
 /*

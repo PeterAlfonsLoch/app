@@ -589,7 +589,7 @@ int bsdiff(const char * oldfile, const char * newfile, const char * patchfile)
       return err(1, "fclose");
    }
 
-   /* Free the primitive::memory we used */
+   /* Free the memory we used */
    free(db);
    free(eb);
    free(I);

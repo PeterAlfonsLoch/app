@@ -23,17 +23,17 @@ namespace file
       virtual ~timeout_buffer();
 
       virtual bool IsValid() const;
-      file_position seek(file_offset lOff, ::file::e_seek  nFrom);
-      file_position get_position() const;
-      file_size get_length() const;
-      file_size get_length(single_lock * psl) const;
+      file_position_t seek(file_offset_t lOff, ::file::e_seek  nFrom);
+      file_position_t get_position() const;
+      file_size_t get_length() const;
+      file_size_t get_length(single_lock * psl) const;
 
       using ::file::stream_buffer::read;
-      virtual ::primitive::memory_size read(void *lpBuf, ::primitive::memory_size nCount);
+      virtual memory_size_t read(void *lpBuf, memory_size_t nCount);
       using ::file::stream_buffer::write;
-      virtual void write(const void * lpBuf, ::primitive::memory_size nCount);
+      virtual void write(const void * lpBuf, memory_size_t nCount);
       virtual void flush();
-      virtual void set_length(file_size dwNewLen);
+      virtual void set_length(file_size_t dwNewLen);
 
 
    };

@@ -316,7 +316,7 @@ void kf_factor(int32_t n,int32_t * facbuf)
  *
  * User-callable function to allocate all necessary storage space for the fft.
  *
- * The return value is a contiguous block of primitive::memory, allocated with malloc.  As such,
+ * The return value is a contiguous block of memory, allocated with malloc.  As such,
  * It can be freed with free(), rather than a kiss_fft-specific function.
  * */
 kiss_fft_cfg kiss_fft_alloc(int32_t nfft,int32_t inverse_fft,void * mem,size_t * lenmem )

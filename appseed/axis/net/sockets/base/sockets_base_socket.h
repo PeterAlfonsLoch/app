@@ -326,7 +326,7 @@ namespace sockets
       * line protocol mode. */
       virtual void OnLine(const string & );
 
-      //virtual primitive::memory_size read(void * buf, primitive::memory_size c);
+      //virtual memory_size_t read(void * buf, memory_size_t c);
 
       virtual void on_read(const void * buf, int_ptr c);
       virtual void OnRawData(char * buf, size_t len);

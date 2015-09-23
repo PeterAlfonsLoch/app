@@ -110,7 +110,7 @@ namespace metrowin
 
    }
 
-   bool registry::Key::QueryValue(const char * lpcszValueName, primitive::memory & mem)
+   bool registry::Key::QueryValue(const char * lpcszValueName, memory & mem)
    {
       DWORD cbValue;
       DWORD dwType;

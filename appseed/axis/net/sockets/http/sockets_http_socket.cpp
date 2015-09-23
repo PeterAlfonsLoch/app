@@ -75,7 +75,7 @@ namespace sockets
                      m_body_size_left = 0;
                      if (len - ptr > 0)
                      {
-                        primitive::memory mem(get_app());
+                        memory mem(get_app());
                         mem.allocate(TCP_BUFSIZE_READ);
                         char * tmp = (char*)mem.get_data();
                         memcpy(tmp,buf + ptr,len - ptr);
@@ -163,7 +163,7 @@ namespace sockets
                m_body_size_left = 0;
                if (len - sz > 0)
                {
-                  primitive::memory mem(get_app());
+                  memory mem(get_app());
                   mem.allocate(TCP_BUFSIZE_READ);
                   char * tmp = (char*)mem.get_data();
                   memcpy(tmp,buf + sz,len - sz);

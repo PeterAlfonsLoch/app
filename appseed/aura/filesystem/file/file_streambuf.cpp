@@ -79,7 +79,7 @@ namespace file
    }
 
 
-   file_position streambuf::seek(file_offset lOff,::file::e_seek eseek)
+   file_position_t streambuf::seek(file_offset_t lOff,::file::e_seek eseek)
    {
 
       int nFrom = SEEK_SET;
@@ -104,7 +104,7 @@ namespace file
    }
 
 
-   file_position streambuf::get_position() const
+   file_position_t streambuf::get_position() const
    {
 
       return ftell_dup(m_pfile);
@@ -127,7 +127,7 @@ namespace file
 
    }
 
-   ::primitive::memory_size streambuf::read(void *lpBuf,::primitive::memory_size nCount)
+   memory_size_t streambuf::read(void *lpBuf,memory_size_t nCount)
    {
       
       return fread_dup(lpBuf, nCount, 1, m_pfile);
@@ -136,7 +136,7 @@ namespace file
 
 
 
-   void streambuf::write(const void * lpBuf,::primitive::memory_size nCount)
+   void streambuf::write(const void * lpBuf,memory_size_t nCount)
    {
       fwrite_dup(lpBuf,nCount, 1, m_pfile);
    }
@@ -146,24 +146,24 @@ namespace file
    {
    }
 
-   void streambuf::LockRange(file_position dwPos,file_size dwCount)
+   void streambuf::LockRange(file_position_t dwPos,file_size_t dwCount)
    {
       UNREFERENCED_PARAMETER(dwPos);
       UNREFERENCED_PARAMETER(dwCount);
    }
 
-   void streambuf::UnlockRange(file_position dwPos,file_size dwCount)
+   void streambuf::UnlockRange(file_position_t dwPos,file_size_t dwCount)
    {
       UNREFERENCED_PARAMETER(dwPos);
       UNREFERENCED_PARAMETER(dwCount);
    }
 
-   void streambuf::set_length(file_size dwNewLen)
+   void streambuf::set_length(file_size_t dwNewLen)
    {
       UNREFERENCED_PARAMETER(dwNewLen);
    }
 
-   file_size streambuf::get_length() const
+   file_size_t streambuf::get_length() const
    {
 
       return flen_dup(m_pfile);

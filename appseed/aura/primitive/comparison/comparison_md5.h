@@ -96,7 +96,7 @@
 //                        digest();
 //		string			   to_string();
 //		const void *		body(const void *data, uint32_t size);
-//      void              get(::primitive::memory & mem);
+//      void              get(memory & mem);
 //
 //
 //	};

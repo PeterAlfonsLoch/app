@@ -2156,7 +2156,7 @@ namespace comparison
       inline static int_ptr CompareElements(const id * pElement1,const id & element2)
       {
 
-         int_ptr iCompare = pElement1->m_iType - element2.m_iType;
+         int_ptr iCompare = (int_ptr) (pElement1->m_iType - element2.m_iType);
          if(iCompare != 0)
             return iCompare;
          return pElement1->m_psz - element2.m_psz;

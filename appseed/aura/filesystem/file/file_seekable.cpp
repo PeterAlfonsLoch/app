@@ -13,7 +13,7 @@ namespace file
    }
 
 
-   file_position seekable::seek_to_end()
+   file_position_t seekable::seek_to_end()
    {
 
       return seek(0, seek_end);
@@ -21,14 +21,14 @@ namespace file
    }
 
 
-   file_position seekable::seek_from_begin(file_position position)
+   file_position_t seekable::seek_from_begin(file_position_t position)
    {
 
-      return seek((file_offset) position, seek_begin);
+      return seek((file_offset_t) position, seek_begin);
 
    }
 
-   file_position seekable::seek(file_offset offset, e_seek seekOrigin)
+   file_position_t seekable::seek(file_offset_t offset, e_seek seekOrigin)
    {
       UNREFERENCED_PARAMETER(offset);
       UNREFERENCED_PARAMETER(seekOrigin);
@@ -36,7 +36,7 @@ namespace file
       return 0;
    }
 
-   file_position seekable::get_position() const
+   file_position_t seekable::get_position() const
    {
       return const_cast < seekable * > (this)->seek(0, seek_current);
    }

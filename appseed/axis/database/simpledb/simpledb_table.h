@@ -16,7 +16,7 @@ namespace simpledb
       ::file::buffer_sp                 m_spfileMeta;
       ::xml::document               m_xmldocumentMeta;
       ::file::buffer_sp                 m_spfileFixed;
-      primitive::memory             m_memoryFixed;
+      memory             m_memoryFixed;
       string                        m_strName;
       ::database::field_definition    m_fielddefinition;
 

@@ -23,9 +23,9 @@ namespace file
       ostream(const ostream & pwriter);
       virtual ~ostream();
 
-      virtual void write_from_hex(const void *lpBuf,::primitive::memory_size nCount);
-      virtual void write(const void *lpBuf, ::primitive::memory_size nCount);
-      virtual void write(const void *lpBuf, ::primitive::memory_size nCount, ::primitive::memory_size * dwWritten);
+      virtual void write_from_hex(const void *lpBuf,memory_size_t nCount);
+      virtual void write(const void *lpBuf, memory_size_t nCount);
+      virtual void write(const void *lpBuf, memory_size_t nCount, memory_size_t * dwWritten);
       template < typename T >
       void full_write(const T & t) { write(&t, sizeof(T)); }
 
@@ -40,7 +40,7 @@ namespace file
 
       virtual void flush();
 
-      virtual void set_length(file_size len);
+      virtual void set_length(file_size_t len);
 
       using stream_base::operator<< ;
 
@@ -84,7 +84,7 @@ namespace file
       virtual void write (char ch);
       virtual void write (uchar uch);
       virtual void write (int16_t sh);
-      virtual void write (uint16_t uint16_t);
+      virtual void write (uint16_t ui);
 #ifdef WINDOWS
       virtual void write (unichar wch);
 #endif
@@ -109,9 +109,9 @@ namespace file
       virtual void write (const property & property);
       virtual void write (const string & str);
 
-      ::file_position tellp() { return m_spbuffer->tell(); }
-      ostream & seekp(file_position position) { m_spbuffer->seek_from_begin(position); return *this; }
-      ostream & seekp(file_offset offset, e_seek eseek) { m_spbuffer->seek(offset, eseek); return *this; }
+      file_position_t tellp() { return m_spbuffer->tell(); }
+      ostream & seekp(file_position_t position) { m_spbuffer->seek_from_begin(position); return *this; }
+      ostream & seekp(file_offset_t offset, e_seek eseek) { m_spbuffer->seek(offset, eseek); return *this; }
 
 
       ostream & put(char ch);

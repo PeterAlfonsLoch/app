@@ -593,7 +593,7 @@ namespace fontopus
       
       ::http::e_status estatus;
 
-      RetryLogin:
+//      RetryLogin:
       
       string strResponse = Login(&estatus);
 

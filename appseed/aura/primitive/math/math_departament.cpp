@@ -154,7 +154,7 @@ namespace math
       CryptGenRandom(hCryptProv, dwLen, (BYTE *)buf);
 #elif defined(METROWIN)
       Windows::Storage::Streams::IBuffer ^ buffer = Windows::Security::Cryptography::CryptographicBuffer::GenerateRandom(dwLen);
-      ::primitive::memory mem;
+      memory mem;
       mem.set_os_buffer(buffer);
       memcpy(buf, mem.get_data(), mem.get_size());
 #else
@@ -173,16 +173,16 @@ namespace math
    void math::gen_rand_alnum(char * buf,uint32_t dwLen)
    {
 
-      static unsigned int ui = 0;
+      static unsigned int uiMemory = 0;
 
       gen_rand(buf,dwLen);
 
-      for(index i = 0 ; i < dwLen; i++)
+      for(uint32_t ui = 0 ; ui < dwLen; ui++)
       {
 
-         unsigned int ch = (((unsigned int)buf[i]) + ui++) % 36;
+         unsigned int ch = (((unsigned int)buf[ui]) + uiMemory++) % 36;
 
-         buf[i] = (char) ((ch <= 9) ? (ch + '0') : (ch - 10 + 'a'));
+         buf[ui] = (char) ((ch <= 9) ? (ch + '0') : (ch - 10 + 'a'));
 
       }
 

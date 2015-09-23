@@ -9,10 +9,10 @@
 
 /*
 
-int crypt_encrypt(::primitive::memory & storageEncrypt, const ::primitive::memory & storageDecrypt, ::primitive::memory & memKeyDataParam)
+int crypt_encrypt(memory & storageEncrypt, const memory & storageDecrypt, memory & memKeyDataParam)
 {
     
-   ::primitive::memory memKeyData(memKeyDataParam);
+   memory memKeyData(memKeyDataParam);
     
    ::count iSize = memKeyDataParam.get_size();
     
@@ -159,7 +159,7 @@ int crypt_encrypt(::primitive::memory & storageEncrypt, const ::primitive::memor
     
    }
 
-   ::primitive::memory memory;
+   memory memory;
                              
    storageEncrypt.set_os_cf_data(data);
                              
@@ -181,10 +181,10 @@ int crypt_encrypt(::primitive::memory & storageEncrypt, const ::primitive::memor
 
 }
 
-int crypt_decrypt(::primitive::memory & storageDecrypt, const ::primitive::memory & storageEncrypt, ::primitive::memory & memKeyDataParam)
+int crypt_decrypt(memory & storageDecrypt, const memory & storageEncrypt, memory & memKeyDataParam)
 {
    
-   ::primitive::memory memKeyData(memKeyDataParam);
+   memory memKeyData(memKeyDataParam);
    
    ::count iSize = memKeyDataParam.get_size();
    
@@ -331,7 +331,7 @@ int crypt_decrypt(::primitive::memory & storageDecrypt, const ::primitive::memor
       
    }
    
-   ::primitive::memory memory;
+   memory memory;
    
    storageDecrypt.set_os_cf_data(data);
    

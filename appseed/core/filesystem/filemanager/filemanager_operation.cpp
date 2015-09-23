@@ -256,7 +256,7 @@ namespace filemanager
       {
                                          if(m_iFile >= m_stra.get_size())
                                             return false;
-                                         primitive::memory_size uiRead = m_fileSrc->read(m_pchBuffer,m_iBufferSize);
+                                         memory_size_t uiRead = m_fileSrc->read(m_pchBuffer,m_iBufferSize);
                                          if(uiRead > 0)
                                          {
                                             m_fileDst->write(m_pchBuffer,uiRead);
@@ -366,7 +366,7 @@ namespace filemanager
          if(m_iFile >= m_stra.get_size())
             return false;
                                          
-         primitive::memory_size uiRead = m_fileSrc->read(m_pchBuffer,m_iBufferSize);
+         memory_size_t uiRead = m_fileSrc->read(m_pchBuffer,m_iBufferSize);
                                          
          m_fileDst->write(m_pchBuffer,uiRead);
 

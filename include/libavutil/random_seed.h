@@ -21,7 +21,7 @@
 #ifndef AVUTIL_RANDOM_SEED_H
 #define AVUTIL_RANDOM_SEED_H
 
-#include <stdint.h>
+#include "_stdint.h"
 /**
  * @addtogroup lavu_crypto
  * @{

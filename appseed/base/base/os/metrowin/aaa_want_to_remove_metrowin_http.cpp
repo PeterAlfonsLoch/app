@@ -18,7 +18,7 @@ private:
    //
 
    HANDLE m_hComplete;
-   ::primitive::memory m_mem;
+   memory m_mem;
 
    //
    // Return value from final callbacks, including OnResponseReceived or
@@ -565,7 +565,7 @@ bool Download(LPCWSTR pcwszUrl, const char * pszFile)
 
    }
 
-   ::primitive::memory memory;
+   memory memory;
 
    memory.set_os_buffer(buf);
 

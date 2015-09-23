@@ -49,9 +49,9 @@ extern "C" {
  *
  * This structure should not be allocated directly.  If a buffer containing
  * 27 * 2353 bytes is desired, a buffer should be allocated containing
- * the desired amount + 24 bytes.  The allocated primitive::memory can then be
+ * the desired amount + 24 bytes.  The allocated memory can then be
  * typecast to a LPTRACKBUF.  It is the program's responsibility to guard
- * against reading/writing past the end of allocated primitive::memory.
+ * against reading/writing past the end of allocated memory.
  *
  * The following must always apply:
  *   (len + startOffset) <= (numFrames * 2352) <= maxLen

@@ -31,7 +31,7 @@
 
 #include "libavcodec/avcodec.h"
 
-#include <stdint.h>
+#include "_stdint.h"
 
 // emmintrin.h is unable to compile with -std=c99 -Werror=missing-prototypes
 // http://openradar.appspot.com/8026390

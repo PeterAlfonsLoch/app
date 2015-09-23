@@ -23,7 +23,7 @@ namespace fs
    }
 
 
-   ::primitive::memory_size remote_native_file::read(void *lpBuf, ::primitive::memory_size nCount)
+   memory_size_t remote_native_file::read(void *lpBuf, memory_size_t nCount)
    {
 
       return m_httpfile->read(lpBuf, nCount);
@@ -31,7 +31,7 @@ namespace fs
    }
 
 
-   void remote_native_file::write(const void * lpBuf, ::primitive::memory_size nCount)
+   void remote_native_file::write(const void * lpBuf, memory_size_t nCount)
    {
 
       m_memfile.write(lpBuf, nCount);
@@ -39,7 +39,7 @@ namespace fs
    }
 
 
-   file_size remote_native_file::get_length() const
+   file_size_t remote_native_file::get_length() const
    {
       if((m_nOpenFlags & ::file::mode_read) != 0)
       {
@@ -51,7 +51,7 @@ namespace fs
       }
    }
 
-   file_position remote_native_file::seek(file_offset lOff, ::file::e_seek nFrom)
+   file_position_t remote_native_file::seek(file_offset_t lOff, ::file::e_seek nFrom)
    {
       if((m_nOpenFlags & ::file::mode_read) != 0)
       {

@@ -280,7 +280,7 @@ namespace user
    }
 
 
-   void elemental::get_string(char * psz,::primitive::memory_size len) const
+   void elemental::get_string(char * psz,memory_size_t len) const
    {
 
       string str;

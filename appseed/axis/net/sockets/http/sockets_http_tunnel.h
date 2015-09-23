@@ -30,8 +30,8 @@ namespace sockets
       stringa   m_straProxy;
       estate      m_estate;
       string      m_strRequest;
-      primitive::memory      m_memoryBody;
-      primitive::memory      m_memoryBuf;
+      memory      m_memoryBody;
+      memory      m_memoryBuf;
       ::file::memory_buffer m_fileBody;
       int32_t         m_iContentLength;
       bool        m_bHeaders;

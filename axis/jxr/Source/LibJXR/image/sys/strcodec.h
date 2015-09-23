@@ -32,7 +32,7 @@
 
 #include <stddef.h>
 #if defined(__MINGW32__)
-#include <stdint.h>
+#include "_stdint.h"
 #endif
 
 #include "windowsmediaphoto.h"

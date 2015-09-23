@@ -14,11 +14,6 @@
 #include <sys/stat.h>
 #endif
 
-#ifdef WINDOWS
-#include <intrin.h>
-#elif defined(LINUX)
-#include <cpuid.h>
-#endif
 
 //O volume na unidade Z ‚ eco
 // O N£mero de S‚rie do Volume ‚ 4A91-94E4
@@ -52,7 +47,7 @@
 #include "aura_command_ui_test.cpp"
 #include "aura_conv.cpp"
 #include "aura_core_os.cpp"
-#include "aura_cpu_architecture.cpp"
+//#include "aura_cpu_architecture.cpp"
 #include "aura_create_context.cpp"
 #include "aura_cregexp.cpp"
 #include "aura_cregexp_util.cpp"

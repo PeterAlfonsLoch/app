@@ -23,7 +23,7 @@
 
 #if REPLACE_ICONV_UTF
 # include <errno.h>
-# include <stdint.h>
+# include "_stdint.h"
 # include <stdlib.h>
 # include "unistr.h"
 # ifndef uintptr_t

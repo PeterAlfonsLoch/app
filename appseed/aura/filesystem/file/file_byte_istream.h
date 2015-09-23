@@ -40,7 +40,7 @@ namespace file
       virtual void read (unichar & wch);
 #endif
       virtual void read (int16_t & sh);
-      virtual void read (uint16_t & uint16_t);
+      virtual void read (uint16_t & ui);
       virtual void read (int32_t & i);
       virtual void read (uint32_t & ui);
       virtual void read (int64_t & i);
@@ -64,7 +64,7 @@ namespace file
       istream & operator = (const istream & istream);
 
       /*
-      file_position seek(file_offset offset, e_seek seekOrigin);
+      file_position_t seek(file_offset_t offset, e_seek seekOrigin);
       */
 
       void full_load(string & str);

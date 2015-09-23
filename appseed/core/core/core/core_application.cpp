@@ -812,7 +812,7 @@ namespace core
 
    }
 
-   bool application::GetResourceData(UINT nID,const char * lpcszType,primitive::memory &storage)
+   bool application::GetResourceData(UINT nID,const char * lpcszType,memory &storage)
    {
       UNREFERENCED_PARAMETER(nID);
       UNREFERENCED_PARAMETER(lpcszType);
@@ -865,7 +865,7 @@ namespace core
 
    HENHMETAFILE application::LoadEnhMetaFile(UINT uiResource)
    {
-      primitive::memory storage;
+      memory storage;
       if(!GetResourceData(uiResource,"EnhMetaFile",storage))
       {
          return NULL;
@@ -1014,7 +1014,7 @@ namespace core
 
 
    /*
-   bool application::hex_to_memory(primitive::memory & memory, const char * pszHex)
+   bool application::hex_to_memory(memory & memory, const char * pszHex)
    {
    ::count len = strlen(pszHex);
    ::count count = (len + 1) / 2;
@@ -1064,7 +1064,7 @@ namespace core
    }
 
 
-   void application::memory_to_hex(string & strHex, primitive::memory & memory)
+   void application::memory_to_hex(string & strHex, memory & memory)
    {
    ::count count = memory.get_size();
    LPSTR lpsz = strHex.GetBufferSetLength(count * 2);

@@ -9,7 +9,6 @@ CLASS_DECL_AURA string file_final_extension_dup(const char * path);
 CLASS_DECL_AURA string url_dir_name_for_relative(const char * pszPath);
 CLASS_DECL_AURA string defer_solve_relative_compresions(const char * pszAbsolute);
 CLASS_DECL_AURA string defer_solve_relative_name(const char * pszRelative,const char * pszAbsolute);
-CLASS_DECL_AURA string file_md5_dup(const char * psz);
 CLASS_DECL_AURA string ca2_module_dup();
 
 
@@ -111,54 +110,10 @@ CLASS_DECL_AURA bool file_copy_dup(const string & strNew,const string & strSrc,b
 namespace file
 {
 
-   using pos_type = ::file_position;
-   using off_type = ::file_offset;
+   using pos_type = file_position_t;
+   using off_type = file_offset_t;
 
    using iostate = ::file::e_iostate;
    using seekdir = ::file::e_seek;
 }
 
-
-
-//#include "file_html_buffer.h"
-
-
-namespace cpp
-{
-
-   class CLASS_DECL_AURA md5
-   {
-   public:
-
-      typedef unsigned       int uint4;
-      typedef unsigned short int uint2;
-      typedef unsigned      char uchar;
-
-      typedef struct
-      {
-         size_t            lo;
-         size_t            hi;
-         uint4             a;
-         uint4             b;
-         uint4             c;
-         uint4             d;
-         uchar             buffer[64];
-         uint4             block[16];
-      } context;
-
-      context     m_ctx;
-      uchar       m_uchaDigest[16];
-
-      md5();
-
-      void	            initialize();
-      void	            update(void * pdata,size_t nInputLen);
-      void	            finalize();
-      unsigned char *   digest();
-      string       to_string();
-      void *            body(void *data,uint4 size);
-
-   };
-
-
-} // namespace cpp

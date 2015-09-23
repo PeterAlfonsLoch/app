@@ -27,7 +27,7 @@
  * external API header
  */
 
-#include <stdint.h>
+#include "_stdint.h"
 
 #include "libavutil/avutil.h"
 #include "libavutil/log.h"

@@ -30,7 +30,7 @@
 #include <stdlib.h>
 #include <time.h>
 #if defined(linux)
-#include <stdint.h>
+#include "_stdint.h"
 #elif defined(__FreeBSD__) || defined(__APPLE__)
 #include <inttypes.h>
 #else

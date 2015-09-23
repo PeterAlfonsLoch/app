@@ -1408,7 +1408,7 @@ install_begin:;
 
       int32_t iMaxRetry = 3;
 
-      char sz[1024];
+//      char sz[1024];
 
 //      int32_t iStatus;
 
@@ -3118,12 +3118,12 @@ RetryBuildNumber:
 
       string strLen;
 
-      ::file_size len;
+      file_size_t len;
 
       string strIndexBuild;
       ::file::path strIndexPath;
       string strIndexMd5;
-      ::primitive::memory mem(get_app());
+      memory mem(get_app());
 
       string strBuildPath;
 

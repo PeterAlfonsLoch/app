@@ -33,9 +33,9 @@ namespace file
 
       virtual void * get_internal_data();
       virtual const void * get_internal_data() const;
-      virtual ::primitive::memory_size get_internal_data_size() const;
-      virtual bool set_internal_data_size(::primitive::memory_size c);
-      virtual bool increase_internal_data_size(::primitive::memory_size c);
+      virtual memory_size_t get_internal_data_size() const;
+      virtual bool set_internal_data_size(memory_size_t c);
+      virtual bool increase_internal_data_size(memory_size_t c);
 
    };
 

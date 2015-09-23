@@ -54,24 +54,24 @@ namespace file
    }
 
    
-   file_position stream_buffer::seek(file_offset lOff, ::file::e_seek nFrom)
+   file_position_t stream_buffer::seek(file_offset_t lOff, ::file::e_seek nFrom)
    {
       UNREFERENCED_PARAMETER(lOff);
       UNREFERENCED_PARAMETER(nFrom);
       return 0;
    }
 
-   file_position stream_buffer::seek_from_begin(file_position lPos)
+   file_position_t stream_buffer::seek_from_begin(file_position_t lPos)
    {
       return seek(lPos, seek_begin);
    }
 
-   file_position stream_buffer::get_position() const
+   file_position_t stream_buffer::get_position() const
    {
       return ((stream_buffer *) this)->seek(0, ::file::seek_current);
    }
 
-   file_position stream_buffer::tell() const
+   file_position_t stream_buffer::tell() const
    {
       return get_position();
    }
@@ -84,17 +84,17 @@ namespace file
    {
    }
 
-   ::primitive::memory_size stream_buffer::read(void *lpBuf, ::primitive::memory_size nCount)
+   memory_size_t stream_buffer::read(void *lpBuf, memory_size_t nCount)
    {
       return ::file::reader::read(lpBuf, nCount);
    }
 
 
-   bool stream_buffer::full_read(void * lpBuf, ::primitive::memory_size nCount)
+   bool stream_buffer::full_read(void * lpBuf, memory_size_t nCount)
    {
 
-      ::primitive::memory_size uiRead;
-      ::primitive::memory_size uiPos = 0;
+      memory_size_t uiRead;
+      memory_size_t uiPos = 0;
       byte * buf = (byte *) lpBuf;
 
       while(nCount > 0)
@@ -119,10 +119,10 @@ namespace file
    }
 
 
-   void stream_buffer::write_from_hex(const void * lpBuf,::primitive::memory_size nCount)
+   void stream_buffer::write_from_hex(const void * lpBuf,memory_size_t nCount)
    {
 
-      primitive::memory memory(get_app());
+      memory memory(get_app());
 
       memory.from_hex((const char *) lpBuf, nCount);
 
@@ -131,7 +131,7 @@ namespace file
    }
 
 
-   void stream_buffer::write(const void * lpBuf, ::primitive::memory_size nCount)
+   void stream_buffer::write(const void * lpBuf, memory_size_t nCount)
    {
       ::file::writer::write(lpBuf, nCount);
    }
@@ -161,24 +161,24 @@ namespace file
    {
    }
 
-   void stream_buffer::LockRange(file_position dwPos, file_size dwCount)
+   void stream_buffer::LockRange(file_position_t dwPos, file_size_t dwCount)
    {
       UNREFERENCED_PARAMETER(dwPos);
       UNREFERENCED_PARAMETER(dwCount);
    }
 
-   void stream_buffer::UnlockRange(file_position dwPos, file_size dwCount)
+   void stream_buffer::UnlockRange(file_position_t dwPos, file_size_t dwCount)
    {
       UNREFERENCED_PARAMETER(dwPos);
       UNREFERENCED_PARAMETER(dwCount);
    }
 
-   void stream_buffer::set_length(file_size dwNewLen)
+   void stream_buffer::set_length(file_size_t dwNewLen)
    {
       UNREFERENCED_PARAMETER(dwNewLen);
    }
 
-   file_size stream_buffer::get_length() const
+   file_size_t stream_buffer::get_length() const
    {
       return 0;
    }

@@ -333,7 +333,7 @@ namespace aura
             /* The length is essentially the size of the structure minus sizeof(mtype) */
             //length = sizeof(data_struct) - sizeof(long);
 
-            ::primitive::memory mem;
+            memory mem;
 
             do
             {

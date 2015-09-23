@@ -44,7 +44,7 @@ gzip_stream::~gzip_stream()
 }
 
 
-void gzip_stream::write(const void * buf, ::primitive::memory_size iSize)
+void gzip_stream::write(const void * buf, memory_size_t iSize)
 {
    m_crc = (uint32_t) crc32(m_crc, (const byte *) buf, (uInt) iSize);
    m_zstream.next_in       = (byte*)buf;

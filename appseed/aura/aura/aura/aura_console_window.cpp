@@ -1,6 +1,6 @@
 
 
-void std_out_buffer::write(const void * lpBuf,::primitive::memory_size nCount)
+void std_out_buffer::write(const void * lpBuf,memory_size_t nCount)
 {
 
 #ifdef WINDOWSEX

@@ -20,7 +20,7 @@
 #ifndef AVUTIL_REPLAYGAIN_H
 #define AVUTIL_REPLAYGAIN_H
 
-#include <stdint.h>
+#include "_stdint.h"
 
 /**
  * ReplayGain information (see

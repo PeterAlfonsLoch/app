@@ -15,7 +15,7 @@ namespace file
    protected:
 
 
-      primitive::memory m_memory;
+      memory m_memory;
       size_t m_max;
       size_t m_q;
       size_t m_b;
@@ -33,10 +33,10 @@ namespace file
 
       /** append l bytes from p to buffer */
       using ::file::stream_buffer::write;
-      void write(const void * pdata, ::primitive::memory_size l);
+      void write(const void * pdata, memory_size_t l);
       /** copy l bytes from buffer to dest */
       using ::file::stream_buffer::read;
-      ::primitive::memory_size read(void * pbuffer, ::primitive::memory_size l);
+      memory_size_t read(void * pbuffer, memory_size_t l);
       /** skip l bytes from buffer */
       bool remove(size_t l);
       /** read l bytes from buffer, returns as string. */
@@ -44,7 +44,7 @@ namespace file
       string read_string(size_t l);
 
       /** total buffer length */
-      file_size get_length() const;
+      file_size_t get_length() const;
       /** pointer to circular buffer beginning */
       const char *GetStart();
       /** return number of bytes from circular buffer beginning to buffer physical end */

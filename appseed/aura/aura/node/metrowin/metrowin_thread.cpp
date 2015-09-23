@@ -1424,7 +1424,7 @@ void thread::set_p(::thread * p)
 //                  pThreadState->m_pSafetyPoolBuffer = malloc(papp->m_pcoreapp->m_pcoreapp->m_nSafetyPoolSize);
 //                  if (pThreadState->m_pSafetyPoolBuffer == NULL)
 //                  {
-//                     //                  TRACE(::core::trace::category_AppMsg, 0, "Warning: failed to reclaim %d bytes for primitive::memory safety pool.\n",
+//                     //                  TRACE(::core::trace::category_AppMsg, 0, "Warning: failed to reclaim %d bytes for memory safety pool.\n",
 //                     //                   pApp->m_nSafetyPoolSize);
 //                     // at least get the old buffer back
 //                     if (nOldSize != 0)
@@ -1839,7 +1839,7 @@ void thread::set_p(::thread * p)
 ////nExitCode;
 ////bDelete;
 ////#else
-////// remove current thread object from primitive::memory
+////// remove current thread object from memory
 ////__MODULE_THREAD_STATE* pState = __get_module_thread_state();
 ////// thread* pThread = pState->m_pCurrentWinThread;
 ////if (pThread != NULL)

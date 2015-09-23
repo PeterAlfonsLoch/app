@@ -158,9 +158,20 @@ namespace aura
 #define DEFINE_MESSAGE(wm)  { wm, #wm }
 
 
+struct MAP_WM_MESSAGE
+{
 
 
-static const __MAP_MESSAGE allMessagesArray[] =
+   UINT              nMsg;
+   const char *      lpszMsg;
+
+
+};
+
+
+
+
+static const MAP_WM_MESSAGE allMessagesArray[] =
 {
    DEFINE_MESSAGE(WM_CREATE),
    DEFINE_MESSAGE(WM_DESTROY),
@@ -344,6 +355,25 @@ static const __MAP_MESSAGE allMessagesArray[] =
    {0,NULL,}    // end of message list
 };
 
-CLASS_DECL_AURA const __MAP_MESSAGE * allMessages = allMessagesArray;
+
+CLASS_DECL_AURA const char *  get_windows_message_name(UINT nMsg)
+{
+
+   MAP_WM_MESSAGE * pmessage = (MAP_WM_MESSAGE *) allMessagesArray;
+
+   while(pmessage->nMsg != 0)
+   {
+
+      if(pmessage->nMsg == nMsg)
+         return pmessage->lpszMsg;
+
+      pmessage++;
+
+   }
+
+   return NULL;
+
+}
+
 
 #undef DEFINE_MESSAGE

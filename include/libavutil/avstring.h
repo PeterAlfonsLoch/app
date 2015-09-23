@@ -22,7 +22,7 @@
 #define AVUTIL_AVSTRING_H
 
 #include <stddef.h>
-#include <stdint.h>
+#include "_stdint.h"
 #include "attributes.h"
 
 /**

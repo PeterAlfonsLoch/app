@@ -342,7 +342,7 @@ namespace aura
 
       void * rx::receive()
       {
-            ::primitive::memory mem;
+            memory mem;
 
          while(m_bRun)
          {

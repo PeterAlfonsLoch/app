@@ -31,7 +31,7 @@
 #ifndef AVUTIL_DICT_H
 #define AVUTIL_DICT_H
 
-#include <stdint.h>
+#include "_stdint.h"
 
 #include "version.h"
 

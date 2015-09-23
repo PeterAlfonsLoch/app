@@ -12,7 +12,7 @@ public:
    uint32_t m_dwLastCleanup;
 #endif
 
-   inline void add_item(void * p,::primitive::memory_size iSize)
+   inline void add_item(void * p,memory_size_t iSize)
    {
 #ifdef METROWIN
       add(heap_item(p,iSize,GetTickCount64()));

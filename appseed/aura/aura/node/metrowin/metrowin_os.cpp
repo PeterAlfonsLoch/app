@@ -266,7 +266,7 @@ namespace metrowin
 
       key1.OpenKey(HKEY_CURRENT_USER, "Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings\\Connections", false);
 
-      primitive::memory mem;
+      memory mem;
 
       key1.QueryValue("DefaultConnectionSettings", mem);
 

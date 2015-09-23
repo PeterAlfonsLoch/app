@@ -48,7 +48,7 @@ free(_Memory);
 
 */
 
-CLASS_DECL_AURA int32_t DECL_C _CrtDbgReport(
+CLASS_DECL_AURA int32_t DECL_C debug_report(
    int32_t _ReportType,
    const char * _Filename,
    int32_t _LineNumber,

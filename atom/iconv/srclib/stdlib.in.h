@@ -59,7 +59,7 @@
 # endif
 
 # if !@HAVE_STRUCT_RANDOM_DATA@ || !@HAVE_RANDOM_R@
-#  include <stdint.h>
+#  include "_stdint.h"
 # endif
 
 # if !@HAVE_STRUCT_RANDOM_DATA@

@@ -12,7 +12,7 @@ namespace draw2d_cairo
 
 
       cairo_surface_t *       m_psurface;
-      ::primitive::memory           m_mem;
+      memory           m_mem;
       ::size                  m_size;
 
 

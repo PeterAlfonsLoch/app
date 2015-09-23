@@ -255,3 +255,12 @@ CLASS_DECL_AURA const char * g_pszCooperativeLevel;
    return g_pfn_create_system();
 
 }
+
+
+
+int __cdecl debug_report(int,char const *,int,char const *,char const *,...)
+{
+   
+   return 1;
+
+}

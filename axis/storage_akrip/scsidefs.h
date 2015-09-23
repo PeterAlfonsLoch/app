@@ -258,7 +258,7 @@ typedef struct {
 #define DTYPE_CROM      0x05    // CD-ROM device
 #define DTYPE_CDROM     0x05    // CD-ROM device
 #define DTYPE_SCAN      0x06    // Scanner device
-#define DTYPE_OPTI      0x07    // Optical primitive::memory device
+#define DTYPE_OPTI      0x07    // Optical memory device
 #define DTYPE_JUKE      0x08    // Medium Changer device
 #define DTYPE_COMM      0x09    // Communications device
 #define DTYPE_RESL      0x0A    // Reserved (low)

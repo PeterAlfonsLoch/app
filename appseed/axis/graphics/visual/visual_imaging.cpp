@@ -138,7 +138,7 @@ FIBITMAP * imaging::HBITMAPtoFI(::draw2d::bitmap_sp pbitmap)
       return NULL;
 
    // ...
-   // the following code assumes that you have a valid HBITMAP loaded into the primitive::memory
+   // the following code assumes that you have a valid HBITMAP loaded into the memory
    BITMAP bm;
    ::GetObject(hbitmap,sizeof(BITMAP),(char *)&bm);
    if(bm.bmWidth <= 0 || bm.bmHeight <= 0)
@@ -1446,7 +1446,7 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
       ::draw2d::graphics *pdc,
       BITMAP & bm,
       BITMAPINFO & bmi,
-      primitive::memory & memorystorage,
+      memory & memorystorage,
       ::draw2d::bitmap * pbitmap,
       const RECT & rectParam,
       int32_t &iWidthParam,
@@ -1564,7 +1564,7 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
    ::draw2d::graphics *pdc,
    BITMAP & bm,
    BITMAPINFO & bmi,
-   primitive::memory & memorystorage,
+   memory & memorystorage,
    ::draw2d::bitmap   ** ppbitmap,
    LPRECT lprect,
    int32_t &iWidthParam,
@@ -1592,14 +1592,14 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
 
    if(pdc->SelectObject(spbmpTemp))
    {
-   // pdc is a pointer to a primitive::memory device context
+   // pdc is a pointer to a memory device context
    try
    {
    ::draw2d::bitmap * pbmp = pbmpOld;
 
    *ppbitmap = pbmp;
 
-   // This is a primitive::memory device context
+   // This is a memory device context
    if(!pbmp->GetObject(sizeof(bm), &bm))
    throw 3500;
 
@@ -2200,7 +2200,7 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
    {
    BITMAPINFO bmi;
 
-   // zero the primitive::memory for the bitmap info
+   // zero the memory for the bitmap info
    ZeroMemory(&bmi, sizeof(BITMAPINFO));
 
    ::draw2d::dib_sp dibA(get_app());
@@ -2404,7 +2404,7 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
       if(!bitmapA->GetObject(sizeof(bm), &bm))
       throw 3500;
 
-      primitive::memory memstorageA;
+      memory memstorageA;
 
 
       BITMAPINFO bmi;
@@ -2496,7 +2496,7 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
       try
       {
 
-      // This is a primitive::memory device context
+      // This is a memory device context
       BITMAP bm;
       if(!pbmp->GetObject(sizeof(bm), &bm))
       throw 3500;
@@ -2515,7 +2515,7 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
       bmi.bmiHeader.biClrImportant = 0;
       int32_t iLineBytes =  ((bm.bmWidth * 3) + 3) & ~3;
 
-      primitive::memory memstorageA;
+      memory memstorageA;
       try
       {
       memstorageA.allocate(iLineBytes * cy);
@@ -4532,8 +4532,8 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
 
       ::draw2d::bitmap_sp bitmapDst(get_app());
 
-      primitive::memory memstorageA;
-      primitive::memory memstorageB;
+      memory memstorageA;
+      memory memstorageB;
 
       if(!GetDeviceContext24BitsCC(
          pdcDst,
@@ -4694,8 +4694,8 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
 
 
       ::draw2d::bitmap_sp bitmapDest(get_app());
-      primitive::memory memstorageA;
-      primitive::memory memstorageB;
+      memory memstorageA;
+      memory memstorageB;
 
       if(!GetDeviceContext24BitsCC(
          pdcDst,
@@ -5682,9 +5682,9 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
       UINT uiScanLineCount;
 
 
-      primitive::memory memstorageA;
-      primitive::memory memstorageB;
-      primitive::memory memstorageC;
+      memory memstorageA;
+      memory memstorageB;
+      memory memstorageC;
 
       rect rectDest;
       rectDest.left = xDest;
@@ -6104,9 +6104,9 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
       if(cx <= 0 || cy <= 0)
          return true;
 
-      primitive::memory memstorageA;
-      primitive::memory memstorageB;
-      primitive::memory memstorageC;
+      memory memstorageA;
+      memory memstorageB;
+      memory memstorageC;
 
 
       UINT user;

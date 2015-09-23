@@ -13,34 +13,34 @@ namespace file
 
       ::file::buffer_sp                m_pfile;
 
-      ::primitive::memory_size   m_uiBufferSize;
-      file_position              m_uiPosition;
-      file_position              m_uiBufLPos;
-      file_position              m_uiBufUPos;
+      memory_size_t   m_uiBufferSize;
+      file_position_t              m_uiPosition;
+      file_position_t              m_uiBufLPos;
+      file_position_t              m_uiBufUPos;
       bool                       m_bDirty;
-      file_position              m_uiWriteLPos;
-      file_position              m_uiWriteUPos;
-      primitive::memory          m_storage;
+      file_position_t              m_uiWriteLPos;
+      file_position_t              m_uiWriteUPos;
+      memory          m_storage;
 
 
-      buffered_buffer(::aura::application * papp, ::file::buffer_sp pfile, ::primitive::memory_size iBufferSize = 1024 * 128);
+      buffered_buffer(::aura::application * papp, ::file::buffer_sp pfile, memory_size_t iBufferSize = 1024 * 128);
       virtual ~buffered_buffer();
 
 
       virtual bool IsValid() const;
-      file_position seek(file_offset lOff, ::file::e_seek nFrom);
-      file_position get_position() const;
-      file_size get_length() const;
+      file_position_t seek(file_offset_t lOff, ::file::e_seek nFrom);
+      file_position_t get_position() const;
+      file_size_t get_length() const;
 
       using ::file::stream_buffer::read;
-      virtual ::primitive::memory_size read(void *lpBuf, ::primitive::memory_size nCount);
+      virtual memory_size_t read(void *lpBuf, memory_size_t nCount);
       
       using ::file::stream_buffer::write;
-      virtual void write(const void * lpBuf, ::primitive::memory_size nCount);
+      virtual void write(const void * lpBuf, memory_size_t nCount);
       
       virtual void flush();
-      virtual bool buffer(::primitive::memory_size uiGrow = 0);
-      virtual void set_length(file_size dwNewLen);
+      virtual bool buffer(memory_size_t uiGrow = 0);
+      virtual void set_length(file_size_t dwNewLen);
 
       uint64_t      GetBufferSize();
 

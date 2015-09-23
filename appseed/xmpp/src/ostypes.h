@@ -28,7 +28,7 @@ typedef unsigned short int uint16_t;
 typedef unsigned int uint32_t;
 typedef unsigned __int64 uint64_t; 
 #else
-#include <stdint.h>
+#include "_stdint.h"
 #endif
 
 #endif /* __LIBSTROPHE_OSTYPES_H__ */

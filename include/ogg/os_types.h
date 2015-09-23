@@ -29,7 +29,7 @@
 //#if defined(_WIN32) 
 //
 //#  if defined(__CYGWIN__)
-//#    include <stdint.h>
+//#    include "_stdint.h"
 //     typedef int16_t int16_t;
 //     typedef uint16_t uint16_t;
 //     typedef int32_t int32_t;

@@ -5129,7 +5129,11 @@ namespace draw2d_direct2d
 
       }
 
+      return true;
+
    }
+
+
    bool graphics::RestoreClip()
    {
 
@@ -5150,11 +5154,18 @@ namespace draw2d_direct2d
             m_prendertarget->PushLayer(D2D1::LayerParameters(D2D1::InfiniteRect(),pgeometry),NULL);
 
          }
+
       }
+
+      return true;
 
    }
 
+
 } // namespace draw2d_direct2d
+
+
+
 
 
 

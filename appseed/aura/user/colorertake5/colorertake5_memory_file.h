@@ -4,7 +4,7 @@
 
 typedef struct{
   const uchar *stream;
-  ::primitive::memory_size get_length;
+  memory_size_t get_length;
   int32_t pointer;
   int32_t error;
 } MemoryFile;

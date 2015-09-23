@@ -212,7 +212,7 @@ void plugin::initialize()
    } // namespace draw2d_direct2d
 
 #define d2d1_fax_options D2D1_FACTORY_OPTIONS // fax of merde
-#define single_threaded D2D1_FACTORY_TYPE_MULTI_THREADED // ???? muliple performance multi thread hidden option there exists cost uses?
+#define d2d1_thread_model D2D1_FACTORY_TYPE_MULTI_THREADED // ???? muliple performance multi thread hidden option there exists cost uses?
 
 CLASS_DECL_DRAW2D_DIRECT2D IDWriteFactory * TlsGetWriteFactory(bool bCreate)
 {
@@ -240,7 +240,7 @@ ID2D1Factory1 * GetD2D1Factory1(bool bCreate)
    d2d1_fax_options options;
    memset(&options, 0, sizeof(options));
 
-   HRESULT hr = ::D2D1CreateFactory(single_threaded, __uuidof(ID2D1Factory1), &options, &::draw2d_direct2d::g_pplugin->g_pd2factory);
+   HRESULT hr = ::D2D1CreateFactory(d2d1_thread_model, __uuidof(ID2D1Factory1), &options, &::draw2d_direct2d::g_pplugin->g_pd2factory);
 
    if(FAILED(hr))
        return NULL;

@@ -19,7 +19,7 @@
 #ifndef AVUTIL_MOTION_VECTOR_H
 #define AVUTIL_MOTION_VECTOR_H
 
-#include <stdint.h>
+#include "_stdint.h"
 
 typedef struct AVMotionVector {
     /**

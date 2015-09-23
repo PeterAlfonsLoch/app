@@ -429,9 +429,9 @@ int32_t _check_mtime(GeoIP *gi) {
                   gi->cache = NULL;
 #endif
                } else {
-                  /* reload database into primitive::memory cache */
+                  /* reload database into memory cache */
                   if ((gi->cache = (uchar*) realloc(gi->cache, buf.st_size)) == NULL) {
-                     fprintf(stderr,"Out of primitive::memory when reloading %s\n",gi->file_path);
+                     fprintf(stderr,"Out of memory when reloading %s\n",gi->file_path);
                      return -1;
                   }
                }
@@ -513,7 +513,7 @@ uint32_t _GeoIP_seek_record_v6 (GeoIP *gi, geoipv6_t ipnum) {
          fseek(gi->GeoIPDataaxis, (long)gi->record_length * 2 * offset, SEEK_SET);
          silence = fread(stack_buffer,gi->record_length,2,gi->GeoIPDataaxis);
       } else if (gi->index_cache == NULL) {
-         /* simply point to record in primitive::memory */
+         /* simply point to record in memory */
          buf = gi->cache + (long)gi->record_length * 2 *offset;
       } else {
          buf = gi->index_cache + (long)gi->record_length * 2 * offset;
@@ -597,7 +597,7 @@ uint32_t _GeoIP_seek_record (GeoIP *gi, uint32_t ipnum) {
          fseek(gi->GeoIPDataaxis, (long)gi->record_length * 2 * offset, SEEK_SET);
          silence = fread(stack_buffer,gi->record_length,2,gi->GeoIPDataaxis);
       } else if (gi->index_cache == NULL) {
-         /* simply point to record in primitive::memory */
+         /* simply point to record in memory */
          buf = gi->cache + (long)gi->record_length * 2 *offset;
       } else {
          buf = gi->index_cache + (long)gi->record_length * 2 * offset;

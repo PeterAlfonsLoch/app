@@ -67,7 +67,7 @@ namespace file
    }
 
 
-   file_position byte_stream::get_position() const
+   file_position_t byte_stream::get_position() const
    {
 
       return m_spbuffer->get_position();
