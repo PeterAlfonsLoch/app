@@ -21,8 +21,12 @@ namespace compare
    template < typename A, typename B >
 	inline bool lt(A a, B b)
 	{
-		return a < b;
+	
+      return a < b;
+
 	}
+
+
 	template < typename A, typename B >
 	inline bool le(A a, B b)
 	{
@@ -79,6 +83,14 @@ namespace compare
    inline bool gt(DWORD dw,int i)
    {
       return i < 0 ? true : dw >((unsigned int)dw);
+   }
+
+   template < >
+   inline bool gt(int64_t i,uint64_t ui)
+   {
+
+      return i < 0 ? false : ((uint64_t)i) > ui;
+
    }
 
 #endif
