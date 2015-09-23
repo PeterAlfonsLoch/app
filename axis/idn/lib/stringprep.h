@@ -31,6 +31,9 @@
 # define STRINGPREP_H
 
 
+//#include "_stdint.h"
+
+
 # ifndef IDNAPI
 #  if defined LIBIDN_BUILDING && defined HAVE_VISIBILITY && HAVE_VISIBILITY
 #   define IDNAPI __attribute__((__visibility__("default")))
@@ -43,22 +46,26 @@
 #  endif
 # endif
 
-#ifndef CA2_AURA
-
-typedef unsigned int uint32_t;
-
-#endif
+//#ifndef CA2_AURA
+//
+//typedef unsigned int uint32_t;
+//
+//#endif
 
 
 #if !defined(PR29_H)
 
-typedef long glong;
+#define glong long
 
 #endif
 
-# include <stddef.h>		/* glong */
-# include <sys/types.h>		/* ssize_t */
+
+
+//#ifndef _WIN32
+//# include <stddef.h>		/* glong */
+//# include <sys/types.h>		/* ssize_t */
 //# include <idn-int.h>		/* uint32_t */
+//#endif
 
 # ifdef __cplusplus
 extern "C"
@@ -224,7 +231,7 @@ extern "C"
 						      *req_version);
 
 /* Utility */
-
+#define ssize_t int_ptr
   extern IDNAPI int stringprep_unichar_to_utf8 (uint32_t c, char *outbuf);
   extern IDNAPI uint32_t stringprep_utf8_to_unichar (const char *p);
 
