@@ -30,6 +30,10 @@
 #ifndef STRINGPREP_H
 # define STRINGPREP_H
 
+
+#include "_stdint.h"
+
+
 # ifndef IDNAPI
 #  if defined LIBIDN_BUILDING && defined HAVE_VISIBILITY && HAVE_VISIBILITY
 #   define IDNAPI __attribute__((__visibility__("default")))
@@ -42,9 +46,9 @@
 #  endif
 # endif
 
-# include <stddef.h>		/* size_t */
-# include <sys/types.h>		/* ssize_t */
-# include <idn-int.h>		/* uint32_t */
+//# include <stddef.h>		/* size_t */
+//# include <sys/types.h>		/* ssize_t */
+//# include <idn-int.h>		/* uint32_t */
 
 # ifdef __cplusplus
 extern "C"

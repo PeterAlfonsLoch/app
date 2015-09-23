@@ -51,6 +51,10 @@ typedef long glong;
 # include <stddef.h>		/* glong */
 //////# include <idn-int.h>		/* uint32_t */
 
+#include "_stdint.h"
+
+
+
 # ifdef __cplusplus
 extern "C"
 {
@@ -127,3 +131,5 @@ extern "C"
 # endif
 
 #endif				/* IDNA_H */
+
+
