@@ -693,7 +693,7 @@ namespace hotplugin
 
 
 
-   bool host::SetWindowPos(int32_t z,int32_t x,int32_t y,int32_t cx,int32_t cy,UINT nFlags)
+   bool host::SetWindowPos(int_ptr z,int32_t x,int32_t y,int32_t cx,int32_t cy,UINT nFlags)
    {
 
       bool bOk = ::hotplugin::plugin::SetWindowPos(z,x,y,cx,cy,nFlags);

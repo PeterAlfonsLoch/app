@@ -186,7 +186,7 @@ namespace metrowin
       int GetWindowRgn(HRGN hRgn);
 
 
-      virtual bool SetWindowPos(int z, int x, int y, int cx, int cy, UINT nFlags);
+      virtual bool SetWindowPos(int_ptr z, int x, int y, int cx, int cy, UINT nFlags);
       virtual UINT ArrangeIconicWindows();
       virtual bool BringWindowToTop();
       using ::user::interaction_impl::GetWindowRect;

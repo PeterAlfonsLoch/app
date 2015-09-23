@@ -45,3 +45,11 @@ CLASS_DECL_AURA int64_t natoi64_dup(const char * sz, size_t iLen);
 CLASS_DECL_AURA int64_t wtoi64_dup(const unichar * sz, const unichar ** pszEnd, int32_t iBase);
 CLASS_DECL_AURA int64_t wtoi64_dup(const unichar * sz, const unichar ** pszEnd);
 CLASS_DECL_AURA int64_t wtoi64_dup(const unichar * sz);
+
+
+#ifdef __cplusplus
+inline void atoui_dup(uint32_t & ui,const char * psz) { ui = atoui_dup(psz); }
+inline void atoui_dup(uint64_t & ui,const char * psz) { ui = atoui64_dup(psz); }
+inline uint_ptr atouiptr_dup(const char * psz) { uint_ptr ui; atoui_dup(ui,psz); return ui; }
+
+#endif

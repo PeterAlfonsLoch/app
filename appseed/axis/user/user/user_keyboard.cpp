@@ -9,6 +9,9 @@ string keyboard_input_source();
 #endif
 
 
+
+
+
 namespace user
 {
 
@@ -430,7 +433,7 @@ namespace user
             return layoutida[i].m_strPath;
          }
       }
-      hkl = (HKL) (((uint32_t) hkl) & 0xffff);
+      hkl = (HKL) (((uint_ptr) hkl) & 0xffff);
       for(int32_t i = 0; i < layoutida.get_count(); i++)
       {
          if(layoutida[i].m_hkla.contains(hkl))
@@ -533,11 +536,11 @@ namespace user
          strHkl.trim();
          if(::str::begins_eat_ci(strHkl, "0x"))
          {
-            hkl = (HKL) ::hex::to_uint(strHkl);
+            hkl = (HKL) ::hex::to_uint_ptr(strHkl);
          }
          else
          {
-            hkl = (HKL) atoi(strHkl);
+            hkl = (HKL) atouiptr_dup(strHkl);
          }
          playoutid->m_hkla.add(hkl);
       }

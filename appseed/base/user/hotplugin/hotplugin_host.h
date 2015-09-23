@@ -76,7 +76,7 @@ namespace hotplugin
 
       // client should implement
       //using plugin::SetWindowPos;
-      //virtual bool SetWindowPos(int32_t z,int32_t x,int32_t y,int32_t cx,int32_t cy,UINT nFlags = SWP_SHOWWINDOW);
+      //virtual bool SetWindowPos(int_ptr z,int32_t x,int32_t y,int32_t cx,int32_t cy,UINT nFlags = SWP_SHOWWINDOW);
 
 
       // implemented here
@@ -139,7 +139,7 @@ namespace hotplugin
 
 
       using ::hotplugin::plugin::SetWindowPos;
-      virtual bool SetWindowPos(int32_t z,int32_t x,int32_t y,int32_t cx,int32_t cy,UINT nFlags);
+      virtual bool SetWindowPos(int_ptr z,int32_t x,int32_t y,int32_t cx,int32_t cy,UINT nFlags);
 
 
    };

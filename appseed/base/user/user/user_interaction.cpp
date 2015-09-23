@@ -519,7 +519,7 @@ namespace user
 
    }
 
-   bool interaction::SetWindowPos(int32_t z,const RECT & rect,UINT nFlags)
+   bool interaction::SetWindowPos(int_ptr z,const RECT & rect,UINT nFlags)
    {
 
       return SetWindowPos(z,rect.left,rect.top,width(rect),height(rect),nFlags);
@@ -6071,7 +6071,7 @@ namespace user
 
    }
 
-   bool interaction::SetWindowPos(int32_t z,int32_t x,int32_t y,int32_t cx,int32_t cy,UINT nFlags)
+   bool interaction::SetWindowPos(int_ptr z,int32_t x,int32_t y,int32_t cx,int32_t cy,UINT nFlags)
    {
 
       synch_lock sl(m_pmutex);

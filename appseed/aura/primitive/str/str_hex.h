@@ -11,6 +11,7 @@ namespace hex
 
 
    CLASS_DECL_AURA int64_t          to_int64(const char * lpcsz);
+   CLASS_DECL_AURA uint64_t         to_uint64(const string & lpcsz);
    CLASS_DECL_AURA uint32_t         to_uint(const string & str);
 
    CLASS_DECL_AURA int64_t          utf8_char_to(const char * pszUtf8Char);
@@ -161,6 +162,11 @@ namespace hex
       }
       return str;
    }
+
+
+   inline void to_uint(uint32_t & ui,const string & str) { ui = to_uint(str); }
+   inline void to_uint(uint64_t & ui,const string & str) { ui = to_uint64(str); }
+   inline uint_ptr to_uint_ptr(const string & str) { uint_ptr ui; to_uint(ui,str); return ui; }
 
 } // namespace hex
 

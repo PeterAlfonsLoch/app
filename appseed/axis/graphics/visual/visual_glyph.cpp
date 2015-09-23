@@ -361,7 +361,7 @@ namespace visual
       // The buffer may contain one or more contours that begin with
       // a TTPOLYGONHEADER. We have them all when we the end of the buffer.
       //while ((uint32_t)lpHeader < (uint32_t)(((char *)lpStart) + size) && pt != NULL)
-      while ((uint32_t)lpHeader < (uint32_t)(((char *)lpStart) + size))
+      while ((uint_ptr)lpHeader < (uint_ptr)(((char *)lpStart) + size))
       {
          if (lpHeader->dwType == TT_POLYGON_TYPE)
             // draw each coutour, currently this is the only valid
@@ -392,7 +392,7 @@ namespace visual
 
             // Walk this contour and process each curve( or line ) segment
             // and add it to the Beziers
-            while ((uint32_t)lpCurve < (uint32_t)(((char *)lpHeader) + lpHeader->cb))
+            while ((uint_ptr)lpCurve < (uint_ptr)(((char *)lpHeader) + lpHeader->cb))
             {
                //**********************************************
                // Format assumption:

@@ -607,7 +607,7 @@ namespace user
    }
 
 
-   bool interaction_base::SetWindowPos(int32_t z,const RECT & rect,UINT nFlags)
+   bool interaction_base::SetWindowPos(int_ptr z,const RECT & rect,UINT nFlags)
    {
 
       ::exception::throw_interface_only(get_app());
@@ -2595,7 +2595,7 @@ namespace user
    }
 
 
-   bool interaction_base::SetWindowPos(int32_t z,int32_t x,int32_t y,int32_t cx,int32_t cy,UINT nFlags)
+   bool interaction_base::SetWindowPos(int_ptr z,int32_t x,int32_t y,int32_t cx,int32_t cy,UINT nFlags)
    {
 
       ::exception::throw_interface_only(get_app());

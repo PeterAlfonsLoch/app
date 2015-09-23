@@ -583,7 +583,7 @@ void file_size_table::get_fs_size::write(::file::ostream & ostream) const
 
 #ifdef WINDOWSEX
 
-   ostream << (int32_t) m_oswindow;
+   ostream << (int_ptr) m_oswindow;
 
 #else
 

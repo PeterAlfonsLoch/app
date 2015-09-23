@@ -31,6 +31,16 @@ namespace hex
       return r;
    }
 
+   uint64_t to_uint64(const string & str)
+   {
+      uint64_t r = 0;
+      for(int32_t i = 0; i < str.get_length(); i++)
+      {
+         r = r * 16 + str[i] - 48 - ((str[i] >= 'A') ? 7 : 0) - ((str[i] >= 'a') ? 32 : 0);
+      }
+      return r;
+   }
+
 
    int64_t utf8_char_to(const char * pszUtf8Char)
    {

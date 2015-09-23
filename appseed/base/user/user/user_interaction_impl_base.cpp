@@ -493,7 +493,7 @@ namespace user
    }
 
 
-   bool interaction_impl_base::SetWindowPos(int32_t z,const RECT & rect,UINT nFlags)
+   bool interaction_impl_base::SetWindowPos(int_ptr z,const RECT & rect,UINT nFlags)
    {
 
       return m_pui->SetWindowPos(z, rect, nFlags);
@@ -501,7 +501,7 @@ namespace user
    }
 
 
-   bool interaction_impl_base::SetWindowPos(int32_t z,int32_t x,int32_t y,int32_t cx,int32_t cy,UINT nFlags)
+   bool interaction_impl_base::SetWindowPos(int_ptr z,int32_t x,int32_t y,int32_t cx,int32_t cy,UINT nFlags)
    {
 
       return m_pui->SetWindowPos(z,x,y,cx,cy,nFlags);

@@ -3133,7 +3133,7 @@ oswindow interaction_impl::get_handle() const
 
 #define SWP_IGNOREPALACEGUARD 0x80000000
 
-bool interaction_impl::SetWindowPos(int32_t z, int32_t x, int32_t y, int32_t cx, int32_t cy, UINT nFlags)
+bool interaction_impl::SetWindowPos(int_ptr z, int32_t x, int32_t y, int32_t cx, int32_t cy, UINT nFlags)
 {
 
 

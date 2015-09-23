@@ -174,7 +174,7 @@ namespace macos
       int32_t GetWindowRgn(HRGN hRgn);
 
 
-        virtual bool SetWindowPos(int32_t z, int32_t x, int32_t y, int32_t cx, int32_t cy, UINT nFlags);
+        virtual bool SetWindowPos(int_ptr z, int32_t x, int32_t y, int32_t cx, int32_t cy, UINT nFlags);
         virtual UINT ArrangeIconicWindows();
         virtual void BringToTop(int nCmdShow);
         virtual bool BringWindowToTop();

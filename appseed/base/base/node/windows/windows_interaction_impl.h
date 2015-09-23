@@ -192,7 +192,7 @@ namespace windows
       //int32_t GetWindowRgn(HRGN hRgn);
 
       using ::user::interaction_impl::SetWindowPos;
-      virtual bool SetWindowPos(int32_t z,int32_t x,int32_t y,int32_t cx,int32_t cy,UINT nFlags = SWP_SHOWWINDOW);
+      virtual bool SetWindowPos(int_ptr z,int32_t x,int32_t y,int32_t cx,int32_t cy,UINT nFlags = SWP_SHOWWINDOW);
       virtual UINT ArrangeIconicWindows();
       virtual void BringToTop(int nCmdShow);
       virtual bool BringWindowToTop();

@@ -676,7 +676,7 @@ namespace user
    }
 
 
-   bool interaction_child::SetWindowPos(int32_t z,int32_t x,int32_t y,int32_t cx,int32_t cy,UINT nFlags)
+   bool interaction_child::SetWindowPos(int_ptr z,int32_t x,int32_t y,int32_t cx,int32_t cy,UINT nFlags)
    {
 
       //synch_lock slUserMutex(&user_mutex());

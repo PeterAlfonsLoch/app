@@ -4063,7 +4063,7 @@ namespace metrowin
       return get_handle();
    }
 
-   bool interaction_impl::SetWindowPos(int z,int x,int y,int cx,int cy,UINT nFlags)
+   bool interaction_impl::SetWindowPos(int_ptr z,int x,int y,int cx,int cy,UINT nFlags)
    {
       /*bool b;
       bool * pb = &b;

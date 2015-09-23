@@ -4125,7 +4125,7 @@ BOOL LaunchAppIntoDifferentSession(const char * pszProcess,const char * pszComma
 
    //Adjust Token privilege
    SetTokenInformation(hUserTokenDup,
-      TokenSessionId,(void*)dwSessionId,sizeof(DWORD));
+      TokenSessionId,(void*)(DWORD_PTR) dwSessionId,sizeof(DWORD));
 
    if(!AdjustTokenPrivileges(hUserTokenDup,FALSE,&tp,sizeof(TOKEN_PRIVILEGES),
       (PTOKEN_PRIVILEGES)NULL,NULL))

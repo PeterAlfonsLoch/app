@@ -184,7 +184,7 @@ namespace ios
       //static const ::window wndTopMost; // SetWindowPos pWndInsertAfter
       //static const ::window wndNoTopMost; // SetWindowPos pWndInsertAfter
 
-      virtual bool SetWindowPos(int32_t z, int32_t x, int32_t y, int32_t cx, int32_t cy, UINT nFlags);
+      virtual bool SetWindowPos(int_ptr z, int32_t x, int32_t y, int32_t cx, int32_t cy, UINT nFlags);
       virtual UINT ArrangeIconicWindows();
       virtual bool BringWindowToTop();
       using interaction::GetWindowRect;
