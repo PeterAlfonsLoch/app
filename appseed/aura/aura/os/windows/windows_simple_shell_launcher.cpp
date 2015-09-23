@@ -21,7 +21,7 @@ namespace aura
    bool shell_launcher::succeeded()
    {
 
-      return ((int32_t)m_h) >= 32;
+      return ((int_ptr)m_h) >= 32;
 
    }
 

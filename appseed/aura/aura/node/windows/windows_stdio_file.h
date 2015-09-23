@@ -1,19 +1,20 @@
 #pragma once
 
 
+#define iFileNull ((int)-1)
+
 namespace windows
 {
 
 
    class stdio_file : 
-      virtual public ::windows::file,
       virtual public ::file::text_buffer
    {
    public:
 
 
-      FILE* m_pStream;    // stdio FILE
-      // m_hFile from aura class is _fileno(m_pStream)
+      FILE *            m_pStream;     // stdio FILE
+      int               m_iFile;       // _fileno(m_pStream)
 
 
 

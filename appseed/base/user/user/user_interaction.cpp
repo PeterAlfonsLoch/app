@@ -2647,12 +2647,12 @@ namespace user
          return m_pimpl->ChildWindowFromPoint(point,nFlags);
    }
 
-   ::user::interaction * interaction::GetNextWindow(UINT nFlag)
+   ::user::interaction * interaction::get_next_window(UINT nFlag)
    {
       if(m_pimpl == NULL)
          return NULL;
       else
-         return m_pimpl->GetNextWindow(nFlag);
+         return m_pimpl->get_next_window(nFlag);
    }
 
    ::user::interaction * interaction::get_next(bool bIgnoreChildren,int32_t * piLevel)

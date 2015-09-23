@@ -3011,7 +3011,7 @@ namespace str
    CLASS_DECL_AURA  bool           trim(string & str)
    {
 
-      int iLen = str.length();
+      strsize iLen = str.length();
 
       str.trim();
 

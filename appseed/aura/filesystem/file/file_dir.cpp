@@ -145,12 +145,12 @@ using namespace ::Windows::System;
 
    }
 
-   if(!GetModuleFileNameW(hmodule,lpszModuleFilePath, lpszModuleFilePath.count()))
+   if(!GetModuleFileNameW(hmodule,lpszModuleFilePath, (DWORD) lpszModuleFilePath.count()))
       return "";
 
    LPWSTR lpszModuleFileName;
 
-   if (!GetFullPathNameW(lpszModuleFilePath, lpszModuleFilePath.count(), lpszModuleFolder, &lpszModuleFileName))
+   if (!GetFullPathNameW(lpszModuleFilePath, (DWORD) lpszModuleFilePath.count(), lpszModuleFolder, &lpszModuleFileName))
       return "";
 
    lpszModuleFolder[lpszModuleFileName - lpszModuleFolder] = '\0';
@@ -380,12 +380,12 @@ found:;
 
    }
 
-   if(!GetModuleFileNameW(hmodule,lpszModuleFilePath, lpszModuleFilePath.count()))
+   if(!GetModuleFileNameW(hmodule,lpszModuleFilePath, (DWORD) lpszModuleFilePath.count()))
       return "";
 
    LPWSTR lpszModuleFileName;
 
-   if (!GetFullPathNameW(lpszModuleFilePath, lpszModuleFilePath.count(), lpszModuleFolder, &lpszModuleFileName))
+   if (!GetFullPathNameW(lpszModuleFilePath, (DWORD) lpszModuleFilePath.count(), lpszModuleFolder, &lpszModuleFileName))
       return "";
 
    lpszModuleFolder[lpszModuleFileName - lpszModuleFolder] = '\0';

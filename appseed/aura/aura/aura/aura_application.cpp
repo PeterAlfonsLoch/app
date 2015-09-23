@@ -3816,16 +3816,21 @@ namespace aura
    }
 
 
-   bool application::platform_open_by_file_extension(int iEdge,const char * pszPathName,application_bias * pbiasCreate)
+   bool application::platform_open_by_file_extension(index iEdge,const char * pszPathName,application_bias * pbiasCreate)
    {
+      
       return false;
+
    }
 
 
-   bool application::platform_open_by_file_extension(int iEdge,::create * pcc)
+   bool application::platform_open_by_file_extension(index iEdge,::create * pcc)
    {
+
       return false;
+
    }
+
 
    sp(::aura::application) application::instantiate_application(const char * pszType,const char * pszId,application_bias * pbias)
    {

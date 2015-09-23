@@ -1,5 +1,7 @@
 
 
+
+
 namespace windows
 {
 
@@ -47,7 +49,7 @@ namespace windows
 
       int hConHandle;
 
-      long lStdHandle;
+      HANDLE lStdHandle;
 
       CONSOLE_SCREEN_BUFFER_INFO coninfo;
 
@@ -69,9 +71,9 @@ namespace windows
 
       // redirect unbuffered STDOUT to the console
 
-      lStdHandle = (long)GetStdHandle(STD_OUTPUT_HANDLE);
+      lStdHandle = GetStdHandle(STD_OUTPUT_HANDLE);
 
-      hConHandle = _open_osfhandle(lStdHandle,_O_TEXT);
+      hConHandle = _open_osfhandle((intptr_t) lStdHandle,_O_TEXT);
 
       fp = _fdopen(hConHandle,"w");
 
@@ -81,9 +83,9 @@ namespace windows
 
       // redirect unbuffered STDIN to the console
 
-      lStdHandle = (long)GetStdHandle(STD_INPUT_HANDLE);
+      lStdHandle = GetStdHandle(STD_INPUT_HANDLE);
 
-      hConHandle = _open_osfhandle(lStdHandle,_O_TEXT);
+      hConHandle = _open_osfhandle((intptr_t) lStdHandle,_O_TEXT);
 
       fp = _fdopen(hConHandle,"r");
 
@@ -93,9 +95,9 @@ namespace windows
 
       // redirect unbuffered STDERR to the console
 
-      lStdHandle = (long)GetStdHandle(STD_ERROR_HANDLE);
+      lStdHandle = GetStdHandle(STD_ERROR_HANDLE);
 
-      hConHandle = _open_osfhandle(lStdHandle,_O_TEXT);
+      hConHandle = _open_osfhandle((intptr_t) lStdHandle,_O_TEXT);
 
       fp = _fdopen(hConHandle,"w");
 
@@ -157,14 +159,14 @@ namespace windows
       FillConsoleOutputAttribute(GetStdHandle(STD_OUTPUT_HANDLE),color,iLineCount * m_iW,coord,&dwWritten);
    }
 
+   
    void console::write(const char * psz)
    {
       
-      DWORD dw= 0;
-      ::WriteFile(GetStdHandle(STD_OUTPUT_HANDLE),psz,strlen(psz),&dw, NULL);
-      //fprintf("%s",psz);
+      write_memory_to_file(GetStdHandle(STD_OUTPUT_HANDLE),psz,strlen(psz),NULL);
 
    }
+
 
 } // namespace windows
 

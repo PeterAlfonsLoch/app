@@ -349,25 +349,25 @@ namespace user
             lResult = GetOwner()->send_message(pbase->m_uiMessage, pbase->m_wparam, pbase->m_lparam);
 
             // special case for TTN_NEEDTEXTA and TTN_NEEDTEXTW
-#ifdef WINDOWSEX
-            if(pbase->m_uiMessage == WM_NOTIFY)
-            {
-               NMHDR* pNMHDR = (NMHDR*)pbase->m_lparam.m_lparam;
-               if (pNMHDR->code == TTN_NEEDTEXTA || pNMHDR->code == TTN_NEEDTEXTW)
-               {
-                  TOOLTIPTEXTA* pTTTA = (TOOLTIPTEXTA*)pNMHDR;
-                  TOOLTIPTEXTW* pTTTW = (TOOLTIPTEXTW*)pNMHDR;
-                  if ((pNMHDR->code == TTN_NEEDTEXTA && (!pTTTA->lpszText || !*pTTTA->lpszText)) ||
-                     (pNMHDR->code == TTN_NEEDTEXTW && (!pTTTW->lpszText || !*pTTTW->lpszText)))
-                  {
-                     // not handled by owner, so let bar itself handle it
-                     ::user::interaction::message_handler(pobj);
-                  }
-               }
-            }
-#else
-            throw todo(get_app());
-#endif
+//#ifdef WINDOWSEX
+//            if(pbase->m_uiMessage == WM_NOTIFY)
+//            {
+//               NMHDR* pNMHDR = (NMHDR*)pbase->m_lparam.m_lparam;
+//               if (pNMHDR->code == TTN_NEEDTEXTA || pNMHDR->code == TTN_NEEDTEXTW)
+//               {
+//                  TOOLTIPTEXTA* pTTTA = (TOOLTIPTEXTA*)pNMHDR;
+//                  TOOLTIPTEXTW* pTTTW = (TOOLTIPTEXTW*)pNMHDR;
+//                  if ((pNMHDR->code == TTN_NEEDTEXTA && (!pTTTA->lpszText || !*pTTTA->lpszText)) ||
+//                     (pNMHDR->code == TTN_NEEDTEXTW && (!pTTTW->lpszText || !*pTTTW->lpszText)))
+//                  {
+//                     // not handled by owner, so let bar itself handle it
+//                     ::user::interaction::message_handler(pobj);
+//                  }
+//               }
+//            }
+//#else
+//            throw todo(get_app());
+//#endif
             return;
          }
       }

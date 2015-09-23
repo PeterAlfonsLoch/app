@@ -257,7 +257,7 @@ void small_ipc_rx_channel::receiver::on_receive(small_ipc_rx_channel * prxchanne
 {
 }
 
-void small_ipc_rx_channel::receiver::on_receive(small_ipc_rx_channel * prxchannel, int message, void * pdata, int len)
+void small_ipc_rx_channel::receiver::on_receive(small_ipc_rx_channel * prxchannel, int message, void * pdata, memory_size_t len)
 {
 }
 
@@ -281,7 +281,7 @@ void * small_ipc_rx_channel::on_receive(small_ipc_rx_channel * prxchannel, const
    
 }
 
-void * small_ipc_rx_channel::on_receive(small_ipc_rx_channel * prxchannel, int message, void * pdata, int len)
+void * small_ipc_rx_channel::on_receive(small_ipc_rx_channel * prxchannel, int message, void * pdata, memory_size_t len)
 {
    
    if(m_preceiver != NULL)

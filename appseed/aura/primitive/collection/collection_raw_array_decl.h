@@ -433,6 +433,11 @@ public:
    inline raw_array & move(raw_array && a);
 
 
+   operator TYPE *() { return (TYPE *)m_pData;  }
+   operator const TYPE *() const { return (TYPE *)m_pData; }
+   operator count () const { return get_count(); }
+
+
 };
 
 

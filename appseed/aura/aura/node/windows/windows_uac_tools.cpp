@@ -545,7 +545,7 @@ namespace VistaTools
             return FALSE;
          }
 
-         if(FAILED(strncpy(
+         if(!(strncpy(
             szVE_Directory,
             pszDirectory ? pszDirectory : "",
             _tsizeof(szVE_Directory))))

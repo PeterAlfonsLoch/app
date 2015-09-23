@@ -33,6 +33,24 @@ public:
 
    numeric_array() {}
 
+   numeric_array(const TYPE * pa, ::count c) :
+      numeric_arrya()
+   {
+
+      set_size(c);
+
+      while(c > 0)
+      {
+
+         c--;
+
+         operator[](c) = pa[c];
+
+      }
+
+   }
+
+
    numeric_array(const numeric_array & array)
    {
 

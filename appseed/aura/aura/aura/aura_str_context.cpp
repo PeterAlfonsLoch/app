@@ -437,11 +437,11 @@ namespace aura
    {
 
       range_sz_item stack[8];
-      int m_pos = 0;
+      strsize m_pos = 0;
 
       char m_szAlloca[8 * 1024];
       char * m_szMerge = m_szAlloca;
-      int m_iSize =0;
+      strsize m_iSize =0;
       strsize m_iMaxSize=sizeof(m_szAlloca);
       bool m_bOwn = false;
 
@@ -534,7 +534,7 @@ namespace aura
 
       }
 
-      int calc_merge_len()
+      strsize calc_merge_len()
       {
          if(m_pos <= 0)
             return 0;

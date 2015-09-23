@@ -23,10 +23,3 @@ BZ_EXTERN int bsdiff(const char * oldfile,const char * newfile,const char * patc
 BZ_EXTERN int bspatch(const char * oldfile,const char * newfile,const char * patchfile);
 
 
-#ifdef WIN32
-#include <wchar.h>
-typedef INT_PTR         int_ptr,* pint_ptr;
-typedef UINT_PTR        uint_ptr,* puint_ptr;
-typedef int_ptr         ssize_t;
-#endif
-

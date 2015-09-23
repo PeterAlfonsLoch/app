@@ -436,7 +436,7 @@ namespace draw2d
 
    }
 
-   void graphics::DPtoLP(LPPOINT lpPoints, int32_t nCount) const
+   void graphics::DPtoLP(LPPOINT lpPoints,count nCount) const
    {
       UNREFERENCED_PARAMETER(lpPoints);
       UNREFERENCED_PARAMETER(nCount);
@@ -449,7 +449,7 @@ namespace draw2d
       ::exception::throw_interface_only(get_app());
    }
 
-   void graphics::LPtoDP(LPPOINT lpPoints, int32_t nCount) const
+   void graphics::LPtoDP(LPPOINT lpPoints, count nCount) const
    {
       UNREFERENCED_PARAMETER(lpPoints);
       UNREFERENCED_PARAMETER(nCount);
@@ -653,7 +653,7 @@ namespace draw2d
    }
 
 
-   bool graphics::Polyline(const POINT* lpPoints, int32_t nCount)
+   bool graphics::Polyline(const POINT* lpPoints,count nCount)
    {
       UNREFERENCED_PARAMETER(lpPoints);
       UNREFERENCED_PARAMETER(nCount);
@@ -1027,7 +1027,7 @@ namespace draw2d
       return false;
    }
 
-   bool graphics::fill_polygon(const POINTD * lpPoints, int32_t nCount)
+   bool graphics::fill_polygon(const POINTD * lpPoints,count nCount)
    {
       UNREFERENCED_PARAMETER(lpPoints);
       UNREFERENCED_PARAMETER(nCount);
@@ -1035,7 +1035,7 @@ namespace draw2d
       return false;
    }
 
-   bool graphics::draw_polygon(const POINTD * lpPoints,int32_t nCount)
+   bool graphics::draw_polygon(const POINTD * lpPoints,count nCount)
    {
       UNREFERENCED_PARAMETER(lpPoints);
       UNREFERENCED_PARAMETER(nCount);
@@ -1043,7 +1043,7 @@ namespace draw2d
       return false;
    }
 
-   bool graphics::fill_polygon(const POINT* lpPoints, int32_t nCount)
+   bool graphics::fill_polygon(const POINT* lpPoints,count nCount)
    {
       UNREFERENCED_PARAMETER(lpPoints);
       UNREFERENCED_PARAMETER(nCount);
@@ -1051,7 +1051,7 @@ namespace draw2d
       return false;
    }
 
-   bool graphics::draw_polygon(const POINT* lpPoints, int32_t nCount)
+   bool graphics::draw_polygon(const POINT* lpPoints,count nCount)
    {
       UNREFERENCED_PARAMETER(lpPoints);
       UNREFERENCED_PARAMETER(nCount);
@@ -1060,7 +1060,7 @@ namespace draw2d
    }
 
 
-   bool graphics::Polygon(const POINT* lpPoints, int32_t nCount)
+   bool graphics::Polygon(const POINT* lpPoints,count nCount)
    {
 
       bool bOk1 = fill_polygon(lpPoints, nCount);
@@ -1072,7 +1072,7 @@ namespace draw2d
    }
 
 
-   bool graphics::Polygon(const POINTD* lpPoints,int32_t nCount)
+   bool graphics::Polygon(const POINTD* lpPoints,count nCount)
    {
       UNREFERENCED_PARAMETER(lpPoints);
       UNREFERENCED_PARAMETER(nCount);
@@ -1080,7 +1080,7 @@ namespace draw2d
       return false;
    }
 
-   bool graphics::PolyPolygon(const POINT* lpPoints, const INT* lpPolyCounts, int32_t nCount)
+   bool graphics::PolyPolygon(const POINT* lpPoints, const INT * lpPolyCounts,count nCount)
    {
       UNREFERENCED_PARAMETER(lpPoints);
       UNREFERENCED_PARAMETER(lpPolyCounts);
@@ -1346,7 +1346,7 @@ namespace draw2d
       return false;
    }
 
-   bool graphics::TextOut(int32_t x, int32_t y, const char * lpszString, int32_t nCount)
+   bool graphics::TextOut(int32_t x, int32_t y, const char * lpszString, strsize nCount)
    {
 
       return TextOut((double)x, (double)y, lpszString, nCount);
@@ -1362,7 +1362,7 @@ namespace draw2d
       return false;
    }
 
-   bool graphics::TextOut(double x, double y, const char * lpszString, int32_t nCount)
+   bool graphics::TextOut(double x, double y, const char * lpszString, strsize nCount)
    {
       if (m_pdibAlphaBlend != NULL)
       {
@@ -1445,7 +1445,7 @@ namespace draw2d
    }
 
 
-   bool graphics::ExtTextOut(int32_t x, int32_t y, UINT nOptions, const RECT &  lpRect, const char * lpszString, UINT nCount, LPINT lpDxWidths)
+   bool graphics::ExtTextOut(int32_t x, int32_t y, UINT nOptions, const RECT &  lpRect, const char * lpszString, count nCount, LPINT lpDxWidths)
    {
       UNREFERENCED_PARAMETER(x);
       UNREFERENCED_PARAMETER(y);
@@ -1470,7 +1470,7 @@ namespace draw2d
       return false;
    }
 
-   size graphics::TabbedTextOut(int32_t x, int32_t y, const char * lpszString, int32_t nCount, int32_t nTabPositions, LPINT lpnTabStopPositions, int32_t nTabOrigin)
+   size graphics::TabbedTextOut(int32_t x, int32_t y, const char * lpszString, strsize nCount, count nTabPositions, LPINT lpnTabStopPositions, int nTabOrigin)
    {
       UNREFERENCED_PARAMETER(x);
       UNREFERENCED_PARAMETER(y);
@@ -1483,7 +1483,7 @@ namespace draw2d
       return size(0, 0);
    }
 
-   size graphics::TabbedTextOut(int32_t x, int32_t y, const string & str, int32_t nTabPositions, LPINT lpnTabStopPositions, int32_t nTabOrigin)
+   size graphics::TabbedTextOut(int32_t x, int32_t y, const string & str, count nTabPositions, LPINT lpnTabStopPositions, int nTabOrigin)
    {
       UNREFERENCED_PARAMETER(x);
       UNREFERENCED_PARAMETER(y);
@@ -1495,7 +1495,7 @@ namespace draw2d
       return size(0, 0);
    }
 
-   size graphics::GetTabbedTextExtent(const char * lpszString, strsize nCount, int32_t nTabPositions, LPINT lpnTabStopPositions) const
+   size graphics::GetTabbedTextExtent(const char * lpszString, strsize nCount, count nTabPositions, LPINT lpnTabStopPositions) const
    {
       UNREFERENCED_PARAMETER(lpszString);
       UNREFERENCED_PARAMETER(nCount);
@@ -1505,33 +1505,46 @@ namespace draw2d
       return size(0, 0);
    }
 
-   size graphics::GetTabbedTextExtent(const string & str, int32_t nTabPositions, LPINT lpnTabStopPositions) const
+
+   size graphics::GetTabbedTextExtent(const string & str, count nTabPositions, LPINT lpnTabStopPositions) const
    {
+
       UNREFERENCED_PARAMETER(str);
       UNREFERENCED_PARAMETER(nTabPositions);
       UNREFERENCED_PARAMETER(lpnTabStopPositions);
       ::exception::throw_interface_only(get_app());
+
       return size(0, 0);
+
    }
 
-   size graphics::GetOutputTabbedTextExtent(const char * lpszString, strsize nCount, int32_t nTabPositions, LPINT lpnTabStopPositions) const
+
+   size graphics::GetOutputTabbedTextExtent(const char * lpszString, strsize nCount,count nTabPositions, LPINT lpnTabStopPositions) const
    {
+
       UNREFERENCED_PARAMETER(lpszString);
       UNREFERENCED_PARAMETER(nCount);
       UNREFERENCED_PARAMETER(nTabPositions);
       UNREFERENCED_PARAMETER(lpnTabStopPositions);
       ::exception::throw_interface_only(get_app());
+
       return size(0, 0);
+
    }
 
-   size graphics::GetOutputTabbedTextExtent(const string & str, int32_t nTabPositions, LPINT lpnTabStopPositions) const
+
+   size graphics::GetOutputTabbedTextExtent(const string & str, count nTabPositions, LPINT lpnTabStopPositions) const
    {
+
       UNREFERENCED_PARAMETER(str);
       UNREFERENCED_PARAMETER(nTabPositions);
       UNREFERENCED_PARAMETER(lpnTabStopPositions);
       ::exception::throw_interface_only(get_app());
+
       return size(0, 0);
+
    }
+
 
    bool graphics::GrayString(::draw2d::brush* pBrush, bool (CALLBACK* lpfnOutput)(HDC, LPARAM, int32_t), LPARAM lpData, int32_t nCount, int32_t x, int32_t y, int32_t nWidth, int32_t nHeight)
    {
@@ -1553,7 +1566,7 @@ namespace draw2d
       return -1;
    }
 
-   int32_t graphics::GetTextFace(int32_t nCount, LPTSTR lpszFacename) const
+   int32_t graphics::GetTextFace(count nCount, LPTSTR lpszFacename) const
    {
       UNREFERENCED_PARAMETER(nCount);
       UNREFERENCED_PARAMETER(lpszFacename);
@@ -1614,7 +1627,7 @@ namespace draw2d
 
 #ifdef WINDOWSEX
 
-   uint32_t graphics::GetCharacterPlacement(const char * lpString, int32_t nCount, int32_t nMaxExtent, LPGCP_RESULTS lpResults, uint32_t dwFlags) const
+   uint32_t graphics::GetCharacterPlacement(const char * lpString, strsize nCount, strsize nMaxExtent, LPGCP_RESULTS lpResults, uint32_t dwFlags) const
    {
       UNREFERENCED_PARAMETER(lpString);
       UNREFERENCED_PARAMETER(nCount);
@@ -1625,7 +1638,7 @@ namespace draw2d
       return -1;
    }
 
-   uint32_t graphics::GetCharacterPlacement(string & str, int32_t nMaxExtent, LPGCP_RESULTS lpResults, uint32_t dwFlags) const
+   uint32_t graphics::GetCharacterPlacement(string & str, strsize nMaxExtent, LPGCP_RESULTS lpResults, uint32_t dwFlags) const
    {
       UNREFERENCED_PARAMETER(str);
       UNREFERENCED_PARAMETER(nMaxExtent);
@@ -1867,14 +1880,19 @@ namespace draw2d
       return -1;
    }
 
-   bool graphics::PolyPolyline(const POINT* lpPoints, const uint32_t* lpPolyPoints, int32_t nCount)
+
+   bool graphics::PolyPolyline(const POINT* lpPoints, const INT * lpPolyPoints, count nCount)
    {
+
       UNREFERENCED_PARAMETER(lpPoints);
       UNREFERENCED_PARAMETER(lpPolyPoints);
       UNREFERENCED_PARAMETER(nCount);
       ::exception::throw_interface_only(get_app());
+
       return false;
+
    }
+
 
 #ifdef WINDOWSEX
 
@@ -1917,7 +1935,7 @@ namespace draw2d
       return NULL;
    }
 
-   bool graphics::PolyBezier(const POINT* lpPoints, int32_t nCount)
+   bool graphics::PolyBezier(const POINT* lpPoints,count nCount)
    {
       UNREFERENCED_PARAMETER(lpPoints);
       UNREFERENCED_PARAMETER(nCount);
@@ -2009,7 +2027,7 @@ namespace draw2d
       return false;
    }
 
-   int32_t graphics::GetPath(LPPOINT lpPoints, LPBYTE lpTypes, int32_t nCount) const
+   int32_t graphics::GetPath(LPPOINT lpPoints, LPBYTE lpTypes,count nCount) const
    {
       UNREFERENCED_PARAMETER(lpPoints);
       UNREFERENCED_PARAMETER(lpTypes);
@@ -2681,7 +2699,7 @@ namespace draw2d
       return -1;
    }
 
-   bool graphics::PolyDraw(const POINT* lpPoints, const BYTE* lpTypes, int32_t nCount)
+   bool graphics::PolyDraw(const POINT* lpPoints, const BYTE* lpTypes,count nCount)
    {
       UNREFERENCED_PARAMETER(lpPoints);
       UNREFERENCED_PARAMETER(lpTypes);
@@ -2690,7 +2708,7 @@ namespace draw2d
       return false;
    }
 
-   bool graphics::PolylineTo(const POINT* lpPoints, int32_t nCount)
+   bool graphics::PolylineTo(const POINT* lpPoints,count nCount)
    {
       UNREFERENCED_PARAMETER(lpPoints);
       UNREFERENCED_PARAMETER(nCount);
@@ -2715,7 +2733,7 @@ namespace draw2d
 #endif
 
 
-   bool graphics::PolyBezierTo(const POINT* lpPoints, int32_t nCount)
+   bool graphics::PolyBezierTo(const POINT* lpPoints,count nCount)
    {
       UNREFERENCED_PARAMETER(lpPoints);
       UNREFERENCED_PARAMETER(nCount);
@@ -2764,7 +2782,7 @@ namespace draw2d
       ::exception::throw_interface_only(get_app());
    }
 
-   size graphics::GetTextExtent(const char * lpszString, strsize nCount, int32_t iIndex) const
+   size graphics::GetTextExtent(const char * lpszString, strsize nCount,count iIndex) const
    {
 
       return GetTextExtent(lpszString, iIndex);
@@ -2786,7 +2804,7 @@ namespace draw2d
       return size(0, 0);
    }
 
-   bool graphics::GetTextExtent(sized & size, const char * lpszString, strsize nCount, int32_t iIndex) const
+   bool graphics::GetTextExtent(sized & size, const char * lpszString, strsize nCount, strsize iIndex) const
    {
 
       ::size sz = GetTextExtent(string(lpszString), iIndex);

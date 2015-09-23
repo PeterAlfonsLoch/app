@@ -732,7 +732,7 @@ namespace user
       sp(::user::interaction) pwndIterator = pview->GetTopWindow();
       sp(::user::interaction) pwnd;
       sp(control) pcontrolex;
-       for (; pwndIterator != NULL; pwndIterator = pwndIterator->GetNextWindow())
+       for (; pwndIterator != NULL; pwndIterator = pwndIterator->get_next_window())
        {
          pwnd = pwndIterator->GetTopLevel();
          pcontrolex = NULL;

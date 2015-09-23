@@ -247,7 +247,7 @@ namespace aura
       {
       }
 
-      void small_ipc_rx_channel::receiver::on_receive(small_ipc_rx_channel * prxchannel,int32_t message,void * pdata,int32_t len)
+      void small_ipc_rx_channel::receiver::on_receive(small_ipc_rx_channel * prxchannel,int32_t message,void * pdata,memory_size_t len)
       {
       }
 
@@ -271,7 +271,7 @@ namespace aura
 
       }
 
-      void * small_ipc_rx_channel::on_receive(small_ipc_rx_channel * prxchannel,int32_t message,void * pdata,int32_t len)
+      void * small_ipc_rx_channel::on_receive(small_ipc_rx_channel * prxchannel,int32_t message,void * pdata,memory_size_t len)
       {
 
          if(m_preceiver != NULL)

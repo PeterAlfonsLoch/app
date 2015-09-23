@@ -47,7 +47,7 @@ namespace path
 
       hwstring wstr(MAX_PATH * 8);
       
-      GetModuleFileNameW(hmodule,wstr,wstr.count());
+      GetModuleFileNameW(hmodule,wstr,(DWORD) wstr.count());
 
       return defer_solve_relative_compresions(string(wstr));
 

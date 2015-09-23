@@ -100,7 +100,7 @@ namespace aura
          public:
 
             virtual void on_receive(rx * prx,const char * pszMessage);
-            virtual void on_receive(rx * prx,int message,void * pdata,int len);
+            virtual void on_receive(rx * prx,int message,void * pdata,memory_size_t len);
             virtual void on_post(rx * prx,long long int a,long long int b);
 
          };
@@ -129,7 +129,7 @@ namespace aura
 
 
          virtual void * on_receive(rx * prx,const char * pszMessage);
-         virtual void * on_receive(rx * prx,int message,void * pdata,int len);
+         virtual void * on_receive(rx * prx,int message,void * pdata,memory_size_t len);
          virtual void * on_post(rx * prx,long long int a,long long int b);
 
 

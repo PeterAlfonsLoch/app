@@ -1643,7 +1643,7 @@ namespace user
    }
 
 
-   ::user::interaction * interaction_impl::GetNextWindow(UINT nFlag)
+   ::user::interaction * interaction_impl::get_next_window(UINT nFlag)
    {
 
       UNREFERENCED_PARAMETER(nFlag);

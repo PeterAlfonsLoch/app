@@ -106,7 +106,7 @@ class CLASS_DECL_AURA property :
 public:
 
 
-   int      m_iIndex;
+   index      m_iIndex;
 
    property(::aura::application * papp,::index iIndex = 0);
    property(::index iIndex = 0);

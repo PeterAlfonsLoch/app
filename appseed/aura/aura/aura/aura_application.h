@@ -478,8 +478,8 @@ namespace aura
 
 
 
-      virtual bool platform_open_by_file_extension(int iEdge, const char * pszPathName,application_bias * pbiasCreate = NULL);
-      virtual bool platform_open_by_file_extension(int iEdge,::create * pcc);
+      virtual bool platform_open_by_file_extension(index iEdge, const char * pszPathName,application_bias * pbiasCreate = NULL);
+      virtual bool platform_open_by_file_extension(index iEdge,::create * pcc);
 
 
       virtual sp(::aura::application) instantiate_application(const char * pszType,const char * pszId,application_bias * pbias);

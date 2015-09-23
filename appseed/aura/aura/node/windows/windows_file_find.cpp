@@ -423,7 +423,7 @@ namespace windows
     
       object::dump(dumpcontext);
 
-      dumpcontext << "\nm_hContext = " << (UINT) m_hContext;
+      dumpcontext << "\nm_hContext = " << m_hContext;
 
    }
 

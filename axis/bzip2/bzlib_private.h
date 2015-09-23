@@ -507,3 +507,10 @@ BZ2_hbCreateDecodeTables ( Int32*, Int32*, Int32*, UChar*,
 /*-------------------------------------------------------------*/
 /*--- end                                   bzlib_private.h ---*/
 /*-------------------------------------------------------------*/
+
+
+#ifdef WIN32
+#include <wchar.h>
+#include "_stdint.h"
+#endif
+

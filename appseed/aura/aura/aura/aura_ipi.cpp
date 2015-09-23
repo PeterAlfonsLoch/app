@@ -133,12 +133,13 @@ namespace aura
 
    void ipi::on_receive(::aura::ipc::rx * prx,const char * pszMessage)
    {
+      
       string str(pszMessage);
 
       if(!::str::begins_eat(str,"call "))
          return;
 
-      int iFind = str.find(":");
+      strsize iFind = str.find(":");
 
       string str1;
       string strObject;
@@ -157,12 +158,18 @@ namespace aura
          {
             str1 = str;
          }
+
          str1.trim();
-         int iFind2 = str1.find(".");
+
+         strsize iFind2 = str1.find(".");
+
          if(iFind2 < 0)
          {
+
             return;
+
          }
+
          strObject = str1.Left(iFind2);
          strMember = str1.Mid(iFind2 + 1);
          if(iFind < 0)

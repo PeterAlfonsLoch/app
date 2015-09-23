@@ -24,7 +24,7 @@ namespace aura
       };
 
 
-      int                                                      m_iEdge;
+      index                                                    m_iEdge;
 
 
       bool                                                     m_bMatterFromHttpCache;

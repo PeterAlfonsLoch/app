@@ -1852,7 +1852,7 @@ namespace windows
 
       // walk each child
       for(pWndChild = pWndChild->GetTopWindow(); pWndChild != NULL;
-         pWndChild = pWndChild->GetNextWindow(GW_HWNDNEXT))
+         pWndChild = pWndChild->get_next_window(GW_HWNDNEXT))
       {
          pWndChild = GetDescendantWindow(pWndChild,id);
          if(pWndChild != NULL)
@@ -4637,7 +4637,7 @@ namespace windows
 
 
 
-   ::user::interaction * interaction_impl::GetNextWindow(UINT nFlag)
+   ::user::interaction * interaction_impl::get_next_window(UINT nFlag)
    {
 
       if(!::IsWindow(get_handle()))

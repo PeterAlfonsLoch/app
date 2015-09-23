@@ -994,7 +994,7 @@ namespace user
    }
 
 
-   ::user::interaction * interaction_base::GetNextWindow(UINT nFlag)
+   ::user::interaction * interaction_base::get_next_window(UINT nFlag)
    {
 
       if(nFlag == GW_HWNDNEXT)

@@ -3,19 +3,7 @@
 void std_out_buffer::write(const void * lpBuf,memory_size_t nCount)
 {
 
-#ifdef WINDOWSEX
-
-   DWORD dw= 0;
-
-   ::WriteFile(GetStdHandle(STD_OUTPUT_HANDLE),lpBuf,nCount,&dw,NULL);
-
-#else
-
-   string str((const char * ) lpBuf,MIN(strnlen((const char *) lpBuf, nCount), nCount));
-
-   printf("%s",str.c_str());
-
-#endif
+   write_memory_to_file(GetStdHandle(STD_OUTPUT_HANDLE),lpBuf,nCount,NULL);
 
 }
 

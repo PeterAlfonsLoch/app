@@ -43,7 +43,7 @@
 #include "config.h"
 #endif
 
-#if   HAVE_STDINT_H
+#if   HAVE_STDINT_H || defined(_WIN32)
 # include "_stdint.h"
 #elif HAVE_INTTYPES_H
 # include "_inttypes.h"

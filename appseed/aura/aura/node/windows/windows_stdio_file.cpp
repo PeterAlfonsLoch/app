@@ -12,11 +12,11 @@ namespace windows
 
 
    stdio_file::stdio_file(::aura::application * papp) :
-      object(papp),
-      ::windows::file(papp)
+      object(papp)
    {
 
-      m_pStream = NULL;
+      m_pStream   = NULL;
+      m_iFile     = iFileNull;
 
    }
 
@@ -43,14 +43,14 @@ namespace windows
       }
 
       m_pStream = NULL;
-      if(!::windows::file::open(lpszFileName,(nOpenFlags & ~::file::type_text)))
-      {
+//      if(!::windows::file::open(lpszFileName,(nOpenFlags & ~::file::type_text)))
+  //    {
 
-         return failure;
+    //     return failure;
 
-      }
+      //}
 
-      ASSERT(m_hFile != hFileNull);
+      //ASSERT(m_hFile != hFileNull);
 
       char szMode[4]; // C-runtime open string
       int32_t nMode = 0;
@@ -88,7 +88,7 @@ namespace windows
       szMode[nMode++] = '\0';
 
       // open a C-runtime low-level file handle
-      int32_t nHandle = _open_osfhandle(m_hFile, nFlags);
+      int nHandle = _wopen(wstring(lpszFileName), nFlags);
 
       // open a C-runtime stream from that handle
       if (nHandle != -1)
@@ -103,7 +103,7 @@ namespace windows
          //         pException->m_cause = ::file::exception::OsErrorToException(_doserrno);
          //  }
 
-         ::windows::file::Abort(); // close m_hFile
+         Abort(); // close m_iFile
 
          return failure;
 
@@ -276,13 +276,16 @@ namespace windows
 
       int32_t nErr = 0;
 
+      if(m_iFile != iFileNull)
+         ::close(m_iFile);
+
       if(m_pStream != NULL)
       {
          fflush(m_pStream);
          nErr = fclose(m_pStream);
       }
 
-      m_hFile = (UINT) hFileNull;
+      m_iFile = iFileNull;
       m_pStream = NULL;
 
       if (nErr != 0)
@@ -296,10 +299,13 @@ namespace windows
 
       ASSERT_VALID(this);
 
+      if(m_iFile != iFileNull)
+         ::close(m_iFile);
+
       if (m_pStream != NULL)
          fclose(m_pStream);  // close but ignore errors
 
-      m_hFile = (UINT) hFileNull;
+      m_iFile = iFileNull;
 
       m_pStream = NULL;
 
@@ -336,10 +342,13 @@ namespace windows
 
    void stdio_file::dump(dump_context & dumpcontext) const
    {
-      ::windows::file::dump(dumpcontext);
 
+      //::windows::file::dump(dumpcontext);
+
+      dumpcontext << "m_iFile = " << m_iFile;
       dumpcontext << "m_pStream = " << (void *)m_pStream;
       dumpcontext << "\n";
+
    }
 
 

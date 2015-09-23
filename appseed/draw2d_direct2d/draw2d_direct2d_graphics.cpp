@@ -488,45 +488,60 @@ namespace draw2d_direct2d
       return SetWindowExt(size.cx, size.cy); 
    }
 
-   void graphics::DPtoLP(LPPOINT lpPoints, int nCount) const
+
+   void graphics::DPtoLP(LPPOINT lpPoints, count nCount) const
    { 
+
       throw todo(get_app());
       //::DPtoLP(get_handle2(), lpPoints, nCount); 
+
    }
+
 
    void graphics::DPtoLP(LPRECT lpRect) const
    { 
+
       throw todo(get_app());
       //::DPtoLP(get_handle2(), (LPPOINT)lpRect, 2); 
+
    }
 
-   void graphics::LPtoDP(LPPOINT lpPoints, int nCount) const
+
+   void graphics::LPtoDP(LPPOINT lpPoints, count nCount) const
    {
+
       throw todo(get_app());
       //::LPtoDP(get_handle2(), lpPoints, nCount); 
+
    }
+
 
    void graphics::LPtoDP(LPRECT lpRect) const
    {
+
       throw todo(get_app());
       //::LPtoDP(get_handle2(), (LPPOINT)lpRect, 2);
+
    }
+
 
    bool graphics::FillRgn(::draw2d::region* pRgn, ::draw2d::brush* pBrush)
    { 
-      throw todo(get_app());
 
+      throw todo(get_app());
       //return ::FillRgn(get_handle1(), (HRGN)pRgn->get_os_data(), (HBRUSH)pBrush->get_os_data()) != FALSE;
 
    }
 
+
    bool graphics::FrameRgn(::draw2d::region* pRgn, ::draw2d::brush* pBrush, int nWidth, int nHeight)
    { 
+   
       throw todo(get_app());
-
       //return ::FrameRgn(get_handle1(), (HRGN)pRgn->get_os_data(), (HBRUSH)pBrush->get_os_data(), nWidth, nHeight) != FALSE; 
 
    }
+
 
    bool graphics::InvertRgn(::draw2d::region* pRgn)
    {
@@ -620,7 +635,7 @@ namespace draw2d_direct2d
 
    }
 
-   bool graphics::Polyline(const POINT* lpPoints, int nCount)
+   bool graphics::Polyline(const POINT* lpPoints, count nCount)
    {
 
       //throw todo(get_app());
@@ -1095,7 +1110,7 @@ namespace draw2d_direct2d
 
    }
 
-   bool graphics::Polygon(const POINT* lpPoints, int nCount)
+   bool graphics::Polygon(const POINT* lpPoints, count nCount)
    {
 
       ::draw2d::path_sp path(allocer());
@@ -1112,7 +1127,7 @@ namespace draw2d_direct2d
    }
 
 
-   bool graphics::fill_polygon(const POINTD * lpPoints,int32_t nCount)
+   bool graphics::fill_polygon(const POINTD * lpPoints,count nCount)
    {
       
       ::draw2d::path_sp path(allocer());
@@ -1128,7 +1143,7 @@ namespace draw2d_direct2d
    }
 
 
-   bool graphics::Polygon(const POINTD* lpPoints,int nCount)
+   bool graphics::Polygon(const POINTD* lpPoints, count nCount)
    {
 
       ::draw2d::path_sp path(allocer());
@@ -1145,7 +1160,7 @@ namespace draw2d_direct2d
    }
 
 
-   bool graphics::PolyPolygon(const POINT* lpPoints,const INT* lpPolyCounts,int nCount)
+   bool graphics::PolyPolygon(const POINT* lpPoints,const INT* lpPolyCounts,count nCount)
    {
 
       throw todo(get_app());
@@ -1510,7 +1525,7 @@ namespace draw2d_direct2d
    }
 
 
-   bool graphics::ExtTextOut(int x, int y, UINT nOptions, const RECT & lpRect, const char * lpszString, UINT nCount, LPINT lpDxWidths)
+   bool graphics::ExtTextOut(int x, int y, UINT nOptions, const RECT & lpRect, const char * lpszString, strsize nCount, LPINT lpDxWidths)
    { 
 
       throw todo(get_app());
@@ -1531,7 +1546,7 @@ namespace draw2d_direct2d
    }
 
 
-   size graphics::TabbedTextOut(int x, int y, const char * lpszString, int nCount, int nTabPositions, LPINT lpnTabStopPositions, int nTabOrigin)
+   size graphics::TabbedTextOut(int x, int y, const char * lpszString, strsize nCount, count nTabPositions, LPINT lpnTabStopPositions, int32_t nTabOrigin)
    {
 
       throw todo(get_app());
@@ -1543,7 +1558,7 @@ namespace draw2d_direct2d
    }
 
 
-   size graphics::TabbedTextOut(int x, int y, const string & str, int nTabPositions, LPINT lpnTabStopPositions, int nTabOrigin)
+   size graphics::TabbedTextOut(int x, int y, const string & str, count nTabPositions, LPINT lpnTabStopPositions, int32_t nTabOrigin)
    {
 
       throw todo(get_app());
@@ -1555,7 +1570,7 @@ namespace draw2d_direct2d
    }
 
 
-   size graphics::GetTabbedTextExtent(const char * lpszString, strsize nCount, int nTabPositions, LPINT lpnTabStopPositions) const
+   size graphics::GetTabbedTextExtent(const char * lpszString, strsize nCount, count nTabPositions, LPINT lpnTabStopPositions) const
    { 
 
       throw todo(get_app());
@@ -1566,7 +1581,7 @@ namespace draw2d_direct2d
 
    }
 
-   size graphics::GetTabbedTextExtent(const string & str, int nTabPositions, LPINT lpnTabStopPositions) const
+   size graphics::GetTabbedTextExtent(const string & str, count nTabPositions, LPINT lpnTabStopPositions) const
    {
 
       throw todo(get_app());
@@ -1578,7 +1593,7 @@ namespace draw2d_direct2d
    }
 
 
-   size graphics::GetOutputTabbedTextExtent(const char * lpszString, strsize nCount, int nTabPositions, LPINT lpnTabStopPositions) const
+   size graphics::GetOutputTabbedTextExtent(const char * lpszString, strsize nCount, count nTabPositions, LPINT lpnTabStopPositions) const
    {
 
       throw todo(get_app());
@@ -1589,7 +1604,7 @@ namespace draw2d_direct2d
 
    }
 
-   size graphics::GetOutputTabbedTextExtent(const string & str, int nTabPositions, LPINT lpnTabStopPositions) const
+   size graphics::GetOutputTabbedTextExtent(const string & str, count nTabPositions, LPINT lpnTabStopPositions) const
    {
 
       throw todo(get_app());
@@ -1623,7 +1638,7 @@ namespace draw2d_direct2d
 
    }
 
-   int graphics::GetTextFace(__in int nCount, __out_ecount_part_z(nCount, return + 1) LPTSTR lpszFacename) const
+   int graphics::GetTextFace(count nCount, LPTSTR lpszFacename) const
    {
 
       throw todo(get_app());
@@ -2128,7 +2143,7 @@ namespace draw2d_direct2d
 
    }
 
-   bool graphics::PolyPolyline(const POINT* lpPoints, const uint32_t* lpPolyPoints, int nCount)
+   bool graphics::PolyPolyline(const POINT* lpPoints, const INT * lpPolyPoints, count nCount)
    {
       
       throw todo(get_app());
@@ -2189,7 +2204,7 @@ namespace draw2d_direct2d
 
    }
 
-   bool graphics::PolyBezier(const POINT* lpPoints, int nCount)
+   bool graphics::PolyBezier(const POINT* lpPoints, count nCount)
    {
       
       throw todo(get_app());
@@ -3787,7 +3802,7 @@ namespace draw2d_direct2d
       //return nResult;
    }
 
-   bool graphics::PolyDraw(const POINT* lpPoints, const BYTE* lpTypes, int nCount)
+   bool graphics::PolyDraw(const POINT* lpPoints, const BYTE* lpTypes, count nCount)
    {
       
       throw todo(get_app());
@@ -3803,7 +3818,7 @@ namespace draw2d_direct2d
       //return bResult;
    }
 
-   bool graphics::PolylineTo(const POINT* lpPoints, int nCount)
+   bool graphics::PolylineTo(const POINT* lpPoints, count nCount)
    {
       
       throw todo(get_app());
@@ -3834,7 +3849,7 @@ namespace draw2d_direct2d
    */
 #endif
 
-   bool graphics::PolyBezierTo(const POINT* lpPoints, int nCount)
+   bool graphics::PolyBezierTo(const POINT* lpPoints, count nCount)
    {
             
       throw todo(get_app());
@@ -4042,7 +4057,7 @@ namespace draw2d_direct2d
 
 
 
-   int graphics::draw_text(const char * lpszString, int nCount, const RECT & lpRect, UINT nFormat)
+   int graphics::draw_text(const char * lpszString, strsize nCount, const RECT & lpRect, UINT nFormat)
    { 
 
       return draw_text(string(lpszString, nCount), lpRect, nFormat);
@@ -4187,7 +4202,7 @@ namespace draw2d_direct2d
 #endif
 
 
-   size graphics::GetTextExtent(const char * lpszString, strsize nCount, int iIndex) const
+   size graphics::GetTextExtent(const char * lpszString, strsize nCount, strsize iIndex) const
    {
 
       sized sz;
@@ -4249,7 +4264,7 @@ namespace draw2d_direct2d
       //return size;
    }
 
-   bool graphics::GetTextExtent(sized & size, const char * lpszString, strsize nCount, int iIndex) const
+   bool graphics::GetTextExtent(sized & size, const char * lpszString, strsize nCount, strsize iIndex) const
    {
 
       if(nCount < 0)
@@ -4423,7 +4438,7 @@ namespace draw2d_direct2d
    }
 
 
-   bool graphics::TextOut(int x, int y, const char * lpszString, int nCount)
+   bool graphics::TextOut(int x, int y, const char * lpszString, strsize nCount)
    {
 
       return TextOut((double)x, (double)y, lpszString, nCount);
@@ -4431,7 +4446,7 @@ namespace draw2d_direct2d
    }
 
 
-   bool graphics::TextOut(double x, double y, const char * lpszString, int nCount)
+   bool graphics::TextOut(double x, double y, const char * lpszString, strsize nCount)
    {
 
       if (::draw2d::graphics::TextOut(x, y, lpszString, nCount))

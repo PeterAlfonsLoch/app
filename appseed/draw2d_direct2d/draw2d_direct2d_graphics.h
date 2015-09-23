@@ -192,10 +192,10 @@ namespace draw2d_direct2d
       virtual size ScaleWindowExt(int xNum, int xDenom, int yNum, int yDenom);
 
    // Coordinate Functions
-      void DPtoLP(LPPOINT lpPoints, int nCount = 1) const;
+      void DPtoLP(LPPOINT lpPoints,count nCount = 1) const;
       void DPtoLP(LPRECT lpRect) const;
       void DPtoLP(LPSIZE lpSize) const;
-      void LPtoDP(LPPOINT lpPoints, int nCount = 1) const;
+      void LPtoDP(LPPOINT lpPoints,count nCount = 1) const;
       void LPtoDP(LPRECT lpRect) const;
       void LPtoDP(LPSIZE lpSize) const;
 
@@ -234,7 +234,7 @@ namespace draw2d_direct2d
     //  bool LineTo(POINT point);
       bool Arc(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4);
       bool Arc(const RECT & lpRect, POINT ptStart, POINT ptEnd);
-      bool Polyline(const POINT* lpPoints, int nCount);
+      bool Polyline(const POINT* lpPoints,count nCount);
 
       bool AngleArc(int x, int y, int nRadius, float fStartAngle, float fSweepAngle);
       bool ArcTo(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4);
@@ -242,13 +242,12 @@ namespace draw2d_direct2d
       int GetArcDirection() const;
       int SetArcDirection(int nArcDirection);
 
-      bool PolyDraw(const POINT* lpPoints, const BYTE* lpTypes, int nCount);
-      bool PolylineTo(const POINT* lpPoints, int nCount);
-      bool PolyPolyline(const POINT* lpPoints,
-         const uint32_t* lpPolyPoints, int nCount);
+      bool PolyDraw(const POINT* lpPoints, const BYTE* lpTypes,count nCount);
+      bool PolylineTo(const POINT* lpPoints,count nCount);
+      bool PolyPolyline(const POINT* lpPoints, const INT * lpPolyPoints,count nCount);
 
-      bool PolyBezier(const POINT* lpPoints, int nCount);
-      bool PolyBezierTo(const POINT* lpPoints, int nCount);
+      bool PolyBezier(const POINT* lpPoints,count nCount);
+      bool PolyBezierTo(const POINT* lpPoints,count nCount);
 
    // Simple Drawing Functions
       virtual void FillRect(const RECT & lpRect, ::draw2d::brush* pBrush);
@@ -290,11 +289,11 @@ namespace draw2d_direct2d
       bool FillEllipse(const RECTD & lpRect);
       bool Pie(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4);
       bool Pie(const RECT & lpRect, POINT ptStart, POINT ptEnd);
-      bool Polygon(const POINT* lpPoints, int nCount);   
-      bool Polygon(const POINTD* lpPoints,int nCount);
-      bool PolyPolygon(const POINT* lpPoints, const INT* lpPolyCounts, int nCount);
+      bool Polygon(const POINT* lpPoints,count nCount);
+      bool Polygon(const POINTD* lpPoints,count nCount);
+      bool PolyPolygon(const POINT* lpPoints, const INT * lpPolyCounts,count nCount);
 
-      virtual bool fill_polygon(const POINTD * lpPoints,int32_t nCount);
+      virtual bool fill_polygon(const POINTD * lpPoints,count nCount);
 
       bool Rectangle(int x1, int y1, int x2, int y2);
       bool Rectangle(const RECT & lpRect);
@@ -337,49 +336,43 @@ namespace draw2d_direct2d
         BLENDFUNCTION blend);*/
 
    // Text Functions
-      virtual bool TextOut(int x, int y, const char * lpszString, int nCount);
+      virtual bool TextOut(int x, int y, const char * lpszString, strsize nCount);
       virtual bool TextOut(int x, int y, const string & str);
-      virtual bool TextOut(double x, double y, const char * lpszString, int nCount);
+      virtual bool TextOut(double x, double y, const char * lpszString, strsize nCount);
       virtual bool TextOut(double x, double y, const string & str);
-      virtual bool ExtTextOut(int x, int y, UINT nOptions, const RECT & lpRect,
-               const char * lpszString, UINT nCount, LPINT lpDxWidths);
-            bool ExtTextOut(int x, int y, UINT nOptions, const RECT & lpRect,
-               const string & str, LPINT lpDxWidths);
-      virtual size TabbedTextOut(int x, int y, const char * lpszString, int nCount,
-               int nTabPositions, LPINT lpnTabStopPositions, int nTabOrigin);
-            size TabbedTextOut(int x, int y, const string & str,
-               int nTabPositions, LPINT lpnTabStopPositions, int nTabOrigin);
+      virtual bool ExtTextOut(int x, int y, UINT nOptions, const RECT & lpRect, const char * lpszString, strsize nCount, LPINT lpDxWidths);
+      virtual bool ExtTextOut(int x, int y, UINT nOptions, const RECT & lpRect, const string & str, LPINT lpDxWidths);
+      virtual size TabbedTextOut(int x, int y, const char * lpszString, strsize nCount, count nTabPositions, LPINT lpnTabStopPositions, int32_t nTabOrigin);
+      virtual size TabbedTextOut(int x, int y, const string & str, count nTabPositions, LPINT lpnTabStopPositions, int32_t nTabOrigin);
 
-      virtual int draw_text(const char * lpszString, int nCount, const RECT & lpRect, UINT nFormat);
+      virtual int draw_text(const char * lpszString, strsize nCount, const RECT & lpRect, UINT nFormat);
       virtual int draw_text(const string & str,const RECT & lpRect,UINT nFormat);
 
 //      virtual int draw_text_ex(LPTSTR lpszString, int nCount, LPRECT lpRect, UINT nFormat, LPDRAWTEXTPARAMS lpDTParams);
   //    virtual int draw_text_ex(const string & str, LPRECT lpRect, UINT nFormat, LPDRAWTEXTPARAMS lpDTParams);
 
-      size GetTextExtent(const char * lpszString, strsize nCount, int iIndex) const;
-      size GetTextExtent(const char * lpszString, strsize nCount) const;
-      size GetTextExtent(const string & str) const;
-      bool GetTextExtent(sized & size, const char * lpszString, strsize nCount, int iIndex) const;
-      bool GetTextExtent(sized & size, const char * lpszString, strsize nCount) const;
-      bool GetTextExtent(sized & size, const string & str) const;
-      size GetOutputTextExtent(const char * lpszString, strsize nCount) const;
-      size GetOutputTextExtent(const string & str) const;
-      size GetTabbedTextExtent(const char * lpszString, strsize nCount, int nTabPositions, LPINT lpnTabStopPositions) const;
-      size GetTabbedTextExtent(const string & str, int nTabPositions, LPINT lpnTabStopPositions) const;
-      size GetOutputTabbedTextExtent(const char * lpszString, strsize nCount, int nTabPositions, LPINT lpnTabStopPositions) const;
-      size GetOutputTabbedTextExtent(const string & str, int nTabPositions, LPINT lpnTabStopPositions) const;
-      virtual bool GrayString(::draw2d::brush* pBrush,
-         bool (CALLBACK* lpfnOutput)(HDC, LPARAM, int), LPARAM lpData,
-            int nCount, int x, int y, int nWidth, int nHeight);
-      UINT GetTextAlign() const;
-      UINT SetTextAlign(UINT nFlags);
-      int GetTextFace(__in int nCount, __out_ecount_part_z(nCount, return + 1) LPTSTR lpszFacename) const;
-      int GetTextFace(string & rString) const;
-      bool get_text_metrics(::draw2d::text_metric * lpMetrics) const;
-      bool get_output_text_metrics(::draw2d::text_metric * lpMetrics) const;
-      int SetTextJustification(int nBreakExtra, int nBreakCount);
-      int GetTextCharacterExtra() const;
-      int SetTextCharacterExtra(int nCharExtra);
+      virtual size GetTextExtent(const char * lpszString, strsize nCount, strsize iIndex) const;
+      virtual size GetTextExtent(const char * lpszString, strsize nCount) const;
+      virtual size GetTextExtent(const string & str) const;
+      virtual bool GetTextExtent(sized & size, const char * lpszString, strsize nCount, strsize iIndex) const;
+      virtual bool GetTextExtent(sized & size, const char * lpszString, strsize nCount) const;
+      virtual bool GetTextExtent(sized & size, const string & str) const;
+      virtual size GetOutputTextExtent(const char * lpszString, strsize nCount) const;
+      virtual size GetOutputTextExtent(const string & str) const;
+      virtual size GetTabbedTextExtent(const char * lpszString, strsize nCount, count nTabPositions, LPINT lpnTabStopPositions) const;
+      virtual size GetTabbedTextExtent(const string & str, count nTabPositions, LPINT lpnTabStopPositions) const;
+      virtual size GetOutputTabbedTextExtent(const char * lpszString, strsize nCount, count nTabPositions, LPINT lpnTabStopPositions) const;
+      virtual size GetOutputTabbedTextExtent(const string & str, count  nTabPositions, LPINT lpnTabStopPositions) const;
+      virtual bool GrayString(::draw2d::brush* pBrush, bool (CALLBACK* lpfnOutput)(HDC, LPARAM, int), LPARAM lpData, int nCount, int x, int y, int nWidth, int nHeight);
+      virtual UINT GetTextAlign() const;
+      virtual UINT SetTextAlign(UINT nFlags);
+      virtual int GetTextFace(count nCount, LPTSTR lpszFacename) const;
+      virtual int GetTextFace(string & rString) const;
+      virtual bool get_text_metrics(::draw2d::text_metric * lpMetrics) const;
+      virtual bool get_output_text_metrics(::draw2d::text_metric * lpMetrics) const;
+      virtual int SetTextJustification(int nBreakExtra, int nBreakCount);
+      virtual int GetTextCharacterExtra() const;
+      virtual int SetTextCharacterExtra(int nCharExtra);
 
 //      uint32_t GetCharacterPlacement(const char * lpString, int nCount, int nMaxExtent, LPGCP_RESULTS lpResults, uint32_t dwFlags) const;
   //    uint32_t GetCharacterPlacement(string & str, int nMaxExtent, LPGCP_RESULTS lpResults, uint32_t dwFlags) const;
@@ -429,11 +422,9 @@ namespace draw2d_direct2d
    #endif
 
    // Printer/Device Escape Functions
-      virtual int Escape(__in int nEscape, __in int nCount,
-         __in_bcount(nCount) const char * lpszInData, __in LPVOID lpOutData);
-      int Escape(__in int nEscape, __in int nInputSize, __in_bcount(nInputSize) const char * lpszInputData,
-         __in int nOutputSize, __out_bcount(nOutputSize) char * lpszOutputData);
-      int DrawEscape(int nEscape, int nInputSize, const char * lpszInputData);
+      virtual int Escape(int nEscape, int nCount, const char * lpszInData, LPVOID lpOutData);
+      virtual int Escape(int nEscape, int nInputSize, const char * lpszInputData, int nOutputSize, char * lpszOutputData);
+      virtual int DrawEscape(int nEscape, int nInputSize, const char * lpszInputData);
 
       // Escape helpers
       int StartDoc(const char * lpszDocName);  // old Win3.0 version

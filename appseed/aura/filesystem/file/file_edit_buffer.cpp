@@ -380,8 +380,8 @@ namespace file
    memory_size_t edit_buffer::read(void *lpBuf,memory_size_t nCount)
    {
       byte * buf = (byte *)lpBuf;
-      UINT uiRead = 0;
-      UINT uiReadCount = 0;
+      file_size_t uiRead = 0;
+      file_size_t uiReadCount = 0;
 
       if(m_dwPosition >= m_dwFileLength)
       {

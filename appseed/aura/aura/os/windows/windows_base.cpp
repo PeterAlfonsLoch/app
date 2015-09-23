@@ -622,7 +622,7 @@ void __cdecl __crt_dump_client(void * pvData,size_t nBytes)
 
       if(pobject == NULL)
       {
-         C_RUNTIME_ERRORCHECK_SPRINTF(_snprintf_s(sz,_countof(sz),_countof(sz) - 1,"unknown object at $%p, %u bytes long\n",pvData,nBytes));
+         //_snprintf_s("unknown object at $%p, %" PRIuPTR " bytes long\n",_countof(sz),_countof(sz) - 1,,pvData,nBytes));
       }
       else if(g_dumpcontext.GetDepth() > 0)
       {
@@ -634,7 +634,7 @@ void __cdecl __crt_dump_client(void * pvData,size_t nBytes)
       {
          object & obj = *pobject;
          // int16_t form
-         C_RUNTIME_ERRORCHECK_SPRINTF(_snprintf_s(sz,_countof(sz),_countof(sz) - 1,"a %hs object at $%p, %u bytes long\n",typeid(obj).name(),pvData,nBytes));
+         //C_RUNTIME_ERRORCHECK_SPRINTF(_snprintf_s(sz,_countof(sz),_countof(sz) - 1,"a %hs object at $%p, %u bytes long\n",typeid(obj).name(),pvData,nBytes));
          g_dumpcontext << sz;
       }
    }
@@ -646,7 +646,7 @@ void __cdecl __crt_dump_client(void * pvData,size_t nBytes)
    catch(...)
    {
       // int16_t form for trashed objects
-      sprintf_s(sz,_countof(sz),"faulted while dumping object at $%p, %u bytes long\n",pvData,nBytes);
+      //sprintf_s(sz,_countof(sz),"faulted while dumping object at $%p, %u bytes long\n",pvData,nBytes);
       g_dumpcontext << sz;
    }
 }

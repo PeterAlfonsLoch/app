@@ -37,7 +37,7 @@ public:
    bool                          m_bShowSplash;
    bool                          m_bRunEmbedded;
    bool                          m_bRunAutomated;
-   int32_t                           m_nCmdShow;
+   int32_t                       m_nCmdShow;
 
    // not valid for file_new
    var                           m_varFile;
@@ -50,10 +50,10 @@ public:
    var                           m_varQuery;
    ::fs::item_array *            m_pitema;
 
-   sp(::aura::application)             m_pappFork;
+   sp(::aura::application)       m_pappFork;
    string                        m_strApp;
    string                        m_strAppType;
-   ::user::primitive *  m_puiParent;
+   ::user::primitive *           m_puiParent;
    index                         m_iEdge;
    manual_reset_event            m_eventReady;
    application_bias *            m_pbiasCreate;

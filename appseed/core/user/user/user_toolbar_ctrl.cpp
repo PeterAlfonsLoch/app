@@ -22,7 +22,7 @@ namespace user
       ASSERT(IsWindow());
       TBADDBITMAP tbab;
       tbab.hInst = NULL;
-      tbab.nID = (UINT)pBitmap->get_os_data();
+      tbab.nID = (UINT_PTR)pBitmap->get_os_data();
       return (int32_t) send_message( TB_ADDBITMAP, (WPARAM)nNumButtons,
          (LPARAM)&tbab);
 #else

@@ -452,7 +452,7 @@ synch_lock ml(m_spmutex);
       return ::size(0, 0);
    }
 
-   void graphics::DPtoLP(LPPOINT lpPoints, int32_t nCount) const
+   void graphics::DPtoLP(LPPOINT lpPoints, count nCount) const
    {
       //::DPtoLP(get_handle2(), lpPoints, nCount);
    }
@@ -462,7 +462,7 @@ synch_lock ml(m_spmutex);
       //::DPtoLP(get_handle2(), (LPPOINT)lpRect, 2);
    }
 
-   void graphics::LPtoDP(LPPOINT lpPoints, int32_t nCount) const
+   void graphics::LPtoDP(LPPOINT lpPoints, count nCount) const
    {
       //::LPtoDP(get_handle2(), lpPoints, nCount);
    }
@@ -602,7 +602,7 @@ synch_lock ml(m_spmutex);
 
    }
 
-   bool graphics::Polyline(const POINT* lpPoints, int32_t nCount)
+   bool graphics::Polyline(const POINT* lpPoints, count nCount)
    {
 
       return draw_polygon(lpPoints, nCount);
@@ -1106,7 +1106,7 @@ synch_lock ml(m_spmutex);
    }
 
 
-   bool graphics::fill_polygon(const POINTD * pa, int32_t nCount)
+   bool graphics::fill_polygon(const POINTD * pa, count nCount)
    {
 
       synch_lock ml(m_spmutex);
@@ -1128,7 +1128,7 @@ synch_lock ml(m_spmutex);
 
    }
 
-   bool graphics::fill_polygon(const POINT* pa, int32_t nCount)
+   bool graphics::fill_polygon(const POINT* pa, count nCount)
    {
 
       synch_lock ml(m_spmutex);
@@ -1151,7 +1151,7 @@ synch_lock ml(m_spmutex);
    }
 
 
-   bool graphics::draw_polygon(const POINTD * pa, int32_t nCount)
+   bool graphics::draw_polygon(const POINTD * pa, count nCount)
    {
 
       synch_lock ml(m_spmutex);
@@ -1173,7 +1173,7 @@ synch_lock ml(m_spmutex);
 
    }
 
-   bool graphics::draw_polygon(const POINT* pa, int32_t nCount)
+   bool graphics::draw_polygon(const POINT* pa, count nCount)
    {
 
       synch_lock ml(m_spmutex);
@@ -1195,7 +1195,7 @@ synch_lock ml(m_spmutex);
 
    }
 
-   bool graphics::Polygon(const POINT* pa, int32_t nCount)
+   bool graphics::Polygon(const POINT* pa, count nCount)
    {
 
 synch_lock ml(m_spmutex);
@@ -1219,7 +1219,7 @@ synch_lock ml(m_spmutex);
    }
 
 
-   bool graphics::PolyPolygon(const POINT* lpPoints, const INT* lpPolyCounts, int32_t nCount)
+   bool graphics::PolyPolygon(const POINT* lpPoints, const INT* lpPolyCounts, count nCount)
    {
 
       ::exception::throw_not_implemented(get_app());
@@ -1228,7 +1228,7 @@ synch_lock ml(m_spmutex);
 
    }
 
-   bool graphics::Polygon(const POINTD* pa,int32_t nCount)
+   bool graphics::Polygon(const POINTD* pa,count nCount)
    {
 
       synch_lock ml(m_spmutex);
@@ -1252,7 +1252,7 @@ synch_lock ml(m_spmutex);
    }
 
 
-   bool graphics::PolyPolygon(const POINTD* lpPoints,const INT* lpPolyCounts,int32_t nCount)
+   bool graphics::PolyPolygon(const POINTD* lpPoints,const INT* lpPolyCounts,count nCount)
    {
 
       ::exception::throw_not_implemented(get_app());
@@ -1614,7 +1614,7 @@ synch_lock ml(m_spmutex);
    }
 
 
-   bool graphics::ExtTextOut(int32_t x, int32_t y, UINT nOptions, const RECT & lpRect, const char * lpszString, UINT nCount, LPINT lpDxWidths)
+   bool graphics::ExtTextOut(int32_t x, int32_t y, UINT nOptions, const RECT & lpRect, const char * lpszString, strsize nCount, LPINT lpDxWidths)
    {
 
       ::exception::throw_not_implemented(get_app());
@@ -1636,7 +1636,7 @@ synch_lock ml(m_spmutex);
 
    }
 
-   size graphics::TabbedTextOut(int32_t x, int32_t y, const char * lpszString, int32_t nCount, int32_t nTabPositions, LPINT lpnTabStopPositions, int32_t nTabOrigin)
+   size graphics::TabbedTextOut(int32_t x, int32_t y, const char * lpszString, strsize nCount, count nTabPositions, LPINT lpnTabStopPositions, int32_t nTabOrigin)
    {
 
       ::exception::throw_not_implemented(get_app());
@@ -1647,7 +1647,7 @@ synch_lock ml(m_spmutex);
 
    }
 
-   size graphics::TabbedTextOut(int32_t x, int32_t y, const string & str, int32_t nTabPositions, LPINT lpnTabStopPositions, int32_t nTabOrigin)
+   size graphics::TabbedTextOut(int32_t x, int32_t y, const string & str, count nTabPositions, LPINT lpnTabStopPositions, int32_t nTabOrigin)
    {
 
       ::exception::throw_not_implemented(get_app());
@@ -1659,7 +1659,7 @@ synch_lock ml(m_spmutex);
    }
 
 
-   size graphics::GetTabbedTextExtent(const char * lpszString, strsize nCount, int32_t nTabPositions, LPINT lpnTabStopPositions) const
+   size graphics::GetTabbedTextExtent(const char * lpszString, strsize nCount, count nTabPositions, LPINT lpnTabStopPositions) const
    {
 
       ::exception::throw_not_implemented(get_app());
@@ -1670,7 +1670,7 @@ synch_lock ml(m_spmutex);
 
    }
 
-   size graphics::GetTabbedTextExtent(const string & str, int32_t nTabPositions, LPINT lpnTabStopPositions) const
+   size graphics::GetTabbedTextExtent(const string & str, count nTabPositions, LPINT lpnTabStopPositions) const
    {
 
       ::exception::throw_not_implemented(get_app());
@@ -1681,7 +1681,7 @@ synch_lock ml(m_spmutex);
 
    }
 
-   size graphics::GetOutputTabbedTextExtent(const char * lpszString, strsize nCount, int32_t nTabPositions, LPINT lpnTabStopPositions) const
+   size graphics::GetOutputTabbedTextExtent(const char * lpszString, strsize nCount, count nTabPositions, LPINT lpnTabStopPositions) const
    {
 
       ::exception::throw_not_implemented(get_app());
@@ -1692,7 +1692,7 @@ synch_lock ml(m_spmutex);
 
    }
 
-   size graphics::GetOutputTabbedTextExtent(const string & str, int32_t nTabPositions, LPINT lpnTabStopPositions) const
+   size graphics::GetOutputTabbedTextExtent(const string & str, count nTabPositions, LPINT lpnTabStopPositions) const
    {
 
       ::exception::throw_not_implemented(get_app());
@@ -1725,7 +1725,7 @@ synch_lock ml(m_spmutex);
 
    }
 
-   int32_t graphics::GetTextFace(int32_t nCount, LPTSTR lpszFacename) const
+   int32_t graphics::GetTextFace(count nCount, LPTSTR lpszFacename) const
    {
 
       ::exception::throw_not_implemented(get_app());
@@ -2150,7 +2150,7 @@ synch_lock ml(m_spmutex);
 
    }
 
-   bool graphics::PolyPolyline(const POINT* lpPoints, const uint32_t* lpPolyPoints, int32_t nCount)
+   bool graphics::PolyPolyline(const POINT* lpPoints, const INT * lpPolyPoints, count nCount)
    {
 
       ::exception::throw_not_implemented(get_app());
@@ -2212,7 +2212,7 @@ synch_lock ml(m_spmutex);
 
    }
 
-   bool graphics::PolyBezier(const POINT* lpPoints, int32_t nCount)
+   bool graphics::PolyBezier(const POINT* lpPoints, count nCount)
    {
 
       ::exception::throw_not_implemented(get_app());
@@ -2367,7 +2367,7 @@ synch_lock ml(m_spmutex);
 
    }
 
-   int32_t graphics::GetPath(LPPOINT lpPoints, LPBYTE lpTypes, int32_t nCount) const
+   int32_t graphics::GetPath(LPPOINT lpPoints, LPBYTE lpTypes, count nCount) const
    {
 
       ::exception::throw_not_implemented(get_app());
@@ -4113,7 +4113,7 @@ synch_lock ml(m_spmutex);
 
    }
 
-   bool graphics::PolyDraw(const POINT* lpPoints, const BYTE* lpTypes, int32_t nCount)
+   bool graphics::PolyDraw(const POINT* lpPoints, const BYTE* lpTypes, count nCount)
    {
 
       ::exception::throw_not_implemented(get_app());
@@ -4133,7 +4133,7 @@ synch_lock ml(m_spmutex);
 
    }
 
-   bool graphics::PolylineTo(const POINT* lpPoints, int32_t nCount)
+   bool graphics::PolylineTo(const POINT* lpPoints, count nCount)
    {
 
       ::exception::throw_not_implemented(get_app());
@@ -4172,7 +4172,7 @@ synch_lock ml(m_spmutex);
 
 //   }
 
-   bool graphics::PolyBezierTo(const POINT* lpPoints, int32_t nCount)
+   bool graphics::PolyBezierTo(const POINT* lpPoints, count nCount)
    {
 
       ::exception::throw_not_implemented(get_app());
@@ -4401,7 +4401,7 @@ synch_lock ml(m_spmutex);
 
 
 
-   int32_t graphics::draw_text(const char * lpszString,int32_t nCount,const RECT & lpRect,UINT nFormat)
+   int32_t graphics::draw_text(const char * lpszString,strsize nCount,const RECT & lpRect,UINT nFormat)
    {
 
       return draw_text(string(lpszString, nCount), lpRect, nFormat);
@@ -4505,7 +4505,7 @@ synch_lock ml(m_spmutex);
    }
 
 
-   int32_t graphics::draw_text_ex(LPTSTR lpszString,int32_t nCount,const RECT & lpRect,UINT nFormat,LPDRAWTEXTPARAMS lpDTParams)
+   int32_t graphics::draw_text_ex(LPTSTR lpszString,strsize nCount,const RECT & lpRect,UINT nFormat,LPDRAWTEXTPARAMS lpDTParams)
    {
 
       ::exception::throw_not_implemented(get_app());
@@ -4539,7 +4539,7 @@ synch_lock ml(m_spmutex);
 
    }
 
-   size graphics::GetTextExtent(const char * lpszString, strsize nCount, int32_t iIndex) const
+   size graphics::GetTextExtent(const char * lpszString, strsize nCount, strsize iIndex) const
    {
 
       sized sz;
@@ -4598,7 +4598,7 @@ synch_lock ml(m_spmutex);
 */
    }
 
-   bool graphics::GetTextExtent(sized & size, const char * lpszString, strsize nCount, int32_t iIndex) const
+   bool graphics::GetTextExtent(sized & size, const char * lpszString, strsize nCount, strsize iIndex) const
    {
 
       synch_lock ml(m_spmutex);
@@ -4735,14 +4735,14 @@ synch_lock ml(m_spmutex);
    }
 
 
-   bool graphics::TextOut(int32_t x, int32_t y, const char * lpszString, int32_t nCount)
+   bool graphics::TextOut(int32_t x, int32_t y, const char * lpszString, strsize nCount)
    {
 
       return TextOut(x, y, string(lpszString, nCount));
 
    }
 
-   bool graphics::TextOut(double x, double y, const char * lpszString, int32_t nCount)
+   bool graphics::TextOut(double x, double y, const char * lpszString, strsize nCount)
    {
 
       synch_lock sl(m_spmutex);

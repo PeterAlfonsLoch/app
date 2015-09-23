@@ -13,7 +13,7 @@
 string get_error_message(DWORD dwError);
 
 
-CLASS_DECL_AURA bool __initialize(bool bDLL = FALSE, DWORD dwVersion = _MFC_VER);
+CLASS_DECL_AURA bool __initialize();
 CLASS_DECL_AURA void __set_alloc_stop(LONG lRequestNumber);
 CLASS_DECL_AURA void __throw_last_cleanup();
 CLASS_DECL_AURA void __try_cleanup();

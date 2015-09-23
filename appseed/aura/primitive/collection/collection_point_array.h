@@ -16,7 +16,6 @@ public:
 
 
    operator POINT * () { return get_data();  }
-   operator ::count() { return count();  }
 
    void offset(int32_t x, int32_t y);
    void offset(class point point) { offset(point.x,point.y); }

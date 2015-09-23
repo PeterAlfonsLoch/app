@@ -1113,7 +1113,7 @@ throw todo(get_app());
          while (pos)
          {
             m_pStringMap->get_next_assoc(pos, str, p);
-            if ((int32_t)p == button.iString)
+            if ((INT_PTR)p == button.iString)
             {
                rWString = str;
                return;

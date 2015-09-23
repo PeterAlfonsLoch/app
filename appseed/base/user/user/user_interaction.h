@@ -460,9 +460,9 @@ namespace user
 
 
 #ifdef WINDOWSEX
-      virtual ::user::interaction * GetNextWindow(UINT nFlag = GW_HWNDNEXT);
+      virtual ::user::interaction * get_next_window(UINT nFlag = GW_HWNDNEXT);
 #else
-      virtual ::user::interaction * GetNextWindow(UINT nFlag = 0);
+      virtual ::user::interaction * get_next_window(UINT nFlag = 0);
 #endif
 
       virtual ::user::interaction * GetTopWindow();

@@ -53,6 +53,9 @@ namespace file
    public:
 
 
+      ::file::path      m_strFileName;
+
+
       stream_buffer();
       virtual ~stream_buffer();
 

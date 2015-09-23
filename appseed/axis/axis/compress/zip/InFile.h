@@ -1,9 +1,6 @@
 #pragma once
 
 
-#if !defined(WINDOWS)
-
-
 namespace file
 {
 
@@ -12,13 +9,6 @@ namespace file
 
 
 } // namespace file
-
-
-
-typedef ::file::stream_buffer * HFILE;
-
-
-#endif
 
 
 namespace zip

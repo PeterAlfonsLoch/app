@@ -14,12 +14,12 @@ namespace windows
       object(papp)
    {
 
-      m_hFile = (UINT) hFileNull;
+      m_hFile = hFileNull;
       m_dwAccessMode = 0;
 
    }
 
-   file::file(::aura::application * papp, int32_t hFile) :
+   file::file(::aura::application * papp, HANDLE hFile) :
       object(papp)
    {
 
@@ -42,7 +42,7 @@ namespace windows
    file::~file()
    {
 
-      if(m_hFile != (UINT)hFileNull)
+      if(m_hFile != hFileNull)
       {
          close();
       }
@@ -52,7 +52,7 @@ namespace windows
    ::file::buffer_sp  file::Duplicate() const
    {
       ASSERT_VALID(this);
-      ASSERT(m_hFile != (UINT)hFileNull);
+      ASSERT(m_hFile != hFileNull);
 
       sp(::windows::file) pFile = new file(get_app(), hFileNull);
       HANDLE hFile;
@@ -63,8 +63,8 @@ namespace windows
          //xxx      Ex1WinFileException::ThrowOsError(get_app(), (LONG)::GetLastError());
          throw 0;
       }
-      pFile->m_hFile = (UINT)hFile;
-      ASSERT(pFile->m_hFile != (UINT)hFileNull);
+      pFile->m_hFile = hFile;
+      ASSERT(pFile->m_hFile != hFileNull);
 
       return pFile;
 
@@ -83,7 +83,7 @@ namespace windows
 
       }
 
-      if (m_hFile != (UINT)hFileNull)
+      if (m_hFile != hFileNull)
          close();
 
       ASSERT_VALID(this);
@@ -101,7 +101,7 @@ namespace windows
 
       }
 
-      m_hFile = (UINT)hFileNull;
+      m_hFile = hFileNull;
       m_strFileName.Empty();
 
       m_strFileName     = lpszFileName;
@@ -202,7 +202,7 @@ namespace windows
 
       }
 
-      m_hFile = (HFILE)hFile;
+      m_hFile = hFile;
 
       m_dwAccessMode = dwAccess;
 
@@ -214,7 +214,7 @@ namespace windows
    memory_size_t file::read(void * lpBuf, memory_size_t nCount)
    {
       ASSERT_VALID(this);
-      ASSERT(m_hFile != (UINT)hFileNull);
+      ASSERT(m_hFile != hFileNull);
 
       if (nCount == 0)
          return 0;   // avoid Win32 "null-read"
@@ -232,7 +232,7 @@ namespace windows
    void file::write(const void * lpBuf, memory_size_t nCount)
    {
       ASSERT_VALID(this);
-      ASSERT(m_hFile != (UINT)hFileNull);
+      ASSERT(m_hFile != hFileNull);
 
       if (nCount == 0)
          return;     // avoid Win32 "null-write" option
@@ -252,11 +252,11 @@ namespace windows
    file_position_t file::seek(file_offset_t lOff, ::file::e_seek nFrom)
    {
 
-      if(m_hFile == (UINT)hFileNull)
+      if(m_hFile == hFileNull)
          file_exception::ThrowOsError(get_app(), (LONG)0);
 
       ASSERT_VALID(this);
-      ASSERT(m_hFile != (UINT)hFileNull);
+      ASSERT(m_hFile != hFileNull);
       ASSERT(nFrom == ::file::seek_begin || nFrom == ::file::seek_end || nFrom == ::file::seek_current);
       ASSERT(::file::seek_begin == FILE_BEGIN && ::file::seek_end == FILE_END && ::file::seek_current == FILE_CURRENT);
 
@@ -274,7 +274,7 @@ namespace windows
    file_position_t file::get_position() const
    {
       ASSERT_VALID(this);
-      ASSERT(m_hFile != (UINT)hFileNull);
+      ASSERT(m_hFile != hFileNull);
 
       LONG lLoOffset = 0;
       LONG lHiOffset = 0;
@@ -291,7 +291,7 @@ namespace windows
    {
       ASSERT_VALID(this);
 
-      if(m_hFile == (UINT)hFileNull || !(m_dwAccessMode & GENERIC_WRITE))
+      if(m_hFile == hFileNull || !(m_dwAccessMode & GENERIC_WRITE))
          return;
 
       if(!::FlushFileBuffers((HANDLE)m_hFile))
@@ -314,11 +314,11 @@ namespace windows
       flush();
 
       ASSERT_VALID(this);
-      ASSERT(m_hFile != (UINT)hFileNull);
+      ASSERT(m_hFile != hFileNull);
 
       bool bError = FALSE;
       DWORD dwLastError = 0;
-      if (m_hFile != (UINT)hFileNull)
+      if (m_hFile != hFileNull)
       {
          bError = !::CloseHandle((HANDLE)m_hFile);
          if(bError)
@@ -327,7 +327,7 @@ namespace windows
          }
       }
 
-      m_hFile = (UINT) hFileNull;
+      m_hFile = hFileNull;
 
       m_dwAccessMode = 0; 
 
@@ -339,11 +339,11 @@ namespace windows
    void file::Abort()
    {
       ASSERT_VALID(this);
-      if (m_hFile != (UINT)hFileNull)
+      if (m_hFile != hFileNull)
       {
          // close but ignore errors
          ::CloseHandle((HANDLE)m_hFile);
-         m_hFile = (UINT)hFileNull;
+         m_hFile = hFileNull;
       }
       m_strFileName.Empty();
    }
@@ -351,7 +351,7 @@ namespace windows
    void file::LockRange(file_position_t dwPos, file_size_t dwCount)
    {
       ASSERT_VALID(this);
-      ASSERT(m_hFile != (UINT)hFileNull);
+      ASSERT(m_hFile != hFileNull);
 
       if (!::LockFile((HANDLE)m_hFile, LODWORD(dwPos), HIDWORD(dwPos), LODWORD(dwCount), HIDWORD(dwCount)))
          file_exception::ThrowOsError(get_app(), (LONG)::GetLastError());
@@ -360,7 +360,7 @@ namespace windows
    void file::UnlockRange(file_position_t dwPos, file_size_t dwCount)
    {
       ASSERT_VALID(this);
-      ASSERT(m_hFile != (UINT)hFileNull);
+      ASSERT(m_hFile != hFileNull);
 
       if (!::UnlockFile((HANDLE)m_hFile,  LODWORD(dwPos), HIDWORD(dwPos), LODWORD(dwCount), HIDWORD(dwCount)))
          file_exception::ThrowOsError(get_app(), (LONG)::GetLastError());
@@ -369,7 +369,7 @@ namespace windows
    void file::set_length(file_size_t dwNewLen)
    {
       ASSERT_VALID(this);
-      ASSERT(m_hFile != (UINT)hFileNull);
+      ASSERT(m_hFile != hFileNull);
 
       seek((LONG)dwNewLen, (::file::e_seek)::file::seek_begin);
 
@@ -434,7 +434,7 @@ namespace windows
    {
       object::dump(dumpcontext);
 
-      dumpcontext << "with handle " << (UINT)m_hFile;
+      dumpcontext << "with handle " << m_hFile;
       dumpcontext << " and name \"" << m_strFileName << "\"";
       dumpcontext << "\n";
    }
@@ -986,7 +986,7 @@ namespace windows
 
 
    // ::file::buffer_sp
-   file::operator HFILE() const
+   file::operator HANDLE() const
    {
 
       return m_hFile;

@@ -363,7 +363,7 @@ namespace windows
 ///      virtual ::window_sp FindWindow(const char * lpszClassName,const char * lpszWindowName);
       //   virtual ::window_sp FindWindowEx(oswindow oswindowParent,oswindow oswindowChildAfter,const char * lpszClass,const char * lpszWindow);
 
-      virtual ::user::interaction * GetNextWindow(UINT nFlag = GW_HWNDNEXT);
+      virtual ::user::interaction * get_next_window(UINT nFlag = GW_HWNDNEXT);
       virtual ::user::interaction * GetTopWindow() const;
 
       virtual ::user::interaction * GetWindow(UINT nCmd) const;

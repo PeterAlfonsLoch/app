@@ -93,7 +93,7 @@ namespace draw3d
       p1.add(3);
       p2.add(7);
 
-      int iMax;
+      index iMax;
 
       i = 0;
       int_array ia;
@@ -243,7 +243,7 @@ namespace draw3d
          d = 1.0 / (zmax * 3.0);
 
 
-      int iMax;
+      index iMax;
 
       i = 0;
 

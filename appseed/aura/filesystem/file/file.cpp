@@ -202,7 +202,81 @@ string get_temp_file_name_dup(const char * pszName,const char * pszExtension)
    return "";
 }
 
+
+bool write_memory_to_file(HANDLE hFile,const void * lpBuf,memory_size_t nCount,memory_size_t * puiWritten)
+{
+
+#if OSBIT > 32
+
+   memory_position_t pos = 0;
+
+   DWORD dw= 0;
+
+   DWORD dwWrite;
+
+   memory_size_t uiWrittenTotal = 0;
+
+   while(pos < nCount)
+   {
+
+      dwWrite = (DWORD)MIN(nCount - uiWrittenTotal,0xffffffffu);
+
+      if(!::WriteFile(GetStdHandle(STD_OUTPUT_HANDLE),&((byte *)lpBuf)[pos],dwWrite,&dw,NULL))
+      {
+
+         uiWrittenTotal += dw;
+
+         if(puiWritten != NULL)
+         {
+
+            *puiWritten = uiWrittenTotal;
+
+         }
+
+         return false;
+
+      }
+
+      uiWrittenTotal += dw;
+
+      if(dw != dwWrite)
+         break;
+
+      pos += dw;
+
+   }
+
+   if(puiWritten != NULL)
+   {
+
+      *puiWritten = uiWrittenTotal;
+
+   }
+
+   return uiWrittenTotal == nCount;
+
+#else
+
+   DWORD dw= 0;
+
+   BOOL bOk = ::WriteFile(GetStdHandle(STD_OUTPUT_HANDLE),lpBuf,nCount,&dw,NULL);
+
+   if(puiWritten != NULL)
+   {
+
+      *puiWritten = dw;
+
+   }
+
+   return bOk && dw == nCount;
+
 #endif
+
+}
+
+#endif
+
+
 
 
 

@@ -12,6 +12,7 @@ void CLASS_DECL_AURA vfxGetRoot(wstring & wstrRoot, const wstring & wstrPath);
 /////////////////////////////////////////////////////////////////////////////
 // File - raw unbuffered disk file I/O
 
+#define   hFileNull ((HANDLE) -1)
 
 namespace windows
 {
@@ -34,12 +35,6 @@ namespace windows
          archive =   0x20
       };
 
-      enum
-      {
-      
-         hFileNull = -1
-      
-      };
 
       enum BufferCommand
       { 
@@ -51,18 +46,17 @@ namespace windows
       
       };
 
-      ::file::path      m_strFileName;
-      UINT              m_hFile;
+      HANDLE            m_hFile;
       DWORD             m_dwAccessMode;
 
 
       file(::aura::application * papp);
-      file(::aura::application * papp, int32_t hFile);
+      file(::aura::application * papp, HANDLE hFile);
       file(::aura::application * papp, const char * lpszFileName, UINT nOpenFlags);
       virtual ~file();
 
 
-      operator HFILE() const;
+      operator HANDLE() const;
 
       virtual file_position_t get_position() const;
       bool GetStatus(::file::file_status & rStatus) const;

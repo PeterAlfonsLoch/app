@@ -14,6 +14,15 @@ CLASS_DECL_AURA string ca2_module_dup();
 
 CLASS_DECL_AURA bool file_copy_dup(const string & strNew,const string & strSrc,bool bOverwrite = true);
 
+
+#ifdef WINDOWSEX
+
+bool write_memory_to_file(HANDLE hFile,const void * lpBuf,memory_size_t nCount,memory_size_t * puiWritten);
+
+#endif
+
+
+
 #include "file_exception.h"
 
 
