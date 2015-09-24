@@ -46,7 +46,7 @@ namespace filemanager
       };
 
 
-      class file_size
+      class file_size_t
       {
       public:
          file_list * m_pview;

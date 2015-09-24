@@ -125,7 +125,7 @@ static BOOL Pcap_Add_Record(wPcap* pcap, void* data, UINT32 length)
 
 static BOOL Pcap_HasNext_Record(wPcap* pcap)
 {
-	if (pcap->file_size - (ftell(pcap->fp)) <= 16)
+	if (pcap->file_size_t - (ftell(pcap->fp)) <= 16)
 		return FALSE;
 
 	return TRUE;
@@ -222,8 +222,8 @@ wPcap* Pcap_Open(char* name, BOOL write)
 	{
 		if (fseek(pcap->fp, 0, SEEK_END) < 0)
 			goto out_fail;
-		pcap->file_size = (int) ftell(pcap->fp);
-		if (pcap->file_size < 0)
+		pcap->file_size_t = (int) ftell(pcap->fp);
+		if (pcap->file_size_t < 0)
 			goto out_fail;
 		if (fseek(pcap->fp, 0, SEEK_SET) < 0)
 			goto out_fail;

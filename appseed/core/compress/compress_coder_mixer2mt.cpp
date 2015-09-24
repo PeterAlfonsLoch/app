@@ -47,8 +47,8 @@ namespace libcompress
          }
       }
 
-      static void SetSizes(const file_size **srcSizes, array<file_size> &sizes,
-         array<const file_size *> &sizePointers, uint32_t numItems)
+      static void SetSizes(const file_size_t **srcSizes, array<file_size_t> &sizes,
+         array<const file_size_t *> &sizePointers, uint32_t numItems)
       {
          sizes.remove_all();
          sizePointers.remove_all();
@@ -56,7 +56,7 @@ namespace libcompress
          {
             if (srcSizes == 0 || srcSizes[i] == NULL)
             {
-               sizes.add((file_size) 0);
+               sizes.add((file_size_t) 0);
                sizePointers.add(NULL);
             }
             else
@@ -68,7 +68,7 @@ namespace libcompress
       }
 
 
-      void CCoder2::SetCoderInfo(const file_size **inSizes, const file_size **outSizes)
+      void CCoder2::SetCoderInfo(const file_size_t **inSizes, const file_size_t **outSizes)
       {
          SetSizes(inSizes, InSizes, InSizePointers, NumInStreams);
          SetSizes(outSizes, OutSizes, OutSizePointers, NumOutStreams);
@@ -189,9 +189,9 @@ namespace libcompress
       }
 
       HRes CCoderMixer2MT::Code(spa(::file::reader) & inStreams,
-         const file_size ** /* inSizes */,
+         const file_size_t ** /* inSizes */,
          spa(::file::writer) & outStreams,
-         const file_size ** /* outSizes */,
+         const file_size_t ** /* outSizes */,
          ::libcompress::progress_info_interface *progress)
       {
          if(inStreams.get_count() != (uint32_t)_bindInfo.InStreams.get_count() ||

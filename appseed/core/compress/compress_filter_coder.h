@@ -83,7 +83,7 @@ namespace libcompress
       MY_ADDREF_RELEASE*/
 
 
-      HRes Code(::file::reader *inStream, ::file::writer *outStream, const file_size *inSize, const file_size *outSize, progress_info_interface *progress);
+      HRes Code(::file::reader *inStream, ::file::writer *outStream, const file_size_t *inSize, const file_size_t *outSize, progress_info_interface *progress);
       HRes SetInStream(::file::reader *inStream);
       HRes SetOutStream(::file::writer *outStream);
       HRes ReleaseInStream();

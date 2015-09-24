@@ -40,7 +40,7 @@ namespace rar
       void AddErrorMessage(const string &s);
 
       //HRESULT Open2(::file::input_stream *stream, // seekable input stream
-      HRESULT Open2(::file::input_stream * stream, const file_position * maxCheckStartPosition,  ::libcompress::archive_open_callback_interface *openCallback);
+      HRESULT Open2(::file::input_stream * stream, const file_position_t * maxCheckStartPosition,  ::libcompress::archive_open_callback_interface *openCallback);
 
    /*public:
       MY_QUERYINTERFACE_BEGIN2(IInArchive)

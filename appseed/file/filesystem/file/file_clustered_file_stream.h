@@ -22,7 +22,7 @@ namespace file
 
       uint64_t SeekToPhys()
       {
-         return Stream->seek((file_offset) _physPos, seek_begin);
+         return Stream->seek((file_offset_t) _physPos, seek_begin);
       }
 
       uint64_t InitAndSeek()
@@ -39,7 +39,7 @@ namespace file
       }
 
       memory_size_t read(void * data, memory_size_t size);
-      file_position seek(file_offset offset, e_seek seekOrigin);
+      file_position_t seek(file_offset_t offset, e_seek seekOrigin);
    };
 
 

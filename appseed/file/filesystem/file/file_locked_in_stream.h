@@ -19,7 +19,7 @@ namespace file
          _stream = stream; 
       }
       
-      memory_size_t read(file_position startPos, void * data, memory_size_t size);
+      memory_size_t read(file_position_t startPos, void * data, memory_size_t size);
 
    };
 
@@ -30,10 +30,10 @@ namespace file
 
 
       locked_in_stream *_lockedInStream;
-      file_size _pos;
+      file_size_t _pos;
 
 
-      void Init(locked_in_stream *lockedInStream, file_size startPos)
+      void Init(locked_in_stream *lockedInStream, file_size_t startPos)
       {
          _lockedInStream = lockedInStream;
          _pos = startPos;

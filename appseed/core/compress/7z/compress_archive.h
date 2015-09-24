@@ -137,7 +137,7 @@ namespace libcompress
 
      //virtual ::ca::HRes Open(::ca::byte_input_stream * stream, const uint64 *maxCheckStartPosition, ::libcompress::archive_open_callback_interface *openArchiveCallback) specifier; \ // input stream should be seekable, so by the time using ::ca::file interface
    #define CA2_COMPRESS_INTERFACE_input_archive(specifier) \
-     virtual ::ca::HRes Open(::ca::byte_input_stream * stream, const file_position *maxCheckStartPosition, ::libcompress::archive_open_callback_interface *openArchiveCallback) specifier; \
+     virtual ::ca::HRes Open(::ca::byte_input_stream * stream, const file_position_t *maxCheckStartPosition, ::libcompress::archive_open_callback_interface *openArchiveCallback) specifier; \
      virtual ::ca::HRes Close() specifier; \
      virtual ::ca::HRes GetNumberOfItems(uint32 *numItems) specifier; \
      virtual ::ca::HRes GetProperty(uint32 index, int32_t propID, var *value) specifier; \

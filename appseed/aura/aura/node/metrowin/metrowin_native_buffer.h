@@ -41,7 +41,7 @@ namespace metrowin
 
       operator StorageFile ^ () const;
 
-      virtual file_position get_position() const;
+      virtual file_position_t get_position() const;
       bool GetStatus(::file::file_status & rStatus) const;
       virtual string GetFileName() const;
       virtual string GetFileTitle() const;
@@ -57,15 +57,15 @@ namespace metrowin
 
       virtual sp(::file::stream_buffer) Duplicate() const;
 
-      virtual file_position seek(file_offset lOff,::file::e_seek nFrom);
-      virtual void set_length(file_size dwNewLen);
-      virtual file_size get_length() const;
+      virtual file_position_t seek(file_offset_t lOff,::file::e_seek nFrom);
+      virtual void set_length(file_size_t dwNewLen);
+      virtual file_size_t get_length() const;
 
       virtual memory_size_t read(void * lpBuf,memory_size_t nCount);
       virtual void write(const void * lpBuf,memory_size_t nCount);
 
-      virtual void LockRange(file_position dwPos,file_size dwCount);
-      virtual void UnlockRange(file_position dwPos,file_size dwCount);
+      virtual void LockRange(file_position_t dwPos,file_size_t dwCount);
+      virtual void UnlockRange(file_position_t dwPos,file_size_t dwCount);
 
       virtual void Abort();
       virtual void Flush();

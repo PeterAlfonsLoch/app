@@ -10,7 +10,7 @@ namespace libcompress
 
    #define IUnknown object
 
-   HRESULT SetMethodProperties(const method &method, const file_size *inSizeForReduce, sp(element)coder)
+   HRESULT SetMethodProperties(const method &method, const file_size_t *inSizeForReduce, sp(element)coder)
    {
       bool tryReduce = false;
       uint32_t reducedDictionarySize = 1 << 10;

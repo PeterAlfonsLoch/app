@@ -196,7 +196,7 @@ void CInByte2::ReadBytes(byte *data, size_t size)
     data[i] = _buffer[_pos++];
 }
 
-void CInByte2::SkipData(file_size size)
+void CInByte2::SkipData(file_size_t size)
 {
   if (size > _size - _pos)
     ThrowEndOfData();
@@ -303,7 +303,7 @@ static inline bool TestSignature2(const byte *p)
 #define TestSignature2(p) TestSignature(p)
 #endif
 
-HRESULT CInArchive::FindAndReadSignature(::file::input_stream *stream, const file_position *searchHeaderSizeLimit)
+HRESULT CInArchive::FindAndReadSignature(::file::input_stream *stream, const file_position_t *searchHeaderSizeLimit)
 {
    RINOK(::file::read_false(stream, _header, kHeaderSize));
 
@@ -316,7 +316,7 @@ HRESULT CInArchive::FindAndReadSignature(::file::input_stream *stream, const fil
   byte *buffer = byteBuffer;
   memory_size_t numPrevBytes = kHeaderSize;
   memcpy(buffer, _header, kHeaderSize);
-  file_position curTestPos = _arhiveBeginStreamPosition;
+  file_position_t curTestPos = _arhiveBeginStreamPosition;
   for (;;)
   {
     if (searchHeaderSizeLimit != NULL)
@@ -363,7 +363,7 @@ HRESULT CInArchive::FindAndReadSignature(::file::input_stream *stream, const fil
       }
 
 // S_FALSE means that file is not archive
-HRESULT CInArchive::Open(::file::input_stream *stream, const file_position *searchHeaderSizeLimit)
+HRESULT CInArchive::Open(::file::input_stream *stream, const file_position_t *searchHeaderSizeLimit)
 {
   HeadersSize = 0;
   Close();
@@ -497,8 +497,8 @@ void CInArchive::ReadHashDigests(int32_t numItems,
 }
 
 void CInArchive::ReadPackInfo(
-    file_position &dataOffset,
-    array<file_size> &packSizes,
+    file_position_t &dataOffset,
+    array<file_size_t> &packSizes,
     bool_array &packCRCsDefined,
     array<uint32_t> &packCRCs)
 {
@@ -509,7 +509,7 @@ void CInArchive::ReadPackInfo(
   packSizes.remove_all();
   packSizes.allocate(0, numPackStreams);
   for (CNum i = 0; i < numPackStreams; i++)
-    packSizes.add((file_size) ReadNumber());
+    packSizes.add((file_size_t) ReadNumber());
 
   uint64_t type;
   for (;;)
@@ -561,7 +561,7 @@ void CInArchive::ReadUnpackInfo(
     CNum numOutStreams = folder.GetNumOutStreams();
     folder.UnpackSizes.allocate(0, numOutStreams);
     for (CNum j = 0; j < numOutStreams; j++)
-      folder.UnpackSizes.add((file_size) ReadNumber());
+      folder.UnpackSizes.add((file_size_t) ReadNumber());
   }
 
   for (;;)
@@ -589,7 +589,7 @@ void CInArchive::ReadUnpackInfo(
 void CInArchive::ReadSubStreamsInfo(
     const smart_pointer_array<CFolder> &folders,
     array<CNum> &numUnpackStreamsInFolders,
-    array<file_size> &unpackSizes,
+    array<file_size_t> &unpackSizes,
     bool_array &digestsDefined,
     array<uint32_t> &digests)
 {
@@ -629,10 +629,10 @@ void CInArchive::ReadSubStreamsInfo(
       if (type == NID::kSize)
       {
         uint64_t size = ReadNumber();
-        unpackSizes.add((file_size) size);
+        unpackSizes.add((file_size_t) size);
         sum += size;
       }
-    unpackSizes.add((file_size) (folders[i].GetUnpackSize() - sum));
+    unpackSizes.add((file_size_t) (folders[i].GetUnpackSize() - sum));
   }
   if (type == NID::kSize)
     type = ReadID();
@@ -691,13 +691,13 @@ void CInArchive::ReadSubStreamsInfo(
 
 void CInArchive::ReadStreamsInfo(
     const smart_pointer_array < ::file::byte_buffer > * dataVector,
-    file_position & dataOffset,
-    array < file_size > & packSizes,
+    file_position_t & dataOffset,
+    array < file_size_t > & packSizes,
     bool_array & packCRCsDefined,
     array < uint32_t > & packCRCs,
     smart_pointer_array < CFolder > & folders,
     array < CNum > & numUnpackStreamsInFolders,
-    array < file_size > & unpackSizes,
+    array < file_size_t > & unpackSizes,
     bool_array & digestsDefined,
     array < uint32_t > & digests)
 {
@@ -784,8 +784,8 @@ void CInArchive::ReadUInt64DefVector(const smart_pointer_array < ::file::byte_bu
 HRESULT CInArchive::ReadAndDecodePackedStreams(
     ::libcompress::codecs_info_interface *codecsInfo,
     const array < ::libcompress::codec_info_ex > *externalCodecs,
-    file_position baseOffset,
-    file_position & dataOffset,
+    file_position_t baseOffset,
+    file_position_t & dataOffset,
     smart_pointer_array < ::file::byte_buffer > &dataVector
     #ifndef _NO_CRYPTO
     , ::crypto::get_text_password_interface *getTextPassword, bool &passwordIsDefined
@@ -798,13 +798,13 @@ HRESULT CInArchive::ReadAndDecodePackedStreams(
    UNREFERENCED_PARAMETER(getTextPassword);
    UNREFERENCED_PARAMETER(passwordIsDefined);
 
-  array<file_size> packSizes;
+  array<file_size_t> packSizes;
   bool_array packCRCsDefined;
   array<uint32_t> packCRCs;
   smart_pointer_array<CFolder> folders;
 
   array<CNum> numUnpackStreamsInFolders;
-  array<file_size> unpackSizes;
+  array<file_size_t> unpackSizes;
   bool_array digestsDefined;
   array<uint32_t> digests;
 
@@ -907,7 +907,7 @@ HRESULT CInArchive::ReadHeader(
     type = ReadID();
   }
 
-  array<file_size> unpackSizes;
+  array<file_size_t> unpackSizes;
   bool_array digestsDefined;
   array<uint32_t> digests;
 
@@ -1094,7 +1094,7 @@ void CArchiveDatabaseEx::FillStartPos()
 {
   PackStreamStartPositions.remove_all();
   PackStreamStartPositions.allocate(0, PackSizes.get_count());
-  file_position startPos = 0;
+  file_position_t startPos = 0;
   for (int32_t i = 0; i < PackSizes.get_count(); i++)
   {
     PackStreamStartPositions.add(startPos);

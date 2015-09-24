@@ -70,7 +70,7 @@ namespace rar
 
       sp(::file::input_stream)                      m_Stream;
 
-      file_position                                   m_StreamStartPosition;
+      file_position_t                                   m_StreamStartPosition;
 
       input_file_info                                 _header;
       ::file::char_dynamic_buffer                        m_NameBuffer;
@@ -104,7 +104,7 @@ namespace rar
       HRESULT ReadBytesSpec(void * data, memory_size_t * size);
       bool ReadBytesAndTestSize(void * data, memory_size_t size);
 
-      HRESULT Open2(::file::input_stream *stream, const file_position *searchHeaderSizeLimit);
+      HRESULT Open2(::file::input_stream *stream, const file_position_t *searchHeaderSizeLimit);
 
       void ThrowExceptionWithCode(input_file_exception::CCauseType cause);
       void ThrowUnexpectedEndOfArchiveException();
@@ -128,14 +128,14 @@ namespace rar
       }
 
 
-      HRESULT Open(::file::input_stream *inStream, const file_position *searchHeaderSizeLimit);
+      HRESULT Open(::file::input_stream *inStream, const file_position_t *searchHeaderSizeLimit);
       void Close();
       HRESULT GetNextItem(CItemEx &item, crypto::get_text_password_interface *getTextPassword, bool &decryptionError, string &errorMessage);
 
       void GetArchiveInfo(input_file_info &archiveInfo) const;
 
-      void SeekInArchive(file_position position);
-      ::file::reader * CreateLimitedStream(file_position position, file_size size);
+      void SeekInArchive(file_position_t position);
+      ::file::reader * CreateLimitedStream(file_position_t position, file_size_t size);
    };
 
 }

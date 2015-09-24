@@ -35,8 +35,8 @@ namespace n7z
       HRESULT Decode(
          ::libcompress::codecs_info_interface * codecsInfo, const array < ::libcompress::codec_info_ex > *externalCodecs,
          ::file::input_stream *inStream,
-         file_position startPos,
-         const file_size * packSizes,
+         file_position_t startPos,
+         const file_size_t * packSizes,
          const CFolder &folder,
          ::file::writer *outStream,
          ::libcompress::progress_info_interface *compressProgress,

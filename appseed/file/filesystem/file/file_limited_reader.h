@@ -15,8 +15,8 @@ namespace file
       public reader
    {
       reader * _stream;
-      file_size _size;
-      file_size _pos;
+      file_size_t _size;
+      file_size_t _pos;
       bool _wasFinished;
    public:
       void SetStream(reader *stream) { _stream = stream; }
@@ -24,7 +24,7 @@ namespace file
       {
          //_stream.Release(); 
       }
-      void Init(file_size streamSize)
+      void Init(file_size_t streamSize)
       {
          _size = streamSize;
          _pos = 0;
@@ -32,7 +32,7 @@ namespace file
       }
 
       memory_size_t read(void *data, memory_size_t size);
-      file_size GetSize() const { return _pos; }
+      file_size_t GetSize() const { return _pos; }
       bool WasFinished() const { return _wasFinished; }
    };
 

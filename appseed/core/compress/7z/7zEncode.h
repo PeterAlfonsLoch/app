@@ -21,7 +21,7 @@ namespace n7z
       ::libcompress::coder_mixer::CBindReverseConverter *          _bindReverseConverter;
       array < ::libcompress::method_id >                      _decompressionMethods;
 
-      HRESULT CreateMixerCoder(::libcompress::codecs_info_interface *codecsInfo, const array < ::libcompress::codec_info_ex > *externalCodecs, const file_size *inSizeForReduce);
+      HRESULT CreateMixerCoder(::libcompress::codecs_info_interface *codecsInfo, const array < ::libcompress::codec_info_ex > *externalCodecs, const file_size_t *inSizeForReduce);
 
       bool _constructed;
    public:
@@ -31,10 +31,10 @@ namespace n7z
       HRESULT Encode(
          ::libcompress::codecs_info_interface *codecsInfo, const array < ::libcompress::codec_info_ex > *externalCodecs,
          ::file::reader *inStream,
-         const file_size *inStreamSize, const file_size *inSizeForReduce,
+         const file_size_t *inStreamSize, const file_size_t *inSizeForReduce,
          CFolder &folderItem,
          ::file::writer *outStream,
-         array < file_size > &packSizes,
+         array < file_size_t > &packSizes,
          ::libcompress::progress_info_interface *compressProgress);
    };
 

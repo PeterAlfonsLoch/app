@@ -318,7 +318,7 @@ namespace simpledb
             ::simpledb::table table(dynamic_cast < ::simpledb::base * > (db), strTable);
             ::simpledb::record_row recrow;
             recrow.m_ptable = &table;
-            file_position posEnd = (file_position) table.m_spfileFixed->get_length();
+            file_position_t posEnd = (file_position_t) table.m_spfileFixed->get_length();
             table.m_spfileFixed->seek_to_begin();
             ::file::byte_stream stream((::file::stream_buffer *) table.m_spfileFixed.m_p);
             while(true)

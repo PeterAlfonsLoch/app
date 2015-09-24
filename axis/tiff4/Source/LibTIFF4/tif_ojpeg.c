@@ -250,7 +250,7 @@ typedef struct {
 	TIFFVGetMethod vgetparent;
 	TIFFVSetMethod vsetparent;
 	TIFFPrintMethod printdir;
-	uint64 file_size;
+	uint64 file_size_t;
 	uint32 image_width;
 	uint32 image_length;
 	uint32 strile_width;
@@ -1250,19 +1250,19 @@ OJPEGReadHeaderInfoSec(TIFF* tif)
 	uint8 m;
 	uint16 n;
 	uint8 o;
-	if (sp->file_size==0)
-		sp->file_size=TIFFGetFileSize(tif);
+	if (sp->file_size_t==0)
+		sp->file_size_t=TIFFGetFileSize(tif);
 	if (sp->jpeg_interchange_format!=0)
 	{
-		if (sp->jpeg_interchange_format>=sp->file_size)
+		if (sp->jpeg_interchange_format>=sp->file_size_t)
 		{
 			sp->jpeg_interchange_format=0;
 			sp->jpeg_interchange_format_length=0;
 		}
 		else
 		{
-			if ((sp->jpeg_interchange_format_length==0) || (sp->jpeg_interchange_format+sp->jpeg_interchange_format_length>sp->file_size))
-				sp->jpeg_interchange_format_length=sp->file_size-sp->jpeg_interchange_format;
+			if ((sp->jpeg_interchange_format_length==0) || (sp->jpeg_interchange_format+sp->jpeg_interchange_format_length>sp->file_size_t))
+				sp->jpeg_interchange_format_length=sp->file_size_t-sp->jpeg_interchange_format;
 		}
 	}
 	sp->in_buffer_source=osibsNotSetYet;
@@ -1968,10 +1968,10 @@ OJPEGReadBufferFill(OJPEGState* sp)
 					sp->in_buffer_file_pos=sp->tif->tif_dir.td_stripoffset[sp->in_buffer_next_strile];
 					if (sp->in_buffer_file_pos!=0)
 					{
-						if (sp->in_buffer_file_pos>=sp->file_size)
+						if (sp->in_buffer_file_pos>=sp->file_size_t)
 							sp->in_buffer_file_pos=0;
 						else if (sp->tif->tif_dir.td_stripbytecount==NULL)
-							sp->in_buffer_file_togo=sp->file_size-sp->in_buffer_file_pos;
+							sp->in_buffer_file_togo=sp->file_size_t-sp->in_buffer_file_pos;
 						else
 						{
 							if (sp->tif->tif_dir.td_stripbytecount == 0) {
@@ -1981,8 +1981,8 @@ OJPEGReadBufferFill(OJPEGState* sp)
 							sp->in_buffer_file_togo=sp->tif->tif_dir.td_stripbytecount[sp->in_buffer_next_strile];
 							if (sp->in_buffer_file_togo==0)
 								sp->in_buffer_file_pos=0;
-							else if (sp->in_buffer_file_pos+sp->in_buffer_file_togo>sp->file_size)
-								sp->in_buffer_file_togo=sp->file_size-sp->in_buffer_file_pos;
+							else if (sp->in_buffer_file_pos+sp->in_buffer_file_togo>sp->file_size_t)
+								sp->in_buffer_file_togo=sp->file_size_t-sp->in_buffer_file_pos;
 						}
 					}
 					sp->in_buffer_next_strile++;

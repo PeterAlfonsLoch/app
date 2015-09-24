@@ -184,7 +184,7 @@ FT_BEGIN_HEADER
   typedef struct  FT_WinFNT_HeaderRec_
   {
     FT_UShort  version;
-    FT_ULong   file_size;
+    FT_ULong   file_size_t;
     FT_Byte    copyright[60];
     FT_UShort  file_type;
     FT_UShort  nominal_point_size;

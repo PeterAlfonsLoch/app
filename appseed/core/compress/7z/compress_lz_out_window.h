@@ -20,9 +20,9 @@ namespace libcompress
       void Init(bool solid = false);
 
       // distance >= 0, len > 0,
-      bool CopyBlock(file_size distance, file_size len)
+      bool CopyBlock(file_size_t distance, file_size_t len)
       {
-         file_size pos = _pos - distance - 1;
+         file_size_t pos = _pos - distance - 1;
          if (distance >= _pos)
          {
             if (!_overDict || distance >= m_memory.get_size())
@@ -57,9 +57,9 @@ namespace libcompress
             FlushWithCheck();
       }
 
-      byte GetByte(file_size distance) const
+      byte GetByte(file_size_t distance) const
       {
-         file_size pos = _pos - distance - 1;
+         file_size_t pos = _pos - distance - 1;
          if (pos >= m_memory.get_size())
             pos += m_memory.get_size();
          return m_memory.get_data()[(index)pos];

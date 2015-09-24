@@ -234,7 +234,7 @@ bool stdio_file::read_string(string & rString)
    return lpszResult;
 }*/
 
-file_position stdio_file::seek(file_offset lOff, ::file::e_seek eseek)
+file_position_t stdio_file::seek(file_offset_t lOff, ::file::e_seek eseek)
 {
    ASSERT_VALID(this);
    ASSERT(eseek == ::file::seek_begin || eseek== ::file::seek_end || eseek== ::file::seek_current);
@@ -264,7 +264,7 @@ file_position stdio_file::seek(file_offset lOff, ::file::e_seek eseek)
    return pos;
 }
 
-file_position stdio_file::get_position() const
+file_position_t stdio_file::get_position() const
 {
    ASSERT_VALID(this);
    ASSERT(m_pStream != NULL);

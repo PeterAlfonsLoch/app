@@ -390,7 +390,7 @@ HRes handler::GetProperty(uint32_t index, int32_t propID,  var *value)
 }
 
 HRes handler::Open(::file::input_stream *stream,
-    const file_position *maxCheckStartPosition,
+    const file_position_t *maxCheckStartPosition,
     ::libcompress::archive_open_callback_interface *openArchiveCallback)
 {
   Close();

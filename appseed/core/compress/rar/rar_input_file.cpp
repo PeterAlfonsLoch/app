@@ -31,7 +31,7 @@ namespace rar
       throw input_file_exception(get_app(), cause);
    }
 
-   HRESULT input_file::Open(::file::input_stream *inStream, const file_position *searchHeaderSizeLimit)
+   HRESULT input_file::Open(::file::input_stream *inStream, const file_position_t *searchHeaderSizeLimit)
    {
       try
       {
@@ -75,7 +75,7 @@ namespace rar
       return processed == size;
    }
 
-   HRESULT input_file::Open2(::file::input_stream *stream, const file_position *searchHeaderSizeLimit)
+   HRESULT input_file::Open2(::file::input_stream *stream, const file_position_t *searchHeaderSizeLimit)
    {
       m_CryptoMode = false;
       try
@@ -472,12 +472,12 @@ namespace rar
       }
    }
 
-   void input_file::SeekInArchive(file_position position)
+   void input_file::SeekInArchive(file_position_t position)
    {
-      m_Stream->seek((file_offset) position, ::file::seek_begin);
+      m_Stream->seek((file_offset_t) position, ::file::seek_begin);
    }
 
-   ::file::reader* input_file::CreateLimitedStream(file_position position, file_size size)
+   ::file::reader* input_file::CreateLimitedStream(file_position_t position, file_size_t size)
    {
       ::file::limited_reader *streamSpec = new ::file::limited_reader;
       ::file::reader * inStream = streamSpec;

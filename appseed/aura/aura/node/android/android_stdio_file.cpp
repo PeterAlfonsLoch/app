@@ -235,7 +235,7 @@ bool stdio_file::read_string(string & rString)
    return lpszResult;
 }*/
 
-file_position stdio_file::seek(file_offset lOff, ::file::e_seek eseek)
+file_position_t stdio_file::seek(file_offset_t lOff, ::file::e_seek eseek)
 {
    ASSERT_VALID(this);
    ASSERT(eseek == ::file::seek_begin || eseek== ::file::seek_end || eseek== ::file::seek_current);
@@ -265,7 +265,7 @@ file_position stdio_file::seek(file_offset lOff, ::file::e_seek eseek)
    return pos;
 }
 
-file_position stdio_file::get_position() const
+file_position_t stdio_file::get_position() const
 {
    ASSERT_VALID(this);
    ASSERT(m_pStream != NULL);
@@ -323,7 +323,7 @@ void stdio_file::Abort()
    return NULL;
 }
 
-void stdio_file::LockRange(file_size /* dwPos */, file_size /* dwCount */)
+void stdio_file::LockRange(file_size_t /* dwPos */, file_size_t /* dwCount */)
 {
    ASSERT_VALID(this);
    ASSERT(m_pStream != NULL);
@@ -331,7 +331,7 @@ void stdio_file::LockRange(file_size /* dwPos */, file_size /* dwCount */)
    throw not_supported_exception(get_app());
 }
 
-void stdio_file::UnlockRange(file_size /* dwPos */, file_size /* dwCount */)
+void stdio_file::UnlockRange(file_size_t /* dwPos */, file_size_t /* dwCount */)
 {
    ASSERT_VALID(this);
    ASSERT(m_pStream != NULL);
@@ -351,7 +351,7 @@ void stdio_file::dump(dump_context & dumpcontext) const
 
 
 
-file_size stdio_file::get_length() const
+file_size_t stdio_file::get_length() const
 {
    ASSERT_VALID(this);
 

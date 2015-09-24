@@ -31,7 +31,7 @@ namespace file
       return size;
    }
 
-   file_position limited_istream::seek(file_offset offset, e_seek seekOrigin)
+   file_position_t limited_istream::seek(file_offset_t offset, e_seek seekOrigin)
    {
       switch(seekOrigin)
       {

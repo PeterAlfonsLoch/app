@@ -1959,7 +1959,7 @@ FT_BEGIN_HEADER
   /* <Input>                                                               */
   /*    file_base  :: A pointer to the beginning of the font data.         */
   /*                                                                       */
-  /*    file_size  :: The size of the memory chunk used by the font data.  */
+  /*    file_size_t  :: The size of the memory chunk used by the font data.  */
   /*                                                                       */
   /*    face_index :: The index of the face within the font.  The first    */
   /*                  face has index~0.                                    */
@@ -1978,7 +1978,7 @@ FT_BEGIN_HEADER
   FT_EXPORT( FT_Error )
   FT_New_Memory_Face( FT_Library      library,
                       const FT_Byte*  file_base,
-                      FT_Long         file_size,
+                      FT_Long         file_size_t,
                       FT_Long         face_index,
                       FT_Face        *aface );
 

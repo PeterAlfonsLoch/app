@@ -848,7 +848,7 @@ namespace libcompress
       }
 
       HRes decoder::Code(::file::reader *inStream, ::file::writer *outStream,
-         const file_size *inSize, const file_size *outSize, ::libcompress::progress_info_interface *progress)
+         const file_size_t *inSize, const file_size_t *outSize, ::libcompress::progress_info_interface *progress)
       {
          try
          {

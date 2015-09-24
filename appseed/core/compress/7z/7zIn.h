@@ -8,10 +8,10 @@ namespace n7z
    struct CInArchiveInfo
    {
       CArchiveVersion Version;
-      file_position StartPosition;
-      file_position StartPositionAfterHeader;
-      file_position DataStartPosition;
-      file_position DataStartPosition2;
+      file_position_t StartPosition;
+      file_position_t StartPositionAfterHeader;
+      file_position_t DataStartPosition;
+      file_position_t DataStartPosition2;
       array<uint64_t> FileInfoPopIDs;
       void clear()
       {
@@ -22,13 +22,13 @@ namespace n7z
    struct CArchiveDatabaseEx: public CArchiveDatabase
    {
       CInArchiveInfo ArchiveInfo;
-      array<file_position> PackStreamStartPositions;
+      array<file_position_t> PackStreamStartPositions;
       array<CNum> FolderStartPackStreamIndex;
       array<CNum> FolderStartFileIndex;
       array<CNum> FileIndexToFolderIndexMap;
 
-      file_size HeadersSize;
-      file_size PhySize;
+      file_size_t HeadersSize;
+      file_size_t PhySize;
 
       void clear()
       {
@@ -54,28 +54,28 @@ namespace n7z
          FillFolderStartFileIndex();
       }
 
-      file_position GetFolderStreamPos(int32_t folderIndex, int32_t indexInFolder) const
+      file_position_t GetFolderStreamPos(int32_t folderIndex, int32_t indexInFolder) const
       {
          return ArchiveInfo.DataStartPosition +
             PackStreamStartPositions[FolderStartPackStreamIndex[folderIndex] + indexInFolder];
       }
 
-      file_size GetFolderFullPackSize(int32_t folderIndex) const
+      file_size_t GetFolderFullPackSize(int32_t folderIndex) const
       {
          CNum packStreamIndex = FolderStartPackStreamIndex[folderIndex];
          const CFolder &folder = Folders[folderIndex];
-         file_size size = 0;
+         file_size_t size = 0;
          for (int32_t i = 0; i < folder.PackStreams.get_count(); i++)
             size += PackSizes[packStreamIndex + i];
          return size;
       }
 
-      file_size GetFolderPackStreamSize(int32_t folderIndex, int32_t streamIndex) const
+      file_size_t GetFolderPackStreamSize(int32_t folderIndex, int32_t streamIndex) const
       {
          return PackSizes[FolderStartPackStreamIndex[folderIndex] + streamIndex];
       }
 
-      file_size GetFilePackSize(CNum fileIndex) const
+      file_size_t GetFilePackSize(CNum fileIndex) const
       {
          CNum folderIndex = FileIndexToFolderIndexMap[fileIndex];
          if (folderIndex != kNumNoIndex)
@@ -100,7 +100,7 @@ namespace n7z
       }
       byte ReadByte();
       void ReadBytes(byte *data, size_t size);
-      void SkipData(file_size size);
+      void SkipData(file_size_t size);
       void SkipData();
       uint64_t ReadNumber();
       CNum ReadNum();
@@ -123,11 +123,11 @@ namespace n7z
       spa(CInByte2) _inByteVector;
       CInByte2 *_inByteBack;
 
-      file_position _arhiveBeginStreamPosition;
+      file_position_t _arhiveBeginStreamPosition;
 
       byte _header[kHeaderSize];
 
-      file_size HeadersSize;
+      file_size_t HeadersSize;
 
       void AddByteStream(const byte *buffer, size_t size)
       {
@@ -143,7 +143,7 @@ namespace n7z
       }
 
    private:
-      HRESULT FindAndReadSignature(::file::input_stream *stream, const file_position *searchHeaderSizeLimit);
+      HRESULT FindAndReadSignature(::file::input_stream *stream, const file_position_t *searchHeaderSizeLimit);
 
       void ReadBytes(byte *data, size_t size) { _inByteBack->ReadBytes(data, size); }
       byte ReadByte() { return _inByteBack->ReadByte(); }
@@ -152,7 +152,7 @@ namespace n7z
       uint64_t ReadID() { return _inByteBack->ReadNumber(); }
       uint32_t ReadUInt32() { return _inByteBack->ReadUInt32(); }
       uint64_t ReadUInt64() { return _inByteBack->ReadUInt64(); }
-      void SkipData(file_size size) { _inByteBack->SkipData(size); }
+      void SkipData(file_size_t size) { _inByteBack->SkipData(size); }
       void SkipData() { _inByteBack->SkipData(); }
       void WaitAttribute(uint64_t attribute);
 
@@ -162,8 +162,8 @@ namespace n7z
          bool_array &digestsDefined, array<uint32_t> &digests);
 
       void ReadPackInfo(
-         file_position &dataOffset,
-         array<file_size> &packSizes,
+         file_position_t &dataOffset,
+         array<file_size_t> &packSizes,
          bool_array &packCRCsDefined,
          array<uint32_t> &packCRCs);
 
@@ -174,19 +174,19 @@ namespace n7z
       void ReadSubStreamsInfo(
          const smart_pointer_array<CFolder> &folders,
          array<CNum> &numUnpackStreamsInFolders,
-         array<file_size> &unpackSizes,
+         array<file_size_t> &unpackSizes,
          bool_array &digestsDefined,
          array<uint32_t> &digests);
 
       void ReadStreamsInfo(
          const smart_pointer_array < ::file::byte_buffer >  *dataVector,
-         file_position &dataOffset,
-         array<file_size> &packSizes,
+         file_position_t &dataOffset,
+         array<file_size_t> &packSizes,
          bool_array &packCRCsDefined,
          array<uint32_t> &packCRCs,
          smart_pointer_array<CFolder> &folders,
          array<CNum> &numUnpackStreamsInFolders,
-         array<file_size> &unpackSizes,
+         array<file_size_t> &unpackSizes,
          bool_array &digestsDefined,
          array<uint32_t> &digests);
 
@@ -196,7 +196,7 @@ namespace n7z
       void ReadUInt64DefVector(const smart_pointer_array < ::file::byte_buffer > &dataVector, CUInt64DefVector &v, int32_t numFiles);
       HRESULT ReadAndDecodePackedStreams(
          ::libcompress::codecs_info_interface *codecsInfo, const array < ::libcompress::codec_info_ex > *externalCodecs,
-         file_position baseOffset, file_position &dataOffset,
+         file_position_t baseOffset, file_position_t &dataOffset,
          smart_pointer_array < ::file::byte_buffer > &dataVector,
          ::crypto::get_text_password_interface *getTextPassword, bool &passwordIsDefined
          );
@@ -215,7 +215,7 @@ namespace n7z
       CInArchive(sp(::axis::application) papp);
       virtual ~CInArchive();
 
-      HRESULT Open(::file::input_stream *stream, const file_position *searchHeaderSizeLimit); // S_FALSE means is not archive
+      HRESULT Open(::file::input_stream *stream, const file_position_t *searchHeaderSizeLimit); // S_FALSE means is not archive
       void Close();
 
       HRESULT ReadDatabase(

@@ -329,7 +329,7 @@ namespace filemanager
 
    UINT c_cdecl file_list::ThreadProcFileSize(LPVOID lpparam)
    {
-      file_size * psize = (file_size *) lpparam;
+      file_size_t * psize = (file_size_t *) lpparam;
       db_server * pcentral = dynamic_cast < db_server * > (&App(psize->m_pview->m_pauraapp).simpledb().db());
       if(pcentral == NULL)
          return 0;

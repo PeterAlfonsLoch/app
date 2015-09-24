@@ -35,13 +35,13 @@ namespace n7z
       spa(CCoderInfo) Coders;
       array<CBindPair> BindPairs;
       array<CNum> PackStreams;
-      array<file_size> UnpackSizes;
+      array<file_size_t> UnpackSizes;
       uint32_t UnpackCRC;
       bool UnpackCRCDefined;
 
       CFolder(): UnpackCRCDefined(false) {}
 
-      file_size GetUnpackSize() const // test it
+      file_size_t GetUnpackSize() const // test it
       {
          if (UnpackSizes.is_empty())
             return 0;
@@ -142,7 +142,7 @@ namespace n7z
    struct CFileItem :
       virtual public element
    {
-      file_size get_count;
+      file_size_t get_count;
       uint32_t Attrib;
       uint32_t Crc;
       string Name;
@@ -181,7 +181,7 @@ namespace n7z
 
    struct CArchiveDatabase
    {
-      array<file_size> PackSizes;
+      array<file_size_t> PackSizes;
       bool_array PackCRCsDefined;
       array<uint32_t> PackCRCs;
       spa(CFolder) Folders;

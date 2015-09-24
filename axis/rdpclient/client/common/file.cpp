@@ -666,7 +666,7 @@ BOOL freerdp_client_parse_rdp_file(rdpFile* file, const char* name)
 	BYTE* buffer;
 	FILE* fp = NULL;
 	size_t read_size;
-	long int file_size;
+	long int file_size_t;
 
 	fp = fopen(name, "r");
 
@@ -674,27 +674,27 @@ BOOL freerdp_client_parse_rdp_file(rdpFile* file, const char* name)
 		return FALSE;
 
 	fseek(fp, 0, SEEK_END);
-	file_size = ftell(fp);
+	file_size_t = ftell(fp);
 	fseek(fp, 0, SEEK_SET);
 
-	if (file_size < 1)
+	if (file_size_t < 1)
 	{
 		fclose(fp);
 		return FALSE;
 	}
 
-	buffer = (BYTE*) malloc(file_size + 2);
+	buffer = (BYTE*) malloc(file_size_t + 2);
 	if (!buffer)
 	{
 		fclose(fp);
 		return FALSE;
 	}
-	read_size = fread(buffer, file_size, 1, fp);
+	read_size = fread(buffer, file_size_t, 1, fp);
 
 	if (!read_size)
 	{
 		if (!ferror(fp))
-			read_size = file_size;
+			read_size = file_size_t;
 	}
 	fclose(fp);
 
@@ -704,10 +704,10 @@ BOOL freerdp_client_parse_rdp_file(rdpFile* file, const char* name)
 		return FALSE;
 	}
 
-	buffer[file_size] = '\0';
-	buffer[file_size + 1] = '\0';
+	buffer[file_size_t] = '\0';
+	buffer[file_size_t + 1] = '\0';
 
-	status = freerdp_client_parse_rdp_file_buffer(file, buffer, file_size);
+	status = freerdp_client_parse_rdp_file_buffer(file, buffer, file_size_t);
 
 	free(buffer);
 

@@ -146,7 +146,7 @@
 
     FT_FRAME_START( 148 ),
       FT_FRAME_USHORT_LE( version ),
-      FT_FRAME_ULONG_LE ( file_size ),
+      FT_FRAME_ULONG_LE ( file_size_t ),
       FT_FRAME_BYTES    ( copyright, 60 ),
       FT_FRAME_USHORT_LE( file_type ),
       FT_FRAME_USHORT_LE( nominal_point_size ),
@@ -232,7 +232,7 @@
     new_format = FT_BOOL( font->header.version == 0x300 );
     size       = new_format ? 148 : 118;
 
-    if ( header->file_size < size )
+    if ( header->file_size_t < size )
     {
       FT_TRACE2(( "  not a Windows FNT file\n" ));
       error = FT_THROW( Unknown_File_Format );
@@ -259,7 +259,7 @@
 
     /* this is a FNT file/table; extract its frame */
     if ( FT_STREAM_SEEK( font->offset )                         ||
-         FT_FRAME_EXTRACT( header->file_size, font->fnt_frame ) )
+         FT_FRAME_EXTRACT( header->file_size_t, font->fnt_frame ) )
       goto Exit;
 
   Exit:
@@ -844,13 +844,13 @@
       root->num_glyphs = font->header.last_char -
                          font->header.first_char + 1 + 1;
 
-      if ( font->header.face_name_offset >= font->header.file_size )
+      if ( font->header.face_name_offset >= font->header.file_size_t )
       {
         FT_TRACE2(( "invalid family name offset\n" ));
         error = FT_THROW( Invalid_File_Format );
         goto Fail;
       }
-      family_size = font->header.file_size - font->header.face_name_offset;
+      family_size = font->header.file_size_t - font->header.face_name_offset;
       /* Some broken fonts don't delimit the face name with a final */
       /* NULL byte -- the frame is erroneously one byte too small.  */
       /* We thus allocate one more byte, setting it explicitly to   */
@@ -997,7 +997,7 @@
     /* get glyph width and offset */
     offset = ( new_format ? 148 : 118 ) + len * glyph_index;
 
-    if ( offset >= font->header.file_size - 2 - ( new_format ? 4 : 2 ) )
+    if ( offset >= font->header.file_size_t - 2 - ( new_format ? 4 : 2 ) )
     {
       FT_TRACE2(( "invalid FNT offset\n" ));
       error = FT_THROW( Invalid_File_Format );
@@ -1014,7 +1014,7 @@
     else
       offset = FT_NEXT_USHORT_LE( p );
 
-    if ( offset >= font->header.file_size )
+    if ( offset >= font->header.file_size_t )
     {
       FT_TRACE2(( "invalid FNT offset\n" ));
       error = FT_THROW( Invalid_File_Format );
@@ -1036,7 +1036,7 @@
       bitmap->rows       = font->header.pixel_height;
       bitmap->pixel_mode = FT_PIXEL_MODE_MONO;
 
-      if ( offset + pitch * bitmap->rows > font->header.file_size )
+      if ( offset + pitch * bitmap->rows > font->header.file_size_t )
       {
         FT_TRACE2(( "invalid bitmap width\n" ));
         error = FT_THROW( Invalid_File_Format );

@@ -36,7 +36,7 @@ namespace file
       }
 
       memory_size_t read(void * data, memory_size_t size);
-      file_position seek(file_offset offset, e_seek seekOrigin);
+      file_position_t seek(file_offset_t offset, e_seek seekOrigin);
 
    };
 

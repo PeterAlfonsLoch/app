@@ -346,7 +346,7 @@ namespace rar
    };
 
    //HRESULT handler::Open2(IInStream *stream,
-   HRESULT handler::Open2(::file::input_stream * stream, const file_position *maxCheckStartPosition, ::libcompress::archive_open_callback_interface *openCallback)
+   HRESULT handler::Open2(::file::input_stream * stream, const file_position_t *maxCheckStartPosition, ::libcompress::archive_open_callback_interface *openCallback)
    {
       {
          ::libcompress::archive_open_volume_callback_interface  * openVolumeCallback = NULL;
@@ -470,7 +470,7 @@ namespace rar
       return S_OK;
    }
 
-   HRes handler::Open(::file::input_stream * stream, const file_position *maxCheckStartPosition, ::libcompress::archive_open_callback_interface *openCallback)
+   HRes handler::Open(::file::input_stream * stream, const file_position_t *maxCheckStartPosition, ::libcompress::archive_open_callback_interface *openCallback)
    {
       Close();
       try
@@ -510,7 +510,7 @@ namespace rar
    HRes handler::Extract(const uint32_t *indices, uint32_t numItems, int32_t testMode, ::libcompress::archive_extract_callback_interface *extractCallback)
    {
       ::crypto::get_text_password_interface * getTextPassword = NULL;
-      file_size censoredTotalUnPacked = 0,
+      file_size_t censoredTotalUnPacked = 0,
          // censoredTotalPacked = 0,
          importantTotalUnPacked = 0;
       // importantTotalPacked = 0;
@@ -656,7 +656,7 @@ namespace rar
 
          folderInStreamSpec->Init(&_archives, &_items, refItem);
 
-         file_size packSize = currentPackSize;
+         file_size_t packSize = currentPackSize;
 
          // packedPos += item.PackSize;
          // unpackedPos += 0;

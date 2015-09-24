@@ -71,7 +71,7 @@ namespace file
    void out_buffer::Init()
    {
       _streamPos = 0;
-      _limitPos = (file_position) m_memory.get_size();
+      _limitPos = (file_position_t) m_memory.get_size();
       _pos = 0;
       _processedSize = 0;
       _overDict = false;
@@ -114,7 +114,7 @@ namespace file
          _overDict = true;
          _pos = 0;
       }
-      _limitPos = (_streamPos > _pos) ? _streamPos : (file_position) m_memory.get_size();
+      _limitPos = (_streamPos > _pos) ? _streamPos : (file_position_t) m_memory.get_size();
       _processedSize += size;
       return result;
    }

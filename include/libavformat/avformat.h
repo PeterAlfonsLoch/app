@@ -1296,7 +1296,7 @@ typedef struct AVFormatContext {
 
     /**
      * Total stream bitrate in bit/s, 0 if not
-     * available. Never set it directly if the file_size and the
+     * available. Never set it directly if the file_size_t and the
      * duration are known as FFmpeg can compute it automatically.
      */
     int bit_rate;

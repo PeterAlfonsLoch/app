@@ -31,7 +31,7 @@ memory_size_t input_stream_with_crc::read(void *data, memory_size_t size)
   return realProcessedSize;
 }
 
-file_position input_stream_with_crc::seek(file_offset offset, ::file::e_seek seekOrigin)
+file_position_t input_stream_with_crc::seek(file_offset_t offset, ::file::e_seek seekOrigin)
 {
   if (seekOrigin != ::file::seek_begin || offset != 0)
     throw E_FAIL;

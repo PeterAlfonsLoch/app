@@ -95,8 +95,8 @@ namespace n7z
       ::libcompress::codecs_info_interface * codecsInfo,
       const array < ::libcompress::codec_info_ex > * externalCodecs,
       ::file::input_stream *inStream,
-      file_position startPos,
-      const file_size * packSizes,
+      file_position_t startPos,
+      const file_size_t * packSizes,
       const CFolder &folderInfo,
       ::file::writer *outStream,
       ::libcompress::progress_info_interface *compressProgress,
@@ -117,7 +117,7 @@ namespace n7z
       {
          ::file::locked_reader *lockedStreamImpSpec = new ::file::locked_reader;
          smart_pointer < ::file::reader > lockedStreamImp = lockedStreamImpSpec;
-         lockedStreamImpSpec->Init(&lockedInStream, (file_size) startPos);
+         lockedStreamImpSpec->Init(&lockedInStream, (file_size_t) startPos);
          startPos += packSizes[j];
 
          ::file::limited_reader *streamSpec = new ::file::limited_reader;
@@ -280,8 +280,8 @@ namespace n7z
 
          uint32_t numInStreams = (uint32_t)coderInfo.NumInStreams;
          uint32_t numOutStreams = (uint32_t)coderInfo.NumOutStreams;
-         array<const file_size *> packSizesPointers;
-         array<const file_size *> unpackSizesPointers;
+         array<const file_size_t *> packSizesPointers;
+         array<const file_size_t *> unpackSizesPointers;
          packSizesPointers.allocate(0, numInStreams);
          unpackSizesPointers.allocate(0, numOutStreams);
          uint32_t j;

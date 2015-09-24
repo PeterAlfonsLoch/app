@@ -14,8 +14,8 @@ namespace rar
 
    struct CItem
    {
-      file_size Size;
-      file_size PackSize;
+      file_size_t Size;
+      file_size_t PackSize;
 
       CRarTime CTime;
       CRarTime ATime;

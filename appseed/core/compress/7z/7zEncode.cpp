@@ -54,7 +54,7 @@ namespace n7z
    HRESULT CEncoder::CreateMixerCoder(
       ::libcompress::codecs_info_interface *codecsInfo,
       const array < ::libcompress::codec_info_ex > *externalCodecs,
-      const file_size *inSizeForReduce)
+      const file_size_t *inSizeForReduce)
    {
       HRes hr;
       _mixerCoderSpec = new ::libcompress::coder_mixer::CCoderMixer2MT(get_app());
@@ -143,10 +143,10 @@ namespace n7z
       ::libcompress::codecs_info_interface *codecsInfo,
       const array < ::libcompress::codec_info_ex > *externalCodecs,
       ::file::reader *inStream,
-      const file_size *inStreamSize, const file_size *inSizeForReduce,
+      const file_size_t *inStreamSize, const file_size_t *inSizeForReduce,
       CFolder &folderItem,
       ::file::writer *outStream,
-      array<file_size> &packSizes,
+      array<file_size_t> &packSizes,
       ::libcompress::progress_info_interface *compressProgress)
    {
       HRes hr;
@@ -190,7 +190,7 @@ namespace n7z
 
       if (inStreamSize != NULL)
       {
-         array<const file_size *> sizePointers;
+         array<const file_size_t *> sizePointers;
          for (uint32_t i = 0; i < _bindInfo.Coders[mainCoderIndex].NumInStreams; i++)
             if (i == mainStreamIndex)
                sizePointers.add(inStreamSize);
@@ -267,14 +267,14 @@ namespace n7z
       {
          ::file::temp_io_buffer &inOutTempBuffer = inOutTempBuffers[i - 1];
          RINOK(inOutTempBuffer.write_to_stream(outStream));
-         packSizes.add((file_size) inOutTempBuffer.GetDataSize());
+         packSizes.add((file_size_t) inOutTempBuffer.GetDataSize());
       }
 
       for (i = 0; i < (int32_t)_bindReverseConverter->NumSrcInStreams; i++)
       {
          int32_t binder = _bindInfo.FindBinderForInStream(
             _bindReverseConverter->DestOutToSrcInMap[i]);
-         file_size streamSize;
+         file_size_t streamSize;
          if (binder < 0)
             streamSize = inStreamSizeCountSpec->GetSize();
          else

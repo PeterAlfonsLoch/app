@@ -144,13 +144,13 @@ namespace libcompress
          uint32_t NumInStreams;
          uint32_t NumOutStreams;
 
-         array<file_size> InSizes;
-         array<file_size> OutSizes;
-         array<const file_size *> InSizePointers;
-         array<const file_size *> OutSizePointers;
+         array<file_size_t> InSizes;
+         array<file_size_t> OutSizes;
+         array<const file_size_t *> InSizePointers;
+         array<const file_size_t *> OutSizePointers;
 
          CCoderInfo2(uint32_t numInStreams, uint32_t numOutStreams);
-         void SetCoderInfo(const file_size **inSizes, const file_size **outSizes);
+         void SetCoderInfo(const file_size_t **inSizes, const file_size_t **outSizes);
 
       };
 
@@ -159,7 +159,7 @@ namespace libcompress
       public:
          virtual HRes SetBindInfo(const CBindInfo &bindInfo) = 0;
          virtual void ReInit() = 0;
-         virtual void SetCoderInfo(uint32_t coderIndex, const file_size **inSizes, const file_size **outSizes) = 0;
+         virtual void SetCoderInfo(uint32_t coderIndex, const file_size_t **inSizes, const file_size_t **outSizes) = 0;
       };
 
    } // namespace coder_mixer

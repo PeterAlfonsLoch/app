@@ -16,7 +16,7 @@ namespace libcompress
          array < ::ca::writer * > OutStreamPointers;
 
          CCoder2(::ca::base::application * papp, uint32 numInStreams, uint32 numOutStreams);
-         void SetCoderInfo(const file_size **inSizes, const file_size **outSizes);
+         void SetCoderInfo(const file_size_t **inSizes, const file_size_t **outSizes);
          virtual int32_t run();
          void Code(progress_info_interface *progress);
       };
@@ -52,10 +52,10 @@ namespace libcompress
          array_app_alloc<CCoder2> _coders;
 
          ::ca::HRes Code(::ca::reader **inStreams,
-            const file_size **inSizes,
+            const file_size_t **inSizes,
             uint32 numInStreams,
             ::ca::writer **outStreams,
-            const file_size **outSizes,
+            const file_size_t **outSizes,
             uint32 numOutStreams,
             progress_info_interface *progress);
 
@@ -65,7 +65,7 @@ namespace libcompress
          void SetProgressCoderIndex(int32_t coderIndex) {  _progressCoderIndex = coderIndex; }
 
          void ReInit();
-         void SetCoderInfo(uint32 coderIndex, const file_size **inSizes, const file_size **outSizes)
+         void SetCoderInfo(uint32 coderIndex, const file_size_t **inSizes, const file_size_t **outSizes)
          {  _coders[coderIndex].SetCoderInfo(inSizes, outSizes); }
          uint64 GetWriteProcessedSize(uint32 binderIndex) const
          {  return _streamBinders[binderIndex].ProcessedSize; }

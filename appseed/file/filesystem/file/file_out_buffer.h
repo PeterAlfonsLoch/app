@@ -29,9 +29,9 @@ namespace file
    {
    public:
       ::primitive::virtual_memory      m_memory;
-      file_position                        _pos;
-      file_position                        _limitPos;
-      file_position                        _streamPos;
+      file_position_t                        _pos;
+      file_position_t                        _limitPos;
+      file_position_t                        _streamPos;
       writer *                         _stream;
       uint64_t                           _processedSize;
       byte *                           _buffer2;

@@ -624,7 +624,7 @@ namespace n7z
       smart_pointer < ::file::writer > Fos;
 
       uint64_t StartPos;
-      const file_size *PackSizes;
+      const file_size_t *PackSizes;
       const CFolder *Folder;
 #ifndef _NO_CRYPTO
       smart_pointer < ::crypto::get_text_password_interface > GetTextPassword;
@@ -825,7 +825,7 @@ namespace n7z
          //folderRefs.Sort(CompareFolderRepacks, (void *)db);
       }
 
-      file_size inSizeForReduce = 0;
+      file_size_t inSizeForReduce = 0;
       int32_t i;
       for (i = 0; i < updateItems.get_count(); i++)
       {

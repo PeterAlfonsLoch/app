@@ -15,4 +15,4 @@ CLASS_DECL_AURA HANDLE FindFirstFileW(const unichar * pwsz, WIN32_FIND_DATAW * p
 
 END_EXTERN_C
 
-int ftruncate(int file, file_size len);
+int ftruncate(int file, file_size_t len);

@@ -4183,7 +4183,7 @@ PUGI__NS_BEGIN
 	PUGI__FN parse_status load_stream_data_seek(::file::input_stream& stream, void** out_buffer, size_t* out_size)
 	{
 		// get length of remaining data in stream
-		::file_position pos = stream.tellg();
+		::file_position_t pos = stream.tellg();
 		stream.seekg(0, file::seek_end);
 		std::streamoff length = stream.tellg() - pos;
 		stream.seekg(pos);

@@ -22,11 +22,11 @@ namespace file
 
       if (_curRem == 0)
       {
-         file_size blockSize = 1 << BlockSizeLog;
-         file_size virtBlock = _virtPos >> BlockSizeLog;
-         file_size offsetInBlock = _virtPos & (blockSize - 1);
-         file_size phyBlock = Vector[(index)virtBlock];
-         file_size newPos = StartOffset + ((uint64_t)phyBlock << BlockSizeLog) + offsetInBlock;
+         file_size_t blockSize = 1 << BlockSizeLog;
+         file_size_t virtBlock = _virtPos >> BlockSizeLog;
+         file_size_t offsetInBlock = _virtPos & (blockSize - 1);
+         file_size_t phyBlock = Vector[(index)virtBlock];
+         file_size_t newPos = StartOffset + ((uint64_t)phyBlock << BlockSizeLog) + offsetInBlock;
          if (newPos != _physPos)
          {
             _physPos = newPos;
@@ -49,7 +49,7 @@ namespace file
       return processedSize;
    }
 
-   file_position clustered_istream::seek(file_offset offset, e_seek seekOrigin)
+   file_position_t clustered_istream::seek(file_offset_t offset, e_seek seekOrigin)
    {
       uint64_t newVirtPos = offset;
       switch(seekOrigin)

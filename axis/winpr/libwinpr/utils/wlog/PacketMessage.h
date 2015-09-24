@@ -62,7 +62,7 @@ struct _wPcap
 	FILE* fp;
 	char* name;
 	BOOL write;
-	int file_size;
+	int file_size_t;
 	int record_count;
 	wPcapHeader header;
 	wPcapRecord* head;

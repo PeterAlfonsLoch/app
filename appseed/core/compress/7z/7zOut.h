@@ -77,7 +77,7 @@ namespace n7z
 
       void WritePackInfo(
          uint64_t dataOffset,
-         const array<file_size> &packSizes,
+         const array<file_size_t> &packSizes,
          const bool_array &packCRCsDefined,
          const array<uint32_t> &packCRCs);
 
@@ -86,7 +86,7 @@ namespace n7z
       void WriteSubStreamsInfo(
          const smart_pointer_array<CFolder> &folders,
          const array<CNum> &numUnpackStreamsInFolders,
-         const array<file_size> &unpackSizes,
+         const array<file_size_t> &unpackSizes,
          const bool_array &digestsDefined,
          const array<uint32_t> &hashDigests);
 
@@ -97,7 +97,7 @@ namespace n7z
       HRESULT EncodeStream(
          ::libcompress::codecs_info_interface *codecsInfo, const array < ::libcompress::codec_info_ex > *externalCodecs,
          CEncoder &encoder, const ::file::byte_buffer &data,
-         array<file_size> &packSizes, smart_pointer_array<CFolder> &folders);
+         array<file_size_t> &packSizes, smart_pointer_array<CFolder> &folders);
       void WriteHeader(
          const CArchiveDatabase &db,
          const CHeaderOptions &headerOptions,

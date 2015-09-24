@@ -78,24 +78,24 @@ WINPR_SAM* SamOpen(BOOL read_only)
 static BOOL SamLookupStart(WINPR_SAM* sam)
 {
 	size_t read_size;
-	long int file_size;
+	long int file_size_t;
 	fseek(sam->fp, 0, SEEK_END);
-	file_size = ftell(sam->fp);
+	file_size_t = ftell(sam->fp);
 	fseek(sam->fp, 0, SEEK_SET);
 
-	if (file_size < 1)
+	if (file_size_t < 1)
 		return FALSE;
 
-	sam->buffer = (char*) malloc(file_size + 2);
+	sam->buffer = (char*) malloc(file_size_t + 2);
 	if (!sam->buffer)
 		return FALSE;
 
-	read_size = fread(sam->buffer, file_size, 1, sam->fp);
+	read_size = fread(sam->buffer, file_size_t, 1, sam->fp);
 
 	if (!read_size)
 	{
 		if (!ferror(sam->fp))
-			read_size = file_size;
+			read_size = file_size_t;
 	}
 
 	if (read_size < 1)
@@ -105,8 +105,8 @@ static BOOL SamLookupStart(WINPR_SAM* sam)
 		return FALSE;
 	}
 
-	sam->buffer[file_size] = '\n';
-	sam->buffer[file_size + 1] = '\0';
+	sam->buffer[file_size_t] = '\n';
+	sam->buffer[file_size_t + 1] = '\0';
 	sam->line = strtok(sam->buffer, "\n");
 	return TRUE;
 }

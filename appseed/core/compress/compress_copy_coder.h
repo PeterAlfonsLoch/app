@@ -23,7 +23,7 @@ namespace libcompress
       copy_coder();
       ~copy_coder();
 
-      virtual HRes Code(::file::reader *inStream, ::file::writer *outStream, const file_size *inSize, const file_size *outSize, progress_info_interface *progress);
+      virtual HRes Code(::file::reader *inStream, ::file::writer *outStream, const file_size_t *inSize, const file_size_t *outSize, progress_info_interface *progress);
       virtual HRes GetInStreamProcessedSize(uint64_t *value);
    };
 

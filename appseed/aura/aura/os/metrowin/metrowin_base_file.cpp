@@ -1153,7 +1153,7 @@ void EnumerateLoadedModules(string& csPath,OF_CALLBACK CallBackProc,uint_ptr pUs
 
 
 
-int ftruncate(int file,file_size len)
+int ftruncate(int file,file_size_t len)
 {
    return _chsize_s(file,len);
 }
@@ -1482,7 +1482,7 @@ int32_t fflush_dup(_FILE * fp)
 
 }
 
-file_position fseek_dup(_FILE *fp,file_offset offset,int32_t origin)
+file_position_t fseek_dup(_FILE *fp,file_offset_t offset,int32_t origin)
 {
 
    uint32_t meth = FILE_BEGIN;
@@ -2516,7 +2516,7 @@ string file_get_mozilla_firefox_plugin_container_path()
 //
 //
 //
-//int ftruncate(int file,file_size len)
+//int ftruncate(int file,file_size_t len)
 //{
 //   return _chsize_s(file,len);
 //}

@@ -374,7 +374,7 @@ namespace n7z
 
    void COutArchive::WritePackInfo(
       uint64_t dataOffset,
-      const array<file_size> &packSizes,
+      const array<file_size_t> &packSizes,
       const bool_array &packCRCsDefined,
       const array<uint32_t> &packCRCs)
    {
@@ -432,7 +432,7 @@ namespace n7z
    void COutArchive::WriteSubStreamsInfo(
       const smart_pointer_array<CFolder> &folders,
       const array<CNum> &numUnpackStreamsInFolders,
-      const array<file_size> &unpackSizes,
+      const array<file_size_t> &unpackSizes,
       const bool_array &digestsDefined,
       const array<uint32_t> &digests)
    {
@@ -555,7 +555,7 @@ namespace n7z
       const array < ::libcompress::codec_info_ex > * externalCodecs,
       CEncoder & encoder,
       const ::file::byte_buffer & data,
-      array < file_size > & packSizes,
+      array < file_size_t > & packSizes,
       smart_pointer_array < CFolder > & folders)
    {
       UNREFERENCED_PARAMETER(codecsInfo);
@@ -604,7 +604,7 @@ namespace n7z
 
          WriteUnpackInfo(db.Folders);
 
-         array<file_size> unpackSizes;
+         array<file_size_t> unpackSizes;
          bool_array digestsDefined;
          array<uint32_t> digests;
          for (i = 0; i < db.Files.get_count(); i++)
@@ -811,7 +811,7 @@ namespace n7z
             encryptOptions.PasswordIsDefined = options->PasswordIsDefined;
             encryptOptions.Password = options->Password;
             CEncoder encoder(get_app(), headerOptions.CompressMainHeader ? *options : encryptOptions);
-            array<file_size> packSizes;
+            array<file_size_t> packSizes;
             smart_pointer_array<CFolder> folders;
             RINOK(EncodeStream(
                codecsInfo, externalCodecs,

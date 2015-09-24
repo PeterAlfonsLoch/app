@@ -231,7 +231,7 @@ namespace metrowin
    return lpszResult;
    }*/
 
-   file_position stdio_file::seek(file_offset lOff, ::file::e_seek nFrom)
+   file_position_t stdio_file::seek(file_offset_t lOff, ::file::e_seek nFrom)
    {
       ASSERT_VALID(this);
       ASSERT(nFrom == ::file::seek_begin || nFrom == ::file::seek_end || nFrom == ::file::seek_current);
@@ -245,7 +245,7 @@ namespace metrowin
       return pos;
    }
 
-   file_position stdio_file::get_position() const
+   file_position_t stdio_file::get_position() const
    {
       ASSERT_VALID(this);
       ASSERT(m_pStream != NULL);
@@ -305,7 +305,7 @@ namespace metrowin
       return NULL;
    }
 
-   void stdio_file::LockRange(file_position /* dwPos */, file_size /* dwCount */)
+   void stdio_file::LockRange(file_position_t /* dwPos */, file_size_t /* dwCount */)
    {
       ASSERT_VALID(this);
       ASSERT(m_pStream != NULL);
@@ -313,7 +313,7 @@ namespace metrowin
       throw not_supported_exception(get_app());
    }
 
-   void stdio_file::UnlockRange(file_position /* dwPos */, file_size /* dwCount */)
+   void stdio_file::UnlockRange(file_position_t /* dwPos */, file_size_t /* dwCount */)
    {
       ASSERT_VALID(this);
       ASSERT(m_pStream != NULL);
@@ -333,7 +333,7 @@ namespace metrowin
 
 
 
-   file_size stdio_file::get_length() const
+   file_size_t stdio_file::get_length() const
    {
       ASSERT_VALID(this);
 

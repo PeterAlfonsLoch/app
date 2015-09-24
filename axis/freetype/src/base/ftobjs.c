@@ -1263,7 +1263,7 @@
   FT_EXPORT_DEF( FT_Error )
   FT_New_Memory_Face( FT_Library      library,
                       const FT_Byte*  file_base,
-                      FT_Long         file_size,
+                      FT_Long         file_size_t,
                       FT_Long         face_index,
                       FT_Face        *aface )
   {
@@ -1276,7 +1276,7 @@
 
     args.flags       = FT_OPEN_MEMORY;
     args.memory_base = file_base;
-    args.memory_size = file_size;
+    args.memory_size = file_size_t;
     args.stream      = NULL;
 
     return FT_Open_Face( library, &args, face_index, aface );

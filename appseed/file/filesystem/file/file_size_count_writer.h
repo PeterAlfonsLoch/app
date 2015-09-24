@@ -10,7 +10,7 @@ namespace file
    {
    public:
       buffer_sp     _stream;
-      file_size         _size;
+      file_size_t         _size;
 
       void SetStream(writer * stream)
       {
@@ -22,7 +22,7 @@ namespace file
          _size = 0;
       }
 
-      file_size get_size() const
+      file_size_t get_size() const
       {
          return _size;
       }

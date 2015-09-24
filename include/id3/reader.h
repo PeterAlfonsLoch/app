@@ -35,8 +35,8 @@ class ID3_CPP_EXPORT ID3_Reader
  public:
   typedef strsize size_type;
   typedef uint8  char_type;
-  typedef file_position pos_type;
-  typedef  file_offset off_type;
+  typedef file_position_t pos_type;
+  typedef  file_offset_t off_type;
   typedef  int16 int_type;
   static const int_type END_OF_READER;
   
