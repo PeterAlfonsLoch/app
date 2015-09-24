@@ -60,7 +60,7 @@ namespace file
    {
       if (_bufPos < kTempBufSize)
       {
-         primitive::memory_position cur = min(kTempBufSize - _bufPos, size);
+         memory_position_t cur = min(kTempBufSize - _bufPos, size);
          memcpy(m_memory.get_data() + _bufPos, data, cur);
          _crc = crc_update(_crc, data, cur);
          _bufPos += cur;

@@ -255,15 +255,15 @@ namespace simpledb
             mem.allocate(128 * 1024 * 1024);
             for(int32_t i = 0; i < prangea->get_count(); i++)
             {
-               primitive::memory_position  iStart = prangea->element_at(i)->element_at(0);
-               primitive::memory_position  iEnd = prangea->element_at(i)->element_at(1);
+               memory_position_t  iStart = prangea->element_at(i)->element_at(0);
+               memory_position_t  iEnd = prangea->element_at(i)->element_at(1);
                if(iStart >= natural(iLen))
                   continue;
                // iEnd > iLen is not verified because file may be growing
                spfile->seek(iStart, ::file::seek_begin);
                memory_size_t uiRead;
                ::file::memory_buffer memfile(get_app());
-               primitive::memory_position iPos = iStart;
+               memory_position_t iPos = iStart;
                if(iEnd >= iStart)
                {
                }
@@ -308,15 +308,15 @@ namespace simpledb
             memory_size_t uiTotal = 0;
             memory mem;
             mem.allocate(128 * 1024 * 1024);
-            primitive::memory_position iStart = prangea->element_at(0)->element_at(0);
-            primitive::memory_position iEnd = prangea->element_at(0)->element_at(1);
+            memory_position_t iStart = prangea->element_at(0)->element_at(0);
+            memory_position_t iEnd = prangea->element_at(0)->element_at(1);
             if(iStart < natural(iLen))
             {
                // iEnd > iLen is not verified because file may be growing
                spfile->seek(iStart, ::file::seek_begin);
                memory_size_t uiRead;
                ::file::memory_buffer memfile(get_app());
-               primitive::memory_position iPos = iStart;
+               memory_position_t iPos = iStart;
                if(iEnd >= iStart)
                {
                }
