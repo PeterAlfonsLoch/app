@@ -387,7 +387,8 @@ namespace windows
       sp(::windows::file) pFile = (::windows::file *)this;
       dwCur = pFile->seek(0L, ::file::seek_current);
       dwLen = pFile->seek_to_end();
-      VERIFY(dwCur == (uint64_t)pFile->seek((file_offset_t) dwCur, ::file::seek_begin));
+      if(dwCur != (uint64_t)pFile->seek((file_offset_t)dwCur,::file::seek_begin))
+         throw simple_exception(get_app(),"file cursor not in same place after getting length");
 
       return (file_size_t) dwLen;
    }

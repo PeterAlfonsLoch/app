@@ -379,60 +379,98 @@ namespace file
 
    memory_size_t edit_buffer::read(void *lpBuf,memory_size_t nCount)
    {
+      
       byte * buf = (byte *)lpBuf;
-      file_size_t uiRead = 0;
-      file_size_t uiReadCount = 0;
+
+      memory_size_t uiRead = 0;
+
+      memory_size_t uiReadCount = 0;
 
       if(m_dwPosition >= m_dwFileLength)
       {
+
          return uiRead;
+
       }
+
       //      uint32_t dwPosition = m_dwPosition;
       //      uint32_t dwFilePosition = m_dwPosition;
       //      uint32_t dwMaxCount = m_dwFileLength;
       //      uint32_t dwUpperLimit = m_dwFileLength;
       //      int32_t iOffset =0;
+
       sp(::data::tree_item) ptreeitem;
+
       //      GroupItem * pitemgroup = NULL;
+
       int_array ia;
 
       m_bRootDirection = calc_root_direction();
 
       UINT uiReadItem = 0xffffffff;
+
       do
       {
+
       l1:
+
          ptreeitem = m_ptreeitem;
+
          m_dwReadPosition = m_dwPosition;
+
          while(nCount > 0 && ptreeitem != NULL && ptreeitem != m_ptreeitemFlush && m_dwPosition < m_dwFileLength)
          {
+
             sp(Item) pitem = (sp(Item))ptreeitem->m_pitem;
+
             uiReadItem = pitem->read_ch(this);
+
             if(uiReadItem <= 255)
             {
+
                buf[uiRead] = (byte)uiReadItem;
+
                nCount--;
+
                uiRead++;
+
                m_dwPosition++;
+
                goto l1;
+
             }
+
             if(nCount <= 0)
                break;
+
             ptreeitem = m_bRootDirection ? ptreeitem->get_previous() : ptreeitem->get_next();
+
          }
+
          uiReadCount = 0;
+
          while(nCount > 0 && m_dwPosition < m_dwFileLength)
          {
+
             m_pfile->seek((file_offset_t)m_dwPosition,::file::seek_begin);
+
             uiReadCount = m_pfile->read(&buf[uiRead],(memory_size_t) MAX(0, MIN(m_dwFileLength - m_dwPosition, nCount)));
+
             if(uiReadCount <= 0)
                break;
+
             nCount-=uiReadCount;
+
             uiRead+=uiReadCount;
+
             m_dwPosition+=uiReadCount;
+
          }
+
       } while(nCount > 0 && m_dwPosition < m_dwFileLength && uiReadCount > 0);
+
       return uiRead;
+
    }
 
 
