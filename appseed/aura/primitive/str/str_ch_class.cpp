@@ -296,7 +296,7 @@ namespace str
 
    void ch_class::add_category(string cat)
    {
-      for(int32_t pos = 0; pos < ARRAY_SIZE(char_category_names); pos++)
+      for(size_t pos = 0; pos < ARRAY_SIZE(char_category_names); pos++)
       {
          if(::str::begins(cat, char_category_names[pos]))
          {
@@ -326,7 +326,7 @@ namespace str
 
    void ch_class::clear_category(string cat)
    {
-      for(int32_t pos = 0; pos < ARRAY_SIZE(char_category_names); pos++)
+      for(size_t pos = 0; pos < ARRAY_SIZE(char_category_names); pos++)
       {
          int32_t ci;
          for(ci = 0; ci < cat.get_length() && cat[ci] == char_category_names[pos][ci]; ci++);

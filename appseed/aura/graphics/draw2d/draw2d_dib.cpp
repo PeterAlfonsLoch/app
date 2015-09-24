@@ -1016,22 +1016,24 @@ namespace draw2d
       if(op == 123) // zero dest RGB, invert alpha, and OR src RGB
       {
 
-         COLORREF _colorref = RGB ( 0, 0, 0 ) | (255 << 24);
-         COLORREF colorrefa[2];
-         colorrefa[0] = _colorref;
-         colorrefa[1] = _colorref;
+         //COLORREF _colorref = RGB ( 0, 0, 0 ) | (255 << 24);
+         //COLORREF colorrefa[2];
+         //colorrefa[0] = _colorref;
+         //colorrefa[1] = _colorref;
 
-         COLORREF _colorrefN = RGB ( 255, 255, 255) | (0 << 24);
-         COLORREF colorrefaN[2];
-         colorrefaN[0] = _colorrefN;
+         //COLORREF _colorrefN = RGB ( 255, 255, 255) | (0 << 24);
+         //COLORREF colorrefaN[2];
+         //colorrefaN[0] = _colorrefN;
 
-         colorrefaN[1] = _colorrefN;
+         //colorrefaN[1] = _colorrefN;
 
-         int64_t isize = area();
-         LPDWORD lpbitsSrc= (LPDWORD) pdib->get_data();
-         LPDWORD lpbitsDest= (LPDWORD) get_data();
+         //int64_t isize = area();
+         //LPDWORD lpbitsSrc= (LPDWORD) pdib->get_data();
+         //LPDWORD lpbitsDest= (LPDWORD) get_data();
 
-         memcpy(lpbitsDest, lpbitsSrc, (size_t) (isize * sizeof(COLORREF)));
+         //memcpy(lpbitsDest, lpbitsSrc, (size_t) (isize * sizeof(COLORREF)));
+
+         from(pdib);
 
       }
 
@@ -3725,7 +3727,7 @@ namespace draw2d
       int32_t r2;
       int32_t g2;
       int32_t b2;
-      bool bFirst;
+      //bool bFirst;
       COLORREF * pdata = get_data();
       int32_t x1;
       int32_t y1;
@@ -3745,7 +3747,7 @@ namespace draw2d
             b2 = 0;
             iDiv = 0;
             iDiv2 = 0;
-            bFirst = true;
+            //bFirst = true;
             for(int32_t i = 0; i < iSize; i++)
             {
                for(int32_t j = 0; j < iSize; j++)
@@ -3809,7 +3811,7 @@ namespace draw2d
             b2 = 0;
             iDiv = 0;
             iDiv2 = 0;
-            bFirst = true;
+            //bFirst = true;
             for(int32_t i = 0; i < iMax; i++)
             {
                for(int32_t j = 0; j < iSize; j++)
@@ -3872,7 +3874,7 @@ namespace draw2d
             b2 = 0;
             iDiv = 0;
             iDiv2 = 0;
-            bFirst = true;
+            //bFirst = true;
             for(int32_t i = 0; i < iSize; i++)
             {
                for(int32_t j = 0; j < jMax; j++)
@@ -3936,7 +3938,7 @@ namespace draw2d
          b2 = 0;
          iDiv = 0;
          iDiv2 = 0;
-         bFirst = true;
+         //bFirst = true;
          for(int32_t i = 0; i < iMax; i++)
          {
             for(int32_t j = 0; j < jMax; j++)

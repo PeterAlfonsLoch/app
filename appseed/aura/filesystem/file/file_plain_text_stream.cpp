@@ -10,14 +10,14 @@ namespace file
    }
 
    plain_text_stream::plain_text_stream(stream_buffer * pbuffer) :
-      plain_text_istream(pbuffer),
-      plain_text_ostream(pbuffer)
+      plain_text_ostream(pbuffer),
+      plain_text_istream(pbuffer)
    {
    }
 
    plain_text_stream::plain_text_stream(const stream & stream) :
-      plain_text_istream(stream),
-      plain_text_ostream(stream)
+      plain_text_ostream(stream),
+      plain_text_istream(stream)
    {
    }
 

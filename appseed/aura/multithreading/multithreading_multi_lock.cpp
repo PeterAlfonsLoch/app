@@ -85,7 +85,7 @@ multi_lock::~multi_lock()
 wait_result multi_lock::lock(const duration & duration, bool bWaitForAll, uint32_t dwWakeMask /* = 0 */)
 {
 
-   int32_t iResult;
+   uint32_t iResult;
 
    if(M_OBJECTA.get_count() < 0)
       return wait_result(wait_result::Failure);
@@ -103,7 +103,7 @@ wait_result multi_lock::lock(const duration & duration, bool bWaitForAll, uint32
 
    }
 
-   index iUpperBound = WAIT_OBJECT_0 + M_OBJECTA.get_count();
+   DWORD iUpperBound = WAIT_OBJECT_0 + M_OBJECTA.get_count();
    if(iResult == WAIT_FAILED)
    {
       DWORD dw = ::GetLastError();

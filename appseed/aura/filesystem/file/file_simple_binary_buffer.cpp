@@ -365,14 +365,14 @@ namespace file
 
    void CLASS_DECL_AURA throw_exception(::aura::application * papp,::file::exception::e_cause cause,LONG lOsError,const char * lpszFileName /* == NULL */)
    {
-   #ifdef DEBUG
-      const char * lpsz;
-      if (cause >= 0 && cause < _countof(rgszFileExceptionCause))
-         lpsz = rgszFileExceptionCause[cause];
-      else
-         lpsz = szUnknown;
-      //   TRACE3("file exception: %hs, file %s, App error information = %ld.\n", lpsz, (lpszFileName == NULL) ? "Unknown" : lpszFileName, lOsError);
-   #endif
+   //#ifdef DEBUG
+   //   const char * lpsz;
+   //   if (cause >= 0 && cause < _countof(rgszFileExceptionCause))
+   //      lpsz = rgszFileExceptionCause[cause];
+   //   else
+   //      lpsz = szUnknown;
+   //   //   TRACE3("file exception: %hs, file %s, App error information = %ld.\n", lpsz, (lpszFileName == NULL) ? "Unknown" : lpszFileName, lOsError);
+   //#endif
       throw ::file::exception(papp, cause, lOsError, lpszFileName);
    }
 

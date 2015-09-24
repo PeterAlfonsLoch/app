@@ -15,7 +15,10 @@ public:
 
 #elif defined(ANDROID)
 
-   sem_t                m_sem;
+   bool              m_bSignaled;
+   int               m_iHold;
+   pthread_mutex_t   m_mutex;
+   pthread_cond_t    m_cond;
 
 #else
 
@@ -38,6 +41,11 @@ public:
    virtual void * get_os_data() const;
 
    bool pulse();
+   bool SetEvent();
+   bool set_event() { return SetEvent(); }
+   //bool PulseEvent();
+   bool ResetEvent();
+
 
 /**
 * \brief	Session independent waitables (windows version)

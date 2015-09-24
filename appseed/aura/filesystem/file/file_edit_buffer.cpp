@@ -334,10 +334,10 @@ namespace file
 
    edit_buffer::edit_buffer(::aura::application * papp):
       object(papp),
-      ::file::buffer_sp(papp),
       ::data::data(papp),
+      ::file::buffer_sp(papp),
       ::data::tree(papp)
-   {
+      {
 
          m_iBranch = 0;
          m_pgroupitem = NULL;

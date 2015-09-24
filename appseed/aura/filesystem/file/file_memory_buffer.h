@@ -78,3 +78,5 @@ namespace file
 } // namespace primitive
 
 
+using memory_file = ::file::memory_buffer;
+using memory_file_sp = ::file::memory_buffer_sp;

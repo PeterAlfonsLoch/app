@@ -118,6 +118,13 @@ namespace compare
 
    }
 
+   template < >
+   inline bool gt(int i, long long unsigned int llui)
+   {
+
+      return i < 0 ? false : ((long long unsigned int)i) > llui;
+
+   }
 
 #ifdef WINDOWS
    template < >

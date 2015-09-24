@@ -248,6 +248,9 @@ bool event::SetEvent()
    pthread_mutex_unlock((pthread_mutex_t *) m_pmutex);
 
 
+   return true;
+
+
 #else
 
    if(m_bManualEvent)

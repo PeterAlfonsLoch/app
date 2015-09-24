@@ -23,9 +23,9 @@ public:
 
 template <class TYPE>
 keep<TYPE>::keep(TYPE * pKept,TYPE keepValue,TYPE keepAwayValue,bool bStartKept):
-m_pKept(pKept),
 m_keepValue(keepValue),
-m_keepAwayValue(keepAwayValue)
+m_keepAwayValue(keepAwayValue),
+m_pKept(pKept)
 {
    if(bStartKept)
    {

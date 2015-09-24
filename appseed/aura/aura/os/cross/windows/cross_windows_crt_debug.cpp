@@ -6,7 +6,7 @@ CLASS_DECL_AURA int32_t __cdecl _CrtSetReportMode(int32_t, int32_t);
 
 CLASS_DECL_AURA int32_t __cdecl _CrtSetReportHook2(int32_t, int32_t(__cdecl*)(int32_t, char *, int32_t *));
 
-CLASS_DECL_AURA _CRT_DUMP_CLIENT DECL_C _CrtSetDumpClient(_CRT_DUMP_CLIENT _PFnNewDump);
+//CLASS_DECL_AURA _CRT_DUMP_CLIENT DECL_C _CrtSetDumpClient(_CRT_DUMP_CLIENT _PFnNewDump);
 
 CLASS_DECL_AURA int32_t __cdecl _CrtSetDbgFlag(int32_t);
 
@@ -48,16 +48,16 @@ free(_Memory);
 
 */
 
-CLASS_DECL_AURA int32_t DECL_C debug_report(
-   int32_t _ReportType,
-   const char * _Filename,
-   int32_t _LineNumber,
-   const char * _ModuleName,
-   const char * _Format,
-   ...)
-{
-   return 0;
-}
+//CLASS_DECL_AURA int __cdecl debug_report(
+//   int _ReportType,
+//   const char * _Filename,
+//   int _LineNumber,
+//   const char * _ModuleName,
+//   const char * _Format,
+//   ...)
+//{
+//   return 0;
+//}
 
 
 CLASS_DECL_AURA int32_t __cdecl _CrtReportBlockType(const void * p)
@@ -75,10 +75,10 @@ CLASS_DECL_AURA int32_t __cdecl _CrtSetReportHook2(int32_t, int32_t(__cdecl*)(in
    return TRUE;
 }
 
-CLASS_DECL_AURA _CRT_DUMP_CLIENT DECL_C _CrtSetDumpClient(_CRT_DUMP_CLIENT _PFnNewDump)
-{
-   return NULL;
-}
+//CLASS_DECL_AURA _CRT_DUMP_CLIENT DECL_C _CrtSetDumpClient(_CRT_DUMP_CLIENT _PFnNewDump)
+//{
+//   return NULL;
+//}
 
 CLASS_DECL_AURA int32_t __cdecl _CrtSetDbgFlag(int32_t)
 {

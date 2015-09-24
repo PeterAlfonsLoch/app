@@ -94,7 +94,7 @@
 
  //Pasta de Z:\nordroid\app\appseed\aura\primitive\comparison
 
-#include "comparison/comparison_md5.cpp"
+//#include "comparison/comparison_md5.cpp"
 #include "comparison/comparison_var_strict.cpp"
  //              2 arquivo(s)         21.985 bytes
 

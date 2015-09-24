@@ -26,17 +26,6 @@
 */
 #include "framework.h"
 
-/*#pragma warning(push, 4)
-
-const COLORREF LiteHTMLElemAttr::_clrInvalid = (COLORREF)0xFFFFFFFF;
-const uint16_t LiteHTMLElemAttr::_percentMax = USHRT_MAX;
-
-// the reason behind setting the block size of our collection
-// to 166 is that we have a total of 166 known named colors
-//LiteHTMLElemAttr::CNamedColors LiteHTMLElemAttr::_namedColors(166 /* block size */
-
-//#pragma warning(pop)
-
 
 /**
 * LiteHTMLElemAttr::parseFromStr

@@ -43,16 +43,11 @@ void __trace_message(const char * lpszPrefix,::signal_details * pobj)
    }
    else
    {
+
       // a system windows message
-      const __MAP_MESSAGE* pMapMsg = allMessages;
-      for(/*null*/ ; pMapMsg->lpszMsg != NULL; pMapMsg++)
-      {
-         if(pMapMsg->nMsg == pbase->m_uiMessage)
-         {
-            lpszMsgName = pMapMsg->lpszMsg;
-            break;
-         }
-      }
+
+      lpszMsgName = get_windows_message_name(pbase->m_uiMessage);
+
    }
 
    if(lpszMsgName != NULL)

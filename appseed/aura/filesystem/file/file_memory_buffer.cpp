@@ -89,7 +89,7 @@ namespace file
       
       memory_size_t iEndPosition = m_dwPosition + nCount;
 
-      if(iEndPosition > (int32_t) this->get_size())
+      if(iEndPosition > this->get_size())
       {
 
          allocate(iEndPosition);
@@ -129,7 +129,7 @@ namespace file
 
       memory_size_t iEndPosition = m_dwPosition + iLen / 2;
 
-      if(iEndPosition > (int32_t) this->get_size())
+      if(iEndPosition > this->get_size())
       {
 
          allocate(iEndPosition);

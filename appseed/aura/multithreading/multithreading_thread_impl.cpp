@@ -105,7 +105,7 @@ void thread_impl::dispatch_thread_message(signal_details * pbase)
    {
       Application.dispatch_user_message(pbase);
    }
-   LRESULT lresult;
+   //LRESULT lresult;
    int i = 0;
    Signal * pSignal;
    while((pSignal = m_signala.GetSignal(pbase->m_uiMessage,0,0, i)) != NULL)
@@ -116,7 +116,7 @@ void thread_impl::dispatch_thread_message(signal_details * pbase)
       {
          //::message::base aura(get_app());
          pbase->m_psignal = psignal;
-         lresult = 0;
+         //lresult = 0;
          //aura.set(pmsg->message, pmsg->wParam, pmsg->lParam, lresult);
          psignal->emit(pbase);
          if(pbase->m_bRet)
@@ -640,13 +640,13 @@ bool thread_impl::is_idle_message(LPMESSAGE lpmsg)
 void thread_impl::post_to_all_threads(UINT message,WPARAM wparam,LPARAM lparam)
 {
 
-   ::count ca;
+   //::count ca;
 
    thread * pthread;
 
-   ca = ::multithreading::s_pthreadptra->get_size();
+   //ca = ::multithreading::s_pthreadptra->get_size();
 
-   bool bOk;
+   //bool bOk;
 
    if(message == WM_QUIT)
    {
@@ -678,7 +678,7 @@ void thread_impl::post_to_all_threads(UINT message,WPARAM wparam,LPARAM lparam)
    for(index i = ::multithreading::s_piaThread->get_size(); i >= 0; i--)
    {
 
-      bOk = true;
+      //bOk = true;
 
       try
       {
@@ -692,7 +692,7 @@ void thread_impl::post_to_all_threads(UINT message,WPARAM wparam,LPARAM lparam)
       catch(...)
       {
 
-         bOk = false;
+         //bOk = false;
 
       }
 

@@ -27,9 +27,9 @@ bool file_put_contents_dup(const char * path, const ::primitive::memory_base & m
 const char * file_name_dup(const char * path)
 {
    string str(path);
-   size_t iPos;
-   size_t iPos1 = str.reverse_find('\\');
-   size_t iPos2 = str.reverse_find('/');
+   strsize iPos;
+   strsize iPos1 = str.reverse_find('\\');
+   strsize iPos2 = str.reverse_find('/');
    if(iPos1 != -1 && iPos2 != -1)
    {
       if(iPos1 > iPos2)
@@ -60,7 +60,7 @@ const char * file_name_dup(const char * path)
 string file_title_dup(const char * path)
 {
    string str = file_name_dup(path);
-   size_t iPos = str.find('.');
+   strsize iPos = str.find('.');
    if(iPos != -1)
    {
       return str.substr(0, iPos);

@@ -26,13 +26,13 @@ condition::condition(::aura::application * papp) :
    ::InitializeConditionVariable(&m_var);
 #elif defined(ANDROID)
 
-   int rc;
+   pthread_mutex_init(&m_mutex,NULL);
+   
+   pthread_cond_init(&m_cond,NULL);
+   
+   m_iHold = 0;
 
-   if((rc = sem_init(&m_sem, 0, 1)) == -1)
-   {
-      throw "RC_OBJECT_NOT_CREATED";
-   }
-
+   m_bSignaled = false;
 
 #else
 
@@ -91,6 +91,55 @@ condition::~condition()
 }
 
 
+bool condition::SetEvent()
+{
+
+#ifdef WINDOWS
+
+
+   WakeAllConditionVariable(&m_var);
+
+   return true;
+
+#elif defined(ANDROID)
+
+   pthread_mutex_lock(&m_mutex);
+
+   if(!m_bSignaled)
+   {
+
+      m_bSignaled = true;
+
+      pthread_mutex_unlock(&m_mutex);
+
+      pthread_cond_signal(&m_cond);
+
+   }
+   else
+   {
+
+      pthread_mutex_unlock(&m_mutex);
+
+   }
+
+
+   return true;
+   
+#else
+
+   sembuf sb;
+
+   sb.sem_op   = 1;
+   sb.sem_num  = 0;
+   sb.sem_flg  = SEM_UNDO;
+
+   return semop((int32_t)m_object,&sb,1) == 0;
+
+#endif
+
+}
+
+
 bool condition::pulse()
 {
 
@@ -103,7 +152,41 @@ bool condition::pulse()
 
 #elif defined(ANDROID)
 
+   pthread_mutex_lock(&m_mutex);
 
+   if(m_iHold > 0)
+   {
+
+      m_bSignaled = true;
+
+      pthread_mutex_unlock(&m_mutex);
+
+      pthread_cond_signal(&m_cond);
+
+      pthread_mutex_lock(&m_mutex);
+
+      while(m_iHold > 0)
+      {
+
+         Sleep(1);
+
+      }
+
+      m_bSignaled = false;
+
+      pthread_mutex_unlock(&m_mutex);
+
+   }
+   else
+   {
+
+      pthread_mutex_unlock(&m_mutex);
+
+   }
+
+
+   return true;
+   
 
 #else
 
@@ -130,6 +213,26 @@ void condition::wait ()
 	SleepConditionVariableCS(&m_var, &m_sect, INFINITE);
 
 #elif defined(ANDROID)
+
+   pthread_mutex_lock(&m_mutex);
+
+   m_iHold++;
+
+   while(!m_bSignaled)
+   {
+
+      pthread_cond_wait(&m_cond, &m_mutex);
+
+   }
+
+   pthread_mutex_unlock(&m_mutex);
+
+   pthread_mutex_lock(&m_mutex);
+
+   m_iHold--;
+
+   pthread_mutex_unlock(&m_mutex);
+
 
 #else
 
@@ -158,6 +261,36 @@ wait_result condition::wait (const duration & duration)
    return wait_result(SleepConditionVariableCS(&m_var, &m_sect, timeout));
 
 #elif defined(ANDROID)
+
+
+   pthread_mutex_lock(&m_mutex);
+
+   m_iHold++;
+
+   uint32_t start = ::get_tick_count();
+
+   while(!m_bSignaled)
+   {
+      
+      pthread_cond_wait(&m_cond, &m_mutex);
+
+      if(get_tick_count() - start > duration.get_total_milliseconds())
+      {
+
+         m_iHold--;
+
+         return ::wait_result(::wait_result::Timeout);
+
+      }
+
+
+   }
+
+   m_iHold--;
+
+   pthread_mutex_unlock(&m_mutex);
+
+   return ::wait_result(::wait_result::Event0);
 
 #else
 
@@ -221,6 +354,13 @@ wait_result condition::wait (const duration & duration)
 bool condition::is_signaled() const
 {
 
+#ifdef ANDROID
+
+   return m_bSignaled;
+
+#endif
+
+
     throw not_supported_exception(get_app());
 
 }
@@ -247,6 +387,7 @@ bool condition::lock(const duration & durationTimeout)
 
 #elif defined(ANDROID)
 
+   return wait(durationTimeout).succeeded();
 
 #else
 
@@ -294,9 +435,32 @@ bool condition::lock(const duration & durationTimeout)
 
 }
 
+bool condition::ResetEvent()
+{
+#ifdef ANDROID
+
+   pthread_mutex_lock(&m_mutex);
+
+   m_iHold = 0;
+
+   m_bSignaled = false;
+
+   pthread_mutex_unlock(&m_mutex);
+
+   pthread_cond_signal(&m_cond);
+
+
+#endif
+
+   return true;
+
+}
+
 bool condition::unlock()
 {
-   return true;
+
+   return ResetEvent();
+
 }
 
 void * condition::get_os_data() const

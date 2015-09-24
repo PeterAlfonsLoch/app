@@ -352,7 +352,7 @@ public:
 template < class T >
 T * clone(sp(T) pobject)
 {
-   object * pca =
+   sp(object) pca =
 #ifdef WINDOWS
       pca = Sys(pobject->get_app()).factory().typed_clone(typeid(T).raw_name(),pobject);
 #else
@@ -360,5 +360,5 @@ T * clone(sp(T) pobject)
 #endif
    if(pca == NULL)
       return NULL;
-   return dynamic_cast < T * >(pca);
+   return pca.cast < T >();
 }

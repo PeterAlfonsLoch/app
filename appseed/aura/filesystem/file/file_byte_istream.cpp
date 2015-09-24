@@ -211,7 +211,7 @@ namespace file
 
       int len = b & 0x3f;
 
-      if(len > sizeof(uiRead) || len > nMax)
+      if(len > (int) sizeof(uiRead) || len > nMax)
       {
 
          setstate(failbit);
@@ -445,7 +445,7 @@ namespace file
       {
          nConvert = 1 - nConvert;
          nNewLen = __read_string_length(*this);
-         ASSERT(nNewLen != -1);
+         ASSERT(nNewLen != (UINT) -1);
       }
 
       char * lpBuf;

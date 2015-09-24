@@ -10,31 +10,26 @@ class CLASS_DECL_AURA mutex :
 public:
 
 
-#ifndef WINDOWS
+#if !defined(WINDOWS)
 
 
    pthread_mutex_t         m_mutex;
-
-
-
-   // named process mutex
    string                  m_strName;
 
-//#ifdef ANDROID
-//
-//   sem_t *                 m_psem;
+#ifdef ANDROID
 
-//#else
+   sem_t *                 m_psem;
+
+#else
 
    key_t                   m_key;
    int32_t                 m_semid;
 
-//#endif
-
-
+#endif
 
 
 #endif
+
 
    bool                    m_bAlreadyExists;
 
@@ -42,6 +37,8 @@ public:
    mutex(const mutex & m);
 #ifdef WINDOWS
    mutex(::aura::application * papp,const char * pstrName,void * posdata, bool bOwner = true);
+#elif defined(ANDROID)
+   mutex(::aura::application * papp,const char * pstrName,sem_t * psem,bool bOwner = true);
 #else
    mutex(::aura::application * papp,const char * pstrName,key_t key, int32_t semid, bool bOwner = true);
 #endif
