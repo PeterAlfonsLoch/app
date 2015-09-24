@@ -519,7 +519,7 @@ namespace n7z
       void ReleaseOutStream();
       HRESULT CheckFinishedState() const { return (_currentIndex == _extractStatuses->get_count()) ? S_OK: E_FAIL; }
 
-      void write(const void *data, ::primitive::memory_size size, ::primitive::memory_size *processedSize);
+      void write(const void *data, memory_size_t size, memory_size_t *processedSize);
    };
 
    HRESULT CFolderOutStream2::Init(const CArchiveDatabaseEx *db, uint32_t startIndex,
@@ -573,7 +573,7 @@ namespace n7z
       return S_OK;
    }
 
-   void CFolderOutStream2::write(const void *data, ::primitive::memory_size size, ::primitive::memory_size *processedSize)
+   void CFolderOutStream2::write(const void *data, memory_size_t size, memory_size_t *processedSize)
    {
       HRESULT hr;
       if (processedSize != NULL)
@@ -582,7 +582,7 @@ namespace n7z
       {
          if (_fileIsOpen)
          {
-            ::primitive::memory_size cur = size < _rem ? size : (uint32_t)_rem;
+            memory_size_t cur = size < _rem ? size : (uint32_t)_rem;
             _crcStream->write(data, cur, &cur);
             if (cur == 0)
                break;

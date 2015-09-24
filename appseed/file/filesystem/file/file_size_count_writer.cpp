@@ -3,9 +3,9 @@
 namespace file
 {
 
-   void size_count_writer::write(const void *data, ::primitive::memory_size size, ::primitive::memory_size * processedSize)
+   void size_count_writer::write(const void *data, memory_size_t size, memory_size_t * processedSize)
    {
-      ::primitive::memory_size realProcessedSize;
+      memory_size_t realProcessedSize;
       _stream->write(data, size, &realProcessedSize);
       _size += realProcessedSize;
       if (processedSize)

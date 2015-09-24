@@ -62,7 +62,7 @@ namespace file
       if (_wasFinished)
          return false;
       _processedSize += (_buffer - _bufferBase);
-      ::primitive::memory_size numProcessedBytes;
+      memory_size_t numProcessedBytes;
       try
       {
          numProcessedBytes = _stream->read(_bufferBase, _bufferSize);

@@ -19,7 +19,7 @@ namespace file
          _stream = stream; 
       }
       
-      ::primitive::memory_size read(file_position startPos, void * data, ::primitive::memory_size size);
+      memory_size_t read(file_position startPos, void * data, memory_size_t size);
 
    };
 
@@ -39,7 +39,7 @@ namespace file
          _pos = startPos;
       }
 
-      ::primitive::memory_size read(void *data, ::primitive::memory_size size);
+      memory_size_t read(void *data, memory_size_t size);
 
    };
 

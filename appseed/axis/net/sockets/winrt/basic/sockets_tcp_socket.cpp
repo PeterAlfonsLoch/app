@@ -762,7 +762,7 @@ namespace sockets
 
 
 
-   void tcp_socket::write(const void * pdata, ::primitive::memory_size len)
+   void tcp_socket::write(const void * pdata, memory_size_t len)
    {
 
       const char * buf = (const char * ) pdata;

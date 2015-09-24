@@ -314,7 +314,7 @@ HRESULT CInArchive::FindAndReadSignature(::file::input_stream *stream, const fil
   const uint32_t kBufferSize = (1 << 16);
   byteBuffer.SetCapacity(kBufferSize);
   byte *buffer = byteBuffer;
-  ::primitive::memory_size numPrevBytes = kHeaderSize;
+  memory_size_t numPrevBytes = kHeaderSize;
   memcpy(buffer, _header, kHeaderSize);
   file_position curTestPos = _arhiveBeginStreamPosition;
   for (;;)
@@ -324,8 +324,8 @@ HRESULT CInArchive::FindAndReadSignature(::file::input_stream *stream, const fil
         break;
     do
     {
-      ::primitive::memory_size numReadBytes = kBufferSize - numPrevBytes;
-      ::primitive::memory_size processedSize;
+      memory_size_t numReadBytes = kBufferSize - numPrevBytes;
+      memory_size_t processedSize;
       processedSize = stream->read(buffer + numPrevBytes, numReadBytes);
       numPrevBytes += processedSize;
       if (processedSize == 0)

@@ -510,7 +510,7 @@ namespace android
 //         return false;
 //      memory mem;
 //      mem.allocate(1024 * 1024 * 8);
-//      ::primitive::memory_size uiRead;
+//      memory_size_t uiRead;
 //      while((uiRead = file.read(mem.get_data(), mem.get_size())) > 0)
 //      {
 //         spfile->write(mem.get_data(), uiRead);

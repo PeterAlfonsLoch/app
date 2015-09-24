@@ -41,14 +41,14 @@ namespace rar
       return S_OK;
    }
 
-   ::primitive::memory_size folder_reader::read(void *data, ::primitive::memory_size size)
+   memory_size_t folder_reader::read(void *data, memory_size_t size)
    {
-      ::primitive::memory_size realProcessedSize = 0;
+      memory_size_t realProcessedSize = 0;
       while ((_curIndex < _refItem.NumItems || _fileIsOpen) && size > 0)
       {
          if (_fileIsOpen)
          {
-            ::primitive::memory_size localProcessedSize;
+            memory_size_t localProcessedSize;
                
             localProcessedSize = _stream->read(((byte *)data) + realProcessedSize, size);
             _crc = crc_update(_crc, ((byte *)data) + realProcessedSize, localProcessedSize);

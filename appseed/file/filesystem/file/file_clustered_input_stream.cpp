@@ -7,10 +7,10 @@ namespace file
 {
 
 
-   ::primitive::memory_size clustered_istream::read(void *data, ::primitive::memory_size size)
+   memory_size_t clustered_istream::read(void *data, memory_size_t size)
    {
 
-      ::primitive::memory_size processedSize = 0;
+      memory_size_t processedSize = 0;
 
       if (_virtPos >= Size)
       {
@@ -40,7 +40,7 @@ namespace file
             _curRem = rem;
       }
       if (size > _curRem)
-         size = (::primitive::memory_size) _curRem;
+         size = (memory_size_t) _curRem;
       size = Stream->read(data, size);
       processedSize = size;
       _physPos += size;

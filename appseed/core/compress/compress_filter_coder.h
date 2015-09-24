@@ -88,8 +88,8 @@ namespace libcompress
       HRes SetOutStream(::file::writer *outStream);
       HRes ReleaseInStream();
       HRes ReleaseOutStream();
-      ::primitive::memory_size read(void *data, ::primitive::memory_size size);
-      void write(const void *data, ::primitive::memory_size size, ::primitive::memory_size *processedSize);
+      memory_size_t read(void *data, memory_size_t size);
+      void write(const void *data, memory_size_t size, memory_size_t *processedSize);
       void flush();
 
       HRes CryptoSetPassword(const byte *data, uint32_t size);

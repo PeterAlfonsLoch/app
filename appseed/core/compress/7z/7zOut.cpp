@@ -11,12 +11,12 @@
 
 #include "7zOut.h"
 */
-static HRESULT WriteBytes(::file::writer *stream, const void *data, ::primitive::memory_size size)
+static HRESULT WriteBytes(::file::writer *stream, const void *data, memory_size_t size)
 {
    while (size > 0)
    {
-      ::primitive::memory_size curSize = size;
-      ::primitive::memory_size processedSize;
+      memory_size_t curSize = size;
+      memory_size_t processedSize;
       stream->write(data, curSize, &processedSize);
       if (processedSize == 0)
          return E_FAIL;

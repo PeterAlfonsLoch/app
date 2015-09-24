@@ -16,7 +16,7 @@ namespace libcompress
       uint32 _crc;
       bool _wasFinished;
 
-      ::primitive::memory_size read(void *data, ::primitive::memory_size size);
+      memory_size_t read(void *data, memory_size_t size);
       void SetStream(::ca::reader *stream) { _stream = stream;  }
       void Init()
       {

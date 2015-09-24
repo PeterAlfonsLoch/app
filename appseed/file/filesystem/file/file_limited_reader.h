@@ -31,7 +31,7 @@ namespace file
          _wasFinished = false;
       }
 
-      ::primitive::memory_size read(void *data, ::primitive::memory_size size);
+      memory_size_t read(void *data, memory_size_t size);
       file_size GetSize() const { return _pos; }
       bool WasFinished() const { return _wasFinished; }
    };

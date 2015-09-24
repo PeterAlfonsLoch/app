@@ -24,7 +24,7 @@ struct CCRCTableInit
 #define CRC_NUM_TABLES 1
 #endif
 
-typedef uint32_t (*CRC_FUNC)(uint32_t v, const void *data, ::primitive::memory_size size, const uint32_t *table);
+typedef uint32_t (*CRC_FUNC)(uint32_t v, const void *data, memory_size_t size, const uint32_t *table);
 
 static CRC_FUNC g_CrcUpdate = NULL;
 
@@ -50,17 +50,17 @@ static uint32_t CrcUpdateT1(uint32_t v, const void *data, size_t size, const uin
 
 #else
 
-uint32_t CrcUpdateT4(uint32_t v, const void *data, ::primitive::memory_size size, const uint32_t *table);
-uint32_t CrcUpdateT8(uint32_t v, const void *data, ::primitive::memory_size size, const uint32_t *table);
+uint32_t CrcUpdateT4(uint32_t v, const void *data, memory_size_t size, const uint32_t *table);
+uint32_t CrcUpdateT8(uint32_t v, const void *data, memory_size_t size, const uint32_t *table);
 
 #endif
 
-uint32_t crc_update(uint32_t v, const void *data, ::primitive::memory_size size)
+uint32_t crc_update(uint32_t v, const void *data, memory_size_t size)
 {
   return g_CrcUpdate(v, data, size, g_pCrcTable);
 }
 
-uint32_t crc_calc(const void *data, ::primitive::memory_size size)
+uint32_t crc_calc(const void *data, memory_size_t size)
 {
   return g_CrcUpdate(CRC_INIT_VAL, data, size, g_pCrcTable) ^ CRC_INIT_VAL;
 }

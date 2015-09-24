@@ -18,13 +18,13 @@ namespace file
 
       ~reader_for_binder() { m_StreamBinder->CloseRead(); }
       
-      virtual ::primitive::memory_size read(void *data, ::primitive::memory_size size);
+      virtual memory_size_t read(void *data, memory_size_t size);
 
       void set_binder(stream_binder *streamBinder) { m_StreamBinder = streamBinder; }
 
    };
 
-   ::primitive::memory_size reader_for_binder::read(void *data, ::primitive::memory_size size)
+   memory_size_t reader_for_binder::read(void *data, memory_size_t size)
    { 
       return m_StreamBinder->read(data, size); 
    }
@@ -40,13 +40,13 @@ namespace file
       
       ~writer_for_binder() {  m_StreamBinder->CloseWrite(); }
 
-      virtual void write(const void *lpBuf, ::primitive::memory_size nCount, ::primitive::memory_size * dwWritten);
+      virtual void write(const void *lpBuf, memory_size_t nCount, memory_size_t * dwWritten);
 
       void set_binder(stream_binder *streamBinder) { m_StreamBinder = streamBinder; }
 
    };
 
-   void writer_for_binder::write(const void *data, ::primitive::memory_size size, ::primitive::memory_size *processedSize)
+   void writer_for_binder::write(const void *data, memory_size_t size, memory_size_t *processedSize)
    { 
       return m_StreamBinder->write(data, size, processedSize); 
    }
@@ -99,9 +99,9 @@ namespace file
 
    }
 
-   ::primitive::memory_size stream_binder::read(void *data, ::primitive::memory_size size)
+   memory_size_t stream_binder::read(void *data, memory_size_t size)
    {
-      primitive::memory_size sizeToRead = size;
+      memory_size_t sizeToRead = size;
       if(size > 0)
       {
          _thereAreBytesToReadEvent.wait();
@@ -127,7 +127,7 @@ namespace file
       _readStreamIsClosedEvent.SetEvent();
    }
 
-   void stream_binder::write(const void *data, ::primitive::memory_size size, ::primitive::memory_size * processedSize)
+   void stream_binder::write(const void *data, memory_size_t size, memory_size_t * processedSize)
    {
       if (size > 0)
       {

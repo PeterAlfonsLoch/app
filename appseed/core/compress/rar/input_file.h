@@ -92,7 +92,7 @@ namespace rar
 
       ::file::byte_buffer                                m_DecryptedData;
       byte *                                          m_DecryptedDataAligned;
-      ::primitive::memory_size                        m_DecryptedDataSize;
+      memory_size_t                        m_DecryptedDataSize;
 
       bool m_CryptoMode;
       uint32_t m_CryptoPos;
@@ -101,8 +101,8 @@ namespace rar
       void ReadName(CItemEx &item, int32_t nameSize);
       void ReadHeaderReal(CItemEx &item);
 
-      HRESULT ReadBytesSpec(void * data, ::primitive::memory_size * size);
-      bool ReadBytesAndTestSize(void * data, ::primitive::memory_size size);
+      HRESULT ReadBytesSpec(void * data, memory_size_t * size);
+      bool ReadBytesAndTestSize(void * data, memory_size_t size);
 
       HRESULT Open2(::file::input_stream *stream, const file_position *searchHeaderSizeLimit);
 

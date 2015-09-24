@@ -28,10 +28,10 @@ namespace file
 
       virtual void CreateStreams(sp(::file::reader) & inStream, sp(::file::writer) & outStream);
 
-      virtual ::primitive::memory_size read(void *lpBuf, ::primitive::memory_size nCount);
+      virtual memory_size_t read(void *lpBuf, memory_size_t nCount);
       virtual void CloseRead();
 
-      virtual void write(const void *lpBuf, ::primitive::memory_size nCount, ::primitive::memory_size * dwWritten);
+      virtual void write(const void *lpBuf, memory_size_t nCount, memory_size_t * dwWritten);
       virtual void CloseWrite();
 
       virtual void ReInit();

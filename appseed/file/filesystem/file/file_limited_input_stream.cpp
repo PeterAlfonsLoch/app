@@ -6,7 +6,7 @@
 namespace file
 {
 
-   ::primitive::memory_size limited_istream::read(void *data, ::primitive::memory_size size)
+   memory_size_t limited_istream::read(void *data, memory_size_t size)
    {
       if (_virtPos >= _size)
       {

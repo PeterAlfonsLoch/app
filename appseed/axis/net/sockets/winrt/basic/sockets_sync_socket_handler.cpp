@@ -39,12 +39,12 @@ namespace sockets
       m_psocket->write(str);
    }
 
-   void sync_socket_handler::write(void * pdata, ::primitive::memory_size len)
+   void sync_socket_handler::write(void * pdata, memory_size_t len)
    {
       m_psocket->write((char *) pdata, len);
    }
 
-   ::primitive::memory_size sync_socket_handler::read(void * pdata, ::primitive::memory_size len)
+   memory_size_t sync_socket_handler::read(void * pdata, memory_size_t len)
    {
       while(m_file.get_size() < len && m_handler.get_count() > 0)
       {
@@ -95,7 +95,7 @@ namespace sockets
       UNREFERENCED_PARAMETER(xml_payload);
       if(iTimeout < 0)
          iTimeout = m_iDefaultTimeout;
-      ::primitive::memory_size uiLen = 0;
+      memory_size_t uiLen = 0;
       if(read(&uiLen, 4) != 4)
          throw simple_exception(get_app());
       ntohl((u_long) uiLen);

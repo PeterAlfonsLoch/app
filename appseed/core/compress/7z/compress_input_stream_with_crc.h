@@ -13,7 +13,7 @@ namespace libcompress
       uint64         _size;
       uint32         _crc;
 
-      ::primitive::memory_size read(void *data, ::primitive::memory_size size);
+      memory_size_t read(void *data, memory_size_t size);
       file_position seek(file_offset offset, ::ca::e_seek seekOrigin);
       void SetStream(::ca::byte_input_stream *stream) { _stream = stream;  }
       void Init()

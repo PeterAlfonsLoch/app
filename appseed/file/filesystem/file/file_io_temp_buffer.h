@@ -25,21 +25,21 @@ namespace file
       uint32_t                           _crc;
       memory              m_memory;
       ::primitive::memory_position     _bufPos;
-      ::primitive::memory_size         _size;
+      memory_size_t         _size;
 
 
       temp_io_buffer();
       virtual ~temp_io_buffer();
 
-      bool write_to_file(const void * data, ::primitive::memory_size size);
+      bool write_to_file(const void * data, memory_size_t size);
       using ::object::create;
       void create();
 
       void InitWriting();
-      bool write(const void *data, ::primitive::memory_size size);
+      bool write(const void *data, memory_size_t size);
 
       HRESULT write_to_stream(writer *stream);
-      ::primitive::memory_size GetDataSize() const 
+      memory_size_t GetDataSize() const 
       { 
          return _size; 
       }
@@ -54,7 +54,7 @@ namespace file
       {
          _buf = buffer; 
       }
-      void write(const void *data, ::primitive::memory_size size, ::primitive::memory_size * processedSize);
+      void write(const void *data, memory_size_t size, memory_size_t * processedSize);
    };
 
 

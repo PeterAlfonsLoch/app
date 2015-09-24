@@ -32,8 +32,8 @@ namespace android
       void dump(dump_context & dumpcontext) const;
       virtual file_position get_position() const;
       virtual cres open(const ::file::path & lpszFileName, UINT nOpenFlags);
-      virtual ::primitive::memory_size read(void * lpBuf, ::primitive::memory_size nCount);
-      virtual void write(const void * lpBuf, ::primitive::memory_size nCount);
+      virtual memory_size_t read(void * lpBuf, memory_size_t nCount);
+      virtual void write(const void * lpBuf, memory_size_t nCount);
       virtual file_position seek(file_offset lOff, ::file::e_seek nFrom);
       virtual void Abort();
       virtual void Flush();

@@ -35,7 +35,7 @@ namespace file
          return SeekToPhys();
       }
 
-      ::primitive::memory_size read(void * data, ::primitive::memory_size size);
+      memory_size_t read(void * data, memory_size_t size);
       file_position seek(file_offset offset, e_seek seekOrigin);
 
    };

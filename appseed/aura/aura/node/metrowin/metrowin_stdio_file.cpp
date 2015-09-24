@@ -109,7 +109,7 @@ namespace metrowin
    }
 
 
-   ::primitive::memory_size stdio_file::read(void * lpBuf, ::primitive::memory_size nCount)
+   memory_size_t stdio_file::read(void * lpBuf, memory_size_t nCount)
    {
       ASSERT_VALID(this);
       ASSERT(m_pStream != NULL);
@@ -119,7 +119,7 @@ namespace metrowin
 
       ASSERT(__is_valid_address(lpBuf, nCount));
 
-      primitive::memory_size nRead = 0;
+      memory_size_t nRead = 0;
 
       if ((nRead = fread(lpBuf, sizeof(BYTE), nCount, m_pStream)) == 0 && !feof(m_pStream))
          ::file::throw_exception(get_app(), ::file::exception::type_generic, _doserrno, m_strFileName);
@@ -131,7 +131,7 @@ namespace metrowin
       return nRead;
    }
 
-   void stdio_file::write(const void * lpBuf, ::primitive::memory_size nCount)
+   void stdio_file::write(const void * lpBuf, memory_size_t nCount)
    {
       ASSERT_VALID(this);
       ASSERT(m_pStream != NULL);
@@ -174,7 +174,7 @@ namespace metrowin
       const int nMaxSize = 128;
       char * lpsz = rString.GetBuffer(nMaxSize);
       char * lpszResult;
-      ::primitive::memory_size nLen = 0;
+      memory_size_t nLen = 0;
       for (;;)
       {
          lpszResult = fgets(lpsz, nMaxSize+1, m_pStream);

@@ -64,7 +64,7 @@ public:
    gzip(::ca::byte_output_stream & ostreamDest);
    virtual ~gzip();
 
-   bool write(void * buf, ::primitive::memory_size iSize);
+   bool write(void * buf, memory_size_t iSize);
    void finish();
 
 protected:

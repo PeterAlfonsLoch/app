@@ -102,7 +102,7 @@ cres stdio_file::open(const ::file::path & lpszFileName, UINT nOpenFlags)
    return no_exception;
 }
 
-::primitive::memory_size stdio_file::read(void * lpBuf, ::primitive::memory_size nCount)
+memory_size_t stdio_file::read(void * lpBuf, memory_size_t nCount)
 {
    ASSERT_VALID(this);
    ASSERT(m_pStream != NULL);
@@ -124,7 +124,7 @@ cres stdio_file::open(const ::file::path & lpszFileName, UINT nOpenFlags)
    return nRead;
 }
 
-void stdio_file::write(const void * lpBuf, ::primitive::memory_size nCount)
+void stdio_file::write(const void * lpBuf, memory_size_t nCount)
 {
    ASSERT_VALID(this);
    ASSERT(m_pStream != NULL);

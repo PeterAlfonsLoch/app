@@ -23,7 +23,7 @@ namespace libcompress
       bool              _calculate;
 
 
-      void write(const void *data, ::primitive::memory_size size, ::primitive::memory_size *processedSize);
+      void write(const void *data, memory_size_t size, memory_size_t *processedSize);
       void SetStream(writer *stream) { _stream = stream; }
       void ReleaseStream()  {}
       //{ _stream.Release(); }

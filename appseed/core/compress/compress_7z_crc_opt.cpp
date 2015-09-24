@@ -6,11 +6,11 @@
 
 #define CRC_UPDATE_BYTE_2(crc, b) (table[((crc) ^ (b)) & 0xFF] ^ ((crc) >> 8))
 
-uint32_t CrcUpdateT4(uint32_t v, const void *data, ::primitive::memory_size size, const uint32_t *table);
+uint32_t CrcUpdateT4(uint32_t v, const void *data, memory_size_t size, const uint32_t *table);
 
-uint32_t CrcUpdateT8(uint32_t v, const void *data, ::primitive::memory_size size, const uint32_t *table);
+uint32_t CrcUpdateT8(uint32_t v, const void *data, memory_size_t size, const uint32_t *table);
 
-uint32_t CrcUpdateT4(uint32_t v, const void *data, ::primitive::memory_size size, const uint32_t *table)
+uint32_t CrcUpdateT4(uint32_t v, const void *data, memory_size_t size, const uint32_t *table)
 {
   const byte *p = (const byte *)data;
   for (; size > 0 && ((uint32_t)(ptrdiff_t)p & 3) != 0; size--, p++)
@@ -29,7 +29,7 @@ uint32_t CrcUpdateT4(uint32_t v, const void *data, ::primitive::memory_size size
   return v;
 }
 
-uint32_t CrcUpdateT8(uint32_t v, const void *data, ::primitive::memory_size size, const uint32_t *table)
+uint32_t CrcUpdateT8(uint32_t v, const void *data, memory_size_t size, const uint32_t *table)
 {
   return CrcUpdateT4(v, data, size, table);
 }

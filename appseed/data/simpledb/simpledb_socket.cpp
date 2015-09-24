@@ -250,7 +250,7 @@ namespace simpledb
          int32_t iLen = Application.file().length(lpcsz);
          if(prangea->get_count() > 1)
          {
-            primitive::memory_size uiTotal = 0;
+            memory_size_t uiTotal = 0;
             memory mem;
             mem.allocate(128 * 1024 * 1024);
             for(int32_t i = 0; i < prangea->get_count(); i++)
@@ -261,7 +261,7 @@ namespace simpledb
                   continue;
                // iEnd > iLen is not verified because file may be growing
                spfile->seek(iStart, ::file::seek_begin);
-               primitive::memory_size uiRead;
+               memory_size_t uiRead;
                ::file::memory_buffer memfile(get_app());
                primitive::memory_position iPos = iStart;
                if(iEnd >= iStart)
@@ -283,7 +283,7 @@ namespace simpledb
                {
                   if(iEnd >= iStart)
                   {
-                     uiRead = MIN(mem.get_size(), (primitive::memory_size) (iEnd - iPos + 1));
+                     uiRead = MIN(mem.get_size(), (memory_size_t) (iEnd - iPos + 1));
                   }
                   else
                   {
@@ -305,7 +305,7 @@ namespace simpledb
          }
          else
          {
-            primitive::memory_size uiTotal = 0;
+            memory_size_t uiTotal = 0;
             memory mem;
             mem.allocate(128 * 1024 * 1024);
             primitive::memory_position iStart = prangea->element_at(0)->element_at(0);
@@ -314,7 +314,7 @@ namespace simpledb
             {
                // iEnd > iLen is not verified because file may be growing
                spfile->seek(iStart, ::file::seek_begin);
-               primitive::memory_size uiRead;
+               memory_size_t uiRead;
                ::file::memory_buffer memfile(get_app());
                primitive::memory_position iPos = iStart;
                if(iEnd >= iStart)

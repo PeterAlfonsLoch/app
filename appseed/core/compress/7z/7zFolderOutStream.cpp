@@ -82,7 +82,7 @@ namespace n7z
       return S_OK;
    }
 
-   void CFolderOutStream::write(const void *data, ::primitive::memory_size size, ::primitive::memory_size * processedSize)
+   void CFolderOutStream::write(const void *data, memory_size_t size, memory_size_t * processedSize)
    {
       if (processedSize != NULL)
          *processedSize = 0;
@@ -90,7 +90,7 @@ namespace n7z
       {
          if (_fileIsOpen)
          {
-            ::primitive::memory_size cur = size < _rem ? size : (uint32_t)_rem;
+            memory_size_t cur = size < _rem ? size : (uint32_t)_rem;
             _crcStream->write(data, cur, &cur);
             if (cur == 0)
                break;

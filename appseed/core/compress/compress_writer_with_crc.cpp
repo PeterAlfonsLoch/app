@@ -6,7 +6,7 @@
 namespace libcompress
 {
 
-   void writer_with_crc::write(const void *data, ::primitive::memory_size size, ::primitive::memory_size *processedSize)
+   void writer_with_crc::write(const void *data, memory_size_t size, memory_size_t *processedSize)
    {
      if (_stream)
        _stream->write(data, size, &size);

@@ -7,7 +7,7 @@ namespace file
 {
 
 
-   void limited_writer::write(const void *data, ::primitive::memory_size size, ::primitive::memory_size * processedSize)
+   void limited_writer::write(const void *data, memory_size_t size, memory_size_t * processedSize)
    {
       if (processedSize != NULL)
          *processedSize = 0;

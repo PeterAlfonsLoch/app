@@ -243,7 +243,7 @@ namespace ios
       return TRUE;
    }
 
-   ::primitive::memory_size file::read(void * lpBuf, ::primitive::memory_size nCount)
+   memory_size_t file::read(void * lpBuf, memory_size_t nCount)
    {
       ASSERT_VALID(this);
       ASSERT(m_iFile != (UINT)hFileNull);
@@ -255,8 +255,8 @@ namespace ios
       ASSERT(__is_valid_address(lpBuf, nCount));
 
       ::primitive::memory_position pos = 0;
-      ::primitive::memory_size sizeRead = 0;
-      ::primitive::memory_size readNow;
+      memory_size_t sizeRead = 0;
+      memory_size_t readNow;
       while(nCount > 0)
       {
          readNow = (size_t) min(0x7fffffff, nCount);
@@ -283,7 +283,7 @@ namespace ios
       return sizeRead;
    }
 
-   void file::write(const void * lpBuf, ::primitive::memory_size nCount)
+   void file::write(const void * lpBuf, memory_size_t nCount)
    {
       ASSERT_VALID(this);
       ASSERT(m_iFile != (UINT)hFileNull);
@@ -1047,14 +1047,14 @@ namespace ios
    uint64_t file::ReadHuge(void * lpBuffer, uint64_t dwCount)
    {
 
-       return  read(lpBuffer, (::primitive::memory_size) dwCount);
+       return  read(lpBuffer, (memory_size_t) dwCount);
 
    }
 
    void file::WriteHuge(const void * lpBuffer, uint64_t dwCount)
    {
 
-      write(lpBuffer, (::primitive::memory_size) dwCount);
+      write(lpBuffer, (memory_size_t) dwCount);
 
    }
 

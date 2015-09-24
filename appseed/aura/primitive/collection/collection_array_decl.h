@@ -1045,9 +1045,9 @@ public:
    //::count sort_add(const array < TYPE, ARG_TYPE > & a, index ( * fCompare ) (TYPE *, TYPE *), index_array & ia);
    //index sort_remove(ARG_TYPE t, index ( * fCompare ) (TYPE *, TYPE *), index_array & ia);
 
-   operator TYPE *() {return (TYPE *) m_pData;}
-   operator const TYPE *() const {return (const TYPE *)m_pData;}
-   operator count() const { return get_count(); }
+   operator TYPE *() {return this->m_pData;}
+   operator const TYPE *() const {return this->m_pData;}
+   operator count() const { return this->get_count(); }
 
    inline array & operator += (const array & a);
    inline array operator + (const array & a) const;

@@ -75,14 +75,14 @@ namespace n7z
       return S_OK;
    }
 
-   ::primitive::memory_size CFolderInStream::read(void *data, ::primitive::memory_size size)
+   memory_size_t CFolderInStream::read(void *data, memory_size_t size)
    {
-      ::primitive::memory_size processedSize = 0;
+      memory_size_t processedSize = 0;
       while (size > 0)
       {
          if (_fileIsOpen)
          {
-            ::primitive::memory_size processed2;
+            memory_size_t processed2;
             processed2 = _inStreamWithHash->read(data, size);
             if (processed2 == 0)
             {

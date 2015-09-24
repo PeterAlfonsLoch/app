@@ -31,7 +31,7 @@ namespace n7z
       array<uint32_t> CRCs;
       array<uint64_t> Sizes;
 
-      ::primitive::memory_size read(void *data, ::primitive::memory_size size);
+      memory_size_t read(void *data, memory_size_t size);
       virtual HRes GetSubStreamSize(uint64_t subStream, uint64_t *value);
 
       CFolderInStream();

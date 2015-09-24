@@ -43,7 +43,7 @@ namespace file
       ~out_buffer();
 
       using ::object::create;
-      bool create(::primitive::memory_size bufferSize);
+      bool create(memory_size_t bufferSize);
       void free();
 
       void SetMemStream(byte *buffer);

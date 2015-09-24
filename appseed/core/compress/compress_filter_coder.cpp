@@ -49,7 +49,7 @@ namespace libcompress
 
       while (!_outSizeIsDefined || _nowPos64 < _outSize)
       {
-         ::primitive::memory_size processedSize = kBufferSize - bufferPos;
+         memory_size_t processedSize = kBufferSize - bufferPos;
 
          // Change it: It can be optimized using ReadPart
          RINOK(::file::read(inStream, _buffer + bufferPos, &processedSize));
@@ -97,13 +97,13 @@ namespace libcompress
    }
 
 
-   void filter_coder::write(const void * data, ::primitive::memory_size size, ::primitive::memory_size * processedSize)
+   void filter_coder::write(const void * data, memory_size_t size, memory_size_t * processedSize)
    {
       if (processedSize != NULL)
          *processedSize = 0;
       while (size > 0)
       {
-         ::primitive::memory_size sizeTemp = min(size, kBufferSize - _bufferPos);
+         memory_size_t sizeTemp = min(size, kBufferSize - _bufferPos);
          memcpy(_buffer + _bufferPos, data, sizeTemp);
          size -= sizeTemp;
          if (processedSize != NULL)
@@ -166,7 +166,7 @@ namespace libcompress
       return S_OK;
    }
 
-   ::primitive::memory_size filter_coder::read(void *data, ::primitive::memory_size size)
+   memory_size_t filter_coder::read(void *data, memory_size_t size)
    {
       uint_ptr processedSize = 0;
       while (size > 0)
@@ -186,7 +186,7 @@ namespace libcompress
             _buffer[i] = _buffer[_convertedPosEnd + i];
          _bufferPos = i;
          _convertedPosBegin = _convertedPosEnd = 0;
-         ::primitive::memory_size processedSizeTemp = kBufferSize - _bufferPos;
+         memory_size_t processedSizeTemp = kBufferSize - _bufferPos;
          RINOK(::file::read(_inStream, _buffer + _bufferPos, &processedSizeTemp));
          _bufferPos += (uint32_t)processedSizeTemp;
          _convertedPosEnd = Filter->Filter(_buffer, _bufferPos);

@@ -30,7 +30,7 @@ namespace rar
      ::file::reader * _stream;
      uint_array CRCs;
 
-     ::primitive::memory_size read(void * data, ::primitive::memory_size size);
+     memory_size_t read(void * data, memory_size_t size);
 
      HRESULT OpenStream();
      HRESULT CloseStream();

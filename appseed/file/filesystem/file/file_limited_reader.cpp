@@ -8,9 +8,9 @@
 namespace file
 {
 
-   ::primitive::memory_size limited_reader::read(void *data, ::primitive::memory_size size)
+   memory_size_t limited_reader::read(void *data, memory_size_t size)
    {
-     primitive::memory_size realProcessedSize = 0;
+     memory_size_t realProcessedSize = 0;
      uint32_t sizeToRead = (uint32_t)MIN((_size - _pos), (uint64_t)size);
 //     HRESULT result = S_OK;
      if (sizeToRead > 0)

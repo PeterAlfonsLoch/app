@@ -13,6 +13,6 @@ CLASS_DECL_CORE void CrcGenerateTable();
 #define CRC_GET_DIGEST(crc) ((crc) ^ CRC_INIT_VAL)
 #define CRC_UPDATE_BYTE(crc, b) (g_pCrcTable[((crc) ^ (b)) & 0xFF] ^ ((crc) >> 8))
 
-CLASS_DECL_CORE uint32_t crc_update(uint32_t crc, const void * data, ::primitive::memory_size size);
-CLASS_DECL_CORE uint32_t crc_calc(const void * data, ::primitive::memory_size size);
+CLASS_DECL_CORE uint32_t crc_update(uint32_t crc, const void * data, memory_size_t size);
+CLASS_DECL_CORE uint32_t crc_calc(const void * data, memory_size_t size);
 

@@ -5,9 +5,9 @@
 namespace libcompress
 {
 
-   ::primitive::memory_size size_count_reader2::read(void *data, ::primitive::memory_size size)
+   memory_size_t size_count_reader2::read(void *data, memory_size_t size)
    {
-     ::primitive::memory_size realProcessedSize = realProcessedSize = _stream->read(data, size);
+     memory_size_t realProcessedSize = realProcessedSize = _stream->read(data, size);
      _size += realProcessedSize;
      return realProcessedSize;
    }

@@ -46,9 +46,9 @@ namespace file
       free();
    }
 
-   bool out_buffer::create(::primitive::memory_size bufferSize)
+   bool out_buffer::create(memory_size_t bufferSize)
    {
-      const ::primitive::memory_size kMinBlockSize = 1;
+      const memory_size_t kMinBlockSize = 1;
       if (bufferSize < kMinBlockSize)
          bufferSize = kMinBlockSize;
       if (m_memory.get_size() == bufferSize)
@@ -92,18 +92,18 @@ namespace file
    HRESULT out_buffer::FlushPart()
    {
       // _streamPos < _bufferSize
-      ::primitive::memory_size size = (::primitive::memory_size) ((_streamPos >= _pos) ? (m_memory.get_size() - _streamPos) : (_pos - _streamPos));
+      memory_size_t size = (memory_size_t) ((_streamPos >= _pos) ? (m_memory.get_size() - _streamPos) : (_pos - _streamPos));
       HRESULT result = S_OK;
       if (_buffer2 != 0)
       {
-         memmove(_buffer2, m_memory.get_data() + (::primitive::memory_size) _streamPos, (size_t) size);
+         memmove(_buffer2, m_memory.get_data() + (memory_size_t) _streamPos, (size_t) size);
          _buffer2 += size;
       }
 
       if (_stream != 0)
       {
-         ::primitive::memory_size processedSize = 0;
-         _stream->write(m_memory.get_data() + (::primitive::memory_size) _streamPos, size, &processedSize);
+         memory_size_t processedSize = 0;
+         _stream->write(m_memory.get_data() + (memory_size_t) _streamPos, size, &processedSize);
          size = processedSize;
       }
       _streamPos += size;

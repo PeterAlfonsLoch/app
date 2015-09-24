@@ -250,7 +250,7 @@ namespace metrowin
    }
 
 
-   ::primitive::memory_size file::read(void * lpBuf, ::primitive::memory_size nCount)
+   memory_size_t file::read(void * lpBuf, memory_size_t nCount)
    {
       ASSERT_VALID(this);
       ASSERT(m_hFile != (UINT)hFileNull);
@@ -268,7 +268,7 @@ namespace metrowin
       return (UINT)dwRead;
    }
 
-   void file::write(const void * lpBuf, ::primitive::memory_size nCount)
+   void file::write(const void * lpBuf, memory_size_t nCount)
    {
       ASSERT_VALID(this);
       ASSERT(m_hFile != (UINT)hFileNull);

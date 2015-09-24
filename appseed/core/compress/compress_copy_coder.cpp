@@ -38,7 +38,7 @@ namespace libcompress
       TotalSize = 0;
       for (;;)
       {
-         ::primitive::memory_size size = kBufferSize;
+         memory_size_t size = kBufferSize;
          if (outSize != 0)
             if (size > *outSize - TotalSize)
                size = (uint32_t)(*outSize - TotalSize);

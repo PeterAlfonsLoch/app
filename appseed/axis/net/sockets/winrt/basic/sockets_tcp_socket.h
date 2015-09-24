@@ -190,7 +190,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          \param len Length of data
          \param f Dummy flags -- not used */
          using stream_socket::write;
-      virtual void write(const void * lpBuf, ::primitive::memory_size nCount);
+      virtual void write(const void * lpBuf, memory_size_t nCount);
          /** This callback is executed after a successful read from the socket.
          \param buf Pointer to the data
          \param len Length of the data */

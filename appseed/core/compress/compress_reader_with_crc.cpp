@@ -9,9 +9,9 @@ namespace libcompress
 {
 
 
-::primitive::memory_size reader_with_crc::read(void *data, ::primitive::memory_size size)
+memory_size_t reader_with_crc::read(void *data, memory_size_t size)
 {
-  ::primitive::memory_size realProcessedSize = _stream->read(data, size);
+  memory_size_t realProcessedSize = _stream->read(data, size);
   _size += realProcessedSize;
   if (size > 0 && realProcessedSize == 0)
     _wasFinished = true;
@@ -19,9 +19,9 @@ namespace libcompress
   return realProcessedSize;
 }
 
-::primitive::memory_size input_stream_with_crc::read(void *data, ::primitive::memory_size size)
+memory_size_t input_stream_with_crc::read(void *data, memory_size_t size)
 {
-  ::primitive::memory_size realProcessedSize = _stream->read(data, size);
+  memory_size_t realProcessedSize = _stream->read(data, size);
   /*
   if (size > 0 && realProcessedSize == 0)
     _wasFinished = true;

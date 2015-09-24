@@ -36,7 +36,7 @@
 //}
 //
 //
-//void ::user::elemental::get_string(char * psz, ::primitive::memory_size len) const
+//void ::user::elemental::get_string(char * psz, memory_size_t len) const
 //{
 //
 //   string str;

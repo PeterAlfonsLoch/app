@@ -39,7 +39,7 @@ namespace file
       _crc = CRC_INIT_VAL;
    }
 
-   bool temp_io_buffer::write_to_file(const void *data, ::primitive::memory_size size)
+   bool temp_io_buffer::write_to_file(const void *data, memory_size_t size)
    {
       if (size == 0)
          return true;
@@ -49,14 +49,14 @@ namespace file
          _tempFile = Application.file().get(_tempFileName);
          _tempFileCreated = _tempFile.is_set();
       }
-      primitive::memory_size processed = size;
+      memory_size_t processed = size;
       _outFile->write(data, size);
       _crc = crc_update(_crc, data, processed);
       _size += processed;
       return (processed == size);
    }
 
-   bool temp_io_buffer::write(const void *data, ::primitive::memory_size size)
+   bool temp_io_buffer::write(const void *data, memory_size_t size)
    {
       if (_bufPos < kTempBufSize)
       {
@@ -80,9 +80,9 @@ namespace file
 
       if (_bufPos > 0)
       {
-         RINOK(::file::write(stream, m_memory.get_data(), (::primitive::memory_size) _bufPos));
+         RINOK(::file::write(stream, m_memory.get_data(), (memory_size_t) _bufPos));
          //WriteStream(stream, m_memory.get_data(), _bufPos);
-         crc = crc_update(crc, m_memory.get_data(), (::primitive::memory_size) _bufPos);
+         crc = crc_update(crc, m_memory.get_data(), (memory_size_t) _bufPos);
          size += _bufPos;
       }
       if (_tempFileCreated)
@@ -106,7 +106,7 @@ namespace file
       return (_crc == crc && size == _size) ? S_OK : E_FAIL;
    }
 
-   void temp_io_writer::write(const void *data, ::primitive::memory_size size, ::primitive::memory_size * processed)
+   void temp_io_writer::write(const void *data, memory_size_t size, memory_size_t * processed)
    {
       if (!_buf->write(data, size))
       {
