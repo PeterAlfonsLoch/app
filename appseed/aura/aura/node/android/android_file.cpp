@@ -313,7 +313,7 @@ namespace android
       ASSERT(lpBuf != NULL);
       ASSERT(__is_valid_address(lpBuf, nCount));
 
-      ::primitive::memory_position pos = 0;
+      memory_position_t pos = 0;
       memory_size_t sizeRead = 0;
       memory_size_t readNow;
       while(nCount > 0)
@@ -353,7 +353,7 @@ namespace android
       ASSERT(lpBuf != NULL);
       ASSERT(__is_valid_address(lpBuf, nCount, FALSE));
 
-      ::primitive::memory_position pos = 0;
+      memory_position_t pos = 0;
       while(nCount > 0)
       {
          int32_t iWrite = ::write(m_iFile, &((const byte *)lpBuf)[pos], (size_t) MIN(0x7fffffff, nCount));

@@ -5,7 +5,7 @@
 // ___DEBUG_STATE implementation
 
 #ifndef ___NO_DEBUG_CRT
-static _CRT_DUMP_CLIENT pfnOldCrtDumpClient = NULL;
+//static _CRT_DUMP_CLIENT pfnOldCrtDumpClient = NULL;
 
 #ifdef DEBUG
 
@@ -70,8 +70,8 @@ void __cdecl __crt_dump_client(void * pvData, size_t nBytes)
 // xxx      sprintf_s(sz, _countof(sz), "faulted while dumping object at $%p, %u bytes long\n", pvData, nBytes);
       g_dumpcontext << sz;
    }
-   if (pfnOldCrtDumpClient != NULL)
-      (*pfnOldCrtDumpClient)(pvData, nBytes);
+   //if (pfnOldCrtDumpClient != NULL)
+   //   (*pfnOldCrtDumpClient)(pvData, nBytes);
 }
 
 int32_t __cdecl __crt_report_hook(int32_t nRptType, char *szMsg, int32_t* pResult)

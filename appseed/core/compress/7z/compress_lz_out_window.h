@@ -31,8 +31,8 @@ namespace libcompress
          }
          if (_limitPos - _pos > len && m_memory.get_size() - pos > len)
          {
-            const byte *src = m_memory.get_data() + ::primitive::memory_position(pos);
-            byte *dest = m_memory.get_data() + ::primitive::memory_position(_pos);
+            const byte *src = m_memory.get_data() + memory_position_t(pos);
+            byte *dest = m_memory.get_data() + memory_position_t(_pos);
             _pos += len;
             do
             *dest++ = *src++;

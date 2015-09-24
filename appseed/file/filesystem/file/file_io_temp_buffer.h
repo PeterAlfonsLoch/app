@@ -24,7 +24,7 @@ namespace file
       bool                             _tempFileCreated;
       uint32_t                           _crc;
       memory              m_memory;
-      ::primitive::memory_position     _bufPos;
+      memory_position_t     _bufPos;
       memory_size_t         _size;
 
 
