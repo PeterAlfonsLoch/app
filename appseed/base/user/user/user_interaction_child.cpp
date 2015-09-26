@@ -1027,7 +1027,19 @@ namespace user
 
    }
 
+   void interaction_child::keyboard_focus_OnKillFocus()
+   {
 
+      ::user::interaction * pui = get_wnd();
+
+      if(pui != NULL)
+      {
+
+         pui->get_wnd()->keyboard_focus_OnChildKillFocus();
+
+      }
+
+   }
 
 
 } // namespace user

@@ -114,6 +114,11 @@ namespace user
    void elemental::keyboard_focus_OnKillFocus()
    {
 
+   }
+
+
+   void elemental::keyboard_focus_OnChildKillFocus()
+   {
 
    }
 

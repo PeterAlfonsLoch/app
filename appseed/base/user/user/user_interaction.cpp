@@ -4573,6 +4573,18 @@ namespace user
    }
 
 
+   void interaction::keyboard_focus_OnKillFocus()
+   {
+
+      if(m_pimpl == NULL)
+         return;
+
+
+      m_pimpl->keyboard_focus_OnKillFocus();
+
+   }
+
+
    ::user::interaction * interaction::get_os_focus_uie()
    {
 
@@ -6527,6 +6539,8 @@ namespace user
          }
          else
          {
+
+            output_debug_string("::user::interaction::_001OnLButtonDown Not Focusable");
 
             Session.set_keyboard_focus(NULL);
 

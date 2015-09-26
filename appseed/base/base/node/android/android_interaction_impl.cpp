@@ -5418,19 +5418,22 @@ namespace android
 
       UNREFERENCED_PARAMETER(pfocus);
 
-      if(pfocus == NULL || !pfocus->keyboard_focus_is_focusable())
-      {
+      System.m_pandroidinitdata->m_bShowKeyboard = true;
 
-         System.m_pandroidinitdata->m_bHideKeyboard = true;
+   }
 
-      }
-      else
-      {
 
-         System.m_pandroidinitdata->m_bShowKeyboard = true;
+   void interaction_impl::keyboard_focus_OnKillFocus()
+   {
 
-      }
+      System.m_pandroidinitdata->m_bHideKeyboard = true;
 
+   }
+
+   void interaction_impl::keyboard_focus_OnChildKillFocus()
+   {
+
+      System.m_pandroidinitdata->m_bHideKeyboard = true;
 
    }
 

@@ -55,6 +55,7 @@ namespace user
       virtual bool keyboard_focus_is_focusable();
       virtual bool keyboard_focus_OnSetFocus();
       virtual void keyboard_focus_OnKillFocus();
+      virtual void keyboard_focus_OnChildKillFocus();
 
       // mouse focus
 

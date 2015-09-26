@@ -3039,6 +3039,8 @@ namespace axis
                if(pkeyboardfocusOld != NULL)
                {
 
+                  output_debug_string("axis::session::set_keyboard_focus pkeyboardfocusOld->keyboard_focus_OnKillFocus()");
+
                   pkeyboardfocusOld->keyboard_focus_OnKillFocus();
 
                }
@@ -3054,10 +3056,15 @@ namespace axis
 
          m_pkeyboardfocus = pkeyboardfocus;
 
-         if(m_pkeyboardfocus->get_wnd() != NULL)
+         if(m_pkeyboardfocus != NULL)
          {
 
-            m_pkeyboardfocus->get_wnd_elemental()->on_keyboard_focus(m_pkeyboardfocus);
+            if(m_pkeyboardfocus->get_wnd() != NULL)
+            {
+
+               m_pkeyboardfocus->get_wnd_elemental()->on_keyboard_focus(m_pkeyboardfocus);
+
+            }
 
          }
 

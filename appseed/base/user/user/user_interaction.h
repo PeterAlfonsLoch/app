@@ -721,6 +721,7 @@ namespace user
       virtual void on_update(::user::impact * pSender,LPARAM lHint,::object* pHint);
 
       virtual void keyboard_focus_OnKeyDown(signal_details * pobj);
+      virtual void keyboard_focus_OnKillFocus();
 
       virtual sp(::user::interaction) get_child(::user::interaction * pui);
 

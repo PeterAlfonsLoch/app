@@ -691,6 +691,8 @@ namespace android
 
       ::user::interaction * get_next(bool bIgnoreChildren, int32_t * piLevel);
       virtual void on_keyboard_focus(::user::elemental * pfocus);
+      virtual void keyboard_focus_OnKillFocus();
+      virtual void keyboard_focus_OnChildKillFocus();
 
    };
 
