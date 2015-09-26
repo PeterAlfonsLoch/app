@@ -4,7 +4,7 @@
 
 
 string str_block(char ch,int32_t iSize);
-void str_fill(string & str,char ch);
+CLASS_DECL_BASE void str_fill(string & str,char ch);
 
 
 string str_block(char ch,int32_t iSize)
@@ -18,7 +18,7 @@ string str_block(char ch,int32_t iSize)
 }
 
 
-void str_fill(string & str,char ch)
+CLASS_DECL_BASE void str_fill(string & str,char ch)
 {
    str = str_block(ch,(int32_t)str.get_length());
 }

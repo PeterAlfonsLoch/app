@@ -4,7 +4,7 @@
 
 //#define SEARCH_SCROLLING_PROFILING
 //#define PROFILE_CALC_LAYOUT
-void str_fill(string & str,char ch);
+CLASS_DECL_BASE void str_fill(string & str,char ch);
 
 extern CLASS_DECL_BASE thread_int_ptr < DWORD_PTR > t_time1;
 

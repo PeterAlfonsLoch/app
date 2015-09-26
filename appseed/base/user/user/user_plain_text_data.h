@@ -1,10 +1,9 @@
 #pragma once
 
+
 namespace user
 {
 
-
-   class plain_text_group_command;
 
    enum e_plain_text_command
    {
@@ -15,7 +14,7 @@ namespace user
    };
 
 
-   class CLASS_DECL_BASE plain_text_tree :
+   class CLASS_DECL_BASE plain_text_tree:
       public ::data::tree
    {
    public:
@@ -34,8 +33,8 @@ namespace user
       index                            m_iBranch;
       ::file::buffer_sp                m_pfile;
       ::file::edit_buffer              m_editfile;
-      
-      
+
+
       strsize                          m_iSelStart;
       strsize                          m_iSelEnd;
 
@@ -49,7 +48,7 @@ namespace user
 
    };
 
-   class plain_text_command : public ::data::item
+   class CLASS_DECL_BASE plain_text_command: public ::data::item
    {
    public:
       virtual e_plain_text_command get_command();
@@ -63,7 +62,7 @@ namespace user
    };
 
 
-   class plain_text_set_sel_command : public plain_text_command
+   class CLASS_DECL_BASE plain_text_set_sel_command: public plain_text_command
    {
    public:
       strsize   m_iSelStart;
@@ -72,27 +71,27 @@ namespace user
       strsize   m_iPreviousSelEnd;
       virtual void Undo(plain_text_tree * pedit);
       virtual void Redo(plain_text_tree * pedit);
-      virtual e_plain_text_command get_command(){ return plain_text_command_set_sel; };
+      virtual e_plain_text_command get_command() { return plain_text_command_set_sel; };
    };
 
-   class plain_text_file_command : public plain_text_command
+   class CLASS_DECL_BASE plain_text_file_command: public plain_text_command
    {
    public:
       virtual void Undo(plain_text_tree * pedit);
       virtual void Redo(plain_text_tree * pedit);
-      virtual e_plain_text_command get_command(){ return plain_text_command_file; };
+      virtual e_plain_text_command get_command() { return plain_text_command_file; };
    };
 
 
-   class plain_text_group_command : public plain_text_command,
+   class CLASS_DECL_BASE plain_text_group_command: public plain_text_command,
       public spa(plain_text_command)
    {
    public:
-      
+
       sp(plain_text_command) m_pparent;
 
       plain_text_group_command();
-      virtual e_plain_text_command get_command(){ return plain_text_command_group; };
+      virtual e_plain_text_command get_command() { return plain_text_command_group; };
       virtual void Undo(plain_text_tree * pedit);
       virtual void Redo(plain_text_tree * pedit);
 
@@ -100,9 +99,16 @@ namespace user
       DECLARE_AND_IMPLEMENT_DEFAULT_ALLOCATION
 #define new AURA_NEW
 
-      };
+   };
+
 
 } // namespace user
+
+
+
+
+
+
 
 
 

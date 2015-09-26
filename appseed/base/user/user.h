@@ -24,6 +24,8 @@ namespace user
 
    class schema;
    class tree;
+   class plain_text_group_command;
+
 
 
 } // namespace user
