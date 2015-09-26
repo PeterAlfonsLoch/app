@@ -1978,7 +1978,7 @@ FT_BEGIN_HEADER
   FT_EXPORT( FT_Error )
   FT_New_Memory_Face( FT_Library      library,
                       const FT_Byte*  file_base,
-                      FT_Long         file_size_t,
+                      FT_Long         file_size,
                       FT_Long         face_index,
                       FT_Face        *aface );
 
