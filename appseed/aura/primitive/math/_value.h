@@ -38,9 +38,15 @@ namespace math
       virtual public value
    {
    public:
+      
+
 
 
       string m_str;
+
+
+      value_impl();
+      virtual ~value_impl();
 
 
       virtual void set_value_string(const char * psz);

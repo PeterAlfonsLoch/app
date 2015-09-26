@@ -83,16 +83,17 @@
       <PreprocessorDefinitions>_AURA_SQLITE;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalOptions>-Wno-unknown-pragmas -Wno-unused-function -Wno-implicit-int -Wno-unused-variable -Wno-pointer-sign</AdditionalOptions>
       <CppLanguageStandard>gnu++1y</CppLanguageStandard>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <RuntimeTypeInfo>
+      </RuntimeTypeInfo>
       <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>
       <ExceptionHandling>Enabled</ExceptionHandling>
       <CLanguageStandard>gnu11</CLanguageStandard>
     </ClCompile>
     <Link />
     <Link>
-      <SharedLibrarySearchPath>$(OutDir);$(NDKRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\lib;%(SharedLibrarySearchPath)</SharedLibrarySearchPath>
-      <AdditionalLibraryDirectories>$(OutDir);$(NDKRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\lib;$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\4.8;$(StlLibraryPath);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <SharedLibrarySearchPath>$(VS_NdkRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\lib;%(SharedLibrarySearchPath)</SharedLibrarySearchPath>
       <LibraryDependencies>aura;log;android;$(StlLibraryName)</LibraryDependencies>
+      <AdditionalLibraryDirectories>$(OutDir);$(VS_NdkRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\lib;$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">

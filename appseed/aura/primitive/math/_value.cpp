@@ -20,6 +20,18 @@ namespace math
       return m_pimpl->get_value_string(egetvalue);;
    }
 
+   value_impl::value_impl()
+   {
+
+
+   }
+
+   value_impl::~value_impl()
+   {
+
+
+   }
+
 
    void value_impl::set_value_string(const char * psz)
    {

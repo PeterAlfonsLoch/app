@@ -1183,6 +1183,243 @@
     <ClCompile Include="primitive\math\math_scalar.cpp">
       <Filter>Source Files\primitive\math</Filter>
     </ClCompile>
+    <ClCompile Include="primitive\math.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\number.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_application_bias.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_bit.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_color.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_command.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_command_line.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_command_thread.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_create.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_edit.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_factory.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_id.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_id_space.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_interlocked_long.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_interlocked_long_pulse.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_job.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_memory.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_memory_base.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_memory_c.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_memory_container.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_object.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_property.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_property_set.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_relation_set.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_request_interface.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_request_signal.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_shared_memory.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_signal.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_type.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_var.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive_virtual_memory.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\value.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\aaa_want_to_remove_double.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\aaa_want_to_remove_float.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\aaa_want_to_remove_integer.cpp">
+      <Filter>Source Files\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\str\str_base64.cpp">
+      <Filter>Source Files\primitive\str</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\str\str_c.cpp">
+      <Filter>Source Files\primitive\str</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\str\str_core.cpp">
+      <Filter>Source Files\primitive\str</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\str\str_dup.cpp">
+      <Filter>Source Files\primitive\str</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\str\str_from_integer.cpp">
+      <Filter>Source Files\primitive\str</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\str\str_hex.cpp">
+      <Filter>Source Files\primitive\str</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\str\str_international.cpp">
+      <Filter>Source Files\primitive\str</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\str\str_international_locale_schema.cpp">
+      <Filter>Source Files\primitive\str</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\str\str_istring.cpp">
+      <Filter>Source Files\primitive\str</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\str\str_manager.cpp">
+      <Filter>Source Files\primitive\str</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\str\str_parse.cpp">
+      <Filter>Source Files\primitive\str</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\str\str_simple.cpp">
+      <Filter>Source Files\primitive\str</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\str\str_str.cpp">
+      <Filter>Source Files\primitive\str</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\str\str_string.cpp">
+      <Filter>Source Files\primitive\str</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\str\str_stringtow.cpp">
+      <Filter>Source Files\primitive\str</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\str\str_strw.cpp">
+      <Filter>Source Files\primitive\str</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\str\str_strx.cpp">
+      <Filter>Source Files\primitive\str</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\str\str_sz.cpp">
+      <Filter>Source Files\primitive\str</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\str\str_to_integer.cpp">
+      <Filter>Source Files\primitive\str</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\str\str_tokenizer.cpp">
+      <Filter>Source Files\primitive\str</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\str\str_verisimple_wstring.cpp">
+      <Filter>Source Files\primitive\str</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\str\str_wtostring.cpp">
+      <Filter>Source Files\primitive\str</Filter>
+    </ClCompile>
+    <ClCompile Include="user\colorertake5\colorertake5_base_editor.cpp">
+      <Filter>Source Files\user\colorertake5</Filter>
+    </ClCompile>
+    <ClCompile Include="user\colorertake5\colorertake5_colorertake5.cpp">
+      <Filter>Source Files\user\colorertake5</Filter>
+    </ClCompile>
+    <ClCompile Include="user\colorertake5\colorertake5_default_error_handler.cpp">
+      <Filter>Source Files\user\colorertake5</Filter>
+    </ClCompile>
+    <ClCompile Include="user\colorertake5\colorertake5_error_handler_writer.cpp">
+      <Filter>Source Files\user\colorertake5</Filter>
+    </ClCompile>
+    <ClCompile Include="user\colorertake5\colorertake5_exception.cpp">
+      <Filter>Source Files\user\colorertake5</Filter>
+    </ClCompile>
+    <ClCompile Include="user\colorertake5\colorertake5_hrc_parser_helpers.cpp">
+      <Filter>Source Files\user\colorertake5</Filter>
+    </ClCompile>
+    <ClCompile Include="user\colorertake5\colorertake5_hrc_parser_impl.cpp">
+      <Filter>Source Files\user\colorertake5</Filter>
+    </ClCompile>
+    <ClCompile Include="user\colorertake5\colorertake5_line_regions_compact_support.cpp">
+      <Filter>Source Files\user\colorertake5</Filter>
+    </ClCompile>
+    <ClCompile Include="user\colorertake5\colorertake5_line_regions_support.cpp">
+      <Filter>Source Files\user\colorertake5</Filter>
+    </ClCompile>
+    <ClCompile Include="user\colorertake5\colorertake5_line_source.cpp">
+      <Filter>Source Files\user\colorertake5</Filter>
+    </ClCompile>
+    <ClCompile Include="user\colorertake5\colorertake5_logging.cpp">
+      <Filter>Source Files\user\colorertake5</Filter>
+    </ClCompile>
+    <ClCompile Include="user\colorertake5\colorertake5_outliner.cpp">
+      <Filter>Source Files\user\colorertake5</Filter>
+    </ClCompile>
+    <ClCompile Include="user\colorertake5\colorertake5_parsed_line_writer.cpp">
+      <Filter>Source Files\user\colorertake5</Filter>
+    </ClCompile>
+    <ClCompile Include="user\colorertake5\colorertake5_parser_factory.cpp">
+      <Filter>Source Files\user\colorertake5</Filter>
+    </ClCompile>
+    <ClCompile Include="user\colorertake5\colorertake5_region_handler.cpp">
+      <Filter>Source Files\user\colorertake5</Filter>
+    </ClCompile>
+    <ClCompile Include="user\colorertake5\colorertake5_region_mapper_impl.cpp">
+      <Filter>Source Files\user\colorertake5</Filter>
+    </ClCompile>
+    <ClCompile Include="user\colorertake5\colorertake5_styled_hrd_mapper.cpp">
+      <Filter>Source Files\user\colorertake5</Filter>
+    </ClCompile>
+    <ClCompile Include="user\colorertake5\colorertake5_text_hrd_mapper.cpp">
+      <Filter>Source Files\user\colorertake5</Filter>
+    </ClCompile>
+    <ClCompile Include="user\colorertake5\colorertake5_text_lines.cpp">
+      <Filter>Source Files\user\colorertake5</Filter>
+    </ClCompile>
+    <ClCompile Include="user\colorertake5\colorertake5_text_parser_helpers.cpp">
+      <Filter>Source Files\user\colorertake5</Filter>
+    </ClCompile>
+    <ClCompile Include="user\colorertake5\colorertake5_text_parser_impl.cpp">
+      <Filter>Source Files\user\colorertake5</Filter>
+    </ClCompile>
+    <ClCompile Include="user\colorertake5\TextConsoleViewer.cpp">
+      <Filter>Source Files\user\colorertake5</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">

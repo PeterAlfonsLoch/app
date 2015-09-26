@@ -1667,7 +1667,7 @@ namespace android
 
       // walk each child
       for(pWndChild = pWndChild->GetTopWindow(); pWndChild != NULL;
-         pWndChild = pWndChild->GetNextWindow(GW_HWNDNEXT))
+         pWndChild = pWndChild->get_next_window(GW_HWNDNEXT))
       {
          pWndChild = GetDescendantWindow(pWndChild,id);
          if(pWndChild != NULL)
@@ -5418,7 +5418,18 @@ namespace android
 
       UNREFERENCED_PARAMETER(pfocus);
 
-      System.m_pandroidinitdata->m_bShowKeyboard = true;
+      if(pfocus == NULL || !pfocus->keyboard_focus_is_focusable())
+      {
+
+         System.m_pandroidinitdata->m_bHideKeyboard = true;
+
+      }
+      else
+      {
+
+         System.m_pandroidinitdata->m_bShowKeyboard = true;
+
+      }
 
 
    }

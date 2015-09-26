@@ -350,15 +350,37 @@ public:
 
 
 template < class T >
-T * clone(sp(T) pobject)
+T * clone(T * pobject)
 {
-   sp(object) pca =
+   
+   object * pobjectNew;
+
 #ifdef WINDOWS
-      pca = Sys(pobject->get_app()).factory().typed_clone(typeid(T).raw_name(),pobject);
+
+   pobjectNew = Sys(pobject->get_app()).factory().typed_clone(typeid(T).raw_name(),pobject);
+
 #else
-      pca = Sys(pobject->get_app()).factory().typed_clone(typeid(T).name(),pobject);
+
+   pobjectNew = Sys(pobject->get_app()).factory().typed_clone(typeid(T).name(),pobject);
+
 #endif
-   if(pca == NULL)
+
+   if(pobjectNew == NULL)
+   {
+
       return NULL;
-   return pca.cast < T >();
+
+   }
+
+   return dynamic_cast < T * > (pobjectNew);
+
+}
+
+
+template < class T >
+T * clone(sp(T) & sp)
+{
+
+   return ::clone(sp.m_p);
+
 }

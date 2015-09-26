@@ -362,14 +362,6 @@
   <ItemGroup>
     <None Include="html.def" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\axis\html_lite\nord_html_lite.vcxproj">
-      <Project>{3b814daf-fd98-487d-917e-9d708be3bc61}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\math\nord_math.vcxproj">
-      <Project>{57542d84-fffb-445a-a568-8830653fe8e8}</Project>
-    </ProjectReference>
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{F7A7C44A-61FA-4182-81B5-75240D07E5B9}</ProjectGuid>
     <Keyword>Android</Keyword>
@@ -445,8 +437,8 @@
     <Link />
     <Link>
       <LibraryDependencies>math;html_lite;core;base;axis;aura;$(StlLibraryName);log;android;m</LibraryDependencies>
-      <SharedLibrarySearchPath>$(OutDir);$(NDKRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\lib;%(SharedLibrarySearchPath)</SharedLibrarySearchPath>
-      <AdditionalLibraryDirectories>$(OutDir);$(NDKRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\lib;$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\4.8;$(StlLibraryPath);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <SharedLibrarySearchPath>$(VS_NdkRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\lib;%(SharedLibrarySearchPath)</SharedLibrarySearchPath>
+      <AdditionalLibraryDirectories>$(OutDir);$(VS_NdkRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\lib;$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">

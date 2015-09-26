@@ -60,7 +60,7 @@ string_interface & string_interface::operator = (const string_interface & str)
       return *this;
    char sz[256];
    strsize iLen = str.get_length();
-   if(iLen < ((sizeof(sz) / sizeof(char)) - sizeof(char)))
+   if(::compare::lt(iLen, ((sizeof(sz) / sizeof(char)) - sizeof(char))))
    {
       str.get_string(sz);
       set_string(sz,::action::source::op(::action::source_assign));

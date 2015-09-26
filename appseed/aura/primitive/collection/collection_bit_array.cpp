@@ -94,22 +94,22 @@ void bit_array::add_range(int32_t s, int32_t e)
       return;
    ensure_size(e + 1);
    int32_t cs = s>>5;
+   int32_t ce = e >> 5;
    if (s&0x1f)
    {
-      int32_t fillbytes = 0xFFFFFFFF << (s&0x1f);
-      if((e>>5) == (s>>5))
-         fillbytes &= 0xFFFFFFFF >> (0x1F - e&0x1F);
+      int32_t fillbytes = 0xffffffff << (s& 0x1f);
+      if(cs == ce)
+         fillbytes &= 0xffffffff >> (0x1f - (e & 0x1f));
       m_pdata[cs] |= fillbytes;
       cs++;
    }
-   int32_t ce = e>>5;
    if (s>>5 != ce && (e&0x1f) != 0x1f)
    {
-      m_pdata[ce] |= 0xFFFFFFFF >> (0x1F - e&0x1F);
+      m_pdata[ce] |= 0xffffffff >> ((0x1F - e) & 0x1F);
       ce--;
    }
    for(int32_t idx = cs; idx <= ce; idx++)
-      m_pdata[idx] = 0xFFFFFFFF;
+      m_pdata[idx] = 0xffffffff;
    if (cs == 0 && ce == m_iDataCount-1)
    {
       delete[] m_pdata;
@@ -122,24 +122,24 @@ void bit_array::clear_range(int32_t s, int32_t e)
    if(m_pdata == NULL)
       return;
    ensure_size(e + 1, true);
-   int32_t cs = s>>5;
+   int32_t cs = s >> 5;
+   int32_t ce = e >> 5;
    if (s&0x1f)
    {
-      int32_t fillbytes = 0xFFFFFFFF << (s&0x1f);
-      if((e&0x1F) == (s&0x1F))
-         fillbytes &= 0xFFFFFFFF >> (0x1F - e&0x1F);
+      int32_t fillbytes = 0xffffffff << (s& 0x1f);
+      if(cs == ce)
+         fillbytes &= 0xffffffff >> (0x1f - (e & 0x1f));
       m_pdata[cs] &= ~fillbytes;
       cs++;
    }
-   int32_t ce = e>>5;
-   if (s>>5 != ce && (e&0x1f) != 0x1f)
+   if (cs < ce && (e&0x1f) != 0x1f)
    {
-      m_pdata[ce] &= ~(0xFFFFFFFF >> (0x1F-(e&0x1F)));
+      m_pdata[ce] &= ~(0xffffffff >> (0x1f - (e & 0x1f)));
       ce--;
    }
    for(int32_t idx = cs; idx <= ce; idx++)
       m_pdata[idx] = 0x0;
-   if (cs == 0 && ce == m_iDataCount-1)
+   if(cs == 0 && ce == m_iDataCount - 1)
    {
       delete[] m_pdata;
       m_pdata = (int32_t*)0;

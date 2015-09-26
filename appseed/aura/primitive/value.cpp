@@ -21,6 +21,20 @@ namespace math
    }
 
 
+   value_impl::value_impl()
+   {
+
+
+   }
+   
+   
+   value_impl::~value_impl()
+   {
+
+
+   }
+
+
    void value_impl::set_value_string(const char * psz)
    {
       m_str = psz;

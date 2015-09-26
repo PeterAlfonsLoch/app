@@ -187,7 +187,7 @@ namespace aura
       template < typename T >
       inline T * cast_clone(T * pt)
       {
-         return dynamic_cast <T *> (::clone(dynamic_cast <sp(object)> (pt)));
+         return ::clone(pt);
       }
 
       template < class T >

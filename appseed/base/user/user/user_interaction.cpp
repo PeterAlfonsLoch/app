@@ -6525,6 +6525,15 @@ namespace user
             Session.user()->set_mouse_focus_LButtonDown(this);
 
          }
+         else
+         {
+
+            Session.set_keyboard_focus(NULL);
+
+            Session.user()->set_mouse_focus_LButtonDown(NULL);
+
+         }
+
 
       }
       catch(...)
