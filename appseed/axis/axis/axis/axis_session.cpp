@@ -3039,7 +3039,7 @@ namespace axis
                if(pkeyboardfocusOld != NULL)
                {
 
-                  output_debug_string("axis::session::set_keyboard_focus pkeyboardfocusOld->keyboard_focus_OnKillFocus()");
+                  output_debug_string("axis::session::set_keyboard_focus pkeyboardfocusOld->keyboard_focus_OnKillFocus()\n");
 
                   pkeyboardfocusOld->keyboard_focus_OnKillFocus();
 

@@ -113,8 +113,11 @@ public:
    static strsize       __cdecl  GetcharLength(const char * pszSrc, strsize nLength ) throw();
    static strsize       __cdecl  GetcharLength(const unichar * pszSource ) throw();
    static strsize       __cdecl  GetcharLength(const unichar * pszSource, strsize nLength ) throw();
+   static strsize       __cdecl  GetcharLength(const unichar32 * pszSource) throw();
+   static strsize       __cdecl  GetcharLength(const unichar32 * pszSource,strsize nLength) throw();
    static void          __cdecl  ConvertTochar(char * pszDest,strsize nDestLength, const char * pszSrc, strsize nSrcLength = -1 ) throw();
    static void          __cdecl  ConvertTochar(char * pszDest,strsize nDestLength, const unichar * pszSrc,strsize nSrcLength = -1) throw();
+   static void          __cdecl  ConvertTochar(char * pszDest,strsize nDestLength,const unichar32 * pszSrc,strsize nSrcLength = -1) throw();
    static void                   ConvertToOem(char* pstrString) RELEASENOTHROW;
    static void                   ConvertToAnsi(char* pstrString) RELEASENOTHROW;
    static void                   ConvertToOem(char* pstrString,size_t size);
@@ -260,6 +263,7 @@ public:
    string(strsize nLength, char ch);
    string(const char* pch,strsize nLength);
    string(const unichar* pch,strsize nLength);
+   string(const unichar32* pch,strsize nLength);
 
 #if defined(METROWIN) && defined(__cplusplus_winrt)
    string(Object ^ o);

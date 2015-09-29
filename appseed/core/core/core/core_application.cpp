@@ -1618,7 +1618,7 @@ namespace core
    bool application::on_run_exception(::exception::exception & e)
    {
 
-      ::output_debug_string("core::application::on_run_exception An unexpected error has occurred and no special exception handling is available.");
+      ::output_debug_string("core::application::on_run_exception An unexpected error has occurred and no special exception handling is available.\n");
 
       if(e.m_bHandled)
       {

@@ -1703,3 +1703,34 @@ int translate_android_key_message(::message::key * pkey, int keyCode, int iUni)
    return 1;
 
 }
+
+
+
+extern "C"
+void android_on_text(const wchar_t * pwch, size_t len)
+{
+
+   if(::aura::system::g_p == NULL)
+      return;
+
+   if(::aura::system::g_p->m_pbasesystem == NULL)
+      return;
+
+   if(::aura::system::g_p->m_pbasesystem->m_posdata == NULL)
+      return;
+
+   if(::aura::system::g_p->m_pbasesystem->m_posdata->m_pui == NULL)
+      return;
+
+   sp(::message::key) pkey = canew(::message::key(get_thread_app()));
+
+   pkey->m_uiMessage = WM_KEYDOWN;
+
+   pkey->m_ekey      = ::user::key_refer_to_text_member;
+
+   pkey->m_strText   = string(pwch,len);
+
+   ::aura::system::g_p->m_pbasesystem->m_posdata->m_pui->message_handler(pkey);
+
+
+}

@@ -5426,12 +5426,16 @@ namespace android
    void interaction_impl::keyboard_focus_OnKillFocus()
    {
 
+      output_debug_string("::android::interaction_impl::keyboard_focus_OnKillFocus() (1) \n");
+
       System.m_pandroidinitdata->m_bHideKeyboard = true;
 
    }
 
    void interaction_impl::keyboard_focus_OnChildKillFocus()
    {
+
+      output_debug_string("::android::interaction_impl::keyboard_focus_OnChildKillFocus() (2) \n");
 
       System.m_pandroidinitdata->m_bHideKeyboard = true;
 

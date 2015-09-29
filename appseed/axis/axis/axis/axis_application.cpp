@@ -1158,7 +1158,7 @@ namespace axis
          if(m_iReturnCode != 0)
          {
             dappy(string(typeid(*this).name()) + " : on_run failure : " + ::str::from(m_iReturnCode));
-            ::output_debug_string("application::main on_run termination failure");
+            ::output_debug_string("application::main on_run termination failure\n");
          }
 
       }
@@ -1261,7 +1261,7 @@ namespace axis
             m_iReturnCode = -1;
             exit();
             m_bReady = true;
-            ::output_debug_string("exiting on check directrix");
+            ::output_debug_string("exiting on check directrix\n");
             return false;
          }
 
