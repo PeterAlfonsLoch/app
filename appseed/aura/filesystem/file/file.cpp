@@ -67,9 +67,9 @@ string url_dir_name_for_relative(const char * pszPath)
 
 }
 
-string defer_solve_relative_compresions(const char * pszAbsolute)
+CLASS_DECL_AURA string defer_solve_relative_compresions(const string & strParam)
 {
-   string strAbsolute(pszAbsolute);
+   string strAbsolute(strParam);
 
    strAbsolute.replace("/./","/");
 
@@ -103,6 +103,18 @@ string defer_solve_relative_compresions(const char * pszAbsolute)
          strAbsolute = strAbsolute.substr(0,iFind2) + strAbsolute.substr(iFind + 3);
       }
    }
+
+   if(::str::ends_eat(strAbsolute, "\\.."))
+   {
+      iFind2 = strAbsolute.reverse_find("\\");
+      if(iFind2>= 0)
+      {
+         strAbsolute = strAbsolute.substr(0,iFind2);
+      }
+   }
+
+   ::str::ends_eat(strAbsolute,"\\.");
+
 
    return strAbsolute;
 }

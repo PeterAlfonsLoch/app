@@ -4,6 +4,8 @@ namespace file { class path; }
 
 inline bool is_url_dup(const string & strCandidate);
 
+CLASS_DECL_AURA string defer_solve_relative_compresions(const string & str);
+
 namespace file
 {
 
@@ -84,6 +86,8 @@ namespace file
       void normalize()
       {
 
+         string::operator=(defer_solve_relative_compresions((const string &)(*this)));
+
          if(has_char())
          {
 
@@ -105,6 +109,8 @@ namespace file
          }
 
          replace(osep(),sep());
+
+         
 
       }
 
@@ -210,6 +216,8 @@ namespace file
       {
 
          string::operator += (string(sep()) + string((const string &)path).trim_left("\\/"));
+
+         normalize();
 
          return *this;
 
