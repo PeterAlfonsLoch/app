@@ -503,7 +503,7 @@ namespace user
 
          void WorkSet::_001OnCommand(signal_details * pobj)
          {
-            SCAST_PTR(::message::base,pbase,pobj)
+            SCAST_PTR(::message::base,pbase,pobj);
             if(m_pframeschema == NULL)
                pbase->m_bRet = false;
             else
@@ -1157,7 +1157,7 @@ namespace user
 
          void WorkSet::_001OnLButtonDown(signal_details * pobj)
          {
-            SCAST_PTR(::message::mouse,pmouse,pobj)
+            SCAST_PTR(::message::mouse,pmouse,pobj);
             if(!m_bEnable)
             {
                pmouse->m_bRet = false;
@@ -1173,7 +1173,7 @@ namespace user
 
          void WorkSet::_001OnMouseMove(signal_details * pobj)
          {
-            SCAST_PTR(::message::mouse,pmouse,pobj)
+            SCAST_PTR(::message::mouse,pmouse,pobj);
             if(!m_bEnable)
             {
                pmouse->m_bRet = false;
@@ -1190,7 +1190,7 @@ namespace user
 
          void WorkSet::_001OnLButtonUp(signal_details * pobj)
          {
-            SCAST_PTR(::message::mouse,pmouse,pobj)
+            SCAST_PTR(::message::mouse,pmouse,pobj);
             if(!m_bEnable)
             {
                pmouse->m_bRet = false;
@@ -1206,7 +1206,7 @@ namespace user
 
          void WorkSet::_001OnNcLButtonDown(signal_details * pobj)
          {
-            SCAST_PTR(::message::mouse,pmouse,pobj)
+            SCAST_PTR(::message::mouse,pmouse,pobj);
             if(!m_bEnable)
             {
                pmouse->m_bRet = false;
@@ -1222,7 +1222,7 @@ namespace user
 
          void WorkSet::_001OnNcMouseMove(signal_details * pobj)
          {
-            SCAST_PTR(::message::mouse,pmouse,pobj)
+            SCAST_PTR(::message::mouse,pmouse,pobj);
             if(!m_bEnable)
             {
                pmouse->m_bRet = false;
@@ -1241,7 +1241,7 @@ namespace user
 
          void WorkSet::_001OnNcLButtonUp(signal_details * pobj)
          {
-            SCAST_PTR(::message::mouse,pmouse,pobj)
+            SCAST_PTR(::message::mouse,pmouse,pobj);
             if(!m_bEnable)
             {
                pmouse->m_bRet = false;
@@ -1258,7 +1258,7 @@ namespace user
 
          void WorkSet::_001OnNcHitTest(signal_details * pobj)
          {
-            SCAST_PTR(::message::nchittest,pnchittest,pobj)
+            SCAST_PTR(::message::nchittest,pnchittest,pobj);
             if(!m_bEnable)
             {
                pnchittest->m_bRet = false;
@@ -1296,7 +1296,7 @@ namespace user
          void WorkSet::_001OnSize(signal_details * pobj)
          {
 
-            SCAST_PTR(::message::size,psize,pobj)
+            SCAST_PTR(::message::size,psize,pobj);
 
             if(!m_bEnable)
             {
@@ -1350,7 +1350,7 @@ namespace user
 
          void WorkSet::_001OnMove(signal_details * pobj)
          {
-            SCAST_PTR(::message::move,pmove,pobj)
+            SCAST_PTR(::message::move,pmove,pobj);
             if(!m_bEnable)
             {
                pmove->m_bRet = false;

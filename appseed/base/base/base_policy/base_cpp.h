@@ -252,8 +252,6 @@ typedef smart_pointer < thread_impl > thread_impl_sp;
 
 
 
-#define SCAST_PTR(TYPE, ptarget, psource) TYPE * ptarget = dynamic_cast < TYPE * > (psource);
-#define SCAST_REF(TYPE, rtarget, psource) TYPE & rtarget = *(dynamic_cast < TYPE * > (psource));
 
 #undef CaSys
 #define CaSys(pca) (*pca->m_pauraapp->m_pbasesystem)

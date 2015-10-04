@@ -388,7 +388,7 @@ namespace filemanager
 
    void manager::_001OnUpdateLevelUp(signal_details * pobj)
    {
-      SCAST_PTR(::aura::cmd_ui,pcmdui,pobj)
+      SCAST_PTR(::aura::cmd_ui,pcmdui,pobj);
       if(m_item->m_strPath.is_empty())
       {
          pcmdui->m_pcmdui->Enable(FALSE);
@@ -410,7 +410,7 @@ namespace filemanager
    void manager::_001OnUpdateAddLocation(signal_details * pobj)
    {
 
-      SCAST_PTR(::aura::cmd_ui,pcmdui,pobj)
+      SCAST_PTR(::aura::cmd_ui,pcmdui,pobj);
 
          pcmdui->m_pcmdui->Enable(TRUE);
 
@@ -432,7 +432,7 @@ namespace filemanager
    void manager::_001OnUpdateReplaceText(signal_details * pobj)
    {
 
-      SCAST_PTR(::aura::cmd_ui,pcmdui,pobj)
+      SCAST_PTR(::aura::cmd_ui,pcmdui,pobj);
 
          pcmdui->m_pcmdui->Enable(TRUE);
 
@@ -449,7 +449,7 @@ namespace filemanager
 
    void manager::_001OnUpdateEditPaste(signal_details * pobj)
    {
-      //      SCAST_PTR(::aura::cmd_ui, pcmdui, pobj)
+      //      SCAST_PTR(::aura::cmd_ui, pcmdui, pobj);
 
       //         pcmdui->m_pcmdui->Enable(System.m_strCopy.is_empty());
       pobj->m_bRet = true;
@@ -465,7 +465,7 @@ namespace filemanager
 
    void manager::_001OnUpdateFileSaveAs(signal_details * pobj)
    {
-      SCAST_PTR(::aura::cmd_ui,pcmdui,pobj)
+      SCAST_PTR(::aura::cmd_ui,pcmdui,pobj);
          pcmdui->m_pcmdui->Enable(TRUE);
    }
 

@@ -135,7 +135,7 @@ void html_view::_001OnCreate(signal_details * pobj)
 }
 void html_view::_001OnContextMenu(signal_details * pobj) 
 {
-   //   SCAST_PTR(::message::context_menu, pcontextmenu, pobj)
+   //   SCAST_PTR(::message::context_menu, pcontextmenu, pobj);
    //   point point = pcontextmenu->GetPoint();
 
 }

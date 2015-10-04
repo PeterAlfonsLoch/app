@@ -6314,7 +6314,7 @@ namespace user
 
    void interaction::_001OnBaseWndGetProperty(signal_details * pobj)
    {
-      SCAST_PTR(::message::base,pbase,pobj)
+      SCAST_PTR(::message::base,pbase,pobj);
          pbase->set_lresult(_001BaseWndGetProperty((EProperty)pbase->m_wparam,pbase->m_lparam));
    }
 
@@ -6560,8 +6560,6 @@ namespace user
             Session.set_keyboard_focus(this);
 
             Session.user()->set_mouse_focus_LButtonDown(this);
-
-            pobj->m_bRet = true;
 
          }
          else
@@ -6963,7 +6961,7 @@ namespace user
    void interaction::keyboard_focus_OnKeyDown(signal_details * pobj)
    {
 
-      SCAST_PTR(::message::key,pkey,pobj)
+      SCAST_PTR(::message::key,pkey,pobj);
 
          if(pkey->m_ekey == ::user::key_tab)
          {

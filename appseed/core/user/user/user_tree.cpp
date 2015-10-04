@@ -472,7 +472,7 @@ namespace user
 
    void tree::_001OnLButtonDblClk(signal_details * pobj)
    {
-      SCAST_PTR(::message::mouse, pmouse, pobj)
+      SCAST_PTR(::message::mouse, pmouse, pobj);
          m_iClick = 2;
 
       _001OnClick((UINT) pmouse->m_nFlags, pmouse->m_pt);
@@ -516,7 +516,7 @@ namespace user
    void tree::_001OnLButtonDown(signal_details * pobj)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pobj)
+      SCAST_PTR(::message::mouse, pmouse, pobj);
 
       pmouse->previous();
       
@@ -529,7 +529,7 @@ namespace user
 
    void tree::_001OnLButtonUp(signal_details * pobj)
    {
-      SCAST_PTR(::message::mouse, pmouse, pobj)
+      SCAST_PTR(::message::mouse, pmouse, pobj);
          m_iClick++;
       m_uiLButtonUpFlags = (UINT) pmouse->m_nFlags;
       m_ptLButtonUp = pmouse->m_pt;
@@ -620,7 +620,7 @@ namespace user
    void tree::_001OnRButtonDown(signal_details * pobj)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pobj)
+      SCAST_PTR(::message::mouse, pmouse, pobj);
 
       pmouse->previous();
 
@@ -634,7 +634,7 @@ namespace user
    void tree::_001OnRButtonUp(signal_details * pobj)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pobj)
+      SCAST_PTR(::message::mouse, pmouse, pobj);
 
       perform_right_click(pmouse->m_nFlags, pmouse->m_pt);
 

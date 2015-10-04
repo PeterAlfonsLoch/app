@@ -53,7 +53,7 @@ namespace filemanager
 
    void  frame::_001OnSetText(signal_details * pobj)
    {
-      //   SCAST_PTR(::message::base, pbase, pobj)
+      //   SCAST_PTR(::message::base, pbase, pobj);
 
       pobj->previous();
 

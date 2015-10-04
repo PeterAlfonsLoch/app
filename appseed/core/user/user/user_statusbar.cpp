@@ -508,7 +508,7 @@ namespace user
 
    void status_bar::_001OnNcHitTest(signal_details * pobj)
    {
-      SCAST_PTR(::message::nchittest, pnchittest, pobj)
+      SCAST_PTR(::message::nchittest, pnchittest, pobj);
       UINT nResult = (UINT)Default();
       if (nResult == HTBOTTOMRIGHT)
       {
@@ -523,7 +523,7 @@ namespace user
    void status_bar::_001OnNcCalcSize(signal_details * pobj)
    {
 #ifdef WINDOWSEX
-      SCAST_PTR(::message::nc_calc_size, pnccalcsize, pobj)
+      SCAST_PTR(::message::nc_calc_size, pnccalcsize, pobj);
       // calculate border space (will add to top/bottom, subtract from right/bottom)
       class rect rect;
       rect.null();
@@ -615,7 +615,7 @@ namespace user
    void status_bar::_001OnWindowPosChanging(signal_details * pobj)
    {
 #ifdef WINDOWSEX
-      SCAST_PTR(::message::window_pos, pwindowpos, pobj)
+      SCAST_PTR(::message::window_pos, pwindowpos, pobj);
       // not necessary to invalidate the borders
       uint32_t dwStyle = m_dwStyle;
       m_dwStyle &= ~(CBRS_BORDER_ANY);
@@ -629,7 +629,7 @@ namespace user
 
    void status_bar::_001OnSetText(signal_details * pobj)
    {
-      SCAST_PTR(::message::base, pbase, pobj)
+      SCAST_PTR(::message::base, pbase, pobj);
       ASSERT_VALID(this);
       ASSERT(IsWindow());
 
@@ -646,7 +646,7 @@ namespace user
 
    void status_bar::_001OnGetText(signal_details * pobj)
    {
-      SCAST_PTR(::message::base, pbase, pobj)
+      SCAST_PTR(::message::base, pbase, pobj);
       ASSERT_VALID(this);
       ASSERT(IsWindow());
 
@@ -677,7 +677,7 @@ namespace user
 
    void status_bar::_001OnGetTextLength(signal_details * pobj)
    {
-      SCAST_PTR(::message::base, pbase, pobj)
+      SCAST_PTR(::message::base, pbase, pobj);
 
       ASSERT_VALID(this);
       ASSERT(IsWindow());
@@ -695,7 +695,7 @@ namespace user
 
    void status_bar::_001OnSetMinHeight(signal_details * pobj)
    {
-      SCAST_PTR(::message::base, pbase, pobj)
+      SCAST_PTR(::message::base, pbase, pobj);
       LRESULT lResult = Default();
       m_nMinHeight = (int32_t)pbase->m_wparam;
       pbase->set_lresult(lResult);

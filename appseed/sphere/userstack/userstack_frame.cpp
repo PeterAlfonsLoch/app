@@ -246,7 +246,7 @@ namespace userstack
 
    void frame::_001OnApp2000(signal_details * pobj)
    {
-      SCAST_PTR(::message::base, pbase, pobj)
+      SCAST_PTR(::message::base, pbase, pobj);
 
 
       if(pbase->m_wparam == 0)

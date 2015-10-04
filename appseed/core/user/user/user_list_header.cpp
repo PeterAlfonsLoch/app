@@ -375,7 +375,7 @@ namespace user
 
    void list_header::_001OnLButtonDown(signal_details * pobj)
    {
-      SCAST_PTR(::message::mouse, pmouse, pobj)
+      SCAST_PTR(::message::mouse, pmouse, pobj);
       point ptCursor = pmouse->m_pt;
       ScreenToClient(&ptCursor);
       if(hit_test(ptCursor, m_eelementLButtonDown, m_iItemLButtonDown))
@@ -388,7 +388,7 @@ namespace user
 
    void list_header::_001OnLButtonUp(signal_details * pobj)
    {
-      SCAST_PTR(::message::mouse, pmouse, pobj)
+      SCAST_PTR(::message::mouse, pmouse, pobj);
       list * plist = m_plistctrlinterface;
       point ptCursor = pmouse->m_pt;
       ScreenToClient(&ptCursor);
@@ -444,7 +444,7 @@ namespace user
 
    void list_header::_001OnMouseMove(signal_details * pobj)
    {
-      SCAST_PTR(::message::mouse, pmouse, pobj)
+      SCAST_PTR(::message::mouse, pmouse, pobj);
       point ptCursor = pmouse->m_pt;
       ScreenToClient(&ptCursor);
       list * plist = m_plistctrlinterface;
@@ -504,7 +504,7 @@ namespace user
 
    void list_header::_001OnLButtonDblClk(signal_details * pobj)
    {
-      SCAST_PTR(::message::mouse, pmouse, pobj)
+      SCAST_PTR(::message::mouse, pmouse, pobj);
       point ptCursor = pmouse->m_pt;
       ScreenToClient(&ptCursor);
       list * plist = m_plistctrlinterface;

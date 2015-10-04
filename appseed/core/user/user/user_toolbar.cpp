@@ -1136,7 +1136,7 @@ throw todo(get_app());
 
    void toolbar::_001OnNcHitTest(signal_details * pobj)
    {
-      SCAST_PTR(::message::base, pbase, pobj)
+      SCAST_PTR(::message::base, pbase, pobj);
       pbase->set_lresult(HTCLIENT);
       pbase->m_bRet = true;
    }
@@ -1144,7 +1144,7 @@ throw todo(get_app());
    void toolbar::_001OnNcCalcSize(signal_details * pobj)
    {
 #ifdef WINDOWSEX
-      SCAST_PTR(::message::nc_calc_size, pnccalcsize, pobj)
+      SCAST_PTR(::message::nc_calc_size, pnccalcsize, pobj);
       // calculate border space (will add to top/bottom, subtract from right/bottom)
       class rect rect;
       rect.null();
@@ -1195,7 +1195,7 @@ throw todo(get_app());
    void toolbar::_001OnWindowPosChanging(signal_details * pobj)
    {
 #ifdef WINDOWSEX
-      SCAST_PTR(::message::window_pos, pwindowpos, pobj)
+      SCAST_PTR(::message::window_pos, pwindowpos, pobj);
       // not necessary to invalidate the borders
       uint32_t dwStyle = m_dwStyle;
       m_dwStyle &= ~(CBRS_BORDER_ANY);
@@ -1241,13 +1241,13 @@ throw todo(get_app());
 
    void toolbar::_001OnSetButtonSize(signal_details * pobj)
    {
-      SCAST_PTR(::message::base, pbase, pobj)
+      SCAST_PTR(::message::base, pbase, pobj);
       pbase->set_lresult(OnSetSizeHelper(m_sizeButton, pbase->m_lparam));
    }
 
    void toolbar::_001OnSetBitmapSize(signal_details * pobj)
    {
-      SCAST_PTR(::message::base, pbase, pobj)
+      SCAST_PTR(::message::base, pbase, pobj);
       pbase->set_lresult(OnSetSizeHelper(m_sizeImage, pbase->m_lparam));
    }
 
@@ -1283,7 +1283,7 @@ throw todo(get_app());
    void toolbar::_001OnPreserveZeroBorderHelper(signal_details * pobj)
    {
       LRESULT lResult = 0;
-      SCAST_PTR(::message::base, pbase, pobj)
+      SCAST_PTR(::message::base, pbase, pobj);
 #ifdef LRESULT
 
       bool bModify = FALSE;

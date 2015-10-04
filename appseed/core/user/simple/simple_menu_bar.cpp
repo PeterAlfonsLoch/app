@@ -145,7 +145,7 @@ bool simple_menu_bar::_001OnCmdMsg(::aura::cmd_msg * pcmdmsg)
 
 void simple_menu_bar::_001OnMouseMove(signal_details * pobj)
 {
-   SCAST_PTR(::message::mouse, pmouse, pobj)
+   SCAST_PTR(::message::mouse, pmouse, pobj);
    _001Hover(pmouse->m_pt);
    pobj->previous();
 }
@@ -176,7 +176,7 @@ bool simple_menu_bar::_TrackPopupMenu(int32_t iItem)
 
 void simple_menu_bar::_001OnNcMouseMove(signal_details * pobj)
 {
-   SCAST_PTR(::message::mouse, pmouse, pobj)
+   SCAST_PTR(::message::mouse, pmouse, pobj);
    _001Hover(pmouse->m_pt);
 // trans   simple_toolbar::OnNcMouseMove(pmouse->m_nFlags, pmouse->m_pt);
 }
@@ -197,7 +197,7 @@ void simple_menu_bar::pre_translate_message(signal_details * pobj)
 
 void simple_menu_bar::_001OnCreate(signal_details * pobj)
 {
-//   SCAST_PTR(::message::create, pcreate, pobj)
+//   SCAST_PTR(::message::create, pcreate, pobj);
    if(pobj->previous())
       return;
 
@@ -592,7 +592,7 @@ bool simple_menu_bar::create_window_ex(sp(::user::interaction) pParentWnd, uint3
 
 void simple_menu_bar::_001OnLButtonDown(signal_details * pobj)
 {
-   SCAST_PTR(::message::mouse, pmouse, pobj)
+   SCAST_PTR(::message::mouse, pmouse, pobj);
    int32_t iItem = _001HitTest(pmouse->m_pt);
    if(iItem >= 0)
    {
@@ -804,7 +804,7 @@ int32_t simple_menu_bar::_001GetHoverItem()
 
 void simple_menu_bar::_001OnAppLanguage(signal_details * pobj)
 {
-   SCAST_PTR(::message::base, pbase, pobj)
+   SCAST_PTR(::message::base, pbase, pobj);
    send_message(WM_CANCELMODE);
    LoadMenuBar(m_uiResourceID);
    RedrawWindow();

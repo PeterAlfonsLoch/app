@@ -300,7 +300,7 @@ namespace user
 
    void form_mesh::_001OnKeyDown(signal_details * pobj)
    {
-      SCAST_PTR(::message::key,pkey,pobj)
+      SCAST_PTR(::message::key,pkey,pobj);
 
          if(pkey->m_ekey == ::user::key_return)
          {

@@ -244,7 +244,7 @@ namespace filemanager
 
    void impact::_001OnUpdateEditPaste(signal_details * pobj)
    {
-      SCAST_PTR(::aura::cmd_ui,pcmdui,pobj)
+      SCAST_PTR(::aura::cmd_ui,pcmdui,pobj);
          pcmdui->m_pcmdui->Enable(Session.copydesk().get_file_count() > 0);
       pobj->m_bRet = true;
    }

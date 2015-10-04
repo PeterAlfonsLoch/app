@@ -55,7 +55,7 @@ void simple_tab_view::GetClientRect(LPRECT lprect)
 void simple_tab_view::_001OnCreate(signal_details * pobj)
 {
 
-   SCAST_PTR(::message::create, pcreate, pobj)
+   SCAST_PTR(::message::create, pcreate, pobj);
 
    if(pcreate->previous())
       return;
@@ -83,7 +83,7 @@ void simple_tab_view::install_message_handling(::message::dispatch * pinterface)
 
 void simple_tab_view::_001OnLButtonUp(signal_details * pobj)
 {
-   SCAST_PTR(::message::mouse, pmouse, pobj)
+   SCAST_PTR(::message::mouse, pmouse, pobj);
    ::user::tab::_001OnLButtonUp(pobj);
    if(pmouse->m_bRet)
       return;
@@ -93,7 +93,7 @@ void simple_tab_view::_001OnLButtonUp(signal_details * pobj)
 
 void simple_tab_view::_001OnMouseMove(signal_details * pobj)
 {
-   SCAST_PTR(::message::mouse, pmouse, pobj)
+   SCAST_PTR(::message::mouse, pmouse, pobj);
    ::user::tab::_001OnMouseMove(pobj);
    if(pmouse->m_bRet)
       return;
@@ -103,7 +103,7 @@ void simple_tab_view::_001OnMouseMove(signal_details * pobj)
 
 void simple_tab_view::_001OnMouseLeave(signal_details * pobj)
 {
-   SCAST_PTR(::message::mouse, pmouse, pobj)
+   SCAST_PTR(::message::mouse, pmouse, pobj);
    ::user::tab::_001OnMouseLeave(pobj);
    if(pmouse->m_bRet)
       return;

@@ -48,7 +48,7 @@ namespace user
    void split_view::_001OnCreate(signal_details * pobj)
    {
 
-      SCAST_PTR(::message::create, pcreate, pobj)
+      SCAST_PTR(::message::create, pcreate, pobj);
 
       pcreate->previous();
 
@@ -120,7 +120,7 @@ namespace user
 
    void split_view::_001OnSize(signal_details * pobj)
    {
-      SCAST_PTR(::message::size, psize, pobj)
+      SCAST_PTR(::message::size, psize, pobj);
       psize->previous();
       //layout();
    }
@@ -200,7 +200,7 @@ namespace user
 
    void split_view::_001OnShowWindow(signal_details * pobj)
    {
-      SCAST_PTR(::message::show_window, pshowwindow, pobj)
+      SCAST_PTR(::message::show_window, pshowwindow, pobj);
       pshowwindow->previous();
       //layout();
    }

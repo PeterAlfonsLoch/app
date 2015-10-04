@@ -73,7 +73,7 @@ bool simple_scroll_bar::create_window(e_orientation eorientation,uint32_t dwStyl
 void simple_scroll_bar::_001OnMouseMove(signal_details * pobj)
 {
 
-   SCAST_PTR(::message::mouse, pmouse, pobj)
+   SCAST_PTR(::message::mouse, pmouse, pobj);
 
    point pt = pmouse->m_pt;
 
@@ -129,7 +129,7 @@ bool simple_scroll_bar::scrollbar_action(e_element eelement, point pt)
 void simple_scroll_bar::_001OnLButtonDown(signal_details * pobj)
 {
 
-   SCAST_PTR(::message::mouse, pmouse, pobj)
+   SCAST_PTR(::message::mouse, pmouse, pobj);
 
    point pt = pmouse->m_pt;
 
@@ -179,7 +179,7 @@ void simple_scroll_bar::_001OnLButtonDown(signal_details * pobj)
 void simple_scroll_bar::_001OnLButtonUp(signal_details * pobj)
 {
 
-   SCAST_PTR(::message::mouse,pmouse,pobj)
+   SCAST_PTR(::message::mouse,pmouse,pobj);
 
    m_eelement = element_none;
 
@@ -456,7 +456,7 @@ int32_t simple_scroll_bar::SetTrackingPos(point point)
 
 void simple_scroll_bar::_001OnHScroll(signal_details * pobj)
 {
-   SCAST_PTR(::message::scroll, pscroll, pobj)
+   SCAST_PTR(::message::scroll, pscroll, pobj);
       pscroll->m_bRet = false;
 }
 
@@ -797,7 +797,7 @@ pParentWnd->SendMessage(WM_VSCROLL, MAKEWPARAM(SB_LINEDOWN, m_scrollinfo.nPos), 
 
 void simple_scroll_bar::_001OnCreate(signal_details * pobj)
 {
-   SCAST_PTR(::message::create, pcreate, pobj)
+   SCAST_PTR(::message::create, pcreate, pobj);
 
       update_drawing_objects();
 
@@ -1231,7 +1231,7 @@ void simple_scroll_bar::_001OnDraw(::draw2d::graphics * pdc)
 
 void simple_scroll_bar::_001OnShowWindow(signal_details * pobj)
 {
-   SCAST_PTR(::message::show_window, pshowwindow, pobj)
+   SCAST_PTR(::message::show_window, pshowwindow, pobj);
       pshowwindow->m_bRet = false;
 
    // xxx   TwiOnShowWindow(bShow, nStatus);

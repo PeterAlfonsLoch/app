@@ -324,7 +324,7 @@ namespace console
    void prompt_frame::_001OnShowWindow(signal_details * pobj)
    {
       
-      //SCAST_PTR(::message::show_window, pshowwindow, pobj)
+      //SCAST_PTR(::message::show_window, pshowwindow, pobj);
 
       //if(!pshowwindow->m_bShow)
       //{
@@ -372,7 +372,7 @@ namespace console
 
    void prompt_frame::_001OnApp2000(signal_details * pobj)
    {
-      SCAST_PTR(::message::base, pbase, pobj)
+      SCAST_PTR(::message::base, pbase, pobj);
 
 
       if(pbase->m_wparam == 0)

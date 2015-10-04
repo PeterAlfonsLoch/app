@@ -162,7 +162,7 @@ namespace command
 
    void view::_001OnContextMenu(signal_details * pobj)
    {
-//      SCAST_PTR(::message::context_menu, pcontextmenu, pobj)
+//      SCAST_PTR(::message::context_menu, pcontextmenu, pobj);
 //      point point = pcontextmenu->GetPoint();
 
 
@@ -180,7 +180,7 @@ namespace command
    void view::_001OnSetCursor(signal_details * pobj)
    {
    
-      SCAST_PTR(::message::mouse, pmouse, pobj)
+      SCAST_PTR(::message::mouse, pmouse, pobj);
    
       pmouse->m_ecursor = ::visual::cursor_arrow;
 
@@ -199,14 +199,14 @@ namespace command
 
    void view::_001OnLButtonDown(signal_details * pobj)
    {
-   //   SCAST_PTR(::message::mouse, pmouse, pobj)
+   //   SCAST_PTR(::message::mouse, pmouse, pobj);
       UNREFERENCED_PARAMETER(pobj);
 
    }
 
    void view::_001OnLButtonUp(signal_details * pobj)
    {
-      //SCAST_PTR(::message::mouse, pmouse, pobj)
+      //SCAST_PTR(::message::mouse, pmouse, pobj);
       UNREFERENCED_PARAMETER(pobj);
       KillTimer(5432180);
 
@@ -215,14 +215,14 @@ namespace command
 
    void view::_001OnRButtonUp(signal_details * pobj)
    {
-      //SCAST_PTR(::message::mouse, pmouse, pobj)
+      //SCAST_PTR(::message::mouse, pmouse, pobj);
       UNREFERENCED_PARAMETER(pobj);
 
    }
 
    void view::_001OnOp(signal_details * pobj)
    {
-      //SCAST_PTR(::message::base, pbase, pobj)
+      //SCAST_PTR(::message::base, pbase, pobj);
       UNREFERENCED_PARAMETER(pobj);
    }
 
@@ -279,7 +279,7 @@ namespace command
 
    void view::_001OnShowWindow(signal_details * pobj)
    {
-   //   SCAST_PTR(::message::show_window, pshowwindow, pobj)
+   //   SCAST_PTR(::message::show_window, pshowwindow, pobj);
       UNREFERENCED_PARAMETER(pobj);
    }
 

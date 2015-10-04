@@ -743,7 +743,7 @@ namespace user
       if (pobj->previous())
          return;
 
-      SCAST_PTR(::message::create, pcreate, pobj)
+      SCAST_PTR(::message::create, pcreate, pobj);
 
          ENSURE_ARG(pcreate->m_lpcreatestruct != NULL);
 
@@ -1114,7 +1114,7 @@ namespace user
 
    void frame_window::_001OnNcActivate(signal_details * pobj)
    {
-      SCAST_PTR(::message::nc_activate, pncactivate, pobj)
+      SCAST_PTR(::message::nc_activate, pncactivate, pobj);
          // stay active if WF_STAYACTIVE bit is on
       if (m_nFlags & WF_STAYACTIVE)
          pncactivate->m_bActive = TRUE;

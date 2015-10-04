@@ -232,7 +232,7 @@ sp(::user::wndfrm::frame::frame) simple_frame_window::create_frame_schema()
 void simple_frame_window::_001OnCreate(signal_details * pobj)
 {
 
-   SCAST_PTR(::message::create, pcreate, pobj)
+   SCAST_PTR(::message::create, pcreate, pobj);
 
    if (pobj->previous())
       return;
@@ -594,12 +594,12 @@ void simple_frame_window::_001OnViewFullScreen(signal_details * pobj)
 void simple_frame_window::_001OnMouseMove(signal_details * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
-   //   SCAST_PTR(::message::mouse, pmouse, pobj)
+   //   SCAST_PTR(::message::mouse, pmouse, pobj);
 }
 
 void simple_frame_window::_001OnUpdateViewFullScreen(signal_details * pobj)
 {
-   SCAST_PTR(::aura::cmd_ui, pcmdui, pobj)
+   SCAST_PTR(::aura::cmd_ui, pcmdui, pobj);
       pcmdui->m_pcmdui->Enable();
    pcmdui->m_pcmdui->_001SetCheck(WfiIsFullScreen());
    pcmdui->m_bRet = true;
@@ -684,7 +684,7 @@ void simple_frame_window::_001OnToggleCustomFrame(signal_details * pobj)
 
 void simple_frame_window::_001OnUpdateToggleCustomFrame(signal_details * pobj)
 {
-   SCAST_PTR(::aura::cmd_ui, pcmdui, pobj)
+   SCAST_PTR(::aura::cmd_ui, pcmdui, pobj);
       pcmdui->m_pcmdui->Enable();
    pcmdui->m_pcmdui->_001SetCheck(m_bWindowFrame);
 }
@@ -817,7 +817,7 @@ void simple_frame_window::OnNcCalcSize(bool bCalcValidRects, NCCALCSIZE_PARAMS F
 
 void simple_frame_window::_001OnNcActivate(signal_details * pobj)
 {
-   SCAST_PTR(::message::nc_activate, pncactivate, pobj)
+   SCAST_PTR(::message::nc_activate, pncactivate, pobj);
       // stay active if WF_STAYACTIVE bit is on
    if (m_nFlags & WF_STAYACTIVE)
       pncactivate->m_bActive = TRUE;
@@ -896,7 +896,7 @@ bool simple_frame_window::LoadFrame(const char * pszMatter, uint32_t dwDefaultSt
 
 void simple_frame_window::_001OnDdeInitiate(signal_details * pobj)
 {
-   SCAST_PTR(::message::base, pbase, pobj)
+   SCAST_PTR(::message::base, pbase, pobj);
       pbase->set_lresult(DefWindowProc((uint32_t)pbase->m_wparam, pbase->m_lparam, pbase->get_lresult()));
 }
 
@@ -1795,7 +1795,7 @@ string simple_frame_window::get_window_default_matter()
 
 void simple_frame_window::guserbaseOnInitialUpdate(signal_details * pobj)
 {
-   SCAST_PTR(::message::base, pbase, pobj)
+   SCAST_PTR(::message::base, pbase, pobj);
       ::user::FrameInitialUpdate * pfiu = (::user::FrameInitialUpdate *)pbase->m_lparam.m_lparam;
    if (pfiu != NULL)
    {

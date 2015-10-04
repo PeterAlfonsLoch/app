@@ -1296,7 +1296,7 @@ void simple_toolbar::layout()
 
 void simple_toolbar::_001OnMouseMove(signal_details * pobj)
 {
-   SCAST_PTR(::message::mouse, pmouse, pobj)
+   SCAST_PTR(::message::mouse, pmouse, pobj);
       point pt = pmouse->m_pt;
    ScreenToClient(&pt);
    if(m_bDockTrack)
@@ -1317,7 +1317,7 @@ void simple_toolbar::_001OnMouseMove(signal_details * pobj)
 
 void simple_toolbar::_001OnLButtonDown(signal_details * pobj)
 {
-   SCAST_PTR(::message::mouse, pmouse, pobj)
+   SCAST_PTR(::message::mouse, pmouse, pobj);
       point pt = pmouse->m_pt;
    ScreenToClient(&pt);
    m_iButtonPressItem = _001HitTest(pt);
@@ -1335,7 +1335,7 @@ void simple_toolbar::_001OnLButtonDown(signal_details * pobj)
 
 void simple_toolbar::_001OnLButtonUp(signal_details * pobj)
 {
-   SCAST_PTR(::message::mouse, pmouse, pobj)
+   SCAST_PTR(::message::mouse, pmouse, pobj);
       point pt = pmouse->m_pt;
    ScreenToClient(&pt);
    if(m_bDockTrack)
@@ -1597,7 +1597,7 @@ void simple_toolbar::SetButtonStyle(int32_t nIndex, UINT nStyle)
 void simple_toolbar::_001OnNcCalcSize(signal_details * pobj)
 {
 #if defined(WINDOWSEX) //|| defined(LINUX)
-   SCAST_PTR(::message::nc_calc_size, pnccalcsize, pobj)
+   SCAST_PTR(::message::nc_calc_size, pnccalcsize, pobj);
       // calculate border space (will add to top/bottom, subtract from right/bottom)
    class rect rect;
    rect.null();
@@ -1617,7 +1617,7 @@ void simple_toolbar::_001OnNcCalcSize(signal_details * pobj)
 
 void simple_toolbar::_001OnNcHitTest(signal_details * pobj)
 {
-   SCAST_PTR(::message::nchittest, pnchittest, pobj)
+   SCAST_PTR(::message::nchittest, pnchittest, pobj);
       pnchittest->set_lresult(HTCLIENT);
 }
 
@@ -2072,7 +2072,7 @@ size simple_toolbar::CalcDynamicLayout(int32_t nLength, uint32_t dwMode)
 
 void simple_toolbar::_001OnMouseLeave(signal_details * pobj)
 {
-   SCAST_PTR(::message::base, pbase, pobj)
+   SCAST_PTR(::message::base, pbase, pobj);
       m_iHover = 0x80000000;
    OnUpdateHover();
    RedrawWindow();

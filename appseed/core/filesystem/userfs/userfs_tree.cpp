@@ -173,7 +173,7 @@ namespace userfs
    {
 
       UNREFERENCED_PARAMETER(pobj);
-//      SCAST_PTR(::message::context_menu, pcontextmenu, pobj)
+//      SCAST_PTR(::message::context_menu, pcontextmenu, pobj);
          //   int32_t iItem;
          //   HRESULT hr;
 //         point ptClient = pcontextmenu->GetPoint();

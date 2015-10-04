@@ -1725,7 +1725,7 @@ bool XfplayerViewLine::CalcChar(point pt, strsize &iChar)
 
 void XfplayerViewLine::OnMouseMove(signal_details * pobj)
 {
-   SCAST_PTR(::message::mouse, pmouse, pobj)
+   SCAST_PTR(::message::mouse, pmouse, pobj);
    strsize iChar;
    if(CalcChar(pmouse->m_pt, iChar))
    {
@@ -1840,7 +1840,7 @@ void XfplayerViewLine::OnLButtonDown(signal_details * pobj)
 
 void XfplayerViewLine::OnLButtonUp(signal_details * pobj)
 {
-   SCAST_PTR(::message::mouse, pmouse, pobj)
+   SCAST_PTR(::message::mouse, pmouse, pobj);
    strsize iChar;
    if(CalcChar(pmouse->m_pt, iChar))
    {

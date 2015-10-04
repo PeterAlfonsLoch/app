@@ -37,7 +37,7 @@ void simple_main_frame::install_message_handling(::message::dispatch * pinterfac
 void simple_main_frame::_001OnCreate(signal_details * pobj)
 {
 
-   //      SCAST_PTR(::message::create, pcreate, pobj)
+   //      SCAST_PTR(::message::create, pcreate, pobj);
 
    m_bWindowFrame = !Application.directrix()->m_varTopicQuery.has_property("client_only");
 

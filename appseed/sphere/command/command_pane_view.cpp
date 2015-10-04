@@ -41,7 +41,7 @@ namespace command
 
    void pane_view::_001OnCreate(signal_details * pobj)
    {
-//      SCAST_PTR(::message::create, pcreate, pobj)
+//      SCAST_PTR(::message::create, pcreate, pobj);
       if(pobj->previous())
          return;
 

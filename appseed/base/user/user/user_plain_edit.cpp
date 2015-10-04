@@ -564,14 +564,14 @@ namespace user
 
    void plain_edit::_001OnContextMenu(signal_details * pobj)
    {
-      //      SCAST_PTR(::message::context_menu, pcontextmenu, pobj)
+      //      SCAST_PTR(::message::context_menu, pcontextmenu, pobj);
       //      point point = pcontextmenu->GetPoint();
 
    }
 
    void plain_edit::_001OnRButtonUp(signal_details * pobj)
    {
-      SCAST_PTR(::message::mouse,pmouse,pobj)
+      SCAST_PTR(::message::mouse,pmouse,pobj);
 
 
             point pt = pmouse->m_pt;
@@ -637,7 +637,7 @@ namespace user
 
       //synch_lock sl(m_pmutex);
 
-      SCAST_PTR(::message::key,pkey,pobj)
+      SCAST_PTR(::message::key,pkey,pobj);
 
       if(pkey->m_ekey == ::user::key_return)
       {
@@ -793,7 +793,7 @@ namespace user
 
    void plain_edit::_001OnKeyUp(signal_details * pobj)
    {
-      SCAST_PTR(::message::key,pkey,pobj)
+      SCAST_PTR(::message::key,pkey,pobj);
       if(pkey->m_ekey == ::user::key_return)
       {
          if(Session.is_key_pressed(::user::key_control)
@@ -1093,7 +1093,7 @@ namespace user
    void plain_edit::_001OnLButtonDown(signal_details * pobj)
    {
 
-      SCAST_PTR(::message::mouse,pmouse,pobj)
+      SCAST_PTR(::message::mouse,pmouse,pobj);
 
          point pt = pmouse->m_pt;
 
@@ -1126,7 +1126,7 @@ namespace user
    void plain_edit::_001OnLButtonUp(signal_details * pobj)
    {
 
-      SCAST_PTR(::message::mouse,pmouse,pobj)
+      SCAST_PTR(::message::mouse,pmouse,pobj);
 
          point pt = pmouse->m_pt;
 
@@ -1152,7 +1152,7 @@ namespace user
    void plain_edit::_001OnRButtonDown(signal_details * pobj)
    {
 
-      SCAST_PTR(::message::mouse,pmouse,pobj)
+      SCAST_PTR(::message::mouse,pmouse,pobj);
 
          point pt = pmouse->m_pt;
 
@@ -1822,7 +1822,7 @@ namespace user
    void plain_edit::_001OnMouseMove(signal_details * pobj)
    {
 
-      SCAST_PTR(::message::mouse,pmouse,pobj)
+      SCAST_PTR(::message::mouse,pmouse,pobj);
 
          point pt = pmouse->m_pt;
 
@@ -2110,7 +2110,7 @@ namespace user
          if(pobj->m_bRet)
             return;
 
-         SCAST_PTR(::message::key,pkey,pobj)
+         SCAST_PTR(::message::key,pkey,pobj);
 
             string strChar;
 
@@ -2463,7 +2463,7 @@ namespace user
       
       synch_lock lockRoot(m_ptree == NULL ? NULL:m_ptree->m_pmutex);
 
-      SCAST_PTR(::message::key,pkey,pobj)
+      SCAST_PTR(::message::key,pkey,pobj);
       if(pkey->m_ekey == ::user::key_delete)
       {
          if(!m_bReadOnly)
@@ -3024,7 +3024,7 @@ namespace user
 
    void plain_edit::_001OnUpdateEditFocusCopy(signal_details * pobj)
    {
-      SCAST_PTR(::aura::cmd_ui,pupdatecmdui,pobj)
+      SCAST_PTR(::aura::cmd_ui,pupdatecmdui,pobj);
          string str;
       _001GetSelText(str);
       pupdatecmdui->m_pcmdui->Enable(str.has_char());
@@ -3043,7 +3043,7 @@ namespace user
 
    void plain_edit::_001OnUpdateEditFocusPaste(signal_details * pobj)
    {
-      SCAST_PTR(::aura::cmd_ui,pupdatecmdui,pobj)
+      SCAST_PTR(::aura::cmd_ui,pupdatecmdui,pobj);
          pupdatecmdui->m_pcmdui->Enable(Session.copydesk().get_plain_text().has_char());
    }
 

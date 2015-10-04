@@ -2354,7 +2354,7 @@ namespace user
 
    void list::_001OnKeyDown(signal_details * pobj)
    {
-      SCAST_PTR(::message::key, pkey, pobj)
+      SCAST_PTR(::message::key, pkey, pobj);
          if(pkey->previous()) // give chance to child
             return;
       if(pkey->m_ekey == ::user::key_down || pkey->m_ekey == ::user::key_up ||
@@ -2447,7 +2447,7 @@ namespace user
 
    void list::_001OnLButtonDown(signal_details * pobj)
    {
-      SCAST_PTR(::message::mouse, pmouse, pobj)
+      SCAST_PTR(::message::mouse, pmouse, pobj);
       pmouse->previous(); // give chance to child control and to base views
       int_ptr iItem;
       point pt = pmouse->m_pt;
@@ -2519,7 +2519,7 @@ namespace user
 
    void list::_001OnLButtonUp(signal_details * pobj)
    {
-      SCAST_PTR(::message::mouse, pmouse, pobj)
+      SCAST_PTR(::message::mouse, pmouse, pobj);
          point pt = pmouse->m_pt;
       ScreenToClient(&pt);
       KillTimer(12345678);
@@ -2562,7 +2562,7 @@ namespace user
 
    void list::_001OnRButtonDown(signal_details * pobj)
    {
-      SCAST_PTR(::message::mouse, pmouse, pobj)
+      SCAST_PTR(::message::mouse, pmouse, pobj);
 
       pmouse->previous();
       point pt = pmouse->m_pt;
@@ -2807,7 +2807,7 @@ namespace user
 
    void list::_001OnLButtonDblClk(signal_details * pobj)
    {
-      SCAST_PTR(::message::mouse, pmouse, pobj)
+      SCAST_PTR(::message::mouse, pmouse, pobj);
          m_iClick = 2;
 
       //   _001OnClick(nFlags, point);
@@ -3565,7 +3565,7 @@ namespace user
    void list::_001OnCreate(signal_details * pobj)
    {
       
-      SCAST_PTR(::message::create, pcreate, pobj)
+      SCAST_PTR(::message::create, pcreate, pobj);
 
 
       pobj->previous();
@@ -4878,7 +4878,7 @@ namespace user
    void list::_001OnMouseMove(signal_details * pobj)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pobj)
+      SCAST_PTR(::message::mouse, pmouse, pobj);
 
       pmouse->set_lresult(1);
 
@@ -5273,7 +5273,7 @@ namespace user
 
    void list::_001OnUpdateListViewAutoArrange(signal_details * pobj)
    {
-      SCAST_PTR(::aura::cmd_ui, pcmdui, pobj)
+      SCAST_PTR(::aura::cmd_ui, pcmdui, pobj);
       pcmdui->m_pcmdui->_001SetCheck(get_auto_arrange());
       pcmdui->m_pcmdui->Enable();
    }

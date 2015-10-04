@@ -138,7 +138,7 @@ namespace user
          void control_box::_001OnShowWindow(signal_details * pobj)
          {
 
-            SCAST_PTR(::message::show_window, pshow, pobj)
+            SCAST_PTR(::message::show_window, pshow, pobj);
 
                m_bDrag = false;
 

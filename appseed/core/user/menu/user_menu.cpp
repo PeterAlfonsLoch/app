@@ -544,7 +544,7 @@ namespace user
    void menu::_001OnIdleUpdateCmdUI(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-//      SCAST_PTR(::message::base, pbase, pobj)
+//      SCAST_PTR(::message::base, pbase, pobj);
 
       sp(::user::menu_item) pitemThis = get_item();
 
@@ -631,7 +631,7 @@ namespace user
    void menu::_001OnShowWindow(signal_details * pobj)
    {
       
-      SCAST_PTR(::message::show_window, pshow, pobj)
+      SCAST_PTR(::message::show_window, pshow, pobj);
    
       TRACE("menu::_001OnShowWindow bShow = %d", pshow->m_bShow);
 

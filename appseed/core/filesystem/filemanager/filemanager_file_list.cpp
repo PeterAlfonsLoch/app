@@ -275,8 +275,8 @@ namespace filemanager
 
    void file_list::_001OnContextMenu(signal_details * pobj)
    {
-      //SCAST_PTR(::message::context_menu, pcontextmenu, pobj)
-      SCAST_PTR(::message::mouse, pcontextmenu, pobj)
+      //SCAST_PTR(::message::context_menu, pcontextmenu, pobj);
+      SCAST_PTR(::message::mouse, pcontextmenu, pobj);
       index iItem;
 //      HRESULT hr;
       point point = pcontextmenu->m_pt;
@@ -443,13 +443,13 @@ namespace filemanager
 
    void file_list::_001OnShellCommand(signal_details * pobj)
    {
-      SCAST_PTR(::message::command, pcommand, pobj)
+      SCAST_PTR(::message::command, pcommand, pobj);
       m_contextmenu.OnCommand(pcommand->GetId());
    }
 
    void file_list::_001OnFileManagerItemCommand(signal_details * pobj)
    {
-      SCAST_PTR(::aura::command, pcommand, pobj)
+      SCAST_PTR(::aura::command, pcommand, pobj);
       ::fs::item_array itema;
       index iItemRange, iItem;
       range range;
@@ -471,7 +471,7 @@ namespace filemanager
 
    void file_list::_001OnFileManagerItemUpdate(signal_details * pobj)
    {
-      SCAST_PTR(::message::update_cmd_ui, pupdatecmdui, pobj)
+      SCAST_PTR(::message::update_cmd_ui, pupdatecmdui, pobj);
       ::fs::item_array itema;
       index iItemRange, iItem;
       range range;
@@ -578,11 +578,11 @@ namespace filemanager
 
    void file_list::_001OnUpdateFileRename(signal_details * pobj)
    {
-//      SCAST_PTR(::aura::cmd_ui, pcmdui, pobj)
+//      SCAST_PTR(::aura::cmd_ui, pcmdui, pobj);
   //    pcmdui->m_pcmdui->Enable(_001GetSelectedItemCount() == 1);
     //  pobj->m_bRet = true;
 
-      SCAST_PTR(::aura::cmd_ui, pcmdui, pobj)
+      SCAST_PTR(::aura::cmd_ui, pcmdui, pobj);
          range range;
       _001GetSelection(range);
       pcmdui->m_pcmdui->Enable(
@@ -595,7 +595,7 @@ namespace filemanager
 
    void file_list::_001OnUpdateEditCopy(signal_details * pobj)
    {
-      SCAST_PTR(::aura::cmd_ui, pcmdui, pobj)
+      SCAST_PTR(::aura::cmd_ui, pcmdui, pobj);
       range range;
       _001GetSelection(range);
       pcmdui->m_pcmdui->Enable(range.get_item_count() > 0);
@@ -633,7 +633,7 @@ namespace filemanager
 
    void file_list::_001OnUpdateTrashThatIsNotTrash(signal_details * pobj)
    {
-      SCAST_PTR(::aura::cmd_ui, pcmdui, pobj)
+      SCAST_PTR(::aura::cmd_ui, pcmdui, pobj);
       range range;
       _001GetSelection(range);
       pcmdui->m_pcmdui->Enable(range.get_item_count() > 0);
@@ -668,7 +668,7 @@ namespace filemanager
 
    void file_list::_001OnUpdateOpenWith(signal_details * pobj)
    {
-      SCAST_PTR(::aura::cmd_ui, pcmdui, pobj)
+      SCAST_PTR(::aura::cmd_ui, pcmdui, pobj);
 
          ::user::menu_button_cmd_ui * pcmdui1 = dynamic_cast < ::user::menu_button_cmd_ui * > (pcmdui->m_pcmdui);
          if(pcmdui1 != NULL)
@@ -792,7 +792,7 @@ namespace filemanager
 
    void file_list::_001OnUpdateSpafy(signal_details * pobj)
    {
-      SCAST_PTR(::aura::cmd_ui, pcmdui, pobj)
+      SCAST_PTR(::aura::cmd_ui, pcmdui, pobj);
       range range;
       _001GetSelection(range);
       pcmdui->m_pcmdui->Enable(range.get_item_count() > 0);
@@ -860,7 +860,7 @@ namespace filemanager
 
    void file_list::_001OnUpdateSpafy2(signal_details * pobj)
    {
-      SCAST_PTR(::aura::cmd_ui, pcmdui, pobj)
+      SCAST_PTR(::aura::cmd_ui, pcmdui, pobj);
       pcmdui->m_pcmdui->Enable(TRUE);
       pobj->m_bRet = true;
    }
@@ -957,7 +957,7 @@ namespace filemanager
       }
 
       UNREFERENCED_PARAMETER(pobj);
-      //      SCAST_PTR(::message::show_window, pshow, pobj)
+      //      SCAST_PTR(::message::show_window, pshow, pobj);
 
       db_server * pcentral = dynamic_cast < db_server * > (&System.m_simpledb.db());
       if (pcentral == NULL)
@@ -1511,7 +1511,7 @@ namespace filemanager
 
    void file_list::_001OnMainPostMessage(signal_details * pobj)
    {
-      SCAST_PTR(::message::base, pbase, pobj)
+      SCAST_PTR(::message::base, pbase, pobj);
          switch (pbase->m_wparam)
       {
          case MessageMainPostCreateImageListItemStepSetRedraw:
@@ -1771,7 +1771,7 @@ namespace filemanager
 
    void file_list::_001OnVScroll(signal_details * pobj)
    {
-      SCAST_PTR(::message::scroll, pscroll, pobj)
+      SCAST_PTR(::message::scroll, pscroll, pobj);
          m_iCreateImageListStep = pscroll->m_nPos;
       m_bRestartCreateImageList = true;
       pobj->m_bRet = false;

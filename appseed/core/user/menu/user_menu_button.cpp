@@ -127,7 +127,7 @@ namespace user
    void menu_button::_001OnMouseMove(::signal_details * pobj)
    {
 
-      SCAST_PTR(::message::mouse,pmouse,pobj)
+      SCAST_PTR(::message::mouse,pmouse,pobj);
 
          pmouse->previous();
 

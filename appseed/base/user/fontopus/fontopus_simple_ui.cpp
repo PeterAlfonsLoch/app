@@ -90,7 +90,7 @@ namespace fontopus
    void simple_ui::_001OnChar(signal_details * pobj)
    {
 
-      SCAST_PTR(::message::key, pkey, pobj)
+      SCAST_PTR(::message::key, pkey, pobj);
 
       if(pkey->m_ekey == ::user::key_return)
       {

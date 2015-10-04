@@ -526,7 +526,7 @@ namespace filemanager
 
    void tree::_001OnMainPostMessage(signal_details * pobj)
    {
-      SCAST_PTR(::message::base, pbase, pobj)
+      SCAST_PTR(::message::base, pbase, pobj);
          switch(pbase->m_wparam)
       {
          case MessageMainPostCreateImageListItemRedraw:
@@ -1066,7 +1066,7 @@ namespace filemanager
 
       void tree::_001OnContextMenu(signal_details * pobj)
       {
-//         SCAST_PTR(::message::context_menu, pcontextmenu, pobj)
+//         SCAST_PTR(::message::context_menu, pcontextmenu, pobj);
             //   int32_t iItem;
             //   HRESULT hr;
 //            point ptClient = pcontextmenu->GetPoint();
@@ -1130,7 +1130,7 @@ namespace filemanager
 
       void tree::_001OnShellCommand(signal_details * pobj)
       {
-         SCAST_PTR(::message::command, pcommand, pobj)
+         SCAST_PTR(::message::command, pcommand, pobj);
             m_contextmenu.OnCommand(pcommand->GetId());
       }
 

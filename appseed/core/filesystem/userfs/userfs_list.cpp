@@ -118,7 +118,7 @@ namespace userfs
    void list::_001OnLButtonDblClk(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-//      SCAST_PTR(::message::mouse, pmouse, pobj)
+//      SCAST_PTR(::message::mouse, pmouse, pobj);
 /*         index iItem;
       list_data * pdata = get_fs_mesh_data();
       if(_001HitTest_(pmouse->m_pt, iItem))
@@ -442,7 +442,7 @@ namespace userfs
 
    void list::_001OnVScroll(signal_details * pobj)
    {
-      //      SCAST_PTR(::message::scroll, pscroll, pobj)
+      //      SCAST_PTR(::message::scroll, pscroll, pobj);
       //m_iCreateImageListStep = pscroll->m_nPos;
       //m_bRestartCreateImageList = true;
       pobj->m_bRet = false;
@@ -504,7 +504,7 @@ namespace userfs
 
    void list::_001OnUpdateFileRename(signal_details * pobj)
    {
-      SCAST_PTR(::aura::cmd_ui, pcmdui, pobj)
+      SCAST_PTR(::aura::cmd_ui, pcmdui, pobj);
          range range;
       _001GetSelection(range);
       pcmdui->m_pcmdui->Enable(
@@ -516,7 +516,7 @@ namespace userfs
    void list::_001OnShowWindow(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      //      SCAST_PTR(::message::show_window, pshow, pobj)
+      //      SCAST_PTR(::message::show_window, pshow, pobj);
 
       db_server * pcentral = dynamic_cast < db_server * > (&System.m_simpledb.db());
       if (pcentral == NULL)

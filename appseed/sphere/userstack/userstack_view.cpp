@@ -185,7 +185,7 @@ namespace userstack
 
    void view::_001OnContextMenu(signal_details * pobj)
    {
-//      SCAST_PTR(::message::context_menu, pcontextmenu, pobj)
+//      SCAST_PTR(::message::context_menu, pcontextmenu, pobj);
 //      point point = pcontextmenu->GetPoint();
 
    }
@@ -279,7 +279,7 @@ namespace userstack
 
    void view::_001OnLButtonUp(signal_details * pobj)
    {
-      SCAST_PTR(::message::mouse, pmouse, pobj)
+      SCAST_PTR(::message::mouse, pmouse, pobj);
       pmouse->set_lresult(1);
       KillTimer(5432180);
       point pt = pmouse->m_pt;

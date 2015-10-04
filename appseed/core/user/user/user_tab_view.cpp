@@ -36,7 +36,7 @@ namespace user
 
    void tab_view::_001OnCreate(signal_details * pobj)
    {
-//      SCAST_PTR(::message::create, pcreate, pobj)
+//      SCAST_PTR(::message::create, pcreate, pobj);
       if(pobj->previous())
          return;
    }
@@ -96,7 +96,7 @@ namespace user
 
    void tab_view::_001OnMenuMessage(signal_details * pobj)
    {
-      SCAST_PTR(::message::base, pbase, pobj)
+      SCAST_PTR(::message::base, pbase, pobj);
       if(pbase->m_wparam == 0 && pbase->m_lparam == 0)
       {
          set_cur_tab_by_id(m_pviewdataOld->m_id);
