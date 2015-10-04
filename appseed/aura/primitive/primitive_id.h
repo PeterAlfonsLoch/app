@@ -357,3 +357,151 @@ template <> inline UINT HashKey(const id & id)
 
 
 
+
+
+inline bool id::operator == (const string & str) const
+{
+   return m_etype == type_text && (m_psz == NULL ? false : str.Compare(m_psz) == 0);
+}
+inline bool id::operator != (const string & str) const
+{
+   return !operator==(str);
+}
+inline bool id::operator < (const string & str) const
+{
+   return (m_etype < type_text) || (m_psz == NULL ? true : str.Compare(m_psz) > 0);
+}
+inline bool id::operator <= (const string & str) const
+{
+   return !operator > (str);
+}
+inline bool id::operator > (const string & str) const
+{
+   return (m_etype > type_text) || (m_psz == NULL ? false : str.Compare(m_psz) < 0);
+}
+inline bool id::operator >= (const string & str) const
+{
+   return !operator < (str);
+}
+
+
+inline bool id::operator == (const string_interface & str) const
+{
+   return m_etype == type_text && (m_psz == NULL ? false : string(str).Compare(m_psz) == 0);
+}
+inline bool id::operator != (const string_interface & str) const
+{
+   return !operator==(str);
+}
+inline bool id::operator < (const string_interface & str) const
+{
+   return (m_etype < type_text) || (m_psz == NULL ? true : string(str).Compare(m_psz) > 0);
+}
+inline bool id::operator <= (const string_interface & str) const
+{
+   return !operator > (str);
+}
+inline bool id::operator > (const string_interface & str) const
+{
+   return (m_etype > type_text) || (m_psz == NULL ? false : string(str).Compare(m_psz) < 0);
+}
+inline bool id::operator >= (const string_interface & str) const
+{
+   return !operator < (str);
+}
+
+
+inline char string::last_char() const
+{
+   return operator[] (get_length() - 1);
+}
+
+
+
+
+inline id::operator const char *() const
+{
+   return (m_etype != type_text || m_psz == NULL) ? NULL : m_psz;
+}
+
+
+inline string &  id::to_string(string & strRet) const
+{
+
+   return strRet =  str();
+
+}
+
+
+inline string id::to_string() const
+{
+
+   return str();
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+inline bool id::is_empty() const
+{
+   return is_null() || m_etype == type_empty || (m_etype == type_text && *m_psz == '\0');
+}
+
+
+
+inline CLASS_DECL_AURA int_ptr id_strcmp(const id * pid1,const id * pid2)
+{
+   return strcmp(pid1->m_psz,pid2->m_psz);
+}
+
+inline void id::raw_set(const char * psz)
+{
+
+   m_etype     = type_text;
+   m_psz       = psz;
+
+}
+
+inline string id::str() const
+{
+   if(m_etype == type_null)
+   {
+      return "(null)";
+   }
+   else if(m_etype == type_null)
+   {
+      return "(empty)";
+   }
+   else if(m_etype == type_text)
+   {
+      return m_psz;
+   }
+   else if(m_etype == type_integer)
+   {
+      return ::str::from(m_i);
+   }
+   else
+   {
+      return string("(type:") + ::str::from(m_iType) + ",body:" + ::str::from(m_iBody) + ")";
+   }
+}

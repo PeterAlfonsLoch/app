@@ -52,6 +52,8 @@ public:
    var lookup(id id) const;
    var lookup(id id, var varDefault) const;
 
+   property & get(id id);
+
    property & at(index iId);
    property at(index iId) const;
 
@@ -412,9 +414,22 @@ inline property & property_set::operator[](string strName)
 inline property & property_set::operator[](id idName)
 {
 
-   return *get_assoc(idName);
+   return get(idName);
 
 }
+
+inline property & property_set::get(id idName)
+{
+   
+   assoc * p = get_assoc(idName);
+
+   if(p->m_iIndex < 0)
+      p->m_iIndex = get_count() - 1;
+
+   return *p;
+
+}
+
 
 inline var property_set::lookup(id idName) const
 {

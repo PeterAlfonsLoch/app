@@ -558,8 +558,6 @@ namespace filemanager
 
       UNREFERENCED_PARAMETER(pobj);
 
-      sp(::user::control) pcontrol = _001GetControlBySubItem(m_iNameSubItem);
-
       range range;
 
       _001GetSelection(range);
@@ -567,7 +565,9 @@ namespace filemanager
       if (range.get_item_count() == 1 && range.ItemAt(0).get_lower_bound() == range.ItemAt(0).get_upper_bound())
       {
 
-         pcontrol->m_iEditItem = range.ItemAt(0).get_lower_bound();
+         int iEditItem = range.ItemAt(0).get_lower_bound();
+
+         sp(::user::control) pcontrol = _001GetControl(iEditItem, m_iNameSubItem);
 
          _001PlaceControl(pcontrol);
 

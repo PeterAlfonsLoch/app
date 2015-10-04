@@ -37,3 +37,18 @@ public:
    string to_string () const;
 
 };
+
+
+
+
+class CLASS_DECL_AURA const_empty_string:
+   public string_interface
+{
+public:
+   strsize get_length() const;
+   void get_string(char * pszstr) const;
+   void set_string(const string & str,::action::context actioncontext);
+};
+
+
+

@@ -108,11 +108,11 @@ public:
 
    index      m_iIndex;
 
-   property(::aura::application * papp,::index iIndex = 0);
-   property(::index iIndex = 0);
+   property(::aura::application * papp,::index iIndex = -1);
+   property(::index iIndex = -1);
    property(const property & prop);
-   property(id strName,::index iIndex = 0);
-   property(id strName,var var,::index iIndex = 0);
+   property(id strName,::index iIndex = -1);
+   property(id strName,var var,::index iIndex = -1);
 #ifdef MOVE_SEMANTICS
    property(property && prop)
    {

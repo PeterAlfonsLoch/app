@@ -1057,50 +1057,9 @@ inline strsize string::utf8_length() const
 
 
 
-inline strsize string_composite::get_length() const
-{
-   if(m_pstring != NULL)
-      return m_pstring->get_length();
-   else
-      return m_pinterface->get_length();
-}
-
-inline void string_composite::get_string(char * psz) const
-{
-   if(m_pstring != NULL)
-      m_pstring->get_string(psz);
-   else
-      m_pinterface->get_string(psz);
-}
-
-inline void string_composite::set_string(const string & str, ::action::context actioncontext)
-{
-   if(m_pstring != NULL)
-      m_pstring->set_string(str);
-   else
-      m_pinterface->set_string(str, actioncontext);
-}
-
-class CLASS_DECL_AURA const_empty_string :
-   public string_interface
-{
-public:
-   strsize get_length() const;
-   void get_string(char * pszstr) const;
-   void set_string(const string & str, ::action::context actioncontext);
-};
 
 
 
-
-namespace str
-{
-
-   extern CLASS_DECL_AURA const_empty_string g_strEmpty;
-
-   CLASS_DECL_AURA string_interface & empty_string();
-
-}
 
 
 #define BAD_WCHAR ((unichar)(0xFFFF))
@@ -1111,64 +1070,6 @@ namespace str
 #include "aura/primitive/str/x/x_charcategory.h"
 #include "aura/primitive/primitive_bit.h"
 #include "aura/primitive/collection/collection_bit_array.h"
-
-
-inline bool id::operator == (const string & str) const
-{
-   return m_etype == type_text && (m_psz == NULL ? false : str.Compare(m_psz) == 0);
-}
-inline bool id::operator != (const string & str) const
-{
-   return !operator==(str);
-}
-inline bool id::operator < (const string & str) const
-{
-   return (m_etype < type_text) || (m_psz == NULL ? true : str.Compare(m_psz) > 0);
-}
-inline bool id::operator <= (const string & str) const
-{
-   return !operator > (str);
-}
-inline bool id::operator > (const string & str) const
-{
-   return (m_etype > type_text) || (m_psz == NULL ? false : str.Compare(m_psz) < 0);
-}
-inline bool id::operator >= (const string & str) const
-{
-   return !operator < (str);
-}
-
-
-inline bool id::operator == (const string_interface & str) const
-{
-   return m_etype == type_text && (m_psz == NULL ? false : string(str).Compare(m_psz) == 0);
-}
-inline bool id::operator != (const string_interface & str) const
-{
-   return !operator==(str);
-}
-inline bool id::operator < (const string_interface & str) const
-{
-   return (m_etype < type_text) || (m_psz == NULL ? true : string(str).Compare(m_psz) > 0);
-}
-inline bool id::operator <= (const string_interface & str) const
-{
-   return !operator > (str);
-}
-inline bool id::operator > (const string_interface & str) const
-{
-   return (m_etype > type_text) || (m_psz == NULL ? false : string(str).Compare(m_psz) < 0);
-}
-inline bool id::operator >= (const string_interface & str) const
-{
-   return !operator < (str);
-}
-
-
-inline char string::last_char() const
-{
-   return operator[] (get_length() - 1);
-}
 
 
 
@@ -1211,92 +1112,6 @@ inline char string::last_char() const
 //
 //}
 
-inline id::operator const char *() const
-{
-   return (m_etype != type_text || m_psz == NULL) ? NULL : m_psz;
-}
-
-
-inline string &  id::to_string(string & strRet) const
-{
-
-    return strRet =  str();
-
-}
-
-
-inline string id::to_string() const
-{
-
-    return str();
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-inline bool id::is_empty() const
-{
-   return is_null() || m_etype == type_empty || (m_etype == type_text && *m_psz == '\0');
-}
-
-
-
-inline CLASS_DECL_AURA int_ptr id_strcmp(const id * pid1, const id * pid2)
-{
-   return strcmp(pid1->m_psz, pid2->m_psz);
-}
-
-inline void id::raw_set(const char * psz)
-{
-
-   m_etype     = type_text;
-   m_psz       = psz;
-
-}
-
-inline string id::str() const
-{
-   if(m_etype == type_null)
-   {
-      return "(null)";
-   }
-   else if(m_etype == type_null)
-   {
-      return "(empty)";
-   }
-   else if(m_etype == type_text)
-   {
-      return m_psz;
-   }
-   else if(m_etype == type_integer)
-   {
-      return ::str::from(m_i);
-   }
-   else
-   {
-      return string("(type:") + ::str::from(m_iType) + ",body:" + ::str::from(m_iBody) + ")";
-   }
-}
 
 inline   string::string() throw() :
 stdstring<simple_string>(string_trait::GetDefaultManager())

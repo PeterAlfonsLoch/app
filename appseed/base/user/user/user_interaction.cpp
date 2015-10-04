@@ -1108,12 +1108,12 @@ namespace user
    void interaction::_001DrawThis(::draw2d::graphics * pgraphics)
    {
 
-      /*point ptOrg =  pgraphics->GetViewportOrg();*/
+      point ptOrg =  pgraphics->GetViewportOrg();
 
       try
       {
 
-         if(!is_custom_draw())
+         if(!is_custom_draw() && pgraphics->m_pnext == NULL)
          {
 
             set_viewport_org(pgraphics);
@@ -1152,13 +1152,13 @@ namespace user
       catch(...)
       {
 
-//         pgraphics->SetViewportOrg(ptOrg);
+         pgraphics->SetViewportOrg(ptOrg);
 
          throw simple_exception(::get_thread_app(), "no more a window");
 
       }
 
-      //pgraphics->SetViewportOrg(ptOrg);
+      pgraphics->SetViewportOrg(ptOrg);
 
    }
 
@@ -1280,9 +1280,6 @@ namespace user
 
    void interaction::_000OnDraw(::draw2d::graphics *pdc)
    {
-
-      if(!m_bVisible)
-         return;
 
       _001DrawThis(pdc);
 

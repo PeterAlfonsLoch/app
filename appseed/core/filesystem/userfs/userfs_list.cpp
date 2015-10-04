@@ -493,11 +493,11 @@ namespace userfs
    void list::_001OnFileRename(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      sp(::user::control) pcontrol = _001GetControlBySubItem(get_fs_mesh_data()->m_iNameSubItem);
       range range;
       _001GetSelection(range);
       if (range.get_item_count() == 1 && range.ItemAt(0).get_lower_bound() == range.ItemAt(0).get_upper_bound())
       {
+         sp(::user::control) pcontrol = _001GetControl(range.ItemAt(0).get_lower_bound(), get_fs_mesh_data()->m_iNameSubItem);
          _001PlaceControl(pcontrol);
       }
    }

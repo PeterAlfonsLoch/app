@@ -13,8 +13,6 @@
 #include "aura/exception/exception_throw.h"
 
 #include "str_simple.h"
-#include "str_interface.h"
-#include "str_composite.h"
 #include "str_format.h"
 #include "str_string.h"
 

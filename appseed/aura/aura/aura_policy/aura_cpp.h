@@ -692,6 +692,19 @@ namespace file
 #include "aura/primitive/datetime/datetime_duration.h"
 
 
+#include "aura/primitive/str/str.h"
+
+
+
+#include "aura/primitive/datetime/datetime_date_span.h"
+#include "aura/primitive/datetime/datetime_time_span.h"
+#include "aura/primitive/datetime/datetime_time.h"
+#include "aura/primitive/datetime/datetime_file_time_span.h"
+#include "aura/primitive/datetime/datetime_file_time.h"
+
+
+
+
 #include "aura/aura/aura/aura_element.h"
 
 #include "aura/aura/aura/aura_debug.h"
@@ -755,8 +768,9 @@ namespace file
 
 #include "aura/primitive/primitive_id.h"
 
+#include "aura/primitive/str/str_interface.h"
+#include "aura/primitive/str/str_composite.h"
 
-#include "aura/primitive/str/str.h"
 #include "aura/aura/exception/exception.h"
 #include "aura/aura/aura/aura_common.h"
 #include "aura/filesystem/filesystem/filesystem_path.h"
@@ -768,11 +782,6 @@ namespace file
 #include "aura/aura/aura/aura_library.h"
 
 
-#include "aura/primitive/datetime/datetime_date_span.h"
-#include "aura/primitive/datetime/datetime_time_span.h"
-#include "aura/primitive/datetime/datetime_time.h"
-#include "aura/primitive/datetime/datetime_file_time_span.h"
-#include "aura/primitive/datetime/datetime_file_time.h"
 
 
 

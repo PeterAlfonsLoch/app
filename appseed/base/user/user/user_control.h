@@ -75,7 +75,7 @@ namespace user
          } m_data;
 
          form_window *           m_pform;
-         sp(control)             m_pcontrol;
+         spa(control)            m_controla;
          id                      m_id;
          id                      m_uiText;
          sp(type)                m_typeinfo;
@@ -108,7 +108,9 @@ namespace user
          edatatype get_data_type();
          void set_data_type(edatatype edatatype);
          void set_ddx_dbflags(::database::id id, int_ptr value);
+         control * get_control(::user::interaction * puiParent,int iIndex);
 
+         
 
       };
 

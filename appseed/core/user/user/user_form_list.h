@@ -41,7 +41,7 @@ namespace user
       sp(control) _001GetEditControl();
       void _001SetEditControl(sp(control) pcontrol);
       virtual void _001PlaceControl(sp(control) pcontrol);
-      sp(control) _001GetControlBySubItem(index iSubItem);
+      sp(control) _001GetControl(index iItem, index iSubItem);
       virtual void _001OnClick(uint_ptr uiFlags,point point);
       virtual void _001OnClick(uint_ptr uiFlags,point point,index iItem,index iSubItem);
       void _001OnTimer(::timer * ptimer);
@@ -64,6 +64,9 @@ namespace user
       bool BaseOnControlEvent(::user::control_event * pevent);
 
       virtual void _001OnColumnChange();
+
+
+      virtual void _001DrawChildren(::draw2d::graphics *pdc);
 
 
    };

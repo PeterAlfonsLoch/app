@@ -55,7 +55,7 @@ namespace user
    {
       UNREFERENCED_PARAMETER(uiFlags);
       UNREFERENCED_PARAMETER(point);
-      sp(control) pcontrol = _001GetControlBySubItem(iSubItem);
+      sp(control) pcontrol = _001GetControl(iItem, iSubItem);
       if(pcontrol != NULL)
       {
          if(pcontrol->descriptor().has_function(::user::control::function_action))
@@ -104,7 +104,7 @@ namespace user
       }
    }
 
-   sp(control) form_list::_001GetControlBySubItem(index iSubItem)
+   sp(control) form_list::_001GetControl(index iItem, index iSubItem)
    {
       ::user::list_column * pcolumn = m_columna._001GetBySubItem(iSubItem);
       if(pcolumn != NULL && pcolumn->m_iControl >= 0)
@@ -280,6 +280,10 @@ namespace user
 
    }
 
+   void form_list::_001DrawChildren(::draw2d::graphics *pdc)
+   {
+
+   }
 
    void form_list::_001HideEditingControls()
    {
@@ -327,13 +331,27 @@ namespace user
       ::user::list::_001DrawSubItem(pdrawitem);
       if(pdrawitem->m_pcolumn->m_bCustomDraw)
       {
-         sp(control) pcontrol = _001GetControlBySubItem(pdrawitem->m_iSubItem);
+         sp(control) pcontrol = _001GetControl(pdrawitem->m_iSubItem);
          if(pcontrol != NULL)
          {
             pdrawitem->m_rectClient = pdrawitem->m_rectSubItem;
             pdrawitem->m_rectWindow = pdrawitem->m_rectClient;
             ClientToScreen(pdrawitem->m_rectWindow);
             control_keep controlkeep(this,pdrawitem->m_iItem,pdrawitem->m_iSubItem);
+
+            sp(::user::plain_edit) pedit = pcontrol;
+
+            if(pedit.is_set())
+            {
+               pdrawitem->m_bOk = false;
+               _001GetItemText(pdrawitem);
+               if(pdrawitem->m_bOk)
+               {
+                  pedit->_001SetText(pdrawitem->m_strText,::action::source_sync);
+               }
+
+            }
+
             pcontrol->_003CallCustomDraw(pdrawitem->m_pgraphics,pdrawitem);
             pdrawitem->m_pgraphics->SelectClipRgn(NULL);
             _001OnClip(pdrawitem->m_pgraphics);

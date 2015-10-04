@@ -45,6 +45,7 @@ public:
    bool                          m_bHeap;
    ::aura::application *         m_pauraapp;
    mutex *                       m_pmutex;
+   ::datetime::time              m_time;
 
    // OBJECT :: object :> is a a a root, and is an element
 

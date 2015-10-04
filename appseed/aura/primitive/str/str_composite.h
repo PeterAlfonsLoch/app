@@ -32,3 +32,43 @@ public:
 
 
 };
+
+
+
+inline strsize string_composite::get_length() const
+{
+
+   if(m_pstring != NULL)
+      return m_pstring->get_length();
+   else
+      return m_pinterface->get_length();
+
+}
+
+
+inline void string_composite::get_string(char * psz) const
+{
+   if(m_pstring != NULL)
+      m_pstring->get_string(psz);
+   else
+      m_pinterface->get_string(psz);
+}
+
+inline void string_composite::set_string(const string & str,::action::context actioncontext)
+{
+   if(m_pstring != NULL)
+      m_pstring->set_string(str);
+   else
+      m_pinterface->set_string(str,actioncontext);
+}
+
+
+namespace str
+{
+
+   extern CLASS_DECL_AURA const_empty_string g_strEmpty;
+
+   CLASS_DECL_AURA string_interface & empty_string();
+
+}
+
