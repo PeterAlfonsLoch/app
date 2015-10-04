@@ -2280,7 +2280,7 @@ namespace user
    }
 
 
-   bool interaction::create_window(const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,::user::interaction * pParentWnd,id id,sp(::create) pContext)
+   bool interaction::create_window(const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rectParam,::user::interaction * pParentWnd,id id,sp(::create) pContext)
    {
 
       if(IsWindow())
@@ -2311,6 +2311,21 @@ namespace user
          m_threadptra.add(get_app());
 
       }
+
+      ::rect rect(rectParam);
+
+      if(rect.area() <= 0)
+      {
+
+         if(pParentWnd != NULL && dynamic_cast <::user::place_holder *> (pParentWnd) != NULL)
+         {
+
+            pParentWnd->GetClientRect(rect);
+
+         }
+
+      }
+
       
 #if defined(APPLE_IOS) || defined(VSNORD) || defined(METROWIN)
       
@@ -6534,7 +6549,7 @@ namespace user
 
 //      SCAST_PTR(::message::mouse,pmouse,pobj);
 
-       UNREFERENCED_PARAMETER(pobj);
+      pobj->previous();
 
       try
       {
@@ -6545,6 +6560,8 @@ namespace user
             Session.set_keyboard_focus(this);
 
             Session.user()->set_mouse_focus_LButtonDown(this);
+
+            pobj->m_bRet = true;
 
          }
          else

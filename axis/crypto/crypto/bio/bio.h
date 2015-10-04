@@ -72,7 +72,7 @@
 # ifndef OPENSSL_SYS_VMS
 # include "_stdint.h"
 # else
-# include <inttypes.h>
+# include "_inttypes.h"
 # endif
 #endif
 

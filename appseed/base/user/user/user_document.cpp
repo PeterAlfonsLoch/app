@@ -267,6 +267,27 @@ namespace user
    }
 
 
+   sp(::user::impact) document::get_typed_view_with_id(sp(type) info,id id)
+   {
+      single_lock sl(m_pmutex,true);
+      ::count countView = get_view_count();
+      ::count countFind = 0;
+      sp(::user::impact) pview;
+      for(index index = 0; index < countView; index++)
+      {
+         pview = get_view(index);
+         if(*info == typeid(*pview))
+         {
+            if(id == pview->m_id)
+               return pview;
+            else
+               countFind++;
+         }
+      }
+      return NULL;
+   }
+
+
    void document::show_all_frames(UINT nCmdShow)
    {
       ::count count = get_view_count();

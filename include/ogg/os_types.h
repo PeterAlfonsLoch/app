@@ -70,7 +70,7 @@
 //
 //#elif (defined(__APPLE__) && defined(__MACH__)) /* MacOS X Framework build */
 //
-//#  include <inttypes.h>
+//#  include "_inttypes.h"
 //   typedef int16_t int16_t;
 //   typedef uint16_t uint16_t;
 //   typedef int32_t int32_t;
@@ -90,7 +90,7 @@
 //#elif defined(__BEOS__)
 //
 //   /* Be */
-//#  include <inttypes.h>
+//#  include "_inttypes.h"
 //   typedef int16_t int16_t;
 //   typedef uint16_t uint16_t;
 //   typedef int32_t int32_t;

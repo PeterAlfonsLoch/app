@@ -16,7 +16,7 @@
    along with this program; if not, see <http://www.gnu.org/licenses/>.  */
 
 /*
- * ISO C 99 <stdint.h> for platforms that lack it.
+ * ISO C 99 "_inttypes.h" for platforms that lack it.
  * <http://www.opengroup.org/susv3xbd/stdint.h.html>
  */
 
@@ -27,15 +27,15 @@
 #endif
 @PRAGMA_COLUMNS@
 
-/* When including a system file that in turn includes <inttypes.h>,
-   use the system <inttypes.h>, not our substitute.  This avoids
+/* When including a system file that in turn includes "_inttypes.h",
+   use the system "_inttypes.h", not our substitute.  This avoids
    problems with (for example) VMS, whose <sys/bitypes.h> includes
-   <inttypes.h>.  */
+   "_inttypes.h".  */
 #define _GL_JUST_INCLUDE_SYSTEM_INTTYPES_H
 
 /* On Android (Bionic libc), <sys/types.h> includes this file before
    having defined 'time_t'.  Therefore in this case avoid including
-   other system header files; just include the system's <stdint.h>.
+   other system header files; just include the system's "_inttypes.h".
    Ideally we should test __BIONIC__ here, but it is only defined after
    <sys/cdefs.h> has been included; hence test __ANDROID__ instead.  */
 #if defined __ANDROID__ && defined _GL_INCLUDING_SYS_TYPES_H
@@ -52,13 +52,13 @@
 
 #if @HAVE_STDINT_H@
 # if defined __sgi && ! defined __c99
-   /* Bypass IRIX's <stdint.h> if in C89 mode, since it merely annoys users
+   /* Bypass IRIX's "_inttypes.h" if in C89 mode, since it merely annoys users
       with "This header file is to be used only for c99 mode compilations"
       diagnostics.  */
 #  define __STDINT_H__
 # endif
 
-  /* Some pre-C++11 <stdint.h> implementations need this.  */
+  /* Some pre-C++11 "_inttypes.h" implementations need this.  */
 # ifdef __cplusplus
 #  ifndef __STDC_CONSTANT_MACROS
 #   define __STDC_CONSTANT_MACROS 1
@@ -68,9 +68,9 @@
 #  endif
 # endif
 
-  /* Other systems may have an incomplete or buggy <stdint.h>.
-     Include it before <inttypes.h>, since any "#include "_stdint.h""
-     in <inttypes.h> would reinclude us, skipping our contents because
+  /* Other systems may have an incomplete or buggy "_inttypes.h".
+     Include it before "_inttypes.h", since any "#include "_stdint.h""
+     in "_inttypes.h" would reinclude us, skipping our contents because
      _@GUARD_PREFIX@_STDINT_H is defined.
      The include_next requires a split double-inclusion guard.  */
 # @INCLUDE_NEXT@ @NEXT_STDINT_H@
@@ -82,8 +82,8 @@
 /* <sys/types.h> defines some of the stdint.h types as well, on glibc,
    IRIX 6.5, and OpenBSD 3.8 (via <machine/types.h>).
    AIX 5.2 <sys/types.h> isn't needed and causes troubles.
-   Mac OS X 10.4.6 <sys/types.h> includes <stdint.h> (which is us), but
-   relies on the system <stdint.h> definitions, so include
+   Mac OS X 10.4.6 <sys/types.h> includes "_inttypes.h" (which is us), but
+   relies on the system "_inttypes.h" definitions, so include
    <sys/types.h> after @NEXT_STDINT_H@.  */
 #if @HAVE_SYS_TYPES_H@ && ! defined _AIX
 # include <sys/types.h>
@@ -94,10 +94,10 @@
 #include <limits.h>
 
 #if @HAVE_INTTYPES_H@
-  /* In OpenBSD 3.8, <inttypes.h> includes <machine/types.h>, which defines
+  /* In OpenBSD 3.8, "_inttypes.h" includes <machine/types.h>, which defines
      int{8,16,32,64}_t, uint{8,16,32,64}_t and __BIT_TYPES_DEFINED__.
-     <inttypes.h> also defines intptr_t and uintptr_t.  */
-# include <inttypes.h>
+     "_inttypes.h" also defines intptr_t and uintptr_t.  */
+# include "_inttypes.h"
 #elif @HAVE_SYS_INTTYPES_H@
   /* Solaris 7 <sys/inttypes.h> has the types except the *_fast*_t types, and
      the macros except for *_FAST*_*, INTPTR_MIN, PTRDIFF_MIN, PTRDIFF_MAX.  */
@@ -241,7 +241,7 @@ typedef unsigned long long int gl_uint64_t;
 
 /* 7.18.1.3. Fastest minimum-width integer types */
 
-/* Note: Other <stdint.h> substitutes may define these types differently.
+/* Note: Other "_inttypes.h" substitutes may define these types differently.
    It is not recommended to use these types in public header files. */
 
 /* Here we assume a standard architecture where the hardware integer
@@ -542,7 +542,7 @@ typedef int _verify_intmax_size[sizeof (intmax_t) == sizeof (uintmax_t)
    This include is not on the top, above, because on OSF/1 4.0 we have a
    sequence of nested includes
    <wchar.h> -> <stdio.h> -> <getopt.h> -> <stdlib.h>, and the latter includes
-   <stdint.h> and assumes its types are already defined.  */
+   "_inttypes.h" and assumes its types are already defined.  */
 #if @HAVE_WCHAR_H@ && ! (defined WCHAR_MIN && defined WCHAR_MAX)
   /* BSD/OS 4.0.1 has a bug: <stddef.h>, <stdio.h> and <time.h> must be
      included before <wchar.h>.  */

@@ -40,7 +40,7 @@
 #include "tsmf_platform.h"
 
 #ifdef HAVE_INTTYPES_H
-#include <inttypes.h>
+#include "_inttypes.h"
 #endif
 
 static BOOL tsmf_gstreamer_pipeline_build(TSMFGstreamerDecoder* mdecoder);

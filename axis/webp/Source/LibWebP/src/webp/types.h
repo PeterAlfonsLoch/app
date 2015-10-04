@@ -17,7 +17,7 @@
 #include <stddef.h>  // for size_t
 
 #ifndef _MSC_VER
-#include <inttypes.h>
+#include "_inttypes.h"
 #ifdef __STRICT_ANSI__
 #define WEBP_INLINE
 #else  /* __STRICT_ANSI__ */

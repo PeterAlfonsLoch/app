@@ -73,7 +73,7 @@
 //#include "_stdint.h"
 //#elif defined(__FreeBSD__) || defined(__APPLE__)
 //#include <machine/endian.h>
-//#include <inttypes.h>
+//#include "_inttypes.h"
 //#else
 ////#error Need header files for endian type and integer datatypes.
 //#endif

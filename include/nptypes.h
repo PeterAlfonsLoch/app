@@ -55,7 +55,7 @@
    * AIX and SunOS ship a inttypes.h header that defines [u]int32_t,
    * but not bool for C.
    */
-  #include <inttypes.h>
+  #include "_inttypes.h"
 
   #ifndef __cplusplus
     typedef int bool;
@@ -84,11 +84,11 @@
   /*
    * FreeBSD and OpenBSD define uint32_t and bool.
    */
-    #include <inttypes.h>
+    #include "_inttypes.h"
     #include <stdbool.h>
   #endif
 #elif defined(BEOS)
-  #include <inttypes.h>
+  #include "_inttypes.h"
 #else
   /*
    * For those that ship a standard C99 stdint.h header file, include

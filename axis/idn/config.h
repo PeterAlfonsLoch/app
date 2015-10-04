@@ -231,7 +231,7 @@
    */
 #undef HAVE_INLINE
 
-/* Define to 1 if you have the <inttypes.h> header file. */
+/* Define to 1 if you have the "_inttypes.h" header file. */
 #undef HAVE_INTTYPES_H
 
 /* Define if you have <langinfo.h> and nl_langinfo(CODESET). */
@@ -948,7 +948,7 @@
 /* Define to the version of this package. */
 #undef PACKAGE_VERSION
 
-/* Define if <inttypes.h> exists and defines unusable PRI* macros. */
+/* Define if "_inttypes.h" exists and defines unusable PRI* macros. */
 #undef PRI_MACROS_BROKEN
 
 /* Define to the type that is the result of default argument promotions of

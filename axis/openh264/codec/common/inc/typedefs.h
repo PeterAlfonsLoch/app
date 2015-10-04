@@ -46,7 +46,7 @@
 
 #define __STDC_FORMAT_MACROS
 #include "_stdint.h"
-#include <inttypes.h>
+#include "_inttypes.h"
 
 #ifdef __LP64__
 typedef int64_t intX_t;

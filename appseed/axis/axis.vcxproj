@@ -552,6 +552,12 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="user\user\user_validate.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="user\_user.cpp" />
     <ClInclude Include="app_install_launcher.h" />
     <ClInclude Include="axis\axis\axis.h" />
@@ -1459,6 +1465,7 @@
     <ClInclude Include="user\user\user_keyboard_layout.h" />
     <ClInclude Include="user\user\user_key_enum.h" />
     <ClInclude Include="user\user\user_print_job.h" />
+    <ClInclude Include="user\user\user_validate.h" />
     <ClInclude Include="version.config.h" />
     <ClInclude Include="version.h" />
   </ItemGroup>

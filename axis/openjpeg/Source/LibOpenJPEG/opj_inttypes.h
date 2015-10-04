@@ -28,7 +28,7 @@
 
 #include "opj_config_private.h"
 #ifdef OPJ_HAVE_INTTYPES_H
-#include <inttypes.h>
+#include "_inttypes.h"
 #else
 #if defined(_WIN32)
 #define PRId64 "I64d"

@@ -31,7 +31,7 @@
 #endif
 
 #include <errno.h>
-#include <inttypes.h>
+#include "_inttypes.h"
 #include <limits.h>
 #include <math.h>
 #include "_stdint.h"

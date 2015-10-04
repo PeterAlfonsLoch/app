@@ -32,7 +32,7 @@
 #if defined(linux)
 #include "_stdint.h"
 #elif defined(__FreeBSD__) || defined(__APPLE__)
-#include <inttypes.h>
+#include "_inttypes.h"
 #else
 #error Need header file for integer datatypes.
 #endif

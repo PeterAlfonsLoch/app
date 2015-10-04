@@ -93,7 +93,29 @@ namespace user
          return NULL;
       }
 
+      template < class T >
+      T * get_typed_view_with_id(id id) const
+      {
+         if(indexFind < 0 || indexFind >= m_viewptra.get_count())
+            return NULL;
+         ::count count = 0;
+         for(index index = 0; index < m_viewptra.get_count(); index++)
+         {
+            T * pt = m_viewptra[index].cast < T >();
+            if(pt != NULL)
+            {
+               if(id == pt->m_id)
+                  return pt;
+               else
+                  count++;
+            }
+         }
+         return NULL;
+      }
+
       virtual sp(::user::impact) get_typed_view(sp(type) info, index indexFind = 0);
+
+      virtual sp(::user::impact) get_typed_view_with_id(sp(type) info,id id);
 
       virtual void show_all_frames(UINT nCmdShow);
 

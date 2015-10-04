@@ -33,7 +33,7 @@
 /* Whether we have gettimeofday() */
 #undef HAVE_GETTIMEOFDAY
 
-/* Define to 1 if you have the <inttypes.h> header file. */
+/* Define to 1 if you have the "_inttypes.h" header file. */
 #undef HAVE_INTTYPES_H
 
 /* Define to 1 if you have the `pixman-1' library (-lpixman-1). */

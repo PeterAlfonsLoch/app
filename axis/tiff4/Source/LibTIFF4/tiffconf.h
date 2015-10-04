@@ -45,7 +45,7 @@
 #define TIFF_INT64_T signed __int64
 #define TIFF_UINT64_T unsigned __int64
 #else
-#include <inttypes.h>
+#include "_inttypes.h"
 #define TIFF_INT64_T int64_t
 #define TIFF_UINT64_T uint64_t
 #endif // _MSC_VER

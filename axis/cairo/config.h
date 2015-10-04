@@ -170,7 +170,7 @@
 /* Enable if your compiler supports the Intel __sync_* atomic primitives */
 #undef HAVE_INTEL_ATOMIC_PRIMITIVES
 
-/* Define to 1 if you have the <inttypes.h> header file. */
+/* Define to 1 if you have the "_inttypes.h" header file. */
 #undef HAVE_INTTYPES_H
 
 /* Define to 1 if you have the <io.h> header file. */

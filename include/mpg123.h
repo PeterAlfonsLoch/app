@@ -16,7 +16,7 @@
 
 //#ifndef __MANGLE_H
 //
-#include <inttypes.h>
+#include "_inttypes.h"
 //
 //#endif
 

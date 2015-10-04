@@ -16,6 +16,8 @@ void swap(uint32_t * & p1,uint32_t * & p2)
 }
 
 
+#if OSBIT == 32
+
 void swap(vector4 * & p1,vector4 * & p2)
 {
 
@@ -24,6 +26,8 @@ void swap(vector4 * & p1,vector4 * & p2)
    p2 = p;
 
 }
+
+#endif
 
 inline void kernelPosition(int boxBlur,unsigned& std,int& dLeft,int& dRight)
 {
@@ -131,11 +135,15 @@ namespace visual
       m_size.cx   = 0;
       m_size.cy   = 0;
 
+#if OSBIT == 32
+
       vxmin       = NULL;
       vymin       = NULL;
       m_stack     = NULL;
       tsurface    = NULL;
       timage      = NULL;
+
+#endif
 
    }
 
@@ -226,6 +234,8 @@ namespace visual
 
       }
 
+#if OSBIT == 32
+
 
       const int r1 = radius + 1;
       int wm = cx - 1;
@@ -245,6 +255,8 @@ namespace visual
       {
          vymin[y] = MIN(y + r1,hm)*s;
       }
+
+#endif
 
 
       m_p->m_iHeight = cy;

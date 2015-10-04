@@ -53,7 +53,7 @@ const char *postproc_license(void);
 
 #define QP_STORE_T int8_t
 
-#include <inttypes.h>
+#include "_inttypes.h"
 
 typedef void pp_context;
 typedef void pp_mode;
