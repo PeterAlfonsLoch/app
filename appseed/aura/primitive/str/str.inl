@@ -810,3 +810,16 @@ stdstring< simple_string>(istr.m_str,string_trait::GetDefaultManager())
 
 }
 
+
+
+
+inline string & string::operator += (const id & id)
+{
+   
+   return operator += (id.to_string());
+
+}
+
+
+
+

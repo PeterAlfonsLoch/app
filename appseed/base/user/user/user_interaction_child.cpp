@@ -1027,7 +1027,7 @@ namespace user
 
    }
 
-   void interaction_child::keyboard_focus_OnKillFocus()
+   bool interaction_child::keyboard_focus_OnKillFocus()
    {
 
       ::user::interaction * pui = get_wnd();
@@ -1037,9 +1037,11 @@ namespace user
 
          output_debug_string("::user::interaction_child::keyboard_focus_OnKillFocus() (1) \n");
 
-         pui->keyboard_focus_OnChildKillFocus();
+         return pui->keyboard_focus_OnChildKillFocus();
 
       }
+
+      return true;
 
    }
 

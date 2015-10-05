@@ -550,7 +550,7 @@ namespace user
    }
 
 
-   bool button::create_control(class control::descriptor * pdescriptor)
+   bool button::create_control(class control::descriptor * pdescriptor, index iItem)
    {
       
       if(!create_window(
@@ -565,7 +565,7 @@ namespace user
          return false;
       }
 
-      return control::create_control(pdescriptor);
+      return control::create_control(pdescriptor, iItem);
 
 
    }

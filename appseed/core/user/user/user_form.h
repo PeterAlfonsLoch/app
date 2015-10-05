@@ -85,7 +85,7 @@ namespace user
       DECL_GEN_SIGNAL(data_on_after_change);
 
 
-      virtual bool create_control(class control::descriptor * pdescriptor);
+      virtual bool create_control(class control::descriptor * pdescriptor, index iIndex);
       virtual bool normalize_control_descriptor_typeinfo(class ::user::control::descriptor * pdescriptor);
 
       bool operator == (const control & control) const;

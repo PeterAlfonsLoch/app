@@ -6,8 +6,7 @@ namespace user
 
 
    class CLASS_DECL_AXIS elemental :
-      virtual public command_target,
-      virtual public string_interface
+      virtual public command_target
    {
    public:
 
@@ -37,7 +36,7 @@ namespace user
 
 
       // keyboard focus
-      virtual void on_keyboard_focus(::user::elemental * pfocus);
+      virtual bool on_keyboard_focus(::user::elemental * pfocus);
       virtual void keyboard_focus_OnTimer(int32_t iTimer);
       virtual void keyboard_focus_OnChar(signal_details * pobj);
       virtual void keyboard_focus_OnSysChar(signal_details * pobj);
@@ -54,8 +53,8 @@ namespace user
       // focus
       virtual bool keyboard_focus_is_focusable();
       virtual bool keyboard_focus_OnSetFocus();
-      virtual void keyboard_focus_OnKillFocus();
-      virtual void keyboard_focus_OnChildKillFocus();
+      virtual bool keyboard_focus_OnKillFocus();
+      virtual bool keyboard_focus_OnChildKillFocus();
 
       // mouse focus
 
@@ -69,7 +68,6 @@ namespace user
 
       // string_interface < char > interface
       virtual strsize get_length() const;
-      using string_interface::get_string;
       virtual void get_string(char * psz,memory_size_t len) const;
       virtual void set_string(const string & str,::action::context actioncontext);
 

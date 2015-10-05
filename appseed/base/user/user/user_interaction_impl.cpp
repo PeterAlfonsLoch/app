@@ -2596,6 +2596,8 @@ namespace user
          m_spdibBuffer->Fill(255,184,184,177);
       }
 
+      //m_spdibBuffer->Fill(255,255,255,0);
+
       ::draw2d::graphics * pgraphics = m_spdibBuffer->get_graphics();
 
       if(pgraphics == NULL)

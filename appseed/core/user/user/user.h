@@ -255,6 +255,8 @@ class COleDataObject;   // forward reference (see afxole.h)
 
 
 
+
+
 struct __SIZEPARENTPARAMS;
 
 

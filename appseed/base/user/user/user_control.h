@@ -75,7 +75,7 @@ namespace user
          } m_data;
 
          form_window *           m_pform;
-         spa(control)            m_controla;
+         int_map < sp(control) > m_controlmap;
          id                      m_id;
          id                      m_uiText;
          sp(type)                m_typeinfo;
@@ -108,9 +108,9 @@ namespace user
          edatatype get_data_type();
          void set_data_type(edatatype edatatype);
          void set_ddx_dbflags(::database::id id, int_ptr value);
-         control * get_control(::user::interaction * puiParent,int iIndex);
+         control * get_control(::user::form_window * pform, index iItem = 0);
 
-         
+         index find_control(::user::interaction * pui);
 
       };
 
@@ -124,9 +124,10 @@ namespace user
          virtual ~descriptor_set();
 
 
-         sp(control) get_control_by_id(id id);
-         descriptor * get(sp(::user::interaction) puie);
+         sp(control) get_control(::user::form_window * pform,id id, int iItem = 0);
          descriptor * get_by_sub_item(int32_t iSubItem);
+
+         bool find_control(::user::interaction * pui,index & iItem,index & iSubItem);
 
 
       };
@@ -151,7 +152,7 @@ namespace user
 
       virtual void install_message_handling(::message::dispatch * pdispatch);
 
-      virtual bool create_control(class control::descriptor * pdescriptor);
+      virtual bool create_control(class control::descriptor * pdescriptor, index iItem);
 
 
       bool _003IsCustomMessage();
@@ -216,6 +217,9 @@ namespace user
 
       //virtual void walk_pre_translate_tree(signal_details * pobj,sp(::user::interaction) puiStop);
 
+      virtual bool keyboard_focus_OnSetFocus();
+      virtual bool keyboard_focus_OnKillFocus();
+
    };
 
 
@@ -234,6 +238,7 @@ namespace user
       virtual void SetCheck(int32_t nCheck);
       virtual void SetText(const char * lpszText);
       id GetControlCommand(id id);
+
    };
 
    class control_view_impl :

@@ -139,9 +139,9 @@ public:
    var(const property_set & set);
    var(const var & var);
    var(const property & prop);
-   var(const pair_set_interface & set);
-   var(const str_str_interface & set);
-   var(const string_composite & composite);
+   //var(const pair_set_interface & set);
+   //var(const str_str_interface & set);
+//   var(const string_composite & composite);
    var(const class duration & duration);
    var(class duration * pduration);
    //#if defined(MOVE_SEMANTICS)
@@ -341,9 +341,9 @@ public:
    var & operator = (const class memory & memory);
    var & operator = (const var_array & vara);
    var & operator = (const property_set & propset);
-   var & operator = (const pair_set_interface & propset);
-   var & operator = (const str_str_interface & propset);
-   var & operator = (const string_composite & composite);
+   //var & operator = (const pair_set_interface & propset);
+   //var & operator = (const str_str_interface & propset);
+//   var & operator = (const string_composite & composite);
    var & operator = (const id & id);
    var & operator = (id * pid);
    var & operator = (const class duration & pid);

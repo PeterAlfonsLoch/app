@@ -16,6 +16,7 @@
 #include "user/user_keyboard.cpp"
 #include "user/user_keyboard_layout.cpp"
 #include "user/user_print_job.cpp"
+#include "user/user_validate.cpp"
 
 
 #include "userpresence/userpresence_userpresence.cpp"

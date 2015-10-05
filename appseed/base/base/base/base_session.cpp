@@ -2185,6 +2185,36 @@ defer_check_wndfrm_core:
    }
 
 
+   void session::on_finally_focus_set(::user::elemental * pelementalFocus)
+   {
+
+      if(pelementalFocus == NULL)
+         return;
+
+      sp(::user::interaction) puiFocus = pelementalFocus;
+
+      if(puiFocus.is_set())
+      {
+
+         if(puiFocus->GetActiveWindow() != puiFocus->get_wnd())
+         {
+
+            puiFocus->get_wnd()->SetActiveWindow();
+
+         }
+
+         if(puiFocus->GetFocus() != puiFocus->get_wnd())
+         {
+
+            puiFocus->get_wnd()->SetFocus();
+
+         }
+
+      }
+
+
+   }
+
 
 } // namespace base
 

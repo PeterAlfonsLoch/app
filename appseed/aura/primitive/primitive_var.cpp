@@ -135,17 +135,17 @@ var::var(const property_set & set)
    operator = (set);
 }
 
-var::var(const pair_set_interface & set)
-{
-   m_etype  = type_new;
-   operator = (set);
-}
-
-var::var(const str_str_interface & set)
-{
-   m_etype  = type_new;
-   operator = (set);
-}
+//var::var(const pair_set_interface & set)
+//{
+//   m_etype  = type_new;
+//   operator = (set);
+//}
+//
+//var::var(const str_str_interface & set)
+//{
+//   m_etype  = type_new;
+//   operator = (set);
+//}
 
 var::var(const class var & var)
 {
@@ -165,11 +165,11 @@ var::var(const property & prop)
    operator = (prop);
 }
 
-var::var(const string_composite & composite)
-{
-   m_etype = type_new;
-   operator = (composite);
-}
+//var::var(const string_composite & composite)
+//{
+//   m_etype = type_new;
+//   operator = (composite);
+//}
 
 
 var::var(const id & id)
@@ -647,31 +647,31 @@ class var & var::operator = (const property_set & propsetParam)
    return *this;
 }
 
-class var & var::operator = (const pair_set_interface & propsetParam)
-{
-   propset() = propsetParam;
-   return *this;
-}
-
-class var & var::operator = (const str_str_interface & propsetParam)
-{
-   propset() = propsetParam;
-   return *this;
-}
-
-var & var::operator = (const string_composite & composite)
-{
-
-   string str;
-   ::count count = composite.get_length();
-   char * psz = str.GetBufferSetLength(count);
-   composite.get_string(psz);
-   str.ReleaseBuffer(count);
-   operator = (str);
-
-   return *this;
-
-}
+//class var & var::operator = (const pair_set_interface & propsetParam)
+//{
+//   propset() = propsetParam;
+//   return *this;
+//}
+//
+//class var & var::operator = (const str_str_interface & propsetParam)
+//{
+//   propset() = propsetParam;
+//   return *this;
+//}
+//
+//var & var::operator = (const string_composite & composite)
+//{
+//
+//   string str;
+//   ::count count = composite.get_length();
+//   char * psz = str.GetBufferSetLength(count);
+//   composite.get_string(psz);
+//   str.ReleaseBuffer(count);
+//   operator = (str);
+//
+//   return *this;
+//
+//}
 
 class var & var::operator = (const id & id)
 {

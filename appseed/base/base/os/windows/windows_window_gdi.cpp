@@ -53,7 +53,9 @@ void window_gdi::create_window_graphics(oswindow interaction_impl, int64_t cxPar
    if(interaction_impl == NULL)
       return;
 
-   m_hdcScreen = ::GetDCEx(interaction_impl,NULL,DCX_CLIPSIBLINGS | DCX_WINDOW);
+   //m_hdcScreen = ::GetDCEx(interaction_impl,NULL,DCX_CLIPSIBLINGS | DCX_WINDOW);
+
+   m_hdcScreen = ::GetDCEx(interaction_impl,NULL,DCX_WINDOW);
 
    
 
@@ -63,7 +65,8 @@ void window_gdi::create_window_graphics(oswindow interaction_impl, int64_t cxPar
       // If it has failed to get interaction_impl
       // owned device context, try to get
       // a device context from the cache.
-      m_hdcScreen = ::GetDCEx(interaction_impl,NULL,DCX_CACHE | DCX_CLIPSIBLINGS | DCX_WINDOW);
+      //m_hdcScreen = ::GetDCEx(interaction_impl,NULL,DCX_CACHE | DCX_CLIPSIBLINGS | DCX_WINDOW);
+      m_hdcScreen = ::GetDCEx(interaction_impl,NULL,DCX_CACHE | DCX_WINDOW);
 
       // If no device context could be retrieved,
       // nothing can be drawn at the screen.
@@ -138,6 +141,11 @@ void window_gdi::update_window(COLORREF * pcolorref,const RECT & rect,int cxPara
    if (width(rect) <= 0 || height(rect) <= 0)
       return;
 
+   //if(cxParam < 800)
+   //{
+   //   memset(pcolorref,128,iStride * cyParam);
+
+   //}
 
    RECT rectWindow;
 
@@ -201,6 +209,13 @@ void window_gdi::update_window(COLORREF * pcolorref,const RECT & rect,int cxPara
       sz.cy = height(&rectWindow);
       
       POINT ptSrc = { 0 };
+
+      //if(sz.cx < 800)
+      //{
+
+      //   ::SwitchToThread();
+
+      //}
 
       BLENDFUNCTION blendPixelFunction = { AC_SRC_OVER, 0, 255, AC_SRC_ALPHA };
 

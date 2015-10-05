@@ -1188,7 +1188,7 @@ namespace user
 
          str += ".";
 
-         str += get_document()->m_dataid.m_id;
+         str += get_document()->m_dataid.m_id.to_string();
 
       }
 

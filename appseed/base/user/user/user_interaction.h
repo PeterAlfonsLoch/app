@@ -79,6 +79,8 @@ namespace user
       int32_t                             m_nModalResult; // for return values from ::interaction_impl::RunModalLoop
       ptr_array < thread >                m_threadptra;
 
+      sp(tooltip)                         m_ptooltip;
+
 
 
       //ptr_array < bool >                  m_bptraTellMeDestroyed; // Telmo why!! :-)
@@ -183,7 +185,7 @@ namespace user
       virtual ::user::interaction * get_os_focus_uie();
 
 
-      virtual void on_keyboard_focus(::user::elemental * pfocus);
+      virtual bool on_keyboard_focus(::user::elemental * pfocus) override;
 
 
       virtual void _001RedrawWindow(UINT nFlags = 0);
@@ -368,6 +370,7 @@ namespace user
       DECL_GEN_SIGNAL(_001OnChar);
       DECL_GEN_SIGNAL(_001OnDestroy);
       DECL_GEN_SIGNAL(_001OnSize);
+      DECL_GEN_SIGNAL(_001OnMove);
       DECL_GEN_SIGNAL(_001OnCreate);
       DECL_GEN_SIGNAL(_001OnUser184);
       DECL_GEN_SIGNAL(_001OnNcCalcSize);
@@ -721,8 +724,8 @@ namespace user
       virtual void on_update(::user::impact * pSender,LPARAM lHint,::object* pHint);
 
       virtual void keyboard_focus_OnKeyDown(signal_details * pobj);
-      virtual void keyboard_focus_OnKillFocus();
-      virtual void keyboard_focus_OnChildKillFocus();
+      virtual bool keyboard_focus_OnKillFocus();
+      virtual bool keyboard_focus_OnChildKillFocus();
 
       virtual sp(::user::interaction) get_child(::user::interaction * pui);
 
@@ -732,6 +735,13 @@ namespace user
 
 
       virtual bool is_descendant_of(::user::interaction * puiAscendantCandidate);
+
+
+      virtual bool show_tooltip(const string & str,bool bError);
+
+      virtual bool layout_tooltip(bool bForceShow = false);
+
+      virtual bool hide_tooltip();
 
 
    };

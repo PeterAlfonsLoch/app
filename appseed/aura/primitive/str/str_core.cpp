@@ -40,33 +40,33 @@ string_manager * __get_string_manager()
 }
 
 
-strsize const_empty_string::get_length() const
-{
-   return 0;
-}
-
-void const_empty_string::get_string(char * psz) const
-{
-   psz[0] = '\0';
-}
-
-void const_empty_string::set_string(const string & str, ::action::context actioncontext)
-{
-   UNREFERENCED_PARAMETER(str);
-   UNREFERENCED_PARAMETER(actioncontext);
-   throw "cannot set const string";
-}
-
-namespace str
-{
-   CLASS_DECL_AURA const_empty_string g_strEmpty;
-
-   CLASS_DECL_AURA string_interface & empty_string()
-   {
-      return g_strEmpty;
-   }
-
-}
+//strsize const_empty_string::get_length() const
+//{
+//   return 0;
+//}
+//
+//void const_empty_string::get_string(char * psz) const
+//{
+//   psz[0] = '\0';
+//}
+//
+//void const_empty_string::set_string(const string & str, ::action::context actioncontext)
+//{
+//   UNREFERENCED_PARAMETER(str);
+//   UNREFERENCED_PARAMETER(actioncontext);
+//   throw "cannot set const string";
+//}
+//
+//namespace str
+//{
+//   CLASS_DECL_AURA const_empty_string g_strEmpty;
+//
+//   CLASS_DECL_AURA string_interface & empty_string()
+//   {
+//      return g_strEmpty;
+//   }
+//
+//}
 
 
 

@@ -192,8 +192,8 @@ public:
 
    static const int npos;
 
-   operator class string_composite ();
-   operator class string_composite const () const;
+   //operator class string_composite ();
+   //operator class string_composite const () const;
    operator const char *() const throw();
    const char * c_str() const throw();
    const char * data() const throw();
@@ -331,6 +331,7 @@ public:
    string& operator+=(char ch );
    string& operator+=(uchar ch );
    string& operator+=(unichar ch );
+   string& operator+=(const id & id);
 
    // Override from aura class
    string_manager * GetManager() const throw();
@@ -818,7 +819,7 @@ public:
 
 
 
-   bool operator==(const string_interface & str) const;
+   //bool operator==(const string_interface & str) const;
    bool operator==(const string & str) const;
    bool operator==(const char * psz2) const;
    bool operator==(const unichar * psz2) const;
@@ -826,7 +827,7 @@ public:
    bool operator==(unichar psz2) const;
    bool operator==(int32_t i) const;
 
-   bool operator>(const string_interface & str) const;
+   //bool operator>(const string_interface & str) const;
    bool operator>(const string & str) const;
    bool operator>(const char * psz2) const;
    bool operator>(const unichar * psz2) const;
@@ -834,7 +835,7 @@ public:
    bool operator>(unichar psz2) const;
    bool operator>(int32_t i) const;
 
-   bool operator<(const string_interface & str) const;
+//   bool operator<(const string_interface & str) const;
    bool operator<(const string & str) const;
    bool operator<(const char * psz2) const;
    bool operator<(const unichar * psz2) const;
@@ -842,7 +843,7 @@ public:
    bool operator<(unichar psz2) const;
    bool operator<(int32_t i) const;
 
-   inline bool operator!=(const string_interface & str)   const { return !operator ==(str); }
+   //inline bool operator!=(const string_interface & str)   const { return !operator ==(str); }
    inline bool operator!=(const string & str )            const { return !operator ==(str); }
    inline bool operator!=(const char * psz)                     const { return !operator ==(psz); }
    inline bool operator!=(const unichar * psz)                     const { return !operator ==(psz); }
@@ -850,7 +851,7 @@ public:
    inline bool operator!=(unichar ch)                       const { return !operator ==(ch);  }
    inline bool operator!=(int32_t i)                      const { return !operator ==(i);  }
 
-   inline bool operator>=(const string_interface & str)   const { return !operator <(str); }
+   //inline bool operator>=(const string_interface & str)   const { return !operator <(str); }
    inline bool operator>=(const string & str )            const { return !operator <(str); }
    inline bool operator>=(const char * psz)                     const { return !operator <(psz); }
    inline bool operator>=(const unichar * psz)                     const { return !operator <(psz); }
@@ -858,7 +859,7 @@ public:
    inline bool operator>=(unichar ch)                       const { return !operator <(ch);  }
    inline bool operator>=(int32_t i)                      const { return !operator <(i);  }
 
-   inline bool operator<=(const string_interface & str)   const { return !operator >(str); }
+   //inline bool operator<=(const string_interface & str)   const { return !operator >(str); }
    inline bool operator<=(const string & str )            const { return !operator >(str); }
    inline bool operator<=(const char * psz)                     const { return !operator >(psz); }
    inline bool operator<=(const unichar * psz)                     const { return !operator >(psz); }
@@ -1271,14 +1272,6 @@ inline bool string::operator==(const string & str) const
 }
 
 
-inline bool string::operator==(const string_interface & str) const
-{
-
-   return get_length() == str.get_length() && operator == (string(str));
-
-}
-
-
 inline bool string::operator==(const char * psz) const
 {
 
@@ -1328,14 +1321,6 @@ inline bool string::operator<(const string & str) const
    return Compare(str) < 0;
 
 }
-
-inline bool string::operator<(const string_interface & str) const
-{
-
-   return operator < (string(str));
-
-}
-
 
 inline bool string::operator<(const char * psz) const
 {
@@ -1388,14 +1373,6 @@ inline bool string::operator>(const string & str) const
 {
 
    return Compare(str) > 0 ;
-
-}
-
-
-inline bool string::operator>(const string_interface & str) const
-{
-
-   return operator > (string(str));
 
 }
 
@@ -1470,42 +1447,42 @@ inline strsize string::remove(strsize iIndex,strsize nCount)
 }
 
 
-inline bool CLASS_DECL_AURA operator==(const string_interface & str1   , const string & str2)  { return str2 == str1; }
+//inline bool CLASS_DECL_AURA operator==(const string_interface & str1   , const string & str2)  { return str2 == str1; }
 inline bool CLASS_DECL_AURA operator==(const char *  psz                     , const string & str )  { return str  == psz ; }
 inline bool CLASS_DECL_AURA operator==(const unichar *  psz                     , const string & str )  { return str  == psz ; }
 inline bool CLASS_DECL_AURA operator==(char   ch                      , const string & str )  { return str  == ch  ; }
 inline bool CLASS_DECL_AURA operator==(unichar   ch                      , const string & str )  { return str  == ch  ; }
 inline bool CLASS_DECL_AURA operator==(int32_t i                       , const string & str )  { return str  == i   ; }
 
-inline bool CLASS_DECL_AURA operator>(const string_interface & str1   , const string & str2 )   { return str2 < str1; }
+//inline bool CLASS_DECL_AURA operator>(const string_interface & str1   , const string & str2 )   { return str2 < str1; }
 inline bool CLASS_DECL_AURA operator>(const char * psz                      , const string & str  )   { return str  < psz ; }
 inline bool CLASS_DECL_AURA operator>(const unichar * psz                      , const string & str  )   { return str  < psz ; }
 inline bool CLASS_DECL_AURA operator>(char ch                        , const string & str  )   { return str  < ch  ; }
 inline bool CLASS_DECL_AURA operator>(unichar ch                        , const string & str  )   { return str  < ch  ; }
 inline bool CLASS_DECL_AURA operator>(int32_t i                       , const string & str  )   { return str  < i   ; }
 
-inline bool CLASS_DECL_AURA operator<(const string_interface & str1   , const string & str2 )   { return str2 > str1; }
+//inline bool CLASS_DECL_AURA operator<(const string_interface & str1   , const string & str2 )   { return str2 > str1; }
 inline bool CLASS_DECL_AURA operator<(const char * psz                      , const string & str  )   { return str  > psz ; }
 inline bool CLASS_DECL_AURA operator<(const unichar * psz                      , const string & str  )   { return str  > psz ; }
 inline bool CLASS_DECL_AURA operator<(char ch                        , const string & str  )   { return str  > ch  ; }
 inline bool CLASS_DECL_AURA operator<(unichar ch                        , const string & str  )   { return str  > ch  ; }
 inline bool CLASS_DECL_AURA operator<(int32_t i                       , const string & str  )   { return str  > i   ; }
 
-inline bool CLASS_DECL_AURA operator!=(const string_interface & str1,const string & str2)  { return !::operator==(str1, str2); }
+//inline bool CLASS_DECL_AURA operator!=(const string_interface & str1,const string & str2)  { return !::operator==(str1, str2); }
 inline bool CLASS_DECL_AURA operator!=(const char * psz,const string & str)                      { return !::operator==(psz, str); }
 inline bool CLASS_DECL_AURA operator!=(const unichar * psz,const string & str)                      { return !::operator==(psz, str); }
 inline bool CLASS_DECL_AURA operator!=(char ch,const string & str)                        { return !::operator==(ch, str); }
 inline bool CLASS_DECL_AURA operator!=(unichar ch,const string & str)                        { return !::operator==(ch, str); }
 inline bool CLASS_DECL_AURA operator!=(int32_t i, const string & str)                      { return !::operator==(i, str); }
 
-inline bool CLASS_DECL_AURA operator>=(const string_interface & str1,const string & str2)  { return !::operator<(str1, str2); }
+//inline bool CLASS_DECL_AURA operator>=(const string_interface & str1,const string & str2)  { return !::operator<(str1, str2); }
 inline bool CLASS_DECL_AURA operator>=(const char * psz,const string & str)                      { return !::operator<(psz, str); }
 inline bool CLASS_DECL_AURA operator>=(const unichar * psz,const string & str)                      { return !::operator<(psz, str); }
 inline bool CLASS_DECL_AURA operator>=(char ch,const string & str)                        { return !::operator<(ch, str); }
 inline bool CLASS_DECL_AURA operator>=(unichar ch,const string & str)                        { return !::operator<(ch, str); }
 inline bool CLASS_DECL_AURA operator>=(int32_t i, const string & str)                      { return !::operator<(i, str); }
 
-inline bool CLASS_DECL_AURA operator<=(const string_interface & str1,const string & str2)  { return !::operator>(str1, str2); }
+//inline bool CLASS_DECL_AURA operator<=(const string_interface & str1,const string & str2)  { return !::operator>(str1, str2); }
 inline bool CLASS_DECL_AURA operator<=(const char * psz,const string & str)                      { return !::operator>(psz, str); }
 inline bool CLASS_DECL_AURA operator<=(const unichar * psz,const string & str)                      { return !::operator>(psz, str); }
 inline bool CLASS_DECL_AURA operator<=(char ch,const string & str)                        { return !::operator>(ch, str); }
@@ -1580,19 +1557,6 @@ inline string & to_string(string & str, const unichar * pwsz)
 }
 
 
-template < >
-inline string & to_string(string & str, string_composite & ca)
-{
-
-   ca.get_string(str.GetBufferSetLength(ca.get_length()));
-
-   str.ReleaseBuffer(); // search for 0 termination (if you want a string that accepts nulls, use binary strng (bstring)
-
-   return str;
-
-}
-
-
 
 #if defined(METROWIN) && defined(__cplusplus_winrt)
 
@@ -1612,133 +1576,7 @@ inline string & to_string(string & str, String ^ & strSrc)
 
 
 
-inline string  & operator += (string & str, const ::id & id)
-{
 
-   str += id.str();
-
-   return str;
-
-}
-
-
-inline bool id::operator == (const char * psz) const
-{
-   return m_etype == type_text && (m_psz == NULL ? psz == NULL : strcmp(m_psz, psz) == 0);
-}
-inline bool id::operator != (const char * psz) const
-{
-   return !operator ==(psz);
-}
-inline bool id::operator < (const char * psz) const
-{
-   return m_etype < type_text || (m_etype == type_text && (m_psz == NULL ? psz != NULL : strcmp(m_psz,psz) < 0));
-}
-inline bool id::operator > (const char * psz) const
-{
-   return m_etype > type_text || (m_etype == type_text && (m_psz == NULL ? psz == NULL : strcmp(m_psz,psz) > 0));
-}
-inline bool id::operator <= (const char * psz) const
-{
-   return !operator>(psz);
-}
-inline bool id::operator >= (const char * psz) const
-{
-   return !operator<(psz);
-}
-
-
-#if defined(_LP64) || defined(_AMD64_)
-
-inline bool id::operator == (int32_t i) const
-{
-   return m_etype == type_integer && m_i == i;
-}
-inline bool id::operator != (int32_t i) const
-{
-   return m_etype != type_integer || m_i != i;
-}
-inline bool id::operator < (int32_t i) const
-{
-   return m_etype == type_integer && m_i < i;
-}
-inline bool id::operator <= (int32_t i) const
-{
-   return m_etype == type_integer && m_i <= i;
-}
-inline bool id::operator > (int32_t i) const
-{
-   return m_etype == type_integer && m_i > i;
-}
-inline bool id::operator >= (int32_t i) const
-{
-   return m_etype == type_integer && m_i >= i;
-}
-
-#endif
-
-
-inline bool id::operator == (int_ptr i) const
-{
-   return m_etype == type_integer && m_i == i;
-}
-inline bool id::operator != (int_ptr i) const
-{
-   return m_etype != type_integer || m_i != i;
-}
-inline bool id::operator < (int_ptr i) const
-{
-   return m_etype == type_integer && m_i < i;
-}
-inline bool id::operator <= (int_ptr i) const
-{
-   return m_etype == type_integer && m_i <= i;
-}
-inline bool id::operator > (int_ptr i) const
-{
-   return m_etype == type_integer && m_i > i;
-}
-inline bool id::operator >= (int_ptr i) const
-{
-   return m_etype == type_integer && m_i >= i;
-}
-
-
-inline id::operator int64_t () const
-{
-
-   return m_etype == type_integer ? m_i : 0x8000000000000000ll;
-
-}
-
-//inline id::operator int_ptr()
-//{
-//   if(is_number())
-//      return m_i;
-//   else
-//      return 0;
-//}
-
-inline bool id::is_null() const
-{
-   return m_etype == type_null || (m_etype == type_text && m_psz == NULL);
-}
-
-inline bool id::has_char() const
-{
-   return m_etype == type_text && m_psz != NULL && *m_psz != '\0';
-}
-
-inline void id::empty()
-{
-   m_etype  = type_empty;
-   m_psz    = NULL;
-}
-
-inline void id::clear()
-{
-   m_all ={};
-}
 
 
 
@@ -1772,67 +1610,6 @@ inline CLASS_DECL_AURA string operator + (const id & id, const char * psz)
 
 }
 
-inline CLASS_DECL_AURA id & id::operator += (const char * psz)
-{
-
-   *this = *this + psz;
-
-   return *this;
-
-}
-
-inline CLASS_DECL_AURA id id::operator + (const id & id) const
-{
-
-   if(is_integer())
-   {
-      if(id.is_integer())
-      {
-         return (int_ptr)(m_i + id.m_i);
-      }
-      else if(id.is_text())
-      {
-         return ::str::from(m_i) + "." +string(id.m_psz);
-      }
-      else
-      {
-         return *this;
-      }
-   }
-   else if(id.is_integer())
-   {
-      if(is_text())
-      {
-         return string(m_psz) + "." + ::str::from(id.m_i);
-      }
-      else
-      {
-         return id;
-      }
-   }
-   else if(is_text())
-   {
-      if(id.is_text())
-      {
-         return string(m_psz) + string(id.m_psz);
-      }
-      else
-      {
-         return *this;
-      }
-   }
-   else if(id.is_text())
-   {
-      return id;
-   }
-   else
-   {
-      return ::id();
-   }
-
-   
-
-}
 
 
 inline CLASS_DECL_AURA string operator + (const char * psz, const id & id)
@@ -1851,24 +1628,6 @@ inline CLASS_DECL_AURA string operator + (const string & str, const id & id)
 }
 
 
-inline int_ptr id::compare_ci(const char * psz) const
-{
-   if(m_psz == NULL)
-   {
-      if(psz == NULL)
-         return 0;
-      else
-         return -1;
-   }
-   else if(psz == NULL)
-   {
-      return 1;
-   }
-   else
-   {
-      return stricmp(m_psz, psz);
-   }
-}
 
 
 
@@ -1887,138 +1646,6 @@ inline string string::upper() const
 }
 
 
-namespace comparison
-{
-
-
-   template < >
-   class equals_type_arg_type < string, const string & >
-   {
-   public:
-
-      inline static bool CompareElements(const string * pElement1, const string & element2)
-      {
-         return *pElement1 == element2;
-      }
-
-   };
-
-   template < >
-   class less < string, const string & >
-   {
-   public:
-
-      inline bool operator()(const string & element1, const string & element2) const
-      {
-         return element1 < element2;
-      }
-
-   };
-
-   class compare_string_case:
-      public compare_type_arg_type < string,const string & >
-   {
-   public:
-
-
-      inline static int_ptr CompareElements(const string * pElement1,const string  & element2)
-      {
-
-         return pElement1->Compare(element2);
-
-      }
-
-
-   };
-
-
-   class compare_string_no_case:
-      public compare_type_arg_type < string,const string & >
-   {
-   public:
-
-      inline static int_ptr CompareElements(const string * pElement1,const string & element2)
-      {
-         return pElement1->CompareNoCase(element2);
-      }
-
-   };
-
-   template < >
-   class CLASS_DECL_AURA hash < const string & >
-   {
-   public:
-
-      inline static UINT HashKey (const string & key)
-      {
-         uint64_t * puiKey = (uint64_t *) (const char *) key;
-         strsize counter = key.get_length();
-         uint64_t nHash = 0;
-         while(::compare::ge(counter, sizeof(*puiKey)))
-         {
-            nHash = (nHash<<5) + nHash + *puiKey++;
-            counter -= sizeof(*puiKey);
-         }
-         const char * pszKey = (const char *) puiKey;
-         while(counter-- >= 0) nHash = (nHash<<5) + nHash + *pszKey++;
-         return (UINT) (nHash & 0xffffffff);
-      }
-
-   };
-
-   template < >
-   class compare_type_arg_type < id,const id & >
-   {
-   public:
-
-
-      inline static int_ptr CompareElements(const id * pElement1,const id & element2)
-      {
-
-         int_ptr iCompare = (int_ptr) (pElement1->m_iType - element2.m_iType);
-         if(iCompare != 0)
-            return iCompare;
-         return pElement1->m_psz - element2.m_psz;
-
-      }
-
-
-   };
-
-
-   class strid_compare
-   {
-   public:
-
-
-      inline static int_ptr CompareElements(const id * pElement1,const id  * pelement2)
-      {
-
-         return pElement1->m_psz - pelement2->m_psz;
-
-      }
-
-
-   };
-
-
-   class CLASS_DECL_AURA strid_binary
-   {
-   public:
-
-
-      inline static int_ptr CompareElements(const id * pElement1, const id * pElement2)
-      {
-
-         return pElement1->m_psz - pElement2->m_psz;
-
-      }
-
-
-   };
-
-
-} // namespace comparison
 
 
 

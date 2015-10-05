@@ -64,6 +64,11 @@ namespace str
 
       bool UnicodeToMultiByte(UINT uiCodePage, string &str, const unichar * lpcsz, strsize iCount)
       {
+         if(lpcsz == NULL || *lpcsz == '\0' || iCount <= 0)
+         {
+            str.Empty();
+            return true;
+         }
          strsize iMultiByteCount = UnicodeToMultiByteCount(uiCodePage, lpcsz, iCount);
          LPSTR lpsz = str.GetBuffer(iMultiByteCount);
          if(UnicodeToMultiByte(uiCodePage, lpsz, iMultiByteCount + 1, lpcsz, iCount))

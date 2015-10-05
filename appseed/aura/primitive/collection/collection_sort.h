@@ -1296,7 +1296,7 @@ namespace sort
    template < class NUMERIC_ARRAY >
    void quick_sort(
                   NUMERIC_ARRAY & ar,
-                  void * pCompare,
+                  compare_interface * pinterface,
                   compare_interface::_FUNCTION_Compare fCompare)
    {
       index_array stackLowerBound;
@@ -1305,7 +1305,7 @@ namespace sort
       index iUpperBound;
       index iLPos, iUPos, iMPos;
 
-      compare_interface * pinterface = (compare_interface *) pCompare;
+      ///compare_interface * pinterface = (compare_interface *) pCompare;
 
       if(ar.get_size() >= 2)
       {

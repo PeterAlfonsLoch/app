@@ -57,61 +57,60 @@ namespace user
          }
       }
 
-      if(pdescriptor->m_typeinfo)
-      {
+//      if(pdescriptor->m_typeinfo)
+//      {
+//
+//         if(pdescriptor->m_bCreated && pdescriptor->m_pcontrol != NULL)
+//         {
+//
+//            pdescriptor->m_bCreated = false;
+//
+//            pdescriptor->m_pcontrol.release();
+//
+//            pdescriptor->m_pcontrol.release();
+//
+//         }
+//
+//         if( (pdescriptor->m_pcontrol.m_p) != NULL)
+//         {
+//         }
+//         else
+//         {
+//
+//            if(create_control(pdescriptor))
+//            {
+//            }
+//            else
+//            {
+//               // Failed creation
+//               ASSERT(FALSE);
+//            }
+//         }
+//
+//      }
+//      else if(create_control(pdescriptor))
+//      {
+//      }
+//      if(pdescriptor->m_pcontrol != NULL)
+//      {
+//         //sp(type) ti = typeid(pdescriptor->m_pcontrol);
+///*         if(ti == System.type_info < ::user::list > ())
+//         {
+//            if(pdescriptor->m_etype == control_type_simple_list)
+//            {
+//               ::user::list * plist = dynamic_cast <::user::list *>(pdescriptor->m_pcontrol);
+//               plist->m_dataid = pdescriptor->m_idPrivateDataSection;
+//               plist->_001SetSingleColumnMode(false);
+//            }
+//         }*/
+//         /*else if(ti == System.type_info < simple_static > ())
+//         {
+//            simple_static * pstatic = (simple_static *) pcontrol->m_pwnd;
+//            pstatic->m_bTransparent = pcontrol->m_bTransparent;
+//         }*/
+//
 
-         if(pdescriptor->m_bCreated && pdescriptor->m_pcontrol != NULL)
-         {
-
-            pdescriptor->m_bCreated = false;
-
-            pdescriptor->m_pcontrol.release();
-
-            pdescriptor->m_pcontrol.release();
-
-         }
-
-         if( (pdescriptor->m_pcontrol.m_p) != NULL)
-         {
-         }
-         else
-         {
-
-            if(create_control(pdescriptor))
-            {
-            }
-            else
-            {
-               // Failed creation
-               ASSERT(FALSE);
-            }
-         }
-
-      }
-      else if(create_control(pdescriptor))
-      {
-      }
-      if(pdescriptor->m_pcontrol != NULL)
-      {
-         //sp(type) ti = typeid(pdescriptor->m_pcontrol);
-/*         if(ti == System.type_info < ::user::list > ())
-         {
-            if(pdescriptor->m_etype == control_type_simple_list)
-            {
-               ::user::list * plist = dynamic_cast <::user::list *>(pdescriptor->m_pcontrol);
-               plist->m_dataid = pdescriptor->m_idPrivateDataSection;
-               plist->_001SetSingleColumnMode(false);
-            }
-         }*/
-         /*else if(ti == System.type_info < simple_static > ())
-         {
-            simple_static * pstatic = (simple_static *) pcontrol->m_pwnd;
-            pstatic->m_bTransparent = pcontrol->m_bTransparent;
-         }*/
-
-         _001OnInitializeForm(pdescriptor->m_pcontrol);
-
-      }
+      //}
 
       return m_controldescriptorset.get_upper_bound();
 
@@ -125,7 +124,7 @@ namespace user
 
       UINT uiId = LOWORD(wparam);
 
-      sp(control) pcontrol = m_controldescriptorset.get_control_by_id(uiId);
+      sp(control) pcontrol = m_controldescriptorset.get_control(this, uiId);
 
       if(pcontrol == NULL)
          return false;
@@ -369,13 +368,13 @@ namespace user
       UNREFERENCED_PARAMETER(pviewSender);
       UNREFERENCED_PARAMETER(lhint);
       UNREFERENCED_PARAMETER(phint);
-      for(int32_t i = 0; i < m_controldescriptorset.get_size(); i++)
-      {
-         sp(control) pcontrol = m_controldescriptorset[i]->m_pcontrol;
-         if(pcontrol == NULL)
-            continue;
-         _001Update(pcontrol);
-      }
+      //for(int32_t i = 0; i < m_controldescriptorset.get_size(); i++)
+      //{
+      //   sp(control) pcontrol = m_controldescriptorset[i]->m_pcontrol;
+      //   if(pcontrol == NULL)
+      //      continue;
+      //   _001Update(pcontrol);
+      //}
    }
 
    void form::_001Update(sp(control) pcontrol)
@@ -601,7 +600,7 @@ namespace user
 
    bool form::_001GetData(id uiId, bool &bData)
    {
-      sp(control) pcontrol = m_controldescriptorset.get_control_by_id(uiId);
+      sp(control) pcontrol = m_controldescriptorset.get_control(this, uiId);
       if(pcontrol == NULL)
          return false;
 
@@ -615,9 +614,12 @@ namespace user
 
    }
 
+
    bool form::_001SetData(id uiId, bool bData)
    {
-      sp(control) pcontrol = m_controldescriptorset.get_control_by_id(uiId);
+
+      sp(control) pcontrol = m_controldescriptorset.get_control(this, uiId);
+
       if(pcontrol == NULL)
          return false;
 
@@ -635,13 +637,13 @@ namespace user
       }
       else
       {
-         for(int32_t i = 0; i < m_controldescriptorset.get_size(); i++)
-         {
-            sp(control) pcontrol = m_controldescriptorset[i]->m_pcontrol;
-            if(pcontrol == NULL)
-               continue;
-            _001Update(pcontrol);
-         }
+         //for(int32_t i = 0; i < m_controldescriptorset.get_size(); i++)
+         //{
+         //   sp(control) pcontrol = m_controldescriptorset[i]->m_pcontrol;
+         //   if(pcontrol == NULL)
+         //      continue;
+         //   _001Update(pcontrol);
+         //}
       }
    }
 
@@ -745,7 +747,7 @@ namespace user
       for(int32_t iControl = 0; iControl < m_controldescriptorset.get_size(); iControl++)
       {
 
-         sp(control) pcontrol = m_controldescriptorset[iControl]->m_pcontrol;
+         sp(control) pcontrol = m_controldescriptorset[iControl]->get_control(this);
 
          if(pcontrol == NULL)
             continue;
@@ -783,7 +785,7 @@ namespace user
 
             str.load_string(get_app(), descriptor.m_id);
 
-            descriptor.m_pcontrol->SetWindowText(str);
+            descriptor.get_control(this)->SetWindowText(str);
 
          }
          else if(descriptor.has_function(control::function_static2))
@@ -793,7 +795,7 @@ namespace user
 
             str.load_string(get_app(), descriptor.m_uiText);
 
-            descriptor.m_pcontrol->SetWindowText(str);
+            descriptor.get_control(this)->SetWindowText(str);
 
          }
 
@@ -895,82 +897,104 @@ namespace user
    void form::_017OnAppLanguage()
    {
 
-      for(int32_t i = 0; i < m_controldescriptorset.get_size() ; i++)
-      {
-         class control::descriptor & descriptor = m_controldescriptorset(i);
-         if(descriptor.m_typeinfo)
-         {
-            if(descriptor.m_bCreated && descriptor.m_pcontrol != NULL)
-            {
-            }
-            else if(descriptor.m_bSubclassed && descriptor.m_pcontrol != NULL)
-            {
-   //            if(::IsWindow(pcontrol->m_pwnd->GetSafeoswindow_()))
-               {
-                  //xxx pcontrol->m_pwnd->unsubclass_window();
-               }
-   //            ASSERT(pcontrol->m_typeinfo->IsDerivedFrom(System.type_info < window > ()));
-               if(descriptor.m_pcontrol.is_set())
-               {
-                  //window_id wndidTemp = get_child_by_id(pcontrol->m_id)->GetSafeoswindow_();
-                  //if(wndidTemp != NULL)
-                  {
-             //xxx        VERIFY(pcontrol->m_pwnd->subclass_window(wndidTemp));
-                  }
-               }
-            }
-            if(descriptor.m_pcontrol != NULL)
-            {
-//               sp(type) ti = typeid(descriptor.m_pcontrol);
-/*               if(ti == System.type_info < ::user::list > ())
-               {
-                  if(descriptor.m_etype == control_type_simple_list)
-                  {
-                     ::user::list * plist = dynamic_cast <::user::list *>(descriptor.m_pcontrol);
-                     plist->m_dataid = descriptor.m_idPrivateDataSection;
-                     plist->_001SetSingleColumnMode(false);
-                  }
-               }*/
-   /*            else if(pcontrol->m_typeinfo->IsDerivedFrom(System.type_info < simple_static > ()))
-               {
-                  simple_static * pstatic = (simple_static *) pcontrol->m_pwnd;
-                  pstatic->m_bTransparent = pcontrol->m_bTransparent;
-               }*/
-               _001OnInitializeForm(descriptor.m_pcontrol);
-            }
-         }
-      }
+//      for(int32_t i = 0; i < m_controldescriptorset.get_size() ; i++)
+//      {
+//         class control::descriptor & descriptor = m_controldescriptorset(i);
+//         if(descriptor.m_typeinfo)
+//         {
+//            if(descriptor.m_bCreated && descriptor.m_pcontrol != NULL)
+//            {
+//            }
+//            else if(descriptor.m_bSubclassed && descriptor.m_pcontrol != NULL)
+//            {
+//   //            if(::IsWindow(pcontrol->m_pwnd->GetSafeoswindow_()))
+//               {
+//                  //xxx pcontrol->m_pwnd->unsubclass_window();
+//               }
+//   //            ASSERT(pcontrol->m_typeinfo->IsDerivedFrom(System.type_info < window > ()));
+//               if(descriptor.m_pcontrol.is_set())
+//               {
+//                  //window_id wndidTemp = get_child_by_id(pcontrol->m_id)->GetSafeoswindow_();
+//                  //if(wndidTemp != NULL)
+//                  {
+//             //xxx        VERIFY(pcontrol->m_pwnd->subclass_window(wndidTemp));
+//                  }
+//               }
+//            }
+//            if(descriptor.m_pcontrol != NULL)
+//            {
+////               sp(type) ti = typeid(descriptor.m_pcontrol);
+///*               if(ti == System.type_info < ::user::list > ())
+//               {
+//                  if(descriptor.m_etype == control_type_simple_list)
+//                  {
+//                     ::user::list * plist = dynamic_cast <::user::list *>(descriptor.m_pcontrol);
+//                     plist->m_dataid = descriptor.m_idPrivateDataSection;
+//                     plist->_001SetSingleColumnMode(false);
+//                  }
+//               }*/
+//   /*            else if(pcontrol->m_typeinfo->IsDerivedFrom(System.type_info < simple_static > ()))
+//               {
+//                  simple_static * pstatic = (simple_static *) pcontrol->m_pwnd;
+//                  pstatic->m_bTransparent = pcontrol->m_bTransparent;
+//               }*/
+//               _001OnInitializeForm(descriptor.m_pcontrol);
+//            }
+//         }
+//      }
 
    }
 
 
-   bool form::create_control(class control::descriptor * pdescriptor)
+   bool form::create_control(class control::descriptor * pdescriptor, index iItem)
    {
 
       if(!normalize_control_descriptor_typeinfo(pdescriptor))
       {
+         
          TRACE("form::create_control: failed to create control, could not find proper type for allocation");
+
          return false;
+
       }
+
       sp(::user::interaction) pca = Application.alloc(pdescriptor->m_typeinfo);
+
       if(pca == NULL)
       {
+         
          TRACE("form::create_control: failed to create control, allocation error");
+         
          return false;
+
       }
+
       sp(class control) pcontrol = pca;
+
       if(pcontrol == NULL)
       {
+
          pca.release();
+
          TRACE("form::create_control: failed to create control, object is not derived from user::control::descriptor");
+
          return false;
+
       }
-      if(!pcontrol->create_control(pdescriptor))
+
+      if(!pcontrol->create_control(pdescriptor, iItem))
       {
+
          pcontrol.release();
+
          return false;
+
       }
+
+      _001OnInitializeForm(pcontrol);
+
       return true;
+
    }
 
 
@@ -1020,14 +1044,22 @@ namespace user
       }
       else if(pevent->m_eevent == ::user::event_button_clicked)
       {
-         class control::descriptor * pdescriptor = m_controldescriptorset.get(pevent->m_puie);
+
+         control * pcontrol = dynamic_cast <control *> (pevent->m_puie);
+
+         if(pcontrol == NULL)
+            return false;
+
+         class control::descriptor * pdescriptor = pcontrol->m_pdescriptor;
+
          if(pdescriptor == NULL)
             return false;
+
          if(pdescriptor->has_function(control::function_action))
          {
-            if(pdescriptor->m_pcontrol != NULL)
+            if(pcontrol != NULL)
             {
-               _001OnButtonAction(pdescriptor->m_pcontrol);
+               _001OnButtonAction(pcontrol);
                return true;
             }
             else
@@ -1038,9 +1070,17 @@ namespace user
       }
       else if(pevent->m_eevent == ::user::event_set_check && pevent->m_actioncontext.is_user_source())
       {
-         class control::descriptor * pdescriptor = m_controldescriptorset.get(pevent->m_puie);
+
+         control * pcontrol = dynamic_cast <control *> (pevent->m_puie);
+
+         if(pcontrol == NULL)
+            return false;
+
+         class control::descriptor * pdescriptor = pcontrol->m_pdescriptor;
+
          if(pdescriptor == NULL)
             return false;
+
          if(pdescriptor->m_eddx == control::ddx_dbflags)
          {
             int_ptr_array ia;
@@ -1075,7 +1115,7 @@ namespace user
    //   papp->m_pcoreapp->TwfInitializeDescendants(pview->GetSafeoswindow_(), true);
       for(int32_t i = 0; i < m_controldescriptorset.get_size(); i++)
       {
-         sp(control) pcontrol = m_controldescriptorset[i]->m_pcontrol;
+         sp(control) pcontrol = m_controldescriptorset[i]->get_control(this);
          if(pcontrol == NULL)
             continue;
          _001Update(pcontrol);

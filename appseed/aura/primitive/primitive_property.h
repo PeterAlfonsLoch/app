@@ -51,48 +51,48 @@ namespace xml
 } // namespace xml
 
 
-class CLASS_DECL_AURA pair_set_interface
-{
-public:
+//class CLASS_DECL_AURA pair_set_interface
+//{
+//public:
+//
+//
+//   pair_set_interface();
+//
+//
+//   virtual bool get_auto_add() const;
+//   virtual bool get_key_case_insensitive() const;
+//
+//
+//   virtual void pair_set_interface_set(const char * pszKey, var value) = 0;
+//   virtual var pair_set_interface_get_value(int32_t i) const = 0;
+//   virtual var & pair_set_interface_get_value(int32_t i) = 0;
+////   virtual const string_composite pair_set_interface_get_key(int32_t i) const = 0;
+//   virtual int32_t pair_set_interface_get_count() const = 0;
+//   virtual int32_t pair_set_interface_find(const char * pszKey, int32_t iStart = 0) const;
+//   var operator[](const char * pszName) const;
+//   var & operator[](const char * pszName);
+//};
 
-
-   pair_set_interface();
-
-
-   virtual bool get_auto_add() const;
-   virtual bool get_key_case_insensitive() const;
-
-
-   virtual void pair_set_interface_set(const char * pszKey, var value) = 0;
-   virtual var pair_set_interface_get_value(int32_t i) const = 0;
-   virtual var & pair_set_interface_get_value(int32_t i) = 0;
-   virtual const string_composite pair_set_interface_get_key(int32_t i) const = 0;
-   virtual int32_t pair_set_interface_get_count() const = 0;
-   virtual int32_t pair_set_interface_find(const char * pszKey, int32_t iStart = 0) const;
-   var operator[](const char * pszName) const;
-   var & operator[](const char * pszName);
-};
-
-class CLASS_DECL_AURA str_str_interface
-{
-public:
-
-   str_str_interface();
-
-
-   virtual bool get_auto_add() const;
-   virtual bool get_key_case_insensitive() const;
-
-   virtual void str_str_interface_set(const char * pszKey, const char * pszValue) = 0;
-   virtual const string_composite str_str_interface_get_value(int32_t i) const = 0;
-   virtual string_composite str_str_interface_get_value(int32_t i) = 0;
-   virtual const string_composite str_str_interface_get_key(int32_t i) const = 0;
-   virtual int32_t str_str_interface_get_count() const = 0;
-   virtual int32_t str_str_interface_find(const char * pszKey, int32_t iStart = 0) const;
-   const string_composite operator[](const char * pszName) const;
-   string_composite operator[](const char * pszName);
-   virtual bool contains_key(stringa & stra);
-};
+//class CLASS_DECL_AURA str_str_interface
+//{
+//public:
+//
+//   str_str_interface();
+//
+//
+//   virtual bool get_auto_add() const;
+//   virtual bool get_key_case_insensitive() const;
+//
+//   virtual void str_str_interface_set(const char * pszKey, const char * pszValue) = 0;
+////   virtual const string_composite str_str_interface_get_value(int32_t i) const = 0;
+////   virtual string_composite str_str_interface_get_value(int32_t i) = 0;
+////   virtual const string_composite str_str_interface_get_key(int32_t i) const = 0;
+//   virtual int32_t str_str_interface_get_count() const = 0;
+//   virtual int32_t str_str_interface_find(const char * pszKey, int32_t iStart = 0) const;
+//   const string_composite operator[](const char * pszName) const;
+//   string_composite operator[](const char * pszName);
+//   virtual bool contains_key(stringa & stra);
+//};
 
 class property_set;
 
@@ -166,7 +166,7 @@ public:
 
       str += "\"";
 
-      str += m_element1;
+      str += m_element1.to_string();
 
       str += "\"";
 

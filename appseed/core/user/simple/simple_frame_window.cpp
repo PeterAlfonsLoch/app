@@ -96,6 +96,7 @@ m_fastblur(allocer())
    m_bWindowFrame = true;
    m_bLayered = true;
    m_pframeschema = NULL;
+   m_pdocumenttemplate = NULL;
 
    //m_phelpertask = new helper_task(this);
 
@@ -270,16 +271,17 @@ void simple_frame_window::_001OnCreate(signal_details * pobj)
 #ifdef WINDOWSEX
    if(GetParent() == NULL)
    {
+      string strMatter = get_window_default_matter();
       //http://www.cplusplus.com/forum/general/28470/
       //blackcoder41 (1426)  Sep 12, 2010 at 2:43pm
       //hIconSm = (HICON)LoadImage(NULL, "menu_two.ico", IMAGE_ICON, 16, 16, LR_LOADFROMFILE);
       HICON hicon;
-      hicon = (HICON)LoadImage(NULL,Application.dir().matter(m_pdocumenttemplate->m_strMatter,"icon.ico"),IMAGE_ICON,16,16,LR_LOADFROMFILE);
+      hicon = (HICON)LoadImage(NULL,Application.dir().matter(strMatter,"icon.ico"),IMAGE_ICON,16,16,LR_LOADFROMFILE);
       if(hicon != NULL)
       {
          SendMessage(get_handle(),(UINT)WM_SETICON,ICON_SMALL,(LPARAM)hicon);
       }
-      hicon = (HICON)LoadImage(NULL,Application.dir().matter(m_pdocumenttemplate->m_strMatter, "icon.ico"),IMAGE_ICON,48,48,LR_LOADFROMFILE);
+      hicon = (HICON)LoadImage(NULL,Application.dir().matter(strMatter, "icon.ico"),IMAGE_ICON,48,48,LR_LOADFROMFILE);
       if(hicon != NULL)
       {
          SendMessage(get_handle(),(UINT)WM_SETICON,ICON_BIG,(LPARAM)hicon);
@@ -1784,7 +1786,7 @@ string simple_frame_window::get_window_default_matter()
    if (m_pdocumenttemplate == NULL)
    {
 
-      return simple_frame_window::get_window_default_matter();
+      return frame_window::get_window_default_matter();
 
    }
 

@@ -2968,13 +2968,20 @@ namespace axis
 
    }
 
+
    ::user::elemental * session::get_keyboard_focus()
    {
       
       if(m_pauraapp == NULL)
+      {
+
          return NULL;
+
+      }
+
       if(Application.is_session())
       {
+
          sp(::user::elemental) puieFocus;
          
          try
@@ -2993,82 +3000,119 @@ namespace axis
 
 
             if((bool)oprop("NativeWindowFocus") && puieFocus != m_pkeyboardfocus)
+            {
+
                return NULL;
+
+            }
+
             return m_pkeyboardfocus;
+
          }
          else
          {
+
             return NULL;
+
          }
+
       }
       else if(Application.is_system())
       {
+
          return m_pkeyboardfocus;
+
       }
       else if(Application.m_pbasesession != NULL)
       {
+
          return Sess(get_app()).get_keyboard_focus();
+
       }
       else if(Application.m_pbasesystem != NULL)
       {
+
          return Sess(get_app()).get_keyboard_focus();
+
       }
       else
       {
+
          return NULL;
+
       }
+
    }
 
 
    void session::set_keyboard_focus(::user::elemental * pkeyboardfocus)
    {
 
-      if(pkeyboardfocus == NULL || pkeyboardfocus->keyboard_focus_OnSetFocus())
+      if(m_pkeyboardfocus != NULL && m_pkeyboardfocus != pkeyboardfocus)
       {
 
-         if(m_pkeyboardfocus != NULL && m_pkeyboardfocus != pkeyboardfocus)
+         ::user::elemental * pkeyboardfocusOld = m_pkeyboardfocus;
+
+
+         try
          {
 
-            ::user::elemental * pkeyboardfocusOld = m_pkeyboardfocus;
-
-            try
+            if(pkeyboardfocusOld != NULL)
             {
 
-               m_pkeyboardfocus = NULL;
+               output_debug_string("axis::session::set_keyboard_focus pkeyboardfocusOld->keyboard_focus_OnKillFocus()\n");
 
-               if(pkeyboardfocusOld != NULL)
+               if(!pkeyboardfocusOld->keyboard_focus_OnKillFocus())
                {
 
-                  output_debug_string("axis::session::set_keyboard_focus pkeyboardfocusOld->keyboard_focus_OnKillFocus()\n");
-
-                  pkeyboardfocusOld->keyboard_focus_OnKillFocus();
+                  return;
 
                }
 
             }
-            catch(...)
-            {
 
-            }
+         }
+         catch(...)
+         {
 
          }
 
+      }
 
-         m_pkeyboardfocus = pkeyboardfocus;
+      if(pkeyboardfocus != NULL)
+      {
 
-         if(m_pkeyboardfocus != NULL)
+         if(!pkeyboardfocus->keyboard_focus_OnSetFocus())
          {
 
-            if(m_pkeyboardfocus->get_wnd() != NULL)
+            return;
+
+         }
+
+         if(pkeyboardfocus->get_wnd() != NULL)
+         {
+
+            if(!pkeyboardfocus->get_wnd_elemental()->on_keyboard_focus(pkeyboardfocus))
             {
 
-               m_pkeyboardfocus->get_wnd_elemental()->on_keyboard_focus(m_pkeyboardfocus);
-
+               return;
+               
             }
 
          }
 
       }
+
+      m_pkeyboardfocus = pkeyboardfocus;
+
+      on_finally_focus_set(pkeyboardfocus);
+
+   }
+
+
+   void session::on_finally_focus_set(::user::elemental * pelementalFocus)
+   {
+
 
    }
 

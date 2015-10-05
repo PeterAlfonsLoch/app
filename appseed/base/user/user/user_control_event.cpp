@@ -20,6 +20,8 @@ namespace user
 
       m_bProcessed   = false;
 
+      m_bOk          = true;
+
       m_pobj         = NULL;
 
       m_puie         = NULL;

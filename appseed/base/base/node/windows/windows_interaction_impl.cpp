@@ -654,6 +654,7 @@ namespace windows
          IGUI_WIN_MSG_LINK(WM_WINDOWPOSCHANGED,pinterface,this,&interaction_impl::_001OnWindowPosChanged);
          IGUI_WIN_MSG_LINK(WM_GETMINMAXINFO,pinterface,this,&interaction_impl::_001OnGetMinMaxInfo);
          IGUI_WIN_MSG_LINK(WM_SHOWWINDOW,pinterface,this,&interaction_impl::_001OnShowWindow);
+         IGUI_WIN_MSG_LINK(WM_SETFOCUS,pinterface,this,&interaction_impl::_001OnSetFocus);
          IGUI_WIN_MSG_LINK(WM_KILLFOCUS,pinterface,this,&interaction_impl::_001OnKillFocus);
          IGUI_WIN_MSG_LINK(ca2m_PRODEVIAN_SYNCH,pinterface,this,&interaction_impl::_001OnProdevianSynch);
       }
@@ -2297,16 +2298,20 @@ namespace windows
       Default();
    }
 
-   void interaction_impl::OnSetFocus(::window_sp)
-   {
-      bool bHandled;
+   //void interaction_impl::_001OnSetFocus(::signal_details * pdetails)
+   //{
+   //   
+   //   //bool bHandled;
 
-      bHandled = FALSE;
-      if(!bHandled)
-      {
-         Default();
-      }
-   }
+   //   //bHandled = FALSE;
+   //   //if(!bHandled)
+   //   //{
+   //   //   Default();
+   //   //}
+
+
+
+   //}
 
 
    LRESULT interaction_impl::OnActivateTopLevel(WPARAM wParam,LPARAM)
@@ -3393,10 +3398,10 @@ namespace windows
 
          }
 
+         ::SetWindowPos(get_handle(),(oswindow)z,x,y,cx,cy,nFlags);
+
          if(nFlags & SWP_SHOWWINDOW)
          {
-
-            ::SetWindowPos(get_handle(),(oswindow)z,x,y,cx,cy,nFlags);
 
             ShowWindow(SW_SHOW);
 
@@ -3894,7 +3899,7 @@ namespace windows
       else
       {
 
-         return interaction_impl::GetCapture()->GetCapture();
+         return NULL;
 
       }
 
@@ -4928,7 +4933,41 @@ namespace windows
       Default();
    }
    
-   
+
+   void interaction_impl::_001OnSetFocus(signal_details * pobj)
+   {
+      //   Default();
+
+      Default();
+
+      if(GetParent() == NULL)
+      {
+
+         sp(::user::elemental) pelementalFocus = Session.get_keyboard_focus();
+
+         if(pelementalFocus.is_set())
+         {
+
+            sp(::user::interaction) puiFocus = pelementalFocus;
+
+            if(puiFocus.is_set())
+            {
+
+               puiFocus->keyboard_focus_OnSetFocus();
+
+            }
+
+            on_keyboard_focus(pelementalFocus);
+
+         }
+
+      }
+
+   }
+
+
+
+
    void interaction_impl::_001OnKillFocus(signal_details * pobj)
    {
    //   Default();
@@ -5879,14 +5918,14 @@ LRESULT CALLBACK __window_procedure(oswindow oswindow,UINT message,WPARAM wparam
          return ::DefWindowProc(oswindow,message,wparam,lparam);
 
       }
-      else if(message == WM_MOVE)
-      {
+      //else if(message == WM_MOVE)
+      //{
 
-         //return 0;
+      //   //return 0;
 
-         return ::DefWindowProc(oswindow,message,wparam,lparam);
+      //   return ::DefWindowProc(oswindow,message,wparam,lparam);
 
-      }
+      //}
 
    }
 
@@ -6092,7 +6131,7 @@ string CLASS_DECL_BASE get_user_interaction_window_class(::user::interaction * p
    if(etype == ::user::interaction::type_frame || etype == ::user::interaction::type_view)
    {
       // SDI Frame or MDI Child windows or views - normal colors
-      wndcls.style = CS_DBLCLKS | CS_HREDRAW | CS_VREDRAW;
+      wndcls.style = CS_DBLCLKS | CS_HREDRAW | CS_VREDRAW | CS_OWNDC;
       //wndcls.style = CS_HREDRAW | CS_VREDRAW;
       wndcls.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
       if(__register_with_icon(&wndcls,gen_WndFrameOrView,0))

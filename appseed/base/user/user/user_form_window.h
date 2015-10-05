@@ -92,13 +92,17 @@ namespace user
       DECL_GEN_SIGNAL(data_on_after_change);
 
 
-      virtual bool create_control(class control::descriptor * pdescriptor);
+      virtual bool create_control(class control::descriptor * pdescriptor, index iItem);
       virtual bool normalize_control_descriptor_typeinfo(class ::user::control::descriptor * pdescriptor);
 
       bool operator == (const control & control) const;
 
       bool BaseOnControlEvent(::user::control_event * pevent);
       void _001SetControlFactory();
+
+
+      virtual bool _001OnControlSetFocus(::user::interaction * pui);
+      virtual bool _001OnControlKillFocus(::user::interaction * pui);
 
 
       virtual void OnBeforeNavigate2(var & varFile,uint32_t nFlags,const char * lpszTargetFrameName,byte_array& baPostedData,const char * lpszHeaders,bool* pbCancel);

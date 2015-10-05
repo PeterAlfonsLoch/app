@@ -27,6 +27,9 @@ namespace user
    class plain_text_group_command;
 
 
+   class tooltip;
+
+
 
 } // namespace user
 
@@ -281,6 +284,9 @@ using user_interaction = ::user::interaction;
 #include "base/user/user/user_frame_window.h"
 #include "base/user/user/user_server.h"
 #include "base/user/user/user_impact_system.h"
+
+
+#include "base/user/user/user_tooltip.h"
 
 
 #ifdef WINDOWSEX

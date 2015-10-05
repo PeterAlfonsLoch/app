@@ -41,12 +41,12 @@ id::id(const string & str)
    operator = (::aura::system::id((const char *)str));
 }
 
-id::id(const string_interface & str)
-{
-   m_all ={};
-
-   operator = (::aura::system::id(string(str)));
-}
+//id::id(const string_interface & str)
+//{
+//   m_all ={};
+//
+//   operator = (::aura::system::id(string(str)));
+//}
 
 id & id::operator = (const char * psz)
 {
@@ -60,10 +60,10 @@ id & id::operator = (const string & str)
    return *this;
 }
 
-id & id::operator = (const string_interface & str)
-{
-   operator = (::aura::system::id(string(str)));
-   return *this;
-}
+//id & id::operator = (const string_interface & str)
+//{
+//   operator = (::aura::system::id(string(str)));
+//   return *this;
+//}
 
 

@@ -461,6 +461,9 @@
     <ClInclude Include="base\message\message_user.h">
       <Filter>Header Files\base\message</Filter>
     </ClInclude>
+    <ClInclude Include="user\user\user_tooltip.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="base\base\base.cpp">
@@ -810,6 +813,9 @@
     </ClCompile>
     <ClCompile Include="base\message\_message.cpp">
       <Filter>Source Files\base\message</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_tooltip.cpp">
+      <Filter>Source Files\user\user</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

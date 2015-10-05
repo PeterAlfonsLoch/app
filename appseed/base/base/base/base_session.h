@@ -49,6 +49,9 @@ namespace base
 
       sp(::user::schema) get_new_user_schema(const char * pszUinteractionLibrary);
 
+
+      virtual void on_finally_focus_set(::user::elemental * pelementalFocus) override;
+
    };
 
 

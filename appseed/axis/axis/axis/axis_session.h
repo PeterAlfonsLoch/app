@@ -285,6 +285,8 @@ namespace axis
       virtual ::user::primitive * get_active_ui();
       virtual ::user::primitive * get_focus_ui();
 
+      virtual void on_finally_focus_set(::user::elemental * pelementalFocus);
+
    };
 
 

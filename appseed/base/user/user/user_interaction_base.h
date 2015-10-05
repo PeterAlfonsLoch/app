@@ -263,7 +263,7 @@ namespace user
       virtual ::user::interaction * GetFocus();
 
 
-      virtual void on_keyboard_focus(::user::elemental * pfocus);
+      virtual bool on_keyboard_focus(::user::elemental * pfocus) override;
 
 
       virtual void _001UpdateScreen(bool bUpdateBuffer = true);

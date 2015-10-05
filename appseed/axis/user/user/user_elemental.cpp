@@ -37,10 +37,14 @@ namespace user
 
 
    // keyboard focus
-   void elemental::on_keyboard_focus(::user::elemental * pfocus)
+   bool elemental::on_keyboard_focus(::user::elemental * pfocus)
    {
       UNREFERENCED_PARAMETER(pfocus);
+
+      return true;
+
    }
+
 
    void elemental::keyboard_focus_OnTimer(int32_t iTimer)
    {
@@ -111,14 +115,18 @@ namespace user
    }
 
    
-   void elemental::keyboard_focus_OnKillFocus()
+   bool elemental::keyboard_focus_OnKillFocus()
    {
+
+      return true;
 
    }
 
 
-   void elemental::keyboard_focus_OnChildKillFocus()
+   bool elemental::keyboard_focus_OnChildKillFocus()
    {
+
+      return true;
 
    }
 

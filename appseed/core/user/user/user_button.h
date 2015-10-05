@@ -70,7 +70,7 @@ namespace user
       button(::aura::application * papp);
       virtual ~button();
 
-      virtual bool create_control(class control::descriptor * pdescriptor);
+      virtual bool create_control(class control::descriptor * pdescriptor, index iItem = 0);
 
       virtual void ResizeToFit();
 

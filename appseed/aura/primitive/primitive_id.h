@@ -70,7 +70,7 @@ public:
    id(uint32_t ui);
 #endif
    id(const string & str);
-   id(const string_interface & str);
+//   id(const string_interface & str);
    id(const var & var);
 
 
@@ -134,14 +134,14 @@ public:
 #endif
 
 
-   inline bool operator == (const string_interface & str) const;
-   inline bool operator != (const string_interface & str) const;
-   inline bool operator < (const string_interface & str) const;
-   inline bool operator <= (const string_interface & str) const;
-   inline bool operator > (const string_interface & str) const;
-   inline bool operator >= (const string_interface & str) const;
+   //inline bool operator == (const string_interface & str) const;
+   //inline bool operator != (const string_interface & str) const;
+   //inline bool operator < (const string_interface & str) const;
+   //inline bool operator <= (const string_interface & str) const;
+   //inline bool operator > (const string_interface & str) const;
+   //inline bool operator >= (const string_interface & str) const;
 
-   id & operator = (const string_interface & str);
+   //id & operator = (const string_interface & str);
    id & operator = (const var & var);
    id & operator = (const property & prop);
 
@@ -385,30 +385,30 @@ inline bool id::operator >= (const string & str) const
 }
 
 
-inline bool id::operator == (const string_interface & str) const
-{
-   return m_etype == type_text && (m_psz == NULL ? false : string(str).Compare(m_psz) == 0);
-}
-inline bool id::operator != (const string_interface & str) const
-{
-   return !operator==(str);
-}
-inline bool id::operator < (const string_interface & str) const
-{
-   return (m_etype < type_text) || (m_psz == NULL ? true : string(str).Compare(m_psz) > 0);
-}
-inline bool id::operator <= (const string_interface & str) const
-{
-   return !operator > (str);
-}
-inline bool id::operator > (const string_interface & str) const
-{
-   return (m_etype > type_text) || (m_psz == NULL ? false : string(str).Compare(m_psz) < 0);
-}
-inline bool id::operator >= (const string_interface & str) const
-{
-   return !operator < (str);
-}
+//inline bool id::operator == (const string_interface & str) const
+//{
+//   return m_etype == type_text && (m_psz == NULL ? false : string(str).Compare(m_psz) == 0);
+//}
+//inline bool id::operator != (const string_interface & str) const
+//{
+//   return !operator==(str);
+//}
+//inline bool id::operator < (const string_interface & str) const
+//{
+//   return (m_etype < type_text) || (m_psz == NULL ? true : string(str).Compare(m_psz) > 0);
+//}
+//inline bool id::operator <= (const string_interface & str) const
+//{
+//   return !operator > (str);
+//}
+//inline bool id::operator > (const string_interface & str) const
+//{
+//   return (m_etype > type_text) || (m_psz == NULL ? false : string(str).Compare(m_psz) < 0);
+//}
+//inline bool id::operator >= (const string_interface & str) const
+//{
+//   return !operator < (str);
+//}
 
 
 inline char string::last_char() const
@@ -503,5 +503,213 @@ inline string id::str() const
    else
    {
       return string("(type:") + ::str::from(m_iType) + ",body:" + ::str::from(m_iBody) + ")";
+   }
+}
+
+
+inline bool id::operator == (const char * psz) const
+{
+   return m_etype == type_text && (m_psz == NULL ? psz == NULL : strcmp(m_psz,psz) == 0);
+}
+inline bool id::operator != (const char * psz) const
+{
+   return !operator ==(psz);
+}
+inline bool id::operator < (const char * psz) const
+{
+   return m_etype < type_text || (m_etype == type_text && (m_psz == NULL ? psz != NULL : strcmp(m_psz,psz) < 0));
+}
+inline bool id::operator > (const char * psz) const
+{
+   return m_etype > type_text || (m_etype == type_text && (m_psz == NULL ? psz == NULL : strcmp(m_psz,psz) > 0));
+}
+inline bool id::operator <= (const char * psz) const
+{
+   return !operator>(psz);
+}
+inline bool id::operator >= (const char * psz) const
+{
+   return !operator<(psz);
+}
+
+
+
+#if defined(_LP64) || defined(_AMD64_)
+
+inline bool id::operator == (int32_t i) const
+{
+   return m_etype == type_integer && m_i == i;
+}
+inline bool id::operator != (int32_t i) const
+{
+   return m_etype != type_integer || m_i != i;
+}
+inline bool id::operator < (int32_t i) const
+{
+   return m_etype == type_integer && m_i < i;
+}
+inline bool id::operator <= (int32_t i) const
+{
+   return m_etype == type_integer && m_i <= i;
+}
+inline bool id::operator > (int32_t i) const
+{
+   return m_etype == type_integer && m_i > i;
+}
+inline bool id::operator >= (int32_t i) const
+{
+   return m_etype == type_integer && m_i >= i;
+}
+
+#endif
+
+
+inline bool id::operator == (int_ptr i) const
+{
+   return m_etype == type_integer && m_i == i;
+}
+inline bool id::operator != (int_ptr i) const
+{
+   return m_etype != type_integer || m_i != i;
+}
+inline bool id::operator < (int_ptr i) const
+{
+   return m_etype == type_integer && m_i < i;
+}
+inline bool id::operator <= (int_ptr i) const
+{
+   return m_etype == type_integer && m_i <= i;
+}
+inline bool id::operator > (int_ptr i) const
+{
+   return m_etype == type_integer && m_i > i;
+}
+inline bool id::operator >= (int_ptr i) const
+{
+   return m_etype == type_integer && m_i >= i;
+}
+
+
+inline id::operator int64_t () const
+{
+
+   return m_etype == type_integer ? m_i : 0x8000000000000000ll;
+
+}
+
+
+
+
+
+//inline id::operator int_ptr()
+//{
+//   if(is_number())
+//      return m_i;
+//   else
+//      return 0;
+//}
+
+inline bool id::is_null() const
+{
+   return m_etype == type_null || (m_etype == type_text && m_psz == NULL);
+}
+
+inline bool id::has_char() const
+{
+   return m_etype == type_text && m_psz != NULL && *m_psz != '\0';
+}
+
+inline void id::empty()
+{
+   m_etype  = type_empty;
+   m_psz    = NULL;
+}
+
+inline void id::clear()
+{
+   m_all ={};
+}
+
+
+inline CLASS_DECL_AURA id & id::operator += (const char * psz)
+{
+
+   *this = *this + psz;
+
+   return *this;
+
+}
+
+inline CLASS_DECL_AURA id id::operator + (const id & id) const
+{
+
+   if(is_integer())
+   {
+      if(id.is_integer())
+      {
+         return (int_ptr)(m_i + id.m_i);
+      }
+      else if(id.is_text())
+      {
+         return ::str::from(m_i) + "." + string(id.m_psz);
+      }
+      else
+      {
+         return *this;
+      }
+   }
+   else if(id.is_integer())
+   {
+      if(is_text())
+      {
+         return string(m_psz) + "." + ::str::from(id.m_i);
+      }
+      else
+      {
+         return id;
+      }
+   }
+   else if(is_text())
+   {
+      if(id.is_text())
+      {
+         return string(m_psz) + string(id.m_psz);
+      }
+      else
+      {
+         return *this;
+      }
+   }
+   else if(id.is_text())
+   {
+      return id;
+   }
+   else
+   {
+      return ::id();
+   }
+
+
+
+}
+
+
+
+inline int_ptr id::compare_ci(const char * psz) const
+{
+   if(m_psz == NULL)
+   {
+      if(psz == NULL)
+         return 0;
+      else
+         return -1;
+   }
+   else if(psz == NULL)
+   {
+      return 1;
+   }
+   else
+   {
+      return stricmp(m_psz,psz);
    }
 }

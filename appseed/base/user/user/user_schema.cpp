@@ -359,6 +359,11 @@ namespace user
 
       }
 
+
+      bool bError = pui->m_ptooltip.is_set()
+         && pui->m_ptooltip->IsWindowVisible()
+         && pui->m_ptooltip->m_bError;
+
       rect rectClient;
 
       pui->GetClientRect(rectClient);
@@ -419,7 +424,7 @@ namespace user
                {
 
                   //::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(255, 108, 149, 255));
-                  ::draw2d::pen_sp pen(pgraphics,1.0,ARGB(135,120,190,255));
+                  ::draw2d::pen_sp pen(pgraphics,1.0,bError ? ARGB(195,255,130,120) : ARGB(135,120,190,255));
 
                   pgraphics->DrawRect(rectClient,pen);
 
@@ -441,7 +446,7 @@ namespace user
                   pathRound->end_figure(true);*/
 
                   //::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(84, 108, 149, 255));
-                  ::draw2d::pen_sp pen(pgraphics,1.0,ARGB(105,140,200,255));
+                  ::draw2d::pen_sp pen(pgraphics,1.0,bError ? ARGB(155,255,150,140):ARGB(105,140,200,255));
 
                   pgraphics->SelectObject(pen);
 
@@ -465,7 +470,7 @@ namespace user
                   pathRound->end_figure(true);
 
                   //::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(72, 108, 149, 255));
-                  ::draw2d::pen_sp pen(pgraphics,1.0,ARGB(95,160,210,255));
+                  ::draw2d::pen_sp pen(pgraphics,1.0,bError ? ARGB(135,255,170,160): ARGB(95,160,210,255));
 
                   pgraphics->SelectObject(pen);
 
@@ -489,7 +494,7 @@ namespace user
                   pathRound->end_figure(true);
 
                   //::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(60, 108, 149, 255));
-                  ::draw2d::pen_sp pen(pgraphics,1.0,ARGB(75,180,220,255));
+                  ::draw2d::pen_sp pen(pgraphics,1.0,bError ? ARGB(105,255,190,180): ARGB(75,180,220,255));
 
                   pgraphics->SelectObject(pen);
 
@@ -514,7 +519,7 @@ namespace user
                   pathRound->end_figure(true);
 
                   //::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(48, 108, 149, 255));
-                  ::draw2d::pen_sp pen(pgraphics,1.0,ARGB(55,200,230,255));
+                  ::draw2d::pen_sp pen(pgraphics,1.0,bError ? ARGB(75,255,210,200):ARGB(55,200,230,255));
 
                   pgraphics->SelectObject(pen);
 
@@ -540,7 +545,7 @@ namespace user
                   pathRound->end_figure(true);
 
                   //::draw2d::pen_sp pen(pgraphics, 1.0, ARGB(36, 108, 149, 255));
-                  ::draw2d::pen_sp pen(pgraphics,1.0,ARGB(45,220,240,255));
+                  ::draw2d::pen_sp pen(pgraphics,1.0,bError ? ARGB(45,255,230,220) : ARGB(45,220,240,255));
 
                   pgraphics->SelectObject(pen);
 

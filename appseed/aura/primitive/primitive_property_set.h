@@ -17,8 +17,8 @@ public:
 
    property_set(::aura::application * papp = NULL, bool bAutoAdd = true, bool bMultiValue = false);
    property_set(const property_set & set);
-   property_set(const pair_set_interface & set);
-   property_set(const str_str_interface & set);
+//   property_set(const pair_set_interface & set);
+//   property_set(const str_str_interface & set);
    virtual ~property_set();
 
 
@@ -94,31 +94,31 @@ public:
    ::count remove_value(const char * psz, ::count countMin = 0, ::count countMax = -1);
 
    bool has_property(id idName) const;
-   bool has_property(string_interface & str) const;
+   //bool has_property(string_interface & str) const;
 
    bool is_set_empty(::count countMinimum = 1) const;
    bool has_properties(::count countMinimum = 1) const;
 
    property * find(id idName) const;
-   property * find(string_interface & str) const;
+   //property * find(string_interface & str) const;
 
    index find_index(id idName) const;
-   index find_index(string_interface & str) const;
+   //index find_index(string_interface & str) const;
 
 
    ::count unset(id idName);
 
    bool is_new(id idName) const;
-   bool is_new(string_interface & str) const;
+//   bool is_new(string_interface & str) const;
 
    bool is_null(id idName) const;
-   bool is_null(string_interface & str) const;
+//   bool is_null(string_interface & str) const;
 
    bool is_new_or_null(id idName) const;
-   bool is_new_or_null(string_interface & str) const;
+//   bool is_new_or_null(string_interface & str) const;
 
    bool is_empty(id idName) const;
-   bool is_empty(string_interface & str) const;
+//   bool is_empty(string_interface & str) const;
 
    void OnBeforePropertyChange(property * pproperty);
    void OnAfterPropertyChange(const var & variableOld, property * pproperty);
@@ -154,8 +154,8 @@ public:
 
 
    property_set & operator = (const property_set & set);
-   property_set & operator = (const pair_set_interface & set);
-   property_set & operator = (const str_str_interface & set);
+//   property_set & operator = (const pair_set_interface & set);
+//   property_set & operator = (const str_str_interface & set);
 
    property_set & operator += (const property_set & set);
    property_set & operator |= (const property_set & set);
@@ -333,10 +333,10 @@ inline bool property_set::has_property(id idName) const
 
 }
 
-inline bool property_set::has_property(string_interface & str) const
-{
-   return has_property(string(str));
-}
+//inline bool property_set::has_property(string_interface & str) const
+//{
+//   return has_property(string(str));
+//}
 
 
 inline property * property_set::set(id idName, var var)
@@ -469,12 +469,12 @@ inline index property_set::find_index(id idName) const
 }
 
 
-inline index property_set::find_index(string_interface & str) const
-{
-
-   return find_index((const char *) string(str));
-
-}
+//inline index property_set::find_index(string_interface & str) const
+//{
+//
+//   return find_index((const char *) string(str));
+//
+//}
 
 
 inline property * property_set::find(id idName) const
@@ -485,10 +485,10 @@ inline property * property_set::find(id idName) const
 }
 
 
-inline property * property_set::find(string_interface & str) const
-{
-   return find((const char *) string(str));
-}
+//inline property * property_set::find(string_interface & str) const
+//{
+//   return find((const char *) string(str));
+//}
 
 
 

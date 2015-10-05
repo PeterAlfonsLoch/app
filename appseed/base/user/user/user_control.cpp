@@ -25,25 +25,25 @@ namespace user
    control::descriptor::~descriptor()
    {
 
-      if(m_pcontrol != NULL)
-      {
+      //if(m_pcontrol != NULL)
+      //{
 
-         if(m_bCreated)
-         {
+      //   if(m_bCreated)
+      //   {
 
-            m_pcontrol->DestroyWindow();
+      //      m_pcontrol->DestroyWindow();
 
-         }
-         else if(m_bSubclassed)
-         {
+      //   }
+      //   else if(m_bSubclassed)
+      //   {
 
-            m_pcontrol->unsubclass_window();
+      //      m_pcontrol->unsubclass_window();
 
-         }
+      //   }
 
-         m_pcontrol.release();
+      //   m_pcontrol.release();
 
-      }
+      //}
 
    }
 
@@ -57,7 +57,7 @@ namespace user
       m_bCreated                 = false;
       m_edatatype                = DataTypeString;
       m_flagsfunction.unsignalize_all();
-      m_pcontrol.release();
+      m_controlmap.remove_all();
       m_pform                    = NULL;
       m_bSubclassed              = false;
       m_iSubItem                 = -1;
@@ -88,7 +88,8 @@ namespace user
       m_bCreated              = descriptor.m_bCreated;
       m_edatatype             = descriptor.m_edatatype;
       m_idPrivateDataSection  = descriptor.m_idPrivateDataSection;
-      m_pcontrol              = descriptor.m_pcontrol;
+      //m_pcontrol              = descriptor.m_pcontrol;
+      m_controlmap.remove_all();
       m_eddx                  = descriptor.m_eddx;
       m_ddx.m_pvoid           = descriptor.m_ddx.m_pvoid;
       m_pform                 = descriptor.m_pform;
@@ -105,8 +106,7 @@ namespace user
       return m_id       == descriptor.m_id
          && m_etype     == descriptor.m_etype
          && m_dataid    == descriptor.m_dataid
-         && m_pform     == descriptor.m_pform
-         && m_pcontrol  == descriptor.m_pcontrol;
+         && m_pform     == descriptor.m_pform;
 
    }
 
@@ -163,6 +163,50 @@ namespace user
 
    }
 
+   control * control::descriptor::get_control(::user::form_window * pform,index iItem)
+   {
+
+      sp(control) & pcontrol = m_controlmap[iItem];
+
+      if(pcontrol != NULL)
+      {
+
+         return pcontrol;
+
+      }
+
+      if(!pform->create_control(this,iItem))
+      {
+
+         pcontrol.release();
+
+         return NULL;
+
+      }
+
+      return pcontrol;
+
+   }
+
+   index control::descriptor::find_control(::user::interaction * pui)
+   {
+
+      for(auto pair : m_controlmap)
+      {
+
+         if(pair.m_element2 == pui)
+         {
+          
+            return pair.m_element1;
+
+         }
+
+      }
+
+      return -1;
+
+   }
+
 
    control::descriptor_set::descriptor_set()
    {
@@ -176,7 +220,7 @@ namespace user
    }
 
 
-   sp(control) control::descriptor_set::get_control_by_id(id id)
+   sp(control) control::descriptor_set::get_control(::user::form_window * pform, id id, int iItem)
    {
 
       for(int32_t i = 0; i < this->get_size(); i++)
@@ -187,7 +231,7 @@ namespace user
          if(descriptor.m_id == id)
          {
 
-            return descriptor.m_pcontrol;
+            return descriptor.get_control(pform, iItem);
 
          }
 
@@ -198,31 +242,61 @@ namespace user
    }
 
 
-   class control::descriptor * control::descriptor_set::get(sp(::user::interaction) puie)
+   bool control::descriptor_set::find_control(::user::interaction * pui,index & iItem,index & iSubItem)
    {
-
-      sp(control) pcontrol =  (puie.m_p);
-
-      if(pcontrol == NULL)
-         return NULL;
 
       for(int32_t i = 0; i < this->get_size(); i++)
       {
 
          class descriptor & descriptor = *this->element_at(i);
 
-         if(descriptor.m_pcontrol == pcontrol)
+         iItem = descriptor.find_control(pui);
+
+         if(iItem >= 0)
          {
 
-            return &descriptor;
+            iSubItem = descriptor.m_iSubItem;
+
+            return true;
 
          }
 
       }
 
-      return NULL;
+      iItem = -1;
+
+      iSubItem = -1;
+
+      return false;
 
    }
+
+
+   //class control::descriptor * control::descriptor_set::get(sp(::user::interaction) puie)
+   //{
+
+   //   sp(control) pcontrol =  (puie.m_p);
+
+   //   if(pcontrol == NULL)
+   //      return NULL;
+
+   //   for(int32_t i = 0; i < this->get_size(); i++)
+   //   {
+
+   //      class descriptor & descriptor = *this->element_at(i);
+
+   //      if(descriptor.m_pcontrol == pcontrol)
+   //      {
+
+   //         return &descriptor;
+
+   //      }
+
+   //   }
+
+   //   return NULL;
+
+   //}
 
 
    class control::descriptor * control::descriptor_set::get_by_sub_item(int32_t iSubItem)
@@ -506,11 +580,11 @@ namespace user
 
    bool control::_001IsPointInside(point64 point)
    {
-      if(get_form() != NULL)
-      {
-         return get_form()->_001IsPointInside(this, point);
-      }
-      else
+      //if(get_form() != NULL)
+      //{
+      //   return get_form()->_001IsPointInside(this, point);
+      //}
+      //else
       {
          return ::user::interaction::_001IsPointInside(point);
       }
@@ -541,21 +615,21 @@ namespace user
       return *m_pdescriptor;
    }
 
-   bool control::create_control(class control::descriptor * pdescriptor)
+   bool control::create_control(class control::descriptor * pdescriptor, index iItem)
    {
       m_pdescriptor = pdescriptor;
       m_pdescriptor->m_bCreated = true;
-      m_pdescriptor->m_pcontrol = this;
+      m_pdescriptor->m_controlmap[iItem] = this;
       return true;
    }
 
    void control::GetWindowRect(LPRECT lprect)
    {
-      if(get_form() != NULL)
-      {
-         get_form()->control_get_window_rect(this, lprect);
-      }
-      else
+//      if(get_form() != NULL)
+//      {
+//         get_form()->control_get_window_rect(this, lprect);
+//      }
+//      else
       {
          ::user::interaction::GetWindowRect(lprect);
       }
@@ -563,11 +637,11 @@ namespace user
 
    void control::GetClientRect(LPRECT lprect)
    {
-      if(get_form() != NULL)
-      {
-         get_form()->control_get_client_rect(this, lprect);
-      }
-      else
+      //if(get_form() != NULL)
+      //{
+      //   get_form()->control_get_client_rect(this, lprect);
+      //}
+      //else
       {
          ::user::interaction::GetClientRect(lprect);
       }
@@ -616,6 +690,47 @@ namespace user
    {
       return  (this);
    }
+
+   bool control::keyboard_focus_OnSetFocus()
+   {
+
+      if(!::database::user::interaction::keyboard_focus_OnSetFocus())
+      {
+
+         return false;
+
+      }                  
+
+      ::user::control_event ev;
+
+      ev.m_puie      = this;
+
+      ev.m_eevent    = ::user::event_set_focus;
+
+      BaseOnControlEvent(&ev);
+
+      return ev.m_bOk;
+
+   }
+
+
+   bool control::keyboard_focus_OnKillFocus()
+   {
+
+      ::database::user::interaction::keyboard_focus_OnKillFocus();
+
+      ::user::control_event ev;
+
+      ev.m_puie      = this;
+
+      ev.m_eevent    = ::user::event_kill_focus;
+
+      BaseOnControlEvent(&ev);
+
+      return ev.m_bOk;
+
+   }
+
 
 
    void control_cmd_ui::Enable(bool bOn)

@@ -194,7 +194,7 @@ namespace axis // only usable from axis.dll and dependants
 
 
 class dump_context;
-class string_interface;
+//class string_interface;
 class id_space;
 class type;
 class ptra;
@@ -202,8 +202,8 @@ class factory_item_base;
 class fixed_alloc_no_sync;
 class critical_section;
 class var_array;
-class pair_set_interface;
-class str_str_interface;
+//class pair_set_interface;
+//class str_str_interface;
 class command_thread;
 class thread;
 class command_target;
@@ -770,6 +770,9 @@ namespace file
 
 #include "aura/primitive/str/str_interface.h"
 #include "aura/primitive/str/str_composite.h"
+#include "aura/primitive/str/str_base64.h"
+
+
 
 #include "aura/aura/exception/exception.h"
 #include "aura/aura/aura/aura_common.h"

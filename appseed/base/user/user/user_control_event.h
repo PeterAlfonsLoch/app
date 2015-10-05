@@ -26,7 +26,8 @@ namespace user
       event_timebar_change,
       event_menu_hover,
       event_context_menu_close,
-              
+      event_set_focus,
+      event_kill_focus,
    };
 
 
@@ -44,6 +45,7 @@ namespace user
       uint32_t                      m_uiFlags;
       bool                          m_bRet;
       bool                          m_bProcessed;
+      bool                          m_bOk;
       signal_details *              m_pobj;
       ::datetime::time              m_timeOuterBeg;
       ::datetime::time              m_timeOuterEnd;

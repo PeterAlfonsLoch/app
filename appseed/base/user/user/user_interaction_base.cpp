@@ -1058,9 +1058,12 @@ namespace user
    ::user::interaction * interaction_base::GetActiveWindow()
    {
 
-      ::exception::throw_interface_only(get_app());
+      sp(::user::interaction) pui = get_wnd();
 
-      return NULL;
+      if(pui.is_null())
+         return NULL;
+
+      return get_wnd()->GetActiveWindow();
 
    }
 
@@ -1068,9 +1071,12 @@ namespace user
    ::user::interaction * interaction_base::SetFocus()
    {
 
-      ::exception::throw_interface_only(get_app());
+      sp(::user::interaction) pui = get_wnd();
 
-      return NULL;
+      if(pui.is_null())
+         return NULL;
+
+      return get_wnd()->SetFocus();
 
    }
 
@@ -2129,24 +2135,13 @@ namespace user
    }
 
 
-   void interaction_base::on_keyboard_focus(::user::elemental * pfocus)
+   bool interaction_base::on_keyboard_focus(::user::elemental * pfocus)
    {
 
-      if(GetActiveWindow() != get_wnd())
-      {
-
-         get_wnd()->SetActiveWindow();
-
-      }
-
-      if(GetFocus() != get_wnd())
-      {
-
-         get_wnd()->SetFocus();
-
-      }
-
       RedrawWindow();
+
+
+      return true;
 
    }
 

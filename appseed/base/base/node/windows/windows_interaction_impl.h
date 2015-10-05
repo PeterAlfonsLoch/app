@@ -476,7 +476,7 @@ namespace windows
       bool OnQueryEndSession();
       bool OnQueryNewPalette();
       bool OnQueryOpen();
-      void OnSetFocus(::window_sp pOldWnd);
+      DECL_GEN_SIGNAL(_001OnSetFocus);
       void OnShowWindow(bool bShow,UINT nStatus);
       void OnSize(UINT nType,int32_t cx,int32_t cy);
       void OnTCard(UINT idAction,uint32_t dwActionData);

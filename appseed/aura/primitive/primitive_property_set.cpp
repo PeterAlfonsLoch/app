@@ -337,10 +337,10 @@ bool property_set::is_new(id idName) const
    return pproperty->is_new();
 }
 
-bool property_set::is_new(string_interface & str) const
-{
-   return is_new((const char *) string(str));
-}
+//bool property_set::is_new(string_interface & str) const
+//{
+//   return is_new((const char *) string(str));
+//}
 
 bool property_set::is_null(id idName) const
 {
@@ -350,10 +350,10 @@ bool property_set::is_null(id idName) const
    return pproperty->is_null();
 }
 
-bool property_set::is_null(string_interface & str) const
-{
-   return is_null((const char *) string(str));
-}
+//bool property_set::is_null(string_interface & str) const
+//{
+//   return is_null((const char *) string(str));
+//}
 
 bool property_set::is_new_or_null(id idName) const
 {
@@ -363,10 +363,10 @@ bool property_set::is_new_or_null(id idName) const
    return pproperty->is_new_or_null();
 }
 
-bool property_set::is_new_or_null(string_interface & str) const
-{
-   return is_new_or_null((const char *) string(str));
-}
+//bool property_set::is_new_or_null(string_interface & str) const
+//{
+//   return is_new_or_null((const char *) string(str));
+//}
 
 
 bool property_set::is_empty(id idName) const
@@ -377,13 +377,13 @@ bool property_set::is_empty(id idName) const
    return pproperty->is_empty();
 }
 
-bool property_set::is_empty(string_interface & str) const
-{
-   const property * pproperty = find((const char *) string(str));
-   if(pproperty == NULL)
-      return true;
-   return pproperty->is_empty();
-}
+//bool property_set::is_empty(string_interface & str) const
+//{
+//   const property * pproperty = find((const char *) string(str));
+//   if(pproperty == NULL)
+//      return true;
+//   return pproperty->is_empty();
+//}
 
 void property_set::OnBeforePropertyChange(property * pproperty)
 {
@@ -926,24 +926,24 @@ property_set::property_set(const property_set & set)
 }
 
 
-property_set::property_set(const pair_set_interface & set)
-{
-
-   m_iIndex = 0;
-
-   operator = (set);
-
-}
-
-
-property_set::property_set(const str_str_interface & set)
-{
-
-   m_iIndex = 0;
-
-   operator = (set);
-
-}
+//property_set::property_set(const pair_set_interface & set)
+//{
+//
+//   m_iIndex = 0;
+//
+//   operator = (set);
+//
+//}
+//
+//
+//property_set::property_set(const str_str_interface & set)
+//{
+//
+//   m_iIndex = 0;
+//
+//   operator = (set);
+//
+//}
 
 
 property & property_set::at(index iIndex)
@@ -1122,54 +1122,54 @@ property_set & property_set::operator |= (const property_set & set)
 }
 
 
-property_set & property_set::operator = (const pair_set_interface & set)
-{
-
-   remove_all();
-
-   int32_t iCount = set.pair_set_interface_get_count();
-
-   for (int32_t i = 0; i < iCount; i++)
-   {
-
-      string strKey = set.pair_set_interface_get_key(i);
-
-      class var var = set.pair_set_interface_get_value(i);
-
-      set_at(strKey, var);
-   }
-
-   return *this;
-
-}
-
-
-
-
-
-
-
-
-property_set & property_set::operator = (const str_str_interface & set)
-{
-
-   remove_all();
-   
-   int32_t iCount = set.str_str_interface_get_count();
-
-   for (int32_t i = 0; i < iCount; i++)
-   {
-      
-      string strKey = set.str_str_interface_get_key(i);
-
-      class var var = set.str_str_interface_get_value(i);
-
-      set_at(strKey, var);
-   }
-
-   return *this;
-
-}
+//property_set & property_set::operator = (const pair_set_interface & set)
+//{
+//
+//   remove_all();
+//
+//   int32_t iCount = set.pair_set_interface_get_count();
+//
+//   for (int32_t i = 0; i < iCount; i++)
+//   {
+//
+//      string strKey = set.pair_set_interface_get_key(i);
+//
+//      class var var = set.pair_set_interface_get_value(i);
+//
+//      set_at(strKey, var);
+//   }
+//
+//   return *this;
+//
+//}
+//
+//
+//
+//
+//
+//
+//
+//
+//property_set & property_set::operator = (const str_str_interface & set)
+//{
+//
+//   remove_all();
+//   
+//   int32_t iCount = set.str_str_interface_get_count();
+//
+//   for (int32_t i = 0; i < iCount; i++)
+//   {
+//      
+//      string strKey = set.str_str_interface_get_key(i);
+//
+//      class var var = set.str_str_interface_get_value(i);
+//
+//      set_at(strKey, var);
+//   }
+//
+//   return *this;
+//
+//}
 
 
 property * property_set::str_find(const property & property) const

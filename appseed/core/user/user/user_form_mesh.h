@@ -99,8 +99,13 @@ namespace user
 
       virtual void install_message_handling(::message::dispatch *pinterface);
 
-      bool BaseOnControlEvent(::user::control_event * pevent);
+      virtual bool BaseOnControlEvent(::user::control_event * pevent);
 
+      virtual bool _001OnControlSetFocus(::user::interaction * pui);
+
+      virtual bool _001OnControlKillFocus(::user::interaction * pui);
+
+      virtual bool _001OnSetItemText(::user::interaction * pui,index iItem,index iSubItem);
 
 
    };

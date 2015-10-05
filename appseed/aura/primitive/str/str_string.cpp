@@ -3,83 +3,83 @@
 
 const int string::npos = -1;
 
-strsize string_interface::get_length() const
-{
-   return 0;
-}
-
-void string_interface::get_string(char * psz) const
-{
-   *psz = '\0';
-}
-
-string_interface::operator string() const
-{
-
-   string str;
-
-   to_string(str);
-
-   return str;
-
-}
-
-
-string string_interface::to_string() const
-{
-
-   string str;
-
-   to_string(str);
-
-   return str;
-
-}
-
-string & string_interface::to_string(string & str) const
-{
-
-   get_string(str.GetBufferSetLength(get_length()));
-
-   str.ReleaseBuffer(); // string is zero terminated. Here not trusting fully in get_length
-
-   return str;
-
-}
+//strsize string_interface::get_length() const
+//{
+//   return 0;
+//}
+//
+//void string_interface::get_string(char * psz) const
+//{
+//   *psz = '\0';
+//}
+//
+//string_interface::operator string() const
+//{
+//
+//   string str;
+//
+//   to_string(str);
+//
+//   return str;
+//
+//}
 
 
-void string_interface::set_string(const string & str,::action::context actioncontext)
-{
-   UNREFERENCED_PARAMETER(str);
-   UNREFERENCED_PARAMETER(actioncontext);
-}
-
-string_interface & string_interface::operator = (const string_interface & str)
-{
-   if(&str == this)
-      return *this;
-   char sz[256];
-   strsize iLen = str.get_length();
-   if(::compare::lt(iLen, ((sizeof(sz) / sizeof(char)) - sizeof(char))))
-   {
-      str.get_string(sz);
-      set_string(sz,::action::source::op(::action::source_assign));
-   }
-   else
-   {
-      char * psz = new char[iLen + 1];
-      str.get_string(psz);
-      set_string(psz,::action::source::op(::action::source_assign));
-      delete[] psz;
-   }
-   return *this;
-}
-
-string_interface & string_interface::operator = (const char * psz)
-{
-   set_string(psz,::action::source::op(::action::source_assign));
-   return *this;
-}
+//string string_interface::to_string() const
+//{
+//
+//   string str;
+//
+//   to_string(str);
+//
+//   return str;
+//
+//}
+//
+//string & string_interface::to_string(string & str) const
+//{
+//
+//   get_string(str.GetBufferSetLength(get_length()));
+//
+//   str.ReleaseBuffer(); // string is zero terminated. Here not trusting fully in get_length
+//
+//   return str;
+//
+//}
+//
+//
+//void string_interface::set_string(const string & str,::action::context actioncontext)
+//{
+//   UNREFERENCED_PARAMETER(str);
+//   UNREFERENCED_PARAMETER(actioncontext);
+//}
+//
+//string_interface & string_interface::operator = (const string_interface & str)
+//{
+//   if(&str == this)
+//      return *this;
+//   char sz[256];
+//   strsize iLen = str.get_length();
+//   if(::compare::lt(iLen, ((sizeof(sz) / sizeof(char)) - sizeof(char))))
+//   {
+//      str.get_string(sz);
+//      set_string(sz,::action::source::op(::action::source_assign));
+//   }
+//   else
+//   {
+//      char * psz = new char[iLen + 1];
+//      str.get_string(psz);
+//      set_string(psz,::action::source::op(::action::source_assign));
+//      delete[] psz;
+//   }
+//   return *this;
+//}
+//
+//string_interface & string_interface::operator = (const char * psz)
+//{
+//   set_string(psz,::action::source::op(::action::source_assign));
+//   return *this;
+//}
 
 
 string::string(unichar ch,strsize nLength):
@@ -542,10 +542,10 @@ void __cdecl crt_char_traits::ConvertTochar(char * pszDest,strsize nDestLength,c
 void __cdecl crt_char_traits::ConvertTochar(char * pszDest,strsize nDestLength,const unichar32 * pszSrc,strsize nSrcLength) throw()
 {
 
-   if(nDestLength >= 0)
-   {
-      throw simple_exception(get_thread_app(),"I am wasting this branching (if(nDestLength >= 0) to tell you that nDestLength should be negative so the buffer is already correct size... or you like incorrect size? Go to Facebook and click in Like for Community \"I Like incorrect size!!\", there should exist such community... there are so many things in the multi bramas... The hardware will check again if you didn't dirtied any other process... (only another process, though)... and you're probably be fired or even not be hired if incorrect size");
-   }
+   //if(nDestLength >= 0)
+   //{
+   //   throw simple_exception(get_thread_app(),"I am wasting this branching (if(nDestLength >= 0) to tell you that nDestLength should be negative so the buffer is already correct size... or you like incorrect size? Go to Facebook and click in Like for Community \"I Like incorrect size!!\", there should exist such community... there are so many things in the multi bramas... The hardware will check again if you didn't dirtied any other process... (only another process, though)... and you're probably be fired or even not be hired if incorrect size");
+   //}
 
    utf32_to_utf8(pszDest,pszSrc,nSrcLength);
 
@@ -740,19 +740,19 @@ void crt_char_traits::ConvertToOem(char* pstrString,size_t size)
 
 
 
-string::operator class string_composite()
-{
-   class string_composite composite;
-   composite.set_string(*this,::action::source::op(::action::source_cast));
-   return composite;
-}
-
-string::operator class string_composite const () const
-{
-
-   return string_composite(*this);
-
-}
+//string::operator class string_composite()
+//{
+//   class string_composite composite;
+//   composite.set_string(*this,::action::source::op(::action::source_cast));
+//   return composite;
+//}
+//
+//string::operator class string_composite const () const
+//{
+//
+//   return string_composite(*this);
+//
+//}
 
 
 void string::construct() throw()

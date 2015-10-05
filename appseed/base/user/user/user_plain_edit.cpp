@@ -2963,7 +2963,7 @@ namespace user
    }
 
 
-   bool plain_edit::create_control(class control::descriptor * pdescriptor)
+   bool plain_edit::create_control(class control::descriptor * pdescriptor, index iItem)
    {
       ASSERT(pdescriptor->get_type() == control_type_edit_plain_text);
       if(!create_window(pdescriptor->m_rect,pdescriptor->m_pform,pdescriptor->m_id))
@@ -2973,7 +2973,7 @@ namespace user
       }
       ShowWindow(SW_HIDE);
       m_bMultiLine = pdescriptor->has_function(control::function_edit_multi_line);
-      return control::create_control(pdescriptor);
+      return control::create_control(pdescriptor, iItem);
    }
 
 
@@ -2988,7 +2988,12 @@ namespace user
    bool plain_edit::keyboard_focus_OnSetFocus()
    {
 
-      ::user::control::keyboard_focus_OnSetFocus();
+      if(!::user::control::keyboard_focus_OnSetFocus())
+      {
+
+         return false;
+
+      }
 
       //m_bCaretOn = true;
       //m_dwLastCaret = get_tick_count();

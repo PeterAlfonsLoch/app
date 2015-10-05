@@ -75,7 +75,7 @@ namespace user
 
 
       virtual bool keyboard_focus_is_focusable();
-      virtual void keyboard_focus_OnKillFocus();
+      virtual bool keyboard_focus_OnKillFocus();
 
 
    };

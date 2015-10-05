@@ -13,144 +13,144 @@ void prop_id_debug(::aura::application * papp);
 
 
 
-pair_set_interface::pair_set_interface()
-{
-}
-
-bool pair_set_interface::get_auto_add() const
-{
-   return true;
-}
-
-bool pair_set_interface::get_key_case_insensitive() const
-{
-   return true;
-}
-
-int32_t pair_set_interface::pair_set_interface_find(const char * pszKey, int32_t iStart) const
-{
-   int32_t iCount = pair_set_interface_get_count();
-   if(get_key_case_insensitive())
-   {
-      for(int32_t i = iStart; i < iCount; i++)
-      {
-         if(string(pair_set_interface_get_key(i)).CompareNoCase(pszKey) == 0)
-         {
-            return i;
-         }
-      }
-   }
-   else
-   {
-      for(int32_t i = iStart; i < iCount; i++)
-      {
-         if(string(pair_set_interface_get_key(i)) == pszKey)
-         {
-            return i;
-         }
-      }
-   }
-   return -1;
-}
-
-var & pair_set_interface::operator[](const char * pszName)
-{
-   int32_t iFind = pair_set_interface_find(pszName);
-   if(iFind >= 0)
-      return pair_set_interface_get_value(iFind);
-   if(get_auto_add())
-   {
-      pair_set_interface_set(pszName, ::var(::var::type_new));
-      iFind = pair_set_interface_find(pszName);
-      if(iFind >= 0)
-         return pair_set_interface_get_value(iFind);
-   }
-
-   throw "cannot reference absent property";
-
-}
-
-var pair_set_interface::operator[](const char * pszName) const
-{
-   int32_t iFind = pair_set_interface_find(pszName);
-   if(iFind >= 0)
-      return pair_set_interface_get_value(iFind);
-   return ::var(::var::type_new);
-}
-
-str_str_interface::str_str_interface()
-{
-}
-
-bool str_str_interface::get_auto_add() const
-{
-   return true;
-}
-
-bool str_str_interface::get_key_case_insensitive() const
-{
-   return true;
-}
-
-int32_t str_str_interface::str_str_interface_find(const char * pszKey, int32_t iStart) const
-{
-   int32_t iCount = str_str_interface_get_count();
-   if(get_key_case_insensitive())
-   {
-      for(int32_t i = iStart; i < iCount; i++)
-      {
-         if(string(str_str_interface_get_key(i)).CompareNoCase(pszKey) == 0)
-         {
-            return i;
-         }
-      }
-   }
-   else
-   {
-      for(int32_t i = iStart; i < iCount; i++)
-      {
-         if(string(str_str_interface_get_key(i)) == pszKey)
-         {
-            return i;
-         }
-      }
-   }
-   return -1;
-}
-
-bool str_str_interface::contains_key(stringa & stra)
-{
-   for(index i = 0; i < stra.get_count(); i++)
-   {
-      if(str_str_interface_find(stra[i]) < 0)
-         return false;
-   }
-   return true;
-}
-
-
-string_composite str_str_interface::operator[](const char * pszName)
-{
-   int32_t iFind = str_str_interface_find(pszName);
-   if(iFind >= 0)
-      return str_str_interface_get_value(iFind);
-   if(get_auto_add())
-   {
-      str_str_interface_set(pszName, "");
-      iFind = str_str_interface_find(pszName);
-      if(iFind >= 0)
-         return str_str_interface_get_value(iFind);
-   }
-   return string_composite(str::empty_string());
-}
-
-const string_composite str_str_interface::operator[](const char * pszName) const
-{
-   int32_t iFind = str_str_interface_find(pszName);
-   if(iFind >= 0)
-      return str_str_interface_get_value(iFind);
-   return str::empty_string();
-}
+//pair_set_interface::pair_set_interface()
+//{
+//}
+//
+//bool pair_set_interface::get_auto_add() const
+//{
+//   return true;
+//}
+//
+//bool pair_set_interface::get_key_case_insensitive() const
+//{
+//   return true;
+//}
+//
+//int32_t pair_set_interface::pair_set_interface_find(const char * pszKey, int32_t iStart) const
+//{
+//   int32_t iCount = pair_set_interface_get_count();
+//   if(get_key_case_insensitive())
+//   {
+//      for(int32_t i = iStart; i < iCount; i++)
+//      {
+//         if(string(pair_set_interface_get_key(i)).CompareNoCase(pszKey) == 0)
+//         {
+//            return i;
+//         }
+//      }
+//   }
+//   else
+//   {
+//      for(int32_t i = iStart; i < iCount; i++)
+//      {
+//         if(string(pair_set_interface_get_key(i)) == pszKey)
+//         {
+//            return i;
+//         }
+//      }
+//   }
+//   return -1;
+//}
+//
+//var & pair_set_interface::operator[](const char * pszName)
+//{
+//   int32_t iFind = pair_set_interface_find(pszName);
+//   if(iFind >= 0)
+//      return pair_set_interface_get_value(iFind);
+//   if(get_auto_add())
+//   {
+//      pair_set_interface_set(pszName, ::var(::var::type_new));
+//      iFind = pair_set_interface_find(pszName);
+//      if(iFind >= 0)
+//         return pair_set_interface_get_value(iFind);
+//   }
+//
+//   throw "cannot reference absent property";
+//
+//}
+//
+//var pair_set_interface::operator[](const char * pszName) const
+//{
+//   int32_t iFind = pair_set_interface_find(pszName);
+//   if(iFind >= 0)
+//      return pair_set_interface_get_value(iFind);
+//   return ::var(::var::type_new);
+//}
+//
+//str_str_interface::str_str_interface()
+//{
+//}
+//
+//bool str_str_interface::get_auto_add() const
+//{
+//   return true;
+//}
+//
+//bool str_str_interface::get_key_case_insensitive() const
+//{
+//   return true;
+//}
+//
+//int32_t str_str_interface::str_str_interface_find(const char * pszKey, int32_t iStart) const
+//{
+//   int32_t iCount = str_str_interface_get_count();
+//   if(get_key_case_insensitive())
+//   {
+//      for(int32_t i = iStart; i < iCount; i++)
+//      {
+//         if(string(str_str_interface_get_key(i)).CompareNoCase(pszKey) == 0)
+//         {
+//            return i;
+//         }
+//      }
+//   }
+//   else
+//   {
+//      for(int32_t i = iStart; i < iCount; i++)
+//      {
+//         if(string(str_str_interface_get_key(i)) == pszKey)
+//         {
+//            return i;
+//         }
+//      }
+//   }
+//   return -1;
+//}
+//
+//bool str_str_interface::contains_key(stringa & stra)
+//{
+//   for(index i = 0; i < stra.get_count(); i++)
+//   {
+//      if(str_str_interface_find(stra[i]) < 0)
+//         return false;
+//   }
+//   return true;
+//}
+//
+//
+//string_composite str_str_interface::operator[](const char * pszName)
+//{
+//   int32_t iFind = str_str_interface_find(pszName);
+//   if(iFind >= 0)
+//      return str_str_interface_get_value(iFind);
+//   if(get_auto_add())
+//   {
+//      str_str_interface_set(pszName, "");
+//      iFind = str_str_interface_find(pszName);
+//      if(iFind >= 0)
+//         return str_str_interface_get_value(iFind);
+//   }
+//   return string_composite(str::empty_string());
+//}
+//
+//const string_composite str_str_interface::operator[](const char * pszName) const
+//{
+//   int32_t iFind = str_str_interface_find(pszName);
+//   if(iFind >= 0)
+//      return str_str_interface_get_value(iFind);
+//   return str::empty_string();
+//}
 
 property::property(::aura::application * papp, index iIndex)
 {
@@ -330,7 +330,7 @@ void property::parse_json_value(var & var, const char * & pszJson,const char * p
 string & property::get_http_post(string & str) const
 {
 
-   str += m_element1;
+   str += m_element1.to_string();
 
    str += "=";
 

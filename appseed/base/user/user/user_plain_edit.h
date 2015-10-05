@@ -172,7 +172,7 @@ namespace user
       virtual void on_updata_data(::data::simple_data * pdata, int32_t iHint);
 
 
-      virtual bool create_control(class ::user::control::descriptor * pdescriptor);
+      virtual bool create_control(class ::user::control::descriptor * pdescriptor, index iItem);
 
       virtual strsize char_hit_test(::draw2d::graphics * pdc, int32_t x, int32_t y);
 

@@ -130,7 +130,7 @@ namespace user
       virtual void ScreenToClient(LPPOINT lppoint);
       virtual void ScreenToClient(POINT64 * lppoint);
 
-      virtual void keyboard_focus_OnKillFocus();
+      virtual bool keyboard_focus_OnKillFocus();
 
 
    };

@@ -3554,7 +3554,7 @@ namespace draw2d
       {
          memory mem;
          mem.allocate(wc *m_size.cy);
-         ::draw2d::copy_colorref(m_size.cx,m_size.cy,(COLORREF *) mem.get_data(),m_iScan,get_data(),wc);
+         ::draw2d::copy_colorref(m_size.cx,m_size.cy,(COLORREF *) mem.get_data(),wc,get_data(),m_iScan);
          ostream.write(mem.get_data(),wc * m_size.cy);
       }
 

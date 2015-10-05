@@ -335,7 +335,7 @@ namespace database
       string str;
       str = get_data_id().m_id;
       str += ".";
-      str += id.m_id;
+      str += id.m_id.to_string();
       return str;
    }
 

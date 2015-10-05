@@ -575,24 +575,29 @@ namespace user
 
    void interaction::install_message_handling(::message::dispatch * pinterface)
    {
+
       IGUI_WIN_MSG_LINK(WM_CREATE,pinterface,this,&interaction::_001OnCreate);
+
       if(m_bMessageWindow)
       {
+
          //IGUI_WIN_MSG_LINK(WM_DESTROY              , pinterface, this, &interaction::_001OnDestroyMessageWindow);
+
       }
       else
       {
          IGUI_WIN_MSG_LINK(WM_CLOSE,pinterface,this,&interaction::_001OnClose);
          IGUI_WIN_MSG_LINK(WM_DESTROY,pinterface,this,&interaction::_001OnDestroy);
          IGUI_WIN_MSG_LINK(WM_SIZE,pinterface,this,&interaction::_001OnSize);
+         IGUI_WIN_MSG_LINK(WM_MOVE,pinterface,this,&interaction::_001OnMove);
          IGUI_WIN_MSG_LINK(WM_USER + 184,pinterface,this,&interaction::_001OnUser184);
          IGUI_WIN_MSG_LINK(WM_NCCALCSIZE,pinterface,this,&interaction::_001OnNcCalcSize);
+         IGUI_WIN_MSG_LINK(WM_SHOWWINDOW,pinterface,this,&interaction::_001OnShowWindow);
+         IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN,pinterface,this,&interaction::_001OnLButtonDown);
       }
       IGUI_WIN_MSG_LINK(WM_COMMAND,pinterface,this,&interaction::_001OnCommand);
       IGUI_WIN_MSG_LINK(message_simple_command,pinterface,this,&interaction::_001OnSimpleCommand);
       //      IGUI_WIN_MSG_LINK(message_set_schema,pinterface,this,&interaction::_001OnSetSchema);
-      IGUI_WIN_MSG_LINK(WM_SHOWWINDOW,pinterface,this,&interaction::_001OnShowWindow);
-      IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN,pinterface,this,&interaction::_001OnLButtonDown);
 
 
    }
@@ -1006,6 +1011,22 @@ namespace user
 
    }
 
+   void interaction::_001OnMove(signal_details * pobj)
+   {
+
+      pobj->previous();
+
+      layout_tooltip();
+
+      for(auto pui : m_uiptraChild)
+      {
+
+         pui->send_message(WM_MOVE);
+
+      }
+
+   }
+
 
    void interaction::set_viewport_org(::draw2d::graphics * pgraphics)
    {
@@ -1280,6 +1301,9 @@ namespace user
 
    void interaction::_000OnDraw(::draw2d::graphics *pdc)
    {
+
+      if(!m_bVisible)
+         return;
 
       _001DrawThis(pdc);
 
@@ -4572,40 +4596,41 @@ namespace user
       }
    }
 
-   void interaction::on_keyboard_focus(::user::elemental * pfocus)
+   bool interaction::on_keyboard_focus(::user::elemental * pfocus)
    {
 
       if(m_pimpl == NULL)
-         return;
+         return true;
 
 
-      m_pimpl->on_keyboard_focus(pfocus);
-
+      return m_pimpl->on_keyboard_focus(pfocus);
 
    }
 
 
-   void interaction::keyboard_focus_OnKillFocus()
+   bool interaction::keyboard_focus_OnKillFocus()
    {
 
       if(m_pimpl == NULL)
-         return;
+         return true;
 
 
-      m_pimpl->keyboard_focus_OnKillFocus();
+      return m_pimpl->keyboard_focus_OnKillFocus();
 
    }
 
-   void interaction::keyboard_focus_OnChildKillFocus()
+
+   bool interaction::keyboard_focus_OnChildKillFocus()
    {
 
       if(m_pimpl == NULL)
-         return;
+         return true;
 
 
-      m_pimpl->keyboard_focus_OnChildKillFocus();
+      return m_pimpl->keyboard_focus_OnChildKillFocus();
 
    }
+
 
    ::user::interaction * interaction::get_os_focus_uie()
    {
@@ -6125,24 +6150,32 @@ namespace user
 
                if(sl.lock(millis(84)))
                {
-                  index iFind = GetParent()->m_uiptraChild.find_first(this);
-                  if(iFind >= 0)
+                  
+                  if(GetParent()->m_uiptraChild.last_ptr() != this)
                   {
-                     try
+
+                     index iFind = GetParent()->m_uiptraChild.find_first(this);
+
+                     if(iFind >= 0)
                      {
-                        GetParent()->m_uiptraChild.remove(this);
+                        try
+                        {
+                           GetParent()->m_uiptraChild.remove(this);
+                        }
+                        catch(...)
+                        {
+                        }
+                        try
+                        {
+                           GetParent()->m_uiptraChild.add_unique(this);
+                        }
+                        catch(...)
+                        {
+                        }
                      }
-                     catch(...)
-                     {
-                     }
-                     try
-                     {
-                        GetParent()->m_uiptraChild.add_unique(this);
-                     }
-                     catch(...)
-                     {
-                     }
+
                   }
+
                }
             }
          }
@@ -6150,7 +6183,7 @@ namespace user
 
       sl.unlock();
 
-      if(m_pimpl != NULL)
+      if(m_pimpl != NULL && (!(nFlags & SWP_NOSIZE) || !(nFlags & SWP_NOMOVE)))
       {
 
          bOk = m_pimpl->SetWindowPos(z,x,y,cx,cy,nFlags);
@@ -7051,6 +7084,118 @@ namespace user
    {
 
       return 0;
+
+   }
+
+
+   bool interaction::show_tooltip(const string & str,bool bError)
+   {
+
+      if(m_ptooltip.is_null())
+      {
+
+         m_ptooltip = canew(tooltip(get_app()));
+
+         m_ptooltip->create_window_ex(WS_EX_LAYERED | WS_EX_TOOLWINDOW,NULL,"tooltip",0,::null_rect(),NULL);
+
+      }
+
+      m_ptooltip->m_str = str;
+
+      m_ptooltip->m_bError = bError;
+
+      m_ptooltip->CalcSize();
+
+      if(!layout_tooltip(true))
+      {
+
+         return false;
+
+      }
+
+      return true;
+
+   }
+
+
+   bool interaction::layout_tooltip(bool bForceShow)
+   {
+
+      if(m_ptooltip.is_null())
+      {
+
+         return true;
+
+      }
+
+      if(m_ptooltip->IsWindowVisible() && get_wnd() != GetActiveWindow())
+      {
+
+         hide_tooltip();
+
+         return false;
+
+      }
+      
+      if(!bForceShow && !m_ptooltip->IsWindowVisible())
+      {
+
+         return true;
+
+      }
+
+      ::size sizeTooltip = m_ptooltip->m_size;
+
+      ::rect rectThisWindow;
+
+      GetWindowRect(rectThisWindow);
+
+      ::rect rectWindow;
+
+      ::rect rectMonitor;
+
+      Session.get_best_monitor(rectMonitor,rectThisWindow);
+
+      rectWindow = rectThisWindow;
+
+      rectWindow.SetBottomRightSize(sizeTooltip);
+
+      rectWindow.offset(0,- sizeTooltip.cy);
+
+      if(rectWindow.top < rectMonitor.top)
+      {
+
+         rectWindow.move_to_y(rectThisWindow.bottom);
+
+      }
+
+      if(rectWindow.right > rectMonitor.right)
+      {
+
+         rectWindow.move_to_x(rectMonitor.right - sizeTooltip.cx - rectThisWindow.height());
+
+      }
+
+      m_ptooltip->SetWindowPos(ZORDER_TOPMOST,rectWindow,SWP_FRAMECHANGED | SWP_SHOWWINDOW | SWP_NOACTIVATE);
+
+      return true;
+
+   }
+
+
+   bool interaction::hide_tooltip()
+   {
+      
+      if(m_ptooltip.is_null())
+      {
+
+         return true;
+
+      }
+
+      m_ptooltip->ShowWindow(SW_HIDE);
+
+      return true;
 
    }
 

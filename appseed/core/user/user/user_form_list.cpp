@@ -104,17 +104,32 @@ namespace user
       }
    }
 
+
    sp(control) form_list::_001GetControl(index iItem, index iSubItem)
    {
+      
       ::user::list_column * pcolumn = m_columna._001GetBySubItem(iSubItem);
-      if(pcolumn != NULL && pcolumn->m_iControl >= 0)
-         if(m_controldescriptorset[pcolumn->m_iControl] != NULL)
-            return m_controldescriptorset[pcolumn->m_iControl]->m_pcontrol;
-         else
-            return NULL;
-      else
+   
+      if(pcolumn == NULL || pcolumn->m_iControl < 0)
+      {
+
          return NULL;
+
+      }
+
+      sp(class ::user::control::descriptor) pdescriptor = m_controldescriptorset[pcolumn->m_iControl];
+
+      if(pdescriptor.is_null())
+      {
+
+         return NULL;
+
+      }
+      
+      return pdescriptor->get_control(this, iItem);
+
    }
+
 
    void form_list::_001PlaceControl(sp(control) pcontrol)
    {
@@ -126,19 +141,19 @@ namespace user
       item.m_iOrder = _001MapSubItemToOrder(item.m_iSubItem);
       item.m_iListItem = -1;
       _001GetElementRect(&item,::user::mesh::element_text);
-      if(item.m_bOk)
-      {
-         _001Update(pcontrol);
-         pcontrol->SetWindowPos(
-            ZORDER_TOP,
-            rect.left,
-            rect.top,
-            rect.width(),
-            rect.height(),
-            SWP_SHOWWINDOW);
-         _001SetEditControl(pcontrol);
-         pcontrol->SetFocus();
-      }
+      //if(item.m_bOk)
+      //{
+      //   _001Update(pcontrol);
+      //   pcontrol->SetWindowPos(
+      //      ZORDER_TOP,
+      //      rect.left,
+      //      rect.top,
+      //      rect.width(),
+      //      rect.height(),
+      //      SWP_SHOWWINDOW);
+      //   _001SetEditControl(pcontrol);
+      //   pcontrol->SetFocus();
+      //}
    }
 
    void form_list::_001SetEditControl(sp(control) pcontrol)
@@ -283,26 +298,32 @@ namespace user
    void form_list::_001DrawChildren(::draw2d::graphics *pdc)
    {
 
+      form_mesh::_001DrawChildren(pdc);
+
    }
 
+   
    void form_list::_001HideEditingControls()
    {
-      if(_001GetEditControl() != NULL)
-      {
-         _001SetEditControl(NULL);
-      }
-      for(int32_t i = 0; i < m_controldescriptorset.get_count(); i++)
-      {
-         class ::user::control::descriptor & control = m_controldescriptorset(i);
-         if(control.m_etype == control_type_edit
-            || control.m_etype == control_type_edit_plain_text)
-         {
-            if(control.m_pcontrol != NULL)
-            {
-               control.m_pcontrol->ShowWindow(SW_HIDE);
-            }
-         }
-      }
+
+      form_mesh::_001HideEditingControls();
+
+      //if(_001GetEditControl() != NULL)
+      //{
+      //   _001SetEditControl(NULL);
+      //}
+      //for(int32_t i = 0; i < m_controldescriptorset.get_count(); i++)
+      //{
+      //   class ::user::control::descriptor & descriptor = m_controldescriptorset(i);
+      //   if(control.m_etype == control_type_edit
+      //      || control.m_etype == control_type_edit_plain_text)
+      //   {
+      //      if(control.m_pcontrol != NULL)
+      //      {
+      //         control.m_pcontrol->ShowWindow(SW_HIDE);
+      //      }
+      //   }
+      //}
    }
 
 
@@ -328,33 +349,71 @@ namespace user
 
    void form_list::_001DrawSubItem(draw_list_item * pdrawitem)
    {
+
       ::user::list::_001DrawSubItem(pdrawitem);
+
       if(pdrawitem->m_pcolumn->m_bCustomDraw)
       {
-         sp(control) pcontrol = _001GetControl(pdrawitem->m_iSubItem);
+
+         sp(control) pcontrol = _001GetControl(pdrawitem->m_iItem, pdrawitem->m_iSubItem);
+
          if(pcontrol != NULL)
          {
+
             pdrawitem->m_rectClient = pdrawitem->m_rectSubItem;
+
             pdrawitem->m_rectWindow = pdrawitem->m_rectClient;
+
             ClientToScreen(pdrawitem->m_rectWindow);
-            control_keep controlkeep(this,pdrawitem->m_iItem,pdrawitem->m_iSubItem);
 
-            sp(::user::plain_edit) pedit = pcontrol;
+            ::rect rectWindow;
 
-            if(pedit.is_set())
+            pcontrol->GetWindowRect(rectWindow);
+
+            ScreenToClient(rectWindow);
+
+            if(rectWindow != pdrawitem->m_rectClient)
             {
-               pdrawitem->m_bOk = false;
-               _001GetItemText(pdrawitem);
-               if(pdrawitem->m_bOk)
+
+               pcontrol->SetWindowPos(ZORDER_TOP,pdrawitem->m_rectClient,SWP_SHOWWINDOW);
+
+            }
+
+            //control_keep controlkeep(this,pdrawitem->m_iItem,pdrawitem->m_iSubItem);
+
+            if(pcontrol != Session.get_keyboard_focus())
+            {
+
+               sp(::user::plain_edit) pedit = pcontrol;
+
+               if(pedit.is_set())
                {
-                  pedit->_001SetText(pdrawitem->m_strText,::action::source_sync);
+                  pdrawitem->m_bOk = false;
+                  _001GetItemText(pdrawitem);
+                  if(pdrawitem->m_bOk)
+                  {
+
+                     string strText;
+
+                     pedit->_001GetText(strText);
+
+
+                     if(strText != pdrawitem->m_strText)
+                     {
+
+                        pedit->_001SetText(pdrawitem->m_strText,::action::source_sync);
+
+                     }
+
+                  }
+
                }
 
             }
 
-            pcontrol->_003CallCustomDraw(pdrawitem->m_pgraphics,pdrawitem);
-            pdrawitem->m_pgraphics->SelectClipRgn(NULL);
-            _001OnClip(pdrawitem->m_pgraphics);
+            //pcontrol->_003CallCustomDraw(pdrawitem->m_pgraphics,pdrawitem);
+            //pdrawitem->m_pgraphics->SelectClipRgn(NULL);
+            //_001OnClip(pdrawitem->m_pgraphics);
          }
       }
    }
@@ -442,92 +501,94 @@ namespace user
    void form_list::_000OnMouse(::message::mouse * pmouse)
    {
 
-      point pt = pmouse->m_pt;
-      ScreenToClient(&pt);
-      /*      if(uiMessage == WM_LBUTTONDOWN)
-            {
-            int32_t iItem;
-            int32_t iSubItem;
-            range range;
-            _001GetSelection(range);
-            if(_001DisplayHitTest(pt, iItem, iSubItem))
-            {
-            class ::user::control::descriptor * pcontrol = m_controldescriptorset.get_by_sub_item(iSubItem);
-            if(pcontrol != NULL
-            && pcontrol->m_pcontrol != NULL
-            && (pcontrol->m_etype == type_edit
-            || pcontrol->m_etype == type_edit_plain_text)
-            && !range.has_sub_item(iItem, iSubItem))
-            {
-            _001HideEditingControls();
-            return false;
-            }
-            }
-            }
-            else if(uiMessage == WM_LBUTTONUP)
-            {
-            int32_t iItem;
-            int32_t iSubItem;
-            range range;
-            _001GetSelection(range);
-            if(_001DisplayHitTest(pt, iItem, iSubItem))
-            {
-            class ::user::control::descriptor * pcontrol = m_controldescriptorset.get_by_sub_item(iSubItem);
-            if(pcontrol != NULL
-            && pcontrol->m_pcontrol != NULL
-            && !pcontrol->m_pcontrol->IsWindowVisible()
-            && (pcontrol->m_etype == type_edit
-            || pcontrol->m_etype == type_edit_plain_text))
-            {
-            return false;
-            }
-            }
-            }*/
-      control_keep controlkeep(this,pt);
-      sp(::user::interaction) pui = top_child();
-      sp(::user::interaction) puiBefore = NULL;
-      bool bError;
-      try
-      {
-         while(pui != NULL)
-         {
-            bError = false;
-            try
-            {
-               if(pui->IsWindowVisible() && pui->_001IsPointInside(pmouse->m_pt))
-               {
-                  pui->_000OnMouse(pmouse);
-                  if(pmouse->m_bRet)
-                     return;
-                  pui->send(pmouse);
-                  if(pmouse->get_lresult() != 0)
-                     return;
-               }
-            }
-            catch(...)
-            {
-               bError = true;
-               puiBefore = pui;
-            }
-            pui = under_sibling(pui);
-            if(bError)
-            {
-               m_uiptraChild.remove(puiBefore);
-            }
-         }
-      }
-      catch(...)
-      {
-      }
-      try
-      {
-         (m_pimpl->*m_pimpl->m_pfnDispatchWindowProc)(dynamic_cast <signal_details *> (pmouse));
-         if(pmouse->get_lresult() != 0)
-            return;
-      }
-      catch(...)
-      {
-      }
+      form_mesh::_000OnMouse(pmouse);
+
+      //point pt = pmouse->m_pt;
+      //ScreenToClient(&pt);
+      ///*      if(uiMessage == WM_LBUTTONDOWN)
+      //      {
+      //      int32_t iItem;
+      //      int32_t iSubItem;
+      //      range range;
+      //      _001GetSelection(range);
+      //      if(_001DisplayHitTest(pt, iItem, iSubItem))
+      //      {
+      //      class ::user::control::descriptor * pcontrol = m_controldescriptorset.get_by_sub_item(iSubItem);
+      //      if(pcontrol != NULL
+      //      && pcontrol->m_pcontrol != NULL
+      //      && (pcontrol->m_etype == type_edit
+      //      || pcontrol->m_etype == type_edit_plain_text)
+      //      && !range.has_sub_item(iItem, iSubItem))
+      //      {
+      //      _001HideEditingControls();
+      //      return false;
+      //      }
+      //      }
+      //      }
+      //      else if(uiMessage == WM_LBUTTONUP)
+      //      {
+      //      int32_t iItem;
+      //      int32_t iSubItem;
+      //      range range;
+      //      _001GetSelection(range);
+      //      if(_001DisplayHitTest(pt, iItem, iSubItem))
+      //      {
+      //      class ::user::control::descriptor * pcontrol = m_controldescriptorset.get_by_sub_item(iSubItem);
+      //      if(pcontrol != NULL
+      //      && pcontrol->m_pcontrol != NULL
+      //      && !pcontrol->m_pcontrol->IsWindowVisible()
+      //      && (pcontrol->m_etype == type_edit
+      //      || pcontrol->m_etype == type_edit_plain_text))
+      //      {
+      //      return false;
+      //      }
+      //      }
+      //      }*/
+      //control_keep controlkeep(this,pt);
+      //sp(::user::interaction) pui = top_child();
+      //sp(::user::interaction) puiBefore = NULL;
+      //bool bError;
+      //try
+      //{
+      //   while(pui != NULL)
+      //   {
+      //      bError = false;
+      //      try
+      //      {
+      //         if(pui->IsWindowVisible() && pui->_001IsPointInside(pmouse->m_pt))
+      //         {
+      //            pui->_000OnMouse(pmouse);
+      //            if(pmouse->m_bRet)
+      //               return;
+      //            pui->send(pmouse);
+      //            if(pmouse->get_lresult() != 0)
+      //               return;
+      //         }
+      //      }
+      //      catch(...)
+      //      {
+      //         bError = true;
+      //         puiBefore = pui;
+      //      }
+      //      pui = under_sibling(pui);
+      //      if(bError)
+      //      {
+      //         m_uiptraChild.remove(puiBefore);
+      //      }
+      //   }
+      //}
+      //catch(...)
+      //{
+      //}
+      //try
+      //{
+      //   (m_pimpl->*m_pimpl->m_pfnDispatchWindowProc)(dynamic_cast <signal_details *> (pmouse));
+      //   if(pmouse->get_lresult() != 0)
+      //      return;
+      //}
+      //catch(...)
+      //{
+      //}
 
    }
 
@@ -579,12 +640,12 @@ namespace user
 
    bool form_list::BaseOnControlEvent(::user::control_event * pevent)
    {
-      class control::descriptor * pdescriptor = m_controldescriptorset.get(pevent->m_puie);
-      if(pdescriptor != NULL)
-      {
-         pdescriptor->m_pcontrol->m_iEditItem = m_iControlItem;
-      }
-      return form::BaseOnControlEvent(pevent);
+      //class control::descriptor * pdescriptor = m_controldescriptorset.get(pevent->m_puie);
+      //if(pdescriptor != NULL)
+      //{
+      //   pdescriptor->m_pcontrol->m_iEditItem = m_iControlItem;
+      //}
+      return form_mesh::BaseOnControlEvent(pevent);
    }
 
 
@@ -594,6 +655,7 @@ namespace user
       return ::user::list::_001HitTest_(point,iItem,iSubItem);
 
    }
+
 
 
 } // namespace user
