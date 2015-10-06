@@ -566,6 +566,48 @@ public:
 
    }
 
+   template < typename PRED >
+   TYPE * get_first(PRED pred)
+   {
+      for(int i = 0; i < get_count(); i++)
+      {
+
+         if(pred(m_pData[i]))
+         {
+
+            return &element_at(i);
+
+         }
+
+      }
+
+      return NULL;
+
+   }
+
+
+   template < typename PRED >
+   ::count get_count(PRED pred)
+   {
+
+      ::count c = 0;
+
+      for(int i = 0; i < get_count(); i++)
+      {
+
+         if(pred(m_pData[i]))
+         {
+
+            c++;
+
+         }
+
+      }
+
+      return c;
+
+   }
+
 
    template < typename PRED >
    void remove_if(PRED pred) { return remove_pred(pred); }

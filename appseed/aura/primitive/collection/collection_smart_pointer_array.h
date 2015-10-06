@@ -630,6 +630,22 @@ public:
    }
 
 
+
+   template < typename PRED >
+   T * ptr_first(PRED pred)
+   {
+
+      sp(T) * p = get_first(pred);
+
+      if(p == NULL)
+         return NULL;
+
+      return p->m_p;
+
+   }
+
+
+
    template < class ARRAY >
    smart_pointer_array & append(const ARRAY * pa)
    {
@@ -828,6 +844,7 @@ namespace xml
       copy(xmla);
 
    }
+
 
 
 
@@ -1663,7 +1680,7 @@ namespace xml
 
    }
 
-
+   
 
 } // namespace xml
 
