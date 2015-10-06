@@ -18,6 +18,7 @@ namespace filemanager
       m_pdoctemplate = NULL;
       m_pdoctemplateChild = NULL;
       m_pdoctemplateChildList = NULL;
+      m_pdoctemplateFolderSelectionList = NULL;
 
    }
 
@@ -185,6 +186,51 @@ namespace filemanager
       return NULL;
    }
 
+
+   sp(manager) manager_template::open_folder_selection_list(bool bMakeVisible,bool bTransparentBackground,sp(::user::interaction) pwndParent,::filemanager::data * pfilemanagerdata,callback * pcallback)
+   {
+
+      UNREFERENCED_PARAMETER(bMakeVisible);
+
+      sp(::create) createcontext(allocer());
+
+      createcontext->m_bMakeVisible = false;
+
+      createcontext->m_puiParent = pwndParent;
+
+      if(pfilemanagerdata == NULL)
+      {
+
+         pfilemanagerdata = new ::filemanager::data(get_app());
+
+      }
+
+      createcontext->oprop("filemanager::data") = pfilemanagerdata;
+
+
+      pfilemanagerdata->m_pmanagertemplate = this;
+      pfilemanagerdata->m_pcallback = pcallback != NULL ? pcallback : &Session.filemanager();
+      pfilemanagerdata->m_pfilemanager = &Session.filemanager();
+      pfilemanagerdata->m_iTemplate = m_iTemplate;
+      pfilemanagerdata->m_iDocument = m_iNextDocument++;
+      pfilemanagerdata->m_bTransparentBackground = bTransparentBackground;
+
+
+      sp(manager) pdoc = (m_pdoctemplateFolderSelectionList->open_document_file(createcontext));
+
+      if(pdoc != NULL)
+      {
+
+         pdoc->get_filemanager_data()->m_pmanager = pdoc;
+         pdoc->get_filemanager_data()->m_pmanagerMain = pdoc;
+
+         //pdoc->CreateViews();
+
+         return pdoc;
+      }
+      return NULL;
+   }
+
    void manager_template::Initialize(int32_t iTemplate, const char * pszMatter)
    {
       m_iTemplate = iTemplate;
@@ -215,6 +261,14 @@ namespace filemanager
          System.type_info < manager >(),
          System.type_info < child_frame >(),
          System.type_info < file_list >());
+
+      m_pdoctemplateFolderSelectionList = new ::user::multiple_document_template(
+         get_app(),
+         pszMatter,
+         System.type_info < manager >(),
+         System.type_info < child_frame >(),
+         System.type_info < folder_selection_list_view >());
+
    }
 
 

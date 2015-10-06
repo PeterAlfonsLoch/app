@@ -31,36 +31,36 @@ namespace filemanager
 
 
 
-   void folder_selection_list_view::Initialize(manager_template * ptemplate,const char * lpcszSection,::database::id datakey,bool bRecursive)
-   {
+   //void folder_selection_list_view::Initialize(manager_template * ptemplate,const char * lpcszSection,::database::id datakey,bool bRecursive)
+   //{
 
-      m_pdata = dynamic_cast <manager *>(get_document())->get_filemanager_data();
-      m_pmanager = m_pdata->m_pmanager;
-      get_filemanager_data()->m_pmanagertemplate = ptemplate;
-      get_filemanager_data()->m_iTemplate = ptemplate->m_iTemplate;
-      get_filemanager_data()->m_iDocument = 0;
+   //   m_pdata = dynamic_cast <manager *>(get_document())->get_filemanager_data();
+   //   m_pmanager = m_pdata->m_pmanager;
+   //   get_filemanager_data()->m_pmanagertemplate = ptemplate;
+   //   get_filemanager_data()->m_iTemplate = ptemplate->m_iTemplate;
+   //   get_filemanager_data()->m_iDocument = 0;
 
-      string str;
-      str.Format("folder_selection_list_view(%s,%s)",get_filemanager_template()->m_strDISection,lpcszSection);
-      m_dataid += str;
+   //   string str;
+   //   str.Format("folder_selection_list_view(%s,%s)",get_filemanager_template()->m_strDISection,lpcszSection);
+   //   m_dataid += str;
 
-      CreateViews();
+   //   CreateViews();
 
-      m_plistview->Initialize(m_dataid + datakey,bRecursive);
+   //   m_plistview->Initialize(m_dataid + datakey,bRecursive);
 
-      if(data_get(".local://InitialBrowsePath",str))
-      {
-         get_filemanager_manager()->FileManagerBrowse(str,::action::source::database_default());
-      }
-      else
-      {
-         get_filemanager_manager()->FileManagerBrowse("",::action::source::system_default());
-      }
+   //   if(data_get(".local://InitialBrowsePath",str))
+   //   {
+   //      get_filemanager_manager()->FileManagerBrowse(str,::action::source::database_default());
+   //   }
+   //   else
+   //   {
+   //      get_filemanager_manager()->FileManagerBrowse("",::action::source::system_default());
+   //   }
 
-      m_plistview->_001OnUpdateItemCount();
-   }
+   //   m_plistview->_001OnUpdateItemCount();
+   //}
 
-   void folder_selection_list_view::CreateViews()
+   void folder_selection_list_view::on_create_views()
    {
 
       SetPaneCount(2);
@@ -71,7 +71,7 @@ namespace filemanager
 
       initialize_split_layout();
 
-      m_pusertree = create_view  < ::user::tree >();
+      m_pusertree = create_view  < ::user::tree_view >(get_document(), ::null_rect(), get_pane_holder(0));
 
       if(m_pusertree == NULL)
       {
@@ -89,9 +89,9 @@ namespace filemanager
 
       m_pusertree->merge(m_ptree, true);
 
-      SetPane(0,m_pusertree,false);
+      //SetPane(0,m_pusertree,false);
 
-      m_plistview = create_view < folder_list_view >();
+      m_plistview = create_view < folder_list_view >(get_document(),::null_rect(),get_pane_holder(1));
 
       if(m_plistview == NULL)
       {
@@ -100,7 +100,7 @@ namespace filemanager
 
       m_plistview->m_pmanager = get_filemanager_manager();
 
-      SetPane(1,m_plistview,false);
+      //SetPane(1,m_plistview,false);
 
    }
 

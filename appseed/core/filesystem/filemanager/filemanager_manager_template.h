@@ -40,6 +40,7 @@ namespace filemanager
       sp(::user::multiple_document_template) m_pdoctemplate;
       sp(::user::multiple_document_template) m_pdoctemplateChild;
       sp(::user::multiple_document_template) m_pdoctemplateChildList;
+      sp(::user::multiple_document_template) m_pdoctemplateFolderSelectionList;
 
 
       manager_template(::aura::application * papp);
@@ -49,6 +50,7 @@ namespace filemanager
       sp(manager) open(sp(::create) pcreatecontext = NULL,::fs::data * pdata = NULL,data * pfilemanagerdata = NULL,callback * pcallback = NULL);
       sp(manager) open_child(bool bMakeVisible = true,bool bTransparentBackground = false,sp(::user::interaction) pwndParent = NULL,data * pfilemanagerdata = NULL, callback * pcallback = NULL);
       sp(manager) open_child_list(bool bMakeVisible = true,bool bTransparentBackground = false,sp(::user::interaction) pwndParent = NULL,data * pfilemanagerdata = NULL,callback * pcallback = NULL);
+      sp(manager) open_folder_selection_list(bool bMakeVisible = true,bool bTransparentBackground = false,sp(::user::interaction) pwndParent = NULL,data * pfilemanagerdata = NULL,callback * pcallback = NULL);
 
       sp(manager) create_new_document(callback * pinterface,sp(::create) pcreatecontext);
 
