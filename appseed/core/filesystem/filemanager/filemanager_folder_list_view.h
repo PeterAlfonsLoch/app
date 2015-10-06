@@ -32,6 +32,8 @@ namespace filemanager
 
       void GetSel(stringa & stra);
 
+      void on_update(::user::impact * pSender,LPARAM lHint,object* phint);
+
 
    };
 

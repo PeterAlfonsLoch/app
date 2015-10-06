@@ -98,7 +98,9 @@ namespace filemanager
          System.simple_message_box(NULL,"Could not create file list ::user::impact");
       }
 
-      m_plistview->m_pmanager = get_filemanager_manager();
+      //m_plistview->m_pmanager = get_filemanager_manager();
+
+      //m_plistview->Initialize(get_filemanager_data()->m_id,true);
 
       //SetPane(1,m_plistview,false);
 

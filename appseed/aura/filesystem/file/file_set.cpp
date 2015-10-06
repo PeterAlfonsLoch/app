@@ -154,7 +154,7 @@ namespace file
       if(iFind < 0)
       {
 
-         return false;
+         iFind = -1;
 
       }
 

@@ -173,17 +173,32 @@ namespace filemanager
 
       sp(manager) pdoc = (m_pdoctemplateChildList->open_document_file(createcontext));
 
-      if (pdoc != NULL)
+      if(pdoc == NULL)
       {
 
-         pdoc->get_filemanager_data()->m_pmanager = pdoc;
-         pdoc->get_filemanager_data()->m_pmanagerMain = pdoc;
+         return NULL;
 
-         //pdoc->CreateViews();
-
-         return pdoc;
       }
-      return NULL;
+
+      if(pdoc == NULL)
+         return NULL;
+
+      pdoc->get_filemanager_data()->m_pmanager = pdoc;
+      pdoc->get_filemanager_data()->m_pmanagerMain = pdoc;
+
+      if(pdoc->get_filemanager_data()->m_strDISection.is_empty())
+      {
+
+         string strId;
+         strId.Format("%s::(%d)",Session.filemanager().m_idFileManager.str(),pdoc->get_filemanager_data()->m_iDocument);
+         pdoc->get_filemanager_data()->m_strDISection = strId;
+
+      }
+
+      pdoc->Initialize(bMakeVisible);
+
+      return pdoc;
+
    }
 
 
@@ -215,21 +230,32 @@ namespace filemanager
       pfilemanagerdata->m_iDocument = m_iNextDocument++;
       pfilemanagerdata->m_bTransparentBackground = bTransparentBackground;
 
-
       sp(manager) pdoc = (m_pdoctemplateFolderSelectionList->open_document_file(createcontext));
 
-      if(pdoc != NULL)
+      if(pdoc == NULL)
+         return NULL;
+
+      pdoc->get_filemanager_data()->m_pmanager = pdoc;
+
+      pdoc->get_filemanager_data()->m_pmanagerMain = pdoc;
+
+      if(pdoc->get_filemanager_data()->m_strDISection.is_empty())
       {
 
-         pdoc->get_filemanager_data()->m_pmanager = pdoc;
-         pdoc->get_filemanager_data()->m_pmanagerMain = pdoc;
+         string strId;
 
-         //pdoc->CreateViews();
+         strId.Format("%s::(%d)",Session.filemanager().m_idFileManager.str(),pdoc->get_filemanager_data()->m_iDocument);
 
-         return pdoc;
+         pdoc->get_filemanager_data()->m_strDISection = strId;
+
       }
-      return NULL;
+
+      pdoc->Initialize(bMakeVisible);
+
+      return pdoc;
+
    }
+
 
    void manager_template::Initialize(int32_t iTemplate, const char * pszMatter)
    {

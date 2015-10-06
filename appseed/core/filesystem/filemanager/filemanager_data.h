@@ -27,6 +27,7 @@ namespace filemanager
 
       string                              m_strToolBar;
       string                              m_strToolBarSave;
+      bool                                m_bEnableRecursiveFolderSelectionList;
 
       id                                  m_id;
 

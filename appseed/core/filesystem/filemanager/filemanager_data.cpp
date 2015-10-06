@@ -28,6 +28,7 @@ namespace filemanager
 
       m_spfont->create_pixel_font("Verdana",14);
 
+      m_bEnableRecursiveFolderSelectionList = true;
 
    }
 

@@ -31,9 +31,9 @@ namespace filemanager
 
       void install_message_handling(::message::dispatch * pinterface);
 
-      void CreateViews();
+      void on_create_views();
 
-      void Initialize(manager_template * ptemplate,const char * lpcszSection,::database::id datakey,bool bRecursive);
+      //void Initialize(manager_template * ptemplate,const char * lpcszSection,::database::id datakey,bool bRecursive);
 
       virtual void OnFileManagerBrowse(::action::context actioncontext);
 
