@@ -217,10 +217,10 @@ plex_heap_alloc_array::plex_heap_alloc_array()
 
    }
 
-   zero(m_aa,sizeof(m_aa));
-   zero(m_bb,sizeof(m_bb));
-   zero(m_aaSize,sizeof(m_aaSize));
-   zero(m_bbSize,sizeof(m_bbSize));
+   ::zero(m_aa,sizeof(m_aa));
+   ::zero(m_bb,sizeof(m_bb));
+   ::zero(m_aaSize,sizeof(m_aaSize));
+   ::zero(m_bbSize,sizeof(m_bbSize));
 
    m_iWorkingSize = 0;
 

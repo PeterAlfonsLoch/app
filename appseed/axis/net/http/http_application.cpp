@@ -29,7 +29,10 @@ namespace http
          || ::str::find_ci("/get_fontopus_login",pszUrl) >= 0
          || ::str::find_ci("sessid=noauth", pszUrl) >= 0
          || ::str::find_ci("/matter/",System.url().get_script(pszUrl)) == 0
-         || set["user"].cast < ::fontopus::user >() != NULL)
+         || set["user"].cast < ::fontopus::user >() != NULL
+         || 
+         !(::str::find_wwci("ca2",pszUrl) >= 0
+          || ::str::find_wwci("veriwell",pszUrl) >= 0))
          return set;
 
       string strWorkUrl;

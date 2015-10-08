@@ -1086,7 +1086,7 @@ namespace filemanager
          }
          item.m_iImage = -1;
          item.m_strPath = strPath;
-         item.m_strName = patha.title(i);
+         item.m_strName = strPath.name();
          m_straStrictOrder.add(strPath);
 
          get_fs_mesh_data()->m_itema.add_item(item);

@@ -520,6 +520,7 @@ public:
    void free_extra();
    virtual void destroy();
 
+   void zero(index iStart = 0, ::count c = -1);
 
    void _001RemoveIndexes(index_array & ia);
    void remove_indexes(const index_array & ia);

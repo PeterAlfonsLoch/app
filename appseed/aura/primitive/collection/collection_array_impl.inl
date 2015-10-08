@@ -106,8 +106,15 @@ inline void array_base < TYPE, ALLOCATOR > ::remove_last()
 }
 
 
-
-
+template < class TYPE,class ALLOCATOR >
+inline void array_base < TYPE,ALLOCATOR > ::zero(index iStart,::count c)
+{
+   if(c < 0)
+   {
+      c = get_size() - iStart;
+   }
+   ::zero(&m_pData[iStart],c * sizeof(TYPE));
+}
 
 
 
