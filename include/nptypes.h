@@ -46,10 +46,10 @@
    * Win32 and OS/2 don't know C99, so define [u]int_16/32 here. The bool
    * is predefined tho, both in C and C++.
    */
-  typedef short int16_t;
-  typedef unsigned short uint16_t;
-  typedef int int32_t;
-  typedef unsigned int uint32_t;
+  //typedef short int16_t;
+  //typedef unsigned short uint16_t;
+  //typedef int int32_t;
+  //typedef unsigned int uint32_t;
 #elif defined(_AIX) || defined(__sun) || defined(__osf__) || defined(IRIX) || defined(HPUX)
   /*
    * AIX and SunOS ship a inttypes.h header that defines [u]int32_t,

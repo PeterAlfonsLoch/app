@@ -22,8 +22,6 @@
     <ClInclude Include="lib\amigaconfig.h" />
     <ClInclude Include="lib\ascii.h" />
     <ClInclude Include="lib\asciitab.h" />
-    <ClInclude Include="lib\expat.h" />
-    <ClInclude Include="lib\expat_external.h" />
     <ClInclude Include="lib\iasciitab.h" />
     <ClInclude Include="lib\internal.h" />
     <ClInclude Include="lib\latin1tab.h" />

@@ -138,6 +138,9 @@
     <Filter Include="Source Files\aura\os\windows">
       <UniqueIdentifier>{88863203-e2ba-4bbe-a04c-fd1001f4711d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\aura\exception">
+      <UniqueIdentifier>{0de7baac-641f-4c37-8a79-0a88ffce5142}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="primitive\primitive_id.h">
@@ -525,9 +528,6 @@
       <Filter>Header Files\primitive\math</Filter>
     </ClInclude>
     <ClInclude Include="primitive\math\math_natural.h">
-      <Filter>Header Files\primitive\math</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\math\math_number.h">
       <Filter>Header Files\primitive\math</Filter>
     </ClInclude>
     <ClInclude Include="primitive\math\math_numeric_info.h">
@@ -1773,6 +1773,9 @@
     </ClCompile>
     <ClCompile Include="aura\os\windows\windows_ipc.cpp">
       <Filter>Source Files\aura\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\exception\exception_engine.cpp">
+      <Filter>Source Files\aura\exception</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

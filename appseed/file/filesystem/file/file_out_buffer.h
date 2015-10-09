@@ -44,7 +44,7 @@ namespace file
 
       using ::object::create;
       bool create(memory_size_t bufferSize);
-      void free();
+      void destroy();
 
       void SetMemStream(byte *buffer);
       void SetStream(writer *stream);

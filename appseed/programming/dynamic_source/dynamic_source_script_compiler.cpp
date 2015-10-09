@@ -201,7 +201,7 @@ namespace dynamic_source
       #endif
 #else
       m_strPlat1     = "32";
-      strPlat2 = " x86";
+      m_strPlat2 = " x86";
       m_strPlatform = "Win32";
       m_strStagePlatform = "x86";
       m_strLibPlatform = "x86/";

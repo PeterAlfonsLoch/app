@@ -1040,7 +1040,7 @@ namespace dynamic_source
 
       // http://www.cplusplus.com/forum/beginner/45217/
 
-      ::file_size_t len = f->seek_to_end();
+      file_size_t len = f->seek_to_end();
 
       if(len < 24)
       {

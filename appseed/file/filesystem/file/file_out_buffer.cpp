@@ -43,7 +43,7 @@ namespace file
 
    out_buffer::~out_buffer()
    {
-      free();
+      destroy();
    }
 
    bool out_buffer::create(memory_size_t bufferSize)
@@ -58,7 +58,7 @@ namespace file
       return m_memory.get_data() != NULL;
    }
 
-   void out_buffer::free()
+   void out_buffer::destroy()
    {
       m_memory.free_data();
    }

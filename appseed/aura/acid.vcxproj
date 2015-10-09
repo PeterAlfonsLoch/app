@@ -814,7 +814,6 @@
     <ClInclude Include="primitive\math\math_math.h" />
     <ClInclude Include="primitive\math\math_math_rng.h" />
     <ClInclude Include="primitive\math\math_natural.h" />
-    <ClInclude Include="primitive\math\math_number.h" />
     <ClInclude Include="primitive\math\math_numeric_info.h" />
     <ClInclude Include="primitive\math\math_scalar.h" />
     <ClInclude Include="primitive\math\math_scalar_enum.h" />
@@ -875,6 +874,7 @@
     <ClInclude Include="primitive\str\x\x_defines.h" />
     <ClInclude Include="primitive\str\x\x_encodings.h" />
     <ClInclude Include="primitive\str\x\x_tables.h" />
+    <ClCompile Include="aura\exception\exception_engine.cpp" />
     <ClCompile Include="aura\os\windows\windows_ipc.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>

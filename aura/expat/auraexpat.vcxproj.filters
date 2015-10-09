@@ -18,12 +18,6 @@
     <ClInclude Include="lib\asciitab.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="lib\expat.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="lib\expat_external.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="lib\iasciitab.h">
       <Filter>Header Files</Filter>
     </ClInclude>
