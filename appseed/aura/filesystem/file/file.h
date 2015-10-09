@@ -7,7 +7,7 @@ CLASS_DECL_AURA string file_extension_dup(const char * path);
 CLASS_DECL_AURA string get_temp_file_name_dup(const char * pszName,const char * pszExtension);
 CLASS_DECL_AURA string file_final_extension_dup(const char * path);
 CLASS_DECL_AURA string url_dir_name_for_relative(const char * pszPath);
-CLASS_DECL_AURA string defer_solve_relative_compresions(const char * pszAbsolute);
+CLASS_DECL_AURA string defer_solve_relative_compresions(const string & str);
 CLASS_DECL_AURA string defer_solve_relative_name(const char * pszRelative,const char * pszAbsolute);
 CLASS_DECL_AURA string ca2_module_dup();
 
