@@ -59,7 +59,8 @@
 /* using Expat from an application */
 
 #ifdef XML_USE_MSC_EXTENSIONS
-#define XMLIMPORT __declspec(dllimport)
+//#define XMLIMPORT __declspec(dllimport)
+#define XMLIMPORT
 #endif
 
 #endif
