@@ -280,7 +280,7 @@ protected:
     friend class tinyjs;
 };
 
-class tinyjs :
+class CLASS_DECL_AXIS tinyjs :
    virtual public ::object{
 public:
     tinyjs(::aura::application * papp);
