@@ -12,6 +12,7 @@ CLASS_DECL_AURA string defer_solve_relative_name(const char * pszRelative,const 
 CLASS_DECL_AURA string ca2_module_dup();
 
 
+
 CLASS_DECL_AURA bool file_copy_dup(const string & strNew,const string & strSrc,bool bOverwrite = true);
 
 
@@ -43,7 +44,7 @@ bool write_memory_to_file(HANDLE hFile,const void * lpBuf,memory_size_t nCount,m
 
 
 
-
+#include "file_md5.h"
 
 
 

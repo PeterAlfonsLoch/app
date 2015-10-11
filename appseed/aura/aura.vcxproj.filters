@@ -2123,6 +2123,12 @@
     <ClInclude Include="geometry_quaternions.h">
       <Filter>Header Files\primitive\geometry</Filter>
     </ClInclude>
+    <ClInclude Include="filesystem\file\file_md5.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\aura\aura_md5.h">
+      <Filter>Header Files\aura\aura</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="multithreading\multithreading_condition.cpp">
@@ -3564,6 +3570,12 @@
     </ClCompile>
     <ClCompile Include="graphics\draw3d\draw3d_ortho.cpp">
       <Filter>Source Files\graphics\draw3d</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\file_md5.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\aura\aura_md5.cpp">
+      <Filter>Source Files\aura\aura</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

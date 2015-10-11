@@ -141,6 +141,9 @@
 #include "aura_speaker.cpp"
 
 
+#include "aura_md5.cpp"
+
+
 
 
 

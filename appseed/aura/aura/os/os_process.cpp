@@ -230,5 +230,11 @@ CLASS_DECL_AURA string process_platform_dir_name()
 
 }
 
+CLASS_DECL_AURA string process_version_dir_name()
+{
+
+   return _ca_is_stage() ? "stage" : "basis";
+
+}
 
 

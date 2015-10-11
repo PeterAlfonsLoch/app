@@ -926,6 +926,7 @@ CLASS_DECL_AURA string get_system_error_message(uint32_t dwError);
 //#include "user/user/user_buffer.h"
 #include "aura/aura/aura/aura_keep.h"
 #include "aura/aura/aura/aura_restore.h"
+#include "aura/aura/aura/aura_md5.h"
 #include "aura/filesystem/file/file_stream2.h"
 //#include "user/user/user_interaction.h"
 //#include "user/user/user_interaction_impl_base.h"

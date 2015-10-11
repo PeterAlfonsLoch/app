@@ -150,3 +150,7 @@ bool __win_file_find_is_dots(WIN32_FIND_DATA & data)
 #include "file_html_buffer.cpp"
 #include "file_edit_buffer.cpp"
 #include "file_path.cpp"
+
+
+
+#include "file_md5.cpp"
