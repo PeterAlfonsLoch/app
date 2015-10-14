@@ -2172,9 +2172,9 @@ install_begin:;
          string strPathParam(buf);
          if(m_strVersion == "stage")
          {
-            strPathParam = ::str::replace_ci("msvcp120d.dll","msvcp120.dll",strPathParam);
-            strPathParam = ::str::replace_ci("msvcr120d.dll","msvcr120.dll",strPathParam);
-            strPathParam = ::str::replace_ci("vcomp120d.dll","vcomp120.dll",strPathParam);
+//            strPathParam = ::str::replace_ci("msvcp120d.dll","msvcp120.dll",strPathParam);
+            strPathParam = ::str::replace_ci("vcruntime140d.dll","vcruntime140.dll",strPathParam);
+            strPathParam = ::str::replace_ci("vcomp140d.dll","vcomp140.dll",strPathParam);
          }
          if(strPathParam.begins_ci("stage\\basis\\"))
          {
