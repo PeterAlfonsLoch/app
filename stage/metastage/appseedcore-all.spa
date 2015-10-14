@@ -17,6 +17,3 @@ stage\basis\axiszlib.dll
 stage\basis\base.dll
 stage\basis\core.dll
 stage\basis\draw2d_gdiplus.dll
-stage\basis\msvcp120d.dll
-stage\basis\msvcr120d.dll
-stage\basis\vcomp120d.dll
