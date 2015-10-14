@@ -632,15 +632,15 @@ public:
 
 
    template < typename PRED >
-   T * ptr_first(PRED pred)
+   T * pred_ptr_first(PRED pred)
    {
 
-      sp(T) * p = get_first(pred);
+      index i = this->pred_find_first(pred);
 
-      if(p == NULL)
+      if(i < 0)
          return NULL;
 
-      return p->m_p;
+      return this->ptr_at(i);
 
    }
 

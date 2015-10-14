@@ -4,10 +4,18 @@
 /////////////////////////////////////////////////////////////////////////////
 // point - A 2-D point, similar to Windows POINT structure.
 
-class CLASS_DECL_AURA point : public tagPOINT
+class CLASS_DECL_AURA point : public POINT
 {
 public:
 // Constructors
+
+   typedef POINT BASE;
+
+   typedef LONG TYPE;
+
+   typedef ::LPRECT LPRECT;
+
+   typedef ::SIZE SIZE;
 
    // create an uninitialized point
    point() throw();
@@ -73,6 +81,10 @@ public:
    inline LONG set_normal_dimension(e_orientation eorientation,LONG l)  throw(){ return set_orthogonal_dimension(eorientation,l); }
    inline LONG set_normal(e_orientation eorientation,LONG l) throw() { return set_orthogonal_dimension(eorientation,l); }
 
+   inline bool operator < (const point & pt) const
+   {
+      return (y < pt.y) || ((y == pt.y) && (x < pt.x));
+   }
 
 };
 
@@ -86,6 +98,13 @@ class CLASS_DECL_AURA point64 : public POINT64
 {
 public:
 // Constructors
+   typedef POINT64 BASE;
+
+   typedef int64_t TYPE;
+
+   typedef ::LPRECT64 LPRECT;
+
+   typedef ::SIZE64 SIZE;
 
    // create an uninitialized point64
    point64() throw();
@@ -163,6 +182,13 @@ class CLASS_DECL_AURA pointd : public POINTD
 {
 public:
 // Constructors
+   typedef POINTD BASE;
+
+   typedef double TYPE;
+
+   typedef ::LPRECTD LPRECT;
+
+   typedef ::SIZED SIZE;
 
    // create an uninitialized pointd
    pointd() throw();

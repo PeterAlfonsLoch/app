@@ -28,17 +28,17 @@ stringa install_get_plugin_base_library_list(const string & strVersion)
    if(strVersion == "stage")
    {
 
-      straFile.add("msvcp120.dll");
-      straFile.add("msvcr120.dll");
-      straFile.add("vcomp120.dll");
+      //straFile.add("ucrtbase.dll");
+      straFile.add("vcruntime140.dll");
+      straFile.add("vcomp140.dll");
 
    }
    else
    {
 
-      straFile.add("msvcp120d.dll");
-      straFile.add("msvcr120d.dll");
-      straFile.add("vcomp120d.dll");
+      //straFile.add("ucrtbased.dll");
+      straFile.add("vcruntime140d.dll");
+      straFile.add("vcomp140d.dll");
 
    }
 

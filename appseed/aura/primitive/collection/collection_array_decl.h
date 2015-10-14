@@ -549,7 +549,7 @@ public:
    virtual void on_after_read();
 
    template < typename PRED >
-   index find_first(PRED pred)
+   index pred_find_first(PRED pred)
    {
       for(int i = 0; i < get_count(); i++)
       {
@@ -568,7 +568,7 @@ public:
    }
 
    template < typename PRED >
-   TYPE * get_first(PRED pred)
+   TYPE * pred_get_first(PRED pred)
    {
       for(int i = 0; i < get_count(); i++)
       {
@@ -588,7 +588,7 @@ public:
 
 
    template < typename PRED >
-   ::count get_count(PRED pred)
+   ::count pred_get_count(PRED pred)
    {
 
       ::count c = 0;
@@ -611,10 +611,7 @@ public:
 
 
    template < typename PRED >
-   void remove_if(PRED pred) { return remove_pred(pred); }
-
-   template < typename PRED >
-   void remove_pred(PRED pred)
+   void pred_remove(PRED pred)
    {
 
       for(int i = 0; i < get_count();)
@@ -659,7 +656,22 @@ public:
 
    }
 
+   template < typename PRED >
+   bool pred_add_unique(PRED pred)
+   {
 
+      if(pta.pred_find_first(pred) >= 0)
+      {
+
+         return false;
+
+      }
+
+      pta.add(pt);
+
+      return true;
+
+   }
    template < typename F >
    void each(F f)
    {
