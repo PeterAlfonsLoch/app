@@ -15,7 +15,9 @@ public:
 
    typedef ::LPRECT LPRECT;
 
-   typedef ::SIZE SIZE;
+   typedef ::rect RECT;
+
+   typedef ::size SIZE;
 
    // create an uninitialized point
    point() throw();
@@ -31,7 +33,7 @@ public:
    // create from a size
    point(SIZE initSize) throw();
    // create from an LPARAM: x = LOWORD(dw) y = HIWORD(dw)
-   point(const lparam & dwPoint) throw();
+   point(const ::lparam & dwPoint) throw();
 
 
    operator POINT *() throw();
@@ -104,7 +106,9 @@ public:
 
    typedef ::LPRECT64 LPRECT;
 
-   typedef ::SIZE64 SIZE;
+   typedef ::rect64 RECT;
+
+   typedef ::size64 SIZE;
 
    // create an uninitialized point64
    point64() throw();
@@ -117,7 +121,7 @@ public:
    // create from a size
    point64(SIZE64 initSize) throw();
    // create from an UINT64: x = LODWORD(dw) y = HIDWORD(dw)
-   point64(uint64_t dwPoint) throw();
+   point64(const ::lparam & dwPoint) throw();
 
    operator POINT64 *() throw();
    operator const POINT64 *() const throw();
@@ -188,7 +192,9 @@ public:
 
    typedef ::LPRECTD LPRECT;
 
-   typedef ::SIZED SIZE;
+   typedef ::rectd RECT;
+
+   typedef ::sized SIZE;
 
    // create an uninitialized pointd
    pointd() throw();
@@ -203,7 +209,7 @@ public:
    // create from a sized
    pointd(SIZED initSize) throw();
    // create from an LPARAM: x = LOWORD(dw) y = HIWORD(dw)
-   pointd(LPARAM dwPoint) throw();
+   pointd(const ::lparam & dwPoint) throw();
 
 
    operator POINTD *() throw();

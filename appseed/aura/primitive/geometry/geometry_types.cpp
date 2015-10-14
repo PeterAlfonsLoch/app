@@ -678,6 +678,27 @@ bool polygon_contains(LPPOINT lppt, LPPOINT lpptPolygon, int iCount)
 }
 
 
+bool polygon_contains(LPPOINT64 lppt,LPPOINT64 lpptPolygon,int iCount)
+{
+
+   int i,j = iCount - 1;
+   int64_t x = lppt->x;
+   int64_t y = lppt->y;
+   bool oddNodes = false;
+
+   for(i = 0; i < iCount; i++)
+   {
+      if(((lpptPolygon[i].y < y && lpptPolygon[j].y >= y) || (lpptPolygon[j].y < y && lpptPolygon[i].y >= y)) && (lpptPolygon[i].x <= x || lpptPolygon[j].x <= x))
+      {
+         oddNodes ^= (lpptPolygon[i].x + (y - lpptPolygon[i].y) / (lpptPolygon[j].y - lpptPolygon[i].y) * (lpptPolygon[j].x - lpptPolygon[i].x) < x);
+      }
+      j = i;
+   }
+
+   return oddNodes;
+
+}
+
 bool polygon_contains(LPPOINTD lppt,LPPOINTD lpptPolygon,int iCount)
 {
 

@@ -76,6 +76,8 @@ public:
 
    inline ::size max(const size & s)const throw();
 
+   inline static size unit_size() { return ::size(1,1);  }
+
 };
 
 
@@ -149,6 +151,8 @@ public:
    inline int64_t set_orthogonal(e_orientation eorientation,int64_t l)  throw(){ return set_orthogonal_dimension(eorientation,l); }
    inline int64_t set_normal_dimension(e_orientation eorientation,int64_t l)  throw(){ return set_orthogonal_dimension(eorientation,l); }
    inline int64_t set_normal(e_orientation eorientation,int64_t l) throw() { return set_orthogonal_dimension(eorientation,l); }
+
+   inline static size64 unit_size() { return ::size64(1ll,1ll); }
 
 };
 
@@ -227,6 +231,8 @@ public:
    inline double set_orthogonal(e_orientation eorientation,double l)  throw(){ return set_orthogonal_dimension(eorientation,l); }
    inline double set_normal_dimension(e_orientation eorientation,double l)  throw(){ return set_orthogonal_dimension(eorientation,l); }
    inline double set_normal(e_orientation eorientation,double l) throw() { return set_orthogonal_dimension(eorientation,l); }
+
+   inline static sized unit_size() { return ::sized(1.0,1.0); }
 
 };
 

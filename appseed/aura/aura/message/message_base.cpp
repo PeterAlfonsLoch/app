@@ -20,7 +20,7 @@ namespace message
    }
 
 
-   base::base(::aura::application * papp,::user::primitive * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult):
+   base::base(::aura::application * papp,::user::primitive * pwnd,UINT uiMessage,WPARAM wparam,::lparam lparam,LRESULT & lresult):
       signal_details(papp)
    {
 
@@ -76,7 +76,7 @@ namespace message
    }
 
 
-   void base::set(::user::primitive * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult)
+   void base::set(::user::primitive * pwnd,UINT uiMessage,WPARAM wparam,::lparam lparam,LRESULT & lresult)
    {
 
       m_pwnd            = pwnd;
@@ -88,7 +88,7 @@ namespace message
    }
 
 
-   void base::set(::user::primitive * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam)
+   void base::set(::user::primitive * pwnd,UINT uiMessage,WPARAM wparam,::lparam lparam)
    {
 
       set(pwnd,uiMessage,wparam,lparam,m_lresult);
@@ -112,7 +112,7 @@ namespace message
    }
 
 
-   void timer::set(::user::primitive * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult)
+   void timer::set(::user::primitive * pwnd,UINT uiMessage,WPARAM wparam,::lparam lparam,LRESULT & lresult)
    {
       base::set(pwnd,uiMessage,wparam,lparam,lresult);
       m_nIDEvent = static_cast<UINT>(wparam);

@@ -7,6 +7,7 @@
 
 
 
+
 class CLASS_DECL_AURA lparam
 {
 public:
@@ -80,6 +81,16 @@ public:
    {
       m_lparam = lparam;
       return *this;
+   }
+
+   inline int x() const
+   {
+      return GET_X_LPARAM(m_lparam);
+   }
+
+   inline int y() const
+   {
+      return GET_Y_LPARAM(m_lparam);
    }
 
 };

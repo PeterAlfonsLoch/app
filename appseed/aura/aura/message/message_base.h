@@ -22,7 +22,7 @@ namespace message
       bool                       m_bDoSystemDefault;
 
       base(::aura::application * papp,class ::signal * psignal = NULL);
-      base(::aura::application * papp,::user::primitive * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult);
+      base(::aura::application * papp,::user::primitive * pwnd,UINT uiMessage,WPARAM wparam,::lparam lparam,LRESULT & lresult);
       base(const base & base);
       virtual ~base();
 
@@ -30,8 +30,8 @@ namespace message
 
       virtual void set_lresult(LRESULT lresult);
       virtual LRESULT & get_lresult();
-      virtual void set(::user::primitive * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult);
-      virtual void set(::user::primitive * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam);
+      virtual void set(::user::primitive * pwnd,UINT uiMessage,WPARAM wparam,::lparam lparam,LRESULT & lresult);
+      virtual void set(::user::primitive * pwnd,UINT uiMessage,WPARAM wparam,::lparam lparam);
    protected:
       LRESULT * m_plresult;
       LRESULT  m_lresult;
@@ -45,7 +45,7 @@ namespace message
 
       timer(::aura::application * papp): ::message::base(papp) {}
       using ::message::base::set;
-      virtual void set(::user::primitive * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult);
+      virtual void set(::user::primitive * pwnd,UINT uiMessage,WPARAM wparam,::lparam lparam,LRESULT & lresult);
       UINT m_nIDEvent;
    };
 

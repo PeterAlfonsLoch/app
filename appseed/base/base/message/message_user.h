@@ -19,7 +19,7 @@ namespace message
 
       virtual void set_lresult(LRESULT lresult);
       using ::message::base::set;
-      virtual void set(::user::primitive * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult);
+      virtual void set(::user::primitive * pwnd,UINT uiMessage,WPARAM wparam,::lparam lparam,LRESULT & lresult);
       virtual void error(const char * lpcszErrorMessage);
       virtual void failed(const char * lpcszErrorMessage);
    };
@@ -38,7 +38,7 @@ namespace message
       activate(::aura::application * papp);
       using ::message::base::set;
 
-      virtual void set(::user::primitive * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult);
+      virtual void set(::user::primitive * pwnd,UINT uiMessage,WPARAM wparam,::lparam lparam,LRESULT & lresult);
    };
 
    class CLASS_DECL_BASE move: public base
@@ -59,7 +59,7 @@ namespace message
       UINT     m_nType;
       ::size   m_size;
       using ::message::base::set;
-      virtual void set(::user::primitive * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult);
+      virtual void set(::user::primitive * pwnd,UINT uiMessage,WPARAM wparam,::lparam lparam,LRESULT & lresult);
    };
 
 
@@ -73,7 +73,7 @@ namespace message
       int32_t           m_nPos;
       ::user::primitive *  m_pScrollBar;
       using ::message::base::set;
-      virtual void set(::user::primitive * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult);
+      virtual void set(::user::primitive * pwnd,UINT uiMessage,WPARAM wparam,::lparam lparam,LRESULT & lresult);
    };
 
 
@@ -88,7 +88,7 @@ namespace message
       virtual ~mouse();
       using ::message::base::set;
 
-      virtual void set(::user::primitive * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult);
+      virtual void set(::user::primitive * pwnd,UINT uiMessage,WPARAM wparam,::lparam lparam,LRESULT & lresult);
       static_function mouse * cast(signal_details * pobj) {
          return (mouse *)pobj;
       }
@@ -111,7 +111,7 @@ namespace message
       point    GetPoint();
       using ::message::base::set;
 
-      virtual void set(::user::primitive * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult);
+      virtual void set(::user::primitive * pwnd,UINT uiMessage,WPARAM wparam,::lparam lparam,LRESULT & lresult);
    };
 
 
@@ -157,7 +157,7 @@ namespace message
       bool m_bShow;
       UINT  m_nStatus;
       using ::message::base::set;
-      virtual void set(::user::primitive * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult);
+      virtual void set(::user::primitive * pwnd,UINT uiMessage,WPARAM wparam,::lparam lparam,LRESULT & lresult);
    };
 
    class CLASS_DECL_BASE on_draw: public base
@@ -213,7 +213,7 @@ namespace message
       key(const key & key);
 
       using ::message::base::set;
-      virtual void set(::user::primitive * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult);
+      virtual void set(::user::primitive * pwnd,UINT uiMessage,WPARAM wparam,::lparam lparam,LRESULT & lresult);
 
       key & operator = (const key & key);
    };
@@ -229,7 +229,7 @@ namespace message
       nc_activate(::aura::application * papp);
 
       using ::message::base::set;
-      virtual void set(::user::primitive * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult);
+      virtual void set(::user::primitive * pwnd,UINT uiMessage,WPARAM wparam,::lparam lparam,LRESULT & lresult);
    };
 
 #ifdef WINDOWSEX
@@ -285,7 +285,7 @@ namespace message
 
       set_focus(::aura::application * papp): ::message::base(papp) {}
       using ::message::base::set;
-      virtual void set(::user::primitive * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult);
+      virtual void set(::user::primitive * pwnd,UINT uiMessage,WPARAM wparam,::lparam lparam,LRESULT & lresult);
    };
 
 
@@ -297,7 +297,7 @@ namespace message
       window_pos(::aura::application * papp): ::message::base(papp) {}
       WINDOWPOS * m_pwindowpos;
       using ::message::base::set;
-      virtual void set(::user::primitive * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult);
+      virtual void set(::user::primitive * pwnd,UINT uiMessage,WPARAM wparam,::lparam lparam,LRESULT & lresult);
    };
 
 
@@ -326,7 +326,7 @@ namespace message
       NCCALCSIZE_PARAMS * m_pparams;
       bool GetCalcValidRects();
       using ::message::base::set;
-      virtual void set(::user::primitive * pwnd,UINT uiMessage,WPARAM wparam,LPARAM lparam,LRESULT & lresult);
+      virtual void set(::user::primitive * pwnd,UINT uiMessage,WPARAM wparam,::lparam lparam,LRESULT & lresult);
 
    };
 

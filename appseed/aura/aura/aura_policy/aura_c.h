@@ -137,6 +137,30 @@ static int void_ptr_is_null(const void * p)
 #define SORT_LIM(x,minmax,maxmin) ((minmax) < (maxmin) ? LIM(x,minmax,maxmin) : LIM(x,maxmin,minmax))
 #define CLIP_USHRT(x) LIM(x,0,USHRT_MAX)
 
+#ifdef WINDOWS
+#include <intsafe.h>
+#else
+#ifndef LODWORD
+#define LODWORD(l)           ((uint32_t)(((uint64_t)(l)) & 0xffffffff))
+#endif
+#ifndef HIDWORD
+#define HIDWORD(l)           ((uint32_t)((((uint64_t)(l)) >> 32) & 0xffffffff))
+#endif
+#endif
+
+#define MAKELONG64(a, b)      (((uint64_t)(((uint32_t)(((uint64_t)(a)) & 0xffffffff)) | ((uint64_t)((uint32_t)(((uint64_t)(b)) & 0xffffffff))) << 32)))
+
+#ifndef GET_X_LPARAM
+#define GET_X_LPARAM(lp)                        ((int32_t)(int16_t)LOWORD(lp))
+#endif
+#ifndef GET_Y_LPARAM
+#define GET_Y_LPARAM(lp)                        ((int32_t)(int16_t)HIWORD(lp))
+#endif
+
+#define GET_X_LPARAM64(lp)                        ((int32_t)(int16_t)LODWORD(lp))
+#define GET_Y_LPARAM64(lp)                        ((int32_t)(int16_t)HIDWORD(lp))
+
+
 CLASS_DECL_AURA int get_aura_init();
 CLASS_DECL_AURA int_bool defer_aura_init();
 CLASS_DECL_AURA int_bool defer_aura_term();

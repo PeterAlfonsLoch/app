@@ -15,11 +15,18 @@ point::point(const POINT64 * ppt) throw()
 {
    x = (int32_t)ppt->x; y = (int32_t)ppt->y;
 }
+
+
 point::point(const ::lparam & dwPoint) throw()
-   {
-      x = (int16_t)GET_X_LPARAM(dwPoint.m_lparam);
-      y = (int16_t)GET_Y_LPARAM(dwPoint.m_lparam);
-   }
+{
+
+   x = dwPoint.x();
+
+   y = dwPoint.y();
+
+}
+
+
 point::point(POINTD pt) throw()
 {
    x = (int32_t)pt.x; y = (int32_t)pt.y;
@@ -103,11 +110,16 @@ point64::point64(const POINT64 * pinitPt) throw()
    { *(POINT64*)this = *pinitPt; }
 point64::point64(SIZE64 initSize) throw()
    { *(SIZE64*)this = initSize; }
-point64::point64(uint64_t dwPoint) throw()
-   {
-      x = (int32_t)GET_X_LPARAM64(dwPoint);
-      y = (int32_t)GET_Y_LPARAM64(dwPoint);
-   }
+
+
+point64::point64(const ::lparam & dwPoint) throw()
+{
+   
+   x = dwPoint.x();
+   
+   y = dwPoint.y();
+
+}
 
 
 point64::operator POINT64 *() throw()
@@ -209,13 +221,26 @@ pointd::pointd(POINT initPt) throw()
 }
 pointd::pointd(SIZED initSize) throw()
    { *(SIZED*)this = initSize; }
+
 pointd::pointd(POINT64 pt) throw()
-   { x = (int32_t) pt.x; y = (int32_t) pt.y; }
-pointd::pointd(LPARAM dwPoint) throw()
-   {
-      x = (int16_t)GET_X_LPARAM(dwPoint);
-      y = (int16_t)GET_Y_LPARAM(dwPoint);
-   }
+{
+
+   x = (int32_t) pt.x;
+   
+   y = (int32_t) pt.y;
+
+}
+
+
+pointd::pointd(const ::lparam & dwPoint) throw()
+{
+   
+   x = dwPoint.x();
+   
+   y = dwPoint.y();
+
+}
+
 
 pointd::operator POINTD *() throw()
    { return this; }

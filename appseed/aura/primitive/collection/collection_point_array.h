@@ -8,7 +8,7 @@ SIZE typed_unit_size()
 }
 
 template < >
-::SIZE typed_unit_size < ::SIZE >()
+inline ::SIZE typed_unit_size < ::SIZE >()
 {
    ::SIZE s ={1, 1};
    return s;
@@ -16,15 +16,14 @@ template < >
 
 
 template < typename POINT2D >
-class CLASS_DECL_AURA point2d_array_base:
+class point2d_array_base:
    public comparable_array < POINT2D >,
    virtual public ::xml::exportable,
    virtual public ::xml::importable
 {
 public:
    inline point2d_array_base(): comparable_array < POINT2D >() {}
-   inline point2d_array_base(const point_array & pointset) { operator=(pointset); }
-   point2d_array_base(const POINTD * lppt,::count c);
+   inline point2d_array_base(const point2d_array_base & pointset) { operator=(pointset); }
    virtual ~point2d_array_base() { }
 
 
@@ -51,34 +50,7 @@ public:
    virtual void xml_export(::xml::output_tree & xmlof);
 
 
-   bool add_unique_range(typename POINT2D::BASE ptBeg,typename POINT2D::BASE ptEnd,typename POINT2D::SIZE s = typed_unit_size < typename POINT2D::SIZE > ())
-   {
-
-      POINT2D::TYPE x1 = m_ptileset->m_ptBeg.x;
-
-      POINT2D::TYPE x2 = m_ptileset->m_ptEnd.x;
-
-      POINT2D::TYPE y1 = m_ptileset->m_ptBeg.y;
-
-      POINT2D::TYPE y2 = m_ptileset->m_ptEnd.y;
-
-      ::sort::sort(x1,x2);
-
-      ::sort::sort(y1,y2);
-
-      for(index x = x1; x <= MIN(x2,m_ptileset->xcount() - 1); x+= s.cx)
-      {
-         
-         for(index y = y1; y <= MIN(y2,m_ptileset->ycount() - 1); y+= s.cy)
-         {
-
-            add_unique(POINT2D(x,y));
-
-         }
-
-      }
-
-   }
+   ::count add_unique_range(typename POINT2D::BASE ptBeg,typename POINT2D::BASE ptEnd,typename POINT2D::SIZE s = POINT2D::SIZE::unit_size());
 
 
 };

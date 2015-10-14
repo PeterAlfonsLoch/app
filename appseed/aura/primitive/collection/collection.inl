@@ -179,8 +179,8 @@ template < typename POINT2D >
 void point2d_array_base < POINT2D >::rotate(double dAngle)
 {
 
-   int32_t x;
-   int32_t y;
+   typename POINT2D::TYPE x;
+   typename POINT2D::TYPE y;
    double dCos = cos(dAngle);
    double dSin = sin(dAngle);
 
@@ -294,8 +294,8 @@ void point2d_array_base < POINT2D >::get_bounding_rect(typename POINT2D::LPRECT 
 template < typename POINT2D >
 bool point2d_array_base < POINT2D >::bounding_rect_contains_pt(typename POINT2D::BASE pt)
 {
-   rect rect;
-   get_bounding_rect(rect);
+   typename POINT2D::RECT rect;
+   get_bounding_rect(&rect);
    return rect.contains(pt);
 }
 
@@ -305,5 +305,45 @@ bool point2d_array_base < POINT2D >::polygon_contains(typename POINT2D::BASE pt)
 {
 
    return ::polygon_contains(&pt,get_data(),(int)get_size());
+
+}
+
+
+template < typename POINT2D >
+::count point2d_array_base < POINT2D >::add_unique_range(typename POINT2D::BASE ptBeg,typename POINT2D::BASE ptEnd,typename POINT2D::SIZE s)
+{
+
+   typename POINT2D::TYPE x1 = ptBeg.x;
+
+   typename POINT2D::TYPE x2 = ptEnd.x;
+
+   typename POINT2D::TYPE y1 = ptBeg.y;
+
+   typename POINT2D::TYPE y2 = ptEnd.y;
+
+   ::sort::sort(x1,x2);
+
+   ::sort::sort(y1,y2);
+
+   ::count c = 0;
+
+   for(typename POINT2D::TYPE x = x1; x <= x2; x+= s.cx)
+   {
+
+      for(typename POINT2D::TYPE y = y1; y <= y2; y+= s.cy)
+      {
+
+         if(this->add_unique(POINT2D(x,y)))
+         {
+
+            c++;
+
+         }
+
+      }
+
+   }
+
+   return c;
 
 }
