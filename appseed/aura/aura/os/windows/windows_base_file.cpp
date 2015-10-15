@@ -239,7 +239,8 @@ bool file_copy_dup(const string & strNewParam, const string & strSrcParam, bool 
 
    wstring wstrSrc(strSrc);
 
-   return ::CopyFileExW(wstrSrc,wstrNew, NULL, NULL, NULL, COPY_FILE_NO_BUFFERING | (bOverwrite ? 0 : COPY_FILE_FAIL_IF_EXISTS)) ? true : false;
+   //return ::CopyFileExW(wstrSrc,wstrNew, NULL, NULL, NULL, COPY_FILE_NO_BUFFERING | (bOverwrite ? 0 : COPY_FILE_FAIL_IF_EXISTS)) ? true : false;
+   return ::CopyFileExW(wstrSrc,wstrNew,NULL,NULL,NULL,(bOverwrite ? 0 : COPY_FILE_FAIL_IF_EXISTS)) ? true : false;
 
 }
 
