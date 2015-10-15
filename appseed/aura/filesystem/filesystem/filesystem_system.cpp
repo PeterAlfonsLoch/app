@@ -791,6 +791,13 @@ restart:
    ::cres system::copy(const ::file::path & pszNew,const ::file::path & psz,bool bFailIfExists,e_extract eextract,::aura::application * papp)
    {
 
+      if(!papp->m_spdir->is(pszNew.folder()))
+      {
+
+         papp->m_spdir->mk(pszNew.folder());
+
+      }
+
       if(!::file_copy_dup(pszNew,psz,!bFailIfExists))
       {
 
