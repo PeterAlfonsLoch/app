@@ -42,8 +42,8 @@ public:
 
    bool polygon_contains(typename POINT2D::BASE pt);
 
-   inline index add(typename POINT2D::TYPE x,typename POINT2D::TYPE y) { return point2d_array_base < POINT2D >::add(POINT2D(x,y)); }
-   inline index add(typename POINT2D::BASE point) { return add(point.x,point.y); }
+   inline index add(typename POINT2D::TYPE x,typename POINT2D::TYPE y) { return comparable_array < POINT2D >::add(POINT2D(x,y)); }
+   inline index add(typename POINT2D::BASE point) { return comparable_array < POINT2D >::add(POINT2D(point)); }
    inline point2d_array_base & operator =(const point2d_array_base & pointset) { copy(pointset); return *this; }
 
    virtual void xml_import(::xml::input_tree & xmlif);
