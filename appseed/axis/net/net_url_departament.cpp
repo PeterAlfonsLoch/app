@@ -945,7 +945,7 @@ namespace url
 
       }
 
-      strsize iStart = strKey.length();
+      strsize iStart = 1;
 
       strsize iFind;
 
