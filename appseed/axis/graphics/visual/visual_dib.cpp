@@ -623,7 +623,7 @@ bool windows_write_dib_to_file(::file::buffer_sp pfile,::draw2d::dib * pdib,::vi
       {
          if(SUCCEEDED(hr))
          {
-            hr = piBitmapFrame->WritePixels(uiHeight,uiWidth * sizeof(COLORREF),uiHeight*uiWidth * sizeof(COLORREF),(BYTE *)pdib->m_pcolorref);
+            hr = piBitmapFrame->WritePixels(uiHeight,pdib->m_iScan,uiHeight*pdib->m_iScan,(BYTE *)pdib->m_pcolorref);
          }
       }
       else
