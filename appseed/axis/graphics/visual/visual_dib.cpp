@@ -483,8 +483,8 @@ bool windows_write_dib_to_file(::file::buffer_sp pfile,::draw2d::dib * pdib,::vi
    comptr < IPropertyBag2 > pPropertybag = NULL;
 
    comptr < IWICStream > piStream = NULL;
-   UINT uiWidth = pdib->m_size.cx;
-   UINT uiHeight = pdib->m_size.cy;
+   UINT uiWidth = pdib->size().cx;
+   UINT uiHeight = pdib->size().cy;
 
    HRESULT hr = CoCreateInstance(
       CLSID_WICImagingFactory,
@@ -634,11 +634,11 @@ bool windows_write_dib_to_file(::file::buffer_sp pfile,::draw2d::dib * pdib,::vi
          if(SUCCEEDED(hr))
          {
             hr=piFactory->CreateBitmapFromMemory(
-               pdib->m_size.cx,
-               pdib->m_size.cy,
+               pdib->size().cx,
+               pdib->size().cy,
                GUID_WICPixelFormat32bppBGRA,
                pdib->m_iScan,
-               pdib->m_iScan * pdib->m_size.cy,
+               pdib->m_iScan * pdib->size().cy,
                (BYTE *)pdib->m_pcolorref,
                &pbitmap.get()
                );
