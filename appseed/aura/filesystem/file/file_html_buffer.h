@@ -31,9 +31,9 @@ namespace html
 
 #ifdef WINDOWS
 
-      virtual void printf(const string & str,...);
+      virtual void printf(string str,...);
 
-      virtual void printstr(const string & str,...);
+      virtual void printstr(string str,...);
 
 #else
 

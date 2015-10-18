@@ -29,13 +29,13 @@ namespace html
 
 #ifdef WINDOWS
 
-   void file::printf(const string & str,...)
+   void file::printf(string str,...)
    {
       UNREFERENCED_PARAMETER(str);
       ::exception::throw_interface_only(get_app());
    }
 
-   void file::printstr(const string & str,...)
+   void file::printstr(string str,...)
    {
       UNREFERENCED_PARAMETER(str);
       ::exception::throw_interface_only(get_app());
