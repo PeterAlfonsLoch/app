@@ -345,6 +345,9 @@ namespace sockets
 
    void http_socket::SendResponse()
    {
+
+
+
       //TRACE("\n");
       //TRACE("SendResponse\n");
       string msg;
@@ -357,12 +360,30 @@ namespace sockets
          msg += "Host: " + strHost + "\r\n";
          TRACE0("Host: " + strHost  + "\n");
       }
-
-
+      
+      
       bool bContentLength = m_response.attr(__id(http_status_code)) != 304;
 
-      if(!bContentLength)
-         m_response.m_propertysetHeader.remove_by_name("Content-Length");
+      if(bContentLength)
+      {
+
+         if(!m_response.m_propertysetHeader.has_property(__id(content_length)))
+         {
+
+            m_response.m_propertysetHeader[__id(content_length)] = response().file().get_length();
+
+         }
+
+      }
+      else
+      {
+
+         m_response.m_propertysetHeader.remove_by_name(__id(content_length));
+
+
+      }
+
+
 
       for(auto property : m_response.m_propertysetHeader)
       {
@@ -397,10 +418,14 @@ namespace sockets
 
    void http_socket::SendResponseBody()
    {
+
       if(response().file().get_length() > 0)
       {
+
          transfer_from_begin(response().file());
+
       }
+
    }
 
 

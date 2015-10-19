@@ -785,15 +785,15 @@ bool var::is_empty() const
    case type_string:
       return m_str.is_empty();
    case type_int32:
-      return m_i32 == 0;
+      return false;
    case type_uint32:
-      return m_ui32 == 0;
+      return false;
    case type_int64:
-      return m_i64 == 0;
+      return false;
    case type_uint64:
-      return m_ui64 == 0;
+      return false;
    case type_double:
-      return m_d == 0.0;
+      return false;
    case type_element:
       return m_sp.is_null();
    case type_pvar:
@@ -1268,6 +1268,69 @@ bool var::operator > (int32_t i) const
 
 
 
+
+
+
+
+
+
+
+
+bool var::operator == (int64_t i) const
+{
+   return int32() == i;
+}
+
+bool var::operator != (int64_t i) const
+{
+   return int32() != i;
+}
+
+bool var::operator < (int64_t i) const
+{
+   return int32() < i;
+}
+
+bool var::operator <= (int64_t i) const
+{
+   return int32() <= i;
+}
+
+bool var::operator >= (int64_t i) const
+{
+   return int32() >= i;
+}
+
+bool var::operator > (int64_t i) const
+{
+   return int32() > i;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 bool var::operator == (bool b) const
 {
    return is_equivalent(get_bool(), b);
@@ -1678,7 +1741,7 @@ int64_t var::int64(int64_t iDefault) const
    case type_empty:
       return iDefault;
    case type_string:
-      return atol(m_str);
+      return atoi64_dup(m_str);
    case type_int32:
       return m_i32;
    case type_uint32:

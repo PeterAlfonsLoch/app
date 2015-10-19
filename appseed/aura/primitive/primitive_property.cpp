@@ -1762,3 +1762,38 @@ var  operator * (const property & prop1, const property & prop2)
 
 
 
+
+
+
+bool property::operator == (int64_t i) const
+{
+   return get_value() == i;
+}
+bool property::operator != (int64_t i) const
+{
+   return get_value() == i;
+}
+bool property::operator < (int64_t i) const
+{
+   return get_value() == i;
+}
+bool property::operator <= (int64_t i) const
+{
+   return get_value() == i;
+}
+bool property::operator >= (int64_t i) const
+{
+   return get_value() >= i;
+}
+bool property::operator > (int64_t i) const
+{
+   return get_value() > i;
+}
+
+
+
+
+
+
+
+

@@ -459,36 +459,42 @@ public:
    bool operator == (const var & var) const;
    bool operator == (const char * psz) const;
    bool operator == (const string & str) const;
+   bool operator == (int64_t i) const;
    bool operator == (int32_t i) const;
    bool operator == (bool b) const;
 
    bool operator != (const var & var) const;
    bool operator != (const char * psz) const;
    bool operator != (const string & str) const;
+   bool operator != (int64_t i) const;
    bool operator != (int32_t i) const;
    bool operator != (bool b) const;
 
    bool operator < (const var & var) const;
    bool operator < (const char * psz) const;
    bool operator < (const string & str) const;
+   bool operator < (int64_t i) const;
    bool operator < (int32_t i) const;
    bool operator < (bool b) const;
 
    bool operator <= (const var & var) const;
    bool operator <= (const char * psz) const;
    bool operator <= (const string & str) const;
+   bool operator <= (int64_t i) const;
    bool operator <= (int32_t i) const;
    bool operator <= (bool b) const;
 
    bool operator >= (const var & var) const;
    bool operator >= (const char * psz) const;
    bool operator >= (const string & str) const;
+   bool operator >= (int64_t i) const;
    bool operator >= (int32_t i) const;
    bool operator >= (bool b) const;
 
    bool operator > (const var & var) const;
    bool operator > (const char * psz) const;
    bool operator > (const string & str) const;
+   bool operator > (int64_t i) const;
    bool operator > (int32_t i) const;
    bool operator > (bool b) const;
 

@@ -578,6 +578,14 @@ public:
    bool operator > (int32_t i) const;
    bool operator > (bool b) const;
 
+   bool operator == (int64_t i) const;
+   bool operator != (int64_t i) const;
+   bool operator < (int64_t i) const;
+   bool operator <= (int64_t i) const;
+   bool operator >= (int64_t i) const;
+   bool operator > (int64_t i) const;
+
+
    void write(::file::ostream & ostream) const;
    void read(::file::istream & ostream);
 
