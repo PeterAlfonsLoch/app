@@ -189,7 +189,18 @@ namespace user
 #endif
 
       if(!Application.file().exists(strPath))
+      {
+
+         if(is_debugger_attached())
+         {
+
+            Application.simple_message_box(NULL,"keyboard default.xml doesn't exist?!?!?!?!");
+
+         }
+       
          return false;
+
+      }
 
       if(!load_os_layout(strPath))
          return false;
@@ -213,6 +224,7 @@ namespace user
 
       string str = Application.file().as_string(pszPath);
 
+
       output_debug_string(pszPath);
 
       output_debug_string(str);
@@ -220,6 +232,12 @@ namespace user
       if(str.is_empty())
       {
          TRACE0("unable to load os keyboard layout");
+         if(is_debugger_attached())
+         {
+
+            Application.simple_message_box(NULL,"keyboard default.xml is empty?!?!?!?!");
+
+         }
          return false;
       }
 
@@ -228,6 +246,12 @@ namespace user
       if(!doc.load(str))
       {
          TRACE0("unable to load os keyboard layout");
+         if(is_debugger_attached())
+         {
+
+            Application.simple_message_box(NULL,"keyboard default.xml syntax is incorrect?!?!?!?!");
+
+         }
          return false;
       }
 
@@ -279,6 +303,18 @@ namespace user
             }
 
 
+
+         }
+
+      }
+
+      if((m_mapKey.get_count() + m_mapExt.get_count() + m_mapScan.get_count()) <= 0)
+      {
+
+         if(is_debugger_attached())
+         {
+
+            Application.simple_message_box(NULL,"keyboard default.xml has no keyboard entries?!?!?!?!");
 
          }
 
