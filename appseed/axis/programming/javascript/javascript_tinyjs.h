@@ -323,6 +323,7 @@ public:
     /// Send all variables to stdout
     void trace();
 
+    object *   m_p;
     CScriptVar *root;   /// root of symbol table
 private:
     CScriptLex *l;             /// current lexer
