@@ -46,6 +46,8 @@ void scStringCharAt(CScriptVar *ca, void *);
 void scStringCharCodeAt(CScriptVar *ca, void *);
 void scStringSplit(CScriptVar *ca, void *);
 void scStringFromCharCode(CScriptVar *ca, void *);
+void scStringToLowerCase(CScriptVar *ca,void *);
+void scStringToUpperCase(CScriptVar *ca,void *);
 void scIntegerParseInt(CScriptVar *ca, void *);
 void scIntegerValueOf(CScriptVar *ca, void *);
 void scJSONStringify(CScriptVar *ca, void *);
@@ -120,6 +122,13 @@ void scStringSubstring(CScriptVar *ca, void *) {
 }
 
 
+void scStringToLowerCase(CScriptVar *ca,void *) {
+   ca->getReturnVar()->setString(::str::to_lower(ca->getParameter("this")->getString()));
+}
+
+void scStringToUpperCase(CScriptVar *ca,void *) {
+   ca->getReturnVar()->setString(::str::to_upper(ca->getParameter("this")->getString()));
+}
 
 void scStringCharAt(CScriptVar *ca, void *) {
     string str = ca->getParameter("this")->getString();
@@ -268,6 +277,8 @@ void registerFunctions(tinyjs *tinyJS) {
     tinyJS->addNative("function String.charAt(pos)", scStringCharAt, 0);
     tinyJS->addNative("function String.charCodeAt(pos)", scStringCharCodeAt, 0);
     tinyJS->addNative("function String.fromCharCode(char)", scStringFromCharCode, 0);
+    tinyJS->addNative("function String.toUpperCase()",scStringToUpperCase,0);
+    tinyJS->addNative("function String.toLowerCase()",scStringToLowerCase,0);
     tinyJS->addNative("function String.split(separator)", scStringSplit, 0);
     tinyJS->addNative("function Integer.parseInt(str)", scIntegerParseInt, 0); // string to int32_t
     tinyJS->addNative("function Integer.valueOf(str)", scIntegerValueOf, 0); // value of a single character
