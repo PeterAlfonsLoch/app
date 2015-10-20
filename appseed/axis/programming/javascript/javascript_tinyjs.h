@@ -128,13 +128,13 @@ enum SCRIPTVAR_FLAGS {
 /// convert the given string into a quoted string suitable for javascript
 string getJSString(const string &str);
 
-class CScriptException {
+class CLASS_DECL_AXIS CScriptException {
 public:
     string text;
     CScriptException(const string &exceptionText);
 };
 
-class CScriptLex
+class CLASS_DECL_AXIS CScriptLex
 {
 public:
     CScriptLex(const string &input);
@@ -175,7 +175,7 @@ class CScriptVar;
 
 typedef void (*JSCallback)(CScriptVar *var, void *userdata);
 
-class CScriptVarLink
+class CLASS_DECL_AXIS CScriptVarLink
 {
 public:
   string name;
@@ -194,7 +194,7 @@ public:
 };
 
 /// Variable class (containing a doubly-linked list of children)
-class CScriptVar
+class CLASS_DECL_AXIS CScriptVar
 {
 public:
     CScriptVar(); ///< Create undefined
