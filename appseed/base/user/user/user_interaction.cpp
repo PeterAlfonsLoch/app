@@ -6150,7 +6150,7 @@ namespace user
 
                if(sl.lock(millis(84)))
                {
-                  
+
                   if(GetParent()->m_uiptraChild.last_ptr() != this)
                   {
 
@@ -6187,6 +6187,12 @@ namespace user
       {
 
          bOk = m_pimpl->SetWindowPos(z,x,y,cx,cy,nFlags);
+
+      }
+      else if(nFlags & SWP_SHOWWINDOW)
+      {
+
+         bOk = m_pimpl->ShowWindow(SW_SHOW);
 
       }
 

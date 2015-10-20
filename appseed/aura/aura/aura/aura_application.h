@@ -73,6 +73,7 @@ namespace aura
       ::file::patha                                   m_straMatterLocator;
       string                                          m_strLibraryName;
       string                                          m_strAppId;
+      string                                          m_strRelativeFolder;
 
       HINSTANCE                                       m_hinstance;
 

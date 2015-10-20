@@ -1548,17 +1548,25 @@ namespace user
       }
    }
 
+
    void tab::_001OnTabClick(::index iPane)
    {
+
       if(get_data()->m_pcallback != NULL)
       {
+
          get_data()->m_pcallback->_001OnTabClick(this, iPane);
+
       }
       else
       {
+
          _001SelectTab(iPane);
+
       }
+
    }
+
 
    void tab::_001OnTabClose(::index iPane)
    {

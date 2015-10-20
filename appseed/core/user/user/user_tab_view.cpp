@@ -116,7 +116,9 @@ namespace user
    void tab_view::_001OnTabClick(int32_t iTab)
    {
 
-      _001SetSel(iTab);
+      ::user::tab::_001OnTabClick(iTab);
+
+      //_001SetSel(iTab);
 
    }
 

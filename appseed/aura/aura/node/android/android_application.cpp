@@ -344,6 +344,8 @@ if(__get_module_state()->m_pmapHWND == NULL)
 
    bool application::initialize3()
    {
+
+
       return true;
    }
 

@@ -2030,6 +2030,13 @@ namespace axis
    bool application::initialize3()
    {
 
+      if(!::aura::application::initialize3())
+      {
+
+         return false;
+
+      }
+
       if(!m_pimpl->initialize3())
          return false;
 

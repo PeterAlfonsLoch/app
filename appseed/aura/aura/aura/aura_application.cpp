@@ -2139,6 +2139,14 @@ namespace aura
    bool application::initialize3()
    {
 
+      string strFolder = m_strAppName;
+
+      strFolder.replace(".","_");
+      strFolder.replace("::","-");
+      strFolder.replace(":","_");
+
+      m_strRelativeFolder = strFolder;
+
       if(!m_pimpl->initialize3())
          return false;
 
