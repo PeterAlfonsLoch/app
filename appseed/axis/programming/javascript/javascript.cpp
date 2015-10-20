@@ -1480,6 +1480,7 @@ CScriptVarLink *tinyjs::functionCall(bool &execute, CScriptVarLink *function, CS
         }
         CLEAN(value);
         if (l->tk!=')') l->match(',');
+        if(l->tk == ')')break;
         v = v->nextSibling;
     }
     l->match(')');

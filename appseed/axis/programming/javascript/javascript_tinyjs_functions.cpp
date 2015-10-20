@@ -102,7 +102,15 @@ void scStringIndexOf(CScriptVar *ca, void *) {
 void scStringSubstring(CScriptVar *ca, void *) {
     string str = ca->getParameter("this")->getString();
     int32_t lo = ca->getParameter("lo")->getInt();
-    int32_t hi = ca->getParameter("hi")->getInt();
+    int32_t hi;
+    if(ca->findChild("hi") == NULL)
+    {
+       hi = str.get_length();
+    }
+    else
+    {
+       hi = ca->getParameter("hi")->getInt();
+    }
 
     int32_t l = hi-lo;
     if (l>0 && lo>=0 && lo+l<=(int32_t)str.length())
@@ -110,6 +118,8 @@ void scStringSubstring(CScriptVar *ca, void *) {
     else
       ca->getReturnVar()->setString("");
 }
+
+
 
 void scStringCharAt(CScriptVar *ca, void *) {
     string str = ca->getParameter("this")->getString();
