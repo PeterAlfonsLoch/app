@@ -280,7 +280,7 @@ Opened:
          m_pwaveformat->wFormatTag = WAVE_FORMAT_PCM;
          m_pwaveformat->nChannels = uiChannelCount;
          m_pwaveformat->nSamplesPerSec = uiSamplesPerSec;
-         m_pwaveformat->wBitsPerSample = sizeof(::multimedia::audio::WAVEBUFFERDATA) * 8;
+         m_pwaveformat->wBitsPerSample = sizeof(::multimedia::audio::WAVEBUFFERDATA) * 8 * uiChannelCount;
          m_pwaveformat->nBlockAlign = m_pwaveformat->wBitsPerSample * m_pwaveformat->nChannels / 8;
          m_pwaveformat->nAvgBytesPerSec = m_pwaveformat->nSamplesPerSec * m_pwaveformat->nBlockAlign;
          m_pwaveformat->cbSize = 0;
