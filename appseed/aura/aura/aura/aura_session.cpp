@@ -494,11 +494,9 @@ namespace aura
                {
 
 
-                  uint32_t dw = WM_APP + 2043;
-
                   pcreatecontext->m_spCommandLine->m_varQuery["bergedge_callback"] = dynamic_cast < ::aura::application * > (this);
 
-                  papp->m_pauraapp->post_thread_message(dw,2,pcreatecontext);
+                  papp->m_pauraapp->post_thread_message(WM_APPREQUEST,2,pcreatecontext);
 
                   m_pappCurrent = papp;
 
