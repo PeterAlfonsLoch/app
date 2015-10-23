@@ -127,7 +127,8 @@ namespace user
 
       }
 
-      if (pcreatecontext->m_spCommandLine->m_varFile.is_empty())
+      if (pcreatecontext->m_spCommandLine->m_varFile.is_empty()
+         || pcreatecontext->m_spCommandLine->m_varFile.is_numeric())
       {
          // create a new ::user::document
          set_default_title(pdocument);

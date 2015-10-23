@@ -869,7 +869,22 @@ bool simple_frame_window::LoadFrame(const char * pszMatter, uint32_t dwDefaultSt
 
    dwDefaultStyle &= ~WS_VISIBLE;
 
-   ::rect rectFrame(0,0,0,0);
+   ::rect rectFrame;
+
+   sp(::user::place_holder) pholder;
+
+   if(pParentWnd != NULL && (pholder = pParentWnd).is_set())
+   {
+
+      pholder->GetClientRect(rectFrame);
+
+   }
+   else
+   {
+
+      rectFrame = null_rect();
+
+   }
 
    m_bLayoutEnable = false;
 

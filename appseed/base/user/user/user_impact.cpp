@@ -109,8 +109,12 @@ namespace user
       // A ::user::impact should be created in a given context!
       if (pContext != NULL && pContext->m_user->m_pCurrentDoc != NULL)
       {
-         pContext->m_user->m_pCurrentDoc->add_view(this);
+         ::user::document * pdoc = pContext->m_user->m_pCurrentDoc;
+         
+         pdoc->add_view(this);
+
          ASSERT(::user::impact::get_document() != NULL);
+
       }
       else
       {
