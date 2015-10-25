@@ -36,5 +36,51 @@ namespace comparison
 
 
 
+namespace comparison
+{
+
+
+
+
+   class compare_string_case:
+      public compare_type_arg_type < string,const string & >
+   {
+   public:
+
+
+      inline static int_ptr CompareElements(const string * pElement1,const string  & element2)
+      {
+
+         return pElement1->Compare(element2);
+
+      }
+
+
+   };
+
+
+   class compare_string_no_case:
+      public compare_type_arg_type < string,const string & >
+   {
+   public:
+
+      inline static int_ptr CompareElements(const string * pElement1,const string & element2)
+      {
+         return pElement1->CompareNoCase(element2);
+      }
+
+   };
+
+
+
+
+} // namespace comparison
+
+
+
+
+
+
+
 
 

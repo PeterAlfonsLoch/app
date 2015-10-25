@@ -184,12 +184,12 @@ void point2d_array_base < POINT2D >::rotate(double dAngle)
    double dCos = cos(dAngle);
    double dSin = sin(dAngle);
 
-   for(int32_t i = 0; i < get_count(); i++)
+   for(int32_t i = 0; i < this->get_count(); i++)
    {
-      x = element_at(i).x;
-      y = element_at(i).y;
-      element_at(i).x = (LONG)(x * dCos - y * dSin);
-      element_at(i).y = (LONG)(x * dSin + y * dCos);
+      x = this->element_at(i).x;
+      y = this->element_at(i).y;
+      this->element_at(i).x = (LONG)(x * dCos - y * dSin);
+      this->element_at(i).y = (LONG)(x * dSin + y * dCos);
    }
 
 }
@@ -201,7 +201,7 @@ template < typename POINT2D >
 void point2d_array_base < POINT2D >::xml_import(::xml::input_tree & xmlif)
 {
 
-   remove_all();
+   this->remove_all();
 
    var varCount;
 
@@ -219,7 +219,7 @@ void point2d_array_base < POINT2D >::xml_import(::xml::input_tree & xmlif)
       xmlif.import_node("y" + str::from(i),y);
 
       add(POINT2D
-         
+
          (x.int32(),y.int32()));
 
    }
@@ -230,14 +230,14 @@ template < typename POINT2D >
 void point2d_array_base < POINT2D >::xml_export(::xml::output_tree & xmlof)
 {
 
-   xmlof.export_node("count",get_size());
+   xmlof.export_node("count",this->get_size());
 
-   for(index i = 0; i < get_count(); i++)
+   for(index i = 0; i < this->get_count(); i++)
    {
 
-      xmlof.export_node("x" + str::from(i),element_at(i).x);
+      xmlof.export_node("x" + str::from(i),this->element_at(i).x);
 
-      xmlof.export_node("y" + str::from(i),element_at(i).y);
+      xmlof.export_node("y" + str::from(i),this->element_at(i).y);
 
    }
 
@@ -250,7 +250,7 @@ template < typename POINT2D >
 void point2d_array_base < POINT2D >::get_bounding_rect(typename POINT2D::LPRECT lprect) const
 {
 
-   get_bounding_rect(lprect,get_data(),get_count());
+   this->get_bounding_rect(lprect,this->get_data(),this->get_count());
 
 }
 
@@ -295,7 +295,7 @@ template < typename POINT2D >
 bool point2d_array_base < POINT2D >::bounding_rect_contains_pt(typename POINT2D::BASE pt)
 {
    typename POINT2D::RECT rect;
-   get_bounding_rect(&rect);
+   this->get_bounding_rect(&rect);
    return rect.contains(pt);
 }
 
@@ -304,7 +304,7 @@ template < typename POINT2D >
 bool point2d_array_base < POINT2D >::polygon_contains(typename POINT2D::BASE pt)
 {
 
-   return ::polygon_contains(&pt,get_data(),(int)get_size());
+   return ::polygon_contains(&pt,this->get_data(),(int)this->get_size());
 
 }
 

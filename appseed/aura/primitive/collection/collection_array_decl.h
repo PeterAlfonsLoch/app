@@ -556,7 +556,7 @@ public:
 
          if(pred(m_pData[i]))
          {
-            
+
             return i;
 
          }
@@ -645,7 +645,7 @@ public:
                i++;
 
             }
-            
+
             remove_at(iStart,iCount);
 
             i = iStart;
@@ -657,17 +657,17 @@ public:
    }
 
    template < typename PRED >
-   bool pred_add_unique(PRED pred)
+   bool pred_add_unique(TYPE t, PRED pred)
    {
 
-      if(pta.pred_find_first(pred) >= 0)
+      if(this->pred_find_first(pred) >= 0)
       {
 
          return false;
 
       }
 
-      pta.add(pt);
+      this->add(t);
 
       return true;
 

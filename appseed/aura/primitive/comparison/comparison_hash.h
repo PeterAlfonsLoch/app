@@ -83,3 +83,40 @@ template<> inline UINT HashKey<const char *> (const char * key)
 }
 
 
+
+
+
+namespace comparison
+{
+
+
+
+   template < >
+   class CLASS_DECL_AURA hash < const string & >
+   {
+   public:
+
+      inline static UINT HashKey(const string & key)
+      {
+         uint64_t * puiKey = (uint64_t *)(const char *)key;
+         strsize counter = key.get_length();
+         uint64_t nHash = 0;
+         while(::compare::ge(counter,sizeof(*puiKey)))
+         {
+            nHash = (nHash << 5) + nHash + *puiKey++;
+            counter -= sizeof(*puiKey);
+         }
+         const char * pszKey = (const char *)puiKey;
+         while(counter-- >= 0) nHash = (nHash << 5) + nHash + *pszKey++;
+         return (UINT)(nHash & 0xffffffff);
+      }
+
+   };
+
+
+} // namespace comparison
+
+
+
+
+

@@ -27,7 +27,7 @@ public:
    virtual ~point2d_array_base() { }
 
 
-   operator typename POINT2D::BASE * () { return get_data(); }
+   operator typename POINT2D::BASE * () { return this->get_data(); }
 
    void offset(typename POINT2D::TYPE x,typename POINT2D::TYPE y);
    void offset(POINT2D point) { offset(point.x,point.y); }
@@ -44,7 +44,7 @@ public:
 
    inline index add(typename POINT2D::TYPE x,typename POINT2D::TYPE y) { return comparable_array < POINT2D >::add(POINT2D(x,y)); }
    inline index add(typename POINT2D::BASE point) { return comparable_array < POINT2D >::add(POINT2D(point)); }
-   inline point2d_array_base & operator =(const point2d_array_base & pointset) { copy(pointset); return *this; }
+   inline point2d_array_base & operator =(const point2d_array_base & pointset) { this->copy(pointset); return *this; }
 
    virtual void xml_import(::xml::input_tree & xmlif);
    virtual void xml_export(::xml::output_tree & xmlof);

@@ -264,7 +264,7 @@ namespace aura
       {
       }
 
-      void rx::receiver::on_receive(rx * prx,int32_t message,void * pdata,int32_t len)
+      void rx::receiver::on_receive(rx * prx,int32_t message,void * pdata,memory_size_t len)
       {
       }
 

@@ -713,3 +713,68 @@ inline int_ptr id::compare_ci(const char * psz) const
       return stricmp(m_psz,psz);
    }
 }
+
+
+
+namespace comparison
+{
+
+
+   template < >
+   class compare_type_arg_type < id,const id & >
+   {
+   public:
+
+
+      inline static int_ptr CompareElements(const id * pElement1,const id & element2)
+      {
+
+         int_ptr iCompare = (int_ptr)(pElement1->m_iType - element2.m_iType);
+         if(iCompare != 0)
+            return iCompare;
+         return pElement1->m_psz - element2.m_psz;
+
+      }
+
+
+   };
+
+
+   class strid_compare
+   {
+   public:
+
+
+      inline static int_ptr CompareElements(const id * pElement1,const id  * pelement2)
+      {
+
+         return pElement1->m_psz - pelement2->m_psz;
+
+      }
+
+
+   };
+
+
+   class CLASS_DECL_AURA strid_binary
+   {
+   public:
+
+
+      inline static int_ptr CompareElements(const id * pElement1,const id * pElement2)
+      {
+
+         return pElement1->m_psz - pElement2->m_psz;
+
+      }
+
+
+   };
+
+
+} // namespace comparison
+
+
+
+
+

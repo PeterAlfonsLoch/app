@@ -1,6 +1,10 @@
 #pragma once
 
 
+#ifndef OSBIT
+#include "nodeapp/operational_system/bit.h"
+#endif
+
 
 #include "nodeapp/operational_system/__stdint.h"
 

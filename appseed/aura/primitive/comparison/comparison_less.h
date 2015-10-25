@@ -36,4 +36,29 @@ template <> struct StaticAssertionFailed <true> {};
 #define STATIC_ASSERT(x) \
     {StaticAssertionFailed <x> ();}
 
+namespace comparison
+{
+
+
+
+   template < >
+   class less < string,const string & >
+   {
+   public:
+
+      inline bool operator()(const string & element1,const string & element2) const
+      {
+         return element1 < element2;
+      }
+
+   };
+
+
+
+} // namespace comparison
+
+
+
+
+
 

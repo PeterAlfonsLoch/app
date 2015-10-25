@@ -96,8 +96,6 @@ namespace user
       template < class T >
       T * get_typed_view_with_id(id id) const
       {
-         if(indexFind < 0 || indexFind >= m_viewptra.get_count())
-            return NULL;
          ::count count = 0;
          for(index index = 0; index < m_viewptra.get_count(); index++)
          {
@@ -139,7 +137,7 @@ namespace user
       // Special notifications
       virtual void on_changed_view_list(single_lock * psl = NULL); // after add or remove ::user::impact
       virtual void delete_contents(); // delete doc items etc
-      
+
 
       // File helpers
       virtual bool on_new_document();
@@ -176,7 +174,7 @@ namespace user
       friend class impact_system;
 
       /*
-      
+
       virtual void write(::file::ostream & ostream) const;
       virtual void read(::file::istream & istream);
 

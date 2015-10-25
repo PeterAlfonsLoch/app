@@ -35,18 +35,45 @@ namespace comparison
    class equals_ref
    {
    public:
-      
+
       inline static bool CompareElements(const TYPE1 & r1, const TYPE2 & r2)
       {
          return ::EqualsCompareElements < TYPE1, TYPE2 > (r1, r2);
       }
-      
-      
+
+
    };
 
 
 
 } // namespace comparison
+
+
+
+
+
+namespace comparison
+{
+
+
+   template < >
+   class equals_type_arg_type < string,const string & >
+   {
+   public:
+
+      inline static bool CompareElements(const string * pElement1,const string & element2)
+      {
+         return *pElement1 == element2;
+      }
+
+   };
+
+
+
+
+} // namespace comparison
+
+
 
 
 

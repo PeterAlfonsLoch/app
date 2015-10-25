@@ -276,10 +276,6 @@ public:
    string(const property & prop);
 #endif
    string(const id & id);
-#ifdef __GNUC__
-   string(const string_interface & stri);
-//   string(const istring & istr);
-#endif
 
 
 
@@ -945,7 +941,7 @@ inline string & string::operator=(const simple_string& strSrc )
 template < class InputIterator >
 string & string::assign ( InputIterator first, InputIterator last )
 {
-   
+
    Empty();
 
    for(InputIterator it = first; it <= last; it++)
@@ -1674,3 +1670,10 @@ inline string to_string(STRINGALBLE * pstringable)
    return str;
 
 }
+
+
+
+
+
+
+
