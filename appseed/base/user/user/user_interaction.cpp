@@ -140,7 +140,7 @@ namespace user
       m_uiptraChild.m_pmutex  = NULL;
 
       add_ref();
-      
+
       try
       {
 
@@ -999,7 +999,7 @@ namespace user
       }
       else
       {
-         
+
          if (m_bLayoutEnable)
          {
 
@@ -2347,26 +2347,26 @@ namespace user
 
       }
 
-      
+
 #if defined(APPLE_IOS) || defined(VSNORD) || defined(METROWIN)
-      
+
       if(pParentWnd == NULL || pParentWnd == System.m_posdata->m_pui)
       {
-         
+
          pParentWnd = System.m_posdata->m_pui;
-         
+
          if(!Application.defer_initialize_twf())
          {
-            
+
             m_threadptra.remove_all();
-            
+
             return false;
-            
+
          }
-         
+
       }
-      
-#endif      
+
+#endif
 
 #if defined(WINDOWSEX) || defined(LINUX)
       if(pParentWnd == NULL || pParentWnd->get_safe_handle() == (oswindow)HWND_MESSAGE)
@@ -2374,8 +2374,8 @@ namespace user
       if(pParentWnd == NULL)
 #endif
       {
-         
-         
+
+
 
          if(Application.defer_initialize_twf())
             return false;
@@ -2483,23 +2483,23 @@ namespace user
       }
 
 #if defined(APPLE_IOS) || defined(VSNORD) || defined(METROWIN)
-      
+
       if(pParentWnd == NULL || pParentWnd == System.m_posdata->m_pui)
       {
-         
+
          pParentWnd = System.m_posdata->m_pui;
-         
+
          if(!Application.defer_initialize_twf())
          {
-            
+
             m_threadptra.remove_all();
-            
+
             return false;
-            
+
          }
-         
+
       }
-      
+
 #endif
 
       if(m_threadptra.get_count() <= 0)
@@ -2511,7 +2511,7 @@ namespace user
 #if !defined(METROWIN)
       if(pParentWnd == NULL)
       {
-         
+
          if(!Application.defer_initialize_twf())
          {
 
@@ -3875,7 +3875,7 @@ namespace user
 
       if(m_pimpl == NULL)
          return false;
-   
+
       return m_pimpl->SetTimer(nIDEvent,nElapse,pfnTimer);
 
    }
@@ -3977,7 +3977,7 @@ namespace user
 
    }
 
-   
+
    void interaction::_001RedrawWindow(UINT nFlags)
    {
 
@@ -3988,10 +3988,10 @@ namespace user
             return;
 
       }
-      
+
       ::user::interaction_base::_001RedrawWindow(nFlags);
-      
-      
+
+
    }
 
 
@@ -4146,7 +4146,7 @@ namespace user
 
    //bool interaction::SetTimer(uint_ptr nIDEvent,UINT nEllapse, PFN_TIMER pfnTimer)
    //{
-   //   
+   //
    //   return ::aura::timer_array::SetTimer(nIDEvent,nEllapse, pfnTimer);
 
    //}
@@ -4393,7 +4393,7 @@ namespace user
    {
       try
       {
-   
+
          if(GetParent() == NULL)
             return NULL;
 
@@ -4479,7 +4479,7 @@ namespace user
 
    ::user::interaction * interaction::previous_sibling()
    {
-      
+
       try
       {
 
@@ -4518,7 +4518,7 @@ namespace user
 
       try
       {
-         
+
          if(GetParent() == NULL)
             return NULL;
 
@@ -4671,10 +4671,10 @@ namespace user
 
    }
 
-   
+
    ::user::elemental * interaction::get_wnd_elemental() const
    {
-      
+
       return get_wnd();
 
    }
@@ -5351,7 +5351,7 @@ namespace user
 
       spbase = get_base(message,wparam,lparam);
 
-      __trace_message("window_procedure",spbase);
+      //__trace_message("window_procedure",spbase);
 
       try
       {
@@ -7020,7 +7020,7 @@ namespace user
 
    sp(::user::interaction) interaction::get_child(::user::interaction * pui)
    {
-      
+
       return m_uiptraChild.get_child(pui);
 
    }
@@ -7142,7 +7142,7 @@ namespace user
          return false;
 
       }
-      
+
       if(!bForceShow && !m_ptooltip->IsWindowVisible())
       {
 
@@ -7191,7 +7191,7 @@ namespace user
 
    bool interaction::hide_tooltip()
    {
-      
+
       if(m_ptooltip.is_null())
       {
 

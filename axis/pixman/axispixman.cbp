@@ -61,6 +61,8 @@
 			<Add directory="../../../appseed/base" />
 			<Add directory="../pixman" />
 			<Add directory="pixman" />
+			<Add directory="../../include" />
+			<Add directory="../../.." />
 		</Compiler>
 		<Linker>
 			<Add option="-Wl,-R\\$$$ORIGIN" />
@@ -84,6 +86,9 @@
 		<Unit filename="pixman/pixman-arm-common.h" />
 		<Unit filename="pixman/pixman-arm-neon-asm.h" />
 		<Unit filename="pixman/pixman-arm-simd-asm.h" />
+		<Unit filename="pixman/pixman-arm.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="pixman/pixman-combine-float.c">
 			<Option compilerVar="CC" />
 		</Unit>

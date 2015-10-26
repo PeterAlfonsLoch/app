@@ -72,7 +72,7 @@ CLASS_DECL_BASE int_bool mq_remove_window_from_all_queues(oswindow oswindow)
 
    synch_lock ml(&pmq->m_mutex);
 
-   pmq->ma.remove_pred([=](MESSAGE & item) {return item.hwnd == oswindow;});
+   pmq->ma.pred_remove([=](MESSAGE & item) {return item.hwnd == oswindow;});
 
 }
 
