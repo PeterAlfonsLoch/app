@@ -74,8 +74,6 @@
 		<Unit filename="lib/amigaconfig.h" />
 		<Unit filename="lib/ascii.h" />
 		<Unit filename="lib/asciitab.h" />
-		<Unit filename="lib/expat.h" />
-		<Unit filename="lib/expat_external.h" />
 		<Unit filename="lib/iasciitab.h" />
 		<Unit filename="lib/internal.h" />
 		<Unit filename="lib/latin1tab.h" />
