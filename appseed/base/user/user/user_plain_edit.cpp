@@ -637,6 +637,8 @@ namespace user
 
       //synch_lock sl(m_pmutex);
 
+      
+
       SCAST_PTR(::message::key,pkey,pobj);
 
       if(pkey->m_ekey == ::user::key_return)

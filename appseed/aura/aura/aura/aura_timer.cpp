@@ -105,7 +105,12 @@ namespace aura
 
 #if defined(WINDOWSEX)
 
-         DeleteTimerQueue(m_hTimerQueue);
+         if(m_hTimerQueue != NULL && m_hTimerQueue != INVALID_HANDLE_VALUE)
+         {
+
+            DeleteTimerQueue(m_hTimerQueue);
+
+         }
 
 #endif
 
