@@ -33,17 +33,17 @@ namespace windows
       public:
 
 
-         ::windows::comptr < ISpVoice >            m_pvoice;
-         ::windows::comptr < ISpObjectToken >      m_ptoken;
-
+         string_map < ::windows::comptr < ISpVoice > >         m_voice;
+         string_map < ::windows::comptr < ISpObjectToken > >   m_token;
+         string_map < DWORD > m_time;
          //--------------------------------------------------------------------
          // Initializes the text speaker.
          //--------------------------------------------------------------------
          speaker(::aura::application * papp);
          virtual ~speaker();
 
-         virtual bool initialize();
-         virtual bool finalize();
+         virtual bool initialize(string strLang);
+         virtual bool finalize(string strLang);
 
          //--------------------------------------------------------------------
          // Speaks some text.
@@ -51,9 +51,11 @@ namespace windows
          //--------------------------------------------------------------------
          virtual bool speak(const string & text) override;
 
-         virtual bool is_speaking() override;
+         virtual bool speak(const string & strLang, const string & text) override;
 
-         virtual bool stop() override;
+         virtual bool is_speaking(string strLang) override;
+
+         virtual bool stop(string strLang) override;
 
 
       };

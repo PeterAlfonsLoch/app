@@ -18,9 +18,11 @@ namespace tts
 
       virtual bool speak(const string & strText);
 
-      virtual bool stop();
+      virtual bool speak(const string & strLang, const string & strText);
 
-      virtual bool is_speaking();
+      virtual bool stop(string strLang);
+
+      virtual bool is_speaking(string strLang);
 
 
    };

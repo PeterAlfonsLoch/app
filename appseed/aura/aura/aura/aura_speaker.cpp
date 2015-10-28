@@ -23,8 +23,14 @@ namespace tts
 
    }
 
+   bool speaker::speak(const string & strLang, const string & strText)
+   {
 
-   bool speaker::stop()
+      return false;
+
+   }
+
+   bool speaker::stop(string strLang)
    {
    
       return false;
@@ -32,7 +38,7 @@ namespace tts
    }
 
    
-   bool speaker::is_speaking()
+   bool speaker::is_speaking(string strLang)
    {
 
       return false;

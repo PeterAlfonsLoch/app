@@ -15,6 +15,7 @@
 
 //#include <sapi.h>               // SAPI
 
+// Declare local identifiers:
 
 inline HRESULT SpGetCategoryFromId(const WCHAR * pszCategoryId,ISpObjectTokenCategory ** ppCategory,BOOL fCreateIfNotExist = FALSE)
 {
@@ -82,6 +83,174 @@ inline HRESULT SpGetDefaultTokenFromCategoryId(
    return hr;
 }
 
+inline bool SpGetDefaultTokenFromCategoryIdAndLang(
+   ::aura::application * papp,
+   const WCHAR * pszCategoryId,
+   ISpObjectToken ** ppToken,
+   const char * pszLang,
+   BOOL fCreateCategoryIfNotExist = TRUE)
+{
+   HRESULT hr;
+
+   ::windows::comptr<ISpObjectTokenCategory> pcategory;
+   hr = SpGetCategoryFromId(pszCategoryId,&pcategory,fCreateCategoryIfNotExist);
+
+   string str(pszLang);
+
+   str.make_lower();
+
+   string strLang;
+
+   if(str == "en" || str == "us" || str == "english")
+   {
+      
+      strLang = "409";
+
+   }
+   else if(str == "pt" || str == "br" || str == "portugues" || str == "português")
+   {
+
+      strLang = "416";
+
+   }
+   else
+   {
+
+      ::property_set set;
+
+      string strJson = App(papp).file().as_string(App(papp).dir().matter("speech/windows/lang.json"));
+
+      const char * pszJson = strJson;
+
+      try
+      {
+
+         set.parse_json(pszJson);
+
+      }
+      catch(...)
+      {
+
+
+      }
+
+
+      if(set[str].get_string().has_char())
+      {
+
+         strLang = set[str];
+
+      }
+      else
+      {
+
+         strLang = "409";
+
+      }
+
+   }
+
+   if(SUCCEEDED(hr))
+   {
+      WCHAR * pszTokenId;
+      // Declare local identifiers:
+      HRESULT                           hr = S_OK;
+      ::windows::comptr<IEnumSpObjectTokens>      cpSpEnumTokens;
+
+      if(SUCCEEDED(hr))
+      {
+
+         hr = pcategory->EnumTokens(NULL,NULL,&cpSpEnumTokens);
+
+      }
+
+      ULONG ulCount;
+
+      if(SUCCEEDED(hr))
+      {
+
+         cpSpEnumTokens->GetCount(&ulCount);
+
+      }
+
+      for(ULONG i = 0; i < ulCount; i++)
+      {
+
+         ::windows::comptr<ISpObjectToken> ptoken;
+
+         hr = cpSpEnumTokens->Item(i, &ptoken);
+
+         if(SUCCEEDED(hr))
+         {
+
+            wstring wstrLang;
+
+            wstrLang = L"Language=";
+            wstrLang += wstring(strLang);
+            BOOL bMatches;
+
+            hr = ptoken->MatchesAttributes(wstrLang, &bMatches);
+
+            if(SUCCEEDED(hr) && bMatches)
+            {
+
+               wstrLang = L"Gender=";
+               wstrLang += L"Male";
+               
+               hr = ptoken->MatchesAttributes(wstrLang,&bMatches);
+
+               if(SUCCEEDED(hr) && bMatches)
+               {
+                  *ppToken = ptoken;
+                  ptoken.m_p = NULL;
+                  return true;
+               }
+
+            }
+
+
+         }
+
+      }
+
+      for(ULONG i = 0; i < ulCount; i++)
+      {
+
+         ::windows::comptr<ISpObjectToken> ptoken;
+
+         hr = cpSpEnumTokens->Item(i,&ptoken);
+
+         if(SUCCEEDED(hr))
+         {
+
+            wstring wstrLang;
+
+            wstrLang = L"Language=";
+            wstrLang += wstring(strLang);
+            BOOL bMatches;
+
+            hr = ptoken->MatchesAttributes(wstrLang,&bMatches);
+
+
+            if(SUCCEEDED(hr) && bMatches)
+            {
+               *ppToken = ptoken;
+               ptoken.m_p = NULL;
+               return true;
+            }
+
+
+         }
+
+      }
+
+      return SUCCEEDED(SpGetDefaultTokenFromCategoryId(SPCAT_VOICES,ppToken,FALSE));
+
+   }
+
+   return SUCCEEDED(hr);
+}
+
 
 namespace windows
 {
@@ -105,22 +274,20 @@ namespace windows
       speaker::~speaker()
       {
 
-         finalize();
-
       }
 
       //--------------------------------------------------------------------
       // Initializes the text speaker.
       //--------------------------------------------------------------------
-      bool speaker::initialize()
+      bool speaker::initialize(string strLang)
       {
 
-         finalize();
+         finalize(strLang);
 
          //
          // Create text to speech engine
          //
-         HRESULT hr = m_pvoice.CoCreateInstance(CLSID_SpVoice);
+         HRESULT hr = m_voice[strLang].CoCreateInstance(CLSID_SpVoice);
          if(FAILED(hr))
          {
 
@@ -128,16 +295,36 @@ namespace windows
 
          }
 
-
-         //
-         // Get token corresponding to default voice 
-         //
-         hr = SpGetDefaultTokenFromCategoryId(SPCAT_VOICES,&m_ptoken,FALSE);
-
-         if(FAILED(hr))
+         if(strLang.is_empty())
          {
 
-            return false;
+            //
+            // Get token corresponding to default voice 
+            //
+            hr = SpGetDefaultTokenFromCategoryId(SPCAT_VOICES,&m_token[strLang],FALSE);
+
+            if(FAILED(hr))
+            {
+
+               return false;
+
+            }
+
+         }
+         else
+         {
+            
+            //
+            // Get token corresponding to default voice 
+            //
+            hr = SpGetDefaultTokenFromCategoryIdAndLang(get_app(), SPCAT_VOICES,&m_token[strLang], strLang,FALSE);
+
+            if(FAILED(hr))
+            {
+
+               return false;
+
+            }
 
          }
 
@@ -145,7 +332,7 @@ namespace windows
          //
          // Set default voice
          //
-         hr = m_pvoice->SetVoice(m_ptoken);
+         hr = m_voice[strLang]->SetVoice(m_token[strLang]);
 
          if(FAILED(hr))
          {
@@ -159,19 +346,19 @@ namespace windows
       }
 
 
-      bool speaker::finalize()
+      bool speaker::finalize(string strLang)
       {
 
-         if(m_pvoice.is_set())
+         if(m_voice[strLang].is_set())
          {
 
-            m_pvoice->Pause();
+            m_voice[strLang]->Pause();
 
          }
 
-         m_ptoken.Release();
+         m_token[strLang].Release();
 
-         m_pvoice.Release();
+         m_voice[strLang].Release();
 
 
 
@@ -184,42 +371,71 @@ namespace windows
       //--------------------------------------------------------------------
       bool speaker::speak(const string & text)
       {
+
+         return speak("",text);
+
+      }
+
+
+      //--------------------------------------------------------------------
+      // Speaks some text.
+      // (The input text must not be empty.)
+      //--------------------------------------------------------------------
+      bool speaker::speak(const string & strLang, const string & text)
+      {
+         
          //
          // Input text must not be empty
          //
          if(text.is_empty())
          {
+
             // nothing to speak?!?!
             return false;
+
          }
 
-         if(!initialize())
+
+         if(m_voice[strLang].is_set() || (!is_speaking(strLang) && get_tick_count() - m_time[strLang] > 30 * 1000))
          {
 
-            return false;
+            if(!initialize(strLang))
+            {
+
+               return false;
+
+            }
 
          }
+
 
          wstring wstr(text);
          //
          // Speak input text
          //
          ULONG streamNumber;
-         HRESULT hr = m_pvoice->Speak(
+
+         HRESULT hr = m_voice[strLang]->Speak(
             wstr,
             SPF_IS_NOT_XML | SPF_ASYNC | SPF_PURGEBEFORESPEAK,
             &streamNumber);
+
          if(FAILED(hr))
          {
+
             return false;
+
          }
+
          return true;
+
       }
 
-      bool speaker::is_speaking()
+
+      bool speaker::is_speaking(string strLang)
       {
 
-         if(m_pvoice.is_null())
+         if(m_voice[strLang].is_null())
          {
 
             return false;
@@ -228,7 +444,7 @@ namespace windows
 
          SPVOICESTATUS status ={};
 
-         HRESULT hr = m_pvoice->GetStatus(&status,NULL);
+         HRESULT hr = m_voice[strLang]->GetStatus(&status,NULL);
 
          if(FAILED(hr))
          {
@@ -242,10 +458,10 @@ namespace windows
       }
 
 
-      bool speaker::stop()
+      bool speaker::stop(string strLang)
       {
 
-         finalize();
+         finalize(strLang);
 
          return true;
 
