@@ -2114,7 +2114,14 @@ namespace user
 
          SCAST_PTR(::message::key,pkey,pobj);
 
-            string strChar;
+         string strChar;
+
+         if(Session.is_key_pressed(::user::key_control))
+         {
+
+            return;
+
+         }
 
          if(pkey->m_ekey == ::user::key_s)
          {
