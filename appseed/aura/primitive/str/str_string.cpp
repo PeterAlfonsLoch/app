@@ -1016,7 +1016,7 @@ string& string::operator=(const char * pszSrc)
 
 string& string::operator=(const string & str)
 {
-   simple_string::operator=(str.c_str());
+   simple_string::operator=((const simple_string &) str);
 
    return *this;
 }

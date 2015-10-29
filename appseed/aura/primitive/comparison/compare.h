@@ -146,7 +146,7 @@ namespace compare
 	template < typename A, typename B >
 	inline bool ge(A a, B b)
 	{
-		return a > b;
+		return a >= b;
 	}
 
    template < >
@@ -176,13 +176,13 @@ namespace compare
    template < >
    inline bool ge(unsigned int ui,short sh)
    {
-      return sh < 0 ? true : ui <= (unsigned int)sh;
+      return sh < 0 ? true : ui >= (unsigned int)sh;
    }
 
    template < >
    inline bool ge(int i,unsigned int ui)
    {
-      return i < 0 ? false : (unsigned int) i <= ui;
+      return i < 0 ? false : (unsigned int) i >= ui;
    }
 
 

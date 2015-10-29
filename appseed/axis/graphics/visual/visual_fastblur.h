@@ -187,7 +187,7 @@ namespace visual
 
       vector4 * m_stack;
 
-      void stackblur(vector4* colorbuffer,const int w,const int h,const int radius);
+      void stackblur(vector4* colorbuffer,const int w,const int h,const int radius, int wj);
 
 #endif
 #endif

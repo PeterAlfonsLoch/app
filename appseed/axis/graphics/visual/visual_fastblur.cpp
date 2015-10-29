@@ -157,6 +157,8 @@ namespace visual
       if(m_p->m_size == size(cx,cy) && radius == m_iRadius)
          return true;
 
+      int div2 = (radius * 2) + 1;
+
       if(cx + 100 > m_p->m_size.cx || cy + 100 > m_p->m_size.cy)
       {
 
@@ -184,73 +186,78 @@ namespace visual
          }
 
 #endif
-#ifdef _WIN32
-#if OSBIT == 32
-
-         if(vxmin != NULL)
-         {
-            delete[] vxmin;
-            vxmin = NULL;
-         }
-         if(vymin != NULL)
-         {
-            delete[] vymin;
-            vymin = NULL;
-         }
-         if(m_stack != NULL)
-         {
-            delete[] m_stack;
-            m_stack = NULL;
-         }
-         if(tsurface != NULL)
-         {
-            delete[] tsurface;
-            tsurface = NULL;
-         }
-         if(timage != NULL)
-         {
-            delete[] timage;
-            timage = NULL;
-         }
-
-
-
-         const int wh = (cx+ 100 + 16)*(cy + 100 + 16);
-#undef new 
-         timage = new vector4[wh];
-         // temporary output space for first pass.
-         tsurface = new vector4[wh];
-
-         const int div2 = (radius * 2) + 1;
-         m_stack = new vector4[div2];
-#define new AURA_NEW
-         // lookup table for clamping pixel offsets
-         // as the kernel passes the right (or lower) edge
-         // of the input data
-         vxmin = new int[cx + 100 + 16];
-         vymin = new int[cy + 100 + 16];
-#endif
-#endif
 
       }
 
 #if OSBIT == 32
 
+#ifdef _WIN32
+#if OSBIT == 32
+
+      if(m_stack != NULL)
+      {
+         delete[] m_stack;
+         m_stack = NULL;
+      }
+      if(tsurface != NULL)
+      {
+         delete[] tsurface;
+         tsurface = NULL;
+      }
+      if(timage != NULL)
+      {
+         delete[] timage;
+         timage = NULL;
+      }
+
+      int wj = cx;
+
+      //if(wj % 16 > 0)
+      //{
+      //   wj = ((wj / 16) * 16) + 16;
+      //}
+
+      const int wh = (wj)*(cy);
+#undef new 
+      timage = new vector4[wh];
+      // temporary output space for first pass.
+      tsurface = new vector4[wh];
+
+      m_stack = new vector4[div2];
+#define new AURA_NEW
+#endif
+#endif
+      if(vxmin != NULL)
+      {
+         delete[] vxmin;
+         vxmin = NULL;
+      }
+      if(vymin != NULL)
+      {
+         delete[] vymin;
+         vymin = NULL;
+      }
+
+      // lookup table for clamping pixel offsets
+      // as the kernel passes the right (or lower) edge
+      // of the input data
+      vxmin = new int[cx + 100 + div2];
+      vymin = new int[cy + 100 + div2];
 
       const int r1 = radius + 1;
       int wm = cx - 1;
-      int c = cx + 16;
+      int c = cx + div2;
       for(index x = 0; x < c; x++)
       {
          vxmin[x] = MIN(x + r1,wm);
       }
       int hm = cy - 1;
-      c = cy + 16;
+      c = cy + div2;
       int s = cx;
-      if(s % 16 > 0)
-      {
-         s = ((s / 16) * 16) + 16;
-      }
+      //if(s % 16 > 0)
+      //{
+      //   s = ((s / 16) * 16) + 16;
+      //}
       for(index y = 0; y < c; y++)
       {
          vymin[y] = MIN(y + r1,hm)*s;
@@ -463,10 +470,10 @@ namespace visual
    int wj = w; // w job
    int hj = h; // h job
 
-   if(wj % 16 > 0)
-   {
-      wj = ((wj / 16) * 16) + 16;
-   }
+   //if(wj % 16 > 0)
+   //{
+   //   wj = ((wj / 16) * 16) + 16;
+   //}
 
    int s = m_p->m_iScan / 4;
 
@@ -504,12 +511,12 @@ namespace visual
 
          b = do_stackblur(
             timage,
-            wj,
-            hj,
+            w,
+            h,
             m_iRadius,
             (uint32_t *)m_ucha.get_data(),
             m_uchaDiv.get_data(),
-            w * 4,
+            wj,
             w,h,bottomup);
 
       }
@@ -1036,7 +1043,7 @@ DWORD dw1 = get_tick_count();
    *
    */
 
-   void fastblur::stackblur(vector4* pix,const int w,const int h,const int radius)
+   void fastblur::stackblur(vector4* pix,const int w,const int h,const int radius, int wj)
    {
 
       if(radius < 1) return;	// nothing to do
@@ -1046,7 +1053,6 @@ DWORD dw1 = get_tick_count();
                               //const int h = image.height;
       const int wm = w - 1;
       const int hm = h - 1;
-      const int wh = w*h;
       const int r1 = radius + 1;
 
       // number of divisions in the kernel
@@ -1166,7 +1172,7 @@ DWORD dw1 = get_tick_count();
 
             yi++;	// advance output offset to next pixel
          }
-         yw += w;	// advance input offset to next line
+         yw += wj;	// advance input offset to next line
       }//y loop
 
 
@@ -1181,7 +1187,7 @@ DWORD dw1 = get_tick_count();
          vector4 sum(0);
 
          //preload the stack
-         int yp = -radius * w;
+         int yp = -radius * wj;
          for(int i = -radius; i <= radius; i++) {
 
             vector4& sir = stack[i + radius];
@@ -1200,7 +1206,7 @@ DWORD dw1 = get_tick_count();
             // are still more rows of image left.
             // otherwise, we keep sampling the same row
             // as if the bottom line was duplicated
-            if(i < hm) yp += w;
+            if(i < hm) yp += wj;
 
          }//preload
 
@@ -1230,7 +1236,7 @@ DWORD dw1 = get_tick_count();
             outsum += sirnext;
             insum -= sirnext;
 
-            yi += w; // advance output offset to next line
+            yi += wj; // advance output offset to next line
          }
       }//x loop
    }
@@ -1291,7 +1297,7 @@ DWORD dw1 = get_tick_count();
    bool fastblur::do_stackblur(vector4 * pimage,int32_t w,int32_t h,int32_t radius,uint32_t * prgba,byte * dv,int32_t stride,int cx,int cy,int bottomup)
    {
 
-      stackblur(pimage,w,h,radius);
+      stackblur(pimage,w,h,radius, stride);
 
       return true;
 
