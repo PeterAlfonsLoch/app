@@ -282,9 +282,6 @@
     <None Include="asm\x64-win32-masm\x86_64cpuid.asm">
       <Filter>Assembler Files\x64</Filter>
     </None>
-    <None Include="asm\x86-win32-masm\rc4\rc4-586.asm">
-      <Filter>Assembler Files\x86\rc4</Filter>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="crypto\arm_arch.h">
@@ -2679,5 +2676,6 @@
     <CustomBuild Include="asm\x86-win32-masm\aes\aesni-x86.asm">
       <Filter>Assembler Files\x86\aes</Filter>
     </CustomBuild>
+    <CustomBuild Include="asm\x86-win32-masm\rc4\rc4-586.asm" />
   </ItemGroup>
 </Project>
