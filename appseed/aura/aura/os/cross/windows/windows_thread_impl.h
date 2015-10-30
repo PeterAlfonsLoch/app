@@ -37,8 +37,8 @@ CLASS_DECL_AURA int_bool __thread_set_data(IDTHREAD thread,uint32_t dwIndex,void
 
 #endif
 
-mq * __get_mq();
-mq * __get_mq(IDTHREAD hthread);
+//mq * __get_mq();
+//mq * __get_mq(IDTHREAD hthread);
 void __clear_mq();
 
 

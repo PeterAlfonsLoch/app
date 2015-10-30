@@ -173,6 +173,7 @@ typedef struct _MEMORY_STATE
 //    Asserts 
 //    We use !! below to ensure that any overloaded operators used to evaluate expr do not end up at operator || 
 //
+#undef _ASSERT_EXPR
 #define _ASSERT_EXPR(expr, msg) \
         (void) ((!!(expr)) || \
                 (1 != debug_report(_CRT_ASSERT, __FILE__, __LINE__, NULL, msg)) || \

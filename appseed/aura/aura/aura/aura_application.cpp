@@ -1936,11 +1936,11 @@ namespace aura
 
       m_bAuraInitializeInstanceResult = true;
 
-#ifndef METROWIN
+//#ifndef METROWIN
 
       m_pipi = create_ipi();
 
-#endif
+//#endif
 
       return true;
 

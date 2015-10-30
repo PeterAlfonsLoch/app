@@ -399,12 +399,12 @@ string get_system_error_message(uint32_t dwError)
 //}
 
 
-DWORD WINAPI WaitForSingleObject( _In_ HANDLE hHandle, _In_ DWORD dwMilliseconds )
-{
-
-   return ::WaitForSingleObjectEx(hHandle, dwMilliseconds, FALSE);
-
-}
+//DWORD WINAPI WaitForSingleObject( _In_ HANDLE hHandle, _In_ DWORD dwMilliseconds )
+//{
+//
+//   return ::WaitForSingleObjectEx(hHandle, dwMilliseconds, FALSE);
+//
+//}
 
 BEGIN_EXTERN_C
 
