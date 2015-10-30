@@ -21,6 +21,8 @@ namespace sqlite
       ::object(papp)
    {
 
+      m_pmutex = new mutex(papp);
+
       active = false;
       _in_transaction = false;      // for transaction
 
@@ -35,7 +37,11 @@ namespace sqlite
 
    base::~base()
    {
+
+      ::aura::del(m_pmutex);
+
       disconnect();
+
    }
 
 

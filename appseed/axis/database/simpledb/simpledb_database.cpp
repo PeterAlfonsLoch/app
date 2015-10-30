@@ -8,6 +8,8 @@ namespace simpledb
    database::database(::aura::application * papp):
       ::object(papp)
    {
+      
+      m_pmutex = new mutex(papp);
 
       m_protocol = 0;
 
@@ -18,6 +20,8 @@ namespace simpledb
    {
 
       close();
+
+      ::aura::del(m_pmutex);
 
    }
 

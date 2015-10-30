@@ -345,7 +345,14 @@ bool db_str_set::load(const char * lpKey, string & strValue)
 #endif
    else
    {
-      single_lock slDatabase(m_pcore->db()->get_database()->m_pmutex);
+      
+      db_server * pdb = m_pcore->db();
+
+      ::sqlite::base * pdatabase = pdb->get_database();
+
+      mutex * pmutex = pdatabase->m_pmutex;
+
+      single_lock slDatabase(pmutex);
 
       string strKey;
       strKey = lpKey;
