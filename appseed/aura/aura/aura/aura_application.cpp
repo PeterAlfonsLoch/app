@@ -1946,7 +1946,7 @@ namespace aura
 
    }
 
-#ifndef METROWIN
+//#ifndef METROWIN
 
    ::aura::ipi * application::create_ipi()
    {
@@ -1955,7 +1955,7 @@ namespace aura
 
    }
 
-#endif
+//#endif
 
    bool application::initialize1()
    {

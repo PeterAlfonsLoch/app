@@ -254,9 +254,9 @@ namespace aura
 
       virtual void construct(const char * pszAppId);
 
-#ifndef METROWIN
+//#ifndef METROWIN
       virtual ::aura::ipi * create_ipi();
-#endif
+//#endif
 
       virtual bool process_initialize();
 
