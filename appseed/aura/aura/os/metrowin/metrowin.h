@@ -38,7 +38,7 @@ CLASS_DECL_AURA UINT   get_main_thread_id();
 CLASS_DECL_AURA void attach_thread_input_to_main_thread(int_bool bAttach);
 
 
-CLASS_DECL_AURA DWORD WINAPI WaitForSingleObject( _In_ HANDLE hHandle, _In_ DWORD dwMilliseconds );
+//CLASS_DECL_AURA DWORD WINAPI WaitForSingleObject( _In_ HANDLE hHandle, _In_ DWORD dwMilliseconds );
 
 BEGIN_EXTERN_C
 

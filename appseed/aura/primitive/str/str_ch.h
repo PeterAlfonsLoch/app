@@ -28,7 +28,7 @@
 
 extern CLASS_DECL_AURA const char trailingBytesForUTF8[256];
 
-#define ch_uni_len(c) (trailingBytesForUTF8[(uchar)c] + 1)
+#define ch_uni_len(c) (trailingBytesForUTF8[(byte)c] + 1)
 #define str_uni_len(pszUtf8) (ch_uni_len(*(pszUtf8)))
 
 
@@ -94,7 +94,7 @@ namespace str
       //    2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2, 3,3,3,3,3,3,3,3,4,4,4,4,5,5,5,5
       //};
       // return UTF8 Extra Bytes based on supplied First Char
-      inline char utf8_e(uchar c)
+      inline char utf8_e(byte c)
       {
          if(c < 192)
             return 0;
@@ -124,7 +124,7 @@ namespace str
 
       inline int64_t uni_index_len(const char * pszUtf8,strsize & len)
       {
-         if(((uchar) *pszUtf8) < 192)
+         if(((byte) *pszUtf8) < 192)
          {
             len = 1;
             return *pszUtf8;
@@ -137,7 +137,7 @@ namespace str
 
       inline int64_t uni_index(const char * pszUtf8)
       {
-         if(((uchar) *pszUtf8) < 192)
+         if(((byte) *pszUtf8) < 192)
          {
             return *pszUtf8;
          }
@@ -150,9 +150,9 @@ namespace str
 
       inline  int64_t _uni_index(const char * pszUtf8)
       {
-         uchar * source = (uchar *) pszUtf8;
+         byte * source = (byte *) pszUtf8;
          int64_t ch = 0;
-         uchar c;
+         byte c;
          int len = 0;
          char extraBytesToRead = utf8_e(*source);
          if(*source == '\0') return -1;
@@ -183,9 +183,9 @@ namespace str
 
       int64_t _uni_index_len(const char * pszUtf8,strsize & len)
       {
-         uchar * source = (uchar *)pszUtf8;
+         byte * source = (byte *)pszUtf8;
          int64_t ch = 0;
-         uchar c;
+         byte c;
          char extraBytesToRead = utf8_e(*source);
          len = 0;
          if(*source == '\0') return 0;

@@ -4,27 +4,6 @@
     <Filter Include="Assembler Files">
       <UniqueIdentifier>{abd19195-2c17-4ee2-9fe8-3df7c368aad4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Assembler Files\aes">
-      <UniqueIdentifier>{a16e096a-5fdd-430d-80f9-1318381c9808}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Assembler Files\rc4">
-      <UniqueIdentifier>{fecb8529-3ca1-4eef-82aa-6fd90651da58}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Assembler Files\md5">
-      <UniqueIdentifier>{4bf73c66-52c5-4e21-a6af-d42d91c598cc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Assembler Files\camellia">
-      <UniqueIdentifier>{1c080206-c822-48b1-8cc0-9b15dad40bd5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Assembler Files\bn">
-      <UniqueIdentifier>{1090766a-77ce-4181-8d29-e831724d3b65}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Assembler Files\sha">
-      <UniqueIdentifier>{1bc942c4-c40e-4b42-a9d6-ad3e278232b5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Assembler Files\whrlpool">
-      <UniqueIdentifier>{955bef97-0ed5-4ae3-92da-f689f0025b20}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files">
       <UniqueIdentifier>{629535f7-6bee-4879-b0f9-435d2b8f92d9}</UniqueIdentifier>
     </Filter>
@@ -223,55 +202,88 @@
     <Filter Include="Source Files\engines\ccgost">
       <UniqueIdentifier>{82e2ca1d-3b2c-4eec-bd4e-82c7d996090b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Assembler Files\x64">
+      <UniqueIdentifier>{97e3adc0-7b23-43b6-830e-074809ece935}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assembler Files\x64\md5">
+      <UniqueIdentifier>{4bf73c66-52c5-4e21-a6af-d42d91c598cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assembler Files\x64\aes">
+      <UniqueIdentifier>{a16e096a-5fdd-430d-80f9-1318381c9808}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assembler Files\x64\bn">
+      <UniqueIdentifier>{1090766a-77ce-4181-8d29-e831724d3b65}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assembler Files\x64\camellia">
+      <UniqueIdentifier>{1c080206-c822-48b1-8cc0-9b15dad40bd5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assembler Files\x64\rc4">
+      <UniqueIdentifier>{fecb8529-3ca1-4eef-82aa-6fd90651da58}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assembler Files\x64\sha">
+      <UniqueIdentifier>{1bc942c4-c40e-4b42-a9d6-ad3e278232b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assembler Files\x64\whrlpool">
+      <UniqueIdentifier>{955bef97-0ed5-4ae3-92da-f689f0025b20}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assembler Files\x86">
+      <UniqueIdentifier>{08453534-5bb9-43af-8340-2b9a765f923e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assembler Files\x86\aes">
+      <UniqueIdentifier>{1a4d5fe5-c59e-4133-810f-a7b1d444ee5b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assembler Files\x86\rc4">
+      <UniqueIdentifier>{b108e6b5-53c5-4a4d-bfef-dcfff5b20ee4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="asm\x64-win32-masm\x86_64cpuid.asm">
-      <Filter>Assembler Files</Filter>
-    </None>
-    <None Include="asm\x86-win32-masm\rc4\rc4-586.asm">
-      <Filter>Assembler Files</Filter>
-    </None>
     <None Include="asm\x64-win32-masm\aes\aes-x86_64.asm">
-      <Filter>Assembler Files\aes</Filter>
+      <Filter>Assembler Files\x64\aes</Filter>
     </None>
     <None Include="asm\x64-win32-masm\aes\aesni-sha1-x86_64.asm">
-      <Filter>Assembler Files\aes</Filter>
+      <Filter>Assembler Files\x64\aes</Filter>
     </None>
     <None Include="asm\x64-win32-masm\aes\aesni-x86_64.asm">
-      <Filter>Assembler Files\aes</Filter>
+      <Filter>Assembler Files\x64\aes</Filter>
     </None>
     <None Include="asm\x64-win32-masm\rc4\rc4-md5-x86_64.asm">
-      <Filter>Assembler Files\rc4</Filter>
+      <Filter>Assembler Files\x64\rc4</Filter>
     </None>
     <None Include="asm\x64-win32-masm\rc4\rc4-x86_64.asm">
-      <Filter>Assembler Files\rc4</Filter>
+      <Filter>Assembler Files\x64\rc4</Filter>
     </None>
     <None Include="asm\x64-win32-masm\md5\md5-x86_64.asm">
-      <Filter>Assembler Files\md5</Filter>
+      <Filter>Assembler Files\x64\md5</Filter>
     </None>
     <None Include="asm\x64-win32-masm\camellia\cmll-x86_64.asm">
-      <Filter>Assembler Files\camellia</Filter>
+      <Filter>Assembler Files\x64\camellia</Filter>
     </None>
     <None Include="asm\x64-win32-masm\bn\modexp512-x86_64.asm">
-      <Filter>Assembler Files\bn</Filter>
+      <Filter>Assembler Files\x64\bn</Filter>
     </None>
     <None Include="asm\x64-win32-masm\bn\x86_64-mont.asm">
-      <Filter>Assembler Files\bn</Filter>
+      <Filter>Assembler Files\x64\bn</Filter>
     </None>
     <None Include="asm\x64-win32-masm\sha\sha1-x86_64.asm">
-      <Filter>Assembler Files\sha</Filter>
+      <Filter>Assembler Files\x64\sha</Filter>
     </None>
     <None Include="asm\x64-win32-masm\sha\sha512-x86_64.asm">
-      <Filter>Assembler Files\sha</Filter>
+      <Filter>Assembler Files\x64\sha</Filter>
     </None>
     <None Include="asm\x64-win32-masm\whrlpool\wp-x86_64.asm">
-      <Filter>Assembler Files\whrlpool</Filter>
+      <Filter>Assembler Files\x64\whrlpool</Filter>
     </None>
     <None Include="crypto\bn\asm\modexp512-x86_64-masm.asm">
       <Filter>Source Files\crypto\bn\asm</Filter>
     </None>
     <None Include="axiscrypto.def">
       <Filter>Source Files</Filter>
+    </None>
+    <None Include="asm\x64-win32-masm\x86_64cpuid.asm">
+      <Filter>Assembler Files\x64</Filter>
+    </None>
+    <None Include="asm\x86-win32-masm\rc4\rc4-586.asm">
+      <Filter>Assembler Files\x86\rc4</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -2659,5 +2671,13 @@
     <ClCompile Include="crypto\bio\_bio.c">
       <Filter>Source Files\crypto\bio</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="asm\x86-win32-masm\aes\aes-586.asm">
+      <Filter>Assembler Files\x86\aes</Filter>
+    </CustomBuild>
+    <CustomBuild Include="asm\x86-win32-masm\aes\aesni-x86.asm">
+      <Filter>Assembler Files\x86\aes</Filter>
+    </CustomBuild>
   </ItemGroup>
 </Project>

@@ -144,7 +144,7 @@ namespace str
    string CLASS_DECL_AURA if_null(const char * psz, const char * pszIfNull = NULL);
 
 
-   FORCEINLINE  const char * __utf8_inc(const char * psz) { return psz + 1 + trailingBytesForUTF8[(uchar) *psz]; }
+   FORCEINLINE  const char * __utf8_inc(const char * psz) { return psz + 1 + trailingBytesForUTF8[(byte) *psz]; }
 
    static_inline e_err           err() { return g_eerr; }
    static_inline void            set_err(e_err eerr){ g_eerr = eerr; }
@@ -287,7 +287,7 @@ namespace str
 
    CLASS_DECL_AURA void format(string_format * pformat,char const &  i);
 
-   CLASS_DECL_AURA void format(string_format * pformat,uchar const &  i);
+   CLASS_DECL_AURA void format(string_format * pformat,byte const &  i);
 
    CLASS_DECL_AURA void format(string_format * pformat,int16_t const &  i);
 
@@ -309,7 +309,7 @@ namespace str
 
    CLASS_DECL_AURA void format(string_format * pformat,const void * const & p);
 
-   CLASS_DECL_AURA void format(string_format * pformat,uchar * const & p);
+   CLASS_DECL_AURA void format(string_format * pformat,byte * const & p);
 
    CLASS_DECL_AURA void format(string_format * pformat,const char * const & psz);
 

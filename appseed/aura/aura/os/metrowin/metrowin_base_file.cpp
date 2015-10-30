@@ -248,7 +248,7 @@ int_bool file_copy_dup(const char * pszNew,const char * pszSrc,int_bool bOverwri
 
 
 /*
-handle create_file(const char * lpcszFileName,dword dwDesiredAccess,dword dwShareMode,LPSECURITY_ATTRIBUTES lpSA,dword dwCreationDisposition,dword dwFlagsAndAttributes,HANDLE hTemplateFile)
+handle create_file(const char * lpcszFileName,DWORD dwDesiredAccess,DWORD dwShareMode,LPSECURITY_ATTRIBUTES lpSA,DWORD dwCreationDisposition,DWORD dwFlagsAndAttributes,HANDLE hTemplateFile)
 {
 
    return CreateFileW(wstring(lpcszFileName),dwDesiredAccess,dwShareMode,lpSA,dwCreationDisposition,dwFlagsAndAttributes,hTemplateFile);
@@ -1939,7 +1939,7 @@ return TRUE;
 
 */
 
-HANDLE create_file(const char * lpcszFileName,dword dwDesiredAcces,dword dwShareMode,LPSECURITY_ATTRIBUTES lpSA,dword dwCreationDisposition,dword dwFlagsAndAttributes,HANDLE hTemplateFile)
+HANDLE create_file(const char * lpcszFileName,DWORD dwDesiredAcces,DWORD dwShareMode,LPSECURITY_ATTRIBUTES lpSA,DWORD dwCreationDisposition,DWORD dwFlagsAndAttributes,HANDLE hTemplateFile)
 {
 
    CREATEFILE2_EXTENDED_PARAMETERS ps;
@@ -1974,7 +1974,7 @@ int_bool close_handle(handle h)
 }
 
 
-::Windows::Storage::StorageFile ^ get_os_file(const char * lpcszFileName,dword dwDesiredAcces,dword dwShareMode,LPSECURITY_ATTRIBUTES lpSA,dword dwCreationDisposition,dword dwFlagsAndAttributes,HANDLE hTemplateFile)
+::Windows::Storage::StorageFile ^ get_os_file(const char * lpcszFileName,DWORD dwDesiredAcces,DWORD dwShareMode,LPSECURITY_ATTRIBUTES lpSA,DWORD dwCreationDisposition,DWORD dwFlagsAndAttributes,HANDLE hTemplateFile)
 {
 
    /*

@@ -317,6 +317,8 @@ public:
    var & operator = (uint32_t * pui);
 #ifdef WINDOWS
    var & operator = (LPDWORD pui);
+   var & operator = (LONG pui);
+   var & operator = (DWORD dw);
 #endif
    var & operator = (int64_t i);
    var & operator = (int64_t * pi);

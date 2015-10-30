@@ -40,7 +40,21 @@
     <None Include="asm\x64-win32-masm\sha\sha512-x86_64.asm" />
     <None Include="asm\x64-win32-masm\whrlpool\wp-x86_64.asm" />
     <None Include="asm\x64-win32-masm\x86_64cpuid.asm" />
-    <None Include="asm\x86-win32-masm\rc4\rc4-586.asm" />
+    <CustomBuild Include="asm\x86-win32-masm\aes\aes-586.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">ml /safeseh /coff /Zi /Fo"$(IntDir)%(Filename).obj" /c /Fl"$(IntDir)%(Filename).lst" "%(FullPath)"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)%(Filename).obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="asm\x86-win32-masm\aes\aesni-x86.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">ml /safeseh /coff /Zi /Fo"$(IntDir)%(Filename).obj" /c /Fl"$(IntDir)%(Filename).lst" "%(FullPath)"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)%(Filename).obj</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="asm\x86-win32-masm\rc4\rc4-586.asm">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">ml /safeseh /coff /Zi /Fo"$(IntDir)%(Filename).obj" /c /Fl"$(IntDir)%(Filename).lst" "%(FullPath)"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)%(Filename).obj</Outputs>
+    </CustomBuild>
     <None Include="axiscrypto.def" />
     <None Include="crypto\bn\asm\modexp512-x86_64-masm.asm" />
   </ItemGroup>
@@ -194,10 +208,8 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="crypto\aes\aes_misc.c">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
     </ClCompile>
@@ -5633,7 +5645,7 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <CompileAsWinRT>false</CompileAsWinRT>
-      <PreprocessorDefinitions>METROWIN;OPENSSL_NO_ASM;USE_SOCKETS;OPENSSL_NO_CAPIENG;NOCRYPT;OPENSSL_USING_WINDOWS_DEFINITION_FILE;NO_WINDOWS_BRAINDEATH;OPENSSL_SYSNAME_WIN32;_CRT_SECURE_NO_WARNINGS; _WINSOCK_DEPRECATED_NO_WARNINGS;OPENSSL_BUILD_SHLIBCRYPTO;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>METROWIN;USE_SOCKETS;OPENSSL_NO_CAPIENG;NOCRYPT;OPENSSL_USING_WINDOWS_DEFINITION_FILE;NO_WINDOWS_BRAINDEATH;OPENSSL_SYSNAME_WIN32;_CRT_SECURE_NO_WARNINGS; _WINSOCK_DEPRECATED_NO_WARNINGS;OPENSSL_BUILD_SHLIBCRYPTO;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include/;.;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/axis;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../../app/axis/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../nodeapp/thirdparty/include;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(ProjectDir)../../axis/freetype/include;$(SolutionDir)../../../include;$(SolutionDir)../../../app/include/;.;$(SolutionDir)../../../;$(SolutionDir)../../../app/base/include/;crypto;crypto/asn1;crypto/evp;crypto/modes</AdditionalIncludeDirectories>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>

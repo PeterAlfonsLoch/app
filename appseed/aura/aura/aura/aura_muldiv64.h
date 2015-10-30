@@ -33,7 +33,7 @@ CLASS_DECL_AURA int64_t _stdcall muldiv64(int64_t operant, int64_t multiplier, i
  *     Xscaled = (Xstart * Multiplier) SHR rshift
  * Uses 128 bit intermediate result
  */
-CLASS_DECL_AURA int64_t _stdcall mulshr64(int64_t operant, int64_t multiplier, uchar rshift);
+CLASS_DECL_AURA int64_t _stdcall mulshr64(int64_t operant, int64_t multiplier, byte rshift);
 
 
 CLASS_DECL_AURA void mul64(uint64_t v1, uint64_t v2, uint64_t & hi, uint64_t & lo);

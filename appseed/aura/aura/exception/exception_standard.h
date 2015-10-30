@@ -99,7 +99,7 @@ public:
 
       debug_print(":standard");
 
-      _ASSERTE(ppointers != 0);
+      //_ASSERTE(ppointers != 0);
 
    }
 

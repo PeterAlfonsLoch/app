@@ -478,6 +478,23 @@ class var & var::operator = (uint32_t ui)
    return *this;
 }
 
+
+class var & var::operator = (LONG l)
+{
+   set_type(type_int32,false);
+   m_i32 = l;
+   return *this;
+}
+
+
+class var & var::operator = (DWORD dw)
+{
+   set_type(type_uint32,false);
+   m_ui32 = dw;
+   return *this;
+}
+
+
 class var & var::operator = (float f)
 {
    set_type(type_float, false);

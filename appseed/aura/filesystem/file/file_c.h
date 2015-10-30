@@ -48,7 +48,7 @@ CLASS_DECL_AURA int_bool file_copy_dup(const char * pszDup, const char * pszSrc,
 
 typedef HANDLE handle;
 
-CLASS_DECL_AURA handle create_file(const char * lpcszFileName, dword dwDesiredAcces, dword dwShareMode, LPSECURITY_ATTRIBUTES lpSA, dword dwCreationDisposition, dword dwFlagsAndAttributes, HANDLE hTemplateFile);
+CLASS_DECL_AURA handle create_file(const char * lpcszFileName, DWORD dwDesiredAcces, DWORD dwShareMode, LPSECURITY_ATTRIBUTES lpSA, DWORD dwCreationDisposition, DWORD dwFlagsAndAttributes, HANDLE hTemplateFile);
 CLASS_DECL_AURA int_bool close_handle(handle h);
 
 
@@ -187,7 +187,7 @@ CLASS_DECL_AURA int_bool file_copy_dup(const char * pszDup, const char * pszSrc,
 
 //typedef HANDLE handle;
 
-CLASS_DECL_AURA handle create_file(const char * lpcszFileName, dword dwDesiredAcces, dword dwShareMode, LPSECURITY_ATTRIBUTES lpSA, dword dwCreationDisposition, dword dwFlagsAndAttributes, HANDLE hTemplateFile);
+CLASS_DECL_AURA handle create_file(const char * lpcszFileName, DWORD dwDesiredAcces, DWORD dwShareMode, LPSECURITY_ATTRIBUTES lpSA, DWORD dwCreationDisposition, DWORD dwFlagsAndAttributes, HANDLE hTemplateFile);
 CLASS_DECL_AURA int_bool close_handle(handle h);
 
 

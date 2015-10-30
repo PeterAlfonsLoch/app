@@ -1,7 +1,6 @@
 #include "framework.h"
 //#include "base/user/user.h"
 //#include "metrowin.h"
-#include <DirectXMath.h>
 
 
 CLASS_DECL_BASE int g_iMouse;
@@ -13,7 +12,6 @@ using namespace Platform;
 using namespace Microsoft::WRL;
 using namespace Windows::Foundation;
 using namespace Windows::UI::Core;
-using namespace DirectX;
 using namespace Windows::ApplicationModel;
 using namespace Windows::ApplicationModel::Core;
 using namespace Windows::ApplicationModel::Activation;

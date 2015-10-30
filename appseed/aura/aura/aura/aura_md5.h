@@ -20,9 +20,6 @@ namespace aura
    {
    public:
 
-      typedef unsigned       int uint4;
-      typedef unsigned short int uint2;
-      typedef unsigned      char uchar;
 
       typedef struct
       {
