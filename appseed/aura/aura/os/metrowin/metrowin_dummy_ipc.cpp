@@ -1,17 +1,22 @@
 
 
+
 extern LPFN_ChangeWindowMessageFilter g_pfnChangeWindowMessageFilter;
+
 
 namespace aura
 {
 
+
    namespace ipc
    {
 
-      base::base()
+
+      base::base(::aura::application * papp) :
+         object(papp)
       {
 
-//         m_oswindow = NULL;
+         m_iSerial = 1;
 
       }
 
@@ -31,53 +36,38 @@ namespace aura
       }
 
 
+      tx::tx(::aura::application * papp):
+         object(papp),
+         base(papp)
+      {
+
+
+      }
+
+
+      tx::~tx()
+      {
+
+
+      }
+
+
       bool tx::open(const char * pszKey,launcher * plauncher)
       {
 
-         //if(m_oswindow != NULL)
-         //   close();
+         m_strBaseChannel = "core\\appdata\\ipi\\" + string(pszKey);
 
+         if(m_strBaseChannel.is_empty())
+         {
 
-         //int jCount = 23;
-         //int iCount;
+            return false;
 
-         //if(plauncher != NULL)
-         //   iCount = plauncher->m_iStart + 1;
-         //else
-         //   iCount = 2;
+         }
 
-         //m_oswindow = NULL;
-
-         //for(int i = 0; i < iCount; i++)
-         //{
-         //   for(int j = 0; j < jCount; j++)
-         //   {
-         //      m_oswindow = ::FindWindow(NULL,pszKey);
-         //      if(m_oswindow != NULL)
-         //         break;
-         //      //         m_oswindow = FindDesktopWindow(pszKey);
-         //      //       if(m_oswindow != NULL)
-         //      //        break;
-         //      if(i <= 0)
-         //      {
-         //         break;
-         //      }
-         //      Sleep(1000);
-         //   }
-         //   if(m_oswindow != NULL)
-         //      break;
-         //   if(plauncher != NULL)
-         //   {
-         //      if(plauncher->m_iStart <= 0)
-         //         return false;
-         //      plauncher->start();
-         //      plauncher->m_iStart--;
-         //   }
-         //}
-         //m_strBaseChannel = pszKey;
          return true;
 
       }
+
 
       bool tx::close()
       {
@@ -97,85 +87,28 @@ namespace aura
       bool tx::send(const char * pszMessage,unsigned int dwTimeout)
       {
 
-         //if(!is_tx_ok())
-         //   return false;
+         ::Windows::Storage::StorageFolder ^ folder = ::Windows::Storage::KnownFolders::DocumentsLibrary;
+         
+         ::Windows::Storage::StorageFolder ^ folderTopic = ::wait(folder->CreateFolderAsync(wstring(m_strBaseChannel),::Windows::Storage::CreationCollisionOption::OpenIfExists));
 
-         //COPYDATASTRUCT cds;
+         ::Windows::Storage::StorageFile ^ file = ::wait(folderTopic->CreateFileAsync(wstring("core.topic"),::Windows::Storage::CreationCollisionOption::OpenIfExists));
 
-         //cds.dwData = 0x80000000;
-         //cds.cbData = (unsigned int)strlen(pszMessage);
-         //cds.lpData = (void *)pszMessage;
+         string strMessage;
 
-         //if(dwTimeout == INFINITE)
-         //{
+         strMessage = pszMessage;
 
-         //   SendMessage(m_oswindow,WM_COPYDATA,(WPARAM)0,(LPARAM)&cds);
+         strMessage += "\n";
 
-         //}
-         //else
-         //{
-
-         //   DWORD_PTR dwptr;
-
-         //   if(!::SendMessageTimeout(m_oswindow,WM_COPYDATA,(WPARAM)0,(LPARAM)&cds,SMTO_BLOCK,dwTimeout,&dwptr))
-         //      return false;
-
-         //   unsigned int dwError = ::GetLastError();
-
-         //   if(dwError == ERROR_TIMEOUT)
-         //      return false;
-
-         //}
-
+         ::wait(::Windows::Storage::FileIO::AppendTextAsync(file,wstring(strMessage)));
+         
          return true;
+
       }
+
 
       bool tx::send(int message,void * pdata,int len,unsigned int dwTimeout)
       {
 
-         //if(message == 0x80000000)
-         //   return false;
-
-         //if(!is_tx_ok())
-         //   return false;
-
-         //COPYDATASTRUCT cds;
-
-         //cds.dwData = (unsigned int)message;
-         //cds.cbData = (unsigned int)MAX(0,len);
-         //cds.lpData = (void *)pdata;
-
-         //if(dwTimeout == INFINITE)
-         //{
-
-         //   if(message >= WM_APP)
-         //   {
-
-         //      SendMessage(m_oswindow,message,0,0);
-
-         //   }
-         //   else
-         //   {
-
-         //      SendMessage(m_oswindow,WM_COPYDATA,(WPARAM)0,(LPARAM)&cds);
-
-         //   }
-
-         //}
-         //else
-         //{
-
-         //   DWORD_PTR dwptr;
-
-         //   if(!::SendMessageTimeout(m_oswindow,WM_COPYDATA,(WPARAM)0,(LPARAM)&cds,SMTO_BLOCK,dwTimeout,&dwptr))
-         //      return false;
-
-         //   unsigned int dwError = ::GetLastError();
-
-         //   if(dwError == ERROR_TIMEOUT)
-         //      return false;
-
-         //}
 
          return true;
 
@@ -187,17 +120,35 @@ namespace aura
       {
 
 //         return ::IsWindow(m_oswindow) != FALSE;
-         return true;
+         return m_strBaseChannel.has_char();
 
       }
 
 
+      class rx_private
+      {
+      public:
+
+         
+         ::Windows::Storage::StorageFolder ^                      folder;
+         ::Windows::Storage::StorageFolder ^                      folderTopic;
+         ::Windows::Storage::Search::StorageFileQueryResult ^     result;
 
 
-      rx::rx()
+      };
+
+      
+
+
+
+
+      rx::rx(::aura::application * papp) :
+         object(papp),
+         base(papp)
       {
 
          m_preceiver    = NULL;
+
 
       }
 
@@ -208,7 +159,7 @@ namespace aura
       }
 
 
-      bool rx::create(const char * pszKey,const char * pszWindowProcModule)
+      bool rx::create(const char * pszKey)
       {
 
 
@@ -216,6 +167,73 @@ namespace aura
          {
             g_pfnChangeWindowMessageFilter(WM_COPYDATA,MSGFLT_ADD);
          }
+
+         m_strBaseChannel = "core\\appdata\\ipi\\" + string(pszKey);
+
+         if(m_strBaseChannel.is_empty())
+         {
+
+            return false;
+
+         }
+
+         m_pp = new rx_private;
+
+         m_pp->folder = ::Windows::Storage::KnownFolders::DocumentsLibrary;
+
+         m_pp->folderTopic = ::wait(m_pp->folder->CreateFolderAsync(wstring(m_strBaseChannel),::Windows::Storage::CreationCollisionOption::OpenIfExists));
+
+         ::Windows::Storage::StorageFile ^ f = ::wait(m_pp->folderTopic->GetFileAsync(wstring("core.topic")));
+
+         if(f != nullptr)
+         {
+
+            ::wait(f->DeleteAsync());
+
+         }
+
+
+         //::Windows::Storage::Search::QueryOptions ^ options = ref new ::Windows::Storage::Search::QueryOptions();
+
+         //options->FileTypeFilter->Append(wstring(".topic"));
+         
+         //::Windows::Storage::Search::StorageFileQueryResult  ^ result = m_pp->folderTopic->CreateFileQueryWithOptions(options);
+
+         m_pp->result = m_pp->folderTopic->CreateFileQuery();
+
+         m_pp->result->ContentsChanged += ref new TypedEventHandler < ::Windows::Storage::Search::IStorageQueryResultBase ^,Object ^ >([this](::Windows::Storage::Search::IStorageQueryResultBase ^ result,Object ^ o)
+         {
+
+            ::Windows::Storage::StorageFile ^ f = ::wait(result->Folder->GetFileAsync(wstring("core.topic")));
+
+            if(f != nullptr)
+            {
+
+               string str(::wait(::Windows::Storage::FileIO::ReadTextAsync(f)));
+
+               ::wait(f->DeleteAsync());
+
+               stringa stra;
+
+               stra.add_lines(str);
+
+               for(auto & strLine : stra)
+               {
+
+                  ::fork(get_app(),[=]()
+                  {
+
+                     on_receive(this,strLine);
+
+                  });
+
+               }
+
+            }
+
+         });
+         
+         ::wait(m_pp->result->GetFilesAsync());
 
          //HINSTANCE hinstance = ::GetModuleHandleA(pszWindowProcModule);
 
@@ -244,15 +262,12 @@ namespace aura
       bool rx::destroy()
       {
 
-         //if(m_oswindow != NULL)
-         //{
-         //   ::DestroyWindow(m_oswindow);
-         //   m_oswindow = NULL;
-         //}
+         ::aura::del(m_pp);
 
          return true;
 
       }
+
 
       void rx::receiver::on_receive(rx * prx,const char * pszMessage)
       {

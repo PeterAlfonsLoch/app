@@ -13,7 +13,7 @@ namespace aura
 
 
       string                                 m_strApp;
-      string_map < ::aura::ipc::tx >         m_txmap;
+      string_map < sp(::aura::ipc::tx) >     m_txmap;
       ::aura::ipc::rx                        m_rx;
 
       ipi(::aura::application * papp,const string & strApp);

@@ -9,8 +9,11 @@ namespace aura
    {
 
 
-
-      ipc::ipc()
+      ipc::ipc(::aura::application * papp) :
+         object(papp),
+         base(papp),
+         tx(papp),
+         m_rx(papp)
       {
 
          m_dwTimeout = (5000) * 11;
@@ -18,7 +21,11 @@ namespace aura
       }
 
 
+      ipc::~ipc()
+      {
 
+
+      }
 
 
       bool ipc::close()

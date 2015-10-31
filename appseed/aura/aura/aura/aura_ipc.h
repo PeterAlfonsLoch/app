@@ -19,12 +19,16 @@ namespace aura
    {
 
 
-      class CLASS_DECL_AURA base
+      class CLASS_DECL_AURA base :
+         virtual public object
       {
       public:
 
+#ifdef METROWIN
 
-#ifdef WINDOWSEX
+         int32_t              m_iSerial;
+
+#elif defined(WINDOWSEX)
 
 
          oswindow             m_oswindow;
@@ -60,7 +64,7 @@ namespace aura
          string   m_strBaseChannel;
 
 
-         base();
+         base(::aura::application * papp);
          virtual ~base();
 
 
@@ -73,6 +77,11 @@ namespace aura
          virtual public  base
       {
       public:
+
+
+         tx(::aura::application * papp);
+         virtual ~tx();
+
 
 
          bool open(const char * pszChannel,launcher * plauncher = NULL);
@@ -88,6 +97,7 @@ namespace aura
       };
 
 
+      class rx_private;
 
 
       class CLASS_DECL_AURA rx:
@@ -95,6 +105,7 @@ namespace aura
       {
       public:
 
+      
          class CLASS_DECL_AURA receiver
          {
          public:
@@ -106,25 +117,26 @@ namespace aura
          };
 
          receiver *        m_preceiver;
+         rx_private *         m_pp;
 
+         /*
 #ifdef WINDOWSEX
          string          m_strWindowProcModule;
-#elif !defined(METROWIN)
+#elif defined(METROWIN)
+
+
+#elif
          bool              m_bRunning;
          bool              m_bRun;
          pthread_t            m_thread;
-#endif
+#endif*/
 
 
-         rx();
+         rx(::aura::application * papp);
          virtual ~rx();
 
 
-#ifdef WINDOWS
-         bool create(const char * pszChannel,const char * pszWindowProcModule);
-#else
          bool create(const char * pszChannel);
-#endif
          bool destroy();
 
 
@@ -135,9 +147,10 @@ namespace aura
 
          virtual bool on_idle();
 
+
 #ifdef WINDOWSEX
-         ATOM register_class(HINSTANCE hInstance);
-         static LRESULT CALLBACK s_message_queue_proc(oswindow oswindow,UINT message,WPARAM wParam,LPARAM lParam);
+         //ATOM register_class(HINSTANCE hInstance);
+         //static LRESULT CALLBACK s_message_queue_proc(oswindow oswindow,UINT message,WPARAM wParam,LPARAM lParam);
          LRESULT message_queue_proc(UINT message,WPARAM wParam,LPARAM lParam);
 #else
          bool start_receiving();
@@ -166,7 +179,8 @@ namespace aura
          unsigned int            m_dwTimeout;
 
 
-         ipc();
+         ipc(::aura::application * papp);
+         virtual ~ipc();
 
 #ifdef WINDOWS
          bool open_ab(const char * pszChannel,const char * pszModule,launcher * plauncher = NULL);
