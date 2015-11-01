@@ -13,6 +13,7 @@ enum e_stock_icon
    stock_icon_restore,
    stock_icon_zoom,
    stock_icon_notify,
+   stock_icon_transparent_frame,
    stock_icon_dock,
    // TO END - TIGHTLY ORDERED End
    stock_icon_control_box_end = stock_icon_dock

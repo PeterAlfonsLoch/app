@@ -91,6 +91,8 @@ m_dibBk(allocer()),
 m_fastblur(allocer())
 {
 
+   m_bTransparentFrame = false;
+
    m_bblur_Background = false;
    m_bCustomFrameBefore = true;
    m_bWindowFrame = true;
@@ -239,6 +241,8 @@ void simple_frame_window::_001OnCreate(signal_details * pobj)
       return;
 
    m_puserschema = Session.m_puserschema;
+
+   data_get("transparent_frame",m_bTransparentFrame);
 
 
    sp(::user::place_holder) pplaceholder = GetParent();
@@ -569,6 +573,25 @@ void simple_frame_window::WfiOnFullScreen()
    ShowControlBars(false);
 
    _001WindowFullScreen();
+
+}
+
+bool simple_frame_window::WfiToggleTransparentFrame()
+{
+
+   m_bTransparentFrame = !m_bTransparentFrame;
+
+   data_set("transparent_frame",m_bTransparentFrame);
+
+   return true;
+
+}
+
+
+bool simple_frame_window::frame_is_transparent()
+{
+
+   return m_bTransparentFrame;
 
 }
 
@@ -2226,3 +2249,5 @@ void simple_frame_window::_001OnTimer(::timer * ptimer)
    ::user::wndfrm::frame::WorkSetClientInterface::_001OnTimer(ptimer);
 
 }
+
+

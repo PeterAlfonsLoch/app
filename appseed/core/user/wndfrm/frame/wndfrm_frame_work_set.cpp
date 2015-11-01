@@ -449,6 +449,10 @@ namespace user
                case ::user::wndfrm::frame::button_down:
                   pinterface->WfiDown();
                   return TRUE;
+               case ::user::wndfrm::frame::button_transparent_frame:
+                  pinterface->WfiToggleTransparentFrame();
+                  return TRUE;
+
                case ::user::wndfrm::frame::button_notify_icon:
                   pinterface->WfiNotifyIcon();
                   return TRUE;
@@ -491,6 +495,9 @@ namespace user
                   return TRUE;
                case ::user::wndfrm::frame::button_down:
                   pinterface->WfiDown();
+                  return TRUE;
+               case ::user::wndfrm::frame::button_transparent_frame:
+                  pinterface->WfiToggleTransparentFrame();
                   return TRUE;
                case ::user::wndfrm::frame::button_dock:
                   return FALSE;

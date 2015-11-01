@@ -4188,6 +4188,10 @@ namespace draw2d
          LineTo(rect.bottom_right());
          
       }
+      else if(eicon == stock_icon_transparent_frame)
+      {
+
+      }
       else if(eicon == stock_icon_dock)
       {
          

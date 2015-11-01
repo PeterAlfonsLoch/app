@@ -34,6 +34,7 @@ class CLASS_DECL_CORE simple_frame_window :
 public:
 
 
+
    ::draw2d::dib_sp               m_dibAlpha;
    ::database::id          m_datakeyFrame;
 
@@ -51,6 +52,8 @@ public:
       //bool                          m_bSizeMove;
       //manual_reset_event            m_ev;
       //DWORD                         m_dwLastSizeMoveRequest;
+
+
 
       helper_task(simple_frame_window * pframe);
 
@@ -82,6 +85,9 @@ public:
    visual::fastblur                    m_fastblur;
 
    mapsp(id, id, ::user::toolbar)     m_toolbarmap;
+
+   bool                             m_bTransparentFrame;
+
 
 
    simple_frame_window(::aura::application * papp);
@@ -243,6 +249,14 @@ public:
    virtual void InitialUpdateFrame(::user::document * pDoc,bool bMakeVisible);
 
    virtual void _001OnTimer(::timer * ptimer);
+
+   virtual bool WfiToggleTransparentFrame() override;
+
+
+   virtual bool frame_is_transparent() override;
+
+
+
 
 };
 

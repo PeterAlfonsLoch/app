@@ -57,6 +57,7 @@ namespace user
             virtual bool WfiFullScreen();
             virtual bool WfiUp();
             virtual bool WfiDown();
+            virtual bool WfiToggleTransparentFrame();
             virtual bool WfiNotifyIcon();
 
 

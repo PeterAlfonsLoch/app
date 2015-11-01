@@ -299,6 +299,14 @@ namespace user
 
          }
 
+         bool WorkSetClientInterface::WfiToggleTransparentFrame()
+         {
+
+            return true;
+
+         }
+
+
          bool WorkSetClientInterface::WfiNotifyIcon()
          {
 

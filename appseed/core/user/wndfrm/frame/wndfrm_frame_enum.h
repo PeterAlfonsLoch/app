@@ -40,6 +40,7 @@ namespace user
             button_restore,
             button_maximize,
             button_notify_icon,
+            button_transparent_frame,
             button_dock,
             // TO END - TIGHTLY ORDERED End
             button_end = button_dock

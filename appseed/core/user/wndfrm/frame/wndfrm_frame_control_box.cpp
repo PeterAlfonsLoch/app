@@ -34,6 +34,7 @@ namespace user
                set_control_box_button_id(button_maximize, "frame::button_maximize");
                set_control_box_button_id(button_restore, "frame::button_restore");
                set_control_box_button_id(button_notify_icon, "frame::button_notify_icon");
+               set_control_box_button_id(button_transparent_frame,"frame::button_transparent_frame");
                set_control_box_button_id(button_dock,"frame::button_dock");
                m_bDrag = false;
                m_iDefaultButtonMargin = 3;
@@ -532,6 +533,25 @@ namespace user
                get_box_button(button_notify_icon)->ShowWindow(SW_HIDE);
             }
 
+            if(!has_button(button_transparent_frame))
+            {
+               get_box_button(button_transparent_frame)->ShowWindow(SW_HIDE);
+            }
+            else
+            {
+               sizeButton = get_button_size(button_transparent_frame);
+               rectMargin = get_button_margin(button_transparent_frame);
+
+               rect.top = rectMargin.top;
+               rect.bottom = sizeButton.cy + rect.top;
+               rect.right = rect.left - rectMargin.right;
+               rect.left = rect.right - sizeButton.cx;
+
+               get_box_button(button_transparent_frame)->::user::interaction::SetWindowPos(ZORDER_TOP,rect.left,rect.top,rect.width(),rect.height(),SWP_SHOWWINDOW);
+               get_box_button(button_transparent_frame)->UpdateWndRgn();
+               rect.left -= rectMargin.left;
+            }
+
             if(!has_button(button_dock))
             {
                get_box_button(button_dock)->ShowWindow(SW_HIDE);
@@ -647,6 +667,7 @@ namespace user
             create_button(button_maximize);
             create_button(button_restore);
             create_button(button_notify_icon);
+            create_button(button_transparent_frame);
             create_button(button_dock);
 
             return true;
@@ -678,6 +699,9 @@ namespace user
                break;
             case button_notify_icon:
                strCaption = (CHAR)0x69;
+               break;
+            case button_transparent_frame:
+               strCaption = (CHAR)' ';
                break;
             case button_dock:
                strCaption = (CHAR)0x6E;

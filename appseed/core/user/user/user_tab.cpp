@@ -440,6 +440,9 @@ namespace user
 
       if(get_data()->is_locked())
          return;
+
+      if(GetTopLevel()->frame_is_transparent())
+         return;
       
       if(m_puserschema == NULL)
       {

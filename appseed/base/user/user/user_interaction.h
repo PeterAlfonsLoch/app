@@ -615,6 +615,7 @@ namespace user
       virtual bool WfiUp();
       virtual bool WfiDown();
       virtual bool WfiNotifyIcon();
+      virtual bool WfiToggleTransparentFrame();
 
       virtual bool WfiIsMoving();
       virtual bool WfiIsSizing();
@@ -742,6 +743,8 @@ namespace user
       virtual bool layout_tooltip(bool bForceShow = false);
 
       virtual bool hide_tooltip();
+
+      virtual bool frame_is_transparent();
 
 
    };

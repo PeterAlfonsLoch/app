@@ -1302,7 +1302,7 @@ namespace user
    void interaction::_000OnDraw(::draw2d::graphics *pdc)
    {
 
-      if(!m_bVisible)
+      if(!IsWindowVisible())
          return;
 
       _001DrawThis(pdc);
@@ -7204,6 +7204,22 @@ namespace user
       return true;
 
    }
+
+
+   bool interaction::frame_is_transparent()
+   {
+
+      return false;
+
+   }
+
+   bool interaction::WfiToggleTransparentFrame()
+   {
+
+      return false;
+
+   }
+
 
 
 } // namespace user
