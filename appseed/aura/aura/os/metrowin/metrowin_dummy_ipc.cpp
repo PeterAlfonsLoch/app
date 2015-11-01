@@ -445,6 +445,23 @@ namespace aura
 
       }
 
+      ipc::ipc(::aura::application * papp):
+         object(papp),
+         base(papp),
+         tx(papp),
+         m_rx(papp)
+      {
+
+         m_dwTimeout = (5000) * 11;
+
+      }
+
+
+      ipc::~ipc()
+      {
+
+
+      }
 
       bool ipc::open_ab(const char * pszKey,const char * pszModule,launcher * plauncher)
       {

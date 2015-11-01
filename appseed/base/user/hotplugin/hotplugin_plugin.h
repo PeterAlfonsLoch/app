@@ -13,9 +13,9 @@ namespace hotplugin
       virtual public ::simple_ui::style,
       virtual public ::simple_ui::interaction,
       virtual public ::axis::session
-#ifndef METROWIN
+//#ifndef METROWIN
       , virtual public ::aura::ipc::ipc
-#endif
+//#endif
    {
    public:
 

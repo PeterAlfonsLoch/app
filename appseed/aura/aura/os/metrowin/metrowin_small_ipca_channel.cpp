@@ -390,6 +390,8 @@ namespace aura
       }
 
 
+
+
       bool ipc::open_ab(const char * pszChannel,const char * pszModule,launcher * plauncher)
       {
 
