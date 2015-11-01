@@ -55,7 +55,7 @@ namespace aura
 
          ::aura::app_launcher launcher(strApp);
 
-         return m_txmap[strApp].open(key(strApp),&launcher);
+         return m_txmap[strApp]->open(key(strApp),&launcher);
 
       }
       else 

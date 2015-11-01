@@ -3577,6 +3577,18 @@
     <ClCompile Include="aura\aura\aura_md5.cpp">
       <Filter>Source Files\aura\aura</Filter>
     </ClCompile>
+    <ClCompile Include="aura\os\windows\windows_internal.cpp">
+      <Filter>Source Files\aura\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\windows\windows_ipc.cpp">
+      <Filter>Source Files\aura\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\windows\windows_printer.cpp">
+      <Filter>Source Files\aura\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\windows\windows_registry.cpp">
+      <Filter>Source Files\aura\os\windows</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">
@@ -3648,29 +3660,15 @@
     <None Include="aura\aura\aura_timer_event.cpp">
       <Filter>Source Files\aura\aura</Filter>
     </None>
-    <None Include="..\..\..\nodeapp\thirdparty\binary\debug\x64\vcomp140d.dll">
-      <Filter>Binary Files\Debug\x64</Filter>
-    </None>
-    <None Include="..\..\..\nodeapp\thirdparty\binary\debug\x64\vcruntime140d.dll">
-      <Filter>Binary Files\Debug\x64</Filter>
-    </None>
-    <None Include="..\..\..\nodeapp\thirdparty\binary\debug\x86\vcomp140d.dll">
-      <Filter>Binary Files\Debug\x86</Filter>
-    </None>
-    <None Include="..\..\..\nodeapp\thirdparty\binary\debug\x86\vcruntime140d.dll">
-      <Filter>Binary Files\Debug\x86</Filter>
-    </None>
-    <None Include="..\..\..\nodeapp\thirdparty\binary\release\x64\vcomp140.dll">
-      <Filter>Binary Files\Release\x64</Filter>
-    </None>
-    <None Include="..\..\..\nodeapp\thirdparty\binary\release\x64\vcruntime140.dll">
-      <Filter>Binary Files\Release\x64</Filter>
-    </None>
-    <None Include="..\..\..\nodeapp\thirdparty\binary\release\x86\vcomp140.dll">
-      <Filter>Binary Files\Release\x86</Filter>
-    </None>
-    <None Include="..\..\..\nodeapp\thirdparty\binary\release\x86\vcruntime140.dll">
-      <Filter>Binary Files\Release\x86</Filter>
-    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\debug\x64\vcomp140d.dll" />
+    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\debug\x64\vcruntime140d.dll" />
+    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\debug\x86\vcomp140d.dll" />
+    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\debug\x86\vcruntime140d.dll" />
+    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\release\x64\vcomp140.dll" />
+    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\release\x64\vcruntime140.dll" />
+    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\release\x86\vcomp140.dll" />
+    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\release\x86\vcruntime140.dll" />
   </ItemGroup>
 </Project>

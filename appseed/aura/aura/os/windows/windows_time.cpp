@@ -13,18 +13,10 @@ CLASS_DECL_AURA int_bool get_file_time(HANDLE hFile, LPFILETIME lpCreationTime, 
 }
 
 
-dword get_tick_count()
+DWORD get_tick_count()
 {
 
-#ifdef METROWIN
-
-   return (dword)(GetTickCount64() % 0x100000000ULL);
-
-#else
-
-   return (dword)GetTickCount();
-
-#endif
+   return GetTickCount();
 
 }
 

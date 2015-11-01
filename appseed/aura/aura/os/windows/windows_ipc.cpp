@@ -7,10 +7,17 @@ extern LPFN_ChangeWindowMessageFilter g_pfnChangeWindowMessageFilter;
 namespace aura
 {
 
+
    namespace ipc
    {
 
-      base::base()
+      
+      ATOM rx_register_class(HINSTANCE hInstance);
+      LRESULT CALLBACK s_rx_message_queue_proc(oswindow oswindow,UINT message,WPARAM wparam,LPARAM lparam);
+
+
+      base::base(::aura::application * papp) :
+         object(papp)
       {
 
          m_oswindow = NULL;
@@ -29,6 +36,20 @@ namespace aura
             m_oswindow = NULL;
 
          }
+
+      }
+
+
+      tx::tx(::aura::application * papp):
+         object(papp),
+         base(papp)
+      {
+
+      }
+
+
+      tx::~tx()
+      {
 
       }
 
@@ -195,7 +216,9 @@ namespace aura
 
 
 
-      rx::rx()
+      rx::rx(::aura::application * papp) :
+         object(papp),
+         base(papp)
       {
 
          m_preceiver    = NULL;
@@ -209,7 +232,7 @@ namespace aura
       }
 
 
-      bool rx::create(const char * pszKey,const char * pszWindowProcModule)
+      bool rx::create(const char * pszKey)
       {
 
 
@@ -218,9 +241,9 @@ namespace aura
             g_pfnChangeWindowMessageFilter(WM_COPYDATA,MSGFLT_ADD);
          }
 
-         HINSTANCE hinstance = ::GetModuleHandleA(pszWindowProcModule);
+         HINSTANCE hinstance = ::GetModuleHandleA("aura.dll");
 
-         ATOM atom = register_class(hinstance);
+         ATOM atom = rx_register_class(hinstance);
 
          m_oswindow = ::CreateWindowExA(0,"small_ipc_rx_channel_message_queue_class",pszKey,0,0,0,0,0,HWND_MESSAGE,NULL,hinstance,NULL);
 
@@ -234,11 +257,10 @@ namespace aura
 
          SetWindowLongPtr(m_oswindow,GWLP_USERDATA,(LONG_PTR) this);
 
-         m_strWindowProcModule = pszWindowProcModule;
-
-
+         //m_strWindowProcModule = pszWindowProcModule;
 
          return true;
+
       }
 
 
@@ -311,7 +333,7 @@ namespace aura
       }
 
 
-      LRESULT CALLBACK rx::s_message_queue_proc(oswindow oswindow,UINT message,WPARAM wparam,LPARAM lparam)
+      LRESULT CALLBACK s_rx_message_queue_proc(oswindow oswindow,UINT message,WPARAM wparam,LPARAM lparam)
       {
 
          int iRet = 0;
@@ -335,14 +357,14 @@ namespace aura
 
 
 
-      ATOM rx::register_class(HINSTANCE hInstance)
+      ATOM rx_register_class(HINSTANCE hInstance)
       {
          WNDCLASSEX wcex;
 
          wcex.cbSize = sizeof(WNDCLASSEX);
 
          wcex.style			   = 0;
-         wcex.lpfnWndProc	   = &rx::s_message_queue_proc;
+         wcex.lpfnWndProc	   = &s_rx_message_queue_proc;
          wcex.cbClsExtra	   = 0;
          wcex.cbWndExtra	   = 0;
          wcex.hInstance		   = hInstance;
@@ -428,6 +450,25 @@ namespace aura
       }
 
 
+      ipc::ipc(::aura::application * papp):
+         object(papp),
+         base(papp),
+         tx(papp),
+         m_rx(papp)
+      {
+
+         m_dwTimeout = (5000) * 11;
+
+      }
+
+
+      ipc::~ipc()
+      {
+
+
+      }
+
+
       bool ipc::open_ab(const char * pszKey,const char * pszModule,launcher * plauncher)
       {
 
@@ -441,7 +482,7 @@ namespace aura
          if(!::IsWindow(m_rx.m_oswindow))
          {
 
-            if(!m_rx.create(strChannelRx.c_str(),pszModule))
+            if(!m_rx.create(strChannelRx.c_str()))
             {
 
                return false;
@@ -452,7 +493,9 @@ namespace aura
 
          if(!tx::open(strChannelTx.c_str(),plauncher))
          {
+
             return false;
+
          }
 
          return true;
@@ -473,7 +516,7 @@ namespace aura
          if(!::IsWindow(m_rx.m_oswindow))
          {
 
-            if(!m_rx.create(strChannelRx.c_str(),pszModule))
+            if(!m_rx.create(strChannelRx.c_str()))
             {
 
                return false;

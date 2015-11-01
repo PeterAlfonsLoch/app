@@ -9,23 +9,23 @@ namespace aura
    {
 
 
-      ipc::ipc(::aura::application * papp) :
-         object(papp),
-         base(papp),
-         tx(papp),
-         m_rx(papp)
-      {
+      //ipc::ipc(::aura::application * papp) :
+      //   object(papp),
+      //   base(papp),
+      //   tx(papp),
+      //   m_rx(papp)
+      //{
 
-         m_dwTimeout = (5000) * 11;
+      //   m_dwTimeout = (5000) * 11;
 
-      }
-
-
-      ipc::~ipc()
-      {
+      //}
 
 
-      }
+      //ipc::~ipc()
+      //{
+
+
+      //}
 
 
       bool ipc::close()

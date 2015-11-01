@@ -69,6 +69,9 @@ namespace install
       ::aura::session(papp),
       ::axis::session(papp),
       hotplugin::plugin(papp),
+      ::aura::ipc::base(papp),
+      ::aura::ipc::tx(papp),
+      ::aura::ipc::ipc(papp),
       m_canvas(papp),
       m_startca2(papp)
    {

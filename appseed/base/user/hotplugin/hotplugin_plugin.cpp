@@ -40,7 +40,10 @@ namespace hotplugin
       ::simple_ui::style(papp),
       ::thread(papp),
       ::aura::session(papp),
-      ::axis::session(papp)
+      ::axis::session(papp),
+      ::aura::ipc::base(papp),
+      ::aura::ipc::tx(papp),
+      ::aura::ipc::ipc(papp)
    {
       
       m_dwSync = 0;

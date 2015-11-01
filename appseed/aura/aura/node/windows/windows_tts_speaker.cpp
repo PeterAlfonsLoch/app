@@ -152,7 +152,7 @@ inline bool SpGetDefaultTokenFromCategoryIdAndLang(
 
    if(SUCCEEDED(hr))
    {
-      WCHAR * pszTokenId;
+//      WCHAR * pszTokenId;
       // Declare local identifiers:
       HRESULT                           hr = S_OK;
       ::windows::comptr<IEnumSpObjectTokens>      cpSpEnumTokens;
