@@ -393,7 +393,7 @@ int xaudio_wave_out::wave_out_restart()
 }
 
 
-/*imedia::time xaudio_wave_out::GetPositionMillisForSynch()
+/*imedia_time xaudio_wave_out::GetPositionMillisForSynch()
 {
 int64_t dwMillis = GetPositionMillis();
 int64_t dwPosition = m_pprebuffer->m_position * 8;

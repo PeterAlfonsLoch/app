@@ -243,6 +243,13 @@ namespace aura
 
          HINSTANCE hinstance = ::GetModuleHandleA("aura.dll");
 
+         if(hinstance == NULL)
+         {
+
+            hinstance = ::GetModuleHandleA(NULL);
+
+         }
+
          ATOM atom = rx_register_class(hinstance);
 
          m_oswindow = ::CreateWindowExA(0,"small_ipc_rx_channel_message_queue_class",pszKey,0,0,0,0,0,HWND_MESSAGE,NULL,hinstance,NULL);
