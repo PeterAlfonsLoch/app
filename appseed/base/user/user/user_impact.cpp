@@ -133,6 +133,19 @@ namespace user
       if(pcreate->previous())
          return;
 
+      {
+
+         ::user::control_event ev;
+
+         ev.m_puie      = this;
+
+         ev.m_eevent    = ::user::event_on_create_view;
+
+         ev.m_pobj      = pobj;
+
+         BaseOnControlEvent(&ev);
+
+      }
 
       pcreate->set_lresult(0);
    }

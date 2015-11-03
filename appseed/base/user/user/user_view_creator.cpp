@@ -134,6 +134,39 @@ namespace user
       }
       try
       {
+         Application.on_create_view(pcreatordata);
+      }
+      catch(create_exception & e)
+      {
+         if(e.m_id == id)
+         {
+            delete pcreatordata;
+            return NULL;
+         }
+         throw e;
+      }
+      catch(::exit_exception & e)
+      {
+
+         throw e;
+
+      }
+      catch(::exception::exception & e)
+      {
+
+         if(!Application.on_run_exception(e))
+            throw exit_exception(get_app());
+
+      }
+      catch(...)
+      {
+      }
+      if(pcreatordata->m_pholder->m_uiptraChild.get_count() > 0)
+      {
+         return pcreatordata;
+      }
+      try
+      {
          on_create_view(pcreatordata);
       }
       catch(create_exception & e)

@@ -250,7 +250,7 @@ namespace base
 
 virtual ::user::interaction * main_window();
 
-
+      virtual void on_create_view(::user::view_creator_data * pcreatordata);
       void process_message_filter(int32_t code,signal_details * pobj);
 
       virtual bool get_frame(::user::interaction * & pui);

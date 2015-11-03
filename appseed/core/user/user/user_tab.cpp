@@ -1328,6 +1328,25 @@ namespace user
 
       restore_tabs();
 
+
+      {
+
+         ::user::control_event ev;
+
+         ev.m_puie      = this;
+
+         ev.m_ptab      = this;
+
+         ev.m_eevent    = ::user::event_on_create_tab;
+
+         ev.m_pobj      = pobj;
+
+         BaseOnControlEvent(&ev);
+
+      }
+
+
+
    }
 
 

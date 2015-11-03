@@ -1,9 +1,9 @@
 #pragma once
 
-
 namespace user
 {
 
+   class tab;
 
    enum e_event
    {
@@ -28,6 +28,8 @@ namespace user
       event_context_menu_close,
       event_set_focus,
       event_kill_focus,
+      event_on_create_view,
+      event_on_create_tab,
    };
 
 
@@ -38,6 +40,7 @@ namespace user
 
       e_event                       m_eevent;
       ::user::interaction *         m_puie;
+      ::user::tab *                 m_ptab;
       id                            m_id;
       uint32_t                      m_uiEvent;
       ::action::context             m_actioncontext;
@@ -56,6 +59,10 @@ namespace user
       control_event();
       virtual ~control_event();
 
+      impact * get_view();
+      ::user::document * get_document();
+      ::user::impact_system * get_impact_system();
+      string get_impact_matter();
 
    };
 

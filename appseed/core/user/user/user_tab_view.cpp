@@ -39,6 +39,7 @@ namespace user
 //      SCAST_PTR(::message::create, pcreate, pobj);
       if(pobj->previous())
          return;
+
    }
 
 

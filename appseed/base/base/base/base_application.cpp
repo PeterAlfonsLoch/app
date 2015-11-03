@@ -2613,6 +2613,12 @@ namespace base
 
    }
 
+   void application::on_create_view(::user::view_creator_data * pcreatordata)
+   {
+
+
+   }
+
 } // namespace base
 
 
