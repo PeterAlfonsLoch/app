@@ -980,6 +980,12 @@ namespace user
          }
 
       }
+      if(Application.BaseOnControlEvent(this,pevent))
+      {
+
+         return true;
+
+      }
 
 
       if(m_pcallback != NULL)
@@ -1211,6 +1217,14 @@ namespace user
          ::user::control_event ev;
          ev.m_eevent = ::user::event_timer;
          ev.m_uiEvent = ptimer->m_nIDEvent;
+
+         if(Application.BaseOnControlEvent(this,pevent))
+         {
+
+            return;
+
+         }
+
          m_pcallback->BaseOnControlEvent(this,&ev);
       }
       if(ptimer->m_nIDEvent == 24)

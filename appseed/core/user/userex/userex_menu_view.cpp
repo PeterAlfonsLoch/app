@@ -18,6 +18,13 @@ void menu_view::on_update(::user::impact * pSender, LPARAM lHint, object* phint)
 bool menu_view::BaseOnControlEvent(::user::control_event * pevent)
 {
 
+   if(Application.BaseOnControlEvent(this,pevent))
+   {
+
+      return true;
+
+   }
+
    if(m_pcallback != NULL)
    {
 
@@ -64,6 +71,14 @@ void menu_view::_001OnTimer(::timer * ptimer)
       ::user::control_event ev;
       ev.m_eevent = ::user::event_timer;
       ev.m_uiEvent = ptimer->m_nIDEvent;
+
+      if(Application.BaseOnControlEvent(this,pevent))
+      {
+
+         return;
+
+      }
+
       m_pcallback->BaseOnControlEvent(this, &ev);
    }
    if(ptimer->m_nIDEvent == 24)
