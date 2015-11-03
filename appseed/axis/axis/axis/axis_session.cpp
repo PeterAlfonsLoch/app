@@ -1823,6 +1823,12 @@ namespace axis
          ::SetCursor(pcursor->get_HCURSOR());
 
       }
+      else
+      {
+
+         ::SetCursor(NULL);
+
+      }
 
 #endif
 

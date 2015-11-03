@@ -356,7 +356,7 @@ namespace file
 
    string memory_buffer::GetFilePath() const
    {
-      return "";
+      return stream_buffer::GetFilePath();
    }
 
 

@@ -324,17 +324,17 @@ namespace file
 
    string stream_buffer::GetFileName() const
    {
-      return "";
+      return m_strFileName.name();
    }
 
    string stream_buffer::GetFileTitle() const
    {
-      return "";
+      return m_strFileName.title();
    }
 
    string stream_buffer::GetFilePath() const
    {
-      return "";
+      return m_strFileName;
    }
 
 
