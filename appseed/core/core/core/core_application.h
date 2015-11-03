@@ -569,7 +569,7 @@ namespace core
       virtual bool platform_open_by_file_extension(int iEdge,::create * pcc);
 
       
-
+      virtual void on_show_view(::user::tab * ptab);
 
    };
 

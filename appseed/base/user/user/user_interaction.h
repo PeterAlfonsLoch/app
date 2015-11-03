@@ -23,6 +23,7 @@ namespace user
 
       point                               m_ptScrollPassword1;
       e_updown                            m_eupdown;
+      bool                                m_bHideOnTransparentFrame;
       bool                                m_bMoving;
       bool                                m_bMoveWindow;
       bool                                m_bMayProDevian;

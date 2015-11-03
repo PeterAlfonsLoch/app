@@ -4004,7 +4004,12 @@ namespace core
    }
 
 
+   void application::on_show_view(::user::tab * ptab)
+   {
 
+
+
+   }
 
 
 } // namespace core

@@ -1693,6 +1693,7 @@ namespace user
       {
          get_data()->m_pcallback->_001OnShowTab(this);
       }
+      Application.on_show_view(this);
    }
 
    void tab:: _001SetVertical(bool bVertical)

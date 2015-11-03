@@ -87,7 +87,7 @@ namespace user
 
    void interaction::user_interaction_common_construct()
    {
-
+      m_bHideOnTransparentFrame  = false;
       m_pvoidUserInteraction     = this;
 
       m_uchAlpha                 = 255;
@@ -1982,6 +1982,33 @@ namespace user
 
    bool interaction::IsWindowVisible()
    {
+
+      if(m_bHideOnTransparentFrame)
+      {
+         try
+         {
+            ::user::interaction * puiTopLevel = GetTopLevel();
+
+            if(puiTopLevel != NULL)
+            {
+
+               if(puiTopLevel->frame_is_transparent())
+               {
+                  
+                  return false;
+
+               }
+
+            }
+
+
+         }
+         catch(...)
+         {
+         }
+
+      }
+
       if(m_pimpl == NULL)
          return FALSE;
       else
