@@ -432,6 +432,8 @@ namespace user
 
       GetParentFrame()->SetActiveView(this);
 
+      Application.on_show_view(this);
+
    }
 
 

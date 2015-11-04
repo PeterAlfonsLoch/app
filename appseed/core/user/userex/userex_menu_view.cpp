@@ -72,7 +72,7 @@ void menu_view::_001OnTimer(::timer * ptimer)
       ev.m_eevent = ::user::event_timer;
       ev.m_uiEvent = ptimer->m_nIDEvent;
 
-      if(Application.BaseOnControlEvent(this,pevent))
+      if(Application.BaseOnControlEvent(this,&ev))
       {
 
          return;

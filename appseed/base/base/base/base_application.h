@@ -290,6 +290,10 @@ virtual ::user::interaction * main_window();
 
       virtual void draw2d_factory_exchange();
 
+
+      using ::axis::application::BaseOnControlEvent;
+      using ::user::form_callback::BaseOnControlEvent;
+
    };
 
 
