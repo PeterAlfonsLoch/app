@@ -14,6 +14,7 @@ public:
 
    comparable_array(::std::initializer_list < TYPE > l) : BASE_ARRAY(l) {   }
    comparable_array() {}
+   comparable_array(::aura::application * papp) : object(papp), ARRAY_TYPE(papp) {}
    comparable_array(const comparable_array & array)
    {
       operator = (array);

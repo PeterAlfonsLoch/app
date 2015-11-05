@@ -33,6 +33,8 @@ public:
 
    numeric_array() {}
 
+   numeric_array(::aura::application * papp) : object(papp), comparable_raw_array < TYPE > (papp) {}
+
    numeric_array(const TYPE * pa, ::count c) :
       numeric_array()
    {
