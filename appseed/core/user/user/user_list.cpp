@@ -2801,8 +2801,14 @@ namespace user
 
    id list::_001GetColumnTextId(index iColumn)
    {
-      UNREFERENCED_PARAMETER(iColumn);
-      return -1;
+
+      list_column * pcolumn = m_columna._001GetVisible(iColumn);
+
+      if(pcolumn == NULL)
+         return id();
+      
+      return pcolumn->m_uiText;
+
    }
 
    void list::_001OnLButtonDblClk(signal_details * pobj)
