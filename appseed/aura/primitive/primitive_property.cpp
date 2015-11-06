@@ -322,6 +322,7 @@ void property::parse_json_id(id & id, const char * & pszJson, const char * pszEn
 
 void property::parse_json_value(var & var, const char * & pszJson,const char * pszEnd)
 {
+   ::str::consume_spaces(pszJson,0,pszEnd);
    ::str::consume(pszJson,":",1,pszEnd);
    var.parse_json(pszJson,pszEnd);
 }

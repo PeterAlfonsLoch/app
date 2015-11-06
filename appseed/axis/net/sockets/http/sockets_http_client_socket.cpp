@@ -174,7 +174,27 @@ namespace sockets
    void http_client_socket::OnDataComplete()
    {
 
-      if(!m_bNoClose)
+      m_b_complete = true;
+
+      if(m_pfile != NULL)
+      {
+
+         m_iFinalSize = m_pfile->get_length();
+
+      }
+      else if(m_pfile == NULL)
+      {
+
+         if(outheader(__id(content_encoding)).compare_value_ci("gzip") == 0)
+         {
+            System.compress().ungz(m_memoryfile);
+         }
+
+      }
+
+      OnContent();
+
+      if(!m_bNoClose || m_b_close_when_complete)
       {
 
          SetCloseAndDelete();
@@ -198,74 +218,39 @@ namespace sockets
 
       }
 
-      OnDataArrived(buf, len);
-
-      increment_scalar(scalar_download_size, len);
-
-      if(m_pfile != NULL )
+      if(m_pfile != NULL)
       {
 
          if(outheader(__id(content_encoding)).compare_value_ci("gzip") != 0)
          {
 
-            m_pfile->write(buf, len);
-
-            if (m_content_ptr == m_content_length && m_content_length && m_content_length != ((size_t) (-1)))
-            {
-
-               m_bExpectResponse = false;
-
-            }
-            else
-            {
-
-               m_event.ResetEvent();
-
-               m_bExpectResponse = true;
-
-            }
+            m_pfile->write(buf,len);
 
             return;
 
          }
-
-      }
-
-      m_memoryfile.write(buf, len);
-
-      if (m_content_ptr == m_content_length && m_content_length && m_content_length != ((size_t) (-1)))
-      {
-
-         m_b_complete = true;
-
-         if(outheader(__id(content_encoding)).compare_value_ci("gzip") == 0)
+         else
          {
-            System.compress().ungz(m_memoryfile);
-         }
-         if(m_pfile != NULL)
-         {
-            m_pfile->write(m_memoryfile.get_data(), m_memoryfile.get_size());
-            m_iFinalSize = m_pfile->get_length();
-         }
 
+            m_memoryfile.write(buf,len);
 
-         OnContent();
-         if (m_b_close_when_complete)
-         {
-            SetCloseAndDelete();
          }
-
-         m_bExpectResponse = false;
 
       }
       else
       {
 
-         m_event.ResetEvent();
-
-         m_bExpectResponse = true;
+         m_memoryfile.write(buf,len);
 
       }
+
+      OnDataArrived(buf, len);
+
+      increment_scalar(scalar_download_size, len);
+
+      m_event.ResetEvent();
+
+      m_bExpectResponse = true;
 
    }
 

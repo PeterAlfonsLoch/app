@@ -3756,6 +3756,13 @@ void var::parse_json(const char * & pszJson, const char * pszEnd)
    {
       vara().parse_json(pszJson, pszEnd);
    }
+   else if(*pszJson == ']')
+   {
+      ::output_debug_string("");
+
+      //pszJson++;
+
+   }
    else
    {
       consume_identifier(pszJson, pszEnd);
