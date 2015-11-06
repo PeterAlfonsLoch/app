@@ -124,6 +124,8 @@ namespace sockets
    void http_session::OnDataComplete()
    {
 
+      http_client_socket::OnDataComplete();
+      
       m_bRequestComplete = true;
 
    }
