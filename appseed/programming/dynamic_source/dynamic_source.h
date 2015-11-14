@@ -19,7 +19,7 @@ namespace dynamic_source
 
 
 
-struct file_time
+struct CLASS_DECL_PROGRAMMING file_time
 {
 
 
@@ -49,9 +49,9 @@ struct file_time
 
 };
 
-void get_file_time(const char * psz,file_time & time);
+CLASS_DECL_PROGRAMMING void get_file_time(const char * psz,file_time & time);
 
-void get_file_time(const char * psz,FILETIME & creation,FILETIME & modified);
+CLASS_DECL_PROGRAMMING void get_file_time(const char * psz,FILETIME & creation,FILETIME & modified);
 
 inline file_time get_file_time(const char * psz)
 {
