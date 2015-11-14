@@ -63,7 +63,7 @@ namespace aura
       virtual void get_app_list(stringa & stra);
 
 
-      virtual sp(::object) create_object(::aura::application * papp, const char * pszClass);
+      virtual sp(::object) create_object(::aura::application * papp, const char * pszClass, object * p);
       virtual bool has_object_class(const char * pszClass);
 
 

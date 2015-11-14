@@ -85,7 +85,7 @@ namespace user
          if(strAppId.is_empty()) // trivial validity check
             return NULL;
 
-         sp(::user::wndfrm::interaction) pinteraction = library.create_object(get_app(), "wndfrm");
+         sp(::user::wndfrm::interaction) pinteraction = library.create_object(get_app(), "wndfrm", NULL);
 
          if(pinteraction == NULL)
          {

@@ -495,13 +495,13 @@ namespace aura
    }
 
 
-   sp(::object) library::create_object(::aura::application * papp,const char * pszClassId)
+   sp(::object) library::create_object(::aura::application * papp,const char * pszClassId, object * p)
    {
 
       if(get_ca2_library() == NULL)
          return NULL;
 
-      return get_ca2_library()->create_object(papp, pszClassId);
+      return get_ca2_library()->create_object(papp, pszClassId, p);
 
    }
 

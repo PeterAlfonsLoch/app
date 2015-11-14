@@ -2156,7 +2156,7 @@ restart:
       if(strAppId.is_empty()) // trivial validity check
          goto defer_check_wndfrm_core;
 
-      pschema = library.create_object(get_app(),"user_schema");
+      pschema = library.create_object(get_app(),"user_schema", NULL);
 
       if(pschema == NULL)
          goto defer_check_wndfrm_core;

@@ -821,7 +821,7 @@ namespace user
 
             if (m_spcontrolbox.is_null())
             {
-               m_spcontrolbox = m_pinteraction->m_plibrary->create_object(get_app(), "control_box");
+               m_spcontrolbox = m_pinteraction->m_plibrary->create_object(get_app(), "control_box", NULL);
                m_spcontrolbox->m_pworkset = m_pworkset;
                sp(::user::interaction) pwnd = m_pworkset->get_draw_window();
                m_spcontrolbox->create_window(null_rect(), pwnd, 1);

@@ -612,7 +612,7 @@ namespace user
             if (!m_buttonmap.Lookup(ebutton, pbutton))
             {
 
-               m_buttonmap.set_at(ebutton, m_pworkset->m_pframeschema->m_pinteraction->m_plibrary->create_object(get_app(), "control_box_button"));
+               m_buttonmap.set_at(ebutton, m_pworkset->m_pframeschema->m_pinteraction->m_plibrary->create_object(get_app(), "control_box_button", NULL));
 
             }
 
