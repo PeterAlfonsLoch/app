@@ -629,14 +629,14 @@ typedef struct _SYSTEM_HANDLE_INFORMATION
     SYSTEM_HANDLE Handles[1];
 } SYSTEM_HANDLE_INFORMATION, *PSYSTEM_HANDLE_INFORMATION, **PPSYSTEM_HANDLE_INFORMATION;
 
-typedef enum _SYSTEM_INFORMATION_CLASS {
+typedef enum _SYSTEM_INFORMATION_CLASS2 {
     SystemHandleInformation = 0X10,
-} SYSTEM_INFORMATION_CLASS;
+} SYSTEM_INFORMATION_CLASS2;
 
 #endif
 
 typedef NTSTATUS ( WINAPI *PNtQuerySystemInformation)
-				 ( IN	SYSTEM_INFORMATION_CLASS SystemInformationClass,
+				 ( IN	SYSTEM_INFORMATION_CLASS2 SystemInformationClass,
 				   OUT	PVOID					 SystemInformation,
 				   IN	ULONG					 SystemInformationLength,
 				   OUT	PULONG					 ReturnLength OPTIONAL );
