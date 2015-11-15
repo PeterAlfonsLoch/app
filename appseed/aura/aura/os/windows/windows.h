@@ -46,3 +46,10 @@ CLASS_DECL_AURA int WinRegGetValueW(HKEY hkey, LPCWSTR lpSubKey, LPCWSTR lpValue
 #endif
 
 #include "windows.inl"
+
+
+
+
+
+
+

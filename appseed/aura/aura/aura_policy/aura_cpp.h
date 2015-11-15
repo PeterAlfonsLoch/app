@@ -1453,8 +1453,7 @@ CLASS_DECL_AURA string get_system_error_message(uint32_t dwError);
 #include "aura/aura/aura/aura_profiler.h"
 
 
-
-
+#include "aura/os/os2.h"
 
 
 #include "app/appseed/aura/aura/node/node.h"

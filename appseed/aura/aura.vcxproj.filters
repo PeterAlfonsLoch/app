@@ -2129,6 +2129,12 @@
     <ClInclude Include="aura\aura\aura_md5.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
+    <ClInclude Include="aura\os\windows\windows_process_env_reader.h">
+      <Filter>Header Files\aura\os\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\os\os2.h">
+      <Filter>Header Files\aura\os</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="multithreading\multithreading_condition.cpp">
@@ -3587,6 +3593,9 @@
       <Filter>Source Files\aura\os\windows</Filter>
     </ClCompile>
     <ClCompile Include="aura\os\windows\windows_registry.cpp">
+      <Filter>Source Files\aura\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\os\windows\windows_process_env_reader.cpp">
       <Filter>Source Files\aura\os\windows</Filter>
     </ClCompile>
   </ItemGroup>
