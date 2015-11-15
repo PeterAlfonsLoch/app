@@ -594,31 +594,3 @@ namespace dynamic_source
 
 
 
-void get_file_time(const char * psz,file_time & time)
-{
-   
-   get_file_time(psz,time.creation,time.modified);
-
-}
-
-
-void get_file_time(const char * psz,FILETIME & creation,FILETIME & modified)
-{
-
-   HANDLE h = create_file(psz,GENERIC_READ,FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL);
-
-   try
-   {
-      ZERO(creation);
-      ZERO(modified);
-      ::GetFileTime(h,&creation,NULL,&modified);
-   }
-   catch(...)
-   {
-   }
-
-   ::CloseHandle(h);
-
-}
-
-

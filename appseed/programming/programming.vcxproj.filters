@@ -21,6 +21,12 @@
     <Filter Include="Source Files\programming">
       <UniqueIdentifier>{87489fad-5c0d-42cc-b82c-970fcdf037f3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\introjection">
+      <UniqueIdentifier>{f7cacd27-6475-4d87-af22-b1d125580421}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\introjection">
+      <UniqueIdentifier>{3996933c-00f4-44f9-9b3d-2df829ab521b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -65,6 +71,12 @@
     <ClInclude Include="programming\programming_application.h">
       <Filter>Header Files\programming</Filter>
     </ClInclude>
+    <ClInclude Include="introjection\introjection_compiler.h">
+      <Filter>Header Files\introjection</Filter>
+    </ClInclude>
+    <ClInclude Include="introjection\introjection.h">
+      <Filter>Header Files\introjection</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -102,6 +114,9 @@
     </ClCompile>
     <ClCompile Include="programming\programming_application.cpp">
       <Filter>Source Files\programming</Filter>
+    </ClCompile>
+    <ClCompile Include="introjection\introjection_compiler.cpp">
+      <Filter>Source Files\introjection</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

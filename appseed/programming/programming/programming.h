@@ -27,6 +27,8 @@ namespace programming
 
 
 #include "app/appseed/programming/dynamic_source/dynamic_source.h"
+#include "app/appseed/programming/introjection/introjection.h"
+
 
 
 #include "programming_application.h"

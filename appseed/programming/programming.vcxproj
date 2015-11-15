@@ -382,6 +382,8 @@
     <ClInclude Include="dynamic_source\dynamic_source_script_manager.h" />
     <ClInclude Include="dynamic_source\dynamic_source_session.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="introjection\introjection.h" />
+    <ClInclude Include="introjection\introjection_compiler.h" />
     <ClInclude Include="programming\programming.h" />
     <ClInclude Include="programming\programming_application.h" />
   </ItemGroup>
@@ -402,6 +404,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="introjection\introjection_compiler.cpp" />
     <ClCompile Include="programming\programming_application.cpp" />
   </ItemGroup>
   <ItemGroup>
