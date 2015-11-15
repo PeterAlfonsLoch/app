@@ -68,32 +68,32 @@ class CLASS_DECL_AURA CProcessEnvReader
 {
 public:
    // Wrapper to call NtQueryInformationProcess using Run-time dynamic linking
-   static CLASS_DECL_AURA NTSTATUS QueryInformationProcesss(IN HANDLE ProcessHandle,
+   static NTSTATUS QueryInformationProcesss(IN HANDLE ProcessHandle,
       IN PROCESSINFOCLASS ProcessInformationClass,
       OUT PVOID ProcessInformation,
       IN ULONG ProcessInformationLength,
       OUT PULONG ReturnLength OPTIONAL);
 
    /* Process Helper functions */
-   static CLASS_DECL_AURA BOOL ReadEnvironmentBlock(HANDLE hProcess,_ENVSTRING_t& stEnvData);
-   static CLASS_DECL_AURA HANDLE OpenProcessToRead(DWORD dwPID);
-   static CLASS_DECL_AURA void ReleaseHandle(HANDLE hHandle);
-   static CLASS_DECL_AURA BOOL HasReadAccess(HANDLE hProcess,void* pAddress,int& nSize);
-   static CLASS_DECL_AURA void EnumProcessInfo(ProcessInfoArray& arrProcessInfo);
-   static CLASS_DECL_AURA string GetProcessNameFromHandle(HANDLE hProcess);
-   static CLASS_DECL_AURA string GetProcessNameFromID(DWORD dwPID);
+   static BOOL ReadEnvironmentBlock(HANDLE hProcess,_ENVSTRING_t& stEnvData);
+   static HANDLE OpenProcessToRead(DWORD dwPID);
+   static void ReleaseHandle(HANDLE hHandle);
+   static BOOL HasReadAccess(HANDLE hProcess,void* pAddress,int& nSize);
+   static void EnumProcessInfo(ProcessInfoArray& arrProcessInfo);
+   static string GetProcessNameFromHandle(HANDLE hProcess);
+   static string GetProcessNameFromID(DWORD dwPID);
 
    /* GDI Helper functions */
-   static CLASS_DECL_AURA void LoadIconFromProcess(HANDLE hProcess,HICON& hIconSmall,HICON& hIconLarge);
+   static void LoadIconFromProcess(HANDLE hProcess,HICON& hIconSmall,HICON& hIconLarge);
 
    /* String helper functions */
-   static CLASS_DECL_AURA void ConvertUnicodeToMBCS(LPCWSTR lpStringToConvert,int nLen,string& csMBCSStr);
-   static CLASS_DECL_AURA void ParseEnvironmentStrings(LPCWSTR lpStringToConvert,int nLen,stringa& EnvStrArr);
-   static CLASS_DECL_AURA void SeparateVariablesAndValues(const stringa& EnvStrArray,EnvVarValArray& varValArr);
+   static void ConvertUnicodeToMBCS(LPCWSTR lpStringToConvert,int nLen,string& csMBCSStr);
+   static void ParseEnvironmentStrings(LPCWSTR lpStringToConvert,int nLen,stringa& EnvStrArr);
+   static void SeparateVariablesAndValues(const stringa& EnvStrArray,EnvVarValArray& varValArr);
 
    /* Export functions */
    //   static void ExportEnvStrings(const stringa& csArrEnvStr,COPY_DEST_e Dest,HWND hClipboardOwner);
-   static CLASS_DECL_AURA void UpdateProcessMiscInfo(HANDLE hProcess,int nItemSelected);
+   static void UpdateProcessMiscInfo(HANDLE hProcess,int nItemSelected);
 };
 
 
