@@ -356,26 +356,26 @@ namespace user
       virtual void _001OnInitialize();
 
 
-      void _001AddColumn(list_column & pcolumn);
+      virtual void _001AddColumn(list_column & pcolumn);
 
-      void _001GetGroupRect(draw_list_item * pitem);
-      void _001GetItemRect(draw_list_item * pitem);
-      void _001GetSubItemRect(draw_list_item * pitem);
-      void _001GetElementRect(draw_list_item * pitem, ::user::mesh::e_element eelement);
+      virtual void _001GetGroupRect(draw_list_item * pitem);
+      virtual void _001GetItemRect(draw_list_item * pitem);
+      virtual void _001GetSubItemRect(draw_list_item * pitem);
+      virtual void _001GetElementRect(draw_list_item * pitem, ::user::mesh::e_element eelement);
 
       virtual void _001OnColumnChange();
 
-      void _001SetColumnWidth(index iColumn, int32_t iWidth);
-
-      void _001GetColumnWidth(draw_list_item * pdrawitem);
-
-      index _001MapSubItemToOrder(index iSubItem);
-
-      index _001MapOrderToSubItem(index iOrder);
-
-      index _001MapOrderToColumn(index iOrder);
-
-      index _001MapColumnToOrder(index iColumn);
+      virtual bool _001SetColumnWidth(index iColumn, int32_t iWidth) override;
+       
+      virtual void _001GetColumnWidth(draw_list_item * pdrawitem);
+      
+      virtual index _001MapSubItemToOrder(index iSubItem) override;
+      
+      virtual index _001MapOrderToSubItem(index iOrder) override;
+      
+      virtual index _001MapOrderToColumn(index iOrder) override;
+      
+      virtual index _001MapColumnToOrder(index iColumn) override;
 
       index _001MapSubItemToColumn(index iSubItem);
 

@@ -566,24 +566,24 @@ namespace user
 
       //      void _001AddColumn(mesh_column & pcolumn);
 
-      void _001GetGroupRect(draw_mesh_item * pitem);
-      void _001GetItemRect(draw_mesh_item * pitem);
-      void _001GetSubItemRect(draw_mesh_item * pitem);
-      void _001GetElementRect(draw_mesh_item * pitem,::user::mesh::e_element eelement);
+      virtual void _001GetGroupRect(draw_mesh_item * pitem);
+      virtual void _001GetItemRect(draw_mesh_item * pitem);
+      virtual void _001GetSubItemRect(draw_mesh_item * pitem);
+      virtual void _001GetElementRect(draw_mesh_item * pitem,::user::mesh::e_element eelement);
 
       //virtual void _001OnColumnChange();
 
-      void _001SetColumnWidth(index iColumn,int32_t iWidth);
+      virtual bool _001SetColumnWidth(index iColumn,int32_t iWidth);
 
-      void _001GetColumnWidth(draw_mesh_item * pdrawitem);
+      virtual void _001GetColumnWidth(draw_mesh_item * pdrawitem);
 
-      index _001MapSubItemToOrder(index iSubItem);
+      virtual index _001MapSubItemToOrder(index iSubItem);
 
-      index _001MapOrderToSubItem(index iOrder);
+      virtual index _001MapOrderToSubItem(index iOrder);
 
-      index _001MapOrderToColumn(index iOrder);
+      virtual index _001MapOrderToColumn(index iOrder);
 
-      index _001MapColumnToOrder(index iColumn);
+      virtual index _001MapColumnToOrder(index iColumn);
 
       index _001MapSubItemToColumn(index iSubItem);
 

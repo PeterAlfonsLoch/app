@@ -1209,16 +1209,30 @@ namespace user
 
    }
 
-   void list::_001SetColumnWidth(index iColumn, int32_t iWidth)
+   bool list::_001SetColumnWidth(index iColumn, int32_t iWidth)
    {
-      ASSERT(iColumn >= 0);
-      ASSERT(iColumn < m_columna.VisibleGetCount());
+      
+      if(iColumn < 0)
+      {
+       
+         return false;
+
+      }
+      
+      if(iColumn >= m_columna.VisibleGetCount())
+      {
+
+         return false;
+
+      }
 
       m_columna._001GetVisible(iColumn)->m_iWidth = iWidth;
 
       m_plistheader->DIDDXColumn(true);
 
       _001OnColumnChange();
+
+      return true;
 
    }
 

@@ -4915,10 +4915,12 @@ namespace user
    }
 
 
-   void mesh::_001SetColumnWidth(index iColumn,int32_t iWidth)
+   bool mesh::_001SetColumnWidth(index iColumn,int32_t iWidth)
    {
 
       m_mapColumnWidth[iColumn] = iWidth;
+
+      return true;
 
    }
 
