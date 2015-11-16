@@ -121,7 +121,7 @@ namespace multimedia
          m_pwaveformat->wFormatTag = WAVE_FORMAT_PCM;
          m_pwaveformat->nChannels = 2;
          m_pwaveformat->nSamplesPerSec = 44100;
-         m_pwaveformat->wBitsPerSample = sizeof(::multimedia::audio::WAVEBUFFERDATA) * 8;
+         m_pwaveformat->wBitsPerSample = sizeof(::multimedia::audio::WAVEBUFFERDATA) * m_pwaveformat->nChannels * 8;
          m_pwaveformat->nBlockAlign = m_pwaveformat->wBitsPerSample * m_pwaveformat->nChannels / 8;
          m_pwaveformat->nAvgBytesPerSec = m_pwaveformat->nSamplesPerSec * m_pwaveformat->nBlockAlign;
          m_pwaveformat->cbSize = 0;
@@ -280,8 +280,8 @@ Opened:
          m_pwaveformat->wFormatTag = WAVE_FORMAT_PCM;
          m_pwaveformat->nChannels = uiChannelCount;
          m_pwaveformat->nSamplesPerSec = uiSamplesPerSec;
-         m_pwaveformat->wBitsPerSample = sizeof(::multimedia::audio::WAVEBUFFERDATA) * 8 * uiChannelCount;
-         m_pwaveformat->nBlockAlign = m_pwaveformat->wBitsPerSample * m_pwaveformat->nChannels / 8;
+         m_pwaveformat->wBitsPerSample = sizeof(::multimedia::audio::WAVEBUFFERDATA) * 8 ;
+         m_pwaveformat->nBlockAlign = m_pwaveformat->wBitsPerSample  * uiChannelCount / 8;
          m_pwaveformat->nAvgBytesPerSec = m_pwaveformat->nSamplesPerSec * m_pwaveformat->nBlockAlign;
          m_pwaveformat->cbSize = 0;
          sp(::multimedia::audio::wave) audiowave = Application.audiowave();

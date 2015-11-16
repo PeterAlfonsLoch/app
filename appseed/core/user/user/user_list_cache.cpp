@@ -69,7 +69,7 @@ namespace user
             catch(...)
             {
             }
-            pwstra->set_at(i,item.m_strText);
+            pwstra->set_at_grow(i,item.m_strText);
          }
          //      pCs->unlock();
          //      pSong->m_iIndex = iIndex;
