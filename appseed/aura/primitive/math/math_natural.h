@@ -13,6 +13,23 @@ END_EXTERN_C
 #define INT_TO_NATURAL(i) (i >= 0 ? (uint32_t) i : 0)
 
 
+template < typename t >
+t  min_non_neg(const t & t1,const t & t2)
+{
+   if(t1 < (t)0)
+   {
+      return t2;
+   }
+   else if(t2 < (t)0)
+   {
+      return t1;
+   }
+   else
+   {
+      return MIN(t1,t2);
+   }
+
+}
 
 
 inline uint32_t natural(int32_t i)
