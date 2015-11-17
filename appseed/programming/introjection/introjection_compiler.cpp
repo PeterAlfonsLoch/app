@@ -662,10 +662,10 @@ namespace introjection
       //}
       try
       {
-         if(Application.file().exists(lib->m_pathScript))
-         {
-            Application.file().copy(strCppPath,lib->m_pathScript);
-         }
+         //if(Application.file().exists(lib->m_pathScript))
+         //{
+         //   Application.file().copy(strCppPath,lib->m_pathScript);
+         //}
       }
       catch(string strError)
       {
