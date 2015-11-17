@@ -167,6 +167,8 @@ public:
    index str_find_first_begins_ci(const char * lpcsz,index find = 0,index last = -1) const;
    index str_find_first_begins(const char * lpcsz,index find = 0,index last = -1) const;
 
+   Type find_first_begins_eat_ci(const char * lpcsz,index find = 0,index last = -1) const;
+
    bool contains_ci(const char * lpcsz,index find = 0,index last = -1,::count countMin = 1,::count countMax = -1) const;
    bool contains(const char * lpcsz,index find = 0,index last = -1,::count countMin = 1,::count countMax = -1) const;
 
@@ -1767,6 +1769,19 @@ index string_array < Type, RawType > ::find_first_begins_ci(const char * lpcsz,i
    return -1;
 }
 
+
+template < class Type,class RawType >
+Type string_array < Type,RawType > ::find_first_begins_eat_ci(const char * lpcsz,index find,index last) const
+{
+   
+   find  = find_first_begins_ci(lpcsz,find,last);
+
+   if(find < 0)
+      return "";
+
+   return element_at(find).Mid(strlen(lpcsz));
+
+}
 
 
 template < class Type, class RawType >
