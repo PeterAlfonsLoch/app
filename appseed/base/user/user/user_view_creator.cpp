@@ -134,7 +134,7 @@ namespace user
       }
       try
       {
-         Application.on_create_view(pcreatordata);
+         on_create_view(pcreatordata);
       }
       catch(create_exception & e)
       {
@@ -167,7 +167,7 @@ namespace user
       }
       try
       {
-         on_create_view(pcreatordata);
+         Application.on_create_view(pcreatordata);
       }
       catch(create_exception & e)
       {
