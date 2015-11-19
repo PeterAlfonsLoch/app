@@ -223,12 +223,66 @@ namespace introjection
 
 
 
+   DWORD RunSilent(char* strFunct,char* strstrParams)
+   {
+      STARTUPINFO StartupInfo;
+      PROCESS_INFORMATION ProcessInfo;
+      char Args[4096];
+      char *pEnvCMD = NULL;
+      char *pDefaultCMD = "CMD.EXE";
+      ULONG rc;
 
+      memset(&StartupInfo,0,sizeof(StartupInfo));
+      StartupInfo.cb = sizeof(STARTUPINFO);
+      StartupInfo.dwFlags = STARTF_USESHOWWINDOW;
+      StartupInfo.wShowWindow = SW_HIDE;
+
+      Args[0] = 0;
+
+      pEnvCMD = getenv("COMSPEC");
+
+      if(pEnvCMD) {
+
+         strcpy(Args,pEnvCMD);
+      }
+      else {
+         strcpy(Args,pDefaultCMD);
+      }
+
+      // "/c" option - Do the command then terminate the command window
+      strcat(Args," /c ");
+      //the application you would like to run from the command window
+      strcat(Args,strFunct);
+      strcat(Args," ");
+      //the parameters passed to the application being run from the command window.
+      strcat(Args,strstrParams);
+
+      if(!CreateProcess(NULL,Args,NULL,NULL,FALSE,
+         CREATE_NEW_CONSOLE,
+         NULL,
+         NULL,
+         &StartupInfo,
+         &ProcessInfo))
+      {
+         return GetLastError();
+      }
+
+      WaitForSingleObject(ProcessInfo.hProcess,INFINITE);
+      if(!GetExitCodeProcess(ProcessInfo.hProcess,&rc))
+         rc = 0;
+
+      CloseHandle(ProcessInfo.hThread);
+      CloseHandle(ProcessInfo.hProcess);
+
+      return rc;
+
+   }
 
 
    void compiler::prepare1(const char * lpcszSource,const char * lpcszDest)
    {
 
+      //Sleep(15000);
 
       string strBuildCmd = m_strEnv;
 
@@ -237,75 +291,85 @@ namespace introjection
       ::process::process_sp process(allocer());
 
 
+      file_put_contents_dup("C:\\ca2\\env1.bat","C:\\ca2\\env.bat > C:\\ca2\\env.txt");
       file_put_contents_dup("C:\\ca2\\env.bat","@call " + strBuildCmd + "\r\n@set");
 
       //      set_thread_priority(::multithreading::priority_highest);
-
-      process->create_child_process("C:\\ca2\\env.bat",true,::file::path(m_strEnv).folder(),::multithreading::priority_highest);
+      RunSilent("C:\\ca2\\env1.bat","");
+      //::system("Y:\\bergedge\\hi5\\program\\hstart.exe /NOCONSOLE \"C:\\ca2\\env1.bat\"");
       string strLog;
 
-      //   EnvVarValArray arrEnvVarVal;
-
-      //   uint32_t dwStart = ::get_tick_count();
-
-      //   uint32_t dwExitCode;
-
-      //   string strLog;
-
-      //   stringa m_strArray;
-      //   // Open the process for further operations
-      //   HANDLE hProcess = CProcessEnvReader::OpenProcessToRead(process->m_iPid);
-      //   if(hProcess)
-      //   {
-      //      _ENVSTRING_t stEnvData;
-      //      // Read the process environment block
-      //      if(!CProcessEnvReader::ReadEnvironmentBlock(hProcess,stEnvData))
-      //      {
-      //         return;
-      //      }
-
-      //      // Parse the retrieved data
-      //      CProcessEnvReader::ParseEnvironmentStrings(stEnvData.pData,
-      //         stEnvData.nSize / 2,
-      //         m_strArray);
-
-
-      //      // Seperate values and variables
-      //      CProcessEnvReader::SeparateVariablesAndValues(m_strArray,arrEnvVarVal);
-
-      //      // UpdateProcessMiscInfo( hProcess, pNMItemActivate->iItem);
-      //      CProcessEnvReader::ReleaseHandle(hProcess);
-      //   }
+//         EnvVarValArray arrEnvVarVal;
+//
+//         uint32_t dwStart = ::get_tick_count();
+//
+//         uint32_t dwExitCode;
+//
+////         string strLog;
+//
+//         stringa m_strArray;
+//         // Open the process for further operations
+//         HANDLE hProcess = CProcessEnvReader::OpenProcessToRead(process->m_iPid);
+//         if(hProcess)
+//         {
+//            _ENVSTRING_t stEnvData;
+//            // Read the process environment block
+//            if(!CProcessEnvReader::ReadEnvironmentBlock(hProcess,stEnvData))
+//            {
+//               return;
+//            }
+//
+//            // Parse the retrieved data
+//            CProcessEnvReader::ParseEnvironmentStrings(stEnvData.pData,
+//               stEnvData.nSize / 2,
+//               m_strArray);
+//
+//
+//            // Seperate values and variables
+//            CProcessEnvReader::SeparateVariablesAndValues(m_strArray,arrEnvVarVal);
+//            string_to_string map;
+//
+//            for(auto pair : arrEnvVarVal)
+//            {
+//               map[pair.m_element1] = pair.m_element2;
+//               SetEnvironmentVariable(pair.m_element1,pair.m_element2);
+//            }
+//
+//            // UpdateProcessMiscInfo( hProcess, pNMItemActivate->iItem);
+//            CProcessEnvReader::ReleaseHandle(hProcess);
+//         }
       //process->write("\n");
-      uint32_t dwExitCode;
-      DWORD dwStart = get_tick_count();
-      while(true)
-      {
+      //uint32_t dwExitCode = 0;
+      //DWORD dwStart = get_tick_count();
+      //while(true)
+      //{
 
-         strLog += process->read();
+      //   strLog += process->read();
 
-         if(process->has_exited(&dwExitCode))
-            break;
+      //   if(process->has_exited(&dwExitCode))
+      //      break;
 
-         Sleep(100);
+      //   Sleep(100);
 
-         if(::get_tick_count() - dwStart > 840 * 1000) // 14 minutes
-         {
+      //   if(::get_tick_count() - dwStart > 840 * 1000) // 14 minutes
+      //   {
 
-            //            bTimeout = true;
+      //      //            bTimeout = true;
 
-            break;
+      //      break;
 
-         }
+      //   }
 
-      }
+      //}
 
-      strLog += process->read();
+      //strLog += process->read();
+      strLog = file_as_string_dup("C:\\ca2\\env.txt");
+
       stringa stra;
 
       stra.add_lines(strLog);
 
-      Sleep(10000);
+      //Sleep(10000);
 
       EnvVarValArray arrEnvVarVal;
       // Seperate values and variables
@@ -330,7 +394,7 @@ namespace introjection
 
 
 
-      stra.add_lines(strLog);
+//      stra.add_lines(strLog);
 
       //string strEnv = file_as_string_dup("C:\\ca2\\env.txt");
 
@@ -487,8 +551,8 @@ namespace introjection
 
 
 
-      strClog.Format(lib->m_pathScript + "-compile-log.txt");
-      strLlog.Format(lib->m_pathScript + "-link-log.txt");
+      strClog = lib->m_pathScript + "-compile-log.txt";
+      strLlog = lib->m_pathScript + "-link-log.txt";
 
       //#ifdef DEBUG
 #ifdef LINUX
@@ -778,6 +842,13 @@ namespace introjection
       strElem.replace("\\","/");
 
       strElem += "/";
+      string strHmhLctvWildPdbPath;
+      string strRndTitle;
+      System.math().gen_rand_alnum(strRndTitle.GetBufferSetLength(64),64);
+      strRndTitle.ReleaseBuffer();
+      strHmhLctvWildPdbPath = ::file::path("C:\\ca2\\netnodelite\\symbols") / strRndTitle;
+      strHmhLctvWildPdbPath.replace("\\","/");
+      str.replace("%HMH_LCTVWILD_PDB_PATH%",strHmhLctvWildPdbPath);
 
       str.replace("%CA2_ROOT%",strElem);
       str.replace("%CONFIGURATION_NAME%",m_strDynamicSourceConfiguration);
@@ -789,14 +860,15 @@ namespace introjection
       string strT2 = lib->m_pathScript;
       strT2.replace("\\",".");
       strT2.replace("/",".");
-      strT2.replace(":",".");
-      string strTargetPath = System.dir().element() / "time" / m_strPlatform / m_strDynamicSourceConfiguration / strT2;
+      strT2.replace(":","_");
+      string strTargetPath = System.dir().element() / "time" / m_strPlatform / m_strDynamicSourceConfiguration / strT2 ;
       ::str::ends_eat_ci(strTargetPath,".cpp");
 #ifdef LINUX
       ::str::ends_eat_ci(strTargetPath,".so");
 #else
       ::str::ends_eat_ci(strTargetPath,".dll");
 #endif
+      strTargetPath += "-"+strRndTitle;
       str.replace("%TARGET_PATH%",strTargetPath);
       //strBuildCmd = lib->m_strBuildBat;
       //Application.file().put_contents_utf8(strBuildCmd, str);
@@ -893,6 +965,8 @@ namespace introjection
 #endif
 
          str = Application.file().as_string(strBuildCmd);
+
+
          str.replace("%ITEM_NAME%",::str::replace("\\","/",string(strTransformName)));
          str.replace("%ITEM_TITLE%",strTransformName.name());
          str.replace("%ITEM_DIR%",::str::replace("\\","/",string(strTransformName.folder())) + "/");
@@ -900,6 +974,7 @@ namespace introjection
          str.replace("%VS_VARS%",m_strEnv);
          str.replace("%VS_VARS_PLAT2%",m_strPlat2);
 
+         str.replace("%HMH_LCTVWILD_PDB_PATH%",strHmhLctvWildPdbPath);
 
          str.replace("%CA2_ROOT%",strElem);
          str.replace("%CONFIGURATION_NAME%",m_strDynamicSourceConfiguration);
@@ -919,13 +994,6 @@ namespace introjection
          //#endif
          //         strTargetPath = System.dir().element() / 
          str.replace("%TARGET_PATH%",strTargetPath);
-         string strHmhLctvWildPdbPath;
-         string strRndTitle;
-         System.math().gen_rand_alnum(strRndTitle.GetBufferSetLength(64),64);
-         strRndTitle.ReleaseBuffer();
-         strHmhLctvWildPdbPath = ::file::path("C:\\ca2\\netnodelite\\symbols") / strRndTitle;
-         strHmhLctvWildPdbPath.replace("\\","/");
-         str.replace("%HMH_LCTVWILD_PDB_PATH%",strHmhLctvWildPdbPath);
 
          //strBuildCmd = lib->m_strBuildBat;
          //Application.file().put_contents_utf8(strBuildCmd, str);
