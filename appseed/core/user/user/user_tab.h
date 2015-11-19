@@ -270,6 +270,10 @@ namespace user
 
       virtual void restore_tabs();
 
+
+      virtual void on_create_tabs();
+
+
    };
 
 

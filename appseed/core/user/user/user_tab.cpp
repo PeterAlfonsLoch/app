@@ -1329,6 +1329,15 @@ namespace user
       restore_tabs();
 
 
+      on_create_tabs();
+
+
+   }
+
+
+   void tab::on_create_tabs()
+   {
+
       {
 
          ::user::control_event ev;
@@ -1339,12 +1348,9 @@ namespace user
 
          ev.m_eevent    = ::user::event_on_create_tab;
 
-         ev.m_pobj      = pobj;
-
          BaseOnControlEvent(&ev);
 
       }
-
 
 
    }

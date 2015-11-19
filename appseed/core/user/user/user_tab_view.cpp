@@ -40,7 +40,11 @@ namespace user
       if(pobj->previous())
          return;
 
+      //on_create_tabs();
+
    }
+
+
 
 
    void tab_view::on_update(::user::impact * pSender, LPARAM lHint, object* pHint)
@@ -668,6 +672,9 @@ namespace user
       pobj->m_bRet = true;
 
    }
+
+
+
 
 
 } // namespace user
