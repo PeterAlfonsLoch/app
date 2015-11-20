@@ -6219,7 +6219,7 @@ namespace user
       else if(nFlags & SWP_SHOWWINDOW)
       {
 
-         bOk = m_pimpl->ShowWindow(SW_SHOW);
+         bOk = ShowWindow(SW_SHOW);
 
       }
 

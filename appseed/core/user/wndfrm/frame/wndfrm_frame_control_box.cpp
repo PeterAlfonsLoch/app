@@ -243,7 +243,7 @@ namespace user
                         if (ptCursor.x >= rectWindow.left && ptCursor.y <= rectWindow.right && ptCursor.y == 0)
                         {
 
-                           ShowWindow(SW_SHOW);
+                           SetWindowPos(ZORDER_TOP, 0, 0, 0, 0, SWP_SHOWWINDOW | SWP_NOSIZE | SWP_NOMOVE);
 
                         }
 

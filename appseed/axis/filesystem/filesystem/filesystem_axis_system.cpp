@@ -802,7 +802,7 @@ namespace file
             ::file::path strSrc;
             ::file::path strDirSrc(psz);
             ::file::path strDirDst(pszNew);
-            if (::get_thread()->m_bZipIsDir && (::str::ends(strDirSrc, ".zip")))
+            if (App(papp).m_bZipIsDir && (::str::ends(strDirSrc, ".zip")))
             {
                strDirSrc += ":";
             }
