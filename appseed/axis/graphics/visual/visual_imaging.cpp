@@ -5870,7 +5870,7 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
                      iFilterXUpperBound = xFilterMax;
                   }
 
-                  lpbSource_1 = lpbSource + MAX(x2,0) + iChannel;
+                  lpbSource_1 = lpbSource ;
 
 
                   for(int32_t yFilter = iFilterYLowerBound; yFilter < iFilterYUpperBound; yFilter++)
@@ -5881,7 +5881,7 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
                      {
                         if(*lpFilter >= 1)
                         {
-                           if(lpbSource_2[0] > 0)
+                           if(*((uint32_t *)lpbSource_2))
                            {
                               *((uint32_t *)lpwDestination) = crSpreadSetColor;
                               goto breakFilter;
@@ -5924,7 +5924,7 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
 
       for(; y1 < yU;)
       {
-         lpbSource = lpbSrc + (wSrc * y2) + iChannel;
+         lpbSource = lpbSrc + (wSrc * y2);
 
          x1 = xL;
          x2 = xL - iFilterHalfWidthBytes;
