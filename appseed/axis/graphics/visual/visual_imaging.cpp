@@ -5326,6 +5326,74 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
    }
 
 
+   bool imaging::spread(
+      ::draw2d::graphics *pdcDst,
+      point ptDst,
+      size size,
+      ::draw2d::graphics * pdcSrc,
+      point ptSrc,
+      int32_t iRadius)
+   {
+
+      return spread_set_color(
+         pdcDst,
+         ptDst,
+         size,
+         pdcSrc,
+         ptSrc,
+         iRadius,
+         0xffffffff);
+
+   }
+
+
+   bool imaging::spread_set_color(
+      ::draw2d::graphics *pdcDst,
+      point ptDst,
+      size size,
+      ::draw2d::graphics * pdcSrc,
+      point ptSrc,
+      int32_t iRadius,
+      COLORREF cr)
+   {
+      if(size.is_empty())
+         return true;
+
+      ::draw2d::dib_sp dibDst(allocer());
+
+      if(!dibDst.is_set())
+         return false;
+
+      if(!dibDst->create(size))
+         return false;
+
+      ::draw2d::dib_sp dibSrc(allocer());
+
+      if(!dibSrc.is_set())
+         return false;
+
+      if(!dibSrc->create(size))
+         return false;
+
+      dibSrc->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
+
+      if(!dibSrc->from(null_point(),pdcSrc,ptSrc,size))
+         return false;
+
+      if(!spread__32CC(
+         dibDst,
+         dibSrc,
+         iRadius,cr))
+         return false;
+
+      if(!dibDst->to(pdcDst,ptDst,size))
+         return false;
+
+      return true;
+
+   }
+
+
    bool imaging::channel_spread__32CC(::draw2d::dib * pdibDst,::draw2d::dib * pdibSrc,int32_t iChannel,int32_t iRadius,COLORREF crSpreadSetColor)
    {
       int32_t iFilterW      = iRadius * 2 + 1;
@@ -5600,6 +5668,366 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
 
       return true;
    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   bool imaging::spread__32CC(::draw2d::dib * pdibDst,::draw2d::dib * pdibSrc,int32_t iRadius,COLORREF crSpreadSetColor)
+   {
+      int32_t iFilterW      = iRadius * 2 + 1;
+      int32_t iFilterH      = iRadius * 2 + 1;
+      int32_t iFilterHalfW  = iRadius;
+      int32_t iFilterHalfH  = iRadius;
+      int32_t iFilterArea   = iFilterW * iFilterH;
+      int32_t divisor       = iFilterW * iFilterH;
+      BYTE *lpbSource;
+      BYTE *lpbSource_1;
+      BYTE *lpbSource_2;
+      BYTE *lpwDestination;
+      BYTE *lpFilter;
+      BYTE * pFilter;
+
+      int32_t i;
+      int32_t x;
+      int32_t y;
+      int32_t x1;
+      int32_t y1;
+      int32_t x2;
+      int32_t y2;
+
+      int32_t iRadius2 = iRadius * iRadius;
+      int32_t r2;
+
+      if(!m_alpha_spread__32CC_filterMap.Lookup(iRadius,pFilter))
+      {
+         pFilter = new BYTE[iFilterArea];
+         m_alpha_spread__32CC_filterMap.set_at(iRadius,pFilter);
+         for(y = 0; y < iFilterHalfH; y++)
+         {
+            for(x = 0; x < iFilterHalfW; x++)
+            {
+               x1 = iFilterHalfW - x;
+               y1 = iFilterHalfH - y;
+               r2 = x1 * x1 + y1 * y1;
+               if(r2 <= iRadius2)
+                  i = 1;
+               else
+                  i = 0;
+               pFilter[x + y * iFilterW]                                   = (byte)i;
+            }
+         }
+      }
+
+      int32_t cx = pdibDst->m_size.cx;
+      int32_t cy = pdibDst->m_size.cy;
+
+      if(cx != pdibSrc->m_size.cx
+         || cy != pdibSrc->m_size.cy)
+         return false;
+
+      LPBYTE lpbDst = (LPBYTE)pdibDst->get_data();
+      LPBYTE lpbSrc = (LPBYTE)pdibSrc->get_data();
+
+      //int32_t wSrc = cx * 4;
+      //int32_t wDst = cx * 4;
+      int32_t wSrc = pdibSrc->m_iScan;
+      int32_t wDst = pdibDst->m_iScan;
+
+      int32_t maxx1 = cx;
+      int32_t maxy1 = cy;
+      //   int32_t maxy2 = cy - iFilterW;
+      //   int32_t maxy3 = cy - iFilterW / 2;
+      int32_t max3x1 = maxx1 * 4;
+      //   int32_t max3x2 = (maxx1 - iFilterH) * 4;
+      //   int32_t max3x3 = (maxx1 - iFilterH / 2) * 4;
+      //int32_t w = cx * 4;
+
+      ::draw2d::copy_colorref(cx,cy,(COLORREF *)lpbDst,pdibDst->m_iScan,(COLORREF *)lpbSrc,pdibSrc->m_iScan);
+      //memcpy(lpbDst,lpbSrc,cx * cy * 4);
+
+
+      int32_t iFilterXLowerBound;
+      int32_t iFilterXUpperBound;
+      int32_t iFilterYLowerBound;
+      int32_t iFilterYUpperBound;
+
+      int32_t yLowerBound[4];
+      int32_t yUpperBound[4];
+      int32_t xLowerBound[4];
+      int32_t xUpperBound[4];
+
+      // top
+      xLowerBound[0] = 0;
+      xUpperBound[0] = cx - 1;
+      yLowerBound[0] = 0;
+      yUpperBound[0] = iFilterHalfH - 1;
+
+      // left
+      xLowerBound[1] = 0;
+      xUpperBound[1] = iFilterHalfW - 1;
+      yLowerBound[1] = iFilterHalfH;
+      yUpperBound[1] = cy - iFilterHalfH - 1;
+
+      // right
+      xLowerBound[2] = cx - iFilterHalfW;
+      xUpperBound[2] = cx - 1;
+      yLowerBound[2] = iFilterHalfH;
+      yUpperBound[2] = cy - iFilterHalfH - 1;
+
+      // bottom
+      xLowerBound[3] = 0;
+      xUpperBound[3] = cx - 1;
+      yLowerBound[3] = cy - iFilterHalfH;
+      yUpperBound[3] = cy - 1;
+
+      int32_t xL;
+      int32_t xU;
+      int32_t yL;
+      int32_t yU;
+
+
+      int32_t xMax = cx - 1;
+      int32_t yMax = cy - 1;
+
+      // limits due the filter
+      int32_t xMaxFilterBound = xMax - iFilterHalfW;
+      int32_t yMaxFilterBound = yMax - iFilterHalfH;
+
+      int32_t xFilterMax = iFilterW - 1;
+      int32_t yFilterMax = iFilterH - 1;
+
+      for(i = 0; i < 4; i++)
+      {
+         xL = xLowerBound[i];
+         xU = xUpperBound[i];
+         yL = yLowerBound[i];
+         yU = yUpperBound[i];
+
+         y1 = yL;
+         y2 = y1 - iFilterHalfH;
+         for(; y1 <= yU;)
+         {
+            if(y1 < iFilterHalfH)
+            {
+               iFilterYLowerBound = iFilterHalfH - y1;
+            }
+            else
+            {
+               iFilterYLowerBound = 0;
+            }
+            if(y1 > yMaxFilterBound)
+            {
+               iFilterYUpperBound = yFilterMax - (y1 - yMaxFilterBound);
+            }
+            else
+            {
+               iFilterYUpperBound = yFilterMax;
+            }
+
+            lpbSource = lpbSrc + wSrc * y2;
+
+            x1 = xL;
+            x2 = (x1 - iFilterHalfW) * 4;
+            lpwDestination = lpbDst + (wDst  * y1) + x1 * 4;
+            if(*((uint32_t *)lpwDestination) != crSpreadSetColor)
+            {
+               for(; x1 <= xU; x1++)
+               {
+                  if(x1 < iFilterHalfH)
+                  {
+                     iFilterXLowerBound = iFilterHalfH - x1;
+                  }
+                  else
+                  {
+                     iFilterXLowerBound = 0;
+                  }
+                  if(x1 > xMaxFilterBound)
+                  {
+                     iFilterXUpperBound = xFilterMax - (x1 - xMaxFilterBound);
+                  }
+                  else
+                  {
+                     iFilterXUpperBound = xFilterMax;
+                  }
+
+                  lpbSource_1 = lpbSource + MAX(x2,0) + iChannel;
+
+
+                  for(int32_t yFilter = iFilterYLowerBound; yFilter < iFilterYUpperBound; yFilter++)
+                  {
+                     lpbSource_2 = lpbSource_1 + (wSrc * yFilter);
+                     lpFilter = pFilter + yFilter * iFilterW + iFilterXLowerBound;
+                     for(int32_t xFilter = iFilterXLowerBound; xFilter < iFilterXUpperBound; xFilter++)
+                     {
+                        if(*lpFilter >= 1)
+                        {
+                           if(lpbSource_2[0] > 0)
+                           {
+                              *((uint32_t *)lpwDestination) = crSpreadSetColor;
+                              goto breakFilter;
+                           }
+                        }
+                        lpFilter++;
+                        lpbSource_2 += 4;
+                     }
+                  }
+               breakFilter:
+                  lpwDestination += 4;
+                  x2 += 4;
+               }
+            }
+            y1++;
+            y2++;
+         }
+      }
+
+      iFilterYLowerBound = 0;
+      iFilterYUpperBound = iFilterW - 1;
+      iFilterXLowerBound = 0;
+      iFilterXUpperBound = iFilterH - 1;
+
+      int32_t iFilterHalfWidth = iFilterW / 2;
+      int32_t iFilterHalfWidthBytes = iFilterHalfWidth * 4;
+
+      yL = iFilterHalfWidth;
+      yU = maxy1 - iFilterHalfWidth;
+      xL = iFilterHalfWidthBytes;
+      xU = max3x1 - iFilterHalfWidthBytes;
+
+      y1 = yL;
+      y2 = yL - iFilterHalfWidth;
+
+
+
+      divisor = (iFilterYUpperBound - iFilterYLowerBound + 1) * (iFilterXUpperBound - iFilterXLowerBound + 1);
+
+
+      for(; y1 < yU;)
+      {
+         lpbSource = lpbSrc + (wSrc * y2) + iChannel;
+
+         x1 = xL;
+         x2 = xL - iFilterHalfWidthBytes;
+         lpwDestination = lpbDst + (wDst  * y1) + x1;
+         for(; x1 < xU;)
+         {
+            lpbSource_1 = lpbSource + x2;
+            lpFilter = pFilter;
+
+            if(*((uint32_t *)lpwDestination) != 0xffffffff)
+            {
+               for(int32_t yFilter = iFilterYLowerBound; yFilter <= iFilterYUpperBound; yFilter++)
+               {
+                  lpbSource_2 = lpbSource_1 + (wSrc * yFilter);
+                  lpFilter = pFilter + yFilter * iFilterW + iFilterXLowerBound;
+                  for(int32_t xFilter = iFilterXLowerBound; xFilter <= iFilterXUpperBound; xFilter++)
+                  {
+                     if(*lpFilter >= 1)
+                     {
+                        if(lpbSource_2[0] > 0)
+                        {
+                           *((uint32_t *)lpwDestination) = crSpreadSetColor;
+                           goto breakFilter2;
+                        }
+                     }
+                     lpFilter++;
+                     lpbSource_2 += 4;
+                  }
+               }
+            }
+         breakFilter2:
+            lpwDestination += 4;
+            x1 += 4;
+            x2 += 4;
+         }
+         y1++;
+         y2++;
+      }
+
+      return true;
+   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -62,6 +62,8 @@ public:
 
    bool channel_spread__32CC(::draw2d::dib * pdibDst, ::draw2d::dib * pdibSrc, int32_t iChannel, int32_t iRadius, COLORREF cr);
 
+   bool spread__32CC(::draw2d::dib * pdibDst, ::draw2d::dib * pdibSrc, int32_t iRadius, COLORREF cr);
+
    bool alpha_spread_R2(
       ::draw2d::graphics * pdcDest,
       point ptDst,
@@ -98,6 +100,22 @@ public:
       int32_t iRadius,
       COLORREF cr);
 
+   bool spread(
+      ::draw2d::graphics * pdcDest,
+      point ptDst,
+      size size,
+      ::draw2d::graphics * pdcSrc,
+      point ptSrc,
+      int32_t iRadius);
+
+   bool spread_set_color(
+      ::draw2d::graphics * pdcDest,
+      point ptDst,
+      size size,
+      ::draw2d::graphics * pdcSrc,
+      point ptSrc,
+      int32_t iRadius,
+      COLORREF cr);
 
    bool true_blend(::draw2d::graphics * pdc, const RECT & rect, ::draw2d::graphics * pdcColorAlpha, point ptAlpha, ::draw2d::dib * pdibWork = NULL, ::draw2d::dib * pdibWork2 = NULL, ::draw2d::dib * pdibWork3 = NULL);
 
