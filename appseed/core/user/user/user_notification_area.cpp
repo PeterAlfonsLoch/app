@@ -283,33 +283,5 @@ namespace user
       return oswindow;
    }
 
-#ifdef WINDOWSEX
-   string GetFilenameFromPid(uint32_t pid)
-   {
-      string strRet = "[Unknown Process]";
-      char ImageFileName[1024] = {0};
-      HANDLE ph = OpenProcess(PROCESS_QUERY_INFORMATION,FALSE,pid);
-      if(ph)
-      {
-         CloseHandle(ph);
-
-         string sTmp = ImageFileName;
-         string strSearch = "\\Device\\HarddiskVolume";
-         strsize ind = sTmp.find(strSearch);
-         if(ind != -1)
-         {
-            ind = sTmp.find('\\', ind + strSearch.get_length());
-            if(ind != -1)
-            {
-               string sReplace = "#:";
-               sReplace.set_at(0,GetDriveLetter(sTmp.Left(ind)));
-
-               strRet = sReplace + sTmp.Mid(ind);
-            }
-         }
-      }
-      return strRet;
-   }
-#endif
 
 } // namespace user

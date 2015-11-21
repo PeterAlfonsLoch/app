@@ -524,7 +524,7 @@ void simple_frame_window::_001OnGetMinMaxInfo(signal_details * pobj)
 #endif
 }
 
-void simple_frame_window::ShowControlBars(bool bShow)
+void simple_frame_window::ShowControlBars(bool bShow, bool bLeaveFullScreenBarsOnHide)
 {
    UINT nShow;
    if (bShow)
@@ -552,7 +552,7 @@ void simple_frame_window::ShowControlBars(bool bShow)
       m_toolbarmap.get_next_assoc(pos, idKey, pbar);
       try
       {
-         if(pbar != NULL)
+         if(pbar != NULL && (bShow || (!pbar->m_bFullScreenBar || !bLeaveFullScreenBarsOnHide)))
          {
             pbar->ShowWindow(nShow);
          }
@@ -570,7 +570,7 @@ void simple_frame_window::ShowControlBars(bool bShow)
 void simple_frame_window::WfiOnFullScreen()
 {
 
-   ShowControlBars(false);
+   ShowControlBars(false, true);
 
    _001WindowFullScreen();
 

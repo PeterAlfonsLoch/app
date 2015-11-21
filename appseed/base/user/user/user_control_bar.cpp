@@ -14,7 +14,7 @@ namespace user
    control_bar::control_bar()
    {
 
-
+      m_bFullScreenBar = false;
       m_bDockTrack = false;
 
       // no elements contained in the control bar yet
@@ -107,6 +107,10 @@ namespace user
             m_dwStyle &= ~(CBRS_BORDER_ANY);
             m_dwStyle |= (dwNewStyle | CBRS_BORDER_3D);
          }
+      }
+      if(m_dwStyle & CBRS_LEAVEONFULLSCREEN)
+      {
+         m_bFullScreenBar = true;
       }
 
       return TRUE;

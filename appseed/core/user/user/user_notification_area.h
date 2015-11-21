@@ -32,7 +32,6 @@ namespace user
 
    CLASS_DECL_CORE char GetDriveLetter(const char * lpDevicePath);
    CLASS_DECL_CORE oswindow FindTrayToolbarWindow();
-   CLASS_DECL_CORE string GetFilenameFromPid(uint32_t pid);
 
 
    class CLASS_DECL_CORE notification_area :

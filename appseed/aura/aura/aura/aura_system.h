@@ -109,6 +109,9 @@ namespace aura
       DWORD                                        m_dwMainStartTime;
       DWORD                                        m_dwAfterApplicationFirstRequest;
 
+      int                                          m_iInstanceId;
+
+
 
 
       system(::aura::application * papp);

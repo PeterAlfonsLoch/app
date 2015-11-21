@@ -46,6 +46,11 @@ namespace aura
       throw interface_only_exception(get_app(), "this is an interface");
    }
 
+   int os::get_pid()
+   {
+      throw interface_only_exception(get_app(),"this is an interface");
+   }
+
    ::file::path os::get_process_path(uint32_t dwPid)
    {
       UNREFERENCED_PARAMETER(dwPid);

@@ -30,6 +30,7 @@ namespace aura
         virtual void get_all_processes(uint_array & dwa);
         virtual ::file::path get_process_path(uint32_t dwPid);
 
+        virtual int get_pid();
 
         virtual bool connection_settings_get_auto_detect();
         virtual string connection_settings_get_auto_config_url();

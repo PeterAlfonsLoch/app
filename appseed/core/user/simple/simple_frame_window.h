@@ -119,7 +119,7 @@ public:
    virtual bool IsFullScreen();
    virtual void WfiOnFullScreen();
    virtual void WfiOnExitFullScreen();
-   virtual void ShowControlBars(bool bShow = true);
+   virtual void ShowControlBars(bool bShow = true, bool bLeaveFullScreenBarsOnHide = false);
 
 
    void OnUpdateControlBarMenu(cmd_ui * pcmdui);

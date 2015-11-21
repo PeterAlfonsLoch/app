@@ -175,6 +175,17 @@ namespace windows
       return false;
    }
 
+
+   int os::get_pid()
+   {
+      
+      return (int) ::GetCurrentProcessId();
+
+   }
+
+   
+
+
    ::file::path os::get_process_path(DWORD dwPid)
    {
       string strName = ":<unknown>";

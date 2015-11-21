@@ -106,7 +106,8 @@ namespace aura
 
       ::file::dir::application_sp                     m_spdir;
       ::file::application_sp                          m_spfile;
-      application_bias                       m_biasCalling;
+      application_bias                                m_biasCalling;
+
 
 
       application();
@@ -181,6 +182,8 @@ namespace aura
       virtual bool is_session();
       virtual bool is_serviceable();
       virtual bool is_user_service();
+
+      virtual bool on_new_instance();
 
       void process_machine_event_data(machine_event_data * pdata);
 

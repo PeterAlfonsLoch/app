@@ -319,5 +319,70 @@ namespace process
 
 
 
+extern "C"
+int module_name_get_count(const char * pszModuleName)
+{
+
+   mutex veri_global_ca2(get_app(),"Global\\the_veri_global_ca2");
+
+   synch_lock lock_the_veri_global_ca2(&veri_global_ca2);
+
+   HANDLE process_snap = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS,0);
+
+   string strModule(pszModuleName);
+
+   PROCESSENTRY32 entry;
+
+   if(Process32First(process_snap,&entry) && ::GetLastError() != ERROR_NO_MORE_FILES)
+   {
+
+   repeat_process:
+
+      if(strModule.CompareNoCase(entry.szExeFile,strModule))
+      {
+
+         m_iInstanceId++;
+
+      }
+
+      if(Process32Next(process_snap,&entry) && ::GetLastError() != ERROR_NO_MORE_FILES)
+      {
+
+         goto repeat_process;
+
+      }
+
+   }
+
+   ::CloseHandle(process_snap);
+
+}
 
 
+
+string module_path_from_pid(uint32_t pid)
+{
+   string strRet = "[Unknown Process]";
+   char ImageFileName[1024] ={0};
+   HANDLE ph = OpenProcess(PROCESS_QUERY_INFORMATION,FALSE,pid);
+   if(ph)
+   {
+      CloseHandle(ph);
+
+      string sTmp = ImageFileName;
+      string strSearch = "\\Device\\HarddiskVolume";
+      strsize ind = sTmp.find(strSearch);
+      if(ind != -1)
+      {
+         ind = sTmp.find('\\',ind + strSearch.get_length());
+         if(ind != -1)
+         {
+            string sReplace = "#:";
+            sReplace.set_at(0,GetDriveLetter(sTmp.Left(ind)));
+
+            strRet = sReplace + sTmp.Mid(ind);
+         }
+      }
+   }
+   return strRet;
+}

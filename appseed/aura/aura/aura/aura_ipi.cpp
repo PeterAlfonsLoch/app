@@ -16,6 +16,13 @@ namespace aura
 	   if(!m_rx.create(key(strApp)))
          throw ::resource_exception(papp);
 
+      m_rx.m_preceiver  = this;
+
+      if(!m_rxProcess.create(process_key(strApp)))
+         throw ::resource_exception(papp);
+
+      m_to_p[key(strApp)] = process_key(strApp);
+
    }
 
 
@@ -30,6 +37,16 @@ namespace aura
 
    }
 
+   var ipi::pcall(const string & strApp,const string & strObject,const string & strMember,var_array & va)
+   {
+
+      ::aura::ipc::tx & txc = ptx(strApp);
+
+      txc.send("call " + strObject + "." + strMember + " : " + str_from_va(va),584);
+
+      return ::var();
+
+   }
 
    void ipi::start_app(const string & strApp)
    {
@@ -80,6 +97,14 @@ namespace aura
       }
 
    }
+   
+   
+   ::aura::ipc::tx & ipi::ptx(const string & strApp)
+   {
+      
+      return tx(m_to_p[strApp]);
+
+   }
 
 
    ::aura::ipc::tx & ipi::tx(const string & strApp)
@@ -125,7 +150,7 @@ namespace aura
 
 #else
 
-      strKey = "::ca2::fontopus::cgcl-1984-11-15::m-1951-04-22::cx-1977-02-04::votagus::" + strApp;
+      strKey = "::ca2::fontopus::cgcl-1984-11-15::m-1951-04-22::cx-1977-02-04::votagus::" + strApp + ":" + ::str::from(get_pid());
 
 #endif
 
@@ -140,6 +165,50 @@ namespace aura
       strKey = ::file::path(getenv("HOME")) / "Library/Application Support/ca2/ipi" / strApp;
 
    #endif
+
+#endif
+
+      return strKey;
+
+
+   }
+
+   string ipi::process_key(const string &strApp)
+   {
+
+      string strKey;
+
+#ifdef WINDOWS
+
+#ifdef METROWIN
+
+      string strAppId(strApp);
+
+      strAppId.replace("\\","_");
+
+      strAppId.replace("/","_");
+
+      strAppId.replace("-","_");
+
+      strKey = "pcore_" + strAppId;
+
+#else
+
+      strKey = "p::ca2::fontopus::cgcl-1984-11-15::m-1951-04-22::cx-1977-02-04::votagus::" + System.file().module() + ":" + ::str::from(get_pid());
+
+#endif
+
+#else
+
+#ifdef LINUX
+
+      strKey = ::file::path(getenv("HOME")) / ".ca2/Application Support/ca2/pipi" / System.file().module();
+
+#else
+
+      strKey = ::file::path(getenv("HOME")) / "Library/Application Support/ca2/pipi" / System.file().module();
+
+#endif
 
 #endif
 
@@ -248,6 +317,18 @@ namespace aura
 
    void ipi::on_call(const string & strObject,const string & strMember,var_array & va)
    {
+
+      if(strObject == "application")
+      {
+
+         if(strMember == "on_new_instance")
+         {
+
+            Application.on_new_instance();
+
+         }
+
+      }
 
    }
 

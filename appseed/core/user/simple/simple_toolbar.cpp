@@ -1253,13 +1253,13 @@ void simple_toolbar::layout()
    if(m_itema.get_size() > 0)
    {
       point ptOffset;
-      if((m_dwCtrlStyle & TBSTYLE_ALIGN_LEFT) == TBSTYLE_ALIGN_LEFT)
-      {
-         ptOffset.x = 0;
-      }
-      else if((m_dwCtrlStyle & TBSTYLE_ALIGN_RIGHT) == TBSTYLE_ALIGN_RIGHT)
+      if((m_dwCtrlStyle & TBSTYLE_ALIGN_RIGHT) == TBSTYLE_ALIGN_RIGHT)
       {
          ptOffset.x = rectClient.width() - (m_itema.last_sp()->m_rect.right - m_itema[0]->m_rect.left);
+      }
+      else if((m_dwCtrlStyle & TBSTYLE_ALIGN_LEFT) == TBSTYLE_ALIGN_LEFT)
+      {
+         ptOffset.x = 0;
       }
       else if((m_dwCtrlStyle & TBSTYLE_ALIGN_CENTER) == TBSTYLE_ALIGN_CENTER)
       {

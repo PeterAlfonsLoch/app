@@ -140,6 +140,7 @@ namespace aura
 
       m_pinitmaindata                  = NULL;
 
+
    }
 
 
@@ -2476,6 +2477,8 @@ namespace aura
       return true;
 
 #endif
+
+
 
       bool bSetOk;
 
