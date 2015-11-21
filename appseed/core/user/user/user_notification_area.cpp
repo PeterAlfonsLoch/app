@@ -98,7 +98,7 @@ namespace user
          DWORD dwProcessId = 0;
          GetWindowThreadProcessId(tray.m_oswindow,&dwProcessId);
 
-         info.sProcessPath = GetFilenameFromPid(dwProcessId);
+         info.sProcessPath = module_path_from_pid(dwProcessId);
 
          unichar TipChar;
          unichar sTip[1024] = {0};

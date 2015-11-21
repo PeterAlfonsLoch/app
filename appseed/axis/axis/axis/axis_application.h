@@ -468,9 +468,9 @@ namespace axis
 
       virtual string get_mutex_name_gen();
 
-      virtual void on_exclusive_instance_conflict(EExclusiveInstance eexclusive);
+      //virtual void on_exclusive_instance_conflict(EExclusiveInstance eexclusive);
 
-      virtual void on_exclusive_instance_local_conflict();
+      //virtual void on_exclusive_instance_local_conflict();
 
       virtual void draw2d_factory_exchange();
 

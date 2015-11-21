@@ -4300,23 +4300,25 @@ namespace axis
    //}
 
 
-   void application::on_exclusive_instance_conflict(EExclusiveInstance eexclusive)
-   {
+   //void application::on_exclusive_instance_conflict(EExclusiveInstance eexclusive)
+   //{
 
-      if(eexclusive == ExclusiveInstanceLocal)
-      {
+   //   if(eexclusive == ExclusiveInstanceLocal)
+   //   {
 
-         on_exclusive_instance_local_conflict();
+   //      on_exclusive_instance_local_conflict();
 
-      }
+   //   }
 
-   }
+   //}
 
 
-   void application::on_exclusive_instance_local_conflict()
-   {
+   //void application::on_exclusive_instance_local_conflict()
+   //{
 
-   }
+   //   ::aura::application::on_exclusive_instance_local_conflict();
+
+   //}
 
 
    string application::get_mutex_name_gen()
