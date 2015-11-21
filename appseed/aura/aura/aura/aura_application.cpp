@@ -1839,10 +1839,25 @@ namespace aura
 
       xxdebug_box("check_exclusive","check_exclusive",MB_ICONINFORMATION);
 
+      m_pipi = create_ipi();
+
       if(!is_system() && !is_session())
       {
+         
          if(!check_exclusive())
+         {
+
             return false;
+
+         }
+
+      }
+
+      if(m_pipi != NULL)
+      {
+
+         m_pipi->call(m_pipi->m_strApp,"application","on_new_instance",System.file().module(),System.os().get_pid());
+
       }
 
       xxdebug_box("check_exclusive ok","check_exclusive ok",MB_ICONINFORMATION);
@@ -1938,8 +1953,6 @@ namespace aura
       m_bAuraInitializeInstanceResult = true;
 
 //#ifndef METROWIN
-
-      m_pipi = create_ipi();
 
 //#endif
 
@@ -2761,6 +2774,42 @@ namespace aura
 
    void application::on_exclusive_instance_local_conflict()
    {
+
+      try
+      {
+
+         int_array iaExclude;
+
+         iaExclude.add(System.os().get_pid());
+
+         if(m_pipi != NULL)
+         {
+
+            m_pipi->ecall(m_pipi->m_strApp,iaExclude, "application","on_exclusive_instance_local_conflict",System.file().module(),System.os().get_pid());
+
+         }
+
+      }
+      catch(...)
+      {
+
+
+      }
+
+
+   }
+
+
+   void application::on_exclusive_instance_local_conflict(string strModule,int iPid)
+   {
+
+
+   }
+
+
+   void application::on_new_instance(string strModule,int iPid)
+   {
+
    }
 
 

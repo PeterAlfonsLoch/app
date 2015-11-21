@@ -11,6 +11,7 @@
 #include "windows_utils.h"
 
 
+char get_drive_letter(const char * lpDevicePath);
 
 CLASS_DECL_AURA void set_main_thread(HANDLE hThread);
 CLASS_DECL_AURA void set_main_thread_id(UINT uiThread);

@@ -3,22 +3,13 @@
 
 #if !defined(METROWIN)
 
-CLASS_DECL_AURA int32_t call_async(
-   const char * pszPath,
-   const char * pszParam,
-   const char * pszDir,
-   int32_t iShow,
-   bool bPrivileged);
+CLASS_DECL_AURA int32_t call_async(const char * pszPath, const char * pszParam, const char * pszDir, int32_t iShow, bool bPrivileged);
 
-CLASS_DECL_AURA uint32_t call_sync(
-   const char * pszPath,
-   const char * pszParam,
-   const char * pszDir,
-   int32_t iShow,
-   int32_t iRetry,
-   int32_t iSleep,
-   int32_t (* pfnOnRetry)(int32_t iTry, uint_ptr dwParam),
-   uint_ptr dwParam);
+typedef int32_t CALLSYNCONRETRY(int32_t iTry,uint_ptr dwParam);
+
+typedef CALLSYNCONRETRY * PFNCALLSYNCONRETRY;
+
+CLASS_DECL_AURA uint32_t call_sync(const char * pszPath, const char * pszParam, const char * pszDir, int32_t iShow, int32_t iRetry, int32_t iSleep,PFNCALLSYNCONRETRY pfnOnRetry, uint_ptr dwParam);
 
 #endif
 
@@ -48,3 +39,5 @@ CLASS_DECL_AURA string process_version_dir_name();
 
 
 CLASS_DECL_AURA string module_path_from_pid(uint32_t pid);
+CLASS_DECL_AURA int_array module_path_get_pid(const char * pszModuleName);
+

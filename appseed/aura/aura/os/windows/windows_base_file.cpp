@@ -1215,3 +1215,23 @@ int_bool file_is_equal_path(const char * psz1,const char * psz2)
 
 
 
+
+
+char get_drive_letter(const char * lpDevicePath)
+{
+
+   char d = 'A';
+
+   while(d <= 'Z')
+   {
+      char szDeviceName[3] ={d,':','\0'};
+      char szTarget[512] ={0};
+      if(QueryDosDevice(szDeviceName,szTarget,511) != 0)
+         if(_tcscmp(lpDevicePath,szTarget) == 0)
+            return d;
+      d++;
+   }
+
+   return '\0';
+
+}

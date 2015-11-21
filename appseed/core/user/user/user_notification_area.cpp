@@ -241,26 +241,6 @@ namespace user
    */
 
 
-   char GetDriveLetter(const char * lpDevicePath)
-   {
-#ifdef WINDOWSEX
-      char d = 'A';
-      while(d <= 'Z')
-      {
-         char szDeviceName[3] = {d,':','\0'};
-         char szTarget[512] = {0};
-         if(QueryDosDevice(szDeviceName, szTarget, 511) != 0)
-            if(_tcscmp(lpDevicePath, szTarget) == 0)
-               return d;
-         d++;
-      }
-#else
-      throw todo(get_thread_app());
-#endif
-
-      return '\0';
-
-   }
 
    oswindow FindTrayToolbarWindow()
    {

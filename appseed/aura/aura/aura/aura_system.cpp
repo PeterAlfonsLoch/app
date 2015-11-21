@@ -192,13 +192,6 @@ namespace aura
 
       m_dwAfterApplicationFirstRequest = 0;
 
-
-      m_iInstanceId = -1;
-
-      
-
-
-
    }
 
 
@@ -475,8 +468,6 @@ namespace aura
 
       dappy(string(typeid(*this).name()) + " : Going to ::axis::session " + ::str::from(m_iReturnCode));
 
-
-      m_iInstanceId = module_name_get_count(file().module()) - 1;
 
       if(!alloc_session())
       {

@@ -183,7 +183,7 @@ namespace aura
       virtual bool is_serviceable();
       virtual bool is_user_service();
 
-      virtual bool on_new_instance();
+      
 
       void process_machine_event_data(machine_event_data * pdata);
 
@@ -369,6 +369,9 @@ namespace aura
 
       virtual void on_exclusive_instance_conflict(EExclusiveInstance eexclusive);
       virtual void on_exclusive_instance_local_conflict();
+      virtual void on_exclusive_instance_local_conflict(string strModule,int iPid);
+
+      virtual void on_new_instance(string strModule,int iPid);
 
       virtual string get_local_mutex_id();
       virtual string get_global_mutex_id();

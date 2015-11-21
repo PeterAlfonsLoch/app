@@ -182,7 +182,7 @@ CLASS_DECL_AURA int ansi_file_flag(int iFlag);
 CLASS_DECL_AURA void ansi_get_errno(int32_t * perrno);
 CLASS_DECL_AURA void ansi_unlink(const char * psz);
 
-CLASS_DECL_AURA int module_name_get_count(const char * pszModuleName);
+//CLASS_DECL_AURA int module_name_get_count(const char * pszModuleName);
 
 END_EXTERN_C
 

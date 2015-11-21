@@ -26,6 +26,8 @@ namespace windows
       virtual void get_all_processes(uint_array & dwa);
       virtual ::file::path get_process_path(DWORD dwPid);
 
+      virtual int get_pid();
+
 
       virtual bool connection_settings_get_auto_detect();
       virtual string connection_settings_get_auto_config_url();

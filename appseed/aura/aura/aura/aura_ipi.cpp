@@ -8,28 +8,23 @@ namespace aura
       ::object(papp),
       m_rx(papp)
    {
-      
+
       m_strApp          = strApp;
 
-      m_rx.m_preceiver  = this;
-
-	   if(!m_rx.create(key(strApp)))
-         throw ::resource_exception(papp);
+      defer_add_module(System.file().module());
 
       m_rx.m_preceiver  = this;
 
-      if(!m_rxProcess.create(process_key(strApp)))
+	   if(!m_rx.create(key(strApp, System.os().get_pid())))
          throw ::resource_exception(papp);
-
-      m_to_p[key(strApp)] = process_key(strApp);
 
    }
 
 
-   var ipi::call(const string & strApp,const string & strObject,const string & strMember,var_array & va)
+   var ipi::call(const string & strApp,int iPid, const string & strObject,const string & strMember,var_array & va)
    {
 
-      ::aura::ipc::tx & txc = tx(strApp);
+      ::aura::ipc::tx & txc = tx(strApp,iPid);
 
       txc.send("call " + strObject + "." + strMember + " : " + str_from_va(va),584);
 
@@ -37,16 +32,45 @@ namespace aura
 
    }
 
-   var ipi::pcall(const string & strApp,const string & strObject,const string & strMember,var_array & va)
+   int_map < var > ipi::call(const string & strApp,const string & strObject,const string & strMember,var_array & va)
    {
 
-      ::aura::ipc::tx & txc = ptx(strApp);
+      int_map < var > map;
 
-      txc.send("call " + strObject + "." + strMember + " : " + str_from_va(va),584);
+      int_array iaPid = get_pid(strApp);
 
-      return ::var();
+      for(int iPid : iaPid)
+      {
+
+         map[iPid] = call(strApp, iPid, strObject, strMember, va);
+
+      }
+
+      return map;
 
    }
+
+
+   int_map < var > ipi::ecall(const string & strApp,int_array iaExcludePid, const string & strObject,const string & strMember,var_array & va)
+   {
+
+      int_map < var > map;
+
+      int_array iaPid = get_pid(strApp);
+
+      iaPid -= iaExcludePid;
+
+      for(int iPid : iaPid)
+      {
+
+         map[iPid] = call(strApp,iPid,strObject,strMember,va);
+
+      }
+
+      return map;
+
+   }
+
 
    void ipi::start_app(const string & strApp)
    {
@@ -72,7 +96,16 @@ namespace aura
 
          ::aura::app_launcher launcher(strApp);
 
-         return m_txmap[strApp]->open(key(strApp),&launcher);
+         int_array ia = get_pid(strApp);
+
+         if(ia.get_count() <= 0)
+         {
+
+            return false;
+
+         }
+
+         return m_txmap[strApp]->open(key(strApp, ia[0]),&launcher);
 
       }
       else 
@@ -92,44 +125,47 @@ namespace aura
 
          launcher.m_iStart = 0;
 
-         return m_txmap[strApp]->open(key(strApp), &launcher);
+         int_array ia = get_pid(strApp);
+
+         if(ia.get_count() <= 0)
+         {
+
+            return false;
+
+         }
+
+         return m_txmap[strApp]->open(key(strApp, ia[0]), &launcher);
 
       }
 
    }
    
    
-   ::aura::ipc::tx & ipi::ptx(const string & strApp)
-   {
-      
-      return tx(m_to_p[strApp]);
-
-   }
-
-
-   ::aura::ipc::tx & ipi::tx(const string & strApp)
+   ::aura::ipc::tx & ipi::tx(const string & strApp, int iPid)
    {
 
-      if(m_txmap[strApp].is_null())
+      string strKey = strApp + ":" + ::str::from(iPid);
+
+      if(m_txmap[strKey].is_null())
       {
 
-         m_txmap[strApp] = canew(::aura::ipc::tx(get_app()));
+         m_txmap[strKey] = canew(::aura::ipc::tx(get_app()));
 
       }
 
-      if(!m_txmap[strApp]->is_tx_ok())
+      if(!m_txmap[strKey]->is_tx_ok())
       {
 
          start_app(strApp);
 
       }
 
-      return *m_txmap[strApp];
+      return *m_txmap[strKey];
 
    }
 
 
-   string ipi::key(const string &strApp)
+   string ipi::key(const string &strApp, int iPid)
    {
 
       string strKey;
@@ -150,7 +186,7 @@ namespace aura
 
 #else
 
-      strKey = "::ca2::fontopus::cgcl-1984-11-15::m-1951-04-22::cx-1977-02-04::votagus::" + strApp + ":" + ::str::from(get_pid());
+      strKey = "::ca2::fontopus::cgcl-1984-11-15::m-1951-04-22::cx-1977-02-04::votagus::" + strApp + ":" + iPid;
 
 #endif
 
@@ -158,11 +194,11 @@ namespace aura
 
    #ifdef LINUX
    
-      strKey = ::file::path(getenv("HOME")) / ".ca2/Application Support/ca2/ipi" / strApp;
+      strKey = ::file::path(getenv("HOME")) / ".ca2/Application Support/ca2/ipi" / strApp / ::str::from(iPid);
 
    #else
       
-      strKey = ::file::path(getenv("HOME")) / "Library/Application Support/ca2/ipi" / strApp;
+      strKey = ::file::path(getenv("HOME")) / "Library/Application Support/ca2/ipi" / strApp / ::str::from(iPid);
 
    #endif
 
@@ -172,51 +208,6 @@ namespace aura
 
 
    }
-
-   string ipi::process_key(const string &strApp)
-   {
-
-      string strKey;
-
-#ifdef WINDOWS
-
-#ifdef METROWIN
-
-      string strAppId(strApp);
-
-      strAppId.replace("\\","_");
-
-      strAppId.replace("/","_");
-
-      strAppId.replace("-","_");
-
-      strKey = "pcore_" + strAppId;
-
-#else
-
-      strKey = "p::ca2::fontopus::cgcl-1984-11-15::m-1951-04-22::cx-1977-02-04::votagus::" + System.file().module() + ":" + ::str::from(get_pid());
-
-#endif
-
-#else
-
-#ifdef LINUX
-
-      strKey = ::file::path(getenv("HOME")) / ".ca2/Application Support/ca2/pipi" / System.file().module();
-
-#else
-
-      strKey = ::file::path(getenv("HOME")) / "Library/Application Support/ca2/pipi" / System.file().module();
-
-#endif
-
-#endif
-
-      return strKey;
-
-
-   }
-
 
    string ipi::str_from_va(var_array & va)
    {
@@ -321,10 +312,16 @@ namespace aura
       if(strObject == "application")
       {
 
-         if(strMember == "on_new_instance")
+         if(strMember == "on_exclusive_instance_local_conflict")
+         {
+            
+            Application.on_exclusive_instance_local_conflict(va[0],va[1]);
+
+         }
+         else if(strMember == "on_new_instance")
          {
 
-            Application.on_new_instance();
+            on_new_instance(va[0], va[1]);
 
          }
 
@@ -332,6 +329,66 @@ namespace aura
 
    }
 
+   void ipi::on_new_instance(const string & strModule, int iPid)
+   {
+
+      defer_add_module(strModule);
+
+      Application.on_new_instance(strModule, iPid);
+
+   }
+
+   int_array ipi::get_pid(const string & strApp)
+   {
+
+      stringa stra;
+
+      ::file::path pathModule;
+
+      pathModule = "C:/ca2/config/ipi";
+
+      pathModule /= strApp + ".module_list";
+
+      string strModuleList = file_as_string_dup(pathModule);
+
+      stra.add_lines(strModuleList);
+
+      int_array iaPid;
+
+      for(auto & str : stra)
+      {
+
+         iaPid.add(module_path_get_pid(str));
+
+      }
+
+      return iaPid;
+
+   }
+
+
+   void ipi::defer_add_module(const string & strModule)
+   {
+
+      ::file::path pathModule;
+
+      pathModule = "C:/ca2/config/ipi";
+
+      pathModule /= m_strApp + ".module_list";
+
+      string strModuleList = file_as_string_dup(pathModule);
+
+      m_straModule.add_lines(strModuleList);
+
+      ::file::path pathThisModule = System.file().module();
+
+      m_straModule.add_unique_ci(strModule);
+
+      strModuleList = m_straModule.implode("\n");
+
+      file_put_contents_dup(pathModule,strModuleList);
+
+   }
 
 } // namespace aura
 

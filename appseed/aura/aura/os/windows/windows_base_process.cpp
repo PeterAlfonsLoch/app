@@ -3,12 +3,7 @@
 //#include <string.h>
 
 
-int32_t call_async(
-   const char * pszPath, 
-   const char * pszParam, 
-   const char * pszDir,
-   int32_t iShow,
-   bool bPrivileged)
+int32_t call_async(const char * pszPath, const char * pszParam, const char * pszDir, int32_t iShow, bool bPrivileged)
 {
 
    SHELLEXECUTEINFOW info ={};
@@ -39,16 +34,7 @@ int32_t call_async(
 }
 
 
-
-uint32_t call_sync(
-   const char * pszPath, 
-   const char * pszParam, 
-   const char * pszDir,
-   int32_t iShow,
-   int32_t iRetry, 
-   int32_t iSleep, 
-   int32_t (* pfnOnRetry)(int32_t iTry, uint_ptr dwParam),
-   uint_ptr dwParam)
+uint32_t call_sync(const char * pszPath, const char * pszParam, const char * pszDir, int32_t iShow, int32_t iRetry, int32_t iSleep, PFNCALLSYNCONRETRY pfnOnRetry, uint_ptr dwParam)
 {
 
    SHELLEXECUTEINFOA infoa;
@@ -319,17 +305,19 @@ namespace process
 
 
 
-extern "C"
-int module_name_get_count(const char * pszModuleName)
+
+int_array module_path_get_pid(const char * pszModulePath)
 {
 
-   mutex veri_global_ca2(get_app(),"Global\\the_veri_global_ca2");
+   int_array iaPid;
+
+   mutex veri_global_ca2(NULL,"Global\\the_veri_global_ca2");
 
    synch_lock lock_the_veri_global_ca2(&veri_global_ca2);
 
    HANDLE process_snap = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS,0);
 
-   string strModule(pszModuleName);
+   ::file::path pathModule(pszModulePath);
 
    PROCESSENTRY32 entry;
 
@@ -338,10 +326,10 @@ int module_name_get_count(const char * pszModuleName)
 
    repeat_process:
 
-      if(strModule.CompareNoCase(entry.szExeFile,strModule))
+      if(::file::path(module_path_from_pid(entry.th32ProcessID)) == pathModule)
       {
 
-         m_iInstanceId++;
+         iaPid.add(entry.th32ProcessID);
 
       }
 
@@ -356,33 +344,53 @@ int module_name_get_count(const char * pszModuleName)
 
    ::CloseHandle(process_snap);
 
+   return iaPid;
+
 }
 
 
 
 string module_path_from_pid(uint32_t pid)
 {
+   
    string strRet = "[Unknown Process]";
+   
    char ImageFileName[1024] ={0};
+
    HANDLE ph = OpenProcess(PROCESS_QUERY_INFORMATION,FALSE,pid);
+
    if(ph)
    {
+      
       CloseHandle(ph);
 
       string sTmp = ImageFileName;
+
       string strSearch = "\\Device\\HarddiskVolume";
+
       strsize ind = sTmp.find(strSearch);
+
       if(ind != -1)
       {
+         
          ind = sTmp.find('\\',ind + strSearch.get_length());
+
          if(ind != -1)
          {
+            
             string sReplace = "#:";
-            sReplace.set_at(0,GetDriveLetter(sTmp.Left(ind)));
+
+            sReplace.set_at(0,get_drive_letter(sTmp.Left(ind)));
 
             strRet = sReplace + sTmp.Mid(ind);
+
          }
       }
+
    }
+
    return strRet;
+
 }
+
+

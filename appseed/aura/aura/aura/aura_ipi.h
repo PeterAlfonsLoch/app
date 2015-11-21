@@ -14,29 +14,31 @@ namespace aura
 
       string                                 m_strApp;
       string_map < sp(::aura::ipc::tx) >     m_txmap;
-      string_to_string                       m_to_p;
-      string_to_string                       m_from_p;
+      //string_map < sp(::aura::ipc::tx) >     m_txmodules;
       ::aura::ipc::rx                        m_rx;
-      ::aura::ipc::rx                        m_rxProcess;
+      stringa                                m_straModule;
 
       ipi(::aura::application * papp,const string & strApp);
 
+      void defer_add_module(const string & strModule);
+
+
       template<typename T,typename... Args>
-      var pcall(const string & strApp,const string & strObject,const string & strMember,const T & t,Args... args)
+      int_map < var > ecall(const string & strApp,int_array iaExcludePid, const string & strObject,const string & strMember,const T & t,Args... args)
       {
 
          var_array va;
 
          va.add(t,args...);
 
-         return pcall(strApp,strObject,strMember,va);
+         return ecall(strApp,iaExcludePid, strObject,strMember,va);
 
       }
 
-      virtual var pcall(const string & strApp,const string & strObject,const string & strMember,var_array & va);
+      virtual int_map < var > ecall(const string & strApp,int_array iaExcludePid,const string & strObject,const string & strMember,var_array & va);
 
       template<typename T,typename... Args>
-      var call(const string & strApp,const string & strObject,const string & strMember,const T & t,Args... args)
+      int_map < var > call(const string & strApp,const string & strObject,const string & strMember,const T & t,Args... args)
       {
 
          var_array va;
@@ -47,16 +49,27 @@ namespace aura
 
       }
 
-      virtual var call(const string & strApp,const string & strObject,const string & strMember,var_array & va);
+      virtual int_map < var > call(const string & strApp,const string & strObject,const string & strMember,var_array & va);
 
-      ::aura::ipc::tx & tx(const string & strApp);
-      ::aura::ipc::tx & ptx(const string & strApp);
+      template<typename T,typename... Args>
+      var call(const string & strApp,int iPid, const string & strObject,const string & strMember,const T & t,Args... args)
+      {
 
-      virtual string key(const string &strApp);
+         var_array va;
 
-      virtual string process_key(const string &strModule, int iPid);
+         va.add(t,args...);
 
-      virtual string process_key();
+         return call(strApp,iPid, strObject,strMember,va);
+
+      }
+
+      virtual var call(const string & strApp,int iPid, const string & strObject,const string & strMember,var_array & va);
+
+      ::aura::ipc::tx & tx(const string & strApp, int iPid);
+
+      int_array get_pid(const string & strApp);
+
+      virtual string key(const string &strApp, int iPid);
 
       string str_from_va(var_array & va);
 
@@ -67,6 +80,10 @@ namespace aura
       virtual void start_app(const string & strApp);
 
       virtual bool defer_start_app(const string & strApp, bool bShouldAutoLaunch = true);
+
+      virtual void on_new_instance(const string & strModule, int iPid);
+
+      
 
    };
 
