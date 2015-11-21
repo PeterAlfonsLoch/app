@@ -6210,7 +6210,7 @@ namespace user
 
       sl.unlock();
 
-      if(m_pimpl != NULL && (!(nFlags & SWP_NOSIZE) || !(nFlags & SWP_NOMOVE)))
+      if(m_pimpl != NULL && (GetParent() == NULL || (!(nFlags & SWP_NOSIZE) || !(nFlags & SWP_NOMOVE))))
       {
 
          bOk = m_pimpl->SetWindowPos(z,x,y,cx,cy,nFlags);
