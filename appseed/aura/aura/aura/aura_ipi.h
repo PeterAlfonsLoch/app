@@ -51,6 +51,21 @@ namespace aura
 
       virtual int_map < var > call(const string & strApp,const string & strObject,const string & strMember,var_array & va);
 
+
+      template<typename T,typename... Args>
+      int_map < var > scall(const string & strApp,const string & strObject,const string & strMember,const T & t,Args... args)
+      {
+
+         var_array va;
+
+         va.add(t,args...);
+
+         return scall(strApp,strObject,strMember,va);
+
+      }
+
+      virtual int_map < var > scall(const string & strApp,const string & strObject,const string & strMember,var_array & va);
+
       template<typename T,typename... Args>
       var call(const string & strApp,int iPid, const string & strObject,const string & strMember,const T & t,Args... args)
       {
@@ -77,9 +92,9 @@ namespace aura
 
       virtual void on_receive(::aura::ipc::rx * prx,const char * pszMessage);
 
-      virtual void start_app(const string & strApp);
+      virtual bool start(const string & strApp);
 
-      virtual bool defer_start_app(const string & strApp, bool bShouldAutoLaunch = true);
+      virtual bool connect(const string & strApp, int iPid);
 
       virtual void on_new_instance(const string & strModule, int iPid);
 

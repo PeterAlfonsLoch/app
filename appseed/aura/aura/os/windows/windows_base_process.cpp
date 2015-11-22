@@ -309,15 +309,22 @@ namespace process
 int_array module_path_get_pid(const char * pszModulePath)
 {
 
+   ::file::path pathModule(pszModulePath);
+
    int_array iaPid;
+
+   if(pathModule.is_empty())
+   {
+
+      return iaPid;
+
+   }
 
    mutex veri_global_ca2(NULL,"Global\\the_veri_global_ca2");
 
    synch_lock lock_the_veri_global_ca2(&veri_global_ca2);
 
    HANDLE process_snap = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS,0);
-
-   ::file::path pathModule(pszModulePath);
 
    PROCESSENTRY32 entry;
 
@@ -326,7 +333,7 @@ int_array module_path_get_pid(const char * pszModulePath)
 
    repeat_process:
 
-      if(::file::path(module_path_from_pid(entry.th32ProcessID)) == pathModule)
+      if(entry.th32ProcessID != 0 && ::file::path(module_path_from_pid(entry.th32ProcessID)) == pathModule)
       {
 
          iaPid.add(entry.th32ProcessID);
@@ -353,44 +360,75 @@ int_array module_path_get_pid(const char * pszModulePath)
 string module_path_from_pid(uint32_t pid)
 {
    
-   string strRet = "[Unknown Process]";
+   //HANDLE hModuleSnap = INVALID_HANDLE_VALUE;
+
+   //MODULEENTRY32 me32;
+
+   //hModuleSnap = CreateToolhelp32Snapshot(TH32CS_SNAPMODULE, pid);
+
+   //if(hModuleSnap == INVALID_HANDLE_VALUE)
+   //{
+
+   //   return "";
+
+   //}
+
+   //me32.dwSize = sizeof(MODULEENTRY32);
+
+   //if(!Module32First(hModuleSnap,&me32))
+   //{
+
+   //   CloseHandle(hModuleSnap);           // clean the snapshot object
+
+   //   return "";
+
+   //}
+
+   //string strName  = defer_solve_relative_compresions(me32.szExePath);
+   // 
+   //CloseHandle(hModuleSnap);
+
+   //return strName;
+
    
-   char ImageFileName[1024] ={0};
 
-   HANDLE ph = OpenProcess(PROCESS_QUERY_INFORMATION,FALSE,pid);
+   HANDLE hProcess = OpenProcess(PROCESS_QUERY_INFORMATION | PROCESS_VM_READ,FALSE,pid);
 
-   if(ph)
+   if(hProcess == NULL)
+      return "";
+
+   WCHAR path[MAX_PATH * 4];
+
+   string strPath;
+
+   if(GetModuleFileNameExW(hProcess,0,path, sizeof(path) / sizeof(path[0])))
    {
-      
-      CloseHandle(ph);
-
-      string sTmp = ImageFileName;
-
-      string strSearch = "\\Device\\HarddiskVolume";
-
-      strsize ind = sTmp.find(strSearch);
-
-      if(ind != -1)
-      {
-         
-         ind = sTmp.find('\\',ind + strSearch.get_length());
-
-         if(ind != -1)
-         {
-            
-            string sReplace = "#:";
-
-            sReplace.set_at(0,get_drive_letter(sTmp.Left(ind)));
-
-            strRet = sReplace + sTmp.Mid(ind);
-
-         }
-      }
+      strPath = defer_solve_relative_compresions(string(path));
 
    }
 
-   return strRet;
+   ::CloseHandle(hProcess);
 
+   return strPath;
+   
 }
 
 
+// http://stackoverflow.com/questions/4178443/get-the-full-path-from-a-pid-using-delphi
+//function GetPathFromPID(const PID: cardinal): string;
+//var
+//hProcess: THandle;
+//path: array[0..MAX_PATH - 1] of char;
+//begin
+//hProcess := OpenProcess(PROCESS_QUERY_INFORMATION or PROCESS_VM_READ,false,PID);
+//if hProcess <> 0 then
+//try
+//if GetModuleFileNameEx(hProcess,0,path,MAX_PATH) = 0 then
+//RaiseLastOSError;
+//result:= path;
+//finally
+//CloseHandle(hProcess)
+//end
+//else
+//RaiseLastOSError;
+//end;

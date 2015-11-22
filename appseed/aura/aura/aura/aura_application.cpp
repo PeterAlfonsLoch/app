@@ -1856,7 +1856,16 @@ namespace aura
       if(m_pipi != NULL)
       {
 
-         m_pipi->call(m_pipi->m_strApp,"application","on_new_instance",System.file().module(),System.os().get_pid());
+         try
+         {
+
+            m_pipi->ecall(m_pipi->m_strApp,{System.os().get_pid()},"application","on_new_instance",System.file().module(),System.os().get_pid());
+
+         }
+         catch(...)
+         {
+
+         }
 
       }
 
@@ -2778,14 +2787,10 @@ namespace aura
       try
       {
 
-         int_array iaExclude;
-
-         iaExclude.add(System.os().get_pid());
-
          if(m_pipi != NULL)
          {
 
-            m_pipi->ecall(m_pipi->m_strApp,iaExclude, "application","on_exclusive_instance_local_conflict",System.file().module(),System.os().get_pid());
+            m_pipi->ecall(m_pipi->m_strApp,{System.os().get_pid()},"application","on_exclusive_instance_local_conflict",System.file().module(),System.os().get_pid());
 
          }
 

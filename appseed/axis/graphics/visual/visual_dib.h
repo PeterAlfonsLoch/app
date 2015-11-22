@@ -47,7 +47,7 @@ namespace visual
 
 
       virtual bool load_from_file(var varFile, bool bCache = true);
-      virtual bool load_from_matter(const char * pszMatter);
+      virtual bool load_from_matter(const char * pszMatter,bool bCache = true);
       virtual bool read_from_file(::file::buffer_sp  pfile);
 
 

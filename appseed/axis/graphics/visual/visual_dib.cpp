@@ -45,10 +45,10 @@ namespace visual
    }
 
 
-   bool dib_sp::load_from_matter(const char * pszMatter)
+   bool dib_sp::load_from_matter(const char * pszMatter,bool bCache)
    {
 
-      return Sys(m_p->m_pauraapp).visual().imaging().load_from_file(m_p,m_p->m_pauraapp->m_paxisapp->dir().matter(pszMatter),true,m_p->m_pauraapp);
+      return Sys(m_p->m_pauraapp).visual().imaging().load_from_file(m_p,m_p->m_pauraapp->m_paxisapp->dir().matter(pszMatter),bCache,m_p->m_pauraapp);
 
    }
 

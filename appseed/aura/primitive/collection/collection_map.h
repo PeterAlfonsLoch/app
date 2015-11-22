@@ -319,6 +319,7 @@ public:
    void construct(::count nBlockSize = 10);
    map(::aura::application * papp = NULL, ::count nBlockSize = 10);
    map(pair pairs[], int32_t iCount);
+   map(const map & m);
 
    ::count get_count() const;
    ::count get_size() const;
@@ -587,6 +588,15 @@ map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR, HASH_TABLE>::map(pair 
    }
 }
 
+template < class KEY,class ARG_KEY,class VALUE,class ARG_VALUE,class HASH,class EQUALS,class PAIR,class HASH_TABLE >
+map < KEY,ARG_KEY,VALUE,ARG_VALUE,HASH,EQUALS,PAIR,HASH_TABLE>::map(const map & m)
+{
+   construct();
+   forallref(m)
+   {
+      set_at(item.m_element1,item.m_element2);
+   }
+}
 
 template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS, class PAIR, class HASH_TABLE >
 void map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS, PAIR, HASH_TABLE>::remove_all()

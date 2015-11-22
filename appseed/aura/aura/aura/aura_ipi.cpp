@@ -32,6 +32,33 @@ namespace aura
 
    }
 
+   int_map < var > ipi::scall(const string & strApp,const string & strObject,const string & strMember,var_array & va)
+   {
+
+      int_map < var > map;
+
+      int_array iaPid = get_pid(strApp);
+
+      if(iaPid.get_count() <= 0)
+      {
+
+         start(strApp);
+
+         iaPid = get_pid(strApp);
+
+      }
+
+      for(int iPid : iaPid)
+      {
+
+         map[iPid] = call(strApp,iPid,strObject,strMember,va);
+
+      }
+
+      return map;
+
+   }
+
    int_map < var > ipi::call(const string & strApp,const string & strObject,const string & strMember,var_array & va)
    {
 
@@ -72,47 +99,52 @@ namespace aura
    }
 
 
-   void ipi::start_app(const string & strApp)
+   bool ipi::start(const string & strApp)
    {
 
-      defer_start_app(strApp);
+      int_array iaPid = get_pid(strApp);
 
-   }
-
-   bool ipi::defer_start_app(const string & strApp,bool bShouldAutoLaunch)
-   {
-
-      if(m_txmap[strApp].is_null())
+      if(iaPid.get_count() > 0)
       {
 
-         m_txmap[strApp] = canew(::aura::ipc::tx(get_app()));
+         return true;
 
       }
 
 #ifndef METROWIN
 
-      if(bShouldAutoLaunch)
+      ::aura::app_launcher launcher(strApp);
+
+      int_array ia = get_pid(strApp);
+
+      if(ia.get_count() <= 0)
       {
 
-         ::aura::app_launcher launcher(strApp);
-
-         int_array ia = get_pid(strApp);
-
-         if(ia.get_count() <= 0)
-         {
-
-            return false;
-
-         }
-
-         return m_txmap[strApp]->open(key(strApp, ia[0]),&launcher);
+         return false;
 
       }
-      else 
+
+      return m_txmap[strApp]->open(key(strApp,ia[0]),&launcher);
 
 #endif
 
-      if(m_txmap[strApp]->is_tx_ok())
+   }
+
+
+   bool ipi::connect(const string & strApp, int iPid)
+   {
+
+      string strKey = strApp + ":" + ::str::from(iPid);
+
+      if(m_txmap[strKey].is_null())
+      {
+
+         m_txmap[strKey] = canew(::aura::ipc::tx(get_app()));
+
+      }
+
+
+      if(m_txmap[strKey]->is_tx_ok())
       {
 
          return true;
@@ -125,16 +157,7 @@ namespace aura
 
          launcher.m_iStart = 0;
 
-         int_array ia = get_pid(strApp);
-
-         if(ia.get_count() <= 0)
-         {
-
-            return false;
-
-         }
-
-         return m_txmap[strApp]->open(key(strApp, ia[0]), &launcher);
+         return m_txmap[strKey]->open(key(strApp, iPid), &launcher);
 
       }
 
@@ -156,7 +179,7 @@ namespace aura
       if(!m_txmap[strKey]->is_tx_ok())
       {
 
-         start_app(strApp);
+         connect(strApp, iPid);
 
       }
 
@@ -338,6 +361,7 @@ namespace aura
 
    }
 
+
    int_array ipi::get_pid(const string & strApp)
    {
 
@@ -353,12 +377,32 @@ namespace aura
 
       stra.add_lines(strModuleList);
 
+      stringa stra2;
+
       int_array iaPid;
 
       for(auto & str : stra)
       {
 
-         iaPid.add(module_path_get_pid(str));
+         if(str.has_char())
+         {
+
+            stra2.add_unique_ci(str);
+
+         }
+
+      }
+
+
+      for(auto & str : stra2)
+      {
+
+         if(str.has_char())
+         {
+
+            iaPid.add(module_path_get_pid(str));
+
+         }
 
       }
 
@@ -372,6 +416,8 @@ namespace aura
 
       ::file::path pathModule;
 
+      m_straModule.remove_all();
+
       pathModule = "C:/ca2/config/ipi";
 
       pathModule /= m_strApp + ".module_list";
@@ -379,6 +425,17 @@ namespace aura
       string strModuleList = file_as_string_dup(pathModule);
 
       m_straModule.add_lines(strModuleList);
+
+      stringa straUnique;
+
+      forallref(m_straModule)
+      {
+
+         straUnique.add_unique_ci(item);
+
+      }
+
+      m_straModule = straUnique;
 
       ::file::path pathThisModule = System.file().module();
 

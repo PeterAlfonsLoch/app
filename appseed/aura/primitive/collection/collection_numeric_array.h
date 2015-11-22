@@ -31,7 +31,14 @@ class numeric_array :
 {
 public:
 
+
    numeric_array() {}
+
+   numeric_array(std::initializer_list < TYPE >  l):
+      comparable_raw_array < TYPE >(l)
+   {
+
+   }
 
    numeric_array(::aura::application * papp) : object(papp), comparable_raw_array < TYPE > (papp) {}
 
