@@ -87,6 +87,8 @@ namespace user
 
    void interaction::user_interaction_common_construct()
    {
+
+      m_bWorkspaceFullScreen     = false;
       m_bHideOnTransparentFrame  = false;
       m_pvoidUserInteraction     = this;
 
@@ -5525,6 +5527,19 @@ namespace user
       {
 
 #ifdef WINDOWSEX
+
+         if(m_bWorkspaceFullScreen)
+         {
+
+            if(iMatchingMonitor >= 0 && rectNew.bottom > 2)
+            {
+
+               rectNew.bottom -= 2;
+
+            }
+
+         }
+
 
          synch_lock slUserMutex(m_pmutex);
 

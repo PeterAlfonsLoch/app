@@ -21,6 +21,7 @@ namespace user
          type_down,
       };
 
+      bool                                m_bWorkspaceFullScreen;
       point                               m_ptScrollPassword1;
       e_updown                            m_eupdown;
       bool                                m_bHideOnTransparentFrame;
