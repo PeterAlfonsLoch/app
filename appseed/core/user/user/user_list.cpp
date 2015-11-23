@@ -2490,58 +2490,63 @@ namespace user
       int_ptr iItem;
       point pt = pmouse->m_pt;
       ScreenToClient(&pt);
-      if(m_bHoverSelect)
+
+      if(m_bSelect)
       {
-         if(_001DisplayHitTest(pt,iItem))
+         if(m_bHoverSelect)
          {
-         }
-         else
-         {
-            m_rangeSelection.clear();
-         }
-      }
-      else
-      {
-         if(m_bMultiSelect && Session.is_key_pressed(::user::key_shift))
-         {
-            if(_001DisplayHitTest(pt, iItem))
+            if(_001DisplayHitTest(pt,iItem))
             {
-               item_range itemrange;
-               int_ptr iLItem = MIN(m_iShiftFirstSelection, iItem);
-               int_ptr iUItem = MAX(m_iShiftFirstSelection, iItem);
-               itemrange.set(iLItem, iUItem, 0, m_columna.get_count() - 1, - 1, -1);
-               m_rangeSelection.add_item(itemrange);
-               m_iShiftFirstSelection = iItem;
             }
-         }
-         else if(m_bMultiSelect && Session.is_key_pressed(::user::key_control))
-         {
-            if(_001DisplayHitTest(pt, iItem))
+            else
             {
-               item_range itemrange;
-               int_ptr iLItem = MIN(m_iShiftFirstSelection, iItem);
-               int_ptr iUItem = MAX(m_iShiftFirstSelection, iItem);
-               itemrange.set(iLItem, iUItem, 0, m_columna.get_count() - 1, - 1, -1);
-               m_rangeSelection.add_item(itemrange);
-               m_iShiftFirstSelection = iItem;
+               m_rangeSelection.clear();
             }
          }
          else
          {
-            m_rangeSelection.clear();
-            index iItem;
-            if(_001DisplayHitTest(pt, iItem))
+            if(m_bMultiSelect && Session.is_key_pressed(::user::key_shift))
             {
-               m_iShiftFirstSelection = iItem;
-               m_iItemFocus = iItem;
-               _001DisplayHitTest(pt, m_iItemDrag);
-               m_iItemDrop = m_iItemDrag;
-               SetTimer(12345678, 400, NULL);
-               item_range itemrange;
-               itemrange.set(iItem, iItem, 0, m_columna.get_count() - 1, - 1, -1);
-               m_rangeSelection.add_item(itemrange);
+               if(_001DisplayHitTest(pt,iItem))
+               {
+                  item_range itemrange;
+                  int_ptr iLItem = MIN(m_iShiftFirstSelection,iItem);
+                  int_ptr iUItem = MAX(m_iShiftFirstSelection,iItem);
+                  itemrange.set(iLItem,iUItem,0,m_columna.get_count() - 1,- 1,-1);
+                  m_rangeSelection.add_item(itemrange);
+                  m_iShiftFirstSelection = iItem;
+               }
+            }
+            else if(m_bMultiSelect && Session.is_key_pressed(::user::key_control))
+            {
+               if(_001DisplayHitTest(pt,iItem))
+               {
+                  item_range itemrange;
+                  int_ptr iLItem = MIN(m_iShiftFirstSelection,iItem);
+                  int_ptr iUItem = MAX(m_iShiftFirstSelection,iItem);
+                  itemrange.set(iLItem,iUItem,0,m_columna.get_count() - 1,- 1,-1);
+                  m_rangeSelection.add_item(itemrange);
+                  m_iShiftFirstSelection = iItem;
+               }
+            }
+            else
+            {
+               m_rangeSelection.clear();
+               index iItem;
+               if(_001DisplayHitTest(pt,iItem))
+               {
+                  m_iShiftFirstSelection = iItem;
+                  m_iItemFocus = iItem;
+                  _001DisplayHitTest(pt,m_iItemDrag);
+                  m_iItemDrop = m_iItemDrag;
+                  SetTimer(12345678,400,NULL);
+                  item_range itemrange;
+                  itemrange.set(iItem,iItem,0,m_columna.get_count() - 1,- 1,-1);
+                  m_rangeSelection.add_item(itemrange);
+               }
             }
          }
+
       }
 
       RedrawWindow();

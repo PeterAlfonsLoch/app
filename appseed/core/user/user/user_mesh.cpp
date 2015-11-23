@@ -2516,58 +2516,62 @@ namespace user
       int_ptr iItem;
       point pt = pmouse->m_pt;
       ScreenToClient(&pt);
-      if(m_bHoverSelect)
+
+      if(m_bSelect)
       {
-         if(_001DisplayHitTest(pt,iItem))
-         {
-         }
-         else
-         {
-            m_rangeSelection.clear();
-         }
-      }
-      else
-      {
-         if(m_bMultiSelect && Session.is_key_pressed(::user::key_shift))
+         if(m_bHoverSelect)
          {
             if(_001DisplayHitTest(pt,iItem))
             {
-               item_range itemrange;
-               int_ptr iLItem = MIN(m_iShiftFirstSelection,iItem);
-               int_ptr iUItem = MAX(m_iShiftFirstSelection,iItem);
-               itemrange.set(iLItem,iUItem,0,m_nColumnCount - 1,- 1,-1);
-               _001AddSelection(itemrange);
-               m_iShiftFirstSelection = iItem;
             }
-         }
-         else if(m_bMultiSelect && Session.is_key_pressed(::user::key_control))
-         {
-            if(_001DisplayHitTest(pt,iItem))
+            else
             {
-               item_range itemrange;
-               int_ptr iLItem = MIN(m_iShiftFirstSelection,iItem);
-               int_ptr iUItem = MAX(m_iShiftFirstSelection,iItem);
-               itemrange.set(iLItem,iUItem,0,m_nColumnCount - 1,- 1,-1);
-               _001AddSelection(itemrange);
-               m_iShiftFirstSelection = iItem;
+               m_rangeSelection.clear();
             }
          }
          else
          {
-            m_rangeSelection.clear();
-            index iItem;
-            if(_001DisplayHitTest(pt,iItem))
+            if(m_bMultiSelect && Session.is_key_pressed(::user::key_shift))
             {
-               m_iShiftFirstSelection = iItem;
-               m_iItemFocus = iItem;
-               _001DisplayHitTest(pt,m_iItemDrag);
-               m_iItemDrop = m_iItemDrag;
-               m_uiLButtonDownFlags = pmouse->m_nFlags;
-               m_ptLButtonDown = pt;
-               SetTimer(12345678,800,NULL);
-               item_range itemrange;
-               itemrange.set(iItem,iItem,0,m_nColumnCount - 1,- 1,-1);
-               _001AddSelection(itemrange);
+               if(_001DisplayHitTest(pt,iItem))
+               {
+                  item_range itemrange;
+                  int_ptr iLItem = MIN(m_iShiftFirstSelection,iItem);
+                  int_ptr iUItem = MAX(m_iShiftFirstSelection,iItem);
+                  itemrange.set(iLItem,iUItem,0,m_nColumnCount - 1,- 1,-1);
+                  _001AddSelection(itemrange);
+                  m_iShiftFirstSelection = iItem;
+               }
+            }
+            else if(m_bMultiSelect && Session.is_key_pressed(::user::key_control))
+            {
+               if(_001DisplayHitTest(pt,iItem))
+               {
+                  item_range itemrange;
+                  int_ptr iLItem = MIN(m_iShiftFirstSelection,iItem);
+                  int_ptr iUItem = MAX(m_iShiftFirstSelection,iItem);
+                  itemrange.set(iLItem,iUItem,0,m_nColumnCount - 1,- 1,-1);
+                  _001AddSelection(itemrange);
+                  m_iShiftFirstSelection = iItem;
+               }
+            }
+            else
+            {
+               m_rangeSelection.clear();
+               index iItem;
+               if(_001DisplayHitTest(pt,iItem))
+               {
+                  m_iShiftFirstSelection = iItem;
+                  m_iItemFocus = iItem;
+                  _001DisplayHitTest(pt,m_iItemDrag);
+                  m_iItemDrop = m_iItemDrag;
+                  m_uiLButtonDownFlags = pmouse->m_nFlags;
+                  m_ptLButtonDown = pt;
+                  SetTimer(12345678,800,NULL);
+                  item_range itemrange;
+                  itemrange.set(iItem,iItem,0,m_nColumnCount - 1,- 1,-1);
+                  _001AddSelection(itemrange);
+               }
             }
          }
       }
@@ -3748,47 +3752,49 @@ namespace user
       if(ptimer->m_nIDEvent == 12345679) // left click
       {
          KillTimer(12345679);
-         if(m_bHoverSelect)
+         if(m_bSelect)
          {
-            if(m_iClick == 1)
+            if(m_bHoverSelect)
             {
-               m_iClick = 0;
-               if(!_001IsEditing())
+               if(m_iClick == 1)
                {
-                  uint_ptr nFlags = m_uiLButtonUpFlags;
-                  point point = m_ptLButtonUp;
-                  _001OnClick(nFlags,point);
-                  Redraw();
-
-
-                  /* trans
-                  window_id wndidNotify = pwnd->GetOwner()->GetSafeoswindow_();
-                  if(wndidNotify == NULL)
-                  wndidNotify = pwnd->GetParent()->GetSafeoswindow_(); */
-
-                  //               LRESULT lresult = 0;
-
-                  /* trans            if(wndidNotify)
+                  m_iClick = 0;
+                  if(!_001IsEditing())
                   {
-                  NMLISTVIEW nm;
-                  nm.hdr.idFrom = pwnd->GetDlgCtrlId();
-                  nm.hdr.code =   NM_CLICK;
-                  nm.hdr.oswindowFrom = pwnd->GetSafeoswindow_();
-                  lresult = ::SendMessage(
-                  wndidNotify,
-                  WM_NOTIFY,
-                  nm.hdr.idFrom,
-                  (LPARAM) &nm);
-                  }*/
-               }
-            }
-            else
-            {
-               m_iClick = 0;
-            }
-            
-         }
+                     uint_ptr nFlags = m_uiLButtonUpFlags;
+                     point point = m_ptLButtonUp;
+                     _001OnClick(nFlags,point);
+                     Redraw();
 
+
+                     /* trans
+                     window_id wndidNotify = pwnd->GetOwner()->GetSafeoswindow_();
+                     if(wndidNotify == NULL)
+                     wndidNotify = pwnd->GetParent()->GetSafeoswindow_(); */
+
+                     //               LRESULT lresult = 0;
+
+                     /* trans            if(wndidNotify)
+                     {
+                     NMLISTVIEW nm;
+                     nm.hdr.idFrom = pwnd->GetDlgCtrlId();
+                     nm.hdr.code =   NM_CLICK;
+                     nm.hdr.oswindowFrom = pwnd->GetSafeoswindow_();
+                     lresult = ::SendMessage(
+                     wndidNotify,
+                     WM_NOTIFY,
+                     nm.hdr.idFrom,
+                     (LPARAM) &nm);
+                     }*/
+                  }
+               }
+               else
+               {
+                  m_iClick = 0;
+               }
+
+            }
+         }
       }
       else if(ptimer->m_nIDEvent == 8477) // right click
       {
@@ -5072,7 +5078,7 @@ namespace user
 
          if(_001DisplayHitTest(pt,iItemEnter,iSubItemEnter))
          {
-            if(m_bHoverSelect &&
+            if(m_bSelect && m_bHoverSelect &&
                (m_iSubItemEnter != iSubItemEnter ||
                m_iItemEnter != iItemEnter)
                && !m_rangeSelection.has_item(iItemEnter))

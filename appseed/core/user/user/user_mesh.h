@@ -305,6 +305,7 @@ namespace user
       index_biunique *                 m_piaFilterIcon;
       index_array *                    m_piaFilterMesh;
 
+      bool                             m_bSelect;
       bool                             m_bHoverSelect;
       bool                             m_bMultiSelect;
 
