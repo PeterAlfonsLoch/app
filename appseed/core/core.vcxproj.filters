@@ -1459,6 +1459,9 @@
     <ClCompile Include="user\databaseuser\databaseuser_mesh_data.cpp">
       <Filter>Source Files\user\databaseuser</Filter>
     </ClCompile>
+    <ClCompile Include="user\user\user_shell_windows.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="core.def">

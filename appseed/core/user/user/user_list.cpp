@@ -30,6 +30,8 @@ namespace user
 
       m_bAutoCreateListHeader = true;
 
+
+      m_bMorePlain = false;
    }
 
    list::~list()
@@ -5471,6 +5473,7 @@ namespace user
       }
       else
       {
+         
          m_pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
          return get_image_list()->draw(m_pgraphics, (int32_t) m_iImage, m_rectImage.top_left(), m_rectImage.size(), point(0,0), 0);
       }

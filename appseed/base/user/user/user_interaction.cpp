@@ -5622,6 +5622,18 @@ namespace user
       {
 #ifdef WINDOWSEX
 
+         if(iMatchingMonitor >= 0 && rectNew.bottom > 0)
+         {
+
+            if(rectWkspace.bottom > rectNew.bottom - 2)
+            {
+
+               rectWkspace.bottom = rectNew.bottom - 2;
+
+            }
+
+         }
+
 
          synch_lock slUserMutex(m_pmutex);
 

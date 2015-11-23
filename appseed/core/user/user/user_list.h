@@ -188,7 +188,7 @@ namespace user
    public:
 
 
-
+      bool                             m_bMorePlain;
       bool                             m_bAutoCreateListHeader;
       bool                             m_bHeaderCtrl;
       bool                             m_bSingleColumnMode;

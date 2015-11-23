@@ -61,7 +61,8 @@ namespace console
 
       virtual void message_queue_message_handler(signal_details * pobj);
 
-      sp(::user::wndfrm::frame::frame) create_frame_schema();
+      sp(::user::wndfrm::frame::frame) 
+         create_frame_schema();
    };
 
 

@@ -53,18 +53,18 @@ namespace aura
 
 
       template<typename T,typename... Args>
-      int_map < var > scall(const string & strApp,const string & strObject,const string & strMember,const T & t,Args... args)
+      int_map < var > scall(bool bAutoLaunch, const string & strApp,const string & strObject,const string & strMember,const T & t,Args... args)
       {
 
          var_array va;
 
          va.add(t,args...);
 
-         return scall(strApp,strObject,strMember,va);
+         return scall(bAutoLaunch, strApp,strObject,strMember,va);
 
       }
 
-      virtual int_map < var > scall(const string & strApp,const string & strObject,const string & strMember,var_array & va);
+      virtual int_map < var > scall(bool bAutoLaunch,const string & strApp,const string & strObject,const string & strMember,var_array & va);
 
       template<typename T,typename... Args>
       var call(const string & strApp,int iPid, const string & strObject,const string & strMember,const T & t,Args... args)

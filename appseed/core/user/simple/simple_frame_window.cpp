@@ -225,6 +225,8 @@ sp(::user::wndfrm::frame::frame) simple_frame_window::create_frame_schema()
 
    sp(::user::wndfrm::frame::frame) pschema = Application.wndfrm().get_frame_schema(NULL, "005");
 
+   pschema->set_style("DarkWarmBlue");
+
 //   pschema->m_typeinfoControlBoxButton = System.type_info < MetaButton >();
 
    return pschema;

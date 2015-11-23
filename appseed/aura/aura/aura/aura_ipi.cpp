@@ -32,7 +32,7 @@ namespace aura
 
    }
 
-   int_map < var > ipi::scall(const string & strApp,const string & strObject,const string & strMember,var_array & va)
+   int_map < var > ipi::scall(bool bAutoLaunch, const string & strApp,const string & strObject,const string & strMember,var_array & va)
    {
 
       int_map < var > map;
@@ -41,6 +41,13 @@ namespace aura
 
       if(iaPid.get_count() <= 0)
       {
+
+         if(!bAutoLaunch)
+         {
+
+            return map;
+
+         }
 
          start(strApp);
 
