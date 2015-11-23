@@ -2548,7 +2548,23 @@ namespace user
          }
 
       }
+      else
+      {
+         
+         if(_001DisplayHitTest(pt,iItem))
+         {
 
+            m_iItemMouseDown = iItem;
+
+         }
+         else
+         {
+
+            m_iItemMouseDown = -1;
+
+         }
+
+      }
       RedrawWindow();
       if(!has_focus())
       {
@@ -2566,6 +2582,7 @@ namespace user
          point pt = pmouse->m_pt;
       ScreenToClient(&pt);
       KillTimer(12345678);
+
 
       if(m_bDrag)
       {
@@ -2592,6 +2609,29 @@ namespace user
             }
          }
       }
+      else if(!m_bSelect)
+      {
+
+         if(Session.user()->get_mouse_focus_LButtonDown() == this)
+         {
+
+            index iItem = -1;
+            
+            if(_001DisplayHitTest(pt,iItem))
+            {
+
+               if(iItem >= 0 && m_iItemMouseDown == iItem)
+               {
+
+                  _001OnItemClick(iItem);
+
+               }
+
+            }
+
+         }
+         
+      }
       else
       {
          m_iClick++;
@@ -2599,9 +2639,15 @@ namespace user
          m_ptLButtonUp = pt;
          SetTimer(12345679, 500, NULL);
       }
+
+      m_iItemMouseDown = -1;
+
       pobj->m_bRet = true;
+
       pmouse->set_lresult(1);
+
    }
+
 
    void list::_001OnRButtonDown(signal_details * pobj)
    {
@@ -2644,6 +2690,14 @@ namespace user
 
 
       pobj->m_bRet = true;
+   }
+
+   
+   void list::_001OnItemClick(index iItem)
+   {
+
+      UNREFERENCED_PARAMETER(iItem);
+
    }
 
 

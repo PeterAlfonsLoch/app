@@ -202,6 +202,8 @@ namespace user
 
       sp(simple_list_data)             m_psimplelistdata;
 
+      int                              m_iItemMouseDown;
+
 
 
 
@@ -421,6 +423,8 @@ namespace user
 
       DECL_GEN_SIGNAL(_001OnListViewAutoArrange);
 
+
+      virtual void _001OnItemClick(index iItem);
 
       virtual void _001OnClick(uint_ptr uiFlags, point point);
       virtual void _001OnRightClick(uint_ptr uiFlags, point point);
