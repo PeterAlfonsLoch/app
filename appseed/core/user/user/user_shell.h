@@ -108,11 +108,11 @@ namespace filemanager
 #endif
          int32_t GetImage(oswindow oswindow, const char * lpcsz,EFileAttribute eattribute,EIcon eicon, COLORREF crBk = 0) ;
          int32_t GetImage(oswindow oswindow, const char * lpcsz, const unichar * lpcszExtra, EIcon eicon, bool bFolder, COLORREF crBk);
-         int32_t GetImageByExtension(oswindow oswindow,const ::file::path & lpcsz,EIcon eicon,bool bFolder);
+         int32_t GetImageByExtension(oswindow oswindow,const ::file::path & lpcsz,EIcon eicon,bool bFolder, COLORREF crBk);
 #ifdef WINDOWSEX
          int32_t GetImage(oswindow oswindow, IShellFolder * lpsf, LPITEMIDLIST lpiidlAbsolute, LPITEMIDLIST lpiidlChild, const unichar * lpcszExtra, EIcon eicon, COLORREF crBk);
          int32_t GetImage(oswindow oswindow, LPITEMIDLIST lpiidlAbsolute, const unichar * lpcszExtra, EIcon eicon, COLORREF crBk);
-         int32_t GetFooImage(oswindow oswindow,EIcon eicon, bool bFolder, const string & strExtension);
+         int32_t GetFooImage(oswindow oswindow,EIcon eicon, bool bFolder, const string & strExtension, COLORREF crBk);
 #endif
 
          

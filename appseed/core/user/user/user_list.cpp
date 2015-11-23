@@ -482,7 +482,10 @@ namespace user
       ::draw2d::font * pfont;
       if(pdrawitem->m_bListItemHover)
       {
-         pdrawitem->m_pgraphics->FillSolidRect(pdrawitem->m_rectItem, ARGB(128, 255, 255, 255));
+         if(!pdrawitem->m_plist->m_bMorePlain)
+         {
+            pdrawitem->m_pgraphics->FillSolidRect(pdrawitem->m_rectItem,ARGB(128,255,255,255));
+         }
          pfont = _001GetFontHover();
       }
       else
@@ -503,7 +506,10 @@ namespace user
 
       if(pdrawitem->m_bListItemSelected)
       {
-         if(Session.savings().is_trying_to_save(::aura::resource_processing))
+         if(pdrawitem->m_plist->m_bMorePlain)
+         {
+         }
+         else if(Session.savings().is_trying_to_save(::aura::resource_processing))
          {
             pdrawitem->m_pgraphics->FillSolidRect(pdrawitem->m_rectItem, ARGB(255, 96,96,96));
          }
@@ -574,6 +580,22 @@ namespace user
       }
 
 
+      if(pdrawitem->m_bListItemSelected)
+      {
+         if(pdrawitem->m_plist->m_bMorePlain)
+         {
+            ::rect r = pdrawitem->m_rectItem;
+            COLORREF cr;
+            if(!get_color(cr,color_text))
+            {
+               cr = ARGB(255,96,96,96);
+            }
+            pdrawitem->m_pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+            pdrawitem->m_pgraphics->FillSolidRect(pdrawitem->m_rectItem,ARGB(84,argb_get_r_value(cr),argb_get_g_value(cr),argb_get_b_value(cr)));
+
+         }
+
+      }
 
    }
 
@@ -5473,9 +5495,19 @@ namespace user
       }
       else
       {
-         
-         m_pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
-         return get_image_list()->draw(m_pgraphics, (int32_t) m_iImage, m_rectImage.top_left(), m_rectImage.size(), point(0,0), 0);
+         synch_lock sl(get_image_list()->m_pmutex);
+         if(m_plist->m_bMorePlain)
+         {
+
+            m_pgraphics->set_alpha_mode(::draw2d::alpha_mode_set);
+            return m_pgraphics->BitBlt(m_rectImage.left, m_rectImage.top, m_rectImage.width(), m_rectImage.height(),get_image_list()->m_spdib->get_graphics(), m_iImage * m_rectImage.width());
+
+         }
+         else
+         {
+            m_pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+            return get_image_list()->draw(m_pgraphics,(int32_t)m_iImage,m_rectImage.top_left(),m_rectImage.size(),point(0,0),0);
+         }
       }
       return false;
    }

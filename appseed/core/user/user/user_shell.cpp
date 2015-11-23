@@ -169,6 +169,8 @@ namespace filemanager
       }
 
       single_lock sl(&m_mutex, true);
+      synch_lock sl1(m_pil48Hover->m_pmutex);
+      synch_lock sl2(m_pil48->m_pmutex);
 
       int32_t iImage = 0x80000000;
 
@@ -196,17 +198,7 @@ namespace filemanager
       if(crBk != 0)
       {
 
-         {
-            ::draw2d::dib_sp dib(allocer());
-            dib->create(48,48);
-            dib->Fill(255,argb_get_r_value(crBk),argb_get_g_value(crBk),argb_get_b_value(crBk));
-            dib->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_blend);
-            m_pil48->draw(dib->get_graphics(),iImage,null_point(),0);
-            m_pil48->m_spdib->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
-            m_pil48->m_spdib->get_graphics()->BitBlt(iImage * 48,0,48,48,dib->get_graphics());
-            m_pil48->m_spdib->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-         }
          {
             ::draw2d::dib_sp dib(allocer());
             dib->create(48,48);
@@ -216,6 +208,20 @@ namespace filemanager
             m_pil48Hover->m_spdib->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
             m_pil48Hover->m_spdib->get_graphics()->BitBlt(iImage * 48,0,48,48,dib->get_graphics());
             m_pil48Hover->m_spdib->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_blend);
+
+         }
+         {
+            ::draw2d::dib & d = *m_pil48Hover->m_spdib;
+            size s = m_pil48->m_spdib->m_size;
+            ::draw2d::dib_sp dib(allocer());
+            dib->create(d.size());
+            dib->Fill(255,argb_get_r_value(crBk),argb_get_g_value(crBk),argb_get_b_value(crBk));
+            dib->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_blend);
+            dib->get_graphics()->BitBlt(null_point(),d.size(),d.get_graphics());
+            dib->get_graphics()->FillSolidRect(0,0,d.size().cx,d.size().cy,ARGB(123,argb_get_r_value(crBk),argb_get_g_value(crBk),argb_get_b_value(crBk)));
+            m_pil48->m_spdib->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
+            m_pil48->m_spdib->get_graphics()->BitBlt(null_point(),d.size(),dib->get_graphics());
+            m_pil48->m_spdib->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_blend);
 
          }
 
@@ -228,12 +234,12 @@ namespace filemanager
 
 
 
-   int32_t ImageSet::GetImageByExtension(oswindow oswindow,const ::file::path & pszPath,EIcon eicon,bool bFolder)
+   int32_t ImageSet::GetImageByExtension(oswindow oswindow,const ::file::path & pszPath,EIcon eicon,bool bFolder, COLORREF crBk)
    {
 
 #ifdef WINDOWSEX
 
-      return GetFooImage(oswindow,eicon,bFolder,pszPath.ext());
+      return GetFooImage(oswindow,eicon,bFolder,pszPath.ext(), crBk);
 
 #else
 
@@ -390,19 +396,30 @@ namespace filemanager
       if(::str::ends_ci(strPath, ".core"))
       {
          string str = Application.file().as_string(strPath);
-         if(::str::begins_eat_ci(str, "ca2prompt\r\n"))
+         if(::str::begins_eat_ci(str,"ca2prompt\r\n"))
          {
             str.trim();
 #ifdef WINDOWSEX
-            HICON hicon16 = (HICON) ::LoadImage(NULL, Application.dir().matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 16, 16, LR_LOADFROMFILE);
-            HICON hicon48 = (HICON) ::LoadImage(NULL, Application.dir().matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 48, 48, LR_LOADFROMFILE);
+            HICON hicon16 = (HICON) ::LoadImage(NULL,Application.dir().matter(str + "/mainframe/icon.ico"),IMAGE_ICON,16,16,LR_LOADFROMFILE);
+            HICON hicon48 = (HICON) ::LoadImage(NULL,Application.dir().matter(str + "/mainframe/icon.ico"),IMAGE_ICON,48,48,LR_LOADFROMFILE);
             iImage = m_pil16->add_icon_os_data(hicon16);
             m_pil48Hover->add_icon_os_data(hicon48);
-            System.visual().imaging().Createcolor_blend_ImageList(
-               m_pil48,
-               m_pil48Hover,
-               RGB(255, 255, 240),
-               64);
+            synch_lock sl1(m_pil48Hover->m_pmutex);
+            synch_lock sl2(m_pil48->m_pmutex);
+
+            if(crBk == 0)
+            {
+               System.visual().imaging().Createcolor_blend_ImageList(
+                  m_pil48,
+                  m_pil48Hover,
+                  RGB(255,255,240),
+                  64);
+            }
+            else
+            {
+               *m_pil48 = *m_pil48Hover;
+            }
+
 #endif
          }
          return iImage;
@@ -422,11 +439,11 @@ namespace filemanager
          if(i > 0 && i == strProtocol.get_length())
          {
             // heuristically valid protocol
-            return GetImageByExtension(oswindow, strPath, eicon, bFolder);
+            return GetImageByExtension(oswindow, strPath, eicon, bFolder, crBk);
          }
          if(bFolder)
          {
-            return GetImageByExtension(oswindow, strPath, eicon, bFolder);
+            return GetImageByExtension(oswindow, strPath, eicon, bFolder,crBk);
          }
       }
 
@@ -438,7 +455,7 @@ namespace filemanager
       if(str == "foo")
       {
 
-         iImage = GetFooImage(oswindow,eicon,bFolder,"");
+         iImage = GetFooImage(oswindow,eicon,bFolder,"", crBk);
 
       }
       else
@@ -447,7 +464,7 @@ namespace filemanager
          if(::str::begins_eat(str,"foo."))
          {
 
-            iImage = GetFooImage(oswindow,eicon,bFolder,str);
+            iImage = GetFooImage(oswindow,eicon,bFolder,str,crBk);
 
          }
          else

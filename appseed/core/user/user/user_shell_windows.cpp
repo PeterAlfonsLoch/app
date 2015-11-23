@@ -1038,7 +1038,9 @@ namespace filemanager
 
             if(imagekey.m_iIcon == 0x80000000)
             {
-               iImage = GetFooImage(oswindow,eicon,imagekey.m_strPath == "folder",imagekey.m_strExtension);
+
+               iImage = GetFooImage(oswindow,eicon,imagekey.m_strPath == "folder",imagekey.m_strExtension, crBk);
+
             }
             else
             {
@@ -1078,14 +1080,29 @@ namespace filemanager
                         m_pil48Hover->add_icon_os_data(hicon48_2);
                         }
                         else*/
+                        synch_lock sl1(m_pil48Hover->m_pmutex);
+                        synch_lock sl2(m_pil48->m_pmutex);
+
                         {
                            m_pil48Hover->add_icon_os_data(hicon48);
                         }
-                        System.visual().imaging().Createcolor_blend_ImageList(
-                           m_pil48,
-                           m_pil48Hover,
-                           RGB(255,255,240),
-                           64);
+
+                        if(crBk == 0)
+                        {
+
+
+                           System.visual().imaging().Createcolor_blend_ImageList(
+                              m_pil48,
+                              m_pil48Hover,
+                              RGB(255,255,240),
+                              64);
+
+                        }
+                        else
+                        {
+                           *m_pil48 = *m_pil48Hover;
+
+                        }
                         m_imagemap.set_at(imagekey,iImage);
                      }
                   }
@@ -1122,6 +1139,9 @@ namespace filemanager
                         iImage = m_pil16->add_icon_os_data(hicon16);
                         IImageList * pil = NULL;
                         SHGetImageList(SHIL_EXTRALARGE,IID_IImageList,(void **)&pil);
+                        synch_lock sl1(m_pil48Hover->m_pmutex);
+                        synch_lock sl2(m_pil48->m_pmutex);
+
                         if(pil != NULL)
                         {
                            HICON hicon48;
@@ -1140,11 +1160,20 @@ namespace filemanager
                         {
                            m_pil48Hover->add_icon_os_data(shfi48.hIcon);
                         }
-                        System.visual().imaging().Createcolor_blend_ImageList(
-                           m_pil48,
-                           m_pil48Hover,
-                           RGB(255,255,240),
-                           64);
+                        if(crBk == 0)
+                        {
+                           System.visual().imaging().Createcolor_blend_ImageList(
+                              m_pil48,
+                              m_pil48Hover,
+                              RGB(255,255,240),
+                              64);
+
+                        }
+                        else
+                        {
+                           *m_pil48 = *m_pil48Hover;
+                        }
+
                      }
                      else
                      {
@@ -1226,7 +1255,6 @@ namespace filemanager
                      }
                      iImage = m_pil16->add_icon_os_data(hicon16);
 
-
                      m_pil48Hover->add_icon_os_data(hicon48);
 
                      if(crBk == 0)
@@ -1241,7 +1269,7 @@ namespace filemanager
                      }
                      else
                      {
-                        m_pil48->add_icon_os_data(hicon48);
+                        *m_pil48 = *m_pil48Hover;
                      }
                      m_imagemap.set_at(imagekey,iImage);
                   }
@@ -1263,7 +1291,7 @@ namespace filemanager
          return iImage;
       }
 
-      int32_t ImageSet::GetFooImage(oswindow oswindow,EIcon eicon,bool bFolder,const string & strExtension)
+      int32_t ImageSet::GetFooImage(oswindow oswindow,EIcon eicon,bool bFolder,const string & strExtension, COLORREF crBk)
       {
 
          int32_t iImage;
@@ -1352,11 +1380,22 @@ namespace filemanager
          {
             m_pil48Hover->add_icon_os_data(shfi48.hIcon);
          }
+         synch_lock sl1(m_pil48Hover->m_pmutex);
+         synch_lock sl2(m_pil48->m_pmutex);
+
+         if(crBk == 0)
+         {
          System.visual().imaging().Createcolor_blend_ImageList(
             m_pil48,
             m_pil48Hover,
             RGB(255,255,240),
             64);
+
+      }
+                     else
+                     {
+                        *m_pil48 = *m_pil48Hover;
+                     }
 
          m_imagemap.set_at(imagekey,iImage);
 
