@@ -551,9 +551,13 @@ namespace file
             {
 #endif
 
-               ::file::path strTarget;
+               string strTarget;
 
-               if (System.file().resolve_link(strTarget, lpcszPath))
+               string strFolder;
+
+               string strParams;
+
+               if (System.file().resolve_link(strTarget, strFolder, strParams, lpcszPath))
                {
 
                   bIs = is(strTarget, papp);

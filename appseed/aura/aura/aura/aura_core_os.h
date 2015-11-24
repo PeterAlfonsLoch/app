@@ -57,6 +57,7 @@ namespace aura
 
 #endif
 
+        
 
         virtual bool create_service(::aura::application * papp);
         virtual bool remove_service(::aura::application * papp);
@@ -77,6 +78,9 @@ namespace aura
 
         
         virtual void set_file_status(const char * lpszFileName, const ::file::file_status& status);
+
+        
+        virtual bool resolve_link(string & strTarget,string & strDirectory,string & strParams, const string & pszSource,::user::primitive * puiMessageParentOptional = NULL);
 
 
     };

@@ -833,12 +833,14 @@ namespace metrowin
       return bOk != FALSE;
    }
 
-   bool os::resolve_link(string & strTarget, const char * pszSource, ::user::primitive * puiMessageParentOptional)
+   
+   bool os::resolve_link(string & strTarget, string & strFolder, string & strParams, const string & pszSource, ::user::primitive * puiMessageParentOptional)
    {
 
       return vfxResolveShortcut(strTarget, pszSource, puiMessageParentOptional);
 
    }
+
 
    DECLSPEC_NO_RETURN void os::raise_exception( DWORD dwExceptionCode, DWORD dwExceptionFlags)
    {

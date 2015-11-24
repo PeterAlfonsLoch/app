@@ -984,9 +984,15 @@ namespace filemanager
          }
          if(imagekey.m_iIcon == 0x80000000)
          {
-            ::file::path strTarget;
+            
+            string strTarget;
+
+            string strFolder;
+
+            string strParams;
+
             //if(System.file().resolve_link(strTarget, strFilePath, System.ui_from_handle))
-            if(System.file().resolve_link(strTarget,strFilePath,NULL))
+            if(System.file().resolve_link(strTarget, strFolder, strParams, strFilePath,NULL))
             {
 
                wstring wstr = ::str::international::utf8_to_unicode(strTarget);

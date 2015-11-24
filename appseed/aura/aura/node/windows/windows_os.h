@@ -65,7 +65,7 @@ namespace windows
       virtual string calc_service_name(::aura::application * papp);
 
 
-      //virtual bool resolve_link(string & strTarget, const char * pszSource, ::user::primitive * puiMessageParentOptional = NULL);
+      virtual bool resolve_link(string & strTarget, string & strDirectory, string & strParams, const string & pszSource, ::user::primitive * puiMessageParentOptional = NULL);
 
       DECLSPEC_NO_RETURN void raise_exception( DWORD dwExceptionCode, DWORD dwExceptionFlags);
 

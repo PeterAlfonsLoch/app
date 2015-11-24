@@ -1648,20 +1648,10 @@ namespace file
 
 
 
-      bool system::resolve_link(::file::path & strTarget, const ::file::path & pszSource, sp(::user::primitive) puiMessageParentOptional)
+      bool system::resolve_link(string & strTarget, string & strFolder, string & strParams, const string & strSource, ::user::primitive * puiMessageParentOptional)
       {
 
-#ifdef WINDOWSEX
-
-         return vfxResolveShortcut(strTarget, pszSource, puiMessageParentOptional);
-
-#else
-
-         throw todo(get_app());
-
-         return false;
-
-#endif
+         return System.os().resolve_link(strTarget,strFolder, strParams, strSource,puiMessageParentOptional);
 
       }
 

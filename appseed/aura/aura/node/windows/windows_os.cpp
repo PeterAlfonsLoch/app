@@ -1415,6 +1415,97 @@ namespace windows
    }
 
 
+   bool os::resolve_link(string & strTarget, string & strFolder, string & strParams, const string & pszSource, ::user::primitive * puiMessageParentOptional)
+   {
+
+      sp(::user::primitive) pui = puiMessageParentOptional;
+
+      wstring wstrFileIn = ::str::international::utf8_to_unicode(pszSource);
+
+      bool bNativeUnicode = is_windows_native_unicode() != FALSE;
+
+      comptr < IShellLinkW > psl;
+
+      SHFILEINFOW info;
+
+      ZERO(info);
+
+      if((::windows::shell::SHGetFileInfo(wstrFileIn,0,&info,sizeof(info),SHGFI_ATTRIBUTES) == 0) || !(info.dwAttributes & SFGAO_LINK))
+      {
+         strTarget = wstrFileIn;
+         return FALSE;
+      }
+
+      HRESULT hr ;
+      if(FAILED(hr = CoCreateInstance(CLSID_ShellLink,NULL,CLSCTX_INPROC_SERVER,IID_IShellLinkW,
+         (LPVOID*)&psl)))
+      {
+         return FALSE;
+      }
+
+      bool bOk = false;
+
+
+      comptr < IPersistFile > ppf;
+
+      if(SUCCEEDED(psl->QueryInterface(IID_IPersistFile,(LPVOID*)&ppf)))
+      {
+      
+         if(SUCCEEDED(ppf->Load(wstrFileIn,STGM_READ)))
+         {
+         
+            /* Resolve the link, this may post UI to find the link */
+            if(SUCCEEDED(psl->Resolve(pui == NULL ? NULL : pui->get_handle(), SLR_ANY_MATCH | (pui == NULL ? (SLR_NO_UI | (8400 << 16)) : 0))))
+            {
+
+               wstring wstr;
+
+               wstr.alloc(MAX_PATH * 8);
+
+               if(SUCCEEDED(psl->GetPath(wstr,MAX_PATH * 8,NULL,0)))
+               {
+
+                  bOk = true;
+
+                  wstr.release_buffer();
+
+                  strTarget = ::str::international::unicode_to_utf8((LPCWSTR)wstr);
+
+               }
+
+               wstr.alloc(MAX_PATH * 8);
+
+               if(SUCCEEDED(psl->GetWorkingDirectory(wstr,MAX_PATH * 8)))
+               {
+
+                  wstr.release_buffer();
+
+                  strFolder = ::str::international::unicode_to_utf8((LPCWSTR)wstr);
+
+               }
+      
+               wstr.alloc(MAX_PATH * 8);
+
+               if(SUCCEEDED(psl->GetArguments(wstr,MAX_PATH * 8)))
+               {
+
+                  wstr.release_buffer();
+
+                  strParams = ::str::international::unicode_to_utf8((LPCWSTR)wstr);
+
+               }
+
+            }
+
+         }
+         
+      }
+
+      return bOk;
+
+   }
+
+
 } // namespace windows
 
 

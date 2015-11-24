@@ -327,6 +327,17 @@ namespace aura
 
    }
 
+
+   bool os::resolve_link(string & strTarget, string & strDirectory, string & strParams, const string & pszSource,::user::primitive * puiMessageParentOptional)
+   {
+
+      ::exception::throw_interface_only(get_app());
+
+      return false;
+
+   }
+
+
 } // namespace core
 
 

@@ -56,7 +56,7 @@ namespace metrowin
       virtual bool start_service(sp(::aura::application) papp);
       virtual bool stop_service(sp(::aura::application) papp);
 
-      virtual bool resolve_link(string & strTarget, const char * pszSource, ::user::primitive * puiMessageParentOptional = NULL);
+      virtual bool resolve_link(string & strTarget, string & strFolder, string & strParams, const string & strSource, ::user::primitive * puiMessageParentOptional = NULL);
 
       DECLSPEC_NO_RETURN void raise_exception( DWORD dwExceptionCode, DWORD dwExceptionFlags);
 

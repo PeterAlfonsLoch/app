@@ -652,9 +652,13 @@ namespace filemanager
          if(get_document()->get_fs_data()->is_link(pitem->m_pitem.cast < ::userfs::item >()->m_strPath))
          {
 
-            ::file::path strTarget;
+            string strTarget;
 
-            System.file().resolve_link(strTarget,pitem->m_pitem.cast < ::userfs::item >()->m_strPath);
+            string strFolder;
+
+            string strParams;
+
+            System.file().resolve_link(strTarget, strFolder, strParams, pitem->m_pitem.cast < ::userfs::item >()->m_strPath);
 
             pitem = find_item(strTarget);
 
@@ -703,9 +707,13 @@ namespace filemanager
       if(get_document()->get_fs_data()->is_link(item->m_strPath))
       {
 
-         ::file::path strTarget;
+         string strTarget;
 
-         System.file().resolve_link(strTarget, item->m_strPath);
+         string strFolder;
+
+         string strParams;
+
+         System.file().resolve_link(strTarget, strFolder, strParams, item->m_strPath);
 
          get_filemanager_manager()->FileManagerBrowse(strTarget,actioncontext);
 
