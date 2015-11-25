@@ -4655,6 +4655,15 @@ namespace draw2d
 
    }
 
+   
+   void graphics::enum_fonts(stringa & stra)
+   {
+
+      UNREFERENCED_PARAMETER(stra);
+
+      throw not_implemented(get_app());
+
+   }
 
 
 } // namespace draw2d

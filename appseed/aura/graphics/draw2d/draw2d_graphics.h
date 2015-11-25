@@ -688,6 +688,9 @@ namespace draw2d
       virtual void debug();
 
 
+      virtual void enum_fonts(stringa & stra);
+
+
    };
 
    class CLASS_DECL_AURA graphics_sp :
