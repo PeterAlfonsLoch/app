@@ -32,6 +32,9 @@ namespace user
 
 
       m_bMorePlain = false;
+
+      m_bSelect = true;
+
    }
 
    list::~list()
