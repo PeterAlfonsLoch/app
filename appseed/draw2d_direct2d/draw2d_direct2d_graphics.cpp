@@ -5193,7 +5193,7 @@ namespace draw2d_direct2d
          familyCount = pFontCollection->GetFontFamilyCount();
       }
 
-      uint32 index = 0;
+      uint32_t index = 0;
       BOOL exists = false;
       wchar_t localeName[LOCALE_NAME_MAX_LENGTH];
 
