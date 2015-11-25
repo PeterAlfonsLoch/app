@@ -5246,9 +5246,7 @@ namespace draw2d_direct2d
          }
 
          // Allocate a string big enough to hold the name. 
-         hwstring name;
-
-         name.alloc(length + 1);
+         hwstring name(length + 1);
 
          if(name == nullptr)
          {
@@ -5264,7 +5262,7 @@ namespace draw2d_direct2d
          // Add the family name to the String Array. 
          if(SUCCEEDED(hr))
          {
-            m_straFontEnum.add(name);
+            stra.add(string((LPCWSTR)(name)));
          }
 
 

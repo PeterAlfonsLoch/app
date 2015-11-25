@@ -515,8 +515,21 @@ namespace draw2d_direct2d
    //protected:
       // used for implementation of non-virtual SelectObject calls
       //static ::draw2d::object* SelectGdiObject(application * papp, HDC hDC, HGDIOBJ h);
+
+      virtual void enum_fonts(stringa & stra);
+
+
    };
 
+
 } // namespace draw2d_direct2d
+
+
+
+
+
+
+
+
 
 
