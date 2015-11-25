@@ -122,16 +122,42 @@ namespace aura
 
       ::aura::app_launcher launcher(strApp);
 
-      int_array ia = get_pid(strApp);
-
-      if(ia.get_count() <= 0)
+      int iPid = -1;
+      
       {
 
-         return false;
+         int_array ia = get_pid(strApp);
+
+         if(ia.get_count() <= 0)
+         {
+
+            launcher.start();
+
+            ia = get_pid(strApp);
+
+            if(ia.get_count() <= 0)
+            {
+
+               return false;
+
+            }
+
+         }
+
+         iPid = ia[0];
 
       }
 
-      return m_txmap[strApp]->open(key(strApp,ia[0]),&launcher);
+      string strKey = strApp + ":" + ::str::from(iPid);
+
+      if(m_txmap[strKey].is_null())
+      {
+
+         m_txmap[strKey] = canew(::aura::ipc::tx(get_app()));
+
+      }
+
+      return m_txmap[strKey]->open(key(strApp,iPid),&launcher);
 
 #endif
 
@@ -149,7 +175,6 @@ namespace aura
          m_txmap[strKey] = canew(::aura::ipc::tx(get_app()));
 
       }
-
 
       if(m_txmap[strKey]->is_tx_ok())
       {
