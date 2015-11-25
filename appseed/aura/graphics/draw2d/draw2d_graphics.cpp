@@ -3981,55 +3981,31 @@ namespace draw2d
             strsize iLen = str.length();
 
             sz = pdc->GetTextExtent(str,(int32_t)iLen);
+
+
             if(sz.cx > rectClip.width())
             {
-               iLen += 3;
-               char * lpsz = str.GetBuffer(iLen + 1);
-               strsize i = sz.cx == 0 ? iLen : (iLen * rectClip.width()) / sz.cx;
-               if(i > iLen)
-                  i = iLen;
-               if(i < 4)
-                  i = 4;
 
-               while(true)
+               int iSampleLen = strSource.get_length();
+
+               while(iSampleLen > 0)
                {
-                  lpsz[i - 4] = '.';
-                  lpsz[i - 3] = '.';
-                  lpsz[i - 2] = '.';
-                  lpsz[i - 1] = '\0';
-                  sz = pdc->GetTextExtent(lpsz,(int32_t)i);
+
+                  iSampleLen--;
+
+                  str = strSource.Left(iSampleLen) + "...";
+
+                  sz = pdc->GetTextExtent(str);
+
                   if(sz.cx < rectClip.width())
                   {
-                     if(i >= iLen)
-                        break;
-                     i++;
-                  }
-                  else
-                  {
+
                      break;
+
                   }
-                  strncpy(lpsz,str,i);
+
                }
-               while(true)
-               {
-                  if(i <= 4)
-                     break;
-                  lpsz[i - 4] = L'.';
-                  lpsz[i - 3] = L'.';
-                  lpsz[i - 2] = L'.';
-                  lpsz[i - 1] = L'\0';
-                  sz = pdc->GetTextExtent(lpsz,(int32_t)i);
-                  if(sz.cx > rectClip.width())
-                  {
-                     i--;
-                  }
-                  else
-                  {
-                     break;
-                  }
-               }
-               str.ReleaseBuffer();
-               iLen = str.get_length();
+
             }
 
             str1 = str;
