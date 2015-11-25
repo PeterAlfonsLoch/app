@@ -388,9 +388,6 @@
     <ClCompile Include="user\user\user_document.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\user_edit_plain_text.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\user\user_elemental.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>

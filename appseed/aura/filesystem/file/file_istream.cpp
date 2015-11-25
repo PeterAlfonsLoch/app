@@ -378,7 +378,10 @@ namespace file
       {
          uiPos += uiRead;
          nCount -= uiRead;
-         memory.allocate_add_up(1024 * 1024);
+         if(memory.get_size() - uiPos <= 0)
+         {
+            memory.allocate_add_up(1024 * 1024);
+         }
       }
       memory.allocate((memory_size_t) uiPos);
       memory.to_hex(str);
