@@ -12,8 +12,8 @@ namespace draw2d
    {
       m_p->create_solid(dWidth,crColor);
    }
-
-   void word_break(::draw2d::graphics * pdc, const string & strSource, const RECT & rect, string &str1, string & str2);
+   
+   bool word_break(::draw2d::graphics * pdc,const string & strSource, RECT & rectParam,string &str1,string & str2,int iEll);
 
    strsize _EncodeV033(string & str);
 
@@ -3704,7 +3704,18 @@ namespace draw2d
 
       strsize iLen = str.get_length();
 
-      if ((uiFormat & DT_END_ELLIPSIS) != 0)
+      bool bLastLine = false;
+
+      if((uiFormat & DT_WORDBREAK) != 0)
+      {
+         
+         bLastLine = !word_break(pdc, lpcsz, rectClip, str, str2, (uiFormat & DT_END_ELLIPSIS));
+
+         sz = pdc->GetTextExtent(str);
+
+
+      }
+      else if ((uiFormat & DT_END_ELLIPSIS) != 0)
       {
          sz = pdc->GetTextExtent(str, (int32_t)iLen);
          if (sz.cx > rectClip.width())
@@ -3756,14 +3767,6 @@ namespace draw2d
             }
             str.ReleaseBuffer();
             iLen = str.get_length();
-         }
-      }
-      else if ((uiFormat & DT_WORDBREAK) != 0)
-      {
-         sz = pdc->GetTextExtent(str, (int32_t)iLen);
-         if (sz.cx > rectClip.width())
-         {
-            word_break(pdc, lpcsz, rectClip, str, str2);
          }
       }
       else
@@ -3909,7 +3912,7 @@ namespace draw2d
          pdc->TextOut(rect.left, rect.top, str);
       }
 
-      if (str2.get_length() > 0)
+      if (!bLastLine && str2.get_length() > 0)
       {
 
          rectClip.top += iLineSpacing;
@@ -3924,7 +3927,7 @@ namespace draw2d
 
 
 
-   void word_break(::draw2d::graphics * pdc, const string & strSource, const RECT & rectParam, string &str1, string & str2)
+   bool word_break(::draw2d::graphics * pdc, const string & strSource, RECT & rectParam, string &str1, string & str2, int iEll)
    {
 
       string str;
@@ -3952,10 +3955,91 @@ namespace draw2d
 
       string strChar;
 
+      int iNewY;
+
+      bool bLastLine = false;
+
+      bool bEnd = false;
+
+      int y = rectParam.top;
+
       while(lpsz <= lpszEnd)
       {
 
          sz = pdc->GetTextExtent(lpszSource, lpsz - lpszSource);
+
+         iNewY = y + sz.cy;
+
+         if(iNewY + sz.cy > rectParam.bottom)
+         {
+
+            bLastLine = true;
+
+
+            str = strSource;
+
+            strsize iLen = str.length();
+
+            sz = pdc->GetTextExtent(str,(int32_t)iLen);
+            if(sz.cx > rectClip.width())
+            {
+               iLen += 3;
+               char * lpsz = str.GetBuffer(iLen + 1);
+               strsize i = sz.cx == 0 ? iLen : (iLen * rectClip.width()) / sz.cx;
+               if(i > iLen)
+                  i = iLen;
+               if(i < 4)
+                  i = 4;
+
+               while(true)
+               {
+                  lpsz[i - 4] = '.';
+                  lpsz[i - 3] = '.';
+                  lpsz[i - 2] = '.';
+                  lpsz[i - 1] = '\0';
+                  sz = pdc->GetTextExtent(lpsz,(int32_t)i);
+                  if(sz.cx < rectClip.width())
+                  {
+                     if(i >= iLen)
+                        break;
+                     i++;
+                  }
+                  else
+                  {
+                     break;
+                  }
+                  strncpy(lpsz,str,i);
+               }
+               while(true)
+               {
+                  if(i <= 4)
+                     break;
+                  lpsz[i - 4] = L'.';
+                  lpsz[i - 3] = L'.';
+                  lpsz[i - 2] = L'.';
+                  lpsz[i - 1] = L'\0';
+                  sz = pdc->GetTextExtent(lpsz,(int32_t)i);
+                  if(sz.cx > rectClip.width())
+                  {
+                     i--;
+                  }
+                  else
+                  {
+                     break;
+                  }
+               }
+               str.ReleaseBuffer();
+               iLen = str.get_length();
+            }
+
+            str1 = str;
+
+            rectParam.top = y;
+
+            return false;
+
+
+         }
 
          if(::str::ch::is_space_char(lpszPrevious))
          {
@@ -3999,11 +4083,20 @@ namespace draw2d
          lpszPrevious = lpsz;
          lpsz = ::str::utf8_inc(lpsz);
 
+         if(bEnd)
+            break;
+         else
+            bEnd = lpsz >= lpszEnd;
+
       }
 
       str1 = string(lpszSource, lpsz - lpszSource);
 
       str2 = string(lpszEnd);
+
+      rectParam.top = y;
+      
+      return true;
 
    }
 
