@@ -53,6 +53,8 @@
 			<Add option="-DLINUX" />
 			<Add directory="codec/common/inc" />
 			<Add directory="codec/api/svc" />
+			<Add directory="../../include" />
+			<Add directory="../../.." />
 		</Compiler>
 		<Linker>
 			<Add option="-Wl,-R\\$$$ORIGIN" />

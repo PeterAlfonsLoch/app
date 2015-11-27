@@ -49,6 +49,7 @@
 #include <freerdp/utils/signal.h>
 
 #include "rdpsnd_main.h"
+#include "codec_aac.h"
 
 #define TIME_DELAY_MS	65
 
@@ -93,6 +94,8 @@ struct rdpsnd_plugin
 
 	/* Device plugin */
 	rdpsndDevicePlugin* device;
+
+
 };
 
 static void rdpsnd_confirm_wave(rdpsndPlugin* rdpsnd, RDPSND_WAVE* wave);

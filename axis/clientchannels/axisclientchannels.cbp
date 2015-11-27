@@ -236,6 +236,11 @@
 		<Unit filename="channels/rdpsnd/client/codec_aac.h" />
 		<Unit filename="channels/rdpsnd/client/ios/TPCircularBuffer.h" />
 		<Unit filename="channels/rdpsnd/client/opensles/opensl_io.h" />
+		<Unit filename="channels/rdpsnd/client/opensles/rdpsnd_opensles.c">
+			<Option compilerVar="CC" />
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="channels/rdpsnd/client/pulse/rdpsnd_pulse.c">
 			<Option compilerVar="CC" />
 		</Unit>

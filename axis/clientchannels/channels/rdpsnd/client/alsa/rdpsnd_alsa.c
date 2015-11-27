@@ -38,6 +38,7 @@
 #include <freerdp/channels/log.h>
 
 #include "rdpsnd_main.h"
+#include "../codec_aac.h"
 
 typedef struct rdpsnd_alsa_plugin rdpsndAlsaPlugin;
 
@@ -61,6 +62,10 @@ struct rdpsnd_alsa_plugin
 	snd_pcm_uframes_t buffer_size;
 	snd_pcm_uframes_t period_size;
 	FREERDP_DSP_CONTEXT* dsp_context;
+
+	   AAC_CONTEXT * aac_context;
+   AAC_CONTEXT_MF * aac_context_mf;
+
 };
 
 #define SND_PCM_CHECK(_func, _status) \
@@ -298,6 +303,18 @@ static void rdpsnd_alsa_open(rdpsndDevicePlugin* device, AUDIO_FORMAT* format, i
 	int status;
 	rdpsndAlsaPlugin* alsa = (rdpsndAlsaPlugin*) device;
 
+	   if(format->wFormatTag == 41222)
+   {
+      alsa->dsp_context = NULL;
+      alsa->format = 1;
+      alsa->aac_context = calloc(1,sizeof(AAC_CONTEXT));
+      if(!mf_aac_init(alsa->aac_context,alsa->actual_rate, alsa->actual_channels, format))
+      {
+         WLog_ERR(TAG,"mf_aac_init failed");
+      }
+   }
+
+
 	if (alsa->pcm_handle)
 		return;
 
@@ -452,7 +469,7 @@ static void rdpsnd_alsa_set_volume(rdpsndDevicePlugin* device, UINT32 value)
 
 	left = (value & 0xFFFF);
 	right = ((value >> 16) & 0xFFFF);
-	
+
 	for (elem = snd_mixer_first_elem(alsa->mixer_handle); elem; elem = snd_mixer_elem_next(elem))
 	{
 		if (snd_mixer_selem_has_playback_volume(elem))
@@ -490,6 +507,13 @@ static BYTE* rdpsnd_alsa_process_audio_sample(rdpsndDevicePlugin* device, BYTE* 
 		*size = alsa->dsp_context->adpcm_size;
 		srcData = alsa->dsp_context->adpcm_buffer;
 	}
+   else if(alsa->aac_context != NULL)
+   {
+      void * out;
+      size = audio_decode_example2(alsa->aac_context,&out,data,size);
+      //free(wave->data);
+      srcData= out;
+   }
 	else
 	{
 		srcData = data;
@@ -501,7 +525,7 @@ static BYTE* rdpsnd_alsa_process_audio_sample(rdpsndDevicePlugin* device, BYTE* 
 	if ((*size % srcFrameSize) != 0)
 		return NULL;
 
-	if (!((alsa->source_rate == alsa->actual_rate) && (alsa->source_channels == alsa->actual_channels)))
+	if (alsa->dsp_context != NULL && !((alsa->source_rate == alsa->actual_rate) && (alsa->source_channels == alsa->actual_channels)))
 	{
 		alsa->dsp_context->resample(alsa->dsp_context, srcData, alsa->bytes_per_channel,
 			alsa->source_channels, alsa->source_rate, *size / srcFrameSize,

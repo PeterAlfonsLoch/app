@@ -54,6 +54,8 @@
 			<Add directory="codec/processing/interface" />
 			<Add directory="codec/processing/src/common" />
 			<Add directory="codec/common/inc" />
+			<Add directory="../../include" />
+			<Add directory="../../.." />
 		</Compiler>
 		<Linker>
 			<Add option="-Wl,-R\\$$$ORIGIN" />

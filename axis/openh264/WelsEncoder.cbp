@@ -56,6 +56,8 @@
 			<Add directory="codec/api/svc" />
 			<Add directory="codec/processing/interface" />
 			<Add directory="codec/encoder/plus/inc" />
+			<Add directory="../../include" />
+			<Add directory="../../.." />
 		</Compiler>
 		<Linker>
 			<Add option="-Wl,-R\\$$$ORIGIN" />
