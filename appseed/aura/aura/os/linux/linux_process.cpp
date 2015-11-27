@@ -149,10 +149,14 @@ string str;
 str = "/proc/" + ::str::from(iPid) + "/exe";
 
     /* the easiest case: we are in linux */
-    if (readlink (str, path, iSize) == -1)
+    ssize_t s = readlink (str, path, iSize)
+
+    if(s == -1)
     {
         return "";
     }
+
+    path[s] = '\0';
 
 return path;
 
@@ -173,7 +177,8 @@ int_array module_path_get_pid(const char * pszPath)
 
 if(iPid > 0)
 {
-if(	module_path_by_pid(iPid) == pszPath)
+string strPath =module_path_by_pid(iPid);
+if(strPath	 == pszPath)
 {
 ia.add(iPid);;
 }

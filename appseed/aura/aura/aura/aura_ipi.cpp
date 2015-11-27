@@ -121,7 +121,7 @@ namespace aura
       ::aura::app_launcher launcher(strApp);
 
       int iPid = -1;
-      
+
       {
 
          int_array ia = get_pid(strApp);
@@ -191,8 +191,8 @@ namespace aura
       }
 
    }
-   
-   
+
+
    ::aura::ipc::tx & ipi::tx(const string & strApp, int iPid)
    {
 
@@ -245,11 +245,11 @@ namespace aura
 #else
 
    #ifdef LINUX
-   
+
       strKey = ::file::path(getenv("HOME")) / ".ca2/Application Support/ca2/ipi" / strApp / ::str::from(iPid);
 
    #else
-      
+
       strKey = ::file::path(getenv("HOME")) / "Library/Application Support/ca2/ipi" / strApp / ::str::from(iPid);
 
    #endif
@@ -288,7 +288,7 @@ namespace aura
 
    void ipi::on_receive(::aura::ipc::rx * prx,const char * pszMessage)
    {
-      
+
       string str(pszMessage);
 
       if(!::str::begins_eat(str,"call "))
@@ -366,7 +366,7 @@ namespace aura
 
          if(strMember == "on_exclusive_instance_local_conflict")
          {
-            
+
             Application.on_exclusive_instance_local_conflict(va[0],va[1]);
 
          }
@@ -406,7 +406,15 @@ namespace aura
 
       ::file::path pathModule;
 
+      #ifdef LINUX
+
+      pathModule = "/tmp/ca2/config/ipi";
+
+      #else
+
       pathModule = "C:/ca2/config/ipi";
+
+      #endif
 
       pathModule /= strApp + ".module_list";
 
@@ -455,7 +463,15 @@ namespace aura
 
       m_straModule.remove_all();
 
+#ifdef LINUX
+
+	pathModule = "/tmp/ca2/config/ipi";
+
+#else
+
       pathModule = "C:/ca2/config/ipi";
+
+#endif
 
       pathModule /= m_strApp + ".module_list";
 
