@@ -478,7 +478,7 @@ class var & var::operator = (uint32_t ui)
    return *this;
 }
 
-
+#ifndef LINUX
 class var & var::operator = (LONG l)
 {
    set_type(type_int32,false);
@@ -486,13 +486,14 @@ class var & var::operator = (LONG l)
    return *this;
 }
 
-
 class var & var::operator = (DWORD dw)
 {
    set_type(type_uint32,false);
    m_ui32 = dw;
    return *this;
 }
+
+#endif
 
 
 class var & var::operator = (float f)

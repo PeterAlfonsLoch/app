@@ -25,6 +25,8 @@ typedef unsigned char         uchar;
 typedef unsigned short int    uint2;
 typedef unsigned int          uint4;
 
+typedef unsigned char         byte;
+
 #if OSBIT == 64
 
 typedef uint64_t              rtptr;

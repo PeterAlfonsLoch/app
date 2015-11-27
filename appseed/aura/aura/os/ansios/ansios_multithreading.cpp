@@ -18,18 +18,18 @@ CLASS_DECL_AURA int32_t process_get_scheduling_priority(int iOsPolicy, const sch
 //{
 //
 //   synch_lock sl(g_pmutexMq);
-//   
+//
 //   auto pmq = (mq *) thread_get_data(TLS_MESSAGE_QUEUE);
-//   
+//
 //   if(pmq != NULL)
 //      return pmq;
-//   
+//
 //   pmq   = new mq();
-//   
+//
 //   pmq->m_hthread    = (IDTHREAD) pthread_self();
-//   
+//
 //   thread_set_data(TLS_MESSAGE_QUEUE,pmq);
-//   
+//
 //   return pmq;
 //
 //}
@@ -45,18 +45,18 @@ CLASS_DECL_AURA int32_t process_get_scheduling_priority(int iOsPolicy, const sch
 //{
 //
 //   synch_lock sl(g_pmutexMq);
-//   
+//
 //   HTHREAD hthread = GetCurrentThread();
-//   
+//
 //   auto pmq = (mq *) thread_get_data(hthread, TLS_MESSAGE_QUEUE);
-//   
+//
 //   if(pmq == NULL)
 //      return;
-//   
+//
 //   ::aura::del(pmq);
-//   
+//
 //   thread_set_data(hthread, TLS_MESSAGE_QUEUE, NULL);
-//   
+//
 //}
 //
 
@@ -75,7 +75,7 @@ DWORD MsgWaitForMultipleObjectsEx(DWORD dwSize, object * * pobjectptra, DWORD dw
    if(dwWakeMask > 0)
    {
 
-      pmq = __get_mq();
+      pmq = __get_mq(pthread_self());
 
       if(pmq == NULL)
          return 0;
@@ -927,14 +927,14 @@ int_bool WINAPI thread_set_data(HTHREAD hthread,DWORD dwIndex,LPVOID lpTlsValue)
 
 //mq * __get_mq(HTHREAD hthread)
 //{
-//   
+//
 //   synch_lock sl(g_pmutexMq);
-//   
+//
 //   auto pmq = (mq *) thread_get_data(hthread, TLS_MESSAGE_QUEUE);
-//   
+//
 //   if(pmq != NULL)
 //      return pmq;
-//      
+//
 //   pmq   = new mq();
 //
 //   pmq->m_hthread    = hthread;
@@ -982,11 +982,11 @@ int_bool WINAPI thread_set_data(HTHREAD hthread,DWORD dwIndex,LPVOID lpTlsValue)
 //      {
 //         *lpMsg = msg;
 //         //pmq->ma.remove_at(i);
-//         
+//
 //         pmq->ma.remove_all();
-//         
+//
 ////         __clear_mq();
-//         
+//
 //         return FALSE;
 //      }
 //
@@ -1150,7 +1150,7 @@ CLASS_DECL_AURA int_bool WINAPI PostThreadMessageW(IDTHREAD iThreadId,UINT Msg,W
    MESSAGE msg;
 
    //zero(&msg, sizeof(msg));
-   
+
    if(Msg == WM_QUIT)
    {
       ::output_debug_string("\n\n\nWM_QUIT posted to thread " + ::str::from((uint64_t)iThreadId) + "\n\n\n");

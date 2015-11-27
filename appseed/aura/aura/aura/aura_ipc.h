@@ -119,17 +119,13 @@ namespace aura
          receiver *        m_preceiver;
          rx_private *         m_pp;
 
-         /*
-#ifdef WINDOWSEX
-         string          m_strWindowProcModule;
-#elif defined(METROWIN)
+#ifndef WINDOWS
 
-
-#elif
          bool              m_bRunning;
          bool              m_bRun;
          pthread_t            m_thread;
-#endif*/
+
+#endif
 
 
          rx(::aura::application * papp);

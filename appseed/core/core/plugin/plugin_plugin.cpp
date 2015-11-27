@@ -27,7 +27,7 @@ void CLASS_DECL_CORE __cdecl _ca2_purecall_()
 
 namespace plugin
 {
-   
+
    void copy_colorref(int cxParam,int cyParam,COLORREF * pcolorrefDst,COLORREF * pcolorrefSrc,int iStrideDst = -1, int iStrideSrc = -1);
 
 
@@ -37,6 +37,9 @@ namespace plugin
 
    plugin::plugin(::aura::application * papp) :
       object(papp),
+      base(papp),
+      tx(papp),
+      ipc(papp),
       ::simple_ui::style(papp),
       ::user::interaction(papp),
       hotplugin::plugin(papp),
@@ -826,12 +829,12 @@ namespace plugin
 
                            if(property.name() == "build_number")
                            {
-                              
+
                               string strBuild;
 
                               if(property.get_string().has_char())
                               {
-                                 
+
                                  strBuild = property.get_string();
 
                               }
@@ -867,7 +870,7 @@ namespace plugin
                               continue;
 
                            }
-                                 
+
                            if(!property.get_string().has_char())
                               continue;
 
@@ -1114,7 +1117,7 @@ namespace plugin
 
    }
 
-   
+
    void plugin::message_handler(signal_details * pobj)
    {
 
@@ -1192,7 +1195,7 @@ namespace plugin
 //      return 0;
 //
 //   }
-//   
+//
 //#elif defined(APPLEOS)
 //
 //#else

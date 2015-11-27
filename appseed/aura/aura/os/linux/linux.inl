@@ -1,7 +1,7 @@
 #pragma once
 
 
-inline dword get_tick_count()
+inline DWORD get_tick_count()
 {
 
    struct timespec ts;

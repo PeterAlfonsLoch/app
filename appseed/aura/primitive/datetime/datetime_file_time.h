@@ -64,19 +64,22 @@ struct CLASS_DECL_AURA file_time
 {
 
 
-#ifdef WINDOWS
+//#ifdef WINDOWS
    FILETIME                         creation;
    FILETIME                         modified;
-#else
-   __time_t                         creation;
-   __time_t                         access;
-   __time_t                         modified;
-#endif
+   FILETIME                         access; // Not used at Windows?
+//#else
+  // __time_t                         creation;
+//   __time_t                         access;
+  // __time_t                         modified;
+//#endif
 
    file_time()
    {
+
       ZERO(creation);
       ZERO(modified);
+      ZERO(access);
 
    }
 
@@ -85,7 +88,8 @@ struct CLASS_DECL_AURA file_time
       if(&t == this)
          return true;
       return !memcmp(&creation,&t.creation,sizeof(creation))
-         && !memcmp(&modified,&t.modified,sizeof(modified));
+         && !memcmp(&modified,&t.modified,sizeof(modified))
+	 && !memcmp(&access,&t.modified,sizeof(access));
    }
 
 };

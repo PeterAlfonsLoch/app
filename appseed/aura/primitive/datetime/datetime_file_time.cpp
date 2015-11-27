@@ -155,15 +155,15 @@ namespace datetime
 
 
 
-
-
-
 void get_file_time(const char * psz,file_time & time)
 {
 
    get_file_time(psz,time.creation,time.modified);
 
 }
+
+
+#ifdef WINDOWS
 
 
 void get_file_time(const char * psz,FILETIME & creation,FILETIME & modified)
@@ -185,4 +185,28 @@ void get_file_time(const char * psz,FILETIME & creation,FILETIME & modified)
 
 }
 
+#else
 
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <unistd.h>
+
+
+
+void get_file_time(const char * psz,FILETIME & creation,FILETIME & modified)
+{
+
+   struct stat st;
+
+   stat(psz, &st);
+   
+   creation.dwLowDateTime = LODWORD(st.st_ctime);
+   creation.dwHighDateTime = HIDWORD(st.st_ctime);
+
+   modified.dwLowDateTime = LODWORD(st.st_mtime);
+   modified.dwHighDateTime = HIDWORD(st.st_mtime);
+
+}
+
+
+#endif

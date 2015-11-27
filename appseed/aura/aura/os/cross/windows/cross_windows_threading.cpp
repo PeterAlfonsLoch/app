@@ -66,7 +66,7 @@ CLASS_DECL_AURA int_bool WINAPI GetMessageW(LPMESSAGE lpMsg,oswindow oswindow,UI
 
    bool bFirst = true;
 
-   mq * pmq = __get_mq();
+   mq * pmq = __get_mq(pthread_self());
 
    if(pmq == NULL)
       return FALSE;
@@ -169,7 +169,7 @@ restart:
 CLASS_DECL_AURA int_bool WINAPI PeekMessageW(LPMESSAGE lpMsg,oswindow oswindow,UINT wMsgFilterMin,UINT wMsgFilterMax,UINT wRemoveMsg)
 {
 
-   mq * pmq = __get_mq();
+   mq * pmq = __get_mq(pthread_self());
 
    if(pmq == NULL)
       return FALSE;

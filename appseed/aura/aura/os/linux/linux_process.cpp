@@ -100,16 +100,9 @@ CLASS_DECL_AURA int32_t call_async(
 
 }
 
-CLASS_DECL_AURA DWORD call_sync(
-                             const char * pszPath,
-                             const char * pszParam,
-                             const char * pszDir,
-                             int32_t iShow,
-                             int32_t iRetry,
-                             int32_t iSleep,
-                             int32_t (* pfnOnRetry)(int32_t iTry, dword_ptr dwParam),
-                             dword_ptr dwParam)
+CLASS_DECL_AURA DWORD call_sync(const char * pszPath, const char * pszParam, const char * pszDir, int32_t iShow, int32_t iRetry, int32_t iSleep, PFNCALLSYNCONRETRY pfnOnRetry, uint_ptr dwParam)
 {
+
     string strCmdLine;
 
     strCmdLine = pszPath;
@@ -142,3 +135,51 @@ CLASS_DECL_AURA DWORD call_sync(
 
 
 
+
+string module_path_by_pid(int iPid)
+{
+
+	int iSize = 1024 * 8;
+
+    hstring path(iSize);
+    char * systemPath = NULL;
+    char * candidateDir = NULL;
+
+string str;
+str = "/proc/" + ::str::from(iPid) + "/exe";
+
+    /* the easiest case: we are in linux */
+    if (readlink (str, path, iSize) == -1)
+    {
+        return "";
+    }
+
+return path;
+
+}
+
+
+
+int_array module_path_get_pid(const char * pszPath)
+{int_array ia;
+
+::file::patha stra;
+	::dir::ls_dir(stra, "/proc/");
+
+
+	for(auto & strPid : stra)
+{
+	int iPid = atoi(strPid.title());
+
+if(iPid > 0)
+{
+if(	module_path_by_pid(iPid) == pszPath)
+{
+ia.add(iPid);;
+}
+}
+}
+
+return ia;
+
+}
