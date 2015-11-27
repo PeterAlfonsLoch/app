@@ -149,7 +149,7 @@ string str;
 str = "/proc/" + ::str::from(iPid) + "/exe";
 
     /* the easiest case: we are in linux */
-    ssize_t s = readlink (str, path, iSize)
+    ssize_t s = readlink (str, path, iSize);
 
     if(s == -1)
     {
