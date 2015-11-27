@@ -24,6 +24,7 @@ namespace linux
       virtual bool get_pid_by_title(const char * pszName, DWORD & dwPid);
       virtual void get_all_processes(uint_array & dwa);
       virtual ::file::path get_process_path(DWORD dwPid);
+      virtual int get_pid();
 
       virtual bool connection_settings_get_auto_detect();
       virtual string connection_settings_get_auto_config_url();
@@ -56,6 +57,8 @@ namespace linux
       virtual bool is_remote_session();
 
       virtual void post_to_all_threads(UINT message, WPARAM wParam, LPARAM lParam);
+
+
 
    };
 

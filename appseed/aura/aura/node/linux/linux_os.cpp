@@ -914,6 +914,13 @@ namespace linux
    }
 
 
+	int os::get_pid()
+{
+return ::getpid();
+}
+
+
+
 } // namespace linux
 
 
