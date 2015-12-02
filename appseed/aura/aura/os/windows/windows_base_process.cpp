@@ -333,7 +333,13 @@ int_array module_path_get_pid(const char * pszModulePath)
 
    repeat_process:
 
-      if(entry.th32ProcessID != 0 && ::file::path(module_path_from_pid(entry.th32ProcessID)) == pathModule)
+      string strPath;
+
+      strPath = module_path_from_pid(entry.th32ProcessID);
+
+      ::output_debug_string(strPath + "\n");
+
+      if(entry.th32ProcessID != 0 && ::file::path(strPath) == pathModule)
       {
 
          iaPid.add(entry.th32ProcessID);

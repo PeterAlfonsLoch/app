@@ -135,7 +135,7 @@ namespace axis
       string str;
       if(!load_string(str,id))
       {
-         return (const string &)id;
+         return id.to_string();
       }
       return str;
    }

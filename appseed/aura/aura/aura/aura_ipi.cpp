@@ -13,6 +13,10 @@ namespace aura
 
       defer_add_module(System.file().module());
 
+      ::file::path p = module_path_from_pid(System.os().get_pid());
+
+      defer_add_module(p);
+
       m_rx.m_preceiver  = this;
 
 	   if(!m_rx.create(key(strApp, System.os().get_pid())))
