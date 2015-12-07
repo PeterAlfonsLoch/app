@@ -67,6 +67,7 @@
 			<Add option="-ldl" />
 			<Add option="-lX11" />
 			<Add option="-lXmu" />
+			<Add option="-lfontconfig" />
 			<Add option="-laura" />
 			<Add option="-laxis" />
 			<Add option="-laxisfreeimage" />

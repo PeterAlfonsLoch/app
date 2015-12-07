@@ -531,7 +531,7 @@ namespace draw2d_cairo
 
 #endif
 
-
+   void enum_fonts(stringa & stra);
    };
 
 

@@ -136,7 +136,7 @@ CLASS_DECL_AURA DWORD call_sync(const char * pszPath, const char * pszParam, con
 
 
 
-string module_path_by_pid(int iPid)
+string module_path_from_pid(unsigned int iPid)
 {
 
 	int iSize = 1024 * 8;
@@ -177,7 +177,7 @@ int_array module_path_get_pid(const char * pszPath)
 
 if(iPid > 0)
 {
-string strPath =module_path_by_pid(iPid);
+string strPath =module_path_from_pid(iPid);
 if(strPath	 == pszPath)
 {
 ia.add(iPid);;
