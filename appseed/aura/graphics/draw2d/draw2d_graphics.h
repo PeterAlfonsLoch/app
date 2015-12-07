@@ -688,8 +688,7 @@ namespace draw2d
       virtual void debug();
 
 
-      virtual void enum_fonts(stringa & stra);
-
+      virtual void enum_fonts(stringa & straFile, stringa & stra);
 
    };
 

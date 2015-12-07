@@ -12,7 +12,7 @@ namespace draw2d
    {
       m_p->create_solid(dWidth,crColor);
    }
-   
+
    bool word_break(::draw2d::graphics * pdc,const string & strSource, RECT & rectParam,string &str1,string & str2,int iEll);
 
    strsize _EncodeV033(string & str);
@@ -528,7 +528,7 @@ namespace draw2d
       return null_point();
    }
 
-   
+
    point graphics::MoveTo(POINT point)
    {
 
@@ -981,7 +981,7 @@ namespace draw2d
 
    bool graphics::DrawEllipse(const RECTD & r)
    {
-      
+
       return DrawEllipse(r.left, r.top, r.right, r.bottom);
 
    }
@@ -2866,9 +2866,9 @@ namespace draw2d
 
    int32_t graphics::draw_text(const string & str,const RECT & lpRect,UINT nFormat)
    {
-      
+
       RECTD r;
-      
+
       copy(&r, &lpRect);
 
       return draw_text(str, r, nFormat);
@@ -2886,7 +2886,7 @@ namespace draw2d
 
    int32_t graphics::draw_text(const string & strParam,const RECTD & lpRect,UINT nFormat)
    {
-      
+
       string str(strParam);
 
       synch_lock ml(m_spmutex);
@@ -2922,57 +2922,57 @@ namespace draw2d
       {
          dy = 0.;
       }
-      
+
       if(nFormat & DT_EXPANDTABS)
       {
-       
+
          str.replace("\t", "        ");
-         
+
       }
       else
       {
-         
+
          str.replace("\t", "");
-         
+
       }
-      
+
       if(nFormat & DT_SINGLELINE)
       {
 
          str.replace("\r", "");
-         
+
          str.replace("\n", "");
-         
+
          TextOut(lpRect.left + dx,lpRect.top + dy,str);
-         
+
       }
       else
       {
-         
+
          size s = GetTextExtent(str);
-         
+
          stringa stra;
-         
+
          stra.add_lines(str);
-         
+
          int offsety = 0;
-         
+
          for(auto str : stra)
          {
-            
+
             TextOut(lpRect.left + dx,lpRect.top + dy + offsety,str);
-            
+
             offsety += s.cy;
-            
+
          }
-         
-         
+
+
       }
 
       return 1;
 
    }
-   
+
 
 #ifndef METROWIN
 
@@ -3035,10 +3035,10 @@ namespace draw2d
       return from(size, pgraphicsSrc, null_point(), dwRop);
    }
 
-   
+
    bool graphics::alpha_blend(int32_t xDest, int32_t yDest, int32_t nDestWidth, int32_t nDestHeight, ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight, double dOpacity)
    {
-      
+
       UNREFERENCED_PARAMETER(xDest);
       UNREFERENCED_PARAMETER(yDest);
       UNREFERENCED_PARAMETER(nDestWidth);
@@ -3075,7 +3075,7 @@ namespace draw2d
 
    bool graphics::alpha_blend(point ptDst, size size,::draw2d::graphics * pgraphicsSrc, double dOpacity)
    {
-      
+
       return alpha_blend(ptDst, size, pgraphicsSrc, null_point(), dOpacity);
 
    }
@@ -3405,7 +3405,7 @@ namespace draw2d
 
    bool graphics::sync_flush()
    {
-      
+
       return flush();
 
    }
@@ -3694,7 +3694,7 @@ namespace draw2d
 
       sz.cy = 0;
 
-      
+
       strsize iUnderline = -1;
 
       if(!(uiFormat & DT_NOPREFIX))
@@ -3708,7 +3708,7 @@ namespace draw2d
 
       if((uiFormat & DT_WORDBREAK) != 0)
       {
-         
+
          bLastLine = !word_break(pdc, lpcsz, rectClip, str, str2, (uiFormat & DT_END_ELLIPSIS));
 
          sz = pdc->GetTextExtent(str);
@@ -4071,7 +4071,7 @@ namespace draw2d
       str2 = string(lpszEnd);
 
       rectParam.top = y;
-      
+
       return true;
 
    }
@@ -4152,38 +4152,38 @@ namespace draw2d
    }
 
 #endif
-   
+
    bool graphics::draw_stock_icon(const RECT & rectParam, e_stock_icon eicon)
    {
       synch_lock sl(m_spmutex);
       ::draw2d::pen_sp pen(allocer());
       ::draw2d::brush_sp brush(allocer());
-      
+
       *pen = *m_sppen;
       *brush = *m_spbrush;
-      
+
       ::rect rect(rectParam);
-      
+
       if(eicon == stock_icon_close)
       {
 
          rect.deflate(rect.width() / 7,rect.height() / 7);
-         
+
          m_sppen->m_dWidth *= 2.0;
          m_sppen->m_bUpdated = false;
          MoveTo(rect.top_left());
          LineTo(rect.bottom_right());
          MoveTo(rect.bottom_left());
          LineTo(rect.top_right());
-         
+
       }
       else if(eicon == stock_icon_zoom)
       {
-         
+
          rect.deflate(0, rect.height() / 7);
 
          draw_rect(rect.left,rect.top, rect.right, rect.bottom);
-         
+
          m_sppen->m_elinecapBeg = ::draw2d::pen::line_cap_flat;
          m_sppen->m_elinecapEnd = ::draw2d::pen::line_cap_flat;
          MoveTo(rect.top_left() + size(0,(int64_t) (pen->m_dWidth/2.0)));
@@ -4198,15 +4198,15 @@ namespace draw2d
       }
       else if(eicon == stock_icon_restore)
       {
-         
+
          rect.deflate(0, rect.height() / 7);
- 
+
          ::rect rect1(rect);
 
          rect1.deflate(0, 0, rect.width() / 3, rect.height() / 3);
-         
+
          ::rect rect2(rect1);
-         
+
          rect2.Align(align_bottom_right, rect);
 
          draw_rect(rect2.left,rect2.top,rect2.right,rect2.bottom);
@@ -4237,14 +4237,14 @@ namespace draw2d
 
          MoveTo(rect1.top_right() + size(0,(int64_t)(pen->m_dWidth)));
          LineTo(rect1.right,(int)(rect2.top - (int64_t)(pen->m_dWidth)));
-         
+
       }
       else if(eicon == stock_icon_iconify)
       {
-         
+
          rect.deflate(0, rect.height() / 7);
-         
-         
+
+
          MoveTo(rect.bottom_left() - size(0,(int64_t)(pen->m_dWidth*2.0)));
          LineTo(rect.bottom_right() - size(0,(int64_t)(pen->m_dWidth*2.0)));
          MoveTo(rect.bottom_left() - size(0,(int64_t)(pen->m_dWidth*3.0 / 2.0)));
@@ -4255,7 +4255,7 @@ namespace draw2d
          LineTo(rect.bottom_right() - size(0,(int64_t)(pen->m_dWidth / 2.0)));
          MoveTo(rect.bottom_left());
          LineTo(rect.bottom_right());
-         
+
       }
       else if(eicon == stock_icon_transparent_frame)
       {
@@ -4263,13 +4263,13 @@ namespace draw2d
       }
       else if(eicon == stock_icon_dock)
       {
-         
+
          rect.deflate(rect.height() / 8, rect.height() / 8);
-         
+
          DrawEllipse(rect);
 
          ::rect rect1(rect);
-         
+
          rect1.deflate((int32_t)(m_sppen->m_dWidth / 2.0),(int32_t)(m_sppen->m_dWidth / 2.0));
 
          DrawEllipse(rect1);
@@ -4283,18 +4283,18 @@ namespace draw2d
       }
       else
       {
-         
+
          ::exception::throw_not_implemented(get_app());
-         
+
       }
-      
+
       *m_sppen = *pen;
       *m_spbrush = *brush;
-      
+
       return true;
-      
+
    }
-   
+
    void graphics::debug()
    {
    }
@@ -4655,16 +4655,16 @@ namespace draw2d
 
    }
 
-   
-   void graphics::enum_fonts(stringa & stra)
+
+   void graphics::enum_fonts(stringa & straFile, stringa & stra)
    {
 
+      UNREFERENCED_PARAMETER(straFile);
       UNREFERENCED_PARAMETER(stra);
 
       throw not_implemented(get_app());
 
    }
-
 
 } // namespace draw2d
 

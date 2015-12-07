@@ -5146,141 +5146,61 @@ synch_lock ml(m_spmutex);
       if(pfont == NULL)
       {
 
-         return NULL;
+         return false;
 
       }
+//
+///*if(pfont->m_ft != NULL)
+//{
+//
+//	return true;
+//
+//}
+//
+//      //synch_lock sl(&user_mutex());
+//
+//      pfont->destroy();
+//
+////      int status;
+//
+//      int iError = 0;
+//
+//      string strPath;
+//
+//
+int iError;
 
-      //synch_lock sl(&user_mutex());
+string      strPath = pfont->m_strFontFamilyName;
 
-      pfont->destroy();
+iError = FT_New_Face((FT_Library)Sys(get_app()).ftlibrary(),strPath,0,&      pfont->m_ft);
 
-//      int status;
+if(iError == 0)
+{
 
-      int iError = 0;
+            iError = FT_Select_Charmap(pfont->m_ft, /* target face object */ FT_ENCODING_UNICODE); /* encoding */
 
-      string strPath;
-
-      if(g_iFtLevel < 0)
-      {
-
-         strPath = Sys(get_app()).dir().element() / "app/appmatter/main/_std/_std/font/truetype/arialuni.ttf";
-
-         if(g_ft == NULL)
-         {
-
-            iError = FT_New_Face((FT_Library)Sys(get_app()).ftlibrary(),strPath,0,&g_ft);
-
-            iError = FT_Select_Charmap(g_ft, /* target face object */ FT_ENCODING_UNICODE); /* encoding */
-
-         }
-
-         g_iFtLevel = 0;
-
-      }
-
-      if(g_iFtLevel < 1)
-      {
-
-         strPath = "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf";
-
-         if(g_ft == NULL)
-         {
-
-            iError = FT_New_Face((FT_Library)Sys(get_app()).ftlibrary(),strPath,0,&g_ft);
-
-            iError = FT_Select_Charmap(g_ft, /* target face object */ FT_ENCODING_UNICODE); /* encoding */
-
-         }
-
-         g_iFtLevel = 1;
-
-      }
+//	if(iError ==0)
+//	{
+//            //iError = FT_Select_Charmap(g_ft, /* target face object */ FT_ENCODING_UNICOD); /* encoding */
+//
+//	}
+//
+}
 
 
-      if(g_iFtLevel < 2)
-      {
-
-         strPath = "/usr/share/fonts/dejavu/DejaVuSans.ttf";
-
-         if(g_ft == NULL)
-         {
-
-            iError = FT_New_Face((FT_Library)Sys(get_app()).ftlibrary(),strPath,0,&g_ft);
-
-            iError = FT_Select_Charmap(g_ft, /* target face object */ FT_ENCODING_UNICODE); /* encoding */
-
-         }
-
-         g_iFtLevel = 2;
-
-      }
+//pfont->m_ft = NULL;
 
 
-      if(g_iFtLevel < 3)
-      {
-
-         strPath = "/usr/share/fonts/truetype/freefont/FreeSans.ttf";
-
-         if(g_ft == NULL)
-         {
-
-            iError = FT_New_Face((FT_Library)Sys(get_app()).ftlibrary(),strPath,0,&g_ft);
-
-            iError = FT_Select_Charmap(g_ft, /* target face object */ FT_ENCODING_UNICODE); /* encoding */
-
-         }
-
-         g_iFtLevel = 3;
-
-      }
-
-      if(g_iFtLevel < 4)
-      {
-
-         strPath = "/usr/share/fonts/freefont/FreeSans.ttf";
-
-         if(g_ft == NULL)
-         {
-
-            iError = FT_New_Face((FT_Library)Sys(get_app()).ftlibrary(),strPath,0,&g_ft);
-
-            iError = FT_Select_Charmap(g_ft, /* target face object */ FT_ENCODING_UNICODE); /* encoding */
-
-         }
-
-         g_iFtLevel = 4;
-
-      }
-
-      if (g_iFtLevel < 5)
-      {
-
-         strPath = "/system/fonts/DroidSans.ttf";
-
-         if (g_ft == NULL)
-         {
-
-            iError = FT_New_Face((FT_Library)Sys(get_app()).ftlibrary(), strPath, 0, &g_ft);
-
-            iError = FT_Select_Charmap(g_ft, /* target face object */ FT_ENCODING_UNICODE); /* encoding */
-
-         }
-
-         g_iFtLevel = 5;
-
-      }
-
-
-
-
-      pfont->m_ft = g_ft;
+//      pfont->m_ft = g_ft;
 
       if(iError != 0 || pfont->m_ft == NULL)
       {
 
 //fallback:
 
-         cairo_select_font_face(m_pdc, "Sans", pfont->m_bItalic ? CAIRO_FONT_SLANT_ITALIC : CAIRO_FONT_SLANT_NORMAL, pfont->m_iFontWeight > 650 ? CAIRO_FONT_WEIGHT_BOLD : CAIRO_FONT_WEIGHT_NORMAL);
+string strFont =pfont->m_strFontFamilyName;
+
+         cairo_select_font_face(m_pdc, strFont, pfont->m_bItalic ? CAIRO_FONT_SLANT_ITALIC : CAIRO_FONT_SLANT_NORMAL, pfont->m_iFontWeight > 650 ? CAIRO_FONT_WEIGHT_BOLD : CAIRO_FONT_WEIGHT_NORMAL);
 
 
       }
@@ -5730,10 +5650,10 @@ synch_lock ml(m_spmutex);
 #endif // WINDOWS
 
 
-   void graphics::enum_fonts(stringa & stra)
+   void graphics::enum_fonts(stringa & straFile, stringa & stra)
    {
 
-#ifdef LINUX
+#ifndef WINDOWS
 FcPattern *pat;
 FcFontSet *fs;
 FcObjectSet *os;
@@ -5748,17 +5668,28 @@ FcConfigSetRescanInterval(config, 0);
 
 // show the fonts (debugging)
 pat = FcPatternCreate();
-os = FcObjectSetBuild (FC_FAMILY, FC_STYLE, FC_LANG, (char *) 0);
+os = FcObjectSetBuild (FC_FAMILY, FC_STYLE, FC_FILE, NULL);
 fs = FcFontList(config, pat, os);
 printf("Total fonts: %d", fs->nfont);
 for (i=0; fs && i < fs->nfont; i++) {
 FcPattern *font = fs->fonts[i];//FcFontSetFont(fs, i);
 FcPatternPrint(font);
 s = FcNameUnparse(font);
+string str((const char *)s);
+
+int iFind = str.find(":");
+if(iFind>0)
+str=str.Left(iFind);
 if (FcPatternGetString(font, FC_FILE, 0, &file) == FcResultMatch) {
     printf("Filename: %s", file);
+straFile.add((const char *)file);
+}
+else
+{
+   straFile.add(str);
 }
 printf("Font: %s", s);
+stra.add(str);
 free(s);
 }
 if (fs) FcFontSetDestroy(fs);
