@@ -43,7 +43,7 @@ namespace axis
 
   //    m_schemasimple.m_pfont.alloc(allocer());
 
-    //  m_schemasimple.m_pfont->create_pixel_font("Helvetica",16);
+    //  m_schemasimple.m_pfont->create_pixel_font(FONT_SANS,16);
 
       m_puserpresence               = NULL;
 
@@ -165,7 +165,7 @@ namespace axis
 
    bool session::get_auth(const string & pszForm,string & strUsername,string & strPassword)
    {
-      
+
       return fontopus()->get_auth(pszForm, strUsername, strPassword);
 
    }
@@ -466,7 +466,7 @@ namespace axis
    //
    //bool session::wkspace_to_monitor(LPRECT lprect)
    //{
-   //   
+   //
    //   int iWkspace = get_best_wkspace(NULL,rect(lprect));
 
    //   return wkspace_to_monitor(lprect,iWkspace,iWkspace);
@@ -1098,7 +1098,7 @@ namespace axis
 
       //}
 
-      
+
       //set_keyboard_layout(NULL,::action::source::database());
 
 
@@ -1120,7 +1120,7 @@ namespace axis
          m_spfsdata->root_ones(patha);
 
       }
-      
+
       return true;
 
    }
@@ -1386,7 +1386,7 @@ namespace axis
    //      m_pmapKeyPressed = new ::map < ::user::e_key,::user::e_key,bool,bool >;
 
    //   }
-   //      
+   //
    //   bool bPressed = false;
    //   if(ekey == ::user::key_shift)
    //   {
@@ -1451,7 +1451,7 @@ namespace axis
 
    //}
 
-   
+
 
    //void session::set_locale(const string & lpcsz,::action::context actioncontext)
    //{
@@ -2977,7 +2977,7 @@ namespace axis
 
    ::user::elemental * session::get_keyboard_focus()
    {
-      
+
       if(m_pauraapp == NULL)
       {
 
@@ -2989,16 +2989,16 @@ namespace axis
       {
 
          sp(::user::elemental) puieFocus;
-         
+
          try
          {
-            
+
             puieFocus = Session.get_focus_ui();
-            
+
          }
          catch(...)
          {
-            
+
          }
 
          if(m_pkeyboardfocus != NULL && puieFocus != NULL)
@@ -3102,7 +3102,7 @@ namespace axis
             {
 
                return;
-               
+
             }
 
          }

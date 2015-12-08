@@ -26,7 +26,7 @@ namespace draw2d_xlib
       m_etextrendering  = ::draw2d::text_rendering_anti_alias_grid_fit;
 
       m_spfont.alloc(allocer());
-      m_spfont->m_strFontFamilyName = "Helvetica";
+      m_spfont->m_strFontFamilyName = FONT_SANS;
       m_spfont->m_dFontSize = 12.0;
 
 
@@ -5401,7 +5401,7 @@ return 1;
       char * szmf;
 
       pfont->m_pft = XftFontOpen (m_pdc->m_pdisplay, m_pdc->m_iScreen,
-                    XFT_FAMILY, XftTypeString, "helvetica",
+                    XFT_FAMILY, XftTypeString, FONT_SANS,
                     pfont->m_eunitFontSize == ::draw2d::unit_point ? XFT_SIZE : XFT_PIXEL_SIZE, XftTypeDouble, pfont->m_dFontSize,
                     NULL);
 

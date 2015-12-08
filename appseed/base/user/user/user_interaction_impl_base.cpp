@@ -13,7 +13,7 @@ namespace user
       m_pui                = NULL;
       m_bIgnoreSizeEvent   = false;
       m_bIgnoreMoveEvent   = false;
-      m_pcsDisplay         = NULL;   
+      m_pcsDisplay         = NULL;
 
    }
 
@@ -32,8 +32,8 @@ namespace user
       return NULL;
 
    }
-   
-   
+
+
    ::user::interaction_child * interaction_impl_base::get_user_interaction_child()
    {
 
@@ -1032,6 +1032,17 @@ namespace user
    bool interaction_impl_base::SetTimer(uint_ptr nIDEvent,UINT nEllapse, PFN_TIMER pfnTimer)
    {
 
+      if(nEllapse < 70)
+      {
+
+         string str;
+
+         str.Format("creating fast timer: %d\n", nEllapse);
+
+         ::output_debug_string(str);
+
+      }
+
       return create_timer(nIDEvent,nEllapse,pfnTimer, true, m_pui);
 
    }
@@ -1063,18 +1074,18 @@ namespace user
 
       if(m_pui == NULL)
          return false;
-      
+
       try
       {
-      
+
          delete_all_timers();
-         
+
       }
       catch(...)
       {
-         
+
       }
-      
+
 
       {
 
@@ -1154,7 +1165,7 @@ namespace user
 
    void interaction_impl_base::mouse_hover_remove(::user::interaction * pinterface)
    {
-      
+
       ::user::interaction * pui = get_wnd();
 
       if(pui != NULL)
@@ -1174,7 +1185,7 @@ namespace user
 
    ::user::interaction * interaction_impl_base::get_focus_ui()
    {
-      
+
       return NULL;
 
    }

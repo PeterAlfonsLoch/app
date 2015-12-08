@@ -2,7 +2,19 @@
 #include <math.h>
 #ifdef LINUX
 #include <fontconfig/fontconfig.h>
+
+mutex *        g_pmutexFc;
+
+FcBool         g_fcResult;
+
+FcConfig *     g_fcConfig;
+
+string_to_string *      g_pmapFontPath;
+
+
 #endif
+
+
 
 
 namespace draw2d_cairo
@@ -16,6 +28,14 @@ namespace draw2d_cairo
       ::object(papp),
       ::draw2d::graphics(papp)
    {
+
+      if(g_pmutexFc == NULL)
+      {
+
+         g_pmutexFc = new mutex(get_app());
+
+      }
+
 
       m_psurfaceAttach = NULL;
       m_hdcAttach = NULL;
@@ -5168,11 +5188,11 @@ synch_lock ml(m_spmutex);
 //      string strPath;
 //
 //
-int iError;
+      int iError;
 
-string      strPath = pfont->m_strFontFamilyName;
+      string  strPath = get_font_path(pfont->m_strFontFamilyName);
 
-iError = FT_New_Face((FT_Library)Sys(get_app()).ftlibrary(),strPath,0,&      pfont->m_ft);
+      iError = FT_New_Face((FT_Library)Sys(get_app()).ftlibrary(),strPath,0,&      pfont->m_ft);
 
 if(iError == 0)
 {
@@ -5654,52 +5674,157 @@ synch_lock ml(m_spmutex);
    {
 
 #ifndef WINDOWS
-FcPattern *pat;
-FcFontSet *fs;
-FcObjectSet *os;
-FcChar8 *s, *file;
-FcConfig *config;
-FcBool result;
-int i;
 
-result = FcInit();
-config = FcConfigGetCurrent();
-FcConfigSetRescanInterval(config, 0);
+      synch_lock sl(g_pmutexFc);
 
-// show the fonts (debugging)
-pat = FcPatternCreate();
-os = FcObjectSetBuild (FC_FAMILY, FC_STYLE, FC_FILE, NULL);
-fs = FcFontList(config, pat, os);
-printf("Total fonts: %d", fs->nfont);
-for (i=0; fs && i < fs->nfont; i++) {
-FcPattern *font = fs->fonts[i];//FcFontSetFont(fs, i);
-FcPatternPrint(font);
-s = FcNameUnparse(font);
-string str((const char *)s);
+      FcPattern *    pat;
 
-int iFind = str.find(":");
-if(iFind>0)
-str=str.Left(iFind);
-if (FcPatternGetString(font, FC_FILE, 0, &file) == FcResultMatch) {
-    printf("Filename: %s", file);
-straFile.add((const char *)file);
-}
-else
-{
-   straFile.add(str);
-}
-printf("Font: %s", s);
-stra.add(str);
-free(s);
-}
-if (fs) FcFontSetDestroy(fs);
+      FcObjectSet *  os;
+
+      FcFontSet *    fs;
+
+      FcChar8 *      s;
+
+      FcChar8 *      file;
+
+      int            i;
+
+      if(!g_fcResult)
+      {
+
+         g_fcResult = FcInit();
+
+      }
+
+      if(!g_fcConfig)
+      {
+
+         g_fcConfig = FcConfigGetCurrent();
+
+         FcConfigSetRescanInterval(g_fcConfig, 30);
+
+      }
+
+      pat = FcPatternCreate();
+
+      os = FcObjectSetBuild (FC_FAMILY, FC_STYLE, FC_FILE, NULL);
+
+      fs = FcFontList(g_fcConfig, pat, os);
+
+      printf("Total fonts: %d", fs->nfont);
+
+      for (i=0; fs && i < fs->nfont; i++)
+      {
+
+         FcPattern * font = fs->fonts[i];//FcFontSetFont(fs, i);
+
+         //FcPatternPrint(font);
+
+         s = FcNameUnparse(font);
+
+         string str((const char *)s);
+
+         int iFind = str.find(":");
+
+         if(iFind>0)
+         {
+
+            str = str.Left(iFind);
+
+         }
+
+         if(FcPatternGetString(font, FC_FILE, 0, &file) == FcResultMatch)
+         {
+
+            //printf("Filename: %s", file);
+
+            straFile.add((const char *)file);
+
+         }
+         else
+         {
+
+            straFile.add(str);
+
+         }
+
+         //printf("Font: %s", s);
+
+         stra.add(str);
+
+         free(s);
+
+      }
+
+      if(fs != NULL)
+      {
+
+         FcFontSetDestroy(fs);
+
+      }
+
 #else
 throw not_implemented(get_app());
 #endif
 }
 
+string graphics::get_font_path(string str)
+{
+
+   synch_lock sl(g_pmutexFc);
+
+   if(str.find("/") >= 0)
+   {
+
+      return str;
+
+   }
+
+   if(g_pmapFontPath == NULL)
+   {
+
+      g_pmapFontPath = new string_to_string();
+
+   }
+
+   string strPath;
+
+   if(!g_pmapFontPath->Lookup(str, strPath))
+   {
+
+      stringa straPath;
+
+      stringa stra;
+
+      enum_fonts(straPath, stra);
+
+      int iFind = stra.find_first(str);
+
+      if(iFind >= 0)
+      {
+
+         strPath = straPath[iFind];
+
+      }
+      else
+      {
+
+         strPath = str;
+
+      }
+
+      g_pmapFontPath->set_at(str, strPath);
+
+   }
+
+   return strPath;
+
+}
+
 
 } // namespace draw2d_cairo
+
+
 
 
 

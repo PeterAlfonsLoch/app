@@ -778,9 +778,9 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
       #endif
 
       #ifdef METROWIN
-      wcscpy(lf.lfFaceName, L"Arial");
+      wcscpy(lf.lfFaceName, LFONT_SANS);
       #else
-      strcpy(lf.lfFaceName, "Arial");
+      strcpy(lf.lfFaceName, FONT_SANS);
       #endif
 
       #ifdef WINDOWSEX

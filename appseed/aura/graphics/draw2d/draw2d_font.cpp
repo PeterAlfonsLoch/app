@@ -46,7 +46,7 @@ namespace draw2d
 #ifdef WINDOWS
       if(stricmp(lpszFacename, "sans-serif") == 0)
       {
-         m_strFontFamilyName = "Arial";
+         m_strFontFamilyName = FONT_SANS;
       }
       else
       {
@@ -56,7 +56,7 @@ namespace draw2d
       m_strFontFamilyName     = lpszFacename;
 
 #endif
-      
+
       m_dFontSize             = dSize;
       m_dFontWidth            = 1.0;
       m_eunitFontSize         = ::draw2d::unit_pixel;
@@ -72,7 +72,7 @@ namespace draw2d
 
    bool font::create_point_font(const char * lpszFacename, double dSize, int32_t iWeight, bool bItalic, bool bUnderline, bool bStrikeOut, double dWidth)
    {
-      
+
       m_strFontFamilyName     = lpszFacename;
       m_dFontSize             = dSize;
       m_dFontWidth            = 1.0;

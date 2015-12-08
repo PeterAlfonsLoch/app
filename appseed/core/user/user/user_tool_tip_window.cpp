@@ -13,7 +13,7 @@ namespace user
       m_iTool = -1;
       m_iEventTool = -1;
       m_bTipEnable = true;
-      
+
    }
 
    tool_tip_window::~tool_tip_window()
@@ -88,7 +88,7 @@ namespace user
 
       sp(::user::interaction) pwnd = m_pwnd;
       ::user::tool_tip_tool * ptool = GetTool(iTool);
-      
+
       bool bVRetry = false;
       bool bHRetry = false;
 
@@ -161,7 +161,7 @@ namespace user
          SWP_NOACTIVATE  );
 
       update_drawing_objects();
-      
+
       ShowWindow(SW_SHOWNOACTIVATE);
    }
 
@@ -304,7 +304,7 @@ namespace user
          break;
       }
 
-       
+
    }
 
 
@@ -327,7 +327,7 @@ namespace user
       {
          return false;
       }
-      m_font->create_point_font("Arial", 10.0);
+      m_font->create_point_font(FONT_SANS, 10.0);
       return create_window_ex(WS_EX_TOOLWINDOW, NULL, NULL, WS_POPUP, null_rect(), NULL, id) != 0;
    }
 

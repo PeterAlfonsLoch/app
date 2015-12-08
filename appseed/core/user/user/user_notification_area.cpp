@@ -38,7 +38,7 @@ namespace user
 #ifdef WINDOWSEX
 
       LOGFONTW lf = {0};
-      wcscpy(lf.lfFaceName, L"Arial");
+      wcscpy(lf.lfFaceName, LFONT_SANS);
 
       lf.lfHeight = 16;
       m_hfontRegular = CreateFontIndirectW(&lf);

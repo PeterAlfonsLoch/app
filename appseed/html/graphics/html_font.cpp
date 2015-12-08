@@ -15,16 +15,16 @@ namespace html
       m_strTextDecoration     = font.m_strTextDecoration;
    }
 
-   
+
    bool font::create(::aura::application * papp)
    {
-      
+
       set_app(papp);
-      
+
       m_font.alloc(allocer());
 
       int32_t iWeight;
-      
+
       m_strWeight.trim();
 
       if(m_strWeight.CompareNoCase("bold") == 0)
@@ -35,13 +35,13 @@ namespace html
       {
          iWeight = 400;
       }
-      else 
+      else
       {
          iWeight = MAX(100, atoi(m_strWeight));
       }
-      
+
       double dSize;
-      
+
       m_strSize.trim();
 
       if(m_strSize.is_empty())
@@ -82,10 +82,10 @@ namespace html
       }
       else
       {
-         strName = "Arial";
+         strName = FONT_SANS;
       }
-      
-      
+
+
       bool bUnderline = ::str::find_ci("underline", m_strTextDecoration) >= 0;
 
       m_font->create_point_font(strName, dSize, iWeight, false, bUnderline);

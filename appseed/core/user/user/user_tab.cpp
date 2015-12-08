@@ -4,6 +4,14 @@
 //#undef new
 ////#include <gdiplus.h>
 //#endif
+
+#ifdef LINUX
+      #define FONT_SANS "FreeSans"
+#else
+      #define FONT_SANS FONT_SANS
+#endif
+
+
 extern CLASS_DECL_CORE thread_int_ptr < DWORD_PTR > t_time1;
 
 // pdc->GetTextExtent("->:<-"); // oh no!! omg!! The size is the size of the alien!!
@@ -100,13 +108,14 @@ namespace user
       spgraphics->CreateCompatibleDC(NULL);
 
 
-      get_data()->m_font->create_point_font("Lucida Sans Unicode", 10);
 
-      get_data()->m_fontBold->create_point_font("Lucida Sans Unicode", 10, FW_BOLD);
+      get_data()->m_font->create_point_font(FONT_SANS, 10);
 
-      get_data()->m_fontBigBold->create_point_font("Lucida Sans Unicode",12,FW_EXTRABOLD);
+      get_data()->m_fontBold->create_point_font(FONT_SANS, 10, FW_BOLD);
 
-      get_data()->m_fontUnderline->create_point_font("Lucida Sans Unicode", 10, FW_NORMAL, false, true);
+      get_data()->m_fontBigBold->create_point_font(FONT_SANS,12,FW_EXTRABOLD);
+
+      get_data()->m_fontUnderline->create_point_font(FONT_SANS, 10, FW_NORMAL, false, true);
 
       _001SetVertical(false);
 
@@ -443,16 +452,16 @@ namespace user
 
       if(GetTopLevel()->frame_is_transparent())
          return;
-      
+
       if(m_puserschema == NULL)
       {
-         
+
          _001OnDrawStandard(pdc);
 
          return;
 
       }
-      
+
 
       m_puserschema->_001TabOnDrawSchema01(pdc,this);
 //      _001OnDrawSchema01(pdc);
@@ -683,9 +692,9 @@ namespace user
 
       if(m_puserschema != NULL)
       {
-         
+
          m_puserschema->_001OnTabLayout(this);
-         
+
          return;
 
       }
@@ -1412,13 +1421,13 @@ namespace user
 
    void tab::_001AddSel(::index iSel)
    {
-      
+
       synch_lock lock(get_data()->m_pmutex);
-      
+
       get_data()->m_iaSel.add(iSel);
-      
+
       on_change_pane_count();
-      
+
    }
 
 
@@ -1479,7 +1488,7 @@ namespace user
 
       for(int iTitle = 0; iTitle < straTitle.get_count(); iTitle++)
       {
-         
+
          dc.GetTextExtent(pdc,straTitle[iTitle],m_sizeaText[iTitle]);
 
       }
@@ -1941,8 +1950,8 @@ namespace user
       }
 
    }
-   
-   
+
+
    void tab::_001OnStartTabDrag(::signal_details * pobj)
    {
 

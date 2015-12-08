@@ -29,7 +29,7 @@ namespace user
       colorHover.hls_rate(0.0, 0.7, 0.0);
 
       m_button.m_pfont.alloc(allocer());
-      m_button.m_pfont->create_point_font("Arial",11.0);
+      m_button.m_pfont->create_point_font(FONT_SANS,11.0);
       m_button.set_color(color_text_normal,ARGB(255,0,0,0));
       m_button.set_color(color_text_press,color | (0xff << 24));
       m_button.set_color(color_text_disabled,ARGB(255,127,127,127));
@@ -70,7 +70,11 @@ namespace user
 
 
       m_buttonBaseWndMenuItem.m_pfont.alloc(allocer());
-      m_buttonBaseWndMenuItem.m_pfont->create_point_font("Lucida Sans Unicode", 9.0);
+      #ifdef LINUX
+      m_buttonBaseWndMenuItem.m_pfont->create_point_font("FreeSans", 9.0);
+      #else
+      m_buttonBaseWndMenuItem.m_pfont->create_point_font(FONT_SANS, 9.0);
+      #endif
       m_buttonBaseWndMenuItem.set_color(color_text_normal,ARGB(184,0,0,0));
       m_buttonBaseWndMenuItem.set_color(color_text_press,color | (184 << 24));
       m_buttonBaseWndMenuItem.set_color(color_text_disabled,ARGB(184,127,127,127));
@@ -83,13 +87,17 @@ namespace user
       m_buttonBaseWndMenuItem.m_etranslucency = ::user::TranslucencyPresent;
 
 
-      
+
 
 
 
       m_buttonBaseWndMenuItemPopup.m_pfont.alloc(allocer());
-      m_buttonBaseWndMenuItemPopup.m_pfont->create_point_font( "Lucida Sans Unicode", 9.0, FW_BOLD);
-      m_buttonBaseWndMenuItemPopup.set_color(color_text_normal,ARGB(184,0,0,0));
+#ifdef LINUX
+      m_buttonBaseWndMenuItemPopup.m_pfont->create_point_font("FreeSans", 9.0, FW_BOLD);
+#else
+      m_buttonBaseWndMenuItemPopup.m_pfont->create_point_font(FONT_SANS, 9.0, FW_BOLD);
+#endif
+     m_buttonBaseWndMenuItemPopup.set_color(color_text_normal,ARGB(184,0,0,0));
       m_buttonBaseWndMenuItemPopup.set_color(color_text_press,color | (184 << 24));
       m_buttonBaseWndMenuItemPopup.set_color(color_text_disabled,ARGB(184,127,127,127));
       m_buttonBaseWndMenuItemPopup.set_color(color_text_hover,color | (184 << 24));
@@ -101,7 +109,7 @@ namespace user
       m_buttonBaseWndMenuItemPopup.m_etranslucency = ::user::TranslucencyPresent;
 
 
-      m_menu.m_font->create_point_font("Lucida Sans Unicode",9.0);
+      m_menu.m_font->create_point_font(FONT_SANS,9.0);
 
       m_menu.m_pschemaSysMenuCloseButton = &m_buttonBaseWndMenuSysMenuClose;
       m_menu.m_pschemaSysMenuButton = &m_buttonBaseWndMenuSysMenu;

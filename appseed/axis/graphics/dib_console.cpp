@@ -44,8 +44,15 @@ void dib_console::SetWindowSize(int iHeight,int iWidth)
 
    m_dib->create(m_sizeTile.cx * m_sizeWindow.cx + m_iBorder * 2,m_sizeTile.cy * m_sizeWindow.cy + m_iBorder * 2);
    m_dib->get_graphics()->m_spfont.alloc(allocer());
-   //m_dib->get_graphics()->m_spfont->create_pixel_font("Lucida Sans Unicode", m_sizeTile.cy * 0.92);
+   //m_dib->get_graphics()->m_spfont->create_pixel_font(FONT_SANS, m_sizeTile.cy * 0.92);
+   #ifdef LINUX
+
+   m_dib->get_graphics()->m_spfont->create_pixel_font("Ubuntu Mono",m_sizeTile.cy * 0.92);
+
+   #else
    m_dib->get_graphics()->m_spfont->create_pixel_font("Lucida Console",m_sizeTile.cy * 0.92);
+
+   #endif
 
    SetScreenColor(::console::BLACK);
 
@@ -165,7 +172,7 @@ bool dib_console::defer_write(char ch,int x,int y,int cx,int cy,int iColor)
       pen2->create_solid(2.0,console_COLORREF(iColor));
 
    }
-   
+
    return pen2;
 
 }
@@ -230,7 +237,7 @@ void dib_console::draw_write(char ch, int x, int y, int iColor)
       }
       else if(ch == (char)205)// horizontal double
       {
-         
+
          if(m_iLastPen != 2 || m_iLastPenColor != iColor)
          {
 

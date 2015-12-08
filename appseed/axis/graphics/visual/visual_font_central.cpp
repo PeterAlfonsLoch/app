@@ -31,12 +31,12 @@ font_central::~font_central()
 }
 
 
-//#define FONTFACENAME_MENU "Lucida Sans Unicode"
+//#define FONTFACENAME_MENU FONT_SANS
 #define FONTFACENAME_MENU "Arial Unicode"
 #ifdef LINUX
-#define FONTFACENAME_LUCIDA "sans-serif"
+#define FONTFACENAME_LUCIDA "FreeSans"
 #else
-#define FONTFACENAME_LUCIDA "Lucida Sans Unicode"
+#define FONTFACENAME_LUCIDA FONT_SANS
 #endif
 
 bool font_central::IsInitialized()

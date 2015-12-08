@@ -198,7 +198,7 @@ namespace simple_ui
 
       sp(::draw2d::font) font(allocer());
 
-      font->create_point_font("Arial",12);
+      font->create_point_font(FONT_SANS,12);
 
       pdc->selectFont(font);
 

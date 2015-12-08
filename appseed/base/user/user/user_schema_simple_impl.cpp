@@ -14,11 +14,11 @@ namespace user
 
       m_pfont.alloc(allocer());
 
-      m_pfont->create_pixel_font("Helvetica",16);
+      m_pfont->create_pixel_font(FONT_SANS,16);
 
       m_pfont.alloc(allocer());
 
-      m_pfont->create_pixel_font("Helvetica",16);
+      m_pfont->create_pixel_font(FONT_SANS,16);
 
    }
 

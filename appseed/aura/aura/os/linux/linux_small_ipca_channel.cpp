@@ -103,6 +103,10 @@ namespace aura
             return false;
          }
 
+         ::OutputDebugString("functon: \"tx::send\"\n");
+         ::OutputDebugString("channel: \"" +m_strBaseChannel+ "\"\n");
+         ::OutputDebugString("message: \"" +string(pszMessage)+ "\"\n");
+
          return true;
       }
 

@@ -763,7 +763,7 @@ public:
 
          ::draw2d::font_sp font(allocer());
 
-         font->create_point_font("helvetica", 12.0);
+         font->create_point_font(FONT_SANS, 12.0);
 
          g->selectFont(font);
 

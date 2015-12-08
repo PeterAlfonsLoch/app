@@ -24,7 +24,7 @@ namespace user
 } // namespace user
 
 
-  
+
 oswindow_data::oswindow_data()
 {
 
@@ -745,7 +745,7 @@ void message_box_paint(::draw2d::graphics * pdc, stringa & stra, bool_array  & b
 //
 //      ::draw2d::font_sp font(allocer());
 //
-//      font->create_point_font("helvetica", 12.0);
+//      font->create_point_font(FONT_SANS, 12.0);
 //
 //      g->selectFont(font);
 //
@@ -1555,7 +1555,7 @@ void android_mouse(unsigned int message, float x, float y)
 extern "C"
 void android_l_button_down(float x, float y)
 {
-   
+
    android_mouse(WM_LBUTTONDOWN, x, y);
 
 }
@@ -1645,7 +1645,7 @@ int translate_android_key_message(::message::key * pkey, int keyCode, int iUni)
 
    if (0x80000000 & iUni)
    {
-      
+
       return 0;
 
    }

@@ -160,7 +160,7 @@ namespace user
 
             if(GetTopLevel()->WfiIsMoving())
             {
-               
+
                //TRACE("wndfrm control_box : top level is moving : ignoring WM_TIMER");
 
                return;
@@ -308,7 +308,7 @@ namespace user
 
             create_buttons();
 
-            SetTimer(123, 5, NULL);
+            //SetTimer(123, 5, NULL);
 
             //WindowDataLoadWindowRect();
 
@@ -587,7 +587,7 @@ namespace user
                string strCaption;
 
                get_control_box_button_caption(ebutton, strCaption);
-               
+
                pbutton->set_stock_icon(get_control_box_button_stock_icon(ebutton));
 
                pbutton->SetParent(this);
@@ -713,14 +713,14 @@ namespace user
             return bOk;
 
          }
-         
-         
+
+
          e_stock_icon control_box::get_control_box_button_stock_icon(e_button ebutton)
          {
-            
+
             return (e_stock_icon)((int) ebutton - (int)button_begin + (int) stock_icon_control_box_begin);
-            
-            
+
+
             switch (ebutton)
             {
                case button_close:
@@ -745,7 +745,7 @@ namespace user
             }
 
          }
-         
+
 
          void control_box::set_control_box_button_id(e_button ebutton, id id)
          {
@@ -797,11 +797,11 @@ namespace user
             return m_sizeButtonDefault;
 
          }
-         
+
 
          rect control_box::get_button_margin(e_button ebutton)
          {
-            
+
             rect rectMargin;
 
             rectMargin.left = 0;
@@ -919,7 +919,7 @@ namespace user
             m_brushButtonBackSel->create_solid(ARGB(255, 150, 220, 145));
             m_brushButtonBackFocus->create_solid(ARGB(255, 150, 220, 145));
             m_brushButtonBackDisabled->create_solid(ARGB(255, 180, 180, 175));
-            
+
             m_penButtonBack->create_solid(2, ARGB(255, 255, 255, 255));
             m_penButtonBackSel->create_solid(2, ARGB(255, 255, 255, 255));
             m_penButtonBackFocus->create_solid(2, ARGB(255, 255, 255, 255));
