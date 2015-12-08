@@ -254,7 +254,7 @@ namespace aura
       }
       else if(pbase->m_wparam == 9)
       {
-         
+
          m_bAgreeExit = _001OnAgreeExit();
          m_bAgreeExitOk = true;
 
@@ -307,12 +307,12 @@ namespace aura
    // load string
    string application::lstr(id id, const string & strDefault)
    {
-      
+
       string str;
 
       if(!load_string(str,id))
       {
-            
+
          if(&strDefault == NULL)
             return (const string &)id;
 
@@ -741,9 +741,9 @@ namespace aura
 
    IDTHREAD application::get_thread_id()
    {
-      
+
       return m_pimpl->get_thread_id();
-      
+
    }
 
 
@@ -927,7 +927,7 @@ namespace aura
 
    bool application::pre_run()
    {
-      
+
       if(!::thread::pre_run())
          return false;
 
@@ -1014,7 +1014,7 @@ namespace aura
       dappy(string(typeid(*this).name()) + " : starting on_run 2 : " + ::str::from(m_iReturnCode));
 
       ::output_debug_string(string(typeid(*this).name()) + " : starting on_run 2 : " + ::str::from(m_iReturnCode) + "\n\n");
-    
+
       try
       {
          try
@@ -1545,7 +1545,7 @@ namespace aura
 
       if(is_system() || is_session())
       {
-         
+
          ::output_debug_string("::aura::application::run " + string(typeid(*this).name()) + "\n\n");
 
          return ::thread::run();
@@ -1839,11 +1839,11 @@ namespace aura
 
       xxdebug_box("check_exclusive","check_exclusive",MB_ICONINFORMATION);
 
-      m_pipi = create_ipi();
-
       if(!is_system() && !is_session())
       {
-         
+
+         m_pipi = create_ipi();
+
          if(!check_exclusive())
          {
 
@@ -1851,19 +1851,19 @@ namespace aura
 
          }
 
-      }
-
-      if(m_pipi != NULL)
-      {
-
-         try
+         if(m_pipi != NULL)
          {
 
-            m_pipi->ecall(m_pipi->m_strApp,{System.os().get_pid()},"application","on_new_instance",System.file().module(),System.os().get_pid());
+            try
+            {
 
-         }
-         catch(...)
-         {
+               m_pipi->ecall(m_pipi->m_strApp,{System.os().get_pid()},"application","on_new_instance",System.file().module(),System.os().get_pid());
+
+            }
+            catch(...)
+            {
+
+            }
 
          }
 
@@ -3199,9 +3199,9 @@ namespace aura
    }
 
 
-   
 
-   
+
+
 
    //void application::dir_matter_ls_file(const string & str,stringa & stra)
    //{
@@ -3883,7 +3883,7 @@ namespace aura
 
    bool application::platform_open_by_file_extension(index iEdge,const char * pszPathName,application_bias * pbiasCreate)
    {
-      
+
       return false;
 
    }
@@ -4158,13 +4158,13 @@ namespace aura
       notinstalled.m_bHandled = true;
 
       notinstalled.m_bContinue = true;
-      
+
       bool bDebuggerCheck = true;
-      
+
 #ifdef APPLEOS
-      
+
       bDebuggerCheck = false;
-      
+
 #endif
 
       if(((!bDebuggerCheck || ::is_debugger_attached()) && !file_exists_dup("C:\\ca2\\config\\plugin\\disable_manual_install_warning.txt")
@@ -4203,7 +4203,7 @@ namespace aura
             strPath = get_exe_path();
             //                     setenv("DYLD_FALLBACK_LIBRARY_PATH",System.dir().ca2module(), 1 );
             //                     setenv("DYLD_FALLBACK_LIBRARY_PATH",strPath, 1 );
-            
+
             strPath = "\"" + strPath + "\"";
 
 #endif
@@ -4435,7 +4435,7 @@ namespace aura
       return true;
 
    }
-   
+
    void application::_001OnFranceExit()
    {
 

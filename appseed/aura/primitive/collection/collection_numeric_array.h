@@ -771,7 +771,7 @@ template < class TYPE >
 numeric_array < TYPE >  & numeric_array < TYPE >::operator -= (const numeric_array < TYPE >  & a)
 {
 
-   remove(a);
+   this->remove(a);
 
    return *this;
 
@@ -781,7 +781,7 @@ template < class TYPE >
 numeric_array < TYPE >  & numeric_array < TYPE >::operator += (const numeric_array < TYPE >  & a)
 {
 
-   add(a);
+   this->add(a);
 
    return *this;
 

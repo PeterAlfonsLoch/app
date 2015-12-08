@@ -15,14 +15,20 @@ namespace aura
 
       defer_add_module(System.file().module());
 
-      ::file::path p = module_path_from_pid(System.os().get_pid());
+      int iPid = System.os().get_pid();
+
+      ::file::path p = module_path_from_pid(iPid);
 
       defer_add_module(p);
 
       m_rx.m_preceiver  = this;
 
-	   if(!m_rx.create(key(strApp, System.os().get_pid())))
+      string strKey = key(strApp, iPid);
+
+	   if(!m_rx.create(strKey))
          throw ::resource_exception(papp);
+
+      Application.simple_message_box(NULL, Application.m_strAppName + string(" : ") + strKey, MB_OK);
 
    }
 

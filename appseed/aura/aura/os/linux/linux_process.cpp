@@ -73,9 +73,17 @@ int32_t create_process(const char * _cmd_line, int32_t * pprocessId)
       argv[argc] = NULL;
 
       execv(exec_path_name, argv);
+
       memory_free(cmd_line);
+
       memory_free(cmd_line2);
-      exit( -1 );
+
+      int status = 0;
+
+      wait(&status);
+
+      exit(status);
+
    }
    else if(*pprocessId == -1)
    {
