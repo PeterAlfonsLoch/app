@@ -133,15 +133,54 @@ string file_as_string_dup(const char * path)
 }
 
 
+memory file_as_memory_dup(const char * path)
+{
+
+   memory mem;
+
+   file_get_memory_dup(mem, path);
+
+   return mem;
+
+}
+
+
 bool file_get_memory_dup(::primitive::memory_base & memory, const char * path)
 {
 
    FILE * f = fopen(path, "rb");
    if(f == NULL)
       return false;
-   memory.allocate(fsize_dup(f));
-   fread(memory.get_data(), memory.get_size(), 1, f);
+   int64_t iSize = fsize_dup(f);
+
+   if(iSize <= 0)
+   {
+
+      ::memory mem;
+
+      mem.allocate(1024 * 512);
+
+      int iRead;
+
+      while((iRead = fread(mem.get_data(),1,mem.get_size(),f)) > 0)
+      {
+
+         memory.append(mem.get_data(), iRead);
+
+      }
+
+   }
+   else
+   {
+
+      memory.allocate(iSize);
+
+      fread(memory.get_data(), memory.get_size(), 1, f);
+
+   }
+
    fclose(f);
+
    return true;
 
 }

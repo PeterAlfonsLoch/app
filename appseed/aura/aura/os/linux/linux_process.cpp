@@ -25,50 +25,64 @@ int32_t create_process(const char * _cmd_line, int32_t * pprocessId)
 {
    char *   exec_path_name;
    char *	cmd_line;
+   char *	cmd_line2;
 
    cmd_line = (char *) memory_alloc(strlen(_cmd_line ) + 1 );
 
    if(cmd_line == NULL)
             return 0;
+   cmd_line2 = (char *) memory_alloc(strlen(_cmd_line ) + 1 );
+
+   if(cmd_line2 == NULL)
+            return 0;
 
    strcpy_dup(cmd_line, _cmd_line);
+
+   strcpy_dup(cmd_line2, _cmd_line);
 
    if((*pprocessId = fork()) == 0)
    {
       // child
-      char		*pArg, *pPtr;
-      char		*argv[1024 + 1];
-      int32_t		 argc;
-      if( ( pArg = strrchr_dup( exec_path_name, '/' ) ) != NULL )
-         pArg++;
-      else
-         pArg = exec_path_name;
-      argv[0] = pArg;
-      argc = 1;
+      char *      pArg;
+      char *      pPtr;
+      char *      argv[1024 + 1];
+      int32_t		argc;
 
-      if( cmd_line != NULL && *cmd_line != '\0' )
+      pArg = strtok_r_dup(cmd_line, " ", &pPtr);
+
+      exec_path_name = pArg;
+
+      while(pArg != NULL)
       {
-         pArg = strtok_r_dup(cmd_line, " ", &pPtr);
-         while( pArg != NULL )
+
+         argv[argc] = pArg;
+
+         argc++;
+
+         if( argc >= 1024 )
          {
-            argv[argc] = pArg;
-            argc++;
-            if( argc >= 1024 )
-               break;
-            pArg = strtok_r_dup(NULL, " ", &pPtr);
+
+            break;
+
          }
+
+         pArg = strtok_r_dup(NULL, " ", &pPtr);
+
       }
+
       argv[argc] = NULL;
 
       execv(exec_path_name, argv);
-      free(cmd_line);
+      memory_free(cmd_line);
+      memory_free(cmd_line2);
       exit( -1 );
    }
    else if(*pprocessId == -1)
    {
       // in parent, but error
       *pprocessId = 0;
-      free(cmd_line);
+      memory_free(cmd_line);
+      memory_free(cmd_line2);
       return 0;
    }
    // in parent, success
@@ -165,26 +179,158 @@ return path;
 
 
 int_array module_path_get_pid(const char * pszPath)
-{int_array ia;
+{
 
-::file::patha stra;
+   int_array ia;
+
+   ::file::patha stra;
+
 	::dir::ls_dir(stra, "/proc/");
 
+   for(auto & strPid : stra)
+   {
+
+      int iPid = atoi(strPid.title());
+
+      if(iPid > 0)
+      {
+
+         string strPath =module_path_from_pid(iPid);
+
+         if(strPath	 == pszPath)
+         {
+
+            ia.add(iPid);
+
+         }
+
+      }
+
+   }
+
+   return ia;
+
+}
+
+
+int_array app_get_pid(const char * psz)
+{
+
+   int_array ia;
+
+   ::file::patha stra;
+
+	::dir::ls_dir(stra, "/proc/");
+
+	string str(psz);
+
+	str = "app=" + str;
+
+	string strApp(psz);
+
+	strApp.replace("-", "_");
+
+	strApp.replace("/", "_");
 
 	for(auto & strPid : stra)
-{
-	int iPid = atoi(strPid.title());
+   {
 
-if(iPid > 0)
-{
-string strPath =module_path_from_pid(iPid);
-if(strPath	 == pszPath)
-{
-ia.add(iPid);;
-}
-}
+      int iPid = atoi(strPid.title());
+
+      if(iPid > 0)
+      {
+
+         ::file::path path = module_path_from_pid(iPid);
+
+         if(path.title() == strApp)
+         {
+
+            ia.add(iPid);
+
+         }
+         else
+         {
+
+            stringa straCmdLine = cmdline_from_pid(iPid);
+
+            if(straCmdLine.find_first(str) > 0)
+            {
+
+               ia.add(iPid);
+
+            }
+
+         }
+
+      }
+
+   }
+
+   return ia;
+
 }
 
-return ia;
+
+
+stringa cmdline_from_pid(unsigned int iPid)
+{
+
+   stringa stra;
+
+   string str;
+
+   str = "/proc/" + ::str::from(iPid) + "/cmdline";
+
+   memory mem = file_as_memory_dup(str);
+
+   char szNull[1];
+
+   szNull[0] = '\0';
+
+   int iPos = 0;
+
+   byte * previous = mem.get_data();
+
+   byte * found;
+
+   while(true)
+   {
+
+      if((found = (byte *) memmem(previous, mem.get_size() - ( previous - mem.get_data()), szNull, 1)) == NULL)
+         break;
+
+      str = (const char *)previous;
+
+      stra.add(str);
+
+      previous = found + 1;
+
+   }
+
+   if(mem.get_size() - ( previous - mem.get_data()) > 0)
+   {
+
+      str = (const char *)previous;
+
+      stra.add(str);
+
+   }
+
+   return stra;
+
+    /* the easiest case: we are in linux */
+//    ssize_t s = readlink (str, path, iSize);
+
+  //  if(s == -1)
+    //{
+       // return "";
+    //}
+
+    //path[s] = '\0';
+
+	//return path;
 
 }
+
+
+

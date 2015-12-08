@@ -11,10 +11,21 @@ namespace aura
    {
 
 #ifdef DEBUG
+
+#ifdef WINDOWS
+
       return Sys(get_thread_app()).dir().ca2module() / "app.exe";
+
+#else
+
+      return Sys(get_thread_app()).dir().ca2module() / "app";
+
+#endif
+
 #else
 
       return path::a_spa();
+
 #endif
 
    }

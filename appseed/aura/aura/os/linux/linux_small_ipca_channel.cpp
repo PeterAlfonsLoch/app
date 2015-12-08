@@ -25,6 +25,8 @@ namespace aura
         base(papp)
       {
 
+		//m_pmutex = new mutex(papp);
+
       }
 
 

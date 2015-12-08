@@ -9,6 +9,8 @@ namespace aura
       m_rx(papp)
    {
 
+      m_pmutex = new mutex(papp);
+
       m_strApp          = strApp;
 
       defer_add_module(System.file().module());
@@ -113,6 +115,23 @@ namespace aura
    bool ipi::start(const string & strApp)
    {
 
+      synch_lock sl1(m_pmutex);
+
+      mutex * pmutex = m_mapAppMutex[strApp];
+
+      if(pmutex == NULL)
+      {
+
+         pmutex = new mutex(get_app());
+
+         m_mapAppMutex[strApp] = pmutex;
+
+      }
+
+      sl1.unlock();
+
+      synch_lock sl(pmutex);
+
       int_array iaPid = get_pid(strApp);
 
       if(iaPid.get_count() > 0)
@@ -135,16 +154,31 @@ namespace aura
 
             launcher.start();
 
-            ia = get_pid(strApp);
+            int iStep = 0;
 
-            if(ia.get_count() <= 0)
+            while(iStep < 8)
             {
 
-               return false;
+               iStep++;
+
+               ia = get_pid(strApp);
+
+               if(ia.get_count() > 0)
+               {
+
+                  goto started;
+
+               }
+
+               Sleep(iStep * 784);
 
             }
 
+            return false;
+
          }
+
+         started:
 
          iPid = ia[0];
 
@@ -159,7 +193,7 @@ namespace aura
 
       }
 
-      return m_txmap[strKey]->open(key(strApp,iPid),&launcher);
+      return m_txmap[strKey]->open(key(strApp,iPid));
 
 
    }
@@ -186,11 +220,7 @@ namespace aura
       else
       {
 
-         ::aura::app_launcher launcher("");
-
-         launcher.m_iStart = 0;
-
-         return m_txmap[strKey]->open(key(strApp, iPid), &launcher);
+         return m_txmap[strKey]->open(key(strApp, iPid));
 
       }
 
@@ -400,6 +430,14 @@ namespace aura
 
       int_array iaPid;
 
+      #ifdef LINUX
+
+
+         iaPid = app_get_pid(strApp);
+
+
+      #else
+
 #if defined(METROWIN)
 
       iaPid.add(1);
@@ -454,7 +492,7 @@ namespace aura
       }
 
 #endif
-
+#endif
       return iaPid;
 
    }

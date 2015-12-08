@@ -1,7 +1,7 @@
 #pragma once
 
 
-
+CLASS_DECL_AURA memory file_as_memory_dup(const char * path);
 CLASS_DECL_AURA string file_as_string_dup(const char * path);
 CLASS_DECL_AURA string file_extension_dup(const char * path);
 CLASS_DECL_AURA string get_temp_file_name_dup(const char * pszName,const char * pszExtension);
