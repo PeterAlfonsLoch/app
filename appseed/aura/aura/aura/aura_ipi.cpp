@@ -28,7 +28,7 @@ namespace aura
 	   if(!m_rx.create(strKey))
          throw ::resource_exception(papp);
 
-      Application.simple_message_box(NULL, Application.m_strAppName + string(" : ") + strKey, MB_OK);
+      //Application.simple_message_box(NULL, Application.m_strAppName + string(" : ") + strKey, MB_OK);
 
    }
 
