@@ -59,7 +59,7 @@ namespace hotplugin
 
       ::draw2d::font_sp f(allocer());
 
-      f->create_pixel_font("Tahoma", 49);
+      f->create_pixel_font(FONT_SANS_FX, 49);
 
       pgraphics->SelectObject(f);
 
@@ -71,13 +71,13 @@ namespace hotplugin
 
       pgraphics->TextOut(lprect.left + 84, lprect.top + 84, strStatus);
 
-      f->create_pixel_font("Tahoma", 84, true);
+      f->create_pixel_font(FONT_SANS_FX, 84, true);
 
       pgraphics->SelectObject(f);
 
       pgraphics->TextOut(lprect.left + 84, (int32_t)(lprect.top + 133 + 49 * 0.2), strProgress);
 
-      f->create_pixel_font("Tahoma", 23);
+      f->create_pixel_font(FONT_SANS_FX, 23);
 
       pgraphics->SelectObject(f);
 

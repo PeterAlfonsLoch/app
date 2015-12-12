@@ -215,13 +215,13 @@ void font_central::CreateLyricViewFonts()
    m_pfontLyric = pPlayerFont;
 
    pPlayerFont = new visual::font(get_app());
-   pPlayerFont->GetFont()->create_point_font("Tahoma", 12, FW_BOLD);
+   pPlayerFont->GetFont()->create_point_font(FONT_SANS_FX, 12, FW_BOLD);
    pPlayerFont->OnSetFont();
    m_pfontLyricCompact = pPlayerFont;
 
 
    pPlayerFont = new visual::font(get_app());
-   pPlayerFont->GetFont()->create_point_font("Tahoma", 56, FW_BOLD);
+   pPlayerFont->GetFont()->create_point_font(FONT_SANS_FX, 56, FW_BOLD);
    pPlayerFont->OnSetFont();
    m_pTitleFonts->add(pPlayerFont);
 
@@ -246,7 +246,7 @@ void font_central::CreateLyricViewFonts()
    m_pTitleFonts->add(pPlayerFont);
 
    pPlayerFont = new visual::font(get_app());
-   pPlayerFont->GetFont()->create_point_font("Tahoma", 24, FW_NORMAL);
+   pPlayerFont->GetFont()->create_point_font(FONT_SANS_FX, 24, FW_NORMAL);
    pPlayerFont->OnSetFont();
    m_pSubTitleFonts->add(pPlayerFont);
 
@@ -272,7 +272,7 @@ void font_central::CreateLyricViewFonts()
 
 
    pPlayerFont = new visual::font(get_app());
-   pPlayerFont->GetFont()->create_point_font("Tahoma",12, FW_NORMAL);
+   pPlayerFont->GetFont()->create_point_font(FONT_SANS_FX,12, FW_NORMAL);
    pPlayerFont->OnSetFont();
    m_pH3TitleFonts->add(pPlayerFont);
 
