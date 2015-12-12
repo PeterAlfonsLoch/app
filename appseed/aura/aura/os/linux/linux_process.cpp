@@ -261,6 +261,10 @@ int_array app_get_pid(const char * psz)
 
             stringa straCmdLine = cmdline_from_pid(iPid);
 
+            string strCmdLine;
+
+            strCmdLine = straCmdLine.implode(" ");
+
             if(straCmdLine.find_first(str) > 0)
             {
 
@@ -291,36 +295,37 @@ stringa cmdline_from_pid(unsigned int iPid)
 
    memory mem = file_as_memory_dup(str);
 
-   char szNull[1];
+   string strArg;
 
-   szNull[0] = '\0';
+   char ch;
 
-   int iPos = 0;
-
-   byte * previous = mem.get_data();
-
-   byte * found;
-
-   while(true)
+   for(int i = 0; i < mem.get_size(); i++)
    {
 
-      if((found = (byte *) memmem(previous, mem.get_size() - ( previous - mem.get_data()), szNull, 1)) == NULL)
-         break;
+      ch = (char) mem.get_data()[i];
 
-      str = (const char *)previous;
+      if(ch == '\0')
+      {
 
-      stra.add(str);
+         stra.add(strArg);
 
-      previous = found + 1;
+         strArg.Empty();
+
+      }
+      else
+      {
+
+         strArg += ch;
+
+      }
+
 
    }
 
-   if(mem.get_size() - ( previous - mem.get_data()) > 0)
+   if(strArg.has_char())
    {
 
-      str = (const char *)previous;
-
-      stra.add(str);
+      stra.add(strArg);
 
    }
 
