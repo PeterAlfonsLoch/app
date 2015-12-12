@@ -44,9 +44,9 @@ int32_t create_process(const char * _cmd_line, int32_t * pprocessId)
    {
       // child
       char *      pArg;
-      char *      pPtr;
+      char *      pPtr = NULL;
       char *      argv[1024 + 1];
-      int32_t		argc;
+      int32_t		argc = 0;
 
       pArg = strtok_r_dup(cmd_line, " ", &pPtr);
 
