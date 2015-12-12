@@ -13,7 +13,7 @@ namespace filehandler
       m_spfont(allocer())
    {
 
-      m_spfont->create_point_font("Geneva",14.0);
+      m_spfont->create_point_font(FONT_SANS_EX,14.0);
 
    }
 
@@ -23,7 +23,7 @@ namespace filehandler
 
       ::user::form::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &view::_001OnCreate);
-//      
+//
       IGUI_WIN_MSG_LINK(WM_LBUTTONUP, pinterface, this, &view::_001OnLButtonUp);
 
    }
@@ -31,11 +31,11 @@ namespace filehandler
 
    void view::refresh()
    {
-      
+
       m_plistWorking = canew(list(get_app()));
-      
+
       m_plistWorking->parse(&System.filehandler(), ::file::path(m_strName).extension());
-      
+
       m_plist = m_plistWorking;
 
       m_plistWorking = NULL;
@@ -44,7 +44,7 @@ namespace filehandler
 
    }
 
-   
+
    void view::_001OnTimer(::timer * ptimer)
    {
 
@@ -77,7 +77,7 @@ namespace filehandler
 
    void view::list::parse(handler * phandler, const char * pszTopic)
    {
-      
+
       remove_all();
 
       stringa straApp;
@@ -169,7 +169,7 @@ namespace filehandler
          item.m_rectName = item.m_rectItem;
          item.m_rectName.left = item.m_rectStatusImage.right;
          item.m_rectName.deflate(2, 2);
-         
+
       }
    }
 
@@ -190,12 +190,12 @@ namespace filehandler
 
       layout_list(m_plist);
 
-      
+
    }
 
    void view::layout_list(list * plist)
    {
-      
+
       ::draw2d::memory_graphics pdc(allocer());
 
       rect rectClient;
@@ -293,7 +293,7 @@ namespace filehandler
 
    bool view::get_font(::draw2d::font_sp & font)
    {
-      
+
       font = m_spfont;
 
       return true;

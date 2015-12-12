@@ -15,7 +15,7 @@ namespace userstack
       m_mutexDraw(papp)
    {
 
-      m_font->create_point_font("Geneva", 8.4);
+      m_font->create_point_font(FONT_SANS_EX, 8.4);
       m_bDestroy = false;
       m_iV = 123;
       m_iVH = 49;
@@ -49,7 +49,7 @@ namespace userstack
       IGUI_WIN_MSG_LINK(WM_SETCURSOR, pinterface, this, &view::_001OnSetCursor);
       IGUI_WIN_MSG_LINK(WM_LBUTTONUP, pinterface, this, &view::_001OnLButtonUp);
 
-//      
+//
 
    }
    /////////////////////////////////////////////////////////////////////////////
@@ -200,9 +200,9 @@ namespace userstack
 
    void view::_001OnSetCursor(signal_details * pobj)
    {
-      
+
       SCAST_PTR(::message::mouse, pmouse, pobj);
-   
+
       pmouse->m_ecursor = ::visual::cursor_arrow;
 
       pobj->previous();
@@ -214,7 +214,7 @@ namespace userstack
       ::user::impact::pre_translate_message(pobj);
    }
 
-   
+
    ::user::document * view::get_document()
    {
 
@@ -225,7 +225,7 @@ namespace userstack
 
    void view::_001OnTimer(::timer * ptimer)
    {
-      
+
       BASE::_001OnTimer(ptimer);
 
       switch(ptimer->m_nIDEvent)

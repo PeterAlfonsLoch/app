@@ -10,7 +10,7 @@ namespace user
       m_font(allocer())
    {
 
-      m_font->create_point_font("Geneva",12.0);
+      m_font->create_point_font(FONT_SANS_EX,12.0);
 
       m_bError = false;
 
@@ -41,7 +41,7 @@ namespace user
       ::user::interaction::install_message_handling(pinterface);
 
       IGUI_WIN_MSG_LINK(WM_CREATE,pinterface,this,&tooltip::_001OnCreate);
-      //      
+      //
 
    }
 
@@ -186,7 +186,7 @@ namespace user
    }
 
 
-} // namespace veritile 
+} // namespace veritile
 
 
 

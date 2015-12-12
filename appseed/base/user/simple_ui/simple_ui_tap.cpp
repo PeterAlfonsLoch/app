@@ -347,7 +347,7 @@ namespace simple_ui
 
       ::draw2d::font_sp f(allocer());
 
-      f->create_pixel_font("Geneva", (int32_t)height(rectClient)* 0.7);
+      f->create_pixel_font(FONT_SANS_EX, (int32_t)height(rectClient)* 0.7);
 
       pgraphics->SelectObject(f);
 
