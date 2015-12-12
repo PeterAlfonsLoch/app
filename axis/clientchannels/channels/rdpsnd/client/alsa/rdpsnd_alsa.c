@@ -243,6 +243,10 @@ static void rdpsnd_alsa_set_format(rdpsndDevicePlugin* device, AUDIO_FORMAT* for
 				alsa->format = SND_PCM_FORMAT_S16_LE;
 				alsa->bytes_per_channel = 2;
 				break;
+				case 41222:
+				alsa->format = SND_PCM_FORMAT_S16_LE;
+				alsa->bytes_per_channel = 2;
+				break;
 		}
 
 		alsa->wformat = format->wFormatTag;
@@ -308,10 +312,13 @@ static void rdpsnd_alsa_open(rdpsndDevicePlugin* device, AUDIO_FORMAT* format, i
       alsa->dsp_context = NULL;
       alsa->format = 1;
       alsa->aac_context = calloc(1,sizeof(AAC_CONTEXT));
-      if(!mf_aac_init(alsa->aac_context,alsa->actual_rate, alsa->actual_channels, format))
+      if(!mf_aac_init(alsa->aac_context,format->nSamplesPerSec, format->nChannels, format))
       {
          WLog_ERR(TAG,"mf_aac_init failed");
       }
+   }
+   else{
+   alsa->aac_context =NULL;
    }
 
 
@@ -329,7 +336,10 @@ static void rdpsnd_alsa_open(rdpsndDevicePlugin* device, AUDIO_FORMAT* format, i
 	}
 	else
 	{
+	if(alsa->dsp_context)
+	{
 		freerdp_dsp_context_reset_adpcm(alsa->dsp_context);
+		}
 		rdpsnd_alsa_set_format(device, format, latency);
 		rdpsnd_alsa_open_mixer(alsa);
 	}
@@ -373,7 +383,10 @@ static void rdpsnd_alsa_free(rdpsndDevicePlugin* device)
 
 	free(alsa->device_name);
 
+if(alsa->dsp_context)
+{
 	freerdp_dsp_context_free(alsa->dsp_context);
+	}
 
 	free(alsa);
 }
@@ -409,6 +422,15 @@ static BOOL rdpsnd_alsa_format_supported(rdpsndDevicePlugin* device, AUDIO_FORMA
 			break;
 
 		case WAVE_FORMAT_GSM610:
+			break;
+		case 41222:
+			if (format->cbSize == 0 &&
+				format->nSamplesPerSec == 44100 &&
+				(format->wBitsPerSample == 16) &&
+				(format->nChannels == 2))
+			{
+				return TRUE;
+			}
 			break;
 	}
 
@@ -510,7 +532,7 @@ static BYTE* rdpsnd_alsa_process_audio_sample(rdpsndDevicePlugin* device, BYTE* 
    else if(alsa->aac_context != NULL)
    {
       void * out;
-      size = audio_decode_example2(alsa->aac_context,&out,data,size);
+      size = audio_decode_example2(alsa->aac_context,&out,data,*size *alsa->source_channels * alsa->bytes_per_channel);
       //free(wave->data);
       srcData= out;
    }
@@ -548,7 +570,16 @@ static void rdpsnd_alsa_wave_decode(rdpsndDevicePlugin* device, RDPSND_WAVE* wav
 	BYTE* data;
 
 	size = wave->length;
+	rdpsndAlsaPlugin* alsa = (rdpsndAlsaPlugin*) device;
+	if(alsa->aac_context != NULL)
+	{
+	data = wave->data;
+	}
+	else
+	{
 	data = rdpsnd_alsa_process_audio_sample(device, wave->data, &size);
+
+	}
 
 	wave->data = (BYTE*) malloc(size);
 	CopyMemory(wave->data, data, size);
@@ -567,10 +598,17 @@ static void rdpsnd_alsa_wave_play(rdpsndDevicePlugin* device, RDPSND_WAVE* wave)
 	snd_pcm_uframes_t frames;
 	rdpsndAlsaPlugin* alsa = (rdpsndAlsaPlugin*) device;
 
+
 	offset = 0;
 	data = wave->data;
 	length = wave->length;
 	frame_size = alsa->actual_channels * alsa->bytes_per_channel;
+
+  if(alsa->aac_context != NULL)
+   {
+      length = audio_decode_example2(alsa->aac_context,&data,wave->data,wave->length);
+      free(wave->data);
+   }
 
 	if (alsa->wLocalTimeClose)
 	{
