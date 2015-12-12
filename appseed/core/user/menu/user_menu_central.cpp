@@ -13,7 +13,7 @@ BaseMenuCentral::BaseMenuCentral(::aura::application * papp) :
    m_pilHueLight     = new image_list(papp);
 
 
-   VERIFY(m_fontMenu->create_point_font("Arial Unicode", 11));
+   VERIFY(m_fontMenu->create_point_font(FONT_SANS, 11));
 
 #ifdef WINDOWSEX
    if(!MenuV033GetImageList()->create(16, 16, ILC_COLOR24 | ILC_MASK, 0, 10))
