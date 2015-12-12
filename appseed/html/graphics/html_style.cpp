@@ -96,11 +96,11 @@ namespace html
 
    bool style::get_surround_box(id idName, const string & strSubClass, data * pdata, elemental * pelemental, box & box)
    {
-      
+
       e_tag etag = pelemental->m_etag;
-      
+
       string strClass = pelemental->m_strClass;
-      
+
       style * pstyleCur = NULL;
       style * pstyle = NULL;
       style * pstyleLeft = NULL;
@@ -249,7 +249,7 @@ namespace html
 
    bool style::get_border_box(id idName, const string & strSubClass, data * pdata, elemental * pelemental, border & box)
    {
-      
+
       e_tag etag = pelemental->m_etag;
 
       string strClass = pelemental->m_strClass;
@@ -318,7 +318,7 @@ namespace html
       if(pstyleLeftW != NULL)
          iLeftW = pstyleLeftW->m_propertyset.find_index(m_pauraapp->m_pcoresystem->m_phtml->concat(idName, __id(html_css_suffix_left_width)));
 
-      if (m_propertyset.has_property(m_pauraapp->m_pcoresystem->m_phtml->concat(idName, __id(html_css_suffix_top))) 
+      if (m_propertyset.has_property(m_pauraapp->m_pcoresystem->m_phtml->concat(idName, __id(html_css_suffix_top)))
          && parse_border_width(m_propertyset[m_pauraapp->m_pcoresystem->m_phtml->concat(idName, __id(html_css_suffix_top))], fTop))
          pstyleTop = this;
       else
@@ -327,7 +327,7 @@ namespace html
       if(pstyleTop != NULL)
          iTop = pstyleTop->m_propertyset.find_index(m_pauraapp->m_pcoresystem->m_phtml->concat(idName, __id(html_css_suffix_top)));
 
-      if (m_propertyset.has_property(m_pauraapp->m_pcoresystem->m_phtml->concat(idName, __id(html_css_suffix_top_width))) 
+      if (m_propertyset.has_property(m_pauraapp->m_pcoresystem->m_phtml->concat(idName, __id(html_css_suffix_top_width)))
          && parse_border_width(m_propertyset[m_pauraapp->m_pcoresystem->m_phtml->concat(idName, __id(html_css_suffix_top_width))], fTopW))
          pstyleTopW = this;
       else
@@ -345,7 +345,7 @@ namespace html
       if(pstyleRight != NULL)
          iRight = pstyleRight->m_propertyset.find_index(m_pauraapp->m_pcoresystem->m_phtml->concat(idName, __id(html_css_suffix_right)));
 
-      if (m_propertyset.has_property(m_pauraapp->m_pcoresystem->m_phtml->concat(idName, __id(html_css_suffix_right_width))) 
+      if (m_propertyset.has_property(m_pauraapp->m_pcoresystem->m_phtml->concat(idName, __id(html_css_suffix_right_width)))
          && parse_border_width(m_propertyset[m_pauraapp->m_pcoresystem->m_phtml->concat(idName, __id(html_css_suffix_right_width))], fRightW))
          pstyleRightW = this;
       else
@@ -354,7 +354,7 @@ namespace html
       if(pstyleRightW != NULL)
          iRightW = pstyleRightW->m_propertyset.find_index(m_pauraapp->m_pcoresystem->m_phtml->concat(idName, __id(html_css_suffix_right_width)));
 
-      if (m_propertyset.has_property(m_pauraapp->m_pcoresystem->m_phtml->concat(idName, __id(html_css_suffix_bottom))) 
+      if (m_propertyset.has_property(m_pauraapp->m_pcoresystem->m_phtml->concat(idName, __id(html_css_suffix_bottom)))
          && parse_border_width(m_propertyset[m_pauraapp->m_pcoresystem->m_phtml->concat(idName, __id(html_css_suffix_bottom))], fBottom))
          pstyleBottom = this;
       else
@@ -417,11 +417,11 @@ namespace html
 
    bool style::get_border_color(id idName, const string & strSubClass, data * pdata, elemental * pelemental, border & box)
    {
-      
+
       e_tag etag = pelemental->m_etag;
 
       string strClass= pelemental->m_strClass;
-      
+
       style * pstyle          = NULL;
       style * pstyleLeft      = NULL;
       style * pstyleTop       = NULL;
@@ -487,7 +487,7 @@ namespace html
       if(pstyleLeftW != NULL)
          iLeftW = pstyleLeftW->m_propertyset.find_index(m_pauraapp->m_pcoresystem->m_phtml->concat(idName, __id(html_css_suffix_left_color)));
 
-      if (m_propertyset.has_property(m_pauraapp->m_pcoresystem->m_phtml->concat(idName, __id(html_css_suffix_top))) 
+      if (m_propertyset.has_property(m_pauraapp->m_pcoresystem->m_phtml->concat(idName, __id(html_css_suffix_top)))
          && parse_border_color(m_propertyset[m_pauraapp->m_pcoresystem->m_phtml->concat(idName, __id(html_css_suffix_top))], crTop))
          pstyleTop = this;
       else
@@ -505,7 +505,7 @@ namespace html
       if(pstyleTopW != NULL)
          iTopW = pstyleTopW->m_propertyset.find_index(m_pauraapp->m_pcoresystem->m_phtml->concat(idName, __id(html_css_suffix_top_color)));
 
-      if (m_propertyset.has_property(m_pauraapp->m_pcoresystem->m_phtml->concat(idName, __id(html_css_suffix_right))) 
+      if (m_propertyset.has_property(m_pauraapp->m_pcoresystem->m_phtml->concat(idName, __id(html_css_suffix_right)))
          && parse_border_color(m_propertyset[m_pauraapp->m_pcoresystem->m_phtml->concat(idName, __id(html_css_suffix_right))], crRight))
          pstyleRight = this;
       else
@@ -514,7 +514,7 @@ namespace html
       if(pstyleRight != NULL)
          iRight = pstyleRight->m_propertyset.find_index(m_pauraapp->m_pcoresystem->m_phtml->concat(idName, __id(html_css_suffix_right)));
 
-      if (m_propertyset.has_property(m_pauraapp->m_pcoresystem->m_phtml->concat(idName, __id(html_css_suffix_right_color))) 
+      if (m_propertyset.has_property(m_pauraapp->m_pcoresystem->m_phtml->concat(idName, __id(html_css_suffix_right_color)))
          && parse_border_color(m_propertyset[m_pauraapp->m_pcoresystem->m_phtml->concat(idName, __id(html_css_suffix_right_color))], crRightW))
          pstyleRightW = this;
       else
@@ -523,7 +523,7 @@ namespace html
       if(pstyleRightW != NULL)
          iRightW = pstyleRightW->m_propertyset.find_index(m_pauraapp->m_pcoresystem->m_phtml->concat(idName, __id(html_css_suffix_right_color)));
 
-      if (m_propertyset.has_property(m_pauraapp->m_pcoresystem->m_phtml->concat(idName, __id(html_css_suffix_bottom))) 
+      if (m_propertyset.has_property(m_pauraapp->m_pcoresystem->m_phtml->concat(idName, __id(html_css_suffix_bottom)))
          && parse_border_color(m_propertyset[m_pauraapp->m_pcoresystem->m_phtml->concat(idName, __id(html_css_suffix_bottom))], crBottom))
          pstyleBottom = this;
       else
@@ -532,7 +532,7 @@ namespace html
       if(pstyleBottom != NULL)
          iBottom = pstyleBottom->m_propertyset.find_index(m_pauraapp->m_pcoresystem->m_phtml->concat(idName, __id(html_css_suffix_bottom)));
 
-      if (m_propertyset.has_property(m_pauraapp->m_pcoresystem->m_phtml->concat(idName, __id(html_css_suffix_bottom_color))) 
+      if (m_propertyset.has_property(m_pauraapp->m_pcoresystem->m_phtml->concat(idName, __id(html_css_suffix_bottom_color)))
          && parse_border_color(m_propertyset[m_pauraapp->m_pcoresystem->m_phtml->concat(idName, __id(html_css_suffix_bottom_color))], crBottomW))
          pstyleBottomW = this;
       else
@@ -586,7 +586,7 @@ namespace html
 
    bool style::get_color(id idName, const string & strSubClass, data * pdata, elemental * pelemental, COLORREF & cr)
    {
-      
+
       e_tag etag = pelemental->m_etag;
 
       string strClass = pelemental->m_strClass;
@@ -631,7 +631,7 @@ namespace html
             if(pelemental->m_pparent != NULL
             && stricmp_dup(idName, "padding") != 0
             && stricmp_dup(idName, "margin") != 0
-            && stricmp_dup(idName, "border") != 0)   
+            && stricmp_dup(idName, "border") != 0)
             {
                if(pelemental->m_pparent->m_style.get_text(idName, strSubClass, pdata, pelemental->m_pparent, str))
                {
@@ -642,7 +642,7 @@ namespace html
             {
                if(stricmp_dup("font-family", idName) == 0)
                {
-                  str = "Times New Roman";
+                  str = FONT_SERIF;
                   return true;
                }
                else if(stricmp_dup("font-size", idName) == 0)
@@ -664,7 +664,7 @@ namespace html
             {
                if(stricmp_dup("font-family", idName) == 0)
                {
-                  str = "Times New Roman";
+                  str = FONT_SERIF;
                   return true;
                }
                else if(stricmp_dup("font-size", idName) == 0)
@@ -686,7 +686,7 @@ namespace html
             {
                if(stricmp_dup("font-family", idName) == 0)
                {
-                  str = "Times New Roman";
+                  str = FONT_SERIF;
                   return true;
                }
                else if(stricmp_dup("font-size", idName) == 0)
@@ -708,7 +708,7 @@ namespace html
             {
                if(stricmp_dup("font-family", idName) == 0)
                {
-                  str = "Times New Roman";
+                  str = FONT_SERIF;
                   return true;
                }
                else if(stricmp_dup("font-size", idName) == 0)
@@ -774,9 +774,9 @@ namespace html
 
    bool style::get_alpha(const string & strSubClass, data * pdata, elemental * pelemental, double & d)
    {
-      
+
       const char* idName = "opacity";
-      
+
       e_tag etag = pelemental->m_etag;
 
       string strClass = pelemental->m_strClass;
@@ -1170,7 +1170,7 @@ namespace html
 
       if (m_propertyset.has_property(__id(html_display)))
       {
-         
+
          m_edisplay = m_pauraapp->m_pcoresystem->m_phtml->display_name_to_id(m_propertyset[__id(html_display)], etag);
 
       }
@@ -1181,7 +1181,7 @@ namespace html
 
       }
 
-      
+
 
    }
 

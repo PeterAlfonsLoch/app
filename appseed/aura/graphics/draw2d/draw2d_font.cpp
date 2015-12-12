@@ -10,7 +10,7 @@ namespace draw2d
    font::font()
    {
 
-      m_strFontFamilyName  = "Times New Roman";
+      m_strFontFamilyName  = FONT_SERIF;
       m_dFontSize          = 17.0;
       m_dFontWidth         = 1.0;
       m_eunitFontSize      = ::draw2d::unit_point;
