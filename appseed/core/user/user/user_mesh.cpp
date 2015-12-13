@@ -19,7 +19,7 @@ namespace user
       m_dcextension(get_app()),
       m_mutex(get_app())
    {
-      m_iItemHeight = 32; 
+      m_iItemHeight = 32;
       m_plist = NULL;
       m_piaFilterIcon = new index_biunique();
       m_piaFilterMesh = new index_array();
@@ -716,7 +716,7 @@ namespace user
    }
 
 
-   
+
    ::user::mesh_data * mesh::create_mesh_data()
    {
 
@@ -827,7 +827,7 @@ namespace user
 
    bool mesh::_001OnUpdateItemCount(uint32_t dwFlags)
    {
-      
+
       UNREFERENCED_PARAMETER(dwFlags);
 
       if(m_eview == view_grid)
@@ -867,7 +867,7 @@ namespace user
 
          if(m_nGroupCount < 0)
          {
-          
+
             return false;
 
          }
@@ -914,12 +914,12 @@ namespace user
 
    void mesh::on_change_view_size()
    {
-      
+
       size & sizeTotal = m_sizeTotal;
 
       if(m_eview == view_grid)
       {
-       
+
          sizeTotal.cy = m_nColumnCount;
          sizeTotal.cx = m_nItemCount;
 
@@ -1047,7 +1047,7 @@ namespace user
          _001GetItemRect(&itemTopRight);
 
          rect.unite(itemFirst.m_rectItem,itemLast.m_rectItem);
-         
+
          rect.unite(rect,itemTopRight.m_rectItem);
 
          sizeTotal = rect.size();
@@ -1055,7 +1055,7 @@ namespace user
       }
 
 //      ::user::control::on_change_view_size();
-      
+
    }
 
 
@@ -1088,16 +1088,16 @@ namespace user
    {
 
       int iWidth;
-      
+
       if(!m_mapColumnWidth.Lookup(pitem->m_iColumn,iWidth))
       {
-      
+
          iWidth = m_iDefaultColumnWidth;
 
       }
 
       pitem->m_iColumnWidth   = iWidth;
-      
+
       pitem->m_bOk            = true;
 
    }
@@ -1113,7 +1113,7 @@ namespace user
       return _001MapColumnToSubItem(_001MapOrderToColumn(iOrder));
    }
 
-   
+
    index mesh::_001MapOrderToColumn(index iOrder)
    {
 
@@ -1138,7 +1138,7 @@ namespace user
 
    index mesh::_001MapColumnToOrder(index iColumn)
    {
-      
+
       if(iColumn >= _001GetColumnCount())
       {
 
@@ -1159,7 +1159,7 @@ namespace user
 
    index mesh::_001MapSubItemToColumn(index iSubItem)
    {
-      
+
       if(iSubItem >= _001GetColumnCount())
       {
 
@@ -1180,7 +1180,7 @@ namespace user
 
    index mesh::_001MapColumnToSubItem(index iColumn)
    {
-      
+
       if(iColumn >= _001GetColumnCount())
       {
 
@@ -1281,7 +1281,7 @@ namespace user
 
    ::count mesh::_001CalcDisplayItemCount()
    {
-      
+
       if(m_eview == view_grid)
       {
 
@@ -1291,13 +1291,13 @@ namespace user
 
          if(m_iItemHeight == 0)
          {
-            
+
             return 0;
 
          }
          else
          {
-            
+
             if(m_bTopText)
             {
                return rectScroll.height() - m_rectTopText.height() / m_iItemHeight;
@@ -1438,9 +1438,9 @@ namespace user
 
    bool mesh::_001DisplayHitTest(point point,int_ptr &iItemParam,int_ptr &iSubItemParam)
    {
-      
+
       int_ptr iItem;
-      
+
       if(!_001DisplayHitTest(point,iItem))
       {
 
@@ -2022,7 +2022,7 @@ namespace user
 
       if(pdrawitem->m_iSubItemRectOrder < 0 || pdrawitem->m_iOrder == 0 || pdrawitem->m_iSubItemRectOrder > pdrawitem->m_iOrder)
       {
-         
+
          if(m_eview == view_grid)
          {
 
@@ -3846,7 +3846,11 @@ namespace user
       }
       else if(ptimer->m_nIDEvent == 12321)
       {
+
+
          KillTimer(ptimer->m_nIDEvent);
+
+
          index iItemSel;
          index iSubItemSel;
          point point;
@@ -4942,19 +4946,19 @@ namespace user
       UNREFERENCED_PARAMETER(pdc);
    }
 
-   
+
    int32_t mesh::get_wheel_scroll_delta()
    {
 
       if(m_eview == view_grid)
       {
-         
+
          return 1;
 
       }
       else
       {
-      
+
          return m_iItemHeight;
 
       }
@@ -5088,6 +5092,7 @@ namespace user
                m_iSubItemEnter = iSubItemEnter;
                //SetTimer(12321, 840, NULL);
                SetTimer(12321,184 + 177 + 151,NULL);
+               //track_mouse_hover();
             }
          }
 
@@ -5126,7 +5131,7 @@ namespace user
 
    mesh::range::range(const range & range)
    {
-      
+
       m_itemrangea = range.m_itemrangea;
 
    }
@@ -5240,7 +5245,7 @@ namespace user
 
    void mesh::_001OnVScroll(signal_details * pobj)
    {
-      
+
       SCAST_PTR(::message::scroll, pscroll, pobj);
 
       pobj->previous();
@@ -5272,7 +5277,7 @@ namespace user
 
    void mesh::_001OnHScroll(signal_details * pobj)
    {
-      
+
       SCAST_PTR(::message::scroll, pscroll, pobj);
 
       pobj->previous();
@@ -5655,7 +5660,7 @@ namespace user
       //{
       //   return m_pcolumn->m_pil;
       //}
-      
+
       return NULL;
 
    }
@@ -5856,7 +5861,7 @@ namespace user
 
    ::count mesh::_001GetColumnCount()
    {
-      
+
       if(m_pmeshdata.is_null())
          return -1;
 
@@ -5867,12 +5872,12 @@ namespace user
 
    point mesh::get_viewport_offset()
    {
-      
+
       return ::user::control::get_viewport_offset();
-      
+
    }
-   
-   
+
+
    //void mesh::on_change_view_size()
    //{
 
@@ -5907,7 +5912,7 @@ namespace user
    //   }
    //   else
    //   {
-   //      
+   //
    //      ::user::control::on_change_view_size();
 
    //   }
@@ -5939,7 +5944,7 @@ namespace user
          size sizePage;
 
          sizePage.cx = rectClient.width() / m_iDefaultColumnWidth;
-         
+
          sizePage.cy = rectClient.width() / m_iItemHeight;
 
          return sizePage;
@@ -5954,7 +5959,7 @@ namespace user
 
    }
 
-   
+
    void mesh::GetClientRect(LPRECT lprect)
    {
 
@@ -6005,7 +6010,7 @@ namespace user
       }
       else
       {
-         
+
          return ::user::control::get_scroll_bar_height();
 
       }

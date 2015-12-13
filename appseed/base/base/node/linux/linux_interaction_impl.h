@@ -182,6 +182,7 @@ namespace linux
       virtual bool BringWindowToTop();
       using ::user::interaction_impl::GetWindowRect;
       virtual void GetWindowRect(RECT64 * lpRect);
+      virtual void _001GetWindowRect(RECT64 * lpRect);
       using ::user::interaction_impl::GetClientRect;
       virtual void GetClientRect(RECT64 * lpRect);
 

@@ -603,6 +603,8 @@ d.unlock();
    void interaction_impl::_001OnMove(::signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
+
+      //_001GetWindowRect(m_rectParentClient);
 /*      if(!m_bRectOk && !(GetExStyle() & WS_EX_LAYERED))
       {
          class rect rectWindow;
@@ -614,6 +616,10 @@ d.unlock();
 
    void interaction_impl::_001OnSize(::signal_details * pobj)
    {
+
+
+      //_001GetWindowRect(m_rectParentClient);
+
       UNREFERENCED_PARAMETER(pobj);
 
 
@@ -4009,8 +4015,7 @@ throw not_implemented(get_app());
       lppoint->y     -= rectWindow.top;
    }
 
-
-   void interaction_impl::GetWindowRect(RECT64 * lprect)
+   void interaction_impl::_001GetWindowRect(RECT64 * lprect)
    {
 
       if(!::IsWindow((oswindow) get_handle()))
@@ -4031,6 +4036,14 @@ throw not_implemented(get_app());
       {
         //  interaction::GetWindowRect(lprect);
       }
+   }
+
+
+   void interaction_impl::GetWindowRect(RECT64 * lprect)
+   {
+
+      return _001GetWindowRect(lprect);
+
    }
 
    void interaction_impl::GetClientRect(RECT64 * lprect)
