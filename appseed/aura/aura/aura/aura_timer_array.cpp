@@ -17,12 +17,26 @@ namespace aura
    {
 
       delete_all_timers(); // besides virtual
-      
+
 
    }
 
    bool timer_array::create_timer(uint_ptr nIDEvent,UINT nEllapse, PFN_TIMER pfnTimer, bool bPeriodic, void * pvoidData)
    {
+
+
+      if(nEllapse < 884)
+      {
+
+         string str;
+
+         str.Format("creating fast timer: %d\n", nEllapse);
+
+         ::output_debug_string(str);
+
+      }
+
+
 
       delete_timer(nIDEvent);
 
@@ -76,20 +90,20 @@ namespace aura
 
          if(ptimer->m_bDestroying)
          {
-            
-          
+
+
             sl.unlock();
-            
+
          }
          else
          {
-            
+
             ptimer->m_bDestroying = true;
 
             sl.unlock();
-         
+
             delete ptimer;
-            
+
          }
 
       }
@@ -129,22 +143,22 @@ namespace aura
 
    void timer_array::delete_all_timers()
    {
-   
+
       MAP::pair * ppair = NULL;
-      
+
    restart:
-      
+
       ppair = m_map.PGetFirstAssoc();
-   
+
       if(ppair != NULL)
       {
-      
+
          delete_timer(ppair->m_element1);
-         
+
          goto restart;
-      
+
       }
-      
+
    }
 
 
