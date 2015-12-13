@@ -29,7 +29,7 @@ namespace aura
       ::core::application *                           m_pcoreapp; // can be used only from core and upper
       ::core::system *                                m_pcoresystem; // can be used only from core and upper
       ::core::session *                               m_pcoresession; // can be used only from core and upper
-      
+
       bool                                            m_bAgreeExit;
       bool                                            m_bAgreeExitOk;
       bool                                            m_bFranceExit;
@@ -102,6 +102,7 @@ namespace aura
       mutex                                           m_mutexStr;
       string_table                                    m_stringtable;
       string_table                                    m_stringtableStd;
+      map < id, id, string, string >                  m_stringmap;
 
 
       ::file::dir::application_sp                     m_spdir;
@@ -183,7 +184,7 @@ namespace aura
       virtual bool is_serviceable();
       virtual bool is_user_service();
 
-      
+
 
       void process_machine_event_data(machine_event_data * pdata);
 

@@ -1304,6 +1304,8 @@ namespace user
    void interaction::_000OnDraw(::draw2d::graphics *pdc)
    {
 
+      single_lock sl(m_pmutex, true);
+
       if(!IsWindowVisible())
          return;
 
@@ -1996,7 +1998,7 @@ namespace user
 
                if(puiTopLevel->frame_is_transparent())
                {
-                  
+
                   return false;
 
                }
@@ -4473,7 +4475,7 @@ namespace user
 
    ::user::interaction * interaction::next_sibling(::user::interaction * pui)
    {
-
+synch_lock sl(m_pmutex);
       try
       {
 
@@ -6187,6 +6189,7 @@ namespace user
    bool interaction::SetWindowPos(int_ptr z,int32_t x,int32_t y,int32_t cx,int32_t cy,UINT nFlags)
    {
 
+      synch_lock slParent(GetParent() == NULL ? NULL : GetParent()->m_pmutex);
       synch_lock sl(m_pmutex);
 
       bool bOk = false;

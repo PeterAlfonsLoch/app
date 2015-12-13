@@ -157,7 +157,7 @@ namespace user
    bool tab::add_tab(const char * lpcsz, id id, bool bVisible, bool bPermanent)
    {
 
-      tab_pane * ppane = new tab_pane(get_app());
+      sp(tab_pane) ppane = canew(tab_pane(get_app()));
 
       ppane->m_istrTitleEx       = lpcsz;
       ppane->m_bVisible         = bVisible;
@@ -220,7 +220,7 @@ namespace user
    bool tab::add_image_tab(const char * lpcszTitle, const char * pszImage, id id, bool bVisible, bool bPermanent)
    {
 
-      tab_pane * ppane = new tab_pane(get_app());
+      sp(tab_pane) ppane = canew(tab_pane(get_app()));
 
       if(ppane == NULL)
          return false;

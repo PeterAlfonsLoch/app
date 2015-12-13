@@ -558,8 +558,15 @@ namespace user
 
 
          pdrawitem->m_pcolumn    = m_columna._001GetVisible(pdrawitem->m_iColumn);
-         pdrawitem->m_iSubItem   = pdrawitem->m_pcolumn->m_iSubItem;
-         pdrawitem->m_iColumnKey = pdrawitem->m_pcolumn->m_iKey;
+
+         if(pdrawitem->m_pcolumn != NULL)
+         {
+
+            pdrawitem->m_iSubItem   = pdrawitem->m_pcolumn->m_iSubItem;
+
+            pdrawitem->m_iColumnKey = pdrawitem->m_pcolumn->m_iKey;
+
+         }
 
 
          _001GetSubItemRect(pdrawitem);
@@ -652,7 +659,7 @@ namespace user
 
    //void list::_001GetItemImage(::user::mesh_item * pitem)
    //{
-   //   
+   //
    //   if(m_pmeshdata != NULL)
    //   {
 
@@ -700,7 +707,7 @@ namespace user
 
    ::count list::_001GetColumnCount()
    {
-      
+
       return m_columna.VisibleGetCount();
 
    }
@@ -713,7 +720,7 @@ namespace user
 
    }
 
-   
+
    ::user::mesh_data * list::create_mesh_data()
    {
 
@@ -963,7 +970,7 @@ namespace user
          rect.unite(rect, itemTopRight.m_rectItem);
 
       }
-      
+
       m_sizeTotal = rect.size();
 
       ::user::control::on_change_view_size();
@@ -1238,14 +1245,14 @@ namespace user
 
    bool list::_001SetColumnWidth(index iColumn, int32_t iWidth)
    {
-      
+
       if(iColumn < 0)
       {
-       
+
          return false;
 
       }
-      
+
       if(iColumn >= m_columna.VisibleGetCount())
       {
 
@@ -1338,7 +1345,7 @@ namespace user
 
    ::count list::_001GetItemCount()
    {
-      
+
       if(m_pmeshdata.is_null())
          return -1;
 
@@ -1349,10 +1356,10 @@ namespace user
 
    ::count list::_001GetGroupCount()
    {
-      
+
       if(m_pmeshdata.is_null())
          return -1;
-      
+
       return m_pmeshdata->_001GetGroupCount();
 
    }
@@ -1639,7 +1646,7 @@ namespace user
          point ptOffset = get_viewport_offset();
 
          index iy;
-         
+
          if(m_iItemWidth <= 0)
          {
 
@@ -1648,7 +1655,7 @@ namespace user
          }
          else
          {
-          
+
             iy = (index)((pt.y + ptOffset.y) + (((pt.x + ptOffset.x) / m_iItemWidth)) * iRoundHeight);
 
          }
@@ -1899,7 +1906,7 @@ namespace user
       }
       else if(m_eview == view_list)
       {
-         
+
          class rect rectClient;
          GetClientRect(&rectClient);
          if(m_bTopText)
@@ -2553,7 +2560,7 @@ namespace user
       }
       else
       {
-         
+
          if(_001DisplayHitTest(pt,iItem))
          {
 
@@ -2619,7 +2626,7 @@ namespace user
          {
 
             index iItem = -1;
-            
+
             if(_001DisplayHitTest(pt,iItem))
             {
 
@@ -2633,7 +2640,7 @@ namespace user
             }
 
          }
-         
+
       }
       else
       {
@@ -2695,7 +2702,7 @@ namespace user
       pobj->m_bRet = true;
    }
 
-   
+
    void list::_001OnItemClick(index iItem)
    {
 
@@ -2906,7 +2913,7 @@ namespace user
 
       if(pcolumn == NULL)
          return id();
-      
+
       return pcolumn->m_uiText;
 
    }
@@ -3670,7 +3677,7 @@ namespace user
 
    void list::_001OnCreate(signal_details * pobj)
    {
-      
+
       SCAST_PTR(::message::create, pcreate, pobj);
 
 
@@ -4144,7 +4151,7 @@ namespace user
    {
 
       mesh::SetDataInterface(pinterface);
-      
+
       m_psimplelistdata = m_pmeshdata;
 
    }
@@ -5125,7 +5132,7 @@ namespace user
 
    id list::data_get_sort_id(EView eview)
    {
-      
+
       return ::user::mesh::data_get_sort_id(eview);
 
       //UNREFERENCED_PARAMETER(eview);
@@ -5734,7 +5741,7 @@ namespace user
 
    }
 
-   
+
    void list::defer_create_mesh_data()
    {
 

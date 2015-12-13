@@ -132,16 +132,34 @@ namespace axis
 
    string application::load_string(id id)
    {
+
+      synch_lock sl(&m_mutexStr);
+
       string str;
+
+      if(m_stringmap.Lookup(id, str))
+      {
+
+         return str;
+
+      }
+
       if(!load_string(str,id))
       {
-         return id.to_string();
+
+         str = id.to_string();
+
       }
+
+      m_stringmap.set_at(id, str);
+
       return str;
+
    }
 
    bool application::load_string(string & str,id id)
    {
+      synch_lock sl(&m_mutexStr);
       if(!load_cached_string(str,id,true))
       {
          return false;
@@ -151,6 +169,7 @@ namespace axis
 
    bool application::load_cached_string(string & str,id id,bool bLoadStringTable)
    {
+      synch_lock sl(&m_mutexStr);
       ::xml::document doc(this);
       if(!doc.load(id))
       {

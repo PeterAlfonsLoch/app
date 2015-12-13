@@ -81,7 +81,7 @@ namespace xml
 
       m_strData = psz;
       const char * pszXml = m_strData;
-      sp(::xml::node) pnodeRoot = new class node(this);
+      sp(::xml::node) pnodeRoot = canew(class node(this));
       pnodeRoot->m_pnodeParent = (node *)this;
       pnodeRoot->m_etype = node_element;
       pnodeRoot->m_pdoc = this;
@@ -124,7 +124,7 @@ namespace xml
       }
 
       // Not found: create one.
-      sp(::xml::node) pnodeRoot = new class node(get_app());
+      sp(::xml::node) pnodeRoot = canew(class node(get_app()));
       pnodeRoot->m_pnodeParent = (node *)this;
       pnodeRoot->m_etype = node_element;
       pnodeRoot->m_pdoc = ((document *)this);

@@ -346,7 +346,7 @@ namespace xml
 
 
             string strName;
-            
+
             // XML Attr Name
             _SetString(xml, pEnd, &strName);
 
@@ -380,7 +380,7 @@ namespace xml
                      }
 
                      bool trim = pparseinfo->m_bTrimValue;
-                     
+
                      CHAR escape = pparseinfo->m_chEscapeValue;
 
                      //_SetString( xml, pEnd, &attr->m_strValue, trim, chXMLEscape );
@@ -457,7 +457,7 @@ namespace xml
       {
          char * xml = (char *)pszXml;
 
-         node * pnode = new node(this);
+         sp(node) pnode = canew(node(this));
          pnode->m_pnodeParent = this;
          pnode->m_pdoc = m_pdoc;
          pnode->m_etype = node_pi;
@@ -602,7 +602,7 @@ namespace xml
          char * xml = (char *)pszXml;
          xml += astr.szXMLCommentOpen.get_length();
 
-         node * pnode = new node(this);
+         sp(node) pnode = canew(node(this));
          pnode->m_pnodeParent = par;
          pnode->m_pdoc = m_pdoc;
          pnode->m_etype = node_comment;
@@ -647,7 +647,7 @@ namespace xml
          char * xml = (char *)pszXml;
          xml += astr.szXMLCDATAOpen.get_length();
 
-         node * pnode = new node(this);
+         sp(node) pnode = canew(node(this));
          pnode->m_pnodeParent = this;
          pnode->m_pdoc = m_pdoc;
          pnode->m_etype = node_cdata;
@@ -891,7 +891,7 @@ namespace xml
             // generate child nodes
             while( xml && *xml )
             {
-               node * pnode = new node(this);
+               sp(node) pnode = canew(node(this));
                pnode->m_pnodeParent = this;
                pnode->m_pdoc = m_pdoc;
                pnode->m_etype = m_etype;
@@ -904,8 +904,8 @@ namespace xml
                }
                else
                {
-                  delete pnode;
-                  pnode = NULL;
+                  //delete pnode;
+                  pnode.release();
                }
 
                // open/close tag <TAG ..> ... </TAG>
@@ -1099,7 +1099,7 @@ namespace xml
       // <TAG Attr1="Val1"
       if(m_attra.has_properties())
          ostring += ' ';
-      
+
       for(auto property : m_attra)
       {
 
@@ -1602,7 +1602,7 @@ namespace xml
    //========================================================
    node * node::add_child( const char * pszName /*= NULL*/, const char * pszValue /*= NULL*/ )
    {
-      node * pnode = new node(this);
+      sp(node) pnode = canew(node(this));
       pnode->m_strName = pszName;
       pnode->m_strValue = pszValue;
       return add_child(pnode);
@@ -1812,7 +1812,7 @@ namespace xml
          class node * pnodeChild = pnode->m_nodea.element_at(i);
          if(pnodeChild)
          {
-            class node * pnodeNewChild = new class node(get_app());
+            sp(class node) pnodeNewChild = canew(class node(get_app()));
             pnodeNewChild->CopyNode(pnodeChild);
             add_child(pnodeNewChild);
             pnodeNewChild->_CopyBranch(pnodeChild);
@@ -1832,7 +1832,7 @@ namespace xml
    //========================================================
    node *   node::AppendChildBranch(node * pnode)
    {
-      class node * pnodeNewChild = new class node(get_app());
+      sp(class node) pnodeNewChild =canew(class node(get_app()));
       pnodeNewChild->CopyBranch(pnode);
       return add_child( pnodeNewChild );
    }
@@ -2059,7 +2059,7 @@ namespace xml
             pcol->add_attr("row_count", iRowCount);
             for(int32_t iRow = 0; iRow < iRowCount; iRow++)
             {
-               
+
                if(iRow < str2a[iCol].get_count())
                {
 
@@ -2102,7 +2102,7 @@ namespace xml
 
             if(iRow < str2a[iCol].get_count())
             {
-               
+
                iRowCount = str2a[iCol].get_count();
 
             }

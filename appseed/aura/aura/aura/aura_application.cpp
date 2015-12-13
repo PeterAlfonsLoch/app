@@ -38,6 +38,8 @@ namespace aura
       m_bAgreeExitOk = true;
       m_bFranceExit = true;
 
+      m_pmutex = new mutex(this);
+
       m_paurasystem     = NULL;
       m_paurasession    = NULL;
       m_paxisapp        = NULL;
