@@ -1,11 +1,6 @@
 ﻿#include "framework.h"
 #include <math.h>
 
-#ifdef LINUX
-      #define FONT_SANS "FreeSans"
-#else
-      #define FONT_SANS FONT_SANS
-#endif
 
 
 //extern CLASS_DECL_AXIS thread_int_ptr < DWORD_PTR > t_time1;
@@ -433,11 +428,7 @@ namespace turboc
 
       float fHeight = 100.0;
 
-#ifdef LINUX
-      m_font->create_pixel_font("FreeSans",fHeight,FW_BOLD);
-#else
       m_font->create_pixel_font(FONT_SANS,fHeight,FW_BOLD);
-#endif
 
       pdc->set_font(m_font);
 
@@ -447,11 +438,7 @@ namespace turboc
 
       double ratey = fHeight * 0.84 / size.cy;
 
-#ifdef LINUX
-      m_font->create_pixel_font("FreeSans",MIN(m_cy * ratey,m_cx * size.cy * ratey / size.cx),FW_BOLD);
-#else
       m_font->create_pixel_font(FONT_SANS,MIN(m_cy * ratey,m_cx * size.cy * ratey / size.cx),FW_BOLD);
-#endif
 
       m_dMinRadius = MAX(1.0,m_font->m_dFontSize / 23.0);
 

@@ -70,11 +70,7 @@ namespace user
 
 
       m_buttonBaseWndMenuItem.m_pfont.alloc(allocer());
-      #ifdef LINUX
-      m_buttonBaseWndMenuItem.m_pfont->create_point_font("FreeSans", 9.0);
-      #else
       m_buttonBaseWndMenuItem.m_pfont->create_point_font(FONT_SANS, 9.0);
-      #endif
       m_buttonBaseWndMenuItem.set_color(color_text_normal,ARGB(184,0,0,0));
       m_buttonBaseWndMenuItem.set_color(color_text_press,color | (184 << 24));
       m_buttonBaseWndMenuItem.set_color(color_text_disabled,ARGB(184,127,127,127));
@@ -92,12 +88,8 @@ namespace user
 
 
       m_buttonBaseWndMenuItemPopup.m_pfont.alloc(allocer());
-#ifdef LINUX
-      m_buttonBaseWndMenuItemPopup.m_pfont->create_point_font("FreeSans", 9.0, FW_BOLD);
-#else
       m_buttonBaseWndMenuItemPopup.m_pfont->create_point_font(FONT_SANS, 9.0, FW_BOLD);
-#endif
-     m_buttonBaseWndMenuItemPopup.set_color(color_text_normal,ARGB(184,0,0,0));
+      m_buttonBaseWndMenuItemPopup.set_color(color_text_normal,ARGB(184,0,0,0));
       m_buttonBaseWndMenuItemPopup.set_color(color_text_press,color | (184 << 24));
       m_buttonBaseWndMenuItemPopup.set_color(color_text_disabled,ARGB(184,127,127,127));
       m_buttonBaseWndMenuItemPopup.set_color(color_text_hover,color | (184 << 24));

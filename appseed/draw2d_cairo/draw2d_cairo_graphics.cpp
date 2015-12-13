@@ -29,12 +29,17 @@ namespace draw2d_cairo
       ::draw2d::graphics(papp)
    {
 
+
+#ifdef LINUX
+
       if(g_pmutexFc == NULL)
       {
 
          g_pmutexFc = new mutex(get_app());
 
       }
+
+#endif
 
 
       m_psurfaceAttach = NULL;
@@ -52,7 +57,7 @@ namespace draw2d_cairo
       m_etextrendering  = ::draw2d::text_rendering_anti_alias_grid_fit;
 
       m_spfont.alloc(allocer());
-      m_spfont->m_strFontFamilyName = "FreeSans";
+      m_spfont->m_strFontFamilyName = FONT_SANS;
       m_spfont->m_dFontSize = 12.0;
 
 
@@ -5771,6 +5776,8 @@ throw not_implemented(get_app());
 string graphics::get_font_path(string str)
 {
 
+#ifdef LINUX
+
    synch_lock sl(g_pmutexFc);
 
    if(str.find("/") >= 0)
@@ -5818,6 +5825,13 @@ string graphics::get_font_path(string str)
    }
 
    return strPath;
+
+#else
+
+   return str;
+
+#endif
+
 
 }
 

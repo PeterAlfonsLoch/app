@@ -1,6 +1,11 @@
 //#include "framework.h"
 
 
+#define FONTFACENAME_MENU FONT_SANS
+
+#define FONTFACENAME_LUCIDA FONT_SANS
+
+
 font_central::font_central(::aura::application * papp) :
    ::object(papp),
    m_fontCaption(allocer()),
@@ -31,13 +36,6 @@ font_central::~font_central()
 }
 
 
-//#define FONTFACENAME_MENU FONT_SANS
-#define FONTFACENAME_MENU FONT_SANS
-#ifdef LINUX
-#define FONTFACENAME_LUCIDA "FreeSans"
-#else
-#define FONTFACENAME_LUCIDA FONT_SANS
-#endif
 
 bool font_central::IsInitialized()
 {

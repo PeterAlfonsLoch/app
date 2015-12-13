@@ -5,12 +5,6 @@
 ////#include <gdiplus.h>
 //#endif
 
-//#ifdef LINUX
-//      #define FONT_SANS "FreeSans"
-//#else
-//      #define FONT_SANS FONT_SANS
-//#endif
-
 
 extern CLASS_DECL_CORE thread_int_ptr < DWORD_PTR > t_time1;
 
