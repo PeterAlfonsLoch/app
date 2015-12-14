@@ -96,7 +96,7 @@ namespace user
    void list::_001OnDraw(::draw2d::graphics *pdc)
    {
 
-      single_lock sl(&m_mutex, true);
+      //single_lock sl(&m_mutex, true);
 
       m_penFocused->create_solid(2, ARGB(255, 0, 255, 255));
 
@@ -747,12 +747,14 @@ namespace user
    void list::_001OnSize(signal_details * pobj)
    {
       SCAST_PTR(::message::size, psize, pobj);
-      layout();
-      psize->m_bRet = false;
+      //layout();
+      //psize->m_bRet = false;
    }
 
    void list::layout()
    {
+
+      synch_lock sl(m_pmutex);
 
       if(m_bTopText)
          _001LayoutTopText();
@@ -2378,33 +2380,41 @@ namespace user
    void list::LayoutHeaderCtrl()
    {
 
+      synch_lock sl(m_pmutex);
+
       if (m_plistheader == NULL)
          return;
 
       if(m_bHeaderCtrl)
       {
+
          rect rectClient;
 
          GetClientRect(&rectClient);
 
-         m_plistheader->SetWindowPos(
-            ZORDER_TOP,
-            0, 0,
-            MAX(m_iItemWidth + 10, rectClient.width()),
-            m_iItemHeight,
-            SWP_SHOWWINDOW);
+         m_plistheader->SetWindowPos(ZORDER_TOP, 0, 0, MAX(m_iItemWidth + 10, rectClient.width()), m_iItemHeight, SWP_SHOWWINDOW);
+
       }
       else
       {
+
          m_plistheader->ShowWindow(SW_HIDE);
+
       }
+
    }
+
 
    void list::_001OnKeyDown(signal_details * pobj)
    {
+
       SCAST_PTR(::message::key, pkey, pobj);
-         if(pkey->previous()) // give chance to child
-            return;
+
+      if(pkey->previous()) // give chance to child
+         return;
+
+      synch_lock sl(m_pmutex);
+
       if(pkey->m_ekey == ::user::key_down || pkey->m_ekey == ::user::key_up ||
          pkey->m_ekey == ::user::key_next || pkey->m_ekey == ::user::key_prior)
       {
@@ -2491,15 +2501,25 @@ namespace user
       }
 
       pobj->m_bRet = false;
+
    }
+
 
    void list::_001OnLButtonDown(signal_details * pobj)
    {
+
+
       SCAST_PTR(::message::mouse, pmouse, pobj);
+
       pmouse->previous(); // give chance to child control and to base views
+
       int_ptr iItem;
+
       point pt = pmouse->m_pt;
+
       ScreenToClient(&pt);
+
+      synch_lock sl(m_pmutex);
 
       if(m_bSelect)
       {
@@ -2588,11 +2608,16 @@ namespace user
 
    void list::_001OnLButtonUp(signal_details * pobj)
    {
+
       SCAST_PTR(::message::mouse, pmouse, pobj);
-         point pt = pmouse->m_pt;
+
+      point pt = pmouse->m_pt;
+
       ScreenToClient(&pt);
+
       KillTimer(12345678);
 
+      synch_lock sl(m_pmutex);
 
       if(m_bDrag)
       {
@@ -2661,11 +2686,16 @@ namespace user
 
    void list::_001OnRButtonDown(signal_details * pobj)
    {
+
       SCAST_PTR(::message::mouse, pmouse, pobj);
 
       pmouse->previous();
+
       point pt = pmouse->m_pt;
+
       ScreenToClient(&pt);
+
+      synch_lock sl(m_pmutex);
 
       if(!has_focus())
       {
@@ -4134,14 +4164,18 @@ namespace user
 
    void list::CacheHint()
    {
+
+      synch_lock sl(m_pmutex);
+
       if(m_pcache != NULL)
       {
+
          int_ptr iItemCount = m_nDisplayCount;
+
          int_ptr iItemFirst = m_iTopIndex;
-         m_pcache->_001CacheHint(
-            this,
-            iItemFirst,
-            iItemCount);
+
+         m_pcache->_001CacheHint(this, iItemFirst, iItemCount);
+
       }
 
    }
@@ -4939,6 +4973,8 @@ namespace user
    void list::on_change_viewport_offset()
    {
 
+      synch_lock sl(m_pmutex);
+
       m_iTopIndex = _001CalcDisplayTopIndex();
       index iLow = 0;
       for(m_iTopGroup = 0; m_iTopGroup < m_nGroupCount; m_iTopGroup++)
@@ -5000,6 +5036,8 @@ namespace user
       ScreenToClient(&pt);
 
       pmouse->previous(); // give chance to child control
+
+      synch_lock sl(m_pmutex);
 
       if(m_bDrag)
       {

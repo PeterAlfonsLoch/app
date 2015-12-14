@@ -410,7 +410,7 @@ bool XfplayerViewLine::to(::draw2d::graphics * pdc,bool bDraw,const RECT & rect,
          pdc->SelectObject(sppen);
 
          ::draw2d::brush_sp brushText(allocer(), crColor);
-         
+
          pdc->SelectObject(brushText);
 
          //pdc->set_text_color(crColor);
@@ -451,7 +451,7 @@ bool XfplayerViewLine::to(::draw2d::graphics * pdc,bool bDraw,const RECT & rect,
 
            pdc->SelectObject(sppen);
          ::draw2d::brush_sp brushText(allocer(), crColor);
-         
+
          pdc->SelectObject(brushText);
 
            pdc->SelectObject(m_font);
@@ -1113,9 +1113,9 @@ int32_t XfplayerViewLine::SetLyricColors(COLORREF crLeft, COLORREF crRight)
 
 void XfplayerViewLine::SetPlacement(const RECT & rect)
 {
-   
+
    m_rect = rect;
-   
+
    m_bPendingLayoutUpdate = true;
 
 }
@@ -1162,7 +1162,7 @@ void XfplayerViewLine::Invalidate(const RECT & rectParam)
 
 void XfplayerViewLine::Validate(const RECT & rectParam)
 {
-   
+
    rect rectPlacement;
 
    GetPlacement(rectPlacement);
@@ -1440,7 +1440,7 @@ void XfplayerViewLine::EmbossedTextOut(::draw2d::graphics * pdc,::draw2d::dib * 
 
 
          ::draw2d::brush_sp brushText(allocer(), cr);
-         
+
          pdc->SelectObject(brushText);
 
       pdc->TextOut(iLeft, iTop, string(lpcsz, iLen));
@@ -1540,7 +1540,7 @@ void XfplayerViewLine::CacheEmboss(::draw2d::graphics * pdc, const char * lpcsz,
    m_strCache = lpcsz;
    m_bCacheEmboss = true;
 
-   TRACE("CLyricViewLine::CacheEmboss: %s\n", lpcsz);
+   //TRACE("CLyricViewLine::CacheEmboss: %s\n", lpcsz);
    size size;
    pdc->select_font(m_font);
    m_dcextension.GetTextExtent(pdc, lpcsz, iLen, size);

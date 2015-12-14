@@ -190,6 +190,8 @@ namespace user
    void scroll_x < BASE >::on_change_viewport_offset()
    {
 
+      synch_lock sl(this->m_pmutex);
+
       BASE::on_change_viewport_offset();
 
    }
@@ -532,6 +534,8 @@ namespace user
    template < class BASE >
    void scroll_y < BASE >::on_change_viewport_offset()
    {
+
+      synch_lock sl(this->m_pmutex);
 
       BASE::on_change_viewport_offset();
 

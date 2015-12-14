@@ -143,6 +143,7 @@ namespace user
 
       add_ref();
 
+
       try
       {
 
@@ -189,9 +190,47 @@ namespace user
 
       }
 
-      DestroyWindow();
+      try
+      {
 
-      user_interaction_on_destroy();
+         DestroyWindow();
+
+      }
+      catch(...)
+      {
+
+      }
+
+      try
+      {
+
+         user_interaction_on_destroy();
+
+      }
+      catch(...)
+      {
+
+      }
+
+
+
+      try
+      {
+
+         if(m_pparent != NULL)
+         {
+
+            m_pparent->m_uiptraChild.remove(this);
+
+         }
+
+      }
+      catch(...)
+      {
+
+      }
+
+
 
    }
 

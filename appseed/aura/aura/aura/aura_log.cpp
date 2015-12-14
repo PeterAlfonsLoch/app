@@ -191,17 +191,17 @@ namespace aura
       UNREFERENCED_PARAMETER(nLine);
       UNREFERENCED_PARAMETER(pszFileName);
 
-      single_lock sl(((log *)this)->m_pcsTrace);
+      synch_lock sl2(((log *)this)->m_pcsTrace);
 
       //((log * )this)->print(pszFormat, args);
       //m_trace.TraceV(pszFileName, nLine, dwCategory, nLevel, pszFmt, args);
 
-      sl.lock();
+      //sl.lock();
       log * plog = (log *) this;
       ::aura::trace::category & category = plog->m_ptrace->m_map[dwCategory];
       if(category.m_estatus == ::aura::trace::status_disabled || category.m_uiLevel > category.m_uiLevel)
          return;
-      sl.unlock();
+      //sl.unlock();
       stringa stra;
       stra.add_smallest_tokens(psz, *plog->m_pstraSeparator, FALSE);
       /*for(int32_t i = 0; i < stra.get_size(); i++)
@@ -230,7 +230,7 @@ namespace aura
       string strTick;
       strTick.Format(" %011d ", ::get_tick_count() - g_dwFirstTick);
 
-      sl.lock();
+      //sl.lock();
       if(plog->m_pfile == NULL
       || plog->m_iYear != time.GetYear()
       || plog->m_iMonth != time.GetMonth()
@@ -347,10 +347,10 @@ namespace aura
       }
 
    skip_further_possible_recursive_impossible_logging_in_file:
-      
+
       if(plog->m_pfile != NULL)
       {
-      
+
          fseek(plog->m_pfile,0,SEEK_END);
 
       }
@@ -362,7 +362,7 @@ namespace aura
 
          try
          {
-            
+
             ::OutputDebugStringW(::str::international::utf8_to_unicode(strLine));
 
             if(plog->m_pfile)

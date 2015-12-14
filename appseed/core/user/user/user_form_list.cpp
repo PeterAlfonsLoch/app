@@ -107,9 +107,9 @@ namespace user
 
    sp(control) form_list::_001GetControl(index iItem, index iSubItem)
    {
-      
+
       ::user::list_column * pcolumn = m_columna._001GetBySubItem(iSubItem);
-   
+
       if(pcolumn == NULL || pcolumn->m_iControl < 0)
       {
 
@@ -125,7 +125,7 @@ namespace user
          return NULL;
 
       }
-      
+
       return pdescriptor->get_control(this, iItem);
 
    }
@@ -267,8 +267,13 @@ namespace user
 
    void form_list::_001UpdateColumns()
    {
+
+      synch_lock sl(m_pmutex);
+
       _001RemoveControls();
+
       list::_001UpdateColumns();
+
    }
 
    LRESULT form_list::_001BaseWndGetProperty(EProperty eprop,LPARAM lparam)
@@ -302,7 +307,7 @@ namespace user
 
    }
 
-   
+
    void form_list::_001HideEditingControls()
    {
 

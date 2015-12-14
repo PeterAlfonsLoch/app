@@ -17,7 +17,7 @@ namespace database
 namespace user
 {
 
-   
+
    class mesh_cache_interface;
    class mesh_data;
    class mesh;
@@ -376,7 +376,7 @@ namespace user
       flags < e_flag >                 m_flags;
       icon_layout                      m_iconlayout;
       mesh_layout                      m_meshlayout;
-      mutex                            m_mutex;
+      //mutex                            m_mutex;
 
 
       index                            m_iTopIndex;

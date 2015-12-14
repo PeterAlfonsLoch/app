@@ -16,9 +16,9 @@ namespace user
       m_fontHover(allocer()),
       m_penFocused(allocer()),
       m_penHighlight(allocer()),
-      m_dcextension(get_app()),
-      m_mutex(get_app())
+      m_dcextension(get_app())
    {
+
       m_iItemHeight = 32;
       m_plist = NULL;
       m_piaFilterIcon = new index_biunique();
@@ -128,7 +128,7 @@ namespace user
    void mesh::_001OnDraw(::draw2d::graphics *pdc)
    {
 
-      single_lock sl(&m_mutex,true);
+      //single_lock sl(&m_mutex,true);
 
       m_penFocused->create_solid(2,ARGB(255,0,255,255));
 
@@ -743,12 +743,14 @@ namespace user
    void mesh::_001OnSize(signal_details * pobj)
    {
       SCAST_PTR(::message::size,psize,pobj);
-      layout();
-      psize->m_bRet = false;
+      //layout();
+      //psize->m_bRet = false;
    }
 
    void mesh::layout()
    {
+
+      synch_lock sl(m_pmutex);
 
       if(m_bTopText)
          _001LayoutTopText();
@@ -5044,13 +5046,15 @@ namespace user
 
       SCAST_PTR(::message::mouse,pmouse,pobj);
 
-         pmouse->set_lresult(1);
+      pmouse->set_lresult(1);
 
       point pt = pmouse->m_pt;
 
       ScreenToClient(&pt);
 
       pmouse->previous(); // give chance to child control
+
+      synch_lock sl(m_pmutex);
 
       if(m_bDrag)
       {
