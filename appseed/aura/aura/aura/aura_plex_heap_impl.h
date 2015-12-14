@@ -25,7 +25,9 @@ inline void * plex_heap_alloc_sync::Alloc()
    //catch(...)
    //{
    //}
-   //memset(pdata, 0, m_nAllocSize); // let constructors and algorithms initialize... "random initialization" of not initialized :-> C-:!!
+#ifdef DEBUG
+   memset(pNode, 0, m_nAllocSize); // let constructors and algorithms initialize... "random initialization" of not initialized :-> C-:!!
+#endif
    return pNode;
 }
 

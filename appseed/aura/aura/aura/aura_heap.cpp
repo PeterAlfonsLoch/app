@@ -431,7 +431,18 @@ void memory_free_dbg(void * pmemory, int32_t iBlockType)
 
    heap_memory * pheap =  ::heap_memory::heap_get(pmemory);
 
+
    void * pbase = (void *)(((int_ptr)pmemory) - pheap->m_back);
+
+   for(int i = 0; i < pheap->m_iPaddingAfter; i++)
+   {
+
+      if(((byte *)pbase)[i] != 0)
+      {
+         ::OutputDebugString("*&!@");
+      }
+
+   }
 
    if(pheap->m_blockuse == 0)
    {
