@@ -926,6 +926,13 @@ void plex_heap_alloc_array::free(void * p,size_t size)
    if(palloc != NULL)
    {
 
+      if(palloc->m_uiAllocSize == 1024)
+      {
+
+         output_debug_string("|");
+
+      }
+
       return palloc->Free(p);
 
    }

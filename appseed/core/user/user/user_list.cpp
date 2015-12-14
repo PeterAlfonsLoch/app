@@ -799,6 +799,9 @@ namespace user
 
    bool list::_001OnUpdateItemCount(uint32_t dwFlags)
    {
+
+      synch_lock sl(m_pmutex);
+
       UNREFERENCED_PARAMETER(dwFlags);
 
       m_nItemCount = _001GetItemCount();
@@ -2602,6 +2605,7 @@ namespace user
       }
       Session.set_keyboard_focus(this);
       Session.user()->set_mouse_focus_LButtonDown(this);
+      //GetParentFrame()->SetActiveView(this);
       pobj->m_bRet = true;
       pmouse->set_lresult(1);
    }
@@ -2669,10 +2673,52 @@ namespace user
       }
       else
       {
-         m_iClick++;
-         m_uiLButtonUpFlags = (UINT) pmouse->m_nFlags;
-         m_ptLButtonUp = pt;
-         SetTimer(12345679, 500, NULL);
+
+         if(m_iClick == 1)
+         {
+
+            m_iClick = 0;
+
+            if(!_001IsEditing())
+            {
+               //uint_ptr nFlags = m_uiLButtonUpFlags;
+               //point point = m_ptLButtonUp;
+               _001OnClick(pmouse->m_nFlags,pt);
+               Redraw();
+
+
+               /* trans
+               window_id wndidNotify = pwnd->GetOwner()->GetSafeoswindow_();
+               if(wndidNotify == NULL)
+               wndidNotify = pwnd->GetParent()->GetSafeoswindow_(); */
+
+               //               LRESULT lresult = 0;
+
+               /* trans            if(wndidNotify)
+               {
+               NMLISTVIEW nm;
+               nm.hdr.idFrom = pwnd->GetDlgCtrlId();
+               nm.hdr.code =   NM_CLICK;
+               nm.hdr.oswindowFrom = pwnd->GetSafeoswindow_();
+               lresult = ::SendMessage(
+               wndidNotify,
+               WM_NOTIFY,
+               nm.hdr.idFrom,
+               (LPARAM) &nm);
+               }*/
+
+            }
+
+         }
+         else
+         {
+
+            m_iClick++;
+            m_uiLButtonUpFlags = (UINT) pmouse->m_nFlags;
+            m_ptLButtonUp = pt;
+            SetTimer(12345679, 500, NULL);
+
+         }
       }
 
       m_iItemMouseDown = -1;
@@ -3659,6 +3705,7 @@ namespace user
 
    void list::_001UpdateColumns()
    {
+   synch_lock sl(m_pmutex);
       _001RemoveAllColumns();
       keep < bool > keepLockViewUpdate(&m_bLockViewUpdate, true, false, true);
       _001InsertColumns();

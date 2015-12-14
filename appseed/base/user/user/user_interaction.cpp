@@ -2635,6 +2635,7 @@ namespace user
 
          }
 
+         synch_lock sl(pParentWnd == NULL ? NULL : pParentWnd->m_pmutex);
 
          m_pimpl = canew(::user::interaction_child(get_app()));
          m_pimpl->m_pui = this;

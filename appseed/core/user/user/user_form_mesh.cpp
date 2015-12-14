@@ -27,7 +27,7 @@ namespace user
 
    void form_mesh::_001GetSelection(::database::id & key,::database::selection &selection)
    {
-      
+
       //mesh::_001GetSelection(key,selection);
 
    }
@@ -43,14 +43,14 @@ namespace user
 
    bool form_mesh::_001HitTest_(point point,index &iItem,index &iSubItem)
    {
-      
+
       return false;
 
    }
 
    void form_mesh::_001OnClick(uint_ptr uiFlags,point point)
    {
-      
+
       index iItem,iSubItem;
 
       if(_001HitTest_(point,iItem,iSubItem))
@@ -102,7 +102,7 @@ namespace user
    }
 
 
-   
+
 
 
 
@@ -273,6 +273,8 @@ namespace user
 
    void form_mesh::_001HideEditingControls()
    {
+
+      synch_lock sl(m_pmutex);
 
       if(_001GetEditControl() != NULL)
       {
@@ -560,7 +562,7 @@ namespace user
       ClientToScreen(lprect);
    }
 
-   
+
    bool form_mesh::control_001DisplayHitTest(POINT pt)
    {
 
@@ -571,7 +573,7 @@ namespace user
 
    bool form_mesh::BaseOnControlEvent(::user::control_event * pevent)
    {
-      
+
 
       //if(pdescriptor != NULL)
       //{
@@ -592,6 +594,8 @@ namespace user
    bool form_mesh::_001OnControlSetFocus(::user::interaction * pui)
    {
 
+      synch_lock sl(m_pmutex);
+
       index iItem;
 
       index iSubItem;
@@ -611,6 +615,8 @@ namespace user
 
    bool form_mesh::_001OnControlKillFocus(::user::interaction * pui)
    {
+
+      synch_lock sl(m_pmutex);
 
       index iItem;
 

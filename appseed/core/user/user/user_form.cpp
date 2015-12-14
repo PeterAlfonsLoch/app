@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   form::form() 
+   form::form()
    {
 
       m_bOnEditUpdate         = false;
@@ -29,7 +29,9 @@ namespace user
 
 
 
-      class control::descriptor * pdescriptor = m_controldescriptorset.add(new class control::descriptor(descriptorParam));
+      class control::descriptor * pdescriptor = canew(class control::descriptor(descriptorParam));
+
+      m_controldescriptorset.add(pdescriptor);
 
       descriptorParam.clear();
 
@@ -600,11 +602,16 @@ namespace user
 
    bool form::_001GetData(id uiId, bool &bData)
    {
+
+      synch_lock sl(m_pmutex);
+
       sp(control) pcontrol = m_controldescriptorset.get_control(this, uiId);
+
       if(pcontrol == NULL)
          return false;
 
       int32_t i;
+
       if(!data_get(pcontrol->descriptor().m_dataid, i))
          return false;
 
@@ -713,6 +720,8 @@ namespace user
    void form::_001RemoveControls()
    {
 
+      synch_lock sl(m_pmutex);
+
       m_controldescriptorset.remove_all();
 
    }
@@ -732,6 +741,8 @@ namespace user
 
       SCAST_PTR(::database::change_event, pchange, pobj);
 
+      synch_lock sl(m_pmutex);
+
       if(pchange->m_puh != NULL)
       {
 
@@ -747,18 +758,23 @@ namespace user
       for(int32_t iControl = 0; iControl < m_controldescriptorset.get_size(); iControl++)
       {
 
-         sp(control) pcontrol = m_controldescriptorset[iControl]->get_control(this);
+         sp(class control::descriptor) pdescriptor = m_controldescriptorset[iControl];
 
-         if(pcontrol == NULL)
+         if(pdescriptor.is_null())
             continue;
 
-         if(m_controldescriptorset[iControl]->m_eddx == control::ddx_dbflags)
+         sp(control) pcontrol = pdescriptor->get_control(this);
+
+         if(pcontrol.is_null())
+            continue;
+
+         if(pdescriptor->m_eddx == control::ddx_dbflags)
          {
 
             _001UpdateDbFlags(pcontrol);
 
          }
-         else if(m_controldescriptorset[iControl]->m_dataid == pchange->m_key.m_id)
+         else if(pdescriptor->m_dataid == pchange->m_key.m_id)
          {
 
             _001Update(pcontrol);
@@ -772,6 +788,8 @@ namespace user
 
    void form::_001UpdateFunctionStatic()
    {
+
+      synch_lock sl(m_pmutex);
 
       for(int32_t i = 0; i < m_controldescriptorset.get_size(); i++)
       {
@@ -951,7 +969,7 @@ namespace user
 
       if(!normalize_control_descriptor_typeinfo(pdescriptor))
       {
-         
+
          TRACE("form::create_control: failed to create control, could not find proper type for allocation");
 
          return false;
@@ -962,9 +980,9 @@ namespace user
 
       if(pca == NULL)
       {
-         
+
          TRACE("form::create_control: failed to create control, allocation error");
-         
+
          return false;
 
       }
@@ -1107,9 +1125,14 @@ namespace user
 
    bool form::_001Initialize()
    {
+
       if(m_bInitialized)
          return true;
+
+      synch_lock sl(m_pmutex);
+
       _001InitializeFormPreData();
+
       _001UpdateFunctionStatic();
    //   CVmsGuiApp * papp = (CVmsGuiApp *) &System;
    //   papp->m_pcoreapp->TwfInitializeDescendants(pview->GetSafeoswindow_(), true);

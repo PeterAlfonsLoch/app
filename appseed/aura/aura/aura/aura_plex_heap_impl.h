@@ -294,7 +294,7 @@ inline plex_heap_alloc * plex_heap_alloc_array::find(size_t nAllocSize)
    for(; iA < PLEX_HEAP_ALLOC_ARRAY_AINDEX_COUNT; iA++)
    {
 
-      if(m_aaSize[iA] > nAllocSize)
+      if(m_aaSize[iA] >= nAllocSize)
       {
 
          break;
@@ -312,7 +312,7 @@ inline plex_heap_alloc * plex_heap_alloc_array::find(size_t nAllocSize)
    for(; iB < PLEX_HEAP_ALLOC_ARRAY_BINDEX_COUNT; iB++)
    {
 
-      if(m_bbSize[iB] > nAllocSize)
+      if(m_bbSize[iB] >= nAllocSize)
       {
 
          break;

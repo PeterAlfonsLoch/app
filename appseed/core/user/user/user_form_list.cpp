@@ -108,6 +108,8 @@ namespace user
    sp(control) form_list::_001GetControl(index iItem, index iSubItem)
    {
 
+      synch_lock sl(m_pmutex);
+
       ::user::list_column * pcolumn = m_columna._001GetBySubItem(iSubItem);
 
       if(pcolumn == NULL || pcolumn->m_iControl < 0)
@@ -482,7 +484,11 @@ namespace user
 
    void form_list::_001OnColumnChange()
    {
+
+      synch_lock sl(m_pmutex);
+
       ::user::list::_001OnColumnChange();
+
       for(int32_t i = 0; i < m_columna.get_size(); i++)
       {
          if(m_columna[i]->m_iControl >= 0 && m_columna[i]->m_iControl < m_controldescriptorset.get_size())

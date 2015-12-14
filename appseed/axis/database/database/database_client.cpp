@@ -13,32 +13,52 @@ namespace database
 
    void client::initialize_data_client(server * pserver)
    {
+
       set_data_server(pserver);
+
    }
+
 
    bool client::set_data_server(server * pserver)
    {
+
       if(pserver != NULL)
       {
+
+         synch_lock sl(pserver->m_pmutex);
+
          pserver->add_client(this);
+
       }
+
       m_pdataserver = pserver;
+
       return true;
+
    }
 
 
    client::~client()
    {
+
       if(m_pdataserver != NULL)
       {
+
+         synch_lock sl(m_pdataserver->m_pmutex);
+
          try
          {
+
             m_pdataserver->RemoveClient(this);
+
          }
          catch(...)
          {
+
          }
+
       }
+
    }
 
    void client::data_on_before_change(signal_details * pobj)
@@ -70,7 +90,7 @@ namespace database
 
    bool client::data_set(
       class id id,
-      
+
       var & var,
       update_hint * puh)
    {
@@ -281,7 +301,7 @@ namespace database
       return false;
    }
 
-   
+
    bool client::data_pulse_change(class id id, update_hint * puh)
    {
       if(m_pdataserver != NULL)
@@ -392,17 +412,17 @@ namespace file
       m_pclient = pclient;
 
    }
-   
+
    data_trigger_ostream::~data_trigger_ostream()
    {
-   
+
       if(m_pclient != NULL)
       {
          seek_to_begin();
          m_pclient->data_set(m_id,(::file::istream &)*this);
 
       }
-   
+
    }
 
    data_trigger_istream::data_trigger_istream(data_trigger_istream && d):
@@ -414,7 +434,7 @@ namespace file
       ::object(pclient->get_app()),
       byte_stream_memory_buffer(pclient->get_app())
    {
-      
+
       pclient->data_get(id,(::file::ostream &)*this);
       seek_to_begin();
    }

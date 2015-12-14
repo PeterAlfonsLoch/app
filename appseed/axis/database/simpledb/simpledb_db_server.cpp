@@ -6,9 +6,10 @@ int32_t g_idbchange;
 
 
 db_server::db_server(::aura::application * papp) :
-   ::object(papp)
+      ::object(papp),
+      server(papp)
 {
-   
+
    m_pdb                = NULL;
    m_plongset           = NULL;
    m_pstrset            = NULL;
@@ -202,7 +203,7 @@ bool db_server::destroy_message_queue()
 
 void db_server::_001OnTimer(::timer * ptimer)
 {
-   
+
    //super::_001OnTimer(ptimer);;
    //
    //if(ptimer->m_nIDEvent == 1258477)
@@ -236,6 +237,8 @@ void db_server::close()
 bool db_server::data_server_load(::database::client * pclient, ::database::id id, ::file::ostream & writable, ::database::update_hint * phint)
 {
 
+   synch_lock sl(m_pmutex);
+
    UNREFERENCED_PARAMETER(phint);
 
    if(!load(calc_data_key(pclient,id),writable))
@@ -248,6 +251,8 @@ bool db_server::data_server_load(::database::client * pclient, ::database::id id
 
 bool db_server::data_server_save(::database::client * pclient, ::database::id id, ::file::istream & readable, ::database::update_hint * phint)
 {
+
+   synch_lock sl(m_pmutex);
 
    UNREFERENCED_PARAMETER(phint);
 
@@ -274,6 +279,8 @@ bool db_server::load(const char * lpcszKey, string & str)
 bool db_server::load(const char * lpKey, ::file::ostream & ostream)
 {
 
+   synch_lock sl(m_pmutex);
+
    string str;
 
    if(!load(lpKey, str))
@@ -295,6 +302,8 @@ bool db_server::load(const char * lpKey, ::file::ostream & ostream)
 bool db_server::save(const char * lpcszKey, const char * lpcsz)
 {
 
+   synch_lock sl(m_pmutex);
+
    if(get_db_str_set() == NULL)
       return false;
 
@@ -305,6 +314,8 @@ bool db_server::save(const char * lpcszKey, const char * lpcsz)
 
 bool db_server::save(const char * lpKey, ::file::istream & istream)
 {
+
+   synch_lock sl(m_pmutex);
 
    string str;
 

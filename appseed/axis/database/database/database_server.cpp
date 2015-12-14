@@ -5,8 +5,23 @@ namespace database
 {
 
 
+   server::server(::aura::application * papp) :
+      object(papp)
+   {
+
+      m_pmutex = new mutex(papp);
+
+   }
+
+
+   server::~server()
+   {
+   }
+
+
    bool server::data_server_load(client * pclient, class id id, ::file::stream_buffer & writable, update_hint * puh)
    {
+
       file::ostream ostream(&writable);
       return var_load(pclient, id, ostream, puh);
    }

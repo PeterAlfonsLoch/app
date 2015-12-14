@@ -144,7 +144,7 @@ namespace axis
 
       }
 
-      if(!load_string(str,id))
+      //if(!load_string(str,id))
       {
 
          str = id.to_string();

@@ -830,6 +830,8 @@ namespace user
    bool mesh::_001OnUpdateItemCount(uint32_t dwFlags)
    {
 
+      synch_lock sl(m_pmutex);
+
       UNREFERENCED_PARAMETER(dwFlags);
 
       if(m_eview == view_grid)
@@ -5253,6 +5255,8 @@ namespace user
       SCAST_PTR(::message::scroll, pscroll, pobj);
 
       pobj->previous();
+
+      synch_lock sl(m_pmutex);
 
       if(m_eview == view_grid)
       {
