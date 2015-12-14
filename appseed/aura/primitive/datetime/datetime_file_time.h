@@ -87,9 +87,10 @@ struct CLASS_DECL_AURA file_time
    {
       if(&t == this)
          return true;
-      return !memcmp(&creation,&t.creation,sizeof(creation))
-         && !memcmp(&modified,&t.modified,sizeof(modified))
-	 && !memcmp(&access,&t.modified,sizeof(access));
+      return 
+         !memcmp(&creation ,  &t.creation ,sizeof(creation))
+      && !memcmp(&modified ,  &t.modified ,sizeof(modified))
+	   && !memcmp(&access   ,  &t.access   ,sizeof(access));
    }
 
 };
