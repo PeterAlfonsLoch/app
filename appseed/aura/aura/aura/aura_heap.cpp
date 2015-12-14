@@ -443,7 +443,7 @@ void memory_free_dbg(void * pmemory, int32_t iBlockType)
    for(int i = 0; i < pheap->m_iPaddingAfter; i++)
    {
 
-      if(((byte *)pbase)[i] != 0)
+      if(((byte *)&pheap->m_paddingBefore[16])[pheap->m_size + i] != 0)
       {
          ::OutputDebugString("*&!@");
       }
