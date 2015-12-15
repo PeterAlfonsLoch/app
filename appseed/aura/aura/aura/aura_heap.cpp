@@ -167,7 +167,7 @@ void * aligned_memory_alloc(size_t size)
    else
    {
 
-   if(heap_memory::aligned_provision_get_size(size)== 831
+   if(heap_memory::aligned_provision_get_size(size) ==831
    && heap_memory::aligned_provision_get_size(size)< 1024)
    {
    output_debug_string("*");
