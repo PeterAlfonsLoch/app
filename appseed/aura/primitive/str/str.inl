@@ -669,14 +669,14 @@ extern CLASS_DECL_AURA aura_str_pool * s_paurastrpool;
 
 #define astr (*s_paurastrpool)
 
-#ifndef __GNUC__
-inline id::operator string() const
-{
-
-   return str();
-
-}
-#endif
+//#ifndef __GNUC__
+//inline id::operator string() const
+//{
+//
+//   return str();
+//
+//}
+//#endif
 
 
 

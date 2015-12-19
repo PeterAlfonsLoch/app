@@ -27,7 +27,7 @@ namespace url
       string get_query(const char *); // id=1
       string set_key(const char * pszUrl, const char * pszKey, var var);
       void set_key(string & strUrl, const char * pszUrl, const char * pszKey, var var);
-      void set_param(string & strUrl, const char * pszUrl, const char * pszKey, const string & strParam);
+      void set_param(string & strUrl, const char * pszUrl, const char * pszKey, const char * strParam);
       string string_set(string & strUrl, const char * pszKey, var var);
       var & var_set(var & varUrl, const char * pszKey, var var);
       property & property_set(property & propUrl, const char * pszKey, var var);
@@ -72,7 +72,7 @@ namespace url
       bool get_param(string & strValue, const string & strUrl, const string & strKey);
       bool has_param(const string & strUrl, const string & strKey);
       bool param_has_char(const string & strUrl, const string & strKey);
-      bool has_param_replace(string & strUrl, const string & strKey, const string & strValue);
+      bool has_param_replace(string & strUrl, const char * strKey, const char * strValue);
 
       virtual bool locale_is_eu(id pszLocale);
       virtual bool locale_is_asia(id pszLocale);

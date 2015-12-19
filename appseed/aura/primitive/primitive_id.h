@@ -79,7 +79,7 @@ public:
 
    string str() const;
 #ifndef __GNUC__
-   operator string() const;
+   //operator string() const;
 #endif
 
 

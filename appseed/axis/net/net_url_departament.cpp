@@ -413,7 +413,7 @@ namespace url
 
    }
 
-   void departament::set_param(string & strUrl, const char * pszUrl, const char * pszKey, const string & strParam)
+   void departament::set_param(string & strUrl, const char * pszUrl, const char * pszKey, const char * strParam)
    {
 
       const char * pszQuery = strchr(pszUrl, '?');
@@ -625,7 +625,7 @@ namespace url
          return query_param_has_char(strUrl.Mid(iPos + 1), strKey);
    }
 
-   bool departament::has_param_replace(string & strUrl, const string & strKey, const string & strValue)
+   bool departament::has_param_replace(string & strUrl, const char * strKey, const char * strValue)
    {
 
       strsize iPos = strUrl.find('?');
