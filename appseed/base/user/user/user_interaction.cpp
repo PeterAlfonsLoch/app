@@ -6229,23 +6229,36 @@ synch_lock sl(m_pmutex);
    bool interaction::SetWindowPos(int_ptr z,int32_t x,int32_t y,int32_t cx,int32_t cy,UINT nFlags)
    {
 
-      synch_lock slParent(GetParent() == NULL ? NULL : GetParent()->m_pmutex);
-      synch_lock sl(m_pmutex);
-
       bool bOk = false;
 
       if(!(nFlags & SWP_NOZORDER))
       {
+
+         sync_object_ptra ptra;
+
+         if(GetParent() != NULL && GetParent()->m_pmutex != NULL)
+         {
+
+            ptra.add(GetParent()->m_pmutex);
+
+         }
+
+         if(m_pmutex != NULL)
+         {
+
+            ptra.add(m_pmutex);
+
+         }
+
+         multi_lock ml(ptra);
+
          if(GetParent() != NULL)
          {
+
             if(z == ZORDER_TOP || z == ZORDER_TOPMOST)
             {
 
-               single_lock sl(m_pmutex);
-
-               synch_lock slWindow(m_pmutex);
-
-               if(sl.lock(millis(84)))
+               if(ml.lock(millis(84)).succeeded())
                {
 
                   if(GetParent()->m_uiptraChild.last_ptr() != this)
@@ -6255,30 +6268,41 @@ synch_lock sl(m_pmutex);
 
                      if(iFind >= 0)
                      {
+
                         try
                         {
+
                            GetParent()->m_uiptraChild.remove(this);
+
                         }
                         catch(...)
                         {
+
                         }
+
                         try
                         {
+
                            GetParent()->m_uiptraChild.add_unique(this);
+
                         }
                         catch(...)
                         {
+
                         }
+
                      }
 
                   }
 
                }
+
             }
+
          }
+
       }
 
-      sl.unlock();
 
       if(m_pimpl != NULL && (GetParent() == NULL || (!(nFlags & SWP_NOSIZE) || !(nFlags & SWP_NOMOVE))))
       {

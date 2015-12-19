@@ -81,7 +81,7 @@ namespace database
       bool interaction::WindowDataSaveWindowRect()
       {
 
-         single_lock sl(m_pmutex, true);
+         //single_lock sl(m_pmutex, true);
 
          bool bSave = false;
 
@@ -92,7 +92,7 @@ namespace database
 
             ::id idKey                 = m_dataid.m_id + ".WindowRect." + m_strDisplay;
 
-            sl.unlock();
+            //sl.unlock();
 
             bSave = SaveWindowRect_(idKey, this);
          }
@@ -105,7 +105,7 @@ namespace database
       bool interaction::WindowDataLoadWindowRect(bool bForceRestore, bool bInitialFramePosition)
       {
 
-         single_lock sl(m_pmutex, true);
+         //single_lock sl(m_pmutex, true);
 
          bool bLoad = false;
 
@@ -115,7 +115,7 @@ namespace database
 
          ::id idKey                    = m_dataid.m_id + ".WindowRect." + m_strDisplay;
 
-         sl.unlock();
+         //sl.unlock();
 
          bLoad = LoadWindowRect_(idKey, this, bForceRestore, bInitialFramePosition);
 
