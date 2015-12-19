@@ -456,6 +456,27 @@ namespace user
 
 #ifdef WINDOWSEX
 
+
+      string strOverride = file_as_string_dup("C:\\ca2\\config\\system\\keyboard_layout.txt");
+
+      if(strOverride.has_char())
+      {
+
+         string strTest;
+
+         string strPath = Application.dir().matter("keyboard layout/" + strOverride + ".xml");
+
+         strTest = file_as_string_dup(strPath);
+
+         if(strTest.has_char())
+         {
+
+            return strPath;
+
+         }
+
+      }
+
       char szLayoutName[KL_NAMELENGTH];
 
       ::GetKeyboardLayoutName(szLayoutName);
