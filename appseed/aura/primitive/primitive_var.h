@@ -256,6 +256,7 @@ public:
    operator uint32_t() const;
    operator int64_t() const;
    operator uint64_t() const;
+   operator double() const;
    operator class duration() const;
 
    //operator string & ();
@@ -727,6 +728,14 @@ inline var::operator uint64_t() const
 {
    return uint64();
 }
+
+
+// returns 0.0 for unknown conversions?
+inline var::operator double() const
+{
+   return get_double();
+}
+
 
 inline var::operator class duration() const
 {
