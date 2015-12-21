@@ -1345,7 +1345,7 @@ namespace user
 
       single_lock sl(m_pmutex, true);
 
-      if(!IsWindowVisible())
+      if(!IsWindowVisible() || (GetParentFrame() != NULL && GetParentFrame()->WfiIsIconic()) || (GetTopLevelFrame() != NULL && GetTopLevelFrame()->WfiIsIconic()))
          return;
 
       _001DrawThis(pdc);
@@ -6234,26 +6234,26 @@ synch_lock sl(m_pmutex);
       if(!(nFlags & SWP_NOZORDER))
       {
 
-         sync_object_ptra ptra;
-
-         if(GetParent() != NULL && GetParent()->m_pmutex != NULL)
-         {
-
-            ptra.add(GetParent()->m_pmutex);
-
-         }
-
-         if(m_pmutex != NULL)
-         {
-
-            ptra.add(m_pmutex);
-
-         }
-
-         multi_lock ml(ptra);
-
          if(GetParent() != NULL)
          {
+
+            sync_object_ptra ptra;
+
+            if(GetParent() != NULL && GetParent()->m_pmutex != NULL)
+            {
+
+               ptra.add(GetParent()->m_pmutex);
+
+            }
+
+            if(m_pmutex != NULL)
+            {
+
+               ptra.add(m_pmutex);
+
+            }
+
+            multi_lock ml(ptra);
 
             if(z == ZORDER_TOP || z == ZORDER_TOPMOST)
             {

@@ -1153,7 +1153,7 @@ void simple_frame_window::_001OnDeferPaintLayeredWindowBackground(::draw2d::grap
 void simple_frame_window::_000OnDraw(::draw2d::graphics * pdcParam)
 {
 
-   if(!m_bVisible)
+   if(!IsWindowVisible())
       return;
 
    ::draw2d::graphics * pdc = pdcParam;
