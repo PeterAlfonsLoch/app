@@ -350,7 +350,13 @@ install_begin:;
 
          System.install().trace().rich_trace(("got server: " + strSpaHost));
 
-         m_strInstall = "http://" + strSpaHost + "/ccvotagus/" + m_strVersion + "/";
+         string strBuild(m_strBuild);
+
+         strBuild.replace(" ","_");
+
+         strBuild.replace(":","-");
+
+         m_strInstall = "http://" + strSpaHost + "/ccvotagus/" + m_strVersion + "/" + strBuild + "/";
 
          m_strInstallGz = m_strInstall;
 
@@ -461,12 +467,6 @@ install_begin:;
          ::file::patha straFileList;
          string_to_intptr mapGzLen;
          string_to_intptr mapFlag;
-
-         string strBuild(m_strBuild);
-
-         strBuild.replace(" ","_");
-
-         strBuild.replace(":","-");
 
          if(iHostRetry > 0)
          {
@@ -2088,6 +2088,9 @@ install_begin:;
       int32_t iCurrent;
 
       string strPlatform = System.install().get_platform();
+
+      string strVersion = m_strVersion;
+
       for(int32_t i = 0; i < patha.get_count(); i++)
       {
 
@@ -2096,7 +2099,7 @@ install_begin:;
          if(strPathParam.begins_ci("stage\\basis\\"))
          {
 
-            strPathParam = "stage\\" + strPlatform + strPathParam.substr(11);
+            strPathParam = "time\\" + strPlatform + "\\" + strVersion + strPathParam.substr(11);
 
          }
 
@@ -2160,7 +2163,11 @@ install_begin:;
       if(!ca2_fy_url(str, strUrl, true, -1, strMd5, -1))
          return -2;
       _FILE * f = fopen_dup(str, "rb");
+
       string strPlatform = System.install().get_platform();
+
+      string strVersion = m_strVersion;
+
       while(fgets_dup(buf, sizeof(buf), f))
       {
          buf[sizeof(buf) - 1] = '\0';
@@ -2176,10 +2183,14 @@ install_begin:;
             strPathParam = ::str::replace_ci("vcruntime140d.dll","vcruntime140.dll",strPathParam);
             strPathParam = ::str::replace_ci("vcomp140d.dll","vcomp140.dll",strPathParam);
          }
+
          if(strPathParam.begins_ci("stage\\basis\\"))
          {
-            strPathParam = "stage\\" + strPlatform + strPathParam.substr(11);
+
+            strPathParam = "stage\\" + strPlatform + "\\" + strVersion + strPathParam.substr(11);
+
          }
+
          iCurrent = GetFileList(stringa, strPathParam, mapLen, mapGzLen, mapMd5, mapFlag);
          if(iCurrent == -2)
          {
