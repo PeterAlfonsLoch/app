@@ -2189,7 +2189,7 @@ install_begin:;
          if(strPathParam.begins_ci("stage\\basis\\"))
          {
 
-            strPathParam = "stage\\" + strPlatform + "\\" + strVersion + strPathParam.substr(11);
+            strPathParam = "time\\" + strPlatform + "\\" + strVersion + strPathParam.substr(11);
 
          }
 
