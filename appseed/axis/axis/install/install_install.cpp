@@ -1424,7 +1424,7 @@ namespace install
 
       xxdebug_box("installer::launcher::ensure_executable", "installer::launcher::ensure_executable", 0);
 
-      strPath = ::path::app_install(System.install().get_platform());
+      strPath = ::dir::stage() / "app.install.exe";
 
 #else
 

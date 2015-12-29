@@ -4166,12 +4166,14 @@ RetryBuildNumber:
 
       ::aura::library libraryCore(get_app());
 
+      string strCore = "core";
+
       // load core library so that a core system is alloced
-      libraryCore.open(dir::stage() / "core");
+      libraryCore.open(dir::stage() / strCore);
 
-      fn_defer_core_init * pfn_core_init = libraryCore.get< fn_defer_core_init *>("defer_core_init");
+      fn_defer_core_init * pfn_core_init = libraryCore.get< fn_defer_core_init *>("defer_" + strCore + "_init");
 
-      fn_defer_core_term * pfn_core_term = libraryCore.get< fn_defer_core_term *>("defer_core_term");
+      fn_defer_core_term * pfn_core_term = libraryCore.get< fn_defer_core_term *>("defer_" + strCore + "_term");
 
       ::aura::library libraryOs(get_app());
 
