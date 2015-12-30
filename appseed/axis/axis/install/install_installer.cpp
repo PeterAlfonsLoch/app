@@ -31,6 +31,8 @@ CHAR szWindowClassSpaAdmin[1024];			// the main interaction_impl class name
 
 typedef PVOID * PPVOID;
 
+
+
 #ifdef WINDOWSEX
 
 typedef struct _PROCESS_BASIC_INFORMATION64 {
@@ -117,7 +119,31 @@ int32_t run_file(const char * pszFile, int32_t nCmdShow);
 namespace install
 {
 
+   string binary_platform(string strPlatform)
+   {
 
+      strPlatform.make_lower();
+
+      if(strPlatform == "x86" || strPlatform == "win32")
+      {
+
+         return "Win32";
+
+      }
+      else if(strPlatform == "x64" || strPlatform == "amd64")
+      {
+
+         return "x64";
+
+      }
+      else
+      {
+
+         return strPlatform;
+
+      }
+
+   }
 
    installer::installer(::aura::application * papp) :
       ::object(papp),
