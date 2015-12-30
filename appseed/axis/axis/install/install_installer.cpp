@@ -2117,6 +2117,8 @@ install_begin:;
 
       string strPlatform = System.install().get_platform();
 
+      string strBinaryPlatform = binary_platform(strPlatform);
+
       string strVersion = m_strVersion;
 
       for(int32_t i = 0; i < patha.get_count(); i++)
@@ -2127,7 +2129,7 @@ install_begin:;
          if(strPathParam.begins_ci("stage\\basis\\"))
          {
 
-            strPathParam = "time\\" + strPlatform + "\\" + strVersion + strPathParam.substr(11);
+            strPathParam = "time\\" + strBinaryPlatform + "\\" + strVersion + strPathParam.substr(11);
 
          }
 
@@ -2194,6 +2196,8 @@ install_begin:;
 
       string strPlatform = System.install().get_platform();
 
+      string strBinaryPlatform = binary_platform(strPlatform);
+
       string strVersion = m_strVersion;
 
       while(fgets_dup(buf, sizeof(buf), f))
@@ -2215,7 +2219,7 @@ install_begin:;
          if(strPathParam.begins_ci("stage\\basis\\"))
          {
 
-            strPathParam = "time\\" + strPlatform + "\\" + strVersion + strPathParam.substr(11);
+            strPathParam = "time\\" + strBinaryPlatform + "\\" + strVersion + strPathParam.substr(11);
 
          }
 
