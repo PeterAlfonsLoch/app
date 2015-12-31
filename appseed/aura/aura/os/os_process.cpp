@@ -215,6 +215,34 @@ bool get_command_line_param(string & wstrValue,const char * psz,const char * psz
 }
 
 
+string time_binary_platform(string strPlatform)
+{
+
+   strPlatform.make_lower();
+
+   if(strPlatform == "x86" || strPlatform == "win32")
+   {
+
+      return "Win32";
+
+   }
+   else if(strPlatform == "x64" || strPlatform == "amd64")
+   {
+
+      return "x64";
+
+   }
+   else
+   {
+
+      return strPlatform;
+
+   }
+
+}
+
+
+
 CLASS_DECL_AURA string process_platform_dir_name()
 {
 

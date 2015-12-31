@@ -119,31 +119,6 @@ int32_t run_file(const char * pszFile, int32_t nCmdShow);
 namespace install
 {
 
-   string binary_platform(string strPlatform)
-   {
-
-      strPlatform.make_lower();
-
-      if(strPlatform == "x86" || strPlatform == "win32")
-      {
-
-         return "Win32";
-
-      }
-      else if(strPlatform == "x64" || strPlatform == "amd64")
-      {
-
-         return "x64";
-
-      }
-      else
-      {
-
-         return strPlatform;
-
-      }
-
-   }
 
    installer::installer(::aura::application * papp) :
       ::object(papp),
@@ -2117,7 +2092,7 @@ install_begin:;
 
       string strPlatform = System.install().get_platform();
 
-      string strBinaryPlatform = binary_platform(strPlatform);
+      string strBinaryPlatform = time_binary_platform(strPlatform);
 
       string strVersion = m_strVersion;
 
@@ -2196,7 +2171,7 @@ install_begin:;
 
       string strPlatform = System.install().get_platform();
 
-      string strBinaryPlatform = binary_platform(strPlatform);
+      string strBinaryPlatform = time_binary_platform(strPlatform);
 
       string strVersion = m_strVersion;
 

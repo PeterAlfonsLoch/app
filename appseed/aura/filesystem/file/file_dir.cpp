@@ -1374,7 +1374,7 @@ retry:
 ::file::path dir::stage()
 {
 
-   return program_files_x86() / "ca2/time" / process_platform_dir_name() / process_version_dir_name();
+   return program_files_x86() / "ca2/time" / time_binary_platform(process_platform_dir_name()) / process_version_dir_name();
 
 }
 
