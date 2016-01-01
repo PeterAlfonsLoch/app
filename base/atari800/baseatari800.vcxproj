@@ -1,0 +1,690 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="basis|Win32">
+      <Configuration>basis</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="basis|x64">
+      <Configuration>basis</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="stage|Win32">
+      <Configuration>stage</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="stage|x64">
+      <Configuration>stage</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{C7AFCEFA-3079-4B23-8F97-454377511984}</ProjectGuid>
+    <RootNamespace>app_core_atari800</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectName>app_core_atari800</ProjectName>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <UseOfMfc>false</UseOfMfc>
+    <UseOfAtl>false</UseOfAtl>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <UseOfMfc>false</UseOfMfc>
+    <UseOfAtl>false</UseOfAtl>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <UseOfMfc>false</UseOfMfc>
+    <UseOfAtl>false</UseOfAtl>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <UseOfMfc>false</UseOfMfc>
+    <UseOfAtl>false</UseOfAtl>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='stage|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='stage|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='basis|x64'">$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='stage|x64'">$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(SolutionDir)..\..\..\time\intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(SolutionDir)..\..\..\time\intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='basis|x64'">$(SolutionDir)..\..\..\time\intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='stage|x64'">$(SolutionDir)..\..\..\time\intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">false</IgnoreImportLibrary>
+    <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">false</IgnoreImportLibrary>
+    <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='basis|x64'">false</IgnoreImportLibrary>
+    <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='stage|x64'">false</IgnoreImportLibrary>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">false</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='stage|x64'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">false</GenerateManifest>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">false</GenerateManifest>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='basis|x64'">false</GenerateManifest>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='stage|x64'">false</GenerateManifest>
+    <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">false</EmbedManifest>
+    <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">false</EmbedManifest>
+    <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='basis|x64'">false</EmbedManifest>
+    <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='stage|x64'">false</EmbedManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|Win32'" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|x64'" />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <ClCompile>
+      <AdditionalOptions>-Zm384 /bigobj</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include;.;$(ProjectDir)framework;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/base/include;$(SolutionDir)../../../app/base/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/core;$(SolutionDir)../../../app/appseed/base;$(SolutionDir)../../../app/appseed/axis;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../../app/axis;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_APP_CORE_ATARI800_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <OpenMPSupport>false</OpenMPSupport>
+      <BrowseInformation>true</BrowseInformation>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
+      <StringPooling>false</StringPooling>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <CompileAsManaged>false</CompileAsManaged>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <SDLCheck>true</SDLCheck>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <FloatingPointExceptions>false</FloatingPointExceptions>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+      <BufferSecurityCheck>true</BufferSecurityCheck>
+      <EnableParallelCodeGeneration>false</EnableParallelCodeGeneration>
+      <CreateHotpatchableImage>false</CreateHotpatchableImage>
+      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0000</Culture>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../appseedcore/ca2/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>windowscodecs.lib;gdiplus.lib;winmm.lib;version.lib;vfw32.lib;opengl32.lib;glu32.lib;Psapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../time/library/$(PlatformName)/$(ConfigurationName);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/$(ConfigurationName);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(TargetDir)$(TargetName).pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+      <RandomizedBaseAddress>true</RandomizedBaseAddress>
+      <DataExecutionPrevention>true</DataExecutionPrevention>
+      <TargetMachine>MachineX86</TargetMachine>
+      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      <FixedBaseAddress>false</FixedBaseAddress>
+      <ShowProgress>NotSet</ShowProgress>
+    </Link>
+    <Manifest>
+      <AdditionalManifestFiles>
+      </AdditionalManifestFiles>
+    </Manifest>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Bscmake>
+    <Bscmake>
+      <OutputFile>
+      </OutputFile>
+    </Bscmake>
+    <Bscmake>
+      <PreserveSBR>false</PreserveSBR>
+    </Bscmake>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+    <CustomBuildStep>
+      <Command>"$(OutDir)app._.exe" "$(OutDir)app.exe" "$(ProjectName)" "$(OutDir)$(TargetName).exe"</Command>
+    </CustomBuildStep>
+    <CustomBuildStep>
+      <Outputs>$(OutDir)$(TargetName).exe</Outputs>
+    </CustomBuildStep>
+    <CustomBuildStep>
+      <Inputs>$(OutDir)app.exe;$(OutDir)$(TargetName)$(TargetExt)</Inputs>
+      <TreatOutputAsContent>true</TreatOutputAsContent>
+    </CustomBuildStep>
+    <CustomBuildStep />
+    <Xdcmake>
+      <DocumentLibraryDependencies>false</DocumentLibraryDependencies>
+    </Xdcmake>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <ClCompile>
+      <AdditionalOptions>-Zm384 /bigobj</AdditionalOptions>
+      <Optimization>Full</Optimization>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include;.;$(ProjectDir)framework;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/base/include;$(SolutionDir)../../../app/base/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/core;$(SolutionDir)../../../app/appseed/base;$(SolutionDir)../../../app/appseed/axis;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../../app/axis;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_APP_CORE_ATARI800_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <OpenMPSupport>false</OpenMPSupport>
+      <BrowseInformation>false</BrowseInformation>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
+      <StringPooling>false</StringPooling>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <CompileAsManaged>false</CompileAsManaged>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <FloatingPointExceptions>false</FloatingPointExceptions>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+      <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
+      <FavorSizeOrSpeed>Size</FavorSizeOrSpeed>
+      <WholeProgramOptimization>true</WholeProgramOptimization>
+      <CreateHotpatchableImage>false</CreateHotpatchableImage>
+      <BufferSecurityCheck>
+      </BufferSecurityCheck>
+      <SDLCheck>
+      </SDLCheck>
+      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0000</Culture>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../appseedcore/ca2/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>windowscodecs.lib;gdiplus.lib;winmm.lib;version.lib;vfw32.lib;opengl32.lib;glu32.lib;Psapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../time/library/$(PlatformName)/$(ConfigurationName);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/$(ConfigurationName);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(TargetDir)$(TargetName).pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+      <RandomizedBaseAddress>true</RandomizedBaseAddress>
+      <DataExecutionPrevention>true</DataExecutionPrevention>
+      <TargetMachine>MachineX86</TargetMachine>
+      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      <FixedBaseAddress>false</FixedBaseAddress>
+      <ShowProgress>NotSet</ShowProgress>
+      <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
+      <MergeSections>
+      </MergeSections>
+    </Link>
+    <Manifest>
+      <AdditionalManifestFiles>
+      </AdditionalManifestFiles>
+    </Manifest>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Bscmake>
+    <Bscmake>
+      <OutputFile>
+      </OutputFile>
+    </Bscmake>
+    <Bscmake>
+      <PreserveSBR>false</PreserveSBR>
+    </Bscmake>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+    <CustomBuildStep>
+      <Command>"$(OutDir)app._.exe" "$(OutDir)app.exe" "$(ProjectName)" "$(OutDir)$(TargetName).exe"</Command>
+    </CustomBuildStep>
+    <CustomBuildStep>
+      <Outputs>$(OutDir)$(TargetName).exe</Outputs>
+    </CustomBuildStep>
+    <CustomBuildStep>
+      <Inputs>$(OutDir)app.exe;$(OutDir)$(TargetName)$(TargetExt)</Inputs>
+    </CustomBuildStep>
+    <CustomBuildStep>
+      <TreatOutputAsContent>true</TreatOutputAsContent>
+    </CustomBuildStep>
+    <Xdcmake>
+      <DocumentLibraryDependencies>false</DocumentLibraryDependencies>
+    </Xdcmake>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <ClCompile>
+      <AdditionalOptions>-Zm384 /bigobj</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include;.;$(ProjectDir)framework;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/base/include;$(SolutionDir)../../../app/base/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/core;$(SolutionDir)../../../app/appseed/base;$(SolutionDir)../../../app/appseed/axis;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../../app/axis;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_APP_CORE_ATARI800_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <OpenMPSupport>false</OpenMPSupport>
+      <BrowseInformation>false</BrowseInformation>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
+      <StringPooling>false</StringPooling>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+      <IntrinsicFunctions>false</IntrinsicFunctions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <CompileAsManaged>false</CompileAsManaged>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+      <SDLCheck>true</SDLCheck>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <OmitFramePointers>false</OmitFramePointers>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <FloatingPointExceptions>false</FloatingPointExceptions>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <BufferSecurityCheck>true</BufferSecurityCheck>
+      <EnableParallelCodeGeneration>false</EnableParallelCodeGeneration>
+      <CreateHotpatchableImage>false</CreateHotpatchableImage>
+      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0000</Culture>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../appseedcore/ca2/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>windowscodecs.lib;gdiplus.lib;winmm.lib;version.lib;vfw32.lib;opengl32.lib;glu32.lib;Psapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../time/library/$(PlatformName)/$(ConfigurationName);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/$(ConfigurationName);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(TargetDir)$(TargetName).pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+      <RandomizedBaseAddress>true</RandomizedBaseAddress>
+      <DataExecutionPrevention>true</DataExecutionPrevention>
+      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      <FixedBaseAddress>false</FixedBaseAddress>
+      <MapFileName>$(TargetDir)$(TargetName).map</MapFileName>
+    </Link>
+    <Manifest>
+      <AdditionalManifestFiles>
+      </AdditionalManifestFiles>
+    </Manifest>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Bscmake>
+    <Bscmake>
+      <OutputFile>
+      </OutputFile>
+    </Bscmake>
+    <Bscmake>
+      <PreserveSBR>false</PreserveSBR>
+    </Bscmake>
+    <CustomBuildStep>
+      <Command>"$(OutDir)app._.exe" "$(OutDir)app.exe" "$(ProjectName)" "$(OutDir)$(TargetName).exe"</Command>
+    </CustomBuildStep>
+    <CustomBuildStep>
+      <Outputs>$(OutDir)$(TargetName).exe</Outputs>
+    </CustomBuildStep>
+    <CustomBuildStep>
+      <Inputs>$(OutDir)app.exe;$(OutDir)$(TargetName)$(TargetExt)</Inputs>
+    </CustomBuildStep>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|x64'">
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <ClCompile>
+      <AdditionalOptions>-Zm384 /bigobj</AdditionalOptions>
+      <Optimization>Full</Optimization>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include;.;$(ProjectDir)framework;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/base/include;$(SolutionDir)../../../app/base/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/core;$(SolutionDir)../../../app/appseed/base;$(SolutionDir)../../../app/appseed/axis;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../../app/axis;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_APP_CORE_ATARI800_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <OpenMPSupport>false</OpenMPSupport>
+      <BrowseInformation>false</BrowseInformation>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
+      <StringPooling>false</StringPooling>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <CompileAsManaged>false</CompileAsManaged>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <OmitFramePointers>true</OmitFramePointers>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <FloatingPointExceptions>false</FloatingPointExceptions>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <BufferSecurityCheck>
+      </BufferSecurityCheck>
+      <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
+      <CreateHotpatchableImage>false</CreateHotpatchableImage>
+      <FavorSizeOrSpeed>Size</FavorSizeOrSpeed>
+      <WholeProgramOptimization>true</WholeProgramOptimization>
+      <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
+      <SDLCheck>
+      </SDLCheck>
+      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0000</Culture>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../appseedcore/ca2/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>windowscodecs.lib;gdiplus.lib;winmm.lib;version.lib;vfw32.lib;opengl32.lib;glu32.lib;Psapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../time/library/$(PlatformName)/$(ConfigurationName);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/$(ConfigurationName);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(TargetDir)$(TargetName).pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+      <RandomizedBaseAddress>true</RandomizedBaseAddress>
+      <DataExecutionPrevention>true</DataExecutionPrevention>
+      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      <FixedBaseAddress>false</FixedBaseAddress>
+      <MapFileName>$(TargetDir)$(TargetName).map</MapFileName>
+      <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
+    </Link>
+    <Manifest>
+      <AdditionalManifestFiles>
+      </AdditionalManifestFiles>
+    </Manifest>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Bscmake>
+    <Bscmake>
+      <OutputFile>
+      </OutputFile>
+    </Bscmake>
+    <Bscmake>
+      <PreserveSBR>false</PreserveSBR>
+    </Bscmake>
+    <CustomBuildStep>
+      <Command>"$(OutDir)app._.exe" "$(OutDir)app.exe" "$(ProjectName)" "$(OutDir)$(TargetName).exe"</Command>
+    </CustomBuildStep>
+    <CustomBuildStep>
+      <Outputs>$(OutDir)$(TargetName).exe</Outputs>
+    </CustomBuildStep>
+    <CustomBuildStep>
+      <Inputs>$(OutDir)app.exe;$(OutDir)$(TargetName)$(TargetExt)</Inputs>
+    </CustomBuildStep>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include=".\atari800_application.cpp" />
+    <ClCompile Include=".\atari800_document.cpp" />
+    <ClCompile Include=".\atari800_frame.cpp" />
+    <ClCompile Include="atari800.cpp" />
+    <ClCompile Include=".\atari800_pane_view.cpp" />
+    <ClCompile Include=".\atari800_pane_view_update_hint.cpp" />
+    <ClCompile Include="framework.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include=".\atari800_view.cpp" />
+    <ClCompile Include="atari800_edit_view.cpp" />
+    <ClCompile Include="atari800_font_view.cpp" />
+    <ClCompile Include="atari800_main_view.cpp" />
+    <ClCompile Include="atari800_render.cpp" />
+    <ClCompile Include="atari800_switcher_view.cpp" />
+    <ClCompile Include="atari800_toggle_view.cpp" />
+    <ClCompile Include="atari800_top_view.cpp" />
+    <ClCompile Include="src\af80.c" />
+    <ClCompile Include="src\afile.c" />
+    <ClCompile Include="src\antic.c" />
+    <ClCompile Include="src\artifact.c" />
+    <ClCompile Include="src\atari.c" />
+    <ClCompile Include="src\atari_basic.c" />
+    <ClCompile Include="src\atari_curses.c" />
+    <ClCompile Include="src\atari_falcon.c" />
+    <ClCompile Include="src\atari_ps2.c" />
+    <ClCompile Include="src\atari_rpi.c" />
+    <ClCompile Include="src\atari_x11.c" />
+    <ClCompile Include="src\binload.c" />
+    <ClCompile Include="src\cartridge.c" />
+    <ClCompile Include="src\cassette.c" />
+    <ClCompile Include="src\cfg.c" />
+    <ClCompile Include="src\colours.c" />
+    <ClCompile Include="src\colours_external.c" />
+    <ClCompile Include="src\colours_ntsc.c" />
+    <ClCompile Include="src\colours_pal.c" />
+    <ClCompile Include="src\compfile.c" />
+    <ClCompile Include="src\cpu.c" />
+    <ClCompile Include="src\crc32.c" />
+    <ClCompile Include="src\cycle_map.c" />
+    <ClCompile Include="src\devices.c" />
+    <ClCompile Include="src\emuos.c" />
+    <ClCompile Include="src\esc.c" />
+    <ClCompile Include="src\filter_ntsc.c" />
+    <ClCompile Include="src\gtia.c" />
+    <ClCompile Include="src\ide.c" />
+    <ClCompile Include="src\img_tape.c" />
+    <ClCompile Include="src\input.c" />
+    <ClCompile Include="src\joycfg.c" />
+    <ClCompile Include="src\log.c" />
+    <ClCompile Include="src\memory.c" />
+    <ClCompile Include="src\mkimg.c" />
+    <ClCompile Include="src\monitor.c" />
+    <ClCompile Include="src\mzpokeysnd.c" />
+    <ClCompile Include="src\pal_blending.c" />
+    <ClCompile Include="src\pbi.c" />
+    <ClCompile Include="src\pbi_bb.c" />
+    <ClCompile Include="src\pbi_mio.c" />
+    <ClCompile Include="src\pbi_proto80.c" />
+    <ClCompile Include="src\pbi_scsi.c" />
+    <ClCompile Include="src\pbi_xld.c" />
+    <ClCompile Include="src\pia.c" />
+    <ClCompile Include="src\pokey.c" />
+    <ClCompile Include="src\pokeysnd.c" />
+    <ClCompile Include="src\rdevice.c" />
+    <ClCompile Include="src\remez.c" />
+    <ClCompile Include="src\rtime.c" />
+    <ClCompile Include="src\screen.c" />
+    <ClCompile Include="src\sio.c" />
+    <ClCompile Include="src\sndsave.c" />
+    <ClCompile Include="src\sound.c" />
+    <ClCompile Include="src\sound_falcon.c" />
+    <ClCompile Include="src\sound_oss.c" />
+    <ClCompile Include="src\statesav.c" />
+    <ClCompile Include="src\sysrom.c" />
+    <ClCompile Include="src\ui.c" />
+    <ClCompile Include="src\ui_basic.c" />
+    <ClCompile Include="src\util.c" />
+    <ClCompile Include="src\videomode.c" />
+    <ClCompile Include="src\voicebox.c" />
+    <ClCompile Include="src\votrax.c" />
+    <ClCompile Include="src\votraxsnd.c" />
+    <ClCompile Include="src\xep80.c" />
+    <ClCompile Include="src\xep80_fonts.c" />
+    <ClCompile Include="user_font_list.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="atari800_application.h" />
+    <ClInclude Include="atari800_document.h" />
+    <ClInclude Include="atari800_edit_view.h" />
+    <ClInclude Include="atari800_font_view.h" />
+    <ClInclude Include="atari800_frame.h" />
+    <ClInclude Include="atari800.h" />
+    <ClInclude Include="atari800_main_view.h" />
+    <ClInclude Include="atari800_pane_view.h" />
+    <ClInclude Include="atari800_pane_view_update_hint.h" />
+    <ClInclude Include="framework.h" />
+    <ClInclude Include="atari800_render.h" />
+    <ClInclude Include="atari800_switcher_view.h" />
+    <ClInclude Include="atari800_toggle_view.h" />
+    <ClInclude Include="atari800_top_view.h" />
+    <ClInclude Include="atari800_view.h" />
+    <ClInclude Include="src\af80.h" />
+    <ClInclude Include="src\afile.h" />
+    <ClInclude Include="src\akey.h" />
+    <ClInclude Include="src\antic.h" />
+    <ClInclude Include="src\artifact.h" />
+    <ClInclude Include="src\atari.h" />
+    <ClInclude Include="src\binload.h" />
+    <ClInclude Include="src\cartridge.h" />
+    <ClInclude Include="src\cassette.h" />
+    <ClInclude Include="src\cfg.h" />
+    <ClInclude Include="src\colours.h" />
+    <ClInclude Include="src\colours_external.h" />
+    <ClInclude Include="src\colours_ntsc.h" />
+    <ClInclude Include="src\colours_pal.h" />
+    <ClInclude Include="src\compfile.h" />
+    <ClInclude Include="src\cpu.h" />
+    <ClInclude Include="src\crc32.h" />
+    <ClInclude Include="src\cycle_map.h" />
+    <ClInclude Include="src\devices.h" />
+    <ClInclude Include="src\emuos.h" />
+    <ClInclude Include="src\esc.h" />
+    <ClInclude Include="src\filter_ntsc.h" />
+    <ClInclude Include="src\gtia.h" />
+    <ClInclude Include="src\ide.h" />
+    <ClInclude Include="src\ide_internal.h" />
+    <ClInclude Include="src\img_tape.h" />
+    <ClInclude Include="src\input.h" />
+    <ClInclude Include="src\log.h" />
+    <ClInclude Include="src\memory.h" />
+    <ClInclude Include="src\monitor.h" />
+    <ClInclude Include="src\mzpokeysnd.h" />
+    <ClInclude Include="src\pal_blending.h" />
+    <ClInclude Include="src\pbi.h" />
+    <ClInclude Include="src\pbi_bb.h" />
+    <ClInclude Include="src\pbi_mio.h" />
+    <ClInclude Include="src\pbi_proto80.h" />
+    <ClInclude Include="src\pbi_scsi.h" />
+    <ClInclude Include="src\pbi_xld.h" />
+    <ClInclude Include="src\pcjoy.h" />
+    <ClInclude Include="src\pia.h" />
+    <ClInclude Include="src\platform.h" />
+    <ClInclude Include="src\pokey.h" />
+    <ClInclude Include="src\pokeysnd.h" />
+    <ClInclude Include="src\rdevice.h" />
+    <ClInclude Include="src\remez.h" />
+    <ClInclude Include="src\rtime.h" />
+    <ClInclude Include="src\screen.h" />
+    <ClInclude Include="src\sio.h" />
+    <ClInclude Include="src\sndsave.h" />
+    <ClInclude Include="src\sound.h" />
+    <ClInclude Include="src\statesav.h" />
+    <ClInclude Include="src\sysrom.h" />
+    <ClInclude Include="src\ui.h" />
+    <ClInclude Include="src\ui_basic.h" />
+    <ClInclude Include="src\util.h" />
+    <ClInclude Include="src\videomode.h" />
+    <ClInclude Include="src\voicebox.h" />
+    <ClInclude Include="src\votrax.h" />
+    <ClInclude Include="src\votraxsnd.h" />
+    <ClInclude Include="src\xep80.h" />
+    <ClInclude Include="src\xep80_fonts.h" />
+    <ClInclude Include="user_font_list.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".\app_core_atari800.def" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\app\appseed\aura\aura.vcxproj">
+      <Project>{03e5b8e7-9e3b-44dd-9ede-e0a74d52c1c5}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\app\appseed\axis\axis.vcxproj">
+      <Project>{73a245f9-c92f-4487-aef7-cb0531f665bd}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\app\appseed\base\base.vcxproj">
+      <Project>{4d7d3626-ada6-4ca2-9566-ed7b131e3d51}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\app\appseed\core\core.vcxproj">
+      <Project>{e000ffaf-392f-4e32-bf51-fd7ed638991f}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\app\appseed\html\html.vcxproj">
+      <Project>{6c7004d3-ff6c-4872-8ddc-5d7f44b0bc57}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\app\appseed\math\math.vcxproj">
+      <Project>{5b03fc53-c0aa-419d-a87f-4338c9dde3fa}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\app\aura\pcre\aurapcre.vcxproj">
+      <Project>{19aa8bb5-51fa-46e7-b346-2a89828f3000}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\app\axis\html_lite\html_lite.vcxproj">
+      <Project>{845177e8-8b1e-4ae0-9b96-1abc24b797a6}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

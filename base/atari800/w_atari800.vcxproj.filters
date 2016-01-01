@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{6f14a77b-5f62-4f9f-a730-17c19b0482ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{f289422c-32bc-4e04-a471-2317633a7e3f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="framework.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hellomultiverse.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hellomultiverse_application.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hellomultiverse_document.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hellomultiverse_edit_view.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hellomultiverse_frame.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hellomultiverse_full_view.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hellomultiverse_lite_view.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hellomultiverse_main_view.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hellomultiverse_pane_view.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hellomultiverse_pane_view_update_hint.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hellomultiverse_switcher_view.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hellomultiverse_toggle_view.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hellomultiverse_top_view.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hellomultiverse_view.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hellomultiverse_render.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="framework.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hellomultiverse.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hellomultiverse_application.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hellomultiverse_document.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hellomultiverse_edit_view.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hellomultiverse_frame.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hellomultiverse_main_view.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hellomultiverse_pane_view.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hellomultiverse_pane_view_update_hint.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hellomultiverse_switcher_view.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hellomultiverse_toggle_view.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hellomultiverse_top_view.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hellomultiverse_view.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hellomultiverse_render.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="user_font_list.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app_core_hellomultiverse.def">
+      <Filter>Source Files</Filter>
+    </None>
+  </ItemGroup>
+</Project>

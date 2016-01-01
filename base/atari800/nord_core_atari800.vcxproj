@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="basis|ARM">
+      <Configuration>basis</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="basis|x86">
+      <Configuration>basis</Configuration>
+      <Platform>x86</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="stage|ARM">
+      <Configuration>stage</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="stage|x86">
+      <Configuration>stage</Configuration>
+      <Platform>x86</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{a9effd1e-2e02-4bc0-bf89-d11f8409c8df}</ProjectGuid>
+    <Keyword>Android</Keyword>
+    <ApplicationType>Android</ApplicationType>
+    <ApplicationTypeRevision>1.0</ApplicationTypeRevision>
+    <ProjectName>app_core_hellomultiverse</ProjectName>
+    <RootNamespace>app_core_hellomultiverse</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x86'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>Gcc_4_9</PlatformToolset>
+    <UseOfStl>gnustl_shared</UseOfStl>
+    <ThumbMode>Disabled</ThumbMode>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>Gcc_4_9</PlatformToolset>
+    <UseOfStl>gnustl_shared</UseOfStl>
+    <ThumbMode>ARM</ThumbMode>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|x86'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>Gcc_4_9</PlatformToolset>
+    <UseOfStl>gnustl_shared</UseOfStl>
+    <ThumbMode>Thumb</ThumbMode>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>Gcc_4_9</PlatformToolset>
+    <UseOfStl>gnustl_shared</UseOfStl>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings" />
+  <ImportGroup Label="Shared" />
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x86'">
+    <OutDir>$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">
+    <OutDir>$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">
+    <OutDir>$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|x86'">
+    <OutDir>$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|x86'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include;.;$(ProjectDir)framework;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/core;$(SolutionDir)../../../app/appseed/base;$(SolutionDir)../../../app/appseed/axis;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../../app/axis;$(ProjectDir)../../appseed;$(ProjectDir)../..;$(ProjectDir)..;$(ProjectDir).;$(NDKRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ExceptionHandling>Enabled</ExceptionHandling>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <CppLanguageStandard>gnu++1y</CppLanguageStandard>
+      <AdditionalOptions>-Wno-comment -Wno-reorder %(AdditionalOptions)</AdditionalOptions>
+      <PreprocessorDefinitions>_DEBUG</PreprocessorDefinitions>
+      <CLanguageStandard>gnu11</CLanguageStandard>
+      <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>
+    </ClCompile>
+    <Link>
+      <LibraryDependencies>html;math;html_lite;aurapcre;core;base;axis;aura;$(StlLibraryName);m</LibraryDependencies>
+      <AdditionalLibraryDirectories>$(OutDir);$(VS_NdkRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\lib;$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include;.;$(ProjectDir)framework;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/base/include;$(SolutionDir)../../../app/base/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/core;$(SolutionDir)../../../app/appseed/base;$(SolutionDir)../../../app/appseed/axis;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../../app/axis;$(ProjectDir)../../appseed;$(ProjectDir)../..;$(ProjectDir)..;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_DEBUG</PreprocessorDefinitions>
+      <ExceptionHandling>Enabled</ExceptionHandling>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <CLanguageStandard>gnu11</CLanguageStandard>
+      <CppLanguageStandard>gnu++1y</CppLanguageStandard>
+    </ClCompile>
+    <Link>
+      <SharedLibrarySearchPath>$(OutDir);$(VS_NdkRoot)\platforms\$(AndroidAPILevel)\arch-arm\usr\lib;%(SharedLibrarySearchPath)</SharedLibrarySearchPath>
+    </Link>
+    <Link>
+      <AdditionalLibraryDirectories>$(OutDir);$(VS_NdkRoot)\platforms\$(AndroidAPILevel)\arch-arm\usr\lib;$(ToolchainPrebuiltPath)\lib\gcc\$(ToolchainName)\$(ToolchainVersion)\armv7-a;$(StlLibraryPath);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <LibraryDependencies>html;math;html_lite;aurapcre;core;base;axis;aura;$(StlLibraryName);m</LibraryDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|x86'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="hellomultiverse.cpp" />
+    <ClCompile Include="hellomultiverse_application.cpp" />
+    <ClCompile Include="hellomultiverse_document.cpp" />
+    <ClCompile Include="hellomultiverse_edit_view.cpp" />
+    <ClCompile Include="hellomultiverse_frame.cpp" />
+    <ClCompile Include="hellomultiverse_main_view.cpp" />
+    <ClCompile Include="hellomultiverse_pane_view.cpp" />
+    <ClCompile Include="hellomultiverse_pane_view_update_hint.cpp" />
+    <ClCompile Include="hellomultiverse_render.cpp" />
+    <ClCompile Include="hellomultiverse_switcher_view.cpp" />
+    <ClCompile Include="hellomultiverse_toggle_view.cpp" />
+    <ClCompile Include="hellomultiverse_top_view.cpp" />
+    <ClCompile Include="hellomultiverse_view.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="framework.h" />
+    <ClInclude Include="hellomultiverse.h" />
+    <ClInclude Include="hellomultiverse_application.h" />
+    <ClInclude Include="hellomultiverse_document.h" />
+    <ClInclude Include="hellomultiverse_edit_view.h" />
+    <ClInclude Include="hellomultiverse_frame.h" />
+    <ClInclude Include="hellomultiverse_main_view.h" />
+    <ClInclude Include="hellomultiverse_pane_view.h" />
+    <ClInclude Include="hellomultiverse_pane_view_update_hint.h" />
+    <ClInclude Include="hellomultiverse_render.h" />
+    <ClInclude Include="hellomultiverse_switcher_view.h" />
+    <ClInclude Include="hellomultiverse_toggle_view.h" />
+    <ClInclude Include="hellomultiverse_top_view.h" />
+    <ClInclude Include="hellomultiverse_view.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets" />
+</Project>

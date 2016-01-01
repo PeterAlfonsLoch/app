@@ -1,0 +1,8 @@
+; app_atari800.def
+
+LIBRARY  "app_core_atari800"
+; For Win32 DLLs, only EXPORTs really required.
+
+EXPORTS
+app_core_atari800_get_new_library
+
