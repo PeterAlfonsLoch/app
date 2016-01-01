@@ -23,8 +23,9 @@
 */
 
 #include "config.h"
-#define DIRECTINPUT_VERSION	    0x0500
+#define DIRECTINPUT_VERSION	    0x0800
 #include <windows.h>
+#include <d3d9.h>
 #include <dinput.h>
 
 #include "atari.h"
@@ -34,7 +35,7 @@
 
 #define KEYBUFSIZE 0x40
 
-static LPDIRECTINPUTDEVICE2 dikb0 = NULL;
+static LPDIRECTINPUTDEVICE8 dikb0 = NULL;
 int pause_hit;
 
 int kbcode;
@@ -146,7 +147,7 @@ static int initkb(LPDIRECTINPUT pdi)
       return 1;
     }
 
-  hRes = pdev->lpVtbl->QueryInterface(pdev, &IID_IDirectInputDevice2,
+  hRes = pdev->lpVtbl->QueryInterface(pdev, &IID_IDirectInputDevice8,
 				      (LPVOID *) (void*) & dikb0);
   if (hRes < 0)
     return 1;
@@ -160,7 +161,7 @@ int initinput(void)
   int i;
   LPDIRECTINPUT pdi;
 
-  if (DirectInputCreate(myInstance, DIRECTINPUT_VERSION, &pdi, NULL) != DI_OK)
+  if (DirectInput8Create(myInstance,DIRECTINPUT_VERSION,&IID_IDirectInput8,&pdi,NULL) != DI_OK)
     {
       return 1;
     }

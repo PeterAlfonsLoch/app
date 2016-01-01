@@ -299,9 +299,6 @@ void StateSav_SaveFNAME(const char *filename)
 	UWORD namelen;
 #ifdef HAVE_GETCWD
 
-#ifdef WIN32
-#define getcwd _getcwd
-#endif
 	char dirname[FILENAME_MAX]="";
 
 	/* Check to see if file is in application tree, if so, just save as

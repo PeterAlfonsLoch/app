@@ -549,3 +549,8 @@
 
 /* use our exit() instead of libc's */
 #define exit main_exit
+
+
+#ifdef WIN32
+#define getcwd _getcwd
+#endif

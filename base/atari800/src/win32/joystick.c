@@ -22,10 +22,11 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#define DIRECTINPUT_VERSION	    0x0500
+#define DIRECTINPUT_VERSION	    0x0800
 
 #include "config.h"
 #include <windows.h>
+#include <d3d9.h>
 #include <dinput.h>
 
 #include "atari.h"
@@ -214,11 +215,11 @@ int initjoystick(void)
   LPDIRECTINPUT pdi;
   HRESULT hRes;
 
-  if (DirectInputCreate(myInstance, DIRECTINPUT_VERSION, &pdi, NULL) != DI_OK)
+  if (DirectInput8Create(myInstance, DIRECTINPUT_VERSION,&IID_IDirectInput8, &pdi, NULL) != DI_OK)
     {
       return 1;
     }
-  hRes = IDirectInput_EnumDevices(pdi, DIDEVTYPE_JOYSTICK, joycallback, pdi, DIEDFL_ATTACHEDONLY);
+  hRes = IDirectInput_EnumDevices(pdi,DI8DEVTYPE_JOYSTICK, joycallback, pdi, DIEDFL_ATTACHEDONLY);
   IDirectInput_Release(pdi);
   if(!dijoy[0]/*hRes != DI_OK*/)
   {
