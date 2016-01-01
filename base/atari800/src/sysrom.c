@@ -27,6 +27,8 @@
 #include <ctype.h>
 #ifdef HAVE_DIRENT_H
 #include <dirent.h>
+#elif defined(_WIN32)
+#include "win32/dirent.h"
 #endif
 #include <stdarg.h>
 #include <stdio.h>

@@ -36,7 +36,7 @@
 #include "ui.h"
 #endif /* BASIC */
 #ifdef HAVE_LIBZ
-#include <zlib.h>
+#include "zlib/zlib.h"
 #endif
 #include <stdio.h>
 

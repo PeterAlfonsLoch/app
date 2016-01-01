@@ -46,7 +46,7 @@
 #include <OS.h>
 #endif
 #ifdef HAVE_LIBZ
-#include <zlib.h>
+#include "zlib/zlib.h"
 #endif
 #ifdef R_SERIAL
 #include <sys/stat.h>

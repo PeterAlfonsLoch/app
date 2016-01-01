@@ -27,7 +27,7 @@
 #include <string.h>
 #include <stdlib.h>
 #ifdef HAVE_LIBZ
-#include <zlib.h>
+#include "zlib/zlib.h"
 #endif
 
 #include "afile.h"

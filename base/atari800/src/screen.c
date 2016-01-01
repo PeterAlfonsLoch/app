@@ -30,7 +30,7 @@
 #include <string.h>
 
 #ifdef HAVE_LIBPNG
-#include <png.h>
+#include "image_png/Source/LibPNG/png.h"
 #endif
 
 #include "antic.h"

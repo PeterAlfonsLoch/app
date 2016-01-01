@@ -36,7 +36,7 @@
 #include <direct.h> /* getcwd on MSVC*/
 #endif
 #ifdef HAVE_LIBZ
-#include <zlib.h>
+#include "zlib/zlib.h"
 #endif
 #ifdef DREAMCAST
 #include <bzlib/bzlib.h>
@@ -298,6 +298,10 @@ void StateSav_SaveFNAME(const char *filename)
 {
 	UWORD namelen;
 #ifdef HAVE_GETCWD
+
+#ifdef WIN32
+#define getcwd _getcwd
+#endif
 	char dirname[FILENAME_MAX]="";
 
 	/* Check to see if file is in application tree, if so, just save as
