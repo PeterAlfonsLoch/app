@@ -1,4 +1,0 @@
-Using Atari800 config file: atari800.cfg
-Created by Atari 800 Emulator, Version 3.1.0
-
-joystick not found
