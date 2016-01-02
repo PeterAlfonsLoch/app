@@ -17,6 +17,8 @@ namespace user
    void list_cache::_001CacheHint(      ::user::mesh * pmesh,      index iItemStart,      index iItemCount)
    {
 
+      synch_lock sl(pmesh->m_pmutex);
+
       ::user::list * plist = pmesh->m_plist;
 
       keep < bool > keepCaching(&m_bCaching,true,false,true);

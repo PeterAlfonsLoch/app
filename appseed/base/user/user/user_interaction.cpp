@@ -2764,6 +2764,7 @@ namespace user
 
    ::user::interaction * interaction::get_next(bool bIgnoreChildren,int32_t * piLevel)
    {
+
       if(!bIgnoreChildren)
       {
          if(m_uiptraChild.has_elements())
@@ -2778,6 +2779,10 @@ namespace user
          // todo, reached desktop or similar very top system interaction_impl
          return NULL;
       }
+
+      synch_lock slParent(GetParent()->m_pmutex);
+      synch_lock sl(m_pmutex);
+
 
       index iFind = GetParent()->m_uiptraChild.find_first(this);
 
@@ -7141,6 +7146,8 @@ synch_lock sl(m_pmutex);
 
    sp(::user::interaction) interaction::get_child(::user::interaction * pui)
    {
+
+      synch_lock sl(m_pmutex);
 
       return m_uiptraChild.get_child(pui);
 

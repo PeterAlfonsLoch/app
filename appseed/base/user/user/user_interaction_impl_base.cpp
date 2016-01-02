@@ -1032,7 +1032,7 @@ namespace user
    bool interaction_impl_base::SetTimer(uint_ptr nIDEvent,UINT nEllapse, PFN_TIMER pfnTimer)
    {
 
-      if(nEllapse < 70)
+      if(nEllapse < 584)
       {
 
          string str;
