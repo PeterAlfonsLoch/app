@@ -278,7 +278,7 @@ namespace aura
 
 #else
 
-      strKey = "::ca2::fontopus::cgcl-1984-11-15::m-1951-04-22::cx-1977-02-04::votagus::" + strApp + ":" + iPid;
+      strKey = "::ca2::fontopus::ccvotagus::" + strApp + ":" + iPid;
 
 #endif
 

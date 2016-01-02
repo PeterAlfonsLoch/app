@@ -594,7 +594,7 @@ namespace macos
 
        SC_HANDLE hdlServ = ::CreateService(
        hdlSCM,                    // SCManager database
-       "CGCLCSTvotagusCa2FontopusMain-" + papp->m_strAppName,               // name of service
+       "core-" + papp->m_strAppName,               // name of service
        "ccvotagus ca2 fontopus " + papp->m_strAppName,        // service name to display
        STANDARD_RIGHTS_REQUIRED,  // desired access
        SERVICE_WIN32_OWN_PROCESS | SERVICE_INTERACTIVE_PROCESS, // service type
@@ -644,7 +644,7 @@ namespace macos
 
        SC_HANDLE hdlServ = ::OpenService(
        hdlSCM,                    // SCManager database
-       "CGCLCSTvotagusCa2FontopusMain-" + papp->m_strAppName,               // name of service
+       "core-" + papp->m_strAppName,               // name of service
        DELETE);                     // no password
 
        if (!hdlServ)
@@ -685,7 +685,7 @@ namespace macos
 
        SC_HANDLE hdlServ = ::OpenService(
        hdlSCM,                    // SCManager database
-       "CGCLCSTvotagusCa2FontopusMain-" + papp->m_strAppName,               // name of service
+       "core-" + papp->m_strAppName,               // name of service
        SERVICE_START);                     // no password
 
 
@@ -726,7 +726,7 @@ namespace macos
 
        SC_HANDLE hdlServ = ::OpenService(
        hdlSCM,                    // SCManager database
-       "CGCLCSTvotagusCa2FontopusMain-" + papp->m_strAppName,               // name of service
+       "core-" + papp->m_strAppName,               // name of service
        SERVICE_STOP);                     // no password
 
        if (!hdlServ)

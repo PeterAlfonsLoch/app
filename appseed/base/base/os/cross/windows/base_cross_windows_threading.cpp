@@ -1,6 +1,6 @@
-﻿// thank you white heads (Rus, Slovk, Polsk... etc... ) Thank you CGCL!!
+﻿// thank you white heads (Rus, Slovk, Polsk... etc... ) Thank you Carlos Gustavo Cecyn Lundgren!!
 // Livecoding.tv Rheghal, szulak, eprykak..
-// Somewhere CGCL
+// Somewhere Carlos Gustavo Cecyn Lundgren
 // My Mummi
 // 2015-08-11 16:00:00
 

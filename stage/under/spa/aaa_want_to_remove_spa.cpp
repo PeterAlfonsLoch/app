@@ -2109,7 +2109,7 @@ int stop_service()
  
    SC_HANDLE hdlServ = ::OpenService(
 		hdlSCM,                    // SCManager database 
-		"CGCLCSTvotagusCa2Fontopus_WinService_Spa_stage",               // name of service 
+		"core_WinService_Spa_stage",               // name of service 
 		SC_MANAGER_ALL_ACCESS);                     // no password 
  
    DWORD Ret = 0;
@@ -2136,7 +2136,7 @@ int remove_service()
  
    SC_HANDLE hdlServ = ::OpenService(
 		hdlSCM,                    // SCManager database 
-		"CGCLCSTvotagusCa2Fontopus_WinService_Spa_stage",               // name of service 
+		"core_WinService_Spa_stage",               // name of service 
 		SC_MANAGER_ALL_ACCESS);                     // no password 
  
    DWORD Ret = 0;
@@ -2152,7 +2152,7 @@ int remove_service()
 
 /*   STARTUPINFO si;
    PROCESS_INFORMATION pi;
-   LPSTR lpsz = _strdup(("sc delete CGCLCSTvotagusCa2Fontopus_WinService_Spa_" + g_strVersionShift));
+   LPSTR lpsz = _strdup(("sc delete core_WinService_Spa_" + g_strVersionShift));
    if(!::CreateProcess(NULL, lpsz, 
       NULL, NULL, FALSE, 0, NULL, NULL, &si, &pi))
       return 1;

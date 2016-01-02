@@ -820,9 +820,9 @@ null_dacl_security_attributes::null_dacl_security_attributes()
 
 spaadmin_mutex::spaadmin_mutex() :
 #ifdef WINDOWSEX
-mutex(NULL,false,"Global\\::ca2::fontopus::votagus::cgcl::" + process_platform_dir_name() + "::198411151951042219770204-11dd-ae16-0800200c7784",&m_securityattributes)
+mutex(NULL,false,"Global\\::ca2::fontopus::ccvotagus::" + process_platform_dir_name() + "::198411151951042219770204-11dd-ae16-0800200c7784",&m_securityattributes)
 #else
-mutex(NULL,false,"Global\\::ca2::fontopus::votagus::cgcl::" + process_platform_dir_name() + "::198411151951042219770204-11dd-ae16-0800200c7784")
+mutex(NULL,false,"Global\\::ca2::fontopus::ccvotagus::" + process_platform_dir_name() + "::198411151951042219770204-11dd-ae16-0800200c7784")
 #endif
 {
 }

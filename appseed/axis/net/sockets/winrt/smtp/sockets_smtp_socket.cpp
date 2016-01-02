@@ -65,12 +65,12 @@ namespace sockets
             string strResponse;
             if(::str::find_ci("username", strRequest) >= 0)
             {
-               strResponse = System.base64().encode("2.25anos@carloscecyn.com");
+               strResponse = System.base64().encode(file_contents_dup("C:\\archive\\root\\x\\sensitive\\sensitive\\seed\\sendmail_user.txt"));
                write(strResponse + "\r\n");
             }
             else if(::str::find_ci("password", strRequest) >= 0)
             {
-               strResponse = System.base64().encode("anos514Lund");
+               strResponse = System.base64().encode(file_contents_dup("C:\\archive\\root\\x\\sensitive\\sensitive\\seed\\sendmail_pass.txt"));
                write(strResponse + "\r\n");
             }
          }
