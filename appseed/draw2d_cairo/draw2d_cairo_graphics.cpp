@@ -3600,6 +3600,13 @@ synch_lock ml(m_spmutex);
 
       cairo_matrix_t m;
 
+      if(m_pdc == NULL)
+      {
+
+         return null_point();
+
+      }
+
       cairo_get_matrix(m_pdc, &m);
 
       int xOld = (int) m.x0;
