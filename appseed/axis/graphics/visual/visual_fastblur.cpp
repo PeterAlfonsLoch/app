@@ -528,22 +528,28 @@ namespace visual
       dw2 = get_tick_count();
       dw3 = dw2 - dw1;
 
-      string str1;
-      str1.Format("| Parameters: w=%d h=%d r=%d  \n", wj, hj, m_iRadius);
-      string str2;
-      str2.Format("| time for calculating stack blur : %d\b",dw3);
-      
-      output_debug_string("/-----------------------------------------\n");
-      output_debug_string("| \n");
-      output_debug_string(str1);
-      output_debug_string(str2);
-      output_debug_string("| \n");
+      if(0)
+      {
 
-      ::aura::application * papp = m_p->m_pauraapp;
-      APPTRACE("/--------------------------------");
-      APPTRACE("| fastblur::blur");
-      APPTRACE("| ");
-      APPTRACE("| do_fastblur = %d ms",dw3);
+         string str1;
+         str1.Format("| Parameters: w=%d h=%d r=%d  \n",wj,hj,m_iRadius);
+         string str2;
+         str2.Format("| time for calculating stack blur : %d\b",dw3);
+
+         output_debug_string("/-----------------------------------------\n");
+         output_debug_string("| \n");
+         output_debug_string(str1);
+         output_debug_string(str2);
+         output_debug_string("| \n");
+
+         ::aura::application * papp = m_p->m_pauraapp;
+         APPTRACE("/--------------------------------");
+         APPTRACE("| fastblur::blur");
+         APPTRACE("| ");
+         APPTRACE("| do_fastblur = %d ms",dw3);
+
+      }
+
    }
 
    {
