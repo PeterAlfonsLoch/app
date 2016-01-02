@@ -800,8 +800,6 @@ namespace user
    bool list::_001OnUpdateItemCount(uint32_t dwFlags)
    {
 
-      synch_lock sl(m_pmutex);
-
       UNREFERENCED_PARAMETER(dwFlags);
 
       m_nItemCount = _001GetItemCount();
@@ -817,41 +815,66 @@ namespace user
 
       if(m_eview == view_icon)
       {
+
+         synch_lock sl(m_pmutex);
+
          for(index iStrict = 0; iStrict < m_nItemCount; iStrict++)
          {
+
             if(m_iconlayout.m_iaDisplayToStrict.get_a(iStrict) == -1)
             {
+
                m_iconlayout.m_iaDisplayToStrict.set(m_iconlayout.m_iaDisplayToStrict.get_free_a(), iStrict);
+
             }
+
          }
+
       }
       else
       {
+
+         synch_lock sl(m_pmutex);
+
          index iStart = m_meshlayout.m_iaDisplayToStrict.get_count();
+
          index iEnd = m_nItemCount - 1;
+
          m_meshlayout.m_iaDisplayToStrict.allocate(m_nItemCount);
+
          for(index iStrict = iStart; iStrict <= iEnd; iStrict++)
          {
+
             m_meshlayout.m_iaDisplayToStrict.set_at(iStrict, iStrict);
+
          }
+
       }
 
       if(m_bFilter1)
       {
+
          FilterApply();
+
       }
 
       CacheHint();
+
       layout();
 
       TRACE("list::_001OnUpdateItemCount ItemCount %d\n", m_nItemCount);
+      
       if(m_bGroup)
       {
+
          TRACE("list::_001OnUpdateItemCount GroupCount %d\n", m_nGroupCount);
+
       }
 
       return true;
+
    }
+
 
    void list::on_change_view_size()
    {
