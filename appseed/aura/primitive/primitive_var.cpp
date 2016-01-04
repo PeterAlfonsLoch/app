@@ -3746,6 +3746,11 @@ void var::parse_json(const char * & pszJson)
    parse_json(pszJson, pszJson + strlen(pszJson) - 1);
 }
 
+namespace str
+{
+   string consume_quoted_value_ex(const char * & pszXml,const char * pszEnd);
+}
+
 void var::parse_json(const char * & pszJson, const char * pszEnd)
 {
    ::str::consume_spaces(pszJson, 0, pszEnd);
@@ -3755,7 +3760,7 @@ void var::parse_json(const char * & pszJson, const char * pszEnd)
    }
    else if(*pszJson == '\"')
    {
-      operator = (::str::consume_quoted_value(pszJson, pszEnd));
+      operator = (::str::consume_quoted_value_ex(pszJson, pszEnd));
    }
    else if(isdigit(*pszJson) || *pszJson == '-'  || *pszJson == '.')
    {

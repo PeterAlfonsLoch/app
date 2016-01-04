@@ -251,6 +251,7 @@ string url_encode_dup(const char * psz)
       else
       {
          itoa_dup(sz,uch,16);
+         to_upper(sz);
          if(strlen_dup(sz) == 0)
          {
             str += "%00";

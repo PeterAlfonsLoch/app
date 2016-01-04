@@ -135,7 +135,7 @@ namespace sockets
             m_fields.get_http_post(body);
             if(inheader(__id(content_type)).get_string().find_ci("application/x-www-form-urlencoded") < 0)
             {
-               inheader(__id(content_type)) = "application/x-www-form-urlencoded; " + inheader(__id(content_type)).get_string();
+               inheader(__id(content_type)) = "application/x-www-form-urlencoded" + ::str::has_char(inheader(__id(content_type)).get_string(),"; ");
             }
          }
 
@@ -171,7 +171,13 @@ namespace sockets
          if(!(bool)m_request.attr("minimal_headers"))
          {
             inheader(__id(user_agent)) = "ca2_netnode";
-            inheader(__id(accept)) = "text/html, text/plain, application/xml, */*;q=0.01";
+
+            if(inheader(__id(accept)).is_empty())
+            {
+
+               inheader(__id(accept)) = "text/html, text/plain, application/xml, */*;q=0.01";
+
+            }
             //inheader(__id(connection)) = "close";
          }
          inheader(__id(content_length)) = (int64_t) body.get_length();

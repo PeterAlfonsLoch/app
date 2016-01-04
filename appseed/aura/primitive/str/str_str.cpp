@@ -2274,6 +2274,81 @@ namespace str
       return string(pszValueStart, pszValueEnd - pszValueStart);
    }
 
+   string consume_quoted_value_ex(const char * & pszXml,const char * pszEnd)
+   {
+      const char * psz = pszXml;
+      string qc; // quote character
+      if(!get_utf8_char(qc,psz,pszEnd))
+      {
+         throw_parsing_exception("Quote character is required here, premature end");
+         return "";
+      }
+      if(qc != "\"" && qc != "\\")
+      {
+         throw_parsing_exception("Quote character is required here");
+         return "";
+      }
+      const char * pszValueStart = psz;
+      const char * pszValueEnd = psz;
+      const char * pszNext = psz;
+      const char * pszQc = qc;
+      string qc2;
+      char i;
+      string str;
+      while(true)
+      {
+         pszNext = __utf8_inc(psz);
+         if(pszNext > pszEnd)
+         {
+            throw_parsing_exception("Quote character is required here, premature end");
+            return "";
+         }
+         if(*psz == '\"')
+         {
+            psz++;
+            break;
+         }
+         else if(*psz == '\\')
+         {
+            psz = pszNext;
+            pszNext = __utf8_inc(psz);
+            if(pszNext > pszEnd)
+            {
+               throw_parsing_exception("Quote character is required here, premature end");
+               return "";
+            }
+            if(*psz == 'n')
+            {
+               str += "\n";
+            }
+            else if(*psz == 't')
+            {
+               str += "\t";
+            }
+            else if(*psz == 'r')
+            {
+               str += "\r";
+            }
+            else if(*psz == '\"')
+            {
+               str += "\"";
+            }
+            else
+            {
+               str += string(psz,pszNext - psz);
+            }
+         }
+         else
+         {
+            str += string(psz,pszNext - psz);
+         }
+         psz = pszNext;
+         pszValueEnd = psz;
+      }
+      pszXml = psz;
+      return str;
+   }
+
    string consume_spaced_value(string & str)
    {
 

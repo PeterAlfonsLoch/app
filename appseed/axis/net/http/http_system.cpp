@@ -1532,6 +1532,9 @@ retry:
       e_status estatus = status_fail;
 
       int32_t iStatusCode = psocket->outattr("http_status_code");
+      
+      set["http_status_code"] = psocket->outattr("http_status_code");
+
 #ifdef BSD_STYLE_SOCKETS
       if(iStatusCode == 0)
       {

@@ -91,7 +91,7 @@ namespace crypto
       storage.allocate(16);
       for (memory_position_t i = 0; i < storage.get_size(); i++)
       {
-         storage.get_data()[i] = rand() & 0xff;
+         storage.get_data()[i] = System.math().RandRange(0, 255) & 0xff;
       }
       return (int32_t)storage.get_size();
    }
