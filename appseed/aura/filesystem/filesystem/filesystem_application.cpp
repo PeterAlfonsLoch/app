@@ -395,6 +395,70 @@ namespace file
    }
 
 
+   bool application::save(var varFile,::file::serializable & o)
+   {
+
+      sp(::file::memory_buffer) pfile = Application.file().get_file(varFile,::file::mode_write | ::file::type_binary | ::file::mode_create | ::file::defer_create_directory);
+
+      if(pfile.is_null())
+      {
+
+         return false;
+
+      }
+
+      ::file::ostream os(pfile);
+
+      os << o;
+
+      return true;
+
+   }
+
+
+   bool application::load(::file::serializable & o,var varFile)
+   {
+
+      sp(::file::memory_buffer) pfile = Application.file().get_file("C:\\ca2\\config\\xmpp_resident\\followers.dat",::file::mode_read | ::file::type_binary);
+
+      if(pfile.is_null())
+      {
+
+         return false;
+
+      }
+
+      ::file::istream is(pfile);
+
+      is >> o;
+
+      return true;
+
+   }
+
+   bool application::save_lines(var varFile,stringa & stra)
+   {
+
+      string str = stra.implode("\n");
+
+      put_contents_utf8(varFile, str);
+
+      return true;
+
+   }
+
+
+   bool application::load_lines(stringa & stra,var varFile)
+   {
+
+      string str = as_string(varFile);
+
+      stra.add_lines(str);
+
+      return true;
+
+   }
+
 
 } // namespace file
 

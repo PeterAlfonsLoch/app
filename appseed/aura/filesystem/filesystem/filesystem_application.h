@@ -71,6 +71,11 @@ namespace file
       virtual bool crypto_set(var varFile,const char * pszData,const char * pszSalt);
       virtual bool crypto_get(var varFile,string & str,const char * pszSalt);
 
+      virtual bool save(var varFile,::file::serializable & o);
+      virtual bool load(::file::serializable & o,var varFile);
+
+      virtual bool save_lines(var varFile,stringa & stra);
+      virtual bool load_lines(stringa & stra,var varFile);
 
    };
 
