@@ -91,6 +91,10 @@ bool axis_defer_process_x_message(HTHREAD hthread, LPMESSAGE lpMsg, oswindow win
                   continue;
 
                }
+
+               bRet = false;
+
+               bContinue = true;
                               //               XClearWindow(w.display(), w.window());
             }
             else if(e.type == ButtonPress || e.type == ButtonRelease)

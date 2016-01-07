@@ -1144,24 +1144,15 @@ d.unlock();
 
    /////////////////////////////////////////////////////////////////////////////
    // main message_handler implementation
+   DWORD dwDebugmessage_handlerTime;
+int iDebugmessage_handlerTime;
 
+DWORD dwLastMouseMove;
+DWORD dwLastPaint;
    void interaction_impl::message_handler(::signal_details * pobj)
    {
 
       SCAST_PTR(::message::base, pbase, pobj);
-
-
-      if(m_pui != NULL)
-      {
-
-         m_pui->pre_translate_message(pobj);
-
-         if(pobj->m_bRet)
-            return;
-
-      }
-
-
       if(pbase->m_uiMessage == WM_TIMER)
       {
          //m_pthread->step_timer();
@@ -1170,6 +1161,67 @@ d.unlock();
       {
 
          TRACE("WM_LBUTTONDOWN (0)");
+
+         //g_pwndLastLButtonDown = this;
+      }
+      else if(pbase->m_uiMessage == WM_MOUSEMOVE)
+      {
+
+         TRACE("WM_MOUSEMOVE (0)");
+
+//         DWORD dwNow = get_tick_count();
+//
+//
+//         if(dwNow - dwLastMouseMove < 25)
+//         {
+//
+//            pobj->m_bRet = true;
+//
+//            return;
+//
+//         }
+//         else
+//         {
+//
+//            dwLastMouseMove = dwNow;
+//
+//         }
+
+
+
+         //g_pwndLastLButtonDown = this;
+      }
+      else if(pbase->m_uiMessage == WM_PAINT)
+      {
+
+         TRACE("WM_MOUSEMOVE (0)");
+//
+//         DWORD dwNow = get_tick_count();
+//
+//
+//         if(dwNow - dwLastPaint < 25)
+//         {
+//
+//            pobj->m_bRet = true;
+//
+//            return;
+//
+//         }
+//         else
+//         {
+//
+//            dwLastPaint = dwNow;
+//
+//         }
+
+
+
+         //g_pwndLastLButtonDown = this;
+      }
+      else if(pbase->m_uiMessage == WM_LBUTTONUP)
+      {
+
+         TRACE("WM_LBUTTONUP (0)");
 
          //g_pwndLastLButtonDown = this;
       }
@@ -1183,6 +1235,47 @@ d.unlock();
       return;
       }
       }*/
+
+   DWORD dwNow = get_tick_count();
+
+   if(dwNow - dwDebugmessage_handlerTime < 100)
+   {
+
+      if(iDebugmessage_handlerTime > 20)
+      {
+
+         writeln("PostThreadMessage flooded?");
+
+      }
+      else
+      {
+
+         iDebugmessage_handlerTime++;
+
+      }
+
+   }
+   else
+   {
+
+      iDebugmessage_handlerTime = 0;
+
+      dwDebugmessage_handlerTime = dwNow;
+
+   }
+
+      if(m_pui != NULL)
+      {
+
+         m_pui->pre_translate_message(pobj);
+
+         if(pobj->m_bRet)
+            return;
+
+      }
+
+
+
 
       if(pbase->m_uiMessage == WM_KEYDOWN ||
          pbase->m_uiMessage == WM_KEYUP ||

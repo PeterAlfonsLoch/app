@@ -1130,6 +1130,8 @@ int_bool WINAPI thread_set_data(HTHREAD hthread,DWORD dwIndex,LPVOID lpTlsValue)
 //
 //}
 
+DWORD dwDebugPostThreadMessageTime;
+int iDebugPostThreadMessageTime;
 
 CLASS_DECL_AURA int_bool WINAPI PostThreadMessageW(IDTHREAD iThreadId,UINT Msg,WPARAM wParam,LPARAM lParam)
 {
@@ -1155,6 +1157,37 @@ CLASS_DECL_AURA int_bool WINAPI PostThreadMessageW(IDTHREAD iThreadId,UINT Msg,W
    {
       ::output_debug_string("\n\n\nWM_QUIT posted to thread " + ::str::from((uint64_t)iThreadId) + "\n\n\n");
    }
+
+
+   DWORD dwNow = get_tick_count();
+
+   if(dwNow - dwDebugPostThreadMessageTime < 1)
+   {
+
+      if(iDebugPostThreadMessageTime > 10)
+      {
+
+         writeln("PostThreadMessage flooded?");
+
+      }
+      else
+      {
+
+         iDebugPostThreadMessageTime++;
+
+      }
+
+   }
+   else
+   {
+
+      iDebugPostThreadMessageTime = 0;
+
+      dwDebugPostThreadMessageTime = dwNow;
+
+   }
+
+
 
    msg.message = Msg;
    msg.wParam  = wParam;

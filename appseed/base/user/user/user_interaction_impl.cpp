@@ -2668,7 +2668,16 @@ namespace user
 
       rect rectWindow;
 
-      GetWindowRect(rectWindow);
+      WINBOOL bGet1 = GetWindowRect(rectWindow);
+
+      if(rectWindow.right > 32000)
+      {
+         output_debug_string("rectWindow.right > 32000");
+      }
+
+      rect rectWindow2;
+
+      WINBOOL bGet2 = GetWindowRect(rectWindow2);
 
       m_pt = rectWindow.top_left();
 
@@ -2901,7 +2910,7 @@ namespace user
 
       if(pguie == NULL)
       {
-         
+
          m_puiFocus = NULL;
 
          return;

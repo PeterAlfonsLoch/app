@@ -8,6 +8,8 @@
 
 #if defined(LINUX) || defined(VSNORD) || defined(METROWIN)
 
+DWORD dwDebugPostMessageTime;
+
 
 CLASS_DECL_BASE int_bool PostMessageW(oswindow oswindow,UINT Msg,WPARAM wParam,LPARAM lParam)
 {
@@ -33,6 +35,21 @@ CLASS_DECL_BASE int_bool PostMessageW(oswindow oswindow,UINT Msg,WPARAM wParam,L
    synch_lock ml(&pmq->m_mutex);
 
    MESSAGE msg;
+
+   DWORD dwNow = get_tick_count();
+
+   if(dwNow - dwDebugPostMessageTime < 10)
+   {
+
+      writeln("PostMessage flooded?");
+
+   }
+   else
+   {
+
+      dwDebugPostMessageTime = dwNow;
+
+   }
 
    //zero(&msg, sizeof(msg));
 
