@@ -181,19 +181,19 @@ namespace linux
       virtual UINT ArrangeIconicWindows();
       virtual bool BringWindowToTop();
       using ::user::interaction_impl::GetWindowRect;
-      virtual void GetWindowRect(RECT64 * lpRect);
-      virtual void _001GetWindowRect(RECT64 * lpRect);
+      virtual bool GetWindowRect(RECT64 * lpRect);
+      virtual bool _001GetWindowRect(RECT64 * lpRect);
       using ::user::interaction_impl::GetClientRect;
-      virtual void GetClientRect(RECT64 * lpRect);
+      virtual bool GetClientRect(RECT64 * lpRect);
 
-      void ClientToScreen(LPRECT lprect);
-      void ClientToScreen(LPPOINT lppoint);
-      void ClientToScreen(RECT64 * lprect);
-      void ClientToScreen(POINT64 * lppoint);
-      void ScreenToClient(LPRECT lprect);
-      void ScreenToClient(LPPOINT lppoint);
-      void ScreenToClient(RECT64 * lprect);
-      void ScreenToClient(POINT64 * lppoint);
+      virtual bool ClientToScreen(LPRECT lprect);
+      virtual bool ClientToScreen(LPPOINT lppoint);
+      virtual bool ClientToScreen(RECT64 * lprect);
+      virtual bool ClientToScreen(POINT64 * lppoint);
+      virtual bool ScreenToClient(LPRECT lprect);
+      virtual bool ScreenToClient(LPPOINT lppoint);
+      virtual bool ScreenToClient(RECT64 * lprect);
+      virtual bool ScreenToClient(POINT64 * lppoint);
 
       virtual bool GetWindowPlacement(WINDOWPLACEMENT* lpwndpl);
       virtual bool SetWindowPlacement(const WINDOWPLACEMENT* lpwndpl);
