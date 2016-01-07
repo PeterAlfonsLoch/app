@@ -43,9 +43,18 @@ void simple_tab_view::layout()
 
 
 
-void simple_tab_view::GetClientRect(LPRECT lprect)
+bool simple_tab_view::GetClientRect(LPRECT lprect)
 {
-   ::user::impact::GetClientRect(lprect);
+   
+   if(!::user::impact::GetClientRect(lprect))
+   {
+
+      return false;
+
+   }
+
+   return true;
+
 }
 
 

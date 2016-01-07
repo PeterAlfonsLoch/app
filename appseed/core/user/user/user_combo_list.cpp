@@ -552,12 +552,19 @@ namespace user
 
    }
 
-   void combo_list::GetClientRect(RECT64 * lprect)
+   bool combo_list::GetClientRect(RECT64 * lprect)
    {
       
-      ::user::control::GetClientRect(lprect);
+      if(!::user::control::GetClientRect(lprect))
+      {
+
+         return false;
+
+      }
 
       ::deflate_rect(lprect,m_iBorder);
+
+      return true;
 
    }
 

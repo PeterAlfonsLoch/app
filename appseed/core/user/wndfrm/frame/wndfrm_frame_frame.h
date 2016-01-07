@@ -94,8 +94,8 @@ namespace user
             virtual void update_window_style();
 
 
-            virtual void get_window_client_rect(LPRECT lprect);
-            virtual void get_draw_client_rect(LPRECT lprect);
+            virtual bool get_window_client_rect(LPRECT lprect);
+            virtual bool get_draw_client_rect(LPRECT lprect);
 
             virtual void calc_window_client_rect(LPRECT lprect, const RECT & lprectWindow);
 

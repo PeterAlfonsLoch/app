@@ -78,20 +78,20 @@ namespace hotplugin
       virtual oswindow         get_host_window();
 
       using ::simple_ui::interaction::ClientToScreen;
-      virtual void ClientToScreen(POINT * ppt);
+      virtual bool ClientToScreen(POINT * ppt);
 
       using ::simple_ui::interaction::ScreenToClient;
-      virtual void ScreenToClient(POINT * ppt);
+      virtual bool ScreenToClient(POINT * ppt);
 
       // client should implement
       //using ::simple_ui::interaction::SetWindowPos;
       //virtual bool SetWindowPos(int_ptr z,int32_t x,int32_t y,int32_t cx,int32_t cy,UINT nFlags = SWP_SHOWWINDOW);
 
       using ::simple_ui::interaction::GetWindowRect;
-      virtual void GetWindowRect(RECT64 * prect);
+      virtual bool GetWindowRect(RECT64 * prect);
 
       using ::simple_ui::interaction::GetClientRect;
-      virtual void GetClientRect(RECT64 * lprect);
+      virtual bool GetClientRect(RECT64 * lprect);
 
 
 

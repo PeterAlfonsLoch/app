@@ -1378,16 +1378,23 @@ void simple_frame_window::on_set_parent(sp(::user::interaction) puiParent)
 
 }
 
-void simple_frame_window::GetClientRect(LPRECT lprect)
+bool simple_frame_window::GetClientRect(LPRECT lprect)
 {
+   
    if (m_bWindowFrame && m_pframeschema != NULL && !WfiIsFullScreen())
    {
-      m_pframeschema->get_window_client_rect(lprect);
+      
+      return m_pframeschema->get_window_client_rect(lprect);
+
    }
    else
    {
-      ::user::frame_window::GetClientRect(lprect);
+      
+      return ::user::frame_window::GetClientRect(lprect);
+
    }
+
+
 }
 
 

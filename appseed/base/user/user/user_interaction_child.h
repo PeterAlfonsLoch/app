@@ -117,18 +117,18 @@ namespace user
       virtual ::user::interaction * GetOwner() const;
 
       using ::user::interaction_impl_base::GetWindowRect;
-      void GetWindowRect(RECT64 * lprect);
+      bool GetWindowRect(RECT64 * lprect);
       using ::user::interaction_impl_base::GetClientRect;
-      void GetClientRect(RECT64 * lprect);
+      bool GetClientRect(RECT64 * lprect);
 
-      virtual void ClientToScreen(LPRECT lprect);
-      virtual void ClientToScreen(RECT64 * lprect);
-      virtual void ClientToScreen(LPPOINT lppoint);
-      virtual void ClientToScreen(POINT64 * lppoint);
-      virtual void ScreenToClient(LPRECT lprect);
-      virtual void ScreenToClient(RECT64 * lprect);
-      virtual void ScreenToClient(LPPOINT lppoint);
-      virtual void ScreenToClient(POINT64 * lppoint);
+      virtual bool ClientToScreen(LPRECT lprect);
+      virtual bool ClientToScreen(RECT64 * lprect);
+      virtual bool ClientToScreen(LPPOINT lppoint);
+      virtual bool ClientToScreen(POINT64 * lppoint);
+      virtual bool ScreenToClient(LPRECT lprect);
+      virtual bool ScreenToClient(RECT64 * lprect);
+      virtual bool ScreenToClient(LPPOINT lppoint);
+      virtual bool ScreenToClient(POINT64 * lppoint);
 
       virtual bool keyboard_focus_OnKillFocus();
 

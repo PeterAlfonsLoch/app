@@ -190,19 +190,55 @@ namespace plugin
    }
 
 
-   void host_interaction::GetWindowRect(RECT64 * lprect)
+   bool host_interaction::GetWindowRect(RECT64 * lprect)
    {
+
+      if(m_pplugin == NULL)
+      {
+
+         return false;
+
+      }
+      
       RECT rect;
-      m_pplugin->GetWindowRect(&rect);
+      
+      if(!m_pplugin->GetWindowRect(&rect))
+      {
+
+         return false;
+
+      }
+      
       ::copy(lprect, &rect);
+
+      return true;
+
    }
 
 
-   void host_interaction::GetClientRect(RECT64 * lprect)
+   bool host_interaction::GetClientRect(RECT64 * lprect)
    {
+      
+      if(m_pplugin == NULL)
+      {
+
+         return false;
+
+      }
+
       RECT rect;
-      m_pplugin->GetClientRect(&rect);
+
+      if(!m_pplugin->GetClientRect(&rect))
+      {
+
+         return false;
+
+      }
+
       ::copy(lprect,&rect);
+
+      return true;
+
    }
 
 

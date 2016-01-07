@@ -170,9 +170,9 @@ namespace simple_ui
       TRACE("Just after create_window_ex for simple_message_box (m_pimpl->m_pui) : %d",m_pimpl->m_pui);
 
 
-      SetWindowPos(ZORDER_TOP,rectFontopus,SWP_SHOWWINDOW);
-
       layout();
+
+      SetWindowPos(ZORDER_TOP,rectFontopus,SWP_SHOWWINDOW);
 
       SetForegroundWindow();
 

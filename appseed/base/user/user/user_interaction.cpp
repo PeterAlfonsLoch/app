@@ -458,10 +458,18 @@ namespace user
    }
 
 
-   void interaction::GetClientRect(LPRECT lprect)
+   bool interaction::GetClientRect(LPRECT lprect)
    {
+      
       RECT64 rect;
-      GetClientRect(&rect);
+
+      if(!GetClientRect(&rect))
+      {
+
+         return false;
+
+      }
+
       lprect->left = (LONG)rect.left;
       lprect->top = (LONG)rect.top;
       lprect->right = (LONG)rect.right;
@@ -470,29 +478,50 @@ namespace user
       lprect->right -= get_final_y_scroll_bar_width();
       lprect->bottom -= get_final_x_scroll_bar_width();
 
+      return true;
+
    }
 
-   void interaction::GetWindowRect(LPRECT lprect)
+
+   bool interaction::GetWindowRect(LPRECT lprect)
    {
+
       rect64 rectWindow;
-      GetWindowRect(rectWindow);
+
+      if(!GetWindowRect(rectWindow))
+      {
+
+         return false;
+
+      }
+
       lprect->left = (LONG)rectWindow.left;
       lprect->top = (LONG)rectWindow.top;
       lprect->right = (LONG)rectWindow.right;
       lprect->bottom = (LONG)rectWindow.bottom;
+
+      return true;
+
    }
 
 
-
-   void interaction::GetWindowRect(RECT64 * lprect)
+   bool interaction::GetWindowRect(RECT64 * lprect)
    {
 
       if(m_pimpl == NULL)
-         return;
+      {
 
-      m_pimpl->GetWindowRect(lprect);
+         return false;
 
+      }
 
+      if(!m_pimpl->GetWindowRect(lprect))
+      {
+
+         return false;
+      }
+
+      return true;
 
    }
 
@@ -6357,101 +6386,200 @@ synch_lock sl(m_pmutex);
    }
 
 
-   void interaction::ClientToScreen(LPRECT lprect)
+   bool interaction::ClientToScreen(LPRECT lprect)
    {
 
       if(m_pimpl == NULL)
-         return;
+      {
 
-      m_pimpl->ClientToScreen(lprect);
+         return false;
+
+      }
+
+      if(!m_pimpl->ClientToScreen(lprect))
+      {
+
+         return false;
+
+      }
+
+      return true;
 
    }
 
 
-   void interaction::ClientToScreen(LPPOINT lppoint)
+   bool interaction::ClientToScreen(LPPOINT lppoint)
    {
 
       if(m_pimpl == NULL)
-         return;
+      {
 
-      m_pimpl->ClientToScreen(lppoint);
+         return false;
+
+      }
+
+      if(!m_pimpl->ClientToScreen(lppoint))
+      {
+
+         return false;
+
+      }
+
+      return true;
 
    }
 
 
-   void interaction::ClientToScreen(RECT64 * lprect)
+   bool interaction::ClientToScreen(RECT64 * lprect)
    {
 
       if(m_pimpl == NULL)
-         return;
+      {
 
-      m_pimpl->ClientToScreen(lprect);
+         return false;
+
+      }
+
+      if(!m_pimpl->ClientToScreen(lprect))
+      {
+
+         return false;
+
+      }
+
+      return true;
 
    }
 
 
-   void interaction::ClientToScreen(POINT64 * lppoint)
+   bool interaction::ClientToScreen(POINT64 * lppoint)
    {
 
       if(m_pimpl == NULL)
-         return;
+      {
 
-      m_pimpl->ClientToScreen(lppoint);
+         return false;
+
+      }
+
+      if(!m_pimpl->ClientToScreen(lppoint))
+      {
+
+         return false;
+
+      }
+
+      return true;
 
    }
 
 
-   void interaction::ScreenToClient(LPRECT lprect)
+   bool interaction::ScreenToClient(LPRECT lprect)
    {
 
       if(m_pimpl == NULL)
-         return;
+      {
 
-      m_pimpl->ScreenToClient(lprect);
+         return false;
+
+      }
+
+      if(!m_pimpl->ScreenToClient(lprect))
+      {
+
+         return false;
+
+      }
+
+      return true;
 
    }
 
 
-   void interaction::ScreenToClient(LPPOINT lppoint)
+   bool interaction::ScreenToClient(LPPOINT lppoint)
    {
 
       if(m_pimpl == NULL)
-         return;
+      {
 
-      m_pimpl->ScreenToClient(lppoint);
+         return false;
+
+      }
+
+      if(!m_pimpl->ScreenToClient(lppoint))
+      {
+
+         return false;
+
+      }
+
+      return true;
 
    }
 
 
-   void interaction::ScreenToClient(RECT64 * lprect)
+   bool interaction::ScreenToClient(RECT64 * lprect)
    {
 
       if(m_pimpl == NULL)
-         return;
+      {
 
-      m_pimpl->ScreenToClient(lprect);
+         return false;
+
+      }
+
+      if(!m_pimpl->ScreenToClient(lprect))
+      {
+
+         return false;
+
+      }
+
+      return true;
 
    }
 
 
-   void interaction::ScreenToClient(POINT64 * lppoint)
+   bool interaction::ScreenToClient(POINT64 * lppoint)
    {
 
       if(m_pimpl == NULL)
-         return;
+      {
+       
+         return false;
 
-      m_pimpl->ScreenToClient(lppoint);
+      }
+
+      if(!m_pimpl->ScreenToClient(lppoint))
+      {
+
+         return false;
+
+      }
+
+      return true;
 
    }
 
 
-   void interaction::GetClientRect(RECT64 * lprect)
+   bool interaction::GetClientRect(RECT64 * lprect)
    {
 
       if(m_pimpl == NULL)
-         return;
+      {
+       
+         return false;
 
-      m_pimpl->GetClientRect(lprect);
+      }
+
+      if(!m_pimpl->GetClientRect(lprect))
+      {
+
+         return false;
+
+      }
+
+      return true;
 
    }
 

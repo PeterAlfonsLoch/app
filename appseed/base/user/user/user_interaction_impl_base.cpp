@@ -309,98 +309,261 @@ namespace user
    }
 
 
-   void interaction_impl_base::ClientToScreen(LPRECT lprect)
+   bool interaction_impl_base::ClientToScreen(LPRECT lprect)
    {
 
-      m_pui->ClientToScreen(lprect);
+      if(m_pui == NULL)
+      {
+
+         return false;
+
+      }
+
+      if(!m_pui->ClientToScreen(lprect))
+      {
+
+         return false;
+
+      }
+
+      return true;
 
    }
 
 
-   void interaction_impl_base::ClientToScreen(LPPOINT lppoint)
+   bool interaction_impl_base::ClientToScreen(LPPOINT lppoint)
    {
 
-      m_pui->ClientToScreen(lppoint);
+      if(m_pui == NULL)
+      {
+
+         return false;
+
+      }
+
+      if(!m_pui->ClientToScreen(lppoint))
+      {
+
+         return false;
+
+      }
+
+      return true;
 
    }
 
 
-   void interaction_impl_base::ClientToScreen(RECT64 * lprect)
+   bool interaction_impl_base::ClientToScreen(RECT64 * lprect)
    {
 
-      m_pui->ClientToScreen(lprect);
+      if(m_pui == NULL)
+      {
+
+         return false;
+
+      }
+
+      if(!m_pui->ClientToScreen(lprect))
+      {
+
+         return false;
+
+      }
+
+      return true;
 
    }
 
 
-   void interaction_impl_base::ClientToScreen(POINT64 * lppoint)
+   bool interaction_impl_base::ClientToScreen(POINT64 * lppoint)
    {
 
-      m_pui->ClientToScreen(lppoint);
+      if(m_pui == NULL)
+      {
+
+         return false;
+
+      }
+
+      if(!m_pui->ClientToScreen(lppoint))
+      {
+
+         return false;
+
+      }
+
+      return true;
 
    }
 
 
-   void interaction_impl_base::ScreenToClient(LPRECT lprect)
+   bool interaction_impl_base::ScreenToClient(LPRECT lprect)
    {
 
-      m_pui->ScreenToClient(lprect);
+      if(m_pui == NULL)
+      {
+
+         return false;
+
+      }
+
+      if(!m_pui->ScreenToClient(lprect))
+      {
+
+         return false;
+
+      }
+
+      return true;
 
    }
 
 
-   void interaction_impl_base::ScreenToClient(LPPOINT lppoint)
+   bool interaction_impl_base::ScreenToClient(LPPOINT lppoint)
    {
 
-      m_pui->ScreenToClient(lppoint);
+      if(m_pui == NULL)
+      {
+
+         return false;
+
+      }
+
+      if(!m_pui->ScreenToClient(lppoint))
+      {
+
+         return false;
+
+      }
+
+      return true;
 
    }
 
 
-   void interaction_impl_base::ScreenToClient(RECT64 * lprect)
+   bool interaction_impl_base::ScreenToClient(RECT64 * lprect)
    {
 
-      m_pui->ScreenToClient(lprect);
+      if(m_pui == NULL)
+      {
+
+         return false;
+
+      }
+
+      if(!m_pui->ScreenToClient(lprect))
+      {
+
+         return false;
+
+      }
+
+      return true;
 
    }
 
 
-   void interaction_impl_base::ScreenToClient(POINT64 * lppoint)
+   bool interaction_impl_base::ScreenToClient(POINT64 * lppoint)
    {
 
-      m_pui->ScreenToClient(lppoint);
+      if(m_pui == NULL)
+      {
+
+         return false;
+
+      }
+
+      if(!m_pui->ScreenToClient(lppoint))
+      {
+
+         return false;
+
+      }
+
+      return true;
 
    }
 
 
-   void interaction_impl_base::GetWindowRect(LPRECT lprect)
+   bool interaction_impl_base::GetWindowRect(LPRECT lprect)
    {
 
-      m_pui->GetWindowRect(lprect);
+      if(m_pui == NULL)
+      {
+
+         return false;
+
+      }
+
+      if(!m_pui->GetWindowRect(lprect))
+      {
+
+         return false;
+
+      }
+
+      return true;
 
    }
 
 
-   void interaction_impl_base::GetClientRect(LPRECT lprect)
+   bool interaction_impl_base::GetClientRect(LPRECT lprect)
    {
 
-      m_pui->GetClientRect(lprect);
+      if(m_pui == NULL)
+      {
+
+         return false;
+
+      }
+
+      if(!m_pui->GetClientRect(lprect))
+      {
+
+         return false;
+
+      }
+
+      return true;
 
    }
 
 
-   void interaction_impl_base::GetClientRect(RECT64 * lprect)
+   bool interaction_impl_base::GetClientRect(RECT64 * lprect)
    {
 
-      m_pui->GetClientRect(lprect);
+      if(m_pui == NULL)
+      {
+
+         return false;
+
+      }
+
+      if(!m_pui->GetClientRect(lprect))
+      {
+
+         return false;
+
+      }
+
+      return true;
 
    }
 
 
-   void interaction_impl_base::GetWindowRect(RECT64 * lprect)
+   bool interaction_impl_base::GetWindowRect(RECT64 * lprect)
    {
+
+      if(!IsWindow())
+      {
+
+         return false;
+
+      }
 
       *lprect = m_rectParentClient;
+
+      return true;
 
    }
 

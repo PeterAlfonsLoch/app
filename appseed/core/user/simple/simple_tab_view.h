@@ -26,7 +26,7 @@ public:
 
    void _001OnCreate(signal_details * pobj);
 
-   virtual void GetClientRect(LPRECT lprect);
+   virtual bool GetClientRect(LPRECT lprect);
 
    virtual void install_message_handling(::message::dispatch * pinterface);
 

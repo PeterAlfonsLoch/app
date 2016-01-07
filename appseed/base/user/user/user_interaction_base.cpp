@@ -290,98 +290,122 @@ namespace user
    }
 
 
-   void interaction_base::ClientToScreen(LPRECT lprect)
+   bool interaction_base::ClientToScreen(LPRECT lprect)
    {
 
       ::exception::throw_interface_only(get_app());
+
+      return false;
 
    }
 
 
-   void interaction_base::ClientToScreen(LPPOINT lppoint)
+   bool interaction_base::ClientToScreen(LPPOINT lppoint)
    {
 
       ::exception::throw_interface_only(get_app());
+
+      return false;
 
    }
 
 
-   void interaction_base::ClientToScreen(RECT64 * lprect)
+   bool interaction_base::ClientToScreen(RECT64 * lprect)
    {
 
       ::exception::throw_interface_only(get_app());
+
+      return false;
 
    }
 
 
-   void interaction_base::ClientToScreen(POINT64 * lppoint)
+   bool interaction_base::ClientToScreen(POINT64 * lppoint)
    {
 
       ::exception::throw_interface_only(get_app());
+
+      return false;
 
    }
 
 
-   void interaction_base::ScreenToClient(LPRECT lprect)
+   bool interaction_base::ScreenToClient(LPRECT lprect)
    {
 
       ::exception::throw_interface_only(get_app());
+
+      return false;
 
    }
 
 
-   void interaction_base::ScreenToClient(LPPOINT lppoint)
+   bool interaction_base::ScreenToClient(LPPOINT lppoint)
    {
 
       ::exception::throw_interface_only(get_app());
+
+      return false;
 
    }
 
 
-   void interaction_base::ScreenToClient(RECT64 * lprect)
+   bool interaction_base::ScreenToClient(RECT64 * lprect)
    {
 
       ::exception::throw_interface_only(get_app());
+
+      return false;
 
    }
 
 
-   void interaction_base::ScreenToClient(POINT64 * lppoint)
+   bool interaction_base::ScreenToClient(POINT64 * lppoint)
    {
 
       ::exception::throw_interface_only(get_app());
+
+      return false;
 
    }
 
 
-   void interaction_base::GetWindowRect(LPRECT lprect)
+   bool interaction_base::GetWindowRect(LPRECT lprect)
    {
 
       ::exception::throw_interface_only(get_app());
+
+      return false;
 
    }
 
 
-   void interaction_base::GetClientRect(LPRECT lprect)
+   bool interaction_base::GetClientRect(LPRECT lprect)
    {
 
       ::exception::throw_interface_only(get_app());
+
+      return false;
 
    }
 
 
-   void interaction_base::GetClientRect(RECT64 * lprect)
+   bool interaction_base::GetClientRect(RECT64 * lprect)
    {
 
       ::exception::throw_interface_only(get_app());
+
+      return false;
 
    }
 
 
-   void interaction_base::GetWindowRect(RECT64 * lprect)
+   bool interaction_base::GetWindowRect(RECT64 * lprect)
    {
 
       ::exception::throw_interface_only(get_app());
+
+      return false;
 
    }
 

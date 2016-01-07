@@ -623,7 +623,7 @@ namespace user
       return true;
    }
 
-   void control::GetWindowRect(LPRECT lprect)
+   bool control::GetWindowRect(LPRECT lprect)
    {
 //      if(get_form() != NULL)
 //      {
@@ -631,11 +631,11 @@ namespace user
 //      }
 //      else
       {
-         ::user::interaction::GetWindowRect(lprect);
+         return ::user::interaction::GetWindowRect(lprect);
       }
    }
 
-   void control::GetClientRect(LPRECT lprect)
+   bool control::GetClientRect(LPRECT lprect)
    {
       //if(get_form() != NULL)
       //{
@@ -643,7 +643,7 @@ namespace user
       //}
       //else
       {
-         ::user::interaction::GetClientRect(lprect);
+         return ::user::interaction::GetClientRect(lprect);
       }
    }
 

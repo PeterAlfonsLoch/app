@@ -915,43 +915,66 @@ namespace hotplugin
 
    }
 
-   void plugin::ClientToScreen(POINT * ppt)
+   bool plugin::ClientToScreen(POINT * ppt)
    {
 
       ::user::interaction::ClientToScreen(ppt);
 
+      return true;
+
    }
 
-   void plugin::ScreenToClient(POINT * ppt)
+   bool plugin::ScreenToClient(POINT * ppt)
    {
 
       ::user::interaction::ScreenToClient(ppt);
 
-   }
-
-
-   void plugin::GetWindowRect(RECT64 * prect)
-   {
-
-      if(m_phost != NULL)
-      {
-
-         m_phost->GetWindowRect(prect);
-
-      }
+      return true;
 
    }
 
 
-   void plugin::GetClientRect(RECT64 * prect)
+   bool plugin::GetWindowRect(RECT64 * prect)
    {
 
-      if(m_phost != NULL)
+      if(m_phost == NULL)
       {
 
-         m_phost->GetClientRect(prect);
+         return false;
 
       }
+
+      if(!m_phost->GetWindowRect(prect))
+      {
+
+         return false;
+
+      }
+
+      return true;
+
+   }
+
+
+   bool plugin::GetClientRect(RECT64 * prect)
+   {
+
+      if(m_phost == NULL)
+      {
+
+         return false;
+
+      }
+
+
+      if(!m_phost->GetClientRect(prect))
+      {
+         
+         return false;
+
+      }
+
+      return true;
 
    }
 

@@ -105,7 +105,7 @@ public:
    virtual bool on_before_set_parent(sp(::user::interaction) pinterface);
    virtual void on_set_parent(sp(::user::interaction) puiParent);
 
-   virtual void GetClientRect(LPRECT lprect);
+   virtual bool GetClientRect(LPRECT lprect);
 
    virtual bool is_application_main_window();
 

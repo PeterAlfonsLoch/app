@@ -861,20 +861,34 @@ namespace user
          }
 
 
-         void frame::get_window_client_rect(LPRECT lprect)
+         bool frame::get_window_client_rect(LPRECT lprect)
          {
             
             *lprect = m_rectClient;
 
+            return true;
+
          }
 
 
-         void frame::get_draw_client_rect(LPRECT lprect)
+         bool frame::get_draw_client_rect(LPRECT lprect)
          {
+
             rect rect;
-            get_window_client_rect(rect);
+
+            if(!get_window_client_rect(rect))
+            {
+
+               return false;
+
+            }
+
             rect.offset(-rect.top_left());
+
             *lprect = rect;
+
+            return true;
+
          }
 
 

@@ -26,6 +26,7 @@ CLASS_DECL_AURA oswindow get_splash();
 CLASS_DECL_AURA int get_processor_count();
 
 CLASS_DECL_AURA void output_debug_string(const char * psz);
+CLASS_DECL_AURA void writeln(const char * psz);
 
 
 

@@ -810,7 +810,7 @@ namespace user
    }
 
 
-   void interaction_child::GetClientRect(RECT64 * lprect)
+   bool interaction_child::GetClientRect(RECT64 * lprect)
    {
 
       *lprect = m_rectParentClient;
@@ -819,10 +819,12 @@ namespace user
       lprect->left = 0;
       lprect->top = 0;
 
+      return true;
+
    }
 
 
-   void interaction_child::GetWindowRect(RECT64 * lprect)
+   bool interaction_child::GetWindowRect(RECT64 * lprect)
    {
 
       *lprect = m_rectParentClient;
@@ -830,7 +832,12 @@ namespace user
       if(GetParent() != NULL)
       {
 
-         GetParent()->ClientToScreen(lprect);
+         if(!GetParent()->ClientToScreen(lprect))
+         {
+
+            return false;
+
+         }
 
          point ptScroll = m_pui->get_parent_viewport_offset();
 
@@ -841,11 +848,13 @@ namespace user
 
       }
 
+      return true;
+
    }
 
 
 
-   void interaction_child::ClientToScreen(LPRECT lprect)
+   bool interaction_child::ClientToScreen(LPRECT lprect)
    {
 
       lprect->left   += (LONG)m_rectParentClient.left;
@@ -856,7 +865,12 @@ namespace user
       if(GetParent() != NULL)
       {
 
-         GetParent()->ClientToScreen(lprect);
+         if(!GetParent()->ClientToScreen(lprect))
+         {
+
+            return false;
+
+         }
 
          point ptScroll = m_pui->get_parent_viewport_offset();
 
@@ -867,10 +881,12 @@ namespace user
 
       }
 
+      return true;
+
    }
 
 
-   void interaction_child::ClientToScreen(LPPOINT lppoint)
+   bool interaction_child::ClientToScreen(LPPOINT lppoint)
    {
 
       lppoint->x     += (LONG)m_rectParentClient.left;
@@ -879,7 +895,12 @@ namespace user
       if(GetParent() != NULL)
       {
 
-         GetParent()->ClientToScreen(lppoint);
+         if(!GetParent()->ClientToScreen(lppoint))
+         {
+
+            return false;
+
+         }
 
          point ptScroll = m_pui->get_parent_viewport_offset();
 
@@ -888,10 +909,12 @@ namespace user
 
       }
 
+      return true;
+
    }
 
 
-   void interaction_child::ClientToScreen(RECT64 * lprect)
+   bool interaction_child::ClientToScreen(RECT64 * lprect)
    {
 
       lprect->left   += m_rectParentClient.left;
@@ -902,7 +925,12 @@ namespace user
       if(GetParent() != NULL)
       {
 
-         GetParent()->ClientToScreen(lprect);
+         if(!GetParent()->ClientToScreen(lprect))
+         {
+
+            return false;
+
+         }
 
          point ptScroll = m_pui->get_parent_viewport_offset();
 
@@ -913,10 +941,12 @@ namespace user
 
       }
 
+      return true;
+
    }
 
 
-   void interaction_child::ClientToScreen(POINT64 * lppoint)
+   bool interaction_child::ClientToScreen(POINT64 * lppoint)
    {
 
       lppoint->x     += m_rectParentClient.left;
@@ -925,7 +955,12 @@ namespace user
       if(GetParent() != NULL)
       {
 
-         GetParent()->ClientToScreen(lppoint);
+         if(!GetParent()->ClientToScreen(lppoint))
+         {
+
+            return false;
+
+         }
 
          point ptScroll = m_pui->get_parent_viewport_offset();
 
@@ -934,10 +969,12 @@ namespace user
 
       }
 
+      return true;
+
    }
 
 
-   void interaction_child::ScreenToClient(LPRECT lprect)
+   bool interaction_child::ScreenToClient(LPRECT lprect)
    {
 
       lprect->left   -= (LONG)m_rectParentClient.left;
@@ -948,7 +985,12 @@ namespace user
       if(GetParent() != NULL)
       {
 
-         GetParent()->ScreenToClient(lprect);
+         if(!GetParent()->ScreenToClient(lprect))
+         {
+
+            return false;
+
+         }
 
          point ptScroll = m_pui->get_parent_viewport_offset();
 
@@ -959,10 +1001,12 @@ namespace user
 
       }
 
+      return true;
+
    }
 
 
-   void interaction_child::ScreenToClient(LPPOINT lppoint)
+   bool interaction_child::ScreenToClient(LPPOINT lppoint)
    {
 
       lppoint->x     -= (LONG)m_rectParentClient.left;
@@ -970,7 +1014,13 @@ namespace user
 
       if(GetParent() != NULL)
       {
-         GetParent()->ScreenToClient(lppoint);
+         
+         if(!GetParent()->ScreenToClient(lppoint))
+         {
+
+            return false;
+
+         }
 
          point ptScroll = m_pui->get_parent_viewport_offset();
 
@@ -979,10 +1029,12 @@ namespace user
 
       }
 
+      return true;
+
    }
 
 
-   void interaction_child::ScreenToClient(RECT64 * lprect)
+   bool interaction_child::ScreenToClient(RECT64 * lprect)
    {
 
       lprect->left   -= m_rectParentClient.left;
@@ -993,7 +1045,12 @@ namespace user
       if(GetParent() != NULL)
       {
 
-         GetParent()->ScreenToClient(lprect);
+         if(!GetParent()->ScreenToClient(lprect))
+         {
+
+            return false;
+
+         }
 
          point ptScroll = m_pui->get_parent_viewport_offset();
 
@@ -1004,10 +1061,12 @@ namespace user
 
       }
 
+      return true;
+
    }
 
 
-   void interaction_child::ScreenToClient(POINT64 * lppoint)
+   bool interaction_child::ScreenToClient(POINT64 * lppoint)
    {
 
       lppoint->x     -= m_rectParentClient.left;
@@ -1016,7 +1075,12 @@ namespace user
       if(GetParent() != NULL)
       {
 
-         GetParent()->ScreenToClient(lppoint);
+         if(!GetParent()->ScreenToClient(lppoint))
+         {
+
+            return false;
+
+         }
 
          point ptScroll = m_pui->get_parent_viewport_offset();
 
@@ -1025,7 +1089,10 @@ namespace user
 
       }
 
+      return true;
+
    }
+
 
    bool interaction_child::keyboard_focus_OnKillFocus()
    {

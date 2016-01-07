@@ -703,7 +703,7 @@ namespace user
 
       //virtual rect get_scroll_margin();
 
-      virtual void GetClientRect(LPRECT lprect);
+      virtual bool GetClientRect(LPRECT lprect);
       virtual size get_page_size();
       virtual size get_total_size();
 

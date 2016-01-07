@@ -5968,21 +5968,33 @@ namespace user
    }
 
 
-   void mesh::GetClientRect(LPRECT lprect)
+   bool mesh::GetClientRect(LPRECT lprect)
    {
 
       if(m_eview == view_grid && m_iItemHeight > 0)
       {
 
-         ::user::control::GetClientRect(lprect);
+         if(!::user::control::GetClientRect(lprect))
+         {
+
+            return false;
+
+         }
 
       }
       else
       {
 
-         ::user::control::GetClientRect(lprect);
+         if(!::user::control::GetClientRect(lprect))
+         {
+
+            return false;
+
+         }
 
       }
+
+      return true;
 
    }
 

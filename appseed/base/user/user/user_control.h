@@ -190,8 +190,8 @@ namespace user
 
       using ::user::interaction::GetClientRect;
       using ::user::interaction::GetWindowRect;
-      virtual void GetClientRect(LPRECT lprect);
-      virtual void GetWindowRect(LPRECT lprect);
+      virtual bool GetClientRect(LPRECT lprect);
+      virtual bool GetWindowRect(LPRECT lprect);
 
 
       bool operator == (const class ::user::control::descriptor & descriptor) const;
