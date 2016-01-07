@@ -264,3 +264,10 @@ int __cdecl debug_report(int,char const *,int,char const *,char const *,...)
    return 1;
 
 }
+
+CLASS_DECL_AURA void writeln(const char * psz)
+{
+
+   output_debug_string(string(psz) + "\n");
+
+}
