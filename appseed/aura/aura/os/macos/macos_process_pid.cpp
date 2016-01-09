@@ -77,6 +77,10 @@ extern int strncmp_dup(const char * sz1, const char * sz2, int_ptr iLen);
 //} /* end of getProcessId() */
 //
 
+// http://stackoverflow.com/questions/3018054/retrieve-names-of-running-processes
+// http://stackoverflow.com/users/115730/dave-delong
+// http://stackoverflow.com/users/237188/v%C3%A1clav-slav%C3%ADk
+// https://github.com/vslavik/
 
 int_array get_pids()
 {
@@ -85,17 +89,26 @@ int_array get_pids()
    
    array < pid_t > pida;
    
-#define SHOW_ZOMBIES 0
+   int numberOfProcesses = proc_listpids(PROC_ALL_PIDS, 0, NULL, 0);
    
-      struct proc_taskallinfo info;
+   pida.set_size(numberOfProcesses);
+   
+   proc_listpids(PROC_ALL_PIDS, 0, pids, sizeof(pids));
+   
+   for(auto pid : pida)
+   {
+      if(pid == 0)
+      {
+         
+         continue;
       
-      int ret = proc_pidinfo(atoi(argv[1]), PROC_PIDTASKALLINFO, SHOW_ZOMBIES,
-                             &info, sizeof(struct proc_taskallinfo));
-      printf("ret=%d, result=%s\n", ret, (char *) info.pbsd.pbi_comm);
+      }
       
-      return 0;
+      pids.add(pid);
+      
    }
    
+   return pids;
    
 }
 
