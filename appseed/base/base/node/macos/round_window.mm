@@ -29,7 +29,7 @@ NSWindow * new_round_window(round_window * pwindow, CGRect rect)
    
 }
 
-void ns_shared_application()
+void ns_shared_application(int argc, char *argv[])
 {
    
    NSApplicationMain(argc, (const char **) argv);

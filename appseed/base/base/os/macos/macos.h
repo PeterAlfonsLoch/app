@@ -345,4 +345,4 @@
 
 
 int32_t run_system();
-int32_t base_main_command_line(const char * pszCommandLine);
+int32_t base_main_command_line(const char * pszParams, int argc, char *argv[]);

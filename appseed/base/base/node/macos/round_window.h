@@ -53,7 +53,7 @@ bool m_bDirty;
 };
 
 
-void ns_shared_application();
+void ns_shared_application(int argc, char *argv[]);
 NSWindow * new_round_window(round_window * pwindow, CGRect rect);
 void ns_app_run();
 void ns_app_close();

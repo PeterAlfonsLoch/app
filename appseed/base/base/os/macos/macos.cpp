@@ -103,13 +103,48 @@ int32_t run_system()
 return   __run_system_command_line(g_pszCommandLine);
 }
 
-int32_t base_main_command_line(const char * pszCommandLine)
+int32_t base_main_command_line(const char * pszParams, int argc, char *argv[])
 {
+   
+   pid_t processid;
+   
+   string strCommandLine;
+   
+   strCommandLine = "app ";
+   
+   strCommandLine += pszParams;
+   
+   processid=getpid();
+   
+   printf("%d\n", processid);
+   
+   string strAddUp;
+   
+   for(index i = 0; i < argc; i++)
+   {
+      
+      if(strcmp(argv[i], "install") == 0)
+      {
+         
+         strAddUp += " install";
+         
+      }
+      else if(strcmp(argv[i], "uninstall") == 0)
+      {
+         
+         strAddUp += " uninstall";
+         
+      }
+      
+   }
+   
+   strCommandLine += strAddUp;
    
    setlocale(LC_ALL,"");
    
-   g_pszCommandLine = strdup_dup(pszCommandLine);
-   ns_shared_application();
+   g_pszCommandLine = strdup_dup(strCommandLine);
+   
+   ns_shared_application(argc, argv);
    
    
 //   __run_system_command_line(pszCommandLine);
