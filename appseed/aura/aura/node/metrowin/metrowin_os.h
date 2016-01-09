@@ -64,6 +64,8 @@ namespace metrowin
 
       virtual void post_to_all_threads(UINT message, WPARAM wParam, LPARAM lParam);
 
+      virtual int get_pid() override;
+
    };
 
 

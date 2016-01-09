@@ -17,7 +17,13 @@ namespace aura
 
       int iPid = System.os().get_pid();
 
-      ::file::path p = module_path_from_pid(iPid);
+      ::file::path p;
+
+#ifndef METROWIN
+
+      p = module_path_from_pid(iPid);
+
+#endif
 
       defer_add_module(p);
 

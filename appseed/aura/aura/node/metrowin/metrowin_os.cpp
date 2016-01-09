@@ -900,6 +900,13 @@ namespace metrowin
 
 
    }
+   
+   int os::get_pid()
+   {
+      
+      return 0;
+
+   }
 
 
 } // namespace metrowin

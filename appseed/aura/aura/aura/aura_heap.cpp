@@ -445,7 +445,7 @@ void memory_free_dbg(void * pmemory, int32_t iBlockType)
 
       if(((byte *)&pheap->m_paddingBefore[16])[pheap->m_size + i] != 0)
       {
-         ::OutputDebugString("*&!@");
+         ::output_debug_string("*&!@");
       }
 
    }

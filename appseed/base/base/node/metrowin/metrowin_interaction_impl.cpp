@@ -4163,101 +4163,206 @@ namespace metrowin
 
    void interaction_impl::MoveWindow(int x,int y,int nWidth,int nHeight,bool bRepaint)
    {
+      
       ASSERT(::IsWindow(get_handle()));
+
       SetWindowPos(NULL,x,y,nWidth,nHeight,bRepaint ? SWP_SHOWWINDOW : 0);
+
    }
 
-   void interaction_impl::ClientToScreen(LPRECT lprect)
+
+   bool interaction_impl::ClientToScreen(LPRECT lprect)
    {
 
       class rect64 rectWindow;
-      m_pui->GetWindowRect(rectWindow);
+      
+      if(!m_pui->GetWindowRect(rectWindow))
+      {
+
+         return false;
+
+      }
 
       lprect->left   += (LONG)rectWindow.left;
       lprect->right  += (LONG)rectWindow.left;
       lprect->top    += (LONG)rectWindow.top;
       lprect->bottom += (LONG)rectWindow.top;
 
+      return true;
+
    }
 
-   void interaction_impl::ClientToScreen(LPPOINT lppoint)
+
+   bool interaction_impl::ClientToScreen(LPPOINT lppoint)
    {
+      
       class rect64 rectWindow;
-      m_pui->GetWindowRect(rectWindow);
+      
+      if(!m_pui->GetWindowRect(rectWindow))
+      {
+
+         return false;
+
+      }
 
       lppoint->x     += (LONG)rectWindow.left;
       lppoint->y     += (LONG)rectWindow.top;
+
+      return true;
+
    }
 
 
-   void interaction_impl::ClientToScreen(RECT64 * lprect)
+   bool interaction_impl::ClientToScreen(RECT64 * lprect)
    {
+      
       class rect rectWindow;
-      m_pui->GetWindowRect(rectWindow);
+      
+      if(!m_pui->GetWindowRect(rectWindow))
+      {
+
+         return false;
+
+      }
 
       lprect->left   += rectWindow.left;
       lprect->right  += rectWindow.left;
       lprect->top    += rectWindow.top;
       lprect->bottom += rectWindow.top;
 
+      return true;
+
    }
 
-   void interaction_impl::ClientToScreen(POINT64 * lppoint)
+
+   bool interaction_impl::ClientToScreen(POINT64 * lppoint)
    {
+      
       class rect64 rectWindow;
-      m_pui->GetWindowRect(rectWindow);
+
+      if(!m_pui->GetWindowRect(rectWindow))
+      {
+
+         return false;
+
+      }
 
       lppoint->x     += rectWindow.left;
       lppoint->y     += rectWindow.top;
+      
+      return true;
+
    }
 
 
-   void interaction_impl::ScreenToClient(LPRECT lprect)
+   bool interaction_impl::ScreenToClient(LPRECT lprect)
    {
+      
       class rect64 rectWindow;
-      m_pui->GetWindowRect(rectWindow);
+
+      if(!m_pui->GetWindowRect(rectWindow))
+      {
+
+         return false;
+
+      }
 
       lprect->left   -= (LONG)rectWindow.left;
       lprect->right  -= (LONG)rectWindow.left;
       lprect->top    -= (LONG)rectWindow.top;
       lprect->bottom -= (LONG)rectWindow.top;
 
+      return true;
+
    }
 
-   void interaction_impl::ScreenToClient(LPPOINT lppoint)
+
+   bool interaction_impl::ScreenToClient(LPPOINT lppoint)
    {
+      
       class rect64 rectWindow;
-      m_pui->GetWindowRect(rectWindow);
+
+      if(!m_pui->GetWindowRect(rectWindow))
+      {
+
+         return false;
+
+      }
 
       lppoint->x     -= (LONG)rectWindow.left;
       lppoint->y     -= (LONG)rectWindow.top;
+
+      return true;
+
    }
 
 
-   void interaction_impl::ScreenToClient(RECT64 * lprect)
+   bool interaction_impl::ScreenToClient(RECT64 * lprect)
    {
+      
       class rect64 rectWindow;
-      m_pui->GetWindowRect(rectWindow);
+      
+      if(!m_pui->GetWindowRect(rectWindow))
+      {
+
+         return false;
+
+      }
 
       lprect->left   -= rectWindow.left;
       lprect->right  -= rectWindow.left;
       lprect->top    -= rectWindow.top;
       lprect->bottom -= rectWindow.top;
 
+      return true;
+
    }
 
-   void interaction_impl::ScreenToClient(POINT64 * lppoint)
+
+   bool interaction_impl::ScreenToClient(POINT64 * lppoint)
    {
+      
       class rect64 rectWindow;
-      m_pui->GetWindowRect(rectWindow);
+
+      if(!m_pui->GetWindowRect(rectWindow))
+      {
+
+         return false;
+
+      }
 
       lppoint->x     -= rectWindow.left;
       lppoint->y     -= rectWindow.top;
+
+      return true;
+
    }
 
 
-   void interaction_impl::GetWindowRect(RECT64 * lprect)
+
+   bool interaction_impl::GetWindowRect(RECT64 * lprect)
    {
+
+      if(m_pwindow == NULL)
+      {
+
+         return false;
+
+      }
+
+      if(m_pwindow->m_pwindow == nullptr)
+      {
+
+         return false;
+
+      }
+
+      if(!::IsWindow(get_handle()))
+      {
+
+         return false;
+
+      }
 
       Windows::Foundation::Rect rect = m_pwindow->m_pwindow->get_window_rect();
 
@@ -4286,12 +4391,21 @@ namespace metrowin
          {
          interaction::GetWindowRect(lprect);
          }*/
+
+      return true;
+
    }
 
-   void interaction_impl::GetClientRect(RECT64 * lprect)
+
+   bool interaction_impl::GetClientRect(RECT64 * lprect)
    {
+      
       if(!::IsWindow(get_handle()))
-         return;
+      {
+
+         return false;
+
+      }
 
       GetWindowRect(lprect);
 
@@ -4311,7 +4425,11 @@ namespace metrowin
       {
          // interaction::GetClientRect(lprect);
       }
+
+      return true;
+
    }
+
 
    id interaction_impl::SetDlgCtrlId(id id)
    {
