@@ -14,7 +14,8 @@ namespace aura
    {
 
 
-      base::base()
+      base::base(::aura::application * papp) :
+         object(papp)
       {
          m_port = NULL;
       }
@@ -23,6 +24,19 @@ namespace aura
       {
       }
 
+
+      tx::tx(::aura::application * papp) :
+         object(papp),
+         base(papp)
+      {
+         
+      }
+      
+      
+      tx::~tx()
+      {
+         
+      }
 
 
       bool tx::open(const char * pszChannel,launcher * plauncher)
@@ -134,7 +148,9 @@ namespace aura
 
 
 
-      rx::rx()
+      rx::rx(::aura::application * papp) :
+         object(papp),
+         base(papp)
       {
 
          m_preceiver    = NULL;

@@ -15,7 +15,7 @@
 //#define ENABLE_BINRELOC
 
 
-CLASS_DECL_AURA dword get_tick_count();
+CLASS_DECL_AURA DWORD get_tick_count();
 
 //#define ARGB(a, r,g,b)          ((COLORREF)(((BYTE)(r)|((WORD)((BYTE)(g))<<8))|(((DWORD)(BYTE)(b))<<16)|(((DWORD)(BYTE)(a))<<24)))
 

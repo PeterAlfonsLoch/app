@@ -282,7 +282,7 @@
 		9A1B2F7F16A2AF5C00875A94 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "Camilo Sasuke Tsumanuma";
 			};
 			buildConfigurationList = 9A1B2F8216A2AF5C00875A94 /* Build configuration list for PBXProject "axisidn" */;
@@ -418,6 +418,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEPLOYMENT_POSTPROCESSING = YES;
+				ENABLE_TESTABILITY = YES;
 				EXECUTABLE_EXTENSION = dylib;
 				EXECUTABLE_PREFIX = lib;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
