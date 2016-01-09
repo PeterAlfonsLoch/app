@@ -11,10 +11,15 @@
 NSWindow * new_round_window(round_window * pwindow, CGRect rect)
 {
    
-   rect.origin.x     = 0;
-   rect.origin.x     = 0;
-   rect.size.width   = 0;
-   rect.size.height  = 0;
+////   rect.origin.x     = 0;
+  // rect.origin.y     = (int) [[NSScreen mainScreen]frame].size.height - rect.origin.y;
+  // rect.size.width   = 0;
+   //rect.size.height  = 0;
+   
+   rect.origin.x = 100;
+   rect.origin.y = 100;
+   rect.size.width   = 800;
+   rect.size.height  = 500;
    
    pwindow->m_proundwindow = [RoundWindow alloc];
    
@@ -24,14 +29,10 @@ NSWindow * new_round_window(round_window * pwindow, CGRect rect)
    
 }
 
-const char * app[1] = {"app.exe"};
-
 void ns_shared_application()
 {
    
-
-   
-   NSApplicationMain(1, app);
+   NSApplicationMain(argc, (const char **) argv);
 
 //   [RoundWindowApp sharedApplication];
    

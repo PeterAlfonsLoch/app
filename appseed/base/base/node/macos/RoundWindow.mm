@@ -32,11 +32,11 @@
 	if(self == NULL)
       return NULL;
    
-//	[self setOpaque:NO];
+	[self setOpaque:NO];
    
-   	[self setOpaque:YES];
+//	[self setOpaque:YES];
 
-//   [self setBackgroundColor:[NSColor clearColor]];
+   [self setBackgroundColor:[NSColor clearColor]];
 		
 //	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mainWindowChanged:) name:NSWindowDidBecomeMainNotification object:self];
 		
@@ -214,6 +214,8 @@
  
  */
 
+#define WINDOW_FRAME_PADDING 0
+
 
 //
 // contentRectForFrameRect:
@@ -224,7 +226,7 @@
 {
   // bounds = windowFrame;
 	windowFrame.origin = NSZeroPoint;
-	return NSInsetRect(windowFrame, 0, 0);
+	return NSInsetRect(windowFrame, WINDOW_FRAME_PADDING, WINDOW_FRAME_PADDING);
 }
 
 //
@@ -234,7 +236,7 @@
 //
 + (NSRect)frameRectForContentRect:(NSRect)windowContentRect styleMask:(NSUInteger)windowStyle
 {
-	return NSInsetRect(windowContentRect, -0, -0);
+	return NSInsetRect(windowContentRect, -WINDOW_FRAME_PADDING, -WINDOW_FRAME_PADDING);
 }
 
 

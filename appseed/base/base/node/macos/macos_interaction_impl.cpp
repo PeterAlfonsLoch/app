@@ -375,7 +375,7 @@ namespace macos
 
       copy(rect, rectParam);
 
-
+      
 
       if(hWndParent == MESSAGE_WINDOW_PARENT)
       {
@@ -3919,113 +3919,223 @@ namespace macos
    }
 
 
-   void interaction_impl::ClientToScreen(LPRECT lprect)
+   bool interaction_impl::ClientToScreen(LPRECT lprect)
    {
 
       class rect64 rectWindow;
-      m_pui->GetWindowRect(rectWindow);
+      
+      if(!m_pui->GetWindowRect(rectWindow))
+      {
+         
+         return false;
+         
+      }
 
       lprect->left   += (LONG) rectWindow.left;
       lprect->right  += (LONG) rectWindow.left;
       lprect->top    += (LONG) rectWindow.top;
       lprect->bottom += (LONG) rectWindow.top;
-
+      
+      return true;
+      
    }
 
-   void interaction_impl::ClientToScreen(LPPOINT lppoint)
+   
+   bool interaction_impl::ClientToScreen(LPPOINT lppoint)
    {
+      
       class rect64 rectWindow;
-      m_pui->GetWindowRect(rectWindow);
-
+      
+      if(!m_pui->GetWindowRect(rectWindow))
+      {
+         
+         return false;
+         
+      }
+      
       lppoint->x     += (LONG) rectWindow.left;
       lppoint->y     += (LONG) rectWindow.top;
+      
+      return true;
+      
    }
 
 
-   void interaction_impl::ClientToScreen(RECT64 * lprect)
+   bool interaction_impl::ClientToScreen(RECT64 * lprect)
    {
+      
       class rect rectWindow;
-      m_pui->GetWindowRect(rectWindow);
+      
+      if(!m_pui->GetWindowRect(rectWindow))
+      {
+         
+         return false;
+         
+      }
 
       lprect->left   += rectWindow.left;
       lprect->right  += rectWindow.left;
       lprect->top    += rectWindow.top;
       lprect->bottom += rectWindow.top;
-
+      
+      return true;
+      
    }
 
-   void interaction_impl::ClientToScreen(POINT64 * lppoint)
+
+   bool interaction_impl::ClientToScreen(POINT64 * lppoint)
    {
+      
       class rect64 rectWindow;
-      m_pui->GetWindowRect(rectWindow);
+      
+      if(!m_pui->GetWindowRect(rectWindow))
+      {
+         
+         return false;
+         
+      }
 
       lppoint->x     += rectWindow.left;
       lppoint->y     += rectWindow.top;
+      
+      return true;
+      
    }
 
 
-   void interaction_impl::ScreenToClient(LPRECT lprect)
+   bool interaction_impl::ScreenToClient(LPRECT lprect)
    {
+      
       class rect64 rectWindow;
-      m_pui->GetWindowRect(rectWindow);
+      
+      if(!m_pui->GetWindowRect(rectWindow))
+      {
+         
+         return false;
+         
+      }
 
       lprect->left   -= (LONG) rectWindow.left;
       lprect->right  -= (LONG) rectWindow.left;
       lprect->top    -= (LONG) rectWindow.top;
       lprect->bottom -= (LONG) rectWindow.top;
-
+      
+      return true;
+      
    }
 
-   void interaction_impl::ScreenToClient(LPPOINT lppoint)
+
+   bool interaction_impl::ScreenToClient(LPPOINT lppoint)
    {
+      
       class rect64 rectWindow;
-      m_pui->GetWindowRect(rectWindow);
+      
+      if(!m_pui->GetWindowRect(rectWindow))
+      {
+         
+         return false;
+         
+      }
 
       lppoint->x     -= (LONG) rectWindow.left;
       lppoint->y     -= (LONG) rectWindow.top;
+      
+      return true;
+      
    }
 
 
-   void interaction_impl::ScreenToClient(RECT64 * lprect)
+   bool interaction_impl::ScreenToClient(RECT64 * lprect)
    {
+      
       class rect64 rectWindow;
-      m_pui->GetWindowRect(rectWindow);
+      
+      if(!m_pui->GetWindowRect(rectWindow))
+      {
+         
+         return false;
+         
+      }
 
       lprect->left   -= rectWindow.left;
       lprect->right  -= rectWindow.left;
       lprect->top    -= rectWindow.top;
       lprect->bottom -= rectWindow.top;
-
+      
+      return true;
+      
    }
 
-   void interaction_impl::ScreenToClient(POINT64 * lppoint)
+
+   bool interaction_impl::ScreenToClient(POINT64 * lppoint)
    {
+      
       class rect64 rectWindow;
-      m_pui->GetWindowRect(rectWindow);
+      
+      if(!m_pui->GetWindowRect(rectWindow))
+      {
+         
+         return false;
+         
+      }
 
       lppoint->x     -= rectWindow.left;
       lppoint->y     -= rectWindow.top;
+      
+      return true;
+      
    }
 
 
-   void interaction_impl::GetWindowRect(RECT64 * lprect)
+   bool interaction_impl::GetWindowRect(RECT64 * lprect)
    {
 //      if(!::IsWindow(get_handle()))
   //       throw simple_exception(get_app(), "no more a user::interaction");
       if(!::IsWindow(get_handle()))
-         return;
+      {
+       
+         return false;
+         
+      }
     // if it is temporary user::interaction - probably not ca2 wrapped user::interaction
       rect rect32;
-      ::GetWindowRect(get_handle(), rect32);
+      
+      if(!::GetWindowRect(get_handle(), rect32))
+      {
+         
+         return false;
+         
+      }
       ::copy(lprect, rect32);
+      
+      return true;
+      
    }
 
-   void interaction_impl::GetClientRect(RECT64 * lprect)
+
+   bool interaction_impl::GetClientRect(RECT64 * lprect)
    {
-      ASSERT(::IsWindow(get_handle()));
-         rect rect32;
-         ::GetClientRect(get_handle(), rect32);
-         ::copy(lprect, rect32);
+
+      if(!::IsWindow(get_handle()))
+      {
+         
+         return false;
+         
+      }
+
+      rect rect32;
+      
+      if(!::GetClientRect(get_handle(), rect32))
+      {
+         
+         return false;
+         
+      }
+      
+      ::copy(lprect, rect32);
+      
+      return true;
+      
    }
 
 
@@ -5756,13 +5866,13 @@ namespace macos
 
             GetClientRect(rectClient);
 
-      //       g->BitBlt(0, 0, rectClient.width(), rectClient.height(), m_spdib->get_graphics(), 0, 0, SRCCOPY);
+//         g->BitBlt(0, 0, rectClient.width(), rectClient.height(), m_spdib->get_graphics(), 0, 0, SRCCOPY);
 
-      g->BitBlt(0, 0, m_spdib->m_size.cx, m_spdib->m_size.cy, m_spdib->get_graphics(), 0, 0, SRCCOPY);
+//      g->BitBlt(0, 0, m_spdib->m_size.cx, m_spdib->m_size.cy, m_spdib->get_graphics(), 0, 0, SRCCOPY);
 
       //       g->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-//      g->FillSolidRect(rectClient, ARGB(128, 0, 255, 0));
+      g->FillSolidRect(rectClient, ARGB(128, 0, 255, 0));
 
    }
    
@@ -5816,7 +5926,7 @@ namespace macos
       
       LRESULT l = 0;
       
-      pkey->set(m_pui, WM_KEYDOWN, vk, scan << 16, l);
+      pkey->set(m_pui, WM_KEYDOWN, vk, (LPARAM) (scan << 16), l);
       
       spbase = pkey;
       
@@ -5835,7 +5945,7 @@ namespace macos
 
       LRESULT l = 0;
       
-      pkey->set(m_pui, WM_KEYUP, vk, scan << 16, l);
+      pkey->set(m_pui, WM_KEYUP, vk, (LPARAM) (scan << 16), l);
 
       spbase = pkey;
 

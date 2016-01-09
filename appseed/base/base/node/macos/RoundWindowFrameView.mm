@@ -601,6 +601,7 @@ DWORD fixKeyCode(DWORD keyCode, unichar keyChar, enum APPLE_KEYBOARD_TYPE type)
 - (BOOL) isFlipped
 {
    return YES;
+//   return NO;
 }
 
 
@@ -614,11 +615,31 @@ DWORD fixKeyCode(DWORD keyCode, unichar keyChar, enum APPLE_KEYBOARD_TYPE type)
 - (void)drawRect:(NSRect)rect
 {
    
+   NSRect e = [m_roundwindow frame];
    
-  /* 	[[NSColor clearColor] set];
-	NSRectFill(rect);*/
+   NSRect e2 = [[NSScreen mainScreen] frame];
 
-/*
+   CGContextRef cgc1 = (CGContextRef) [[NSGraphicsContext currentContext] graphicsPort];
+
+   COLORREF cr = ARGB(255, 0, 0, 0);
+   
+
+   CGContextSetBlendMode(cgc1, kCGBlendModeCopy);
+
+   
+   CGContextSetRGBFillColor(cgc1, argb_get_r_value(cr) / 255.0f, argb_get_g_value(cr) / 255.0f, argb_get_b_value(cr) / 255.0f, argb_get_a_value(cr) / 255.0f);
+
+   
+   CGContextFillRect(cgc1, rect);
+
+//   [[NSColor whiteColor] set];
+  // NSRectFill(rect);
+   
+   return;
+   
+/* 	[[NSColor clearColor] set];
+	NSRectFill(rect);
+   
 	NSBezierPath * rectPath = [NSBezierPath bezierPathWithRect : [self bounds]];
 	
 	NSGradient * gradient = [[NSGradient alloc] initWithColorsAndLocations : [NSColor whiteColor], (CGFloat) 0.0, [NSColor lightGrayColor], (CGFloat)1.0, nil];
@@ -656,7 +677,7 @@ DWORD fixKeyCode(DWORD keyCode, unichar keyChar, enum APPLE_KEYBOARD_TYPE type)
 			nil]];
  
    
-   return;*/
+   return; */
   
    round_window * p = m_roundwindow->m_pwindow;
    

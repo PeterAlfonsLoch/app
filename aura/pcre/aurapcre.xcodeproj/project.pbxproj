@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		070562241C412D78004085DF /* PcreUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 070562221C412D78004085DF /* PcreUtil.cpp */; };
+		070562251C412D78004085DF /* PcreUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 070562231C412D78004085DF /* PcreUtil.h */; };
 		07473E0D1B503FE4004688C5 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07473E0C1B503FE4004688C5 /* libaura.dylib */; };
 		077832E51B72FC99005D0C27 /* pcre2_chartables.c in Sources */ = {isa = PBXBuildFile; fileRef = 077832E41B72FC99005D0C27 /* pcre2_chartables.c */; };
 		07A4B11E1B76466800DA5C57 /* pcre2_chartables.c in Sources */ = {isa = PBXBuildFile; fileRef = 077832E41B72FC99005D0C27 /* pcre2_chartables.c */; };
@@ -109,6 +111,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		070562221C412D78004085DF /* PcreUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PcreUtil.cpp; sourceTree = SOURCE_ROOT; };
+		070562231C412D78004085DF /* PcreUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PcreUtil.h; sourceTree = SOURCE_ROOT; };
 		077832E41B72FC99005D0C27 /* pcre2_chartables.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pcre2_chartables.c; sourceTree = "<group>"; };
 		07D6A8471B4CBB45004FEBC2 /* libaurapcre.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libaurapcre.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		07EF5D271B72F09600863D39 /* config.h.generic */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = config.h.generic; sourceTree = "<group>"; };
@@ -237,6 +241,8 @@
 			isa = PBXGroup;
 			children = (
 				07EF5D261B72F09600863D39 /* src */,
+				070562221C412D78004085DF /* PcreUtil.cpp */,
+				070562231C412D78004085DF /* PcreUtil.h */,
 			);
 			name = pcre;
 			path = cpp;
@@ -270,6 +276,7 @@
 				07EF5D811B72F09600863D39 /* pcre2_ucp.h in Headers */,
 				07EF5D871B72F09600863D39 /* pcre2posix.h in Headers */,
 				07EF5D8A1B72F09600863D39 /* sljitConfigInternal.h in Headers */,
+				070562251C412D78004085DF /* PcreUtil.h in Headers */,
 				07EF5D6D1B72F09600863D39 /* pcre2_internal.h in Headers */,
 				07EF5DA01B72F17000863D39 /* config.h in Headers */,
 				07EF5D891B72F09600863D39 /* sljitConfig.h in Headers */,
@@ -436,6 +443,7 @@
 				07EF5D6C1B72F09600863D39 /* pcre2_error.c in Sources */,
 				07EF5D801B72F09600863D39 /* pcre2_ucd.c in Sources */,
 				07EF5D831B72F09600863D39 /* pcre2_xclass.c in Sources */,
+				070562241C412D78004085DF /* PcreUtil.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -17,8 +17,13 @@
 #include "_meminttypes.h"
 
 
+#ifndef __APPLE__
+
 
 #define ssize_t         int_ptr
+
+
+#endif
 
 
 typedef unsigned char         uchar;

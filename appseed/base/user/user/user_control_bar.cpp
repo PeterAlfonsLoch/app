@@ -637,7 +637,7 @@ namespace user
       // update the indicators before becoming visible
       ::message::base base(get_app());
       LRESULT lresult;
-      base.set(this, WM_IDLEUPDATECMDUI, TRUE, 0L, lresult);
+      base.set(this, WM_IDLEUPDATECMDUI, TRUE, (LPARAM) 0, lresult);
       _001OnIdleUpdateCmdUI(&base);
 
    }

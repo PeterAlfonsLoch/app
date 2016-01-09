@@ -42,7 +42,9 @@ typedef unsigned __int32 uint32_t;
 #endif
 
 //#define PRIiMAX "I64i"
+#ifdef WIN32
 typedef __int64 intmax_t;
+#endif
 // ftell returns long, _ftelli64 returns __int64
 // off_t is long, not __int64, use ftell
 #define ftello ftell

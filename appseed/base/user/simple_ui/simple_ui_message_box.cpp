@@ -171,9 +171,9 @@ namespace simple_ui
 
 
       layout();
-
+      
       SetWindowPos(ZORDER_TOP,rectFontopus,SWP_SHOWWINDOW);
-
+      
       SetForegroundWindow();
 
       BringWindowToTop();

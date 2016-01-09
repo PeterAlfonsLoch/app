@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0705619C1C4115F2004085DF /* exception_engine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0705619B1C4115F2004085DF /* exception_engine.cpp */; };
 		070B8F191B6E578900D26137 /* macos_main.h in Headers */ = {isa = PBXBuildFile; fileRef = 070B8F171B6E578900D26137 /* macos_main.h */; };
 		0747A6471B26375F00E85AC7 /* visual_cursor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0747A6451B26375F00E85AC7 /* visual_cursor.cpp */; };
 		0747A6481B26375F00E85AC7 /* visual_icon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0747A6461B26375F00E85AC7 /* visual_icon.cpp */; };
@@ -1240,6 +1241,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0705619B1C4115F2004085DF /* exception_engine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = exception_engine.cpp; sourceTree = "<group>"; };
 		070B8F171B6E578900D26137 /* macos_main.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macos_main.h; sourceTree = "<group>"; };
 		07108A731B4C90D000A28F80 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.4.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		073EDDE1164E968100818801 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -2457,6 +2459,7 @@
 		9A163DD919C4A4CD00966C5E /* exception */ = {
 			isa = PBXGroup;
 			children = (
+				0705619B1C4115F2004085DF /* exception_engine.cpp */,
 				9A163DDA19C4A4CD00966C5E /* _exception.txt */,
 				9A163DDC19C4A4CD00966C5E /* exception.h */,
 				9A163DDD19C4A4CD00966C5E /* exception2.h */,
@@ -4269,6 +4272,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				07CABC141B3DFF200009F5B9 /* user_frame.cpp in Sources */,
+				0705619C1C4115F2004085DF /* exception_engine.cpp in Sources */,
 				07CABC161B3DFF200009F5B9 /* user_primitive.cpp in Sources */,
 				077CEF221B23D0B3009A57EF /* _draw2d.cpp in Sources */,
 				9A1EDB6019C841D600F5CCE8 /* service_plain_service.cpp in Sources */,

@@ -20,44 +20,44 @@
    
 }
 
-- (void)sendEvent:(NSEvent *)theEvent
-{
-
-   /*
-   
-   char szEvent[128];
-   
-   ZERO(szEvent);
-   
-   if([theEvent type] == NSLeftMouseDown)
-   {
-   
-      strcpy(szEvent, "NSLeftMouseDown");
-      
-   }
-   else if([theEvent type] == NSLeftMouseUp)
-   {
-     
-      strcpy(szEvent, "NSLeftMouseUp");
-      
-   }
-   
-   if(strlen(szEvent) > 0)
-   {
-   
-      char szEventCopy[128];
-   
-      strcpy(szEventCopy, szEvent);
-      
-      printf("\n%s", szEventCopy);
-      
-   }
-   
-   */
-   
+//- (void)sendEvent:(NSEvent *)theEvent
+//{
+//
+//   /*
+//   
+//   char szEvent[128];
+//   
+//   ZERO(szEvent);
+//   
+//   if([theEvent type] == NSLeftMouseDown)
+//   {
+//   
+//      strcpy(szEvent, "NSLeftMouseDown");
+//      
+//   }
+//   else if([theEvent type] == NSLeftMouseUp)
+//   {
+//     
+//      strcpy(szEvent, "NSLeftMouseUp");
+//      
+//   }
+//   
+//   if(strlen(szEvent) > 0)
+//   {
+//   
+//      char szEventCopy[128];
+//   
+//      strcpy(szEventCopy, szEvent);
+//      
+//      printf("\n%s", szEventCopy);
+//      
+//   }
+//   
+//   */
+//   
 //   [super sendEvent:theEvent];
-   
-}
+//   
+//}
 
 
 

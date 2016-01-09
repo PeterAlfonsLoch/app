@@ -208,13 +208,13 @@ int_array app_get_pid(const char * psz)
       if(path.title() == strApp)
       {
             
-         ia.add(iPid);
+         ia.add(pid);
             
       }
       else
       {
             
-         stringa straCmdLine = cmdline_from_pid(iPid);
+         stringa straCmdLine = cmdline_from_pid(pid);
             
          string strCmdLine;
             
@@ -223,7 +223,7 @@ int_array app_get_pid(const char * psz)
          if(straCmdLine.find_first(str) > 0)
          {
                
-            ia.add(iPid);
+            ia.add(pid);
                
          }
             
