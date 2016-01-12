@@ -615,12 +615,30 @@ DWORD fixKeyCode(DWORD keyCode, unichar keyChar, enum APPLE_KEYBOARD_TYPE type)
 - (void)drawRect:(NSRect)rect
 {
    
+   /*
+   
+//   [super drawRect:rect];
+   
+   
+  // return;
+   
+   BOOL bWindowVisible = [m_roundwindow isVisible];
+   
+   BOOL bViewHidden = [self isHidden];
+   
    NSRect e = [m_roundwindow frame];
    
    NSRect e2 = [[NSScreen mainScreen] frame];
+   
+   double a = [m_roundwindow alphaValue];
 
+
+
+ 
+   
    CGContextRef cgc1 = (CGContextRef) [[NSGraphicsContext currentContext] graphicsPort];
 
+   
    COLORREF cr = ARGB(255, 0, 0, 0);
    
 
@@ -631,11 +649,18 @@ DWORD fixKeyCode(DWORD keyCode, unichar keyChar, enum APPLE_KEYBOARD_TYPE type)
 
    
    CGContextFillRect(cgc1, rect);
+ 
 
-//   [[NSColor whiteColor] set];
-  // NSRectFill(rect);
+
+
+   
+//   [[NSColor greenColor] set];
+  
+//   NSRectFill(rect);
    
    return;
+    
+    */
    
 /* 	[[NSColor clearColor] set];
 	NSRectFill(rect);

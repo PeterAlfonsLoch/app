@@ -313,11 +313,11 @@ namespace draw2d_quartz2d
       
       bool Pie(int32_t x1, int32_t y1, int32_t x2, int32_t y2, int32_t x3, int32_t y3, int32_t x4, int32_t y4);
       bool Pie(const RECT & lpRect, POINT ptStart, POINT ptEnd);
-      virtual bool fill_polygon(const POINTD * lpPoints, int32_t nCount);
-      virtual bool fill_polygon(const POINT* lpPoints, int32_t nCount);
-      bool Polygon(const POINT* lpPoints, int32_t nCount);
+      virtual bool fill_polygon(const POINTD * lpPoints, count nCount);
+      virtual bool fill_polygon(const POINT* lpPoints, count nCount);
+      bool Polygon(const POINT* lpPoints, count nCount);
       bool PolyPolygon(const POINT* lpPoints, const INT* lpPolyCounts, int32_t nCount);
-      bool Polygon(const POINTD* lpPoints,int32_t nCount);
+      bool Polygon(const POINTD* lpPoints,count nCount);
 //      bool PolyPolygon(const POINT* lpPoints, const INT* lpPolyCounts, int32_t nCount);
       bool Rectangle(int32_t x1, int32_t y1, int32_t x2, int32_t y2);
       bool Rectangle(const RECT & lpRect);

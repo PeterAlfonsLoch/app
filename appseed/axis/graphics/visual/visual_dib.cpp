@@ -39,6 +39,13 @@ namespace visual
 
    bool dib_sp::load_from_file(var varFile,bool bCache)
    {
+      
+      if(varFile.is_empty())
+      {
+         
+         return false;
+         
+      }
 
       return Sys(m_p->m_pauraapp).visual().imaging().load_from_file(m_p,varFile,bCache,m_p->m_pauraapp);
 

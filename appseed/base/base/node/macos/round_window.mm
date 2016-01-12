@@ -11,28 +11,55 @@
 NSWindow * new_round_window(round_window * pwindow, CGRect rect)
 {
    
-////   rect.origin.x     = 0;
-  // rect.origin.y     = (int) [[NSScreen mainScreen]frame].size.height - rect.origin.y;
+   //rect.origin.x     = 0;
+   rect.origin.y     = (int) [[NSScreen mainScreen]frame].size.height - rect.origin.y;
   // rect.size.width   = 0;
    //rect.size.height  = 0;
    
-   rect.origin.x = 100;
+/*   rect.origin.x = 100;
    rect.origin.y = 100;
    rect.size.width   = 800;
-   rect.size.height  = 500;
+   rect.size.height  = 500;*/
    
    pwindow->m_proundwindow = [RoundWindow alloc];
    
    pwindow->m_proundwindow->m_pwindow = pwindow;
    
-   return [pwindow->m_proundwindow initWithContentRect : rect styleMask : 0 backing : NSBackingStoreBuffered  defer : false ];
+   return [[pwindow->m_proundwindow dd_invokeOnMainThreadAndWaitUntilDone:TRUE  ]initWithContentRect : rect styleMask : 0 backing : NSBackingStoreBuffered  defer : false ];
    
 }
 
 void ns_shared_application(int argc, char *argv[])
 {
+  
+   NSApplication * application = [NSApplication sharedApplication];
    
-   NSApplicationMain(argc, (const char **) argv);
+   RoundWindowApp * appDelegate = [[RoundWindowApp alloc] init];
+   
+   [application setDelegate:appDelegate];
+   [NSApplication sharedApplication];
+   [NSApp setActivationPolicy:NSApplicationActivationPolicyRegular];
+   id menubar = [NSMenu alloc];
+   id appMenuItem = [NSMenuItem alloc];
+   [menubar addItem:appMenuItem];
+   [NSApp setMainMenu:menubar];
+   id appMenu = [NSMenu alloc];
+   id appName = [[NSProcessInfo processInfo] processName];
+   id quitTitle = [@"Quit " stringByAppendingString:appName];
+   id quitMenuItem = [[NSMenuItem alloc] initWithTitle:quitTitle
+                                                 action:@selector(terminate:) keyEquivalent:@"q"];
+   [appMenu addItem:quitMenuItem];
+   [appMenuItem setSubmenu:appMenu];
+/*   id window = [[NSWindow alloc] initWithContentRect:NSMakeRect(0, 0, 200, 200)
+                                            styleMask:NSTitledWindowMask backing:NSBackingStoreBuffered defer:NO]
+                ;
+   [window cascadeTopLeftFromPoint:NSMakePoint(20,20)];
+   [window setTitle:appName];
+   [window makeKeyAndOrderFront:nil];*/
+   [NSApp activateIgnoringOtherApps:YES];
+   [NSApp run];
+//   return 0;
+//   NSApplicationMain(argc, (const char **) argv);
 
 //   [RoundWindowApp sharedApplication];
    

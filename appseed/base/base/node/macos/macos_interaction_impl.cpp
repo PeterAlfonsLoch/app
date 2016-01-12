@@ -5866,13 +5866,13 @@ namespace macos
 
             GetClientRect(rectClient);
 
-//         g->BitBlt(0, 0, rectClient.width(), rectClient.height(), m_spdib->get_graphics(), 0, 0, SRCCOPY);
+       //  g->BitBlt(0, 0, rectClient.width(), rectClient.height(), m_spdib->get_graphics(), 0, m_spdib->m_size.cy-rectClient.height(), SRCCOPY);
 
-//      g->BitBlt(0, 0, m_spdib->m_size.cx, m_spdib->m_size.cy, m_spdib->get_graphics(), 0, 0, SRCCOPY);
+   g->BitBlt(0, 0, m_spdib->m_size.cx, m_spdib->m_size.cy, m_spdib->get_graphics(), 0, 0, SRCCOPY);
 
       //       g->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-      g->FillSolidRect(rectClient, ARGB(128, 0, 255, 0));
+//      g->FillSolidRect(rectClient, ARGB(128, 0, 255, 0));
 
    }
    

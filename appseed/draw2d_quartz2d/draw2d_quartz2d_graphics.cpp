@@ -1265,7 +1265,7 @@ namespace draw2d_quartz2d
 
    }
 
-   bool graphics::fill_polygon(const POINTD * pa, int32_t nCount)
+   bool graphics::fill_polygon(const POINTD * pa, count nCount)
    {
 
       if(nCount <= 0)
@@ -1290,7 +1290,7 @@ namespace draw2d_quartz2d
 
    }
 
-   bool graphics::fill_polygon(const POINT* pa, int32_t nCount)
+   bool graphics::fill_polygon(const POINT* pa, count nCount)
    {
 
       if(nCount <= 0)
@@ -1316,7 +1316,7 @@ namespace draw2d_quartz2d
    }
 
 
-   bool graphics::Polygon(const POINT* pa, int32_t nCount)
+   bool graphics::Polygon(const POINT* pa, count nCount)
    {
 
       if(nCount <= 0)
@@ -1350,7 +1350,7 @@ namespace draw2d_quartz2d
    }
 
 
-   bool graphics::Polygon(const POINTD* pa, int32_t nCount)
+   bool graphics::Polygon(const POINTD* pa, count nCount)
    {
 
       if(nCount <= 0)

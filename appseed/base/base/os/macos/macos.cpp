@@ -98,10 +98,14 @@ CLASS_DECL_AURA bool __node_base_pos_term()
 
 const char * g_pszCommandLine = NULL;
 
+
 int32_t run_system()
 {
-return   __run_system_command_line(g_pszCommandLine);
+
+   return   __run_system_command_line(g_pszCommandLine);
+   
 }
+
 
 int32_t base_main_command_line(const char * pszParams, int argc, char *argv[])
 {
@@ -110,11 +114,18 @@ int32_t base_main_command_line(const char * pszParams, int argc, char *argv[])
    
    string strCommandLine;
    
-   strCommandLine = "app ";
+   strCommandLine = "app";
    
-   strCommandLine += pszParams;
+   if(strlen(pszParams) > 0)
+   {
+      
+      strCommandLine += " ";
+      
+      strCommandLine += pszParams;
+      
+   }
    
-   processid=getpid();
+   processid = getpid();
    
    printf("%d\n", processid);
    
@@ -146,12 +157,14 @@ int32_t base_main_command_line(const char * pszParams, int argc, char *argv[])
    
    ns_shared_application(argc, argv);
    
-   
-//   __run_system_command_line(pszCommandLine);
-   
    ns_app_run();
    
    return 0;
    
-   
 }
+
+
+
+
+
+
