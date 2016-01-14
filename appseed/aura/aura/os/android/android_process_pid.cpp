@@ -54,3 +54,194 @@ int32_t get_process_pid(const char * procNameParam)
 }
 
 
+
+
+string module_path_from_pid(unsigned int iPid)
+{
+
+   int iSize = 1024 * 8;
+
+   hstring path(iSize);
+   char * systemPath = NULL;
+   char * candidateDir = NULL;
+
+   string str;
+   str = "/proc/" + ::str::from(iPid) + "/exe";
+
+   /* the easiest case: we are in linux */
+   ssize_t s = readlink(str,path,iSize);
+
+   if(s == -1)
+   {
+      return "";
+   }
+
+   path[s] = '\0';
+
+   return path;
+
+}
+
+
+
+int_array module_path_get_pid(const char * pszPath)
+{
+
+   int_array ia;
+
+   ::file::patha stra;
+
+   ::dir::ls_dir(stra,"/proc/");
+
+   for(auto & strPid : stra)
+   {
+
+      int iPid = atoi(strPid.title());
+
+      if(iPid > 0)
+      {
+
+         string strPath =module_path_from_pid(iPid);
+
+         if(strPath == pszPath)
+         {
+
+            ia.add(iPid);
+
+         }
+
+      }
+
+   }
+
+   return ia;
+
+}
+
+
+int_array app_get_pid(const char * psz)
+{
+
+   int_array ia;
+
+   ::file::patha stra;
+
+   ::dir::ls_dir(stra,"/proc/");
+
+   string str(psz);
+
+   str = "app=" + str;
+
+   string strApp(psz);
+
+   strApp.replace("-","_");
+
+   strApp.replace("/","_");
+
+   for(auto & strPid : stra)
+   {
+
+      int iPid = atoi(strPid.title());
+
+      if(iPid > 0)
+      {
+
+         ::file::path path = module_path_from_pid(iPid);
+
+         if(path.title() == strApp)
+         {
+
+            ia.add(iPid);
+
+         }
+         else
+         {
+
+            stringa straCmdLine = cmdline_from_pid(iPid);
+
+            string strCmdLine;
+
+            strCmdLine = straCmdLine.implode(" ");
+
+            if(straCmdLine.find_first(str) > 0)
+            {
+
+               ia.add(iPid);
+
+            }
+
+         }
+
+      }
+
+   }
+
+   return ia;
+
+}
+
+
+
+stringa cmdline_from_pid(unsigned int iPid)
+{
+
+   stringa stra;
+
+   string str;
+
+   str = "/proc/" + ::str::from(iPid) + "/cmdline";
+
+   memory mem = file_as_memory_dup(str);
+
+   string strArg;
+
+   char ch;
+
+   for(int i = 0; i < mem.get_size(); i++)
+   {
+
+      ch = (char)mem.get_data()[i];
+
+      if(ch == '\0')
+      {
+
+         stra.add(strArg);
+
+         strArg.Empty();
+
+      }
+      else
+      {
+
+         strArg += ch;
+
+      }
+
+
+   }
+
+   if(strArg.has_char())
+   {
+
+      stra.add(strArg);
+
+   }
+
+   return stra;
+
+   /* the easiest case: we are in linux */
+   //    ssize_t s = readlink (str, path, iSize);
+
+   //  if(s == -1)
+   //{
+   // return "";
+   //}
+
+   //path[s] = '\0';
+
+   //return path;
+
+}
+
+
+

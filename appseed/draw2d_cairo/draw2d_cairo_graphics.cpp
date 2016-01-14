@@ -1,6 +1,6 @@
 #include "framework.h"
 #include <math.h>
-#ifdef LINUX
+#if defined(LINUX)
 #include <fontconfig/fontconfig.h>
 
 mutex *        g_pmutexFc;
@@ -5685,7 +5685,7 @@ synch_lock ml(m_spmutex);
    void graphics::enum_fonts(stringa & straFile, stringa & stra)
    {
 
-#ifndef WINDOWS
+#if defined(LINUX)
 
       synch_lock sl(g_pmutexFc);
 

@@ -16,6 +16,7 @@ void swap(uint32_t * & p1,uint32_t * & p2)
 }
 
 
+#ifdef WIN32
 #if OSBIT == 32
 
 void swap(vector4 * & p1,vector4 * & p2)
@@ -27,6 +28,7 @@ void swap(vector4 * & p1,vector4 * & p2)
 
 }
 
+#endif
 #endif
 
 inline void kernelPosition(int boxBlur,unsigned& std,int& dLeft,int& dRight)
@@ -137,11 +139,15 @@ namespace visual
 
 #if OSBIT == 32
 
+#ifdef WIN32
       vxmin       = NULL;
       vymin       = NULL;
+
       m_stack     = NULL;
       tsurface    = NULL;
       timage      = NULL;
+
+#endif
 
 #endif
 
@@ -226,7 +232,7 @@ namespace visual
       m_stack = new vector4[div2];
 #define new AURA_NEW
 #endif
-#endif
+
       if(vxmin != NULL)
       {
          delete[] vxmin;
@@ -262,6 +268,8 @@ namespace visual
       {
          vymin[y] = MIN(y + r1,hm)*s;
       }
+
+#endif
 
 #endif
 
@@ -872,6 +880,7 @@ DWORD dw1 = get_tick_count();
 
 #else
 
+#ifdef WIN32
 #if OSBIT == 32
 
    inline void boxBlurSSE(vector4* sourcePixel,vector4* destinationPixel,
@@ -1311,7 +1320,7 @@ DWORD dw1 = get_tick_count();
 
 
    #endif
-
+#endif
 
 
    bool fastblur::do_fastblur(uint32_t * pdata,int32_t w,int32_t h,int32_t radius,uint32_t * prgba,byte * dv,int32_t stride,int cx,int cy,int bottomup)

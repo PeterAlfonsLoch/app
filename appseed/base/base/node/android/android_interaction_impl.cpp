@@ -3310,102 +3310,182 @@ void interaction_impl::MoveWindow(int32_t x, int32_t y, int32_t nWidth, int32_t 
    SetWindowPos(0, x, y, nWidth, nHeight, bRepaint ? SWP_SHOWWINDOW : 0);
 }
 
-void interaction_impl::ClientToScreen(LPRECT lprect)
+
+bool interaction_impl::ClientToScreen(LPRECT lprect)
 {
 
    class rect64 rectWindow;
-   GetWindowRect(rectWindow);
+   
+   if(!GetWindowRect(rectWindow))
+   {
+
+      return false;
+
+   }
 
    lprect->left += (LONG)rectWindow.left;
    lprect->right += (LONG)rectWindow.left;
    lprect->top += (LONG)rectWindow.top;
    lprect->bottom += (LONG)rectWindow.top;
 
+   return true;
+
 }
 
-void interaction_impl::ClientToScreen(LPPOINT lppoint)
+
+bool interaction_impl::ClientToScreen(LPPOINT lppoint)
 {
+
    class rect64 rectWindow;
-   GetWindowRect(rectWindow);
+   
+   if(!GetWindowRect(rectWindow))
+   {
+
+      return false;
+
+   }
 
    lppoint->x += (LONG)rectWindow.left;
    lppoint->y += (LONG)rectWindow.top;
+
+   return true;
+
 }
 
 
-void interaction_impl::ClientToScreen(RECT64 * lprect)
+bool interaction_impl::ClientToScreen(RECT64 * lprect)
 {
+   
    class rect rectWindow;
-   GetWindowRect(rectWindow);
+   
+   if(!GetWindowRect(rectWindow))
+   {
+
+      return false;
+
+   }
 
    lprect->left += rectWindow.left;
    lprect->right += rectWindow.left;
    lprect->top += rectWindow.top;
    lprect->bottom += rectWindow.top;
 
+   return true;
+
 }
 
-void interaction_impl::ClientToScreen(POINT64 * lppoint)
+
+bool interaction_impl::ClientToScreen(POINT64 * lppoint)
 {
+
    class rect64 rectWindow;
-   GetWindowRect(rectWindow);
+
+   if(!GetWindowRect(rectWindow))
+   {
+
+      return false;
+
+   }
 
    lppoint->x += rectWindow.left;
    lppoint->y += rectWindow.top;
+
+   return true;
+
 }
 
 
-void interaction_impl::ScreenToClient(LPRECT lprect)
+bool interaction_impl::ScreenToClient(LPRECT lprect)
 {
+   
    class rect64 rectWindow;
-   GetWindowRect(rectWindow);
+   
+   if(!GetWindowRect(rectWindow))
+   {
+
+      return false;
+
+   }
 
    lprect->left -= (LONG)rectWindow.left;
    lprect->right -= (LONG)rectWindow.left;
    lprect->top -= (LONG)rectWindow.top;
    lprect->bottom -= (LONG)rectWindow.top;
 
+   return true;
+
 }
 
-void interaction_impl::ScreenToClient(LPPOINT lppoint)
+
+bool interaction_impl::ScreenToClient(LPPOINT lppoint)
 {
+   
    class rect64 rectWindow;
-   GetWindowRect(rectWindow);
+   
+   if(!GetWindowRect(rectWindow))
+   {
+
+      return false;
+
+   }
 
    lppoint->x -= (LONG)rectWindow.left;
    lppoint->y -= (LONG)rectWindow.top;
+
+   return true;
+
 }
 
 
-void interaction_impl::ScreenToClient(RECT64 * lprect)
+bool interaction_impl::ScreenToClient(RECT64 * lprect)
 {
+   
    class rect64 rectWindow;
-   GetWindowRect(rectWindow);
+   
+   if(!GetWindowRect(rectWindow))
+   {
+
+      return false;
+
+   }
 
    lprect->left -= rectWindow.left;
    lprect->right -= rectWindow.left;
    lprect->top -= rectWindow.top;
    lprect->bottom -= rectWindow.top;
 
+   return true;
+
 }
 
-void interaction_impl::ScreenToClient(POINT64 * lppoint)
+
+bool interaction_impl::ScreenToClient(POINT64 * lppoint)
 {
+   
    class rect64 rectWindow;
-   GetWindowRect(rectWindow);
+   
+   if(!GetWindowRect(rectWindow))
+   {
+
+      return false;
+
+   }
 
    lppoint->x -= rectWindow.left;
    lppoint->y -= rectWindow.top;
+
+   return true;
+
 }
 
 
-void interaction_impl::GetWindowRect(RECT64 * lprect)
+bool interaction_impl::GetWindowRect(RECT64 * lprect)
 {
 
    if (!::IsWindow((oswindow)get_handle()))
    {
 
-      return;
+      return false;
 
    }
 
@@ -3413,30 +3493,56 @@ void interaction_impl::GetWindowRect(RECT64 * lprect)
    //if(m_pui == NULL || m_pui == this)
    {
       rect rect32;
-      ::GetWindowRect((oswindow)get_handle(), rect32);
+      
+      if(!::GetWindowRect((oswindow)get_handle(),rect32))
+      {
+
+         return false;
+
+      }
+
       ::copy(lprect, rect32);
    }
    //else
    {
       //  interaction::GetWindowRect(lprect);
    }
+   
+   return true;
+
 }
 
-void interaction_impl::GetClientRect(RECT64 * lprect)
+
+bool interaction_impl::GetClientRect(RECT64 * lprect)
 {
-   ASSERT(::IsWindow((oswindow)get_handle()));
+
+   if(!::IsWindow((oswindow)get_handle()))
+   {
+
+      return false;
+
+   }
    // if it is temporary interaction_impl - probably not ca2 wrapped interaction_impl
    //if(m_pui == NULL || m_pui == this)
    {
       rect rect32;
-      ::GetClientRect((oswindow)get_handle(), rect32);
+      if(!::GetClientRect((oswindow)get_handle(),rect32))
+      {
+
+         return false;
+
+      }
       ::copy(lprect, rect32);
    }
    //else
    {
       // interaction::GetClientRect(lprect);
    }
+
+   return true;
+
 }
+
 
 id interaction_impl::SetDlgCtrlId(id id)
 {
@@ -5413,31 +5519,37 @@ namespace android
       m_guieptraMouseHover.remove(pinterface);
    }
 
-   void interaction_impl::on_keyboard_focus(::user::elemental * pfocus)
+   bool interaction_impl::on_keyboard_focus(::user::elemental * pfocus)
    {
 
       UNREFERENCED_PARAMETER(pfocus);
 
       System.m_pandroidinitdata->m_bShowKeyboard = true;
 
+      return true;
+
    }
 
 
-   void interaction_impl::keyboard_focus_OnKillFocus()
+   bool interaction_impl::keyboard_focus_OnKillFocus()
    {
 
       output_debug_string("::android::interaction_impl::keyboard_focus_OnKillFocus() (1) \n");
 
       System.m_pandroidinitdata->m_bHideKeyboard = true;
 
+      return true;
+
    }
 
-   void interaction_impl::keyboard_focus_OnChildKillFocus()
+   bool interaction_impl::keyboard_focus_OnChildKillFocus()
    {
 
       output_debug_string("::android::interaction_impl::keyboard_focus_OnChildKillFocus() (2) \n");
 
       System.m_pandroidinitdata->m_bHideKeyboard = true;
+
+      return true;
 
    }
 

@@ -8,7 +8,8 @@ namespace aura
    {
 
 
-      base::base()
+      base::base(::aura::application * papp) :
+         object(papp)
       {
          m_key = 0;
          m_iQueue = -1;
@@ -18,7 +19,19 @@ namespace aura
       {
       }
 
+      tx::tx(::aura::application * papp) :
+         object(papp),
+         base(papp)
+      {
 
+
+      }
+
+      tx::~tx()
+      {
+
+
+      }
 
       bool tx::open(const char * pszChannel,launcher * plauncher)
       {
@@ -146,7 +159,9 @@ namespace aura
       }
 
 
-      rx::rx()
+      rx::rx(::aura::application * papp) :
+         object(papp),
+         base(papp)
       {
 
          m_preceiver    = NULL;
@@ -385,6 +400,23 @@ namespace aura
 
       }
 
+      ipc::ipc(::aura::application * papp):
+         object(papp),
+         base(papp),
+         tx(papp),
+         m_rx(papp)
+      {
+
+         m_dwTimeout = (5000) * 11;
+
+      }
+
+
+      ipc::~ipc()
+      {
+
+
+      }
 
 
       bool ipc::open_ab(const char * pszChannel,launcher * plauncher)

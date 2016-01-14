@@ -174,18 +174,18 @@ namespace android
       //virtual void BringToTop(int nCmdShow);
       virtual bool BringWindowToTop();
       using ::user::interaction_impl::GetWindowRect;
-      virtual void GetWindowRect(RECT64 * lpRect);
+      virtual bool GetWindowRect(RECT64 * lpRect);
       using ::user::interaction_impl::GetClientRect;
-      virtual void GetClientRect(RECT64 * lpRect);
+      virtual bool GetClientRect(RECT64 * lpRect);
 
-      void ClientToScreen(LPRECT lprect);
-      void ClientToScreen(LPPOINT lppoint);
-      void ClientToScreen(RECT64 * lprect);
-      void ClientToScreen(POINT64 * lppoint);
-      void ScreenToClient(LPRECT lprect);
-      void ScreenToClient(LPPOINT lppoint);
-      void ScreenToClient(RECT64 * lprect);
-      void ScreenToClient(POINT64 * lppoint);
+      virtual bool ClientToScreen(LPRECT lprect);
+      virtual bool ClientToScreen(LPPOINT lppoint);
+      virtual bool ClientToScreen(RECT64 * lprect);
+      virtual bool ClientToScreen(POINT64 * lppoint);
+      virtual bool ScreenToClient(LPRECT lprect);
+      virtual bool ScreenToClient(LPPOINT lppoint);
+      virtual bool ScreenToClient(RECT64 * lprect);
+      virtual bool ScreenToClient(POINT64 * lppoint);
 
       virtual bool GetWindowPlacement(WINDOWPLACEMENT* lpwndpl);
       virtual bool SetWindowPlacement(const WINDOWPLACEMENT* lpwndpl);
@@ -690,9 +690,9 @@ namespace android
 
 
       ::user::interaction * get_next(bool bIgnoreChildren, int32_t * piLevel);
-      virtual void on_keyboard_focus(::user::elemental * pfocus);
-      virtual void keyboard_focus_OnKillFocus();
-      virtual void keyboard_focus_OnChildKillFocus();
+      virtual bool on_keyboard_focus(::user::elemental * pfocus);
+      virtual bool keyboard_focus_OnKillFocus();
+      virtual bool keyboard_focus_OnChildKillFocus();
 
    };
 

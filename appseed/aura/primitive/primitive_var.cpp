@@ -478,7 +478,7 @@ class var & var::operator = (uint32_t ui)
    return *this;
 }
 
-#if !defined(LINUX) && !defined(MACOS)
+#if !defined(LINUX) && !defined(MACOS) && !defined(ANDROID)
 class var & var::operator = (LONG l)
 {
    set_type(type_int32,false);
