@@ -3,7 +3,7 @@
 #include <android/log.h>
 
 
-static string * m_pstrOutputDebugStringA = NULL;
+//static string * m_pstrOutputDebugStringA = NULL;
 static mutex * m_pmutexOutputDebugStringA = NULL;
 
 VOID WINAPI OutputDebugStringA(LPCSTR lpOutputString)
@@ -16,39 +16,41 @@ VOID WINAPI OutputDebugStringA(LPCSTR lpOutputString)
 
    synch_lock sl(m_pmutexOutputDebugStringA);
 
-   if (m_pstrOutputDebugStringA == NULL)
-   {
+   //if (m_pstrOutputDebugStringA == NULL)
+   //{
 
-      m_pstrOutputDebugStringA = new string();
+   //   m_pstrOutputDebugStringA = new string();
 
-   }
+   //}
 
-   m_pstrOutputDebugStringA->operator +=(lpOutputString);
+   //m_pstrOutputDebugStringA->operator +=(lpOutputString);
 
-   // very lazy implementation
+   //// very lazy implementation
 
-   stringa stra;
+   //stringa stra;
 
-   stra.add_lines(*m_pstrOutputDebugStringA);
+   //stra.add_lines(*m_pstrOutputDebugStringA);
 
-   if (stra.get_count() > 0)
-   {
+   //if (stra.get_count() > 0)
+   //{
 
-      *m_pstrOutputDebugStringA = stra.pop();
+   //   *m_pstrOutputDebugStringA = stra.pop();
 
-      if (stra.get_count() > 0)
-      {
+   //   if (stra.get_count() > 0)
+   //   {
 
-         for (auto str : stra)
-         {
+   //      for (auto str : stra)
+   //      {
 
-            __android_log_print(ANDROID_LOG_INFO, "OutputDebugString", str);
+            //__android_log_print(ANDROID_LOG_INFO, "OutputDebugString", str);
 
-         }
+            __android_log_print(ANDROID_LOG_INFO,"OutputDebugString",lpOutputString);
 
-      }
+   //      }
 
-   }
+   //   }
+
+   //}
 
 
 }
