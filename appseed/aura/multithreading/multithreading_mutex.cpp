@@ -73,6 +73,10 @@ mutex::mutex(::aura::application * papp, bool bInitiallyOwn, const char * pstrNa
 
        m_pmutex = NULL;
 
+       m_psem = NULL;
+
+       return;
+
        string strName(pstrName);
 
        //if(str::begins_ci(pstrName, "Global"))

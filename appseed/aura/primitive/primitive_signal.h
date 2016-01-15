@@ -262,7 +262,8 @@ public:
 };
 
 
-class CLASS_DECL_AURA dispatch
+class CLASS_DECL_AURA dispatch :
+   virtual public ::object
 {
 public:
 
@@ -344,35 +345,7 @@ public:
       signalid * pid,
       T * psignalizable,
       void (T::*pfn)(signal_details *),
-      bool bAddUnique = true)
-   {
-      signal_item * psignal = m_signala.GetSignalById(pid);
-      // If not found a existing Signal, create one
-      if(psignal == NULL)
-      {
-         psignal                    = new signal_item;
-         psignal->m_pid             = pid->copy();
-         psignal->m_psignal         = new class ::signal();
-         psignal->m_psignal->connect(psignalizable, pfn);
-         handler_item <T> * pitem   = new handler_item<T>;
-         pitem->m_psignalizable     = psignalizable;
-         psignal->m_handlera.add(pitem);
-         m_signala.add(psignal);
-      }
-      else
-      {
-         if(bAddUnique && psignal->m_psignal->is_connected(psignalizable, pfn))
-            return true;
-         // If a matching Signal is found, connect to
-         // this signal.
-         psignal->m_psignal->connect(psignalizable, pfn);
-         handler_item <T> * pitem = new handler_item<T>;
-         pitem->m_psignalizable = psignalizable;
-         psignal->m_handlera.add(pitem);
-      }
-      m_iHandling++;
-      return true;
-   }
+      bool bAddUnique = true);
 
 
 

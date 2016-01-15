@@ -161,6 +161,8 @@ namespace message
    bool dispatch::AddMessageHandler(UINT message, UINT uiCode, UINT uiIdStart, UINT uiIdEnd, T * psignalizable, void (T::*pfn)(signal_details *), bool bAddUnique)
    {
 
+      synch_lock sl(m_pmutex);
+
       Signal * psignal = m_signala.GetSignalByMessage(message,uiCode,uiIdStart,uiIdEnd);
 
       // If not found a existing Signal, create one
@@ -200,6 +202,8 @@ namespace message
    template < class T >
    bool dispatch::RemoveMessageHandler(UINT message,UINT uiCode,UINT uiIdStart,UINT uiIdEnd,T * psignalizable,void (T::*pfn)(signal_details *))
    {
+
+      synch_lock sl(m_pmutex);
 
       Signal * psignal = m_signala.GetSignalByMessage(message,uiCode,uiIdStart,uiIdEnd);
 

@@ -1,7 +1,7 @@
 //#include "framework.h"
 
 
-bool call_stack::s_bDoStackTrace = false;
+bool call_stack::s_bDoStackTrace = true;
 
 
 #if defined(LINUX) || defined(APPLEOS) || defined(SOLARIS)

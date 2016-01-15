@@ -1280,26 +1280,29 @@ namespace user
    void interaction_base::PostNcDestroy()
    {
 
+      synch_lock sl(m_pmutex);
+
       try
       {
 
          signalizable_disconnect_all();
 
-   }
-   catch(...)
-   {
+      }
+      catch(...)
+      {
 
-   }
-
-
+      }
 
       try
-        {
-            m_signala.remove_all();
-        }
-        catch(...)
-        {
-        }
+      {
+
+         m_signala.remove_all();
+
+      }
+      catch(...)
+      {
+      
+      }
 
    }
 

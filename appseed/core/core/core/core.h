@@ -8,7 +8,11 @@
 
 #include "nodeapp/operational_system/operational_system.h"
 
+#ifdef WINDOWS
+
 #pragma warning(disable: 4251)  // using non-exported as public in exported
+
+#endif
 
 
 #ifdef _CORE_LIBRARY

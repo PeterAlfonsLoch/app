@@ -22,6 +22,7 @@ namespace android
       virtual string get_module_path(HMODULE hmodule);
       virtual bool get_pid_by_path(const char * pszName, DWORD & dwPid);
       virtual bool get_pid_by_title(const char * pszName, DWORD & dwPid);
+      virtual int get_pid();
       virtual void get_all_processes(uint_array & dwa);
       virtual ::file::path get_process_path(DWORD dwPid);
 

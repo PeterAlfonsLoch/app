@@ -3244,6 +3244,8 @@ namespace user
    void interaction::PostNcDestroy()
    {
 
+      synch_lock sl(m_pmutex);
+
       try
       {
 
@@ -3268,8 +3270,6 @@ namespace user
       }
 
       {
-
-         synch_lock sl(m_pmutex);
 
          m_pimpl.release();
 

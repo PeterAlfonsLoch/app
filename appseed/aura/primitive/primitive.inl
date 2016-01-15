@@ -50,3 +50,43 @@ inline sp(::command_thread) object::command_thread()
    return m_pauraapp->command_thread();
 
 }
+
+
+
+template < class T >
+inline bool dispatch::AddMessageHandler(
+   signalid * pid,
+   T * psignalizable,
+   void (T::*pfn)(signal_details *),
+   bool bAddUnique)
+{
+
+   synch_lock sl(m_pmutex);
+
+   signal_item * psignal = m_signala.GetSignalById(pid);
+   // If not found a existing Signal, create one
+   if(psignal == NULL)
+   {
+      psignal                    = new signal_item;
+      psignal->m_pid             = pid->copy();
+      psignal->m_psignal         = new class ::signal();
+      psignal->m_psignal->connect(psignalizable,pfn);
+      handler_item <T> * pitem   = new handler_item<T>;
+      pitem->m_psignalizable     = psignalizable;
+      psignal->m_handlera.add(pitem);
+      m_signala.add(psignal);
+   }
+   else
+   {
+      if(bAddUnique && psignal->m_psignal->is_connected(psignalizable,pfn))
+         return true;
+      // If a matching Signal is found, connect to
+      // this signal.
+      psignal->m_psignal->connect(psignalizable,pfn);
+      handler_item <T> * pitem = new handler_item<T>;
+      pitem->m_psignalizable = psignalizable;
+      psignal->m_handlera.add(pitem);
+   }
+   m_iHandling++;
+   return true;
+}

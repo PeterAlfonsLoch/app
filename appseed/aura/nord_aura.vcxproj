@@ -3425,6 +3425,7 @@
     <None Include="primitive\collection\collection_array_impl.inl" />
     <None Include="primitive\collection\collection_map_impl.inl" />
     <None Include="primitive\collection\collection_raw_array_impl.inl" />
+    <None Include="primitive\primitive.inl" />
     <None Include="primitive\primitive_factory_impl.inl" />
     <None Include="primitive\str\str.inl" />
   </ItemGroup>

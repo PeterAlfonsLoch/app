@@ -29,7 +29,66 @@ It is provided "as is" without express or implied warranty.
 #include <execinfo.h>
 #elif defined(ANDROID) 
 #include <unistd.h>
+#include <unwind.h>
+#include <dlfcn.h>
 #endif
+
+#ifdef ANDROID
+
+struct BacktraceState
+{
+   void** current;
+   void** end;
+};
+
+static _Unwind_Reason_Code unwindCallback(struct _Unwind_Context* context,void* arg)
+{
+   BacktraceState* state = static_cast<BacktraceState*>(arg);
+   uintptr_t pc = _Unwind_GetIP(context);
+   if(pc) {
+      if(state->current == state->end) {
+         return _URC_END_OF_STACK;
+      }
+      else {
+         *state->current++ = reinterpret_cast<void*>(pc);
+      }
+   }
+   return _URC_NO_REASON;
+}
+
+size_t captureBacktrace(void** buffer,size_t max)
+{
+   BacktraceState state ={buffer, buffer + max};
+   _Unwind_Backtrace(unwindCallback,&state);
+
+   return state.current - buffer;
+}
+
+string dumpBacktrace(void** buffer,size_t count)
+{
+   string str;
+   for(size_t idx = 0; idx < count; ++idx) {
+      const void* addr = buffer[idx];
+      const char* symbol = "";
+
+      Dl_info info;
+      if(dladdr(addr,&info) && info.dli_sname) {
+         symbol = info.dli_sname;
+      }
+
+      str = "  #";
+      str += ::str::from(idx);
+      str += ": ";
+      str += ::str::from((uint_ptr) addr);
+      str += "  ";
+      str += symbol;
+      str += "\n";
+   }
+   return str;
+}
+
+#endif
+
 
 
 // The following is defined for x86 (XP and higher), x64 and IA64:
@@ -1002,7 +1061,16 @@ retry_get_base:
       stack_trace(str, &context, uiSkip, false, pszFormat);
 
       return true;
-#elif defined(METROWIN) || defined(ANDROID) || defined(SOLARIS)
+#elif defined(METROWIN) || defined(SOLARIS)
+
+      return true;
+
+#elif defined(ANDROID)
+
+      const size_t max = 30;
+      void* buffer[max];
+
+      str = dumpBacktrace(buffer,captureBacktrace(buffer,max));
 
       return true;
 
