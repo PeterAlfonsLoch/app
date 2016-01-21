@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		070214AD1C516E8E00DB16A7 /* PcreUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 070562221C412D78004085DF /* PcreUtil.cpp */; };
 		070562241C412D78004085DF /* PcreUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 070562221C412D78004085DF /* PcreUtil.cpp */; };
 		070562251C412D78004085DF /* PcreUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 070562231C412D78004085DF /* PcreUtil.h */; };
 		07473E0D1B503FE4004688C5 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07473E0C1B503FE4004688C5 /* libaura.dylib */; };
@@ -386,6 +387,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				070214AD1C516E8E00DB16A7 /* PcreUtil.cpp in Sources */,
 				07A4B11E1B76466800DA5C57 /* pcre2_chartables.c in Sources */,
 				07A4B11F1B76466800DA5C57 /* pcre2_auto_possess.c in Sources */,
 				07A4B1201B76466800DA5C57 /* pcre2_compile.c in Sources */,

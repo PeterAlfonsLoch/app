@@ -123,8 +123,9 @@ typedef unsigned __int64 ULONG_PTR, *PULONG_PTR;
 typedef ULONG_PTR        DWORD_PTR, *PDWORD_PTR;
 
 #else
-
+#ifndef APPLE_IOS
 #define __int3264 __int32
+#endif
 
 #ifndef METROWIN
 

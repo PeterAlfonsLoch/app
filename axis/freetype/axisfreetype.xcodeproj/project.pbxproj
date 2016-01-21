@@ -500,6 +500,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		0702143D1C51504100DB16A7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 07D1B0E61B6FBEFD004E8E35 /* axis_image_png.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 07B65763190F3CA2002DAADE;
+			remoteInfo = ios_axis_image_png;
+		};
 		07108CDE1B4C97E300A28F80 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9A19A08E19C677110018DF7D /* axisbzip2.xcodeproj */;
@@ -1865,6 +1872,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				0702143E1C51504100DB16A7 /* PBXTargetDependency */,
 				07108DD61B4C9A0D00A28F80 /* PBXTargetDependency */,
 				07D6A8011B4CB81F004FEBC2 /* PBXTargetDependency */,
 				07D6A7FF1B4CB81F004FEBC2 /* PBXTargetDependency */,
@@ -2119,6 +2127,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		0702143E1C51504100DB16A7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ios_axis_image_png;
+			targetProxy = 0702143D1C51504100DB16A7 /* PBXContainerItemProxy */;
+		};
 		07108DD61B4C9A0D00A28F80 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = aura_ios;

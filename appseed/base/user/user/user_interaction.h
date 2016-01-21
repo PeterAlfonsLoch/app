@@ -19,7 +19,7 @@ namespace user
          type_none,
          type_up,
          type_down,
-      };
+      } override;
 
       bool                                m_bWorkspaceFullScreen;
       point                               m_ptScrollPassword1;
@@ -101,7 +101,7 @@ namespace user
       virtual void set_need_layout();
 
 
-      virtual bool create_message_queue(const char * pszName);
+      virtual bool create_message_queue(const char * pszName) override;
 
 
       virtual bool has_action_hover();
@@ -116,9 +116,9 @@ namespace user
 
 
 
-      virtual void on_select();
+      virtual void on_select() override;
 
-      virtual bool is_place_holder();
+      virtual bool is_place_holder() override;
 
       ::visual::e_cursor get_cursor();
       void set_cursor(::visual::e_cursor ecursor);
@@ -129,59 +129,59 @@ namespace user
       virtual bool set_may_pro_devian(bool bSet = true);
       virtual void on_set_may_pro_devian();
 
-      virtual bool IsWindow() const;
+      virtual bool IsWindow() const override;
 
-      virtual LONG get_window_long(int32_t nIndex) const;
-      virtual LONG set_window_long(int32_t nIndex,LONG lValue);
+      virtual LONG get_window_long(int32_t nIndex) const override;
+      virtual LONG set_window_long(int32_t nIndex,LONG lValue) override;
 
-      virtual LONG_PTR get_window_long_ptr(int32_t nIndex) const;
-      virtual LONG_PTR set_window_long_ptr(int32_t nIndex,LONG_PTR lValue);
+      virtual LONG_PTR get_window_long_ptr(int32_t nIndex) const override;
+      virtual LONG_PTR set_window_long_ptr(int32_t nIndex,LONG_PTR lValue) override;
 
       virtual bool on_before_set_parent(::user::interaction * pinterface);
       virtual void on_set_parent(::user::interaction * pinterface);
 
-      virtual ::user::elemental * first_child_elemental();
-      virtual ::user::elemental * top_elemental();
-      virtual ::user::elemental * under_elemental();
-      virtual ::user::elemental * above_elemental();
-      virtual ::user::elemental * next_elemental();
-      virtual ::user::elemental * previous_elemental();
+      virtual ::user::elemental * first_child_elemental() override;
+      virtual ::user::elemental * top_elemental() override;
+      virtual ::user::elemental * under_elemental() override;
+      virtual ::user::elemental * above_elemental() override;
+      virtual ::user::elemental * next_elemental() override;
+      virtual ::user::elemental * previous_elemental() override;
 
 
 
-      virtual ::user::interaction * first_child();
-      virtual ::user::interaction * last_child();
-      virtual ::user::interaction * last_sibling();
-      virtual ::user::interaction * next_sibling();
-      virtual ::user::interaction * previous_sibling();
-      virtual ::user::interaction * first_sibling();
-      virtual ::user::interaction * next_sibling(::user::interaction * pui);
-      virtual ::user::interaction * previous_sibling(::user::interaction * pui);
+      virtual ::user::interaction * first_child() override;
+      virtual ::user::interaction * last_child() override;
+      virtual ::user::interaction * last_sibling() override;
+      virtual ::user::interaction * next_sibling() override;
+      virtual ::user::interaction * previous_sibling() override;
+      virtual ::user::interaction * first_sibling() override;
+      virtual ::user::interaction * next_sibling(::user::interaction * pui) override;
+      virtual ::user::interaction * previous_sibling(::user::interaction * pui) override;
 
 
-      virtual void mouse_hover_add(::user::interaction * pinterface);
-      virtual void mouse_hover_remove(::user::interaction * pinterface);
+      virtual void mouse_hover_add(::user::interaction * pinterface) override;
+      virtual void mouse_hover_remove(::user::interaction * pinterface) override;
 
 
-      virtual bool CheckAutoCenter();
+      virtual bool CheckAutoCenter() override;
 
-      virtual void track_mouse_hover();
-      virtual void track_mouse_leave();
+      virtual void track_mouse_hover() override;
+      virtual void track_mouse_leave() override;
 
       // dialog support
       void UpdateDialogControls(command_target* pTarget,bool bDisableIfNoHndler);
-      virtual void CenterWindow(::user::interaction * pAlternateOwner = NULL);
-      virtual id   run_modal_loop(::user::interaction * pui,uint32_t dwFlags = 0,::object * pliveobject = NULL);
-      virtual id   RunModalLoop(uint32_t dwFlags = 0,::object * pliveobject = NULL);
-      virtual id   _001RunModalLoop(uint32_t dwFlags = 0,::object * pliveobject = NULL);
-      virtual bool ContinueModal(int32_t iLevel);
-      virtual void EndModalLoop(id nResult);
-      virtual void EndAllModalLoops(id nResult);
+      virtual void CenterWindow(::user::interaction * pAlternateOwner = NULL) override;
+      virtual id   run_modal_loop(::user::interaction * pui,uint32_t dwFlags = 0,::object * pliveobject = NULL) override;
+      virtual id   RunModalLoop(uint32_t dwFlags = 0,::object * pliveobject = NULL) override;
+      virtual id   _001RunModalLoop(uint32_t dwFlags = 0,::object * pliveobject = NULL) override;
+      virtual bool ContinueModal(int32_t iLevel) override;
+      virtual void EndModalLoop(id nResult) override;
+      virtual void EndAllModalLoops(id nResult) override;
 
-      virtual bool BaseOnControlEvent(::user::control_event * pevent);
+      virtual bool BaseOnControlEvent(::user::control_event * pevent) override;
 
       // Dialog data support
-      virtual bool update_data(bool bSaveAndValidate = true);
+      virtual bool update_data(bool bSaveAndValidate = true) override;
 
 
       virtual ::user::interaction * get_os_focus_uie();
@@ -190,49 +190,49 @@ namespace user
       virtual bool on_keyboard_focus(::user::elemental * pfocus) override;
 
 
-      virtual void _001RedrawWindow(UINT nFlags = 0);
-      virtual void _001UpdateScreen(bool bUpdateBuffer = true);
-      virtual void _001UpdateBuffer();
+      virtual void _001RedrawWindow(UINT nFlags = 0) override;
+      virtual void _001UpdateScreen(bool bUpdateBuffer = true) override;
+      virtual void _001UpdateBuffer() override;
 
 
-      virtual void _001WindowMinimize();
-      virtual void _001WindowMaximize();
-      virtual void _001WindowFullScreen();
-      virtual void _001WindowRestore();
+      virtual void _001WindowMinimize() override;
+      virtual void _001WindowMaximize() override;
+      virtual void _001WindowFullScreen() override;
+      virtual void _001WindowRestore() override;
       virtual void _001WindowDock(::user::EAppearance eappearance);
 
       using ::user::interaction_base::GetWindowRect;
-      virtual bool GetClientRect(LPRECT lprect);
-      virtual bool GetClientRect(RECT64 * lprect);
-      virtual bool GetWindowRect(LPRECT lprect);
-      virtual bool GetWindowRect(RECT64 * lprect);
-      virtual bool ClientToScreen(LPRECT lprect);
-      virtual bool ClientToScreen(RECT64 * lprect);
-      virtual bool ClientToScreen(LPPOINT lppoint);
-      virtual bool ClientToScreen(POINT64 * lppoint);
-      virtual bool ScreenToClient(LPRECT lprect);
-      virtual bool ScreenToClient(RECT64 * lprect);
-      virtual bool ScreenToClient(LPPOINT lppoint);
-      virtual bool ScreenToClient(POINT64 * lprect);
-      virtual bool SetPlacement(const RECT & rect,UINT nFlags = 0);
-      virtual bool RepositionWindow(const RECT & rect, UINT nFlags = 0);
-      virtual bool RepositionWindow(int32_t x,int32_t y,int32_t cx,int32_t cy,UINT nFlags = 0);
-      virtual bool MoveWindow(int32_t x,int32_t y,UINT nFlags = 0);
-      virtual bool MoveWindow(POINT pt,UINT nFlags = 0);
-      virtual bool SizeWindow(int32_t x,int32_t y,UINT nFlags = 0);
-      virtual bool SizeWindow(SIZE sz,UINT nFlags = 0);
-      virtual bool ResizeWindow(int32_t cx,int32_t cy,UINT nFlags = 0);
-      virtual bool ResizeWindow(SIZE sz,UINT nFlags = 0);
-      virtual bool SetWindowPos(int_ptr z,const RECT & rect,UINT nFlags = 0);
-      virtual bool SetWindowPos(int_ptr z,int32_t x,int32_t y,int32_t cx,int32_t cy,UINT nFlags = 0);
-      virtual bool defer_set_window_pos(int32_t z,int32_t x,int32_t y,int32_t cx,int32_t cy,UINT nFlags); // only set_windows_pos if get_parent()->ScreenToClient(get_window_rect) different of rect(x, y, cx, cy)      virtual bool set_placement(LPRECT lprect);
-      //virtual int32_t SetWindowRgn(HRGN hRgn,bool bRedraw);
-      //virtual int32_t GetWindowRgn(HRGN hRgn);
+      virtual bool GetClientRect(LPRECT lprect) override;
+      virtual bool GetClientRect(RECT64 * lprect) override;
+      virtual bool GetWindowRect(LPRECT lprect) override;
+      virtual bool GetWindowRect(RECT64 * lprect) override;
+      virtual bool ClientToScreen(LPRECT lprect) override;
+      virtual bool ClientToScreen(RECT64 * lprect) override;
+      virtual bool ClientToScreen(LPPOINT lppoint) override;
+      virtual bool ClientToScreen(POINT64 * lppoint) override;
+      virtual bool ScreenToClient(LPRECT lprect) override;
+      virtual bool ScreenToClient(RECT64 * lprect) override;
+      virtual bool ScreenToClient(LPPOINT lppoint) override;
+      virtual bool ScreenToClient(POINT64 * lprect) override;
+      virtual bool SetPlacement(const RECT & rect,UINT nFlags = 0) override;
+      virtual bool RepositionWindow(const RECT & rect, UINT nFlags = 0) override;
+      virtual bool RepositionWindow(int32_t x,int32_t y,int32_t cx,int32_t cy,UINT nFlags = 0) override;
+      virtual bool MoveWindow(int32_t x,int32_t y,UINT nFlags = 0) override;
+      virtual bool MoveWindow(POINT pt,UINT nFlags = 0) override;
+      virtual bool SizeWindow(int32_t x,int32_t y,UINT nFlags = 0) override;
+      virtual bool SizeWindow(SIZE sz,UINT nFlags = 0) override;
+      virtual bool ResizeWindow(int32_t cx,int32_t cy,UINT nFlags = 0) override;
+      virtual bool ResizeWindow(SIZE sz,UINT nFlags = 0) override;
+      virtual bool SetWindowPos(int_ptr z,const RECT & rect,UINT nFlags = 0) override;
+      virtual bool SetWindowPos(int_ptr z,int32_t x,int32_t y,int32_t cx,int32_t cy,UINT nFlags = 0) override;
+      virtual bool defer_set_window_pos(int32_t z,int32_t x,int32_t y,int32_t cx,int32_t cy,UINT nFlags) override; // only set_windows_pos if get_parent()->ScreenToClient(get_window_rect) different of rect(x, y, cx, cy)      virtual bool set_placement(LPRECT lprect) override;
+      //virtual int32_t SetWindowRgn(HRGN hRgn,bool bRedraw) override;
+      //virtual int32_t GetWindowRgn(HRGN hRgn) override;
 
-      virtual void layout();
+      virtual void layout() override;
 
-      virtual void BringToTop(int32_t nCmdShow);
-      virtual bool BringWindowToTop();
+      virtual void BringToTop(int32_t nCmdShow) override;
+      virtual bool BringWindowToTop() override;
 
 #ifdef WINDOWSEX
       virtual bool GetWindowPlacement(WINDOWPLACEMENT* lpwndpl);
@@ -242,21 +242,21 @@ namespace user
       //virtual bool SendChildNotifyLastMsg(LRESULT* pResult = NULL);
 
 
-      virtual bool pre_create_window(::user::create_struct& cs);
+      virtual bool pre_create_window(::user::create_struct& cs) override;
 
 
-      virtual bool subclass_window(oswindow posdata);
-      virtual oswindow unsubclass_window();
+      virtual bool subclass_window(oswindow posdata) override;
+      virtual oswindow unsubclass_window() override;
 
 
-      virtual bool create_window(const RECT & rect, ::user::interaction *pparent,id id);
-      virtual bool create_window(const char * lpszClassName, const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,::user::interaction * pParentWnd,id id,sp(::create) pContext = NULL);
-      virtual bool create_window_ex(uint32_t dwExStyle = 0,const char * lpszClassName = NULL,const char * lpszWindowName= NULL,uint32_t dwStyle = 0,const RECT & rect=null_rect(),::user::interaction * pParentWnd=NULL,id id=::id(),LPVOID lpParam = NULL);
+      virtual bool create_window(const RECT & rect, ::user::interaction *pparent,id id) override;
+      virtual bool create_window(const char * lpszClassName, const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,::user::interaction * pParentWnd,id id,sp(::create) pContext = NULL) override;
+      virtual bool create_window_ex(uint32_t dwExStyle = 0,const char * lpszClassName = NULL,const char * lpszWindowName= NULL,uint32_t dwStyle = 0,const RECT & rect=null_rect(),::user::interaction * pParentWnd=NULL,id id=::id(),LPVOID lpParam = NULL) override;
       enum AdjustType { adjustBorder = 0,adjustOutside = 1 };
-      virtual void CalcWindowRect(LPRECT lpClientRect,UINT nAdjustType = adjustBorder);
+      virtual void CalcWindowRect(LPRECT lpClientRect,UINT nAdjustType = adjustBorder) override;
 
-      virtual bool IsTopParentActive();
-      virtual void ActivateTopParent();
+      virtual bool IsTopParentActive() override;
+      virtual void ActivateTopParent() override;
 
       virtual bool DestroyWindow();
 
@@ -268,7 +268,7 @@ namespace user
 #else
       virtual bool RedrawWindow(LPCRECT lpRectUpdate = NULL,
          ::draw2d::region* prgnUpdate = NULL,
-         UINT flags = 0);
+         UINT flags = 0) override;
 #endif
 
 
@@ -277,27 +277,27 @@ namespace user
 
 
 
-      virtual void UpdateWindow();
-      virtual void SetRedraw(bool bRedraw = TRUE);
-      virtual bool GetUpdateRect(LPRECT lpRect,bool bErase = FALSE);
-      virtual int32_t GetUpdateRgn(::draw2d::region* pRgn,bool bErase = FALSE);
-      virtual void Invalidate(bool bErase = TRUE);
-      virtual void InvalidateRect(LPCRECT lpRect,bool bErase = TRUE);
-      virtual void InvalidateRgn(::draw2d::region* pRgn,bool bErase = TRUE);
-      virtual void ValidateRect(LPCRECT lpRect);
-      virtual void ValidateRgn(::draw2d::region* pRgn);
-      virtual void ShowOwnedPopups(bool bShow = TRUE);
+      virtual void UpdateWindow() override;
+      virtual void SetRedraw(bool bRedraw = TRUE) override;
+      virtual bool GetUpdateRect(LPRECT lpRect,bool bErase = FALSE) override;
+      virtual int32_t GetUpdateRgn(::draw2d::region* pRgn,bool bErase = FALSE) override;
+      virtual void Invalidate(bool bErase = TRUE) override;
+      virtual void InvalidateRect(LPCRECT lpRect,bool bErase = TRUE) override;
+      virtual void InvalidateRgn(::draw2d::region* pRgn,bool bErase = TRUE) override;
+      virtual void ValidateRect(LPCRECT lpRect) override;
+      virtual void ValidateRgn(::draw2d::region* pRgn) override;
+      virtual void ShowOwnedPopups(bool bShow = TRUE) override;
 
 
-      virtual uint32_t GetStyle() const;
-      virtual uint32_t GetExStyle() const;
-      virtual bool ModifyStyle(uint32_t dwRemove,uint32_t dwAdd,UINT nFlags = 0);
-      virtual bool ModifyStyleEx(uint32_t dwRemove,uint32_t dwAdd,UINT nFlags = 0);
-      virtual LRESULT Default();
+      virtual uint32_t GetStyle() const override;
+      virtual uint32_t GetExStyle() const override;
+      virtual bool ModifyStyle(uint32_t dwRemove,uint32_t dwAdd,UINT nFlags = 0) override;
+      virtual bool ModifyStyleEx(uint32_t dwRemove,uint32_t dwAdd,UINT nFlags = 0) override;
+      virtual LRESULT Default() override;
 
-      virtual LRESULT send(::message::base * pbase);
-      virtual bool post(::message::base * pbase);
-      virtual LRESULT send_message(UINT uiMessage,WPARAM wparam = 0,lparam lparam = 0);
+      virtual LRESULT send(::message::base * pbase) override;
+      virtual bool post(::message::base * pbase) override;
+      virtual LRESULT send_message(UINT uiMessage,WPARAM wparam = 0,lparam lparam = 0) override;
 
 #ifdef LINUX
 
@@ -305,53 +305,53 @@ namespace user
 
 #endif
 
-      virtual bool post_message(UINT message,WPARAM wParam = 0,lparam lParam = 0);
-      virtual bool post_simple_command(e_simple_command ecommand,lparam lParam = 0);
+      virtual bool post_message(UINT message,WPARAM wParam = 0,lparam lParam = 0) override;
+      virtual bool post_simple_command(e_simple_command ecommand,lparam lParam = 0) override;
 
-      virtual bool ShowWindow(int32_t nCmdShow);
+      virtual bool ShowWindow(int32_t nCmdShow) override;
 
       // timer Functions
-      virtual bool SetTimer(uint_ptr nIDEvent,UINT nElapse,PFN_TIMER pfnTimer);
-      virtual bool KillTimer(uint_ptr nIDEvent);
+      virtual bool SetTimer(uint_ptr nIDEvent,UINT nElapse,PFN_TIMER pfnTimer) override;
+      virtual bool KillTimer(uint_ptr nIDEvent) override;
 
-      virtual bool is_window_enabled();
-      virtual bool enable_window(bool bEnable = TRUE);
+      virtual bool is_window_enabled() override;
+      virtual bool enable_window(bool bEnable = TRUE) override;
 
-      virtual void _001Print(::draw2d::graphics * pdc);
-      virtual void _000OnDraw(::draw2d::graphics *pdc);
-      virtual void _001DrawThis(::draw2d::graphics *pdc);
-      virtual void _001DrawChildren(::draw2d::graphics *pdc);
+      virtual void _001Print(::draw2d::graphics * pdc) override;
+      virtual void _000OnDraw(::draw2d::graphics *pdc) override;
+      virtual void _001DrawThis(::draw2d::graphics *pdc) override;
+      virtual void _001DrawChildren(::draw2d::graphics *pdc) override;
       virtual void _001OnNcDraw(::draw2d::graphics *pdc);
       virtual void _001CallOnDraw(::draw2d::graphics *pdc);
-      virtual void _001OnDraw(::draw2d::graphics *pdc);
+      virtual void _001OnDraw(::draw2d::graphics *pdc) override;
       virtual void _001OnClip(::draw2d::graphics *pdc);
-      virtual void draw_control_background(::draw2d::graphics *pdc);
+      virtual void draw_control_background(::draw2d::graphics *pdc) override;
 
       virtual bool is_custom_draw();
 
-      virtual id GetDlgCtrlId() const;
-      virtual id SetDlgCtrlId(class id id);
+      virtual id GetDlgCtrlId() const override;
+      virtual id SetDlgCtrlId(class id id) override;
 
 
-      virtual ::user::interaction * SetCapture(::user::interaction * pinterface = NULL);
-      virtual ::user::interaction * GetCapture();
-      virtual ::user::interaction * ReleaseCapture();
+      virtual ::user::interaction * SetCapture(::user::interaction * pinterface = NULL) override;
+      virtual ::user::interaction * GetCapture() override;
+      virtual ::user::interaction * ReleaseCapture() override;
 
 
-      virtual bool has_focus();
-      virtual ::user::interaction * SetFocus();
-      virtual ::user::interaction * GetFocus();
-      virtual bool SetForegroundWindow();
-      virtual interaction * GetActiveWindow();
-      virtual interaction * SetActiveWindow();
+      virtual bool has_focus() override;
+      virtual ::user::interaction * SetFocus() override;
+      virtual ::user::interaction * GetFocus() override;
+      virtual bool SetForegroundWindow() override;
+      virtual interaction * GetActiveWindow() override;
+      virtual interaction * SetActiveWindow() override;
 
       virtual void walk_pre_translate_tree(signal_details * pobj, ::user::interaction * puiStop = NULL);
 
-      virtual interaction * GetDescendantWindow(id id) const;
+      virtual interaction * GetDescendantWindow(id id) const override;
 
-      virtual void SetWindowText(const char * lpszString);
-      virtual strsize GetWindowText(LPSTR lpszStringBuf,int32_t nMaxCount);
-      virtual string GetWindowText();
+      virtual void SetWindowText(const char * lpszString) override;
+      virtual strsize GetWindowText(LPSTR lpszStringBuf,int32_t nMaxCount) override;
+      virtual string GetWindowText() override;
       virtual void GetWindowText(string & rString);
       virtual strsize GetWindowTextLength();
 

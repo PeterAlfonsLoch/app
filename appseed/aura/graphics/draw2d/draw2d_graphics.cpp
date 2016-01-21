@@ -21,10 +21,10 @@ namespace draw2d
 
 
    graphics::graphics(::aura::application * papp) :
-      object(papp),
-      m_spmutex(papp)
+      object(papp)
    {
 
+      m_pmutex                = new mutex(papp);
       m_puistrcontext         = NULL;
       m_pdrawcontext          = NULL;
       m_pdibAlphaBlend        = NULL;
@@ -76,8 +76,6 @@ namespace draw2d
    void graphics::release_os_data_ex(int i, void * p)
    {
    }
-
-   /*
 
    /*
 #ifdef WINDOWS
@@ -532,7 +530,7 @@ namespace draw2d
    point graphics::MoveTo(POINT point)
    {
 
-      synch_lock sl(m_spmutex);
+      synch_lock sl(m_pmutex);
 
       pointd pointd = MoveTo((double)point.x, (double)point.y);
 
@@ -2612,7 +2610,7 @@ namespace draw2d
    point graphics::MoveTo(int32_t x, int32_t y)
    {
 
-      synch_lock sl(m_spmutex);
+      synch_lock sl(m_pmutex);
 
       pointd pointd = MoveTo((double) x, (double) y);
 
@@ -2889,7 +2887,7 @@ namespace draw2d
 
       string str(strParam);
 
-      synch_lock ml(m_spmutex);
+      synch_lock ml(m_pmutex);
 
       size sz = GetTextExtent(str);
 
@@ -3348,7 +3346,7 @@ namespace draw2d
    pointd graphics::MoveTo(double x, double y)
    {
 
-      synch_lock sl(m_spmutex);
+      synch_lock sl(m_pmutex);
 
       double px = m_x;
 
@@ -4155,7 +4153,7 @@ namespace draw2d
 
    bool graphics::draw_stock_icon(const RECT & rectParam, e_stock_icon eicon)
    {
-      synch_lock sl(m_spmutex);
+      synch_lock sl(m_pmutex);
       ::draw2d::pen_sp pen(allocer());
       ::draw2d::brush_sp brush(allocer());
 

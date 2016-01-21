@@ -6,7 +6,7 @@ namespace ios
    
    
    class CLASS_DECL_AXIS file_set :
-   public ::file::set
+      virtual public ::file::set
    {
    public:
       
@@ -17,7 +17,7 @@ namespace ios
       ::file::listing   m_straFile;
       
       
-      file_set(sp(::aura::application) papp);
+      file_set(::aura::application * papp);
       virtual ~file_set();
       
       

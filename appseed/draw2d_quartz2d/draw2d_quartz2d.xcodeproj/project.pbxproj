@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0702141E1C5146B700DB16A7 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07473E111B504278004688C5 /* libaura.dylib */; };
 		07473E0E1B504277004688C5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07E25F571B4FFD5600752DE1 /* CoreGraphics.framework */; };
 		07473E131B504280004688C5 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07473E121B504280004688C5 /* CoreText.framework */; };
 		07473E151B5042A9004688C5 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07473E141B5042A9004688C5 /* CoreText.framework */; };
 		07473E171B5045B5004688C5 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07473E161B5045B5004688C5 /* CoreFoundation.framework */; };
-		078E29751B5B34880057E664 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07473E111B504278004688C5 /* libaura.dylib */; };
 		07E25F2D1B4FFC2100752DE1 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B496616A4A10100875A94 /* framework.cpp */; };
 		07E25F2E1B4FFC2100752DE1 /* draw2d_quartz2d_bitmap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A6B40CC17BBE291008391AD /* draw2d_quartz2d_bitmap.cpp */; };
 		07E25F2F1B4FFC2100752DE1 /* draw2d_quartz2d_brush.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A6B40CE17BBE291008391AD /* draw2d_quartz2d_brush.cpp */; };
@@ -71,7 +71,6 @@
 		9AA1007F19971AF5004F84BD /* cgcontextcreate.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AA1007E19971AF5004F84BD /* cgcontextcreate.h */; };
 		9AA1B44A176361950019E812 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AA1B449176361950019E812 /* Cocoa.framework */; };
 		9AE24E231904CF99001AEFFB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9AE24E211904CF99001AEFFB /* InfoPlist.strings */; };
-		9AE24E251904CF99001AEFFB /* draw2d_quartz2d_iosTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AE24E241904CF99001AEFFB /* draw2d_quartz2d_iosTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -152,7 +151,6 @@
 		9AE24E151904CF99001AEFFB /* draw2d_quartz2d_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = draw2d_quartz2d_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AE24E201904CF99001AEFFB /* draw2d_quartz2d_iosTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "draw2d_quartz2d_iosTests-Info.plist"; sourceTree = "<group>"; };
 		9AE24E221904CF99001AEFFB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		9AE24E241904CF99001AEFFB /* draw2d_quartz2d_iosTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = draw2d_quartz2d_iosTests.m; sourceTree = "<group>"; };
 		A1CFD778154F5EAA007447E2 /* libdraw2d_quartz2d.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libdraw2d_quartz2d.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -161,12 +159,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0702141E1C5146B700DB16A7 /* libaura.dylib in Frameworks */,
 				07E25F541B4FFD4000752DE1 /* UIKit.framework in Frameworks */,
 				07473E171B5045B5004688C5 /* CoreFoundation.framework in Frameworks */,
 				07473E151B5042A9004688C5 /* CoreText.framework in Frameworks */,
 				07473E131B504280004688C5 /* CoreText.framework in Frameworks */,
 				07473E0E1B504277004688C5 /* CoreGraphics.framework in Frameworks */,
-				078E29751B5B34880057E664 /* libaura.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -203,7 +201,6 @@
 		9AE24E1E1904CF99001AEFFB /* draw2d_quartz2d_iosTests */ = {
 			isa = PBXGroup;
 			children = (
-				9AE24E241904CF99001AEFFB /* draw2d_quartz2d_iosTests.m */,
 				9AE24E1F1904CF99001AEFFB /* Supporting Files */,
 			);
 			path = draw2d_quartz2d_iosTests;
@@ -479,7 +476,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9AE24E251904CF99001AEFFB /* draw2d_quartz2d_iosTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

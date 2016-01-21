@@ -161,7 +161,9 @@ typedef void far            *LPVOID;
 typedef CONST void far      *LPCVOID;
 
 typedef int32_t                 INT;
+#ifndef APPLE_IOS
 typedef uint32_t        UINT;
+#endif
 typedef uint32_t        *PUINT;
 
 

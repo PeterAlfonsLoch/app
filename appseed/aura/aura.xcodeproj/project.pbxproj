@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0702141D1C51469D00DB16A7 /* libatomiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 076C9BF21B50ACB100CEA03E /* libatomiconv.dylib */; };
+		070214211C51488700DB16A7 /* aura_ipc.h in Headers */ = {isa = PBXBuildFile; fileRef = 0702141F1C51488700DB16A7 /* aura_ipc.h */; };
+		070214221C51488700DB16A7 /* aura_ipi.h in Headers */ = {isa = PBXBuildFile; fileRef = 070214201C51488700DB16A7 /* aura_ipi.h */; };
+		070214231C514A9A00DB16A7 /* exception_engine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0705619B1C4115F2004085DF /* exception_engine.cpp */; };
 		0705619C1C4115F2004085DF /* exception_engine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0705619B1C4115F2004085DF /* exception_engine.cpp */; };
 		070B8F191B6E578900D26137 /* macos_main.h in Headers */ = {isa = PBXBuildFile; fileRef = 070B8F171B6E578900D26137 /* macos_main.h */; };
 		0747A6471B26375F00E85AC7 /* visual_cursor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0747A6451B26375F00E85AC7 /* visual_cursor.cpp */; };
@@ -24,7 +28,6 @@
 		07502CA71B251B0A008D207C /* net_url.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07502CA41B251B0A008D207C /* net_url.cpp */; };
 		0751A49E192AB15000CFD2B0 /* multithreading_data.h in Headers */ = {isa = PBXBuildFile; fileRef = 0751A49C192AB15000CFD2B0 /* multithreading_data.h */; };
 		076C9BF01B50ACB100CEA03E /* primitive_create.h in Headers */ = {isa = PBXBuildFile; fileRef = 076C9BEF1B50ACB100CEA03E /* primitive_create.h */; };
-		076C9BF31B50AD2900CEA03E /* libatomiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 076D0A1B1A3FCCD4007432B6 /* libatomiconv.dylib */; };
 		07703C341B6FDF2D009026EA /* ios_mm.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07703C321B6FDEEA009026EA /* ios_mm.mm */; };
 		077A02731B4D63B9001C85FF /* aura_vanity_c#_cnet_d.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 077A02721B4D63B9001C85FF /* aura_vanity_c#_cnet_d.rtf */; };
 		077A02751B4D64F4001C85FF /* aura_vanity_e_f_g_etc.doc in Resources */ = {isa = PBXBuildFile; fileRef = 077A02741B4D64F4001C85FF /* aura_vanity_e_f_g_etc.doc */; };
@@ -1241,6 +1244,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0702141F1C51488700DB16A7 /* aura_ipc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aura_ipc.h; sourceTree = "<group>"; };
+		070214201C51488700DB16A7 /* aura_ipi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aura_ipi.h; sourceTree = "<group>"; };
 		0705619B1C4115F2004085DF /* exception_engine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = exception_engine.cpp; sourceTree = "<group>"; };
 		070B8F171B6E578900D26137 /* macos_main.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macos_main.h; sourceTree = "<group>"; };
 		07108A731B4C90D000A28F80 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.4.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -1916,8 +1921,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0702141D1C51469D00DB16A7 /* libatomiconv.dylib in Frameworks */,
 				077A05D41B4D7403001C85FF /* UIKit.framework in Frameworks */,
-				076C9BF31B50AD2900CEA03E /* libatomiconv.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2341,6 +2346,8 @@
 		9A163D3119C4A4CC00966C5E /* aura */ = {
 			isa = PBXGroup;
 			children = (
+				0702141F1C51488700DB16A7 /* aura_ipc.h */,
+				070214201C51488700DB16A7 /* aura_ipi.h */,
 				07EC4CD61B4C34CD00EB5965 /* aura_timer_array.h */,
 				07EC4CD71B4C34CD00EB5965 /* aura_timer_callback.h */,
 				07EC4CD81B4C34CD00EB5965 /* aura_timer_event.h */,
@@ -3703,6 +3710,7 @@
 				07B0955918495C2B007A0560 /* str_to_integer.h in Headers */,
 				9A16417319C4A4CE00966C5E /* aura_debug.h in Headers */,
 				07F5B1A6184A3B430092C3E1 /* file_buffered_buffer.h in Headers */,
+				070214211C51488700DB16A7 /* aura_ipc.h in Headers */,
 				9A16418619C4A4CE00966C5E /* aura_fixed_alloc.h in Headers */,
 				9A16421F19C4A4CE00966C5E /* exception_not_installed.h in Headers */,
 				9AC315CF198E4CB8008FB109 /* colorertake5_memory_chunks.h in Headers */,
@@ -3749,6 +3757,7 @@
 				9A16447819C4A4CF00966C5E /* os.h in Headers */,
 				07B094CB18495C2B007A0560 /* collection_map_association.h in Headers */,
 				07B094D718495C2B007A0560 /* collection_pointer_list.h in Headers */,
+				070214221C51488700DB16A7 /* aura_ipi.h in Headers */,
 				07B0954D18495C2B007A0560 /* str_simple.h in Headers */,
 				9A16454319C4A56200966C5E /* math_mkint_c.h in Headers */,
 				07F5B24F184A3B6A0092C3E1 /* draw2d_bitmap.h in Headers */,
@@ -4234,6 +4243,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				070214231C514A9A00DB16A7 /* exception_engine.cpp in Sources */,
 				07CAA9731B4DC5E900180410 /* DDInvocationGrabber.mm in Sources */,
 				07CAA9741B4DC5E900180410 /* ios_cross_gdi.mm in Sources */,
 				07CAA9751B4DC5E900180410 /* ios_thread_mm.mm in Sources */,

@@ -5,8 +5,9 @@ namespace ios
 {
    
    
-   file_set::file_set(sp(::aura::application) papp) :
+   file_set::file_set(::aura::application * papp) :
    ::object(papp),
+   ::file::set(papp),
    m_straFile(papp)
    {
       

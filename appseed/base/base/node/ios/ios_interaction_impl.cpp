@@ -3914,101 +3914,184 @@ namespace ios
    }
    
    
-   void interaction_impl::ClientToScreen(LPRECT lprect)
+   bool interaction_impl::ClientToScreen(LPRECT lprect)
    {
       
       class rect64 rectWindow;
-      m_pui->GetWindowRect(rectWindow);
+      
+      if(!m_pui->GetWindowRect(rectWindow))
+      {
+         
+         return false;
+         
+      }
       
       lprect->left   += (LONG) rectWindow.left;
       lprect->right  += (LONG) rectWindow.left;
       lprect->top    += (LONG) rectWindow.top;
       lprect->bottom += (LONG) rectWindow.top;
       
+      return true;
+      
    }
    
-   void interaction_impl::ClientToScreen(LPPOINT lppoint)
+   
+   bool interaction_impl::ClientToScreen(LPPOINT lppoint)
    {
+   
       class rect64 rectWindow;
-      m_pui->GetWindowRect(rectWindow);
+      
+      if(!m_pui->GetWindowRect(rectWindow))
+      {
+         
+         return false;
+         
+      }
       
       lppoint->x     += (LONG) rectWindow.left;
       lppoint->y     += (LONG) rectWindow.top;
+      
+      return true;
+      
    }
    
    
-   void interaction_impl::ClientToScreen(RECT64 * lprect)
+   bool interaction_impl::ClientToScreen(RECT64 * lprect)
    {
+      
       class rect rectWindow;
-      m_pui->GetWindowRect(rectWindow);
+      
+      if(!m_pui->GetWindowRect(rectWindow))
+      {
+         
+         return false;
+         
+      }
       
       lprect->left   += rectWindow.left;
       lprect->right  += rectWindow.left;
       lprect->top    += rectWindow.top;
       lprect->bottom += rectWindow.top;
       
+      return true;
+      
    }
    
-   void interaction_impl::ClientToScreen(POINT64 * lppoint)
+   
+   bool interaction_impl::ClientToScreen(POINT64 * lppoint)
    {
-      class rect64 rectWindow;
-      m_pui->GetWindowRect(rectWindow);
       
+      class rect64 rectWindow;
+      
+      if(!m_pui->GetWindowRect(rectWindow))
+      {
+         
+         return false;
+      }
+         
       lppoint->x     += rectWindow.left;
       lppoint->y     += rectWindow.top;
+      
+      return true;
+      
    }
    
    
-   void interaction_impl::ScreenToClient(LPRECT lprect)
+   bool interaction_impl::ScreenToClient(LPRECT lprect)
    {
+      
       class rect64 rectWindow;
-      m_pui->GetWindowRect(rectWindow);
+      
+      if(!m_pui->GetWindowRect(rectWindow))
+      {
+         
+         return false;
+         
+      }
       
       lprect->left   -= (LONG) rectWindow.left;
       lprect->right  -= (LONG) rectWindow.left;
       lprect->top    -= (LONG) rectWindow.top;
       lprect->bottom -= (LONG) rectWindow.top;
       
+      return true;
+      
    }
    
-   void interaction_impl::ScreenToClient(LPPOINT lppoint)
+   
+   bool interaction_impl::ScreenToClient(LPPOINT lppoint)
    {
+      
       class rect64 rectWindow;
-      m_pui->GetWindowRect(rectWindow);
+      
+      if(!m_pui->GetWindowRect(rectWindow))
+      {
+         
+         return false;
+         
+      }
       
       lppoint->x     -= (LONG) rectWindow.left;
       lppoint->y     -= (LONG) rectWindow.top;
+         
+         
+      return true;
+         
    }
    
    
-   void interaction_impl::ScreenToClient(RECT64 * lprect)
+   bool interaction_impl::ScreenToClient(RECT64 * lprect)
    {
+      
       class rect64 rectWindow;
-      m_pui->GetWindowRect(rectWindow);
+      
+      if(!m_pui->GetWindowRect(rectWindow))
+      {
+      
+         return false;
+      
+      }
+      
       
       lprect->left   -= rectWindow.left;
       lprect->right  -= rectWindow.left;
       lprect->top    -= rectWindow.top;
       lprect->bottom -= rectWindow.top;
       
+      return true;
+      
    }
    
-   void interaction_impl::ScreenToClient(POINT64 * lppoint)
+   bool interaction_impl::ScreenToClient(POINT64 * lppoint)
    {
+      
       class rect64 rectWindow;
-      m_pui->GetWindowRect(rectWindow);
+      
+      if(!m_pui->GetWindowRect(rectWindow))
+      {
+         
+         return false;
+         
+      }
       
       lppoint->x     -= rectWindow.left;
       lppoint->y     -= rectWindow.top;
+      
+      return true;
+      
    }
    
    
-   void interaction_impl::GetWindowRect(RECT64 * lprect)
+   bool interaction_impl::GetWindowRect(RECT64 * lprect)
    {
       //      if(!::IsWindow(get_handle()))
       //       throw simple_exception(get_app(), "no more a user::interaction");
       if(!::IsWindow(get_handle()))
-         return;
+      {
+         
+         return false;
+         
+      }
       // if it is temporary user::interaction - probably not ca2 wrapped user::interaction
       
       rect rect32;
@@ -4016,25 +4099,37 @@ namespace ios
       if(m_pui == m_pauraapp->m_pbasesystem->m_posdata->m_pui)
       {
          
-         GetMainScreenRect(rect32);
+         if(!GetMainScreenRect(rect32))
+         {
+            
+            return false;
+            
+         }
          
       }
       else
       {
          
-         ::GetWindowRect(get_handle(), rect32);
+         if(!::GetWindowRect(get_handle(), rect32))
+         {
+            
+            return false;
+            
+         }
          
       }
       
       ::copy(lprect, rect32);
       
+      return true;
+      
    }
    
-   void interaction_impl::GetClientRect(RECT64 * lprect)
+   bool interaction_impl::GetClientRect(RECT64 * lprect)
    {
       
       if(!::IsWindow(get_handle()))
-         return;
+         return false;
 
 //      ASSERT(::IsWindow(get_handle()));
       
@@ -4043,17 +4138,29 @@ namespace ios
       if(m_pui == m_pauraapp->m_pbasesystem->m_posdata->m_pui)
       {
          
-         GetMainScreenRect(rect32);
+         if(!GetMainScreenRect(rect32))
+         {
+            
+            return false;
+            
+         }
          
       }
       else
       {
          
-         ::GetWindowRect(get_handle(), rect32);
+         if(!::GetWindowRect(get_handle(), rect32))
+         {
+            
+            return false;
+            
+         }
          
       }
       
       ::copy(lprect, rect32);
+      
+      return true;
       
    }
    
@@ -5921,12 +6028,14 @@ namespace ios
    }
    
    
-   void interaction_impl::on_keyboard_focus(::user::elemental * pfocus)
+   bool interaction_impl::on_keyboard_focus(::user::elemental * pfocus)
    {
       
       UNREFERENCED_PARAMETER(pfocus);
       
       round_window_show_keyboard();
+      
+      return true;
       
       
    }

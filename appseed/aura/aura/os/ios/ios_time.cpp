@@ -11,10 +11,10 @@ inline DWORD GetTickCount()
 
 
 
-dword get_tick_count()
+DWORD get_tick_count()
 {
 
-   return (dword) GetTickCount();
+   return (DWORD) GetTickCount();
 
 }
 

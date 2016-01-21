@@ -6,13 +6,11 @@ namespace draw2d
 
 
    class CLASS_DECL_AURA graphics :
-      virtual public ::object,
-      public ::core::simple_chain < ::aura::draw_context >
+      virtual public ::core::simple_chain < ::aura::draw_context >
    {
    public:
 
 
-      sp(mutex)                     m_spmutex;
       ::aura::str_context *         m_puistrcontext;
       ::aura::draw_context *        m_pdrawcontext;
       ::draw2d::dib *               m_pdibAlphaBlend;

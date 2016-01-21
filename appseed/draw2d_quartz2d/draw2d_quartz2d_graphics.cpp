@@ -9,7 +9,7 @@ namespace draw2d_quartz2d
 {
 
 
-   graphics::graphics(sp(::aura::application) papp) :
+   graphics::graphics(::aura::application * papp) :
       ::object(papp),
       ::draw2d::graphics(papp)
    {
@@ -47,12 +47,12 @@ namespace draw2d_quartz2d
 
    void graphics::assert_valid() const
    {
-      ::object::assert_valid();
+      ::draw2d::graphics::assert_valid();
    }
 
    void graphics::dump(dump_context & dumpcontext) const
    {
-      ::object::dump(dumpcontext);
+      ::draw2d::graphics::dump(dumpcontext);
 
       //      dumpcontext << "get_handle1() = " << get_handle1();
       //    dumpcontext << "\nm_hAttribDC = " << get_handle2();

@@ -7,13 +7,16 @@
 #include "aes_cbc.c"
 #endif
 #include "aes_cfb.c"
-//#ifdef __ARM_ARCH_7A__
-//#include "aes_core.c"
-//#endif
+#ifdef __ARM_ARCH_7A__
+#include "aes_core.c"
+#endif
 #include "aes_ctr.c"
 #include "aes_ecb.c"
 #include "aes_ige.c"
 #if defined(_M_X64) || defined(_LP64)
+#include "aes_misc.c"
+#endif
+#if defined(__APPLE__) && !defined(_LP64)
 #include "aes_misc.c"
 #endif
 #include "aes_ofb.c"

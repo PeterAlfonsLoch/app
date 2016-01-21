@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		070214AC1C516E6D00DB16A7 /* _math_math.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0730AFE11BA10CF9001D28DB /* _math_math.cpp */; };
+		070214B21C51715A00DB16A7 /* libaxis.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2EA37519A62C9E004DAFFC /* libaxis.dylib */; };
+		070214B31C51716800DB16A7 /* libbase.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0730AFC21BA10CAC001D28DB /* libbase.dylib */; };
 		0730AFD51BA10CEC001D28DB /* calculator_element.h in Headers */ = {isa = PBXBuildFile; fileRef = 0730AFC71BA10CEC001D28DB /* calculator_element.h */; };
 		0730AFD71BA10CEC001D28DB /* calculator_parser_exception.h in Headers */ = {isa = PBXBuildFile; fileRef = 0730AFC91BA10CEC001D28DB /* calculator_parser_exception.h */; };
 		0730AFD91BA10CEC001D28DB /* calculator_parser.h in Headers */ = {isa = PBXBuildFile; fileRef = 0730AFCB1BA10CEC001D28DB /* calculator_parser.h */; };
@@ -17,7 +20,6 @@
 		0730AFE21BA10CF9001D28DB /* _math_math.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0730AFE11BA10CF9001D28DB /* _math_math.cpp */; };
 		0730AFE51BA10D6C001D28DB /* libbase.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0730AFC01BA10CAC001D28DB /* libbase.dylib */; };
 		0730AFF51BA11478001D28DB /* libaxis.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2EA37319A62C9E004DAFFC /* libaxis.dylib */; };
-		07B65767190F3CA2002DAADE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B65766190F3CA2002DAADE /* Foundation.framework */; };
 		07B65775190F3CA2002DAADE /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B65774190F3CA2002DAADE /* XCTest.framework */; };
 		07B65776190F3CA2002DAADE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B65766190F3CA2002DAADE /* Foundation.framework */; };
 		07B65778190F3CA2002DAADE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B65777190F3CA2002DAADE /* UIKit.framework */; };
@@ -39,6 +41,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		070214AE1C51712E00DB16A7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A2EA36C19A62C9E004DAFFC /* axis.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9AE24D331904CEFE001AEFFB;
+			remoteInfo = ios_axis;
+		};
+		070214B01C51713300DB16A7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0730AFB51BA10CAC001D28DB /* base.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9AE24D331904CEFE001AEFFB;
+			remoteInfo = ios_base;
+		};
 		0730AFBF1BA10CAC001D28DB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0730AFB51BA10CAC001D28DB /* base.xcodeproj */;
@@ -190,8 +206,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				070214B31C51716800DB16A7 /* libbase.dylib in Frameworks */,
+				070214B21C51715A00DB16A7 /* libaxis.dylib in Frameworks */,
 				07C8A47A1B71DD73000226A8 /* libaura.dylib in Frameworks */,
-				07B65767190F3CA2002DAADE /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -391,6 +408,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				070214B11C51713300DB16A7 /* PBXTargetDependency */,
+				070214AF1C51712E00DB16A7 /* PBXTargetDependency */,
 				07C8A4791B71DD6C000226A8 /* PBXTargetDependency */,
 			);
 			name = ios_math;
@@ -565,6 +584,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				070214AC1C516E6D00DB16A7 /* _math_math.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -587,6 +607,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		070214AF1C51712E00DB16A7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ios_axis;
+			targetProxy = 070214AE1C51712E00DB16A7 /* PBXContainerItemProxy */;
+		};
+		070214B11C51713300DB16A7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ios_base;
+			targetProxy = 070214B01C51713300DB16A7 /* PBXContainerItemProxy */;
+		};
 		0730AFE41BA10D62001D28DB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = base;
@@ -629,57 +659,16 @@
 		07B65784190F3CA2002DAADE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				DSTROOT = /tmp/math_ios.dst;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "math_ios/math_ios-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
-				MACH_O_TYPE = mh_dylib;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
 			};
 			name = Debug;
 		};
 		07B65785190F3CA2002DAADE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				DSTROOT = /tmp/math_ios.dst;
-				ENABLE_NS_ASSERTIONS = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "math_ios/math_ios-Prefix.pch";
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
-				MACH_O_TYPE = mh_dylib;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

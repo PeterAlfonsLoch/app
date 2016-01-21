@@ -55,7 +55,7 @@ namespace draw2d_quartz2d
       
       
       
-      graphics(sp(::aura::application) papp);
+      graphics(::aura::application * papp);
       virtual ~graphics();
       
       

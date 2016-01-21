@@ -115,7 +115,7 @@ namespace aura
       virtual ~application();
 
 
-      virtual void install_message_handling(::message::dispatch * pdispatch);
+      virtual void install_message_handling(::message::dispatch * pdispatch) override;
 
 
       virtual object * alloc(sp(type) info);
@@ -176,11 +176,11 @@ namespace aura
       inline class ::file::dir::application &   dir()          { return *m_spdir; }
       inline class ::file::application &        file()         { return *m_spfile; }
 
-      virtual bool on_run_exception(::exception::exception & e);
+      virtual bool on_run_exception(::exception::exception & e) override;
       virtual bool handle_not_installed(::not_installed & notinstalled);
 
-      virtual bool is_system();
-      virtual bool is_session();
+      virtual bool is_system() override;
+      virtual bool is_session() override;
       virtual bool is_serviceable();
       virtual bool is_user_service();
 
@@ -201,9 +201,9 @@ namespace aura
 
 #endif
 
-      virtual void process_message_filter(int32_t code,signal_details * pobj);
+      virtual void process_message_filter(int32_t code,signal_details * pobj) override;
 
-      virtual bool on_thread_on_idle(::thread_impl * pimpl,LONG lCount);
+      virtual bool on_thread_on_idle(::thread_impl * pimpl,LONG lCount) override;
       virtual bool post_user_message(::thread_impl * pimpl,::user::primitive * pui,UINT message,WPARAM wparam = 0,lparam lparam = cnull);
 
       virtual bool is_window(::user::primitive * pui);
@@ -232,7 +232,7 @@ namespace aura
 
 
 
-      virtual bool verb();
+      virtual bool verb() override;
 
 
 
@@ -268,11 +268,11 @@ namespace aura
       virtual bool initialize2();
       virtual bool initialize3();
 
-      virtual bool initialize_instance();
-      virtual int32_t exit_instance();
+      virtual bool initialize_instance() override;
+      virtual int32_t exit_instance() override;
 
       virtual bool initialize();
-      virtual bool finalize();
+      virtual bool finalize() override;
 
       bool ca_process_initialize();
       bool ca_initialize1();
@@ -285,10 +285,10 @@ namespace aura
       virtual bool is_uninstalling();
 
 
-      virtual int32_t run();
+      virtual int32_t run() override;
 
-      virtual bool pre_run();
-      virtual int32_t main();
+      virtual bool pre_run() override;
+      virtual int32_t main() override;
       virtual int32_t on_run();
       virtual int32_t application_pre_run();
       virtual bool initial_check_directrix();
@@ -342,8 +342,8 @@ namespace aura
 
 
 
-      virtual void assert_valid() const;
-      virtual void dump(dump_context & dumpcontext) const;
+      virtual void assert_valid() const override;
+      virtual void dump(dump_context & dumpcontext) const override;
 
       virtual bool final_handle_exception(::exception::exception & e);
 
@@ -393,17 +393,17 @@ namespace aura
       virtual bool check_exclusive();
       virtual bool release_exclusive();
 
-      virtual void on_set_scalar(e_scalar escalar,int64_t iValue,int iFlags);
-      virtual void get_scalar_minimum(e_scalar escalar,int64_t & i);
-      virtual void get_scalar(e_scalar escalar,int64_t & i);
-      virtual void get_scalar_maximum(e_scalar escalar,int64_t & i);
+      virtual void on_set_scalar(e_scalar escalar,int64_t iValue,int iFlags) override;
+      virtual void get_scalar_minimum(e_scalar escalar,int64_t & i) override;
+      virtual void get_scalar(e_scalar escalar,int64_t & i) override;
+      virtual void get_scalar_maximum(e_scalar escalar,int64_t & i) override;
 
 
 
       bool safe_is_running();
 
 
-      virtual void on_request(sp(::create) pcreatecontext);
+      virtual void on_request(sp(::create) pcreatecontext) override;
 
       // name by Mummi (Japanese -> Guddo : from English : Good, ca2 interpretation : Goods).
       // get/set serializables to user directory
@@ -456,7 +456,7 @@ namespace aura
 
       virtual void process_message(signal_details * pobj);
 
-      virtual void message_handler(signal_details * pobj);
+      virtual void message_handler(signal_details * pobj) override;
 
 
       virtual string get_locale();
@@ -475,7 +475,7 @@ namespace aura
       virtual void fill_locale_schema(::str::international::locale_schema & localeschema,const string & pszLocale,const string & pszSchema);
 
 
-      virtual void defer_add_thread_run_wait(sync_object_ptra & soa);
+      virtual void defer_add_thread_run_wait(sync_object_ptra & soa) override;
 
 
       DECL_GEN_SIGNAL(_001OnApplicationRequest);
@@ -495,14 +495,14 @@ namespace aura
       virtual ::aura::application * create_platform(::aura::session * psession);
       virtual bool start_application(bool bSynch,application_bias * pbias);
 
-      virtual bool is_application();
+      virtual bool is_application() override;
 
       virtual ::file::listing & perform_file_listing(::file::listing & listing) override;
 
       virtual bool _001OnAgreeExit();
       virtual void _001OnFranceExit();
 
-      virtual string lstr(id id,const string & strDefault = (const string &)*((const string *)NULL));
+      virtual string lstr(id id,const string & strDefault = (const string &)*((const string *)NULL)) override;
 
    };
 

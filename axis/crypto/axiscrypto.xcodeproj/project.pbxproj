@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		070214251C514B4B00DB16A7 /* aesni-x86.s in Sources */ = {isa = PBXBuildFile; fileRef = 9A9D335019D4C44D00DC2067 /* aesni-x86.s */; };
+		070214271C514B4B00DB16A7 /* x86-mont.s in Sources */ = {isa = PBXBuildFile; fileRef = 9A9D335419D4C44D00DC2067 /* x86-mont.s */; };
+		070214331C514B4B00DB16A7 /* wp-mmx.s in Sources */ = {isa = PBXBuildFile; fileRef = 9A9D336A19D4C44D00DC2067 /* wp-mmx.s */; };
+		070214391C514D4B00DB16A7 /* aes-586.s in Sources */ = {isa = PBXBuildFile; fileRef = 9A9D334F19D4C44D00DC2067 /* aes-586.s */; };
 		071B2B4D1B6E639F0088E158 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07502C881B247427008D207C /* libaura.dylib */; };
 		07558DA91B23DD56008C63AF /* bss_dgram.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DA71B23DD56008C63AF /* bss_dgram.c */; };
 		07558DAA1B23DD56008C63AF /* bss_sock.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DA81B23DD56008C63AF /* bss_sock.c */; };
@@ -1371,6 +1375,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				070214391C514D4B00DB16A7 /* aes-586.s in Sources */,
+				070214251C514B4B00DB16A7 /* aesni-x86.s in Sources */,
+				070214271C514B4B00DB16A7 /* x86-mont.s in Sources */,
+				070214331C514B4B00DB16A7 /* wp-mmx.s in Sources */,
 				07EDC4DA1B4EF91F00AF8928 /* hmac.c in Sources */,
 				07EDC4CF1B4EF6A700AF8928 /* v3_lib.c in Sources */,
 				07EDC4C51B4EE3FA00AF8928 /* _crypto.c in Sources */,
