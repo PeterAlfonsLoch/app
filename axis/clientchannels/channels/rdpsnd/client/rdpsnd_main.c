@@ -166,6 +166,7 @@ static void rdpsnd_select_supported_audio_formats(rdpsndPlugin* rdpsnd)
 	rdpsnd_free_audio_formats(rdpsnd->ClientFormats, rdpsnd->NumberOfClientFormats);
 	rdpsnd->NumberOfClientFormats = 0;
 	rdpsnd->ClientFormats = NULL;
+   rdpsnd->device->aac = 0;
 
 	if (!rdpsnd->NumberOfServerFormats)
 		return;

@@ -98,11 +98,15 @@ int mf_aac_init(AAC_CONTEXT* h264,int rate,int channels,AUDIO_FORMAT * in)
    //printf("Decode audio file %s to %s\n",filename,outfilename);
 
    /* find the mpeg audio decoder */
-#if defined(ANDROID) || defined(__APPLE__)
-   sys->codec = &ff_aac_decoder;
-#endif
+#if defined(__APPLE__)
    sys->codec = avcodec_find_decoder(AV_CODEC_ID_AAC);
-   if(!sys->codec) {
+#elif defined(ANDROID)
+   sys->codec = &ff_aac_decoder;
+#else
+   sys->codec = avcodec_find_decoder(AV_CODEC_ID_AAC);
+#endif
+   if(!sys->codec)
+   {
       assert_b(0);
       fprintf(stderr,"Codec not found\n");
       return FALSE;
@@ -210,14 +214,11 @@ error:
 
 int audio_decode_example2(AAC_CONTEXT* h264,void ** pout,const void * inbuf,int sin)
 {
+   *pout = NULL;
    int data_size = 0;
    AAC_CONTEXT_MF* sys = h264->pSystemData;
    /* decode until eof */
-   int olen = 0;
-   sys->avpkt.data = inbuf;
-   sys->avpkt.size = sin;
-   int i;
-
+   
    if(!sys->decoded_frame)
    {
       if(!(sys->decoded_frame = av_frame_alloc()))
@@ -231,12 +232,25 @@ int audio_decode_example2(AAC_CONTEXT* h264,void ** pout,const void * inbuf,int 
    {
       av_frame_unref(sys->decoded_frame);
    }
+   char * mem = av_malloc(sin);
+
+   memcpy(mem, inbuf, sin);
+   int olen = 0;
+   sys->avpkt.data = mem;
+   sys->avpkt.size = sin;
+   int i;
+
 
    sys->len = avcodec_decode_audio4(sys->c,sys->decoded_frame,&sys->got_frame,&sys->avpkt);
+   av_free(mem);
    if(sys->len < 0)
    {
-      assert_f(0);
+      char sz[2048];
+      av_strerror(sys->len, sz, sizeof(sz));
+//      assert_f(0);
       fprintf(stderr,"Error while decoding\n");
+      fprintf(stderr,sz);
+      fprintf(stderr,"\n");
       return 0;
    }
    if(sys->got_frame)

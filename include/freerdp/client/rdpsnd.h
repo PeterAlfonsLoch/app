@@ -82,7 +82,10 @@ struct rdpsnd_device_plugin
 	pcWavePlay WavePlay;
 	pcWaveConfirm WaveConfirm;
 
+   
 	BOOL DisableConfirmThread;
+   int aac;
+
 };
 
 #define RDPSND_DEVICE_EXPORT_FUNC_NAME "freerdp_rdpsnd_client_subsystem_entry"

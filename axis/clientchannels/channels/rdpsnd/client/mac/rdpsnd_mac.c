@@ -211,39 +211,63 @@ static void rdpsnd_mac_close(rdpsndDevicePlugin* device)
 
 static void rdpsnd_mac_free(rdpsndDevicePlugin* device)
 {
-	rdpsndMacPlugin* mac = (rdpsndMacPlugin*) device;
+
+   rdpsndMacPlugin* mac = (rdpsndMacPlugin*) device;
 	
 	device->Close(device);
    
-	
 	free(mac);
+   
 }
+
 
 static BOOL rdpsnd_mac_format_supported(rdpsndDevicePlugin* device, AUDIO_FORMAT* format)
 {
-        if (format->wFormatTag == WAVE_FORMAT_PCM)
-        {
-                return TRUE;
-        }
-        else if (format->wFormatTag == WAVE_FORMAT_ALAW)
-        {
-                return TRUE;
-        }
-        else if (format->wFormatTag == WAVE_FORMAT_MULAW)
-        {
-                return TRUE;
-        }
-        else if (format->wFormatTag == WAVE_FORMAT_GSM610)
-        {
-                return FALSE;
-        }
-        else if (format->wFormatTag == 41222)
-        {
-           return TRUE;
-        }
+   
+   if (format->wFormatTag == 41222)
+   {
+   
+      device->aac = TRUE;
+      
+      return TRUE;
+      
+   }
+   else if(device->aac)
+   {
+      
+      return FALSE;
+      
+      
+   }
+   else if (format->wFormatTag == WAVE_FORMAT_PCM)
+   {
+   
+      return TRUE;
+      
+   }
+   else if (format->wFormatTag == WAVE_FORMAT_ALAW)
+   {
+      
+      return TRUE;
+      
+   }
+   else if (format->wFormatTag == WAVE_FORMAT_MULAW)
+   {
+   
+      return TRUE;
+      
+   }
+   else if (format->wFormatTag == WAVE_FORMAT_GSM610)
+   {
+   
+      return FALSE;
+      
+   }
 	
 	return FALSE;
+   
 }
+
 
 static void rdpsnd_mac_set_volume(rdpsndDevicePlugin* device, UINT32 value)
 {
@@ -336,7 +360,7 @@ static void rdpsnd_mac_play(rdpsndDevicePlugin* device, BYTE* data, int size)
 	}
 	
 	device->Start(device);
-   if(mac->aac_context != NULL)
+   if(mac->aac_context != NULL && size > 0 && data != NULL)
    {
       free(data);  
    }
