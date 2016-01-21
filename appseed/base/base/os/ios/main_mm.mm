@@ -13,25 +13,3 @@
 
 
 
-void ui_application_main(int argc, char * argv[])
-{
-   
-   @autoreleasepool
-   {
-      
-      //        return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
-      
-      UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
-      
-   }
-   
-}
-
-
-
-void ui_app_run(int argc, char * argv[])
-{
-   
-   
-}
-
