@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		07574DCC1C45B52E0020E1F1 /* libwelscommon.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07574DC71C45B50F0020E1F1 /* libwelscommon.dylib */; };
+		078DF8831C5298F200E65274 /* libwelscommon.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07574DC91C45B50F0020E1F1 /* libwelscommon.dylib */; };
 		07B09A481B849878002AC4F0 /* adaptive_quantization_aarch64_neon.S in Sources */ = {isa = PBXBuildFile; fileRef = 6C749B77197E2A2000A111F9 /* adaptive_quantization_aarch64_neon.S */; };
 		07B09A491B849878002AC4F0 /* vaacalculation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 549947D9196A3FB400BA3D87 /* vaacalculation.cpp */; };
 		07B09A4A1B849878002AC4F0 /* ComplexityAnalysis.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 549947C1196A3FB400BA3D87 /* ComplexityAnalysis.cpp */; };
@@ -77,6 +78,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 4CE443D418B722CD0017DF25;
 			remoteInfo = welscommon;
+		};
+		078DF8801C5298C000E65274 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 07574DC11C45B50F0020E1F1 /* welscommon.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 07B09A071B8497A9002AC4F0;
+			remoteInfo = ios_welscommon;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -159,6 +167,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				078DF8831C5298F200E65274 /* libwelscommon.dylib in Frameworks */,
 				07B09A631B849878002AC4F0 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -384,6 +393,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				078DF8811C5298C000E65274 /* PBXTargetDependency */,
 			);
 			name = ios_welsprocessing;
 			productName = processing;
@@ -524,6 +534,11 @@
 			isa = PBXTargetDependency;
 			name = welscommon;
 			targetProxy = 07574DCA1C45B51E0020E1F1 /* PBXContainerItemProxy */;
+		};
+		078DF8811C5298C000E65274 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ios_welscommon;
+			targetProxy = 078DF8801C5298C000E65274 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

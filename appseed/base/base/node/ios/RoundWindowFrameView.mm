@@ -803,9 +803,12 @@ void __ios_do_events();
 - (void)drawRect:(CGRect)rect
 {
    
-   //	 [[NSColor clearColor] set];
-	//CGRectFill(rect);
-
+//   [[UIColor greenColor] set];
+//   
+//   UIRectFill(rect);
+//   
+//   return;
+   
 /*
 	NSBezierPath * rectPath = [NSBezierPath bezierPathWithRect : [self bounds]];
 	

@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		07574DEF1C45B5DF0020E1F1 /* libwelsprocessing.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07574DE51C45B59F0020E1F1 /* libwelsprocessing.dylib */; };
 		07574DF01C45B6040020E1F1 /* libwelscommon.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07574DD31C45B5850020E1F1 /* libwelscommon.dylib */; };
+		078DF88A1C52991100E65274 /* libwelscommon.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07574DD51C45B5850020E1F1 /* libwelscommon.dylib */; };
+		078DF88B1C52991100E65274 /* libwelsprocessing.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07574DE71C45B59F0020E1F1 /* libwelsprocessing.dylib */; };
 		07B0985C1B849208002AC4F0 /* set_mb_syn_cavlc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CE446F018BC605C0017DF25 /* set_mb_syn_cavlc.cpp */; };
 		07B0985D1B849208002AC4F0 /* encode_mb_aux.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CE446E018BC605C0017DF25 /* encode_mb_aux.cpp */; };
 		07B0985E1B849208002AC4F0 /* svc_mode_decision.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CE446F618BC605C0017DF25 /* svc_mode_decision.cpp */; };
@@ -129,6 +131,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = 5499477B196A3F3900BA3D87;
 			remoteInfo = welsprocessing;
+		};
+		078DF8841C52990300E65274 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 07574DCD1C45B5850020E1F1 /* welscommon.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 07B09A071B8497A9002AC4F0;
+			remoteInfo = ios_welscommon;
+		};
+		078DF8861C52990300E65274 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 07574DDF1C45B59E0020E1F1 /* welsprocessing.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 07B09A461B849878002AC4F0;
+			remoteInfo = ios_welsprocessing;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -263,6 +279,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				078DF88A1C52991100E65274 /* libwelscommon.dylib in Frameworks */,
+				078DF88B1C52991100E65274 /* libwelsprocessing.dylib in Frameworks */,
 				07B098881B849208002AC4F0 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -509,6 +527,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				078DF8851C52990300E65274 /* PBXTargetDependency */,
+				078DF8871C52990300E65274 /* PBXTargetDependency */,
 			);
 			name = ios_welsenc;
 			productName = welsenc;
@@ -703,6 +723,16 @@
 			isa = PBXTargetDependency;
 			name = welsprocessing;
 			targetProxy = 07574DED1C45B5C40020E1F1 /* PBXContainerItemProxy */;
+		};
+		078DF8851C52990300E65274 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ios_welscommon;
+			targetProxy = 078DF8841C52990300E65274 /* PBXContainerItemProxy */;
+		};
+		078DF8871C52990300E65274 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ios_welsprocessing;
+			targetProxy = 078DF8861C52990300E65274 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

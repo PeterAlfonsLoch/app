@@ -34,6 +34,8 @@
 #include <mach/mach.h>
 #include <stdio.h>
 
+#define TAG "TPCircularBuffer"
+
 #define reportResult(result,operation) (_reportResult((result),(operation),__FILE__,__LINE__))
 static inline bool _reportResult(kern_return_t result, const char *operation, const char* file, int line) {
     if ( result != ERR_SUCCESS ) {

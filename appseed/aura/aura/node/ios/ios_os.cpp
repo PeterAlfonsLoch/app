@@ -168,6 +168,14 @@ namespace ios
       }
       return false;
    }
+   
+   
+   int os::get_pid()
+   {
+      
+      return ::getpid();
+      
+   }
 
    ::file::path os::get_process_path(DWORD dwPid)
    {

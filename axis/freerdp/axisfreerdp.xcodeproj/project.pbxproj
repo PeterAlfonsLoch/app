@@ -88,6 +88,90 @@
 		0775CB6C1B8488C2005F8295 /* errconnect.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CB6A1B8488C2005F8295 /* errconnect.c */; };
 		0775CB6F1B8488E4005F8295 /* rdg.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CB6D1B8488E4005F8295 /* rdg.c */; };
 		0775CB701B8488E4005F8295 /* rdg.h in Headers */ = {isa = PBXBuildFile; fileRef = 0775CB6E1B8488E4005F8295 /* rdg.h */; };
+		078DF8701C52987000E65274 /* libwelscommon.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 078DF8531C52984900E65274 /* libwelscommon.dylib */; };
+		078DF8711C52987000E65274 /* libwelsdec.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 078DF8591C52984900E65274 /* libwelsdec.dylib */; };
+		078DF8721C52987000E65274 /* libwelsenc.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 078DF85F1C52984900E65274 /* libwelsenc.dylib */; };
+		078DF8731C52987000E65274 /* libwelsprocessing.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 078DF8651C52984900E65274 /* libwelsprocessing.dylib */; };
+		078DF87C1C52988C00E65274 /* libwelscommon.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 078DF8551C52984900E65274 /* libwelscommon.dylib */; };
+		078DF87D1C52988C00E65274 /* libwelsdec.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 078DF85B1C52984900E65274 /* libwelsdec.dylib */; };
+		078DF87E1C52988C00E65274 /* libwelsenc.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 078DF8611C52984900E65274 /* libwelsenc.dylib */; };
+		078DF87F1C52988C00E65274 /* libwelsprocessing.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 078DF8671C52984900E65274 /* libwelsprocessing.dylib */; };
+		078DF8901C5299E000E65274 /* bitmap.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CB281B8487D2005F8295 /* bitmap.c */; };
+		078DF8911C5299E000E65274 /* brush.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CB291B8487D2005F8295 /* brush.c */; };
+		078DF8921C5299E000E65274 /* cache.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CB2A1B8487D2005F8295 /* cache.c */; };
+		078DF8931C5299E000E65274 /* glyph.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CB2B1B8487D2005F8295 /* glyph.c */; };
+		078DF8941C5299E000E65274 /* nine_grid.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CB2C1B8487D2005F8295 /* nine_grid.c */; };
+		078DF8951C5299E000E65274 /* offscreen.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CB2D1B8487D2005F8295 /* offscreen.c */; };
+		078DF8961C5299E000E65274 /* palette.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CB2E1B8487D2005F8295 /* palette.c */; };
+		078DF8971C5299E000E65274 /* pointer.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CB2F1B8487D2005F8295 /* pointer.c */; };
+		078DF8981C5299EC00E65274 /* audio.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CAE11B848797005F8295 /* audio.c */; };
+		078DF8991C5299EC00E65274 /* bitmap.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CAE21B848797005F8295 /* bitmap.c */; };
+		078DF89A1C5299EC00E65274 /* clear.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CAE31B848797005F8295 /* clear.c */; };
+		078DF89B1C5299EC00E65274 /* color.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CAE41B848797005F8295 /* color.c */; };
+		078DF89C1C5299EC00E65274 /* dsp.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CAE51B848797005F8295 /* dsp.c */; };
+		078DF89D1C5299EC00E65274 /* h264.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CAE61B848797005F8295 /* h264.c */; };
+		078DF89E1C5299EC00E65274 /* interleaved.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CAE91B848797005F8295 /* interleaved.c */; };
+		078DF89F1C5299EC00E65274 /* jpeg.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CAEA1B848797005F8295 /* jpeg.c */; };
+		078DF8A01C5299EC00E65274 /* mppc.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CAEB1B848797005F8295 /* mppc.c */; };
+		078DF8A11C5299EC00E65274 /* ncrush.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CAEC1B848797005F8295 /* ncrush.c */; };
+		078DF8A21C5299EC00E65274 /* nsc_encode.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CAED1B848797005F8295 /* nsc_encode.c */; };
+		078DF8A31C5299EC00E65274 /* nsc_sse2.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CAEE1B848797005F8295 /* nsc_sse2.c */; };
+		078DF8A41C5299EC00E65274 /* nsc.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CAEF1B848797005F8295 /* nsc.c */; };
+		078DF8A51C5299EC00E65274 /* planar.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CAF01B848797005F8295 /* planar.c */; };
+		078DF8A61C5299EC00E65274 /* progressive.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CAF11B848797005F8295 /* progressive.c */; };
+		078DF8A71C5299EC00E65274 /* region.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CAF21B848797005F8295 /* region.c */; };
+		078DF8A81C5299EC00E65274 /* rfx_decode.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CAF31B848797005F8295 /* rfx_decode.c */; };
+		078DF8A91C5299EC00E65274 /* rfx_differential.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CAF41B848797005F8295 /* rfx_differential.c */; };
+		078DF8AA1C5299EC00E65274 /* rfx_dwt.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CAF51B848797005F8295 /* rfx_dwt.c */; };
+		078DF8AB1C5299EC00E65274 /* rfx_encode.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CAF61B848797005F8295 /* rfx_encode.c */; };
+		078DF8AC1C5299EC00E65274 /* rfx_neon.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CAF71B848797005F8295 /* rfx_neon.c */; };
+		078DF8AD1C5299EC00E65274 /* rfx_quantization.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CAF81B848797005F8295 /* rfx_quantization.c */; };
+		078DF8AE1C5299EC00E65274 /* rfx_rlgr.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CAF91B848797005F8295 /* rfx_rlgr.c */; };
+		078DF8AF1C5299EC00E65274 /* rfx_sse2.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CAFA1B848797005F8295 /* rfx_sse2.c */; };
+		078DF8B01C5299EC00E65274 /* rfx.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CAFB1B848797005F8295 /* rfx.c */; };
+		078DF8B11C5299EC00E65274 /* xcrush.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CAFC1B848797005F8295 /* xcrush.c */; };
+		078DF8B21C5299EC00E65274 /* zgfx.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CAFD1B848797005F8295 /* zgfx.c */; };
+		078DF8B31C5299EC00E65274 /* addin.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CB381B8487FA005F8295 /* addin.c */; };
+		078DF8B41C5299EC00E65274 /* assistance.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CB391B8487FA005F8295 /* assistance.c */; };
+		078DF8B51C5299EC00E65274 /* settings.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CB3A1B8487FA005F8295 /* settings.c */; };
+		078DF8B61C5299EC00E65274 /* rdg.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CB6D1B8488E4005F8295 /* rdg.c */; };
+		078DF8B71C5299EC00E65274 /* errbase.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CB691B8488C2005F8295 /* errbase.c */; };
+		078DF8B81C5299EC00E65274 /* errconnect.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CB6A1B8488C2005F8295 /* errconnect.c */; };
+		078DF8B91C5299EC00E65274 /* base64.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CAD11B84876F005F8295 /* base64.c */; };
+		078DF8BA1C5299EC00E65274 /* ber.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CAD21B84876F005F8295 /* ber.c */; };
+		078DF8BB1C5299EC00E65274 /* certificate.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CAD31B84876F005F8295 /* certificate.c */; };
+		078DF8BC1C5299EC00E65274 /* crypto.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CAD41B84876F005F8295 /* crypto.c */; };
+		078DF8BD1C5299EC00E65274 /* der.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CAD51B84876F005F8295 /* der.c */; };
+		078DF8BE1C5299EC00E65274 /* er.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CAD61B84876F005F8295 /* er.c */; };
+		078DF8BF1C5299EC00E65274 /* per.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CAD71B84876F005F8295 /* per.c */; };
+		078DF8C01C5299EC00E65274 /* tls.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CAD81B84876F005F8295 /* tls.c */; };
+		078DF8C11C5299EC00E65274 /* 8bpp.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CB3E1B84881C005F8295 /* 8bpp.c */; };
+		078DF8C21C5299EC00E65274 /* 16bpp.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CB3F1B84881C005F8295 /* 16bpp.c */; };
+		078DF8C31C5299EC00E65274 /* 32bpp.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CB401B84881C005F8295 /* 32bpp.c */; };
+		078DF8C41C5299EC00E65274 /* bitmap.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CB411B84881C005F8295 /* bitmap.c */; };
+		078DF8C51C5299EC00E65274 /* brush.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CB421B84881C005F8295 /* brush.c */; };
+		078DF8C61C5299EC00E65274 /* clipping.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CB431B84881C005F8295 /* clipping.c */; };
+		078DF8C71C5299EC00E65274 /* dc.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CB441B84881C005F8295 /* dc.c */; };
+		078DF8C81C5299EC00E65274 /* drawing.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CB451B84881C005F8295 /* drawing.c */; };
+		078DF8C91C5299ED00E65274 /* gdi.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CB461B84881C005F8295 /* gdi.c */; };
+		078DF8CA1C5299ED00E65274 /* gfx.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CB471B84881C005F8295 /* gfx.c */; };
+		078DF8CB1C5299ED00E65274 /* graphics.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CB481B84881C005F8295 /* graphics.c */; };
+		078DF8CC1C5299ED00E65274 /* line.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CB4B1B84881C005F8295 /* line.c */; };
+		078DF8CD1C5299ED00E65274 /* palette.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CB4C1B84881C005F8295 /* palette.c */; };
+		078DF8CE1C5299ED00E65274 /* pen.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CB4D1B84881C005F8295 /* pen.c */; };
+		078DF8CF1C5299ED00E65274 /* region.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CB4E1B84881C005F8295 /* region.c */; };
+		078DF8D01C5299ED00E65274 /* shape.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CB4F1B84881C005F8295 /* shape.c */; };
+		078DF8D11C5299ED00E65274 /* keyboard.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CB631B848872005F8295 /* keyboard.c */; };
+		078DF8D21C5299ED00E65274 /* locale.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CB641B848872005F8295 /* locale.c */; };
+		078DF8D31C5299ED00E65274 /* timezone.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CB651B848872005F8295 /* timezone.c */; };
+		078DF8D41C5299ED00E65274 /* keyboard_layout.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CB611B848867005F8295 /* keyboard_layout.c */; };
+		078DF8D51C5299ED00E65274 /* msusb.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CB1A1B8487B8005F8295 /* msusb.c */; };
+		078DF8D61C5299ED00E65274 /* passphrase.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CB1B1B8487B8005F8295 /* passphrase.c */; };
+		078DF8D71C5299ED00E65274 /* pcap.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CB1C1B8487B8005F8295 /* pcap.c */; };
+		078DF8D81C5299ED00E65274 /* profiler.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CB1D1B8487B8005F8295 /* profiler.c */; };
+		078DF8D91C5299ED00E65274 /* ringbuffer.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CB1E1B8487B8005F8295 /* ringbuffer.c */; };
+		078DF8DA1C5299ED00E65274 /* signal.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CB1F1B8487B8005F8295 /* signal.c */; };
+		078DF8DB1C5299ED00E65274 /* stopwatch.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CB201B8487B8005F8295 /* stopwatch.c */; };
 		079FD66B1B601D24007CB5C6 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 079FD6601B601D0B007CB5C6 /* libaura.dylib */; };
 		079FD66C1B601D2D007CB5C6 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 079FD6601B601D0B007CB5C6 /* libaura.dylib */; };
 		07B091731B608B6700B5BCA7 /* prim_YCoCg_opt.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD6BAD1B5F0C61003A1CE1 /* prim_YCoCg_opt.c */; };
@@ -95,7 +179,6 @@
 		07B091751B608C7400B5BCA7 /* prim_sign_opt.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD6BA91B5F0C61003A1CE1 /* prim_sign_opt.c */; };
 		07B091761B608C7400B5BCA7 /* prim_YCoCg_opt.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD6BAD1B5F0C61003A1CE1 /* prim_YCoCg_opt.c */; };
 		07B091771B608C7400B5BCA7 /* prim_YUV_opt.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD6BB01B5F0C61003A1CE1 /* prim_YUV_opt.c */; };
-		07BB9F471B84A14B007ADA8F /* libwelsenc.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B098A01B849252002AC4F0 /* libwelsenc.dylib */; };
 		07DD6BBF1B5F0C61003A1CE1 /* config.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DD6AC51B5F0C60003A1CE1 /* config.h */; };
 		07DD6BC01B5F0C61003A1CE1 /* config.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DD6AC51B5F0C60003A1CE1 /* config.h */; };
 		07DD6BC11B5F0C61003A1CE1 /* dummy.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD6AC61B5F0C60003A1CE1 /* dummy.c */; };
@@ -389,8 +472,6 @@
 		07DD6D7E1B5F0C61003A1CE1 /* primitives.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD6BB11B5F0C61003A1CE1 /* primitives.c */; };
 		07DD710F1B5F173E003A1CE1 /* libaxiswinpr.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07DD70A91B5F0FD4003A1CE1 /* libaxiswinpr.dylib */; };
 		07DD71121B5F1752003A1CE1 /* libaxiswinpr.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07DD70AB1B5F0FD4003A1CE1 /* libaxiswinpr.dylib */; };
-		07FAC87E1B84A8810035DF9D /* libwelsdec.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B0989A1B849252002AC4F0 /* libwelsdec.dylib */; };
-		07FAC87F1B84A8810035DF9D /* libwelsprocessing.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07BB9F331B849949007ADA8F /* libwelsprocessing.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -464,6 +545,118 @@
 			remoteGlobalIDString = 9AE24D871904CF46001AEFFB;
 			remoteInfo = ios_axisopenssl;
 		};
+		078DF8521C52984900E65274 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 078DF8441C52984900E65274 /* welscommon.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4CE443D518B722CD0017DF25;
+			remoteInfo = welscommon;
+		};
+		078DF8541C52984900E65274 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 078DF8441C52984900E65274 /* welscommon.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 07B09A261B8497A9002AC4F0;
+			remoteInfo = ios_welscommon;
+		};
+		078DF8581C52984900E65274 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 078DF8471C52984900E65274 /* welsdec.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4CE4427918B6FC360017DF25;
+			remoteInfo = welsdec;
+		};
+		078DF85A1C52984900E65274 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 078DF8471C52984900E65274 /* welsdec.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 07B098591B8491EC002AC4F0;
+			remoteInfo = ios_welsdec;
+		};
+		078DF85E1C52984900E65274 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 078DF84A1C52984900E65274 /* welsenc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4CE4431118B6FFA00017DF25;
+			remoteInfo = welsenc;
+		};
+		078DF8601C52984900E65274 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 078DF84A1C52984900E65274 /* welsenc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 07B0988D1B849208002AC4F0;
+			remoteInfo = ios_welsenc;
+		};
+		078DF8641C52984900E65274 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 078DF84D1C52984900E65274 /* welsprocessing.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5499477C196A3F3900BA3D87;
+			remoteInfo = welsprocessing;
+		};
+		078DF8661C52984900E65274 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 078DF84D1C52984900E65274 /* welsprocessing.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 07B09A681B849878002AC4F0;
+			remoteInfo = ios_welsprocessing;
+		};
+		078DF8681C52985F00E65274 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 078DF8441C52984900E65274 /* welscommon.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 4CE443D418B722CD0017DF25;
+			remoteInfo = welscommon;
+		};
+		078DF86A1C52985F00E65274 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 078DF8471C52984900E65274 /* welsdec.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 4CE4427818B6FC360017DF25;
+			remoteInfo = welsdec;
+		};
+		078DF86C1C52985F00E65274 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 078DF84A1C52984900E65274 /* welsenc.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 4CE4431018B6FFA00017DF25;
+			remoteInfo = welsenc;
+		};
+		078DF86E1C52985F00E65274 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 078DF84D1C52984900E65274 /* welsprocessing.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 5499477B196A3F3900BA3D87;
+			remoteInfo = welsprocessing;
+		};
+		078DF8741C52987D00E65274 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 078DF8441C52984900E65274 /* welscommon.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 07B09A071B8497A9002AC4F0;
+			remoteInfo = ios_welscommon;
+		};
+		078DF8761C52987D00E65274 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 078DF8471C52984900E65274 /* welsdec.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 07B098371B8491EC002AC4F0;
+			remoteInfo = ios_welsdec;
+		};
+		078DF8781C52987D00E65274 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 078DF84A1C52984900E65274 /* welsenc.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 07B0985A1B849208002AC4F0;
+			remoteInfo = ios_welsenc;
+		};
+		078DF87A1C52987D00E65274 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 078DF84D1C52984900E65274 /* welsprocessing.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 07B09A461B849878002AC4F0;
+			remoteInfo = ios_welsprocessing;
+		};
 		079FD65F1B601D0B007CB5C6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 079FD6591B601D0B007CB5C6 /* aura.xcodeproj */;
@@ -498,118 +691,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 077A05B41B4D7403001C85FF;
 			remoteInfo = ios_aura;
-		};
-		07B098991B849252002AC4F0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 07B0988E1B849252002AC4F0 /* welsdec.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 4CE4427918B6FC360017DF25;
-			remoteInfo = welsdec;
-		};
-		07B0989B1B849252002AC4F0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 07B0988E1B849252002AC4F0 /* welsdec.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 07B098591B8491EC002AC4F0;
-			remoteInfo = "ios_welsdec copy";
-		};
-		07B0989F1B849252002AC4F0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 07B098911B849252002AC4F0 /* welsenc.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 4CE4431118B6FFA00017DF25;
-			remoteInfo = welsenc;
-		};
-		07B098A11B849252002AC4F0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 07B098911B849252002AC4F0 /* welsenc.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 07B0988D1B849208002AC4F0;
-			remoteInfo = ios_welsenc;
-		};
-		07B098A31B84925F002AC4F0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 07B0988E1B849252002AC4F0 /* welsdec.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 4CE4427818B6FC360017DF25;
-			remoteInfo = welsdec;
-		};
-		07B098A51B84925F002AC4F0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 07B098911B849252002AC4F0 /* welsenc.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 4CE4431018B6FFA00017DF25;
-			remoteInfo = welsenc;
-		};
-		07B098A71B849265002AC4F0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 07B0988E1B849252002AC4F0 /* welsdec.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 07B098371B8491EC002AC4F0;
-			remoteInfo = "ios_welsdec copy";
-		};
-		07B098A91B849265002AC4F0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 07B098911B849252002AC4F0 /* welsenc.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 07B0985A1B849208002AC4F0;
-			remoteInfo = ios_welsenc;
-		};
-		07BB9F2C1B849949007ADA8F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 07BB9F271B849949007ADA8F /* welscommon.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 4CE443D518B722CD0017DF25;
-			remoteInfo = welscommon;
-		};
-		07BB9F2E1B849949007ADA8F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 07BB9F271B849949007ADA8F /* welscommon.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 07B09A261B8497A9002AC4F0;
-			remoteInfo = ios_welscommon;
-		};
-		07BB9F321B849949007ADA8F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 07BB9F241B849949007ADA8F /* welsprocessing.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 5499477C196A3F3900BA3D87;
-			remoteInfo = welsprocessing;
-		};
-		07BB9F341B849949007ADA8F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 07BB9F241B849949007ADA8F /* welsprocessing.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 07B09A681B849878002AC4F0;
-			remoteInfo = ios_welsprocessing;
-		};
-		07BB9F361B849957007ADA8F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 07BB9F241B849949007ADA8F /* welsprocessing.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 5499477B196A3F3900BA3D87;
-			remoteInfo = welsprocessing;
-		};
-		07BB9F381B849957007ADA8F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 07BB9F271B849949007ADA8F /* welscommon.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 4CE443D418B722CD0017DF25;
-			remoteInfo = welscommon;
-		};
-		07BB9F3A1B849961007ADA8F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 07BB9F241B849949007ADA8F /* welsprocessing.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 07B09A461B849878002AC4F0;
-			remoteInfo = ios_welsprocessing;
-		};
-		07BB9F3C1B849961007ADA8F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 07BB9F271B849949007ADA8F /* welscommon.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 07B09A071B8497A9002AC4F0;
-			remoteInfo = ios_welscommon;
 		};
 		07DD70A81B5F0FD4003A1CE1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -721,11 +802,11 @@
 		0775CB6A1B8488C2005F8295 /* errconnect.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = errconnect.c; sourceTree = "<group>"; };
 		0775CB6D1B8488E4005F8295 /* rdg.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rdg.c; sourceTree = "<group>"; };
 		0775CB6E1B8488E4005F8295 /* rdg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rdg.h; sourceTree = "<group>"; };
+		078DF8441C52984900E65274 /* welscommon.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = welscommon.xcodeproj; path = /Volumes/AppleDev/ios/nodeapp/seed/metaseed/../../../app/axis/openh264/codec/build/iOS/common/welscommon.xcodeproj; sourceTree = "<absolute>"; };
+		078DF8471C52984900E65274 /* welsdec.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = welsdec.xcodeproj; path = /Volumes/AppleDev/ios/nodeapp/seed/metaseed/../../../app/axis/openh264/codec/build/iOS/dec/welsdec/welsdec.xcodeproj; sourceTree = "<absolute>"; };
+		078DF84A1C52984900E65274 /* welsenc.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = welsenc.xcodeproj; path = /Volumes/AppleDev/ios/nodeapp/seed/metaseed/../../../app/axis/openh264/codec/build/iOS/enc/welsenc/welsenc.xcodeproj; sourceTree = "<absolute>"; };
+		078DF84D1C52984900E65274 /* welsprocessing.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = welsprocessing.xcodeproj; path = /Volumes/AppleDev/ios/nodeapp/seed/metaseed/../../../app/axis/openh264/codec/build/iOS/processing/welsprocessing.xcodeproj; sourceTree = "<absolute>"; };
 		079FD6591B601D0B007CB5C6 /* aura.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aura.xcodeproj; path = ../../appseed/aura/aura.xcodeproj; sourceTree = "<group>"; };
-		07B0988E1B849252002AC4F0 /* welsdec.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = welsdec.xcodeproj; path = /ca2/nodeapp/seed/metaseed/../../../app/axis/openh264/codec/build/iOS/dec/welsdec/welsdec.xcodeproj; sourceTree = "<absolute>"; };
-		07B098911B849252002AC4F0 /* welsenc.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = welsenc.xcodeproj; path = /ca2/nodeapp/seed/metaseed/../../../app/axis/openh264/codec/build/iOS/enc/welsenc/welsenc.xcodeproj; sourceTree = "<absolute>"; };
-		07BB9F241B849949007ADA8F /* welsprocessing.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = welsprocessing.xcodeproj; path = /ca2/app/axis/openh264/codec/build/iOS/processing/welsprocessing.xcodeproj; sourceTree = "<absolute>"; };
-		07BB9F271B849949007ADA8F /* welscommon.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = welscommon.xcodeproj; path = /ca2/app/axis/openh264/codec/build/iOS/common/welscommon.xcodeproj; sourceTree = "<absolute>"; };
 		07DD674C1B5F0C16003A1CE1 /* libaxisfreerdp.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libaxisfreerdp.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		07DD6AC51B5F0C60003A1CE1 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
 		07DD6AC61B5F0C60003A1CE1 /* dummy.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dummy.c; sourceTree = "<group>"; };
@@ -885,6 +966,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				078DF87C1C52988C00E65274 /* libwelscommon.dylib in Frameworks */,
+				078DF87D1C52988C00E65274 /* libwelsdec.dylib in Frameworks */,
+				078DF87E1C52988C00E65274 /* libwelsenc.dylib in Frameworks */,
+				078DF87F1C52988C00E65274 /* libwelsprocessing.dylib in Frameworks */,
 				079FD66C1B601D2D007CB5C6 /* libaura.dylib in Frameworks */,
 				074BD0B71B5F2F0800219723 /* libaxisopenssl.dylib in Frameworks */,
 				074BD0A41B5F2EBA00219723 /* libaxiscrypto.dylib in Frameworks */,
@@ -896,9 +981,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07FAC87E1B84A8810035DF9D /* libwelsdec.dylib in Frameworks */,
-				07FAC87F1B84A8810035DF9D /* libwelsprocessing.dylib in Frameworks */,
-				07BB9F471B84A14B007ADA8F /* libwelsenc.dylib in Frameworks */,
+				078DF8701C52987000E65274 /* libwelscommon.dylib in Frameworks */,
+				078DF8711C52987000E65274 /* libwelsdec.dylib in Frameworks */,
+				078DF8721C52987000E65274 /* libwelsenc.dylib in Frameworks */,
+				078DF8731C52987000E65274 /* libwelsprocessing.dylib in Frameworks */,
 				079FD66B1B601D24007CB5C6 /* libaura.dylib in Frameworks */,
 				074BD0B81B5F2F1100219723 /* libaxisopenssl.dylib in Frameworks */,
 				074BD0A51B5F2EC300219723 /* libaxiscrypto.dylib in Frameworks */,
@@ -929,48 +1015,48 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		078DF8451C52984900E65274 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				078DF8531C52984900E65274 /* libwelscommon.dylib */,
+				078DF8551C52984900E65274 /* libwelscommon.dylib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		078DF8481C52984900E65274 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				078DF8591C52984900E65274 /* libwelsdec.dylib */,
+				078DF85B1C52984900E65274 /* libwelsdec.dylib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		078DF84B1C52984900E65274 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				078DF85F1C52984900E65274 /* libwelsenc.dylib */,
+				078DF8611C52984900E65274 /* libwelsenc.dylib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		078DF84E1C52984900E65274 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				078DF8651C52984900E65274 /* libwelsprocessing.dylib */,
+				078DF8671C52984900E65274 /* libwelsprocessing.dylib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		079FD65A1B601D0B007CB5C6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
 				079FD6601B601D0B007CB5C6 /* libaura.dylib */,
 				079FD6621B601D0B007CB5C6 /* libaura.dylib */,
 				079FD6641B601D0B007CB5C6 /* aura_iosTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		07B0988F1B849252002AC4F0 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				07B0989A1B849252002AC4F0 /* libwelsdec.dylib */,
-				07B0989C1B849252002AC4F0 /* libwelsdec.dylib */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		07B098921B849252002AC4F0 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				07B098A01B849252002AC4F0 /* libwelsenc.dylib */,
-				07B098A21B849252002AC4F0 /* libwelsenc.dylib */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		07BB9F251B849949007ADA8F /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				07BB9F331B849949007ADA8F /* libwelsprocessing.dylib */,
-				07BB9F351B849949007ADA8F /* libwelsprocessing.dylib */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		07BB9F281B849949007ADA8F /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				07BB9F2D1B849949007ADA8F /* libwelscommon.a */,
-				07BB9F2F1B849949007ADA8F /* libwelscommon.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1316,14 +1402,14 @@
 		9A1B358116A2D7A500875A94 = {
 			isa = PBXGroup;
 			children = (
-				07BB9F241B849949007ADA8F /* welsprocessing.xcodeproj */,
-				07BB9F271B849949007ADA8F /* welscommon.xcodeproj */,
-				07B0988E1B849252002AC4F0 /* welsdec.xcodeproj */,
-				07B098911B849252002AC4F0 /* welsenc.xcodeproj */,
 				079FD6591B601D0B007CB5C6 /* aura.xcodeproj */,
 				074BD0941B5F2E9B00219723 /* axiscrypto.xcodeproj */,
 				074BD0A61B5F2EDB00219723 /* axisopenssl.xcodeproj */,
 				07DD70A31B5F0FD4003A1CE1 /* axiswinpr.xcodeproj */,
+				078DF8441C52984900E65274 /* welscommon.xcodeproj */,
+				078DF8471C52984900E65274 /* welsdec.xcodeproj */,
+				078DF84A1C52984900E65274 /* welsenc.xcodeproj */,
+				078DF84D1C52984900E65274 /* welsprocessing.xcodeproj */,
 				07DD6ABB1B5F0C60003A1CE1 /* freerdp */,
 				9A1B358D16A2D7A500875A94 /* Products */,
 			);
@@ -1520,10 +1606,10 @@
 			buildRules = (
 			);
 			dependencies = (
-				07BB9F3B1B849961007ADA8F /* PBXTargetDependency */,
-				07BB9F3D1B849961007ADA8F /* PBXTargetDependency */,
-				07B098A81B849265002AC4F0 /* PBXTargetDependency */,
-				07B098AA1B849265002AC4F0 /* PBXTargetDependency */,
+				078DF8751C52987D00E65274 /* PBXTargetDependency */,
+				078DF8771C52987D00E65274 /* PBXTargetDependency */,
+				078DF8791C52987D00E65274 /* PBXTargetDependency */,
+				078DF87B1C52987D00E65274 /* PBXTargetDependency */,
 				079FD66A1B601D1B007CB5C6 /* PBXTargetDependency */,
 				074BD0B61B5F2F0100219723 /* PBXTargetDependency */,
 				074BD0A31B5F2EAA00219723 /* PBXTargetDependency */,
@@ -1545,10 +1631,10 @@
 			buildRules = (
 			);
 			dependencies = (
-				07BB9F371B849957007ADA8F /* PBXTargetDependency */,
-				07BB9F391B849957007ADA8F /* PBXTargetDependency */,
-				07B098A41B84925F002AC4F0 /* PBXTargetDependency */,
-				07B098A61B84925F002AC4F0 /* PBXTargetDependency */,
+				078DF8691C52985F00E65274 /* PBXTargetDependency */,
+				078DF86B1C52985F00E65274 /* PBXTargetDependency */,
+				078DF86D1C52985F00E65274 /* PBXTargetDependency */,
+				078DF86F1C52985F00E65274 /* PBXTargetDependency */,
 				079FD6681B601D15007CB5C6 /* PBXTargetDependency */,
 				074BD0B41B5F2EFB00219723 /* PBXTargetDependency */,
 				074BD0A11B5F2EA400219723 /* PBXTargetDependency */,
@@ -1596,20 +1682,20 @@
 					ProjectRef = 07DD70A31B5F0FD4003A1CE1 /* axiswinpr.xcodeproj */;
 				},
 				{
-					ProductGroup = 07BB9F281B849949007ADA8F /* Products */;
-					ProjectRef = 07BB9F271B849949007ADA8F /* welscommon.xcodeproj */;
+					ProductGroup = 078DF8451C52984900E65274 /* Products */;
+					ProjectRef = 078DF8441C52984900E65274 /* welscommon.xcodeproj */;
 				},
 				{
-					ProductGroup = 07B0988F1B849252002AC4F0 /* Products */;
-					ProjectRef = 07B0988E1B849252002AC4F0 /* welsdec.xcodeproj */;
+					ProductGroup = 078DF8481C52984900E65274 /* Products */;
+					ProjectRef = 078DF8471C52984900E65274 /* welsdec.xcodeproj */;
 				},
 				{
-					ProductGroup = 07B098921B849252002AC4F0 /* Products */;
-					ProjectRef = 07B098911B849252002AC4F0 /* welsenc.xcodeproj */;
+					ProductGroup = 078DF84B1C52984900E65274 /* Products */;
+					ProjectRef = 078DF84A1C52984900E65274 /* welsenc.xcodeproj */;
 				},
 				{
-					ProductGroup = 07BB9F251B849949007ADA8F /* Products */;
-					ProjectRef = 07BB9F241B849949007ADA8F /* welsprocessing.xcodeproj */;
+					ProductGroup = 078DF84E1C52984900E65274 /* Products */;
+					ProjectRef = 078DF84D1C52984900E65274 /* welsprocessing.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -1663,6 +1749,62 @@
 			remoteRef = 074BD0B01B5F2EDB00219723 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		078DF8531C52984900E65274 /* libwelscommon.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libwelscommon.dylib;
+			remoteRef = 078DF8521C52984900E65274 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		078DF8551C52984900E65274 /* libwelscommon.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libwelscommon.dylib;
+			remoteRef = 078DF8541C52984900E65274 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		078DF8591C52984900E65274 /* libwelsdec.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libwelsdec.dylib;
+			remoteRef = 078DF8581C52984900E65274 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		078DF85B1C52984900E65274 /* libwelsdec.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libwelsdec.dylib;
+			remoteRef = 078DF85A1C52984900E65274 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		078DF85F1C52984900E65274 /* libwelsenc.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libwelsenc.dylib;
+			remoteRef = 078DF85E1C52984900E65274 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		078DF8611C52984900E65274 /* libwelsenc.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libwelsenc.dylib;
+			remoteRef = 078DF8601C52984900E65274 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		078DF8651C52984900E65274 /* libwelsprocessing.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libwelsprocessing.dylib;
+			remoteRef = 078DF8641C52984900E65274 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		078DF8671C52984900E65274 /* libwelsprocessing.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libwelsprocessing.dylib;
+			remoteRef = 078DF8661C52984900E65274 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		079FD6601B601D0B007CB5C6 /* libaura.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
@@ -1682,62 +1824,6 @@
 			fileType = wrapper.cfbundle;
 			path = aura_iosTests.xctest;
 			remoteRef = 079FD6631B601D0B007CB5C6 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		07B0989A1B849252002AC4F0 /* libwelsdec.dylib */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libwelsdec.dylib;
-			remoteRef = 07B098991B849252002AC4F0 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		07B0989C1B849252002AC4F0 /* libwelsdec.dylib */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libwelsdec.dylib;
-			remoteRef = 07B0989B1B849252002AC4F0 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		07B098A01B849252002AC4F0 /* libwelsenc.dylib */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libwelsenc.dylib;
-			remoteRef = 07B0989F1B849252002AC4F0 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		07B098A21B849252002AC4F0 /* libwelsenc.dylib */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libwelsenc.dylib;
-			remoteRef = 07B098A11B849252002AC4F0 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		07BB9F2D1B849949007ADA8F /* libwelscommon.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libwelscommon.a;
-			remoteRef = 07BB9F2C1B849949007ADA8F /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		07BB9F2F1B849949007ADA8F /* libwelscommon.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libwelscommon.a;
-			remoteRef = 07BB9F2E1B849949007ADA8F /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		07BB9F331B849949007ADA8F /* libwelsprocessing.dylib */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libwelsprocessing.dylib;
-			remoteRef = 07BB9F321B849949007ADA8F /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		07BB9F351B849949007ADA8F /* libwelsprocessing.dylib */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libwelsprocessing.dylib;
-			remoteRef = 07BB9F341B849949007ADA8F /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		07DD70A91B5F0FD4003A1CE1 /* libaxiswinpr.dylib */ = {
@@ -1761,6 +1847,82 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				078DF8981C5299EC00E65274 /* audio.c in Sources */,
+				078DF8991C5299EC00E65274 /* bitmap.c in Sources */,
+				078DF89A1C5299EC00E65274 /* clear.c in Sources */,
+				078DF89B1C5299EC00E65274 /* color.c in Sources */,
+				078DF89C1C5299EC00E65274 /* dsp.c in Sources */,
+				078DF89D1C5299EC00E65274 /* h264.c in Sources */,
+				078DF89E1C5299EC00E65274 /* interleaved.c in Sources */,
+				078DF89F1C5299EC00E65274 /* jpeg.c in Sources */,
+				078DF8A01C5299EC00E65274 /* mppc.c in Sources */,
+				078DF8A11C5299EC00E65274 /* ncrush.c in Sources */,
+				078DF8A21C5299EC00E65274 /* nsc_encode.c in Sources */,
+				078DF8A31C5299EC00E65274 /* nsc_sse2.c in Sources */,
+				078DF8A41C5299EC00E65274 /* nsc.c in Sources */,
+				078DF8A51C5299EC00E65274 /* planar.c in Sources */,
+				078DF8A61C5299EC00E65274 /* progressive.c in Sources */,
+				078DF8A71C5299EC00E65274 /* region.c in Sources */,
+				078DF8A81C5299EC00E65274 /* rfx_decode.c in Sources */,
+				078DF8A91C5299EC00E65274 /* rfx_differential.c in Sources */,
+				078DF8AA1C5299EC00E65274 /* rfx_dwt.c in Sources */,
+				078DF8AB1C5299EC00E65274 /* rfx_encode.c in Sources */,
+				078DF8AC1C5299EC00E65274 /* rfx_neon.c in Sources */,
+				078DF8AD1C5299EC00E65274 /* rfx_quantization.c in Sources */,
+				078DF8AE1C5299EC00E65274 /* rfx_rlgr.c in Sources */,
+				078DF8AF1C5299EC00E65274 /* rfx_sse2.c in Sources */,
+				078DF8B01C5299EC00E65274 /* rfx.c in Sources */,
+				078DF8B11C5299EC00E65274 /* xcrush.c in Sources */,
+				078DF8B21C5299EC00E65274 /* zgfx.c in Sources */,
+				078DF8B31C5299EC00E65274 /* addin.c in Sources */,
+				078DF8B41C5299EC00E65274 /* assistance.c in Sources */,
+				078DF8B51C5299EC00E65274 /* settings.c in Sources */,
+				078DF8B61C5299EC00E65274 /* rdg.c in Sources */,
+				078DF8B71C5299EC00E65274 /* errbase.c in Sources */,
+				078DF8B81C5299EC00E65274 /* errconnect.c in Sources */,
+				078DF8B91C5299EC00E65274 /* base64.c in Sources */,
+				078DF8BA1C5299EC00E65274 /* ber.c in Sources */,
+				078DF8BB1C5299EC00E65274 /* certificate.c in Sources */,
+				078DF8BC1C5299EC00E65274 /* crypto.c in Sources */,
+				078DF8BD1C5299EC00E65274 /* der.c in Sources */,
+				078DF8BE1C5299EC00E65274 /* er.c in Sources */,
+				078DF8BF1C5299EC00E65274 /* per.c in Sources */,
+				078DF8C01C5299EC00E65274 /* tls.c in Sources */,
+				078DF8C11C5299EC00E65274 /* 8bpp.c in Sources */,
+				078DF8C21C5299EC00E65274 /* 16bpp.c in Sources */,
+				078DF8C31C5299EC00E65274 /* 32bpp.c in Sources */,
+				078DF8C41C5299EC00E65274 /* bitmap.c in Sources */,
+				078DF8C51C5299EC00E65274 /* brush.c in Sources */,
+				078DF8C61C5299EC00E65274 /* clipping.c in Sources */,
+				078DF8C71C5299EC00E65274 /* dc.c in Sources */,
+				078DF8C81C5299EC00E65274 /* drawing.c in Sources */,
+				078DF8C91C5299ED00E65274 /* gdi.c in Sources */,
+				078DF8CA1C5299ED00E65274 /* gfx.c in Sources */,
+				078DF8CB1C5299ED00E65274 /* graphics.c in Sources */,
+				078DF8CC1C5299ED00E65274 /* line.c in Sources */,
+				078DF8CD1C5299ED00E65274 /* palette.c in Sources */,
+				078DF8CE1C5299ED00E65274 /* pen.c in Sources */,
+				078DF8CF1C5299ED00E65274 /* region.c in Sources */,
+				078DF8D01C5299ED00E65274 /* shape.c in Sources */,
+				078DF8D11C5299ED00E65274 /* keyboard.c in Sources */,
+				078DF8D21C5299ED00E65274 /* locale.c in Sources */,
+				078DF8D31C5299ED00E65274 /* timezone.c in Sources */,
+				078DF8D41C5299ED00E65274 /* keyboard_layout.c in Sources */,
+				078DF8D51C5299ED00E65274 /* msusb.c in Sources */,
+				078DF8D61C5299ED00E65274 /* passphrase.c in Sources */,
+				078DF8D71C5299ED00E65274 /* pcap.c in Sources */,
+				078DF8D81C5299ED00E65274 /* profiler.c in Sources */,
+				078DF8D91C5299ED00E65274 /* ringbuffer.c in Sources */,
+				078DF8DA1C5299ED00E65274 /* signal.c in Sources */,
+				078DF8DB1C5299ED00E65274 /* stopwatch.c in Sources */,
+				078DF8901C5299E000E65274 /* bitmap.c in Sources */,
+				078DF8911C5299E000E65274 /* brush.c in Sources */,
+				078DF8921C5299E000E65274 /* cache.c in Sources */,
+				078DF8931C5299E000E65274 /* glyph.c in Sources */,
+				078DF8941C5299E000E65274 /* nine_grid.c in Sources */,
+				078DF8951C5299E000E65274 /* offscreen.c in Sources */,
+				078DF8961C5299E000E65274 /* palette.c in Sources */,
+				078DF8971C5299E000E65274 /* pointer.c in Sources */,
 				07B091741B608C7400B5BCA7 /* prim_16to32bpp_opt.c in Sources */,
 				07B091751B608C7400B5BCA7 /* prim_sign_opt.c in Sources */,
 				07B091761B608C7400B5BCA7 /* prim_YCoCg_opt.c in Sources */,
@@ -2016,6 +2178,46 @@
 			name = ios_axisopenssl;
 			targetProxy = 074BD0B51B5F2F0100219723 /* PBXContainerItemProxy */;
 		};
+		078DF8691C52985F00E65274 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = welscommon;
+			targetProxy = 078DF8681C52985F00E65274 /* PBXContainerItemProxy */;
+		};
+		078DF86B1C52985F00E65274 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = welsdec;
+			targetProxy = 078DF86A1C52985F00E65274 /* PBXContainerItemProxy */;
+		};
+		078DF86D1C52985F00E65274 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = welsenc;
+			targetProxy = 078DF86C1C52985F00E65274 /* PBXContainerItemProxy */;
+		};
+		078DF86F1C52985F00E65274 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = welsprocessing;
+			targetProxy = 078DF86E1C52985F00E65274 /* PBXContainerItemProxy */;
+		};
+		078DF8751C52987D00E65274 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ios_welscommon;
+			targetProxy = 078DF8741C52987D00E65274 /* PBXContainerItemProxy */;
+		};
+		078DF8771C52987D00E65274 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ios_welsdec;
+			targetProxy = 078DF8761C52987D00E65274 /* PBXContainerItemProxy */;
+		};
+		078DF8791C52987D00E65274 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ios_welsenc;
+			targetProxy = 078DF8781C52987D00E65274 /* PBXContainerItemProxy */;
+		};
+		078DF87B1C52987D00E65274 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ios_welsprocessing;
+			targetProxy = 078DF87A1C52987D00E65274 /* PBXContainerItemProxy */;
+		};
 		079FD6681B601D15007CB5C6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = aura;
@@ -2025,46 +2227,6 @@
 			isa = PBXTargetDependency;
 			name = ios_aura;
 			targetProxy = 079FD6691B601D1B007CB5C6 /* PBXContainerItemProxy */;
-		};
-		07B098A41B84925F002AC4F0 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = welsdec;
-			targetProxy = 07B098A31B84925F002AC4F0 /* PBXContainerItemProxy */;
-		};
-		07B098A61B84925F002AC4F0 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = welsenc;
-			targetProxy = 07B098A51B84925F002AC4F0 /* PBXContainerItemProxy */;
-		};
-		07B098A81B849265002AC4F0 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "ios_welsdec copy";
-			targetProxy = 07B098A71B849265002AC4F0 /* PBXContainerItemProxy */;
-		};
-		07B098AA1B849265002AC4F0 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = ios_welsenc;
-			targetProxy = 07B098A91B849265002AC4F0 /* PBXContainerItemProxy */;
-		};
-		07BB9F371B849957007ADA8F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = welsprocessing;
-			targetProxy = 07BB9F361B849957007ADA8F /* PBXContainerItemProxy */;
-		};
-		07BB9F391B849957007ADA8F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = welscommon;
-			targetProxy = 07BB9F381B849957007ADA8F /* PBXContainerItemProxy */;
-		};
-		07BB9F3B1B849961007ADA8F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = ios_welsprocessing;
-			targetProxy = 07BB9F3A1B849961007ADA8F /* PBXContainerItemProxy */;
-		};
-		07BB9F3D1B849961007ADA8F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = ios_welscommon;
-			targetProxy = 07BB9F3C1B849961007ADA8F /* PBXContainerItemProxy */;
 		};
 		07DD710E1B5F125A003A1CE1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

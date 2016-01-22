@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		07574DEA1C45B5B70020E1F1 /* libwelscommon.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07574DDC1C45B58D0020E1F1 /* libwelscommon.dylib */; };
+		078DF88F1C52992E00E65274 /* libwelscommon.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07574DDE1C45B58D0020E1F1 /* libwelscommon.dylib */; };
 		07B098391B8491EC002AC4F0 /* parse_mb_syn_cabac.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A3E814319D7A40600C19C1F /* parse_mb_syn_cabac.cpp */; };
 		07B0983A1B8491EC002AC4F0 /* pic_queue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CE4467818BC5EAA0017DF25 /* pic_queue.cpp */; };
 		07B0983B1B8491EC002AC4F0 /* welsDecoderExt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CE4468518BC5EAB0017DF25 /* welsDecoderExt.cpp */; };
@@ -85,6 +86,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 4CE443D418B722CD0017DF25;
 			remoteInfo = welscommon;
+		};
+		078DF88C1C52992400E65274 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 07574DD61C45B58D0020E1F1 /* welscommon.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 07B09A071B8497A9002AC4F0;
+			remoteInfo = ios_welscommon;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -184,6 +192,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				078DF88F1C52992E00E65274 /* libwelscommon.dylib in Frameworks */,
 				07B098541B8491EC002AC4F0 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -385,6 +394,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				078DF88D1C52992400E65274 /* PBXTargetDependency */,
 			);
 			name = ios_welsdec;
 			productName = welsdec;
@@ -533,6 +543,11 @@
 			isa = PBXTargetDependency;
 			name = welscommon;
 			targetProxy = 07574DE81C45B5AE0020E1F1 /* PBXContainerItemProxy */;
+		};
+		078DF88D1C52992400E65274 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ios_welscommon;
+			targetProxy = 078DF88C1C52992400E65274 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

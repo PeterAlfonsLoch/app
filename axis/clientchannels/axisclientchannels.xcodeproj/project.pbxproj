@@ -10,11 +10,12 @@
 		074BD0C21B5F361500219723 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 074BD0C11B5F361500219723 /* AudioToolbox.framework */; };
 		074BD0C41B5F366500219723 /* tables_mac.c in Sources */ = {isa = PBXBuildFile; fileRef = 074BD0C31B5F366500219723 /* tables_mac.c */; };
 		074BD0C61B5F368F00219723 /* libcups.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 074BD0C51B5F368F00219723 /* libcups.dylib */; };
+		078DF8DD1C529B4100E65274 /* codec_aac.c in Sources */ = {isa = PBXBuildFile; fileRef = 07B098AE1B84934F002AC4F0 /* codec_aac.c */; };
+		078DF8DE1C529B4100E65274 /* TPCircularBuffer.c in Sources */ = {isa = PBXBuildFile; fileRef = 07B091811B608E5400B5BCA7 /* TPCircularBuffer.c */; };
 		07ACFDFB1C4A34E400953A75 /* libavcodec.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 07ACFDF91C4A34E400953A75 /* libavcodec.a */; };
 		07ACFDFC1C4A34E400953A75 /* libavutil.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 07ACFDFA1C4A34E400953A75 /* libavutil.a */; };
 		07B0917C1B608D8500B5BCA7 /* rdpsnd_ios.c in Sources */ = {isa = PBXBuildFile; fileRef = 07B091791B608D8500B5BCA7 /* rdpsnd_ios.c */; };
 		07B0917E1B608D8500B5BCA7 /* TPCircularBuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B0917B1B608D8500B5BCA7 /* TPCircularBuffer.h */; };
-		07B091821B608E5400B5BCA7 /* TPCircularBuffer.c in Sources */ = {isa = PBXBuildFile; fileRef = 07B091811B608E5400B5BCA7 /* TPCircularBuffer.c */; };
 		07B0918B1B60905100B5BCA7 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B0918A1B60905100B5BCA7 /* AudioToolbox.framework */; };
 		07B0918F1B60916500B5BCA7 /* tables_ios.c in Sources */ = {isa = PBXBuildFile; fileRef = 07B0918E1B60916500B5BCA7 /* tables_ios.c */; };
 		07B098B01B84934F002AC4F0 /* codec_aac.c in Sources */ = {isa = PBXBuildFile; fileRef = 07B098AE1B84934F002AC4F0 /* codec_aac.c */; };
@@ -134,7 +135,6 @@
 		07DD6FBC1B5F0CD3003A1CE1 /* rdpgfx_codec.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD6EAE1B5F0CA2003A1CE1 /* rdpgfx_codec.c */; };
 		07DD6FBD1B5F0CD3003A1CE1 /* rdpgfx_common.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD6EB01B5F0CA2003A1CE1 /* rdpgfx_common.c */; };
 		07DD6FBE1B5F0CD3003A1CE1 /* rdpgfx_main.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD6EB21B5F0CA2003A1CE1 /* rdpgfx_main.c */; };
-		07DD6FC21B5F0CD3003A1CE1 /* rdpsnd_mac.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD6EBD1B5F0CA2003A1CE1 /* rdpsnd_mac.c */; };
 		07DD6FC61B5F0CD3003A1CE1 /* rdpsnd_main.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD6EC41B5F0CA2003A1CE1 /* rdpsnd_main.c */; };
 		07DD6FC91B5F0CD3003A1CE1 /* remdesk_main.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD6ECD1B5F0CA2003A1CE1 /* remdesk_main.c */; };
 		07DD6FCB1B5F0CD3003A1CE1 /* serial_main.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD6ED41B5F0CA2003A1CE1 /* serial_main.c */; };
@@ -1064,6 +1064,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				078DF8DD1C529B4100E65274 /* codec_aac.c in Sources */,
+				078DF8DE1C529B4100E65274 /* TPCircularBuffer.c in Sources */,
 				07DD6F971B5F0CD3003A1CE1 /* audin_main.c in Sources */,
 				07DD6F9D1B5F0CD3003A1CE1 /* addin.c in Sources */,
 				07DD6FA01B5F0CD3003A1CE1 /* cliprdr_format.c in Sources */,
@@ -1088,7 +1090,6 @@
 				07DD6FBD1B5F0CD3003A1CE1 /* rdpgfx_common.c in Sources */,
 				07DD6FBE1B5F0CD3003A1CE1 /* rdpgfx_main.c in Sources */,
 				07B0917C1B608D8500B5BCA7 /* rdpsnd_ios.c in Sources */,
-				07DD6FC21B5F0CD3003A1CE1 /* rdpsnd_mac.c in Sources */,
 				07DD6FC61B5F0CD3003A1CE1 /* rdpsnd_main.c in Sources */,
 				07DD6FC91B5F0CD3003A1CE1 /* remdesk_main.c in Sources */,
 				07DD6FCB1B5F0CD3003A1CE1 /* serial_main.c in Sources */,
@@ -1096,7 +1097,6 @@
 				07DD6FCE1B5F0CD3003A1CE1 /* smartcard_operations.c in Sources */,
 				07DD6FCF1B5F0CD3003A1CE1 /* smartcard_pack.c in Sources */,
 				07DD6FD51B5F0CD3003A1CE1 /* tsmf_audio.c in Sources */,
-				07B091821B608E5400B5BCA7 /* TPCircularBuffer.c in Sources */,
 				07DD6FD61B5F0CD3003A1CE1 /* tsmf_codec.c in Sources */,
 				07DD6FD71B5F0CD3003A1CE1 /* tsmf_decoder.c in Sources */,
 				07DD6FD81B5F0CD3003A1CE1 /* tsmf_ifman.c in Sources */,

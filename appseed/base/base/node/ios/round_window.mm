@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 ca2 Desenvolvimento de Sofware Ltda. All rights reserved.
 //
 #import "ios_mm.h"
-#import "RoundWindowApp.h"
+#import "AppDelegate.h"
 
 
 round_window * ios_start_window(struct plane_system * psystem, CGRect rect);
@@ -132,48 +132,50 @@ void round_window::round_window_show_keyboard(bool bShow)
 void ui_application_main(int argc, char * argv[])
 {
    
-      @autoreleasepool
-      {
+   @autoreleasepool
+   {
    
-         //        return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
-           UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
+      // return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
+      
+      UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
    
    }
    
-   //  UIApplication * application = [UIApplication sharedApplication];
+//    UIApplication * application = [UIApplication sharedApplication];
+//    RoundWindowApp * appDelegate = [[RoundWindowApp alloc] init];
+//    [application setDelegate:appDelegate];
+//    [UIApplication sharedApplication];
+//    [NSApp setActivationPolicy:UIApplicationActivationPolicyRegular];
+//    id menubar = [UIMenu alloc];
+//    id appMenuItem = [NSMenuItem alloc];
+//    [menubar addItem:appMenuItem];
+//    [NSApp setMainMenu:menubar];
+//    id appMenu = [NSMenu alloc];
+//    id appName = [[NSProcessInfo processInfo] processName];
+//    id quitTitle = [@"Quit " stringByAppendingString:appName];
+//    id quitMenuItem = [[NSMenuItem alloc] initWithTitle:quitTitle action:@selector(terminate:) keyEquivalent:@"q"];
+//    [appMenu addItem:quitMenuItem];
+//    [appMenuItem setSubmenu:appMenu];
+
+   /*
+    
+   id window = [[NSWindow alloc] initWithContentRect:NSMakeRect(0, 0, 200, 200) styleMask:NSTitledWindowMask backing:NSBackingStoreBuffered defer:NO];
+   [window cascadeTopLeftFromPoint:NSMakePoint(20,20)];
+   [window setTitle:appName];
+   [window makeKeyAndOrderFront:nil];
+    
+    */
    
-  //   RoundWindowApp * appDelegate = [[RoundWindowApp alloc] init];
+   // [UIApp activateIgnoringOtherApps:YES];
+   // [UIApp run];
+   // return 0;
+   // NSApplicationMain(argc, (const char **) argv);
    
-  //   [application setDelegate:appDelegate];
-  //   [UIApplication sharedApplication];
-//   [NSApp setActivationPolicy:UIApplicationActivationPolicyRegular];
-//   id menubar = [UIMenu alloc];
-//   id appMenuItem = [NSMenuItem alloc];
-//   [menubar addItem:appMenuItem];
-//   [NSApp setMainMenu:menubar];
-//   id appMenu = [NSMenu alloc];
-//   id appName = [[NSProcessInfo processInfo] processName];
-//   id quitTitle = [@"Quit " stringByAppendingString:appName];
-//   id quitMenuItem = [[NSMenuItem alloc] initWithTitle:quitTitle
-//                                                action:@selector(terminate:) keyEquivalent:@"q"];
-//   [appMenu addItem:quitMenuItem];
-//   [appMenuItem setSubmenu:appMenu];
-   /*   id window = [[NSWindow alloc] initWithContentRect:NSMakeRect(0, 0, 200, 200)
-    styleMask:NSTitledWindowMask backing:NSBackingStoreBuffered defer:NO]
-    ;
-    [window cascadeTopLeftFromPoint:NSMakePoint(20,20)];
-    [window setTitle:appName];
-    [window makeKeyAndOrderFront:nil];*/
-    // [UIApp activateIgnoringOtherApps:YES];
-    // [UIApp run];
-   //   return 0;
-   //   NSApplicationMain(argc, (const char **) argv);
-   
-   //   [RoundWindowApp sharedApplication];
+   // [RoundWindowApp sharedApplication];
    
    //
+   
 }
-
 
 
 void ui_app_run(int argc, char * argv[])
@@ -181,6 +183,8 @@ void ui_app_run(int argc, char * argv[])
    
    
 }
+
+
 void round_window::round_window_close()
 {
    

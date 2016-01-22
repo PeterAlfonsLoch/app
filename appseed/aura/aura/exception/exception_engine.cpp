@@ -993,9 +993,9 @@ retry_get_base:
 #endif
    {
 
-#ifdef WINDOWSEX
-
       single_lock sl(m_pmutex, true);
+      
+#ifdef WINDOWSEX
 
       if(!pszFormat) return false;
 
