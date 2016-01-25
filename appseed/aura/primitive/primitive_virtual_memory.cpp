@@ -44,177 +44,108 @@ namespace primitive
    }
 
 
-   virtual_memory::virtual_memory(primitive::memory_container * pcontainer, memory_size_t dwAllocationAddUp, UINT nAllocFlags)
+   virtual_memory::virtual_memory(primitive::memory_container * pcontainer, double dAllocationRateUp, UINT nAllocFlags)
    {
       UNREFERENCED_PARAMETER(nAllocFlags);
       m_pbStorage          = NULL;
       m_pbComputed = NULL;
       m_pcontainer         = pcontainer;
-      m_dwAllocationAddUp  = dwAllocationAddUp;
+      m_dAllocationRateUp  = dAllocationRateUp;
    }
 
 
    virtual_memory::~virtual_memory()
    {
-      free_data();
-   }
-
-   LPBYTE virtual_memory::detach()
-   {
-
-      if(m_iOffset > 0)
-      {
-         virtual_memory mem(m_pbComputed, m_cbStorage);
-
-         free_data();
-
-         return mem.detach();
-      }
-
-      LPBYTE p          = m_pbStorage;
-
-      m_pbStorage       = NULL;
-      m_cbStorage       = 0;
-      m_dwAllocation    = 0;
-
-      return p;
-
-   }
-
-
-   bool virtual_memory::allocate_internal(memory_size_t dwNewLength)
-   {
-      if(!is_enabled())
-      {
-         ASSERT(FALSE);
-         return false;
-      }
-
-      if(dwNewLength <= 0)
-      {
-         return true;
-      }
-
-      remove_offset();
-
-      if(m_pbStorage == NULL)
-      {
-         m_iOffset = 0;
-         memory_size_t dwAllocation = dwNewLength + m_dwAllocationAddUp;
-         m_pbStorage = (LPBYTE) ::MidAlloc((size_t) dwAllocation);
-         if(m_pbStorage == NULL)
-         {
-            m_pbComputed = NULL;
-            return false;
-         }
-         else
-         {
-            m_dwAllocation = dwAllocation;
-            if(m_pcontainer != NULL)
-            {
-               m_pcontainer->offset_kept_pointers((int_ptr) m_pbStorage);
-            }
-            m_pbComputed = m_pbStorage;
-            return true;
-         }
-      }
-      else
-      {
-         if(m_iOffset > 0)
-         {
-            m_iOffset = 0;
-            memory_size_t dwAllocation = dwNewLength + m_dwAllocationAddUp;
-            LPVOID lpVoid = ::MidAlloc(dwAllocation);
-            if(lpVoid == NULL)
-            {
-               return false;
-            }
-            else
-            {
-               memcpy(lpVoid, m_pbComputed, m_cbStorage);
-               memory_size_t iOffset = (LPBYTE) lpVoid - m_pbStorage;
-               if(m_pcontainer != NULL)
-               {
-                  m_pcontainer->offset_kept_pointers(iOffset);
-               }
-
-               m_dwAllocation = dwAllocation;
-               MidFree(m_pbStorage);
-               m_pbStorage = (LPBYTE) lpVoid;
-               m_pbComputed = m_pbStorage;
-               return true;
-            }
-         }
-         else if(dwNewLength > m_dwAllocation)
-         {
-            memory_size_t dwAllocation = dwNewLength + m_dwAllocationAddUp;
-            LPVOID lpVoid = ::MidRealloc(m_pbStorage, m_dwAllocation, (size_t) dwAllocation);
-            if(lpVoid == NULL)
-            {
-               return false;
-            }
-            else
-            {
-               memory_size_t iOffset = (LPBYTE) lpVoid - m_pbStorage;
-               if(m_pcontainer != NULL)
-               {
-                  m_pcontainer->offset_kept_pointers(iOffset);
-               }
-
-               m_dwAllocation = dwAllocation;
-               m_pbStorage = (LPBYTE) lpVoid;
-               m_pbComputed = m_pbStorage;
-               return true;
-            }
-         }
-         else
-         {
-            return true;
-         }
-
-      }
-   }
-
-
-   void virtual_memory::free_data()
-   {
+      
       if(m_pbStorage != NULL)
       {
-         m_cbStorage = 0;
-         m_dwAllocation =  0;
+         
          try
          {
-            ::MidFree(m_pbStorage);
+            
+            impl_free(m_pbStorage);
+
          }
          catch(...)
          {
+
          }
-         m_pbStorage = NULL;
+
       }
+
    }
 
 
+   //LPBYTE virtual_memory::detach()
+   //{
+
+   //   LPBYTE p          = m_pbStorage;
+
+   //   if(m_iOffset > 0)
+   //   {
+   //      virtual_memory mem(m_pbComputed, m_cbStorage);
+
+   //      p = mem.detach();
+
+   //   }
+   //   else
+   //   {
+
+   //      p = m_pbStorage;
+
+   //   }
+
+   //   m_pbStorage       = NULL;
+
+   //   m_cbStorage       = 0;
+
+   //   m_dwAllocation    = 0;
+
+   //   return p;
+
+   //}
 
 
+   LPBYTE virtual_memory::impl_alloc(memory_size_t dwAllocation)
+   {
+
+      return (LPBYTE) ::MidAlloc((size_t)dwAllocation);
+
+   }
 
 
+   LPBYTE virtual_memory::impl_realloc(void * pdata, memory_size_t dwAllocation)
+   {
+
+      return (LPBYTE) ::MidRealloc(pdata,m_dwAllocation,dwAllocation);
+
+   }
 
 
+   void virtual_memory::impl_free(void * pdata)
+   {
+      
+      return ::MidFree(pdata);
 
-
-
-
-
-
-
-
-
-
-
+   }
 
 
 
 } // namespace primitive
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

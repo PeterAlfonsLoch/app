@@ -2293,7 +2293,6 @@ namespace str
       const char * pszNext = psz;
       const char * pszQc = qc;
       string qc2;
-      char i;
       string str;
       while(true)
       {

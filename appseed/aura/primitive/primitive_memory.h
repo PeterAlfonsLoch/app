@@ -32,11 +32,11 @@ public:
    virtual ~memory();
 
       
-   LPBYTE detach();
+   //virtual ::object * clone() override;
 
-
-   virtual bool allocate_internal(memory_size_t dwNewLength);
-   void free_data();
+   virtual LPBYTE impl_alloc(memory_size_t dwAllocation) override;
+   virtual LPBYTE impl_realloc(void * pdata, memory_size_t dwAllocation) override;
+   virtual void impl_free(void * pdata) override;
 
 
 };

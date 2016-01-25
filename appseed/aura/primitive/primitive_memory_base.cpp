@@ -16,7 +16,8 @@ namespace primitive
       m_pbComputed         = NULL;
       m_cbStorage          = 0;
       m_dwAllocation       = 0;
-      m_dwAllocationAddUp  = 0;
+      m_dwAllocationAddUp  = 4096;
+      m_dAllocationRateUp  = 1.0;
       m_iOffset            = 0;
       m_bLockMode          = false;
       m_bLock              = false;
@@ -29,6 +30,13 @@ namespace primitive
 
    memory_base::~memory_base()
    {
+      
+      m_cbStorage = 0;
+      m_dwAllocation =  0;
+      m_pbStorage = NULL;
+      m_pbComputed      = NULL;
+      m_iOffset         = 0;
+
    }
 
    memory_base & memory_base::prefix_der_length()
@@ -123,9 +131,107 @@ namespace primitive
       return true;
    }
 
+   LPBYTE memory_base::impl_alloc(memory_size_t dwAllocation)
+   {
+      
+      return NULL;
+
+   }
+
+   LPBYTE memory_base::impl_realloc(void * pdata, memory_size_t dwAllocation)
+   {
+
+      return NULL;
+
+   }
+
+   void memory_base::impl_free(void * pdata)
+   {
+
+   }
+
    bool memory_base::allocate_internal(memory_size_t dwNewLength)
    {
-      return false;
+
+      if(!is_enabled())
+      {
+         ASSERT(FALSE);
+         return false;
+      }
+
+      if(dwNewLength <= 0)
+      {
+         return true;
+      }
+
+      remove_offset();
+
+      memory_size_t dwAllocation = calc_allocation(dwNewLength);
+
+      LPBYTE lpb;
+
+      if(m_pbStorage == NULL)
+      {
+
+         lpb = (LPBYTE) impl_alloc(dwAllocation);
+
+         if(lpb == NULL)
+         {
+            
+            return false;
+
+         }
+
+      }
+      else
+      {
+
+         if(dwNewLength < m_dwAllocation)
+         {
+
+            return true;
+
+         }
+
+         lpb = impl_realloc(m_pbStorage,(size_t)dwAllocation);
+
+         if(lpb == NULL)
+         {
+
+            lpb = impl_alloc((size_t) dwAllocation);
+
+            if(lpb == NULL)
+            {
+
+               return false;
+
+            }
+
+            memcpy(lpb,m_pbStorage,m_cbStorage);
+
+            impl_free(m_pbStorage);
+
+         }
+
+         memory_size_t iOffset = lpb - m_pbStorage;
+
+         if(m_pcontainer != NULL)
+         {
+
+            m_pcontainer->offset_kept_pointers(iOffset);
+
+         }
+
+      }
+
+      m_dwAllocation    = dwAllocation;
+
+      m_pbStorage       = lpb;
+
+      m_pbComputed      = m_pbStorage;
+
+      return true;
+
    }
 
 
@@ -176,6 +282,15 @@ namespace primitive
 
    }
    */
+
+
+   memory_size_t memory_base::calc_allocation(memory_size_t size)
+   {
+
+      return (memory_size_t) ((((size + MAX(1024, m_dwAllocationAddUp)) ) / MAX(1024,m_dwAllocationAddUp)* MAX(1024,m_dwAllocationAddUp)) * (1.0 + MAX(1.0,m_dAllocationRateUp)));
+
+
+   }
 
 
    void memory_base::read(::file::istream & istream)
@@ -481,6 +596,51 @@ namespace primitive
 
 
    }
+
+   //LPBYTE memory_base::detach()
+   //{
+
+   //   LPBYTE pbStorage = m_pbStorage;
+
+   //   if(m_iOffset > 0)
+   //   {
+
+   //      sp(memory_base) pbase = clone();
+
+   //      impl_free(m_pbStorage);
+
+   //      pbStorage = pbase->detach();
+
+   //   }
+   //   else
+   //   {
+
+   //      pbStorage = m_pbStorage;
+
+   //   }
+
+   //   m_pbStorage       = NULL;
+
+   //   m_pbComputed      = NULL;
+
+   //   m_cbStorage       = 0;
+
+   //   m_dwAllocation    = 0;
+
+   //   m_iOffset         = 0;
+
+   //   return pbStorage;
+
+   //}
+
+
+   //LPBYTE memory_base::detach_shared_memory(HGLOBAL & hglobal)
+   //{
+
+   //   throw not_supported_exception(get_app(),"valid only for Global Memory(\"HGLOBAL\")");
+
+   //}
+
 
 } // namespace primitive
 

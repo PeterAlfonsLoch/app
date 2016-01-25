@@ -11,7 +11,6 @@ namespace primitive
       
 //      m_spmemory = canew(memory(papp));
       
-      m_dwAllocationAddUp = 1024;
       m_pvppa = NULL;
       
    }
@@ -91,8 +90,6 @@ namespace primitive
 
          }
 
-         m_spmemory->m_dwAllocationAddUp = m_dwAllocationAddUp;
-
       }
 
       if(!m_spmemory->allocate(dwNewLength))
@@ -114,7 +111,6 @@ namespace primitive
          {
             throw new memory_exception(get_app());
          }
-         m_spmemory->m_dwAllocationAddUp = m_dwAllocationAddUp;
       }
       m_spmemory->allocate_internal(dwNewLength);
    }
@@ -252,79 +248,76 @@ namespace primitive
    }
 
 
-   memory *          memory_container::detach_primitive_memory()
-   {
-      ::primitive::memory_base * pmemorybase = m_spmemory.detach();
-      if(pmemorybase != NULL)
-         return NULL;
-      memory * pmemory = pmemorybase->m_pprimitivememory;
-      if(pmemory != NULL)
-      {
-         return pmemory;
-      }
-      pmemory = new memory(*pmemorybase);
-      delete pmemorybase;
-      return pmemory;
-   }
+   //memory *          memory_container::detach_primitive_memory()
+   //{
+   //   ::primitive::memory_base * pmemorybase = m_spmemory.detach();
+   //   if(pmemorybase != NULL)
+   //      return NULL;
+   //   memory * pmemory = pmemorybase->m_pprimitivememory;
+   //   if(pmemory != NULL)
+   //   {
+   //      return pmemory;
+   //   }
+   //   pmemory = new memory(*pmemorybase);
+   //   delete pmemorybase;
+   //   return pmemory;
+   //}
 
-#if !defined(METROWIN)
-   shared_memory *   memory_container::detach_shared_memory()
-   {
-      ::primitive::memory_base * pmemorybase = m_spmemory.detach();
-      if(pmemorybase != NULL)
-         return NULL;
-      ::primitive::shared_memory * psharedmemory = pmemorybase->m_psharedmemory;
-      if(psharedmemory != NULL)
-      {
-         return psharedmemory;
-      }
-      psharedmemory = new ::primitive::shared_memory(*pmemorybase);
-      delete pmemorybase;
-      return psharedmemory;
-   }
-#endif
+//#if !defined(METROWIN)
+//   shared_memory *   memory_container::detach_shared_memory()
+//   {
+//      ::primitive::memory_base * pmemorybase = m_spmemory.detach();
+//      if(pmemorybase != NULL)
+//         return NULL;
+//      ::primitive::shared_memory * psharedmemory = pmemorybase->m_psharedmemory;
+//      if(psharedmemory != NULL)
+//      {
+//         return psharedmemory;
+//      }
+//      psharedmemory = new ::primitive::shared_memory(*pmemorybase);
+//      delete pmemorybase;
+//      return psharedmemory;
+//   }
+//#endif
+//
+//   virtual_memory *  memory_container::detach_virtual_memory()
+//   {
+//      ::primitive::memory_base * pmemorybase = m_spmemory.detach();
+//      if(pmemorybase != NULL)
+//         return NULL;
+//      ::primitive::virtual_memory * pvirtualmemory = pmemorybase->m_pvirtualmemory;
+//      if(pvirtualmemory != NULL)
+//      {
+//         return pvirtualmemory;
+//      }
+//      pvirtualmemory = new ::primitive::virtual_memory(*pmemorybase);
+//      delete pmemorybase;
+//      return pvirtualmemory;
+//   }
 
-   virtual_memory *  memory_container::detach_virtual_memory()
-   {
-      ::primitive::memory_base * pmemorybase = m_spmemory.detach();
-      if(pmemorybase != NULL)
-         return NULL;
-      ::primitive::virtual_memory * pvirtualmemory = pmemorybase->m_pvirtualmemory;
-      if(pvirtualmemory != NULL)
-      {
-         return pvirtualmemory;
-      }
-      pvirtualmemory = new ::primitive::virtual_memory(*pmemorybase);
-      delete pmemorybase;
-      return pvirtualmemory;
-   }
 
+//   LPBYTE memory_container::detach_primitive_storage()
+//   {
+//      sp(memory) pmemory = detach_primitive_memory();
+//      return pmemory->detach();
+//   }
+//
+//
+//   LPBYTE memory_container::detach_virtual_storage()
+//   {
+//      sp(::primitive::virtual_memory) pvirtualmemory = detach_virtual_memory();
+//      return pvirtualmemory->detach();
+//   }
+//
+//
+//#if !defined(METROWIN)
+//   HGLOBAL memory_container::detach_shared_storage()
+//   {
+//      sp(::primitive::shared_memory) psharedmemory = detach_shared_memory();
+//      return psharedmemory->detach_shared_memory();
+//   }
+//#endif
 
-   LPBYTE            memory_container::detach_primitive_storage()
-   {
-      memory * pmemory = detach_primitive_memory();
-      LPBYTE p = pmemory->detach();
-      delete pmemory;
-      return p;
-   }
-
-#if !defined(METROWIN)
-   HGLOBAL           memory_container::detach_shared_storage()
-   {
-      ::primitive::shared_memory * psharedmemory = detach_shared_memory();
-      HGLOBAL h = psharedmemory->detach();
-      delete psharedmemory;
-      return h;
-   }
-#endif
-
-   LPBYTE            memory_container::detach_virtual_storage()
-   {
-      ::primitive::virtual_memory * pvirtualmemory = detach_virtual_memory();
-      LPBYTE p = pvirtualmemory->detach();
-      delete pvirtualmemory;
-      return p;
-   }
 
    void memory_container::str(const string & str)
    {

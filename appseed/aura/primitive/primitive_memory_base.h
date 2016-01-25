@@ -32,7 +32,6 @@ namespace primitive
    class shared_memory;
    class virtual_memory;
 
-
    class CLASS_DECL_AURA memory_base :
       virtual public object,
       public ::file::serializable
@@ -47,10 +46,11 @@ namespace primitive
       LPBYTE                  m_pbStorage;
       LPBYTE                  m_pbComputed;
 
-      memory_offset_t           m_iOffset;
-      memory_size_t             m_cbStorage;
-      memory_size_t             m_dwAllocation;
-      memory_size_t             m_dwAllocationAddUp;
+      memory_offset_t         m_iOffset;
+      memory_size_t           m_cbStorage;
+      memory_size_t           m_dwAllocation;
+      double                  m_dAllocationRateUp;
+      DWORD                   m_dwAllocationAddUp;
 
       memory_container *      m_pcontainer;
 
@@ -66,13 +66,20 @@ namespace primitive
       memory_base();
       virtual ~memory_base();
 
+      
+      //virtual LPBYTE detach_primitive_memory();
+      //virtual LPBYTE detach_virtual_memory();
+      //virtual HGLOBAL detach_shared_memory();
 
       inline bool is_enabled() const;
       inline bool is_locked() const;
 
       virtual bool allocate(memory_size_t dwNewLength);
       virtual bool allocate_internal(memory_size_t dwNewLength);
-
+      
+      virtual LPBYTE impl_alloc(memory_size_t dwAllocation);
+      virtual LPBYTE impl_realloc(void * pdata,memory_size_t dwAllocation);
+      virtual void impl_free(void * pdata);
 
       virtual void reserve(memory_size_t dwNewLength);
 
@@ -86,6 +93,9 @@ namespace primitive
 
       virtual void write(::file::ostream & ostream) const;
       virtual void read(::file::istream & istream);
+
+
+      virtual memory_size_t calc_allocation(memory_size_t size);
 
 
       virtual void transfer_to(::file::writer & writer, memory_size_t uiBufferSize = 1024 * 1024) const;

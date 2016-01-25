@@ -21,13 +21,13 @@ namespace primitive
 
    }
 
-   shared_memory::shared_memory(primitive::memory_container * pcontainer, memory_size_t dwAllocationAddUp, UINT nAllocFlags)
+   shared_memory::shared_memory(primitive::memory_container * pcontainer, double dAllocationRateUp, UINT nAllocFlags)
    {
 
       m_nAllocFlags        = nAllocFlags;
       m_bAllowGrow         = TRUE;
       m_pcontainer         = pcontainer;
-      m_dwAllocationAddUp  = dwAllocationAddUp;
+      m_dAllocationRateUp  = dAllocationRateUp;
       m_pbStorage = NULL;
       m_pbComputed = NULL;
 
@@ -67,229 +67,158 @@ namespace primitive
 
    }
 
+
    shared_memory::~shared_memory()
    {
-      free_data();
-   }
 
-   LPBYTE shared_memory::detach_shared_memory(HGLOBAL & hglobal)
-   {
-
-      if(m_iOffset > 0)
+      if(m_pbStorage != NULL)
       {
-         
-         shared_memory mem(m_pbComputed, m_cbStorage);
 
-         free_data();
-
-         return mem.detach_shared_memory(hglobal);
+         impl_free(m_pbStorage);
 
       }
-
-      LPBYTE pbStorage     = m_pbStorage;
-      hglobal              = m_hGlobalMemory;
-
-      m_hGlobalMemory      = NULL;
-      m_pbStorage          = NULL;
-      m_pbComputed   = NULL;
-      m_cbStorage          = 0;
-      m_dwAllocation       = 0;
-
-      return pbStorage;
 
    }
 
 
-   bool shared_memory::allocate_internal(memory_size_t dwNewLength)
-   {
+   //LPBYTE shared_memory::detach_shared_memory(HGLOBAL & hglobal)
+   //{
 
-      if(!is_enabled())
-      {
-         ASSERT(FALSE);
-         return false;
-      }
+   //   if(m_iOffset > 0)
+   //   {
+   //      
+   //      sp(memory_base) pbase = clone();
 
-      if(dwNewLength <= 0)
-      {
-         return true;
-      }
+   //      impl_free(m_pbStorage);
 
+   //      pbase->detach_shared_memory(hglobal);
 
-      remove_offset();
+   //   }
+   //   else
+   //   {
 
+   //      hglobal              = m_hGlobalMemory;
 
-      if(m_pbStorage == NULL)
-      {
+   //   }
 
-         m_iOffset = 0;
-         memory_size_t dwAllocation = dwNewLength + m_dwAllocationAddUp;
-         m_pbStorage = (LPBYTE) Alloc((SIZE_T) dwAllocation);
-         if(m_pbStorage != NULL)
-         {
-            m_dwAllocation = dwAllocation;
-            if(m_pcontainer != NULL)
-            {
-               m_pcontainer->offset_kept_pointers((int_ptr) m_pbStorage);
-            }
-            m_pbComputed   = m_pbStorage;
-            return true;
-         }
-         else
-         {
-            return false;
-         }
-      }
-      else
-      {
-         if(m_iOffset > 0)
-         {
-            m_iOffset = 0;
-            memory_size_t dwAllocation = dwNewLength + m_dwAllocationAddUp;
-            LPVOID lpVoid = Alloc((SIZE_T) dwAllocation);
-            if(lpVoid == NULL)
-            {
-               return false;
-            }
-            else
-            {
-               memcpy(lpVoid, m_pbComputed, m_cbStorage);
-               memory_offset_t iOffset = (LPBYTE) lpVoid - m_pbStorage;
-               if(m_pcontainer != NULL)
-               {
-                  m_pcontainer->offset_kept_pointers(iOffset);
-               }
+   //   LPBYTE pbStorage     = m_pbStorage;
 
-               m_dwAllocation = dwAllocation;
-               Free(m_pbStorage);
-               m_pbStorage = (LPBYTE) lpVoid;
-               m_pbComputed = m_pbStorage;
-               return true;
-            }
-         }
-         else if(dwNewLength > m_dwAllocation)
-         {
-            memory_size_t dwAllocation = dwNewLength + m_dwAllocationAddUp;
-            LPVOID lpVoid = Realloc(m_pbStorage, (SIZE_T) dwAllocation);
-            if(lpVoid == NULL)
-            {
-               return false;
-            }
-            else
-            {
-               memory_offset_t iOffset = (LPBYTE) lpVoid - m_pbStorage;
-               if(m_pcontainer != NULL)
-               {
-                  m_pcontainer->offset_kept_pointers(iOffset);
-               }
+   //   m_hGlobalMemory      = NULL;
+   //   m_pbStorage          = NULL;
+   //   m_pbComputed   = NULL;
+   //   m_cbStorage          = 0;
+   //   m_dwAllocation       = 0;
 
-               m_dwAllocation = dwAllocation;
-               m_pbStorage = (LPBYTE) lpVoid;
-               m_pbComputed = m_pbStorage;
-               return true;
-            }
-         }
-         else
-         {
-            return true;
-         }
-      }
-   }
+   //   return pbStorage;
+
+   //}
+
 
    void shared_memory::SetHandle(HGLOBAL hGlobalMemory, bool bAllowGrow)
    {
+      
       UNREFERENCED_PARAMETER(bAllowGrow);
+
       ASSERT(m_hGlobalMemory == NULL);        // do once only
+
       ASSERT(m_pbStorage == NULL);     // do once only
 
       if (hGlobalMemory == NULL)
       {
+
          throw invalid_argument_exception(get_app());
+
       }
 
       m_hGlobalMemory = hGlobalMemory;
+
       m_pbStorage = (BYTE*)::GlobalLock(m_hGlobalMemory);
+
       m_pbComputed = m_pbStorage;
+
       m_dwAllocation = m_cbStorage = (ULONG)::GlobalSize(m_hGlobalMemory);
+
       // xxx m_bAllowGrow = bAllowGrow;
+
    }
 
-   BYTE* shared_memory::Alloc(SIZE_T nBytes)
+
+   LPBYTE shared_memory::impl_alloc(memory_size_t nBytes)
    {
+
       ASSERT(m_hGlobalMemory == NULL);        // do once only
+
       m_hGlobalMemory = ::GlobalAlloc(m_nAllocFlags, nBytes);
+
       if (m_hGlobalMemory == NULL)
          return NULL;
-      return (BYTE*)::GlobalLock(m_hGlobalMemory);
+
+      return (LPBYTE) ::GlobalLock(m_hGlobalMemory);
+
    }
 
-   BYTE* shared_memory::Realloc(BYTE*, SIZE_T nBytes)
+
+   LPBYTE shared_memory::impl_realloc(void*, memory_size_t nBytes)
    {
+      
       if (!m_bAllowGrow)
          return NULL;
+
       ASSERT(m_hGlobalMemory != NULL);
 
       ::GlobalUnlock(m_hGlobalMemory);
+
       HGLOBAL hNew;
+
       hNew = ::GlobalReAlloc(m_hGlobalMemory, nBytes, m_nAllocFlags);
+
       if (hNew == NULL)
          return NULL;
+
       m_hGlobalMemory = hNew;
-      return (BYTE*)::GlobalLock(m_hGlobalMemory);
+
+      return (LPBYTE) ::GlobalLock(m_hGlobalMemory);
+
    }
 
-   void shared_memory::Free(BYTE*)
+   
+   void shared_memory::impl_free(void*)
    {
+      
       ASSERT(m_hGlobalMemory != NULL);
+
       ::GlobalUnlock(m_hGlobalMemory);
+
       ::GlobalFree(m_hGlobalMemory);
+
    }
 
-   HGLOBAL shared_memory::detach()
-   {
+   
+   //LPBYTE * shared_memory::detach()
+   //{
 
-      if(m_iOffset > 0)
-      {
-         
-         shared_memory mem(m_pbComputed, m_cbStorage);
+   //   throw not_supported_exception(get_app(),"not valid for Global Memory(\"HGLOBAL\")");
 
-         free_data();
-
-         return mem.detach();
-
-      }
-
-      HGLOBAL hMem;
-      ASSERT(m_hGlobalMemory != NULL);
-      hMem = m_hGlobalMemory;
-
-      ::GlobalUnlock(m_hGlobalMemory);
-      m_hGlobalMemory = NULL; // detach from global handle
-
-      // re-initialize the CMemFile parts too
-      m_pbStorage = NULL;
-      m_pbComputed = NULL;
-      m_dwAllocation = m_cbStorage = 0;
-
-      return hMem;
-   }
+   //}
 
 
-   void shared_memory::free_data()
-   {
-      if(m_pbStorage != NULL)
-      {
-         m_dwAllocation    = 0;
-         try
-         {
-            Free(m_pbStorage);
-         }
-         catch(...)
-         {
-         }
-         m_pbStorage       = NULL;
-         m_pbComputed = NULL;
-      }
-   }
+   //void shared_memory::free_data()
+   //{
+   //   if(m_pbStorage != NULL)
+   //   {
+   //      m_dwAllocation    = 0;
+   //      try
+   //      {
+   //         ::GlobalUnlock(m_hGlobalMemory);
+   //         ::GlobalFree(m_hGlobalMemory);
+   //      }
+   //      catch(...)
+   //      {
+   //      }
+   //      m_pbStorage       = NULL;
+   //      m_pbComputed = NULL;
+   //   }
+   //}
 
 
 

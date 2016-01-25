@@ -14,7 +14,7 @@ namespace primitive
       virtual_memory(const void *, memory_size_t iCount);
       virtual_memory(const memory_base & memory);
       virtual_memory(const char * psz);
-      virtual_memory(primitive::memory_container * pcontainer = NULL, memory_size_t dwAllocationAddUp = 4096, UINT nAllocFlags = 0);
+      virtual_memory(primitive::memory_container * pcontainer = NULL, double dAllocationRateUp = 4096, UINT nAllocFlags = 0);
       virtual_memory(primitive::memory_container * pcontainer, void * pMemory, memory_size_t dwSize);
       virtual ~virtual_memory();
 
@@ -22,10 +22,11 @@ namespace primitive
       void construct_memory(primitive::memory_container * pcontainer, memory_size_t dwAllocationAddUp = 4096, UINT nAllocFlags = 0);
 
 
-      virtual bool allocate_internal(memory_size_t dwNewLength);
+      virtual LPBYTE impl_alloc(memory_size_t dwAllocation) override;
+      virtual LPBYTE impl_realloc(void * pdata, memory_size_t dwAllocation) override;
+      virtual void impl_free(void * pdata) override;
 
-      LPBYTE detach();
-      void free_data();
+      //virtual ::object * clone() override;
 
 
    };

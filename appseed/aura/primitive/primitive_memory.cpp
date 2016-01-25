@@ -177,7 +177,7 @@ memory::memory(primitive::memory_container * pcontainer, memory_size_t dwAllocat
       dwAllocationAddUp = 4 * 1024; // 4k
 #endif
    }
-   m_dwAllocationAddUp  = dwAllocationAddUp;
+   m_dAllocationRateUp  = m_dAllocationRateUp;
    m_iOffset            = 0;
    m_dwAllocation       = 0;
    m_cbStorage          = 0;
@@ -203,182 +203,52 @@ memory::memory(primitive::memory_container * pcontainer, void * pMemory, memory_
 
 memory::~memory()
 {
-   free_data();
+   
+   if(m_pbStorage != NULL)
+   {
+
+      impl_free(m_pbStorage);
+
+   }
+
 }
 
-bool memory::allocate_internal(memory_size_t dwNewLength)
+
+LPBYTE memory::impl_alloc(memory_size_t dwAllocation)
 {
-
-   if(!is_enabled())
+   if(m_bAligned)
    {
-      ASSERT(FALSE);
-      return false;
-   }
-
-   if(dwNewLength <= 0)
-   {
-      return true;
-   }
-
-   remove_offset();
-
-   if(m_pbStorage == NULL)
-   {
-      m_iOffset = 0;
-      memory_size_t dwAllocation = dwNewLength + m_dwAllocationAddUp;
-      if (m_bAligned)
-      {
-         m_pbStorage = (LPBYTE)aligned_memory_alloc((size_t)dwAllocation);
-      }
-      else
-      {
-         m_pbStorage = (LPBYTE)memory_alloc((size_t)dwAllocation);
-      }
-         
-      if(m_pbStorage == NULL)
-      {
-         m_pbComputed = NULL;
-         return false;
-      }
-      else
-      {
-         m_dwAllocation = dwAllocation;
-         if(m_pcontainer != NULL)
-         {
-            m_pcontainer->offset_kept_pointers((int_ptr) m_pbStorage);
-         }
-         m_pbComputed = m_pbStorage;
-         return true;
-      }
+      return (LPBYTE)aligned_memory_alloc((size_t)dwAllocation);
    }
    else
    {
-      if(m_iOffset > 0)
-      {
-         m_iOffset = 0;
-         memory_size_t dwAllocation = dwNewLength + m_dwAllocationAddUp;
-         LPVOID lpVoid = NULL;
-         if(dwAllocation > m_dwAllocation)
-         {
-            if(m_bAligned)
-            {
-               lpVoid = aligned_memory_alloc((size_t)dwAllocation);
-            }
-            else
-            {
-               lpVoid = memory_alloc((size_t)dwAllocation);
-            }
-            if(lpVoid != NULL)
-            {
-               m_dwAllocation = dwAllocation;
-
-            }
-         }
-         else
-         {
-               
-            output_debug_string("Moin"); // RocketBeansTV
-
-         }
-         if(lpVoid == NULL)
-         {
-            return false;
-         }
-         else
-         {
-            memcpy(lpVoid, m_pbComputed, m_cbStorage);
-            memory_size_t iOffset = (LPBYTE) lpVoid - m_pbStorage;
-            if(m_pcontainer != NULL)
-            {
-               m_pcontainer->offset_kept_pointers(iOffset);
-            }
-
-            memory_free(m_pbStorage);
-            m_pbStorage = (LPBYTE) lpVoid;
-            m_pbComputed = m_pbStorage;
-            return true;
-         }
-      }
-      else if(dwNewLength > m_dwAllocation)
-      {
-         memory_size_t dwAllocation = dwNewLength + m_dwAllocationAddUp;
-         LPVOID lpVoid = memory_realloc(m_pbStorage, (size_t) dwAllocation);
-         if(lpVoid == NULL)
-         {
-            return false;
-         }
-         else
-         {
-            memory_size_t iOffset = (LPBYTE) lpVoid - m_pbStorage;
-            if(m_pcontainer != NULL)
-            {
-               m_pcontainer->offset_kept_pointers(iOffset);
-            }
-
-            m_dwAllocation = dwAllocation;
-            m_pbStorage = (LPBYTE) lpVoid;
-            m_pbComputed = m_pbStorage;
-            return true;
-         }
-      }
-      else
-      {
-         return true;
-      }
-
+      return (LPBYTE)memory_alloc((size_t)dwAllocation);
    }
+
 }
 
-LPBYTE memory::detach()
+LPBYTE memory::impl_realloc(void * pdata, memory_size_t dwAllocation)
+{
+   if(m_bAligned)
+   {
+      return NULL;
+   }
+   else
+   {
+      return (LPBYTE)memory_realloc(pdata, (size_t)dwAllocation);
+   }
+
+}
+
+void memory::impl_free(void * pdata)
 {
 
-   LPBYTE pbStorage = m_pbStorage;
-
-   if(m_iOffset > 0)
-   {
-
-      memory mem(m_pbComputed, m_cbStorage);
-
-      free_data();
-
-      return mem.detach();
-
-   }
-
-   m_pbStorage       = NULL;
-
-   m_pbComputed      = NULL;
-
-   m_cbStorage       = 0;
-
-   m_dwAllocation    = 0;
-
-   m_iOffset         = 0;
-
-   return pbStorage;
+   memory_free(pdata);
+   
 
 }
 
-void memory::free_data()
-{
 
-   if(m_pbStorage != NULL)
-   {
-      m_dwAllocation    = 0;
-      m_cbStorage       = 0;
-      try
-      {
-         memory_free(m_pbStorage);
-      }
-      catch(...)
-      {
-      }
-      m_pbStorage       = NULL;
-      m_pbComputed      = NULL;
-      m_iOffset         = 0;
-   }
-
-}
 
 
 
