@@ -303,7 +303,7 @@ Opened:
 Opened:
          int iAlign = 2048;
          iBufferCount = 4;
-         iBufferSampleCount = (1 << 10);
+         iBufferSampleCount = (1 << 9);
 
          uint32_t uiBufferSize = iBufferSampleCount * m_pwaveformat->nChannels * 2;
 
