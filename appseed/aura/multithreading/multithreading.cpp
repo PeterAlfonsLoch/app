@@ -129,6 +129,34 @@ namespace multithreading
 
       __end_thread(papp);
 
+      bool bOk = true;
+
+      try
+      {
+
+         if(pthread->m_bAutoDelete && pthread->m_bHeap)
+         {
+          
+            ::aura::del(pthread);
+
+         }
+
+      }
+      catch(...)
+      {
+
+         bOk = false;
+
+      }
+
+      if(!bOk)
+      {
+
+         ::aura::del(pthread);
+
+      }
+
+
       return nExitCode;
 
    }

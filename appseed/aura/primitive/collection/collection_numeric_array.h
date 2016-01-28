@@ -235,7 +235,9 @@ public:
 
    int compare(const numeric_array < TYPE > & a) const
    {
+
       int iCompare = this->get_size() - a.get_size();
+
       if(iCompare != 0)
          return iCompare;
       TYPE t;

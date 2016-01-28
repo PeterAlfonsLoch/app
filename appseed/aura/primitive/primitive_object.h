@@ -116,53 +116,9 @@ public:
    }
 
 
-   inline int64_t add_ref()
-   {
-
-#ifdef WINDOWS
-
-      return InterlockedIncrement64(&m_countReference);
-
-#else
-
-      return __sync_add_and_fetch(&m_countReference,1);
-
-#endif
-
-   }
-
-
-   inline int64_t dec_ref()
-   {
-
-#ifdef WINDOWS
-
-      return InterlockedDecrement64(&m_countReference);
-
-#else
-
-      return  __sync_sub_and_fetch(&m_countReference,1);
-
-#endif
-
-   }
-
-
-   inline int64_t release()
-   {
-
-      int64_t i = dec_ref();
-
-      if(i == 0)
-      {
-
-         delete_this();
-
-      }
-
-      return i;
-
-   }
+   virtual int64_t add_ref();
+   virtual int64_t dec_ref();
+   virtual int64_t release();
 
    // OBJECT :: object :> is a ::object
 

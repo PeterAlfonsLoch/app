@@ -85,6 +85,55 @@ object::~object()
 
 
 
+int64_t object::add_ref()
+{
+
+#ifdef WINDOWS
+
+   return InterlockedIncrement64(&m_countReference);
+
+#else
+
+   return __sync_add_and_fetch(&m_countReference,1);
+
+#endif
+
+}
+
+
+int64_t object::dec_ref()
+{
+
+#ifdef WINDOWS
+
+   return InterlockedDecrement64(&m_countReference);
+
+#else
+
+   return  __sync_sub_and_fetch(&m_countReference,1);
+
+#endif
+
+}
+
+
+int64_t object::release()
+{
+
+   int64_t i = dec_ref();
+
+   if(i == 0)
+   {
+
+      delete_this();
+
+   }
+
+   return i;
+
+}
+
+
 object & object::operator=(const object & objectSrc)
 {
 

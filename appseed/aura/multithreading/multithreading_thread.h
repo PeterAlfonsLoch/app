@@ -230,6 +230,8 @@ public:
 
    virtual void post_quit();
 
+   virtual void delete_this();
+
 };
 
 

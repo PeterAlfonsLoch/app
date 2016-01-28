@@ -275,7 +275,7 @@ Opened:
          {
             return ::multimedia::result_error;
          }
-
+         int iSampleRate = XAUDIO2_MIN_SAMPLE_RATE;
          mmr = ::multimedia::result_success;
          m_pwaveformat->wFormatTag = WAVE_FORMAT_PCM;
          m_pwaveformat->nChannels = uiChannelCount;
@@ -286,7 +286,8 @@ Opened:
          m_pwaveformat->cbSize = 0;
          sp(::multimedia::audio::wave) audiowave = Application.audiowave();
 
-         if(FAILED(hr = m_pxaudio->CreateSourceVoice(&m_psourcevoice,wave_format(),XAUDIO2_VOICE_NOSRC | XAUDIO2_VOICE_NOPITCH,1.0f,this)))
+         //if(FAILED(hr = m_pxaudio->CreateSourceVoice(&m_psourcevoice,wave_format(),XAUDIO2_VOICE_NOSRC | XAUDIO2_VOICE_NOPITCH,1.0f,this)))
+         if(FAILED(hr = m_pxaudio->CreateSourceVoice(&m_psourcevoice,wave_format(),0,1.0f,this)))
          {
             return ::multimedia::result_error;
          }
@@ -306,6 +307,8 @@ Opened:
          iBufferSampleCount = (1 << 9);
 
          uint32_t uiBufferSize = iBufferSampleCount * m_pwaveformat->nChannels * 2;
+
+         uiBufferSize = MAX(uiBufferSize,2048);
 
          ASSERT((uiBufferSize % 2048) == 0);// Streaming size must be 2K aligned to use for async I/O
 

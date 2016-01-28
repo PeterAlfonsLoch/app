@@ -1302,11 +1302,53 @@ void thread::shutdown(bool bPrompt)
 }
 
 
+void thread::delete_this()
+{
+
+   try
+   {
+
+      if(get_os_handle() != NULL)
+      {
+
+         m_bAutoDelete = true;
+
+         post_quit();
+
+      }
+      else
+      {
+
+         ::command_target::delete_this();
+
+      }
+
+   }
+   catch(...)
+   {
+
+
+   }
+
+}
+
 void thread::post_quit()
 {
 
-   // post to ensure that quiting is done at the task and for the task and not in this fiber/thread/task
-   post_thread_message(WM_QUIT);
+   try
+   {
+
+      set_run(false);
+
+      // post to ensure that quiting is done at the task and for the task and not in this fiber/thread/task
+      post_thread_message(WM_QUIT);
+
+   }
+   catch(...)
+   {
+
+
+   }
 
 }
 
