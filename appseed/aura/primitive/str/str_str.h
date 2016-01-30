@@ -31,6 +31,9 @@ extern CLASS_DECL_AURA const char trailingBytesForUTF8[256];
 #undef err_none
 #endif
 
+/// 
+/// \author Camilo Sasuke Tsumanuma
+///
 namespace str
 {
 
@@ -60,11 +63,9 @@ namespace str
    string CLASS_DECL_AURA equals_get(const char * psz1, const char * psz2, const char * pszGetOnEqual, const char * pszGetOnDifferent = NULL);
    string CLASS_DECL_AURA equals_ci_get(const char * psz1, const char * psz2, const char * pszGetOnEqual, const char * pszGetOnDifferent = NULL);
 
-
    inline bool begins(const char * psz,string & strFed, const string & strPrefix);
    inline bool begins(const string & str,string & strFed,const string & strPrefix);
    inline bool begins(const id & id,string & strFed,const string & strPrefix);
-
 
    inline bool begins(const char * psz, const string & strPrefix);
    inline bool begins(const string & str, const string & strPrefix);
@@ -92,7 +93,6 @@ namespace str
    // case insensitive, ignore white space - only in searched string
    bool CLASS_DECL_AURA begins_ci_iws(const unichar * psz, const unichar * lpcszPrefix);
    bool CLASS_DECL_AURA begins_ci_iws(const wstring & str, const unichar * lpcszPrefix);
-
 
 
    inline bool begins_eat(string & str, const string & strPrefix);

@@ -1,4 +1,4 @@
-   inline void simple_string::construct(string_manager * pstringmanager)
+inline void simple_string::construct(string_manager * pstringmanager)
    {
       ENSURE( pstringmanager != NULL );
       string_data * pData = pstringmanager->GetNilString();
@@ -508,8 +508,12 @@ namespace str
 {
 
 
-
-
+   ///
+   /// \param[in] psz Parsed string.
+   /// \param[in] strPrefix Candidate prefix string.
+   /// \return True if \p psz is prefixed with \p strPrefix.
+   /// \note Binary comparison.
+   ///
    inline bool begins(const char * psz,const string & strPrefix)
    {
 
@@ -600,7 +604,11 @@ namespace str
 
    }
 
-
+   /// If \p str is prefixed with \p strPrefix, remove \p strPrefix from \p str.
+   /// \param[in,out] str Parsed string.
+   /// \param[in] strPrefix Candidate prefix string.
+   /// \return True if \p psz is prefixed with \p strPrefix.
+   /// \note Binary comparison.
    inline bool begins_eat(string & str,const string & strPrefix)
    {
 
