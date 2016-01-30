@@ -78,3 +78,66 @@ CLASS_DECL_AURA bool __node_aura_pos_term()
 
 }
 
+
+// http://stackoverflow.com/questions/150355/programmatically-find-the-number-of-cores-on-a-machine
+// http://stackoverflow.com/users/1275169/l3x
+int get_proc_stat_core_count()
+{
+
+   string str = file_as_string_dup("/proc/stat");
+
+   stringa stra;
+
+   stra.add_lines(str);
+
+   return stra.pred_get_count([](auto str){ return ::str::begins(str, "cpu"); });
+
+}
+
+
+
+// http://stackoverflow.com/questions/150355/programmatically-find-the-number-of-cores-on-a-machine
+// http://stackoverflow.com/users/1275169/l3x
+int get_proc_cpuinfo_core_count()
+{
+
+   char str[256];
+
+   int procCount = 0;
+
+   FILE *fp;
+
+   if( (fp = fopen("/proc/cpuinfo", "r")) )
+   {
+
+      while(fgets(str, sizeof str, fp))
+      {
+
+         if( !memcmp(str, "processor", 9) )
+         {
+
+            procCount++;
+
+         }
+
+      }
+
+   }
+
+if ( !procCount )
+{
+printf("Unable to get proc count. Defaulting to 2");
+procCount=2;
+}
+
+printf("Proc Count:%d\n", procCount);
+return 0;
+}
+
+int get_processor_count()
+{
+
+}
+
+
+

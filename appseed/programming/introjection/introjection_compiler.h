@@ -5,71 +5,71 @@ namespace introjection
 {
 
 
-   class CLASS_DECL_PROGRAMMING library:
-      virtual public ::object
-   {
-   public:
+class CLASS_DECL_PROGRAMMING library:
+   virtual public ::object
+{
+public:
 
 
-      ::aura::library                           m_library;
-      ::file::path                              m_pathScript;
-      file::plain_text_stream_memory_buffer     m_memfileError;
-      string                                    m_strError;
-      file_time                                 m_filetime;
+   ::aura::library                           m_library;
+   ::file::path                              m_pathScript;
+   file::plain_text_stream_memory_buffer     m_memfileError;
+   string                                    m_strError;
+   file_time                                 m_filetime;
 
 
-      library(::aura::application * papp);
-      virtual ~library();
+   library(::aura::application * papp);
+   virtual ~library();
 
 
-   };
+};
 
 
 
-   class CLASS_DECL_PROGRAMMING compiler:
-      virtual public ::object
-   {
-   public:
+class CLASS_DECL_PROGRAMMING compiler:
+   virtual public ::object
+{
+public:
 
-      string                                    m_strDynamicSourceConfiguration;
-      ::file::path                              m_strDynamicSourceStage;
-      ::file::path                              m_strDynamicSourceStageFolder;
-
-
-      string      m_strLibPlatform;
+   string                                    m_strDynamicSourceConfiguration;
+   ::file::path                              m_strDynamicSourceStage;
+   ::file::path                              m_strDynamicSourceStageFolder;
 
 
-      stringa                                   m_straSync;
-      //      map_string_to_ptr                         m_mapLib;
-      string                                    m_strLibsLibs;
-      string                                    m_strEnv;
-      string                                    m_strSdk1;
-      string                                    m_strPlatform;
-      string                                    m_strStagePlatform;
-
-      string                                    m_strPlat1;
-      string                                    m_strPlat2;
-      ::file::path                              m_strTime;
+   string      m_strLibPlatform;
 
 
-      mutex                                     m_mutex;
+   stringa                                   m_straSync;
+   //      map_string_to_ptr                         m_mapLib;
+   string                                    m_strLibsLibs;
+   string                                    m_strEnv;
+   string                                    m_strSdk1;
+   string                                    m_strPlatform;
+   string                                    m_strStagePlatform;
 
-      mutex                                     m_mutexLibrary;
-
-      string_map < sp(library) >                m_lib;
-
-
-      compiler(::aura::application * papp);
-      virtual ~compiler();
-
-      void initialize();
-      void prepare1(const char * lpcszSource,const char * lpcszDest);
-      void prepare_compile_and_link_environment();
-
-      ::aura::library & compile(string str,bool & bNew);
+   string                                    m_strPlat1;
+   string                                    m_strPlat2;
+   ::file::path                              m_strTime;
 
 
-   };
+   mutex                                     m_mutex;
+
+   mutex                                     m_mutexLibrary;
+
+   string_map < sp(library) >                m_lib;
+
+
+   compiler(::aura::application * papp);
+   virtual ~compiler();
+
+   void initialize();
+   void prepare1(const char * lpcszSource,const char * lpcszDest);
+   void prepare_compile_and_link_environment();
+
+   ::aura::library & compile(string str,bool & bNew);
+
+
+};
 
 
 

@@ -125,6 +125,8 @@ namespace draw2d_cairo
          m_ppathPaint = NULL;
       }*/
 
+      m_pmutex = NULL;
+
    }
 
 

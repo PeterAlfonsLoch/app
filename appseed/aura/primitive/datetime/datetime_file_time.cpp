@@ -185,6 +185,24 @@ void get_file_time(const char * psz,FILETIME & creation,FILETIME & modified)
 
 }
 
+#elif defined(METROWIN)
+void get_file_time(const char * psz,FILETIME & creation,FILETIME & modified)
+{
+
+         ::Windows::Storage::StorageFile ^ h = get_os_file(psz,GENERIC_READ,FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL);
+         try
+         {
+            memset(&m_ftCreation,0,sizeof(FILETIME));
+            memset(&m_ftModified,0,sizeof(FILETIME));
+            ::get_file_time(h,&m_ftCreation,NULL,&m_ftModified);
+         }
+         catch(...)
+         {
+         }
+
+
+}
+
 #else
 
 #include <sys/types.h>

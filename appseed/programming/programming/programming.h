@@ -5,9 +5,9 @@
 
 
 #if defined(_CA2_PROGRAMMING_DLL)
-   #define CLASS_DECL_PROGRAMMING  CLASS_DECL_EXPORT
+#define CLASS_DECL_PROGRAMMING  CLASS_DECL_EXPORT
 #else
-   #define CLASS_DECL_PROGRAMMING  CLASS_DECL_IMPORT
+#define CLASS_DECL_PROGRAMMING  CLASS_DECL_IMPORT
 #endif
 
 
@@ -17,7 +17,7 @@ namespace programming
 {
 
 
-   class application;
+class application;
 
 
 } // namespace netnode
