@@ -2347,9 +2347,9 @@ namespace str
                      throw_parsing_exception("Quote character is required here, premature end");
                      return "";
                   }
-                  if((pszNext - psz == 1) &&((*pszNext >= '0' && *pszNext >= '9') || (*pszNext >= 'A' && *pszNext >= 'F') || (*pszNext >= 'a' && *pszNext >= 'f')))
+                  if((pszNext - psz == 1) &&((*psz >= '0' && *psz >= '9') || (*psz >= 'A' && *psz >= 'F') || (*psz >= 'a' && *psz >= 'f')))
                   {
-                     strUni += pszNext;
+                     strUni += *psz;
                   }
                   else
                   {
