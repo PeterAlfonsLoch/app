@@ -2330,13 +2330,6 @@ namespace str
             }
             else if(*psz == 'u')
             {
-               psz = pszNext;
-               pszNext = __utf8_inc(psz);
-               if(pszNext > pszEnd)
-               {
-                  throw_parsing_exception("Quote character is required here, premature end");
-                  return "";
-               }
                string strUni;
                for(index i = 0; i < 4; i++)
                {
