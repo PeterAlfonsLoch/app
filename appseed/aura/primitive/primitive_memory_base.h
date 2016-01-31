@@ -47,6 +47,7 @@ namespace primitive
       LPBYTE                  m_pbComputed;
 
       memory_offset_t         m_iOffset;
+      memory_offset_t         m_iMaxOffset;
       memory_size_t           m_cbStorage;
       memory_size_t           m_dwAllocation;
       double                  m_dAllocationRateUp;
@@ -372,20 +373,6 @@ namespace primitive
       {
          delete_begin(iSize);
       }
-   }
-
-   inline void memory_base::remove_offset()
-   {
-
-      if(m_pbStorage == NULL || m_pbComputed == NULL || m_iOffset <= 0)
-         return;
-
-      memmove(m_pbStorage, m_pbComputed, m_cbStorage);
-
-      m_iOffset      = 0;
-
-      m_pbComputed   = m_pbStorage;
-
    }
 
    inline memory_base & memory_base::operator = (const memory_base & s)

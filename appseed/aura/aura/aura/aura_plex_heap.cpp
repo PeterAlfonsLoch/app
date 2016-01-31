@@ -273,23 +273,23 @@ plex_heap_alloc_array::plex_heap_alloc_array()
    m_aa[2] = 4;
    m_bb[4] = get_size();
    add(new plex_heap_alloc(1024 * 128,16));
-   add(new plex_heap_alloc(1024 * 192, 16));
-   add(new plex_heap_alloc(1024 * 256, 16));
-   add(new plex_heap_alloc(1024 * 384, 16));
-   add(new plex_heap_alloc(1024 * 512, 16));
-   add(new plex_heap_alloc(1024 * 768, 16));
-   add(new plex_heap_alloc(1024 * 1024, 16));
+   //add(new plex_heap_alloc(1024 * 192, 16));
+   //add(new plex_heap_alloc(1024 * 256, 16));
+   //add(new plex_heap_alloc(1024 * 384, 16));
+   //add(new plex_heap_alloc(1024 * 512, 16));
+   //add(new plex_heap_alloc(1024 * 768, 16));
+   //add(new plex_heap_alloc(1024 * 1024, 16));
    m_bbSize[4] = last()->GetAllocSize();
 
-#ifdef OS64BIT
-   m_bb[5] = get_size();
-   add(new plex_heap_alloc(1024 * 1024 * 2, 16));
-   add(new plex_heap_alloc(1024 * 1024 * 4,16));
-   add(new plex_heap_alloc(1024 * 1024 * 8,16));
-   add(new plex_heap_alloc(1024 * 1024 * 16,16));
-   m_bbSize[5] = last()->GetAllocSize();
-#endif
-   m_aaSize[2] = last()->GetAllocSize();
+//#ifdef OS64BIT
+//   m_bb[5] = get_size();
+//   add(new plex_heap_alloc(1024 * 1024 * 2, 16));
+//   add(new plex_heap_alloc(1024 * 1024 * 4,16));
+//   add(new plex_heap_alloc(1024 * 1024 * 8,16));
+//   add(new plex_heap_alloc(1024 * 1024 * 16,16));
+//   m_bbSize[5] = last()->GetAllocSize();
+//#endif
+//   m_aaSize[2] = last()->GetAllocSize();
 
    m_iWorkingSize = get_size();
 

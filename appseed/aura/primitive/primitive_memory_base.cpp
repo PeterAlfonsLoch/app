@@ -19,6 +19,7 @@ namespace primitive
       m_dwAllocationAddUp  = 4096;
       m_dAllocationRateUp  = 1.0;
       m_iOffset            = 0;
+      m_iMaxOffset         = 16 * 1024;
       m_bLockMode          = false;
       m_bLock              = false;
       m_pcontainer         = NULL;
@@ -246,6 +247,22 @@ namespace primitive
 
    }
 
+
+   void memory_base::remove_offset()
+   {
+
+      if(m_pbStorage == NULL || m_pbComputed == NULL || m_iOffset <= 0)
+         return;
+
+      memmove(m_pbStorage,m_pbComputed,m_cbStorage);
+
+      m_iOffset      = 0;
+
+      m_pbComputed   = m_pbStorage;
+
+   }
+
+
    /*
    void memory_base::FullLoad(::file::binary_buffer & file)
    {
@@ -372,25 +389,15 @@ namespace primitive
 
       m_cbStorage -= iSize;
 
-      if(m_cbStorage <= 0)
-      {
+      m_pbComputed += iSize;
 
-         m_pbComputed = NULL;
-
-      }
-      else
-      {
-
-         m_pbComputed += iSize;
-
-      }
-
-      if(m_iOffset > 2 * 1024 * 1024)
+      if(m_iOffset > m_iMaxOffset)
       {
 
          remove_offset();
 
       }
+
 
    }
 

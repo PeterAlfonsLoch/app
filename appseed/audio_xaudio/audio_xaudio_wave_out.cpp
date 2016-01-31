@@ -50,6 +50,8 @@ namespace multimedia
          if(!::multimedia::audio::wave_out::initialize_instance())
             return false;
 
+         set_thread_priority(::multithreading::priority_time_critical);
+
          return true;
 
       }
@@ -209,7 +211,7 @@ Opened:
             uiSkippedSamplesCount = 1;
          }
 
-         wave_out_get_buffer()->PCMOutOpen(this, uiBufferSize, uiBufferCount, m_pwaveformat, m_pwaveformat);
+         wave_out_get_buffer()->PCMOutOpen(this, uiBufferSize, uiBufferCount, 2048,m_pwaveformat, m_pwaveformat);
 
          m_pprebuffer->open(
             this, // callback thread (thread)
@@ -303,7 +305,7 @@ Opened:
 
 Opened:
          int iAlign = 2048;
-         iBufferCount = 4;
+         iBufferCount = 1;
          iBufferSampleCount = (1 << 9);
 
          uint32_t uiBufferSize = iBufferSampleCount * m_pwaveformat->nChannels * 2;
@@ -316,11 +318,11 @@ Opened:
 
 
 
-         wave_out_get_buffer()->PCMOutOpen(this, uiBufferSize, iBufferCount, m_pwaveformat, m_pwaveformat);
+         wave_out_get_buffer()->PCMOutOpen(this, uiBufferSize, iBufferCount,iAlign, m_pwaveformat, m_pwaveformat);
 
          m_pprebuffer->open(this, m_pwaveformat->nChannels, iBufferCount, iBufferSampleCount);
 
-         m_pprebuffer->SetMinL1BufferCount(wave_out_get_buffer()->GetBufferCount() + 4);
+         m_pprebuffer->SetMinL1BufferCount(wave_out_get_buffer()->GetBufferCount());
 
          m_estate = state_opened;
 
@@ -409,7 +411,38 @@ Opened:
       }
 
 
+      /*
+      * Find the first occurrence of the byte string s in byte string l.
+      */
 
+      void *
+         memmem(const void *l,size_t l_len,const void *s,size_t s_len)
+      {
+         register char *cur,*last;
+         const char *cl = (const char *)l;
+         const char *cs = (const char *)s;
+
+         /* we need something to compare */
+         if(l_len == 0 || s_len == 0)
+            return NULL;
+
+         /* "s" must be smaller or equal to "l" */
+         if(l_len < s_len)
+            return NULL;
+
+         /* special case where s_len == 1 */
+         if(s_len == 1)
+            return memchr((void *) l,(int)*cs,l_len);
+
+         /* the last position where its possible to find "s" in "l" */
+         last = (char *)cl + l_len - s_len;
+
+         for(cur = (char *)cl; cur <= last; cur++)
+            if(cur[0] == cs[0] && memcmp(cur,cs,s_len) == 0)
+               return cur;
+
+         return NULL;
+      }
       void wave_out::wave_out_buffer_ready(int iBuffer)
       {
 
@@ -436,7 +469,22 @@ Opened:
 
          //single_lock sLock(&m_mutex,TRUE);
 
+         char sz[16];
 
+         ZERO(sz);
+
+         if(memmem(b.pAudioData,pwbuffer->m_uiBufferSize,sz,sizeof(sz)))
+         {
+            output_debug_string("too much zeros in audio buffer\n");
+         }
+
+         static DWORD g_dwLastBuffer;
+         DWORD dwTick = get_tick_count();
+         if(dwTick-g_dwLastBuffer > 50)
+         {
+            output_debug_string("too much delay for submitting audio buffer\n");
+         }
+            g_dwLastBuffer = dwTick;
 
          mmr = xaudio::translate(m_psourcevoice->SubmitSourceBuffer(&b));
 
@@ -730,6 +778,21 @@ Opened:
 
       void wave_out::OnBufferEnd(void* pBufferContext)
       {
+
+         if(get_thread_priority() != ::multithreading::priority_time_critical)
+         {
+
+            set_thread_priority(::multithreading::priority_time_critical);
+
+         }
+
+         unsigned __int64 freq;
+         QueryPerformanceFrequency((LARGE_INTEGER*)&freq);
+         double timerFrequency = (1.0 / freq);
+         unsigned __int64 startTime;
+         QueryPerformanceCounter((LARGE_INTEGER *)&startTime);
+
+
          ::multimedia::audio::wave_buffer::buffer * pbuffer = (::multimedia::audio::wave_buffer::buffer *)pBufferContext;
 
          m_iBufferedCount--;
@@ -741,6 +804,15 @@ Opened:
 
          wave_out_out_buffer_done(iBuffer);
 
+         unsigned __int64 endTime;
+         QueryPerformanceCounter((LARGE_INTEGER *)&endTime);
+         double timeDifferenceInseconds = ((endTime - startTime) * timerFrequency);
+         if(timeDifferenceInseconds > 0.040)
+         {
+            ::output_debug_string("too much delay to create audio\n");
+         }
+       
+      
 
       }
 
