@@ -475,7 +475,7 @@ Opened:
 
          if(memmem(b.pAudioData,pwbuffer->m_uiBufferSize,sz,sizeof(sz)))
          {
-            output_debug_string("too much zeros in audio buffer\n");
+            //output_debug_string("too much zeros in audio buffer\n");
          }
 
          static DWORD g_dwLastBuffer;
