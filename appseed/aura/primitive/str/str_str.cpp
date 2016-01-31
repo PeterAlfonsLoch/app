@@ -2328,6 +2328,31 @@ namespace str
             {
                str += "\r";
             }
+            else if(*psz == 'u')
+            {
+               string strUni;
+               for(index i = 0; i < 4; i++)
+               {
+                  psz = pszNext;
+                  pszNext = __utf8_inc(psz);
+                  if(pszNext > pszEnd)
+                  {
+                     throw_parsing_exception("Quote character is required here, premature end");
+                     return "";
+                  }
+                  if((pszNext - psz == 1) &&((*pszNext >= '0' && *pszNext >= '9') || (*pszNext >= 'A' && *pszNext >= 'F') || (*pszNext >= 'a' && *pszNext >= 'f')))
+                  {
+                     strUni += pszNext;
+                  }
+                  else
+                  {
+                     throw_parsing_exception("16 bit unicode expect here");
+                     return "";
+                  }
+
+               }
+               str += (wchar_t)::hex::to_uint(strUni);
+            }
             else if(*psz == '\"')
             {
                str += "\"";

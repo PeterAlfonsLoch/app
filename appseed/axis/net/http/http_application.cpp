@@ -141,8 +141,7 @@ namespace http
 
       set["get_response"] = "";
 
-      if (!System.http().get(pszUrl, process_set(set, pszUrl)))
-         return "";
+      set["bool_result"] = System.http().get(pszUrl,process_set(set,pszUrl));
 
       return set["get_response"].get_string();
 
