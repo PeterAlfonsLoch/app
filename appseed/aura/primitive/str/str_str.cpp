@@ -2351,7 +2351,7 @@ namespace str
                   }
 
                }
-               str += (wchar_t)::hex::to_uint(strUni);
+               str += (unichar)::hex::to_uint(strUni);
             }
             else if(*psz == '\"')
             {
@@ -3127,7 +3127,7 @@ namespace str
 
       while(c > 0)
       {
-         
+
          c = 0;
 
          if(trim_any_quotes(str))
@@ -3195,13 +3195,13 @@ namespace str
    }
 
    CLASS_DECL_AURA string zero_pad(const string & strSrc,int iPad)
-   { 
-      
-      string str(strSrc); 
-      
-      ::zero_pad(str,iPad); 
-      
-      return str; 
+   {
+
+      string str(strSrc);
+
+      ::zero_pad(str,iPad);
+
+      return str;
 
    }
 
