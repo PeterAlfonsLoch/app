@@ -231,7 +231,7 @@ Opened:
 
       }
 
-      ::multimedia::e_result wave_out::wave_out_open_ex(thread * pthreadCallback, int32_t iBufferCount, int32_t iBufferSampleCount, uint32_t uiSamplesPerSec, uint32_t uiChannelCount, uint32_t uiBitsPerSample)
+      ::multimedia::e_result wave_out::wave_out_open_ex(thread * pthreadCallback, int32_t iBufferCount, int32_t iBufferSampleCount, uint32_t uiSamplesPerSec, uint32_t uiChannelCount, uint32_t uiBitsPerSample, ::multimedia::audio::e_purpose epurpose)
       {
 
          single_lock sLock(&m_mutex, TRUE);
@@ -304,9 +304,29 @@ Opened:
          }
 
 Opened:
+         if(epurpose == ::multimedia::audio::purpose_playback)
+         {
+
+            iBufferCount = 24;
+            iBufferSampleCount = (1 << 11);
+
+         }
+         else if(epurpose == ::multimedia::audio::purpose_playground)
+         {
+
+            iBufferCount = 1;
+            iBufferSampleCount = (1 << 9);
+
+         }
+         else
+         {
+
+            iBufferCount = 4;
+            iBufferSampleCount = (1 << 9);
+
+         }
+
          int iAlign = 2048;
-         iBufferCount = 1;
-         iBufferSampleCount = (1 << 9);
 
          uint32_t uiBufferSize = iBufferSampleCount * m_pwaveformat->nChannels * 2;
 
@@ -325,6 +345,8 @@ Opened:
          m_pprebuffer->SetMinL1BufferCount(wave_out_get_buffer()->GetBufferCount());
 
          m_estate = state_opened;
+
+         m_epurpose = epurpose;
 
          return ::multimedia::result_success;
 
