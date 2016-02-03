@@ -1183,9 +1183,9 @@ CLASS_DECL_AURA int_bool WINAPI PostThreadMessageW(IDTHREAD iThreadId,UINT Msg,W
 
       iDebugPostThreadMessageTime = 0;
 
-      dwDebugPostThreadMessageTime = dwNow;
-
    }
+
+   dwDebugPostThreadMessageTime = dwNow;
 
 
 

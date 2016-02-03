@@ -376,22 +376,22 @@ bool timer::start(int millis, bool bPeriodic)
 
    its.it_value.tv_nsec = (millis * 1000 * 1000) % (1000 * 1000 * 1000); // expiration
 
-//   if (bPeriodic)
-  // {
+   if (bPeriodic)
+   {
+
+      its.it_interval.tv_sec = millis / 1000; // freq period
+
+      its.it_interval.tv_nsec = (millis * 1000 * 1000) % (1000 * 1000 * 1000); // freq period
+
+   }
+   else
+   {
 
       its.it_interval.tv_sec = 0; // no freq
 
       its.it_interval.tv_nsec = 0; // no freq
 
-   //}
-   //else
-//   {
-//
-//      its.it_value.tv_sec = millis / 1000; // freq period
-//
-//      its.it_value.tv_nsec = (millis * 1000 * 1000) % (1000 * 1000 * 1000); // freq period
-//
-//   }
+   }
 
    if (timer_settime(m_ptimer->m_timerid, 0, &its, NULL) == -1)
       return false;
@@ -545,13 +545,13 @@ bool timer::call_on_timer()
       }
 #else
 
-      if (m_bPeriodic)
-      {
-
-         if (timer_settime(m_ptimer->m_timerid, 0, &m_ptimer->m_its, NULL) == -1)
-            return false;
-
-      }
+//      if (m_bPeriodic)
+//      {
+//
+//         if (timer_settime(m_ptimer->m_timerid, 0, &m_ptimer->m_its, NULL) == -1)
+//            return false;
+//
+//      }
 
 #endif
 
