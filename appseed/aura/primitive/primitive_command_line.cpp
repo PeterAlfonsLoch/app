@@ -78,7 +78,7 @@ void command_line::ParseParamFlag(const string & strParam)
    {
 
       m_bRunEmbedded = TRUE;
-      
+
       m_bShowSplash = FALSE;
 
    }
@@ -126,7 +126,7 @@ void command_line::ParseParamNotFlag(const string & strParam)
 
 void command_line::ParseLast(bool bLast)
 {
-   
+
    if (bLast)
    {
       if(m_ecommand == command_file_new && !m_varFile.is_empty())
@@ -160,6 +160,8 @@ command_line & command_line::operator = (const command_line & info)
 
 void command_line::_001ParseCommandLine(const string & strCommandLine)
 {
+
+   m_strCommandLine = strCommandLine;
 
    m_varQuery.propset()._008ParseCommandLine(strCommandLine,m_varFile);
 
@@ -245,12 +247,16 @@ void command_line::_001ParseCommandLine(const string & strCommandLine)
 void command_line::_001ParseCommandLineUri(const string & strCommandLine)
 {
 
+   m_strCommandLine = strCommandLine;
+
    ::exception::throw_not_implemented(get_app());
 
 }
 
 void command_line::_001ParseCommandFork(const string & strCommandFork)
 {
+
+   m_strCommandLine = strCommandFork;
 
    m_varQuery.propset()._008ParseCommandFork(strCommandFork,m_varFile,m_strApp);
 
@@ -260,7 +266,7 @@ void command_line::_001ParseCommandFork(const string & strCommandFork)
       m_ecommand = command_line::command_file_open;
 
    }
-   
+
    if(m_varQuery.has_property("uri"))
    {
 
@@ -358,7 +364,7 @@ void command_line::_001ParseCommandForkUri(const string & strCommandFork)
       strScript = strScript.Left(iFind);
 
    m_varQuery.propset().parse_url_query(strQuery);
-   
+
    m_strApp = strScript;
 
    if(m_varQuery.has_property("file"))

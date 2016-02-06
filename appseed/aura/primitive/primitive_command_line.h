@@ -24,10 +24,10 @@ public:
    {
       command_application_start,
       command_file_new,
-      command_file_open, 
+      command_file_open,
       command_file_print,
       command_file_print_to,
-      command_file_dde, 
+      command_file_dde,
       command_app_unregister,
       command_file_nothing = -1
    };
@@ -57,6 +57,7 @@ public:
    index                         m_iEdge;
    manual_reset_event            m_eventReady;
    application_bias *            m_pbiasCreate;
+   string                        m_strCommandLine;
 
 
 
