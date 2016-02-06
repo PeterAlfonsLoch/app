@@ -2792,7 +2792,7 @@ namespace aura
          if(m_pipi != NULL)
          {
 
-            m_pipi->ecall(m_pipi->m_strApp,{System.os().get_pid()},"application","on_exclusive_instance_local_conflict",System.file().module(),System.os().get_pid());
+            m_pipi->ecall(m_pipi->m_strApp,{System.os().get_pid()},"application","on_exclusive_instance_local_conflict",System.file().module(),System.os().get_pid(), string(::GetCommandLineW()));
 
          }
 
@@ -2807,7 +2807,7 @@ namespace aura
    }
 
 
-   void application::on_exclusive_instance_local_conflict(string strModule,int iPid)
+   void application::on_exclusive_instance_local_conflict(string strModule,int iPid, string strCommandLine)
    {
 
 

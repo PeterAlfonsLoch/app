@@ -24,7 +24,7 @@ namespace primitive
 
       virtual LPBYTE impl_alloc(memory_size_t dwAllocation) override;
       virtual LPBYTE impl_realloc(void * pdata, memory_size_t dwAllocation) override;
-      virtual void impl_free(void * pdata) override;
+      virtual void impl_free(LPBYTE pdata) override;
 
       //virtual ::object * clone() override;
 

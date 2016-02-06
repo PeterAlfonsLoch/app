@@ -370,7 +370,7 @@ namespace aura
 
       virtual void on_exclusive_instance_conflict(EExclusiveInstance eexclusive);
       virtual void on_exclusive_instance_local_conflict();
-      virtual void on_exclusive_instance_local_conflict(string strModule,int iPid);
+      virtual void on_exclusive_instance_local_conflict(string strModule,int iPid, string strCommandLine);
 
       virtual void on_new_instance(string strModule,int iPid);
 

@@ -182,7 +182,7 @@ namespace primitive
    }
 
    
-   void shared_memory::impl_free(void*)
+   void shared_memory::impl_free(LPBYTE)
    {
       
       ASSERT(m_hGlobalMemory != NULL);

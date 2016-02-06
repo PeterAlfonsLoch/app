@@ -203,7 +203,7 @@ memory::memory(primitive::memory_container * pcontainer, void * pMemory, memory_
 
 memory::~memory()
 {
-   
+
    if(m_pbStorage != NULL)
    {
 
@@ -240,11 +240,10 @@ LPBYTE memory::impl_realloc(void * pdata, memory_size_t dwAllocation)
 
 }
 
-void memory::impl_free(void * pdata)
+void memory::impl_free(LPBYTE pdata)
 {
 
    memory_free(pdata);
-   
 
 }
 

@@ -14,7 +14,10 @@ namespace simple_ui
    }
 
 
-   interaction::interaction()
+   interaction::interaction():
+      ::object(get_app()),
+      ::user::interaction(get_app())
+
    {
 
       m_pstyle       = NULL;

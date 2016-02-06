@@ -49,7 +49,7 @@ public:
 
    virtual void matches(int_array & ia,const char * psz, strsize len, pcre_context * pcreContext = NULL) = 0;
 
-   virtual bool replace(string & str,const string & strPrefix, byte * pd, size_t * ps,  pcre_context * pcreContext = NULL) = 0;
+   virtual bool replace(string & str,const string & strPrefix, string & strRet,  pcre_context * pcreContext = NULL) = 0;
 
 protected:
 

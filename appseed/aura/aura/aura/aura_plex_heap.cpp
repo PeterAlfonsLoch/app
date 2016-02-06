@@ -289,7 +289,7 @@ plex_heap_alloc_array::plex_heap_alloc_array()
 //   add(new plex_heap_alloc(1024 * 1024 * 16,16));
 //   m_bbSize[5] = last()->GetAllocSize();
 //#endif
-//   m_aaSize[2] = last()->GetAllocSize();
+   m_aaSize[2] = last()->GetAllocSize();
 
    m_iWorkingSize = get_size();
 

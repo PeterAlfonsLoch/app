@@ -122,7 +122,7 @@ namespace primitive
    }
 
 
-   void virtual_memory::impl_free(void * pdata)
+   void virtual_memory::impl_free(LPBYTE pdata)
    {
       
       return ::MidFree(pdata);

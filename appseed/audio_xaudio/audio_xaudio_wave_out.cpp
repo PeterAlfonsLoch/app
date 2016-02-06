@@ -307,8 +307,8 @@ Opened:
          if(epurpose == ::multimedia::audio::purpose_playback)
          {
 
-            iBufferCount = 24;
-            iBufferSampleCount = (1 << 11);
+            iBufferCount = 8;
+            iBufferSampleCount = (1 << 9);
 
          }
          else if(epurpose == ::multimedia::audio::purpose_playground)
@@ -488,6 +488,7 @@ Opened:
          b.pContext = pbuffer;
          b.AudioBytes = pwbuffer->m_uiBufferSize;
          b.pAudioData = (const BYTE *)pbuffer->m_pData;
+         b.Flags = m_bEOS ? XAUDIO2_END_OF_STREAM : 0;
 
          //single_lock sLock(&m_mutex,TRUE);
 
@@ -595,6 +596,8 @@ Opened:
             return result_success;
 
          ASSERT(m_estate == state_opened || m_estate == state_stopped);
+
+         m_bEOS = false;
 
          m_estate = state_playing;
 
@@ -776,7 +779,19 @@ Opened:
 
       }
 
+      void wave_out::wave_out_prebuffer_eof()
+      {
 
+
+      }
+
+
+      void wave_out::OnStreamEnd()
+      {
+         
+         wave_out_on_playback_end();
+
+      }
 
 
       //

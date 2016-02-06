@@ -318,9 +318,41 @@ bool event::ResetEvent()
 
 #ifdef WINDOWS
 
+#ifdef DEBUG
+
+   
+
+   try
+   {
+
+      if(m_object == NULL)
+      {
+         
+         ::OutputDebugString("error reset event (1)");
+
+      }
+
+
+      return ::ResetEvent((HANDLE)m_object) != FALSE;
+
+
+   }
+   catch(...)
+   {
+
+      ::OutputDebugString("error reset event (2)");
+
+   }
+
+   return false;
+
+#else
+
    ASSERT(m_object != NULL);
 
    return ::ResetEvent((HANDLE)m_object) != FALSE;
+
+#endif
 
 #else
 

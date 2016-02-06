@@ -1636,13 +1636,20 @@ namespace xml
    //========================================================
    bool node::remove_child( node * pnode )
    {
+   
       if(m_nodea.remove(pnode) > 0)
       {
-         delete pnode;
+
+      //   delete pnode;
+
          return true;
+
       }
+
       return false;
+
    }
+
 
    //========================================================
    // Name   : get_attr
@@ -1690,12 +1697,18 @@ namespace xml
    //========================================================
    bool node::remove_attr(::xml::attr * pattr )
    {
+      
       if(m_attra.remove_by_name(pattr->name()) > 0)
       {
-         delete pattr;
+
+         //delete pattr;
+
          return true;
+
       }
+
       return false;
+
    }
 
 

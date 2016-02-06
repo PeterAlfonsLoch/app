@@ -10,7 +10,9 @@ namespace database
    {
 
 
-      interaction::interaction()
+      interaction::interaction():
+         ::object(get_app()),
+         ::user::interaction(get_app())
       {
 
       }

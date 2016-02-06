@@ -181,16 +181,22 @@ namespace file
 
    string circular_buffer::read_string(size_t l)
    {
-      char *sz = new char[l + 1];
-      if (!read(sz, l)) // failed, debug printout in read() method
+      
+      memory mem;
+      
+      mem.allocate(l + 1);
+
+      if (!read(mem.get_data(), l)) // failed, debug printout in read() method
       {
-         delete[] sz;
+      
          return "";
+
       }
-      sz[l] = 0;
-      string tmp = sz;
-      delete[] sz;
-      return tmp;
+
+      mem.get_data()[l] = '\0';
+
+      return (const char * ) mem.get_data();
+
    }
 
    circular_buffer& circular_buffer::operator=(const circular_buffer& buffer)

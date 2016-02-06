@@ -29,7 +29,7 @@ namespace primitive
       
       virtual LPBYTE impl_alloc(memory_size_t nBytes) override;
       virtual LPBYTE impl_realloc(void * pdata, memory_size_t nBytes) override;
-      virtual void impl_free(void * lpMem) override;
+      virtual void impl_free(LPBYTE lpMem) override;
 
 
       LPBYTE detach_shared_memory(HGLOBAL & hglobal);

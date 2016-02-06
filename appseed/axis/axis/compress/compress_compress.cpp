@@ -70,7 +70,7 @@ namespace axis
 
       ::file::memory_buffer memoryfileOut(get_app());
       class memory memory;
-      memory.allocate(1024 * 256);
+      memory.allocate(1024 * 64);
       ASSERT(memory.get_size() <= UINT_MAX);
 
       // inflateInit2 knows how to deal with gzip format

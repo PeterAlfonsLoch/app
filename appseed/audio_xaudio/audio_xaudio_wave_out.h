@@ -113,6 +113,7 @@ namespace multimedia
       public:
 
 
+
             //HANDLE streamEndEventHandle;
             //VoiceCallback(): streamEndEventHandle(CreateEvent(NULL,FALSE,FALSE,NULL)){}
             //~VoiceCallback()
@@ -121,10 +122,7 @@ namespace multimedia
             //}
 
             // Called when the voice has just finished playing a contiguous audio stream.
-            STDMETHOD_(void,OnStreamEnd())
-            {
-               
-            }
+            STDMETHOD_(void,OnStreamEnd());
 
             // Unused methods in this application
             STDMETHOD_(void,OnVoiceProcessingPassEnd());
@@ -201,6 +199,7 @@ namespace multimedia
          WAVEFORMATEX * wave_format();
          //LPWAVEHDR wave_hdr(int iBuffer);
          virtual void wave_out_run_step();
+         virtual void wave_out_prebuffer_eof();
       };
 
 

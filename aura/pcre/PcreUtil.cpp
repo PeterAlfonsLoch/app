@@ -242,22 +242,43 @@ public:
 
    }
 
-   virtual bool replace(string & str,const string & strPrefix,byte * pd,size_t * ps,pcre_context * pcreContext)
+   virtual bool replace(string & str,const string & strPrefix,string & strRet ,pcre_context * pcreContext) override
    {
 
-      if(pcre2_substitute(
-         m_pc,
-         (PCRE2_SPTR8)str.c_str(),
-         str.get_length(),
-         0,
-         PCRE2_SUBSTITUTE_GLOBAL,PC().m_pmd,NULL,(PCRE2_SPTR8)strPrefix.c_str(),strPrefix.get_length(),pd,ps) > 0)
+      size_t s=MAX(256, str.get_length() + strPrefix.get_length() * 3);
+
+      int err; 
+
+      while(true)
       {
 
-         return true;
+         err = pcre2_substitute(
+            m_pc,
+            (PCRE2_SPTR8)str.c_str(),
+            str.get_length(),
+            0,
+            PCRE2_SUBSTITUTE_GLOBAL,PC().m_pmd,NULL,(PCRE2_SPTR8)strPrefix.c_str(),strPrefix.get_length(),(PCRE2_UCHAR8 *)strRet.GetBufferSetLength(s),&s);
+
+         strRet.ReleaseBuffer(s);
+
+         if(err >= 0)
+         {
+            return true;
+
+         }
+         else if(err != PCRE2_ERROR_NOMEMORY)
+         {
+
+            return false;
+
+         }
+
+
+         s *= 2;
 
       }
 
-      return false;
+      return true;
 
    }
 

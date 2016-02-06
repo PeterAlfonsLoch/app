@@ -17,7 +17,7 @@ namespace primitive
       m_cbStorage          = 0;
       m_dwAllocation       = 0;
       m_dwAllocationAddUp  = 4096;
-      m_dAllocationRateUp  = 1.0;
+      m_dAllocationRateUp  = (double)(1.0 - ((double)m_dwAllocationAddUp /2.0) * log((double) m_dwAllocationAddUp - 1.0))/(1- log((double)m_dwAllocationAddUp - 1.0));
       m_iOffset            = 0;
       m_iMaxOffset         = 16 * 1024;
       m_bLockMode          = false;
@@ -31,7 +31,7 @@ namespace primitive
 
    memory_base::~memory_base()
    {
-      
+
       m_cbStorage = 0;
       m_dwAllocation =  0;
       m_pbStorage = NULL;
@@ -146,7 +146,7 @@ namespace primitive
 
    }
 
-   void memory_base::impl_free(void * pdata)
+   void memory_base::impl_free(LPBYTE pdata)
    {
 
    }
@@ -304,8 +304,9 @@ namespace primitive
    memory_size_t memory_base::calc_allocation(memory_size_t size)
    {
 
-      return (memory_size_t) ((((size + MAX(1024, m_dwAllocationAddUp)) ) / MAX(1024,m_dwAllocationAddUp)* MAX(1024,m_dwAllocationAddUp)) * (1.0 + MAX(1.0,m_dAllocationRateUp)));
+      //int s = size + exp((m_dAllocationRateUp - (double)size) / ((double) m_dAllocationRateUp - (double) m_dwAllocationAddUp / 2.0));
 
+      return (memory_size_t) (((size + m_dwAllocationAddUp) ) / m_dwAllocationAddUp * m_dwAllocationAddUp);
 
    }
 

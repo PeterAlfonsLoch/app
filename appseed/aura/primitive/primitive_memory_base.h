@@ -80,7 +80,7 @@ namespace primitive
       
       virtual LPBYTE impl_alloc(memory_size_t dwAllocation);
       virtual LPBYTE impl_realloc(void * pdata,memory_size_t dwAllocation);
-      virtual void impl_free(void * pdata);
+      virtual void impl_free(LPBYTE pdata);
 
       virtual void reserve(memory_size_t dwNewLength);
 

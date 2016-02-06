@@ -40,6 +40,12 @@ namespace http
    }
 
 
+   get_socket::~get_socket()
+   {
+
+
+   }
+
    void get_socket::OnDataArrived(const char *, size_t len)
    {
       UNREFERENCED_PARAMETER(len);

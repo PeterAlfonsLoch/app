@@ -12,7 +12,9 @@ namespace user
 {
 
 
-   frame_window::frame_window()
+   frame_window::frame_window():
+      ::object(get_app()),
+      ::user::interaction(get_app())
    {
       m_pviewMain = NULL;
       m_bAutoWindowFrame = true;

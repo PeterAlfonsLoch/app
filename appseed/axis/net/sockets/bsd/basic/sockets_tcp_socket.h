@@ -30,7 +30,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #pragma once
 
 
-#define TCP_BUFSIZE_READ (1024 * 1024)
+#define TCP_BUFSIZE_READ (16400)
 #define TCP_OUTPUT_CAPACITY 1024000
 
 //#ifdef APPLEOS
@@ -80,7 +80,7 @@ namespace sockets
          int32_t _q;
          char _buf[TCP_OUTPUT_CAPACITY];
       };
-      typedef list<OUTPUT *> output_list;
+      typedef list<OUTPUT> output_list;
 
       ::file::circular_buffer ibuf; ///< Circular input buffer
       string m_strUrl;
@@ -90,7 +90,7 @@ namespace sockets
       bool m_b_input_buffer_disabled;
       uint64_t m_bytes_sent;
       uint64_t m_bytes_received;
-      char *m_buf; ///< temporary read buffer
+      memory         m_memRead;
       output_list m_obuf; ///< output buffer
       OUTPUT *m_obuf_top; ///< output buffer on top
       size_t m_transfer_limit;

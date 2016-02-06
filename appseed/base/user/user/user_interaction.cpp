@@ -6292,7 +6292,7 @@ synch_lock sl(m_pmutex);
             if(z == ZORDER_TOP || z == ZORDER_TOPMOST)
             {
 
-               if(ml.lock(millis(84)).succeeded())
+               if(ml.lock().succeeded())
                {
 
                   if(GetParent()->m_uiptraChild.last_ptr() != this)
@@ -6300,7 +6300,7 @@ synch_lock sl(m_pmutex);
 
                      index iFind = GetParent()->m_uiptraChild.find_first(this);
 
-                     if(iFind >= 0)
+                     if(iFind >= 0 && iFind < GetParent()->m_uiptraChild.get_upper_bound())
                      {
 
                         try

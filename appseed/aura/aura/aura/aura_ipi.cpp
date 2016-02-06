@@ -413,7 +413,7 @@ namespace aura
          if(strMember == "on_exclusive_instance_local_conflict")
          {
 
-            Application.on_exclusive_instance_local_conflict(va[0],va[1]);
+            Application.on_exclusive_instance_local_conflict(va[0],va[1],va[2]);
 
          }
          else if(strMember == "on_new_instance")
