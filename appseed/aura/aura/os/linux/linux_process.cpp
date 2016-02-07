@@ -161,26 +161,66 @@ CLASS_DECL_AURA DWORD call_sync(const char * pszPath, const char * pszParam, con
 string module_path_from_pid(unsigned int iPid)
 {
 
-	int iSize = 1024 * 8;
+   struct stat sb;
 
-    hstring path(iSize);
-    char * systemPath = NULL;
-    char * candidateDir = NULL;
+   int iSize;
 
-string str;
-str = "/proc/" + ::str::from(iPid) + "/exe";
+   string str;
 
-    /* the easiest case: we are in linux */
-    ssize_t s = readlink (str, path, iSize);
+   str = "/proc/" + ::str::from(iPid) + "/exe";
 
-    if(s == -1)
-    {
-        return "";
-    }
+   memory mem;
 
-    path[s] = '\0';
+   ssize_t s;
 
-return path;
+   bool iTry;
+
+   if(lstat(str, &sb) == -1)
+   {
+
+retry:
+
+      iSize = 1024 * 4;
+
+      iTry = 1;
+
+      sb.st_size = iSize - 1;
+
+   }
+   else
+   {
+
+      iSize = sb.st_size + 1;
+
+      iTry = 0;
+
+   }
+
+   mem.allocate(iSize);
+
+   s = readlink (str, mem.get_data(), iSize);
+
+   if(s > sb.st_size)
+   {
+
+      if(iTry <= 0)
+      {
+
+         goto retry;
+
+      }
+      else
+      {
+
+         return "";
+
+      }
+
+   }
+
+   mem.get_data()[s] = '\0';
+
+   return (const char *) mem.get_data();
 
 }
 
