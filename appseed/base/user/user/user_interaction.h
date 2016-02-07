@@ -6,7 +6,7 @@ namespace user
 {
 
 
-   class alpha_source
+   class CLASS_DECL_BASE alpha_source
    {
    public:
 

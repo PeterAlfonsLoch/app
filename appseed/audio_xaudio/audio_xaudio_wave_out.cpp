@@ -424,9 +424,7 @@ Opened:
 
          //m_hwaveout = NULL;
 
-         m_pprebuffer->Reset();
-
-         m_estate = state_initial;
+		 ::multimedia::audio::wave_out::wave_out_close();
 
          return ::multimedia::result_success;
 
