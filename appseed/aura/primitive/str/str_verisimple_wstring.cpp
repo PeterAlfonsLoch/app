@@ -59,7 +59,7 @@ verisimple_wstring::verisimple_wstring(const unichar * pwsz,strsize iCount,manag
    else
    {
       while(iCount < 0)
-         iCount = unilen(pwsz) + iCount;
+         iCount = unilen(pwsz) + iCount + 1;
       m_pwsz = (unichar *) wstring_data::alloc(iCount);
       get_data()->m_iLength = iCount;
       memcpy_dup(m_pwsz, pwsz, get_data()->m_iLength * sizeof(unichar));
