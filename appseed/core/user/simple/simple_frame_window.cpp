@@ -1078,7 +1078,7 @@ void simple_frame_window::InitialFramePosition(bool bForceRestore)
          WfiMaximize();
 
       }
-      else if(Application.command()->m_varTopicQuery.has_property("client_only") 
+      else if(Application.command()->m_varTopicQuery.has_property("client_only")
       || Application.command()->m_varTopicQuery.has_property("full_screen"))
       {
 
@@ -1166,7 +1166,9 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics * pdcParam)
 
    bool bDib = false;
 
-   if(rectClient.area() > 0 && m_uchAlpha != 255 && GetExStyle() & WS_EX_LAYERED)
+   double dAlpha = get_alpha();
+
+   if(rectClient.area() > 0 && dAlpha > 0.0 && dAlpha < 1.0 && GetExStyle() & WS_EX_LAYERED)
    {
 
       if(m_dibAlpha.is_null())
@@ -1188,54 +1190,58 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics * pdcParam)
 
    }
 
-   pdc->set_alpha_mode(::draw2d::alpha_mode_set);
-   
-
-   if(m_puserschema != NULL && m_puserschema->_001OnDrawMainFrameBackground(pdc,this))
+   if(dAlpha > 0.0)
    {
-      _001DrawThis(pdc);
-      _001DrawChildren(pdc);
-   }
-   else if (m_bblur_Background)
-   {
-      _001DrawThis(pdc);
-      _001DrawChildren(pdc);
-   }
-   else if(!Session.savings().is_trying_to_save(::aura::resource_processing)
-      && !Session.savings().is_trying_to_save(::aura::resource_display_bandwidth)
-      && !Session.savings().is_trying_to_save(::aura::resource_memory))
-      //&& (GetParent() != NULL || (this->GetExStyle() & WS_EX_LAYERED) != 0))
-   {
-#if TEST
 
-      pdc->FillSolidRect(60, 10, 50, 50, ARGB(128, 184, 177, 84));
-#endif
+      pdc->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-      _010OnDraw(pdc);
-#if TEST
+      if(m_puserschema != NULL && m_puserschema->_001OnDrawMainFrameBackground(pdc,this))
+      {
+         _001DrawThis(pdc);
+         _001DrawChildren(pdc);
+      }
+      else if (m_bblur_Background)
+      {
+         _001DrawThis(pdc);
+         _001DrawChildren(pdc);
+      }
+      else if(!Session.savings().is_trying_to_save(::aura::resource_processing)
+         && !Session.savings().is_trying_to_save(::aura::resource_display_bandwidth)
+         && !Session.savings().is_trying_to_save(::aura::resource_memory))
+         //&& (GetParent() != NULL || (this->GetExStyle() & WS_EX_LAYERED) != 0))
+      {
+   #if TEST
 
-      pdc->FillSolidRect(10, 60, 50, 50, ARGB(128, 255, 248, 84));
-#endif
-   }
-   else
-   {
-#if TEST
+         pdc->FillSolidRect(60, 10, 50, 50, ARGB(128, 184, 177, 84));
+   #endif
 
-      pdc->FillSolidRect(60, 10, 50, 50, ARGB(128, 184, 177, 84));
-#endif
+         _010OnDraw(pdc);
+   #if TEST
 
-      _001DrawThis(pdc);
-      _001DrawChildren(pdc);
-#if TEST
+         pdc->FillSolidRect(10, 60, 50, 50, ARGB(128, 255, 248, 84));
+   #endif
+      }
+      else
+      {
+   #if TEST
 
-      pdc->FillSolidRect(10, 60, 50, 50, ARGB(128, 184, 177, 84));
-#endif
+         pdc->FillSolidRect(60, 10, 50, 50, ARGB(128, 184, 177, 84));
+   #endif
+
+         _001DrawThis(pdc);
+         _001DrawChildren(pdc);
+   #if TEST
+
+         pdc->FillSolidRect(10, 60, 50, 50, ARGB(128, 184, 177, 84));
+   #endif
+      }
+
    }
 
    if(bDib)
    {
 
-      pdcParam->alpha_blend(null_point(),rectClient.size(),pdc,null_point(),m_uchAlpha / 255.0);
+      pdcParam->alpha_blend(null_point(),rectClient.size(),pdc,null_point(),dAlpha);
 
    }
 
@@ -1246,7 +1252,7 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics * pdc)
 {
    single_lock sl(m_pmutex, true);
 
-   
+
    if(m_bblur_Background)
    {
       class imaging & imaging = System.visual().imaging();
@@ -1380,16 +1386,16 @@ void simple_frame_window::on_set_parent(sp(::user::interaction) puiParent)
 
 bool simple_frame_window::GetClientRect(LPRECT lprect)
 {
-   
+
    if (m_bWindowFrame && m_pframeschema != NULL && !WfiIsFullScreen())
    {
-      
+
       return m_pframeschema->get_window_client_rect(lprect);
 
    }
    else
    {
-      
+
       return ::user::frame_window::GetClientRect(lprect);
 
    }

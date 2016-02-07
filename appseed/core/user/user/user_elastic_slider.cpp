@@ -16,8 +16,6 @@ namespace user
       m_bSlide = false;
       m_iScalar = 0;
 
-      m_uchAlpha = 255;
-
    }
 
    elastic_slider::~elastic_slider()
@@ -123,7 +121,7 @@ namespace user
       {
          m_dTensionPosition = 1.0;
       }
-         
+
       else
       {
          m_dTensionPosition = ((double) pt.x / (double) rectClient.width());
@@ -169,13 +167,13 @@ namespace user
 
    void elastic_slider::SetStreamingVelocityMode(scalar_base * pscalarVelocity,scalar_base * pscalarPosition)
    {
-      
+
       m_escalar = scalar_streaming_velocity;
 
       m_pscalarVelocity = pscalarVelocity;
-      
+
       m_pscalarPosition = pscalarPosition;
-      
+
    }
 
    void elastic_slider::UpdatePosition()
@@ -204,20 +202,22 @@ namespace user
 
       class imaging & imaging = System.visual().imaging();
 
+      byte bAlpha = (byte) (128.0 * get_alpha());
+
       imaging.color_blend(
          pdc,
          rectClient,
          RGB(250, 255, 255),
-         127 * m_uchAlpha / 255);
+         bAlpha);
 
       rect rect;
       GetSliderRect(rect);
 
-      pdc->Draw3dRect(rect,ARGB(128 * m_uchAlpha / 255,255,255,255),ARGB(128 * m_uchAlpha / 255,255,255,255));
+      pdc->Draw3dRect(rect,ARGB(bAlpha,255,255,255),ARGB(bAlpha,255,255,255));
       rect.deflate(1, 1);
-      pdc->Draw3dRect(rect,ARGB(128 * m_uchAlpha / 255,255,255,0),ARGB(128 * m_uchAlpha / 255,255,255,0));
+      pdc->Draw3dRect(rect,ARGB(bAlpha,255,255,0),ARGB(bAlpha,255,255,0));
       rect.deflate(1, 1);
-      pdc->Draw3dRect(rect,ARGB(128 * m_uchAlpha / 255,255,255,255),ARGB(128 * m_uchAlpha / 255,255,255,255));
+      pdc->Draw3dRect(rect,ARGB(bAlpha,255,255,255),ARGB(bAlpha,255,255,255));
       if(m_bSlide)
       {
          pdc->MoveTo(rect.center());

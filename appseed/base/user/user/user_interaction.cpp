@@ -92,8 +92,6 @@ namespace user
       m_bHideOnTransparentFrame  = false;
       m_pvoidUserInteraction     = this;
 
-      m_uchAlpha                 = 255;
-
       m_eupdown                  = type_normal_frame;
 
       m_bMayProDevian            = true;
@@ -460,7 +458,7 @@ namespace user
 
    bool interaction::GetClientRect(LPRECT lprect)
    {
-      
+
       RECT64 rect;
 
       if(!GetClientRect(&rect))
@@ -6545,7 +6543,7 @@ synch_lock sl(m_pmutex);
 
       if(m_pimpl == NULL)
       {
-       
+
          return false;
 
       }
@@ -6567,7 +6565,7 @@ synch_lock sl(m_pmutex);
 
       if(m_pimpl == NULL)
       {
-       
+
          return false;
 
       }
@@ -7473,6 +7471,33 @@ synch_lock sl(m_pmutex);
    {
 
       return false;
+
+   }
+
+
+   double interaction::get_alpha()
+   {
+
+      if(m_palphasource == NULL)
+      {
+
+         return 1.0;
+
+      }
+      else
+      {
+
+         return m_palphasource->get_alpha(this);
+
+      }
+
+   }
+
+
+   double alpha_source::get_alpha(::user::interaction * puiTarget)
+   {
+
+      return 1.0;
 
    }
 

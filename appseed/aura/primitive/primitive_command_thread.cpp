@@ -6,7 +6,7 @@ command_thread::command_thread(::aura::application * papp) :
    m_mutex(papp),
    m_ev(papp)
 {
- 
+
    m_varTopicQuery.propset().set_app(papp);
 
 }
@@ -88,7 +88,7 @@ var command_thread::run()
    }
 
    m_ev.ResetEvent();
-   
+
    return true;
 
 }
@@ -96,11 +96,11 @@ var command_thread::run()
 
 void command_thread::request_create(sp(::create) pline)
 {
-   
+
    single_lock sl(&m_mutex, TRUE);
-   
+
    m_ptra.add(pline);
-   
+
    m_ev.SetEvent();
 
 }
@@ -132,6 +132,7 @@ void command_thread::on_request(sp(::create) pline)
 
 void command_thread::consolidate(::create * pcreatecontext)
 {
+   m_spcommandline = pcreatecontext->m_spCommandLine;
    if(!pcreatecontext->m_spCommandLine->m_varFile.is_empty())
    {
       if(m_varTopicFile != pcreatecontext->m_spCommandLine->m_varFile)

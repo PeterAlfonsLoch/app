@@ -6,6 +6,16 @@ namespace user
 {
 
 
+   class alpha_source
+   {
+   public:
+
+
+      virtual double get_alpha(::user::interaction * puiTarget);
+
+
+   };
+
 
    class CLASS_DECL_BASE interaction:
       virtual public interaction_base,
@@ -33,7 +43,8 @@ namespace user
       bool                                m_bLockWindowUpdate;
       bool                                m_bEnableSaveWindowRect;
       bool                                m_bLayoutEnable;
-      byte                                m_uchAlpha;
+      alpha_source *                      m_palphasource;
+
 
       point                               m_ptMoveCursor;
 
@@ -747,6 +758,8 @@ namespace user
       virtual bool hide_tooltip();
 
       virtual bool frame_is_transparent();
+
+      virtual double get_alpha();
 
 
    };

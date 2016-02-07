@@ -61,18 +61,18 @@ namespace user
 
    void step_slider::_001OnLButtonDown(signal_details * pobj)
    {
-      
+
       SCAST_PTR(::message::mouse, pmouse, pobj);
-      
+
       m_iLButtonDown = hit_test(pmouse->m_pt);
 
    }
 
    void step_slider::_001OnLButtonUp(signal_details * pobj)
    {
-      
+
       SCAST_PTR(::message::mouse, pmouse, pobj);
-      
+
       int64_t iLButtonUp = hit_test(pmouse->m_pt);
 
       if(iLButtonUp == m_iLButtonDown)
@@ -96,7 +96,7 @@ namespace user
 
    void step_slider::_001OnDraw(::draw2d::graphics * pdc)
    {
-      
+
       if(m_scalar.is_null())
          return;
 
@@ -104,12 +104,14 @@ namespace user
       GetClientRect(rectClient);
       class imaging & imaging = System.visual().imaging();
 
+      bool bAlpha = (byte) (128.0 * get_alpha());
+
       imaging.color_blend(
          pdc,
          rectClient,
          RGB(150, 200, 255),
-         127 * m_uchAlpha / 255);
-      
+         bAlpha);
+
       int64_t iMin = m_scalar.minimum();
       int64_t iMax = m_scalar.maximum();
       int64_t iVal = m_scalar;
@@ -126,7 +128,7 @@ namespace user
                   pdc,
                   rect,
                   RGB(255, 255, 240),
-                  127 * m_uchAlpha / 255);
+                  bAlpha);
             }
             else
             {
@@ -134,7 +136,7 @@ namespace user
                   pdc,
                   rect,
                   RGB(255, 255, 150),
-                  127 * m_uchAlpha / 255);
+                  bAlpha);
             }
          }
          else
@@ -145,7 +147,7 @@ namespace user
                   pdc,
                   rect,
                   RGB(255, 180, 180),
-                  127 * m_uchAlpha / 255);
+                  bAlpha);
             }
             else
             {
@@ -153,7 +155,7 @@ namespace user
                   pdc,
                   rect,
                   RGB(100, 100, 255),
-                  127 * m_uchAlpha / 255);
+                  bAlpha);
             }
          }
       }
@@ -191,7 +193,7 @@ namespace user
 
    int64_t step_slider::hit_test(point point)
    {
-      
+
       rect rectClient;
 
       GetClientRect(rectClient);

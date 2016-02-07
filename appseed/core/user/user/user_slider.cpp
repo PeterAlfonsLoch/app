@@ -50,7 +50,7 @@ namespace user
    {
 
       SCAST_PTR(::message::mouse,pmouse,pobj);
-      
+
       rect rect;
 
       get_slider_rect(rect);
@@ -76,9 +76,9 @@ namespace user
 
    void slider::_001OnLButtonUp(signal_details * pobj)
    {
-      
+
       SCAST_PTR(::message::mouse,pmouse,pobj);
-      
+
       if(m_bSlide)
       {
 
@@ -96,10 +96,10 @@ namespace user
 
    }
 
-   
+
    void slider::_001OnMouseMove(signal_details * pobj)
    {
-      
+
       SCAST_PTR(::message::mouse,pmouse,pobj);
 
       if(m_bSlide)
@@ -123,7 +123,7 @@ namespace user
    {
 
       double dScalar = m_pscalar->get_rate();
-   
+
       point pt;
 
       Session.get_cursor_pos(&pt);
@@ -156,12 +156,12 @@ namespace user
 
    void slider::set_rate(double dRate)
    {
-      
+
       if(dRate < 0.0)
          dRate = 0.0;
       else if(dRate > 1.0)
          dRate = 1.0;
-      
+
       m_pscalar->set_rate(dRate, scalar_set);
 
       RedrawWindow();
@@ -191,19 +191,23 @@ namespace user
 
       class imaging & imaging = System.visual().imaging();
 
-      imaging.color_blend(pdc, rectClient, RGB(250,255,255), 127 * m_uchAlpha / 255);
+      bool bAlpha1 = (byte) (128.0* get_alpha());
+
+      imaging.color_blend(pdc, rectClient, RGB(250,255,255), bAlpha1);
 
       rect rect;
 
       get_slider_rect(rect);
 
-      pdc->Draw3dRect(rect,ARGB(220 * m_uchAlpha / 255,84 + 23,77+23,184+ 23),ARGB(220 * m_uchAlpha / 255,84,77,184));
+      bool bAlpha = (byte) (220.0* get_alpha());
+
+      pdc->Draw3dRect(rect,ARGB(bAlpha / 255,84 + 23,77+23,184+ 23),ARGB(bAlpha,84,77,184));
       rect.deflate(1,1);
-      pdc->Draw3dRect(rect,ARGB(220 * m_uchAlpha / 255,177 -13- 49,184 -13- 49,200 - 49),ARGB(220 * m_uchAlpha / 255,177-49 - 49,184-49 - 49,200-49));
+      pdc->Draw3dRect(rect,ARGB(bAlpha / 255,177 -13- 49,184 -13- 49,200 - 49),ARGB(bAlpha,177-49 - 49,184-49 - 49,200-49));
       rect.deflate(1,1);
-      pdc->Draw3dRect(rect,ARGB(220 * m_uchAlpha / 255,84+23,77+23,184+23),ARGB(220 * m_uchAlpha / 255,84,77,184));
+      pdc->Draw3dRect(rect,ARGB(bAlpha / 255,84+23,77+23,184+23),ARGB(bAlpha,84,77,184));
       rect.deflate(1,1);
-      pdc->FillSolidRect(rect,ARGB(128 * m_uchAlpha / 255,84 + 49,77 + 49,184 + 49));
+      pdc->FillSolidRect(rect,ARGB(bAlpha1,84 + 49,77 + 49,184 + 49));
       //if(m_bSlide)
       //{
       //   pdc->MoveTo(rect.center());
@@ -217,13 +221,13 @@ namespace user
 
    void slider::get_slider_rect(rect & rect)
    {
-      
+
       class rect rectClient;
-      
+
       GetClientRect(rectClient);
 
       int32_t iWidth = 16;
-      
+
       rect.top = rectClient.top;
       rect.bottom = rectClient.bottom;
       rect.left = (LONG)MIN(rectClient.right,m_dRate * (rectClient.width() - iWidth));
