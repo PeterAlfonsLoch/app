@@ -117,13 +117,13 @@ namespace aura
       }
 
 
-      void stop()
+      void stop(bool bWaitCompletion)
       {
 
          if(m_hTimerQueue != NULL && m_hTimer != NULL)
          {
 
-            DeleteTimerQueueTimer(m_hTimerQueue,m_hTimer,INVALID_HANDLE_VALUE);
+            DeleteTimerQueueTimer(m_hTimerQueue,m_hTimer, bWaitCompletion ? INVALID_HANDLE_VALUE : NULL);
 
             m_hTimer = NULL;
 
@@ -291,7 +291,7 @@ timer::timer(::aura::application * papp, uint_ptr uiTimer, PFN_TIMER pfnTimer, v
 timer::~timer()
 {
 
-   stop();
+   stop(false);
 
    ::aura::del(m_ptimer);
 
@@ -301,7 +301,7 @@ timer::~timer()
 bool timer::start(int millis, bool bPeriodic)
 {
 
-   stop();
+   stop(true);
 
    m_bPeriodic = bPeriodic;
 
@@ -402,13 +402,13 @@ bool timer::start(int millis, bool bPeriodic)
 
 }
 
-void timer::stop()
+void timer::stop(bool bWaitCompletion)
 {
 
    try
    {
 
-      m_ptimer->stop();
+      m_ptimer->stop(bWaitCompletion);
 
    }
    catch(...)

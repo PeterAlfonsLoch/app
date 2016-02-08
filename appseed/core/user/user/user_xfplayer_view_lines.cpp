@@ -3,6 +3,7 @@
 XfplayerViewLines::XfplayerViewLines(::aura::application * papp) :
    object(papp)
 {
+   m_pmutex = new mutex(papp);
     m_iFirstVisible = -1;
     m_iLastVisible = -1;
 }

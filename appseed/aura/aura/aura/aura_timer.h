@@ -38,7 +38,7 @@ public:
 
    virtual bool start(int millis, bool bPeriodic);
 
-   virtual void stop();
+   virtual void stop(bool bWaitCompletion);
 
    virtual bool call_on_timer();
 
