@@ -294,7 +294,7 @@ namespace filemanager
 /*            cslock sl(get_document()->m_pcsAlbum1);
             get_document()->m_pdsAlbum1->query(strSql);*/
 
-            m_cache._001Invalidate();
+            m_cache._001Invalidate(this);
 
             RedrawWindow();
 
@@ -533,7 +533,7 @@ namespace filemanager
                m_bKickActive = true;
             if(pbase->m_wparam == 0)
             {
-               m_cache._001Invalidate();
+               m_cache._001Invalidate(this);
                _001OnUpdateItemCount();
                layout();
                RedrawWindow();
@@ -550,7 +550,7 @@ namespace filemanager
             else if(pbase->m_wparam == 1)
             {
 
-               m_cache._001Invalidate();
+               m_cache._001Invalidate(this);
                RedrawWindow();
             }
             else if(pbase->m_wparam == 2)
@@ -559,7 +559,7 @@ namespace filemanager
             }
             else if(pbase->m_wparam == 3)
             {
-               m_cache._001Invalidate();
+               m_cache._001Invalidate(this);
             }
          }
 

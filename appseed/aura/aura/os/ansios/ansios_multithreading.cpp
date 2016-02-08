@@ -1167,7 +1167,7 @@ CLASS_DECL_AURA int_bool WINAPI PostThreadMessageW(IDTHREAD iThreadId,UINT Msg,W
       if(iDebugPostThreadMessageTime > 10)
       {
 
-         writeln("PostThreadMessage flooded?");
+//         writeln("PostThreadMessage flooded?");
 
       }
       else

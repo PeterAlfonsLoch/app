@@ -125,8 +125,10 @@ namespace user
    }
 
 
-   void list_cache::_001Invalidate()
+   void list_cache::_001Invalidate(::user::mesh * pmesh)
    {
+
+      synch_lock sl(pmesh->m_pmutex);
 
       m_map.remove_all();
 

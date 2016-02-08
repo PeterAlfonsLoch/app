@@ -459,6 +459,7 @@
 		<Unit filename="primitive/_primitive.cpp" />
 		<Unit filename="primitive/collection/collection.h" />
 		<Unit filename="primitive/collection/collection.inl" />
+		<Unit filename="primitive/collection/collection_array_base.inl" />
 		<Unit filename="primitive/collection/collection_array_decl.h" />
 		<Unit filename="primitive/collection/collection_array_impl.inl" />
 		<Unit filename="primitive/collection/collection_attrib_map.h" />
@@ -477,6 +478,7 @@
 		<Unit filename="primitive/collection/collection_elements.h" />
 		<Unit filename="primitive/collection/collection_fifo_map.h" />
 		<Unit filename="primitive/collection/collection_fifo_map_impl.inl" />
+		<Unit filename="primitive/collection/collection_file_path_map.h" />
 		<Unit filename="primitive/collection/collection_id_array.h" />
 		<Unit filename="primitive/collection/collection_int_map.h" />
 		<Unit filename="primitive/collection/collection_iterator.h" />

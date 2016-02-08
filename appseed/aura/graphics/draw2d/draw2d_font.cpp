@@ -44,7 +44,7 @@ namespace draw2d
    {
 
 #ifdef WINDOWS
-      if(stricmp(lpszFacename, "sans-serif") == 0)
+      if(stricmp(lpszFacename, FONT_SANS) == 0)
       {
          m_strFontFamilyName = FONT_SANS;
       }

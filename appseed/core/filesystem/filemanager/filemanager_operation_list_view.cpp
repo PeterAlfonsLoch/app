@@ -122,7 +122,7 @@ namespace filemanager
       {
          m_dwLast123Update = ::get_tick_count();
          _001OnUpdateItemCount();
-         m_listcache._001Invalidate();
+         m_listcache._001Invalidate(this);
          ::count iItem = 0;
          for(int32_t i = 0; i < get_document()->m_thread.m_iOperation; i++)
          {

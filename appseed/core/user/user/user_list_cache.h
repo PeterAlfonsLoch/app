@@ -20,7 +20,7 @@ namespace user
       virtual ~list_cache();
 
 
-      void _001Invalidate();
+      void _001Invalidate(mesh * pmesh);
 
       virtual void _001CacheHint(mesh * pmesh,int_ptr iItemStart,int_ptr iItemCount);
 

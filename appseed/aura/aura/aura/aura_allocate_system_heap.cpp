@@ -23,12 +23,12 @@ critical_section * g_pmutexSystemHeap = NULL;
 
 void * system_heap_alloc(size_t size)
 {
-   
-   if(size > 16 * 1024)
+
+   if(size > 64 * 1024)
    {
 
-      ::OutputDebugStringA("allocating memory block greater than 16kb\n");
-      
+      ::OutputDebugStringA("allocating memory block greater than 64kb\n");
+
    }
 
    //synch_lock lock(g_pmutexSystemHeap);
@@ -36,7 +36,7 @@ void * system_heap_alloc(size_t size)
 //#if ZEROED_ALLOC
   // byte * p = (byte *) ::HeapAlloc(g_hSystemHeap, HEAP_ZERO_MEMORY, ((size + 4 + 3) & ~3));
 //#else  // let constructors and algorithms initialize... "random initialization" of not initialized :-> C-:!!
-   
+
    void * p;
 
 #if defined(WINDOWSEX) && !PREFER_MALLOC
@@ -48,7 +48,7 @@ void * system_heap_alloc(size_t size)
 #else
 
    p = ::malloc(size);
-   
+
 #endif
 //#endif
 
@@ -58,7 +58,7 @@ void * system_heap_alloc(size_t size)
       throw_memory_exception();
 
    }
-   
+
    memset(p, 0x00, size);
 
    return p;

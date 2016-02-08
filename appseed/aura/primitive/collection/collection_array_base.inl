@@ -99,13 +99,13 @@ void array_base < TYPE, ALLOCATOR >::free_extra()
       TYPE* pNewData = NULL;
       if(m_nSize != 0)
       {
-         pNewData = (TYPE *)memory_alloc(m_nSize * sizeof(TYPE));
+         pNewData = (TYPE *)ALLOCATOR::alloc(m_nSize * sizeof(TYPE));
          // copy new data from old
          ::aura::memcpy_s(pNewData,m_nSize * sizeof(TYPE),m_pData,m_nSize * sizeof(TYPE));
       }
 
       // get rid of old stuff (note: no destructors called)
-      memory_free(m_pData);
+      ALLOCATOR::free(m_pData);
       m_pData = pNewData;
       m_nMaxSize = m_nSize;
 
@@ -126,7 +126,7 @@ void array_base < TYPE, ALLOCATOR >::destroy()
 
       ALLOCATOR::destruct(m_pData, m_nSize);
 
-      memory_free(m_pData);
+      ALLOCATOR::free(m_pData);
 
       m_pData     = NULL;
       m_nSize     = 0;
@@ -343,7 +343,7 @@ template < class TYPE,class ALLOCATOR >
       // shrink to nothing
       if(m_pData != NULL)
       {
-         memory_free(m_pData);
+         ALLOCATOR::free(m_pData);
          m_pData = NULL;
       }
       m_nSize = m_nMaxSize = 0;
@@ -358,7 +358,7 @@ template < class TYPE,class ALLOCATOR >
       ASSERT(nNewSize <= SIZE_T_MAX / sizeof(TYPE));    // no overflow
 #endif
       ::count nAllocSize = MAX(nNewSize,m_nGrowBy);
-      m_pData = (TYPE *)memory_alloc(nAllocSize * sizeof(TYPE));
+      m_pData = (TYPE *)ALLOCATOR::alloc(nAllocSize * sizeof(TYPE));
       m_nSize = nNewSize;
       m_nMaxSize = nAllocSize;
    }
@@ -391,13 +391,13 @@ template < class TYPE,class ALLOCATOR >
 #ifdef SIZE_T_MAX
       ASSERT(nNewMax <= SIZE_T_MAX / sizeof(TYPE)); // no overflow
 #endif
-      TYPE * pNewData = (TYPE *)memory_alloc(nNewMax * sizeof(TYPE));
+      TYPE * pNewData = (TYPE *)ALLOCATOR::alloc(nNewMax * sizeof(TYPE));
       // copy new data from old
       ::aura::memcpy_s(pNewData,(size_t)nNewMax * sizeof(TYPE),m_pData,(size_t)m_nSize * sizeof(TYPE));
 
       ///for(int32_t i = 0; i < nNewSize - m_nSize; i++)
          // get rid of old stuff (note: no destructors called)
-      memory_free(m_pData);
+      ALLOCATOR::free(m_pData);
       m_pData = pNewData;
       m_nSize = nNewSize;
       m_nMaxSize = nNewMax;
@@ -438,7 +438,7 @@ template < class TYPE,class ALLOCATOR >
 
          ALLOCATOR::destruct(m_pData,m_nSize);
 
-//         memory_free(m_pData);
+         ALLOCATOR::free(m_pData);
 
          m_pData = NULL;
 
@@ -510,7 +510,7 @@ template < class TYPE,class ALLOCATOR >
 #ifdef SIZE_T_MAX
       ASSERT(::compare::lt(nNewMax, SIZE_T_MAX / sizeof(TYPE))); // no overflow
 #endif
-      TYPE* pNewData = (TYPE *)memory_alloc(nNewMax * sizeof(TYPE));
+      TYPE* pNewData = (TYPE *)ALLOCATOR::alloc(nNewMax * sizeof(TYPE));
 
       // copy new data from old
       ::aura::memcpy_s(pNewData,(size_t)nNewMax * sizeof(TYPE),m_pData,(size_t)m_nSize * sizeof(TYPE));
@@ -519,7 +519,7 @@ template < class TYPE,class ALLOCATOR >
       ASSERT(nNewSize > m_nSize);
       ALLOCATOR::construct(&pNewData[m_nSize],nNewSize - m_nSize);
       // get rid of old stuff (note: no destructors called)
-      memory_free(m_pData);
+      ALLOCATOR::free(m_pData);
       m_pData = pNewData;
       m_nSize = nNewSize;
       m_nMaxSize = nNewMax;

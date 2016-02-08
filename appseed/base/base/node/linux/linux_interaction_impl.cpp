@@ -1238,13 +1238,13 @@ DWORD dwLastPaint;
 
    DWORD dwNow = get_tick_count();
 
-   if(dwNow - dwDebugmessage_handlerTime < 100)
+   if(dwNow - dwDebugmessage_handlerTime < 1)
    {
 
       if(iDebugmessage_handlerTime > 20)
       {
 
-         writeln("PostThreadMessage flooded?");
+         writeln("interaction_impl::message_handler flooded?");
 
       }
       else
@@ -1260,9 +1260,11 @@ DWORD dwLastPaint;
 
       iDebugmessage_handlerTime = 0;
 
-      dwDebugmessage_handlerTime = dwNow;
-
    }
+
+
+   dwDebugmessage_handlerTime = dwNow;
+
 
       if(m_pui != NULL)
       {
@@ -1405,16 +1407,31 @@ DWORD dwLastPaint;
             pmouse->m_ecursor = visual::cursor_default;
          }
 restart_mouse_hover_check:
-         for(int32_t i = 0; i < m_guieptraMouseHover.get_size(); i++)
+
          {
-            if(!m_guieptraMouseHover[i]->_001IsPointInside(pmouse->m_pt))
+
+            synch_lock sl(m_pui->m_pmutex);
+
+            for(int32_t i = 0; i < m_guieptraMouseHover.get_size(); i++)
             {
-               sp(::user::interaction) pui = m_guieptraMouseHover[i];
-//               pui->send_message(WM_MOUSELEAVE);
-               m_guieptraMouseHover.remove(pui);
-               goto restart_mouse_hover_check;
+
+               if(!m_guieptraMouseHover[i]->_001IsPointInside(pmouse->m_pt))
+               {
+
+                  sp(::user::interaction) pui = m_guieptraMouseHover[i];
+
+                  pui->send_message(WM_MOUSELEAVE);
+
+                  m_guieptraMouseHover.remove(pui);
+
+                  goto restart_mouse_hover_check;
+
+               }
+
             }
+
          }
+
          if(!m_bMouseHover)
          {
             m_pui->_001OnTriggerMouseInside();
