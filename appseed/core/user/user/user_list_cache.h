@@ -8,16 +8,12 @@ namespace user
    class CLASS_DECL_CORE list_cache:
       public mesh_cache_interface
    {
-   protected:
-
-
-      bool                                                              m_bCaching;
-      int32_t                                                           m_iCacheNextIndex;
-      string2a                                                          m_cacheArray;
-      map < int_ptr,int_ptr,stringa *,stringa *>                     m_cacheMap;
-
-
    public:
+
+
+
+      bool                                m_bCaching;
+      int_ptr_to_int_ptr_to_string        m_map;
 
 
       list_cache();
@@ -35,4 +31,8 @@ namespace user
 
 
 } // namespace user
+
+
+
+
 

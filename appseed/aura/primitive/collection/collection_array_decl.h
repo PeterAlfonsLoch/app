@@ -283,7 +283,7 @@ namespace allocator
       inline static void free(TYPE * p)
       {
 
-         heap::def < TYPE >::alloc(p);
+         heap::def < TYPE >::free(p);
 
       }
 
@@ -343,7 +343,7 @@ namespace allocator
       inline static void free(TYPE * p)
       {
 
-         heap::def < TYPE >::alloc(p);
+         heap::def < TYPE >::free(p);
 
       }
 
@@ -403,7 +403,7 @@ namespace allocator
       inline static void free(TYPE * p)
       {
 
-         heap::def < TYPE >::alloc(p);
+         heap::def < TYPE >::free(p);
 
       }
 
@@ -464,7 +464,7 @@ namespace allocator
       inline static void free(TYPE * p)
       {
 
-         heap::def < TYPE >::alloc(p);
+         heap::def < TYPE >::free(p);
 
       }
 

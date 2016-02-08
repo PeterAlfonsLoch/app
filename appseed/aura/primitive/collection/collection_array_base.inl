@@ -438,7 +438,7 @@ template < class TYPE,class ALLOCATOR >
 
          ALLOCATOR::destruct(m_pData,m_nSize);
 
-         memory_free(m_pData);
+//         memory_free(m_pData);
 
          m_pData = NULL;
 

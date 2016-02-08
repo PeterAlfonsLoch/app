@@ -246,8 +246,10 @@ namespace aura
 
       }
 
-      void stop()
+      void stop(bool bWaitCompletion)
       {
+
+         UNREFERENCED_PARAMETER(bWaitCompletion);
 
          timer_settime(m_timerid, 0, NULL, NULL);
 
