@@ -4540,9 +4540,25 @@ namespace windows
    ::user::interaction * interaction_impl::SetActiveWindow()
    {
 
-      ASSERT(::IsWindow(get_handle()));
+      if (!::IsWindow(get_handle()))
+      {
 
-      return System.ui_from_handle(::SetActiveWindow(get_handle()));
+         return NULL;
+
+      }
+
+      if (!::IsWindowVisible(get_handle()))
+      {
+
+         return NULL;
+
+      }
+
+      oswindow window = ::SetActiveWindow(get_handle());
+
+      ::user::interaction * pui = System.ui_from_handle(window);
+
+      return pui;
 
    }
 
@@ -4574,9 +4590,25 @@ namespace windows
    ::user::interaction * interaction_impl::SetFocus()
    {
 
-      ASSERT(::IsWindow(get_handle()));
+      if (!::IsWindow(get_handle()))
+      {
 
-      return System.ui_from_handle(::SetFocus(get_handle()));
+         return NULL;
+
+      }
+
+      if (!::IsWindowVisible(get_handle()))
+      {
+
+         return NULL;
+
+      }
+
+      oswindow window = ::SetFocus(get_handle());
+
+      ::user::interaction * pui = System.ui_from_handle(window);
+
+      return pui;
 
    }
 

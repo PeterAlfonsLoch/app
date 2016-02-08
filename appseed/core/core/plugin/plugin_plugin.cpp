@@ -472,7 +472,7 @@ namespace plugin
 
       string strUrl;
 
-      strUrl = "https://account.ca2.cc/sec?action=logout";
+      strUrl = "https://fontopus.com/sec?action=logout";
 
       System.url().string_set(strUrl, "ruri", strLocation);
 

@@ -46,6 +46,8 @@ namespace core
       thread(NULL)
    {
 
+      m_pmainpane = NULL;
+
       if(m_pauraapp == NULL)
       {
          set_app(this);
@@ -4011,6 +4013,60 @@ namespace core
 
    }
 
+
+   string application::get_cred(const string & strRequestUrl, const RECT & rect, string & strUsername, string & strPassword, string strToken, string strTitle, bool bInteractive)
+   {
+
+      string str = ::fontopus::get_cred(this, strUsername, strPassword, strToken);
+
+      if (str == "ok" && strUsername.has_char() && strPassword.has_char())
+         return "ok";
+
+      if (!bInteractive)
+         return "failed";
+
+
+      if (m_pmainpane != NULL && m_pmainpane == NULL)
+      {
+
+         try
+         {
+
+            return m_pmainpane->get_cred(strRequestUrl, rect, strUsername, strPassword, strToken, strTitle, bInteractive);
+
+         }
+         catch (...)
+         {
+
+
+         }
+
+      }
+
+      return ::base::application::get_cred(strRequestUrl, rect,  strUsername, strPassword, strToken, strTitle, bInteractive);
+
+   }
+
+   string application::get_cred(string & strUsername, string & strPassword, string strToken)
+   {
+
+      return ::base::application::get_cred(strUsername, strPassword, strToken);
+
+   }
+
+   void application::set_cred(string strToken, const char * pszUsername, const char * pszPassword)
+   {
+
+      ::base::application::set_cred(strToken, pszUsername, pszPassword);
+
+   }
+
+   void application::set_cred_ok(string strToken, bool bOk)
+   {
+
+      ::base::application::set_cred_ok(strToken, bOk);
+
+   }
 
 } // namespace core
 

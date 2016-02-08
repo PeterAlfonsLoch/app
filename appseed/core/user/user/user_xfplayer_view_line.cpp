@@ -9,29 +9,29 @@ XfplayerViewLine::XfplayerViewLine(::aura::application * papp) :
    m_dcextension(papp),
    m_font(allocer())
 {
-   m_bColonPrefix                = false;
-   m_pContainer                  = NULL;
-   m_bEnhancedEmboss             = true;
-   m_bCacheEmboss                = false;
-   m_cr                          = ARGB(255, 255, 255, 255);
-   m_crOutline                   = ARGB(255, 0, 0, 0);
-   m_nFont                       = 0;
-   m_lpBitmapData                = NULL;
-   m_bAutoSizeX                  = false;
-   m_bAutoSizeY                  = false;
-   m_iAlign                      = AlignLeft;
-   m_rect.left                       = 0;
-   m_rect.top                        = 0;
-   m_rect.right                      = 0;
-   m_rect.bottom                     = 0;
-   m_bVisible                    = false;
-   m_iAnimateType                = AnimateNoAnimate;
-   m_iTextEffect                 = EffectSimple;
-   m_dAnimateProgress            = 0;
-   m_iIndent                     = 0;
-   m_dAnimateProgressIncrement   = 1.0;
-   m_dBlend                      = 1.0;
-   m_iIndex                      = 0;
+   m_bColonPrefix = false;
+   m_pContainer = NULL;
+   m_bEnhancedEmboss = true;
+   m_bCacheEmboss = false;
+   m_cr = ARGB(255, 255, 255, 255);
+   m_crOutline = ARGB(255, 0, 0, 0);
+   m_nFont = 0;
+   m_lpBitmapData = NULL;
+   m_bAutoSizeX = false;
+   m_bAutoSizeY = false;
+   m_iAlign = AlignLeft;
+   m_rect.left = 0;
+   m_rect.top = 0;
+   m_rect.right = 0;
+   m_rect.bottom = 0;
+   m_bVisible = false;
+   m_iAnimateType = AnimateNoAnimate;
+   m_iTextEffect = EffectSimple;
+   m_dAnimateProgress = 0;
+   m_iIndent = 0;
+   m_dAnimateProgressIncrement = 1.0;
+   m_dBlend = 1.0;
+   m_iIndex = 0;
 }
 
 XfplayerViewLine::XfplayerViewLine(XfplayerViewLines * pContainer) :
@@ -40,25 +40,25 @@ XfplayerViewLine::XfplayerViewLine(XfplayerViewLines * pContainer) :
    m_dcextension(pContainer->get_app()),
    m_font(allocer())
 {
-   m_pContainer                  = pContainer;
-   m_bEnhancedEmboss             = true;
-   m_bCacheEmboss                = false;
-   m_nFont                       = 0;
-   m_lpBitmapData                = NULL;
-   m_bAutoSizeX                  = false;
-   m_bAutoSizeY                  = false;
-   m_iAlign                      = AlignLeft;
-   m_rect.left                       = 0;
-   m_rect.top                        = 0;
-   m_rect.right                      = 0;
-   m_rect.bottom                     = 0;
-   m_bVisible                    = false;
-   m_iAnimateType                = AnimateNoAnimate;
-   m_iTextEffect                 = EffectSimple;
-   m_dAnimateProgress            = 0;
-   m_dAnimateProgress            = 0;
-   m_dAnimateProgressIncrement   = 1.0;
-   m_iIndex                      = 0;
+   m_pContainer = pContainer;
+   m_bEnhancedEmboss = true;
+   m_bCacheEmboss = false;
+   m_nFont = 0;
+   m_lpBitmapData = NULL;
+   m_bAutoSizeX = false;
+   m_bAutoSizeY = false;
+   m_iAlign = AlignLeft;
+   m_rect.left = 0;
+   m_rect.top = 0;
+   m_rect.right = 0;
+   m_rect.bottom = 0;
+   m_bVisible = false;
+   m_iAnimateType = AnimateNoAnimate;
+   m_iTextEffect = EffectSimple;
+   m_dAnimateProgress = 0;
+   m_dAnimateProgress = 0;
+   m_dAnimateProgressIncrement = 1.0;
+   m_iIndex = 0;
 }
 
 XfplayerViewLine::XfplayerViewLine(const XfplayerViewLine & line) :
@@ -77,6 +77,9 @@ XfplayerViewLine::~XfplayerViewLine()
 
 bool XfplayerViewLine::PrepareLine(::draw2d::graphics * pdc, const string & str, int32_t flags, const RECT & rect)
 {
+
+   single_lock sl(m_pContainer->m_pmutex);
+
    UNREFERENCED_PARAMETER(flags);
    m_straLink.remove_all();
    m_iaLinkStart.remove_all();
@@ -89,11 +92,11 @@ bool XfplayerViewLine::PrepareLine(::draw2d::graphics * pdc, const string & str,
    iChars = -1;
    m_str.Empty();
    m_iIndent = 0;
-   for(iStr = 0; iStr < iStrLen; iStr++)
+   for (iStr = 0; iStr < iStrLen; iStr++)
    {
       AddChar(str[iStr], iChars);
    }
-//   CalcCharsPositions(pdc, GetFonts(), pRect);
+   //   CalcCharsPositions(pdc, GetFonts(), pRect);
    CalcCharsPositions(pdc, rect);
    return true;
 }
@@ -129,25 +132,31 @@ bool XfplayerViewLine::PrepareLine(::draw2d::graphics * pdc, const string & str,
 
 void XfplayerViewLine::AddChar(WCHAR wch, strsize & index)
 {
+
+   single_lock sl(m_pContainer->m_pmutex);
+
    index++;
-   if(m_iaPosition.get_size() < index + 2)
+   if (m_iaPosition.get_size() < index + 2)
    {
-        m_iaPosition.allocate(m_iaPosition.get_size() + 10);
+      m_iaPosition.allocate(m_iaPosition.get_size() + 10);
    }
 
    m_str += wch;
-    ASSERT(m_str.get_length() - 1 == index);
+   ASSERT(m_str.get_length() - 1 == index);
 
 
 }
 
 void XfplayerViewLine::AddChar(WCHAR wch, strsize & index, visual::font * pFont)
 {
+
+   single_lock sl(m_pContainer->m_pmutex);
+
    UNREFERENCED_PARAMETER(pFont);
    index++;
-   if(m_iaPosition.get_size() < index + 2)
+   if (m_iaPosition.get_size() < index + 2)
    {
-        m_iaPosition.allocate(m_iaPosition.get_size() + 10);
+      m_iaPosition.allocate(m_iaPosition.get_size() + 10);
    }
    m_str += wch;
    ASSERT(m_str.get_length() - 1 == index);
@@ -157,33 +166,39 @@ void XfplayerViewLine::AddChar(WCHAR wch, strsize & index, visual::font * pFont)
 
 void XfplayerViewLine::GetPlacement(LPRECT lprect)
 {
+
+   single_lock sl(m_pContainer->m_pmutex);
+
    *lprect = m_rect;
 }
 
-bool XfplayerViewLine::to(::draw2d::graphics * pdc,bool bDraw,const RECT & rect,rect_array & rectaModified,bool bRecalcLayout)
+bool XfplayerViewLine::to(::draw2d::graphics * pdc, bool bDraw, const RECT & rect, rect_array & rectaModified, bool bRecalcLayout)
 {
+
+   single_lock sl(m_pContainer->m_pmutex);
+
    string strFinal(m_str);
    double dBlend;
-   if(m_dBlend <= 0.0)
+   if (m_dBlend <= 0.0)
       return true;
-   if(m_dBlend >= 1.0)
+   if (m_dBlend >= 1.0)
       dBlend = 1.0;
    else
       dBlend = m_dBlend;
 
    pdc->SelectObject(m_font);
 
-//   pdc->SetBkMode(TRANSPARENT);
+   //   pdc->SetBkMode(TRANSPARENT);
 
    point iMargin;
    iMargin.x = 3;
    iMargin.y = 3;
 
-   if(!IsVisible())
+   if (!IsVisible())
    {
       return true;
    }
-   if(bRecalcLayout || m_rectClient != rect)
+   if (bRecalcLayout || m_rectClient != rect)
    {
       m_bCacheEmboss = false;
       CalcCharsPositions(
@@ -194,165 +209,165 @@ bool XfplayerViewLine::to(::draw2d::graphics * pdc,bool bDraw,const RECT & rect,
    ::rect rectTextOut;
    GetPlacement(rectTextOut);
 
-   switch(m_iAnimateType)
+   switch (m_iAnimateType)
    {
    case AnimateNoAnimate:
+   {
+      if (bDraw)
       {
-         if(bDraw)
+         strsize iLink = 0;
+         strsize iChar = 0;
+         while (true)
          {
-            strsize iLink = 0;
-            strsize iChar = 0;
-            while(true)
+            pdc->SelectObject(m_font);
+            if (iChar >= strFinal.get_length())
+               break;
+            if (iLink >= m_iaLinkStart.get_size())
             {
-               pdc->SelectObject(m_font);
-               if(iChar >= strFinal.get_length())
-                  break;
-               if(iLink >= m_iaLinkStart.get_size())
-               {
-                  size size = pdc->GetTextExtent(strFinal.Left(iChar));
-                  EmbossedTextOut(pdc, strFinal.Mid(iChar), rectTextOut.left + size.cx, rectTextOut.top, 0, m_cr, m_crOutline, strFinal.get_length() - iChar, dBlend);
-                  break;
-               }
-               else if(m_iaLinkStart[iLink] > iChar)
-               {
-                  size size = pdc->GetTextExtent(strFinal.Left(iChar));
-                  EmbossedTextOut(pdc, strFinal.Mid(iChar), rectTextOut.left + size.cx, rectTextOut.top, 0,m_cr,m_crOutline,m_iaLinkStart[iLink],dBlend);
-               }
-               pdc->SelectObject(m_fontLink);
-               size size = pdc->GetTextExtent(strFinal.Left(m_iaLinkStart[iLink]));
-
-               EmbossedTextOut(pdc,strFinal.Mid(m_iaLinkStart[iLink]),rectTextOut.left + size.cx,rectTextOut.top,0,m_cr,m_crOutline,m_iaLinkEnd[iLink] - m_iaLinkStart[iLink] + 1,dBlend);
-               iChar = m_iaLinkEnd[iLink] + 1;
-               iLink++;
+               size size = pdc->GetTextExtent(strFinal.Left(iChar));
+               EmbossedTextOut(pdc, strFinal.Mid(iChar), rectTextOut.left + size.cx, rectTextOut.top, 0, m_cr, m_crOutline, strFinal.get_length() - iChar, dBlend);
+               break;
             }
-            if(GetSelection().m_iCharStartSource >= 0)
+            else if (m_iaLinkStart[iLink] > iChar)
             {
-               index iStart;
-               index iLineStart;
-               index iLineEnd;
-               strsize iCharStart;
-               strsize iCharEnd;
-               GetSelection().GetNormalSelection(iLineStart, iCharStart, iLineEnd, iCharEnd);
-               if(iLineStart < m_iIndex)
-               {
-                  iStart = 0;
-               }
-               else if(iLineStart > m_iIndex)
-               {
-                  iStart = m_iaPosition.get_count();
-               }
-               else
-               {
-                  iStart = iCharStart;
-               }
-               index iEnd;
-               if(iLineEnd < m_iIndex)
-               {
-                  iEnd = -1;
-               }
-               else if(iLineEnd > m_iIndex)
-               {
-                  iEnd = m_iaPosition.get_upper_bound();
-               }
-               else
-               {
-                  iEnd = iCharEnd;
-               }
-               if(iStart < iEnd)
-               {
-                  class rect rectPlacement;
-                  GetPlacement(rectPlacement);
-                  class rect rect = rectPlacement;
-                  size size1 = pdc->GetTextExtent(strFinal.Left(iStart));
-                  size size2 = pdc->GetTextExtent(strFinal.Left(iEnd + 1));
-                  rect.left = rectPlacement.left + size1.cx;
-                  rect.right = rectPlacement.left + size2.cx;
-                  ::draw2d::dib_sp dib(allocer());
-                  if(rect.area() > 0)
-                  {
-                     dib->create(rect.size());
-                     dib->Fill(255, 255, 255, 255);
-                     dib->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_blend);
-                     pdc->flush();
-
-                     point pt = pdc->GetViewportOrg();
-                     dib->from(null_point(), pdc, pt + rect.top_left(), rect.size());
-                     //dib->get_graphics()->FillSolidRect(0, 0, 16, 16, ARGB(255, 255, 0, 255));
-                     dib->Invert();
-                     //dib->fill_channel(0, ::visual::rgba::channel_blue);
-                     dib->fill_channel(255, ::visual::rgba::channel_alpha);
-                     dib->to(pdc, rect.top_left(), rect.size(), null_point());
-                  }
-               }
+               size size = pdc->GetTextExtent(strFinal.Left(iChar));
+               EmbossedTextOut(pdc, strFinal.Mid(iChar), rectTextOut.left + size.cx, rectTextOut.top, 0, m_cr, m_crOutline, m_iaLinkStart[iLink], dBlend);
             }
+            pdc->SelectObject(m_fontLink);
+            size size = pdc->GetTextExtent(strFinal.Left(m_iaLinkStart[iLink]));
 
+            EmbossedTextOut(pdc, strFinal.Mid(m_iaLinkStart[iLink]), rectTextOut.left + size.cx, rectTextOut.top, 0, m_cr, m_crOutline, m_iaLinkEnd[iLink] - m_iaLinkStart[iLink] + 1, dBlend);
+            iChar = m_iaLinkEnd[iLink] + 1;
+            iLink++;
          }
-       }
-       break;
-   case AnimateRHL:
-      {
-         int32_t iLeft = m_iaPosition.element_at(0);
-         int32_t iLeftDiff  = 0;
-         int32_t iLastLeftDiff = 0;
-         int32_t i;
-         for(i = 0; i < m_iaPosition.get_size(); i++)
+         if (GetSelection().m_iCharStartSource >= 0)
          {
-            iLastLeftDiff = iLeftDiff;
-            iLeftDiff = m_iaPosition.element_at(i) - iLeft;
-            if((int32_t) m_dAnimateProgress <= iLeftDiff)
+            index iStart;
+            index iLineStart;
+            index iLineEnd;
+            strsize iCharStart;
+            strsize iCharEnd;
+            GetSelection().GetNormalSelection(iLineStart, iCharStart, iLineEnd, iCharEnd);
+            if (iLineStart < m_iIndex)
             {
-               //i--;
+               iStart = 0;
+            }
+            else if (iLineStart > m_iIndex)
+            {
+               iStart = m_iaPosition.get_count();
+            }
+            else
+            {
+               iStart = iCharStart;
+            }
+            index iEnd;
+            if (iLineEnd < m_iIndex)
+            {
+               iEnd = -1;
+            }
+            else if (iLineEnd > m_iIndex)
+            {
+               iEnd = m_iaPosition.get_upper_bound();
+            }
+            else
+            {
+               iEnd = iCharEnd;
+            }
+            if (iStart < iEnd)
+            {
+               class rect rectPlacement;
+               GetPlacement(rectPlacement);
+               class rect rect = rectPlacement;
+               size size1 = pdc->GetTextExtent(strFinal.Left(iStart));
+               size size2 = pdc->GetTextExtent(strFinal.Left(iEnd + 1));
+               rect.left = rectPlacement.left + size1.cx;
+               rect.right = rectPlacement.left + size2.cx;
+               ::draw2d::dib_sp dib(allocer());
+               if (rect.area() > 0)
+               {
+                  dib->create(rect.size());
+                  dib->Fill(255, 255, 255, 255);
+                  dib->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_blend);
+                  pdc->flush();
+
+                  point pt = pdc->GetViewportOrg();
+                  dib->from(null_point(), pdc, pt + rect.top_left(), rect.size());
+                  //dib->get_graphics()->FillSolidRect(0, 0, 16, 16, ARGB(255, 255, 0, 255));
+                  dib->Invert();
+                  //dib->fill_channel(0, ::visual::rgba::channel_blue);
+                  dib->fill_channel(255, ::visual::rgba::channel_alpha);
+                  dib->to(pdc, rect.top_left(), rect.size(), null_point());
+               }
+            }
+         }
+
+      }
+   }
+   break;
+   case AnimateRHL:
+   {
+      int32_t iLeft = m_iaPosition.element_at(0);
+      int32_t iLeftDiff = 0;
+      int32_t iLastLeftDiff = 0;
+      int32_t i;
+      for (i = 0; i < m_iaPosition.get_size(); i++)
+      {
+         iLastLeftDiff = iLeftDiff;
+         iLeftDiff = m_iaPosition.element_at(i) - iLeft;
+         if ((int32_t)m_dAnimateProgress <= iLeftDiff)
+         {
+            //i--;
+            break;
+         }
+      }
+      ::draw2d::region rgn;
+      string strFinal(m_str);
+      string strLeft = strFinal.Right(strFinal.get_length() - i);
+      int32_t iLeftOffset;
+      iLeftOffset = iLastLeftDiff - (int32_t)m_dAnimateProgress;
+      ::rect rectTextOut;
+      GetPlacement(rectTextOut);
+      rectTextOut.left += iLeftOffset;
+      if (bDraw)
+      {
+         EmbossedTextOut(pdc, strLeft, rectTextOut.left, rectTextOut.top,
+            0,
+            m_cr,
+            m_crOutline,
+            strFinal.get_length(),
+            dBlend);
+      }
+      int32_t iMaxCounter = MAX((int32_t)m_iaPosition.element_at(m_str.get_length()) - m_iaPosition.element_at(0) + 100, m_rect.right - m_rect.left);
+      int32_t iRight = iMaxCounter - (int32_t)m_dAnimateProgress;
+      if (iRight < m_rect.right)
+      {
+         int32_t iRightEnd;
+         int32_t i;
+         for (i = 0; i < m_iaPosition.get_size(); i++)
+         {
+            iRightEnd = iRight + m_iaPosition.element_at(i) - iLeft;
+            if (iRightEnd >= m_rect.right)
+            {
                break;
             }
          }
-         ::draw2d::region rgn;
-         string strFinal(m_str);
-         string strLeft = strFinal.Right(strFinal.get_length() - i);
-         int32_t iLeftOffset;
-         iLeftOffset = iLastLeftDiff - (int32_t) m_dAnimateProgress;
-           ::rect rectTextOut;
-           GetPlacement(rectTextOut);
-           rectTextOut.left += iLeftOffset;
-           if(bDraw)
-           {
-              EmbossedTextOut(pdc,strLeft,rectTextOut.left,rectTextOut.top,
-               0,
-               m_cr,
-               m_crOutline,
-               strFinal.get_length(),
-               dBlend);
-           }
-           int32_t iMaxCounter = MAX((int32_t) m_iaPosition.element_at(m_str.get_length()) - m_iaPosition.element_at(0) + 100, m_rect.right - m_rect.left);
-           int32_t iRight = iMaxCounter - (int32_t) m_dAnimateProgress;
-           if(iRight < m_rect.right)
-           {
-              int32_t iRightEnd;
-              int32_t i;
-              for(i = 0; i < m_iaPosition.get_size(); i++)
-              {
-                 iRightEnd = iRight + m_iaPosition.element_at(i) - iLeft;
-                 if(iRightEnd >= m_rect.right)
-                 {
-                    break;
-                 }
-              }
-              string strRight = strFinal.Left(i);
-              rectTextOut.left = iRight;
-              if(bDraw)
-              {
-                 EmbossedTextOut(pdc,strRight,rectTextOut.left,rectTextOut.top,0,m_cr,m_crOutline,strFinal.get_length(),dBlend);
-              }
-           }
-
-           if(&rectaModified != NULL)
-           {
-              ::rect baserect;
-              rgn.get_bounding_box(baserect);
-              rectaModified.add(baserect);
-
-           }
+         string strRight = strFinal.Left(i);
+         rectTextOut.left = iRight;
+         if (bDraw)
+         {
+            EmbossedTextOut(pdc, strRight, rectTextOut.left, rectTextOut.top, 0, m_cr, m_crOutline, strFinal.get_length(), dBlend);
+         }
       }
-      break;
+
+      if (&rectaModified != NULL)
+      {
+         ::rect baserect;
+         rgn.get_bounding_box(baserect);
+         rectaModified.add(baserect);
+
+      }
+   }
+   break;
    default:
       ASSERT(FALSE);
    }
@@ -364,8 +379,11 @@ bool XfplayerViewLine::to(::draw2d::graphics * pdc,bool bDraw,const RECT & rect,
 
 }
 
-bool XfplayerViewLine::to(::draw2d::graphics * pdc,bool bDraw,const RECT & rect,rect_array & rectaModified,::count * count,bool bRecalcLayout,COLORREF crColor,::draw2d::pen_sp sppen)
+bool XfplayerViewLine::to(::draw2d::graphics * pdc, bool bDraw, const RECT & rect, rect_array & rectaModified, ::count * count, bool bRecalcLayout, COLORREF crColor, ::draw2d::pen_sp sppen)
 {
+
+   single_lock sl(m_pContainer->m_pmutex);
+
    UNREFERENCED_PARAMETER(count);
 
    ::rect rectPlacement;
@@ -373,18 +391,18 @@ bool XfplayerViewLine::to(::draw2d::graphics * pdc,bool bDraw,const RECT & rect,
 
    pdc->set_font(m_font);
 
-//   pdc->SetBkMode(TRANSPARENT);
+   //   pdc->SetBkMode(TRANSPARENT);
 
    point iMargin;
    {
-      iMargin.x = (LONG) (sppen->m_dWidth / 2.0);
-      iMargin.y = (LONG) (sppen->m_dWidth / 2.0);
+      iMargin.x = (LONG)(sppen->m_dWidth / 2.0);
+      iMargin.y = (LONG)(sppen->m_dWidth / 2.0);
    }
 
-   if(!IsVisible())
+   if (!IsVisible())
    {
       class rect rect(m_rectInvalidate);
-      if(!is_null(rectaModified))
+      if (!is_null(rectaModified))
       {
          class rect baserect(rect);
          rectaModified.add(baserect);
@@ -394,107 +412,107 @@ bool XfplayerViewLine::to(::draw2d::graphics * pdc,bool bDraw,const RECT & rect,
 
       return true;
    }
-   if(bRecalcLayout)
+   if (bRecalcLayout)
    {
       CalcCharsPositions(pdc, rect);
       pdc->SelectObject(m_font);
    }
 
 
-   switch(m_iAnimateType)
+   switch (m_iAnimateType)
    {
    case AnimateNoAnimate:
+   {
+      string strFinal;
+      strFinal = m_str;
+      pdc->SelectObject(sppen);
+
+      ::draw2d::brush_sp brushText(allocer(), crColor);
+
+      pdc->SelectObject(brushText);
+
+      //pdc->set_text_color(crColor);
+
+      ::rect rectTextOut;
+      GetPlacement(rectTextOut);
+      if (bDraw)
       {
-         string strFinal;
-         strFinal = m_str;
-         pdc->SelectObject(sppen);
-
-         ::draw2d::brush_sp brushText(allocer(), crColor);
-
-         pdc->SelectObject(brushText);
-
-         //pdc->set_text_color(crColor);
-
-         ::rect rectTextOut;
-         GetPlacement(rectTextOut);
-         if(bDraw)
-         {
-            pdc->_DrawText(
-               strFinal, strFinal.get_length(),
-               rectTextOut,
-               DT_LEFT | DT_BOTTOM);
-         }
+         pdc->_DrawText(
+            strFinal, strFinal.get_length(),
+            rectTextOut,
+            DT_LEFT | DT_BOTTOM);
       }
-      break;
+   }
+   break;
    case AnimateRHL:
+   {
+      if (m_iaPosition.get_size() <= 0)
+         break;
+      //         int32_t iLeft = m_iaPosition.element_at(0);
+      int32_t iLeftDiff = 0;
+      //int32_t iLastLeftDiff = 0;
+      int32_t i = 0;
+      /*            for(int32_t i = 0; i < m_iaPosition.get_size(); i++)
+                  {
+                      iLastLeftDiff = iLeftDiff;
+                      iLeftDiff = m_iaPosition.element_at(i) - iLeft;
+                      if(iLeftDiff >= (int32_t) m_dAnimateProgress)
+                      {
+                          break;
+                      }
+                  }*/
+
+      string strFinal(m_str);
+      string strLeft = strFinal.Right(strFinal.get_length() - i);
+      int32_t iLeftOffset;
+      iLeftOffset = iLeftDiff - (int32_t)m_dAnimateProgress;
+
+      pdc->SelectObject(sppen);
+      ::draw2d::brush_sp brushText(allocer(), crColor);
+
+      pdc->SelectObject(brushText);
+
+      pdc->SelectObject(m_font);
+      ::rect rectTextOut;
+      GetPlacement(rectTextOut);
+      rectTextOut.left += iLeftOffset;
+      if (bDraw)
       {
-         if(m_iaPosition.get_size() <= 0)
-            break;
-//         int32_t iLeft = m_iaPosition.element_at(0);
-         int32_t iLeftDiff  = 0;
-         //int32_t iLastLeftDiff = 0;
-         int32_t i = 0;
-/*            for(int32_t i = 0; i < m_iaPosition.get_size(); i++)
-            {
-                iLastLeftDiff = iLeftDiff;
-                iLeftDiff = m_iaPosition.element_at(i) - iLeft;
-                if(iLeftDiff >= (int32_t) m_dAnimateProgress)
-                {
-                    break;
-                }
-            }*/
-
-            string strFinal(m_str);
-            string strLeft = strFinal.Right(strFinal.get_length() - i);
-            int32_t iLeftOffset;
-            iLeftOffset = iLeftDiff - (int32_t) m_dAnimateProgress;
-
-           pdc->SelectObject(sppen);
-         ::draw2d::brush_sp brushText(allocer(), crColor);
-
-         pdc->SelectObject(brushText);
-
-           pdc->SelectObject(m_font);
-         ::rect rectTextOut;
-         GetPlacement(rectTextOut);
-         rectTextOut.left += iLeftOffset;
-         if(bDraw)
-         {
-            pdc->_DrawText(
-               strLeft, strLeft.get_length(),
-               rectTextOut,
-               DT_LEFT | DT_BOTTOM);
-         }
-/*           pFont->TextOutEx(
-                pdcForeground,
-              rectTextOut,
-            1.0,
-            rectTextOut.height(),
-              strLeft,
-              m_iaPosition.get_data(),
-                m_iaPosition.get_size(),
-              0,
-                MapToFontEffect(m_iTextEffect));   */
-            int32_t iSpacing = 100;
-            int32_t iMaxCounter = MAX(
-               (int32_t) m_iaPosition.element_at(m_str.get_length())
-                  - m_iaPosition.element_at(0) + iSpacing, m_rect.right - m_rect.left);
-            int32_t iRight = iMaxCounter - (int32_t) m_dAnimateProgress;
-            if(iRight < m_rect.right)
-            {
-            /*    int32_t iRightEnd;
-                for(int32_t i = 0; i < m_iaPosition.get_size(); i++)
-                {
-                    iRightEnd = iRight + m_iaPosition.element_at(i) - iLeft;
-                    if(iRightEnd >= m_rect.right)
-                    {
-                        break;
-                    }
-                }*/
-                //string strRight = strFinal.Left(i);
-                string strRight = strFinal;
-            rectTextOut.left = iRight;
-         if(bDraw)
+         pdc->_DrawText(
+            strLeft, strLeft.get_length(),
+            rectTextOut,
+            DT_LEFT | DT_BOTTOM);
+      }
+      /*           pFont->TextOutEx(
+                      pdcForeground,
+                    rectTextOut,
+                  1.0,
+                  rectTextOut.height(),
+                    strLeft,
+                    m_iaPosition.get_data(),
+                      m_iaPosition.get_size(),
+                    0,
+                      MapToFontEffect(m_iTextEffect));   */
+      int32_t iSpacing = 100;
+      int32_t iMaxCounter = MAX(
+         (int32_t)m_iaPosition.element_at(m_str.get_length())
+         - m_iaPosition.element_at(0) + iSpacing, m_rect.right - m_rect.left);
+      int32_t iRight = iMaxCounter - (int32_t)m_dAnimateProgress;
+      if (iRight < m_rect.right)
+      {
+         /*    int32_t iRightEnd;
+             for(int32_t i = 0; i < m_iaPosition.get_size(); i++)
+             {
+                 iRightEnd = iRight + m_iaPosition.element_at(i) - iLeft;
+                 if(iRightEnd >= m_rect.right)
+                 {
+                     break;
+                 }
+             }*/
+             //string strRight = strFinal.Left(i);
+         string strRight = strFinal;
+         rectTextOut.left = iRight;
+         if (bDraw)
          {
 
             pdc->_DrawText(
@@ -502,23 +520,23 @@ bool XfplayerViewLine::to(::draw2d::graphics * pdc,bool bDraw,const RECT & rect,
                rectTextOut,
                DT_LEFT | DT_BOTTOM);
          }
-/*               pFont->TextOutEx(
-                    pdcForeground,
-                  rectTextOut,
-               1.0,
-               rectTextOut.height(),
-                  strRight,
-                  m_iaPosition.get_data(),
-                    m_iaPosition.get_size(),
-                  0,
-                    MapToFontEffect(m_iTextEffect));   */
-                }
+         /*               pFont->TextOutEx(
+                             pdcForeground,
+                           rectTextOut,
+                        1.0,
+                        rectTextOut.height(),
+                           strRight,
+                           m_iaPosition.get_data(),
+                             m_iaPosition.get_size(),
+                           0,
+                             MapToFontEffect(m_iTextEffect));   */
+      }
 
-        }
-        break;
-    default:
-        ASSERT(FALSE);
-    }
+   }
+   break;
+   default:
+      ASSERT(FALSE);
+   }
 
    return true;
 
@@ -656,13 +674,16 @@ bool XfplayerViewLine::to(::draw2d::graphics * pdc,bool bDraw,const RECT & rect,
 
 }*/
 
-void XfplayerViewLine::CalcCharsPositions(::draw2d::graphics *             pdc,const RECT & rect)
+void XfplayerViewLine::CalcCharsPositions(::draw2d::graphics *             pdc, const RECT & rect)
 {
+
+   single_lock sl(m_pContainer->m_pmutex);
+
    m_bCacheEmboss = false;
-   if(m_str.get_length() <= 0)
+   if (m_str.get_length() <= 0)
       return;
 
-//   ::draw2d::font * pfontOld = pdc->get_current_font();
+   //   ::draw2d::font * pfontOld = pdc->get_current_font();
 
    int32_t i;
    size size;
@@ -673,11 +694,11 @@ void XfplayerViewLine::CalcCharsPositions(::draw2d::graphics *             pdc,c
    string strMain = m_str;
    pdc->SelectObject(m_font);
    size = pdc->GetTextExtent(strMain);
-   if(size.cx > rectClient.width())
+   if (size.cx > rectClient.width())
    {
       m_floatRateX =
          (float)
-         rectClient.width()/
+         rectClient.width() /
          size.cx;
    }
    else
@@ -685,28 +706,28 @@ void XfplayerViewLine::CalcCharsPositions(::draw2d::graphics *             pdc,c
       m_floatRateX = 1.0;
    }
 
-//   pdc->SelectObject(fontOriginal);
+   //   pdc->SelectObject(fontOriginal);
    ::draw2d::text_metric tm;
    pdc->get_text_metrics(&tm);
-  // lf.lfWidth = (long) (tm.tmAveCharWidth * m_floatRateX - 1);
+   // lf.lfWidth = (long) (tm.tmAveCharWidth * m_floatRateX - 1);
 
-  // if(m_font->get_os_data() != NULL)
-//      m_font->delete_object();
+   // if(m_font->get_os_data() != NULL)
+ //      m_font->delete_object();
 
-   ///m_font->CreateFontIndirect(&lf);
+    ///m_font->CreateFontIndirect(&lf);
 
    m_font.m_p->m_dFontWidth = m_floatRateX;
    m_font.m_p->m_bUpdated = false;
 
 
-   if(m_straLink.get_size() > 0)
+   if (m_straLink.get_size() > 0)
    {
       *m_fontLink.m_p = *m_font.m_p;
       m_fontLink.m_p->set_underline();
    }
 
 
-   if(m_bColonPrefix)
+   if (m_bColonPrefix)
    {
 
       m_fontPrefix.alloc(allocer());
@@ -720,19 +741,19 @@ void XfplayerViewLine::CalcCharsPositions(::draw2d::graphics *             pdc,c
 
    m_str.Truncate(MIN(84, m_str.length()));
 
-   if(m_bColonPrefix)
+   if (m_bColonPrefix)
    {
 
-      m_strPrefix = m_str.Left(MAX(0,m_str.find(":")));
+      m_strPrefix = m_str.Left(MAX(0, m_str.find(":")));
 
-      m_strRoot = m_str.Mid(MAX(0,m_str.find(":") + 1));
+      m_strRoot = m_str.Mid(MAX(0, m_str.find(":") + 1));
 
       m_strRoot.trim_left();
 
       pdc->SelectObject(m_fontPrefix);
 
       m_iaPosition[0] = 0;
-      for(i = 1; i <= m_strPrefix.get_length(); i++)
+      for (i = 1; i <= m_strPrefix.get_length(); i++)
       {
          m_dcextension.GetTextExtent(
             pdc,
@@ -749,7 +770,7 @@ void XfplayerViewLine::CalcCharsPositions(::draw2d::graphics *             pdc,c
          size);
       m_iaPosition.add(iSize + size.cx);
       pdc->SelectObject(m_font);
-      for(i = 1; i <= m_strRoot.get_length(); i++)
+      for (i = 1; i <= m_strRoot.get_length(); i++)
       {
          m_dcextension.GetTextExtent(
             pdc,
@@ -765,7 +786,7 @@ void XfplayerViewLine::CalcCharsPositions(::draw2d::graphics *             pdc,c
       pdc->SelectObject(m_font);
 
       m_iaPosition[0] = 0;
-      for(i = 1; i <= m_str.get_length(); i++)
+      for (i = 1; i <= m_str.get_length(); i++)
       {
          m_dcextension.GetTextExtent(
             pdc,
@@ -937,123 +958,145 @@ void XfplayerViewLine::CalcCharsPositions(::draw2d::graphics *             pdc,c
 
 void XfplayerViewLine::SetAutoSize(bool bAutoSize)
 {
+
+   single_lock sl(m_pContainer->m_pmutex);
+
    m_bAutoSizeX = bAutoSize;
-    m_bAutoSizeY = bAutoSize;
+   m_bAutoSizeY = bAutoSize;
 }
 
 void XfplayerViewLine::SetAlign(int32_t iAlign)
 {
+
+   single_lock sl(m_pContainer->m_pmutex);
+
    m_iAlign = iAlign;
 }
 
 XfplayerViewLine & XfplayerViewLine::operator = (const XfplayerViewLine & src)
 {
-   m_pContainer                  = src.m_pContainer;
-   m_bAutoSizeX                  = src.m_bAutoSizeX;
-   m_bAutoSizeY                  = src.m_bAutoSizeY;
-   m_str                         = src.m_str;
-   m_iaPosition                  = src.m_iaPosition;
-   m_iAlign                      = src.m_iAlign;
-   m_rect.bottom                     = src.m_rect.bottom;
-   m_rect.left                       = src.m_rect.left;
-   m_rect.right                      = src.m_rect.right;
-   m_rect.top                        = src.m_rect.top;
-   m_lpBitmapData                = src.m_lpBitmapData;
-   m_nFont                       = src.m_nFont;
-   m_iAnimateType                = src.m_iAnimateType;
-   m_iTextEffect                 = src.m_iTextEffect ;
-   m_dAnimateProgress            = src.m_dAnimateProgress;
-   m_dAnimateProgressIncrement   = src.m_dAnimateProgressIncrement;
-   m_logfont                     = src.m_logfont;
-   m_font                        = src.m_font;
-   m_bEnhancedEmboss             = src.m_bEnhancedEmboss;
-   m_bCacheEmboss                = false;
-   m_dBlend                      = src.m_dBlend;
-   m_iIndex                      = src.m_iIndex;
+   m_pContainer = src.m_pContainer;
+   m_bAutoSizeX = src.m_bAutoSizeX;
+   m_bAutoSizeY = src.m_bAutoSizeY;
+   m_str = src.m_str;
+   m_iaPosition = src.m_iaPosition;
+   m_iAlign = src.m_iAlign;
+   m_rect.bottom = src.m_rect.bottom;
+   m_rect.left = src.m_rect.left;
+   m_rect.right = src.m_rect.right;
+   m_rect.top = src.m_rect.top;
+   m_lpBitmapData = src.m_lpBitmapData;
+   m_nFont = src.m_nFont;
+   m_iAnimateType = src.m_iAnimateType;
+   m_iTextEffect = src.m_iTextEffect;
+   m_dAnimateProgress = src.m_dAnimateProgress;
+   m_dAnimateProgressIncrement = src.m_dAnimateProgressIncrement;
+   m_logfont = src.m_logfont;
+   m_font = src.m_font;
+   m_bEnhancedEmboss = src.m_bEnhancedEmboss;
+   m_bCacheEmboss = false;
+   m_dBlend = src.m_dBlend;
+   m_iIndex = src.m_iIndex;
    return *this;
 }
 
 void XfplayerViewLine::Show(bool bShow)
 {
-    if(bShow && !m_bVisible)
-    {
-        m_bVisible = true;
-        Invalidate();
-        if(m_pContainer != NULL)
-        {
-            m_pContainer->OnChildSetVisible(this, m_bVisible);
-        }
 
-    }
-    else if(!bShow && m_bVisible)
-    {
-        m_bVisible = false;
-        Invalidate();
-        if(m_pContainer != NULL)
-        {
-            m_pContainer->OnChildSetVisible(this, m_bVisible);
-        }
-    }
+   single_lock sl(m_pContainer->m_pmutex);
+
+   if (bShow && !m_bVisible)
+   {
+      m_bVisible = true;
+      Invalidate();
+      if (m_pContainer != NULL)
+      {
+         m_pContainer->OnChildSetVisible(this, m_bVisible);
+      }
+
+   }
+   else if (!bShow && m_bVisible)
+   {
+      m_bVisible = false;
+      Invalidate();
+      if (m_pContainer != NULL)
+      {
+         m_pContainer->OnChildSetVisible(this, m_bVisible);
+      }
+   }
 }
 
 
-void XfplayerViewLine::OnTimerAnimate(
-   ::draw2d::graphics *                  pdcForeground,
-   rect_array &      rectaModified)
+void XfplayerViewLine::OnTimerAnimate(::draw2d::graphics * pdcForeground, rect_array &  rectaModified)
 {
+
+   single_lock sl(m_pContainer->m_pmutex);
+
    UNREFERENCED_PARAMETER(pdcForeground);
-    if(IsVisible())
-    {
-        switch(m_iAnimateType)
-        {
-        case AnimateNoAnimate:
-            break;
-        case AnimateRHL:
-            {
-                m_dAnimateProgress+= m_dAnimateProgressIncrement;
-                if(m_iaPosition.get_size() > 0)
-                {
-                    if((int32_t)m_dAnimateProgress > MAX(m_iaPosition.element_at(m_str.get_length()) - m_iaPosition.element_at(0) + 100, m_rect.right - m_rect.left))
-                        m_dAnimateProgress = 0.0;
-                    rect rect;
-                    GetPlacement(rect);
-                    Invalidate();
-                    rectaModified.add(rect);
-                    /*to(
-                        pdcForeground,
-                        false,
-                        rect, rectaModified,
-                        false);*/
-                }
-            }
-            break;
-        default:
-            ASSERT(FALSE);
-        }
-    }
+   if (IsVisible())
+   {
+      switch (m_iAnimateType)
+      {
+      case AnimateNoAnimate:
+         break;
+      case AnimateRHL:
+      {
+         m_dAnimateProgress += m_dAnimateProgressIncrement;
+         if (m_iaPosition.get_size() > 0)
+         {
+            if ((int32_t)m_dAnimateProgress > MAX(m_iaPosition.element_at(m_str.get_length()) - m_iaPosition.element_at(0) + 100, m_rect.right - m_rect.left))
+               m_dAnimateProgress = 0.0;
+            rect rect;
+            GetPlacement(rect);
+            Invalidate();
+            rectaModified.add(rect);
+            /*to(
+                pdcForeground,
+                false,
+                rect, rectaModified,
+                false);*/
+         }
+      }
+      break;
+      default:
+         ASSERT(FALSE);
+      }
+   }
 }
 
 void XfplayerViewLine::SetAnimateType(int32_t iAnimateType)
 {
-    m_iAnimateType = iAnimateType;
-    m_dAnimateProgress = 0.0;
+
+   single_lock sl(m_pContainer->m_pmutex);
+
+   m_iAnimateType = iAnimateType;
+   m_dAnimateProgress = 0.0;
 
 }
 
 void XfplayerViewLine::SetTextEffect(int32_t iTextEffect)
 {
-    m_iTextEffect = iTextEffect;
+
+   single_lock sl(m_pContainer->m_pmutex);
+
+   m_iTextEffect = iTextEffect;
 }
 
 void XfplayerViewLine::SetEmbossPen(::draw2d::pen *lpPen)
 {
-    m_lpPenEmboss = lpPen;
+
+   single_lock sl(m_pContainer->m_pmutex);
+
+   m_lpPenEmboss = lpPen;
 
 }
 
 void XfplayerViewLine::SetForegroundColor(COLORREF cr)
 {
-    m_crForeground = cr;
+
+   single_lock sl(m_pContainer->m_pmutex);
+
+   m_crForeground = cr;
 }
 
 /*ptr_array <  visual::font > * XfplayerViewLine::GetFonts()
@@ -1063,20 +1106,26 @@ void XfplayerViewLine::SetForegroundColor(COLORREF cr)
 */
 int32_t XfplayerViewLine::MapToFontEffect(int32_t iLineEffect)
 {
-    switch(iLineEffect)
-    {
-    case EffectSimple:
-        return visual::font::EffectSimple;
-    case EffectEmbossed:
-        return visual::font::EffectEmbossed;
-    }
-    ASSERT(FALSE);
-    return -1;
+
+   single_lock sl(m_pContainer->m_pmutex);
+
+   switch (iLineEffect)
+   {
+   case EffectSimple:
+      return visual::font::EffectSimple;
+   case EffectEmbossed:
+      return visual::font::EffectEmbossed;
+   }
+   ASSERT(FALSE);
+   return -1;
 }
 
 void XfplayerViewLine::SetAnimateIncrement(double dIncrement)
 {
-    m_dAnimateProgressIncrement = dIncrement;
+
+   single_lock sl(m_pContainer->m_pmutex);
+
+   m_dAnimateProgressIncrement = dIncrement;
 }
 
 //void XfplayerViewLine::SetRedrawMode(int32_t iMode)
@@ -1092,27 +1141,35 @@ void XfplayerViewLine::SetAnimateIncrement(double dIncrement)
 void XfplayerViewLine::SetRenderCriticalSection(critical_section * pcs)
 {
    UNREFERENCED_PARAMETER(pcs);
-//    m_pcsRender =   pcs;
+   //    m_pcsRender =   pcs;
 }
 
 int32_t XfplayerViewLine::SetLyricPens(::draw2d::pen * ppenLeft, ::draw2d::pen * ppenRight)
 {
-    m_ppenLyricLeft = ppenLeft;
-    m_ppenLyricRight = ppenRight;
-    return true;
+
+   single_lock sl(m_pContainer->m_pmutex);
+
+   m_ppenLyricLeft = ppenLeft;
+   m_ppenLyricRight = ppenRight;
+   return true;
 }
 
 int32_t XfplayerViewLine::SetLyricColors(COLORREF crLeft, COLORREF crRight)
 {
-    m_crLyricLeft = crLeft;
-    m_crLyricRight = crRight;
-    return true;
+
+   single_lock sl(m_pContainer->m_pmutex);
+
+   m_crLyricLeft = crLeft;
+   m_crLyricRight = crRight;
+   return true;
 
 }
 
 
 void XfplayerViewLine::SetPlacement(const RECT & rect)
 {
+
+   single_lock sl(m_pContainer->m_pmutex);
 
    m_rect = rect;
 
@@ -1134,13 +1191,15 @@ void XfplayerViewLine::AddVmsFont(visual::font * pfont)
 void XfplayerViewLine::Invalidate(const RECT & rectParam)
 {
 
+   single_lock sl(m_pContainer->m_pmutex);
+
    rect rectPlacement;
 
    GetPlacement(rectPlacement);
 
    rect rectInvalidate;
 
-   if(IsRectEmpty(&rectParam))
+   if (IsRectEmpty(&rectParam))
    {
 
       rectInvalidate = rectPlacement;
@@ -1153,7 +1212,7 @@ void XfplayerViewLine::Invalidate(const RECT & rectParam)
 
    }
 
-   m_rectInvalidate.unite(m_rectInvalidate,rectInvalidate);
+   m_rectInvalidate.unite(m_rectInvalidate, rectInvalidate);
 
    m_rectInvalidate.intersect(m_rectInvalidate, rectPlacement);
 
@@ -1163,13 +1222,15 @@ void XfplayerViewLine::Invalidate(const RECT & rectParam)
 void XfplayerViewLine::Validate(const RECT & rectParam)
 {
 
+   single_lock sl(m_pContainer->m_pmutex);
+
    rect rectPlacement;
 
    GetPlacement(rectPlacement);
 
    rect rectValidate;
 
-   if(IsRectEmpty(&rectParam))
+   if (IsRectEmpty(&rectParam))
    {
 
       rectValidate = rectPlacement;
@@ -1191,11 +1252,18 @@ void XfplayerViewLine::Validate(const RECT & rectParam)
 
 bool XfplayerViewLine::IsVisible()
 {
+
+   single_lock sl(m_pContainer->m_pmutex);
+
    return m_bVisible;
+
 }
 
-void XfplayerViewLine::EmbossedTextOut(::draw2d::graphics * pdc,const char * lpcsz,int32_t iLeft,int32_t iTop,int32_t iWidth,COLORREF cr,COLORREF crOutline,strsize iLen,double dBlend)
+void XfplayerViewLine::EmbossedTextOut(::draw2d::graphics * pdc, const char * lpcsz, int32_t iLeft, int32_t iTop, int32_t iWidth, COLORREF cr, COLORREF crOutline, strsize iLen, double dBlend)
 {
+
+   single_lock sl(m_pContainer->m_pmutex);
+
    EmbossedTextOut(
       pdc,
       m_dibMain,
@@ -1208,229 +1276,231 @@ void XfplayerViewLine::EmbossedTextOut(::draw2d::graphics * pdc,const char * lpc
       iLen,
       dBlend);
 
-/*   rect rect;
-   size size;
-   size sizeInt;
-   size sizeExt;
-   pdc->SelectObject(m_font);
-   int32_t cx = 0;
-   int32_t width;
-   int32_t widthInt;
-   int32_t widthExt;
-   int32_t cxInt;
-   int32_t cxExt;
-   int32_t cyInt;
-   int32_t cyExt;
-   ::GetTextExtentPoint32W(
-      (HDC)pdc->get_os_data(),
-      lpcsz,
-      iLen,
-      &size);
-   pdc->SelectObject(m_fontInt);
-   ::GetTextExtentPoint32W(
-      (HDC)pdc->get_os_data(),
-      lpcsz,
-      iLen,
-      &sizeInt);
-   //cyInt = (size.cy - sizeInt.cy) / 2;
-   cyInt = (size.cy * 1000 / 1200) / 2;
-
-   pdc->SelectObject(m_fontExt);
-   ::GetTextExtentPoint32W(
-      (HDC)pdc->get_os_data(),
-      lpcsz,
-      iLen,
-      &sizeExt);
-   //cyExt = (size.cy - sizeExt.cy) / 2;
-   cyExt = -(size.cy * 1200 / 1000) / 2;
-
-   //XFORM xform;
-
-   //pdc->GetWorldTransform(&xform);
-
-   ::SetTextColor((HDC)pdc->get_os_data(), crOutline);
-   for(int32_t i = 0; i < iLen; i++)
-   {
-      WCHAR wch = lpcsz[i];
-
-
+   /*   rect rect;
+      size size;
+      size sizeInt;
+      size sizeExt;
       pdc->SelectObject(m_font);
+      int32_t cx = 0;
+      int32_t width;
+      int32_t widthInt;
+      int32_t widthExt;
+      int32_t cxInt;
+      int32_t cxExt;
+      int32_t cyInt;
+      int32_t cyExt;
       ::GetTextExtentPoint32W(
          (HDC)pdc->get_os_data(),
          lpcsz,
-         i + 1,
+         iLen,
          &size);
-
-      pdc->SetMapMode( MM_ANISOTROPIC);
-      cxInt = (size.cx * 1000 / 1200) / 2;
-      ::ScaleViewportExtEx(
-         (HDC)pdc->get_os_data(),
-         1000,
-         1200,
-         1000,
-         1200,
-         NULL);
-      ::OffsetViewportOrgEx(
-         (HDC)pdc->get_os_data(),
-         iLeft + cx,
-         iTop * cyInt,
-         NULL);
-      ::TextOutW((HDC)pdc->get_os_data(), 0, 0, &wch, 1);
-
-      cxInt = -(size.cx * 1000 / 1200) / 2;
-      ::ScaleViewportExtEx(
-         (HDC)pdc->get_os_data(),
-         1000,
-         1200,
-         1000,
-         1200,
-         NULL);
-      ::OffsetViewportOrgEx(
-         (HDC)pdc->get_os_data(),
-         iLeft + cx,
-         iTop  + cyExt,
-         NULL);
-      ::TextOutW((HDC)pdc->get_os_data(), 0, 0, &wch, 1);
-
-      //pdc->SelectObject(m_fontInt);
+      pdc->SelectObject(m_fontInt);
       ::GetTextExtentPoint32W(
          (HDC)pdc->get_os_data(),
-         &wch,
-         1,
+         lpcsz,
+         iLen,
          &sizeInt);
-      ::TextOutW((HDC)pdc->get_os_data(), 0, 0, &wch, 1);
+      //cyInt = (size.cy - sizeInt.cy) / 2;
+      cyInt = (size.cy * 1000 / 1200) / 2;
 
-      //pdc->SelectObject(m_fontExt);
+      pdc->SelectObject(m_fontExt);
       ::GetTextExtentPoint32W(
          (HDC)pdc->get_os_data(),
-         &wch,
-         1,
+         lpcsz,
+         iLen,
          &sizeExt);
-      cxExt = (size.cx * 1200 / 1000);
-      cyExt = (size.cy - sizeExt.cy) / 2;
-      ::TextOutW((HDC)pdc->get_os_data(), iLeft + cx + cxExt, iTop + cyExt, &wch, 1);
+      //cyExt = (size.cy - sizeExt.cy) / 2;
+      cyExt = -(size.cy * 1200 / 1000) / 2;
 
+      //XFORM xform;
 
+      //pdc->GetWorldTransform(&xform);
 
-      cx = size.cx;
-   }
-   pdc->SetMapMode(MM_TEXT);
-   ::SetTextColor((HDC)pdc->get_os_data(), cr);
-   pdc->SelectObject(m_font);
-   ::TextOutW((HDC)pdc->get_os_data(), iLeft, iTop, lpcsz, iLen);*/
-
-
-/*   ::SetTextColor((HDC)pdc->get_os_data(), crOutline);
-   ::TextOutW((HDC)pdc->get_os_data(), iLeft - iWidth, iTop - iWidth, lpcsz, iLen);
-   ::TextOutW((HDC)pdc->get_os_data(), iLeft - iWidth, iTop, lpcsz, iLen);
-   ::TextOutW((HDC)pdc->get_os_data(), iLeft - iWidth, iTop + iWidth, lpcsz, iLen);
-   ::TextOutW((HDC)pdc->get_os_data(), iLeft, iTop - iWidth, lpcsz, iLen);
-   ::TextOutW((HDC)pdc->get_os_data(), iLeft + iWidth, iTop, lpcsz, iLen);
-   ::TextOutW((HDC)pdc->get_os_data(), iLeft + iWidth, iTop - iWidth, lpcsz, iLen);
-   ::TextOutW((HDC)pdc->get_os_data(), iLeft, iTop + iWidth, lpcsz, iLen);
-   ::TextOutW((HDC)pdc->get_os_data(), iLeft + iWidth, iTop + iWidth, lpcsz, iLen);
-
-   ::SetTextColor((HDC)pdc->get_os_data(), cr);
-   ::TextOutW((HDC)pdc->get_os_data(), iLeft, iTop, lpcsz, iLen);
-
-   return;
-
-   size size;
-   ::GetTextExtentPoint32W(
-      (HDC)pdc->get_os_data(),
-      lpcsz,
-      iLen,
-      &size);
-
-   if(m_dc1.get_os_data() == NULL)
-   {
-      m_dc1.CreateCompatibleDC(pdc);
-
-   }
-   m_dc1.SelectObject(pdc->get_current_font());
-
-   if(m_bmp1.get_os_data() == NULL)
-   {
-      m_bmp1.CreateCompatibleBitmap(pdc, size.cx, size.cy);
-      m_dc1.SelectObject(m_bmp1);
-   }
-   else
-   {
-      BITMAP bm;
-      m_bmp1.GetBitmap(&bm);
-      if(bm.bmHeight < size.cx ||
-         bm.bmWidth < size.cy)
+      ::SetTextColor((HDC)pdc->get_os_data(), crOutline);
+      for(int32_t i = 0; i < iLen; i++)
       {
-         m_bmp1.delete_object();
-         m_bmp1.CreateCompatibleBitmap(pdc, size.cx, size.cy);
+         WCHAR wch = lpcsz[i];
+
+
+         pdc->SelectObject(m_font);
+         ::GetTextExtentPoint32W(
+            (HDC)pdc->get_os_data(),
+            lpcsz,
+            i + 1,
+            &size);
+
+         pdc->SetMapMode( MM_ANISOTROPIC);
+         cxInt = (size.cx * 1000 / 1200) / 2;
+         ::ScaleViewportExtEx(
+            (HDC)pdc->get_os_data(),
+            1000,
+            1200,
+            1000,
+            1200,
+            NULL);
+         ::OffsetViewportOrgEx(
+            (HDC)pdc->get_os_data(),
+            iLeft + cx,
+            iTop * cyInt,
+            NULL);
+         ::TextOutW((HDC)pdc->get_os_data(), 0, 0, &wch, 1);
+
+         cxInt = -(size.cx * 1000 / 1200) / 2;
+         ::ScaleViewportExtEx(
+            (HDC)pdc->get_os_data(),
+            1000,
+            1200,
+            1000,
+            1200,
+            NULL);
+         ::OffsetViewportOrgEx(
+            (HDC)pdc->get_os_data(),
+            iLeft + cx,
+            iTop  + cyExt,
+            NULL);
+         ::TextOutW((HDC)pdc->get_os_data(), 0, 0, &wch, 1);
+
+         //pdc->SelectObject(m_fontInt);
+         ::GetTextExtentPoint32W(
+            (HDC)pdc->get_os_data(),
+            &wch,
+            1,
+            &sizeInt);
+         ::TextOutW((HDC)pdc->get_os_data(), 0, 0, &wch, 1);
+
+         //pdc->SelectObject(m_fontExt);
+         ::GetTextExtentPoint32W(
+            (HDC)pdc->get_os_data(),
+            &wch,
+            1,
+            &sizeExt);
+         cxExt = (size.cx * 1200 / 1000);
+         cyExt = (size.cy - sizeExt.cy) / 2;
+         ::TextOutW((HDC)pdc->get_os_data(), iLeft + cx + cxExt, iTop + cyExt, &wch, 1);
+
+
+
+         cx = size.cx;
       }
-      m_dc1.SelectObject(m_bmp1);
-   }
+      pdc->SetMapMode(MM_TEXT);
+      ::SetTextColor((HDC)pdc->get_os_data(), cr);
+      pdc->SelectObject(m_font);
+      ::TextOutW((HDC)pdc->get_os_data(), iLeft, iTop, lpcsz, iLen);*/
 
 
-   m_dc1.FillSolidRect(0, 0, size.cx,size.cy, RGB(0, 0, 0));
-   m_dc1.SetTextColor(RGB(255, 255, 255));
-   ::TextOutW(m_dc1.get_os_data(), 0, 0, lpcsz, iLen);
+      /*   ::SetTextColor((HDC)pdc->get_os_data(), crOutline);
+         ::TextOutW((HDC)pdc->get_os_data(), iLeft - iWidth, iTop - iWidth, lpcsz, iLen);
+         ::TextOutW((HDC)pdc->get_os_data(), iLeft - iWidth, iTop, lpcsz, iLen);
+         ::TextOutW((HDC)pdc->get_os_data(), iLeft - iWidth, iTop + iWidth, lpcsz, iLen);
+         ::TextOutW((HDC)pdc->get_os_data(), iLeft, iTop - iWidth, lpcsz, iLen);
+         ::TextOutW((HDC)pdc->get_os_data(), iLeft + iWidth, iTop, lpcsz, iLen);
+         ::TextOutW((HDC)pdc->get_os_data(), iLeft + iWidth, iTop - iWidth, lpcsz, iLen);
+         ::TextOutW((HDC)pdc->get_os_data(), iLeft, iTop + iWidth, lpcsz, iLen);
+         ::TextOutW((HDC)pdc->get_os_data(), iLeft + iWidth, iTop + iWidth, lpcsz, iLen);
 
-   System.visual().imaging().channel_gray_blur(&m_dc1,0, 0, size.cx, size.cy,
-      &m_dc1, 0, 0, 0, 2);
+         ::SetTextColor((HDC)pdc->get_os_data(), cr);
+         ::TextOutW((HDC)pdc->get_os_data(), iLeft, iTop, lpcsz, iLen);
 
-   System.visual().imaging().clip_color_blend(pdc, iLeft, iTop, size.cx, size.cy,
-      crOutline, &m_dc1, 0, 0);
+         return;
+
+         size size;
+         ::GetTextExtentPoint32W(
+            (HDC)pdc->get_os_data(),
+            lpcsz,
+            iLen,
+            &size);
+
+         if(m_dc1.get_os_data() == NULL)
+         {
+            m_dc1.CreateCompatibleDC(pdc);
+
+         }
+         m_dc1.SelectObject(pdc->get_current_font());
+
+         if(m_bmp1.get_os_data() == NULL)
+         {
+            m_bmp1.CreateCompatibleBitmap(pdc, size.cx, size.cy);
+            m_dc1.SelectObject(m_bmp1);
+         }
+         else
+         {
+            BITMAP bm;
+            m_bmp1.GetBitmap(&bm);
+            if(bm.bmHeight < size.cx ||
+               bm.bmWidth < size.cy)
+            {
+               m_bmp1.delete_object();
+               m_bmp1.CreateCompatibleBitmap(pdc, size.cx, size.cy);
+            }
+            m_dc1.SelectObject(m_bmp1);
+         }
 
 
-   pdc->BeginPath();
-   ::TextOutW((HDC)pdc->get_os_data(), iLeft, iTop, lpcsz, iLen);
-   pdc->EndPath();
+         m_dc1.FillSolidRect(0, 0, size.cx,size.cy, RGB(0, 0, 0));
+         m_dc1.SetTextColor(RGB(255, 255, 255));
+         ::TextOutW(m_dc1.get_os_data(), 0, 0, lpcsz, iLen);
 
-   LOGBRUSH lb;
-   lb.lbStyle = BS_SOLID;
-   lb.lbColor = crOutline;
-   //::draw2d::pen_sp pen(get_app(), PS_SOLID, iWidth * 2 + 2, crOutline);
-   ::draw2d::pen_sp pen(get_app(),
-      PS_SOLID
-      | PS_GEOMETRIC
-      | PS_ENDCAP_ROUND
-      | PS_JOIN_ROUND,
-      iWidth * 2,
-      &lb);
+         System.visual().imaging().channel_gray_blur(&m_dc1,0, 0, size.cx, size.cy,
+            &m_dc1, 0, 0, 0, 2);
 
-   ::draw2d::pen * ppenOld = pdc->SelectObject(pen);
-   pdc->StrokePath();
-   pdc->SelectObject(ppenOld);*/
+         System.visual().imaging().clip_color_blend(pdc, iLeft, iTop, size.cx, size.cy,
+            crOutline, &m_dc1, 0, 0);
 
-//   ::SetTextColor((HDC)pdc->get_os_data(), cr);
-   //m_dc1.SetBkMode(TRANSPARENT);
-  // ::TextOutW((HDC)pdc->get_os_data(), iLeft, iTop, lpcsz, iLen);
+
+         pdc->BeginPath();
+         ::TextOutW((HDC)pdc->get_os_data(), iLeft, iTop, lpcsz, iLen);
+         pdc->EndPath();
+
+         LOGBRUSH lb;
+         lb.lbStyle = BS_SOLID;
+         lb.lbColor = crOutline;
+         //::draw2d::pen_sp pen(get_app(), PS_SOLID, iWidth * 2 + 2, crOutline);
+         ::draw2d::pen_sp pen(get_app(),
+            PS_SOLID
+            | PS_GEOMETRIC
+            | PS_ENDCAP_ROUND
+            | PS_JOIN_ROUND,
+            iWidth * 2,
+            &lb);
+
+         ::draw2d::pen * ppenOld = pdc->SelectObject(pen);
+         pdc->StrokePath();
+         pdc->SelectObject(ppenOld);*/
+
+         //   ::SetTextColor((HDC)pdc->get_os_data(), cr);
+            //m_dc1.SetBkMode(TRANSPARENT);
+           // ::TextOutW((HDC)pdc->get_os_data(), iLeft, iTop, lpcsz, iLen);
 
 
 }
 
-void XfplayerViewLine::EmbossedTextOut(::draw2d::graphics * pdc,::draw2d::dib * pdibCache,const char * lpcsz,int32_t iLeft,int32_t iTop,int32_t iWidth,COLORREF cr,COLORREF crOutline,strsize iLen,double dBlend)
+void XfplayerViewLine::EmbossedTextOut(::draw2d::graphics * pdc, ::draw2d::dib * pdibCache, const char * lpcsz, int32_t iLeft, int32_t iTop, int32_t iWidth, COLORREF cr, COLORREF crOutline, strsize iLen, double dBlend)
 {
+
+   single_lock sl(m_pContainer->m_pmutex);
 
    UNREFERENCED_PARAMETER(pdibCache);
 
-   bool bSaveProcessing =  !m_bEnhancedEmboss;
+   bool bSaveProcessing = !m_bEnhancedEmboss;
 
 
-   if(bSaveProcessing)
+   if (bSaveProcessing)
    {
       pdc->BeginPath();
       pdc->TextOut(iLeft, iTop, string(lpcsz, iLen));
       pdc->EndPath();
 
-//      LOGBRUSH lb;
-  //    lb.lbStyle = BS_SOLID;
-    //  lb.lbColor = crOutline;
+      //      LOGBRUSH lb;
+        //    lb.lbStyle = BS_SOLID;
+          //  lb.lbColor = crOutline;
       ::draw2d::pen_sp pen;
-/*      pen->construct(
-         PS_SOLID
-         | PS_GEOMETRIC
-         | PS_ENDCAP_ROUND
-         | PS_JOIN_ROUND,
-         iWidth * 2,
-         &lb);*/
+      /*      pen->construct(
+               PS_SOLID
+               | PS_GEOMETRIC
+               | PS_ENDCAP_ROUND
+               | PS_JOIN_ROUND,
+               iWidth * 2,
+               &lb);*/
       pen->create_solid(iWidth * 2, crOutline);
 
 
@@ -1439,19 +1509,19 @@ void XfplayerViewLine::EmbossedTextOut(::draw2d::graphics * pdc,::draw2d::dib * 
       pdc->SelectObject(ppenOld);
 
 
-         ::draw2d::brush_sp brushText(allocer(), cr);
+      ::draw2d::brush_sp brushText(allocer(), cr);
 
-         pdc->SelectObject(brushText);
+      pdc->SelectObject(brushText);
 
       pdc->TextOut(iLeft, iTop, string(lpcsz, iLen));
    }
    else
    {
 
-      if(m_bEnhancedEmboss)
+      if (m_bEnhancedEmboss)
       {
 
-         if(!m_bCacheEmboss || m_strCache != lpcsz)
+         if (!m_bCacheEmboss || m_strCache != lpcsz)
          {
 
             CacheEmboss(pdc, m_str, m_str.get_length(), m_dibMain);
@@ -1464,7 +1534,7 @@ void XfplayerViewLine::EmbossedTextOut(::draw2d::graphics * pdc,::draw2d::dib * 
 
       System.visual().imaging().color_blend(pdc, point(iLeft - 1, iTop - 1), ::size(m_dibMain->m_size.cx, m_dibMain->m_size.cy), m_dibMain->get_graphics(), point(iLeft, 0), dBlend);
 
-      if(m_bColonPrefix)
+      if (m_bColonPrefix)
       {
 
          pdc->SelectFont(m_fontPrefix);
@@ -1473,13 +1543,13 @@ void XfplayerViewLine::EmbossedTextOut(::draw2d::graphics * pdc,::draw2d::dib * 
 
          size = pdc->GetTextExtent(m_strPrefix);
 
-         System.visual().imaging().AlphaTextOut(pdc,iLeft,iTop + m_rect.height() - size.cy,m_strPrefix,(int32_t)m_strPrefix.get_length(),cr,dBlend);
+         System.visual().imaging().AlphaTextOut(pdc, iLeft, iTop + m_rect.height() - size.cy, m_strPrefix, (int32_t)m_strPrefix.get_length(), cr, dBlend);
 
          pdc->SelectFont(m_font);
 
          int iOffset;
 
-         if(m_strPrefix.get_length() <= 0)
+         if (m_strPrefix.get_length() <= 0)
          {
 
             iOffset = 0;
@@ -1492,7 +1562,7 @@ void XfplayerViewLine::EmbossedTextOut(::draw2d::graphics * pdc,::draw2d::dib * 
 
          }
 
-         System.visual().imaging().AlphaTextOut(pdc,iLeft + iOffset,iTop,m_strRoot,(int32_t)m_strRoot.get_length(),cr,dBlend);
+         System.visual().imaging().AlphaTextOut(pdc, iLeft + iOffset, iTop, m_strRoot, (int32_t)m_strRoot.get_length(), cr, dBlend);
 
 
 
@@ -1502,7 +1572,7 @@ void XfplayerViewLine::EmbossedTextOut(::draw2d::graphics * pdc,::draw2d::dib * 
 
          pdc->SelectFont(m_font);
 
-         System.visual().imaging().AlphaTextOut(pdc,iLeft,iTop,lpcsz,(int32_t)iLen,cr,dBlend);
+         System.visual().imaging().AlphaTextOut(pdc, iLeft, iTop, lpcsz, (int32_t)iLen, cr, dBlend);
 
       }
 
@@ -1516,6 +1586,9 @@ void XfplayerViewLine::EmbossedTextOut(::draw2d::graphics * pdc,::draw2d::dib * 
 
 void XfplayerViewLine::SetColors(COLORREF cr, COLORREF crOutline)
 {
+
+   single_lock sl(m_pContainer->m_pmutex);
+
    m_cr = cr;
    m_crOutline = crOutline;
 }
@@ -1525,16 +1598,22 @@ void XfplayerViewLine::SetColors(COLORREF cr, COLORREF crOutline)
 
 void XfplayerViewLine::GetLogFont(LOGFONTW &lf)
 {
+
+   single_lock sl(m_pContainer->m_pmutex);
+
    lf = m_logfont;
 }
 
 
 void XfplayerViewLine::CacheEmboss(::draw2d::graphics * pdc, const char * lpcsz, strsize iLen, ::draw2d::dib * pdibCache)
 {
-   if(!m_bEnhancedEmboss)
+
+   single_lock sl(m_pContainer->m_pmutex);
+
+   if (!m_bEnhancedEmboss)
       return;
 
-   if(m_bCacheEmboss && m_strCache == lpcsz)
+   if (m_bCacheEmboss && m_strCache == lpcsz)
       return;
 
    m_strCache = lpcsz;
@@ -1545,14 +1624,14 @@ void XfplayerViewLine::CacheEmboss(::draw2d::graphics * pdc, const char * lpcsz,
    pdc->select_font(m_font);
    m_dcextension.GetTextExtent(pdc, lpcsz, iLen, size);
 
-   size.cx += (LONG) (2 * (MAX(2.0, m_floatRateX * 8.0)));
-   size.cy += (LONG) (2 * (MAX(2.0, m_floatRateX * 8.0)));
+   size.cx += (LONG)(2 * (MAX(2.0, m_floatRateX * 8.0)));
+   size.cy += (LONG)(2 * (MAX(2.0, m_floatRateX * 8.0)));
 
 
-   if(!pdibCache->create(size))
+   if (!pdibCache->create(size))
       return;
 
-   pdibCache->Fill(0,0,0,0);
+   pdibCache->Fill(0, 0, 0, 0);
    ::draw2d::graphics * pdcCache = pdibCache->get_graphics();
    pdcCache->SelectObject(m_font);
 
@@ -1563,29 +1642,29 @@ void XfplayerViewLine::CacheEmboss(::draw2d::graphics * pdc, const char * lpcsz,
    pdcCache->SelectObject(brushText);
    //pdcCache->SetTextColor();
    ::size s;
-   if(m_bColonPrefix)
+   if (m_bColonPrefix)
    {
 
       pdcCache->select_font(m_fontPrefix);
       ::size size = pdcCache->GetTextExtent(m_strPrefix);
-      m_dcextension.TextOut(pdcCache,(int32_t)(int32_t)((MAX(2.0,m_floatRateX * 4.0)) / 2),(int32_t)1 * (int32_t)((MAX(2.0,m_floatRateX * 4.0)) / 2)+ m_rect.height() -size.cy,m_strPrefix,m_strPrefix.get_length(), s);
+      m_dcextension.TextOut(pdcCache, (int32_t)(int32_t)((MAX(2.0, m_floatRateX * 4.0)) / 2), (int32_t)1 * (int32_t)((MAX(2.0, m_floatRateX * 4.0)) / 2) + m_rect.height() - size.cy, m_strPrefix, m_strPrefix.get_length(), s);
       pdcCache->select_font(m_font);
-      m_dcextension.TextOut(pdcCache,s.cx + (s.cx / m_strPrefix.get_length()) + (int32_t)(int32_t)((MAX(2.0,m_floatRateX * 8.0)) / 2),(int32_t)1 * (int32_t)((MAX(2.0,m_floatRateX * 8.0)) / 2),m_strRoot,m_strRoot.get_length(),s);
+      m_dcextension.TextOut(pdcCache, s.cx + (s.cx / m_strPrefix.get_length()) + (int32_t)(int32_t)((MAX(2.0, m_floatRateX * 8.0)) / 2), (int32_t)1 * (int32_t)((MAX(2.0, m_floatRateX * 8.0)) / 2), m_strRoot, m_strRoot.get_length(), s);
 
    }
    else
    {
 
-      m_dcextension.TextOut(pdcCache,(int32_t)(int32_t)((MAX(2.0,m_floatRateX * 8.0)) / 2),(int32_t)1 * (int32_t)((MAX(2.0,m_floatRateX * 8.0)) / 2),lpcsz,iLen, s);
+      m_dcextension.TextOut(pdcCache, (int32_t)(int32_t)((MAX(2.0, m_floatRateX * 8.0)) / 2), (int32_t)1 * (int32_t)((MAX(2.0, m_floatRateX * 8.0)) / 2), lpcsz, iLen, s);
 
    }
 
 
-   System.visual().imaging().channel_spread_set_color(pdcCache, null_point(), size, pdcCache, null_point(), 0, int32_t (MAX(1.0, m_floatRateX * 2.0)), ARGB(23, 23, 23, 23));
+   System.visual().imaging().channel_spread_set_color(pdcCache, null_point(), size, pdcCache, null_point(), 0, int32_t(MAX(1.0, m_floatRateX * 2.0)), ARGB(23, 23, 23, 23));
 
    pdcCache->set_alpha_mode(::draw2d::alpha_mode_blend);
-   System.visual().imaging().channel_alpha_gray_blur(pdcCache, null_point(), size, pdcCache, null_point(), 0, int32_t (MAX(1.0, m_floatRateX * 3.0)));
-   System.visual().imaging().channel_alpha_gray_blur(pdcCache, null_point(), size, pdcCache, null_point(), 0, int32_t (MAX(1.0, m_floatRateX * 3.0)));
+   System.visual().imaging().channel_alpha_gray_blur(pdcCache, null_point(), size, pdcCache, null_point(), 0, int32_t(MAX(1.0, m_floatRateX * 3.0)));
+   System.visual().imaging().channel_alpha_gray_blur(pdcCache, null_point(), size, pdcCache, null_point(), 0, int32_t(MAX(1.0, m_floatRateX * 3.0)));
 
    /*pdibCache->fill_channel(92, ::visual::rgba::channel_blue);
    pdibCache->fill_channel(92, ::visual::rgba::channel_green);
@@ -1601,12 +1680,16 @@ void XfplayerViewLine::CacheEmboss(::draw2d::graphics * pdc, const char * lpcsz,
 void XfplayerViewLine::SetFont(::draw2d::font * pfont)
 {
 
+   single_lock sl(m_pContainer->m_pmutex);
+
    m_font = pfont;
 
 }
 
 void XfplayerViewLine::SetFont(visual::font * pfont)
 {
+
+   single_lock sl(m_pContainer->m_pmutex);
 
    SetFont(pfont->GetFont());
 
@@ -1615,13 +1698,15 @@ void XfplayerViewLine::SetFont(visual::font * pfont)
 void XfplayerViewLine::PrepareURLLinks()
 {
 
+   single_lock sl(m_pContainer->m_pmutex);
+
    strsize iStart = 0;
 
    strsize iEnd = 0;
 
    string str;
 
-   while(cregexp_util::find(m_str, "/^|\\s|([;\"()]+))(((((http|https)://))|(www\\.))[0-9a-zA-Z./\\-_?=]+)(([;\"()]+)|\\s|$/", 3, &iStart, &iEnd))
+   while (cregexp_util::find(m_str, "/^|\\s|([;\"()]+))(((((http|https)://))|(www\\.))[0-9a-zA-Z./\\-_?=]+)(([;\"()]+)|\\s|$/", 3, &iStart, &iEnd))
    {
       m_straLink.add(m_str.Mid(iStart, iEnd - iStart));
       m_iaLinkStart.add(iStart);
@@ -1633,13 +1718,19 @@ void XfplayerViewLine::PrepareURLLinks()
 
 bool XfplayerViewLine::CharHasLink(strsize iChar)
 {
+
+   single_lock sl(m_pContainer->m_pmutex);
+
    return GetCharLink(iChar) > -1;
 }
 
 bool XfplayerViewLine::GetCharLink(string & str, strsize iChar)
 {
+
+   single_lock sl(m_pContainer->m_pmutex);
+
    index iLink = GetCharLink(iChar);
-   if(iLink < 0)
+   if (iLink < 0)
       return false;
    str = m_straLink[iLink];
    return true;
@@ -1647,9 +1738,12 @@ bool XfplayerViewLine::GetCharLink(string & str, strsize iChar)
 
 user::e_line_hit XfplayerViewLine::GetLink(string & strUrl, point ptCursor)
 {
+
+   single_lock sl(m_pContainer->m_pmutex);
+
    strsize iChar;
    user::e_line_hit etest = hit_test(ptCursor, iChar);
-   if(etest == ::user::line_hit_link)
+   if (etest == ::user::line_hit_link)
    {
       GetCharLink(strUrl, iChar);
    }
@@ -1658,9 +1752,12 @@ user::e_line_hit XfplayerViewLine::GetLink(string & strUrl, point ptCursor)
 
 index XfplayerViewLine::GetCharLink(strsize iChar)
 {
-   for(index i = 0; i < m_iaLinkStart.get_size(); i++)
+
+   single_lock sl(m_pContainer->m_pmutex);
+
+   for (index i = 0; i < m_iaLinkStart.get_size(); i++)
    {
-      if(iChar >= m_iaLinkStart[i] &&
+      if (iChar >= m_iaLinkStart[i] &&
          iChar <= m_iaLinkEnd[i])
       {
          return i;
@@ -1671,21 +1768,24 @@ index XfplayerViewLine::GetCharLink(strsize iChar)
 
 ::user::e_line_hit XfplayerViewLine::hit_test(const POINT &ptCursorParam, strsize &iChar)
 {
+
+   single_lock sl(m_pContainer->m_pmutex);
+
    bool bInside;
    point ptCursor = ptCursorParam;
    rect rectPlacement;
    GetPlacement(rectPlacement);
    bInside = rectPlacement.contains(ptCursor) != 0;
-   if(!bInside)
+   if (!bInside)
    {
-      iChar =  -1;
+      iChar = -1;
       return user::line_hit_none;
    }
    else
    {
-      if(CalcChar(ptCursor, iChar))
+      if (CalcChar(ptCursor, iChar))
       {
-         if(CharHasLink(iChar))
+         if (CharHasLink(iChar))
          {
             return user::line_hit_link;
          }
@@ -1696,7 +1796,7 @@ index XfplayerViewLine::GetCharLink(strsize iChar)
       }
       else
       {
-         iChar =  -1;
+         iChar = -1;
          return user::line_hit_none;
       }
    }
@@ -1705,14 +1805,17 @@ index XfplayerViewLine::GetCharLink(strsize iChar)
 
 bool XfplayerViewLine::CalcChar(point pt, strsize &iChar)
 {
+
+   single_lock sl(m_pContainer->m_pmutex);
+
    rect rectPlacement;
    GetPlacement(rectPlacement);
    bool bInside = rectPlacement.contains(pt) != 0;
-   if(!bInside)
+   if (!bInside)
       return false;
-   for(int32_t i = 0; i < m_iaPosition.get_size() - 1; i++)
+   for (int32_t i = 0; i < m_iaPosition.get_size() - 1; i++)
    {
-      if(pt.x >= m_iaPosition[i] &&
+      if (pt.x >= m_iaPosition[i] &&
          pt.x < m_iaPosition[i + 1])
       {
          iChar = i;
@@ -1725,11 +1828,14 @@ bool XfplayerViewLine::CalcChar(point pt, strsize &iChar)
 
 void XfplayerViewLine::OnMouseMove(signal_details * pobj)
 {
+
+   single_lock sl(m_pContainer->m_pmutex);
+
    SCAST_PTR(::message::mouse, pmouse, pobj);
    strsize iChar;
-   if(CalcChar(pmouse->m_pt, iChar))
+   if (CalcChar(pmouse->m_pt, iChar))
    {
-      if(CharHasLink(iChar))
+      if (CharHasLink(iChar))
       {
          pmouse->m_ecursor = ::visual::cursor_hand;
       }
@@ -1810,7 +1916,7 @@ void XfplayerViewLine::OnMouseMove(signal_details * pobj)
       }
 
    }*/
-   if(GetSelection().OnMouseMove(*this, (UINT) pmouse->m_nFlags, pmouse->m_pt))
+   if (GetSelection().OnMouseMove(*this, (UINT)pmouse->m_nFlags, pmouse->m_pt))
    {
       pmouse->m_bRet = true;
       pmouse->set_lresult(1);
@@ -1830,8 +1936,11 @@ void XfplayerViewLine::OnSetCursor(signal_details * pobj)
 
 void XfplayerViewLine::OnLButtonDown(signal_details * pobj)
 {
+
+   single_lock sl(m_pContainer->m_pmutex);
+
    SCAST_PTR(::message::mouse, pmouse, pobj);
-   if(GetSelection().OnLButtonDown(*this, (UINT) pmouse->m_nFlags, pmouse->m_pt))
+   if (GetSelection().OnLButtonDown(*this, (UINT)pmouse->m_nFlags, pmouse->m_pt))
    {
       pmouse->m_bRet = true;
       pmouse->set_lresult(1);
@@ -1840,11 +1949,14 @@ void XfplayerViewLine::OnLButtonDown(signal_details * pobj)
 
 void XfplayerViewLine::OnLButtonUp(signal_details * pobj)
 {
+
+   single_lock sl(m_pContainer->m_pmutex);
+
    SCAST_PTR(::message::mouse, pmouse, pobj);
    strsize iChar;
-   if(CalcChar(pmouse->m_pt, iChar))
+   if (CalcChar(pmouse->m_pt, iChar))
    {
-      if(CharHasLink(iChar))
+      if (CharHasLink(iChar))
       {
          string str;
          str = m_straLink[GetCharLink(iChar)];
@@ -1852,7 +1964,7 @@ void XfplayerViewLine::OnLButtonUp(signal_details * pobj)
          System.open_link(str);
       }
    }
-   if(GetSelection().OnLButtonUp(*this, (UINT) pmouse->m_nFlags, pmouse->m_pt))
+   if (GetSelection().OnLButtonUp(*this, (UINT)pmouse->m_nFlags, pmouse->m_pt))
    {
       pmouse->m_bRet = true;
       pmouse->set_lresult(1);
@@ -1868,14 +1980,20 @@ void XfplayerViewLine::_001OnTimer(::timer * ptimer)
 
 ::draw2d::font * XfplayerViewLine::GetFont()
 {
+
+   single_lock sl(m_pContainer->m_pmutex);
+
    return m_font;
 }
 
 void XfplayerViewLine::SetBlend(double d)
 {
+
+   single_lock sl(m_pContainer->m_pmutex);
+
    ASSERT(d >= 0.0);
    ASSERT(d <= 1.0);
-   if(d < 0.0 || d > 1.0)
+   if (d < 0.0 || d > 1.0)
       return;
    m_dBlend = d;
 }
@@ -1883,13 +2001,16 @@ void XfplayerViewLine::SetBlend(double d)
 
 void XfplayerViewLine::UpdateHover(point &ptCursor)
 {
+
+   single_lock sl(m_pContainer->m_pmutex);
+
    ::index iLine = m_iIndex;
    strsize iChar;
 
    user::e_line_hit etest = hit_test(ptCursor, iChar);
-   if(etest == ::user::line_hit_link)
+   if (etest == ::user::line_hit_link)
    {
-      if(m_iLinkHoverIndex != GetLinkIndex(iLine, iChar))
+      if (m_iLinkHoverIndex != GetLinkIndex(iLine, iChar))
       {
          m_iLinkHoverIndex = GetLinkIndex(iLine, iChar);
          rect rect;
@@ -1899,7 +2020,7 @@ void XfplayerViewLine::UpdateHover(point &ptCursor)
    }
    else
    {
-      if(m_iLinkHoverIndex != -1)
+      if (m_iLinkHoverIndex != -1)
       {
          m_iLinkHoverIndex = -1;
          rect rect;
@@ -1913,7 +2034,7 @@ void XfplayerViewLine::UpdateHover(point &ptCursor)
 
 bool XfplayerViewLine::IsInHover()
 {
-   if(m_iLinkHoverIndex >= 0)
+   if (m_iLinkHoverIndex >= 0)
       return true;
    else
       return false;
@@ -1923,9 +2044,12 @@ bool XfplayerViewLine::IsInHover()
 
 index XfplayerViewLine::GetLinkIndex(index iLine, strsize iChar)
 {
-   if(!HasLink())
+
+   single_lock sl(m_pContainer->m_pmutex);
+
+   if (!HasLink())
       return -1;
-   if(iLine != m_iIndex)
+   if (iLine != m_iIndex)
       return -1;
    return GetCharLink(iChar);
 }
@@ -1933,6 +2057,9 @@ index XfplayerViewLine::GetLinkIndex(index iLine, strsize iChar)
 
 bool XfplayerViewLine::HasLink()
 {
+
+   single_lock sl(m_pContainer->m_pmutex);
+
    return m_iaLinkStart.get_count() > 0;
 }
 
@@ -1943,7 +2070,10 @@ sp(::user::interaction) XfplayerViewLine::get_interaction()
 
 inline XfplayerViewLineSelection & XfplayerViewLine::GetSelection()
 {
-   if(m_pContainer == NULL)
+
+   single_lock sl(m_pContainer->m_pmutex);
+
+   if (m_pContainer == NULL)
       return m_selection;
    else
       return m_pContainer->GetSelection();

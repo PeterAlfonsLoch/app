@@ -1,5 +1,3 @@
-//#include "framework.h"
-//#include "base/user/user.h"
 
 
 namespace fontopus
@@ -7,21 +5,21 @@ namespace fontopus
 
 
    //UINT c_cdecl thread_proc_pre_login(void * p);
-//   UINT c_cdecl thread_proc_defer_translate_login(void * p);
+   //   UINT c_cdecl thread_proc_defer_translate_login(void * p);
 
 
-   login::login(::aura::application * papp, int left, int top, const string & strRequestUrl) :
-      ::object(papp)
+   view::view(::aura::application * papp) :
+      ::object(papp),
+      m_evSubmit(papp),
+      m_mutexResponse(papp)
    {
 
-      m_strRequestUrl      = strRequestUrl;
-
-      m_plabelUser         = new ::simple_ui::label(papp);
-      m_peditUser          = new ::simple_ui::edit_box(papp);
-      m_plabelPassword     = new ::simple_ui::label(papp);
-      m_ppassword          = new ::simple_ui::password(papp);
-      m_ptap               = new ::simple_ui::tap(papp);
-      m_ptapClose          = new ::simple_ui::tap(papp);
+      m_plabelUser = new ::simple_ui::label(papp);
+      m_peditUser = new ::simple_ui::edit_box(papp);
+      m_plabelPassword = new ::simple_ui::label(papp);
+      m_ppassword = new ::simple_ui::password(papp);
+      m_ptap = new ::simple_ui::tap(papp);
+      m_ptapClose = new ::simple_ui::tap(papp);
 
       m_bSelfLayout = false;
 
@@ -31,9 +29,9 @@ namespace fontopus
 
       {
 
-         HICON hicon95 = (HICON) ::LoadImage(::GetModuleHandle(NULL),MAKEINTRESOURCE(95),IMAGE_ICON,95,95,LR_VGACOLOR);
+         HICON hicon95 = (HICON) ::LoadImage(::GetModuleHandle(NULL), MAKEINTRESOURCE(95), IMAGE_ICON, 95, 95, LR_VGACOLOR);
 
-         if(hicon95 != NULL)
+         if (hicon95 != NULL)
          {
 
             m_picon95 = new ::visual::icon(hicon95);
@@ -48,22 +46,22 @@ namespace fontopus
 
    }
 
-   login::~login()
+   view::~view()
    {
-/*
+      /*
       if(m_pploginDeferTranslate != NULL)
       {
 
-         try
-         {
+      try
+      {
 
-            *m_pploginDeferTranslate = NULL;
+      *m_pploginDeferTranslate = NULL;
 
-         }
-         catch(...)
-         {
+      }
+      catch(...)
+      {
 
-         }
+      }
 
       }
 
@@ -79,17 +77,17 @@ namespace fontopus
    }
 
 
-   void login::install_message_handling(::message::dispatch * pdispatch)
+   void view::install_message_handling(::message::dispatch * pdispatch)
    {
 
       ::simple_ui::interaction::install_message_handling(pdispatch);
 
-      IGUI_CREATE(login);
+      IGUI_CREATE(view);
 
    }
 
 
-   void login::defer_translate(const string & strUser,const string & strPass,const string & strOpen)
+   void view::defer_translate(const string & strUser, const string & strPass, const string & strOpen)
    {
 
       if (strUser.has_char())
@@ -104,13 +102,13 @@ namespace fontopus
    }
 
 
-   void login::initialize()
+   void view::initialize()
    {
 
    }
 
 
-   void login::layout()
+   void view::layout()
    {
 
 
@@ -129,50 +127,50 @@ namespace fontopus
       {
 
 
-         double dwh = (double)stdw / (double)stdh;
+      double dwh = (double)stdw / (double)stdh;
 
-         int availw = (int) (rectClient.width() * (1.0 - 0.14));
-         int availh = (int) (rectClient.height() * (1.0 - 0.14));
+      int availw = (int) (rectClient.width() * (1.0 - 0.14));
+      int availh = (int) (rectClient.height() * (1.0 - 0.14));
 
-         double davailwh;
+      double davailwh;
 
-         if (availh == 0.0)
-         {
-            davailwh = 1.0;
-         }
-         else
-         {
-            davailwh = (double)availw / (double)availh;
-         }
+      if (availh == 0.0)
+      {
+      davailwh = 1.0;
+      }
+      else
+      {
+      davailwh = (double)availw / (double)availh;
+      }
 
 
-         if (davailwh > dwh) // remaining width
-         {
+      if (davailwh > dwh) // remaining width
+      {
 
-            h = (int) MIN(stdh, availh);
-            w = (int) MIN(stdw, h  * dwh);
+      h = (int) MIN(stdh, availh);
+      w = (int) MIN(stdw, h  * dwh);
 
-         }
-         else // remaining height
-         {
+      }
+      else // remaining height
+      {
 
-            w = (int) MIN(stdw, availw);
-            h = (int) MIN(stdh, w / dwh);
+      w = (int) MIN(stdw, availw);
+      h = (int) MIN(stdh, w / dwh);
 
-         }
+      }
 
-         rectClient.left = (rectClient.width() - w) / 2;
-         rectClient.top = (rectClient.height() - h) / 3;
-         rectClient.right = rectClient.left + w;
-         rectClient.bottom = rectClient.top + h;
+      rectClient.left = (rectClient.width() - w) / 2;
+      rectClient.top = (rectClient.height() - h) / 3;
+      rectClient.right = rectClient.left + w;
+      rectClient.bottom = rectClient.top + h;
 
-         SetPlacement(rectClient);
+      SetPlacement(rectClient);
 
       }
       else
       {
 
-         GetClientRect(rectClient);
+      GetClientRect(rectClient);
 
       }*/
 
@@ -188,29 +186,29 @@ namespace fontopus
 
       double ry = m_dRateY;
 
-      int32_t x1 = (int) (49 * rx);
-      int32_t w2 = (int) ((rectClient.width() - 49 * 2 * rx));
-      int32_t h1 = (int) (23 * ry);
-      int32_t pad = (int) (5 * ry);
+      int32_t x1 = (int)(49 * rx);
+      int32_t w2 = (int)((rectClient.width() - 49 * 2 * rx));
+      int32_t h1 = (int)(23 * ry);
+      int32_t pad = (int)(5 * ry);
 
-      int32_t y = (int) ((49 + 86) * ry);
-      m_plabelUser->RepositionWindow(x1,y,w2,h1);
+      int32_t y = (int)((49 + 86) * ry);
+      m_plabelUser->RepositionWindow(x1, y, w2, h1);
       y += h1 + pad;
-      m_peditUser->RepositionWindow(x1,y,w2, h1);
+      m_peditUser->RepositionWindow(x1, y, w2, h1);
       y += h1 + pad;
-      m_plabelPassword->RepositionWindow(x1,y,w2, h1);
+      m_plabelPassword->RepositionWindow(x1, y, w2, h1);
       y += h1 + pad;
-      m_ppassword->RepositionWindow(x1,y,w2,h1);
+      m_ppassword->RepositionWindow(x1, y, w2, h1);
       y += h1 + pad;
       y += pad + h1 + pad;
-      m_ptap->RepositionWindow(x1,y,w2,h1 * 3);;
+      m_ptap->RepositionWindow(x1, y, w2, h1 * 3);;
 
-      m_ptapClose->RepositionWindow(w - 36,12,24,24);
+      m_ptapClose->RepositionWindow(w - 36, 12, 24, 24);
 
    }
 
 
-   void login::_001OnDraw(::draw2d::graphics * pgraphics)
+   void view::_001OnDraw(::draw2d::graphics * pgraphics)
    {
       //return;
 
@@ -339,30 +337,31 @@ namespace fontopus
    }
 
 
-   bool login::on_action(const char * pszId)
+   bool view::on_action(const char * pszId)
    {
 
       if (!strcmp(pszId, "submit"))
       {
-         GetParent()->ShowWindow(SW_HIDE);
+       
 
-         if(!m_bCred)
+         if (!m_bCred)
          {
             string strText;
             m_ppassword->_001GetText(strText);
             strText = System.crypto().nessie(strText);
-            m_ppassword->_001SetText(strText,::action::source::database());
+            m_ppassword->_001SetText(strText, ::action::source::database());
          }
-         GetParent()->EndModalLoop("ok");
+         
+         m_strResponse = "ok";
 
-         return true;
+         m_evSubmit.SetEvent();
 
       }
       else if (!strcmp(pszId, "escape"))
       {
 
          GetParent()->ShowWindow(SW_HIDE);
-         m_ppassword->_001SetText("",::action::source::database());
+         m_ppassword->_001SetText("", ::action::source::database());
          GetParent()->EndModalLoop("cancel");
 
          return true;
@@ -376,20 +375,20 @@ namespace fontopus
 
 
 
-   void login::_001OnCreate(signal_details * pobj)
+   void view::_001OnCreate(signal_details * pobj)
    {
 
-      SCAST_PTR(::message::create,pcreate,pobj);
+      SCAST_PTR(::message::create, pcreate, pobj);
 
-      if(pcreate->previous())
+      if (pcreate->previous())
          return;
 
-      if(!m_plabelUser->create_window(null_rect(), this,"label_user")
-         || !m_peditUser->create_window(null_rect(),this,"edit_user")
-         || !m_plabelPassword->create_window(null_rect(),this,"label_password")
-         || !m_ppassword->create_window(null_rect(),this,"password")
-         || !m_ptap->create_window(null_rect(),this,"submit")
-         || !m_ptapClose->create_window(null_rect(),this,"escape"))
+      if (!m_plabelUser->create_window(null_rect(), this, "label_user")
+         || !m_peditUser->create_window(null_rect(), this, "edit_user")
+         || !m_plabelPassword->create_window(null_rect(), this, "label_password")
+         || !m_ppassword->create_window(null_rect(), this, "password")
+         || !m_ptap->create_window(null_rect(), this, "submit")
+         || !m_ptapClose->create_window(null_rect(), this, "escape"))
       {
          pcreate->set_lresult(-1);
          pcreate->m_bRet = true;
@@ -413,12 +412,12 @@ namespace fontopus
       int stdw = 800;
       int stdh = 177 + 23 + 184 + 49;
 
-      RepositionWindow(0,0,stdw,stdh);
+      RepositionWindow(0, 0, stdw, stdh);
 
       m_peditUser->keyboard_set_focus();
 
 
-      //m_pploginDeferTranslate = new login *;
+      //m_pploginDeferTranslate = new view *;
 
       //*m_pploginDeferTranslate = this;
 
@@ -448,13 +447,13 @@ namespace fontopus
    //}
 
 
-   void login::_000OnDraw(::draw2d::graphics * pdc)
+   void view::_000OnDraw(::draw2d::graphics * pdc)
    {
 
       //simple_ui::interaction::_000OnDraw(pdc);
 
 
-      if(!m_bVisible)
+      if (!m_bVisible)
          return;
 
       _001DrawThis(pdc);
@@ -465,17 +464,17 @@ namespace fontopus
          _001DrawChildren(pdc);
 
       }
-      catch(...)
+      catch (...)
       {
 
-         throw simple_exception(::get_thread_app(),"no more a window");
+         throw simple_exception(::get_thread_app(), "no more a window");
 
       }
 
    }
 
 
-   void login::_001DrawChildren(::draw2d::graphics *pdc)
+   void view::_001DrawChildren(::draw2d::graphics *pdc)
    {
 
       //single_lock sl(m_pmutex, true);
@@ -485,7 +484,7 @@ namespace fontopus
       sp(interaction) pui;
 
       //while((pui = get_child(pui)).is_set() && i > 0)
-      while((pui = get_child(pui)).is_set())
+      while ((pui = get_child(pui)).is_set())
       {
 
          //i--;
@@ -493,7 +492,7 @@ namespace fontopus
          try
          {
 
-            if(pui->m_bVisible && !pui->is_custom_draw())
+            if (pui->m_bVisible && !pui->is_custom_draw())
             {
 
                pui->_000OnDraw(pdc);
@@ -501,12 +500,51 @@ namespace fontopus
             }
 
          }
-         catch(...)
+         catch (...)
          {
 
          }
 
       }
+
+   }
+
+   string view::get_cred(const string & strRequestUrl, const RECT & rect, string & strUsername, string & strPassword, string strToken, string strTitle, bool bInteractive)
+   {
+
+      synch_lock sl(&m_mutexResponse);
+
+      m_strRequestUrl = strRequestUrl;
+
+      m_strResponse = Application.get_cred(strUsername, strPassword, strToken);
+
+      if (m_strResponse == "ok")
+      {
+
+         return m_strResponse;
+
+      }
+
+      m_peditUser->_001SetText(strUsername, ::action::source_initialize);
+
+      m_ppassword->_001SetText(strPassword, ::action::source_initialize);
+
+      m_strResponse.Empty();
+
+      m_evSubmit.ResetEvent();
+
+      m_evSubmit.wait();
+
+      if (m_strResponse == "ok")
+      {
+
+         m_peditUser->_001GetText(strUsername);
+
+         m_ppassword->_001GetText(strPassword);
+
+      }
+
+      return m_strResponse;
 
    }
 

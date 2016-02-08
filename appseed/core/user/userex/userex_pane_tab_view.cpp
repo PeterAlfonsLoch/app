@@ -13,6 +13,12 @@ namespace userex
       place_holder_container(papp)
    {
 
+      if (Application.m_pmainpane == NULL)
+      {
+
+         Application.m_pmainpane = this;
+
+      }
 
       set_view_creator(this);
 
@@ -162,6 +168,23 @@ namespace userex
          //plibrary->on_create_view(pcreatordata);
 
       }
+      else if (pcreatordata->m_id == "fontopus")
+      {
+
+         sp(::fontopus::view) pview = create_view < ::fontopus::view >();
+
+         if (pview.is_set())
+         {
+            
+            pcreatordata->m_pdoc = get_document();
+
+            pcreatordata->m_pwnd = pview;
+
+            pcreatordata->m_iExtendOnParent = 0;
+
+         }
+
+      }
 
       else if(pcreatordata->m_id == "file_manager"
          || pcreatordata->m_id == "left_file"
@@ -304,6 +327,23 @@ namespace userex
 
    }
 
+   string pane_tab_view::get_cred(const string & strRequestUrl, const RECT & rect, string & strUsername, string & strPassword, string strToken, string strTitle, bool bInteractive)
+   {
+
+      set_cur_tab_by_id("fontopus");
+
+      sp(::fontopus::view) pview = get_view();
+
+      if (pview.is_null())
+      {
+
+         return "failed";
+
+      }
+
+      return pview->get_cred(strRequestUrl, rect, strUsername, strPassword, strToken, strTitle, bInteractive);
+
+   }
 
 } // namespace userex
 

@@ -114,6 +114,12 @@
     <Filter Include="Source Files\user\hi5">
       <UniqueIdentifier>{5e60eb89-cecf-4ce4-8f8b-2fee8d7843fc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\user\fontopus">
+      <UniqueIdentifier>{47e5d0b1-722c-4042-b826-a69f576a484a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user\fontopus">
+      <UniqueIdentifier>{ef1642fa-661a-4989-8c2c-3bb1d3902183}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="user\simple\simple_child_frame.h">
@@ -818,6 +824,9 @@
     <ClInclude Include="user\hi5\hi5_twit.h">
       <Filter>Header Files\user\hi5</Filter>
     </ClInclude>
+    <ClInclude Include="user\fontopus\fontopus_view.h">
+      <Filter>Header Files\user\fontopus</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="user\simple\simple_child_frame.cpp">
@@ -1461,6 +1470,9 @@
     </ClCompile>
     <ClCompile Include="user\user\user_shell_windows.cpp">
       <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\fontopus\fontopus_view.cpp">
+      <Filter>Source Files\user\fontopus</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

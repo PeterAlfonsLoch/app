@@ -143,11 +143,11 @@ namespace fontopus
       else
       {
 
-         straRequestingServer.add("account.ca2.cc");
+         straRequestingServer.add("fontopus.com");
       }
 
-      //straRequestingServer.add("eu-account.ca2.cc");
-      ///straRequestingServer.add("asia-account.ca2.cc");
+      //straRequestingServer.add("eu-fontopus.com");
+      ///straRequestingServer.add("asia-fontopus.com");
       if(strHost.is_empty())
       {
 
@@ -351,17 +351,17 @@ namespace fontopus
       }
       else
       {
-         straRequestingServer.add("account.ca2.cc");
+         straRequestingServer.add("fontopus.com");
 
-         //straRequestingServer.add("eu-account.ca2.cc");
-         //straRequestingServer.add("asia-account.ca2.cc");
+         //straRequestingServer.add("eu-fontopus.com");
+         //straRequestingServer.add("asia-fontopus.com");
          if(System.url().get_server(strHost).has_char())
          {
             strHost = System.url().get_server(strHost);
          }
          else
          {
-            strHost = "account.ca2.cc";
+            strHost = "fontopus.com";
          }
 
          strHost = Session.fontopus()->get_server(strHost);
@@ -797,12 +797,12 @@ namespace fontopus
          else
          {
 
-            straRequestingServer.add("account.ca2.cc");
+            straRequestingServer.add("fontopus.com");
 
          }
 
-         //straRequestingServer.add("eu-account.ca2.cc");
-         //straRequestingServer.add("asia-account.ca2.cc");
+         //straRequestingServer.add("eu-fontopus.com");
+         //straRequestingServer.add("asia-fontopus.com");
          if(straRequestingServer.contains_ci(m_strRequestingServer))
          {
             m_bFontopusServer = true;
@@ -863,10 +863,10 @@ namespace fontopus
 
       string strApiServer;
 
-      if(m_strRequestingServer == "account.ca2.cc")
+      if(m_strRequestingServer == "fontopus.com")
       {
 
-         strApiServer = "account.ca2.cc";
+         strApiServer = "fontopus.com";
 
       }
       else
@@ -1150,7 +1150,7 @@ namespace fontopus
       {
          if(m_bInteractive)
          {
-            propertyset["server"] = "account.ca2.cc";
+            propertyset["server"] = "fontopus.com";
             pageMessage({"err\\user\\network\\connection_timed_out.html"},propertyset);
          }
       }
@@ -1158,7 +1158,7 @@ namespace fontopus
       {
          if(m_bInteractive)
          {
-            propertyset["server"] = "account.ca2.cc";
+            propertyset["server"] = "fontopus.com";
             propertyset["email"] = strUsername;
             pageMessage({"err\\user\\authentication\\registration_deferred.html"},propertyset);
          }

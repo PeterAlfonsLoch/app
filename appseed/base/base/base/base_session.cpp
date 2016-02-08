@@ -1765,7 +1765,7 @@ namespace base
    //         else
    //         {
    //
-   //            strRequestUrl = "https://account.ca2.cc/";
+   //            strRequestUrl = "https://fontopus.com/";
    //
    //         }
    //
@@ -2048,7 +2048,7 @@ namespace base
          else
          {
 
-            strRequestUrl = "https://account.ca2.cc/";
+            strRequestUrl = "https://fontopus.com/";
 
          }
 

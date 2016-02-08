@@ -112,9 +112,9 @@ namespace fontopus
 
    string CLASS_DECL_AXIS get_cred(::aura::application * papp,const string & strRequestUrlParam,const RECT & rect,string & strUsername,string & strPassword,string strToken,string strTitle,bool bInteractive)
    {
-
-      return Sess(papp).get_cred(papp,strRequestUrlParam,rect,strUsername,strPassword,strToken,strTitle,bInteractive);
       
+      return Sess(papp).get_cred(papp, strRequestUrlParam, rect, strUsername, strPassword, strToken, strTitle, bInteractive);
+
    }
 
 

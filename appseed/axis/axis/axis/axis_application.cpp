@@ -4785,6 +4785,33 @@ finalize:
 
    }
 
+   string application::get_cred(const string & strRequestUrl, const RECT & rect, string & strUsername, string & strPassword, string strToken, string strTitle, bool bInteractive)
+   {
+
+      return ::fontopus::get_cred(this, strRequestUrl, rect, strUsername, strPassword, strToken, strTitle, bInteractive);
+
+   }
+
+   string application::get_cred(string & strUsername, string & strPassword, string strToken)
+   {
+
+      return ::fontopus::get_cred(this, strUsername, strPassword, strToken);
+
+   }
+   
+   void application::set_cred(string strToken, const char * pszUsername, const char * pszPassword)
+   {
+
+      ::fontopus::set_cred(this,strToken, pszUsername, pszPassword);
+
+   }
+   
+   void application::set_cred_ok(string strToken, bool bOk)
+   {
+
+      ::fontopus::set_cred_ok(this, strToken, bOk);
+
+   }
 
 } // namespace axis
 

@@ -48,6 +48,8 @@ namespace userex
 
       virtual void _001OnTabClose(int32_t iTab);
 
+      virtual string get_cred(const string & strRequestUrl, const RECT & rect, string & strUsername, string & strPassword, string strToken, string strTitle, bool bInteractive);
+
    };
 
 

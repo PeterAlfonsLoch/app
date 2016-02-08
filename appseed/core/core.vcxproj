@@ -396,6 +396,12 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="user\fontopus\fontopus_view.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="user\hi5\hi5_oauth.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
@@ -800,6 +806,7 @@
     <ClInclude Include="user\databaseuser\databaseuser.h" />
     <ClInclude Include="user\databaseuser\databaseuser_key_mesh_data.h" />
     <ClInclude Include="user\databaseuser\databaseuser_mesh_data.h" />
+    <ClInclude Include="user\fontopus\fontopus_view.h" />
     <ClInclude Include="user\hi5\hi5.h" />
     <ClInclude Include="user\hi5\hi5_oauth.h" />
     <ClInclude Include="user\hi5\hi5_twit.h" />

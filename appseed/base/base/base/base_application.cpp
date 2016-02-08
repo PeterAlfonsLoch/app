@@ -2122,7 +2122,7 @@ namespace base
 
 
 
-   string application::get_cred(const string & strRequestUrlParam,const RECT & rect,string & strUsername,string & strPassword,string strToken,string strTitle,bool bInteractive)
+   /*string application::get_cred(const string & strRequestUrlParam,const RECT & rect,string & strUsername,string & strPassword,string strToken,string strTitle,bool bInteractive)
    {
 
       string str = ::fontopus::get_cred(this,strUsername,strPassword,strToken);
@@ -2173,7 +2173,7 @@ namespace base
 
       return strResult;
 
-   }
+   }*/
 
 
    ::user::user * application::create_user()

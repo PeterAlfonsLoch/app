@@ -143,12 +143,12 @@ restart:
    {
       if(pszText == NULL)
       {
-         pszText = "https://account.ca2.cc/";
+         pszText = "https://fontopus.com/";
       }
       string strText(pszText);
       if(strText.is_empty())
       {
-         strText = "https://account.ca2.cc/";
+         strText = "https://fontopus.com/";
       }
       strText = System.url().get_server(strText);
       if(strText.is_empty())
@@ -187,12 +187,12 @@ restart:
    {
       if(pszText == NULL)
       {
-         pszText = "https://account.ca2.cc/";
+         pszText = "https://fontopus.com/";
       }
       string strText(pszText);
       if(strText.is_empty())
       {
-         strText = "https://account.ca2.cc/";
+         strText = "https://fontopus.com/";
       }
       strText = System.url().get_server(strText);
       m_sessionidmap[strText] = pszSessid;

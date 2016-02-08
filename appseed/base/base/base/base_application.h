@@ -258,7 +258,7 @@ virtual ::user::interaction * main_window();
       virtual void add_frame(sp(::user::interaction) pwnd);
       virtual void remove_frame(sp(::user::interaction) pwnd);
 
-      virtual string get_cred(const string & strRequestUrl,const RECT & rect,string & strUsername,string & strPassword,string strToken,string strTitle,bool bInteractive);
+      //virtual string get_cred(const string & strRequestUrl,const RECT & rect,string & strUsername,string & strPassword,string strToken,string strTitle,bool bInteractive);
 
       virtual ::user::user * create_user();
 

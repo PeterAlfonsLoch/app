@@ -1,6 +1,6 @@
 #pragma once
 
-
+namespace userex { class pane_tab_view;  }
 namespace core
 {
 
@@ -13,6 +13,8 @@ namespace core
 
 
 //      ::calculator::calculator *             m_pcalculator;
+
+      ::userex::pane_tab_view *              m_pmainpane;
 
       ::userfs::userfs *                     m_puserfs;
 
@@ -570,6 +572,13 @@ namespace core
 
       
       virtual void on_show_view(::user::tab * ptab);
+
+
+      virtual string get_cred(const string & strRequestUrl, const RECT & rect, string & strUsername, string & strPassword, string strToken, string strTitle, bool bInteractive);
+      virtual string get_cred(string & strUsername, string & strPassword, string strToken);
+      virtual void set_cred(string strToken, const char * pszUsername, const char * pszPassword);
+      virtual void set_cred_ok(string strToken, bool bOk);
+
 
    };
 

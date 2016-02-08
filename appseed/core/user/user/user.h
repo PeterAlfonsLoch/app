@@ -269,7 +269,7 @@ namespace user
 
 } // namespace user
 
-
+#include "app/appseed/core/user/fontopus/fontopus_view.h"
 
 #include "user_button.h"
 //#include "user_meta_button.h"

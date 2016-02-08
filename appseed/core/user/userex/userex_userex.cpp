@@ -73,6 +73,8 @@ namespace userex
       System.factory().creatable_small < ::user::place_holder >();
       System.factory().creatable_small < ::user::place_holder_container >();
 
+      System.factory().creatable_small < ::fontopus::view >();
+
 
       System.factory().cloneable_small < ::user::split_layout >();
       System.factory().cloneable_small < ::user::split_bar >();
