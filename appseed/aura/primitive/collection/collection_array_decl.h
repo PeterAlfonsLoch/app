@@ -224,6 +224,16 @@ namespace heap
 
    };
 
+
+   template < class TYPE >
+   class sys :
+      public allocator < TYPE, system_memory_allocator>
+   {
+
+   };
+
+
+
 } // namespace memory
 
 
@@ -471,6 +481,65 @@ namespace allocator
 
    };
 
+   template < class TYPE >
+   class sys
+   {
+
+   public:
+
+      inline static void construct(TYPE * p)
+      {
+         constructor::def< TYPE >::construct(p);
+      }
+
+      inline static void construct(TYPE * p, ::count c)
+      {
+         constructor::def< TYPE >::construct(p, c);
+
+      }
+
+      inline static void destruct(TYPE * p)
+      {
+         destructor::def< TYPE>::destruct(p);
+      }
+      inline static void destruct(TYPE * p, ::count c)
+      {
+         destructor::def< TYPE>::destruct(p, c);
+      }
+
+
+      inline static void copy(TYPE *pdst, const TYPE * psrc)
+      {
+
+         copier::def< TYPE >::copy(pdst, psrc);
+
+      }
+
+
+      inline static void copy(TYPE *pdst, const TYPE * psrc, ::count c)
+      {
+
+         copier::def< TYPE >::copy(pdst, psrc, c);
+
+      }
+
+      inline static TYPE * alloc(::count c)
+      {
+
+         return heap::sys < TYPE >::alloc(c);
+
+      }
+
+
+      inline static void free(TYPE * p)
+      {
+
+         heap::sys < TYPE >::free(p);
+
+      }
+
+
+   };
 
 } // namespace allocator
 
@@ -977,7 +1046,7 @@ public:
 
 
    array(::aura::application * papp = NULL, ::count nGrowBy = 32);
-   array(const array <TYPE, ARG_TYPE> & a);
+   array(const array & a);
    array(::std::initializer_list < TYPE > l);
    array(::count n);
    array(array && a);

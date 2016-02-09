@@ -46,6 +46,33 @@ CLASS_DECL_AURA void   system_heap_free(void * pvoid);
 namespace heap
 {
 
+
+   class CLASS_DECL_AURA system_memory_allocator
+   {
+   public:
+
+
+      inline static void * alloc(size_t iSize)
+      {
+
+         //TODO("jai"); jas = Jonathan Blow 
+         return system_heap_alloc(iSize);
+
+      }
+
+
+      inline static void free(void * p)
+      {
+
+         //TODO("jai"); jas = Jonathan Blow
+         system_heap_free(p);
+
+      }
+
+
+   };
+
+
    class CLASS_DECL_AURA default_memory_allocator
    {
    public:

@@ -103,7 +103,7 @@ inline void plex_heap_alloc_sync::Free(void * p)
 
 
 class CLASS_DECL_AURA plex_heap_alloc :
-   public ptr_array < plex_heap_alloc_sync >
+   public array < plex_heap_alloc_sync *, plex_heap_alloc_sync *, ::allocator::sys < plex_heap_alloc_sync * > >
 {
 public:
 
@@ -177,7 +177,7 @@ inline void plex_heap_alloc::Free(void * p)
 //#endif
 
 class CLASS_DECL_AURA plex_heap_alloc_array :
-   public ptr_array < plex_heap_alloc >
+   public array < plex_heap_alloc *, plex_heap_alloc *, ::allocator::sys < plex_heap_alloc * > >
 {
 public:
 

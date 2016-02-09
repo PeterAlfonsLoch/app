@@ -278,7 +278,7 @@ array_base < TYPE, ALLOCATOR >(papp,sizeof(TYPE),false)
 
 
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-array < TYPE, ARG_TYPE, ALLOCATOR > ::array(const array <TYPE, ARG_TYPE> & a) :
+array < TYPE, ARG_TYPE, ALLOCATOR > ::array(const array & a) :
 object(a.get_app()),
 array_base < TYPE, ALLOCATOR > (a.get_app(),sizeof(TYPE),false)
 {

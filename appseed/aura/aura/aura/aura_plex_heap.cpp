@@ -307,9 +307,11 @@ plex_heap_alloc_array::~plex_heap_alloc_array()
 
 //   m_iWorkingSize = 0;
 
-   for(int32_t i = 0; i < this->get_count(); i++)
+   for(int32_t i = this->get_upper_bound(); i >= 0; i--)
    {
+
       delete this->element_at(i);
+
    }
 
    remove_all();
@@ -326,9 +328,11 @@ plex_heap_alloc_array::~plex_heap_alloc_array()
 void plex_heap_alloc_array::pre_finalize()
 {
 
-   for(int32_t i = 0; i < this->get_count(); i++)
+   for (int32_t i = this->get_upper_bound(); i >= 0; i--)
    {
+
       this->element_at(i)->pre_finalize();
+
    }
 
 }
