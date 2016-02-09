@@ -378,15 +378,19 @@ bool timer::start(int millis, bool bPeriodic)
 
    its.it_value.tv_nsec = (millis * 1000 * 1000) % (1000 * 1000 * 1000); // expiration
 
-   if (bPeriodic)
+
+   /*if (bPeriodic)
    {
+
+      /// This is not used because overrun.
+      /// The timer will may create new threads, and it maybe a lot of threads, besides the previous triggered threads did not finished their work.
 
       its.it_interval.tv_sec = millis / 1000; // freq period
 
       its.it_interval.tv_nsec = (millis * 1000 * 1000) % (1000 * 1000 * 1000); // freq period
 
    }
-   else
+   else*/
    {
 
       its.it_interval.tv_sec = 0; // no freq
@@ -458,6 +462,24 @@ bool timer::call_on_timer()
 
       on_timer();
 
+      /// pump any messages in queue
+   MESSAGE msg;
+
+   while(::PeekMessage(&msg,NULL,0,0,PM_NOREMOVE) != FALSE)
+   {
+
+      // pump message, but quit on WM_QUIT
+      if(!m_bRun || !pump_message())
+      {
+
+
+//         ::output_debug_string("\n\n\nthread_impl::defer_pump_message (1) quitting (WM_QUIT? {PeekMessage->message : "+::str::from(msg.message == WM_QUIT?1:0)+"!}) : " + string(demangle(typeid(*m_pthread).name())) + " ("+::str::from((uint64_t)::GetCurrentThreadId())+")\n\n\n");
+
+         break;
+
+      }
+
+   }
       sl.lock();
 
       m_bDeal = false;
@@ -547,13 +569,13 @@ bool timer::call_on_timer()
       }
 #else
 
-//      if (m_bPeriodic)
-//      {
-//
-//         if (timer_settime(m_ptimer->m_timerid, 0, &m_ptimer->m_its, NULL) == -1)
-//            return false;
-//
-//      }
+      if (m_bPeriodic)
+      {
+
+         if (timer_settime(m_ptimer->m_timerid, 0, &m_ptimer->m_its, NULL) == -1)
+            return false;
+
+      }
 
 #endif
 

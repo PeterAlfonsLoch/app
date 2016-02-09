@@ -134,7 +134,7 @@ uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL); xxxx 
 template < class T >
 T * c_new(T * p)
 {
-   p->m_bHeap = true;
+   p->m_ulFlags |= (uint64_t) ::object::flag_heap_alloc;
    return p;
 }
 

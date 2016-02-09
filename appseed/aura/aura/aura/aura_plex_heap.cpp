@@ -264,15 +264,15 @@ plex_heap_alloc_array::plex_heap_alloc_array()
    add(new plex_heap_alloc(1024 * 4,32));
    add(new plex_heap_alloc(1024 * 8, 16));
    add(new plex_heap_alloc(1024 * 16, 16));
-   add(new plex_heap_alloc(1024 * 32, 16));
-   add(new plex_heap_alloc(1024 * 64, 16));
+//   add(new plex_heap_alloc(1024 * 32, 16));
+//   add(new plex_heap_alloc(1024 * 64, 16));
 //   m_bbSize[3] = last()->GetAllocSize();
 //   m_aaSize[1] = last()->GetAllocSize();
 //
 //
 //   m_aa[2] = 4;
 //   m_bb[4] = get_size();
-   add(new plex_heap_alloc(1024 * 128,16));
+//   add(new plex_heap_alloc(1024 * 128,16));
 //#if defined(OS64BIT) && defined(LINUX)
 //   add(new plex_heap_alloc(1024 * 192, 16));
 //   add(new plex_heap_alloc(1024 * 256, 16));
@@ -397,7 +397,7 @@ void ca2_heap_free_dbg(void * pvoid)
 
 */
 
-
+thread_pointer < plex_heap_alloc_array::memdleak_block > t_plastblock;
 
 void * plex_heap_alloc_array::alloc_dbg(size_t size, int32_t nBlockUse, const char * pszFileName, int32_t iLine)
 {
@@ -429,6 +429,8 @@ void * plex_heap_alloc_array::alloc_dbg(size_t size, int32_t nBlockUse, const ch
 
    pblock->m_iLine         = iLine;
 
+   pblock->m_iSize         = nAllocSize;
+
    synch_lock lock(g_pmutgen);
 
    pblock->m_pprevious                 = NULL;
@@ -443,6 +445,8 @@ void * plex_heap_alloc_array::alloc_dbg(size_t size, int32_t nBlockUse, const ch
    }
 
    s_pmemdleakList                     = pblock;
+
+   t_plastblock = pblock;
 
    lock.unlock();
 
@@ -700,6 +704,7 @@ void * plex_heap_alloc_array::realloc_dbg(void * p,  size_t size, size_t sizeOld
    pblock->m_iBlockUse     = nBlockUse;
    pblock->m_pszFileName   = strdup(pszFileName);
    pblock->m_iLine         = iLine;
+   pblock->m_iSize         = nAllocSize;
 
 
    pblock->m_pprevious                 = NULL;
@@ -735,7 +740,7 @@ void * plex_heap_alloc_array::realloc_dbg(void * p,  size_t size, size_t sizeOld
 }
 
 
-::count plex_heap_alloc_array::get_mem_info(int32_t ** ppiUse, const char *** ppszFile, int32_t ** ppiLine)
+::count plex_heap_alloc_array::get_mem_info(int32_t ** ppiUse, const char *** ppszFile, int32_t ** ppiLine, int64_t ** ppiSize)
 {
 
 #ifndef MEMDLEAK
@@ -763,6 +768,7 @@ void * plex_heap_alloc_array::realloc_dbg(void * p,  size_t size, size_t sizeOld
    int32_t * piUse =(int32_t *)  malloc(sizeof(int32_t) * ca);
    const char ** pszFile = (const char **) malloc(sizeof(const char *) * ca);
    int32_t * piLine =(int32_t *)  malloc(sizeof(int32_t) * ca);
+   int64_t * piSize =(int64_t *)  malloc(sizeof(int64_t) * ca);
 
    index i = 0;
 
@@ -773,6 +779,7 @@ void * plex_heap_alloc_array::realloc_dbg(void * p,  size_t size, size_t sizeOld
       piUse[i] = pblock->m_iBlockUse;
       pszFile[i] = strdup(pblock->m_pszFileName);
       piLine[i] = pblock->m_iLine;
+      piSize[i] = pblock->m_iSize;
 
       i++;
 
@@ -785,6 +792,7 @@ void * plex_heap_alloc_array::realloc_dbg(void * p,  size_t size, size_t sizeOld
    *ppiUse = piUse;
    *ppszFile = pszFile;
    *ppiLine = piLine;
+   *ppiSize = piSize;
 
 
    return ca;
@@ -793,6 +801,169 @@ void * plex_heap_alloc_array::realloc_dbg(void * p,  size_t size, size_t sizeOld
 
 
 
+#ifdef MEMDLEAK
+
+#define print str+=
+
+class memblock :
+	virtual public ::object
+{
+public:
+
+	int 	m_iUse;
+    string 	m_strFile;
+    int		m_iLine;
+
+    int		m_iCount;
+    int64_t     m_iSize;
+
+};
+
+
+typedef spa(memblock) memblocka;
+
+
+string get_mem_info_report1()
+{
+
+		string str;
+
+      	int * piUse = NULL;
+	const char ** pszFile = NULL;
+	int * piLine = NULL;
+	int64_t * piSize = NULL;
+
+	try
+	{
+
+		::count c = plex_heap_alloc_array::get_mem_info(&piUse, &pszFile, &piLine, & piSize);
+
+		memblocka bla;
+
+		int j;
+
+
+		for(int i = 0; i < c; i++)
+		{
+			for(j = 0; j < bla.get_size(); j++)
+			{
+				memblock * pbl 			= bla.ptr_at(j);
+				if(pbl->m_iUse == piUse[i] && pbl->m_strFile == pszFile[i] && pbl->m_iLine == piLine[i])
+				{
+					pbl->m_iCount++;
+					pbl->m_iSize+= piSize[i];
+					break;
+				}
+			}
+			if(j == bla.get_size())
+			{
+				bla.add(canew(memblock));
+				memblock * pbl 			= bla.last_ptr();
+				pbl->m_iUse 			= piUse[i];
+				pbl->m_strFile 			= pszFile[i];
+				pbl->m_iLine 			= piLine[i];
+				pbl->m_iCount			= 1;
+				pbl->m_iSize         = piSize[i];
+			}
+//			free((void *) pszFile[i]);
+		}
+
+
+			int_array ia;
+
+		ia.set_size(bla.get_count());
+
+		for(int i = 0; i < bla.get_count(); i++)
+		{
+			ia[i] = i;
+		}
+
+		int s;
+
+		for(int i = 0; i < bla.get_count(); i++)
+		{
+			for(j = i + 1; j < bla.get_count(); j++)
+			{
+				if(bla[ia[i]]->m_iSize < bla[ia[j]]->m_iSize)
+				{
+					s = ia[i];
+					ia[i] = ia[j];
+					ia[j] = s;
+				}
+			}
+		}
+
+			print("<table>");
+		print("<tbody>");
+		print("<tr>");
+		print("<td>");
+		print("Block Use");
+		print("</td>");
+		print("<td>");
+		print("File Name");
+		print("</td>");
+		print("<td>");
+		print("Line");
+		print("</td>");
+		print("<td>");
+		print("Count");
+		print("</td>");
+		print("<td>");
+		print("Size");
+		print("</td>");
+		print("</tr>");
+
+
+		for(int i = 0; i < bla.get_count(); i++)
+		{
+			if((i % 2) == 0)
+			{
+				print("<tr style=\"background-color:#c0efb7;\">");
+			}
+			else
+			{
+				print("<tr style=\"background-color:#e0ffd7;\">");
+			}
+		print("<td>");
+			print(var(bla[ia[i]]->m_iUse));
+			print("</td>");
+			print("<td>");
+			print(bla[ia[i]]->m_strFile);
+			print("</td>");
+			print("<td>");
+			print(var(bla[ia[i]]->m_iLine));
+			print("</td>");
+			print("<td>");
+			print(var(bla[ia[i]]->m_iCount));
+			print("</td>");
+			print("<td>");
+			print(var(bla[ia[i]]->m_iSize));
+			print("</td>");
+			print("</tr>");;
+		}
+		print("</tbody>");
+		print("</table>");
+   }
+	catch(...)
+	{
+
+	}
+
+	if(piUse)
+		::free(piUse);
+		if(pszFile)
+		::free(pszFile);
+		if(piLine)
+		::free(piLine);
+
+
+		return str;
+
+}
+
+#undef print
+
+#endif
 
 void * plex_heap_alloc_array::realloc(void * p, size_t size, size_t sizeOld, int align)
 {

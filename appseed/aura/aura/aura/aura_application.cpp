@@ -571,17 +571,26 @@ namespace aura
 
       dappy(string(typeid(*this).name()) + " : SetCurrentHandles 1 : " + ::str::from(m_iReturnCode));
       m_pimpl->set_os_data((void *) ::get_current_thread());
-      if(m_pthreadimpl->get_os_data() == NULL)
+//      if(m_pthreadimpl->get_os_data() == NULL)
+//      {
+//         m_pthreadimpl->set_os_data(m_pimpl->get_os_data());
+//      }
+      if(get_os_data() == NULL)
       {
-         m_pthreadimpl->set_os_data(m_pimpl->get_os_data());
+         set_os_data(m_pimpl->get_os_data());
       }
       dappy(string(typeid(*this).name()) + " : SetCurrentHandles 2 : " + ::str::from(m_iReturnCode));
       m_pimpl->set_os_int(::get_current_thread_id());
-      if(m_pthreadimpl->get_os_int() == 0)
+      if(get_os_int() == 0)
       {
-         m_pthreadimpl->set_os_int(m_pimpl->get_os_int());
+         set_os_int(m_pimpl->get_os_int());
       }
-
+//
+//      if(m_pthreadimpl->get_os_int() == 0)
+//      {
+//         m_pthreadimpl->set_os_int(m_pimpl->get_os_int());
+//      }
+//
       m_pimpl->SetCurrentHandles();
       dappy(string(typeid(*this).name()) + " : SetCurrentHandles impled : " + ::str::from(m_iReturnCode));
 
@@ -1011,7 +1020,7 @@ namespace aura
 
       thread * pthread = ::get_thread();
 
-      install_message_handling(pthread->m_pthreadimpl);
+      install_message_handling(pthread);
 
       dappy(string(typeid(*this).name()) + " : starting on_run 2 : " + ::str::from(m_iReturnCode));
 
@@ -1784,14 +1793,14 @@ namespace aura
 
 
 
-      if(m_pthreadimpl == NULL)
-      {
-
-         m_pthreadimpl.alloc(allocer());
-
-         m_pthreadimpl->m_pthread = this;
-
-      }
+//      if(m_pthreadimpl == NULL)
+//      {
+//
+//         m_pthreadimpl.alloc(allocer());
+//
+//         m_pthreadimpl->m_pthread = this;
+//
+//      }
 
       m_pimpl.alloc(allocer());
 
@@ -2308,13 +2317,13 @@ namespace aura
          try
          {
 
-            sp(thread_impl) pthread = m_pthreadimpl;
-
-            if(pthread != NULL)
-            {
-
-               try
-               {
+//            sp(thread_impl) pthread = m_pthreadimpl;
+//
+//            if(pthread != NULL)
+//            {
+//
+//               try
+//               {
                   // avoid calling CloseHandle() on our own thread handle
                   // during the thread destructor
                   // avoid thread object data auto deletion on thread termination,
@@ -2323,15 +2332,15 @@ namespace aura
 
                   set_run(false);
 
-                  pthread->exit_instance();
+                  exit_instance();
 
-               }
-               catch(...)
-               {
-
-               }
-
-            }
+//               }
+//               catch(...)
+//               {
+//
+//               }
+//
+//            }
 
          }
          catch(...)
@@ -3508,20 +3517,20 @@ namespace aura
 
    }
 
-   bool application::on_thread_on_idle(::thread_impl * pimpl,LONG lCount)
+   bool application::on_thread_on_idle(::thread * pthread,LONG lCount)
    {
 
-      UNREFERENCED_PARAMETER(pimpl);
+      UNREFERENCED_PARAMETER(pthread);
 
       return lCount < 0;
 
    }
 
 
-   bool application::post_user_message(::thread_impl * pimpl,::user::primitive * pui,UINT message,WPARAM wparam,lparam lparam)
+   bool application::post_user_message(::thread * pthread,::user::primitive * pui,UINT message,WPARAM wparam,lparam lparam)
    {
 
-      UNREFERENCED_PARAMETER(pimpl);
+      UNREFERENCED_PARAMETER(pthread);
       UNREFERENCED_PARAMETER(pui);
       UNREFERENCED_PARAMETER(message);
       UNREFERENCED_PARAMETER(wparam);
@@ -4094,9 +4103,9 @@ namespace aura
          peventReady->ResetEvent();
       }
 
-      m_pthreadimpl.alloc(allocer());
-
-      m_pthreadimpl->m_pthread = this;
+//      m_pthreadimpl.alloc(allocer());
+//
+//      m_pthreadimpl->m_pthread = this;
 
       if(pbias != NULL)
       {

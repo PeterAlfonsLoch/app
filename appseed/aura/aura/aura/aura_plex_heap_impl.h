@@ -186,11 +186,22 @@ public:
    {
 
 
-      int32_t               m_iBlockUse;
-      const char *      m_pszFileName;
-      int32_t               m_iLine;
-      memdleak_block *  m_pnext;
-      memdleak_block *  m_pprevious;
+      int32_t                 m_iBlockUse;
+      const char *            m_pszFileName;
+      int32_t                 m_iLine;
+      int64_t                 m_iSize;
+      memdleak_block *        m_pnext;
+      memdleak_block *        m_pprevious;
+
+      memdleak_block(int32_t iBlockUse, const char * pszFileName, int32_t iLine, int64_t iSize)
+      {
+
+         m_iBlockUse       = iBlockUse;
+         m_pszFileName     = pszFileName;
+         m_iLine           = iLine;
+         m_iSize           = iSize;
+
+      }
 
    };
 
@@ -213,7 +224,7 @@ public:
 
 
 
-   static ::count get_mem_info(int32_t ** ppiUse, const char *** ppszFile, int32_t ** ppiLine);
+   static ::count get_mem_info(int32_t ** ppiUse, const char *** ppszFile, int32_t ** ppiLine, int64_t ** ppiSize);
 
 
    inline void * alloc(size_t nAllocSize);

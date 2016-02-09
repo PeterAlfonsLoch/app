@@ -97,8 +97,8 @@ namespace base
 //      virtual void get_time(timeval *p);
 //#endif
 //
-//      virtual bool on_thread_on_idle(::thread_impl * pimpl,LONG lCount);
-//      virtual bool post_user_message(::thread_impl * pimpl,::user::primitive * pui,UINT message,WPARAM wparam = 0,lparam lparam = 0);
+//      virtual bool on_thread_on_idle(::thread * pthread,LONG lCount);
+//      virtual bool post_user_message(::thread * pthread,::user::primitive * pui,UINT message,WPARAM wparam = 0,lparam lparam = 0);
 //
 //
 //      virtual bool is_window(::user::primitive * pui);
@@ -286,7 +286,7 @@ virtual ::user::interaction * main_window();
 
       virtual ::user::interaction * FindWindow(const char * lpszClassName,const char * lpszWindowName);
       virtual ::user::interaction * FindWindowEx(oswindow oswindowParent,oswindow oswindowChildAfter,const char * lpszClass,const char * lpszWindow);
-      virtual bool post_user_message(::thread_impl * pimpl,::user::primitive * pui,UINT message,WPARAM wparam = 0,lparam lparam = 0);
+      virtual bool post_user_message(::thread * pthread,::user::primitive * pui,UINT message,WPARAM wparam = 0,lparam lparam = 0);
 
       virtual void draw2d_factory_exchange();
 

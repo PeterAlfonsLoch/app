@@ -131,7 +131,7 @@ typedef struct _MEMORY_STATE
 #ifndef DEBUG
 
 ////////////////////////////////////////////////////////////////////////////////////
-// 
+//
 //    Debug OFF
 
 
@@ -139,7 +139,7 @@ typedef struct _MEMORY_STATE
 //
 //  We allow our basic _ASSERT macros to be overridden by pre-existing definitions.
 //    This is not the ideal mechanism, but is helpful in some scenarios and helps avoid
-//    multiple definition problems 
+//    multiple definition problems
 
 #ifndef _ASSERT
 #define _ASSERT(expr) ((void)0)
@@ -153,25 +153,25 @@ typedef struct _MEMORY_STATE
 #define _ASSERT_EXPR(expr, expr_str) (()0)
 #endif
 
-//  
+//
 //  DEBUG Off
 //
 /////////////////////////////
 
 
-#else   
+#else
 
 
 /////////////////////////////
-//  
+//
 //  DEBUG ON
 //
 
 
 ///////////////////////////////////////////////////////////////
 //
-//    Asserts 
-//    We use !! below to ensure that any overloaded operators used to evaluate expr do not end up at operator || 
+//    Asserts
+//    We use !! below to ensure that any overloaded operators used to evaluate expr do not end up at operator ||
 //
 #undef _ASSERT_EXPR
 #define _ASSERT_EXPR(expr, msg) \
@@ -193,13 +193,13 @@ typedef struct _MEMORY_STATE
 #define debug_break() debug_break()
 #endif
 
-//  
+//
 //  DEBUG ON
 //
 /////////////////////////////
 
 
-#endif 
+#endif
 
 
 
@@ -244,3 +244,10 @@ CLASS_DECL_AURA string FormatMessageFromSystem(uint32_t dwError);
 
 
 
+
+
+#ifdef MEMDLEAK
+
+CLASS_DECL_AURA string get_mem_info_report1();
+
+#endif

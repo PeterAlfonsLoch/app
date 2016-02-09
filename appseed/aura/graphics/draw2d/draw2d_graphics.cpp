@@ -24,7 +24,6 @@ namespace draw2d
       object(papp)
    {
 
-      m_pmutex                = new mutex(papp);
       m_puistrcontext         = NULL;
       m_pdrawcontext          = NULL;
       m_pdibAlphaBlend        = NULL;

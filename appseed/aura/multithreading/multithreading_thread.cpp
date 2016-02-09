@@ -24,7 +24,7 @@ thread::file_info::~file_info()
 
 thread::file_info * thread::get_file_info()
 {
-   
+
    if(m_pfileinfo != NULL)
       return m_pfileinfo;
 
@@ -36,20 +36,23 @@ thread::file_info * thread::get_file_info()
 
 DWORD thread::get_file_sharing_violation_timeout_total_milliseconds()
 {
-   
+
    return (DWORD) get_file_info()->m_durationFileSharingViolationTimeout.get_total_milliseconds();
 
 }
 
 ::duration thread::set_file_sharing_violation_timeout(::duration duration)
 {
-   
+
    return get_file_info()->m_durationFileSharingViolationTimeout = duration;
 
 }
 
 
-thread::thread()
+thread::thread() :
+   ::object(::get_thread_app()),
+   m_evFinish(::get_thread_app()),
+   m_mutexUiPtra(::get_thread_app())
 {
 
    CommonConstruct();
@@ -62,7 +65,9 @@ thread::thread()
 
 
 thread::thread(::aura::application * papp) :
-object(papp)
+   object(papp),
+   m_evFinish(papp),
+   m_mutexUiPtra(papp)
 {
 
    CommonConstruct();
@@ -72,9 +77,9 @@ object(papp)
    set_app(papp);
    if (!s_bAllocReady)
       return;
-   m_pthreadimpl.alloc(allocer());
-   m_pthreadimpl->m_pthread = this;
-   m_pthreadimpl->construct();
+//   m_pthreadimpl.alloc(allocer());
+  // m_pthreadimpl->m_pthread = this;
+   construct();
 
    if(m_pauraapp != NULL && m_pauraapp->m_paurasession != NULL)
    {
@@ -87,14 +92,16 @@ object(papp)
 
 
 thread::thread(::aura::application * papp, __THREADPROC pfnThreadProc, LPVOID pParam) :
-object(papp)
+   object(papp),
+   m_evFinish(papp),
+   m_mutexUiPtra(papp)
 {
 
    CommonConstruct();
 
-   m_pthreadimpl.alloc(allocer());
-   m_pthreadimpl->m_pthread = this;
-   m_pthreadimpl->construct(pfnThreadProc, pParam);
+//   m_pthreadimpl.alloc(allocer());
+//   m_pthreadimpl->m_pthread = this;
+   construct(pfnThreadProc, pParam);
 
    if(m_pauraapp != NULL && m_pauraapp->m_paurasession != NULL)
    {
@@ -136,6 +143,27 @@ void thread::CommonConstruct()
 
    m_pfileinfo = NULL;
 
+#ifndef WINDOWSEX
+
+   m_mq = NULL;
+
+#endif
+
+   m_bDupHandle = false;
+
+   m_hthread = (HTHREAD) NULL;
+   m_uiThread = 0;
+
+   m_evFinish.SetEvent();
+   m_pThreadParams = NULL;
+   m_pfnThreadProc = NULL;
+
+   m_nDisablePumpCount  = 0;
+
+
+   //m_hthread = NULL;
+
+
 
 }
 
@@ -163,22 +191,6 @@ thread::~thread()
 
 
 
-void * thread::get_os_data() const
-{
-   return m_pthreadimpl == NULL ? NULL : m_pthreadimpl->get_os_data();
-}
-
-
-IDTHREAD thread::get_os_int() const
-{
-   
-   if(m_pthreadimpl == NULL)
-      throw simple_exception(get_app(), "invalid call");
-
-   return m_pthreadimpl->get_os_int();
-
-}
-
 
 HTHREAD thread::get_os_handle() const
 {
@@ -203,16 +215,6 @@ void thread::_001OnSendThreadMessage(signal_details * pobj)
 }
 
 
-void thread::start()
-{
-
-   if(m_pthreadimpl.is_null())
-      return;
-
-   m_pthreadimpl->start();
-
-}
-
 
 bool thread::verb()
 {
@@ -222,52 +224,7 @@ bool thread::verb()
 }
 
 
-bool thread::begin(int32_t epriority, uint_ptr nStackSize, uint32_t dwCreateFlags, LPSECURITY_ATTRIBUTES lpSecurityAttrs)
-{
 
-   if (m_pthreadimpl.is_null())
-      return false;
-
-   m_pthreadimpl->m_pthread = this;
-
-   return m_pthreadimpl->begin(epriority,nStackSize,dwCreateFlags,lpSecurityAttrs);
-
-}
-
-
-bool thread::create_thread(int32_t epriority,uint_ptr nStackSize,uint32_t dwCreateFlags,LPSECURITY_ATTRIBUTES lpSecurityAttrs)
-{
-
-   if (m_pthreadimpl.is_null())
-      return false;
-
-   return m_pthreadimpl->create_thread(epriority,nStackSize,dwCreateFlags,lpSecurityAttrs);
-
-}
-
-
-bool thread::begin_synch(int32_t * piStartupError, int32_t epriority,uint_ptr nStackSize,uint32_t dwCreateFlags,LPSECURITY_ATTRIBUTES lpSecurityAttrs)
-{
-
-   if(m_pthreadimpl.is_null())
-      return false;
-
-   m_pthreadimpl->m_pthread = this;
-
-   return m_pthreadimpl->begin_synch(piStartupError, epriority,nStackSize,dwCreateFlags,lpSecurityAttrs);
-
-}
-
-
-bool thread::create_thread_synch(int32_t * piStartupError,int32_t epriority,uint_ptr nStackSize,uint32_t dwCreateFlags,LPSECURITY_ATTRIBUTES lpSecurityAttrs)
-{
-
-   if(m_pthreadimpl.is_null())
-      return false;
-
-   return m_pthreadimpl->create_thread_synch(piStartupError,epriority,nStackSize,dwCreateFlags,lpSecurityAttrs);
-
-}
 
 
 bool thread::finalize()
@@ -276,11 +233,6 @@ bool thread::finalize()
    signal_close_dependent_threads();
 
    wait_close_dependent_threads(minutes(1));
-
-   if(m_pthreadimpl == NULL)
-      return true;
-
-   m_pthreadimpl->finalize();
 
    return true;
 
@@ -310,50 +262,6 @@ int32_t thread::exit()
 
 }
 
-
-
-int32_t thread::get_thread_priority()
-{
-
-   if(m_pthreadimpl.is_null())
-      return -1;
-
-   return m_pthreadimpl->get_thread_priority();
-
-}
-
-
-bool thread::set_thread_priority(int32_t epriority)
-{
-
-   if(m_pthreadimpl.is_null())
-      return false;
-
-   return m_pthreadimpl->set_thread_priority(epriority);
-
-}
-
-
-uint32_t thread::ResumeThread()
-{
-
-   if(m_pthreadimpl.is_null())
-      return false;
-
-   return m_pthreadimpl->ResumeThread();
-
-}
-
-
-bool thread::post_thread_message(UINT message, WPARAM wParam, lparam lParam)
-{
-
-   if (m_pthreadimpl.is_null())
-      return false;
-
-   return m_pthreadimpl->post_thread_message(message, wParam, lParam);
-
-}
 
 bool thread::send_thread_message(UINT message,WPARAM wParam,lparam lParam, ::duration durWaitStep)
 {
@@ -397,27 +305,6 @@ bool thread::send_thread_message(UINT message,WPARAM wParam,lparam lParam, ::dur
 }
 
 
-void thread::set_os_data(void * pvoidOsData)
-{
-
-   if(m_pthreadimpl.is_null())
-      return;
-
-   m_pthreadimpl->set_os_data(pvoidOsData);
-
-}
-
-
-void thread::set_os_int(IDTHREAD iData)
-{
-
-   if(m_pthreadimpl.is_null())
-      return;
-
-   m_pthreadimpl->set_os_int(iData);
-
-}
-
 
 void thread::on_keep_alive()
 {
@@ -430,9 +317,6 @@ void thread::on_keep_alive()
 bool thread::is_alive()
 {
 
-   if(m_pthreadimpl.is_null())
-      return false;
-
    if (!m_bRun)
       return false;
 
@@ -443,16 +327,6 @@ bool thread::is_alive()
 
 }
 
-bool thread::has_message()
-{
-
-   if(m_pthreadimpl.is_null())
-      return false;
-
-   return m_pthreadimpl->has_message();
-
-
-}
 
 
 bool thread::is_auto_delete()
@@ -462,37 +336,6 @@ bool thread::is_auto_delete()
 
 }
 
-
-wait_result thread::wait(const duration & duration)
-{
-
-   if(m_pthreadimpl.is_null())
-      return wait_result();
-
-   return m_pthreadimpl->wait(duration);
-
-}
-
-
-void thread::set_priority(int32_t priority)
-{
-
-   if(m_pthreadimpl.is_null())
-      return;
-
-   m_pthreadimpl->set_priority(priority);
-
-}
-
-int32_t thread::priority()
-{
-
-   if(m_pthreadimpl.is_null())
-      return 0x80000000;
-
-   return m_pthreadimpl->priority();
-
-}
 
 
 
@@ -504,90 +347,6 @@ CLASS_DECL_AURA void thread_alloc_ready(bool bReady)
 }
 
 
-void thread::process_message_filter(int32_t code, signal_details * pobj)
-{
-
-   if(m_pthreadimpl.is_null())
-      return;
-
-   return  m_pthreadimpl->process_message_filter(code, pobj);
-
-}
-
-
-bool thread::post_message(::user::primitive * pui, UINT message, WPARAM wParam, lparam lParam)
-{
-
-   if(m_pthreadimpl.is_null())
-      return false;
-
-   return m_pthreadimpl->post_message(pui, message, wParam, lParam);
-
-}
-
-bool thread::pre_init_instance()
-{
-
-   if(m_pthreadimpl.is_null())
-      return false;
-
-   return m_pthreadimpl->pre_init_instance();
-
-}
-
-bool thread::on_run_exception(::exception::exception & e)
-{
-
-   try
-   {
-
-      if (m_pthreadimpl.is_null())
-         return false;
-
-      return m_pthreadimpl->on_run_exception(e);
-
-   }
-   catch (::exception::standard_access_violation &)
-   {
-
-      return false;
-
-   }
-   catch (::exception::exception & e)
-   {
-
-      throw e;
-
-   }
-   catch (...)
-   {
-
-      return false;
-
-   }
-
-}
-
-bool thread::initialize_instance()
-{
-
-   if(m_pthreadimpl.is_null())
-      return false;
-
-   return m_pthreadimpl->initialize_instance();
-
-}
-
-
-message::e_prototype thread::GetMessagePrototype(UINT uiMessage, UINT uiCode)
-{
-
-   if(m_pthreadimpl.is_null())
-      return ::message::PrototypeNone;
-
-   return m_pthreadimpl->GetMessagePrototype(uiMessage, uiCode);
-
-}
 
 bool thread::pre_run()
 {
@@ -601,194 +360,192 @@ bool thread::pre_run()
 int32_t thread::run()
 {
 
-   if(m_pthreadimpl.is_null())
-      return -1;
+   ASSERT_VALID(this);
 
-   return m_pthreadimpl->run();
+   //m_bIdle = TRUE;
+
+   //m_lIdleCount = 0;
+
+   sync_object_ptra soa;
+
+   if(m_peventEvent == NULL)
+   {
+
+      m_peventEvent = new manual_reset_event(get_app());
+
+   }
+
+   soa.add(m_peventEvent);
+
+   defer_add_thread_run_wait(soa);
+
+   multi_lock ml(soa);
+
+   ::output_debug_string("::thread::run " + string(demangle(typeid(*this).name())) + " m_bRun = "+::str::from((int)m_bRun)+"\n\n");
+
+
+   while(m_bRun)
+   {
+
+      if(m_spuiptra.is_set() && m_spuiptra->get_count() > 0)
+      {
+
+            ml.lock(millis(25),false,QS_ALLEVENTS);
+
+      }
+      else
+      {
+
+            ml.lock(m_durationRunLock,false,QS_ALLEVENTS);
+
+      }
+
+      if(!defer_pump_message())
+      {
+
+         break;
+
+      }
+
+
+   }
+
+   ::output_debug_string("::thread::run Exiting " + string(demangle(typeid(*this).name())) + " m_bRun = "+::str::from((int)m_bRun)+" m_iReturnCode = "+::str::from(m_iReturnCode)+"\n\n");
+
+   return m_iReturnCode;
 
 }
 
-
-void thread::pre_translate_message(signal_details * pobj)
-{
-
-   if (m_pthreadimpl.is_null())
-      return;
-
-   return m_pthreadimpl->pre_translate_message(pobj);
-
-}
 
 
 bool thread::pump_message()
 {
 
-   if(m_pthreadimpl.is_null())
+   try
    {
-      if(dynamic_cast <::timer *> ((thread *) this) != NULL)
+
+      MESSAGE msg;
+
+      if(!::GetMessage(&msg,NULL,0,0))
       {
-         m_pthreadimpl.alloc(allocer());
-         if(m_pthreadimpl.is_null())
-         {
-            return false;
-         }
-         m_pthreadimpl->m_pthread = this;
-      }
-      else
-      {
+
+         TRACE(::aura::trace::category_AppMsg,1,"thread::pump_message - Received WM_QUIT.\n");
+
+         ::output_debug_string("thread::pump_message - Received WM_QUIT.\n");
+
+         m_nDisablePumpCount++; // application must die
+         // Note: prevents calling message loop things in 'exit_instance'
+         // will never be decremented
          return false;
+
       }
+
+      process_message(&msg);
+
+      return true;
+
+   }
+   catch(exit_exception & e)
+   {
+
+      throw e;
+
+   }
+   catch(const ::exception::exception & e)
+   {
+
+      if(on_run_exception((::exception::exception &) e))
+         return true;
+
+      // get_app() may be it self, it is ok...
+      if(App(get_app()).final_handle_exception((::exception::exception &) e))
+         return true;
+
+      return false;
+
+   }
+   catch(...)
+   {
+
+      return false;
+
    }
 
-   return m_pthreadimpl->pump_message();
+//   if(m_pthreadimpl.is_null())
+//   {
+//      if(dynamic_cast <::timer *> ((thread *) this) != NULL)
+//      {
+//         m_pthreadimpl.alloc(allocer());
+//         if(m_pthreadimpl.is_null())
+//         {
+//            return false;
+//         }
+//         m_pthreadimpl->m_pthread = this;
+//      }
+//      else
+//      {
+//         return false;
+//      }
+//   }
+//
+//   return m_pthreadimpl->pump_message();
 
 }
 
 bool thread::defer_pump_message()
 {
 
-   if(m_pthreadimpl.is_null())
+   MESSAGE msg;
+
+   while(::PeekMessage(&msg,NULL,0,0,PM_NOREMOVE) != FALSE)
+   {
+
+      // pump message, but quit on WM_QUIT
+      if(!m_bRun || !pump_message())
+      {
+
+
+         ::output_debug_string("\n\n\nthread::defer_pump_message (1) quitting (WM_QUIT? {PeekMessage->message : "+::str::from(msg.message == WM_QUIT?1:0)+"!}) : " + string(demangle(typeid(*this).name())) + " ("+::str::from((uint64_t)::GetCurrentThreadId())+")\n\n\n");
+
+         return false;
+
+      }
+
+   }
+
+   // reset "no idle" state after pumping "normal" message
+   //if (is_idle_message(&m_msgCur))
+   if(is_idle_message(&msg))
+   {
+
+      //m_bIdle = true;
+
+      //m_lIdleCount = 0;
+
+   }
+
+   if(!on_run_step())
+   {
+
+      ::output_debug_string("defer_pump_message (2) quitting : " + string(demangle(typeid(*this).name())) + "\n\n");
+
       return false;
 
-   return m_pthreadimpl->defer_pump_message();
+   }
+
+
+   on_idle(0);
+
+   return true;
 
 }
 
-bool thread::process_message(LPMESSAGE lpmsg)
-{
 
-   if(m_pthreadimpl.is_null())
-      return false;
-
-   return m_pthreadimpl->process_message(lpmsg);
-
-}
-
-bool thread::on_idle(LONG lCount)
-{
-
-   if(m_pthreadimpl.is_null())
-      return false;
-
-   return m_pthreadimpl->on_idle(lCount);
-
-}
-
-bool thread::on_thread_on_idle(thread_impl *pimpl, LONG lCount)
+bool thread::on_thread_on_idle(thread *pimpl, LONG lCount)
 {
    return true;
 }
 
-
-bool thread::is_idle_message(signal_details * pobj)
-{
-
-   if(m_pthreadimpl.is_null())
-      return false;
-
-   return m_pthreadimpl->is_idle_message(pobj);
-
-}
-
-
-bool thread::is_idle_message(LPMESSAGE lpmsg)
-{
-
-   if(m_pthreadimpl.is_null())
-      return false;
-
-   return m_pthreadimpl->is_idle_message(lpmsg);
-
-}
-
-
-int32_t thread::exit_instance()
-{
-
-   if (m_pthreadimpl.is_null())
-      return 0;
-
-   return m_pthreadimpl->exit_instance();
-
-}
-
-
-void thread::process_window_procedure_exception(::exception::base* e, signal_details * pobj)
-{
-
-   if(m_pthreadimpl.is_null())
-      return;
-
-   return m_pthreadimpl->process_window_procedure_exception(e,pobj);
-
-}
-
-
-
-void thread::add(::user::primitive * pui)
-{
-
-   if (m_pthreadimpl.is_null())
-      return;
-
-   m_pthreadimpl->add(pui);
-
-}
-
-
-void thread::remove(::user::primitive * pui)
-{
-
-   if (m_pthreadimpl.is_null())
-      return;
-
-   m_pthreadimpl->remove(pui);
-
-}
-
-
-::count thread::get_ui_count()
-{
-
-   if (m_pthreadimpl.is_null())
-      return 0;
-
-   return m_pthreadimpl->get_ui_count();
-
-}
-
-
-::user::primitive * thread::get_ui(index iIndex)
-{
-
-   if (m_pthreadimpl.is_null())
-      return NULL;
-
-   return m_pthreadimpl->get_ui(iIndex);
-
-}
-
-
-//void thread::set_timer(::user::primitive * pui, uint_ptr nIDEvent, UINT nEllapse)
-//{
-//
-//   if (m_pthreadimpl.is_null())
-//      return;
-//
-//   m_pthreadimpl->set_timer(pui, nIDEvent, nEllapse);
-//
-//}
-//
-//
-//void thread::unset_timer(::user::primitive * pui, uint_ptr nIDEvent)
-//{
-//
-//   if (m_pthreadimpl.is_null())
-//      return;
-//
-//   m_pthreadimpl->unset_timer(pui, nIDEvent);
-//
-//}
 
 
 void thread::set_auto_delete(bool bAutoDelete)
@@ -806,16 +563,6 @@ void thread::set_run(bool bRun)
 
 }
 
-
-event & thread::get_finish_event()
-{
-
-   if (m_pthreadimpl.is_null())
-      return *((event *)NULL);
-
-   return m_pthreadimpl->get_finish_event();
-
-}
 
 
 bool thread::get_run()
@@ -857,9 +604,6 @@ bool thread::get_run()
 
 bool thread::on_run_step()
 {
-
-   if (m_pthreadimpl.is_null())
-      return false;
 
 
    //step_timer();
@@ -914,35 +658,6 @@ bool thread::on_run_step()
 }
 
 
-int32_t thread::main()
-{
-
-   return m_pthreadimpl->main();
-
-}
-
-
-
-void thread::assert_valid() const
-{
-
-   if(m_pthreadimpl.is_null())
-      return;
-
-   m_pthreadimpl->assert_valid();
-
-}
-
-
-void thread::dump(dump_context & dumpcontext) const
-{
-
-   if(m_pthreadimpl.is_null())
-      return;
-
-   m_pthreadimpl->dump(dumpcontext);
-
-}
 
 
 void thread::Delete()
@@ -950,58 +665,6 @@ void thread::Delete()
 
 
    release();
-
-}
-
-
-void thread::dispatch_thread_message(signal_details * pobj)  // helper
-{
-   m_pthreadimpl->dispatch_thread_message(pobj);
-
-}
-
-void thread::wait()
-{
-
-   if(m_pthreadimpl.is_null())
-      return;
-
-   return m_pthreadimpl->wait();
-
-}
-
-
-int_ptr thread::item() const
-{
-
-   if(m_pthreadimpl.is_null())
-      return -1;
-
-   return (int_ptr) m_pthreadimpl->item();
-
-}
-
-
-int thread::get_x_window_count() const
-{
-
-   if (m_pthreadimpl.is_null())
-      return 0;
-
-   return m_pthreadimpl->get_x_window_count();
-
-}
-
-
-
-
-void thread::post_to_all_threads(UINT message,WPARAM wparam,LPARAM lparam)
-{
-
-   if(m_pthreadimpl.is_null())
-      return;
-
-   m_pthreadimpl->post_to_all_threads(message,wparam,lparam);
 
 }
 
@@ -1148,10 +811,10 @@ void thread::register_at_required_threads()
    {
 
       Application.register_dependent_thread(this);
-      
+
    }
-   
-   
+
+
 
 }
 
@@ -1188,16 +851,6 @@ void thread::unregister_from_required_threads()
 
 }
 
-
-void thread::do_events()
-{
-
-   if(m_pthreadimpl.is_null())
-      return;
-
-   m_pthreadimpl->do_events();
-
-}
 
 
 void thread::do_events(const duration & duration)
@@ -1237,7 +890,7 @@ void thread::set_run_thread(bool bRun)
       }
 
       m_bRun = false;
-      
+
       post_quit();
 
 
@@ -1376,3 +1029,1815 @@ bool thread::is_system()
 
 }
 
+
+
+
+
+uint32_t __thread_entry(void * pparam);
+
+void thread::construct()
+{
+
+   CommonConstruct();
+
+}
+
+
+
+void thread::construct(__THREADPROC pfnThreadProc, LPVOID pParam)
+{
+
+   CommonConstruct();
+
+   m_pfnThreadProc = pfnThreadProc;
+   m_pThreadParams = pParam;
+
+}
+
+
+
+
+
+bool thread::pre_init_instance()
+{
+
+   return true;
+
+}
+
+
+bool thread::initialize_instance()
+{
+
+   return true;
+
+}
+
+void thread::dispatch_thread_message(signal_details * pbase)
+{
+
+
+   if(pbase->m_uiMessage == WM_APP + 1984 && pbase->m_wparam == 77)
+   {
+
+      Application.dispatch_user_message(pbase);
+
+      return;
+
+   }
+   //LRESULT lresult;
+
+   synch_lock sl(m_pmutex);
+   int i = 0;
+   Signal * pSignal;
+   while((pSignal = m_signala.GetSignal(pbase->m_uiMessage,0,0, i)) != NULL)
+   {
+      class signal * psignal = pSignal->m_psignal;
+      message::e_prototype eprototype = pSignal->m_eprototype;
+      if(eprototype == message::PrototypeNone)
+      {
+         //::message::base aura(get_app());
+         pbase->m_psignal = psignal;
+         //lresult = 0;
+         //aura.set(pmsg->message, pmsg->wParam, pmsg->lParam, lresult);
+         psignal->emit(pbase);
+         if(pbase->m_bRet)
+            return;
+      }
+      break;
+   }
+   pbase->m_bRet = true;
+
+}
+
+
+void thread::wait()
+{
+
+   return command_target::wait();
+
+}
+
+wait_result thread::wait(const duration & duration)
+{
+
+   return command_target::wait(duration);
+
+}
+
+
+void thread::pre_translate_message(signal_details * pobj)
+{
+
+   try
+   {
+      SCAST_PTR(::message::base,pbase,pobj);
+
+      //   ASSERT_VALID(this);
+
+      // if this is a thread-message, int16_t-circuit this function
+      if(pbase->m_pwnd == NULL)
+      {
+         dispatch_thread_message(pobj);
+         if(pobj->m_bRet)
+            return;
+      }
+
+//      ::user::primitive * puiTopic = pbase->m_pwnd;
+
+      try
+      {
+         if(m_pauraapp->m_paurasession != NULL)
+         {
+
+            m_pauraapp->m_paurasession->frame_pre_translate_message(pobj);
+         }
+      }
+      catch(exit_exception & e)
+      {
+         throw e;
+      }
+      catch(...)
+      {
+      }
+   }
+   catch(exit_exception & e)
+   {
+      throw e;
+   }
+   catch(...)
+   {
+   }
+
+}
+
+
+
+
+
+
+
+void thread::process_window_procedure_exception(::exception::base*,signal_details * pobj)
+{
+   SCAST_PTR(::message::base,pbase,pobj);
+   if(pbase->m_uiMessage == WM_CREATE)
+   {
+      pbase->set_lresult(-1);
+      return;  // just fail
+   }
+   else if(pbase->m_uiMessage == WM_PAINT)
+   {
+      // force validation of interaction_impl to prevent getting WM_PAINT again
+      #ifdef WIDOWSEX
+      ValidateRect(pbase->m_pwnd->get_safe_handle(),NULL);
+      #endif
+      pbase->set_lresult(0);
+      return;
+   }
+   return;   // sensible default for rest of commands
+}
+
+
+namespace thread_util
+{
+
+   inline bool IsEnterKey(signal_details * pobj)
+   {
+      SCAST_PTR(::message::base,pbase,pobj);
+      return pbase->m_uiMessage == WM_KEYDOWN && pbase->m_wparam == VK_RETURN;
+   }
+
+   inline bool IsButtonUp(signal_details * pobj)
+   {
+      SCAST_PTR(::message::base,pbase,pobj);
+      return pbase->m_uiMessage == WM_LBUTTONUP;
+   }
+
+}
+
+void thread::process_message_filter(int32_t code,signal_details * pobj)
+{
+
+   Application.process_message_filter(code,pobj);
+
+}
+
+
+
+
+
+thread_startup::thread_startup(::aura::application * papp) :
+   object(papp),
+   m_event(papp),
+   m_event2(papp)
+{
+
+   m_iError = 0;
+   m_bSynch = false;
+
+
+}
+
+
+thread_startup::~thread_startup()
+{
+
+}
+
+
+
+
+bool thread::begin_thread(bool bSynch,int32_t * piStartupError,int32_t epriority,uint_ptr nStackSize,uint32_t dwCreateFlagsParam,LPSECURITY_ATTRIBUTES lpSecurityAttrs)
+{
+
+   DWORD dwCreateFlags = dwCreateFlagsParam;
+
+   ENSURE(m_hthread == (HTHREAD) NULL);
+
+   sp(::thread_startup) pstartup = canew(::thread_startup(get_app()));
+
+   pstartup->m_bError = FALSE;
+
+   pstartup->m_bSynch = bSynch;
+
+   pstartup->m_pthread = this;
+
+   pstartup->m_dwCreateFlags = dwCreateFlags;
+
+   pstartup->m_event2.ResetEvent();
+
+   m_hthread = (HTHREAD)(uint_ptr) ::create_thread(lpSecurityAttrs,nStackSize,&__thread_entry,pstartup.m_p,dwCreateFlags,&m_uiThread);
+
+   if(m_hthread == (HTHREAD) NULL)
+   {
+      try
+      {
+
+         if(piStartupError != NULL)
+            *piStartupError = pstartup->m_iError;
+      }
+      catch(...)
+      {
+      }
+      return false;
+   }
+
+
+   pstartup->m_event2.SetEvent();
+
+   pstartup->m_event.wait();
+
+   if(pstartup->m_bError)
+   {
+      try
+      {
+
+         if(piStartupError != NULL)
+            *piStartupError = pstartup->m_iError;
+      }
+      catch(...)
+      {
+      }
+      return false;
+   }
+
+   pstartup->m_event2.SetEvent();
+
+   set_thread_priority(epriority);
+
+   return true;
+
+}
+
+bool thread::create_thread(int32_t epriority,uint_ptr nStackSize,uint32_t dwCreateFlags,LPSECURITY_ATTRIBUTES lpSecurityAttrs)
+{
+
+   return begin_thread(false,NULL,epriority,nStackSize, dwCreateFlags,lpSecurityAttrs);
+
+}
+
+bool thread::create_thread_synch(int32_t * piStartupError,int32_t epriority,uint_ptr nStackSize,uint32_t dwCreateFlags,LPSECURITY_ATTRIBUTES lpSecurityAttrs)
+{
+
+   return begin_thread(true,piStartupError,epriority,nStackSize, dwCreateFlags,lpSecurityAttrs);
+
+}
+
+
+bool thread::begin(int32_t epriority,uint_ptr nStackSize,uint32_t dwCreateFlags,LPSECURITY_ATTRIBUTES lpSecurityAttrs)
+{
+
+   if(!create_thread(epriority,nStackSize,dwCreateFlags, lpSecurityAttrs))
+   {
+      return false;
+   }
+
+   return true;
+
+}
+
+bool thread::begin_synch(int32_t * piStartupError,int32_t epriority,uint_ptr nStackSize,uint32_t dwCreateFlags,LPSECURITY_ATTRIBUTES lpSecurityAttrs)
+{
+
+   if(!create_thread_synch(piStartupError, epriority,nStackSize, dwCreateFlags,lpSecurityAttrs))
+   {
+      return false;
+   }
+
+   return true;
+
+}
+
+void * thread::get_os_data() const
+{
+
+   return (void *)m_hthread;
+
+}
+
+
+IDTHREAD thread::get_os_int() const
+{
+
+   return  m_uiThread;
+
+}
+
+
+int_ptr thread::item() const
+{
+
+   return m_hthread;
+
+}
+
+
+uint32_t __thread_entry(void * pparam)
+{
+
+   UINT uiRet = 0;
+
+   try
+   {
+
+      sp(::thread_startup) pstartup = (::thread_startup *) pparam;
+
+      ASSERT(pstartup != NULL);
+      ASSERT(pstartup->m_pthread != NULL);
+      //ASSERT(pstartup->m_pthreadimpl != NULL);
+      ASSERT(!pstartup->m_bError);
+
+      ::thread * pthread = pstartup->m_pthread;
+
+//      ::thread * pthreadimpl = pstartup->m_pthreadimpl;
+
+      IGUI_WIN_MSG_LINK(WM_APP + 3241,pthread,pthread,&thread::_001OnSendThreadMessage);
+
+      try
+      {
+
+         __node_init_thread(pthread);
+
+      }
+      catch(...)
+      {
+
+         pstartup->m_event2.wait();
+
+         pstartup->m_event2.ResetEvent();
+
+         pstartup->m_bError = TRUE;
+
+         pstartup->m_event.set_event();
+
+         return ::multithreading::__on_thread_finally(pthread);
+
+      }
+
+      pstartup->m_event2.wait();
+
+      pstartup->m_event2.ResetEvent();
+
+      try
+      {
+
+         ::multithreading::__node_on_init_thread(pthread);
+
+      }
+      catch(...)
+      {
+
+         pstartup->m_bError = TRUE;
+
+         pstartup->m_event.set_event();
+
+         return ::multithreading::__on_thread_finally(pthread);
+
+      }
+
+      try
+      {
+
+         pthread->thread_startup(pstartup);
+
+      }
+      catch(...)
+      {
+
+         pstartup->m_bError = true;
+
+      }
+
+      if(pstartup->m_bError)
+      {
+
+         pstartup->m_bError = TRUE;
+
+         if(pstartup->m_iError == 0)
+         {
+            pstartup->m_iError = -1;
+         }
+
+         pstartup->m_event.set_event();
+
+         return ::multithreading::__on_thread_finally(pthread);
+
+      }
+
+      bool bSynch = pstartup->m_bSynch;
+
+      if(!bSynch)
+      {
+
+         // allow the creating thread to return from thread::create_thread
+         pstartup->m_event.set_event();
+
+         // wait for thread to be resumed
+         pstartup->m_event2.wait();
+
+         pstartup.release();
+
+      }
+
+      bool bError = false;
+
+      try
+      {
+
+         if(!pthread->thread_entry())
+         {
+
+            bError = true;
+
+         }
+
+      }
+      catch(::exit_exception &)
+      {
+
+         bError = true;
+
+      }
+
+
+      if(bError)
+      {
+
+         if(bSynch)
+         {
+
+            pstartup->m_iError = pthread->m_iReturnCode;
+
+            pstartup->m_bError = true;
+
+            pstartup->m_event.set_event();
+
+            return ::multithreading::__on_thread_finally(pthread);
+
+         }
+         else
+         {
+
+            return ::multithreading::__on_thread_finally(pthread);
+
+         }
+
+      }
+
+      if(bSynch)
+      {
+
+         // allow the creating thread to return from thread::create_thread
+         pstartup->m_event.set_event();
+
+         // wait for thread to be resumed
+         pstartup->m_event2.wait();
+
+         pstartup.release();
+
+      }
+
+      if(pthread->m_preplacethread != NULL && !pthread->m_preplacethread->do_replace(pthread))
+      {
+
+         try
+         {
+
+            pthread->m_preplacethread = NULL;
+
+         }
+         catch(...)
+         {
+
+         }
+
+         try
+         {
+
+            pthread->exit();
+
+         }
+         catch(...)
+         {
+
+         }
+
+         return ::multithreading::__on_thread_finally(pthread);
+
+      }
+
+
+      try
+      {
+
+                               pthread->main();
+
+      }
+      catch(::exit_exception &)
+      {
+
+         Sys(pthread->m_pauraapp).post_quit();
+
+         return ::multithreading::__on_thread_finally(pthread);
+
+      }
+
+      return ::multithreading::__on_thread_finally(pthread);
+
+   }
+   catch(...)
+   {
+
+      ASSERT(FALSE);
+
+      return -1;
+
+   }
+
+   return uiRet;
+
+}
+
+
+void CLASS_DECL_AURA __end_thread(::aura::application * papp)
+{
+
+   __term_thread(papp);
+
+}
+
+
+void CLASS_DECL_AURA __term_thread(::aura::application * papp)
+{
+
+   UNREFERENCED_PARAMETER(papp);
+
+}
+
+
+
+bool thread::is_idle_message(signal_details * pobj)
+{
+
+   return ::message::is_idle_message(pobj);
+
+}
+
+bool thread::is_idle_message(LPMESSAGE lpmsg)
+{
+
+   return ::message::is_idle_message(lpmsg);
+
+}
+
+
+
+void thread::post_to_all_threads(UINT message,WPARAM wparam,LPARAM lparam)
+{
+
+   //::count ca;
+
+   thread * pthread;
+
+   //ca = ::multithreading::s_pthreadptra->get_size();
+
+   //bool bOk;
+
+   if(message == WM_QUIT)
+   {
+
+      single_lock sl(::multithreading::s_pmutex,true);
+      ptr_array < thread > threadptra = *::multithreading::s_pthreadptra;
+
+      for(index i = 0; i < threadptra.get_size(); i++)
+      {
+
+         try
+         {
+            pthread = dynamic_cast < thread * >(threadptra[i]);
+            pthread->set_end_thread();
+         }
+         catch(...)
+         {
+         }
+
+
+      }
+      sl.unlock();
+
+   }
+
+
+   single_lock sl(::multithreading::s_pmutex);
+
+   for(index i = ::multithreading::s_piaThread->get_size(); i >= 0; i--)
+   {
+
+      //bOk = true;
+
+      try
+      {
+
+         if(::PostThreadMessage((IDTHREAD) ::multithreading::s_piaThread->element_at(i),message,wparam,lparam))
+         {
+
+         }
+
+      }
+      catch(...)
+      {
+
+         //bOk = false;
+
+      }
+
+      sl.lock();
+
+
+   }
+
+}
+
+
+int32_t thread::exit_instance()
+{
+
+   ASSERT_VALID(this);
+
+   try
+   {
+
+      single_lock sl(&m_mutexUiPtra,TRUE);
+
+      if(m_spuiptra.is_set())
+      {
+
+         sp(ptr_array < ::user::primitive >) puiptra = m_spuiptra;
+
+         m_spuiptra.release();
+
+  //       for(int32_t i = 0; i < puiptra->get_size(); i++)
+    //     {
+
+//            ::user::primitive * pui = puiptra->element_at(i);
+
+      //   }
+
+         puiptra.release();
+
+         sl.unlock();
+
+      }
+   }
+   catch(...)
+   {
+   }
+
+   //try
+   //{
+
+   //   m_sptimera.release();
+
+   //}
+   //catch(...)
+   //{
+   //}
+
+
+   return m_iReturnCode;
+
+}
+
+bool thread::on_idle(LONG lCount)
+{
+
+   return on_thread_on_idle(this, lCount);
+
+
+}
+
+
+
+
+bool thread::post_message(::user::primitive * pui,UINT uiMessage,WPARAM wparam,lparam lparam)
+{
+
+   return Application.post_user_message(this, pui,uiMessage,wparam,lparam);
+
+}
+
+
+
+
+
+bool thread::post_thread_message(UINT message,WPARAM wParam,lparam lParam)
+{
+
+   if(m_hthread == (HTHREAD) NULL)
+      return false;
+
+   if(message == WM_QUIT)
+   {
+
+      string strName = demangle(typeid(*this).name());
+      //::output_debug_string("\n\n\nWM_QUIT posted to thread "+strName+"(" + ::str::from((uint64_t)m_uiThread) + ")\n\n\n");
+      if(strName == "::core::system")
+      {
+         ::output_debug_string("\n\n\nWM_QUIT at ::core::system\n\n\n");
+      }
+      if(strName == "multimedia::audio_core_audio::wave_out")
+      {
+         ::output_debug_string("\n\n\nWM_QUIT at multimedia::audio_core_audio::wave_out\n\n\n");
+      }
+      if(strName == "multimedia::audio::wave_out")
+      {
+         ::output_debug_string("\n\n\nWM_QUIT at multimedia::audio::wave_out\n\n\n");
+      }
+      if(strName == "multimedia::audio::wave_player")
+      {
+         ::output_debug_string("\n\n\nWM_QUIT at multimedia::audio::wave_player\n\n\n");
+      }
+   }
+   return ::PostThreadMessage(m_uiThread,message,wParam,lParam) != FALSE;
+
+}
+
+
+
+
+
+void thread::set_os_data(void * pvoidOsData)
+{
+#ifdef WINDOWSEX
+
+   if(m_bDupHandle)
+   {
+      if(m_hthread != NULL)
+      {
+         ::CloseHandle(m_hthread);
+      }
+   }
+   m_hthread = NULL;
+   if(pvoidOsData != NULL)
+   {
+      if(::DuplicateHandle(::GetCurrentProcess(),(HANDLE)pvoidOsData,GetCurrentProcess(),&m_hthread,THREAD_ALL_ACCESS,TRUE,0))
+      {
+         m_bDupHandle = true;
+      }
+      else
+      {
+         TRACE("thread::set_os_data failed to duplicate handle");
+      }
+   }
+#else
+   m_hthread = (HTHREAD)pvoidOsData;
+#endif
+}
+
+void thread::set_os_int(IDTHREAD iData)
+{
+#ifdef WINDOWSEX
+   m_uiThread = (DWORD)iData;
+#else
+   m_uiThread = (IDTHREAD) iData;
+#endif
+}
+
+
+
+
+int32_t thread::thread_startup(::thread_startup * pstartup)
+{
+
+   ASSERT(pstartup != NULL);
+   ASSERT(pstartup->m_pthread != NULL);
+//   ASSERT(pstartup->m_pthreadimpl != NULL);
+   ASSERT(!pstartup->m_bError);
+//   ASSERT(pstartup->m_pthreadimpl == pstartup->m_pthreadimpl);
+  // ASSERT(pstartup->m_pthread == pstartup->m_pthreadimpl->m_pthread);
+
+   //::thread * pthreadimpl = pstartup->m_pthreadimpl;
+
+   m_evFinish.ResetEvent();
+
+   install_message_handling(this);
+
+   //install_message_handling(pthreadimpl);
+
+   return 0;
+
+}
+
+
+
+
+bool thread::thread_entry()
+{
+
+   bool bError = false;
+
+   try
+   {
+
+
+      if(!pre_run())
+      {
+
+         bError = true;
+
+      }
+
+   }
+   catch(...)
+   {
+
+      bError = true;
+
+   }
+
+   if(bError)
+   {
+
+      return false;
+
+   }
+   else
+   {
+
+      return true;
+
+   }
+
+}
+
+
+
+
+int32_t thread::main()
+{
+
+   if(!pre_init_instance())
+   {
+      return 0;
+   }
+
+
+
+   // first -- check for simple worker thread
+   DWORD nResult = 0;
+   if(m_pfnThreadProc != NULL)
+   {
+      m_bRun = true;
+      nResult = (*m_pfnThreadProc)(m_pThreadParams);
+   }
+   // else -- check for thread with message loop
+   else if(initialize_instance())
+   {
+      // will stop after PostQuitMessage called
+      ASSERT_VALID(this);
+      // let upper framework attach translator
+      //         translator::attach();
+   run:
+      try
+      {
+         m_bReady = true;
+         m_bRun = true;
+         nResult = run();
+      }
+      catch(::exit_exception & e)
+      {
+
+         throw e;
+
+      }
+      catch(const ::exception::exception & e)
+      {
+
+         if(on_run_exception((::exception::exception &) e))
+            goto run;
+
+         if(App(get_app()).final_handle_exception((::exception::exception &) e))
+            goto run;
+      }
+      catch(...)
+      {
+      }
+   }
+
+   // let translator run undefinetely
+   //translator::detach();
+   try
+   {
+      nResult = exit();
+   }
+   catch(...)
+   {
+      nResult = (DWORD)-1;
+   }
+
+   return nResult;
+
+}
+
+void thread::assert_valid() const
+{
+
+   command_target::assert_valid();
+
+}
+
+
+void thread::dump(dump_context & dumpcontext) const
+{
+
+   command_target::dump(dumpcontext);
+
+}
+
+
+int32_t thread::thread_term()
+{
+
+   int32_t iResult = m_iReturnCode;
+
+   try
+   {
+
+//      destroy_message_queue();
+
+   }
+   catch(...)
+   {
+
+   }
+
+   try
+   {
+
+      thread_delete();
+
+   }
+   catch(...)
+   {
+
+   }
+
+   return iResult;
+
+}
+
+
+void thread::add(::user::primitive * pui)
+{
+
+   single_lock sl(&m_mutexUiPtra,TRUE);
+
+   if(m_spuiptra.is_set())
+   {
+
+      m_spuiptra->add(pui);
+
+   }
+
+}
+
+
+void thread::remove(::user::primitive * pui)
+{
+
+   if(pui == NULL)
+      return;
+
+   single_lock sl(&m_mutexUiPtra,TRUE);
+
+   if(Application.get_thread(pui).contains(this))
+   {
+
+      Application.remove_thread(pui, this);
+
+   }
+
+   if(m_spuiptra.is_set())
+   {
+
+      m_spuiptra->remove(pui);
+
+   }
+
+   sl.unlock();
+
+   //if(m_sptimera.is_set())
+   //{
+
+   //   m_sptimera->unset(pui);
+
+   //}
+
+}
+
+
+::count thread::get_ui_count()
+{
+
+   single_lock sl(&m_mutexUiPtra,TRUE);
+
+   return m_spuiptra->get_count();
+
+}
+
+
+::user::primitive * thread::get_ui(index iIndex)
+{
+
+   single_lock sl(&m_mutexUiPtra,TRUE);
+
+   return m_spuiptra->element_at(iIndex);
+
+}
+
+
+//void thread::set_timer(::user::primitive * pui,uint_ptr nIDEvent,UINT nEllapse)
+//{
+//
+//   if(m_sptimera.is_null())
+//   {
+//
+//      if(!initialize_message_queue())
+//         return;
+//
+//   }
+//
+//   m_sptimera->set(pui,nIDEvent,nEllapse);
+//
+//   Application.add_thread(pui, m_pthread);
+//
+//}
+//
+
+//void thread::unset_timer(::user::primitive * pui,uint_ptr nIDEvent)
+//{
+//
+//   if(m_sptimera.is_null())
+//      return;
+//
+//   m_sptimera->unset(pui,nIDEvent);
+//
+//}
+
+
+event & thread::get_finish_event()
+{
+
+   return m_evFinish;
+
+}
+
+
+//void thread::step_timer()
+//{
+//
+//   if(m_sptimera.is_null())
+//      return;
+//
+//   m_sptimera->check();
+//
+//}
+
+
+thread::operator HTHREAD() const
+{
+
+   return this == NULL ? (HTHREAD) NULL : m_hthread;
+
+}
+
+
+bool thread::initialize_message_queue()
+{
+
+   if(m_spuiptra.is_null())
+   {
+
+      m_spuiptra = canew(ptr_array < ::user::primitive >);
+
+   }
+
+   //if(m_spqueue.is_null())
+   //{
+
+   //   m_spqueue.alloc(allocer());
+
+   //}
+
+   //if(m_spqueue.is_null())
+   //{
+
+   //   return false;
+
+   //}
+
+   //if(!m_spqueue->message_queue_is_initialized())
+   //{
+
+   //   try
+   //   {
+
+   //      if(!m_spqueue->create_message_queue("",this))
+   //      {
+
+   //         return false;
+
+   //      }
+
+   //   }
+   //   catch(...)
+   //   {
+
+   //      return false;
+
+   //   }
+
+   //}
+
+
+   //single_lock sl(&m_sptimera->m_mutex,TRUE);
+
+   //int32_t iMin = 100;
+
+   //for(int32_t i = 0; i < m_sptimera->m_timera.get_count(); i++)
+   //{
+
+   //   if(m_sptimera->m_timera.element_at(i)->m_uiElapse < natural(iMin))
+   //   {
+
+   //      iMin = m_sptimera->m_timera.element_at(i)->m_uiElapse;
+
+   //   }
+
+   //}
+
+   //sl.unlock();
+
+   //m_spqueue->message_queue_set_timer((uint_ptr)-2,iMin);
+
+   return true;
+
+}
+
+
+//// main running routine until thread exits
+//int32_t thread::run()
+//{
+//
+//
+////stop_run:
+//
+//   return m_iReturnCode;
+//
+//}
+
+
+void thread::message_handler(signal_details * pobj)
+{
+
+   Application.message_handler(pobj);
+
+}
+
+
+//bool thread::defer_pump_message()
+//{
+//
+//   MESSAGE msg;
+//
+//   while(::PeekMessage(&msg,NULL,0,0,PM_NOREMOVE) != FALSE)
+//   {
+//
+//      // pump message, but quit on WM_QUIT
+//      if(!m_bRun || !pump_message())
+//      {
+//
+//
+//         ::output_debug_string("\n\n\nthread::defer_pump_message (1) quitting (WM_QUIT? {PeekMessage->message : "+::str::from(msg.message == WM_QUIT?1:0)+"!}) : " + string(demangle(typeid(*m_pthread).name())) + " ("+::str::from((uint64_t)::GetCurrentThreadId())+")\n\n\n");
+//
+//         return false;
+//
+//      }
+//
+//   }
+//
+//   // reset "no idle" state after pumping "normal" message
+//   //if (is_idle_message(&m_msgCur))
+//   if(is_idle_message(&msg))
+//   {
+//
+//      //m_bIdle = true;
+//
+//      //m_lIdleCount = 0;
+//
+//   }
+//
+//   if(!on_run_step())
+//   {
+//
+//      ::output_debug_string("defer_pump_message (2) quitting : " + string(demangle(typeid(*m_pthread).name())) + "\n\n");
+//
+//      return false;
+//
+//   }
+//
+//
+//   on_idle(0);
+//
+//   return true;
+//
+//
+//}
+
+//bool thread::pump_message()
+//{
+//
+//   try
+//   {
+//
+//      MESSAGE msg;
+//
+//      if(!::GetMessage(&msg,NULL,0,0))
+//      {
+//
+//         TRACE(::aura::trace::category_AppMsg,1,"thread::pump_message - Received WM_QUIT.\n");
+//
+//         ::output_debug_string("thread::pump_message - Received WM_QUIT.\n");
+//
+//         m_nDisablePumpCount++; // application must die
+//         // Note: prevents calling message loop things in 'exit_instance'
+//         // will never be decremented
+//         return false;
+//
+//      }
+//
+//      process_message(&msg);
+//
+//      return true;
+//
+//   }
+//   catch(exit_exception & e)
+//   {
+//
+//      throw e;
+//
+//   }
+//   catch(const ::exception::exception & e)
+//   {
+//
+//      if(on_run_exception((::exception::exception &) e))
+//         return true;
+//
+//      // get_app() may be it self, it is ok...
+//      if(App(get_app()).final_handle_exception((::exception::exception &) e))
+//         return true;
+//
+//      return false;
+//
+//   }
+//   catch(...)
+//   {
+//
+//      return false;
+//
+//   }
+//
+//}
+
+
+bool thread::process_message(LPMESSAGE lpmessage)
+{
+
+   try
+   {
+
+      MESSAGE & msg = *lpmessage;
+
+      //m_message = msg;
+      //m_p->m_message = msg;
+
+      if(m_nDisablePumpCount != 0)
+      {
+
+         TRACE(::aura::trace::category_AppMsg,0,"Error: thread::pump_message called when not permitted.\n");
+
+//         ASSERT(FALSE);
+
+      }
+
+      //__trace_message("pump_message",&msg);
+
+      if(msg.message != WM_KICKIDLE)
+      {
+
+         {
+
+            smart_pointer < ::message::base > spbase;
+
+            spbase = get_base(&msg);
+
+            if(spbase.is_set())
+            {
+
+               try
+               {
+
+                  pre_translate_message(spbase);
+
+                  if(spbase->m_bRet)
+                     return true;
+
+               }
+               catch(exit_exception & e)
+               {
+
+                  throw e;
+
+               }
+               catch(...)
+               {
+
+               }
+
+               if(true)
+               {
+
+                  try
+                  {
+
+                     if(m_pauraapp != NULL)
+                     {
+
+                        try
+                        {
+
+                           if(m_pauraapp->m_paurasystem != NULL)
+                           {
+
+                              m_pauraapp->m_paurasystem->pre_translate_message(spbase);
+
+                              if(spbase->m_bRet)
+                                 return true;
+
+                              /*                                 try
+                              {
+                              if(m_pauraapp->m_paurasystem->m_pcube != NULL)
+                              {
+                              m_pauraapp->m_paurasystem->m_pcubeInterface->pre_translate_message(spbase);
+                              if(spbase->m_bRet)
+                              return TRUE;
+                              }
+                              }
+                              catch(...)
+                              {
+                              }
+
+                              */
+
+                           }
+
+                        }
+                        catch(...)
+                        {
+
+                        }
+
+                        if(m_pauraapp->m_paurasession != NULL)
+                        {
+
+                           try
+                           {
+
+                              m_pauraapp->m_paurasession->pre_translate_message(spbase);
+
+                              if(spbase->m_bRet)
+                                 return true;
+
+                           }
+                           catch(...)
+                           {
+
+                           }
+
+                           /*                              try
+                           {
+                           if(m_pauraapp->m_paurasession->m_pbergedge != NULL)
+                           {
+                           m_pauraapp->m_paurasession->m_pbergedgeInterface->pre_translate_message(spbase);
+                           if(spbase->m_bRet)
+                           return TRUE;
+                           }
+                           }
+                           catch(...)
+                           {
+                           }*/
+
+                        }
+
+                     }
+
+                  }
+                  catch(...)
+                  {
+
+                  }
+
+                  try
+                  {
+
+                     if(!m_pauraapp->is_system() && m_pauraapp->is_session())
+                     {
+
+                        m_pauraapp->pre_translate_message(spbase);
+
+                        if(spbase->m_bRet)
+                           return true;
+
+                     }
+
+                  }
+                  catch(...)
+                  {
+
+                  }
+
+               }
+
+               //__pre_translate_message(spbase);
+               //if(spbase->m_bRet)
+               // return TRUE;
+
+               //     spbase.release();
+            }
+
+         }
+
+         ::TranslateMessage(&msg);
+
+         ::DispatchMessage(&msg);
+
+      }
+
+      return true;
+
+   }
+   catch(exit_exception & e)
+   {
+
+      throw e;
+
+   }
+   catch(const ::exception::exception & e)
+   {
+
+      if(on_run_exception((::exception::exception &) e))
+         return true;
+
+      // get_app() may be it self, it is ok...
+      if(App(get_app()).final_handle_exception((::exception::exception &) e))
+         return true;
+
+      return false;
+
+   }
+   catch(...)
+   {
+
+      return false;
+
+   }
+
+}
+
+
+bool thread::set_thread_priority(int32_t priority)
+{
+
+//#ifdef METROWIN
+//
+//   return ::__SetThreadPriority(m_hthread, priority) != 0;
+//
+//#else
+
+   return ::SetThreadPriority(m_hthread,priority) != 0;
+
+//#endif
+
+}
+
+
+int32_t thread::get_thread_priority()
+{
+
+//#ifdef METROWIN
+//
+//   return ::__GetThreadPriority(m_hthread);
+//
+//#else
+
+   return ::GetThreadPriority(m_hthread);
+
+//#endif
+
+}
+
+
+void thread::thread_delete()
+{
+
+   try
+   {
+
+      if(m_pbReady != NULL)
+      {
+
+         *m_pbReady = true;
+
+      }
+
+   }
+   catch(...)
+   {
+
+   }
+
+   try
+   {
+
+      m_evFinish.SetEvent();
+
+   }
+   catch(...)
+   {
+
+   }
+
+   try
+   {
+
+      set_end_thread();
+
+   }
+   catch(...)
+   {
+
+   }
+
+   if(m_preplacethread != NULL)
+   {
+
+      single_lock sl(&m_preplacethread->m_mutex,true);
+
+      m_preplacethread->m_spthread.release();
+
+   }
+   else if(m_bAutoDelete)
+   {
+      //if(m_countReference > 1)
+      //{
+      //   throw simple_exception(get_app(), "thread should be deleted here");
+      //}
+       release();
+
+   }
+   else
+   {
+      //if(m_countReference > 1)
+      //{
+      //   throw simple_exception(get_app(),"thread should be deleted here");
+      //}
+
+      set_os_data(NULL);
+
+   }
+
+}
+
+
+//bool thread::finalize()
+//{
+//
+//   //if(m_spqueue.is_set())
+//   //{
+//
+//   //   //if(m_spqueue->message_queue_is_initialized())
+//   //   {
+//
+//   //      m_spqueue->message_queue_destroy();
+//
+//   //   }
+//
+//   //   m_spqueue.release();
+//
+//   //}
+//
+//   return true;
+//
+//}
+
+
+void thread::start()
+{
+
+}
+
+
+uint32_t thread::ResumeThread()
+{
+
+   return 0;
+
+}
+
+
+bool thread::has_message()
+{
+
+   return false;
+
+}
+
+
+void thread::set_priority(int32_t priority)
+{
+
+   UNREFERENCED_PARAMETER(priority);
+
+}
+
+
+int32_t thread::priority()
+{
+
+   return ::multithreading::priority_normal;
+
+}
+
+
+bool thread::on_run_exception(::exception::exception &)
+{
+
+   return false;
+
+}
+
+
+message::e_prototype thread::GetMessagePrototype(UINT uiMessage,UINT uiCode)
+{
+
+   UNREFERENCED_PARAMETER(uiMessage);
+   UNREFERENCED_PARAMETER(uiCode);
+
+   return message::PrototypeNone;
+
+
+}
+
+
+int thread::get_x_window_count() const
+{
+
+   return 0;
+
+}
+
+
+void thread::do_events()
+{
+
+   MESSAGE msg;
+
+   while(m_bRun && ::PeekMessage(&msg,NULL,0,0,PM_NOREMOVE) != FALSE)
+   {
+
+      if(msg.message == WM_QUIT) // do not pump, otherwise main loop will not process the message
+         break;
+
+      if(!pump_message())
+         break;
+
+   }
+
+}
+
+
+
+
+
+
+bool replace_thread::do_replace(::thread * pthread)
+{
+
+   single_lock sl(&m_mutex,true);
+
+   if(m_pthreadNew == NULL)
+      return true;
+
+   if(m_pthreadNew != pthread)
+      return false;
+
+   while(m_spthread.is_set())
+   {
+
+      if(m_pthreadNew != pthread)
+         return false;
+
+      try
+      {
+
+         m_spthread->set_end_thread();
+
+      }
+      catch(...)
+      {
+
+      }
+
+      sl.unlock();
+
+      sl.lock();
+
+      if(m_pthreadNew != pthread)
+         return false;
+
+   }
+
+   if(m_pthreadNew != pthread)
+      return false;
+
+   m_spthread = pthread;
+
+   return true;
+
+}
+
+
+
+
+
+//void thread::message_queue_message_handler(::signal_details * pobj)
+//{
+//
+//    try
+//    {
+//
+//        message_queue_message_handler(pobj);
+//
+//    }
+//    catch(exit_exception & e)
+//    {
+//
+//        throw e;
+//
+//    }
+//    catch(...)
+//    {
+//
+//    }
+//
+//}

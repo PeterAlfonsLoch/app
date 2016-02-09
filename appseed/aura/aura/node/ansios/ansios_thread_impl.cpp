@@ -9,26 +9,26 @@ namespace ansios
 {
 
 
-   thread_impl::thread_impl(::aura::application * papp) :
-   object(papp),
-   ::thread_impl(papp)
-   {
-
-
-   }
-
-
-
-
-
-
-   thread_impl::~thread_impl()
-   {
-
-      __clear_mq();
-
-   }
-
+//   thread_impl::thread_impl(::aura::application * papp) :
+//   object(papp),
+//   ::thread_impl(papp)
+//   {
+//
+//
+//   }
+//
+//
+//
+//
+//
+//
+//   thread_impl::~thread_impl()
+//   {
+//
+//      __clear_mq();
+//
+//   }
+//
 
 
 

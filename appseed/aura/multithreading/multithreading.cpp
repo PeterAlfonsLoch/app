@@ -48,7 +48,7 @@ namespace multithreading
 
       __init_thread();
 
-      s_piaThread->add(pthread->m_pthreadimpl->get_os_int());
+      s_piaThread->add(pthread->get_os_int());
 
       s_pthreadptra->add(pthread);
 
@@ -60,7 +60,7 @@ namespace multithreading
 
       synch_lock sl(s_pmutex);
 
-      s_piaThread->remove(pthread->m_pthreadimpl->get_os_int());
+      s_piaThread->remove(pthread->get_os_int());
 
       s_pthreadptra->remove(pthread);
 
@@ -107,7 +107,7 @@ namespace multithreading
       try
       {
 
-         pthread->m_pthreadimpl->m_signala.remove_all();
+         pthread->m_signala.remove_all();
 
       }
       catch(...)
@@ -118,7 +118,7 @@ namespace multithreading
       try
       {
 
-         pthread->m_pthreadimpl->thread_term();
+         pthread->thread_term();
 
       }
       catch(...)
@@ -134,9 +134,9 @@ namespace multithreading
       try
       {
 
-         if(pthread->m_bAutoDelete && pthread->m_bHeap)
+         if(pthread->m_bAutoDelete && pthread->is_heap())
          {
-          
+
             ::aura::del(pthread);
 
          }

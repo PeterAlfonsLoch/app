@@ -32,20 +32,23 @@ public:
       flag_discard_to_factory = 1 << 1,
       flag_ready_for_delete = 1 << 2,
       flag_auto_delete = 1 << 3,
-      //flag_heap_alloc = 1 << 4,
+      flag_heap_alloc = 1 << 4,
       flag_locked = 1 << 5
 
    };
 
 
-   uint32_t                      m_ulFlags;
+   uint64_t                      m_ulFlags;
    factory_item_base *           m_pfactoryitembase;
    void *                        m_pthis;
    int64_t                       m_countReference;
-   bool                          m_bHeap;
    ::aura::application *         m_pauraapp;
    mutex *                       m_pmutex;
-   ::datetime::time              m_time;
+   property_set *                m_psetObject;
+
+
+
+//   ::datetime::time              m_time;
 
    // OBJECT :: object :> is a a a root, and is an element
 
@@ -54,7 +57,10 @@ public:
    //element(::aura::application * papp);
    //virtual ~element();
 
+   object();
    object(::aura::application * papp);
+   object(const object & objectSrc);              // no implementation
+   virtual ~object();  // virtual destructors are necessary
 
 
    template < typename PRED >
@@ -111,7 +117,7 @@ public:
    inline bool is_heap()
    {
 
-      return m_bHeap;
+      return (m_ulFlags & (uint64_t) flag_heap_alloc) != 0;
 
    }
 
@@ -175,12 +181,6 @@ public:
 
    virtual bool is_locked() const;
 
-   property_set *     m_psetObject;
-
-
-   object();
-   object(const object & objectSrc);              // no implementation
-   virtual ~object();  // virtual destructors are necessary
 
    virtual string lstr(id id, const string & strDefault = (const string &) *((const string *) NULL ));
 
@@ -314,7 +314,7 @@ namespace aura
 
 
 template < class T >
-T * dereference_no_delete(T * p) { p->m_bHeap = true; p->m_countReference--; return p; }
+T * dereference_no_delete(T * p) { p->m_ulFlags |= (uint64_t) ::object::flag_heap_alloc; p->m_countReference--; return p; }
 
 
 

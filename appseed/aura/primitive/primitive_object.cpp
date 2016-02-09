@@ -3,9 +3,9 @@
 
 
 object::object()
-{ 
+{
 
-   common_construct(); 
+   common_construct();
    // ::waitable
    m_pmutex = NULL;
 
@@ -15,7 +15,6 @@ object::object()
 
    // root like (Rute like, Thank you Rute and Inha and Lizir!!)
    m_countReference  = 1;
-   m_bHeap           = false;
    m_pauraapp        = NULL;
 
 }
@@ -34,13 +33,13 @@ object::object()
 
 object::object(const object& objectSrc)
 {
-	   
+
 	m_psetObject = NULL;
    // ::waitable
    m_pmutex = NULL;
+   m_ulFlags            = (uint32_t)flag_auto_clean;
 
    // root like (Rute like, Thank you Rute and Inha and Lizir!!)
-   m_bHeap = false;
    m_countReference  = 1;
 
    operator =(objectSrc);
@@ -57,7 +56,7 @@ void object::common_construct()
    m_psetObject = NULL;
 
 }
-   
+
 
 object::object(::aura::application * papp)
 {
@@ -70,12 +69,11 @@ object::object(::aura::application * papp)
 
    // root like (Rute like, Thank you Rute and Inha and Lizir!!)
    m_countReference  = 1;
-   m_bHeap           = false;
 
 }
 
 object::~object()
-{ 
+{
 
    ::aura::del(m_pmutex);
 
@@ -142,7 +140,7 @@ object & object::operator=(const object & objectSrc)
 
       if(m_psetObject == NULL)
       {
-            
+
          m_psetObject = new property_set(get_app());
 
       }
@@ -228,7 +226,7 @@ void assert_valid_object(const object * pOb, const char * lpszFileName, int32_t 
 
 void object::keep_alive()
 {
-   
+
    try
    {
 

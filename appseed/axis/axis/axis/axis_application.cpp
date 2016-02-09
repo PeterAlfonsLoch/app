@@ -1332,7 +1332,7 @@ namespace axis
 
       thread * pthread = ::get_thread();
 
-      install_message_handling(pthread->m_pthreadimpl);
+      install_message_handling(pthread);
 
       dappy(string(typeid(*this).name()) + " : starting on_run 2 : " + ::str::from(m_iReturnCode));
 
@@ -2276,11 +2276,6 @@ namespace axis
          try
          {
 
-            sp(thread_impl) pthread = m_pthreadimpl;
-
-            if(pthread != NULL)
-            {
-
                try
                {
                   // avoid calling CloseHandle() on our own thread handle
@@ -2291,15 +2286,13 @@ namespace axis
 
                   set_run(false);
 
-                  pthread->exit_instance();
+                  exit_instance();
 
                }
                catch(...)
                {
 
                }
-
-            }
 
          }
          catch(...)
@@ -4798,14 +4791,14 @@ finalize:
       return ::fontopus::get_cred(this, strUsername, strPassword, strToken);
 
    }
-   
+
    void application::set_cred(string strToken, const char * pszUsername, const char * pszPassword)
    {
 
       ::fontopus::set_cred(this,strToken, pszUsername, pszPassword);
 
    }
-   
+
    void application::set_cred_ok(string strToken, bool bOk)
    {
 

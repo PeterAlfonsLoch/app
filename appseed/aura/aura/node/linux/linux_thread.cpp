@@ -8,21 +8,21 @@ namespace linux
 {
 
 
-   thread::thread(sp(::aura::application) papp) :
-      ::object(papp),
-      ::ansios::thread_impl(papp),
-      ::thread_impl(papp)
-   {
-
-
-   }
-
-
-   thread::~thread()
-   {
-
-
-   }
+//   thread::thread(sp(::aura::application) papp) :
+//      ::object(papp),
+//      ::ansios::thread_impl(papp),
+//      ::thread_impl(papp)
+//   {
+//
+//
+//   }
+//
+//
+//   thread::~thread()
+//   {
+//
+//
+//   }
 
 
 } // namespace linux
@@ -81,6 +81,9 @@ bool __node_term_thread(::thread * pthread)
 //   }
 //
 //   return bOk1;
+
+      __clear_mq();
+
 
    return true;
 

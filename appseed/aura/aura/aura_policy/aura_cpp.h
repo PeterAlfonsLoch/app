@@ -565,10 +565,10 @@ class thread;
 typedef smart_pointer < thread > thread_sp;
 
 
-class thread_impl;
+//class thread_impl;
 
 
-typedef smart_pointer < thread_impl > thread_impl_sp;
+//typedef smart_pointer < thread_impl > thread_impl_sp;
 
 
 namespace html

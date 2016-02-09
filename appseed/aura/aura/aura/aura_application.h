@@ -203,8 +203,8 @@ namespace aura
 
       virtual void process_message_filter(int32_t code,signal_details * pobj) override;
 
-      virtual bool on_thread_on_idle(::thread_impl * pimpl,LONG lCount) override;
-      virtual bool post_user_message(::thread_impl * pimpl,::user::primitive * pui,UINT message,WPARAM wparam = 0,lparam lparam = cnull);
+      virtual bool on_thread_on_idle(::thread * pthread,LONG lCount) override;
+      virtual bool post_user_message(::thread * pthread,::user::primitive * pui,UINT message,WPARAM wparam = 0,lparam lparam = cnull);
 
       virtual bool is_window(::user::primitive * pui);
       virtual LRESULT send_message(::user::primitive * pui, UINT message, WPARAM wparam = 0, lparam lparam = cnull);

@@ -32,7 +32,7 @@
 #include "multithreading_synch_lock.cpp"
 #include "multithreading_sync_object.cpp"
 #include "multithreading_thread.cpp"
-#include "multithreading_thread_impl.cpp"
+//#include "multithreading_thread_impl.cpp"
 #include "multithreading_thread_os.cpp"
 #include "multithreading_waitable.cpp"
 #include "multithreading_wait_result.cpp"

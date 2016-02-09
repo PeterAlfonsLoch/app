@@ -24,10 +24,10 @@ critical_section * g_pmutexSystemHeap = NULL;
 void * system_heap_alloc(size_t size)
 {
 
-   if(size > 64 * 1024)
+   if(size > 16 * 1024)
    {
 
-      ::OutputDebugStringA("allocating memory block greater than 64kb\n");
+      ::OutputDebugStringA("allocating memory block greater than 16kb\n");
 
    }
 

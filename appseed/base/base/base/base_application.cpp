@@ -7,6 +7,8 @@ CLASS_DECL_IMPORT void draw2d_factory_exchange(::aura::application * papp);
 
 #endif
 
+extern thread_pointer < plex_heap_alloc_array::memdleak_block > t_plastblock;
+
 namespace base
 {
 
@@ -2272,19 +2274,39 @@ namespace base
    }
 
 
-   bool application::post_user_message(::thread_impl * pimpl,::user::primitive * pui,UINT message,WPARAM wparam,lparam lparam)
+   bool application::post_user_message(::thread * pthread,::user::primitive * pui,UINT message,WPARAM wparam,lparam lparam)
    {
 
-      if(pimpl->m_hthread == NULL)
+      if(pthread->m_hthread == NULL)
          return false;
 
       ::user::message * pmessage    = new ::user::message;
+
+#if MEMDLEAK
+
+      ::aura::application * papp = this;
+
+      if(pthread == NULL)
+      {
+
+         t_plastblock->m_pszFileName = strdup(string(typeid(*papp).name()));
+
+      }
+      else
+      {
+
+         t_plastblock->m_pszFileName = strdup(string(typeid(*papp).name()) +"&nbsp;-&nbsp;" +string(typeid(*pthread).name()));
+
+      }
+
+#endif
+
       pmessage->m_pui               = (::user::interaction *) pui->m_pvoidUserInteraction;
       pmessage->m_uiMessage         = message;
       pmessage->m_wparam            = wparam;
       pmessage->m_lparam            = lparam;
 
-      return pimpl->post_thread_message(WM_APP + 1984,77,(LPARAM)pmessage) != FALSE;
+      return pthread->post_thread_message(WM_APP + 1984,77,(LPARAM)pmessage) != FALSE;
 
    }
 
@@ -2314,11 +2336,21 @@ namespace base
    void application::dispatch_user_message(::signal_details * pobj)
    {
 
-      smart_pointer < ::user::message > spmessage(pobj->m_lparam);
-      spmessage->send();
-      pobj->m_uiMessage   = 0;    // ssshhhh.... - self-healing - sh...
-      pobj->m_wparam      = 0;    // ssshhhh.... - self-healing - sh...
-      pobj->m_bRet        = true;
+      if(!pobj->m_bRet)
+      {
+
+         smart_pointer < ::user::message > spmessage(pobj->m_lparam);
+
+         spmessage->send();
+
+         pobj->m_uiMessage   = 0;    // ssshhhh.... - self-healing - sh...
+
+         pobj->m_wparam      = 0;    // ssshhhh.... - self-healing - sh...
+
+         pobj->m_bRet        = true;
+
+      }
+
       return;
 
    }

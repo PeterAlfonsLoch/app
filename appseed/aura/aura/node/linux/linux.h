@@ -43,7 +43,7 @@ namespace linux
 {
 
 
-   class thread;
+//   class thread;
 
    class linux
    {

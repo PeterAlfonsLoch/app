@@ -10,10 +10,10 @@ namespace file_watcher
 
       set_app(papp);
 
-      m_pthreadimpl.alloc(allocer());
-
-      if(m_pthreadimpl.is_null())
-         return false;
+//      m_pthreadimpl.alloc(allocer());
+//
+//      if(m_pthreadimpl.is_null())
+//         return false;
 
       return true;
 

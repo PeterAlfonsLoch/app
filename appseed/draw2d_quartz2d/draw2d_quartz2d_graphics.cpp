@@ -14,6 +14,8 @@ namespace draw2d_quartz2d
       ::draw2d::graphics(papp)
    {
 
+      m_pmutex                = new mutex(papp);
+
       m_bPrinting       = FALSE;
       m_pdibAlphaBlend  = NULL;
 //      m_pdc             = NULL;

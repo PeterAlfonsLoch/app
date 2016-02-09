@@ -160,6 +160,10 @@
 		<Unit filename="aura/aura/aura_number.h" />
 		<Unit filename="aura/aura/aura_os.h" />
 		<Unit filename="aura/aura/aura_plex.h" />
+		<Unit filename="aura/aura/aura_plex_heap.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="aura/aura/aura_plex_heap.h" />
 		<Unit filename="aura/aura/aura_plex_heap_impl.h" />
 		<Unit filename="aura/aura/aura_printer.h" />
@@ -188,8 +192,11 @@
 		<Unit filename="aura/aura/aura_system_trace.h" />
 		<Unit filename="aura/aura/aura_system_xml.inl" />
 		<Unit filename="aura/aura/aura_template.h" />
+		<Unit filename="aura/aura/aura_timer.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="aura/aura/aura_timer.h" />
-		<Unit filename="aura/aura/aura_timer.mm" />
 		<Unit filename="aura/aura/aura_timer_array.h" />
 		<Unit filename="aura/aura/aura_timer_callback.h" />
 		<Unit filename="aura/aura/aura_timer_event.h" />
@@ -483,7 +490,15 @@
 		<Unit filename="multithreading/multithreading_synch_index_ptr_array.h" />
 		<Unit filename="multithreading/multithreading_synch_lock.h" />
 		<Unit filename="multithreading/multithreading_synch_ptr_array.h" />
+		<Unit filename="multithreading/multithreading_thread.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="multithreading/multithreading_thread.h" />
+		<Unit filename="multithreading/multithreading_thread_impl.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="multithreading/multithreading_thread_impl.h" />
 		<Unit filename="multithreading/multithreading_thread_os.h" />
 		<Unit filename="multithreading/multithreading_wait_result.h" />
@@ -624,6 +639,10 @@
 		<Unit filename="primitive/primitive_command_thread.h" />
 		<Unit filename="primitive/primitive_create.h" />
 		<Unit filename="primitive/primitive_edit.h" />
+		<Unit filename="primitive/primitive_factory.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="primitive/primitive_factory.h" />
 		<Unit filename="primitive/primitive_id.h" />
 		<Unit filename="primitive/primitive_id_space.h" />

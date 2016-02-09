@@ -15,8 +15,8 @@ namespace linux
       ::object(papp)
    {
 
-      m_pthreadimpl.alloc(allocer());
-      m_pthreadimpl->m_pthread = this;
+//      m_pthreadimpl.alloc(allocer());
+//      m_pthreadimpl->m_pthread = this;
 
   //m_nSafetyPoolSize = 512;        // default size
 
@@ -324,7 +324,7 @@ namespace linux
       // get the exe title from the full path name [no extension]
       //strExeName = System.get_module_title();
 
-      m_pthreadimpl->m_hthread      =  ::GetCurrentThread();
+      m_hthread      =  ::GetCurrentThread();
 
    }
 

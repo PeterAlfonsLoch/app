@@ -23,6 +23,10 @@ namespace draw2d_direct2d
 
       m_hdcAttach = NULL;
 
+
+      m_pmutex                = new mutex(papp);
+
+
 //      &draw2d_direct2_mutex() = &draw2d_direct2_mutex();
 
       m_sppen.alloc(allocer());
@@ -1755,7 +1759,7 @@ namespace draw2d_direct2d
 
       double ratio = get_os_font(m_spfont)->GetFontSize() / (float)metrics.designUnitsPerEm;
 
-      string str("APÁpgfditflmnopw");
+      string str("AP\C1pgfditflmnopw");
 
       ::size sz = GetTextExtent(str);
 

@@ -5,6 +5,8 @@ class replace_thread;
 
 class user_interaction_ptr_array;
 
+class thread_startup;
+
 
 class CLASS_DECL_AURA thread :
    virtual public command_target,
@@ -36,7 +38,7 @@ public:
    mutex *                                m_pmutex;
    bool                                   m_bRun;
 
-   thread_impl_sp                         m_pthreadimpl;
+   //thread_impl_sp                         m_pthreadimpl;
 
    bool                                   m_bAutoDelete;       // enables 'delete this' after thread termination
    uint_ptr                               m_dwAlive;
@@ -58,6 +60,33 @@ public:
    manual_reset_event *                   m_peventEvent;
 
    file_info *                            m_pfileinfo;
+
+
+   #ifndef WINDOWSEX
+
+   mq *                                      m_mq;
+
+#endif
+
+   //thread *                                  m_pthread;
+
+   sp(ptr_array < ::user::primitive >)     m_spuiptra;
+
+   bool                                      m_bDupHandle;
+   HTHREAD                                   m_hthread;
+   IDTHREAD                                  m_uiThread;
+
+   list < ::user::frame * >           m_frameList;
+
+   LPVOID                                    m_pThreadParams;
+   __THREADPROC                              m_pfnThreadProc;
+
+   manual_reset_event                        m_evFinish;
+   UINT                                      m_nDisablePumpCount;
+   mutex                                     m_mutexUiPtra;
+
+   UINT                                      m_dwFinishTimeout;
+
 
    thread();
    thread(::aura::application * papp);
@@ -148,7 +177,7 @@ public:
    virtual bool defer_pump_message();     // deferred message pump
    virtual bool process_message(LPMESSAGE lpmessage);     // route message
    virtual bool on_idle(LONG lCount); // return TRUE if more idle processing
-   virtual bool on_thread_on_idle(::thread_impl * pimpl, LONG lCount);
+   virtual bool on_thread_on_idle(::thread * pthread, LONG lCount);
    virtual bool is_idle_message(signal_details * pobj);  // checks for special messages
    virtual bool is_idle_message(LPMESSAGE lpmessage);  // checks for special messages
 
@@ -231,6 +260,20 @@ public:
    virtual void post_quit();
 
    virtual void delete_this();
+
+   /// thread implementation
+   virtual int32_t thread_startup(::thread_startup * pstartup);
+   virtual bool thread_entry();
+   virtual int32_t thread_term();
+   virtual void thread_delete();
+   operator HTHREAD() const;
+   void construct();
+   void construct(__THREADPROC pfnthread_implProc, LPVOID pParam);
+   virtual bool begin_thread(bool bSynch = false,int32_t * piStartupError = NULL,int32_t epriority= ::multithreading::priority_normal,uint_ptr nStackSize = 0,uint32_t dwCreateFlagsParam = 0,LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
+   //virtual int_ptr item() const;
+   virtual bool initialize_message_queue();
+   virtual void message_handler(signal_details * pobj);
+
 
 };
 
