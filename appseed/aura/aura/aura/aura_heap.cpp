@@ -110,6 +110,25 @@ struct heap_memory
    }
 
 
+   inline void check_padding_after()
+   {
+
+      for(int i = 0; i < m_iPaddingAfter; i++)
+      {
+
+         if(((byte *)&m_paddingBefore[16])[m_size + i] != 0)
+         {
+
+            ::output_debug_string("*&!@");
+
+         }
+
+      }
+
+   }
+
+
+
 };
 
 
@@ -437,18 +456,11 @@ void memory_free_dbg(void * pmemory, int32_t iBlockType)
 
    heap_memory * pheap =  ::heap_memory::heap_get(pmemory);
 
-
    void * pbase = (void *)(((int_ptr)pmemory) - pheap->m_back);
 
-   for(int i = 0; i < pheap->m_iPaddingAfter; i++)
-   {
 
-      if(((byte *)&pheap->m_paddingBefore[16])[pheap->m_size + i] != 0)
-      {
-         ::output_debug_string("*&!@");
-      }
+   pheap->check_padding_after();
 
-   }
 
    if(pheap->m_blockuse == 0)
    {

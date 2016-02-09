@@ -511,12 +511,13 @@ FIBITMAP * imaging::LoadImageFile(::file::buffer_sp  pfile)
    FIBITMAP *lpVoid = NULL;
    try
    {
+      pfile->seek_to_begin();
       FREE_IMAGE_FORMAT format;
-      format = FreeImage_GetFileTypeFromHandle(&io,pfile,16);
+      format = FreeImage_GetFileTypeFromHandle(&io,(::file::stream_buffer *)pfile.m_p,16);
       pfile->seek_to_begin();
       if(true)
       {
-         lpVoid = FreeImage_LoadFromHandle(format,&io,pfile);
+         lpVoid = FreeImage_LoadFromHandle(format,&io,(::file::stream_buffer *)pfile.m_p);
       }
    }
    catch(...)

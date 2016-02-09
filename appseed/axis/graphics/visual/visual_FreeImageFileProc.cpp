@@ -92,10 +92,10 @@ long __TellProc (fi_handle handle)
 
 uint32_t DLL_CALLCONV  __ReadProc2 (void *buffer, uint32_t size, uint32_t count, fi_handle handle)
 {
-   
+
    memory_size_t dwRead;
 
-   ::file::buffer_sp  pfile = (::file::stream_buffer * ) handle;
+   ::file::stream_buffer *  pfile = (::file::stream_buffer * ) handle;
 
    if((dwRead = pfile->read(buffer, count * size)) > 0)
    {
@@ -115,8 +115,8 @@ uint32_t DLL_CALLCONV  __ReadProc2 (void *buffer, uint32_t size, uint32_t count,
 
 uint32_t DLL_CALLCONV __WriteProc2(void *buffer, uint32_t size, uint32_t count, fi_handle handle)
 {
-   
-   ::file::buffer_sp  pfile = (::file::stream_buffer * ) handle;
+
+   ::file::stream_buffer *  pfile = (::file::stream_buffer * ) handle;
 
    try
    {
@@ -138,18 +138,18 @@ uint32_t DLL_CALLCONV __WriteProc2(void *buffer, uint32_t size, uint32_t count, 
 
 int32_t DLL_CALLCONV __SeekProc2(fi_handle handle, long offset, int32_t origin)
 {
-   
-   ::file::buffer_sp  pfile = (::file::stream_buffer * ) handle;
+
+   ::file::stream_buffer *  pfile = (::file::stream_buffer * ) handle;
 
    if (origin == SEEK_SET)
    {
-    
+
       origin = ::file::seek_begin;
 
    }
    else if (origin == SEEK_CUR)
    {
-    
+
       origin = ::file::seek_current;
 
    }
@@ -181,7 +181,7 @@ int32_t DLL_CALLCONV __SeekProc2(fi_handle handle, long offset, int32_t origin)
 long DLL_CALLCONV __TellProc2(fi_handle handle)
 {
 
-   ::file::buffer_sp  pfile = (::file::stream_buffer * ) handle;
+   ::file::stream_buffer *  pfile = (::file::stream_buffer * ) handle;
 
    return (long) pfile->get_position();
 
@@ -196,9 +196,9 @@ long DLL_CALLCONV __TellProc2(fi_handle handle)
 
 uint32_t _stdcall  ___Ex1File__ReadProc (void *buffer, uint32_t size, uint32_t count, fi_handle handle)
 {
-   
+
    memory_size_t dwRead;
-   
+
    ::file::buffer_sp  pfile = (::file::stream_buffer * ) handle;
 
    if((dwRead = pfile->read(buffer, count * size)))
@@ -219,7 +219,7 @@ uint32_t _stdcall  ___Ex1File__ReadProc (void *buffer, uint32_t size, uint32_t c
 
 uint32_t _stdcall ___Ex1File__WriteProc(void *buffer, uint32_t size, uint32_t count, fi_handle handle)
 {
-   
+
    ::file::buffer_sp  pfile = (::file::stream_buffer * ) handle;
 
    try

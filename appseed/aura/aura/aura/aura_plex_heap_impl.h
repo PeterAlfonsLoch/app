@@ -130,12 +130,12 @@ public:
 
    void * operator new(size_t s)
    {
-      return ::malloc(sizeof(plex_heap_alloc));
+      return system_heap_alloc(sizeof(plex_heap_alloc));
    }
 
    void operator delete(void * p)
    {
-      ::free(p);
+      system_heap_free(p);
    }
 
 
@@ -168,13 +168,13 @@ inline void plex_heap_alloc::Free(void * p)
 }
 
 
-#define PLEX_HEAP_ALLOC_ARRAY_AINDEX_COUNT 3
+//#define PLEX_HEAP_ALLOC_ARRAY_AINDEX_COUNT 3
 
-#ifdef OS64BIT
-#define PLEX_HEAP_ALLOC_ARRAY_BINDEX_COUNT 6
-#else
-#define PLEX_HEAP_ALLOC_ARRAY_BINDEX_COUNT 5
-#endif
+//#ifdef OS64BIT
+//#define PLEX_HEAP_ALLOC_ARRAY_BINDEX_COUNT 6
+//#else
+//#define PLEX_HEAP_ALLOC_ARRAY_BINDEX_COUNT 5
+//#endif
 
 class CLASS_DECL_AURA plex_heap_alloc_array :
    public ptr_array < plex_heap_alloc >
@@ -195,14 +195,14 @@ public:
    };
 
 
-   ::count        m_aa[PLEX_HEAP_ALLOC_ARRAY_AINDEX_COUNT];
-   unsigned int   m_aaSize[PLEX_HEAP_ALLOC_ARRAY_AINDEX_COUNT];
+   //::count        m_aa[PLEX_HEAP_ALLOC_ARRAY_AINDEX_COUNT];
+   //unsigned int   m_aaSize[PLEX_HEAP_ALLOC_ARRAY_AINDEX_COUNT];
 
 
-   ::count        m_bb[PLEX_HEAP_ALLOC_ARRAY_BINDEX_COUNT];
-   unsigned int   m_bbSize[PLEX_HEAP_ALLOC_ARRAY_BINDEX_COUNT];
+   //::count        m_bb[PLEX_HEAP_ALLOC_ARRAY_BINDEX_COUNT];
+   //unsigned int   m_bbSize[PLEX_HEAP_ALLOC_ARRAY_BINDEX_COUNT];
 
-   ::count m_iWorkingSize;
+   //::count m_iWorkingSize;
 
 
    static memdleak_block * s_pmemdleakList;
@@ -230,12 +230,12 @@ public:
 
    void * operator new(size_t s)
    {
-      return ::malloc(sizeof(plex_heap_alloc_array));
+      return system_heap_alloc(sizeof(plex_heap_alloc_array));
    }
 
    void operator delete(void * p)
    {
-      ::free(p);
+      system_heap_free(p);
    }
 
 };
@@ -289,50 +289,50 @@ void plex_heap_alloc_array::free(void * p,size_t size)
 inline plex_heap_alloc * plex_heap_alloc_array::find(size_t nAllocSize)
 {
 
-   int32_t iA = 0;
+   //int32_t iA = 0;
 
-   for(; iA < PLEX_HEAP_ALLOC_ARRAY_AINDEX_COUNT; iA++)
+//   for(; iA < PLEX_HEAP_ALLOC_ARRAY_AINDEX_COUNT; iA++)
+//   {
+//
+//      if(m_aaSize[iA] >= nAllocSize)
+//      {
+//
+//         break;
+//
+//      }
+//
+//   }
+//
+//   if(iA >= PLEX_HEAP_ALLOC_ARRAY_AINDEX_COUNT)
+//      return NULL;
+//
+//
+//   ::count iB = m_aa[iA];
+//
+//   for(; iB < PLEX_HEAP_ALLOC_ARRAY_BINDEX_COUNT; iB++)
+//   {
+//
+//      if(m_bbSize[iB] >= nAllocSize)
+//      {
+//
+//         break;
+//
+//      }
+//
+//   }
+//
+//   if(iB >= PLEX_HEAP_ALLOC_ARRAY_BINDEX_COUNT)
+//      return NULL;
+
+  // ::count i = m_bb[iB];
+
+   for(index i = 0; i < m_nSize; i++)
    {
 
-      if(m_aaSize[iA] >= nAllocSize)
+      if(this->m_pData[i]->m_uiAllocSize >= nAllocSize)
       {
 
-         break;
-
-      }
-
-   }
-
-   if(iA >= PLEX_HEAP_ALLOC_ARRAY_AINDEX_COUNT)
-      return NULL;
-
-
-   ::count iB = m_aa[iA];
-
-   for(; iB < PLEX_HEAP_ALLOC_ARRAY_BINDEX_COUNT; iB++)
-   {
-
-      if(m_bbSize[iB] >= nAllocSize)
-      {
-
-         break;
-
-      }
-
-   }
-
-   if(iB >= PLEX_HEAP_ALLOC_ARRAY_BINDEX_COUNT)
-      return NULL;
-
-   ::count i = m_bb[iB];
-
-   for(; i < m_iWorkingSize; i++)
-   {
-
-      if(this->element_at(i)->GetAllocSize() >= nAllocSize)
-      {
-
-         return this->element_at(i);
+         return this->m_pData[i];
 
       }
 

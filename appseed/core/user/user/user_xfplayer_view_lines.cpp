@@ -132,6 +132,7 @@ void XfplayerViewLines::InstallMessageHandling(::message::dispatch *pinterface)
 
 void XfplayerViewLines::OnMouseMove(signal_details * pobj)
 {
+   synch_lock sl(m_pmutex);
    for(int32_t i = 0; i < this->get_size(); i++)
    {
       this->element_at(i)->m_pContainer = this;
