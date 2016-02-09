@@ -2286,7 +2286,7 @@ namespace axis
 
                   set_run(false);
 
-                  exit_instance();
+                  aura::application::exit_instance();
 
                }
                catch(...)

@@ -49,6 +49,9 @@ namespace windows
       virtual void synch_redraw();
       virtual void _synch_redraw();
 
+
+      virtual void message_handler(signal_details * pobj);
+
    };
 
 

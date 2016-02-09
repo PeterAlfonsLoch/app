@@ -797,15 +797,15 @@ namespace windows
 
       ::window_sp pwindow;
 
-      if(m_pui->m_pauraapp != NULL && m_pui->m_pauraapp->m_pthreadimpl.is_set())
+      if(m_pui->m_pauraapp != NULL)
       {
 
-         synch_lock sl(&m_pui->m_pauraapp->m_pthreadimpl->m_mutexUiPtra);
+         synch_lock sl(&m_pui->m_pauraapp->m_mutexUiPtra);
 
-         if(m_pui->m_pauraapp->m_pthreadimpl->m_spuiptra.is_set())
+         if(m_pui->m_pauraapp->m_spuiptra.is_set())
          {
 
-            m_pui->m_pauraapp->m_pthreadimpl->m_spuiptra->remove(m_pui);
+            m_pui->m_pauraapp->m_spuiptra->remove(m_pui);
 
          }
 

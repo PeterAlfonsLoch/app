@@ -466,8 +466,12 @@ namespace windows
 
    }
 
+   void window_draw::message_handler(signal_details * pobj)
+   {
 
+      ::user::message_queue::message_handler(pobj);
 
+   }
 
 
 } // namespace windows

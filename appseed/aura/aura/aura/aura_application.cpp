@@ -1194,7 +1194,7 @@ namespace aura
 
       if(!is_system() && (bool)oprop("SessionSynchronizedInput"))
       {
-         ::AttachThreadInput(GetCurrentThreadId(),(uint32_t)System.m_pthreadimpl->get_os_int(),TRUE);
+         ::AttachThreadInput(GetCurrentThreadId(),(uint32_t)System.get_os_int(),TRUE);
       }
 
 #endif
@@ -2332,7 +2332,7 @@ namespace aura
 
                   set_run(false);
 
-                  exit_instance();
+                  ::thread::exit_instance();
 
 //               }
 //               catch(...)

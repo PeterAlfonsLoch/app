@@ -1114,15 +1114,15 @@ void thread::dispatch_thread_message(signal_details * pbase)
 void thread::wait()
 {
 
-   return command_target::wait();
+   ::WaitForSingleObject(m_hthread, INFINITE);
 
 }
 
 wait_result thread::wait(const duration & duration)
 {
 
-   return command_target::wait(duration);
-
+   DWORD timeout = duration.is_pos_infinity() ? INFINITE : static_cast<DWORD>(duration.total_milliseconds());
+   return wait_result((uint32_t) ::WaitForSingleObject(m_hthread, timeout));
 }
 
 
@@ -1367,7 +1367,7 @@ IDTHREAD thread::get_os_int() const
 int_ptr thread::item() const
 {
 
-   return m_hthread;
+   return (int_ptr)m_hthread;
 
 }
 
@@ -2555,18 +2555,23 @@ bool thread::process_message(LPMESSAGE lpmessage)
 }
 
 
-bool thread::set_thread_priority(int32_t priority)
+bool thread::set_thread_priority(int32_t iCa2Priority)
 {
 
-//#ifdef METROWIN
-//
-//   return ::__SetThreadPriority(m_hthread, priority) != 0;
-//
-//#else
+   //ASSERT(m_hthread != NULL);
 
-   return ::SetThreadPriority(m_hthread,priority) != 0;
+   int32_t nPriority = (int)get_os_thread_priority(iCa2Priority);
 
-//#endif
+
+   bool bOk = ::SetThreadPriority(m_hthread, get_os_thread_priority(iCa2Priority)) != FALSE;
+
+   if (!bOk)
+   {
+      uint32_t dwLastError = ::GetLastError();
+      ::OutputDebugString("thread::SetThreadPriority LastError = " + ::str::from(dwLastError));
+   }
+
+   return bOk;
 
 }
 
@@ -2574,16 +2579,13 @@ bool thread::set_thread_priority(int32_t priority)
 int32_t thread::get_thread_priority()
 {
 
-//#ifdef METROWIN
-//
-//   return ::__GetThreadPriority(m_hthread);
-//
-//#else
+   ASSERT(m_hthread != NULL);
 
-   return ::GetThreadPriority(m_hthread);
+   int32_t nPriority = ::GetThreadPriority(m_hthread);
 
-//#endif
+   int32_t iCa2Priority = ::get_os_thread_scheduling_priority(nPriority);
 
+   return iCa2Priority;
 }
 
 
@@ -2683,14 +2685,17 @@ void thread::thread_delete()
 
 void thread::start()
 {
-
+   ::ResumeThread(m_hthread);
 }
 
 
 uint32_t thread::ResumeThread()
 {
 
-   return 0;
+   ASSERT(m_hthread != NULL);
+
+   return ::ResumeThread(m_hthread);
+
 
 }
 
@@ -2698,7 +2703,8 @@ uint32_t thread::ResumeThread()
 bool thread::has_message()
 {
 
-   return false;
+   MSG msg;
+   return ::PeekMessage(&msg, NULL, 0, 0, PM_NOREMOVE) != FALSE;
 
 }
 
@@ -2706,7 +2712,8 @@ bool thread::has_message()
 void thread::set_priority(int32_t priority)
 {
 
-   UNREFERENCED_PARAMETER(priority);
+   if (::SetThreadPriority(m_hthread, priority) == 0)
+      throw runtime_error(get_app(), "Thread::set_priority: Couldn't set thread priority.");
 
 }
 
@@ -2714,7 +2721,7 @@ void thread::set_priority(int32_t priority)
 int32_t thread::priority()
 {
 
-   return ::multithreading::priority_normal;
+   return ::GetThreadPriority(m_hthread);
 
 }
 

@@ -10,9 +10,9 @@ namespace windows
       object(papp)
    {
 
-      m_pthreadimpl.alloc(allocer());
+      //m_pthreadimpl.alloc(allocer());
 
-      m_pthreadimpl->m_pthread = this;
+      //m_pthreadimpl->m_pthread = this;
 
       m_paurasystem                    =  papp->m_pauraapp->m_paurasystem;
 

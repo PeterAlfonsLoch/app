@@ -29,156 +29,156 @@ void CLASS_DECL_AURA __term_thread()
 }
 
 
-namespace windows
-{
+//namespace windows
+//{
+//
+
+   //thread::thread(::aura::application * papp):
+   //   object(papp),
+   //   ::thread_impl(papp)
+   //{
+
+   //      m_evFinish.SetEvent();
+   //      m_pThreadParams = NULL;
+   //      m_pfnThreadProc = NULL;
+
+   //      CommonConstruct();
+
+   //}
+
+   //void thread::construct(__THREADPROC pfnThreadProc,LPVOID pParam)
+   //{
+   //   m_evFinish.SetEvent();
+   //   m_pfnThreadProc = pfnThreadProc;
+   //   m_pThreadParams = pParam;
+
+   //   CommonConstruct();
+   //}
+
+   //void thread::CommonConstruct()
+   //{
+
+   //   m_nDisablePumpCount = 0;
+   //      
+   //   thread_impl::CommonConstruct();
+   //
+   //}
 
 
-   thread::thread(::aura::application * papp):
-      object(papp),
-      ::thread_impl(papp)
-   {
+   //thread::~thread()
+   //{
 
-         m_evFinish.SetEvent();
-         m_pThreadParams = NULL;
-         m_pfnThreadProc = NULL;
-
-         CommonConstruct();
-
-   }
-
-   void thread::construct(__THREADPROC pfnThreadProc,LPVOID pParam)
-   {
-      m_evFinish.SetEvent();
-      m_pfnThreadProc = pfnThreadProc;
-      m_pThreadParams = pParam;
-
-      CommonConstruct();
-   }
-
-   void thread::CommonConstruct()
-   {
-
-      m_nDisablePumpCount = 0;
-         
-      thread_impl::CommonConstruct();
-   
-   }
-
-
-   thread::~thread()
-   {
-
-   }
-
-
-
-
-
-   bool thread::pre_init_instance()
-   {
-      return true;
-   }
-
-   bool thread::initialize_instance()
-   {
-      ASSERT_VALID(this);
-
-      return true;   // by default enter run loop
-
-   }
-
-
-   void thread::assert_valid() const
-   {
-
-      ::thread_impl::assert_valid();
-
-   }
-
-
-   void thread::dump(dump_context & dumpcontext) const
-   {
-      ::thread_impl::dump(dumpcontext);
-
-      dumpcontext << "m_pThreadParams = " << m_pThreadParams;
-      dumpcontext << "\nm_pfnThreadProc = " << (void *)m_pfnThreadProc;
-      dumpcontext << "\nm_hThread = " << (void *)m_hthread;
-      dumpcontext << "\nm_nThreadID = " << m_uiThread;
-#ifdef DEBUG
-      //    dumpcontext << "\nm_nDisablePumpCount = " << pState->m_nDisablePumpCount;
-#endif
-
-      dumpcontext << "\nm_msgCur = {";
-      /*      dumpcontext << "\n\toswindow = " << (void *)pState->m_msgCur.hwnd;
-      dumpcontext << "\n\tmessage = " << (UINT)pState->m_msgCur.message;
-      dumpcontext << "\n\twParam = " << (UINT)pState->m_msgCur.wParam;
-      dumpcontext << "\n\tlParam = " << (void *)pState->m_msgCur.lParam;
-      dumpcontext << "\n\ttime = " << (uint_ptr) pState->m_msgCur.time;
-      dumpcontext << "\n\tpt = " << point(pState->m_msgCur.pt);*/
-      dumpcontext << "\n}";
-
-      dumpcontext << "\nm_pThreadParams = " << m_pThreadParams;
-      dumpcontext << "\nm_pfnThreadProc = " << (void *)m_pfnThreadProc;
-      //dumpcontext << "\nm_ptCursorLast = " << pState->m_ptCursorLast;
-      //dumpcontext << "\nm_nMsgLast = " << pState->m_nMsgLast;
-
-      dumpcontext << "\n";
-   }
+   //}
 
 
 
 
-   bool thread::on_run_exception(::exception::exception & e)
-   {
-      UNREFERENCED_PARAMETER(e);
-      return false;
-   }
+
+   //bool thread::pre_init_instance()
+   //{
+   //   return true;
+   //}
+
+   //bool thread::initialize_instance()
+   //{
+   //   ASSERT_VALID(this);
+
+   //   return true;   // by default enter run loop
+
+   //}
+
+
+//   void thread::assert_valid() const
+//   {
+//
+//      ::thread_impl::assert_valid();
+//
+//   }
+//
+//
+//   void thread::dump(dump_context & dumpcontext) const
+//   {
+//      ::thread_impl::dump(dumpcontext);
+//
+//      dumpcontext << "m_pThreadParams = " << m_pThreadParams;
+//      dumpcontext << "\nm_pfnThreadProc = " << (void *)m_pfnThreadProc;
+//      dumpcontext << "\nm_hThread = " << (void *)m_hthread;
+//      dumpcontext << "\nm_nThreadID = " << m_uiThread;
+//#ifdef DEBUG
+//      //    dumpcontext << "\nm_nDisablePumpCount = " << pState->m_nDisablePumpCount;
+//#endif
+//
+//      dumpcontext << "\nm_msgCur = {";
+//      /*      dumpcontext << "\n\toswindow = " << (void *)pState->m_msgCur.hwnd;
+//      dumpcontext << "\n\tmessage = " << (UINT)pState->m_msgCur.message;
+//      dumpcontext << "\n\twParam = " << (UINT)pState->m_msgCur.wParam;
+//      dumpcontext << "\n\tlParam = " << (void *)pState->m_msgCur.lParam;
+//      dumpcontext << "\n\ttime = " << (uint_ptr) pState->m_msgCur.time;
+//      dumpcontext << "\n\tpt = " << point(pState->m_msgCur.pt);*/
+//      dumpcontext << "\n}";
+//
+//      dumpcontext << "\nm_pThreadParams = " << m_pThreadParams;
+//      dumpcontext << "\nm_pfnThreadProc = " << (void *)m_pfnThreadProc;
+//      //dumpcontext << "\nm_ptCursorLast = " << pState->m_ptCursorLast;
+//      //dumpcontext << "\nm_nMsgLast = " << pState->m_nMsgLast;
+//
+//      dumpcontext << "\n";
+//   }
+//
 
 
 
-   bool thread::set_thread_priority(int32_t iCa2Priority)
-   {
-
-      //ASSERT(m_hthread != NULL);
-
-      int32_t nPriority = (int)get_os_thread_priority(iCa2Priority);
-
-
-      bool bOk = ::SetThreadPriority(m_hthread,get_os_thread_priority(iCa2Priority)) != FALSE;
-
-      if(!bOk)
-      {
-         uint32_t dwLastError = ::GetLastError();
-         ::OutputDebugString("thread::SetThreadPriority LastError = " + ::str::from(dwLastError));
-      }
-
-      return bOk;
-
-   }
+   //bool thread::on_run_exception(::exception::exception & e)
+   //{
+   //   UNREFERENCED_PARAMETER(e);
+   //   return false;
+   //}
 
 
-   int32_t thread::get_thread_priority()
-   {
 
-      ASSERT(m_hthread != NULL);
+   //bool thread::set_thread_priority(int32_t iCa2Priority)
+   //{
 
-      int32_t nPriority = ::GetThreadPriority(m_hthread);
+   //   //ASSERT(m_hthread != NULL);
 
-      int32_t iCa2Priority = ::get_os_thread_scheduling_priority(nPriority);
-
-      return iCa2Priority;
-
-   }
+   //   int32_t nPriority = (int)get_os_thread_priority(iCa2Priority);
 
 
-   uint32_t thread::ResumeThread()
-   {
+   //   bool bOk = ::SetThreadPriority(m_hthread,get_os_thread_priority(iCa2Priority)) != FALSE;
 
-      ASSERT(m_hthread != NULL);
+   //   if(!bOk)
+   //   {
+   //      uint32_t dwLastError = ::GetLastError();
+   //      ::OutputDebugString("thread::SetThreadPriority LastError = " + ::str::from(dwLastError));
+   //   }
 
-      return ::ResumeThread(m_hthread);
+   //   return bOk;
 
-   }
+   //}
+
+
+   //int32_t thread::get_thread_priority()
+   //{
+
+   //   ASSERT(m_hthread != NULL);
+
+   //   int32_t nPriority = ::GetThreadPriority(m_hthread);
+
+   //   int32_t iCa2Priority = ::get_os_thread_scheduling_priority(nPriority);
+
+   //   return iCa2Priority;
+
+   //}
+
+
+   //uint32_t thread::ResumeThread()
+   //{
+
+   //   ASSERT(m_hthread != NULL);
+
+   //   return ::ResumeThread(m_hthread);
+
+   //}
 
 
 
@@ -189,52 +189,52 @@ namespace windows
    * \brief	Session independent threads and synchronization objects (windows version)
    */
 
-   ///  \brief		starts thread on first call
+   /*///  \brief		starts thread on first call
    void thread::start()
    {
       ::ResumeThread(m_hthread);
    }
+*/
 
-
-   void thread::wait()
+   /*void thread::wait()
    {
       ::WaitForSingleObject(m_hthread,INFINITE);
    }
-
+*/
    ///  \brief		waits for signaling the thread for a specified time
    ///  \param		duration time period to wait for thread
    ///  \return	result of waiting action as defined in wait_result
-   wait_result thread::wait(const duration & duration)
-   {
-      DWORD timeout = duration.is_pos_infinity() ? INFINITE : static_cast<DWORD>(duration.total_milliseconds());
-      return wait_result((uint32_t) ::WaitForSingleObject(m_hthread,timeout));
-   }
+   //wait_result thread::wait(const duration & duration)
+   //{
+   //   DWORD timeout = duration.is_pos_infinity() ? INFINITE : static_cast<DWORD>(duration.total_milliseconds());
+   //   return wait_result((uint32_t) ::WaitForSingleObject(m_hthread,timeout));
+   //}
 
    ///  \brief		sets thread priority
    ///  \param		new priority
-   void thread::set_priority(int32_t priority)
-   {
-      if(::SetThreadPriority(m_hthread,priority) == 0)
-         throw runtime_error(get_app(),"Thread::set_priority: Couldn't set thread priority.");
-   }
+   //void thread::set_priority(int32_t priority)
+   //{
+   //   if(::SetThreadPriority(m_hthread,priority) == 0)
+   //      throw runtime_error(get_app(),"Thread::set_priority: Couldn't set thread priority.");
+   //}
 
    ///  \brief		gets thread priority
    ///  \param		priority
-   int32_t thread::priority()
+   /*int32_t thread::priority()
    {
       return ::GetThreadPriority(m_hthread);
    }
+*/
 
+   //bool thread::has_message()
+   //{
+   //   MSG msg;
+   //   return ::PeekMessage(&msg,NULL,0,0,PM_NOREMOVE) != FALSE;
+   //}
 
-   bool thread::has_message()
-   {
-      MSG msg;
-      return ::PeekMessage(&msg,NULL,0,0,PM_NOREMOVE) != FALSE;
-   }
-
-
-} // namespace windows
-
+//
+//} // namespace windows
+//
 
 
 

@@ -51,12 +51,12 @@ public:
 
    void * operator new(size_t s)
    {
-      return ::HeapAlloc(::GetProcessHeap(), NULL, sizeof(plex_heap_alloc_sync));
+      return system_heap_alloc(sizeof(plex_heap_alloc_sync));
    }
 
    void operator delete(void * p)
    {
-      ::HeapFree(::GetProcessHeap(), NULL, p);
+      system_heap_free(p);
    }
 
 #else
