@@ -231,6 +231,8 @@ public:
 
    virtual void register_dependent_thread(::thread * pthread);
    virtual void unregister_dependent_thread(::thread * pthread);
+   virtual void on_register_dependent_thread(::thread * pthread);
+   virtual void on_unregister_dependent_thread(::thread * pthread);
    virtual void signal_close_dependent_threads();
    virtual void wait_close_dependent_threads(const duration & duration);
    virtual void register_at_required_threads();
@@ -247,6 +249,7 @@ public:
    virtual void message_queue_message_handler(::signal_details * pobj);
 
    DECL_GEN_SIGNAL(_001OnSendThreadMessage);
+   DECL_GEN_SIGNAL(_001OnThreadMessage);
 
 
    virtual void shutdown(bool bPrompt = true);

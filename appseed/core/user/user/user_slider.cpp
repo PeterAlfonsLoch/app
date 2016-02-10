@@ -191,7 +191,7 @@ namespace user
 
       class imaging & imaging = System.visual().imaging();
 
-      bool bAlpha1 = (byte) (128.0* get_alpha());
+      byte bAlpha1 = (byte) (128.0* get_alpha());
 
       imaging.color_blend(pdc, rectClient, RGB(250,255,255), bAlpha1);
 
@@ -199,7 +199,7 @@ namespace user
 
       get_slider_rect(rect);
 
-      bool bAlpha = (byte) (220.0* get_alpha());
+      byte bAlpha = (byte) (220.0* get_alpha());
 
       pdc->Draw3dRect(rect,ARGB(bAlpha / 255,84 + 23,77+23,184+ 23),ARGB(bAlpha,84,77,184));
       rect.deflate(1,1);

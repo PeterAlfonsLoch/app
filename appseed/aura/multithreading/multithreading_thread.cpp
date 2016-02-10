@@ -668,8 +668,21 @@ void thread::Delete()
 
 }
 
-
 void thread::register_dependent_thread(::thread * pthreadDependent)
+{
+
+   post_thread_message(WM_APP + 100, 0, (LPARAM) pthreadDependent);
+
+}
+
+void thread::unregister_dependent_thread(::thread * pthreadDependent)
+{
+
+   post_thread_message(WM_APP + 100, 1, (LPARAM)pthreadDependent);
+
+}
+
+void thread::on_register_dependent_thread(::thread * pthreadDependent)
 {
 
    if(pthreadDependent == this)
@@ -694,7 +707,7 @@ void thread::register_dependent_thread(::thread * pthreadDependent)
 }
 
 
-void thread::unregister_dependent_thread(::thread * pthreadDependent)
+void thread::on_unregister_dependent_thread(::thread * pthreadDependent)
 {
 
    {
@@ -1860,6 +1873,8 @@ int32_t thread::thread_startup(::thread_startup * pstartup)
 
    m_evFinish.ResetEvent();
 
+   IGUI_WIN_MSG_LINK(WM_APP + 1000, this, this, &::thread::_001OnThreadMessage);
+
    install_message_handling(this);
 
    //install_message_handling(pthreadimpl);
@@ -2848,3 +2863,26 @@ bool replace_thread::do_replace(::thread * pthread)
 //    }
 //
 //}
+
+
+
+void thread::_001OnThreadMessage(signal_details * pobj)
+{
+
+   SCAST_PTR(::message::base, pbase, pobj);
+
+
+   if (pbase->m_wparam == 0)
+   {
+
+      on_register_dependent_thread((thread*)pbase->m_lparam);
+
+   }
+   else if (pbase->m_wparam == 1)
+   {
+
+      on_unregister_dependent_thread((thread*)pbase->m_lparam);
+
+   }
+
+}

@@ -104,7 +104,7 @@ namespace user
       GetClientRect(rectClient);
       class imaging & imaging = System.visual().imaging();
 
-      bool bAlpha = (byte) (128.0 * get_alpha());
+      byte bAlpha = (byte) (128.0 * get_alpha());
 
       imaging.color_blend(
          pdc,
