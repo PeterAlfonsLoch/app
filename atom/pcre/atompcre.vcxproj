@@ -19,8 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectName>aurapcre</ProjectName>
-    <ProjectGuid>{19AA8BB5-51FA-46E7-B346-2A89828F3000}</ProjectGuid>
+    <ProjectName>atompcre</ProjectName>
+    <ProjectGuid>{0B773E44-CF6D-4D93-B705-54CADF279565}</ProjectGuid>
     <RootNamespace>aurapcre</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
@@ -399,7 +399,6 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="PcreUtil.h" />
     <ClInclude Include="src\config.h" />
     <ClInclude Include="src\pcre2.h" />
     <ClInclude Include="src\pcre2posix.h" />
@@ -411,7 +410,6 @@
     <ClInclude Include="src\sljit\sljitLir.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="PcreUtil.cpp" />
     <ClCompile Include="src\dftables.c" />
     <ClCompile Include="src\pcre2_auto_possess.c" />
     <ClCompile Include="src\pcre2_chartables.c" />
