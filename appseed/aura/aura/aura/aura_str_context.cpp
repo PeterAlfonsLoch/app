@@ -171,7 +171,7 @@ namespace aura
 
    bool str::load(const char * pszBaseDir)
    {
-      
+
       string strMain = pszBaseDir;
 
       ::file::listing locales(get_app());
@@ -180,14 +180,14 @@ namespace aura
 
       for(auto & locale : locales)
       {
-         
+
          ::file::listing schemas(get_app());
 
          schemas.ignore(".svn").ls_dir(locale);
 
          for(auto & schema : schemas)
          {
-            
+
             ::file::listing listing(get_app());
 
             listing.ignore(".svn").rls_file(schema / "uistr");
@@ -272,7 +272,7 @@ namespace aura
          if(str.has_char())
             return str;
       }
-      
+
       str = (*m_pschemaStd)[id]; // lang=_std style=_std
 
       if(str.has_char())
@@ -281,7 +281,7 @@ namespace aura
          return str;
 
       }
-      
+
       if(bIdAsDefaultValue)
       {
 
@@ -356,7 +356,7 @@ namespace aura
 
       } while (stra2.get_count() > 0);
 
-      
+
    }
 
 
@@ -470,11 +470,11 @@ namespace aura
 
          if(m_pos <= 0)
             return;
-         
+
          strsize oldlen = m_iSize;
 
          strsize newlen;
-         
+
          if(oldlen == 0 && m_pos == 1)
          {
 
@@ -527,7 +527,7 @@ namespace aura
          }
 
          m_iSize = newlen;
-         
+
          //m_szMerge[m_iSize] = '\0'; // for optmization purposes, m_szMerge is not forced to be 0 finished, so CHECK m_iSize!!
 
          m_pos = 0;
@@ -577,7 +577,7 @@ namespace aura
       ::str::parse parse(pszFile, len);
 
       string str;
-      
+
       int32_t i = 0;
 
       strsize start;
@@ -614,10 +614,10 @@ namespace aura
          rstr.clear();
 
          bFinal = false;
-         
+
          while(!bFinal)
          {
-         
+
             parse._get_expandable_line(start,end,bFinal);
 
             rstr.append(start,end,pszFile);
@@ -641,14 +641,14 @@ namespace aura
 
          q = *psz;
 
-         if(q != '\'' && q != '\"') 
+         if(q != '\'' && q != '\"')
          {
             goto cont;
          }
 
          psz++;
          s = psz;
-         
+
          while(*psz != q)
          {
             psz += str_uni_len(psz);
@@ -665,7 +665,7 @@ namespace aura
                goto end;
          }
 
-         if(*psz != '=') 
+         if(*psz != '=')
             continue;
 
          psz++;
@@ -739,7 +739,7 @@ namespace aura
          strBody.SetString(s,wr - s);
          //psz++;
 
-         
+
 
          //body(strBody)
          //strBody.replace("\\r","\r");

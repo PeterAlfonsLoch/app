@@ -7,7 +7,7 @@ CLASS_DECL_IMPORT void draw2d_factory_exchange(::aura::application * papp);
 
 #endif
 
-extern thread_pointer < plex_heap_alloc_array::memdleak_block > t_plastblock;
+extern thread_pointer < memdleak_block > t_plastblock;
 
 namespace base
 {
@@ -2650,6 +2650,39 @@ namespace base
 
 
    }
+
+
+   bool application::process_message(LPMESSAGE lpmessage)
+   {
+
+      if(lpmessage->message == WM_APP + 1984 && lpmessage->wParam == 77)
+      {
+
+         ::user::message * pmessage = (::user::message *) lpmessage->lParam;
+
+         try
+         {
+
+            pmessage->send();
+
+         }
+         catch(...)
+         {
+
+
+         }
+
+         delete pmessage;
+
+         return true;
+
+      }
+
+
+      return ::thread::process_message(lpmessage);
+
+   }
+
 
 } // namespace base
 

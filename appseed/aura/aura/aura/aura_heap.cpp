@@ -307,6 +307,8 @@ void * unaligned_memory_alloc_dbg(size_t size, int32_t nBlockUse, const char * s
 
 BEGIN_EXTERN_C
 
+#undef memory_alloc
+
 void * memory_alloc(size_t size)
 {
 
@@ -321,6 +323,25 @@ void * memory_alloc(size_t size)
 #endif
 
 }
+
+
+void * memory_alloc_no_track(size_t size)
+{
+
+#if defined(APPLEOS)
+
+   return aligned_memory_alloc(size);
+
+#else
+
+   return unaligned_memory_alloc(size);
+
+#endif
+
+}
+
+#undef memory_alloc(size) MEMORY_ALLOC(size)
+
 
 
 void * memory_calloc(size_t size, size_t bytes)

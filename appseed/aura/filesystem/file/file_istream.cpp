@@ -29,23 +29,23 @@ namespace file
 
    istream::istream(stream_buffer * preader)
    {
-      
-      m_spbuffer = preader;      
+
+      m_spbuffer = preader;
       m_gcount = 0;
 
    }
 
    istream::istream(const istream & istream)
    {
-      
-      m_spbuffer = istream.m_spbuffer;      
+
+      m_spbuffer = istream.m_spbuffer;
       m_gcount = 0;
 
    }
 
    istream::~istream()
    {
-      
+
       close();
 
    }
@@ -53,9 +53,9 @@ namespace file
 
    memory_size_t istream::read(void * lpBuf, memory_size_t nCount)
    {
-      
+
       return m_gcount = m_spbuffer->read(lpBuf, nCount);
-      
+
    }
 
    void istream::full_read(void * lpBuf, memory_size_t nCount)
@@ -78,16 +78,16 @@ namespace file
 
       }
 
-      
+
 
       m_gcount = nCount;
-      
+
    }
 
 
    void istream::full_fill(::primitive::memory_base & m)
    {
-      
+
       full_read(m.get_data(), m.get_size());
 
    }
@@ -185,16 +185,16 @@ namespace file
       UNREFERENCED_PARAMETER(ui);
       ::exception::throw_interface_only(get_app());
    }
-   
+
 #ifdef APPLEOS
-   
+
    void istream::read(unsigned long & ui)
    {
-      
+
    }
-   
+
 #endif
-   
+
    void istream::read (float & f)
    {
       UNREFERENCED_PARAMETER(f);
@@ -347,6 +347,7 @@ namespace file
    void istream::read_to_hex(string & str, file_position_t dwStart, file_position_t dwEnd)
    {
       memory memory(get_app());
+      memory.m_strTag = "memory://member=::file::istream::read_to_hex";
       if(dwStart == (file_position_t) -1)
       {
 		   dwStart = tellg();
@@ -360,7 +361,7 @@ namespace file
       memory.allocate(1024);
 
       strsize nCount;
-      
+
       if (dwEnd == (file_position_t)-1)
       {
 
@@ -373,7 +374,7 @@ namespace file
          nCount = (strsize)(dwEnd - dwStart);
 
       }
-       
+
       while((uiRead = read(&memory.get_data()[uiPos], MIN(memory.get_size() - uiPos, (memory_size_t) nCount))) > 0)
       {
          uiPos += uiRead;
@@ -389,7 +390,7 @@ namespace file
 
 
 
-   
+
 } // namespace file
 
 

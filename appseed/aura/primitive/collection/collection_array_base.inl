@@ -457,7 +457,27 @@ template < class TYPE,class ALLOCATOR >
 
       ::count nAllocSize = MAX(nNewSize,m_nGrowBy);
 
+      #if MEMDLEAK
+      if(::get_thread() != NULL)
+      {
+         if(::get_thread()->m_strDebug.has_char())
+         {
+            m_pData = ALLOCATOR::alloc(nAllocSize, "thread://" + demangle(typeid(*::get_thread()).name()) + ", " + ::get_thread()->m_strDebug + ", "+ string(__FILE__), __LINE__);
+         }
+         else
+         {
+            m_pData = ALLOCATOR::alloc(nAllocSize, "thread://" + demangle(typeid(*::get_thread()).name()) + ", "  + string(__FILE__), __LINE__);
+         }
+      }
+      else
+      {
+      m_pData = ALLOCATOR::alloc(nAllocSize, __FILE__, __LINE__);
+      }
+
+
+      #else
       m_pData = ALLOCATOR::alloc(nAllocSize);
+      #endif
 
       ALLOCATOR::construct(m_pData,nNewSize);
 
@@ -510,7 +530,28 @@ template < class TYPE,class ALLOCATOR >
 #ifdef SIZE_T_MAX
       ASSERT(::compare::lt(nNewMax, SIZE_T_MAX / sizeof(TYPE))); // no overflow
 #endif
+      #if MEMDLEAK
+      TYPE* pNewData =  NULL;
+      if(::get_thread() != NULL)
+      {
+         if(::get_thread()->m_strDebug.has_char())
+         {
+            pNewData = ALLOCATOR::alloc(nNewMax * sizeof(TYPE), "thread://" + demangle(typeid(*::get_thread()).name()) + ", " + ::get_thread()->m_strDebug + ", "+ string(__FILE__), __LINE__);
+         }
+         else
+         {
+            pNewData = ALLOCATOR::alloc(nNewMax * sizeof(TYPE), "thread://" + demangle(typeid(*::get_thread()).name()) + ", "  + string(__FILE__), __LINE__);
+         }
+      }
+      else
+      {
+      pNewData = ALLOCATOR::alloc(nNewMax * sizeof(TYPE), __FILE__, __LINE__);
+      }
+
+
+      #else
       TYPE* pNewData = (TYPE *)ALLOCATOR::alloc(nNewMax * sizeof(TYPE));
+      #endif
 
       // copy new data from old
       ::aura::memcpy_s(pNewData,(size_t)nNewMax * sizeof(TYPE),m_pData,(size_t)m_nSize * sizeof(TYPE));

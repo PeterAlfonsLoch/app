@@ -43,6 +43,17 @@ namespace primitive
       typedef byte value_type;
 
 
+#if MEMDLEAK
+
+   string m_strTag;
+
+   int m_iLine;
+
+#endif
+
+
+
+
       LPBYTE                  m_pbStorage;
       LPBYTE                  m_pbComputed;
 
@@ -67,7 +78,7 @@ namespace primitive
       memory_base();
       virtual ~memory_base();
 
-      
+
       //virtual LPBYTE detach_primitive_memory();
       //virtual LPBYTE detach_virtual_memory();
       //virtual HGLOBAL detach_shared_memory();
@@ -77,7 +88,7 @@ namespace primitive
 
       virtual bool allocate(memory_size_t dwNewLength);
       virtual bool allocate_internal(memory_size_t dwNewLength);
-      
+
       virtual LPBYTE impl_alloc(memory_size_t dwAllocation);
       virtual LPBYTE impl_realloc(void * pdata,memory_size_t dwAllocation);
       virtual void impl_free(LPBYTE pdata);
@@ -817,7 +828,7 @@ namespace primitive
 
    inline void memory_base::set_os_bytes(Array < uchar, 1U > ^ a, memory_position_t pos, memory_size_t size)
    {
-      
+
       if (!a)
          return;
 
@@ -886,8 +897,8 @@ namespace primitive
       }
       return *this;
    }
-   
-   
+
+
    inline memory_size_t memory_base::get_length() const
    {
 
@@ -895,7 +906,7 @@ namespace primitive
 
    }
 
-   
+
    inline memory_size_t memory_base::length() const
    {
 

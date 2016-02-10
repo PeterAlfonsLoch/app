@@ -82,7 +82,7 @@ DWORD MsgWaitForMultipleObjectsEx(DWORD dwSize, object * * pobjectptra, DWORD dw
 
    }
 
-   single_lock ml(pmq == NULL ? NULL : &pmq->m_mutex,false);
+
 
    int_bool bWaitForAll        = dwFlags & MWMO_WAITALL;
 //   int_bool bAlertable         = dwFlags & MWMO_ALERTABLE;
@@ -96,36 +96,64 @@ DWORD MsgWaitForMultipleObjectsEx(DWORD dwSize, object * * pobjectptra, DWORD dw
    if(bWaitForAll)
    {
 
-      int32_t i;
-      int32_t j;
-      i = 0;
-      for(; compare::lt(i, dwSize);)
+      while(true)
       {
-         if(dwTimeout != (DWORD) INFINITE && ::get_tick_count() - start >= dwTimeout)
+         int32_t i;
+         int32_t j;
+         i = 0;
+         for(; compare::lt(i, dwSize);)
          {
-            return WAIT_TIMEOUT;
-         }
-         if(pobjectptra[i]->is_locked())
-         {
-            for(j = 0; j < i; j++)
-            {
-               pobjectptra[j]->unlock();
-            }
-            nanosleep(&delay, NULL);
-            i = 0;
-         }
-         else
-         {
-            pobjectptra[i]->lock();
-            i++;
-         }
-      }
-//      for(j = 0; j < dwSize; j++)
-  //    {
-    //     pobjectptra[j]->unlock();
-      //}
 
-      return WAIT_OBJECT_0;
+            if(pmq != NULL)
+            {
+
+               synch_lock sl(&pmq->m_mutex);
+
+               if(pmq->ma.get_count() > 0)
+               {
+
+                  return WAIT_OBJECT_0 + dwSize;
+
+               }
+
+            }
+
+            if(dwTimeout != (DWORD) INFINITE && ::get_tick_count() - start >= dwTimeout)
+            {
+
+               for(j = 0; j < i; j++)
+               {
+
+                  pobjectptra[j]->unlock();
+
+               }
+
+               return WAIT_TIMEOUT;
+
+            }
+
+            if(pobjectptra[i]->lock(millis(1)))
+            {
+
+               i++;
+
+            }
+            else
+            {
+
+               nanosleep(&delay, NULL);
+
+            }
+
+         }
+   //      for(j = 0; j < dwSize; j++)
+     //    {
+       //     pobjectptra[j]->unlock();
+         //}
+
+         return WAIT_OBJECT_0;
+
+      }
 
    }
    else
@@ -138,22 +166,35 @@ DWORD MsgWaitForMultipleObjectsEx(DWORD dwSize, object * * pobjectptra, DWORD dw
 
          for(i = 0; compare::lt(i, dwSize);i++)
          {
-            if(dwTimeout != (DWORD) INFINITE && ::get_tick_count() - start >= dwTimeout)
+
+            if(pmq != NULL)
             {
-               return WAIT_TIMEOUT;
-            }
-            if(pobjectptra[i]->lock(millis(0)))
-            {
-               return WAIT_OBJECT_0 + i;
-            }
-            if(ml.lock(millis(0)))
-            {
+
+               synch_lock sl(&pmq->m_mutex);
+
                if(pmq->ma.get_count() > 0)
                {
+
                   return WAIT_OBJECT_0 + dwSize;
+
                }
-               ml.unlock();
+
             }
+
+            if(dwTimeout != (DWORD) INFINITE && ::get_tick_count() - start >= dwTimeout)
+            {
+
+               return WAIT_TIMEOUT;
+
+            }
+
+            if(pobjectptra[i]->lock(millis(0)))
+            {
+
+               return WAIT_OBJECT_0 + i;
+
+            }
+
          }
 
          nanosleep(&delay, NULL);
@@ -163,6 +204,7 @@ DWORD MsgWaitForMultipleObjectsEx(DWORD dwSize, object * * pobjectptra, DWORD dw
    }
 
 }
+
 
 DWORD MsgWaitForMultipleObjects(DWORD dwSize, object ** pobjectptra, WINBOOL bWaitForAll, DWORD dwTimeout, DWORD dwWakeMask)
 {

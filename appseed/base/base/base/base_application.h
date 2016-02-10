@@ -277,6 +277,7 @@ virtual ::user::interaction * main_window();
       virtual void window_graphics_update_window(window_graphics ** pdata,oswindow interaction_impl,COLORREF * pOsBitmapData,const RECT & rect,int cxParam,int cyParam,int iStride = -1,bool bTransferBuffer = true);
 
       virtual void process_message(signal_details * pobj);
+      virtual bool process_message(LPMESSAGE lpmessage);
 
 
       int32_t hotplugin_host_host_starter_start_sync(const char * pszCommandLine,::aura::application * papp,::hotplugin::host * phost,::hotplugin::plugin * pplugin);
@@ -293,6 +294,9 @@ virtual ::user::interaction * main_window();
 
       using ::axis::application::BaseOnControlEvent;
       using ::user::form_callback::BaseOnControlEvent;
+
+
+
 
    };
 

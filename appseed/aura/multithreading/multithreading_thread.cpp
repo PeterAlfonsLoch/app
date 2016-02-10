@@ -495,7 +495,7 @@ bool thread::pump_message()
 bool thread::defer_pump_message()
 {
 
-   MESSAGE msg;
+   MESSAGE msg = {};
 
    while(::PeekMessage(&msg,NULL,0,0,PM_NOREMOVE) != FALSE)
    {
@@ -515,14 +515,14 @@ bool thread::defer_pump_message()
 
    // reset "no idle" state after pumping "normal" message
    //if (is_idle_message(&m_msgCur))
-   if(is_idle_message(&msg))
-   {
-
-      //m_bIdle = true;
-
-      //m_lIdleCount = 0;
-
-   }
+//   if(is_idle_message(&msg))
+//   {
+//
+//      //m_bIdle = true;
+//
+//      //m_lIdleCount = 0;
+//
+//   }
 
    if(!on_run_step())
    {
@@ -1127,15 +1127,28 @@ void thread::dispatch_thread_message(signal_details * pbase)
 void thread::wait()
 {
 
+#if defined(WINDOWS)
+
    ::WaitForSingleObject(m_hthread, INFINITE);
+
+#endif
 
 }
 
 wait_result thread::wait(const duration & duration)
 {
 
+#if defined(WINDOWS)
+
    DWORD timeout = duration.is_pos_infinity() ? INFINITE : static_cast<DWORD>(duration.total_milliseconds());
    return wait_result((uint32_t) ::WaitForSingleObject(m_hthread, timeout));
+
+#else
+
+   return wait_result(::wait_result::Failure);
+
+#endif
+
 }
 
 
@@ -2575,10 +2588,17 @@ bool thread::set_thread_priority(int32_t iCa2Priority)
 
    //ASSERT(m_hthread != NULL);
 
+#ifdef WINDOWSEX
+
    int32_t nPriority = (int)get_os_thread_priority(iCa2Priority);
 
+#else
 
-   bool bOk = ::SetThreadPriority(m_hthread, get_os_thread_priority(iCa2Priority)) != FALSE;
+   int32_t nPriority = (int)iCa2Priority;
+
+#endif
+
+   bool bOk = ::SetThreadPriority(m_hthread, nPriority) != FALSE;
 
    if (!bOk)
    {
@@ -2598,7 +2618,15 @@ int32_t thread::get_thread_priority()
 
    int32_t nPriority = ::GetThreadPriority(m_hthread);
 
+#ifdef WINDOWSEX
+
    int32_t iCa2Priority = ::get_os_thread_scheduling_priority(nPriority);
+
+#else
+
+   int32_t iCa2Priority = nPriority;
+
+#endif
 
    return iCa2Priority;
 }
@@ -2700,7 +2728,13 @@ void thread::thread_delete()
 
 void thread::start()
 {
+
+#if defined (WINODWSEX)
+
    ::ResumeThread(m_hthread);
+
+#endif
+
 }
 
 
@@ -2709,8 +2743,16 @@ uint32_t thread::ResumeThread()
 
    ASSERT(m_hthread != NULL);
 
+   #if defined (WINODWSEX)
+
    return ::ResumeThread(m_hthread);
 
+   #else
+
+
+   return 0;
+
+   #endif
 
 }
 
@@ -2718,7 +2760,7 @@ uint32_t thread::ResumeThread()
 bool thread::has_message()
 {
 
-   MSG msg;
+   MESSAGE msg;
    return ::PeekMessage(&msg, NULL, 0, 0, PM_NOREMOVE) != FALSE;
 
 }

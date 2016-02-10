@@ -14,6 +14,7 @@ BEGIN_EXTERN_C
    CLASS_DECL_AURA void * aligned_memory_alloc(size_t size);
    CLASS_DECL_AURA void * aligned_memory_alloc_dbg(size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine);
 
+   CLASS_DECL_AURA void * memory_alloc_no_track(size_t size);
    CLASS_DECL_AURA void * memory_alloc(size_t size);
    CLASS_DECL_AURA void * memory_calloc(size_t size, size_t bytes);
    CLASS_DECL_AURA void * memory_alloc_dbg(size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine);
@@ -30,12 +31,30 @@ END_EXTERN_C
 
 
 
-
+#if MEMDLEAK
+CLASS_DECL_AURA void * system_heap_alloc_dbg(size_t size, int nBlockUse, const char * pszFile, int iLine);
+#define system_heap_alloc(s) system_heap_alloc_dbg(s, 49, __FILE__, __LINE__)
+CLASS_DECL_AURA void * system_heap_realloc_dbg(void * p, size_t size, int nBlockUse, const char * pszFile, int iLine);
+#define system_heap_realloc(p, s) system_heap_realloc_dbg(p, s, 49, __FILE__, __LINE__)
+#else
 CLASS_DECL_AURA void * system_heap_alloc(size_t size);
 CLASS_DECL_AURA void * system_heap_realloc(void * pvoidOld, size_t size);
+#endif
 CLASS_DECL_AURA void   system_heap_free(void * pvoid);
 
 
+struct memdleak_block
+{
+
+
+   int32_t                 m_iBlockUse;
+   const char *            m_pszFileName;
+   int32_t                 m_iLine;
+   int64_t                 m_iSize;
+   struct memdleak_block *        m_pnext;
+   struct memdleak_block *        m_pprevious;
+
+};
 
 
 
@@ -51,14 +70,23 @@ namespace heap
    {
    public:
 
+#if MEMDLEAK
+      inline static void * alloc(size_t iSize,  const char * pszFile, int iLine)
+      {
 
+         //TODO("jai"); jas = Jonathan Blow
+         return system_heap_alloc_dbg(iSize, 725, pszFile, iLine);
+
+      }
+#else
       inline static void * alloc(size_t iSize)
       {
 
-         //TODO("jai"); jas = Jonathan Blow 
+         //TODO("jai"); jas = Jonathan Blow
          return system_heap_alloc(iSize);
 
       }
+#endif
 
 
       inline static void free(void * p)
@@ -78,13 +106,23 @@ namespace heap
    public:
 
 
+#ifdef MEMDLEAK
+      inline static void * alloc(size_t iSize, const char * pszFile, int iLine)
+      {
+
+         //TODO("jai"); jas = Jonathan Blow
+         return memory_alloc_dbg(iSize, 724, pszFile, iLine);
+
+      }
+#else
       inline static void * alloc(size_t iSize)
       {
 
-         //TODO("jai"); jas = Jonathan Blow 
+         //TODO("jai"); jas = Jonathan Blow
          return memory_alloc(iSize);
 
       }
+#endif
 
 
       inline static void free(void * p)

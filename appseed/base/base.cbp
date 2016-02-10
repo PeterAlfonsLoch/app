@@ -79,6 +79,10 @@
 		</Linker>
 		<Unit filename="base/_base_base.cpp" />
 		<Unit filename="base/base/base.h" />
+		<Unit filename="base/base/base_application.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="base/base/base_application.h" />
 		<Unit filename="base/base/base_core_copydesk.h" />
 		<Unit filename="base/base/base_platform_interface.h" />

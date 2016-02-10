@@ -182,28 +182,6 @@ class CLASS_DECL_AURA plex_heap_alloc_array :
 public:
 
 
-   struct memdleak_block
-   {
-
-
-      int32_t                 m_iBlockUse;
-      const char *            m_pszFileName;
-      int32_t                 m_iLine;
-      int64_t                 m_iSize;
-      memdleak_block *        m_pnext;
-      memdleak_block *        m_pprevious;
-
-      memdleak_block(int32_t iBlockUse, const char * pszFileName, int32_t iLine, int64_t iSize)
-      {
-
-         m_iBlockUse       = iBlockUse;
-         m_pszFileName     = pszFileName;
-         m_iLine           = iLine;
-         m_iSize           = iSize;
-
-      }
-
-   };
 
 
    //::count        m_aa[PLEX_HEAP_ALLOC_ARRAY_AINDEX_COUNT];
@@ -216,15 +194,12 @@ public:
    //::count m_iWorkingSize;
 
 
-   static memdleak_block * s_pmemdleakList;
+//   static memdleak_block * s_pmemdleakList;
 
    plex_heap_alloc_array();
    virtual ~plex_heap_alloc_array();
 
 
-
-
-   static ::count get_mem_info(int32_t ** ppiUse, const char *** ppszFile, int32_t ** ppiLine, int64_t ** ppiSize);
 
 
    inline void * alloc(size_t nAllocSize);

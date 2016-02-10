@@ -189,12 +189,21 @@ namespace heap
    {
    public:
 
+#if MEMDLEAK
+      inline static TYPE * alloc(::count c, const char * pszFile, int iLine)
+      {
+
+         return (TYPE *)POOL::alloc(sizeof(TYPE) * c, pszFile, iLine);
+
+      }
+#else
       inline static TYPE * alloc(::count c)
       {
 
          return (TYPE *)POOL::alloc(sizeof(TYPE) * c);
 
       }
+#endif
 
 
       inline static void free(TYPE * p)
@@ -342,12 +351,22 @@ namespace allocator
 
       }
 
+      #if MEMDLEAK
+      inline static TYPE * alloc(::count c, const char * pszFile, int iLine)
+      {
+
+         return heap::def < TYPE >::alloc(c, pszFile, iLine);
+
+      }
+      #else
       inline static TYPE * alloc(::count c)
       {
 
          return heap::def < TYPE >::alloc(c);
 
       }
+
+      #endif
 
 
       inline static void free(TYPE * p)
@@ -402,12 +421,21 @@ namespace allocator
 
       }
 
+      #if MEMDLEAK
+      inline static TYPE * alloc(::count c, const char  * pszFile, int iLine)
+      {
+
+         return heap::def < TYPE >::alloc(c, pszFile, iLine);
+
+      }
+      #else
       inline static TYPE * alloc(::count c)
       {
 
          return heap::def < TYPE >::alloc(c);
 
       }
+      #endif
 
 
       inline static void free(TYPE * p)
@@ -463,12 +491,21 @@ namespace allocator
 
       }
 
+      #if MEMDLEAK
+      inline static TYPE * alloc(::count c, const char * pszFile, int iLine)
+      {
+
+         return heap::def < TYPE >::alloc(c, pszFile, iLine);
+
+      }
+      #else
       inline static TYPE * alloc(::count c)
       {
 
          return heap::def < TYPE >::alloc(c);
 
       }
+      #endif
 
 
       inline static void free(TYPE * p)
@@ -523,13 +560,21 @@ namespace allocator
 
       }
 
+#if MEMDLEAK
+      inline static TYPE * alloc(::count c, const char * pszFile, int iLine)
+      {
+
+         return heap::sys < TYPE >::alloc(c, pszFile, iLine);
+
+      }
+#else
       inline static TYPE * alloc(::count c)
       {
 
          return heap::sys < TYPE >::alloc(c);
 
       }
-
+#endif
 
       inline static void free(TYPE * p)
       {

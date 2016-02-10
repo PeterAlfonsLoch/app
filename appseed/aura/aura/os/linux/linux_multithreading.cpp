@@ -11,6 +11,8 @@
 
 
 
+
+
 void get_os_priority(int32_t * piPolicy, sched_param * pparam, int32_t nCa2Priority)
 {
 
@@ -248,7 +250,7 @@ void __node_term_thread()
 bool __os_init_thread()
 {
 
-   
+
    __clear_mq();
 
    return true;

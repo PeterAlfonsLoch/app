@@ -113,6 +113,8 @@ synch_lock ml(&cairo_mutex());
 
       int32_t iStride = cairo_format_stride_for_width(CAIRO_FORMAT_ARGB32, cx);
 
+      m_mem.m_strTag = "dib_section=" + ::str::from(cx) + "x" + ::str::from(cy);
+
       m_mem.allocate(iStride * cy);
 
       if(*ppdata != NULL)

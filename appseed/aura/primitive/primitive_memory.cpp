@@ -32,13 +32,13 @@ memory::memory(const memory & s,manager * pmanager)
    memory_base::operator = (s);
 
 }
-   
-   
+
+
 memory::memory(const memory * ps,manager * pmanager)
 {
-      
+
    UNREFERENCED_PARAMETER(pmanager);
-      
+
    m_pprimitivememory   = this;
    m_pbStorage    = NULL;
    m_pbComputed   = NULL;
@@ -47,10 +47,10 @@ memory::memory(const memory * ps,manager * pmanager)
    m_cbStorage    = 0;
    m_bAligned = false;
    memory_base::operator = (*ps);
-      
+
 }
- 
-   
+
+
 memory::memory(const byte * pchSrc,strsize nLength,manager * pmanager)
 {
 
@@ -201,6 +201,31 @@ memory::memory(primitive::memory_container * pcontainer, void * pMemory, memory_
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 memory::~memory()
 {
 
@@ -216,6 +241,7 @@ memory::~memory()
 
 LPBYTE memory::impl_alloc(memory_size_t dwAllocation)
 {
+#if !MEMDLEAK
    if(m_bAligned)
    {
       return (LPBYTE)aligned_memory_alloc((size_t)dwAllocation);
@@ -224,6 +250,57 @@ LPBYTE memory::impl_alloc(memory_size_t dwAllocation)
    {
       return (LPBYTE)memory_alloc((size_t)dwAllocation);
    }
+
+   #else
+   if(m_strTag.has_char() && ::get_thread() != NULL)
+   {
+      if(::get_thread()->m_strDebug.has_char())
+      {
+         if(m_bAligned)
+         {
+            return (LPBYTE)aligned_memory_alloc_dbg((size_t)dwAllocation, 723, "thread://" + demangle(typeid(*::get_thread()).name()) + "="+ ::get_thread()->m_strDebug + ", memory://" + m_strTag, m_iLine);
+         }
+         else
+         {
+            return (LPBYTE)memory_alloc_dbg((size_t)dwAllocation, 723, "thread://" + demangle(typeid(*::get_thread()).name()) + "="+ ::get_thread()->m_strDebug + ", memory://"+m_strTag, m_iLine);
+         }
+      }
+      else
+      {
+         if(m_bAligned)
+         {
+            return (LPBYTE)aligned_memory_alloc_dbg((size_t)dwAllocation, 723, "thread://" + demangle(typeid(*::get_thread()).name()) + ", memory://" + m_strTag, m_iLine);
+         }
+         else
+         {
+            return (LPBYTE)memory_alloc_dbg((size_t)dwAllocation, 723, "thread://" + demangle(typeid(*::get_thread()).name()) + ", memory://"+m_strTag, m_iLine);
+         }
+      }
+   }
+   else if(m_strTag.has_char())
+   {
+      if(m_bAligned)
+      {
+         return (LPBYTE)aligned_memory_alloc_dbg((size_t)dwAllocation, 723, m_strTag, m_iLine);
+      }
+      else
+      {
+         return (LPBYTE)memory_alloc_dbg((size_t)dwAllocation, 723, m_strTag, m_iLine);
+      }
+   }
+   else
+   {
+      if(m_bAligned)
+      {
+         return (LPBYTE)aligned_memory_alloc((size_t)dwAllocation);
+      }
+      else
+      {
+         return (LPBYTE)memory_alloc((size_t)dwAllocation);
+      }
+   }
+
+   #endif
 
 }
 

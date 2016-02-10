@@ -96,7 +96,7 @@ public:
 
 };
 
-// TODO turn string manager into template so STRING_MANAGER_CHAR_SIZE 
+// TODO turn string manager into template so STRING_MANAGER_CHAR_SIZE
 //inline string_data * string_manager::allocate(strsize nChars,int32_t nCharSize)
 inline string_data * string_manager::allocate(strsize nChars)
 {
@@ -105,16 +105,16 @@ inline string_data * string_manager::allocate(strsize nChars)
    //size_t nDataBytes;
 
    //ASSERT(nCharSize > 0);
-   
+
    //nDataBytes = (nChars+1)*nCharSize;
    //nTotalSize = sizeof( string_data  )+nDataBytes;
-   
+
    //bool bEnable = __enable_memory_tracking(FALSE);
-   
+
    //try
    //{
 //      pData = (string_data *) m_palloca->alloc(nTotalSize);
-      pData = (string_data *) memory_alloc(nChars + 1 + sizeof(string_data));
+      pData = (string_data *) memory_alloc_no_track(nChars + 1 + sizeof(string_data));
    //}
    //catch(...)
    //{
@@ -147,22 +147,22 @@ inline string_data * string_manager::Reallocate(string_data * pOldData, strsize 
    //size_t nNewDataBytes;
    //size_t nOldTotalSize;
    //size_t nOldDataBytes;
-   
+
 ////   ASSERT(nCharSize > 0);
-//   
+//
 //   if(nChars < 0)
 //   {
 ////      ASSERT(FALSE);
 //      return NULL;
 //   }
-   
+
    //nNewDataBytes = (nChars+1)*nCharSize;
    //nNewTotalSize = sizeof( string_data  )+nNewDataBytes;
    //nOldDataBytes = (pOldData->nAllocLength+1)*nCharSize;
    //nOldTotalSize = sizeof( string_data  ) + nOldDataBytes;
-   
+
    //bool bEnable = __enable_memory_tracking(FALSE);
-   
+
    //try
    //{
 
@@ -187,7 +187,7 @@ inline string_data * string_manager::Reallocate(string_data * pOldData, strsize 
    return pNewData;
 }
 
-inline string_data * string_manager::GetNilString() 
+inline string_data * string_manager::GetNilString()
 {
    m_nil.AddRef();
    return &m_nil;
@@ -417,7 +417,7 @@ public:
    typedef string_manager manager;
 
    typedef char value_type;
-   
+
    typedef string_data data_type;
 
 
@@ -586,18 +586,18 @@ public:
 #endif
       ReleaseBufferSetLength( nNewLength );
    }
-   
+
    void append_char(char ch)
    {
 
       strsize nOldLength = get_length();
-      
+
       strsize nNewLength = nOldLength+1;
-      
+
       char * pszBuffer = GetBuffer( nNewLength );
-      
+
       pszBuffer[nOldLength] = ch;
-      
+
       ReleaseBufferSetLength( nNewLength );
 
    }
@@ -609,20 +609,20 @@ public:
          return;
 
       strsize nOldLength = get_length();
-      
+
       strsize nNewLength = nOldLength + i;
-      
+
       char * pszBuffer = GetBuffer( nNewLength );
-      
+
       memset(&pszBuffer[nOldLength], (int) ch, i);
-      
+
       ReleaseBufferSetLength( nNewLength );
 
    }
 
    void append(const simple_string& strSrc )
    {
-      
+
       append( strSrc.GetString(), strSrc.get_length() );
 
    }
@@ -644,7 +644,7 @@ public:
       }
       else
       {
-         
+
          pOldData->Release();
          string_data* pNewData = pstringmanager->GetNilString();
          attach( pNewData );
@@ -687,7 +687,7 @@ public:
    {
       return( get_data()->nAllocLength );
    }
-   
+
    inline char get_at(strsize iChar ) const;
 
    char * GetBuffer()

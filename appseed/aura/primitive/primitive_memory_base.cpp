@@ -11,7 +11,7 @@ namespace primitive
 
    memory_base::memory_base()
    {
-
+      m_iLine              = 0;
       m_pbStorage          = NULL;
       m_pbComputed         = NULL;
       m_cbStorage          = 0;
@@ -134,7 +134,7 @@ namespace primitive
 
    LPBYTE memory_base::impl_alloc(memory_size_t dwAllocation)
    {
-      
+
       return NULL;
 
    }
@@ -178,7 +178,7 @@ namespace primitive
 
          if(lpb == NULL)
          {
-            
+
             return false;
 
          }

@@ -196,6 +196,8 @@ retry:
 
    }
 
+   mem.m_strTag = "memory://function=module_path_from_pid";
+
    mem.allocate(iSize);
 
    s = readlink (str, mem.get_data(), iSize);

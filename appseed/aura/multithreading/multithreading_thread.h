@@ -87,6 +87,8 @@ public:
 
    UINT                                      m_dwFinishTimeout;
 
+   string                                    m_strDebug;
+
 
    thread();
    thread(::aura::application * papp);

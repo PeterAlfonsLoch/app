@@ -198,6 +198,15 @@ typedef struct _MEMORY_STATE
 //
 /////////////////////////////
 
+#if MEMDLEAK
+
+#define MEMORY_ALLOC(size) memory_alloc_dbg(size , 1923, __FILE__ , __LINE__ )
+
+#define memory_alloc(size) MEMORY_ALLOC(size)
+
+#endif
+
+
 
 #endif
 
@@ -249,5 +258,8 @@ CLASS_DECL_AURA string FormatMessageFromSystem(uint32_t dwError);
 #ifdef MEMDLEAK
 
 CLASS_DECL_AURA string get_mem_info_report1();
+CLASS_DECL_AURA ::count get_mem_info(int32_t ** ppiUse, const char *** ppszFile, int32_t ** ppiLine, int64_t ** ppiSize);
+
+
 
 #endif

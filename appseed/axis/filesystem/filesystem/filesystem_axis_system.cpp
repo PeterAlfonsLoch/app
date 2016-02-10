@@ -549,6 +549,8 @@ namespace file
 
             }
 
+            mem.m_strTag = "memory://" + strPath;
+
          }
 
          ::file::buffer_sp spfile;

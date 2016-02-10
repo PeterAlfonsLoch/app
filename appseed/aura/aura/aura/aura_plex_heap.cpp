@@ -4,7 +4,7 @@
 #undef new
 
 
-plex_heap_alloc_array::memdleak_block * plex_heap_alloc_array::s_pmemdleakList = NULL;
+extern memdleak_block * s_pmemdleakList;
 
 
 plex_heap * plex_heap::create(plex_heap*& pHead, uint_ptr nMax, uint_ptr cbElement)
@@ -264,33 +264,33 @@ plex_heap_alloc_array::plex_heap_alloc_array()
    add(new plex_heap_alloc(1024 * 4,32));
    add(new plex_heap_alloc(1024 * 8, 16));
    add(new plex_heap_alloc(1024 * 16, 16));
-//   add(new plex_heap_alloc(1024 * 32, 16));
-//   add(new plex_heap_alloc(1024 * 64, 16));
+   add(new plex_heap_alloc(1024 * 32, 16));
+   add(new plex_heap_alloc(1024 * 64, 16));
 //   m_bbSize[3] = last()->GetAllocSize();
 //   m_aaSize[1] = last()->GetAllocSize();
 //
 //
 //   m_aa[2] = 4;
 //   m_bb[4] = get_size();
-//   add(new plex_heap_alloc(1024 * 128,16));
-//#if defined(OS64BIT) && defined(LINUX)
-//   add(new plex_heap_alloc(1024 * 192, 16));
-//   add(new plex_heap_alloc(1024 * 256, 16));
-//   add(new plex_heap_alloc(1024 * 384, 16));
-//   add(new plex_heap_alloc(1024 * 512, 16));
-//   add(new plex_heap_alloc(1024 * 768, 16));
-//   add(new plex_heap_alloc(1024 * 1024, 16));
-//#endif
+   add(new plex_heap_alloc(1024 * 128,16));
+#if defined(OS64BIT) && defined(LINUX)
+   add(new plex_heap_alloc(1024 * 192, 16));
+   add(new plex_heap_alloc(1024 * 256, 16));
+   add(new plex_heap_alloc(1024 * 384, 16));
+   add(new plex_heap_alloc(1024 * 512, 16));
+   add(new plex_heap_alloc(1024 * 768, 16));
+   add(new plex_heap_alloc(1024 * 1024, 16));
+#endif
 ////   m_bbSize[4] = last()->GetAllocSize();
 //
-//#if defined(OS64BIT) && defined(LINUX)
+#if defined(OS64BIT) && defined(LINUX)
 ////   m_bb[5] = get_size();
-//   add(new plex_heap_alloc(1024 * 1024 * 2, 16));
-//   add(new plex_heap_alloc(1024 * 1024 * 4,16));
-//   add(new plex_heap_alloc(1024 * 1024 * 8,16));
-//   add(new plex_heap_alloc(1024 * 1024 * 16,16));
+   add(new plex_heap_alloc(1024 * 1024 * 2, 16));
+   add(new plex_heap_alloc(1024 * 1024 * 4,16));
+   add(new plex_heap_alloc(1024 * 1024 * 8,16));
+   add(new plex_heap_alloc(1024 * 1024 * 16,16));
 ////   m_bbSize[5] = last()->GetAllocSize();
-//#endif
+#endif
 //   m_aaSize[2] = last()->GetAllocSize();
 //
 //   m_iWorkingSize = get_size();
@@ -401,7 +401,7 @@ void ca2_heap_free_dbg(void * pvoid)
 
 */
 
-thread_pointer < plex_heap_alloc_array::memdleak_block > t_plastblock;
+thread_pointer < memdleak_block > t_plastblock;
 
 void * plex_heap_alloc_array::alloc_dbg(size_t size, int32_t nBlockUse, const char * pszFileName, int32_t iLine)
 {
@@ -706,7 +706,7 @@ void * plex_heap_alloc_array::realloc_dbg(void * p,  size_t size, size_t sizeOld
    psizeNew[0] = nAllocSize;
 
    pblock->m_iBlockUse     = nBlockUse;
-   pblock->m_pszFileName   = strdup(pszFileName);
+   pblock->m_pszFileName   = strdup(pszFileName == NULL ? "" : pszFileName);
    pblock->m_iLine         = iLine;
    pblock->m_iSize         = nAllocSize;
 
@@ -744,64 +744,6 @@ void * plex_heap_alloc_array::realloc_dbg(void * p,  size_t size, size_t sizeOld
 }
 
 
-::count plex_heap_alloc_array::get_mem_info(int32_t ** ppiUse, const char *** ppszFile, int32_t ** ppiLine, int64_t ** ppiSize)
-{
-
-#ifndef MEMDLEAK
-
-   throw simple_exception(get_thread_app(), "plex_heap_alloc_array::get_mem_info member function is available only with \"memdleak\" builds - MEMDLEAK defined");
-
-#endif
-
-   synch_lock lock(g_pmutgen);
-
-   memdleak_block * pblock = s_pmemdleakList;
-
-   ::count ca = 0;
-
-   while(pblock != NULL)
-   {
-
-      ca++;
-
-      pblock = pblock->m_pnext;
-
-   }
-
-
-   int32_t * piUse =(int32_t *)  malloc(sizeof(int32_t) * ca);
-   const char ** pszFile = (const char **) malloc(sizeof(const char *) * ca);
-   int32_t * piLine =(int32_t *)  malloc(sizeof(int32_t) * ca);
-   int64_t * piSize =(int64_t *)  malloc(sizeof(int64_t) * ca);
-
-   index i = 0;
-
-   pblock = s_pmemdleakList;
-
-   while(pblock != NULL && i < ca)
-   {
-      piUse[i] = pblock->m_iBlockUse;
-      pszFile[i] = strdup(pblock->m_pszFileName);
-      piLine[i] = pblock->m_iLine;
-      piSize[i] = pblock->m_iSize;
-
-      i++;
-
-      pblock = pblock->m_pnext;
-
-
-
-   }
-
-   *ppiUse = piUse;
-   *ppszFile = pszFile;
-   *ppiLine = piLine;
-   *ppiSize = piSize;
-
-
-   return ca;
-
-}
 
 
 
@@ -840,7 +782,7 @@ string get_mem_info_report1()
 	try
 	{
 
-		::count c = plex_heap_alloc_array::get_mem_info(&piUse, &pszFile, &piLine, & piSize);
+		::count c = get_mem_info(&piUse, &pszFile, &piLine, & piSize);
 
 		memblocka bla;
 
