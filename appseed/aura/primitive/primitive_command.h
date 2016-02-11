@@ -10,6 +10,7 @@ namespace primitive
       command_default,
       command_on_agree_exit,
       command_france_exit,
+      command_check_exit
 
    };
 

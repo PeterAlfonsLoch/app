@@ -399,6 +399,12 @@ namespace aura
 
       virtual void request_exit();
 
+
+      virtual void defer_check_exit();
+
+      virtual void on_command(::primitive::command * pcommand) override;
+
+
    };
 
 

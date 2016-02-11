@@ -223,75 +223,72 @@ namespace aura
 //   }
 //
 
-//   bool system::common_verb()
-//   {
-//
-////      ::output_debug_string("::aura::system::common_verb " + demangle(typeid(*this).name()) + " m_bDoNotExitIfNoApplication = "+::str::from(int(m_bDoNotExitIfNoApplications))+"\n");
-//
-//      if(!m_bDoNotExitIfNoApplications)
-//      {
-//
-//         ::aura::application_ptra appptra;
-//
-//         appptra = get_appptra();
-//
-//         for(int32_t i = 0; i < appptra.get_size();)
-//         {
-//
-//            try
-//            {
-//
-//               if(appptra[i] == NULL || appptra[i]->is_session() || appptra[i]->is_system())
-//               {
-//
-//                  appptra.remove_at(i);
-//
-//                  continue;
-//
-//               }
-//               else if(appptra[i]->is_serviceable() && appptra[i]->m_strAppId != directrix()->m_varTopicQuery["app"].get_string())
-//               {
-//
-//                  appptra.remove_at(i);
-//
-//                  continue;
-//
-//               }
-//
-//            }
-//            catch(...)
-//            {
-//
-//               appptra.remove_at(i);
-//
-//               continue;
-//
-//            }
-//
-//            i++;
-//
-//         }
-//
-//         if(appptra.get_size() <= 0)
-//         {
-//
-//            return false;
-//
-//         }
-//
-//         if(appptra.get_size() == 1 && appptra.contains(this))
-//         {
-//
-//            return false;
-//
-//         }
-//
-//      }
-//
-//      return ::aura::application::verb();
-//
-//
-//   }
+   void system::defer_check_exit()
+   {
+
+      if(!m_bDoNotExitIfNoApplications)
+      {
+
+         ::aura::application_ptra appptra;
+
+         appptra = get_appptra();
+
+         for(int32_t i = 0; i < appptra.get_size();)
+         {
+
+            try
+            {
+
+               if(appptra[i] == NULL || appptra[i]->is_session() || appptra[i]->is_system())
+               {
+
+                  appptra.remove_at(i);
+
+                  continue;
+
+               }
+               else if(appptra[i]->is_serviceable() && appptra[i]->m_strAppId != directrix()->m_varTopicQuery["app"].get_string())
+               {
+
+                  appptra.remove_at(i);
+
+                  continue;
+
+               }
+
+            }
+            catch(...)
+            {
+
+               appptra.remove_at(i);
+
+               continue;
+
+            }
+
+            i++;
+
+         }
+
+         if(appptra.get_size() <= 0)
+         {
+
+            post_quit();
+
+         }
+
+         if(appptra.get_size() == 1 && appptra.contains(this))
+         {
+
+            post_quit();
+
+         }
+
+      }
+
+
+   }
+
 //
 //
 //   bool system::verb()
@@ -2214,6 +2211,27 @@ namespace aura
       }
 
       post_quit();
+
+   }
+
+
+   void system::on_command(::primitive::command * pcommand)
+   {
+
+      if (pcommand->m_ecommand == ::primitive::command_check_exit)
+      {
+
+         defer_check_exit();
+
+      }
+      else
+      {
+
+         ::aura::application::on_command(pcommand);
+
+      }
+
+
 
    }
 
