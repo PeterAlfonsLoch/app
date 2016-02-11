@@ -2293,7 +2293,12 @@ namespace aura
          if (!is_session() && !is_system())
          {
 
-            System.command()->command(::primitive::command_check_exit);
+            if (&System != NULL && System.command() != NULL)
+            {
+
+               System.command()->command(::primitive::command_check_exit);
+
+            }
 
          }
 
