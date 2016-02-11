@@ -3598,6 +3598,9 @@
     <ClCompile Include="aura\os\windows\windows_process_env_reader.cpp">
       <Filter>Source Files\aura\os\windows</Filter>
     </ClCompile>
+    <ClCompile Include="aura\aura\aura_lparam.cpp">
+      <Filter>Source Files\aura\aura</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">

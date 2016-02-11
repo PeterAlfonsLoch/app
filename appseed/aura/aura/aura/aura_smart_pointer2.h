@@ -44,7 +44,7 @@
    template < class T >
    inline smart_pointer < T > ::smart_pointer(const lparam & lparam)
    {
-      m_p = (T *) lparam.m_lparam;
+      m_p = dynamic_cast < T * > ((object *) lparam.m_lparam);
    }
 
    template < class T >

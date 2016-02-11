@@ -865,7 +865,7 @@ namespace core
 
       //}
 
-      command()->m_ev.SetEvent();
+//      command()->m_ev.SetEvent();
 
    }
 

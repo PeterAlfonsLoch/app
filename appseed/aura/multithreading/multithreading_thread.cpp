@@ -1,10 +1,12 @@
 #include "framework.h"
 
-struct send_thread_message : public MESSAGE
+struct send_thread_message :
+   virtual public object
 {
 
-   bool     m_bOk;
+   MESSAGE     m_message;
 
+   bool        m_bOk;
 
 };
 
@@ -58,6 +60,8 @@ thread::thread() :
    CommonConstruct();
 
    m_puiptra = NULL;
+
+
 
 }
 
@@ -206,9 +210,9 @@ void thread::_001OnSendThreadMessage(signal_details * pobj)
 
    SCAST_PTR(::message::base,pbase,pobj);
 
-   ::send_thread_message * pmessage = (::send_thread_message *) pbase->m_lparam;
+   sp(::send_thread_message) pmessage = pbase->m_lparam;
 
-   process_message(pmessage);
+   process_message(&pmessage->m_message);
 
    pmessage->m_bOk = true;
 
@@ -216,12 +220,6 @@ void thread::_001OnSendThreadMessage(signal_details * pobj)
 
 
 
-bool thread::verb()
-{
-
-   return true;
-
-}
 
 
 
@@ -270,9 +268,9 @@ bool thread::send_thread_message(UINT message,WPARAM wParam,lparam lParam, ::dur
 
    ZEROP(pmessage);
 
-   pmessage->message = message;
-   pmessage->wParam = wParam;
-   pmessage->lParam = lParam;
+   pmessage->m_message.message = message;
+   pmessage->m_message.wParam = wParam;
+   pmessage->m_message.lParam = lParam;
    pmessage->m_bOk = false;
 
    post_thread_message(WM_APP + 3241,0, pmessage);
@@ -628,30 +626,30 @@ bool thread::on_run_step()
 
    }
 
-   try
-   {
+   //try
+   //{
 
-      if (!verb())
-         return false;
+   //   if (!verb())
+   //      return false;
 
-   }
-   catch (::exit_exception & e)
-   {
+   //}
+   //catch (::exit_exception & e)
+   //{
 
-      throw e;
+   //   throw e;
 
-   }
-   catch (::exception::exception & e)
-   {
+   //}
+   //catch (::exception::exception & e)
+   //{
 
-      if (!Application.on_run_exception(e))
-         throw exit_exception(get_app());
+   //   if (!Application.on_run_exception(e))
+   //      throw exit_exception(get_app());
 
-   }
-   catch (...)
-   {
+   //}
+   //catch (...)
+   //{
 
-   }
+   //}
 
    return true;
 
@@ -1090,12 +1088,26 @@ void thread::dispatch_thread_message(signal_details * pbase)
 {
 
 
-   if(pbase->m_uiMessage == WM_APP + 1984 && pbase->m_wparam == 77)
+   if(pbase->m_uiMessage == WM_APP + 1984)
    {
 
-      Application.dispatch_user_message(pbase);
+      if (pbase->m_wparam == 77)
+      {
 
-      return;
+         Application.dispatch_user_message(pbase);
+
+         return;
+
+      }
+      else if (pbase->m_wparam == 49)
+      {
+
+         m_pcommandthread->on_command_message(pbase);
+
+      }
+      else
+      {
+      }
 
    }
    //LRESULT lresult;
@@ -2926,5 +2938,107 @@ void thread::_001OnThreadMessage(signal_details * pobj)
       on_unregister_dependent_thread((thread*)pbase->m_lparam);
 
    }
+
+}
+
+::command_thread * thread::command_central()
+{
+   return m_pcommandthread;
+}
+
+::command_thread * thread::command_thread()
+{
+   return m_pcommandthread;
+}
+
+::command_thread * thread::command()
+{
+   return m_pcommandthread;
+}
+
+::command_thread * thread::guideline()
+{
+   return m_pcommandthread;
+}
+
+::command_thread * thread::directrix()
+{
+   return m_pcommandthread;
+}
+
+::command_thread * thread::axiom()
+{
+   return m_pcommandthread;
+}
+
+
+bool thread::verb()
+{
+
+//   m_pcommandthread->run();
+
+   return true;
+
+}
+
+
+
+::command_thread * thread::creation()
+{
+   return m_pcommandthread;
+}
+
+
+
+void thread::on_command(::primitive::command * pcommand)
+{
+
+   sp(::create) pcreate = pcommand;
+
+   if (pcreate.is_set())
+   {
+
+      on_create(pcreate);
+
+   }
+
+}
+
+
+void thread::on_create(::create * pcreate)
+{
+
+   try
+   {
+
+      request_create(pcreate);
+
+   }
+   catch (not_installed & e)
+   {
+
+      System.on_run_exception(e);
+
+      throw exit_exception(e.get_app());
+
+   }
+   catch (::exit_exception & e)
+   {
+
+      throw e;
+
+   }
+   catch (::exception::exception & e)
+   {
+
+      if (!Application.on_run_exception(e))
+         throw exit_exception(get_app());
+
+   }
+   catch (...)
+   {
+
+   }
+
 
 }

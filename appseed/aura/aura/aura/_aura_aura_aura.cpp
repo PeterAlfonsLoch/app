@@ -144,6 +144,9 @@
 #include "aura_md5.cpp"
 
 
+#include "aura_lparam.cpp"
+
+
 
 
 

@@ -663,9 +663,9 @@ public:
    virtual void on_after_read();
 
    template < typename PRED >
-   index pred_find_first(PRED pred)
+   index pred_find_first(PRED pred, index iStart = 0)
    {
-      for(int i = 0; i < get_count(); i++)
+      for(int i = iStart; i < get_count(); i++)
       {
 
          if(pred(m_pData[i]))

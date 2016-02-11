@@ -7,26 +7,34 @@ class CLASS_DECL_AURA command_thread :
 public:
 
 
-   mutex                            m_mutex; // all this command_thread data is a kind of global
    spa(::primitive::command)        m_ptraHistory; // accumulatted as command_thread history passes
-   spa(::primitive::command)        m_ptra; // pending commands to be run - command_thread does not "run" forks, let it's own thread/process run it
+   //spa(::primitive::command)        m_ptra; // pending commands to be run - command_thread does not "run" forks, let it's own thread/process run it
    stringa                          m_straHistory;
 
 
    var                              m_varTopicFile;  // accumulatted, reset, set, or clear as command_thread history passes
    var                              m_varTopicQuery; // accumulatted, reset, set, or clear as command_thread history passes
-   manual_reset_event               m_ev;
+   //manual_reset_event               m_ev;
    sp(command_line)                 m_spcommandline;
+   ::thread *                       m_pthread;
 
 
-   command_thread(::aura::application * papp);
+   command_thread(::thread * pthread);
    virtual ~command_thread();
 
-   virtual var run();
+   //virtual var run();
 
-   virtual void request_create(sp(::create) pcreationcontext);
+   virtual void request_create(sp(::create) pcreate);
 
-   virtual void on_request(sp(::create) pcreationcontext);
+   virtual void command(::primitive::command * pcommand);
+
+   virtual void command(::primitive::e_command ecommand);
+
+   DECL_GEN_SIGNAL(on_command_message);
+
+   virtual void on_command(::primitive::command * pcommand);
+
+   //virtual void on_create(::create * pcreate);
 
 
    // should transform the following command in a "command_line", a command line can/should/must/shall/ought to be virtually anything
@@ -41,6 +49,7 @@ public:
 
    virtual var & property(const char * pszKey);
    virtual bool has_property(const char * pszKey);
+
 
 
 };

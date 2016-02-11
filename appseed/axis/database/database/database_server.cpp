@@ -29,7 +29,9 @@ namespace database
    bool server::data_server_load(client * pclient, class id id, var & var   , update_hint * puh)
    {
       ::file::byte_stream_memory_buffer memfile(get_app());
+#if MEMDLEAK
       memfile.m_spmemorybuffer->get_memory()->m_strTag = "memory://member=database::server::data_server_load";
+#endif
       if(!data_server_load(pclient, id, memfile, puh) || memfile.get_length() <= 0)
          return false;
       try
@@ -76,7 +78,9 @@ namespace database
    bool server::data_server_save(client * pclient, class id id, var & var   , update_hint * puh)
    {
       ::file::byte_stream_memory_buffer memfile(get_app());
+#if MEMDLEAK
       memfile.m_spmemorybuffer->get_memory()->m_strTag = "memory://member=database::server::data_server_save(1)";
+#endif
       memfile << var;
       memfile.seek_to_begin();
       if(!data_server_save(pclient, id, memfile, puh))
@@ -92,7 +96,9 @@ namespace database
    bool server::data_server_save(client * pclient, class id id, ::file::serializable & obj, update_hint * puh)
    {
       ::file::byte_stream_memory_buffer memfile(get_app());
+#if MEMDLEAK
       memfile.m_spmemorybuffer->get_memory()->m_strTag = "memory://member=database::server::data_server_save(2)";
+#endif
       obj.write(memfile);
       memfile.seek_to_begin();
       if(!data_server_save(pclient, id, memfile, puh))

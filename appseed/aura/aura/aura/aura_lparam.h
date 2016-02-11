@@ -6,6 +6,7 @@
 //};
 
 
+class object;
 
 
 class CLASS_DECL_AURA lparam
@@ -50,10 +51,7 @@ public:
 //#endif
 //#endif
 
-   lparam(const void * p)
-   {
-      m_lparam = (LPARAM) p;
-   }
+   lparam(::object * p);
 
    lparam(const lparam & lparam)
    {

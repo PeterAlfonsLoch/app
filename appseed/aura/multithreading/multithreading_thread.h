@@ -7,6 +7,8 @@ class user_interaction_ptr_array;
 
 class thread_startup;
 
+namespace primitive { class command;  }
+
 
 class CLASS_DECL_AURA thread :
    virtual public command_target,
@@ -88,6 +90,9 @@ public:
    UINT                                      m_dwFinishTimeout;
 
    string                                    m_strDebug;
+
+   sp(::command_thread)                      m_pcommandthread;
+
 
 
    thread();
@@ -279,6 +284,18 @@ public:
    virtual bool initialize_message_queue();
    virtual void message_handler(signal_details * pobj);
 
+   // Wall-eeeeee aliases
+   ::command_thread * command_central();
+   ::command_thread * command_thread();
+   ::command_thread * guideline();
+   ::command_thread * command();
+   ::command_thread * directrix();
+   ::command_thread * axiom();
+   ::command_thread * creation();
+
+   virtual void on_command(::primitive::command * pcommand);
+
+   virtual void on_create(::create * pcreate);
 
 };
 

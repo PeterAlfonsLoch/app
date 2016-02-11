@@ -38,7 +38,7 @@ namespace file_watcher
   //       Sleep(100);
 //      }
 
-      post_thread_message(WM_USER + 123, 0, (lparam) pop);
+      post_thread_message(WM_USER + 123, 0, pop);
 
       pop->m_event.wait();
 

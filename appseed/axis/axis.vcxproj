@@ -2186,6 +2186,9 @@
     <None Include="axis\axis\axis.inl" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\aura\pcre\aurapcre.vcxproj">
+      <Project>{19aa8bb5-51fa-46e7-b346-2a89828f3000}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\aura\sqlite\aurasqlite.vcxproj">
       <Project>{424f72d6-053a-41c5-be03-3b0bd535f1eb}</Project>
     </ProjectReference>

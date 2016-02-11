@@ -228,9 +228,9 @@ namespace aura
 
 
 
-      virtual bool verb();
-      virtual bool common_verb();
-      virtual bool install_uninstall_verb();
+      //virtual bool verb();
+      //virtual bool common_verb();
+      //virtual bool install_uninstall_verb();
 
 
 

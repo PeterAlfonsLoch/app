@@ -1,13 +1,15 @@
 //#include "framework.h"
 
 
-command_thread::command_thread(::aura::application * papp) :
-   object(papp),
-   m_mutex(papp),
-   m_ev(papp)
+command_thread::command_thread(::thread * pthread) :
+   object(pthread->get_app())
 {
 
-   m_varTopicQuery.propset().set_app(papp);
+   m_pmutex = new mutex(pthread->get_app());
+
+   m_pthread = pthread;
+
+   m_varTopicQuery.propset().set_app(pthread->get_app());
 
 }
 
@@ -16,119 +18,59 @@ command_thread::~command_thread()
 }
 
 
-var command_thread::run()
+void command_thread::request_create(sp(::create) pcreate)
 {
-   single_lock sl(&m_mutex);
-   sp(::create) pcreatecontext;
-   sp(primitive::command) spcommand;
-   while(m_ptra.get_size() > 0)
-   {
-      spcommand = NULL;
-      sl.lock();
-      try
-      {
-         spcommand = m_ptra.element_at(0);
-         m_ptra.remove_at(0);
-      }
-      catch(...)
-      {
-      }
-      sl.unlock();
 
-      if(spcommand.is_null())
-         continue;
-
-      pcreatecontext = NULL;
-      try
-      {
-         pcreatecontext = spcommand;
-      }
-      catch(...)
-      {
-         pcreatecontext = NULL;
-      }
-
-      if(pcreatecontext != NULL)
-      {
-         try
-         {
-            ::output_debug_string("command_thread::run - on_request : appid : " + pcreatecontext->m_spCommandLine->m_strApp + "\n\n");
-            on_request(pcreatecontext);
-         }
-         catch(::exit_exception & e)
-         {
-
-            throw e;
-
-         }
-         catch(::exception::exception & e)
-         {
-
-            if(!Application.on_run_exception(e))
-               throw exit_exception(get_app());
-
-         }
-         catch(...)
-         {
-         }
-      }
-
-
-      sl.lock();
-      try
-      {
-         m_ptraHistory.add(spcommand);
-         m_straHistory.add(spcommand->get_description());
-      }
-      catch(...)
-      {
-      }
-      sl.unlock();
-
-   }
-
-   m_ev.ResetEvent();
-
-   return true;
+   command(pcreate);
 
 }
 
 
-void command_thread::request_create(sp(::create) pline)
+void command_thread::command(::primitive::command * pcommand)
 {
 
-   single_lock sl(&m_mutex, TRUE);
-
-   m_ptra.add(pline);
-
-   m_ev.SetEvent();
+   m_pthread->post_thread_message(WM_APP + 1984, 49, pcommand);
 
 }
 
 
-void command_thread::on_request(sp(::create) pline)
+void command_thread::command(::primitive::e_command ecommand)
 {
-   try
-   {
-      Application.request_create(pline);
-   }
-   catch(::exit_exception & e)
-   {
 
-      throw e;
+   command(canew(::primitive::command(get_app(),ecommand)));
 
-   }
-   catch(::exception::exception & e)
-   {
-
-      if(!Application.on_run_exception(e))
-         throw exit_exception(get_app());
-
-   }
-   catch(...)
-   {
-   }
 }
+
+
+void command_thread::on_command_message(::signal_details * pobj)
+{
+   
+   SCAST_PTR(::message::base, pbase, pobj);
+
+   sp(::primitive::command) pcommand(pobj->m_lparam);
+   
+   on_command(pcommand);
+
+
+}
+
+void command_thread::on_command(::primitive::command * pcommand)
+{
+
+   {
+
+      synch_lock sl(m_pmutex);
+
+      m_ptraHistory.add(pcommand);
+
+      m_straHistory.add(pcommand->get_description());
+
+   }
+
+   m_pthread->on_command(pcommand);
+
+}
+
 
 void command_thread::consolidate(::create * pcreatecontext)
 {

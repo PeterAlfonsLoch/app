@@ -4,8 +4,6 @@
 
 
 
-
-
 class command_line;
 
 class CLASS_DECL_AURA command_line_sp :

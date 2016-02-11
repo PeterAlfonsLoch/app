@@ -404,8 +404,10 @@ namespace axis
 
    bool application::verb()
    {
-      axiom()->run();
+      //axiom()->run();
+
       return true;
+
    }
 
    //sp(::command_thread) application::creation()
@@ -1508,14 +1510,13 @@ namespace axis
    }
 
 
-
-   bool application::initial_check_directrix()
+   bool application::check_install()
    {
 
-      if(directrix()->m_varTopicQuery.has_property("install"))
+      if (directrix()->m_varTopicQuery.has_property("install"))
       {
 
-         if(!on_install())
+         if (!on_install())
          {
             ::output_debug_string("Failed at on_install : " + m_strAppId + "\n\n");
             System.m_iReturnCode = -1;
@@ -1524,24 +1525,24 @@ namespace axis
 
          string strId = m_strAppId;
 
-         xxdebug_box("on_install1",strId,0);
+         xxdebug_box("on_install1", strId, 0);
 
-         if(strId.is_empty())
+         if (strId.is_empty())
             strId = m_strAppName;
 
-         if(strId.has_char() && command()->m_varTopicQuery.has_property("app") && strId == command()->m_varTopicQuery["app"])
+         if (strId.has_char() && command()->m_varTopicQuery.has_property("app") && strId == command()->m_varTopicQuery["app"])
          {
 
             system_add_app_install(strId);
 
          }
-         else if(strId.has_char() && command()->m_varTopicQuery.has_property("session_start") && strId == command()->m_varTopicQuery["session_start"])
+         else if (strId.has_char() && command()->m_varTopicQuery.has_property("session_start") && strId == command()->m_varTopicQuery["session_start"])
          {
 
             system_add_app_install(strId);
 
          }
-         else if(m_strInstallToken.has_char())
+         else if (m_strInstallToken.has_char())
          {
 
             system_add_app_install(m_strInstallToken);
@@ -1549,15 +1550,24 @@ namespace axis
          }
 
       }
-      else if(directrix()->m_varTopicQuery.has_property("uninstall"))
+      else if (directrix()->m_varTopicQuery.has_property("uninstall"))
       {
 
-         if(!on_uninstall())
+         if (!on_uninstall())
             return false;
 
-         System.install().remove_spa_start(m_strInstallType,m_strInstallToken);
+         System.install().remove_spa_start(m_strInstallType, m_strInstallToken);
 
       }
+
+      return true;
+
+   }
+
+
+   bool application::initial_check_directrix()
+   {
+
 
       string strLicense = get_license_id();
 

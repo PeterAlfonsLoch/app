@@ -85,7 +85,7 @@ namespace aura
       }
 
 
-      m_pfnVerb = &system::install_uninstall_verb;
+//      m_pfnVerb = &system::install_uninstall_verb;
 
 
 
@@ -191,117 +191,117 @@ namespace aura
    }
 
 
-   bool system::install_uninstall_verb()
-   {
+//   bool system::install_uninstall_verb()
+//   {
+//
+////      ::output_debug_string("::aura::system::install_uninstall_verb " + demangle(typeid(*this).name()) + "\n");
+//
+//      static DWORD dwStart = get_tick_count();
+//
+//      if(directrix()->m_varTopicQuery.has_property("install") && (get_tick_count() - dwStart) > (5 * 184 * 1000))
+//      {
+//
+//         ::output_debug_string("::aura::system::install_uninstall_verb " + demangle(typeid(*this).name()) +
+//         " quitting (1)\n");
+//
+//         return false;
+//
+//      }
+//
+//      if(directrix()->m_varTopicQuery.has_property("uninstall") && (get_tick_count() - dwStart) > (5 * 184 * 1000))
+//      {
+//
+//         ::output_debug_string("::aura::system::install_uninstall_verb " + demangle(typeid(*this).name()) +
+//         " quitting (2)\n");
+//
+//         return false;
+//
+//      }
+//
+//      return common_verb();
+//
+//   }
+//
 
-//      ::output_debug_string("::aura::system::install_uninstall_verb " + demangle(typeid(*this).name()) + "\n");
-
-      static DWORD dwStart = get_tick_count();
-
-      if(directrix()->m_varTopicQuery.has_property("install") && (get_tick_count() - dwStart) > (5 * 184 * 1000))
-      {
-
-         ::output_debug_string("::aura::system::install_uninstall_verb " + demangle(typeid(*this).name()) +
-         " quitting (1)\n");
-
-         return false;
-
-      }
-
-      if(directrix()->m_varTopicQuery.has_property("uninstall") && (get_tick_count() - dwStart) > (5 * 184 * 1000))
-      {
-
-         ::output_debug_string("::aura::system::install_uninstall_verb " + demangle(typeid(*this).name()) +
-         " quitting (2)\n");
-
-         return false;
-
-      }
-
-      return common_verb();
-
-   }
-
-
-   bool system::common_verb()
-   {
-
-//      ::output_debug_string("::aura::system::common_verb " + demangle(typeid(*this).name()) + " m_bDoNotExitIfNoApplication = "+::str::from(int(m_bDoNotExitIfNoApplications))+"\n");
-
-      if(!m_bDoNotExitIfNoApplications)
-      {
-
-         ::aura::application_ptra appptra;
-
-         appptra = get_appptra();
-
-         for(int32_t i = 0; i < appptra.get_size();)
-         {
-
-            try
-            {
-
-               if(appptra[i] == NULL || appptra[i]->is_session() || appptra[i]->is_system())
-               {
-
-                  appptra.remove_at(i);
-
-                  continue;
-
-               }
-               else if(appptra[i]->is_serviceable() && appptra[i]->m_strAppId != directrix()->m_varTopicQuery["app"].get_string())
-               {
-
-                  appptra.remove_at(i);
-
-                  continue;
-
-               }
-
-            }
-            catch(...)
-            {
-
-               appptra.remove_at(i);
-
-               continue;
-
-            }
-
-            i++;
-
-         }
-
-         if(appptra.get_size() <= 0)
-         {
-
-            return false;
-
-         }
-
-         if(appptra.get_size() == 1 && appptra.contains(this))
-         {
-
-            return false;
-
-         }
-
-      }
-
-      return ::aura::application::verb();
-
-
-   }
-
-
-   bool system::verb()
-   {
-
-
-      return (this->*m_pfnVerb)();
-
-
-   }
+//   bool system::common_verb()
+//   {
+//
+////      ::output_debug_string("::aura::system::common_verb " + demangle(typeid(*this).name()) + " m_bDoNotExitIfNoApplication = "+::str::from(int(m_bDoNotExitIfNoApplications))+"\n");
+//
+//      if(!m_bDoNotExitIfNoApplications)
+//      {
+//
+//         ::aura::application_ptra appptra;
+//
+//         appptra = get_appptra();
+//
+//         for(int32_t i = 0; i < appptra.get_size();)
+//         {
+//
+//            try
+//            {
+//
+//               if(appptra[i] == NULL || appptra[i]->is_session() || appptra[i]->is_system())
+//               {
+//
+//                  appptra.remove_at(i);
+//
+//                  continue;
+//
+//               }
+//               else if(appptra[i]->is_serviceable() && appptra[i]->m_strAppId != directrix()->m_varTopicQuery["app"].get_string())
+//               {
+//
+//                  appptra.remove_at(i);
+//
+//                  continue;
+//
+//               }
+//
+//            }
+//            catch(...)
+//            {
+//
+//               appptra.remove_at(i);
+//
+//               continue;
+//
+//            }
+//
+//            i++;
+//
+//         }
+//
+//         if(appptra.get_size() <= 0)
+//         {
+//
+//            return false;
+//
+//         }
+//
+//         if(appptra.get_size() == 1 && appptra.contains(this))
+//         {
+//
+//            return false;
+//
+//         }
+//
+//      }
+//
+//      return ::aura::application::verb();
+//
+//
+//   }
+//
+//
+//   bool system::verb()
+//   {
+//
+//
+//      return (this->*m_pfnVerb)();
+//
+//
+//   }
 
 
    void system::construct(const char * pszAppId)
@@ -2085,12 +2085,12 @@ namespace aura
          command()->add_line(strCommandLine);
       }
 
-      if(!(set.has_property("install") || set.has_property("uninstall")))
-      {
+      //if(!(set.has_property("install") || set.has_property("uninstall")))
+      //{
 
-         m_pfnVerb = &system::common_verb;
+      //   m_pfnVerb = &system::common_verb;
 
-      }
+      //}
 
 
       //if(!::core::application::set_main_init_data(pdata))
@@ -2117,7 +2117,7 @@ namespace aura
       for(auto papp : ptra)
       {
 
-         papp->post_thread_message(WM_APPREQUEST, 9);
+         papp->command()->command(::primitive::command_on_agree_exit);
 
       }
 
@@ -2179,7 +2179,7 @@ namespace aura
 
       for(auto papp : ptra)
       {
-         papp->post_thread_message(WM_APPREQUEST,19);
+         papp->command()->command(::primitive::command_france_exit);
       }
 
       i = 284;

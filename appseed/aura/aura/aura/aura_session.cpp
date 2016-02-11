@@ -482,11 +482,11 @@ namespace aura
 
                //simple_message_box(NULL, "appok", strApp, MB_ICONEXCLAMATION);
 
-               if(pcreatecontext->m_spCommandLine->m_varQuery.has_property("install")
-                  || pcreatecontext->m_spCommandLine->m_varQuery.has_property("uninstall"))
-               {
-                  continue;
-               }
+               //if(pcreatecontext->m_spCommandLine->m_varQuery.has_property("install")
+               //   || pcreatecontext->m_spCommandLine->m_varQuery.has_property("uninstall"))
+               //{
+               //   continue;
+               //}
 
                pcreatecontext->m_spCommandLine->m_eventReady.ResetEvent();
 
@@ -496,8 +496,8 @@ namespace aura
 
                   pcreatecontext->m_spCommandLine->m_varQuery["bergedge_callback"] = dynamic_cast < ::aura::application * > (this);
 
-                  papp->m_pauraapp->post_thread_message(WM_APPREQUEST,2,pcreatecontext);
-
+                  papp->m_pauraapp->command()->command(pcreatecontext);
+ 
                   m_pappCurrent = papp;
 
                   m_pappCurrent = papp;

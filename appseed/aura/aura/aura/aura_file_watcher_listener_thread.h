@@ -13,7 +13,8 @@ namespace file_watcher
 
      
 
-      struct op
+      struct op :
+         virtual public object
       {
 
          string m_str;

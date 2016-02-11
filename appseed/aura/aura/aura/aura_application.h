@@ -53,7 +53,6 @@ namespace aura
       string_to_ptr                                   m_appmap;
       string                                          m_strAppName;
       ::aura::allocatorsp                                       m_allocer;
-      sp(::command_thread)                            m_pcommandthread;
       sp(class signal)                                m_psignal;
 
       ::aura::main_init_data *                        m_pinitmaindata;
@@ -219,20 +218,12 @@ namespace aura
       virtual void window_graphics_update_window(window_graphics **  ppdata,oswindow interaction_impl,COLORREF * pOsBitmapData,const RECT & rect,int cxParam,int cyParam,int iStride = -1,bool bTransferBuffer = true);
 
 
-      // Wall-eeeeee aliases
-      ::command_thread * command_central();
-      ::command_thread * command_thread();
-      ::command_thread * guideline();
-      ::command_thread * command();
-      ::command_thread * directrix();
-      ::command_thread * axiom();
-      ::command_thread * creation();
 
 
 
 
 
-      virtual bool verb() override;
+      //virtual bool verb() override;
 
 
 
@@ -478,7 +469,7 @@ namespace aura
       virtual void defer_add_thread_run_wait(sync_object_ptra & soa) override;
 
 
-      DECL_GEN_SIGNAL(_001OnApplicationRequest);
+      //DECL_GEN_SIGNAL(_001OnApplicationRequest);
 
 
 
@@ -503,6 +494,13 @@ namespace aura
       virtual void _001OnFranceExit();
 
       virtual string lstr(id id,const string & strDefault = (const string &)*((const string *)NULL)) override;
+
+      void on_command(::primitive::command * pcommand) override;
+      void application::on_create(::create * pcreate) override;
+
+      
+      virtual bool check_install();
+
 
    };
 

@@ -9,8 +9,17 @@ namespace primitive
       object(papp)
    {
 
+      m_ecommand = command_default;
+
    }
 
+   command::command(::aura::application * papp, e_command ecommand) :
+      object(papp)
+   {
+
+      m_ecommand = ecommand;
+
+   }
 
    command::~command()
    {

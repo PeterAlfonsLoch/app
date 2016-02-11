@@ -549,8 +549,9 @@ namespace file
 
             }
 
+#if MEMDLEAK
             mem.m_strTag = "memory://" + strPath;
-
+#endif
          }
 
          ::file::buffer_sp spfile;

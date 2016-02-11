@@ -347,7 +347,9 @@ namespace file
    void istream::read_to_hex(string & str, file_position_t dwStart, file_position_t dwEnd)
    {
       memory memory(get_app());
+#if MEMDLEAK
       memory.m_strTag = "memory://member=::file::istream::read_to_hex";
+#endif
       if(dwStart == (file_position_t) -1)
       {
 		   dwStart = tellg();

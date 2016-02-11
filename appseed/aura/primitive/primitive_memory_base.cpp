@@ -11,7 +11,9 @@ namespace primitive
 
    memory_base::memory_base()
    {
+#if MEMDLEAK
       m_iLine              = 0;
+#endif
       m_pbStorage          = NULL;
       m_pbComputed         = NULL;
       m_cbStorage          = 0;

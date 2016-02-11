@@ -324,6 +324,8 @@ void * memory_alloc(size_t size)
 
 }
 
+#undef memory_alloc
+
 
 void * memory_alloc_no_track(size_t size)
 {
@@ -340,7 +342,6 @@ void * memory_alloc_no_track(size_t size)
 
 }
 
-#undef memory_alloc(size) MEMORY_ALLOC(size)
 
 
 

@@ -501,6 +501,7 @@ namespace axis
       virtual int32_t hotplugin_host_host_starter_start_sync(const char * pszCommandLine,::aura::application * papp,hotplugin::host * phost,hotplugin::plugin * pplugin = NULL);
 
 
+      virtual bool check_install() override;
 
    };
 

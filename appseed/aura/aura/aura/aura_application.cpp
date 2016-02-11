@@ -187,89 +187,134 @@ namespace aura
       ::signalizable::install_message_handling(pdispatch);
       ::thread::install_message_handling(pdispatch);
 
-      IGUI_WIN_MSG_LINK(WM_APPREQUEST,pdispatch,this,&application::_001OnApplicationRequest);
+   }
 
+   
+   void application::on_command(::primitive::command * pcommand)
+   {
+
+      if(pcommand->m_ecommand == ::primitive::command_on_agree_exit)
+      {
+         
+         m_bAgreeExit = _001OnAgreeExit();
+
+         m_bAgreeExitOk = true;
+
+      }
+      else if (pcommand->m_ecommand == ::primitive::command_france_exit)
+      {
+
+         _001OnFranceExit();
+
+         m_bFranceExit = true;
+
+      }
+      else
+      {
+
+         ::thread::on_command(pcommand);
+
+      }
+
+   }
+
+   bool application::check_install()
+   {
+
+      return true;
 
    }
 
 
-   void application::_001OnApplicationRequest(signal_details * pobj)
+   void application::on_create(::create * pcreate)
    {
-      SCAST_PTR(::message::base,pbase,pobj);
+
+      pcreate->set_app(this);
 
 
-      if(pbase->m_wparam == 2)
+      try
       {
-         pobj->m_bRet = true;
-         // when wparam == 2 lparam is a pointer to a ::core::command_fork
-         // that should be treated as command_line on request, i.e.,
-         // a fork whose Forking part has been done, now
-         // the parameters are going to be passed to this new application
-         sp(::create) pcreatecontext(pbase->m_lparam);
-         try
+      
+         if (pcreate->m_spCommandLine.is_set()
+            && (pcreate->m_spCommandLine->m_varQuery.has_property("install")
+               || pcreate->m_spCommandLine->m_varQuery.has_property("uninstall")))
          {
 
-            pcreatecontext->set_app(this);
-
-            on_request(pcreatecontext);
-
-            // Verry Sory for the per request overhead here for the needed information of only first request
-            if(System.m_dwAfterApplicationFirstRequest == 0)
+            if (!is_system() && !is_session())
             {
 
-               System.m_dwAfterApplicationFirstRequest = ::get_tick_count(); // cross your fingers that the first recorded is not 0, it will be cleaned up by other requests.
+               check_install();
+
+               System.post_quit();
+
+            }
+            else
+            {
+
+               on_request(pcreate);
 
             }
 
          }
-         catch(not_installed & e)
+         else
          {
 
-            System.on_run_exception(e);
-
-            throw exit_exception(e.get_app());
+            on_request(pcreate);
 
          }
-         catch(exit_exception & e)
-         {
-            throw e;
-         }
-         catch(...)
-         {
-         }
-
-         try
-         {
-            pcreatecontext->m_spCommandLine->m_varQuery["document"].unset();
-         }
-         catch(...)
-         {
-         }
-         //sp(::core::session) pbergedge = pcreatecontext->m_spCommandLine->m_varQuery["bergedge_callback"].cast < ::core::session >();
-         // todobergedge
-         /*if(pbergedge != NULL)
-         {
-         pbergedge->on_app_request_bergedge_callback(this);
-         }*/
-         pcreatecontext->m_spCommandLine->m_eventReady.SetEvent();
 
       }
-      else if(pbase->m_wparam == 9)
+      catch (not_installed & e)
       {
 
-         m_bAgreeExit = _001OnAgreeExit();
-         m_bAgreeExitOk = true;
+         System.on_run_exception(e);
+
+         throw exit_exception(e.get_app());
 
       }
-      else if(pbase->m_wparam == 19)
+      catch (::exit_exception & e)
       {
 
-         _001OnFranceExit();
-         m_bFranceExit = true;
+         throw e;
 
       }
+      catch (::exception::exception & e)
+      {
+
+         if (!Application.on_run_exception(e))
+            throw exit_exception(get_app());
+
+      }
+      catch (...)
+      {
+
+      }
+
+
+      // Verry Sory for the per request overhead here for the needed information of only first request
+      if (System.m_dwAfterApplicationFirstRequest == 0)
+      {
+
+         System.m_dwAfterApplicationFirstRequest = ::get_tick_count(); // cross your fingers that the first recorded is not 0, it will be cleaned up by other requests.
+
+      }
+
+      try
+      {
+         pcreate->m_spCommandLine->m_varQuery["document"].unset();
+      }
+      catch (...)
+      {
+      }
+      //sp(::core::session) pbergedge = pcreatecontext->m_spCommandLine->m_varQuery["bergedge_callback"].cast < ::core::session >();
+      // todobergedge
+      /*if(pbergedge != NULL)
+      {
+      pbergedge->on_app_request_bergedge_callback(this);
+      }*/
+      pcreate->m_spCommandLine->m_eventReady.SetEvent();
+
    }
-
 
    //void application::tellme_destroyed(::user::primitive * pui, bool * pDestroyed, bool bTell)
    //{
@@ -481,47 +526,6 @@ namespace aura
       m_appmap.set_at(psz,p);
    }
 
-
-   ::command_thread * application::command_central()
-   {
-      return m_pcommandthread;
-   }
-
-   ::command_thread * application::command_thread()
-   {
-      return m_pcommandthread;
-   }
-
-   ::command_thread * application::command()
-   {
-      return m_pcommandthread;
-   }
-
-   ::command_thread * application::guideline()
-   {
-      return m_pcommandthread;
-   }
-
-   ::command_thread * application::directrix()
-   {
-      return m_pcommandthread;
-   }
-
-   ::command_thread * application::axiom()
-   {
-      return m_pcommandthread;
-   }
-
-   bool application::verb()
-   {
-      m_pcommandthread->run();
-      return true;
-   }
-
-   ::command_thread * application::creation()
-   {
-      return m_pcommandthread;
-   }
 
 
 
@@ -1554,42 +1558,16 @@ namespace aura
    int32_t application::run()
    {
 
-      if(is_system() || is_session())
+      if(command()->m_varTopicQuery.has_property("service"))
       {
-
-         ::output_debug_string("::aura::application::run " + string(typeid(*this).name()) + "\n\n");
-
+         create_new_service();
+         ::service_base::serve(*m_pservice);
+      }
+      else if(command()->m_varTopicQuery.has_property("run") || is_serviceable())
+      {
+         create_new_service();
+         m_pservice->Start(0);
          return ::thread::run();
-
-      }
-      else if((command()->m_varTopicQuery.has_property("install")
-         || command()->m_varTopicQuery.has_property("uninstall"))
-         &&
-         ((is_session() && command()->m_varTopicQuery["session_start"] == "session")))
-      {
-      }
-      else if(!is_system() && !is_session())
-      {
-         if(command()->m_varTopicQuery.has_property("install")
-            || command()->m_varTopicQuery.has_property("uninstall"))
-         {
-
-         }
-         else if(command()->m_varTopicQuery.has_property("service"))
-         {
-            create_new_service();
-            ::service_base::serve(*m_pservice);
-         }
-         else if(command()->m_varTopicQuery.has_property("run") || is_serviceable())
-         {
-            create_new_service();
-            m_pservice->Start(0);
-            return ::thread::run();
-         }
-         else
-         {
-            return ::thread::run();
-         }
       }
       else
       {
@@ -3887,7 +3865,7 @@ namespace aura
    void application::defer_add_thread_run_wait(sync_object_ptra & soa)
    {
 
-      soa.add(&axiom()->m_ev);
+//      soa.add(&axiom()->m_ev);
 
    }
 
