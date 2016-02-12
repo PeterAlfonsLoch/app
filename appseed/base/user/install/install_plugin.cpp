@@ -379,19 +379,21 @@ namespace install
       thread(papp)
    {
 
-      m_durationRunLock = millis(84 + 77);
+//      m_durationRunLock = millis(84 + 77);
 
    }
 
 
 
-   bool plugin::thread_start_ca2::on_run_step()
+   int32_t plugin::thread_start_ca2::run()
    {
 
-      if(!::thread::on_run_step())
-         return false;
 
-      m_pplugin->thread_start_ca2_on_idle();
+      while (m_bRun)
+      {
+         m_pplugin->thread_start_ca2_on_idle();
+         Sleep(584);
+      }
 
       return true;
 

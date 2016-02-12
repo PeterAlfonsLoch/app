@@ -35,7 +35,9 @@ namespace install
 
          thread_start_ca2(::aura::application * papp);
 
-         virtual bool on_run_step();
+         //virtual bool on_run_step();
+
+         virtual int32_t run() override;
 
 
       } ;

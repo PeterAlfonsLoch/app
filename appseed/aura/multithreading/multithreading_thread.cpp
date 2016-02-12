@@ -141,13 +141,13 @@ thread::thread(::aura::application * papp, __THREADPROC pfnThreadProc, LPVOID pP
 void thread::CommonConstruct()
 {
 
-   m_durationRunLock = ::duration::infinite();
+   //m_durationRunLock = ::duration::infinite();
 
    m_dwAlive = ::get_tick_count();
 
    m_pmutex = new mutex();
 
-   m_peventEvent = NULL;
+   //m_peventEvent = NULL;
 
    m_bReady = false;
    m_bRun = true;
@@ -202,8 +202,8 @@ thread::~thread()
    if(m_pmutex != NULL)
       delete m_pmutex;
 
-   if(m_peventEvent == NULL)
-      delete m_peventEvent;
+   //if(m_peventEvent == NULL)
+   //   delete m_peventEvent;
 
    ::aura::del(m_pfileinfo);
 
@@ -383,20 +383,20 @@ int32_t thread::run()
 
    //m_lIdleCount = 0;
 
-   sync_object_ptra soa;
+   //sync_object_ptra soa;
 
-   if(m_peventEvent == NULL)
-   {
+   //if(m_peventEvent == NULL)
+   //{
 
-      m_peventEvent = new manual_reset_event(get_app());
+   //   m_peventEvent = new manual_reset_event(get_app());
 
-   }
+   //}
 
-   soa.add(m_peventEvent);
+   //soa.add(m_peventEvent);
 
-   defer_add_thread_run_wait(soa);
+   //defer_add_thread_run_wait(soa);
 
-   multi_lock ml(soa);
+   //multi_lock ml(soa);
 
    ::output_debug_string("::thread::run " + string(demangle(typeid(*this).name())) + " m_bRun = "+::str::from((int)m_bRun)+"\n\n");
 
@@ -404,18 +404,18 @@ int32_t thread::run()
    while(m_bRun)
    {
 
-      if(m_spuiptra.is_set() && m_spuiptra->get_count() > 0)
-      {
+      //if(m_spuiptra.is_set() && m_spuiptra->get_count() > 0)
+      //{
 
-            ml.lock(millis(25),false,QS_ALLEVENTS);
+      //      ml.lock(millis(25),false,QS_ALLEVENTS);
 
-      }
-      else
-      {
+      //}
+      //else
+      //{
 
-            ml.lock(m_durationRunLock,false,QS_ALLEVENTS);
+      //      ml.lock(m_durationRunLock,false,QS_ALLEVENTS);
 
-      }
+      //}
 
       if(!defer_pump_message())
       {
@@ -514,11 +514,12 @@ bool thread::defer_pump_message()
 
    MESSAGE msg = {};
 
-   while(::PeekMessage(&msg,NULL,0,0,PM_NOREMOVE) != FALSE)
+   //while(::PeekMessage(&msg,NULL,0,0,PM_NOREMOVE) != FALSE)
    {
 
       // pump message, but quit on WM_QUIT
-      if(!m_bRun || !pump_message())
+     // if(!m_bRun || !pump_message())
+      if (!pump_message())
       {
 
 
@@ -541,17 +542,17 @@ bool thread::defer_pump_message()
 //
 //   }
 
-   if(!on_run_step())
-   {
+   //if(!on_run_step())
+   //{
 
-      ::output_debug_string("defer_pump_message (2) quitting : " + string(demangle(typeid(*this).name())) + "\n\n");
+   //   ::output_debug_string("defer_pump_message (2) quitting : " + string(demangle(typeid(*this).name())) + "\n\n");
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
 
-   on_idle(0);
+   //on_idle(0);
 
    return true;
 
@@ -618,62 +619,62 @@ bool thread::get_run()
 //
 //}
 
-
-bool thread::on_run_step()
-{
-
-
-   //step_timer();
-
-   sp(::aura::application) papp = (this);
-
-   m_dwAlive = ::get_tick_count();
-
-   if (papp != NULL)
-   {
-
-      papp->m_dwAlive = m_dwAlive;
-
-   }
-
-   sp(::aura::application) pappP = (this);
-
-   if (pappP != NULL)
-   {
-
-      pappP->m_dwAlive = m_dwAlive;
-
-   }
-
-   //try
-   //{
-
-   //   if (!verb())
-   //      return false;
-
-   //}
-   //catch (::exit_exception & e)
-   //{
-
-   //   throw e;
-
-   //}
-   //catch (::exception::exception & e)
-   //{
-
-   //   if (!Application.on_run_exception(e))
-   //      throw exit_exception(get_app());
-
-   //}
-   //catch (...)
-   //{
-
-   //}
-
-   return true;
-
-}
-
+//
+//bool thread::on_run_step()
+//{
+//
+//
+//   //step_timer();
+//
+//   sp(::aura::application) papp = (this);
+//
+//   m_dwAlive = ::get_tick_count();
+//
+//   if (papp != NULL)
+//   {
+//
+//      papp->m_dwAlive = m_dwAlive;
+//
+//   }
+//
+//   sp(::aura::application) pappP = (this);
+//
+//   if (pappP != NULL)
+//   {
+//
+//      pappP->m_dwAlive = m_dwAlive;
+//
+//   }
+//
+//   //try
+//   //{
+//
+//   //   if (!verb())
+//   //      return false;
+//
+//   //}
+//   //catch (::exit_exception & e)
+//   //{
+//
+//   //   throw e;
+//
+//   //}
+//   //catch (::exception::exception & e)
+//   //{
+//
+//   //   if (!Application.on_run_exception(e))
+//   //      throw exit_exception(get_app());
+//
+//   //}
+//   //catch (...)
+//   //{
+//
+//   //}
+//
+//   return true;
+//
+//}
+//
 
 
 
@@ -910,14 +911,14 @@ void thread::set_run_thread(bool bRun)
    else
    {
 
-      m_durationRunLock = millis(7);
+      //m_durationRunLock = millis(7);
 
-      if(m_peventEvent != NULL)
-      {
+      //if(m_peventEvent != NULL)
+      //{
 
-         m_peventEvent->SetEvent();
+      //   m_peventEvent->SetEvent();
 
-      }
+      //}
 
       m_bRun = false;
 
@@ -936,12 +937,12 @@ void thread::set_end_thread()
 }
 
 
-void thread::defer_add_thread_run_wait(sync_object_ptra & soa)
-{
-
-    UNREFERENCED_PARAMETER(soa);
-
-}
+//void thread::defer_add_thread_run_wait(sync_object_ptra & soa)
+//{
+//
+//    UNREFERENCED_PARAMETER(soa);
+//
+//}
 
 
 void thread::message_queue_message_handler(::signal_details * pobj)
@@ -1781,13 +1782,13 @@ int32_t thread::exit_instance()
 
 }
 
-bool thread::on_idle(LONG lCount)
-{
-
-   return on_thread_on_idle(this, lCount);
-
-
-}
+//bool thread::on_idle(LONG lCount)
+//{
+//
+//   return on_thread_on_idle(this, lCount);
+//
+//
+//}
 
 
 

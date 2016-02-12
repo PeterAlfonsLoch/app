@@ -466,7 +466,7 @@ namespace aura
       virtual void fill_locale_schema(::str::international::locale_schema & localeschema,const string & pszLocale,const string & pszSchema);
 
 
-      virtual void defer_add_thread_run_wait(sync_object_ptra & soa) override;
+      //virtual void defer_add_thread_run_wait(sync_object_ptra & soa) override;
 
 
       //DECL_GEN_SIGNAL(_001OnApplicationRequest);

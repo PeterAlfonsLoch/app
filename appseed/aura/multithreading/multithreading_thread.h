@@ -31,7 +31,7 @@ public:
 
    };
 
-   ::duration                             m_durationRunLock;
+   //::duration                             m_durationRunLock;
 
    user_interaction_ptr_array *           m_puiptra;
 
@@ -59,7 +59,7 @@ public:
 
    replace_thread *                       m_preplacethread;
 
-   manual_reset_event *                   m_peventEvent;
+   //manual_reset_event *                   m_peventEvent;
 
    file_info *                            m_pfileinfo;
 
@@ -183,7 +183,7 @@ public:
    virtual bool pump_message();     // low level message pump
    virtual bool defer_pump_message();     // deferred message pump
    virtual bool process_message(LPMESSAGE lpmessage);     // route message
-   virtual bool on_idle(LONG lCount); // return TRUE if more idle processing
+   // virtual bool on_idle(LONG lCount); // return TRUE if more idle processing
    virtual bool on_thread_on_idle(::thread * pthread, LONG lCount);
    virtual bool is_idle_message(signal_details * pobj);  // checks for special messages
    virtual bool is_idle_message(LPMESSAGE lpmessage);  // checks for special messages
@@ -207,7 +207,7 @@ public:
    virtual ::user::primitive * get_active_ui();
    virtual ::user::primitive * set_active_ui(::user::primitive * pui);
    //virtual void step_timer();
-   virtual bool on_run_step();
+   //virtual bool on_run_step();
 
 
    virtual void assert_valid() const;
@@ -251,7 +251,7 @@ public:
    virtual void set_run_thread(bool bRun = true);
    virtual void set_end_thread();
 
-   virtual void defer_add_thread_run_wait(sync_object_ptra & soa);
+   //virtual void defer_add_thread_run_wait(sync_object_ptra & soa);
 
    virtual void message_queue_message_handler(::signal_details * pobj);
 

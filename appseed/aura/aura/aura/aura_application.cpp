@@ -3872,13 +3872,13 @@ namespace aura
    }
 
 
-   void application::defer_add_thread_run_wait(sync_object_ptra & soa)
-   {
-
-//      soa.add(&axiom()->m_ev);
-
-   }
-
+//   void application::defer_add_thread_run_wait(sync_object_ptra & soa)
+//   {
+//
+////      soa.add(&axiom()->m_ev);
+//
+//   }
+//
 
    bool application::platform_open_by_file_extension(index iEdge,const char * pszPathName,application_bias * pbiasCreate)
    {
