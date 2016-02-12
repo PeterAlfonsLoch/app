@@ -2279,7 +2279,7 @@ namespace base
       if(pthread->m_hthread == NULL)
          return false;
 
-      ::user::message * pmessage    = canew(::user::message);
+      sp(::user::message) pmessage    = canew(::user::message);
 
 #if MEMDLEAK
 
@@ -2305,7 +2305,7 @@ namespace base
       pmessage->m_wparam            = wparam;
       pmessage->m_lparam            = lparam;
 
-      return pthread->post_thread_message(WM_APP + 1984,77,(LPARAM)pmessage) != FALSE;
+      return pthread->post_thread_message(WM_APP + 1984,77,pmessage) != FALSE;
 
    }
 
