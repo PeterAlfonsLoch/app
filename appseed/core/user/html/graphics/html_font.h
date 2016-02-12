@@ -5,7 +5,7 @@ namespace html
 {
 
 
-   class CLASS_DECL_HTML font :
+   class CLASS_DECL_CORE font :
       virtual public ::object
    {
    public:

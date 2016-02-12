@@ -3,7 +3,8 @@
 
 
 dialog::dialog(const char * pszMatter, sp(::user::interaction) puiParent) :
-   object(puiParent->get_app())
+   object(puiParent->get_app()),
+   html_form(puiParent->get_app())
 {
    m_strMatter = pszMatter;
    m_pdocument    = NULL;
@@ -13,7 +14,8 @@ dialog::dialog(const char * pszMatter, sp(::user::interaction) puiParent) :
 
 
 dialog::dialog(::aura::application * papp) :
-   object(papp)
+   object(papp),
+   html_form(papp)
 {
    m_pdocument    = NULL;
    m_pframe       = NULL;

@@ -9,7 +9,7 @@ namespace html
    {
 
 
-      class CLASS_DECL_HTML input_checkbox : public elemental
+      class CLASS_DECL_CORE input_checkbox : public elemental
       {
       public:
 

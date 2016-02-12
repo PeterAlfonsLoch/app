@@ -247,6 +247,9 @@ namespace user
       virtual size get_total_size();
 
 
+      virtual var get_ex_value();
+
+
    };
 
 

@@ -7,6 +7,7 @@ namespace userex // ca8 + cube
 
    message_box::message_box(::aura::application * papp) :
       object(papp),
+      html_form(papp),
       dialog(papp),
       wait_message_dialog(papp)
    {

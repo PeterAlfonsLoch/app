@@ -9,8 +9,8 @@ namespace html
    {
 
 
-      class CLASS_DECL_HTML input_text : public elemental,
-         virtual public ::calculator::plain_edit_view::callback
+      class CLASS_DECL_CORE input_text : public elemental
+         //,         virtual public ::calculator::plain_edit_view::callback
       {
       public:
          

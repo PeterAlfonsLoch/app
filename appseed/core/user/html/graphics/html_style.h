@@ -16,7 +16,7 @@ namespace html
    };*/
 
 
-   class CLASS_DECL_HTML style :
+   class CLASS_DECL_CORE style :
       virtual public ::object
    {
    public:

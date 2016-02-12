@@ -5,7 +5,7 @@ namespace html
 {
 
 
-   class CLASS_DECL_HTML size
+   class CLASS_DECL_CORE size
    {
    public:
 

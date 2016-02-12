@@ -17,9 +17,9 @@ namespace html
          m_strUnit = strUnit;
          if(strType.CompareNoCase("calculator") == 0)
          {
-            m_pedit = canew(::calculator::plain_edit_view(pdata->get_app()));
-            m_pedit.cast <::calculator::plain_edit_view>()->m_strFormat = strUnit;
-            m_pedit.cast <::calculator::plain_edit_view>()->m_pcallback = this;
+            //m_pedit = canew(::calculator::plain_edit_view(pdata->get_app()));
+            //m_pedit.cast <::calculator::plain_edit_view>()->m_strFormat = strUnit;
+            //m_pedit.cast <::calculator::plain_edit_view>()->m_pcallback = this;
          }
          else
          {

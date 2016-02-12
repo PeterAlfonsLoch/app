@@ -13,7 +13,7 @@ namespace html
       {
 
 
-         class CLASS_DECL_HTML check_box:
+         class CLASS_DECL_CORE check_box:
             virtual public ::user::check_box
          {
          public:

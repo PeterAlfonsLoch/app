@@ -46,6 +46,8 @@ namespace calculator
 
       virtual int64_t dec_ref();
 
+      virtual var get_ex_value() override;
+
    };
 
 

@@ -1,6 +1,8 @@
 //#include "framework.h"
 
 #include "base/database/simpledb/simpledb.h"
+#include "core/user/html/html/html.h"
+
 
 namespace userex
 {
@@ -122,6 +124,38 @@ namespace userex
       System.factory().creatable_small < menu_document >();
       System.factory().creatable_small < menu_frame >();
       System.factory().creatable_small < menu_view >();
+
+
+
+      System.factory().creatable_small < html_document >();
+      System.factory().creatable_small < html_view >();
+      System.factory().creatable_small < ::html::data::image >();
+      System.factory().creatable_small < ::html::data >();
+
+      Application.set_form_impact_system(
+
+         new ::user::multiple_document_template(
+            get_app(),
+            "system/form",
+            System.type_info < html_document >(),
+            System.get_simple_frame_window_type_info(),
+            System.type_info < html_view >()),
+
+         new ::user::multiple_document_template(
+            get_app(),
+            "system/form",
+            System.type_info < html_document >(),
+            System.get_simple_child_frame_type_info(),
+            System.type_info < html_view >()),
+
+         new ::user::multiple_document_template(
+            get_app(),
+            "system/form",
+            System.type_info < ::user::document >(),
+            System.get_simple_frame_window_type_info(),
+            System.type_info < ::user::place_holder >())
+
+         );
 
 
 

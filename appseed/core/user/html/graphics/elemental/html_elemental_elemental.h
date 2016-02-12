@@ -5,7 +5,7 @@ namespace html
 {
 
 
-   class CLASS_DECL_HTML elemental : 
+   class CLASS_DECL_CORE elemental : 
       virtual public ::user::elemental,
       virtual public ::user::schema
    {

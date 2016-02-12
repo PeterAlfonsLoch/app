@@ -7,7 +7,7 @@ namespace core
    {
 
 
-      class CLASS_DECL_HTML html :
+      class CLASS_DECL_CORE html :
          virtual public ::html::html
       {
       public:

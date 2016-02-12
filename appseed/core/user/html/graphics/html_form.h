@@ -5,7 +5,7 @@ namespace html
 {
 
 
-   class CLASS_DECL_HTML form:
+   class CLASS_DECL_CORE form:
       virtual public object
    {
    public:

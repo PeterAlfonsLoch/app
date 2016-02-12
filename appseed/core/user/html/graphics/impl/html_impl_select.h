@@ -9,7 +9,7 @@ namespace html
    {
 
 
-      class CLASS_DECL_HTML select : public elemental
+      class CLASS_DECL_CORE select : public elemental
       {
       public:
 

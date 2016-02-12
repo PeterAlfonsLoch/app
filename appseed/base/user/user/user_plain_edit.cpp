@@ -3128,6 +3128,18 @@ namespace user
    }
 
 
+   var plain_edit::get_ex_value()
+   {
+
+      string str;
+
+      _001GetText(str);
+
+      return str;
+
+   }
+
+
 } // namespace core
 
 

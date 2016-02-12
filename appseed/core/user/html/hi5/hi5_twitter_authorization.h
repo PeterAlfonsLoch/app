@@ -8,7 +8,7 @@ namespace hi5
    namespace twitter
    {
 
-      class CLASS_DECL_HTML authorization :
+      class CLASS_DECL_CORE authorization :
          virtual public ::user::form_callback,
          virtual public ::user::view_creator,
          virtual public ::user::tab_callback,

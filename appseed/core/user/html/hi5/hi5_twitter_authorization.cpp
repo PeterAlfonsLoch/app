@@ -1,4 +1,7 @@
 #include "framework.h"
+#include "core/user/html/html/html.h"
+
+
 //#include <openssl/rsa.h>
 //#include <openssl/engine.h>
 //#include <openssl/err.h>

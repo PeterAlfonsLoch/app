@@ -1,6 +1,8 @@
 #pragma once
 
 
+#include "core/user/html/html/html.h"
+
 
 CLASS_DECL_CORE void DDX_Control(::user::data_exchange * pdx, id idControl, ::user::interaction & control);
 CLASS_DECL_CORE void DDX_Text(::user::data_exchange * pdx, id idControl, string & str);
@@ -8,9 +10,8 @@ CLASS_DECL_CORE void DDV_MaxChars(::user::data_exchange * pdx, string & str, int
 CLASS_DECL_CORE void DDX_Check(::user::data_exchange * pdx, id idControl, int32_t & iBool);
 CLASS_DECL_CORE void DDX_Check(::user::data_exchange * pdx, id idControl, bool & b);
 
-
 class CLASS_DECL_CORE dialog :
-   virtual public ::user::form
+   virtual public ::html_form
 {
 public:
 

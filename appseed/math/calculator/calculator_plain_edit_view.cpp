@@ -332,6 +332,20 @@ namespace calculator
    }
 
 
+   var plain_edit_view::get_ex_value()
+   {
+
+      var v;
+
+      v["real"] = m_val.m_dR;
+      v["imaginary"] = m_val.m_dI;
+      v["text"] = ::user::plain_edit::get_ex_value();
+
+      return v;
+
+   }
+
+
 
 } // namespace calculator
 
