@@ -780,6 +780,7 @@ Opened:
       void wave_out::wave_out_prebuffer_eof()
       {
 
+         ::multimedia::audio::wave_out::wave_out_prebuffer_eof();
 
       }
 
@@ -787,7 +788,7 @@ Opened:
       void wave_out::OnStreamEnd()
       {
          
-         wave_out_on_playback_end();
+         //wave_out_on_playback_end();
 
       }
 
