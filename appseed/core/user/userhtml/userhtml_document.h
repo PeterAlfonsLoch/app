@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_HTML html_document :
+class CLASS_DECL_CORE html_document :
    virtual public ::user::document
 {
 public:

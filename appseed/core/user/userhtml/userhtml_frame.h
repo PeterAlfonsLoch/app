@@ -2,7 +2,7 @@
 
 
 
-//class CLASS_DECL_HTML html_frame : 
+//class CLASS_DECL_CORE html_frame : 
 //   public simple_frame_window
 //{
 //   
