@@ -163,7 +163,7 @@ void command_line::_001ParseCommandLine(const string & strCommandLine)
 
    m_strCommandLine = strCommandLine;
 
-   m_varQuery.propset()._008ParseCommandLine(strCommandLine,m_varFile);
+   m_varQuery.propset()._008Parse(true, strCommandLine,m_varFile, m_strApp);
 
    if(!m_varFile.is_empty())
    {

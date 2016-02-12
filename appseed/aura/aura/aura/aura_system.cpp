@@ -2068,17 +2068,17 @@ namespace aura
       else
       {
          string strCommandLine = pdata->m_vssCommandLine;
-         strCommandLine.trim();
-         if(strCommandLine[0] == '\"')
-         {
-            strsize iFind = strCommandLine.find("\"",1);
-            strCommandLine = strCommandLine.Mid(iFind + 1);
-         }
-         else
-         {
-            strsize iFind = strCommandLine.find(" ",1);
-            strCommandLine = strCommandLine.Mid(iFind + 1);
-         }
+         //strCommandLine.trim();
+         //if(strCommandLine[0] == '\"')
+         //{
+         //   strsize iFind = strCommandLine.find("\"",1);
+         //   strCommandLine = strCommandLine.Mid(iFind + 1);
+         //}
+         //else
+         //{
+         //   strsize iFind = strCommandLine.find(" ",1);
+         //   strCommandLine = strCommandLine.Mid(iFind + 1);
+         //}
          command()->add_line(strCommandLine);
       }
 
