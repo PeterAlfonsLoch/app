@@ -72,7 +72,6 @@
 			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../stage/x86" />
 		</Linker>
-		<Unit filename="PcreUtil.cpp" />
 		<Unit filename="PcreUtil.h" />
 		<Unit filename="config.guess.h" />
 		<Unit filename="pcre2-config.in.h" />

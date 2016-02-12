@@ -496,9 +496,9 @@ namespace aura
       virtual string lstr(id id,const string & strDefault = (const string &)*((const string *)NULL)) override;
 
       void on_command(::primitive::command * pcommand) override;
-      void application::on_create(::create * pcreate) override;
+      void on_create(::create * pcreate) override;
 
-      
+
       virtual bool check_install();
 
       virtual void dispatch_user_message_object(::object * pobject);
