@@ -30,8 +30,6 @@ public:
 
    virtual void command(::primitive::e_command ecommand);
 
-   DECL_GEN_SIGNAL(on_command_message);
-
    virtual void on_command(::primitive::command * pcommand);
 
    //virtual void on_create(::create * pcreate);

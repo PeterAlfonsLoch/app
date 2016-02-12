@@ -255,7 +255,7 @@ public:
 
    virtual void message_queue_message_handler(::signal_details * pobj);
 
-   DECL_GEN_SIGNAL(_001OnSendThreadMessage);
+   //DECL_GEN_SIGNAL(_001OnSendThreadMessage);
    DECL_GEN_SIGNAL(_001OnThreadMessage);
 
 

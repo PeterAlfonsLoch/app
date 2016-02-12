@@ -1,5 +1,7 @@
 #include "framework.h"
 
+
+
 struct send_thread_message :
    virtual public object
 {
@@ -8,7 +10,26 @@ struct send_thread_message :
 
    bool        m_bOk;
 
+   send_thread_message();
+   virtual ~send_thread_message();
+
 };
+
+send_thread_message::send_thread_message()
+{
+
+   ZERO(m_message);
+
+   m_bOk = false;
+
+}
+
+
+send_thread_message::~send_thread_message()
+{
+
+
+}
 
 
 
@@ -205,18 +226,18 @@ HTHREAD thread::get_os_handle() const
 
 
 
-void thread::_001OnSendThreadMessage(signal_details * pobj)
-{
-
-   SCAST_PTR(::message::base,pbase,pobj);
-
-   sp(::send_thread_message) pmessage = pbase->m_lparam;
-
-   process_message(&pmessage->m_message);
-
-   pmessage->m_bOk = true;
-
-}
+//void thread::_001OnSendThreadMessage(signal_details * pobj)
+//{
+//
+//   SCAST_PTR(::message::base,pbase,pobj);
+//
+//   sp(::send_thread_message) pmessage = pbase->m_lparam;
+//
+//   process_message(&pmessage->m_message);
+//
+//   pmessage->m_bOk = true;
+//
+//}
 
 
 
@@ -264,16 +285,16 @@ int32_t thread::exit()
 bool thread::send_thread_message(UINT message,WPARAM wParam,lparam lParam, ::duration durWaitStep)
 {
 
-   ::send_thread_message * pmessage =  new ::send_thread_message;
+   sp(::send_thread_message) pmessage =  canew(::send_thread_message);
 
-   ZEROP(pmessage);
+   
 
    pmessage->m_message.message = message;
    pmessage->m_message.wParam = wParam;
    pmessage->m_message.lParam = lParam;
    pmessage->m_bOk = false;
 
-   post_thread_message(WM_APP + 3241,0, pmessage);
+   post_thread_message(WM_APP + 1984,51, (LPARAM) (uint_ptr) (object *) pmessage.m_p);
 
    while(defer_pump_message())
    {
@@ -295,8 +316,6 @@ bool thread::send_thread_message(UINT message,WPARAM wParam,lparam lParam, ::dur
       }
 
    }
-
-   delete pmessage;
 
    return true;
 
@@ -1088,28 +1107,6 @@ void thread::dispatch_thread_message(signal_details * pbase)
 {
 
 
-   if(pbase->m_uiMessage == WM_APP + 1984)
-   {
-
-      if (pbase->m_wparam == 77)
-      {
-
-         Application.dispatch_user_message(pbase);
-
-         return;
-
-      }
-      else if (pbase->m_wparam == 49)
-      {
-
-         m_pcommandthread->on_command_message(pbase);
-
-      }
-      else
-      {
-      }
-
-   }
    //LRESULT lresult;
 
    synch_lock sl(m_pmutex);
@@ -1428,8 +1425,6 @@ uint32_t __thread_entry(void * pparam)
       ::thread * pthread = pstartup->m_pthread;
 
 //      ::thread * pthreadimpl = pstartup->m_pthreadimpl;
-
-      IGUI_WIN_MSG_LINK(WM_APP + 3241,pthread,pthread,&thread::_001OnSendThreadMessage);
 
       try
       {
@@ -2393,10 +2388,52 @@ void thread::message_handler(signal_details * pobj)
 bool thread::process_message(LPMESSAGE lpmessage)
 {
 
+
+
    try
    {
 
       MESSAGE & msg = *lpmessage;
+
+      if (msg.message == WM_APP + 1984)
+      {
+
+         if (msg.wParam == 77)
+         {
+
+            sp(::object) pobject((lparam) msg.lParam);
+
+            Application.dispatch_user_message_object(pobject);
+
+         }
+         else if (msg.wParam == 49)
+         {
+
+            sp(::primitive::command) pcommand((lparam)msg.lParam);
+
+            m_pcommandthread->on_command(pcommand);
+
+         }
+         else if (msg.wParam == 51)
+         {
+
+            ::send_thread_message * pmessage = dynamic_cast <::send_thread_message *>((object *)(uint_ptr)msg.lParam);
+
+            MESSAGE & message = pmessage->m_message;
+
+            process_message(&message);
+
+            pmessage->m_bOk = true;
+
+         }
+         else
+         {
+         }
+
+         return true;
+
+      }
+
 
       //m_message = msg;
       //m_p->m_message = msg;
@@ -3042,3 +3079,5 @@ void thread::on_create(::create * pcreate)
 
 
 }
+
+

@@ -1535,7 +1535,6 @@ namespace base
    //      pmessage->m_wparam            = wparam;
    //      pmessage->m_lparam            = lparam;
    //
-   //      return pimpl->post_thread_message(WM_APP + 1984,77,(LPARAM)pmessage) != FALSE;
    //
    //   }
    //
@@ -2280,7 +2279,7 @@ namespace base
       if(pthread->m_hthread == NULL)
          return false;
 
-      ::user::message * pmessage    = new ::user::message;
+      ::user::message * pmessage    = canew(::user::message);
 
 #if MEMDLEAK
 
@@ -2333,25 +2332,19 @@ namespace base
 
    }
 
-   void application::dispatch_user_message(::signal_details * pobj)
+
+   void application::dispatch_user_message_object(::object * pobject)
    {
 
-      if(!pobj->m_bRet)
-      {
+      dispatch_user_message(dynamic_cast < ::user::message * > (pobject));
 
-         smart_pointer < ::user::message > spmessage(pobj->m_lparam);
+   }
 
-         spmessage->send();
 
-         pobj->m_uiMessage   = 0;    // ssshhhh.... - self-healing - sh...
+   void application::dispatch_user_message(::user::message * pmessage)
+   {
 
-         pobj->m_wparam      = 0;    // ssshhhh.... - self-healing - sh...
-
-         pobj->m_bRet        = true;
-
-      }
-
-      return;
+      pmessage->send();
 
    }
 
@@ -2655,28 +2648,28 @@ namespace base
    bool application::process_message(LPMESSAGE lpmessage)
    {
 
-      if(lpmessage->message == WM_APP + 1984 && lpmessage->wParam == 77)
-      {
+      //if(lpmessage->message == WM_APP + 1984 && lpmessage->wParam == 77)
+      //{
 
-         ::user::message * pmessage = (::user::message *) lpmessage->lParam;
+      //   ::user::message * pmessage = (::user::message *) lpmessage->lParam;
 
-         try
-         {
+      //   try
+      //   {
 
-            pmessage->send();
+      //      pmessage->send();
 
-         }
-         catch(...)
-         {
+      //   }
+      //   catch(...)
+      //   {
 
 
-         }
+      //   }
 
-         delete pmessage;
+      //   delete pmessage;
 
-         return true;
+      //   return true;
 
-      }
+      //}
 
 
       return ::thread::process_message(lpmessage);

@@ -42,17 +42,17 @@ void command_thread::command(::primitive::e_command ecommand)
 }
 
 
-void command_thread::on_command_message(::signal_details * pobj)
-{
-   
-   SCAST_PTR(::message::base, pbase, pobj);
-
-   sp(::primitive::command) pcommand(pobj->m_lparam);
-   
-   on_command(pcommand);
-
-
-}
+//void command_thread::on_command_message(::signal_details * pobj)
+//{
+//   
+//   SCAST_PTR(::message::base, pbase, pobj);
+//
+//   sp(::primitive::command) pcommand(pobj->m_lparam);
+//   
+//   on_command(pcommand);
+//
+//
+//}
 
 void command_thread::on_command(::primitive::command * pcommand)
 {

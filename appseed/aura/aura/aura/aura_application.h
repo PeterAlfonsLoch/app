@@ -501,6 +501,8 @@ namespace aura
       
       virtual bool check_install();
 
+      virtual void dispatch_user_message_object(::object * pobject);
+
 
    };
 

@@ -402,7 +402,6 @@
 //
 //      ::thread_impl * pthreadimpl = pstartup->m_pthreadimpl;
 //
-//      IGUI_WIN_MSG_LINK(WM_APP + 3241,pthreadimpl,pthread,&thread::_001OnSendThreadMessage);
 //
 //      try
 //      {

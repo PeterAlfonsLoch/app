@@ -4440,6 +4440,13 @@ namespace aura
 
    }
 
+   void application::dispatch_user_message_object(::object * pobject)
+   {
+
+      throw interface_only_exception(this);
+
+   }
+
 
 } // namespace aura
 
