@@ -105,7 +105,7 @@ void html_form::_001OnImageLoaded(signal_details * pobj)
 
 void html_form::install_message_handling(::message::dispatch * pinterface)
 {
-   ::user::form::install_message_handling(pinterface);
+   ::user::form_view::install_message_handling(pinterface);
 
    IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &html_form::_001OnCreate);
 
