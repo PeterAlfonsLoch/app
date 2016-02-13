@@ -692,7 +692,8 @@ void thread::Delete()
 void thread::register_dependent_thread(::thread * pthreadDependent)
 {
 
-   post_thread_message(WM_APP + 1984, 90, (LPARAM) pthreadDependent);
+   //post_thread_message(WM_APP + 1984, 90, (LPARAM) pthreadDependent);
+   on_register_dependent_thread(pthreadDependent);
 
 }
 
@@ -712,19 +713,20 @@ void thread::on_register_dependent_thread(::thread * pthreadDependent)
 
    {
 
+      synch_lock slThread(pthreadDependent->m_pmutex);
+
+      pthreadDependent->m_threadptraRequired.add_unique(this);
+
+   }
+
+   {
+
       synch_lock sl(m_pmutex);
 
       m_threadptraDependent.add_unique(pthreadDependent);
 
    }
 
-   {
-
-      synch_lock slThread(pthreadDependent->m_pmutex);
-
-      pthreadDependent->m_threadptraRequired.add_unique(this);
-
-   }
 
 }
 

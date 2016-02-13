@@ -363,7 +363,7 @@ remove(ARG_TYPE t)
 
    ::count count = 0;
 
-   if(remove_last(t) >= 0)
+   while(remove_last(t) >= 0)
       count++;
 
    return count;
