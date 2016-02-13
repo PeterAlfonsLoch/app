@@ -244,23 +244,28 @@ void system_heap_free(void * p)
 
    memdleak_block * pblock = &((memdleak_block *)psize)[-1];
 
-   synch_lock lock(g_pmutgen);
+   if(s_pmemdleakList != NULL)
+   {
 
-   if(s_pmemdleakList == pblock)
-   {
-      s_pmemdleakList = pblock->m_pnext;
-      s_pmemdleakList->m_pprevious = NULL;
-   }
-   else
-   {
-      pblock->m_pprevious->m_pnext = pblock->m_pnext;
-      if(pblock->m_pnext != NULL)
+      synch_lock lock(g_pmutgen);
+
+      if(s_pmemdleakList == pblock)
       {
-         pblock->m_pnext->m_pprevious = pblock->m_pprevious;
+         s_pmemdleakList = pblock->m_pnext;
+         s_pmemdleakList->m_pprevious = NULL;
       }
-   }
+      else
+      {
+         pblock->m_pprevious->m_pnext = pblock->m_pnext;
+         if(pblock->m_pnext != NULL)
+         {
+            pblock->m_pnext->m_pprevious = pblock->m_pprevious;
+         }
+      }
 
-   ::free((void *) pblock->m_pszFileName);
+      ::free((void *) pblock->m_pszFileName);
+
+   }
 
    ::free(pblock);
 

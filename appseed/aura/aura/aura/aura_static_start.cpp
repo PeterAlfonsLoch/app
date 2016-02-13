@@ -426,6 +426,12 @@ namespace aura
 
          ::aura::del(s_pstringmanager);
 
+         #if MEMDLEAK
+
+         s_pmemdleakList = NULL;
+
+         #endif
+
          ::aura::del(g_pheap);
 
 

@@ -385,7 +385,7 @@ namespace draw2d_cairo
    void dib::map(bool bApplyAlphaTransform) const
    {
 
-return;
+//return;
 
       synch_lock ml(&cairo_mutex());
 
@@ -443,7 +443,7 @@ return;
 
    void dib::unmap() const
    {
-      return;
+      //return;
       synch_lock ml(&cairo_mutex());
 
       if(!m_bMapped)
@@ -2730,7 +2730,7 @@ return;
 
       m_spgraphics->SetViewportOrg(0, 0);
 
-      map(true);
+      map(false);
 
       rect rect(rectWindow);
 
