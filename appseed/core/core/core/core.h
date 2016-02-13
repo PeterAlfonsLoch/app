@@ -4,8 +4,6 @@
 
 #include "app/axis/html_lite/html_lite/html_lite.h"
 
-#include "core/math/math/math_math.h"
-
 #if !defined(_MM) && !defined(_M)
 
 #include "nodeapp/operational_system/operational_system.h"
@@ -939,7 +937,7 @@ CLASS_DECL_CORE bool defer_core_term();
 
 
 
-#pragma once
+#include "core/math/math/math_math.h"
 
 
 #include "core/core/core/core.h"

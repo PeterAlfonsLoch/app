@@ -5,7 +5,7 @@ namespace calculator
 {
 
 
-   class CLASS_DECL_CA2_MATH token
+   class CLASS_DECL_CORE token
    {
    public:
 

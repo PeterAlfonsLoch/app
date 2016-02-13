@@ -5,7 +5,7 @@ namespace calculator
 {
 
 
-   class CLASS_DECL_CA2_MATH plain_edit_view:
+   class CLASS_DECL_CORE plain_edit_view:
       virtual public ::user::show < ::user::plain_edit >
    {
    public:

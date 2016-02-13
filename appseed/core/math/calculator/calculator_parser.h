@@ -5,7 +5,7 @@ namespace calculator
 {
 
 
-   class CLASS_DECL_CA2_MATH parser :
+   class CLASS_DECL_CORE parser :
       virtual public ::object
    {
    public:

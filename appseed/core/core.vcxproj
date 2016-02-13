@@ -378,6 +378,7 @@
     <ClCompile Include="filesystem\filehandler\_filehandler.cpp" />
     <ClCompile Include="filesystem\filemanager\_filemanager.cpp" />
     <ClCompile Include="filesystem\userfs\_userfs.cpp" />
+    <ClCompile Include="math\_math_math.cpp" />
     <ClCompile Include="user\databaseuser\databaseuser_key_mesh_data.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>

@@ -5,7 +5,7 @@ namespace calculator
 {
 
 
-   class CLASS_DECL_CA2_MATH element:
+   class CLASS_DECL_CORE element:
       virtual public ::object
    {
    public:
