@@ -192,6 +192,10 @@
 		<Unit filename="aura/aura/aura_smart_pointer2.h" />
 		<Unit filename="aura/aura/aura_speaker.h" />
 		<Unit filename="aura/aura/aura_sprintf.h" />
+		<Unit filename="aura/aura/aura_static_start.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="aura/aura/aura_static_start.h" />
 		<Unit filename="aura/aura/aura_str_context.h" />
 		<Unit filename="aura/aura/aura_system.cpp">

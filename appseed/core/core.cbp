@@ -388,7 +388,9 @@
 		<Unit filename="math/_double.h" />
 		<Unit filename="math/_float.h" />
 		<Unit filename="math/_integer.h" />
+		<Unit filename="math/_math_math.cpp" />
 		<Unit filename="math/binary_operation.h" />
+		<Unit filename="math/math/math_math.h" />
 		<Unit filename="math/math_math.h" />
 		<Unit filename="math/number.h" />
 		<Unit filename="math/value.h" />
@@ -445,6 +447,7 @@
 		<Unit filename="user/html/graphics/elemental/_html_elemental.cpp" />
 		<Unit filename="user/html/graphics/impl/_html_impl.cpp" />
 		<Unit filename="user/html/hi5/hi5_twitter_authorization.cpp" />
+		<Unit filename="user/html/html_application.h" />
 		<Unit filename="user/menu/user_menu.h" />
 		<Unit filename="user/menu/user_menu_button.h" />
 		<Unit filename="user/menu/user_menu_central.h" />

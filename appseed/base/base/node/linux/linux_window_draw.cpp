@@ -346,7 +346,7 @@ namespace linux
 //      s_bRunning = true;
       m_bRun = true;
       ::get_thread()->m_bRun = true;
-      while(m_bRun && ::get_thread()->get_run())
+      while(::aura::system::g_p != NULL && ::aura::system::g_p->m_bRun && m_bRun && ::get_thread()->get_run())
       {
 #ifndef DEBUG
          try

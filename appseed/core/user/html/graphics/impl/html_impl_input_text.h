@@ -9,12 +9,13 @@ namespace html
    {
 
 
-      class CLASS_DECL_CORE input_text : public elemental
-         //,         virtual public ::calculator::plain_edit_view::callback
+      class CLASS_DECL_CORE input_text :
+         public elemental,
+         virtual public ::calculator::plain_edit_view::callback
       {
       public:
-         
-         
+
+
          int32_t m_iFont;
          string m_strUnit;
          string m_strType;

@@ -204,7 +204,7 @@ namespace aura
 //         g_pmutexThreadIdHandleLock = new mutex;
 
   //       g_pmutexThreadIdLock = new mutex;
-         
+
 
 #ifndef METROWIN
 
@@ -340,8 +340,8 @@ namespace aura
          delete g_pmutexTz;
 
          g_pmutexTz = NULL;
-         
-         
+
+
 #endif // defined(LINUX) || defined(APPLEOS)
 
 #if defined(LINUX) || defined(APPLEOS) || defined(METROWIN) || defined(ANDROID)
@@ -398,17 +398,11 @@ namespace aura
 
          //g_pmutexTrace = NULL;
 
-         delete g_pmutexUiDestroyed;
+         ::aura::del(g_pmutexUiDestroyed);
 
-         g_pmutexUiDestroyed = NULL;
+         ::aura::del(g_pmapAura);
 
-         delete g_pmapAura;
-
-         g_pmapAura = NULL;
-
-         delete g_pmutgen;
-
-         g_pmutgen = NULL;
+         ::aura::del(g_pmutgen);
 
          ::aura::del(g_pmutexSystemHeap);
 
@@ -430,11 +424,9 @@ namespace aura
 
 //         destroy_id_space();
 
-         delete s_pstringmanager;
+         ::aura::del(s_pstringmanager);
 
-         s_pstringmanager = NULL;
-
-         delete g_pheap;
+         ::aura::del(g_pheap);
 
 
       }

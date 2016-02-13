@@ -26,7 +26,7 @@ UINT __axis_x11_thread(void * p)
 
    struct timeval tv;
 
-   while(::aura::system::g_p->m_bRun)
+   while(::aura::system::g_p != NULL && ::aura::system::g_p->m_bRun)
    {
 
 //      ZERO(msg);
@@ -114,14 +114,14 @@ void process_message(Display * display)
 
   // if(d.m_pdata->m_pdisplay == NULL)
     //return false;
-      oswindow window = oswindow_get(display, e.xbutton.window);
-
-   XWindowAttributes attr;
-   if(XGetWindowAttributes(display, e.xbutton.window, &attr))
-   {
-   window->get_user_interaction()->m_bVisible = attr.map_state == IsViewable;
-
-   }
+//      oswindow window = oswindow_get(display, e.xbutton.window);
+//
+//   XWindowAttributes attr;
+//   if(XGetWindowAttributes(display, e.xbutton.window, &attr))
+//   {
+//   window->get_user_interaction()->m_bVisible = attr.map_state == IsViewable;
+//
+//   }
 //   window->get_user_interaction()->m_pimpl->m_bVisible = attr.map_state == IsViewable;
 
    }
@@ -141,9 +141,9 @@ void process_message(Display * display)
 
       }
 
-      oswindow window = oswindow_get(display, e.xbutton.window);
-
-      XWindowAttributes attrs;
+//      oswindow window = oswindow_get(display, e.xbutton.window);
+//
+//      XWindowAttributes attrs;
 
       /* Fill attribute structure with information about root window */
 
@@ -335,7 +335,14 @@ void post_message(MESSAGE & msg)
       else
       {
 
-         msg.hwnd->get_user_interaction()->post_message(msg.message, msg.wParam, msg.lParam);
+         ::user::interaction * pui = msg.hwnd->get_user_interaction();
+
+         if(pui != NULL)
+         {
+
+            pui->post_message(msg.message, msg.wParam, msg.lParam);
+
+         }
 
       }
 

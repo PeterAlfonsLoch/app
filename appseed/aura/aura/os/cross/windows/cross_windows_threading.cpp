@@ -578,8 +578,13 @@ void * __thread_get_data(IDTHREAD hthread,uint32_t dwIndex)
 
       synch_lock lock(g_pmutexTlsData);
 
-      if(allthreaddata->is_empty())
+      if(allthreaddata == NULL || allthreaddata->is_empty())
+      {
+
          return NULL;
+
+      }
+
       auto ppair = allthreaddata->PLookup((IDTHREAD)hthread);
 
       if(ppair == NULL)

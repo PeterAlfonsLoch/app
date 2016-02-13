@@ -316,6 +316,12 @@ m_bRun = true;
 
    system::~system()
    {
+      if (g_p == this)
+      {
+
+         g_p = NULL;
+
+      }
 
    }
 

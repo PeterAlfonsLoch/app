@@ -197,6 +197,7 @@ void thread::CommonConstruct()
 thread::~thread()
 {
 
+unregister_from_required_threads();
 
 
    if(m_pmutex != NULL)
@@ -249,6 +250,8 @@ HTHREAD thread::get_os_handle() const
 bool thread::finalize()
 {
 
+   unregister_from_required_threads();
+
    signal_close_dependent_threads();
 
    wait_close_dependent_threads(minutes(1));
@@ -287,7 +290,7 @@ bool thread::send_thread_message(UINT message,WPARAM wParam,lparam lParam, ::dur
 
    sp(::send_thread_message) pmessage =  canew(::send_thread_message);
 
-   
+
 
    pmessage->m_message.message = message;
    pmessage->m_message.wParam = wParam;
@@ -689,14 +692,15 @@ void thread::Delete()
 void thread::register_dependent_thread(::thread * pthreadDependent)
 {
 
-   post_thread_message(WM_APP + 100, 0, (LPARAM) pthreadDependent);
+   post_thread_message(WM_APP + 1984, 90, (LPARAM) pthreadDependent);
 
 }
 
 void thread::unregister_dependent_thread(::thread * pthreadDependent)
 {
 
-   post_thread_message(WM_APP + 100, 1, (LPARAM)pthreadDependent);
+   //post_thread_message(WM_APP + 1984, 91, (LPARAM)pthreadDependent);
+   on_unregister_dependent_thread(pthreadDependent);
 
 }
 
@@ -802,9 +806,11 @@ void thread::wait_close_dependent_threads(const duration & duration)
 
          for(index i = 0; i < m_threadptraDependent.get_count(); i++)
          {
-            TRACE(string("---"));
-            TRACE(string("supporter : ") + typeid(*this).name() + string(" (") + ::str::from(this) + ")");
-            TRACE(string("dependent : ") + typeid(*m_threadptraDependent[i]).name() + string(" (") + ::str::from(m_threadptraDependent[i]) + ")");
+
+            ::thread * pthread = m_threadptraDependent[i];
+            output_debug_string(string("---"));
+            output_debug_string(string("supporter : ") + typeid(*this).name() + string(" (") + ::str::from(this) + ")");
+            output_debug_string(string("dependent : ") + typeid(*m_threadptraDependent[i]).name() + string(" (") + ::str::from(m_threadptraDependent[i]) + ")");
 
          }
 
@@ -1736,6 +1742,7 @@ void thread::post_to_all_threads(UINT message,WPARAM wparam,LPARAM lparam)
 int32_t thread::exit_instance()
 {
 
+unregister_from_required_threads();
    ASSERT_VALID(this);
 
    try
@@ -2427,6 +2434,18 @@ bool thread::process_message(LPMESSAGE lpmessage)
             pmessage->m_bOk = true;
 
          }
+         else if (msg.wParam == 90)
+         {
+
+            on_register_dependent_thread((thread*)msg.lParam);
+
+         }
+         else if (msg.wParam == 91)
+         {
+
+            on_unregister_dependent_thread((thread*)msg.lParam);
+
+         }
          else
          {
          }
@@ -2964,18 +2983,6 @@ void thread::_001OnThreadMessage(signal_details * pobj)
    SCAST_PTR(::message::base, pbase, pobj);
 
 
-   if (pbase->m_wparam == 0)
-   {
-
-      on_register_dependent_thread((thread*)pbase->m_lparam);
-
-   }
-   else if (pbase->m_wparam == 1)
-   {
-
-      on_unregister_dependent_thread((thread*)pbase->m_lparam);
-
-   }
 
 }
 
