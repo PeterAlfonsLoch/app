@@ -107,23 +107,12 @@ WINBOOL GetWindowRect(oswindow hwnd, LPRECT lprect)
 
    //single_lock sl(&user_mutex(), true);
 
-   xdisplay xlock(hwnd->display());
+   //synch_lock sl(::oswindow_data::s_pmutex);
 
-   if(!IsWindow(hwnd) || !IsWindowVisible(hwnd))
-      return FALSE;
+   xdisplay d(hwnd->display());
 
-   //bool bDestroying = hwnd->m_bDestroying;
 
-   Display * pdisplay = hwnd->display();
-
-   Window window = hwnd->window();
-
-   if(pdisplay == NULL)
-   {
-
-      return false;
-
-   }
+   //oswindow window = oswindow_get(hwnd->display(), e.xbutton.window);
 
    XWindowAttributes attrs;
 
@@ -131,7 +120,9 @@ WINBOOL GetWindowRect(oswindow hwnd, LPRECT lprect)
 
    if(!XGetWindowAttributes(hwnd->display(), hwnd->window(), &attrs))
    {
+
       return FALSE;
+
    }
 
    int x;
@@ -140,8 +131,11 @@ WINBOOL GetWindowRect(oswindow hwnd, LPRECT lprect)
 
    if(!XTranslateCoordinates(hwnd->display(), hwnd->window(), DefaultRootWindow(hwnd->display()), 0, 0, &x, &y, &child))
    {
+
       return FALSE;
+
    }
+
 
    lprect->left      = x;
    lprect->top       = y;
@@ -266,6 +260,34 @@ WINBOOL SetWindowPos(oswindow hwnd, oswindow hwndInsertAfter, int32_t x, int32_t
       }
 
    }
+
+      XWindowAttributes attrs;
+
+      /* Fill attribute structure with information about root window */
+
+      if(XGetWindowAttributes(hwnd->display(), hwnd->window(), &attrs))
+      {
+
+
+      int x;
+      int y;
+      Window child;
+
+      if(XTranslateCoordinates(hwnd->display(), hwnd->window(), DefaultRootWindow(hwnd->display()), 0, 0, &x, &y, &child))
+      {
+
+         return false;
+
+      }
+
+      hwnd->m_rect.left      = x;
+      hwnd->m_rect.top       = y;
+      hwnd->m_rect.right     = x    + attrs.width;
+      hwnd->m_rect.bottom    = y    + attrs.height;
+
+      }
+
+
 
    //XCloseDisplay(display);
 

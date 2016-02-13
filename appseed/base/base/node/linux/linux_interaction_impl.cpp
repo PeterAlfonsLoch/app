@@ -432,6 +432,8 @@ namespace linux
 
          Window window = XCreateWindow( display, DefaultRootWindow(display), cs.x, cs.cy, cs.cx, cs.cy, 0, m_iDepth, InputOutput, vis, CWColormap|CWEventMask|CWBackPixmap|CWBorderPixel, &attr);
 
+
+
          /*oswindow hWnd = ::CreateWindowEx(cs.dwExStyle, cs.lpszClass,
             cs.lpszName, cs.style, cs.x, cs.y, cs.cx, cs.cy,
             cs.hwndParent, cs.hMenu, cs.hInstance, cs.lpCreateParams);*/
@@ -465,6 +467,17 @@ namespace linux
    #endif
 
          m_oswindow = oswindow_get(display, window, vis, m_iDepth, m_iScreen, attr.colormap);
+
+                  Window root = 0;
+   Window * pchildren = NULL;
+   uint32_t ncount = 0;
+
+//   xdisplay l(pdisplay);
+
+   XQueryTree(display, window, &root, &m_oswindow->m_parent, &pchildren, &ncount);
+
+   if(pchildren != NULL)
+      XFree(pchildren);
 
          m_oswindow->set_user_interaction(m_pui);
 
@@ -4231,9 +4244,9 @@ throw not_implemented(get_app());
          ::copy(lprect, rect32);
 
       }
-      //else
+//      else
       {
-        //  interaction::GetWindowRect(lprect);
+  //      interaction_impl_base::GetWindowRect(lprect);
       }
 
       return true;

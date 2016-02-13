@@ -62,6 +62,8 @@ public:
    int_to_int *                  m_plongmap;
    Colormap                      m_colormap;
    DWORD                         m_dwLastMouseMove;
+   Window                        m_parent;
+   RECT                          m_rect;
 
    //ptr_array < bool >            m_bptraTellMeDestroyed; // Telmo why!! :-)
 

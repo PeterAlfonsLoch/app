@@ -368,6 +368,16 @@ void set_defer_process_x_message(bool (* pfn)(HTHREAD hthread,LPMESSAGE lpMsg,os
 
 }
 
+UINT (* g_x11_thread)(void * pparam) = NULL;
+
+#ifdef LINUX
+UINT __x11_thread(void * pparam)
+{
+
+   (*g_x11_thread)(pparam);
+
+}
+#endif
 
 #endif
 

@@ -44,7 +44,7 @@ int32_t osdisplay_find(Display * pdisplay)
    return -1;
 
 }
-
+UINT __axis_x11_thread(void * pparam);
 osdisplay_data * osdisplay_get(Display * pdisplay)
 {
 
@@ -63,6 +63,8 @@ osdisplay_data * osdisplay_get(Display * pdisplay)
    pdata->m_atomLongStyleEx   = XInternAtom(pdisplay     , CA2_CCVOTAGUS_WINDOW_LONG_STYLE_EX   , False);
 
    ::osdisplay_data::s_pdataptra->add(pdata);
+
+   __begin_thread(::aura::system::g_p,&__axis_x11_thread,pdata,::multithreading::priority_normal,0,0,NULL);
 
    return pdata;
 
@@ -137,6 +139,9 @@ xdisplay::xdisplay(Display * pdisplay, bool bInitialLock)
    m_pdata     = osdisplay_get(pdisplay);
    m_bOwn        = false;
    m_bLocked     = false;
+
+
+
 
    if(bInitialLock)
         lock();

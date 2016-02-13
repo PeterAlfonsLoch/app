@@ -40,7 +40,6 @@ extern oswindow_dataptra * g_poswindowdataptra;
 
 struct lconv * g_plconv = NULL;
 
-
 namespace base
 {
 
@@ -56,10 +55,6 @@ namespace base
          xxdebug_box("axis.dll base_static_start (0)", "box", MB_OK);
 
 #if defined(LINUX)
-
-         set_defer_process_x_message(&axis_defer_process_x_message);
-
-         set_defer_process_x_message(&axis_defer_process_x_message);
 
          set_TranslateMessage(&axis_TranslateMessage);
 
@@ -90,9 +85,9 @@ namespace base
 #endif
 
 #if defined(APPLEOS)
-         
+
          g_poswindowdataptra = new oswindow_dataptra;
-         
+
 #endif // defined(APPLEOS)
 
 
@@ -148,11 +143,11 @@ namespace base
 
 
 #if defined(APPLEOS)
-         
+
          delete g_poswindowdataptra;
-         
+
          g_poswindowdataptra = NULL;
-         
+
 #endif // defined(APPLEOS)
 
 #if defined(LINUX)
@@ -178,7 +173,7 @@ namespace base
 
       }
 
-      
+
    } // namespace static_start
 
 
@@ -188,3 +183,56 @@ namespace base
 
 
 
+
+
+#ifdef LINUX
+
+//UINT __axis_x11_thread(void * pparam)
+//{
+//
+//return 0;
+//
+//   //MESSAGE msg;
+//
+//   //bool bOk;
+//
+////   while(::aura::system::g_p->m_bRun)
+//  // {
+//
+//      //bOk = axis_defer_process_x_message(0, &msg, NULL, false);
+//
+////      if(bOk)
+////      {
+////
+////      try
+////      {
+////
+////         if(msg.hwnd == NULL)
+////         {
+////
+////            ::aura::system::g_p->post_thread_message(msg.message, msg.wParam, msg.lParam);
+////
+////         }
+////         else
+////         {
+////
+////            msg.hwnd->get_user_interaction()->send_message(msg.message, msg.wParam, msg.lParam);
+////
+////         }
+////
+////      }
+////      catch(...)
+////      {
+////
+////      }
+////
+////      }
+////
+////
+////   }
+//
+//   return 0;
+//}
+
+
+#endif

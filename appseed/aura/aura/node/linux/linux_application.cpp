@@ -426,7 +426,7 @@ namespace linux
 //         m_strCmdLine = strCmdLine;
   //       m_nCmdShow = nCmdShow;
          //pApp->SetCurrentHandles();
-         SetCurrentHandles();
+         get_app()->SetCurrentHandles();
 
       return true;
 

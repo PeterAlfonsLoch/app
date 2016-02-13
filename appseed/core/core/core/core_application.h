@@ -7,6 +7,7 @@ namespace core
 
    class CLASS_DECL_CORE application:
       virtual public ::base::application,
+      virtual public ::html_lite::application,
       virtual public ::filemanager::callback
    {
    public:
@@ -496,7 +497,7 @@ namespace core
 
       virtual ::userex::userex * create_userex();
       virtual ::userfs::userfs * create_userfs();
-      
+
 
 
       //virtual void assert_valid() const;
@@ -570,7 +571,7 @@ namespace core
       virtual bool platform_open_by_file_extension(int iEdge,const char * pszPathName,application_bias * pbiasCreate = NULL);
       virtual bool platform_open_by_file_extension(int iEdge,::create * pcc);
 
-      
+
       virtual void on_show_view(::user::tab * ptab);
 
 

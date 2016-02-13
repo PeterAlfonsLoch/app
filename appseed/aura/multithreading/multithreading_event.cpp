@@ -320,14 +320,14 @@ bool event::ResetEvent()
 
 #ifdef DEBUG
 
-   
+
 
    try
    {
 
       if(m_object == NULL)
       {
-         
+
          ::OutputDebugString("error reset event (1)");
 
       }

@@ -87,6 +87,10 @@
 		</Unit>
 		<Unit filename="aura/aura/aura_app_core.h" />
 		<Unit filename="aura/aura/aura_app_launcher.h" />
+		<Unit filename="aura/aura/aura_application.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="aura/aura/aura_application.h" />
 		<Unit filename="aura/aura/aura_application_ptra.h" />
 		<Unit filename="aura/aura/aura_application_signal_details.h" />
@@ -176,6 +180,10 @@
 		<Unit filename="aura/aura/aura_progress.h" />
 		<Unit filename="aura/aura/aura_restore.h" />
 		<Unit filename="aura/aura/aura_savings.h" />
+		<Unit filename="aura/aura/aura_session.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="aura/aura/aura_session.h" />
 		<Unit filename="aura/aura/aura_shell_launcher.h" />
 		<Unit filename="aura/aura/aura_simple_app.h" />
@@ -186,6 +194,10 @@
 		<Unit filename="aura/aura/aura_sprintf.h" />
 		<Unit filename="aura/aura/aura_static_start.h" />
 		<Unit filename="aura/aura/aura_str_context.h" />
+		<Unit filename="aura/aura/aura_system.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="aura/aura/aura_system.h" />
 		<Unit filename="aura/aura/aura_system_factory.inl" />
 		<Unit filename="aura/aura/aura_system_id.inl" />
@@ -294,10 +306,18 @@
 		<Unit filename="aura/node/windows/windows_file_system.h" />
 		<Unit filename="aura/os/ansios/ansios.h" />
 		<Unit filename="aura/os/ansios/ansios_file.h" />
+		<Unit filename="aura/os/ansios/ansios_multithreading.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="aura/os/ansios/ansios_multithreading.h" />
 		<Unit filename="aura/os/ansios/ansios_thread.h" />
 		<Unit filename="aura/os/cross.h" />
 		<Unit filename="aura/os/cross/cross.h" />
+		<Unit filename="aura/os/cross/windows/cross_windows_threading.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="aura/os/cross/windows/e.h" />
 		<Unit filename="aura/os/cross/windows/windows.h" />
 		<Unit filename="aura/os/cross/windows/windows_base.h" />
@@ -474,12 +494,20 @@
 		<Unit filename="multithreading/multithreading_condition.h" />
 		<Unit filename="multithreading/multithreading_critical_section.h" />
 		<Unit filename="multithreading/multithreading_data.h" />
+		<Unit filename="multithreading/multithreading_event.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="multithreading/multithreading_event.h" />
 		<Unit filename="multithreading/multithreading_event_base.h" />
 		<Unit filename="multithreading/multithreading_event_collection.h" />
 		<Unit filename="multithreading/multithreading_file_change_event.h" />
 		<Unit filename="multithreading/multithreading_go_thread.h" />
 		<Unit filename="multithreading/multithreading_initial_single_lock.h" />
+		<Unit filename="multithreading/multithreading_manual_reset_event.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="multithreading/multithreading_manual_reset_event.h" />
 		<Unit filename="multithreading/multithreading_multi_lock.h" />
 		<Unit filename="multithreading/multithreading_mutex.h" />
@@ -642,8 +670,20 @@
 		<Unit filename="primitive/primitive_bit.h" />
 		<Unit filename="primitive/primitive_check.h" />
 		<Unit filename="primitive/primitive_color.h" />
+		<Unit filename="primitive/primitive_command.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="primitive/primitive_command.h" />
+		<Unit filename="primitive/primitive_command_line.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="primitive/primitive_command_line.h" />
+		<Unit filename="primitive/primitive_command_thread.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="primitive/primitive_command_thread.h" />
 		<Unit filename="primitive/primitive_create.h" />
 		<Unit filename="primitive/primitive_edit.h" />

@@ -71,7 +71,7 @@ CLASS_DECL_AURA int_bool WINAPI GetMessageW(LPMESSAGE lpMsg,oswindow oswindow,UI
    if(pmq == NULL)
       return FALSE;
 
-   single_lock ml(&pmq->m_mutex,false);
+   synch_lock sl(&pmq->m_mutex);
 
    if(wMsgFilterMax == 0)
       wMsgFilterMax = (UINT)-1;
@@ -82,8 +82,6 @@ CLASS_DECL_AURA int_bool WINAPI GetMessageW(LPMESSAGE lpMsg,oswindow oswindow,UI
 #endif
 
 restart:
-
-   ml.lock();
 
    for(int32_t i = 0; i < pmq->ma.get_count(); i++)
    {
@@ -111,52 +109,58 @@ restart:
       }
    }
 
-   ml.unlock();
-
 #if defined(LINUX) // || defined(ANDROID)
-   if(::get_thread() != NULL)
-   {
+//   if(::get_thread() != NULL)
+//   {
+//
+//      if(!::get_thread()->get_run())
+//         return FALSE;
+//
+//      //      ::get_thread()->step_timer();
+//
+//      if(!::get_thread()->get_run())
+//         return FALSE;
+//
+//   }
 
-      if(!::get_thread()->get_run())
-         return FALSE;
-
-      //      ::get_thread()->step_timer();
-
-      if(!::get_thread()->get_run())
-         return FALSE;
-
-   }
-
-   if(aura_defer_process_x_message(hthread,lpMsg,oswindow,false))
-      return TRUE;
+   //if(aura_defer_process_x_message(hthread,lpMsg,oswindow,false))
+     // return TRUE;
 
 #endif
 
-   if(bFirst)
+   //if(bFirst)
    {
 
-      pmq->m_eventNewMessage.wait(millis(11));
+      //pmq->m_eventNewMessage.wait(millis(11));
+
+      sl.unlock();
+
+      pmq->m_eventNewMessage.wait();
+
+      sl.lock();
 
       pmq->m_eventNewMessage.ResetEvent();
 
-      bFirst = false;
+
+
+      //bFirst = false;
 
       goto restart;
 
    }
-   else
-   {
+//   else
+//   {
+//
+//      lpMsg->message = 0xffffffff;
+//      lpMsg->hwnd    = NULL;
+//      lpMsg->wParam  = 0;
+//      lpMsg->lParam  = 0;
+//      lpMsg->pt.x    = 0x80000000;
+//      lpMsg->pt.y    = 0x80000000;
 
-      lpMsg->message = 0xffffffff;
-      lpMsg->hwnd    = NULL;
-      lpMsg->wParam  = 0;
-      lpMsg->lParam  = 0;
-      lpMsg->pt.x    = 0x80000000;
-      lpMsg->pt.y    = 0x80000000;
-
-      return TRUE;
-
-   }
+//      return TRUE;
+//
+//   }
 
 
 
@@ -815,6 +819,8 @@ mq::mq():
    m_eventNewMessage(get_thread_app())
 {
 
+   m_eventNewMessage.ResetEvent();
+
 }
 
 
@@ -842,3 +848,6 @@ void __node_term_cross_windows_threading()
 
 
 }
+
+
+

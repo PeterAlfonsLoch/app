@@ -14,6 +14,10 @@
 //#include <sys/stat.h>
 #endif
 
+#ifdef LINUX
+UINT __x11_thread(void * pparam);
+#endif
+
 void dappy(const char * psz);
 #ifdef WINDOWSEX
 string get_user_name()
@@ -37,7 +41,7 @@ namespace aura
    system::system(::aura::application * papp) :
       m_process(this)
    {
-
+m_bRun = true;
       if (g_p == NULL)
       {
 
@@ -187,6 +191,7 @@ namespace aura
       m_strInstallToken          = "system";
 
       m_dwAfterApplicationFirstRequest = 0;
+
 
    }
 
@@ -2237,6 +2242,9 @@ namespace aura
 
 
 } // namespace aura
+
+
+
 
 
 

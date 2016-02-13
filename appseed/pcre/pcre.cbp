@@ -2,12 +2,12 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="time" />
+		<Option title="pcre" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
-				<Option output="../../../stage/x86/libtime.so" prefix_auto="0" extension_auto="0" />
+				<Option output="../../../stage/x86/libpcre.so" prefix_auto="0" extension_auto="0" />
 				<Option working_dir="../../../stage/x86/" />
 				<Option object_output="../../../time/intermediate/app/time" />
 				<Option type="3" />
@@ -63,40 +63,19 @@
 			<Add option="-Wl,-R\\$$$ORIGIN" />
 			<Add option="-Wl,-z,origin" />
 			<Add option="-laura" />
+			<Add option="-laurapcre" />
 			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../stage/x86" />
 			<Add directory="/usr/lib64/mysql/" />
 		</Linker>
-		<Unit filename="calculator/calculator.h" />
-		<Unit filename="calculator/datetime_element.cpp" />
-		<Unit filename="calculator/datetime_element.h" />
-		<Unit filename="calculator/datetime_parser.cpp" />
-		<Unit filename="calculator/datetime_parser.h" />
-		<Unit filename="calculator/datetime_parser_exception.cpp" />
-		<Unit filename="calculator/datetime_parser_exception.h" />
-		<Unit filename="calculator/datetime_scanner.cpp" />
-		<Unit filename="calculator/datetime_scanner.h" />
-		<Unit filename="calculator/datetime_token.cpp" />
-		<Unit filename="calculator/datetime_token.h" />
-		<Unit filename="datetime/datetime.h" />
-		<Unit filename="datetime/datetime_calendar.cpp" />
-		<Unit filename="datetime/datetime_calendar.h" />
-		<Unit filename="datetime/datetime_calendar_interface.cpp" />
-		<Unit filename="datetime/datetime_calendar_interface.h" />
-		<Unit filename="datetime/datetime_clock.cpp" />
-		<Unit filename="datetime/datetime_clock.h" />
-		<Unit filename="datetime/datetime_clock_interface.cpp" />
-		<Unit filename="datetime/datetime_clock_interface.h" />
-		<Unit filename="datetime/datetime_float_time.cpp" />
-		<Unit filename="datetime/datetime_float_time.h" />
-		<Unit filename="datetime/datetime_windows_file_time.cpp" />
-		<Unit filename="datetime/datetime_windows_file_time.h" />
 		<Unit filename="framework.cpp" />
 		<Unit filename="framework.h">
 			<Option compile="1" />
 			<Option weight="0" />
 		</Unit>
-		<Unit filename="time/time.h" />
+		<Unit filename="pcre.cpp" />
+		<Unit filename="pcre.h" />
+		<Unit filename="pcre_util.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />

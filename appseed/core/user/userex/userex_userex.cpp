@@ -64,7 +64,7 @@ namespace userex
 
       if(!m_typeDefaultListHeader)
       {
-         
+
          m_typeDefaultListHeader = System.type_info < ::simple_list_header_control >();
 
       }
@@ -277,26 +277,26 @@ namespace userex
       if(!::aura::departament::initialize2())
          return false;
 
-      m_ptemplateForm = new ::user::multiple_document_template(
-         get_app(),
-         "system/form",
-         System.type_info < ::user::document >(),
-         System.type_info < form_frame >(),
-         System.type_info < ::user::form >());
-
-      m_ptemplateChildForm = new ::user::multiple_document_template(
-         get_app(),
-         "system/form",
-         System.type_info < ::user::document >(),
-         System.type_info < form_child_frame >(),
-         System.type_info < ::user::form >());
-
-      m_ptemplatePlaceHolder = new ::user::multiple_document_template(
-         get_app(),
-         "system/form",
-         System.type_info < ::user::document >(),
-         System.type_info < simple_frame_window >(),
-         System.type_info < ::user::place_holder >());
+//      m_ptemplateForm = new ::user::multiple_document_template(
+//         get_app(),
+//         "system/form",
+//         System.type_info < ::user::document >(),
+//         System.type_info < form_frame >(),
+//         System.type_info < ::user::form >());
+//
+//      m_ptemplateChildForm = new ::user::multiple_document_template(
+//         get_app(),
+//         "system/form",
+//         System.type_info < ::user::document >(),
+//         System.type_info < form_child_frame >(),
+//         System.type_info < ::user::form >());
+//
+//      m_ptemplatePlaceHolder = new ::user::multiple_document_template(
+//         get_app(),
+//         "system/form",
+//         System.type_info < ::user::document >(),
+//         System.type_info < simple_frame_window >(),
+//         System.type_info < ::user::place_holder >());
 
 
       return true;
@@ -572,7 +572,7 @@ namespace userex
 
    void userex::SendMessageToWindows(UINT message,WPARAM wparam,LPARAM lparam)
    {
-      
+
       ::user::interaction * pwnd = NULL;
 
       while(Application.get_frame(pwnd))
@@ -682,7 +682,7 @@ namespace userex
 
       return pdoc;
 
-      
+
    }
 
    sp(::user::document) userex::create_form(::user::form_callback * pcallback,sp(::user::interaction) pwndParent,var var)
@@ -846,7 +846,7 @@ namespace userex
 
    ::user::mesh_data * userex::default_create_mesh_data(::aura::application * papp)
    {
-      
+
       return App(papp).alloc<::user::list_data >(default_type_list_data());
 
    }

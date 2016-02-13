@@ -62,9 +62,9 @@ int32_t oswindow_find_message_only_window(::user::interaction * pui)
    if(pui == NULL)
       return -1;
 
-   //single_lock slOsWindow(oswindow_data::s_pmutex, true);
+   single_lock slOsWindow(oswindow_data::s_pmutex, true);
    //
-   xdisplay d(x11_get_display());
+   //xdisplay d(x11_get_display());
 
    for(int32_t i = 0; i < ::oswindow_data::s_pdataptra->get_count(); i++)
    {
@@ -82,8 +82,8 @@ int32_t oswindow_find_message_only_window(::user::interaction * pui)
 int32_t oswindow_find(Display * pdisplay, Window window)
 {
 
-   //single_lock slOsWindow(::oswindow_data::s_pmutex, true);
-   xdisplay d(x11_get_display());
+   single_lock slOsWindow(::oswindow_data::s_pmutex, true);
+   //xdisplay d(x11_get_display());
 
    for(int32_t i = 0; i < ::oswindow_data::s_pdataptra->get_count(); i++)
    {
@@ -102,8 +102,8 @@ int32_t oswindow_find(Display * pdisplay, Window window)
 int32_t oswindow_find(Window window)
 {
 
-   //single_lock slOsWindow(::oswindow_data::s_pmutex, true);
-   xdisplay d(x11_get_display());
+   single_lock slOsWindow(::oswindow_data::s_pmutex, true);
+   //xdisplay d(x11_get_display());
 
    for(int32_t i = 0; i < ::oswindow_data::s_pdataptra->get_count(); i++)
    {
@@ -126,8 +126,8 @@ oswindow_data * oswindow_get_message_only_window(::user::interaction * pui)
 
    //single_lock slUser(&user_mutex(), true);
 
-   //single_lock slOsWindow(::oswindow_data::s_pmutex, true);
-   xdisplay d(x11_get_display());
+   single_lock slOsWindow(::oswindow_data::s_pmutex, true);
+   //xdisplay d(x11_get_display());
 
    int_ptr iFind = oswindow_find_message_only_window(pui);
 
@@ -140,6 +140,9 @@ oswindow_data * oswindow_get_message_only_window(::user::interaction * pui)
    pdata->m_window                  = None;
    pdata->m_pui                     = pui;
    pdata->m_osdisplay               = NULL;
+   pdata->m_parent                  = NULL;
+
+
 
    ::oswindow_data::s_pdataptra->add(pdata);
 
@@ -153,8 +156,8 @@ oswindow_data * oswindow_get(Display * pdisplay, Window window, Visual * pvisual
 
    //single_lock slUser(&user_mutex(), true);
 
-   //single_lock slOsWindow(::oswindow_data::s_pmutex, true);
-   xdisplay d(x11_get_display());
+   single_lock slOsWindow(::oswindow_data::s_pmutex, true);
+//   xdisplay d(x11_get_display());
 
    int_ptr iFind = oswindow_find(pdisplay, window);
 
@@ -177,6 +180,7 @@ oswindow_data * oswindow_get(Display * pdisplay, Window window, Visual * pvisual
    pdata->m_iDepth                  = iDepth;
    pdata->m_iScreen                 = iScreen;
    pdata->m_colormap                = colormap;
+   pdata->m_parent                  = NULL;
 
 
    ::oswindow_data::s_pdataptra->add(pdata);
@@ -188,8 +192,8 @@ oswindow_data * oswindow_get(Display * pdisplay, Window window, Visual * pvisual
 oswindow_data * oswindow_get(Window window)
 {
 
-   //single_lock slOsWindow(::oswindow_data::s_pmutex, true);
-   xdisplay d(x11_get_display());
+   single_lock slOsWindow(::oswindow_data::s_pmutex, true);
+//   xdisplay d(x11_get_display());
 
    int_ptr iFind = oswindow_find(window);
 
@@ -395,9 +399,9 @@ void oswindow_data::post_nc_destroy()
 void oswindow_data::set_user_interaction(::user::interaction * pui)
 {
 
-   //single_lock slOsWindow(s_pmutex, true);
+   single_lock slOsWindow(s_pmutex, true);
 
-   xdisplay d(x11_get_display());
+//   xdisplay d(x11_get_display());
 
    if(this == NULL)
       throw "error, m_pdata cannot be NULL to ::oswindow::set_user_interaction";
@@ -414,9 +418,9 @@ void oswindow_data::set_user_interaction(::user::interaction * pui)
 ::user::interaction * oswindow_data::get_user_interaction_base()
 {
 
-   //single_lock slOsWindow(s_pmutex, true);
+   single_lock slOsWindow(s_pmutex, true);
 
-   xdisplay d(x11_get_display());
+   //xdisplay d(x11_get_display());
 
    if(this == NULL)
       return NULL;
@@ -438,9 +442,9 @@ void oswindow_data::set_user_interaction(::user::interaction * pui)
 ::user::interaction * oswindow_data::get_user_interaction()
 {
 
-   //single_lock slOsWindow(s_pmutex, true);
+   single_lock slOsWindow(s_pmutex, true);
 
-   xdisplay d(x11_get_display());
+   //xdisplay d(x11_get_display());
 
    if(this == NULL)
       return NULL;
@@ -452,8 +456,8 @@ void oswindow_data::set_user_interaction(::user::interaction * pui)
 ::user::interaction * oswindow_data::get_user_interaction() const
 {
 
-   //single_lock slOsWindow(s_pmutex, true);
-   xdisplay d(x11_get_display());
+   single_lock slOsWindow(s_pmutex, true);
+   //xdisplay d(x11_get_display());
 
    if(this == NULL)
       return NULL;
@@ -468,8 +472,8 @@ bool oswindow_data::is_child(::oswindow oswindow)
 
    //single_lock sl(&user_mutex(), true);
 
-   //single_lock slOsWindow(s_pmutex, true);
-   xdisplay d(x11_get_display());
+   single_lock slOsWindow(s_pmutex, true);
+   //xdisplay d(x11_get_display());
 
    oswindow = oswindow->get_parent();
 
@@ -487,24 +491,16 @@ bool oswindow_data::is_child(::oswindow oswindow)
 Window oswindow_data::get_parent_handle()
 {
 
-   //single_lock slOsWindow(s_pmutex, true);
+   single_lock slOsWindow(s_pmutex, true);
 
-   xdisplay d(x11_get_display());
+//   xdisplay d(x11_get_display());
 
    if(this == NULL)
       return 0;
 
-   Window root = 0;
-   Window parent = 0;
-   Window * pchildren = NULL;
-   uint32_t ncount = 0;
+   if(m_parent)
 
-   XQueryTree(display(), window(), &root, &parent, &pchildren, &ncount);
-
-   if(pchildren != NULL)
-      XFree(pchildren);
-
-   return parent;
+   return m_parent;
 
 }
 
@@ -704,16 +700,18 @@ bool oswindow_data::is_iconic()
 bool oswindow_data::is_window_visible()
 {
 
-   //single_lock sl(&user_mutex(), true);
+   // single_lock sl(s_pmutex, true);
 
    xdisplay d(display());
 
    if(d.m_pdata->m_pdisplay == NULL)
-    return false;
+      return false;
 
    XWindowAttributes attr;
+
    if(!XGetWindowAttributes(display(), window(), &attr))
       return false;
+
    return attr.map_state == IsViewable;
 
 }

@@ -85,6 +85,7 @@
 			<Add option="-laxismysql" />
 			<Add option="-laxisbzip2" />
 			<Add option="-laxis" />
+			<Add option="-lhtml_lite" />
 			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../stage/x86" />
 			<Add directory="/usr/lib64/mysql/" />
@@ -440,6 +441,10 @@
 		<Unit filename="programming/javascript/javascript_tinyjs_functions.h" />
 		<Unit filename="this_build_number.h" />
 		<Unit filename="user/_user.cpp" />
+		<Unit filename="user/html/graphics/_graphics.cpp" />
+		<Unit filename="user/html/graphics/elemental/_html_elemental.cpp" />
+		<Unit filename="user/html/graphics/impl/_html_impl.cpp" />
+		<Unit filename="user/html/hi5/hi5_twitter_authorization.cpp" />
 		<Unit filename="user/menu/user_menu.h" />
 		<Unit filename="user/menu/user_menu_button.h" />
 		<Unit filename="user/menu/user_menu_central.h" />
@@ -558,6 +563,7 @@
 		<Unit filename="user/userex/userex_split_view.h" />
 		<Unit filename="user/userex/userex_userex.h" />
 		<Unit filename="user/userex/userex_wait_message_dialog.h" />
+		<Unit filename="user/userhtml/_userhtml.cpp" />
 		<Unit filename="user/wndfrm/frame/wndfrm_frame.h" />
 		<Unit filename="user/wndfrm/frame/wndfrm_frame_appearance.h" />
 		<Unit filename="user/wndfrm/frame/wndfrm_frame_constants.h" />
