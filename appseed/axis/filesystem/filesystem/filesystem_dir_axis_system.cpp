@@ -1872,7 +1872,7 @@ namespace file
 
 
             if (papp->m_paxissystem != NULL && papp->m_paxissystem != papp &&
-               (sp(::aura::application)) papp->m_paxissystem != (sp(::aura::application)) papp->m_paxissession
+               dynamic_cast < ::aura::application * >(papp->m_paxissystem) != dynamic_cast < ::aura::application * >(papp->m_paxissession)
                && papp->m_paxissystem->m_bAxisInitialize1)
             {
                strPath = matter(papp->m_paxissystem, str, bDir);

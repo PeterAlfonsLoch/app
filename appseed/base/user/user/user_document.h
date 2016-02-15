@@ -45,7 +45,7 @@ namespace user
       const ::file::path & get_file_path() const;
       virtual void set_path_name(var varFile, bool bAddToMRU = TRUE);
 
-      sp(::user::impact_system) get_document_template() const;
+      ::user::impact_system * get_document_template() const;
       virtual bool is_modified();
       virtual void set_modified_flag(bool bModified = TRUE);
       virtual void set_new(bool bNew = true);
@@ -53,10 +53,10 @@ namespace user
       virtual bool is_new_document();
 
       // Operations
-      void add_view(sp(::user::impact) pview);
-      void remove_view(sp(::user::impact) pview);
+      void add_view(::user::impact * pview);
+      void remove_view(::user::impact * pview);
       virtual ::count get_view_count() const;
-      virtual sp(::user::impact) get_view(index index = 0) const;
+      virtual ::user::impact * get_view(index index = 0) const;
 
 
 

@@ -144,8 +144,6 @@ namespace core
       virtual sp(::user::interaction) uie_from_point(point pt);
 
 
-      virtual void set_env_var(const string & var,const string & value);
-      //virtual uint32_t get_thread_id();
 
       virtual bool on_install();
       virtual bool on_uninstall();
@@ -399,12 +397,11 @@ namespace core
 
       //      virtual ::core::file_system & file_system();
       virtual bool _001OnDDECommand(const char * lpcsz);
-      virtual void _001EnableShellOpen();
       virtual ::user::document * _001OpenDocumentFile(var varFile);
       DECL_GEN_SIGNAL(_001OnFileNew);
 
 
-      virtual string get_version();
+      //virtual string get_version();
 
 
       virtual ::window_sp get_desktop_window();

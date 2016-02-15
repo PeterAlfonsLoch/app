@@ -584,7 +584,9 @@ namespace user
       // unless we need to call this function recursively
       if(m_pui == NULL)
          return;
-      sp(::user::interaction) pui = m_pui->top_child();
+      
+      ::user::interaction * pui = m_pui->top_child();
+
       while(pui != NULL)
       {
          try

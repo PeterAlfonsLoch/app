@@ -418,7 +418,7 @@ namespace file
       if (m_pfile != NULL)
       {
          struct stat st;
-         if(fstat(fileno(m_pfile), &st) == -1)
+         if(fstat(_fileno(m_pfile), &st) == -1)
             return FALSE;
          // get time ::file::seek_current file size
          /*FILETIME ftCreate, ftAccess, ftModify;
@@ -527,7 +527,7 @@ namespace file
 
    bool simple_binary_buffer::IsOpened()
    {
-      return m_pfile != NULL && fileno(m_pfile) != -1;
+      return m_pfile != NULL && _fileno(m_pfile) != -1;
    }
 
 
@@ -565,7 +565,7 @@ namespace file
 
       seek((LONG)dwNewLen, seek_begin);
 
-      if (!::ftruncate(fileno(m_pfile), dwNewLen))
+      if (!::ftruncate(_fileno(m_pfile), dwNewLen))
          throw_exception(get_app(), ::file::exception::invalidFile, _doserrno, m_strFileName);
 
    }

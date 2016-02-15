@@ -30,11 +30,11 @@ namespace xml
       string                  m_strValue;
 
 
-      sp(node)                m_pnodeParent;      // parent node
+      node *                  m_pnodeParent;      // parent node
       node::array             m_nodea;            // children pointer node array
       attr_array              m_attra;            // attr pointer array
       e_node                  m_etype;            // node type
-      sp(::xml::document)     m_pdoc;             // document
+      ::xml::document *       m_pdoc;             // document
 
 
 

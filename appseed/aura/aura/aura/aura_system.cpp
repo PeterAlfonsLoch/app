@@ -144,7 +144,7 @@ m_bRun = true;
       //use_base_ca2_allocator();
 
 
-      m_pfactory = new class base_factory(this);
+      m_pfactory = canew(class base_factory(this));
       m_pfactory->set_app(this);
 
       m_pfactory->creatable_large < ::file::simple_binary_buffer >(type_info < ::file::binary_buffer >());
@@ -163,7 +163,7 @@ m_bRun = true;
 
       __node_aura_factory_exchange(this);
 
-      m_pdatetime = new class ::datetime::departament(this);
+      m_pdatetime = canew(class ::datetime::departament(this));
 
 
       thread::s_bAllocReady = true;
@@ -316,6 +316,36 @@ m_bRun = true;
 
    system::~system()
    {
+
+      try
+      {
+
+         ::aura::del(m_pmachineeventcentral);
+
+      }
+      catch (...)
+      {
+
+      }
+
+      try
+      {
+
+         if (m_pfactory != NULL)
+         {
+
+            m_pfactory->enable_simple_factory_request(false);
+
+            m_pfactory.release();
+
+         }
+
+      }
+      catch (...)
+      {
+         TRACE("system::exit_instance: Potentially catastrophical error : error disabling simple factory request");
+      }
+
       if (g_p == this)
       {
 
@@ -495,7 +525,7 @@ m_bRun = true;
       if(!::aura::application::initialize1())
          return false;
 
-      m_puserstr = new ::aura::str(this);
+      m_puserstr = canew(::aura::str(this));
 
       if(m_puserstr == NULL)
          return false;
@@ -534,7 +564,7 @@ m_bRun = true;
       if(!::aura::application::initialize_instance())
          return false;
 
-      m_paurabergedgemap = new ::aura::session::map;
+      //m_paurabergedgemap = new ::aura::session::map;
 
       return true;
 
@@ -632,6 +662,16 @@ m_bRun = true;
       }
 
       m_serviceptra.remove_all();
+
+//      m_basesessionptra.remove_all();
+
+      ::aura::del(m_paurasession);
+
+      m_spfile.release();
+
+      m_spdir.release();
+
+      m_pdatetime.release();
 
       try
       {
@@ -1024,12 +1064,12 @@ m_bRun = true;
    }
 
 
-   spa(::aura::session) & system::basesessionptra()
-   {
+   //spa(::aura::session) & system::basesessionptra()
+   //{
 
-      return m_basesessionptra;
+   //   return m_basesessionptra;
 
-   }
+   //}
 
 
    ::process::departament & system::process()
@@ -1253,30 +1293,30 @@ m_bRun = true;
 
       ::count c = 0;
 
-      try
-      {
+      //try
+      //{
 
-         for(index iBaseSession = 0; iBaseSession < m_basesessionptra.get_count(); iBaseSession++)
-         {
+      //   for(index iBaseSession = 0; iBaseSession < m_basesessionptra.get_count(); iBaseSession++)
+      //   {
 
-            try
-            {
+      //      try
+      //      {
 
-               c += m_basesessionptra[iBaseSession]->appptra().get_count();
+      //         c += m_basesessionptra[iBaseSession]->appptra().get_count();
 
-            }
-            catch(...)
-            {
+      //      }
+      //      catch(...)
+      //      {
 
-            }
+      //      }
 
-         }
+      //   }
 
-      }
-      catch(...)
-      {
+      //}
+      //catch(...)
+      //{
 
-      }
+      //}
 
       return c;
 
@@ -1288,31 +1328,31 @@ m_bRun = true;
 
       application_ptra appptra;
 
-      try
-      {
+      //try
+      //{
 
-         for(index iBaseSession = 0; iBaseSession < m_basesessionptra.get_count(); iBaseSession++)
-         {
+      //   for(index iBaseSession = 0; iBaseSession < m_basesessionptra.get_count(); iBaseSession++)
+      //   {
 
-            try
-            {
+      //      try
+      //      {
 
-               appptra += m_basesessionptra[iBaseSession]->appptra();
+      //         appptra += m_basesessionptra[iBaseSession]->appptra();
 
-            }
-            catch(...)
-            {
+      //      }
+      //      catch(...)
+      //      {
 
-            }
+      //      }
 
-         }
+      //   }
 
-      }
-      catch(...)
-      {
+      //}
+      //catch(...)
+      //{
 
 
-      }
+      //}
 
       return appptra;
 
@@ -1523,6 +1563,13 @@ m_bRun = true;
    bool system::alloc_session()
    {
 
+      if (m_paurasession != NULL)
+      {
+
+         return true;
+
+      }
+
       ::aura::session * paurasession = on_create_session();
 
       if(paurasession == NULL)
@@ -1551,15 +1598,15 @@ m_bRun = true;
 
 
 
-   sp(::aura::session) system::get_session(index iEdge,application_bias * pbiasCreation)
+   ::aura::session * system::get_session(index iEdge,application_bias * pbiasCreation)
    {
 
-      sp(::aura::session) paurasession = NULL;
+      ::aura::session * paurasession = NULL;
 
-      if(m_paurabergedgemap == NULL)
-         return NULL;
+      //if(m_paurabergedgemap == NULL)
+      //   return NULL;
 
-      if(!m_paurabergedgemap->Lookup(iEdge,paurasession))
+      if(!m_aurabergedgemap.Lookup(iEdge,paurasession))
       {
 
          // todo (camilo) real multiple session native support
@@ -1573,7 +1620,7 @@ m_bRun = true;
 
          paurasession->m_iEdge = iEdge;
 
-         m_paurabergedgemap->set_at(iEdge,paurasession);
+         m_aurabergedgemap.set_at(iEdge,paurasession);
 
       }
 
@@ -1801,7 +1848,7 @@ m_bRun = true;
    void system::on_request(sp(::create) pcreate)
    {
 
-      sp(::aura::session) psession = get_session(pcreate->m_spCommandLine->m_iEdge,pcreate->m_spCommandLine->m_pbiasCreate);
+      ::aura::session * psession = get_session(pcreate->m_spCommandLine->m_iEdge,pcreate->m_spCommandLine->m_pbiasCreate);
 
       if(psession == NULL)
       {
@@ -1821,7 +1868,7 @@ m_bRun = true;
 
       }
 
-      ::output_debug_string("::aura::system::on_request session = " + demangle(typeid(*psession).name()) + "("+::str::from(psession.m_p)+")\n\n");
+      ::output_debug_string("::aura::system::on_request session = " + demangle(typeid(*psession).name()) + "("+::str::from((int_ptr) psession)+")\n\n");
 
 
       psession->request_create(pcreate);

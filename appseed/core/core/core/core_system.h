@@ -5,6 +5,15 @@ namespace core
 {
 
 
+
+   class run_start_installer :
+      virtual public ::object
+   {
+   public:
+      virtual void run_start_install(const char * pszInstall) = 0;
+
+   };
+
    class CLASS_DECL_CORE system :
       virtual public ::core::application,
       virtual public ::base::system
@@ -29,7 +38,7 @@ namespace core
 
       class ::core::patch                          m_patch;
 
-      sp(::core::session::run_start_installer)    m_prunstartinstaller;
+      sp(::core::run_start_installer)    m_prunstartinstaller;
       sp(::core::session::map)                    m_pbergedgemap;
       spa(::core::session)                        m_planesessionptra;
 
@@ -103,7 +112,7 @@ namespace core
       bool set_history(::core::history * phistory);
 
 
-      virtual sp(::core::session)             get_platform(index iEdge,application_bias * pbiasCreation = NULL);
+      virtual ::core::session *  get_platform(index iEdge,application_bias * pbiasCreation = NULL);
 
 
       virtual void on_request(sp(::create) pcreatecontext);

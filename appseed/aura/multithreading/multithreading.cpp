@@ -134,7 +134,7 @@ namespace multithreading
       try
       {
 
-         if(pthread->m_bAutoDelete && pthread->is_heap())
+         if(pthread->m_bAutoDelete)
          {
 
             ::aura::del(pthread);

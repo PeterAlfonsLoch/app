@@ -488,7 +488,11 @@ void object::add_line(const char * pszCommandLine,application_bias * pbiasCreate
    ::command_thread * commandcentral = get_app()->command_central();
    sp(::create) createcontext(canew(::create(commandcentral)));
    createcontext->m_spApplicationBias = pbiasCreate;
+
    createcontext->m_spCommandLine->_001ParseCommandLine(pszCommandLine);
+
+   if (createcontext->m_spCommandLine->m_strApp.find_ci("app._.exe") >= 0)
+      return;
 
    if(get_app()->command_central()->m_varTopicQuery.has_property("appid"))
    {
@@ -535,7 +539,10 @@ void object::add_line(const char * pszCommandLine,application_bias * pbiasCreate
    }
 
    commandcentral->consolidate(createcontext);
-   System.command()->consolidate(createcontext);
+   if (commandcentral != System.command())
+   {
+      System.command()->consolidate(createcontext);
+   }
    create(createcontext);
 }
 

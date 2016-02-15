@@ -151,11 +151,19 @@ namespace aura
 
       InitHashTable(64);
 
-      operator[]("en")["en"]     =  *(m_pschemaEn    =  canew(str_schema));
-      operator[]("_std")["_std"] =  *(m_pschemaStd   =  canew(str_schema));
+      m_pschemaEn    = &operator[]("en")["en"];
+      m_pschemaStd   = &operator[]("_std")["_std"];
 
 
    }
+
+   
+   str::~str()
+   {
+
+
+   }
+
 
    bool str::initialize()
    {

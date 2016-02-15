@@ -21,7 +21,7 @@ namespace sqlite
       ::object(papp)
    {
 
-      m_pmutex = new mutex(papp);
+      ///m_pmutex = new mutex(papp);
 
       active = false;
       _in_transaction = false;      // for transaction
@@ -38,9 +38,9 @@ namespace sqlite
    base::~base()
    {
 
-      ::aura::del(m_pmutex);
-
       disconnect();
+
+      ::aura::del(m_pmutex);
 
    }
 
@@ -128,9 +128,17 @@ namespace sqlite
       return DB_CONNECTION_NONE;
    }
 
-   void base::disconnect() {
+   void base::disconnect()
+   {
+      
+      if (conn != NULL)
+      {
+
+         sqlite3_close((sqlite3 *)conn);
+
+      }
+      
       if (active == false) return;
-      sqlite3_close((sqlite3 *) conn);
       active = false;
    }
 
@@ -141,8 +149,8 @@ namespace sqlite
 
    int32_t base::drop()
    {
-      if (active == false) return DB_ERROR;
       disconnect();
+      if (active == false) return DB_ERROR;
       try
       {
          Application.file().del(db);

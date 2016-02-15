@@ -36,7 +36,7 @@ public:
 
    virtual bool lock(const duration & durationTimeout = duration::infinite());
 
-   using object::unlock;
+   using sync_object::unlock;
    virtual bool unlock();
 
 

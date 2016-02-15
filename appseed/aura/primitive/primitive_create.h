@@ -38,18 +38,18 @@ public:
    bool                                                        m_bClientOnly;
    bool                                                        m_bOuterPopupAlertLike;
    bool                                                        m_bHold;
-   ::user::primitive *                                       m_puiParent;
-   ::user::primitive *                                       m_puiAlloc;
+   ::user::primitive *                                         m_puiParent;
+   ::user::primitive *                                         m_puiAlloc;
    sp(application_bias)                                        m_spApplicationBias;
    command_line_sp                                             m_spCommandLine;
    stack < ::aura::create_context >                            m_user; 
-   sp(::command_thread)                                        m_pthreadParent;
+   ::command_thread *                                          m_pthreadParent;
 
 
 
    create(::aura::application * papp);
-   create(sp(::command_thread) pthreadParent);
-   create(sp(::command_thread) pthreadParent,var varFile,bool bMakeVisible = true,::user::primitive * puiParent = NULL);
+   create(::command_thread * pthreadParent);
+   create(::command_thread * pthreadParent,var varFile,bool bMakeVisible = true,::user::primitive * puiParent = NULL);
    create(const create & createcontext);
    virtual ~create();
 

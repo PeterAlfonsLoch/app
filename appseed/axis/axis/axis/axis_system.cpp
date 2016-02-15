@@ -30,7 +30,7 @@ namespace axis
 
       m_paxissystem = this;
 
-      m_spinstall = new ::install::install(this);
+      m_spinstall = canew(::install::install(this));
 
       __node_axis_factory_exchange(this);
 
@@ -89,9 +89,9 @@ namespace axis
    system::~system()
    {
 
-      delete m_purldepartament;
+      ::aura::del(m_purldepartament);
 
-      delete m_pcompress;
+      ::aura::del(m_pcompress);
 
    }
 
@@ -382,23 +382,6 @@ namespace axis
 
 
 
-      try
-      {
-
-         if(m_pfactory != NULL)
-         {
-
-            m_pfactory->enable_simple_factory_request(false);
-
-            m_pfactory.release();
-
-         }
-
-      }
-      catch(...)
-      {
-         TRACE("system::exit_instance: Potentially catastrophical error : error disabling simple factory request");
-      }
 
 
       int32_t iRet = m_iReturnCode;

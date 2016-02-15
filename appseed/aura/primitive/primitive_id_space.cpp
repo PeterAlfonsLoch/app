@@ -1,7 +1,7 @@
 //#include "framework.h"
 
 
-id_space * create_id_space();
+//id_space * create_id_space();
 class ::id_space * id_space::s_pidspace = NULL;
 
 
@@ -16,36 +16,25 @@ id_space::id_space()
 id_space::~id_space()
 {
 
-   /*try
-   {
-   if(m_pmutex != NULL)
-   {
-   delete m_pmutex;
-   }
-   }
-   catch(...)
-   {
-   }
 
    try
    {
-   for(index i = 0; i < this->get_count(); i++)
-   {
-   try
-   {
-   if(this->element_at(i).is_text())
-   {
-   free((void *) this->element_at(i).m_psz);
+      for (index i = 0; i < m_psza.get_count(); i++)
+      {
+         try
+         {
+            ::memory_free((void *)m_psza.element_at(i));
+         }
+         catch (...)
+         {
+         }
+      }
    }
-   }
-   catch(...)
+   catch (...)
    {
    }
-   }
-   }
-   catch(...)
-   {
-   }*/
+
+   delete m_pcs;
 }
 
 
@@ -63,7 +52,7 @@ id id_space::operator()(const char * psz)
 
    }
 
-   char * pszNew = (char *)memory_alloc(strlen(psz));
+   char * pszNew = (char *)memory_alloc(strlen(psz) + 1);
 
    if(pszNew == NULL)
       throw memory_exception(::get_thread_app());
@@ -490,9 +479,9 @@ bool strid_array::find(const id & id,index & iIndex) const
 
 ::id_space & get_id_space()
 {
-   if(::id_space::s_pidspace == NULL)
-   {
-      ::id_space::s_pidspace = create_id_space();
-   }
+   //if(::id_space::s_pidspace == NULL)
+   //{
+   //   ::id_space::s_pidspace = create_id_space();
+   //}
    return *::id_space::s_pidspace;
 }

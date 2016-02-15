@@ -13,6 +13,12 @@ namespace file
    const char * path::s_pszOtherDirSep = "\\\\\\";
 #endif
 
+   path::~path() throw()
+   {
+
+
+   }
+
 
    bool path::is_equal(const path & path) const
    {

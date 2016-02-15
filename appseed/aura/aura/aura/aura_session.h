@@ -17,7 +17,7 @@ namespace aura
 
 
       class CLASS_DECL_AURA map:
-         virtual public ::map < index,index,sp(::aura::session),sp(::aura::session) >
+         virtual public ::map < index,index, ::aura::session * , ::aura::session * >
       {
 
 
@@ -48,7 +48,7 @@ namespace aura
       var                                                m_varCurrentViewFile;
       bool                                               m_bShowPlatform;
 
-      ::aura::str_context *                                   m_puserstrcontext;
+      sp(::aura::str_context)                            m_puserstrcontext;
 
 
 
@@ -68,7 +68,14 @@ namespace aura
 
       virtual bool is_session();
 
-
+      virtual int64_t add_ref()
+      {
+         return ::object::add_ref();
+      }
+      virtual int64_t dec_ref()
+      {
+         return ::object::dec_ref();
+      }
       virtual void construct(::aura::application * papp, int iPhase);
 
       virtual bool process_initialize();
@@ -96,7 +103,7 @@ namespace aura
       virtual bool open_by_file_extension(const char * pszPathName,application_bias * pbiasCreate = NULL);
       virtual bool open_by_file_extension(::create * pcc);
 
-      sp(::aura::application) get_new_app(sp(::aura::application) pappNewApplicationParent,const char * pszType,const char * pszAppId);
+      ::aura::application * get_new_app(::aura::application * pappNewApplicationParent,const char * pszType,const char * pszAppId);
 
       inline ::aura::savings &                  savings()      { return *m_psavings; }
 

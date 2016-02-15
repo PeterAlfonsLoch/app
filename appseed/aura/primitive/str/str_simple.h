@@ -137,7 +137,7 @@ inline void string_manager::Free(string_data * pData)
 {
 //   size_t nTotalSize = sizeof( string_data  ) + pData->nAllocLength + 1;
 //   m_palloca->free(pData, nTotalSize);
-   memory_free_dbg(pData, 0);
+   memory_free(pData);
 }
 //inline string_data * string_manager::Reallocate(string_data * pOldData,strsize nChars,int32_t nCharSize)
 inline string_data * string_manager::Reallocate(string_data * pOldData, strsize nChars)
@@ -167,7 +167,7 @@ inline string_data * string_manager::Reallocate(string_data * pOldData, strsize 
    //{
 
 //      pNewData = (string_data *) m_palloca->realloc(pOldData, nOldTotalSize, nNewTotalSize);
-      string_data *   pNewData = (string_data *)memory_realloc_dbg(pOldData,nChars + 1 + sizeof(string_data),0,NULL,0);
+      string_data *   pNewData = (string_data *)memory_realloc(pOldData,nChars + 1 + sizeof(string_data));
 
    //}
    //catch(...)
@@ -892,7 +892,7 @@ protected:
 
 
    // Implementation
-private:
+protected:
    void attach(string_data * pData ) NOTHROW
    {
       m_pszData = static_cast< char * >( pData->data() );

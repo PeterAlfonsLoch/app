@@ -1,5 +1,7 @@
 //#include "framework.h"
 
+#include <crtdbg.h>
+
 memdleak_block * s_pmemdleakList;
 extern mutex * g_pmutgen;
 extern thread_pointer < memdleak_block > t_plastblock;
@@ -8,7 +10,7 @@ extern thread_pointer < memdleak_block > t_plastblock;
 
 // uint32_t aligned allocation
 
-#ifdef WINDOWSEX
+#if defined(WINDOWSEX) && !defined(__VLD)
 
 HANDLE g_system_heap()
 {
@@ -42,8 +44,11 @@ void * system_heap_alloc(size_t size)
 //#else  // let constructors and algorithms initialize... "random initialization" of not initialized :-> C-:!!
 
    void * p;
+#ifdef __VLD
 
-#if defined(WINDOWSEX) && !PREFER_MALLOC
+   p = ::_malloc_dbg(size, _NORMAL_BLOCK, NULL, 0);
+
+#elif defined(WINDOWSEX) && !PREFER_MALLOC
 
    cslock csl(g_pmutexSystemHeap);
 
@@ -124,7 +129,11 @@ void * system_heap_alloc_dbg(size_t size, int nBlockUse, const char * pszFileNam
 void * system_heap_realloc(void * p, size_t size)
 {
 
-#if defined(WINDOWSEX) && !PREFER_MALLOC
+#ifdef __VLD
+
+   return _realloc_dbg(p, size, _NORMAL_BLOCK, NULL, 0);
+
+#elif defined(WINDOWSEX) && !PREFER_MALLOC
 
    cslock lock(g_pmutexSystemHeap);
 
@@ -206,6 +215,12 @@ void * system_heap_realloc_dbg(void * p,  size_t size, int32_t nBlockUse, const 
 void system_heap_free(void * p)
 {
 
+#ifdef __VLD
+
+   return _free_dbg(p, _NORMAL_BLOCK);
+
+#else
+
 #if !MEMDLEAK
 
 #if defined(WINDOWSEX) && !PREFER_MALLOC
@@ -271,6 +286,7 @@ void system_heap_free(void * p)
 
 #endif
 
+#endif
 
 }
 
@@ -318,7 +334,7 @@ void system_heap_free(void * p)
    while(pblock != NULL && i < ca)
    {
       piUse[i] = pblock->m_iBlockUse;
-      pszFile[i] = strdup(pblock->m_pszFileName);
+      pszFile[i] = _strdup(pblock->m_pszFileName);
       piLine[i] = pblock->m_iLine;
       piSize[i] = pblock->m_iSize;
 

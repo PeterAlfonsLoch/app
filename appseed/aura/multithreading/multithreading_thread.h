@@ -13,9 +13,8 @@ namespace primitive { class command;  }
 class CLASS_DECL_AURA thread :
    virtual public command_target,
 #ifdef WINDOWS
-   virtual public ::exception::translator,
+   virtual public ::exception::translator
 #endif
-   virtual public event_base
 {
 public:
 
@@ -37,7 +36,7 @@ public:
 
    single_lock *                          m_pslUser;
    static bool                            s_bAllocReady;
-   mutex *                                m_pmutex;
+   //mutex *                                m_pmutex;
    bool                                   m_bRun;
 
    //thread_impl_sp                         m_pthreadimpl;

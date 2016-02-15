@@ -15,6 +15,13 @@ namespace windows
 
    }
 
+   dir::~dir()
+   {
+
+
+
+   }
+
    inline bool myspace(char ch)
    {
       return ch == ' ' ||

@@ -21,7 +21,7 @@ namespace xml
       friend class node;
 
 
-      sp(node)    m_pnodeParent;
+      node *      m_pnodeParent;
 
 
    public:

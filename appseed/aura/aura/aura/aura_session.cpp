@@ -32,7 +32,7 @@ namespace aura
 
       m_bZipIsDir                = true;
 
-      m_paurasystem->m_basesessionptra.add_unique(this);
+//      m_paurasystem->m_basesessionptra.add_unique(this);
 
 
       m_iEdge                    = 0;
@@ -52,7 +52,7 @@ namespace aura
    session::~session_parent
    {
 
-      m_paurasystem->m_basesessionptra.remove(this);
+//      m_paurasystem->m_basesessionptra.remove(this);
 
       POSITION pos = m_mapApplication.get_start_position();
 
@@ -494,7 +494,7 @@ namespace aura
                {
 
 
-                  pcreatecontext->m_spCommandLine->m_varQuery["bergedge_callback"] = dynamic_cast < ::aura::application * > (this);
+                  //pcreatecontext->m_spCommandLine->m_varQuery["bergedge_callback"] = dynamic_cast < ::aura::application * > (this);
 
                   papp->m_pauraapp->command()->command(pcreatecontext);
  
@@ -726,7 +726,7 @@ namespace aura
    }
 
 
-   sp(::aura::application) session::get_new_app(sp(::aura::application) pappNewApplicationParent,const char * pszType,const char * pszAppId)
+   ::aura::application * session::get_new_app(::aura::application * pappNewApplicationParent,const char * pszType,const char * pszAppId)
    {
 
 

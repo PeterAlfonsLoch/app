@@ -206,9 +206,9 @@ void plex_heap_alloc::pre_finalize()
 
    FreeAll();
 
-   m_pData = NULL; // FreeAll freed all data alloced
-   m_nSize = 0;
-   m_nMaxSize = 0;
+   //m_pData = NULL; // FreeAll freed all data alloced
+   //m_nSize = 0;
+   //m_nMaxSize = 0;
 
 }
 
@@ -307,7 +307,7 @@ plex_heap_alloc_array::~plex_heap_alloc_array()
 
 //   m_iWorkingSize = 0;
 
-   for(int32_t i = this->get_upper_bound(); i >= 0; i--)
+   for(index i = this->get_upper_bound(); i >= 0; i--)
    {
 
       delete this->element_at(i);
@@ -328,7 +328,7 @@ plex_heap_alloc_array::~plex_heap_alloc_array()
 void plex_heap_alloc_array::pre_finalize()
 {
 
-   for (int32_t i = this->get_upper_bound(); i >= 0; i--)
+   for (index i = this->get_upper_bound(); i >= 0; i--)
    {
 
       this->element_at(i)->pre_finalize();

@@ -515,21 +515,21 @@ CLASS_DECL_AURA int_bool freerdp_authenticate(void * instance, char** username,c
    if(username != NULL)
    {
 
-      *username = strdup(strUser);
+      *username = _strdup(strUser);
 
    }
 
    if(domain != NULL && strDomain.has_char())
    {
 
-      *domain = strdup(strDomain);
+      *domain = _strdup(strDomain);
 
    }
 
    if(password != NULL)
    {
 
-      *password = strdup(strPassword);
+      *password = _strdup(strPassword);
 
    }
 

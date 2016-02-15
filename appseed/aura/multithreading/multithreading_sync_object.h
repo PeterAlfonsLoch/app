@@ -28,11 +28,9 @@ public:
 
    operator HANDLE() const;
 
-//   using object::lock;
    virtual void lock();
    virtual bool lock(const duration & durationTimeout);
 
-  // using object::wait;
    virtual void wait();
    virtual wait_result wait(const duration & durationTimeout);
 

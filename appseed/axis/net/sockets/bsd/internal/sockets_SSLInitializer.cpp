@@ -83,14 +83,13 @@ namespace sockets
 
       TRACE("SSLInitializer()\n");
 
-      bio_err = NULL;
+//      bio_err = NULL;
 
       m_rand_size = 1024;
 
       g_psystem = papp->m_paurasystem;
 
       /* An error write context */
-      bio_err = BIO_new_fp(stderr, BIO_NOCLOSE);
 
       g_pmapMutex = new map < int32_t, int32_t, mutex *, mutex *>;
 
@@ -99,12 +98,12 @@ namespace sockets
       /* Global system initialization*/
       SSL_library_init();
       SSL_load_error_strings();
-      OpenSSL_add_all_algorithms();
+      //OpenSSL_add_all_algorithms();
       CRYPTO_set_locking_callback(SSLInitializer_SSL_locking_function);
       CRYPTO_set_id_callback(SSLInitializer_SSL_id_function);
 
-      ENGINE_load_openssl();
-      ENGINE_load_dynamic();
+      //ENGINE_load_openssl();
+      //ENGINE_load_dynamic();
 #ifndef OPENSSL_NO_STATIC_ENGINE
       //ENGINE_load_4758cca();
       //ENGINE_load_aep();
@@ -116,8 +115,8 @@ namespace sockets
       //ENGINE_load_sureware();
       //ENGINE_load_ubsec();
 #endif
-      ENGINE_load_cryptodev();
-      ENGINE_load_builtin_engines();
+      //ENGINE_load_cryptodev();
+      //ENGINE_load_builtin_engines();
 
 
       /* Ignore broken pipes which would cause our program to terminate
@@ -132,6 +131,7 @@ namespace sockets
 
       RAND_set_rand_method(&rand_meth);
 
+//      bio_err = BIO_new_fp(stderr, BIO_NOCLOSE);
 
 
       /*   char *randfile =
@@ -199,6 +199,16 @@ namespace sockets
    SSLInitializer::~SSLInitializer()
    {
 
+//      BIO_free(bio_err);
+
+//      bio_err = NULL;
+      //ENGINE_cleanup();
+      sk_SSL_COMP_free(SSL_COMP_get_compression_methods());
+      //SSL_COMP_free_compression_methods(); .
+      ERR_free_strings();
+      EVP_cleanup();
+
+      ERR_remove_state(0);
 
       //      TRACE("~SSLInitializer()\n");
             //DeleteRandFile();
@@ -207,6 +217,13 @@ namespace sockets
 
       if (g_pmapMutex != NULL)
       {
+
+         for (auto i : *g_pmapMutex)
+         {
+
+            delete i.m_element2;
+
+         }
          delete g_pmapMutex;
 
          g_pmapMutex = NULL;
@@ -247,7 +264,7 @@ extern "C" void SSLInitializer_SSL_locking_function(int32_t mode, int32_t n, con
    synch_lock sl(::sockets::g_pmutexMap);
 
    mutex * pmutex = NULL;
-   if (!::sockets::g_pmapMutex->Lookup(n, pmutex))
+   if (::sockets::g_pmapMutex != NULL && !::sockets::g_pmapMutex->Lookup(n, pmutex))
    {
       ::sockets::g_pmapMutex->operator [](n) = new mutex(get_thread_app());
       if (!::sockets::g_pmapMutex->Lookup(n, pmutex))

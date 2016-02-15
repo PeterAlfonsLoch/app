@@ -22,6 +22,19 @@ public:
    command_thread(::thread * pthread);
    virtual ~command_thread();
 
+   virtual int64_t add_ref()
+   {
+
+      return ::object::add_ref();
+
+   }
+   virtual int64_t dec_ref()
+   {
+
+      return ::object::dec_ref();
+
+   }
+
    //virtual var run();
 
    virtual void request_create(sp(::create) pcreate);

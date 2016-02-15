@@ -781,52 +781,6 @@ namespace axis
 
 
 
-   string application::veriwell_multimedia_music_midi_get_default_library_name()
-   {
-
-      if(m_pimpl == NULL)
-         return "";
-
-      return m_pimpl->veriwell_multimedia_music_midi_get_default_library_name();
-
-   }
-
-
-
-   string application::multimedia_audio_mixer_get_default_library_name()
-   {
-
-      if(m_pimpl == NULL)
-         return "";
-
-      return m_pimpl->multimedia_audio_mixer_get_default_library_name();
-
-   }
-
-
-
-   string application::multimedia_audio_get_default_library_name()
-   {
-
-      if(m_pimpl == NULL)
-         return "";
-
-      return m_pimpl->multimedia_audio_get_default_library_name();
-
-   }
-
-
-
-   string application::draw2d_get_default_library_name()
-   {
-
-      if(m_pimpl == NULL)
-         return "draw2d_cairo";
-
-      return m_pimpl->draw2d_get_default_library_name();
-
-   }
-
 
 
 
@@ -2045,7 +1999,7 @@ namespace axis
    bool application::initialize2()
    {
 
-      if(!m_pimpl->initialize2())
+      if(!::aura::application::initialize2())
          return false;
 
       if(!ca_initialize2())
@@ -2065,9 +2019,6 @@ namespace axis
          return false;
 
       }
-
-      if(!m_pimpl->initialize3())
-         return false;
 
       if(!ca_initialize3())
          return false;
@@ -2191,8 +2142,8 @@ namespace axis
 
 
 
-      try
-      {
+      //try
+      //{
 
 
          /*      try
@@ -2209,7 +2160,7 @@ namespace axis
          */
 
 
-         m_pcommandthread.release();
+         //m_pcommandthread.release();
 
          release_exclusive();
 
@@ -2281,7 +2232,17 @@ namespace axis
             //   }
          }
 
+         try
+         {
 
+            m_simpledb.finalize();
+
+         }
+         catch (...)
+         {
+
+
+         }
 
          try
          {
@@ -2323,40 +2284,6 @@ namespace axis
          */
 
 
-         try
-         {
-
-            ::aura::application * papp = m_pimpl.detach();
-
-            if(papp != NULL && papp != this && !papp->is_system())
-            {
-
-               try
-               {
-
-                  papp->exit_instance();
-
-               }
-               catch(...)
-               {
-
-               }
-
-            }
-
-         }
-         catch(...)
-         {
-
-         }
-
-      }
-      catch(...)
-      {
-
-         m_iReturnCode = -1;
-
-      }
 
       //try
       //{
@@ -3358,15 +3285,10 @@ namespace axis
 
    }
 
-   void application::ShowWaitCursor(bool bShow)
-   {
+   //void application::ShowWaitCursor(bool bShow)
+   //{
 
-      if(m_pimpl == NULL)
-         return;
-
-      m_pimpl->ShowWaitCursor(bShow);
-
-   }
+   //}
 
 
 
@@ -3438,23 +3360,23 @@ namespace axis
 
 
 
-   IDTHREAD application::get_thread_id()
-   {
-      return m_pimpl->get_thread_id();
-   }
+   //IDTHREAD application::get_thread_id()
+   //{
+   //   return  == NULL->get_thread_id();
+   //}
 
 
 
 
 
-#ifndef METROWIN
-
-   void application::get_time(timeval *p)
-   {
-      m_pimpl->get_time(p);
-   }
-
-#endif
+//#ifndef METROWIN
+//
+//   void application::get_time(timeval *p)
+//   {
+//      m_pimpl->get_time(p);
+//   }
+//
+//#endif
 
 
    bool application::do_prompt_file_name(var & varFile,UINT nIDSTitle,uint32_t lFlags,bool bOpenFileDialog,::user::impact_system * ptemplate,::user::document * pdocument)

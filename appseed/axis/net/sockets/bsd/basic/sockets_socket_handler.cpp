@@ -30,7 +30,6 @@ namespace sockets
    socket_handler::socket_handler(::aura::application * papp,logger *plogger):
       ::object(papp),
       base_socket_handler(papp,plogger),
-      m_pmutex(NULL),
       m_b_use_mutex(false)
       ,m_maxsock(0)
       ,m_preverror(-1)
@@ -46,46 +45,45 @@ namespace sockets
    {
 
       ZERO(m_socks4_host);
-      m_prfds = new fd_set;
-      m_pwfds = new fd_set;
-      m_pefds = new fd_set;
-      FD_ZERO(((fd_set *)m_prfds));
-      FD_ZERO(((fd_set *)m_pwfds));
-      FD_ZERO(((fd_set *)m_pefds));
+      //m_prfds = new fd_set;
+      //m_pwfds = new fd_set;
+      //m_pefds = new fd_set;
+      FD_ZERO(&m_rfds);
+      FD_ZERO(&m_wfds);
+      FD_ZERO(&m_efds);
 
    }
 
 
-   socket_handler::socket_handler(::aura::application * papp,mutex& mutex,logger * plogger):
-      ::object(papp),
-      base_socket_handler(papp,plogger)
-      ,m_pmutex(&mutex)
-      ,m_b_use_mutex(true)
-      ,m_maxsock(0)
-      ,m_preverror(-1)
-      ,m_errcnt(0)
-      ,m_tlast(0)
-      ,m_socks4_port(0)
-      ,m_bTryDirect(false)
-      ,m_resolv_id(0)
-      ,m_resolver(NULL)
-      ,m_b_enable_pool(false)
-      ,m_next_trigger_id(0)
-      ,m_slave(false)
-   {
+   //socket_handler::socket_handler(::aura::application * papp,mutex& mutex,logger * plogger):
+   //   ::object(papp),
+   //   base_socket_handler(papp,plogger)
+   //   ,m_b_use_mutex(true)
+   //   ,m_maxsock(0)
+   //   ,m_preverror(-1)
+   //   ,m_errcnt(0)
+   //   ,m_tlast(0)
+   //   ,m_socks4_port(0)
+   //   ,m_bTryDirect(false)
+   //   ,m_resolv_id(0)
+   //   ,m_resolver(NULL)
+   //   ,m_b_enable_pool(false)
+   //   ,m_next_trigger_id(0)
+   //   ,m_slave(false)
+   //{
 
-      ZERO(m_socks4_host);
-      m_pmutex->lock();
+   //   ZERO(m_socks4_host);
+   //   m_pmutex->lock();
 
-      m_prfds = new fd_set;
-      m_pwfds = new fd_set;
-      m_pefds = new fd_set;
+   //   //m_prfds = new fd_set;
+   //   //m_pwfds = new fd_set;
+   //   //m_pefds = new fd_set;
 
-      FD_ZERO(((fd_set *)m_prfds));
-      FD_ZERO(((fd_set *)m_pwfds));
-      FD_ZERO(((fd_set *)m_pefds));
+   //   FD_ZERO(&m_rfds);
+   //   FD_ZERO(&m_wfds);
+   //   FD_ZERO(&m_efds);
 
-   }
+   //}
 
 
    socket_handler::~socket_handler()
@@ -128,9 +126,9 @@ namespace sockets
       {
          m_pmutex->unlock();
       }
-      delete (fd_set *)m_prfds;
-      delete (fd_set *)m_pwfds;
-      delete (fd_set *)m_pefds;
+      //delete (fd_set *)m_prfds;
+      //delete (fd_set *)m_pwfds;
+      //delete (fd_set *)m_pefds;
    }
 
 
@@ -182,9 +180,9 @@ namespace sockets
    {
       if(s >= 0)
       {
-         r = FD_ISSET(s,((fd_set *)m_prfds)) ? true : false;
-         w = FD_ISSET(s,((fd_set *)m_pwfds)) ? true : false;
-         e = FD_ISSET(s,((fd_set *)m_pefds)) ? true : false;
+         r = FD_ISSET(s,&m_rfds) ? true : false;
+         w = FD_ISSET(s,&m_wfds) ? true : false;
+         e = FD_ISSET(s,&m_efds) ? true : false;
       }
    }
 
@@ -196,36 +194,36 @@ namespace sockets
       {
          if(bRead)
          {
-            if(!FD_ISSET(s,((fd_set *)m_prfds)))
+            if(!FD_ISSET(s,&m_rfds))
             {
-               FD_SET(s,((fd_set *)m_prfds));
+               FD_SET(s,&m_rfds);
             }
          }
          else
          {
-            FD_CLR(s,((fd_set *)m_prfds));
+            FD_CLR(s,&m_rfds);
          }
          if(bWrite)
          {
-            if(!FD_ISSET(s,((fd_set *)m_pwfds)))
+            if(!FD_ISSET(s,&m_wfds))
             {
-               FD_SET(s,((fd_set *)m_pwfds));
+               FD_SET(s,&m_wfds);
             }
          }
          else
          {
-            FD_CLR(s,((fd_set *)m_pwfds));
+            FD_CLR(s,&m_wfds);
          }
          if(bException)
          {
-            if(!FD_ISSET(s,((fd_set *)m_pefds)))
+            if(!FD_ISSET(s,&m_efds))
             {
-               FD_SET(s,((fd_set *)m_pefds));
+               FD_SET(s,&m_efds);
             }
          }
          else
          {
-            FD_CLR(s,((fd_set *)m_pefds));
+            FD_CLR(s,&m_efds);
          }
       }
    }
@@ -336,9 +334,9 @@ namespace sockets
       fd_set wfds;
       fd_set efds;
 
-      FD_COPY(((fd_set *)m_prfds),&rfds);
-      FD_COPY(((fd_set *)m_pwfds),&wfds);
-      FD_COPY(((fd_set *)m_pefds),&efds);
+      FD_COPY(&m_rfds,&rfds);
+      FD_COPY(&m_wfds,&wfds);
+      FD_COPY(&m_efds,&efds);
 
       int32_t n;
       dw1 = ::get_tick_count();
@@ -387,17 +385,17 @@ namespace sockets
                FD_ZERO(&rfds);
                FD_ZERO(&wfds);
                FD_ZERO(&efds);
-               if(FD_ISSET(i,((fd_set *)m_prfds)))
+               if(FD_ISSET(i,&m_rfds))
                {
                   FD_SET(i,&rfds);
                   t = true;
                }
-               if(FD_ISSET(i,((fd_set *)m_pwfds)))
+               if(FD_ISSET(i,&m_wfds))
                {
                   FD_SET(i,&wfds);
                   t = true;
                }
-               if(FD_ISSET(i,((fd_set *)m_pefds)))
+               if(FD_ISSET(i,&m_efds))
                {
                   FD_SET(i,&efds);
                   t = true;
@@ -456,17 +454,17 @@ namespace sockets
                      else
                      {
                         bool bAnySet = false;
-                        if(FD_ISSET(s,((fd_set *)m_prfds)))
+                        if(FD_ISSET(s,&m_rfds))
                         {
                            FD_SET(s,&rfds);
                            bAnySet = true;
                         }
-                        if(FD_ISSET(s,((fd_set *)m_pwfds)))
+                        if(FD_ISSET(s,&m_wfds))
                         {
                            FD_SET(s,&wfds);
                            bAnySet = true;
                         }
-                        if(FD_ISSET(s,((fd_set *)m_pefds)))
+                        if(FD_ISSET(s,&m_efds))
                         {
                            FD_SET(s,&efds);
                            bAnySet = true;
@@ -494,9 +492,9 @@ namespace sockets
                   m_fds_erase.push_back(s);
                }
             }
-            *(fd_set*)m_prfds = rfds;
-            *(fd_set*)m_pwfds = wfds;
-            *(fd_set*)m_pefds = efds;
+            m_rfds = rfds;
+            m_wfds = wfds;
+            m_efds = efds;
          }
       }
       else if(n == 0)

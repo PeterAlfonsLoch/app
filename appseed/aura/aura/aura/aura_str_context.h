@@ -69,13 +69,26 @@ namespace aura
    public:
 
 
-      sp(str_schema)                      m_pschemaEn;
-      sp(str_schema)                      m_pschemaStd;
+      str_schema *                      m_pschemaEn;
+      str_schema *                      m_pschemaStd;
 
 
 
       str(::aura::application * papp);
+      virtual ~str();
 
+      virtual int64_t add_ref()
+      {
+      
+         return ::object::add_ref(); 
+      
+      }
+      virtual int64_t dec_ref()
+      {
+      
+         return ::object::dec_ref(); 
+      
+      }
 
       inline str_locale * get_locale(const ::id & idLocale)
       {
@@ -119,7 +132,7 @@ namespace aura
       sp(::str::international::locale_schema)    m_plocaleschema;
 
 
-      sp(str)                                   m_pstr;
+      str *                                      m_pstr;
 
       str_locale *                              m_plocale;
 
@@ -137,6 +150,18 @@ namespace aura
       str_context(::aura::application * papp);
       virtual ~str_context();
 
+      virtual int64_t add_ref()
+      {
+
+         return ::object::add_ref();
+
+      }
+      virtual int64_t dec_ref()
+      {
+
+         return ::object::dec_ref();
+
+      }
 
       inline void defer_ok(str * pstr)
       {

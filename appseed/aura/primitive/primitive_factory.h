@@ -191,7 +191,6 @@ class CLASS_DECL_AURA base_factory :
 public:
 
 
-   sp(mutex)                     m_pmutex;
    idsp(factory_item_base)       m_mapItem;
    idsp(factory_allocator)       m_mapAllocator;
    bool                          m_bSimpleFactoryRequest;

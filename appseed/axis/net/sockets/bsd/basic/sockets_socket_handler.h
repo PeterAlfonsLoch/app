@@ -21,12 +21,12 @@ namespace sockets
       socket_map           m_sockets; ///< Active sockets map
       socket_map           m_add; ///< Sockets to be added to sockets map
       socket_list          m_delete; ///< Sockets to be deleted (failed when add)
-      mutex *              m_pmutex; ///< Thread safety mutex
+      //mutex *              m_pmutex; ///< Thread safety mutex
       bool                 m_b_use_mutex; ///< mutex correctly initialized
       SOCKET               m_maxsock; ///< Highest file descriptor + 1 in active sockets list
-      void *               m_prfds; ///< file descriptor set monitored for read events
-      void *               m_pwfds; ///< file descriptor set monitored for write events
-      void *               m_pefds; ///< file descriptor set monitored for exceptions
+      fd_set               m_rfds; ///< file descriptor set monitored for read events
+      fd_set               m_wfds; ///< file descriptor set monitored for write events
+      fd_set               m_efds; ///< file descriptor set monitored for exceptions
       int32_t              m_preverror; ///< debug select() error
       int32_t              m_errcnt; ///< debug select() error
       time_t               m_tlast; ///< timeout control
@@ -55,7 +55,7 @@ namespace sockets
 
 
       socket_handler(::aura::application * papp, logger * plogger = NULL);
-      socket_handler(::aura::application * papp, mutex & mutex, logger * plogger = NULL);
+      //socket_handler(::aura::application * papp, mutex & mutex, logger * plogger = NULL);
       ~socket_handler();
 
 

@@ -170,32 +170,42 @@ namespace user
    }
 
 
-   sp(::user::impact) document::get_view(index index) const
+   ::user::impact * document::get_view(index index) const
    {
       single_lock sl(((document *) this)->m_pmutex, true);
       if (index < 0 || index >= m_viewptra.get_count())
          return NULL;
-      sp(::user::impact) pview = m_viewptra[index];
+      ::user::impact * pview = m_viewptra[index];
       ASSERT_KINDOF(::user::impact, pview);
       return pview;
    }
 
 
    void document::update_all_views(sp(::user::impact) pSender, LPARAM lHint, ::object * pHint)
-      // walk through all views
    {
+
       ASSERT(pSender == NULL || !m_viewptra.is_empty());
-      // must have views if sent by one of them
 
       ::count count = get_view_count();
+
       for (index index = 0; index < count; index++)
       {
-         sp(::user::impact) pview = get_view(index);
+         
+         ::user::impact * pview = get_view(index);
+
          ASSERT_VALID(pview);
+
          if (pview != pSender)
+         {
+
             pview->on_update(pSender, lHint, pHint);
+
+         }
+
       }
+
    }
+
 
    void document::send_update(sp(::user::impact) pSender, LPARAM lHint, ::object * pHint)
       // walk through all views
@@ -312,10 +322,16 @@ namespace user
 
    }
 
-   sp(impact_system) document::get_document_template() const
+   
+   impact_system * document::get_document_template() const
    {
-      ASSERT(this != NULL); return m_pimpactsystem;
+   
+      ASSERT(this != NULL); 
+      return m_pimpactsystem;
+
    }
+
+
    bool document::is_modified()
    {
       ASSERT(this != NULL); return m_bModified;
@@ -947,12 +963,12 @@ namespace user
       index index;
       for (index = 0; index < count; index++)
       {
-         sp(::user::impact) pview = get_view(index);
+         ::user::impact * pview = get_view(index);
          ASSERT_VALID(pview);
          // trans      ASSERT(::IsWindow(pview->get_handle()));
          if (pview->IsWindowVisible())   // Do not ::count invisible windows.
          {
-            sp(::user::frame_window) pFrame = pview->GetParentFrame();
+            ::user::frame_window * pFrame = pview->GetParentFrame();
             if (pFrame != NULL)
                pFrame->m_nWindow = -1;     // unknown
          }
@@ -963,12 +979,16 @@ namespace user
       count = get_view_count();
       for (index = 0; index < count; index++)
       {
-         sp(::user::impact) pview = get_view(index);
+         
+         ::user::impact * pview = get_view(index);
+
          ASSERT_VALID(pview);
          // trans      ASSERT(::IsWindow(pview->get_handle()));
          if (pview->IsWindowVisible())   // Do not ::count invisible windows.
          {
-            sp(::user::frame_window) pFrame = pview->GetParentFrame();
+            
+            ::user::frame_window * pFrame = pview->GetParentFrame();
+
             if (pFrame != NULL && pFrame->m_nWindow == -1)
             {
                ASSERT_VALID(pFrame);
@@ -984,12 +1004,12 @@ namespace user
       count = get_view_count();
       for (index = 0; index < count; index++)
       {
-         sp(::user::impact) pview = get_view(index);
+         ::user::impact * pview = get_view(index);
          ASSERT_VALID(pview);
          // trans      ASSERT(::IsWindow(pview->get_handle()));
          if (pview->IsWindowVisible())   // Do not ::count invisible windows.
          {
-            sp(::user::frame_window) pFrame = pview->GetParentFrame();
+            ::user::frame_window * pFrame = pview->GetParentFrame();
             if (pFrame != NULL && pFrame->m_nWindow == iFrame)
             {
                ASSERT_VALID(pFrame);
@@ -1021,7 +1041,7 @@ namespace user
    // ::user::impact operations
 
    
-   void document::add_view(sp(::user::impact) pview)
+   void document::add_view(::user::impact * pview)
    {
 
       single_lock sl(m_pmutex, true);
@@ -1042,7 +1062,7 @@ namespace user
    }
 
 
-   void document::remove_view(sp(::user::impact) pview)
+   void document::remove_view(::user::impact * pview)
    {
       
       single_lock sl(m_pmutex, true);

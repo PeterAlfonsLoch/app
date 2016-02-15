@@ -50,7 +50,7 @@ namespace axis
       {
       }
 
-      if(!defer_axis_init())
+      if(!defer_axis_term())
       {
 
          ::OutputDebugString("Failed to defer_axis_term.");

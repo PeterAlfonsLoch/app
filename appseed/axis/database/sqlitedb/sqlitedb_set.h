@@ -25,8 +25,6 @@ namespace sqlite
 
       virtual void query_items(stringa & stra, const char * pszSql);
 
-      char* errmsg;
-
       void * handle(); // sqlite *
 
 

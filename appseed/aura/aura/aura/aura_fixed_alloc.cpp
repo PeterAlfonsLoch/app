@@ -258,30 +258,46 @@ void * fixed_alloc_array::alloc(size_t nAllocSize)
    }
 }
 
+
 void fixed_alloc_array::free(void * p, size_t nAllocSize)
 {
+   
    fixed_alloc * palloc = find(nAllocSize);
+
    if(palloc != NULL)
    {
+      
       return palloc->Free(p);
+
    }
    else
    {
+
       return ::memory_free(p);
+
    }
+
 }
+
 
 void * fixed_alloc_array::realloc(void * pOld, size_t nOldAllocSize, size_t nNewAllocSize)
 {
+   
    fixed_alloc * pallocOld = find(nOldAllocSize);
+   
    fixed_alloc * pallocNew = find(nNewAllocSize);
+
    if(pallocOld == NULL && pallocNew == NULL)
    {
+      
       return ::memory_realloc(pOld, nNewAllocSize);
+
    }
    else if(pallocOld == pallocNew)
    {
+
       return pOld;
+
    }
    else
    {
@@ -295,16 +311,23 @@ void * fixed_alloc_array::realloc(void * pOld, size_t nOldAllocSize, size_t nNew
 
       if(pallocOld != NULL)
       {
+
          pallocOld->Free(pOld);
+
       }
       else
       {
+
          ::memory_free(pOld);
+
       }
 
       return pNew;
+
    }
+
 }
+
 
 fixed_alloc * fixed_alloc_array::find(size_t nAllocSize)
 {

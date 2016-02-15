@@ -743,7 +743,7 @@ namespace user
       virtual bool keyboard_focus_OnKillFocus();
       virtual bool keyboard_focus_OnChildKillFocus();
 
-      virtual sp(::user::interaction) get_child(::user::interaction * pui);
+      virtual ::user::interaction * get_child(::user::interaction * pui);
 
 
       virtual ::user::interaction * get_focus_ui();

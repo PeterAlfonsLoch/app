@@ -24,7 +24,7 @@ namespace user
       ::user::interaction::install_message_handling(pdispatch);
    }
 
-   bool place_holder::can_merge(sp(::user::interaction) pui)
+   bool place_holder::can_merge(::user::interaction * pui)
    {
 
       if(m_uiptraHold.contains(pui))
@@ -38,7 +38,7 @@ namespace user
    }
 
 
-   bool place_holder::merge(sp(::user::interaction) pui)
+   bool place_holder::merge(::user::interaction * pui)
    {
 
       if(!can_merge(pui))
@@ -54,7 +54,7 @@ namespace user
    }
 
 
-   bool place_holder::is_holding(sp(::user::interaction) pui)
+   bool place_holder::is_holding(::user::interaction * pui)
    {
 
       return m_uiptraHold.contains(pui);
@@ -62,7 +62,7 @@ namespace user
    }
 
 
-   bool place_holder::hold(sp(::user::interaction) pui)
+   bool place_holder::hold(::user::interaction * pui)
    {
 
       if(pui == NULL)
@@ -94,7 +94,7 @@ namespace user
    }
 
 
-   bool place_holder::unhold(sp(::user::interaction) pui)
+   bool place_holder::unhold(::user::interaction * pui)
    {
       if(m_uiptraHold.find_first(pui) == 0)
          return m_uiptraHold.remove_all() > 0;
@@ -104,10 +104,11 @@ namespace user
 
    void place_holder::layout()
    {
+      
       if(m_uiptraHold.get_count() <= 0)
          return;
 
-      sp(::user::interaction) puiHold = m_uiptraHold[0];
+      ::user::interaction * puiHold = m_uiptraHold[0];
 
       rect rectClient;
       GetClientRect(rectClient);
@@ -136,7 +137,7 @@ namespace user
    }
 
 
-   bool place_holder::create_window(const RECT & rect, sp(::user::place_holder_container) pcontainer,id id)
+   bool place_holder::create_window(const RECT & rect, ::user::place_holder_container * pcontainer,id id)
    {
 
       return ::user::interaction::create_window(NULL, NULL, WS_VISIBLE | WS_CHILD /*__WS_DEFAULT_VIEW*/, rect, pcontainer, id) != FALSE;
@@ -197,7 +198,7 @@ namespace user
    }
 
 
-   int32_t place_holder_ptra::hold(sp(::user::interaction) pui)
+   int32_t place_holder_ptra::hold(::user::interaction * pui)
    {
 
       int32_t count = 0;
@@ -223,7 +224,7 @@ namespace user
 
 
 
-   int32_t place_holder_ptra::unhold(sp(::user::interaction) pui)
+   int32_t place_holder_ptra::unhold(::user::interaction * pui)
    {
 
       int32_t count = 0;

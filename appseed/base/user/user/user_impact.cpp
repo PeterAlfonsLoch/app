@@ -619,21 +619,21 @@ namespace user
 
       ::aura::application * papp = pwndParent->get_app();
 
-      sp(::user::interaction) pui;
+      ::user::interaction * pui;
 
       if (pContext->m_user->m_puiNew != NULL)
       {
 
-         pui = pContext->m_user->m_puiNew;
+         pui = dynamic_cast < ::user::interaction * > (pContext->m_user->m_puiNew);
 
       }
       else
       {
 
          // Note: can be a ::user::interaction with PostNcDestroy self cleanup
-         pui = App(papp).alloc(pContext->m_user->m_typeinfoNewView);
+         pui = App(papp).alloc < ::user::interaction >(pContext->m_user->m_typeinfoNewView);
 
-         ::id idProperty = "bk." + string(typeid(*pui.m_p).name());
+         ::id idProperty = "bk." + string(typeid(*pui).name());
 
          if (pui == NULL)
          {
@@ -656,11 +656,15 @@ namespace user
       }
 
 
-      sp(::user::impact) pview = pui;
+      ::user::impact * pview = dynamic_cast < ::user::impact * > (pui);
+
       if (pview != NULL)
       {
+
          pview->_001OnInitialUpdate();
+
       }
+
       /*   if (afxData.bWin4 && (pview->GetExStyle() & WS_EX_CLIENTEDGE))
       {
       // remove the 3d style from the frame, since the ::user::impact is

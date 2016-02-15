@@ -32,12 +32,6 @@ namespace core
       };
 
 
-      class run_start_installer :
-         virtual public ::object
-      {
-      public:
-         virtual void run_start_install(const char * pszInstall) = 0;
-      };
 
       class CLASS_DECL_CORE map :
          virtual public ::map < index, index, sp(::core::session), sp(::core::session) >
@@ -61,6 +55,7 @@ namespace core
 
       string_map < sp(::object) >                          m_mapUinteraction; // ::user::wndfrm::wndfrm
       
+      sp(::object)                                       m_pobjectUserex;
       ::userex::userex *                                 m_puserex;
       
 
@@ -140,8 +135,7 @@ namespace core
       sp(::user::document)                    get_nature();
       
       
-      inline ::userex::userex *               userex()       { return m_puserex; }
-      
+      inline ::userex::userex *               userex() { return m_puserex;  }
       
 
       virtual bool process_initialize();

@@ -9,6 +9,7 @@ create::create(::aura::application * papp) :
    m_spCommandLine(allocer())
 {
 
+   m_pthreadParent                     = NULL;
    m_bMakeVisible                      = true;
    m_bTransparentBackground            = true;
    m_bClientOnly                       = false;
@@ -20,7 +21,7 @@ create::create(::aura::application * papp) :
 
 }
 
-create::create(sp(::command_thread) pthreadParent) :
+create::create(::command_thread * pthreadParent) :
    object(pthreadParent->get_app()),
    command(pthreadParent->get_app()),
    m_spApplicationBias(allocer()),
@@ -39,7 +40,7 @@ create::create(sp(::command_thread) pthreadParent) :
 
 }
 
-create::create(sp(::command_thread) pthreadParent, var varFile, bool bMakeVisible, ::user::primitive * puiParent) :
+create::create(::command_thread * pthreadParent, var varFile, bool bMakeVisible, ::user::primitive * puiParent) :
    object(pthreadParent->get_app()),
    command(pthreadParent->get_app()),
    m_spApplicationBias(allocer()),

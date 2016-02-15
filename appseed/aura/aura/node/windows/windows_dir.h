@@ -24,7 +24,22 @@ namespace windows
 
 
       dir(::aura::application * papp);
+      virtual ~dir();
 
+
+      virtual int64_t add_ref()
+      {
+
+         return ::object::add_ref();
+
+      }
+
+      virtual int64_t dec_ref()
+      {
+
+         return ::object::dec_ref();
+
+      }
 
       //virtual void update_module_path();
 

@@ -56,7 +56,7 @@ namespace sockets
 
 
       EventHandler(::aura::application * papp, logger * = NULL);
-      EventHandler(::aura::application * papp, mutex &,logger * = NULL);
+      //EventHandler(::aura::application * papp, mutex &,logger * = NULL);
       ~EventHandler();
 
       bool GetTimeUntilNextEvent(struct timeval *tv);

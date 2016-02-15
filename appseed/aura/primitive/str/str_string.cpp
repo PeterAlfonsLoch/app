@@ -1021,6 +1021,16 @@ string& string::operator=(const string & str)
    return *this;
 }
 
+string& string::operator=(string && str)
+{
+   get_data()->Release();
+   m_pszData = str.m_pszData;
+   str.m_pszData = NULL;
+   return *this;
+
+}
+
+
 string& string::operator=(const unichar * pszSrc)
 {
    // nDestLength is in XCHARs

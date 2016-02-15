@@ -36,7 +36,7 @@ namespace sockets
    {
    public:
 
-      BIO *bio_err;
+      //BIO *bio_err;
 
       string m_rand_file;
       long m_rand_size;

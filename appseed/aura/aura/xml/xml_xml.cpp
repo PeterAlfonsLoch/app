@@ -19,6 +19,10 @@ namespace xml
 
    departament::~departament()
    {
+      
+      ::aura::del(m_poptionDefault);
+
+      ::aura::del(m_pparseinfoDefault);
 
    }
 

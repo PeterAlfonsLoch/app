@@ -1062,7 +1062,7 @@ int_bool ensure_file_size_fd(int32_t fd, size_t iSize)
 int_bool ensure_file_size(FILE * file, size_t iSize)
 {
 
-   return ensure_file_size_fd(fileno(file), iSize);
+   return ensure_file_size_fd(_fileno(file), iSize);
 
 }
 

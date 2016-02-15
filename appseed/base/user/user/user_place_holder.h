@@ -24,15 +24,15 @@ namespace user
       sp(place_holder) create_shadow_clone();
 
 
-      virtual bool create_window(const RECT & rect, sp(::user::place_holder_container) pcontainer,id id);
+      virtual bool create_window(const RECT & rect, ::user::place_holder_container * pcontainer,id id);
 
       virtual void install_message_handling(::message::dispatch * pdispatch);
 
-      virtual bool can_merge(sp(::user::interaction) pui);
-      virtual bool merge(sp(::user::interaction) pui);
-      virtual bool hold(sp(::user::interaction) pui);
-      virtual bool unhold(sp(::user::interaction) pui);
-      virtual bool is_holding(sp(::user::interaction) pui);
+      virtual bool can_merge(::user::interaction * pui);
+      virtual bool merge(::user::interaction * pui);
+      virtual bool hold(::user::interaction * pui);
+      virtual bool unhold(::user::interaction * pui);
+      virtual bool is_holding(::user::interaction * pui);
 
       virtual void _001OnDraw(::draw2d::graphics * pdc);
       virtual void _001OnNcDraw(::draw2d::graphics * pdc);
@@ -56,8 +56,8 @@ namespace user
    {
    public:
 
-      int32_t hold(sp(::user::interaction) pui);
-      int32_t unhold(sp(::user::interaction) pui);
+      int32_t hold(::user::interaction * pui);
+      int32_t unhold(::user::interaction * pui);
 
    };
 

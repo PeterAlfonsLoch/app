@@ -130,6 +130,7 @@ namespace user
 
       m_ptScrollPassword1.x               = 0;
       m_ptScrollPassword1.y               = 0;
+      m_palphasource                      = NULL;
 
    }
 
@@ -1086,7 +1087,7 @@ namespace user
 
       layout_tooltip();
 
-      for(auto pui : m_uiptraChild)
+      for(auto & pui : m_uiptraChild)
       {
 
          pui->send_message(WM_MOVE);
@@ -1276,9 +1277,9 @@ namespace user
 
       //single_lock sl(m_pmutex, true);
 
-      sp(interaction) pui;
+      interaction * pui = NULL;
 
-      while((pui = get_child(pui)).is_set())
+      while((pui = get_child(pui)) != NULL)
       {
 
          try
@@ -1675,7 +1676,7 @@ namespace user
       }
       // these try catchs are needed for multi threading : multi threaded windows: the hell
       // Now I understand why Microsoft (TM) Windows (R) windows are single threaded.
-      sp(::user::interaction) pui = top_child();
+      ::user::interaction * pui = top_child();
       //      int32_t iSize;
       try
       {
@@ -1726,7 +1727,7 @@ namespace user
       {
          // these try catchs are needed for multi threading : multi threaded windows: the hell
          // Now I understand why Microsoft (TM) Windows (R) windows are single threaded.
-         sp(::user::interaction) pui = top_child();
+         ::user::interaction * pui = top_child();
          //         int32_t iSize;
          try
          {
@@ -1915,7 +1916,7 @@ namespace user
 
    ::user::interaction * interaction::get_child_by_id(id id,int32_t iLevel)
    {
-      sp(interaction) pui = top_child();
+      interaction * pui = top_child();
       while(pui != NULL)
       {
          if(pui->m_id == id)
@@ -1924,14 +1925,14 @@ namespace user
          }
          pui = pui->under_sibling();
       }
-      sp(interaction) pchild;
+      interaction * pchild;
       if(iLevel > 0 || iLevel == -1)
       {
          if(iLevel > 0)
          {
             iLevel--;
          }
-         sp(interaction) pui = top_child();
+         interaction * pui = top_child();
          while(pui != NULL)
          {
             pchild = pui->get_child_by_id(id,iLevel);
@@ -3045,24 +3046,28 @@ namespace user
    ::user::frame_window * interaction::GetFrame() const
    {
 
-      sp(::user::interaction) pui = (::user::interaction *) this;
+      ::user::interaction * pui = (::user::interaction *) this;
 
-      if(pui.is_null())
+      if (pui == NULL)
+      {
+       
          return NULL;
 
-      sp(::user::frame_window) pframeParent;
+      }
+
+      ::user::frame_window * pframeParent;
 
       do
       {
 
-         pframeParent = pui;
+         pframeParent = dynamic_cast < ::user::frame_window * > (pui);
 
-         if(pframeParent.is_set())
+         if(pframeParent != NULL)
             return pframeParent;
 
          pui = pui->GetParent();
 
-      } while(pui.is_set());
+      } while(pui != NULL);
 
       return NULL;
 
@@ -7277,7 +7282,7 @@ synch_lock sl(m_pmutex);
 
 
 
-   sp(::user::interaction) interaction::get_child(::user::interaction * pui)
+   ::user::interaction * interaction::get_child(::user::interaction * pui)
    {
 
       synch_lock sl(m_pmutex);

@@ -17,6 +17,11 @@
 
 #endif
 
+#ifdef __VLD
+
+#include <crtdbg.h>
+
+#endif
 
 #ifdef LINUX
 
@@ -175,10 +180,16 @@ BEGIN_EXTERN_C
 void * aligned_memory_alloc(size_t size)
 {
 
-   #ifdef MCHECK
-   return aligned_alloc(64, size);
+#ifdef __VLD
 
-   #else
+   return _malloc_dbg(size, _NORMAL_BLOCK, NULL, 0);
+
+#elif defined(MCHECK)
+
+	return aligned_alloc(64, size);
+
+
+#else
 
    if(g_pheap == NULL)
    {
@@ -217,17 +228,22 @@ void * aligned_memory_alloc(size_t size)
 
    }
 
-   #endif
+#endif
 
 }
 
 void * unaligned_memory_alloc(size_t size)
 {
 
- #ifdef MCHECK
+#ifdef __VLD
+
+   return _malloc_dbg(size, _NORMAL_BLOCK, NULL, 0);
+
+#elif defined(MCHECK)
+
    return malloc(size);
 
-   #else
+#else
 
 #if defined(APPLEOS) || defined(LINUX)
 
@@ -256,9 +272,14 @@ void * unaligned_memory_alloc(size_t size)
 void * aligned_memory_alloc_dbg(size_t size, int32_t nBlockUse, const char * szFileName, int32_t nLine)
 {
 
-#ifdef MCHECK
+#ifdef __VLD
+
+   return _malloc_dbg(size, _NORMAL_BLOCK, NULL, 0);
+
+#elif defined(MCHECK)
 
    return aligned_alloc(64, size);
+   
 
 #else
 
@@ -306,11 +327,16 @@ void * aligned_memory_alloc_dbg(size_t size, int32_t nBlockUse, const char * szF
 void * unaligned_memory_alloc_dbg(size_t size, int32_t nBlockUse, const char * szFileName, int32_t nLine)
 {
 
-#ifdef MCHECK
+#ifdef __VLD
+
+   return _malloc_dbg(size, _NORMAL_BLOCK, NULL, 0);
+
+#elif defined(MCHECK)
 
    return malloc(size);
 
 #else
+
 
 #ifdef APPLEOS
 
@@ -413,6 +439,9 @@ void * memory_alloc_dbg(size_t nSize, int32_t nBlockUse, const char * szFileName
 }
 #ifndef MCHECK
 
+#ifndef __VLD
+
+
 void * memory_realloc(void * pmemory, size_t nSize)
 {
 
@@ -421,6 +450,10 @@ void * memory_realloc(void * pmemory, size_t nSize)
 }
 #endif
 
+
+#endif
+
+
 END_EXTERN_C
 
 void * memory_realloc_dbg(void * pmemory, size_t size, int32_t nBlockUse, const char * szFileName, int32_t nLine)
@@ -428,6 +461,12 @@ void * memory_realloc_dbg(void * pmemory, size_t size, int32_t nBlockUse, const 
 #ifdef MCHECK
    return memory_realloc(pmemory, size);
 #else
+#ifdef __VLD
+
+   return _realloc_dbg(pmemory, size, nBlockUse, szFileName, nLine);
+
+#else
+
    if (pmemory == NULL)
       return memory_alloc_dbg(size, nBlockUse, szFileName, nLine);
 
@@ -508,20 +547,26 @@ void * memory_realloc_dbg(void * pmemory, size_t size, int32_t nBlockUse, const 
 
    return NULL;
 #endif
+#endif
+
 }
-#ifndef MCHECK
+
+#if !defined(MCHECK) && !defined(__VLD)
+
 void memory_free(void * pmemory)
 {
 
    return memory_free_dbg(pmemory, 0);
 
 }
+
 #endif
+
 
 size_t memory_size(void * pmemory)
 {
 
-   return memory_size_dbg(pmemory, 0);
+   return memory_size_dbg(pmemory, _NORMAL_BLOCK);
 
 }
 
@@ -532,7 +577,12 @@ void memory_free_dbg(void * pmemory, int32_t iBlockType)
 {
 #ifdef MCHECK
    memory_free(pmemory);
+#elif defined(__VLD)
+
+   return _free_dbg(pmemory, iBlockType);
+
 #else
+
    heap_memory * pheap =  ::heap_memory::heap_get(pmemory);
 
    void * pbase = (void *)(((int_ptr)pmemory) - pheap->m_back);
@@ -597,7 +647,11 @@ void memory_free_dbg(void * pmemory, int32_t iBlockType)
 size_t memory_size_dbg(void * pmemory, int32_t iBlockType)
 {
 
-#ifdef MCHECK
+#ifdef __VLD
+
+   return _msize(pmemory);
+
+#elif defined(MCHECK)
 
    return malloc_usable_size(pmemory);
 
@@ -734,12 +788,12 @@ END_EXTERN_C
 
 
 
-id_space * create_id_space()
-{
-
-   return new id_space();
-
-}
+//id_space * create_id_space()
+//{
+//
+//   return new id_space();
+//
+//}
 
 /*
 void destroy_id_space() // let it go with the ({"eco}system") processs

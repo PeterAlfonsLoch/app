@@ -19,7 +19,6 @@ namespace sqlite
       ::database::set()
    {
 
-      errmsg      = NULL;
       haveError   = false;
       db          = NULL;
 
@@ -31,7 +30,6 @@ namespace sqlite
       ::database::set(newDb)
    {
 
-      errmsg      = NULL;
       haveError = false;
       db = newDb;
 
@@ -41,10 +39,6 @@ namespace sqlite
    set::~set()
    {
 
-      //  if(errmsg != NULL)
-      //  {
-      //      sqlite_free_table(&errmsg);
-      // }
 
    }
 
@@ -94,6 +88,7 @@ namespace sqlite
             if (db->setErr(sqlite3_exec((sqlite3 *) this->handle(),query,NULL,NULL,&err))!=SQLITE_OK)
             {
                fprintf(stderr,"Error: %s",err);
+               sqlite3_free(err);
                throw database::DbErrors(db->getErrorMsg());
             }
          } // end of for
@@ -179,6 +174,7 @@ namespace sqlite
          m_strDatabaseErrorMessage = "No base Connection";
          return false;
       }
+      char * errmsg = NULL;
       exec_res.record_header.remove_all();
       exec_res.records.remove_all();
       //if ((strncmp("select",sql,6) == 0) || (strncmp("SELECT",sql,6) == 0))
@@ -186,13 +182,23 @@ namespace sqlite
       {
          m_strQueryErrorMessage = "";
          m_strDatabaseErrorMessage = "";
+         if (errmsg != NULL)
+         {
+            sqlite3_free(errmsg);
+            errmsg = NULL;
+         }
          return true;
       }
       else
       {
          m_strQueryErrorMessage = errmsg;
+         if (errmsg != NULL)
+         {
+            sqlite3_free(errmsg);
+            errmsg = NULL;
+         }
          m_strDatabaseErrorMessage = db->getErrorMsg();
-         TRACE("vmssqlite::set::exec: Error %s, %s", errmsg, db->getErrorMsg());
+         TRACE("vmssqlite::set::exec: Error %s, %s", m_strQueryErrorMessage, m_strDatabaseErrorMessage);
          return false;
       }
    }
@@ -239,10 +245,18 @@ namespace sqlite
 
       close();
 
+      char * errmsg = NULL;
+
       if(db->setErr(sqlite3_exec((sqlite3 *) handle(),query,&callback,&result,&errmsg)) == SQLITE_OK)
       {
          m_strQueryErrorMessage = "";
          m_strDatabaseErrorMessage = "";
+         if (errmsg != NULL)
+         {
+            sqlite3_free(errmsg);
+            errmsg = NULL;
+         }
+
          active = true;
          ds_state = database::dsSelect;
          first();
@@ -251,6 +265,11 @@ namespace sqlite
       else
       {
          m_strQueryErrorMessage = errmsg;
+         if (errmsg != NULL)
+         {
+            sqlite3_free(errmsg);
+            errmsg = NULL;
+         }
          m_strDatabaseErrorMessage = db->getErrorMsg();
          TRACE("set::query: Error: %s, %s", errmsg, db->getErrorMsg());
          return false;

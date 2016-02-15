@@ -102,8 +102,6 @@ namespace data
       template < class EDIT >
       EDIT * validate_edit(base_edit * pedit);
 
-//      inline mutex * data_mutex() { if(m_pmutex != NULL) return m_pmutex; m_pmutex = new ::mutex(get_app()); return m_pmutex; }
-
       inline ::data::data_container_base * get_data_container_base() { return m_pcontainerbase; }
 
    };

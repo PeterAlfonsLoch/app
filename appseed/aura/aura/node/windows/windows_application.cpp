@@ -2,35 +2,35 @@
 //#include "windows.h"
 
 
-namespace windows
+namespace aura
 {
+//
+//
+//   application::application(::aura::application * papp) :
+//      object(papp)
+//   {
+//
+//      //m_pthreadimpl.alloc(allocer());
+//
+//      //m_pthreadimpl->m_pthread = this;
+//
+//      m_paurasystem                    =  papp->m_pauraapp->m_paurasystem;
+//
+//      m_atomApp = m_atomSystemTopic    = NULL;
+//
+//   }
 
 
-   application::application(::aura::application * papp) :
-      object(papp)
-   {
+   //application::~application()
+   //{
 
-      //m_pthreadimpl.alloc(allocer());
-
-      //m_pthreadimpl->m_pthread = this;
-
-      m_paurasystem                    =  papp->m_pauraapp->m_paurasystem;
-
-      m_atomApp = m_atomSystemTopic    = NULL;
-
-   }
+   //}
 
 
-   application::~application()
-   {
+   //void application::_001OnFileNew()
+   //{
 
-   }
-
-
-   void application::_001OnFileNew()
-   {
-
-   }
+   //}
 
 
    //::user::document *  application::_001OpenDocumentFile(var varFile)
@@ -44,31 +44,31 @@ namespace windows
    void application::_001EnableShellOpen()
    {
 
-      ASSERT(m_atomApp == NULL && m_atomSystemTopic == NULL); // do once
+      //ASSERT(m_atomApp == NULL && m_atomSystemTopic == NULL); // do once
 
-      m_atomApp            = ::GlobalAddAtomW(::str::international::utf8_to_unicode(m_strAppName));
+      //m_atomApp            = ::GlobalAddAtomW(::str::international::utf8_to_unicode(m_strAppName));
 
-      m_atomSystemTopic    = ::GlobalAddAtomW(L"system");
-
-   }
-
-
-   bool application::_001OnDDECommand(const char * lpcsz)
-   {
-
-      UNREFERENCED_PARAMETER(lpcsz);
-
-      return FALSE;
+      //m_atomSystemTopic    = ::GlobalAddAtomW(L"system");
 
    }
 
 
-   HINSTANCE application::GetHinstance()
-   {
+   //bool application::_001OnDDECommand(const char * lpcsz)
+   //{
 
-      return NULL;
+   //   UNREFERENCED_PARAMETER(lpcsz);
 
-   }
+   //   return FALSE;
+
+   //}
+
+
+   //HINSTANCE application::GetHinstance()
+   //{
+
+   //   return NULL;
+
+   //}
 
    string application::get_version()
    {
@@ -146,53 +146,53 @@ namespace windows
    }
 
 
-   bool application::Ex2OnAppInstall()
+//   bool application::Ex2OnAppInstall()
+//   {
+//#ifdef IMPLEMENT_VISTA_TOOLS
+//      if(VistaTools::IsVista())
+//      {
+//         if(VistaTools::IsElevated() != S_OK)
+//         {
+//            TRACE0("Error! Installing application ( : (un)install run parameter ) without Elevation (required since Vista Windows version)");
+//            return false;
+//         }
+//      }
+//#endif 
+//      return true;
+//   }
+//
+//
+//   bool application::Ex2OnAppUninstall()
+//   {
+//      if(VistaTools::IsVista())
+//      {
+//         if(VistaTools::IsElevated() != S_OK)
+//         {
+//            TRACE0("Error! Installing application ( : (un)install run parameter ) without Elevation (required since Vista Windows version)");
+//            return false;
+//         }
+//      }
+//      return true;
+//   }
+
+
+   //void application::TermThread(HINSTANCE hInstTerm)
+   //{
+
+   //}
+
+
+
+
+
+   bool application::impl_process_initialize()
    {
-#ifdef IMPLEMENT_VISTA_TOOLS
-      if(VistaTools::IsVista())
-      {
-         if(VistaTools::IsElevated() != S_OK)
-         {
-            TRACE0("Error! Installing application ( : (un)install run parameter ) without Elevation (required since Vista Windows version)");
-            return false;
-         }
-      }
-#endif 
+
       return true;
-   }
-
-
-   bool application::Ex2OnAppUninstall()
-   {
-      if(VistaTools::IsVista())
-      {
-         if(VistaTools::IsElevated() != S_OK)
-         {
-            TRACE0("Error! Installing application ( : (un)install run parameter ) without Elevation (required since Vista Windows version)");
-            return false;
-         }
-      }
-      return true;
-   }
-
-
-   void application::TermThread(HINSTANCE hInstTerm)
-   {
 
    }
 
-
-
-
-
-   bool application::process_initialize()
-   {
-
-      return true;
-
-   }
-
-   bool application::initialize1()
+   bool application::impl_initialize1()
    {
 
       set_run();
@@ -201,59 +201,59 @@ namespace windows
 
    }
 
-   bool application::initialize2()
+   bool application::impl_initialize2()
    {
       return true;
    }
 
-   bool application::initialize3()
+   bool application::impl_initialize3()
    {
       return true;
    }
 
    // thread termination
-   int32_t application::exit_instance() // default will 'delete this'
+   int32_t application::impl_exit_instance() // default will 'delete this'
    {
 
       set_os_data(NULL);
 
       set_run(false);
 
-      int32_t iRet = ::aura::application::exit_instance();
+      //int32_t iRet = ::aura::application::exit_instance();
 
-      return iRet;
-
-   }
-
-
-
-
-   void application::SetCurrentHandles()
-   {
-
-      //string strExeName;
-      //strExeName = System.get_module_title();
-      dappy(string(typeid(*this).name()) + " : got module title windows application : " + ::str::from(m_iReturnCode));
-
-      __init_thread();
+      return 0;
 
    }
 
 
-   ::user::primitive * application::FindWindow(const char * lpszClassName,const char * lpszWindowName)
-   {
-
-      return NULL;
-
-   }
 
 
-   ::user::primitive * application::FindWindowEx(oswindow oswindowParent,oswindow oswindowChildAfter,const char * lpszClass,const char * lpszWindow)
-   {
+   //void application::BaseSetCurrentHandles()
+   //{
 
-      return NULL;
+   //   //string strExeName;
+   //   //strExeName = System.get_module_title();
+   //   dappy(string(typeid(*this).name()) + " : got module title windows application : " + ::str::from(m_iReturnCode));
 
-   }
+   //   __init_thread();
+
+   //}
+
+
+   //::user::primitive * application::FindWindow(const char * lpszClassName,const char * lpszWindowName)
+   //{
+
+   //   return NULL;
+
+   //}
+
+
+   //::user::primitive * application::FindWindowEx(oswindow oswindowParent,oswindow oswindowChildAfter,const char * lpszClass,const char * lpszWindow)
+   //{
+
+   //   return NULL;
+
+   //}
 
 
    void application::get_time(struct timeval *p)
@@ -301,60 +301,52 @@ namespace windows
 
 
 
-   bool application::set_main_init_data(::aura::main_init_data * pdata)
+   bool application::set_main_init_data(::aura::main_init_data * pauradata)
    {
 
-      m_pmaininitdata = (::windows::main_init_data *) pdata;
+      // m_pmaininitdata = pauradata;
 
-      if(m_pmaininitdata != NULL && m_pimpl->is_system())
+      if(m_pinitmaindata != NULL && m_pauraapp->is_system())
       {
-         if(!win_init(m_pmaininitdata))
+
+         ::windows::main_init_data * pdata = (::windows::main_init_data *) m_pinitmaindata;
+         if (!m_pauraapp->is_system())
             return false;
-      }
-
-      return true;
-
-   }
-
-   bool application::win_init(main_init_data * pdata)
-   {
-
-      if(!m_pimpl->is_system())
-         return false;
 
          ASSERT(pdata->m_hPrevInstance == NULL);
 
-         HINSTANCE hInstance        = pdata->m_hInstance;
-//         HINSTANCE hPrevInstance    = pdata->m_hPrevInstance;
-         string strCmdLine          = pdata->m_vssCommandLine;
-         UINT nCmdShow              = pdata->m_nCmdShow;
+         HINSTANCE hInstance = pdata->m_hInstance;
+         //         HINSTANCE hPrevInstance    = pdata->m_hPrevInstance;
+         string strCmdLine = pdata->m_vssCommandLine;
+         UINT nCmdShow = pdata->m_nCmdShow;
 
          // handle critical errors and avoid Windows message boxes
          SetErrorMode(SetErrorMode(0) | SEM_FAILCRITICALERRORS | SEM_NOOPENFILEERRORBOX);
 
          m_hinstance = hInstance;
          m_pauraapp->m_hinstance = hInstance;
-         m_pimpl->m_hinstance = hInstance;
+         m_pauraapp->m_hinstance = hInstance;
          //hPrevInstance; // Obsolete.
          System.m_strCmdLine = strCmdLine;
          System.m_nCmdShow = nCmdShow;
          //pApp->SetCurrentHandles();
-         m_pimpl->SetCurrentHandles();
+         m_pauraapp->SetCurrentHandles();
 
          string strAppId = read_resource_as_string_dup(NULL, 1984, "APPID");
 
-         if(strAppId.has_char())
+         if (strAppId.has_char())
          {
             directrix()->m_varTopicQuery["appid"] = strAppId;
-            m_pimpl->directrix()->m_varTopicQuery["appid"] = strAppId;
+            m_pauraapp->directrix()->m_varTopicQuery["appid"] = strAppId;
          }
 
          // Initialize interaction_impl::m_pfnNotifyWinEvent
-      /*   HMODULE hModule = ::GetModuleHandle("user32.dll");
+         /*   HMODULE hModule = ::GetModuleHandle("user32.dll");
          if (hModule != NULL)
          {
-            interaction_impl::m_pfnNotifyWinEvent = (interaction_impl::PFNNOTIFYWINEVENT)::GetProcAddress(hModule, "NotifyWinEvent");
+         interaction_impl::m_pfnNotifyWinEvent = (interaction_impl::PFNNOTIFYWINEVENT)::GetProcAddress(hModule, "NotifyWinEvent");
          }*/
+      }
 
       return true;
 

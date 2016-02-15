@@ -204,10 +204,6 @@ namespace axis
       virtual void SetCurrentHandles();
 
 
-      virtual string draw2d_get_default_library_name();
-      virtual string multimedia_audio_get_default_library_name();
-      virtual string multimedia_audio_mixer_get_default_library_name();
-      virtual string veriwell_multimedia_music_midi_get_default_library_name();
 
       virtual bool get_temp_file_name_template(string & str,const char * pszName,const char * pszExtension,const char * pszTemplate);
 
@@ -377,12 +373,11 @@ namespace axis
 
 
       virtual void DoWaitCursor(int32_t nCode); // 0 => restore, 1=> begin, -1=> end
-      virtual void ShowWaitCursor(bool bShow = true);
 
 
-#ifndef METROWIN
-      virtual void get_time(timeval *p);
-#endif
+//#ifndef METROWIN
+//      virtual void get_time(timeval *p);
+//#endif
 
 
 
@@ -455,7 +450,7 @@ namespace axis
       //virtual void SetCurrentHandles();
 
       virtual void set_env_var(const string & var,const string & value);
-      virtual IDTHREAD get_thread_id();
+      //;; virtual IDTHREAD get_thread_id();
 
 
       virtual sp(::aura::printer) get_printer(const char * pszDeviceName);

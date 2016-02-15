@@ -301,6 +301,7 @@ public:
    ////string & operator = (string strSrc);
    string & operator = (const simple_string & strSrc);
    string & operator = (const string & strSrc);
+   string & operator = (string && strSrc);
    string & operator = (const char * pszSrc);
    string & operator = (const unichar * pszSrc);
    string & operator = (const unichar32 * pszSrc);

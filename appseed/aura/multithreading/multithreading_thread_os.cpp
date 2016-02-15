@@ -442,6 +442,15 @@ struct create_thread_data
       {
       }
 
+      try
+      {
+
+         delete pdata;
+
+      }
+      catch (...)
+      {
+      }
 
       return iRet;
 

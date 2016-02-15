@@ -131,11 +131,11 @@ namespace filemanager
       object(papp),
       m_mutex(papp)
    {
-      m_pil16 = new image_list(papp);
+      m_pil16 = canew(image_list(papp));
       m_pil16->create(16, 16, 0, 10, 10);
-      m_pil48 = new image_list(papp);
+      m_pil48 = canew(image_list(papp));
       m_pil48->create(48, 48, 0, 10, 10);
-      m_pil48Hover = new image_list(papp);
+      m_pil48Hover = canew(image_list(papp));
       m_pil48Hover->create(48, 48, 0, 10, 10);
    }
 

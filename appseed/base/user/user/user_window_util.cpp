@@ -1204,7 +1204,7 @@ namespace user
       }
    }
 
-   sp(::user::interaction) interaction_spa::get_child(::user::interaction * pui)
+   ::user::interaction * interaction_spa::get_child(::user::interaction * pui)
       {
 
          synch_lock sl(m_pmutex);

@@ -22,11 +22,12 @@ BEGIN_EXTERN_C
    CLASS_DECL_AURA size_t memory_size(void * p);
    CLASS_DECL_AURA size_t memory_size_dbg(void * p, int32_t iBlockType);
 
-#ifndef MCHECK
+#if !defined(MCHECK) && !defined(__VLD)
    CLASS_DECL_AURA void * memory_alloc(size_t size);
    CLASS_DECL_AURA void * memory_realloc(void * pvoid, size_t nSize);
    CLASS_DECL_AURA void   memory_free(void * pvoid);
 #endif
+
 
 END_EXTERN_C
 

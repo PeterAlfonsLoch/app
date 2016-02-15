@@ -90,11 +90,11 @@ object * base_factory::create(::aura::application * papp, ::type * ptype)
    if(ptype->m_spmutex.is_null())
    {
 
-      ptype->m_spmutex = new mutex(papp);
+      ptype->m_spmutex = canew(mutex(papp));
 
    }
 
-   single_lock slInfo(ptype->m_spmutex,TRUE);
+   synch_lock slInfo(ptype->m_pmutex);
 
    if(ptype->m_pfactoryitem != NULL)
    {

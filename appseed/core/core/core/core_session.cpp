@@ -49,6 +49,8 @@ namespace core
 
       m_strAppName                        = "bergedge";
 
+      m_puserex                           = NULL;
+
    }
 
    session::~platform_parent
@@ -104,10 +106,17 @@ namespace core
       if(!::base::session::process_initialize())
          return false;
 
-      m_puserex = create_userex();
+      if (m_puserex == NULL)
+      {
 
-      if(m_puserex == NULL)
-         return false;
+         m_puserex = create_userex();
+
+         if (m_puserex == NULL)
+            return false;
+
+         m_pobjectUserex = m_puserex;
+
+      }
 
       //m_puserex->construct(this);
 

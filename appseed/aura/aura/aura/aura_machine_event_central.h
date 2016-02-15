@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_AURA machine_event_central :
-   public simple_thread
+   virtual public simple_thread
 {
 public:
 

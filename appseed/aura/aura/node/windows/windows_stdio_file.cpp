@@ -277,7 +277,7 @@ namespace windows
       int32_t nErr = 0;
 
       if(m_iFile != iFileNull)
-         ::close(m_iFile);
+         ::_close(m_iFile);
 
       if(m_pStream != NULL)
       {
@@ -300,7 +300,7 @@ namespace windows
       ASSERT_VALID(this);
 
       if(m_iFile != iFileNull)
-         ::close(m_iFile);
+         ::_close(m_iFile);
 
       if (m_pStream != NULL)
          fclose(m_pStream);  // close but ignore errors

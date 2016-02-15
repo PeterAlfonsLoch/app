@@ -40,6 +40,9 @@ extern plex_heap_alloc_array * g_pheap;
 
 extern mutex * g_pmutgen;
 
+plex_heap_alloc_array * g_pplexheapallocarray = NULL;
+
+
 //id_space * create_id_space();
 
 //void destroy_id_space();
@@ -117,6 +120,7 @@ extern mutex * g_pmutexCvt;
 #undef new
 
 
+
 namespace aura
 {
 
@@ -156,11 +160,11 @@ namespace aura
 
          */
 
-         new plex_heap_alloc_array();
+         g_pplexheapallocarray = new plex_heap_alloc_array();
 
          s_pstringmanager = new string_manager();
 
-         create_id_space();
+         ::id_space::s_pidspace = new id_space();
 
 #ifdef APPLEOS
 
@@ -424,6 +428,8 @@ namespace aura
 
 //         destroy_id_space();
 
+         ::aura::del(::id_space::s_pidspace);
+
          ::aura::del(s_pstringmanager);
 
          #if MEMDLEAK
@@ -431,6 +437,8 @@ namespace aura
          s_pmemdleakList = NULL;
 
          #endif
+
+         ::aura::del(g_pplexheapallocarray);
 
          ::aura::del(g_pheap);
 

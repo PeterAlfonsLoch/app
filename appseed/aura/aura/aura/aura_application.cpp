@@ -38,7 +38,7 @@ namespace aura
       m_bAgreeExitOk = true;
       m_bFranceExit = true;
 
-      m_pmutex = new mutex(this);
+      //m_pmutex = new mutex(this);
 
       m_paurasystem     = NULL;
       m_paurasession    = NULL;
@@ -148,7 +148,12 @@ namespace aura
 
    application::~application()
    {
+      if (m_pinitmaindata != NULL)
+      {
 
+         delete m_pinitmaindata;
+
+      }
    }
 
 
@@ -560,56 +565,37 @@ namespace aura
    }
 
 
-   string application::get_version()
-   {
+   //string application::get_version()
+   //{
 
-      ::exception::throw_interface_only(this);
+   //   if (m_pappimpl.is_null())
+   //   {
 
-      return "";
+   //      return "";
 
-   }
+   //   }
+
+   //   return m_pappimpl->get_version();
+
+   //}
 
 
    void application::SetCurrentHandles()
    {
 
       dappy(string(typeid(*this).name()) + " : SetCurrentHandles 1 : " + ::str::from(m_iReturnCode));
-      m_pimpl->set_os_data((void *) ::get_current_thread());
-//      if(m_pthreadimpl->get_os_data() == NULL)
-//      {
-//         m_pthreadimpl->set_os_data(m_pimpl->get_os_data());
-//      }
-      if(get_os_data() == NULL)
-      {
-         set_os_data(m_pimpl->get_os_data());
-      }
+
+      set_os_data((void *) ::get_current_thread());
+
       dappy(string(typeid(*this).name()) + " : SetCurrentHandles 2 : " + ::str::from(m_iReturnCode));
-      m_pimpl->set_os_int(::get_current_thread_id());
-      if(get_os_int() == 0)
-      {
-         set_os_int(m_pimpl->get_os_int());
-      }
-//
-//      if(m_pthreadimpl->get_os_int() == 0)
-//      {
-//         m_pthreadimpl->set_os_int(m_pimpl->get_os_int());
-//      }
-//
-      m_pimpl->SetCurrentHandles();
+      
+      set_os_int(::get_current_thread_id());
+
       dappy(string(typeid(*this).name()) + " : SetCurrentHandles impled : " + ::str::from(m_iReturnCode));
 
 
 
    }
-
-
-   void application::set_env_var(const string & var,const string & value)
-   {
-
-      ::exception::throw_interface_only(this);
-
-   }
-
 
 
 
@@ -622,13 +608,6 @@ namespace aura
 
    }
 
-
-   void application::_001EnableShellOpen()
-   {
-
-      ::exception::throw_interface_only(this);
-
-   }
 
 
    /*::user::document *  application::_001OpenDocumentFile(var varFile)
@@ -669,53 +648,6 @@ namespace aura
 
 
 
-   string application::veriwell_multimedia_music_midi_get_default_library_name()
-   {
-
-      if(m_pimpl == NULL)
-         return "";
-
-      return m_pimpl->veriwell_multimedia_music_midi_get_default_library_name();
-
-   }
-
-
-
-   string application::multimedia_audio_mixer_get_default_library_name()
-   {
-
-      if(m_pimpl == NULL)
-         return "";
-
-      return m_pimpl->multimedia_audio_mixer_get_default_library_name();
-
-   }
-
-
-
-   string application::multimedia_audio_get_default_library_name()
-   {
-
-      if(m_pimpl == NULL)
-         return "";
-
-      return m_pimpl->multimedia_audio_get_default_library_name();
-
-   }
-
-
-
-   string application::draw2d_get_default_library_name()
-   {
-
-      if(m_pimpl == NULL)
-         return "draw2d_cairo";
-
-      return m_pimpl->draw2d_get_default_library_name();
-
-   }
-
-
 
 
 
@@ -754,14 +686,6 @@ namespace aura
 
 
 
-   IDTHREAD application::get_thread_id()
-   {
-
-      return m_pimpl->get_thread_id();
-
-   }
-
-
 
    void application::DoWaitCursor(int32_t nCode) // 0 => restore, 1=> begin, -1=> end
    {
@@ -769,24 +693,32 @@ namespace aura
       UNREFERENCED_PARAMETER(nCode);
 
    }
+   
 
-
-   void application::ShowWaitCursor(bool bShow)
-   {
-
-      UNREFERENCED_PARAMETER(bShow);
-
-   }
-
-
-#ifndef METROWIN
-
-   void application::get_time(timeval *p)
-   {
-      m_pimpl->get_time(p);
-   }
-
-#endif
+//   void application::ShowWaitCursor(bool bShow)
+//   {
+//
+//      if (m_pappimpl.is_null())
+//         return;
+//
+//      m_pappimpl->ShowWaitCursor(bShow);
+//
+//
+//   }
+//
+//
+//#ifndef METROWIN
+//
+//
+//   void application::get_time(timeval *p)
+//   {
+//
+//      m_pappimpl->get_time(p);
+//
+//   }
+//
+//
+//#endif
 
 
    string CLASS_DECL_AURA application::get_cred(const string & strRequestUrl,const RECT & rect,string & strUsername,string & strPassword,string strToken,string strTitle,bool bInteractive)
@@ -1780,11 +1712,9 @@ namespace aura
 //
 //      }
 
-      m_pimpl.alloc(allocer());
+      //m_pappimpl.alloc(allocer());
 
-      m_pimpl->construct(NULL);
-
-      m_pimpl->m_pimpl = this;
+      //      impl_construct(NULL);
 
       if(::get_thread() == NULL)
       {
@@ -1806,9 +1736,8 @@ namespace aura
       if(!ca_process_initialize())
          return false;
 
-      if(!m_pimpl->process_initialize())
+      if(!impl_process_initialize())
          return false;
-
 
       m_bAuraProcessInitializeResult = true;
 
@@ -1993,13 +1922,8 @@ namespace aura
       if(!ca_initialize1())
          return false;
 
-
-
-
-
-      if(!m_pimpl->initialize1())
+      if(!impl_initialize1())
          return false;
-
 
       string strLocaleSystem;
 
@@ -2137,7 +2061,7 @@ namespace aura
    bool application::initialize2()
    {
 
-      if(!m_pimpl->initialize2())
+      if(!impl_initialize2())
          return false;
 
       if(!ca_initialize2())
@@ -2159,7 +2083,7 @@ namespace aura
 
       m_strRelativeFolder = strFolder;
 
-      if(!m_pimpl->initialize3())
+      if(!impl_initialize3())
          return false;
 
       if(!ca_initialize3())
@@ -2293,10 +2217,10 @@ namespace aura
          if (!is_session() && !is_system())
          {
 
-            if (&System != NULL && System.command() != NULL)
+            if (m_paurasystem != NULL && m_paurasystem->m_pcommandthread != NULL)
             {
 
-               System.command()->command(::primitive::command_check_exit);
+               m_paurasystem->m_pcommandthread->command(::primitive::command_check_exit);
 
             }
 
@@ -2348,27 +2272,30 @@ namespace aura
          }
          */
 
+         m_spfile.release();
+         
+         m_spdir.release();
 
          try
          {
 
-            application   * papp = m_pimpl.detach();
+            //application   * papp = m_pappimpl.detach();
 
-            if(papp != NULL && papp != this && !papp->is_system())
-            {
+            //if(papp != NULL && papp != this && !papp->is_system())
+            //{
 
-               try
-               {
+            //   try
+            //   {
 
-                  papp->exit_instance();
+                  impl_exit_instance();
 
-               }
-               catch(...)
-               {
+            //   }
+            //   catch(...)
+            //   {
 
-               }
+            //   }
 
-            }
+            //}
 
          }
          catch(...)
@@ -3190,12 +3117,12 @@ namespace aura
 
    }
 
-   bool application::set_main_init_data(main_init_data * pdata)
-   {
+   //bool application::set_main_init_data(main_init_data * pdata)
+   //{
 
-      return m_pimpl->set_main_init_data(pdata);
+   //   return m_pappimpl->set_main_init_data(pdata);
 
-   }
+   //}
 
 
 
@@ -3896,10 +3823,10 @@ namespace aura
    }
 
 
-   sp(::aura::application) application::instantiate_application(const char * pszType,const char * pszId,application_bias * pbias)
+   ::aura::application * application::instantiate_application(const char * pszType,const char * pszId,application_bias * pbias)
    {
 
-      sp(::aura::application) papp;
+      ::aura::application * papp;
 
       string strId(pszId);
 
@@ -4021,28 +3948,33 @@ namespace aura
    }
 
 
-   sp(::aura::application) application::create_application(const char * pszType,const char * pszId,bool bSynch,application_bias * pbias)
+   ::aura::application * application::create_application(const char * pszType,const char * pszId,bool bSynch,application_bias * pbias)
    {
 
-      sp(::aura::application) pbaseapp = instantiate_application(pszType,pszId,pbias);
+      ::aura::application * pbaseapp = instantiate_application(pszType,pszId,pbias);
 
       if(pbaseapp == NULL)
          return NULL;
 
-      sp(::aura::application) papp = pbaseapp;
+      ::aura::application * papp = pbaseapp;
 
       if(!papp->start_application(bSynch,pbias))
       {
+         
          try
          {
-            pbaseapp.release();
+            
+            ::release(pbaseapp);
+
          }
          catch(...)
          {
-         }
-         return NULL;
-      }
 
+         }
+
+         return NULL;
+
+      }
 
       return pbaseapp;
 

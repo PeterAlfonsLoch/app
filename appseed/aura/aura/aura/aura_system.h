@@ -24,7 +24,7 @@ namespace aura
    {
    public:
 
-      sp(::aura::session::map)                     m_paurabergedgemap;
+      ::aura::session::map                         m_aurabergedgemap;
 
       ::object *                                   m_pDraw2dFactoryExchange;
 
@@ -40,7 +40,7 @@ namespace aura
       sp(math::math)                               m_pmath;
       sp(geometry::geometry)                       m_pgeometry;
 
-      ::aura::str *                                m_puserstr;
+      sp(::aura::str)                              m_puserstr;
       ::exception::engine *                        m_peengine;
 
 
@@ -52,7 +52,7 @@ namespace aura
       string_map < int_to_string >                 m_mapEnumToName;
       string_map < string_to_int >                 m_mapNameToEnum;
       ::aura::os_sp                                m_spos;
-      spa(::aura::session)                         m_basesessionptra;
+      //array < ::aura::session * >                  m_basesessionptra;
       colorertake5::ParserFactory *                m_pparserfactory;
 
       static system *                              g_p;
@@ -128,7 +128,7 @@ namespace aura
       application_ptra                                get_appptra();
 
 
-      spa(::aura::session)                         &  basesessionptra();
+      //spa(::aura::session)                         &  basesessionptra();
 
 
       class ::aura::os                             &  os();
@@ -371,7 +371,7 @@ namespace aura
       virtual ::aura::session * on_create_session();
 
 
-      virtual sp(::aura::session)             get_session(index iEdge,application_bias * pbiasCreation = NULL);
+      virtual ::aura::session *             get_session(index iEdge,application_bias * pbiasCreation = NULL);
 
 
       virtual void on_request(sp(::create) pcreate);

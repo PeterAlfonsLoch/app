@@ -71,6 +71,13 @@ namespace simpledb
    bool simpledb::FinalizeDataCentral()
    {
 
+      if (m_pserver == NULL)
+      {
+
+         return true;
+
+      }
+
       try
       {
          m_pserver->finalize();
@@ -87,22 +94,10 @@ namespace simpledb
       {
       }
 
-      if(m_pauraapp->is_system())
-      {
-
-         m_pserver = NULL;
-//#ifndef METROWIN
-//         try
-//         {
-//            mysql_library_end();
-//         }
-//         catch(...)
-//         {
-//         }
-//#endif
-      }
+      m_pserver = NULL;
 
       return true;
+
    }
 
    bool simpledb::initialize2()

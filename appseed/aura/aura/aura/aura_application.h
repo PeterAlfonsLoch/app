@@ -34,7 +34,7 @@ namespace aura
       bool                                            m_bAgreeExitOk;
       bool                                            m_bFranceExit;
 
-      smart_pointer < application >                   m_pimpl;
+      //sp(application)                                 m_pappimpl;
       sp(ipi)                                         m_pipi;
       sp(service_base)                                m_pservice;
 
@@ -246,7 +246,7 @@ namespace aura
       virtual string get_license_id();
 
 
-
+      virtual string get_version();
       virtual void construct(const char * pszAppId);
 
 //#ifndef METROWIN
@@ -254,6 +254,14 @@ namespace aura
 //#endif
 
       virtual bool process_initialize();
+
+      //void impl_construct(const char * pszId);
+
+      virtual bool impl_process_initialize();
+      virtual bool impl_initialize1();
+      virtual bool impl_initialize2();
+      virtual bool impl_initialize3();
+      virtual int32_t impl_exit_instance();
 
       virtual bool initialize1();
       virtual bool initialize2();
@@ -302,8 +310,9 @@ namespace aura
 
 
 
-      virtual string get_version();
+      //virtual string get_version();
 
+      //virtual void BaseSetCurrentHandles();
       virtual void SetCurrentHandles();
 
       virtual void set_env_var(const string & var,const string & value);
@@ -481,8 +490,8 @@ namespace aura
       virtual bool platform_open_by_file_extension(index iEdge,::create * pcc);
 
 
-      virtual sp(::aura::application) instantiate_application(const char * pszType,const char * pszId,application_bias * pbias);
-      virtual sp(::aura::application) create_application(const char * pszType,const char * pszId,bool bSynch,application_bias * pbias);
+      virtual ::aura::application * instantiate_application(const char * pszType,const char * pszId,application_bias * pbias);
+      virtual ::aura::application * create_application(const char * pszType,const char * pszId,bool bSynch,application_bias * pbias);
       virtual ::aura::application * create_platform(::aura::session * psession);
       virtual bool start_application(bool bSynch,application_bias * pbias);
 

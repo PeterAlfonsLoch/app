@@ -500,7 +500,7 @@ namespace core
    }
 
 
-   sp(::core::session) system::get_platform(index iEdge,application_bias * pbiasCreation)
+   ::core::session * system::get_platform(index iEdge,application_bias * pbiasCreation)
    {
       
       if(iEdge == 0)
@@ -586,7 +586,7 @@ namespace core
    void system::on_request(sp(::create) pcreate)
    {
 
-      sp(::core::session) pplatform = get_platform(pcreate->m_spCommandLine->m_iEdge,pcreate->m_spCommandLine->m_pbiasCreate);
+      ::core::session * pplatform = get_platform(pcreate->m_spCommandLine->m_iEdge,pcreate->m_spCommandLine->m_pbiasCreate);
       
       ::base::system::on_request(pcreate);
  

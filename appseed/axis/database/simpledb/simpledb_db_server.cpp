@@ -26,6 +26,8 @@ db_server::~db_server()
 
    close();
 
+   finalize();
+
 }
 
 
@@ -89,7 +91,7 @@ bool db_server::initialize()
 
    }
 
-   m_pdb          = new ::sqlite::base(get_app());
+   m_pdb          = canew(::sqlite::base(get_app()));
 
    ::file::path str = Application.dir().userappdata() / "database.sqlite";
 

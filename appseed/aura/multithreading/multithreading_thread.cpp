@@ -200,8 +200,8 @@ thread::~thread()
 unregister_from_required_threads();
 
 
-   if(m_pmutex != NULL)
-      delete m_pmutex;
+   //if(m_pmutex != NULL)
+     // delete m_pmutex;
 
    //if(m_peventEvent == NULL)
    //   delete m_peventEvent;
@@ -337,8 +337,8 @@ void thread::on_keep_alive()
 bool thread::is_alive()
 {
 
-   if (!m_bRun)
-      return false;
+   //if (!m_bRun)
+   //   return false;
 
    //if ((::get_tick_count() - m_dwAlive) > ((5000) * 91))
      // return false;
@@ -404,7 +404,7 @@ int32_t thread::run()
    ::output_debug_string("::thread::run " + string(demangle(typeid(*this).name())) + " m_bRun = "+::str::from((int)m_bRun)+"\n\n");
 
 
-   while(m_bRun)
+   while(true)
    {
 
       //if(m_spuiptra.is_set() && m_spuiptra->get_count() > 0)
@@ -446,7 +446,7 @@ bool thread::pump_message()
 
       MESSAGE msg;
 
-      if(!::GetMessage(&msg,NULL,0,0))
+      if(::GetMessage(&msg,NULL,0,0) == 0)
       {
 
          TRACE(::aura::trace::category_AppMsg,1,"thread::pump_message - Received WM_QUIT.\n");
@@ -761,15 +761,21 @@ void thread::signal_close_dependent_threads()
 
    synch_lock sl(m_pmutex);
 
+   thread * pthread;
+
    for(index i = m_threadptraDependent.get_upper_bound(); i >= 0;)
    {
+
+      pthread = NULL;
 
       try
       {
 
-         synch_lock slThread(m_threadptraDependent[i]->m_pmutex);
+         pthread = m_threadptraDependent[i];
 
-         m_threadptraDependent[i]->set_end_thread();
+         synch_lock slThread(pthread->m_pmutex);
+
+         pthread->set_end_thread();
 
          i--;
 
@@ -811,8 +817,8 @@ void thread::wait_close_dependent_threads(const duration & duration)
 
             ::thread * pthread = m_threadptraDependent[i];
             output_debug_string(string("---"));
-            output_debug_string(string("supporter : ") + typeid(*this).name() + string(" (") + ::str::from(this) + ")");
-            output_debug_string(string("dependent : ") + typeid(*m_threadptraDependent[i]).name() + string(" (") + ::str::from(m_threadptraDependent[i]) + ")");
+            output_debug_string(string("supporter : ") + typeid(*this).name() + string(" (") + ::str::from((int_ptr) this) + ")");
+            output_debug_string(string("dependent : ") + typeid(*m_threadptraDependent[i]).name() + string(" (") + ::str::from((int_ptr) m_threadptraDependent[i]) + ")");
 
          }
 
@@ -1816,12 +1822,28 @@ bool thread::post_message(::user::primitive * pui,UINT uiMessage,WPARAM wparam,l
 bool thread::post_thread_message(UINT message,WPARAM wParam,lparam lParam)
 {
 
-   if(m_hthread == (HTHREAD) NULL)
+   if (m_hthread == (HTHREAD)NULL || (!m_bRun && message != WM_QUIT))
+   {
+
+      if (message == WM_APP + 1984)
+      {
+
+         if (wParam == 49)
+         {
+
+            sp(object) spo((lparam) lParam);
+
+         }
+
+      }
+    
       return false;
+
+   }
 
    if(message == WM_QUIT)
    {
-
+      m_bRun = false;
       string strName = demangle(typeid(*this).name());
       //::output_debug_string("\n\n\nWM_QUIT posted to thread "+strName+"(" + ::str::from((uint64_t)m_uiThread) + ")\n\n\n");
       if(strName == "::core::system")
@@ -2887,7 +2909,7 @@ void thread::do_events()
 
    MESSAGE msg;
 
-   while(m_bRun && ::PeekMessage(&msg,NULL,0,0,PM_NOREMOVE) != FALSE)
+   while(::PeekMessage(&msg,NULL,0,0,PM_NOREMOVE) != FALSE)
    {
 
       if(msg.message == WM_QUIT) // do not pump, otherwise main loop will not process the message

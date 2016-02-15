@@ -537,39 +537,6 @@ namespace core
 
       }
 
-      try
-      {
-
-         ::aura::application * papp = m_pimpl.detach();
-
-         if(papp != NULL && papp != this && !papp->is_system())
-         {
-
-            if(papp->m_pimpl == this)
-            {
-
-               papp->m_pimpl.detach();
-
-            }
-
-            try
-            {
-
-               papp->exit_instance();
-
-            }
-            catch(...)
-            {
-
-            }
-
-         }
-
-      }
-      catch(...)
-      {
-
-      }
 
       //try
       //{
@@ -2800,14 +2767,6 @@ namespace core
    }
 
 
-   void application::_001EnableShellOpen()
-   {
-
-      m_pimpl->_001EnableShellOpen();
-
-   }
-
-
    bool application::_001OnDDECommand(const char * lpcsz)
    {
       ::exception::throw_not_implemented(get_app());
@@ -2820,15 +2779,6 @@ namespace core
    // {
    //  return m_spfilesystem;
    //}
-
-
-
-
-
-   string application::get_version()
-   {
-      return m_pimpl->get_version();
-   }
 
 
 
@@ -2859,11 +2809,6 @@ namespace core
    }
 
 
-
-   void application::set_env_var(const string & var,const string & value)
-   {
-      m_pimpl->set_env_var(var,value);
-   }
 
 
 

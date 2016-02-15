@@ -100,7 +100,7 @@ namespace axis
 
       m_puserstrcontext             = NULL;
 
-      m_paxissystem->m_basesessionptra.add_unique(this);
+      //      m_paxissystem->m_basesessionptra.add_unique(this);
 
       m_pcopydesk = NULL;
 
@@ -127,7 +127,7 @@ namespace axis
 
    session::~session_parent
    {
-      m_paxissystem->m_basesessionptra.remove(this);
+//      m_paxissystem->m_basesessionptra.remove(this);
 
       POSITION pos = m_mapApplication.get_start_position();
 
@@ -929,14 +929,14 @@ namespace axis
          m_pfontopus->construct(this);
 
       }
-      m_pifs                     = new ifs(this,"");
-      m_prfs                     = new ::fs::remote_native(this,"");
+      m_pifs                     = canew(ifs(this,""));
+      m_prfs                     = canew(::fs::remote_native(this,""));
 
-      ::fs::set * pset = new class ::fs::set(this);
-      ::fs::link * plink = new ::fs::link(this);
+      ::fs::set * pset = canew(class ::fs::set(this));
+      ::fs::link * plink = canew(::fs::link(this));
       plink->fill_os_user();
       pset->m_spafsdata.add(plink);
-      pset->m_spafsdata.add(new ::fs::native(this));
+      pset->m_spafsdata.add(canew(::fs::native(this)));
       m_spfsdata = pset;
 
 
@@ -944,19 +944,22 @@ namespace axis
       if(!::axis::application::process_initialize())
          return false;
 
+      if (m_psockets == NULL)
+      {
 
+         m_psockets = new ::sockets::sockets(this);
 
-      m_psockets = canew(::sockets::sockets(this));
+         m_psockets->construct(this);
 
-      m_psockets->construct(this);
+         if (!m_psockets->initialize1())
+            throw simple_exception(this, "could not initialize (1) sockets for application (application::construct)");
 
-      if(!m_psockets->initialize1())
-         throw simple_exception(this,"could not initialize (1) sockets for application (application::construct)");
+         if (!m_psockets->initialize())
+            throw simple_exception(this, "could not initialize sockets for application (application::construct)");
 
-      if(!m_psockets->initialize())
-         throw simple_exception(this,"could not initialize sockets for application (application::construct)");
+      }
 
-      m_splicensing = new class ::fontopus::licensing(this);
+      m_splicensing = canew(class ::fontopus::licensing(this));
 
 
 
@@ -1106,7 +1109,7 @@ namespace axis
       {
 
          if(m_spfsdata.is_null())
-            m_spfsdata = new ::fs::set(this);
+            m_spfsdata = canew(::fs::set(this));
 
          ::fs::set * pset = dynamic_cast < ::fs::set * > ((class ::fs::data *) m_spfsdata);
          if(pset != NULL)
@@ -1149,6 +1152,37 @@ namespace axis
          bOk = false;
       }
 
+
+      try
+      {
+
+         if (!m_puserpresence->finalize())
+         {
+
+            bOk = false;
+
+         }
+
+         ::aura::del(m_puserpresence);
+
+
+      }
+      catch (...)
+      {
+
+         bOk = false;
+      }
+
+      try
+      {
+         ::aura::del(m_psockets);
+      }
+      catch (...)
+      {
+
+         bOk = false;
+      }
+
       try
       {
 
@@ -1168,24 +1202,7 @@ namespace axis
 
 
 
-      try
-      {
-
-         if(!m_puserpresence->finalize())
-         {
-
-            bOk = false;
-
-         }
-
-
-      }
-      catch(...)
-      {
-
-         bOk = false;
-      }
-
+      
 
 
       return bOk;

@@ -61,6 +61,7 @@ namespace file
       //path(const var & var,e_path epath = path_file);
       path(const property & property,e_path epath = path_none);
 
+      ~path() throw();
 
 
       void set_type(e_path epath)
@@ -86,7 +87,9 @@ namespace file
       void normalize()
       {
 
-         string::operator=(defer_solve_relative_compresions((const string &)(*this)));
+         string str = defer_solve_relative_compresions(*this);
+
+         string::operator=(str);
 
          if(has_char())
          {
@@ -141,6 +144,8 @@ namespace file
 
          return *this;
 
+      
+      
       }
 
       bool operator == (const path & path) const

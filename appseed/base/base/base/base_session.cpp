@@ -68,7 +68,7 @@ namespace base
 
       m_puserstrcontext             = NULL;
 
-      m_paxissystem->m_basesessionptra.add_unique(this);
+      //m_paxissystem->m_basesessionptra.add_unique(this);
 
       m_pschemasimple               = NULL;
 
@@ -92,7 +92,7 @@ namespace base
    session::~session_parent
    {
 
-      m_paxissystem->m_basesessionptra.remove(this);
+      //m_paxissystem->m_basesessionptra.remove(this);
 
       POSITION pos = m_mapApplication.get_start_position();
 
