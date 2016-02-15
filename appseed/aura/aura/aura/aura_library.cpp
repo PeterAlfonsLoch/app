@@ -61,7 +61,7 @@ namespace aura
 #if defined(CUBE)
       m_strPath = pszPath;
 #else
-      
+
       ::output_debug_string("\n\n::aura::library::open Going to load library : " + string(pszPath) + " (bCa2Path = "+::str::from((int)bCa2Path)+")\n\n");
 
       try
@@ -82,11 +82,11 @@ namespace aura
 
          if(m_plibrary == NULL)
          {
-           
+
             ::output_debug_string("\n\n::aura::library::open :: Failed to open library : " + string(pszPath) + " (bCa2Path = "+::str::from((int)bCa2Path)+") \n\n");
-            
+
             return false;
-            
+
          }
 
          m_strPath = pszPath;
@@ -96,7 +96,7 @@ namespace aura
       {
 
          ::output_debug_string("\n\n::aura::library::open :: An exception occurred while opening library : " + string(pszPath) + "\n\n");
-         
+
          return false;
 
       }
@@ -233,7 +233,10 @@ namespace aura
 
    }
 
-
+void * library::get_os_data()
+{
+   return m_plibrary;
+}
    bool library::close()
    {
       try
@@ -584,7 +587,7 @@ string_map < sp(::aura::library) > * g_pmapLibCall = NULL;
 
 ::aura::library * lib(const char * psz)
 {
-   
+
    if(g_pmapLibCall == NULL)
       return NULL;
 

@@ -60,7 +60,7 @@ CLASS_DECL_AURA int32_t process_get_scheduling_priority(int iOsPolicy, const sch
 //}
 //
 
-DWORD MsgWaitForMultipleObjectsEx(DWORD dwSize, object * * pobjectptra, DWORD dwTimeout, DWORD dwWakeMask, DWORD dwFlags)
+DWORD MsgWaitForMultipleObjectsEx(DWORD dwSize, sync_object * * pobjectptra, DWORD dwTimeout, DWORD dwWakeMask, DWORD dwFlags)
 {
 
    DWORD start = 0;
@@ -206,7 +206,7 @@ DWORD MsgWaitForMultipleObjectsEx(DWORD dwSize, object * * pobjectptra, DWORD dw
 }
 
 
-DWORD MsgWaitForMultipleObjects(DWORD dwSize, object ** pobjectptra, WINBOOL bWaitForAll, DWORD dwTimeout, DWORD dwWakeMask)
+DWORD MsgWaitForMultipleObjects(DWORD dwSize, sync_object ** pobjectptra, WINBOOL bWaitForAll, DWORD dwTimeout, DWORD dwWakeMask)
 {
 
    return MsgWaitForMultipleObjectsEx(dwSize, pobjectptra, dwTimeout, dwWakeMask, (bWaitForAll ?  MWMO_WAITALL : 0));
@@ -214,7 +214,7 @@ DWORD MsgWaitForMultipleObjects(DWORD dwSize, object ** pobjectptra, WINBOOL bWa
 }
 
 
-DWORD WaitForMultipleObjectsEx(DWORD dwSize, object ** pobjectptra, WINBOOL bWaitForAll, DWORD dwTimeout, WINBOOL bAlertable)
+DWORD WaitForMultipleObjectsEx(DWORD dwSize, sync_object ** pobjectptra, WINBOOL bWaitForAll, DWORD dwTimeout, WINBOOL bAlertable)
 {
 
    return MsgWaitForMultipleObjectsEx(dwSize, pobjectptra, dwTimeout, 0, (bWaitForAll ?  MWMO_WAITALL : 0) | (bAlertable ?  MWMO_ALERTABLE : 0));
@@ -222,7 +222,7 @@ DWORD WaitForMultipleObjectsEx(DWORD dwSize, object ** pobjectptra, WINBOOL bWai
 }
 
 
-DWORD WaitForMultipleObjects(DWORD dwSize, object ** pobjectptra, WINBOOL bWaitForAll, DWORD dwTimeout)
+DWORD WaitForMultipleObjects(DWORD dwSize, sync_object ** pobjectptra, WINBOOL bWaitForAll, DWORD dwTimeout)
 {
 
    return WaitForMultipleObjectsEx(dwSize, pobjectptra, bWaitForAll, dwTimeout, FALSE);
@@ -230,7 +230,7 @@ DWORD WaitForMultipleObjects(DWORD dwSize, object ** pobjectptra, WINBOOL bWaitF
 }
 
 
-DWORD WaitForSingleObjectEx(object * pobject, DWORD dwTimeout, WINBOOL bAlertable)
+DWORD WaitForSingleObjectEx(sync_object * pobject, DWORD dwTimeout, WINBOOL bAlertable)
 {
 
    return WaitForMultipleObjectsEx(1, &pobject, TRUE, dwTimeout, bAlertable);
@@ -238,7 +238,7 @@ DWORD WaitForSingleObjectEx(object * pobject, DWORD dwTimeout, WINBOOL bAlertabl
 }
 
 
-DWORD WaitForSingleObject(object * pobject, DWORD dwTimeout)
+DWORD WaitForSingleObject(sync_object * pobject, DWORD dwTimeout)
 {
 
    return WaitForSingleObjectEx(pobject, dwTimeout, FALSE);

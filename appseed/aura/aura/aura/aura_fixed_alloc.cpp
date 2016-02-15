@@ -267,7 +267,7 @@ void fixed_alloc_array::free(void * p, size_t nAllocSize)
    }
    else
    {
-      return memory_free(p);
+      return ::memory_free(p);
    }
 }
 
@@ -277,7 +277,7 @@ void * fixed_alloc_array::realloc(void * pOld, size_t nOldAllocSize, size_t nNew
    fixed_alloc * pallocNew = find(nNewAllocSize);
    if(pallocOld == NULL && pallocNew == NULL)
    {
-      return memory_realloc(pOld, nNewAllocSize);
+      return ::memory_realloc(pOld, nNewAllocSize);
    }
    else if(pallocOld == pallocNew)
    {
@@ -299,7 +299,7 @@ void * fixed_alloc_array::realloc(void * pOld, size_t nOldAllocSize, size_t nNew
       }
       else
       {
-         memory_free(pOld);
+         ::memory_free(pOld);
       }
 
       return pNew;

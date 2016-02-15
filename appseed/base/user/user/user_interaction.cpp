@@ -3647,6 +3647,13 @@ namespace user
          m_pimpl->ShowOwnedPopups(bShow);
    }
 
+   void * interaction::get_os_data() const
+   {
+
+      return get_handle();
+
+   }
+
    bool interaction::attach(oswindow oswindow_New)
    {
       if(m_pimpl == NULL)

@@ -26,7 +26,7 @@ namespace data
 
    bool data_container::is_data_locked() const
    {
-      return m_spdata->is_locked();
+      return m_spdata->m_pmutex->is_locked();
    }
 
    void data_container::on_update_data(int32_t iHint)

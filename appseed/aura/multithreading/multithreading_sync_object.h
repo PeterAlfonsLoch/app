@@ -21,7 +21,6 @@ public:
    bool                    m_bOwner;
 
 
-
    sync_object(const char * pstrName);
    virtual ~sync_object();
 
@@ -29,11 +28,15 @@ public:
 
    operator HANDLE() const;
 
-   using object::lock;
+//   using object::lock;
+   virtual void lock();
    virtual bool lock(const duration & durationTimeout);
 
-   using object::wait;
+  // using object::wait;
+   virtual void wait();
    virtual wait_result wait(const duration & durationTimeout);
+
+   virtual bool is_locked() const;
 
    virtual bool unlock();
    virtual bool unlock(LONG /* lCount */, LPLONG /* lpPrevCount=NULL */);

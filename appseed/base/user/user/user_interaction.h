@@ -511,6 +511,8 @@ namespace user
       virtual bool attach(oswindow oswindow_New);
       virtual oswindow detach();
 
+      virtual void * get_os_data() const;
+
 
       template < class T >
       T * GetTypedParent() const
@@ -760,6 +762,9 @@ namespace user
       virtual bool frame_is_transparent();
 
       virtual double get_alpha();
+
+
+
 
 
    };

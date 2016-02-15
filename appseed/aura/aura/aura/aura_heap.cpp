@@ -18,6 +18,13 @@
 #endif
 
 
+#ifdef LINUX
+
+#include <malloc.h>
+
+#endif
+
+
 struct heap_memory
 {
 
@@ -168,6 +175,11 @@ BEGIN_EXTERN_C
 void * aligned_memory_alloc(size_t size)
 {
 
+   #ifdef MCHECK
+   return aligned_alloc(64, size);
+
+   #else
+
    if(g_pheap == NULL)
    {
 
@@ -205,10 +217,17 @@ void * aligned_memory_alloc(size_t size)
 
    }
 
+   #endif
+
 }
 
 void * unaligned_memory_alloc(size_t size)
 {
+
+ #ifdef MCHECK
+   return malloc(size);
+
+   #else
 
 #if defined(APPLEOS) || defined(LINUX)
 
@@ -229,11 +248,19 @@ void * unaligned_memory_alloc(size_t size)
 
 #endif
 
+#endif
+
 }
 
 
 void * aligned_memory_alloc_dbg(size_t size, int32_t nBlockUse, const char * szFileName, int32_t nLine)
 {
+
+#ifdef MCHECK
+
+   return aligned_alloc(64, size);
+
+#else
 
    UNREFERENCED_PARAMETER(nBlockUse);
    UNREFERENCED_PARAMETER(szFileName);
@@ -272,10 +299,18 @@ void * aligned_memory_alloc_dbg(size_t size, int32_t nBlockUse, const char * szF
 
     }
 
+#endif
+
 }
 
 void * unaligned_memory_alloc_dbg(size_t size, int32_t nBlockUse, const char * szFileName, int32_t nLine)
 {
+
+#ifdef MCHECK
+
+   return malloc(size);
+
+#else
 
 #ifdef APPLEOS
 
@@ -302,10 +337,14 @@ void * unaligned_memory_alloc_dbg(size_t size, int32_t nBlockUse, const char * s
 
 #endif
 
+#endif
+
 }
 
 
 BEGIN_EXTERN_C
+
+#ifndef MCHECK
 
 #undef memory_alloc
 
@@ -326,9 +365,17 @@ void * memory_alloc(size_t size)
 
 #undef memory_alloc
 
+#endif
+
 
 void * memory_alloc_no_track(size_t size)
 {
+
+#ifdef MCHECK
+
+   return memory_alloc(size);
+
+#else
 
 #if defined(APPLEOS)
 
@@ -337,6 +384,8 @@ void * memory_alloc_no_track(size_t size)
 #else
 
    return unaligned_memory_alloc(size);
+
+#endif
 
 #endif
 
@@ -355,11 +404,14 @@ void * memory_calloc(size_t size, size_t bytes)
 
 void * memory_alloc_dbg(size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine)
 {
-
+#ifdef MCHECK
+   return memory_alloc(nSize);
+#else
    return unaligned_memory_alloc_dbg(nSize, nBlockUse, szFileName, nLine);
+#endif
 
 }
-
+#ifndef MCHECK
 
 void * memory_realloc(void * pmemory, size_t nSize)
 {
@@ -367,12 +419,15 @@ void * memory_realloc(void * pmemory, size_t nSize)
    return memory_realloc_dbg(pmemory, nSize, 0, NULL, -1);
 
 }
+#endif
 
 END_EXTERN_C
 
 void * memory_realloc_dbg(void * pmemory, size_t size, int32_t nBlockUse, const char * szFileName, int32_t nLine)
 {
-
+#ifdef MCHECK
+   return memory_realloc(pmemory, size);
+#else
    if (pmemory == NULL)
       return memory_alloc_dbg(size, nBlockUse, szFileName, nLine);
 
@@ -452,16 +507,16 @@ void * memory_realloc_dbg(void * pmemory, size_t size, int32_t nBlockUse, const 
    }
 
    return NULL;
-
+#endif
 }
-
+#ifndef MCHECK
 void memory_free(void * pmemory)
 {
 
    return memory_free_dbg(pmemory, 0);
 
 }
-
+#endif
 
 size_t memory_size(void * pmemory)
 {
@@ -475,7 +530,9 @@ size_t memory_size(void * pmemory)
 
 void memory_free_dbg(void * pmemory, int32_t iBlockType)
 {
-
+#ifdef MCHECK
+   memory_free(pmemory);
+#else
    heap_memory * pheap =  ::heap_memory::heap_get(pmemory);
 
    void * pbase = (void *)(((int_ptr)pmemory) - pheap->m_back);
@@ -532,7 +589,7 @@ void memory_free_dbg(void * pmemory, int32_t iBlockType)
       ::output_debug_string("wrong free");
 
    }
-
+#endif
 
 }
 
@@ -540,10 +597,18 @@ void memory_free_dbg(void * pmemory, int32_t iBlockType)
 size_t memory_size_dbg(void * pmemory, int32_t iBlockType)
 {
 
+#ifdef MCHECK
+
+   return malloc_usable_size(pmemory);
+
+#else
+
    if (pmemory == NULL)
       return 0;
 
    return heap_memory::heap_get_size(pmemory);
+
+#endif
 
 }
 

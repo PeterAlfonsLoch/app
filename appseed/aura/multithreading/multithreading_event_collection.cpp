@@ -176,7 +176,7 @@ wait_result event_collection::wait(bool waitForAll, const duration & duration)
 #ifdef WINDOWS
                winResult = ::WaitForMultipleObjectsEx(static_cast<uint32_t>(m_objecta.size()), &*m_objecta.begin(), waitForAll, start + timeout - ticks, true);
 #else
-               winResult = ::WaitForMultipleObjectsEx(static_cast<uint32_t>(m_objecta.size()), (object **) &*m_objecta.begin(), waitForAll, start + timeout - ticks, true);
+               winResult = ::WaitForMultipleObjectsEx(static_cast<uint32_t>(m_objecta.size()), (sync_object **) &*m_objecta.begin(), waitForAll, start + timeout - ticks, true);
 #endif
 
          } while (winResult == WAIT_IO_COMPLETION);
@@ -185,7 +185,7 @@ wait_result event_collection::wait(bool waitForAll, const duration & duration)
 #ifdef WINDOWS
          winResult = ::WaitForMultipleObjectsEx(static_cast<uint32_t>(m_objecta.size()),&*m_objecta.begin(),waitForAll,0,FALSE);
 #else
-         winResult = ::WaitForMultipleObjectsEx(static_cast<uint32_t>(m_objecta.size()),(object **)&*m_objecta.begin(),waitForAll,0,FALSE);
+         winResult = ::WaitForMultipleObjectsEx(static_cast<uint32_t>(m_objecta.size()),(sync_object **)&*m_objecta.begin(),waitForAll,0,FALSE);
 #endif
 
       //std_cout << "Finished waiting in wc" << std::endl;

@@ -170,18 +170,18 @@ namespace user
       }
 
 
-      if(m_pmeshdata != NULL)
-      {
-
-         if(m_pmeshdata->is_locked())
-         {
-
-            return;
-
-         }
-
-      }
-
+//      if(m_pmeshdata != NULL)
+//      {
+//
+//         if(m_pmeshdata->is_locked())
+//         {
+//
+//            return;
+//
+//         }
+//
+//      }
+//
 
       if(m_pdrawlistitem == NULL)
       {
@@ -863,7 +863,7 @@ namespace user
       layout();
 
       TRACE("list::_001OnUpdateItemCount ItemCount %d\n", m_nItemCount);
-      
+
       if(m_bGroup)
       {
 

@@ -156,18 +156,18 @@ bool file_get_memory_dup(::primitive::memory_base & memory, const char * path)
    if(iSize <= 0)
    {
 
-//      ::memory mem;
-//
-//      mem.allocate(1024 * 512);
-//
-//      int iRead;
-//
-//      while((iRead = fread(mem.get_data(),1,mem.get_size(),f)) > 0)
-//      {
-//
-//         memory.append(mem.get_data(), iRead);
-//
-//      }
+      ::memory mem;
+
+      mem.allocate(1024 * 16);
+
+      int iRead;
+
+      while((iRead = fread(mem.get_data(),1,mem.get_size(),f)) > 0)
+      {
+
+         memory.append(mem.get_data(), iRead);
+
+      }
 
    }
    else

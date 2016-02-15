@@ -3,7 +3,7 @@
 /////////////////////////////////////////////////////////////////////////////
 // retry_single_lock
 
-retry_single_lock::retry_single_lock(object * psyncobject, duration durationLock, duration durationSleep, int32_t iRetry, bool bInitialLock)
+retry_single_lock::retry_single_lock(sync_object * psyncobject, duration durationLock, duration durationSleep, int32_t iRetry, bool bInitialLock)
 {
 
    m_pobjectSync     = psyncobject;

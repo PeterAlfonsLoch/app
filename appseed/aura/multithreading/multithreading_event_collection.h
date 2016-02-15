@@ -15,7 +15,7 @@ public:
 #ifdef WINDOWS
    typedef raw_ptr_array < HANDLE > CollectionType;
 #else
-    typedef object_ptra CollectionType;
+    typedef array < sync_object * > CollectionType;
 #endif
 
 private:

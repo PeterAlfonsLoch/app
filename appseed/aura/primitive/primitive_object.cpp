@@ -291,7 +291,7 @@ bool object::is_alive()
 //}
 
 ///  \brief		abstract function to initialize a waiting action without a timeout
-void object::wait()
+void sync_object::wait()
 {
 
    wait(duration::infinite());
@@ -301,28 +301,28 @@ void object::wait()
 ///  \brief		abstract function to initialize a waiting action with a timeout
 ///  \param		duration time period to wait for item
 ///  \return	waiting action result as wait_result
-wait_result object::wait(const duration & duration)
-{
-
-
-   if(m_pmutex == NULL)
-   {
-
-      ((object *)this)->m_pmutex = new mutex();
-
-   }
-
-   try
-   {
-      return m_pmutex->wait(duration);
-   }
-   catch(...)
-   {
-   }
-
-   return wait_result(wait_result::Failure);
-
-}
+//wait_result object::wait(const duration & duration)
+//{
+//
+//
+//   if(m_pmutex == NULL)
+//   {
+//
+//      ((object *)this)->m_pmutex = new mutex();
+//
+//   }
+//
+//   try
+//   {
+//      return m_pmutex->wait(duration);
+//   }
+//   catch(...)
+//   {
+//   }
+//
+//   return wait_result(wait_result::Failure);
+//
+//}
 
 
 
@@ -359,105 +359,106 @@ CLASS_DECL_AURA void sleep(const duration & duration)
 
 
 
-void * object::get_os_data() const
-{
+//void * object::get_os_data() const
+//{
+//
+//   //if(m_pmutex == NULL)
+//   //{
+//
+//     // ((object *)this)->m_pmutex = new mutex();
+//
+//   //}
+//
+//   //return m_pmutex;
+//
+//   return NULL;
+//
+//}
 
-   if(m_pmutex == NULL)
-   {
-
-      ((object *)this)->m_pmutex = new mutex();
-
-   }
-
-   return m_pmutex;
-
-}
-
-void object::lock()
+void sync_object::lock()
 {
 
    if(!lock(duration::infinite()))
-      if(!lock(duration::infinite()))
          throw "failure to lock waitable";
 
 }
 
-bool object::lock(const duration & duration)
-{
-
-   if(m_pmutex == NULL)
-   {
-
-      ((object *)this)->m_pmutex = new mutex();
-
-   }
-
-   bool bLocked = false;
-
-   try
-   {
-
-      bLocked = m_pmutex->lock(duration);
-
-   }
-   catch(...)
-   {
-
-      bLocked = false;
-
-   }
-
-   if(!bLocked)
-      return false;
-
-   return true;
-
-}
-
-
-bool object::unlock()
-{
-
-   if(m_pmutex == NULL)
-      return false;
-
-   bool bUnlocked = false;
-
-   try
-   {
-
-      bUnlocked = m_pmutex->unlock();
-
-   }
-   catch(...)
-   {
-
-      bUnlocked = false;
-
-   }
-
-   if(!bUnlocked)
-      return false;
-
-   return true;
-
-}
-
-bool object::unlock(LONG lCount,LPLONG lpPrevCount)
-{
-   UNREFERENCED_PARAMETER(lCount);
-   UNREFERENCED_PARAMETER(lpPrevCount);
-   return true;
-}
+//bool object::lock(const duration & duration)
+//{
+//
+//   if(m_pmutex == NULL)
+//   {
+//
+//      ((object *)this)->m_pmutex = new mutex();
+//
+//   }
+//
+//   bool bLocked = false;
+//
+//   try
+//   {
+//
+//      bLocked = m_pmutex->lock(duration);
+//
+//   }
+//   catch(...)
+//   {
+//
+//      bLocked = false;
+//
+//   }
+//
+//   if(!bLocked)
+//      return false;
+//
+//   return true;
+//
+//}
 
 
-bool object::is_locked() const
+//bool sync_object::unlock()
+//{
+//
+//   if(m_pmutex == NULL)
+//      return false;
+//
+//   bool bUnlocked = false;
+//
+//   try
+//   {
+//
+//      bUnlocked = m_pmutex->unlock();
+//
+//   }
+//   catch(...)
+//   {
+//
+//      bUnlocked = false;
+//
+//   }
+//
+//   if(!bUnlocked)
+//      return false;
+//
+//   return true;
+//
+//}
+
+//bool object::unlock(LONG lCount,LPLONG lpPrevCount)
+//{
+//   UNREFERENCED_PARAMETER(lCount);
+//   UNREFERENCED_PARAMETER(lpPrevCount);
+//   return true;
+//}
+
+
+bool sync_object::is_locked() const
 {
 
    // CRITICAL SECTIONS does *NOT* support is locked and timed locks
-   ASSERT(dynamic_cast < critical_section * > (const_cast < object * > (this)) == NULL);
+   ASSERT(dynamic_cast < critical_section * > (const_cast < sync_object * > (this)) == NULL);
 
-   single_lock sl(const_cast < object * > (this));
+   single_lock sl(const_cast < sync_object * > (this));
 
    bool bWasLocked = !sl.lock(duration::zero());
 

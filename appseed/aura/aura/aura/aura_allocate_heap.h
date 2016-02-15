@@ -15,17 +15,18 @@ BEGIN_EXTERN_C
    CLASS_DECL_AURA void * aligned_memory_alloc_dbg(size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine);
 
    CLASS_DECL_AURA void * memory_alloc_no_track(size_t size);
-   CLASS_DECL_AURA void * memory_alloc(size_t size);
    CLASS_DECL_AURA void * memory_calloc(size_t size, size_t bytes);
    CLASS_DECL_AURA void * memory_alloc_dbg(size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine);
-   CLASS_DECL_AURA void * memory_realloc(void * pvoid, size_t nSize);
    CLASS_DECL_AURA void * memory_realloc_dbg(void * pvoid, size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine);
-   CLASS_DECL_AURA void   memory_free(void * pvoid);
    CLASS_DECL_AURA void   memory_free_dbg(void * pvoid, int32_t iBlockType);
    CLASS_DECL_AURA size_t memory_size(void * p);
    CLASS_DECL_AURA size_t memory_size_dbg(void * p, int32_t iBlockType);
 
-
+#ifndef MCHECK
+   CLASS_DECL_AURA void * memory_alloc(size_t size);
+   CLASS_DECL_AURA void * memory_realloc(void * pvoid, size_t nSize);
+   CLASS_DECL_AURA void   memory_free(void * pvoid);
+#endif
 
 END_EXTERN_C
 
@@ -106,7 +107,7 @@ namespace heap
    public:
 
 
-#ifdef MEMDLEAK
+#if MEMDLEAK
       inline static void * alloc(size_t iSize, const char * pszFile, int iLine)
       {
 
@@ -129,7 +130,7 @@ namespace heap
       {
 
          //TODO("jai"); jas = Jonathan Blow
-         memory_free(p);
+         ::memory_free(p);
 
       }
 
@@ -212,7 +213,7 @@ namespace heap
          if(m_p != NULL)
          {
 
-            memory_free(m_p);
+            ::memory_free(m_p);
 
             m_p = NULL;
 

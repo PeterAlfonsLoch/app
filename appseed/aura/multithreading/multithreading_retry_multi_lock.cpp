@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-retry_multi_lock::retry_multi_lock(object_spa syncobjectptra, duration durationLock, duration durationSleep, int32_t iRetry, bool bInitialLock)
+retry_multi_lock::retry_multi_lock(spa(sync_object) syncobjectptra, duration durationLock, duration durationSleep, int32_t iRetry, bool bInitialLock)
 {
 
    if(syncobjectptra.get_count() <= 0)

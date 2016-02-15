@@ -34,6 +34,8 @@ namespace aura
 
       virtual bool close();
 
+      virtual void * get_os_data();
+
 
       virtual bool is_opened();
       virtual bool is_closed();
@@ -72,7 +74,7 @@ namespace aura
       virtual string get_app_id(const char * pszAppName);
       virtual string get_app_name(const char * pszAppId);
 
-   
+
    };
 
 

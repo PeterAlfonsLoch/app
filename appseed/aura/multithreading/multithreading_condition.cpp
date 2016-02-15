@@ -11,8 +11,10 @@
 
 
 condition::condition(::aura::application * papp) :
-   object(papp)
+object(papp),
+sync_object(NULL)
 {
+
 
    if(papp == NULL)
       throw invalid_argument_exception(get_thread_app());
@@ -27,9 +29,9 @@ condition::condition(::aura::application * papp) :
 #elif defined(ANDROID)
 
    pthread_mutex_init(&m_mutex,NULL);
-   
+
    pthread_cond_init(&m_cond,NULL);
-   
+
    m_iHold = 0;
 
    m_bSignaled = false;
@@ -124,7 +126,7 @@ bool condition::SetEvent()
 
 
    return true;
-   
+
 #else
 
    sembuf sb;
@@ -186,7 +188,7 @@ bool condition::pulse()
 
 
    return true;
-   
+
 
 #else
 
@@ -271,7 +273,7 @@ wait_result condition::wait (const duration & duration)
 
    while(!m_bSignaled)
    {
-      
+
       pthread_cond_wait(&m_cond, &m_mutex);
 
       if(get_tick_count() - start > duration.get_total_milliseconds())

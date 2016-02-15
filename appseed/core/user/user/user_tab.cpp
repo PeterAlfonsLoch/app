@@ -441,8 +441,8 @@ namespace user
       if(m_bNoTabs || !m_bShowTabs)
          return;
 
-      if(get_data()->is_locked())
-         return;
+//      if(get_data()->is_locked())
+//         return;
 
       if(GetTopLevel()->frame_is_transparent())
          return;

@@ -2,7 +2,7 @@
 
 
 void process_message(Display * pdisplay);
-void post_message(MESSAGE & msg);
+void send_message(MESSAGE & msg);
 
 UINT __axis_x11_thread(void * p)
 {
@@ -105,7 +105,7 @@ void process_message(Display * display)
       msg.lParam        = 0;
       msg.wParam        = 0;
 
-      post_message(msg);
+      send_message(msg);
 
    }
    else if(e.type == MapNotify)
@@ -247,7 +247,7 @@ void process_message(Display * display)
          msg.wParam        = 0;
          msg.lParam        = MAKELONG(e.xbutton.x_root, e.xbutton.y_root);
 
-         post_message(msg);
+         send_message(msg);
 
       }
 
@@ -285,7 +285,7 @@ void process_message(Display * display)
          msg.wParam        = e.xkey.keycode;
          msg.lParam        = MAKELONG(0, e.xkey.keycode);
 
-         post_message(msg);
+         send_message(msg);
 
       }
    }
@@ -297,7 +297,7 @@ void process_message(Display * display)
       msg.wParam        = 0;
       msg.lParam        = MAKELONG(e.xmotion.x_root, e.xmotion.y_root);
 
-      post_message(msg);
+      send_message(msg);
 
    }
    else if(e.type == DestroyNotify)
@@ -306,7 +306,7 @@ void process_message(Display * display)
       msg.hwnd          = oswindow_get(display, e.xdestroywindow.window);
       msg.message       = WM_DESTROY;
 
-      post_message(msg);
+      send_message(msg);
 
    }
 
@@ -320,7 +320,7 @@ void process_message(Display * display)
 
 
 
-void post_message(MESSAGE & msg)
+void send_message(MESSAGE & msg)
 {
 
    try

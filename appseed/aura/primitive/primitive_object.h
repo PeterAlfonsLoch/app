@@ -161,25 +161,25 @@ public:
    //virtual ~waitable();
 
 
-   virtual void * get_os_data() const;
+   //virtual void * get_os_data() const;
 
 
-   virtual void lock();
-   virtual bool lock(const duration & durationTimeout);
-   virtual bool unlock();
-   virtual bool unlock(LONG lCount,LPLONG lpPrevCount = NULL);
+   //virtual void lock();
+   //virtual bool lock(const duration & durationTimeout);
+   //virtual bool unlock();
+   //virtual bool unlock(LONG lCount,LPLONG lpPrevCount = NULL);
 
 
    ///  \brief		abstract function to initialize a waiting action without a timeout
-   virtual void wait();
+   //virtual void wait();
 
    ///  \brief		*no more as of 2012-05-12* abstract function to initialize a waiting action with a timeout
    ///  \param		duration time period to wait for item
    ///  \return	waiting action result as wait_result
-   virtual wait_result wait(const duration & duration);
+   //virtual wait_result wait(const duration & duration);
 
 
-   virtual bool is_locked() const;
+   //virtual bool is_locked() const;
 
 
    virtual string lstr(id id, const string & strDefault = (const string &) *((const string *) NULL ));

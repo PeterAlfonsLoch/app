@@ -6,11 +6,11 @@ class CLASS_DECL_AURA retry_multi_lock
 protected:
 
 
-   object_spa                   m_syncobjectptra;
+   spa(sync_object)              m_syncobjectptra;
 #ifdef WINDOWS
    raw_ptr_array < HANDLE >      m_objecta;
 #else
-   object_ptra        m_objecta;
+   array<sync_object *>        m_objecta;
 #endif
    bool_array                    m_baLocked;
    duration                      m_durationLock;
@@ -21,11 +21,11 @@ protected:
 public:
 
 
-   retry_multi_lock(object_spa syncobjectptra, duration durationLock, duration durationSleep, int32_t iRetry = -1, bool bInitialLock = true);
+   retry_multi_lock(spa(sync_object) syncobjectptra, duration durationLock, duration durationSleep, int32_t iRetry = -1, bool bInitialLock = true);
    ~retry_multi_lock();
 
 
-   void construct(const object_spa & syncobjectptra, duration durationLock, duration durationSleep, int32_t iRetry = -1, bool bInitialLock = true);
+   void construct(const spa(sync_object) & syncobjectptra, duration durationLock, duration durationSleep, int32_t iRetry = -1, bool bInitialLock = true);
 
    wait_result lock(bool bWaitForAll = TRUE, uint32_t dwWakeMask = 0);
    bool unlock();

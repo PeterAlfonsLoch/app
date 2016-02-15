@@ -64,7 +64,7 @@ namespace html
             }
 
          }
-         
+
          if(!IsWindow() && pdata->m_bEdit)
          {
 
@@ -273,15 +273,15 @@ namespace html
          {
 
             ::draw2d::graphics * pdc = pdata->m_pdc;
-            
+
             if (pdc == NULL)
                return;
-            
+
             if (pdata->m_layoutstate1.m_cy <= 0)
             {
-               
+
                pdc->SelectObject(pdata->get_font(m_pelemental)->m_font);
-               
+
                m_box.set_cx(0);
 
                class ::size size = pdc->GetTextExtent(unitext("MAÚqg"));
@@ -293,7 +293,7 @@ namespace html
                m_box.set_cy((float)size.cy);
 
             }
-            
+
             m_box.set_cy((float)pdata->m_layoutstate1.m_cy);
 
             return;
@@ -418,7 +418,7 @@ namespace html
                }
                else
                {
-                  
+
                   m_straLines.add(strLine);
 
                   strLine.Empty();
@@ -437,7 +437,7 @@ namespace html
 
          if (strLine.get_length() > 0)
          {
-         
+
             sizeText = pdc->GetTextExtent(strLine);
 
             m_straLines.add(strLine);
@@ -445,7 +445,7 @@ namespace html
             m_sizea.add(size(sizeText));
 
          }
-         
+
          if (pdata->m_bEdit && m_straLines.get_size() == 0)
          {
 
@@ -523,15 +523,15 @@ namespace html
       void text::_001OnDraw(data * pdata)
       {
 
-         if(pdata->is_locked())
-         {
+//         if(pdata->is_locked())
+//         {
+//
+//            // I am gonna blink and fail away (deleting?) // isn't new html page ready so you just call new drawing
+//            return;
+//         }
 
-            // I am gonna blink and fail away (deleting?) // isn't new html page ready so you just call new drawing
-            return;
-         }
-      
          COLORREF crBkSel = RGB(120, 240, 150);
-         
+
          COLORREF crSel = RGB(10, 30, 20);
 
          e_tag etag = m_pelemental->m_etag;
@@ -543,7 +543,7 @@ namespace html
 
             if(!pdata->m_bDrawFirstBody)
             {
-               
+
                pdata->m_bDrawFirstBody = true;
 
                pdata->m_pform->GetClientRect(rect);
@@ -926,7 +926,7 @@ namespace html
       {
 
           ::html::impl::elemental::OnMouseMove(pobj);
-         
+
          if (m_pelemental->m_pdata->m_bEdit)
          {
 

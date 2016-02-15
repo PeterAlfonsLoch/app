@@ -43,9 +43,12 @@ void html_form::_001OnDraw(::draw2d::graphics * pdc)
    {
    }
 
-   if(sphtmldata.is_set() && !sphtmldata->is_locked())
+
+   if(sphtmldata.is_set())
    {
+
       sphtmldata->_001OnDraw(pdc);
+
    }
 
 
@@ -208,10 +211,10 @@ void html_form::_001OnLButtonDown(signal_details * pobj)
    pmouse->m_bRet = true;
    pmouse->set_lresult(1);
 }
-   
+
 void html_form::_001OnMouseMove(signal_details * pobj)
 {
-   
+
    SCAST_PTR(::message::mouse, pmouse, pobj);
 
    track_mouse_hover();

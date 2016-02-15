@@ -70,7 +70,7 @@ public:
       wstring_data * pdata = (wstring_data *) (((byte *) pwsz) - sizeof(count) - sizeof(count));
       if(pdata->m_iAllocation <= 0)
          return;
-      memory_free(pdata);
+      ::memory_free(pdata);
 
    }
 

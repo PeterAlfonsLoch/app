@@ -9,6 +9,9 @@ namespace html
       ::object(papp),
       m_spdib(allocer())
    {
+
+      m_pmutex = new mutex(papp);
+
    }
 
    bool data::image::load_image()
@@ -82,7 +85,7 @@ namespace html
 
    int32_t data::create_font(elemental * pelemental)
    {
-      
+
       string strSubClass;
 
       class font font;
@@ -142,7 +145,7 @@ namespace html
 
    void data::delete_contents()
    {
-      
+
       synch_lock lock(m_pmutex);
 
       destroy();
@@ -270,13 +273,15 @@ namespace html
 
    void data::_001OnDraw(::draw2d::graphics * pdc)
    {
-      
+
       if(m_bImplement || m_bLayout)
          return;
-      
-      if(is_locked())
-         return;
-      
+
+      synch_lock sl(m_pmutex);
+
+//      if(is_locked())
+  //       return;
+
       m_pdc = pdc;
 
       //if(m_strPathName.find_ci("alarms_index") >= 0)
@@ -422,7 +427,7 @@ namespace html
 
    bool data::load_image(image * pimage)
    {
-      synch_lock lockImage(pimage);
+      synch_lock lockImage(pimage->m_pmutex);
       bool bRet = false;
       try
       {
@@ -435,29 +440,29 @@ namespace html
       return bRet;
    }
 
-   
+
    void data::on_image_loaded(image * pimage)
    {
-      
+
       UNREFERENCED_PARAMETER(pimage);
-      
+
       if(m_pui != NULL)
       {
-         
+
          m_pui->post_message(message_on_image_loaded);
-         
+
       }
-      
+
    }
-   
+
 
    bool data::contains(sp(::user::interaction) pui)
    {
-      
+
       return m_uiptra.contains(pui);
-      
+
    }
-   
+
 
    bool data::on_create_interaction(sp(::user::interaction) pui)
    {
@@ -499,7 +504,7 @@ namespace html
    {
 
       int32_t iRetry = 0;
-      
+
       synch_lock lock(m_pmutex);
 
 restart:

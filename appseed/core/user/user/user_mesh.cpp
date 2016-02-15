@@ -205,13 +205,13 @@ namespace user
       }
 
 
-      if(m_pmeshdata != NULL)
-      {
-         if(m_pmeshdata->is_locked())
-         {
-            return;
-         }
-      }
+//      if(m_pmeshdata != NULL)
+//      {
+//         if(m_pmeshdata->is_locked())
+//         {
+//            return;
+//         }
+//      }
 
 
 

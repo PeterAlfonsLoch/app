@@ -3,7 +3,7 @@
 /////////////////////////////////////////////////////////////////////////////
 // single_lock
 
-single_lock::single_lock(object * psyncobject, bool bInitialLock)
+single_lock::single_lock(sync_object * psyncobject, bool bInitialLock)
 {
 
    /*

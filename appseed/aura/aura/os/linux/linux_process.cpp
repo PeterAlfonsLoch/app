@@ -195,9 +195,9 @@ retry:
       iTry = 0;
 
    }
-
+#if MEMDLEAK
    mem.m_strTag = "memory://function=module_path_from_pid";
-
+#endif
    mem.allocate(iSize);
 
    s = readlink (str, mem.get_data(), iSize);

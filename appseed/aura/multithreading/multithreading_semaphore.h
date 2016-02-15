@@ -23,12 +23,12 @@ public:
    semaphore(::aura::application * papp, LONG lInitialCount = 1, LONG lMaxCount = 1, const char * pstrName=NULL, LPSECURITY_ATTRIBUTES lpsaAttributes = NULL);
    virtual ~semaphore();
 
-   
+
 #if defined(APPLEOS) || defined(LINUX) || defined(ANDROID) || defined(SOLARIS)
-   using object::lock;
+//   using object::lock;
    virtual bool lock(const duration & durationTimeout);
 #endif
-   
+
    virtual bool unlock();
    virtual bool unlock(LONG lCount, LPLONG lprevCount = NULL);
 

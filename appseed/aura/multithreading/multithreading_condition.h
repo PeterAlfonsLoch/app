@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_AURA condition :
-   virtual public object
+   public sync_object
 {
 public:
 
@@ -32,10 +32,9 @@ public:
    virtual ~condition();
 
 
-   using object::lock;
+   using sync_object::lock;
    virtual bool lock(const duration & durationTimeout = duration::infinite());
 
-   using object::unlock;
    virtual bool unlock();
 
    virtual void * get_os_data() const;

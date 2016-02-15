@@ -171,9 +171,9 @@ namespace simple_ui
 
 
       layout();
-      
+
       SetWindowPos(ZORDER_TOP,rectFontopus,SWP_SHOWWINDOW);
-      
+
       SetForegroundWindow();
 
       BringWindowToTop();
@@ -483,8 +483,10 @@ int32_t simple_ui_message_box(oswindow interaction_impl,const char * lpText,cons
          __begin_thread(::get_thread_app(),&thread_proc_simple_ui_message_box,pmessagebox);
          //pmessagebox->show();
 
-         while(!pmessagebox->m_evReady.wait(millis(84)).signaled())
+         while(!pmessagebox->m_evReady.wait(millis(23)).signaled())
          {
+
+            ::get_thread_app()->defer_pump_message();
 
          }
 

@@ -45,10 +45,11 @@ namespace html
 
       void image::layout_phase1(data * pdata)
       {
+
          if (m_pelemental->m_pbase->get_type() == ::html::base::type_tag)
          {
 
-            single_lock lockImage(pdata->m_imagea[m_iImage]);
+            single_lock lockImage(pdata->m_imagea[m_iImage]->m_pmutex);
 
             if (lockImage.lock(duration::zero()))
             {
@@ -62,6 +63,7 @@ namespace html
          }
 
       }
+
 
       void image::layout_phase3(data * pdata)
       {
