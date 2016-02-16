@@ -207,6 +207,7 @@ namespace visual
 
 
       fastblur(const ::aura::allocatorsp & allocer);
+      ~fastblur();
 
 
       bool initialize(int32_t cx, int32_t cy, int32_t iRadius);

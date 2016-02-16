@@ -13,7 +13,7 @@ void term_draw2d_direct2_mutex();
 void aura_auto_debug_teste();
 void teste_aura_cmp();
 
-extern mutex * s_pmutexMessageDispatch = NULL;
+extern mutex * s_pmutexMessageDispatch;
 
 namespace str
 {

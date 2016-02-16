@@ -13,7 +13,7 @@ namespace data
 
       m_bFill = false;
       
-      m_proot = new tree_item;
+      m_proot = canew(tree_item);
 
       if(m_proot == NULL)
          throw memory_exception(get_app());

@@ -277,28 +277,6 @@ namespace userex
       if(!::aura::departament::initialize2())
          return false;
 
-//      m_ptemplateForm = new ::user::multiple_document_template(
-//         get_app(),
-//         "system/form",
-//         System.type_info < ::user::document >(),
-//         System.type_info < form_frame >(),
-//         System.type_info < ::user::form >());
-//
-//      m_ptemplateChildForm = new ::user::multiple_document_template(
-//         get_app(),
-//         "system/form",
-//         System.type_info < ::user::document >(),
-//         System.type_info < form_child_frame >(),
-//         System.type_info < ::user::form >());
-//
-//      m_ptemplatePlaceHolder = new ::user::multiple_document_template(
-//         get_app(),
-//         "system/form",
-//         System.type_info < ::user::document >(),
-//         System.type_info < simple_frame_window >(),
-//         System.type_info < ::user::place_holder >());
-
-
       return true;
 
 
@@ -315,29 +293,9 @@ namespace userex
       {
       }
 
-      try
-      {
-         if(m_pufeschema != NULL)
-         {
-            delete m_pufeschema;
-            m_pufeschema = NULL;
-         }
-      }
-      catch(...)
-      {
-      }
+      ::aura::del(m_pufeschema);
 
-      try
-      {
-         if(m_pufe != NULL)
-         {
-            delete m_pufe;
-            m_pufe = NULL;
-         }
-      }
-      catch(...)
-      {
-      }
+      ::aura::del(m_pufe);
 
       try
       {

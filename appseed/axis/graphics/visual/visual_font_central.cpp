@@ -93,7 +93,8 @@ void font_central::Finalize()
    ::aura::del(m_pfontLyric);
    ::aura::del(m_pfontLyricCompact);
 
-   
+   ::aura::del(m_pxffontMidiTrackName);
+
    for(auto & p : *m_pTitleFonts)
    {
 

@@ -58,7 +58,7 @@ namespace base
 
 #endif
 
-      ::user::schema *                             m_pschemaLayeredFrame;
+      sp(::user::schema)                           m_pschemaLayeredFrame;
 
 
       ::user::window_draw *                        m_ptwf;

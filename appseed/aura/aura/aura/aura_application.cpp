@@ -164,6 +164,7 @@ namespace aura
          delete m_pinitmaindata;
 
       }
+
    }
 
 
@@ -2235,6 +2236,24 @@ namespace aura
             }
 
          }
+
+         for (auto & p : m_stringtable)
+         {
+
+            delete p.m_element2;
+
+         }
+
+         m_stringtable.remove_all();
+
+         for (auto & p : m_stringtableStd)
+         {
+
+            delete p.m_element2;
+
+         }
+
+         m_stringtableStd.remove_all();
 
          try
          {

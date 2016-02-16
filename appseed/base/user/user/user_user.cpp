@@ -38,7 +38,7 @@ namespace user
 
       if(m_pauraapp->is_session())
       {
-         m_pwindowmap = new class ::user::window_map(get_app());
+         m_pwindowmap = canew(class ::user::window_map(get_app()));
       }
       else
       {

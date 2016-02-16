@@ -9,7 +9,7 @@ namespace filehandler
       object(papp)
    {
 
-      m_sptree = new tree_interface(papp);
+      m_sptree = canew(tree_interface(papp));
 
    }
 
@@ -116,7 +116,7 @@ namespace filehandler
          if(!bCreate)
             return NULL;
 
-         pitem = m_sptree->insert_item(new item, ::data::RelativeLastChild, m_sptree->get_base_item());
+         pitem = m_sptree->insert_item(canew(item), ::data::RelativeLastChild, m_sptree->get_base_item());
 
          pitem->m_pitem.cast < item > ()->m_etopictype      = item::topic_type_root;
 
@@ -135,7 +135,7 @@ namespace filehandler
          if(!bCreate)
             return NULL;
 
-         pitem = m_sptree->insert_item(new item, ::data::RelativeLastChild, m_sptree->get_base_item());
+         pitem = m_sptree->insert_item(canew(item), ::data::RelativeLastChild, m_sptree->get_base_item());
 
          dynamic_cast < item * > (pitem->m_pitem.m_p)->m_etopictype      = item::topic_type_extension;
          dynamic_cast < item * > (pitem->m_pitem.m_p)->m_strTopic        = pszExtension;
@@ -233,9 +233,9 @@ namespace filehandler
          if(iLevel < 0)
             break;
          if(iLevel == iPreviousLevel)
-            pitem = m_sptree->insert_item(new item, ::data::RelativeLastSibling, pitem);
+            pitem = m_sptree->insert_item(canew(item), ::data::RelativeLastSibling, pitem);
          else if(iLevel > iPreviousLevel)
-            pitem = m_sptree->insert_item(new item, ::data::RelativeFirstChild, pitem);
+            pitem = m_sptree->insert_item(canew(item), ::data::RelativeFirstChild, pitem);
          else
          {
             while(iLevel < iPreviousLevel)
@@ -243,7 +243,7 @@ namespace filehandler
                pitem = pitem->m_pparent;
                iPreviousLevel--;
             }
-            pitem = m_sptree->insert_item(new item, ::data::RelativeLastSibling, pitem);
+            pitem = m_sptree->insert_item(canew(item), ::data::RelativeLastSibling, pitem);
          }
 
          istream >> (int32_t &) dynamic_cast < item * > (pitem->m_pitem.m_p)->m_etopictype;

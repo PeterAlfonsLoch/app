@@ -129,28 +129,55 @@ namespace visual
 {
 
 
-   fastblur::fastblur(const ::aura::allocatorsp & allocer):
+   fastblur::fastblur(const ::aura::allocatorsp & allocer) :
       dib_sp(allocer)
    {
 
-      m_iRadius   = 0;
-      m_size.cx   = 0;
-      m_size.cy   = 0;
+      m_iRadius = 0;
+      m_size.cx = 0;
+      m_size.cy = 0;
 
 #if OSBIT == 32
 
 #ifdef WIN32
-      vxmin       = NULL;
-      vymin       = NULL;
+      vxmin = NULL;
+      vymin = NULL;
 
-      m_stack     = NULL;
-      tsurface    = NULL;
-      timage      = NULL;
-
-#endif
+      m_stack = NULL;
+      tsurface = NULL;
+      timage = NULL;
 
 #endif
 
+#endif
+
+   }
+
+
+   fastblur::~fastblur()
+   {
+
+#ifdef _WIN32
+#if OSBIT == 32
+
+      if (m_stack != NULL)
+      {
+         delete[] m_stack;
+         m_stack = NULL;
+      }
+      if (tsurface != NULL)
+      {
+         delete[] tsurface;
+         tsurface = NULL;
+      }
+      if (timage != NULL)
+      {
+         delete[] timage;
+         timage = NULL;
+      }
+
+#endif
+#endif
    }
 
 

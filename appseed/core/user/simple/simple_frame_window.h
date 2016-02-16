@@ -61,7 +61,7 @@ public:
       int32_t run();
 
       // very loose defer - "I know what you are doing and how you are performing, I have confidence on you!!"
-      // but this new implementation which does not respond promptly on set event cat daemons relying on manual_reset_event consuming resources
+      // but this _new implementation which does not respond promptly on set event cat daemons relying on manual_reset_event consuming resources
       // can loose a save event if move window and suddenly fastly switch to keyboard and press ALT+F4 or fastly target close button and press it...
       // the real looser: the tester that will be happy that unplugging a computer without UPS is good, or maybe short circuit his astounding untouchable thing...
       // (many times a year, oh God, or at least, Satan the God of earth, this astounding or in someones mind, outstanding planet, thank you for your spiritual ministers: we should learn something with this phase here meating in these bodies surrounded by astounding subproducts...)

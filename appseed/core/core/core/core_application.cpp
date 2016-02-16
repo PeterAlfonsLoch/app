@@ -224,6 +224,8 @@ namespace core
       if(m_puserfs == NULL)
          return false;
 
+      m_spobjectUserFs = m_puserfs;
+
       m_puserfs->construct(this);
 
 
@@ -502,6 +504,19 @@ namespace core
 
       }
 
+      try
+      {
+
+         m_spobjectUserFs.release();
+
+      }
+      catch (...)
+      {
+
+
+      }
+
+      m_puserfs = NULL;
 
       try
       {
@@ -2038,235 +2053,6 @@ namespace core
 
 
 
-   /*bool application::ProcessShellCommand(CCommandLineInfo& rCmdInfo)
-   {
-   bool bResult = TRUE;
-   switch (rCmdInfo.m_nShellCommand)
-   {
-   case CCommandLineInfo::FileNew:
-   if (!System._001SendCommand("file::new"))
-   _001OnFileNew();
-   if (m_puiMain == NULL)
-   bResult = FALSE;
-   break;
-
-   // If we've been asked to open a file, call open_document_file()
-
-   case CCommandLineInfo::FileOpen:
-   if (!open_document_file(rCmdInfo.m_strFileName))
-   bResult = FALSE;
-   break;
-
-   // If the ::fontopus::user wanted to print, hide our main window and
-   // fire a message to ourselves to start the printing
-
-   case CCommandLineInfo::FilePrintTo:
-   case CCommandLineInfo::FilePrint:
-   m_nCmdShow = SW_HIDE;
-   ASSERT(m_pCmdInfo == NULL);
-   if(open_document_file(rCmdInfo.m_strFileName))
-   {
-   m_pCmdInfo = &rCmdInfo;
-   ENSURE_VALID(m_puiMain);
-   m_puiMain->SendMessage(WM_COMMAND, ID_FILE_PRINT_DIRECT);
-   m_pCmdInfo = NULL;
-   }
-   bResult = FALSE;
-   break;
-
-   // If we're doing DDE, hide ourselves
-
-   case CCommandLineInfo::FileDDE:
-   m_pCmdInfo = (CCommandLineInfo*)(uint_ptr)m_nCmdShow;
-   m_nCmdShow = SW_HIDE;
-   break;
-
-   // If we've been asked to register, exit without showing UI.
-   // Registration was already done in initialize_instance().
-   case CCommandLineInfo::AppRegister:
-   {
-   Register();
-   bResult = FALSE;    // that's all we do
-
-   // If nobody is using it already, we can use it.
-   // We'll flag that we're unregistering and not save our state
-   // on the way out. This new object gets deleted by the
-   // cast object destructor.
-
-   if (m_pCmdInfo == NULL)
-   {
-   m_pCmdInfo = new CCommandLineInfo;
-   m_pCmdInfo->m_nShellCommand = CCommandLineInfo::AppUnregister;
-   }
-   break;
-   }
-
-   // If we've been asked to unregister, unregister and then terminate
-   case CCommandLineInfo::AppUnregister:
-   {
-   bool bUnregistered = Unregister();
-
-   // if you specify /EMBEDDED, we won't make an success/failure box
-   // this use of /EMBEDDED is not related to OLE
-
-   if (!rCmdInfo.m_bRunEmbedded)
-   {
-   /* linux
-   if (bUnregistered)
-   System.simple_message_box(__IDP_UNREG_DONE);
-   else
-   System.simple_message_box(__IDP_UNREG_FAILURE);
-   */
-
-   /*if (bUnregistered)
-   System.simple_message_box("System unregistered");
-   else
-   System.simple_message_box("Failed to unregister application");
-
-   }
-   bResult = FALSE;    // that's all we do
-
-   // If nobody is using it already, we can use it.
-   // We'll flag that we're unregistering and not save our state
-   // on the way out. This new object gets deleted by the
-   // cast object destructor.
-
-   if (m_pCmdInfo == NULL)
-   {
-   m_pCmdInfo = new CCommandLineInfo;
-   m_pCmdInfo->m_nShellCommand = CCommandLineInfo::AppUnregister;
-   }
-   }
-   break;
-   }
-   return bResult;
-   }*/
-
-   /*   void application::InitLibId()
-   {
-   }
-
-   bool application::Register()
-   {
-   return TRUE;
-   }
-
-   bool application::Unregister()
-   {
-   HKEY    hKey = 0;
-   char   szBuf[_MAX_PATH+1];
-   LONG    cSize = 0;
-   bool    bRet = TRUE;
-
-   /*xxx POSITION pos = get_template_count();
-   while (pos != NULL)
-   {
-   sp(impact_system) pTempl = get_template(pos);
-   if (pTempl != NULL)
-   pTempl->on_simple_action(0, CN_OLE_UNREGISTER, NULL, NULL);
-   }*/
-
-   // remove profile information -- the registry entries exist if
-   // SetRegistryKey() was used.
-
-   /*    if (m_pszRegistryKey)
-   {
-   ENSURE(m_pszProfileName != NULL);
-
-   string strKey = "Software\\";
-   strKey += m_pszRegistryKey;
-   string strSubKey = strKey + "\\" + m_pszProfileName;
-
-   DelRegTree(HKEY_CURRENT_USER, strSubKey);
-
-   // If registry key is is_empty then remove it
-
-   uint32_t   dwResult;
-   if ((dwResult = ::RegOpenKey(HKEY_CURRENT_USER, strKey, &hKey)) ==
-   ERROR_SUCCESS)
-   {
-   if (::RegEnumKey(hKey, 0, szBuf, _MAX_PATH) == ERROR_NO_MORE_ITEMS)
-   DelRegTree(HKEY_CURRENT_USER, strKey);
-   ::RegCloseKey(hKey);
-   }
-   if (RegQueryValue(HKEY_CURRENT_USER, strSubKey, szBuf, &cSize) == ERROR_SUCCESS)
-   bRet = TRUE;
-   }
-   return bRet;
-   }*/
-
-   //   LONG delete_registry_tree_helper(HKEY hParentKey, const string & strKeyName);
-
-   // Under Win32, a reg key may not be deleted unless it is is_empty.
-   // Thus, to delete a tree,  one must recursively enumerate and
-   // delete all of the sub-keys.
-
-   /*LONG application::DelRegTree(HKEY hParentKey, const string & strKeyName)
-   {
-   return delete_registry_tree_helper(hParentKey, strKeyName);
-   }
-
-   LONG delete_registry_tree_helper(HKEY hParentKey, const string & strKeyName)
-   {
-   char   szSubKeyName[MAX_PATH + 1];
-   HKEY    hCurrentKey;
-   uint32_t   dwResult;
-
-   if ((dwResult = RegOpenKey(hParentKey, strKeyName, &hCurrentKey)) ==
-   ERROR_SUCCESS)
-   {
-   // remove all subkeys of the key to delete
-   while ((dwResult = RegEnumKey(hCurrentKey, 0, szSubKeyName, MAX_PATH)) ==
-   ERROR_SUCCESS)
-   {
-   try
-   {
-   // temp string constructed from szSubKeyName can throw in Low Memory condition.
-   if ((dwResult = delete_registry_tree_helper(hCurrentKey, szSubKeyName)) != ERROR_SUCCESS)
-   break;
-   }
-   catch(memory_exception* e)
-   {
-   dwResult = ERROR_NOT_ENOUGH_MEMORY;
-   e->Delete();
-   break;
-   }
-   }
-
-   // If all went well, we should now be able to delete the requested key
-   if ((dwResult == ERROR_NO_MORE_ITEMS) || (dwResult == ERROR_BADKEY))
-   {
-   dwResult = RegDeleteKey(hParentKey, strKeyName);
-   }
-   RegCloseKey(hCurrentKey);
-   }
-
-   return dwResult;
-   }*/
-
-   //void application::EnableShellOpen()
-   //{
-   /*   ASSERT(m_atomApp == NULL && m_atomSystemTopic == NULL); // do once
-   if (m_atomApp != NULL || m_atomSystemTopic != NULL)
-   {
-   return;
-   }
-
-   // Win95 & Win98 sends a WM_DDE_INITIATE with an atom that points to the
-   // int16_t file name so we need to use the int16_t file name.
-   string strShortName;
-   __get_module_short_file_name(System.m_hInstance, strShortName);
-
-   // strip out path
-   string strFileName = ::PathFindFileName(strShortName);
-   // strip out extension
-   LPTSTR pszFileName = strFileName.GetBuffer();
-   ::PathRemoveExtension(pszFileName);
-   strFileName.ReleaseBuffer();
-
-   m_atomApp = ::GlobalAddAtom(strFileName);
-   m_atomSystemTopic = ::GlobalAddAtom("system");*/
-   //}
 
    void application::RegisterShellFileTypes(bool bCompat)
    {
@@ -3226,72 +3012,6 @@ namespace core
 
 
 
-   //bool application::start_application(bool bSynch,application_bias * pbias)
-   //{
-   //   /*      try
-   //   {
-   //   if(pbias != NULL)
-   //   {
-   //   papp->m_pcoreapp->m_puiInitialPlaceHolderContainer = pbias->m_puiParent;
-   //   }
-   //   }
-   //   catch(...)
-   //   {
-   //   }*/
-   //   try
-   //   {
-   //      if(pbias != NULL)
-   //      {
-   //         if(pbias->m_pcallback != NULL)
-   //         {
-   //            pbias->m_pcallback->connect_to(this);
-   //         }
-   //      }
-   //   }
-   //   catch(...)
-   //   {
-   //   }
-
-   //   manual_reset_event * peventReady = NULL;
-
-   //   if(bSynch)
-   //   {
-   //      peventReady = new manual_reset_event(get_app());
-   //      m_peventReady = peventReady;
-   //      peventReady->ResetEvent();
-   //   }
-
-   //   m_pthreadimpl.alloc(allocer());
-
-   //   m_pthreadimpl->m_pthread = this;
-
-   //   if(pbias != NULL)
-   //   {
-
-   //      m_biasCalling = *pbias;
-
-   //   }
-
-   //   if(bSynch)
-   //   {
-
-   //      if(!begin_synch(&m_iReturnCode))
-   //         return false;
-
-   //   }
-   //   else
-   //   {
-
-   //      begin();
-
-   //   }
-
-
-   //   return true;
-
-   //}
-
-
 
 
    void application::on_application_signal(signal_details * pobj)
@@ -4168,10 +3888,10 @@ BOOL LaunchAppIntoDifferentSession(const char * pszProcess,const char * pszComma
       NULL,               // pointer to thread SECURITY_ATTRIBUTES
       FALSE,              // handles are not inheritable
       dwCreationFlags,     // creation flags
-      pEnv,               // pointer to new environment block
+      pEnv,               // pointer to _new environment block
       pszDir,               // name of current directory
       psi,               // pointer to STARTUPINFO structure
-      ppi                // receives information about new process
+      ppi                // receives information about _new process
       );
    // End impersonation of client.
 
@@ -4333,10 +4053,10 @@ BOOL LaunchAppIntoSystemAcc(const char * pszProcess,const char * pszCommand,cons
       NULL,               // pointer to thread SECURITY_ATTRIBUTES
       FALSE,              // handles are not inheritable
       dwCreationFlags,     // creation flags
-      pEnv,               // pointer to new environment block
+      pEnv,               // pointer to _new environment block
       pszDir,               // name of current directory
       psi,               // pointer to STARTUPINFO structure
-      ppi                // receives information about new process
+      ppi                // receives information about _new process
       );
    // End impersonation of client.
 

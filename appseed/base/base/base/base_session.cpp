@@ -2150,7 +2150,7 @@ defer_check_wndfrm_core:
       if(strLibrary == "wndfrm_core")
       {
 
-         pschema = new ::user::schema_simple_impl(get_app());
+         pschema = canew(::user::schema_simple_impl(get_app()));
 
          goto finish;
 

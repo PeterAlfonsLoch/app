@@ -15,8 +15,8 @@ namespace base
    public:
 
 
-      ::user::user *                m_puser;
-      ::user::schema *              m_pschemasimple;
+      sp(::user::user)              m_puser;
+      sp(::user::schema)            m_pschemasimple;
 
 
       session(::aura::application * papp);

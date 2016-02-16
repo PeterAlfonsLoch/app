@@ -1551,7 +1551,12 @@ namespace user
 
       }
 
-      m_pmutex = canew(::mutex(get_app()));
+      if (m_pmutex == NULL)
+      {
+
+         m_pmutex = new ::mutex(get_app());
+
+      }
 
       m_uiptraChild.m_pmutex = m_pmutex;
 

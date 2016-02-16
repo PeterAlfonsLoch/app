@@ -17,6 +17,8 @@ namespace core
 
       ::userex::pane_tab_view *              m_pmainpane;
 
+      sp(::object)                           m_spobjectUserFs;
+
       ::userfs::userfs *                     m_puserfs;
 
       class signal                           m_signalAppLanguageChange;

@@ -46,7 +46,7 @@ namespace user
 
 #endif
 
-         ::aura::library * plibrary = new ::aura::library(get_app(),0,NULL);
+         ::aura::library * plibrary = canew(::aura::library(get_app(),0,NULL));
 
          ::aura::library & library = *plibrary;
 

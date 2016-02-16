@@ -502,7 +502,25 @@ void * library::get_os_data()
       if(get_ca2_library() == NULL)
          return NULL;
 
-      return get_ca2_library()->create_object(papp, pszClassId, p);
+      sp(::object) pobject = get_ca2_library()->create_object(papp, pszClassId, p);
+
+      if (pobject.is_null())
+      {
+
+         return NULL;
+
+      }
+
+      while (pobject->m_countReference > 1)
+      {
+
+         pobject->m_countReference--;
+
+      }
+
+      pobject->m_ulFlags |= ::object::flag_heap_alloc;
+
+      return pobject;
 
    }
 

@@ -127,7 +127,7 @@ namespace base
 //      draw2d_factory_exchange();
 
 
-      m_pschemaLayeredFrame = new ::user::schema_layered_frame(this);
+      m_pschemaLayeredFrame = canew(::user::schema_layered_frame(this));
 
       #ifdef WINDOWSEX
 
@@ -307,6 +307,8 @@ namespace base
 //
    int32_t system::exit_instance()
    {
+
+      m_pschemaLayeredFrame.release();
 
       axis::system::exit_instance();
 

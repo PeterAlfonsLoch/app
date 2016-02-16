@@ -272,19 +272,6 @@ namespace user
             m_pworkset->get_draw_window()->GetWindowRect(rectWindow);
             m_ptWindowOrigin = rectWindow.top_left();
             GetEventWindow()->SetCapture();
-//#ifdef WINDOWSEX
-//            g_pmovemanager = this;
-//            g_plh = new ll_handler(get_app());
-//            g_plh->m_bRun = true;
-//            __begin_thread(get_app(),&ll_proc,NULL);
-//            g_hhook = SetWindowsHookEx(
-//               WH_MOUSE_LL,
-//               (HOOKPROC)move_LowLevelMouseProc,
-//               ::GetModuleHandle("core.dll"),
-//               0
-//               );
-//            ::GetCursorPos(g_pmovemanager->GetMoveWindow()->m_ptMoveCursor);
-//#endif
             GetEventWindow()->m_bMoving = true;
             m_bMoving = true;
             pmouse->m_bRet = true;

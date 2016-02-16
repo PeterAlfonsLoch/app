@@ -370,7 +370,7 @@ void html_form::_001SetText(const string & str, ::action::context actioncontext)
 
    sp(::html::data) sphtmldata;
 
-   sphtmldata = new ::html::data(get_app());
+   sphtmldata = canew(::html::data(get_app()));
 
    sphtmldata->m_pform = this;
 

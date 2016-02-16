@@ -34,20 +34,6 @@
 
 #undef new
 
-//#ifdef APPLEOS
-//
-//void * __cdecl operator new(size_t nSize) new_throw_spec;
-//
-//#else
-//
-//inline void * __cdecl operator new(size_t nSize) new_throw_spec
-//{
-//
-//    return memory_alloc(nSize);
-//
-//}
-//
-//#endif
 
 
 

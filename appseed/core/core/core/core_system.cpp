@@ -59,20 +59,6 @@ namespace core
 
 
 
-         /*
-         if(psystemParent == NULL)
-         {
-
-         m_peengine                                = new ::exception::engine(this);
-
-         }
-         else
-         {
-
-         m_peengine                                = psystemParent->m_peengine;
-
-         }
-         */
 
 
 
@@ -256,7 +242,7 @@ namespace core
 
 
 
-      m_spfilehandler = new ::filehandler::handler(this);
+      m_spfilehandler = canew(::filehandler::handler(this));
 
 
 
@@ -341,7 +327,7 @@ namespace core
 
       if(m_phistory == NULL)
       {
-         m_phistory = new os_history(this);
+         m_phistory = canew(os_history(this));
       }
 
       return true;
@@ -369,7 +355,7 @@ namespace core
       if(!::core::application::initialize_instance())
          return false;
 
-      m_pbergedgemap = new ::core::session::map;
+      m_pbergedgemap = canew(::core::session::map);
 
 
       if(!Session.on_initial_update())
@@ -900,14 +886,6 @@ namespace core
          Session.set_schema(command()->m_varTopicQuery["schema"].stra()[0],::action::source::user());
       }
 
-      //if(command()->m_pthreadEvent->m_peventEvent == NULL)
-      //{
-
-      //   command()->m_pthreadEvent->m_peventEvent = new manual_reset_event(this);
-
-      //}
-
-//      command()->m_ev.SetEvent();
 
    }
 

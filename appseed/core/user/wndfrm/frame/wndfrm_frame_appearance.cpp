@@ -34,7 +34,7 @@ namespace user
 
          appearance::~appearance()
          {
-
+            ::aura::del(m_ptool001);
          }
 
          sp(::user::interaction) appearance::get_window()

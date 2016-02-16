@@ -14,8 +14,8 @@ namespace user
       {
       public:
 
-         ::aura::library *         m_plibrary;
-         property_set       m_set;
+         sp(::aura::library)  m_plibrary;
+         property_set         m_set;
 
 
          interaction(::aura::application * papp);
