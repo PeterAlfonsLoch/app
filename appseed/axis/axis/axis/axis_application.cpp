@@ -78,7 +78,7 @@ namespace axis
       m_bAxisInitializeInstanceResult  = false;
 
 
-
+      m_pdataserver = NULL;
 
 
 
@@ -1178,6 +1178,7 @@ namespace axis
 
    exit_application:
 
+
       try
       {
 
@@ -2253,7 +2254,7 @@ namespace axis
                   // during the thread destructor
                   // avoid thread object data auto deletion on thread termination,
                   // letting thread function terminate
-                  m_bAutoDelete = false;
+                  //m_bAutoDelete = false;
 
                   set_run(false);
 

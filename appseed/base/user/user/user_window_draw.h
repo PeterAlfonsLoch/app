@@ -29,7 +29,6 @@ namespace user
       event                m_eventFree;
       bool                 m_bRunning;
       bool                 m_bRender;
-      mutex                m_mutex;
 
 
       window_draw(::aura::application * papp);

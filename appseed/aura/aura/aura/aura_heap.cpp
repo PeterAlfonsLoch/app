@@ -17,18 +17,13 @@
 
 #endif
 
-#ifdef __VLD
-
-#include <crtdbg.h>
-
-#endif
-
 #ifdef LINUX
 
 #include <malloc.h>
 
 #endif
 
+#ifndef __VLD
 
 struct heap_memory
 {
@@ -165,6 +160,7 @@ c_class::~c_class()
 {
 }
 
+#endif
 
 plex_heap_alloc_array * g_pheap = NULL;
 
@@ -182,7 +178,7 @@ void * aligned_memory_alloc(size_t size)
 
 #ifdef __VLD
 
-   return _malloc_dbg(size, _NORMAL_BLOCK, NULL, 0);
+   return malloc(size);
 
 #elif defined(MCHECK)
 
@@ -237,7 +233,7 @@ void * unaligned_memory_alloc(size_t size)
 
 #ifdef __VLD
 
-   return _malloc_dbg(size, _NORMAL_BLOCK, NULL, 0);
+   return malloc(size);
 
 #elif defined(MCHECK)
 
@@ -274,7 +270,7 @@ void * aligned_memory_alloc_dbg(size_t size, int32_t nBlockUse, const char * szF
 
 #ifdef __VLD
 
-   return _malloc_dbg(size, _NORMAL_BLOCK, NULL, 0);
+   return malloc(size);
 
 #elif defined(MCHECK)
 
@@ -329,7 +325,7 @@ void * unaligned_memory_alloc_dbg(size_t size, int32_t nBlockUse, const char * s
 
 #ifdef __VLD
 
-   return _malloc_dbg(size, _NORMAL_BLOCK, NULL, 0);
+   return malloc(size);
 
 #elif defined(MCHECK)
 
@@ -370,7 +366,7 @@ void * unaligned_memory_alloc_dbg(size_t size, int32_t nBlockUse, const char * s
 
 BEGIN_EXTERN_C
 
-#ifndef MCHECK
+#if !defined(MCHECK) && !defined(__VLD)
 
 #undef memory_alloc
 
@@ -397,7 +393,7 @@ void * memory_alloc(size_t size)
 void * memory_alloc_no_track(size_t size)
 {
 
-#ifdef MCHECK
+#if defined(MCHECK) || defined(__VLD)
 
    return memory_alloc(size);
 
@@ -437,10 +433,8 @@ void * memory_alloc_dbg(size_t nSize, int32_t nBlockUse, const char * szFileName
 #endif
 
 }
-#ifndef MCHECK
 
-#ifndef __VLD
-
+#if !defined(MCHECK) && !defined(__VLD)
 
 void * memory_realloc(void * pmemory, size_t nSize)
 {
@@ -451,19 +445,20 @@ void * memory_realloc(void * pmemory, size_t nSize)
 #endif
 
 
-#endif
 
 
 END_EXTERN_C
 
 void * memory_realloc_dbg(void * pmemory, size_t size, int32_t nBlockUse, const char * szFileName, int32_t nLine)
 {
-#ifdef MCHECK
-   return memory_realloc(pmemory, size);
-#else
-#ifdef __VLD
 
-   return _realloc_dbg(pmemory, size, nBlockUse, szFileName, nLine);
+#if defined(__VLD)
+
+   return realloc(pmemory, size);
+
+#elif defined(MCHECK)
+
+   return memory_realloc(pmemory, size);
 
 #else
 
@@ -546,7 +541,7 @@ void * memory_realloc_dbg(void * pmemory, size_t size, int32_t nBlockUse, const 
    }
 
    return NULL;
-#endif
+
 #endif
 
 }
@@ -575,11 +570,11 @@ size_t memory_size(void * pmemory)
 
 void memory_free_dbg(void * pmemory, int32_t iBlockType)
 {
-#ifdef MCHECK
-   memory_free(pmemory);
-#elif defined(__VLD)
 
-   return _free_dbg(pmemory, iBlockType);
+#if defined(__VLD) || defined(MCHECK)
+   
+   memory_free(pmemory);
+
 
 #else
 

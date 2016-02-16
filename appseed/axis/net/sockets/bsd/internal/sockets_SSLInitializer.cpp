@@ -257,36 +257,49 @@ namespace sockets
 
 extern "C" void SSLInitializer_SSL_locking_function(int32_t mode, int32_t n, const char * file, int32_t line)
 {
-   UNREFERENCED_PARAMETER(file);
-   UNREFERENCED_PARAMETER(line);
 
+   UNREFERENCED_PARAMETER(file);
+
+   UNREFERENCED_PARAMETER(line);
 
    synch_lock sl(::sockets::g_pmutexMap);
 
    mutex * pmutex = NULL;
+
    if (::sockets::g_pmapMutex != NULL && !::sockets::g_pmapMutex->Lookup(n, pmutex))
    {
-      ::sockets::g_pmapMutex->operator [](n) = new mutex(get_thread_app());
+
+      ::sockets::g_pmapMutex->operator [](n) = new mutex(NULL);
+
       if (!::sockets::g_pmapMutex->Lookup(n, pmutex))
       {
+
          return;
+
       }
+
    }
 
    if (pmutex == NULL)
    {
+      
       return;
+
    }
 
    sl.unlock();
 
    if (mode & CRYPTO_LOCK)
    {
+
       pmutex->lock();
+
    }
    else
    {
+
       pmutex->unlock();
+
    }
 
 }

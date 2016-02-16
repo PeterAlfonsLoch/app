@@ -28,26 +28,35 @@ namespace html_lite
       if(psignal->m_esignal == ::aura::application_signal_process_initialize)
       {
 
-         m_pauraapp->m_paurasystem->m_phtml = create_html();
-
-         if(m_pauraapp->m_paurasystem->m_phtml == NULL)
+         if (m_pauraapp->m_paurasystem->m_phtml == NULL)
          {
 
-            psignal->m_bOk = false;
+            m_pauraapp->m_paurasystem->m_phtml = create_html();
 
-            psignal->m_bRet = true;
+            if (m_pauraapp->m_paurasystem->m_phtml == NULL)
+            {
 
-            return;
+               psignal->m_bOk = false;
+
+               psignal->m_bRet = true;
+
+               return;
+
+            }
+
+            m_pauraapp->m_paurasystem->m_phtml->construct(m_pauraapp);
 
          }
 
-         m_pauraapp->m_paurasystem->m_phtml->add_ref();
+      }
+      else if (psignal->m_esignal == ::aura::application_signal_process_initialize)
+      {
 
-         m_pauraapp->m_paurasystem->m_phtml->construct(m_pauraapp);
 
       }
       else if(psignal->m_esignal == ::aura::application_signal_initialize1)
       {
+
 
          if(!m_pauraapp->m_paurasystem->m_phtml->initialize())
          {
@@ -63,6 +72,15 @@ namespace html_lite
       }
       else  if(psignal->m_esignal == ::aura::application_signal_exit_instance)
       {
+         
+         if (m_pauraapp->m_paurasystem->m_phtml != NULL)
+         {
+
+            delete m_pauraapp->m_paurasystem->m_phtml;
+
+            m_pauraapp->m_paurasystem->m_phtml = NULL;
+
+         }
 
       }
 
@@ -72,7 +90,7 @@ namespace html_lite
    ::html::html * application::create_html()
    {
 
-      return canew(::html::html(m_pauraapp));
+      return new ::html::html(m_pauraapp);
 
    }
 

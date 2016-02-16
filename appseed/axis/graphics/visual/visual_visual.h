@@ -11,10 +11,10 @@ namespace visual
    public:
 
 
-      class imaging * m_pimaging;
-      map < e_cursor, e_cursor, cursor *, cursor * > m_cursormap;
-            class ::visual::api *                        m_pvisualapi;
-            class font_central * m_pfontcentral;
+      class imaging *                                    m_pimaging;
+      map < e_cursor, e_cursor, cursor *, cursor * >     m_cursormap;
+      class ::visual::api *                              m_pvisualapi;
+      class font_central *                               m_pfontcentral;
 
 
 

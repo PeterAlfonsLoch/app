@@ -20,23 +20,22 @@ namespace aura
 
       };
 
-      bool              m_bLog;
-      bool              m_bExtendedLog;
+      bool                    m_bLog;
+      bool                    m_bExtendedLog;
 
 
 
       bool                    m_bTrace;
-      ::aura::trace::trace *     m_ptrace;
-      mutex *      m_pcsTrace;
-      stringa *               m_pstraSeparator;
+      ::aura::trace::trace *  m_ptrace;
+      mutex                   m_mutexTrace;
+      stringa                 m_straSeparator;
       FILE *                  m_pfile;
-      mutex *                 m_pmutex;
       bool                    m_bInitialized;
-      string *                m_pstrLogPath;
-      id *                    m_pid;
-      int32_t                     m_iYear;
-      int32_t                     m_iMonth;
-      int32_t                     m_iDay;
+      string                  m_strLogPath;
+      id                      m_id;
+      int32_t                 m_iYear;
+      int32_t                 m_iMonth;
+      int32_t                 m_iDay;
 
 
       log(::aura::application * papp);
@@ -83,7 +82,7 @@ namespace aura
    };
 
 
-   CLASS_DECL_AURA int32_t SimpleDebugReport(int32_t,const char *,int32_t,const char *,const char * pszFormat,va_list list);
+   CLASS_DECL_AURA int32_t SimpleDebugReport(int32_t, const char *, int32_t, const char *, const char * pszFormat, va_list list);
 
 
 } // namespace aura

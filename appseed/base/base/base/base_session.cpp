@@ -92,28 +92,6 @@ namespace base
    session::~session_parent
    {
 
-      //m_paxissystem->m_basesessionptra.remove(this);
-
-      POSITION pos = m_mapApplication.get_start_position();
-
-      string strId;
-
-      sp(::aura::application) pbaseapp;
-
-      while(pos != NULL)
-      {
-
-         strId.Empty();
-
-         pbaseapp = NULL;
-
-         m_mapApplication.get_next_assoc(pos,strId,pbaseapp);
-
-         ::aura::application * papp = (pbaseapp);
-
-         papp->post_thread_message(WM_QUIT);
-
-      }
 
    }
 

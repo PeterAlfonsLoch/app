@@ -29,6 +29,7 @@ base_factory::~base_factory()
 
    m_mapAllocator.remove_all();
 
+
 }
 
 
@@ -188,7 +189,7 @@ object * factory_item_base::clone(sp(object) pobject)
 factory_item_base::~factory_item_base()
 {
 
-   output_debug_string(string("factory_item_base::~factory_item_base :: ") + m_pallocator->m_idType.m_psz + string("\n"));
+   //output_debug_string(string("factory_item_base::~factory_item_base :: ") + m_pallocator->m_idType.m_psz + string("\n"));
 
 }
 

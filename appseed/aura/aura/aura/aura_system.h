@@ -326,7 +326,7 @@ namespace aura
          return get_enum_name(System.type_info < TYPE >(),(int32_t)e);
       }
 
-      virtual sp(::aura::session) query_session(index iEdge);
+      virtual ::aura::session * query_session(index iEdge);
 
       virtual bool initialize_log(const char * pszId);
 

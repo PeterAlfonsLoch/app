@@ -15,6 +15,7 @@ namespace fs
 
 
       native(::aura::application * papp);
+      virtual ~native();
 
 
       virtual ::file::listing & ls(::file::listing & listing);

@@ -517,7 +517,7 @@ namespace core
                // during the thread destructor
                // avoid thread object data auto deletion on thread termination,
                // letting thread function terminate
-               pthread->m_bAutoDelete = false;
+               //pthread->m_bAutoDelete = false;
 
                pthread->set_os_data(NULL);
 
@@ -3786,8 +3786,12 @@ namespace core
 
       }
 
-      if(m_pdocmanager == NULL)
+      if (m_pdocmanager == NULL)
+      {
+
          m_pdocmanager = canew(::user::document_manager(get_app()));
+
+      }
 
       //m_pdocmanager->add_ref();
 

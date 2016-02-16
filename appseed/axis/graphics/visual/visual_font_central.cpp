@@ -27,11 +27,7 @@ font_central::font_central(::aura::application * papp) :
 font_central::~font_central()
 {
 
-   if(m_lpSongLabelFont != NULL)
-      delete m_lpSongLabelFont;
-
-   if(m_lpSongListFont  != NULL)
-      delete m_lpSongListFont;
+   Finalize();
 
 }
 
@@ -89,29 +85,32 @@ void font_central::Finalize()
    if(!IsInitialized())
       return;
 
-   index i;
-   ::count iSize;
+   ::aura::del(m_lpSongLabelFont);
+   ::aura::del(m_lpSongListFont);
 
 
+   ::aura::del(m_pfontLyric);
+   ::aura::del(m_pfontLyricCompact);
 
-   delete m_pfontLyric;
-   delete m_pfontLyricCompact;
-
-   iSize = m_pTitleFonts->get_size();
-   for(i = 0; i < iSize; i++)
+   
+   for(auto & p : *m_pTitleFonts)
    {
-      delete m_pTitleFonts->operator[](i);
-   }
-   delete m_pTitleFonts;
 
-   iSize = m_pSubTitleFonts->get_size();
-   for(i = 0; i < iSize; i++)
-   {
-      delete m_pSubTitleFonts->operator[](i);
+      ::aura::del(p);
 
    }
 
-   delete m_pSubTitleFonts;
+   ::aura::del(m_pTitleFonts);
+
+
+   for (auto & p : *m_pSubTitleFonts)
+   {
+
+      ::aura::del(p);
+
+   }
+
+   ::aura::del(m_pSubTitleFonts);
 
    m_bInitialized = false;
 

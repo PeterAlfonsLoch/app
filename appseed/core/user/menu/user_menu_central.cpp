@@ -7,10 +7,10 @@ BaseMenuCentral::BaseMenuCentral(::aura::application * papp) :
    m_fontMenu(allocer())
 {
 
-   m_pil             = new image_list(papp);
-   m_pilHue          = new image_list(papp);
-   m_pilBlend        = new image_list(papp);
-   m_pilHueLight     = new image_list(papp);
+   m_pil             = canew(image_list(papp));
+   m_pilHue          = canew(image_list(papp));
+   m_pilBlend        = canew(image_list(papp));
+   m_pilHueLight     = canew(image_list(papp));
 
 
    VERIFY(m_fontMenu->create_point_font(FONT_SANS, 11));

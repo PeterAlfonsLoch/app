@@ -16,6 +16,17 @@ id_space::id_space()
 id_space::~id_space()
 {
 
+   free_all();
+
+   ::aura::del(m_pcs);
+
+}
+
+
+void id_space::free_all()
+{
+
+   cslock sl(m_pcs);
 
    try
    {
@@ -23,18 +34,27 @@ id_space::~id_space()
       {
          try
          {
-            ::memory_free((void *)m_psza.element_at(i));
+
+            char * psz = (char *)m_psza.element_at(i);
+
+            ::memory_free(psz);
+
          }
          catch (...)
          {
+
          }
+
       }
+
    }
    catch (...)
    {
+
    }
 
-   delete m_pcs;
+   m_psza.remove_all();
+
 }
 
 
@@ -453,7 +473,7 @@ void strid_array::add(const id & id)
    if(find(id,iIndex))
       return;
 
-   m_idptra.add(id.m_psz);
+   m_idptra.add((char * const &) id.m_psz);
    m_iaId.insert_at(iIndex,m_idptra.get_upper_bound());
    //m_iaId.add(m_idptra.get_upper_bound());
    //sort();

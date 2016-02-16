@@ -67,6 +67,8 @@ public:
    {
       if(pwsz == NULL)
          return;
+      if (pwsz == get_nil())
+         return;
       wstring_data * pdata = (wstring_data *) (((byte *) pwsz) - sizeof(count) - sizeof(count));
       if(pdata->m_iAllocation <= 0)
          return;

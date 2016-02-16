@@ -106,6 +106,15 @@ void verisimple_wstring::assign(const unichar * pwsz)
 
    ::count iLen         = wcslen_dup(pwsz);
 
+   if (iLen == 0)
+   {
+
+      m_pwsz = wstring_data::get_nil();
+
+      return;
+
+   }
+
    m_pwsz = (unichar *)wstring_data::alloc(iLen);
 
    get_data()->m_iLength = iLen;

@@ -2240,7 +2240,7 @@ namespace aura
                   // during the thread destructor
                   // avoid thread object data auto deletion on thread termination,
                   // letting thread function terminate
-                  m_bAutoDelete = false;
+                  //m_bAutoDelete = false;
 
                   set_run(false);
 
@@ -2477,13 +2477,13 @@ namespace aura
          bResourceException = false;
          try
          {
-            m_pmutexGlobal = new mutex(this,FALSE,get_global_mutex_name(),lpsa);
+            m_pmutexGlobal = canew(mutex(this,FALSE,get_global_mutex_name(),lpsa));
          }
          catch(resource_exception &)
          {
             try
             {
-               m_pmutexGlobal = new mutex(this,FALSE,get_global_mutex_name());
+               m_pmutexGlobal = canew(mutex(this,FALSE,get_global_mutex_name()));
             }
             catch(resource_exception &)
             {
@@ -2505,13 +2505,13 @@ namespace aura
             bResourceException = false;
             try
             {
-               m_pmutexGlobalId = new mutex(this,FALSE,get_global_id_mutex_name(),lpsa);
+               m_pmutexGlobalId = canew(mutex(this,FALSE,get_global_id_mutex_name(),lpsa));
             }
             catch(resource_exception &)
             {
                try
                {
-                  m_pmutexGlobalId = new mutex(this,FALSE,get_global_id_mutex_name());
+                  m_pmutexGlobalId = canew(mutex(this,FALSE,get_global_id_mutex_name()));
                }
                catch(resource_exception &)
                {
@@ -2530,13 +2530,13 @@ namespace aura
          bResourceException = false;
          try
          {
-            m_pmutexLocal = new mutex(this,FALSE,get_local_mutex_name(),lpsa);
+            m_pmutexLocal = canew(mutex(this,FALSE,get_local_mutex_name(),lpsa));
          }
          catch(resource_exception &)
          {
             try
             {
-               m_pmutexLocal = new mutex(this,FALSE,get_local_mutex_name());
+               m_pmutexLocal = canew(mutex(this,FALSE,get_local_mutex_name()));
             }
             catch(resource_exception &)
             {
@@ -2556,13 +2556,13 @@ namespace aura
             bResourceException = false;
             try
             {
-               m_pmutexLocalId = new mutex(this,FALSE,get_local_id_mutex_name(),lpsa);
+               m_pmutexLocalId = canew(mutex(this,FALSE,get_local_id_mutex_name(),lpsa));
             }
             catch(resource_exception &)
             {
                try
                {
-                  m_pmutexLocalId = new mutex(this,FALSE,get_local_id_mutex_name());
+                  m_pmutexLocalId = canew(mutex(this,FALSE,get_local_id_mutex_name()));
                }
                catch(resource_exception &)
                {

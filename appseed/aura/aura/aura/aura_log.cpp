@@ -14,7 +14,8 @@ namespace aura
 
 
    log::log(::aura::application * papp) :
-      object(papp)
+      object(papp),
+      m_mutexTrace(papp)
    {
 
 #if defined(WINDOWSEX)
@@ -29,12 +30,8 @@ namespace aura
       m_bTrace          = ::file_exists_dup("/etc/core/trace.txt") || ::is_debugger_attached();
 #endif
 
-      m_pcsTrace        = new mutex();
       m_pmutex          = new mutex(papp);
       m_ptrace          = new ::aura::trace::trace(papp);
-      m_pstraSeparator  = new stringa;
-      m_pstrLogPath     = new string;
-      m_pid             = new id;
       m_bLog            = true;
 
       m_pfile           = NULL;
@@ -46,9 +43,9 @@ namespace aura
       m_iYear           = -1;
       m_iMonth          = -1;
       m_iDay            = -1;
-      m_pstraSeparator->add("\r\n");
-      m_pstraSeparator->add("\r");
-      m_pstraSeparator->add("\n");
+      m_straSeparator.add("\r\n");
+      m_straSeparator.add("\r");
+      m_straSeparator.add("\n");
 
       set_trace_category(::aura::trace::category_General, "category_General", 3000);
       set_trace_category(::aura::trace::category_COM, "category_COM", 0);
@@ -93,8 +90,12 @@ namespace aura
 
    }
 
+
    log::~log()
    {
+
+      ::aura::del(m_ptrace);
+
    }
 
 
@@ -191,7 +192,7 @@ namespace aura
       UNREFERENCED_PARAMETER(nLine);
       UNREFERENCED_PARAMETER(pszFileName);
 
-      synch_lock sl2(((log *)this)->m_pcsTrace);
+      synch_lock sl2(&((log *)this)->m_mutexTrace);
 
       //((log * )this)->print(pszFormat, args);
       //m_trace.TraceV(pszFileName, nLine, dwCategory, nLevel, pszFmt, args);
@@ -203,7 +204,7 @@ namespace aura
          return;
       //sl.unlock();
       stringa stra;
-      stra.add_smallest_tokens(psz, *plog->m_pstraSeparator, FALSE);
+      stra.add_smallest_tokens(psz, plog->m_straSeparator, FALSE);
       /*for(int32_t i = 0; i < stra.get_size(); i++)
       {
          if(stra[i].get_length() > 200)
@@ -290,15 +291,15 @@ namespace aura
 
          strPath.replace(":","_");
 
-         *plog->m_pstrLogPath = ::dir::sys_temp() /  string(*m_pid) / strPath/  strRelative + "-" + strIndex + ".log";
+         plog->m_strLogPath = ::dir::sys_temp() /  string(m_id) / strPath/  strRelative + "-" + strIndex + ".log";
 
          try
          {
-            if(!::dir::is(::dir::name(*plog->m_pstrLogPath)))
+            if(!::dir::is(::dir::name(plog->m_strLogPath)))
             {
-               ::dir::mk(::dir::name(*plog->m_pstrLogPath));
+               ::dir::mk(::dir::name(plog->m_strLogPath));
             }
-            if(!(plog->m_pfile = fopen(*m_pstrLogPath, "at")))
+            if(!(plog->m_pfile = fopen(m_strLogPath, "at")))
             {
                int32_t iError = errno;
                if(iError == ENOENT)
@@ -424,7 +425,7 @@ namespace aura
          return false;
       //if(!::aura::log::initialize(id))
         // return false;
-      *m_pid = id;
+      m_id = id;
       m_bInitialized = true;
       if(file_exists_dup(::dir::appdata() / "debug.txt"))
       {

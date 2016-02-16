@@ -25,8 +25,7 @@ create::create(::command_thread * pthreadParent) :
    object(pthreadParent->get_app()),
    command(pthreadParent->get_app()),
    m_spApplicationBias(allocer()),
-   m_spCommandLine(allocer()),
-   m_pthreadParent(pthreadParent)
+   m_spCommandLine(allocer())
 {
 
    m_bMakeVisible                      = true;
@@ -36,6 +35,7 @@ create::create(::command_thread * pthreadParent) :
    m_bHold                             = true;
    m_puiAlloc                          = NULL;
    m_puiParent                         = NULL;
+   m_pthreadParent                     = pthreadParent;
    common_construct();
 
 }
@@ -44,8 +44,7 @@ create::create(::command_thread * pthreadParent, var varFile, bool bMakeVisible,
    object(pthreadParent->get_app()),
    command(pthreadParent->get_app()),
    m_spApplicationBias(allocer()),
-   m_spCommandLine(allocer()),
-   m_pthreadParent(pthreadParent)
+   m_spCommandLine(allocer())
 {
 
    m_puiAlloc                          = NULL;
@@ -57,6 +56,7 @@ create::create(::command_thread * pthreadParent, var varFile, bool bMakeVisible,
    m_bClientOnly                       = false;
    m_bOuterPopupAlertLike              = false;
    m_puiParent                         = puiParent;
+   m_pthreadParent                     = pthreadParent;
 
 }
 

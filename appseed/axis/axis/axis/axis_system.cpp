@@ -167,7 +167,12 @@ namespace axis
 
       enum_display_monitors();
 
-      m_peengine = new ::exception::engine(this);
+      if (m_peengine != NULL)
+      {
+
+         m_peengine = new ::exception::engine(this);
+
+      }
 
 
       if(!::axis::application::process_initialize())
@@ -480,14 +485,8 @@ namespace axis
 
 #endif
 
-      if(m_peengine != NULL)
-      {
+      ::aura::del(m_peengine);
 
-         delete m_peengine;
-
-         m_peengine = NULL;
-
-      }
 #ifdef METROWIN
       //      m_pdevicecontext = nullptr;
 
@@ -945,7 +944,7 @@ namespace axis
    }
 
 
-   sp(::aura::session) system::query_session(index iEdge)
+   ::aura::session * system::query_session(index iEdge)
    {
 
       return NULL;

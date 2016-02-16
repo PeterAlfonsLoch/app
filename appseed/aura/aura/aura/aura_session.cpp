@@ -11,6 +11,8 @@ namespace aura
       ::thread(papp)
    {
 
+      m_pappCurrent = NULL;
+
       m_psockets = NULL;
 
       m_paurasession    = this;
@@ -52,28 +54,6 @@ namespace aura
    session::~session_parent
    {
 
-//      m_paurasystem->m_basesessionptra.remove(this);
-
-      POSITION pos = m_mapApplication.get_start_position();
-
-      string strId;
-
-      sp(::aura::application) pbaseapp;
-
-      while(pos != NULL)
-      {
-
-         strId.Empty();
-
-         pbaseapp = NULL;
-
-         m_mapApplication.get_next_assoc(pos,strId,pbaseapp);
-
-         ::aura::application * papp = (pbaseapp);
-
-         papp->post_thread_message(WM_QUIT);
-
-      }
 
    }
 
@@ -644,10 +624,10 @@ namespace aura
 
    }
 
-   sp(::aura::application) session::application_get(const char * pszType,const char * pszId,bool bCreate,bool bSynch,application_bias * pbiasCreate)
+   ::aura::application * session::application_get(const char * pszType,const char * pszId,bool bCreate,bool bSynch,application_bias * pbiasCreate)
    {
 
-      sp(::aura::application) papp = NULL;
+      ::aura::application * papp = NULL;
 
       if(m_paurasession->m_mapApplication.Lookup(string(pszType) + ":" + string(pszId),papp))
       {
@@ -702,16 +682,7 @@ namespace aura
          if(&App(papp) == NULL)
          {
 
-            try
-            {
-
-               papp.release();
-
-            }
-            catch(...)
-            {
-
-            }
+            ::aura::del(papp);
 
             return NULL;
 

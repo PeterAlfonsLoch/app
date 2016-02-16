@@ -159,7 +159,7 @@ m_bRun = true;
       factory().creatable_small < ::file::application >();
       factory().creatable_small < ::file::dir::application >();
 
-
+      m_phtml = NULL;
 
       __node_aura_factory_exchange(this);
 
@@ -194,6 +194,49 @@ m_bRun = true;
 
 
    }
+
+
+   system::~system()
+   {
+
+      try
+      {
+
+         ::aura::del(m_pmachineeventcentral);
+
+      }
+      catch (...)
+      {
+
+      }
+
+      try
+      {
+
+         if (m_pfactory != NULL)
+         {
+
+            m_pfactory->enable_simple_factory_request(false);
+
+            m_pfactory.release();
+
+         }
+
+      }
+      catch (...)
+      {
+         TRACE("system::exit_instance: Potentially catastrophical error : error disabling simple factory request");
+      }
+
+      if (g_p == this)
+      {
+
+         g_p = NULL;
+
+      }
+
+   }
+
 
 
 //   bool system::install_uninstall_verb()
@@ -314,46 +357,6 @@ m_bRun = true;
    }
 
 
-   system::~system()
-   {
-
-      try
-      {
-
-         ::aura::del(m_pmachineeventcentral);
-
-      }
-      catch (...)
-      {
-
-      }
-
-      try
-      {
-
-         if (m_pfactory != NULL)
-         {
-
-            m_pfactory->enable_simple_factory_request(false);
-
-            m_pfactory.release();
-
-         }
-
-      }
-      catch (...)
-      {
-         TRACE("system::exit_instance: Potentially catastrophical error : error disabling simple factory request");
-      }
-
-      if (g_p == this)
-      {
-
-         g_p = NULL;
-
-      }
-
-   }
 
 
    base_factory & system::factory()
@@ -665,13 +668,15 @@ m_bRun = true;
 
 //      m_basesessionptra.remove_all();
 
-      ::aura::del(m_paurasession);
-
       m_spfile.release();
 
       m_spdir.release();
 
       m_pdatetime.release();
+
+      m_plog.release();
+
+      m_pmath.release();
 
       try
       {
@@ -997,6 +1002,8 @@ m_bRun = true;
 
    }
 
+   
+
 
    ::type * system::get_type_info(const ::std_type_info & info)
    {
@@ -1048,7 +1055,7 @@ m_bRun = true;
    }
 
 
-   sp(::aura::session) system::query_session(index iEdge)
+   ::aura::session * system::query_session(index iEdge)
    {
 
       return NULL;
@@ -1084,7 +1091,7 @@ m_bRun = true;
    {
       if(m_plog != NULL)
          return true;
-      m_plog = new ::aura::log(this);
+      m_plog = canew(::aura::log(this));
       m_plog->set_extended_log();
       m_plog->set_app(this);
       if(!m_plog->initialize(pszId))

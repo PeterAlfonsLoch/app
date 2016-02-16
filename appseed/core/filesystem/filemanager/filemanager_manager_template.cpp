@@ -260,40 +260,40 @@ namespace filemanager
    void manager_template::Initialize(int32_t iTemplate, const char * pszMatter)
    {
       m_iTemplate = iTemplate;
-      m_pdoctemplateMain = new ::user::multiple_document_template(
+      m_pdoctemplateMain = canew(::user::multiple_document_template(
          get_app(),
          pszMatter,
          System.type_info < manager >(),
          System.type_info < main_frame >(),       // main SDI frame window
-         System.type_info < tab_view >());
+         System.type_info < tab_view >()));
 
-      m_pdoctemplate = new ::user::multiple_document_template(
+      m_pdoctemplate = canew(::user::multiple_document_template(
          get_app(),
          pszMatter,
          System.type_info < manager >(),
          System.type_info < frame >(),
-         System.type_info < view >());
+         System.type_info < view >()));
 
-      m_pdoctemplateChild = new ::user::multiple_document_template(
+      m_pdoctemplateChild = canew(::user::multiple_document_template(
          get_app(),
          pszMatter,
          System.type_info < manager >(),
          System.type_info < child_frame >(),
-         System.type_info < view >());
+         System.type_info < view >()));
 
-      m_pdoctemplateChildList = new ::user::multiple_document_template(
+      m_pdoctemplateChildList = canew(::user::multiple_document_template(
          get_app(),
          pszMatter,
          System.type_info < manager >(),
          System.type_info < child_frame >(),
-         System.type_info < file_list >());
+         System.type_info < file_list >()));
 
-      m_pdoctemplateFolderSelectionList = new ::user::multiple_document_template(
+      m_pdoctemplateFolderSelectionList = canew(::user::multiple_document_template(
          get_app(),
          pszMatter,
          System.type_info < manager >(),
          System.type_info < child_frame >(),
-         System.type_info < folder_selection_list_view >());
+         System.type_info < folder_selection_list_view >()));
 
    }
 

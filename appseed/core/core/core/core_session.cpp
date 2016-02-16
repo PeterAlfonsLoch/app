@@ -50,6 +50,7 @@ namespace core
       m_strAppName                        = "bergedge";
 
       m_puserex                           = NULL;
+      m_pfilemanager = NULL;
 
    }
 
@@ -180,17 +181,22 @@ namespace core
    bool session::on_initial_update()
    {
 
-      m_pfilemanager = canew(::filemanager::filemanager(this));
-
-      m_pfilemanager->construct(this);
-
-      if(!m_pfilemanager->initialize())
+      if (m_pfilemanager == NULL)
       {
-         return false;
+
+         m_pfilemanager = new ::filemanager::filemanager(this);
+
+         m_pfilemanager->construct(this);
+
+         if (!m_pfilemanager->initialize())
+         {
+            return false;
+
+         }
+
+         filemanager().std().m_strLevelUp = "levelup";
 
       }
-
-      filemanager().std().m_strLevelUp = "levelup";
 
       return true;
 
@@ -239,6 +245,54 @@ namespace core
 
    bool session::finalize()
    {
+
+      try
+      {
+
+         if (m_pfilemanager != NULL)
+         {
+
+            m_pfilemanager->finalize();
+
+         }
+
+
+      }
+      catch (...)
+      {
+
+      }
+      try
+      {
+
+         if (m_pfilemanager != NULL)
+         {
+
+            delete m_pfilemanager;
+
+         }
+
+
+      }
+      catch (...)
+      {
+
+      }
+
+      try
+      {
+
+         m_puserex->finalize();
+
+      }
+      catch (...)
+      {
+
+      }
+
+      m_puserex = NULL;
+
+      m_pobjectUserex.release();
 
       bool bOk = true;
 
@@ -816,10 +870,10 @@ namespace core
 
    }*/
 
-   sp(::aura::application) session::application_get(const char * pszType, const char * pszId, bool bCreate, bool bSynch, application_bias * pbiasCreate)
+   ::aura::application * session::application_get(const char * pszType, const char * pszId, bool bCreate, bool bSynch, application_bias * pbiasCreate)
    {
 
-      sp(::aura::application) papp = NULL;
+      ::aura::application * papp = NULL;
 
       if(m_pbasesession->m_mapApplication.Lookup(string(pszType) + ":" + string(pszId),papp))
       {
@@ -867,16 +921,7 @@ namespace core
          if(&App(papp) == NULL)
          {
 
-            try
-            {
-
-               papp.release();
-
-            }
-            catch(...)
-            {
-
-            }
+            ::aura::del(papp);
 
             return NULL;
 
@@ -1082,9 +1127,9 @@ namespace core
    void session::set_app_title(const char * pszType, const char * pszAppId, const char * pszTitle)
    {
 
-      sp(::aura::application) papp = NULL;
+      ::aura::application * papp = NULL;
 
-      if(m_pbasesession->m_mapApplication.Lookup(string(pszType) + ":" + string(pszAppId), papp) && papp.is_set())
+      if(m_pbasesession->m_mapApplication.Lookup(string(pszType) + ":" + string(pszAppId), papp) && papp != NULL)
       {
 
          //sp(::bergedge::pane_view) ppaneview = get_document()->get_typed_view < ::bergedge::pane_view >();
@@ -1258,10 +1303,10 @@ namespace core
 
 
 
-   sp(::core::session) session::query_bergedge()
+   ::core::session * session::query_bergedge()
    {
 
-      sp(::core::session) psession = NULL;
+      ::core::session * psession = NULL;
 
       if(System.m_pbergedgemap == NULL)
          return NULL;

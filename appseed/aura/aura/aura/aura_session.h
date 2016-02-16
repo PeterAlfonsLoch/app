@@ -31,7 +31,7 @@ namespace aura
 
 
 
-      string_map < sp(::aura::application) >                   m_mapApplication;
+      string_map < ::aura::application * >                     m_mapApplication;
 
 
 
@@ -42,7 +42,7 @@ namespace aura
 
  
 
-      sp(::aura::application)                            m_pappCurrent;
+      ::aura::application *                              m_pappCurrent;
 
       var                                                m_varTopicFile;
       var                                                m_varCurrentViewFile;
@@ -131,7 +131,7 @@ namespace aura
 
       virtual void on_request(sp(::create) pcreatecontext);
 
-      sp(::aura::application) application_get(const char * pszType,const char * pszId,bool bCreate,bool bSynch,application_bias * pbiasCreate);
+      ::aura::application * application_get(const char * pszType,const char * pszId,bool bCreate,bool bSynch,application_bias * pbiasCreate);
 
    };
 

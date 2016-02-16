@@ -100,6 +100,8 @@ namespace axis
 
       m_puserstrcontext             = NULL;
 
+      m_puserpresence = NULL;
+
       //      m_paxissystem->m_basesessionptra.add_unique(this);
 
       m_pcopydesk = NULL;
@@ -127,28 +129,7 @@ namespace axis
 
    session::~session_parent
    {
-//      m_paxissystem->m_basesessionptra.remove(this);
 
-      POSITION pos = m_mapApplication.get_start_position();
-
-      string strId;
-
-      sp(::aura::application) pbaseapp;
-
-      while(pos != NULL)
-      {
-
-         strId.Empty();
-
-         pbaseapp = NULL;
-
-         m_mapApplication.get_next_assoc(pos,strId,pbaseapp);
-
-         ::aura::application * papp = (pbaseapp);
-
-         papp->post_thread_message(WM_QUIT);
-
-      }
 
    }
 
@@ -1156,14 +1137,19 @@ namespace axis
       try
       {
 
-         if (!m_puserpresence->finalize())
+         if (m_puserpresence != NULL)
          {
 
-            bOk = false;
+            if (!m_puserpresence->finalize())
+            {
+
+               bOk = false;
+
+            }
+
+            ::aura::del(m_puserpresence);
 
          }
-
-         ::aura::del(m_puserpresence);
 
 
       }
@@ -1212,6 +1198,19 @@ namespace axis
 
    int32_t session::exit_instance()
    {
+
+      try
+      {
+
+         m_mapApplication.remove_all();
+
+      }
+      catch (...)
+      {
+
+
+      }
+
       try
       {
          if(m_pcopydesk != NULL)

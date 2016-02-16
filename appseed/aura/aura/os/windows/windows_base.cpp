@@ -133,7 +133,6 @@ bool __node_aura_pos_init()
 
 
 
-
    return true;
 
 } 
@@ -155,6 +154,9 @@ bool __node_aura_pos_term()
 
    ::Gdiplus::GdiplusShutdown(g_gdiplusToken);
 
+
+   ::aura::del(g_pgdiplusStartupInput);
+   ::aura::del(g_pgdiplusStartupOutput);
 
    OutputDebugStringW(L"draw2d_gdiplus.dll terminating!\n");
 

@@ -5,7 +5,7 @@ template < class T >
 void base_factory::creatable(const type * info, int32_t iCount, bool bOverwrite, bool bAligned)
 {
    if(bOverwrite || !is_set(info->name()))
-      m_mapItem[info->name()] = canew(creatable_factory_item<T>(get_app(), get_allocator<T>(iCount, bAligned)));
+      m_mapItem[info->m_id] = canew(creatable_factory_item<T>(get_app(), get_allocator<T>(iCount, bAligned)));
 }
 
 

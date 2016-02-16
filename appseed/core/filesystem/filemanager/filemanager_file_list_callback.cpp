@@ -22,9 +22,9 @@ namespace filemanager
    bool file_list_callback::initialize()
    {
       ::aura::application * papp = get_app();
-      m_pimagelistSubItemHover = new image_list(papp);
-      m_pimagelistItemHover = new image_list(papp);
-      m_pimagelistNormal = new image_list(papp);
+      m_pimagelistSubItemHover = canew(image_list(papp));
+      m_pimagelistItemHover = canew(image_list(papp));
+      m_pimagelistNormal = canew(image_list(papp));
 
       ::draw2d::graphics_sp spgraphics(allocer());
       spgraphics->CreateCompatibleDC(NULL);

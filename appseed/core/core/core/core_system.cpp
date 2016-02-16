@@ -480,10 +480,10 @@ namespace core
    */
 
 
-   sp(::aura::session) system::query_session(index iEdge)
+   ::aura::session * system::query_session(index iEdge)
    {
 
-      sp(::core::session) pbergedge = NULL;
+      ::core::session * pbergedge = NULL;
 
       if(m_pbergedgemap == NULL)
          return NULL;
@@ -506,18 +506,38 @@ namespace core
       if(iEdge == 0)
          return System.m_pcoresession;
       
-      sp(::core::session) pbergedge = NULL;
+      ::core::session * pbergedge = NULL;
+
       if(m_pbergedgemap == NULL)
          return NULL;
+
       if(!m_pbergedgemap->Lookup(iEdge,pbergedge))
       {
-         pbergedge = create_application("application","session",true,pbiasCreation);
-         if(pbergedge == NULL)
+         
+         ::aura::application * papp = create_application("application", "session", true, pbiasCreation);
+
+         if (papp == NULL)
             return NULL;
+
+         pbergedge = dynamic_cast <::core::session *> (papp);
+
+         if (pbergedge == NULL)
+         {
+
+            ::aura::del(papp);
+
+            return NULL;
+
+         }
+
          pbergedge->m_iEdge = iEdge;
+
          m_pbergedgemap->set_at(iEdge,pbergedge);
+
       }
+
       return pbergedge;
+
    }
 
 
@@ -539,6 +559,19 @@ namespace core
    {
 
       bool bOk = true;
+
+      try
+      {
+
+         m_visual.finalize();
+
+      }
+      catch (...)
+      {
+
+
+      }
+
 
       if(!::base::system::finalize())
       {
@@ -722,16 +755,25 @@ namespace core
 
    index system::get_new_bergedge(application_bias * pbiasCreation)
    {
+      
       index iNewEdge = m_iNewEdge;
-      sp(::core::session) pbergedge;
+      
+      ::core::session * pbergedge = NULL;
+
       while(m_pbergedgemap->Lookup(iNewEdge,pbergedge))
       {
+
          iNewEdge++;
+
       }
+
       if(get_session(iNewEdge,pbiasCreation) == NULL)
          return -1;
+
       m_iNewEdge = iNewEdge + 1;
+
       return iNewEdge;
+
    }
 
 

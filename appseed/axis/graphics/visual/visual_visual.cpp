@@ -41,7 +41,7 @@ namespace visual
 
       m_pimaging        = NULL;
       m_pfontcentral    = NULL;
-      m_pvisualapi      = NULL;
+      m_pvisualapi      = new ::visual::api(papp);
 
    }
 
@@ -49,19 +49,9 @@ namespace visual
    visual::~visual()
    {
 
-      if(m_pimaging != NULL)
-      {
-
-         delete m_pimaging;
-
-      }
-
-      if(m_pvisualapi != NULL)
-      {
-
-         delete m_pvisualapi;
-
-      }
+      ::aura::del(m_pimaging);
+      ::aura::del(m_pvisualapi);
+      ::aura::del(m_pfontcentral);
 
    }
 
@@ -71,7 +61,7 @@ namespace visual
 
       ::aura::departament::construct(papp);
 
-      m_pvisualapi               = new ::visual::api(papp);
+      
 
    }
 
@@ -96,18 +86,28 @@ namespace visual
       if(!::aura::departament::initialize1())
          return false;
 
-      m_pfontcentral = new class font_central(get_app());
+      if (m_pfontcentral == NULL)
+      {
 
-      if(m_pfontcentral == NULL)
-         return false;
+         m_pfontcentral = new class font_central(get_app());
 
-      if(!m_pfontcentral->Initialize())
-         return false;
+         if (m_pfontcentral == NULL)
+            return false;
 
-      m_pimaging = new class imaging(get_app());
+         if (!m_pfontcentral->Initialize())
+            return false;
 
-      if(m_pimaging == NULL)
-         throw memory_exception(get_app());
+      }
+
+      if (m_pimaging == NULL)
+      {
+
+         m_pimaging = new class imaging(get_app());
+
+         if (m_pimaging == NULL)
+            throw memory_exception(get_app());
+
+      }
 
       return true;
 
@@ -164,8 +164,13 @@ namespace visual
 
       try
       {
+         
+         if (m_pvisualapi != NULL)
+         {
 
-         bOk = m_pvisualapi->close();
+            bOk = m_pvisualapi->close();
+
+         }
 
       }
       catch(...)
@@ -174,6 +179,38 @@ namespace visual
          bOk = false;
 
       }
+
+      try
+      {
+
+         if (m_pfontcentral != NULL)
+         {
+
+            m_pfontcentral->Finalize();
+
+         }
+
+      }
+      catch (...)
+      {
+
+
+      }
+
+      ::aura::del(m_pvisualapi);
+
+      ::aura::del(m_pfontcentral);
+
+      ::aura::del(m_pimaging);
+
+      for (auto & p : m_cursormap)
+      {
+
+         delete p.m_element2;
+
+      }
+
+      m_cursormap.remove_all();
 
       return bOk;
 

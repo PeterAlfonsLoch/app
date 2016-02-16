@@ -10,7 +10,8 @@ namespace simpledb
       ::aura::departament(papp)
    {
 
-      m_pserver      = NULL;
+      m_pserver         = NULL;
+      m_bInitialized    = false;
 
    }
 
@@ -18,11 +19,27 @@ namespace simpledb
    simpledb::~simpledb()
    {
 
+      FinalizeDataCentral();
+
    }
 
 
    bool simpledb::InitializeDataCentral()
    {
+
+      if (m_bInitialized)
+      {
+
+         return true;
+
+      }
+
+      if (m_pserver != NULL)
+      {
+
+         return true;
+
+      }
 
       if(m_pauraapp->is_system())
       {
@@ -47,8 +64,12 @@ namespace simpledb
          return false;
       }
 
+      m_bInitialized = true;
+
       return true;
+
    }
+
 
    void simpledb::on_set_locale(const char * lpcsz, ::action::context actioncontext)
    {
@@ -71,6 +92,13 @@ namespace simpledb
    bool simpledb::FinalizeDataCentral()
    {
 
+      if (!m_bInitialized)
+      {
+
+         return true;
+
+      }
+
       if (m_pserver == NULL)
       {
 
@@ -80,21 +108,21 @@ namespace simpledb
 
       try
       {
+         
          m_pserver->finalize();
+
       }
       catch(...)
       {
+
       }
 
-      try
-      {
-         delete m_pserver;
-      }
-      catch(...)
-      {
-      }
+
+      ::aura::del(m_pserver);
 
       m_pserver = NULL;
+
+      m_bInitialized = false;
 
       return true;
 
@@ -126,12 +154,6 @@ namespace simpledb
 
       ::database::client::initialize_data_client(m_pserver);
 
-      if (Application.m_spdataserver.is_null())
-      {
-
-         Application.m_spdataserver = m_pserver;
-
-      }
       
 
 //      ::core::application_request * prequest = System.get_application_request();

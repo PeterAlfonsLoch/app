@@ -1,6 +1,6 @@
 //#include "framework.h"
 
-#include <crtdbg.h>
+//#include <crtdbg.h>
 
 memdleak_block * s_pmemdleakList;
 extern mutex * g_pmutgen;
@@ -46,7 +46,7 @@ void * system_heap_alloc(size_t size)
    void * p;
 #ifdef __VLD
 
-   p = ::_malloc_dbg(size, _NORMAL_BLOCK, NULL, 0);
+   p = malloc(size);
 
 #elif defined(WINDOWSEX) && !PREFER_MALLOC
 
@@ -131,7 +131,7 @@ void * system_heap_realloc(void * p, size_t size)
 
 #ifdef __VLD
 
-   return _realloc_dbg(p, size, _NORMAL_BLOCK, NULL, 0);
+   return realloc(p, size);
 
 #elif defined(WINDOWSEX) && !PREFER_MALLOC
 
@@ -217,7 +217,7 @@ void system_heap_free(void * p)
 
 #ifdef __VLD
 
-   return _free_dbg(p, _NORMAL_BLOCK);
+   return free(p);
 
 #else
 

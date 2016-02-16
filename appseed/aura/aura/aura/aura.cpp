@@ -135,6 +135,8 @@ CLASS_DECL_AURA int_bool defer_aura_term()
 
    g_bAura = 0;
 
+   ::aura::del(s_paurastrpool);
+
    aura_term();
 
    return TRUE;
@@ -200,11 +202,12 @@ bool aura_term()
 
 #endif
 
-   __node_aura_pos_term();
-
    processor_cache_oriented_destroy_all_memory_pools();
 
    ::aura::static_start::term();
+
+   __node_aura_pos_term();
+
 
    return true;
 

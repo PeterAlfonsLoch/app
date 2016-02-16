@@ -665,7 +665,7 @@ public:
    template < typename PRED >
    index pred_find_first(PRED pred, index iStart = 0)
    {
-      for(int i = iStart; i < get_count(); i++)
+      for(index i = iStart; i < get_count(); i++)
       {
 
          if(pred(m_pData[i]))

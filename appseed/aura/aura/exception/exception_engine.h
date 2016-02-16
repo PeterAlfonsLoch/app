@@ -50,9 +50,6 @@ namespace exception
 
 
 
-      mutex *              m_pmutex;
-
-
 #ifdef WINDOWSEX
 
       bool                 m_bSkip;

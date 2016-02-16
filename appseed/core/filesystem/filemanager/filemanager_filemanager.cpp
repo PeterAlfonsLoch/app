@@ -104,26 +104,26 @@ namespace filemanager
       System.factory().creatable_small < fs::simple::list_view > ();
 
 
-      m_ptemplateStd = new manager_template(get_app());
+      m_ptemplateStd = canew(manager_template(get_app()));
       Session.userex()->shellimageset().initialize();
       m_ptemplateStd->Initialize(0, pszMatter);
 
-      m_ptemplateFs = new manager_template(get_app());
+      m_ptemplateFs = canew(manager_template(get_app()));
       m_ptemplateFs->Initialize(0, string("fs.") + string(pszMatter));
 
-      m_ptemplateForm = new ::user::multiple_document_template(
+      m_ptemplateForm = canew(::user::multiple_document_template(
          get_app(),
          pszMatter,
          System.type_info < ::user::document > (),
          System.type_info < form_child_frame > (),
-         System.type_info < ::user::form > ());
+         System.type_info < ::user::form > ()));
 
-      m_ptemplateOperation = new ::user::single_document_template(
+      m_ptemplateOperation = canew(::user::single_document_template(
          get_app(),
          pszMatter,
          System.type_info < operation_document > (),
          System.type_info < operation_child_frame > (),
-         System.type_info < operation_view > ());
+         System.type_info < operation_view > ()));
    }
 
 

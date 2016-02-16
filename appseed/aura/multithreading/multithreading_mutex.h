@@ -5,7 +5,7 @@
 
 
 class CLASS_DECL_AURA mutex :
-   public sync_object
+   virtual public sync_object
 {
 public:
 

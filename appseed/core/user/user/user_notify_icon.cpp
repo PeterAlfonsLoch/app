@@ -72,7 +72,7 @@ namespace user
          return false;
 
 #ifdef WINDOWSEX
-      m_nid.hIcon       = (HICON) hicon->get_os_data();
+      m_nid.hIcon       = (HICON) *hicon;
       m_nid.uFlags      = NIF_ICON;
 
 

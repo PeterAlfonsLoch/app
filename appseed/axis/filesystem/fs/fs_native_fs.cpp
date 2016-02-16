@@ -17,6 +17,13 @@ namespace fs
    }
 
 
+   native::~native()
+   {
+
+
+   }
+
+
    // optional if ls_dir is implemented
    bool native::has_subdir(const ::file::path & path)
    {

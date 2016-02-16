@@ -97,14 +97,6 @@ thread::thread(::aura::application * papp) :
 
    CommonConstruct();
 
-   if (papp == NULL)
-      return;
-   set_app(papp);
-   if (!s_bAllocReady)
-      return;
-//   m_pthreadimpl.alloc(allocer());
-  // m_pthreadimpl->m_pthread = this;
-   construct();
 
    if(m_pauraapp != NULL && m_pauraapp->m_paurasession != NULL)
    {
@@ -185,6 +177,7 @@ void thread::CommonConstruct()
 
    m_nDisablePumpCount  = 0;
 
+   m_pcommandthread = NULL;
 
    //m_hthread = NULL;
 
@@ -196,15 +189,6 @@ void thread::CommonConstruct()
 
 thread::~thread()
 {
-
-unregister_from_required_threads();
-
-
-   //if(m_pmutex != NULL)
-     // delete m_pmutex;
-
-   //if(m_peventEvent == NULL)
-   //   delete m_peventEvent;
 
    ::aura::del(m_pfileinfo);
 
@@ -249,8 +233,6 @@ HTHREAD thread::get_os_handle() const
 
 bool thread::finalize()
 {
-
-   unregister_from_required_threads();
 
    signal_close_dependent_threads();
 
@@ -1750,7 +1732,6 @@ void thread::post_to_all_threads(UINT message,WPARAM wparam,LPARAM lparam)
 int32_t thread::exit_instance()
 {
 
-unregister_from_required_threads();
    ASSERT_VALID(this);
 
    try
@@ -2031,6 +2012,7 @@ int32_t thread::main()
       }
    }
 
+   
    // let translator run undefinetely
    //translator::detach();
    try
@@ -2774,15 +2756,15 @@ void thread::thread_delete()
       m_preplacethread->m_spthread.release();
 
    }
-   else if(m_bAutoDelete)
-   {
-      //if(m_countReference > 1)
-      //{
-      //   throw simple_exception(get_app(), "thread should be deleted here");
-      //}
-       release();
+   //else if(m_bAutoDelete)
+   //{
+   //   //if(m_countReference > 1)
+   //   //{
+   //   //   throw simple_exception(get_app(), "thread should be deleted here");
+   //   //}
+   //    release();
 
-   }
+   //}
    else
    {
       //if(m_countReference > 1)

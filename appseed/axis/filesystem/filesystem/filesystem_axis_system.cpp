@@ -1985,7 +1985,7 @@ namespace file
          else if(::str::begins_eat_ci(strPath,"matter://"))
          {
 
-            sp(::aura::application) pappLookup;
+            ::aura::application * pappLookup = NULL;
 
             if(System.url().get_server("matter://" + strPath) == papp->m_strAppName)
             {

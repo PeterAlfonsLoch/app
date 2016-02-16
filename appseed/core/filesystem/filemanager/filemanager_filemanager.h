@@ -14,8 +14,8 @@ namespace filemanager
    public:
 
 
-      ::filemanager::manager_template *                        m_ptemplateStd;
-      ::filemanager::manager_template *                        m_ptemplateFs;
+      sp(::filemanager::manager_template)                        m_ptemplateStd;
+      sp(::filemanager::manager_template)                        m_ptemplateFs;
       sp(::user::multiple_document_template)     m_ptemplateForm;
       sp(::user::single_document_template)       m_ptemplateOperation;
 

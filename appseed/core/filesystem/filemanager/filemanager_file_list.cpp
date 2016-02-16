@@ -369,7 +369,7 @@ namespace filemanager
          {
             int64_t i64Size;
             bool bPendingSize;
-            single_lock lock(m_pauraapp);
+            single_lock lock(m_pauraapp->m_pmutex);
             if(!lock.lock(millis(1984)))
                return;
             if(i >= get_fs_mesh_data()->m_itema.get_count())
@@ -1178,7 +1178,7 @@ namespace filemanager
 #ifdef WINDOWSEX
       for (POSITION pos = m_iconmap.get_start_position(); pos != NULL; m_iconmap.get_next_assoc(pos, iconkey, icon))
       {
-         DestroyIcon((HICON) icon.m_picon->get_os_data());
+         DestroyIcon((HICON) *icon.m_picon);
       }
 #endif
 

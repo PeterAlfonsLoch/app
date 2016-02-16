@@ -761,7 +761,7 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason,
 		break;
 	case DLL_THREAD_DETACH:
    {
-      ERR_remove_state(0);
+      
 
    }
 		break;

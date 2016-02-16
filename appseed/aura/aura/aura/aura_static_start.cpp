@@ -9,6 +9,7 @@
 
 
 void init_draw2d_direct2_mutex();
+void term_draw2d_direct2_mutex();
 void aura_auto_debug_teste();
 void teste_aura_cmp();
 
@@ -312,9 +313,13 @@ namespace aura
       CLASS_DECL_AURA void term()
       {
 
+         
+
          delete g_pmapLibCall;
 
          g_pmapLibCall = NULL;
+
+         term_draw2d_direct2_mutex();
 
          delete g_pmutexFactory;
 
@@ -438,7 +443,7 @@ namespace aura
 
          #endif
 
-         ::aura::del(g_pplexheapallocarray);
+         //::aura::del(g_pplexheapallocarray);
 
          ::aura::del(g_pheap);
 
@@ -475,5 +480,13 @@ void init_draw2d_direct2_mutex()
 {
 
    s_pmutex = new mutex();
+
+}
+
+
+void term_draw2d_direct2_mutex()
+{
+
+   ::aura::del(s_pmutex);
 
 }

@@ -21,20 +21,19 @@ class CLASS_DECL_AURA id_space
 protected:
 
 
-  // index_array                      stackLowerBound;
-   //index_array                      stackUpperBound;
-   ptr_array < const char  >        m_psza; 
+   raw_array < char *  >      m_psza; 
+   critical_section *         m_pcs;
 
-//   void sort();
+
    bool find(const char * pszFind,index & iIndex);
 
+   void free_all();
+
+   
 
 public:
 
    
-   critical_section * m_pcs;
-   
-
    id_space();
    virtual ~id_space();
 
@@ -57,7 +56,7 @@ protected:
 
    index_array                      stackLowerBound;
    index_array                      stackUpperBound;
-   ptr_array < const char >         m_idptra; // ordered as added
+   raw_array < char * >             m_idptra; // ordered as added
    index_array                      m_iaId; // ordered by id_cmp
 
    

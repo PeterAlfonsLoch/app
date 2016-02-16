@@ -23,15 +23,15 @@ mutex::mutex(::aura::application * papp, bool bInitiallyOwn, const char * pstrNa
    m_bOwner = true;
    m_bAlreadyExists = false;
 
-    static exception::translator * p = NULL;
+    //static exception::translator * p = NULL;
 
-    if(p == NULL)
-    {
+    //if(p == NULL)
+    //{
 
-                    p = new ::exception::translator();
-                    p->attach();
+    //                p = new ::exception::translator();
+    //                p->attach();
 
-    }
+    //}
 
 #ifdef _WIN32
 
@@ -825,8 +825,11 @@ null_dacl_security_attributes::null_dacl_security_attributes()
 spaadmin_mutex::spaadmin_mutex() :
 #ifdef WINDOWSEX
 mutex(NULL,false,"Global\\::ca2::fontopus::ccvotagus::" + process_platform_dir_name() + "::198411151951042219770204-11dd-ae16-0800200c7784",&m_securityattributes)
+, sync_object("Global\\::ca2::fontopus::ccvotagus::" + process_platform_dir_name() + "::198411151951042219770204-11dd-ae16-0800200c7784")
 #else
 mutex(NULL,false,"Global\\::ca2::fontopus::ccvotagus::" + process_platform_dir_name() + "::198411151951042219770204-11dd-ae16-0800200c7784")
+, sync_object("Global\\::ca2::fontopus::ccvotagus::" + process_platform_dir_name() + "::198411151951042219770204-11dd-ae16-0800200c7784")
 #endif
+
 {
 }

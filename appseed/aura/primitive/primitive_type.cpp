@@ -153,7 +153,7 @@ bool type::operator == (const type & info) const
 bool type::operator == (const std_type_info & info) const
 {
 
-   return m_id == info.name();
+   return m_id == info.raw_name();
 
 }
 
@@ -185,7 +185,7 @@ bool type::operator != (const type & info) const
 bool type::operator != (const std_type_info & info) const
 {
 
-   return m_id != info.name();
+   return m_id != info.raw_name();
 
 }
 

@@ -6,9 +6,9 @@ class CLASS_DECL_AURA istring
 public:
 
 
-   sp(::aura::application)  m_pauraapp;
-   string               m_str;
-   string               m_strTemplate;
+   ::aura::application *   m_pauraapp;
+   string                  m_str;
+   string                  m_strTemplate;
 
 
    istring(::aura::application * papp);

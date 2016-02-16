@@ -22,7 +22,7 @@ namespace userex
 
    userex::~userex()
    {
-
+      
    }
 
 
@@ -31,7 +31,7 @@ namespace userex
 
       System.factory().creatable_small < keyboard_layout >();
 
-      m_pshellimageset = canew(filemanager::_shell::ImageSet(m_pauraapp));
+      m_pshellimageset = new filemanager::_shell::ImageSet(m_pauraapp);
 
       if(!::aura::departament::initialize1())
          return false;
@@ -134,26 +134,26 @@ namespace userex
 
       Application.set_form_impact_system(
 
-         new ::user::multiple_document_template(
+         canew(::user::multiple_document_template(
             get_app(),
             "system/form",
             System.type_info < html_document >(),
             System.get_simple_frame_window_type_info(),
-            System.type_info < html_view >()),
+            System.type_info < html_view >())),
 
-         new ::user::multiple_document_template(
+         canew(::user::multiple_document_template(
             get_app(),
             "system/form",
             System.type_info < html_document >(),
             System.get_simple_child_frame_type_info(),
-            System.type_info < html_view >()),
+            System.type_info < html_view >())),
 
-         new ::user::multiple_document_template(
+         canew(::user::multiple_document_template(
             get_app(),
             "system/form",
             System.type_info < ::user::document >(),
             System.get_simple_frame_window_type_info(),
-            System.type_info < ::user::place_holder >())
+            System.type_info < ::user::place_holder >()))
 
          );
 
@@ -349,6 +349,8 @@ namespace userex
       catch(...)
       {
       }
+
+      ::aura::del(m_pshellimageset);
 
       //try
       //{

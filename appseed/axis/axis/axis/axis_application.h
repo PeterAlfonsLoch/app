@@ -29,7 +29,6 @@ namespace axis
       ::http::application                             m_http;
 
       ::simpledb::simpledb                            m_simpledb;
-      sp(::database::server)                          m_spdataserver;
 
 
       mutex                                           m_mutexFrame;
@@ -332,7 +331,7 @@ namespace axis
 //      virtual string http_get_locale_schema(const char * pszUrl,const char * pszLocale,const char * pszSchema);
 
 
-      inline ::database::server &               dataserver()   { return *(m_spdataserver.m_p); }
+      inline ::database::server &               dataserver()   { return *m_simpledb.get_data_server(); }
 
       //virtual void tellme_destroyed(::user::interaction * pui, bool * pDestroyed, bool bTell = true);
 
