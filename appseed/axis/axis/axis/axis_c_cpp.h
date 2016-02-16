@@ -298,6 +298,9 @@ CLASS_DECL_AXIS bool __node_axis_pos_term();
 #include "primitive/data/data_simple_item.h"
 
 
+#include "axis/html_lite/html_lite/html_lite.h"
+
+
 //#include "axis/database/database/database.h"
 //
 //#include "axis/database/sqlitedb/sqlitedb.h"

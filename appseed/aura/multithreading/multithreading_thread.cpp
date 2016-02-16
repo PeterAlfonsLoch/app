@@ -137,7 +137,14 @@ void thread::CommonConstruct()
 
    m_dwAlive = ::get_tick_count();
 
-   m_pmutex = new mutex();
+   if (m_pmutex == NULL)
+   {
+      m_pmutex = new mutex();
+   }
+   else
+   {
+      output_debug_string("tst");
+   }
 
    //m_peventEvent = NULL;
 

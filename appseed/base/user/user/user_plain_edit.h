@@ -85,7 +85,7 @@ namespace user
       index_array                   m_iaLineBeg;
 
       bool                          m_bOwnData;
-      plain_text_tree *             m_ptree;
+      sp(plain_text_tree)           m_ptree;
       ::data::tree_item *           m_pitem;
 
 

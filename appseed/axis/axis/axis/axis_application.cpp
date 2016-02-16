@@ -1935,6 +1935,22 @@ namespace axis
       //   return false;
 
 
+      if (m_paurasystem->m_phtml == NULL)
+      {
+
+         m_paurasystem->m_phtml = create_html();
+
+         if (m_paurasystem->m_phtml == NULL)
+         {
+
+            return false;
+
+         }
+
+         m_paurasystem->m_phtml->construct(m_pauraapp);
+
+      }
+
       m_bAxisProcessInitializeResult = true;
 
       return true;
@@ -1989,6 +2005,16 @@ namespace axis
 
       if(!::aura::application::initialize1())
          return false;
+
+
+      if (!m_paurasystem->m_phtml->initialize())
+      {
+
+         return false;
+
+      }
+
+      
 
       m_bAxisInitialize1Result = true;
 
@@ -2245,6 +2271,16 @@ namespace axis
 
          }
 
+         if (m_paurasystem->m_phtml != NULL)
+         {
+
+            delete m_paurasystem->m_phtml;
+
+            m_paurasystem->m_phtml = NULL;
+
+         }
+
+
          try
          {
 
@@ -2317,6 +2353,9 @@ namespace axis
    {
 
       bool bOk = false;
+
+
+
 
       try
       {
@@ -4738,6 +4777,14 @@ finalize:
       ::fontopus::set_cred_ok(this, strToken, bOk);
 
    }
+
+   ::html::html * application::create_html()
+   {
+
+      return new ::html::html(m_pauraapp);
+
+   }
+
 
 } // namespace axis
 

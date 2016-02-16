@@ -2,6 +2,9 @@
 /* WARNING: Generated automatically from opensslconf.h.in by Configure. */
 //#error "sslconf1"
 /* OpenSSL was configured with the following options: */
+
+#include "nodeapp/operational_system/config_debug.h"
+
 #ifndef OPENSSL_DOING_MAKEDEPEND
 //#error "sslconf2"
 #ifdef __clang

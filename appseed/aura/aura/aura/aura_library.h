@@ -12,7 +12,7 @@ namespace aura
 
 
       void *            m_plibrary;
-      sp(library)       m_pca2library;
+      library *         m_pca2library;
       bool              m_bAutoClose;
       string            m_strCa2Name;
       string            m_strRoot;

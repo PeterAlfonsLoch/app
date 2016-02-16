@@ -121,7 +121,7 @@ namespace file
 
       };
 
-      class ItemPtrArray: public ::array < sp(Item),sp(Item) >
+      class ItemPtrArray: public spa(Item)
       {
       public:
       };
@@ -131,7 +131,7 @@ namespace file
       public:
 
 
-         GroupItem * m_pgroupitem;
+         sp(GroupItem) m_pgroupitem;
 
 
          virtual EItemType get_type();
@@ -163,7 +163,7 @@ namespace file
       sp(::data::tree_item)   m_ptreeitemFlush;
       memory_offset_t              m_iBranch;
       ::file::buffer_sp           m_pfile;
-      GroupItem *          m_pgroupitem;
+      sp(GroupItem)          m_pgroupitem;
       bool                 m_bRootDirection;
 
       void SetFile(::file::buffer_sp  pfile);

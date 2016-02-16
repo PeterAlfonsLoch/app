@@ -32,21 +32,11 @@ namespace user
 
    plain_edit::~plain_edit()
    {
-      if(m_bOwnData)
-      {
-         delete m_ptree;
-         m_ptree = NULL;
-      }
-      if(m_peditor != NULL)
-      {
-         delete m_peditor;
-         m_peditor = NULL;
-      }
-      if(m_plines != NULL)
-      {
-         delete m_plines;
-         m_plines = NULL;
-      }
+      
+      ::aura::del(m_peditor);
+      
+      ::aura::del(m_plines);
+
    }
 
    void plain_edit::plain_edit_common_construct()
@@ -519,7 +509,7 @@ namespace user
       if(m_ptree == NULL)
       {
 
-         set_root(new ::user::plain_text_tree(get_app()),true);
+         set_root(canew(::user::plain_text_tree(get_app())),true);
 
       }
 
@@ -2379,7 +2369,7 @@ namespace user
                      // Kill Focus => Kill Key Repeat timer
                      //System.simple_message_box("VK_RETURN reached plain_edit");
                   }
-                  plain_text_set_sel_command * psetsel = new plain_text_set_sel_command;
+                  plain_text_set_sel_command * psetsel = canew(plain_text_set_sel_command);
                   psetsel->m_iPreviousSelStart = m_ptree->m_iSelStart;
                   psetsel->m_iPreviousSelEnd = m_ptree->m_iSelEnd;
                   m_ptree->m_editfile.MacroBegin();
@@ -2436,7 +2426,7 @@ namespace user
                   psetsel->m_iSelEnd = m_ptree->m_iSelEnd;
                   MacroBegin();
                   MacroRecord(psetsel);
-                  MacroRecord(new plain_text_file_command());
+                  MacroRecord(canew(plain_text_file_command()));
                   MacroEnd();
                   _001OnUpdate(::action::source_user);
                   //_001OnAfterChangeText(::action::source_user);
@@ -2681,7 +2671,7 @@ namespace user
 
    void plain_edit::MacroBegin()
    {
-      sp(::user::plain_text_group_command) pgroupcommand = new plain_text_group_command;
+      sp(::user::plain_text_group_command) pgroupcommand = canew(plain_text_group_command);
       pgroupcommand->m_pparent = m_ptree->m_pgroupcommand;
       m_ptree->m_pgroupcommand = pgroupcommand;
    }
@@ -2861,7 +2851,7 @@ namespace user
       //str.replace("\r\n","\n");
       _001SetSelText(str,::action::source::user());
       MacroBegin();
-      MacroRecord(new plain_text_file_command());
+      MacroRecord(canew(plain_text_file_command()));
       MacroEnd();
 
       _001OnUpdate(::action::source::user());
@@ -3015,7 +3005,7 @@ namespace user
 
    sp(::data::item) plain_edit::on_allocate_item()
    {
-      return new plain_text_command;
+      return canew(plain_text_command);
    }
 
 

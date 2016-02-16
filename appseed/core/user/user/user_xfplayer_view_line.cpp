@@ -101,34 +101,6 @@ bool XfplayerViewLine::PrepareLine(::draw2d::graphics * pdc, const string & str,
    return true;
 }
 
-/*bool XfplayerViewLine::PrepareLine(
-   ::draw2d::graphics * pdc,
-   const unichar * lpcsz,
-   int32_t flags,
-   visual::font *pFont,
-   LPRECT pRect)
-{
-   m_bCacheEmboss = false;
-   int32_t               iChars;
-   int32_t               iStr;
-   int32_t               iStrLen;
-    m_iIndent = 0;
-   string str(lpcsz);
-   ASSERT(pdc != NULL);
-   pdc->SelectObject(pFont->GetFont());
-   pFont->GetFont()->GetLogFont(&m_logfont);
-   iStrLen = str.get_length();
-   iChars = -1;
-   m_str.Empty();
-   for(iStr = 0; iStr < iStrLen; iStr++)
-   {
-      AddChar(str[iStr], iChars, pFont);
-   }
-   CalcCharsPositions(pdc, pFont, pRect);
-   //pFont->UnselectFont();
-   //pFont->ClearDC();
-   return true;
-}*/
 
 void XfplayerViewLine::AddChar(WCHAR wch, strsize & index)
 {

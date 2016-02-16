@@ -7,7 +7,7 @@ namespace core
 
    class CLASS_DECL_CORE application:
       virtual public ::base::application,
-      virtual public ::html_lite::application,
+//      virtual public ::html_lite::application,
       virtual public ::filemanager::callback
    {
    public:

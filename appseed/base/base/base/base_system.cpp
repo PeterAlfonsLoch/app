@@ -311,6 +311,17 @@ namespace base
       axis::system::exit_instance();
 
 
+      //try
+      //{
+
+      //   ::release(m_ptwf);
+
+      //}
+      //catch (...)
+      //{
+
+      //}
+
 #ifdef WINDOWSEX
 
       try

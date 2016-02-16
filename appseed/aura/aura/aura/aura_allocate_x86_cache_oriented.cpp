@@ -20,7 +20,7 @@ public:
    {
 
       //TODO("jai"); jas = Jonathan Blow
-      memory_free(p);
+      ::memory_free(p);
 
    }
 
@@ -101,7 +101,7 @@ public:
 
    static void del_pool(x86_cache_oriented_memory_pool * p)
    {
-      memory_free(p->m_p);
+      ::memory_free(p->m_p);
    }
 
    void * alloc(::count c)

@@ -3,12 +3,6 @@
 #include "aura/aura/aura.h"
 
 
-#if defined(_CA2_HTML_LITE_DLL)
-#define CLASS_DECL_HTML_LITE  CLASS_DECL_EXPORT
-#else
-#define CLASS_DECL_HTML_LITE  CLASS_DECL_IMPORT
-#endif
-
 
 
 class lite_html_tag;
@@ -27,7 +21,7 @@ class lite_html_reader;
 #include "axis/html_lite/html/html.h"
 
 
-#include "html_lite_application.h"
+// #include "html_lite_application.h"
 
 
 

@@ -5,7 +5,7 @@ namespace html_lite
 {
 
 
-   class CLASS_DECL_HTML_LITE application :
+   class CLASS_DECL_AXIS application :
       virtual public ::aura::application
    {
    public:
@@ -19,7 +19,7 @@ namespace html_lite
 
       virtual ::html::html * create_html();
 
-      DECL_GEN_SIGNAL(on_application_signal);
+      //DECL_GEN_SIGNAL(on_application_signal);
 
 
    };

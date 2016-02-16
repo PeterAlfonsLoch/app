@@ -19,6 +19,7 @@ font_central::font_central(::aura::application * papp) :
 
    m_pfontLyric = NULL;
    m_pfontLyricCompact = NULL;
+   m_pH3TitleFonts = NULL;
    m_bInitialized = false;
 
 }
@@ -111,6 +112,17 @@ void font_central::Finalize()
    }
 
    ::aura::del(m_pSubTitleFonts);
+
+   
+
+   for (auto & p : *m_pH3TitleFonts)
+   {
+
+      ::aura::del(p);
+
+   }
+
+   ::aura::del(m_pH3TitleFonts);
 
    m_bInitialized = false;
 

@@ -505,7 +505,7 @@ namespace file
    void edit_buffer::write(const void * lpBuf,memory_size_t nCount)
    {
       EditItem * pedit;
-      pedit = new EditItem;
+      pedit = canew(EditItem);
       pedit->m_dwPosition = m_dwPosition;
       pedit->m_memstorage.allocate(nCount);
       memcpy(pedit->m_memstorage.get_data(),lpBuf,nCount);
@@ -516,7 +516,7 @@ namespace file
    void edit_buffer::Insert(const void * lpBuf,memory_size_t nCount)
    {
       InsertItem * pinsert;
-      pinsert = new InsertItem;
+      pinsert = canew(InsertItem);
       pinsert->m_dwPosition = m_dwPosition;
       pinsert->m_memstorage.allocate(nCount);
       memcpy(pinsert->m_memstorage.get_data(),lpBuf,nCount);
@@ -533,7 +533,7 @@ namespace file
       if(uiCount == 0)
          return;
 
-      pdelete = new DeleteItem;
+      pdelete = canew(DeleteItem);
       pdelete->m_dwPosition = m_dwPosition;
       pdelete->m_memstorage.allocate(uiCount);
       seek((file_offset_t)m_dwPosition,::file::seek_begin);
@@ -731,7 +731,7 @@ namespace file
 
    void edit_buffer::MacroBegin()
    {
-      GroupItem * pgroupitem = new GroupItem;
+      GroupItem * pgroupitem = canew(GroupItem);
       pgroupitem->m_pgroupitem = m_pgroupitem;
       m_pgroupitem = pgroupitem;
    }

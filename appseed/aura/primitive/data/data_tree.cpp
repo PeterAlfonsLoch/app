@@ -209,7 +209,7 @@ namespace data
          return pitemRelative;
 
       }
-      sp(::data::tree_item) pitemNew = new tree_item;
+      sp(::data::tree_item) pitemNew = canew(tree_item);
       if(pitemNew == NULL)
          return NULL;
       if(!insert_item(pitemNew, erelativeNewItem, pitemRelative))

@@ -19,6 +19,8 @@ namespace aura
 
       m_plibrary = NULL;
 
+      m_pca2library = NULL;
+
    }
 
 
@@ -29,6 +31,8 @@ namespace aura
       m_bAutoClose = true;
 
       m_plibrary = NULL;
+
+      m_pca2library = NULL;
 
       if(pszRoot != NULL)
       {
@@ -43,12 +47,7 @@ namespace aura
    library::~library()
    {
 
-      if(m_bAutoClose)
-      {
-
-         close();
-
-      }
+      close();
 
    }
 
@@ -247,12 +246,7 @@ void * library::get_os_data()
          try
          {
 
-            if(m_pca2library != NULL)
-            {
-
-               m_pca2library = NULL;
-
-            }
+            ::aura::del(m_pca2library);
 
          }
          catch(...)
@@ -264,37 +258,41 @@ void * library::get_os_data()
 
          }
 
-         try
+         if (m_bAutoClose)
          {
 
-            if(m_plibrary != NULL)
+            try
             {
 
-               if(::__node_library_close(m_plibrary))
+               if (m_plibrary != NULL)
                {
 
-                  m_plibrary = NULL;
+                  if (::__node_library_close(m_plibrary))
+                  {
 
-               }
-               else
-               {
+                     m_plibrary = NULL;
 
-                  bOk = false;
+                  }
+                  else
+                  {
+
+                     bOk = false;
+
+                  }
 
                }
 
             }
+            catch (...)
+            {
+
+               m_plibrary = NULL;
+
+               bOk = false;
+
+            }
 
          }
-         catch(...)
-         {
-
-            m_plibrary = NULL;
-
-            bOk = false;
-
-         }
-
 
          return bOk;
 

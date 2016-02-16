@@ -2209,9 +2209,6 @@
     <ProjectReference Include="..\..\axis\bzip2\axisbzip2.vcxproj">
       <Project>{a5a649e1-d516-4f29-a627-da6884dd421c}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\axis\html_lite\html_lite.vcxproj">
-      <Project>{845177e8-8b1e-4ae0-9b96-1abc24b797a6}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\aura\aura.vcxproj">
       <Project>{03e5b8e7-9e3b-44dd-9ede-e0a74d52c1c5}</Project>
     </ProjectReference>

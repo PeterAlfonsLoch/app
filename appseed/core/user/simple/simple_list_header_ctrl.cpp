@@ -106,12 +106,13 @@ void simple_list_header_control::_001OnTrack(signal_details * pobj)
 
 void simple_list_header_control::_001OnCreate(signal_details * pobj) 
 {
+
    SCAST_PTR(::message::create, pcreate, pobj);
-//   LOGFONTW lf;
 
    ::user::list_header::m_font->operator = (*System.visual().font_central().GetListCtrlFont());
    
    pcreate->m_bRet = false;
+
 }
 
 

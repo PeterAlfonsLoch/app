@@ -34,6 +34,8 @@ namespace aura
       m_mutexStr(this)
    {
 
+      m_peventReady = NULL;
+
       m_bAgreeExit = true;
       m_bAgreeExitOk = true;
       m_bFranceExit = true;
@@ -148,6 +150,14 @@ namespace aura
 
    application::~application()
    {
+
+      if (m_peventReady != NULL)
+      {
+
+         delete m_peventReady;
+
+      }
+
       if (m_pinitmaindata != NULL)
       {
 

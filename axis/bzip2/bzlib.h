@@ -17,7 +17,7 @@
    This program is released under the terms of the license contained
    in the file LICENSE.
    ------------------------------------------------------------------ */
-
+#include "nodeapp/operational_system/config_debug.h"
 
 #ifndef _BZLIB_H
 #define _BZLIB_H

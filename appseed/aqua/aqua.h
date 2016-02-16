@@ -1,5 +1,6 @@
 #pragma once
 
+#include "nodeapp/operational_system/config_debug.h"
 
 #ifdef _WIN32
 #ifdef CUBE

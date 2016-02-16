@@ -13,6 +13,8 @@ void term_draw2d_direct2_mutex();
 void aura_auto_debug_teste();
 void teste_aura_cmp();
 
+extern mutex * s_pmutexMessageDispatch = NULL;
+
 namespace str
 {
 
@@ -186,6 +188,8 @@ namespace aura
          //g_pmutexTrace = new mutex();
 
          g_pmutexUiDestroyed = new mutex();
+
+         s_pmutexMessageDispatch = new mutex();
 
 
 #if defined(WINDOWSEX)
@@ -406,6 +410,7 @@ namespace aura
          //delete g_pmutexTrace;
 
          //g_pmutexTrace = NULL;
+         ::aura::del(s_pmutexMessageDispatch);
 
          ::aura::del(g_pmutexUiDestroyed);
 

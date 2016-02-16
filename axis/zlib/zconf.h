@@ -4,7 +4,7 @@
  */
 
 /* @(#) $Id$ */
-
+#include "nodeapp/operational_system/config_debug.h"
 #ifndef ZCONF_H
 #define ZCONF_H
 

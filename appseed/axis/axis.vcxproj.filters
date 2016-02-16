@@ -282,6 +282,24 @@
     <Filter Include="Header Files\axis\node\metrowin">
       <UniqueIdentifier>{6b2bcfdf-8b69-4656-baf7-fa078095ed33}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\html_lite">
+      <UniqueIdentifier>{fa88d0da-3802-4664-a302-ec4f8bd70e3a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\html_lite\html_lite">
+      <UniqueIdentifier>{b6da9448-cf39-4937-9d68-bb14b9cfe232}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\html_lite\html">
+      <UniqueIdentifier>{429120de-6cc4-49f0-843a-d916fa6a036a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\html_lite">
+      <UniqueIdentifier>{f355fbf7-69fb-45df-8f0f-0759cd7f5ac0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\html_lite\html_lite">
+      <UniqueIdentifier>{296abd36-fe24-48a6-9777-9eb71078ce39}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\html_lite\html">
+      <UniqueIdentifier>{90d87260-7262-40b1-87bf-aa8e5835e0bb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="net\net.h">
@@ -1085,6 +1103,36 @@
     <ClInclude Include="user\user\user_validate.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
+    <ClInclude Include="html_lite\html_lite\html_lite.h">
+      <Filter>Header Files\html_lite\html_lite</Filter>
+    </ClInclude>
+    <ClInclude Include="html_lite\html_lite\html_lite_application.h">
+      <Filter>Header Files\html_lite\html_lite</Filter>
+    </ClInclude>
+    <ClInclude Include="html_lite\html_lite\html_lite_html_attributes.h">
+      <Filter>Header Files\html_lite\html_lite</Filter>
+    </ClInclude>
+    <ClInclude Include="html_lite\html_lite\html_lite_html_common.h">
+      <Filter>Header Files\html_lite\html_lite</Filter>
+    </ClInclude>
+    <ClInclude Include="html_lite\html_lite\html_lite_html_entity_resolver.h">
+      <Filter>Header Files\html_lite\html_lite</Filter>
+    </ClInclude>
+    <ClInclude Include="html_lite\html_lite\html_lite_html_reader.h">
+      <Filter>Header Files\html_lite\html_lite</Filter>
+    </ClInclude>
+    <ClInclude Include="html_lite\html_lite\html_lite_html_tag.h">
+      <Filter>Header Files\html_lite\html_lite</Filter>
+    </ClInclude>
+    <ClInclude Include="html_lite\html\html.h">
+      <Filter>Header Files\html_lite\html</Filter>
+    </ClInclude>
+    <ClInclude Include="html_lite\html\html_enum.h">
+      <Filter>Header Files\html_lite\html</Filter>
+    </ClInclude>
+    <ClInclude Include="html_lite\html\html_html.h">
+      <Filter>Header Files\html_lite\html</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="net\net_net.cpp">
@@ -1854,6 +1902,30 @@
     </ClCompile>
     <ClCompile Include="user\user\user_validate.cpp">
       <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="html_lite\html_lite\_html_lite.cpp">
+      <Filter>Source Files\html_lite\html_lite</Filter>
+    </ClCompile>
+    <ClCompile Include="html_lite\html\_html.cpp">
+      <Filter>Source Files\html_lite\html</Filter>
+    </ClCompile>
+    <ClCompile Include="html_lite\html_lite\html_lite_html_tag.cpp">
+      <Filter>Source Files\html_lite\html_lite</Filter>
+    </ClCompile>
+    <ClCompile Include="html_lite\html_lite\html_lite_application.cpp">
+      <Filter>Source Files\html_lite\html_lite</Filter>
+    </ClCompile>
+    <ClCompile Include="html_lite\html_lite\html_lite_html_attributes.cpp">
+      <Filter>Source Files\html_lite\html_lite</Filter>
+    </ClCompile>
+    <ClCompile Include="html_lite\html_lite\html_lite_html_entity_resolver.cpp">
+      <Filter>Source Files\html_lite\html_lite</Filter>
+    </ClCompile>
+    <ClCompile Include="html_lite\html_lite\html_lite_html_reader.cpp">
+      <Filter>Source Files\html_lite\html_lite</Filter>
+    </ClCompile>
+    <ClCompile Include="html_lite\html\html_html.cpp">
+      <Filter>Source Files\html_lite\html</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -227,10 +227,11 @@ thread* __begin_thread(::aura::application * papp,__THREADPROC pfnThreadProc,LPV
 //
 //}
 
+mutex * s_pmutexMessageDispatch = NULL;
+
 mutex & message_dispatch_mutex()
 {
 
-   static mutex * s_pmutexMessageDispatch = new mutex();
 
    return *s_pmutexMessageDispatch;
 

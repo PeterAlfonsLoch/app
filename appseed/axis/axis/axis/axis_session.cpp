@@ -1137,6 +1137,18 @@ namespace axis
       try
       {
 
+         ::aura::del(m_pmapKeyPressed);
+
+      }
+      catch (...)
+      {
+
+
+      }
+
+      try
+      {
+
          if (m_puserpresence != NULL)
          {
 
