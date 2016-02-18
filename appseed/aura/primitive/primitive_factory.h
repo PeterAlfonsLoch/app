@@ -42,15 +42,19 @@ public:
       if(m_bAligned)
       {
 #if MEMDLEAK
-         return aligned_memory_alloc_dbg(m_uiAllocSize, 0, "typeid://" + string(m_idType.m_psz), 0);
+         return aligned_memory_alloc_dbg(m_uiAllocSize, 0, string("typeid://") + string(m_idType.m_psz), 0);
+#elif defined(__MCRTDBG)
+         return aligned_memory_alloc_dbg(m_uiAllocSize, _NORMAL_BLOCK, __FILE__, __LINE__);
 #else
          return aligned_memory_alloc(m_uiAllocSize);
 #endif
       }
       else
       {
-#if MEMDLEAK
+#if MEMDLEAK 
          return memory_alloc_dbg(m_uiAllocSize, 0, "typeid://" + string(m_idType.m_psz), 0);
+#elif defined(__MCRTDBG)
+         return memory_alloc_dbg(m_uiAllocSize, _NORMAL_BLOCK, __FILE__, __LINE__);
 #else
          return memory_alloc(m_uiAllocSize);
 #endif

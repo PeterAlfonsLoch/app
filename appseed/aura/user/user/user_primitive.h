@@ -11,8 +11,9 @@ namespace user
    {
    public:
 
+      //ptr_array < thread >                m_threadptra;
 
-      void *         m_pvoidUserInteraction; // ::user::primitive * 
+      void *                              m_pvoidUserInteraction; // ::user::primitive * 
 
 
       primitive();
@@ -30,6 +31,12 @@ namespace user
       virtual int32_t get_total_page_count(::job * pjob);
 
       virtual void _001OnTimer(::timer * ptimer);
+
+
+//      virtual ptr_array < ::thread > get_thread(::user::primitive * pui);
+//      virtual void add_thread(::thread * pthread);
+  //    virtual void remove_thread(::thread * pthread);
+
 
    };
 

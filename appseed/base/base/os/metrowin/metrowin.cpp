@@ -226,17 +226,6 @@ ulong_ptr                        g_gdiplusHookToken         = NULL;
 //} 
 //
 //
-//int_bool main_finalize()
-//{
-//
-//   /*g_pgdiplusStartupOutput->NotificationUnhook(g_gdiplusHookToken);
-//
-//   Gdiplus::GdiplusShutdown(g_gdiplusToken);
-//   */
-//
-//   return TRUE;
-//
-//}
 
 
 //int g_iMouse = -1;

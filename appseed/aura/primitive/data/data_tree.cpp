@@ -34,7 +34,7 @@ namespace data
    }
 
 
-   sp(tree_item) tree::find(item * pitemdata, index * piIndex)
+   tree_item * tree::find(item * pitemdata, index * piIndex)
    {
       
       index iIndex;
@@ -73,7 +73,7 @@ namespace data
 
    bool tree::contains(tree_item * pitemParam)
    {
-      sp(::data::tree_item) pitem = m_proot;
+      ::data::tree_item * pitem = m_proot;
       for(; pitem != NULL; pitem = pitem->get_item(TreeNavigationExpandedForward))
       {
          if(pitem == pitemParam)
@@ -90,7 +90,7 @@ namespace data
 
    ::count tree::remove(item * pitemdata, index i)
    {
-      sp(tree_item) pitem = find(pitemdata, &i);
+      tree_item * pitem = find(pitemdata, &i);
       if(pitem == NULL)
          return false;
       return remove(pitem);
@@ -124,7 +124,7 @@ namespace data
 
 
 
-   sp(::data::tree_item) tree::get_proper_item(index iIndex, index * piLevel, index * piCount)
+   ::data::tree_item * tree::get_proper_item(index iIndex, index * piLevel, index * piCount)
    {
 
       index iCount = 0;
@@ -191,12 +191,12 @@ namespace data
    }
 
 
-   sp(::data::tree_item) tree::get_base_item()
+   ::data::tree_item * tree::get_base_item()
    {
       return m_proot;
    }
 
-   sp(::data::tree_item) tree::insert_item(::data::item * pitemdataNew, ERelative erelativeNewItem, ::data::tree_item *pitemRelative)
+   ::data::tree_item * tree::insert_item(::data::item * pitemdataNew, ERelative erelativeNewItem, ::data::tree_item *pitemRelative)
    {
       if(erelativeNewItem == RelativeReplace)
       {
@@ -335,7 +335,7 @@ namespace data
       while(pitem != NULL)
       {
          pitem->sort_children(lpfnCompare);
-         pitem = (sp(tree_item)) pitem->get_next();
+         pitem = pitem->get_next();
       }
    }
 

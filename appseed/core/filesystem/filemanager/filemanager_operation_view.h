@@ -28,8 +28,8 @@ namespace filemanager
       };
 
 
-      sp(operation_list_view)    m_plistview;
-      sp(operation_info_view)    m_pinfoview;
+      operation_list_view *    m_plistview;
+      operation_info_view *    m_pinfoview;
 
       ::user::view_creator *     m_pviewcreator;
 

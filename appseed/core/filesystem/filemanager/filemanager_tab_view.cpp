@@ -188,7 +188,7 @@ namespace filemanager
       else
       {
 
-         ::filemanager::data * pfilemanagerdata = new ::filemanager::data(get_app());
+         ::filemanager::data * pfilemanagerdata = canew(::filemanager::data(get_app()));
          pfilemanagerdata->m_pcallback = &Session.filemanager();
          pfilemanagerdata->m_pmanagertemplate = &Session.filemanager().std();
          pfilemanagerdata->m_bFileSize = true;

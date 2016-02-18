@@ -1731,8 +1731,8 @@ in UTF-8 mode. The code that uses this table must know about such things. */
 /* Structure to hold data for custom memory management. */
 
 typedef struct pcre2_memctl {
-  void *    (*malloc)(size_t, void *);
-  void      (*free)(void *, void *);
+  void *    (*_alloc)(size_t, void *);
+  void      (*_free)(void *, void *);
   void      *memory_data;
 } pcre2_memctl;
 

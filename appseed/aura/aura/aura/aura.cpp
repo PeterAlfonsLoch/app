@@ -204,10 +204,9 @@ bool aura_term()
 
    processor_cache_oriented_destroy_all_memory_pools();
 
-   ::aura::static_start::term();
-
    __node_aura_pos_term();
 
+   ::aura::static_start::term();
 
    return true;
 

@@ -2070,7 +2070,7 @@ namespace base
 
 
 
-   void application::add_frame(sp(::user::interaction) pwnd)
+   void application::add_frame(::user::interaction * pwnd)
    {
 
       synch_lock sl(&m_mutexFrame); // recursive lock (on m_framea.add(pwnd)) but m_puiMain is "cared" by m_frame.m_mutex
@@ -2094,7 +2094,7 @@ namespace base
    }
 
 
-   void application::remove_frame(sp(::user::interaction) pwnd)
+   void application::remove_frame(::user::interaction * pwnd)
    {
 
       synch_lock sl(&m_mutexFrame); // recursive lock (on m_framea.remove(pwnd)) but m_puiMain is "cared" by m_frame.m_mutex
@@ -2115,7 +2115,7 @@ namespace base
 
       }
 
-      m_uiptraFrame.remove(pwnd.m_p);
+      m_uiptraFrame.remove(pwnd);
 
 
    }
@@ -2288,13 +2288,13 @@ namespace base
       if(pthread == NULL)
       {
 
-         t_plastblock->m_pszFileName = strdup(string(typeid(*papp).name()));
+         set_last_block_file_name(string(typeid(*papp).name()));
 
       }
       else
       {
 
-         t_plastblock->m_pszFileName = strdup(string(typeid(*papp).name()) +"&nbsp;-&nbsp;" +string(typeid(*pthread).name()));
+         set_last_block_file_name(string(typeid(*papp).name()) +"&nbsp;-&nbsp;" +string(typeid(*pthread).name()));
 
       }
 
@@ -2388,27 +2388,6 @@ namespace base
    }
 
 
-   ptr_array < ::thread > application::get_thread(::user::primitive * pui)
-   {
-
-      return ((::user::interaction *)pui->m_pvoidUserInteraction)->m_threadptra;
-
-   }
-
-
-   void application::add_thread(::user::primitive * pui,::thread * pthread)
-   {
-
-      ((::user::interaction *)pui->m_pvoidUserInteraction)->m_threadptra.add_unique(pthread);
-
-   }
-
-   void application::remove_thread(::user::primitive * pui,::thread * pthread)
-   {
-
-      ((::user::interaction *)pui->m_pvoidUserInteraction)->m_threadptra.remove(pthread);
-
-   }
 
    void application::window_graphics_update_window(window_graphics ** ppdata,oswindow interaction_impl,COLORREF * pOsBitmapData,const RECT & rect,int cxParam,int cyParam,int iStride,bool bTransferBuffer)
    {

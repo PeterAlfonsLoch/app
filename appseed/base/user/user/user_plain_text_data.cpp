@@ -13,7 +13,7 @@ namespace user
       m_editfile(papp)
    {
 
-      m_pgroupcommand      = NULL;
+      //m_pgroupcommand      = NULL;
       m_pfile              = NULL;
       m_iBranch            = 0;
       m_iSelStart          = -1;
@@ -83,6 +83,12 @@ namespace user
    {
 
       m_pparent = NULL;
+
+   }
+
+   plain_text_group_command::~plain_text_group_command()
+   {
+
 
    }
 

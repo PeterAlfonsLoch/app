@@ -93,7 +93,7 @@ namespace filemanager
          index iItem;
       if(_001HitTest_(pmouse->m_pt, iItem))
       {
-         get_filemanager_data()->OnFileManagerOpenFolder(new::fs::item(m_foldera.GetFolder(iItem).m_strPath), ::action::source_user);
+         get_filemanager_data()->OnFileManagerOpenFolder(canew(::fs::item(m_foldera.GetFolder(iItem).m_strPath)), ::action::source_user);
       }
    }
 
@@ -182,7 +182,7 @@ namespace filemanager
          //      UINT uiFlags;
          if (pcolumn->m_pil == NULL)
          {
-            pcolumn->m_pil = new image_list(get_app());
+            pcolumn->m_pil = canew(image_list(get_app()));
          }
          sp(image_list) pil = pcolumn->m_pil;
          //if(pil->GetSafeHandle() != NULL)

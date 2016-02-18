@@ -31,7 +31,7 @@ namespace user
    ::user::place_holder * place_holder_container::get_new_place_holder(const RECT & rectCreate)
    {
       
-      m_holdera.add(new place_holder(get_app()));
+      m_holdera.add(canew(place_holder(get_app())));
       
       if(m_holdera.last_sp().is_null())
          return NULL;

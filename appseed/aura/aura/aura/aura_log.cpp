@@ -204,7 +204,7 @@ namespace aura
          return;
       //sl.unlock();
       stringa stra;
-      stra.add_smallest_tokens(psz, plog->m_straSeparator, FALSE);
+      stra.add_lines(psz, FALSE);
       /*for(int32_t i = 0; i < stra.get_size(); i++)
       {
          if(stra[i].get_length() > 200)

@@ -11,6 +11,7 @@ namespace base
    public:
 
       system_interaction_impl(::aura::application * papp);
+      virtual ~system_interaction_impl();
 
       void install_message_handling(::message::dispatch * pdispath);
 

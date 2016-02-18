@@ -90,7 +90,6 @@ namespace user
       //sp(::user::menu_base)               m_spmenuPopup;
 
       int32_t                             m_nModalResult; // for return values from ::interaction_impl::RunModalLoop
-      ptr_array < thread >                m_threadptra;
 
       sp(tooltip)                         m_ptooltip;
 

@@ -50,7 +50,7 @@ namespace user
       spa(::data::tree)             m_treeptra;
       spa(::data::tree)             m_treeptraBound;
       ::data::tree_item_ptr_array   m_itemptraSelected;
-      sp(::data::tree_item)         m_pitemHover;
+      ::data::tree_item *           m_pitemHover;
 
       ::visual::graphics_extension  m_dcextension;
       index                         m_dwFirstVisibleItem;
@@ -58,7 +58,7 @@ namespace user
       index                         m_iClick;
       UINT                          m_uiLButtonUpFlags;
       point                         m_ptLButtonUp;
-      sp(::data::tree_item)         m_pitemFirstVisible;
+      ::data::tree_item *           m_pitemFirstVisible;
       index                         m_iFirstVisibleItemLevel;
       index                         m_iFirstVisibleItemProperIndex;
       int32_t                       m_iCurrentViewWidth;

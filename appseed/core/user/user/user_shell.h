@@ -118,15 +118,15 @@ namespace filemanager
          
 
 
-         inline sp(image_list) GetImageList16()
+         inline image_list * GetImageList16()
          {
             return m_pil16;
          }
-         inline sp(image_list) GetImageList48()
+         inline image_list * GetImageList48()
          {
             return m_pil48;
          }
-         inline sp(image_list) GetImageList48Hover()
+         inline image_list * GetImageList48Hover()
          {
             return m_pil48Hover;
          }

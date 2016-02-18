@@ -335,23 +335,6 @@ namespace message
 //
 //   }
 //
-//   dispatch::HandlerItemArray::~HandlerItemArray()
-//   {
-//      for(int32_t i = 0; i < this->get_size(); i++)
-//      {
-//         delete this->element_at(i);
-//      }
-//   }
-//
-//   bool dispatch::HandlerItemArray::HasSignalizable(signalizable* psignalizable)
-//   {
-//      for(int32_t i = 0; i < this->get_size(); i++)
-//      {
-//         if(this->element_at(i)->get_signalizable() == psignalizable)
-//            return true;
-//      }
-//      return false;
-//   }
 
    void dispatch::_start_user_message_handler(signal_details * pobj)
    {

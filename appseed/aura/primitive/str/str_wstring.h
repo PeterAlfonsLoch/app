@@ -63,7 +63,7 @@ public:
 
    }
 
-   inline static void free(unichar * pwsz)
+   inline static void _free(unichar * pwsz)
    {
       if(pwsz == NULL)
          return;
@@ -144,7 +144,7 @@ public:
    {
       if(m_pwsz != NULL)
       {
-         wstring_data::free(m_pwsz);
+         wstring_data::_free(m_pwsz);
       }
       m_pwsz = &pdata->m_wchFirst;
    }

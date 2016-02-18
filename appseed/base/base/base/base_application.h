@@ -108,9 +108,6 @@ namespace base
 //      virtual ::user::interaction * get_parent(::user::interaction * pui);
 //      virtual bool enable_window(::user::primitive * pui,bool bEnable = true);
 //      virtual bool set_window_text(::user::interaction * pui,const string & strText);
-//      virtual ptr_array < ::thread > get_thread(::user::primitive * pui);
-//      virtual void add_thread(::user::primitive * pui,::thread * pthread);
-//      virtual void remove_thread(::user::primitive * pui,::thread * pthread);
 //      virtual void window_graphics_update_window(window_graphics * & pdata,oswindow interaction_impl,COLORREF * pOsBitmapData,const RECT & rect,int cxParam, int cyParam, int iStride = -1);
 //
 //
@@ -255,8 +252,8 @@ virtual ::user::interaction * main_window();
       void process_message_filter(int32_t code,signal_details * pobj);
 
       virtual bool get_frame(::user::interaction * & pui);
-      virtual void add_frame(sp(::user::interaction) pwnd);
-      virtual void remove_frame(sp(::user::interaction) pwnd);
+      virtual void add_frame(::user::interaction * pwnd);
+      virtual void remove_frame(::user::interaction * pwnd);
 
       //virtual string get_cred(const string & strRequestUrl,const RECT & rect,string & strUsername,string & strPassword,string strToken,string strTitle,bool bInteractive);
 
@@ -272,9 +269,6 @@ virtual ::user::interaction * main_window();
       virtual ::user::interaction * get_parent(::user::interaction * pui);
       virtual bool enable_window(::user::primitive * pui,bool bEnable = true);
       virtual bool set_window_text(::user::interaction * pui,const string & strText);
-      virtual ptr_array < ::thread > get_thread(::user::primitive * pui);
-      virtual void add_thread(::user::primitive * pui,::thread * pthread);
-      virtual void remove_thread(::user::primitive * pui,::thread * pthread);
       virtual void window_graphics_update_window(window_graphics ** pdata,oswindow interaction_impl,COLORREF * pOsBitmapData,const RECT & rect,int cxParam,int cyParam,int iStride = -1,bool bTransferBuffer = true);
 
       virtual void process_message(signal_details * pobj);

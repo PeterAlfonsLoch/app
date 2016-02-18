@@ -53,9 +53,12 @@ namespace user
    void multiple_document_template::remove_document(::user::document * pdocument)
    {
       
-      m_docptra.remove(pdocument);
+      if (m_docptra.remove(pdocument) > 0)
+      {
 
-      //impact_system::remove_document(pdocument);
+         impact_system::remove_document(pdocument);
+
+      }
       
    }
 
@@ -67,7 +70,7 @@ namespace user
       bool bMakeVisible = pcreatecontext->m_bMakeVisible;
       //   sp(::user::interaction) pwndParent = pcreatecontext->m_spCommandLine->m_varQuery["parent_user_interaction"].cast < ::user::interaction > ();
       //   sp(::user::impact) pviewAlloc = pcreatecontext->m_spCommandLine->m_varQuery["allocation_view"].cast < ::user::impact > ();
-      sp(::user::document) pdocument = create_new_document(pcreatecontext);
+      ::user::document * pdocument = create_new_document(pcreatecontext);
       if (pdocument == NULL)
       {
          TRACE(::aura::trace::category_AppMsg, 0, "impact_system::create_new_document returned NULL.\n");
@@ -84,7 +87,7 @@ namespace user
       {
          // linux System.simple_message_box(__IDP_FAILED_TO_CREATE_DOC);
          System.simple_message_box(NULL, "Failed to create ::user::document");
-         pdocument.release();       // explicit delete on error
+         remove_document(pdocument);
          return;
       }
       ASSERT_VALID(pFrame);

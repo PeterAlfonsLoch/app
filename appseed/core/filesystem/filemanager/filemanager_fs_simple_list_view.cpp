@@ -27,7 +27,7 @@ namespace filemanager
 
             m_dataid = "AlbumView";
 
-            m_pil = new image_list(get_app());
+            m_pil = canew(image_list(get_app()));
 
             m_pil->create(16, 16, 0, 0, 0);
 
@@ -302,14 +302,11 @@ namespace filemanager
 
          void list_view::PostFillTask(string & wstrFile, uint_ptr uiTimer)
          {
+            
             UNREFERENCED_PARAMETER(wstrFile);
             UNREFERENCED_PARAMETER(uiTimer);
             ASSERT(FALSE);
-            //   FillTask * ptask = new FillTask(this, wstrFile);
-            // ptask->m_uiTimer = uiTimer;
-            //__begin_thread(
-            // ThreadProcFillTask,
-            //(LPVOID)  ptask);
+
          }
 
          UINT c_cdecl list_view::ThreadProcFillTask(LPVOID lpParameter)
@@ -686,7 +683,7 @@ namespace filemanager
                   }
 
                   */
-                  m_itema.add(new Item(item));
+                  m_itema.add(canew(Item(item)));
                   iNode++;
                }
             }
@@ -710,7 +707,7 @@ namespace filemanager
                   item.m_iImage = m_iIconSong;
 
 
-                  m_itema.add(new Item(item));
+                  m_itema.add(canew(Item(item)));
                   iNode++;
                }
             }

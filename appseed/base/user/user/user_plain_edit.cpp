@@ -49,7 +49,7 @@ namespace user
 
       m_iLineHeight = 0;
       m_bPassword = false;
-      m_ptree              = NULL;
+      //m_ptree              = NULL;
       m_bOwnData           = false;
 
       m_bMultiLine         = false;
@@ -527,7 +527,7 @@ namespace user
       //m_pitem          = get_base_item();
 
       pcreate->previous();
-      m_ptree->m_pfile = new ::file::memory_buffer(get_app());
+      m_ptree->m_pfile = canew(::file::memory_buffer(get_app()));
       if(m_bColorerTake5)
       {
          m_peditor->colorertake5::base_editor::initialize(m_plines);
@@ -2153,7 +2153,7 @@ namespace user
                   strsize i2 = m_ptree->m_iSelEnd;
                   if(i1 != i2)
                   {
-                     plain_text_set_sel_command * psetsel = new plain_text_set_sel_command;
+                     plain_text_set_sel_command * psetsel = canew(plain_text_set_sel_command);
                      psetsel->m_iPreviousSelStart = m_ptree->m_iSelStart;
                      psetsel->m_iPreviousSelEnd = m_ptree->m_iSelEnd;
                      ::sort::sort(i1,i2);
@@ -2166,14 +2166,14 @@ namespace user
                      psetsel->m_iSelEnd = m_ptree->m_iSelEnd;
                      MacroBegin();
                      MacroRecord(psetsel);
-                     MacroRecord(new plain_text_file_command());
+                     MacroRecord(canew(plain_text_file_command()));
                      MacroEnd();
                      bUpdate = true;
 
                   }
                   else if(m_ptree->m_iSelEnd >= 0 && m_ptree->m_editfile.get_length() > 0)
                   {
-                     plain_text_set_sel_command * psetsel = new plain_text_set_sel_command;
+                     plain_text_set_sel_command * psetsel = canew(plain_text_set_sel_command);
                      psetsel->m_iPreviousSelStart = m_ptree->m_iSelStart;
                      psetsel->m_iPreviousSelEnd = m_ptree->m_iSelEnd;
                      char buf[512];
@@ -2195,7 +2195,7 @@ namespace user
                      psetsel->m_iSelEnd = m_ptree->m_iSelEnd;
                      MacroBegin();
                      MacroRecord(psetsel);
-                     MacroRecord(new plain_text_file_command());
+                     MacroRecord(canew(plain_text_file_command()));
                      MacroEnd();
                      bUpdate = true;
                   }
@@ -2209,7 +2209,7 @@ namespace user
                   strsize i2 = m_ptree->m_iSelEnd;
                   if(i1 != i2)
                   {
-                     plain_text_set_sel_command * psetsel = new plain_text_set_sel_command;
+                     plain_text_set_sel_command * psetsel = canew(plain_text_set_sel_command);
                      psetsel->m_iPreviousSelStart = m_ptree->m_iSelStart;
                      psetsel->m_iPreviousSelEnd = m_ptree->m_iSelEnd;
                      ::sort::sort(i1,i2);
@@ -2221,7 +2221,7 @@ namespace user
                      psetsel->m_iSelEnd = m_ptree->m_iSelEnd;
                      MacroBegin();
                      MacroRecord(psetsel);
-                     MacroRecord(new plain_text_file_command());
+                     MacroRecord(canew(plain_text_file_command()));
                      MacroEnd();
                      bUpdate = true;
                   }
@@ -2240,7 +2240,7 @@ namespace user
                      IndexRegisterDelete(m_ptree->m_iSelEnd,iMultiByteUtf8DeleteCount);
                      m_ptree->m_iSelStart = m_ptree->m_iSelEnd;
                      MacroBegin();
-                     MacroRecord(new plain_text_file_command());
+                     MacroRecord(canew(plain_text_file_command()));
                      MacroEnd();
                      bUpdate = true;
                   }

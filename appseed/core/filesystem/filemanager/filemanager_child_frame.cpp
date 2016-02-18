@@ -27,7 +27,7 @@ namespace filemanager
    bool child_frame::on_create_bars()
    {
 
-      sp(manager) pmanager = m_pdocumenttemplate->get_document();
+      manager * pmanager = dynamic_cast < manager * >(m_pdocumenttemplate->get_document());
 
       return pmanager->on_create_bars(this);
 

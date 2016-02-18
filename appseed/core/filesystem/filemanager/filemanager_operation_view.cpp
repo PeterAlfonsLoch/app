@@ -25,7 +25,7 @@ namespace filemanager
 
       get_document()->m_thread.m_pview = this;
 
-      m_pviewcreator = new ::user::view_creator();
+      m_pviewcreator = canew(::user::view_creator());
 
       SetPaneCount(2);
 

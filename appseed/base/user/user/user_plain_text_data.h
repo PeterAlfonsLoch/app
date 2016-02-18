@@ -88,9 +88,10 @@ namespace user
    {
    public:
 
-      sp(plain_text_command) m_pparent;
+      plain_text_command * m_pparent;
 
       plain_text_group_command();
+      virtual ~plain_text_group_command();
       virtual e_plain_text_command get_command() { return plain_text_command_group; };
       virtual void Undo(plain_text_tree * pedit);
       virtual void Redo(plain_text_tree * pedit);

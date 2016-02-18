@@ -136,6 +136,8 @@ namespace sqlite
 
          sqlite3_close((sqlite3 *)conn);
 
+         conn = NULL;
+
       }
       
       if (active == false) return;

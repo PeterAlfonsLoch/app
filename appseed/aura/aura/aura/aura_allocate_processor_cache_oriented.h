@@ -24,7 +24,7 @@ public:
 
    }
 
-   inline static void free(void * p)
+   inline static void _free(void * p)
    {
 
       //TODO("jai"); jas = Jonathan Blow

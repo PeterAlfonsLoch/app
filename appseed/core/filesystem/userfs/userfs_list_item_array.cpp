@@ -50,7 +50,7 @@ namespace userfs
    void list_item_array::add_item(list_item & item)
    {
 
-      sp(list_item) spitem(new list_item(item));
+      sp(list_item) spitem(canew(list_item(item)));
 
       m_itema.add(spitem);
 

@@ -13,6 +13,9 @@ namespace userex
       place_holder_container(papp)
    {
 
+      m_pfilemanager = NULL;
+      m_pfilemanagerTabbed = NULL;
+
       if (Application.m_pmainpane == NULL)
       {
 
@@ -195,7 +198,7 @@ namespace userex
          ::filemanager::data * pfilemanagerdata = oprop("data." + pcreatordata->m_id.str()).cast < ::filemanager::data >();
 
          if(pfilemanagerdata == NULL)
-            pfilemanagerdata = new ::filemanager::data(get_app());
+            pfilemanagerdata = canew(::filemanager::data(get_app()));
 
 
 
@@ -283,14 +286,14 @@ namespace userex
    ::filemanager::manager & pane_tab_view::filemanager_manager()
    {
 
-      return  *m_pfilemanager.cast <::filemanager::manager>();
+      return  *(m_pfilemanager == NULL ? NULL : dynamic_cast < ::filemanager::manager * > (m_pfilemanager));
 
    }
 
    ::filemanager::manager & pane_tab_view::tabbed_filemanager_manager()
    {
 
-      return  *m_pfilemanagerTabbed.cast <::filemanager::manager>();
+      return  *(m_pfilemanagerTabbed == NULL ? NULL : dynamic_cast < ::filemanager::manager * > (m_pfilemanagerTabbed));
 
    }
 

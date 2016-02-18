@@ -11,14 +11,15 @@ namespace filemanager
       ::data::tree(papp),
       ::user::tree_data(papp),
       ::userfs::tree(papp),
-      m_mutexData(papp),
-      m_threadPolishing(m_mutexData),
-      m_threadPolishingLowLatency(m_mutexData)
+      m_mutexData(papp)
    {
 
       m_iAnimate = 0;
 
       m_pimagelist = Session.userex()->shellimageset().GetImageList16();
+
+      m_pthreadPolishing = NULL;
+      m_pthreadPolishingLowLatency = NULL;
 
    }
 
@@ -52,7 +53,7 @@ namespace filemanager
    }
 
 
-   sp(::data::tree_item) tree::find_item(const char * lpcsz, ::data::tree_item * pitemStart)
+   ::data::tree_item * tree::find_item(const char * lpcsz, ::data::tree_item * pitemStart)
    {
 
       return find_absolute(lpcsz, pitemStart);
@@ -242,7 +243,7 @@ namespace filemanager
 
          }
 
-         ::userfs::item * pitemChild = canew(::userfs::item(this));
+         sp(::userfs::item) pitemChild = canew(::userfs::item(this));
 
          iChildCount++;
 
@@ -356,7 +357,7 @@ namespace filemanager
 
       m_strPath = strPath;
 
-      if(actioncontext.m_spdata.is_set() && (actioncontext.m_spdata->m_esource &::action::source_system))
+      if(actioncontext &::action::source_system)
       {
 
          knowledge("",actioncontext,true);
@@ -387,19 +388,16 @@ namespace filemanager
 
       ::file::path strDirParent = m_strPath.folder();
 
-      sp(::data::tree_item) pitemParent = find_item(strDirParent);
+      ::data::tree_item * pitemParent = find_item(strDirParent);
 
-      if(pitemParent.is_null())
+      if(pitemParent == NULL)
       {
 
          pitemParent = get_base_item();
 
       }
 
-
-
-
-      sp(::data::tree_item) pitem = find_item(strPath);
+      ::data::tree_item * pitem = find_item(strPath);
 
       if(strPath.has_char())
       {
@@ -446,7 +444,7 @@ namespace filemanager
       pitemParent = pitem;
 
       if(get_filemanager_template() != NULL && get_filemanager_data()->m_ptreeFileTreeMerge != NULL
-         && !(dynamic_cast < ::user::tree * > (get_filemanager_data()->m_ptreeFileTreeMerge.m_p))->m_treeptra.contains(this))
+         && !(dynamic_cast < ::user::tree * > (get_filemanager_data()->m_ptreeFileTreeMerge))->m_treeptra.contains(this))
       {
 
          get_filemanager_data()->m_ptreeFileTreeMerge->merge(this, true);
@@ -459,7 +457,7 @@ namespace filemanager
 
       ::file::listing & listing = get_document()->m_straPath;
 
-      if(actioncontext.m_spdata.is_null() || !(actioncontext.m_spdata->m_esource &::action::source_system))
+      if(!actioncontext.is(::action::source_system))
       {
 
          filemanager_tree_insert(strPath,listing,actioncontext);
@@ -695,7 +693,7 @@ namespace filemanager
    void tree::_001OnOpenItem(::data::tree_item * pitem, ::action::context actioncontext)
    {
 
-      _017OpenFolder(new ::fs::item(*pitem->m_pitem.cast < ::userfs::item > ()), actioncontext);
+      _017OpenFolder(canew(::fs::item(*pitem->m_pitem.cast < ::userfs::item > ())), actioncontext);
 
 
 
@@ -746,38 +744,59 @@ namespace filemanager
    int32_t tree::polishing::run()
    {
 #ifdef WINDOWS
-      HRESULT result = ::CoInitializeEx(NULL,COINIT_MULTITHREADED);
-      if(!SUCCEEDED(result))
+      HRESULT result = ::CoInitializeEx(NULL, COINIT_MULTITHREADED);
+      if (!SUCCEEDED(result))
       {
-         return result;
+         goto finish;
       }
 #endif
-
-      single_lock sl(&m_ptree->m_mutexData,true);
-
-      int iBatchSize = 5;
-
-      m_pdataitem = (::data::tree_item *) m_ptree->get_base_item()->first_child();
-
-      m_estep = (e_step)(((int)step_start) + 1);
-
-      while(m_bRun)
+      try
       {
 
-         for(index i = 0; i < iBatchSize; i++)
+         single_lock sl(&m_ptree->m_mutexData, true);
+
+         int iBatchSize = 5;
+
+         m_pdataitem = (::data::tree_item *) m_ptree->get_base_item()->first_child();
+
+         m_estep = (e_step)(((int)step_start) + 1);
+
+         while (m_bRun)
          {
-            if(!m_bRun || !step(sl))
-               goto finish;
+
+            for (index i = 0; i < iBatchSize; i++)
+            {
+               if (!m_bRun || !step(sl))
+                  goto finish;
+            }
+
+            sl.unlock();
+
+            sl.lock();
+
+
          }
-
-         sl.unlock();
-
-         sl.lock();
-
-
       }
+      catch (...)
+      {
+      
+      }
+   finish:;
 
-   finish:
+      try
+      {
+         if (m_ptree->m_pthreadPolishing == this)
+         {
+            m_ptree->m_pthreadPolishing = NULL;
+         }
+         if (m_ptree->m_pthreadPolishingLowLatency == this)
+         {
+            m_ptree->m_pthreadPolishingLowLatency = NULL;
+         }
+      }
+      catch (...)
+      {
+      }
 
       return 0;
 
@@ -787,8 +806,27 @@ namespace filemanager
    void tree::_polishing_start(::user::tree * pusertree)
    {
 
-      m_threadPolishing.replace(canew(polishing(get_app(),this,pusertree, false)));
-      m_threadPolishingLowLatency.replace(canew(polishing(get_app(),this,pusertree,true)));
+      if (m_pthreadPolishing != NULL)
+      {
+
+         m_pthreadPolishing->post_quit();
+
+      }
+      
+      m_pthreadPolishing = new polishing(get_app(),this,pusertree, false);
+      
+      m_pthreadPolishing->begin();
+
+      if (m_pthreadPolishingLowLatency != NULL)
+      {
+
+         m_pthreadPolishingLowLatency->post_quit();
+
+      }
+
+      m_pthreadPolishingLowLatency = new polishing(get_app(),this,pusertree,true);
+
+      m_pthreadPolishingLowLatency->begin();
 
    }
 
@@ -808,7 +846,7 @@ namespace filemanager
 
          }
 
-         m_pdataitem = (sp(::data::tree_item)) m_ptree->get_base_item()->first_child();
+         m_pdataitem = m_ptree->get_base_item()->first_child();
 
 
          if(m_pdataitem == NULL)

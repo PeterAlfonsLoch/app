@@ -22,10 +22,10 @@ namespace filemanager
          public:
             
             
-            sp(tree)             m_ptree;
-            sp(::user::tree)     m_pusertree;
+            tree *             m_ptree;
+            ::user::tree *     m_pusertree;
 
-            sp(list_view)        m_plist;
+            list_view *        m_plist;
             ::object *  m_prequestinterface;
 
             

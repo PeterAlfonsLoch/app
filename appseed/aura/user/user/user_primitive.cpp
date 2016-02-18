@@ -70,6 +70,25 @@ namespace user
 
    }
 
+   //void primitive::add_thread(::thread * pthread)
+   //{
+
+   //   synch_lock sl(m_pmutex);
+
+   //   m_threadptra.add(pthread);
+
+   //}
+
+
+   //void primitive::remove_thread(::thread * pthread)
+   //{
+
+   //   synch_lock sl(m_pmutex);
+
+   //   m_threadptra.remove(pthread);
+
+   //}
+
 
 } // namespace user
 

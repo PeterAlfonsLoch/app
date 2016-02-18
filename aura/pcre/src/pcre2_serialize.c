@@ -106,7 +106,7 @@ for (i = 0; i < number_of_codes; i++)
   }
   
 /* Initialize the byte stream. */
-bytes = memctl->malloc(total_size + sizeof(pcre2_memctl), memctl->memory_data);
+bytes = memctl->_alloc(total_size + sizeof(pcre2_memctl), memctl->memory_data);
 if (bytes == NULL) return PCRE2_ERROR_NOMEMORY;
 
 /* The controller is stored as a hidden parameter. */
@@ -170,7 +170,7 @@ src_bytes = bytes + sizeof(pcre2_serialized_data);
 /* Decode tables. The reference count for the tables is stored immediately 
 following them. */
 
-tables = memctl->malloc(tables_length + sizeof(PCRE2_SIZE), memctl->memory_data);
+tables = memctl->_alloc(tables_length + sizeof(PCRE2_SIZE), memctl->memory_data);
 if (tables == NULL) return PCRE2_ERROR_NOMEMORY;
 
 memcpy(tables, src_bytes, tables_length);
@@ -195,10 +195,10 @@ for (i = 0; i < number_of_codes; i++)
     (pcre2_memctl *)gcontext);
   if (dst_re == NULL)
     {
-    memctl->free(tables, memctl->memory_data);
+    memctl->_free(tables, memctl->memory_data);
     for (j = 0; j < i; j++)
       {
-      memctl->free(codes[j], memctl->memory_data);
+      memctl->_free(codes[j], memctl->memory_data);
       codes[j] = NULL;
       }
     return PCRE2_ERROR_NOMEMORY;
@@ -251,7 +251,7 @@ pcre2_serialize_free(uint8_t *bytes)
 if (bytes != NULL)
   {
   pcre2_memctl *memctl = (pcre2_memctl *)(bytes - sizeof(pcre2_memctl));
-  memctl->free(memctl, memctl->memory_data);
+  memctl->_free(memctl, memctl->memory_data);
   } 
 }
 

@@ -34,11 +34,15 @@ namespace windows
       //int32_t                                   m_nModalResult;      // for return values from interaction_impl::RunModalLoop
 
       ::user::EAppearance                       m_eapperanceLayout;
+      
 
 
       interaction_impl();
       interaction_impl(::aura::application * papp);
       virtual ~interaction_impl();
+
+
+      
 
 
       virtual HRESULT STDMETHODCALLTYPE QueryInterface(REFIID riid,void **ppvObject);

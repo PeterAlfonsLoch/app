@@ -31,7 +31,7 @@ namespace filemanager
       if(bRecursive)
       {
          
-         SetDataInterface(new folder_list_data(get_app()));
+         SetDataInterface(canew(folder_list_data(get_app())));
          sp(folder_list_data) pdata = m_pmeshdata.cast <folder_list_data > ();
          pdata->m_dataid = datakey;
          pdata->initialize_data_client(Application.simpledb().get_data_server());
@@ -40,7 +40,7 @@ namespace filemanager
       else
       {
       
-         SetDataInterface(new databaseuser::data_key_mesh_data(get_app()));
+         SetDataInterface(canew(databaseuser::data_key_mesh_data(get_app())));
          sp(databaseuser::data_key_mesh_data) pdata = m_pmeshdata.cast  < ::databaseuser::data_key_mesh_data >();
          pdata->m_dataid = datakey;
          pdata->initialize_data_client(Application.simpledb().get_data_server());

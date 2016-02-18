@@ -25,7 +25,7 @@ namespace user
    void scroll_bar::send_scroll_message(UINT nSBCode)
    {
 
-      ::message::scroll * pscroll = new ::message::scroll(get_app());
+      ::message::scroll * pscroll = canew(::message::scroll(get_app()));
 
       pscroll->m_nSBCode = nSBCode;
 

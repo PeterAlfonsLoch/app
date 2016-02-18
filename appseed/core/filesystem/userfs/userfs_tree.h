@@ -31,7 +31,7 @@ namespace userfs
 
       void _001OnItemExpand(::data::tree_item * pitem, ::action::context actioncontext);
 
-      sp(::userfs::document) get_document();
+      ::userfs::document * get_document();
 
       virtual void _001InsertColumns();
       
@@ -44,7 +44,7 @@ namespace userfs
       virtual void _001OnItemCollapse(::data::tree_item * pitem, ::action::context actioncontext);
 
 
-      virtual void _017OpenFolder(sp(::fs::item) item, ::action::context actioncontext);
+      virtual void _017OpenFolder(::fs::item * item, ::action::context actioncontext);
 
       virtual COLORREF get_background_color();
 
@@ -56,9 +56,9 @@ namespace userfs
       virtual void browse_sync(::action::context actioncontext);
       void _017EnsureVisible(const char * lpcsz, ::action::context actioncontext);
 
-      sp(::data::tree_item) find_item(const char * lpcsz, ::data::tree_item * pitemStart = NULL);
+      ::data::tree_item * find_item(const char * lpcsz, ::data::tree_item * pitemStart = NULL);
 
-      sp(::data::tree_item) find_absolute(const char * lpcsz,::data::tree_item * pitemStart = NULL);
+      ::data::tree_item * find_absolute(const char * lpcsz,::data::tree_item * pitemStart = NULL);
       void clear(const char * lpcszPreserve1, const char * lpcszPreserve2);
       void arrange(::fs::e_arrange earrange);
 

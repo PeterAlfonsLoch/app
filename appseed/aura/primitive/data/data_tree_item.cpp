@@ -23,9 +23,11 @@ namespace data
 
    }
 
-   sp(tree) tree_item::get_tree()
+   tree * tree_item::get_tree()
    {
+      
       return m_ptree;
+
    }
 
    void tree_item::sort_children(index ( * lpfnCompare )(const sp(tree_item) & pitem, const sp(tree_item) & pitem2))
@@ -36,7 +38,7 @@ namespace data
    }
 
 
-   void tree_item::SetParent(sp(tree_item) pparent)
+   void tree_item::SetParent(tree_item * pparent)
    {
 
       if(pparent == this || is_descendant(pparent) || is_ascendant(pparent))
@@ -92,7 +94,7 @@ namespace data
    }
 
 
-   sp(tree_item) tree_item::find_next_by_user_data(uint_ptr iUserData)
+   tree_item * tree_item::find_next_by_user_data(uint_ptr iUserData)
    {
       sp(tree_item) pitem = this;
       while(true)
@@ -105,7 +107,7 @@ namespace data
       }
    }
 
-   sp(tree_item) tree_item::get_child_by_user_data(uint_ptr iUserData)
+   tree_item * tree_item::get_child_by_user_data(uint_ptr iUserData)
    {
       for (index i = 0; i < m_children.get_count(); i++)
       {
@@ -141,7 +143,7 @@ namespace data
       return iCount;
    }
 
-   sp(tree_item) tree_item::get_expandable_child(index iIndex)
+   tree_item * tree_item::get_expandable_child(index iIndex)
    {
       ::count iCount = 0;
       for (index i = 0; i < m_children.get_count(); i++)
@@ -172,7 +174,7 @@ namespace data
    }
 
 
-   sp(tree_item) tree_item::get_item(ETreeNavigation enavigation, index * pindexLevel)
+   tree_item * tree_item::get_item(ETreeNavigation enavigation, index * pindexLevel)
    {
       switch(enavigation)
       {
@@ -187,7 +189,7 @@ namespace data
       }
    }
 
-   sp(tree_item) tree_item::get_item(ERelative erelative)
+   tree_item * tree_item::get_item(ERelative erelative)
    {
       sp(tree_item) pitem;
       switch(erelative)
@@ -243,7 +245,7 @@ namespace data
       }
    }
 
-   sp(tree_item) tree_item::get_previous(bool bParent)
+   tree_item * tree_item::get_previous(bool bParent)
    {
       
       if (m_pparent == NULL)
@@ -266,7 +268,7 @@ namespace data
    }
 
 
-   sp(tree_item) tree_item::first_child()
+   tree_item * tree_item::first_child()
    {
       
       if (m_children.is_empty())
@@ -277,7 +279,7 @@ namespace data
    }
 
 
-   sp(tree_item) tree_item::previous()
+   tree_item * tree_item::previous()
    {
 
       return get_previous(false);
@@ -285,7 +287,7 @@ namespace data
    }
 
 
-   sp(tree_item) tree_item::next()
+   tree_item * tree_item::next()
    {
 
       return get_next(false, false);
@@ -293,7 +295,7 @@ namespace data
    }
 
 
-   sp(tree_item) tree_item::get_next(bool bChild, bool bParent, index * pindexLevel)
+   tree_item * tree_item::get_next(bool bChild, bool bParent, index * pindexLevel)
    {
 
       index iFind;
@@ -348,7 +350,7 @@ namespace data
    }
 
 
-   sp(tree_item) tree_item::get_proper_item(index iIndex, index * piLevel)
+   tree_item * tree_item::get_proper_item(index iIndex, index * piLevel)
    {
       if(*piLevel) *piLevel = 0;
       sp(tree_item) pitem = this;
@@ -360,11 +362,11 @@ namespace data
       return pitem;
    }
 
-   index tree_item::get_proper_item_index(sp(tree_item) pitemParam, index * piLevel)
+   index tree_item::get_proper_item_index(tree_item * pitemParam, index * piLevel)
    {
       int32_t iIndex = 0;
       if(piLevel != NULL) *piLevel = 0;
-      sp(tree_item) pitem = this;
+      tree_item * pitem = this;
       while(pitem != NULL)
       {
          pitem = pitem->get_item(TreeNavigationProperForward, piLevel);
@@ -377,7 +379,7 @@ namespace data
 
    ::count tree_item::get_proper_item_count()
    {
-      sp(tree_item) pitem = this;
+      tree_item * pitem = this;
       index iLevel = 0;
       ::count iCount = -1;
       while(pitem != NULL)
@@ -406,29 +408,37 @@ namespace data
    }
 
 
-   bool tree_item::is_descendant(sp(tree_item) pitem)
+   bool tree_item::is_descendant(tree_item * pitem)
    {
 
-      if(pitem.is_null())
+      if (pitem == NULL)
+      {
+       
          return false;
+
+      }
       
       return pitem->is_ascendant(this);
 
    }
 
 
-   bool tree_item::is_ascendant(sp(tree_item) pitem)
+   bool tree_item::is_ascendant(tree_item * pitem)
    {
 
-      if(pitem.is_null())
+      if (pitem == NULL)
+      {
+
          return false;
 
-      sp(tree_item) pparent = m_pparent;
+      }
 
-      if(pparent.is_null())
+      tree_item * pparent = m_pparent;
+
+      if(pparent == NULL)
          return false;
 
-      while(pparent.is_set())
+      while(pparent != NULL)
       {
 
          if(pparent == pitem)

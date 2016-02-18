@@ -39,6 +39,7 @@ namespace user
 
    list::~list()
    {
+      ::aura::del(m_pdrawlistitem);
    }
 
 
@@ -3261,7 +3262,7 @@ namespace user
       column.m_iOrder = this->get_size();
       column.m_pcontainer = this;
 
-      smart_pointer_array < list_column >::add(new list_column(column));
+      smart_pointer_array < list_column >::add(canew(list_column(column)));
 
       OnChange();
 
@@ -3858,7 +3859,7 @@ namespace user
       }
       if(pcolumn->m_pil == NULL)
       {
-         pcolumn->m_pil = new image_list(get_app());
+         pcolumn->m_pil = canew(image_list(get_app()));
       }
 //      sp(image_list) pil = column.m_pil;
       //   if(pil != NULL)

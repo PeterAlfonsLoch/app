@@ -337,7 +337,7 @@ namespace user
 
    bool keyboard::load_layout(const char * pszPath, ::action::context actioncontext)
    {
-      ::user::keyboard_layout * playout = new ::user::keyboard_layout(get_app());
+      sp(::user::keyboard_layout) playout = canew(::user::keyboard_layout(get_app()));
       string strPath;
       if(pszPath == NULL)
       {

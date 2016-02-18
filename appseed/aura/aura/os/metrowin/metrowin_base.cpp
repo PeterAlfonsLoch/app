@@ -239,10 +239,6 @@ int_bool main_initialize()
 int_bool main_finalize()
 {
 
-   /*g_pgdiplusStartupOutput->NotificationUnhook(g_gdiplusHookToken);
-
-   Gdiplus::GdiplusShutdown(g_gdiplusToken);
-   */
 
    return TRUE;
 
@@ -896,11 +892,6 @@ bool __node_aura_pos_init()
 
 bool __node_aura_pre_term()
 {
-
-   //g_pgdiplusStartupOutput->NotificationUnhook(g_gdiplusHookToken);
-
-
-   //::Gdiplus::GdiplusShutdown(g_gdiplusToken);
 
    return true;
 

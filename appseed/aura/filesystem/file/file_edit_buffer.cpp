@@ -474,7 +474,7 @@ namespace file
    }
 
 
-   void edit_buffer::TreeInsert(sp(Item) pitem)
+   void edit_buffer::TreeInsert(Item * pitem)
    {
       if(m_pgroupitem != NULL
          && m_pgroupitem != pitem)
@@ -482,8 +482,8 @@ namespace file
          m_pgroupitem->add(pitem);
          return;
       }
-      sp(::data::tree_item) pitemNew = NULL;
-      if(m_ptreeitem != NULL && m_ptreeitem->next().is_set())
+      sp(::data::tree_item) pitemNew;
+      if(m_ptreeitem != NULL && m_ptreeitem->next() != NULL)
       {
          pitemNew = insert_item(pitem,::data::RelativeFirstChild,m_ptreeitem);
          if(pitemNew != NULL)

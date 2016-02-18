@@ -2135,6 +2135,9 @@
     <ClInclude Include="aura\os\os2.h">
       <Filter>Header Files\aura\os</Filter>
     </ClInclude>
+    <ClInclude Include="primitive\primitive_cflag.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="multithreading\multithreading_condition.cpp">

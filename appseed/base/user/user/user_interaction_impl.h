@@ -80,9 +80,13 @@ namespace user
 
       bool                          m_bNeedLayout;
 
+      mutex *                                   m_pmutexDraw;
+
 
       interaction_impl();
 
+
+      virtual mutex * draw_mutex();
 
       virtual ::user::interaction_impl * get_user_interaction_impl() override;
 

@@ -101,6 +101,8 @@ string dumpBacktrace(void** buffer,size_t count)
 
 
 
+#define FAST_STACK_TRACE 1
+
 
 
 HANDLE SymGetProcessHandle()
@@ -114,6 +116,7 @@ HANDLE SymGetProcessHandle()
 
 #ifdef WINDOWSEX
 
+#if OSBIT == 64
 size_t engine_symbol(char * sz,int n,DWORD64 * pdisplacement,DWORD64 dwAddress)
 {
 
@@ -134,7 +137,29 @@ size_t engine_symbol(char * sz,int n,DWORD64 * pdisplacement,DWORD64 dwAddress)
 
    return strlen(sz);
 }
+#else
+size_t engine_symbol(char * sz, int n, DWORD * pdisplacement, DWORD dwAddress)
+{
 
+   BYTE symbol[4096];
+   PIMAGEHLP_SYMBOL pSym = (PIMAGEHLP_SYMBOL)&symbol;
+   memset(pSym, 0, sizeof(symbol));
+   pSym->SizeOfStruct = sizeof(IMAGEHLP_SYMBOL);
+   pSym->MaxNameLength = sizeof(symbol) - sizeof(IMAGEHLP_SYMBOL);
+
+   HANDLE hprocess = SymGetProcessHandle();
+   DWORD displacement = 0;
+   int r = SymGetSymFromAddr(hprocess, dwAddress, &displacement, pSym);
+   if (!r) return 0;
+   if (pdisplacement)
+      *pdisplacement = displacement;
+
+   strncpy_s(sz, n, pSym->Name, n);
+
+   return strlen(sz);
+}
+
+#endif
 #define USED_CONTEXT_FLAGS CONTEXT_FULL
 
 //#include <tlhelp32.h>
@@ -246,13 +271,12 @@ namespace exception
       object(papp)
 #ifdef WINDOWSEX
       ,m_bOk(false)
-      ,m_pstackframe(NULL)
       ,m_iRef(0)
 #endif
    {
-
-      m_pmutex = new mutex(papp);
-
+      m_iHa = 0;
+      m_iMa = 0;
+      ZERO(m_szaModule);
    }
 
    engine::~engine()
@@ -261,75 +285,89 @@ namespace exception
       clear();
 #endif
       //   if (m_bOk) guard::instance().clear();
-      ::aura::del(m_pmutex);
+      //::aura::del(&m_mutex);
 
-#ifdef WINDOWSEX
-
-      ::aura::del(m_pstackframe);
-
-#endif
 
    }
 
 #ifdef WINDOWSEX
 
-   size_t engine::module(string & str)
+   size_t engine::module(char * psz, int nCount)
    {
       if (!check())
          return 0;
 
       HANDLE hprocess = SymGetProcessHandle();
-      HMODULE hmodule = (HMODULE)SymGetModuleBase64 (hprocess, m_uiAddress);
+      HMODULE hmodule = (HMODULE)SymGetModuleBase64 (hprocess, address());
       if (!hmodule) return 0;
-      return get_module_basename(hmodule, str);
+      return get_module_name(hmodule, psz, nCount);
    }
 #endif
 
 #ifdef WINDOWSEX
 
-   size_t engine::symbol(string & str, DWORD64 * pdisplacement)
+   #if OSBIT == 32
+
+   size_t engine::symbol(char * psz, int nCount, DWORD * pdisplacement)
    {
 
       if (!check())
          return 0;
 
-      char * p = str.GetBufferSetLength(4096);
+      engine_symbol(psz, nCount, pdisplacement, address());
 
-      engine_symbol(p, 4096, pdisplacement, m_uiAddress);
+      strcat(psz, "()");
 
-      str.ReleaseBuffer();
+      return strlen(psz);
 
-      str += "()";
+   }
+#else
+   size_t engine::symbol(char * psz, int nCount, DWORD64 * pdisplacement)
+   {
 
-      return str.get_length();
+      if (!check())
+         return 0;
+
+      engine_symbol(psz, nCount, pdisplacement, address());
+
+      strcat(psz, "()");
+
+      return strlen(psz);
 
    }
 
+#endif
 #endif
 
 #ifdef WINDOWSEX
 
 
-   index engine::fileline (string & str, uint32_t * pline, uint32_t * pdisplacement)
+   index engine::fileline (char * psz, int nCount, uint32_t * pline, uint32_t * pdisplacement)
    {
 
       if (!check())
          return 0;
 
+#if OSBIT == 32
+      IMAGEHLP_LINE img_line;
+      memset(&img_line, 0, sizeof(IMAGEHLP_LINE));
+      img_line.SizeOfStruct = sizeof(IMAGEHLP_LINE);
+#else
       IMAGEHLP_LINE64 img_line;
       memset(&img_line, 0, sizeof(IMAGEHLP_LINE64));
       img_line.SizeOfStruct = sizeof(IMAGEHLP_LINE64);
+#endif
 
       HANDLE hprocess = SymGetProcessHandle();
       DWORD displacement = 0;
-      if (!get_line_from_address(hprocess, m_uiAddress, &displacement, &img_line))
+      if (!get_line_from_address(hprocess, address(), &displacement, &img_line))
          return 0;
       if (pdisplacement)
          *pdisplacement = displacement;
       if (pline)
          *pline = img_line.LineNumber;
-      str = img_line.FileName;
-      return str.get_length();
+      strncpy(psz, img_line.FileName, nCount);
+      return strlen(psz);
    }
 
 #endif
@@ -337,53 +375,50 @@ namespace exception
 
 #ifdef WINDOWSEX
 
-   bool engine::stack_first (CONTEXT* pcontext)
+   bool engine::stack_first(CONTEXT* pcontext)
    {
-
+      m_iAddressRead = 0;
+#if !FAST_STACK_TRACE
       if(!pcontext || IsBadReadPtr(pcontext, sizeof(CONTEXT)))
          return false;
 
       if(!check())
          return false;
 
-      if(!m_pstackframe)
-      {
-         m_pstackframe = new STACKFRAME64;
-         if (!m_pstackframe) return false;
-      }
-
-      memset(m_pstackframe, 0, sizeof(STACKFRAME64));
+      memset(&m_stackframe, 0, sizeof(STACKFRAME64));
 
       //  s_readMemoryFunction = readMemoryFunction;
       //s_readMemoryFunction_UserData = pUserData;
 
 
 #ifdef AMD64
-      m_pstackframe->AddrPC.Offset       = pcontext->Rip;
-      m_pstackframe->AddrPC.Mode         = AddrModeFlat;
-      m_pstackframe->AddrStack.Offset    = pcontext->Rsp;
-      m_pstackframe->AddrStack.Mode      = AddrModeFlat;
-      m_pstackframe->AddrFrame.Offset    = pcontext->Rsp;
-      m_pstackframe->AddrFrame.Mode      = AddrModeFlat;
+      m_stackframe.AddrPC.Offset       = pcontext->Rip;
+      m_stackframe.AddrPC.Mode         = AddrModeFlat;
+      m_stackframe.AddrStack.Offset    = pcontext->Rsp;
+      m_stackframe.AddrStack.Mode      = AddrModeFlat;
+      m_stackframe.AddrFrame.Offset    = pcontext->Rsp;
+      m_stackframe.AddrFrame.Mode      = AddrModeFlat;
 #elif defined(X86)
-      m_pstackframe->AddrPC.Offset       = pcontext->Eip;
-      m_pstackframe->AddrPC.Mode         = AddrModeFlat;
-      m_pstackframe->AddrStack.Offset    = pcontext->Esp;
-      m_pstackframe->AddrStack.Mode      = AddrModeFlat;
-      m_pstackframe->AddrFrame.Offset    = pcontext->Ebp;
-      m_pstackframe->AddrFrame.Mode      = AddrModeFlat;
+      m_stackframe.AddrPC.Offset       = pcontext->Eip;
+      m_stackframe.AddrPC.Mode         = AddrModeFlat;
+      m_stackframe.AddrStack.Offset    = pcontext->Esp;
+      m_stackframe.AddrStack.Mode      = AddrModeFlat;
+      m_stackframe.AddrFrame.Offset    = pcontext->Ebp;
+      m_stackframe.AddrFrame.Mode      = AddrModeFlat;
 #else
-      m_pstackframe->AddrPC.offset       = (uint32_t)pcontext->Fir;
-      m_pstackframe->AddrPC.Mode         = AddrModeFlat;
-      m_pstackframe->AddrReturn.offset   = (uint32_t)pcontext->IntRa;
-      m_pstackframe->AddrReturn.Mode     = AddrModeFlat;
-      m_pstackframe->AddrStack.offset    = (uint32_t)pcontext->IntSp;
-      m_pstackframe->AddrStack.Mode      = AddrModeFlat;
-      m_pstackframe->AddrFrame.offset    = (uint32_t)pcontext->IntFp;
-      m_pstackframe->AddrFrame.Mode      = AddrModeFlat;
+      m_stackframe.AddrPC.offset       = (uint32_t)pcontext->Fir;
+      m_stackframe.AddrPC.Mode         = AddrModeFlat;
+      m_stackframe.AddrReturn.offset   = (uint32_t)pcontext->IntRa;
+      m_stackframe.AddrReturn.Mode     = AddrModeFlat;
+      m_stackframe.AddrStack.offset    = (uint32_t)pcontext->IntSp;
+      m_stackframe.AddrStack.Mode      = AddrModeFlat;
+      m_stackframe.AddrFrame.offset    = (uint32_t)pcontext->IntFp;
+      m_stackframe.AddrFrame.Mode      = AddrModeFlat;
 #endif
 
-      m_pcontext = pcontext;
+      m_context = *pcontext;
+#endif
+      backtrace();
       return stack_next();
    }
 
@@ -391,20 +426,39 @@ namespace exception
 
 
 #ifdef WINDOWSEX
-
-   bool engine::stack_next()
+#if OSBIT == 32
+   void engine::backtrace(DWORD *pui, int &c)
+#else
+      void engine::backtrace(DWORD64 *pui, int &c)
+#endif
    {
-      if (!m_pstackframe || !m_pcontext)
-      {
-         _ASSERTE(0);
-         return false;
-      }
+      synch_lock sl(&m_mutex);
+#if FAST_STACK_TRACE
 
-      if (!m_bOk)
-      {
-         _ASSERTE(0);
-         return false;
-      }
+      UINT32 maxframes = c;
+      ULONG BackTraceHash;
+      c = RtlCaptureStackBackTrace(0, maxframes, reinterpret_cast<PVOID*>(pui), &BackTraceHash);
+      
+#endif
+   }
+   void engine::backtrace()
+   {
+      
+#if FAST_STACK_TRACE
+      UINT32 maxframes = sizeof(m_uia) / sizeof(m_uia[0]);
+      ULONG BackTraceHash;
+      m_iAddressWrite = RtlCaptureStackBackTrace(0, maxframes, reinterpret_cast<PVOID*>(&m_uia), &BackTraceHash);
+#else
+      m_iAddressWrite = 0;
+   if (!m_bOk)
+   {
+      _ASSERTE(0);
+      return;
+   }
+
+
+   while (true)
+   {
 
       SetLastError(0);
       HANDLE hprocess = SymGetProcessHandle();
@@ -423,10 +477,10 @@ namespace exception
          dwType,   // __in      uint32_t MachineType,
          hprocess,        // __in      HANDLE hProcess,
          get_current_thread(),         // __in      HANDLE hThread,
-         m_pstackframe,                       // __inout   LP STACKFRAME64 StackFrame,
-         m_pcontext,                  // __inout   PVOID ContextRecord,
+         &m_stackframe,                       // __inout   LP STACKFRAME64 StackFrame,
+         &m_context,                  // __inout   PVOID ContextRecord,
          My_ReadProcessMemory,                     // __in_opt  PREAD_PROCESS_MEMORY_ROUTINE64 ReadMemoryRoutine,
-         //NULL,                     // __in_opt  PREAD_PROCESS_MEMORY_ROUTINE64 ReadMemoryRoutine,
+                                                   //NULL,                     // __in_opt  PREAD_PROCESS_MEMORY_ROUTINE64 ReadMemoryRoutine,
          SymFunctionTableAccess64,                      // __in_opt  PFUNCTION_TABLE_ACCESS_ROUTINE64 FunctionTableAccessRoutine,
          SymGetModuleBase64,                     // __in_opt  PGET_MODULE_AXIS_ROUTINE64 GetModuleBaseRoutine,
          NULL                       // __in_opt  PTRANSLATE_ADDRESS_ROUTINE64 TranslateAddress
@@ -436,7 +490,7 @@ namespace exception
       ,
       hprocess,
       get_current_thread(),
-      m_pstackframe,
+      &m_stackframe,
       m_pcontext,
       My_ReadProcessMemory,
       SymFunctionTableAccess64,
@@ -444,16 +498,16 @@ namespace exception
       0) != FALSE;
       #endif*/
 
-      if (!r || !m_pstackframe->AddrFrame.Offset)
+      if (!r || !m_stackframe.AddrFrame.Offset)
       {
 
-         return false;
+         return;
 
       }
 
       bRetry = false;
 
-retry_get_base:
+   retry_get_base:
 
       // "Debugging Applications" John Robbins
       // Before I get too carried away and start calculating
@@ -462,18 +516,18 @@ retry_get_base:
       // StackWalk returns TRUE but the address doesn't belong to
       // a module in the process.
 
-      DWORD64 dwModBase = SymGetModuleBase64 (hprocess, m_pstackframe->AddrPC.Offset);
+      DWORD64 dwModBase = SymGetModuleBase64(hprocess, m_stackframe.AddrPC.Offset);
 
       if (!dwModBase)
       {
          //::OutputDebugString("engine::stack_next :: StackWalk returned TRUE but the address doesn't belong to a module in the process.");
-
-         if(bRetry)
+         return;
+         if (bRetry)
          {
 
             m_bSkip = true;
 
-            return false;
+            return;
 
          }
 
@@ -485,7 +539,18 @@ retry_get_base:
 
       }
       m_bSkip = false;
-      address(m_pstackframe->AddrPC.Offset);
+      address(m_stackframe.AddrPC.Offset);
+
+   }
+
+#endif
+   }
+
+   bool engine::stack_next()
+   {
+      if (m_iAddressRead >= m_iAddressWrite)
+         return false;
+      m_iAddressRead++;
       return true;
    }
 
@@ -498,8 +563,8 @@ retry_get_base:
 
 #ifdef WINDOWSEX
 
-
-   bool engine::get_line_from_address (HANDLE hprocess, DWORD64 uiAddress, DWORD * puiDisplacement, IMAGEHLP_LINE64 * pline)
+#if OSBIT == 32
+   bool engine::get_line_from_address (HANDLE hprocess, DWORD uiAddress, DWORD * puiDisplacement, IMAGEHLP_LINE * pline)
    {
 #ifdef WORK_AROUND_SRCLINE_BUG
       // "Debugging Applications" John Robbins
@@ -508,7 +573,7 @@ retry_get_base:
       // a zero displacement. I'll walk backward 100 bytes to
       // find the line and return the proper displacement.
       uint32_t dwDisplacement = 0 ;
-      while (!SymGetLineFromAddr64 (hprocess, uiAddress - dwDisplacement, puiDisplacement, pline))
+      while (!SymGetLineFromAddr (hprocess, uiAddress - dwDisplacement, puiDisplacement, pline))
       {
          if (100 == ++dwDisplacement)
             return false;
@@ -524,7 +589,33 @@ retry_get_base:
       return 0 != SymGetLineFromAddr64 (hprocess, uiAddress, (uint32_t *) puiDisplacement, pline);
 #endif
    }
+#else
+   bool engine::get_line_from_address(HANDLE hprocess, DWORD64 uiAddress, DWORD * puiDisplacement, IMAGEHLP_LINE64 * pline)
+   {
+#ifdef WORK_AROUND_SRCLINE_BUG
+      // "Debugging Applications" John Robbins
+      // The problem is that the symbol engine finds only those source
+      // line addresses (after the first lookup) that fall exactly on
+      // a zero displacement. I'll walk backward 100 bytes to
+      // find the line and return the proper displacement.
+      uint32_t dwDisplacement = 0;
+      while (!SymGetLineFromAddr64(hprocess, uiAddress - dwDisplacement, puiDisplacement, pline))
+      {
+         if (100 == ++dwDisplacement)
+            return false;
+      }
 
+      // "Debugging Applications" John Robbins
+      // I found the line, and the source line information is correct, so
+      // change the displacement if I had to search backward to find the source line.
+      if (dwDisplacement)
+         *puiDisplacement = dwDisplacement;
+      return true;
+#else
+      return 0 != SymGetLineFromAddr64(hprocess, uiAddress, (uint32_t *)puiDisplacement, pline);
+#endif
+   }
+#endif
 
 #endif
 
@@ -539,29 +630,51 @@ retry_get_base:
 #ifdef WINDOWSEX
 
 
-   size_t engine::get_module_basename (HMODULE hmodule, string & str)
+   size_t engine::get_module_name (HMODULE hmodule, char * psz, int nCount)
    {
 
-      char filename[MAX_PATH];
-
-      uint32_t r = GetModuleFileNameA(hmodule, filename, MAX_PATH);
-
-      if(!r)
-         return 0;
-
-      str = filename;
-
-      // find the last '\' mark.
-      size_t iPos = str.reverse_find('\\');
-
-      if(iPos >= 0)
+      for (int32_t i = 0; i < m_iMa; i++)
       {
+         if (m_ma[i] == hmodule)
+         {
+            if (m_szaModule[i] == NULL)
+               return 0;
+            strncpy(psz, m_szaModule[i], nCount);
+            return strlen(psz);
 
-         str = str.substr(iPos + 1);
-
+         }
       }
 
-      return str.get_length();
+      char filename[MAX_PATH];
+      if (!GetModuleFileNameA(hmodule, filename, MAX_PATH))
+      {
+         m_ma[m_iMa] = hmodule;
+         m_szaModule[m_iMa++] = NULL;
+
+         return 0;
+      }
+
+      m_ma[m_iMa] = hmodule;
+      m_szaModule[m_iMa] = strdup(filename);
+      strncpy(psz, m_szaModule[m_iMa++], nCount);
+      //uint32_t r = GetModuleFileNameA(hmodule, psz, nCount);
+
+      //if(!r)
+        // return 0;
+
+      
+
+      // find the last '\' mark.
+      //char * p = strrchr(psz, '\\');
+
+      //if(p != NULL)
+      //{
+
+      //   *(p + 1) = '\0';
+
+      //}
+
+      return strlen(psz);
 
    }
 
@@ -736,13 +849,13 @@ retry_get_base:
    bool engine::init()
    {
 
-      if(!::file_exists_dup("C:\\core\\exception_engine.txt"))
-      {
-         return false;
-      }
+      //if(!::file_exists_dup("C:\\core\\exception_engine.txt"))
+      //{
+      //   return false;
+      //}
 
 
-      single_lock sl(m_pmutex, true);
+      single_lock sl(&m_mutex, true);
 
       if (!m_iRef)
       {
@@ -809,7 +922,7 @@ retry_get_base:
    void engine::clear()
    {
 
-      single_lock sl(m_pmutex, true);
+      single_lock sl(&m_mutex, true);
 
       if (m_iRef ==  0) return;
       if (m_iRef == -1) return;
@@ -827,12 +940,12 @@ retry_get_base:
    void engine::reset()
    {
 
-      if(!::file_exists_dup("C:\\core\\exception_engine.txt"))
-      {
-         return;
-      }
+      //if(!::file_exists_dup("C:\\core\\exception_engine.txt"))
+      //{
+      //   return;
+      //}
 
-      single_lock sl(m_pmutex, true);
+      single_lock sl(&m_mutex, true);
 
 #ifdef WINDOWSEX
       clear();
@@ -847,17 +960,18 @@ retry_get_base:
    bool engine::load_module(HANDLE hProcess, HMODULE hMod)
    {
 
-      for(int32_t i = 0; i < m_ha.get_count(); i++)
+      for(int32_t i = 0; i < m_iHa; i++)
       {
          if(m_ha[i] == hMod)
             return true;
       }
 
-      m_ha.add(hMod);
+      m_ha[m_iHa++] = hMod;
 
       char filename[MAX_PATH];
       if (!GetModuleFileNameA(hMod, filename, MAX_PATH))
       {
+         
          return false;
       }
 
@@ -889,15 +1003,13 @@ retry_get_base:
 #ifdef WINDOWSEX
 
 
-   bool engine::stack_trace(string & str, CONTEXT * pcontext, uint_ptr uiSkip, const char * pszFormat)
+   bool engine::stack_trace(CONTEXT * pcontext, uint_ptr uiSkip, const char * pszFormat)
    {
 
       if(!pszFormat)
          return false;
 
-      m_uiAddress = 0;
-
-      return stack_trace(str, pcontext, uiSkip, false, pszFormat);
+      return stack_trace(pcontext, uiSkip, false, pszFormat);
 
    }
 
@@ -989,17 +1101,25 @@ retry_get_base:
 #if defined(LINUX) || defined(METROWIN) || defined(APPLEOS) || defined(ANDROID) || defined(SOLARIS)
    bool engine::stack_trace(string & str, uint_ptr uiSkip, void * caller_address, const char * pszFormat)
 #else
-   bool engine::stack_trace(string & str, uint_ptr uiSkip, const char * pszFormat)
+   bool engine::stack_trace(uint_ptr uiSkip, const char * pszFormat)
 #endif
    {
 
-      single_lock sl(m_pmutex, true);
-      
+
+
+      single_lock sl(&m_mutex, true);
+
+      *_strS = '\0';
 #ifdef WINDOWSEX
 
-      if(!pszFormat) return false;
+      if (!pszFormat) return false;
 
       // attempts to get current thread's context
+
+#if FAST_STACK_TRACE
+      stack_trace(NULL, uiSkip, false, pszFormat);
+
+#else
 
       current_context context;
       memset(&context, 0, sizeof(current_context));
@@ -1017,6 +1137,11 @@ retry_get_base:
 
 
       GET_CURRENT_CONTEXT((&context), USED_CONTEXT_FLAGS);
+
+      stack_trace(&context, uiSkip, false, pszFormat);
+
+
+#endif
 
       /*uint32_t dwDummy;
       HANDLE hthreadWorker = create_thread(0, 0, &engine::stack_trace_ThreadProc, &context, CREATE_SUSPENDED, &dwDummy);
@@ -1056,9 +1181,7 @@ retry_get_base:
       }*/
       // now it can print stack
 
-      m_uiAddress = 0;
 
-      stack_trace(str, &context, uiSkip, false, pszFormat);
 
       return true;
 #elif defined(METROWIN) || defined(SOLARIS)
@@ -1174,9 +1297,9 @@ retry_get_base:
 #ifdef WINDOWSEX
 
 
-   bool engine::stack_trace(string & str, CONTEXT * pcontext, uint_ptr uiSkip, bool bSkip, const char * pszFormat)
+   bool engine::stack_trace(CONTEXT * pcontext, uint_ptr uiSkip, bool bSkip, const char * pszFormat)
    {
-
+      *_strS = '\0';
       if (!stack_first(pcontext))
          return false;
 
@@ -1185,7 +1308,7 @@ retry_get_base:
          if (!uiSkip && !bSkip)
          {
 
-            str += get_frame(pszFormat);
+            strcat(_strS, get_frame(pszFormat));
 
          }
          else
@@ -1199,26 +1322,52 @@ retry_get_base:
 
    }
 
+#if OSBIT == 32
+   char * engine::stack_trace(DWORD * pui, int c, const char * pszFormat)
+#else
+   char * engine::stack_trace(DWORD64 * pui, int c, const char * pszFormat)
+#endif
+   {
+      synch_lock sl(&m_mutex);
+      *_strS = '\0';
+
+      memcpy(m_uia, pui, MIN(c*sizeof(*pui), sizeof(m_uia)));
+
+      m_iAddressWrite = c;
+      m_iAddressRead = 0;
+
+      do
+      {
+         strcat(_strS, get_frame(pszFormat));
+      } while (stack_next());
+
+      return _strS;
+   }
+
 #endif
 
 #ifdef WINDOWSEX
 
 
-   string engine::get_frame(const char * pszFormat)
+   char * engine::get_frame(const char * pszFormat)
    {
 
-      string str;
 
-      string strBuf;
-      string strFile;
-      string strSymbol;
-
+      *_str = '\0';
+      *_strBuf = '\0';
+      *_strFile = '\0';
+      *_strSymbol = '\0';
 
       uint32_t uiLineDisplacement = 0;
       uint32_t uiLineNumber = 0;
+#if OSBIT == 32
+      DWORD uiSymbolDisplacement = 0;
+#else
       DWORD64 uiSymbolDisplacement = 0;
+#endif
 
-
+      char sz[2];
+      sz[1] = '\0';
       for (char * p = (char *)pszFormat; *p; ++p)
       {
          if (*p == '%')
@@ -1228,81 +1377,83 @@ retry_get_base:
             switch (ca)
             {
             case 'm':
-               if(module(strBuf))
+               if(module(_strBuf, sizeof(_strBuf)))
                {
-                  str += strBuf;
+                  strcat(_str, _strBuf);
                }
                else
                {
-                  str += "?.?";
+                  strcat(_str, "?.?");
                }
                break;
             case 'f':
-               if(strFile.is_empty())
+               if(*_strFile == '\0')
                {
-                  if(!fileline(strFile, &uiLineNumber, &uiLineDisplacement))
+                  if(!fileline(_strFile, sizeof(_strFile), &uiLineNumber, &uiLineDisplacement))
                   {
-                     strFile = " ";
+                     strcpy(_strFile, " ");
                   }
                }
-               str += strFile;
+               strcat(_str, _strFile);
                break;
             case 'l':
-               if(strFile.is_empty())
+               if (*_strFile == '\0')
                {
-                  if(!fileline(strFile, &uiLineNumber, &uiLineDisplacement))
+                  if(!fileline(_strFile, sizeof(_strFile), &uiLineNumber, &uiLineDisplacement))
                   {
-                     strFile = " ";
+                     strcpy(_strFile, " ");
                   }
                }
                if (*(p + 1) == 'd')
                {
-                  strBuf = i64toa_dup(uiLineDisplacement);
-                  str += strBuf;
+                  ultoa_dup(_strBuf, uiLineDisplacement, 10);
+                  strcat(_str, _strBuf);
                   ++p;
                }
                else
                {
-                  strBuf = i64toa_dup(uiLineNumber);
-                  str += strBuf;
+                  ultoa_dup(_strBuf, uiLineNumber, 10);
+                  strcat(_str, _strBuf);
                }
                break;
             case 's':
-               if(strSymbol.is_empty())
+               if(*_strSymbol == '\0')
                {
-                  if(!symbol(strSymbol, &uiSymbolDisplacement))
+                  if(!symbol(_strSymbol, sizeof(_strSymbol), &uiSymbolDisplacement))
                   {
-                     strSymbol = "?()";
+                     strcpy(_strSymbol, "?()");
                   }
                }
                if (*(p + 1) == 'd')
                {
-                  strBuf = i64toa_dup(uiSymbolDisplacement);
-                  str += strBuf;
+                  ultoa_dup(_strBuf, uiSymbolDisplacement, 10);
+                  strcat(_str, _strBuf);
                   ++p;
                }
                else
                {
-                  str += strSymbol;
+                  strcat(_str, _strSymbol);
                }
                break;
             case '%':
-               str += '%';
+               strcat(_str, "%");
                break;
             default:
-               str += '%';
-               str += ca;
+               strcat(_str, "%");
+               sz[0] = ca;
+               strcat(_str, sz);
                break;
             }
          }
          else
          {
-            str += *p;
+            sz[0] = *p;
+            strcat(_str, sz);
          }
 
       }
 
-      return str;
+      return _str;
 
    }
 

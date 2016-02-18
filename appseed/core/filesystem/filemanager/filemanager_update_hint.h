@@ -32,9 +32,9 @@ namespace filemanager
 
       ::fs::item_array              m_itemaSelected;
       string                        m_wstrFilter;
-      sp(::filemanager::manager)    m_pmanager;
-      sp(::filemanager::manager)    m_pmanagerMain;
-      sp(::user::impact)            m_pview;
+      ::filemanager::manager *      m_pmanager;
+      ::filemanager::manager *      m_pmanagerMain;
+      ::user::impact *              m_pview;
       UINT                          m_uiId;
       string                        m_strPath;
 

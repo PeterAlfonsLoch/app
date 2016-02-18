@@ -176,6 +176,16 @@ namespace visual
          timage = NULL;
       }
 
+      if (vxmin != NULL)
+      {
+         delete[] vxmin;
+         vxmin = NULL;
+      }
+      if (vymin != NULL)
+      {
+         delete[] vymin;
+         vymin = NULL;
+      }
 #endif
 #endif
    }

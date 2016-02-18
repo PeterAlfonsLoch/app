@@ -862,23 +862,7 @@ namespace axis
 //      //      m_pmutexDc.release();
 //#endif
 //
-//#ifdef WINDOWSEX
-//
-//      try
-//      {
-//
-//         ::release(m_psystemwindow);
-//
-//      }
-//      catch(...)
-//      {
-//
-//         m_iReturnCode = -2;
-//
-//      }
-//
-//
-//#endif
+
 //
 //      try
 //      {

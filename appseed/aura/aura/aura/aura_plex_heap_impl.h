@@ -202,9 +202,9 @@ public:
 
 
 
-   inline void * alloc(size_t nAllocSize);
-   void * realloc(void * p, size_t nAllocSize, size_t nOldAllocSize, int align);
-   inline void free(void * p, size_t nAllocSize);
+   inline void * _alloc(size_t nAllocSize);
+   void * _realloc(void * p, size_t nAllocSize, size_t nOldAllocSize, int align);
+   inline void _free(void * p, size_t nAllocSize);
 
    void pre_finalize();
 
@@ -228,7 +228,7 @@ public:
 
 
 
-inline void * plex_heap_alloc_array::alloc(size_t size)
+inline void * plex_heap_alloc_array::_alloc(size_t size)
 {
 
    plex_heap_alloc * palloc = find(size);

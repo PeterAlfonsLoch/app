@@ -21,21 +21,11 @@ namespace user
       virtual ~tree_data();
 
 
-      sp(::data::tree_item) allocate_branch_item();
-
-
-      virtual void remove_all();
-
 
       virtual ::count           get_data_bound_view_count() const;
       virtual ::user::impact *  get_data_bound_view(index iView);
 
 
-
-      virtual sp(::data::tree_item) find(::data::item * pitem,index * piIndex = NULL);
-      virtual bool contains(::data::item * pitem);
-
-      virtual bool contains(::data::tree_item * pitem);
 
       virtual void _001OnTreeDataChange();
 
@@ -44,25 +34,7 @@ namespace user
       virtual void _001OnOpenItem(::data::tree_item * pitem,::action::context actioncontext);
       virtual void _001OnItemContextMenu(::data::tree_item * pitem,::action::context actioncontext,::user::tree * ptree,point pt);
 
-      virtual ::count   remove(::data::tree_item_ptr_array & itemptra);
-      virtual ::count   remove(::data::tree_item * pitem);
-      virtual ::count   remove(::data::item * pitem,index i = 0);
-
-
-      void sort(index(* lpfnCompare)(const sp(::data::tree_item) & pitem,const sp(::data::tree_item)  & pitem2));
-
-      virtual sp(::data::tree_item) get_proper_item(index iIndex,index * piLevel,index * piCount = NULL);
-      virtual index get_proper_item_index(::data::tree_item * pitemParam,index * piLevel,index * piCount = NULL);
-      virtual ::count get_proper_item_count();
-
-
-
-      virtual sp(::data::tree_item) get_base_item();
-
-      virtual sp(::data::tree_item) insert_item(::data::item * pitemdataNew,::data::ERelative erelativeNewItem,::data::tree_item * pitemRelative);
-      virtual bool insert_item(::data::tree_item * pitemNew,::data::ERelative erelativeNewItem,::data::tree_item * pitemRelative);
-
-      sp(image_list) get_image_list() const;
+      image_list * get_image_list() const;
 
       virtual void _001ExpandItem(::data::tree_item * pitem,::action::context actioncontext,bool bExpand = true,bool bRedraw = true,bool bLayout = true);
       virtual void _001EnsureVisible(::data::tree_item * pitem);
@@ -79,12 +51,7 @@ namespace user
 
       virtual void on_update(::user::impact * pSender,LPARAM lHint,::object* pHint);
 
-
       virtual void on_fill_children();
-      //virtual void start_fill_children();
-
-      //static UINT c_cdecl thread_proc_fill_children(LPVOID lpParameter);
-
 
       virtual void tree_layout();
 

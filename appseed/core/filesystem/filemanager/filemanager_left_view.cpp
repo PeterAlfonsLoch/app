@@ -104,7 +104,7 @@ namespace filemanager
          System.simple_message_box(NULL, "Could not create file list ::user::impact");
       }
 
-      m_ptree = new tree(get_app());
+      m_ptree = canew(tree(get_app()));
 
       m_pusertree->merge(m_ptree, true);
 

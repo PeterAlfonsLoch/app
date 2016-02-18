@@ -74,7 +74,7 @@ namespace user
       m_dcextension(papp)
    {
 
-      m_spdata = new data(papp);
+      m_spdata = canew(data(papp));
       get_data()->m_panea.set_app(papp);
       get_data()->m_iHeightAddUp = 0;
       get_data()->m_pcallback    = NULL;

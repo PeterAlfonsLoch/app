@@ -23,7 +23,14 @@
 
 #endif
 
-#ifndef __VLD
+
+#ifdef __MCRTDBG
+
+#include <crtdbg.h>
+
+#endif
+
+#if !defined(__VLD) && !defined(__MCRTDBG) && !defined(MEMDLEAK)
 
 struct heap_memory
 {
@@ -173,17 +180,18 @@ BEGIN_EXTERN_C
 
 #if AXIS_MEMORY_MANAGEMENT
 
+
+#if !defined(__VLD) && !defined(__MCRTDBG)
 void * aligned_memory_alloc(size_t size)
 {
 
-#ifdef __VLD
-
-   return malloc(size);
-
-#elif defined(MCHECK)
+#if defined(MCHECK)
 
 	return aligned_alloc(64, size);
 
+#elif defined(MEMDLEAK)
+
+   return unaligned_memory_alloc(size);
 
 #else
 
@@ -211,7 +219,7 @@ void * aligned_memory_alloc(size_t size)
    output_debug_string("*");
    }
 
-       void * pbase = g_pheap->alloc(heap_memory::aligned_provision_get_size(size));
+       void * pbase = g_pheap->_alloc(heap_memory::aligned_provision_get_size(size));
 
        if (pbase == NULL)
        {
@@ -231,13 +239,60 @@ void * aligned_memory_alloc(size_t size)
 void * unaligned_memory_alloc(size_t size)
 {
 
-#ifdef __VLD
+#if defined(MCHECK)
 
    return malloc(size);
 
-#elif defined(MCHECK)
+#elif defined(MEMDLEAK)
+   size_t nAllocSize = size + sizeof(memdleak_block);
 
-   return malloc(size);
+   memdleak_block * pblock;
+
+   pblock = (memdleak_block *) ::system_heap_alloc(nAllocSize);
+
+   pblock->m_iBlockUse = 0;
+
+   if (g_ee == NULL)
+   {
+//      pblock->m_puiStack = NULL;
+      pblock->m_iStack = 0;
+      pblock->m_pszFileName = NULL;
+}
+   else
+   {
+      //string strCallStack;
+      //g_ee->stack_trace(1);
+      pblock->m_iStack = sizeof(pblock->m_puiStack) / sizeof(pblock->m_puiStack[0]);
+      g_ee->backtrace(pblock->m_puiStack, pblock->m_iStack);
+      pblock->m_pszFileName = NULL;
+      //pblock->m_pszFileName = strdup(pszFileName); // not trackable, at least think so certainly causes memory leak
+   }
+
+   pblock->m_iLine = -1;
+
+   pblock->m_iSize = nAllocSize;
+
+   synch_lock lock(g_pmutgen);
+
+   pblock->m_pprevious = NULL;
+
+   pblock->m_pnext = s_pmemdleakList;
+
+   if (s_pmemdleakList != NULL)
+   {
+
+      s_pmemdleakList->m_pprevious = pblock;
+
+   }
+
+   s_pmemdleakList = pblock;
+
+   t_plastblock = pblock;
+
+   lock.unlock();
+
+   return &pblock[1];
+
 
 #else
 
@@ -247,7 +302,7 @@ void * unaligned_memory_alloc(size_t size)
 
 #else
 
-   void * pbase = g_pheap->alloc(heap_memory::unaligned_provision_get_size(size));
+   void * pbase = g_pheap->_alloc(heap_memory::unaligned_provision_get_size(size));
 
    if (pbase == NULL)
    {
@@ -268,14 +323,13 @@ void * unaligned_memory_alloc(size_t size)
 void * aligned_memory_alloc_dbg(size_t size, int32_t nBlockUse, const char * szFileName, int32_t nLine)
 {
 
-#ifdef __VLD
-
-   return malloc(size);
-
-#elif defined(MCHECK)
+#if defined(MCHECK)
 
    return aligned_alloc(64, size);
-   
+
+#elif defined(MEMDLEAK)
+
+   return unaligned_memory_alloc(size);
 
 #else
 
@@ -323,13 +377,13 @@ void * aligned_memory_alloc_dbg(size_t size, int32_t nBlockUse, const char * szF
 void * unaligned_memory_alloc_dbg(size_t size, int32_t nBlockUse, const char * szFileName, int32_t nLine)
 {
 
-#ifdef __VLD
+#if defined(MCHECK)
 
    return malloc(size);
 
-#elif defined(MCHECK)
+#elif defined(MEMDLEAK)
 
-   return malloc(size);
+   return unaligned_memory_alloc(size);
 
 #else
 
@@ -363,10 +417,14 @@ void * unaligned_memory_alloc_dbg(size_t size, int32_t nBlockUse, const char * s
 
 }
 
+#endif
+
+#if !defined(__VLD) && !defined(__MCRTDBG)
 
 BEGIN_EXTERN_C
 
-#if !defined(MCHECK) && !defined(__VLD)
+
+#if !defined(MCHECK) 
 
 #undef memory_alloc
 
@@ -393,7 +451,7 @@ void * memory_alloc(size_t size)
 void * memory_alloc_no_track(size_t size)
 {
 
-#if defined(MCHECK) || defined(__VLD)
+#if defined(MCHECK) || defined(__VLD) || defined(__MCRTDBG)
 
    return memory_alloc(size);
 
@@ -434,7 +492,7 @@ void * memory_alloc_dbg(size_t nSize, int32_t nBlockUse, const char * szFileName
 
 }
 
-#if !defined(MCHECK) && !defined(__VLD)
+#if !defined(MCHECK) && !defined(__VLD) && !defined(__MCRTDBG)
 
 void * memory_realloc(void * pmemory, size_t nSize)
 {
@@ -456,9 +514,74 @@ void * memory_realloc_dbg(void * pmemory, size_t size, int32_t nBlockUse, const 
 
    return realloc(pmemory, size);
 
+#elif defined(__MCRTDBG)
+
+   return _realloc_dbg(pmemory, size, _NORMAL_BLOCK, szFileName, nLine);
+
 #elif defined(MCHECK)
 
    return memory_realloc(pmemory, size);
+
+#elif defined(MEMDLEAK)
+   size_t nAllocSize = size + sizeof(memdleak_block);
+
+   memdleak_block * pblock = &((memdleak_block *)pmemory)[-1];
+
+   synch_lock lock(g_pmutgen);
+
+   if (s_pmemdleakList == pblock)
+   {
+      s_pmemdleakList = pblock->m_pnext;
+      s_pmemdleakList->m_pprevious = NULL;
+   }
+   else
+   {
+      pblock->m_pprevious->m_pnext = pblock->m_pnext;
+      if (pblock->m_pnext != NULL)
+      {
+         pblock->m_pnext->m_pprevious = pblock->m_pprevious;
+      }
+   }
+
+   //if (pblock->m_pszFileName)
+     // ::system_heap_free((void *)pblock->m_pszFileName);
+   //if (pblock->m_puiStack)
+     // ::system_heap_free((void *)pblock->m_puiStack);
+
+   size_t * psizeNew = NULL;
+
+   pblock = (memdleak_block *) ::system_heap_realloc(pblock, size + sizeof(memdleak_block));
+
+   pblock->m_iBlockUse = nBlockUse;
+   if (g_ee == NULL)
+   {
+      pblock->m_iStack = 0;
+      pblock->m_pszFileName = NULL;
+
+   }
+   else
+   {
+      //string strCallStack;
+      //g_ee->stack_trace(1);
+      pblock->m_iStack = sizeof(pblock->m_puiStack) / sizeof(pblock->m_puiStack[0]);
+      g_ee->backtrace(pblock->m_puiStack, pblock->m_iStack);
+      pblock->m_pszFileName = NULL;
+   }
+   pblock->m_iLine = -1;
+   pblock->m_iSize = nAllocSize;
+
+
+   pblock->m_pprevious = NULL;
+   pblock->m_pnext = s_pmemdleakList;
+   if (s_pmemdleakList != NULL)
+   {
+      s_pmemdleakList->m_pprevious = pblock;
+   }
+   s_pmemdleakList = pblock;
+   lock.unlock();
+
+
+   return &pblock[1];
 
 #else
 
@@ -474,7 +597,7 @@ void * memory_realloc_dbg(void * pmemory, size_t size, int32_t nBlockUse, const 
    if(blockuse == 0) // aligned
    {
 
-      pbase = g_pheap->realloc(heap_memory::base_get(pmemory),heap_memory::aligned_provision_get_size(size),heap_memory::aligned_provision_get_size(sizeOld),ALIGN_BYTE_COUNT);
+      pbase = g_pheap->_realloc(heap_memory::base_get(pmemory),heap_memory::aligned_provision_get_size(size),heap_memory::aligned_provision_get_size(sizeOld),ALIGN_BYTE_COUNT);
 
    }
    else if(blockuse == 1) // aligned
@@ -502,7 +625,7 @@ void * memory_realloc_dbg(void * pmemory, size_t size, int32_t nBlockUse, const 
    else if(blockuse == 2) // unaligned
    {
 
-      pbase = g_pheap->realloc(heap_memory::base_get(pmemory),heap_memory::unaligned_provision_get_size(size),heap_memory::unaligned_provision_get_size(sizeOld),0);
+      pbase = g_pheap->_realloc(heap_memory::base_get(pmemory),heap_memory::unaligned_provision_get_size(size),heap_memory::unaligned_provision_get_size(sizeOld),0);
 
    }
    else if(blockuse == 3) // unaligned
@@ -546,7 +669,7 @@ void * memory_realloc_dbg(void * pmemory, size_t size, int32_t nBlockUse, const 
 
 }
 
-#if !defined(MCHECK) && !defined(__VLD)
+#if !defined(MCHECK) && !defined(__VLD) && !defined(__MCRTDBG)
 
 void memory_free(void * pmemory)
 {
@@ -558,22 +681,47 @@ void memory_free(void * pmemory)
 #endif
 
 
-size_t memory_size(void * pmemory)
-{
-
-   return memory_size_dbg(pmemory, _NORMAL_BLOCK);
-
-}
-
 
 
 
 void memory_free_dbg(void * pmemory, int32_t iBlockType)
 {
 
-#if defined(__VLD) || defined(MCHECK)
+#if defined(__VLD) || defined(MCHECK) || defined(__MCRTDBG)
    
    memory_free(pmemory);
+
+#elif defined(MEMDLEAK)
+   memdleak_block * pblock = &((memdleak_block *)pmemory)[-1];
+
+   synch_lock lock(g_pmutgen);
+
+   if (s_pmemdleakList == pblock)
+   {
+      s_pmemdleakList = pblock->m_pnext;
+      if (s_pmemdleakList != NULL)
+      {
+         s_pmemdleakList->m_pprevious = NULL;
+
+      }
+   }
+   else
+   {
+      if (pblock->m_pprevious != NULL)
+      {
+         pblock->m_pprevious->m_pnext = pblock->m_pnext;
+      }
+      if (pblock->m_pnext != NULL)
+      {
+         pblock->m_pnext->m_pprevious = pblock->m_pprevious;
+      }
+   }
+   //if (pblock->m_pszFileName)
+     // ::system_heap_free((void *)pblock->m_pszFileName);
+   //if (pblock->m_puiStack)
+     // ::system_heap_free((void *)pblock->m_puiStack);
+
+      return ::system_heap_free(pblock);
 
 
 #else
@@ -589,7 +737,7 @@ void memory_free_dbg(void * pmemory, int32_t iBlockType)
    if(pheap->m_blockuse == 0)
    {
 
-      g_pheap->free(pbase,heap_memory::aligned_provision_get_size(pheap->m_size));
+      g_pheap->_free(pbase,heap_memory::aligned_provision_get_size(pheap->m_size));
 
    }
    else if(pheap->m_blockuse == 1)
@@ -617,7 +765,7 @@ void memory_free_dbg(void * pmemory, int32_t iBlockType)
    else if(pheap->m_blockuse == 2)
    {
 
-      g_pheap->free(pbase,heap_memory::unaligned_provision_get_size(pheap->m_size));
+      g_pheap->_free(pbase,heap_memory::unaligned_provision_get_size(pheap->m_size));
 
    }
    else if(pheap->m_blockuse == 3)
@@ -639,12 +787,27 @@ void memory_free_dbg(void * pmemory, int32_t iBlockType)
 }
 
 
+#endif
+
+size_t memory_size(void * pmemory)
+{
+
+   return memory_size_dbg(pmemory, _NORMAL_BLOCK);
+
+}
+
 size_t memory_size_dbg(void * pmemory, int32_t iBlockType)
 {
 
-#ifdef __VLD
+#if defined(__VLD) || defined(__MCRTDBG)
 
    return _msize(pmemory);
+
+#elif defined(MEMDLEAK)
+
+   memdleak_block * pblock = &((memdleak_block *)pmemory)[-1];
+
+   return pblock->m_iSize;
 
 #elif defined(MCHECK)
 

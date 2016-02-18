@@ -910,15 +910,32 @@ namespace axis
          m_pfontopus->construct(this);
 
       }
-      m_pifs                     = canew(ifs(this,""));
-      m_prfs                     = canew(::fs::remote_native(this,""));
 
-      ::fs::set * pset = canew(class ::fs::set(this));
-      ::fs::link * plink = canew(::fs::link(this));
-      plink->fill_os_user();
-      pset->m_spafsdata.add(plink);
-      pset->m_spafsdata.add(canew(::fs::native(this)));
-      m_spfsdata = pset;
+      if (m_pifs.is_null())
+      {
+
+         m_pifs = canew(ifs(this, ""));
+
+      }
+
+      if (m_prfs.is_null())
+      {
+
+         m_prfs = canew(::fs::remote_native(this, ""));
+
+      }
+
+      if (m_spfsdata.is_null())
+      {
+
+         ::fs::set * pset = canew(class ::fs::set(this));
+         ::fs::link * plink = canew(::fs::link(this));
+         plink->fill_os_user();
+         pset->m_spafsdata.add(plink);
+         pset->m_spafsdata.add(canew(::fs::native(this)));
+         m_spfsdata = pset;
+
+      }
 
 
 
@@ -1095,8 +1112,8 @@ namespace axis
          ::fs::set * pset = dynamic_cast < ::fs::set * > ((class ::fs::data *) m_spfsdata);
          if(pset != NULL)
          {
-            pset->m_spafsdata.add(m_pifs);
-            pset->m_spafsdata.add(m_prfs);
+            pset->m_spafsdata.add_unique(m_pifs);
+            pset->m_spafsdata.add_unique(m_prfs);
          }
 
          ::file::listing patha;
@@ -1235,6 +1252,8 @@ namespace axis
       {
 
       }
+
+      ::aura::del(m_pkeyboard);
 
       ::axis::application::exit_instance();
 

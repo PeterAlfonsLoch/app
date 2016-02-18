@@ -78,7 +78,7 @@ thread::thread() :
    m_mutexUiPtra(::get_thread_app())
 {
 
-   CommonConstruct();
+   construct();
 
    m_puiptra = NULL;
 
@@ -95,7 +95,7 @@ thread::thread(::aura::application * papp) :
    m_mutexUiPtra(papp)
 {
 
-   CommonConstruct();
+   construct();
 
 
    if(m_pauraapp != NULL && m_pauraapp->m_paurasession != NULL)
@@ -114,7 +114,7 @@ thread::thread(::aura::application * papp, __THREADPROC pfnThreadProc, LPVOID pP
    m_mutexUiPtra(papp)
 {
 
-   CommonConstruct();
+   //CommonConstruct();
 
 //   m_pthreadimpl.alloc(allocer());
 //   m_pthreadimpl->m_pthread = this;
@@ -161,7 +161,7 @@ void thread::CommonConstruct()
 
    m_pslUser = NULL;
 
-   m_preplacethread = NULL;
+//   m_preplacethread = NULL;
 
    m_bAutoDelete = true;
 
@@ -196,6 +196,31 @@ void thread::CommonConstruct()
 
 thread::~thread()
 {
+
+   //try
+   //{
+
+   //   single_lock sl(&m_mutexUiPtra, TRUE);
+
+   //   if (m_spuiptra.is_set())
+   //   {
+
+   //      while (m_spuiptra->has_elements())
+   //      {
+
+   //         remove(m_spuiptra->element_at(0));
+
+   //      }
+
+   //      m_spuiptra.release();
+
+   //   }
+
+   //}
+   //catch (...)
+   //{
+
+   //}
 
    ::aura::del(m_pfileinfo);
 
@@ -241,10 +266,6 @@ HTHREAD thread::get_os_handle() const
 bool thread::finalize()
 {
 
-   signal_close_dependent_threads();
-
-   wait_close_dependent_threads(minutes(1));
-
    return true;
 
 }
@@ -252,6 +273,11 @@ bool thread::finalize()
 
 int32_t thread::exit()
 {
+
+   signal_close_dependent_threads();
+
+   wait_close_dependent_threads(minutes(1));
+
 
    try
    {
@@ -1574,34 +1600,34 @@ uint32_t __thread_entry(void * pparam)
 
       }
 
-      if(pthread->m_preplacethread != NULL && !pthread->m_preplacethread->do_replace(pthread))
-      {
+      //if(pthread->m_preplacethread != NULL && !pthread->m_preplacethread->do_replace(pthread))
+      //{
 
-         try
-         {
+      //   try
+      //   {
 
-            pthread->m_preplacethread = NULL;
+      //      pthread->m_preplacethread = NULL;
 
-         }
-         catch(...)
-         {
+      //   }
+      //   catch(...)
+      //   {
 
-         }
+      //   }
 
-         try
-         {
+      //   try
+      //   {
 
-            pthread->exit();
+      //      pthread->exit();
 
-         }
-         catch(...)
-         {
+      //   }
+      //   catch(...)
+      //   {
 
-         }
+      //   }
 
-         return ::multithreading::__on_thread_finally(pthread);
+      //   return ::multithreading::__on_thread_finally(pthread);
 
-      }
+      //}
 
 
       try
@@ -1741,34 +1767,34 @@ int32_t thread::exit_instance()
 
    ASSERT_VALID(this);
 
-   try
-   {
+   //try
+   //{
 
-      single_lock sl(&m_mutexUiPtra,TRUE);
+   //   single_lock sl(&m_mutexUiPtra,TRUE);
 
-      if(m_spuiptra.is_set())
-      {
-
-         sp(ptr_array < ::user::primitive >) puiptra = m_spuiptra;
-
-         m_spuiptra.release();
-
-  //       for(int32_t i = 0; i < puiptra->get_size(); i++)
-    //     {
-
-//            ::user::primitive * pui = puiptra->element_at(i);
-
-      //   }
-
-         puiptra.release();
-
-         sl.unlock();
-
-      }
-   }
-   catch(...)
-   {
-   }
+//      if(m_spuiptra.is_set())
+//      {
+//
+//         sp(ptr_array < ::user::primitive >) puiptra = m_spuiptra;
+//
+//         m_spuiptra.release();
+//
+//  //       for(int32_t i = 0; i < puiptra->get_size(); i++)
+//    //     {
+//
+////            ::user::primitive * pui = puiptra->element_at(i);
+//
+//      //   }
+//
+//         puiptra.release();
+//
+//         sl.unlock();
+//
+//      }
+//   }
+//   catch(...)
+//   {
+//   }
 
    //try
    //{
@@ -2083,73 +2109,72 @@ int32_t thread::thread_term()
 }
 
 
-void thread::add(::user::primitive * pui)
-{
-
-   single_lock sl(&m_mutexUiPtra,TRUE);
-
-   if(m_spuiptra.is_set())
-   {
-
-      m_spuiptra->add(pui);
-
-   }
-
-}
-
-
-void thread::remove(::user::primitive * pui)
-{
-
-   if(pui == NULL)
-      return;
-
-   single_lock sl(&m_mutexUiPtra,TRUE);
-
-   if(Application.get_thread(pui).contains(this))
-   {
-
-      Application.remove_thread(pui, this);
-
-   }
-
-   if(m_spuiptra.is_set())
-   {
-
-      m_spuiptra->remove(pui);
-
-   }
-
-   sl.unlock();
-
-   //if(m_sptimera.is_set())
-   //{
-
-   //   m_sptimera->unset(pui);
-
-   //}
-
-}
-
-
-::count thread::get_ui_count()
-{
-
-   single_lock sl(&m_mutexUiPtra,TRUE);
-
-   return m_spuiptra->get_count();
-
-}
-
-
-::user::primitive * thread::get_ui(index iIndex)
-{
-
-   single_lock sl(&m_mutexUiPtra,TRUE);
-
-   return m_spuiptra->element_at(iIndex);
-
-}
+//void thread::add(::user::primitive * pui)
+//{
+//
+//   single_lock sl(&m_mutexUiPtra,TRUE);
+//
+//   if(m_spuiptra.is_set())
+//   {
+//
+//      m_spuiptra->add(pui);
+//
+//   }
+//
+//}
+//
+//
+//void thread::remove(::user::primitive * pui)
+//{
+//
+//   if(pui == NULL)
+//      return;
+//
+//   single_lock sl(&m_mutexUiPtra,TRUE);
+//
+//   pui->remove_thread(this);
+//
+//   if(m_spuiptra.is_set())
+//   {
+//
+//      m_spuiptra->remove(pui);
+//
+//   }
+//
+//   sl.unlock();
+//
+//   //if(m_sptimera.is_set())
+//   //{
+//
+//   //   m_sptimera->unset(pui);
+//
+//   //}
+//
+//}
+//
+//
+//::count thread::get_ui_count()
+//{
+//
+//   single_lock sl(&m_mutexUiPtra,TRUE);
+//   if (m_spuiptra.is_null())
+//      return 0;
+//
+//   return m_spuiptra->get_count();
+//
+//}
+//
+//
+//::user::primitive * thread::get_ui(index iIndex)
+//{
+//
+//   single_lock sl(&m_mutexUiPtra,TRUE);
+//   if (m_spuiptra.is_null())
+//      return NULL;
+//
+//   return m_spuiptra->element_at(iIndex);
+//
+//}
 
 
 //void thread::set_timer(::user::primitive * pui,uint_ptr nIDEvent,UINT nEllapse)
@@ -2211,12 +2236,12 @@ thread::operator HTHREAD() const
 bool thread::initialize_message_queue()
 {
 
-   if(m_spuiptra.is_null())
-   {
+   //if(m_spuiptra.is_null())
+   //{
 
-      m_spuiptra = canew(ptr_array < ::user::primitive >);
+   //   m_spuiptra = canew(ptr_array < ::user::primitive >);
 
-   }
+   //}
 
    //if(m_spqueue.is_null())
    //{
@@ -2755,14 +2780,14 @@ void thread::thread_delete()
 
    }
 
-   if(m_preplacethread != NULL)
-   {
+   //if(m_preplacethread != NULL)
+   //{
 
-      single_lock sl(&m_preplacethread->m_mutex,true);
+   //   single_lock sl(&m_preplacethread->m_mutex,true);
 
-      m_preplacethread->m_spthread.release();
+   //   m_preplacethread->m_spthread.release();
 
-   }
+   //}
    //else if(m_bAutoDelete)
    //{
    //   //if(m_countReference > 1)
@@ -2772,7 +2797,7 @@ void thread::thread_delete()
    //    release();
 
    //}
-   else
+   //else
    {
       //if(m_countReference > 1)
       //{
@@ -2916,55 +2941,55 @@ void thread::do_events()
 
 
 
-bool replace_thread::do_replace(::thread * pthread)
-{
-
-   single_lock sl(&m_mutex,true);
-
-   if(m_pthreadNew == NULL)
-      return true;
-
-   if(m_pthreadNew != pthread)
-      return false;
-
-   while(m_spthread.is_set())
-   {
-
-      if(m_pthreadNew != pthread)
-         return false;
-
-      try
-      {
-
-         m_spthread->set_end_thread();
-
-      }
-      catch(...)
-      {
-
-      }
-
-      sl.unlock();
-
-      sl.lock();
-
-      if(m_pthreadNew != pthread)
-         return false;
-
-   }
-
-   if(m_pthreadNew != pthread)
-      return false;
-
-   m_spthread = pthread;
-
-   return true;
-
-}
-
-
-
-
+//bool replace_thread::do_replace(::thread * pthread)
+//{
+//
+//   single_lock sl(&m_mutex,true);
+//
+//   if(m_pthreadNew == NULL)
+//      return true;
+//
+//   if(m_pthreadNew != pthread)
+//      return false;
+//
+//   while(m_spthread.is_set())
+//   {
+//
+//      if(m_pthreadNew != pthread)
+//         return false;
+//
+//      try
+//      {
+//
+//         m_spthread->set_end_thread();
+//
+//      }
+//      catch(...)
+//      {
+//
+//      }
+//
+//      sl.unlock();
+//
+//      sl.lock();
+//
+//      if(m_pthreadNew != pthread)
+//         return false;
+//
+//   }
+//
+//   if(m_pthreadNew != pthread)
+//      return false;
+//
+//   m_spthread = pthread;
+//
+//   return true;
+//
+//}
+//
+//
+//
+//
 
 //void thread::message_queue_message_handler(::signal_details * pobj)
 //{

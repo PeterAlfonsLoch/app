@@ -20,15 +20,22 @@ namespace data
       tree(::aura::application * papp);
       virtual ~tree();
 
+      virtual int64_t add_ref()
+      {
+         return ::object::add_ref();
+      }
 
-      sp(tree_item) allocate_branch_item();
+      virtual int64_t dec_ref()
+      {
+         return ::object::dec_ref();
+      }
 
 
       virtual void remove_all();
 
 
 
-      virtual sp(tree_item) find(item * pitem, index * piIndex = NULL);
+      virtual tree_item * find(item * pitem, index * piIndex = NULL);
       virtual bool contains(item * pitem);
 
       virtual bool contains(tree_item * pitem);
@@ -47,15 +54,15 @@ namespace data
 
       void sort(index ( * lpfnCompare )(const sp(tree_item) & pitem, const sp(tree_item) & pitem2));
 
-      virtual sp(tree_item) get_proper_item(index iIndex, index * piLevel, index * piCount = NULL);
+      virtual tree_item * get_proper_item(index iIndex, index * piLevel, index * piCount = NULL);
       virtual index get_proper_item_index(tree_item * pitemParam, index * piLevel, index * piCount = NULL);
       virtual ::count get_proper_item_count();
 
 
 
-      virtual sp(tree_item) get_base_item();
+      virtual tree_item * get_base_item();
 
-      virtual sp(tree_item) insert_item(item * pitemdataNew, ERelative erelativeNewItem, tree_item * pitemRelative);
+      virtual tree_item * insert_item(item * pitemdataNew, ERelative erelativeNewItem, tree_item * pitemRelative);
       virtual bool insert_item(tree_item * pitemNew, ERelative erelativeNewItem, tree_item * pitemRelative);
 
       image_list * get_image_list() const;

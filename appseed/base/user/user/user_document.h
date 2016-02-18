@@ -19,7 +19,7 @@ namespace user
       string                           m_strTitle;
       ::file::path                     m_filepath;
       sp(::user::impact_system)        m_pimpactsystem;
-      spa(::user::impact)              m_viewptra;
+      ptr_array < ::user::impact >     m_viewptra;
       bool                             m_bModified;
       bool                             m_bNew;
       bool                             m_bAutoDelete;     // TRUE => delete document when no more views
@@ -81,7 +81,7 @@ namespace user
          ::count count = 0;
          for (index index = 0; index < m_viewptra.get_count(); index++)
          {
-            T * pt = m_viewptra[index].cast < T >();
+            T * pt = dynamic_cast < T * >(m_viewptra[index]);
             if (pt != NULL)
             {
                if (indexFind == count)

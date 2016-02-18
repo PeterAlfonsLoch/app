@@ -93,7 +93,7 @@ PCRE2_EXP_DEFN void PCRE2_CALL_CONVENTION
 pcre2_match_data_free(pcre2_match_data *match_data)
 {
 if (match_data != NULL)
-  match_data->memctl.free(match_data, match_data->memctl.memory_data);
+  match_data->memctl._free(match_data, match_data->memctl.memory_data);
 }
 
 

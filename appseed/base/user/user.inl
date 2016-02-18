@@ -69,7 +69,7 @@ namespace user
       if(m_pscrollbarHorz != NULL)
          return;
 
-      scroll_bar * pbar = new simple_scroll_bar(this->get_app());
+      scroll_bar * pbar = canew(simple_scroll_bar(this->get_app()));
 
       if(!pbar->create_window(::orientation_horizontal,WS_CHILD | WS_VISIBLE,null_rect(),this,7000 + 1))
       {
@@ -89,7 +89,7 @@ namespace user
       if(m_pscrollbarVert != NULL)
          return;
 
-      scroll_bar * pbar = new simple_scroll_bar(this->get_app());
+      scroll_bar * pbar = canew(simple_scroll_bar(this->get_app()));
 
       if(!pbar->create_window(::orientation_vertical,WS_CHILD | WS_VISIBLE,null_rect(),this,7002))
       {

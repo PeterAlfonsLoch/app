@@ -80,7 +80,7 @@ PCRE2_EXP_DEFN const uint8_t * PCRE2_CALL_CONVENTION
 pcre2_maketables(pcre2_general_context *gcontext)
 {
 uint8_t *yield = (uint8_t *)((gcontext != NULL)?
-  gcontext->memctl.malloc(tables_length, gcontext->memctl.memory_data) :
+  gcontext->memctl._alloc(tables_length, gcontext->memctl.memory_data) :
   malloc(tables_length));
 #endif  /* DFTABLES */
 

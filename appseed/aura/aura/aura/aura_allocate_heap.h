@@ -7,33 +7,48 @@
 
 BEGIN_EXTERN_C
 
+#ifdef __VLD
+#define unaligned_memory_alloc malloc
+#define unaligned_memory_alloc_dbg _malloc_dbg
+#define aligned_memory_alloc malloc
+#define aligned_memory_alloc_dbg _malloc_dbg
+#define memory_alloc_no_track malloc
+#define memory_calloc calloc
+#define memory_alloc_dbg _malloc_dbg
+#define memory_realloc_dbg _realloc_dbg
+#define memory_free_dbg _free_dbg
 
+#else
    CLASS_DECL_AURA void * unaligned_memory_alloc(size_t size);
    CLASS_DECL_AURA void * unaligned_memory_alloc_dbg(size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine);
 
    CLASS_DECL_AURA void * aligned_memory_alloc(size_t size);
    CLASS_DECL_AURA void * aligned_memory_alloc_dbg(size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine);
-
    CLASS_DECL_AURA void * memory_alloc_no_track(size_t size);
    CLASS_DECL_AURA void * memory_calloc(size_t size, size_t bytes);
    CLASS_DECL_AURA void * memory_alloc_dbg(size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine);
    CLASS_DECL_AURA void * memory_realloc_dbg(void * pvoid, size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine);
    CLASS_DECL_AURA void   memory_free_dbg(void * pvoid, int32_t iBlockType);
+#endif
    CLASS_DECL_AURA size_t memory_size(void * p);
    CLASS_DECL_AURA size_t memory_size_dbg(void * p, int32_t iBlockType);
 
-#if !defined(MCHECK) && !defined(__VLD)
+
+#if !defined(MCHECK) && !defined(__VLD) && !defined(__MCRTDBG)
    CLASS_DECL_AURA void * memory_alloc(size_t size);
    CLASS_DECL_AURA void * memory_realloc(void * pvoid, size_t nSize);
    CLASS_DECL_AURA void   memory_free(void * pvoid);
 #endif
 
 
-END_EXTERN_C
-
-
+   END_EXTERN_C
 
 #if MEMDLEAK
+      CLASS_DECL_AURA void set_last_block_file_name(const char * psz);
+   CLASS_DECL_AURA void memdleak_dump();
+#endif
+
+#if MEMDLEAK  || defined(__MCRTDBG)
 CLASS_DECL_AURA void * system_heap_alloc_dbg(size_t size, int nBlockUse, const char * pszFile, int iLine);
 #define system_heap_alloc(s) system_heap_alloc_dbg(s, 49, __FILE__, __LINE__)
 CLASS_DECL_AURA void * system_heap_realloc_dbg(void * p, size_t size, int nBlockUse, const char * pszFile, int iLine);
@@ -51,6 +66,12 @@ struct memdleak_block
 
    int32_t                 m_iBlockUse;
    const char *            m_pszFileName;
+#if OSBIT == 32
+   DWORD                m_puiStack[64];
+#else
+   DWORD64                m_puiStack[64];
+#endif
+   int                     m_iStack;
    int32_t                 m_iLine;
    int64_t                 m_iSize;
    struct memdleak_block *        m_pnext;
@@ -72,7 +93,7 @@ namespace heap
    {
    public:
 
-#if MEMDLEAK
+#if MEMDLEAK  || defined(__MCRTDBG)
       inline static void * alloc(size_t iSize,  const char * pszFile, int iLine)
       {
 
@@ -91,7 +112,7 @@ namespace heap
 #endif
 
 
-      inline static void free(void * p)
+      inline static void _free(void * p)
       {
 
          //TODO("jai"); jas = Jonathan Blow
@@ -108,7 +129,7 @@ namespace heap
    public:
 
 
-#if MEMDLEAK
+#if MEMDLEAK || defined(__MCRTDBG)
       inline static void * alloc(size_t iSize, const char * pszFile, int iLine)
       {
 
@@ -127,7 +148,7 @@ namespace heap
 #endif
 
 
-      inline static void free(void * p)
+      inline static void _free(void * p)
       {
 
          //TODO("jai"); jas = Jonathan Blow
@@ -169,7 +190,7 @@ namespace heap
       virtual ~heap_base()
       {
 
-         free();
+         _free();
 
       }
 
@@ -208,7 +229,7 @@ namespace heap
       }
 
 
-      void free()
+      void _free()
       {
 
          if(m_p != NULL)

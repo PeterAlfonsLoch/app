@@ -250,14 +250,16 @@ public:
 };
 
 class CLASS_DECL_AURA signalid_array :
-   virtual public ptr_array < signalid >
+   virtual protected ptr_array < signalid >
 {
 public:
 
-
+   signalid_array();
    virtual ~signalid_array();
    signalid * get(signalid * pid);
 
+   using ptr_array < signalid >::get_size;
+   using ptr_array < signalid >::operator[];
 
 };
 
@@ -294,6 +296,7 @@ public:
       public ptr_array < handler_item_base >
    {
    public:
+      virtual ~handler_item_array();
       bool HasSignalizable(signalizable* psignalizable);
    };
 

@@ -9,7 +9,7 @@ defer_update(index(* fCompare) (ARG_TYPE,ARG_TYPE))
    sp(sort_index) & sortindex = m_indexmap[fCompare];
 
    if(sortindex.is_null())
-      sortindex = new sort_index;
+      sortindex = canew(sort_index);
 
    if(!sortindex->m_bUpdated)
    {

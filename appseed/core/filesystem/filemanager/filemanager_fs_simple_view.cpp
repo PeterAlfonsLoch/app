@@ -62,7 +62,7 @@ namespace filemanager
 
             initialize_split_layout();
 
-            m_ptree = new tree(get_app());
+            m_ptree = canew(tree(get_app()));
 
             m_ptree->m_pserver = this;
 

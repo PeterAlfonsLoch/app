@@ -31,11 +31,12 @@
 
 // If defined, this keeps a note of all calls and where from in memory. This is slower, but good for debugging
 #define TINYJS_CALL_STACK
-
+#ifdef __MCRTDBG
 #ifdef _WIN32
 #ifdef _DEBUG
 #define _CRTDBG_MAP_ALLOC
 #include <crtdbg.h>
+#endif
 #endif
 #endif
 

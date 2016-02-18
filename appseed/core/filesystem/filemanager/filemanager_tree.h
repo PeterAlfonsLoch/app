@@ -56,8 +56,8 @@ namespace filemanager
 
       context_menu            m_contextmenu;
       mutex                   m_mutexData;
-      replace_thread          m_threadPolishing;
-      replace_thread          m_threadPolishingLowLatency;
+      polishing *             m_pthreadPolishing;
+      polishing *             m_pthreadPolishingLowLatency;
       
 
 #ifdef WINDOWSEX
@@ -114,7 +114,7 @@ namespace filemanager
       virtual void filemanager_tree_insert(const ::file::path & strPath,::file::listing & listing, ::action::context actioncontext,bool bOnlyParent = false);
       void _017EnsureVisible(const char * lpcsz, ::action::context actioncontext);
 
-      sp(::data::tree_item) find_item(const char * lpcsz, ::data::tree_item * pitemStart = NULL);
+      ::data::tree_item * find_item(const char * lpcsz, ::data::tree_item * pitemStart = NULL);
 
 
 

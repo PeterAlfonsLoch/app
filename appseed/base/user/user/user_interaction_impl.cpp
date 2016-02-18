@@ -10,6 +10,8 @@ namespace user
       ::aura::timer_array(get_app())
    {
 
+      m_pmutexDraw = NULL;
+
       m_bScreenRelativeMouseMessagePosition  = true;
       m_bTranslateMouseMessageCursor         = true;
       m_pgraphics                            = NULL;
@@ -44,10 +46,25 @@ namespace user
 
       ::aura::del(m_pcsDisplay);
 
+
+      ::aura::del(m_pmutexDraw);
+
    }
 
 
+   mutex * interaction_impl::draw_mutex()
+   {
 
+      if (m_pmutexDraw == NULL)
+      {
+
+         m_pmutexDraw = new mutex(get_app());
+
+      }
+
+      return m_pmutexDraw;
+
+   }
    ::user::interaction_impl * interaction_impl::get_user_interaction_impl()
    {
 

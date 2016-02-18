@@ -224,7 +224,7 @@ mutex::mutex(::aura::application * papp, const char * pstrName, void * h, bool b
 
 mutex::mutex(const mutex & m):
 object(m.get_app()),
-sync_object(m.m_strName)
+sync_object(m.m_pszName)
 {
    m_bOwner = false;
    m_object = m.m_object;

@@ -246,53 +246,6 @@ namespace core
    bool session::finalize()
    {
 
-      try
-      {
-
-         if (m_pfilemanager != NULL)
-         {
-
-            m_pfilemanager->finalize();
-
-         }
-
-
-      }
-      catch (...)
-      {
-
-      }
-      try
-      {
-
-         if (m_pfilemanager != NULL)
-         {
-
-            delete m_pfilemanager;
-
-         }
-
-
-      }
-      catch (...)
-      {
-
-      }
-
-      try
-      {
-
-         m_puserex->finalize();
-
-      }
-      catch (...)
-      {
-
-      }
-
-      m_puserex = NULL;
-
-      m_pobjectUserex.release();
 
       bool bOk = true;
 
@@ -349,6 +302,55 @@ namespace core
       {
 
       }
+
+      try
+      {
+
+         if (m_pfilemanager != NULL)
+         {
+
+            m_pfilemanager->finalize();
+
+         }
+
+
+      }
+      catch (...)
+      {
+
+      }
+      try
+      {
+
+         if (m_pfilemanager != NULL)
+         {
+
+            delete m_pfilemanager;
+
+         }
+
+
+      }
+      catch (...)
+      {
+
+      }
+
+      try
+      {
+
+         m_puserex->finalize();
+
+      }
+      catch (...)
+      {
+
+      }
+
+      m_puserex = NULL;
+
+      m_pobjectUserex.release();
+
 
       return 0;
 

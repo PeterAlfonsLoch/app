@@ -11,6 +11,11 @@ namespace base
 
    }
 
+   system_interaction_impl::~system_interaction_impl()
+   {
+
+
+   }
 
    void system_interaction_impl::install_message_handling(::message::dispatch * pdispatch)
    {

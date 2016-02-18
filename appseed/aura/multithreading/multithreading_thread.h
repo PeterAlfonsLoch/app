@@ -1,7 +1,7 @@
 #pragma once
 
 
-class replace_thread;
+//class replace_thread;
 
 class user_interaction_ptr_array;
 
@@ -56,7 +56,7 @@ public:
 
    bool                                   m_bZipIsDir;
 
-   replace_thread *                       m_preplacethread;
+//   replace_thread *                       m_preplacethread;
 
    //manual_reset_event *                   m_peventEvent;
 
@@ -71,7 +71,7 @@ public:
 
    //thread *                                  m_pthread;
 
-   sp(ptr_array < ::user::primitive >)     m_spuiptra;
+   //sp(ptr_array < ::user::primitive >)     m_spuiptra;
 
    bool                                      m_bDupHandle;
    HTHREAD                                   m_hthread;
@@ -89,6 +89,8 @@ public:
    UINT                                      m_dwFinishTimeout;
 
    string                                    m_strDebug;
+   string                                    m_strFile;
+   int                                       m_iLine;
 
    sp(::command_thread)                      m_pcommandthread;
 
@@ -193,10 +195,10 @@ public:
 
    virtual void process_message_filter(int32_t code, signal_details * pobj);
 
-   virtual void add(::user::primitive * pui);
-   virtual void remove(::user::primitive * pui);
-   virtual ::count get_ui_count();
-   virtual ::user::primitive * get_ui(index iIndex);
+   // virtual void add(::user::primitive * pui);
+   //virtual void remove(::user::primitive * pui);
+   //virtual ::count get_ui_count();
+   //virtual ::user::primitive * get_ui(index iIndex);
    //virtual void set_timer(::user::primitive * pui, uint_ptr nIDEvent, UINT nEllapse);
    //virtual void unset_timer(::user::primitive * pui, uint_ptr nIDEvent);
    virtual void set_auto_delete(bool bAutoDelete = true);
@@ -299,19 +301,19 @@ public:
 };
 
 
-
-class CLASS_DECL_AURA replace_thread
-{
-public:
-
-   smart_pointer < ::thread >    m_spthread;
-   ::thread *                    m_pthreadNew;
-   mutex &                       m_mutex;
-
-   replace_thread(mutex & m): m_mutex(m) {  }
-
-   void replace(::thread * pcanew);
-
-   bool do_replace(::thread * pthread);
-
-};
+//
+//class CLASS_DECL_AURA replace_thread
+//{
+//public:
+//
+//   ::thread *                    m_pthread;
+//   ::thread *                    m_pthreadNew;
+//   mutex &                       m_mutex;
+//
+//   replace_thread(mutex & m): m_mutex(m) {  }
+//
+//   void replace(::thread * pcanew);
+//
+//   bool do_replace(::thread * pthread);
+//
+//};

@@ -50,7 +50,7 @@ namespace windows
    interaction_impl::interaction_impl() :
       ::aura::timer_array(get_app())
    {
-
+      
       //m_guieptraMouseHover = canew(::user::interaction_spa());
       //      m_bRectParentClient  = false;
       m_pfnSuper           = NULL;
@@ -308,17 +308,6 @@ namespace windows
    {
       m_guieptraMouseHover.m_pmutex = NULL;
       m_pmutex = NULL;
-      if(m_pauraapp != NULL &&  m_pauraapp->m_pbasesession != NULL &&  m_pauraapp->m_pbasesession->m_puser != NULL)
-      {
-
-         if(Session.user()->m_pwindowmap != NULL)
-         {
-
-            Session.user()->m_pwindowmap->m_map.remove_key((int_ptr)get_handle());
-
-         }
-
-      }
 
    }
 
@@ -795,21 +784,21 @@ namespace windows
 
       single_lock sl(m_pui->m_pauraapp->m_pmutex,TRUE);
 
-      ::window_sp pwindow;
+      //::window_sp pwindow;
 
-      if(m_pui->m_pauraapp != NULL)
-      {
+      //if(m_pui->m_pauraapp != NULL)
+      //{
 
-         synch_lock sl(&m_pui->m_pauraapp->m_mutexUiPtra);
+      //   synch_lock sl(&m_pui->m_pauraapp->m_mutexUiPtra);
 
-         if(m_pui->m_pauraapp->m_spuiptra.is_set())
-         {
+      //   if(m_pui->m_pauraapp->m_spuiptra.is_set())
+      //   {
 
-            m_pui->m_pauraapp->m_spuiptra->remove(m_pui);
+      //      m_pui->m_pauraapp->m_spuiptra->remove(m_pui);
 
-         }
+      //   }
 
-      }
+      //}
 
 
 

@@ -129,11 +129,6 @@ namespace base
 
       m_pschemaLayeredFrame = canew(::user::schema_layered_frame(this));
 
-      #ifdef WINDOWSEX
-
-      m_psystemwindow = NULL;
-
-      #endif
 
    }
 
@@ -186,39 +181,6 @@ namespace base
 //   }
 //
 //
-//   bool system::defer_create_system_frame_window()
-//   {
-//
-//
-//#ifdef WINDOWSEX
-//
-//      if(m_psystemwindow != NULL)
-//         return true;
-//
-//      m_psystemwindow = new system_interaction_impl(this);
-//
-//#endif
-//
-//
-//
-//#ifdef WINDOWSEX
-//
-//      dappy(string(typeid(*this).name()) + " : Going to ::axis::system::m_spwindow->create_window_ex : " + ::str::from(m_iReturnCode));
-//
-//      if(!m_psystemwindow->create_window_ex(0,NULL,NULL,0,null_rect(),NULL,"::axis::system::interaction_impl::no_twf"))
-//      {
-//
-//         dappy(string(typeid(*this).name()) + " : ::axis::system::m_spwindow->create_window_ex failure : " + ::str::from(m_iReturnCode));
-//
-//         return false;
-//
-//      }
-//
-//#endif
-//
-//      return true;
-//
-//   }
 //
 //   bool system::initialize1()
 //   {
@@ -310,29 +272,15 @@ namespace base
 
       m_pschemaLayeredFrame.release();
 
-      axis::system::exit_instance();
-
-
-      //try
-      //{
-
-      //   ::release(m_ptwf);
-
-      //}
-      //catch (...)
-      //{
-
-      //}
-
 #ifdef WINDOWSEX
 
       try
       {
 
-         ::release(m_psystemwindow);
+         ::aura::del(m_psystemwindow);
 
       }
-      catch(...)
+      catch (...)
       {
 
          m_iReturnCode = -2;
@@ -341,6 +289,9 @@ namespace base
 
 
 #endif
+      axis::system::exit_instance();
+
+
 
       
 #ifdef MACOS
@@ -376,23 +327,6 @@ namespace base
 ////      m_pmutexDc.release();
 //#endif
 //
-//#ifdef WINDOWSEX
-//
-//      try
-//      {
-//
-//         ::release(m_psystemwindow);
-//
-//      }
-//      catch(...)
-//      {
-//
-//         m_iReturnCode = -2;
-//
-//      }
-//
-//
-//#endif
 //
 //      try
 //      {

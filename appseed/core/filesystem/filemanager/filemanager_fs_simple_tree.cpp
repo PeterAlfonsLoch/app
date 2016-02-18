@@ -22,7 +22,9 @@ namespace filemanager
             ::data::tree(papp),
             ::user::tree_data(papp)
          {
-            m_pimagelist = new image_list(papp);
+            
+            m_pimagelist = canew(image_list(papp));
+
             m_iIconFolderNormal     = m_pimagelist->add_matter_icon("mplite/vmskarlib_folder_normal.ico");
             m_iIconFolderSelected   = m_pimagelist->add_matter_icon("mplite/vmskarlib_folder_selected.ico");
             m_iIconArtistNormal     = m_pimagelist->add_matter_icon("mplite/vmskarlib_artist_normal.ico");
@@ -138,12 +140,12 @@ namespace filemanager
 
                if(pdataitemChild == NULL)
                {
-                  pdataitemChild = insert_item(new ::data::simple_item(this), ::data::RelativeLastChild, pdataitemParent);
+                  pdataitemChild = insert_item(canew(::data::simple_item(this)), ::data::RelativeLastChild, pdataitemParent);
                }
 
                if(pdataitemChild->m_pitem == NULL)
                {
-                  pdataitemChild->m_pitem = new ::data::simple_item(this);
+                  pdataitemChild->m_pitem = canew(::data::simple_item(this));
                }
 
                pdataitemChild->m_pitem.cast < ::data::simple_item >()->m_str = folder.m_strName;
@@ -155,7 +157,7 @@ namespace filemanager
                //}
 
 
-               m_foldera.add(new Folder(folder));
+               m_foldera.add(canew(Folder(folder)));
                iNode++;
             }
 

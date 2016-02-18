@@ -12,7 +12,8 @@ namespace filemanager
       object(papp),
       ::aura::departament(papp)
    {
-      m_ptemplateStd       = NULL;
+
+//      output_debug_string("");
 
    }
 

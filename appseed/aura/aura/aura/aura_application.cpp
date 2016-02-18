@@ -3563,33 +3563,6 @@ namespace aura
    }
 
 
-   ptr_array < ::thread > application::get_thread(::user::primitive * pui)
-   {
-
-      UNREFERENCED_PARAMETER(pui);
-
-      ::exception::throw_interface_only(this);
-
-      return ptr_array < ::thread >();
-
-   }
-
-
-   void application::add_thread(::user::primitive * pui,::thread * pthread)
-   {
-
-      UNREFERENCED_PARAMETER(pui);
-      UNREFERENCED_PARAMETER(pthread);
-
-   }
-
-   void application::remove_thread(::user::primitive * pui,::thread * pthread)
-   {
-
-      UNREFERENCED_PARAMETER(pui);
-      UNREFERENCED_PARAMETER(pthread);
-
-   }
 
    void application::window_graphics_update_window(window_graphics ** ppdata,oswindow interaction_impl,COLORREF * pOsBitmapData,const RECT & rect,int cxParam,int cyParam,int iStride,bool bTransferBuffer)
    {

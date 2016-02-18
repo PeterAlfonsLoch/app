@@ -6,6 +6,7 @@ namespace user
 {
 
    tree::tree() :
+      object(get_app()),
       m_dcextension(get_app())
    {
 
@@ -111,7 +112,7 @@ namespace user
       }
 
 
-      m_pimagelist = new image_list(get_app());
+      m_pimagelist = canew(image_list(get_app()));
       m_pimagelist->create(16, 16, 0, 10, 10);
       
       ::fork(get_app(), [this](){
@@ -1179,7 +1180,7 @@ namespace user
 
       nOffset = ptOffset.y / _001GetItemHeight();
 
-      sp(::data::tree_item) pitem;
+      ::data::tree_item * pitem;
 
       for (index i = 0; i < m_treeptra.get_count(); i++)
       {

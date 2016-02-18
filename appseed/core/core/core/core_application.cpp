@@ -7,7 +7,9 @@
 #include <Wtsapi32.h>
 #include <Userenv.h>
 #endif
-
+#ifdef WINDOWSEX
+#include "base/os/windows/windows_system_interaction_impl.h"
+#endif
 
 #ifdef LINUX
 
@@ -41,14 +43,14 @@ namespace core
    const char application::gen_PreviewEntry[] = "PreviewPages";
 
 
-   application::application():
+   application::application() :
       ::object(this), // start m_pauraapp as this for constructor referencing this app
       thread(NULL)
    {
 
       m_pmainpane = NULL;
 
-      if(m_pauraapp == NULL)
+      if (m_pauraapp == NULL)
       {
          set_app(this);
       }
@@ -73,14 +75,14 @@ namespace core
 
       m_strInstallType = "application";
 
-      m_psignal->connect(this,&application::on_application_signal);
+      m_psignal->connect(this, &application::on_application_signal);
 
       m_eexclusiveinstance = ExclusiveInstanceNone;
       m_peventReady = NULL;
       m_strLocale = "_std";
       m_strSchema = "_std";
 
-//      m_pcalculator = NULL;
+      //      m_pcalculator = NULL;
 
    }
 
@@ -95,7 +97,7 @@ namespace core
    void application::construct(const char * pszId)
    {
 
-      if(pszId == NULL)
+      if (pszId == NULL)
       {
 
          m_strId = "";
@@ -110,16 +112,16 @@ namespace core
 
       ::base::application::construct(m_strId);
 
-      if(m_strAppName.is_empty())
+      if (m_strAppName.is_empty())
       {
 
-         if(m_strAppId.has_char())
+         if (m_strAppId.has_char())
          {
 
             m_strAppName = m_strAppId;
 
          }
-         else if(m_strInstallToken.has_char())
+         else if (m_strInstallToken.has_char())
          {
 
             m_strAppName = m_strInstallToken;
@@ -144,7 +146,7 @@ namespace core
       {
          iExit = thread::exit();
       }
-      catch(...)
+      catch (...)
       {
 
          iExit = -1;
@@ -216,12 +218,12 @@ namespace core
 
 
 
-      if(!::base::application::process_initialize())
+      if (!::base::application::process_initialize())
          return false;
 
       m_puserfs = create_userfs();
 
-      if(m_puserfs == NULL)
+      if (m_puserfs == NULL)
          return false;
 
       m_spobjectUserFs = m_puserfs;
@@ -239,21 +241,21 @@ namespace core
    bool application::initialize1()
    {
 
-      if(!::base::application::initialize1())
+      if (!::base::application::initialize1())
          return false;
 
       m_pwndfrm = canew(::user::wndfrm::wndfrm(this));
 
       wndfrm().construct(this);
 
-      if(!wndfrm().initialize())
+      if (!wndfrm().initialize())
          return false;
 
 
 
       m_dwAlive = ::get_tick_count();
 
-      if(!is_system() && !is_session())
+      if (!is_system() && !is_session())
       {
 
          Session.register_bergedge_application(this);
@@ -263,28 +265,28 @@ namespace core
 
 
 
-      if(!m_puserfs->initialize())
+      if (!m_puserfs->initialize())
          return false;
 
 
-      if(!is_system() && !is_session() && !is_installing() && !is_uninstalling())
+      if (!is_system() && !is_session() && !is_installing() && !is_uninstalling())
       {
 
          string str;
          // if system locale has changed (compared to last recorded one by core)
          // use the system locale
-         if(data_get(".local://system_locale",str))
+         if (data_get(".local://system_locale", str))
          {
-            if(str.has_char())
+            if (str.has_char())
             {
-               if(str != Session.get_locale())
+               if (str != Session.get_locale())
                {
                   try
                   {
-                     data_set(".local://system_locale",Session.get_locale());
-                     data_set("locale",Session.get_locale());
+                     data_set(".local://system_locale", Session.get_locale());
+                     data_set("locale", Session.get_locale());
                   }
-                  catch(...)
+                  catch (...)
                   {
                   }
                }
@@ -292,44 +294,44 @@ namespace core
          }
          else
          {
-            data_set(".local://system_locale",Session.get_locale());
+            data_set(".local://system_locale", Session.get_locale());
          }
 
-         if(command()->m_varTopicQuery["locale"].get_count() > 0)
+         if (command()->m_varTopicQuery["locale"].get_count() > 0)
          {
             str = command()->m_varTopicQuery["locale"].stra()[0];
-            data_set(".local://system_locale",str);
-            data_set("locale",str);
-            Session.set_locale(str,::action::source::database());
+            data_set(".local://system_locale", str);
+            data_set("locale", str);
+            Session.set_locale(str, ::action::source::database());
          }
-         else if(command()->m_varTopicQuery["lang"].get_count() > 0)
+         else if (command()->m_varTopicQuery["lang"].get_count() > 0)
          {
             str = command()->m_varTopicQuery["lang"].stra()[0];
-            data_set(".local://system_locale",str);
-            data_set(".local://locale",str);
-            Session.set_locale(str,::action::source::database());
+            data_set(".local://system_locale", str);
+            data_set(".local://locale", str);
+            Session.set_locale(str, ::action::source::database());
          }
-         else if(data_get(".local://locale",str))
+         else if (data_get(".local://locale", str))
          {
-            if(str.has_char())
+            if (str.has_char())
             {
-               Session.set_locale(str,::action::source::database());
+               Session.set_locale(str, ::action::source::database());
             }
          }
          // if system schema has changed (compared to last recorded one by core)
          // use the system schema
-         if(data_get(".local://system_schema",str))
+         if (data_get(".local://system_schema", str))
          {
-            if(str.has_char())
+            if (str.has_char())
             {
-               if(str != Session.get_schema())
+               if (str != Session.get_schema())
                {
                   try
                   {
-                     data_set(".local://system_schema",Session.get_schema());
-                     data_set("schema",Session.get_schema());
+                     data_set(".local://system_schema", Session.get_schema());
+                     data_set("schema", Session.get_schema());
                   }
-                  catch(...)
+                  catch (...)
                   {
                   }
                }
@@ -337,26 +339,26 @@ namespace core
          }
          else
          {
-            data_set(".local://system_schema",Session.get_schema());
+            data_set(".local://system_schema", Session.get_schema());
          }
 
-         if(command()->m_varTopicQuery["schema"].get_count() > 0)
+         if (command()->m_varTopicQuery["schema"].get_count() > 0)
          {
             str = command()->m_varTopicQuery["schema"].stra()[0];
-            data_set(".local://system_schema",str);
-            data_set(".local://schema",str);
-            Session.set_schema(str,::action::source::database());
+            data_set(".local://system_schema", str);
+            data_set(".local://schema", str);
+            Session.set_schema(str, ::action::source::database());
          }
-         else if(data_get(".local://schema",str))
+         else if (data_get(".local://schema", str))
          {
-            if(str.has_char())
+            if (str.has_char())
             {
-               Session.set_schema(str,::action::source::database());
+               Session.set_schema(str, ::action::source::database());
             }
          }
 
 
-         data_pulse_change("ca2.local://savings",NULL);
+         data_pulse_change("ca2.local://savings", NULL);
 
 
          Sess(this).fill_locale_schema(*Session.str_context()->m_plocaleschema);
@@ -383,7 +385,7 @@ namespace core
    bool application::initialize2()
    {
 
-      if(!::base::application::initialize2())
+      if (!::base::application::initialize2())
          return false;
 
       return true;
@@ -394,7 +396,7 @@ namespace core
    bool application::initialize3()
    {
 
-      if(!::base::application::initialize3())
+      if (!::base::application::initialize3())
          return false;
 
       return true;
@@ -435,26 +437,26 @@ namespace core
    bool application::initialize_instance()
    {
 
-      if(!::base::application::initialize_instance())
+      if (!::base::application::initialize_instance())
          return false;
 
-      if(!is_session() && !is_system())
+      if (!is_session() && !is_system())
       {
 
-         if(directrix()->m_varTopicQuery.has_property("install"))
+         if (directrix()->m_varTopicQuery.has_property("install"))
          {
 
-            if(is_user_service())
+            if (is_user_service())
             {
 
-               if(Session.fontopus()->m_puser != NULL && Session.fontopus()->m_puser->m_strLogin == "system")
+               if (Session.fontopus()->m_puser != NULL && Session.fontopus()->m_puser->m_strLogin == "system")
                {
 
                   Session.fontopus()->m_puser = NULL;
 
                }
 
-               if(m_strAppId != "app-core/netnodelite" && m_strAppId != "app-core/mydns")
+               if (m_strAppId != "app-core/netnodelite" && m_strAppId != "app-core/mydns")
                {
 
                   ApplicationUser;
@@ -484,22 +486,34 @@ namespace core
       try
       {
 
+         close_all_documents(false);
+
+      }
+      catch (...)
+      {
+
+      }
+
+
+      try
+      {
+
          m_pdocmanager.release();
 
       }
-      catch(...)
+      catch (...)
       {
 
       }
 
       try
       {
-         if(!is_system())
+         if (!is_system())
          {
             Session.unregister_bergedge_application(this);
          }
       }
-      catch(...)
+      catch (...)
       {
 
       }
@@ -523,7 +537,7 @@ namespace core
 
          thread         * pthread = this;
 
-         if(pthread != NULL)
+         if (pthread != NULL)
          {
 
             try
@@ -539,7 +553,7 @@ namespace core
                pthread->set_run(false);
 
             }
-            catch(...)
+            catch (...)
             {
 
             }
@@ -547,7 +561,7 @@ namespace core
          }
 
       }
-      catch(...)
+      catch (...)
       {
 
       }
@@ -579,7 +593,7 @@ namespace core
       {
          ::base::application::exit_instance();
       }
-      catch(...)
+      catch (...)
       {
       }
 
@@ -589,7 +603,7 @@ namespace core
    }
 
 
-   LRESULT application::GetPaintMsgProc(int32_t nCode,WPARAM wParam,LPARAM lParam)
+   LRESULT application::GetPaintMsgProc(int32_t nCode, WPARAM wParam, LPARAM lParam)
    {
       UNREFERENCED_PARAMETER(nCode);
       UNREFERENCED_PARAMETER(wParam);
@@ -601,7 +615,7 @@ namespace core
 
 
 
-   bool application::CreateFileFromRawResource(UINT nID,const char * lpcszType,const char * lpcszFilePath)
+   bool application::CreateFileFromRawResource(UINT nID, const char * lpcszType, const char * lpcszFilePath)
    {
       UNREFERENCED_PARAMETER(nID);
       UNREFERENCED_PARAMETER(lpcszType);
@@ -796,7 +810,7 @@ namespace core
 
    }
 
-   bool application::GetResourceData(UINT nID,const char * lpcszType,memory &storage)
+   bool application::GetResourceData(UINT nID, const char * lpcszType, memory &storage)
    {
       UNREFERENCED_PARAMETER(nID);
       UNREFERENCED_PARAMETER(lpcszType);
@@ -850,11 +864,11 @@ namespace core
    HENHMETAFILE application::LoadEnhMetaFile(UINT uiResource)
    {
       memory storage;
-      if(!GetResourceData(uiResource,"EnhMetaFile",storage))
+      if (!GetResourceData(uiResource, "EnhMetaFile", storage))
       {
          return NULL;
       }
-      return SetEnhMetaFileBits((UINT)storage.get_size(),storage.get_data());
+      return SetEnhMetaFileBits((UINT)storage.get_size(), storage.get_data());
    }
 
 #endif
@@ -952,45 +966,45 @@ namespace core
    /////////////////////////////////////////////////////////////////////////////
    // Special exception handling
 
-   void application::process_window_procedure_exception(::exception::base* e,signal_details * pobj)
+   void application::process_window_procedure_exception(::exception::base* e, signal_details * pobj)
    {
       ENSURE_ARG(e != NULL);
       ENSURE_ARG(pobj != NULL);
-      SCAST_PTR(::message::base,pbase,pobj);
+      SCAST_PTR(::message::base, pbase, pobj);
       // handle certain messages in thread
-      switch(pbase->m_uiMessage)
+      switch (pbase->m_uiMessage)
       {
       case WM_CREATE:
       case WM_PAINT:
-         return thread::process_window_procedure_exception(e,pobj);
+         return thread::process_window_procedure_exception(e, pobj);
       }
 
       // handle all the rest
       //linux UINT nIDP = __IDP_INTERNAL_FAILURE;   // generic message string
       const char * nIDP = "Internal Failure";
       pbase->set_lresult(0);        // sensible default
-      if(pbase->m_uiMessage == WM_COMMAND)
+      if (pbase->m_uiMessage == WM_COMMAND)
       {
-         if(pbase->m_lparam == 0)
+         if (pbase->m_lparam == 0)
             //linux nIDP = __IDP_COMMAND_FAILURE; // command (not from a control)
             nIDP = "Command Failure";
          pbase->set_lresult((LRESULT)TRUE);        // pretend the command was handled
       }
-      if(base_class < memory_exception >::bases(e))
+      if (base_class < memory_exception >::bases(e))
       {
-         e->ReportError(MB_ICONEXCLAMATION | MB_SYSTEMMODAL,nIDP);
+         e->ReportError(MB_ICONEXCLAMATION | MB_SYSTEMMODAL, nIDP);
       }
-      else if(base_class < user_exception >::bases(e))
+      else if (base_class < user_exception >::bases(e))
       {
          // ::fontopus::user has not been alerted yet of this catastrophic problem
-         e->ReportError(MB_ICONSTOP,nIDP);
+         e->ReportError(MB_ICONSTOP, nIDP);
       }
    }
 
    bool application::_001OnCmdMsg(::aura::cmd_msg * pcmdmsg)
 
    {
-      if(command_target_interface::_001OnCmdMsg(pcmdmsg))
+      if (command_target_interface::_001OnCmdMsg(pcmdmsg))
          return TRUE;
       return 0;
    }
@@ -1302,10 +1316,10 @@ namespace core
       __system_policies *pPolicies = rgPolicies;
       __system_policy_data *pData = NULL;
 
-      while(pPolicies->szPolicyKey != NULL)
+      while (pPolicies->szPolicyKey != NULL)
       {
 
-         if(ERROR_SUCCESS == ::RegOpenKeyEx(
+         if (ERROR_SUCCESS == ::RegOpenKeyEx(
             HKEY_CURRENT_USER,
             pPolicies->szPolicyKey,
             0,
@@ -1314,9 +1328,9 @@ namespace core
             ))
          {
             pData = pPolicies->pData;
-            while(pData->szPolicyName)
+            while (pData->szPolicyName)
             {
-               if(ERROR_SUCCESS == ::RegQueryValueEx(
+               if (ERROR_SUCCESS == ::RegQueryValueEx(
                   hkPolicy,
                   pData->szPolicyName,
                   NULL,
@@ -1324,9 +1338,9 @@ namespace core
                   (BYTE*)&dwValue,
                   &dwDataLen))
                {
-                  if(dwType == REG_DWORD)
+                  if (dwType == REG_DWORD)
                   {
-                     if(dwValue != 0)
+                     if (dwValue != 0)
                         m_dwPolicies |= pData->dwID;
                      else
                         m_dwPolicies &= ~pData->dwID;
@@ -1350,9 +1364,9 @@ namespace core
 
    }
 
-   bool application::GetSysPolicyValue(uint32_t dwPolicyID,bool *pbValue)
+   bool application::GetSysPolicyValue(uint32_t dwPolicyID, bool *pbValue)
    {
-      if(!pbValue)
+      if (!pbValue)
          return FALSE; // bad pointer
       *pbValue = (m_dwPolicies & dwPolicyID) != 0;
       return TRUE;
@@ -1532,7 +1546,7 @@ namespace core
    // WinHelp Helper
 
 
-   void application::WinHelp(uint_ptr dwData,UINT nCmd)
+   void application::WinHelp(uint_ptr dwData, UINT nCmd)
    {
       UNREFERENCED_PARAMETER(dwData);
       UNREFERENCED_PARAMETER(nCmd);
@@ -1547,7 +1561,7 @@ namespace core
    /////////////////////////////////////////////////////////////////////////////
    // HtmlHelp Helper
 
-   void application::HtmlHelp(uint_ptr dwData,UINT nCmd)
+   void application::HtmlHelp(uint_ptr dwData, UINT nCmd)
    {
 
       UNREFERENCED_PARAMETER(dwData);
@@ -1562,7 +1576,7 @@ namespace core
    }
 
 
-   void application::WinHelpInternal(uint_ptr dwData,UINT nCmd)
+   void application::WinHelpInternal(uint_ptr dwData, UINT nCmd)
    {
       UNREFERENCED_PARAMETER(dwData);
       UNREFERENCED_PARAMETER(nCmd);
@@ -1590,7 +1604,7 @@ namespace core
       UNREFERENCED_PARAMETER(lpDeviceName);
 
 #ifdef WINDOWS
-      if(m_hDevNames == NULL)
+      if (m_hDevNames == NULL)
          return;
 
 #endif
@@ -1604,14 +1618,14 @@ namespace core
 
       ::output_debug_string("core::application::on_run_exception An unexpected error has occurred and no special exception handling is available.\n");
 
-      if(e.m_bHandled)
+      if (e.m_bHandled)
       {
 
          return e.m_bContinue;
 
       }
 
-      if(typeid(e) == typeid(not_installed))
+      if (typeid(e) == typeid(not_installed))
       {
 
          not_installed & notinstalled = dynamic_cast <not_installed &> (e);
@@ -1637,11 +1651,11 @@ namespace core
       UNREFERENCED_PARAMETER(e);
       //linux      exit(-1);
 
-      if(!is_system())
+      if (!is_system())
       {
 
          // get_app() may be it self, it is ok...
-         if(Sys(get_app()).final_handle_exception((::exception::exception &) e))
+         if (Sys(get_app()).final_handle_exception((::exception::exception &) e))
             return true;
 
 
@@ -1672,7 +1686,7 @@ namespace core
    {
       string strId = m_strId;
       char chFirst = '\0';
-      if(strId.get_length() > 0)
+      if (strId.get_length() > 0)
       {
          chFirst = strId[0];
       }
@@ -1687,12 +1701,12 @@ namespace core
    }
 
    // prompt for file name - used for open and save as
-   bool application::do_prompt_file_name(var & varFile,UINT nIDSTitle,uint32_t lFlags,bool bOpenFileDialog,::user::impact_system * ptemplate,::user::document * pdocument)
+   bool application::do_prompt_file_name(var & varFile, UINT nIDSTitle, uint32_t lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument)
       // if ptemplate==NULL => all document templates
    {
-      if(Session.m_pfilemanager != NULL)
+      if (Session.m_pfilemanager != NULL)
       {
-         return Session.m_pfilemanager->do_prompt_file_name(varFile,nIDSTitle,lFlags,bOpenFileDialog,ptemplate,pdocument);
+         return Session.m_pfilemanager->do_prompt_file_name(varFile, nIDSTitle, lFlags, bOpenFileDialog, ptemplate, pdocument);
       }
       ENSURE(m_pdocmanager != NULL);
       /*      return document_manager().do_prompt_file_name(fileName, nIDSTitle, lFlags,
@@ -1735,7 +1749,7 @@ namespace core
 
    void application::OnHelp()  // use context to derive help context
    {
-      if(m_dwPromptContext != 0)
+      if (m_dwPromptContext != 0)
       {
          // do not call WinHelp when the error is failing to lauch help
          //         if (m_dwPromptContext != HID_BASE_PROMPT+__IDP_FAILED_TO_LAUNCH_HELP)
@@ -1758,7 +1772,7 @@ namespace core
 
 #ifdef WINDOWSEX
 
-      WinHelpInternal(0L,HELP_INDEX);
+      WinHelpInternal(0L, HELP_INDEX);
 
 #endif
 
@@ -1770,7 +1784,7 @@ namespace core
 
 #ifdef WINDOWSEX
 
-      WinHelpInternal(0L,HELP_FINDER);
+      WinHelpInternal(0L, HELP_FINDER);
 
 #endif
 
@@ -1782,7 +1796,7 @@ namespace core
 
 #ifdef WINDOWSEX
 
-      WinHelpInternal(0L,HELP_HELPONHELP);
+      WinHelpInternal(0L, HELP_HELPONHELP);
 
 #endif
 
@@ -1848,7 +1862,7 @@ namespace core
    {
    }
 
-   void application::SelectPrinter(HANDLE hDevNames,HANDLE hDevMode,bool bFreeOld)
+   void application::SelectPrinter(HANDLE hDevNames, HANDLE hDevMode, bool bFreeOld)
    {
       UNREFERENCED_PARAMETER(hDevNames);
       UNREFERENCED_PARAMETER(hDevMode);
@@ -1896,7 +1910,7 @@ namespace core
    {
       try
       {
-         if(m_puiMain == NULL)
+         if (m_puiMain == NULL)
             return;
 
          // hide the application's windows before closing all the documents
@@ -1904,10 +1918,10 @@ namespace core
          // trans    m_puiMain->ShowOwnedPopups(FALSE);
 
          // put the window at the bottom of zorder, so it isn't activated
-         ((::user::interaction *) m_puiMain->m_pvoidUserInteraction)->SetWindowPos(ZORDER_BOTTOM,0,0,0,0,
+         ((::user::interaction *) m_puiMain->m_pvoidUserInteraction)->SetWindowPos(ZORDER_BOTTOM, 0, 0, 0, 0,
             SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE);
       }
-      catch(...)
+      catch (...)
       {
       }
 
@@ -1927,25 +1941,114 @@ namespace core
    void application::close_all_documents(bool bEndSession)
    {
 
-      if(m_pdocmanager != NULL)
+      if (m_pdocmanager != NULL)
       {
 
          document_manager().close_all_documents(bEndSession);
 
       }
 
-      if(bEndSession)
+      string strApp;
+
+      if (System.command()->m_spcommandline.is_set())
       {
 
-          System.post_thread_message(WM_QUIT);
+         strApp = System.command()->m_spcommandline->m_strApp;
+
+      }
+
+      if (strApp == m_strAppId)
+      {
+         try
+         {
+
+            if (m_pcoresession != NULL && m_pcoresession->m_pdocmanager != NULL)
+            {
+
+               m_pcoresession->document_manager().close_all_documents(false);
+
+            }
+
+         }
+         catch (...)
+         {
+         }
+         try
+         {
+
+            if (m_pcoresystem != NULL && m_pcoresystem->m_pdocmanager != NULL)
+            {
+
+               m_pcoresystem->document_manager().close_all_documents(false);
+
+            }
+
+         }
+         catch (...)
+         {
+         }
+         try
+         {
+            if (m_pcoresystem != NULL && m_pcoresystem->m_psystemwindow != NULL)
+            {
+               m_pcoresystem->m_psystemwindow->DestroyWindow();
+
+            }
+
+         }
+         catch (...)
+         {
+
+            m_iReturnCode = -2;
+
+         }
+
+         try
+         {
+            if (m_pcoresystem != NULL)
+            {
+               ::aura::del(m_pcoresystem->m_psystemwindow);
+
+            }
+
+         }
+         catch (...)
+         {
+
+            m_iReturnCode = -2;
+
+         }
+
+         try
+         {
+
+            if (m_paurasystem != NULL)
+            {
+
+               m_paurasystem->post_quit();
+
+            }
+
+         }
+         catch (...)
+         {
+
+         }
+
+      }
+      else if(bEndSession)
+      {
+
+         System.post_quit();
 
       }
       else
       {
 
-         Application.post_thread_message(WM_QUIT);
+         post_quit();
 
       }
+
 
    }
 
@@ -1988,30 +2091,30 @@ namespace core
 #endif
    }
 
-   int32_t application::DoMessageBox(const char * lpszPrompt,UINT nType,UINT nIDPrompt)
+   int32_t application::DoMessageBox(const char * lpszPrompt, UINT nType, UINT nIDPrompt)
    {
-      return ShowAppMessageBox(this,lpszPrompt,nType,nIDPrompt);
+      return ShowAppMessageBox(this, lpszPrompt, nType, nIDPrompt);
    }
 
 
 
 #ifdef WINDOWS
 
-   int32_t application::simple_message_box(::user::primitive * pwndOwner,UINT fuStyle,const char * pszFormat,...)
+   int32_t application::simple_message_box(::user::primitive * pwndOwner, UINT fuStyle, const char * pszFormat, ...)
    {
       va_list va;
-      va_start(va,pszFormat);
+      va_start(va, pszFormat);
       string str;
-      str.FormatV(pszFormat,va);
+      str.FormatV(pszFormat, va);
       va_end(va);
-      return simple_message_box(pwndOwner,str,fuStyle);
+      return simple_message_box(pwndOwner, str, fuStyle);
    }
 
 #endif
 
 
    // Helper for message boxes; can work when no application can be found
-   int32_t application::ShowAppMessageBox(sp(application)pApp,const char * lpszPrompt,UINT nType,UINT nIDPrompt)
+   int32_t application::ShowAppMessageBox(sp(application)pApp, const char * lpszPrompt, UINT nType, UINT nIDPrompt)
    {
 
       throw not_implemented(pApp);
@@ -2159,11 +2262,11 @@ namespace core
 
       HKEY hSectionKey = NULL;
       HKEY hAppKey = GetAppRegistryKey();
-      if(hAppKey == NULL)
+      if (hAppKey == NULL)
          return NULL;
 
       DWORD dw;
-      RegCreateKeyEx(hAppKey,lpszSection,0,REG_NONE,REG_OPTION_NON_VOLATILE,KEY_WRITE | KEY_READ,NULL,&hSectionKey,&dw);
+      RegCreateKeyEx(hAppKey, lpszSection, 0, REG_NONE, REG_OPTION_NON_VOLATILE, KEY_WRITE | KEY_READ, NULL, &hSectionKey, &dw);
       RegCloseKey(hAppKey);
       return hSectionKey;
    }
@@ -2443,7 +2546,7 @@ namespace core
 
    bool application::activate_app()
    {
-      if(m_puiMain != NULL)
+      if (m_puiMain != NULL)
       {
          ((::user::interaction *) m_puiMain->m_pvoidUserInteraction)->ShowWindow(SW_SHOWNORMAL);
       }
@@ -2477,7 +2580,7 @@ namespace core
       {
          ::base::application::finalize();
       }
-      catch(...)
+      catch (...)
       {
          bFinalize = false;
       }
@@ -2489,26 +2592,26 @@ namespace core
 
 
 
-   sp(::user::interaction) application::get_request_parent_ui(sp(::user::interaction) pinteraction,sp(::create) pcreatecontext)
+   sp(::user::interaction) application::get_request_parent_ui(sp(::user::interaction) pinteraction, sp(::create) pcreatecontext)
    {
 
       sp(::user::interaction) puiParent = NULL;
 
-      if(puiParent == NULL)
+      if (puiParent == NULL)
       {
          puiParent = pcreatecontext->m_puiParent;
       }
 
-      if(puiParent == NULL && pcreatecontext->m_spApplicationBias.is_set())
+      if (puiParent == NULL && pcreatecontext->m_spApplicationBias.is_set())
       {
          puiParent = pcreatecontext->m_spApplicationBias->m_puiParent;
       }
 
       //if(puiParent == NULL && m_pbasesession != NULL && m_pbasesession->m_pcoresession != NULL && !pcreatecontext->m_bClientOnly
-      if(puiParent == NULL && m_pbasesession != NULL && m_pbasesession->m_pcoresession != NULL
+      if (puiParent == NULL && m_pbasesession != NULL && m_pbasesession->m_pcoresession != NULL
          && !pcreatecontext->m_bOuterPopupAlertLike && m_pbasesession->m_pcoresession != this)
       {
-         puiParent = plat(this).get_request_parent_ui(pinteraction,pcreatecontext);
+         puiParent = plat(this).get_request_parent_ui(pinteraction, pcreatecontext);
       }
 
       return puiParent;
@@ -2531,7 +2634,7 @@ namespace core
 
       varQuery["command"] = "new_file";
 
-      request_file_query(varFile,varQuery);
+      request_file_query(varFile, varQuery);
 
       //m_pimpl->_001OnFileNew();
    }
@@ -2541,14 +2644,14 @@ namespace core
    {
       string strId = m_strId;
       char chFirst = '\0';
-      if(strId.get_length() > 0)
+      if (strId.get_length() > 0)
       {
          chFirst = strId[0];
       }
 
       return NULL;
 
-//      return m_pimpl->_001OpenDocumentFile(varFile);
+      //      return m_pimpl->_001OpenDocumentFile(varFile);
 
    }
 
@@ -2603,7 +2706,7 @@ namespace core
       thread::assert_valid();
 
 
-      if(::get_thread() != (thread*)this)
+      if (::get_thread() != (thread*)this)
          return;     // only do subset if called from different thread
 
       ASSERT(::get_thread() == this);
@@ -2664,12 +2767,12 @@ namespace core
       //if(!application::base_support())
       // return false;
 
-      if(m_strBaseSupportId.is_empty())
+      if (m_strBaseSupportId.is_empty())
       {
 
          property_set propertyset;
 
-         message_box("err\\developer\\base_support\\support_id_not_specified.xml",propertyset);
+         message_box("err\\developer\\base_support\\support_id_not_specified.xml", propertyset);
 
          return false;
 
@@ -2678,7 +2781,7 @@ namespace core
       return true;
    }
 
-   string application::message_box(const string & pszMatter,property_set & propertyset)
+   string application::message_box(const string & pszMatter, property_set & propertyset)
    {
       UNREFERENCED_PARAMETER(propertyset);
       UNREFERENCED_PARAMETER(pszMatter);
@@ -2689,7 +2792,7 @@ namespace core
    {
       string strId = m_strId;
       char chFirst = '\0';
-      if(strId.get_length() > 0)
+      if (strId.get_length() > 0)
       {
          chFirst = strId[0];
       }
@@ -2713,7 +2816,7 @@ namespace core
 
       // Initialize the OSVERSIONINFOEX structure.
 
-      ZeroMemory(&osvi,sizeof(OSVERSIONINFOEX));
+      ZeroMemory(&osvi, sizeof(OSVERSIONINFOEX));
       osvi.dwOSVersionInfoSize = sizeof(OSVERSIONINFOEX);
       osvi.dwMajorVersion = 6;
       //   osvi.dwMinorVersion = 1;
@@ -2722,7 +2825,7 @@ namespace core
 
       // Initialize the condition mask.
 
-      VER_SET_CONDITION(dwlConditionMask,VER_MAJORVERSION,op);
+      VER_SET_CONDITION(dwlConditionMask, VER_MAJORVERSION, op);
       //VER_SET_CONDITION( dwlConditionMask, VER_MINORVERSION, op );
       //VER_SET_CONDITION( dwlConditionMask, VER_SERVICEPACKMAJOR, op );
       //VER_SET_CONDITION( dwlConditionMask, VER_SERVICEPACKMINOR, op );
@@ -2740,10 +2843,10 @@ namespace core
    bool application::initialize()
    {
 
-      if(!::base::application::initialize())
+      if (!::base::application::initialize())
          return false;
 
-      xxdebug_box("::base::application::initialize ok","::base::application::initialize ok",MB_ICONINFORMATION);
+      xxdebug_box("::base::application::initialize ok", "::base::application::initialize ok", MB_ICONINFORMATION);
 
       //m_pcalculator = new ::calculator::calculator(this);
 
@@ -2752,9 +2855,9 @@ namespace core
       //if(!m_pcalculator->initialize())
       //   return false;
 
-      xxdebug_box("m_pcalculator::initialize ok","m_pcalculator::initialize ok",MB_ICONINFORMATION);
+      xxdebug_box("m_pcalculator::initialize ok", "m_pcalculator::initialize ok", MB_ICONINFORMATION);
 
-      xxdebug_box("m_pcolorertake5::initialize ok","m_pcolorertake5::initialize ok",MB_ICONINFORMATION);
+      xxdebug_box("m_pcolorertake5::initialize ok", "m_pcolorertake5::initialize ok", MB_ICONINFORMATION);
 
       m_dwAlive = ::get_tick_count();
 
@@ -2803,7 +2906,7 @@ namespace core
       //>>>>>>> .r7309
       m_dwAlive = ::get_tick_count();
 
-      if(is_system())
+      if (is_system())
       {
          System.factory().creatable_small < ::userex::keyboard_layout >();
       }
@@ -2820,10 +2923,10 @@ namespace core
       //return false;
 
 
-      xxdebug_box("m_pfilemanager::initialize ok","m_pfilemanager::initialize ok",MB_ICONINFORMATION);
+      xxdebug_box("m_pfilemanager::initialize ok", "m_pfilemanager::initialize ok", MB_ICONINFORMATION);
 
 
-      xxdebug_box("m_pusermail::initialize ok","m_pusermail::initialize ok",MB_ICONINFORMATION);
+      xxdebug_box("m_pusermail::initialize ok", "m_pusermail::initialize ok", MB_ICONINFORMATION);
 
       m_dwAlive = ::get_tick_count();
 
@@ -2843,22 +2946,22 @@ namespace core
 //
 //      }
 
-      xxdebug_box("register_bergedge_application ok","register_bergedge_application ok",MB_ICONINFORMATION);
+      xxdebug_box("register_bergedge_application ok", "register_bergedge_application ok", MB_ICONINFORMATION);
 
       m_dwAlive = ::get_tick_count();
 
       ensure_app_interest();
 
 
-      xxdebug_box("ensure_app_interest ok","ensure_app_interest ok",MB_ICONINFORMATION);
+      xxdebug_box("ensure_app_interest ok", "ensure_app_interest ok", MB_ICONINFORMATION);
       return true;
 
    }
 
    void application::pre_translate_message(signal_details * pobj)
    {
-      SCAST_PTR(::message::base,pbase,pobj);
-      if(pbase->m_uiMessage == WM_USER + 124 && pbase->m_pwnd == NULL)
+      SCAST_PTR(::message::base, pbase, pobj);
+      if (pbase->m_uiMessage == WM_USER + 124 && pbase->m_pwnd == NULL)
       {
          /*      OnMachineEvent((flags < machine_event::e_flag> *) pmsg->lParam);
          delete (flags < machine_event::e_flag> *) pmsg->lParam;*/
@@ -2886,7 +2989,7 @@ namespace core
    void application::EnableShellOpen()
    {
       ASSERT(m_atomApp == 0 && m_atomSystemTopic == 0); // do once
-      if(m_atomApp != 0 || m_atomSystemTopic != 0)
+      if (m_atomApp != 0 || m_atomSystemTopic != 0)
       {
          return;
       }
@@ -2920,14 +3023,14 @@ namespace core
 
       user::window_util::SortByZOrder(oswindowa);
 
-      for(int32_t i = 0; i < oswindowa.get_count(); i++)
+      for (int32_t i = 0; i < oswindowa.get_count(); i++)
       {
 
          sp(::user::interaction) puieWindow = wnda.find_first(oswindowa[i]);
 
          sp(::user::interaction) puie = puieWindow->_001FromPoint(pt);
 
-         if(puie != NULL)
+         if (puie != NULL)
             return puie;
 
       }
@@ -2940,14 +3043,14 @@ namespace core
    bool application::on_install()
    {
 
-      if(!::base::application::on_install())
+      if (!::base::application::on_install())
          return false;
 
       string strId = m_strId;
 
       char chFirst = '\0';
 
-      if(strId.get_length() > 0)
+      if (strId.get_length() > 0)
       {
 
          chFirst = strId[0];
@@ -2961,9 +3064,9 @@ namespace core
 
    bool application::on_run_install()
    {
-      if(m_strId == "session" || m_strAppName == "session")
+      if (m_strId == "session" || m_strAppName == "session")
       {
-         if(!directrix()->m_varTopicQuery.has_property("session_start"))
+         if (!directrix()->m_varTopicQuery.has_property("session_start"))
          {
             System.post_thread_message(WM_QUIT);
          }
@@ -2984,7 +3087,7 @@ namespace core
 
       string strId = m_strId;
       char chFirst = '\0';
-      if(strId.get_length() > 0)
+      if (strId.get_length() > 0)
       {
          chFirst = strId[0];
       }
@@ -2995,9 +3098,9 @@ namespace core
    bool application::on_run_uninstall()
    {
 
-      if(m_strId == "session")
+      if (m_strId == "session")
       {
-         if(!directrix()->m_varTopicQuery.has_property("session_start"))
+         if (!directrix()->m_varTopicQuery.has_property("session_start"))
          {
             System.post_thread_message(WM_QUIT);
          }
@@ -3039,10 +3142,10 @@ namespace core
 
 
 
-   bool application::set_keyboard_layout(const char * pszPath,::action::context actioncontext)
+   bool application::set_keyboard_layout(const char * pszPath, ::action::context actioncontext)
    {
 
-      return Session.keyboard().load_layout(pszPath,actioncontext);
+      return Session.keyboard().load_layout(pszPath, actioncontext);
 
    }
 
@@ -3050,7 +3153,7 @@ namespace core
    ::user::wndfrm::wndfrm          &application::wndfrm()
    {
 
-      return *m_pwndfrm.cast < ::user::wndfrm::wndfrm>() ;
+      return *m_pwndfrm.cast < ::user::wndfrm::wndfrm>();
 
    }
 
@@ -3058,19 +3161,19 @@ namespace core
    ::user::document_manager          &application::document_manager()
    {
 
-      return *m_pdocmanager.cast < ::user::document_manager >() ;
+      return *m_pdocmanager.cast < ::user::document_manager >();
 
    }
 
-   string application::message_box(const char * pszMatter,property_set & propertyset)
+   string application::message_box(const char * pszMatter, property_set & propertyset)
    {
       ::userex::message_box box(this);
-      box.show(pszMatter,&propertyset);
+      box.show(pszMatter, &propertyset);
       return box.m_strResponse;
    }
 
 
-   int32_t application::track_popup_menu(const char * pszMatter,point pt,sp(::user::interaction) puie)
+   int32_t application::track_popup_menu(const char * pszMatter, point pt, sp(::user::interaction) puie)
    {
       UNREFERENCED_PARAMETER(pszMatter);
       UNREFERENCED_PARAMETER(pt);
@@ -3080,30 +3183,30 @@ namespace core
 
 
 
-   bool application::get_fs_size(string & strSize,const char * pszPath,bool & bPending)
+   bool application::get_fs_size(string & strSize, const char * pszPath, bool & bPending)
    {
       int64_t i64Size;
-      if(!get_fs_size(i64Size,pszPath,bPending))
+      if (!get_fs_size(i64Size, pszPath, bPending))
       {
          strSize.Empty();
          return false;
       }
-      if(i64Size > 1024 * 1024 * 1024)
+      if (i64Size > 1024 * 1024 * 1024)
       {
          double d = (double)i64Size / (1024.0 * 1024.0 * 1024.0);
-         strSize.Format("%0.2f GB",d);
+         strSize.Format("%0.2f GB", d);
       }
-      else if(i64Size > 1024 * 1024)
+      else if (i64Size > 1024 * 1024)
       {
          double d = (double)i64Size / (1024.0 * 1024.0);
-         strSize.Format("%0.1f MB",d);
+         strSize.Format("%0.1f MB", d);
       }
-      else if(i64Size > 1024)
+      else if (i64Size > 1024)
       {
          double d = (double)i64Size / (1024.0);
-         strSize.Format("%0.0f KB",d);
+         strSize.Format("%0.0f KB", d);
       }
-      else if(i64Size > 0)
+      else if (i64Size > 0)
       {
          strSize.Format("1 KB");
       }
@@ -3111,26 +3214,26 @@ namespace core
       {
          strSize.Format("0 KB");
       }
-      if(bPending)
+      if (bPending)
       {
          strSize = "~" + strSize;
       }
       return true;
    }
 
-   bool application::get_fs_size(int64_t & i64Size,const char * pszPath,bool & bPending)
+   bool application::get_fs_size(int64_t & i64Size, const char * pszPath, bool & bPending)
    {
       db_server * pcentral = dynamic_cast <db_server *> (&System.m_simpledb.db());
-      if(pcentral == NULL)
+      if (pcentral == NULL)
          return false;
-      return pcentral->m_pfilesystemsizeset->get_cache_fs_size(i64Size,pszPath,bPending);
+      return pcentral->m_pfilesystemsizeset->get_cache_fs_size(i64Size, pszPath, bPending);
    }
 
 
    void application::set_title(const char * pszTitle)
    {
 
-      Session.set_app_title(m_strInstallType,m_strAppName,pszTitle);
+      Session.set_app_title(m_strInstallType, m_strAppName, pszTitle);
 
    }
 
@@ -3139,7 +3242,7 @@ namespace core
    {
 
       // attempt to save all documents
-      if(!save_all_modified())
+      if (!save_all_modified())
          return false;     // don't close it
 
       // hide the application's windows before closing all the documents
@@ -3159,35 +3262,35 @@ namespace core
    }
 
 
-   int32_t application::send_simple_command(const char * psz,void * osdataSender)
+   int32_t application::send_simple_command(const char * psz, void * osdataSender)
    {
       string strApp;
       stringa stra;
-      stra.add_tokens(psz,"::",true);
-      if(stra.get_size() > 0)
+      stra.add_tokens(psz, "::", true);
+      if (stra.get_size() > 0)
       {
          strApp = stra[0];
          oswindow oswindow = get_ca2_app_wnd(strApp);
-         if(oswindow != NULL)
+         if (oswindow != NULL)
          {
-            return send_simple_command((void *)oswindow,psz,osdataSender);
+            return send_simple_command((void *)oswindow, psz, osdataSender);
          }
       }
       return -1;
    }
 
-   int32_t application::send_simple_command(void * osdata,const char * psz,void * osdataSender)
+   int32_t application::send_simple_command(void * osdata, const char * psz, void * osdataSender)
    {
 #ifdef WINDOWSEX
       ::oswindow oswindow = (::oswindow) osdata;
-      if(!::IsWindow(oswindow))
+      if (!::IsWindow(oswindow))
          return -1;
       COPYDATASTRUCT cds;
-      memset(&cds,0,sizeof(cds));
+      memset(&cds, 0, sizeof(cds));
       cds.dwData = 888888;
       cds.cbData = (uint32_t)strlen(psz);
       cds.lpData = (PVOID)psz;
-      return (int32_t)SendMessage(oswindow,WM_COPYDATA,(WPARAM)osdataSender,(LPARAM)&cds);
+      return (int32_t)SendMessage(oswindow, WM_COPYDATA, (WPARAM)osdataSender, (LPARAM)&cds);
 #else
       throw todo(get_app());
 #endif
@@ -3199,9 +3302,9 @@ namespace core
 
 #ifndef METROWIN
 
-      for(int32_t i = 0; i < m_straAppInterest.get_count(); i++)
+      for (int32_t i = 0; i < m_straAppInterest.get_count(); i++)
       {
-         if(m_straAppInterest[i] != m_strAppName && !::IsWindow(m_mapAppInterest[m_straAppInterest[i]]))
+         if (m_straAppInterest[i] != m_strAppName && !::IsWindow(m_mapAppInterest[m_straAppInterest[i]]))
          {
             System.assert_running_local(m_straAppInterest[i]);
          }
@@ -3361,21 +3464,21 @@ namespace core
 
 
 
-   ::file::buffer_sp application::friendly_get_file(var varFile,UINT nOpenFlags)
+   ::file::buffer_sp application::friendly_get_file(var varFile, UINT nOpenFlags)
    {
 
       try
       {
 
-         return Session.m_spfile->get_file(varFile,nOpenFlags);
+         return Session.m_spfile->get_file(varFile, nOpenFlags);
 
       }
-      catch(::file::exception & e)
+      catch (::file::exception & e)
       {
 
          string strMessage = e.get_message();
 
-         App(this).simple_message_box(NULL,strMessage,MB_OK);
+         App(this).simple_message_box(NULL, strMessage, MB_OK);
 
          return NULL;
 
@@ -3464,32 +3567,32 @@ namespace core
 
    void application::data_on_after_change(signal_details * pobj)
    {
-      SCAST_PTR(::database::change_event,pchange,pobj);
-      if(pchange->m_key.m_id == "ca2.savings")
+      SCAST_PTR(::database::change_event, pchange, pobj);
+      if (pchange->m_key.m_id == "ca2.savings")
       {
          pchange->data_get(Session.savings().m_eresourceflagsShouldSave);
       }
    }
 
 
-   int32_t application::simple_message_box(::user::primitive * puiOwner,const char * pszMessage,UINT fuStyle)
+   int32_t application::simple_message_box(::user::primitive * puiOwner, const char * pszMessage, UINT fuStyle)
    {
 
-      if(&Session == NULL || Session.userex() == NULL)
-         return ::base::application::simple_message_box(puiOwner,pszMessage,fuStyle);
+      if (&Session == NULL || Session.userex() == NULL)
+         return ::base::application::simple_message_box(puiOwner, pszMessage, fuStyle);
 
-      return Session.userex()->simple_message_box(puiOwner,pszMessage,fuStyle);
+      return Session.userex()->simple_message_box(puiOwner, pszMessage, fuStyle);
 
    }
 
 
-   int32_t application::simple_message_box_timeout(::user::primitive * pwndOwner,const char * pszMessage,::duration durationTimeOut,UINT fuStyle)
+   int32_t application::simple_message_box_timeout(::user::primitive * pwndOwner, const char * pszMessage, ::duration durationTimeOut, UINT fuStyle)
    {
 
-      if(Session.userex() == NULL)
-         return ::base::application::simple_message_box_timeout(pwndOwner,pszMessage,durationTimeOut,fuStyle);
+      if (Session.userex() == NULL)
+         return ::base::application::simple_message_box_timeout(pwndOwner, pszMessage, durationTimeOut, fuStyle);
 
-      return Session.userex()->simple_message_box_timeout(pwndOwner,pszMessage,durationTimeOut,fuStyle);
+      return Session.userex()->simple_message_box_timeout(pwndOwner, pszMessage, durationTimeOut, fuStyle);
 
    }
 
@@ -3497,10 +3600,10 @@ namespace core
    void application::add_document_template(::user::impact_system * ptemplate)
    {
 
-      if(ptemplate == NULL)
+      if (ptemplate == NULL)
       {
 
-         throw invalid_argument_exception(this,"impact system template should be valid");
+         throw invalid_argument_exception(this, "impact system template should be valid");
 
          return;
 
@@ -3535,10 +3638,10 @@ namespace core
       ::user::interaction_spa wnda = m_uiptraFrame;
 
       int32_t iCount = 0;
-      for(int32_t i = 0; i < wnda.get_size(); i++)
+      for (int32_t i = 0; i < wnda.get_size(); i++)
       {
          sp(::user::interaction) pwnd = wnda.element_at(i);
-         if(pwnd != NULL &&
+         if (pwnd != NULL &&
             pwnd != pwndExcept &&
             pwnd->IsWindow() &&
             pwnd->IsWindowVisible() &&
@@ -3557,10 +3660,10 @@ namespace core
       ::user::interaction_spa wnda = m_uiptraFrame;
 
       int32_t iCount = 0;
-      for(int32_t i = 0; i < wnda.get_size(); i++)
+      for (int32_t i = 0; i < wnda.get_size(); i++)
       {
          sp(::user::interaction) pwnd = wnda.element_at(i);
-         if(pwnd != NULL
+         if (pwnd != NULL
             && pwnd->IsWindow()
             && pwnd->IsWindowVisible())
          {
@@ -3579,11 +3682,11 @@ namespace core
       // keyboard layout
       //if(data_get("keyboard_layout",str) && str.has_char())
       {
-        // Session.set_keyboard_layout(str,::action::source::database());
+         // Session.set_keyboard_layout(str,::action::source::database());
       }
       //else
       {
-         Session.set_keyboard_layout(NULL,::action::source::database());
+         Session.set_keyboard_layout(NULL, ::action::source::database());
       }
 
    }
@@ -3596,7 +3699,7 @@ namespace core
 
    }
 
-   void application::set_form_impact_system(::user::impact_system * pdoctemplate,::user::impact_system * pdoctemplateChild,::user::impact_system * pdoctemplatePlaceHolder)
+   void application::set_form_impact_system(::user::impact_system * pdoctemplate, ::user::impact_system * pdoctemplateChild, ::user::impact_system * pdoctemplatePlaceHolder)
    {
       Session.userex()->m_ptemplateForm = pdoctemplate;
       Session.userex()->m_ptemplateChildForm = pdoctemplateChild;
@@ -3605,23 +3708,23 @@ namespace core
    }
 
 
-   sp(::user::document)   application::create_form(::user::form_callback * pcallback,sp(::user::interaction) pwndParent,var var)
+   sp(::user::document)   application::create_form(::user::form_callback * pcallback, sp(::user::interaction) pwndParent, var var)
    {
 
-      return Sess(this).userex()->create_form(pcallback,pwndParent,var);
+      return Sess(this).userex()->create_form(pcallback, pwndParent, var);
 
    }
 
 
-   sp(::user::document)   application::create_form(sp(::user::form) pview,::user::form_callback * pcallback,sp(::user::interaction) pwndParent,var var)
+   sp(::user::document)   application::create_form(sp(::user::form) pview, ::user::form_callback * pcallback, sp(::user::interaction) pwndParent, var var)
    {
 
-      return Sess(this).userex()->create_form(pview,pcallback,pwndParent,var);
+      return Sess(this).userex()->create_form(pview, pcallback, pwndParent, var);
 
    }
 
 
-   sp(::user::document)   application::create_child_form(::user::form_callback * pcallback,sp(::user::interaction) pwndParent,var var)
+   sp(::user::document)   application::create_child_form(::user::form_callback * pcallback, sp(::user::interaction) pwndParent, var var)
    {
 
       return Sess(this).userex()->create_child_form(pcallback, pwndParent, var);
@@ -3630,10 +3733,10 @@ namespace core
    }
 
 
-   sp(::user::document)   application::create_child_form(sp(::user::form) pview,::user::form_callback * pcallback,sp(::user::interaction) pwndParent,var var)
+   sp(::user::document)   application::create_child_form(sp(::user::form) pview, ::user::form_callback * pcallback, sp(::user::interaction) pwndParent, var var)
    {
 
-      return Sess(this).userex()->create_child_form(pview, pcallback,pwndParent,var);
+      return Sess(this).userex()->create_child_form(pview, pcallback, pwndParent, var);
 
    }
 
@@ -3654,13 +3757,13 @@ namespace core
    //}
 
 
-   bool application::platform_open_by_file_extension(int iEdge,const char * pszPathName,application_bias * pbiasCreate)
+   bool application::platform_open_by_file_extension(int iEdge, const char * pszPathName, application_bias * pbiasCreate)
    {
 
-      return System.get_platform(iEdge)->open_by_file_extension(pszPathName,pbiasCreate);
+      return System.get_platform(iEdge)->open_by_file_extension(pszPathName, pbiasCreate);
    }
 
-   bool application::platform_open_by_file_extension(int iEdge,::create * pcc)
+   bool application::platform_open_by_file_extension(int iEdge, ::create * pcc)
    {
 
       return System.get_platform(iEdge)->open_by_file_extension(pcc);
@@ -3712,7 +3815,7 @@ namespace core
 
       }
 
-      return ::base::application::get_cred(strRequestUrl, rect,  strUsername, strPassword, strToken, strTitle, bInteractive);
+      return ::base::application::get_cred(strRequestUrl, rect, strUsername, strPassword, strToken, strTitle, bInteractive);
 
    }
 
@@ -3755,18 +3858,18 @@ namespace core
 
 #ifdef WINDOWSEX
 
-BOOL LaunchAppIntoDifferentSession(const char * pszProcess,const char * pszCommand,const char * pszDir,STARTUPINFO * psi,PROCESS_INFORMATION * ppi, int iSession)
+BOOL LaunchAppIntoDifferentSession(const char * pszProcess, const char * pszCommand, const char * pszDir, STARTUPINFO * psi, PROCESS_INFORMATION * ppi, int iSession)
 {
    //PROCESS_INFORMATION pi;
    //STARTUPINFO si;
    BOOL bResult = FALSE;
-   DWORD dwSessionId,winlogonPid;
-   HANDLE hUserToken,hUserTokenDup,hPToken,hProcess;
+   DWORD dwSessionId, winlogonPid;
+   HANDLE hUserToken, hUserTokenDup, hPToken, hProcess;
    DWORD dwCreationFlags;
 
    // Log the client on to the local computer.
 
-   if(iSession < 0)
+   if (iSession < 0)
    {
       dwSessionId = WTSGetActiveConsoleSessionId();
    }
@@ -3781,30 +3884,30 @@ BOOL LaunchAppIntoDifferentSession(const char * pszProcess,const char * pszComma
 
    PROCESSENTRY32 procEntry;
 
-   HANDLE hSnap = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS,0);
-   if(hSnap == INVALID_HANDLE_VALUE)
+   HANDLE hSnap = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
+   if (hSnap == INVALID_HANDLE_VALUE)
    {
-      return 1 ;
+      return 1;
    }
 
    procEntry.dwSize = sizeof(PROCESSENTRY32);
 
-   if(!Process32First(hSnap,&procEntry))
+   if (!Process32First(hSnap, &procEntry))
    {
-      return 1 ;
+      return 1;
    }
 
    do
    {
-      if(_stricmp(procEntry.szExeFile,"winlogon.exe") == 0)
+      if (_stricmp(procEntry.szExeFile, "winlogon.exe") == 0)
       {
          // We found a winlogon process...
          // make sure it's running in the console session
          DWORD winlogonSessId = 0;
-         HANDLE h = ::OpenProcess(PROCESS_QUERY_INFORMATION,FALSE,procEntry.th32ProcessID);
-         if(ProcessIdToSessionId(procEntry.th32ProcessID,&winlogonSessId))
+         HANDLE h = ::OpenProcess(PROCESS_QUERY_INFORMATION, FALSE, procEntry.th32ProcessID);
+         if (ProcessIdToSessionId(procEntry.th32ProcessID, &winlogonSessId))
          {
-            if(winlogonSessId == dwSessionId)
+            if (winlogonSessId == dwSessionId)
             {
                winlogonPid = procEntry.th32ProcessID;
                break;
@@ -3815,75 +3918,75 @@ BOOL LaunchAppIntoDifferentSession(const char * pszProcess,const char * pszComma
          {
             DWORD dwLastError = GetLastError();
 
-//            APPTRACE(::get_thread_app())("%d", dwLastError);
+            //            APPTRACE(::get_thread_app())("%d", dwLastError);
          }
       }
 
-   } while(Process32Next(hSnap,&procEntry));
+   } while (Process32Next(hSnap, &procEntry));
 
    ////////////////////////////////////////////////////////////////////////
 
-   LIBCALL(wtsapi32,WTSQueryUserToken)(dwSessionId,&hUserToken);
+   LIBCALL(wtsapi32, WTSQueryUserToken)(dwSessionId, &hUserToken);
    dwCreationFlags = NORMAL_PRIORITY_CLASS | CREATE_NEW_CONSOLE;
    //ZeroMemory(&si,sizeof(STARTUPINFO));
-   psi->cb= sizeof(STARTUPINFO);
+   psi->cb = sizeof(STARTUPINFO);
    psi->lpDesktop = "winsta0\\default";
    //ZeroMemory(&pi,sizeof(pi));
    TOKEN_PRIVILEGES tp;
    LUID luid;
-   hProcess = OpenProcess(MAXIMUM_ALLOWED,FALSE,winlogonPid);
+   hProcess = OpenProcess(MAXIMUM_ALLOWED, FALSE, winlogonPid);
 
-   if(!::OpenProcessToken(hProcess,TOKEN_ADJUST_PRIVILEGES | TOKEN_QUERY
+   if (!::OpenProcessToken(hProcess, TOKEN_ADJUST_PRIVILEGES | TOKEN_QUERY
       | TOKEN_DUPLICATE | TOKEN_ASSIGN_PRIMARY | TOKEN_ADJUST_SESSIONID
-      | TOKEN_READ | TOKEN_WRITE,&hPToken))
+      | TOKEN_READ | TOKEN_WRITE, &hPToken))
    {
       int abcd = GetLastError();
-      debug_print("Process token open Error: %u\n",GetLastError());
+      debug_print("Process token open Error: %u\n", GetLastError());
    }
 
-   if(!LookupPrivilegeValue(NULL,SE_DEBUG_NAME,&luid))
+   if (!LookupPrivilegeValue(NULL, SE_DEBUG_NAME, &luid))
    {
-      debug_print("Lookup Privilege value Error: %u\n",GetLastError());
+      debug_print("Lookup Privilege value Error: %u\n", GetLastError());
    }
-   tp.PrivilegeCount =1;
-   tp.Privileges[0].Luid =luid;
-   tp.Privileges[0].Attributes =SE_PRIVILEGE_ENABLED;
+   tp.PrivilegeCount = 1;
+   tp.Privileges[0].Luid = luid;
+   tp.Privileges[0].Attributes = SE_PRIVILEGE_ENABLED;
 
-   DuplicateTokenEx(hPToken,MAXIMUM_ALLOWED,NULL,
-      SecurityIdentification,TokenPrimary,&hUserTokenDup);
+   DuplicateTokenEx(hPToken, MAXIMUM_ALLOWED, NULL,
+      SecurityIdentification, TokenPrimary, &hUserTokenDup);
    int dup = GetLastError();
 
    //Adjust Token privilege
    SetTokenInformation(hUserTokenDup,
-      TokenSessionId,(void*)(DWORD_PTR) dwSessionId,sizeof(DWORD));
+      TokenSessionId, (void*)(DWORD_PTR)dwSessionId, sizeof(DWORD));
 
-   if(!AdjustTokenPrivileges(hUserTokenDup,FALSE,&tp,sizeof(TOKEN_PRIVILEGES),
-      (PTOKEN_PRIVILEGES)NULL,NULL))
+   if (!AdjustTokenPrivileges(hUserTokenDup, FALSE, &tp, sizeof(TOKEN_PRIVILEGES),
+      (PTOKEN_PRIVILEGES)NULL, NULL))
    {
-      int abc =GetLastError();
-      debug_print("Adjust Privilege value Error: %u\n",GetLastError());
+      int abc = GetLastError();
+      debug_print("Adjust Privilege value Error: %u\n", GetLastError());
    }
 
-   if(GetLastError() == ERROR_NOT_ALL_ASSIGNED)
+   if (GetLastError() == ERROR_NOT_ALL_ASSIGNED)
    {
       debug_print("Token does not have the provilege\n");
    }
 
-   LPVOID pEnv =NULL;
+   LPVOID pEnv = NULL;
 
-   if(LIBCALL(userenv,CreateEnvironmentBlock)(&pEnv,hUserTokenDup,TRUE))
+   if (LIBCALL(userenv, CreateEnvironmentBlock)(&pEnv, hUserTokenDup, TRUE))
    {
-      dwCreationFlags|=CREATE_UNICODE_ENVIRONMENT;
+      dwCreationFlags |= CREATE_UNICODE_ENVIRONMENT;
    }
    else
-      pEnv=NULL;
+      pEnv = NULL;
 
    // Launch the process in the client's logon session.
 
    bResult = CreateProcessAsUser(
       hUserTokenDup,                     // client's access token
       pszProcess,    // file to execute
-      (char *) pszCommand,                 // command line
+      (char *)pszCommand,                 // command line
       NULL,            // pointer to process SECURITY_ATTRIBUTES
       NULL,               // pointer to thread SECURITY_ATTRIBUTES
       FALSE,              // handles are not inheritable
@@ -3909,17 +4012,17 @@ BOOL LaunchAppIntoDifferentSession(const char * pszProcess,const char * pszComma
    return 0;
 }
 
-bool enable_windows_token_privilege(HANDLE h,LPCSTR lpcszName)
+bool enable_windows_token_privilege(HANDLE h, LPCSTR lpcszName)
 {
 
    TOKEN_PRIVILEGES tp;
 
-   if(!LookupPrivilegeValue(NULL,SE_DEBUG_NAME,&tp.Privileges[0].Luid))
+   if (!LookupPrivilegeValue(NULL, SE_DEBUG_NAME, &tp.Privileges[0].Luid))
    {
 
       int iError = GetLastError();
 
-      debug_print("Lookup Privilege value Error: %u\n",iError);
+      debug_print("Lookup Privilege value Error: %u\n", iError);
 
       return false;
 
@@ -3929,12 +4032,12 @@ bool enable_windows_token_privilege(HANDLE h,LPCSTR lpcszName)
 
    tp.Privileges[0].Attributes = SE_PRIVILEGE_ENABLED;
 
-   if(!AdjustTokenPrivileges(h,FALSE,&tp,sizeof(TOKEN_PRIVILEGES),(PTOKEN_PRIVILEGES)NULL,NULL))
+   if (!AdjustTokenPrivileges(h, FALSE, &tp, sizeof(TOKEN_PRIVILEGES), (PTOKEN_PRIVILEGES)NULL, NULL))
    {
 
       int iError = GetLastError();
 
-      debug_print("Adjust Privilege value Error: %u\n",iError);
+      debug_print("Adjust Privilege value Error: %u\n", iError);
 
       return false;
 
@@ -3944,13 +4047,13 @@ bool enable_windows_token_privilege(HANDLE h,LPCSTR lpcszName)
 
 }
 
-BOOL LaunchAppIntoSystemAcc(const char * pszProcess,const char * pszCommand,const char * pszDir,STARTUPINFO * psi,PROCESS_INFORMATION * ppi)
+BOOL LaunchAppIntoSystemAcc(const char * pszProcess, const char * pszCommand, const char * pszDir, STARTUPINFO * psi, PROCESS_INFORMATION * ppi)
 {
    //PROCESS_INFORMATION pi;
    //STARTUPINFO si;
    BOOL bResult = FALSE;
-//   DWORD dwSessionId,winlogonPid;
-   HANDLE hUserTokenDup,hProcess,hPToken;
+   //   DWORD dwSessionId,winlogonPid;
+   HANDLE hUserTokenDup, hProcess, hPToken;
    DWORD dwCreationFlags;
    HANDLE hUserToken = NULL;
 
@@ -3959,7 +4062,7 @@ BOOL LaunchAppIntoSystemAcc(const char * pszProcess,const char * pszCommand,cons
 
    dwCreationFlags = NORMAL_PRIORITY_CLASS | CREATE_NEW_CONSOLE;
    //ZeroMemory(&si,sizeof(STARTUPINFO));
-   psi->cb= sizeof(STARTUPINFO);
+   psi->cb = sizeof(STARTUPINFO);
    psi->lpDesktop = "winsta0\\default";
    //ZeroMemory(&pi,sizeof(pi));
 
@@ -3969,39 +4072,39 @@ BOOL LaunchAppIntoSystemAcc(const char * pszProcess,const char * pszCommand,cons
 
    //hPToken = hUserToken;
 
-   if(!::OpenProcessToken(hProcess, TOKEN_ALL_ACCESS,&hPToken))
+   if (!::OpenProcessToken(hProcess, TOKEN_ALL_ACCESS, &hPToken))
    {
       int abcd = GetLastError();
-      debug_print("Process token open Error: %u\n",GetLastError());
+      debug_print("Process token open Error: %u\n", GetLastError());
    }
 
-   if(!enable_windows_token_privilege(hPToken,SE_DEBUG_NAME))
+   if (!enable_windows_token_privilege(hPToken, SE_DEBUG_NAME))
    {
 
       return FALSE;
 
    }
 
-   if(!enable_windows_token_privilege(hPToken,SE_CREATE_TOKEN_NAME))
+   if (!enable_windows_token_privilege(hPToken, SE_CREATE_TOKEN_NAME))
    {
       return FALSE;
    }
 
-   if(!enable_windows_token_privilege(hPToken,SE_TCB_NAME))
-   {
-
-      return FALSE;
-
-   }
-
-   if(!enable_windows_token_privilege(hPToken,SE_ASSIGNPRIMARYTOKEN_NAME))
+   if (!enable_windows_token_privilege(hPToken, SE_TCB_NAME))
    {
 
       return FALSE;
 
    }
 
-   if(!enable_windows_token_privilege(hPToken,SE_INCREASE_QUOTA_NAME))
+   if (!enable_windows_token_privilege(hPToken, SE_ASSIGNPRIMARYTOKEN_NAME))
+   {
+
+      return FALSE;
+
+   }
+
+   if (!enable_windows_token_privilege(hPToken, SE_INCREASE_QUOTA_NAME))
    {
 
       return FALSE;
@@ -4014,18 +4117,18 @@ BOOL LaunchAppIntoSystemAcc(const char * pszProcess,const char * pszCommand,cons
    //}
    // "LOCAL SERVICE" or "LocalService" ?
    // "NETWORK SERVICE" or "NetworkService" ?
-   if(!LogonUserW(L"LocalService",L"NT AUTHORITY",NULL,LOGON32_LOGON_SERVICE,LOGON32_PROVIDER_DEFAULT,&hUserToken))
+   if (!LogonUserW(L"LocalService", L"NT AUTHORITY", NULL, LOGON32_LOGON_SERVICE, LOGON32_PROVIDER_DEFAULT, &hUserToken))
    {
       DWORD dwError = ::GetLastError();
       string str;
-      str.Format("Lookup Privilege value Error: %u\n",dwError);
-      ::MessageBox(NULL,str,"Help Me",MB_OK);
+      str.Format("Lookup Privilege value Error: %u\n", dwError);
+      ::MessageBox(NULL, str, "Help Me", MB_OK);
       return FALSE;
    }
-   if(!DuplicateTokenEx(hUserToken,TOKEN_ALL_ACCESS,NULL,SecurityDelegation,TokenPrimary,&hUserTokenDup))
+   if (!DuplicateTokenEx(hUserToken, TOKEN_ALL_ACCESS, NULL, SecurityDelegation, TokenPrimary, &hUserTokenDup))
    {
       int dup = GetLastError();
-      debug_print("DuplicateTokenEx Error: %u\n",GetLastError());
+      debug_print("DuplicateTokenEx Error: %u\n", GetLastError());
    }
 
    //Adjust Token privilege
@@ -4034,14 +4137,14 @@ BOOL LaunchAppIntoSystemAcc(const char * pszProcess,const char * pszCommand,cons
 
 
 
-   LPVOID pEnv =NULL;
+   LPVOID pEnv = NULL;
 
-   if(LIBCALL(userenv,CreateEnvironmentBlock)(&pEnv,hUserTokenDup,TRUE))
+   if (LIBCALL(userenv, CreateEnvironmentBlock)(&pEnv, hUserTokenDup, TRUE))
    {
-      dwCreationFlags|=CREATE_UNICODE_ENVIRONMENT;
+      dwCreationFlags |= CREATE_UNICODE_ENVIRONMENT;
    }
    else
-      pEnv=NULL;
+      pEnv = NULL;
 
    // Launch the process in the client's logon session.
 

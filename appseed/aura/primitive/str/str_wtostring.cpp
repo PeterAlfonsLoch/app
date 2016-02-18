@@ -15,7 +15,7 @@ wtostring::~wtostring()
    }
    if(m_pwsz != NULL)
    {
-      wstring_data::free(m_pwsz);
+      wstring_data::_free(m_pwsz);
       m_pwsz = NULL;
    }
 }

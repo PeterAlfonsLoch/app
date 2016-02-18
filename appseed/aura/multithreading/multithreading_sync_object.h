@@ -17,7 +17,7 @@ public:
 #ifdef WINDOWS
    HANDLE      m_object;
 #endif
-   string      m_strName;
+   const char *      m_pszName;
    bool                    m_bOwner;
 
 

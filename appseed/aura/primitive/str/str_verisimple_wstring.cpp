@@ -98,7 +98,7 @@ void verisimple_wstring::assign(const unichar * pwsz)
    if(m_pwsz != NULL && m_pwsz != wstring_data::get_nil())
    {
 
-      wstring_data::free(m_pwsz);
+      wstring_data::_free(m_pwsz);
 
       m_pwsz = NULL;
 
@@ -140,7 +140,7 @@ verisimple_wstring::verisimple_wstring(const verisimple_wstring & wstr,manager *
 verisimple_wstring::~verisimple_wstring()
 {
 
-   wstring_data::free(m_pwsz);
+   wstring_data::_free(m_pwsz);
    m_pwsz = NULL;
 
 }
@@ -151,7 +151,7 @@ unichar * verisimple_wstring::alloc(::count iCount)
    if(m_pwsz != NULL && iCount < get_data()->m_iAllocation)
       return m_pwsz;
 
-   wstring_data::free(m_pwsz);
+   wstring_data::_free(m_pwsz);
 
    m_pwsz            = (unichar *) wstring_data::alloc(iCount);
 

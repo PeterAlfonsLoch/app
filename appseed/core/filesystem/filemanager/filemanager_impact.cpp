@@ -140,7 +140,7 @@ namespace filemanager
    }
 
 
-   sp(manager) impact::get_filemanager_manager()
+   manager * impact::get_filemanager_manager()
    {
 
       return m_pmanager;
@@ -148,7 +148,7 @@ namespace filemanager
    }
 
 
-   sp(data) impact::get_filemanager_data()
+   data * impact::get_filemanager_data()
    {
 
       return  get_filemanager_manager()->get_filemanager_data();
@@ -156,7 +156,7 @@ namespace filemanager
    }
 
 
-   sp(manager_template) impact::get_filemanager_template()
+   manager_template * impact::get_filemanager_template()
    {
 
       return  get_filemanager_data()->get_filemanager_template();
@@ -179,7 +179,7 @@ namespace filemanager
             {
                if (m_pmanager == NULL
                   && (puh->m_pview == NULL ||
-                  puh->m_pview == (this)))
+                  puh->m_pview == dynamic_cast < ::user::impact * > (this)))
                {
 
                   m_pmanager = puh->m_pmanager;

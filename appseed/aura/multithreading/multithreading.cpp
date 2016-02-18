@@ -72,6 +72,34 @@ namespace multithreading
    CLASS_DECL_AURA uint32_t __on_thread_finally(thread * pthread)
    {
 
+      //try
+      //{
+
+      //   single_lock sl(&pthread->m_mutexUiPtra, TRUE);
+
+      //   if (pthread->m_spuiptra.is_set())
+      //   {
+
+      //      while (pthread->m_spuiptra->has_elements())
+      //      {
+
+      //         pthread->remove(pthread->m_spuiptra->element_at(0));
+
+      //      }
+
+      //      pthread->m_spuiptra.release();
+
+      //   }
+
+      //}
+      //catch (...)
+      //{
+
+      //}
+
+
+
+
       try
       {
 

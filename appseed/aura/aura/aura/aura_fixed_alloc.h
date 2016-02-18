@@ -121,9 +121,9 @@ public:
    fixed_alloc_array();
    virtual ~fixed_alloc_array();
 
-   void * alloc(size_t nAllocSize);
-   void free(void * p, size_t nAllocSize);
-   void * realloc(void * p, size_t nOldAllocSize, size_t nNewAllocSize);
+   void * _alloc(size_t nAllocSize);
+   void _free(void * p, size_t nAllocSize);
+   void * _realloc(void * p, size_t nOldAllocSize, size_t nNewAllocSize);
 
    fixed_alloc * find(size_t nAllocSize);
 

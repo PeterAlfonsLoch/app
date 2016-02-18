@@ -212,9 +212,6 @@ namespace aura
       virtual ::user::primitive * get_parent(::user::primitive * pui);
       virtual bool enable_window(::user::primitive * pui, bool bEnable = true);
       virtual bool set_window_text(::user::primitive * pui, const string & strText);
-      virtual ptr_array < thread > get_thread(::user::primitive * pui);
-      virtual void add_thread(::user::primitive * pui,::thread * pthread);
-      virtual void remove_thread(::user::primitive * pui,::thread * pthread);
       virtual void window_graphics_update_window(window_graphics **  ppdata,oswindow interaction_impl,COLORREF * pOsBitmapData,const RECT & rect,int cxParam,int cyParam,int iStride = -1,bool bTransferBuffer = true);
 
 

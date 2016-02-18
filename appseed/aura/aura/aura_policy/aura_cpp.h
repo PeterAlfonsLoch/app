@@ -640,6 +640,8 @@ CLASS_DECL_AURA bool __node_aura_pos_term();
 
 CLASS_DECL_AURA ::aura::application * get_thread_app();
 
+#include "aura/primitive/primitive_cflag.h"
+
 #include "aura/aura/aura/aura_definition.h"
 
 #include "aura/aura/aura/aura_action_source.h"

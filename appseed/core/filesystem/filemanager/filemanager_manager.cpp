@@ -79,7 +79,7 @@ namespace filemanager
 
             // assume can resume at least from this exception one time
 
-            m_item = new ::fs::item(strOldPath);
+            m_item = canew(::fs::item(strOldPath));
 
             OnFileManagerBrowse(::action::source::sync(actioncontext));
 
@@ -96,7 +96,7 @@ namespace filemanager
    bool manager::FileManagerBrowse(const char * lpcszPath, ::action::context actioncontext)
    {
 
-      FileManagerBrowse(new ::fs::item(lpcszPath), actioncontext);
+      FileManagerBrowse(canew(::fs::item(lpcszPath)), actioncontext);
 
       return false;
 

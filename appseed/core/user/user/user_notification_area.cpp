@@ -19,7 +19,7 @@ namespace user
       m_hfontRegular(NULL)
    {
       // TODO: add construction code here
-      m_pil16 = NULL;
+      
    }
 
    notification_area::~notification_area()
@@ -48,7 +48,7 @@ namespace user
 
       m_oswindowTray = FindTrayToolbarWindow();
 
-      m_pil16 = new image_list(papp);
+      m_pil16 = canew(image_list(papp));
       m_pil16->create(16,16,ILC_COLOR24,16,16);
 
 #else

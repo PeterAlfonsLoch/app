@@ -14,8 +14,8 @@ namespace userex
 
 
       sp(pane_view)                 m_ppaneview;
-      sp(::object)                  m_pfilemanager;
-      sp(::object)                  m_pfilemanagerTabbed;
+      ::object *                    m_pfilemanager;
+      ::object *                    m_pfilemanagerTabbed;
 
 
       pane_tab_view(::aura::application * papp);

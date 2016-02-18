@@ -31,7 +31,12 @@ namespace userex
 
       System.factory().creatable_small < keyboard_layout >();
 
-      m_pshellimageset = new filemanager::_shell::ImageSet(m_pauraapp);
+      if (m_pshellimageset.is_null())
+      {
+
+         m_pshellimageset = canew(filemanager::_shell::ImageSet(m_pauraapp));
+
+      }
 
       if(!::aura::departament::initialize1())
          return false;
@@ -308,7 +313,7 @@ namespace userex
       {
       }
 
-      ::aura::del(m_pshellimageset);
+      //::aura::del(m_pshellimageset);
 
       //try
       //{

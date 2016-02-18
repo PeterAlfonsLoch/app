@@ -1304,6 +1304,17 @@ namespace user
       
       }
 
+      try
+      {
+
+         m_pauraapp = NULL;
+
+      }
+      catch (...)
+      {
+
+      }
+
    }
 
 

@@ -16,12 +16,12 @@ namespace fs
    enum e_flag
    {
       
-      FlagInZip,
-      FlagFolder,
-      FlagFolderEx001,
-      FlagFolderEx001Calc,
-      FlagHasSubFolder,
-      FlagHasSubFolderUnknown
+      FlagInZip = 1 << 0,
+      FlagFolder = 1 << 1,
+      FlagFolderEx001 = 1 << 2,
+      FlagFolderEx001Calc = 1 << 3,
+      FlagHasSubFolder = 1 << 4,
+      FlagHasSubFolderUnknown = 1 << 5
          
    };
    

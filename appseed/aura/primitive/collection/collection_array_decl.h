@@ -189,7 +189,7 @@ namespace heap
    {
    public:
 
-#if MEMDLEAK
+#if MEMDLEAK  || defined(__MCRTDBG)
       inline static TYPE * alloc(::count c, const char * pszFile, int iLine)
       {
 
@@ -206,10 +206,10 @@ namespace heap
 #endif
 
 
-      inline static void free(TYPE * p)
+      inline static void _free(TYPE * p)
       {
 
-         POOL::free((void *)p);
+         POOL::_free((void *)p);
 
       }
 
@@ -299,10 +299,10 @@ namespace allocator
       }
 
 
-      inline static void free(TYPE * p)
+      inline static void _free(TYPE * p)
       {
 
-         heap::def < TYPE >::free(p);
+         heap::def < TYPE >::_free(p);
 
       }
 
@@ -351,7 +351,7 @@ namespace allocator
 
       }
 
-      #if MEMDLEAK
+      #if MEMDLEAK  || defined(__MCRTDBG)
       inline static TYPE * alloc(::count c, const char * pszFile, int iLine)
       {
 
@@ -369,10 +369,10 @@ namespace allocator
       #endif
 
 
-      inline static void free(TYPE * p)
+      inline static void _free(TYPE * p)
       {
 
-         heap::def < TYPE >::free(p);
+         heap::def < TYPE >::_free(p);
 
       }
 
@@ -421,7 +421,7 @@ namespace allocator
 
       }
 
-      #if MEMDLEAK
+      #if MEMDLEAK || defined(__MCRTDBG)
       inline static TYPE * alloc(::count c, const char  * pszFile, int iLine)
       {
 
@@ -438,10 +438,10 @@ namespace allocator
       #endif
 
 
-      inline static void free(TYPE * p)
+      inline static void _free(TYPE * p)
       {
 
-         heap::def < TYPE >::free(p);
+         heap::def < TYPE >::_free(p);
 
       }
 
@@ -491,7 +491,7 @@ namespace allocator
 
       }
 
-      #if MEMDLEAK
+      #if MEMDLEAK || defined(__MCRTDBG)
       inline static TYPE * alloc(::count c, const char * pszFile, int iLine)
       {
 
@@ -508,10 +508,10 @@ namespace allocator
       #endif
 
 
-      inline static void free(TYPE * p)
+      inline static void _free(TYPE * p)
       {
 
-         heap::def < TYPE >::free(p);
+         heap::def < TYPE >::_free(p);
 
       }
 
@@ -560,7 +560,7 @@ namespace allocator
 
       }
 
-#if MEMDLEAK
+#if MEMDLEAK || defined(__MCRTDBG)
       inline static TYPE * alloc(::count c, const char * pszFile, int iLine)
       {
 
@@ -576,10 +576,10 @@ namespace allocator
       }
 #endif
 
-      inline static void free(TYPE * p)
+      inline static void _free(TYPE * p)
       {
 
-         heap::sys < TYPE >::free(p);
+         heap::sys < TYPE >::_free(p);
 
       }
 

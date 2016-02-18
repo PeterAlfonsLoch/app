@@ -108,14 +108,12 @@
    template < class T >
    inline smart_pointer < T > ::operator lparam ()
    {
-      ::add_ref(m_p);
       return lparam(m_p);
    }
 
    template < class T >
    inline smart_pointer < T > ::operator lparam () const
    {
-      ::add_ref(((smart_pointer *) this)->m_p);
       return lparam(m_p);
    }
 

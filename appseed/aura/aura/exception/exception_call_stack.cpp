@@ -7,7 +7,7 @@ bool call_stack::s_bDoStackTrace = false;
 
 #else
 
-bool call_stack::s_bDoStackTrace = false;
+bool call_stack::s_bDoStackTrace = true;
 
 #endif
 
@@ -49,7 +49,8 @@ string call_stack::get(uint32_t uiSkip)
 #ifdef LINUX
    System.eengine().stack_trace(str, uiSkip, m_caller_address);
 #else
-   System.eengine().stack_trace(str, uiSkip);
+   System.eengine().stack_trace(uiSkip);
+   str = System.eengine()._strS;
 #endif
 
    return str;

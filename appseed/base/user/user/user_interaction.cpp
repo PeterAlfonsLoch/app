@@ -95,7 +95,7 @@ namespace user
       m_eupdown                  = type_normal_frame;
 
       m_bMayProDevian            = true;
-      m_pmutex                   = NULL;
+      //m_pmutex                   = NULL;
       m_eappearance              = AppearanceNormal;
       m_bCursorInside            = false;
       m_nFlags                   = 0;
@@ -140,96 +140,7 @@ namespace user
 
       m_uiptraChild.m_pmutex  = NULL;
 
-      add_ref();
-
-
-      try
-      {
-
-         if(Application.m_uiptraFrame.contains(this))
-         {
-
-            Application.remove_frame(this);
-
-         }
-
-      }
-      catch(...)
-      {
-
-      }
-      try
-      {
-
-         if(Session.m_uiptraFrame.contains(this))
-         {
-
-            Session.remove_frame(this);
-
-         }
-
-      }
-      catch(...)
-      {
-
-      }
-      try
-      {
-
-         if(System.m_uiptraFrame.contains(this))
-         {
-
-            System.remove_frame(this);
-
-         }
-
-      }
-      catch(...)
-      {
-
-      }
-
-      try
-      {
-
-         DestroyWindow();
-
-      }
-      catch(...)
-      {
-
-      }
-
-      try
-      {
-
-         user_interaction_on_destroy();
-
-      }
-      catch(...)
-      {
-
-      }
-
-
-
-      try
-      {
-
-         if(m_pparent != NULL)
-         {
-
-            m_pparent->m_uiptraChild.remove(this);
-
-         }
-
-      }
-      catch(...)
-      {
-
-      }
-
-
+      user_interaction_on_destroy();
 
    }
 
@@ -729,13 +640,13 @@ namespace user
       try
       {
 
-         if(Session.m_pkeyboardfocus == this)
+         if(m_pauraapp!= NULL && m_pauraapp->m_pbasesession!= NULL && m_pauraapp->m_pbasesession->m_pkeyboardfocus == this)
          {
 
             if(GetParent() == NULL || GetParent()->m_bDestroying || !GetParent()->IsWindowVisible())
             {
 
-               Session.m_pkeyboardfocus = NULL;
+               m_pauraapp->m_pbasesession->m_pkeyboardfocus = NULL;
 
             }
             else
@@ -795,7 +706,7 @@ namespace user
       }
 
 
-      if(System.get_active_ui() == this)
+      if(m_pauraapp != NULL && &System != NULL && System.get_active_ui() == this)
       {
 
          //#ifdef WINDOWS
@@ -847,7 +758,10 @@ namespace user
    void interaction::user_interaction_on_destroy()
    {
 
-      single_lock sl(m_pmutex,true);
+      single_lock sl(get_wnd() == NULL || get_wnd()->m_pimpl.is_null()
+         || get_wnd()->m_pimpl.cast < ::user::interaction_impl >()==NULL ? NULL : get_wnd()->m_pimpl.cast < ::user::interaction_impl >()->draw_mutex(), true);
+
+      //single_lock sl(m_pmutex,true);
 
       user_interaction_on_hide();
 
@@ -879,6 +793,90 @@ namespace user
 
       }
 
+      ptr_array <  ::user::interaction  > uiptra;
+
+      {
+
+         if (GetParent() != NULL)
+         {
+
+            try
+            {
+
+               single_lock sl(GetParent()->m_pmutex, true);
+
+               GetParent()->m_uiptraChild.remove(this);
+
+            }
+            catch (...)
+            {
+
+            }
+
+         }
+
+         sp(::user::place_holder) pholder = GetParent();
+
+         if (pholder.is_set())
+         {
+
+            ::count c = -1;
+
+            try
+            {
+
+               single_lock sl(GetParent()->m_pmutex, true);
+
+               c = pholder->m_uiptraHold.remove(this);
+
+            }
+            catch (...)
+            {
+
+            }
+
+         }
+
+      }
+
+      {
+
+         synch_lock sl(m_pmutex);
+
+         m_uiptraChild.slice(uiptra);
+
+      }
+
+
+      for (int32_t i = 0; i < uiptra.get_count(); i++)
+      {
+
+         sp(::user::interaction) pui = uiptra[i];
+
+         try
+         {
+
+            pui->DestroyWindow();
+
+         }
+         catch (...)
+         {
+
+         }
+
+      }
+
+      m_pparent.release();
+
+
+
+      if (m_pauraapp == NULL)
+      {
+
+         return;
+
+      }
+
       if(GetParent() == NULL && !is_message_only_window())
       {
 
@@ -896,12 +894,7 @@ namespace user
          try
          {
 
-            if(m_pauraapp->m_pbasesession != NULL)
-            {
-
-               Session.remove_frame(this); // guess this may be a frame, it doesn't hurt to remove if this is not there
-
-            }
+            Session.remove_frame(this); // guess this may be a frame, it doesn't hurt to remove if this is not there
 
          }
          catch(...)
@@ -912,12 +905,7 @@ namespace user
          try
          {
 
-            if(m_pauraapp->m_pbasesystem != NULL)
-            {
-
-               System.remove_frame(this); // guess this may be a frame, it doesn't hurt to remove if this is not there
-
-            }
+             System.remove_frame(this); // guess this may be a frame, it doesn't hurt to remove if this is not there
 
          }
          catch(...)
@@ -926,121 +914,52 @@ namespace user
 
       }
 
-      try
-      {
+      //try
+      //{
+      //   
+      //    m_pauraapp->remove(this);
 
-         m_pauraapp->remove(this);
+      //}
+      //catch(...)
+      //{
 
-      }
-      catch(...)
-      {
-
-      }
-
-
-      try
-      {
-
-         for(index i = 0; i < m_threadptra.get_size(); i++)
-         {
-
-            try
-            {
-
-               m_threadptra[i]->remove(this);
-
-            }
-            catch(...)
-            {
-            }
-
-         }
-
-      }
-      catch(...)
-      {
-
-      }
+      //}
 
 
+      //try
+      //{
+
+      //   while(m_threadptra.has_elements())
+      //   {
+      //      ::thread * pthread = m_threadptra[0];
+      //      if (pthread == NULL)
+      //      {
+      //         m_threadptra.remove_at(0);
+      //      }
+      //      else
+      //      {
+      //         {
+      //            synch_lock sl(&pthread->m_mutexUiPtra);
+      //            if (pthread->m_spuiptra.is_set())
+      //            {
+      //               pthread->m_spuiptra->remove(this);
+      //            }
+      //         }
+      //         m_threadptra.remove(pthread);
+      //      }
+
+      //   }
+
+      //}
+      //catch(...)
+      //{
+
+      //}
 
 
-      ptr_array <  ::user::interaction  > uiptra;
-
-      {
-
-         if(GetParent() != NULL)
-         {
-
-            try
-            {
-
-               single_lock sl(GetParent()->m_pmutex,true);
-
-               GetParent()->m_uiptraChild.remove(this);
-
-            }
-            catch(...)
-            {
-
-            }
-
-         }
-
-         sp(::user::place_holder) pholder  = GetParent();
-
-         if(pholder.is_set())
-         {
-
-            ::count c = -1;
-
-            try
-            {
-
-               single_lock sl(GetParent()->m_pmutex,true);
-
-               c = pholder->m_uiptraHold.remove(this);
-
-            }
-            catch(...)
-            {
-
-            }
-
-            TRACE("removed = %d",c);
-
-         }
-
-      }
-
-      {
-
-         synch_lock sl(m_pmutex);
-
-         m_uiptraChild.slice(uiptra);
-
-      }
 
 
-      for(int32_t i = 0; i < uiptra.get_count(); i++)
-      {
-
-         sp(::user::interaction) pui = uiptra[i];
-
-         try
-         {
-
-            pui->DestroyWindow();
-
-         }
-         catch(...)
-         {
-
-         }
-
-      }
-
-      m_pparent.release();
+      
 
    }
 
@@ -1511,7 +1430,7 @@ namespace user
 
       {
 
-         m_pauraapp->add(this);
+         //m_pauraapp->add(this);
 
 
          if((GetParent() == NULL
@@ -2379,23 +2298,23 @@ namespace user
 
       ::thread * pthread = ::get_thread();
 
-      if(pthread != NULL)
-      {
+      //if(pthread != NULL)
+      //{
 
-         m_threadptra.add(pthread);
+      //   m_threadptra.add(pthread);
 
-      }
+      //}
 
-      if(m_threadptra.get_count() <= 0)
-      {
+      //if(m_threadptra.get_count() <= 0)
+      //{
 
-         m_threadptra.add(get_app());
+      //   m_threadptra.add(get_app());
 
-      }
+      //}
 
       if(!m_pimpl->create_window(rect, pparent,id))
       {
-         m_threadptra.remove_all();
+         //m_threadptra.remove_all();
          m_pimpl.release();
          return false;
       }
@@ -2422,19 +2341,19 @@ namespace user
 
       ::thread * pthread = ::get_thread();
 
-      if(pthread != NULL)
-      {
+      //if(pthread != NULL)
+      //{
 
-         m_threadptra.add(pthread);
+      //   m_threadptra.add(pthread);
 
-      }
+      //}
 
-      if(m_threadptra.get_count() <= 0)
-      {
+      //if(m_threadptra.get_count() <= 0)
+      //{
 
-         m_threadptra.add(get_app());
+      //   m_threadptra.add(get_app());
 
-      }
+      //}
 
       ::rect rect(rectParam);
 
@@ -2555,7 +2474,7 @@ namespace user
       else
       {
 
-         m_threadptra.remove_all();
+         //m_threadptra.remove_all();
 
          return false;
 
@@ -2576,14 +2495,14 @@ namespace user
 
       m_signalptra.remove_all();
 
-      ::thread * pthread = ::get_thread();
+      //::thread * pthread = ::get_thread();
 
-      if(pthread != NULL)
-      {
+      //if(pthread != NULL)
+      //{
 
-         m_threadptra.add(pthread);
+      //   m_threadptra.add(pthread);
 
-      }
+      //}
 
 #if defined(APPLE_IOS) || defined(VSNORD) || defined(METROWIN)
 
@@ -2605,12 +2524,12 @@ namespace user
 
 #endif
 
-      if(m_threadptra.get_count() <= 0)
-      {
+      //if(m_threadptra.get_count() <= 0)
+      //{
 
-         m_threadptra.add(get_app());
+      //   m_threadptra.add(get_app());
 
-      }
+      //}
 #if !defined(METROWIN)
       if(pParentWnd == NULL)
       {
@@ -2618,7 +2537,7 @@ namespace user
          if(!Application.defer_initialize_twf())
          {
 
-            m_threadptra.remove_all();
+            //m_threadptra.remove_all();
 
             return false;
 
@@ -2631,7 +2550,7 @@ namespace user
          if(!m_pimpl->create_window_ex(dwExStyle,lpszClassName,lpszWindowName,dwStyle,rect,pParentWnd,id,lpParam))
          {
 
-            m_threadptra.remove_all();
+            //m_threadptra.remove_all();
 
             m_pimpl.release();
 
@@ -2675,7 +2594,7 @@ namespace user
          if(!m_pimpl->create_window_ex(dwExStyle,lpszClassName,lpszWindowName,dwStyle,rectFrame,pParentWnd,id,lpParam))
          {
 
-            m_threadptra.remove_all();
+            //m_threadptra.remove_all();
 
             m_pimpl.release();
 
@@ -3208,6 +3127,9 @@ namespace user
       if(!IsWindow())
       {
 
+  
+         user_interaction_on_destroy();
+
          return true;
 
       }
@@ -3277,6 +3199,18 @@ namespace user
 
       }
 
+      try
+      {
+
+         m_pauraapp = NULL;
+
+      }
+      catch (...)
+      {
+
+      }
+
+      
       {
 
          m_pimpl.release();
@@ -3729,12 +3663,12 @@ namespace user
 
       ::thread * pthread = ::get_thread();
 
-      if(pthread == NULL)
-      {
+      //if(pthread == NULL)
+      //{
 
-         pthread = m_threadptra.is_empty() ? NULL : m_threadptra[0];
+      //   pthread = m_threadptra.is_empty() ? NULL : m_threadptra[0];
 
-      }
+      //}
 
       for(;;)
       {
@@ -4302,26 +4236,26 @@ namespace user
 
       m_pimpl->m_pui = this;
 
-      ::thread * pthread = ::get_thread();
+      //::thread * pthread = ::get_thread();
 
-      if(pthread != NULL)
-      {
+      //if(pthread != NULL)
+      //{
 
-         m_threadptra.add(pthread);
+      //   m_threadptra.add(pthread);
 
-      }
+      //}
 
-      if(m_threadptra.get_count() <= 0)
-      {
+      //if(m_threadptra.get_count() <= 0)
+      //{
 
-         m_threadptra.add(get_app());
+      //   m_threadptra.add(get_app());
 
-      }
+      //}
 
       if(!m_pimpl->create_message_queue(pszName))
       {
 
-         m_threadptra.remove_all();
+         //m_threadptra.remove_all();
 
          m_pimpl.release();
 

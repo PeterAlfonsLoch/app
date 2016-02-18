@@ -131,7 +131,7 @@ namespace file
       public:
 
 
-         sp(GroupItem) m_pgroupitem;
+         GroupItem * m_pgroupitem;
 
 
          virtual EItemType get_type();
@@ -166,12 +166,12 @@ namespace file
       sp(GroupItem)          m_pgroupitem;
       bool                 m_bRootDirection;
 
-      void SetFile(::file::buffer_sp  pfile);
-
-      void FillFilePosition(sp(Item) pitem);
-
       edit_buffer(::aura::application * papp);
       virtual ~edit_buffer();
+
+      void SetFile(::file::buffer_sp  pfile);
+
+      void FillFilePosition(Item * pitem);
 
       virtual bool IsValid() const;
       //void load_string(string & str);
@@ -215,7 +215,7 @@ namespace file
    protected:
 
 
-      void TreeInsert(sp(Item) pitem);
+      void TreeInsert(Item * pitem);
       bool calc_root_direction();
 
 

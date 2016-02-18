@@ -2,73 +2,7 @@
 
 #include <sys/resource.h>
 
-/*os_thread::os_thread(DWORD (WINAPI * pfn)(LPVOID), LPVOID pv)
-{
-   m_pfn = pfn;
-   m_pv = pv;
-}
-
-
-void * thread_proc_create_thread(LPVOID lpparameter)
-{
-
-   os_thread * posthread = (os_thread *) lpparameter;
-
-/*   Gdiplus::GdiplusStartupInput     * pgdiplusStartupInput     = new Gdiplus::GdiplusStartupInput();
-   Gdiplus::GdiplusStartupOutput    * pgdiplusStartupOutput    = new Gdiplus::GdiplusStartupOutput();
-   uint_ptr gdiplusToken                                      = NULL;
-   uint_ptr gdiplusHookToken                                  = NULL;
-
-   //pgdiplusStartupInput->SuppressBackgroundThread = TRUE;
-
-   // Initialize GDI+.
-   Gdiplus::Status statusStartup = GdiplusStartup(&gdiplusToken, pgdiplusStartupInput, pgdiplusStartupOutput);
-
-   if(statusStartup != Gdiplus::Ok)
-   {
-
-      delete posthread;
-
-      return -1;
-
-   }*/
-
-   /*statusStartup = pgdiplusStartupOutput->NotificationHook(&gdiplusHookToken);
-
-
-   if(statusStartup != Gdiplus::Ok)
-   {
-
-      Gdiplus::GdiplusShutdown(gdiplusToken);
-
-      delete posthread;
-
-      return -1;
-
-   }*/
-
-/*   DWORD dwRet = 0xffffffff;
-
-   try
-   {
-
-      dwRet = posthread->m_pfn(posthread->m_pv);
-
-   }
-   catch(...)
-   {
-   }
-
-   //pgdiplusStartupOutput->NotificationUnhook(gdiplusHookToken);
-
-   //Gdiplus::GdiplusShutdown(gdiplusToken);
-
-   delete posthread;
-
-   return (void *) (uint_ptr) dwRet;
-
-}
-
+/*
 
 HTHREAD start_thread(DWORD (WINAPI * pfn)(LPVOID), LPVOID pv, int iPriority)
 {

@@ -241,7 +241,7 @@ PCRE2_EXP_DEFN void PCRE2_CALL_CONVENTION
 pcre2_substring_free(PCRE2_UCHAR *string)
 {
 pcre2_memctl *memctl = (pcre2_memctl *)((char *)string - sizeof(pcre2_memctl));
-memctl->free(memctl, memctl->memory_data);
+memctl->_free(memctl, memctl->memory_data);
 }
 
 
@@ -437,7 +437,7 @@ PCRE2_EXP_DEFN void PCRE2_CALL_CONVENTION
 pcre2_substring_list_free(PCRE2_SPTR *list)
 {
 pcre2_memctl *memctl = (pcre2_memctl *)((char *)list - sizeof(pcre2_memctl));
-memctl->free(memctl, memctl->memory_data);
+memctl->_free(memctl, memctl->memory_data);
 }
 
 

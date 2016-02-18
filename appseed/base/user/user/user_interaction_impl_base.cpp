@@ -1250,18 +1250,18 @@ namespace user
       }
 
 
-      {
+      //{
 
-         synch_lock sl(&m_pui->m_pauraapp->m_mutexUiPtra);
+      //   synch_lock sl(&m_pui->m_pauraapp->m_mutexUiPtra);
 
-         if(m_pui->m_pauraapp->m_spuiptra.is_set())
-         {
+      //   if(m_pui->m_pauraapp->m_spuiptra.is_set())
+      //   {
 
-            m_pui->m_pauraapp->m_spuiptra->remove(m_pui);
+      //      m_pui->m_pauraapp->m_spuiptra->remove(m_pui);
 
-         }
+      //   }
 
-      }
+      //}
 
       try
       {
@@ -1274,27 +1274,27 @@ namespace user
 
       }
 
-      try
-      {
+      //try
+      //{
 
-         single_lock sl(m_pui->m_pauraapp->m_pmutex,TRUE);
+      //   single_lock sl(m_pui->m_pauraapp->m_pmutex,TRUE);
 
-         try
-         {
+      //   try
+      //   {
 
-            m_pui->m_pauraapp->remove(m_pui);
+      //      m_pui->m_pauraapp->remove(m_pui);
 
-         }
-         catch(...)
-         {
+      //   }
+      //   catch(...)
+      //   {
 
-         }
+      //   }
 
-      }
-      catch(...)
-      {
+      //}
+      //catch(...)
+      //{
 
-      }
+      //}
 
       try
       {
@@ -1306,6 +1306,7 @@ namespace user
       {
 
       }
+
 
       return true;
 
@@ -1362,7 +1363,12 @@ namespace user
    }
 
 
+   void interaction_impl_base::PostNcDestroy()
+   {
 
+      ::user::interaction_base::PostNcDestroy();
+
+   }
 
 
 } // namespace user

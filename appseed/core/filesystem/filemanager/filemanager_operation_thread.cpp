@@ -133,7 +133,7 @@ namespace filemanager
 
    void operation_thread::queue_copy(::file::listing & stra,const ::file::path & pszDstBase,const ::file::path & pszSrcBase,bool bExpand,bool bReplaceAll,sp(::user::interaction) oswindowCallback,UINT uiCallbackMessage,WPARAM wparamCallback)
    {
-      ::filemanager::operation * poperation = new ::filemanager::operation(get_app());
+      ::filemanager::operation * poperation = canew(::filemanager::operation(get_app()));
       poperation->m_oswindowCallback = oswindowCallback;
       poperation->m_uiCallbackMessage = uiCallbackMessage;
       poperation->m_wparamCallback = wparamCallback;

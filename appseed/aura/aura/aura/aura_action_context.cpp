@@ -31,7 +31,7 @@ namespace action
    void context::add(object * pobject)
    {
       
-      m_spdata->m_spa.add(pobject);
+      m_spa.add(pobject);
 
    }
 
@@ -39,10 +39,10 @@ namespace action
    index context::find(object * pobject)
    {
 
-      for (index i = 0; i < m_spdata->m_spa.get_count(); i++)
+      for (index i = 0; i < m_spa.get_count(); i++)
       {
 
-         if (m_spdata->m_spa[i] == pobject)
+         if (m_spa[i] == pobject)
             return i;
 
       }

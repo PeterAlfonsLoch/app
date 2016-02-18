@@ -58,39 +58,49 @@ namespace data
       tree_item();
       virtual ~tree_item();
 
-      sp(tree_item) get_child_by_user_data(uint_ptr iUserData);
-      sp(tree_item) find_next_by_user_data(uint_ptr iUserData);
+
+      virtual int64_t add_ref()
+      {
+         return ::object::add_ref();
+      }
+      virtual int64_t dec_ref()
+      {
+         return ::object::dec_ref();
+      }
+
+      tree_item * get_child_by_user_data(uint_ptr iUserData);
+      tree_item * find_next_by_user_data(uint_ptr iUserData);
       void get_children(::data::tree_item_ptr_array &ptra);
       ::count get_children_count();
       ::count get_expandable_children_count();
       ::count get_proper_descendant_count();
-      sp(tree_item) get_expandable_child(index iIndex);
-      sp(tree_item) get_previous(bool bParent = true);
-      sp(tree_item) get_next(bool bChild = true, bool bParent = true, index * pindexLevel = NULL);
+      tree_item * get_expandable_child(index iIndex);
+      tree_item * get_previous(bool bParent = true);
+      tree_item * get_next(bool bChild = true, bool bParent = true, index * pindexLevel = NULL);
       
 
-      sp(tree_item) previous();
-      sp(tree_item) first_child();
-      sp(tree_item) next();
+      tree_item * previous();
+      tree_item * first_child();
+      tree_item * next();
 
 
       void sort_children(index ( * lpfnCompare )(const sp(tree_item) &, const sp(tree_item) &));
 
-      sp(tree_item) get_item(ETreeNavigation enavigation, index * piLevelOffset = NULL);
-      sp(tree_item) get_item(ERelative erelative);
+      tree_item * get_item(ETreeNavigation enavigation, index * piLevelOffset = NULL);
+      tree_item * get_item(ERelative erelative);
 
-      virtual sp(tree_item) get_proper_item(index iIndex, index * piLevel);
-      virtual index get_proper_item_index(sp(tree_item) pitem, index * piLevel);
+      virtual tree_item * get_proper_item(index iIndex, index * piLevel);
+      virtual index get_proper_item_index(tree_item * pitem, index * piLevel);
       virtual ::count get_proper_item_count();
 
-      virtual sp(tree) get_tree();
+      virtual tree * get_tree();
 
       virtual string get_text() const;
       virtual index get_image() const;
       virtual image_list * get_image_list() const;
 
 
-      void SetParent(sp(tree_item) pparent);
+      void SetParent(tree_item * pparent);
 
       ::count remove_tree_item();
       ::count remove_tree_item_descendants();
@@ -101,8 +111,8 @@ namespace data
 
       virtual void on_fill_children();
 
-      virtual bool is_descendant(sp(tree_item) pitem);
-      virtual bool is_ascendant(sp(tree_item) pitem);
+      virtual bool is_descendant(tree_item * pitem);
+      virtual bool is_ascendant(tree_item * pitem);
 
    };
 

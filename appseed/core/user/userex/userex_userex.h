@@ -20,7 +20,7 @@ namespace userex
       sp(::user::multiple_document_template)    m_ptemplatePlaceHolder;
 
 
-      filemanager::_shell::ImageSet *           m_pshellimageset;
+      sp(filemanager::_shell::ImageSet)         m_pshellimageset;
 
 
       ::user::front_end_schema *                m_pufeschema;

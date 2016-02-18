@@ -8,7 +8,7 @@ sync_object::sync_object(const char * pstrName)
    m_object = NULL;
 #endif
 #ifdef DEBUG
-   m_strName = pstrName;
+   m_pszName = pstrName == NULL ? NULL : strdup(pstrName);
 #endif
 }
 
@@ -19,6 +19,10 @@ sync_object::~sync_object()
    {
       ::CloseHandle(m_object);
       m_object = NULL;
+   }
+   if (m_pszName != NULL)
+   {
+      ::free((void*) m_pszName);
    }
 #endif
 }
@@ -68,7 +72,7 @@ void sync_object::dump(dump_context & dumpcontext) const
    dumpcontext << m_object;
 #endif
 
-   dumpcontext << " named " << m_strName << "\n";
+   dumpcontext << " named " << m_pszName << "\n";
 
    object::dump(dumpcontext);
 

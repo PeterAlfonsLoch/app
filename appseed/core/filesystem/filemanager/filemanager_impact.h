@@ -25,9 +25,9 @@ namespace filemanager
 
       ::fs::item & get_filemanager_item();
 
-      virtual sp(::filemanager::manager)              get_filemanager_manager();
-      virtual sp(::filemanager::manager_template)     get_filemanager_template();
-      virtual sp(::filemanager::data)                 get_filemanager_data();
+      virtual ::filemanager::manager *                get_filemanager_manager();
+      virtual ::filemanager::manager_template *       get_filemanager_template();
+      virtual ::filemanager::data *                   get_filemanager_data();
       virtual ::user::impact *                        get_this_view();
 
       void on_update(::user::impact * pSender, LPARAM lHint, object* pHint);

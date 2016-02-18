@@ -28,9 +28,9 @@ inline void CopyElements(TYPE* pDest, const TYPE* pSrc, ::count nCount)
       *pDest++ = *pSrc++;
 }
 
-
-
 #undef new
+
+#if !defined(__MCRTDBG) && !defined(__VLD)
 
 //#if defined(APPLEOS) || defined(VSNORD)
 #if defined(APPLEOS)
@@ -45,6 +45,8 @@ inline void * __cdecl operator new(size_t nSize) new_throw_spec
     return memory_alloc(nSize);
 
 }
+
+#endif
 
 #endif
 

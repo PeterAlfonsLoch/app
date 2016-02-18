@@ -119,7 +119,7 @@ namespace filemanager
 
       }
 
-      if(get_filemanager_manager().is_set())
+      if(get_filemanager_manager() != NULL)
       {
 
          get_filemanager_manager()->m_strTopic = str;

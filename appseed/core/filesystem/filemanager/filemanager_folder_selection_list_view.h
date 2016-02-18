@@ -12,17 +12,17 @@ namespace filemanager
    public:
 
 
-      sp(::user::tree)                          m_pusertree;
-      sp(tree)                   m_ptree;
+      ::user::tree *                          m_pusertree;
+      tree *                   m_ptree;
       folder_list_view *                        m_plistview;
-      sp(data)                   m_pdata;
+      data *                  m_pdata;
 
 
       folder_selection_list_view(::aura::application * papp);
       virtual ~folder_selection_list_view();
 
 
-      virtual sp(data) get_filemanager_data();
+      virtual data * get_filemanager_data();
 
 
 

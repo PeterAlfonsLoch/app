@@ -124,7 +124,7 @@ void signalizable::register_signal(class signal * psignal)
 
 void signalizable::unregister_signal(class signal * psignal)
 {
-
+   
    for(int32_t i = 0; i < m_signalptra.get_size();)
    {
 
@@ -192,15 +192,12 @@ signal::signal()
 
 signal::~signal()
 {
-   for(int32_t i = 0; i < m_delegatea.get_size(); i++)
+
+   for (index i = 0; i < m_delegatea.get_count(); i++)
    {
-      try
-      {
-         m_delegatea[i]->get_signalizable()->unregister_signal(this);
-      }
-      catch(...)
-      {
-      }
+
+      m_delegatea[i]->get_signalizable()->unregister_signal(this);
+
    }
 }
 
@@ -258,13 +255,6 @@ void signal::disconnect(signalizable * psignalizable)
       {
          try
          {
-            psignalizable->unregister_signal(this);
-         }
-         catch(...)
-         {
-         }
-         try
-         {
             m_delegatea.remove_at(i);
          }
          catch(...)
@@ -276,6 +266,7 @@ void signal::disconnect(signalizable * psignalizable)
          i++;
       }
    }
+
 }
 
 void signal::leave_only(signalizable * psignalizable)
@@ -299,6 +290,20 @@ signalid::~signalid()
 {
 }
 
+signalid_array::signalid_array()
+{
+
+}
+
+signalid_array::~signalid_array()
+{
+   for (int32_t i = 0; i < this->get_size(); i++)
+   {
+      delete this->element_at(i);
+   }
+}
+
+
 signalid * signalid_array::get(signalid * pid)
 {
    for(int32_t i = 0; i < this->get_size(); i++)
@@ -312,13 +317,6 @@ signalid * signalid_array::get(signalid * pid)
    return this->element_at(get_upper_bound());
 }
 
-signalid_array::~signalid_array()
-{
-   for(int32_t i = 0; i < this->get_size(); i++)
-   {
-      delete this->element_at(i);
-   }
-}
 
 
 void signalizable::on_request_signal(request_signal * prequestsignal)
@@ -327,13 +325,35 @@ void signalizable::on_request_signal(request_signal * prequestsignal)
 }
 
 
+dispatch::handler_item_array::~handler_item_array()
+{
+   for (int32_t i = 0; i < this->get_size(); i++)
+   {
+      delete this->element_at(i);
+   }
+}
+
+bool dispatch::handler_item_array::HasSignalizable(signalizable* psignalizable)
+{
+   for (int32_t i = 0; i < this->get_size(); i++)
+   {
+      if (this->element_at(i)->get_signalizable() == psignalizable)
+         return true;
+   }
+   return false;
+}
+
+
 dispatch::signal_item::signal_item()
 {
+   m_psignal      = NULL;
+   m_pid          = NULL;
 }
 
 dispatch::signal_item::~signal_item()
 {
-   delete m_psignal;
+   ::aura::del(m_psignal);
+   ::aura::del(m_pid);
 }
 
 dispatch::dispatch()

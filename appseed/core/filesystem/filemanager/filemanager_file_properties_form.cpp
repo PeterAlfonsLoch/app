@@ -11,12 +11,12 @@ namespace filemanager
    file_properties_form::file_properties_form(::aura::application * papp) :
       object(papp)
    {
-      m_ptemplatePane = new ::user::single_document_template(
+      m_ptemplatePane = canew(::user::single_document_template(
          papp,
          "system/auth",
          System.type_info < ::user::document >(),
          System.type_info < simple_frame_window > (),
-         System.type_info < ::userex::pane_tab_view > ());
+         System.type_info < ::userex::pane_tab_view > ()));
    }
 
    file_properties_form::~file_properties_form()

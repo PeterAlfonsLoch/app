@@ -10,6 +10,7 @@ public:
    PRED m_pred;
 
    forking_thread(::aura::application * papp,PRED pred) :
+      object(papp),
       thread(papp),
       m_pred(pred)
    {

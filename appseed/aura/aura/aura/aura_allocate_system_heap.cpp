@@ -10,7 +10,7 @@ extern thread_pointer < memdleak_block > t_plastblock;
 
 // uint32_t aligned allocation
 
-#if defined(WINDOWSEX) && !defined(__VLD)
+#if defined(WINDOWSEX) && !defined(__VLD) && !defined(__MCRTDBG)
 
 HANDLE g_system_heap()
 {
@@ -23,10 +23,11 @@ HANDLE g_system_heap()
 
 #endif
 
+extern CLASS_DECL_AURA ::exception::engine * g_ee;
 
 critical_section * g_pmutexSystemHeap = NULL;
 
-#if !MEMDLEAK
+#if !MEMDLEAK && !defined(__MCRTDBG)
 void * system_heap_alloc(size_t size)
 {
 
@@ -44,7 +45,7 @@ void * system_heap_alloc(size_t size)
 //#else  // let constructors and algorithms initialize... "random initialization" of not initialized :-> C-:!!
 
    void * p;
-#ifdef __VLD
+#if defined(__VLD) || defined(__MCRTDBG)
 
    p = malloc(size);
 
@@ -83,53 +84,85 @@ void * system_heap_alloc_dbg(size_t size, int nBlockUse, const char * pszFileNam
 
    memdleak_block * pblock;
 
-   pblock = (memdleak_block *) ::malloc(nAllocSize);
-
-   pblock->m_iBlockUse     = nBlockUse;
-
-   pblock->m_pszFileName   = strdup(pszFileName == NULL ? "" : pszFileName); // not trackable, at least think so certainly causes memory leak
-
-   pblock->m_iLine         = iLine;
-
-   pblock->m_iSize         = nAllocSize;
-
-   synch_lock lock(g_pmutgen);
-
-   pblock->m_pprevious                 = NULL;
-
-   pblock->m_pnext                     = s_pmemdleakList;
-
-   if(s_pmemdleakList != NULL)
+#if defined(WINDOWSEX) && !PREFER_MALLOC
+   
    {
+      cslock csl(g_pmutexSystemHeap);
 
-      s_pmemdleakList->m_pprevious     = pblock;
+      pblock = (memdleak_block *) ::HeapAlloc(g_system_heap(), 0, nAllocSize);
 
    }
 
-   s_pmemdleakList                     = pblock;
+#else
 
-   t_plastblock = pblock;
+   pblock = (memdleak_block *) malloc(nAllocSize);
 
-   lock.unlock();
+#endif
 
-   size_t * psize = (size_t *) &pblock[1];
+   {
+      cslock csl(g_pmutexSystemHeap);
 
-   psize[0] = 0;
+      return ::HeapAlloc(g_system_heap(), 0, nAllocSize);
 
-   memset(&psize[1], 0, size);
+   }
 
-   return &psize[1];
+
+   //pblock->m_iBlockUse     = nBlockUse;
+   //if (g_ee == NULL)
+   //{
+   //   pblock->m_pszCallStack = NULL;
+   //   pblock->m_pszFileName = NULL;
+   //}
+   //else
+   //{
+   //   string strCallStack;
+   //   g_ee->stack_trace(1);
+   //   pblock->m_pszCallStack = strdup(g_ee->_strS);
+   //   pblock->m_pszFileName = strdup(pszFileName == NULL ? "" : pszFileName); // not trackable, at least think so certainly causes memory leak
+   //}
+
+
+   //pblock->m_iLine         = iLine;
+
+   //pblock->m_iSize         = nAllocSize;
+
+   //synch_lock lock(g_pmutgen);
+
+   //pblock->m_pprevious                 = NULL;
+
+   //pblock->m_pnext                     = s_pmemdleakList;
+
+   //if(s_pmemdleakList != NULL)
+   //{
+
+   //   s_pmemdleakList->m_pprevious     = pblock;
+
+   //}
+
+   //s_pmemdleakList                     = pblock;
+
+   //t_plastblock = pblock;
+
+   //lock.unlock();
+
+   //size_t * psize = (size_t *) &pblock[1];
+
+   //psize[0] = 0;
+
+   //memset(&psize[1], 0, size);
+
+   //return &psize[1];
 
 }
 
 #endif
 
-#if !MEMDLEAK
+#if !MEMDLEAK && !defined(__MCRTDBG)
 
 void * system_heap_realloc(void * p, size_t size)
 {
 
-#ifdef __VLD
+#if defined(__VLD) || defined(__MCRTDBG)
 
    return realloc(p, size);
 
@@ -153,55 +186,87 @@ void * system_heap_realloc_dbg(void * p,  size_t size, int32_t nBlockUse, const 
 {
 
 
-   size_t nAllocSize = size + sizeof(size_t) + sizeof(memdleak_block);
+   //size_t nAllocSize = size + sizeof(size_t) + sizeof(memdleak_block);
 
-   size_t * psizeOld = &((size_t *)p)[-1];
+   //size_t * psizeOld = &((size_t *)p)[-1];
 
-   memdleak_block * pblock = &((memdleak_block *)psizeOld)[-1];
+   //memdleak_block * pblock = &((memdleak_block *)psizeOld)[-1];
 
-   synch_lock lock(g_pmutgen);
+   //synch_lock lock(g_pmutgen);
 
-   if(s_pmemdleakList == pblock)
+   //if(s_pmemdleakList == pblock)
+   //{
+   //   s_pmemdleakList = pblock->m_pnext;
+   //   s_pmemdleakList->m_pprevious = NULL;
+   //}
+   //else
+   //{
+   //   pblock->m_pprevious->m_pnext = pblock->m_pnext;
+   //   if(pblock->m_pnext != NULL)
+   //   {
+   //      pblock->m_pnext->m_pprevious = pblock->m_pprevious;
+   //   }
+   //}
+
+   //if(pblock->m_pszCallStack)
+   //::free((void *)pblock->m_pszCallStack);
+   //if(pblock->m_pszFileName)
+   //::free((void *) pblock->m_pszFileName);
+
+   //size_t * psizeNew = NULL;
+
+#if defined(WINDOWSEX) && !PREFER_MALLOC
    {
-      s_pmemdleakList = pblock->m_pnext;
-      s_pmemdleakList->m_pprevious = NULL;
-   }
-   else
-   {
-      pblock->m_pprevious->m_pnext = pblock->m_pnext;
-      if(pblock->m_pnext != NULL)
-      {
-         pblock->m_pnext->m_pprevious = pblock->m_pprevious;
-      }
+      cslock csl(g_pmutexSystemHeap);
+
+//      pblock = (memdleak_block *) ::HeapReAlloc(g_system_heap(), 0, pblock, size + sizeof(memdleak_block));
+      p = (memdleak_block *) ::HeapReAlloc(g_system_heap(), 0, p, size);
+
    }
 
-   ::free((void *) pblock->m_pszFileName);
-
-   size_t * psizeNew = NULL;
+#else
 
    pblock = (memdleak_block *) ::realloc(pblock, size + sizeof(memdleak_block));
 
-   psizeNew = (size_t *) &pblock[1];
-
-   psizeNew[0] = nAllocSize;
-
-   pblock->m_iBlockUse     = nBlockUse;
-   pblock->m_pszFileName   = strdup(pszFileName == NULL ? "" : pszFileName);
-   pblock->m_iLine         = iLine;
-   pblock->m_iSize         = nAllocSize;
+#endif
 
 
-   pblock->m_pprevious                 = NULL;
-   pblock->m_pnext                     = s_pmemdleakList;
-   if(s_pmemdleakList != NULL)
-   {
-      s_pmemdleakList->m_pprevious        = pblock;
-   }
-   s_pmemdleakList                     = pblock;
-   lock.unlock();
+   //psizeNew = (size_t *) &pblock[1];
+
+   //psizeNew[0] = nAllocSize;
+
+   //pblock->m_iBlockUse     = nBlockUse;
+   //if (g_ee == NULL)
+   //{
+   //   pblock->m_pszCallStack = NULL;
+   //   pblock->m_pszFileName = NULL;
+   //}
+   //else
+   //{
+   //   string strCallStack;
+   //   g_ee->stack_trace(1);
+   //   pblock->m_pszCallStack = strdup(g_ee->_strS);
+   //   pblock->m_pszFileName = strdup(pszFileName == NULL ? "" : pszFileName);
+   //}
+
+   //
+   //pblock->m_iLine         = iLine;
+   //pblock->m_iSize         = nAllocSize;
 
 
-   return &psizeNew[1];
+   //pblock->m_pprevious                 = NULL;
+   //pblock->m_pnext                     = s_pmemdleakList;
+   //if(s_pmemdleakList != NULL)
+   //{
+   //   s_pmemdleakList->m_pprevious        = pblock;
+   //}
+   //s_pmemdleakList                     = pblock;
+   //lock.unlock();
+
+
+   //return &psizeNew[1];
+
+   return p;
 
 //   size_t * psize = (size_t *) g_pheap->realloc_dbg(&((size_t *)pvoidOld)[-1], ((size_t *)pvoidOld)[-1], size + sizeof(size_t), nBlockUse, szFileName, iLine);
   // psize[0] = size + sizeof(size_t);
@@ -215,7 +280,7 @@ void * system_heap_realloc_dbg(void * p,  size_t size, int32_t nBlockUse, const 
 void system_heap_free(void * p)
 {
 
-#ifdef __VLD
+#if defined(__VLD) || defined(__MCRTDBG)
 
    return free(p);
 
@@ -254,7 +319,7 @@ void system_heap_free(void * p)
 #endif
 
 #else
-
+/*
    size_t * psize = &((size_t *)p)[-1];
 
    memdleak_block * pblock = &((memdleak_block *)psize)[-1];
@@ -277,12 +342,25 @@ void system_heap_free(void * p)
             pblock->m_pnext->m_pprevious = pblock->m_pprevious;
          }
       }
-
+      if(pblock->m_pszCallStack)
+      ::free((void *)pblock->m_pszCallStack);
+      if(pblock->m_pszFileName)
       ::free((void *) pblock->m_pszFileName);
 
    }
+*/
+#if defined(WINDOWSEX) && !PREFER_MALLOC
+   {
+      cslock csl(g_pmutexSystemHeap);
 
+      // ::HeapFree(g_system_heap(), 0, pblock);
+      ::HeapFree(g_system_heap(), 0, p);
+
+   }
+
+#else
    ::free(pblock);
+#endif
 
 #endif
 
@@ -297,7 +375,7 @@ void system_heap_free(void * p)
 
 
 
-::count get_mem_info(int32_t ** ppiUse, const char *** ppszFile, int32_t ** ppiLine, int64_t ** ppiSize)
+::count get_mem_info(int32_t ** ppiUse, const char *** ppszFile, const char *** ppszCallStack, int32_t ** ppiLine, int64_t ** ppiSize)
 {
 
 #ifndef MEMDLEAK
@@ -324,6 +402,7 @@ void system_heap_free(void * p)
 
    int32_t * piUse =(int32_t *)  malloc(sizeof(int32_t) * ca);
    const char ** pszFile = (const char **) malloc(sizeof(const char *) * ca);
+   const char ** pszCallStack = (const char **)malloc(sizeof(const char *) * ca);
    int32_t * piLine =(int32_t *)  malloc(sizeof(int32_t) * ca);
    int64_t * piSize =(int64_t *)  malloc(sizeof(int64_t) * ca);
 
@@ -334,7 +413,8 @@ void system_heap_free(void * p)
    while(pblock != NULL && i < ca)
    {
       piUse[i] = pblock->m_iBlockUse;
-      pszFile[i] = _strdup(pblock->m_pszFileName);
+      pszFile[i] = pblock->m_pszFileName== NULL ? NULL : _strdup(pblock->m_pszFileName);
+      pszCallStack[i] = pblock->m_iStack <= 0 ? NULL :_strdup(g_ee->stack_trace(pblock->m_puiStack, pblock->m_iStack));
       piLine[i] = pblock->m_iLine;
       piSize[i] = pblock->m_iSize;
 
@@ -348,6 +428,7 @@ void system_heap_free(void * p)
 
    *ppiUse = piUse;
    *ppszFile = pszFile;
+   *ppszCallStack = pszCallStack;
    *ppiLine = piLine;
    *ppiSize = piSize;
 
@@ -355,3 +436,80 @@ void system_heap_free(void * p)
    return ca;
 
 }
+//typedef DWORD64[64]
+//::count get_mem_info2(int32_t ** ppiUse, const char *** ppszFile, DWORD64 ** ppuiStack[64], int64_t ** ppiStack, int32_t ** ppiLine, int64_t ** ppiSize)
+//{
+//
+//#ifndef MEMDLEAK
+//
+//   throw simple_exception(get_thread_app(), "plex_heap_alloc_array::get_mem_info member function is available only with \"memdleak\" builds - MEMDLEAK defined");
+//
+//#endif
+//
+//   synch_lock lock(g_pmutgen);
+//
+//   memdleak_block * pblock = s_pmemdleakList;
+//
+//   ::count ca = 0;
+//
+//   while (pblock != NULL)
+//   {
+//
+//      ca++;
+//
+//      pblock = pblock->m_pnext;
+//
+//   }
+//
+//
+//   int32_t * piUse = (int32_t *)malloc(sizeof(int32_t) * ca);
+//   const char ** pszFile = (const char **)malloc(sizeof(const char *) * ca);
+//   DWORD64 ** puiStack[64] = (DWORD64 **[64])malloc(sizeof(DWORD64[64]) * ca);
+//   int64_t * piStack = (int64_t *)malloc(sizeof(int64_t) * ca);
+//   int32_t * piLine = (int32_t *)malloc(sizeof(int32_t) * ca);
+//   int64_t * piSize = (int64_t *)malloc(sizeof(int64_t) * ca);
+//
+//   index i = 0;
+//
+//   pblock = s_pmemdleakList;
+//
+//   while (pblock != NULL && i < ca)
+//   {
+//      piUse[i] = pblock->m_iBlockUse;
+//      pszFile[i] = pblock->m_pszFileName == NULL ? NULL : _strdup(pblock->m_pszFileName);
+//      memcpy(puiStack[i], pblock->m_puiStack, pblock->m_iStack * sizeof(DWORD64));
+//      piStack[i] = pblock->m_iStack;
+//      piLine[i] = pblock->m_iLine;
+//      piSize[i] = pblock->m_iSize;
+//
+//      i++;
+//
+//      pblock = pblock->m_pnext;
+//
+//
+//
+//   }
+//
+//   *ppiUse = piUse;
+//   *ppszFile = pszFile;
+//   *ppuiStack = puiStack;
+//   *ppiStack = piStack;
+//   *ppiLine = piLine;
+//   *ppiSize = piSize;
+//
+//
+//   return ca;
+//
+//}
+//
+
+#ifdef MEMDLEAK
+void set_last_block_file_name(const char * psz)
+{
+
+   //t_plastblock->m_pszFileName = strdup(psz == NULL ? "" : psz);
+
+}
+#endif
+
+

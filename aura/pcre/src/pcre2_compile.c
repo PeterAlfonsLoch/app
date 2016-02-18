@@ -723,11 +723,11 @@ if (code != NULL)
       {
       (*ref_count)--;
       if (*ref_count == 0)
-        code->memctl.free((void *)code->tables, code->memctl.memory_data);
+        code->memctl._free((void *)code->tables, code->memctl.memory_data);
       }
     }
 
-  code->memctl.free(code, code->memctl.memory_data);
+  code->memctl._free(code, code->memctl.memory_data);
   }
 }
 
@@ -1642,12 +1642,12 @@ if (newsize > COMPILE_WORK_SIZE_MAX) newsize = COMPILE_WORK_SIZE_MAX;
 if (cb->workspace_size >= COMPILE_WORK_SIZE_MAX ||
     newsize - cb->workspace_size < WORK_SIZE_SAFETY_MARGIN)
  return ERR72;
-newspace = cb->cx->memctl.malloc(CU2BYTES(newsize), cb->cx->memctl.memory_data);
+newspace = cb->cx->memctl._alloc(CU2BYTES(newsize), cb->cx->memctl.memory_data);
 if (newspace == NULL) return ERR21;
 memcpy(newspace, cb->start_workspace, cb->workspace_size * sizeof(PCRE2_UCHAR));
 cb->hwm = (PCRE2_UCHAR *)newspace + (cb->hwm - cb->start_workspace);
 if (cb->workspace_size > COMPILE_WORK_SIZE)
-  cb->cx->memctl.free((void *)cb->start_workspace, cb->cx->memctl.memory_data);
+  cb->cx->memctl._free((void *)cb->start_workspace, cb->cx->memctl.memory_data);
 cb->start_workspace = newspace;
 cb->workspace_size = newsize;
 return 0;
@@ -3553,7 +3553,7 @@ for (; ptr < cb->end_pattern; ptr++)
         {
         int newsize = cb->named_group_list_size * 2;
         named_group *newspace =
-          cb->cx->memctl.malloc(newsize * sizeof(named_group),
+          cb->cx->memctl._alloc(newsize * sizeof(named_group),
           cb->cx->memctl.memory_data);
         if (newspace == NULL)
           {
@@ -3564,7 +3564,7 @@ for (; ptr < cb->end_pattern; ptr++)
         memcpy(newspace, cb->named_groups,
           cb->named_group_list_size * sizeof(named_group));
         if (cb->named_group_list_size > NAMED_GROUP_LIST_SIZE)
-          cb->cx->memctl.free((void *)cb->named_groups,
+          cb->cx->memctl._free((void *)cb->named_groups,
           cb->cx->memctl.memory_data);
         cb->named_groups = newspace;
         cb->named_group_list_size = newsize;
@@ -8143,7 +8143,7 @@ if (patlen == PCRE2_ZERO_TERMINATED) patlen = PRIV(strlen)(pattern); else
     copied_pattern = stack_copied_pattern;
   else
     {
-    copied_pattern = ccontext->memctl.malloc(CU2BYTES(patlen + 1),
+    copied_pattern = ccontext->memctl._alloc(CU2BYTES(patlen + 1),
       ccontext->memctl.memory_data);
     if (copied_pattern == NULL)
       {
@@ -8402,7 +8402,7 @@ cb.name_entry_size. */
 re_blocksize = sizeof(pcre2_real_code) +
   CU2BYTES(length + cb.names_found * cb.name_entry_size);
 re = (pcre2_real_code *)
-  ccontext->memctl.malloc(re_blocksize, ccontext->memctl.memory_data);
+  ccontext->memctl._alloc(re_blocksize, ccontext->memctl.memory_data);
 if (re == NULL)
   {
   errorcode = ERR21;
@@ -8544,7 +8544,7 @@ if (cb.hwm > cb.start_workspace)
 /* If the workspace had to be expanded, free the new memory. */
 
 if (cb.workspace_size > COMPILE_WORK_SIZE)
-  ccontext->memctl.free((void *)cb.start_workspace,
+  ccontext->memctl._free((void *)cb.start_workspace,
     ccontext->memctl.memory_data);
 
 /* After a successful compile, give an error if there's back reference to a
@@ -8738,9 +8738,9 @@ free the list of named groups if a larger one had to be obtained. */
 
 EXIT:
 if (copied_pattern != stack_copied_pattern)
-  ccontext->memctl.free(copied_pattern, ccontext->memctl.memory_data);
+  ccontext->memctl._free(copied_pattern, ccontext->memctl.memory_data);
 if (cb.named_group_list_size > NAMED_GROUP_LIST_SIZE)
-  ccontext->memctl.free((void *)cb.named_groups, ccontext->memctl.memory_data);
+  ccontext->memctl._free((void *)cb.named_groups, ccontext->memctl.memory_data);
 
 return re;    /* Will be NULL after an error */
 }

@@ -174,10 +174,8 @@ class job;
 
 
 
-#ifdef WINDOWS
+#ifdef __MCRTDBG
 #include <crtdbg.h>
-#else
-//#include "core/api/api_debug.h"
 #endif
 
 

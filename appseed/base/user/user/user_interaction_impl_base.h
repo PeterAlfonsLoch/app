@@ -198,6 +198,9 @@ namespace user
       virtual void set_focus_guie(::user::interaction * pguie);
 
 
+      virtual void PostNcDestroy();
+
+
    };
 
 

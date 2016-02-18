@@ -151,7 +151,7 @@ namespace filemanager
       m_pfilelist->GetSelected(itema);
       if(m_ppropform == NULL)
       {
-         m_ppropform = new file_properties_form(get_app());
+         m_ppropform = canew(file_properties_form(get_app()));
       }
       sp(::user::interaction) puie = m_ppropform->open(this,itema);
       if(puie == NULL)

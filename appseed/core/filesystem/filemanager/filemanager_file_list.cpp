@@ -287,7 +287,7 @@ namespace filemanager
          ::user::menu menu(get_app());
          if(get_fs_mesh_data()->m_itema.get_item(iItem).IsFolder())
          {
-            _017OpenContextMenuFolder(new ::fs::item(get_fs_mesh_data()->m_itema.get_item(iItem)), ::action::source_user);
+            _017OpenContextMenuFolder(canew(::fs::item(get_fs_mesh_data()->m_itema.get_item(iItem))), ::action::source_user);
             /*if (menu.LoadXmlMenu(get_filemanager_template()->m_strFolderPopup))
             {
                ::user::menu menuPopup(get_app(), menu.GetSubMenu(0));
@@ -461,7 +461,7 @@ namespace filemanager
          item_range itemrange = range.ItemAt(iItemRange);
          for(iItem = itemrange.get_lower_bound() ; iItem <= itemrange.get_upper_bound(); iItem ++)
          {
-            itema.add(new  ::fs::item  (get_fs_mesh_data()->m_itema.get_item(iItem)));
+            itema.add(canew(::fs::item  (get_fs_mesh_data()->m_itema.get_item(iItem))));
          }
       }
       get_filemanager_data()->OnFileManagerItemCommand(
@@ -483,7 +483,7 @@ namespace filemanager
          item_range itemrange = range.ItemAt(iItemRange);
          for(iItem = itemrange.get_lower_bound() ; iItem <= itemrange.get_upper_bound(); iItem ++)
          {
-            itema.add(new  ::fs::item  (get_fs_mesh_data()->m_itema.get_item(iItem)));
+            itema.add(canew ( ::fs::item  (get_fs_mesh_data()->m_itema.get_item(iItem))));
          }
       }
       get_filemanager_data()->OnFileManagerItemUpdate(
@@ -696,7 +696,7 @@ namespace filemanager
             m_straOpenWith = stra;
             ::count iCount = stra.get_size();
 
-            sp(::user::menu_item) pmenuitem(new ::user::menu_item(get_app()));
+            sp(::user::menu_item) pmenuitem(canew(::user::menu_item(get_app())));
             string str;
             for(int32_t i = 0; i < iCount; i++)
             {
@@ -935,15 +935,15 @@ namespace filemanager
       data_set_DisplayToStrict();
    }
 
+   
    void file_list::schedule_file_size(const char * psz)
    {
+      
       UNREFERENCED_PARAMETER(psz);
+      
       if(!IsWindowVisible())
          return;
-   //   file_size_t * psize = new file_size_t;
-     // psize->m_pview = this;
-      //psize->m_str = psz;
-      //__begin_thread(ThreadProc4, psize, THREAD_PRIORITY_IDLE);
+
    }
 
 
@@ -1610,12 +1610,12 @@ namespace filemanager
             ::userfs::list_item & item = get_fs_mesh_data()->m_itema.get_item(iStrict);
             if (item.IsFolder())
             {
-               _017OpenFolder(new ::fs::item(item), ::action::source::sel(actioncontext));
+               _017OpenFolder(canew (::fs::item(item)), ::action::source::sel(actioncontext));
                break;
             }
             else
             {
-               itema.add(new  ::fs::item(item));
+               itema.add(canew( ::fs::item(item)));
             }
          }
       }
@@ -1656,12 +1656,12 @@ namespace filemanager
             }
             if (get_fs_mesh_data()->m_itema.get_item(iStrict).IsFolder())
             {
-               _017OpenContextMenuFolder(new  ::fs::item(get_fs_mesh_data()->m_itema.get_item(iStrict)), actioncontext);
+               _017OpenContextMenuFolder(canew ( ::fs::item(get_fs_mesh_data()->m_itema.get_item(iStrict))), actioncontext);
                break;
             }
             else
             {
-               itema.add(new ::fs::item(get_fs_mesh_data()->m_itema.get_item(iStrict)));
+               itema.add(canew(::fs::item(get_fs_mesh_data()->m_itema.get_item(iStrict))));
             }
          }
       }
@@ -1713,7 +1713,7 @@ namespace filemanager
          {
             iStrict = m_meshlayout.m_iaDisplayToStrict[iItem];
          }
-         pcallback->OnButtonAction((int32_t)pcontrol->descriptor().m_id - 1000, new ::fs::item(get_fs_mesh_data()->m_itema.get_item(iStrict)));
+         pcallback->OnButtonAction((int32_t)pcontrol->descriptor().m_id - 1000,canew(::fs::item(get_fs_mesh_data()->m_itema.get_item(iStrict))));
       }
    }
 
@@ -1756,7 +1756,7 @@ namespace filemanager
 
                }
 
-               sp(::fs::item) spitem(new ::fs::item);
+               sp(::fs::item) spitem(canew(::fs::item));
 
                spitem->m_strPath = get_fs_mesh_data()->m_itema.get_item(iStrict).m_strPath;
 

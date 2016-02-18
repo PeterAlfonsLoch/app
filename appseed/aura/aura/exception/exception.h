@@ -189,7 +189,11 @@ extern CLASS_DECL_AURA bool g_bTraceEnabled;
 
 #ifdef DEBUG
 #define DEBUG_NOTE __FILE__
+#ifdef __MCRTDBG
+#define AURA_NEW new
+#else
 #define AURA_NEW new(DEBUG_NOTE, __LINE__)
+#endif
 #define THREAD_NOTE __get_thread_note()
 #define SET_THREAD_NOTE(x) __set_thread_note(x);
 #else

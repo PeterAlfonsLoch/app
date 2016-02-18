@@ -153,20 +153,20 @@ CLASS_DECL_AURA bool __wait_threading_count_except(::thread * pthread, ::duratio
 
 
 
-void replace_thread::replace(::thread * pcanew)
-{
-
-   {
-
-      single_lock sl(&m_mutex,true);
-
-      pcanew->m_preplacethread = this;
-
-      m_pthreadNew = pcanew;
-
-   }
-
-   pcanew->begin();
-
-}
-
+//void replace_thread::replace(::thread * pcanew)
+//{
+//
+//   {
+//
+//      single_lock sl(&m_mutex,true);
+//
+//      pcanew->m_preplacethread = this;
+//
+//      m_pthreadNew = pcanew;
+//
+//   }
+//
+//   pcanew->begin();
+//
+//}
+//

@@ -96,6 +96,8 @@ namespace user
 
    mesh::~mesh()
    {
+      ::aura::del(m_piaFilterIcon);
+      ::aura::del(m_piaFilterMesh);
    }
 
 

@@ -138,6 +138,10 @@ namespace aura
 
          xxdebug_box("aura.dll base_static_start (0)", "box", MB_OK);
 
+         g_ee = (::exception::engine *) malloc(sizeof(exception::engine(NULL)));
+
+         new(g_ee) ::exception::engine(NULL);
+
          /*
 
           if(g_pfnca2_alloc == NULL)
@@ -162,12 +166,14 @@ namespace aura
           }
 
          */
-
+#ifndef __MCRTDBG
          g_pplexheapallocarray = new plex_heap_alloc_array();
+#endif
 
          s_pstringmanager = new string_manager();
 
          ::id_space::s_pidspace = new id_space();
+
 
 #ifdef APPLEOS
 
@@ -267,6 +273,7 @@ namespace aura
 
          g_pmapLibCall = new string_map < sp(::aura::library) >();
 
+
       }
 
 
@@ -316,8 +323,6 @@ namespace aura
 
       CLASS_DECL_AURA void term()
       {
-
-         
 
          delete g_pmapLibCall;
 
@@ -438,20 +443,24 @@ namespace aura
 
 //         destroy_id_space();
 
+
          ::aura::del(::id_space::s_pidspace);
 
          ::aura::del(s_pstringmanager);
 
-         #if MEMDLEAK
-
-         s_pmemdleakList = NULL;
-
-         #endif
 
          //::aura::del(g_pplexheapallocarray);
 
+#if !defined(__MCRTDBG) && !MEMDLEAK
          ::aura::del(g_pheap);
+#endif
+#if MEMDLEAK
 
+         ::set_thread(NULL);
+
+         memdleak_dump();
+
+#endif         
 
       }
 

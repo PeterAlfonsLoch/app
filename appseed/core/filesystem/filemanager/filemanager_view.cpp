@@ -225,24 +225,38 @@ namespace filemanager
       if (get_pane_count() > 0)
          return;
 
-      SetPaneCount(2);
+      bool bPathView = !Application.command_thread()->m_varTopicQuery.has_property("no_path_view");
+
+      SetPaneCount(bPathView ? 2 : 1);
 
       SetSplitOrientation(orientation_horizontal);
 
-      set_position(0, 24);
-
-      initialize_split_layout();
-
-      path_view * ppathview = create_view < path_view >();
-
-      if (ppathview == NULL)
+      if (bPathView)
       {
 
-         System.simple_message_box(NULL, "Could not create filemanager path view");
+         set_position(0, 24);
+
+         initialize_split_layout();
+
+         path_view * ppathview = create_view < path_view >();
+
+         if (ppathview == NULL)
+         {
+
+            System.simple_message_box(NULL, "Could not create filemanager path view");
+
+         }
+
+         SetPane(0, ppathview, false);
+
+      }
+      else
+      {
+
+         initialize_split_layout();
 
       }
 
-      SetPane(0, ppathview, false);
 
       main_view * pmainview = create_view < main_view >();
 
@@ -253,7 +267,7 @@ namespace filemanager
 
       }
 
-      SetPane(1, pmainview, false);
+      SetPane(bPathView ? 1 : 0, pmainview, false);
 
       pmainview->create_views();
 

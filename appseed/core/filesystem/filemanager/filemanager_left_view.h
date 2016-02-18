@@ -12,8 +12,8 @@ namespace filemanager
    public:
 
 
-      sp(::user::tree)           m_pusertree;
-      sp(::filemanager::tree)    m_ptree;
+      ::user::tree *           m_pusertree;
+      ::filemanager::tree *    m_ptree;
 
 
       left_view(::aura::application * papp);

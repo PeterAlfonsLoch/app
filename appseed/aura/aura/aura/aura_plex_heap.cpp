@@ -403,10 +403,16 @@ void ca2_heap_free_dbg(void * pvoid)
 
 thread_pointer < memdleak_block > t_plastblock;
 
+CLASS_DECL_AURA exception::engine * g_ee = NULL;
+
 void * plex_heap_alloc_array::alloc_dbg(size_t size, int32_t nBlockUse, const char * pszFileName, int32_t iLine)
 {
 
 #ifdef MEMDLEAK
+
+   throw 0;
+
+   return NULL;
 
    size_t nAllocSize = size + sizeof(size_t) + sizeof(memdleak_block);
 
@@ -428,8 +434,19 @@ void * plex_heap_alloc_array::alloc_dbg(size_t size, int32_t nBlockUse, const ch
    }
 
    pblock->m_iBlockUse     = nBlockUse;
-
-   pblock->m_pszFileName   = strdup(pszFileName); // not trackable, at least think so certainly causes memory leak
+   if (g_ee == NULL)
+   {
+      pblock->m_iStack = 0;
+      //pblock->m_pszFileName = NULL;
+   }
+   else
+   {
+      //string strCallStack;
+//      g_ee->stack_trace(1);
+      pblock->m_iStack = sizeof(pblock->m_puiStack) / sizeof(pblock->m_puiStack[0]);
+      g_ee->backtrace(pblock->m_puiStack, pblock->m_iStack);
+      //pblock->m_pszFileName = strdup(pszFileName); // not trackable, at least think so certainly causes memory leak
+   }
 
    pblock->m_iLine         = iLine;
 
@@ -509,7 +526,7 @@ void * plex_heap_alloc_array::alloc_dbg(size_t size, int32_t nBlockUse, const ch
 
 #else
 
-   return alloc(size);
+   return _alloc(size);
 
 #endif
 #endif
@@ -524,6 +541,10 @@ void plex_heap_alloc_array::free_dbg(void * p, size_t size)
 
 #ifdef MEMDLEAK
 
+   throw 0;
+
+   return;
+
    size_t * psize = &((size_t *)p)[-1];
 
    memdleak_block * pblock = &((memdleak_block *)psize)[-1];
@@ -533,19 +554,27 @@ void plex_heap_alloc_array::free_dbg(void * p, size_t size)
    if(s_pmemdleakList == pblock)
    {
       s_pmemdleakList = pblock->m_pnext;
-      s_pmemdleakList->m_pprevious = NULL;
+      if (s_pmemdleakList != NULL)
+      {
+         s_pmemdleakList->m_pprevious = NULL;
+
+      }
    }
    else
    {
-      pblock->m_pprevious->m_pnext = pblock->m_pnext;
+      if (pblock->m_pprevious != NULL)
+      {
+         pblock->m_pprevious->m_pnext = pblock->m_pnext;
+      }
       if(pblock->m_pnext != NULL)
       {
          pblock->m_pnext->m_pprevious = pblock->m_pprevious;
       }
    }
-
-   ::free((void *) pblock->m_pszFileName);
-
+   //if(pblock->m_pszFileName)
+   //::free((void *) pblock->m_pszFileName);
+   //if(pblock->m_puiStack)
+   //::free((void *)pblock->m_puiStack);
 
    if(*psize == 0)
    {
@@ -604,7 +633,7 @@ void plex_heap_alloc_array::free_dbg(void * p, size_t size)
 
 #else
 
-   return free(p, size);
+   return _free(p, size);
 
 #endif
 #endif
@@ -617,6 +646,9 @@ void * plex_heap_alloc_array::realloc_dbg(void * p,  size_t size, size_t sizeOld
 
 #ifdef MEMDLEAK
 
+   throw 0;
+
+   return NULL;
 
    size_t nAllocSize = size + sizeof(size_t) + sizeof(memdleak_block);
 
@@ -644,7 +676,10 @@ void * plex_heap_alloc_array::realloc_dbg(void * p,  size_t size, size_t sizeOld
       }
    }
 
-   ::free((void *) pblock->m_pszFileName);
+   //if(pblock->m_pszFileName)
+   //::free((void *) pblock->m_pszFileName);
+   //if(pblock->m_puiStack)
+   //::free((void *)pblock->m_puiStack);
 
    size_t * psizeNew = NULL;
 
@@ -706,7 +741,21 @@ void * plex_heap_alloc_array::realloc_dbg(void * p,  size_t size, size_t sizeOld
    psizeNew[0] = nAllocSize;
 
    pblock->m_iBlockUse     = nBlockUse;
-   pblock->m_pszFileName   = strdup(pszFileName == NULL ? "" : pszFileName);
+   if (g_ee == NULL)
+   {
+      pblock->m_iStack = 0;
+      //pblock->m_pszFileName = NULL;
+
+   }
+   else
+   {
+      //string strCallStack;
+      g_ee->stack_trace(1);
+      pblock->m_iStack = sizeof(pblock->m_puiStack) / sizeof(pblock->m_puiStack[0]);
+      g_ee->backtrace(pblock->m_puiStack, pblock->m_iStack);
+
+      //pblock->m_pszFileName = strdup(pszFileName == NULL ? "" : pszFileName);
+   }
    pblock->m_iLine         = iLine;
    pblock->m_iSize         = nAllocSize;
 
@@ -736,7 +785,7 @@ void * plex_heap_alloc_array::realloc_dbg(void * p,  size_t size, size_t sizeOld
    return ((byte *) &psize[1]) + 128;
 #else
 
-   return realloc(p, size, sizeOld, align);
+   return _realloc(p, size, sizeOld, align);
 
 #endif
 #endif
@@ -776,13 +825,14 @@ string get_mem_info_report1()
 
       	int * piUse = NULL;
 	const char ** pszFile = NULL;
+   const char ** pszCallStack = NULL;
 	int * piLine = NULL;
 	int64_t * piSize = NULL;
 
 	try
 	{
 
-		::count c = get_mem_info(&piUse, &pszFile, &piLine, & piSize);
+		::count c = get_mem_info(&piUse, &pszFile, &pszCallStack, &piLine, & piSize);
 
 		memblocka bla;
 
@@ -804,7 +854,7 @@ string get_mem_info_report1()
 			if(j == bla.get_size())
 			{
 				bla.add(canew(memblock));
-				memblock * pbl 			= bla.last_ptr();
+				auto & pbl 			= bla[bla.get_upper_bound()];
 				pbl->m_iUse 			= piUse[i];
 				pbl->m_strFile 			= pszFile[i];
 				pbl->m_iLine 			= piLine[i];
@@ -909,9 +959,47 @@ string get_mem_info_report1()
 
 #undef print
 
+void memdleak_dump()
+{
+   
+
+   memdleak_block * pblock = s_pmemdleakList;
+
+   char sz[24];
+   int i = 0;
+   while (pblock != NULL)
+   {
+      if (pblock->m_iStack > 0)
+      {
+         OutputDebugString("\n");
+         OutputDebugString("--------------------------------------------------------\n");
+         ultoa_dup(sz, ++i, 10);
+         OutputDebugString("Index : ");
+         OutputDebugString(sz);
+         OutputDebugString("\n");
+         ultoa_dup(sz, pblock->m_iSize, 10);
+         OutputDebugString("Size : ");
+         OutputDebugString(sz);
+         OutputDebugString("\n");
+         OutputDebugString(g_ee->stack_trace(pblock->m_puiStack, pblock->m_iStack));
+      }
+      pblock = pblock->m_pnext;
+   }
+   OutputDebugString("\n");
+   OutputDebugString("--------------------------------------------------------\n");
+   ultoa_dup(sz, i, 10);
+   OutputDebugString("\nFound ");
+   OutputDebugString(sz);
+   OutputDebugString(" memory leaks.");
+
+   //file_put_contents_dup("C:\\ca2\\m.html", get_mem_info_report1());
+}
+
+#undef print
+
 #endif
 
-void * plex_heap_alloc_array::realloc(void * p, size_t size, size_t sizeOld, int align)
+void * plex_heap_alloc_array::_realloc(void * p, size_t size, size_t sizeOld, int align)
 {
 
    plex_heap_alloc * pallocOld = find(sizeOld);
@@ -1030,7 +1118,7 @@ void Free_check_pointer_in_cpp(void * p)
 }
 
 #ifdef DEBUG
-void plex_heap_alloc_array::free(void * p,size_t size)
+void plex_heap_alloc_array::_free(void * p,size_t size)
 {
 
 /*   int xxx = MIN(1024,size * 2 / 3);

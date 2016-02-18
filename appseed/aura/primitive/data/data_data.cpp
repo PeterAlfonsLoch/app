@@ -33,12 +33,12 @@ namespace data
 
    simple_data::simple_data()
    {
-      m_pmutex = new mutex();
+      //m_pmutex = new mutex();
    }
    
    simple_data::~simple_data()
    {
-      ::aura::del(m_pmutex);
+      //::aura::del(m_pmutex);
    }
 
    

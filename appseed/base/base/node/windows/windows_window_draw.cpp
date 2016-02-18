@@ -374,62 +374,71 @@ namespace windows
          try
          {
 
-            //if(pui->m_bRedraw && ::get_tick_count() - pui->m_dwLastRedraw < 1000)
-            //{
+            if (pui == NULL || pui->get_wnd() == NULL || pui->get_wnd()->m_pimpl.cast < ::user::interaction_impl >() == NULL)
+               continue;
+            single_lock sl(pui->get_wnd()->m_pimpl.cast < ::user::interaction_impl > ()->draw_mutex(), false);
 
-            //   continue;
-
-            //}
-
-            //keep < bool > keepRedraw(&pui->m_bRedraw,true,false,true);
-
-            //pui->m_dwLastRedraw = ::get_tick_count();
-
-            if(pui->IsWindowVisible() && pui->m_bMayProDevian && pui->m_psession.is_null())
+            if (sl.lock(millis(84)))
             {
 
-               //if(get_tick_count() - pui->m_dwLastFullUpdate < 25)
+               //if(pui->m_bRedraw && ::get_tick_count() - pui->m_dwLastRedraw < 1000)
                //{
 
                //   continue;
 
                //}
 
+               //keep < bool > keepRedraw(&pui->m_bRedraw,true,false,true);
 
+               //pui->m_dwLastRedraw = ::get_tick_count();
 
-               try
+               if (pui->IsWindowVisible() && pui->m_bMayProDevian && pui->m_psession.is_null())
                {
 
-                  pui->defer_check_layout();
+                  //if(get_tick_count() - pui->m_dwLastFullUpdate < 25)
+                  //{
 
-               }
-               catch(...)
-               {
+                  //   continue;
 
-               }
-
+                  //}
 
 
-               try
-               {
 
-                  pui->_001UpdateBuffer();
+                  try
+                  {
 
-               }
-               catch(...)
-               {
+                     pui->defer_check_layout();
 
-               }
+                  }
+                  catch (...)
+                  {
+
+                  }
 
 
-               try
-               {
 
-                  pui->_001UpdateScreen();
+                  try
+                  {
 
-               }
-               catch(...)
-               {
+                     pui->_001UpdateBuffer();
+
+                  }
+                  catch (...)
+                  {
+
+                  }
+
+
+                  try
+                  {
+
+                     pui->_001UpdateScreen();
+
+                  }
+                  catch (...)
+                  {
+
+                  }
 
                }
 

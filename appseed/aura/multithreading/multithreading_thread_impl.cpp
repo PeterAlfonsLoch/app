@@ -1038,38 +1038,6 @@
 //}
 //
 //
-//void thread_impl::remove(::user::primitive * pui)
-//{
-//
-//   if(pui == NULL)
-//      return;
-//
-//   single_lock sl(&m_mutexUiPtra,TRUE);
-//
-//   if(Application.get_thread(pui).contains(m_pthread))
-//   {
-//
-//      Application.remove_thread(pui, m_pthread);
-//
-//   }
-//
-//   if(m_spuiptra.is_set())
-//   {
-//
-//      m_spuiptra->remove(pui);
-//
-//   }
-//
-//   sl.unlock();
-//
-//   //if(m_sptimera.is_set())
-//   //{
-//
-//   //   m_sptimera->unset(pui);
-//
-//   //}
-//
-//}
 //
 //
 //::count thread_impl::get_ui_count()

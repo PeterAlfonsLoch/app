@@ -87,13 +87,13 @@ PRIV(memctl_malloc)(size_t size, pcre2_memctl *memctl)
 {
 pcre2_memctl *newmemctl;
 void *yield = (memctl == NULL)? malloc(size) :
-  memctl->malloc(size, memctl->memory_data);
+  memctl->_alloc(size, memctl->memory_data);
 if (yield == NULL) return NULL;
 newmemctl = (pcre2_memctl *)yield;
 if (memctl == NULL)
   {
-  newmemctl->malloc = default_malloc;
-  newmemctl->free = default_free;
+  newmemctl->_alloc = default_malloc;
+  newmemctl->_free = default_free;
   newmemctl->memory_data = NULL;
   }
 else *newmemctl = *memctl;
@@ -120,8 +120,8 @@ if (private_malloc == NULL) private_malloc = default_malloc;
 if (private_free == NULL) private_free = default_free;
 gcontext = private_malloc(sizeof(pcre2_real_general_context), memory_data);
 if (gcontext == NULL) return NULL;
-gcontext->memctl.malloc = private_malloc;
-gcontext->memctl.free = private_free;
+gcontext->memctl._alloc = private_malloc;
+gcontext->memctl._free = private_free;
 gcontext->memctl.memory_data = memory_data;
 return gcontext;
 }
@@ -196,7 +196,7 @@ PCRE2_EXP_DEFN pcre2_general_context * PCRE2_CALL_CONVENTION
 pcre2_general_context_copy(pcre2_general_context *gcontext)
 {
 pcre2_general_context *new =
-  gcontext->memctl.malloc(sizeof(pcre2_real_general_context),
+  gcontext->memctl._alloc(sizeof(pcre2_real_general_context),
   gcontext->memctl.memory_data);
 if (new == NULL) return NULL;
 memcpy(new, gcontext, sizeof(pcre2_real_general_context));
@@ -208,7 +208,7 @@ PCRE2_EXP_DEFN pcre2_compile_context * PCRE2_CALL_CONVENTION
 pcre2_compile_context_copy(pcre2_compile_context *ccontext)
 {
 pcre2_compile_context *new =
-  ccontext->memctl.malloc(sizeof(pcre2_real_compile_context),
+  ccontext->memctl._alloc(sizeof(pcre2_real_compile_context),
   ccontext->memctl.memory_data);
 if (new == NULL) return NULL;
 memcpy(new, ccontext, sizeof(pcre2_real_compile_context));
@@ -220,7 +220,7 @@ PCRE2_EXP_DEFN pcre2_match_context * PCRE2_CALL_CONVENTION
 pcre2_match_context_copy(pcre2_match_context *mcontext)
 {
 pcre2_match_context *new =
-  mcontext->memctl.malloc(sizeof(pcre2_real_match_context),
+  mcontext->memctl._alloc(sizeof(pcre2_real_match_context),
   mcontext->memctl.memory_data);
 if (new == NULL) return NULL;
 memcpy(new, mcontext, sizeof(pcre2_real_match_context));
@@ -238,7 +238,7 @@ PCRE2_EXP_DEFN void PCRE2_CALL_CONVENTION
 pcre2_general_context_free(pcre2_general_context *gcontext)
 {
 if (gcontext != NULL)
-  gcontext->memctl.free(gcontext, gcontext->memctl.memory_data);
+  gcontext->memctl._free(gcontext, gcontext->memctl.memory_data);
 }
 
 
@@ -246,7 +246,7 @@ PCRE2_EXP_DEFN void PCRE2_CALL_CONVENTION
 pcre2_compile_context_free(pcre2_compile_context *ccontext)
 {
 if (ccontext != NULL)
-  ccontext->memctl.free(ccontext, ccontext->memctl.memory_data);
+  ccontext->memctl._free(ccontext, ccontext->memctl.memory_data);
 }
 
 
@@ -254,7 +254,7 @@ PCRE2_EXP_DEFN void PCRE2_CALL_CONVENTION
 pcre2_match_context_free(pcre2_match_context *mcontext)
 {
 if (mcontext != NULL)
-  mcontext->memctl.free(mcontext, mcontext->memctl.memory_data);
+  mcontext->memctl._free(mcontext, mcontext->memctl.memory_data);
 }
 
 
@@ -360,8 +360,8 @@ pcre2_set_recursion_memory_management(pcre2_match_context *mcontext,
   void *mydata)
 {
 #ifdef HEAP_MATCH_RECURSE
-mcontext->stack_memctl.malloc = mymalloc;
-mcontext->stack_memctl.free = myfree;
+mcontext->stack_memctl._alloc = mymalloc;
+mcontext->stack_memctl._free = myfree;
 mcontext->stack_memctl.memory_data = mydata;
 #else
 (void)mcontext;

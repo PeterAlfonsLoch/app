@@ -32,6 +32,9 @@ namespace exception
 
    base::~base()
    {
+
+      debug_print(m_strCallStack);
+
    }
 
    void base::Delete()

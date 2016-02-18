@@ -15,14 +15,14 @@ namespace filemanager
       ::draw2d::font_sp                   m_spfont;
       ::user::document *                  m_pdocumentSave;
       callback   *                        m_pfilemanager;
-      sp(manager)                         m_pmanager;
-      sp(manager)                         m_pmanagerMain;
+      manager *                           m_pmanager;
+      manager *                           m_pmanagerMain;
       callback *                          m_pcallback;
       ::filemanager::manager_template *   m_pmanagertemplate;
       bool                                m_bTransparentBackground;
       string                              m_strDISection;
-      sp(::user::place_holder)            m_pholderFileList;
-      sp(::user::tree)                    m_ptreeFileTreeMerge;
+      ::user::place_holder *              m_pholderFileList;
+      ::user::tree *                      m_ptreeFileTreeMerge;
       bool                                m_bSetBergedgeTopicFile;
 
       string                              m_strToolBar;

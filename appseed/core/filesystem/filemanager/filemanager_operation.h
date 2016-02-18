@@ -25,7 +25,7 @@ namespace filemanager
       bool                       m_bReplaceAll;
       char *                     m_pchBuffer;
       int32_t                    m_iBufferSize;
-      sp(::user::interaction)    m_oswindowCallback;
+      ::user::interaction *    m_oswindowCallback;
       UINT                       m_uiCallbackMessage;
       WPARAM                     m_wparamCallback;
 

@@ -270,7 +270,7 @@ namespace userfs
    }
 
 
-   void tree::_017OpenFolder(sp(::fs::item) item, ::action::context actioncontext)
+   void tree::_017OpenFolder(::fs::item * item, ::action::context actioncontext)
    {
 
       get_document()->browse(item->m_strPath, actioncontext);
@@ -307,7 +307,7 @@ namespace userfs
    }
 
 
-   sp(::data::tree_item) tree::find_item(const char * lpcsz, ::data::tree_item * pitemStart)
+   ::data::tree_item * tree::find_item(const char * lpcsz, ::data::tree_item * pitemStart)
    {
 
       return find_absolute(lpcsz, pitemStart);
@@ -466,10 +466,10 @@ namespace userfs
       }
    }
 
-   sp(::data::tree_item) tree::find_absolute(const char * lpcszPath, ::data::tree_item * pitemStart)
+   ::data::tree_item * tree::find_absolute(const char * lpcszPath, ::data::tree_item * pitemStart)
    {
 
-      sp(::data::tree_item) pitem;
+      ::data::tree_item * pitem;
 
       if(pitemStart == NULL)
          pitem = get_base_item();
@@ -519,9 +519,11 @@ namespace userfs
 
    }
 
-   sp(::userfs::document) tree::get_document()
+   ::userfs::document * tree::get_document()
    {
-      return  (::data::data::get_data_container_base());
+
+      return  dynamic_cast < ::userfs::document * > (::data::data::get_data_container_base());
+
    }
 
 

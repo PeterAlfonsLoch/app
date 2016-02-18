@@ -252,7 +252,7 @@ namespace userfs
                iStrict = m_meshlayout.m_iaDisplayToStrict[iItem];
             }
             list_item & item = pdata->m_itema.get_item(iStrict);
-            sp(::fs::item) pitem(new ::fs::item(item));
+            sp(::fs::item) pitem(canew(::fs::item(item)));
             if (item.IsFolder())
             {
                _017OpenFolder(pitem, ::action::source::sel(actioncontext));
@@ -303,12 +303,12 @@ namespace userfs
             list_item & item = pdata->m_itema.get_item(iStrict);
             if (pdata->m_itema.get_item(iStrict).IsFolder())
             {
-               _017OpenContextMenuFolder(new ::fs::item(item), actioncontext);
+               _017OpenContextMenuFolder(canew(::fs::item(item)), actioncontext);
                break;
             }
             else
             {
-               itema.add(new ::fs::item(item));
+               itema.add(canew(::fs::item(item)));
             }
          }
       }
@@ -434,7 +434,7 @@ namespace userfs
                      continue;
                   iStrict = m_meshlayout.m_iaDisplayToStrict[iItem];
                }
-               itema.add(new ::fs::item(pdata->m_itema.get_item(iStrict)));
+               itema.add(canew(::fs::item(pdata->m_itema.get_item(iStrict))));
             }
          }
       }

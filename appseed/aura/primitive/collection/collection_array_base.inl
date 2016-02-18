@@ -99,13 +99,43 @@ void array_base < TYPE, ALLOCATOR >::free_extra()
       TYPE* pNewData = NULL;
       if(m_nSize != 0)
       {
+         TYPE * pNewData;
+#if defined(__MCRTDBG) || MEMDLEAK
+#ifdef __MCRTDBG
+         if (::get_thread() != NULL)
+         {
+            if (::get_thread()->m_strFile.has_char())
+            {
+               pNewData = (TYPE *)ALLOCATOR::alloc(m_nSize * sizeof(TYPE), ::get_thread()->m_strFile, ::get_thread()->m_iLine);
+            }
+            else
+            {
+               pNewData = (TYPE *)ALLOCATOR::alloc(m_nSize * sizeof(TYPE), __FILE__, __LINE__);
+            }
+         }
+         else
+         {
+            pNewData = (TYPE *)ALLOCATOR::alloc(m_nSize * sizeof(TYPE), __FILE__, __LINE__);
+         }
+#else
+         if (::get_thread()->m_strDebug.has_char())
+         {
+            pNewData = (TYPE *)ALLOCATOR::alloc(m_nSize * sizeof(TYPE), ::get_thread()->m_strDebug, 0);
+         }
+         else
+         {
+            pNewData = (TYPE *)ALLOCATOR::alloc(m_nSize * sizeof(TYPE), __FILE__, __LINE__);
+         }
+#endif
+#else
          pNewData = (TYPE *)ALLOCATOR::alloc(m_nSize * sizeof(TYPE));
+#endif      // copy new data from old
          // copy new data from old
          ::aura::memcpy_s(pNewData,m_nSize * sizeof(TYPE),m_pData,m_nSize * sizeof(TYPE));
       }
 
       // get rid of old stuff (note: no destructors called)
-      ALLOCATOR::free(m_pData);
+      ALLOCATOR::_free(m_pData);
       m_pData = pNewData;
       m_nMaxSize = m_nSize;
 
@@ -126,7 +156,7 @@ void array_base < TYPE, ALLOCATOR >::destroy()
 
       ALLOCATOR::destruct(m_pData, m_nSize);
 
-      ALLOCATOR::free(m_pData);
+      ALLOCATOR::_free(m_pData);
 
       m_pData     = NULL;
       m_nSize     = 0;
@@ -343,22 +373,51 @@ template < class TYPE,class ALLOCATOR >
       // shrink to nothing
       if(m_pData != NULL)
       {
-         ALLOCATOR::free(m_pData);
+         ALLOCATOR::_free(m_pData);
          m_pData = NULL;
       }
       m_nSize = m_nMaxSize = 0;
    }
-   else if(m_pData == NULL)
+   else if (m_pData == NULL)
    {
       // create buffer big enough to hold number of requested elements or
       // m_nGrowBy elements, whichever is larger.
 #ifdef SIZE_T_MAX
-      if(nNewSize > SIZE_T_MAX / sizeof(TYPE))
+      if (nNewSize > SIZE_T_MAX / sizeof(TYPE))
          throw memory_exception(get_app());
       ASSERT(nNewSize <= SIZE_T_MAX / sizeof(TYPE));    // no overflow
 #endif
-      ::count nAllocSize = MAX(nNewSize,m_nGrowBy);
+      ::count nAllocSize = MAX(nNewSize, m_nGrowBy);
+#if defined(__MCRTDBG) || MEMDLEAK
+      if (::get_thread() != NULL)
+      {
+#if defined(MEMDLEAK)
+         if (::get_thread()->m_strFile.has_char())
+         {
+            m_pData = (TYPE *)ALLOCATOR::alloc(nAllocSize * sizeof(TYPE), ::get_thread()->m_strFile, 0);
+         }
+         else
+         {
+            m_pData = (TYPE *)ALLOCATOR::alloc(nAllocSize * sizeof(TYPE), __FILE__, __LINE__);
+         }
+#else
+         if (::get_thread()->m_strDebug.has_char())
+         {
+            m_pData = (TYPE *)ALLOCATOR::alloc(nAllocSize * sizeof(TYPE), ::get_thread()->m_strDebug, ::get_thread()->m_iLine);
+         }
+         else
+         {
+            m_pData = (TYPE *)ALLOCATOR::alloc(nAllocSize * sizeof(TYPE), __FILE__, __LINE__);
+         }
+#endif
+      }
+      else
+      {
+         m_pData = (TYPE *)ALLOCATOR::alloc(nAllocSize * sizeof(TYPE), __FILE__, __LINE__);
+      }
+#else
       m_pData = (TYPE *)ALLOCATOR::alloc(nAllocSize * sizeof(TYPE));
+#endif
       m_nSize = nNewSize;
       m_nMaxSize = nAllocSize;
    }
@@ -391,13 +450,42 @@ template < class TYPE,class ALLOCATOR >
 #ifdef SIZE_T_MAX
       ASSERT(nNewMax <= SIZE_T_MAX / sizeof(TYPE)); // no overflow
 #endif
-      TYPE * pNewData = (TYPE *)ALLOCATOR::alloc(nNewMax * sizeof(TYPE));
-      // copy new data from old
+      TYPE * pNewData;
+#if defined(__MCRTDBG) || MEMDLEAK
+#ifdef __MCRTDBG
+      if (::get_thread() != NULL)
+      {
+         if (::get_thread()->m_strFile.has_char())
+         {
+            pNewData = (TYPE *)ALLOCATOR::alloc(nNewMax * sizeof(TYPE), ::get_thread()->m_strFile, ::get_thread()->m_iLine);
+         }
+         else
+         {
+            pNewData = (TYPE *)ALLOCATOR::alloc(nNewMax * sizeof(TYPE), __FILE__, __LINE__);
+         }
+      }
+      else
+      {
+         pNewData = (TYPE *)ALLOCATOR::alloc(nNewMax * sizeof(TYPE), __FILE__, __LINE__);
+      }
+#else
+      if (::get_thread()->m_strDebug.has_char())
+      {
+         pNewData = (TYPE *)ALLOCATOR::alloc(nNewMax * sizeof(TYPE), ::get_thread()->m_strDebug, ::get_thread()->m_iLine);
+      }
+      else
+      {
+         pNewData = (TYPE *)ALLOCATOR::alloc(nNewMax * sizeof(TYPE), __FILE__, __LINE__);
+      }
+#endif
+#else
+      pNewData = (TYPE *)ALLOCATOR::alloc(nNewMax * sizeof(TYPE));
+#endif      // copy new data from old
       ::aura::memcpy_s(pNewData,(size_t)nNewMax * sizeof(TYPE),m_pData,(size_t)m_nSize * sizeof(TYPE));
 
       ///for(int32_t i = 0; i < nNewSize - m_nSize; i++)
          // get rid of old stuff (note: no destructors called)
-      ALLOCATOR::free(m_pData);
+      ALLOCATOR::_free(m_pData);
       m_pData = pNewData;
       m_nSize = nNewSize;
       m_nMaxSize = nNewMax;
@@ -438,7 +526,7 @@ template < class TYPE,class ALLOCATOR >
 
          ALLOCATOR::destruct(m_pData,m_nSize);
 
-         ALLOCATOR::free(m_pData);
+         ALLOCATOR::_free(m_pData);
 
          m_pData = NULL;
 
@@ -456,18 +544,28 @@ template < class TYPE,class ALLOCATOR >
 #endif
 
       ::count nAllocSize = MAX(nNewSize,m_nGrowBy);
-
-      #if MEMDLEAK
+      #if MEMDLEAK  || defined(__MCRTDBG)
       if(::get_thread() != NULL)
       {
-         if(::get_thread()->m_strDebug.has_char())
+#if defined(__MCRTDBG)
+         if(::get_thread()->m_strFile.has_char())
          {
-            m_pData = ALLOCATOR::alloc(nAllocSize, "thread://" + demangle(typeid(*::get_thread()).name()) + ", " + ::get_thread()->m_strDebug + ", "+ string(__FILE__), __LINE__);
+            m_pData = ALLOCATOR::alloc(nAllocSize, ::get_thread()->m_strFile, ::get_thread()->m_iLine);
          }
          else
          {
-            m_pData = ALLOCATOR::alloc(nAllocSize, "thread://" + demangle(typeid(*::get_thread()).name()) + ", "  + string(__FILE__), __LINE__);
+            m_pData = ALLOCATOR::alloc(nAllocSize, __FILE__, __LINE__);
          }
+#else
+         if (::get_thread()->m_strDebug.has_char())
+         {
+            m_pData = ALLOCATOR::alloc(nAllocSize, "thread://" + demangle(typeid(*::get_thread()).name()) + ", " + ::get_thread()->m_strDebug + ", " + string(__FILE__), __LINE__);
+         }
+         else
+         {
+            m_pData = ALLOCATOR::alloc(nAllocSize, "thread://" + demangle(typeid(*::get_thread()).name()) + ", " + string(__FILE__), __LINE__);
+         }
+#endif
       }
       else
       {
@@ -530,18 +628,30 @@ template < class TYPE,class ALLOCATOR >
 #ifdef SIZE_T_MAX
       ASSERT(::compare::lt(nNewMax, SIZE_T_MAX / sizeof(TYPE))); // no overflow
 #endif
-      #if MEMDLEAK
+      #if MEMDLEAK || defined(__MCRTDBG)
       TYPE* pNewData =  NULL;
       if(::get_thread() != NULL)
       {
-         if(::get_thread()->m_strDebug.has_char())
+         #if defined(__MCRTDBG)
+         if(::get_thread()->m_strFile.has_char())
          {
-            pNewData = ALLOCATOR::alloc(nNewMax * sizeof(TYPE), "thread://" + demangle(typeid(*::get_thread()).name()) + ", " + ::get_thread()->m_strDebug + ", "+ string(__FILE__), __LINE__);
+            pNewData = ALLOCATOR::alloc(nNewMax * sizeof(TYPE), ::get_thread()->m_strFile,::get_thread()->m_iLine);
          }
          else
          {
-            pNewData = ALLOCATOR::alloc(nNewMax * sizeof(TYPE), "thread://" + demangle(typeid(*::get_thread()).name()) + ", "  + string(__FILE__), __LINE__);
+            pNewData = ALLOCATOR::alloc(nNewMax * sizeof(TYPE), __FILE__, __LINE__);
          }
+#else
+         if (::get_thread()->m_strDebug.has_char())
+         {
+            pNewData = ALLOCATOR::alloc(nNewMax * sizeof(TYPE), "thread://" + demangle(typeid(*::get_thread()).name()) + ", " + ::get_thread()->m_strDebug + ", " + string(__FILE__), __LINE__);
+         }
+         else
+         {
+            pNewData = ALLOCATOR::alloc(nNewMax * sizeof(TYPE), "thread://" + demangle(typeid(*::get_thread()).name()) + ", " + string(__FILE__), __LINE__);
+         }
+
+#endif
       }
       else
       {
@@ -560,7 +670,7 @@ template < class TYPE,class ALLOCATOR >
       ASSERT(nNewSize > m_nSize);
       ALLOCATOR::construct(&pNewData[m_nSize],nNewSize - m_nSize);
       // get rid of old stuff (note: no destructors called)
-      ALLOCATOR::free(m_pData);
+      ALLOCATOR::_free(m_pData);
       m_pData = pNewData;
       m_nSize = nNewSize;
       m_nMaxSize = nNewMax;

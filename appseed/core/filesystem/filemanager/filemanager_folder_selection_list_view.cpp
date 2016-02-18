@@ -152,7 +152,7 @@ namespace filemanager
       FolderRemove();
    }
 
-   sp(data) folder_selection_list_view::get_filemanager_data()
+   data * folder_selection_list_view::get_filemanager_data()
    {
       return m_pdata;
    }

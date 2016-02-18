@@ -313,7 +313,7 @@ argument of match(), which never changes. */
   heapframe *newframe = frame->Xnextframe;\
   if (newframe == NULL)\
     {\
-    newframe = (heapframe *)(mb->stack_memctl.malloc)\
+    newframe = (heapframe *)(mb->stack_memctl._alloc)\
       (sizeof(heapframe), mb->stack_memctl.memory_data);\
     if (newframe == NULL) RRETURN(PCRE2_ERROR_NOMEMORY);\
     newframe->Xnextframe = NULL;\
@@ -1861,7 +1861,7 @@ for (;;)
         }
       else
         {
-        fr = (ovecsave_frame *)(mb->memctl.malloc(sizeof(ovecsave_frame *) +
+        fr = (ovecsave_frame *)(mb->memctl._alloc(sizeof(ovecsave_frame *) +
           mb->offset_end * sizeof(PCRE2_SIZE), mb->memctl.memory_data));
         if (fr == NULL) RRETURN(PCRE2_ERROR_NOMEMORY);
         new_recursive.ovec_save = fr->saved_ovec;
@@ -6403,7 +6403,7 @@ while (nextframe != NULL)
   {
   heapframe *oldframe = nextframe;
   nextframe = nextframe->Xnextframe;
-  mb->stack_memctl.free(oldframe, mb->stack_memctl.memory_data);
+  mb->stack_memctl._free(oldframe, mb->stack_memctl.memory_data);
   }
 }
 #endif  /* HEAP_MATCH_RECURSE */
@@ -6667,7 +6667,7 @@ offsets, and the top third is working space. */
 if (re->top_backref >= match_data->oveccount)
   {
   ocount = re->top_backref * 3 + 3;
-  mb->ovector = (PCRE2_SIZE *)(mb->memctl.malloc(ocount * sizeof(PCRE2_SIZE),
+  mb->ovector = (PCRE2_SIZE *)(mb->memctl._alloc(ocount * sizeof(PCRE2_SIZE),
     mb->memctl.memory_data));
   if (mb->ovector == NULL) return PCRE2_ERROR_NOMEMORY;
   using_temporary_offsets = TRUE;
@@ -7066,7 +7066,7 @@ while (mb->ovecsave_chain != NULL)
   {
   ovecsave_frame *this = mb->ovecsave_chain;
   mb->ovecsave_chain = this->next;
-  mb->memctl.free(this, mb->memctl.memory_data);
+  mb->memctl._free(this, mb->memctl.memory_data);
   }
 
 /* Fill in fields that are always returned in the match data. */
@@ -7097,7 +7097,7 @@ if (rc == MATCH_MATCH || rc == MATCH_ACCEPT)
         (arg_offset_max - 2) * sizeof(PCRE2_SIZE));
       }
     if (mb->end_offset_top > arg_offset_max) mb->capture_last |= OVFLBIT;
-    mb->memctl.free(mb->ovector, mb->memctl.memory_data);
+    mb->memctl._free(mb->ovector, mb->memctl.memory_data);
     }
 
   /* Set the return code to the number of captured strings, or 0 if there were
@@ -7178,7 +7178,7 @@ else match_data->rc = PCRE2_ERROR_NOMATCH;
 /* Free any temporary offsets. */
 
 if (using_temporary_offsets)
-  mb->memctl.free(mb->ovector, mb->memctl.memory_data);
+  mb->memctl._free(mb->ovector, mb->memctl.memory_data);
 return match_data->rc;
 }
 

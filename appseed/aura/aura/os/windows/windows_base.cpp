@@ -572,11 +572,12 @@ END_EXTERN_C
 
 #ifdef DEBUG
 
-
+#if !defined(__MCRTDBG) && !defined(__VLD)
 CLASS_DECL_AURA int32_t __cdecl _CrtDumpMemoryLeaks()
 {
    return TRUE;
 }
+#endif
 
 CLASS_DECL_AURA int32_t DECL_C _check_memory()
 {

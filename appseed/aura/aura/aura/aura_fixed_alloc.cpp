@@ -41,9 +41,9 @@ void fixed_alloc_no_sync::NewBlock()
    // add another block
    plex* pNewBlock = plex::create(m_pBlocks, m_nBlockSize, nAllocSize);
 
-   // chain them into free list
+   // chain them into _free list
    node* pNode = (node*)pNewBlock->data();
-   // free in reverse order to make it easier to debug
+   // _free in reverse order to make it easier to debug
    (BYTE*&)pNode += (nAllocSize * m_nBlockSize) - nAllocSize;
    for (int32_t i = m_nBlockSize-1; i >= 0; i--, (BYTE*&)pNode -= nAllocSize)
    {
@@ -245,7 +245,7 @@ fixed_alloc_array::~fixed_alloc_array()
    }
 }
 
-void * fixed_alloc_array::alloc(size_t nAllocSize)
+void * fixed_alloc_array::_alloc(size_t nAllocSize)
 {
    fixed_alloc * palloc = find(nAllocSize);
    if(palloc != NULL)
@@ -259,7 +259,7 @@ void * fixed_alloc_array::alloc(size_t nAllocSize)
 }
 
 
-void fixed_alloc_array::free(void * p, size_t nAllocSize)
+void fixed_alloc_array::_free(void * p, size_t nAllocSize)
 {
    
    fixed_alloc * palloc = find(nAllocSize);
@@ -280,7 +280,7 @@ void fixed_alloc_array::free(void * p, size_t nAllocSize)
 }
 
 
-void * fixed_alloc_array::realloc(void * pOld, size_t nOldAllocSize, size_t nNewAllocSize)
+void * fixed_alloc_array::_realloc(void * pOld, size_t nOldAllocSize, size_t nNewAllocSize)
 {
    
    fixed_alloc * pallocOld = find(nOldAllocSize);

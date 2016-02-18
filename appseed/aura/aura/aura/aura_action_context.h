@@ -14,48 +14,19 @@ namespace action
    };
    
 
-   class CLASS_DECL_AURA context
+   class CLASS_DECL_AURA context :
+      public cflag < e_source > 
    {
    public:
 
+      spa(object)       m_spa;
 
 
-      class CLASS_DECL_AURA data :
-         virtual public object
-      {
-      public:
 
-         
-         
-         e_source          m_esource;
-         spa(object)       m_spa;
-
-
-         data(e_source esource) { m_esource = esource; }
-         data(const data & data) { m_esource = data.m_esource; m_spa.copy(data.m_spa); }
-         virtual ~data() {};
-
-         data & operator = (const data & data)
-         {
-            if (this != &data)
-            {
-               m_esource = data.m_esource;
-               m_spa.copy(data.m_spa);
-            }
-            return *this;
-         }
-
-      };
-
-      sp(data)       m_spdata;
-
-
-      context() { m_spdata = canew(data(source_none)); }
-      context(e_source esource) { m_spdata = canew(data(esource)); }
-      context(const context & context) { m_spdata = canew(data(*context.m_spdata)); }
-#ifdef MOVE_SEMANTICS
-      context(context && context) { m_spdata.m_p = context.m_spdata.m_p; context.m_spdata.m_p = NULL; }
-#endif
+      context() { }
+      context(e_source esource) : cflag < e_source >(esource){  }
+      context(const cflag<e_source> & esource) : cflag < e_source >(esource) {  }
+      context(const context & context) : cflag < e_source >(context) , m_spa(context.m_spa){}
       ~context() {}
 
 
@@ -64,34 +35,18 @@ namespace action
       virtual bool contains(object * pobject);
 
 
-      inline context & operator += (e_source esourceAdd) { m_spdata->m_esource = (e_source)(esourceAdd | m_spdata->m_esource); return *this; }
-      inline context & operator -= (e_source esourceRemove)  { m_spdata->m_esource = (e_source)(m_spdata->m_esource & ~(int)(esourceRemove)); return *this; }
-
-      inline context operator + (e_source esourceAdd) { context ctx(*this); ctx += esourceAdd; return ctx; }
-      inline context operator - (e_source esourceRemove)  { context ctx(*this); ctx -= esourceRemove; return ctx; }
-
-      inline bool is_source(e_source esource) { return (m_spdata->m_esource & esource) != 0; }
+      inline bool is_source(e_source esource) { return is(esource); }
       inline bool is_user_source() { return is_source(source_user);  }
 
       context & operator = (const context & context)
       {
          if (this != &context)
          {
-            m_spdata = canew(data(*context.m_spdata));
+            cflag < e_source >::operator=(context);
+            m_spa = context.m_spa;
          }
          return *this;
       }
-#ifdef MOVE_SEMANTICS
-      context & operator = (context && context)
-      {
-         if (this != &context)
-         {
-            m_spdata.m_p = context.m_spdata.m_p;
-            context.m_spdata.m_p = NULL;
-         }
-         return *this;
-      }
-#endif
 
    };
 
@@ -101,7 +56,7 @@ namespace action
    namespace source
    {
       
-      static inline context add(e_source esourceAdd, e_source esource) { context ctx(esource); return ctx + esourceAdd; }
+      static inline context add(e_source esourceAdd, e_source esource){ context ctx(esource); return ctx + esourceAdd; }
       static inline context remove(e_source esource, e_source esourceRemove)  { context ctx(esource); return ctx - esourceRemove; }
       static inline context add_remove(e_source esource, e_source esourceAdd, e_source esourceRemove)  { context ctx(esource); return ctx + esourceAdd - esourceRemove; }
       static inline context sync(e_source esourceAdd = source_none, e_source esourceRemove = source_none) { return add_remove(source_sync, esourceAdd, esourceRemove); }
@@ -128,8 +83,8 @@ namespace action
 
       static inline context system_default(e_source esourceAdd = source_none, e_source esourceRemove = source_none) { return system(add(source_default, esourceAdd), esourceRemove); }
       static inline context database_default(e_source esourceAdd = source_none, e_source esourceRemove = source_none) { return database(add(source_default, esourceAdd), esourceRemove); }
-      static inline context system_default(context ctx, e_source esourceRemove = source_none) { return system(ctx + source_default, esourceRemove); }
-      static inline context database_default(context ctx, e_source esourceRemove = source_none) { return database(ctx + source_default, esourceRemove); }
+      static inline context system_default(context ctx, e_source esourceRemove = source_none) { return system(add(ctx, source_default), esourceRemove); }
+      static inline context database_default(context ctx, e_source esourceRemove = source_none) { return database(add(ctx, source_default), esourceRemove); }
 
    }
 

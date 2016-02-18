@@ -59,6 +59,10 @@ namespace user
 
    view_creator::~view_creator()
    {
+      for (auto & p : m_viewmap)
+      {
+         delete p.m_element2;
+      }
    }
 
    ::count view_creator::get_view_count()
