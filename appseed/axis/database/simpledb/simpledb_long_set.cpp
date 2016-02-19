@@ -58,7 +58,7 @@ public:
    ::simpledb::database *                       m_psimpledbUser;
    string                                    m_strUser;
 
-   class db_long_sync_queue *                m_pqueue;
+  sp(class db_long_sync_queue)                m_pqueue;
 
    db_long_set_core(db_server * pserver):
       ::object(pserver->get_app()),
@@ -185,7 +185,7 @@ void db_long_sync_queue::queue(const char * pszKey,int64_t l)
    item.m_strKey = pszKey;
    item.m_l = l;
 
-   m_itema.add(new db_long_set_queue_item(item));
+   m_itema.add(canew(db_long_set_queue_item(item)));
 
 }
 
@@ -316,7 +316,7 @@ bool db_long_set::save(const char * lpKey, int64_t lValue)
       if(m_pcore->m_pqueue == NULL)
       {
 
-         m_pcore->m_pqueue = new db_long_sync_queue(get_app());
+         m_pcore->m_pqueue = canew(db_long_sync_queue(get_app()));
          m_pcore->m_pqueue->m_pset = this;
          m_pcore->m_pqueue->begin();
 

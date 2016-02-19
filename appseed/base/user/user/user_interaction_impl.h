@@ -53,6 +53,8 @@ namespace user
 
       ::user::interaction *         m_puiFocus;
 
+      sp(::user::interaction)       m_puiThis;
+
       oswindow                      m_oswindow;
       bool                          m_bMouseHover;
       bool                          m_bScreenRelativeMouseMessagePosition;

@@ -11,7 +11,7 @@ namespace multimedia
 
       department::department(sp(base_application) papp) :
          ::object(papp),
-         base_departament(papp)
+         base_department(papp)
       {
 
       }

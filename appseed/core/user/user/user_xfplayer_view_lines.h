@@ -8,10 +8,10 @@ class CLASS_DECL_CORE XfplayerViewLines :
 public:
 
 
-   XfplayerViewLineSelection   m_selection;
-   sp(::user::interaction)      m_pinteraction;
-   index                        m_iFirstVisible;
-   index                        m_iLastVisible;
+   XfplayerViewLineSelection     m_selection;
+   ::user::interaction *         m_pinteraction;
+   index                         m_iFirstVisible;
+   index                         m_iLastVisible;
 
 
    XfplayerViewLines(::aura::application * papp);

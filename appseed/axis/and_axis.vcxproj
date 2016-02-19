@@ -1053,11 +1053,11 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="net\net_address.h" />
     <ClInclude Include="net\net_email.h" />
     <ClInclude Include="net\net_email_address.h" />
-    <ClInclude Include="net\net_email_departament.h" />
+    <ClInclude Include="net\net_email_department.h" />
     <ClInclude Include="net\net_ip_enum.h" />
     <ClInclude Include="net\net_net.h" />
     <ClInclude Include="net\net_port_forward.h" />
-    <ClInclude Include="net\net_url_departament.h" />
+    <ClInclude Include="net\net_url_department.h" />
     <ClInclude Include="net\net_url_domain.h" />
     <ClInclude Include="net\net_sockets.h" />
     <ClInclude Include="net\sockets\base\sockets_base_socket.h" />
@@ -1127,7 +1127,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClInclude Include="primitive\data\data_simple_item.h" />
     <ClInclude Include="primitive\data\data_tree.h" />
     <ClInclude Include="primitive\data\data_tree_item.h" />
-    <ClInclude Include="primitive\datetime\datetime_departament.h" />
+    <ClInclude Include="primitive\datetime\datetime_department.h" />
     <ClInclude Include="primitive\datetime\datetime_value.h" />
     <ClInclude Include="programming\javascript\javascript.h" />
     <ClInclude Include="programming\javascript\javascript_functions.h" />
@@ -1731,7 +1731,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="net\net_email_departament.cpp">
+    <ClCompile Include="net\net_email_department.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
@@ -1751,7 +1751,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="net\net_url_departament.cpp">
+    <ClCompile Include="net\net_url_department.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Android'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
@@ -2047,7 +2047,7 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <ClCompile Include="primitive\data\data_simple_item.cpp" />
     <ClCompile Include="primitive\data\data_tree.cpp" />
     <ClCompile Include="primitive\data\data_tree_item.cpp" />
-    <ClCompile Include="primitive\datetime\datetime_departament.cpp" />
+    <ClCompile Include="primitive\datetime\datetime_department.cpp" />
     <ClCompile Include="primitive\datetime\datetime_value.cpp" />
     <ClCompile Include="programming\javascript\javascript.cpp" />
     <ClCompile Include="programming\javascript\javascript_functions.cpp" />

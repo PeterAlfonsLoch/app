@@ -47,7 +47,7 @@ namespace sqlite
 
    database::set * base::CreateDataset() const
    {
-      return new class set((base*)this);
+      return canew(class set((base*)this));
    }
 
    int32_t base::status()

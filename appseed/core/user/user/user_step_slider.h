@@ -21,7 +21,7 @@ namespace user
       step_slider(::aura::application * papp);
       virtual ~step_slider();
 
-      bool create_window(const RECT & rect, sp(::user::interaction) pwndParent, id id);
+      bool create_window(const RECT & rect, ::user::interaction * pwndParent, id id);
 
       virtual void install_message_handling(::message::dispatch * pdispatch);
 

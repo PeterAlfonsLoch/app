@@ -60,7 +60,7 @@ public:
    ::simpledb::database *                          m_psimpledbUser;
    string                                       m_strUser;
 
-   class db_str_sync_queue *                    m_pqueue;
+   sp(class db_str_sync_queue)                    m_pqueue;
 
 
 
@@ -227,7 +227,7 @@ void db_str_sync_queue::queue(const char * pszKey,const char * psz)
 
    single_lock sl(&m_mutex, true);
 
-   sp(db_str_set_queue_item) item(new db_str_set_queue_item);
+   sp(db_str_set_queue_item) item(canew(db_str_set_queue_item));
 
    item->m_strKey = pszKey;
    item->m_str = psz;
@@ -248,7 +248,7 @@ m_mutex(pserver->get_app())
 
 db_str_set::~db_str_set()
 {
-
+   
    ::aura::del(m_pcore);
 
 }
@@ -459,7 +459,7 @@ bool db_str_set::save(const char * lpKey, const char * lpcsz)
       if(m_pcore->m_pqueue == NULL)
       {
 
-         m_pcore->m_pqueue = new db_str_sync_queue(get_app());
+         m_pcore->m_pqueue = canew(db_str_sync_queue(get_app()));
          m_pcore->m_pqueue->m_pset = this;
          m_pcore->m_pqueue->begin();
 

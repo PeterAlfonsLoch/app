@@ -1887,6 +1887,9 @@ namespace user
          m_pcsDisplay     = new critical_section;
 
       }
+      
+      m_puiThis = m_pui;
+      
 
    }
 

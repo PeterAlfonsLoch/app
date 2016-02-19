@@ -464,8 +464,8 @@
     <ClInclude Include="aura\aura\aura_cregexp_util.h" />
     <ClInclude Include="aura\aura\aura_debug.h" />
     <ClInclude Include="aura\aura\aura_definition.h" />
-    <ClInclude Include="aura\aura\aura_departament.h" />
-    <ClInclude Include="aura\aura\aura_departament_container.h" />
+    <ClInclude Include="aura\aura\aura_department.h" />
+    <ClInclude Include="aura\aura\aura_department_container.h" />
     <ClInclude Include="aura\aura\aura_draw2d.h" />
     <ClInclude Include="aura\aura\aura_draw_context.h" />
     <ClInclude Include="aura\aura\aura_draw_interface.h" />
@@ -626,14 +626,14 @@
     <ClInclude Include="aura\os\windows\windows_utils.h" />
     <ClInclude Include="aura\os\windows\windows_windows.h" />
     <ClInclude Include="aura\process\process_bidi_pipe.h" />
-    <ClInclude Include="aura\process\process_departament.h" />
+    <ClInclude Include="aura\process\process_department.h" />
     <ClInclude Include="aura\process\process_pipe.h" />
     <ClInclude Include="aura\process\process_process.h" />
     <ClInclude Include="aura\xml\xml.h" />
     <ClInclude Include="aura\xml\xml_attr.h" />
     <ClInclude Include="aura\xml\xml_base_array.h" />
     <ClInclude Include="aura\xml\xml_data.h" />
-    <ClInclude Include="aura\xml\xml_departament.h" />
+    <ClInclude Include="aura\xml\xml_department.h" />
     <ClInclude Include="aura\xml\xml_disp_option.h" />
     <ClInclude Include="aura\xml\xml_document.h" />
     <ClInclude Include="aura\xml\xml_edit.h" />
@@ -809,7 +809,7 @@
     <ClInclude Include="primitive\geometry\geometry_size.h" />
     <ClInclude Include="primitive\math\math_complex.h" />
     <ClInclude Include="primitive\math\math_count.h" />
-    <ClInclude Include="primitive\math\math_departament.h" />
+    <ClInclude Include="primitive\math\math_department.h" />
     <ClInclude Include="primitive\math\math_index.h" />
     <ClInclude Include="primitive\math\math_math.h" />
     <ClInclude Include="primitive\math\math_math_rng.h" />

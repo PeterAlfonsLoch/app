@@ -38,7 +38,7 @@ namespace user
       id                         m_idSubMenu;
       int32_t                    m_iHoverSubMenu;
       uint32_t                   m_dwOut;
-      menu *                     m_psubmenu;
+      sp(menu)                     m_psubmenu;
       id                         m_idTimerMenu;
       point                      m_ptTrack;
       ::user::interaction *      m_puiNotify;

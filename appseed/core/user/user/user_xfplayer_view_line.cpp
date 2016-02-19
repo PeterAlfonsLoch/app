@@ -1888,23 +1888,35 @@ void XfplayerViewLine::OnMouseMove(signal_details * pobj)
       }
 
    }*/
+
    if (GetSelection().OnMouseMove(*this, (UINT)pmouse->m_nFlags, pmouse->m_pt))
    {
+
       pmouse->m_bRet = true;
+
       pmouse->set_lresult(1);
+
    }
+
 }
+
 
 void XfplayerViewLine::OnSetCursor(signal_details * pobj)
 {
+
    UNREFERENCED_PARAMETER(pobj);
+   
    //if(IsInHover())
    //{
-     // pmouse->m_ecursor = ::visual::cursor_hand;
-      //return TRUE;
+   //
+   //    pmouse->m_ecursor = ::visual::cursor_hand;
+   //
+   //    return TRUE;
+   //
    //}
 
 }
+
 
 void XfplayerViewLine::OnLButtonDown(signal_details * pobj)
 {
@@ -1912,12 +1924,18 @@ void XfplayerViewLine::OnLButtonDown(signal_details * pobj)
    single_lock sl(m_pContainer->m_pmutex);
 
    SCAST_PTR(::message::mouse, pmouse, pobj);
+
    if (GetSelection().OnLButtonDown(*this, (UINT)pmouse->m_nFlags, pmouse->m_pt))
    {
+      
       pmouse->m_bRet = true;
+      
       pmouse->set_lresult(1);
+
    }
+
 }
+
 
 void XfplayerViewLine::OnLButtonUp(signal_details * pobj)
 {
@@ -1925,30 +1943,53 @@ void XfplayerViewLine::OnLButtonUp(signal_details * pobj)
    single_lock sl(m_pContainer->m_pmutex);
 
    SCAST_PTR(::message::mouse, pmouse, pobj);
+   
    strsize iChar;
+
    if (CalcChar(pmouse->m_pt, iChar))
    {
+
       if (CharHasLink(iChar))
       {
+
          string str;
+
          str = m_straLink[GetCharLink(iChar)];
+
          ASSERT(m_oswindow->IsWindow());
+
          System.open_link(str);
+
       }
+
    }
+
    if (GetSelection().OnLButtonUp(*this, (UINT)pmouse->m_nFlags, pmouse->m_pt))
    {
+
       pmouse->m_bRet = true;
+
       pmouse->set_lresult(1);
+
    }
+
 }
+
 
 void XfplayerViewLine::_001OnTimer(::timer * ptimer)
 {
+
    UNREFERENCED_PARAMETER(ptimer);
+
    //if(GetSelection().OnTimer(*this, user))
-     // return true;
+   //{
+   //
+   //    return true;
+   //
+   //}
+
 }
+
 
 ::draw2d::font * XfplayerViewLine::GetFont()
 {
@@ -1956,7 +1997,9 @@ void XfplayerViewLine::_001OnTimer(::timer * ptimer)
    single_lock sl(m_pContainer->m_pmutex);
 
    return m_font;
+
 }
+
 
 void XfplayerViewLine::SetBlend(double d)
 {
@@ -1964,10 +2007,18 @@ void XfplayerViewLine::SetBlend(double d)
    single_lock sl(m_pContainer->m_pmutex);
 
    ASSERT(d >= 0.0);
+   
    ASSERT(d <= 1.0);
+   
    if (d < 0.0 || d > 1.0)
+   {
+
       return;
+
+   }
+
    m_dBlend = d;
+
 }
 
 
@@ -1977,28 +2028,44 @@ void XfplayerViewLine::UpdateHover(point &ptCursor)
    single_lock sl(m_pContainer->m_pmutex);
 
    ::index iLine = m_iIndex;
+
    strsize iChar;
 
    user::e_line_hit etest = hit_test(ptCursor, iChar);
+
    if (etest == ::user::line_hit_link)
    {
+
       if (m_iLinkHoverIndex != GetLinkIndex(iLine, iChar))
       {
+
          m_iLinkHoverIndex = GetLinkIndex(iLine, iChar);
+
          rect rect;
+
          GetPlacement(rect);
+
          get_interaction()->RedrawWindow();
+
       }
+
    }
    else
    {
+
       if (m_iLinkHoverIndex != -1)
       {
+
          m_iLinkHoverIndex = -1;
+
          rect rect;
+
          GetPlacement(rect);
+
          get_interaction()->RedrawWindow();
+
       }
+
    }
 
 }
@@ -2006,12 +2073,21 @@ void XfplayerViewLine::UpdateHover(point &ptCursor)
 
 bool XfplayerViewLine::IsInHover()
 {
+   
    if (m_iLinkHoverIndex >= 0)
-      return true;
-   else
-      return false;
-}
+   {
 
+      return true;
+
+   }
+   else
+   {
+
+      return false;
+
+   }
+
+}
 
 
 index XfplayerViewLine::GetLinkIndex(index iLine, strsize iChar)
@@ -2020,10 +2096,21 @@ index XfplayerViewLine::GetLinkIndex(index iLine, strsize iChar)
    single_lock sl(m_pContainer->m_pmutex);
 
    if (!HasLink())
+   {
+
       return -1;
+
+   }
+
    if (iLine != m_iIndex)
+   {
+
       return -1;
+
+   }
+
    return GetCharLink(iChar);
+
 }
 
 
@@ -2033,12 +2120,17 @@ bool XfplayerViewLine::HasLink()
    single_lock sl(m_pContainer->m_pmutex);
 
    return m_iaLinkStart.get_count() > 0;
+
 }
 
-sp(::user::interaction) XfplayerViewLine::get_interaction()
+
+::user::interaction * XfplayerViewLine::get_interaction()
 {
+
    return m_pContainer->m_pinteraction;
+
 }
+
 
 inline XfplayerViewLineSelection & XfplayerViewLine::GetSelection()
 {

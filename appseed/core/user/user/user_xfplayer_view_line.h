@@ -50,7 +50,7 @@ public:
    bool                             m_bAutoSizeX;
    bool                             m_bAutoSizeY;
    int32_t                              m_iAlign;
-   sp(::user::interaction)            m_oswindow;
+   ::user::interaction *            m_oswindow;
    XfplayerViewLines *              m_pContainer;
 
    // 08, May 2004 attributes
@@ -218,7 +218,7 @@ public:
 
    XfplayerViewLineSelection::e_state GetSelectionState();
    XfplayerViewLineSelection & GetSelection();
-   sp(::user::interaction) get_interaction();
+   ::user::interaction * get_interaction();
 
 
 };

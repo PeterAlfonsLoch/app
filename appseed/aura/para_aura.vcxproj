@@ -93,8 +93,8 @@
     <ClCompile Include="aura\aura\aura_cregexp.cpp" />
     <ClCompile Include="aura\aura\aura_cregexp_util.cpp" />
     <ClCompile Include="aura\aura\aura_debug.cpp" />
-    <ClCompile Include="aura\aura\aura_departament.cpp" />
-    <ClCompile Include="aura\aura\aura_departament_container.cpp" />
+    <ClCompile Include="aura\aura\aura_department.cpp" />
+    <ClCompile Include="aura\aura\aura_department_container.cpp" />
     <ClCompile Include="aura\aura\aura_element.cpp" />
     <ClCompile Include="aura\aura\aura_file_watcher.cpp" />
     <ClCompile Include="aura\aura\aura_file_watcher_impl.cpp" />
@@ -233,7 +233,7 @@
     <ClCompile Include="aura\os\windows\windows_util.cpp" />
     <ClCompile Include="aura\os\windows\windows_utils.cpp" />
     <ClCompile Include="aura\process\process_bidi_pipe.cpp" />
-    <ClCompile Include="aura\process\process_departament.cpp" />
+    <ClCompile Include="aura\process\process_department.cpp" />
     <ClCompile Include="aura\process\process_pipe.cpp" />
     <ClCompile Include="aura\process\process_process.cpp" />
     <ClCompile Include="aura\xml\xml_attr.cpp" />
@@ -388,7 +388,7 @@
     <ClCompile Include="primitive\geometry\geometry_types.cpp" />
     <ClCompile Include="primitive\math\math_cvt.cpp" />
     <ClCompile Include="primitive\math\math_cvt_g.cpp" />
-    <ClCompile Include="primitive\math\math_departament.cpp" />
+    <ClCompile Include="primitive\math\math_department.cpp" />
     <ClCompile Include="primitive\math\math_math.cpp" />
     <ClCompile Include="primitive\math\math_math_rng.cpp" />
     <ClCompile Include="primitive\math\math_mkint_c.cpp" />

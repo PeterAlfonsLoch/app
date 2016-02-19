@@ -430,7 +430,7 @@ namespace user
                      if(pitem->m_bPopup)
                      {
                         m_idSubMenu = pevent->m_puie->m_id;
-                        m_psubmenu = new menu(get_app(), spitema->find(pevent->m_puie->m_id));
+                        m_psubmenu = canew(menu(get_app(), spitema->find(pevent->m_puie->m_id)));
                         rect rect;
                         spitema->find(pevent->m_puie->m_id)->m_button.GetWindowRect(rect);
                         m_psubmenu->_TrackPopupMenu(0,
@@ -475,7 +475,7 @@ namespace user
          if(m_idTimerMenu.has_char())
          {
             m_idSubMenu = m_idTimerMenu;
-            m_psubmenu = new menu(get_app(), spitema->find(m_idTimerMenu));
+            m_psubmenu = canew(menu(get_app(), spitema->find(m_idTimerMenu)));
             rect rect;
             spitema->find(m_idTimerMenu)->m_button.GetWindowRect(rect);
             m_psubmenu->_TrackPopupMenu(0,

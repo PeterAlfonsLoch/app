@@ -88,6 +88,8 @@ namespace user
    void interaction::user_interaction_common_construct()
    {
 
+
+      m_pparent = NULL;
       m_bWorkspaceFullScreen     = false;
       m_bHideOnTransparentFrame  = false;
       m_pvoidUserInteraction     = this;
@@ -851,7 +853,7 @@ namespace user
       for (int32_t i = 0; i < uiptra.get_count(); i++)
       {
 
-         sp(::user::interaction) pui = uiptra[i];
+         ::user::interaction * pui = uiptra[i];
 
          try
          {
@@ -865,8 +867,6 @@ namespace user
          }
 
       }
-
-      m_pparent.release();
 
 
 
@@ -2935,11 +2935,11 @@ namespace user
    ::user::interaction * interaction::GetTopLevel() const
    {
 
-      sp(::user::interaction) puiParent = (::user::interaction *) this;
+      ::user::interaction * puiParent = (::user::interaction *) this;
 
-      sp(::user::interaction) puiTopLevelParent;
+      ::user::interaction * puiTopLevelParent;
 
-      if(puiParent.is_null())
+      if(puiParent == NULL)
          return NULL;
 
       do
@@ -2949,7 +2949,7 @@ namespace user
 
          puiParent = puiParent->GetParent();
 
-      } while(puiParent.is_set());
+      } while(puiParent != NULL);
 
       return puiTopLevelParent;
 
@@ -6730,10 +6730,14 @@ synch_lock sl(m_pmutex);
    point interaction::get_parent_viewport_offset()
    {
 
-      sp(::user::interaction) puser = GetParent();
+      ::user::interaction * puser = GetParent();
 
-      if(puser.is_null())
-         return point(0,0);
+      if (puser == NULL)
+      {
+
+         return point(0, 0);
+
+      }
 
       return puser->get_viewport_offset();
 
