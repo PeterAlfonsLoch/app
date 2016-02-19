@@ -7260,9 +7260,9 @@ synch_lock sl(m_pmutex);
    bool interaction::is_descendant_of(::user::interaction * puiAscendantCandidate)
    {
 
-      sp(::user::interaction) pui = GetParent();
+      ::user::interaction * pui = GetParent();
 
-      while(pui.is_set())
+      while(pui != NULL)
       {
 
          if(pui == puiAscendantCandidate)
