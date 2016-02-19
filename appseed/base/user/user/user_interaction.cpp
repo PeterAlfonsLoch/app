@@ -7149,12 +7149,12 @@ synch_lock sl(m_pmutex);
 
       string str;
 
-      sp(::user::interaction) puiParent = GetParent();
+      ::user::interaction * puiParent = GetParent();
 
 #if defined(APPLE_IOS) || defined(VSNORD) || defined(METROWIN)
       if(puiParent.is_set() && puiParent.m_p != System.m_posdata->m_pui)
 #else
-      if(puiParent.is_set())
+      if(puiParent != NULL)
 #endif
       {
 
