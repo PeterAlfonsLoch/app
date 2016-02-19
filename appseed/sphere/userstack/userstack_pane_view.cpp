@@ -127,7 +127,9 @@ namespace userstack
       string strId = get_view_id();
       if(::str::begins_eat(strId, "app:"))
       {
+         
          ::aura::application * pappTab = NULL;
+
          if(Session.m_mapApplication.Lookup("application:" + strId, pappTab))
          {
             Session.m_pappCurrent = pappTab;
