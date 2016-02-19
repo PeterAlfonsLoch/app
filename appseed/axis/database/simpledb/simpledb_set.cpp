@@ -23,12 +23,6 @@ db_set::db_set(db_server * pserver, const char * pszTable)
 db_set::~db_set()
 {
 
-   if (m_pdataset != NULL)
-   {
-
-      delete m_pdataset;
-
-   }
 
 }
 

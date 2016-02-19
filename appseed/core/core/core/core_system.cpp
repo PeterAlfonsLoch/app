@@ -843,7 +843,7 @@ namespace core
    bool system::add_library(::aura::library * plibrary)
    {
 
-      m_libraryptra.add(plibrary);
+      m_libraryspa.add(plibrary);
 
       ::array < ::id > ida;
 
