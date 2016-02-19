@@ -225,7 +225,7 @@ CLASS_DECL_AXIS bool __node_axis_pos_term();
 //#include "axis/primitive/datetime/datetime_value.h"
 
 
-//#include "axis/primitive/datetime/datetime_departament.h"
+//#include "axis/primitive/datetime/datetime_department.h"
 
 #include "axis/database/database/database.h"
 
@@ -252,7 +252,7 @@ CLASS_DECL_AXIS bool __node_axis_pos_term();
 
 #include "axis/axis/crypto/crypto.h"
 
-#include "axis/net/net_email_departament.h"
+#include "axis/net/net_email_department.h"
 
 #include "axis_system.h"
 

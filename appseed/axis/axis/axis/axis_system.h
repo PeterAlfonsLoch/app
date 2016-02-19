@@ -13,7 +13,7 @@ namespace axis
    public:
 
 
-      //::url::department                           m_urldepartament;
+      //::url::department                           m_urldepartment;
 
 
       ::http::system                               m_httpsystem;
@@ -29,7 +29,7 @@ namespace axis
       class ::fontopus::user_set                   m_userset;
 
 
-      ::net::email_departament                     m_emaildepartament;
+      ::net::email_department                     m_emaildepartment;
 
 
 
@@ -72,7 +72,7 @@ namespace axis
       virtual int32_t exit_instance();
       virtual bool finalize();
 
-      //::url::department                           & url()     { return m_urldepartament; }
+      //::url::department                           & url()     { return m_urldepartment; }
 
       inline class ::http::system                  & http()    { return m_httpsystem; }
 
@@ -83,7 +83,7 @@ namespace axis
 
       ::fontopus::user_set                         & userset();
 
-      ::net::email_departament               & email();
+      ::net::email_department               & email();
 
 
       virtual string install_get_platform() override;

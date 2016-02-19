@@ -30,7 +30,7 @@ namespace sockets
 
 
 
-#include "axis/net/net_url_departament.h"
+#include "axis/net/net_url_department.h"
 #include "axis/net/net_url_domain.h"
 
 

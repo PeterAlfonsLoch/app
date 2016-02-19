@@ -1,13 +1,13 @@
 #include "framework.h"
 #include "axis/net/net_sockets.h"
-#include "net_email_departament.h"
+#include "net_email_department.h"
 
 
 namespace net
 {
 
 
-   email_departament::email_departament(::aura::application * papp) :
+   email_department::email_department(::aura::application * papp) :
       ::object(papp),
       ::aura::department(papp)
    {
@@ -15,7 +15,7 @@ namespace net
    }
 
 
-   bool email_departament::utf8_mail(class ::net::email & email)
+   bool email_department::utf8_mail(class ::net::email & email)
    {
 
       ::sockets::socket_handler handler(get_app());
@@ -50,7 +50,7 @@ namespace net
    }
 
 
-   bool email_departament::syntax_is_valid(const char * pszCandidate)
+   bool email_department::syntax_is_valid(const char * pszCandidate)
    {
 
       string strCandidate(pszCandidate);

@@ -17,7 +17,7 @@ namespace axis
       aura::system(this),
       m_httpsystem(this),
       m_visual(this),
-      m_emaildepartament(this),
+      m_emaildepartment(this),
       m_libraryDraw2d(this)
    {
       g_pszCooperativeLevel = "axis";
@@ -26,7 +26,7 @@ namespace axis
 
       m_puserstr                 = NULL;
 
-      m_purldepartament = new url::department(this);
+      m_purldepartment = new url::department(this);
 
       m_paxissystem = this;
 
@@ -89,7 +89,7 @@ namespace axis
    system::~system()
    {
 
-      ::aura::del(m_purldepartament);
+      ::aura::del(m_purldepartment);
 
       ::aura::del(m_pcompress);
 
@@ -642,10 +642,10 @@ namespace axis
    }
 
 
-   ::net::email_departament & system::email()
+   ::net::email_department & system::email()
    {
 
-      return m_emaildepartament;
+      return m_emaildepartment;
 
    }
 

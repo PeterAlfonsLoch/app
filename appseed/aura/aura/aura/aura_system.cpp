@@ -183,7 +183,7 @@ m_bRun = true;
 
       m_bGudoNetCache = true;
 
-      m_purldepartament = NULL;
+      m_purldepartment = NULL;
 
       m_pcompress = NULL;
 

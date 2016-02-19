@@ -1128,11 +1128,11 @@
     <ClInclude Include="net\net_address.h" />
     <ClInclude Include="net\net_email.h" />
     <ClInclude Include="net\net_email_address.h" />
-    <ClInclude Include="net\net_email_departament.h" />
+    <ClInclude Include="net\net_email_department.h" />
     <ClInclude Include="net\net_ip_enum.h" />
     <ClInclude Include="net\net_net.h" />
     <ClInclude Include="net\net_port_forward.h" />
-    <ClInclude Include="net\net_url_departament.h" />
+    <ClInclude Include="net\net_url_department.h" />
     <ClInclude Include="net\net_url_domain.h" />
     <ClInclude Include="net\net_sockets.h" />
     <ClInclude Include="net\sockets\base\sockets_base_socket.h" />
@@ -1833,7 +1833,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="net\net_email_departament.cpp">
+    <ClCompile Include="net\net_email_department.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
@@ -1857,7 +1857,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="net\net_url_departament.cpp">
+    <ClCompile Include="net\net_url_department.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>

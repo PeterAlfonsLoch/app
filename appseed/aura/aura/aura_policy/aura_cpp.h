@@ -983,8 +983,8 @@ CLASS_DECL_AURA string get_system_error_message(uint32_t dwError);
 #include "aura/primitive/collection/collection_file_path_map.h"
 
 #include "aura/primitive/primitive_edit.h"
-#include "aura/aura/aura/aura_departament.h"
-#include "aura/aura/aura/aura_departament_container.h"
+#include "aura/aura/aura/aura_department.h"
+#include "aura/aura/aura/aura_department_container.h"
 #include "aura/aura/xml/xml.h"
 
 //#include "aura/user/simple_ui/simple_ui_style.h"
@@ -1056,7 +1056,7 @@ CLASS_DECL_AURA string get_system_error_message(uint32_t dwError);
 
 
 #include "aura/primitive/math/math_math_rng.h"
-#include "aura/primitive/math/math_departament.h"
+#include "aura/primitive/math/math_department.h"
 #include "aura/primitive/geometry/geometry_geometry.h"
 
 
