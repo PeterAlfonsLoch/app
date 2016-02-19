@@ -1082,9 +1082,9 @@ namespace user
    ::user::interaction * interaction_base::GetActiveWindow()
    {
 
-      sp(::user::interaction) pui = get_wnd();
+      ::user::interaction * pui = get_wnd();
 
-      if(pui.is_null())
+      if(pui == NULL)
          return NULL;
 
       return get_wnd()->GetActiveWindow();

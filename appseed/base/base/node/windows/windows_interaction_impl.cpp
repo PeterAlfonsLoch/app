@@ -1583,8 +1583,8 @@ namespace windows
          }
       restart_mouse_hover_check:
          {
-            sp(::user::interaction) pui;
-            while((pui = m_guieptraMouseHover.get_child(pui)).is_set())
+            ::user::interaction * pui = NULL;
+            while((pui = m_guieptraMouseHover.get_child(pui)) != NULL)
             {
                if(!pui->_001IsPointInside(pmouse->m_pt))
                {
