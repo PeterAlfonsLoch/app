@@ -1061,7 +1061,12 @@ namespace user
       if(pevent->m_bProcessed)
          return true;
 
-      Application.BaseOnControlEvent(pevent);
+      if (m_pauraapp != NULL)
+      {
+
+         Application.BaseOnControlEvent(pevent);
+
+      }
 
       if(pevent->m_bProcessed)
          return true;

@@ -18,8 +18,8 @@ namespace datetime
 {
 
 
-   class CLASS_DECL_AURA departament:
-      virtual public ::aura::departament
+   class CLASS_DECL_AURA department:
+      virtual public ::aura::department
    {
    public:
       class CLASS_DECL_AURA international:
@@ -55,16 +55,16 @@ namespace datetime
       {
       public:
          str(::aura::application * papp);
-         departament * m_pdatetime;
+         department * m_pdatetime;
          string get_gmt_date_time();
       };
 
 
-      class ::datetime::departament::international m_international;
-      class ::datetime::departament::str m_str;
+      class ::datetime::department::international m_international;
+      class ::datetime::department::str m_str;
 
 
-      departament(::aura::application * papp);
+      department(::aura::application * papp);
 
       int32_t get_month_day_count(int32_t year,int32_t month);
       int32_t get_weekday(int32_t year,int32_t month,int32_t day);

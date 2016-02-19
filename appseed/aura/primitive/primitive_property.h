@@ -730,6 +730,23 @@ public:
 
 };
 
+class CLASS_DECL_AURA propertya :
+   public array < property >
+{
+public:
+
+
+   propertya(::aura::application * papp = NULL) :
+      object(papp)
+   {
+
+   }
+
+
+
+
+};
+
 class CLASS_DECL_AURA property_map :
    public id_map < var, const var &, ::comparison::hash < const id & >, ::comparison::equals_type_arg_type < id,const id & >, property, map_fixed_hash_table < 17, property > >
 {

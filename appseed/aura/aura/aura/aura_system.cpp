@@ -163,12 +163,12 @@ m_bRun = true;
 
       __node_aura_factory_exchange(this);
 
-      m_pdatetime = canew(class ::datetime::departament(this));
+      m_pdatetime = canew(class ::datetime::department(this));
 
 
       thread::s_bAllocReady = true;
 
-      m_pxml = canew(::xml::departament(this));
+      m_pxml = canew(::xml::department(this));
 
       m_pxml->construct(this);
 
@@ -374,7 +374,7 @@ m_bRun = true;
 
    }
 
-   ::datetime::departament & system::datetime()
+   ::datetime::department & system::datetime()
    {
 
       return *m_pdatetime;
@@ -1024,7 +1024,7 @@ m_bRun = true;
    }
 
 
-   ::xml::departament & system::xml()
+   ::xml::department & system::xml()
    {
       return *m_pxml;
    }
@@ -1079,7 +1079,7 @@ m_bRun = true;
    //}
 
 
-   ::process::departament & system::process()
+   ::process::department & system::process()
    {
 
       return m_process;

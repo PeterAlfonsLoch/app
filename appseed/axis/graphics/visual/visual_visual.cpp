@@ -36,7 +36,7 @@ namespace visual
 
    visual::visual(::aura::application * papp) :
       ::object(papp),
-      ::aura::departament(papp)
+      ::aura::department(papp)
    {
 
       m_pimaging        = NULL;
@@ -59,7 +59,7 @@ namespace visual
    void visual::construct(::aura::application * papp)
    {
 
-      ::aura::departament::construct(papp);
+      ::aura::department::construct(papp);
 
       
 
@@ -83,7 +83,7 @@ namespace visual
    bool visual::initialize1()
    {
 
-      if(!::aura::departament::initialize1())
+      if(!::aura::department::initialize1())
          return false;
 
       if (m_pfontcentral == NULL)
@@ -117,7 +117,7 @@ namespace visual
    bool visual::process_initialize()
    {
 
-      if(!::aura::departament::process_initialize())
+      if(!::aura::department::process_initialize())
          return false;
 
       if(!m_pvisualapi->open())
@@ -131,7 +131,7 @@ namespace visual
    bool visual::initialize()
    {
 
-      if(!::aura::departament::initialize())
+      if(!::aura::department::initialize())
          return false;
       
       //if(Application.dir().is(System.dir().commonappdata("")))
@@ -407,7 +407,7 @@ namespace visual
       try
       {
 
-         iExitCode = ::aura::departament::exit_instance();
+         iExitCode = ::aura::department::exit_instance();
 
       }
       catch(...)

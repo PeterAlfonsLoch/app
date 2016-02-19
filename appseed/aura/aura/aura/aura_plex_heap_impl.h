@@ -249,7 +249,7 @@ inline void * plex_heap_alloc_array::_alloc(size_t size)
 }
 
 #ifndef DEBUG
-void plex_heap_alloc_array::free(void * p,size_t size)
+void plex_heap_alloc_array::_free(void * p,size_t size)
 {
 
    plex_heap_alloc * palloc = find(size);

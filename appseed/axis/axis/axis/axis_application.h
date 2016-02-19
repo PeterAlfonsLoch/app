@@ -444,7 +444,7 @@ namespace axis
 
 
 
-      virtual string get_version();
+      //virtual string get_version();
 
       //virtual void SetCurrentHandles();
 

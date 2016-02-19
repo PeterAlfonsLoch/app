@@ -10,7 +10,7 @@ namespace filemanager
 
    filemanager::filemanager(::aura::application * papp) :
       object(papp),
-      ::aura::departament(papp)
+      ::aura::department(papp)
    {
 
 //      output_debug_string("");

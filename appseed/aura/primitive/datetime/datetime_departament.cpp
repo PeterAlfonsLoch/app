@@ -9,33 +9,33 @@
 namespace datetime
 {
 
-   ::datetime::time departament::from(const string & str)
+   ::datetime::time department::from(const string & str)
    {
       int iPathCount;
          return ::datetime::time(strtotime(Session.str_context(),str,0,iPathCount));
    }
 
 
-   departament::departament(::aura::application * papp):
+   department::department(::aura::application * papp):
       object(papp),
-      ::aura::departament(papp),
+      ::aura::department(papp),
       m_international(papp),
       m_str(papp)
    {
       m_str.m_pdatetime = this;
    }
 
-   class departament::international & departament::international()
+   class department::international & department::international()
    {
       return m_international;
    }
 
-   class departament::str & departament::str()
+   class department::str & department::str()
    {
       return m_str;
    }
 
-   int32_t departament::get_month_day_count(int32_t year,int32_t month)
+   int32_t department::get_month_day_count(int32_t year,int32_t month)
    {
       switch(month)
       {
@@ -71,13 +71,13 @@ namespace datetime
    }
 
    // 0 is Sunday
-   int32_t departament::get_weekday(int32_t year,int32_t month,int32_t day)
+   int32_t department::get_weekday(int32_t year,int32_t month,int32_t day)
    {
       ::datetime::time time(year,month,day,0,0,0);
       return atoi(time.Format("%w"));
    }
 
-   int64_t departament::get_timestamp(int32_t year,int32_t month,int32_t day)
+   int64_t department::get_timestamp(int32_t year,int32_t month,int32_t day)
    {
       string strInternationalDate;
       strInternationalDate.Format("%d-%02d-%02d",year,month,day);
@@ -85,7 +85,7 @@ namespace datetime
       return strtotime(NULL,strInternationalDate,0,i);
    }
 
-   int64_t departament::strtotime(::aura::str_context * pcontext,const char * psz,int32_t iPath,int32_t & iPathCount)
+   int64_t department::strtotime(::aura::str_context * pcontext,const char * psz,int32_t iPath,int32_t & iPathCount)
    {
       ::datetime::time time;
       ::datetime::value val =::datetime::strtotime(get_app(),pcontext,psz,iPath,iPathCount,false);
@@ -96,7 +96,7 @@ namespace datetime
       return time.get_time();
    }
 
-   int64_t departament::strtotime(::aura::str_context * pcontext,const char * psz,time_t timeParam,int32_t iPath,int32_t & iPathCount)
+   int64_t department::strtotime(::aura::str_context * pcontext,const char * psz,time_t timeParam,int32_t iPath,int32_t & iPathCount)
    {
       UNREFERENCED_PARAMETER(iPath);
       ::datetime::time time(timeParam);
@@ -106,7 +106,7 @@ namespace datetime
       return val.get_time().get_time();
    }
 
-   int64_t departament::gmt_strtotime(::aura::str_context * pcontext,const char * psz,int32_t iPath,int32_t & iPathCount)
+   int64_t department::gmt_strtotime(::aura::str_context * pcontext,const char * psz,int32_t iPath,int32_t & iPathCount)
    {
       ::datetime::time time;
       ::datetime::value val = ::datetime::strtotime(get_app(),pcontext,psz,iPath,iPathCount,true);
@@ -117,12 +117,12 @@ namespace datetime
       return time.get_time();
    }
 
-   departament::international::international(::aura::application * papp):
+   department::international::international(::aura::application * papp):
       object(papp)
    {
    }
 
-   void departament::international::parse_str(const char * psz,property_set & set)
+   void department::international::parse_str(const char * psz,property_set & set)
    {
       string src(psz);
       src.trim();
@@ -190,46 +190,46 @@ namespace datetime
    }
 
 
-   string departament::international::get_gmt_date_time(const ::datetime::time & time)
+   string department::international::get_gmt_date_time(const ::datetime::time & time)
    {
       string str;
       time.FormatGmt(str,"%Y-%m-%d %H:%M:%S");
       return str;
    }
 
-   string departament::international::get_gmt_date_time()
+   string department::international::get_gmt_date_time()
    {
       ::datetime::time time;
       time = time.get_current_time();
       return get_gmt_date_time(time);
    }
 
-   string departament::international::get_local_date_time(const ::datetime::time & time)
+   string department::international::get_local_date_time(const ::datetime::time & time)
    {
       string str;
       time.Format(str,"%Y-%m-%d %H:%M:%S");
       return str;
    }
 
-   string departament::international::get_local_date_time()
+   string department::international::get_local_date_time()
    {
       ::datetime::time time;
       time = time.get_current_time();
       return get_local_date_time(time);
    }
 
-   departament::str::str(::aura::application * papp)
+   department::str::str(::aura::application * papp)
    {
       UNREFERENCED_PARAMETER(papp);
       m_pdatetime = NULL;
    }
 
-   string departament::str::get_gmt_date_time()
+   string department::str::get_gmt_date_time()
    {
       return m_pdatetime->international().get_gmt_date_time(::datetime::time::get_current_time());
    }
 
-   time_t departament::mktime(int32_t iHour,int32_t iMinute,int32_t iSecond,int32_t iMonth,int32_t iDay,int32_t iYear)
+   time_t department::mktime(int32_t iHour,int32_t iMinute,int32_t iSecond,int32_t iMonth,int32_t iDay,int32_t iYear)
    {
       struct ::tm tm;
       ZERO(tm);
@@ -246,27 +246,27 @@ namespace datetime
 #endif
    }
 
-   string departament::get_week_day_str(aura::str_context * pcontext,int32_t iWeekDay) // 1 - domingo
+   string department::get_week_day_str(aura::str_context * pcontext,int32_t iWeekDay) // 1 - domingo
    {
       return System.str().get(pcontext,"datetimestr_weekday_long[" + ::str::from(iWeekDay - 1) + "]");
    }
 
-   string departament::get_tiny_week_day_str(aura::str_context * pcontext,int32_t iWeekDay) // 1 - domingo
+   string department::get_tiny_week_day_str(aura::str_context * pcontext,int32_t iWeekDay) // 1 - domingo
    {
       return System.str().get(pcontext,"datetimestr_weekday_tiny[" + ::str::from(iWeekDay - 1) + "]");
    }
 
-   string departament::get_month_str(aura::str_context * pcontext,int32_t iMonth)
+   string department::get_month_str(aura::str_context * pcontext,int32_t iMonth)
    {
       return System.str().get(pcontext,"datetimestr_month[" + ::str::from(iMonth - 1) + "]");
    }
 
-   string departament::get_short_month_str(aura::str_context * pcontext,int32_t iMonth)
+   string department::get_short_month_str(aura::str_context * pcontext,int32_t iMonth)
    {
       return System.str().get(pcontext,"datetimestr_month_short[" + ::str::from(iMonth - 1) + "]");
    }
 
-   ::datetime::time departament::from_gmt_date_time(int32_t iYear,int32_t iMonth,int32_t iDay,int32_t iHour,int32_t iMinute,int32_t iSecond)
+   ::datetime::time department::from_gmt_date_time(int32_t iYear,int32_t iMonth,int32_t iDay,int32_t iHour,int32_t iMinute,int32_t iSecond)
    {
       ::datetime::time timeLocalNow = ::datetime::time::get_current_time();
       struct ::tm tmLocalNow;
@@ -301,7 +301,7 @@ namespace datetime
    //The simple week number we define such that
    //    week 1 starts on January 1st of a given year,
    //    week n+1 starts 7 days after week n
-   int32_t departament::SWN(int32_t y,int32_t m,int32_t d)
+   int32_t department::SWN(int32_t y,int32_t m,int32_t d)
    {
       return 1 + (DP(y,m) + d - 1) / 7;
    }
@@ -309,7 +309,7 @@ namespace datetime
    //where DP ("Days Passed") is given by:
    //   DP( y, 1 ) = 0
    //  DP( y, m+1 ) = DP( y, m ) + ML( y, m )
-   int32_t departament::DP(int32_t y,int32_t m)
+   int32_t department::DP(int32_t y,int32_t m)
    {
       if(m == 1)
          return 0;
@@ -317,7 +317,7 @@ namespace datetime
          return DP(y,m - 1) + ML(y,m - 1);
    }
 
-   int32_t departament::ML(int32_t y,int32_t m)
+   int32_t department::ML(int32_t y,int32_t m)
    {
       switch(m)
       {
@@ -349,7 +349,7 @@ namespace datetime
       throw invalid_argument_exception(get_app());
    }
 
-   int32_t departament::LEAP(int32_t y)
+   int32_t department::LEAP(int32_t y)
    {
       if((y % 4 == 0) && ((y % 100 != 0) || (y % 400 == 0)))
          return 1;
@@ -360,27 +360,27 @@ namespace datetime
 
    // Use this elegant code by Tomohiko Sakamoto:
 
-   int32_t departament::dayofweek(int32_t y,int32_t m,int32_t d)	/* 0 = Sunday */
+   int32_t department::dayofweek(int32_t y,int32_t m,int32_t d)	/* 0 = Sunday */
    {
       static int32_t t[] ={0,3,2,5,0,3,5,1,4,6,2,4};
       y -= m < 3;
       return (y + y / 4 - y / 100 + y / 400 + t[m - 1] + d) % 7;
    }
 
-   int32_t departament::SDOW(int32_t y,int32_t m,int32_t d) // ( 0 = Monday, ..., 6 = Sunday )
+   int32_t department::SDOW(int32_t y,int32_t m,int32_t d) // ( 0 = Monday, ..., 6 = Sunday )
    {
       return (DP(y,m) + d - 1) % 7;
    }
 
 
-   int32_t departament::DOW(int32_t y,int32_t m,int32_t d)
+   int32_t department::DOW(int32_t y,int32_t m,int32_t d)
    {
       //return SDOW(y, m, d);
       return getDayOfWeek(m,d,y,0);
    }
 
 
-   int32_t departament::getDayOfWeek(int32_t month,int32_t day,int32_t year,int32_t CalendarSystem)
+   int32_t department::getDayOfWeek(int32_t month,int32_t day,int32_t year,int32_t CalendarSystem)
    {
       // CalendarSystem = 1 for Gregorian Calendar
       if(month < 3)
@@ -437,7 +437,7 @@ namespace datetime
    }*/
 
 
-   int32_t departament::ISO_WN(int32_t  y,int32_t m,int32_t d)
+   int32_t department::ISO_WN(int32_t  y,int32_t m,int32_t d)
    {
       int32_t dow     = DOW(y,m,d);
       int32_t dow0101 = DOW(y,1,1);
@@ -465,7 +465,7 @@ namespace datetime
    }
 
 
-   string departament::strftime(const char * psz,time_t timeParam)
+   string department::strftime(const char * psz,time_t timeParam)
    {
       string strFormat(psz);
       string str;
@@ -481,7 +481,7 @@ namespace datetime
       return str;
    }
 
-   string departament::strftime(const char * psz)
+   string department::strftime(const char * psz)
    {
       string str;
       ::datetime::time time;
@@ -490,7 +490,7 @@ namespace datetime
       return str;
    }
 
-   string departament::friend_time(aura::str_context * pcontext,::datetime::time timeNow,::datetime::time time)
+   string department::friend_time(aura::str_context * pcontext,::datetime::time timeNow,::datetime::time time)
    {
       bool bDiff = false;
       bool bSolved = false;

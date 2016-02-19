@@ -72,9 +72,9 @@ static const uchar index_hex[256] = {
 CLASS_DECL_AXIS int_bool from_string(in6_addr & addr, const string & string)
 {
    const uchar *s = (const uchar *)(const char *) string;
-   int32_t departament = 0;        /* index of the current departament (a 16-bit
+   int32_t department = 0;        /* index of the current department (a 16-bit
                            * piece of the address */
-   int32_t double_colon = -1;  /* index of the departament after the first
+   int32_t double_colon = -1;  /* index of the department after the first
                            * 16-bit group of zeros represented by
                            * the double colon */
    uint32_t val = 0;
@@ -85,15 +85,15 @@ CLASS_DECL_AXIS int_bool from_string(in6_addr & addr, const string & string)
       if (s[1] != ':') return 0;
       s += 2;
       addr.pr_s6_addr16[0] = 0;
-      departament = double_colon = 1;
+      department = double_colon = 1;
    }
 
    while (*s) {
-      if (departament == 8) return 0; /* too long */
+      if (department == 8) return 0; /* too long */
       if (*s == ':') {
          if (double_colon != -1) return 0; /* two double colons */
-         addr.pr_s6_addr16[departament++] = 0;
-         double_colon = departament;
+         addr.pr_s6_addr16[department++] = 0;
+         double_colon = department;
          s++;
          continue;
       }
@@ -110,12 +110,12 @@ CLASS_DECL_AXIS int_bool from_string(in6_addr & addr, const string & string)
       } else if (*s) {
          return 0; /* bad character */
       }
-      addr.pr_s6_addr16[departament++] = htons((uint16_t)val);
+      addr.pr_s6_addr16[department++] = htons((uint16_t)val);
    }
 
    if (*s == '.') {
       /* Have a trailing v4 format address */
-      if (departament > 6) return 0; /* not enough room */
+      if (department > 6) return 0; /* not enough room */
 
       /*
       * The number before the '.' is decimal, but we parsed it
@@ -124,7 +124,7 @@ CLASS_DECL_AXIS int_bool from_string(in6_addr & addr, const string & string)
       */
       if (val > 0x0255 || (val & 0xf0) > 0x90 || (val & 0xf) > 9) return 0;
       val = (val >> 8) * 100 + ((val >> 4) & 0xf) * 10 + (val & 0xf);
-      addr.pr_s6_addr[2 * departament] = val;
+      addr.pr_s6_addr[2 * department] = val;
 
       s++;
       val = index_hex[*s++];
@@ -134,8 +134,8 @@ CLASS_DECL_AXIS int_bool from_string(in6_addr & addr, const string & string)
          if (val > 255) return 0;
       }
       if (*s != '.') return 0; /* must have exactly 4 decimal numbers */
-      addr.pr_s6_addr[2 * departament + 1] = val;
-      departament++;
+      addr.pr_s6_addr[2 * department + 1] = val;
+      department++;
 
       s++;
       val = index_hex[*s++];
@@ -145,7 +145,7 @@ CLASS_DECL_AXIS int_bool from_string(in6_addr & addr, const string & string)
          if (val > 255) return 0;
       }
       if (*s != '.') return 0; /* must have exactly 4 decimal numbers */
-      addr.pr_s6_addr[2 * departament] = val;
+      addr.pr_s6_addr[2 * department] = val;
 
       s++;
       val = index_hex[*s++];
@@ -155,14 +155,14 @@ CLASS_DECL_AXIS int_bool from_string(in6_addr & addr, const string & string)
          if (val > 255) return 0;
       }
       if (*s) return 0; /* must have exactly 4 decimal numbers */
-      addr.pr_s6_addr[2 * departament + 1] = val;
-      departament++;
+      addr.pr_s6_addr[2 * department + 1] = val;
+      department++;
    }
 
    if (double_colon != -1) {
       /* Stretch the double colon */
       int32_t tosection;
-      int32_t ncopy = departament - double_colon;
+      int32_t ncopy = department - double_colon;
       for (tosection = 7; ncopy--; tosection--) {
          addr.pr_s6_addr16[tosection] =
             addr.pr_s6_addr16[double_colon + ncopy];
@@ -170,7 +170,7 @@ CLASS_DECL_AXIS int_bool from_string(in6_addr & addr, const string & string)
       while (tosection >= double_colon) {
          addr.pr_s6_addr16[tosection--] = 0;
       }
-   } else if (departament != 8) {
+   } else if (department != 8) {
       return 0; /* too int16_t */
    }
    return 1;
@@ -200,28 +200,28 @@ CLASS_DECL_AXIS string & to_string(string & str, in6_addr  & addr)
                                    * there are two or more 16-bit
                                    * groups of zeros */
    int32_t zero_length;
-   int32_t departament;
+   int32_t department;
    uint32_t val;
 
    /* Scan to find the placement of the double colon */
-   for (departament = 0; departament < 8; departament++) {
-      if (addr.pr_s6_addr16[departament] == 0) {
+   for (department = 0; department < 8; department++) {
+      if (addr.pr_s6_addr16[department] == 0) {
          zero_length = 1;
-         departament++;
-         while (departament < 8 && addr.pr_s6_addr16[departament] == 0) {
+         department++;
+         while (department < 8 && addr.pr_s6_addr16[department] == 0) {
             zero_length++;
-            departament++;
+            department++;
          }
          /* Select the longest sequence of zeros */
          if (zero_length > double_colon_length) {
-            double_colon = departament - zero_length;
+            double_colon = department - zero_length;
             double_colon_length = zero_length;
          }
       }
    }
 
    /* Now start converting to a string */
-   departament = 0;
+   department = 0;
 
    if (double_colon == 0) {
       if (double_colon_length == 6 ||
@@ -256,14 +256,14 @@ CLASS_DECL_AXIS string & to_string(string & str, in6_addr  & addr)
       }
    }
 
-   while (departament < 8) {
-      if (departament == double_colon) {
+   while (department < 8) {
+      if (department == double_colon) {
          STUFF(':');
          STUFF(':');
-         departament += double_colon_length;
+         department += double_colon_length;
          continue;
       }
-      val = ntohs(addr.pr_s6_addr16[departament]);
+      val = ntohs(addr.pr_s6_addr16[department]);
       if (val > 0xfff) {
          STUFF(basis_hex[val >> 12]);
       }
@@ -274,8 +274,8 @@ CLASS_DECL_AXIS string & to_string(string & str, in6_addr  & addr)
          STUFF(basis_hex[(val >> 4) & 0xf]);
       }
       STUFF(basis_hex[val & 0xf]);
-      departament++;
-      if (departament < 8 && departament != double_colon) STUFF(':');
+      department++;
+      if (department < 8 && department != double_colon) STUFF(':');
    }
    STUFF('\0');
    return str;

@@ -85,8 +85,8 @@ public:
   way by handling events that it generates as it finds specific
   symbols in the text. This class is similar to the SAX (Simple
   API for XML) implementation, which is an XML DOM parser. Like
-  SAX, the lite_html_reader class reads a departament of HTML text,
-  generates an event, and moves on to the next departament. This
+  SAX, the lite_html_reader class reads a department of HTML text,
+  generates an event, and moves on to the next department. This
   results in low memory consumption.
 
   @version 1.0 (Mar 26, 2004)

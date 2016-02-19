@@ -788,6 +788,21 @@ void thread::signal_close_dependent_threads()
 
          pthread = m_threadptraDependent[i];
 
+      }
+      catch (...)
+      {
+
+         m_threadptraDependent.remove_at(i);
+
+         continue;
+
+      }
+
+      sl.unlock();
+
+      try
+      {
+
          synch_lock slThread(pthread->m_pmutex);
 
          pthread->set_end_thread();
@@ -798,14 +813,9 @@ void thread::signal_close_dependent_threads()
       catch(...)
       {
 
-         m_threadptraDependent.remove_at(i);
-
       }
 
-      sl.unlock();
-
       sl.lock();
-
 
    }
 
@@ -891,9 +901,16 @@ void thread::unregister_from_required_threads()
       try
       {
 
-         synch_lock slThread(m_threadptraRequired[i]->m_pmutex);
+         ::thread * pthread = m_threadptraRequired[i];
 
-         m_threadptraRequired[i]->unregister_dependent_thread(this);
+         if (pthread != this)
+         {
+
+            synch_lock slThread(pthread->m_pmutex);
+
+            pthread->unregister_dependent_thread(this);
+
+         }
 
       }
       catch(...)

@@ -6,7 +6,7 @@ namespace userfs
 
 
    class CLASS_DECL_CORE userfs :
-      virtual public ::aura::departament
+      virtual public ::aura::department
    {
    public:
 

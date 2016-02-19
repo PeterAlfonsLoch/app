@@ -29,12 +29,12 @@ namespace aura
       ::object *                                   m_pDraw2dFactoryExchange;
 
 
-      sp(class ::datetime::departament)            m_pdatetime;
+      sp(class ::datetime::department)            m_pdatetime;
 
       stridsp(type)                                m_typemap;
       spa(service_base)                            m_serviceptra;
       sp(base_factory)                             m_pfactory;
-      sp(class ::xml::departament)                 m_pxml;
+      sp(class ::xml::department)                 m_pxml;
       const id_pool                                m_cidpool;
       sp(class ::aura::log)                        m_plog;
       sp(math::math)                               m_pmath;
@@ -81,7 +81,7 @@ namespace aura
       bool                                         m_bGudoNetCache;
 
 
-      ::process::departament                       m_process;
+      ::process::department                       m_process;
 
 
       string                                       m_strCmdLine;
@@ -97,7 +97,7 @@ namespace aura
       bool                                         m_bAdvancedGUI;
 
       ::html::html *                               m_phtml; // only defined and set in html library/component
-      ::url::departament *                         m_purldepartament;
+      ::url::department *                         m_purldepartament;
       ::axis::compress *                           m_pcompress;
 
       ::file::system_sp                            m_spfile;
@@ -136,10 +136,10 @@ namespace aura
       ::exception::engine                          &  eengine();
 
       ::aura::str                                  & str();
-      ::process::departament                       &  process();
+      ::process::department                       &  process();
 
 
-      ::xml::departament                           &  xml();
+      ::xml::department                           &  xml();
       class ::str::base64                          &  base64();
 
       class ::aura::log                            &  log();
@@ -149,13 +149,13 @@ namespace aura
       geometry::geometry                           &  geometry() { return *m_pgeometry; }
       math::math                                   &  math() { return *m_pmath; }
       ::colorertake5::ParserFactory                &  parser_factory();
-      inline ::url::departament                    & url() { return *m_purldepartament; } // only usable from base.dll and dependants
+      inline ::url::department                    & url() { return *m_purldepartament; } // only usable from base.dll and dependants
       inline class ::axis::compress                & compress() { return *m_pcompress; } // only usable from base.dll and dependants
 
       inline ::file::system                        & file()    { return *m_spfile; }
       inline ::file::dir::system                   & dir()     { return *m_spdir; }
 
-      ::datetime::departament                      & datetime();
+      ::datetime::department                      & datetime();
 
 
 

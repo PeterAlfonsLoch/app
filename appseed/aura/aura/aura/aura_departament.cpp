@@ -5,14 +5,14 @@ namespace aura
 
 
 
-   departament::departament(application * papp):
+   department::department(application * papp):
       object(papp)
    {
 
    }
 
 
-   departament::~departament()
+   department::~department()
    {
 
    }
@@ -22,7 +22,7 @@ namespace aura
    // not contain advanced initialization as the
    // papp application pointer may be incompletely
    // initialized specially its virtual functions.
-   void departament::construct(::aura::application * papp)
+   void department::construct(::aura::application * papp)
    {
 
       set_app(papp);
@@ -30,23 +30,15 @@ namespace aura
    }
 
 
-   void departament::connect_to_application_signal()
+   void department::connect_to_application_signal()
    {
 
-      m_pauraapp->m_psignal->connect(this,&departament::on_signal);
+      m_pauraapp->m_psignal->connect(this,&department::on_signal);
 
    }
 
 
-   bool departament::process_initialize()
-   {
-
-      return true;
-
-   }
-
-
-   bool departament::initialize()
+   bool department::process_initialize()
    {
 
       return true;
@@ -54,7 +46,7 @@ namespace aura
    }
 
 
-   bool departament::initialize1()
+   bool department::initialize()
    {
 
       return true;
@@ -62,7 +54,7 @@ namespace aura
    }
 
 
-   bool departament::initialize2()
+   bool department::initialize1()
    {
 
       return true;
@@ -70,7 +62,7 @@ namespace aura
    }
 
 
-   bool departament::initialize3()
+   bool department::initialize2()
    {
 
       return true;
@@ -78,7 +70,7 @@ namespace aura
    }
 
 
-   bool departament::initialize_instance()
+   bool department::initialize3()
    {
 
       return true;
@@ -86,7 +78,7 @@ namespace aura
    }
 
 
-   bool departament::finalize()
+   bool department::initialize_instance()
    {
 
       return true;
@@ -94,14 +86,22 @@ namespace aura
    }
 
 
-   int32_t departament::exit_instance()
+   bool department::finalize()
+   {
+
+      return true;
+
+   }
+
+
+   int32_t department::exit_instance()
    {
 
       return 0;
 
    }
 
-   void departament::on_signal(signal_details * pobj)
+   void department::on_signal(signal_details * pobj)
    {
 
       SCAST_PTR(::aura::application_signal_details,papplicationsignal,pobj);

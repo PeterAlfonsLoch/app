@@ -7,14 +7,14 @@ namespace aura
 
 
 
-   class CLASS_DECL_AURA departament :
+   class CLASS_DECL_AURA department :
    virtual public signalizable
    {
    public:
 
 
-      departament(application * papp);
-      virtual ~departament();
+      department(application * papp);
+      virtual ~department();
 
 
       virtual void construct(::aura::application * papp);

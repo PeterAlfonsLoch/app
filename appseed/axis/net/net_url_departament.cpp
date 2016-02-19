@@ -6,20 +6,20 @@ namespace url
 {
 
 
-   departament::departament(::aura::application * papp) :
+   department::department(::aura::application * papp) :
 	   ::object(papp),
-      ::aura::departament(papp)
+      ::aura::department(papp)
    {
 
    }
 
-   departament::~departament()
+   department::~department()
    {
 
    }
 
 
-   string departament::get_protocol(const char * psz)
+   string department::get_protocol(const char * psz)
    {
       string str(psz);
       index iPos = str.find(":");
@@ -29,7 +29,7 @@ namespace url
    }
 
 
-   string departament::get_root(const char * psz)
+   string department::get_root(const char * psz)
    {
       string str(psz);
       index iPos = str.find(":");
@@ -48,7 +48,7 @@ namespace url
          return str.Mid(iStart, iEnd - iStart);
    }
 
-   string departament::get_server(const char * psz)
+   string department::get_server(const char * psz)
    {
 
       string strRoot = get_root(psz);
@@ -62,7 +62,7 @@ namespace url
 
    }
 
-   int32_t departament::get_port(const char * psz, int32_t iDefault)
+   int32_t department::get_port(const char * psz, int32_t iDefault)
    {
 
       string strRoot = get_root(psz);
@@ -94,7 +94,7 @@ namespace url
 
    }
 
-   string departament::get_object(const char * psz)
+   string department::get_object(const char * psz)
    {
 
       string str(psz);
@@ -115,7 +115,7 @@ namespace url
 
    }
 
-   string departament::object_get_script(const char * psz) // page
+   string department::object_get_script(const char * psz) // page
    {
 
       string str(psz);
@@ -129,7 +129,7 @@ namespace url
 
    }
 
-   string departament::object_get_query(const char * psz) // id=1
+   string department::object_get_query(const char * psz) // id=1
    {
 
       string str(psz);
@@ -143,7 +143,7 @@ namespace url
 
    }
 
-   string departament::object_set(const char * pszObject, const char * pszKey, var var)
+   string department::object_set(const char * pszObject, const char * pszKey, var var)
    {
 
       string strQuery = object_get_query(pszObject);
@@ -153,21 +153,21 @@ namespace url
    }
 
 
-   string departament::get_script(const char * psz) // page
+   string department::get_script(const char * psz) // page
    {
 
       return object_get_script(get_object(psz));
 
    }
 
-   string departament::get_query(const char * psz) // id=1
+   string department::get_query(const char * psz) // id=1
    {
 
       return object_get_query(get_object(psz));
 
    }
 
-   string departament::object(const char * pszScript, const char * pszQuery)
+   string department::object(const char * pszScript, const char * pszQuery)
    {
 
       string strScript(pszScript);
@@ -182,7 +182,7 @@ namespace url
    }
 
 
-   string departament::path(const char * psz1, const char * psz2)
+   string department::path(const char * psz1, const char * psz2)
    {
 
       if(psz2 == NULL)
@@ -202,14 +202,14 @@ namespace url
 
    }
 
-   string departament::path(const char * psz1, const char * psz2, const char * psz3)
+   string department::path(const char * psz1, const char * psz2, const char * psz3)
    {
 
       return path(path(psz1, psz2), psz3);
 
    }
 
-   string departament::name(const char * psz)
+   string department::name(const char * psz)
    {
 
       string str(psz);
@@ -231,7 +231,7 @@ namespace url
    }
 
 
-   string departament::url_encode(const char * psz)
+   string department::url_encode(const char * psz)
    {
 
       string str;
@@ -267,7 +267,7 @@ namespace url
    }
 
 
-   string departament::url_decode(const char * psz)
+   string department::url_decode(const char * psz)
    {
 
       return url_decode_dup(psz);
@@ -275,14 +275,14 @@ namespace url
    }
 
 
-   string departament::url_decode(const char * lpszUrl, strsize iLen)
+   string department::url_decode(const char * lpszUrl, strsize iLen)
    {
 
       return url_decode_dup(lpszUrl,iLen);
 
    }
 
-   string departament::query_append(const char * pszUrl, const char * pszQuery)
+   string department::query_append(const char * pszUrl, const char * pszQuery)
    {
 
       string strUrl(pszUrl);
@@ -326,7 +326,7 @@ namespace url
    }
 
 
-   bool departament::is_url(const char * pszCandidate)
+   bool department::is_url(const char * pszCandidate)
    {
 
       string strCandidate(pszCandidate);
@@ -360,14 +360,14 @@ namespace url
 
    }
 
-   var & departament::var_set(var & varUrl, const char * pszKey, var var)
+   var & department::var_set(var & varUrl, const char * pszKey, var var)
    {
 
       return varUrl = set_key(varUrl, pszKey, var);
 
    }
 
-   property & departament::property_set(property & propUrl, const char * pszKey, var var)
+   property & department::property_set(property & propUrl, const char * pszKey, var var)
    {
 
       propUrl.set_value(set_key(propUrl.get_value(), pszKey, var));
@@ -376,14 +376,14 @@ namespace url
 
    }
 
-   string departament::string_set(string & strUrl, const char * pszKey, var var)
+   string department::string_set(string & strUrl, const char * pszKey, var var)
    {
 
       return strUrl = set_key(strUrl, pszKey, var);
 
    }
 
-   string departament::set_key(const char * pszUrl, const char * pszKey, var var)
+   string department::set_key(const char * pszUrl, const char * pszKey, var var)
    {
 
       string strUrl(pszUrl);
@@ -399,7 +399,7 @@ namespace url
 
    }
 
-   void departament::set_key(string & strUrl, const char * pszUrl, const char * pszKey, var var)
+   void department::set_key(string & strUrl, const char * pszUrl, const char * pszKey, var var)
    {
 
       strUrl = pszUrl;
@@ -413,7 +413,7 @@ namespace url
 
    }
 
-   void departament::set_param(string & strUrl, const char * pszUrl, const char * pszKey, const char * strParam)
+   void department::set_param(string & strUrl, const char * pszUrl, const char * pszKey, const char * strParam)
    {
 
       const char * pszQuery = strchr(pszUrl, '?');
@@ -525,14 +525,14 @@ namespace url
 
    }
 
-   var & departament::var_remove(var & varUrl, const char * pszKey)
+   var & department::var_remove(var & varUrl, const char * pszKey)
    {
 
       return varUrl = remove_key(varUrl, pszKey);
 
    }
 
-   property & departament::property_remove(property & propUrl, const char * pszKey)
+   property & department::property_remove(property & propUrl, const char * pszKey)
    {
 
       propUrl.set_string(remove_key(propUrl.get_value(), pszKey));
@@ -541,14 +541,14 @@ namespace url
 
    }
 
-   string departament::string_remove(string & strUrl, const char * pszKey)
+   string department::string_remove(string & strUrl, const char * pszKey)
    {
 
       return strUrl = remove_key(strUrl, pszKey);
 
    }
 
-   string departament::remove_key(const char * pszUrl, const char * pszKey)
+   string department::remove_key(const char * pszUrl, const char * pszKey)
    {
 
       string strUrl(pszUrl);
@@ -562,7 +562,7 @@ namespace url
 
    }
 
-   var departament::get_var(const char * pszUrl, const char * pszKey)
+   var department::get_var(const char * pszUrl, const char * pszKey)
    {
 
       string strUrl(pszUrl);
@@ -576,7 +576,7 @@ namespace url
 
    }
 
-   string departament::get_param(const char * pszUrl, const char * pszKey)
+   string department::get_param(const char * pszUrl, const char * pszKey)
    {
 
       string strUrl(pszUrl);
@@ -590,7 +590,7 @@ namespace url
 
    }
 
-   bool departament::get_param(string & strValue, const string & strUrl, const string & strKey)
+   bool department::get_param(string & strValue, const string & strUrl, const string & strKey)
    {
 
       strsize iPos = strUrl.find('?');
@@ -602,7 +602,7 @@ namespace url
 
    }
 
-   bool departament::has_param(const string & strUrl, const string & strKey)
+   bool department::has_param(const string & strUrl, const string & strKey)
    {
 
       strsize iPos = strUrl.find('?');
@@ -614,7 +614,7 @@ namespace url
 
    }
 
-   bool departament::param_has_char(const string & strUrl, const string & strKey)
+   bool department::param_has_char(const string & strUrl, const string & strKey)
    {
 
       strsize iPos = strUrl.find('?');
@@ -625,7 +625,7 @@ namespace url
          return query_param_has_char(strUrl.Mid(iPos + 1), strKey);
    }
 
-   bool departament::has_param_replace(string & strUrl, const char * strKey, const char * strValue)
+   bool department::has_param_replace(string & strUrl, const char * strKey, const char * strValue)
    {
 
       strsize iPos = strUrl.find('?');
@@ -646,7 +646,7 @@ namespace url
       }
    }
 
-   string departament::query_set(const char * pszQuery, const char * pszKey, var var)
+   string department::query_set(const char * pszQuery, const char * pszKey, var var)
    {
 
       string strQuery(pszQuery);
@@ -729,7 +729,7 @@ namespace url
 
    }
 
-   string departament::query_set_param(const char * pszQuery, const char * pszKey, const string & strParam)
+   string department::query_set_param(const char * pszQuery, const char * pszKey, const string & strParam)
    {
 
       string strQuery(pszQuery);
@@ -777,7 +777,7 @@ namespace url
 
    }
 
-   string departament::query_remove(const char * pszQuery, const char * pszKey)
+   string department::query_remove(const char * pszQuery, const char * pszKey)
    {
 
       ::property_set set(get_app());
@@ -794,7 +794,7 @@ namespace url
 
    }
 
-   string departament::__query_remove(const char * pszQuery, const char * pszAndKeyEqual)
+   string department::__query_remove(const char * pszQuery, const char * pszAndKeyEqual)
    {
 
       string strQuery(pszQuery);
@@ -819,7 +819,7 @@ namespace url
 
    }
 
-   string departament::query_remove(const char * pszQuery, stringa & straKey)
+   string department::query_remove(const char * pszQuery, stringa & straKey)
    {
 
       ::property_set set(get_app());
@@ -837,7 +837,7 @@ namespace url
    }
 
 
-   var departament::query_get_var(const char * pszQuery, const char * pszKey)
+   var department::query_get_var(const char * pszQuery, const char * pszKey)
    {
 
       string strQuery(pszQuery);
@@ -903,7 +903,7 @@ namespace url
 
    }
 
-   string departament::query_get_param(const string & strQuery, const string & strKey)
+   string department::query_get_param(const string & strQuery, const string & strKey)
    {
 
       string strValue;
@@ -915,7 +915,7 @@ namespace url
 
    }
 
-   bool departament::query_get_param(string & strValue, const string & strQuery, const string & strKey)
+   bool department::query_get_param(string & strValue, const string & strQuery, const string & strKey)
    {
 
       strsize iCmp = strQuery.length() - strKey.length();
@@ -979,7 +979,7 @@ namespace url
 
    }
 
-   bool departament::query_has_param(const string & strQuery, const string & strKey)
+   bool department::query_has_param(const string & strQuery, const string & strKey)
    {
 
       strsize iCmp = strQuery.length() - strKey.length();
@@ -1022,7 +1022,7 @@ namespace url
       return false;
    }
 
-   bool departament::query_param_has_char(const string & strQuery, const string & strKey)
+   bool department::query_param_has_char(const string & strQuery, const string & strKey)
    {
 
       strsize iCmp = strQuery.length() - strKey.length();
@@ -1083,7 +1083,7 @@ namespace url
 
    }
 
-   bool departament::query_has_param_replace(string & strQuery, const string & strKey, const string & strValue)
+   bool department::query_has_param_replace(string & strQuery, const string & strKey, const string & strValue)
    {
 
       strsize iCmp = strQuery.length() - strKey.length();
@@ -1147,7 +1147,7 @@ namespace url
 
    }
 
-   bool departament::locale_is_eu(id idLocale)
+   bool department::locale_is_eu(id idLocale)
    {
 
 
@@ -1193,7 +1193,7 @@ namespace url
 
    }
 
-   bool departament::locale_is_asia(id idLocale)
+   bool department::locale_is_asia(id idLocale)
    {
 
       if(idLocale == __id(asia)
@@ -1222,7 +1222,7 @@ namespace url
 
    }
 
-   bool departament::locale_is_middle_east(id idLocale)
+   bool department::locale_is_middle_east(id idLocale)
    {
 
       string strLocale(idLocale);
@@ -1241,7 +1241,7 @@ namespace url
 
 
 
-   bool departament::locale_is_south_america(id idLocale)
+   bool department::locale_is_south_america(id idLocale)
    {
 
       string strLocale(idLocale);
@@ -1266,7 +1266,7 @@ namespace url
 
    }
 
-   bool departament::locale_is_oceania(id idLocale)
+   bool department::locale_is_oceania(id idLocale)
    {
 
       string strLocale(idLocale);
@@ -1284,7 +1284,7 @@ namespace url
    }
 
 
-   bool departament::locale_is_africa(id idLocale)
+   bool department::locale_is_africa(id idLocale)
    {
 
       string strLocale(idLocale);
@@ -1302,7 +1302,7 @@ namespace url
 
    }
 
-   bool departament::locale_is_latin_america(id idLocale)
+   bool department::locale_is_latin_america(id idLocale)
    {
 
       string strLocale(idLocale);
@@ -1316,7 +1316,7 @@ namespace url
 
    }
 
-   bool departament::locale_is_north_america(id idLocale)
+   bool department::locale_is_north_america(id idLocale)
    {
 
       string strLocale(idLocale);
@@ -1332,7 +1332,7 @@ namespace url
 
    }
 
-   bool departament::locale_is_caribe(id idLocale)
+   bool department::locale_is_caribe(id idLocale)
    {
 
       string strLocale(idLocale);
@@ -1352,7 +1352,7 @@ namespace url
    }
 
 
-   bool departament::locale_is_central_america(id idLocale)
+   bool department::locale_is_central_america(id idLocale)
    {
 
       string strLocale(idLocale);
@@ -1372,7 +1372,7 @@ namespace url
 
    }
 
-   bool departament::locale_is_america(id idLocale)
+   bool department::locale_is_america(id idLocale)
    {
 
       string strLocale(idLocale);
@@ -1388,14 +1388,14 @@ namespace url
 
    }
 
-   string departament::set_script(const char * pszUrl, const char * pszScript)
+   string department::set_script(const char * pszUrl, const char * pszScript)
    {
 
       return get_protocol(pszUrl) + "://" + get_root(pszUrl) + string(pszScript) + ::str::has_char(get_query(pszUrl), "?");
 
    }
 
-   string departament::override_if_empty(const char * pszDst, const char * pszSrc, bool bOverrideQuery)
+   string department::override_if_empty(const char * pszDst, const char * pszSrc, bool bOverrideQuery)
    {
 
       string strProtocol = get_protocol(pszDst);
@@ -1426,7 +1426,7 @@ namespace url
    }
 
 
-   string departament::override_if_set_at_source(const char * pszDst, const char * pszSrc)
+   string department::override_if_set_at_source(const char * pszDst, const char * pszSrc)
    {
 
       string strProtocol = get_protocol(pszDst);
@@ -1457,7 +1457,7 @@ namespace url
    }
 
 
-   string departament::to_punycode(const char * psz)
+   string department::to_punycode(const char * psz)
    {
 
       char * p = NULL;
@@ -1477,7 +1477,7 @@ namespace url
 
    }
 
-   string departament::from_punycode(const char * psz)
+   string department::from_punycode(const char * psz)
    {
 
       if(psz == NULL || *psz == '\0')

@@ -6,7 +6,7 @@ namespace fontopus
 
 
    class CLASS_DECL_AXIS fontopus :
-      virtual public ::aura::departament
+      virtual public ::aura::department
    {
    public:
 

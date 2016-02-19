@@ -6,7 +6,7 @@ namespace sockets
 
 
    class CLASS_DECL_AXIS sockets :
-      virtual public ::aura::departament
+      virtual public ::aura::department
    {
    public:
 

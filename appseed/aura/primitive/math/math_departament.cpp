@@ -12,7 +12,7 @@ namespace math
 
    math::math(::aura::application * papp) :
       object(papp),
-      ::aura::departament(papp),
+      ::aura::department(papp),
       m_mutex(papp)
    {
       // initial rng seed

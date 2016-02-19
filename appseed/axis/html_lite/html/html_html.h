@@ -12,7 +12,7 @@ namespace html
 
 
    class CLASS_DECL_AXIS html:
-      public ::aura::departament
+      public ::aura::department
    {
    public:
 

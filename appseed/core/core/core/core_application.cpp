@@ -2447,7 +2447,7 @@ namespace core
    if (m_pszRegistryKey != NULL)
    {
    LONG lResult;
-   if (lpszEntry == NULL) //delete whole departament
+   if (lpszEntry == NULL) //delete whole department
    {
    HKEY hAppKey = GetAppRegistryKey();
    if (hAppKey == NULL)

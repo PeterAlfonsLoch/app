@@ -53,7 +53,7 @@ namespace net
 
 	   // returns a copy of the current device information (note: thread-awareness is needed)
 
-	   // cast away const-ness of the critical departament (since this is a const function)
+	   // cast away const-ness of the critical department (since this is a const function)
 
 	   return smart_pointer_array < port_forward::device > ();
 

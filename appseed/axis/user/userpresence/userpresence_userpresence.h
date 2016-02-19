@@ -6,7 +6,7 @@ namespace userpresence
 
 
    class CLASS_DECL_AXIS userpresence :
-      virtual public ::aura::departament,
+      virtual public ::aura::department,
       virtual public ::aura::timer_array
    {
    public:

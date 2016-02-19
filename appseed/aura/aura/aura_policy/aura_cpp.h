@@ -178,7 +178,7 @@ namespace sockets // only usable from base.dll and dependants
 namespace url
 {
 
-   class departament; // only usable from base.dll and dependants
+   class department; // only usable from base.dll and dependants
 
 
 } // namespace url
@@ -251,7 +251,7 @@ namespace datetime
 {
 
 
-   class departament;
+   class department;
 
 
 } // namespace datetime

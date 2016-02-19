@@ -5,9 +5,9 @@ namespace xml
 {
 
 
-   departament::departament(::aura::application * papp) :
+   department::department(::aura::application * papp) :
       object(papp),
-      ::aura::departament(papp)
+      ::aura::department(papp)
    {
       
       m_poptionDefault     = NULL;
@@ -17,7 +17,7 @@ namespace xml
    }
 
 
-   departament::~departament()
+   department::~department()
    {
       
       ::aura::del(m_poptionDefault);
@@ -27,7 +27,7 @@ namespace xml
    }
 
 
-   bool departament::initialize1()
+   bool department::initialize1()
    {
 
       if(Application.is_system())
@@ -35,7 +35,7 @@ namespace xml
          System.factory().cloneable_large < edit_item > ();
       }
 
-      if(!::aura::departament::initialize1())
+      if(!::aura::department::initialize1())
          return false;
 
       m_poptionDefault     = new disp_option(get_app());
@@ -52,10 +52,10 @@ namespace xml
    }
 
 
-   bool departament::initialize()
+   bool department::initialize()
    {
 
-      if(!::aura::departament::initialize())
+      if(!::aura::department::initialize())
          return false;
 
       return true;
@@ -63,7 +63,7 @@ namespace xml
    }
 
 
-   string departament::special_chars(const char * psz)
+   string department::special_chars(const char * psz)
    {
       
       string str(psz);

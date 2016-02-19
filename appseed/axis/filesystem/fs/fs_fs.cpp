@@ -7,7 +7,7 @@ namespace fs
 
    fs::fs(::aura::application * papp) :
       ::object(papp),
-      ::aura::departament(papp)
+      ::aura::department(papp)
    {
 
    }

@@ -10,7 +10,7 @@ namespace userex
 
    userex::userex(::aura::application * papp):
       object(papp),
-      ::aura::departament(papp)
+      ::aura::department(papp)
    {
 
       m_pshellimageset  = NULL;
@@ -38,7 +38,7 @@ namespace userex
 
       }
 
-      if(!::aura::departament::initialize1())
+      if(!::aura::department::initialize1())
          return false;
 
       return true;
@@ -50,7 +50,7 @@ namespace userex
    {
 
 
-      if(!::aura::departament::initialize())
+      if(!::aura::department::initialize())
          return false;
 
       if(!m_typeDefaultMeshData)
@@ -265,7 +265,7 @@ namespace userex
          return false;
 
 
-      if(!::aura::departament::initialize())
+      if(!::aura::department::initialize())
          return false;
 
       return true;
@@ -279,7 +279,7 @@ namespace userex
    {
 
 
-      if(!::aura::departament::initialize2())
+      if(!::aura::department::initialize2())
          return false;
 
       return true;
@@ -292,7 +292,7 @@ namespace userex
    {
       try
       {
-         ::aura::departament::finalize();
+         ::aura::department::finalize();
       }
       catch(...)
       {

@@ -9,7 +9,7 @@ namespace fontopus
 
    fontopus::fontopus(::aura::application * papp) :
       ::object(papp),
-      ::aura::departament(papp),
+      ::aura::department(papp),
       m_mutex(papp)
    {
 

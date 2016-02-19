@@ -9,7 +9,7 @@ namespace net
 
    email_departament::email_departament(::aura::application * papp) :
       ::object(papp),
-      ::aura::departament(papp)
+      ::aura::department(papp)
    {
 
    }

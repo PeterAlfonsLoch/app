@@ -326,7 +326,7 @@ namespace user
    // a file based document template - add to filter list
 
    // If you hit the following ASSERT, your document template
-   // string is formatted incorrectly.  The departament of your
+   // string is formatted incorrectly.  The department of your
    // document template string that specifies the allowable file
    // extensions should be formatted as follows:
    //    .<ext1>;.<ext2>;.<ext3>

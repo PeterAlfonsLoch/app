@@ -127,7 +127,7 @@ namespace Platform {
 
 	} } // namespace Details
 
-//Put initialization data into the departament that we can return failure
+//Put initialization data into the department that we can return failure
 //#pragma section(".CRT$XIY",long,read)
 //extern "C" __declspec(allocate(".CRT$XIY")) void* __abi__initialize = Details::Initialize;
 

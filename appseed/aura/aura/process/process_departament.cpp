@@ -5,21 +5,21 @@ namespace process
 {
 
 
-   departament::departament(::aura::application * papp):
+   department::department(::aura::application * papp):
       object(papp),
-      ::aura::departament(papp)
+      ::aura::department(papp)
    {
 
    }
 
 
-   departament::~departament()
+   department::~department()
    {
 
    }
 
 
-   var departament::get_output(const char * pszCmdLine,const ::duration & dur,int32_t iShow, bool * pbPotentialTimeout)
+   var department::get_output(const char * pszCmdLine,const ::duration & dur,int32_t iShow, bool * pbPotentialTimeout)
    {
 
       string strRead;
@@ -32,7 +32,7 @@ namespace process
 
 
 
-   uint32_t departament::retry(const char * pszCmdLine,const ::duration & dur,int32_t iShow, bool * pbPotentialTimeout)
+   uint32_t department::retry(const char * pszCmdLine,const ::duration & dur,int32_t iShow, bool * pbPotentialTimeout)
    {
 
       process_processor proc(get_app(), pszCmdLine, dur, pbPotentialTimeout);
@@ -43,7 +43,7 @@ namespace process
    }
 
 
-   uint32_t departament::synch(const char * pszCmdLine,int32_t iShow, const ::duration & dur, bool * pbPotentialTimeout)
+   uint32_t department::synch(const char * pszCmdLine,int32_t iShow, const ::duration & dur, bool * pbPotentialTimeout)
    {
 
       process_processor proc(get_app(), pszCmdLine, dur, pbPotentialTimeout);
@@ -53,7 +53,7 @@ namespace process
    }
 
 
-   bool departament::launch(const char * pszCmdLine,int32_t iShow, const char * pszDir)
+   bool department::launch(const char * pszCmdLine,int32_t iShow, const char * pszDir)
    {
 
       const char * pszEnd = NULL;
@@ -75,7 +75,7 @@ namespace process
    }
 
 
-   uint32_t departament::elevated_synch(const char * pszCmdLine,int32_t iShow,const ::duration & dur,bool * pbPotentialTimeout)
+   uint32_t department::elevated_synch(const char * pszCmdLine,int32_t iShow,const ::duration & dur,bool * pbPotentialTimeout)
    {
 
       process_processor proc(get_app(),pszCmdLine,dur,pbPotentialTimeout, NULL, true);
@@ -85,7 +85,7 @@ namespace process
    }
 
 
-   departament::process_thread::process_thread(::aura::application * papp,const string & strCmdLine,const ::duration & dur,bool * pbPotentialTimeout,string * pstrRead,bool bElevated):
+   department::process_thread::process_thread(::aura::application * papp,const string & strCmdLine,const ::duration & dur,bool * pbPotentialTimeout,string * pstrRead,bool bElevated):
       object(papp),
       thread(papp),
       simple_thread(papp),
@@ -115,7 +115,7 @@ namespace process
    }
 
 
-   int32_t departament::process_thread::run()
+   int32_t department::process_thread::run()
    {
 
       int iRetCode;
@@ -139,7 +139,7 @@ namespace process
 
 
       
-   int32_t departament::process_thread::run_normal()
+   int32_t department::process_thread::run_normal()
    {
    
       if(!m_spprocess->create_child_process(m_strCmdLine,true))
@@ -222,7 +222,7 @@ namespace process
 
    }
 
-   int32_t departament::process_thread::run_elevated()
+   int32_t department::process_thread::run_elevated()
    {
 
       int32_t iRetCode = m_spprocess->synch_elevated(m_strCmdLine,SW_HIDE,millis(m_uiTimeout),m_pbPotentialTimeout);
@@ -246,7 +246,7 @@ namespace process
 
    }
 
-   bool departament::process_thread::retry()
+   bool department::process_thread::retry()
    {
 
       if(m_uiTimeout > 0 && ::get_tick_count() - m_uiStartTime > m_uiTimeout)
@@ -268,7 +268,7 @@ namespace process
    }
 
 
-   departament::process_processor::process_processor(::aura::application * papp,const string & strCmdLine,const duration & dur,bool * pbPotentialTimeout,string * pstrRead,bool bElevated):
+   department::process_processor::process_processor(::aura::application * papp,const string & strCmdLine,const duration & dur,bool * pbPotentialTimeout,string * pstrRead,bool bElevated):
       object(papp),
       m_evReady(papp)
    {
@@ -303,7 +303,7 @@ namespace process
 
    }
 
-   departament::process_processor::~process_processor()
+   department::process_processor::~process_processor()
    {
 
       if(m_pbPotentialTimeout != NULL)

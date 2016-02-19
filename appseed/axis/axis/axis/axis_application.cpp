@@ -3342,14 +3342,14 @@ namespace axis
 
 
 
-   string application::get_version()
-   {
+   //string application::get_version()
+   //{
 
-      ::exception::throw_interface_only(this);
+   //   ::exception::throw_interface_only(this);
 
-      return "";
+   //   return "";
 
-   }
+   //}
 
 
 

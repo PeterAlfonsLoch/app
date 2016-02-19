@@ -8,7 +8,7 @@ namespace userpresence
 
    userpresence::userpresence(::aura::application * papp):
       ::object(papp),
-      ::aura::departament(papp),
+      ::aura::department(papp),
       ::aura::timer_array(papp)
    {
 

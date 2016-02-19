@@ -7,7 +7,7 @@ namespace html
 
    html::html(::aura::application * papp):
       ::object(papp),
-      ::aura::departament(papp)
+      ::aura::department(papp)
    {
 
       m_pentitysolver = new LiteHTMLEntityResolver(papp);
@@ -26,7 +26,7 @@ namespace html
    void html::construct(::aura::application * papp)
    {
 
-      ::aura::departament::construct(papp);
+      ::aura::department::construct(papp);
 
       m_clrInvalid = 0xffffffff;
       m_percentMax = USHRT_MAX;

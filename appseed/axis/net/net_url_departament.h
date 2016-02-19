@@ -7,14 +7,14 @@ namespace url
 {
 
 
-   class CLASS_DECL_AXIS departament :
-      virtual public ::aura::departament
+   class CLASS_DECL_AXIS department :
+      virtual public ::aura::department
    {
    public:
 
 
-      departament(::aura::application * papp);
-      virtual ~departament();
+      department(::aura::application * papp);
+      virtual ~department();
 
 
       // Example: http://veriwell.com.br:443/page?id=1

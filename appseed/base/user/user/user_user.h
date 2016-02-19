@@ -10,7 +10,7 @@ namespace user
 
 
    class CLASS_DECL_BASE user :
-      virtual public ::aura::departament
+      virtual public ::aura::department
    {
    public:
 

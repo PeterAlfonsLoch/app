@@ -13,7 +13,7 @@ namespace axis
    public:
 
 
-      //::url::departament                           m_urldepartament;
+      //::url::department                           m_urldepartament;
 
 
       ::http::system                               m_httpsystem;
@@ -72,7 +72,7 @@ namespace axis
       virtual int32_t exit_instance();
       virtual bool finalize();
 
-      //::url::departament                           & url()     { return m_urldepartament; }
+      //::url::department                           & url()     { return m_urldepartament; }
 
       inline class ::http::system                  & http()    { return m_httpsystem; }
 

@@ -8,7 +8,7 @@ namespace user
 
    user::user(::aura::application * papp):
       ::object(papp),
-      ::aura::departament(papp)
+      ::aura::department(papp)
    {
 
 
@@ -58,7 +58,7 @@ namespace user
 
       //      m_pshellimageset = new filemanager::_shell::ImageSet(m_pauraapp);
 
-      if(!::aura::departament::initialize1())
+      if(!::aura::department::initialize1())
          return false;
 
       return true;
@@ -71,7 +71,7 @@ namespace user
 
 
 
-      if(!::aura::departament::initialize())
+      if(!::aura::department::initialize())
          return false;
 
 
@@ -111,7 +111,7 @@ namespace user
 
       debug_print("user::initialize bHasUninstall %c", bHasUninstall);
 
-      if(!::aura::departament::initialize())
+      if(!::aura::department::initialize())
          return false;
 
       return true;
@@ -125,7 +125,7 @@ namespace user
    {
 
 
-      if(!::aura::departament::initialize2())
+      if(!::aura::department::initialize2())
          return false;
 
 
@@ -139,7 +139,7 @@ namespace user
    {
       try
       {
-         ::aura::departament::finalize();
+         ::aura::department::finalize();
       }
       catch(...)
       {

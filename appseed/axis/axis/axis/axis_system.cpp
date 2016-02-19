@@ -26,7 +26,7 @@ namespace axis
 
       m_puserstr                 = NULL;
 
-      m_purldepartament = new url::departament(this);
+      m_purldepartament = new url::department(this);
 
       m_paxissystem = this;
 

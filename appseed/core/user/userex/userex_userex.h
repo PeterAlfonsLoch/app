@@ -6,7 +6,7 @@ namespace userex
 
 
    class CLASS_DECL_CORE userex :
-      virtual public ::aura::departament,
+      virtual public ::aura::department,
       virtual public ::user::server,
       virtual public BaseMenuCentralContainer,
       virtual public ::database::client

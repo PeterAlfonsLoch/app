@@ -8,7 +8,7 @@ namespace sockets
 
    sockets::sockets(::aura::application * papp) :
      ::object(papp),
-     ::aura::departament(papp),
+     ::aura::department(papp),
       m_mutexHttpPostBoundary(papp),
       m_mutexResolvCache(papp),
       m_clientcontextmap(papp),
@@ -58,7 +58,7 @@ namespace sockets
       if(!m_spnet->initialize())
          return false;
 
-      if(!::aura::departament::initialize1())
+      if(!::aura::department::initialize1())
          return false;
 
 

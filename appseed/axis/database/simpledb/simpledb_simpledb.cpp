@@ -7,7 +7,7 @@ namespace simpledb
 
    simpledb::simpledb(::aura::application * papp) :
       ::object(papp),
-      ::aura::departament(papp)
+      ::aura::department(papp)
    {
 
       m_pserver         = NULL;

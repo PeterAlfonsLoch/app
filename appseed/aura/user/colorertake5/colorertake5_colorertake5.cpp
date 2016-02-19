@@ -7,7 +7,7 @@ namespace colorertake5
 
    colorertake5::colorertake5(::aura::application * papp) :
       object(papp),
-      ::aura::departament(papp)
+      ::aura::department(papp)
    {
       
    }

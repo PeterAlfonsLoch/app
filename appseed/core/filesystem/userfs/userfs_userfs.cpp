@@ -7,7 +7,7 @@ namespace userfs
 
    userfs::userfs(::aura::application * papp) :
       object(papp),
-      ::aura::departament(papp)
+      ::aura::department(papp)
    {
 
    }
@@ -29,7 +29,7 @@ namespace userfs
       }
 
 
-      if(!::aura::departament::initialize())
+      if(!::aura::department::initialize())
          return false;
 
 
