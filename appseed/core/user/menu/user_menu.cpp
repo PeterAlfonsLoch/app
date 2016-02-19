@@ -287,7 +287,7 @@ namespace user
 
    void menu::_001OnDestroy(signal_details * pobj)
    {
-      System.remove_frame(this);
+      //System.remove_frame(this);
       if(m_pmenuParent != NULL)
       {
          m_pmenuParent->m_psubmenu = NULL;
@@ -519,6 +519,7 @@ namespace user
    void menu::install_message_handling(::message::dispatch * pinterface)
    {
       
+      ::user::control::install_message_handling(pinterface);
       ::user::menu_base::install_message_handling(pinterface);
 
       IGUI_WIN_MSG_LINK(MessageDestroyWindow, pinterface, this, &menu::OnMessageDestroyWindow);
