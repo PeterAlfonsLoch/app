@@ -50,6 +50,20 @@ namespace user
       virtual ~menu();
 
 
+      virtual int64_t add_ref()
+      {
+
+         return ::object::add_ref();
+
+      }
+
+      virtual int64_t dec_ref()
+      {
+
+         return ::object::dec_ref();
+
+      }
+
       ::user::menu_item * GetSubMenu(int32_t i);
 
       void layout_menu(point pt);
