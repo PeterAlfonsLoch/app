@@ -10,7 +10,7 @@ namespace user
       menu_base_item(papp),
       m_button(papp)
    {
-      m_spitema = new menu_item_ptra(this);
+      m_spitema      = canew(menu_item_ptra(this));
       m_iLevel       = 0;
       m_bPopup       = false;
    }
@@ -18,7 +18,7 @@ namespace user
    menu_item::~menu_item()
    {
 
-      m_button.DestroyWindow();
+      //m_button.DestroyWindow();
 
    }
 
@@ -45,7 +45,7 @@ namespace user
       {
          string strCommand = straCommand[i];
          string strCommandTitle = straCommandTitle[i];
-         menu_item * pitemNewChild = new menu_item(get_app());
+         sp(menu_item) pitemNewChild = canew(menu_item(get_app()));
          pitemNewChild->m_bPopup = false;
          if(strCommand.is_empty())
          {
@@ -60,7 +60,6 @@ namespace user
             pitemNewChild->m_button.SetWindowText(strCommandTitle);
          }
          add_item(pitemNewChild);
-         ::release(pitemNewChild);
       }
 
       return iItemCount > 0;
@@ -82,7 +81,7 @@ namespace user
       {
          sp(::xml::node) pnodeChild = lpnode->child_at(i);
 
-         menu_item * pitemNewChild = new menu_item(get_app());
+         sp(menu_item) pitemNewChild = canew(menu_item(get_app()));
 
          pitemNewChild->m_bPopup = pnodeChild->get_children_count() > 0 && pnodeChild->get_name() == "menubar";
 
@@ -111,7 +110,6 @@ namespace user
             }
          }
          add_item(pitemNewChild);
-         ::release(pitemNewChild);
       }
 
       return true;
