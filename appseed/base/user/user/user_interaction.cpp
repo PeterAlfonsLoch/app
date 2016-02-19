@@ -4296,9 +4296,9 @@ namespace user
       if(pobj->m_bRet)
          return;
 
-      sp(::user::interaction) puiParent = GetParent();
+      ::user::interaction * puiParent = GetParent();
 
-      if(puiParent.is_null())
+      if(puiParent != NULL)
          return;
 
       if(puiParent == puiStop)
