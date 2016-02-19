@@ -4891,12 +4891,17 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
 
       auto & filter = m_alpha_spread__24CC_filterMap[iRadius];
 
-      pFilter = filter.defer_alloc(allocer());
-
-      if(pFilter == NULL)
+      if(filter.is_set())
       {
+
+         pFilter = filter->get_data();
+
+      }
+      else
+      {
+         filter = canew(memory());
          filter->allocate(iFilterArea);
-         pFilter = filter->get_data()
+         pFilter = filter->get_data();
          for(y = 0; y <= iFilterHalfH; y++)
          {
             for(x = 0; x <= iFilterHalfW; x++)
@@ -5307,10 +5312,17 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
       int32_t iRadius2 = iRadius * iRadius;
       int32_t r2;
 
-      if(!m_alpha_spread__32CC_filterMap.Lookup(iRadius,pFilter))
+      auto & filter = m_alpha_spread__32CC_filterMap[iRadius];
+
+      if (filter.is_set())
       {
-         pFilter = new BYTE[iFilterArea];
-         m_alpha_spread__32CC_filterMap.set_at(iRadius,pFilter);
+         pFilter = filter->get_data();
+      }
+      else
+      {
+         filter = canew(memory());
+         filter->allocate(iFilterArea);
+         pFilter = filter->get_data();
          for(y = 0; y < iFilterHalfH; y++)
          {
             for(x = 0; x < iFilterHalfW; x++)
@@ -5605,10 +5617,17 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
       int32_t iRadius2 = iRadius * iRadius;
       int32_t r2;
 
-      if(!m_alpha_spread__32CC_filterMap.Lookup(iRadius,pFilter))
+      auto & filter = m_alpha_spread__32CC_filterMap[iRadius];
+
+      if (filter.is_set())
       {
-         pFilter = new BYTE[iFilterArea];
-         m_alpha_spread__32CC_filterMap.set_at(iRadius,pFilter);
+         pFilter = filter->get_data();
+      }
+      else 
+      {
+         filter = canew(memory());
+         filter->allocate(iFilterArea);
+         pFilter = filter->get_data();
          for(y = 0; y < iFilterHalfH; y++)
          {
             for(x = 0; x < iFilterHalfW; x++)
