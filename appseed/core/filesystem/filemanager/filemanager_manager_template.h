@@ -31,7 +31,7 @@ namespace filemanager
       ::database::id             m_dataidStatic;
 
 
-      file_list_callback *       m_pfilelistcallback;
+      sp(file_list_callback)     m_pfilelistcallback;
 
       string                     m_strLevelUp;
 
