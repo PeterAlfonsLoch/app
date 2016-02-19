@@ -4875,7 +4875,8 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
       BYTE *lpbSource_2;
       BYTE *lpwDestination;
       BYTE *lpFilter;
-      BYTE * pFilter;
+      BYTE *pFilter;
+      
 
       int32_t i;
       int32_t x;
@@ -4888,10 +4889,14 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
       int32_t iRadius2 = iRadius * iRadius;
       int32_t r2;
 
-      if(!m_alpha_spread__24CC_filterMap.Lookup(iRadius,pFilter))
+      auto & filter = m_alpha_spread__24CC_filterMap[iRadius];
+
+      pFilter = filter.defer_alloc(allocer());
+
+      if(pFilter == NULL)
       {
-         pFilter = new BYTE[iFilterArea];
-         m_alpha_spread__24CC_filterMap.set_at(iRadius,pFilter);
+         filter->allocate(iFilterArea);
+         pFilter = filter->get_data()
          for(y = 0; y <= iFilterHalfH; y++)
          {
             for(x = 0; x <= iFilterHalfW; x++)

@@ -48,5 +48,3 @@ public:
 typedef stdstring < memory > bstring; // binary string (may contain nulls)
 
 
-
-

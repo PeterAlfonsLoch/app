@@ -53,6 +53,19 @@ namespace aura
          close();
 
       }
+      else
+      {
+
+         if (m_pca2library != NULL)
+         {
+
+            m_pca2library->m_bAutoClose = false;
+
+            ::aura::del(m_pca2library);
+
+         }
+
+      }
 
    }
 

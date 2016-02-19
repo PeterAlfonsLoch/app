@@ -28,8 +28,8 @@ public:
    };
 
 protected:
-   map < int32_t, int32_t, LPBYTE, LPBYTE > m_alpha_spread__24CC_filterMap;
-   map < int32_t, int32_t, LPBYTE, LPBYTE > m_alpha_spread__32CC_filterMap;
+   map < int32_t, int32_t, sp(memory) > m_alpha_spread__24CC_filterMap;
+   map < int32_t, int32_t, sp(memory) > m_alpha_spread__32CC_filterMap;
 
 
 public:

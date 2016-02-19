@@ -181,9 +181,57 @@ public:
 
 
    //sp(T) clone() const;
+   
    void alloc(const ::aura::allocatorsp & spallocator);
 
+   bool defer_alloc(const ::aura::allocatorsp & spallocator)
+   {
 
+      if (is_set())
+      {
+
+         return true;
+
+      }
+
+      alloc(spallocator);
+
+      if (is_null())
+      {
+
+         return false;
+
+      }
+
+      return true;
+      
+   }
+
+   template < typename PRED_ON_ALLOC >
+   bool defer_alloc(const ::aura::allocatorsp & spallocator, PRED_ON_ALLOC predOnAlloc)
+   {
+
+      if (is_set())
+      {
+
+         return true;
+
+      }
+
+      alloc(spallocator);
+
+      if (is_null())
+      {
+
+         return false;
+
+      }
+
+      pred();
+
+      return true;
+
+   }
 
 
 };

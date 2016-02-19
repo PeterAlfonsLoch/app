@@ -42,3 +42,5 @@ void smart_pointer < T >::alloc(const ::aura::allocatorsp & spallocator)
 //   return CaSys(m_p).clone(*this);
 //}
 //
+
+
