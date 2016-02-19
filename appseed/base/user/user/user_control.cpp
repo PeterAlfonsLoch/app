@@ -1000,7 +1000,7 @@ namespace user
    index control::hit_test(point ptScreen, e_element & eelement)
    {
 
-      sp(::user::interaction) pwnd = ControlExGetWnd();
+      ::user::interaction * pwnd = ControlExGetWnd();
 
       rect rectWindow;
 
