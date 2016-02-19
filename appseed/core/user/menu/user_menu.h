@@ -25,7 +25,7 @@ namespace user
       };
 
 
-      sp(::user::interaction)    m_oswindowParent;
+      ::user::interaction *      m_oswindowParent;
       menu *                     m_pmenuParent;
       HMENU                      m_hmenu;
       //menu *                     _m_pmenu;
