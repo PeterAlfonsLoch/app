@@ -3001,9 +3001,9 @@ namespace user
    ::user::frame_window * interaction::GetParentFrame() const
    {
 
-      sp(::user::interaction) pui = GetParent();
+      ::user::interaction * pui = GetParent();
 
-      if(pui.is_null())
+      if(pui == NULL)
          return NULL;
 
       return pui->GetFrame();

@@ -686,9 +686,9 @@ namespace user
       ControlExGetWnd()->RedrawWindow();
    }
 
-   sp(::user::interaction) control::ControlExGetWnd()
+   ::user::interaction * control::ControlExGetWnd()
    {
-      return  (this);
+      return this;
    }
 
    bool control::keyboard_focus_OnSetFocus()

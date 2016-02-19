@@ -186,7 +186,7 @@ namespace user
       index GetEditSubItem();
       index GetEditItem();
 
-      virtual sp(::user::interaction) ControlExGetWnd();
+      virtual ::user::interaction * ControlExGetWnd();
 
       using ::user::interaction::GetClientRect;
       using ::user::interaction::GetWindowRect;
