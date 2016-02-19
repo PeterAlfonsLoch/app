@@ -35,6 +35,7 @@ namespace user
       ::user::interaction * find_first_typed(sp(type) info);
       ::user::interaction * find_first(oswindow oswindow);
 
+      virtual ::user::interaction * get_child(::user::interaction * pui);
 
    };
 
