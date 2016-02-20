@@ -185,13 +185,14 @@ BEGIN_EXTERN_C
 void * aligned_memory_alloc(size_t size)
 {
 
+   void * p;
 #if defined(MCHECK)
 
-	return aligned_alloc(64, size);
+	p = aligned_alloc(64, size);
 
 #elif MEMDLEAK
 
-   return unaligned_memory_alloc(size);
+   p = unaligned_memory_alloc(size);
 
 #else
 
@@ -207,17 +208,17 @@ void * aligned_memory_alloc(size_t size)
 
        }
 
-       return heap_memory::aligned(pbase, size, 128);
+      p = heap_memory::aligned(pbase, size, 128);
 
    }
    else
    {
 
-   if(heap_memory::aligned_provision_get_size(size) ==831
-   && heap_memory::aligned_provision_get_size(size)< 1024)
-   {
-   output_debug_string("*");
-   }
+      if (heap_memory::aligned_provision_get_size(size) == 831
+         && heap_memory::aligned_provision_get_size(size) < 1024)
+      {
+         output_debug_string("*");
+      }
 
        void * pbase = g_pheap->_alloc(heap_memory::aligned_provision_get_size(size));
 
@@ -228,20 +229,26 @@ void * aligned_memory_alloc(size_t size)
 
        }
 
-       return heap_memory::aligned(pbase, size, 0);
+       p = heap_memory::aligned(pbase, size, 0);
 
    }
 
 #endif
+
+   zero(p, size);
+
+   return p;
 
 }
 
 void * unaligned_memory_alloc(size_t size)
 {
 
+   void * p;
+
 #if defined(MCHECK)
 
-   return malloc(size);
+   p =  malloc(size);
 
 #elif MEMDLEAK
    size_t nAllocSize = size + sizeof(memdleak_block);
@@ -291,14 +298,14 @@ void * unaligned_memory_alloc(size_t size)
 
    lock.unlock();
 
-   return &pblock[1];
+   p = &pblock[1];
 
 
 #else
 
 #if defined(APPLEOS) || defined(LINUX)
 
-   return aligned_memory_alloc(size);
+   p = aligned_memory_alloc(size);
 
 #else
 
@@ -307,15 +314,23 @@ void * unaligned_memory_alloc(size_t size)
    if (pbase == NULL)
    {
 
-      return NULL;
+       return NULL;
+
+   }
+   else
+   {
+
+      p = heap_memory::unaligned(pbase, size, 2);
 
    }
 
-   return heap_memory::unaligned(pbase, size, 2);
-
 #endif
 
 #endif
+
+   zero(p, size);
+
+   return p;
 
 }
 
@@ -323,13 +338,15 @@ void * unaligned_memory_alloc(size_t size)
 void * aligned_memory_alloc_dbg(size_t size, int32_t nBlockUse, const char * szFileName, int32_t nLine)
 {
 
+   void * p;
+
 #if defined(MCHECK)
 
-   return aligned_alloc(64, size);
+   p = aligned_alloc(64, size);
 
 #elif MEMDLEAK
 
-   return unaligned_memory_alloc(size);
+   p = unaligned_memory_alloc(size);
 
 #else
 
@@ -351,7 +368,7 @@ void * aligned_memory_alloc_dbg(size_t size, int32_t nBlockUse, const char * szF
 
         }
 
-        return heap_memory::aligned(pbase, size, 129);
+        p = heap_memory::aligned(pbase, size, 129);
 
     }
     else
@@ -366,16 +383,23 @@ void * aligned_memory_alloc_dbg(size_t size, int32_t nBlockUse, const char * szF
 
         }
 
-        return heap_memory::aligned(pbase, size, 1);
+        p = heap_memory::aligned(pbase, size, 1);
 
     }
 
 #endif
 
+    zero(p, size);
+
+    return p;
+
 }
+
 
 void * unaligned_memory_alloc_dbg(size_t size, int32_t nBlockUse, const char * szFileName, int32_t nLine)
 {
+
+   void * p;
 
 #if defined(MCHECK)
 
@@ -383,14 +407,14 @@ void * unaligned_memory_alloc_dbg(size_t size, int32_t nBlockUse, const char * s
 
 #elif MEMDLEAK
 
-   return unaligned_memory_alloc(size);
+   p = unaligned_memory_alloc(size);
 
 #else
 
 
 #ifdef APPLEOS
 
-   return aligned_memory_alloc(size);
+   p = aligned_memory_alloc(size);
 
 #else
 
@@ -409,13 +433,18 @@ void * unaligned_memory_alloc_dbg(size_t size, int32_t nBlockUse, const char * s
 
    }
 
-   return heap_memory::unaligned(pbase, size, 3);
+   p = heap_memory::unaligned(pbase, size, 3);
 
 #endif
 
 #endif
+
+   zero(p, size);
+
+   return p;
 
 }
+
 
 #endif
 

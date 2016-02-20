@@ -965,39 +965,45 @@ namespace user
       }
       else if(m_eview == view_icon)
       {
-         draw_list_item itemFirst(this);
-
-         itemFirst.m_iItem             = 0;
-         itemFirst.m_iDisplayItem      = 0;
-
-         _001GetItemRect(&itemFirst);
-
-         draw_list_item itemLast(this);
-
-         itemLast.m_iDisplayItem       = m_nItemCount - 1;
-         itemLast.m_iItem              = m_nItemCount - 1;
-
-         _001GetItemRect(&itemLast);
-
-         draw_list_item itemTopRight(this);
-         if(m_flags.is_signalized(flag_auto_arrange) || m_iconlayout.m_iWidth <= 0)
+         if (m_nItemCount == 0)
          {
-            class rect rectClient;
-
-            GetClientRect(&rectClient);
-
-            itemTopRight.m_iItem = (index)MAX(1, rectClient.width() / get_item_size().cx) - 1;
+            rect = ::rect(0, 0, 0, 0);
          }
          else
          {
-            itemTopRight.m_iItem = MAX(1, m_iconlayout.m_iWidth) - 1;
+            draw_list_item itemFirst(this);
+
+            itemFirst.m_iItem = 0;
+            itemFirst.m_iDisplayItem = 0;
+
+            _001GetItemRect(&itemFirst);
+
+            draw_list_item itemLast(this);
+
+            itemLast.m_iDisplayItem = m_nItemCount - 1;
+            itemLast.m_iItem = m_nItemCount - 1;
+
+            _001GetItemRect(&itemLast);
+
+            draw_list_item itemTopRight(this);
+            if (m_flags.is_signalized(flag_auto_arrange) || m_iconlayout.m_iWidth <= 0)
+            {
+               class rect rectClient;
+
+               GetClientRect(&rectClient);
+
+               itemTopRight.m_iItem = (index)MAX(1, rectClient.width() / get_item_size().cx) - 1;
+            }
+            else
+            {
+               itemTopRight.m_iItem = MAX(1, m_iconlayout.m_iWidth) - 1;
+            }
+            itemTopRight.m_iDisplayItem = itemTopRight.m_iDisplayItem;
+            _001GetItemRect(&itemTopRight);
+
+            rect.unite(itemFirst.m_rectItem, itemLast.m_rectItem);
+            rect.unite(rect, itemTopRight.m_rectItem);
          }
-         itemTopRight.m_iDisplayItem = itemTopRight.m_iDisplayItem;
-         _001GetItemRect(&itemTopRight);
-
-         rect.unite(itemFirst.m_rectItem, itemLast.m_rectItem);
-         rect.unite(rect, itemTopRight.m_rectItem);
-
       }
 
       m_sizeTotal = rect.size();
@@ -1973,6 +1979,10 @@ namespace user
          {
             class rect rectClient;
             GetClientRect(&rectClient);
+            if (rectClient.is_empty())
+            {
+               return_(pdrawitem->m_bOk, false);
+            }
             if(m_bTopText)
             {
                rectClient.top += m_rectTopText.height();
