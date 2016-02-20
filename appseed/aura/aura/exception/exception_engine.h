@@ -78,16 +78,16 @@ namespace exception
       char *               m_szaModule[4096];
 
 #else
+
       void *               m_uia[64];
+
+#endif
 
       char                _str[4096];
       char                _strBuf[4096];
       char                _strFile[4096];
       char                _strSymbol[4096];
       char                _strS[1024 * 1024];
-
-#endif
-
 
 
 
