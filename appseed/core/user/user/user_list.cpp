@@ -999,11 +999,16 @@ namespace user
                {
                   itemTopRight.m_iItem = MAX(1, m_iconlayout.m_iWidth) - 1;
                }
-               itemTopRight.m_iDisplayItem = itemTopRight.m_iDisplayItem;
+               itemTopRight.m_iDisplayItem = itemTopRight.m_iItem;
                _001GetItemRect(&itemTopRight);
 
-               rect.unite(itemFirst.m_rectItem, itemLast.m_rectItem);
-               rect.unite(rect, itemTopRight.m_rectItem);
+               if (itemTopRight.m_bOk)
+               {
+
+                  rect.unite(itemFirst.m_rectItem, itemLast.m_rectItem);
+                  rect.unite(rect, itemTopRight.m_rectItem);
+
+               }
             }
          }
       }
