@@ -718,11 +718,13 @@ namespace user
 
    //}
 
-   template < class BASE >
+   template < class ROOT >
    class scroll:
-      virtual public ::user::scroll_y < ::user::scroll_x < BASE > >
+      virtual public ::user::scroll_y < ::user::scroll_x < ROOT > >
    {
    public:
+
+      typedef ::user::scroll_y < ::user::scroll_x < ROOT > > BASE;
 
       scroll()
       {
