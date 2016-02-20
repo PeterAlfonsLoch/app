@@ -7,7 +7,7 @@ bool call_stack::s_bDoStackTrace = false;
 
 #else
 
-bool call_stack::s_bDoStackTrace = true;
+bool call_stack::s_bDoStackTrace = false;
 
 #endif
 

@@ -124,7 +124,7 @@ void signalizable::register_signal(class signal * psignal)
 
 void signalizable::unregister_signal(class signal * psignal)
 {
-   
+
    for(int32_t i = 0; i < m_signalptra.get_size();)
    {
 
@@ -352,7 +352,7 @@ dispatch::signal_item::signal_item()
 
 dispatch::signal_item::~signal_item()
 {
-   ::aura::del(m_psignal);
+   //::aura::del(m_psignal);
    ::aura::del(m_pid);
 }
 
