@@ -30,7 +30,7 @@
 
 #endif
 
-#if !defined(__VLD) && !defined(__MCRTDBG) && !defined(MEMDLEAK)
+#if !defined(__VLD) && !defined(__MCRTDBG) && !MEMDLEAK
 
 struct heap_memory
 {
@@ -189,7 +189,7 @@ void * aligned_memory_alloc(size_t size)
 
 	return aligned_alloc(64, size);
 
-#elif defined(MEMDLEAK)
+#elif MEMDLEAK
 
    return unaligned_memory_alloc(size);
 
@@ -243,7 +243,7 @@ void * unaligned_memory_alloc(size_t size)
 
    return malloc(size);
 
-#elif defined(MEMDLEAK)
+#elif MEMDLEAK
    size_t nAllocSize = size + sizeof(memdleak_block);
 
    memdleak_block * pblock;
@@ -327,7 +327,7 @@ void * aligned_memory_alloc_dbg(size_t size, int32_t nBlockUse, const char * szF
 
    return aligned_alloc(64, size);
 
-#elif defined(MEMDLEAK)
+#elif MEMDLEAK
 
    return unaligned_memory_alloc(size);
 
@@ -381,7 +381,7 @@ void * unaligned_memory_alloc_dbg(size_t size, int32_t nBlockUse, const char * s
 
    return malloc(size);
 
-#elif defined(MEMDLEAK)
+#elif MEMDLEAK
 
    return unaligned_memory_alloc(size);
 
@@ -522,7 +522,7 @@ void * memory_realloc_dbg(void * pmemory, size_t size, int32_t nBlockUse, const 
 
    return memory_realloc(pmemory, size);
 
-#elif defined(MEMDLEAK)
+#elif MEMDLEAK
    size_t nAllocSize = size + sizeof(memdleak_block);
 
    memdleak_block * pblock = &((memdleak_block *)pmemory)[-1];
@@ -691,7 +691,7 @@ void memory_free_dbg(void * pmemory, int32_t iBlockType)
    
    memory_free(pmemory);
 
-#elif defined(MEMDLEAK)
+#elif MEMDLEAK
    memdleak_block * pblock = &((memdleak_block *)pmemory)[-1];
 
    synch_lock lock(g_pmutgen);
@@ -803,7 +803,7 @@ size_t memory_size_dbg(void * pmemory, int32_t iBlockType)
 
    return _msize(pmemory);
 
-#elif defined(MEMDLEAK)
+#elif MEMDLEAK
 
    memdleak_block * pblock = &((memdleak_block *)pmemory)[-1];
 

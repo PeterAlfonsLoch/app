@@ -346,7 +346,7 @@ mutex * g_pmutgen = NULL;
 
 void * ca2_heap_alloc_dbg(size_t size, int32_t nBlockUse, const char * pszFileName, int32_t iLine)
 {
-#ifdef MEMDLEAK
+#if MEMDLEAK
    size_t * psize = (size_t *) g_pheap->alloc_dbg(size + sizeof(size_t), nBlockUse, pszFileName, iLine);
    psize[0] = size + sizeof(size_t);
    memset(&psize[1], 0, size);
@@ -373,7 +373,7 @@ void * ca2_heap_alloc_dbg(size_t size, int32_t nBlockUse, const char * pszFileNa
 
 void * ca2_heap_realloc_dbg(void * pvoidOld, size_t size, int32_t nBlockUse, const char * szFileName, int32_t iLine)
 {
-#ifdef MEMDLEAK
+#if MEMDLEAK
    size_t * psize = (size_t *) g_pheap->realloc_dbg(&((size_t *)pvoidOld)[-1], ((size_t *)pvoidOld)[-1], size + sizeof(size_t), nBlockUse, szFileName, iLine);
    psize[0] = size + sizeof(size_t);
    return &psize[1];
@@ -408,7 +408,7 @@ CLASS_DECL_AURA exception::engine * g_ee = NULL;
 void * plex_heap_alloc_array::alloc_dbg(size_t size, int32_t nBlockUse, const char * pszFileName, int32_t iLine)
 {
 
-#ifdef MEMDLEAK
+#if MEMDLEAK
 
    throw 0;
 
@@ -539,7 +539,7 @@ void * plex_heap_alloc_array::alloc_dbg(size_t size, int32_t nBlockUse, const ch
 void plex_heap_alloc_array::free_dbg(void * p, size_t size)
 {
 
-#ifdef MEMDLEAK
+#if MEMDLEAK
 
    throw 0;
 
@@ -644,7 +644,7 @@ void plex_heap_alloc_array::free_dbg(void * p, size_t size)
 void * plex_heap_alloc_array::realloc_dbg(void * p,  size_t size, size_t sizeOld, int align, int32_t nBlockUse, const char * pszFileName, int32_t iLine)
 {
 
-#ifdef MEMDLEAK
+#if MEMDLEAK
 
    throw 0;
 
@@ -796,7 +796,7 @@ void * plex_heap_alloc_array::realloc_dbg(void * p,  size_t size, size_t sizeOld
 
 
 
-#ifdef MEMDLEAK
+#if MEMDLEAK
 
 #define print str+=
 
