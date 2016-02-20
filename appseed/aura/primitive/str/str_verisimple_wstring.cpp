@@ -109,7 +109,7 @@ void verisimple_wstring::assign(const unichar * pwsz)
 
       m_pwsz = wstring_data::get_nil();
 
-      return *this;
+      return;
 
    }
 
