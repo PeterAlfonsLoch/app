@@ -965,18 +965,16 @@ namespace user
       }
       else if(m_eview == view_icon)
       {
-         if (m_nItemCount == 0)
-         {
-            rect = ::rect(0, 0, 0, 0);
-         }
-         else
-         {
-            draw_list_item itemFirst(this);
+         rect = ::rect(0, 0, 0, 0);
+         draw_list_item itemFirst(this);
 
-            itemFirst.m_iItem = 0;
-            itemFirst.m_iDisplayItem = 0;
+         itemFirst.m_iItem = 0;
+         itemFirst.m_iDisplayItem = 0;
 
-            _001GetItemRect(&itemFirst);
+         _001GetItemRect(&itemFirst);
+
+         if(itemFirst.m_bOk)
+         {
 
             draw_list_item itemLast(this);
 
@@ -985,24 +983,28 @@ namespace user
 
             _001GetItemRect(&itemLast);
 
-            draw_list_item itemTopRight(this);
-            if (m_flags.is_signalized(flag_auto_arrange) || m_iconlayout.m_iWidth <= 0)
+            if (itemLast.m_bOk)
             {
-               class rect rectClient;
 
-               GetClientRect(&rectClient);
+               draw_list_item itemTopRight(this);
+               if (m_flags.is_signalized(flag_auto_arrange) || m_iconlayout.m_iWidth <= 0)
+               {
+                  class rect rectClient;
 
-               itemTopRight.m_iItem = (index)MAX(1, rectClient.width() / get_item_size().cx) - 1;
+                  GetClientRect(&rectClient);
+
+                  itemTopRight.m_iItem = (index)MAX(1, rectClient.width() / get_item_size().cx) - 1;
+               }
+               else
+               {
+                  itemTopRight.m_iItem = MAX(1, m_iconlayout.m_iWidth) - 1;
+               }
+               itemTopRight.m_iDisplayItem = itemTopRight.m_iDisplayItem;
+               _001GetItemRect(&itemTopRight);
+
+               rect.unite(itemFirst.m_rectItem, itemLast.m_rectItem);
+               rect.unite(rect, itemTopRight.m_rectItem);
             }
-            else
-            {
-               itemTopRight.m_iItem = MAX(1, m_iconlayout.m_iWidth) - 1;
-            }
-            itemTopRight.m_iDisplayItem = itemTopRight.m_iDisplayItem;
-            _001GetItemRect(&itemTopRight);
-
-            rect.unite(itemFirst.m_rectItem, itemLast.m_rectItem);
-            rect.unite(rect, itemTopRight.m_rectItem);
          }
       }
 
