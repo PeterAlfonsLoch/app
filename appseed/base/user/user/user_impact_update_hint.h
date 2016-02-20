@@ -16,7 +16,8 @@ namespace user
 
          hint_none,
          hint_open_document,
-         hint_create_views
+         hint_create_views,
+         hint_pre_close_document
 
       };
 

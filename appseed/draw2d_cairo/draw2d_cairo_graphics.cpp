@@ -14,6 +14,14 @@ string_to_string *      g_pmapFontPath;
 
 #endif
 
+string_map < FT_Face > * g_pmapFontFace = NULL;
+
+string_map < cairo_font_face_t * > * g_pmapCairoFontFace = NULL;
+
+string_to_int * g_pmapFontError = NULL;
+
+string_to_int * g_pmapFontError2 = NULL;
+
 extern CLASS_DECL_AURA array<object * > * g_paAura;
 
 
@@ -5195,33 +5203,36 @@ synch_lock ml(m_pmutex);
 
       string  strPath = get_font_path(pfont->m_strFontFamilyName);
 
-      iError = FT_New_Face((FT_Library)Sys(get_app()).ftlibrary(),strPath,0,&      pfont->m_ft);
+      if(g_pmapFontError->Lookup(strPath, iError))
+      {
 
-if(iError == 0)
-{
+         g_pmapFontFace->Lookup(strPath, pfont->m_ft);
+
+      }
+      else
+      {
+
+         pfont->m_ft = NULL;
+
+         iError = FT_New_Face((FT_Library)Sys(get_app()).ftlibrary(),strPath,0,&pfont->m_ft);
+
+         if(iError == 0)
+         {
 
             iError = FT_Select_Charmap(pfont->m_ft, /* target face object */ FT_ENCODING_UNICODE); /* encoding */
 
-//	if(iError ==0)
-//	{
-//            //iError = FT_Select_Charmap(g_ft, /* target face object */ FT_ENCODING_UNICOD); /* encoding */
-//
-//	}
-//
-}
+         }
 
+         g_pmapFontError->set_at(strPath, iError);
 
-//pfont->m_ft = NULL;
+         g_pmapFontFace->set_at(strPath, pfont->m_ft);
 
-
-//      pfont->m_ft = g_ft;
+      }
 
       if(iError != 0 || pfont->m_ft == NULL)
       {
 
-//fallback:
-
-string strFont =pfont->m_strFontFamilyName;
+         string strFont =pfont->m_strFontFamilyName;
 
          cairo_select_font_face(m_pdc, strFont, pfont->m_bItalic ? CAIRO_FONT_SLANT_ITALIC : CAIRO_FONT_SLANT_NORMAL, pfont->m_iFontWeight > 650 ? CAIRO_FONT_WEIGHT_BOLD : CAIRO_FONT_WEIGHT_NORMAL);
 
@@ -5230,46 +5241,32 @@ string strFont =pfont->m_strFontFamilyName;
       else
       {
 
-
-
-
-         pfont->m_pface = cairo_ft_font_face_create_for_ft_face (pfont->m_ft, 0);
-
-         /*status = cairo_font_face_set_user_data (pfont->m_pface, &pfont->m_keyDone, pfont->m_ft, (cairo_destroy_func_t) FT_Done_Face);
-
-         if (status)
+         if(!g_pmapCairoFontFace->Lookup(strPath, pfont->m_pface))
          {
 
-            cairo_font_face_destroy (pfont->m_pface);
+            pfont->m_pface = cairo_ft_font_face_create_for_ft_face (pfont->m_ft, 0);
 
-            pfont->m_pface = NULL;
+            g_pmapCairoFontFace->set_at(strPath, pfont->m_pface);
 
-            FT_Done_Face (pfont->m_ft);
+         }
 
-            pfont->m_ft = NULL;
-
-            goto fallback;
-
-         }*/
-
-         /*
-         cairo_font_options_t * poptions = cairo_font_options_create ();
-
-         cairo_matrix_t m;
-
-         cairo_matrix_init_identity(&m);
-
-         cairo_matrix_t m2;
-
-         cairo_matrix_init_identity(&m2);
-
-         pfont->m_pfont = cairo_scaled_font_create(pfont->m_pface, &m, &m2, poptions);
-
-         cairo_set_scaled_font(m_pdc, pfont->m_pfont);
-
-         cairo_font_options_destroy(poptions);
-         */
-
+//         cairo_font_options_t * poptions = cairo_font_options_create ();
+//
+//         cairo_matrix_t m;
+//
+//         cairo_matrix_init_identity(&m);
+//
+//         cairo_matrix_t m2;
+//
+//         cairo_matrix_init_identity(&m2);
+//
+//         pfont->m_pfont = cairo_scaled_font_create(pfont->m_pface, &m, &m2, poptions);
+//
+//         cairo_set_scaled_font(m_pdc, pfont->m_pfont);
+//
+//         cairo_font_options_destroy(poptions);
+//         */
+//
          cairo_set_font_face(m_pdc, pfont->m_pface);
 
       }

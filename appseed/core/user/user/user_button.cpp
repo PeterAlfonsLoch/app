@@ -18,7 +18,7 @@ namespace user
    {
 
       m_estockicon      = stock_icon_none;
-      
+
       m_estyle          = style_none;
 
       m_pbitmap         = NULL;
@@ -32,7 +32,8 @@ namespace user
 
    button::~button()
    {
-
+      ::aura::del(m_pbitmap);
+      ::aura::del(m_plist);
       set_button_style(style_none);
 
    }
@@ -65,7 +66,7 @@ namespace user
 
       if(m_estyle == style_push)
       {
-         
+
          _001OnDrawPush(pdc);
 
       }
@@ -192,14 +193,14 @@ namespace user
 
          if(!simple_process_system_message(pobj,::user::event_button_down))
          {
-            
+
             Session.m_puiLastLButtonDown = this;
 
             pmouse->m_bRet = true;
 
          }
 
-         
+
 
       }
 
@@ -394,7 +395,7 @@ namespace user
       sizeTotal.cy = tm.tmHeight;
 
       return sizeTotal;
-   
+
    }
 
 
@@ -501,23 +502,23 @@ namespace user
             pframewindow = pframewindow->GetTypedParent < ::simple_frame_window > ();
 
          }
-         
+
          if(pframewindow->GetTypedParent < ::simple_frame_window > () != NULL)
          {
-            
+
             pframewindow = pframewindow->GetTypedParent < ::simple_frame_window > ();
 
          }
 
          if(pframewindow->m_workset.m_pframeschema == NULL)
          {
-            
+
             m_pschema = &Session.userex()->GetUfeSchema()->m_button;
-            
+
          }
          else
          {
-            
+
             m_pschema = &pframewindow->m_workset.m_pframeschema->get_user_front_end_schema()->m_button;
 
          }
@@ -528,7 +529,7 @@ namespace user
 
    void button::layout()
    {
-      
+
       rect rectClient;
 
       GetClientRect(rectClient);
@@ -552,13 +553,13 @@ namespace user
 
    bool button::create_control(class control::descriptor * pdescriptor, index iItem)
    {
-      
+
       if(!create_window(
          NULL,
          NULL,
-         WS_VISIBLE | WS_CHILD, 
-         pdescriptor->m_rect, 
-         pdescriptor->m_pform, 
+         WS_VISIBLE | WS_CHILD,
+         pdescriptor->m_rect,
+         pdescriptor->m_pform,
          pdescriptor->m_id))
       {
          TRACE("Failed to create control");
@@ -579,7 +580,7 @@ namespace user
 
 
       rect rectClient;
-      
+
       GetClientRect(rectClient);
 
       COLORREF crBk;
@@ -659,7 +660,7 @@ namespace user
          }
       }
 
-      
+
       ::draw2d::brush_sp brushText(allocer());
 
 
@@ -936,20 +937,20 @@ namespace user
 
    }
 
-   
+
    void button::on_exit_button_style(e_style estyle)
    {
 
       if(estyle == style_bitmap)
       {
 
-         delete m_pbitmap;
+         ::aura::del(m_pbitmap);
 
       }
       else if(estyle == style_bitmap)
       {
 
-         delete m_plist;
+         ::aura::del(m_plist);
 
       }
       else if(estyle == style_push)
@@ -1026,10 +1027,10 @@ namespace user
 
 
 
-      
+
    void button::pre_translate_message(signal_details * pobj)
       {
-         
+
          // Relay events from this button to the tool tip tool handler
          BaseToolTipRelayEvent(pobj);
 
@@ -1051,7 +1052,7 @@ namespace user
       }
 
 
-   
+
 
 
 

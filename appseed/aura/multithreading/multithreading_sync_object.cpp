@@ -52,14 +52,14 @@ wait_result sync_object::wait(const duration & durationTimeout)
 
 #else
 
-   if(!lock(durationTimeout))
-   {
+   //if(!lock(durationTimeout))
+   //{
 
       return wait_result(wait_result::Failure);
 
-   }
+//   }
 
-   return wait_result(wait_result::Event0);
+  // return wait_result(wait_result::Event0);
 
 #endif
 }

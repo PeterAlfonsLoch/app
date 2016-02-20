@@ -3,6 +3,14 @@
 
 static mutex * s_pmutex = NULL;
 
+extern string_map < FT_Face > * g_pmapFontFace ;
+
+extern string_to_int * g_pmapFontError ;
+
+extern string_to_int * g_pmapFontError2 ;
+
+extern string_map < cairo_font_face_t * > * g_pmapCairoFontFace ;
+
 extern CLASS_DECL_AURA array<object * > * g_paAura;
 
 #ifdef LINUX
@@ -40,6 +48,21 @@ void init_cairo_mutex(::aura::application * papp)
 
 #endif
 
+   g_pmapFontFace = new string_map < FT_Face > ();
+
+   g_paAura->add(g_pmapFontFace);
+
+   g_pmapCairoFontFace = new string_map < cairo_font_face_t * > ();
+
+   g_paAura->add(g_pmapCairoFontFace);
+
+   g_pmapFontError = new string_to_int ();
+
+   g_paAura->add(g_pmapFontError);
+
+   g_pmapFontError2 = new string_to_int ();
+
+   g_paAura->add(g_pmapFontError2);
 }
 
 

@@ -20,7 +20,7 @@ namespace user
       m_dataid = typeid(*this).name();
 
       m_pmutex = new mutex(papp);
-         
+
    }
 
 
@@ -122,7 +122,7 @@ namespace user
       {
          pframe->SetWindowText(str);
          pframe = pframe->GetParentFrame();
-         
+
       }
 
    }
@@ -190,7 +190,7 @@ namespace user
 
       for (index index = 0; index < count; index++)
       {
-         
+
          ::user::impact * pview = get_view(index);
 
          ASSERT_VALID(pview);
@@ -314,7 +314,7 @@ namespace user
    {
       ASSERT(this != NULL); return m_strTitle;
    }
-   
+
    const ::file::path & document::get_file_path() const
    {
 
@@ -322,11 +322,11 @@ namespace user
 
    }
 
-   
+
    impact_system * document::get_document_template() const
    {
-   
-      ASSERT(this != NULL); 
+
+      ASSERT(this != NULL);
       return m_pimpactsystem;
 
    }
@@ -609,6 +609,7 @@ namespace user
       if (psl == NULL || psl->m_pobjectSync != m_pmutex)
          psl = &sl;
       psl->lock();
+      pre_close_document();
       // destroy all frames viewing this document_interface
       // the last destroy may destroy us
       bool bAutoDelete = m_bAutoDelete;
@@ -637,6 +638,19 @@ namespace user
 
       //release();
    }
+
+
+   void document::pre_close_document()
+   {
+
+      view_update_hint uh(get_app());
+
+      uh.m_ehint = view_update_hint::hint_pre_close_document;
+
+      update_all_views(NULL, 0, &uh);
+
+   }
+
 
    void document::close_document()
    {
@@ -845,18 +859,18 @@ namespace user
       //if (newName.is_empty() || is_new_document())
       if (newName.is_empty())
       {
-         
+
          sp(impact_system) ptemplate = get_document_template();
-         
+
          ASSERT(ptemplate != NULL);
 
          newName = m_filepath;
-         
+
          //if (bReplace && (newName.is_empty() || is_new_document()))
 
          if (bReplace && newName.is_empty())
          {
-           
+
             newName = m_strTitle;
             // check for dubious filename
             strsize iBad = newName.get_string().FindOneOf(":/\\");
@@ -979,14 +993,14 @@ namespace user
       count = get_view_count();
       for (index = 0; index < count; index++)
       {
-         
+
          ::user::impact * pview = get_view(index);
 
          ASSERT_VALID(pview);
          // trans      ASSERT(::IsWindow(pview->get_handle()));
          if (pview->IsWindowVisible())   // Do not ::count invisible windows.
          {
-            
+
             ::user::frame_window * pFrame = pview->GetParentFrame();
 
             if (pFrame != NULL && pFrame->m_nWindow == -1)
@@ -1040,7 +1054,7 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
    // ::user::impact operations
 
-   
+
    void document::add_view(::user::impact * pview)
    {
 
@@ -1064,7 +1078,7 @@ namespace user
 
    void document::remove_view(::user::impact * pview)
    {
-      
+
       single_lock sl(m_pmutex, true);
 
       ASSERT_VALID(pview);
@@ -1085,12 +1099,12 @@ namespace user
 
    void document::on_file_save()
    {
-      
+
       do_file_save();
 
    }
 
-   
+
    void document::on_request(sp(::create) pcreatecontext)
    {
 
