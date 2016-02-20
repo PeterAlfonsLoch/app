@@ -6252,6 +6252,12 @@ synch_lock sl(m_pmutex);
                      if(iFind >= 0 && iFind < GetParent()->m_uiptraChild.get_upper_bound())
                      {
 
+                        sp(::user::interaction) pui = this; // hold reference to ourselves/
+                        // because parent can be only holder
+                        // if the only reference is lost, this window is destroyed
+                        // and we are removing only to add just soon later
+                        // for reordering (z-order) purposes
+
                         try
                         {
 

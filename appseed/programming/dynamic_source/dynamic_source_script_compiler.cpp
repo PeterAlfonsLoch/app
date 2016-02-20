@@ -33,7 +33,7 @@ script_compiler::script_compiler(::aura::application * papp):
 
    file_watcher_initialize_listener_thread(papp);
 
-#if defined(MEMDLEAK)
+#if MEMDLEAK
 
    m_strDynamicSourceConfiguration = "memdleak";
    m_strDynamicSourceStage = "stage";

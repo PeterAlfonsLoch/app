@@ -45,7 +45,7 @@ compiler::compiler(::aura::application * papp):
 {
 
 
-#if defined(MEMDLEAK)
+#if MEMDLEAK
 
    m_strDynamicSourceConfiguration = "memdleak";
    m_strDynamicSourceStage = "stage";
