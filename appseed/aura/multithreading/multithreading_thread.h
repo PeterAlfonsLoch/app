@@ -11,9 +11,9 @@ namespace primitive { class command;  }
 
 
 class CLASS_DECL_AURA thread :
-   virtual public command_target,
+   virtual public command_target
 #ifdef WINDOWS
-   virtual public ::exception::translator
+   ,virtual public ::exception::translator
 #endif
 {
 public:

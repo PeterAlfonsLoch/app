@@ -485,19 +485,18 @@ bool eat_end_level_dup(string & str, int32_t iLevelCount, const char * lpSeparat
 
 }
 
-
+string * g_pstrCalcModuleFolderDup = NULL;
 
 string ca2_module_folder_dup()
 {
 
-   static string * s_pstrCalc = NULL;
+   return *g_pstrCalcModuleFolderDup;
 
-   if(s_pstrCalc != NULL)
-   {
 
-      return *s_pstrCalc;
+}
 
-   }
+string calc_ca2_module_folder_dup()
+{
 
    string str;
 
@@ -563,9 +562,7 @@ string ca2_module_folder_dup()
 
 #endif
 
-   s_pstrCalc = new string(str);
-
-   return *s_pstrCalc;
+   return str;
 
 
 }

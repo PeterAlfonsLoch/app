@@ -4,6 +4,15 @@
 #if defined(LINUX)
 #ifdef _GNU_SOURCE
 #undef _GNU_SOURCE
+
+#include "aura/node/ansios/ansios.h"
+#include "aura/node/linux/linux.h"
+
+//#include <X11/cursorfont.h>
+#include <sys/time.h>
+#include <link.h>
+#include <pthread.h>
+
 #endif
 #define _GNU_SOURCE
 //#include <link.h>
@@ -144,6 +153,11 @@ namespace aura
 
       m_pinitmaindata                  = NULL;
 
+#ifdef LINUX
+
+      ::linux::shell::theLinuxShell.Initialize();
+
+#endif // LINUX
 
    }
 
@@ -205,13 +219,13 @@ namespace aura
 
    }
 
-   
+
    void application::on_command(::primitive::command * pcommand)
    {
 
       if(pcommand->m_ecommand == ::primitive::command_on_agree_exit)
       {
-         
+
          m_bAgreeExit = _001OnAgreeExit();
 
          m_bAgreeExitOk = true;
@@ -250,7 +264,7 @@ namespace aura
 
       try
       {
-      
+
          if (pcreate->m_spCommandLine.is_set()
             && (pcreate->m_spCommandLine->m_varQuery.has_property("install")
                || pcreate->m_spCommandLine->m_varQuery.has_property("uninstall")))
@@ -599,7 +613,7 @@ namespace aura
       set_os_data((void *) ::get_current_thread());
 
       dappy(string(typeid(*this).name()) + " : SetCurrentHandles 2 : " + ::str::from(m_iReturnCode));
-      
+
       set_os_int(::get_current_thread_id());
 
       dappy(string(typeid(*this).name()) + " : SetCurrentHandles impled : " + ::str::from(m_iReturnCode));
@@ -704,7 +718,7 @@ namespace aura
       UNREFERENCED_PARAMETER(nCode);
 
    }
-   
+
 
 //   void application::ShowWaitCursor(bool bShow)
 //   {
@@ -2302,7 +2316,7 @@ namespace aura
          */
 
          m_spfile.release();
-         
+
          m_spdir.release();
 
          try
@@ -3963,10 +3977,10 @@ namespace aura
 
       if(!papp->start_application(bSynch,pbias))
       {
-         
+
          try
          {
-            
+
             ::release(pbaseapp);
 
          }

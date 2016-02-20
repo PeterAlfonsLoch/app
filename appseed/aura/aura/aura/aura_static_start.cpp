@@ -12,9 +12,11 @@ void init_draw2d_direct2_mutex();
 void term_draw2d_direct2_mutex();
 void aura_auto_debug_teste();
 void teste_aura_cmp();
-
+void init_resolve_addr_file_func_line();
+extern string * g_pstrCalcModuleFolderDup;
+string calc_ca2_module_folder_dup();
 extern mutex * s_pmutexMessageDispatch;
-
+CLASS_DECL_AURA array<object * > * g_paAura = NULL;
 namespace str
 {
 
@@ -173,6 +175,10 @@ namespace aura
          s_pstringmanager = new string_manager();
 
          ::id_space::s_pidspace = new id_space();
+
+         g_pstrCalcModuleFolderDup = new string(calc_ca2_module_folder_dup());
+
+         g_paAura = new array<object * >;
 
 
 #ifdef APPLEOS
@@ -443,6 +449,26 @@ namespace aura
 
 //         destroy_id_space();
 
+         for(auto * po : *g_paAura)
+         {
+
+            try
+            {
+
+               delete po;
+
+            }
+            catch(...)
+            {
+
+
+            }
+
+         }
+
+         ::aura::del(g_paAura);
+
+         ::aura::del(g_pstrCalcModuleFolderDup);
 
          ::aura::del(::id_space::s_pidspace);
 
@@ -458,9 +484,15 @@ namespace aura
 
          ::set_thread(NULL);
 
+#ifdef __USE_BFD
+
+         init_resolve_addr_file_func_line();
+
+#endif
+
          memdleak_dump();
 
-#endif         
+#endif
 
       }
 

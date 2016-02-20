@@ -251,7 +251,7 @@ bool __os_init_thread()
 {
 
 
-   __clear_mq();
+   //__clear_mq();
 
    return true;
 

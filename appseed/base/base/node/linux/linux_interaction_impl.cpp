@@ -686,7 +686,7 @@ d.unlock();
          retry_single_lock sl(&pdraw->m_eventFree, millis(84), millis(84));
          pdraw->m_wndpaOut.remove(m_pui);
       }
-      m_pauraapp->remove(m_pui);
+      //m_pauraapp->remove(m_pui);
       mq_remove_window_from_all_queues(get_handle());
       oswindow_remove(m_oswindow->display(), m_oswindow->window());
    }

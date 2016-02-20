@@ -104,6 +104,15 @@ void verisimple_wstring::assign(const unichar * pwsz)
 
    }
 
+   if(pwsz == NULL || *pwsz == L'\0')
+   {
+
+      m_pwsz = wstring_data::get_nil();
+
+      return *this;
+
+   }
+
    ::count iLen         = wcslen_dup(pwsz);
 
    if (iLen == 0)
@@ -166,6 +175,26 @@ verisimple_wstring & verisimple_wstring::operator = (const verisimple_wstring & 
    if(this != &wstr)
    {
 
+      if(m_pwsz != NULL && m_pwsz != wstring_data::get_nil())
+      {
+
+         wstring_data::_free(m_pwsz);
+
+         m_pwsz = NULL;
+
+      }
+
+      if(wstr.m_pwsz == NULL || *wstr.m_pwsz == L'\0')
+      {
+
+         m_pwsz = wstring_data::get_nil();
+
+         return *this;
+
+      }
+
+
+
       if(m_pwsz != NULL && get_data()->m_iAllocation >= (wstr.length() + 1))
       {
 
@@ -195,6 +224,24 @@ verisimple_wstring & verisimple_wstring::operator = (const unichar * pwsz)
    if(m_pwsz != pwsz)
    {
 
+      if(m_pwsz != NULL && m_pwsz != wstring_data::get_nil())
+      {
+
+         wstring_data::_free(m_pwsz);
+
+         m_pwsz = NULL;
+
+      }
+
+      if(pwsz == NULL || *pwsz == L'\0')
+      {
+
+         m_pwsz = wstring_data::get_nil();
+
+         return *this;
+
+      }
+
       ::count iLen = wcslen_dup(pwsz);
 
       if(storage_size() >= (iLen + 1))
@@ -222,6 +269,24 @@ verisimple_wstring & verisimple_wstring::operator = (const unichar * pwsz)
 verisimple_wstring & verisimple_wstring::operator = (const char * psz)
 {
 
+   if(m_pwsz != NULL && m_pwsz != wstring_data::get_nil())
+   {
+
+      wstring_data::_free(m_pwsz);
+
+      m_pwsz = NULL;
+
+   }
+
+   if(psz == NULL || *psz == '\0')
+   {
+
+      m_pwsz = wstring_data::get_nil();
+
+      return *this;
+
+   }
+
    ::count iLen = utf16_len(psz);
 
    alloc(iLen + 1);
@@ -237,6 +302,25 @@ verisimple_wstring & verisimple_wstring::operator = (const char * psz)
 
 void verisimple_wstring::assign(const char * psz)
 {
+
+   if(m_pwsz != NULL && m_pwsz != wstring_data::get_nil())
+   {
+
+      wstring_data::_free(m_pwsz);
+
+      m_pwsz = NULL;
+
+   }
+
+   if(psz == NULL || *psz == '\0')
+   {
+
+      m_pwsz = wstring_data::get_nil();
+
+      return;
+
+   }
+
 
    ::count iLen = utf16_len(psz);
 

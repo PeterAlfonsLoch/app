@@ -81,6 +81,10 @@ namespace user
          ::count count = 0;
          for (index index = 0; index < m_viewptra.get_count(); index++)
          {
+            if(m_viewptra[index] == NULL)
+            {
+               continue;
+            }
             T * pt = dynamic_cast < T * >(m_viewptra[index]);
             if (pt != NULL)
             {
@@ -96,19 +100,33 @@ namespace user
       template < class T >
       T * get_typed_view_with_id(id id) const
       {
+
          ::count count = 0;
+
          for(index index = 0; index < m_viewptra.get_count(); index++)
          {
-            T * pt = m_viewptra[index].cast < T >();
+
+            if(m_viewptra[index] == NULL)
+            {
+               continue;
+            }
+
+            T * pt =  dynamic_cast < T * > (m_viewptra[index]);
+
             if(pt != NULL)
             {
+
                if(id == pt->m_id)
                   return pt;
                else
                   count++;
+
             }
+
          }
+
          return NULL;
+
       }
 
       virtual sp(::user::impact) get_typed_view(sp(type) info, index indexFind = 0);

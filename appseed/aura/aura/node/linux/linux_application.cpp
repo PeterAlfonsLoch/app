@@ -8,31 +8,33 @@
 #include <pthread.h>
 
 
-namespace linux
+namespace aura
 {
 
-   application::application(sp(::aura::application) papp) :
-      ::object(papp)
-   {
+//   application::application(sp(::aura::application) papp) :
+//      ::object(papp)
+//   {
+//
+////      m_pthreadimpl.alloc(allocer());
+////      m_pthreadimpl->m_pthread = this;
+//
+//  //m_nSafetyPoolSize = 512;        // default size
+//
+//      shell::theLinuxShell.Initialize();
+//   }
+//
+//   application::~application()
+//   {
+//
+//   }
 
-//      m_pthreadimpl.alloc(allocer());
-//      m_pthreadimpl->m_pthread = this;
 
-  //m_nSafetyPoolSize = 512;        // default size
-
-      shell::theLinuxShell.Initialize();
-   }
-
-   application::~application()
-   {
-
-   }
-
-
-   void application::_001OnFileNew()
-   {
-      m_pimpl->_001OnFileNew(NULL);
-   }
+//   void application::_001OnFileNew()
+//   {
+//
+////      _001OnFileNew(NULL);
+//
+//   }
 
 
 //   ::aura::document * application::_001opendocumentfile(var varfile)
@@ -51,16 +53,16 @@ namespace linux
 // xxx       m_atomSystemTopic    = ::GlobalAddAtomW(L"system");
    }
 
-   bool application::_001OnDDECommand(const char * lpcsz)
-   {
-      UNREFERENCED_PARAMETER(lpcsz);
-      return FALSE;
-   }
+//   bool application::_001OnDDECommand(const char * lpcsz)
+//   {
+//      UNREFERENCED_PARAMETER(lpcsz);
+//      return FALSE;
+//   }
 
-   HINSTANCE application::GetHinstance()
-   {
-      return NULL;
-   }
+//   HINSTANCE application::GetHinstance()
+//   {
+//      return NULL;
+//   }
 
    string application::get_version()
    {
@@ -142,18 +144,18 @@ namespace linux
 
 
 
-   void application::TermThread(HINSTANCE hInstTerm)
-   {
+//   void application::TermThread(HINSTANCE hInstTerm)
+//   {
+//
+//
+//   }
+//
 
 
-   }
 
 
 
-
-
-
-   bool application::process_initialize()
+   bool application::impl_process_initialize()
    {
 
       return true;
@@ -161,28 +163,33 @@ namespace linux
    }
 
 
-   bool application::initialize1()
+   bool application::impl_initialize1()
    {
 
-
+      set_run();
 
       return true;
 
    }
 
 
-   bool application::initialize2()
+   bool application::impl_initialize2()
    {
+
       return true;
+
    }
 
-   bool application::initialize3()
+
+   bool application::impl_initialize3()
    {
+
       return true;
+
    }
 
-   // thread termination
-   int32_t application::exit_instance() // default will 'delete this'
+
+   int32_t application::impl_exit_instance() // default will 'delete this'
    {
 
       // avoid calling CloseHandle() on our own thread handle
@@ -193,13 +200,13 @@ namespace linux
       //m_pimpl->m_bRun = false;
       //LNX_THREAD(m_pimpl->::thread_sp::m_p)->m_bRun = false;
 
-      int32_t iRet = ::aura::application::exit_instance();
+      //int32_t iRet = ::aura::application::exit_instance();
 
       //::ca2::smart_pointer<::ca2::application>::destroy();
 
 
 
-      return iRet;
+      return 0;
    }
 /*
    // Advanced: exception handling
@@ -260,89 +267,89 @@ namespace linux
 
    }
 
-   ::user::primitive * application::window_from_os_data(void * pdata)
-   {
-      return NULL;
-   }
+//   ::user::primitive * application::window_from_os_data(void * pdata)
+//   {
+//      return NULL;
+//   }
 
-   ::user::primitive * application::window_from_os_data_permanent(void * pdata)
-   {
-      return NULL;
-   }
+//   ::user::primitive * application::window_from_os_data_permanent(void * pdata)
+//   {
+//      return NULL;
+//   }
 
-   ::thread * application::GetThread()
-   {
-      if(::get_thread() == NULL)
-         return NULL;
-      else
-         return ::get_thread();
-   }
+//   ::thread * application::GetThread()
+//   {
+//      if(::get_thread() == NULL)
+//         return NULL;
+//      else
+//         return ::get_thread();
+//   }
 
-   void application::set_thread(::thread * pthread)
-   {
-      ::set_thread(pthread);
-   }
+//   void application::set_thread(::thread * pthread)
+//   {
+//      ::set_thread(pthread);
+//   }
 
    ///////////////////////////////////////////////////////////////////////////
    // application Initialization
 
-   void application::SetCurrentHandles()
-   {
-      //ASSERT(this == afxCurrentWinApp);
-      //if(afxCurrentAppName != NULL)
-        // return;
-      //ASSERT(afxCurrentAppName == NULL);
+//   void application::SetCurrentHandles()
+//   {
+//      //ASSERT(this == afxCurrentWinApp);
+//      //if(afxCurrentAppName != NULL)
+//        // return;
+//      //ASSERT(afxCurrentAppName == NULL);
+//
+//
+//      // Note: there are a number of _tcsdup (aka _strdup) calls that are
+//      // made here for the exe path, help file path, etc.  In previous
+//      // versions of ca2 API, this memory was never freed.  In this and future
+//      // versions this memory is automatically freed during application's
+//      // destructor.  If you are freeing the memory yourself, you should
+//      // either remove the code or set the pointers to NULL after freeing
+//      // the memory.
+//
+//      // get path of executable
+//   /*   char szBuff[_MAX_PATH];
+//      DWORD dwRet = ::GetModuleFileName(m_hInstance, szBuff, _MAX_PATH);
+//      ASSERT( dwRet != 0 && dwRet != _MAX_PATH );
+//      if( dwRet == 0 || dwRet == _MAX_PATH )
+//         throw aura_exception();*/
+//
+//      /*
+//      LPTSTR lpszExt = ::PathFindExtension(szBuff);
+//      ASSERT(lpszExt != NULL);
+//      if( lpszExt == NULL )
+//         throw aura_exception();
+//
+//      ASSERT(*lpszExt == '.');
+//      *lpszExt = 0;       // no suffix
+//      */
+//
+//      //string strExeName;
+//      //string strTitle = System.load_string("System.title");
+//      // get the exe title from the full path name [no extension]
+//      //strExeName = System.get_module_title();
+//
+//      m_hthread      =  ::GetCurrentThread();
+//
+//   }
 
 
-      // Note: there are a number of _tcsdup (aka _strdup) calls that are
-      // made here for the exe path, help file path, etc.  In previous
-      // versions of ca2 API, this memory was never freed.  In this and future
-      // versions this memory is automatically freed during application's
-      // destructor.  If you are freeing the memory yourself, you should
-      // either remove the code or set the pointers to NULL after freeing
-      // the memory.
-
-      // get path of executable
-   /*   char szBuff[_MAX_PATH];
-      DWORD dwRet = ::GetModuleFileName(m_hInstance, szBuff, _MAX_PATH);
-      ASSERT( dwRet != 0 && dwRet != _MAX_PATH );
-      if( dwRet == 0 || dwRet == _MAX_PATH )
-         throw aura_exception();*/
-
-      /*
-      LPTSTR lpszExt = ::PathFindExtension(szBuff);
-      ASSERT(lpszExt != NULL);
-      if( lpszExt == NULL )
-         throw aura_exception();
-
-      ASSERT(*lpszExt == '.');
-      *lpszExt = 0;       // no suffix
-      */
-
-      //string strExeName;
-      //string strTitle = System.load_string("System.title");
-      // get the exe title from the full path name [no extension]
-      //strExeName = System.get_module_title();
-
-      m_hthread      =  ::GetCurrentThread();
-
-   }
+//   ::user::primitive * application::FindWindow(const char * lpszClassName, const char * lpszWindowName)
+//   {
+//
+//      return NULL;
+//
+//   }
 
 
-   ::user::primitive * application::FindWindow(const char * lpszClassName, const char * lpszWindowName)
-   {
-
-      return NULL;
-
-   }
-
-
-   ::user::primitive *  application::FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * lpszWindow)
-   {
-
-      return NULL;
-
-   }
+//   ::user::primitive *  application::FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * lpszWindow)
+//   {
+//
+//      return NULL;
+//
+//   }
 
 
    void application::get_time(struct timeval *p)
@@ -392,41 +399,14 @@ namespace linux
    }
 
 
-
    bool application::set_main_init_data(::aura::main_init_data * pdata)
    {
 
-      m_pmaininitdata = (::linux::main_init_data *) pdata;
+      m_pinitmaindata =  pdata;
 
-      if(m_pmaininitdata != NULL && m_pimpl->is_system())
-      {
-         if(!win_init(m_pmaininitdata))
-            return false;
-      }
+      string strCmdLine          = pdata->m_vssCommandLine;
 
-      return true;
-
-   }
-
-   bool application::win_init(main_init_data * pdata)
-   {
-         ASSERT(pdata->m_hPrevInstance == NULL);
-
-         HINSTANCE hInstance        = pdata->m_hInstance;
-//         HINSTANCE hPrevInstance    = pdata->m_hPrevInstance;
-         string strCmdLine          = pdata->m_vssCommandLine;
-         UINT nCmdShow              = pdata->m_nCmdShow;
-
-
-         // fill in the initial state for the application
-         // Windows specific initialization (not done if no application)
-// xxx         m_hInstance = hInstance;
-// xxx          (dynamic_cast < sp(::aura::application) >(m_papp))->m_hInstance = hInstance;
-         //hPrevInstance; // Obsolete.
-//         m_strCmdLine = strCmdLine;
-  //       m_nCmdShow = nCmdShow;
-         //pApp->SetCurrentHandles();
-         get_app()->SetCurrentHandles();
+      get_app()->SetCurrentHandles();
 
       return true;
 

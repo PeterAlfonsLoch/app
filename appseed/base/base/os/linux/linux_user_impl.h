@@ -268,6 +268,25 @@ class oswindow_dataptra :
 {
 public:
 
+   virtual ~oswindow_dataptra()
+   {
+
+         remove_all();
+
+   }
+
+   void remove_all()
+   {
+
+      for(auto p : *this)
+      {
+
+         delete p;
+
+      }
+
+      array < oswindow_data * >::remove_all();
+   }
 
 };
 
@@ -291,6 +310,25 @@ class osdisplay_dataptra :
 {
 public:
 
+   virtual ~osdisplay_dataptra()
+   {
+
+         remove_all();
+
+   }
+
+   void remove_all()
+   {
+
+      for(auto p : *this)
+      {
+
+         delete p;
+
+      }
+
+      raw_array < osdisplay_data * >::remove_all();
+   }
 
 };
 

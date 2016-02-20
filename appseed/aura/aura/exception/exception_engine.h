@@ -29,7 +29,7 @@
 
 
 #ifdef WINDOWSEX
-#pragma warning(disable: 4091) 
+#pragma warning(disable: 4091)
 #include <ImageHlp.h>
 
 
@@ -52,9 +52,9 @@ namespace exception
    public:
 
 
+      mutex                m_mutex;
 
 #ifdef WINDOWSEX
-      mutex                m_mutex;
       bool                 m_bSkip;
 #if OSBIT == 32
       DWORD                m_uia[4096];
@@ -72,10 +72,13 @@ namespace exception
       int32_t              m_iRef;
       HMODULE              m_ha[4096];
       int                  m_iHa;
-      
+
       HMODULE              m_ma[4096];
       int                  m_iMa;
       char *               m_szaModule[4096];
+
+#else
+      void *               m_uia[64];
 
       char                _str[4096];
       char                _strBuf[4096];
@@ -126,7 +129,7 @@ namespace exception
 
 #else
 
-      bool stack_trace(string & str, uint_ptr uiSkip = 0, void * caller_address = NULL, const char * pszFormat = default_format());
+      char * stack_trace(uint_ptr uiSkip = 0, void * caller_address = NULL, const char * pszFormat = default_format());
 
 #endif
 
@@ -160,7 +163,6 @@ namespace exception
 #endif
       void backtrace();
       //DWORD64 * backtrace(int &c);
-
 #if OSBIT == 32
       void backtrace(DWORD * pui, int &c);
 #else
@@ -185,6 +187,10 @@ namespace exception
       bool load_modules();
       void clear();
       bool load_module(HANDLE, HMODULE);
+#else
+
+      void backtrace(void * pui, int &c);
+      char * stack_trace(void * pui, int c, const char * pszFormat = default_format());
 
 #endif
 

@@ -408,6 +408,15 @@
 		<Unit filename="graphics/visual/visual_rgb_quad_array.h" />
 		<Unit filename="graphics/visual/visual_visual.h" />
 		<Unit filename="graphics/visual/visual_water_routine.h" />
+		<Unit filename="html_lite/_html_lite_html_lite.cpp" />
+		<Unit filename="html_lite/html/_html.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
+		<Unit filename="html_lite/html_lite/_html_lite.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="net/_net.cpp" />
 		<Unit filename="net/http/http_application.h" />
 		<Unit filename="net/http/http_get_socket.h" />

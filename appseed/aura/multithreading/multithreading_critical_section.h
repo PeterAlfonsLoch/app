@@ -9,7 +9,7 @@ public:
 #ifdef WINDOWS
    CRITICAL_SECTION     m_sect;
 #else
-   void *            m_pmutex; // pthread_mutex_t;
+   pthread_mutex_t         m_mutex;
 #endif
 
    critical_section();
@@ -19,7 +19,7 @@ public:
 #ifdef WINDOWS
    operator CRITICAL_SECTION * ();
 #else
-   operator void * ();           // pthread_mutex_t
+   operator pthread_mutex_t ();
 #endif
 
    inline void unlock();
@@ -65,14 +65,14 @@ inline void critical_section::unlock()
 inline void critical_section::lock()
 {
 
-   pthread_mutex_lock ((pthread_mutex_t *) m_pmutex);
+   pthread_mutex_lock (&m_mutex);
 
 }
 
 inline void critical_section::unlock()
 {
 
-   pthread_mutex_unlock ((pthread_mutex_t *) m_pmutex);
+   pthread_mutex_unlock (&m_mutex);
 
 }
 

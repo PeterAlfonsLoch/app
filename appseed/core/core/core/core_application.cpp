@@ -1987,6 +1987,9 @@ namespace core
          catch (...)
          {
          }
+
+#ifndef LINUX
+
          try
          {
             if (m_pcoresystem != NULL && m_pcoresystem->m_psystemwindow != NULL)
@@ -2018,6 +2021,9 @@ namespace core
             m_iReturnCode = -2;
 
          }
+
+#endif
+
 
          try
          {

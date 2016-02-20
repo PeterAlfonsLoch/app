@@ -85,7 +85,6 @@
 			<Add option="-laxismysql" />
 			<Add option="-laxisbzip2" />
 			<Add option="-laxis" />
-			<Add option="-lhtml_lite" />
 			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../stage/x86" />
 			<Add directory="/usr/lib64/mysql/" />

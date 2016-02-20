@@ -80,12 +80,14 @@ void * system_heap_alloc(size_t size)
 void * system_heap_alloc_dbg(size_t size, int nBlockUse, const char * pszFileName, int iLine)
 {
 
+   void * p;
+
    size_t nAllocSize = size + sizeof(size_t) + sizeof(memdleak_block);
 
    memdleak_block * pblock;
 
 #if defined(WINDOWSEX) && !PREFER_MALLOC
-   
+
    {
       cslock csl(g_pmutexSystemHeap);
 
@@ -99,12 +101,7 @@ void * system_heap_alloc_dbg(size_t size, int nBlockUse, const char * pszFileNam
 
 #endif
 
-   {
-      cslock csl(g_pmutexSystemHeap);
-
-      return ::HeapAlloc(g_system_heap(), 0, nAllocSize);
-
-   }
+p = pblock;
 
 
    //pblock->m_iBlockUse     = nBlockUse;
@@ -152,6 +149,17 @@ void * system_heap_alloc_dbg(size_t size, int nBlockUse, const char * pszFileNam
    //memset(&psize[1], 0, size);
 
    //return &psize[1];
+
+   if(p == NULL)
+   {
+
+      throw_memory_exception();
+
+   }
+
+   memset(p, 0x00, size);
+
+   return p;
 
 }
 
@@ -226,7 +234,7 @@ void * system_heap_realloc_dbg(void * p,  size_t size, int32_t nBlockUse, const 
 
 #else
 
-   pblock = (memdleak_block *) ::realloc(pblock, size + sizeof(memdleak_block));
+   p = (memdleak_block *) ::realloc(p, size + sizeof(memdleak_block));
 
 #endif
 
@@ -359,7 +367,7 @@ void system_heap_free(void * p)
    }
 
 #else
-   ::free(pblock);
+   ::free(p);
 #endif
 
 #endif

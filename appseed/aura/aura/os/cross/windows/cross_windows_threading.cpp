@@ -843,13 +843,30 @@ freeTlsIndices = new raw_array<DWORD>();
 void __node_term_cross_windows_threading()
 {
 
-   delete freeTlsIndices;
+   if(freeTlsIndices != NULL)
+   {
 
-   freeTlsIndices = NULL;
+      delete freeTlsIndices;
 
-   delete allthreaddata;
+      freeTlsIndices = NULL;
 
-   allthreaddata = NULL;
+   }
+
+   if(allthreaddata != NULL)
+   {
+
+      for(auto & p : *allthreaddata)
+      {
+
+         delete p.m_element2;
+
+      }
+
+      delete allthreaddata;
+
+      allthreaddata = NULL;
+
+   }
 
 
 }

@@ -41,6 +41,7 @@
 			</Target>
 		</Build>
 		<Compiler>
+			<Add option="-std=c++14" />
 			<Add option="-fexceptions" />
 			<Add option="-fnon-call-exceptions" />
 			<Add option="-fno-pie" />
@@ -50,7 +51,6 @@
 			<Add option="-Winvalid-pch" />
 			<Add option="-fPIC" />
 			<Add option="-fpermissive" />
-			<Add option="-std=c++14" />
 			<Add option="-DLINUX" />
 			<Add directory="../../../include" />
 			<Add directory="framework" />
@@ -66,6 +66,7 @@
 			<Add option="-Wl,-z,origin" />
 			<Add option="-ldl" />
 			<Add option="-lrt" />
+			<Add option="-lbfd" />
 			<Add option="-lX11" />
 			<Add option="-lpthread" />
 			<Add option="-lncurses" />
@@ -244,6 +245,10 @@
 		<Unit filename="aura/exception/exception.h" />
 		<Unit filename="aura/exception/exception2.h" />
 		<Unit filename="aura/exception/exception_assert.h" />
+		<Unit filename="aura/exception/exception_base.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="aura/exception/exception_base.h" />
 		<Unit filename="aura/exception/exception_call_stack.h" />
 		<Unit filename="aura/exception/exception_cancel.h" />
@@ -304,6 +309,10 @@
 		<Unit filename="aura/node/linux/linux_application.h" />
 		<Unit filename="aura/node/linux/linux_console_window.h" />
 		<Unit filename="aura/node/linux/linux_dir.h" />
+		<Unit filename="aura/node/linux/linux_factory_exchange.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="aura/node/linux/linux_factory_exchange.h" />
 		<Unit filename="aura/node/linux/linux_file.h" />
 		<Unit filename="aura/node/linux/linux_file_system.h" />
@@ -364,6 +373,10 @@
 		<Unit filename="aura/os/cross/windows/windows_winnt.h" />
 		<Unit filename="aura/os/linux/linux.h" />
 		<Unit filename="aura/os/linux/linux.inl" />
+		<Unit filename="aura/os/linux/linux_base.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="aura/os/linux/linux_cross_win_file.h" />
 		<Unit filename="aura/os/linux/linux_cross_win_gdi.h" />
 		<Unit filename="aura/os/linux/linux_cross_win_gdi_internal.h" />
@@ -533,6 +546,10 @@
 		<Unit filename="multithreading/multithreading_simple_thread.h" />
 		<Unit filename="multithreading/multithreading_single_lock.h" />
 		<Unit filename="multithreading/multithreading_socket_event.h" />
+		<Unit filename="multithreading/multithreading_sync_object.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="multithreading/multithreading_sync_object.h" />
 		<Unit filename="multithreading/multithreading_synch_index_iterator.h" />
 		<Unit filename="multithreading/multithreading_synch_index_ptr_array.h" />

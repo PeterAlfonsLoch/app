@@ -6,7 +6,7 @@
 
 string demangle(const char* name)
 {
-   
+
    return name;
 
 }
@@ -153,7 +153,15 @@ bool type::operator == (const type & info) const
 bool type::operator == (const std_type_info & info) const
 {
 
+#ifdef WINDOWS
+
    return m_id == info.raw_name();
+
+#else
+
+   return m_id == info.name();
+
+#endif // WINDOWS
 
 }
 
@@ -185,7 +193,15 @@ bool type::operator != (const type & info) const
 bool type::operator != (const std_type_info & info) const
 {
 
+#ifdef WINDOWS
+
    return m_id != info.raw_name();
+
+#else
+
+   return m_id != info.name();
+
+#endif // WINDOWS
 
 }
 

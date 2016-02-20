@@ -22,7 +22,7 @@ window_xlib::window_xlib()
 
 window_xlib::~window_xlib()
 {
-
+   ::aura::del(m_pdc);
 }
 
 
@@ -66,6 +66,8 @@ void window_xlib::create_window_graphics(oswindow window, int64_t cxParam, int64
    m_mem.allocate(cyParam * m_iScan);
 
    m_pimage = XCreateImage(window->display(), window->visual(), window->m_iDepth, ZPixmap, 0, (char *) m_mem.get_data(), cxParam, cyParam, sizeof(COLORREF) * 8, m_iScan);
+
+   ::aura::del(m_pdc);
 
    m_pdc = new device_context();
 

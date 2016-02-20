@@ -120,7 +120,7 @@ namespace linux
 
       //synch_lock sl(&user_mutex());
 
-      synch_lock sl(&m_mutex);
+      synch_lock sl(m_pmutex);
 
       static DWORD s_dwLastAnalysisFrame = 0;
       static DWORD s_dwLastFrameFrame = 0;

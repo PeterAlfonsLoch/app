@@ -307,6 +307,8 @@ bool oswindow_remove(Display * pdisplay, Window window)
    if(iFind < 0)
       return false;
 
+   delete ::oswindow_data::s_pdataptra->element_at(iFind);
+
    ::oswindow_data::s_pdataptra->remove_at(iFind);
 
    return true;
@@ -324,6 +326,8 @@ bool oswindow_remove_message_only_window(::user::interaction * puibaseMessageOnl
 
    if(iFind < 0)
       return false;
+
+   delete ::oswindow_data::s_pdataptra->element_at(iFind);
 
    ::oswindow_data::s_pdataptra->remove_at(iFind);
 

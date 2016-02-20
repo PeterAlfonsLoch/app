@@ -3,7 +3,7 @@
 #if defined(LINUX)
 #include <fontconfig/fontconfig.h>
 
-mutex *        g_pmutexFc;
+mutex *        g_pmutexFc = NULL;
 
 FcBool         g_fcResult;
 
@@ -14,7 +14,7 @@ string_to_string *      g_pmapFontPath;
 
 #endif
 
-
+extern CLASS_DECL_AURA array<object * > * g_paAura;
 
 
 namespace draw2d_cairo
@@ -29,17 +29,6 @@ namespace draw2d_cairo
       ::draw2d::graphics(papp)
    {
 
-
-#ifdef LINUX
-
-      if(g_pmutexFc == NULL)
-      {
-
-         g_pmutexFc = new mutex(get_app());
-
-      }
-
-#endif
 
 
       m_psurfaceAttach = NULL;
@@ -5796,12 +5785,6 @@ string graphics::get_font_path(string str)
 
    }
 
-   if(g_pmapFontPath == NULL)
-   {
-
-      g_pmapFontPath = new string_to_string();
-
-   }
 
    string strPath;
 

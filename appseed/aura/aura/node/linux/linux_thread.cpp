@@ -82,7 +82,7 @@ bool __node_term_thread(::thread * pthread)
 //
 //   return bOk1;
 
-      __clear_mq();
+      //__clear_mq();
 
 
    return true;

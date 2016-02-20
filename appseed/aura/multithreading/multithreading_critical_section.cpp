@@ -66,10 +66,8 @@ bool critical_section::Init()
 
 #endif
 
-      m_pmutex = new pthread_mutex_t;
-
       // create the mutex with the attributes set
-      pthread_mutex_init((pthread_mutex_t *) m_pmutex, &mutexattr);
+      pthread_mutex_init(&m_mutex, &mutexattr);
 
       //After initializing the mutex, the thread attribute can be destroyed
       pthread_mutexattr_destroy(&mutexattr);
@@ -92,17 +90,16 @@ critical_section::critical_section()
       throw memory_exception(get_thread_app());
 }
 
-critical_section::operator void*()
+critical_section::operator pthread_mutex_t()
 {
-   return m_pmutex;
+   return m_mutex;
 }
 
 critical_section::~critical_section()
 {
    // Destroy / close the mutex
-   pthread_mutex_destroy ((pthread_mutex_t *) m_pmutex);
+   pthread_mutex_destroy (&m_mutex);
 
-   delete (pthread_mutex_t *)m_pmutex;
 
 }
 

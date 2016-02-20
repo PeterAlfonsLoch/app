@@ -14,7 +14,7 @@ public:
 
 
    pthread_mutex_t         m_mutex;
-   string                  m_strName;
+   //string                  m_strName;
 
 #ifdef ANDROID
 

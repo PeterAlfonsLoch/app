@@ -17,7 +17,7 @@ It is provided "as is" without express or implied warranty.
 
 #include "framework.h"
 #ifdef WINDOWSEX
-#pragma warning(disable: 4091) 
+#pragma warning(disable: 4091)
 #include <ImageHlp.h>
 
 
@@ -27,12 +27,16 @@ It is provided "as is" without express or implied warranty.
 #include <unistd.h>
 #elif defined(APPLEOS)
 #include <execinfo.h>
-#elif defined(ANDROID) 
+#elif defined(ANDROID)
 #include <unistd.h>
 #include <unwind.h>
 #include <dlfcn.h>
 #endif
-
+#ifdef __USE_BFD
+bool resolve_addr_file_func_line(void *address, const char * * filename, const char ** func, unsigned & iLine);
+void init_resolve_addr_file_func_line();
+static int bfdinit = 0;
+#endif
 #ifdef ANDROID
 
 struct BacktraceState
@@ -274,9 +278,12 @@ namespace exception
       ,m_iRef(0)
 #endif
    {
+#ifdef WINDOWSEX
       m_iHa = 0;
       m_iMa = 0;
       ZERO(m_szaModule);
+#else
+#endif
    }
 
    engine::~engine()
@@ -438,12 +445,12 @@ namespace exception
       UINT32 maxframes = c;
       ULONG BackTraceHash;
       c = RtlCaptureStackBackTrace(0, maxframes, reinterpret_cast<PVOID*>(pui), &BackTraceHash);
-      
+
 #endif
    }
    void engine::backtrace()
    {
-      
+
 #if FAST_STACK_TRACE
       UINT32 maxframes = sizeof(m_uia) / sizeof(m_uia[0]);
       ULONG BackTraceHash;
@@ -662,7 +669,7 @@ namespace exception
       //if(!r)
         // return 0;
 
-      
+
 
       // find the last '\' mark.
       //char * p = strrchr(psz, '\\');
@@ -971,7 +978,7 @@ namespace exception
       char filename[MAX_PATH];
       if (!GetModuleFileNameA(hMod, filename, MAX_PATH))
       {
-         
+
          return false;
       }
 
@@ -1099,7 +1106,7 @@ namespace exception
 
 
 #if defined(LINUX) || defined(METROWIN) || defined(APPLEOS) || defined(ANDROID) || defined(SOLARIS)
-   bool engine::stack_trace(string & str, uint_ptr uiSkip, void * caller_address, const char * pszFormat)
+   char * engine::stack_trace(uint_ptr uiSkip, void * caller_address, const char * pszFormat)
 #else
    bool engine::stack_trace(uint_ptr uiSkip, const char * pszFormat)
 #endif
@@ -1108,8 +1115,8 @@ namespace exception
 
 
       single_lock sl(&m_mutex, true);
-
       *_strS = '\0';
+
 #ifdef WINDOWSEX
 
       if (!pszFormat) return false;
@@ -1199,9 +1206,9 @@ namespace exception
 
 #else
 
+       void * array[64];
 
-       void * array[1024];
-       int32_t size = backtrace(array, 1024);
+       int32_t size = ::backtrace(array, 64);
 
        if(caller_address != NULL)
        {
@@ -1210,82 +1217,11 @@ namespace exception
 
        }
 
+       return stack_trace(array, size);
 
-       char ** messages = backtrace_symbols(array, size);
-
-       // skip first stack frame (points here)
-       for (int32_t i = 1; i < size && messages != NULL; ++i)
-       {
-           char *mangled_name = 0, *offset_begin = 0, *offset_end = 0;
-
-           // find parantheses and +address offset surrounding mangled name
-           for (char *p = messages[i]; *p; ++p)
-           {
-               if (*p == '(')
-               {
-                   mangled_name = p;
-               }
-               else if (*p == '+')
-               {
-                   offset_begin = p;
-               }
-               else if (*p == ')')
-               {
-                   offset_end = p;
-                   break;
-               }
-           }
-
-           // if the line could be processed, attempt to demangle the symbol
-           if (mangled_name && offset_begin && offset_end &&
-               mangled_name < offset_begin)
-           {
-               *mangled_name++ = '\0';
-               *offset_begin++ = '\0';
-               *offset_end++ = '\0';
-
-#ifdef LINUX
-
-               int32_t status;
-               char * real_name = abi::__cxa_demangle(mangled_name, 0, 0, &status);
-
-               // if demangling is successful, output the demangled function name
-               if (status == 0)
-               {
-                   str += "[bt]: (" + ::str::from(i) + ") " + messages[i] + " : "
-                             + real_name +  "+" +  offset_begin + offset_end
-                             + "\n";
-
-               }
-               // otherwise, output the mangled function name
-               else
-
-#endif
-
-               {
-                   str += "[bt]: (" + ::str::from(i) + ") " + messages[i] + " : "
-                             + mangled_name + "+" + offset_begin + offset_end
-                             + "\n";
-               }
-
-#ifdef LINUX
-
-               free(real_name);
-
-#endif
-
-           }
-           // otherwise, print the whole line
-           else
-           {
-               str += "[bt]: (" + ::str::from(i) + ") " +  messages[i]+  "\n";
-           }
-       }
-       str += "\n";
-
-      return true;
 
    #endif
+
 
 
    }
@@ -1456,10 +1392,315 @@ namespace exception
       return _str;
 
    }
+#else
+
+   void engine::backtrace(void *pui, int &c)
+   {
+
+      synch_lock sl(&m_mutex);
+
+      UINT32 maxframes = c;
+
+      c = ::backtrace(pui, maxframes);
+
+   }
+
+   char * engine::stack_trace(void * pui, int c, const char * pszFormat)
+   {
+
+      char ** messages = backtrace_symbols(pui, c);
+
+      char szN[24];
+
+      *_strS = '\0';
+
+      char syscom[1024];
+
+      const char * func;
+      const char * file;
+      unsigned iLine;
+
+      for (int32_t i = 1; i < c && messages != NULL; ++i)
+      {
+#ifdef __USE_BFD
+
+         if(resolve_addr_file_func_line(((void **)pui)[i], &file, &func, iLine))
+         {
+
+
+            strcat(_strS, file);
+            strcat(_strS, ":");
+            ultoa_dup(szN, iLine, 10);
+            strcat(_strS, szN);
+            strcat(_strS, ":1: warning: ");
+
+         }
+#endif // __USE_BFD
+
+         char *mangled_name = 0, *offset_begin = 0, *offset_end = 0;
+
+         // find parantheses and +address offset surrounding mangled name
+         for (char *p = messages[i]; *p; ++p)
+         {
+
+            if (*p == '(')
+            {
+
+               mangled_name = p;
+
+            }
+            else if (*p == '+')
+            {
+
+               offset_begin = p;
+
+            }
+            else if (*p == ')')
+            {
+
+               offset_end = p;
+
+               break;
+
+            }
+
+         }
+
+         if (mangled_name && offset_begin && offset_end && mangled_name < offset_begin)
+         {
+
+            *mangled_name++ = '\0';
+            *offset_begin++ = '\0';
+            *offset_end++ = '\0';
+
+            int32_t status;
+
+            char * real_name = abi::__cxa_demangle(mangled_name, 0, 0, &status);
+
+            strcat(_strS, "[bt]: (");
+            ultoa_dup(szN, i, 10);
+            strcat(_strS, szN);
+            strcat(_strS, ") ");
+            strcat(_strS, messages[i]);
+            strcat(_strS, " : ");
+
+            if (status == 0)
+            {
+
+               strcat(_strS, real_name);
+
+            }
+            else
+            {
+
+               strcat(_strS, mangled_name);
+
+            }
+
+            strcat(_strS, "+");
+            strcat(_strS, offset_begin);
+            strcat(_strS, offset_end);
+            strcat(_strS,"\n");
+
+            if(real_name != NULL)
+            {
+
+               free(real_name);
+
+            }
+
+         }
+         else
+         {
+
+            strcat(_strS, "[bt]: (");
+            ultoa_dup(szN, i, 10);
+            strcat(_strS, szN);
+            strcat(_strS, ") ");
+            strcat(_strS, messages[i]);
+
+         }
+
+         strcat(_strS,"\n");
+
+      }
+
+      return _strS;
+
+   }
+
 
 #endif
 
 
 } // namespace exception
 
+#ifdef __USE_BFD
 
+#define _GNU_SOURCE
+#include <stdio.h>
+#include <stdlib.h>
+#include <dlfcn.h>
+
+#include <execinfo.h>
+#include <signal.h>
+#include <bfd.h>
+#include <unistd.h>
+
+/* globals retained across calls to resolve. */
+static const char * moda[]={"/ca2/stage/x86/libaura.so", "/ca2/stage/x86/libbase.so", "/ca2/stage/x86/libcore.so", NULL};
+static bfd* abfda[64];
+static asymbol **symsa[64];
+static asection *texta[64];
+static int bfdcount = 0;
+
+int free_resolve_addr_file_func_line()
+{
+
+   int i = 0;
+
+   while(i < 64)
+   {
+
+      if(abfda[i] == NULL)
+      {
+
+         return i;
+
+      }
+
+      i++;
+
+   }
+
+   return -1;
+
+}
+
+bool prep_resolve_addr_file_func_line(const char * f)
+{
+
+   int i = free_resolve_addr_file_func_line();
+
+   if(i < 0)
+   {
+
+      return false;
+
+   }
+
+   bfd* & abfd = abfda[i];
+
+   asymbol ** & syms = symsa[i];
+
+   asection * & text = texta[i];
+
+   abfd = bfd_openr(f, 0);
+
+   if (!abfd)
+   {
+
+      perror("bfd_openr failed: ");
+
+      return false;
+
+   }
+
+   /* oddly, this is required for it to work... */
+   bfd_check_format(abfd,bfd_object);
+
+   unsigned storage_needed = bfd_get_symtab_upper_bound(abfd);
+
+   syms = (asymbol **) malloc(storage_needed);
+
+   unsigned cSymbols = bfd_canonicalize_symtab(abfd, syms);
+
+   text = bfd_get_section_by_name(abfd, ".text");
+
+   return true;
+
+}
+
+
+void init_resolve_addr_file_func_line()
+{
+
+   if(bfdinit)
+      return;
+
+   bfdinit = 1;
+
+   ZERO(abfda);
+
+   ZERO(symsa);
+
+ 	ZERO(texta)
+
+   bfd_init();
+
+   char ename[1024];
+
+   int l = readlink("/proc/self/exe",ename,sizeof(ename));
+
+   if (l == -1)
+   {
+
+      perror("failed to find executable\n");
+
+      return false;
+
+   }
+
+   ename[l] = 0;
+
+   prep_resolve_addr_file_func_line(ename);
+
+   const char ** p = (const char **) moda;
+
+   while(*p)
+   {
+
+      if(prep_resolve_addr_file_func_line(*p))
+      {
+         bfdcount++;
+
+      }
+
+      p++;
+
+   }
+
+}
+
+bool resolve_addr_file_func_line1(bfd* abfd, asymbol **syms, asection *text, void *address, const char * * filename, const char ** func, unsigned & iLine)
+{
+    long offset = ((long)address) - text->vma;
+    if (offset > 0) {
+         *filename = NULL;
+    *func = NULL;
+
+        if (bfd_find_nearest_line(abfd, text, syms, offset, filename, func, &iLine) && *filename)
+            return true;
+            return false;
+    }
+    return false;
+}
+
+
+bool resolve_addr_file_func_line(void *address, const char * * filename, const char ** func, unsigned & iLine)
+{
+   int i;
+   while(i < bfdcount)
+   {
+
+      if(resolve_addr_file_func_line1(abfda[i], symsa[i], texta[i],address, filename, func, iLine))
+         return true;
+
+      i++;
+
+   }
+    return false;
+}
+
+
+#endif

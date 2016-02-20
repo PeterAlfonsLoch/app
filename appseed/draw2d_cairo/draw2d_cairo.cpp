@@ -3,6 +3,16 @@
 
 static mutex * s_pmutex = NULL;
 
+extern CLASS_DECL_AURA array<object * > * g_paAura;
+
+#ifdef LINUX
+
+extern mutex * g_pmutexFc;
+
+extern string_to_string *      g_pmapFontPath;
+
+#endif
+
 mutex & cairo_mutex()
 {
 
@@ -14,9 +24,26 @@ mutex & cairo_mutex()
 void init_cairo_mutex(::aura::application * papp)
 {
 
-    s_pmutex = new mutex(papp);
+   s_pmutex = new mutex(papp);
+
+   g_paAura->add(s_pmutex);
+
+#ifdef LINUX
+
+   g_pmutexFc = new mutex(papp);
+
+   g_paAura->add(g_pmutexFc);
+
+   g_pmapFontPath = new string_to_string();
+
+   g_paAura->add(g_pmapFontPath);
+
+#endif
 
 }
+
+
+
 
 #ifdef WINDOWS
 

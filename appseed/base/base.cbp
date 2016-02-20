@@ -295,6 +295,10 @@
 		<Unit filename="base/os/linux/linux_oswindow.h" />
 		<Unit filename="base/os/linux/linux_user_impl.h" />
 		<Unit filename="base/os/linux/linux_window_cairo.h" />
+		<Unit filename="base/os/linux/linux_window_xlib.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="base/os/linux/linux_window_xlib.h" />
 		<Unit filename="base/os/linux/linux_windowing.h" />
 		<Unit filename="base/os/macos/macos.h" />

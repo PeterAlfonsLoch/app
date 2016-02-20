@@ -156,18 +156,18 @@ mutex::mutex(::aura::application * papp, bool bInitiallyOwn, const char * pstrNa
 
       if(str::begins_ci(pstrName, "Global"))
       {
-         m_strName = ::file::path("/var/tmp") / pstrName;
+         m_pszName = strdup(::file::path("/var/tmp") / pstrName);
       }
       else
       {
-         m_strName = ::file::path(getenv("HOME")) / pstrName;
+         m_pszName = strdup(::file::path(getenv("HOME")) / pstrName);
       }
 
-      ::dir::mk(::dir::name(m_strName));
+      ::dir::mk(::dir::name(m_pszName));
 
-      ::file_put_contents_dup(m_strName, m_strName);
+      ::file_put_contents_dup(m_pszName, m_pszName);
 
-      m_key = ftok(m_strName, 0); //Generate a unique key or supply a value
+      m_key = ftok(m_pszName, 0); //Generate a unique key or supply a value
 
       m_semid = semget(
                   m_key, // a unique identifier to identify semaphore set
@@ -237,7 +237,7 @@ mutex::mutex(::aura::application * papp, const char * pstrName, sem_t * psem, bo
    object(papp),
    sync_object(pstrName)
 {
-   
+
    m_bOwner       = bOwner;
    m_strName      = pstrName;
    m_psem         = psem;
@@ -264,7 +264,6 @@ mutex::mutex(::aura::application * papp,const char * pstrName,key_t key,int32_t 
 {
 
    m_bOwner       = bOwner;
-   m_strName      = pstrName;
    m_key          = key;
    m_semid        = semid;
 
@@ -273,7 +272,7 @@ mutex::mutex(::aura::application * papp,const char * pstrName,key_t key,int32_t 
 
 mutex::mutex(const mutex & m):
    object(m.get_app()),
-   sync_object(m.m_strName)
+   sync_object(m.m_pszName)
 {
 
    m_bOwner       = false;
@@ -700,20 +699,20 @@ mutex * mutex::open_mutex(::aura::application * papp,  const char * pstrName)
 #elif defined(ANDROID)
 
    string strName = pstrName;
-   
+
    sem_t * psem;
 
    int isCreator = 0;
 
    if((psem = sem_open(strName,O_CREAT | O_EXCL,0666,1)) != SEM_FAILED)
    {
-      
+
       isCreator = 1;
 
    }
    else
    {
-      
+
       psem = sem_open(strName,0);
 
       if(psem == SEM_FAILED)

@@ -52,7 +52,7 @@ namespace aura
 
       string_to_ptr                                   m_appmap;
       string                                          m_strAppName;
-      ::aura::allocatorsp                                       m_allocer;
+      ::aura::allocatorsp                             m_allocer;
       sp(class signal)                                m_psignal;
 
       ::aura::main_init_data *                        m_pinitmaindata;
@@ -65,9 +65,7 @@ namespace aura
       sp(::mutex)                                     m_pmutexGlobal;
       sp(::mutex)                                     m_pmutexGlobalId;
 
-      bool                                   m_bService;
-
-
+      bool                                            m_bService;
 
       ::file::patha                                   m_straMatterLocator;
       string                                          m_strLibraryName;
