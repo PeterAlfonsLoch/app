@@ -14,7 +14,7 @@ namespace simpledb
       ::sockets::socket(h),
       stream_socket(h),
       tcp_socket(h),
-#ifndef METROWIN
+#ifdef BSD_STYLE_SOCKETS
       http_base_socket(h),
       http_socket(h),
 #endif

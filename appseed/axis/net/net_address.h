@@ -14,23 +14,23 @@ namespace net
    {
    public:
 
-#if defined METROWIN && defined(__cplusplus_winrt)
+//#if defined METROWIN && defined(__cplusplus_winrt)
+//
+//      class CLASS_DECL_AXIS os_data
+//      {
+//      public:
+//
+//         ::Windows::Networking::HostName ^      m_hostname;
+//         ::String ^                   m_strService;
+//
+//      };
+//
+//#else
 
-      class CLASS_DECL_AXIS os_data
-      {
-      public:
-
-         ::Windows::Networking::HostName ^      m_hostname;
-         ::String ^                   m_strService;
-
-      };
-
-#else
-
-      class os_data;
+      //class os_data;
 
 
-#endif
+//#endif
 
       union address_union
       {
@@ -55,11 +55,11 @@ namespace net
       } u;
 
 
-#ifdef METROWIN
-
-      os_data * m_posdata;
-
-#endif
+//#ifdef METROWIN
+//
+//      os_data * m_posdata;
+//
+//#endif
 
 
 
@@ -180,9 +180,9 @@ namespace net
    {
 
       return is_ipv6() || is_ipv4()
-#if defined METROWIN && defined(__cplusplus_winrt)
-         || (m_posdata != NULL && m_posdata->m_hostname != nullptr)
-#endif
+//#if defined METROWIN && defined(__cplusplus_winrt)
+//         || (m_posdata != NULL && m_posdata->m_hostname != nullptr)
+//#endif
          ;
 
    }

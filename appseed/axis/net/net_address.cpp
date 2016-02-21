@@ -17,11 +17,11 @@ namespace net
 
       zero(this, sizeof(u.m_sa));
 
-#ifdef METROWIN
-
-      m_posdata = new os_data();
-
-#endif
+//#ifdef METROWIN
+//
+//      m_posdata = new os_data();
+//
+//#endif
 
    }
 
@@ -31,11 +31,11 @@ namespace net
 
       zero(this, sizeof(u.m_sa));
 
-#ifdef METROWIN
-
-      m_posdata = new os_data();
-
-#endif
+//#ifdef METROWIN
+//
+//      m_posdata = new os_data();
+//
+//#endif
 
       u.s.m_family = family;
       u.s.m_port = htons(port);
@@ -47,11 +47,11 @@ namespace net
    address::address(const sockaddr & sa)
    {
 
-#ifdef METROWIN
-
-      m_posdata = new os_data();
-
-#endif
+//#ifdef METROWIN
+//
+//      m_posdata = new os_data();
+//
+//#endif
 
       u.m_sa = sa;
 
@@ -73,11 +73,11 @@ namespace net
 
       zero(this, sizeof(u.m_sa));
 
-#ifdef METROWIN
-
-      m_posdata = new os_data();
-
-#endif
+//#ifdef METROWIN
+//
+//      m_posdata = new os_data();
+//
+//#endif
 
       set_address(host);
       u.s.m_port = htons(port);
@@ -91,11 +91,11 @@ namespace net
 
       zero(this, sizeof(u.m_sa));
 
-#ifdef METROWIN
-
-      m_posdata = new os_data();
-
-#endif
+//#ifdef METROWIN
+//
+//      m_posdata = new os_data();
+//
+//#endif
 
       set_address(host);
       u.s.m_port = Sess(papp).sockets().net().service_port(strService);
@@ -109,11 +109,11 @@ namespace net
 
       zero(this, sizeof(u.m_sa));
 
-#ifdef METROWIN
-
-      m_posdata = new os_data();
-
-#endif
+//#ifdef METROWIN
+//
+//      m_posdata = new os_data();
+//
+//#endif
 
       u.s.m_family = AF_INET6;
       u.s.m_port = htons(port);
@@ -128,11 +128,11 @@ namespace net
 
       u.m_addr6 = sa;
 
-#ifdef METROWIN
-
-      m_posdata = new os_data();
-
-#endif
+//#ifdef METROWIN
+//
+//      m_posdata = new os_data();
+//
+//#endif
 
       if (u.s.m_family != AF_INET6)
       {
@@ -152,11 +152,11 @@ namespace net
 
       zero(this, sizeof(u.m_sa));
 
-#ifdef METROWIN
-
-      m_posdata = new os_data();
-
-#endif
+//#ifdef METROWIN
+//
+//      m_posdata = new os_data();
+//
+//#endif
 
       u.s.m_family = AF_INET;
       u.s.m_port = htons(port);
@@ -171,11 +171,11 @@ namespace net
 
       u.m_addr = sa;
 
-#ifdef METROWIN
-
-      m_posdata = new os_data();
-
-#endif
+//#ifdef METROWIN
+//
+//      m_posdata = new os_data();
+//
+//#endif
 
       if (u.s.m_family != AF_INET)
       {
@@ -193,11 +193,11 @@ namespace net
    address::address(const address & address)
    {
 
-#ifdef METROWIN
-
-      m_posdata = new os_data();
-
-#endif
+//#ifdef METROWIN
+//
+//      m_posdata = new os_data();
+//
+//#endif
 
       copy(address);
 
@@ -207,11 +207,11 @@ namespace net
    address::~address()
    {
 
-#ifdef METROWIN
-
-      delete m_posdata;
-
-#endif
+//#ifdef METROWIN
+//
+//      delete m_posdata;
+//
+//#endif
 
    }
 
@@ -243,16 +243,16 @@ namespace net
    string address::get_display_number() const
    {
 
-#ifdef METROWIN
-
-      if (!is_ipv4() && !is_ipv6() && m_posdata != NULL && m_posdata->m_hostname != nullptr)
-      {
-
-         ((address *) this)->sync_os_address();
-
-      }
-
-#endif
+//#ifdef METROWIN
+//
+//      if (!is_ipv4() && !is_ipv6() && m_posdata != NULL && m_posdata->m_hostname != nullptr)
+//      {
+//
+//         ((address *) this)->sync_os_address();
+//
+//      }
+//
+//#endif
 
       string str;
 
@@ -342,51 +342,51 @@ namespace net
 
    void address::sync_os_address()
    {
-#ifdef METROWIN
-
-      if (u.s.m_family == AF_INET || u.s.m_family == AF_INET6)
-      {
-         m_posdata->m_hostname = ref new ::Windows::Networking::HostName(get_display_number());
-      }
-      else if (m_posdata->m_hostname != nullptr)
-      {
-
-         string strDisplayNumber = m_posdata->m_hostname->RawName;
-
-         if (::sockets::net::isipv4(strDisplayNumber))
-         {
-            ::sockets::net::convert(u.m_addr.sin_addr, strDisplayNumber);
-            u.s.m_family = AF_INET;
-         }
-         else if (::sockets::net::isipv6(strDisplayNumber))
-         {
-            ::sockets::net::convert(u.m_addr6.sin6_addr, strDisplayNumber);
-            u.s.m_family = AF_INET;
-         }
-         else
-         {
-            u.s.m_family = AF_UNSPEC;
-         }
-
-      }
-#endif
+//#ifdef METROWIN
+//
+//      if (u.s.m_family == AF_INET || u.s.m_family == AF_INET6)
+//      {
+//         m_posdata->m_hostname = ref new ::Windows::Networking::HostName(get_display_number());
+//      }
+//      else if (m_posdata->m_hostname != nullptr)
+//      {
+//
+//         string strDisplayNumber = m_posdata->m_hostname->RawName;
+//
+//         if (::sockets::net::isipv4(strDisplayNumber))
+//         {
+//            ::sockets::net::convert(u.m_addr.sin_addr, strDisplayNumber);
+//            u.s.m_family = AF_INET;
+//         }
+//         else if (::sockets::net::isipv6(strDisplayNumber))
+//         {
+//            ::sockets::net::convert(u.m_addr6.sin6_addr, strDisplayNumber);
+//            u.s.m_family = AF_INET;
+//         }
+//         else
+//         {
+//            u.s.m_family = AF_UNSPEC;
+//         }
+//
+//      }
+//#endif
    }
 
    void address::sync_os_service()
    {
-#ifdef METROWIN
-#endif
+//#ifdef METROWIN
+//#endif
    }
 
 
    bool address::set_address(const string & strAddress)
    {
 
-#ifdef METROWIN
-
-      m_posdata->m_hostname = ref new ::Windows::Networking::HostName(strAddress);
-
-#else
+//#ifdef METROWIN
+//
+//      m_posdata->m_hostname = ref new ::Windows::Networking::HostName(strAddress);
+//
+//#else
 
       if (Sess(get_thread_app()).sockets().net().convert(u.m_addr6.sin6_addr, strAddress))
       {
@@ -401,7 +401,7 @@ namespace net
          u.s.m_family = AF_UNSPEC;
       }
 
-#endif
+//#endif
 
       return u.s.m_family != AF_UNSPEC;
 

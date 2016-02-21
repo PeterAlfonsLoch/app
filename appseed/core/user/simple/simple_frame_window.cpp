@@ -1606,27 +1606,11 @@ void simple_frame_window::OnDropFiles(HDROP hDropInfo)
 
 }
 
-#else
-
-void simple_frame_window::OnDropFiles(HDROP hDropInfo)
-{
-
-   UNREFERENCED_PARAMETER(hDropInfo);
-
-}
-
-
-
-#endif
-
-
-
-
 // query end session for main frame will attempt to close it all down
 bool simple_frame_window::OnQueryEndSession()
 {
    ::base::application* pApp = &System;
-   if (pApp != NULL && pApp->m_puiMain == this)
+   if(pApp != NULL && pApp->m_puiMain == this)
       return pApp->m_pcoreapp->save_all_modified();
 
    return TRUE;
@@ -1636,12 +1620,30 @@ bool simple_frame_window::OnQueryEndSession()
 void simple_frame_window::OnEndSession(bool bEnding)
 {
 
-   if (!bEnding)
+   if(!bEnding)
       return;
 
    Application.close_all_documents(true);
 
 }
+
+
+#else
+
+//void simple_frame_window::OnDropFiles(HDROP hDropInfo)
+//{
+//
+//   UNREFERENCED_PARAMETER(hDropInfo);
+//
+//}
+//
+
+
+#endif
+
+
+
+
 
 
 LRESULT simple_frame_window::OnDDEInitiate(WPARAM wParam, LPARAM lParam)

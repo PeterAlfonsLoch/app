@@ -215,9 +215,12 @@ public:
    void OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
    virtual bool on_simple_command(e_simple_command ecommand, lparam lparam, LRESULT & lresult);
 
+#ifdef WINDOWSEX
    virtual void OnDropFiles(HDROP hDropInfo);
    virtual bool OnQueryEndSession();
    virtual void OnEndSession(bool bEnding);
+#endif
+
 
    LRESULT OnDDEInitiate(WPARAM wParam, LPARAM lParam);
    LRESULT OnDDEExecute(WPARAM wParam, LPARAM lParam);

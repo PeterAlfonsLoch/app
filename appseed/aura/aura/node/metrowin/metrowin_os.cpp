@@ -903,8 +903,11 @@ namespace metrowin
    
    int os::get_pid()
    {
-      
-      return 0;
+
+      return 1;
+
+   }
+
 
    }
 

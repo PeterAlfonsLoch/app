@@ -5,6 +5,10 @@
 
 //#if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
 
+
+#ifndef METROWIN
+
+
 typedef VOID(CALLBACK* TIMERPROC)(oswindow,UINT,uint_ptr,DWORD);
 typedef WINBOOL(CALLBACK* GRAYSTRINGPROC)(HDC,LPARAM,int32_t);
 typedef WINBOOL(CALLBACK* WNDENUMPROC)(oswindow,LPARAM);
@@ -19,6 +23,9 @@ typedef WINBOOL(CALLBACK* PROPENUMPROCEXW)(oswindow,LPWSTR,HANDLE,ulong_ptr);
 
 typedef int32_t(CALLBACK* EDITWORDBREAKPROca)(LPSTR lpch,int32_t ichCurrent,int32_t cch,int32_t code);
 typedef int32_t(CALLBACK* EDITWORDBREAKPROCW)(LPWSTR lpch,int32_t ichCurrent,int32_t cch,int32_t code);
+
+
+#endif
 
 
 #ifndef NOWINOFFSETS
@@ -591,7 +598,7 @@ oswindow hWnd);
 
 
 
-
+#ifndef METROWIN
 
 typedef struct tagDRAWTEXTPARAMS
 {
@@ -602,7 +609,7 @@ typedef struct tagDRAWTEXTPARAMS
    UINT    uiLengthDrawn;
 } DRAWTEXTPARAMS,FAR *LPDRAWTEXTPARAMS;
 
-
+#endif
 
 
 
@@ -630,13 +637,14 @@ SetParent(
 oswindow hWndChild,
 oswindow hWndNewParent);
 
-
-WINBOOL
-WINAPI
-EnumChildWindows(
-oswindow hWndParent,
-WNDENUMPROC lpEnumFunc,
-LPARAM lParam);
+//#ifndef 
+//
+//WINBOOL
+//WINAPI
+//EnumChildWindows(
+//oswindow hWndParent,
+//WNDENUMPROC lpEnumFunc,
+//LPARAM lParam);
 
 
 /*oswindow
@@ -993,8 +1001,6 @@ typedef struct tagACCEL {
 
 typedef LPACCEL HACCEL;
 
-#endif
-
 typedef struct tagPAINTSTRUCT {
    HDC         hdc;
    WINBOOL        fErase;
@@ -1004,7 +1010,6 @@ typedef struct tagPAINTSTRUCT {
    BYTE        rgbReserved[32];
 } PAINTSTRUCT,*PPAINTSTRUCT,*NPPAINTSTRUCT,*LPPAINTSTRUCT;
 
-#ifndef METROWIN
 
 typedef struct tagCREATESTRUCTA {
    LPVOID      lpCreateParams;
@@ -1042,7 +1047,6 @@ typedef CREATESTRUCTA CREATESTRUCT;
 typedef LPCREATESTRUCTA LPCREATESTRUCT;
 #endif // UNICODE
 
-#endif
 
 typedef struct tagWINDOWPLACEMENT {
    UINT  length;
@@ -1063,7 +1067,7 @@ typedef WINDOWPLACEMENT *PWINDOWPLACEMENT,*LPWINDOWPLACEMENT;
 #define WPF_ASYNCWINDOWPLACEMENT    0x0004
 #endif /* _WIN32_WINNT >= 0x0500 */
 
-
+#endif
 /*
 
 typedef struct tag_MSG
@@ -1077,9 +1081,13 @@ POINT       pt;
 
 */
 
+#ifndef METROWIN
+
 HDC BeginPaint(oswindow hwnd,PAINTSTRUCT * ps);
 
 WINBOOL EndPaint(oswindow hwnd,PAINTSTRUCT * ps);
+
+#endif
 
 //WINBOOL GetCursorPos(LPPOINT lpptCursor);
 
@@ -1163,13 +1171,14 @@ typedef struct tagNMHDR
 
 typedef NMHDR FAR * LPNMHDR;
 
-#endif
 
 typedef struct tagSTYLESTRUCT
 {
    DWORD   styleOld;
    DWORD   styleNew;
 } STYLESTRUCT,* LPSTYLESTRUCT;
+
+#endif
 
 
 

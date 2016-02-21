@@ -59,6 +59,7 @@ typedef in6_addr in_addr6;
 #include "filesystem/fs/fs_remote_native_file.h"
 
 
+CLASS_DECL_AXIS string ip_reverse(string str);
 
 
 

@@ -587,18 +587,17 @@ CLASS_DECL_AXIS uint32_t c_inet_addr(const char * src)
 CLASS_DECL_AXIS string c_gethostbyname(const char * hostname)
 {
 
-#ifdef BSD_STYLE_SOCKETS
+#ifdef METROWIN
+
+   return (ref new ::Windows::Networking::HostName(string(hostname)))->DisplayName;
+
+#else
 
    struct hostent * pentry = gethostbyname(hostname);
 
    return c_inet_ntop(pentry->h_addrtype, pentry->h_addr_list[0]);
 
-#else
-
-   return (ref new ::Windows::Networking::HostName(string(hostname)))->DisplayName;
-
 #endif
-
 
 }
 

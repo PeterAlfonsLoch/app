@@ -10,14 +10,14 @@
 #include <openssl/bio.h>
 #include <openssl/evp.h>
 
-extern "C" void SSLInitializer_SSL_locking_function(int32_t mode,int32_t n,const char * file,int32_t line);
-extern "C" unsigned long SSLInitializer_SSL_id_function();
-extern "C" void SSLInitializer_rand_seed(const void * buf,int32_t num);
-extern "C" int32_t SSLInitializer_rand_bytes(uchar * buf,int32_t num);
-extern "C" void SSLInitializer_rand_cleanup();
-extern "C" void SSLInitializer_rand_add(const void * buf,int32_t num,double entropy);
-extern "C" int32_t SSLInitializer_rand_pseudorand(uchar * buf,int32_t num);
-extern "C" int32_t SSLInitializer_rand_status();
+//extern "C" void SSLInitializer_SSL_locking_function(int32_t mode,int32_t n,const char * file,int32_t line);
+//extern "C" unsigned long SSLInitializer_SSL_id_function();
+//extern "C" void SSLInitializer_rand_seed(const void * buf,int32_t num);
+//extern "C" int32_t SSLInitializer_rand_bytes(uchar * buf,int32_t num);
+//extern "C" void SSLInitializer_rand_cleanup();
+//extern "C" void SSLInitializer_rand_add(const void * buf,int32_t num,double entropy);
+//extern "C" int32_t SSLInitializer_rand_pseudorand(uchar * buf,int32_t num);
+//extern "C" int32_t SSLInitializer_rand_status();
 
 
 
@@ -151,22 +151,22 @@ namespace metrowin
             /* Global system initialization*/
 //            SSL_library_init();
   //          SSL_load_error_strings();
-            OpenSSL_add_all_algorithms();
-            CRYPTO_set_locking_callback(SSLInitializer_SSL_locking_function);
-            CRYPTO_set_id_callback(SSLInitializer_SSL_id_function);
+    //        OpenSSL_add_all_algorithms();
+//            CRYPTO_set_locking_callback(SSLInitializer_SSL_locking_function);
+  //          CRYPTO_set_id_callback(SSLInitializer_SSL_id_function);
 
 
             /* Ignore broken pipes which would cause our program to terminate
             prematurely */
 
-            rand_meth.add = &SSLInitializer_rand_add;
-            rand_meth.bytes = &SSLInitializer_rand_bytes;
-            rand_meth.cleanup = &SSLInitializer_rand_cleanup;
-            rand_meth.pseudorand = &SSLInitializer_rand_pseudorand;
-            rand_meth.seed = &SSLInitializer_rand_seed;
-            rand_meth.status = &SSLInitializer_rand_status;
+      //      rand_meth.add = &SSLInitializer_rand_add;
+        //    rand_meth.bytes = &SSLInitializer_rand_bytes;
+          //  rand_meth.cleanup = &SSLInitializer_rand_cleanup;
+            //rand_meth.pseudorand = &SSLInitializer_rand_pseudorand;
+            //rand_meth.seed = &SSLInitializer_rand_seed;
+            //rand_meth.status = &SSLInitializer_rand_status;
 
-            RAND_set_rand_method(&rand_meth);
+            //RAND_set_rand_method(&rand_meth);
 
 
 
@@ -275,90 +275,90 @@ namespace metrowin
 
 
 
-
-
-
-
-
-
-      extern "C" void SSLInitializer_SSL_locking_function(int32_t mode,int32_t n,const char * file,int32_t line)
-      {
-         UNREFERENCED_PARAMETER(file);
-         UNREFERENCED_PARAMETER(line);
-
-
-         synch_lock sl(::metrowin::g_pmutexMap);
-
-         mutex * pmutex = NULL;
-         if(!::metrowin::g_pmapMutex->Lookup(n,pmutex))
-         {
-            ::metrowin::g_pmapMutex->operator [](n) = new mutex(get_thread_app());
-            if(!::metrowin::g_pmapMutex->Lookup(n,pmutex))
-            {
-               return;
-            }
-         }
-
-         if(pmutex == NULL)
-         {
-            return;
-         }
-
-         sl.unlock();
-
-         if(mode & CRYPTO_LOCK)
-         {
-            pmutex->lock();
-         }
-         else
-         {
-            pmutex->unlock();
-         }
-
-      }
-
-
-
-      extern "C" unsigned long SSLInitializer_SSL_id_function()
-      {
-#ifdef WIN32
-         return ::GetCurrentThreadId();
-#else
-         return (unsigned long)(int_ptr) ::pthread_self();
-#endif
-      }
-
-      extern "C" void SSLInitializer_rand_seed(const void * buf,int32_t num)
-      {
-         UNREFERENCED_PARAMETER(buf);
-         UNREFERENCED_PARAMETER(num);
-      }
-
-      extern "C" int32_t SSLInitializer_rand_bytes(uchar * buf,int32_t num)
-      {
-         ::metrowin::SSLInitializer::s_psystem->math().gen_rand(buf,num);
-         return num;
-      }
-
-      extern "C" void SSLInitializer_rand_cleanup()
-      {
-      }
-
-      extern "C" void SSLInitializer_rand_add(const void * buf,int32_t num,double entropy)
-      {
-         UNREFERENCED_PARAMETER(buf);
-         UNREFERENCED_PARAMETER(num);
-         UNREFERENCED_PARAMETER(entropy);
-      }
-
-      extern "C" int32_t SSLInitializer_rand_pseudorand(uchar * buf,int32_t num)
-      {
-         ::metrowin::SSLInitializer::s_psystem->math().gen_rand(buf,num);
-         return num;
-      }
-
-      extern "C" int32_t SSLInitializer_rand_status()
-      {
-         return 1024;
-      }
-
+//
+//
+//
+//
+//
+//
+//      extern "C" void SSLInitializer_SSL_locking_function(int32_t mode,int32_t n,const char * file,int32_t line)
+//      {
+//         UNREFERENCED_PARAMETER(file);
+//         UNREFERENCED_PARAMETER(line);
+//
+//
+//         synch_lock sl(::metrowin::g_pmutexMap);
+//
+//         mutex * pmutex = NULL;
+//         if(!::metrowin::g_pmapMutex->Lookup(n,pmutex))
+//         {
+//            ::metrowin::g_pmapMutex->operator [](n) = new mutex(get_thread_app());
+//            if(!::metrowin::g_pmapMutex->Lookup(n,pmutex))
+//            {
+//               return;
+//            }
+//         }
+//
+//         if(pmutex == NULL)
+//         {
+//            return;
+//         }
+//
+//         sl.unlock();
+//
+//         if(mode & CRYPTO_LOCK)
+//         {
+//            pmutex->lock();
+//         }
+//         else
+//         {
+//            pmutex->unlock();
+//         }
+//
+//      }
+//
+//
+//
+//      extern "C" unsigned long SSLInitializer_SSL_id_function()
+//      {
+//#ifdef WIN32
+//         return ::GetCurrentThreadId();
+//#else
+//         return (unsigned long)(int_ptr) ::pthread_self();
+//#endif
+//      }
+//
+//      extern "C" void SSLInitializer_rand_seed(const void * buf,int32_t num)
+//      {
+//         UNREFERENCED_PARAMETER(buf);
+//         UNREFERENCED_PARAMETER(num);
+//      }
+//
+//      extern "C" int32_t SSLInitializer_rand_bytes(uchar * buf,int32_t num)
+//      {
+//         ::metrowin::SSLInitializer::s_psystem->math().gen_rand(buf,num);
+//         return num;
+//      }
+//
+//      extern "C" void SSLInitializer_rand_cleanup()
+//      {
+//      }
+//
+//      extern "C" void SSLInitializer_rand_add(const void * buf,int32_t num,double entropy)
+//      {
+//         UNREFERENCED_PARAMETER(buf);
+//         UNREFERENCED_PARAMETER(num);
+//         UNREFERENCED_PARAMETER(entropy);
+//      }
+//
+//      extern "C" int32_t SSLInitializer_rand_pseudorand(uchar * buf,int32_t num)
+//      {
+//         ::metrowin::SSLInitializer::s_psystem->math().gen_rand(buf,num);
+//         return num;
+//      }
+//
+//      extern "C" int32_t SSLInitializer_rand_status()
+//      {
+//         return 1024;
+//      }
+//

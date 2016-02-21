@@ -15,7 +15,8 @@ namespace sockets
 
 
 
-#ifdef WINDOWSEX
+//#ifdef WINDOWSEX
+#ifdef WINDOWS
 
       static WSAInitializer   m_winsock_init; ///< Winsock initialization singleton class
 

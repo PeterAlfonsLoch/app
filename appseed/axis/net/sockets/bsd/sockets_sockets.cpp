@@ -189,3 +189,23 @@ namespace sockets
 
 
 
+
+
+/* Resolve DNS host entry. */
+string ip_reverse(string str)
+{
+
+#ifdef METROWIN
+
+   return c_gethostbyname(str);
+
+#else
+
+   return gethostbyname(str);
+
+#endif
+
+}
+
+
+

@@ -192,11 +192,11 @@ namespace aura
       virtual void ShowWaitCursor(bool bShow = true);
 
 
-#ifndef METROWIN
+//#ifndef METROWIN
 
       virtual void get_time(timeval *p);
 
-#endif
+//#endif
 
       virtual void process_message_filter(int32_t code,signal_details * pobj) override;
 

@@ -250,6 +250,9 @@
     <Filter Include="Source Files\user">
       <UniqueIdentifier>{6bcd2621-bc22-4fb9-b3a3-0e595406461b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\net\sockets\bsd">
+      <UniqueIdentifier>{e8e1b43c-d426-4fff-a743-9ea73f5f864c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -1653,6 +1656,9 @@
     </ClCompile>
     <ClCompile Include="user\_user.cpp">
       <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\_bsd.cpp">
+      <Filter>Source Files\net\sockets</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
