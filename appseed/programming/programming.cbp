@@ -69,6 +69,7 @@
 			<Add option="-laura" />
 			<Add option="-laxis" />
 			<Add option="-lbase" />
+			<Add option="-lcore" />
 			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../stage/x86" />
 			<Add directory="/usr/lib64/mysql/" />
