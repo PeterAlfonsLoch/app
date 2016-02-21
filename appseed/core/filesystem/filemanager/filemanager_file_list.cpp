@@ -151,9 +151,9 @@ namespace filemanager
                   return;
                if(get_filemanager_data()->m_pholderFileList != NULL)
                {
-                  if(get_filemanager_data()->m_pholderFileList->m_uiptraHold.get_size() > 0)
+                  if(get_filemanager_data()->m_pholderFileList->m_uiptraChild.get_size() > 0)
                   {
-                     get_filemanager_data()->m_pholderFileList->m_uiptraHold[0]->ShowWindow(SW_HIDE);
+                     get_filemanager_data()->m_pholderFileList->m_uiptraChild[0]->ShowWindow(SW_HIDE);
                   }
                   get_filemanager_data()->m_pholderFileList->hold(this);
                   get_filemanager_data()->m_pholderFileList->layout();

@@ -308,7 +308,7 @@ namespace user
                }
                else
                {
-                  get_data()->m_panea[iTab]->m_pholder->m_uiptraHold.remove_all();
+                  get_data()->m_panea[iTab]->m_pholder->m_uiptraChild.remove_all();
                   get_data()->m_panea[iTab]->m_pholder->hold(pcreatordata->m_pwnd);
                }
             }
@@ -397,10 +397,10 @@ namespace user
       if(m_pviewdata->m_pwnd == NULL && m_pviewdata->m_pholder != NULL)
       {
 
-         if(m_pviewdata->m_pholder->m_uiptraHold.get_count() > 0)
+         if(m_pviewdata->m_pholder->m_uiptraChild.get_count() > 0)
          {
 
-            m_pviewdata->m_pwnd = m_pviewdata->m_pholder->m_uiptraHold[0];
+            m_pviewdata->m_pwnd = m_pviewdata->m_pholder->m_uiptraChild[0];
 
          }
 
@@ -509,8 +509,8 @@ namespace user
          return NULL;
       if(pcreatordata->m_pwnd != NULL)
          return pcreatordata->m_pwnd;
-      if(pcreatordata->m_pholder != NULL && pcreatordata->m_pholder->m_uiptraHold.get_count() == 1)
-         return pcreatordata->m_pholder->m_uiptraHold[0];
+      if(pcreatordata->m_pholder != NULL && pcreatordata->m_pholder->m_uiptraChild.get_count() == 1)
+         return pcreatordata->m_pholder->m_uiptraChild[0];
       return NULL;
    }
 

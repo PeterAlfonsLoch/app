@@ -817,28 +817,6 @@ namespace user
 
          }
 
-         sp(::user::place_holder) pholder = GetParent();
-
-         if (pholder.is_set())
-         {
-
-            ::count c = -1;
-
-            try
-            {
-
-               single_lock sl(GetParent()->m_pmutex, true);
-
-               c = pholder->m_uiptraHold.remove(this);
-
-            }
-            catch (...)
-            {
-
-            }
-
-         }
-
       }
 
       {

@@ -9,8 +9,7 @@ namespace user
 
 
    place_holder::place_holder(::aura::application * papp) :
-      ::object(papp),
-      m_uiptraHold(papp)
+      ::object(papp)
    {
    }
 
@@ -26,14 +25,14 @@ namespace user
 
    bool place_holder::can_merge(::user::interaction * pui)
    {
-
-      if(m_uiptraHold.contains(pui))
+      
+      if(m_uiptraChild.contains(pui))
          return false;
 
-      if(m_uiptraHold.get_count() == 0)
+      if(m_uiptraChild.get_count() == 0)
          return false;
 
-      return m_uiptraHold[0]->can_merge(pui);
+      return m_uiptraChild[0]->can_merge(pui);
 
    }
 
@@ -44,10 +43,8 @@ namespace user
       if(!can_merge(pui))
          return false;
 
-      if(!m_uiptraHold[0]->merge(pui))
+      if(!m_uiptraChild[0]->merge(pui))
          return false;
-
-      m_uiptraHold.add(pui);
 
       return true;
 
@@ -57,7 +54,7 @@ namespace user
    bool place_holder::is_holding(::user::interaction * pui)
    {
 
-      return m_uiptraHold.contains(pui);
+      return m_uiptraChild.contains(pui);
 
    }
 
@@ -68,24 +65,19 @@ namespace user
       if(pui == NULL)
          return false;
 
-      if(m_uiptraHold.contains(pui))
+      if(m_uiptraChild.contains(pui))
          return true;
 
-      for(index i = m_uiptraHold.get_upper_bound(); i >= 0; i--)
+      for(index i = m_uiptraChild.get_upper_bound(); i >= 0; i--)
       {
 
-         System.place_hold(m_uiptraHold[i]);
+         System.place_hold(m_uiptraChild[i]);
 
       }
 
-      m_uiptraHold.remove_all();
+      m_uiptraChild.remove_all();
 
-      m_uiptraHold.add(pui);
-
-      if(m_uiptraHold.get_count() == 1)
-      {
-         pui->SetParent(this);
-      }
+      pui->SetParent(this);
 
       layout();
       
@@ -96,42 +88,50 @@ namespace user
 
    bool place_holder::unhold(::user::interaction * pui)
    {
-      if(m_uiptraHold.find_first(pui) == 0)
-         return m_uiptraHold.remove_all() > 0;
-      else
-         return m_uiptraHold.remove(pui) >= 0;
+
+      return System.place_hold(pui) != NULL;
+
    }
 
    void place_holder::layout()
    {
       
-      if(m_uiptraHold.get_count() <= 0)
+      if(m_uiptraChild.get_count() <= 0)
          return;
 
-      ::user::interaction * puiHold = m_uiptraHold[0];
+      ::user::interaction * puiHold = m_uiptraChild[0];
 
       rect rectClient;
+
       GetClientRect(rectClient);
 
       if(rectClient.area() <= 0)
          return;
 
       rect rectWindow;
+
       puiHold->GetWindowRect(rectWindow);
+
       ScreenToClient(rectWindow);
+
       if(rectWindow != rectClient)
       {
-         puiHold->SetWindowPos(ZORDER_TOP, rectClient.left, rectClient.top,
-            rectClient.width(), rectClient.height(), 
-            (puiHold->IsWindowVisible() ? SWP_NOZORDER : SWP_SHOWWINDOW));
+
+         puiHold->SetWindowPos(ZORDER_TOP, rectClient, (puiHold->IsWindowVisible() ? SWP_NOZORDER : SWP_SHOWWINDOW));
+
       }
       else
       {
+         
          if(!puiHold->IsWindowVisible())
          {
+
             puiHold->ShowWindow(SW_SHOW);
+
          }
+
          puiHold->layout();
+
       }
 
    }
@@ -175,10 +175,10 @@ namespace user
    interaction * place_holder::get_hold()
    {
 
-      if(m_uiptraHold.get_count() <= 0)
+      if(m_uiptraChild.get_count() <= 0)
          return NULL;
 
-      return m_uiptraHold[0];
+      return m_uiptraChild[0];
 
    }
 
