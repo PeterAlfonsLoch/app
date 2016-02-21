@@ -74,8 +74,6 @@
 			<Add option="-laxis" />
 			<Add option="-lbase" />
 			<Add option="-lcore" />
-			<Add option="-lmath" />
-			<Add option="-lhtml_lite" />
 			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../stage/x86" />
 		</Linker>
