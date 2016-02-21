@@ -1193,7 +1193,7 @@ namespace exception
       return true;
 #elif defined(METROWIN) || defined(SOLARIS)
 
-      return true;
+      return _strS;
 
 #elif defined(ANDROID)
 
@@ -1282,7 +1282,7 @@ namespace exception
 
 #endif
 
-#ifdef WINDOWSEX
+#if defined(WINDOWSEX) 
 
 
    char * engine::get_frame(const char * pszFormat)
@@ -1392,7 +1392,7 @@ namespace exception
       return _str;
 
    }
-#else
+#elif defined(LINUX)
 
    void engine::backtrace(void *pui, int &c)
    {

@@ -1065,7 +1065,7 @@ void __node_term_multithreading()
 bool __os_init_thread()
 {
 
-   __clear_mq();
+   //__clear_mq();
 
    if(!defer_co_initialize_ex())
       return false;

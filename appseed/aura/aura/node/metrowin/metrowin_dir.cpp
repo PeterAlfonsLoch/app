@@ -26,6 +26,7 @@ namespace metrowin
    {
 
       listing.add("winmetro-Pictures://");
+      listing.add("winmetro-Music://");
 
       listing.last().m_iDir = 1;
 
@@ -179,6 +180,8 @@ namespace metrowin
    {
 
       if(lpcszPath.CompareNoCase("winmetro-Pictures:") == 0)
+         return true;
+      if (lpcszPath.CompareNoCase("winmetro-Music:") == 0)
          return true;
 
       bool bIsDir;

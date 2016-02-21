@@ -2358,7 +2358,7 @@ namespace user
          if(!Application.defer_initialize_twf())
          {
 
-            m_threadptra.remove_all();
+            //m_threadptra.remove_all();
 
             return false;
 
@@ -2492,7 +2492,7 @@ namespace user
          if(!Application.defer_initialize_twf())
          {
 
-            m_threadptra.remove_all();
+//            m_threadptra.remove_all();
 
             return false;
 
@@ -7136,7 +7136,7 @@ synch_lock sl(m_pmutex);
       ::user::interaction * puiParent = GetParent();
 
 #if defined(APPLE_IOS) || defined(VSNORD) || defined(METROWIN)
-      if(puiParent.is_set() && puiParent.m_p != System.m_posdata->m_pui)
+      if(puiParent != NULL && puiParent != System.m_posdata->m_pui)
 #else
       if(puiParent != NULL)
 #endif

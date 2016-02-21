@@ -1180,7 +1180,7 @@ namespace user
 
       nOffset = ptOffset.y / _001GetItemHeight();
 
-      ::data::tree_item * pitem;
+      ::data::tree_item * pitem = NULL;
 
       for (index i = 0; i < m_treeptra.get_count(); i++)
       {

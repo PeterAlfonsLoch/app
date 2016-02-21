@@ -5,33 +5,34 @@
 //extern thread_local_storage * gen_ThreadData;
 
 
-namespace metrowin
+//namespace metrowin
+namespace aura
 {
 
 
-   application::application(::aura::application * papp) :
-      ::object(papp)
-   {
+   //application::application(::aura::application * papp) :
+   //   ::object(papp)
+   //{
 
-      m_pthreadimpl.alloc(allocer());
-      m_pthreadimpl->m_pthread = this;
+   //   m_pthreadimpl.alloc(allocer());
+   //   m_pthreadimpl->m_pthread = this;
 
-      m_paxissystem = papp->m_paxissystem;
+   //   m_paxissystem = papp->m_paxissystem;
 
-      m_atomApp = m_atomSystemTopic = NULL;
+   //   m_atomApp = m_atomSystemTopic = NULL;
 
-   }
+   //}
 
-   application::~application()
-   {
+   //application::~application()
+   //{
 
-   }
+   //}
 
 
-   void application::_001OnFileNew()
-   {
-      m_pimpl->_001OnFileNew(NULL);
-   }
+   //void application::_001OnFileNew()
+   //{
+   //   m_pimpl->_001OnFileNew(NULL);
+   //}
 
    //::user::document * application::_001OpenDocumentFile(var varFile)
    //{
@@ -40,22 +41,22 @@ namespace metrowin
 
    void application::_001EnableShellOpen()
    {
-      ASSERT(m_atomApp == NULL && m_atomSystemTopic == NULL); // do once
+      //ASSERT(m_atomApp == NULL && m_atomSystemTopic == NULL); // do once
 /*
       m_atomApp            = ::GlobalAddAtomW(::str::international::utf8_to_unicode(m_strAppName));
       m_atomSystemTopic    = ::GlobalAddAtomW(L"system");*/
    }
 
-   bool application::_001OnDDECommand(const char * lpcsz)
-   {
-      UNREFERENCED_PARAMETER(lpcsz);
-      return FALSE;
-   }
+   //bool application::_001OnDDECommand(const char * lpcsz)
+   //{
+   //   UNREFERENCED_PARAMETER(lpcsz);
+   //   return FALSE;
+   //}
 
-   HINSTANCE application::GetHinstance()
-   {
-      return NULL;
-   }
+   //HINSTANCE application::GetHinstance()
+   //{
+   //   return NULL;
+   //}
 
    string application::get_version()
    {
@@ -137,36 +138,36 @@ namespace metrowin
    }
 
 
-   bool application::Ex2OnAppInstall()
-   {
-#ifdef IMPLEMENT_VISTA_TOOLS
-      if(VistaTools::IsVista())
-      {
-         if(VistaTools::IsElevated() != S_OK)
-         {
-            TRACE0("Error! Installing application ( : (un)install run parameter ) without Elevation (required since Vista Windows version)");
-            return false;
-         }
-      }
-#endif
-      return true;
-   }
-
-
-   bool application::Ex2OnAppUninstall()
-   {
-#ifdef WINDOWSEX
-      if(VistaTools::IsVista())
-      {
-         if(VistaTools::IsElevated() != S_OK)
-         {
-            TRACE0("Error! Installing application ( : (un)install run parameter ) without Elevation (required since Vista Windows version)");
-            return false;
-         }
-      }
-#endif
-      return true;
-   }
+//   bool application::Ex2OnAppInstall()
+//   {
+//#ifdef IMPLEMENT_VISTA_TOOLS
+//      if(VistaTools::IsVista())
+//      {
+//         if(VistaTools::IsElevated() != S_OK)
+//         {
+//            TRACE0("Error! Installing application ( : (un)install run parameter ) without Elevation (required since Vista Windows version)");
+//            return false;
+//         }
+//      }
+//#endif
+//      return true;
+//   }
+//
+//
+//   bool application::Ex2OnAppUninstall()
+//   {
+//#ifdef WINDOWSEX
+//      if(VistaTools::IsVista())
+//      {
+//         if(VistaTools::IsElevated() != S_OK)
+//         {
+//            TRACE0("Error! Installing application ( : (un)install run parameter ) without Elevation (required since Vista Windows version)");
+//            return false;
+//         }
+//      }
+//#endif
+//      return true;
+//   }
 
    /*
    bool application::DeferRegisterClass(LONG fToRegister, const char ** ppszClass)
@@ -176,61 +177,61 @@ namespace metrowin
    */
 
    // application
-   HCURSOR application::LoadCursor(const char * lpszResourceName) const
-   {
-      return NULL;
-   }
-
-   HCURSOR application::LoadCursor(UINT nIDResource) const
-   {
-      return NULL;
-   }
-
-   HCURSOR application::LoadStandardCursor(const char * lpszCursorName) const
-   {
-#ifdef WINDOWSEX
-      return ::LoadCursor(NULL, lpszCursorName);
-#else
-      throw todo(get_app());
-#endif
-   }
-
-   HCURSOR application::LoadOEMCursor(UINT nIDCursor) const
-   {
-#ifdef WINDOWSEX
-      return ::LoadCursor(NULL, MAKEINTRESOURCE(nIDCursor));
-#else
-      throw todo(get_app());
-#endif
-   }
-
-   HICON application::LoadIcon(const char * lpszResourceName) const
-   {
-      return NULL;
-   }
-
-   HICON application::LoadIcon(UINT nIDResource) const
-   {
-      return NULL;
-   }
-
-   HICON application::LoadStandardIcon(const char * lpszIconName) const
-   {
-#ifdef WINDOWSEX
-      return ::LoadIcon(NULL, lpszIconName);
-#else
-      throw todo(get_app());
-#endif
-   }
-
-   HICON application::LoadOEMIcon(UINT nIDIcon) const
-   {
-#ifdef WINDOWSEX
-      return ::LoadIcon(NULL, MAKEINTRESOURCE(nIDIcon));
-#else
-      throw todo(get_app());
-#endif
-   }
+//   HCURSOR application::LoadCursor(const char * lpszResourceName) const
+//   {
+//      return NULL;
+//   }
+//
+//   HCURSOR application::LoadCursor(UINT nIDResource) const
+//   {
+//      return NULL;
+//   }
+//
+//   HCURSOR application::LoadStandardCursor(const char * lpszCursorName) const
+//   {
+//#ifdef WINDOWSEX
+//      return ::LoadCursor(NULL, lpszCursorName);
+//#else
+//      throw todo(get_app());
+//#endif
+//   }
+//
+//   HCURSOR application::LoadOEMCursor(UINT nIDCursor) const
+//   {
+//#ifdef WINDOWSEX
+//      return ::LoadCursor(NULL, MAKEINTRESOURCE(nIDCursor));
+//#else
+//      throw todo(get_app());
+//#endif
+//   }
+//
+//   HICON application::LoadIcon(const char * lpszResourceName) const
+//   {
+//      return NULL;
+//   }
+//
+//   HICON application::LoadIcon(UINT nIDResource) const
+//   {
+//      return NULL;
+//   }
+//
+//   HICON application::LoadStandardIcon(const char * lpszIconName) const
+//   {
+//#ifdef WINDOWSEX
+//      return ::LoadIcon(NULL, lpszIconName);
+//#else
+//      throw todo(get_app());
+//#endif
+//   }
+//
+//   HICON application::LoadOEMIcon(UINT nIDIcon) const
+//   {
+//#ifdef WINDOWSEX
+//      return ::LoadIcon(NULL, MAKEINTRESOURCE(nIDIcon));
+//#else
+//      throw todo(get_app());
+//#endif
+//   }
 
 
 
@@ -339,41 +340,42 @@ namespace metrowin
       return ::metrowin::thread::is_idle_message(pMsg);
    }
 */
-   bool application::process_initialize()
+   bool application::impl_process_initialize()
    {
 
       return true;
    }
 
-   bool application::initialize1()
+   bool application::impl_initialize1()
    {
 
       return true;
 
    }
 
-   bool application::initialize2()
+   bool application::impl_initialize2()
    {
       return true;
    }
 
-   bool application::initialize3()
+   bool application::impl_initialize3()
    {
       return true;
    }
 
    // thread termination
-   int application::exit_instance() // default will 'delete this'
+   int application::impl_exit_instance() // default will 'delete this'
    {
 
       // avoid calling CloseHandle() on our own thread handle
       // during the thread destructor
-      m_pthreadimpl->set_os_data(NULL);
-      int32_t iRet = ::aura::application::exit_instance();
+      set_os_data(NULL);
+      //int32_t iRet = ::aura::application::exit_instance();
 
       //smart_pointer < application_base >::destroy();
 
-      return iRet;
+      //return iRet;
+      return 0;
 
    }
 /*
@@ -431,7 +433,7 @@ namespace metrowin
    }*/
 
 
-   void application::SetCurrentHandles()
+   /*void application::BaseSetCurrentHandles()
    {
 
       set_os_data(::get_current_thread());
@@ -439,7 +441,7 @@ namespace metrowin
 
 
    }
-
+*/
 
 
    void application::get_time(struct timeval *p)
@@ -495,27 +497,16 @@ namespace metrowin
    bool application::set_main_init_data(::aura::main_init_data * pdata)
    {
 
-      m_pmaininitdata = (::metrowin::main_init_data *) pdata;
+      m_pinitmaindata = pdata;
 
-      if(m_pmaininitdata != NULL && m_pimpl->is_system())
-      {
-         if(!win_init(m_pmaininitdata))
-            return false;
-      }
+      //if(m_pmaininitdata != NULL && m_pimpl->is_system())
+      //ASSERT(pdata->m_hPrevInstance == NULL);
 
-      return true;
+      string strCmdLine = pdata->m_vssCommandLine;
 
-   }
+      System.m_strCmdLine = strCmdLine;
+      //System.m_nCmdShow = pdata->;
 
-
-   bool application::win_init(main_init_data * pdata)
-   {
-
-      ASSERT(pdata->m_hPrevInstance == NULL);
-
-      HINSTANCE hInstance        = pdata->m_hInstance;
-      string strCmdLine          = pdata->m_vssCommandLine;
-      UINT nCmdShow              = pdata->m_nCmdShow;
 
       SetCurrentHandles();
 
@@ -523,7 +514,10 @@ namespace metrowin
 
       return true;
 
+      return true;
+
    }
+
 
 
 

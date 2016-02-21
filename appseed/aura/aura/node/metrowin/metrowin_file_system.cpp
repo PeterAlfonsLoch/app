@@ -113,12 +113,41 @@ namespace metrowin
 
       ::file::buffer_sp spfile;
 
-      if(::str::begins_ci(varFile.get_string(),"winmetro-Pictures:\\\\"))
+      ::file::path strPath;
+
+      if (varFile.get_type() == var::type_string)
+      {
+
+         strPath = varFile.get_string();
+
+      }
+      else if (varFile.get_type() == var::type_propset)
+      {
+
+         if (varFile.has_property("url"))
+         {
+
+            strPath = varFile["url"];
+
+            //strPath.trim("\"'");
+
+         }
+
+      }
+
+      if(::str::begins_ci(strPath,"winmetro-Pictures:\\\\") || ::str::begins_ci(strPath, "winmetro-Music:\\\\"))
       {
 
          spfile = canew(::metrowin::native_buffer(papp));
 
-         cres cres = spfile->open(varFile.get_string(),nOpenFlags);
+         cres cres = spfile->open(strPath,nOpenFlags);
+
+         if (cres.failed())
+         {
+
+            return NULL;
+
+         }
 
          if(pfesp != NULL)
          {

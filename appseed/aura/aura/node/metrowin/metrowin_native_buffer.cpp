@@ -113,6 +113,10 @@ namespace metrowin
       {
          m_folder = Windows::Storage::KnownFolders::PicturesLibrary;
       }
+      else if (str::begins_eat_ci(strPath, "winmetro-Music:\\\\"))
+      {
+         m_folder = Windows::Storage::KnownFolders::MusicLibrary;
+      }
       else
       {
          return failure;
@@ -206,7 +210,8 @@ namespace metrowin
 
       for(uint32_t ui = 0; ui < a->Size; ui++)
       {
-         if(string(begin(a->GetAt(ui)->Path)) == m_strFileName)
+         string strPath = string(begin(a->GetAt(ui)->Path));
+         if(strPath == m_strFileName)
          {
             m_file = a->GetAt(ui);
             break;

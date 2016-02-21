@@ -733,6 +733,7 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='stage|x64'">$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
+    <ClCompile Include="math\_math_math.cpp" />
     <ClCompile Include="user\databaseuser\databaseuser_key_mesh_data.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
@@ -781,6 +782,10 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="user\html\graphics\elemental\_html_elemental.cpp" />
+    <ClCompile Include="user\html\graphics\impl\_html_impl.cpp" />
+    <ClCompile Include="user\html\graphics\_graphics.cpp" />
+    <ClCompile Include="user\html\hi5\hi5_twitter_authorization.cpp" />
     <ClCompile Include="user\menu\user_menu.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
@@ -1117,6 +1122,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="user\userhtml\_userhtml.cpp" />
     <ClCompile Include="user\user\user.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
@@ -1906,8 +1912,6 @@
     <ClInclude Include="user\user\user_mesh.h" />
     <ClInclude Include="user\user\user_mesh_cache.h" />
     <ClInclude Include="user\user\user_mesh_cache_interface.h" />
-    <ClInclude Include="user\user\user_meta_button.h" />
-    <ClInclude Include="user\user\user_meta_control_box.h" />
     <ClInclude Include="user\user\user_multiple_document_template.h" />
     <ClInclude Include="user\user\user_network_configuration.h" />
     <ClInclude Include="user\user\user_notification_area.h" />

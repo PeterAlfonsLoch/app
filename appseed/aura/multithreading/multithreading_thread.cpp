@@ -2727,7 +2727,7 @@ bool thread::set_thread_priority(int32_t iCa2Priority)
    if (!bOk)
    {
       uint32_t dwLastError = ::GetLastError();
-      ::OutputDebugString("thread::SetThreadPriority LastError = " + ::str::from(dwLastError));
+      output_debug_string("thread::SetThreadPriority LastError = " + ::str::from(dwLastError));
    }
 
    return bOk;

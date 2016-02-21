@@ -386,11 +386,10 @@ void system_heap_free(void * p)
 ::count get_mem_info(int32_t ** ppiUse, const char *** ppszFile, const char *** ppszCallStack, int32_t ** ppiLine, int64_t ** ppiSize)
 {
 
-#ifndef MEMDLEAK
+#if MEMDLEAK
 
    throw simple_exception(get_thread_app(), "plex_heap_alloc_array::get_mem_info member function is available only with \"memdleak\" builds - MEMDLEAK defined");
 
-#endif
 
    synch_lock lock(g_pmutgen);
 
@@ -442,6 +441,10 @@ void system_heap_free(void * p)
 
 
    return ca;
+
+#endif
+
+   return 0;
 
 }
 //typedef DWORD64[64]

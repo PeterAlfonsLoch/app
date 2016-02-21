@@ -969,7 +969,37 @@ void dir::ls(::file::patha & stra,const ::file::path & psz)
 
          strPrefix = "winmetro-Pictures://";
 
-         folder = ::Windows::Storage::KnownFolders::PicturesLibrary;
+         try
+         {
+
+            folder = ::Windows::Storage::KnownFolders::PicturesLibrary;
+
+         }
+         catch (...)
+         {
+
+            folder = nullptr;
+
+         }
+
+      }
+      else if (string(psz).CompareNoCase("winmetro-Music:") == 0)
+      {
+
+         strPrefix = "winmetro-Music://";
+
+         try
+         {
+
+            folder = ::Windows::Storage::KnownFolders::MusicLibrary;
+
+         }
+         catch (...)
+         {
+
+            folder = nullptr;
+
+         }
 
       }
       else

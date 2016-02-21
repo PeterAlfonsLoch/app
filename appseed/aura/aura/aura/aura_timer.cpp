@@ -45,7 +45,7 @@ namespace aura
       }
 
 
-      void stop()
+      void stop(bool bWaitCompletion)
       {
 
          if (m_timer != nullptr)

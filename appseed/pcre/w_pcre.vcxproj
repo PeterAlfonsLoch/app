@@ -27,54 +27,23 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="PcreUtil.h" />
-    <ClInclude Include="src\config.h" />
-    <ClInclude Include="src\pcre2.h" />
-    <ClInclude Include="src\pcre2posix.h" />
-    <ClInclude Include="src\pcre2_internal.h" />
-    <ClInclude Include="src\pcre2_intmodedep.h" />
-    <ClInclude Include="src\pcre2_ucp.h" />
-    <ClInclude Include="src\sljit\sljitConfig.h" />
-    <ClInclude Include="src\sljit\sljitConfigInternal.h" />
-    <ClInclude Include="src\sljit\sljitLir.h" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\appseed\aura\w_aura.vcxproj">
       <Project>{b3e5b8e7-9e3b-44dd-9ede-e0a74d52c1c5}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\..\aura\pcre\w_aurapcre.vcxproj">
+      <Project>{b9aa8bb5-51fa-46e7-b346-2a89828f3000}</Project>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="PcreUtil.cpp" />
-    <ClCompile Include="src\dftables.c" />
-    <ClCompile Include="src\pcre2_auto_possess.c" />
-    <ClCompile Include="src\pcre2_chartables.c" />
-    <ClCompile Include="src\pcre2_compile.c" />
-    <ClCompile Include="src\pcre2_config.c" />
-    <ClCompile Include="src\pcre2_context.c" />
-    <ClCompile Include="src\pcre2_dfa_match.c" />
-    <ClCompile Include="src\pcre2_error.c" />
-    <ClCompile Include="src\pcre2_jit_compile.c" />
-    <ClCompile Include="src\pcre2_maketables.c" />
-    <ClCompile Include="src\pcre2_match.c" />
-    <ClCompile Include="src\pcre2_match_data.c" />
-    <ClCompile Include="src\pcre2_newline.c" />
-    <ClCompile Include="src\pcre2_ord2utf.c" />
-    <ClCompile Include="src\pcre2_pattern_info.c" />
-    <ClCompile Include="src\pcre2_serialize.c" />
-    <ClCompile Include="src\pcre2_string_utils.c" />
-    <ClCompile Include="src\pcre2_study.c" />
-    <ClCompile Include="src\pcre2_substitute.c" />
-    <ClCompile Include="src\pcre2_substring.c" />
-    <ClCompile Include="src\pcre2_tables.c" />
-    <ClCompile Include="src\pcre2_ucd.c" />
-    <ClCompile Include="src\pcre2_valid_utf.c" />
-    <ClCompile Include="src\pcre2_xclass.c" />
-    <ClCompile Include="src\sljit\sljitLir.c" />
+    <ClCompile Include="pcre.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="pcre.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{B9AA8BB5-51FA-46E7-B346-2A89828F3000}</ProjectGuid>
+    <ProjectGuid>{0A43902C-E3C1-4383-B902-FB9D29296571}</ProjectGuid>
     <Keyword>DynamicLibrary</Keyword>
-    <ProjectName>aurapcre</ProjectName>
+    <ProjectName>pcre</ProjectName>
     <RootNamespace>aurapcre</RootNamespace>
     <DefaultLanguage>en-US</DefaultLanguage>
     <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
@@ -177,7 +146,7 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <CompileAsWinRT>false</CompileAsWinRT>
-      <PreprocessorDefinitions>AURA_PCRE;_AURA_PCRE;HAVE_CONFIG_H;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_APP_PCRE_LIBRARY;_AURA_PCRE;HAVE_CONFIG_H;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include;.;cpp;framework;$(ProjectDir)../../../include;$(ProjectDir)../../include;$(ProjectDir)../../..;$(ProjectDir)../..;$(ProjectDir)../../appseed;$(ProjectDir)../../appseed/axis;$(ProjectDir)../../appseed/aura;$(ProjectDir)..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
@@ -196,7 +165,7 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <CompileAsWinRT>false</CompileAsWinRT>
-      <PreprocessorDefinitions>AURA_PCRE;_AURA_PCRE;HAVE_CONFIG_H;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_APP_PCRE_LIBRARY;_AURA_PCRE;HAVE_CONFIG_H;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <CompileAsManaged>false</CompileAsManaged>
     </ClCompile>
     <Link>
@@ -210,7 +179,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <CompileAsWinRT>false</CompileAsWinRT>
       <CompileAsManaged>false</CompileAsManaged>
-      <PreprocessorDefinitions>AURA_PCRE;_AURA_PCRE;HAVE_CONFIG_H;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_APP_PCRE_LIBRARY;_AURA_PCRE;HAVE_CONFIG_H;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -222,7 +191,7 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <CompileAsWinRT>false</CompileAsWinRT>
-      <PreprocessorDefinitions>AURA_PCRE;_AURA_PCRE;HAVE_CONFIG_H;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_APP_PCRE_LIBRARY;_AURA_PCRE;HAVE_CONFIG_H;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <CompileAsManaged>false</CompileAsManaged>
     </ClCompile>
     <Link>
@@ -236,7 +205,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <CompileAsWinRT>false</CompileAsWinRT>
       <CompileAsManaged>false</CompileAsManaged>
-      <PreprocessorDefinitions>AURA_PCRE;_AURA_PCRE;HAVE_CONFIG_H;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_APP_PCRE_LIBRARY;_AURA_PCRE;HAVE_CONFIG_H;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -248,7 +217,7 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <CompileAsWinRT>false</CompileAsWinRT>
-      <PreprocessorDefinitions>AURA_PCRE;_AURA_PCRE;HAVE_CONFIG_H;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_APP_PCRE_LIBRARY;_AURA_PCRE;HAVE_CONFIG_H;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <CompileAsManaged>false</CompileAsManaged>
     </ClCompile>
     <Link>

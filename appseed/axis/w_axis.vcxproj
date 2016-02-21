@@ -1441,6 +1441,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="graphics\visual\_visual.cpp" />
+    <ClCompile Include="html_lite\_html_lite_html_lite.cpp" />
     <ClCompile Include="net\http\http.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
@@ -2050,6 +2051,9 @@
     <ClCompile Include="user\_user.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\aura\pcre\w_aurapcre.vcxproj">
+      <Project>{b9aa8bb5-51fa-46e7-b346-2a89828f3000}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\aura\sqlite\w_aurasqlite.vcxproj">
       <Project>{b24f72d6-053a-41c5-be03-3b0bd535f1eb}</Project>
     </ProjectReference>

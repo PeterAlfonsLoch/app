@@ -81,7 +81,6 @@
     <ClInclude Include="aura\aura\aura_keep.h" />
     <ClInclude Include="aura\aura\aura_keep_true.h" />
     <ClInclude Include="aura\aura\aura_launcher.h" />
-    <ClInclude Include="aura\aura\aura_libc.h" />
     <ClInclude Include="aura\aura\aura_library.h" />
     <ClInclude Include="aura\aura\aura_live_object.h" />
     <ClInclude Include="aura\aura\aura_live_signal.h" />
@@ -207,7 +206,6 @@
     <ClInclude Include="aura\node\node.h" />
     <ClInclude Include="aura\os\cross.h" />
     <ClInclude Include="aura\os\cross\ansios\ansios.h" />
-    <ClInclude Include="aura\os\cross\ansios\ansios_datetime.h" />
     <ClInclude Include="aura\os\cross\cross.h" />
     <ClInclude Include="aura\os\cross\windows\e.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
@@ -719,7 +717,6 @@
     <ClInclude Include="primitive\math\math_math_rng.h" />
     <ClInclude Include="primitive\math\math_mkint_c.h" />
     <ClInclude Include="primitive\math\math_natural.h" />
-    <ClInclude Include="primitive\math\math_number.h" />
     <ClInclude Include="primitive\math\math_numeric_info.h" />
     <ClInclude Include="primitive\math\math_scalar.h" />
     <ClInclude Include="primitive\math\math_scalar_enum.h" />

@@ -909,8 +909,6 @@ namespace metrowin
    }
 
 
-   }
-
 
 } // namespace metrowin
 

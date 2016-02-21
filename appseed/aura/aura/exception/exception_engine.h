@@ -187,7 +187,7 @@ namespace exception
       bool load_modules();
       void clear();
       bool load_module(HANDLE, HMODULE);
-#else
+#elif defined(LINUX)
 
       void backtrace(void * pui, int &c);
       char * stack_trace(void * pui, int c, const char * pszFormat = default_format());

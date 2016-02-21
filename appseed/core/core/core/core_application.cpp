@@ -1988,7 +1988,7 @@ namespace core
          {
          }
 
-#ifndef LINUX
+#if !defined(LINUX) && !defined(METROWIN)
 
          try
          {

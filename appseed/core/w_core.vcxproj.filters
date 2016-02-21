@@ -118,6 +118,27 @@
     <Filter Include="Header Files\user\netuser">
       <UniqueIdentifier>{f4f337cd-9099-484d-b06d-41b350b5d90c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\user\html">
+      <UniqueIdentifier>{10f5e38b-2ca5-483d-ab9f-f54691448bad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user\html\graphics">
+      <UniqueIdentifier>{daf54e53-3038-422d-88bf-c4cbd9beb9d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user\html\graphics\elemental">
+      <UniqueIdentifier>{b998c0a7-9a69-4613-9346-3a5b389aebb2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user\html\graphics\impl">
+      <UniqueIdentifier>{cc667ced-4057-407f-84e8-22303997b75f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user\html\hi5">
+      <UniqueIdentifier>{f8f02952-5f1b-4b49-b22e-b4de6d137b4a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user\userhtml">
+      <UniqueIdentifier>{01d3008d-f5f5-4892-8065-da7112d35a90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\math">
+      <UniqueIdentifier>{e61d0167-746a-4cfc-b7df-4be1e1a80d0f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -768,6 +789,24 @@
     <ClCompile Include="filesystem\_file.cpp">
       <Filter>Source Files\filesystem</Filter>
     </ClCompile>
+    <ClCompile Include="user\html\graphics\elemental\_html_elemental.cpp">
+      <Filter>Source Files\user\html\graphics\elemental</Filter>
+    </ClCompile>
+    <ClCompile Include="user\html\graphics\impl\_html_impl.cpp">
+      <Filter>Source Files\user\html\graphics\impl</Filter>
+    </ClCompile>
+    <ClCompile Include="user\html\graphics\_graphics.cpp">
+      <Filter>Source Files\user\html\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="user\html\hi5\hi5_twitter_authorization.cpp">
+      <Filter>Source Files\user\html\hi5</Filter>
+    </ClCompile>
+    <ClCompile Include="user\userhtml\_userhtml.cpp">
+      <Filter>Source Files\user\userhtml</Filter>
+    </ClCompile>
+    <ClCompile Include="math\_math_math.cpp">
+      <Filter>Source Files\math</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="core.def">
@@ -992,12 +1031,6 @@
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\user_mesh_cache_interface.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_meta_button.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_meta_control_box.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\user_multiple_document_template.h">

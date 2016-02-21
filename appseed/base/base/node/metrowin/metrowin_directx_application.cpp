@@ -492,7 +492,12 @@ namespace metrowin
 
       int nReturnCode = 0;
 
-      nReturnCode = m_psystem->pre_run();
+      if (!m_psystem->begin_synch())
+      {
+         
+         throw 0;
+
+      }
 
       m_directx->defer_init();
 
