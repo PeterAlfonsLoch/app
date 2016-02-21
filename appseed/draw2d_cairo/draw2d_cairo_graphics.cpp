@@ -5162,7 +5162,9 @@ synch_lock ml(m_pmutex);
 
    bool graphics::set(const ::draw2d::font * pfontParam)
    {
-synch_lock ml(m_pmutex);
+
+      synch_lock ml(m_pmutex);
+
       //cairo_select_font_face(m_pdc, pfont->m_strFontFamilyName, pfont->m_bItalic ? CAIRO_FONT_SLANT_ITALIC : CAIRO_FONT_SLANT_NORMAL, pfont->m_iFontWeight > 650 ? CAIRO_FONT_WEIGHT_BOLD : CAIRO_FONT_WEIGHT_NORMAL);
 
       if(pfontParam == NULL)
@@ -5248,6 +5250,8 @@ synch_lock ml(m_pmutex);
 
             g_pmapCairoFontFace->set_at(strPath, pfont->m_pface);
 
+            cairo_font_face_reference(pfont->m_pface);
+
          }
 
 //         cairo_font_options_t * poptions = cairo_font_options_create ();
@@ -5291,7 +5295,9 @@ synch_lock ml(m_pmutex);
 
    bool graphics::fill_and_draw()
    {
-synch_lock ml(m_pmutex);
+
+      synch_lock ml(m_pmutex);
+
       bool bPen = m_sppen->m_etype != ::draw2d::pen::type_null;
 
       cairo_keep keep(m_pdc);

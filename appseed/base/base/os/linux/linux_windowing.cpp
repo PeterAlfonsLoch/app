@@ -1187,9 +1187,11 @@ WINBOOL DestroyWindow(oswindow window)
 
    bool bIs = IsWindow(window);
 
-   window->get_user_interaction()->send_message(WM_DESTROY, 0, 0);
+   sp(::user::interaction) pui = window->get_user_interaction();
 
-   window->get_user_interaction()->send_message(WM_NCDESTROY, 0, 0);
+   pui->send_message(WM_DESTROY, 0, 0);
+
+   pui->send_message(WM_NCDESTROY, 0, 0);
 
    xdisplay d(pdisplay);
 

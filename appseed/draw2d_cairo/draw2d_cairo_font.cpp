@@ -27,23 +27,23 @@ namespace draw2d_cairo
    bool font::destroy()
    {
 synch_lock ml(&cairo_mutex());
-      if(m_pfont != NULL)
-      {
+//      if(m_pfont != NULL)
+//      {
+// // the fonts are stored and managed by "font cache"
+//         cairo_scaled_font_destroy(m_pfont);
+//
+//         m_pfont = NULL;
+//
+//      }
 
-         cairo_scaled_font_destroy(m_pfont);
-
-         m_pfont = NULL;
-
-      }
-
-      if(m_pface != NULL)
-      {
-
-         cairo_font_face_destroy(m_pface);
-
-         m_pface = NULL;
-
-      }
+//      if(m_pface != NULL)
+//      {
+// // the fonts are stored and managed by "font cache"
+//         cairo_font_face_destroy(m_pface);
+//
+//         m_pface = NULL;
+//
+//      }
 
 //      if(m_ft != NULL)
       {

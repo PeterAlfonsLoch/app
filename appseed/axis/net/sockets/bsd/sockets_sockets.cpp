@@ -195,7 +195,7 @@ namespace sockets
 string ip_reverse(string str)
 {
 
-#ifdef METROWIN
+#if defined(METROWIN) || defined(LINUX)
 
    return c_gethostbyname(str);
 
