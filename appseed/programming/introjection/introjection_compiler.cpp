@@ -85,7 +85,11 @@ void compiler::initialize()
 void compiler::prepare_compile_and_link_environment()
 {
 
+#ifdef WINDOWS
    Application.dir().mk("C:\\ca2\\introjection\\symbols");
+#else
+   Application.dir().mk("/tmp/ca2/introjection/symbols");
+#endif
    //string strVars = getenv("VS100COMNTOOLS");
    ::file::path strVars;
 
@@ -314,7 +318,7 @@ DWORD RunSilent(char* strFunct,char* strstrParams)
 
 void compiler::prepare1(const char * lpcszSource,const char * lpcszDest)
 {
-
+#ifdef WINDOWS
    //Sleep(15000);
 
    string strBuildCmd = m_strEnv;
@@ -433,6 +437,7 @@ void compiler::prepare1(const char * lpcszSource,const char * lpcszDest)
    //string strEnv = file_as_string_dup("C:\\ca2\\env.txt");
 
 #endif
+   #endif
 
    ::file::path strFolder;
    strFolder = System.dir().element();
@@ -478,6 +483,7 @@ void compiler::prepare1(const char * lpcszSource,const char * lpcszDest)
    //Application.file().put_contents_utf8(strCmd, str);
    Application.file().put_contents(strCmd,str);
    Application.dir().mk(m_strTime / "dynamic_source");
+
 }
 
 
