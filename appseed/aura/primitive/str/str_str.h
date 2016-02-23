@@ -232,6 +232,15 @@ namespace str
    inline CLASS_DECL_AURA string & from(string & str, const id & id);
    inline CLASS_DECL_AURA string & from(string & str, const var & var);
 
+
+#ifdef ANDROID
+
+   CLASS_DECL_AURA  string &       from(string & str, long int i);
+
+#endif
+
+
+
    //inline CLASS_DECL_AURA string   i64toa(int64_t i);
 
    CLASS_DECL_AURA  string         zero_pad(const string & strSrc,int iPad);
@@ -299,6 +308,12 @@ namespace str
    CLASS_DECL_AURA void format(string_format * pformat,uint32_t const &  i);
 
    CLASS_DECL_AURA void format(string_format * pformat,int64_t const & i);
+
+#ifdef ANDROID
+   
+   CLASS_DECL_AURA void format(string_format * pformat, long int const & i);
+
+#endif
 
    CLASS_DECL_AURA void format(string_format * pformat,uint64_t const & i);
 

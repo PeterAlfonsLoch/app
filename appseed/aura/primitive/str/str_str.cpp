@@ -1575,6 +1575,18 @@ namespace str
    }
 
 
+#ifdef ANDROID
+
+   string & from(string & str, long int i)
+   {
+
+      str = i64toa_dup(i);
+
+      return str;
+
+   }
+
+#endif
    string uni_to_utf8(int64_t w)
    {
       string str;

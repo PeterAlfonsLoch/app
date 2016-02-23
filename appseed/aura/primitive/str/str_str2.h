@@ -238,6 +238,21 @@ namespace str
       return str;
    }
 
+
+#ifdef ANDROID
+
+
+   inline CLASS_DECL_AURA  string  from(long int i)
+   {
+      string str;
+      from(str, i);
+      return str;
+   }
+
+
+#endif
+
+
    inline CLASS_DECL_AURA  string  from(uint64_t ui)
    {
       string str;
