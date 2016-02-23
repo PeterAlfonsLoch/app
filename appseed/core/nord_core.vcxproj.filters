@@ -666,12 +666,6 @@
     <ClInclude Include="user\user\user_main_frame.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\user_meta_button.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_meta_control_box.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
     <ClInclude Include="user\user\user_multiple_document_template.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>

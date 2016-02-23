@@ -325,6 +325,13 @@ void signalizable::on_request_signal(request_signal * prequestsignal)
 }
 
 
+dispatch::handler_item_base::~handler_item_base()
+{
+
+
+}
+
+
 dispatch::handler_item_array::~handler_item_array()
 {
    for (int32_t i = 0; i < this->get_size(); i++)

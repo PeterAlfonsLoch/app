@@ -3732,11 +3732,11 @@ end:
    }
    if(bFloat)
    {
-      operator = (atof(string(pszStart, pszParse - pszStart)));
+      operator = (atof(string(pszStart, pszParse - pszStart)) * (bSigned ? -1.0 : 1.0));
    }
    else
    {
-      operator = (atoi(string(pszStart, pszParse - pszStart)));
+      operator = (atoi(string(pszStart, pszParse - pszStart)) * (bSigned ? -1 : 1));
    }
    psz = pszParse;
 }

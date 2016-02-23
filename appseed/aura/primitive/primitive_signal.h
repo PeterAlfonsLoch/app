@@ -274,6 +274,9 @@ public:
    {
    public:
 
+
+      virtual ~handler_item_base();
+
       virtual signalizable* get_signalizable() = 0;
 
    };

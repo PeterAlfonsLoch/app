@@ -2289,7 +2289,7 @@ namespace str
          return "";
       }
       const char * pszValueStart = psz;
-      const char * pszValueEnd = psz;
+      //const char * pszValueEnd = psz;
       const char * pszNext = psz;
       const char * pszQc = qc;
       string qc2;
@@ -2367,7 +2367,7 @@ namespace str
             str += string(psz,pszNext - psz);
          }
          psz = pszNext;
-         pszValueEnd = psz;
+         //pszValueEnd = psz;
       }
       pszXml = psz;
       return str;

@@ -4,17 +4,12 @@
 
 
 //static string * m_pstrOutputDebugStringA = NULL;
-static mutex * m_pmutexOutputDebugStringA = NULL;
+mutex * g_pmutexOutputDebugStringA = NULL;
 
 VOID WINAPI OutputDebugStringA(LPCSTR lpOutputString)
 {
 
-   if (m_pmutexOutputDebugStringA == NULL)
-   {
-      m_pmutexOutputDebugStringA = new mutex(NULL);
-   }
-
-   synch_lock sl(m_pmutexOutputDebugStringA);
+   synch_lock sl(g_pmutexOutputDebugStringA);
 
    //if (m_pstrOutputDebugStringA == NULL)
    //{

@@ -1164,8 +1164,6 @@
     <ClInclude Include="user\user\user_list_data.h" />
     <ClInclude Include="user\user\user_list_header.h" />
     <ClInclude Include="user\user\user_main_frame.h" />
-    <ClInclude Include="user\user\user_meta_button.h" />
-    <ClInclude Include="user\user\user_meta_control_box.h" />
     <ClInclude Include="user\user\user_multiple_document_template.h" />
     <ClInclude Include="user\user\user_network_configuration.h" />
     <ClInclude Include="user\user\user_notification_area.h" />

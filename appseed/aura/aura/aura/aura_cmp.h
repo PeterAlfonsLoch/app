@@ -50,20 +50,6 @@ template<class TYPE>
 class reference_wrapper;
 
 
-//#define _ADD_RVALUE_REFERENCE_VOID(CV_OPT) \
-//template<> \
-//	struct add_rvalue_reference<CV_OPT void> \
-//	{	/* add reference */ \
-//	typedef CV_OPT void type; \
-//	};
-//
-//_CLASS_DEFINE_CV(_ADD_RVALUE_REFERENCE_VOID)
-//#undef _ADD_RVALUE_REFERENCE_VOID
-//
-//// TEMPLATE FUNCTION declval
-//template<class TYPE>
-//typename add_rvalue_reference<TYPE>::type
-//declval() _NOEXCEPT;
 
 
 template < typename TYPE >

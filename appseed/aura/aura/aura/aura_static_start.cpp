@@ -59,6 +59,12 @@ extern mutex * g_pmutexUiDestroyed;
 //extern string * g_pstrLastStatus;
 
 //extern string * g_pstrLastGlsStatus;
+#ifdef ANDROID
+
+extern mutex * g_pmutexOutputDebugStringA;
+
+#endif
+
 
 #if defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
 
@@ -180,6 +186,8 @@ namespace aura
 
          g_paAura = new array<object * >;
 
+         g_pmutexOutputDebugStringA = new mutex(NULL);
+         
 
 #ifdef APPLEOS
 
@@ -448,6 +456,8 @@ namespace aura
 #endif
 
 //         destroy_id_space();
+
+         ::aura::del(g_pmutexOutputDebugStringA);
 
          for(auto * po : *g_paAura)
          {
