@@ -42,9 +42,6 @@
     <ClInclude Include="src\sljit\sljitLir.h">
       <Filter>Header Files\sljit</Filter>
     </ClInclude>
-    <ClInclude Include="PcreUtil.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\dftables.c">
@@ -124,9 +121,6 @@
     </ClCompile>
     <ClCompile Include="src\sljit\sljitLir.c">
       <Filter>Source Files\sljit</Filter>
-    </ClCompile>
-    <ClCompile Include="PcreUtil.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

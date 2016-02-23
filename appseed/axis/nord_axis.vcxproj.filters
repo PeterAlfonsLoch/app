@@ -421,9 +421,6 @@
     <ClCompile Include="net\net_email_address.cpp">
       <Filter>Source Files\net</Filter>
     </ClCompile>
-    <ClCompile Include="net\net_email_departament.cpp">
-      <Filter>Source Files\net</Filter>
-    </ClCompile>
     <ClCompile Include="net\net_ip_enum.cpp">
       <Filter>Source Files\net</Filter>
     </ClCompile>
@@ -431,9 +428,6 @@
       <Filter>Source Files\net</Filter>
     </ClCompile>
     <ClCompile Include="net\net_port_forward.cpp">
-      <Filter>Source Files\net</Filter>
-    </ClCompile>
-    <ClCompile Include="net\net_url_departament.cpp">
       <Filter>Source Files\net</Filter>
     </ClCompile>
     <ClCompile Include="net\net_url_domain.cpp">
@@ -745,6 +739,17 @@
     <ClCompile Include="axis\geoip\_geoip.cpp">
       <Filter>Source Files\axis\geoip</Filter>
     </ClCompile>
+    <ClCompile Include="net\net_email_department.cpp" />
+    <ClCompile Include="net\net_url_department.cpp" />
+    <ClCompile Include="net\sockets\bsd\sockets_include.cpp">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\sockets_sockets.cpp">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClCompile>
+    <ClCompile Include="html_lite\_html_lite_html_lite.cpp">
+      <Filter>Source Files\html_lite</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -768,9 +773,6 @@
     <ClInclude Include="net\net_email_address.h">
       <Filter>Header Files\net</Filter>
     </ClInclude>
-    <ClInclude Include="net\net_email_departament.h">
-      <Filter>Header Files\net</Filter>
-    </ClInclude>
     <ClInclude Include="net\net_ip_enum.h">
       <Filter>Header Files\net</Filter>
     </ClInclude>
@@ -778,9 +780,6 @@
       <Filter>Header Files\net</Filter>
     </ClInclude>
     <ClInclude Include="net\net_port_forward.h">
-      <Filter>Header Files\net</Filter>
-    </ClInclude>
-    <ClInclude Include="net\net_url_departament.h">
       <Filter>Header Files\net</Filter>
     </ClInclude>
     <ClInclude Include="net\net_url_domain.h">
@@ -1206,9 +1205,6 @@
     <ClInclude Include="axis\node\windows\windows_factory_exchange.h">
       <Filter>Header Files\axis\node\windows</Filter>
     </ClInclude>
-    <ClInclude Include="axis\node\windows\windows_file_set.h">
-      <Filter>Header Files\axis\node\windows</Filter>
-    </ClInclude>
     <ClInclude Include="axis\node\windows\windows_ip_enum.h">
       <Filter>Header Files\axis\node\windows</Filter>
     </ClInclude>
@@ -1518,6 +1514,8 @@
     <ClInclude Include="axis\node\android\aaa_want_to_remove_android_file_set.h">
       <Filter>Header Files\axis\node\android</Filter>
     </ClInclude>
+    <ClInclude Include="net\net_email_department.h" />
+    <ClInclude Include="net\net_url_department.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
@@ -1807,6 +1805,9 @@
     </Filter>
     <Filter Include="Source Files\axis\node\linux">
       <UniqueIdentifier>{d3ee9dac-40aa-4583-b485-d93a4d067e64}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\html_lite">
+      <UniqueIdentifier>{145abe13-045b-4142-a4d3-04f50ab807f3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

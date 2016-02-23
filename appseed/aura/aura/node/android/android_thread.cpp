@@ -1,29 +1,29 @@
 //#include "framework.h"
 //#include "android.h"
 
-
-namespace android
-{
-
-
-   thread::thread(::aura::application * papp) :
-      ::object(papp),
-      ::thread_impl(papp),
-      ::ansios::thread_impl(papp)
-   {
-
-   }
-
-
-   thread::~thread()
-   {
-
-
-
-   }
-
-
-} // namespace android
+//
+//namespace android
+//{
+//
+//
+//   thread::thread(::aura::application * papp) :
+//      ::object(papp),
+//      ::thread_impl(papp),
+//      ::ansios::thread_impl(papp)
+//   {
+//
+//   }
+//
+//
+//   thread::~thread()
+//   {
+//
+//
+//
+//   }
+//
+//
+//} // namespace android
 
 
 

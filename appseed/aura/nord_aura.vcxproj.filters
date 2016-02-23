@@ -274,12 +274,6 @@
     <ClCompile Include="aura\aura\aura_debug.cpp">
       <Filter>Source Files\aura\aura</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_departament.cpp">
-      <Filter>Source Files\aura\aura</Filter>
-    </ClCompile>
-    <ClCompile Include="aura\aura\aura_departament_container.cpp">
-      <Filter>Source Files\aura\aura</Filter>
-    </ClCompile>
     <ClCompile Include="aura\aura\aura_draw_context.cpp">
       <Filter>Source Files\aura\aura</Filter>
     </ClCompile>
@@ -931,9 +925,6 @@
     <ClCompile Include="aura\xml\xml_xmlite.cpp">
       <Filter>Source Files\aura\xml</Filter>
     </ClCompile>
-    <ClCompile Include="aura\process\process_departament.cpp">
-      <Filter>Source Files\aura\process</Filter>
-    </ClCompile>
     <ClCompile Include="aura\process\_process.cpp">
       <Filter>Source Files\aura\process</Filter>
     </ClCompile>
@@ -1093,9 +1084,6 @@
     <ClCompile Include="primitive\datetime\datetime_date_span.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\datetime\datetime_departament.cpp">
-      <Filter>Source Files\primitive\datetime</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\datetime\datetime_duration.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
@@ -1160,9 +1148,6 @@
       <Filter>Source Files\primitive\math</Filter>
     </ClCompile>
     <ClCompile Include="primitive\math\math_cvt_g.cpp">
-      <Filter>Source Files\primitive\math</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\math\math_departament.cpp">
       <Filter>Source Files\primitive\math</Filter>
     </ClCompile>
     <ClCompile Include="primitive\math\math_int_biunique.cpp">
@@ -1420,6 +1405,11 @@
     <ClCompile Include="user\colorertake5\TextConsoleViewer.cpp">
       <Filter>Source Files\user\colorertake5</Filter>
     </ClCompile>
+    <ClCompile Include="aura\aura\aura_department.cpp" />
+    <ClCompile Include="aura\aura\aura_department_container.cpp" />
+    <ClCompile Include="aura\process\process_department.cpp" />
+    <ClCompile Include="primitive\datetime\datetime_department.cpp" />
+    <ClCompile Include="primitive\math\math_department.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -1755,9 +1745,6 @@
     <ClInclude Include="primitive\math\math_count.h">
       <Filter>Header Files\primitive\math</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\math\math_departament.h">
-      <Filter>Header Files\primitive\math</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\math\math_index.h">
       <Filter>Header Files\primitive\math</Filter>
     </ClInclude>
@@ -1768,9 +1755,6 @@
       <Filter>Header Files\primitive\math</Filter>
     </ClInclude>
     <ClInclude Include="primitive\math\math_natural.h">
-      <Filter>Header Files\primitive\math</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\math\math_number.h">
       <Filter>Header Files\primitive\math</Filter>
     </ClInclude>
     <ClInclude Include="primitive\math\math_numeric_info.h">
@@ -2391,9 +2375,6 @@
     <ClInclude Include="aura\xml\xml_data.h">
       <Filter>Header Files\aura\xml</Filter>
     </ClInclude>
-    <ClInclude Include="aura\xml\xml_departament.h">
-      <Filter>Header Files\aura\xml</Filter>
-    </ClInclude>
     <ClInclude Include="aura\xml\xml_disp_option.h">
       <Filter>Header Files\aura\xml</Filter>
     </ClInclude>
@@ -2664,12 +2645,6 @@
     <ClInclude Include="aura\aura\aura_definition.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_departament.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\aura_departament_container.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
     <ClInclude Include="aura\aura\aura_draw2d.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
@@ -2743,9 +2718,6 @@
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
     <ClInclude Include="aura\aura\aura_launcher.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\aura_libc.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
     <ClInclude Include="aura\aura\aura_library.h">
@@ -3015,9 +2987,6 @@
     <ClInclude Include="aura\os\cross\ansios\ansios.h">
       <Filter>Header Files\aura\os\cross\ansios</Filter>
     </ClInclude>
-    <ClInclude Include="aura\os\cross\ansios\ansios_datetime.h">
-      <Filter>Header Files\aura\os\cross\ansios</Filter>
-    </ClInclude>
     <ClInclude Include="aura\os\cross\ansios\ansios_file.h">
       <Filter>Header Files\aura\os\cross\ansios</Filter>
     </ClInclude>
@@ -3120,9 +3089,6 @@
     <ClInclude Include="aura\process\process_bidi_pipe.h">
       <Filter>Header Files\aura\process</Filter>
     </ClInclude>
-    <ClInclude Include="aura\process\process_departament.h">
-      <Filter>Header Files\aura\process</Filter>
-    </ClInclude>
     <ClInclude Include="aura\process\process_pipe.h">
       <Filter>Header Files\aura\process</Filter>
     </ClInclude>
@@ -3197,6 +3163,14 @@
     </ClInclude>
     <ClInclude Include="aura\os\android\android_init_data.h">
       <Filter>Header Files\aura\os\android</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\aura\aura_department.h" />
+    <ClInclude Include="aura\aura\aura_department_container.h" />
+    <ClInclude Include="aura\process\process_department.h" />
+    <ClInclude Include="aura\xml\xml_department.h" />
+    <ClInclude Include="primitive\math\math_department.h" />
+    <ClInclude Include="primitive\datetime\datetime_file_time.h">
+      <Filter>Header Files\primitive\datetime</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

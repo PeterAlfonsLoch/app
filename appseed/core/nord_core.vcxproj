@@ -500,6 +500,11 @@
     </ClCompile>
     <ClCompile Include="filesystem\_file.cpp" />
     <ClCompile Include="framework.cpp" />
+    <ClCompile Include="math\_math_math.cpp" />
+    <ClCompile Include="user\html\graphics\elemental\_html_elemental.cpp" />
+    <ClCompile Include="user\html\graphics\impl\_html_impl.cpp" />
+    <ClCompile Include="user\html\graphics\_graphics.cpp" />
+    <ClCompile Include="user\html\hi5\hi5_twitter_authorization.cpp" />
     <ClCompile Include="user\simple\simple_child_frame.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
@@ -608,6 +613,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="user\userhtml\_userhtml.cpp" />
     <ClCompile Include="user\user\user.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>

@@ -442,6 +442,24 @@
     <ClCompile Include="filesystem\_file.cpp">
       <Filter>Source Files\filesystem</Filter>
     </ClCompile>
+    <ClCompile Include="math\_math_math.cpp">
+      <Filter>Source Files\math</Filter>
+    </ClCompile>
+    <ClCompile Include="user\userhtml\_userhtml.cpp">
+      <Filter>Source Files\user\userhtml</Filter>
+    </ClCompile>
+    <ClCompile Include="user\html\graphics\elemental\_html_elemental.cpp">
+      <Filter>Source Files\user\html\graphics\elemental</Filter>
+    </ClCompile>
+    <ClCompile Include="user\html\graphics\impl\_html_impl.cpp">
+      <Filter>Source Files\user\html\graphics\impl</Filter>
+    </ClCompile>
+    <ClCompile Include="user\html\graphics\_graphics.cpp">
+      <Filter>Source Files\user\html\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="user\html\hi5\hi5_twitter_authorization.cpp">
+      <Filter>Source Files\user\html\hi5</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="user\simple\simple_child_frame.h">
@@ -1183,6 +1201,27 @@
     </Filter>
     <Filter Include="Source Files\core\core">
       <UniqueIdentifier>{f297b23f-6569-4fcf-899c-f0286296a0c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\math">
+      <UniqueIdentifier>{c130c68e-200b-40b3-a728-9d3b06cb035c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user\userhtml">
+      <UniqueIdentifier>{cbfc2e74-1c9d-4fc5-bc5e-aaf7826d4524}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user\html">
+      <UniqueIdentifier>{6a03bcb1-8b32-420c-a730-f3120f7cac9b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user\html\graphics">
+      <UniqueIdentifier>{4a4033a0-b83b-4a80-a36f-b96552d9e10f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user\html\graphics\elemental">
+      <UniqueIdentifier>{29e528ce-980c-4833-b171-891a28e63660}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user\html\graphics\impl">
+      <UniqueIdentifier>{a68a9bb0-b5a1-48c9-a4ae-3d22c606b792}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user\html\hi5">
+      <UniqueIdentifier>{9865cfa7-f9f3-4688-b685-69f6c8f4ed75}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

@@ -7,7 +7,7 @@
 
 #else
 
-#define M_OBJECTA m_objecta
+#define M_OBJECTA m_syncobjectptra
 
 #endif
 #undef new

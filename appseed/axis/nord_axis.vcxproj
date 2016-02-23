@@ -771,6 +771,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="graphics\visual\_visual.cpp" />
+    <ClCompile Include="html_lite\_html_lite_html_lite.cpp" />
     <ClCompile Include="net\http\http.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
@@ -1102,6 +1103,18 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="net\sockets\bsd\smtp\sockets_smtp_socket.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\sockets_include.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\sockets_sockets.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
@@ -1566,7 +1579,6 @@
     <ClInclude Include="axis\node\windows\windows.h" />
     <ClInclude Include="axis\node\windows\windows_crypto.h" />
     <ClInclude Include="axis\node\windows\windows_factory_exchange.h" />
-    <ClInclude Include="axis\node\windows\windows_file_set.h" />
     <ClInclude Include="axis\node\windows\windows_ip_enum.h" />
     <ClInclude Include="axis\node\windows\windows_port_forward.h" />
     <ClInclude Include="axis\os\android\android.h" />

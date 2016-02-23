@@ -19,7 +19,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="PcreUtil.h" />
     <ClInclude Include="src\config.h" />
     <ClInclude Include="src\pcre2.h" />
     <ClInclude Include="src\pcre2posix.h" />
@@ -31,7 +30,6 @@
     <ClInclude Include="src\sljit\sljitLir.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="PcreUtil.cpp" />
     <ClCompile Include="src\dftables.c" />
     <ClCompile Include="src\pcre2posix.c" />
     <ClCompile Include="src\pcre2_auto_possess.c" />

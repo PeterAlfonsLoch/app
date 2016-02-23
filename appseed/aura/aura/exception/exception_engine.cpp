@@ -1200,9 +1200,9 @@ namespace exception
       const size_t max = 30;
       void* buffer[max];
 
-      str = dumpBacktrace(buffer,captureBacktrace(buffer,max));
+      strncpy(_strS, dumpBacktrace(buffer, captureBacktrace(buffer, max)), sizeof(_strS));
 
-      return true;
+      return _strS;
 
 #else
 

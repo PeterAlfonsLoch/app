@@ -18,6 +18,11 @@
 //#include <link.h>
 #elif defined(APPLEOS)
 //#include <dlfcn.h>
+#elif defined(ANDROID)
+
+#include "aura/node/ansios/ansios.h"
+#include "aura/node/android/android.h"
+
 #endif
 
 
@@ -153,9 +158,13 @@ namespace aura
 
       m_pinitmaindata                  = NULL;
 
-#ifdef LINUX
+#if defined(LINUX)
 
       ::linux::shell::theLinuxShell.Initialize();
+
+#elif defined(ANDROID)
+
+      ::android::shell::theLinuxShell.Initialize();
 
 #endif // LINUX
 

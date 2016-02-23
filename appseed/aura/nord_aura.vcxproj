@@ -2874,7 +2874,6 @@
     <ClInclude Include="aura\aura\aura_keep.h" />
     <ClInclude Include="aura\aura\aura_keep_true.h" />
     <ClInclude Include="aura\aura\aura_launcher.h" />
-    <ClInclude Include="aura\aura\aura_libc.h" />
     <ClInclude Include="aura\aura\aura_library.h" />
     <ClInclude Include="aura\aura\aura_live_object.h" />
     <ClInclude Include="aura\aura\aura_live_signal.h" />
@@ -3023,7 +3022,6 @@
     <ClInclude Include="aura\os\ansios\ansios_thread.h" />
     <ClInclude Include="aura\os\cross.h" />
     <ClInclude Include="aura\os\cross\ansios\ansios.h" />
-    <ClInclude Include="aura\os\cross\ansios\ansios_datetime.h" />
     <ClInclude Include="aura\os\cross\ansios\ansios_file.h" />
     <ClInclude Include="aura\os\cross\cross.h" />
     <ClInclude Include="aura\os\cross\windows\e.h" />
@@ -3266,6 +3264,7 @@
     <ClInclude Include="primitive\data\data_item.h" />
     <ClInclude Include="primitive\datetime\datetime.h" />
     <ClInclude Include="primitive\datetime\datetime_duration.h" />
+    <ClInclude Include="primitive\datetime\datetime_file_time.h" />
     <ClInclude Include="primitive\datetime\datetime_mktime.h" />
     <ClInclude Include="primitive\datetime\datetime_time.h" />
     <ClInclude Include="primitive\datetime\datetime_value.h" />
@@ -3284,7 +3283,6 @@
     <ClInclude Include="primitive\math\math_math_rng.h" />
     <ClInclude Include="primitive\math\math_mkint_c.h" />
     <ClInclude Include="primitive\math\math_natural.h" />
-    <ClInclude Include="primitive\math\math_number.h" />
     <ClInclude Include="primitive\math\math_numeric_info.h" />
     <ClInclude Include="primitive\math\math_scalar.h" />
     <ClInclude Include="primitive\math\math_scalar_enum.h" />

@@ -77,59 +77,59 @@ mutex::mutex(::aura::application * papp, bool bInitiallyOwn, const char * pstrNa
 
        return;
 
-       string strName(pstrName);
+       //string strName(pstrName);
 
-       //if(str::begins_ci(pstrName, "Global"))
+       ////if(str::begins_ci(pstrName, "Global"))
+       ////{
+
+       ////   m_strName = ::file::path(::aura::system::g_p->m_pandroidinitdata->m_pszCacheDir) / "var" / "tmp"/ strName;
+
+       ////   ::dir::mk(::file::path(m_strName).folder());
+
+       ////}
+       ////else
+       ////{
+
+       ////   m_strName = ::file::path(getenv("HOME")) / strName;
+
+       ////}
+
+       //s
+
+       //m_strName.replace("/", "_");
+       //m_strName.replace(":", "_");
+       //m_strName.replace("/", "_");
+
+       ////::file_put_contents_dup(m_strName, m_strName);
+
+       ////string strTest = file_as_string_dup(m_strName);
+
+       ////int isCreator = 0;
+
+       //if ((m_psem = sem_open(m_strName, O_CREAT|O_EXCL, 0644, 1)) != SEM_FAILED)
        //{
 
-       //   m_strName = ::file::path(::aura::system::g_p->m_pandroidinitdata->m_pszCacheDir) / "var" / "tmp"/ strName;
+       //   // We got here first
 
-       //   ::dir::mk(::file::path(m_strName).folder());
+       //   //isCreator = 1;
 
        //}
        //else
        //{
 
-       //   m_strName = ::file::path(getenv("HOME")) / strName;
+       //   int err = errno;
+
+       //   if (err != EEXIST)
+       //      throw resource_exception(get_app());
+
+       //   // We're not first.  Try again
+
+       //   m_psem = sem_open(m_strName, 0);
+
+       //   if (m_psem == SEM_FAILED)
+       //      throw resource_exception(get_app());;
 
        //}
-
-       m_strName = strName;
-
-       m_strName.replace("/", "_");
-       m_strName.replace(":", "_");
-       m_strName.replace("/", "_");
-
-       //::file_put_contents_dup(m_strName, m_strName);
-
-       //string strTest = file_as_string_dup(m_strName);
-
-       //int isCreator = 0;
-
-       if ((m_psem = sem_open(m_strName, O_CREAT|O_EXCL, 0644, 1)) != SEM_FAILED)
-       {
-
-          // We got here first
-
-          //isCreator = 1;
-
-       }
-       else
-       {
-
-          int err = errno;
-
-          if (err != EEXIST)
-             throw resource_exception(get_app());
-
-          // We're not first.  Try again
-
-          m_psem = sem_open(m_strName, 0);
-
-          if (m_psem == SEM_FAILED)
-             throw resource_exception(get_app());;
-
-       }
 
     }
     else
@@ -239,14 +239,14 @@ mutex::mutex(::aura::application * papp, const char * pstrName, sem_t * psem, bo
 {
 
    m_bOwner       = bOwner;
-   m_strName      = pstrName;
+   m_pszName      = strdup(pstrName);
    m_psem         = psem;
 
 }
 
 mutex::mutex(const mutex & m):
    object(m.get_app()),
-   sync_object(m.m_strName)
+   sync_object(m.m_pszName)
 {
 
    m_bOwner       = false;

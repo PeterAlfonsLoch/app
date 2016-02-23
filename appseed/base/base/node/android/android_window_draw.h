@@ -25,6 +25,9 @@ namespace android
       virtual void do_events();
 
 
+      virtual void message_handler(signal_details * pobj);
+
+
       bool UpdateBuffer(const RECT & rect);
 
       virtual bool UpdateBuffer();

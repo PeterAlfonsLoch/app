@@ -445,7 +445,13 @@ namespace android
    }
 
 
+   void window_draw::message_handler(signal_details * pobj)
+   {
 
+      message_queue::message_handler(pobj);
+
+
+   }
 
 
 } // namespace android

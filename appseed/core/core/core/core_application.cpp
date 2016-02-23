@@ -1988,7 +1988,7 @@ namespace core
          {
          }
 
-#if !defined(LINUX) && !defined(METROWIN)
+#if !defined(LINUX) && !defined(METROWIN) && !defined(ANDROID)
 
          try
          {
