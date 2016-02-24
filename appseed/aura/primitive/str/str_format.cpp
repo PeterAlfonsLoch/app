@@ -415,15 +415,15 @@ bool string_format::parse(const char * & s)
       }
 
 
+#endif
+
+
       void format(string_format * pformat, uint64_t const & i)
       {
          // TODO: use specs
          pformat->append(::str::from(i));
 
       }
-
-
-#endif
 
 
       void format(string_format * pformat, float const & f)

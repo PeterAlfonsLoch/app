@@ -186,7 +186,11 @@ namespace aura
 
          g_paAura = new array<object * >;
 
+#ifdef ANDROID
+
          g_pmutexOutputDebugStringA = new mutex(NULL);
+
+#endif
          
 
 #ifdef APPLEOS
@@ -457,7 +461,11 @@ namespace aura
 
 //         destroy_id_space();
 
+#ifdef ANDROID
+
          ::aura::del(g_pmutexOutputDebugStringA);
+
+#endif
 
          for(auto * po : *g_paAura)
          {
