@@ -344,7 +344,12 @@ namespace windows
          return true;
 
       }
+      bool speaker::initialize_translator(string strLang)
+      {
 
+         return false;
+      
+      }
 
       bool speaker::finalize(string strLang)
       {
@@ -364,6 +369,13 @@ namespace windows
 
          return true;
       }
+      bool speaker::finalize_translator(string strLang)
+      {
+
+         return false;
+
+      }
+
 
       //--------------------------------------------------------------------
       // Speaks some text.
@@ -395,14 +407,26 @@ namespace windows
 
          }
 
+         bool bTts = false;
 
-         if(m_voice[strLang].is_set() || (!is_speaking(strLang) && get_tick_count() - m_time[strLang] > 30 * 1000))
+         if((!m_tts.Lookup(strLang, bTts) || bTts) && m_voice[strLang].is_set() || (!is_speaking(strLang) && get_tick_count() - m_time[strLang] > 30 * 1000))
          {
 
-            if(!initialize(strLang))
+            if (initialize(strLang))
+            {
+               
+               m_tts[strLang] = true;
+
+            }
+            else
             {
 
-               return false;
+               if (!initialize_translator(strLang))
+               {
+
+                  return false;
+
+               }
 
             }
 
@@ -461,7 +485,18 @@ namespace windows
       bool speaker::stop(string strLang)
       {
 
-         finalize(strLang);
+         if (m_tts[strLang])
+         {
+            
+            finalize(strLang);
+
+         }
+         else
+         {
+
+            finalize_translator(strLang);
+
+         }
 
          return true;
 

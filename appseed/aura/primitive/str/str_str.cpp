@@ -1098,13 +1098,28 @@ namespace str
 
    }
 
-   string has_char(const char * pszIfHasChar, const char * pszBefore, const char * pszAfter)
+   string has_char(const char * pszIfHasChar, const char * pszBefore, const char * pszAfter, const char * pszDoesnt)
    {
 
       string str;
 
-      if(pszIfHasChar == NULL)
-         return str;
+      if (pszIfHasChar == NULL)
+      {
+
+         if (pszDoesnt != NULL)
+         {
+
+            return pszDoesnt;
+
+         }
+         else
+         {
+
+            return str;
+
+         }
+
+      }
 
       if(strlen(pszIfHasChar) == 0)
          return str;

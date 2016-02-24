@@ -32,10 +32,11 @@ namespace windows
       {
       public:
 
-
+         
          string_map < ::windows::comptr < ISpVoice > >         m_voice;
          string_map < ::windows::comptr < ISpObjectToken > >   m_token;
          string_map < DWORD > m_time;
+         string_map < bool > m_tts;
          //--------------------------------------------------------------------
          // Initializes the text speaker.
          //--------------------------------------------------------------------
@@ -43,7 +44,9 @@ namespace windows
          virtual ~speaker();
 
          virtual bool initialize(string strLang);
+         virtual bool initialize_translator(string strLang);
          virtual bool finalize(string strLang);
+         virtual bool finalize_translator(string strLang);
 
          //--------------------------------------------------------------------
          // Speaks some text.

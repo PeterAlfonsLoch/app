@@ -133,7 +133,7 @@ namespace str
    strsize CLASS_DECL_AURA find_wwci(const char * pszFind, const char * psz, strsize iStart = 0);
    strsize CLASS_DECL_AURA find_aww(const char * pszFind, const char * psz, strsize iStart = 0);
    strsize CLASS_DECL_AURA find_awwci(const char * pszFind, const char * psz, strsize iStart = 0);
-   string CLASS_DECL_AURA has_char(const char * pszIfHasChar, const char * pszBefore = NULL, const char * pszAfter = NULL);
+   string CLASS_DECL_AURA has_char(const char * pszIfHasChar, const char * pszBefore = NULL, const char * pszAfter = NULL, const char * pszDoesnt = NULL);
    bool CLASS_DECL_AURA has_upper(const char * psz);
    bool CLASS_DECL_AURA has_lower(const char * psz);
    bool CLASS_DECL_AURA has_digit(const char * psz);
