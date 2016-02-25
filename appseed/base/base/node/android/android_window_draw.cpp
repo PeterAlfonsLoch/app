@@ -335,9 +335,11 @@ namespace android
    bool window_draw::UpdateBuffer()
    {
 
-      System.m_posdata->m_pui->_001UpdateBuffer();
+      //System.m_posdata->m_pui->_001UpdateBuffer();
 
-      System.m_posdata->m_pui->_001UpdateScreen();
+      //System.m_posdata->m_pui->_001UpdateScreen();
+
+      System.m_posdata->m_pui->_001UpdateWindow();
 
 
       return true;
@@ -388,29 +390,39 @@ namespace android
 
 
 
+               //try
+               //{
+
+               //   pui->_001UpdateBuffer();
+
+               //}
+               //catch (...)
+               //{
+
+               //}
+
+
+               //try
+               //{
+
+               //   pui->_001UpdateScreen();
+
+               //}
+               //catch (...)
+               //{
+
+               //}
+
                try
                {
 
-                  pui->_001UpdateBuffer();
+                  pui->_001UpdateWindow();
 
                }
                catch (...)
                {
 
                }
-
-
-               try
-               {
-
-                  pui->_001UpdateScreen();
-
-               }
-               catch (...)
-               {
-
-               }
-
             }
 
          }

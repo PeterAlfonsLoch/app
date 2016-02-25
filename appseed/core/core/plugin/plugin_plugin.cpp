@@ -325,7 +325,7 @@ namespace plugin
          if(pimpl.is_null())
             return;
 
-         ::draw2d::dib_sp dib = pimpl->m_spdib;
+         ::draw2d::dib_sp dib = pimpl->m_spdibBuffer;
 
          if(dib.is_null())
             return;

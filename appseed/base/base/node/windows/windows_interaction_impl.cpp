@@ -677,10 +677,10 @@ namespace windows
       if(m_size != rectWindow.size())
       {
 
-         if(m_spdib.is_null())
-            m_spdib.alloc(allocer());
+         //if(m_spdib.is_null())
+         //   m_spdib.alloc(allocer());
 
-         m_spdib->create(rectWindow.size());
+         //m_spdib->create(rectWindow.size());
 
          m_size = rectWindow.size();
 
@@ -2790,15 +2790,19 @@ namespace windows
 
       ::draw2d::graphics_sp g(allocer());
 
+      //::draw2d::dib * pdi = m_spdib;
+
+      ::draw2d::dib * pdib = m_spdibBuffer;
+
       try
       {
 
-         if(m_spdib.is_set() && g->Attach(hdc))
+         if(pdib != NULL && g->Attach(hdc))
          {
 
-            m_spdib->get_graphics()->SetViewportOrg(0,0);
+            pdib->get_graphics()->SetViewportOrg(0,0);
 
-            g->BitBlt(rectPaint.left,rectPaint.top,rectPaint.width(),rectPaint.height(),m_spdib->get_graphics(),rectUpdate.left,rectUpdate.top,SRCCOPY);
+            g->BitBlt(rectPaint.left,rectPaint.top,rectPaint.width(),rectPaint.height(),pdib->get_graphics(),rectUpdate.left,rectUpdate.top,SRCCOPY);
 
             g->Detach();
 
@@ -2822,10 +2826,12 @@ namespace windows
    void interaction_impl::_001OnPrint(signal_details * pobj)
    {
 
-      if(m_spdib.is_null())
-         m_spdib.alloc(allocer());
+//      if(m_spdib.is_null())
+  //       m_spdib.alloc(allocer());
 
-      m_spdib->print_window(this,pobj);
+      //m_spdib->print_window(this,pobj);
+
+      m_spdibBuffer->print_window(this, pobj);
 
    }
 
@@ -3353,7 +3359,8 @@ namespace windows
 
 
 
-            m_pui->_001UpdateBuffer();
+            //m_pui->_001UpdateBuffer();
+            m_pui->_001UpdateWindow();
             {
 
                DWORD dwTime2 = ::get_tick_count();
@@ -3364,7 +3371,7 @@ namespace windows
             }
 
 
-            m_pui->_001UpdateScreen();
+            //m_pui->_001UpdateScreen();
 
             {
 
@@ -3384,7 +3391,11 @@ namespace windows
 
             m_rectParentClient = rect;
 
-            m_pui->_001UpdateScreen(false);
+            //m_pui->_001UpdateScreen(false);
+
+            //m_pui->_001UpdateWindow(false);
+
+            m_pui->_001UpdateWindow();
 
 
          }

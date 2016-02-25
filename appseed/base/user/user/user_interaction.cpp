@@ -4040,37 +4040,49 @@ namespace user
    }
 
 
-   void interaction::_001UpdateScreen(bool bUpdateBuffer)
+   //void interaction::_001UpdateScreen(bool bUpdateBuffer)
+   //{
+
+   //   if(m_bLockWindowUpdate)
+   //      return;
+
+   //   if(m_pimpl == NULL)
+   //      return;
+
+   //   m_pimpl->_001UpdateScreen(bUpdateBuffer);
+
+   //}
+
+   void interaction::_001UpdateWindow()
    {
 
-      if(m_bLockWindowUpdate)
+      if (m_bLockWindowUpdate)
          return;
 
-      if(m_pimpl == NULL)
+      if (m_pimpl == NULL)
          return;
 
-      m_pimpl->_001UpdateScreen(bUpdateBuffer);
+      m_pimpl->_001UpdateWindow();
 
    }
 
-
-   void interaction::_001UpdateBuffer()
-   {
-
-      //single_lock sl(m_pmutex, true);
-
-      if(m_bLockWindowUpdate)
-      {
-
-//         TRACE("_001UpdateBuffer m_bLockWindowUpdate");
-
-         return;
-
-      }
-
-      m_pimpl->_001UpdateBuffer();
-
-   }
+//   void interaction::_001UpdateBuffer()
+//   {
+//
+//      //single_lock sl(m_pmutex, true);
+//
+//      if(m_bLockWindowUpdate)
+//      {
+//
+////         TRACE("_001UpdateBuffer m_bLockWindowUpdate");
+//
+//         return;
+//
+//      }
+//
+//      m_pimpl->_001UpdateBuffer();
+//
+//   }
 
 
    void interaction::_001WindowMinimize()

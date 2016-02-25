@@ -73,7 +73,7 @@ namespace user
 
 
       window_graphics *             m_pgraphics;
-      ::visual::dib_sp              m_spdib;
+      //::visual::dib_sp              m_spdib;
       ::visual::dib_sp              m_spdibBuffer;
 
       sp(mutex)                     m_spmutexBuffer;
@@ -715,8 +715,10 @@ namespace user
       virtual void _001BaseWndInterfaceMap();
 
 
-      virtual void _001UpdateScreen(bool bUpdateBuffer = true);
-      virtual void _001UpdateBuffer();
+      //virtual void _001UpdateScreen(bool bUpdateBuffer = true);
+      //virtual void _001UpdateBuffer();
+
+      virtual void _001UpdateWindow();
 
 
       virtual void update_graphics_resources();

@@ -266,8 +266,9 @@ namespace user
       virtual bool on_keyboard_focus(::user::elemental * pfocus) override;
 
 
-      virtual void _001UpdateScreen(bool bUpdateBuffer = true);
-      virtual void _001UpdateBuffer();
+      // virtual void _001UpdateScreen(bool bUpdateBuffer = true);
+      //virtual void _001UpdateBuffer();
+      virtual void _001UpdateWindow();
 
 
       virtual void _001WindowMinimize();

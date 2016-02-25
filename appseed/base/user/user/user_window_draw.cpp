@@ -82,9 +82,7 @@ namespace user
 
                   pui->defer_check_layout();
 
-                  pui->_001UpdateBuffer();
-
-                  pui->_001UpdateScreen();
+                  pui->_001UpdateWindow();
 
                }
 

@@ -33,7 +33,7 @@ namespace user
 
          cslock sl(m_pcsDisplay);
 
-         m_spdib.release();
+//         m_spdibBuffer.release();
 
          if(m_pgraphics != NULL)
          {
@@ -2526,160 +2526,230 @@ namespace user
    {
    }
 
-
-   void interaction_impl::_001UpdateScreen(bool bUpdateBuffer)
-   {
-
-      cslock sl(cs_display());
-
-      if(m_spdib.is_set() && m_spdib->get_graphics() != NULL)
-      {
-
-         m_spdib->update_window(m_pui,NULL, bUpdateBuffer);
-
-//         if(m_pui->m_bMoving && GetExStyle() && WS_EX_LAYERED)
-//         {
-//
-//            Session.m_ptCursor = m_pui->m_ptMoveCursor;
-//
-//#ifdef WINDOWSEX
-//
-//            ::SetCursorPos(m_pui->m_ptMoveCursor.x,m_pui->m_ptMoveCursor.y);
-//
-//
-//#endif
-//
-//         }
-
-      }
-      else
-      {
-//         TRACE("Failed to update Screen");
-      }
-
-
-   }
-
-
 #define HARD_DEBUG 0
-   void interaction_impl::_001UpdateBuffer()
+   void interaction_impl::_001UpdateWindow()
    {
-
+   
       synch_lock sl1(m_pui->m_pmutex);
-
-      if(!m_pui->m_bMayProDevian)
-      {
-
-         //TRACE("interaction_impl::_001UpdateBuffer going to update_graphics_resources");
-
-      }
-
+   
       update_graphics_resources();
-
-      if(!m_pui->m_bMayProDevian)
-      {
-
-         //TRACE("interaction_impl::_001UpdateBuffer going to lock");
-
-      }
-
+   
       synch_lock sl(m_spmutexBuffer);
-
-      //if(!sl.lock())
-        // return;
-
-      if(!m_pui->m_bMayProDevian)
-      {
-
-         //TRACE("interaction_impl::_001UpdateBuffer locked");
-
-      }
-
+   
       if(m_spdibBuffer.is_null())
          return;
-
+   
       m_spdibBuffer->map();
-
+   
       if(m_spdibBuffer->get_data() == NULL)
          return;
-
+   
       rect64 rectWindow;
-
+   
       m_pui->GetWindowRect(rectWindow);
-
+   
       if(m_bComposite)
       {
+
          m_spdibBuffer->Fill(0,0,0,0);
+
       }
       else
       {
+
          m_spdibBuffer->Fill(255,184,184,177);
+
       }
-
-      //m_spdibBuffer->Fill(255,255,255,0);
-
-      //::draw2d::graphics * pgraphics = m_spdibBuffer->get_graphics();
-
-      //if(pgraphics == NULL)
-        //return;
 
       if (m_spdibBuffer.is_null())
       {
-
+   
          return;
-
+   
       }
-
-      if(!m_pui->m_bMayProDevian)
-      {
-
-         //TRACE("Going to top print");
-
-      }
-
+   
       _001Print(m_spdibBuffer);
 
-
-      cslock slDisplay(cs_display());
-
-      //if(m_spdib->get_data() == NULL || m_spdibBuffer->get_data() == NULL)
-        // return;
-
-      m_spdib->BitBlt(rectWindow.width(), rectWindow.height(), m_spdibBuffer, 1);
-
-      m_spdib->m_bReduced = false;
-
+      m_spdibBuffer->m_bReduced = false;
+   
+   
 #if HARD_DEBUG
-
-      m_spdib->Destroy();
-
+   
       m_spdibBuffer->Destroy();
-
+   
+      m_spdibBuffer->Destroy();
+   
       ::draw2d::graphics_sp g(allocer());
-
+   
       g->debug();
-
+   
       m_size.cx = 0;
       m_size.cy = 0;
-
+   
 #endif
-
-      //       ::rect rectClient;
-
-      //       GetClientRect(rectClient);
-
-      //       g->BitBlt(0, 0, rectClient.width(), rectClient.height(), m_spdib->get_graphics(), 0, 0, SRCCOPY);
-
-      //       g->BitBlt(0, 0, m_spdib->m_size.cx, m_spdib->m_size.cy, m_spdib->get_graphics(), 0, 0, SRCCOPY);
-
-      //       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
-
-      //       pgraphics->FillSolidRect(rectClient, ARGB(128, 0, 255, 0));
-      {
-         //point pt;
-         //::GetCursorPos(&pt);
-      }
+   
+      m_spdibBuffer->update_window(m_pui,NULL, true);
+   
    }
+
+
+
+
+//   void interaction_impl::_001UpdateScreen(bool bUpdateBuffer)
+//   {
+//
+//      cslock sl(cs_display());
+//
+//      
+//
+//      if(m_spdibBuffer.is_set() && m_spdibBuffer->get_graphics() != NULL)
+//      {
+//
+//         m_spdibBuffer->update_window(m_pui,NULL, bUpdateBuffer);
+//
+////         if(m_pui->m_bMoving && GetExStyle() && WS_EX_LAYERED)
+////         {
+////
+////            Session.m_ptCursor = m_pui->m_ptMoveCursor;
+////
+////#ifdef WINDOWSEX
+////
+////            ::SetCursorPos(m_pui->m_ptMoveCursor.x,m_pui->m_ptMoveCursor.y);
+////
+////
+////#endif
+////
+////         }
+//
+//      }
+//      else
+//      {
+////         TRACE("Failed to update Screen");
+//      }
+//
+//
+//   }
+
+
+//#define HARD_DEBUG 0
+//   void interaction_impl::_001UpdateBuffer()
+//   {
+//
+//      synch_lock sl1(m_pui->m_pmutex);
+//
+//      if(!m_pui->m_bMayProDevian)
+//      {
+//
+//         //TRACE("interaction_impl::_001UpdateBuffer going to update_graphics_resources");
+//
+//      }
+//
+//      update_graphics_resources();
+//
+//      if(!m_pui->m_bMayProDevian)
+//      {
+//
+//         //TRACE("interaction_impl::_001UpdateBuffer going to lock");
+//
+//      }
+//
+//      synch_lock sl(m_spmutexBuffer);
+//
+//      //if(!sl.lock())
+//        // return;
+//
+//      if(!m_pui->m_bMayProDevian)
+//      {
+//
+//         //TRACE("interaction_impl::_001UpdateBuffer locked");
+//
+//      }
+//
+//      if(m_spdibBuffer.is_null())
+//         return;
+//
+//      m_spdibBuffer->map();
+//
+//      if(m_spdibBuffer->get_data() == NULL)
+//         return;
+//
+//      rect64 rectWindow;
+//
+//      m_pui->GetWindowRect(rectWindow);
+//
+//      if(m_bComposite)
+//      {
+//         m_spdibBuffer->Fill(0,0,0,0);
+//      }
+//      else
+//      {
+//         m_spdibBuffer->Fill(255,184,184,177);
+//      }
+//
+//      //m_spdibBuffer->Fill(255,255,255,0);
+//
+//      //::draw2d::graphics * pgraphics = m_spdibBuffer->get_graphics();
+//
+//      //if(pgraphics == NULL)
+//        //return;
+//
+//      if (m_spdibBuffer.is_null())
+//      {
+//
+//         return;
+//
+//      }
+//
+//      if(!m_pui->m_bMayProDevian)
+//      {
+//
+//         //TRACE("Going to top print");
+//
+//      }
+//
+//      _001Print(m_spdibBuffer);
+//
+//
+//      cslock slDisplay(cs_display());
+//
+//      //if(m_spdibBuffer->get_data() == NULL || m_spdibBuffer->get_data() == NULL)
+//        // return;
+//
+//      m_spdibBuffer->BitBlt(rectWindow.width(), rectWindow.height(), m_spdibBuffer, 1);
+//
+//      m_spdibBuffer->m_bReduced = false;
+//
+//#if HARD_DEBUG
+//
+//      m_spdibBuffer->Destroy();
+//
+//      m_spdibBuffer->Destroy();
+//
+//      ::draw2d::graphics_sp g(allocer());
+//
+//      g->debug();
+//
+//      m_size.cx = 0;
+//      m_size.cy = 0;
+//
+//#endif
+//
+//      //       ::rect rectClient;
+//
+//      //       GetClientRect(rectClient);
+//
+//      //       g->BitBlt(0, 0, rectClient.width(), rectClient.height(), m_spdibBuffer->get_graphics(), 0, 0, SRCCOPY);
+//
+//      //       g->BitBlt(0, 0, m_spdibBuffer->m_size.cx, m_spdibBuffer->m_size.cy, m_spdibBuffer->get_graphics(), 0, 0, SRCCOPY);
+//
+//      //       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+//
+//      //       pgraphics->FillSolidRect(rectClient, ARGB(128, 0, 255, 0));
+//      {
+//         //point pt;
+//         //::GetCursorPos(&pt);
+//      }
+//   }
 
 
    void interaction_impl::update_graphics_resources()
@@ -2728,14 +2798,14 @@ namespace user
 
          cslock sl2(cs_display());
 
-         if(m_spdib.is_null())
-            m_spdib.alloc(allocer());
+         if(m_spdibBuffer.is_null())
+            m_spdibBuffer.alloc(allocer());
 
-         if(rectWindow.width() > m_spdib->m_size.cx
-            || rectWindow.height() > m_spdib->m_size.cy)
+         if(rectWindow.width() > m_spdibBuffer->m_size.cx
+            || rectWindow.height() > m_spdibBuffer->m_size.cy)
          {
 
-            if(!m_spdib->create(rectWindow.size() + size(100,100)))
+            if(!m_spdibBuffer->create(rectWindow.size() + size(100,100)))
             {
 
                TRACE("Could not create window graphics buffer (1) requested_size = %d, %d", rectWindow.width() + 100, rectWindow.height() + 100);
@@ -2749,9 +2819,9 @@ namespace user
          if(m_spdibBuffer.is_null())
             m_spdibBuffer.alloc(allocer());
 
-         if(m_spdib->size() != m_spdibBuffer->size())
+         if(m_spdibBuffer->size() != m_spdibBuffer->size())
          {
-            m_spdibBuffer->create(m_spdib->size());
+            m_spdibBuffer->create(m_spdibBuffer->size());
          }
 
          m_size = rectWindow.size();

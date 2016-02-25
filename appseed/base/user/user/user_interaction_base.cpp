@@ -92,9 +92,11 @@ namespace user
 
             //synch_lock sl(m_pmutex);
 
-            _001UpdateBuffer();
+            //_001UpdateBuffer();
 
-            _001UpdateScreen();
+            //_001UpdateScreen();
+
+            _001UpdateWindow();
 
          }
 
@@ -1870,14 +1872,21 @@ namespace user
    }
 
 
-   void interaction_base::_001UpdateScreen(bool bUpdateBuffer)
-   {
+   //void interaction_base::_001UpdateScreen(bool bUpdateBuffer)
+   //{
 
-      ::exception::throw_interface_only(get_app());
+   //   ::exception::throw_interface_only(get_app());
 
-   }
+   //}
 
-   void interaction_base::_001UpdateBuffer()
+   //void interaction_base::_001UpdateBuffer()
+   //{
+
+   //   ::exception::throw_interface_only(get_app());
+
+   //}
+
+   void interaction_base::_001UpdateWindow()
    {
 
       ::exception::throw_interface_only(get_app());

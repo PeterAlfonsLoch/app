@@ -201,8 +201,10 @@ namespace user
 
 
       virtual void _001RedrawWindow(UINT nFlags = 0) override;
-      virtual void _001UpdateScreen(bool bUpdateBuffer = true) override;
-      virtual void _001UpdateBuffer() override;
+      //virtual void _001UpdateScreen(bool bUpdateBuffer = true) override;
+      //virtual void _001UpdateBuffer() override;
+
+      virtual void _001UpdateWindow() override;
 
 
       virtual void _001WindowMinimize() override;

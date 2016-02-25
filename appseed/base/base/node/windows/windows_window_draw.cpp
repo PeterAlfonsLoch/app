@@ -415,12 +415,10 @@ namespace windows
 
                   }
 
-
-
                   try
                   {
 
-                     pui->_001UpdateBuffer();
+                     pui->_001UpdateWindow();
 
                   }
                   catch (...)
@@ -429,16 +427,28 @@ namespace windows
                   }
 
 
-                  try
-                  {
+                  //try
+                  //{
 
-                     pui->_001UpdateScreen();
+                  //   pui->_001UpdateBuffer();
 
-                  }
-                  catch (...)
-                  {
+                  //}
+                  //catch (...)
+                  //{
 
-                  }
+                  //}
+
+
+                  //try
+                  //{
+
+                  //   pui->_001UpdateScreen();
+
+                  //}
+                  //catch (...)
+                  //{
+
+                  //}
 
                }
 
