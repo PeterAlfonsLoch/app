@@ -31,7 +31,7 @@ namespace draw2d_cairo
       bool CreatePolyPolygonRgn(LPPOINT lpPoints, LPINT lpPolyCounts,
             int32_t nCount, int32_t nPolyFillMode);
       bool CreateRoundRectRgn(int32_t x1, int32_t y1, int32_t x2, int32_t y2, int32_t x3, int32_t y3);
-      bool CreateFromPath(::draw2d::graphics * pgraphics);
+      bool CreateFromPath(::draw2d::dib * pdib);
       bool CreateFromData(const XFORM* lpXForm, int32_t nCount,
          const RGNDATA* pRgnData);*/
 

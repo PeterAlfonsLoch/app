@@ -15,7 +15,7 @@ namespace draw2d_cairo
 
 
 //      bool CreatePalette(LPLOGPALETTE lpLogPalette);
-//      bool CreateHalftonePalette(::draw2d::graphics * pgraphics);
+//      bool CreateHalftonePalette(::draw2d::dib * pdib);
 
    // Attributes
 /*      operator HPALETTE() const;

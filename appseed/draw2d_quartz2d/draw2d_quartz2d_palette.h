@@ -17,7 +17,7 @@ namespace draw2d_quartz2d
       
       
       //      bool CreatePalette(LPLOGPALETTE lpLogPalette);
-      //      bool CreateHalftonePalette(::draw2d::graphics * pgraphics);
+      //      bool CreateHalftonePalette(::draw2d::dib * pdib);
       
       // Attributes
 //      operator HPALETTE() const;

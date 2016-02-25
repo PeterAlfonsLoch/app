@@ -91,7 +91,7 @@ namespace draw2d_xlib
    // Constructors
       bool CreateDC(const char * lpszDriverName, const char * lpszDeviceName, const char * lpszOutput, const void * lpInitData);
       bool CreateIC(const char * lpszDriverName, const char * lpszDeviceName, const char * lpszOutput, const void * lpInitData);
-      bool CreateCompatibleDC(::draw2d::graphics * pgraphics);
+      bool CreateCompatibleDC(::draw2d::dib * pdib);
 
       bool DeleteDC();
 
