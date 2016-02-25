@@ -57,7 +57,9 @@ namespace userstack
 
    void view::OnDraw(::draw2d::dib * pdib)
    {
-      UNREFERENCED_PARAMETER(pdcScreen);
+      
+      UNREFERENCED_PARAMETER(pdib);
+
    }
 
    /////////////////////////////////////////////////////////////////////////////

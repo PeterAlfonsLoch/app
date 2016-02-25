@@ -120,8 +120,11 @@ namespace calculator
 
    void view:: _001OnDraw(::draw2d::dib * pdib)
    {
-      UNREFERENCED_PARAMETER(pdc);
+      
+      UNREFERENCED_PARAMETER(pdib);
+
    }
+
 
    void view::_001OnCreate(signal_details * pobj)
    {

@@ -253,7 +253,7 @@ namespace console
    {
       //if(GetTypedParent <prompt_frame>()->get_appearance() != ::user::AppearanceMinimal)
       {
-         ::user::impact::simple_ui_draw_focus_rect(pgraphics);
+         ::user::impact::simple_ui_draw_focus_rect(pdib);
       }
    }
 
@@ -281,6 +281,9 @@ namespace console
 
    void prompt_impact::_001OnDraw(::draw2d::dib * pdib)
    {
+
+      ::draw2d::graphics * pgraphics = pdib->get_graphics();
+
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
       ::draw2d::font_sp f(allocer());
 

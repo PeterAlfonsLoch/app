@@ -53,7 +53,7 @@ namespace command
 
    void view::OnDraw(::draw2d::dib * pdib)
    {
-      UNREFERENCED_PARAMETER(pdcScreen);
+      UNREFERENCED_PARAMETER(pdib);
    }
 
    /////////////////////////////////////////////////////////////////////////////
@@ -149,7 +149,7 @@ namespace command
 
    void view:: _001OnDraw(::draw2d::dib * pdib)
    {
-      UNREFERENCED_PARAMETER(pdc);
+      UNREFERENCED_PARAMETER(pdib);
    }
 
    void view::_001OnCreate(signal_details * pobj)

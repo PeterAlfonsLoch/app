@@ -91,7 +91,7 @@ namespace draw2d_direct2d
          const char * lpszOutput, const void * lpInitData);
       bool CreateIC(const char * lpszDriverName, const char * lpszDeviceName,
          const char * lpszOutput, const void * lpInitData);
-      bool CreateCompatibleDC(::draw2d::dib * pdib);
+      bool CreateCompatibleDC(::draw2d::graphics * pgraphics);
 
       bool DeleteDC();
 

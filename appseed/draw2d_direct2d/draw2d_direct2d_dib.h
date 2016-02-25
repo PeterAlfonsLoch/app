@@ -52,12 +52,12 @@ namespace draw2d_direct2d
 
       bool create(class size size);
       bool create(int32_t iWidth, int32_t iHeight);
-      bool create(::draw2d::dib * pdib);
+      bool create(::draw2d::graphics * pgraphics);
       bool Destroy();
 
 
 
-      bool from(::draw2d::dib * pdib);
+      bool from(::draw2d::graphics * pgraphics);
       bool from(point ptDest, ::draw2d::graphics * pdc, point pt, class size sz);
 
       bool to(::draw2d::graphics * pgraphics, point pt, class size size, point ptSrc);
@@ -154,8 +154,8 @@ namespace draw2d_direct2d
 
       //double pi();
 
-      virtual bool defer_realize(::draw2d::dib * pdib) const;
-      virtual bool realize(::draw2d::dib * pdib) const;
+      virtual bool defer_realize(::draw2d::graphics * pgraphics) const;
+      virtual bool realize(::draw2d::graphics * pgraphics) const;
       virtual bool unrealize() const;
       virtual bool is_realized() const;
 

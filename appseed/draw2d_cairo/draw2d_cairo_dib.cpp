@@ -159,9 +159,9 @@ namespace draw2d_cairo
       return true;
    }
 
-   bool dib::create(::draw2d::dib * pdib)
+   bool dib::create(::draw2d::graphics * pgraphics)
    {
-      ::draw2d::bitmap * pbitmap = (dynamic_cast < ::draw2d_cairo::graphics * > (pdc))->get_current_bitmap();
+      ::draw2d::bitmap * pbitmap = (dynamic_cast < ::draw2d_cairo::graphics * > (pgraphics))->get_current_bitmap();
       if(pbitmap == NULL)
          return FALSE;
       ::size size = pbitmap->get_size();
@@ -169,7 +169,7 @@ namespace draw2d_cairo
       {
          return FALSE;
       }
-      from(pdc);
+      from(pgraphics);
       return TRUE;
    }
 
@@ -203,17 +203,17 @@ namespace draw2d_cairo
 
    }
 
-   bool dib::from(::draw2d::dib * pdib)
+   bool dib::from(::draw2d::graphics * pgraphics)
    {
       ::draw2d::bitmap_sp bitmap(get_app());
-      bitmap->CreateCompatibleBitmap(pdc, 1, 1);
-      ::draw2d::bitmap * pbitmap = pdc->SelectObject(bitmap);
+      bitmap->CreateCompatibleBitmap(pgraphics, 1, 1);
+      ::draw2d::bitmap * pbitmap = pgraphics->SelectObject(bitmap);
       if(pbitmap == NULL)
          return false;
       class size size = pbitmap->get_size();
       if(!create(size))
       {
-         pdc->SelectObject(pbitmap);
+         pgraphics->SelectObject(pbitmap);
          return false;
       }
       throw todo(get_app());
@@ -2667,10 +2667,10 @@ namespace draw2d_cairo
          rectPaint = rectWindow;
          rectPaint.offset(-rectPaint.top_left());
          m_spgraphics->SelectClipRgn(NULL);
-         pwnd->_001OnDeferPaintLayeredWindowBackground(pdc);
+         pwnd->_001OnDeferPaintLayeredWindowBackground(dib);
          m_spgraphics->SelectClipRgn(NULL);
         m_spgraphics-> SetViewportOrg(point(0, 0));
-         pwnd->_000OnDraw(pdc);
+         pwnd->_000OnDraw(dib);
          m_spgraphics->SetViewportOrg(point(0, 0));
          //(dynamic_cast<::win::graphics * >(pdc))->FillSolidRect(rectUpdate.left, rectUpdate.top, 100, 100, 255);
          m_spgraphics->SelectClipRgn(NULL);

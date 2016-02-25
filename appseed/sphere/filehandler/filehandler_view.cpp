@@ -101,10 +101,12 @@ namespace filehandler
 
    }
 
-   void view::item::draw(sp(view) pview, ::draw2d::graphics * pdc, list * plist)
+   void view::item::draw(sp(view) pview, ::draw2d::dib * pdib, list * plist)
    {
 
       UNREFERENCED_PARAMETER(plist);
+
+      ::draw2d::graphics * pdc = pdib->get_graphics();
 
       COLORREF cr;
       sp(::aura::application) papp = pview->get_app();
@@ -173,11 +175,11 @@ namespace filehandler
       }
    }
 
-   void view::list::draw(sp(view) pview, ::draw2d::graphics * pdc)
+   void view::list::draw(sp(view) pview, ::draw2d::dib * pdib)
    {
       for(int32_t i = 0; i < get_count(); i++)
       {
-         element_at(i)->draw(pview, pdc, this);
+         element_at(i)->draw(pview, pdib, this);
       }
    }
 
@@ -213,9 +215,9 @@ namespace filehandler
       if (m_plist.is_null())
          return;
 
-      select_font(pgraphics);
+      //select_font(pdib->get_graphics());
 
-      m_plist->draw(this,pgraphics);
+      m_plist->draw(this,pdib);
 
 
    }

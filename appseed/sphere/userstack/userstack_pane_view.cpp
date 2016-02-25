@@ -487,7 +487,9 @@ namespace userstack
       }
 
       //m_dibBk.to(pdc, 0, 0, rectClient.right, rectClient.bottom);
-      ::userex::pane_tab_view::_001OnDraw(pdc);
+      
+      ::userex::pane_tab_view::_001OnDraw(pdib);
+
    }
 
 

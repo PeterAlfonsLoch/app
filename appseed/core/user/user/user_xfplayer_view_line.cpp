@@ -144,13 +144,17 @@ void XfplayerViewLine::GetPlacement(LPRECT lprect)
    *lprect = m_rect;
 }
 
-bool XfplayerViewLine::to(::draw2d::graphics * pdc, bool bDraw, const RECT & rect, rect_array & rectaModified, bool bRecalcLayout)
+bool XfplayerViewLine::to(::draw2d::dib * pdib, bool bDraw, const RECT & rect, rect_array & rectaModified, bool bRecalcLayout)
 {
 
    single_lock sl(m_pContainer->m_pmutex);
 
+   ::draw2d::graphics * pdc = pdib->get_graphics();
+
    string strFinal(m_str);
+
    double dBlend;
+
    if (m_dBlend <= 0.0)
       return true;
    if (m_dBlend >= 1.0)
@@ -351,14 +355,17 @@ bool XfplayerViewLine::to(::draw2d::graphics * pdc, bool bDraw, const RECT & rec
 
 }
 
-bool XfplayerViewLine::to(::draw2d::graphics * pdc, bool bDraw, const RECT & rect, rect_array & rectaModified, ::count * count, bool bRecalcLayout, COLORREF crColor, ::draw2d::pen_sp sppen)
+bool XfplayerViewLine::to(::draw2d::dib * pdib, bool bDraw, const RECT & rect, rect_array & rectaModified, ::count * count, bool bRecalcLayout, COLORREF crColor, ::draw2d::pen_sp sppen)
 {
 
    single_lock sl(m_pContainer->m_pmutex);
 
    UNREFERENCED_PARAMETER(count);
 
+   ::draw2d::graphics * pdc = pdib->get_graphics();
+
    ::rect rectPlacement;
+
    GetPlacement(rectPlacement);
 
    pdc->set_font(m_font);

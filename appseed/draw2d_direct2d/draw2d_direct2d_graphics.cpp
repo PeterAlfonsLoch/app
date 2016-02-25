@@ -101,7 +101,7 @@ namespace draw2d_direct2d
       //return Attach(::CreateIC(lpszDriverName, lpszDeviceName, lpszOutput, (const DEVMODE*) lpInitData)); 
    }
 
-   bool graphics::CreateCompatibleDC(::draw2d::dib * pdib)
+   bool graphics::CreateCompatibleDC(::draw2d::graphics * pgraphics)
    { 
 
       //single_lock sl(System.m_pmutexDc, true);

@@ -174,7 +174,7 @@ namespace draw2d_direct2d
       return true;
    }
 
-   bool dib::create(::draw2d::dib * pdib)
+   bool dib::create(::draw2d::graphics * pgraphics)
    {
       ::draw2d::bitmap * pbitmap = dynamic_cast<::draw2d_direct2d::graphics *>(pgraphics)->get_current_bitmap();
       if (pbitmap == NULL)
@@ -226,7 +226,7 @@ namespace draw2d_direct2d
 
    }
 
-   bool dib::from(::draw2d::dib * pdib)
+   bool dib::from(::draw2d::graphics * pgraphics)
    {
       bool bOk = false;
       ::draw2d::bitmap_sp bitmap(get_app());
@@ -2711,7 +2711,7 @@ namespace draw2d_direct2d
    }*/
 
 
-   bool dib::defer_realize(::draw2d::dib * pdib) const
+   bool dib::defer_realize(::draw2d::graphics * pgraphics) const
    {
 
       if (is_realized())
@@ -2723,7 +2723,7 @@ namespace draw2d_direct2d
 
    }
 
-   bool dib::realize(::draw2d::dib * pdib) const
+   bool dib::realize(::draw2d::graphics * pgraphics) const
    {
 
       synch_lock sl(&draw2d_direct2_mutex());
