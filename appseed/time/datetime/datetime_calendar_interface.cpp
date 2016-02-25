@@ -1,22 +1,29 @@
 #include "framework.h"
 
+
 calendar_interface::calendar_interface(::aura::application * papp) :
    ::object(papp)
 {
+
    ::datetime::time time = ::datetime::time::get_current_time();
    m_iYear = time.GetYear();
    m_iMonth = time.GetMonth();
    m_bRange = false;
+
 }
+
 
 void calendar_interface::_001OnDraw(::draw2d::dib * pdib)
 {
-   UNREFERENCED_PARAMETER(pdc);
+   
+   UNREFERENCED_PARAMETER(pdib);
+
 }
 
 
 void calendar_interface::GetRectDay(::datetime::time & time, LPRECT lprect)
 {
+
    int32_t iWeekDay = time.GetDayOfWeek();
    int32_t iWeek = get_week_of_month(time);
    GetRectDay(iWeekDay, iWeek + 1, lprect);

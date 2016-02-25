@@ -140,7 +140,6 @@
       <OpenMPSupport>false</OpenMPSupport>
       <AdditionalIncludeDirectories>../../include</AdditionalIncludeDirectories>
       <SmallerTypeCheck>false</SmallerTypeCheck>
-      <MinimalRebuild>true</MinimalRebuild>
     </ClCompile>
     <Midl>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -195,7 +194,6 @@
       <OpenMPSupport>false</OpenMPSupport>
       <AdditionalIncludeDirectories>../../include</AdditionalIncludeDirectories>
       <SmallerTypeCheck>false</SmallerTypeCheck>
-      <MinimalRebuild>true</MinimalRebuild>
     </ClCompile>
     <Midl>
       <SuppressStartupBanner>true</SuppressStartupBanner>

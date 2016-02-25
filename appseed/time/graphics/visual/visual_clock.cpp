@@ -15,8 +15,12 @@ namespace visual
       //   ::datetime::time time = ::datetime::time::get_current_time();
    }
 
+
    void clock::_001OnDraw(::draw2d::dib * pdib)
    {
+
+      ::draw2d::graphics * pdc = pdib->get_graphics();
+
       ::datetime::time timeNow = ::datetime::time::get_current_time() + m_timespan;
 
       rect rect;

@@ -144,7 +144,6 @@
       <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
-      <MinimalRebuild>true</MinimalRebuild>
       <DisableSpecificWarnings>4311</DisableSpecificWarnings>
       <SDLCheck>true</SDLCheck>
     </ClCompile>
@@ -311,7 +310,6 @@
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
       <OmitFramePointers>false</OmitFramePointers>
-      <MinimalRebuild>true</MinimalRebuild>
       <DisableSpecificWarnings>4311</DisableSpecificWarnings>
       <SDLCheck>true</SDLCheck>
     </ClCompile>

@@ -17,8 +17,12 @@ namespace visual
 
    }
 
+
    void calendar::_001OnDraw(::draw2d::dib * pdib)
    {
+
+      ::draw2d::graphics * pdc = pdib->get_graphics();
+
       pdc->SelectObject(m_font);
       ::datetime::time timeNow = ::datetime::time::get_current_time();
       int32_t iMonth = m_iMonth;

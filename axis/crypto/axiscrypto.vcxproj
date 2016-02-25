@@ -142,7 +142,6 @@
       <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
-      <MinimalRebuild>true</MinimalRebuild>
       <DisableSpecificWarnings>4172;4311</DisableSpecificWarnings>
       <SDLCheck>true</SDLCheck>
     </ClCompile>
@@ -298,7 +297,6 @@ ml /safeseh /coff /Zi /Fo"$(IntDir)rc4.o" /c /Fl"$(IntDir)rc4.lst" "$(ProjectDir
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
       <OmitFramePointers>false</OmitFramePointers>
-      <MinimalRebuild>true</MinimalRebuild>
       <DisableSpecificWarnings>4172;4311</DisableSpecificWarnings>
       <SDLCheck>true</SDLCheck>
     </ClCompile>
