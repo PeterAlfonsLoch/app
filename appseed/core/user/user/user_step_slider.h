@@ -25,7 +25,7 @@ namespace user
 
       virtual void install_message_handling(::message::dispatch * pdispatch);
 
-      virtual void _001OnDraw(::draw2d::graphics * pdc);
+      virtual void _001OnDraw(::draw2d::dib * pdib);
       void GetStepHoverRect(LPRECT lprect, int64_t iVal, int64_t iMin, int64_t iMax, LPCRECT lpcrectClient);
       void GetStepRect(LPRECT lprect, int64_t iVal, int64_t iMin, int64_t iMax, LPCRECT lpcrectClient);
 

@@ -1269,7 +1269,7 @@ namespace ios
       return false;
    }
 
-   void window::_002OnDraw(::draw2d::graphics * pdc)
+   void window::_002OnDraw(::draw2d::dib * pdib)
    {
 
       //      ::CallWindowProc(*GetSuperWndProcAddr(), get_handle(), WM_PRINT, (WPARAM)((dynamic_cast<::draw2d_quartz2d::graphics * >(pdc))->get_handle()), (LPARAM)(PRF_CHILDREN | PRF_CLIENT));
@@ -3144,7 +3144,7 @@ namespace ios
       //      EnumWindows(GetAppsEnumWindowsProc, (LPARAM) &wnda);
    }
 
-   /*   void window::_001OnDeferPaintLayeredWindowBackground(::draw2d::graphics * pdc)
+   /*   void window::_001OnDeferPaintLayeredWindowBackground(::draw2d::dib * pdib)
     {
     _001DeferPaintLayeredWindowBackground(pdc);
     }*/
@@ -5007,7 +5007,7 @@ namespace ios
       return NULL;
    }
 
-   bool window::ReleaseDC(::draw2d::graphics * pgraphics)
+   bool window::ReleaseDC(::draw2d::dib * pdib)
    {
 
       if(pgraphics == NULL)
@@ -6581,7 +6581,7 @@ namespace ios
    }
 
 
-   void window::set_view_port_org(::draw2d::graphics * pgraphics)
+   void window::set_view_port_org(::draw2d::dib * pdib)
    {
 
       pgraphics->SetViewportOrg(point(0, 0));

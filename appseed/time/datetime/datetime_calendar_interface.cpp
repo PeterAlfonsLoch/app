@@ -9,7 +9,7 @@ calendar_interface::calendar_interface(::aura::application * papp) :
    m_bRange = false;
 }
 
-void calendar_interface::_001OnDraw(::draw2d::graphics * pdc)
+void calendar_interface::_001OnDraw(::draw2d::dib * pdib)
 {
    UNREFERENCED_PARAMETER(pdc);
 }

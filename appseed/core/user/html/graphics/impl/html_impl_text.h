@@ -33,7 +33,7 @@ namespace html
             virtual void _001OnGetText();
 
          virtual void _001OnDraw(data * pdoc);
-         virtual void _001OnDraw(::draw2d::graphics * pgraphics);
+         virtual void _001OnDraw(::draw2d::dib * pdib);
          void implement_phase1(data * pdoc, ::html::elemental * pelemental);
          void layout_phase0(data * pdata);
          void layout_phase1(data * pdata);

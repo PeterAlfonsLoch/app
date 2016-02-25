@@ -38,14 +38,15 @@ namespace visual
    }
 
 
-   void font::EmbossedTextOut(::draw2d::graphics * pdc, const RECT & rect, double dRateX, double dHeight, string & str)
+   void font::EmbossedTextOut(::draw2d::dib * pdib, const RECT & rect, double dRateX, double dHeight, string & str)
    {
+      
 
-
-      System.visual().api().EmbossedTextOut(pdc, rect, dRateX, dHeight, str);
+      System.visual().api().EmbossedTextOut(pdib, rect, dRateX, dHeight, str);
 
       return;
 
+      ::draw2d::graphics * pdc = pdib->get_graphics();
 
       SetDC(pdc);
       SelectFont();
@@ -88,12 +89,14 @@ namespace visual
 
    }
 
-   void font::EmbossedTextOut(::draw2d::graphics * pdc, const RECT & rect, double dRateX, double dHeight, string & str, LPINT lpiCharsPositions, int32_t iCharsPositions, int32_t iOffset)
+   void font::EmbossedTextOut(::draw2d::dib * pdib, const RECT & rect, double dRateX, double dHeight, string & str, LPINT lpiCharsPositions, int32_t iCharsPositions, int32_t iOffset)
    {
 
-      System.visual().api().EmbossedTextOut(pdc, rect, dRateX, dHeight, str, lpiCharsPositions, iCharsPositions, iOffset);
+      System.visual().api().EmbossedTextOut(pdib, rect, dRateX, dHeight, str, lpiCharsPositions, iCharsPositions, iOffset);
 
       return;
+
+      ::draw2d::graphics * pdc = pdib->get_graphics();
 
       SetDC(pdc);
       SelectFont();
@@ -150,8 +153,10 @@ namespace visual
       ClearDC();*/
    }
 
-   void font::SimpleTextOut(::draw2d::graphics * pgraphics, int32_t x, int32_t y, string & str, LPINT lpiCharsPositions, int32_t iCharsPositions)
+   void font::SimpleTextOut(::draw2d::dib * pdib, int32_t x, int32_t y, string & str, LPINT lpiCharsPositions, int32_t iCharsPositions)
    {
+      ::draw2d::graphics * pgraphics = pdib->get_graphics();
+
       UNREFERENCED_PARAMETER(lpiCharsPositions);
       UNREFERENCED_PARAMETER(iCharsPositions);
       SetDC(pgraphics);
@@ -364,7 +369,7 @@ namespace visual
    }
 
    void font::TextOutEx(
-      ::draw2d::graphics                     * pgraphics,
+      ::draw2d::dib                     * pdib,
        const RECT &               rect,
       double               dRateX,
       double               dHeight,
@@ -374,14 +379,15 @@ namespace visual
       int32_t                  iOffset,
        int32_t                     iEffect)
    {
+      ::draw2d::graphics * pgraphics = pdib->get_graphics();
        switch(iEffect)
        {
        case EffectSimple:
-           SimpleTextOut(pgraphics, rect.left, rect.top, str, lpiCharsPositions, iCharsPositions);
+           SimpleTextOut(pdib, rect.left, rect.top, str, lpiCharsPositions, iCharsPositions);
            break;
        case EffectEmbossed:
            EmbossedTextOut(
-            pgraphics,
+            pdib,
             rect,
             dRateX,
             dHeight,

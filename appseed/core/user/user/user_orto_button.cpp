@@ -24,7 +24,7 @@ bool OrtoButton::pre_create_window(::user::create_struct& cs)
 
 
 
-void OrtoButton::_001OnDraw(::draw2d::graphics * pdc)
+void OrtoButton::_001OnDraw(::draw2d::dib * pdib)
 {
 
 

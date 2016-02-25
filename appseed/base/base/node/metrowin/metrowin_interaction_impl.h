@@ -67,7 +67,7 @@ namespace metrowin
 
       virtual bool BaseOnControlEvent(::user::control_event * pevent);
 
-      void _002OnDraw(::draw2d::graphics * pdc);
+      void _002OnDraw(::draw2d::dib * pdib);
 
       DECL_GEN_SIGNAL(_001OnEraseBkgnd);
       DECL_GEN_SIGNAL(_001OnMove);
@@ -213,7 +213,7 @@ namespace metrowin
       // Update/Painting Functions
       virtual ::draw2d::graphics * GetDC();
       virtual ::draw2d::graphics * GetWindowDC();
-      virtual bool ReleaseDC(::draw2d::graphics * pgraphics);
+      virtual bool ReleaseDC(::draw2d::dib * pdib);
       virtual void Print(::draw2d::graphics * pgraphics, uint32_t dwFlags) const;
       virtual void PrintClient(::draw2d::graphics * pgraphics, uint32_t dwFlags) const;
 
@@ -470,10 +470,10 @@ namespace metrowin
       void OnEnable(bool bEnable);
       void OnEndSession(bool bEnding);
       void OnEnterIdle(UINT nWhy, ::user::interaction_impl * pWho);
-      bool OnEraseBkgnd(::draw2d::graphics * pgraphics);
+      bool OnEraseBkgnd(::draw2d::dib * pdib);
       //      void OnGetMinMaxInfo(MINMAXINFO* lpMMI);
       //    bool OnHelpInfo(HELPINFO* lpHelpInfo);
-      void OnIconEraseBkgnd(::draw2d::graphics * pgraphics);
+      void OnIconEraseBkgnd(::draw2d::dib * pdib);
       void OnKillFocus(::user::interaction_impl * pNewWnd);
       LRESULT OnMenuChar(UINT nChar, UINT nFlags, ::user::menu* pMenu);
       void OnMenuSelect(UINT nItemID, UINT nFlags, HMENU hSysMenu);
@@ -703,7 +703,7 @@ namespace metrowin
 
          Agile < Windows::UI::Core::CoreWindow > get_os_window();
 
-          void set_view_port_org(::draw2d::graphics * pgraphics);
+          void set_view_port_org(::draw2d::dib * pdib);
 
           void offset_view_port_org(LPRECT lprectScreen);
 

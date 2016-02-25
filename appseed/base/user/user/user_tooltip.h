@@ -31,7 +31,7 @@ namespace user
 
       DECL_GEN_SIGNAL(_001OnCreate);
       void _001OnTimer(::timer * ptimer);;
-      void _001OnDraw(::draw2d::graphics * pdc);
+      void _001OnDraw(::draw2d::dib * pdib);
 
 
       bool get_translucency(::user::ETranslucency  & etranslucency);

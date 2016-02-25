@@ -178,9 +178,9 @@ namespace html
       //virtual bool is_locked();
 
       void load(const char *);
-      void implement(::draw2d::graphics * pdc);
-      void layout(::draw2d::graphics * pdc);
-      void _001OnDraw(::draw2d::graphics * pdc);
+      void implement(::draw2d::dib * pdib);
+      void layout(::draw2d::dib * pdib);
+      void _001OnDraw(::draw2d::dib * pdib);
 
       void implement_and_layout(html_form * pform);
 

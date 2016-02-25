@@ -204,7 +204,7 @@ namespace userfs
 
 
 
-   void list::_001OnDraw(::draw2d::graphics *pdc)
+   void list::_001OnDraw(::draw2d::dib * pdib)
    {
       BASE::_001OnDraw(pdc);
 

@@ -604,7 +604,7 @@ namespace user
             m_workset.EnableFullScreen(bEnable);
          }
 
-         void WorkSetClientInterface::_001OnDraw(::draw2d::graphics * pgraphics)
+         void WorkSetClientInterface::_001OnDraw(::draw2d::dib * pdib)
          {
             m_workset._001OnDraw(pgraphics);
          }

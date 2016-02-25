@@ -194,7 +194,7 @@ namespace draw2d
 
    }
 
-   bool region::CreateFromPath(::draw2d::graphics * pgraphics)
+   bool region::CreateFromPath(::draw2d::dib * pdib)
    {
       UNREFERENCED_PARAMETER(pgraphics);
       ::exception::throw_interface_only(get_app());

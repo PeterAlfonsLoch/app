@@ -1176,7 +1176,7 @@ namespace android
    }
 
 
-   void interaction_impl::_002OnDraw(::draw2d::graphics * pdc)
+   void interaction_impl::_002OnDraw(::draw2d::dib * pdib)
    {
 
       ::exception::throw_not_implemented(get_app());
@@ -2250,7 +2250,7 @@ void interaction_impl::get_app_wnda(user::oswindow_array & wnda)
    //      EnumWindows(GetAppsEnumWindowsProc, (LPARAM) &wnda);
 }
 
-/*   void interaction_impl::_001OnDeferPaintLayeredWindowBackground(::draw2d::graphics * pdc)
+/*   void interaction_impl::_001OnDeferPaintLayeredWindowBackground(::draw2d::dib * pdib)
 {
 _001DeferPaintLayeredWindowBackground(pdc);
 }*/
@@ -4058,7 +4058,7 @@ void interaction_impl::MapWindowPoints(::user::interaction * pwndTo, LPRECT lpRe
    return GetDC();
 }
 
-bool interaction_impl::ReleaseDC(::draw2d::graphics * pgraphics)
+bool interaction_impl::ReleaseDC(::draw2d::dib * pdib)
 {
 
    if (pgraphics == NULL)
@@ -5468,7 +5468,7 @@ namespace android
 
 
 
-   void interaction_impl::set_viewport_org(::draw2d::graphics * pgraphics)
+   void interaction_impl::set_viewport_org(::draw2d::dib * pdib)
    {
       // graphics will be already set its view port to the interaction_impl for android - cairo with xlib
 

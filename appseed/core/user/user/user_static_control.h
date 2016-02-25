@@ -55,7 +55,7 @@ namespace user
       e_type get_type();
 
 
-      virtual void _001OnDraw(::draw2d::graphics * pdc);
+      virtual void _001OnDraw(::draw2d::dib * pdib);
 
 
       virtual bool OnChildNotify(::message::base * pbase);

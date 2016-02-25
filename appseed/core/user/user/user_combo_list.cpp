@@ -52,7 +52,7 @@ namespace user
    }
 
 
-   void combo_list::_001OnDraw(::draw2d::graphics * pdc)
+   void combo_list::_001OnDraw(::draw2d::dib * pdib)
    {
 
       if(m_pcombo == NULL)
@@ -73,7 +73,7 @@ namespace user
 
    }
 
-   void combo_list::_001OnDrawVerisimple(::draw2d::graphics * pdc)
+   void combo_list::_001OnDrawVerisimple(::draw2d::dib * pdib)
    {
 
       ::count ca = m_pcombo->_001GetListCount();
@@ -172,7 +172,7 @@ namespace user
    }
 
 
-   void combo_list::_001OnDrawSimply(::draw2d::graphics * pdc)
+   void combo_list::_001OnDrawSimply(::draw2d::dib * pdib)
    {
 
       ::count ca = m_pcombo->_001GetListCount();
@@ -271,7 +271,7 @@ namespace user
    }
 
 
-   void combo_list::_002OnDrawVerisimple(::draw2d::graphics * pdc)
+   void combo_list::_002OnDrawVerisimple(::draw2d::dib * pdib)
    {
 
       ::count ca = m_pcombo->_001GetListCount();
@@ -373,7 +373,7 @@ namespace user
    }
 
 
-   void combo_list::_002OnDrawSimply(::draw2d::graphics * pdc)
+   void combo_list::_002OnDrawSimply(::draw2d::dib * pdib)
    {
 
       ::count ca = m_pcombo->_001GetListCount();

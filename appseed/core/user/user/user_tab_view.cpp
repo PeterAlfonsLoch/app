@@ -521,7 +521,7 @@ namespace user
       return m_pviewdata->m_pdoc;
    }
 
-   void tab_view::_000OnDraw(::draw2d::graphics * pdc)
+   void tab_view::_000OnDraw(::draw2d::dib * pdib)
    {
       if(!m_bVisible)
          return;
@@ -573,7 +573,7 @@ namespace user
       IGUI_WIN_MSG_LINK(WM_LBUTTONUP, pinterface, this, &tab_drop_target_window::_001OnLButtonUp);
    }
 
-   void tab_drop_target_window::_001OnDraw(::draw2d::graphics * pdc)
+   void tab_drop_target_window::_001OnDraw(::draw2d::dib * pdib)
    {
 //      class imaging & imaging = System.visual().imaging();
 

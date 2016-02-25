@@ -46,7 +46,7 @@ namespace user
       DECL_GEN_SIGNAL(_001OnDestroy);
       void _001OnTimer(::timer * ptimer);
 
-      void _001OnDraw(::draw2d::graphics *pdc);
+      void _001OnDraw(::draw2d::dib * pdib);
 
       bool BaseOnControlEvent(::user::control_event * pevent);
 

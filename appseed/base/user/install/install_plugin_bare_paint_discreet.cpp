@@ -9,7 +9,7 @@ namespace hotplugin
 {
 
 
-   void plugin::on_bare_paint_discreet(::draw2d::graphics * pgraphics,const RECT & lprect)
+   void plugin::on_bare_paint_discreet(::draw2d::dib * pdib,const RECT & lprect)
    {
 
       double dRate = get_progress_rate();
@@ -38,6 +38,8 @@ namespace hotplugin
       ::draw2d::brush_sp brush(allocer());
 
       brush->m_etype = ::draw2d::brush::type_null;
+
+      ::draw2d::graphics * pgraphics = pdib->get_graphics();
 
       pgraphics->SelectObject(pen);
 

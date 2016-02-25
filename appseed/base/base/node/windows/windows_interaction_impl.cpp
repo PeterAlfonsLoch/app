@@ -1349,7 +1349,7 @@ namespace windows
    }
 
 
-   void interaction_impl::_002OnDraw(::draw2d::graphics * pdc)
+   void interaction_impl::_002OnDraw(::draw2d::dib * pdib)
    {
 
       ::exception::throw_not_implemented(get_app());
@@ -2434,7 +2434,7 @@ namespace windows
       EnumWindows(GetAppsEnumWindowsProc,(LPARAM)&wnda);
    }
 
-   /*   void interaction_impl::_001OnDeferPaintLayeredWindowBackground(::draw2d::graphics * pdc)
+   /*   void interaction_impl::_001OnDeferPaintLayeredWindowBackground(::draw2d::dib * pdib)
    {
    _001DeferPaintLayeredWindowBackground(pdc);
    }*/
@@ -5910,19 +5910,19 @@ namespace windows
 
 
 
-   void interaction_impl::set_viewport_org(::draw2d::graphics * pgraphics)
+   void interaction_impl::set_viewport_org(::draw2d::dib * pdib)
    {
 
       // graphics will be already set its view port to the interaction_impl for linux - cairo with xlib
 
-      pgraphics->SetViewportOrg(point(0,0));
+      pdib->SetViewportOrg(point(0,0));
 
    }
 
 
    /*
 
-   void interaction_impl::_001DeferPaintLayeredWindowBackground(::draw2d::graphics * pdc)
+   void interaction_impl::_001DeferPaintLayeredWindowBackground(::draw2d::dib * pdib)
    {
 
 

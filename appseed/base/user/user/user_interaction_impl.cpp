@@ -782,15 +782,15 @@ namespace user
    }
    */
 
-   void interaction_impl::_001OnDeferPaintLayeredWindowBackground(::draw2d::graphics * pdc)
+   void interaction_impl::_001OnDeferPaintLayeredWindowBackground(::draw2d::dib * pdib)
    {
-      UNREFERENCED_PARAMETER(pdc);
+      UNREFERENCED_PARAMETER(pdib);
       ::exception::throw_interface_only(get_app());
    }
 
-   void interaction_impl::_001DeferPaintLayeredWindowBackground(::draw2d::graphics * pdc)
+   void interaction_impl::_001DeferPaintLayeredWindowBackground(::draw2d::dib * pdib)
    {
-      UNREFERENCED_PARAMETER(pdc);
+      UNREFERENCED_PARAMETER(pdib);
       ::exception::throw_interface_only(get_app());
    }
 
@@ -2618,10 +2618,17 @@ namespace user
 
       //m_spdibBuffer->Fill(255,255,255,0);
 
-      ::draw2d::graphics * pgraphics = m_spdibBuffer->get_graphics();
+      //::draw2d::graphics * pgraphics = m_spdibBuffer->get_graphics();
 
-      if(pgraphics == NULL)
+      //if(pgraphics == NULL)
+        //return;
+
+      if (m_spdibBuffer.is_null())
+      {
+
          return;
+
+      }
 
       if(!m_pui->m_bMayProDevian)
       {
@@ -2630,7 +2637,7 @@ namespace user
 
       }
 
-      _001Print(pgraphics);
+      _001Print(m_spdibBuffer);
 
 
       cslock slDisplay(cs_display());

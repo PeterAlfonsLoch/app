@@ -35,7 +35,7 @@ namespace user
 
       void _001HideEditingControls();
       void _001HideControl(sp(control) pcontrol);
-      virtual void _001OnDraw(::draw2d::graphics * pdc);
+      virtual void _001OnDraw(::draw2d::dib * pdib);
       virtual LRESULT _001BaseWndGetProperty(EProperty eprop,LPARAM lparam);
       void _001UpdateColumns();
       sp(control) _001GetEditControl();
@@ -66,7 +66,7 @@ namespace user
       virtual void _001OnColumnChange();
 
 
-      virtual void _001DrawChildren(::draw2d::graphics *pdc);
+      virtual void _001DrawChildren(::draw2d::dib * pdib);
 
 
    };

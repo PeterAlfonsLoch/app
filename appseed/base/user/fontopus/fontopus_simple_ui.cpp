@@ -497,7 +497,7 @@ namespace fontopus
 
 
 
-   void simple_ui::_000OnDraw(::draw2d::graphics * pdc)
+   void simple_ui::_000OnDraw(::draw2d::dib * pdib)
    {
 
       //simple_ui::interaction::_000OnDraw(pdc);
@@ -506,12 +506,12 @@ namespace fontopus
       if(!m_bVisible)
          return;
 
-      _001DrawThis(pdc);
+      _001DrawThis(pdib);
 
       try
       {
 
-         _001DrawChildren(pdc);
+         _001DrawChildren(pdib);
 
       }
       catch(...)
@@ -524,7 +524,7 @@ namespace fontopus
    }
 
 
-   void simple_ui::_001DrawChildren(::draw2d::graphics *pdc)
+   void simple_ui::_001DrawChildren(::draw2d::dib * pdib)
    {
 
       //single_lock sl(m_pmutex, true);
@@ -545,7 +545,7 @@ namespace fontopus
             if(pui->m_bVisible && !pui->is_custom_draw())
             {
 
-               pui->_000OnDraw(pdc);
+               pui->_000OnDraw(pdib);
 
             }
 

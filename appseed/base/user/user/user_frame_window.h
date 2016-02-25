@@ -193,8 +193,8 @@ namespace user
 
 
       virtual bool on_simple_command(e_simple_command ecommand, lparam lparam, LRESULT & lresult);
-      //virtual void _000OnDraw(::draw2d::graphics * pdc);
-      //virtual void _001OnDraw(::draw2d::graphics * pdc);
+      //virtual void _000OnDraw(::draw2d::dib * pdib);
+      //virtual void _001OnDraw(::draw2d::dib * pdib);
       virtual void install_message_handling(::message::dispatch * pinterface);
 
       DECL_GEN_SIGNAL(_guserbaseOnInitialUpdate);
@@ -325,7 +325,7 @@ namespace user
       void OnEnterIdle(UINT nWhy, sp(::user::interaction) pWho);
       void OnSetFocus(sp(::user::interaction) pOldWnd);
       void OnSize(UINT nType, int32_t cx, int32_t cy);
-      bool OnEraseBkgnd(::draw2d::graphics * pgraphics);
+      bool OnEraseBkgnd(::draw2d::dib * pdib);
       //void OnActivate(UINT nState, sp(::user::interaction) pWndOther, bool bMinimized);
       DECL_GEN_SIGNAL(_001OnActivate);
          DECL_GEN_SIGNAL(_001OnNcActivate);
@@ -354,7 +354,7 @@ namespace user
 
 
 
-      virtual void _000OnDraw(::draw2d::graphics * pdc);
+      virtual void _000OnDraw(::draw2d::dib * pdib);
 
 
       virtual bool BaseOnControlEvent(::user::control_event * pevent);

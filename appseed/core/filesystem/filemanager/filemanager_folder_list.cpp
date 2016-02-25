@@ -42,7 +42,7 @@ namespace filemanager
    /////////////////////////////////////////////////////////////////////////////
    // folder_list drawing
 
-   void folder_list::OnDraw(::draw2d::graphics * pgraphics)
+   void folder_list::OnDraw(::draw2d::dib * pdib)
    {
       
       UNREFERENCED_PARAMETER(pgraphics);

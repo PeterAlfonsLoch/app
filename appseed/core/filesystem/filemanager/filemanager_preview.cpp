@@ -68,7 +68,7 @@ namespace filemanager
 
 
 
-   void preview::_001OnDraw(::draw2d::graphics * pdc)
+   void preview::_001OnDraw(::draw2d::dib * pdib)
    {
       rect rectClient;
       GetClientRect(rectClient);

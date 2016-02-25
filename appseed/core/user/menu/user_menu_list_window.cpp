@@ -324,7 +324,7 @@ namespace user
    }
 
 
-   void menu_list_window::_001OnDraw(::draw2d::graphics *pdc)
+   void menu_list_window::_001OnDraw(::draw2d::dib * pdib)
    {
 /*      rect rectClient;
       GetClientRect(rectClient);

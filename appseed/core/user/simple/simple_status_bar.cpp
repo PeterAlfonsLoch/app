@@ -24,13 +24,13 @@ simple_status_bar::~simple_status_bar()
 
 
 /*
-bool simple_status_bar::OnEraseBkgnd(::draw2d::graphics * pgraphics)
+bool simple_status_bar::OnEraseBkgnd(::draw2d::dib * pdib)
 {
    return TRUE;
 }
 */
 
-void simple_status_bar::_001OnDraw(::draw2d::graphics *pdc)
+void simple_status_bar::_001OnDraw(::draw2d::dib * pdib)
 {
    return;
    rect rectClient;

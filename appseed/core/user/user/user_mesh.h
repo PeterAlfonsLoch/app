@@ -436,7 +436,7 @@ namespace user
       ::draw2d::pen * _001GetPenFocused();
       ::draw2d::pen * _001GetPenHighlight();
       virtual void PreSubClassWindow();
-      virtual void _OnDraw(::draw2d::graphics * pdc);
+      virtual void _OnDraw(::draw2d::dib * pdib);
       void _001MaximizeColumnWidth(index iColumn);
       int32_t _001CalcItemWidth(index iItem,index iSubItem);
       int32_t _001CalcColumnWidth(index iColumn);
@@ -518,7 +518,7 @@ namespace user
 
 
 
-      virtual void _001OnDraw(::draw2d::graphics *pdc);
+      virtual void _001OnDraw(::draw2d::dib * pdib);
 
       virtual void _001DrawGroups(draw_mesh_item * pdrawitem,index iGroupFirst,index iGroupLast,index iItemFirst,index iItemLast);
 
@@ -550,7 +550,7 @@ namespace user
 
       virtual ::count _001GetColumnCount();
 
-      virtual void draw_framing(::draw2d::graphics * pgraphics);
+      virtual void draw_framing(::draw2d::dib * pdib);
 //      virtual ::user::mesh_header * create_mesh_header();
       virtual ::user::mesh_data * create_mesh_data();
 

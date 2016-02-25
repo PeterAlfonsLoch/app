@@ -88,8 +88,8 @@ namespace turboc
 
       virtual void _001OnPostProcess(::draw2d::dib * pdib);
 
-      virtual void _001OnHelloDraw(::draw2d::graphics * pdc);
-      virtual void _001OnDraw(::draw2d::graphics * pdc);
+      virtual void _001OnHelloDraw(::draw2d::dib * pdib);
+      virtual void _001OnDraw(::draw2d::dib * pdib);
 
       virtual void on_update(::aura::impact * pSender, LPARAM lHint, object* pHint);
 
@@ -115,8 +115,8 @@ namespace turboc
       virtual bool in_anime();
 
 
-      virtual void turboc_render_lite_view(::draw2d::graphics * pdc);
-      virtual void turboc_render_full_view(::draw2d::graphics * pdc);
+      virtual void turboc_render_lite_view(::draw2d::dib * pdib);
+      virtual void turboc_render_full_view(::draw2d::dib * pdib);
 
    };
 

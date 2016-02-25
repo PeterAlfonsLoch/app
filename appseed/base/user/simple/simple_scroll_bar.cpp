@@ -770,7 +770,7 @@ bool simple_scroll_bar::scrollbar_pageB(point pt)
 }
 
 
-//void simple_scroll_bar::OnDraw(::draw2d::graphics * pgraphics)
+//void simple_scroll_bar::OnDraw(::draw2d::dib * pdib)
 //{
 /*    if(GetExStyle() & WS_EX_TRANSPARENT)
 {
@@ -944,17 +944,18 @@ public:
    }
 
 
-   virtual void _001OnDraw(::draw2d::graphics * pdc)
+   virtual void _001OnDraw(::draw2d::dib * pdib)
    {
+      ::draw2d::graphics * pdc = pdib->get_graphics();
       pdc->MoveTo(pt1);
       pdc->LineTo(pt2);
    }
 };
 
 
-void simple_scroll_bar::_001OnDraw(::draw2d::graphics * pdc)
+void simple_scroll_bar::_001OnDraw(::draw2d::dib * pdib)
 {
-
+   ::draw2d::graphics * pdc = pdib->get_graphics();
    pdc->SelectClipRgn(NULL);
 
    rect rectClient;

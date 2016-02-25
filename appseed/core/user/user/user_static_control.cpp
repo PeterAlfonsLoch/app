@@ -110,7 +110,7 @@ namespace user
 
    }
 
-   void static_control::_001OnDraw(::draw2d::graphics * pdc)
+   void static_control::_001OnDraw(::draw2d::dib * pdib)
    {
 
       COLORREF crText = ARGB(255, 0, 0, 0);

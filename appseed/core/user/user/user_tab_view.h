@@ -34,7 +34,7 @@ namespace user
       virtual ::user::document * get_view_document();
 
 
-      void _000OnDraw(::draw2d::graphics * pdc);
+      void _000OnDraw(::draw2d::dib * pdib);
 
       void _001OnDropTab(index iPane, e_position eposition);
       
@@ -99,7 +99,7 @@ namespace user
 
       virtual void install_message_handling(::message::dispatch * pinterface);
 
-      void _001OnDraw(::draw2d::graphics * pdc);
+      void _001OnDraw(::draw2d::dib * pdib);
 
       DECL_GEN_SIGNAL(_001OnLButtonUp);
 

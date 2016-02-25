@@ -65,7 +65,7 @@ namespace ios
 
       virtual bool BaseOnControlEvent(::user::control_event * pevent);
 
-      void _002OnDraw(::draw2d::graphics * pdc);
+      void _002OnDraw(::draw2d::dib * pdib);
 
        DECL_GEN_SIGNAL(_001OnEraseBkgnd);
        DECL_GEN_SIGNAL(_001OnMove);
@@ -211,7 +211,7 @@ namespace ios
       // Update/Painting Functions
       virtual ::draw2d::graphics * GetDC();
       virtual ::draw2d::graphics * GetWindowDC();
-      virtual bool ReleaseDC(::draw2d::graphics * pgraphics);
+      virtual bool ReleaseDC(::draw2d::dib * pdib);
       virtual void Print(::draw2d::graphics * pgraphics, DWORD dwFlags) const;
       virtual void PrintClient(::draw2d::graphics * pgraphics, DWORD dwFlags) const;
 
@@ -243,7 +243,7 @@ namespace ios
 
       virtual void on_keyboard_focus(::user::keyboard_focus * pfocus);
 
-      void set_view_port_org(::draw2d::graphics * pgraphics);
+      void set_view_port_org(::draw2d::dib * pdib);
       void offset_view_port_org(LPRECT lprectScreen);
 
 
@@ -478,10 +478,10 @@ namespace ios
       void OnEnable(bool bEnable);
       void OnEndSession(bool bEnding);
       void OnEnterIdle(UINT nWhy, ::window * pWho);
-      bool OnEraseBkgnd(::draw2d::graphics * pgraphics);
+      bool OnEraseBkgnd(::draw2d::dib * pdib);
       void OnGetMinMaxInfo(MINMAXINFO* lpMMI);
       //xxx bool OnHelpInfo(HELPINFO* lpHelpInfo);
-      void OnIconEraseBkgnd(::draw2d::graphics * pgraphics);
+      void OnIconEraseBkgnd(::draw2d::dib * pdib);
       void OnKillFocus(::window * pNewWnd);
       LRESULT OnMenuChar(UINT nChar, UINT nFlags, ::user::menu* pMenu);
       void OnMenuSelect(UINT nItemID, UINT nFlags, HMENU hSysMenu);

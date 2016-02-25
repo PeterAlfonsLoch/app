@@ -65,7 +65,7 @@ namespace android
 
       virtual bool _001OnCmdMsg(::aura::cmd_msg * pcmdmsg);
 
-      void _002OnDraw(::draw2d::graphics * pdc);
+      void _002OnDraw(::draw2d::dib * pdib);
 
       //DECL_GEN_SIGNAL(_001OnEraseBkgnd);
       DECL_GEN_SIGNAL(_001OnSize);
@@ -215,7 +215,7 @@ namespace android
 
       virtual ::draw2d::graphics * GetDC();
       virtual ::draw2d::graphics * GetWindowDC();
-      virtual bool ReleaseDC(::draw2d::graphics * pgraphics);
+      virtual bool ReleaseDC(::draw2d::dib * pdib);
       virtual ::draw2d::graphics * GetDCEx(::draw2d::region* prgnClip,uint32_t flags);
       virtual bool LockWindowUpdate();
       virtual void UnlockWindowUpdate();
@@ -439,10 +439,10 @@ namespace android
       void OnEnable(bool bEnable);
       void OnEndSession(bool bEnding);
       void OnEnterIdle(UINT /*nWhy*/, ::user::interaction * /*pWho*/);
-      bool OnEraseBkgnd(::draw2d::graphics * pgraphics);
+      bool OnEraseBkgnd(::draw2d::dib * pdib);
       void OnGetMinMaxInfo(MINMAXINFO* lpMMI);
 //      bool OnHelpInfo(HELPINFO* lpHelpInfo);
-      void OnIconEraseBkgnd(::draw2d::graphics * pgraphics);
+      void OnIconEraseBkgnd(::draw2d::dib * pdib);
       void OnKillFocus(::user::interaction * pNewWnd);
       LRESULT OnMenuChar(UINT nChar,UINT nFlags,::user::menu* pMenu);
       void OnMenuSelect(UINT nItemID,UINT nFlags,HMENU hSysMenu);
@@ -648,7 +648,7 @@ namespace android
 
       
 
-      void set_viewport_org(::draw2d::graphics * pgraphics);
+      void set_viewport_org(::draw2d::dib * pdib);
 
       //string calc_icon_window_class(uint32_t dwDefaultStyle,const char * pszMatter);
       //string calc_window_class();

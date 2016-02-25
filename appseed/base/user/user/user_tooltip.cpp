@@ -76,8 +76,10 @@ namespace user
    }
 
 
-   void tooltip::_001OnDraw(::draw2d::graphics * pdc)
+   void tooltip::_001OnDraw(::draw2d::dib * pdib)
    {
+
+      ::draw2d::graphics * pdc = pdib->get_graphics();
 
       pdc->SelectClipRgn(NULL);
 

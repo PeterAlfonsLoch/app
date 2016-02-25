@@ -525,7 +525,7 @@ namespace user
       pmouse->m_bRet = false;
    }
 
-   void list_header::_001OnDraw(::draw2d::graphics *pdc)
+   void list_header::_001OnDraw(::draw2d::dib * pdib)
    {
 
       rect rectClient;

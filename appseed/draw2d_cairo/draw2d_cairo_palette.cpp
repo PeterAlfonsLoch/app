@@ -48,7 +48,7 @@ namespace draw2d_cairo
 
 /*
 
-   int_bool palette::CreateHalftonePalette(::draw2d::graphics * pgraphics)
+   int_bool palette::CreateHalftonePalette(::draw2d::dib * pdib)
    {
 
       //ASSERT(pgraphics != NULL && (dynamic_cast<::win::graphics * >(pgraphics))->get_handle1() != NULL);

@@ -200,7 +200,7 @@ namespace html
       m_elemental.load(this, m_ptag);
    }
 
-   void data::implement(::draw2d::graphics * pdc)
+   void data::implement(::draw2d::dib * pdib)
    {
       int32_t iCount = 24;
       while(m_bImplement && iCount >= 0)
@@ -244,7 +244,7 @@ namespace html
    }
 
 
-   void data::layout(::draw2d::graphics * pdc)
+   void data::layout(::draw2d::dib * pdib)
    {
 
 
@@ -271,7 +271,7 @@ namespace html
    }
 
 
-   void data::_001OnDraw(::draw2d::graphics * pdc)
+   void data::_001OnDraw(::draw2d::dib * pdib)
    {
 
       if(m_bImplement || m_bLayout)

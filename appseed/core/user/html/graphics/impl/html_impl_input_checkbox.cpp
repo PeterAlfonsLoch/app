@@ -21,7 +21,7 @@ namespace html
             check_box(::aura::application * papp): object(papp),::user::check_box(papp) {}
             virtual ~check_box() {}
 
-            virtual void _001OnClip(::draw2d::graphics * pgraphics) {}
+            virtual void _001OnClip(::draw2d::dib * pdib) {}
          };
 
       } // namespace user

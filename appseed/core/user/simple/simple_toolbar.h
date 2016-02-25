@@ -106,9 +106,9 @@ public:
    void OnUpdateCmdUI(sp(::user::frame_window) pTarget, bool bDisableIfNoHndler);
 
 
-   void TransparentEraseNonClient(::draw2d::graphics * pdc);
+   void TransparentEraseNonClient(::draw2d::dib * pdib);
    void SetTransparentBackground(bool bSet);
-   virtual void _001OnDraw(::draw2d::graphics * pdc);
+   virtual void _001OnDraw(::draw2d::dib * pdib);
    size CalcSimpleLayout();
 
    void _001OnImageListAttrib();

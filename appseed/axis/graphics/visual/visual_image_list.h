@@ -39,7 +39,7 @@ public:
    using ::object::create;
    bool create(int32_t cx, int32_t cy);
    bool create(int32_t cx, int32_t cy, UINT nFlags, int32_t nInitial, int32_t nGrow);
-   bool realize(::draw2d::graphics * pdc) const;
+   bool realize(::draw2d::graphics * pgraphics) const;
     //bool create(const char * lpszBitmapID, int32_t cx, int32_t nGrow, COLORREF crMask);
 
    int32_t add(::visual::icon * picon);

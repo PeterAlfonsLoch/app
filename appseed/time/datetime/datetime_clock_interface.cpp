@@ -5,7 +5,7 @@ clock_interface::clock_interface(::aura::application * papp) :
 {
 }
 
-void clock_interface::_001OnDraw(::draw2d::graphics * pdc)
+void clock_interface::_001OnDraw(::draw2d::dib * pdib)
 {
    UNREFERENCED_PARAMETER(pdc);
 }

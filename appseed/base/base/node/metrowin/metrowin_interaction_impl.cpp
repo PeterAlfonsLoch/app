@@ -1165,7 +1165,7 @@ namespace metrowin
       return false;
    }
 
-   void interaction_impl::_002OnDraw(::draw2d::graphics * pdc)
+   void interaction_impl::_002OnDraw(::draw2d::dib * pdib)
    {
       throw todo(get_app());
       //::CallWindowProc(*GetSuperWndProcAddr(), get_handle(), WM_PRINT, (WPARAM)((dynamic_cast<::metrowin::graphics * >(pdc))->get_os_data()), (LPARAM)(PRF_CHILDREN | PRF_CLIENT));
@@ -2970,7 +2970,7 @@ namespace metrowin
       //      EnumWindows(GetAppsEnumWindowsProc, (LPARAM) &wnda);
    }
 
-   /*   void interaction_impl::_001OnDeferPaintLayeredWindowBackground(::draw2d::graphics * pdc)
+   /*   void interaction_impl::_001OnDeferPaintLayeredWindowBackground(::draw2d::dib * pdib)
    {
    _001DeferPaintLayeredWindowBackground(pdc);
    }*/
@@ -4926,7 +4926,7 @@ namespace metrowin
       //return g.detach();
    }
 
-   bool interaction_impl::ReleaseDC(::draw2d::graphics * pgraphics)
+   bool interaction_impl::ReleaseDC(::draw2d::dib * pdib)
    {
 
       throw todo(get_app());
@@ -7223,7 +7223,7 @@ bool CLASS_DECL_BASE __register_class(WNDCLASS* lpWndClass)
 namespace metrowin
 {
 
-   /*   void interaction_impl::_001DeferPaintLayeredWindowBackground(::draw2d::graphics * pdc)
+   /*   void interaction_impl::_001DeferPaintLayeredWindowBackground(::draw2d::dib * pdib)
    {
 
 
@@ -7407,7 +7407,7 @@ namespace metrowin
    }
 
 
-   void interaction_impl::set_view_port_org(::draw2d::graphics * pgraphics)
+   void interaction_impl::set_view_port_org(::draw2d::dib * pdib)
    {
       // graphics will be already set its view port to the interaction_impl for linux - cairo with xlib
 

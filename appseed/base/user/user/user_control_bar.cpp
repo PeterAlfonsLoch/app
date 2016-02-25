@@ -467,7 +467,7 @@ namespace user
       return;
    }
 
-   void control_bar::_001OnDraw(::draw2d::graphics * pdc)
+   void control_bar::_001OnDraw(::draw2d::dib * pdib)
    {
       // background is already filled in gray
       //CPaintDC spgraphics(this);
@@ -476,7 +476,7 @@ namespace user
       //if (IsVisible())
       //DoPaint(&spgraphics);       // delegate to paint helper
       if (IsVisible())
-         DoPaint(pdc);       // delegate to paint helper
+         DoPaint(pdib);       // delegate to paint helper
    }
 
    void control_bar::EraseNonClient()
@@ -503,8 +503,11 @@ namespace user
       DrawGripper(&spgraphics, rectWindow);*/
    }
 
-   void control_bar::EraseNonClient(::draw2d::graphics * pdc)
+   void control_bar::EraseNonClient(::draw2d::dib * pdib)
    {
+
+      ::draw2d::graphics * pdc = pdib->get_graphics();
+
       // get interaction_impl DC that is clipped to the non-client area
       rect rectClient;
       GetClientRect(rectClient);
@@ -516,7 +519,7 @@ namespace user
 
       // draw borders in non-client area
       rectWindow.offset(-rectWindow.left, -rectWindow.top);
-      DrawBorders(pdc, rectWindow);
+      DrawBorders(pdib, rectWindow);
 
       // erase parts not drawn
       //pdc->IntersectClipRect(rectWindow);
@@ -531,8 +534,10 @@ namespace user
 
 
       // draw gripper in non-client area
-      DrawGripper(pdc, rectWindow);
+      DrawGripper(pdib, rectWindow);
+
    }
+
 
    void control_bar::_001OnCtlColor(signal_details * pobj)
    {
@@ -776,22 +781,31 @@ namespace user
       return FALSE;
    }
 
-   void control_bar::DoPaint(::draw2d::graphics * pgraphics)
+   
+   void control_bar::DoPaint(::draw2d::dib * pdib)
    {
+      
       ASSERT_VALID(this);
-      ASSERT_VALID(pgraphics);
+      //ASSERT_VALID(pgraphics);
 
       // paint inside client area
       rect rect;
+
       GetClientRect(rect);
-      DrawBorders(pgraphics, rect);
-      DrawGripper(pgraphics, rect);
+
+      DrawBorders(pdib, rect);
+
+      DrawGripper(pdib, rect);
+
    }
 
-   void control_bar::DrawBorders(::draw2d::graphics * pdc, rect& rect)
+
+   void control_bar::DrawBorders(::draw2d::dib * pdib, rect& rect)
    {
+
       ASSERT_VALID(this);
-      ASSERT_VALID(pdc);
+
+      ASSERT_VALID(pdib);
 
       uint32_t dwStyle = m_dwStyle;
       if (!(dwStyle & CBRS_BORDER_ANY))
@@ -807,6 +821,7 @@ namespace user
       COLORREF clr;
       clr = RGB(128, 128, 123);
 
+      ::draw2d::graphics * pdc = pdib->get_graphics();
 
 #ifdef WINDOWSEX
       // draw dark line one pixel back/up
@@ -940,8 +955,11 @@ namespace user
       pdc->SetPixel(ix + 2, iy + 3, afxData.clrBtnShadow);*/
    }
 
-   void control_bar::DrawGripper(::draw2d::graphics * pdc, const rect& rect)
+   void control_bar::DrawGripper(::draw2d::dib * pdib, const rect& rect)
    {
+
+      ::draw2d::graphics * pdc = pdib->get_graphics();
+
       // only draw the gripper if not floating and gripper is specified
       if ((m_dwStyle & (CBRS_GRIPPER|CBRS_FLOATING)) == CBRS_GRIPPER)
       {

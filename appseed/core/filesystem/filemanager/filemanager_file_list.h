@@ -246,7 +246,7 @@ namespace filemanager
       virtual void _017OpenContextMenuSelected(::action::context actioncontext);
       void _017PreSynchronize(::action::context actioncontext);
       void TakeAnimationSnapshot();
-      virtual void _001OnDraw(::draw2d::graphics * pdc);
+      virtual void _001OnDraw(::draw2d::dib * pdib);
       ::fs::item & GetFileManagerItem();
       DECL_GEN_SIGNAL(_001OnMainPostMessage);
       void _017UpdateList(::action::context actioncontext);

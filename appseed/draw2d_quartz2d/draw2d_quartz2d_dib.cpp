@@ -183,7 +183,7 @@ namespace draw2d_quartz2d
    }
    
    
-   bool dib::create(::draw2d::graphics * pdc)
+   bool dib::create(::draw2d::dib * pdib)
    {
       
       ::draw2d::bitmap_sp pbitmap = pdc->get_current_bitmap();
@@ -243,7 +243,7 @@ namespace draw2d_quartz2d
       
    }
    
-   bool dib::from(::draw2d::graphics * pdc)
+   bool dib::from(::draw2d::dib * pdib)
    {
       ::draw2d::bitmap_sp bitmap(get_app());
       bitmap->CreateCompatibleBitmap(pdc, 1, 1);

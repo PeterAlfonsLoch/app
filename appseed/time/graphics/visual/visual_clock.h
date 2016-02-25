@@ -21,7 +21,7 @@ namespace visual
 
       void GetRect(LPRECT lprect,enum EElement eelement);
 
-      void _001OnDraw(::draw2d::graphics * pdc);
+      void _001OnDraw(::draw2d::dib * pdib);
 
       void set_pos(point pt,size sz);
 

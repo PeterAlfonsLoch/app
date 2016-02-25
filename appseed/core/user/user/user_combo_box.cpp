@@ -63,7 +63,7 @@ namespace user
    }
 
 
-   void combo_box::_001OnDrawStaticText(::draw2d::graphics * pdc)
+   void combo_box::_001OnDrawStaticText(::draw2d::dib * pdib)
    {
 
       string strText;
@@ -97,7 +97,7 @@ namespace user
 
 
 
-   void combo_box::_001OnDrawVerisimple(::draw2d::graphics * pdc)
+   void combo_box::_001OnDrawVerisimple(::draw2d::dib * pdib)
    {
 
       pdc->set_alpha_mode(::draw2d::alpha_mode_blend);
@@ -165,7 +165,7 @@ namespace user
 
    }
 
-   void combo_box::_001OnDrawSimply(::draw2d::graphics * pdc)
+   void combo_box::_001OnDrawSimply(::draw2d::dib * pdib)
    {
 
       rect rectClient;
@@ -327,7 +327,7 @@ namespace user
    }
 
 
-   void combo_box::_001OnDraw(::draw2d::graphics * pdc)
+   void combo_box::_001OnDraw(::draw2d::dib * pdib)
    {
 
       ::user::control::_001OnDraw(pdc);

@@ -19,8 +19,8 @@ public:
    html_form(::aura::application * papp);
    virtual ~html_form();
 
-   virtual void _001OnDraw(::draw2d::graphics * pdc);
-   virtual void _001DrawChildren(::draw2d::graphics *pdc);
+   virtual void _001OnDraw(::draw2d::dib * pdib);
+   virtual void _001DrawChildren(::draw2d::dib * pdib);
 
    //virtual void layout(::html::data * phtmldata);
    virtual void layout();

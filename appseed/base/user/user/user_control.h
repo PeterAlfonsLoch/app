@@ -159,7 +159,7 @@ namespace user
       ::user::interaction_base * _003GetCustomMessageWnd();
 
 
-      virtual void _001OnDraw(::draw2d::graphics * pgraphics);
+      virtual void _001OnDraw(::draw2d::dib * pdib);
 
 
 
@@ -167,9 +167,9 @@ namespace user
 
       class descriptor & descriptor();
 
-      virtual void _003CallCustomDraw(::draw2d::graphics * pdc, ::aura::draw_context * pitem);
+      virtual void _003CallCustomDraw(::draw2d::dib * pdib, ::aura::draw_context * pitem);
       virtual bool _003CallCustomWindowProc(sp(::user::interaction) pwnd, UINT message, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
-      virtual void _003OnCustomDraw(::draw2d::graphics * pdc, ::aura::draw_context * pitem);
+      virtual void _003OnCustomDraw(::draw2d::dib * pdib, ::aura::draw_context * pitem);
       virtual void _003CustomWindowProc(signal_details * pobj);
 
       virtual form_window * get_form();

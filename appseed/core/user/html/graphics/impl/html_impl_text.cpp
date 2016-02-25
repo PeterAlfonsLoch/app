@@ -1002,7 +1002,7 @@ namespace html
       }
 
 
-      void text::_001OnDraw(::draw2d::graphics * pgraphics)
+      void text::_001OnDraw(::draw2d::dib * pdib)
       {
 
          UNREFERENCED_PARAMETER(pgraphics);

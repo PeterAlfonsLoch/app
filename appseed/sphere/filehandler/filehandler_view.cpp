@@ -207,7 +207,7 @@ namespace filehandler
    }
 
 
-   void view::_001OnDraw(::draw2d::graphics * pgraphics)
+   void view::_001OnDraw(::draw2d::dib * pdib)
    {
 
       if (m_plist.is_null())

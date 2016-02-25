@@ -60,7 +60,7 @@ namespace draw2d_quartz2d
    
    /*
     
-    WINBOOL palette::CreateHalftonePalette(::draw2d::graphics * pgraphics)
+    WINBOOL palette::CreateHalftonePalette(::draw2d::dib * pdib)
     {
     
     //ASSERT(pgraphics != NULL && (dynamic_cast<::win::graphics * >(pgraphics))->get_handle1() != NULL);

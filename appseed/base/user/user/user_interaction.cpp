@@ -994,23 +994,28 @@ namespace user
    }
 
 
-   void interaction::set_viewport_org(::draw2d::graphics * pgraphics)
+   void interaction::set_viewport_org(::draw2d::dib * pdib)
    {
+      
       if(m_pimpl == NULL)
          return;
 
-      m_pimpl->set_viewport_org(pgraphics);
+      m_pimpl->set_viewport_org(pdib);
+
       /*      rect64 rectWindow;
       GetWindowRect(rectWindow);
       get_wnd()->ScreenToClient(rectWindow);
       pgraphics->SetViewportOrg(point(rectWindow.top_left()));
       pgraphics->SelectClipRgn(NULL);
       */
+
    }
 
-   void interaction::_001OnClip(::draw2d::graphics * pgraphics)
+
+   void interaction::_001OnClip(::draw2d::dib * pdib)
    {
 
+      ::draw2d::graphics * pgraphics = pdib->get_graphics();
 
       try
       {
@@ -1092,8 +1097,10 @@ namespace user
    }
 
 
-   void interaction::_001DrawThis(::draw2d::graphics * pgraphics)
+   void interaction::_001DrawThis(::draw2d::dib * pdib)
    {
+
+      ::draw2d::graphics * pgraphics = pdib->get_graphics();
 
       point ptOrg =  pgraphics->GetViewportOrg();
 
@@ -1103,11 +1110,11 @@ namespace user
          if(!is_custom_draw() && pgraphics->m_pnext == NULL)
          {
 
-            set_viewport_org(pgraphics);
+            set_viewport_org(pdib);
 
          }
 
-         pgraphics->m_dFontFactor = 1.0;
+         pdib->set_font_factor(1.0);
 
          try
          {
@@ -1126,13 +1133,13 @@ namespace user
 
             synch_lock sl(m_pmutex);
 
-            _001OnNcDraw(pgraphics);
+            _001OnNcDraw(pdib);
 
          }
 
-         _001OnClip(pgraphics);
+         _001OnClip(pdib);
 
-         _001CallOnDraw(pgraphics);
+         _001CallOnDraw(pdib);
 
 
       }
@@ -1149,19 +1156,21 @@ namespace user
 
    }
 
-   void interaction::_001CallOnDraw(::draw2d::graphics * pgraphics)
+   void interaction::_001CallOnDraw(::draw2d::dib * pdib)
    {
 
-      on_viewport_offset(pgraphics);
+      on_viewport_offset(pdib);
 
       synch_lock sl(m_pmutex);
 
-      _001OnDraw(pgraphics);
+      _001OnDraw(pdib);
 
    }
 
-   void interaction::on_viewport_offset(::draw2d::graphics * pgraphics)
+   void interaction::on_viewport_offset(::draw2d::dib * pdib)
    {
+
+      ::draw2d::graphics * pgraphics = pdib->get_graphics();
 
       point ptViewportOffset = get_viewport_offset();
 
@@ -1169,7 +1178,7 @@ namespace user
 
    }
 
-   void interaction::_001DrawChildren(::draw2d::graphics *pdc)
+   void interaction::_001DrawChildren(::draw2d::dib * pdib)
    {
 
       //single_lock sl(m_pmutex, true);
@@ -1185,7 +1194,7 @@ namespace user
             if(pui->m_bVisible && !pui->is_custom_draw())
             {
 
-               pui->_000OnDraw(pdc);
+               pui->_000OnDraw(pdib);
 
             }
 
@@ -1199,8 +1208,10 @@ namespace user
 
    }
 
-   void interaction::_001Print(::draw2d::graphics * pgraphics)
+   void interaction::_001Print(::draw2d::dib * pdib)
    {
+
+      ::draw2d::graphics * pgraphics = pdib->get_graphics();
 
       point ptViewport(0,0);
 
@@ -1208,17 +1219,17 @@ namespace user
 
       pgraphics->SetViewportOrg(ptViewport);
 
-      _001OnDeferPaintLayeredWindowBackground(pgraphics);
+      _001OnDeferPaintLayeredWindowBackground(pdib);
 
       pgraphics->SelectClipRgn(NULL);
 
       pgraphics->SetViewportOrg(ptViewport);
 
-      _000OnDraw(pgraphics);
+      _000OnDraw(pdib);
 
       pgraphics->SelectClipRgn(NULL);
 
-      set_viewport_org(pgraphics);
+      set_viewport_org(pdib);
 
       if(&Session != NULL && Session.m_bDrawCursor)
       {
@@ -1265,7 +1276,7 @@ namespace user
    }
 
 
-   void interaction::_000OnDraw(::draw2d::graphics *pdc)
+   void interaction::_000OnDraw(::draw2d::dib * pdib)
    {
 
       single_lock sl(m_pmutex, true);
@@ -1273,12 +1284,12 @@ namespace user
       if(!IsWindowVisible() || (GetParentFrame() != NULL && GetParentFrame()->WfiIsIconic()) || (GetTopLevelFrame() != NULL && GetTopLevelFrame()->WfiIsIconic()))
          return;
 
-      _001DrawThis(pdc);
+      _001DrawThis(pdib);
 
       try
       {
 
-         _001DrawChildren(pdc);
+         _001DrawChildren(pdib);
 
       }
       catch(...)
@@ -1291,23 +1302,25 @@ namespace user
    }
 
 
-   void interaction::_001OnNcDraw(::draw2d::graphics *pgraphics)
+   void interaction::_001OnNcDraw(::draw2d::dib * pdib)
    {
 
 
    }
 
 
-   void interaction::_001OnDraw(::draw2d::graphics *pgraphics)
+   void interaction::_001OnDraw(::draw2d::dib * pdib)
    {
 
-      draw_control_background(pgraphics);
+      draw_control_background(pdib);
 
    }
 
 
-   void interaction::draw_control_background(::draw2d::graphics *pdc)
+   void interaction::draw_control_background(::draw2d::dib * pdib)
    {
+
+      ::draw2d::graphics * pdc = pdib->get_graphics();
 
       ::aura::draw_context * pdrawcontext = pdc->::core::simple_chain < ::aura::draw_context >::get_last();
 
@@ -4105,7 +4118,7 @@ namespace user
       UNREFERENCED_PARAMETER(pobj);
    }
 
-   void interaction::_001DeferPaintLayeredWindowBackground(::draw2d::graphics * pdc)
+   void interaction::_001DeferPaintLayeredWindowBackground(::draw2d::dib * pdib)
    {
       if(m_pimpl != NULL)
       {
@@ -4113,10 +4126,10 @@ namespace user
       }
    }
 
-   void interaction::_001OnDeferPaintLayeredWindowBackground(::draw2d::graphics * pdc)
+   void interaction::_001OnDeferPaintLayeredWindowBackground(::draw2d::dib * pdib)
    {
 
-      _001DeferPaintLayeredWindowBackground(pdc);
+      _001DeferPaintLayeredWindowBackground(pdib);
 
    }
 

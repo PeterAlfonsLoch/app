@@ -187,8 +187,10 @@ namespace simple_ui
    }
 
 
-   void message_box::_001OnDraw(::draw2d::graphics * pdc)
+   void message_box::_001OnDraw(::draw2d::dib * pdib)
    {
+
+      ::draw2d::graphics * pdc = pdib->get_graphics();
 
       rect rectClient;
 

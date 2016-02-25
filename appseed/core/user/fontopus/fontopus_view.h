@@ -40,7 +40,7 @@ namespace fontopus
 
       virtual void install_message_handling(::message::dispatch * pdispatch);
 
-      virtual void _001OnDraw(::draw2d::graphics * pgraphics);
+      virtual void _001OnDraw(::draw2d::dib * pdib);
 
       virtual bool on_action(const char * pszId);
 
@@ -52,9 +52,9 @@ namespace fontopus
 
       DECL_GEN_SIGNAL(_001OnCreate);
 
-      virtual void _000OnDraw(::draw2d::graphics * pgraphics);
+      virtual void _000OnDraw(::draw2d::dib * pdib);
 
-      virtual void _001DrawChildren(::draw2d::graphics *pdc);
+      virtual void _001DrawChildren(::draw2d::dib * pdib);
 
       string get_cred(const string & strRequestUrl, const RECT & rect, string & strUsername, string & strPassword, string strToken, string strTitle, bool bInteractive);
 

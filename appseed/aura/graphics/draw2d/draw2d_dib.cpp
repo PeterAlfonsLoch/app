@@ -42,8 +42,9 @@ namespace draw2d
    dib::dib()
    {
 
-      m_iScan    = 0;
-      m_iHeight = -1;
+      m_iScan        = 0;
+      m_iHeight      = -1;
+      m_bMapped      = false;
 
    }
 
@@ -103,10 +104,11 @@ namespace draw2d
    }
 
 
-   bool dib::realize(::draw2d::graphics * pdc) const
+   bool dib::realize(::draw2d::graphics * pgraphics) const
    {
 
-      UNREFERENCED_PARAMETER(pdc);
+      UNREFERENCED_PARAMETER(pgraphics);
+
       return true;
 
    }
@@ -127,13 +129,14 @@ namespace draw2d
 
    }
 
-   bool dib::defer_realize(::draw2d::graphics * pdc) const
+
+   bool dib::defer_realize(::draw2d::graphics * pgraphics) const
    {
 
       if(is_realized())
          return true;
 
-      return realize(pdc);
+      return realize(pgraphics);
 
    }
 
@@ -166,10 +169,10 @@ namespace draw2d
    }
 
 
-   bool dib::create(::draw2d::graphics * pdc)
+   bool dib::create(::draw2d::graphics * pgraphics)
    {
 
-      ::draw2d::bitmap & bitmap = *pdc->get_current_bitmap();
+      ::draw2d::bitmap & bitmap = *pgraphics->get_current_bitmap();
 
       if(&bitmap == NULL)
          return false;
@@ -265,10 +268,10 @@ namespace draw2d
    //}
 
 
-   bool dib::from(::draw2d::graphics * pdc)
+   bool dib::from(::draw2d::graphics * pgraphics)
    {
 
-      UNREFERENCED_PARAMETER(pdc);
+      UNREFERENCED_PARAMETER(pgraphics);
 
       ::exception::throw_interface_only(get_app());
 
@@ -285,9 +288,22 @@ namespace draw2d
    bool dib::from(point ptDst, ::draw2d::dib * pdibSrc, point ptSrc, class size size)
    {
 
+      if ((!m_bMapped && !pdibSrc->m_bMapped) || 
+         (!(m_bMapped && pdibSrc->m_bMapped)
+            && ((m_bMapped && !get_graphics()->prefer_mapped_dib_on_mix())
+            || (pdibSrc->m_bMapped && !pdibSrc->get_graphics()->prefer_mapped_dib_on_mix())))
+      {
+
+         get_graphics()->set_alpha_mode(m_ealphamode);
+
+         return get_graphics()->BitBlt(ptDst, size, pdibSrc->get_graphics(), ptSrc, SRCCOPY);
+
+      }
+
       dib * pdibDst = this;
 
       pdibDst->map();
+
       pdibSrc->map();
 
       if(ptSrc.x < 0)
@@ -3318,6 +3334,50 @@ namespace draw2d
    {
       UNREFERENCED_PARAMETER(pdib);
       ::exception::throw_interface_only(get_app());
+   }
+
+   
+   void dib::SetViewportOrg(point pt)
+   {
+      
+      m_pt = pt;
+
+      if (!m_bMapped)
+      {
+
+         get_graphics()->SetViewportOrg(pt);
+
+      }
+
+   }
+
+
+   void dib::set_font_factor(double dFactor)
+   {
+
+      m_dFontFactor = dFactor;
+
+      if (!m_bMapped)
+      {
+
+         get_graphics()->m_dFontFactor = dFactor;
+
+      }
+
+   }
+
+   void dib::set_alpha_mode(e_alpha_mode emode)
+   {
+
+      m_ealphamode = emode;
+
+      if (!m_bMapped)
+      {
+
+         get_graphics()->set_alpha_mode(emode);
+
+      }
+
    }
 
 

@@ -21,7 +21,7 @@ namespace calculator
 
       virtual sp(::user::interaction) BackViewGetWnd();
 
-      virtual void _001OnDraw(::draw2d::graphics * pdc);
+      virtual void _001OnDraw(::draw2d::dib * pdib);
 
 
       virtual void install_message_handling(::message::dispatch * pinterface);

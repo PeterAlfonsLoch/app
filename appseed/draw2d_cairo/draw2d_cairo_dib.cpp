@@ -159,7 +159,7 @@ namespace draw2d_cairo
       return true;
    }
 
-   bool dib::create(::draw2d::graphics * pdc)
+   bool dib::create(::draw2d::dib * pdib)
    {
       ::draw2d::bitmap * pbitmap = (dynamic_cast < ::draw2d_cairo::graphics * > (pdc))->get_current_bitmap();
       if(pbitmap == NULL)
@@ -203,7 +203,7 @@ namespace draw2d_cairo
 
    }
 
-   bool dib::from(::draw2d::graphics * pdc)
+   bool dib::from(::draw2d::dib * pdib)
    {
       ::draw2d::bitmap_sp bitmap(get_app());
       bitmap->CreateCompatibleBitmap(pdc, 1, 1);

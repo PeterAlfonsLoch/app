@@ -100,7 +100,7 @@ namespace windows
 
       virtual bool _001OnCmdMsg(::aura::cmd_msg * pcmdmsg);
 
-      void _002OnDraw(::draw2d::graphics * pdc);
+      void _002OnDraw(::draw2d::dib * pdib);
 
       DECL_GEN_SIGNAL(_001OnEraseBkgnd);
       DECL_GEN_SIGNAL(_001OnSize);
@@ -670,7 +670,7 @@ namespace windows
 
       void _001OnTriggerMouseInside();
 
-      void set_viewport_org(::draw2d::graphics * pgraphics);
+      void set_viewport_org(::draw2d::dib * pdib);
 
       string calc_icon_window_class(uint32_t dwDefaultStyle,const char * pszMatter);
       string calc_window_class();

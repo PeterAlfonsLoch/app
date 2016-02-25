@@ -100,10 +100,10 @@ namespace user
       void plain_edit_common_construct();
 
 
-      virtual void _001OnDraw(::draw2d::graphics * pdc);
+      virtual void _001OnDraw(::draw2d::dib * pdib);
 
 
-      virtual void on_viewport_offset(::draw2d::graphics * pgraphics);
+      virtual void on_viewport_offset(::draw2d::dib * pdib);
 
 
       //void on_change_view_size();
@@ -151,7 +151,7 @@ namespace user
       void key_to_char(::message::key * pkey);
 
       virtual void install_message_handling(::message::dispatch * pinterface);
-      virtual void OnDraw(::draw2d::graphics * pgraphics);      // overridden to draw this ::user::impact
+      virtual void OnDraw(::draw2d::dib * pdib);      // overridden to draw this ::user::impact
       virtual void _001OnInitialUpdate();
 
 

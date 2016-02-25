@@ -76,12 +76,12 @@ namespace user
 
       virtual void install_message_handling(::message::dispatch * pinterface);
 
-      virtual void _001OnDrawPush(::draw2d::graphics * pdc);
-      virtual void _001OnDrawList(::draw2d::graphics * pdc);
-      virtual void _001OnDrawBitmap(::draw2d::graphics * pdc);
+      virtual void _001OnDrawPush(::draw2d::dib * pdib);
+      virtual void _001OnDrawList(::draw2d::dib * pdib);
+      virtual void _001OnDrawBitmap(::draw2d::dib * pdib);
 
-      virtual void _001OnDraw(::draw2d::graphics * pdc);
-      virtual void _002OnDraw(::draw2d::graphics * pdc);
+      virtual void _001OnDraw(::draw2d::dib * pdib);
+      virtual void _002OnDraw(::draw2d::dib * pdib);
 
       virtual bool is_custom_draw();
 

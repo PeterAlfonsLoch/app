@@ -1,8 +1,6 @@
 #pragma once
 
 
-class window_graphics;
-
 namespace aura
 {
 
@@ -12,13 +10,13 @@ namespace aura
    public:
 
 
-      virtual void _001OnDraw(::draw2d::graphics * pdc);
+      virtual void _001OnDraw(::draw2d::dib * pdib);
 
-      virtual void _000OnDraw(::draw2d::graphics * pdc) = 0;
+      virtual void _000OnDraw(::draw2d::dib * pdib) = 0;
 
-      virtual void _001DeferPaintLayeredWindowBackground(::draw2d::graphics * pdc) = 0;
+      virtual void _001DeferPaintLayeredWindowBackground(::draw2d::dib * pdib) = 0;
 
-      virtual void _001OnDeferPaintLayeredWindowBackground(::draw2d::graphics * pdc) = 0;
+      virtual void _001OnDeferPaintLayeredWindowBackground(::draw2d::dib * pdib) = 0;
 
       virtual bool GetWindowRect(LPRECT lprect) = 0;
       virtual bool GetWindowRect(RECT64 * lprect) = 0;

@@ -15,7 +15,7 @@ public:
    virtual bool pre_create_window(::user::create_struct& cs);
 
 
-   virtual void _001OnDraw(::draw2d::graphics * pdc);
+   virtual void _001OnDraw(::draw2d::dib * pdib);
 
    virtual bool get_translucency(::user::ETranslucency & etranslucency);
 

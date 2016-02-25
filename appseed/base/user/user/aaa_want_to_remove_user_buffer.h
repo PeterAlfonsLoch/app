@@ -13,7 +13,7 @@ namespace user
    //   buffer(::aura::application * papp);
    //   virtual ~buffer();
 
-   //   void BitBlt(::draw2d::graphics * pdc);
+   //   void BitBlt(::draw2d::dib * pdib);
    //   void BitBlt(LPRECT lprect, ::draw2d::graphics * pdc);
 
    //   void InstallMessageHandling(::message::dispatch * pinterface);

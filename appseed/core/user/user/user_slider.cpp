@@ -169,7 +169,7 @@ namespace user
    }
 
 
-   void slider::_001OnDraw(::draw2d::graphics * pdc)
+   void slider::_001OnDraw(::draw2d::dib * pdib)
    {
 
       if(m_bSlide)

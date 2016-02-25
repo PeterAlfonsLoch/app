@@ -14,12 +14,18 @@ namespace draw2d
       return false;
    }
 
+
    bool palette::CreateHalftonePalette(::draw2d::graphics * pgraphics)
    {
+      
       UNREFERENCED_PARAMETER(pgraphics);
+      
       ::exception::throw_interface_only(get_app());
+
       return false;
+
    }
+
 
    UINT palette::GetPaletteEntries(UINT nStartIndex, UINT nNumEntries, LPPALETTEENTRY lpPaletteColors) const
    {

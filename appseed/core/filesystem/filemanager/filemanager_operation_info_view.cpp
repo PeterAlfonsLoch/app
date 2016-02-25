@@ -48,7 +48,7 @@ namespace filemanager
    }
 
 
-   void operation_info_view::_001OnDraw(::draw2d::graphics * pdc)
+   void operation_info_view::_001OnDraw(::draw2d::dib * pdib)
    {
       /*::FillRect(hdc, &rectProgress, g_hbrushProgress3);
       rectProgress.left++;

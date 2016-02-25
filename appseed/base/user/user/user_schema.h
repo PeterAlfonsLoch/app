@@ -65,18 +65,18 @@ namespace user
       virtual bool select_text_color(::draw2d::graphics * pgraphics, e_color ecolor = color_text);
       virtual bool select_font(::draw2d::graphics * pgraphics);
 
-      virtual bool simple_ui_draw_focus_rect(::user::interaction * pui,::draw2d::graphics * pgraphics);
+      virtual bool simple_ui_draw_focus_rect(::user::interaction * pui,::draw2d::dib * pdib);
 
 
-      virtual void _001TabOnDrawSchema01(::draw2d::graphics * pdc,tab * ptab);
+      virtual void _001TabOnDrawSchema01(::draw2d::dib * pdib,tab * ptab);
       
-      virtual void _001OnTabPaneDrawTitle(::user::tab_pane & pane,::user::tab * ptab,::draw2d::graphics * pdc,LPCRECT lpcrect,::draw2d::brush_sp & brushText);
+      virtual void _001OnTabPaneDrawTitle(::user::tab_pane & pane,::user::tab * ptab,::draw2d::dib * pdib,LPCRECT lpcrect,::draw2d::brush_sp & brushText);
 
       virtual void _001OnTabLayout(::user::tab * ptab);
 
       virtual bool _001GetMainFrameTranslucency(::user::ETranslucency & etranslucency);
 
-      virtual bool _001OnDrawMainFrameBackground(::draw2d::graphics * pdc,::user::frame_window * pframe);
+      virtual bool _001OnDrawMainFrameBackground(::draw2d::dib * pdib,::user::frame_window * pframe);
 
    };
 

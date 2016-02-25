@@ -9,7 +9,7 @@ namespace hotplugin
 {
 
 
-   void plugin::on_bare_paint_veri_discreet(::draw2d::graphics * pgraphics,const RECT & lprect)
+   void plugin::on_bare_paint_veri_discreet(::draw2d::dib * pdib,const RECT & lprect)
    {
 
       double dRate = get_progress_rate();
@@ -26,6 +26,8 @@ namespace hotplugin
     //  int32_t cx = rectWindow.right - rectWindow.left;
       //int32_t cy = rectWindow.bottom - rectWindow.top;
       RECT rect = lprect;
+
+      ::draw2d::graphics * pgraphics = pdib->get_graphics();
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
       int h = 33;

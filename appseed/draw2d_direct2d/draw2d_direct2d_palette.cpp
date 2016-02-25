@@ -27,7 +27,7 @@ namespace draw2d_direct2d
    }
 
 
-   bool palette::CreateHalftonePalette(::draw2d::graphics * pgraphics)
+   bool palette::CreateHalftonePalette(::draw2d::dib * pdib)
    {
       //ASSERT(pgraphics != NULL && (dynamic_cast<::draw2d_direct2d::graphics * >(pgraphics))->get_handle1() != NULL); 
       //return Attach(::CreateHalftonePalette((dynamic_cast<::draw2d_direct2d::graphics * >(pgraphics))->get_handle1())); 

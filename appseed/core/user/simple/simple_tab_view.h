@@ -12,7 +12,7 @@ public:
 
 
 
-   virtual void _001OnDraw(::draw2d::graphics * pdc);
+   virtual void _001OnDraw(::draw2d::dib * pdib);
 
 #ifdef DEBUG
    virtual void assert_valid() const;

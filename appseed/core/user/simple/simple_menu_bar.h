@@ -64,7 +64,7 @@ public:
    //int32_t _001HitTest(const POINT * point);
    //bool _001CheckItem(int32_t iItem, bool bCheck);
    //bool _001GetItemRect(int32_t iItem, LPRECT lprect, e_element eelement);
-   //virtual void _001OnDraw(::draw2d::graphics * pdc);
+   //virtual void _001OnDraw(::draw2d::dib * pdib);
    bool ReloadMenuBar();
    virtual void OnUpdateCmdUI(sp(::user::frame_window) pTarget, bool bDisableIfNoHndler);
    void RemoveAllButtons();

@@ -38,13 +38,13 @@ namespace user
       virtual void install_message_handling(::message::dispatch * pdispatch);
 
 
-      virtual void _001OnDraw(::draw2d::graphics * pdc);
+      virtual void _001OnDraw(::draw2d::dib * pdib);
 
-      virtual void _001OnDrawVerisimple(::draw2d::graphics * pdc);
-      virtual void _001OnDrawSimply(::draw2d::graphics * pdc);
+      virtual void _001OnDrawVerisimple(::draw2d::dib * pdib);
+      virtual void _001OnDrawSimply(::draw2d::dib * pdib);
 
-      virtual void _002OnDrawVerisimple(::draw2d::graphics * pdc);
-      virtual void _002OnDrawSimply(::draw2d::graphics * pdc);
+      virtual void _002OnDrawVerisimple(::draw2d::dib * pdib);
+      virtual void _002OnDrawSimply(::draw2d::dib * pdib);
 
       virtual void query_full_size(LPSIZE lpsize) const;
 

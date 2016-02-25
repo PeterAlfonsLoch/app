@@ -39,6 +39,15 @@ namespace draw2d
 
    }
 
+   
+   bool graphics::prefer_mapped_dib_on_mix()
+   {
+
+      return false;
+
+   }
+
+
    ::aura::str_context * graphics::str_context()
    {
       return m_puistrcontext;
@@ -154,7 +163,8 @@ namespace draw2d
    bool graphics::CreateCompatibleDC(::draw2d::graphics * pgraphics)
    {
 
-       UNREFERENCED_PARAMETER(pgraphics);
+      UNREFERENCED_PARAMETER(pgraphics);
+      
       throw interface_only_exception(get_app());
 
       return false;

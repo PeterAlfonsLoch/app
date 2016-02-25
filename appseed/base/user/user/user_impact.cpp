@@ -763,7 +763,7 @@ namespace user
    }
 
 
-   //void impact::on_draw_view_nc(::draw2d::graphics * pdc)
+   //void impact::on_draw_view_nc(::draw2d::dib * pdib)
    //{
 
    //   UNREFERENCED_PARAMETER(pdc);
@@ -778,7 +778,7 @@ namespace user
 
    //}
 
-   //void impact::defer_draw_view(::draw2d::graphics * pdc)
+   //void impact::defer_draw_view(::draw2d::dib * pdib)
    //{
 
    //   if (get_document() == NULL)
@@ -809,7 +809,7 @@ namespace user
 
    //}
 
-   //void impact::_001OnDraw(::draw2d::graphics * pdc)
+   //void impact::_001OnDraw(::draw2d::dib * pdib)
    //{
 
    //   on_draw_view_nc(pdc);
@@ -914,16 +914,17 @@ namespace user
 
    }
 
-   void impact::_001CallOnDraw(::draw2d::graphics * pgraphics)
+
+   void impact::_001CallOnDraw(::draw2d::dib * pdib)
    {
 
-      on_viewport_offset(pgraphics);
+      on_viewport_offset(pdib);
 
       synch_lock slView(m_pmutex);
 
       //synch_lock slDocument(get_document()->m_pmutex);
 
-      _001OnDraw(pgraphics);
+      _001OnDraw(pdib);
 
    }
 

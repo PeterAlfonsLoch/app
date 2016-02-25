@@ -16,7 +16,7 @@ namespace simple_ui
       virtual ~password();
 
 
-      virtual void _001OnDraw(::draw2d::graphics * pgraphics);
+      virtual void _001OnDraw(::draw2d::dib * pdib);
 
 
    };

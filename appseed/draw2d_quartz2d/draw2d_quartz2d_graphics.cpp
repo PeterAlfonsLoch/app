@@ -166,7 +166,7 @@ namespace draw2d_quartz2d
    }
 
 
-   bool graphics::CreateCompatibleDC(::draw2d::graphics * pgraphics)
+   bool graphics::CreateCompatibleDC(::draw2d::dib * pdib)
    {
 
       m_pdc = NULL;

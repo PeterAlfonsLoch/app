@@ -72,7 +72,9 @@ namespace draw2d
       descriptor        m_descriptor;
       bool              m_bReduced; // optionally used by implementation
       int               m_iHeight;
-
+      point             m_pt;
+      double            m_dFontFactor;
+      e_alpha_mode      m_ealphamode;
 
       static float Cosines[360];
       static float Sines[360];
@@ -93,6 +95,11 @@ namespace draw2d
 
 
       virtual COLORREF * get_data() const;
+
+      
+      virtual void SetViewportOrg(point pt);
+      virtual void set_font_factor(double dFactor);
+      virtual void set_alpha_mode(e_alpha_mode e_alpha_mode);
 
 
       virtual void construct(int32_t cx, int32_t cy);
@@ -169,17 +176,17 @@ namespace draw2d
       using ::object::create;
       virtual bool create(class size);
       virtual bool create(int32_t iWidth, int32_t iHeight);
-      virtual bool create(::draw2d::graphics * pdc);
+      virtual bool create(::draw2d::graphics * pgraphics);
       virtual bool destroy();
 
       // realization is semantically const
       // dib keeps an image and image will be the same, 
       // besides the way the Device Context associated with the dib (m_spgraphics)
       // interprets or deals with it, may change
-      virtual bool realize(::draw2d::graphics * pdc) const;
+      virtual bool realize(::draw2d::graphics * pgraphics) const;
       virtual bool unrealize() const;
       virtual bool is_realized() const;
-      virtual bool defer_realize(::draw2d::graphics * pdc) const;
+      virtual bool defer_realize(::draw2d::graphics * pgraphics) const;
 
       virtual void DivideRGB(int32_t iDivide);
       virtual void DivideARGB(int32_t iDivide);
@@ -187,7 +194,7 @@ namespace draw2d
 
       virtual bool to(dib *dib) const;
       virtual bool from(const ::draw2d::dib * pdib);
-      virtual bool from(::draw2d::graphics * pdc);
+      virtual bool from(::draw2d::graphics * pgraphics);
       virtual bool from(point ptDst, ::draw2d::graphics * pdc, point ptSrc, class size size);
       virtual bool from(point ptDst, ::draw2d::dib * pdc, point ptSrc, class size size);
       virtual bool from_ignore_alpha(point ptDst, ::draw2d::dib * pdc, point ptSrc, class size size);

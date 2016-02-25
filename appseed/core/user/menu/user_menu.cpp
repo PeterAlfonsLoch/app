@@ -218,7 +218,7 @@ namespace user
    }
 
 
-   void menu::_001OnDraw(::draw2d::graphics *pdc)
+   void menu::_001OnDraw(::draw2d::dib * pdib)
    {
 //      bool bEnabled = is_window_enabled();
 //      rect rectClient;

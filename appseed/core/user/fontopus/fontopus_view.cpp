@@ -208,7 +208,7 @@ namespace fontopus
    }
 
 
-   void view::_001OnDraw(::draw2d::graphics * pgraphics)
+   void view::_001OnDraw(::draw2d::dib * pdib)
    {
       //return;
 
@@ -447,7 +447,7 @@ namespace fontopus
    //}
 
 
-   void view::_000OnDraw(::draw2d::graphics * pdc)
+   void view::_000OnDraw(::draw2d::dib * pdib)
    {
 
       //simple_ui::interaction::_000OnDraw(pdc);
@@ -474,7 +474,7 @@ namespace fontopus
    }
 
 
-   void view::_001DrawChildren(::draw2d::graphics *pdc)
+   void view::_001DrawChildren(::draw2d::dib * pdib)
    {
 
       //single_lock sl(m_pmutex, true);

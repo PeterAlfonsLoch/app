@@ -6,7 +6,7 @@ namespace hotplugin
 {
 
 
-   void plugin::on_bare_paint_full_screen(::draw2d::graphics * pgraphics,const RECT & lprect)
+   void plugin::on_bare_paint_full_screen(::draw2d::dib * pdib,const RECT & lprect)
    {
 
       double dRate = get_progress_rate();
@@ -41,6 +41,8 @@ namespace hotplugin
       strProgress.Format("%0.3f%%", dRate * 100.0);
 
       ::draw2d::brush_sp br(allocer());
+
+      ::draw2d::graphics * pgraphics = pdib->get_graphics();
 
       {
 

@@ -591,7 +591,7 @@ namespace user
    }
    */
 
-   void status_bar::_001OnDraw(::draw2d::graphics * pdc)
+   void status_bar::_001OnDraw(::draw2d::dib * pdib)
    {
 
       UNREFERENCED_PARAMETER(pdc);

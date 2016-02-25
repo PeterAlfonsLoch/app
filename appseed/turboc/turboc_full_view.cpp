@@ -78,14 +78,14 @@ namespace turboc
    }
 
 
-   void full_view::_001OnDraw(::draw2d::graphics * pdc)
+   void full_view::_001OnDraw(::draw2d::dib * pdib)
    {
 
       view::_001OnDraw(pdc);
 
    }
 
-   void full_view::turboc_render(::draw2d::graphics * pdc)
+   void full_view::turboc_render(::draw2d::dib * pdib)
    {
 
       turboc_render_full_view(pdc);
@@ -93,7 +93,7 @@ namespace turboc
    }
 
 
-   void view::turboc_render_full_view(::draw2d::graphics * pdc)
+   void view::turboc_render_full_view(::draw2d::dib * pdib)
    {
 
       if(m_dibWork->area() <= 0)

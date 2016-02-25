@@ -1125,7 +1125,7 @@ namespace macos
       return false;
    }
 
-   void interaction_impl::_002OnDraw(::draw2d::graphics * pdc)
+   void interaction_impl::_002OnDraw(::draw2d::dib * pdib)
    {
 
       //      ::CallWindowProc(*GetSuperWndProcAddr(), get_handle(), WM_PRINT, (WPARAM)((dynamic_cast<::draw2d_quartz2d::graphics * >(pdc))->get_handle()), (LPARAM)(PRF_CHILDREN | PRF_CLIENT));
@@ -2987,7 +2987,7 @@ namespace macos
       //      EnumWindows(GetAppsEnumWindowsProc, (LPARAM) &wnda);
    }
 
-   /*   void interaction_impl::_001OnDeferPaintLayeredWindowBackground(::draw2d::graphics * pdc)
+   /*   void interaction_impl::_001OnDeferPaintLayeredWindowBackground(::draw2d::dib * pdib)
     {
     _001DeferPaintLayeredWindowBackground(pdc);
     }*/
@@ -4608,7 +4608,7 @@ namespace macos
       return g.detach();
    }
 
-   bool interaction_impl::ReleaseDC(::draw2d::graphics * pgraphics)
+   bool interaction_impl::ReleaseDC(::draw2d::dib * pdib)
    {
 
       if(pgraphics == NULL)
@@ -6325,7 +6325,7 @@ namespace macos
    }
 
 
-   void interaction_impl::set_viewport_org(::draw2d::graphics * pgraphics)
+   void interaction_impl::set_viewport_org(::draw2d::dib * pdib)
    {
 
       // graphics will be already set its view port to the user::interaction for linux - cairo with xlib

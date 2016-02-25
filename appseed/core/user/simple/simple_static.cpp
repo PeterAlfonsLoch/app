@@ -17,7 +17,7 @@ simple_static::~simple_static()
 {
 }
 
-void simple_static::_001OnDraw(::draw2d::graphics *pdc)
+void simple_static::_001OnDraw(::draw2d::dib * pdib)
 {
    if(get_type() == type_icon)
    {

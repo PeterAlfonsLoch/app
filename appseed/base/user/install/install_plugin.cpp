@@ -820,7 +820,7 @@ namespace install
 
 
 
-   void plugin::on_paint(::draw2d::graphics * pgraphics,const RECT & lprect)
+   void plugin::on_paint(::draw2d::dib * pdib,const RECT & lprect)
    {
 
 #ifdef METROWIN
@@ -939,7 +939,7 @@ namespace install
             //TRACE("focus_update %d",dwTime7 - dwTime5);
 
 
-            m_phost->blend_bitmap(pgraphics, lprect);
+            m_phost->blend_bitmap(pdib, lprect);
 
             //DWORD dwTime9 = ::get_tick_count();
 
@@ -988,6 +988,8 @@ namespace install
       rect.bottom       = cy;
 
       //simple_bitmap b;
+
+      ::draw2d::graphics * pgraphics = pdib->get_graphics();
 
       pgraphics->OffsetViewportOrg(rectWindow.left, rectWindow.top);
 
@@ -1074,7 +1076,7 @@ namespace install
 
          on_update_progress();
 
-         on_bare_paint(pgraphics, lprect);
+         on_bare_paint(pdib, lprect);
 
       }
       else

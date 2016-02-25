@@ -47,7 +47,7 @@ namespace user
    }
 
 
-   void check_box::_001OnDraw(::draw2d::graphics * pdc)
+   void check_box::_001OnDraw(::draw2d::dib * pdib)
    {
       rect rectClient;
       GetClientRect(rectClient);

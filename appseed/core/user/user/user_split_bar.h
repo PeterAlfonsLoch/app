@@ -28,7 +28,7 @@ namespace user
 
       void install_message_handling(::message::dispatch * pinterface);
 
-      virtual void _001OnDraw(::draw2d::graphics * pdc);
+      virtual void _001OnDraw(::draw2d::dib * pdib);
 
       using ::user::interaction::create_window;
       bool create_window(const RECT & rect, split_layout * pparent);

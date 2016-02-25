@@ -106,7 +106,7 @@ namespace visual
    }
 
    void api::EmbossedTextOut(
-      ::draw2d::graphics *             pdc,
+      ::draw2d::dib *             pdib,
       const RECT &            rect,
       double            dRateX,
       double            dHeight,
@@ -116,6 +116,8 @@ namespace visual
       int32_t               iOffset)
    {
          ::rect clipRect;
+
+         ::draw2d::graphics * pdc = pdib->get_graphics();
 
    //      int32_t iOldMapMode = ::GetMapMode(pdc->m_hDC);
    //      point viewportOrg;
@@ -152,7 +154,7 @@ namespace visual
 
 
    void api::EmbossedTextOut(
-      ::draw2d::graphics *          pdc,
+      ::draw2d::dib *          pdib,
       const char *   psz,
       int32_t            iLeft,
       int32_t            iTop,
@@ -162,7 +164,7 @@ namespace visual
       int32_t            iLen)
    {
          rect clipRect;
-
+         ::draw2d::graphics * pdc = pdib->get_graphics();
    //      int32_t iOldMapMode = ::GetMapMode(pdc->m_hDC);
    //      point viewportOrg;
    //      ::draw2d::font * pfont = pdc->get_current_font();
@@ -236,8 +238,9 @@ namespace visual
    }
 
 
-   void api::EmbossedTextOut(::draw2d::graphics * pdc, const RECT & rect, double dHeight, double dRateX, const char * psz)
+   void api::EmbossedTextOut(::draw2d::dib * pdib, const RECT & rect, double dHeight, double dRateX, const char * psz)
    {
+      ::draw2d::graphics * pdc = pdib->get_graphics();
          pdc->TextOut(rect.left, rect.top, psz);
          pdc->BeginPath();
          pdc->TextOut(rect.left, rect.top, psz);

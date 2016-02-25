@@ -94,7 +94,7 @@ namespace user
    }
 
 
-   void step_slider::_001OnDraw(::draw2d::graphics * pdc)
+   void step_slider::_001OnDraw(::draw2d::dib * pdib)
    {
 
       if(m_scalar.is_null())

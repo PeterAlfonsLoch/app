@@ -140,14 +140,14 @@ namespace user
 
    }
 
-   void split_view::_001OnNcDraw(::draw2d::graphics *pgraphics)
+   void split_view::_001OnNcDraw(::draw2d::dib * pdib)
    {
 
       UNREFERENCED_PARAMETER(pgraphics);
 
    }
 
-   void split_view::_001OnDraw(::draw2d::graphics *pgraphics)
+   void split_view::_001OnDraw(::draw2d::dib * pdib)
    {
 
 //      int32_t i;

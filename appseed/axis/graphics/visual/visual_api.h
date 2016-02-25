@@ -41,14 +41,14 @@ namespace visual
          LPPOINT               lppointOffset);
 
       void EmbossedTextOut(
-            ::draw2d::graphics *                pdc,
+            ::draw2d::dib *                pdc,
             const RECT &               lpcrect,
             double               dRateX,
             double               dHeight,
             const char *         psz);
 
       void EmbossedTextOut(
-         ::draw2d::graphics *                pdc,
+         ::draw2d::dib *                pdc,
          const RECT &               lpcrect,
          double               dRateX,
          double               dHeight,
@@ -58,7 +58,7 @@ namespace visual
          int32_t                  iOffset);
 
       void EmbossedTextOut(
-         ::draw2d::graphics *             pdc,
+         ::draw2d::dib *             pdc,
          const char *      lpcsz,
          int32_t               iLeft,
          int32_t               iTop,

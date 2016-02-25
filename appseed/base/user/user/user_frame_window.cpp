@@ -1644,9 +1644,9 @@ namespace user
    {
    }
 
-   bool frame_window::OnEraseBkgnd(::draw2d::graphics * pgraphics)
+   bool frame_window::OnEraseBkgnd(::draw2d::dib * pdib)
    {
-      UNREFERENCED_PARAMETER(pgraphics);
+      UNREFERENCED_PARAMETER(pdib);
       if (m_pviewActive != NULL)
          return TRUE;        // active ::user::impact will erase/paint itself
       // for ::user::impact-less frame just use the default background fill
@@ -2099,7 +2099,7 @@ namespace user
 
 
 
-   void frame_window::_000OnDraw(::draw2d::graphics * pdc)
+   void frame_window::_000OnDraw(::draw2d::dib * pdib)
    {
    }
 

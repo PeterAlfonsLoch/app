@@ -199,7 +199,7 @@ size simple_toolbar::CalcSimpleLayout()
 }
 
 
-void simple_toolbar::_001OnDraw(::draw2d::graphics *pgraphics)
+void simple_toolbar::_001OnDraw(::draw2d::dib * pdib)
 {
 
    sp(::user::tab) ptab = GetTypedParent < ::user::tab >();
@@ -245,7 +245,7 @@ void simple_toolbar::_001OnDraw(::draw2d::graphics *pgraphics)
 
 
 /*
-bool simple_toolbar::OnEraseBkgnd(::draw2d::graphics * pgraphics)
+bool simple_toolbar::OnEraseBkgnd(::draw2d::dib * pdib)
 {
 return true;
 }
@@ -257,7 +257,7 @@ void simple_toolbar::SetTransparentBackground(bool bSet)
    m_bTransparentBackground = bSet;
 }
 
-void simple_toolbar::TransparentEraseNonClient(::draw2d::graphics * pdc)
+void simple_toolbar::TransparentEraseNonClient(::draw2d::dib * pdib)
 {
 
    m_dibDraft->get_graphics()->BitBlt(0, 0, 7, 7, pdc, 0, 0, SRCCOPY);

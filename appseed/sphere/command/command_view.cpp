@@ -51,7 +51,7 @@ namespace command
    /////////////////////////////////////////////////////////////////////////////
    // view drawing
 
-   void view::OnDraw(::draw2d::graphics * pdcScreen)
+   void view::OnDraw(::draw2d::dib * pdib)
    {
       UNREFERENCED_PARAMETER(pdcScreen);
    }
@@ -147,7 +147,7 @@ namespace command
    }
 
 
-   void view:: _001OnDraw(::draw2d::graphics * pdc)
+   void view:: _001OnDraw(::draw2d::dib * pdib)
    {
       UNREFERENCED_PARAMETER(pdc);
    }

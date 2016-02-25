@@ -127,7 +127,7 @@ namespace user
    }
 
 
-   void mesh::_001OnDraw(::draw2d::graphics *pdc)
+   void mesh::_001OnDraw(::draw2d::dib * pdib)
    {
 
       //single_lock sl(&m_mutex,true);
@@ -623,7 +623,7 @@ namespace user
 
    }
 
-   void mesh::draw_framing(::draw2d::graphics * pgraphics)
+   void mesh::draw_framing(::draw2d::dib * pdib)
    {
 
    }
@@ -4947,7 +4947,7 @@ namespace user
       _001SetColumnWidth(iColumn,_001CalcColumnWidth(iColumn));
    }
 
-   void mesh::_OnDraw(::draw2d::graphics *pdc)
+   void mesh::_OnDraw(::draw2d::dib * pdib)
    {
       UNREFERENCED_PARAMETER(pdc);
    }

@@ -38,7 +38,7 @@ namespace user
 
       double get_slide_rate();
 
-      virtual void _001OnDraw(::draw2d::graphics * pdc);
+      virtual void _001OnDraw(::draw2d::dib * pdib);
 
       void get_slider_rect(rect & rect);
 

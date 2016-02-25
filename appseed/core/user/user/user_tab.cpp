@@ -433,7 +433,7 @@ namespace user
    }
 
 
-   void tab::_001OnDraw(::draw2d::graphics * pdc)
+   void tab::_001OnDraw(::draw2d::dib * pdib)
    {
 
       defer_handle_full_screen_show_tabs();
@@ -463,7 +463,7 @@ namespace user
    }
 
 
-   void tab::_001OnDrawStandard(::draw2d::graphics * pdc)
+   void tab::_001OnDrawStandard(::draw2d::dib * pdib)
    {
 
       class rect rect;

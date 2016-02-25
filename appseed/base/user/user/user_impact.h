@@ -98,7 +98,7 @@ namespace user
 
       // General drawing/updating
       virtual void on_update(::user::impact * pSender, LPARAM lHint, ::object* pHint) override;
-      //virtual void _001OnDraw(::draw2d::graphics * pgraphics);
+      //virtual void _001OnDraw(::draw2d::dib * pdib);
       virtual void OnViewUpdateHint(sp(impact) pSender, LPARAM lHint, ::user::view_update_hint * pHint);
 
 
@@ -131,9 +131,9 @@ namespace user
 //      virtual CScrollBar* GetScrollBarCtrl(int32_t nBar) const;
 
 
-      //virtual void on_draw_view_nc(::draw2d::graphics * pdc);
+      //virtual void on_draw_view_nc(::draw2d::dib * pdib);
       //virtual void on_draw_view(::draw2d::graphics * pdc, spa(::data::data) spadata);
-      //virtual void defer_draw_view(::draw2d::graphics * pdc);
+      //virtual void defer_draw_view(::draw2d::dib * pdib);
 
       virtual bool _001OnCmdMsg(::aura::cmd_msg * pcmdmsg);
 
@@ -184,7 +184,7 @@ namespace user
 
       virtual void on_simple_view_update_hint(sp(::user::impact) pviewSender, e_hint ehint, object * phint);
 
-      virtual void _001CallOnDraw(::draw2d::graphics * pgraphics);
+      virtual void _001CallOnDraw(::draw2d::dib * pdib);
 
       virtual void on_select();
 

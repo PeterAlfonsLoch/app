@@ -289,13 +289,13 @@ namespace simple_ui
    }
 
 
-   void interaction::_001OnNcDraw(::draw2d::graphics *pgraphics)
+   void interaction::_001OnNcDraw(::draw2d::dib * pdib)
    {
       
       if(keyboard_focus_is_focusable())
       {
 
-         simple_ui_draw_focus_rect(pgraphics);
+         simple_ui_draw_focus_rect(pdib);
 
       }
 
@@ -304,10 +304,10 @@ namespace simple_ui
 
 
 
-   void interaction::_001OnDraw(::draw2d::graphics * pgraphics)
+   void interaction::_001OnDraw(::draw2d::dib * pdib)
    {
 
-      ::user::interaction::_001OnDraw(pgraphics);
+      ::user::interaction::_001OnDraw(pdib);
 
    }
 
@@ -332,16 +332,18 @@ namespace simple_ui
 
    }
 
-   void interaction::simple_ui_draw_focus_rect(::draw2d::graphics * pgraphics)
+   void interaction::simple_ui_draw_focus_rect(::draw2d::dib * pdib)
    {
 
-      Session.simple_ui_draw_focus_rect(this,pgraphics);
+      Session.simple_ui_draw_focus_rect(this,pdib);
 
    }
 
 
-   void interaction::simple_ui_draw_frame_window_rect(::draw2d::graphics * pgraphics)
+   void interaction::simple_ui_draw_frame_window_rect(::draw2d::dib * pdib)
    {
+      
+      ::draw2d::graphics * pgraphics = pdib->get_graphics();
 
       rect rectClient;
 
@@ -366,7 +368,7 @@ namespace simple_ui
    }
 
 
-   void interaction::simple_ui_draw_fuzzy_color_spread(::draw2d::graphics * pgraphics)
+   void interaction::simple_ui_draw_fuzzy_color_spread(::draw2d::dib * pdib)
    {
       /*
       rect rectWindow;
@@ -447,8 +449,10 @@ namespace simple_ui
    }
 
 
-   void interaction::simple_ui_draw_dark_glass(::draw2d::graphics * pgraphics)
+   void interaction::simple_ui_draw_dark_glass(::draw2d::dib * pdib)
    {
+
+      ::draw2d::graphics * pgraphics = pdib->get_graphics();
 
       rect rectWindow;
 
@@ -460,8 +464,10 @@ namespace simple_ui
 
 
 
-   void interaction::simple_ui_draw_pestana(::draw2d::graphics * pgraphics)
+   void interaction::simple_ui_draw_pestana(::draw2d::dib * pdib)
    {
+
+      ::draw2d::graphics * pgraphics = pdib->get_graphics();
 
       rect rectWindow;
 
@@ -490,8 +496,10 @@ namespace simple_ui
 
 
 
-   void interaction::simple_ui_draw_auth_box(::draw2d::graphics * pgraphics)
+   void interaction::simple_ui_draw_auth_box(::draw2d::dib * pdib)
    {
+
+      ::draw2d::graphics * pgraphics = pdib->get_graphics();
 
       rect rect;
 

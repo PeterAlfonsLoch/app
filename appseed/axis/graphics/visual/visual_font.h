@@ -52,16 +52,16 @@ namespace visual
       void UnselectFont();
       void ClearDC();
       void SelectFont();
-      void SetDC(::draw2d::graphics * pgraphics);
+      void SetDC(::draw2d::graphics * pdc);
       void EmbossedTextOut(
-         ::draw2d::graphics                  * pgraphics,
+         ::draw2d::dib                  * pdib,
          const RECT &               lpcrect,
          double               dRateX,
          double               dHeight,
          string                 &str);
 
       void EmbossedTextOut(
-         ::draw2d::graphics                     *pdc,
+         ::draw2d::dib                     * pdib,
          const RECT &               lpcrect,
          double               dRateX,
          double               dHeight,
@@ -71,7 +71,7 @@ namespace visual
          int32_t                  iOffset);
 
       void SimpleTextOut(
-         ::draw2d::graphics                     *pdc,
+         ::draw2d::dib                     *pdib,
          int32_t                     x,
          int32_t                     y,
          string                 &str,
@@ -79,7 +79,7 @@ namespace visual
          int32_t                     iCharsPositions);
 
       void TextOutEx(
-         ::draw2d::graphics                  *pdc,
+         ::draw2d::dib                  *pdib,
          const RECT &               lpcrect,
          double               dRateX,
          double               dHeight,

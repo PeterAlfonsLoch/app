@@ -150,7 +150,7 @@ namespace draw2d_cairo
       //return Attach(::CreateIC(lpszDriverName, lpszDeviceName, lpszOutput, (const DEVMODE*) lpInitData));
    }
 
-   bool graphics::CreateCompatibleDC(::draw2d::graphics * pgraphics)
+   bool graphics::CreateCompatibleDC(::draw2d::dib * pdib)
    {
 
       synch_lock ml(m_pmutex);

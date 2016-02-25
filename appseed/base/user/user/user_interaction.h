@@ -327,15 +327,15 @@ namespace user
       virtual bool is_window_enabled() override;
       virtual bool enable_window(bool bEnable = TRUE) override;
 
-      virtual void _001Print(::draw2d::graphics * pdc) override;
-      virtual void _000OnDraw(::draw2d::graphics *pdc) override;
-      virtual void _001DrawThis(::draw2d::graphics *pdc) override;
-      virtual void _001DrawChildren(::draw2d::graphics *pdc) override;
-      virtual void _001OnNcDraw(::draw2d::graphics *pdc);
-      virtual void _001CallOnDraw(::draw2d::graphics *pdc);
-      virtual void _001OnDraw(::draw2d::graphics *pdc) override;
-      virtual void _001OnClip(::draw2d::graphics *pdc);
-      virtual void draw_control_background(::draw2d::graphics *pdc) override;
+      virtual void _001Print(::draw2d::dib * pdib) override;
+      virtual void _000OnDraw(::draw2d::dib * pdib) override;
+      virtual void _001DrawThis(::draw2d::dib * pdib) override;
+      virtual void _001DrawChildren(::draw2d::dib * pdib) override;
+      virtual void _001OnNcDraw(::draw2d::dib * pdib);
+      virtual void _001CallOnDraw(::draw2d::dib * pdib);
+      virtual void _001OnDraw(::draw2d::dib * pdib) override;
+      virtual void _001OnClip(::draw2d::dib * pdib);
+      virtual void draw_control_background(::draw2d::dib * pdib) override;
 
       virtual bool is_custom_draw();
 
@@ -501,9 +501,9 @@ namespace user
       virtual LRESULT message_handler(LPMESSAGE lpmessage);
       virtual void GuieProc(signal_details * pobj);
 
-      virtual void _001DeferPaintLayeredWindowBackground(::draw2d::graphics * pdc);
+      virtual void _001DeferPaintLayeredWindowBackground(::draw2d::dib * pdib);
 
-      virtual void _001OnDeferPaintLayeredWindowBackground(::draw2d::graphics * pdc);
+      virtual void _001OnDeferPaintLayeredWindowBackground(::draw2d::dib * pdib);
 
 
       virtual oswindow get_handle() const;
@@ -550,7 +550,7 @@ namespace user
       //#endif
 
 
-      virtual void set_viewport_org(::draw2d::graphics * pgraphics);
+      virtual void set_viewport_org(::draw2d::dib * pdib);
 
       virtual void viewport_screen_to_client(POINT * ppt);
       virtual void viewport_client_to_screen(POINT * ppt);
@@ -666,7 +666,7 @@ namespace user
       virtual void offset_viewport_offset_y(int y);
       virtual void offset_viewport_offset(int x, int y);
       virtual void on_change_viewport_offset();
-      virtual void on_viewport_offset(::draw2d::graphics * pgraphics);
+      virtual void on_viewport_offset(::draw2d::dib * pdib);
       virtual point get_viewport_offset();
       virtual size get_total_size();
       virtual void on_change_view_size();

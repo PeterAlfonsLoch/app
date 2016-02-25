@@ -61,7 +61,7 @@ namespace user
 
 
 
-   void button::_001OnDraw(::draw2d::graphics * pdc)
+   void button::_001OnDraw(::draw2d::dib * pdib)
    {
 
       if(m_estyle == style_push)
@@ -572,7 +572,7 @@ namespace user
    }
 
 
-   void button::_002OnDraw(::draw2d::graphics * pdc)
+   void button::_002OnDraw(::draw2d::dib * pdib)
    {
 
       if(m_pschema == NULL)
@@ -730,7 +730,7 @@ namespace user
 
 
 
-   void button::_001OnDrawBitmap(::draw2d::graphics * pdc)
+   void button::_001OnDrawBitmap(::draw2d::dib * pdib)
    {
 
       if(!(m_pbitmap->m_dib.is_set() && m_pbitmap->m_dib->area() > 0))
@@ -755,7 +755,7 @@ namespace user
    }
 
 
-   void button::_001OnDrawPush(::draw2d::graphics *pdc)
+   void button::_001OnDrawPush(::draw2d::dib * pdib)
    {
 
       //   int32_t iOriginalBkMode = pdc->GetBkMode();
@@ -1056,7 +1056,7 @@ namespace user
 
 
 
-   void button::_001OnDrawList(::draw2d::graphics * pdc)
+   void button::_001OnDrawList(::draw2d::dib * pdib)
    {
       rect rectClient;
       bool bItemHover;

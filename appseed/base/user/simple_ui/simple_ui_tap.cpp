@@ -36,12 +36,12 @@ namespace simple_ui
    END_IMH
 
 
-   void tap::_001OnDraw(::draw2d::graphics * pgraphics)
+   void tap::_001OnDraw(::draw2d::dib * pdib)
    {
 
       //draw_simple(hdc);
 
-      simple_ui_draw_volume(pgraphics);
+      simple_ui_draw_volume(pdib);
 
    }
 
@@ -156,8 +156,10 @@ namespace simple_ui
 
 
 
-   void tap::simple_ui_draw_simple(::draw2d::graphics * pgraphics)
+   void tap::simple_ui_draw_simple(::draw2d::dib * pdib)
    {
+
+      ::draw2d::graphics * pgraphics = pdib->get_graphics();
 
       {
 
@@ -181,17 +183,17 @@ namespace simple_ui
 
       }
 
-     simple_ui_draw_text(pgraphics);
+     simple_ui_draw_text(pdib);
 
    }
 
 
-   void tap::simple_ui_draw_volume(::draw2d::graphics * pgraphics)
+   void tap::simple_ui_draw_volume(::draw2d::dib * pdib)
    {
 
       {
 
-
+         ::draw2d::graphics * pgraphics = pdib->get_graphics();
 
          pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
@@ -311,19 +313,21 @@ namespace simple_ui
       if(m_estockicon == stock_icon_none)
       {
 
-         simple_ui_draw_text(pgraphics);
+         simple_ui_draw_text(pdib);
 
       }
 
    }
 
 
-   void tap::simple_ui_draw_text(::draw2d::graphics * pgraphics)
+   void tap::simple_ui_draw_text(::draw2d::dib * pdib)
    {
 
       rect rectClient;
 
       GetClientRect(rectClient);
+
+      ::draw2d::graphics * pgraphics = pdib->get_graphics();
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
@@ -409,23 +413,24 @@ namespace simple_ui
    }
 
 
-   void tap::_000OnDraw(::draw2d::graphics * pdc)
+   void tap::_000OnDraw(::draw2d::dib * pdib)
    {
 
       //simple_ui::interaction::_000OnDraw(pdc);
 
+      //::draw2d::graphics * pgraphics = pdib->get_graphics();
 
       if(!m_bVisible)
          return;
 
-      _001DrawThis(pdc);
+      _001DrawThis(pdib);
 
       return;
 
       try
       {
 
-         _001DrawChildren(pdc);
+         _001DrawChildren(pdib);
 
       }
       catch(...)
@@ -437,10 +442,12 @@ namespace simple_ui
 
    }
 
-   void tap::_001DrawThis(::draw2d::graphics * pgraphics)
+   void tap::_001DrawThis(::draw2d::dib * pdib)
    {
 
       /*point ptOrg =  pgraphics->GetViewportOrg();*/
+
+      ::draw2d::graphics * pgraphics = pdib->get_graphics();
 
       try
       {
@@ -448,11 +455,11 @@ namespace simple_ui
          if(!is_custom_draw())
          {
 
-            set_viewport_org(pgraphics);
+            set_viewport_org(pdib);
 
          }
 
-         pgraphics->m_dFontFactor = 1.0;
+         pdib->set_font_factor(1.0);
 
          try
          {
@@ -471,13 +478,13 @@ namespace simple_ui
 
             synch_lock sl(m_pmutex);
 
-            _001OnNcDraw(pgraphics);
+            _001OnNcDraw(pdib);
 
          }
 
-         _001OnClip(pgraphics);
+         _001OnClip(pdib);
 
-         _001CallOnDraw(pgraphics);
+         _001CallOnDraw(pdib);
 
 
       }
@@ -494,13 +501,13 @@ namespace simple_ui
 
    }
 
-   void tap::_001CallOnDraw(::draw2d::graphics * pgraphics)
+   void tap::_001CallOnDraw(::draw2d::dib * pdib)
    {
 
-      on_viewport_offset(pgraphics);
+      on_viewport_offset(pdib);
 
       synch_lock sl(m_pmutex);
-      _001OnDraw(pgraphics);
+      _001OnDraw(pdib);
 
    }
 

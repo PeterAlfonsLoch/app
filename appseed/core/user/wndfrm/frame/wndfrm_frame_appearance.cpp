@@ -362,7 +362,7 @@ namespace user
 
          }
 
-         void appearance::CTool001::draw(::draw2d::graphics * pdc)
+         void appearance::CTool001::draw(::draw2d::dib * pdib)
          {
 
             pdc->SelectObject(m_brushBody);

@@ -67,6 +67,9 @@ namespace draw2d
 //      virtual HDC detach();
 
 
+      virtual bool prefer_mapped_dib_on_mix();
+
+
       virtual ::aura::str_context * str_context();
       virtual ::aura::draw_context * draw_context();
 

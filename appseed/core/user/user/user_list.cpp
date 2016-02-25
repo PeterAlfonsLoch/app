@@ -94,7 +94,7 @@ namespace user
    }
 
 
-   void list::_001OnDraw(::draw2d::graphics *pdc)
+   void list::_001OnDraw(::draw2d::dib * pdib)
    {
 
       //single_lock sl(&m_mutex, true);
@@ -5047,7 +5047,7 @@ namespace user
       _001SetColumnWidth(iColumn, _001CalcColumnWidth(iColumn));
    }
 
-   void list::_OnDraw(::draw2d::graphics *pdc)
+   void list::_OnDraw(::draw2d::dib * pdib)
    {
       UNREFERENCED_PARAMETER(pdc);
    }
@@ -5892,13 +5892,13 @@ namespace user
    }
 
 
-   void list::on_viewport_offset(::draw2d::graphics * pgraphics)
+   void list::on_viewport_offset(::draw2d::dib * pdib)
    {
 
    }
 
 
-   void list::_001OnClip(::draw2d::graphics * pgraphics)
+   void list::_001OnClip(::draw2d::dib * pdib)
    {
 
       mesh::_001OnClip(pgraphics);

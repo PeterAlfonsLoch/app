@@ -63,12 +63,12 @@ namespace draw2d_quartz2d
       
       bool create(class size size);
       bool create(int32_t iWidth, int32_t iHeight);
-      bool create(::draw2d::graphics * pdc);
+      bool create(::draw2d::dib * pdib);
       bool Destroy();
       
       
       
-      bool from(::draw2d::graphics * pdc);
+      bool from(::draw2d::dib * pdib);
       bool from(point ptDest, ::draw2d::graphics * pdc, point pt, class size sz);
       
       bool to(::draw2d::graphics * pgraphics, point pt, class size size, point ptSrc);
@@ -224,7 +224,7 @@ namespace draw2d_quartz2d
       
       bool create(class size size);
       bool create(int32_t iWidth, int32_t iHeight);
-      bool create(::draw2d::graphics * pdc);
+      bool create(::draw2d::dib * pdib);
       bool Destroy();
       
       
@@ -232,7 +232,7 @@ namespace draw2d_quartz2d
       void DivideARGB(int32_t iDivide);
       void DivideA(int32_t iDivide);
       
-      bool from(::draw2d::graphics * pdc);
+      bool from(::draw2d::dib * pdib);
       bool from(point ptDest, ::draw2d::graphics * pdc, point pt, class size sz);
       
       bool to(::draw2d::graphics * pgraphics, point pt, class size size, point ptSrc);

@@ -416,7 +416,7 @@ bool simple_menu_bar::ReloadMenuBar()
    return true;
 }
 
-/*void simple_menu_bar::_001OnDraw(::draw2d::graphics *pdc)
+/*void simple_menu_bar::_001OnDraw(::draw2d::dib * pdib)
 {
    rect rectClient;
    GetClientRect(rectClient);
@@ -760,7 +760,7 @@ void simple_menu_bar::_001OnTimer(::timer * ptimer)
 }
 
 /*
-bool simple_menu_bar::OnEraseBkgnd(::draw2d::graphics * pgraphics)
+bool simple_menu_bar::OnEraseBkgnd(::draw2d::dib * pdib)
 {
    return TRUE;
 }

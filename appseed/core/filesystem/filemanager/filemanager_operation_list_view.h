@@ -23,7 +23,7 @@ namespace filemanager
 
       void _001InsertColumns();
 
-      virtual void OnDraw(::draw2d::graphics * pdc);
+      virtual void OnDraw(::draw2d::dib * pdib);
 
       DECL_GEN_SIGNAL(_001OnCreate);
       void _001OnTimer(::timer * ptimer);

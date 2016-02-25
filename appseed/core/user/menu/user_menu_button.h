@@ -42,9 +42,9 @@ namespace user
 
       virtual void layout();
 
-      virtual void _001DrawCheck(::draw2d::graphics * pdc);
+      virtual void _001DrawCheck(::draw2d::dib * pdib);
 
-      virtual void _001OnDraw(::draw2d::graphics * pdc);
+      virtual void _001OnDraw(::draw2d::dib * pdib);
 
       DECL_GEN_SIGNAL(_001OnMouseMove);
 

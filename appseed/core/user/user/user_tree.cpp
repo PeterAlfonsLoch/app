@@ -160,7 +160,7 @@ namespace user
    //}
 
 
-   void tree::_001OnDraw(::draw2d::graphics *pdc)
+   void tree::_001OnDraw(::draw2d::dib * pdib)
    {
 
       ::user::interaction::_001OnDraw(pdc);
@@ -1596,7 +1596,7 @@ namespace user
    }
 
 
-   void tree::on_viewport_offset(::draw2d::graphics * pgraphics)
+   void tree::on_viewport_offset(::draw2d::dib * pdib)
    {
 
    }

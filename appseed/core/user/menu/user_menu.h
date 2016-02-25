@@ -72,7 +72,7 @@ namespace user
 
       DECL_GEN_SIGNAL(_001OnLButtonDown);
 
-      void _001OnDraw(::draw2d::graphics *pdc);
+      void _001OnDraw(::draw2d::dib * pdib);
       DECL_GEN_SIGNAL(OnMessageDestroyWindow);
 
 

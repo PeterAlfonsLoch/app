@@ -114,10 +114,10 @@ namespace user
    }
 
 
-   void plain_edit::OnDraw(::draw2d::graphics * pdcScreen)
+   void plain_edit::OnDraw(::draw2d::dib * pdib)
    {
 
-      UNREFERENCED_PARAMETER(pdcScreen);
+      UNREFERENCED_PARAMETER(pdib);
 
    }
 
@@ -182,11 +182,11 @@ namespace user
       UNREFERENCED_PARAMETER(pobj);
    }
 
-   void plain_edit::on_viewport_offset(::draw2d::graphics * pgraphics)
+   void plain_edit::on_viewport_offset(::draw2d::dib * pdib)
    {
    }
 
-   void plain_edit::_001OnDraw(::draw2d::graphics * pdc)
+   void plain_edit::_001OnDraw(::draw2d::dib * pdib)
    {
 
       //return;
@@ -201,6 +201,8 @@ namespace user
          _001OnCalcLayout();
 
       }
+
+      ::draw2d::graphics * pdc = pdib->get_graphics();
 
       pdc->set_text_rendering(::draw2d::text_rendering_anti_alias);
 
@@ -237,11 +239,12 @@ namespace user
 
       //rectClient.deflate(0, 0, 1, 1);
 
+      //::draw2d::graphics * pdc = pdib->get_graphics();
 
       if(pprintjob == NULL)
       {
 
-         ::user::interaction::_001OnDraw(pdc);
+         ::user::interaction::_001OnDraw(pdib);
 
       }
 

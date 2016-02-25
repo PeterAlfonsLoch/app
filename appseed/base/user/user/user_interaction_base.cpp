@@ -220,10 +220,10 @@ namespace user
    }
 
 
-   void interaction_base::_000OnDraw(::draw2d::graphics * pdc)
+   void interaction_base::_000OnDraw(::draw2d::dib * pdib)
    {
 
-      _001OnDraw(pdc);
+      _001OnDraw(pdib);
 
    }
 
@@ -277,10 +277,10 @@ namespace user
    }
 
 
-   bool interaction_base::Redraw(::draw2d::graphics * pdc)
+   bool interaction_base::Redraw(::draw2d::dib * pdib)
    {
 
-      UNREFERENCED_PARAMETER(pdc);
+      UNREFERENCED_PARAMETER(pdib);
 
       if(get_wnd() == NULL)
          return false;
@@ -651,7 +651,7 @@ namespace user
    }
 
 
-   void interaction_base::_001DrawThis(::draw2d::graphics * pgraphics)
+   void interaction_base::_001DrawThis(::draw2d::dib * pdib)
    {
 
       ::exception::throw_interface_only(get_app());
@@ -659,7 +659,7 @@ namespace user
    }
 
 
-   void interaction_base::_001DrawChildren(::draw2d::graphics *pdc)
+   void interaction_base::_001DrawChildren(::draw2d::dib * pdib)
    {
 
       ::exception::throw_interface_only(get_app());
@@ -667,7 +667,7 @@ namespace user
    }
 
 
-   void interaction_base::_001Print(::draw2d::graphics * pgraphics)
+   void interaction_base::_001Print(::draw2d::dib * pdib)
    {
 
       ::exception::throw_interface_only(get_app());
@@ -675,7 +675,7 @@ namespace user
    }
 
 
-   void interaction_base::_001OnDraw(::draw2d::graphics *pdc)
+   void interaction_base::_001OnDraw(::draw2d::dib * pdib)
    {
 
       ::exception::throw_interface_only(get_app());
@@ -683,7 +683,7 @@ namespace user
    }
 
 
-   void interaction_base::draw_control_background(::draw2d::graphics *pdc)
+   void interaction_base::draw_control_background(::draw2d::dib * pdib)
    {
 
       ::exception::throw_interface_only(get_app());
@@ -1426,7 +1426,7 @@ namespace user
    }
 
 
-   void interaction_base::set_viewport_org(::draw2d::graphics * pgraphics)
+   void interaction_base::set_viewport_org(::draw2d::dib * pdib)
    {
 
       ::exception::throw_interface_only(get_app());
@@ -1924,7 +1924,7 @@ namespace user
    }
 
 
-   void interaction_base::_001DeferPaintLayeredWindowBackground(::draw2d::graphics * pdc)
+   void interaction_base::_001DeferPaintLayeredWindowBackground(::draw2d::dib * pdib)
    {
 
       ::exception::throw_interface_only(get_app());
@@ -1932,7 +1932,7 @@ namespace user
    }
 
 
-   void interaction_base::_001OnDeferPaintLayeredWindowBackground(::draw2d::graphics * pdc)
+   void interaction_base::_001OnDeferPaintLayeredWindowBackground(::draw2d::dib * pdib)
    {
 
       ::exception::throw_interface_only(get_app());

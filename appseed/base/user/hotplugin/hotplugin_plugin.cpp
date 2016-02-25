@@ -204,10 +204,10 @@ namespace hotplugin
    {
    }
 
-   void plugin::on_paint(::draw2d::graphics * pgraphics,const RECT & lprect)
+   void plugin::on_paint(::draw2d::dib * pdib,const RECT & lprect)
    {
 
-      on_bare_paint(pgraphics, lprect);
+      on_bare_paint(pdib, lprect);
 
    }
 
@@ -507,28 +507,28 @@ namespace hotplugin
    }
 
 
-   void plugin::on_bare_paint(::draw2d::graphics * pgraphics,const RECT & lprect)
+   void plugin::on_bare_paint(::draw2d::dib * pdib,const RECT & lprect)
    {
 
-      if(pgraphics == NULL)
+      if(pdib == NULL)
          return;
 
       if (m_iHealingSurface == 0)
       {
 
-         on_bare_paint_veri_discreet(pgraphics,lprect);
+         on_bare_paint_veri_discreet(pdib,lprect);
 
       }
       else if(m_iHealingSurface == 1)
       {
 
-         on_bare_paint_discreet(pgraphics,lprect);
+         on_bare_paint_discreet(pdib,lprect);
 
       }
       else
       {
 
-         on_bare_paint_full_screen(pgraphics,lprect);
+         on_bare_paint_full_screen(pdib,lprect);
 
       }
 

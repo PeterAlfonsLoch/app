@@ -80,7 +80,7 @@ namespace turboc
    }
 
 
-   void lite_view::_001OnDraw(::draw2d::graphics * pdc)
+   void lite_view::_001OnDraw(::draw2d::dib * pdib)
    {
 
       view::_001OnDraw(pdc);
@@ -88,7 +88,7 @@ namespace turboc
    }
 
 
-   void lite_view::turboc_render(::draw2d::graphics * pdc)
+   void lite_view::turboc_render(::draw2d::dib * pdib)
    {
 
       turboc_render_lite_view(pdc);
@@ -96,7 +96,7 @@ namespace turboc
    }
 
 
-   void view::turboc_render_lite_view(::draw2d::graphics * pdc)
+   void view::turboc_render_lite_view(::draw2d::dib * pdib)
    {
 
 

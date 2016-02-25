@@ -21,7 +21,7 @@ namespace simple_ui
       virtual void install_message_handling(::message::dispatch * pdispatch);
 
       
-      virtual void _001OnDraw(::draw2d::graphics * pgraphics);
+      virtual void _001OnDraw(::draw2d::dib * pdib);
 
 
       DECL_GEN_SIGNAL(_001OnKeyDown);

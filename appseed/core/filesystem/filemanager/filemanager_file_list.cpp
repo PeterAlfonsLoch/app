@@ -1538,7 +1538,7 @@ namespace filemanager
 
 
 
-   void file_list::_001OnDraw(::draw2d::graphics *pdc)
+   void file_list::_001OnDraw(::draw2d::dib * pdib)
    {
 
       if (m_iAnimate <= 0)

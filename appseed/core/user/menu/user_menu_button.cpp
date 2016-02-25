@@ -29,7 +29,7 @@ namespace user
 
 
 
-   void menu_button::_001OnDraw(::draw2d::graphics * pdc)
+   void menu_button::_001OnDraw(::draw2d::dib * pdib)
    {
       button::_001OnDraw(pdc);
       rect rectClient;
@@ -79,7 +79,7 @@ namespace user
    }
 
 
-   void menu_button::_001DrawCheck(::draw2d::graphics * pdc)
+   void menu_button::_001DrawCheck(::draw2d::dib * pdib)
    {
       UINT uiImage = 0xffffffffu;
       if(m_pitem != NULL)

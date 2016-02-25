@@ -45,8 +45,10 @@ namespace simple_ui
 
 
 
-   void password::_001OnDraw(::draw2d::graphics * pdc)
+   void password::_001OnDraw(::draw2d::dib * pdib)
    {
+
+      ::draw2d::graphics * pdc = pdib->get_graphics();
 
       //return;
 
@@ -86,11 +88,12 @@ namespace simple_ui
 
       //rectClient.deflate(0, 0, 1, 1);
 
+      //::draw2d::graphics * pdc = pdib->get_graphics();
 
       if(pprintjob == NULL)
       {
 
-         ::user::interaction::_001OnDraw(pdc);
+         ::user::interaction::_001OnDraw(pdib);
 
       }
 
@@ -196,6 +199,7 @@ namespace simple_ui
       rectClient.right = rectClient.left + m_size.cx;*/
       //      pdc->FillSolidRect(rectClient, crBk);
 
+//      ::draw2d::graphics * pdc = pdib->get_graphics();
 
       double y = rectClient.top;
       _001GetViewSel(iSelStart,iSelEnd);

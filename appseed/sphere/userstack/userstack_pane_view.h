@@ -49,7 +49,7 @@ namespace userstack
       virtual void OnFileManagerOpenContextMenuFile(::filemanager::data * pdata, const ::fs::item_array & itema);
       virtual void OnFileManagerOpenContextMenu(::filemanager::data * pdata);
 
-      void _001OnDraw(::draw2d::graphics * pdc);
+      void _001OnDraw(::draw2d::dib * pdib);
 
       virtual void set_display(int32_t iDisplay);
 

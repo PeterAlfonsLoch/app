@@ -521,7 +521,8 @@ void dll_processes(uint_array & dwa, stringa & straProcesses, const char * pszDl
 
 
 
-#define NT_SUCCESS(Status) ((NTSTATUS)(Status) >= 0)
+//#define NT_SUCCESS(Status) ((NTSTATUS)(Status) >= 0)
+
 struct PROCESS_INFO_t
 {
     string csProcess;

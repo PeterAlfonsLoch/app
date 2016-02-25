@@ -1134,7 +1134,7 @@ void simple_frame_window::InitialFramePosition(bool bForceRestore)
 }
 
 
-void simple_frame_window::_001OnDeferPaintLayeredWindowBackground(::draw2d::graphics * pdc)
+void simple_frame_window::_001OnDeferPaintLayeredWindowBackground(::draw2d::dib * pdib)
 {
    if (Session.savings().is_trying_to_save(::aura::resource_processing)
       || Session.savings().is_trying_to_save(::aura::resource_translucent_background))
@@ -1248,7 +1248,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics * pdcParam)
 }
 
 
-void simple_frame_window::_001OnDraw(::draw2d::graphics * pdc)
+void simple_frame_window::_001OnDraw(::draw2d::dib * pdib)
 {
    single_lock sl(m_pmutex, true);
 
@@ -1914,7 +1914,7 @@ void simple_frame_window::guserbaseOnInitialUpdate(signal_details * pobj)
 }
 
 
-void simple_frame_window::_010OnDraw(::draw2d::graphics * pdc)
+void simple_frame_window::_010OnDraw(::draw2d::dib * pdib)
 {
 
    if (!m_bVisible)
@@ -1978,7 +1978,7 @@ void simple_frame_window::_010OnDraw(::draw2d::graphics * pdc)
 }
 
 
-void simple_frame_window::_011OnDraw(::draw2d::graphics *pdc)
+void simple_frame_window::_011OnDraw(::draw2d::dib * pdib)
 {
 
    if ((m_bWindowFrame || _001IsTranslucent()) && !Session.savings().is_trying_to_save(::aura::resource_display_bandwidth))

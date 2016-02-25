@@ -41,7 +41,10 @@ namespace windows
 
       ::draw2d::graphics * pgraphics = m_phprinter->create_graphics();
       
-      
+      // xxx
+      ::draw2d::dib * pdib = NULL;
+
+
       DOCINFO docinfo;
       memset(&docinfo, 0, sizeof(docinfo));
       docinfo.cbSize = sizeof(docinfo);
@@ -69,7 +72,7 @@ namespace windows
             pgraphics->AbortDoc();
             return -1;
          }
-         m_pui->_001OnDraw(pgraphics);
+         m_pui->_001OnDraw(pdib);
          if(m_bCancel)
          {
             pgraphics->AbortDoc();

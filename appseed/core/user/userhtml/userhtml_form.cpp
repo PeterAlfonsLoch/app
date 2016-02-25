@@ -25,7 +25,7 @@ html_form::~html_form()
 
 
 
-void html_form::_001OnDraw(::draw2d::graphics * pdc)
+void html_form::_001OnDraw(::draw2d::dib * pdib)
 {
 
 //   ::user::interaction::_001OnDraw(pdc);
@@ -56,7 +56,7 @@ void html_form::_001OnDraw(::draw2d::graphics * pdc)
 }
 
 
-void html_form::_001DrawChildren(::draw2d::graphics *pdc)
+void html_form::_001DrawChildren(::draw2d::dib * pdib)
 {
 
    sp(::user::interaction) pui = first_child();

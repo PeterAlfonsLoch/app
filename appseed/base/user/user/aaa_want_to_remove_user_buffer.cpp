@@ -59,7 +59,7 @@ namespace user
    //}
 
 
-   //void buffer::BitBlt(::draw2d::graphics * pdc)
+   //void buffer::BitBlt(::draw2d::dib * pdib)
    //{
 
    //   pdc->BitBlt(null_point(), m_spdib->size(), GetBuffer());

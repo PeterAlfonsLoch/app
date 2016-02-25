@@ -26,7 +26,7 @@ void simple_list_view::install_message_handling(::message::dispatch * pinterface
 /////////////////////////////////////////////////////////////////////////////
 // simple_list_view drawing
 
-void simple_list_view::OnDraw(::draw2d::graphics * pgraphics)
+void simple_list_view::OnDraw(::draw2d::dib * pdib)
 {
    UNREFERENCED_PARAMETER(pgraphics);
    ASSERT(FALSE);

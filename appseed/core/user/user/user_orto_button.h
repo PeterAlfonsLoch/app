@@ -24,7 +24,7 @@ public:
    virtual index hit_test(point point,e_element & eelement);
 
 
-   virtual void _001OnDraw(::draw2d::graphics * pdc);
+   virtual void _001OnDraw(::draw2d::dib * pdib);
    virtual bool pre_create_window(::user::create_struct& cs);
 
    virtual void install_message_handling(::message::dispatch *pinterface);

@@ -680,50 +680,50 @@ namespace user
    }
 
 
-   void interaction_impl_base::_001Print(::draw2d::graphics * pdc)
+   void interaction_impl_base::_001Print(::draw2d::dib * pdib)
    {
 
-      m_pui->_001Print(pdc);
+      m_pui->_001Print(pdib);
 
    }
 
 
-   void interaction_impl_base::_000OnDraw(::draw2d::graphics *pdc)
+   void interaction_impl_base::_000OnDraw(::draw2d::dib * pdib)
    {
 
-      m_pui->_000OnDraw(pdc);
+      m_pui->_000OnDraw(pdib);
 
    }
 
 
-   void interaction_impl_base::_001DrawThis(::draw2d::graphics *pdc)
+   void interaction_impl_base::_001DrawThis(::draw2d::dib * pdib)
    {
 
-      m_pui->_001DrawThis(pdc);
+      m_pui->_001DrawThis(pdib);
 
    }
 
 
-   void interaction_impl_base::_001DrawChildren(::draw2d::graphics *pdc)
+   void interaction_impl_base::_001DrawChildren(::draw2d::dib * pdib)
    {
 
-      m_pui->_001DrawChildren(pdc);
+      m_pui->_001DrawChildren(pdib);
 
    }
 
 
-   void interaction_impl_base::_001OnDraw(::draw2d::graphics *pdc)
+   void interaction_impl_base::_001OnDraw(::draw2d::dib * pdib)
    {
 
-      m_pui->_001OnDraw(pdc);
+      m_pui->_001OnDraw(pdib);
 
    }
 
 
-   void interaction_impl_base::draw_control_background(::draw2d::graphics *pdc)
+   void interaction_impl_base::draw_control_background(::draw2d::dib * pdib)
    {
 
-      m_pui->draw_control_background(pdc);
+      m_pui->draw_control_background(pdib);
 
    }
 
@@ -737,7 +737,7 @@ namespace user
 
 
 
-   void interaction_impl_base::set_viewport_org(::draw2d::graphics * pgraphics)
+   void interaction_impl_base::set_viewport_org(::draw2d::dib * pdib)
    {
 
       //::exception::throw_interface_only(get_app());

@@ -488,7 +488,7 @@ namespace user
 //      void OnEnable(bool bEnable);
 //      void OnEndSession(bool bEnding);
 //      void OnEnterIdle(UINT nWhy,::window_sp pWho);
-//      bool OnEraseBkgnd(::draw2d::graphics * pgraphics);
+//      bool OnEraseBkgnd(::draw2d::dib * pdib);
 //
 //
 //#ifdef WINDOWSEX
@@ -497,7 +497,7 @@ namespace user
 //#endif
 //
 //
-//      void OnIconEraseBkgnd(::draw2d::graphics * pgraphics);
+//      void OnIconEraseBkgnd(::draw2d::dib * pdib);
 //      void OnKillFocus(::window_sp pNewWnd);
 //      LRESULT OnMenuChar(UINT nChar,UINT nFlags,::user::menu* pMenu);
 //      void OnMenuSelect(UINT nItemID,UINT nFlags,HMENU hSysMenu);
@@ -703,9 +703,9 @@ namespace user
       //LRESULT OnDisplayChange(WPARAM,LPARAM);
       //LRESULT OnDragList(WPARAM,LPARAM);
 
-      virtual void _001DeferPaintLayeredWindowBackground(::draw2d::graphics * pdc);
+      virtual void _001DeferPaintLayeredWindowBackground(::draw2d::dib * pdib);
 
-      virtual void _001OnDeferPaintLayeredWindowBackground(::draw2d::graphics * pdc);
+      virtual void _001OnDeferPaintLayeredWindowBackground(::draw2d::dib * pdib);
 
       virtual LONG get_window_long(int32_t nIndex) const;
       virtual LONG set_window_long(int32_t nIndex,LONG lValue);

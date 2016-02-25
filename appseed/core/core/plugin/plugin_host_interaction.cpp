@@ -114,7 +114,7 @@ namespace plugin
 
 
 
-   void host_interaction::_000OnDraw(::draw2d::graphics * pdc)
+   void host_interaction::_000OnDraw(::draw2d::dib * pdib)
    {
 
       //rect rectWindow;
@@ -125,7 +125,7 @@ namespace plugin
       //rect rectClient;
       //GetClientRect(rectClient);
 
-      _001DrawChildren(pdc);
+      _001DrawChildren(pdib);
 
       //pdc->SetViewportOrg(ptPreviousViewportOrg);
       //pdc->SelectClipRgn(NULL);

@@ -183,17 +183,17 @@ namespace user
    }
 
 
-   void place_holder::_001OnDraw(::draw2d::graphics * pgraphics)
+   void place_holder::_001OnDraw(::draw2d::dib * pdib)
    {
 
-      UNREFERENCED_PARAMETER(pgraphics);
+      UNREFERENCED_PARAMETER(pdib);
 
    }
 
-   void place_holder::_001OnNcDraw(::draw2d::graphics * pgraphics)
+   void place_holder::_001OnNcDraw(::draw2d::dib * pdib)
    {
 
-      UNREFERENCED_PARAMETER(pgraphics);
+      UNREFERENCED_PARAMETER(pdib);
 
    }
 

@@ -1,6 +1,21 @@
 #pragma once
 
 
+class window_graphics;
+
+
+namespace draw2d
+{
+
+
+   class dib;
+
+
+} // namespace draw2d
+
+
+
+
 #define WM_SIZEPARENT       0x0361  // lParam = &__SIZEPARENTPARAMS
 
 
@@ -86,7 +101,6 @@
 #define ON_MESSAGE_VOID(message, memberFxn) \
 { message,0,0,0,::core::Sig_vv,\
    (__PMSG)(__PMSGW)(void (__MSG_CALLwindow::*)())&memberFxn },
-
 
 
 #include "aura_draw_interface.h"

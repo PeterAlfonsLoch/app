@@ -15,7 +15,7 @@
 
 #include "nodeapp/operational_system/operational_system.h"
 
-#define DRAWDD() virtual void _001OnDraw(::draw2d::graphics * pgraphics)
+#define DRAWDD() virtual void _001OnDraw(::draw2d::dib * pdib)
 
 
 

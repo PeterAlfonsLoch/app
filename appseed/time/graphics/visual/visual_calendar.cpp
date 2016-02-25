@@ -17,7 +17,7 @@ namespace visual
 
    }
 
-   void calendar::_001OnDraw(::draw2d::graphics * pdc)
+   void calendar::_001OnDraw(::draw2d::dib * pdib)
    {
       pdc->SelectObject(m_font);
       ::datetime::time timeNow = ::datetime::time::get_current_time();
