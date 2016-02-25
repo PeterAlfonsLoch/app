@@ -604,10 +604,15 @@ namespace user
             m_workset.EnableFullScreen(bEnable);
          }
 
+         
          void WorkSetClientInterface::_001OnDraw(::draw2d::dib * pdib)
          {
-            m_workset._001OnDraw(pgraphics);
+            
+            m_workset._001OnDraw(pdib);
+
          }
+
+
          //WorkSetClientInterface::CWorkSetDownUpInterface()
          //{
          //   

@@ -112,19 +112,28 @@ namespace user
 
          }
 
+
          void WorkSet::_001OnDraw(::draw2d::dib * pdib)
          {
+
             if(IsAppearanceEnabled() && m_pframeschema != NULL && !IsFullScreen())
             {
+
                try
                {
-                  m_pframeschema->_001OnDraw(pdc);
+
+                  m_pframeschema->_001OnDraw(pdib);
+
                }
                catch(...)
                {
+
                }
+
             }
+
          }
+
 
          void WorkSet::EnableDock(bool bEnable)
          {

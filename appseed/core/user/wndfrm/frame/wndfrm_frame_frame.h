@@ -126,7 +126,7 @@ namespace user
             virtual void on_style_change();
 
 
-            virtual void _001OnDraw(::draw2d::graphics * pca);
+            virtual void _001OnDraw(::draw2d::dib * pdib);
 
             virtual size GetMinSize();
 

@@ -50,6 +50,9 @@ namespace filemanager
 
    void operation_info_view::_001OnDraw(::draw2d::dib * pdib)
    {
+
+      ::draw2d::graphics * pdc = pdib->get_graphics();
+
       /*::FillRect(hdc, &rectProgress, g_hbrushProgress3);
       rectProgress.left++;
       rectProgress.right--;

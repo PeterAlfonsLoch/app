@@ -135,7 +135,7 @@ namespace plugin
       ::visual::cursor * pcursor = Session.get_cursor();
       if(pcursor != NULL)
       {
-         pcursor->to(pdc, ptCursor);
+         pcursor->to(pdib, ptCursor);
       }
 
    }

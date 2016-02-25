@@ -211,7 +211,7 @@ namespace html
       if(m_bImplement)
          return;
       keep < bool > keepImplement(&m_bImplement, true, false, true);
-      m_pdc = pdc;
+      m_pdib = pdib;
       m_focusptra.remove_all();
       m_elemental.implement(this);
       IGUI_WIN_MSG_LINK(WM_KEYDOWN, m_pui, this, &data::_001OnKeyDown);
@@ -260,9 +260,9 @@ namespace html
       if(m_bLayout)
          return;
       if(!m_bImplemented)
-         implement(pdc);
+         implement(pdib);
       keep < bool > keepLayout(&m_bLayout, true, false, true);
-      m_pdc = pdc;
+      m_pdib = pdib;
       m_layoutstate1.reset();
       m_layoutstate2.reset();
       m_layoutstate3.reset();
@@ -282,7 +282,7 @@ namespace html
 //      if(is_locked())
   //       return;
 
-      m_pdc = pdc;
+      m_pdib = pdib;
 
       //if(m_strPathName.find_ci("alarms_index") >= 0)
       //{
@@ -670,7 +670,9 @@ restart:
    void data::implement_and_layout(html_form * pform)
    {
 
-      ::draw2d::memory_graphics pdc(allocer());
+      ::draw2d::dib_sp pdib(allocer());
+
+      pdib->create(50, 50);
 
       synch_lock lock(m_pmutex);
 
@@ -678,14 +680,14 @@ restart:
 
       m_pform  = pform;
 
-      implement(pdc);
+      implement(pdib);
 
       pform->GetClientBox(m_box);
 
       if(m_box.area() <= 0.f)
          return;
 
-      layout(pdc);
+      layout(pdib);
 
    }
 

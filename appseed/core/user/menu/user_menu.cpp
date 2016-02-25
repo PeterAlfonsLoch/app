@@ -280,7 +280,7 @@ namespace user
          }
          rect.top = rect.bottom;
       }*/
-      ::user::interaction::_001OnDraw(pdc);
+      ::user::interaction::_001OnDraw(pdib);
    }
 
 

@@ -22,7 +22,7 @@ namespace filemanager
 
    void operation_list_view::OnDraw(::draw2d::dib * pdib)
    {
-      UNREFERENCED_PARAMETER(pdc);
+      UNREFERENCED_PARAMETER(pdib);
    }
 
    ::count operation_list_view::_001GetItemCount()

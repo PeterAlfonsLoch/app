@@ -60,7 +60,7 @@ namespace user
    void split_bar::_001OnDraw(::draw2d::dib * pdib)
    {
 
-      UNREFERENCED_PARAMETER(pdc);
+      UNREFERENCED_PARAMETER(pdib);
 
    }
 

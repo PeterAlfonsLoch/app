@@ -37,6 +37,8 @@ void simple_status_bar::_001OnDraw(::draw2d::dib * pdib)
 
    GetClientRect(rectClient);
 
+   ::draw2d::graphics * pdc = pdib->get_graphics();
+
    class imaging & imaging = System.visual().imaging();
 #ifdef WINDOWSEX
    imaging.color_blend(

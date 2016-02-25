@@ -523,10 +523,14 @@ namespace user
 
    void tab_view::_000OnDraw(::draw2d::dib * pdib)
    {
+      
       if(!m_bVisible)
          return;
-      _001DrawChildren(pdc);
-      _001DrawThis(pdc);
+      
+      _001DrawChildren(pdib);
+
+      _001DrawThis(pdib);
+
    }
 
    bool tab_view::_001OnCmdMsg(::aura::cmd_msg * pcmdmsg)
@@ -575,6 +579,9 @@ namespace user
 
    void tab_drop_target_window::_001OnDraw(::draw2d::dib * pdib)
    {
+
+      ::draw2d::graphics * pdc = pdib->get_graphics();
+
 //      class imaging & imaging = System.visual().imaging();
 
       COLORREF crBorder = ARGB(84, 127, 127, 80);

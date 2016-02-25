@@ -210,9 +210,14 @@ namespace fontopus
 
    void view::_001OnDraw(::draw2d::dib * pdib)
    {
+
+
+
       //return;
 
-      simple_ui_draw_frame_window_rect(pgraphics);
+      simple_ui_draw_frame_window_rect(pdib);
+
+      ::draw2d::graphics * pgraphics = pdib->get_graphics();
 
       COLORREF crOut, crIn, crBorderOut, crBorderIn, cr, crBk;
 
@@ -456,12 +461,12 @@ namespace fontopus
       if (!m_bVisible)
          return;
 
-      _001DrawThis(pdc);
+      _001DrawThis(pdib);
 
       try
       {
 
-         _001DrawChildren(pdc);
+         _001DrawChildren(pdib);
 
       }
       catch (...)
@@ -495,7 +500,7 @@ namespace fontopus
             if (pui->m_bVisible && !pui->is_custom_draw())
             {
 
-               pui->_000OnDraw(pdc);
+               pui->_000OnDraw(pdib);
 
             }
 

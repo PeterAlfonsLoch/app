@@ -31,13 +31,22 @@ namespace user
 
    void menu_button::_001OnDraw(::draw2d::dib * pdib)
    {
-      button::_001OnDraw(pdc);
+
+      button::_001OnDraw(pdib);
+
       rect rectClient;
+
       GetClientRect(rectClient);
+
       if(m_pitem != NULL && m_pitem->m_bPopup)
       {
+
+         ::draw2d::graphics * pdc = pdib->get_graphics();
+
          ::draw2d::brush_sp br(allocer(), RGB(0, 0, 0));
+
          ::draw2d::pen_sp pen(allocer());
+
          pen->create_solid(1, RGB(0, 0, 0));
          pdc->SelectObject(pen);
          pdc->SelectObject(br);
@@ -53,7 +62,9 @@ namespace user
          pta.add(point(rectPopupArrow.left, rectPopupArrow.bottom));
          pdc->Polygon(pta.get_data(), (int32_t) pta.get_size());
       }
-      _001DrawCheck(pdc);
+
+      _001DrawCheck(pdib);
+
    }
 
 
@@ -81,13 +92,21 @@ namespace user
 
    void menu_button::_001DrawCheck(::draw2d::dib * pdib)
    {
+      
       UINT uiImage = 0xffffffffu;
+
       if(m_pitem != NULL)
       {
+
          uiImage = BaseMenuCentral::GetMenuCentral(get_app())->CommandToImage(m_pitem->m_id);
+
       }
+
       if(uiImage != 0xffffffffu)
       {
+
+         ::draw2d::graphics * pdc = pdib->get_graphics();
+
          rect rectImage = m_rectCheckBox;
          rect rectImageBorder = rectImage;
          rectImageBorder.inflate(2, 2);
@@ -108,6 +127,8 @@ namespace user
          rectImage.right   = rectImage.left + rectImageInfo.width();
          if(m_echeck == check::checked)
          {
+
+            
             pdc->FillSolidRect(rectImageBorder, RGB(127, 127, 127));
             pdc->Draw3dRect(rectImageBorder, Session.get_default_color(COLOR_3DSHADOW), Session.get_default_color(COLOR_3DHILIGHT));
          }
@@ -119,8 +140,11 @@ namespace user
       }
       else
       {
-         ::userex::GetUfeSchema(get_app())->DrawCheck(m_echeck, m_rectCheckBox, pdc);
+
+         ::userex::GetUfeSchema(get_app())->DrawCheck(m_echeck, m_rectCheckBox, pdib);
+
       }
+
    }
 
 

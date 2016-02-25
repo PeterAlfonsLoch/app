@@ -1136,6 +1136,9 @@ void simple_frame_window::InitialFramePosition(bool bForceRestore)
 
 void simple_frame_window::_001OnDeferPaintLayeredWindowBackground(::draw2d::dib * pdib)
 {
+
+   ::draw2d::graphics * pdc = pdib->get_graphics();
+
    if (Session.savings().is_trying_to_save(::aura::resource_processing)
       || Session.savings().is_trying_to_save(::aura::resource_translucent_background))
    {
@@ -1146,17 +1149,19 @@ void simple_frame_window::_001OnDeferPaintLayeredWindowBackground(::draw2d::dib 
    else
    {
 
-      ::user::frame_window::_001OnDeferPaintLayeredWindowBackground(pdc);
+      ::user::frame_window::_001OnDeferPaintLayeredWindowBackground(pdib);
    }
+
 }
 
-void simple_frame_window::_000OnDraw(::draw2d::graphics * pdcParam)
+
+void simple_frame_window::_000OnDraw(::draw2d::dib * pdib)
 {
 
    if(!IsWindowVisible())
       return;
 
-   ::draw2d::graphics * pdc = pdcParam;
+   ::draw2d::graphics * pdc = pdib->get_graphics();
 
    rect rectClient;
 
@@ -1184,7 +1189,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics * pdcParam)
 
       pdc = m_dibAlpha->get_graphics();
 
-      pdc->SetViewportOrg(pdcParam->GetViewportOrg());
+      pdc->SetViewportOrg(pdc->GetViewportOrg());
 
       bDib = true;
 
@@ -1195,15 +1200,15 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics * pdcParam)
 
       pdc->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-      if(m_puserschema != NULL && m_puserschema->_001OnDrawMainFrameBackground(pdc,this))
+      if(m_puserschema != NULL && m_puserschema->_001OnDrawMainFrameBackground(pdib,this))
       {
-         _001DrawThis(pdc);
-         _001DrawChildren(pdc);
+         _001DrawThis(pdib);
+         _001DrawChildren(pdib);
       }
       else if (m_bblur_Background)
       {
-         _001DrawThis(pdc);
-         _001DrawChildren(pdc);
+         _001DrawThis(pdib);
+         _001DrawChildren(pdib);
       }
       else if(!Session.savings().is_trying_to_save(::aura::resource_processing)
          && !Session.savings().is_trying_to_save(::aura::resource_display_bandwidth)
@@ -1215,7 +1220,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics * pdcParam)
          pdc->FillSolidRect(60, 10, 50, 50, ARGB(128, 184, 177, 84));
    #endif
 
-         _010OnDraw(pdc);
+         _010OnDraw(pdib);
    #if TEST
 
          pdc->FillSolidRect(10, 60, 50, 50, ARGB(128, 255, 248, 84));
@@ -1228,8 +1233,8 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics * pdcParam)
          pdc->FillSolidRect(60, 10, 50, 50, ARGB(128, 184, 177, 84));
    #endif
 
-         _001DrawThis(pdc);
-         _001DrawChildren(pdc);
+         _001DrawThis(pdib);
+         _001DrawChildren(pdib);
    #if TEST
 
          pdc->FillSolidRect(10, 60, 50, 50, ARGB(128, 184, 177, 84));
@@ -1241,7 +1246,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics * pdcParam)
    if(bDib)
    {
 
-      pdcParam->alpha_blend(null_point(),rectClient.size(),pdc,null_point(),dAlpha);
+      pdc->alpha_blend(null_point(),rectClient.size(),pdc,null_point(),dAlpha);
 
    }
 
@@ -1266,7 +1271,7 @@ void simple_frame_window::_001OnDraw(::draw2d::dib * pdib)
       else if(Session.savings().is_trying_to_save(::aura::resource_processing)
          || Session.savings().is_trying_to_save(::aura::resource_blur_background))
       {
-         imaging.color_blend(pdc,rectClient,RGB(150,180,140),150);
+         imaging.color_blend(pdib->get_graphics(),rectClient,RGB(150,180,140),150);
       }
       else
       {
@@ -1282,7 +1287,7 @@ void simple_frame_window::_001OnDraw(::draw2d::dib * pdib)
          }
          if(m_fastblur.is_set() && m_fastblur->area() > 0)
          {
-            m_fastblur->get_graphics()->BitBlt(0,0,rectClient.width(),rectClient.height(),pdc,0,0,SRCCOPY);
+            m_fastblur->get_graphics()->BitBlt(0,0,rectClient.width(),rectClient.height(),pdib->get_graphics(),0,0,SRCCOPY);
             m_fastblur.blur();
             imaging.bitmap_blend(
                m_fastblur->get_graphics(),
@@ -1291,7 +1296,7 @@ void simple_frame_window::_001OnDraw(::draw2d::dib * pdib)
                m_dibBk->get_graphics(),
                null_point(),
                49);
-            pdc->from(rectClient.size(),
+            pdib->get_graphics()->from(rectClient.size(),
                m_fastblur->get_graphics(),
                null_point(),
                SRCCOPY);
@@ -1300,7 +1305,7 @@ void simple_frame_window::_001OnDraw(::draw2d::dib * pdib)
       }
    }
 
-   _011OnDraw(pdc);
+   _011OnDraw(pdib);
 
 
 }
@@ -1931,7 +1936,7 @@ void simple_frame_window::_010OnDraw(::draw2d::dib * pdib)
          if (pui->IsWindowVisible() && !base_class < ::user::wndfrm::frame::control_box > ::bases(pui))
          {
 
-            pui->_000OnDraw(pdc);
+            pui->_000OnDraw(pdib);
 
          }
 
@@ -1939,7 +1944,7 @@ void simple_frame_window::_010OnDraw(::draw2d::dib * pdib)
 
       }
 
-      _001DrawThis(pdc);
+      _001DrawThis(pdib);
 
       pui = bottom_child();
 
@@ -1959,7 +1964,7 @@ void simple_frame_window::_010OnDraw(::draw2d::dib * pdib)
                {
                   //TRACE0("x button visible");
                }
-               pui->_000OnDraw(pdc);
+               pui->_000OnDraw(pdib);
             }
 
          }
@@ -1969,9 +1974,9 @@ void simple_frame_window::_010OnDraw(::draw2d::dib * pdib)
    else
    {
 
-      _001DrawThis(pdc);
+      _001DrawThis(pdib);
 
-      _001DrawChildren(pdc);
+      _001DrawChildren(pdib);
 
    }
 
@@ -1984,7 +1989,7 @@ void simple_frame_window::_011OnDraw(::draw2d::dib * pdib)
    if ((m_bWindowFrame || _001IsTranslucent()) && !Session.savings().is_trying_to_save(::aura::resource_display_bandwidth))
    {
 
-      ::user::wndfrm::frame::WorkSetClientInterface::_001OnDraw(pdc);
+      ::user::wndfrm::frame::WorkSetClientInterface::_001OnDraw(pdib);
 
    }
    else
@@ -1994,7 +1999,7 @@ void simple_frame_window::_011OnDraw(::draw2d::dib * pdib)
 
       GetClientRect(rect);
 
-      pdc->FillSolidRect(rect, _001GetColor(::user::color_background));
+      pdib->get_graphics()->FillSolidRect(rect, _001GetColor(::user::color_background));
 
    }
 

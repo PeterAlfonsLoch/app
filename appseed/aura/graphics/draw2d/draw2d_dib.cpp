@@ -288,10 +288,21 @@ namespace draw2d
    bool dib::from(point ptDst, ::draw2d::dib * pdibSrc, point ptSrc, class size size)
    {
 
-      if ((!m_bMapped && !pdibSrc->m_bMapped) || 
-         (!(m_bMapped && pdibSrc->m_bMapped)
-            && ((m_bMapped && !get_graphics()->prefer_mapped_dib_on_mix())
-            || (pdibSrc->m_bMapped && !pdibSrc->get_graphics()->prefer_mapped_dib_on_mix())))
+      dib * pdibDst = this;
+
+      if (
+         (!pdibDst->m_bMapped && !pdibSrc->m_bMapped)
+         ||
+         (
+            !(pdibDst->m_bMapped && pdibSrc->m_bMapped)
+            &&
+            (
+               (pdibDst->m_bMapped && !pdibDst->get_graphics()->prefer_mapped_dib_on_mix())
+               ||
+               (pdibSrc->m_bMapped && !pdibSrc->get_graphics()->prefer_mapped_dib_on_mix())
+               )
+            )
+         )
       {
 
          get_graphics()->set_alpha_mode(m_ealphamode);
@@ -299,8 +310,6 @@ namespace draw2d
          return get_graphics()->BitBlt(ptDst, size, pdibSrc->get_graphics(), ptSrc, SRCCOPY);
 
       }
-
-      dib * pdibDst = this;
 
       pdibDst->map();
 

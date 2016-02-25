@@ -163,7 +163,7 @@ namespace user
    void tree::_001OnDraw(::draw2d::dib * pdib)
    {
 
-      ::user::interaction::_001OnDraw(pdc);
+      ::user::interaction::_001OnDraw(pdib);
 
       rect rectClient;
 
@@ -228,6 +228,8 @@ namespace user
       //      point ptOriginalViewportOrg = pdc->GetViewportOrg();
       //
       //      rect rectClientOffset = rectClient;
+
+      ::draw2d::graphics * pdc = pdib->get_graphics();
 
       point ptOffset = get_viewport_offset();
 

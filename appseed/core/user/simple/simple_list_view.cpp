@@ -26,11 +26,16 @@ void simple_list_view::install_message_handling(::message::dispatch * pinterface
 /////////////////////////////////////////////////////////////////////////////
 // simple_list_view drawing
 
+
 void simple_list_view::OnDraw(::draw2d::dib * pdib)
 {
-   UNREFERENCED_PARAMETER(pgraphics);
+   
+   UNREFERENCED_PARAMETER(pdib);
+   
    ASSERT(FALSE);
+
 }
+
 
 void simple_list_view::assert_valid() const
 {

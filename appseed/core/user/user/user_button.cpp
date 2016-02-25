@@ -67,23 +67,25 @@ namespace user
       if(m_estyle == style_push)
       {
 
-         _001OnDrawPush(pdc);
+         _001OnDrawPush(pdib);
 
       }
       else if(m_estyle == style_list)
       {
 
-         _001OnDrawList(pdc);
+         _001OnDrawList(pdib);
 
       }
       else if(m_estyle == style_bitmap)
       {
 
-         _001OnDrawBitmap(pdc);
+         _001OnDrawBitmap(pdib);
 
       }
       else
       {
+
+         ::draw2d::graphics * pdc = pdib->get_graphics();
 
          string strText(m_strWindowText);
 
@@ -578,6 +580,7 @@ namespace user
       if(m_pschema == NULL)
          return;
 
+      ::draw2d::graphics * pdc = pdib->get_graphics();
 
       rect rectClient;
 
@@ -730,7 +733,7 @@ namespace user
 
 
 
-   void button::_001OnDrawBitmap(::draw2d::dib * pdib)
+   void button::_001OnDrawBitmap(::draw2d::dib * pdibParam)
    {
 
       if(!(m_pbitmap->m_dib.is_set() && m_pbitmap->m_dib->area() > 0))
@@ -750,13 +753,15 @@ namespace user
       else if(!is_window_enabled() && m_pbitmap->m_dibDisabled.is_set() && m_pbitmap->m_dibDisabled->area() > 0)
          pdib = m_pbitmap->m_dibDisabled;   // last image for disabled
 
-      pdc->from(pdib->m_size, pdib->get_graphics(), SRCCOPY);
+      pdibParam->get_graphics()->from(pdib->m_size, pdib->get_graphics(), SRCCOPY);
 
    }
 
 
    void button::_001OnDrawPush(::draw2d::dib * pdib)
    {
+
+      ::draw2d::graphics * pdc = pdib->get_graphics();
 
       //   int32_t iOriginalBkMode = pdc->GetBkMode();
       //   pdc->SetBkMode(TRANSPARENT);
@@ -1061,6 +1066,8 @@ namespace user
       rect rectClient;
       bool bItemHover;
       bool bSubItemHover;
+
+      ::draw2d::graphics * pdc = pdib->get_graphics();
 
       ::aura::draw_context * pdrawcontext = pdc->::core::simple_chain < ::aura::draw_context >::get_last();
 

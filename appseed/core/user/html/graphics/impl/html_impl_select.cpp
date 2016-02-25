@@ -142,10 +142,11 @@ namespace html
          rect rectWindow;
          m_pcombo->GetWindowRect(rectWindow);
          m_pcombo->ScreenToClient(rectWindow);
-         ::point ptPreviousViewportOrg = pdata->m_pdc->GetViewportOrg();
-         pdata->m_pdc->SetViewportOrg(rectWindow.top_left());
-         m_pcombo->_000OnDraw(pdata->m_pdc);
-         pdata->m_pdc->SetViewportOrg(ptPreviousViewportOrg);
+         ::draw2d::graphics * pdc = pdata->m_pdib->get_graphics();
+         ::point ptPreviousViewportOrg = pdc->GetViewportOrg();
+         pdc->SetViewportOrg(rectWindow.top_left());
+         m_pcombo->_000OnDraw(pdata->m_pdib);
+         pdc->SetViewportOrg(ptPreviousViewportOrg);
       }
 
       void select::on_change_layout(data * pdata)

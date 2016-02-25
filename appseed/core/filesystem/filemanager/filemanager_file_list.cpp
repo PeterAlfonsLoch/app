@@ -1544,11 +1544,13 @@ namespace filemanager
       if (m_iAnimate <= 0)
       {
 
-         ::user::form_list::_001OnDraw(pdc);
+         ::user::form_list::_001OnDraw(pdib);
 
       }
       else
       {
+
+         ::draw2d::graphics * pdc = pdib->get_graphics();
 
          // Animation Drawing
          rect rectClipBox;

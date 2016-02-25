@@ -58,7 +58,7 @@ bool simple_child_frame::_001OnCmdMsg(::aura::cmd_msg * pcmdmsg)
 void simple_child_frame::_001OnDraw(::draw2d::dib * pdib)
 {
 
-   UNREFERENCED_PARAMETER(pgraphics);
+   UNREFERENCED_PARAMETER(pdib);
 
 
 }

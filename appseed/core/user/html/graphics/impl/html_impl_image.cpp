@@ -12,14 +12,16 @@ namespace html
       void image::_001OnDraw(data * pdata)
       {
 
+         ::draw2d::graphics * pdc = pdata->m_pdib->get_graphics();
+
          if (m_pelemental->m_pbase->get_type() == ::html::base::type_tag)
          {
 
-            pdata->m_pdc->set_alpha_mode(::draw2d::alpha_mode_blend);
+            pdc->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-            pdata->m_imagea[m_iImage]->m_spdib->defer_realize(pdata->m_pdc);
+            pdata->m_imagea[m_iImage]->m_spdib->defer_realize(pdc);
 
-            pdata->m_pdc->BitBlt((int32_t)get_x(), (int32_t)get_y(), (int32_t)get_cx(), (int32_t)get_cy(),
+            pdc->BitBlt((int32_t)get_x(), (int32_t)get_y(), (int32_t)get_cx(), (int32_t)get_cy(),
                pdata->m_imagea[m_iImage]->m_spdib->get_graphics(), 0, 0, SRCCOPY);
 
          }

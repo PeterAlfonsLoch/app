@@ -47,7 +47,7 @@ void html_form::_001OnDraw(::draw2d::dib * pdib)
    if(sphtmldata.is_set())
    {
 
-      sphtmldata->_001OnDraw(pdc);
+      sphtmldata->_001OnDraw(pdib);
 
    }
 
@@ -67,7 +67,7 @@ void html_form::_001DrawChildren(::draw2d::dib * pdib)
       {
          if(pui->m_bVisible && (get_html_data() == NULL || !get_html_data()->contains(pui)))
          {
-            pui->_000OnDraw(pdc);
+            pui->_000OnDraw(pdib);
          }
          pui = pui->above_sibling();
       }
@@ -96,9 +96,10 @@ void html_form::_001OnImageLoaded(signal_details * pobj)
 
          synch_lock lock(get_html_data()->m_pmutex);
 
-         ::draw2d::memory_graphics pdc(allocer());
+         ::draw2d::dib_sp pdib(allocer());
+         pdib->create(50, 50);
          get_html_data()->delete_implementation();
-         get_html_data()->layout(pdc);
+         get_html_data()->layout(pdib);
 
          RedrawWindow();
       }
@@ -423,11 +424,13 @@ void html_form::defer_implement()
    if(get_html_data()->m_box.area() <= 0.f)
       return;
 
-   ::draw2d::memory_graphics pdc(allocer());
+   ::draw2d::dib_sp pdib(allocer());
+
+   pdib->create(50, 50);
 
    get_html_data()->m_pui = this;
    get_html_data()->m_pform = this;
-   get_html_data()->implement(pdc);
+   get_html_data()->implement(pdib);
 
 
 }
@@ -444,11 +447,13 @@ void html_form::defer_layout()
    if(get_html_data()->m_box.area() <= 0.f)
       return;
 
-   ::draw2d::memory_graphics pdc(allocer());
+   ::draw2d::dib_sp pdib(allocer());
+
+   pdib->create(50, 50);
 
    get_html_data()->m_pui = this;
    get_html_data()->m_pform = this;
-   get_html_data()->layout(pdc);
+   get_html_data()->layout(pdib);
 
    RedrawWindow();
 

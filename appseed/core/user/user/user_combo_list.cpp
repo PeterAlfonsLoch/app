@@ -61,13 +61,13 @@ namespace user
       if(m_pcombo->m_estyle == ::user::combo_box::style_simply)
       {
 
-         _002OnDrawSimply(pdc);
+         _002OnDrawSimply(pdib);
 
       }
       else
       {
 
-         _002OnDrawVerisimple(pdc);
+         _002OnDrawVerisimple(pdib);
 
       }
 
@@ -75,6 +75,8 @@ namespace user
 
    void combo_list::_001OnDrawVerisimple(::draw2d::dib * pdib)
    {
+
+      ::draw2d::graphics * pdc = pdib->get_graphics();
 
       ::count ca = m_pcombo->_001GetListCount();
 
@@ -174,6 +176,8 @@ namespace user
 
    void combo_list::_001OnDrawSimply(::draw2d::dib * pdib)
    {
+      
+      ::draw2d::graphics * pdc = pdib->get_graphics();
 
       ::count ca = m_pcombo->_001GetListCount();
 
@@ -273,6 +277,8 @@ namespace user
 
    void combo_list::_002OnDrawVerisimple(::draw2d::dib * pdib)
    {
+
+      ::draw2d::graphics * pdc = pdib->get_graphics();
 
       ::count ca = m_pcombo->_001GetListCount();
 
@@ -375,6 +381,8 @@ namespace user
 
    void combo_list::_002OnDrawSimply(::draw2d::dib * pdib)
    {
+
+      ::draw2d::graphics * pdc = pdib->get_graphics();
 
       ::count ca = m_pcombo->_001GetListCount();
 

@@ -113,6 +113,8 @@ namespace user
    void static_control::_001OnDraw(::draw2d::dib * pdib)
    {
 
+      ::draw2d::graphics * pdc = pdib->get_graphics();
+
       COLORREF crText = ARGB(255, 0, 0, 0);
 
       if(m_bHover)

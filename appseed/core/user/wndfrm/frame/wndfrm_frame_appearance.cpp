@@ -365,6 +365,8 @@ namespace user
          void appearance::CTool001::draw(::draw2d::dib * pdib)
          {
 
+            ::draw2d::graphics * pdc = pdib->get_graphics();
+
             pdc->SelectObject(m_brushBody);
 
             ::draw2d::pen_sp pen(allocer());

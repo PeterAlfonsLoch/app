@@ -346,7 +346,8 @@ namespace user
 #endif
       }*/
 
-      ::user::interaction::_001OnDraw(pdc);
+      ::user::interaction::_001OnDraw(pdib);
+
    }
 
 

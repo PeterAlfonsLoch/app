@@ -57,7 +57,7 @@ namespace user
       front_end_schema(::aura::application * papp);
       ~front_end_schema();
 
-      virtual void DrawCheck(check::e_check echeck, const RECT & rect, ::draw2d::graphics * pdc);
+      virtual void DrawCheck(check::e_check echeck, const RECT & rect, ::draw2d::dib * pdib);
 
       
 

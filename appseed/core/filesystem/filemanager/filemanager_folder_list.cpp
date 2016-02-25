@@ -45,7 +45,7 @@ namespace filemanager
    void folder_list::OnDraw(::draw2d::dib * pdib)
    {
       
-      UNREFERENCED_PARAMETER(pgraphics);
+      UNREFERENCED_PARAMETER(pdib);
       
    }
 

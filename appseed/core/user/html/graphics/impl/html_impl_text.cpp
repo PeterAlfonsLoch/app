@@ -75,7 +75,7 @@ namespace html
          if (pelemental->m_elementalptra.get_size() > 0 || pelemental->m_strBody.is_empty())
             return;
 
-         ::draw2d::graphics * pdc = pdata->m_pdc;
+         ::draw2d::graphics * pdc = pdata->m_pdib->get_graphics();
 
          if(pdc == NULL)
             return;
@@ -122,7 +122,7 @@ namespace html
 
 //         e_tag etag = m_pelemental->m_etag;
 
-         ::draw2d::graphics * pdc = pdata->m_pdc;
+         ::draw2d::graphics * pdc = pdata->m_pdib->get_graphics();
 
          if (pdc == NULL)
             return;
@@ -272,7 +272,7 @@ namespace html
          if (etag == tag_br)
          {
 
-            ::draw2d::graphics * pdc = pdata->m_pdc;
+            ::draw2d::graphics * pdc = pdata->m_pdib->get_graphics();
 
             if (pdc == NULL)
                return;
@@ -309,7 +309,7 @@ namespace html
           || etag == tag_tr)
             return;
 
-         ::draw2d::graphics * pdc = pdata->m_pdc;
+         ::draw2d::graphics * pdc = pdata->m_pdib->get_graphics();
 
          if (pdc == NULL)
             return;
@@ -530,6 +530,8 @@ namespace html
 //            return;
 //         }
 
+         ::draw2d::graphics * pdc = pdata->m_pdib->get_graphics();
+
          COLORREF crBkSel = RGB(120, 240, 150);
 
          COLORREF crSel = RGB(10, 30, 20);
@@ -556,7 +558,7 @@ namespace html
 
             }
 
-            pdata->m_pdc->set_alpha_mode(::draw2d::alpha_mode_blend);
+            pdc->set_alpha_mode(::draw2d::alpha_mode_blend);
 
             COLORREF cr = 0;
 
@@ -567,7 +569,7 @@ namespace html
                if(m_bHover && m_pelemental->m_style.get_color("background-color", "hover", pdata, m_pelemental, cr))
                {
                   Sys(pdata->get_app()).visual().imaging().color_blend(
-                     pdata->m_pdc,
+                     pdc,
                      rect,
                      cr,
                      MAX(0, MIN(255, (BYTE)(d * 255))));
@@ -575,7 +577,7 @@ namespace html
                else if(has_link() && m_pelemental->m_style.get_color("background-color", "link", pdata, m_pelemental, cr))
                {
                   Sys(pdata->get_app()).visual().imaging().color_blend(
-                     pdata->m_pdc,
+                     pdc,
                      rect,
                      cr,
                      MAX(0, MIN(255, (BYTE)(d * 255))));
@@ -583,7 +585,7 @@ namespace html
                else if (m_pelemental->m_style.get_color("background-color", "", pdata, m_pelemental, cr))
                {
                   Sys(pdata->get_app()).visual().imaging().color_blend(
-                     pdata->m_pdc,
+                     pdc,
                      rect,
                      cr,
                      MAX(0, MIN(255, (BYTE)(d * 255))));
@@ -593,21 +595,21 @@ namespace html
             {
                if(m_bHover && m_pelemental->m_style.get_color("background-color", "hover", pdata, m_pelemental, cr))
                {
-                  pdata->m_pdc->FillSolidRect(rect, cr);
+                  pdc->FillSolidRect(rect, cr);
                }
                else if(has_link() && m_pelemental->m_style.get_color("background-color", "link", pdata, m_pelemental, cr))
                {
-                  pdata->m_pdc->FillSolidRect(rect, cr);
+                  pdc->FillSolidRect(rect, cr);
                }
                else if (m_pelemental->m_style.get_color("background-color", "", pdata, m_pelemental, cr))
                {
-                  pdata->m_pdc->FillSolidRect(rect, cr);
+                  pdc->FillSolidRect(rect, cr);
                }
             }
          }
          if(m_pelemental->m_elementalptra.get_size() > 0 || m_pelemental->m_strBody.is_empty())
             return;
-         ::draw2d::graphics * pdc = pdata->m_pdc;
+//       ::draw2d::graphics * pdc = pdc;
          ::html::impl::elemental::_001OnDraw(pdata);
 
 
@@ -1005,7 +1007,7 @@ namespace html
       void text::_001OnDraw(::draw2d::dib * pdib)
       {
 
-         UNREFERENCED_PARAMETER(pgraphics);
+         UNREFERENCED_PARAMETER(pdib);
 
       }
 

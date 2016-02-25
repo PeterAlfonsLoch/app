@@ -86,19 +86,19 @@ namespace html
       class CLASS_DECL_CORE layout_state3
       {
       public:
-         int32_t                       m_iBody;
+         int32_t           m_iBody;
          float_array       m_yParent;
-         float                         m_y;
+         float             m_y;
 //         float_array       m_cyStack;
          float_array       m_xParent;
          float_array       m_cya;
   //       int                           m_iy;
-         float                         m_x;
-         float                         m_cx;
+         float             m_x;
+         float             m_cx;
          //         bool     m_bLastBlockX;
          //         bool     m_bLastCellX;
-         bool     m_bLastBlock;
-         bool     m_bLastCell;
+         bool              m_bLastBlock;
+         bool              m_bLastCell;
          //bool     m_bHasChar;
 
 
@@ -111,55 +111,53 @@ namespace html
 
       };
 
-      ::user::form_callback *    m_pcallback;
-      sp(::user::interaction)      m_pui;
-      ::draw2d::graphics *           m_pdc;
-      box                        m_box;
-      string                     m_strTitle;
-      layout_state1               m_layoutstate1;
-      layout_state2               m_layoutstate2;
-      layout_state3               m_layoutstate3;
+      ::user::form_callback *       m_pcallback;
+      sp(::user::interaction)       m_pui;
+      ::draw2d::dib *               m_pdib;
+      box                           m_box;
+      string                        m_strTitle;
+      layout_state1                 m_layoutstate1;
+      layout_state2                 m_layoutstate2;
+      layout_state3                 m_layoutstate3;
 
-      ptr_array < impl::table >  m_tableptra;
+      ptr_array < impl::table >     m_tableptra;
 
-      smart_pointer_array < image>
-                                 m_imagea;
+      smart_pointer_array < image>  m_imagea;
 
-      smart_pointer_array < font >
-                                 m_fonta;
+      smart_pointer_array < font >  m_fonta;
 
-      ::user::interaction_ptra   m_focusptra;
+      ::user::interaction_ptra      m_focusptra;
 
-      style_sheet_array          m_stylesheeta;
-      ::file::path               m_strPathName;
-      user::interaction_spa           m_uiptra;
-      tag *                      m_ptag;
-      elemental                  m_elemental;
-      bool                       m_bImplemented;
+      style_sheet_array             m_stylesheeta;
+      ::file::path                  m_strPathName;
+      user::interaction_spa         m_uiptra;
+      tag *                         m_ptag;
+      elemental                     m_elemental;
+      bool                          m_bImplemented;
 
 
-      bool                       m_bImplement;
-      bool                       m_bLayout;
+      bool                          m_bImplement;
+      bool                          m_bLayout;
 
 
-      http::cookies *            m_pcookies;
-      ::fontopus::user *         m_puser;
-      string                     m_strUser;
-      string                     m_strPassword;
-      string                     m_strLicense;
+      http::cookies *               m_pcookies;
+      ::fontopus::user *            m_puser;
+      string                        m_strUser;
+      string                        m_strPassword;
+      string                        m_strLicense;
 
-      property_set          m_propertyset;
-      property_set          m_propset;
-      string                     m_strSource;
+      property_set                  m_propertyset;
+      property_set                  m_propset;
+      string                        m_strSource;
 
-      sp(::html_form)              m_pform;
-      bool                       m_bEdit;
-      elemental *                m_pElementalSelStart;
-      elemental *                m_pElementalSelEnd;
+      sp(::html_form)               m_pform;
+      bool                          m_bEdit;
+      elemental *                   m_pElementalSelStart;
+      elemental *                   m_pElementalSelEnd;
 
-      bool                       m_bHasChar;
+      bool                          m_bHasChar;
 
-      bool                       m_bDrawFirstBody;
+      bool                          m_bDrawFirstBody;
 
 
 

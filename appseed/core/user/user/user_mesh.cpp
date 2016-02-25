@@ -130,6 +130,8 @@ namespace user
    void mesh::_001OnDraw(::draw2d::dib * pdib)
    {
 
+      ::draw2d::graphics * pdc = pdib->get_graphics();
+
       //single_lock sl(&m_mutex,true);
 
       m_penFocused->create_solid(2,ARGB(255,0,255,255));
@@ -141,9 +143,9 @@ namespace user
       if(m_bLockViewUpdate)
          return;
 
-      ::user::control::_001OnDraw(pdc);
+      ::user::control::_001OnDraw(pdib);
 
-      draw_framing(pdc);
+      draw_framing(pdib);
 
       rect rectClient;
 
@@ -4947,9 +4949,12 @@ namespace user
       _001SetColumnWidth(iColumn,_001CalcColumnWidth(iColumn));
    }
 
+   
    void mesh::_OnDraw(::draw2d::dib * pdib)
    {
-      UNREFERENCED_PARAMETER(pdc);
+      
+      UNREFERENCED_PARAMETER(pdib);
+
    }
 
 

@@ -62,13 +62,13 @@ namespace user
          }
 
 
-
-         void frame::_001OnDraw(::draw2d::graphics * pca)
+         void frame::_001OnDraw(::draw2d::dib * pdib)
          {
 
-            UNREFERENCED_PARAMETER(pca);
+            UNREFERENCED_PARAMETER(pdib);
 
          }
+
 
          void frame::OnAttach()
          {

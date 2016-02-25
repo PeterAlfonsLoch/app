@@ -123,12 +123,15 @@ namespace html
 
       void input_checkbox::_001OnDraw(data * pdata)
       {
+
+         ::draw2d::graphics * pdc = pdata->m_pdib->get_graphics();
+
          //rect rectWindow;
          //m_pcheckbox->GetWindowRect(rectWindow);
-         ::point ptPreviousViewportOrg = pdata->m_pdc->GetViewportOrg();
-         pdata->m_pdc->OffsetViewportOrg((int32_t) m_box.left, (int32_t) m_box.top);
-         m_pcheckbox->_000OnDraw(pdata->m_pdc);
-         pdata->m_pdc->SetViewportOrg(ptPreviousViewportOrg);
+         ::point ptPreviousViewportOrg = pdc->GetViewportOrg();
+         pdc->OffsetViewportOrg((int32_t) m_box.left, (int32_t) m_box.top);
+         m_pcheckbox->_000OnDraw(pdata->m_pdib);
+         pdc->SetViewportOrg(ptPreviousViewportOrg);
       }
 
       void input_checkbox::on_change_layout(data * pdata)

@@ -24,11 +24,13 @@ void simple_static::_001OnDraw(::draw2d::dib * pdib)
       ::visual::icon * picon = get_icon();
       if(picon != NULL)
       {
-         pdc->DrawIcon(null_point(), picon);
+         pdib->get_graphics()->DrawIcon(null_point(), picon);
       }
    }
    else if(get_type() == type_text)
    {
+
+      ::draw2d::graphics * pdc = pdib->get_graphics();
 
       select_font(pdc);
 

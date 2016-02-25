@@ -99,6 +99,8 @@ namespace user
 
       //single_lock sl(&m_mutex, true);
 
+      ::draw2d::graphics * pdc = pdib->get_graphics();
+
       m_penFocused->create_solid(2, ARGB(255, 0, 255, 255));
 
       m_penHighlight->create_solid(2, ARGB(255, 0, 255, 255));
@@ -108,7 +110,7 @@ namespace user
       if(m_bLockViewUpdate)
          return;
 
-      ::user::interaction::_001OnDraw(pdc);
+      ::user::interaction::_001OnDraw(pdib);
 
       rect rectClient;
 
@@ -5047,10 +5049,14 @@ namespace user
       _001SetColumnWidth(iColumn, _001CalcColumnWidth(iColumn));
    }
 
+   
    void list::_OnDraw(::draw2d::dib * pdib)
    {
-      UNREFERENCED_PARAMETER(pdc);
+      
+      UNREFERENCED_PARAMETER(pdib);
+
    }
+
 
    int32_t list::get_wheel_scroll_delta()
    {
@@ -5901,7 +5907,7 @@ namespace user
    void list::_001OnClip(::draw2d::dib * pdib)
    {
 
-      mesh::_001OnClip(pgraphics);
+      mesh::_001OnClip(pdib);
 
       if(m_bHeaderCtrl && m_plistheader != NULL)
       {
@@ -5921,7 +5927,7 @@ namespace user
 
             rgnClip->create_rect(rectClient);
 
-            pgraphics->SelectClipRgn(rgnClip,RGN_DIFF);
+            pdib->get_graphics()->SelectClipRgn(rgnClip,RGN_DIFF);
 
          }
          catch(...)

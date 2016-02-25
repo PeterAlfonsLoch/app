@@ -528,6 +528,8 @@ namespace user
    void list_header::_001OnDraw(::draw2d::dib * pdib)
    {
 
+      ::draw2d::graphics * pdc = pdib->get_graphics();
+
       rect rectClient;
 
       GetClientRect(rectClient);

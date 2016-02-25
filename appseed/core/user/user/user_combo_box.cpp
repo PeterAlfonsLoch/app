@@ -66,6 +66,8 @@ namespace user
    void combo_box::_001OnDrawStaticText(::draw2d::dib * pdib)
    {
 
+      ::draw2d::graphics * pdc = pdib->get_graphics();
+
       string strText;
 
       _001GetText(strText);
@@ -100,18 +102,20 @@ namespace user
    void combo_box::_001OnDrawVerisimple(::draw2d::dib * pdib)
    {
 
+      ::draw2d::graphics * pdc = pdib->get_graphics();
+
       pdc->set_alpha_mode(::draw2d::alpha_mode_blend);
 
       if(m_bEdit)
       {
 
-         ::user::plain_edit::_001OnDraw(pdc);
+         ::user::plain_edit::_001OnDraw(pdib);
 
       }
       else
       {
 
-         _001OnDrawStaticText(pdc);
+         _001OnDrawStaticText(pdib);
 
       }
 
@@ -177,13 +181,13 @@ namespace user
       if(m_bEdit)
       {
 
-         ::user::plain_edit::_001OnDraw(pdc);
+         ::user::plain_edit::_001OnDraw(pdib);
 
       }
       else
       {
 
-         pdc->set_alpha_mode(::draw2d::alpha_mode_blend);
+         pdib->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_blend);
 
          //if(m_bDropDownHover)
          //{
@@ -214,10 +218,11 @@ namespace user
 
          //pdc->Draw3dRect(rectClient, crBorder, crBorder);
 
-         _001OnDrawStaticText(pdc);
+         _001OnDrawStaticText(pdib);
 
       }
 
+      ::draw2d::graphics * pdc = pdib->get_graphics();
 
       pdc->set_alpha_mode(::draw2d::alpha_mode_blend);
 
@@ -330,20 +335,20 @@ namespace user
    void combo_box::_001OnDraw(::draw2d::dib * pdib)
    {
 
-      ::user::control::_001OnDraw(pdc);
+      ::user::control::_001OnDraw(pdib);
 
 
       //if(m_estyle == style_simply)
       if(m_plist == NULL)
       {
 
-         _001OnDrawSimply(pdc);
+         _001OnDrawSimply(pdib);
 
       }
       else
       {
 
-         _001OnDrawVerisimple(pdc);
+         _001OnDrawVerisimple(pdib);
 
       }
 

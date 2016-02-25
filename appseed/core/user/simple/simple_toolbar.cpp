@@ -215,7 +215,9 @@ void simple_toolbar::_001OnDraw(::draw2d::dib * pdib)
    if(m_bDelayedButtonLayout)
       layout();
 
-   ::user::interaction::_001OnDraw(pgraphics);
+   ::user::interaction::_001OnDraw(pdib);
+
+   ::draw2d::graphics * pgraphics = pdib->get_graphics();
 
    pgraphics->SelectObject(System.visual().font_central().GetMenuFont());
 
@@ -259,6 +261,8 @@ void simple_toolbar::SetTransparentBackground(bool bSet)
 
 void simple_toolbar::TransparentEraseNonClient(::draw2d::dib * pdib)
 {
+
+   ::draw2d::graphics * pdc = pdib->get_graphics();
 
    m_dibDraft->get_graphics()->BitBlt(0, 0, 7, 7, pdc, 0, 0, SRCCOPY);
 
@@ -337,7 +341,7 @@ void simple_toolbar::TransparentEraseNonClient(::draw2d::dib * pdib)
    //
 
    // draw borders in non-client area
-   DrawBorders(pdc, rectWindow);
+   DrawBorders(pdib, rectWindow);
    /*   pdc->FillSolidRect(
    rectWindow.left + 7, rectWindow.top,
    rectWindow.right, rectWindow.top + 1,
@@ -348,7 +352,7 @@ void simple_toolbar::TransparentEraseNonClient(::draw2d::dib * pdib)
    //SendMessage(WM_ERASEBKGND, (WPARAM)pdc->get_handle1());
 
    // draw gripper in non-client area
-   DrawGripper(pdc, rectWindow);
+   DrawGripper(pdib, rectWindow);
 
    //pdc->SetViewportOrg(ptViewport);
 }

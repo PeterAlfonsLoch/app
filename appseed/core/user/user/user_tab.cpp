@@ -436,6 +436,8 @@ namespace user
    void tab::_001OnDraw(::draw2d::dib * pdib)
    {
 
+      //::draw2d::graphics * pdc = pdib->get_graphics();
+
       defer_handle_full_screen_show_tabs();
 
       if(m_bNoTabs || !m_bShowTabs)
@@ -450,14 +452,14 @@ namespace user
       if(m_puserschema == NULL)
       {
 
-         _001OnDrawStandard(pdc);
+         _001OnDrawStandard(pdib);
 
          return;
 
       }
 
 
-      m_puserschema->_001TabOnDrawSchema01(pdc,this);
+      m_puserschema->_001TabOnDrawSchema01(pdib,this);
 //      _001OnDrawSchema01(pdc);
 
    }
@@ -465,6 +467,8 @@ namespace user
 
    void tab::_001OnDrawStandard(::draw2d::dib * pdib)
    {
+
+      ::draw2d::graphics * pdc = pdib->get_graphics();
 
       class rect rect;
       class rect rectBorder;
