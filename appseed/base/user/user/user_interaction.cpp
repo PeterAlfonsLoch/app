@@ -142,7 +142,7 @@ namespace user
 
       m_uiptraChild.m_pmutex  = NULL;
 
-      user_interaction_on_destroy();
+      //user_interaction_on_destroy();
 
    }
 

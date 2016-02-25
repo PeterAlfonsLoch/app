@@ -308,9 +308,6 @@
     <ClInclude Include="net\net_net.h">
       <Filter>Header Files\net</Filter>
     </ClInclude>
-    <ClInclude Include="net\net_url_departament.h">
-      <Filter>Header Files\net</Filter>
-    </ClInclude>
     <ClInclude Include="net\http\http_application.h">
       <Filter>Header Files\net\http</Filter>
     </ClInclude>
@@ -974,9 +971,6 @@
     <ClInclude Include="database\sqlitedb\sqlitedb_set.h">
       <Filter>Header Files\database\sqlitedb</Filter>
     </ClInclude>
-    <ClInclude Include="net\net_email_departament.h">
-      <Filter>Header Files\net</Filter>
-    </ClInclude>
     <ClInclude Include="filesystem\filesystem\filesystem_axis_application.h">
       <Filter>Header Files\filesystem\filesystem</Filter>
     </ClInclude>
@@ -1133,12 +1127,15 @@
     <ClInclude Include="html_lite\html\html_html.h">
       <Filter>Header Files\html_lite\html</Filter>
     </ClInclude>
+    <ClInclude Include="net\net_email_department.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="net\net_url_department.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="net\net_net.cpp">
-      <Filter>Source Files\net</Filter>
-    </ClCompile>
-    <ClCompile Include="net\net_url_departament.cpp">
       <Filter>Source Files\net</Filter>
     </ClCompile>
     <ClCompile Include="net\http\http_application.cpp">
@@ -1687,9 +1684,6 @@
     <ClCompile Include="net\sockets\bsd\_bsd.cpp">
       <Filter>Source Files\net\sockets\bsd</Filter>
     </ClCompile>
-    <ClCompile Include="net\net_email_departament.cpp">
-      <Filter>Source Files\net</Filter>
-    </ClCompile>
     <ClCompile Include="net\sockets\_sockets.cpp">
       <Filter>Source Files\net\sockets</Filter>
     </ClCompile>
@@ -1926,6 +1920,12 @@
     </ClCompile>
     <ClCompile Include="html_lite\html\html_html.cpp">
       <Filter>Source Files\html_lite\html</Filter>
+    </ClCompile>
+    <ClCompile Include="net\net_email_department.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="net\net_url_department.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
