@@ -30,6 +30,8 @@ public:
 
 extern bool g_bSuppressTwf;
 
+LARGE_INTEGER g_freq;
+
 namespace windows
 {
 
@@ -39,7 +41,8 @@ namespace windows
       ::user::window_draw(papp),
       ::user::message_queue(papp)
    {
-         m_dwLastRedrawRequest = ::get_tick_count();
+      QueryPerformanceFrequency(&g_freq);
+      m_dwLastRedrawRequest = ::get_tick_count();
          m_bRender = false;
          //         m_pbuffer = new user::buffer(papp);
          //       m_pbuffer->m_spdib.create(papp);
@@ -230,16 +233,16 @@ namespace windows
 
    void window_draw::do_events()
    {
-
+      LARGE_INTEGER startTime;
+      LARGE_INTEGER endTime;
       ::thread::do_events();
       try
       {
          if(m_bProDevianMode)
          {
-            uint32_t ui1 = ::get_tick_count();
+            QueryPerformanceCounter((LARGE_INTEGER *)&startTime);
             _synch_redraw();
-            uint32_t ui2 = ::get_tick_count();
-            m_dwLastDelay = ui2 - ui1;
+            QueryPerformanceCounter((LARGE_INTEGER *)&endTime);
          }
       }
       catch(...)
@@ -274,18 +277,18 @@ namespace windows
          m_bRunning = true;
 
 //         MSG msg;
-         uint32_t ui1;
-         uint32_t ui2;
+         LARGE_INTEGER startTime;
+         LARGE_INTEGER endTime;
+         
          while(m_bRun)
          {
             try
             {
                if(m_bProDevianMode)
                {
-                  ui1 = ::get_tick_count();
+                  QueryPerformanceCounter(&startTime);
                   _synch_redraw();
-                  ui2 = ::get_tick_count();
-                  m_dwLastDelay = ui2 - ui1;
+                  QueryPerformanceCounter(&endTime);
                }
             }
             catch(...)
@@ -318,10 +321,12 @@ namespace windows
                
                UINT uiFrameMillis = 1000 / m_iFramesPerSecond;
 
-               if(uiFrameMillis > m_dwLastDelay)
+               uint64_t micros = (endTime.QuadPart - startTime.QuadPart) * 1000 * 1000 * 1000 / g_freq.QuadPart;
+
+               if(uiFrameMillis > (micros / 1000 + 2))
                {
 
-                  Sleep(uiFrameMillis - m_dwLastDelay);
+                  Sleep(uiFrameMillis - (micros / 1000 + 2));
 
                }
 
