@@ -35,19 +35,19 @@ public:
    ::count remove_by_name(id idName);
    ::count remove_by_name(stringa & straName);
    property & operator[](string strName);
-   property operator[](string strName) const;
+   const property & operator[](string strName) const;
    property & operator[](const char * pszName);
-   property operator[](const char * pszName) const;
+   const property & operator[](const char * pszName) const;
    property & operator[](index iIndex);
-   property operator[](index iIndex) const;
+   const property & operator[](index iIndex) const;
 #ifdef OS64BIT
    inline property & operator[](int32_t iIndex) { return operator []((index) iIndex); }
-   inline property operator[](int32_t iIndex) const { return operator []((index) iIndex); }
+   inline const property & operator[](int32_t iIndex) const { return operator []((index) iIndex); }
 #endif
    property & operator[](const var & var);
-   property operator[](const var & var) const;
+   const property & operator[](const var & var) const;
    property & operator[](id id);
-   property operator[](id id) const;
+   const property & operator[](id id) const;
 
    var lookup(id id) const;
    var lookup(id id, var varDefault) const;
@@ -354,7 +354,7 @@ inline property * property_set::set(id idName, var var)
 }
 
 
-inline property property_set::operator[] (const char * pszKey) const
+inline const property & property_set::operator[] (const char * pszKey) const
 {
    return operator[](string(pszKey));
 }
@@ -365,9 +365,11 @@ inline property & property_set::operator[] (const char * pszKey)
 }
 
 
-inline property property_set::operator[](id idName) const
+inline const property & property_set::operator[](id idName) const
 {
+
    return const_cast<property_set*>(this)->operator[](idName);
+
 }
 
 inline property & property_set::operator[](index iIndex)
@@ -383,7 +385,7 @@ inline property & property_set::operator[](index iIndex)
 
 }
 
-inline property property_set::operator[](index iIndex) const
+inline const property &  property_set::operator[](index iIndex) const
 {
    return operator[](::id(iIndex));
 }
@@ -393,12 +395,12 @@ inline property & property_set::operator[](const var & var)
    return operator[](string(var));
 }
 
-inline property property_set::operator[](const var & var) const
+inline const property &  property_set::operator[](const var & var) const
 {
    return operator[](string(var));
 }
 
-inline property property_set::operator[](string str) const
+inline const property &  property_set::operator[](string str) const
 {
    return operator[]((id) str);
 }

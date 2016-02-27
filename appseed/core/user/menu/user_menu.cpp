@@ -385,6 +385,7 @@ namespace user
                   send_message(WM_CLOSE);
                   // this may be destroyed by WM_CLOSE above
                   pwndParent->_001SendCommand(id);
+                  pevent->m_bProcessed = true;
                }
             }
          }
