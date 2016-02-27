@@ -9,21 +9,21 @@ extern void _001DeferPaintLayeredWindowBackground(oswindow oswindow,::draw2d::gr
 
 class keep_event_reset
 {
-public:
+   public:
 
 
-   event * m_pevent;
+      event * m_pevent;
 
 
-   keep_event_reset(event * pevent)
-   {
-      m_pevent = pevent;
-      pevent->ResetEvent();
-   }
-   ~keep_event_reset()
-   {
-      m_pevent->SetEvent();
-   }
+      keep_event_reset(event * pevent)
+      {
+         m_pevent = pevent;
+         pevent->ResetEvent();
+      }
+      ~keep_event_reset()
+      {
+         m_pevent->SetEvent();
+      }
 
 
 };
@@ -41,11 +41,11 @@ namespace windows
       ::user::message_queue(papp)
    {
       m_dwLastRedrawRequest = ::get_tick_count();
-         m_bRender = false;
-         //         m_pbuffer = new user::buffer(papp);
-         //       m_pbuffer->m_spdib.create(papp);
-         m_dwLastUpdate = false;
-      }
+      m_bRender = false;
+      //         m_pbuffer = new user::buffer(papp);
+      //       m_pbuffer->m_spdib.create(papp);
+      m_dwLastUpdate = false;
+   }
 
 
    window_draw::~window_draw()
@@ -97,7 +97,7 @@ namespace windows
 
    void window_draw::_synch_redraw()
    {
-      
+
       if(g_bSuppressTwf)
          return;
 
@@ -136,11 +136,11 @@ namespace windows
          DWORD iTimeFrame = 2000;
          DWORD iMaxFailureCount = 3;
          if(s_dwLastAnalysisFrame > iTimeFrame ||
-            dwTakeTime > (iFailureTime * iMaxFailureCount))
+               dwTakeTime > (iFailureTime * iMaxFailureCount))
          {
             s_dwLastAnalysisFrame = 0;
             if(s_iAnalysisFrameFailureCount > iMaxFailureCount
-               || (dwTakeTime > (iFailureTime * iMaxFailureCount)))
+                  || (dwTakeTime > (iFailureTime * iMaxFailureCount)))
             {
                s_iFrameFailureCount++;
             }
@@ -268,7 +268,7 @@ namespace windows
    UINT window_draw::RedrawProc()
    {
 
-      
+
       try
       {
 
@@ -277,7 +277,7 @@ namespace windows
 //         MSG msg;
          uint64_t startTime;
          uint64_t endTime;
-         
+
          while(m_bRun)
          {
             try
@@ -316,7 +316,7 @@ namespace windows
             }
             else
             {
-               
+
                UINT uiFrameMillis = 1000 / m_iFramesPerSecond;
 
                uint64_t micros = (endTime - startTime) / 1000;
@@ -330,7 +330,11 @@ namespace windows
 
                }
 
-               output_debug_string(::str::from(micros) + "\n");
+               char sz[512];
+
+               ::ultoa_dup(sz, micros, 10);
+               ::OutputDebugString(sz);
+               ::OutputDebugString("\n");
 
             }
 

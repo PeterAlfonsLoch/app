@@ -22,7 +22,7 @@ void window_gdi::create_window_graphics(oswindow interaction_impl, int64_t cxPar
 {
 
    //if(cxParam < cx && cyParam < cy)
-     // return;
+   // return;
 
    //cxParam += 100;
    //cyParam += 100;
@@ -39,7 +39,7 @@ void window_gdi::create_window_graphics(oswindow interaction_impl, int64_t cxPar
    m_bitmapinfo.bmiHeader.biWidth         = (LONG) cxParam;
    m_bitmapinfo.bmiHeader.biHeight        = (LONG) -cyParam;
    m_bitmapinfo.bmiHeader.biPlanes        = 1;
-   m_bitmapinfo.bmiHeader.biBitCount      = 32; 
+   m_bitmapinfo.bmiHeader.biBitCount      = 32;
    m_bitmapinfo.bmiHeader.biCompression   = BI_RGB;
    m_bitmapinfo.bmiHeader.biSizeImage     = (LONG) (iStride * cyParam);
 
@@ -57,7 +57,7 @@ void window_gdi::create_window_graphics(oswindow interaction_impl, int64_t cxPar
 
    m_hdcScreen = ::GetDCEx(interaction_impl,NULL,DCX_WINDOW);
 
-   
+
 
    if(m_hdcScreen == NULL)
    {
@@ -125,7 +125,7 @@ void window_gdi::destroy_window_graphics()
 
    }
 
-   m_pcolorref = NULL;
+   //m_pcolorref = NULL;
 
    m_hwnd = NULL;
 
@@ -199,7 +199,7 @@ void window_gdi::update_window(COLORREF * pcolorref,const RECT & rect,int cxPara
       POINT pt;
 
       pt.x = rect.left;
-      
+
       pt.y = rect.top;
 
       SIZE sz;
@@ -207,7 +207,7 @@ void window_gdi::update_window(COLORREF * pcolorref,const RECT & rect,int cxPara
       sz.cx = width(&rectWindow);
 
       sz.cy = height(&rectWindow);
-      
+
       POINT ptSrc = { 0 };
 
       //if(sz.cx < 800)
@@ -221,7 +221,7 @@ void window_gdi::update_window(COLORREF * pcolorref,const RECT & rect,int cxPara
 
       bool bOk = ::UpdateLayeredWindow(m_hwnd, m_hdcScreen, &pt, &sz, m_hdc, &ptSrc, RGB(0, 0, 0), &blendPixelFunction, ULW_ALPHA) != FALSE;
 
-      ::SwitchToThread();
+      //::SwitchToThread();
 
 
    }

@@ -1015,6 +1015,8 @@ namespace user
    void interaction::_001OnClip(::draw2d::dib * pdib)
    {
 
+      //return;
+
       ::draw2d::graphics * pgraphics = pdib->get_graphics();
 
       try

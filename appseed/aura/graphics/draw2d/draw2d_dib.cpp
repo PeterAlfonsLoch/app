@@ -300,9 +300,9 @@ namespace draw2d
                (pdibDst->m_bMapped && !pdibDst->get_graphics()->prefer_mapped_dib_on_mix())
                ||
                (pdibSrc->m_bMapped && !pdibSrc->get_graphics()->prefer_mapped_dib_on_mix())
-               )
             )
          )
+      )
       {
 
          get_graphics()->set_alpha_mode(m_ealphamode);
@@ -726,58 +726,58 @@ namespace draw2d
 
    }
 
-/*   void dib::Fill ( int32_t R, int32_t G, int32_t B )
-   {
-      COLORREF color=RGB ( B, G, R );
-      int64_t size = area();
-
-      COLORREF * pcr;
-
-      int64_t iSize32 = size / 32;
-      int32_t i;
-      for (i=0; i < iSize32; i+=32 )
+   /*   void dib::Fill ( int32_t R, int32_t G, int32_t B )
       {
-         pcr = &get_data()[i];
-         pcr[0] = color;
-         pcr[1] = color;
-         pcr[2] = color;
-         pcr[3] = color;
-         pcr[4] = color;
-         pcr[5] = color;
-         pcr[6] = color;
-         pcr[7] = color;
-         pcr[8] = color;
-         pcr[9] = color;
-         pcr[10] = color;
-         pcr[11] = color;
-         pcr[12] = color;
-         pcr[13] = color;
-         pcr[14] = color;
-         pcr[15] = color;
-         pcr[16] = color;
-         pcr[17] = color;
-         pcr[18] = color;
-         pcr[19] = color;
-         pcr[20] = color;
-         pcr[21] = color;
-         pcr[22] = color;
-         pcr[23] = color;
-         pcr[24] = color;
-         pcr[25] = color;
-         pcr[26] = color;
-         pcr[27] = color;
-         pcr[28] = color;
-         pcr[29] = color;
-         pcr[30] = color;
-         pcr[31] = color;
-      }
+         COLORREF color=RGB ( B, G, R );
+         int64_t size = area();
 
-      for (i=0; i<size; i++ )
-      {
-         get_data()[i]=color;
+         COLORREF * pcr;
+
+         int64_t iSize32 = size / 32;
+         int32_t i;
+         for (i=0; i < iSize32; i+=32 )
+         {
+            pcr = &get_data()[i];
+            pcr[0] = color;
+            pcr[1] = color;
+            pcr[2] = color;
+            pcr[3] = color;
+            pcr[4] = color;
+            pcr[5] = color;
+            pcr[6] = color;
+            pcr[7] = color;
+            pcr[8] = color;
+            pcr[9] = color;
+            pcr[10] = color;
+            pcr[11] = color;
+            pcr[12] = color;
+            pcr[13] = color;
+            pcr[14] = color;
+            pcr[15] = color;
+            pcr[16] = color;
+            pcr[17] = color;
+            pcr[18] = color;
+            pcr[19] = color;
+            pcr[20] = color;
+            pcr[21] = color;
+            pcr[22] = color;
+            pcr[23] = color;
+            pcr[24] = color;
+            pcr[25] = color;
+            pcr[26] = color;
+            pcr[27] = color;
+            pcr[28] = color;
+            pcr[29] = color;
+            pcr[30] = color;
+            pcr[31] = color;
+         }
+
+         for (i=0; i<size; i++ )
+         {
+            get_data()[i]=color;
+         }
       }
-   }
-   */
+      */
 
 
    void dib::ToAlpha(int32_t i)
@@ -931,43 +931,43 @@ namespace draw2d
       // >> 8 instead of / 255 subsequent alpha_blend operations say thanks on true_blend because (255) * (1/254) + (255) * (254/255) > 255
 
 
-/*      while (size >= 8)
-      {
-         dst[0] = LOBYTE(((int32_t)dst[0] * (int32_t)dst[3])>> 8);
-         dst[1] = LOBYTE(((int32_t)dst[1] * (int32_t)dst[3])>> 8);
-         dst[2] = LOBYTE(((int32_t)dst[2] * (int32_t)dst[3])>> 8);
+      /*      while (size >= 8)
+            {
+               dst[0] = LOBYTE(((int32_t)dst[0] * (int32_t)dst[3])>> 8);
+               dst[1] = LOBYTE(((int32_t)dst[1] * (int32_t)dst[3])>> 8);
+               dst[2] = LOBYTE(((int32_t)dst[2] * (int32_t)dst[3])>> 8);
 
-         dst[4+0] = LOBYTE(((int32_t)dst[4+0] * (int32_t)dst[4+3])>> 8);
-         dst[4+1] = LOBYTE(((int32_t)dst[4+1] * (int32_t)dst[4+3])>> 8);
-         dst[4+2] = LOBYTE(((int32_t)dst[4+2] * (int32_t)dst[4+3])>> 8);
+               dst[4+0] = LOBYTE(((int32_t)dst[4+0] * (int32_t)dst[4+3])>> 8);
+               dst[4+1] = LOBYTE(((int32_t)dst[4+1] * (int32_t)dst[4+3])>> 8);
+               dst[4+2] = LOBYTE(((int32_t)dst[4+2] * (int32_t)dst[4+3])>> 8);
 
-         dst[8+0] = LOBYTE(((int32_t)dst[8+0] * (int32_t)dst[8+3])>> 8);
-         dst[8+1] = LOBYTE(((int32_t)dst[8+1] * (int32_t)dst[8+3])>> 8);
-         dst[8+2] = LOBYTE(((int32_t)dst[8+2] * (int32_t)dst[8+3])>> 8);
+               dst[8+0] = LOBYTE(((int32_t)dst[8+0] * (int32_t)dst[8+3])>> 8);
+               dst[8+1] = LOBYTE(((int32_t)dst[8+1] * (int32_t)dst[8+3])>> 8);
+               dst[8+2] = LOBYTE(((int32_t)dst[8+2] * (int32_t)dst[8+3])>> 8);
 
-         dst[12+0] = LOBYTE(((int32_t)dst[12+0] * (int32_t)dst[12+3])>> 8);
-         dst[12+1] = LOBYTE(((int32_t)dst[12+1] * (int32_t)dst[12+3])>> 8);
-         dst[12+2] = LOBYTE(((int32_t)dst[12+2] * (int32_t)dst[12+3])>> 8);
+               dst[12+0] = LOBYTE(((int32_t)dst[12+0] * (int32_t)dst[12+3])>> 8);
+               dst[12+1] = LOBYTE(((int32_t)dst[12+1] * (int32_t)dst[12+3])>> 8);
+               dst[12+2] = LOBYTE(((int32_t)dst[12+2] * (int32_t)dst[12+3])>> 8);
 
-         dst[16+0] = LOBYTE(((int32_t)dst[16+0] * (int32_t)dst[16+3])>> 8);
-         dst[16+1] = LOBYTE(((int32_t)dst[16+1] * (int32_t)dst[16+3])>> 8);
-         dst[16+2] = LOBYTE(((int32_t)dst[16+2] * (int32_t)dst[16+3])>> 8);
+               dst[16+0] = LOBYTE(((int32_t)dst[16+0] * (int32_t)dst[16+3])>> 8);
+               dst[16+1] = LOBYTE(((int32_t)dst[16+1] * (int32_t)dst[16+3])>> 8);
+               dst[16+2] = LOBYTE(((int32_t)dst[16+2] * (int32_t)dst[16+3])>> 8);
 
-         dst[20+0] = LOBYTE(((int32_t)dst[20+0] * (int32_t)dst[20+3])>> 8);
-         dst[20+1] = LOBYTE(((int32_t)dst[20+1] * (int32_t)dst[20+3])>> 8);
-         dst[20+2] = LOBYTE(((int32_t)dst[20+2] * (int32_t)dst[20+3])>> 8);
+               dst[20+0] = LOBYTE(((int32_t)dst[20+0] * (int32_t)dst[20+3])>> 8);
+               dst[20+1] = LOBYTE(((int32_t)dst[20+1] * (int32_t)dst[20+3])>> 8);
+               dst[20+2] = LOBYTE(((int32_t)dst[20+2] * (int32_t)dst[20+3])>> 8);
 
-         dst[24+0] = LOBYTE(((int32_t)dst[24+0] * (int32_t)dst[24+3])>> 8);
-         dst[24+1] = LOBYTE(((int32_t)dst[24+1] * (int32_t)dst[24+3])>> 8);
-         dst[24+2] = LOBYTE(((int32_t)dst[24+2] * (int32_t)dst[24+3])>> 8);
+               dst[24+0] = LOBYTE(((int32_t)dst[24+0] * (int32_t)dst[24+3])>> 8);
+               dst[24+1] = LOBYTE(((int32_t)dst[24+1] * (int32_t)dst[24+3])>> 8);
+               dst[24+2] = LOBYTE(((int32_t)dst[24+2] * (int32_t)dst[24+3])>> 8);
 
-         dst[28+0] = LOBYTE(((int32_t)dst[28+0] * (int32_t)dst[28+3])>> 8);
-         dst[28+1] = LOBYTE(((int32_t)dst[28+1] * (int32_t)dst[28+3])>> 8);
-         dst[28+2] = LOBYTE(((int32_t)dst[28+2] * (int32_t)dst[28+3])>> 8);
+               dst[28+0] = LOBYTE(((int32_t)dst[28+0] * (int32_t)dst[28+3])>> 8);
+               dst[28+1] = LOBYTE(((int32_t)dst[28+1] * (int32_t)dst[28+3])>> 8);
+               dst[28+2] = LOBYTE(((int32_t)dst[28+2] * (int32_t)dst[28+3])>> 8);
 
-         dst += 4 * 8;
-         size -= 8;
-      }*/
+               dst += 4 * 8;
+               size -= 8;
+            }*/
       while(size--)
       {
          if(dst[3] == 0)
@@ -1185,9 +1185,9 @@ namespace draw2d
       int64_t size = area();
       LPBYTE lpb = (LPBYTE) get_data();
       lpb += ((int32_t)echannel) % 4;
-       int32_t iDiv = 256 * 256;
-       int32_t iMul = (int32_t) (dRate * ((double) iDiv));
-       int32_t iRes;
+      int32_t iDiv = 256 * 256;
+      int32_t iMul = (int32_t) (dRate * ((double) iDiv));
+      int32_t iRes;
       for( int64_t i = 0; i < size; i++)
       {
          iRes = *lpb * iMul / iDiv;
@@ -1234,7 +1234,7 @@ namespace draw2d
 
    void dib::channel_darken(visual::rgba::echannel echannel, ::draw2d::dib * pdib)
    {
-       int64_t size = area();
+      int64_t size = area();
       LPBYTE lpb1 = (LPBYTE) get_data();
       LPBYTE lpb2 = (LPBYTE) pdib->get_data();
       lpb1 += ((int32_t)echannel) % 4;
@@ -1249,7 +1249,7 @@ namespace draw2d
 
    void dib::channel_lighten(visual::rgba::echannel echannel, ::draw2d::dib * pdib)
    {
-       int64_t size = area();
+      int64_t size = area();
       LPBYTE lpb1 = (LPBYTE) get_data();
       LPBYTE lpb2 = (LPBYTE) pdib->get_data();
       lpb1 += ((int32_t)echannel) % 4;
@@ -1267,12 +1267,12 @@ namespace draw2d
       map();
       pdib->map();
       int64_t size = area();
-       int64_t size64 = size / 64;
+      int64_t size64 = size / 64;
       LPBYTE lpb1 = (LPBYTE) get_data();
       LPBYTE lpb2 = (LPBYTE) pdib->get_data();
       lpb1 += ((int32_t)echannel) % 4;
       lpb2 += ((int32_t)echannel) % 4;
-       int64_t i = 0;
+      int64_t i = 0;
       for(; i < size64; i++)
       {
          lpb1[4 *  0]  =  lpb2[4 *  0];
@@ -1508,7 +1508,7 @@ namespace draw2d
    bool dib::Blend(dib *pDib, dib *DibA, int32_t A)
    {
       if(m_size != pDib->m_size ||
-         m_size != DibA->size())
+            m_size != DibA->size())
          return false;
 
       BYTE *src=(BYTE*)pDib->get_data();
@@ -1535,7 +1535,7 @@ namespace draw2d
    bool dib::Blend(dib *pDib, dib *DibA)
    {
       if (m_size != pDib->m_size ||
-         m_size != DibA->size())
+            m_size != DibA->size())
          return false;
 
       map();
@@ -1565,7 +1565,7 @@ namespace draw2d
    bool dib::blend(dib * pdib, dib * pdibRate)
    {
       if(m_size != pdib->m_size ||
-         m_size != pdibRate->size())
+            m_size != pdibRate->size())
          return false;
 
       BYTE *src=(BYTE*)pdib->get_data();
@@ -2928,7 +2928,7 @@ namespace draw2d
       rect rect(lpcrect);
 
 //      int32_t cx = rect.width();
-  //    int32_t cy = rect.height();
+      //    int32_t cy = rect.height();
 
       int32_t l = MAX(m_size.cx, m_size.cy);
 
@@ -3042,8 +3042,8 @@ namespace draw2d
 
       COLORREF * pcr = m_pcolorref;
 
-#pragma omp parallel for
-      for(int64_t i = 0;i < size;i++)
+      #pragma omp parallel for
+      for(int64_t i = 0; i < size; i++)
          pcr[i] = cr;
 
    }
@@ -3125,7 +3125,7 @@ namespace draw2d
    void dib::do_xor(dib * pdib)
    {
       if(m_size.cx != pdib->m_size.cx
-         || m_size.cy != pdib->m_size.cy)
+            || m_size.cy != pdib->m_size.cy)
       {
          return;
       }
@@ -3350,10 +3350,10 @@ namespace draw2d
       ::exception::throw_interface_only(get_app());
    }
 
-   
+
    void dib::SetViewportOrg(point pt)
    {
-      
+
       m_pt = pt;
 
       if (!m_bMapped)
@@ -3446,25 +3446,25 @@ namespace draw2d
 
    }
 
-/*   int32_t dib::m_size.cx
-   {
-      ::exception::throw_interface_only(get_app());
-   }
+   /*   int32_t dib::m_size.cx
+      {
+         ::exception::throw_interface_only(get_app());
+      }
 
-   int32_t dib::m_size.cy
-   {
-      ::exception::throw_interface_only(get_app());
-   }
+      int32_t dib::m_size.cy
+      {
+         ::exception::throw_interface_only(get_app());
+      }
 
-   int64_t dib::area()
-   {
-      return ((int64_t) m_size.cx) * ((int64_t)m_size.cy);
-   }
+      int64_t dib::area()
+      {
+         return ((int64_t) m_size.cx) * ((int64_t)m_size.cy);
+      }
 
-   size dib::m_size
-   {
-      return size64(m_size.cx, m_size.cy);
-   }*/
+      size dib::m_size
+      {
+         return size64(m_size.cx, m_size.cy);
+      }*/
 
 
    double dib::pi() const
@@ -3478,56 +3478,56 @@ namespace draw2d
    void dib::fill_channel(int32_t intensity, visual::rgba::echannel echannel)
    {
       map();
-           int32_t offset = ((int32_t)echannel) % 4;
-          int64_t size=area();
+      int32_t offset = ((int32_t)echannel) % 4;
+      int64_t size=area();
 
-          COLORREF * pcr = (COLORREF *) &((byte *)m_pcolorref)[offset];
+      COLORREF * pcr = (COLORREF *) &((byte *)m_pcolorref)[offset];
 
-          BYTE * pb;
+      BYTE * pb;
 
-          int64_t iSize32 = size / 32;
-          int32_t i;
-          for (i=0; i < iSize32; i+=32 )
-          {
-             pb = (byte *) &pcr[i];
-             pb[0 * 4] = (byte) intensity;
-             pb[1 * 4] = (byte) intensity;
-             pb[2 * 4] = (byte) intensity;
-             pb[3 * 4] = (byte) intensity;
-             pb[4 * 4] = (byte) intensity;
-             pb[5 * 4] = (byte) intensity;
-             pb[6 * 4] = (byte) intensity;
-             pb[7 * 4] = (byte) intensity;
-             pb[8 * 4] = (byte) intensity;
-             pb[9 * 4] = (byte) intensity;
-             pb[10 * 4] = (byte) intensity;
-             pb[11 * 4] = (byte) intensity;
-             pb[12 * 4] = (byte) intensity;
-             pb[13 * 4] = (byte) intensity;
-             pb[14 * 4] = (byte) intensity;
-             pb[15 * 4] = (byte) intensity;
-             pb[16 * 4] = (byte) intensity;
-             pb[17 * 4] = (byte) intensity;
-             pb[18 * 4] = (byte) intensity;
-             pb[19 * 4] = (byte) intensity;
-             pb[20 * 4] = (byte) intensity;
-             pb[21 * 4] = (byte) intensity;
-             pb[22 * 4] = (byte) intensity;
-             pb[23 * 4] = (byte) intensity;
-             pb[24 * 4] = (byte) intensity;
-             pb[25 * 4] = (byte) intensity;
-             pb[26 * 4] = (byte) intensity;
-             pb[27 * 4] = (byte) intensity;
-             pb[28 * 4] = (byte) intensity;
-             pb[29 * 4] = (byte) intensity;
-             pb[30 * 4] = (byte) intensity;
-             pb[31 * 4] = (byte) intensity;
-          }
+      int64_t iSize32 = size / 32;
+      int32_t i;
+      for (i=0; i < iSize32; i+=32 )
+      {
+         pb = (byte *) &pcr[i];
+         pb[0 * 4] = (byte) intensity;
+         pb[1 * 4] = (byte) intensity;
+         pb[2 * 4] = (byte) intensity;
+         pb[3 * 4] = (byte) intensity;
+         pb[4 * 4] = (byte) intensity;
+         pb[5 * 4] = (byte) intensity;
+         pb[6 * 4] = (byte) intensity;
+         pb[7 * 4] = (byte) intensity;
+         pb[8 * 4] = (byte) intensity;
+         pb[9 * 4] = (byte) intensity;
+         pb[10 * 4] = (byte) intensity;
+         pb[11 * 4] = (byte) intensity;
+         pb[12 * 4] = (byte) intensity;
+         pb[13 * 4] = (byte) intensity;
+         pb[14 * 4] = (byte) intensity;
+         pb[15 * 4] = (byte) intensity;
+         pb[16 * 4] = (byte) intensity;
+         pb[17 * 4] = (byte) intensity;
+         pb[18 * 4] = (byte) intensity;
+         pb[19 * 4] = (byte) intensity;
+         pb[20 * 4] = (byte) intensity;
+         pb[21 * 4] = (byte) intensity;
+         pb[22 * 4] = (byte) intensity;
+         pb[23 * 4] = (byte) intensity;
+         pb[24 * 4] = (byte) intensity;
+         pb[25 * 4] = (byte) intensity;
+         pb[26 * 4] = (byte) intensity;
+         pb[27 * 4] = (byte) intensity;
+         pb[28 * 4] = (byte) intensity;
+         pb[29 * 4] = (byte) intensity;
+         pb[30 * 4] = (byte) intensity;
+         pb[31 * 4] = (byte) intensity;
+      }
 
-          for (i=0; i<size; i++ )
-          {
-             *((BYTE * ) &pcr[i]) = (byte) intensity;
-          }
+      for (i=0; i<size; i++ )
+      {
+         *((BYTE * ) &pcr[i]) = (byte) intensity;
+      }
    }
 
 
@@ -3684,13 +3684,197 @@ namespace draw2d
       //      int32_t i = 0;;
 
 
-      while (size--)
+      while (size > 16)
       {
          //dst[3] = dst[i];
-         dst[0] = (uchB * dst[3]) / 255;
-         dst[1] = (uchG * dst[3]) / 255;
-         dst[2] = (uchR * dst[3]) / 255;
+         dst[0] = (uchB * dst[3]) >> 8;
+         dst[1] = (uchG * dst[3]) >> 8;
+         dst[2] = (uchR * dst[3]) >> 8;
+
+         dst[4] = (uchB * dst[7]) >> 8;
+         dst[5] = (uchG * dst[7]) >> 8;
+         dst[6] = (uchR * dst[7]) >> 8;
+
+         dst[8] = (uchB * dst[11]) >> 8;
+         dst[9] = (uchG * dst[11]) >> 8;
+         dst[10] = (uchR * dst[11]) >> 8;
+
+         dst[12] = (uchB * dst[15]) >> 8;
+         dst[13] = (uchG * dst[15]) >> 8;
+         dst[14] = (uchR * dst[15]) >> 8;
+
+         dst[16] = (uchB * dst[19]) >> 8;
+         dst[17] = (uchG * dst[19]) >> 8;
+         dst[18] = (uchR * dst[19]) >> 8;
+
+         dst[20] = (uchB * dst[23]) >> 8;
+         dst[21] = (uchG * dst[23]) >> 8;
+         dst[22] = (uchR * dst[23]) >> 8;
+
+         dst[24] = (uchB * dst[27]) >> 8;
+         dst[25] = (uchG * dst[27]) >> 8;
+         dst[26] = (uchR * dst[27]) >> 8;
+
+         dst[28] = (uchB * dst[31]) >> 8;
+         dst[29] = (uchG * dst[31]) >> 8;
+         dst[30] = (uchR * dst[31]) >> 8;
+
+         dst[32] = (uchB * dst[35]) >> 8;
+         dst[33] = (uchG * dst[35]) >> 8;
+         dst[34] = (uchR * dst[35]) >> 8;
+
+         dst[36] = (uchB * dst[39]) >> 8;
+         dst[37] = (uchG * dst[39]) >> 8;
+         dst[38] = (uchR * dst[39]) >> 8;
+
+         dst[40] = (uchB * dst[43]) >> 8;
+         dst[41] = (uchG * dst[43]) >> 8;
+         dst[42] = (uchR * dst[43]) >> 8;
+
+         dst[44] = (uchB * dst[47]) >> 8;
+         dst[45] = (uchG * dst[47]) >> 8;
+         dst[46] = (uchR * dst[47]) >> 8;
+
+         dst[48] = (uchB * dst[51]) >> 8;
+         dst[49] = (uchG * dst[51]) >> 8;
+         dst[50] = (uchR * dst[51]) >> 8;
+
+         dst[52] = (uchB * dst[55]) >> 8;
+         dst[53] = (uchG * dst[55]) >> 8;
+         dst[54] = (uchR * dst[55]) >> 8;
+
+         dst[56] = (uchB * dst[59]) >> 8;
+         dst[57] = (uchG * dst[59]) >> 8;
+         dst[58] = (uchR * dst[59]) >> 8;
+
+         dst[60] = (uchB * dst[63]) >> 8;
+         dst[61] = (uchG * dst[63]) >> 8;
+         dst[62] = (uchR * dst[63]) >> 8;
+
+         dst += 4 * 16;
+         size -= 16;
+      }
+      while (size > 0)
+      {
+         //dst[3] = dst[i];
+         dst[0] = (uchB * dst[3]) >> 8;
+         dst[1] = (uchG * dst[3]) >> 8;
+         dst[2] = (uchR * dst[3]) >> 8;
          dst += 4;
+         size --;
+      }
+
+   }
+   void dib::set_rgb_pre_alpha(int32_t R, int32_t G, int32_t B, int32_t A)
+   {
+
+      map();
+
+      BYTE *dst = (BYTE*)m_pcolorref;
+      int64_t size = area();
+
+      BYTE uchB = (byte)R;
+      BYTE uchG = (byte)G;
+      BYTE uchR = (byte)B;
+
+      //      int32_t i = 0;;
+
+      while (size > 0)
+      {
+         //dst[3] = dst[i];
+         dst[0] = ((int) uchB * (int) dst[3] * A) >> 16;
+         dst[1] = ((int)uchG * (int)dst[3] * A) >> 16;
+         dst[2] = ((int)uchR * (int)dst[3] * A) >> 16;
+         dst[3] = ((int)dst[3] * A) >> 8;
+         dst += 4;
+         size--;
+      }
+
+      while (size > 16)
+      {
+         //dst[3] = dst[i];
+         dst[0] = (uchB * dst[3] * A) >> 16;
+         dst[1] = (uchG * dst[3] * A) >> 16;
+         dst[2] = (uchR * dst[3] * A) >> 16;
+         dst[3] = (dst[3] * A) >> 8;
+
+         dst[4] = (uchB * dst[7] * A) >> 16;
+         dst[5] = (uchG * dst[7] * A) >> 16;
+         dst[6] = (uchR * dst[7] * A) >> 16;
+         dst[7] = (dst[7] * A) >> 8;
+
+         dst[8] = (uchB * dst[11] * A) >> 16;
+         dst[9] = (uchG * dst[11] * A) >> 16;
+         dst[10] = (uchR * dst[11] * A) >> 16;
+         dst[11] = (dst[11] * A) >> 8;
+
+         dst[12] = (uchB * dst[15] * A) >> 16;
+         dst[13] = (uchG * dst[15] * A) >> 16;
+         dst[14] = (uchR * dst[15] * A) >> 16;
+         dst[15] = (dst[15] * A) >> 8;
+
+         dst[16] = (uchB * dst[19] * A) >> 16;
+         dst[17] = (uchG * dst[19] * A) >> 16;
+         dst[18] = (uchR * dst[19] * A) >> 16;
+         dst[19] = (dst[19] * A) >> 8;
+
+         dst[20] = (uchB * dst[23] * A) >> 16;
+         dst[21] = (uchG * dst[23] * A) >> 16;
+         dst[22] = (uchR * dst[23] * A) >> 16;
+         dst[23] = (dst[23] * A) >> 8;
+
+         dst[24] = (uchB * dst[27] * A) >> 16;
+         dst[25] = (uchG * dst[27] * A) >> 16;
+         dst[26] = (uchR * dst[27] * A) >> 16;
+         dst[27] = (dst[27] * A) >> 8;
+
+         dst[28] = (uchB * dst[31] * A) >> 16;
+         dst[29] = (uchG * dst[31] * A) >> 16;
+         dst[30] = (uchR * dst[31] * A) >> 16;
+         dst[31] = (dst[31] * A) >> 8;
+
+         dst[32] = (uchB * dst[35] * A) >> 16;
+         dst[33] = (uchG * dst[35] * A) >> 16;
+         dst[34] = (uchR * dst[35] * A) >> 16;
+         dst[35] = (dst[35] * A) >> 8;
+
+         dst[36] = (uchB * dst[39] * A) >> 16;
+         dst[37] = (uchG * dst[39] * A) >> 16;
+         dst[38] = (uchR * dst[39] * A) >> 16;
+         dst[39] = (dst[39] * A) >> 8;
+
+         dst[40] = (uchB * dst[43] * A) >> 16;
+         dst[41] = (uchG * dst[43] * A) >> 16;
+         dst[42] = (uchR * dst[43] * A) >> 16;
+         dst[43] = (dst[43] * A) >> 8;
+
+         dst[44] = (uchB * dst[47] * A) >> 16;
+         dst[45] = (uchG * dst[47] * A) >> 16;
+         dst[46] = (uchR * dst[47] * A) >> 16;
+         dst[47] = (dst[47] * A) >> 8;
+
+         dst[48] = (uchB * dst[51] * A) >> 16;
+         dst[49] = (uchG * dst[51] * A) >> 16;
+         dst[50] = (uchR * dst[51] * A) >> 16;
+         dst[51] = (dst[51] * A) >> 8;
+
+         dst[52] = (uchB * dst[55] * A) >> 16;
+         dst[53] = (uchG * dst[55] * A) >> 16;
+         dst[54] = (uchR * dst[55] * A) >> 16;
+         dst[55] = (dst[55] * A) >> 8;
+
+         dst[56] = (uchB * dst[59] * A) >> 16;
+         dst[57] = (uchG * dst[59] * A) >> 16;
+         dst[58] = (uchR * dst[59] * A) >> 16;
+         dst[59] = (dst[59] * A) >> 8;
+
+         dst[60] = (uchB * dst[63] * A) >> 16;
+         dst[61] = (uchG * dst[63] * A) >> 16;
+         dst[62] = (uchR * dst[63] * A) >> 16;
+         dst[63] = (dst[63] * A) >> 8;
+
+         dst += 4 * 16;
+         size -= 16;
       }
 
    }
@@ -3720,54 +3904,54 @@ namespace draw2d
       }
 
 
-/*      COLORREF color = RGB(B, G, R);
-      int64_t size = area();
+      /*      COLORREF color = RGB(B, G, R);
+            int64_t size = area();
 
-      COLORREF * pcr;
+            COLORREF * pcr;
 
-      int64_t iSize32 = size / 32;
-      int32_t i;
-      for (i = 0; i < iSize32; i += 32)
-      {
-         pcr = &m_pcolorref[i];
-         pcr[0] = color;
-         pcr[1] = color;
-         pcr[2] = color;
-         pcr[3] = color;
-         pcr[4] = color;
-         pcr[5] = color;
-         pcr[6] = color;
-         pcr[7] = color;
-         pcr[8] = color;
-         pcr[9] = color;
-         pcr[10] = color;
-         pcr[11] = color;
-         pcr[12] = color;
-         pcr[13] = color;
-         pcr[14] = color;
-         pcr[15] = color;
-         pcr[16] = color;
-         pcr[17] = color;
-         pcr[18] = color;
-         pcr[19] = color;
-         pcr[20] = color;
-         pcr[21] = color;
-         pcr[22] = color;
-         pcr[23] = color;
-         pcr[24] = color;
-         pcr[25] = color;
-         pcr[26] = color;
-         pcr[27] = color;
-         pcr[28] = color;
-         pcr[29] = color;
-         pcr[30] = color;
-         pcr[31] = color;
-      }
+            int64_t iSize32 = size / 32;
+            int32_t i;
+            for (i = 0; i < iSize32; i += 32)
+            {
+               pcr = &m_pcolorref[i];
+               pcr[0] = color;
+               pcr[1] = color;
+               pcr[2] = color;
+               pcr[3] = color;
+               pcr[4] = color;
+               pcr[5] = color;
+               pcr[6] = color;
+               pcr[7] = color;
+               pcr[8] = color;
+               pcr[9] = color;
+               pcr[10] = color;
+               pcr[11] = color;
+               pcr[12] = color;
+               pcr[13] = color;
+               pcr[14] = color;
+               pcr[15] = color;
+               pcr[16] = color;
+               pcr[17] = color;
+               pcr[18] = color;
+               pcr[19] = color;
+               pcr[20] = color;
+               pcr[21] = color;
+               pcr[22] = color;
+               pcr[23] = color;
+               pcr[24] = color;
+               pcr[25] = color;
+               pcr[26] = color;
+               pcr[27] = color;
+               pcr[28] = color;
+               pcr[29] = color;
+               pcr[30] = color;
+               pcr[31] = color;
+            }
 
-      for (i = 0; i<size; i++)
-      {
-         m_pcolorref[i] = color;
-      }*/
+            for (i = 0; i<size; i++)
+            {
+               m_pcolorref[i] = color;
+            }*/
 
    }
 
@@ -4194,19 +4378,19 @@ namespace draw2d
 
 //         int x1 = MIN(pt1.x, pt2.x);
 
-  //       int x2 = MAX(pt1.x, pt2.x);
+         //       int x2 = MAX(pt1.x, pt2.x);
 
-    //     int y1 = MIN(pt1.y, pt2.y);
+         //     int y1 = MIN(pt1.y, pt2.y);
 
-      //   int y2 = MAX(pt1.y, pt2.y);
+         //   int y2 = MAX(pt1.y, pt2.y);
 
 //         int top = y1;
 //
-  //       int left = x1;
+         //       int left = x1;
 //
-  //       int right = m_size.cx - x2;
-          //
-       //  int bottom = m_size.cy - y2;
+         //       int right = m_size.cx - x2;
+         //
+         //  int bottom = m_size.cy - y2;
 
          int dim = MAX(m_size.cx, m_size.cy);
 
@@ -4370,7 +4554,7 @@ namespace draw2d
       double d32 = (1U << 31);
       dPi = atan(1.0) * 4.0;;
       int32_t i;
-       for ( i=0; i<360; i++ )
+      for ( i=0; i<360; i++ )
       {
          dCos = ::cos ( i/180.0*dPi );
          dSin = ::sin ( i/180.0*dPi );
@@ -4381,7 +4565,7 @@ namespace draw2d
       }
       d32 = (1U << 31);
       d32 *= 8;
-       for(i = 0; i < 10; i++)
+      for(i = 0; i < 10; i++)
       {
          dCos = ::cos ( i/180.0*dPi );
          dSin = ::sin ( i/180.0*dPi );
@@ -4452,7 +4636,7 @@ namespace draw2d
 
    }
 
-   
+
    ::size dib::get_size() const
    {
 
