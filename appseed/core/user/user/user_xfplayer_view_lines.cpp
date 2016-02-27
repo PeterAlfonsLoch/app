@@ -19,6 +19,7 @@ XfplayerViewLines::~XfplayerViewLines()
 
 void XfplayerViewLines::OnChildSetVisible(XfplayerViewLine * pline, bool bVisible)
 {
+   synch_lock sl(m_pmutex);
    index iLineIndex = FindLine(pline);
    index iIndex;
 
@@ -69,6 +70,7 @@ index XfplayerViewLines::GetLastVisibleLineIndex()
 
 void XfplayerViewLines::Prepare()
 {
+   synch_lock sl(m_pmutex);
    for (int32_t i = 0; i < this->get_size(); i++)
    {
       this->element_at(i)->m_pContainer = this;
@@ -78,6 +80,7 @@ void XfplayerViewLines::Prepare()
 
 void XfplayerViewLines::Prepare(XfplayerViewLine *lpViewLine)
 {
+   synch_lock sl(m_pmutex);
    lpViewLine->m_pContainer = this;
 }
 
@@ -88,6 +91,7 @@ void XfplayerViewLines::set_user_interaction(sp(::user::interaction) pinteractio
 
 void XfplayerViewLines::SetEffect(int32_t iEffect)
 {
+   synch_lock sl(m_pmutex);
    for (int32_t i = 0; i < this->get_size(); i++)
    {
       this->element_at(i)->SetTextEffect(iEffect);
@@ -101,6 +105,7 @@ void XfplayerViewLines::SetRenderWindow(::window_sp pwindow)
 
 index XfplayerViewLines::FindLine(XfplayerViewLine * pline)
 {
+   synch_lock sl(m_pmutex);
    for (int32_t iLine = 0; iLine < this->get_size(); iLine++)
    {
       if (element_at(iLine) == pline)
@@ -111,6 +116,7 @@ index XfplayerViewLines::FindLine(XfplayerViewLine * pline)
 
 ::user::e_line_hit XfplayerViewLines::hit_test(POINT &ptCursor, index &iLine, strsize &iChar)
 {
+   synch_lock sl(m_pmutex);
    for (index i = 0; i < this->get_size(); i++)
    {
       ::user::e_line_hit etest = this->element_at(i)->hit_test(ptCursor, iChar);
@@ -148,6 +154,7 @@ void XfplayerViewLines::OnMouseMove(signal_details * pobj)
 
 void XfplayerViewLines::OnLButtonDown(signal_details * pobj)
 {
+   synch_lock sl(m_pmutex);
    for (int32_t i = 0; i < this->get_size(); i++)
    {
       this->element_at(i)->m_pContainer = this;
@@ -160,6 +167,7 @@ void XfplayerViewLines::OnLButtonDown(signal_details * pobj)
 
 void XfplayerViewLines::OnLButtonUp(signal_details * pobj)
 {
+   synch_lock sl(m_pmutex);
    for (int32_t i = 0; i < this->get_size(); i++)
    {
       this->element_at(i)->OnLButtonUp(pobj);
@@ -170,7 +178,7 @@ void XfplayerViewLines::OnLButtonUp(signal_details * pobj)
 
 void XfplayerViewLines::_001OnTimer(::timer * ptimer)
 {
-
+   synch_lock sl(m_pmutex);
    for (int32_t i = 0; i < this->get_size(); i++)
    {
       this->element_at(i)->_001OnTimer(ptimer);
@@ -181,6 +189,7 @@ void XfplayerViewLines::_001OnTimer(::timer * ptimer)
 
 void XfplayerViewLines::OnSetCursor(signal_details * pobj)
 {
+   synch_lock sl(m_pmutex);
    for (int32_t i = 0; i < this->get_size(); i++)
    {
       this->element_at(i)->OnSetCursor(pobj);
@@ -191,6 +200,7 @@ void XfplayerViewLines::OnSetCursor(signal_details * pobj)
 
 void XfplayerViewLines::SetBlend(double dBlend)
 {
+   synch_lock sl(m_pmutex);
    for (int32_t iLine = 0; iLine < this->get_size(); iLine++)
    {
       element_at(iLine)->SetBlend(dBlend);
@@ -206,7 +216,7 @@ XfplayerViewLineSelection & XfplayerViewLines::GetSelection()
 
 void XfplayerViewLines::get_sel_text(string & strSelText, const char * pszLineSeparator)
 {
-
+   synch_lock sl(m_pmutex);
    index iLineStart;
    index iCharStart;
    index iLineEnd;
@@ -271,7 +281,7 @@ string XfplayerViewLines::get_sel_text(const char * pszLineSeparator)
 
 void XfplayerViewLines::get_text(string & strText, const char * pszLineSeparator)
 {
-
+   synch_lock sl(m_pmutex);
    if (get_count() > 0)
    {
 
