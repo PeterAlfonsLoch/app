@@ -132,6 +132,7 @@ public:
    var(const SYSTEMTIME & time);
    var(string * pstr);
    var(var * pvar);
+   var(const var * pvar);
    var(object * pobject);
    var(const stringa & var);
    var(const int_array & var);
@@ -335,7 +336,7 @@ public:
    inline var & operator = (string && str);
    var & operator = (string * pstr);
    var & operator = (var * pvar);
-   //var & operator = (const char * psz);
+   var & operator = (const var * pvar);
    var & operator = (const unichar * lpcsz);
    var & operator = (const property & prop);
    var & operator = (const var & var);

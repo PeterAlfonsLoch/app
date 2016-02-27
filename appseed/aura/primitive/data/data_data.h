@@ -28,7 +28,7 @@ namespace data
 
 
    class CLASS_DECL_AURA simple_data :
-      virtual public object
+      virtual public ::object
    {
    public:
 
@@ -70,7 +70,6 @@ namespace data
 
 
    class CLASS_DECL_AURA data :
-      virtual public ::object,
       virtual public simple_data
    {
    public:

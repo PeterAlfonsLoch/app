@@ -159,6 +159,12 @@ var::var(class var * pvar)
    operator = (pvar);
 }
 
+var::var(const class var * pvar)
+{
+   m_etype = type_new;
+   operator = ( pvar);
+}
+
 var::var(const property & prop)
 {
    m_etype = type_new;
@@ -2042,6 +2048,10 @@ class var & var::operator = (var * pvar)
    return *this;
 }
 
+class var & var::operator = (const var * pvar)
+{
+   return operator =((var*)pvar);
+}
 
 var_array & var::vara()
 {

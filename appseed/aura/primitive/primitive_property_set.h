@@ -541,7 +541,7 @@ inline var var::operator[] (var varKey) const
    }
    else
    {
-      return &propset().operator[](varKey.get_string()).get_value();
+      return propset().operator[](varKey.get_string()).get_value();
    }
 }
 
