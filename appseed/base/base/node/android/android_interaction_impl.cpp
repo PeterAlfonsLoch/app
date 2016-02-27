@@ -544,10 +544,10 @@ namespace android
       if(m_size != rectWindow.size())
       {
 
-         if(m_spdib.is_null())
-            m_spdib.alloc(allocer());
+         //if(m_spdib.is_null())
+         //   m_spdib.alloc(allocer());
 
-         m_spdib->create(rectWindow.size());
+         //m_spdib->create(rectWindow.size());
 
          m_size = rectWindow.size();
 
@@ -4061,8 +4061,8 @@ void interaction_impl::MapWindowPoints(::user::interaction * pwndTo, LPRECT lpRe
 bool interaction_impl::ReleaseDC(::draw2d::dib * pdib)
 {
 
-   if (pgraphics == NULL)
-      return false;
+   //if (pgraphics == NULL)
+     // return false;
 
    /*      cairo_t * pcairo = (cairo_t *) pgraphics->get_os_data();
 
@@ -5472,7 +5472,7 @@ namespace android
    {
       // graphics will be already set its view port to the interaction_impl for android - cairo with xlib
 
-      pgraphics->SetViewportOrg(point(0, 0));
+      pdib->SetViewportOrg(point(0, 0));
 
       /*      rect64 rectWindow;
       GetWindowRect(rectWindow);

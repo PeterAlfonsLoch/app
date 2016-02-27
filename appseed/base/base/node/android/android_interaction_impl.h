@@ -439,10 +439,10 @@ namespace android
       void OnEnable(bool bEnable);
       void OnEndSession(bool bEnding);
       void OnEnterIdle(UINT /*nWhy*/, ::user::interaction * /*pWho*/);
-      bool OnEraseBkgnd(::draw2d::dib * pdib);
+      bool OnEraseBkgnd(::draw2d::graphics * pgraphics);
       void OnGetMinMaxInfo(MINMAXINFO* lpMMI);
 //      bool OnHelpInfo(HELPINFO* lpHelpInfo);
-      void OnIconEraseBkgnd(::draw2d::dib * pdib);
+      void OnIconEraseBkgnd(::draw2d::graphics * pgraphics);
       void OnKillFocus(::user::interaction * pNewWnd);
       LRESULT OnMenuChar(UINT nChar,UINT nFlags,::user::menu* pMenu);
       void OnMenuSelect(UINT nItemID,UINT nFlags,HMENU hSysMenu);
