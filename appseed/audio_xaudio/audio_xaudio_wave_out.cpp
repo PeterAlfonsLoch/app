@@ -22,9 +22,6 @@ namespace multimedia
 
          m_estate             = state_initial;
          m_pthreadCallback    = NULL;
-         m_pxaudio       = NULL;
-         m_pvoice       = NULL;
-         m_psourcevoice       = NULL;
          m_iBufferedCount     = 0;
          m_peffect            = NULL;
          m_dwLostSampleCount  = 0;
@@ -391,7 +388,9 @@ Opened:
          try
          {
 
-            m_psourcevoice = nullptr;
+            m_psourcevoice->DestroyVoice();
+
+            m_psourcevoice.Release();
 
          }
          catch(...)
@@ -402,23 +401,44 @@ Opened:
          //m_bufferptra.remove_all();
 
 
-         if(m_pvoice != nullptr)
+         try
          {
 
-            //m_pvoice->DestroyVoice();
 
-            m_pvoice = nullptr;
+            if(m_pvoice != NULL)
+            {
+
+               m_pvoice->DestroyVoice();
+
+               m_pvoice->Release();
+
+               m_pvoice = NULL;
+
+            }
+         }
+         catch (...)
+         {
 
          }
 
-
-         if(m_pxaudio != nullptr)
+         try
          {
+
+
+            if(m_pxaudio != nullptr)
+            {
+
+               m_pxaudio->StopEngine();
             
-            m_pxaudio = nullptr;
+               m_pxaudio = NULL;
+
+            }
 
          }
+         catch (...)
+         {
 
+         }
 
          //mmr = xaudio::translate(waveOutClose(m_hwaveout));
 

@@ -33,15 +33,26 @@ namespace windows
       {
 
          ULONG ul = 0;
-         
-         if(m_p != NULL)
+
+         try
          {
 
-            ul = m_p->Release();
+            if (m_p != NULL)
+            {
 
-            m_p = NULL;
+               ul = m_p->Release();
+
+            }
 
          }
+         catch (...)
+         {
+
+
+         }
+
+         m_p = NULL;
+
 
          return ul;
 
