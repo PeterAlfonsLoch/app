@@ -375,6 +375,7 @@ Opened:
 
          mmr = xaudio::translate(m_psourcevoice->Stop());
 
+
          //for(i = 0; i < iSize; i++)
          //{
 
@@ -390,8 +391,6 @@ Opened:
 
             m_psourcevoice->DestroyVoice();
 
-            m_psourcevoice.Release();
-
          }
          catch(...)
          {
@@ -399,6 +398,8 @@ Opened:
          }
 
          //m_bufferptra.remove_all();
+
+         m_psourcevoice.m_p = NULL;
 
 
          try
@@ -410,16 +411,14 @@ Opened:
 
                m_pvoice->DestroyVoice();
 
-               m_pvoice->Release();
-
-               m_pvoice = NULL;
-
             }
          }
          catch (...)
          {
 
          }
+
+         m_pvoice.m_p = NULL;
 
          try
          {
@@ -430,8 +429,6 @@ Opened:
 
                m_pxaudio->StopEngine();
             
-               m_pxaudio = NULL;
-
             }
 
          }
@@ -439,6 +436,8 @@ Opened:
          {
 
          }
+
+         m_pxaudio.Release();
 
          //mmr = xaudio::translate(waveOutClose(m_hwaveout));
 
@@ -761,7 +760,13 @@ Opened:
 
          m_eventStopped.SetEvent();
 
-         m_pplayer->OnEvent(::multimedia::audio::wave_player::EventPlaybackEnd);
+         ::fork(get_app(), [=]()
+         {
+
+            m_pplayer->OnEvent(::multimedia::audio::wave_player::EventPlaybackEnd);
+
+         });
+
 
       }
 
