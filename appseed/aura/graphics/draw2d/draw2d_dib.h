@@ -150,6 +150,7 @@ namespace draw2d
 
 
       virtual void set_rgb(int32_t R, int32_t G, int32_t B);
+      virtual void set_rgb_pre_alpha(int32_t R, int32_t G, int32_t B);
       virtual bool rgb_from(::draw2d::dib * pdib);
 
 

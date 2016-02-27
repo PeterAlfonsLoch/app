@@ -3669,6 +3669,31 @@ namespace draw2d
          ::draw2d::copy_colorref(width,height,get_data(),m_iScan,(COLORREF *)mem.get_data(),wc);
       }
    }
+   void dib::set_rgb_pre_alpha(int32_t R, int32_t G, int32_t B)
+   {
+
+      map();
+
+      BYTE *dst = (BYTE*)m_pcolorref;
+      int64_t size = area();
+
+      BYTE uchB = (byte)R;
+      BYTE uchG = (byte)G;
+      BYTE uchR = (byte)B;
+
+      //      int32_t i = 0;;
+
+
+      while (size--)
+      {
+         //dst[3] = dst[i];
+         dst[0] = (uchB * dst[3]) / 255;
+         dst[1] = (uchG * dst[3]) / 255;
+         dst[2] = (uchR * dst[3]) / 255;
+         dst += 4;
+      }
+
+   }
 
    void dib::set_rgb ( int32_t R, int32_t G, int32_t B )
    {

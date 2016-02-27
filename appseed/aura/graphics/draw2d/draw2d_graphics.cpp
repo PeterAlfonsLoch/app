@@ -411,18 +411,24 @@ namespace draw2d
    // non-virtual helpers calling virtual mapping functions
    point graphics::SetViewportOrg(POINT point)
    {
+
       UNREFERENCED_PARAMETER(point);
+
       throw interface_only_exception(get_app());
 
-      return null_point();
    }
 
    size graphics::SetViewportExt(SIZE size)
    {
+      
       UNREFERENCED_PARAMETER(size);
+
       throw interface_only_exception(get_app());
+
       return ::size(0, 0);
+
    }
+
 
    point graphics::SetWindowOrg(POINT point)
    {
@@ -2475,20 +2481,26 @@ namespace draw2d
       return -1;
    }
 
+   
    point graphics::SetViewportOrg(int32_t x, int32_t y)
    {
+      
       UNREFERENCED_PARAMETER(x);
       UNREFERENCED_PARAMETER(y);
+      
       throw interface_only_exception(get_app());
-      return null_point();
+      
    }
+
 
    point graphics::OffsetViewportOrg(int32_t nWidth, int32_t nHeight)
    {
+      
       UNREFERENCED_PARAMETER(nWidth);
       UNREFERENCED_PARAMETER(nHeight);
+
       throw interface_only_exception(get_app());
-      return null_point();
+      
    }
 
    size graphics::SetViewportExt(int32_t x, int32_t y)
