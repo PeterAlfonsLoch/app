@@ -85,7 +85,7 @@ namespace multimedia
 
       }
 
-      ::multimedia::e_result wave_out::wave_out_open(thread * pthreadCallback, int32_t iBufferCount, int32_t iBufferSampleCount)
+      ::multimedia::e_result wave_out::wave_out_open(::thread * pthreadCallback, int32_t iBufferCount, int32_t iBufferSampleCount)
       {
 
          single_lock sLock(&m_mutex, TRUE);

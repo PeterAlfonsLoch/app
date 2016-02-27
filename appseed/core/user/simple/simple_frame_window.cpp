@@ -1155,13 +1155,13 @@ void simple_frame_window::_001OnDeferPaintLayeredWindowBackground(::draw2d::dib 
 }
 
 
-void simple_frame_window::_000OnDraw(::draw2d::dib * pdib)
+void simple_frame_window::_000OnDraw(::draw2d::dib * pdibParam)
 {
 
    if(!IsWindowVisible())
       return;
 
-   ::draw2d::graphics * pdc = pdib->get_graphics();
+   ::draw2d::graphics * pdcParam = pdibParam->get_graphics();
 
    rect rectClient;
 
@@ -1172,6 +1172,10 @@ void simple_frame_window::_000OnDraw(::draw2d::dib * pdib)
    bool bDib = false;
 
    double dAlpha = get_alpha();
+
+   ::draw2d::graphics * pdc = pdcParam;
+
+   ::draw2d::dib * pdib = pdibParam;
 
    if(rectClient.area() > 0 && dAlpha > 0.0 && dAlpha < 1.0 && GetExStyle() & WS_EX_LAYERED)
    {
@@ -1189,6 +1193,8 @@ void simple_frame_window::_000OnDraw(::draw2d::dib * pdib)
 
       pdc = m_dibAlpha->get_graphics();
 
+      pdib = m_dibAlpha;
+
       pdc->SetViewportOrg(pdc->GetViewportOrg());
 
       bDib = true;
@@ -1197,8 +1203,6 @@ void simple_frame_window::_000OnDraw(::draw2d::dib * pdib)
 
    if(dAlpha > 0.0)
    {
-
-      pdc->set_alpha_mode(::draw2d::alpha_mode_blend);
 
       if(m_puserschema != NULL && m_puserschema->_001OnDrawMainFrameBackground(pdib,this))
       {
@@ -1246,7 +1250,9 @@ void simple_frame_window::_000OnDraw(::draw2d::dib * pdib)
    if(bDib)
    {
 
-      pdc->alpha_blend(null_point(),rectClient.size(),pdc,null_point(),dAlpha);
+      pdcParam->set_alpha_mode(::draw2d::alpha_mode_blend);
+
+      pdcParam->alpha_blend(null_point(),rectClient.size(),pdc,null_point(),dAlpha);
 
    }
 
