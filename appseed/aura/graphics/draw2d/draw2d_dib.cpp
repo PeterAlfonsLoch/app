@@ -315,6 +315,8 @@ namespace draw2d
 
       pdibSrc->map();
 
+      ptDst += m_pt;
+
       if(ptSrc.x < 0)
       {
          ptDst.x -= ptSrc.x;
@@ -374,16 +376,19 @@ namespace draw2d
 
          psrc2 = (COLORREF *)&psrc[scanSrc * y];
 
-         for(int x = 0; x < xEnd; x++)
-         {
+         memcpy(pdst2, psrc2, xEnd * 4);
+         //for(int x = 0; x < xEnd; x++)
+         //{
 
-            *pdst2 = *psrc2;
+         //   *pdst2 = *psrc2;
 
-            pdst2++;
+         //   pdst2++;
 
-            psrc2++;
+         //   psrc2++;
 
-         }
+         //}
+         //pdst2 += xEnd;
+         //psrc2 += xEnd;
 
       }
 
@@ -4080,6 +4085,8 @@ namespace draw2d
    void dib::map(bool bApplyAlphaTransform) const
    {
 
+      ((dib *) this)->m_bMapped = true;
+
       UNREFERENCED_PARAMETER(bApplyAlphaTransform);
 
    }
@@ -4087,12 +4094,14 @@ namespace draw2d
 
    void dib::unmap() const
    {
-
+      ((dib *) this)->m_bMapped = false;
    }
 
 
    void dib::set_mapped()
    {
+
+      m_bMapped = false;
 
    }
 

@@ -27,18 +27,11 @@ namespace aura
    ///////////////////////////////////////////////////////////////////////////////
    microtimer::microtimer()
    {
-#ifdef WIN32
-      QueryPerformanceFrequency(&frequency);
-      startCount.QuadPart = 0;
-      endCount.QuadPart = 0;
-#else
-      startCount.tv_sec = startCount.tv_usec = 0;
-      endCount.tv_sec = endCount.tv_usec = 0;
-#endif
 
-      stopped = 0;
-      startTimeInMicroSec = 0;
-      endTimeInMicroSec = 0;
+      m_bStopped = false;
+      m_beg = 0;
+      m_end = 0;
+
    }
 
 
@@ -58,12 +51,11 @@ namespace aura
    ///////////////////////////////////////////////////////////////////////////////
    void microtimer::start()
    {
-      stopped = 0; // reset stop flag
-#ifdef WIN32
-      QueryPerformanceCounter(&startCount);
-#else
-      gettimeofday(&startCount, NULL);
-#endif
+      
+      m_bStopped = false; // reset stop flag
+
+      m_beg = get_nanos();
+
    }
 
 
@@ -74,13 +66,11 @@ namespace aura
    ///////////////////////////////////////////////////////////////////////////////
    void microtimer::stop()
    {
-      stopped = 1; // set microtimer stopped flag
+      
+      m_bStopped = true; // set microtimer stopped flag
 
-#ifdef WIN32
-      QueryPerformanceCounter(&endCount);
-#else
-      gettimeofday(&endCount, NULL);
-#endif
+      m_end = get_nanos();
+
    }
 
 
@@ -91,21 +81,12 @@ namespace aura
    ///////////////////////////////////////////////////////////////////////////////
    double microtimer::getElapsedTimeInMicroSec()
    {
-#ifdef WIN32
-      if (!stopped)
-         QueryPerformanceCounter(&endCount);
 
-      startTimeInMicroSec = startCount.QuadPart * (1000000.0 / frequency.QuadPart);
-      endTimeInMicroSec = endCount.QuadPart * (1000000.0 / frequency.QuadPart);
-#else
-      if (!stopped)
-         gettimeofday(&endCount, NULL);
+      if (!m_bStopped)
+         m_end = get_nanos();
 
-      startTimeInMicroSec = (startCount.tv_sec * 1000000.0) + startCount.tv_usec;
-      endTimeInMicroSec = (endCount.tv_sec * 1000000.0) + endCount.tv_usec;
-#endif
+      return (m_end - m_beg) / 1000.0;
 
-      return endTimeInMicroSec - startTimeInMicroSec;
    }
 
 
@@ -136,23 +117,7 @@ namespace aura
    double microtimer::getTimeInMicroSec()
    {
 
-      double dTimeInMicroSec;
-
-#ifdef WIN32
-
-      QueryPerformanceCounter(&endCount);
-
-      dTimeInMicroSec = endCount.QuadPart * (1000000.0 / frequency.QuadPart);
-
-#else
-
-      gettimeofday(&endCount, NULL);
-
-      dTimeInMicroSec = (endCount.tv_sec * 1000000.0) + endCount.tv_usec;
-
-#endif
-
-      return dTimeInMicroSec;
+      return get_nanos() / 1000.0;
 
    }
 

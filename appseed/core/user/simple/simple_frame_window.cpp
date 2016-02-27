@@ -1158,7 +1158,7 @@ void simple_frame_window::_001OnDeferPaintLayeredWindowBackground(::draw2d::dib 
 void simple_frame_window::_000OnDraw(::draw2d::dib * pdibParam)
 {
 
-   if(!IsWindowVisible())
+   if (!(IsWindowVisible() && (GetParent() == NULL || GetTopLevelFrame() == NULL || !GetTopLevelFrame()->WfiIsIconic())))
       return;
 
    ::draw2d::graphics * pdcParam = pdibParam->get_graphics();

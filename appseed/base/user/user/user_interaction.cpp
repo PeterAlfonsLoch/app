@@ -1102,7 +1102,7 @@ namespace user
 
       ::draw2d::graphics * pgraphics = pdib->get_graphics();
 
-      point ptOrg =  pgraphics->GetViewportOrg();
+      point ptOrg =  pdib->m_pt;
 
       try
       {
@@ -1281,10 +1281,13 @@ namespace user
 
       single_lock sl(m_pmutex, true);
 
-      if(!IsWindowVisible() || (GetParentFrame() != NULL && GetParentFrame()->WfiIsIconic()) || (GetTopLevelFrame() != NULL && GetTopLevelFrame()->WfiIsIconic()))
+      if(!m_bVisible)
          return;
 
       _001DrawThis(pdib);
+
+      if (m_uiptraChild.get_count() <= 0)
+         return;
 
       try
       {

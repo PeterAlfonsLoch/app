@@ -180,31 +180,11 @@ namespace sockets
    {
       if (m_bFirst)
       {
-         {
-#ifdef WINDOWS
 
-            int64_t count;
-            int64_t freq;
-            if(QueryPerformanceCounter((LARGE_INTEGER *) &count)
-            && QueryPerformanceFrequency((LARGE_INTEGER *) &freq))
-            {
-               m_iFirstTime = count * 1000 * 1000 / freq;
-            }
-            else
-            {
-               m_iFirstTime = ::get_tick_count();
-            }
+         m_iFirstTime = get_nanos() / 1000;
 
-#else
-
-            timeval t;
-            gettimeofday(&t, NULL);
-            m_iFirstTime = t.tv_sec * 1000 * 1000 + t.tv_usec;
-
-#endif
-
-         }
          ::str::parse pa(line);
+
          string str = pa.getword();
          if (str.get_length() > 4 &&  ::str::begins_ci(str, "http/")) // response
          {

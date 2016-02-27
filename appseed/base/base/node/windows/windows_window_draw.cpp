@@ -30,7 +30,6 @@ public:
 
 extern bool g_bSuppressTwf;
 
-LARGE_INTEGER g_freq;
 
 namespace windows
 {
@@ -41,7 +40,6 @@ namespace windows
       ::user::window_draw(papp),
       ::user::message_queue(papp)
    {
-      QueryPerformanceFrequency(&g_freq);
       m_dwLastRedrawRequest = ::get_tick_count();
          m_bRender = false;
          //         m_pbuffer = new user::buffer(papp);
@@ -233,16 +231,16 @@ namespace windows
 
    void window_draw::do_events()
    {
-      LARGE_INTEGER startTime;
-      LARGE_INTEGER endTime;
+      uint64_t startTime;
+      uint64_t endTime;
       ::thread::do_events();
       try
       {
          if(m_bProDevianMode)
          {
-            QueryPerformanceCounter((LARGE_INTEGER *)&startTime);
+            startTime = get_nanos();
             _synch_redraw();
-            QueryPerformanceCounter((LARGE_INTEGER *)&endTime);
+            endTime = get_nanos();
          }
       }
       catch(...)
@@ -277,8 +275,8 @@ namespace windows
          m_bRunning = true;
 
 //         MSG msg;
-         LARGE_INTEGER startTime;
-         LARGE_INTEGER endTime;
+         uint64_t startTime;
+         uint64_t endTime;
          
          while(m_bRun)
          {
@@ -286,9 +284,9 @@ namespace windows
             {
                if(m_bProDevianMode)
                {
-                  QueryPerformanceCounter(&startTime);
+                  startTime = get_nanos();
                   _synch_redraw();
-                  QueryPerformanceCounter(&endTime);
+                  endTime = get_nanos();
                }
             }
             catch(...)
@@ -321,14 +319,18 @@ namespace windows
                
                UINT uiFrameMillis = 1000 / m_iFramesPerSecond;
 
-               uint64_t micros = (endTime.QuadPart - startTime.QuadPart) * 1000 * 1000 * 1000 / g_freq.QuadPart;
+               uint64_t micros = (endTime - startTime) / 1000;
 
-               if(uiFrameMillis > (micros / 1000 + 2))
+               uint64_t millis = micros / 1000 ;
+
+               if(uiFrameMillis > millis + 2)
                {
 
-                  Sleep(uiFrameMillis - (micros / 1000 + 2));
+                  Sleep(uiFrameMillis - millis - 2);
 
                }
+
+               output_debug_string(::str::from(micros) + "\n");
 
             }
 

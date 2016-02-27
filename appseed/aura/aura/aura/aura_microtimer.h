@@ -24,18 +24,10 @@ namespace aura
    public:
 
 
-      double startTimeInMicroSec;                 // starting time in micro-second
-      double endTimeInMicroSec;                   // ending time in micro-second
-      int32_t    stopped;                             // stop flag
-
-#ifdef WINDOWS
-      LARGE_INTEGER frequency;                    // ticks per second
-      LARGE_INTEGER startCount;                   //
-      LARGE_INTEGER endCount;                     //
-#else
-      timeval startCount;                         //
-      timeval endCount;                           //
-#endif
+      
+      bool           m_bStopped; /// stop flag
+      uint64_t       m_beg; // nanos
+      uint64_t       m_end; // nanos
 
 
       microtimer();                                    // default constructor

@@ -243,21 +243,6 @@ namespace math
 
          sleep(millis(1));
 
-//         double d2 = timer.getTimeInMicroSec();
-
-         //            LARGE_INTEGER tick;
-         //          QueryPerformanceCounter(&tick);
-         //        PERFORMANCE_INFORMATION pi;
-         //      memset(&pi, 0, sizeof(pi));
-         //    GetPerformanceInfo(&pi, sizeof(pi));
-         //            FILETIME fta[3];
-         //          memset(&fta, 0, sizeof(fta));
-         //        GetSystemTimes(&fta[0], &fta[1], &fta[2]);
-         //      int64_t v1 = tick.QuadPart;
-         //    int64_t v2 = time(NULL);
-         //  int64_t v3 = ::core::crypt::crc32(tick.QuadPart % 0xffffffff, &pi, sizeof(pi));
-         //int64_t v4 = ::core::crypt::crc32(tick.QuadPart % 0xffffffff, fta, sizeof(fta));
-
          int32_t v1 = (int32_t)timer.getTimeInMicroSec();
 
          int32_t v2 = (int32_t)time(NULL);

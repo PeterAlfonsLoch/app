@@ -41,6 +41,16 @@ extern critical_section * g_pmutexSystemHeap;
 
 extern plex_heap_alloc_array * g_pheap;
 
+#ifdef WINDOWS
+
+extern LARGE_INTEGER g_freq;
+
+extern LARGE_INTEGER g_firstCounter;
+
+#endif
+
+
+
 //extern mutex * g_pmutexTrace;
 
 extern mutex * g_pmutgen;
@@ -143,6 +153,14 @@ namespace aura
       CLASS_DECL_AURA void init()
       {
 
+#ifdef WINDOWS
+         
+         QueryPerformanceFrequency(&g_freq);
+
+         QueryPerformanceCounter(&g_firstCounter);
+
+#endif
+
 
          xxdebug_box("aura.dll base_static_start (0)", "box", MB_OK);
 
@@ -198,6 +216,8 @@ namespace aura
          g_pmutexCvt = new mutex(NULL);
 
 #endif
+
+
 
          //g_pstrLastStatus = new string();
 
