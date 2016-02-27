@@ -40,7 +40,7 @@ extern "C" CLASS_DECL_AURA time_t timegm(struct tm *tmp)
 time_t timegm(tm * p)
 {
 
-   time_t t1 = 60 * 60 * 24 * 2; // (sec * min * hours) * (safety 2 days); // 1970-01-03 00:00:00 +0000 (UTC). 
+   time_t t1 = 60 * 60 * 24 * 2; // (sec * min * hours) * (safety 2 days); // 1970-01-03 00:00:00 +0000 (UTC).
 
    tm tm1;
 
@@ -84,7 +84,7 @@ namespace datetime
       const char * psz = str;
       string strNumber;
       string strText1;
-      for(int32_t i = 0;*psz; psz = ::str::utf8_inc(psz))
+      for(int32_t i = 0; *psz; psz = ::str::utf8_inc(psz))
       {
          string strChar = ::str::get_utf8_char(psz);
          if(::str::ch::is_whitespace(psz))
@@ -98,31 +98,31 @@ namespace datetime
                value span;
                span.m_bSpan = true;
                if(strText1 == "day" || strText1 == "days" || strText1 == "dia" || strText1 == "dias"
-                  || (pcontext != NULL && pcontext->matches(idCalendarDay,strText1))
-                  || (pcontext != NULL && pcontext->matches(idCalendarDays,strText1)))
+                     || (pcontext != NULL && pcontext->matches(idCalendarDay,strText1))
+                     || (pcontext != NULL && pcontext->matches(idCalendarDays,strText1)))
                {
                   span.m_iDay = atoi(strNumber);
                }
                else if(strText1 == "week" || strText1 == "weeks"
-                  || (pcontext != NULL && pcontext->matches(idCalendarWeek,strText1))
-                  || (pcontext != NULL && pcontext->matches(idCalendarWeeks,strText1)))
+                       || (pcontext != NULL && pcontext->matches(idCalendarWeek,strText1))
+                       || (pcontext != NULL && pcontext->matches(idCalendarWeeks,strText1)))
                {
                   span.m_iDay = atoi(strNumber) * 7;
                }
                else if(strText1 == "hour" || strText1 == "hours" || strText1 == "hora" || strText1 == "horas"
-                  || (pcontext != NULL && pcontext->matches(idCalendarHour,strText1))
-                  || (pcontext != NULL && pcontext->matches(idCalendarHour,strText1)))
+                       || (pcontext != NULL && pcontext->matches(idCalendarHour,strText1))
+                       || (pcontext != NULL && pcontext->matches(idCalendarHour,strText1)))
                {
                   span.m_iHour = atoi(strNumber);
                }
                else if(strText1 == "year" || strText1 == "years"
-                  || (pcontext != NULL && pcontext->matches(idCalendarYear,strText1))
-                  || (pcontext != NULL && pcontext->matches(idCalendarYears,strText1)))
+                       || (pcontext != NULL && pcontext->matches(idCalendarYear,strText1))
+                       || (pcontext != NULL && pcontext->matches(idCalendarYears,strText1)))
                {
                   span.m_iYear = atoi(strNumber);
                }
                else if(strText1 == "now"
-                  || (pcontext != NULL && pcontext->matches(idCalendarNow,strText1)))
+                       || (pcontext != NULL && pcontext->matches(idCalendarNow,strText1)))
                {
                   throw "now cannot be span";
                }
@@ -266,10 +266,10 @@ namespace datetime
       if(str.get_length() >= 19)
       {
          if(str.Mid(4,1) == "-"
-            && str.Mid(7,1) == "-"
-            && str.Mid(10,1) == " "
-            && str.Mid(13,1) == ":"
-            && str.Mid(16,1) == ":")
+               && str.Mid(7,1) == "-"
+               && str.Mid(10,1) == " "
+               && str.Mid(13,1) == ":"
+               && str.Mid(16,1) == ":")
          {
             bBaseTime = true;
             Sys(pbaseapp->m_paurasystem).datetime().international().parse_str(str,set);
@@ -277,8 +277,8 @@ namespace datetime
             strWord.trim_left();
             strWord = ::str::get_word(strWord," ");
             if(strWord.CompareNoCase("UTC") == 0
-               || strWord.CompareNoCase("GMT") == 0
-               || bUTC)
+                  || strWord.CompareNoCase("GMT") == 0
+                  || bUTC)
             {
                struct tm atm;
                atm.tm_sec = set["second"];
@@ -300,12 +300,12 @@ namespace datetime
             else
             {
                time = ::datetime::time(
-                  set["year"],
-                  set["month"],
-                  set["day"],
-                  set["hour"],
-                  set["minute"],
-                  set["second"]);
+                         set["year"],
+                         set["month"],
+                         set["day"],
+                         set["hour"],
+                         set["minute"],
+                         set["second"]);
             }
             iStart = 20;
          }
@@ -314,17 +314,17 @@ namespace datetime
       if(!bBaseTime && str.get_length() >= 10)
       {
          if(str.Mid(4,1) == "-"
-            && str.Mid(7,1) == "-")
+               && str.Mid(7,1) == "-")
          {
             bBaseTime = true;
             Sys(pbaseapp->m_paurasystem).datetime().international().parse_str(str,set);
             time = ::datetime::time(
-               set["year"],
-               set["month"],
-               set["day"],
-               set["hour"],
-               set["minute"],
-               set["second"]);
+                      set["year"],
+                      set["month"],
+                      set["day"],
+                      set["hour"],
+                      set["minute"],
+                      set["second"]);
             iStart = 11;
          }
       }
@@ -332,32 +332,32 @@ namespace datetime
       if(!bBaseTime && str.get_length() >= 10)
       {
          if(str.Mid(2,1) == "/"
-            && str.Mid(5,1) == "/")
+               && str.Mid(5,1) == "/")
          {
             bBaseTime = true;
             parse_br_str(str,set);
 
             time = ::datetime::time(
-               set["year"],
-               set["month"],
-               set["day"],
-               set["hour"],
-               set["minute"],
-               set["second"]);
+                      set["year"],
+                      set["month"],
+                      set["day"],
+                      set["hour"],
+                      set["minute"],
+                      set["second"]);
             iStart = 11;
          }
       }
       if(!bBaseTime && (
-         ::str::begins_eat(str,"today") ||
-         (pcontext != NULL && pcontext->begins_eat(str,"calendar:today"))))
+               ::str::begins_eat(str,"today") ||
+               (pcontext != NULL && pcontext->begins_eat(str,"calendar:today"))))
       {
          time = ::datetime::time::get_current_time();
          time = ::datetime::time(time.GetYear(),time.GetMonth(),time.GetDay(),0,0,0);
          bBaseTime = true;
       }
       if(!bBaseTime && (
-         ::str::begins_eat(str,"tomorrow") ||
-         (pcontext != NULL && pcontext->begins_eat(str,"calendar:tomorrow"))))
+               ::str::begins_eat(str,"tomorrow") ||
+               (pcontext != NULL && pcontext->begins_eat(str,"calendar:tomorrow"))))
       {
          time = ::datetime::time::get_current_time();
          time = ::datetime::time(time.GetYear(),time.GetMonth(),time.GetDay(),0,0,0);
@@ -365,8 +365,8 @@ namespace datetime
          bBaseTime = true;
       }
       if(!bBaseTime && (
-         ::str::begins_eat(str,"yesterday") ||
-         (pcontext != NULL && pcontext->begins_eat(str,"calendar:yesterday"))))
+               ::str::begins_eat(str,"yesterday") ||
+               (pcontext != NULL && pcontext->begins_eat(str,"calendar:yesterday"))))
       {
          time = ::datetime::time::get_current_time();
          time = ::datetime::time(time.GetYear(),time.GetMonth(),time.GetDay(),0,0,0);
@@ -374,8 +374,8 @@ namespace datetime
          bBaseTime = true;
       }
       if(!bBaseTime && (
-         ::str::begins_eat(str,"now") ||
-         (pcontext != NULL && pcontext->begins_eat(str,"calendar:now"))))
+               ::str::begins_eat(str,"now") ||
+               (pcontext != NULL && pcontext->begins_eat(str,"calendar:now"))))
       {
          time = ::datetime::time::get_current_time();
          bBaseTime = true;
@@ -389,16 +389,16 @@ namespace datetime
          int32_t iCount = 0;
          bool bFirst = false;
          if(i1 != i2
-            && i1 >= 1 && i1 <= 12
-            && i2 >= 1 && i2 <=
-            Sys(pbaseapp->m_paurasystem).datetime().get_month_day_count(time.GetYear(),i1))
+               && i1 >= 1 && i1 <= 12
+               && i2 >= 1 && i2 <=
+               Sys(pbaseapp->m_paurasystem).datetime().get_month_day_count(time.GetYear(),i1))
          {
             bFirst = true;
             iCount++;
          }
          if(i2 >= 1 && i2 <= 12
-            && i1 >= 1 && i1 <=
-            Sys(pbaseapp->m_paurasystem).datetime().get_month_day_count(time.GetYear(),i2))
+               && i1 >= 1 && i1 <=
+               Sys(pbaseapp->m_paurasystem).datetime().get_month_day_count(time.GetYear(),i2))
          {
             iCount++;
          }
@@ -409,7 +409,7 @@ namespace datetime
                int32_t iDay = i2;
                int32_t iMonth = i1;
                time = ::datetime::time(time.GetYear(),iMonth,iDay,
-                  time.GetHour(),time.GetMinute(),time.GetSecond());
+                                       time.GetHour(),time.GetMinute(),time.GetSecond());
                time = ::datetime::time(time.GetYear(),time.GetMonth(),time.GetDay(),0,0,0);
             }
             else if((iCount == 1 && !bFirst) || (iCount == 2 && (iPath % iCount) == 1))
@@ -417,7 +417,7 @@ namespace datetime
                int32_t iDay = i1;
                int32_t iMonth = i2;
                time = ::datetime::time(time.GetYear(),iMonth,iDay,
-                  time.GetHour(),time.GetMinute(),time.GetSecond());
+                                       time.GetHour(),time.GetMinute(),time.GetSecond());
                time = ::datetime::time(time.GetYear(),time.GetMonth(),time.GetDay(),0,0,0);
             }
             iPath = iPath / iCount;
@@ -553,6 +553,46 @@ namespace datetime
 
 
 } // namespace datetime
+
+
+
+
+
+
+uint64_t g_firstNano;
+
+
+CLASS_DECL_AURA DWORD get_tick_count()
+{
+
+   return get_nanos() / (1000 * 1000);
+
+}
+
+CLASS_DECL_AURA DWORD get_first_tick()
+{
+
+   return get_first_nano() / (1000 * 1000);
+
+}
+
+
+CLASS_DECL_AURA DWORD get_first_nano()
+{
+
+   return g_firstNano;
+
+}
+
+
+
+
+
+
+
+
+
+
 
 
 

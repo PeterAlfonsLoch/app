@@ -43,13 +43,11 @@ extern plex_heap_alloc_array * g_pheap;
 
 #ifdef WINDOWS
 
-extern LARGE_INTEGER g_freq;
-
-extern LARGE_INTEGER g_firstCounter;
+   extern LARGE_INTEGER g_freq;
 
 #endif
 
-
+extern uint64_t g_firstNano;
 
 //extern mutex * g_pmutexTrace;
 
@@ -71,32 +69,32 @@ extern mutex * g_pmutexUiDestroyed;
 //extern string * g_pstrLastGlsStatus;
 #ifdef ANDROID
 
-extern mutex * g_pmutexOutputDebugStringA;
+   extern mutex * g_pmutexOutputDebugStringA;
 
 #endif
 
 
 #if defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
 
-extern mutex * g_pmutexMq;
+   extern mutex * g_pmutexMq;
 
-extern map < HTHREAD,HTHREAD,mq *,mq * > * g_pmapMq;
+   extern map < HTHREAD,HTHREAD,mq *,mq * > * g_pmapMq;
 
 #endif
 
 #if defined(LINUX) || defined(APPLEOS) || defined(METROWIN) || defined(ANDROID)
 
-//extern mutex * g_pmutexThreadIdHandleLock;
+   //extern mutex * g_pmutexThreadIdHandleLock;
 
-//extern mutex * g_pmutexThreadIdLock;
+   //extern mutex * g_pmutexThreadIdLock;
 
-#if !defined(METROWIN)
+   #if !defined(METROWIN)
 
-//extern mutex * g_pmutexPendingThreadsLock;
+      //extern mutex * g_pmutexPendingThreadsLock;
 
-#endif
+   #endif
 
-extern mutex * g_pmutexTlsData;
+   extern mutex * g_pmutexTlsData;
 
 #endif // defined(LINUX) || defined(APPLEOS) || defined(METROWIN)
 
@@ -104,11 +102,11 @@ extern mutex * g_pmutexTlsData;
 
 
 
-extern mutex * g_pmutexTz;
+   extern mutex * g_pmutexTz;
 
-//extern map < HTHREAD, HTHREAD, PendingThreadInfo, PendingThreadInfo > * g_ppendingThreads;
+   //extern map < HTHREAD, HTHREAD, PendingThreadInfo, PendingThreadInfo > * g_ppendingThreads;
 
-extern mutex * g_pmutexThreadHandleLock;
+   extern mutex * g_pmutexThreadHandleLock;
 
 #endif // defined(LINUX) || defined(APPLEOS)
 
@@ -134,7 +132,7 @@ extern oswindow_dataptra * g_poswindowdataptra;
 
 #ifdef APPLEOS
 
-extern mutex * g_pmutexCvt;
+   extern mutex * g_pmutexCvt;
 
 #endif
 
@@ -154,13 +152,12 @@ namespace aura
       {
 
 #ifdef WINDOWS
-         
-         QueryPerformanceFrequency(&g_freq);
 
-         QueryPerformanceCounter(&g_firstCounter);
+         QueryPerformanceFrequency(&g_freq);
 
 #endif
 
+         g_firstNano = get_nanos();
 
          xxdebug_box("aura.dll base_static_start (0)", "box", MB_OK);
 
@@ -209,7 +206,7 @@ namespace aura
          g_pmutexOutputDebugStringA = new mutex(NULL);
 
 #endif
-         
+
 
 #ifdef APPLEOS
 
@@ -256,12 +253,12 @@ namespace aura
 
 //         g_pmutexThreadIdHandleLock = new mutex;
 
-  //       g_pmutexThreadIdLock = new mutex;
+         //       g_pmutexThreadIdLock = new mutex;
 
 
 #ifndef METROWIN
 
-    //     g_pmutexPendingThreadsLock = new mutex;
+         //     g_pmutexPendingThreadsLock = new mutex;
 
 #endif
 
@@ -287,7 +284,7 @@ namespace aura
 
 //#if defined(APPLEOS)
 //
-  //       g_poswindowdataptra = new oswindow_dataptra;
+         //       g_poswindowdataptra = new oswindow_dataptra;
 //
 //#endif // defined(APPLEOS)
 
@@ -387,11 +384,11 @@ namespace aura
 
 //         delete g_pmutexThreadHandleLock;
 
-  //       g_pmutexThreadHandleLock = NULL;
+         //       g_pmutexThreadHandleLock = NULL;
 
 //         delete g_ppendingThreads;
 
-  //       g_ppendingThreads = NULL;
+         //       g_ppendingThreads = NULL;
 
          delete g_pmutexTz;
 
@@ -419,15 +416,15 @@ namespace aura
 
 //         delete g_pmutexPendingThreadsLock;
 
-  //       g_pmutexPendingThreadsLock = NULL;
+         //       g_pmutexPendingThreadsLock = NULL;
 
 #endif
 
-    //     delete g_pmutexThreadIdHandleLock;
+         //     delete g_pmutexThreadIdHandleLock;
 
-      //   g_pmutexThreadIdHandleLock = NULL;
+         //   g_pmutexThreadIdHandleLock = NULL;
 
-        // delete g_pmutexThreadIdLock;
+         // delete g_pmutexThreadIdLock;
 
          //g_pmutexThreadIdLock = NULL;
 
@@ -444,9 +441,9 @@ namespace aura
 
 //#if defined(APPLEOS)
 
-  //       delete g_poswindowdataptra;
+         //       delete g_poswindowdataptra;
 
-    //     g_poswindowdataptra = NULL;
+         //     g_poswindowdataptra = NULL;
 
 //#endif // defined(APPLEOS)
 
