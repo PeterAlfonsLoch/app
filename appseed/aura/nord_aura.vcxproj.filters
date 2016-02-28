@@ -97,9 +97,6 @@
     <ClCompile Include="aura\os\cross\windows\_cross_windows.cpp">
       <Filter>Source Files\aura\os\cross\windows</Filter>
     </ClCompile>
-    <ClCompile Include="aura\os\android\android.c">
-      <Filter>Source Files\aura\os\android</Filter>
-    </ClCompile>
     <ClCompile Include="aura\os\android\_android_os.cpp">
       <Filter>Source Files\aura\os\android</Filter>
     </ClCompile>
@@ -1410,6 +1407,9 @@
     <ClCompile Include="aura\process\process_department.cpp" />
     <ClCompile Include="primitive\datetime\datetime_department.cpp" />
     <ClCompile Include="primitive\math\math_department.cpp" />
+    <ClCompile Include="aura\os\android\aaa_want_to_remove_android.c">
+      <Filter>Source Files\aura\os\android</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -3170,6 +3170,9 @@
     <ClInclude Include="aura\xml\xml_department.h" />
     <ClInclude Include="primitive\math\math_department.h" />
     <ClInclude Include="primitive\datetime\datetime_file_time.h">
+      <Filter>Header Files\primitive\datetime</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\datetime\datetime_c.h">
       <Filter>Header Files\primitive\datetime</Filter>
     </ClInclude>
   </ItemGroup>

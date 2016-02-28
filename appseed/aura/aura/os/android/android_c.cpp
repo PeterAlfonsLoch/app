@@ -81,12 +81,12 @@ extern "C"
       */
       if(x > 0.0)
          i += (double)((f > 0.5) || (f == 0.5 &&
-         i <= (double)MAX_EXACT_INTEGER &&
-         (long)i % 2));
+                                     i <= (double)MAX_EXACT_INTEGER &&
+                                     (long)i % 2));
       else
          i -= (double)((f < -0.5) || (f == -0.5 &&
-         i >= (double)-MAX_EXACT_INTEGER &&
-         (long)i % 2));
+                                      i >= (double)-MAX_EXACT_INTEGER &&
+                                      (long)i % 2));
       return i;
    }
 
@@ -110,3 +110,18 @@ extern "C"
 
 
 
+
+uint64_t get_nanos()
+{
+
+   struct timespec ts;
+
+   if (clock_gettime(CLOCK_MONOTONIC, &ts) != 0)
+   {
+      //error
+      return 0;
+   }
+
+   return ts.tv_sec * 1000 * 1000 * 1000 + ts.tv_nsec;
+
+}

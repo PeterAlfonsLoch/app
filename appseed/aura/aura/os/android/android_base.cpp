@@ -2,13 +2,13 @@
 
 
 
-DWORD get_tick_count()
-{
-   timeval ts;
-   gettimeofday(&ts,0);
-   return (ts.tv_sec * 1000 + (ts.tv_usec / 1000)) % 0xffffffffu;
-
-}
+//DWORD get_nanos()
+//{
+//   timeval ts;
+//   gettimeofday(&ts,0);
+//   return (ts.tv_sec * 1000 * 1000 * 1 + (ts.tv_usec / 1000)) % 0xffffffffu;
+//
+//}
 
 thread_int_ptr < DWORD > g_dwLastError;
 

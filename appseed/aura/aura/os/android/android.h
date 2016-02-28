@@ -15,9 +15,9 @@ void* lfind( const void * key, const void * aura, size_t * num, size_t width, in
 #undef localeconv
 
 struct lconv
-{ 
+{
 
-   const char * decimal_point; 
+   const char * decimal_point;
 
 };
 
@@ -27,3 +27,6 @@ double rint(double x);
 
 
 END_EXTERN_C
+
+
+

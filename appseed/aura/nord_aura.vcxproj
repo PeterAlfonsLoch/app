@@ -1018,7 +1018,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="aura\os\android\android.c">
+    <ClCompile Include="aura\os\android\aaa_want_to_remove_android.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
@@ -3263,6 +3263,7 @@
     <ClInclude Include="primitive\data\data_data_listener.h" />
     <ClInclude Include="primitive\data\data_item.h" />
     <ClInclude Include="primitive\datetime\datetime.h" />
+    <ClInclude Include="primitive\datetime\datetime_c.h" />
     <ClInclude Include="primitive\datetime\datetime_duration.h" />
     <ClInclude Include="primitive\datetime\datetime_file_time.h" />
     <ClInclude Include="primitive\datetime\datetime_mktime.h" />
