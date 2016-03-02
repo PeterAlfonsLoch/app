@@ -15,10 +15,12 @@
 				<Option createDefFile="1" />
 				<Option createStaticLib="1" />
 				<Compiler>
+					<Add option="-pg" />
 					<Add option="-g" />
 					<Add option="-D_DEBUG" />
 				</Compiler>
 				<Linker>
+					<Add option="-pg" />
 					<Add directory="../../../stage/x86" />
 				</Linker>
 			</Target>
@@ -744,6 +746,10 @@
 		<Unit filename="primitive/primitive_shared_memory.h" />
 		<Unit filename="primitive/primitive_signal.h" />
 		<Unit filename="primitive/primitive_type.h" />
+		<Unit filename="primitive/primitive_var.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="primitive/primitive_var.h" />
 		<Unit filename="primitive/primitive_var2.h" />
 		<Unit filename="primitive/primitive_virtual_memory.h" />

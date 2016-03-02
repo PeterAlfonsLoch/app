@@ -206,132 +206,132 @@ namespace linux
       }
    }
 
-   bool window_draw::to(
-      ::draw2d::graphics *          pdc,
-      LPCRECT        lpcrectUpdate,
-      user::oswindow_tree::Array & hwndtreea,
-      bool           bGdiLocked,
-      bool           bExcludeParamWnd)
-   {
-      UNREFERENCED_PARAMETER(bGdiLocked);
-      UNREFERENCED_PARAMETER(bExcludeParamWnd);
-      single_lock sl(&m_mutexRender, TRUE);
-      rect rectUpdate(*lpcrectUpdate);
-
-      rect rectChild;
-
-      rect rectNewUpdate;
-
-      for(int_ptr i = hwndtreea.get_size() - 1; i >= 0; i--)
-      {
-         user::oswindow_tree & hwndtreeChild = hwndtreea(i);
-         void * hwndChild = hwndtreeChild.m_oswindow;
-         ::GetWindowRect((oswindow) hwndChild, rectChild);
-         if(rectNewUpdate.intersect(rectChild, rectUpdate))
-         {
-            to(pdc, rectNewUpdate, hwndtreeChild, true, false);
-         }
-       }
-       return true;
-   }
-
-   bool window_draw::to(
-      ::draw2d::graphics *          pdc,
-      LPCRECT        lpcrectUpdate,
-      user::oswindow_tree & hwndtree,
-      bool           bGdiLocked,
-      bool           bExcludeParamWnd)
-   {
-      UNREFERENCED_PARAMETER(bGdiLocked);
-      single_lock sl(&m_mutexRender, TRUE);
-      rect rectUpdate(*lpcrectUpdate);
-
-//      DWORD dwTimeIn = get_tick_count();
-
-      void * hwndParam = hwndtree.m_oswindow;
-
-      if(hwndParam == NULL)
-      {
-         return false;
-      }
-
-/*      if(!::IsWindow((oswindow) hwndParam))
-      {
-         return false;
-      }*/
-
-
-
-
-
-      if(!::IsWindowVisible((oswindow) hwndParam))
-      {
-         return true;
-      }
-
-
-
-
-      if(hwndtree.m_dwUser & 1)
-      {
-         ASSERT(TRUE);
-      }
-      else
-      {
-         ::user::interaction_base * ptwi = Session.user()->window_map().get((int_ptr) hwndParam);
-         sp(::user::interaction) pguie =  (ptwi);
-         rect rectWindow;
-         ::GetWindowRect((oswindow) hwndParam, rectWindow);
-         //::GetClientRect(hwndParam, rectWindow);
-         //::ClientToScreen(hwndParam, &rectWindow.top_left());
-         //::ClientToScreen(hwndParam, &rectWindow.bottom_right());
-
-         //(dynamic_cast < ::linux::graphics * >(pdc))->SetViewportOrg(rectWindow.left, rectWindow.top);
-
-
-         if(ptwi != NULL)
-         {
-
-
-            if(!bExcludeParamWnd &&
-               pguie != NULL )
-            {
-               pguie->_001OnDraw(pdc);
-            }
-
-
-         }
-         else
-         {
-            bool bWin4 = FALSE;
-         //_::ca2::FillPSOnStack();
-/*            ::DefWindowProc(
-               (oswindow) hwndParam,
-               (bWin4 ? WM_PRINT : WM_PAINT),
-               (WPARAM)((dynamic_cast<::linux::graphics * >(pdc))->get_os_data()),
-               (LPARAM)(bWin4 ? PRF_CHILDREN | PRF_CLIENT : 0));*/
-            //::RedrawWindow(hwndParam, NULL, rgnClient, RDW_INVALIDATE | RDW_UPDATENOW | RDW_NOCHILDREN);
-         }
-      }
-
-
-
-
-//      DWORD dwTimeOut = get_tick_count();
-   //   TRACE("// Average Window Rendering time\n");
-   //   TRACE("// Window Class: %s\n", (pwnd!=NULL) ? pwnd->GetRuntimeClass()->m_lpszClassName : "(Not available)");
-   //   TRACE("// TickCount: %d \n", dwTimeOut - dwTimeIn);
-   //   TRACE("// \n");
-
-
-      return to(
-         pdc,
-         rectUpdate,
-         hwndtree.m_oswindowtreea,
-         true,
-         false);
-
-   }
+//   bool window_draw::to(
+//      ::draw2d::graphics *          pdc,
+//      LPCRECT        lpcrectUpdate,
+//      user::oswindow_tree::Array & hwndtreea,
+//      bool           bGdiLocked,
+//      bool           bExcludeParamWnd)
+//   {
+//      UNREFERENCED_PARAMETER(bGdiLocked);
+//      UNREFERENCED_PARAMETER(bExcludeParamWnd);
+//      single_lock sl(&m_mutexRender, TRUE);
+//      rect rectUpdate(*lpcrectUpdate);
+//
+//      rect rectChild;
+//
+//      rect rectNewUpdate;
+//
+//      for(int_ptr i = hwndtreea.get_size() - 1; i >= 0; i--)
+//      {
+//         user::oswindow_tree & hwndtreeChild = hwndtreea(i);
+//         void * hwndChild = hwndtreeChild.m_oswindow;
+//         ::GetWindowRect((oswindow) hwndChild, rectChild);
+//         if(rectNewUpdate.intersect(rectChild, rectUpdate))
+//         {
+//            to(pdc, rectNewUpdate, hwndtreeChild, true, false);
+//         }
+//       }
+//       return true;
+//   }
+//
+//   bool window_draw::to(
+//      ::draw2d::graphics *          pdc,
+//      LPCRECT        lpcrectUpdate,
+//      user::oswindow_tree & hwndtree,
+//      bool           bGdiLocked,
+//      bool           bExcludeParamWnd)
+//   {
+//      UNREFERENCED_PARAMETER(bGdiLocked);
+//      single_lock sl(&m_mutexRender, TRUE);
+//      rect rectUpdate(*lpcrectUpdate);
+//
+////      DWORD dwTimeIn = get_tick_count();
+//
+//      void * hwndParam = hwndtree.m_oswindow;
+//
+//      if(hwndParam == NULL)
+//      {
+//         return false;
+//      }
+//
+///*      if(!::IsWindow((oswindow) hwndParam))
+//      {
+//         return false;
+//      }*/
+//
+//
+//
+//
+//
+//      if(!::IsWindowVisible((oswindow) hwndParam))
+//      {
+//         return true;
+//      }
+//
+//
+//
+//
+//      if(hwndtree.m_dwUser & 1)
+//      {
+//         ASSERT(TRUE);
+//      }
+//      else
+//      {
+//         ::user::interaction_base * ptwi = Session.user()->window_map().get((int_ptr) hwndParam);
+//         sp(::user::interaction) pguie =  (ptwi);
+//         rect rectWindow;
+//         ::GetWindowRect((oswindow) hwndParam, rectWindow);
+//         //::GetClientRect(hwndParam, rectWindow);
+//         //::ClientToScreen(hwndParam, &rectWindow.top_left());
+//         //::ClientToScreen(hwndParam, &rectWindow.bottom_right());
+//
+//         //(dynamic_cast < ::linux::graphics * >(pdc))->SetViewportOrg(rectWindow.left, rectWindow.top);
+//
+//
+//         if(ptwi != NULL)
+//         {
+//
+//
+//            if(!bExcludeParamWnd &&
+//               pguie != NULL )
+//            {
+//               pguie->_001OnDraw(pdc);
+//            }
+//
+//
+//         }
+//         else
+//         {
+//            bool bWin4 = FALSE;
+//         //_::ca2::FillPSOnStack();
+///*            ::DefWindowProc(
+//               (oswindow) hwndParam,
+//               (bWin4 ? WM_PRINT : WM_PAINT),
+//               (WPARAM)((dynamic_cast<::linux::graphics * >(pdc))->get_os_data()),
+//               (LPARAM)(bWin4 ? PRF_CHILDREN | PRF_CLIENT : 0));*/
+//            //::RedrawWindow(hwndParam, NULL, rgnClient, RDW_INVALIDATE | RDW_UPDATENOW | RDW_NOCHILDREN);
+//         }
+//      }
+//
+//
+//
+//
+////      DWORD dwTimeOut = get_tick_count();
+//   //   TRACE("// Average Window Rendering time\n");
+//   //   TRACE("// Window Class: %s\n", (pwnd!=NULL) ? pwnd->GetRuntimeClass()->m_lpszClassName : "(Not available)");
+//   //   TRACE("// TickCount: %d \n", dwTimeOut - dwTimeIn);
+//   //   TRACE("// \n");
+//
+//
+//      return to(
+//         pdc,
+//         rectUpdate,
+//         hwndtree.m_oswindowtreea,
+//         true,
+//         false);
+//
+//   }
 
 
    UINT window_draw::RedrawProc()
@@ -706,356 +706,356 @@ namespace linux
    // It doesn\B4t eliminates from the update parent lnxdows
    // obscured by opaque children.
 
-   window_draw::EOptimize window_draw::TwfOptimizeRender(
-      user::oswindow_tree::Array & hwndtreea,
-      LPCRECT lpcrect)
-   {
-      const rect rectUpdate(*lpcrect);
-
-      rect rectClient;
-      for(int32_t i = 0; i < hwndtreea.get_size();)
-      {
-         user::oswindow_tree & hwndtree = hwndtreea(i);
-         switch(TwfOptimizeRender(
-            hwndtree,
-            lpcrect))
-         {
-         case OptimizeNone:
-            i++;
-            break;
-         case OptimizeThis:
-            hwndtreea.remove_at(i);
-            break;
-         case OptimizeAllNext:
-            {
-               while(hwndtreea.get_size() > i + 1)
-               {
-                  hwndtreea.remove_at(i + 1);
-               }
-               /*hwndtreea.remove_at(i + 1);
-               void * hwnd = hwndtreea[i].m_hwnd;
-               rect rect;
-               ::GetClientRect(hwnd, rect);
-               ::ClientToScreen(hwnd, &rect.top_left());
-               ::ClientToScreen(hwnd, &rect.bottom_right());
-               rect.union(rect, lpcrect);
-               TwfOptimizeRenderRemoveNextProper(
-                  hwndtreea,
-                  i + 1,
-                  rect);*/
-            }
-            return OptimizeAllNext;
-         }
-      }
-      return OptimizeNone;
-
-   }
-
-   window_draw::EOptimize window_draw::TwfOptimizeRenderRemoveNextProper(
-      user::oswindow_tree::Array & hwndtreea,
-      int32_t iIndex,
-      LPCRECT lpcrect)
-   {
-
-
-      const rect rectOptimize(*lpcrect);
-      rect rectClient;
-      for(int32_t i = iIndex; i < hwndtreea.get_size();)
-      {
-         user::oswindow_tree & hwndtree = hwndtreea(i);
-         ::oswindow oswindow = hwndtree.m_oswindow;
-         rect rect;
-         ::GetClientRect((::oswindow) oswindow, rect);
-         ::ClientToScreen((::oswindow) oswindow, &rect.top_left());
-         ::ClientToScreen((::oswindow) oswindow, &rect.bottom_right());
-         if(rectOptimize.contains(rect))
-         {
-            hwndtreea.remove_at(i);
-         }
-         else
-         {
-            TwfOptimizeRenderRemoveNextProper(
-               hwndtree.m_oswindowtreea,
-               0,
-               lpcrect);
-
-            i++;
-         }
-      }
-      return OptimizeNone;
-
-   }
-
-
-   window_draw::EOptimize window_draw::TwfOptimizeRender(
-      user::oswindow_tree & hwndtree,
-      LPCRECT lpcrect)
-   {
-
-      hwndtree.m_dwUser = 0;
-
-      ::oswindow oswindow = hwndtree.m_oswindow;
-
-      ::user::interaction_base * ptwi = oswindow->get_user_interaction();
-
-      if(!::IsWindowVisible(oswindow))
-      {
-         return OptimizeThis;
-      }
-      const rect rectUpdate(*lpcrect);
-
-      rect rectClient;
-
-      sp(::user::interaction) pguie =  (ptwi);
-
-      pguie->GetClientRect(rectClient);
-      pguie->ClientToScreen(rectClient);
-
-
-
-
-      rect rectIntersect;
-
-      if(!rectIntersect.intersect(rectClient, rectUpdate))
-      {
-         return OptimizeThis;
-      }
-
-      if(!rectClient.contains(rectUpdate))
-      {
-
-         return OptimizeNone;
-      }
-
-   //    sp(::window) pwnd = window::FromHandlePermanent(hwnd);
-
-
-      if(ptwi == NULL)
-      {
-
-   //      ::window_interface::GetProperty getp;
-   //      getp.m_eproperty = CTransparentWndInterface::PropertyInterface;
-   //      ::SendMessage(hwnd, CTransparentWndInterface::MessageGetProperty, 0, (LPARAM) &getp);
-   //      ptwi = getp.m_pinterface;
-   //      if(ptwi != NULL)
-   //      {
-   //         pwnd = ptwi->TwiGetWnd();
-   //      }
-      }
-
-      EOptimize eoptimize = OptimizeNone;
-      if(ptwi != NULL)
-      {
-         if(!ptwi->_001HasTranslucency())
-            eoptimize = OptimizeAllNext;
-      }
-
-      EOptimize eoptimizeChildren = TwfOptimizeRender(hwndtree.m_oswindowtreea, lpcrect);
-
-      if(eoptimizeChildren == OptimizeAllNext)
-      {
-         hwndtree.m_dwUser |= 1; // exclude from drawing;
-         return OptimizeAllNext;
-      }
-      else if(eoptimize == OptimizeAllNext)
-      {
-         return OptimizeAllNext;
-      }
-      else
-      {
-         return OptimizeNone;
-      }
-
-
-   }
-
-
-   bool window_draw::TwfGetTopWindow(
-      void * hwnd,
-      user::oswindow_array & hwnda,
-      array < HRGN, HRGN > & hrgna,
-      user::oswindow_tree::Array & hwndtreea,
-      HRGN hrgn)
-   {
-      rect rectClient;
-      for(int32_t i = 0; i < hwndtreea.get_size(); i++)
-      {
-         user::oswindow_tree & hwndtree = hwndtreea(i);
-         if(!TwfGetTopWindow(
-            hwnd,
-            hwnda,
-            hrgna,
-            hwndtree,
-            hrgn))
-            return false;
-
-      }
-      return true;
-
-   }
-
-   bool window_draw::TwfGetTopWindow(
-      void * hwndParam,
-      user::oswindow_array & hwnda,
-      array < HRGN, HRGN > & hrgna,
-      user::oswindow_tree & hwndtree,
-      HRGN hrgn)
-   {
-
-      ::oswindow oswindow = hwndtree.m_oswindow;
-
-
-      if(!::IsWindowVisible((::oswindow) oswindow))
-      {
-         return true;
-      }
-
-
-
-
-      rect rectWindow;
-
-      ::GetWindowRect((::oswindow) oswindow, rectWindow);
-
-
-   //   sp(::window) pwnd = ::linux::user::interaction_impl::from_handle(oswindow);
-
-      if(!TwfGetTopWindow(
-            hwndParam,
-            hwnda,
-            hrgna,
-            hwndtree.m_oswindowtreea,
-            hrgn))
-      {
-         return false;
-      }
-
-      HRGN hrgnIntersect;
-
-throw not_implemented(get_app());
-
-//      hrgnIntersect = ::CreateRectRgnIndirect(rectWindow);
+//   window_draw::EOptimize window_draw::TwfOptimizeRender(
+//      user::oswindow_tree::Array & hwndtreea,
+//      LPCRECT lpcrect)
+//   {
+//      const rect rectUpdate(*lpcrect);
 //
-//      int32_t iCombine = ::CombineRgn(hrgnIntersect, hrgn, hrgnIntersect, RGN_AND);
-//
-//      if(iCombine == NULLREGION)
+//      rect rectClient;
+//      for(int32_t i = 0; i < hwndtreea.get_size();)
 //      {
-//         ::DeleteObject(hrgnIntersect);
-//         return true;
-//      }
-//
-//
-//
-//      ::window_interface * pwndi = System.window_map().get((int_ptr) hwnd);
-//
-//      if(pwndi == NULL)
-//      {
-//         ::SendMessage(
-//            (oswindow) hwnd,
-//            ::window_interface::MessageBaseWndGetProperty,
-//            ::window_interface::PropertyDrawBaseWndInterface,
-//            (LPARAM) &pwndi);
-//      }
-//
-//      if(hwndParam == hwnd ||
-//         (pwndi != NULL &&
-//            pwndi->_001HasTranslucency()))
-//      {
-//
-//
-//         iCombine = ::CombineRgn(hrgn, hrgn, hrgnIntersect, ::combine_exclude);
-//
-//         point ptOffset(0, 0);
-//
-//         ::ScreenToClient((oswindow) hwnd, &ptOffset);
-//
-//         hwnda.add(hwnd);
-//         ::OffsetRgn(hrgnIntersect, ptOffset.x, ptOffset.y);
-//         hrgna.add(hrgnIntersect);
-//
-//         if(iCombine == NULLREGION)
+//         user::oswindow_tree & hwndtree = hwndtreea(i);
+//         switch(TwfOptimizeRender(
+//            hwndtree,
+//            lpcrect))
 //         {
-//            return false;
+//         case OptimizeNone:
+//            i++;
+//            break;
+//         case OptimizeThis:
+//            hwndtreea.remove_at(i);
+//            break;
+//         case OptimizeAllNext:
+//            {
+//               while(hwndtreea.get_size() > i + 1)
+//               {
+//                  hwndtreea.remove_at(i + 1);
+//               }
+//               /*hwndtreea.remove_at(i + 1);
+//               void * hwnd = hwndtreea[i].m_hwnd;
+//               rect rect;
+//               ::GetClientRect(hwnd, rect);
+//               ::ClientToScreen(hwnd, &rect.top_left());
+//               ::ClientToScreen(hwnd, &rect.bottom_right());
+//               rect.union(rect, lpcrect);
+//               TwfOptimizeRenderRemoveNextProper(
+//                  hwndtreea,
+//                  i + 1,
+//                  rect);*/
+//            }
+//            return OptimizeAllNext;
 //         }
+//      }
+//      return OptimizeNone;
 //
-//      }
-//      else
-//      {
-//         ::DeleteObject(hrgnIntersect);
-//         TwfGetTopWindowOptimizeOpaque(
-//            hwnd,
-//            hwnda,
-//            hrgna);
+//   }
 //
-//      }
-//      if(hwndParam == hwnd)
-//      {
-//         return false;
-//      }
-//      else
-//      {
-//         return true;
-//      }
-   }
-
-   // lpcrect must be in screen coordinates
-   void window_draw::TwfGetTopWindow(
-      void * hwnd,
-      user::oswindow_array & hwnda,
-      array < HRGN, HRGN > & hrgna,
-      user::oswindow_tree::Array & hwndtreea,
-      LPCRECT lpcrect)
-   {
-      throw not_implemented(get_app());
-//      HRGN hrgn = ::CreateRectRgnIndirect(lpcrect);
-//      TwfGetTopWindow(
-//         hwnd,
-//         hwnda,
-//         hrgna,
-//         hwndtreea,
-//         hrgn);
-//      ::DeleteObject(hrgn);
-   }
-
-   void window_draw::TwfGetTopWindowOptimizeOpaque(
-      void * hwndOpaque,
-      user::oswindow_array & hwnda,
-      array < HRGN, HRGN > & hrgna)
-   {
-      rect rectWindow;
-
-   //   sp(::window) pwndOpaque = window::FromHandlePermanent(hwndOpaque);
-
-      ::GetWindowRect((oswindow) hwndOpaque, rectWindow);
-
-throw not_implemented(get_app());
-//      HRGN hrgnOpaque = ::CreateRectRgnIndirect(rectWindow);
+//   window_draw::EOptimize window_draw::TwfOptimizeRenderRemoveNextProper(
+//      user::oswindow_tree::Array & hwndtreea,
+//      int32_t iIndex,
+//      LPCRECT lpcrect)
+//   {
 //
-//      point ptOffset;
-//      for(int32_t i = 0; i < hrgna.get_size(); )
+//
+//      const rect rectOptimize(*lpcrect);
+//      rect rectClient;
+//      for(int32_t i = iIndex; i < hwndtreea.get_size();)
 //      {
-//         void * hwnd = hwnda[i];
-//         HRGN hrgn = hrgna[i];
-//         ptOffset.x = 0;
-//         ptOffset.y = 0;
-//         ::ClientToScreen((oswindow) hwnd, &ptOffset);
-//         ::OffsetRgn(hrgn, ptOffset.x, ptOffset.y);
-//         if(::CombineRgn(hrgn, hrgn, hrgnOpaque, ::combine_exclude) == NULLREGION)
+//         user::oswindow_tree & hwndtree = hwndtreea(i);
+//         ::oswindow oswindow = hwndtree.m_oswindow;
+//         rect rect;
+//         ::GetClientRect((::oswindow) oswindow, rect);
+//         ::ClientToScreen((::oswindow) oswindow, &rect.top_left());
+//         ::ClientToScreen((::oswindow) oswindow, &rect.bottom_right());
+//         if(rectOptimize.contains(rect))
 //         {
-//            ::DeleteObject(hrgn);
-//            hrgna.remove_at(i);
-//            hwnda.remove_at(i);
+//            hwndtreea.remove_at(i);
 //         }
 //         else
 //         {
-//            ::OffsetRgn(hrgn, -ptOffset.x, -ptOffset.y);
+//            TwfOptimizeRenderRemoveNextProper(
+//               hwndtree.m_oswindowtreea,
+//               0,
+//               lpcrect);
+//
 //            i++;
 //         }
 //      }
+//      return OptimizeNone;
 //
-//      ::DeleteObject(hrgnOpaque);
-
-   }
+//   }
+//
+//
+//   window_draw::EOptimize window_draw::TwfOptimizeRender(
+//      user::oswindow_tree & hwndtree,
+//      LPCRECT lpcrect)
+//   {
+//
+//      hwndtree.m_dwUser = 0;
+//
+//      ::oswindow oswindow = hwndtree.m_oswindow;
+//
+//      ::user::interaction_base * ptwi = oswindow->get_user_interaction();
+//
+//      if(!::IsWindowVisible(oswindow))
+//      {
+//         return OptimizeThis;
+//      }
+//      const rect rectUpdate(*lpcrect);
+//
+//      rect rectClient;
+//
+//      sp(::user::interaction) pguie =  (ptwi);
+//
+//      pguie->GetClientRect(rectClient);
+//      pguie->ClientToScreen(rectClient);
+//
+//
+//
+//
+//      rect rectIntersect;
+//
+//      if(!rectIntersect.intersect(rectClient, rectUpdate))
+//      {
+//         return OptimizeThis;
+//      }
+//
+//      if(!rectClient.contains(rectUpdate))
+//      {
+//
+//         return OptimizeNone;
+//      }
+//
+//   //    sp(::window) pwnd = window::FromHandlePermanent(hwnd);
+//
+//
+//      if(ptwi == NULL)
+//      {
+//
+//   //      ::window_interface::GetProperty getp;
+//   //      getp.m_eproperty = CTransparentWndInterface::PropertyInterface;
+//   //      ::SendMessage(hwnd, CTransparentWndInterface::MessageGetProperty, 0, (LPARAM) &getp);
+//   //      ptwi = getp.m_pinterface;
+//   //      if(ptwi != NULL)
+//   //      {
+//   //         pwnd = ptwi->TwiGetWnd();
+//   //      }
+//      }
+//
+//      EOptimize eoptimize = OptimizeNone;
+//      if(ptwi != NULL)
+//      {
+//         if(!ptwi->_001HasTranslucency())
+//            eoptimize = OptimizeAllNext;
+//      }
+//
+//      EOptimize eoptimizeChildren = TwfOptimizeRender(hwndtree.m_oswindowtreea, lpcrect);
+//
+//      if(eoptimizeChildren == OptimizeAllNext)
+//      {
+//         hwndtree.m_dwUser |= 1; // exclude from drawing;
+//         return OptimizeAllNext;
+//      }
+//      else if(eoptimize == OptimizeAllNext)
+//      {
+//         return OptimizeAllNext;
+//      }
+//      else
+//      {
+//         return OptimizeNone;
+//      }
+//
+//
+//   }
+//
+//
+//   bool window_draw::TwfGetTopWindow(
+//      void * hwnd,
+//      user::oswindow_array & hwnda,
+//      array < HRGN, HRGN > & hrgna,
+//      user::oswindow_tree::Array & hwndtreea,
+//      HRGN hrgn)
+//   {
+//      rect rectClient;
+//      for(int32_t i = 0; i < hwndtreea.get_size(); i++)
+//      {
+//         user::oswindow_tree & hwndtree = hwndtreea(i);
+//         if(!TwfGetTopWindow(
+//            hwnd,
+//            hwnda,
+//            hrgna,
+//            hwndtree,
+//            hrgn))
+//            return false;
+//
+//      }
+//      return true;
+//
+//   }
+//
+//   bool window_draw::TwfGetTopWindow(
+//      void * hwndParam,
+//      user::oswindow_array & hwnda,
+//      array < HRGN, HRGN > & hrgna,
+//      user::oswindow_tree & hwndtree,
+//      HRGN hrgn)
+//   {
+//
+//      ::oswindow oswindow = hwndtree.m_oswindow;
+//
+//
+//      if(!::IsWindowVisible((::oswindow) oswindow))
+//      {
+//         return true;
+//      }
+//
+//
+//
+//
+//      rect rectWindow;
+//
+//      ::GetWindowRect((::oswindow) oswindow, rectWindow);
+//
+//
+//   //   sp(::window) pwnd = ::linux::user::interaction_impl::from_handle(oswindow);
+//
+//      if(!TwfGetTopWindow(
+//            hwndParam,
+//            hwnda,
+//            hrgna,
+//            hwndtree.m_oswindowtreea,
+//            hrgn))
+//      {
+//         return false;
+//      }
+//
+//      HRGN hrgnIntersect;
+//
+//throw not_implemented(get_app());
+//
+////      hrgnIntersect = ::CreateRectRgnIndirect(rectWindow);
+////
+////      int32_t iCombine = ::CombineRgn(hrgnIntersect, hrgn, hrgnIntersect, RGN_AND);
+////
+////      if(iCombine == NULLREGION)
+////      {
+////         ::DeleteObject(hrgnIntersect);
+////         return true;
+////      }
+////
+////
+////
+////      ::window_interface * pwndi = System.window_map().get((int_ptr) hwnd);
+////
+////      if(pwndi == NULL)
+////      {
+////         ::SendMessage(
+////            (oswindow) hwnd,
+////            ::window_interface::MessageBaseWndGetProperty,
+////            ::window_interface::PropertyDrawBaseWndInterface,
+////            (LPARAM) &pwndi);
+////      }
+////
+////      if(hwndParam == hwnd ||
+////         (pwndi != NULL &&
+////            pwndi->_001HasTranslucency()))
+////      {
+////
+////
+////         iCombine = ::CombineRgn(hrgn, hrgn, hrgnIntersect, ::combine_exclude);
+////
+////         point ptOffset(0, 0);
+////
+////         ::ScreenToClient((oswindow) hwnd, &ptOffset);
+////
+////         hwnda.add(hwnd);
+////         ::OffsetRgn(hrgnIntersect, ptOffset.x, ptOffset.y);
+////         hrgna.add(hrgnIntersect);
+////
+////         if(iCombine == NULLREGION)
+////         {
+////            return false;
+////         }
+////
+////      }
+////      else
+////      {
+////         ::DeleteObject(hrgnIntersect);
+////         TwfGetTopWindowOptimizeOpaque(
+////            hwnd,
+////            hwnda,
+////            hrgna);
+////
+////      }
+////      if(hwndParam == hwnd)
+////      {
+////         return false;
+////      }
+////      else
+////      {
+////         return true;
+////      }
+//   }
+//
+//   // lpcrect must be in screen coordinates
+//   void window_draw::TwfGetTopWindow(
+//      void * hwnd,
+//      user::oswindow_array & hwnda,
+//      array < HRGN, HRGN > & hrgna,
+//      user::oswindow_tree::Array & hwndtreea,
+//      LPCRECT lpcrect)
+//   {
+//      throw not_implemented(get_app());
+////      HRGN hrgn = ::CreateRectRgnIndirect(lpcrect);
+////      TwfGetTopWindow(
+////         hwnd,
+////         hwnda,
+////         hrgna,
+////         hwndtreea,
+////         hrgn);
+////      ::DeleteObject(hrgn);
+//   }
+//
+//   void window_draw::TwfGetTopWindowOptimizeOpaque(
+//      void * hwndOpaque,
+//      user::oswindow_array & hwnda,
+//      array < HRGN, HRGN > & hrgna)
+//   {
+//      rect rectWindow;
+//
+//   //   sp(::window) pwndOpaque = window::FromHandlePermanent(hwndOpaque);
+//
+//      ::GetWindowRect((oswindow) hwndOpaque, rectWindow);
+//
+//throw not_implemented(get_app());
+////      HRGN hrgnOpaque = ::CreateRectRgnIndirect(rectWindow);
+////
+////      point ptOffset;
+////      for(int32_t i = 0; i < hrgna.get_size(); )
+////      {
+////         void * hwnd = hwnda[i];
+////         HRGN hrgn = hrgna[i];
+////         ptOffset.x = 0;
+////         ptOffset.y = 0;
+////         ::ClientToScreen((oswindow) hwnd, &ptOffset);
+////         ::OffsetRgn(hrgn, ptOffset.x, ptOffset.y);
+////         if(::CombineRgn(hrgn, hrgn, hrgnOpaque, ::combine_exclude) == NULLREGION)
+////         {
+////            ::DeleteObject(hrgn);
+////            hrgna.remove_at(i);
+////            hwnda.remove_at(i);
+////         }
+////         else
+////         {
+////            ::OffsetRgn(hrgn, -ptOffset.x, -ptOffset.y);
+////            i++;
+////         }
+////      }
+////
+////      ::DeleteObject(hrgnOpaque);
+//
+//   }
 
 
 //   user::interaction_ptra window_draw::get_wnda()

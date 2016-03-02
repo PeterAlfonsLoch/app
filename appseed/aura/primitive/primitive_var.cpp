@@ -3742,11 +3742,11 @@ end:
    }
    if(bFloat)
    {
-      operator = (atof(string(pszStart, pszParse - pszStart)) * (bSigned ? -1.0 : 1.0));
+      operator = (atof(string(pszStart, pszParse - pszStart)));
    }
    else
    {
-      operator = (atoi(string(pszStart, pszParse - pszStart)) * (bSigned ? -1 : 1));
+      operator = (atoi(string(pszStart, pszParse - pszStart)));
    }
    psz = pszParse;
 }

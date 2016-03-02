@@ -4767,7 +4767,7 @@ m_pui->SetOwner((pOwnerWnd));
    bool interaction_impl::ReleaseDC(::draw2d::dib * pdib)
    {
 
-      if(pgraphics == NULL)
+      if(pdib == NULL)
          return false;
 
 /*      cairo_t * pcairo = (cairo_t *) pgraphics->get_os_data();
@@ -6147,9 +6147,9 @@ namespace linux
 
       }
 
-      ::user::interaction_impl::_001UpdateBuffer();
+     ::user::interaction_impl::_001UpdateWindow();
 
-      ::user::interaction_impl::_001UpdateScreen();
+//      ::user::interaction_impl::_001UpdateScreen();
 
 }
 
@@ -6171,7 +6171,7 @@ namespace linux
    {
       // graphics will be already set its view port to the interaction_impl for linux - cairo with xlib
 
-      pgraphics->SetViewportOrg(point(0, 0));
+      pdib->SetViewportOrg(point(0, 0));
 
 /*      rect64 rectWindow;
       GetWindowRect(rectWindow);

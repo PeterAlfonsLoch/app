@@ -152,7 +152,7 @@ void window_xlib::update_window(COLORREF * pOsBitmapData, const RECT & lpcrect, 
    byte * pdata = (byte *) m_mem.get_data();
 
    int size = m_iScan * m_size.cy / sizeof(COLORREF);
-   /*while(size > 0)
+   while(size > 0)
    {
       //if(pdata[3] != 0)
       {
@@ -162,7 +162,7 @@ void window_xlib::update_window(COLORREF * pOsBitmapData, const RECT & lpcrect, 
       }
       pdata += 4;
       size--;
-   }*/
+   }
 
 
    try

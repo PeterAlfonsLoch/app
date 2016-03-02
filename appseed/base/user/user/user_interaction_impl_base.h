@@ -30,8 +30,8 @@ namespace user
       virtual void set_need_layout();
 
 
-      virtual void _001UpdateScreen(bool bUpdateBuffer = true);
-      virtual void _001UpdateBuffer();
+//      virtual void _001UpdateScreen(bool bUpdateBuffer = true);
+//      virtual void _001UpdateBuffer();
 
 
       virtual void _001WindowMinimize();
@@ -93,7 +93,7 @@ namespace user
       virtual void draw_control_background(::draw2d::dib * pdib);
 
 
-      
+
 
 
       virtual ::user::interaction * get_wnd() const;
@@ -108,7 +108,7 @@ namespace user
 
 
 
-      
+
       virtual uint32_t GetStyle() const;
       virtual uint32_t GetExStyle() const;
       virtual bool ModifyStyle(uint32_t dwRemove,uint32_t dwAdd,UINT nFlags = 0);
@@ -162,7 +162,7 @@ namespace user
       virtual ::user::frame_window * GetParentTopLevelFrame() const;
       virtual ::user::frame_window * EnsureParentFrame();
 
-      
+
       virtual void SendMessageToDescendants(UINT message,WPARAM wParam = 0,lparam lParam = 0,bool bDeep = TRUE,bool bOnlyPerm = FALSE);
 
 

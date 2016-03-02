@@ -63,18 +63,18 @@ namespace user
    }
 
 
-   void interaction_impl_base::_001UpdateScreen(bool bUpdateBuffer)
-   {
-
-
-   }
-
-   void interaction_impl_base::_001UpdateBuffer()
-   {
-
-      TRACE("interaction_impl_base::_001UpdateBuffer Calling Empty Implementation");
-
-   }
+//   void interaction_impl_base::_001UpdateScreen(bool bUpdateBuffer)
+//   {
+//
+//
+//   }
+//
+//   void interaction_impl_base::_001UpdateBuffer()
+//   {
+//
+//      TRACE("interaction_impl_base::_001UpdateBuffer Calling Empty Implementation");
+//
+//   }
 
    void interaction_impl_base::_001WindowMinimize()
    {

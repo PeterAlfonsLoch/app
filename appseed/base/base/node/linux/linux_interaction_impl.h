@@ -443,10 +443,10 @@ namespace linux
       void OnEnable(bool bEnable);
       void OnEndSession(bool bEnding);
       void OnEnterIdle(UINT nWhy, ::user::interaction * pWho);
-      bool OnEraseBkgnd(::draw2d::dib * pdib);
+      bool OnEraseBkgnd(::draw2d::graphics * pdib);
       void OnGetMinMaxInfo(MINMAXINFO* lpMMI);
       //xxx bool OnHelpInfo(HELPINFO* lpHelpInfo);
-      void OnIconEraseBkgnd(::draw2d::dib * pdib);
+      void OnIconEraseBkgnd(::draw2d::graphics * pdib);
       void OnKillFocus(::user::interaction * pNewWnd);
       LRESULT OnMenuChar(UINT nChar, UINT nFlags, ::user::menu* pMenu);
       void OnMenuSelect(UINT nItemID, UINT nFlags, HMENU hSysMenu);
