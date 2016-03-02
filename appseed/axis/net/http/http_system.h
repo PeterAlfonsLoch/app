@@ -52,9 +52,9 @@ namespace http
       };
 
       mutex *                                m_pmutexPac;
-      string_map < pac *  >                  m_mapPac;
+      string_map < sp(pac)  >                  m_mapPac;
       mutex *                                m_pmutexProxy;
-      string_map < proxy *  >                m_mapProxy;
+      string_map < sp(proxy)  >                m_mapProxy;
 
       mutex *                                m_pmutexDownload;
       stringa                                m_straDownloading;

@@ -3,19 +3,19 @@
 
 #if defined(LINUX) || defined(ANDROID)
 
-//#include <fcntl.h>
-//#include <unistd.h>
+   //#include <fcntl.h>
+   //#include <unistd.h>
 
 
-//#include <link.h>
+   //#include <link.h>
 
-//#include <dlfcn.h>
-//#include <ctype.h>
-//#include <sys/stat.h>
+   //#include <dlfcn.h>
+   //#include <ctype.h>
+   //#include <sys/stat.h>
 #endif
 
 #ifdef LINUX
-UINT __x11_thread(void * pparam);
+   UINT __x11_thread(void * pparam);
 #endif
 
 void dappy(const char * psz);
@@ -24,8 +24,8 @@ string get_user_name()
 {
    WCHAR wsz[1024];
    DWORD dwSize = sizeof(wsz) / sizeof(WCHAR);
-  ::GetUserNameW(wsz,&dwSize);
-  return string(wsz);
+   ::GetUserNameW(wsz,&dwSize);
+   return string(wsz);
 }
 #endif
 
@@ -41,7 +41,7 @@ namespace aura
    system::system(::aura::application * papp) :
       m_process(this)
    {
-m_bRun = true;
+      m_bRun = true;
       if (g_p == NULL)
       {
 
@@ -417,17 +417,17 @@ m_bRun = true;
 
 #ifdef MACOS
 
-/*         if(0 != setuid(0))
-            return false;
+         /*         if(0 != setuid(0))
+                     return false;
 
-         uid_t uid = getuid();
+                  uid_t uid = getuid();
 
-         string str("installing or uninstalling as root : getuid() %d", uid);
+                  string str("installing or uninstalling as root : getuid() %d", uid);
 
-         ::dir::mk("/ca2core");
+                  ::dir::mk("/ca2core");
 
-         file_put_contents_dup("/ca2core/teste.txt", str, str.length());
-         */
+                  file_put_contents_dup("/ca2core/teste.txt", str, str.length());
+                  */
 #endif
 
 #if 0
@@ -452,9 +452,9 @@ m_bRun = true;
          AuthorizationItem right = {kAuthorizationRightExecute, 0, NULL, 0};
          AuthorizationRights rights = {1, &right};
          AuthorizationFlags flags = kAuthorizationFlagDefaults |
-         kAuthorizationFlagInteractionAllowed |
-         kAuthorizationFlagPreAuthorize |
-         kAuthorizationFlagExtendRights;
+                                    kAuthorizationFlagInteractionAllowed |
+                                    kAuthorizationFlagPreAuthorize |
+                                    kAuthorizationFlagExtendRights;
 
          // Call AuthorizationCopyRights to determine or extend the allowable rights.
          status = AuthorizationCopyRights(authorizationRef, &rights, NULL, flags, NULL);
@@ -678,22 +678,22 @@ m_bRun = true;
 
       m_pmath.release();
 
-      try
-      {
-         if(m_pfactory != NULL)
-         {
+      //try
+      //{
+      //   if(m_pfactory != NULL)
+      //   {
 
-            m_pfactory->enable_simple_factory_request(false);
+      //      m_pfactory->enable_simple_factory_request(false);
 
-            m_pfactory.release();
+      //      m_pfactory.release();
 
-         }
+      //   }
 
-      }
-      catch(...)
-      {
-         TRACE("system::exit_instance: Potentially catastrophical error : error disabling simple factory request");
-      }
+      //}
+      //catch(...)
+      //{
+      //   TRACE("system::exit_instance: Potentially catastrophical error : error disabling simple factory request");
+      //}
 
 
       int32_t iRet = 0;
@@ -879,10 +879,10 @@ m_bRun = true;
             str2.FormatV(pszFormat,list);
 
          }
-    //     else
+         //     else
          {
 
-  //          str2 = pszFormat;
+            //          str2 = pszFormat;
 
          }
 
@@ -1002,7 +1002,7 @@ m_bRun = true;
 
    }
 
-   
+
 
 
    ::type * system::get_type_info(const ::std_type_info & info)
@@ -1114,8 +1114,8 @@ m_bRun = true;
       retry_single_lock rsl(m_pmutex,millis(84),millis(84));
 
 //      for(int32_t i = 0; i < appptra().get_size(); i++)
-  //    {
-    //     ::aura::application * papp = appptra()(i);
+      //    {
+      //     ::aura::application * papp = appptra()(i);
       //   papp->load_string_table();
       //}
 
@@ -1127,10 +1127,10 @@ m_bRun = true;
       retry_single_lock rsl(m_pmutex,millis(84),millis(84));
 
 //      for(int32_t i = 0; i < appptra().get_size(); i++)
- //     {
-  //       ::aura::application * papp = appptra()(i);
-  //       papp->set_locale(pszLocale,actioncontext);
-  //    }
+//     {
+      //       ::aura::application * papp = appptra()(i);
+      //       papp->set_locale(pszLocale,actioncontext);
+      //    }
 
    }
 
@@ -1140,10 +1140,10 @@ m_bRun = true;
       retry_single_lock rsl(m_pmutex,millis(84),millis(84));
 
 //      for(int32_t i = 0; i < appptra().get_size(); i++)
-  //    {
-  //       ::aura::application * papp = appptra()(i);
-  //       papp->set_schema(pszStyle,actioncontext);
-  //    }
+      //    {
+      //       ::aura::application * papp = appptra()(i);
+      //       papp->set_schema(pszStyle,actioncontext);
+      //    }
 
    }
 
@@ -1808,17 +1808,17 @@ m_bRun = true;
 
             string strNewBuildNumber = Application.file().as_string(strBuildPath);
 
-           if(strNewBuildNumber.is_empty())
+            if(strNewBuildNumber.is_empty())
             {
 
-            strBuildNumber = "installed";
-          }
-           else
-          {
+               strBuildNumber = "installed";
+            }
+            else
+            {
 
-            strBuildNumber = strNewBuildNumber;
+               strBuildNumber = strNewBuildNumber;
 
-         }
+            }
 
          }
          else
@@ -1943,12 +1943,12 @@ m_bRun = true;
 
 
          if(::str::ends_eat_ci(strLibraryId,".dll")
-            || ::str::ends_eat_ci(strLibraryId,".so")
-            || ::str::ends_eat_ci(strLibraryId,".dylib"))
+               || ::str::ends_eat_ci(strLibraryId,".so")
+               || ::str::ends_eat_ci(strLibraryId,".dylib"))
          {
 
             if(::str::begins_ci(strLibraryId,"libdraw2d_")
-               || ::str::begins_ci(strLibraryId,"libbase"))
+                  || ::str::begins_ci(strLibraryId,"libbase"))
             {
                continue;
             }
@@ -2122,8 +2122,8 @@ m_bRun = true;
 
 
       if((varFile.is_empty() && ((!set.has_property("app") && !directrix()->m_varTopicQuery.has_property("appid") && !set.has_property("show_platform"))
-         || set["app"] == "bergedge" || directrix()->m_varTopicQuery["appid"] == "bergedge")) &&
-         !(set.has_property("install") || set.has_property("uninstall")))
+                                 || set["app"] == "bergedge" || directrix()->m_varTopicQuery["appid"] == "bergedge")) &&
+            !(set.has_property("install") || set.has_property("uninstall")))
       {
          if(!set.has_property("show_platform") || set["show_platform"] == 1)
          {

@@ -576,8 +576,8 @@ class var & var::operator = (const class var & var)
          // should dereference (this operator here means a content copy)
          *this  = *((class var &)var).m_pstr;
          return *this;
-         default:
-            break;
+      default:
+         break;
       }
 
       set_type(((class var &)var).get_type(), false);
@@ -890,20 +890,20 @@ void var::read(::file::istream & is)
       }
       break;
    case type_int64:
-   {
-      is >> m_i64;
-   }
-   break;
+      {
+         is >> m_i64;
+      }
+      break;
    case type_bool:
       {
          is >> m_b;
       }
       break;
    case type_double:
-   {
-      is >> m_d;
-   }
-   break;
+      {
+         is >> m_d;
+      }
+      break;
    case type_new:
    case type_null:
    case type_empty:
@@ -1067,11 +1067,11 @@ int32_t var::compare_ci(const class var & var) const
    {
       if(var.m_etype == var::type_vara)
       {
-      //   var = var1.vara() - var2.vara();
+         //   var = var1.vara() - var2.vara();
       }
       else
       {
-        // var = var1;
+         // var = var1;
          //var.vara().remove(var2);
       }
    }
@@ -1137,11 +1137,11 @@ int32_t var::compare(const class var & var) const
    {
       if(var.m_etype == var::type_vara)
       {
-      //   var = var1.vara() - var2.vara();
+         //   var = var1.vara() - var2.vara();
       }
       else
       {
-        // var = var1;
+         // var = var1;
          //var.vara().remove(var2);
       }
    }
@@ -1723,17 +1723,17 @@ int32_t var::int32(int32_t iDefault) const
    case type_pstring:
       return atoi(*m_pstr);
    case type_id:
-   {
-      if(!is32integer((int64_t) m_id))
-         throw overflow_error(get_thread_app(), "var contains id that does not fit 32 bit integer");
-      return (int32_t) (int64_t) m_id;
-   }
+      {
+         if(!is32integer((int64_t) m_id))
+            throw overflow_error(get_thread_app(), "var contains id that does not fit 32 bit integer");
+         return (int32_t) (int64_t) m_id;
+      }
    case type_pid:
-   {
-      if(!is32integer((int64_t) *m_pid))
-         throw overflow_error(get_thread_app(), "var contains id that does not fit 32 bit integer");
-      return (int32_t) (int64_t) *m_pid;
-   }
+      {
+         if(!is32integer((int64_t) *m_pid))
+            throw overflow_error(get_thread_app(), "var contains id that does not fit 32 bit integer");
+         return (int32_t) (int64_t) *m_pid;
+      }
    default:
       return iDefault;
    }
@@ -2532,7 +2532,7 @@ var operator + (const class var & var1, const class var & var2)
 {
    var var;
    if(var1.m_etype == var::type_inta
-   || var1.m_etype == var::type_inta)
+         || var1.m_etype == var::type_inta)
    {
       if(var1.m_etype == var::type_inta)
       {
@@ -2553,7 +2553,7 @@ var operator + (const class var & var1, const class var & var2)
       }
    }
    else if(var1.m_etype == var::type_stra
-   || var2.m_etype == var::type_stra)
+           || var2.m_etype == var::type_stra)
    {
       if(var1.m_etype == var::type_stra)
       {
@@ -2574,7 +2574,7 @@ var operator + (const class var & var1, const class var & var2)
       }
    }
    else if(var1.m_etype == var::type_vara
-   || var2.m_etype == var::type_vara)
+           || var2.m_etype == var::type_vara)
    {
       if(var2.m_etype == var::type_vara)
       {
@@ -2902,13 +2902,13 @@ var operator * (const class var & var1, const class var & var2)
 {
    var var;
    if(var1.m_etype == var::type_inta
-   || var1.m_etype == var::type_inta)
+         || var1.m_etype == var::type_inta)
    {
       if(var1.m_etype == var::type_inta)
       {
          if(var2.m_etype == var::type_inta)
          {
-           // var = var1.inta().merge(var2.inta());
+            // var = var1.inta().merge(var2.inta());
          }
          else
          {
@@ -2923,7 +2923,7 @@ var operator * (const class var & var1, const class var & var2)
       }
    }
    else if(var1.m_etype == var::type_stra
-   || var2.m_etype == var::type_stra)
+           || var2.m_etype == var::type_stra)
    {
       if(var1.m_etype == var::type_stra)
       {
@@ -2944,7 +2944,7 @@ var operator * (const class var & var1, const class var & var2)
       }
    }
    else if(var1.m_etype == var::type_vara
-   || var2.m_etype == var::type_vara)
+           || var2.m_etype == var::type_vara)
    {
       if(var2.m_etype == var::type_vara)
       {
@@ -3248,24 +3248,24 @@ class var & var::operator *= (const class var & var)
 bool var::is_scalar() const
 {
    if(m_etype == type_new
-   || m_etype == type_null
-   || m_etype == type_empty)
+         || m_etype == type_null
+         || m_etype == type_empty)
    {
       return false;
    }
    else if(m_etype == type_string
-   || m_etype == type_int32
-   || m_etype == type_pint32
-   || m_etype == type_uint32
-   || m_etype == type_bool
-   || m_etype == type_double)
+           || m_etype == type_int32
+           || m_etype == type_pint32
+           || m_etype == type_uint32
+           || m_etype == type_bool
+           || m_etype == type_double)
    {
       return true;
    }
    else if(m_etype == type_stra
-      || m_etype == type_inta
-      || m_etype == type_vara
-      || m_etype == type_propset)
+           || m_etype == type_inta
+           || m_etype == type_vara
+           || m_etype == type_propset)
    {
       return false;
    }
@@ -3296,15 +3296,15 @@ bool var::is_real() const
    {
       string str = get_string();
       if(is_scalar()
-      && (fmod(atof(str), 1.0) == 0.0
-      && fabs(atof(str)) <= pow(2.0, 31.0)))
+            && (fmod(atof(str), 1.0) == 0.0
+                && fabs(atof(str)) <= pow(2.0, 31.0)))
       {
          str.trim();
          if(str.get_length() == 0)
             return false;
          else if(str[0] == '+'
-            || str[0] == '-'
-            || isdigit(str[0]))
+                 || str[0] == '-'
+                 || isdigit(str[0]))
          {
             int32_t i;
             for(i = 1; i < str.get_length(); i++)
@@ -3409,15 +3409,15 @@ bool var::is_double() const
    {
       string str = get_string();
       if(is_scalar()
-      && (fmod(atof(str), 1.0) == 0.0
-      && fabs(atof(str)) <= pow(2.0, 31.0)))
+            && (fmod(atof(str), 1.0) == 0.0
+                && fabs(atof(str)) <= pow(2.0, 31.0)))
       {
          str.trim();
          if(str.get_length() == 0)
             return false;
          else if(str[0] == '+'
-            || str[0] == '-'
-            || isdigit(str[0]))
+                 || str[0] == '-'
+                 || isdigit(str[0]))
          {
             int32_t i;
             for(i = 1; i < str.get_length(); i++)
@@ -3521,15 +3521,15 @@ bool var::is_integer() const
    {
       string str = get_string();
       if(is_scalar()
-      && (fmod(atof(str), 1.0) == 0.0
-      && fabs(atof(str)) <= pow(2.0, 31.0)))
+            && (fmod(atof(str), 1.0) == 0.0
+                && fabs(atof(str)) <= pow(2.0, 31.0)))
       {
          str.trim();
          if(str.get_length() == 0)
             return false;
          else if(str[0] == '+'
-            || str[0] == '-'
-            || isdigit(str[0]))
+                 || str[0] == '-'
+                 || isdigit(str[0]))
          {
             for(index i = 1; i < str.get_length(); i++)
             {
@@ -3561,14 +3561,14 @@ bool var::is_natural() const
    {
       string str = get_string();
       if(is_scalar()
-      && (fmod(atof(str), 1.0) == 0.0
-      && fabs(atof(str)) <= pow(2.0, 31.0)))
+            && (fmod(atof(str), 1.0) == 0.0
+                && fabs(atof(str)) <= pow(2.0, 31.0)))
       {
          str.trim();
          if(str.get_length() == 0)
             return false;
          else if(str[0] == '+'
-            || isdigit(str[0]))
+                 || isdigit(str[0]))
          {
             for(index i = 1; i < str.get_length(); i++)
             {
@@ -3800,66 +3800,66 @@ bool var::is_numeric() const
 
    switch(get_type())
    {
-      case type_parareturn:
-      case type_new:
-      case type_null:
-      case type_empty:
-      case type_empty_argument:
-         return false;
+   case type_parareturn:
+   case type_new:
+   case type_null:
+   case type_empty:
+   case type_empty_argument:
+      return false;
 
-      case type_string: // may be improved MBI
-         return false;
+   case type_string: // may be improved MBI
+      return false;
 
-      case type_pstring: // may be improved MBI
-         return false;
+   case type_pstring: // may be improved MBI
+      return false;
 
-      case type_int32:
-      case type_pint32:
-      case type_uint32:
-         return true;
+   case type_int32:
+   case type_pint32:
+   case type_uint32:
+      return true;
 
-      case type_pvar:
-         return m_pvar->is_numeric();
+   case type_pvar:
+      return m_pvar->is_numeric();
 
-      case type_element:
-         return false;
+   case type_element:
+      return false;
 
-      case type_bool:
-      case type_pbool:
-         return false;
+   case type_bool:
+   case type_pbool:
+      return false;
 
-      case type_double:
-         return true;
+   case type_double:
+      return true;
 
-      case type_stra:
-      case type_inta:
-      case type_vara:
-      case type_propset:
-      case type_prop:
-      case type_memory:
-         return false;
+   case type_stra:
+   case type_inta:
+   case type_vara:
+   case type_propset:
+   case type_prop:
+   case type_memory:
+      return false;
 
-      case type_int64:
-      case type_pint64:
-      case type_uint64:
-      case type_puint64:
-         return true;
+   case type_int64:
+   case type_pint64:
+   case type_uint64:
+   case type_puint64:
+      return true;
 
-      case type_time:
-      case type_filetime:
-         return false;
+   case type_time:
+   case type_filetime:
+      return false;
 
-      case type_id:
-         return false; // m_id.is_number(); // may be improved MBI
+   case type_id:
+      return false; // m_id.is_number(); // may be improved MBI
 
-      case type_pid:
-         return false; // m_pid->is_number(); // may be improved MBI
+   case type_pid:
+      return false; // m_pid->is_number(); // may be improved MBI
 
-      case type_int64a:
-         return false;
+   case type_int64a:
+      return false;
 
-      default:
-         throw not_implemented(get_thread_app());
+   default:
+      throw not_implemented(get_thread_app());
 
    };
 
@@ -3953,7 +3953,7 @@ string & var::get_json(string & str) const
 void var::null()
 {
 
-    set_type(var::type_null);
+   set_type(var::type_null);
 
 }
 

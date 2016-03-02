@@ -50,7 +50,7 @@ namespace windows
    interaction_impl::interaction_impl() :
       ::aura::timer_array(get_app())
    {
-      
+
       //m_guieptraMouseHover = canew(::user::interaction_spa());
       //      m_bRectParentClient  = false;
       m_pfnSuper           = NULL;
@@ -97,7 +97,7 @@ namespace windows
       {
          // The DnD helper needs an IDataObject interface, so get one from
          // the COleDataObject.  Note that the FALSE param means that
-         // GetIDataObject will not AddRef() the returned interface, so 
+         // GetIDataObject will not AddRef() the returned interface, so
          // we do not Release() it.
          POINT p;
          p.x = m.pt.x;
@@ -139,7 +139,7 @@ namespace windows
       {
          // The DnD helper needs an IDataObject interface, so get one from
          // the COleDataObject.  Note that the FALSE param means that
-         // GetIDataObject will not AddRef() the returned interface, so 
+         // GetIDataObject will not AddRef() the returned interface, so
          // we do not Release() it.
          POINT p;
          p.x = m.pt.x;
@@ -159,7 +159,7 @@ namespace windows
 
       m.pDataObj = NULL;
       m.grfKeyState = 0;
-      m.pt ={0,0};
+      m.pt = {0,0};
       m.dwEffect = DROPEFFECT_NONE;
 
       try
@@ -214,7 +214,7 @@ namespace windows
       {
          // The DnD helper needs an IDataObject interface, so get one from
          // the COleDataObject.  Note that the FALSE param means that
-         // GetIDataObject will not AddRef() the returned interface, so 
+         // GetIDataObject will not AddRef() the returned interface, so
          // we do not Release() it.
          POINT p;
          p.x = m.pt.x;
@@ -286,7 +286,7 @@ namespace windows
       ::aura::timer_array(papp)
    {
 
-  //    m_guieptraMouseHover = canew(ptr_array < ::user::interaction >);
+      //    m_guieptraMouseHover = canew(ptr_array < ::user::interaction >);
       //      m_bRectParentClient  = false;
       m_pfnSuper           = NULL;
       m_bMouseHover        = false;
@@ -326,7 +326,7 @@ namespace windows
    // Change a interaction_impl's style
 
    __STATIC bool CLASS_DECL_BASE __modify_style(oswindow oswindow,int32_t nStyleOffset,
-      uint32_t dwRemove,uint32_t dwAdd,UINT nFlags)
+         uint32_t dwRemove,uint32_t dwAdd,UINT nFlags)
    {
       ASSERT(oswindow != NULL);
       uint32_t dwStyle = ::GetWindowLong(oswindow,nStyleOffset);
@@ -402,7 +402,7 @@ namespace windows
       //::simple_message_box(NULL,"h1","h1",MB_OK);
       UNREFERENCED_PARAMETER(id);
       ASSERT(lpszClassName == NULL || __is_valid_string(lpszClassName) ||
-         __is_valid_atom(lpszClassName));
+             __is_valid_atom(lpszClassName));
       ENSURE_ARG(lpszWindowName == NULL || __is_valid_string(lpszWindowName));
 
       // allow modification of several common create parameters
@@ -504,8 +504,8 @@ namespace windows
          return FALSE;
       WNDCLASS wndcls;
       if(lpszClassName != NULL &&
-         GetClassInfo(System.m_hinstance,lpszClassName,&wndcls) &&
-         wndcls.hIcon != NULL)
+            GetClassInfo(System.m_hinstance,lpszClassName,&wndcls) &&
+            wndcls.hIcon != NULL)
       {
          Application.set_icon(m_pui,new ::visual::icon(wndcls.hIcon),false);
          Application.set_icon(m_pui,new ::visual::icon(wndcls.hIcon),true);
@@ -835,7 +835,7 @@ namespace windows
       // call special post-cleanup routine
       PostNcDestroy();
       m_pui->PostNcDestroy();
-      
+
    }
 
    void interaction_impl::PostNcDestroy()
@@ -900,7 +900,7 @@ namespace windows
       dumpcontext << "\nm_oswindow_ = " << ((::windows::interaction_impl *)this)->get_handle();
 
       if(((::windows::interaction_impl *)this)->get_handle() == NULL || ((::windows::interaction_impl *)this)->get_handle() == HWND_BOTTOM ||
-         ((::windows::interaction_impl *)this)->get_handle() == HWND_TOPMOST || ((::windows::interaction_impl *)this)->get_handle() == HWND_NOTOPMOST)
+            ((::windows::interaction_impl *)this)->get_handle() == HWND_TOPMOST || ((::windows::interaction_impl *)this)->get_handle() == HWND_NOTOPMOST)
       {
          // not a normal interaction_impl - nothing more to dump
          return;
@@ -1138,7 +1138,8 @@ namespace windows
 
    ::window_sp interaction_impl::GetAncestor(UINT gaFlags) const
    {
-      ASSERT(::IsWindow(((interaction_impl *) this)->get_handle())); return  System.ui_from_handle(::GetAncestor(((interaction_impl *) this)->get_handle(),gaFlags));
+      ASSERT(::IsWindow(((interaction_impl *) this)->get_handle()));
+      return  System.ui_from_handle(::GetAncestor(((interaction_impl *) this)->get_handle(),gaFlags));
    }
 
 
@@ -1185,7 +1186,7 @@ namespace windows
    }
 
    bool interaction_impl::UpdateLayeredWindow(::draw2d::graphics * pDCDst,POINT *pptDst,SIZE *psize,
-      ::draw2d::graphics * pDCSrc,POINT *pptSrc,COLORREF crKey,BLENDFUNCTION *pblend,uint32_t dwFlags)
+         ::draw2d::graphics * pDCSrc,POINT *pptSrc,COLORREF crKey,BLENDFUNCTION *pblend,uint32_t dwFlags)
    {
       ASSERT(::IsWindow(get_handle()));
       ::exception::throw_not_implemented(get_app());
@@ -1367,7 +1368,7 @@ namespace windows
 
       //if(pbase->m_uiMessage == WM_MOUSEMOVE)
       //{
-      //   
+      //
       //   pbase->m_bRet = true;
       //   //pbase->set_lresult(1);
       //   // addictive human (camilo, you are classifying yourself human, you're kind respecting yourself, its a good sign...) profiling with PROFILE_MOVE_MANAGER at app_core_miau.vcxproj...
@@ -1388,11 +1389,11 @@ namespace windows
       }
 
       if(pbase->m_uiMessage == WM_KEYDOWN ||
-         pbase->m_uiMessage == WM_KEYUP ||
-         pbase->m_uiMessage == WM_CHAR ||
-         pbase->m_uiMessage == WM_SYSKEYDOWN ||
-         pbase->m_uiMessage == WM_SYSKEYUP ||
-         pbase->m_uiMessage == WM_SYSCHAR)
+            pbase->m_uiMessage == WM_KEYUP ||
+            pbase->m_uiMessage == WM_CHAR ||
+            pbase->m_uiMessage == WM_SYSKEYDOWN ||
+            pbase->m_uiMessage == WM_SYSKEYUP ||
+            pbase->m_uiMessage == WM_SYSCHAR)
       {
 
          SCAST_PTR(::message::key,pkey,pobj);
@@ -1482,17 +1483,17 @@ namespace windows
 
       if(pbase->m_uiMessage == WM_MOUSELEAVE)
       {
-         
+
          m_bMouseHover = false;
-         
+
          sp(::user::interaction) pui;
-         
+
          while((pui = m_guieptraMouseHover.get_child(pui)).is_set())
          {
 
             if(pui != m_pui)
             {
-             
+
                pui->send_message(WM_MOUSELEAVE);
 
             }
@@ -1504,15 +1505,15 @@ namespace windows
       }
 
       if(pbase->m_uiMessage == WM_LBUTTONDOWN ||
-         pbase->m_uiMessage == WM_LBUTTONUP ||
-         pbase->m_uiMessage == WM_MBUTTONDOWN ||
-         pbase->m_uiMessage == WM_MBUTTONUP ||
-         pbase->m_uiMessage == WM_RBUTTONDOWN ||
-         pbase->m_uiMessage == WM_RBUTTONUP ||
-         pbase->m_uiMessage == WM_LBUTTONDBLCLK ||
-         pbase->m_uiMessage == WM_MOUSEMOVE ||
-         pbase->m_uiMessage == WM_NCMOUSEMOVE ||
-         pbase->m_uiMessage == WM_MOUSEWHEEL)
+            pbase->m_uiMessage == WM_LBUTTONUP ||
+            pbase->m_uiMessage == WM_MBUTTONDOWN ||
+            pbase->m_uiMessage == WM_MBUTTONUP ||
+            pbase->m_uiMessage == WM_RBUTTONDOWN ||
+            pbase->m_uiMessage == WM_RBUTTONUP ||
+            pbase->m_uiMessage == WM_LBUTTONDBLCLK ||
+            pbase->m_uiMessage == WM_MOUSEMOVE ||
+            pbase->m_uiMessage == WM_NCMOUSEMOVE ||
+            pbase->m_uiMessage == WM_MOUSEWHEEL)
       {
 
          message::mouse * pmouse = (::message::mouse *) pbase;
@@ -1521,7 +1522,7 @@ namespace windows
          //{
 
          //   pmouse->m_ptDesired = pmouse->m_pt;
-         //   
+         //
          //   pmouse->m_pt = Session.m_ptCursor;
 
          //   SetCursorPos(Session.m_ptCursor.x,Session.m_ptCursor.y);
@@ -1535,9 +1536,9 @@ namespace windows
             pmouse->m_bTranslated = true;
             rect64 rectWindow;
             // People always ask for feature centric Flag/Macros...
-            // ok, sometimes we attend them, besides it is easier to name the pigs... 
+            // ok, sometimes we attend them, besides it is easier to name the pigs...
             // (but I like pigs... and the porks... :-)
-            if(m_bScreenRelativeMouseMessagePosition) 
+            if(m_bScreenRelativeMouseMessagePosition)
             {
                class rect rectWindow32;
                ::GetWindowRect(get_handle(), rectWindow32);
@@ -1581,7 +1582,7 @@ namespace windows
             // handler has set it to another one.
             pmouse->m_ecursor = visual::cursor_default;
          }
-      restart_mouse_hover_check:
+restart_mouse_hover_check:
          {
             ::user::interaction * pui = NULL;
             while((pui = m_guieptraMouseHover.get_child(pui)) != NULL)
@@ -1631,7 +1632,7 @@ namespace windows
          }
          //for(int32_t i = 0; i < m_pui->m_uiptraChild.get_size(); i++)
          {
-           // sp(::user::interaction) pui = m_pui->m_uiptraChild[i];
+            // sp(::user::interaction) pui = m_pui->m_uiptraChild[i];
             //if(pui != NULL)
             {
                m_pui->_000OnMouse(pmouse);
@@ -1643,9 +1644,9 @@ namespace windows
          return;
       }
       if(pbase->m_uiMessage == MESSAGE_OLE_DRAGENTER ||
-         pbase->m_uiMessage == MESSAGE_OLE_DRAGOVER ||
-         pbase->m_uiMessage == MESSAGE_OLE_DRAGLEAVE ||
-         pbase->m_uiMessage == MESSAGE_OLE_DRAGDROP)
+            pbase->m_uiMessage == MESSAGE_OLE_DRAGOVER ||
+            pbase->m_uiMessage == MESSAGE_OLE_DRAGLEAVE ||
+            pbase->m_uiMessage == MESSAGE_OLE_DRAGDROP)
       {
 
          message::drag_and_drop * pdrag = (::message::drag_and_drop *) pbase;
@@ -1669,11 +1670,11 @@ namespace windows
          return;
       }
       if(pbase->m_uiMessage == WM_KEYDOWN ||
-         pbase->m_uiMessage == WM_KEYUP ||
-         pbase->m_uiMessage == WM_CHAR ||
-         pbase->m_uiMessage == WM_SYSKEYDOWN ||
-         pbase->m_uiMessage == WM_SYSKEYUP ||
-         pbase->m_uiMessage == WM_SYSCHAR)
+            pbase->m_uiMessage == WM_KEYUP ||
+            pbase->m_uiMessage == WM_CHAR ||
+            pbase->m_uiMessage == WM_SYSKEYDOWN ||
+            pbase->m_uiMessage == WM_SYSKEYUP ||
+            pbase->m_uiMessage == WM_SYSCHAR)
       {
 
          message::key * pkey = (::message::key *) pbase;
@@ -1842,7 +1843,7 @@ namespace windows
 
       // walk each child
       for(pWndChild = pWndChild->GetTopWindow(); pWndChild != NULL;
-         pWndChild = pWndChild->get_next_window(GW_HWNDNEXT))
+            pWndChild = pWndChild->get_next_window(GW_HWNDNEXT))
       {
          pWndChild = GetDescendantWindow(pWndChild,id);
          if(pWndChild != NULL)
@@ -1884,7 +1885,7 @@ namespace windows
             try
             {
                SendMessageToDescendants(oswindow_Child,message,wParam,lParam,
-                  bDeep,bOnlyPerm);
+                                        bDeep,bOnlyPerm);
             }
             catch(...)
             {
@@ -1967,7 +1968,7 @@ namespace windows
    }
 
    void interaction_impl::ScrollWindow(int32_t xAmount,int32_t yAmount,
-      LPCRECT lpRect,LPCRECT lpClipRect)
+                                       LPCRECT lpRect,LPCRECT lpClipRect)
    {
       ASSERT(::IsWindow(get_handle()));
 
@@ -1986,7 +1987,7 @@ namespace windows
          if(oswindow_Child != NULL)
          {
             for(; oswindow_Child != NULL;
-               oswindow_Child = ::GetNextWindow(oswindow_Child,GW_HWNDNEXT))
+                  oswindow_Child = ::GetNextWindow(oswindow_Child,GW_HWNDNEXT))
             {
                rect rect;
                ::GetWindowRect(oswindow_Child,&rect);
@@ -2213,7 +2214,7 @@ namespace windows
 
       switch(pbase->m_uiMessage)
       {
-         // normal messages (just wParam, lParam through OnWndMsg)
+      // normal messages (just wParam, lParam through OnWndMsg)
       case WM_HSCROLL:
       case WM_VSCROLL:
       case WM_PARENTNOTIFY:
@@ -2227,30 +2228,30 @@ namespace windows
          //return interaction_impl::OnWndMsg(WM_REFLECT_BASE+uMsg, wParam, lParam, pResult);
          return FALSE;
 
-         // special case for WM_COMMAND
+      // special case for WM_COMMAND
       case WM_COMMAND:
-      {
-         // reflect the message through the message map as OCM_COMMAND
-         keep < bool > keepReflect(&pbase->m_bReflect,true,pbase->m_bReflect,true);
-         if(interaction_impl::OnCommand(pbase))
          {
-            pbase->m_bRet = true;
-            return true;
+            // reflect the message through the message map as OCM_COMMAND
+            keep < bool > keepReflect(&pbase->m_bReflect,true,pbase->m_bReflect,true);
+            if(interaction_impl::OnCommand(pbase))
+            {
+               pbase->m_bRet = true;
+               return true;
+            }
          }
-      }
-      break;
+         break;
 
       // special case for WM_NOTIFY
       case WM_NOTIFY:
-      {
-         // reflect the message through the message map as OCM_NOTIFY
-         NMHDR* pNMHDR = (NMHDR*)pbase->m_lparam;
-         //            int32_t nCode = pNMHDR->code;
-         //            __NOTIFY notify;
-         //          notify.pResult = pResult;
-         //        notify.pNMHDR = pNMHDR;
-         // xxxx         return interaction_impl::_001OnCommand(0, MAKELONG(nCode, WM_REFLECT_BASE+WM_NOTIFY), &notify, NULL);
-      }
+         {
+            // reflect the message through the message map as OCM_NOTIFY
+            NMHDR* pNMHDR = (NMHDR*)pbase->m_lparam;
+            //            int32_t nCode = pNMHDR->code;
+            //            __NOTIFY notify;
+            //          notify.pResult = pResult;
+            //        notify.pNMHDR = pNMHDR;
+            // xxxx         return interaction_impl::_001OnCommand(0, MAKELONG(nCode, WM_REFLECT_BASE+WM_NOTIFY), &notify, NULL);
+         }
 
       // other special cases (WM_CTLCOLOR family)
       default:
@@ -2289,7 +2290,7 @@ namespace windows
 
    //void interaction_impl::_001OnSetFocus(::signal_details * pdetails)
    //{
-   //   
+   //
    //   //bool bHandled;
 
    //   //bHandled = FALSE;
@@ -2827,7 +2828,7 @@ namespace windows
    {
 
 //      if(m_spdib.is_null())
-  //       m_spdib.alloc(allocer());
+      //       m_spdib.alloc(allocer());
 
       //m_spdib->print_window(this,pobj);
 
@@ -2877,8 +2878,8 @@ namespace windows
       }
 
       if(hbrGray == NULL ||
-         nCtlColor == CTLCOLOR_EDIT || nCtlColor == CTLCOLOR_MSGBOX ||
-         nCtlColor == CTLCOLOR_SCROLLBAR)
+            nCtlColor == CTLCOLOR_EDIT || nCtlColor == CTLCOLOR_MSGBOX ||
+            nCtlColor == CTLCOLOR_SCROLLBAR)
       {
          return FALSE;
       }
@@ -2989,7 +2990,7 @@ namespace windows
 
       // map screen coordinates to child coordinates
       SetWindowPos(0,xLeft,yTop,-1,-1,
-         SWP_NOSIZE | SWP_NOZORDER | SWP_NOACTIVATE);
+                   SWP_NOSIZE | SWP_NOZORDER | SWP_NOACTIVATE);
    }
 
    bool interaction_impl::CheckAutoCenter()
@@ -3063,7 +3064,7 @@ namespace windows
 
             // check for invalid/unknown message types
             ASSERT(nMsg == LB_ADDSTRING || nMsg == CB_ADDSTRING ||
-               nMsg == CBEM_INSERTITEM);
+                   nMsg == CBEM_INSERTITEM);
 
 #ifdef DEBUG
             // For AddStrings, the ::count must exactly delimit the
@@ -3076,7 +3077,7 @@ namespace windows
 
             if(nMsg == CBEM_INSERTITEM)
             {
-               COMBOBOXEXITEM item ={0};
+               COMBOBOXEXITEM item = {0};
                item.mask = CBEIF_TEXT;
                item.iItem = -1;
                string strText(reinterpret_cast<LPTSTR>(lpnRes));
@@ -3303,7 +3304,7 @@ namespace windows
 
    bool interaction_impl::IsWindow() const
    {
-      
+
       return ::IsWindow(get_handle()) != FALSE;
 
    }
@@ -3441,7 +3442,7 @@ namespace windows
    {
 
       class rect64 rectWindow;
-      
+
       ::copy(rectWindow,lprect);
 
       if(!ClientToScreen(rectWindow))
@@ -3450,7 +3451,7 @@ namespace windows
          return false;
 
       }
-      
+
       ::copy(lprect,rectWindow);
 
       return true;
@@ -3460,9 +3461,9 @@ namespace windows
 
    bool interaction_impl::ClientToScreen(LPPOINT lppoint)
    {
-      
+
       class point64 pt;
-      
+
       ::copy(pt,lppoint);
 
       if(!ClientToScreen(pt))
@@ -3525,7 +3526,7 @@ namespace windows
    {
 
       class rect64 rectWindow;
-      
+
       ::copy(rectWindow,lprect);
 
       if(!ScreenToClient(rectWindow))
@@ -3534,7 +3535,7 @@ namespace windows
          return false;
 
       }
-      
+
       ::copy(lprect,rectWindow);
 
       return true;
@@ -3544,7 +3545,7 @@ namespace windows
 
    bool interaction_impl::ScreenToClient(LPPOINT lppoint)
    {
-      
+
       class point64 pt;
 
       ::copy(pt,lppoint);
@@ -3555,7 +3556,7 @@ namespace windows
          return false;
 
       }
-         
+
       ::copy(lppoint,pt);
 
       return true;
@@ -3838,7 +3839,7 @@ namespace windows
 
    bool interaction_impl::WfiIsIconic()
    {
-      
+
       if (!::IsWindow(get_handle()))
          return false;
 
@@ -4090,7 +4091,7 @@ namespace windows
 
    LRESULT interaction_impl::send_message(UINT message,WPARAM wParam,lparam lParam)
    {
-      //ASSERT(::IsWindow(get_handle())); 
+      //ASSERT(::IsWindow(get_handle()));
       return ::SendMessage(get_handle(),message,wParam,lParam);
 
    }
@@ -4172,7 +4173,8 @@ namespace windows
    UINT interaction_impl::ArrangeIconicWindows()
    {
 
-      ASSERT(::IsWindow(get_handle())); return ::ArrangeIconicWindows(get_handle());
+      ASSERT(::IsWindow(get_handle()));
+      return ::ArrangeIconicWindows(get_handle());
 
    }
 
@@ -4207,7 +4209,7 @@ namespace windows
             && nCmdShow != SW_SHOWMINNOACTIVE
             && nCmdShow != SW_SHOWNA
             && nCmdShow != SW_SHOWNOACTIVATE
-            )
+         )
          {
 
             oswindow oswindow = get_handle();
@@ -4312,11 +4314,13 @@ namespace windows
 
    void interaction_impl::ValidateRect(LPCRECT lpRect)
    {
-      ASSERT(::IsWindow(get_handle())); ::ValidateRect(get_handle(),lpRect);
+      ASSERT(::IsWindow(get_handle()));
+      ::ValidateRect(get_handle(),lpRect);
    }
    void interaction_impl::ValidateRgn(::draw2d::region* pRgn)
    {
-      ASSERT(::IsWindow(get_handle())); ::ValidateRgn(get_handle(),(HRGN)pRgn->get_os_data());
+      ASSERT(::IsWindow(get_handle()));
+      ::ValidateRgn(get_handle(),(HRGN)pRgn->get_os_data());
    }
 
    bool interaction_impl::IsWindowVisible()
@@ -4368,7 +4372,7 @@ namespace windows
    {
 
       ASSERT(::IsWindow(get_handle()));
-      //interaction_impl::SendMessageToDescendants(get_handle(), message, wParam, lParam, bDeep, bOnlyPerm); 
+      //interaction_impl::SendMessageToDescendants(get_handle(), message, wParam, lParam, bDeep, bOnlyPerm);
 
       // walk through HWNDs to avoid creating temporary interaction_impl objects
       // unless we need to call this function recursively
@@ -4747,31 +4751,37 @@ namespace windows
 
    UINT interaction_impl::IsDlgButtonChecked(int32_t nIDButton) const
    {
-      ASSERT(::IsWindow(((interaction_impl *) this)->get_handle())); return ::IsDlgButtonChecked(((interaction_impl *) this)->get_handle(),nIDButton);
+      ASSERT(::IsWindow(((interaction_impl *) this)->get_handle()));
+      return ::IsDlgButtonChecked(((interaction_impl *) this)->get_handle(),nIDButton);
    }
    LPARAM interaction_impl::SendDlgItemMessage(int32_t nID,UINT message,WPARAM wParam,LPARAM lParam)
    {
-      ASSERT(::IsWindow(((interaction_impl *) this)->get_handle())); return ::SendDlgItemMessage(((interaction_impl *) this)->get_handle(),nID,message,wParam,lParam);
+      ASSERT(::IsWindow(((interaction_impl *) this)->get_handle()));
+      return ::SendDlgItemMessage(((interaction_impl *) this)->get_handle(),nID,message,wParam,lParam);
    }
    void interaction_impl::SetDlgItemInt(int32_t nID,UINT nValue,bool bSigned)
    {
-      ASSERT(::IsWindow(get_handle())); ::SetDlgItemInt(get_handle(),nID,nValue,bSigned);
+      ASSERT(::IsWindow(get_handle()));
+      ::SetDlgItemInt(get_handle(),nID,nValue,bSigned);
    }
    void interaction_impl::SetDlgItemText(int32_t nID,const char * lpszString)
    {
-      ASSERT(::IsWindow(get_handle())); ::SetDlgItemText(get_handle(),nID,lpszString);
+      ASSERT(::IsWindow(get_handle()));
+      ::SetDlgItemText(get_handle(),nID,lpszString);
    }
    int32_t interaction_impl::ScrollWindowEx(int32_t dx,int32_t dy,
-      LPCRECT lpRectScroll,LPCRECT lpRectClip,
-      ::draw2d::region* prgnUpdate,LPRECT lpRectUpdate,UINT flags)
+         LPCRECT lpRectScroll,LPCRECT lpRectClip,
+         ::draw2d::region* prgnUpdate,LPRECT lpRectUpdate,UINT flags)
    {
-      ASSERT(::IsWindow(get_handle())); return ::ScrollWindowEx(get_handle(),dx,dy,lpRectScroll,lpRectClip,
-         (HRGN)prgnUpdate->get_os_data(),lpRectUpdate,flags);
+      ASSERT(::IsWindow(get_handle()));
+      return ::ScrollWindowEx(get_handle(),dx,dy,lpRectScroll,lpRectClip,
+                              (HRGN)prgnUpdate->get_os_data(),lpRectUpdate,flags);
    }
 
    void interaction_impl::ShowScrollBar(UINT nBar,bool bShow)
    {
-      ASSERT(::IsWindow(get_handle())); ::ShowScrollBar(get_handle(),nBar,bShow);
+      ASSERT(::IsWindow(get_handle()));
+      ::ShowScrollBar(get_handle(),nBar,bShow);
    }
    ::user::interaction * interaction_impl::ChildWindowFromPoint(POINT point)
    {
@@ -4924,7 +4934,8 @@ namespace windows
 
       point point;
 
-      ::GetCaretPos((LPPOINT)&point); return point;
+      ::GetCaretPos((LPPOINT)&point);
+      return point;
 
    }
 
@@ -5083,7 +5094,7 @@ namespace windows
    {
       Default();
    }
-   
+
 
    void interaction_impl::_001OnSetFocus(signal_details * pobj)
    {
@@ -5121,13 +5132,13 @@ namespace windows
 
    void interaction_impl::_001OnKillFocus(signal_details * pobj)
    {
-   //   Default();
+      //   Default();
 
       Default();
 
       if(GetParent() == NULL)
       {
-         
+
          m_puiFocus = NULL;
 
          sp(::user::interaction) puiKeyboardFocus = Session.get_keyboard_focus();
@@ -5136,7 +5147,7 @@ namespace windows
          {
 
             if(puiKeyboardFocus == m_pui
-               || puiKeyboardFocus->is_descendant_of(m_pui))
+                  || puiKeyboardFocus->is_descendant_of(m_pui))
             {
 
                Session.set_keyboard_focus(NULL);
@@ -5191,7 +5202,7 @@ namespace windows
 
    void interaction_impl::_001OnSetCursor(signal_details * pobj)
    {
-      
+
       SCAST_PTR(::message::base,pbase,pobj);
 
       if(Session.get_cursor() != NULL && Session.get_cursor()->m_ecursor != ::visual::cursor_system)
@@ -5200,11 +5211,11 @@ namespace windows
          ::SetCursor(Session.get_cursor()->get_HCURSOR());
 
       }
-      
+
       pbase->set_lresult(1);
-      
+
       pbase->m_bRet = true;
-      
+
    }
 
 
@@ -5738,7 +5749,8 @@ namespace windows
 
    void interaction_impl::CloseWindow()
    {
-      ASSERT(::IsWindow(get_handle())); ::CloseWindow(get_handle());
+      ASSERT(::IsWindow(get_handle()));
+      ::CloseWindow(get_handle());
    }
 
    bool interaction_impl::OpenIcon()
@@ -5877,7 +5889,7 @@ namespace windows
             // subclass the interaction_impl with standard __window_procedure
             WNDPROC afxWndProc = __get_window_procedure();
             oldWndProc = (WNDPROC)SetWindowLongPtr(oswindow,GWLP_WNDPROC,
-               (uint_ptr)afxWndProc);
+                                                   (uint_ptr)afxWndProc);
             ASSERT(oldWndProc != NULL);
             if(oldWndProc != afxWndProc)
                *pOldWndProc = oldWndProc;
@@ -5887,7 +5899,7 @@ namespace windows
          }
       }
 
-   lCallNextHook:
+lCallNextHook:
       LRESULT lResult = CallNextHookEx(t_hHookOldCbtFilter,code,wParam,lParam);
 
       return lResult;
@@ -5912,7 +5924,7 @@ namespace windows
    {
 
       m_bMouseHover = true;
-      TRACKMOUSEEVENT tme ={sizeof(tme)};
+      TRACKMOUSEEVENT tme = {sizeof(tme)};
       tme.dwFlags = TME_LEAVE;
       tme.hwndTrack = get_handle();
       TrackMouseEvent(&tme);
@@ -5984,9 +5996,9 @@ namespace windows
       hr = ::RegisterDragDrop(p->get_handle(),p);
 
       if(SUCCEEDED(CoCreateInstance(CLSID_DragDropHelper,NULL,
-         CLSCTX_INPROC_SERVER,
-         IID_IDropTargetHelper,
-         (void**)&p->m_piDropHelper)))
+                                    CLSCTX_INPROC_SERVER,
+                                    IID_IDropTargetHelper,
+                                    (void**)&p->m_piDropHelper)))
       {
          p->m_bUseDnDHelper = true;
       }
@@ -5994,7 +6006,7 @@ namespace windows
       MSG msg;
       while(GetMessage(&msg,NULL,0,0xffffffffu))
       {
-         
+
          TranslateMessage(&msg);
          DispatchMessage(&msg);
       }
@@ -6025,7 +6037,19 @@ namespace windows
 LRESULT CALLBACK __window_procedure(oswindow oswindow,UINT message,WPARAM wparam,LPARAM lparam)
 {
 
+   if (::aura::system::g_p == NULL)
+   {
 
+      return 0;
+
+   }
+
+   if (::aura::system::g_p->m_pbasesystem == NULL)
+   {
+
+      return 0;
+
+   }
 
    ::user::interaction * pui = ::aura::system::g_p->m_pbasesystem->ui_from_handle(oswindow);
 
@@ -6038,7 +6062,7 @@ LRESULT CALLBACK __window_procedure(oswindow oswindow,UINT message,WPARAM wparam
 
    if(pui == NULL)
    {
-    
+
       return ::DefWindowProc(oswindow,message,wparam,lparam);
 
    }
@@ -6048,12 +6072,12 @@ LRESULT CALLBACK __window_procedure(oswindow oswindow,UINT message,WPARAM wparam
 
       //if(message == WM_MOUSEMOVE)
       //{
-      //   
+      //
       //   return 0;
 
       //}
-      //else 
-         if(message == WM_WINDOWPOSCHANGING)
+      //else
+      if(message == WM_WINDOWPOSCHANGING)
       {
 
          //return 0;
@@ -6149,7 +6173,7 @@ CLASS_DECL_BASE bool unhook_window_create()
 
 #define ___TEMP_CLASS_NAME_SIZE 4096
 
-__declspec(thread) char t_szTempClassName[___TEMP_CLASS_NAME_SIZE] ={0};
+__declspec(thread) char t_szTempClassName[___TEMP_CLASS_NAME_SIZE] = {0};
 
 CLASS_DECL_BASE const char * __register_window_class(::aura::application * papp,UINT nClassStyle,HCURSOR hCursor,HBRUSH hbrBackground,HICON hIcon)
 {
@@ -6166,7 +6190,7 @@ CLASS_DECL_BASE const char * __register_window_class(::aura::application * papp,
    else
    {
       C_RUNTIME_ERRORCHECK_SPRINTF(_sntprintf_s(lpszName,___TEMP_CLASS_NAME_SIZE,___TEMP_CLASS_NAME_SIZE - 1,"::core:::%p:%x:%p:%p:%p",papp->m_hinstance,nClassStyle,
-         hCursor,hbrBackground,hIcon));
+                                   hCursor,hbrBackground,hIcon));
    }
 
    // see if the class already exists
@@ -6259,7 +6283,7 @@ __handle_activate(::window_sp pwindow,WPARAM nState,::window_sp pWndOther)
 // Standard init called by WinMain
 
 __STATIC bool CLASS_DECL_BASE __register_with_icon(WNDCLASS* pWndCls,
-   const char * lpszClassName,UINT nIDIcon)
+      const char * lpszClassName,UINT nIDIcon)
 {
    pWndCls->lpszClassName = lpszClassName;
    pWndCls->hIcon = ::LoadIcon(NULL,IDI_APPLICATION);

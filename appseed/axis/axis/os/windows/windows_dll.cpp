@@ -9,11 +9,11 @@ END_EXTERN_C*/
 #ifndef CUBE
 
 #ifdef METROWIN
-[MTAThread]
+   [MTAThread]
 #endif
 BOOL WINAPI DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
 {
-   
+
    //Sleep(30000);
 
 //   ASSERT(FALSE);
@@ -33,13 +33,31 @@ BOOL WINAPI DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
       OutputDebugStringW(L"axis.dll initializing!\n");
 
       xxdebug_box("axis.dll DllMain", "box", MB_OK);
-      
+
    }
    else if (dwReason == DLL_PROCESS_DETACH)
    {
 
 
       OutputDebugStringW(L"axis.dll terminating!\n");
+
+
+   }
+   else if (dwReason == DLL_THREAD_ATTACH)
+   {
+
+      OutputDebugStringW(L"axis.dll initializing!\n");
+
+      xxdebug_box("axis.dll DllMain", "box", MB_OK);
+
+   }
+   else if (dwReason == DLL_THREAD_DETACH)
+   {
+
+
+      OutputDebugStringW(L"axis.dll terminating!\n");
+
+
 
 
    }

@@ -11,12 +11,12 @@
 #include <openssl/err.h>
 
 #ifndef ETIMEDOUT
-#define ETIMEDOUT       138
+   #define ETIMEDOUT       138
 #endif
 
 #if defined(LINUX)
-#include <signal.h>
-#include <unistd.h>
+   #include <signal.h>
+   #include <unistd.h>
 #endif
 
 
@@ -37,13 +37,13 @@ namespace sockets
 
    // statics
 #ifdef HAVE_OPENSSL
-//SSLInitializer tcp_socket::m_ssl_init;
+   //SSLInitializer tcp_socket::m_ssl_init;
 #endif
 
 
 // thanks, q
 #ifdef _MSC_VER
-#pragma warning(disable:4355)
+   #pragma warning(disable:4355)
 #endif
    tcp_socket::tcp_socket(base_socket_handler& h):
       object(h.get_app()),
@@ -73,12 +73,12 @@ namespace sockets
       m_pmutexSslCtx = NULL;
    }
 #ifdef _MSC_VER
-#pragma warning(default:4355)
+   #pragma warning(default:4355)
 #endif
 
 
 #ifdef _MSC_VER
-#pragma warning(disable:4355)
+   #pragma warning(disable:4355)
 #endif
    tcp_socket::tcp_socket(base_socket_handler& h,size_t isize,size_t osize):
       object(h.get_app()),
@@ -108,7 +108,7 @@ namespace sockets
       UNREFERENCED_PARAMETER(osize);
    }
 #ifdef _MSC_VER
-#pragma warning(default:4355)
+   #pragma warning(default:4355)
 #endif
 
 
@@ -232,28 +232,26 @@ namespace sockets
             attach(s);
             SetConnecting(true); // this flag will control fd_set's
          }
-         else
-            if(Socks4() && Handler().Socks4TryDirect()) // retry
-            {
-               ::closesocket(s);
-               return open(ad,true);
+         else if(Socks4() && Handler().Socks4TryDirect()) // retry
+         {
+            ::closesocket(s);
+            return open(ad,true);
          }
-            else
-               if(Reconnect())
-               {
-                  string strError = StrError(iError);
-                  log("connect: failed, reconnect pending",iError,StrError(iError),::aura::log::level_info);
-                  attach(s);
-                  SetConnecting(true); // this flag will control fd_set's
-               }
-               else
-               {
-                  string strError = StrError(iError);
-                  log("connect: failed",iError,StrError(iError),::aura::log::level_fatal);
-                  SetCloseAndDelete();
-                  ::closesocket(s);
-                  return false;
-               }
+         else if(Reconnect())
+         {
+            string strError = StrError(iError);
+            log("connect: failed, reconnect pending",iError,StrError(iError),::aura::log::level_info);
+            attach(s);
+            SetConnecting(true); // this flag will control fd_set's
+         }
+         else
+         {
+            string strError = StrError(iError);
+            log("connect: failed",iError,StrError(iError),::aura::log::level_fatal);
+            SetCloseAndDelete();
+            ::closesocket(s);
+            return false;
+         }
       }
       else
       {
@@ -393,27 +391,26 @@ namespace sockets
             }
             TRACE("tcp_socket::recv ssl error(1)");
          }
+         else if(!n)
+         {
+            OnDisconnect();
+            SetCloseAndDelete(true);
+            SetFlushBeforeClose(false);
+            SetLost();
+            SetShutdown(SHUT_WR);
+            //TRACE("tcp_socket::recv ssl disconnect(2)");
+
+         }
+         else if(n > 0 && n <= nBufSize)
+         {
+            return n;
+         }
          else
-            if(!n)
-            {
-               OnDisconnect();
-               SetCloseAndDelete(true);
-               SetFlushBeforeClose(false);
-               SetLost();
-               SetShutdown(SHUT_WR);
-               //TRACE("tcp_socket::recv ssl disconnect(2)");
+         {
+            log("tcp_socket::recv(ssl)",(int)n,"abnormal value from SSL_read",::aura::log::level_error);
+            TRACE("tcp_socket::recv ssl abnormal value from SSL_read(3)");
 
-            }
-            else if(n > 0 && n <= nBufSize)
-            {
-               return n;
-            }
-            else
-            {
-               log("tcp_socket::recv(ssl)",(int)n,"abnormal value from SSL_read",::aura::log::level_error);
-               TRACE("tcp_socket::recv ssl abnormal value from SSL_read(3)");
-
-            }
+         }
       }
       else
 #endif // HAVE_OPENSSL
@@ -433,33 +430,31 @@ namespace sockets
             SetFlushBeforeClose(false);
             SetLost();
             TRACE("tcp_socket::recv (B1) recv error(" + string(StrError(Errno)) + ")");
-      }
+         }
+         else if(!n)
+         {
+            OnDisconnect();
+            SetCloseAndDelete(true);
+            SetFlushBeforeClose(false);
+            SetLost();
+            SetShutdown(SHUT_WR);
+            //TRACE("tcp_socket::recv (B2) recv disconnect");
+         }
+         else if(n > 0 && n <= nBufSize)
+         {
+            return n;
+         }
          else
-            if(!n)
-            {
-               OnDisconnect();
-               SetCloseAndDelete(true);
-               SetFlushBeforeClose(false);
-               SetLost();
-               SetShutdown(SHUT_WR);
-               //TRACE("tcp_socket::recv (B2) recv disconnect");
-            }
-            else
-               if(n > 0 && n <= nBufSize)
-               {
-                  return n;
-               }
-               else
-               {
-                  log("tcp_socket::recv",(int32_t)n,"abnormal value from recv",::aura::log::level_error);
-                  TRACE("tcp_socket::recv (B3) recv abnormal value from recv");
-               }
+         {
+            log("tcp_socket::recv",(int32_t)n,"abnormal value from recv",::aura::log::level_error);
+            TRACE("tcp_socket::recv (B3) recv abnormal value from recv");
+         }
 
-   }
+      }
 
       return n;
 
-}
+   }
 
 
    memory_size_t tcp_socket::read(void * buf,memory_size_t nBufSize)
@@ -602,7 +597,7 @@ namespace sockets
             return;
          }
          if(GetConnectionRetry() == -1 ||
-            (GetConnectionRetry() && GetConnectionRetries() < GetConnectionRetry()))
+               (GetConnectionRetry() && GetConnectionRetries() < GetConnectionRetry()))
          {
             // even though the connection failed at once, only retry after
             // the connection timeout.
@@ -703,17 +698,16 @@ namespace sockets
             }
             return 0;
          }
-         else
-            if(!n)
-            {
-               OnDisconnect();
-               SetCloseAndDelete(true);
-               SetFlushBeforeClose(false);
-               SetLost();
-               int32_t errnr = SSL_get_error(m_ssl,(int32_t)n);
-               const char *errbuf = ERR_error_string(errnr,NULL);
-               TRACE("SSL_write() returns 0: %d : %s\n",errnr,errbuf);
-            }
+         else if(!n)
+         {
+            OnDisconnect();
+            SetCloseAndDelete(true);
+            SetFlushBeforeClose(false);
+            SetLost();
+            int32_t errnr = SSL_get_error(m_ssl,(int32_t)n);
+            const char *errbuf = ERR_error_string(errnr,NULL);
+            TRACE("SSL_write() returns 0: %d : %s\n",errnr,errbuf);
+         }
       }
       else
 #endif // HAVE_OPENSSL
@@ -744,7 +738,7 @@ namespace sockets
                SetLost();
             }
             return 0;
-            }
+         }
       }
       if(n > 0)
       {
@@ -1098,8 +1092,8 @@ namespace sockets
 
             long x509_err = cert_common_name_check(m_strHost);
             if(x509_err != X509_V_OK
-               && x509_err != X509_V_ERR_SELF_SIGNED_CERT_IN_CHAIN
-               && x509_err != X509_V_ERR_UNABLE_TO_GET_ISSUER_CERT_LOCALLY)
+                  && x509_err != X509_V_ERR_SELF_SIGNED_CERT_IN_CHAIN
+                  && x509_err != X509_V_ERR_UNABLE_TO_GET_ISSUER_CERT_LOCALLY)
             {
                log("SSLNegotiate/cert_common_name_check",0,"cert_common_name_check failed",::aura::log::level_info);
                SetSSLNegotiate(false);
@@ -1109,7 +1103,7 @@ namespace sockets
             }
 
             /// \todo: resurrect certificate check... client
-   //         CheckCertificateChain( "");//ServerHOST);
+            //         CheckCertificateChain( "");//ServerHOST);
             SetNonblocking(false);
             //
             {
@@ -1155,7 +1149,8 @@ namespace sockets
             SetSSLNegotiate(false);
             SetCloseAndDelete();
             OnSSLConnectFailed();
-         skip:;
+skip:
+            ;
          }
          else
          {
@@ -1180,7 +1175,7 @@ namespace sockets
          {
             SetSSLNegotiate(false);
             /// \todo: resurrect certificate check... server
-   //         CheckCertificateChain( "");//ClientHOST);
+            //         CheckCertificateChain( "");//ClientHOST);
             SetNonblocking(false);
             //
             {
@@ -1194,29 +1189,28 @@ namespace sockets
             log("SSLNegotiate/SSL_accept",0,"Connection established",::aura::log::level_info);
             return true;
          }
+         else if(!r)
+         {
+            log("SSLNegotiate/SSL_accept",0,"Connection failed",::aura::log::level_info);
+            SetSSLNegotiate(false);
+            SetCloseAndDelete();
+            OnSSLAcceptFailed();
+         }
          else
-            if(!r)
+         {
+            r = SSL_get_error(m_ssl,r);
+            if(r == SSL_ERROR_WANT_READ || r == SSL_ERROR_WANT_WRITE)
             {
-               log("SSLNegotiate/SSL_accept",0,"Connection failed",::aura::log::level_info);
-               SetSSLNegotiate(false);
-               SetCloseAndDelete();
-               OnSSLAcceptFailed();
             }
             else
             {
-               r = SSL_get_error(m_ssl,r);
-               if(r == SSL_ERROR_WANT_READ || r == SSL_ERROR_WANT_WRITE)
-               {
-               }
-               else
-               {
-                  log("SSLNegotiate/SSL_accept",-1,"Connection failed",::aura::log::level_info);
-                  TRACE("SSL_accept() failed - closing socket, return code: %d\n",r);
-                  SetSSLNegotiate(false);
-                  SetCloseAndDelete(true);
-                  OnSSLAcceptFailed();
-               }
+               log("SSLNegotiate/SSL_accept",-1,"Connection failed",::aura::log::level_info);
+               TRACE("SSL_accept() failed - closing socket, return code: %d\n",r);
+               SetSSLNegotiate(false);
+               SetCloseAndDelete(true);
+               OnSSLAcceptFailed();
             }
+         }
       }
       return false;
    }
@@ -1243,7 +1237,7 @@ namespace sockets
          string_map < sp(ssl_client_context) > & clientcontextmap = Session.sockets().m_clientcontextmap;
          if(clientcontextmap.PLookup(context) == NULL)
          {
-            m_spsslclientcontext = new ssl_client_context(get_app(),pmethod);
+            m_spsslclientcontext = canew(ssl_client_context(get_app(),pmethod));
             if(context.has_char())
             {
                clientcontextmap[context] = m_spsslclientcontext;
@@ -1322,23 +1316,23 @@ namespace sockets
       if(IsSSL() && m_ssl)
       {
          //#ifdef LINUX
-           //  signal(SIGPIPE, &::sockets::ssl_sigpipe_handle);
+         //  signal(SIGPIPE, &::sockets::ssl_sigpipe_handle);
          //#endif
-           /*       struct sigaction m_saPipe;
-                  struct sigaction m_saPipeOld;
-                  memset(&m_saPipe, 0, sizeof(m_saPipe));
-                  sigemptyset(&m_saPipe.sa_mask);
-                  sigaddset(&m_saPipe.sa_mask, SIGSEGV);
-                  m_saPipe.sa_flags = SA_NODEFER | SA_SIGINFO;
-                  m_saPipe.sa_sigaction = &::exception::translator::filter_sigpipe;
-                  sigaction(SIGPIPE, &m_saPipe, &m_saPipeOld);
+         /*       struct sigaction m_saPipe;
+                struct sigaction m_saPipeOld;
+                memset(&m_saPipe, 0, sizeof(m_saPipe));
+                sigemptyset(&m_saPipe.sa_mask);
+                sigaddset(&m_saPipe.sa_mask, SIGSEGV);
+                m_saPipe.sa_flags = SA_NODEFER | SA_SIGINFO;
+                m_saPipe.sa_sigaction = &::exception::translator::filter_sigpipe;
+                sigaction(SIGPIPE, &m_saPipe, &m_saPipeOld);
 
-                  //pthread_t thread;
-                    sigset_t set;
-                    int s;
+                //pthread_t thread;
+                  sigset_t set;
+                  int s;
 
-                    /* Block SIGQUIT and SIGUSR1; other threads created by main()
-                       will inherit a copy of the signal mask. */
+                  /* Block SIGQUIT and SIGUSR1; other threads created by main()
+                     will inherit a copy of the signal mask. */
 #ifdef LINUX
          sigset_t set;
          sigemptyset(&set);
@@ -1509,7 +1503,7 @@ namespace sockets
          // retry direct connection
       }
       else if(GetConnectionRetry() == -1 ||
-         (GetConnectionRetry() && GetConnectionRetries() < GetConnectionRetry()))
+              (GetConnectionRetry() && GetConnectionRetries() < GetConnectionRetry()))
       {
          IncreaseConnectionRetries();
          // ask socket via OnConnectRetry callback if we should continue trying
@@ -1552,8 +1546,8 @@ namespace sockets
          if(Socks4())
             OnSocks4ConnectFailed();
          else if(GetConnectionRetry() == -1 ||
-            (GetConnectionRetry() &&
-               GetConnectionRetries() < GetConnectionRetry()))
+                 (GetConnectionRetry() &&
+                  GetConnectionRetries() < GetConnectionRetry()))
          {
             // even though the connection failed at once, only retry after
             // the connection timeout

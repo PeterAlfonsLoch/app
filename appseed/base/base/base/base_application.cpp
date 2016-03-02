@@ -3,7 +3,7 @@
 
 #ifdef METROWIN
 
-CLASS_DECL_IMPORT void draw2d_factory_exchange(::aura::application * papp);
+   CLASS_DECL_IMPORT void draw2d_factory_exchange(::aura::application * papp);
 
 #endif
 
@@ -1918,12 +1918,12 @@ namespace base
       ::user::interaction * pMsgWnd;
       switch(code)
       {
-         //case MSGF_DDEMGR:
-         // Unlike other WH_MSGFILTER codes, MSGF_DDEMGR should
-         //  never call the next hook.
-         // By returning FALSE, the message will be dispatched
-         //  instead (the default behavior).
-         //return;
+      //case MSGF_DDEMGR:
+      // Unlike other WH_MSGFILTER codes, MSGF_DDEMGR should
+      //  never call the next hook.
+      // By returning FALSE, the message will be dispatched
+      //  instead (the default behavior).
+      //return;
 
       case MSGF_MENU:
          pMsgWnd = dynamic_cast <::user::interaction *> (pbase->m_pwnd);
@@ -1931,7 +1931,7 @@ namespace base
          {
             pTopFrameWnd = pMsgWnd->GetTopLevelFrame();
             if(pTopFrameWnd != NULL && pTopFrameWnd->IsTracking() &&
-               pTopFrameWnd->m_bHelpMode)
+                  pTopFrameWnd->m_bHelpMode)
             {
                //pMainWnd = __get_main_window();
                //if((m_puiMain != NULL) && (IsEnterKey(pbase) || IsButtonUp(pbase)))
@@ -1942,12 +1942,12 @@ namespace base
                //}
             }
          }
-         // fall through...
+      // fall through...
 
       case MSGF_DIALOGBOX:    // handles message boxes as well.
          //pMainWnd = __get_main_window();
          if(code == MSGF_DIALOGBOX && m_puiActive != NULL &&
-            pbase->m_uiMessage >= WM_KEYFIRST && pbase->m_uiMessage <= WM_KEYLAST)
+               pbase->m_uiMessage >= WM_KEYFIRST && pbase->m_uiMessage <= WM_KEYLAST)
          {
             //// need to translate messages for the in-place container
             //___THREAD_STATE* pThreadState = __get_thread_state();
@@ -2250,7 +2250,7 @@ namespace base
                {
 
                }
-  //             sl.lock();
+               //             sl.lock();
             }
          }
 
@@ -2536,7 +2536,8 @@ namespace base
 
       }
 
-   run:;
+run:
+      ;
 
    }
 
@@ -2599,6 +2600,11 @@ namespace base
       ::exception::throw_interface_only(this);
 
       return NULL;
+
+   }
+
+   void application::remove_document_template(::user::impact_system * pimpactsystem)
+   {
 
    }
 

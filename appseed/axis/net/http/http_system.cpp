@@ -156,7 +156,7 @@ namespace http
 
       if(m_pjs == NULL)
       {
-       
+
          delete m_pjs;
 
       }
@@ -169,7 +169,7 @@ namespace http
 
       single_lock sl(m_pmutexPac, true);
 
-      string_map < pac * >::pair * ppair = m_mapPac.PLookup(pszUrl);
+      auto ppair = m_mapPac.PLookup(pszUrl);
 
       if(ppair == NULL || (::get_tick_count() - ppair->m_element2->m_dwLastChecked) > (84 * 1000))
       {
@@ -179,7 +179,7 @@ namespace http
             m_mapPac.remove_key(pszUrl);
          }
 
-         class pac * ppac = new class pac(get_app());
+         class pac * ppac = canew(class pac(get_app()));
 
          ppac->m_dwLastChecked = get_tick_count();
 
@@ -230,7 +230,7 @@ namespace http
 
       single_lock sl(m_pmutexProxy, true);
 
-      string_map < ::http::system::proxy * >::pair * ppair = m_mapProxy.PLookup(pszUrl);
+      auto ppair = m_mapProxy.PLookup(pszUrl);
 
       if(ppair == NULL || (::get_tick_count() - ppair->m_element2->m_dwLastChecked) > (84 * 1000))
       {
@@ -240,7 +240,7 @@ namespace http
             m_mapPac.remove_key(pszUrl);
          }
 
-         class ::http::system::proxy * pproxy = new class ::http::system::proxy(get_app());
+         class ::http::system::proxy * pproxy = canew(class ::http::system::proxy(get_app()));
 
          pproxy->m_dwLastChecked = get_tick_count();
 
@@ -284,11 +284,11 @@ namespace http
       strHost = System.url().get_server(pszUrl);
       int32_t port = System.url().get_port(pszUrl);
 
-/*         ipaddr_t l;
-      if (!Session.sockets().net().u2ip(strHost,l))
-      {
-         return false;
-      }*/
+      /*         ipaddr_t l;
+            if (!Session.sockets().net().u2ip(strHost,l))
+            {
+               return false;
+            }*/
       ::net::address ad(strHost, port);
 
       strHost = ad.get_display_number();
@@ -360,19 +360,19 @@ namespace http
 
       xml::document doc(get_app());
       ::file::path pathProxyXml = System.dir().appdata()/"proxy.xml";
-      
+
       if(!Application.file().exists(pathProxyXml))
       {
-         
+
          pproxy->m_bDirect = true;
-         
+
          return;
-         
+
       }
-      
+
       string str = Application.file().as_string(pathProxyXml);
-      
-      
+
+
       if(str.has_char() && str.find("<") < 0 && str.find(">") < 0)
       {
          stringa stra;
@@ -387,70 +387,70 @@ namespace http
             }
             else
             {
-               
+
                pproxy->m_iPort = 80;
-               
+
             }
-            
+
             return;
-            
+
          }
-         
+
       }
-      
+
       if(!doc.load(str))
       {
-         
+
          pproxy->m_bDirect = true;
-         
+
          return;
-         
+
       }
-      
+
       bool bOk = true;
 
       string strHost = System.url().get_server(pszUrl);
-         int32_t iHostPort = System.url().get_port(pszUrl);
-         ::net::address ipHost(strHost, iHostPort);
-         for(int32_t iNode = 0; iNode < doc.get_root()->get_children_count(); iNode++)
+      int32_t iHostPort = System.url().get_port(pszUrl);
+      ::net::address ipHost(strHost, iHostPort);
+      for(int32_t iNode = 0; iNode < doc.get_root()->get_children_count(); iNode++)
+      {
+         sp(::xml::node) pnode = doc.get_root()->child_at(iNode);
+         if(pnode->get_name() == "proxy")
          {
-            sp(::xml::node) pnode = doc.get_root()->child_at(iNode);
-            if(pnode->get_name() == "proxy")
+            ::net::address ipAddress(pnode->attr("address").get_string(), 0);
+            ::net::address ipMask(pnode->attr("mask").get_string(), 0);
+            if(ipHost.is_in_same_net(ipAddress, ipMask))
             {
-               ::net::address ipAddress(pnode->attr("address").get_string(), 0);
-               ::net::address ipMask(pnode->attr("mask").get_string(), 0);
-               if(ipHost.is_in_same_net(ipAddress, ipMask))
+               if(pnode->attr("server") == "DIRECT")
                {
-                  if(pnode->attr("server") == "DIRECT")
-                  {
-                     pproxy->m_bDirect = true;
-                     return;
-                  }
-                  else
-                  {
-                     pproxy->m_bDirect = false;
-                     pproxy->m_strProxy = pnode->attr("server");
-                     pproxy->m_iPort = pnode->attr("port");
-                     TRACE("Select Proxy : address %s mask %s server %s port %d",pnode->attr("address").get_string(),
+                  pproxy->m_bDirect = true;
+                  return;
+               }
+               else
+               {
+                  pproxy->m_bDirect = false;
+                  pproxy->m_strProxy = pnode->attr("server");
+                  pproxy->m_iPort = pnode->attr("port");
+                  TRACE("Select Proxy : address %s mask %s server %s port %d",pnode->attr("address").get_string(),
                         pnode->attr("mask").get_string(), pproxy->m_strProxy, pproxy->m_iPort);
-                     return;
-                  }
+                  return;
                }
             }
          }
-         if(doc.attr("server") == "DIRECT")
-         {
-            pproxy->m_bDirect = true;
-            return;
-         }
-         else
-         {
-            pproxy->m_bDirect = false;
-            pproxy->m_strProxy = doc.get_root()->attr("server");
-            pproxy->m_iPort = doc.get_root()->attr("port");
-            return;
-         }
-      
+      }
+      if(doc.attr("server") == "DIRECT")
+      {
+         pproxy->m_bDirect = true;
+         return;
+      }
+      else
+      {
+         pproxy->m_bDirect = false;
+         pproxy->m_strProxy = doc.get_root()->attr("server");
+         pproxy->m_iPort = doc.get_root()->attr("port");
+         return;
+      }
+
 
       if(!bOk)
       {
@@ -499,7 +499,7 @@ namespace http
 
 
          pproxy->m_bDirect = true;
-         
+
       }
 
 
@@ -587,7 +587,7 @@ namespace http
                {
                   puser = &AppUser(papp);
                   if(puser != NULL && (strSessId = puser->get_sessid(strUrl, !set["interactive_user"].is_new() && (bool)set["interactive_user"])).has_char() &&
-                     if_then(set.has_property("optional_ca2_login"), !(bool)set["optional_ca2_login"]))
+                        if_then(set.has_property("optional_ca2_login"), !(bool)set["optional_ca2_login"]))
                   {
                      System.url().string_set(strUrl, "sessid", strSessId);
                   }
@@ -597,7 +597,7 @@ namespace http
 
          }
          if(puser != NULL && (strSessId = puser->get_sessid(strUrl, !set["interactive_user"].is_new() && (bool)set["interactive_user"])).has_char() &&
-            if_then(set.has_property("optional_ca2_login"), !(bool)set["optional_ca2_login"]))
+               if_then(set.has_property("optional_ca2_login"), !(bool)set["optional_ca2_login"]))
          {
 
             System.url().string_set(strUrl, "sessid", strSessId);
@@ -658,10 +658,10 @@ namespace http
 
       if(!psession->open(bConfigProxy))
       {
-/*            if(pestatus != NULL)
-         {
-            *pestatus = status_failed;
-         }*/
+         /*            if(pestatus != NULL)
+                  {
+                     *pestatus = status_failed;
+                  }*/
          //delete psession;
          uint32_t dwTimeProfile2 = get_tick_count();
          TRACE0("Not Opened/Connected Result Total time ::http::system::get(\"" + strUrl.Left(MIN(255,strUrl.get_length())) + "\")  " + ::str::from(dwTimeProfile2 - dwTimeProfile1));
@@ -761,11 +761,11 @@ retry:
       {
          try
          {
-            
+
             DWORD dwBeg = ::get_tick_count();
 
             psession = open(System.url().get_server(pszRequest), System.url().get_protocol(pszRequest), set, set["user"].cast < ::fontopus::user > (), set["http_protocol_version"]);
-            
+
             if(psession == NULL)
                return NULL;
 
@@ -795,68 +795,68 @@ retry:
 
          string strUrl = psession->m_strProtocol + "://" + strServer + strRequest;
 
-      // Format of script name example "system://server.com/the rain.mp3" => "system://server.com/the%20rain.mp3"
-      {
-         string strScript = System.url().url_encode(System.url().url_decode(System.url().get_script(strUrl)));
-         strScript.replace("+", "%20");
-         strScript.replace("%2F", "/");
-         strUrl = System.url().set_script(strUrl, strScript);
-      }
-
-
-
-      property_set setQuery(get_app());
-
-      setQuery.parse_url_query(System.url().get_query(strUrl));
-
-
-
-      string strSessId;
-      if(!(bool)set["disable_ca2_sessid"] && !setQuery.has_property("authnone"))
-      {
-         if((bool)set["optional_ca2_sessid"])
+         // Format of script name example "system://server.com/the rain.mp3" => "system://server.com/the%20rain.mp3"
          {
+            string strScript = System.url().url_encode(System.url().url_decode(System.url().get_script(strUrl)));
+            strScript.replace("+", "%20");
+            strScript.replace("%2F", "/");
+            strUrl = System.url().set_script(strUrl, strScript);
+         }
 
 
-            if(papp != NULL)
+
+         property_set setQuery(get_app());
+
+         setQuery.parse_url_query(System.url().get_query(strUrl));
+
+
+
+         string strSessId;
+         if(!(bool)set["disable_ca2_sessid"] && !setQuery.has_property("authnone"))
+         {
+            if((bool)set["optional_ca2_sessid"])
             {
 
-               string strFontopusServer = Session.fontopus()->get_server(strUrl, 8);
 
-               url_domain domainFontopus;
-
-               domainFontopus.create(strFontopusServer);
-
-               if(domainFontopus.m_strRadix == "ca2")
+               if(papp != NULL)
                {
-                  set["user"] = &AppUser(papp);
-                  if (set["user"].cast < ::fontopus::user >() != NULL && (strSessId = set["user"].cast < ::fontopus::user >()->get_sessid(strUrl, !set["interactive_user"].is_new() &&
-                     (bool)set["interactive_user"])).has_char() &&
-                     if_then(set.has_property("optional_ca2_login"), !(bool)set["optional_ca2_login"]))
+
+                  string strFontopusServer = Session.fontopus()->get_server(strUrl, 8);
+
+                  url_domain domainFontopus;
+
+                  domainFontopus.create(strFontopusServer);
+
+                  if(domainFontopus.m_strRadix == "ca2")
                   {
-                     System.url().string_set(strUrl, "sessid", strSessId);
+                     set["user"] = &AppUser(papp);
+                     if (set["user"].cast < ::fontopus::user >() != NULL && (strSessId = set["user"].cast < ::fontopus::user >()->get_sessid(strUrl, !set["interactive_user"].is_new() &&
+                           (bool)set["interactive_user"])).has_char() &&
+                           if_then(set.has_property("optional_ca2_login"), !(bool)set["optional_ca2_login"]))
+                     {
+                        System.url().string_set(strUrl, "sessid", strSessId);
+                     }
                   }
+
                }
 
             }
+            if (set["user"].cast < ::fontopus::user >() != NULL &&
+                  (strSessId = set["user"].cast < ::fontopus::user >()->get_sessid(strUrl, !set["interactive_user"].is_new() && (bool)set["interactive_user"])).has_char() &&
+                  if_then(set.has_property("optional_ca2_login"), !(bool)set["optional_ca2_login"]))
+            {
+               System.url().string_set(strUrl, "sessid", strSessId);
+            }
+            else if(if_then(set.has_property("optional_ca2_login"), (bool)set["optional_ca2_login"]))
+            {
+            }
+            else
+            {
+               System.url().string_set(strUrl, "authnone", 1);
+            }
+         }
 
-         }
-         if (set["user"].cast < ::fontopus::user >() != NULL &&
-            (strSessId = set["user"].cast < ::fontopus::user >()->get_sessid(strUrl, !set["interactive_user"].is_new() && (bool)set["interactive_user"])).has_char() &&
-            if_then(set.has_property("optional_ca2_login"), !(bool)set["optional_ca2_login"]))
-         {
-            System.url().string_set(strUrl, "sessid", strSessId);
-         }
-         else if(if_then(set.has_property("optional_ca2_login"), (bool)set["optional_ca2_login"]))
-         {
-         }
-         else
-         {
-            System.url().string_set(strUrl, "authnone", 1);
-         }
-      }
-
-      strRequest = System.url().get_object(strUrl);
+         strRequest = System.url().get_object(strUrl);
 
          psession->inheaders().clear();
          psession->outheaders().clear();
@@ -948,7 +948,7 @@ retry:
          TRACE("Higher Level Diagnosis : iNTERTIMe system::request time(%d) = %d, %d, %d\n", iIteration, dw1, dw2, dw2 - dw1);
 
          while(psession->m_phandler->get_count() > 0 && !psession->m_bRequestComplete && (::get_thread() == NULL || ::get_thread()->m_bRun))
-         //while(psession->m_phandler->get_count() > 0 && !psession->m_bRequestComplete) // should only exit in case of process exit signal
+            //while(psession->m_phandler->get_count() > 0 && !psession->m_bRequestComplete) // should only exit in case of process exit signal
          {
             dw1 = ::get_tick_count();
             psession->m_phandler->select(240, 0);
@@ -1289,8 +1289,8 @@ retry:
                   {
                      set["user"] = &AppUser(papp);
                      if (set["user"].cast < ::fontopus::user >() != NULL && (strSessId = set["user"].cast < ::fontopus::user >()->get_sessid(strUrl, !set["interactive_user"].is_new()
-                        && (bool)set["interactive_user"])).has_char() &&
-                        if_then(set.has_property("optional_ca2_login"), !(bool)set["optional_ca2_login"]))
+                           && (bool)set["interactive_user"])).has_char() &&
+                           if_then(set.has_property("optional_ca2_login"), !(bool)set["optional_ca2_login"]))
                      {
                         System.url().string_set(strUrl, "sessid", strSessId);
                      }
@@ -1300,8 +1300,8 @@ retry:
 
             }
             else if (set["user"].cast < ::fontopus::user >() != NULL &&
-               (strSessId = set["user"].cast < ::fontopus::user >()->get_sessid(strUrl, !set["interactive_user"].is_new() && (bool)set["interactive_user"])).has_char() &&
-               if_then(set.has_property("optional_ca2_login"), !(bool)set["optional_ca2_login"]))
+                     (strSessId = set["user"].cast < ::fontopus::user >()->get_sessid(strUrl, !set["interactive_user"].is_new() && (bool)set["interactive_user"])).has_char() &&
+                     if_then(set.has_property("optional_ca2_login"), !(bool)set["optional_ca2_login"]))
             {
                System.url().string_set(strUrl, "sessid", strSessId);
                if (strUrl.find_ci("://api.ca2.cc/") > 0)
@@ -1491,7 +1491,7 @@ retry:
 
       ::file::timeout_buffer * ptimeoutbuffer = set["file_out"].cast < ::file::timeout_buffer >();
 
-      while(handler.get_count() > 0)
+      while(handler.get_count() > 0 && ::get_thread()->m_bRun)
       {
          dw1 = ::get_tick_count();
          handler.select(iTimeout, 0);
@@ -1532,7 +1532,7 @@ retry:
       e_status estatus = status_fail;
 
       int32_t iStatusCode = psocket->outattr("http_status_code");
-      
+
       set["http_status_code"] = psocket->outattr("http_status_code");
 
 #ifdef BSD_STYLE_SOCKETS
@@ -1568,7 +1568,7 @@ retry:
          if(strLocation.has_char())
          {
             if(strLocation.find_ci("http://") == 0
-               || strLocation.find_ci("https://") == 0)
+                  || strLocation.find_ci("https://") == 0)
             {
                return get(handler,strLocation,set);
             }
@@ -1737,9 +1737,9 @@ retry:
 
    ::sockets::http_session * system::download(::sockets::http_session * psession,const char * pszRequest,var varFile,property_set & set)
    {
-    
+
       ::file::buffer_sp spfile = set.cast < ::aura::application >("app",get_app())->m_paxissession->file().get_file(varFile,
-         ::file::type_binary | ::file::mode_create | ::file::mode_read_write | ::file::defer_create_directory);
+                                 ::file::type_binary | ::file::mode_create | ::file::mode_read_write | ::file::defer_create_directory);
 
       set["file"] = spfile;
 
@@ -1758,7 +1758,7 @@ retry:
       ::sockets::socket_handler handler(get_app());
 
       ::file::buffer_sp spfile = set.cast < ::aura::application >("app", get_app())->m_paxissession->file().get_file(varFile,
-         ::file::type_binary | ::file::mode_create | ::file::mode_read_write | ::file::defer_create_directory);
+                                 ::file::type_binary | ::file::mode_create | ::file::mode_read_write | ::file::defer_create_directory);
 
       set["file"] = spfile;
 
@@ -1770,12 +1770,12 @@ retry:
          return false;
 
 
-/*      if(spfile.is_null())
-      {
-         return false;
-      }
+      /*      if(spfile.is_null())
+            {
+               return false;
+            }
 
-      spfile->write(psocket->GetDataPtr(), psocket->GetContentLength());*/
+            spfile->write(psocket->GetDataPtr(), psocket->GetContentLength());*/
 
       return true;
 
@@ -1881,25 +1881,27 @@ retry:
 
       //time_t t = time((time_t *)&iExpire);
       struct tm tp;
-   #ifdef _WIN32
+#ifdef _WIN32
       memcpy(&tp, gmtime(&t), sizeof(tp));
-   #else
+#else
       gmtime_r(&t, &tp);
-   #endif
+#endif
       const char *days[7] = {"Sunday", "Monday",
-         "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
+                             "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
+                            };
       const char *months[12] = {"Jan", "Feb", "Mar", "Apr", "May",
-         "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
+                                "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+                               };
       char strDateTime[1024];
 
       sprintf(strDateTime, "%s, %02d-%s-%04d %02d:%02d:%02d GMT",
-         days[tp.tm_wday],
-         tp.tm_mday,
-         months[tp.tm_mon],
-         tp.tm_year + 1900,
-         tp.tm_hour,
-         tp.tm_min,
-         tp.tm_sec);
+              days[tp.tm_wday],
+              tp.tm_mday,
+              months[tp.tm_mon],
+              tp.tm_year + 1900,
+              tp.tm_hour,
+              tp.tm_min,
+              tp.tm_sec);
 
       return strDateTime;
    }
@@ -1916,12 +1918,12 @@ retry:
       strPasswordFile = System.dir().appdata() / strSection + "_2";
       bool bOk = true;
       if(!System.crypto().file_get(strUserNameFile, strUserName, NULL, get_app())
-      || strUserName.is_empty())
+            || strUserName.is_empty())
       {
          bOk = false;
       }
       if(!System.crypto().file_get(strPasswordFile, strPassword, NULL, get_app())
-      || strPassword.is_empty())
+            || strPassword.is_empty())
       {
          bOk = false;
       }

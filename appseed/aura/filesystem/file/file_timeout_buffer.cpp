@@ -43,23 +43,23 @@ namespace file
          dwFuture = lOff;
          break;
       case ::file::seek_current:
-      {
-                                  uint64_t dwCurrent = m_pfile->get_position();
-                                  dwFuture = dwCurrent + lOff;
-      }
+         {
+            uint64_t dwCurrent = m_pfile->get_position();
+            dwFuture = dwCurrent + lOff;
+         }
          break;
       case ::file::seek_end:
-      {
-                              uint64_t dwCurrent = get_length(&sl);
-                              if (dwCurrent == ((uint64_t)-1))
-                                 dwFuture = 0;
-                              else
-                              {
-                                 dwFuture = dwCurrent + lOff;
-                                 if (lOff < 0 && dwFuture > dwCurrent)
-                                    dwFuture = 0;
-                              }
-      }
+         {
+            uint64_t dwCurrent = get_length(&sl);
+            if (dwCurrent == ((uint64_t)-1))
+               dwFuture = 0;
+            else
+            {
+               dwFuture = dwCurrent + lOff;
+               if (lOff < 0 && dwFuture > dwCurrent)
+                  dwFuture = 0;
+            }
+         }
          break;
       default:
          return ::numeric_info < file_size_t >::allset();
@@ -92,6 +92,10 @@ namespace file
          (const_cast < timeout_buffer * > (this))->m_dwLastCall = ::get_tick_count();
          while (m_uiExpectedSize == (uint64_t)-1)
          {
+            if (::get_thread() != NULL && !::get_thread()->m_bRun)
+            {
+               return 0;
+            }
             if (::get_tick_count() - m_dwLastCall > m_dwTimeOut)
                break;
             Sleep(MAX(11, m_dwSleep));
@@ -152,9 +156,11 @@ namespace file
          uiRead += uiReadNow;
          nCount -= uiReadNow;
          if (nCount <= 0 || (::get_tick_count() - m_dwLastCall > m_dwTimeOut) ||
-            (m_pfile->get_position() >= m_uiExpectedSize &&
-            m_uiExpectedSize != ((uint64_t)-1)
-            && m_uiExpectedSize != ((uint64_t)-2)))
+               (m_pfile->get_position() >= m_uiExpectedSize &&
+                m_uiExpectedSize != ((uint64_t)-1)
+                && m_uiExpectedSize != ((uint64_t)-2)))
+            break;
+         if (::get_thread() != NULL && !::get_thread()->m_bRun)
             break;
          Sleep(MAX(11, m_dwSleep));
       }

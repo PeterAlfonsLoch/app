@@ -1,6 +1,8 @@
 #pragma once
 
-namespace userex { class pane_tab_view;  }
+namespace userex {
+   class pane_tab_view;
+}
 namespace core
 {
 
@@ -579,6 +581,7 @@ namespace core
       virtual void set_cred(string strToken, const char * pszUsername, const char * pszPassword);
       virtual void set_cred_ok(string strToken, bool bOk);
 
+      virtual void remove_document_template(::user::impact_system * pimpactsystem);
 
    };
 

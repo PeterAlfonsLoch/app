@@ -49,13 +49,26 @@ namespace comparison
             counter -= 2;
             if(counter < 0)
                break;
-               nHash = (nHash<<5) + nHash + *pszKey++;
+            nHash = (nHash<<5) + nHash + *pszKey++;
          }
          return (UINT)(nHash & 0xffffffff);
       }
 
    };
 
+
+
+   template < class T >
+   class CLASS_DECL_AURA hash < const sp(T) & >
+   {
+   public:
+
+      inline static UINT HashKey(const sp(T) & key)
+      {
+         return ::HashKey(key.m_p);
+      }
+
+   };
 
 
 } // namespace comparison

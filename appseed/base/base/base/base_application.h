@@ -246,7 +246,7 @@ namespace base
 //      virtual sp(type) user_default_controltype_to_typeinfo(::user::e_control_type e_type);
 //      virtual int32_t hotplugin_host_starter_start_sync(const char * pszCommandLine,::aura::application * papp,hotplugin::host * phost,hotplugin::plugin * pplugin = NULL) override;
 
-virtual ::user::interaction * main_window();
+      virtual ::user::interaction * main_window();
 
       virtual void on_create_view(::user::view_creator_data * pcreatordata);
       void process_message_filter(int32_t code,signal_details * pobj);
@@ -291,7 +291,7 @@ virtual ::user::interaction * main_window();
       using ::user::form_callback::BaseOnControlEvent;
 
 
-
+      virtual void remove_document_template(::user::impact_system * pimpactsystem);
 
    };
 

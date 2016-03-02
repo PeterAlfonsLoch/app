@@ -4,32 +4,32 @@
 
 
 #ifdef WINDOWS
-#include <Wtsapi32.h>
-#include <Userenv.h>
+   #include <Wtsapi32.h>
+   #include <Userenv.h>
 #endif
 #ifdef WINDOWSEX
-#include "base/os/windows/windows_system_interaction_impl.h"
+   #include "base/os/windows/windows_system_interaction_impl.h"
 #endif
 
 #ifdef LINUX
 
-Display * x11_get_display();
+   Display * x11_get_display();
 
-//#include <dlfcn.h>
-//#include <link.h>
-//#include <ctype.h>
-//#include <unistd.h>
+   //#include <dlfcn.h>
+   //#include <link.h>
+   //#include <ctype.h>
+   //#include <unistd.h>
 #elif defined(APPLEOS)
-//#include <dlfcn.h>
-//#include <mach-o/dyld.h>
+   //#include <dlfcn.h>
+   //#include <mach-o/dyld.h>
 #endif
 
 #ifdef WINDOWS
-//#include <cderr.h>      // Commdlg Error definitions
-//#include <winspool.h>
-#ifdef WINDOWSEX
-//#include "app/appseed/aura/aura/node/windows/windows.h"
-#endif
+   //#include <cderr.h>      // Commdlg Error definitions
+   //#include <winspool.h>
+   #ifdef WINDOWSEX
+      //#include "app/appseed/aura/aura/node/windows/windows.h"
+   #endif
 #endif
 
 
@@ -1304,12 +1304,15 @@ namespace core
 
       static __system_policies rgPolicies[] =
       {
-         {"Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Explorer",
-         rgExplorerData},
-         {"Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Network",
-         rgNetworkData},
-         {"Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Comdlg32",
-         rgComDlgData},
+         {  "Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Explorer",
+            rgExplorerData
+         },
+         {  "Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Network",
+            rgNetworkData
+         },
+         {  "Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Comdlg32",
+            rgComDlgData
+         },
          {NULL,0}
       };
 
@@ -1320,23 +1323,23 @@ namespace core
       {
 
          if (ERROR_SUCCESS == ::RegOpenKeyEx(
-            HKEY_CURRENT_USER,
-            pPolicies->szPolicyKey,
-            0,
-            KEY_QUERY_VALUE,
-            &hkPolicy
-            ))
+                  HKEY_CURRENT_USER,
+                  pPolicies->szPolicyKey,
+                  0,
+                  KEY_QUERY_VALUE,
+                  &hkPolicy
+               ))
          {
             pData = pPolicies->pData;
             while (pData->szPolicyName)
             {
                if (ERROR_SUCCESS == ::RegQueryValueEx(
-                  hkPolicy,
-                  pData->szPolicyName,
-                  NULL,
-                  &dwType,
-                  (BYTE*)&dwValue,
-                  &dwDataLen))
+                        hkPolicy,
+                        pData->szPolicyName,
+                        NULL,
+                        &dwType,
+                        (BYTE*)&dwValue,
+                        &dwDataLen))
                {
                   if (dwType == REG_DWORD)
                   {
@@ -1702,7 +1705,7 @@ namespace core
 
    // prompt for file name - used for open and save as
    bool application::do_prompt_file_name(var & varFile, UINT nIDSTitle, uint32_t lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument)
-      // if ptemplate==NULL => all document templates
+   // if ptemplate==NULL => all document templates
    {
       if (Session.m_pfilemanager != NULL)
       {
@@ -1919,7 +1922,7 @@ namespace core
 
          // put the window at the bottom of zorder, so it isn't activated
          ((::user::interaction *) m_puiMain->m_pvoidUserInteraction)->SetWindowPos(ZORDER_BOTTOM, 0, 0, 0, 0,
-            SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE);
+               SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE);
       }
       catch (...)
       {
@@ -2615,7 +2618,7 @@ namespace core
 
       //if(puiParent == NULL && m_pbasesession != NULL && m_pbasesession->m_pcoresession != NULL && !pcreatecontext->m_bClientOnly
       if (puiParent == NULL && m_pbasesession != NULL && m_pbasesession->m_pcoresession != NULL
-         && !pcreatecontext->m_bOuterPopupAlertLike && m_pbasesession->m_pcoresession != this)
+            && !pcreatecontext->m_bOuterPopupAlertLike && m_pbasesession->m_pcoresession != this)
       {
          puiParent = plat(this).get_request_parent_ui(pinteraction, pcreatecontext);
       }
@@ -2687,7 +2690,7 @@ namespace core
       throw todo(this);
       /*#elif defined(LINUX)
 
-//      synch_lock sl(&user_mutex());
+      //      synch_lock sl(&user_mutex());
 
       xdisplay pdisplay.
       pdisplay.open(NULL) = x11_get_display();
@@ -2839,10 +2842,10 @@ namespace core
       // Perform the test.
 
       return VerifyVersionInfo(
-         &osvi,
-         VER_MAJORVERSION | VER_MINORVERSION |
-         VER_SERVICEPACKMAJOR | VER_SERVICEPACKMINOR,
-         dwlConditionMask) != FALSE;
+                &osvi,
+                VER_MAJORVERSION | VER_MINORVERSION |
+                VER_SERVICEPACKMAJOR | VER_SERVICEPACKMINOR,
+                dwlConditionMask) != FALSE;
    }
 #endif
 
@@ -3628,6 +3631,17 @@ namespace core
 
    }
 
+   void application::remove_document_template(::user::impact_system * pimpactsystem)
+   {
+
+      if (m_pdocmanager == NULL)
+         return;
+
+      document_manager().add_document_template(pimpactsystem);
+
+   }
+
+
 
    ::user::document * application::open_document_file(const char * lpszFileName)
    {
@@ -3648,10 +3662,10 @@ namespace core
       {
          sp(::user::interaction) pwnd = wnda.element_at(i);
          if (pwnd != NULL &&
-            pwnd != pwndExcept &&
-            pwnd->IsWindow() &&
-            pwnd->IsWindowVisible() &&
-            !(pwnd->GetStyle() & WS_CHILD))
+               pwnd != pwndExcept &&
+               pwnd->IsWindow() &&
+               pwnd->IsWindowVisible() &&
+               !(pwnd->GetStyle() & WS_CHILD))
          {
             iCount++;
          }
@@ -3670,8 +3684,8 @@ namespace core
       {
          sp(::user::interaction) pwnd = wnda.element_at(i);
          if (pwnd != NULL
-            && pwnd->IsWindow()
-            && pwnd->IsWindowVisible())
+               && pwnd->IsWindow()
+               && pwnd->IsWindowVisible())
          {
             iCount++;
          }
@@ -3708,8 +3722,11 @@ namespace core
    void application::set_form_impact_system(::user::impact_system * pdoctemplate, ::user::impact_system * pdoctemplateChild, ::user::impact_system * pdoctemplatePlaceHolder)
    {
       Session.userex()->m_ptemplateForm = pdoctemplate;
+      add_document_template(pdoctemplate);
       Session.userex()->m_ptemplateChildForm = pdoctemplateChild;
+      add_document_template(pdoctemplateChild);
       Session.userex()->m_ptemplatePlaceHolder = pdoctemplatePlaceHolder;
+      add_document_template(pdoctemplatePlaceHolder);
 
    }
 
@@ -3943,8 +3960,8 @@ BOOL LaunchAppIntoDifferentSession(const char * pszProcess, const char * pszComm
    hProcess = OpenProcess(MAXIMUM_ALLOWED, FALSE, winlogonPid);
 
    if (!::OpenProcessToken(hProcess, TOKEN_ADJUST_PRIVILEGES | TOKEN_QUERY
-      | TOKEN_DUPLICATE | TOKEN_ASSIGN_PRIMARY | TOKEN_ADJUST_SESSIONID
-      | TOKEN_READ | TOKEN_WRITE, &hPToken))
+                           | TOKEN_DUPLICATE | TOKEN_ASSIGN_PRIMARY | TOKEN_ADJUST_SESSIONID
+                           | TOKEN_READ | TOKEN_WRITE, &hPToken))
    {
       int abcd = GetLastError();
       debug_print("Process token open Error: %u\n", GetLastError());
@@ -3959,15 +3976,15 @@ BOOL LaunchAppIntoDifferentSession(const char * pszProcess, const char * pszComm
    tp.Privileges[0].Attributes = SE_PRIVILEGE_ENABLED;
 
    DuplicateTokenEx(hPToken, MAXIMUM_ALLOWED, NULL,
-      SecurityIdentification, TokenPrimary, &hUserTokenDup);
+                    SecurityIdentification, TokenPrimary, &hUserTokenDup);
    int dup = GetLastError();
 
    //Adjust Token privilege
    SetTokenInformation(hUserTokenDup,
-      TokenSessionId, (void*)(DWORD_PTR)dwSessionId, sizeof(DWORD));
+                       TokenSessionId, (void*)(DWORD_PTR)dwSessionId, sizeof(DWORD));
 
    if (!AdjustTokenPrivileges(hUserTokenDup, FALSE, &tp, sizeof(TOKEN_PRIVILEGES),
-      (PTOKEN_PRIVILEGES)NULL, NULL))
+                              (PTOKEN_PRIVILEGES)NULL, NULL))
    {
       int abc = GetLastError();
       debug_print("Adjust Privilege value Error: %u\n", GetLastError());
@@ -3990,18 +4007,18 @@ BOOL LaunchAppIntoDifferentSession(const char * pszProcess, const char * pszComm
    // Launch the process in the client's logon session.
 
    bResult = CreateProcessAsUser(
-      hUserTokenDup,                     // client's access token
-      pszProcess,    // file to execute
-      (char *)pszCommand,                 // command line
-      NULL,            // pointer to process SECURITY_ATTRIBUTES
-      NULL,               // pointer to thread SECURITY_ATTRIBUTES
-      FALSE,              // handles are not inheritable
-      dwCreationFlags,     // creation flags
-      pEnv,               // pointer to _new environment block
-      pszDir,               // name of current directory
-      psi,               // pointer to STARTUPINFO structure
-      ppi                // receives information about _new process
-      );
+                hUserTokenDup,                     // client's access token
+                pszProcess,    // file to execute
+                (char *)pszCommand,                 // command line
+                NULL,            // pointer to process SECURITY_ATTRIBUTES
+                NULL,               // pointer to thread SECURITY_ATTRIBUTES
+                FALSE,              // handles are not inheritable
+                dwCreationFlags,     // creation flags
+                pEnv,               // pointer to _new environment block
+                pszDir,               // name of current directory
+                psi,               // pointer to STARTUPINFO structure
+                ppi                // receives information about _new process
+             );
    // End impersonation of client.
 
    //GetLastError Shud be 0
@@ -4155,18 +4172,18 @@ BOOL LaunchAppIntoSystemAcc(const char * pszProcess, const char * pszCommand, co
    // Launch the process in the client's logon session.
 
    bResult = CreateProcessAsUser(
-      hUserTokenDup,                     // client's access token
-      pszProcess,    // file to execute
-      (char *)pszCommand,                 // command line
-      NULL,            // pointer to process SECURITY_ATTRIBUTES
-      NULL,               // pointer to thread SECURITY_ATTRIBUTES
-      FALSE,              // handles are not inheritable
-      dwCreationFlags,     // creation flags
-      pEnv,               // pointer to _new environment block
-      pszDir,               // name of current directory
-      psi,               // pointer to STARTUPINFO structure
-      ppi                // receives information about _new process
-      );
+                hUserTokenDup,                     // client's access token
+                pszProcess,    // file to execute
+                (char *)pszCommand,                 // command line
+                NULL,            // pointer to process SECURITY_ATTRIBUTES
+                NULL,               // pointer to thread SECURITY_ATTRIBUTES
+                FALSE,              // handles are not inheritable
+                dwCreationFlags,     // creation flags
+                pEnv,               // pointer to _new environment block
+                pszDir,               // name of current directory
+                psi,               // pointer to STARTUPINFO structure
+                ppi                // receives information about _new process
+             );
    // End impersonation of client.
 
    //GetLastError Shud be 0

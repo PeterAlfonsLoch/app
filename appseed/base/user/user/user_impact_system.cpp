@@ -48,6 +48,17 @@ namespace user
 
    impact_system::~impact_system()
    {
+
+      try
+      {
+
+         Application.remove_document_template(this);
+
+      }
+      catch (...)
+      {
+
+      }
    }
 
    bool impact_system::GetDocString(string & rString, enum DocStringIndex i) const
@@ -93,7 +104,7 @@ namespace user
       // see if it matches our default suffix
       string strFilterExt;
       if (GetDocString(strFilterExt, impact_system::filterExt) &&
-         !strFilterExt.is_empty())
+            !strFilterExt.is_empty())
       {
          // see if extension matches
          ASSERT(strFilterExt[0] == '.');
@@ -124,7 +135,7 @@ namespace user
       if (pdocument == NULL)
       {
          TRACE(::aura::trace::category_AppMsg, 0, "Warning: Dynamic create of ::user::document type %hs failed.\n",
-            m_typeinfoDocument->name());
+               m_typeinfoDocument->name());
          return NULL;
       }
       pdocument->on_create(pcreatecontext);
@@ -165,7 +176,7 @@ namespace user
       if (pFrame == NULL)
       {
          TRACE(::aura::trace::category_AppMsg, 0, "Warning: Dynamic create of frame %hs failed.\n",
-            m_typeinfoFrame->name());
+               m_typeinfoFrame->name());
          string strMessage;
          strMessage.Format("Warning: Dynamic create of frame %hs failed.\n\n(Does allocation was implemented)?",m_typeinfoFrame->name());
          Application.simple_message_box(NULL, strMessage);
@@ -179,8 +190,8 @@ namespace user
 
       // create new from resource
       if (!pFrame->LoadFrame(m_strMatter,
-         WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE,   // default frame styles
-         pcreatecontext->m_puiParent, pcreatecontext))
+                             WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE,   // default frame styles
+                             pcreatecontext->m_puiParent, pcreatecontext))
       {
          TRACE(::aura::trace::category_AppMsg, 0, "Warning: impact_system couldn't create a frame.\n");
          // frame will be deleted in PostNcDestroy cleanup
@@ -231,7 +242,7 @@ namespace user
    */
 
    void impact_system::InitialUpdateFrame(sp(::user::frame_window) pFrame, ::user::document * pdocument,
-      bool bMakeVisible)
+                                          bool bMakeVisible)
    {
       // just delagate to implementation in frame_window
       pFrame->InitialUpdateFrame(pdocument, bMakeVisible);
