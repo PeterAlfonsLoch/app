@@ -122,6 +122,12 @@ uint64_t get_nanos()
       return 0;
    }
 
-   return ts.tv_sec * 1000 * 1000 * 1000 + ts.tv_nsec;
+   uint64_t ui = ts.tv_sec;
+
+   ui *= 1000 * 1000 * 1000;
+
+   ui += ts.tv_nsec;
+
+   return  ui;
 
 }
