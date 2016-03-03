@@ -51,7 +51,7 @@ inline string & to_string(string & str,STRINGABLE * pstringable)
 //}
 //#endif
 #ifdef WINDOWS
-#define stricmp _stricmp
+   #define stricmp _stricmp
 #endif
 
 
@@ -252,8 +252,8 @@ public:
    string(const unichar32 * pszSrc);
    string(const string & strSrc, strsize npos, strsize len = -1);
 
-   string(const hstring & hstr) : stdstring< simple_string>(hstr.operator const char *(),string_trait::GetDefaultManager()){  }
-   string(const hwstring & hwstr) : stdstring< simple_string>(hwstr.operator const unichar *(),string_trait::GetDefaultManager()){  }
+   string(const hstring & hstr) : stdstring< simple_string>(hstr.operator const char *(),string_trait::GetDefaultManager()) {  }
+   string(const hwstring & hwstr) : stdstring< simple_string>(hwstr.operator const unichar *(),string_trait::GetDefaultManager()) {  }
 
    string(const istring & istr);
 
@@ -491,8 +491,12 @@ public:
    // find the last occurrence of string 'sz'
    strsize reverse_find(const char * sz,strsize iStart = -1) const RELEASENOTHROW;
 
-   strsize rfind(char ch,strsize iStart = -1) const RELEASENOTHROW{return reverse_find(ch,iStart);};
-   strsize rfind(const char * sz,strsize iStart = -1) const RELEASENOTHROW{return reverse_find(sz,iStart);};
+   strsize rfind(char ch,strsize iStart = -1) const RELEASENOTHROW {
+      return reverse_find(ch,iStart);
+   };
+   strsize rfind(const char * sz,strsize iStart = -1) const RELEASENOTHROW {
+      return reverse_find(sz,iStart);
+   };
 
 
    string str() const
@@ -841,28 +845,64 @@ public:
    bool operator<(int32_t i) const;
 
    //inline bool operator!=(const string_interface & str)   const { return !operator ==(str); }
-   inline bool operator!=(const string & str )            const { return !operator ==(str); }
-   inline bool operator!=(const char * psz)                     const { return !operator ==(psz); }
-   inline bool operator!=(const unichar * psz)                     const { return !operator ==(psz); }
-   inline bool operator!=(char ch)                       const { return !operator ==(ch);  }
-   inline bool operator!=(unichar ch)                       const { return !operator ==(ch);  }
-   inline bool operator!=(int32_t i)                      const { return !operator ==(i);  }
+   inline bool operator!=(const string & str )            const {
+      return !operator ==(str);
+   }
+   inline bool operator!=(const char * psz)                     const {
+      return !operator ==(psz);
+   }
+   inline bool operator!=(const unichar * psz)                     const {
+      return !operator ==(psz);
+   }
+   inline bool operator!=(char ch)                       const {
+      return !operator ==(ch);
+   }
+   inline bool operator!=(unichar ch)                       const {
+      return !operator ==(ch);
+   }
+   inline bool operator!=(int32_t i)                      const {
+      return !operator ==(i);
+   }
 
    //inline bool operator>=(const string_interface & str)   const { return !operator <(str); }
-   inline bool operator>=(const string & str )            const { return !operator <(str); }
-   inline bool operator>=(const char * psz)                     const { return !operator <(psz); }
-   inline bool operator>=(const unichar * psz)                     const { return !operator <(psz); }
-   inline bool operator>=(char ch)                       const { return !operator <(ch);  }
-   inline bool operator>=(unichar ch)                       const { return !operator <(ch);  }
-   inline bool operator>=(int32_t i)                      const { return !operator <(i);  }
+   inline bool operator>=(const string & str )            const {
+      return !operator <(str);
+   }
+   inline bool operator>=(const char * psz)                     const {
+      return !operator <(psz);
+   }
+   inline bool operator>=(const unichar * psz)                     const {
+      return !operator <(psz);
+   }
+   inline bool operator>=(char ch)                       const {
+      return !operator <(ch);
+   }
+   inline bool operator>=(unichar ch)                       const {
+      return !operator <(ch);
+   }
+   inline bool operator>=(int32_t i)                      const {
+      return !operator <(i);
+   }
 
    //inline bool operator<=(const string_interface & str)   const { return !operator >(str); }
-   inline bool operator<=(const string & str )            const { return !operator >(str); }
-   inline bool operator<=(const char * psz)                     const { return !operator >(psz); }
-   inline bool operator<=(const unichar * psz)                     const { return !operator >(psz); }
-   inline bool operator<=(char ch)                       const { return !operator >(ch);  }
-   inline bool operator<=(unichar ch)                       const { return !operator >(ch);  }
-   inline bool operator<=(int32_t i)                      const { return !operator >(i);  }
+   inline bool operator<=(const string & str )            const {
+      return !operator >(str);
+   }
+   inline bool operator<=(const char * psz)                     const {
+      return !operator >(psz);
+   }
+   inline bool operator<=(const unichar * psz)                     const {
+      return !operator >(psz);
+   }
+   inline bool operator<=(char ch)                       const {
+      return !operator >(ch);
+   }
+   inline bool operator<=(unichar ch)                       const {
+      return !operator >(ch);
+   }
+   inline bool operator<=(int32_t i)                      const {
+      return !operator >(i);
+   }
 
 
    typedef strsize size_type;
@@ -876,14 +916,14 @@ public:
 
 
 #if defined(METROWIN) && defined(__cplusplus_winrt)
-inline operator String ^() const
-{
-   return ref new String(wstring(*this));
-}
-inline operator String ^()
-{
-   return ref new String(wstring(*this));
-}
+   inline operator String ^() const
+   {
+      return ref new String(wstring(*this));
+   }
+   inline operator String ^()
+   {
+      return ref new String(wstring(*this));
+   }
 #endif
 
 
@@ -1112,7 +1152,7 @@ inline strsize string::utf8_length() const
 
 
 inline   string::string() throw() :
-stdstring<simple_string>(string_trait::GetDefaultManager())
+   stdstring<simple_string>(string_trait::GetDefaultManager())
 {
 }
 
@@ -1339,9 +1379,9 @@ inline bool string::operator<(char ch) const
 {
 
 #ifdef __GNUC__
-    return operator < (string(ch,1)) ;
+   return operator < (string(ch,1)) ;
 #else
-    return operator < (string(ch)) ;
+   return operator < (string(ch)) ;
 #endif
 
 }
@@ -1350,9 +1390,9 @@ inline bool string::operator<(char ch) const
 inline bool string::operator<(unichar ch) const
 {
 #ifdef __GNUC__
-    return operator < (string(ch,1)) ;
+   return operator < (string(ch,1)) ;
 #else
-    return operator < (string(ch));
+   return operator < (string(ch));
 #endif
 
 }
@@ -1445,46 +1485,106 @@ inline strsize string::remove(strsize iIndex,strsize nCount)
 
 
 //inline bool CLASS_DECL_AURA operator==(const string_interface & str1   , const string & str2)  { return str2 == str1; }
-inline bool CLASS_DECL_AURA operator==(const char *  psz                     , const string & str )  { return str  == psz ; }
-inline bool CLASS_DECL_AURA operator==(const unichar *  psz                     , const string & str )  { return str  == psz ; }
-inline bool CLASS_DECL_AURA operator==(char   ch                      , const string & str )  { return str  == ch  ; }
-inline bool CLASS_DECL_AURA operator==(unichar   ch                      , const string & str )  { return str  == ch  ; }
-inline bool CLASS_DECL_AURA operator==(int32_t i                       , const string & str )  { return str  == i   ; }
+inline bool CLASS_DECL_AURA operator==(const char *  psz                     , const string & str )  {
+   return str  == psz ;
+}
+inline bool CLASS_DECL_AURA operator==(const unichar *  psz                     , const string & str )  {
+   return str  == psz ;
+}
+inline bool CLASS_DECL_AURA operator==(char   ch                      , const string & str )  {
+   return str  == ch  ;
+}
+inline bool CLASS_DECL_AURA operator==(unichar   ch                      , const string & str )  {
+   return str  == ch  ;
+}
+inline bool CLASS_DECL_AURA operator==(int32_t i                       , const string & str )  {
+   return str  == i   ;
+}
 
 //inline bool CLASS_DECL_AURA operator>(const string_interface & str1   , const string & str2 )   { return str2 < str1; }
-inline bool CLASS_DECL_AURA operator>(const char * psz                      , const string & str  )   { return str  < psz ; }
-inline bool CLASS_DECL_AURA operator>(const unichar * psz                      , const string & str  )   { return str  < psz ; }
-inline bool CLASS_DECL_AURA operator>(char ch                        , const string & str  )   { return str  < ch  ; }
-inline bool CLASS_DECL_AURA operator>(unichar ch                        , const string & str  )   { return str  < ch  ; }
-inline bool CLASS_DECL_AURA operator>(int32_t i                       , const string & str  )   { return str  < i   ; }
+inline bool CLASS_DECL_AURA operator>(const char * psz                      , const string & str  )   {
+   return str  < psz ;
+}
+inline bool CLASS_DECL_AURA operator>(const unichar * psz                      , const string & str  )   {
+   return str  < psz ;
+}
+inline bool CLASS_DECL_AURA operator>(char ch                        , const string & str  )   {
+   return str  < ch  ;
+}
+inline bool CLASS_DECL_AURA operator>(unichar ch                        , const string & str  )   {
+   return str  < ch  ;
+}
+inline bool CLASS_DECL_AURA operator>(int32_t i                       , const string & str  )   {
+   return str  < i   ;
+}
 
 //inline bool CLASS_DECL_AURA operator<(const string_interface & str1   , const string & str2 )   { return str2 > str1; }
-inline bool CLASS_DECL_AURA operator<(const char * psz                      , const string & str  )   { return str  > psz ; }
-inline bool CLASS_DECL_AURA operator<(const unichar * psz                      , const string & str  )   { return str  > psz ; }
-inline bool CLASS_DECL_AURA operator<(char ch                        , const string & str  )   { return str  > ch  ; }
-inline bool CLASS_DECL_AURA operator<(unichar ch                        , const string & str  )   { return str  > ch  ; }
-inline bool CLASS_DECL_AURA operator<(int32_t i                       , const string & str  )   { return str  > i   ; }
+inline bool CLASS_DECL_AURA operator<(const char * psz                      , const string & str  )   {
+   return str  > psz ;
+}
+inline bool CLASS_DECL_AURA operator<(const unichar * psz                      , const string & str  )   {
+   return str  > psz ;
+}
+inline bool CLASS_DECL_AURA operator<(char ch                        , const string & str  )   {
+   return str  > ch  ;
+}
+inline bool CLASS_DECL_AURA operator<(unichar ch                        , const string & str  )   {
+   return str  > ch  ;
+}
+inline bool CLASS_DECL_AURA operator<(int32_t i                       , const string & str  )   {
+   return str  > i   ;
+}
 
 //inline bool CLASS_DECL_AURA operator!=(const string_interface & str1,const string & str2)  { return !::operator==(str1, str2); }
-inline bool CLASS_DECL_AURA operator!=(const char * psz,const string & str)                      { return !::operator==(psz, str); }
-inline bool CLASS_DECL_AURA operator!=(const unichar * psz,const string & str)                      { return !::operator==(psz, str); }
-inline bool CLASS_DECL_AURA operator!=(char ch,const string & str)                        { return !::operator==(ch, str); }
-inline bool CLASS_DECL_AURA operator!=(unichar ch,const string & str)                        { return !::operator==(ch, str); }
-inline bool CLASS_DECL_AURA operator!=(int32_t i, const string & str)                      { return !::operator==(i, str); }
+inline bool CLASS_DECL_AURA operator!=(const char * psz,const string & str)                      {
+   return !::operator==(psz, str);
+}
+inline bool CLASS_DECL_AURA operator!=(const unichar * psz,const string & str)                      {
+   return !::operator==(psz, str);
+}
+inline bool CLASS_DECL_AURA operator!=(char ch,const string & str)                        {
+   return !::operator==(ch, str);
+}
+inline bool CLASS_DECL_AURA operator!=(unichar ch,const string & str)                        {
+   return !::operator==(ch, str);
+}
+inline bool CLASS_DECL_AURA operator!=(int32_t i, const string & str)                      {
+   return !::operator==(i, str);
+}
 
 //inline bool CLASS_DECL_AURA operator>=(const string_interface & str1,const string & str2)  { return !::operator<(str1, str2); }
-inline bool CLASS_DECL_AURA operator>=(const char * psz,const string & str)                      { return !::operator<(psz, str); }
-inline bool CLASS_DECL_AURA operator>=(const unichar * psz,const string & str)                      { return !::operator<(psz, str); }
-inline bool CLASS_DECL_AURA operator>=(char ch,const string & str)                        { return !::operator<(ch, str); }
-inline bool CLASS_DECL_AURA operator>=(unichar ch,const string & str)                        { return !::operator<(ch, str); }
-inline bool CLASS_DECL_AURA operator>=(int32_t i, const string & str)                      { return !::operator<(i, str); }
+inline bool CLASS_DECL_AURA operator>=(const char * psz,const string & str)                      {
+   return !::operator<(psz, str);
+}
+inline bool CLASS_DECL_AURA operator>=(const unichar * psz,const string & str)                      {
+   return !::operator<(psz, str);
+}
+inline bool CLASS_DECL_AURA operator>=(char ch,const string & str)                        {
+   return !::operator<(ch, str);
+}
+inline bool CLASS_DECL_AURA operator>=(unichar ch,const string & str)                        {
+   return !::operator<(ch, str);
+}
+inline bool CLASS_DECL_AURA operator>=(int32_t i, const string & str)                      {
+   return !::operator<(i, str);
+}
 
 //inline bool CLASS_DECL_AURA operator<=(const string_interface & str1,const string & str2)  { return !::operator>(str1, str2); }
-inline bool CLASS_DECL_AURA operator<=(const char * psz,const string & str)                      { return !::operator>(psz, str); }
-inline bool CLASS_DECL_AURA operator<=(const unichar * psz,const string & str)                      { return !::operator>(psz, str); }
-inline bool CLASS_DECL_AURA operator<=(char ch,const string & str)                        { return !::operator>(ch, str); }
-inline bool CLASS_DECL_AURA operator<=(unichar ch,const string & str)                        { return !::operator>(ch, str); }
-inline bool CLASS_DECL_AURA operator<=(int32_t i, const string & str)                      { return !::operator>(i, str); }
+inline bool CLASS_DECL_AURA operator<=(const char * psz,const string & str)                      {
+   return !::operator>(psz, str);
+}
+inline bool CLASS_DECL_AURA operator<=(const unichar * psz,const string & str)                      {
+   return !::operator>(psz, str);
+}
+inline bool CLASS_DECL_AURA operator<=(char ch,const string & str)                        {
+   return !::operator>(ch, str);
+}
+inline bool CLASS_DECL_AURA operator<=(unichar ch,const string & str)                        {
+   return !::operator>(ch, str);
+}
+inline bool CLASS_DECL_AURA operator<=(int32_t i, const string & str)                      {
+   return !::operator>(i, str);
+}
 
 
 template < >
@@ -1638,7 +1738,7 @@ inline string string::lower() const
 inline string string::upper() const
 {
 
-   return string(*this).make_lower();
+   return string(*this).make_upper();
 
 }
 
