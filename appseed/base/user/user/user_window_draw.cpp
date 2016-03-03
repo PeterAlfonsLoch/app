@@ -17,11 +17,11 @@ namespace user
 
       g_bSuppressTwf = file_exists_dup("C:\\ca2\\config\\system\\suppress_twf.txt") != 0;
 
-      m_bProDevianMode                    = true;
-      m_iFramesPerSecond                  = 60.0;
-      m_bRunning                          = false;
-      m_bRun                              = true;
-      m_bRender                           = false;
+      m_bProDevianMode = true;
+      m_iFramesPerSecond = 60.0;
+      m_bRunning = false;
+      m_bRun = true;
+      m_bRender = false;
 
    }
 
@@ -31,7 +31,7 @@ namespace user
 
       int iReturnCode;
 
-      if(begin_synch(&iReturnCode))
+      if (begin_synch(&iReturnCode))
          return false;
 
       return true;
@@ -42,7 +42,7 @@ namespace user
    bool window_draw::UpdateBuffer()
    {
 
-      if(m_bRender)
+      if (m_bRender)
          return false;
 
       keep<bool> keepRender(&m_bRender, true, false, true);
@@ -61,7 +61,7 @@ namespace user
 
       ::user::interaction * pui = NULL;
 
-      while(System.get_frame(pui))
+      while (System.get_frame(pui))
       {
 
          try
@@ -69,15 +69,15 @@ namespace user
 
             synch_lock sl(pui->m_pmutex);
 
-            if(pui->oprop("session").is_new())
+            if (pui->oprop("session").is_new())
             {
 
-               if(file_exists_dup("/ca2/debug_window_draw.txt"))
+               if (file_exists_dup("/ca2/debug_window_draw.txt"))
                {
-                TRACE("debug window draw");
+                  TRACE("debug window draw");
                }
 
-               if(pui->m_bMayProDevian)
+               if (pui->m_bMayProDevian)
                {
 
                   pui->defer_check_layout();
@@ -89,10 +89,10 @@ namespace user
             }
 
          }
-         catch(simple_exception & se)
+         catch (simple_exception & se)
          {
 
-            if(se.m_strMessage == "no more a window")
+            if (se.m_strMessage == "no more a window")
             {
 
                TRACE("No more a window explicitly");
@@ -102,7 +102,7 @@ namespace user
             }
 
          }
-         catch(...)
+         catch (...)
          {
 
             TRACE("No more a window implicitly");
@@ -153,6 +153,81 @@ namespace user
    //   return System.frames();
 
    //}
+
+
+
+
+
+   int32_t window_draw::run()
+   {
+
+      try
+      {
+
+         m_bRunning = true;
+
+         //         MSG msg;
+         uint64_t startTime;
+         uint64_t endTime;
+
+         while (m_bRun)
+         {
+            try
+            {
+               if (m_bProDevianMode)
+               {
+                  startTime = get_nanos();
+                  UpdateBuffer();
+                  endTime = get_nanos();
+               }
+            }
+            catch (...)
+            {
+            }
+            if (m_iFramesPerSecond <= 0)
+            {
+               Sleep(1000);
+            }
+            else
+            {
+
+               UINT uiFrameMillis = 1000 / m_iFramesPerSecond;
+
+               uint64_t micros = (endTime - startTime) / 1000;
+
+               uint64_t millis = micros / 1000;
+
+               if (uiFrameMillis > millis + 2)
+               {
+
+                  Sleep(uiFrameMillis - millis - 2);
+
+               }
+
+               char sz[512];
+
+               ::ultoa_dup(sz, micros, 10);
+               ::OutputDebugString(sz);
+               ::OutputDebugString("\n");
+
+            }
+
+         }
+         //      exit:;
+
+      }
+      catch (...)
+      {
+
+      }
+
+      m_bRunning = false;
+
+      return 0;
+
+   }
+
+
 
 
 } // namespace user

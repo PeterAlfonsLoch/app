@@ -44,6 +44,10 @@ namespace user
       virtual void synch_redraw();
 
 
+      //virtual bool pre_run() override;
+      virtual int32_t run() override;
+
+
       //ptr_array < ::user::interaction > get_wnda();
 
 

@@ -9,21 +9,21 @@ extern void _001DeferPaintLayeredWindowBackground(oswindow oswindow,::draw2d::gr
 
 class keep_event_reset
 {
-   public:
+public:
 
 
-      event * m_pevent;
+   event * m_pevent;
 
 
-      keep_event_reset(event * pevent)
-      {
-         m_pevent = pevent;
-         pevent->ResetEvent();
-      }
-      ~keep_event_reset()
-      {
-         m_pevent->SetEvent();
-      }
+   keep_event_reset(event * pevent)
+   {
+      m_pevent = pevent;
+      pevent->ResetEvent();
+   }
+   ~keep_event_reset()
+   {
+      m_pevent->SetEvent();
+   }
 
 
 };
@@ -37,8 +37,9 @@ namespace windows
    window_draw::window_draw(::aura::application * papp):
       ::object(papp),
       thread(papp),
-      ::user::window_draw(papp),
-      ::user::message_queue(papp)
+      ::user::window_draw(papp)
+      //,
+//      ::user::message_queue(papp)
    {
       m_dwLastRedrawRequest = ::get_tick_count();
       m_bRender = false;
@@ -81,18 +82,18 @@ namespace windows
 
    void window_draw::_asynch_redraw()
    {
-      if(!m_bProDevianMode)
-      {
-         message_queue_post_message(WM_USER + 5000);
-      }
+      //if(!m_bProDevianMode)
+      //{
+      //   message_queue_post_message(WM_USER + 5000);
+      //}
    }
 
    void window_draw::synch_redraw()
    {
-      if(!m_bProDevianMode && message_queue_is_initialized())
-      {
-         message_queue_send_message(WM_USER + 5000);
-      }
+      //if(!m_bProDevianMode && message_queue_is_initialized())
+      //{
+      //   message_queue_send_message(WM_USER + 5000);
+      //}
    }
 
    void window_draw::_synch_redraw()
@@ -191,7 +192,7 @@ namespace windows
    bool window_draw::finalize()
    {
 
-      message_queue_destroy();
+//      message_queue_destroy();
 
       ::user::window_draw::finalize();
 
@@ -200,308 +201,308 @@ namespace windows
    }
 
 
-   bool window_draw::pre_run()
-   {
-
-      if(!create_message_queue("::core::twf - core Transparent Window Framework"))
-      {
-
-         m_iReturnCode = -1000;
-
-         TRACE("Could not initialize ::core::twf - core Transparent Window Framework!");
-
-         return false;
-
-      }
-
-      ::AttachThreadInput(::GetCurrentThreadId(),get_os_int(),TRUE);
-
-
-      if(!::user::window_draw::pre_run())
-      {
-
-         return false;
-
-      }
-
-      return true;
-
-   }
-
-
-   void window_draw::do_events()
-   {
-      uint64_t startTime;
-      uint64_t endTime;
-      ::thread::do_events();
-      try
-      {
-         if(m_bProDevianMode)
-         {
-            startTime = get_nanos();
-            _synch_redraw();
-            endTime = get_nanos();
-         }
-      }
-      catch(...)
-      {
-      }
-
-      int32_t iUiDataWriteWindowTimeForTheApplicationInThisMachine = 8;
-      if(m_iFramesPerSecond == 0)
-      {
-         Sleep(1000);
-      }
-      else if((1000 / m_iFramesPerSecond) > m_dwLastDelay)
-      {
-         Sleep(MAX((DWORD)MAX(0,iUiDataWriteWindowTimeForTheApplicationInThisMachine),(1000 / m_iFramesPerSecond) - m_dwLastDelay));
-      }
-      else
-      {
-         Sleep(iUiDataWriteWindowTimeForTheApplicationInThisMachine);
-      }
-
-
-   }
-
-
-   UINT window_draw::RedrawProc()
-   {
-
-
-      try
-      {
-
-         m_bRunning = true;
-
-//         MSG msg;
-         uint64_t startTime;
-         uint64_t endTime;
-
-         while(m_bRun)
-         {
-            try
-            {
-               if(m_bProDevianMode)
-               {
-                  startTime = get_nanos();
-                  _synch_redraw();
-                  endTime = get_nanos();
-               }
-            }
-            catch(...)
-            {
-            }
-            //while(::PeekMessageA(&msg,NULL,0,0,PM_NOREMOVE))
-            //{
-            //   if(!get_thread()->pump_message())
-            //      goto exit;
-            //}
-            //if(msg.message == WM_QUIT)
-            //   break;
-            //int32_t iUiDataWriteWindowTimeForTheApplicationInThisMachine = 1;
-            //if(m_iFramesPerSecond > 0)
-            //{
-            //   Sleep(1000);
-            //}
-            //else if((1000 / m_iFramesPerSecond) > m_dwLastDelay)
-            //{
-            //   DWORD dw = MAX((DWORD)MAX(0,iUiDataWriteWindowTimeForTheApplicationInThisMachine),(1000 / m_iFramesPerSecond) - m_dwLastDelay);
-            //   Sleep(dw);
-            //}
-            //            else
-            if(m_iFramesPerSecond <= 0)
-            {
-               Sleep(1000);
-            }
-            else
-            {
-
-               UINT uiFrameMillis = 1000 / m_iFramesPerSecond;
-
-               uint64_t micros = (endTime - startTime) / 1000;
-
-               uint64_t millis = micros / 1000 ;
-
-               if(uiFrameMillis > millis + 2)
-               {
-
-                  Sleep(uiFrameMillis - millis - 2);
-
-               }
-
-               char sz[512];
-
-               ::ultoa_dup(sz, micros, 10);
-               ::OutputDebugString(sz);
-               ::OutputDebugString("\n");
-
-            }
-
-         }
-//      exit:;
-
-      }
-      catch(...)
-      {
-
-      }
-
-      m_bRunning = false;
-
-      return 0;
-
-   }
-
-   int32_t window_draw::run()
-   {
-      return RedrawProc();
-   }
-
-
-   DWORD g_dwLastWindowDraw;
-   // lprect should be in screen coordinates
-   bool window_draw::UpdateBuffer()
-   {
-
-#if DISABLE_UPDATE_BUFFER
-
-      return false;
-
-#endif
-
-      if(m_bRender)
-         return false;
-
-      rect rectWindow;
-
-      ::user::interaction * pui = NULL;
-
-      while(System.get_frame(pui))
-      {
-
-         bool bOk = true;
-
-         try
-         {
-
-            if (pui == NULL || pui->get_wnd() == NULL || pui->get_wnd()->m_pimpl.cast < ::user::interaction_impl >() == NULL)
-               continue;
-            single_lock sl(pui->get_wnd()->m_pimpl.cast < ::user::interaction_impl > ()->draw_mutex(), false);
-
-            if (sl.lock(millis(84)))
-            {
-
-               //if(pui->m_bRedraw && ::get_tick_count() - pui->m_dwLastRedraw < 1000)
-               //{
-
-               //   continue;
-
-               //}
-
-               //keep < bool > keepRedraw(&pui->m_bRedraw,true,false,true);
-
-               //pui->m_dwLastRedraw = ::get_tick_count();
-
-               if (pui->IsWindowVisible() && pui->m_bMayProDevian && pui->m_psession.is_null())
-               {
-
-                  //if(get_tick_count() - pui->m_dwLastFullUpdate < 25)
-                  //{
-
-                  //   continue;
-
-                  //}
-
-
-
-                  try
-                  {
-
-                     pui->defer_check_layout();
-
-                  }
-                  catch (...)
-                  {
-
-                  }
-
-                  try
-                  {
-
-                     pui->_001UpdateWindow();
-
-                  }
-                  catch (...)
-                  {
-
-                  }
-
-
-                  //try
-                  //{
-
-                  //   pui->_001UpdateBuffer();
-
-                  //}
-                  //catch (...)
-                  //{
-
-                  //}
-
-
-                  //try
-                  //{
-
-                  //   pui->_001UpdateScreen();
-
-                  //}
-                  //catch (...)
-                  //{
-
-                  //}
-
-               }
-
-            }
-
-         }
-         catch(simple_exception & se)
-         {
-
-            if(se.m_strMessage == "no more a window")
-            {
-
-               bOk = false;
-
-            }
-
-         }
-         catch(...)
-         {
-
-            bOk = false;
-
-         }
-
-         if(!bOk)
-         {
-
-            System.remove_frame(pui);
-
-         }
-
-      }
-      return true;
-
-   }
-
-   void window_draw::message_handler(signal_details * pobj)
-   {
-
-      ::user::message_queue::message_handler(pobj);
-
-   }
-
+   //bool window_draw::pre_run()
+   //{
+
+   //   if(!create_message_queue("::core::twf - core Transparent Window Framework"))
+   //   {
+
+   //      m_iReturnCode = -1000;
+
+   //      TRACE("Could not initialize ::core::twf - core Transparent Window Framework!");
+
+   //      return false;
+
+   //   }
+
+   //   ::AttachThreadInput(::GetCurrentThreadId(),get_os_int(),TRUE);
+
+
+   //   if(!::user::window_draw::pre_run())
+   //   {
+
+   //      return false;
+
+   //   }
+
+   //   return true;
+
+   //}
+
+
+   //void window_draw::do_events()
+   //{
+   //   uint64_t startTime;
+   //   uint64_t endTime;
+   //   ::thread::do_events();
+   //   try
+   //   {
+   //      if(m_bProDevianMode)
+   //      {
+   //         startTime = get_nanos();
+   //         _synch_redraw();
+   //         endTime = get_nanos();
+   //      }
+   //   }
+   //   catch(...)
+   //   {
+   //   }
+
+   //   int32_t iUiDataWriteWindowTimeForTheApplicationInThisMachine = 8;
+   //   if(m_iFramesPerSecond == 0)
+   //   {
+   //      Sleep(1000);
+   //   }
+   //   else if((1000 / m_iFramesPerSecond) > m_dwLastDelay)
+   //   {
+   //      Sleep(MAX((DWORD)MAX(0,iUiDataWriteWindowTimeForTheApplicationInThisMachine),(1000 / m_iFramesPerSecond) - m_dwLastDelay));
+   //   }
+   //   else
+   //   {
+   //      Sleep(iUiDataWriteWindowTimeForTheApplicationInThisMachine);
+   //   }
+
+
+   //}
+
+
+//   UINT window_draw::RedrawProc()
+//   {
+//
+//
+//      try
+//      {
+//
+//         m_bRunning = true;
+//
+////         MSG msg;
+//         uint64_t startTime;
+//         uint64_t endTime;
+//
+//         while(m_bRun)
+//         {
+//            try
+//            {
+//               if(m_bProDevianMode)
+//               {
+//                  startTime = get_nanos();
+//                  _synch_redraw();
+//                  endTime = get_nanos();
+//               }
+//            }
+//            catch(...)
+//            {
+//            }
+//            //while(::PeekMessageA(&msg,NULL,0,0,PM_NOREMOVE))
+//            //{
+//            //   if(!get_thread()->pump_message())
+//            //      goto exit;
+//            //}
+//            //if(msg.message == WM_QUIT)
+//            //   break;
+//            //int32_t iUiDataWriteWindowTimeForTheApplicationInThisMachine = 1;
+//            //if(m_iFramesPerSecond > 0)
+//            //{
+//            //   Sleep(1000);
+//            //}
+//            //else if((1000 / m_iFramesPerSecond) > m_dwLastDelay)
+//            //{
+//            //   DWORD dw = MAX((DWORD)MAX(0,iUiDataWriteWindowTimeForTheApplicationInThisMachine),(1000 / m_iFramesPerSecond) - m_dwLastDelay);
+//            //   Sleep(dw);
+//            //}
+//            //            else
+//            if(m_iFramesPerSecond <= 0)
+//            {
+//               Sleep(1000);
+//            }
+//            else
+//            {
+//
+//               UINT uiFrameMillis = 1000 / m_iFramesPerSecond;
+//
+//               uint64_t micros = (endTime - startTime) / 1000;
+//
+//               uint64_t millis = micros / 1000 ;
+//
+//               if(uiFrameMillis > millis + 2)
+//               {
+//
+//                  Sleep(uiFrameMillis - millis - 2);
+//
+//               }
+//
+//               char sz[512];
+//
+//               ::ultoa_dup(sz, micros, 10);
+//               ::OutputDebugString(sz);
+//               ::OutputDebugString("\n");
+//
+//            }
+//
+//         }
+////      exit:;
+//
+//      }
+//      catch(...)
+//      {
+//
+//      }
+//
+//      m_bRunning = false;
+//
+//      return 0;
+//
+//   }
+//
+   //int32_t window_draw::run()
+   //{
+   //   return RedrawProc();
+   //}
+
+
+//   DWORD g_dwLastWindowDraw;
+//   // lprect should be in screen coordinates
+//   bool window_draw::UpdateBuffer()
+//   {
+//
+//#if DISABLE_UPDATE_BUFFER
+//
+//      return false;
+//
+//#endif
+//
+//      if(m_bRender)
+//         return false;
+//
+//      rect rectWindow;
+//
+//      ::user::interaction * pui = NULL;
+//
+//      while(System.get_frame(pui))
+//      {
+//
+//         bool bOk = true;
+//
+//         try
+//         {
+//
+//            if (pui == NULL || pui->get_wnd() == NULL || pui->get_wnd()->m_pimpl.cast < ::user::interaction_impl >() == NULL)
+//               continue;
+//            single_lock sl(pui->get_wnd()->m_pimpl.cast < ::user::interaction_impl > ()->draw_mutex(), false);
+//
+//            if (sl.lock(millis(84)))
+//            {
+//
+//               //if(pui->m_bRedraw && ::get_tick_count() - pui->m_dwLastRedraw < 1000)
+//               //{
+//
+//               //   continue;
+//
+//               //}
+//
+//               //keep < bool > keepRedraw(&pui->m_bRedraw,true,false,true);
+//
+//               //pui->m_dwLastRedraw = ::get_tick_count();
+//
+//               if (pui->IsWindowVisible() && pui->m_bMayProDevian && pui->m_psession.is_null())
+//               {
+//
+//                  //if(get_tick_count() - pui->m_dwLastFullUpdate < 25)
+//                  //{
+//
+//                  //   continue;
+//
+//                  //}
+//
+//
+//
+//                  try
+//                  {
+//
+//                     pui->defer_check_layout();
+//
+//                  }
+//                  catch (...)
+//                  {
+//
+//                  }
+//
+//                  try
+//                  {
+//
+//                     pui->_001UpdateWindow();
+//
+//                  }
+//                  catch (...)
+//                  {
+//
+//                  }
+//
+//
+//                  //try
+//                  //{
+//
+//                  //   pui->_001UpdateBuffer();
+//
+//                  //}
+//                  //catch (...)
+//                  //{
+//
+//                  //}
+//
+//
+//                  //try
+//                  //{
+//
+//                  //   pui->_001UpdateScreen();
+//
+//                  //}
+//                  //catch (...)
+//                  //{
+//
+//                  //}
+//
+//               }
+//
+//            }
+//
+//         }
+//         catch(simple_exception & se)
+//         {
+//
+//            if(se.m_strMessage == "no more a window")
+//            {
+//
+//               bOk = false;
+//
+//            }
+//
+//         }
+//         catch(...)
+//         {
+//
+//            bOk = false;
+//
+//         }
+//
+//         if(!bOk)
+//         {
+//
+//            System.remove_frame(pui);
+//
+//         }
+//
+//      }
+//      return true;
+//
+//   }
+//
+//   void window_draw::message_handler(signal_details * pobj)
+//   {
+//
+//      ::user::message_queue::message_handler(pobj);
+//
+//   }
+//
 
 } // namespace windows

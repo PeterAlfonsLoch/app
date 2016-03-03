@@ -14,8 +14,8 @@ namespace windows
 
 
    class CLASS_DECL_BASE window_draw:
-      virtual public ::user::window_draw,
-      virtual public ::user::message_queue
+      virtual public ::user::window_draw
+   //,      virtual public ::user::message_queue
    {
    public:
 
@@ -31,18 +31,18 @@ namespace windows
       virtual ~window_draw();
 
 
-      virtual void do_events();
+      //virtual void do_events();
 
 
-      bool UpdateBuffer(const RECT & rect);
+      //bool UpdateBuffer(const RECT & rect);
 
-      virtual bool UpdateBuffer();
+      //virtual bool UpdateBuffer();
 
-      virtual bool pre_run();
-      virtual int32_t run();
+      /*virtual bool pre_run();*/
+      //    virtual int32_t run();
       virtual bool finalize();
 
-      virtual UINT RedrawProc();
+//      virtual UINT RedrawProc();
 
       virtual void asynch_redraw();
       virtual void _asynch_redraw();
@@ -50,7 +50,7 @@ namespace windows
       virtual void _synch_redraw();
 
 
-      virtual void message_handler(signal_details * pobj);
+      //virtual void message_handler(signal_details * pobj);
 
    };
 
