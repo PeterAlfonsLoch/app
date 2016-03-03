@@ -488,6 +488,12 @@ namespace aura
       if(!m_spdir->initialize())
          throw simple_exception(this,"failed to construct system m_spdir->initialize");
 
+
+      output_debug_string("CommonAppData (matter) : " + System.dir().commonappdata()  + "\n");
+      output_debug_string("commonappdata (matter) : " + System.dir().commonappdata() + "\n");
+      output_debug_string("Common App Data (matter) : " + System.dir().commonappdata() + "\n");
+      output_debug_string("common app data (matter) : " + System.dir().commonappdata() + "\n");
+
       //#ifdef WINDOWSEX
       //
       //      dappy(string(typeid(*this).name()) + " : Going to ::aura::system::m_spwindow->create_window_ex : " + ::str::from(m_iReturnCode));

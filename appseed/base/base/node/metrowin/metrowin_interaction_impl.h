@@ -75,7 +75,7 @@ namespace metrowin
       DECL_GEN_SIGNAL(_001OnShowWindow);
       DECL_GEN_SIGNAL(_001OnProdevianSynch);
 
-         ::user::interaction_base *      m_pbasewnd;
+      ::user::interaction_base *      m_pbasewnd;
       ::user::interaction *        m_pguieCapture;
 
 #if(WINVER >= 0x0500)
@@ -107,22 +107,22 @@ namespace metrowin
       using ::user::interaction_impl::create;
       // for child windows, views, panes etc
       virtual bool create(const char * lpszClassName,
-         const char * lpszWindowName, uint32_t dwStyle,
-         const RECT& rect,
-         ::user::interaction * pParentWnd, id id,
-         ::create * pContext = NULL);
+                          const char * lpszWindowName, uint32_t dwStyle,
+                          const RECT& rect,
+                          ::user::interaction * pParentWnd, id id,
+                          ::create * pContext = NULL);
 
       // advanced creation (allows access to extended styles)
       virtual bool CreateEx(uint32_t dwExStyle, const char * lpszClassName,
-         const char * lpszWindowName, uint32_t dwStyle,
-         int x, int y, int nWidth, int nHeight,
-         oswindow hWndParent, id id, LPVOID lpParam = NULL);
+                            const char * lpszWindowName, uint32_t dwStyle,
+                            int x, int y, int nWidth, int nHeight,
+                            oswindow hWndParent, id id, LPVOID lpParam = NULL);
 
       virtual bool CreateEx(uint32_t dwExStyle, const char * lpszClassName,
-         const char * lpszWindowName, uint32_t dwStyle,
-         const RECT& rect,
-         ::user::interaction* pParentWnd, id id,
-         LPVOID lpParam = NULL);
+                            const char * lpszWindowName, uint32_t dwStyle,
+                            const RECT& rect,
+                            ::user::interaction* pParentWnd, id id,
+                            LPVOID lpParam = NULL);
 
       virtual bool DestroyWindow();
 
@@ -236,8 +236,8 @@ namespace metrowin
       virtual bool LockWindowUpdate();
       virtual void UnlockWindowUpdate();
       virtual bool RedrawWindow(LPCRECT lpRectUpdate = NULL,
-         ::draw2d::region* prgnUpdate = NULL,
-         UINT flags = RDW_INVALIDATE | RDW_UPDATENOW | RDW_ERASE);
+                                ::draw2d::region* prgnUpdate = NULL,
+                                UINT flags = RDW_INVALIDATE | RDW_UPDATENOW | RDW_ERASE);
       //      virtual bool EnableScrollBar(int nSBFlags, UINT nArrowFlags = ESB_ENABLE_BOTH);
 
       virtual bool DrawAnimatedRects(int idAni, CONST RECT *lprcFrom, CONST RECT *lprcTo);
@@ -261,7 +261,7 @@ namespace metrowin
 
       virtual bool SetLayeredWindowAttributes(COLORREF crKey, BYTE bAlpha, uint32_t dwFlags);
       virtual bool UpdateLayeredWindow(::draw2d::graphics * pDCDst, POINT *pptDst, SIZE *psize,
-         ::draw2d::graphics * pDCSrc, POINT *pptSrc, COLORREF crKey, BLENDFUNCTION *pblend, uint32_t dwFlags);
+                                       ::draw2d::graphics * pDCSrc, POINT *pptSrc, COLORREF crKey, BLENDFUNCTION *pblend, uint32_t dwFlags);
 
 #endif   // _WIN32_WINNT >= 0x0500
 
@@ -311,7 +311,7 @@ namespace metrowin
       // (NOTE: Dialog-Box Items/Controls are not necessarily in dialog boxes!)
       virtual void CheckDlgButton(int nIDButton, UINT nCheck);
       virtual void CheckRadioButton(int nIDFirstButton, int nIDLastButton,
-         int nIDCheckButton);
+                                    int nIDCheckButton);
       virtual int GetCheckedRadioButton(int nIDFirstButton, int nIDLastButton);
       /*virtual int DlgDirList(__inout_z char * lpPathSpec, __in int nIDListBox,
       __in int nIDStaticPath, __in UINT nFileType);
@@ -334,19 +334,19 @@ namespace metrowin
       virtual int GetScrollPos(int nBar) const;
       virtual void GetScrollRange(int nBar, LPINT lpMinPos, LPINT lpMaxPos) const;
       virtual void ScrollWindow(int xAmount, int yAmount,
-         LPCRECT lpRect = NULL,
-         LPCRECT lpClipRect = NULL);
+                                LPCRECT lpRect = NULL,
+                                LPCRECT lpClipRect = NULL);
       virtual int SetScrollPos(int nBar, int nPos, bool bRedraw = TRUE);
       virtual void SetScrollRange(int nBar, int nMinPos, int nMaxPos,
-         bool bRedraw = TRUE);
+                                  bool bRedraw = TRUE);
       virtual void ShowScrollBar(UINT nBar, bool bShow = TRUE);
       virtual void EnableScrollBarCtrl(int nBar, bool bEnable = TRUE);
 //      virtual CScrollBar* GetScrollBarCtrl(int nBar) const;
       // return sibling scrollbar control (or NULL if none)
 
       virtual int ScrollWindowEx(int dx, int dy,
-         LPCRECT lpRectScroll, LPCRECT lpRectClip,
-         ::draw2d::region* prgnUpdate, LPRECT lpRectUpdate, UINT flags);
+                                 LPCRECT lpRectScroll, LPCRECT lpRectClip,
+                                 ::draw2d::region* prgnUpdate, LPRECT lpRectUpdate, UINT flags);
       //      virtual bool SetScrollInfo(int nBar, LPSCROLLINFO lpScrollInfo,
       //       bool bRedraw = TRUE);
       //      virtual bool GetScrollInfo(int nBar, LPSCROLLINFO lpScrollInfo, UINT nMask = SIF_ALL);
@@ -437,8 +437,8 @@ namespace metrowin
 
       //
       //void RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDLeftOver,
-        // UINT nFlags = reposDefault, LPRECT lpRectParam = NULL,
-         //LPCRECT lpRectClient = NULL, bool bStretch = TRUE);
+      // UINT nFlags = reposDefault, LPRECT lpRectParam = NULL,
+      //LPCRECT lpRectClient = NULL, bool bStretch = TRUE);
 
 
       // dialog support
@@ -470,10 +470,10 @@ namespace metrowin
       void OnEnable(bool bEnable);
       void OnEndSession(bool bEnding);
       void OnEnterIdle(UINT nWhy, ::user::interaction_impl * pWho);
-      bool OnEraseBkgnd(::draw2d::dib * pdib);
+      bool OnEraseBkgnd(::draw2d::graphics * pgraphics);
       //      void OnGetMinMaxInfo(MINMAXINFO* lpMMI);
       //    bool OnHelpInfo(HELPINFO* lpHelpInfo);
-      void OnIconEraseBkgnd(::draw2d::dib * pdib);
+      void OnIconEraseBkgnd(::draw2d::graphics * pgraphics);
       void OnKillFocus(::user::interaction_impl * pNewWnd);
       LRESULT OnMenuChar(UINT nChar, UINT nFlags, ::user::menu* pMenu);
       void OnMenuSelect(UINT nItemID, UINT nFlags, HMENU hSysMenu);
@@ -481,7 +481,7 @@ namespace metrowin
       DECL_GEN_SIGNAL(_001OnPaint);
       DECL_GEN_SIGNAL(_001OnPrint);
       DECL_GEN_SIGNAL(_001OnCaptureChanged);
-         void OnParentNotify(UINT message, LPARAM lParam);
+      void OnParentNotify(UINT message, LPARAM lParam);
       HCURSOR OnQueryDragIcon();
       bool OnQueryEndSession();
       bool OnQueryNewPalette();
@@ -502,7 +502,7 @@ namespace metrowin
       //      void OnNcCalcSize(bool bCalcValidRects, NCCALCSIZE_PARAMS* lpncsp);
       bool OnNcCreate(LPCREATESTRUCT lpCreateStruct);
       DECL_GEN_SIGNAL(_001OnNcDestroy);
-         LRESULT OnNcHitTest(point point);
+      LRESULT OnNcHitTest(point point);
       void OnNcLButtonDblClk(UINT nHitTest, point point);
       void OnNcLButtonDown(UINT nHitTest, point point);
       void OnNcLButtonUp(UINT nHitTest, point point);
@@ -537,7 +537,7 @@ namespace metrowin
       void OnChar(UINT nChar, UINT nRepCnt, UINT nFlags);
       void OnDeadChar(UINT nChar, UINT nRepCnt, UINT nFlags);
 //      void OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
-  //    void OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
+      //    void OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
       void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
       void OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags);
       void OnLButtonDblClk(UINT nFlags, point point);
@@ -554,7 +554,7 @@ namespace metrowin
       void OnRButtonDown(UINT nFlags, point point);
       void OnRButtonUp(UINT nFlags, point point);
       DECL_GEN_SIGNAL(_001OnSetCursor);
-         void OnTimer(uint_ptr nIDEvent);
+      void OnTimer(uint_ptr nIDEvent);
 
       // Initialization message handler member functions
       void OnInitMenu(::user::menu* pMenu);
@@ -581,7 +581,7 @@ namespace metrowin
 
       // MDI message handler member functions
       void OnMDIActivate(bool bActivate,
-         ::user::interaction_impl * pActivateWnd, ::user::interaction_impl * pDeactivateWnd);
+                         ::user::interaction_impl * pActivateWnd, ::user::interaction_impl * pDeactivateWnd);
 
       // menu loop notification messages
       void OnEnterMenuLoop(bool bIsTrackPopupMenu);
@@ -633,7 +633,7 @@ namespace metrowin
       virtual void assert_valid() const;
       virtual void dump(dump_context & dumpcontext) const;
       static_function bool GrayCtlColor(HDC hDC, oswindow hWnd, UINT nCtlColor,
-         HBRUSH hbrGray, COLORREF clrText);
+                                        HBRUSH hbrGray, COLORREF clrText);
 
 
       // helper routines for implementation
@@ -643,13 +643,13 @@ namespace metrowin
       virtual void WalkPreTranslateTree(::user::interaction * puiStop, signal_details * pobj);
       static_function ::user::interaction * GetDescendantWindow(::user::interaction * hWnd, id id);
       static_function void SendMessageToDescendants(oswindow hWnd, UINT message,
-         WPARAM wParam, LPARAM lParam, bool bDeep, bool bOnlyPerm);
+            WPARAM wParam, LPARAM lParam, bool bDeep, bool bOnlyPerm);
       virtual bool is_frame_window(); // is_kind_of(System.template type_info < frame_window > ()))
       virtual void on_final_release();
       static_function bool ModifyStyle(oswindow hWnd, uint32_t dwRemove, uint32_t dwAdd,
-         UINT nFlags);
+                                       UINT nFlags);
       static_function bool ModifyStyleEx(oswindow hWnd, uint32_t dwRemove, uint32_t dwAdd,
-         UINT nFlags);
+                                         UINT nFlags);
       static_function void _FilterToolTipMessage(MSG* pMsg, ::user::interaction_impl * pWnd);
       bool _EnableToolTips(bool bEnable, UINT nFlag);
       static_function oswindow GetSafeOwner_(oswindow hWnd, oswindow* pWndTop);
@@ -701,11 +701,11 @@ namespace metrowin
       void _001OnTriggerMouseInside();
 
 
-         Agile < Windows::UI::Core::CoreWindow > get_os_window();
+      Agile < Windows::UI::Core::CoreWindow > get_os_window();
 
-          void set_view_port_org(::draw2d::dib * pdib);
+      void set_view_port_org(::draw2d::dib * pdib);
 
-          void offset_view_port_org(LPRECT lprectScreen);
+      void offset_view_port_org(LPRECT lprectScreen);
 
 
    };

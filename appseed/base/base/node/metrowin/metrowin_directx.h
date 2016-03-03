@@ -41,13 +41,15 @@ namespace metrowin
       bool m_bInitialized;
       bool m_bInit;
 
+      ::draw2d::dib_sp        m_dib;
+
       directx_base(::aura::application * papp);
 
       ::aura::application * get_app() const
       {
          return m_pauraapp;
       }
-   
+
       virtual bool defer_init();
 
       virtual void Initialize(Windows::UI::Core::CoreWindow^ window, float dpi);

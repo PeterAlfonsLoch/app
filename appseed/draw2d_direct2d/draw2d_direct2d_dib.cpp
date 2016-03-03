@@ -60,9 +60,9 @@ namespace draw2d_direct2d
    bool dib::create(int width, int height)
    {
       if (m_spbitmap.is_set()
-         && m_spbitmap->get_os_data() != NULL
-         && width == m_size.cx
-         && height == m_size.cy)
+            && m_spbitmap->get_os_data() != NULL
+            && width == m_size.cx
+            && height == m_size.cy)
          return TRUE;
 
       Destroy();
@@ -241,7 +241,7 @@ namespace draw2d_direct2d
          return false;
       }
       throw todo(get_app());
-      //bool bOk = GetDIBits(WIN_HDC(pgraphics), (HBITMAP) pbitmap->get_os_data(), 0, cy, m_pcolorref, &(m_info), DIB_RGB_COLORS) != FALSE; 
+      //bool bOk = GetDIBits(WIN_HDC(pgraphics), (HBITMAP) pbitmap->get_os_data(), 0, cy, m_pcolorref, &(m_info), DIB_RGB_COLORS) != FALSE;
       pgraphics->SelectObject(pbitmap);
       return bOk;
    }
@@ -511,7 +511,7 @@ namespace draw2d_direct2d
    //               jmp      fill_loop
    //
    //fill_last:
-   //            emms 
+   //            emms
    //         }
    //#endif
    //      }
@@ -646,7 +646,7 @@ namespace draw2d_direct2d
    //      register int iRes;
    //      for(register int64_t i = 0; i < size; i++)
    //      {
-   //         iRes = *lpb * iMul / iDiv; 
+   //         iRes = *lpb * iMul / iDiv;
    //         *lpb = (byte) (iRes > 255 ? 255 : iRes);
    //         lpb += 4;
    //      }
@@ -663,14 +663,14 @@ namespace draw2d_direct2d
    //      {
    //         dst[0]=(BYTE)(((B-dst[0])*A+(dst[0]<<8))>>8);
    //         dst[1]=(BYTE)(((G-dst[1])*A+(dst[1]<<8))>>8);
-   //         dst[2]=(BYTE)(((R-dst[2])*A+(dst[2]<<8))>>8);   
+   //         dst[2]=(BYTE)(((R-dst[2])*A+(dst[2]<<8))>>8);
    //         dst+=4;
    //      }
    //
    //   }
    //
    //   void dib::FillStippledGlass ( int R, int G, int B )
-   //   {   
+   //   {
    //
    //      COLORREF color=RGB ( B, G, R );
    //
@@ -720,7 +720,7 @@ namespace draw2d_direct2d
    //      {
    //         dst[0]=(BYTE)(((dst[0]-dwB)*bAlpha+dwB_)>>8);
    //         dst[1]=(BYTE)(((dst[1]-dwG)*bAlpha+dwG_)>>8);
-   //         dst[2]=(BYTE)(((dst[2]-dwG)*bAlpha+dwR_)>>8);   
+   //         dst[2]=(BYTE)(((dst[2]-dwG)*bAlpha+dwR_)>>8);
    //         dst+=4;
    //      }
    //      return true;
@@ -740,7 +740,7 @@ namespace draw2d_direct2d
    //      {
    //         dst[0]=(BYTE)(((src[0]-dst[0])*A+(dst[0]<<8))>>8);
    //         dst[1]=(BYTE)(((src[1]-dst[1])*A+(dst[1]<<8))>>8);
-   //         dst[2]=(BYTE)(((src[2]-dst[2])*A+(dst[2]<<8))>>8);   
+   //         dst[2]=(BYTE)(((src[2]-dst[2])*A+(dst[2]<<8))>>8);
    //         dst+=4;
    //         src+=4;
    //      }
@@ -764,7 +764,7 @@ namespace draw2d_direct2d
    //   {
    //      dst[0]=(BYTE)(((src[0]-dst[0])*alf[A]+(dst[0]<<8))>>8);
    //      dst[1]=(BYTE)(((src[1]-dst[1])*alf[A]+(dst[1]<<8))>>8);
-   //      dst[2]=(BYTE)(((src[2]-dst[2])*alf[A]+(dst[2]<<8))>>8);   
+   //      dst[2]=(BYTE)(((src[2]-dst[2])*alf[A]+(dst[2]<<8))>>8);
    //      dst+=4;
    //      src+=4;
    //      alf+=4;
@@ -786,7 +786,7 @@ namespace draw2d_direct2d
    //   {
    //      dst[0]=(BYTE)((src[0]<dst[0]) ? src[0] : dst[0]);
    //      dst[1]=(BYTE)((src[1]<dst[1]) ? src[1] : dst[1]);
-   //      dst[2]=(BYTE)((src[2]<dst[2]) ? src[2] : dst[2]);   
+   //      dst[2]=(BYTE)((src[2]<dst[2]) ? src[2] : dst[2]);
    //      dst+=4;
    //      src+=4;
    //   }
@@ -809,7 +809,7 @@ namespace draw2d_direct2d
    //      Difference=src[1]-dst[1];
    //      dst[1]=(BYTE)((Difference<0) ? -Difference : Difference);
    //      Difference=src[2]-dst[2];
-   //      dst[2]=(BYTE)((Difference<0) ? -Difference : Difference);   
+   //      dst[2]=(BYTE)((Difference<0) ? -Difference : Difference);
    //      dst+=4;
    //      src+=4;
    //   }
@@ -828,7 +828,7 @@ namespace draw2d_direct2d
    //   {
    //      dst[0]=(BYTE)((src[0]>dst[0]) ? src[0] : dst[0]);
    //      dst[1]=(BYTE)((src[1]>dst[1]) ? src[1] : dst[1]);
-   //      dst[2]=(BYTE)((src[2]>dst[2]) ? src[2] : dst[2]);   
+   //      dst[2]=(BYTE)((src[2]>dst[2]) ? src[2] : dst[2]);
    //      dst+=4;
    //      src+=4;
    //   }
@@ -848,7 +848,7 @@ namespace draw2d_direct2d
    //   {
    //      dst[0]=(BYTE)(((src[0])*(dst[0]))>>8);
    //      dst[1]=(BYTE)(((src[1])*(dst[1]))>>8);
-   //      dst[2]=(BYTE)(((src[2])*(dst[2]))>>8);   
+   //      dst[2]=(BYTE)(((src[2])*(dst[2]))>>8);
    //      dst+=4;
    //      src+=4;
    //   }
@@ -867,7 +867,7 @@ namespace draw2d_direct2d
    //   {
    //      dst[0]=(BYTE)(255-(((255-src[0])*(255-dst[0]))>>8));
    //      dst[1]=(BYTE)(255-(((255-src[1])*(255-dst[1]))>>8));
-   //      dst[2]=(BYTE)(255-(((255-src[2])*(255-dst[2]))>>8));   
+   //      dst[2]=(BYTE)(255-(((255-src[2])*(255-dst[2]))>>8));
    //      dst+=4;
    //      src+=4;
    //   }
@@ -959,7 +959,7 @@ namespace draw2d_direct2d
    //   {
    //      for ( int i=0; i<dx; i++ )
    //      {
-   //         dst[i]=color;   
+   //         dst[i]=color;
    //      }
    //      dst+=cx;
    //   }
@@ -989,7 +989,7 @@ namespace draw2d_direct2d
    //      {
    //         dst[0]=(BYTE)(((B-dst[0])*A+(dst[0]<<8))>>8);
    //         dst[1]=(BYTE)(((G-dst[1])*A+(dst[1]<<8))>>8);
-   //         dst[2]=(BYTE)(((R-dst[2])*A+(dst[2]<<8))>>8);   
+   //         dst[2]=(BYTE)(((R-dst[2])*A+(dst[2]<<8))>>8);
    //         dst+=4;
    //      }
    //      dst+=(cx-dx)<<2;
@@ -1019,7 +1019,7 @@ namespace draw2d_direct2d
    //   {
    //      for ( int i=0; i<dx; i++ )
    //      {
-   //         dst[i]=((i+j)&0x1) ? dst[i] : color;   
+   //         dst[i]=((i+j)&0x1) ? dst[i] : color;
    //      }
    //      dst+=cx;
    //   }
@@ -1050,7 +1050,7 @@ namespace draw2d_direct2d
    //      {
    //         dst[0]=(BYTE)(((src[0]-dst[0])*A+(dst[0]<<8))>>8);
    //         dst[1]=(BYTE)(((src[1]-dst[1])*A+(dst[1]<<8))>>8);
-   //         dst[2]=(BYTE)(((src[2]-dst[2])*A+(dst[2]<<8))>>8);   
+   //         dst[2]=(BYTE)(((src[2]-dst[2])*A+(dst[2]<<8))>>8);
    //         dst+=4;
    //         src+=4;
    //      }
@@ -1084,7 +1084,7 @@ namespace draw2d_direct2d
    //      {
    //         dst[0]=(BYTE)((src[0]<dst[0]) ? src[0] : dst[0]);
    //         dst[1]=(BYTE)((src[1]<dst[1]) ? src[1] : dst[1]);
-   //         dst[2]=(BYTE)((src[2]<dst[2]) ? src[2] : dst[2]);   
+   //         dst[2]=(BYTE)((src[2]<dst[2]) ? src[2] : dst[2]);
    //         dst+=4;
    //         src+=4;
    //      }
@@ -1122,7 +1122,7 @@ namespace draw2d_direct2d
    //         Difference=src[1]-dst[1];
    //         dst[1]=(BYTE)((Difference<0) ? -Difference : Difference);
    //         Difference=src[2]-dst[2];
-   //         dst[2]=(BYTE)((Difference<0) ? -Difference : Difference);   
+   //         dst[2]=(BYTE)((Difference<0) ? -Difference : Difference);
    //         dst+=4;
    //         src+=4;
    //      }
@@ -1497,7 +1497,7 @@ namespace draw2d_direct2d
    //   iLevel = 1.0 - dr * 1.0 / iRadius;
    //   dst[0] = blue  * iLevel;
    //   dst[1] = green * iLevel;
-   //   dst[2] = red   * iLevel;   
+   //   dst[2] = red   * iLevel;
    //   }
    //   dst += 4;
    //   }
@@ -1565,8 +1565,8 @@ namespace draw2d_direct2d
    //            b = lpb[dx + dy * iRadius];
    //            dst[0] = (byte) (blue     * b / 255);
    //            dst[1] = (byte) (green    * b / 255);
-   //            dst[2] = (byte) (red      * b / 255);   
-   //            dst[3] = (byte) (alpha    * b / 255);   
+   //            dst[2] = (byte) (red      * b / 255);
+   //            dst[3] = (byte) (alpha    * b / 255);
    //            dst += 4;
    //         }
    //         dst += dwAdd;
@@ -1657,7 +1657,7 @@ namespace draw2d_direct2d
    //   iLevel = 1.0 - dr * 1.0 / iRadius;
    //   dst[0] = blue  * iLevel;
    //   dst[1] = green * iLevel;
-   //   dst[2] = red   * iLevel;   
+   //   dst[2] = red   * iLevel;
    //   }
    //   dst += 4;
    //   }
@@ -2578,32 +2578,32 @@ namespace draw2d_direct2d
       if (bApplyAlphaTransform)
       {
 
-         
 
-         byte * p = ((byte *)m_pcolorref);
-         while (i > 0)
-         {
-            if (p[3] == 0)
-            {
-               p[0] = 0;
-               p[1] = 0;
-               p[2] = 0;
-            }
-            else
-            {
-               p[0] = (p[0] * 255 / p[3]);
-               p[1] = (p[1] * 255 / p[3]);
-               p[2] = (p[2] * 255 / p[3]);
-            }
-            p += 4;
-            i--;
-         }
+
+         //byte * p = ((byte *)m_pcolorref);
+         //while (i > 0)
+         //{
+         //   if (p[3] == 0)
+         //   {
+         //      p[0] = 0;
+         //      p[1] = 0;
+         //      p[2] = 0;
+         //   }
+         //   else
+         //   {
+         //      p[0] = (p[0] * 255 / p[3]);
+         //      p[1] = (p[1] * 255 / p[3]);
+         //      p[2] = (p[2] * 255 / p[3]);
+         //   }
+         //   p += 4;
+         //   i--;
+         //}
 
          ((dib *) this)->m_bTrans = true;
 
       }
 
-      ((dib *) this)->m_bMapped = true; 
+      ((dib *) this)->m_bMapped = true;
 
    }
 
@@ -2643,14 +2643,14 @@ namespace draw2d_direct2d
          if(m_bTrans)
          {
 
-            while(i > 0)
-            {
-               p[0] = (p[0] * p[3] / 255);
-               p[1] = (p[1] * p[3] / 255);
-               p[2] = (p[2] * p[3] / 255);
-               p += 4;
-               i--;
-            }
+            //while(i > 0)
+            //{
+            //   p[0] = (p[0] * p[3] / 255);
+            //   p[1] = (p[1] * p[3] / 255);
+            //   p[2] = (p[2] * p[3] / 255);
+            //   p += 4;
+            //   i--;
+            //}
 
          }
 

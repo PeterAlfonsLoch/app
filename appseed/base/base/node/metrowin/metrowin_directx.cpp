@@ -102,20 +102,20 @@ namespace metrowin
 
       ::metrowin::throw_if_failed(
          DWriteCreateFactory(
-         DWRITE_FACTORY_TYPE_SHARED,
-         __uuidof(IDWriteFactory),
-         &m_dwriteFactory
+            DWRITE_FACTORY_TYPE_SHARED,
+            __uuidof(IDWriteFactory),
+            &m_dwriteFactory
          )
-         );
+      );
 
       ::metrowin::throw_if_failed(
          CoCreateInstance(
-         CLSID_WICImagingFactory,
-         nullptr,
-         CLSCTX_INPROC_SERVER,
-         IID_PPV_ARGS(&m_wicFactory)
+            CLSID_WICImagingFactory,
+            nullptr,
+            CLSCTX_INPROC_SERVER,
+            IID_PPV_ARGS(&m_wicFactory)
          )
-         );
+      );
 
 
 
@@ -173,26 +173,26 @@ namespace metrowin
       // Create a DirectWrite text format object.
       ::metrowin::throw_if_failed(
          m_dwriteFactory->CreateTextFormat(
-         L"Gabriola",
-         nullptr,
-         DWRITE_FONT_WEIGHT_REGULAR,
-         DWRITE_FONT_STYLE_NORMAL,
-         DWRITE_FONT_STRETCH_NORMAL,
-         64.0f,
-         L"en-US", // locale
-         &m_textFormat
+            L"Gabriola",
+            nullptr,
+            DWRITE_FONT_WEIGHT_REGULAR,
+            DWRITE_FONT_STYLE_NORMAL,
+            DWRITE_FONT_STRETCH_NORMAL,
+            64.0f,
+            L"en-US", // locale
+            &m_textFormat
          )
-         );
+      );
 
       // Center the text horizontally.
       ::metrowin::throw_if_failed(
          m_textFormat->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_CENTER)
-         );
+      );
 
       // Center the text vertically.
       ::metrowin::throw_if_failed(
          m_textFormat->SetParagraphAlignment(DWRITE_PARAGRAPH_ALIGNMENT_CENTER)
-         );
+      );
 
 
 
@@ -336,10 +336,10 @@ namespace metrowin
 
       ::metrowin::throw_if_failed(
          m_d2dContext->CreateSolidColorBrush(
-         D2D1::ColorF(D2D1::ColorF::Black),
-         &m_blackBrush
+            D2D1::ColorF(D2D1::ColorF::Black),
+            &m_blackBrush
          )
-         );
+      );
 
 
 
@@ -391,7 +391,7 @@ namespace metrowin
          }
 
          if(m_size.cx != m_windowBounds.Width ||
-            m_size.cy != m_windowBounds.Height)
+               m_size.cy != m_windowBounds.Height)
          {
             m_d2dContext->SetTarget(nullptr);
             m_d2dTargetBitmap = nullptr;
@@ -432,11 +432,11 @@ namespace metrowin
       {
          // If the swap chain already exists, resize it.
          HRESULT hr = m_swapChain->ResizeBuffers(
-            2,
-            0, // If you specify zero, DXGI will use the width of the client area of the target window.
-            0, // If you specify zero, DXGI will use the height of the client area of the target window.
-            DXGI_FORMAT_UNKNOWN, // Set this value to DXGI_FORMAT_UNKNOWN to preserve the existing format of the back buffer. 
-            0);
+                         2,
+                         0, // If you specify zero, DXGI will use the width of the client area of the target window.
+                         0, // If you specify zero, DXGI will use the height of the client area of the target window.
+                         DXGI_FORMAT_UNKNOWN, // Set this value to DXGI_FORMAT_UNKNOWN to preserve the existing format of the back buffer.
+                         0);
 
          if(hr == DXGI_ERROR_DEVICE_REMOVED)
          {
@@ -449,10 +449,10 @@ namespace metrowin
          else if(hr == DXGI_ERROR_INVALID_CALL)
          {
             // i1;
-          //  return;
+            //  return;
             TRACE("directx_base::CreateWindowSizeDependentResources(1) DXGI_ERROR_INVALID_CALL");
          }
-         else 
+         else
          {
             ::metrowin::throw_if_failed(hr);
          }
@@ -460,7 +460,7 @@ namespace metrowin
       else
       {
          // Otherwise, create a new one using the same adapter as the existing Direct3D device.
-         DXGI_SWAP_CHAIN_DESC1 swapChainDesc ={0};
+         DXGI_SWAP_CHAIN_DESC1 swapChainDesc = {0};
          swapChainDesc.Width = 0;                                     // Use automatic sizing.
          swapChainDesc.Height = 0;
          swapChainDesc.Format = DXGI_FORMAT_B8G8R8A8_UNORM;           // This is the most common swap chain format.
@@ -476,52 +476,52 @@ namespace metrowin
          ComPtr<IDXGIDevice1> dxgiDevice;
          ::metrowin::throw_if_failed(
             m_d3dDevice.As(&dxgiDevice)
-            );
+         );
 
          ComPtr<IDXGIAdapter> dxgiAdapter;
          ::metrowin::throw_if_failed(
             dxgiDevice->GetAdapter(&dxgiAdapter)
-            );
+         );
 
          ComPtr<IDXGIFactory2> dxgiFactory;
          ::metrowin::throw_if_failed(
             dxgiAdapter->GetParent(IID_PPV_ARGS(&dxgiFactory))
-            );
+         );
 
          CoreWindow^ window = m_window.Get();
          ::metrowin::throw_if_failed(
             dxgiFactory->CreateSwapChainForCoreWindow(
-            m_d3dDevice.Get(),
-            reinterpret_cast<IUnknown*>(window),
-            &swapChainDesc,
-            nullptr,
-            &m_swapChain
+               m_d3dDevice.Get(),
+               reinterpret_cast<IUnknown*>(window),
+               &swapChainDesc,
+               nullptr,
+               &m_swapChain
             )
-            );
+         );
 
          // Ensure that DXGI does not queue more than one frame at a time. This both reduces latency and
          // ensures that the application will only render after each VSync, minimizing power consumption.
          ::metrowin::throw_if_failed(
             dxgiDevice->SetMaximumFrameLatency(1)
-            );
+         );
       }
 
       // Create a Direct3D render target view of the swap chain back buffer.
       ComPtr<ID3D11Texture2D> backBuffer;
       ::metrowin::throw_if_failed(
          m_swapChain->GetBuffer(0,IID_PPV_ARGS(&backBuffer))
-         );
+      );
 
       ::metrowin::throw_if_failed(
          m_d3dDevice->CreateRenderTargetView(
-         backBuffer.Get(),
-         nullptr,
-         &m_d3dRenderTargetView
+            backBuffer.Get(),
+            nullptr,
+            &m_d3dRenderTargetView
          )
-         );
+      );
 
       // Cache the rendertarget dimensions in our helper class for convenient use.
-      D3D11_TEXTURE2D_DESC backBufferDesc ={0};
+      D3D11_TEXTURE2D_DESC backBufferDesc = {0};
       backBuffer->GetDesc(&backBufferDesc);
       m_renderTargetSize.Width  = static_cast<float>(backBufferDesc.Width);
       m_renderTargetSize.Height = static_cast<float>(backBufferDesc.Height);
@@ -534,25 +534,25 @@ namespace metrowin
          1,
          1,
          D3D11_BIND_DEPTH_STENCIL
-         );
+      );
 
       ComPtr<ID3D11Texture2D> depthStencil;
       ::metrowin::throw_if_failed(
          m_d3dDevice->CreateTexture2D(
-         &depthStencilDesc,
-         nullptr,
-         &depthStencil
+            &depthStencilDesc,
+            nullptr,
+            &depthStencil
          )
-         );
+      );
 
       auto viewDesc = CD3D11_DEPTH_STENCIL_VIEW_DESC(D3D11_DSV_DIMENSION_TEXTURE2D);
       ::metrowin::throw_if_failed(
          m_d3dDevice->CreateDepthStencilView(
-         depthStencil.Get(),
-         &viewDesc,
-         &m_d3dDepthStencilView
+            depthStencil.Get(),
+            &viewDesc,
+            &m_d3dDepthStencilView
          )
-         );
+      );
 
       // Set the 3D rendering viewport to target the entire window.
       CD3D11_VIEWPORT viewport(
@@ -560,7 +560,7 @@ namespace metrowin
          0.0f,
          static_cast<float>(backBufferDesc.Width),
          static_cast<float>(backBufferDesc.Height)
-         );
+      );
 
       m_d3dContext->RSSetViewports(1,&viewport);
 
@@ -568,24 +568,24 @@ namespace metrowin
       // swap chain back buffer and set it as the current target.
       D2D1_BITMAP_PROPERTIES1 bitmapProperties =
          BitmapProperties1(
-         D2D1_BITMAP_OPTIONS_TARGET | D2D1_BITMAP_OPTIONS_CANNOT_DRAW,
-         PixelFormat(DXGI_FORMAT_B8G8R8A8_UNORM,D2D1_ALPHA_MODE_PREMULTIPLIED),
-         m_dpi,
-         m_dpi
+            D2D1_BITMAP_OPTIONS_TARGET | D2D1_BITMAP_OPTIONS_CANNOT_DRAW,
+            PixelFormat(DXGI_FORMAT_B8G8R8A8_UNORM,D2D1_ALPHA_MODE_PREMULTIPLIED),
+            m_dpi,
+            m_dpi
          );
 
       ComPtr<IDXGISurface> dxgiBackBuffer;
       ::metrowin::throw_if_failed(
          m_swapChain->GetBuffer(0,IID_PPV_ARGS(&dxgiBackBuffer))
-         );
+      );
 
       ::metrowin::throw_if_failed(
          m_d2dContext->CreateBitmapFromDxgiSurface(
-         dxgiBackBuffer.Get(),
-         &bitmapProperties,
-         &m_d2dTargetBitmap
+            dxgiBackBuffer.Get(),
+            &bitmapProperties,
+            &m_d2dTargetBitmap
          )
-         );
+      );
 
       m_d2dContext->SetTarget(m_d2dTargetBitmap.Get());
 
@@ -599,37 +599,37 @@ namespace metrowin
       // Create a DirectWrite Text Layout object
       ::metrowin::throw_if_failed(
          m_dwriteFactory->CreateTextLayout(
-         text->Data(),                       // Text to be displayed
-         text->Length(),                     // Length of the text
-         m_textFormat.Get(),                 // DirectWrite Text Format object
-         size.width,                         // Width of the Text Layout
-         size.height,                        // Height of the Text Layout
-         &m_textLayout
+            text->Data(),                       // Text to be displayed
+            text->Length(),                     // Length of the text
+            m_textFormat.Get(),                 // DirectWrite Text Format object
+            size.width,                         // Width of the Text Layout
+            size.height,                        // Height of the Text Layout
+            &m_textLayout
          )
-         );
+      );
 
       // Text range for the "DirectWrite!" at the end of the string
-      DWRITE_TEXT_RANGE textRange ={21,12}; // 21 references the "D" in DirectWrite! and 12 is the number of characters in the word
+      DWRITE_TEXT_RANGE textRange = {21,12}; // 21 references the "D" in DirectWrite! and 12 is the number of characters in the word
 
       // Set the font size on that text range to 100
       ::metrowin::throw_if_failed(
          m_textLayout->SetFontSize(100.0f,textRange)
-         );
+      );
 
       // Create a DirectWrite Typography object
       ::metrowin::throw_if_failed(
          m_dwriteFactory->CreateTypography(
-         &m_textTypography
+            &m_textTypography
          )
-         );
+      );
 
       // Enumerate a stylistic set 6 font feature for application to our text layout
-      DWRITE_FONT_FEATURE fontFeature ={DWRITE_FONT_FEATURE_TAG_STYLISTIC_SET_6,1};
+      DWRITE_FONT_FEATURE fontFeature = {DWRITE_FONT_FEATURE_TAG_STYLISTIC_SET_6,1};
 
       // Apply the previously enumerated font feature to our Text Typography object
       ::metrowin::throw_if_failed(
          m_textTypography->AddFontFeature(fontFeature)
-         );
+      );
 
       // Move our text range to the entire length of the string
       textRange.length = text->Length();
@@ -638,10 +638,10 @@ namespace metrowin
       // Apply our recently defined typography to our entire text range
       ::metrowin::throw_if_failed(
          m_textLayout->SetTypography(
-         m_textTypography.Get(),
-         textRange
+            m_textTypography.Get(),
+            textRange
          )
-         );
+      );
 
       // Move the text range to the end again
       textRange.length = 12;
@@ -650,12 +650,12 @@ namespace metrowin
       // Set the underline on the text range
       ::metrowin::throw_if_failed(
          m_textLayout->SetUnderline(TRUE,textRange)
-         );
+      );
 
       // Set the font weight on the text range
       ::metrowin::throw_if_failed(
          m_textLayout->SetFontWeight(DWRITE_FONT_WEIGHT_BOLD,textRange)
-         );
+      );
 
 
    }
@@ -671,7 +671,7 @@ namespace metrowin
 
       // The application may optionally specify "dirty" or "scroll" rects to improve efficiency
       // in certain scenarios.  In this sample, however, we do not utilize those features.
-      DXGI_PRESENT_PARAMETERS parameters ={0};
+      DXGI_PRESENT_PARAMETERS parameters = {0};
       parameters.DirtyRectsCount = 0;
       parameters.pDirtyRects = nullptr;
       parameters.pScrollRect = nullptr;
@@ -745,8 +745,8 @@ namespace metrowin
       // a new D3D device must be created.
 
       if((deviceDesc.AdapterLuid.LowPart != currentDesc.AdapterLuid.LowPart) ||
-         (deviceDesc.AdapterLuid.HighPart != currentDesc.AdapterLuid.HighPart) ||
-         FAILED(m_d3dDevice->GetDeviceRemovedReason()))
+            (deviceDesc.AdapterLuid.HighPart != currentDesc.AdapterLuid.HighPart) ||
+            FAILED(m_d3dDevice->GetDeviceRemovedReason()))
       {
          // Release references to resources related to the old device.
          dxgiDevice = nullptr;
@@ -812,9 +812,15 @@ namespace metrowin
       //}
       //else
       //{
-      System.m_posdata->m_pui->_000OnDraw(dc);
+      if (m_dib.is_null())
+      {
+         m_dib.alloc(m_pauraapp->allocer());
+      }
+      m_dib->create(1920, 1080);
+      m_dib->Fill(0, 0, 0, 0);
+      System.m_posdata->m_pui->_000OnDraw(m_dib);
       //}
-
+      dc->from(m_dib->get_size(), m_dib->get_graphics(), SRCCOPY);
       sl.lock();
 
       dc->detach();

@@ -1491,7 +1491,7 @@ retry:
 
       ::file::timeout_buffer * ptimeoutbuffer = set["file_out"].cast < ::file::timeout_buffer >();
 
-      while(handler.get_count() > 0 && ::get_thread()->m_bRun)
+      while(handler.get_count() > 0 && (::get_thread() == NULL || ::get_thread()->m_bRun))
       {
          dw1 = ::get_tick_count();
          handler.select(iTimeout, 0);
