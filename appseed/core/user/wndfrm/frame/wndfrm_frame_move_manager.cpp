@@ -20,7 +20,7 @@ namespace user
 //      #ifdef WINDOWS
 //
 //         MoveManager * g_pmovemanager;
-//         
+//
 //         HHOOK g_hhook;
 //
 //         struct ll_info
@@ -48,15 +48,15 @@ namespace user
 //
 //            ll_handler(::aura::application * papp): m_ev(papp)
 //            {
-//               
+//
 //
 //               nVirtualWidth = GetSystemMetrics(SM_CXVIRTUALSCREEN) ;
 //               nVirtualHeight = GetSystemMetrics(SM_CYVIRTUALSCREEN) ;
 //               nVirtualLeft = GetSystemMetrics(SM_XVIRTUALSCREEN) ;
 //               nVirtualTop = GetSystemMetrics(SM_YVIRTUALSCREEN) ;
 //
-//               info.w = 0; 
-//            
+//               info.w = 0;
+//
 //            }
 //
 //         }* g_plh;
@@ -75,7 +75,7 @@ namespace user
 //
 //            if(nMsg == WM_MOUSEMOVE)
 //            {
-//               
+//
 //               class point ptMove = g_pmovemanager->m_ptWindowOrigin + pll->pt - g_pmovemanager->m_ptCursorOrigin;
 //
 //               cslock sl(g_pmovemanager->GetMoveWindow()->m_pimpl->cs_display());
@@ -104,7 +104,7 @@ namespace user
 //         UINT CDECL ll_proc(void * pvoid)
 //         {
 //
-//            
+//
 //            ::aura::application * papp = g_pmovemanager->get_app();
 //
 //            ll_handler * plh = g_plh;
@@ -135,7 +135,7 @@ namespace user
 //
 //                  }
 //               }
-//               
+//
 //               //Sleep(0);
 //#endif
 //
@@ -246,7 +246,7 @@ namespace user
          bool MoveManager::_000OnLButtonDown(::message::mouse * pmouse)
          {
             if(!m_pworkset->IsMovingEnabled()
-               || m_pworkset->m_bSizingCapture)
+                  || m_pworkset->m_bSizingCapture)
                return false;
 
             class point ptCursor = pmouse->m_pt;
@@ -282,7 +282,7 @@ namespace user
          bool MoveManager::_000OnMouseMove(::message::mouse * pmouse)
          {
             if(!m_pworkset->IsMovingEnabled()
-               || m_pworkset->m_bSizingCapture)
+                  || m_pworkset->m_bSizingCapture)
                return false;
 
             //if(g_pmovemanager == this)
@@ -296,7 +296,7 @@ namespace user
          bool MoveManager::_000OnLButtonUp(::message::mouse * pmouse)
          {
             if(!m_pworkset->IsMovingEnabled()
-               || m_pworkset->m_bSizingCapture)
+                  || m_pworkset->m_bSizingCapture)
                return false;
 
             return Relay(pmouse);
@@ -307,9 +307,9 @@ namespace user
          {
 
             ASSERT(pmouse->m_uiMessage == WM_MOUSEMOVE
-               || pmouse->m_uiMessage == WM_LBUTTONUP
-               || pmouse->m_uiMessage == WM_NCMOUSEMOVE
-               || pmouse->m_uiMessage == WM_NCLBUTTONUP);
+                   || pmouse->m_uiMessage == WM_LBUTTONUP
+                   || pmouse->m_uiMessage == WM_NCMOUSEMOVE
+                   || pmouse->m_uiMessage == WM_NCLBUTTONUP);
 
             if(!m_bMoving)
                return false;
@@ -335,7 +335,7 @@ namespace user
                cslock sl(pui->m_pimpl->cs_display());
                pui->m_pimpl->m_rectParentClient.move_to(point64(ptMove));
                pui->send_message(WM_MOVE);
-               pui->m_pimpl->_001UpdateScreen(false);
+               pui->m_pimpl->_001UpdateWindow();
                pui->m_dwLastSizeMove = ::get_tick_count();
                pui->m_bSizeMove = true;
 
@@ -355,7 +355,7 @@ namespace user
 
             if(pmouse->m_uiMessage == WM_LBUTTONUP || pmouse->m_uiMessage == WM_NCLBUTTONUP)
             {
-               
+
                sp(WorkSetClientInterface) pinterface = m_pworkset->GetEventWindow();
 
                if(pinterface == NULL)
@@ -394,7 +394,7 @@ namespace user
                }
 
                System.release_capture_uie();
-  
+
 #ifdef WINDOWSEX
 
                //UnhookWindowsHookEx(g_hhook);
@@ -514,7 +514,7 @@ namespace user
 
             cslock sl(GetMoveWindow()->m_pimpl->cs_display());
             GetMoveWindow()->m_pimpl->m_rectParentClient.move_to(point64(pt));
-            GetMoveWindow()->m_pimpl->_001UpdateScreen(false);
+            GetMoveWindow()->m_pimpl->_001UpdateWindow();
 
 #else
 
@@ -566,16 +566,16 @@ namespace user
                return;
             }
             else if(pbase->m_uiMessage == WM_MOUSEMOVE ||
-               pbase->m_uiMessage == WM_LBUTTONUP)
+                    pbase->m_uiMessage == WM_LBUTTONUP)
             {
                sp(::user::interaction) pWndCapture = System.get_capture_uie();
                TRACE("MoveManager::message_handler oswindow Capture %x\n", System.get_capture_uie().m_p);
                if(!m_bMoving ||
-                  pWndCapture == NULL ||
-                  pWndCapture->get_handle() != GetEventWindow()->get_handle())
+                     pWndCapture == NULL ||
+                     pWndCapture->get_handle() != GetEventWindow()->get_handle())
                {
                   if(pWndCapture != NULL
-                     && pWndCapture->get_handle() == GetEventWindow()->get_handle())
+                        && pWndCapture->get_handle() == GetEventWindow()->get_handle())
                   {
                      System.release_capture_uie();
                   }
@@ -606,7 +606,7 @@ namespace user
                   rect rectIntersect;
                   rectIntersect.intersect(rectParentClient, rectEvent);
                   if(rectIntersect.width() <= 30 ||
-                     rectIntersect.height() <= 30)
+                        rectIntersect.height() <= 30)
                      bMove = false;
                }
 

@@ -2752,8 +2752,6 @@ restart_mouse_hover_check:
 
       SCAST_PTR(::message::base,pbase,pobj);
 
-      _001UpdateBuffer();
-
       rect64 rectWindow;
 
       m_pui->GetWindowRect(rectWindow);
@@ -2794,6 +2792,19 @@ restart_mouse_hover_check:
       //::draw2d::dib * pdi = m_spdib;
 
       ::draw2d::dib * pdib = m_spdibBuffer;
+
+      try
+      {
+
+         _001Print(pdib);
+
+      }
+      catch (...)
+      {
+
+
+      }
+
 
       try
       {
@@ -3339,7 +3350,7 @@ restart_mouse_hover_check:
          if(rectBefore.size() != rect.size() || m_pui->get_appearance() != m_eapperanceLayout)
          {
 
-            keep < bool > keepLockWindowUpdate(&m_pui->m_bLockWindowUpdate,true,false,true);
+            //keep < bool > keepLockWindowUpdate(&m_pui->m_bLockWindowUpdate,true,false,true);
 
             m_rectParentClient = rect;
 
@@ -3347,7 +3358,7 @@ restart_mouse_hover_check:
 
             send_message(WM_SIZE,0,MAKELONG(MAX(0,rect.width()),MAX(0,rect.height())));
 
-            keepLockWindowUpdate.KeepAway();
+            //keepLockWindowUpdate.KeepAway();
 
             {
 
@@ -3361,7 +3372,7 @@ restart_mouse_hover_check:
 
 
             //m_pui->_001UpdateBuffer();
-            m_pui->_001UpdateWindow();
+            //m_pui->_001UpdateWindow();
             {
 
                DWORD dwTime2 = ::get_tick_count();
@@ -3396,7 +3407,7 @@ restart_mouse_hover_check:
 
             //m_pui->_001UpdateWindow(false);
 
-            m_pui->_001UpdateWindow();
+            //m_pui->_001UpdateWindow();
 
 
          }
@@ -3428,6 +3439,13 @@ restart_mouse_hover_check:
             ::SetWindowPos(get_handle(),(oswindow)z,x,y,cx,cy,nFlags);
 
          }
+
+      }
+
+      if (!(nFlags & SWP_NOREDRAW))
+      {
+
+         m_pui->_001UpdateWindow();
 
       }
 
@@ -5245,7 +5263,7 @@ restart_mouse_hover_check:
 
    void interaction_impl::_001OnWindowPosChanging(signal_details * pobj)
    {
-
+      return;
       SCAST_PTR(::message::window_pos,pwindowpos,pobj);
 
       //TRACE("::windows::interaction_impl::_001OnWindowPosChanging");
@@ -5349,7 +5367,7 @@ restart_mouse_hover_check:
 
 
 
-                  _001UpdateBuffer();
+//                  _001UpdateBuffer();
                   {
 
                      DWORD dwTime2 = ::get_tick_count();
@@ -5360,7 +5378,7 @@ restart_mouse_hover_check:
                   }
 
 
-                  _001UpdateScreen();
+                  //_001UpdateWindow();
 
                   {
 
@@ -5384,7 +5402,7 @@ restart_mouse_hover_check:
 
    void interaction_impl::_001OnWindowPosChanged(signal_details * pobj)
    {
-
+      return;
       SCAST_PTR(::message::window_pos,pwindowpos,pobj);
 
       if(GetExStyle() & WS_EX_LAYERED)
