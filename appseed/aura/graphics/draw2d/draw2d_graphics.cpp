@@ -39,7 +39,7 @@ namespace draw2d
 
    }
 
-   
+
    bool graphics::prefer_mapped_dib_on_mix()
    {
 
@@ -86,7 +86,7 @@ namespace draw2d
    }
 
    /*
-#ifdef WINDOWS
+   #ifdef WINDOWS
 
    bool graphics::attach(HDC hdc)
    {
@@ -98,7 +98,7 @@ namespace draw2d
       throw interface_only_exception(get_app());
    }
 
-#endif
+   #endif
 
    */
 
@@ -115,9 +115,9 @@ namespace draw2d
    void * graphics::detach()
    {
 
-       throw interface_only_exception(get_app());
+      throw interface_only_exception(get_app());
 
-       return NULL;
+      return NULL;
 
    }
 
@@ -125,9 +125,9 @@ namespace draw2d
    bool graphics::IsPrinting() const
    {
 
-       throw interface_only_exception(get_app());
+      throw interface_only_exception(get_app());
 
-       return false;
+      return false;
 
    }
 
@@ -135,7 +135,7 @@ namespace draw2d
    bool graphics::CreateDC(const char * lpszDriverName,  const char * lpszDeviceName, const char * lpszOutput, const void * lpInitData)
    {
 
-       UNREFERENCED_PARAMETER(lpszDriverName);
+      UNREFERENCED_PARAMETER(lpszDriverName);
       UNREFERENCED_PARAMETER(lpszDeviceName);
       UNREFERENCED_PARAMETER(lpszOutput);
       UNREFERENCED_PARAMETER(lpInitData);
@@ -149,7 +149,7 @@ namespace draw2d
    bool graphics::CreateIC(const char * lpszDriverName,  const char * lpszDeviceName, const char * lpszOutput, const void * lpInitData)
    {
 
-       UNREFERENCED_PARAMETER(lpszDriverName);
+      UNREFERENCED_PARAMETER(lpszDriverName);
       UNREFERENCED_PARAMETER(lpszDeviceName);
       UNREFERENCED_PARAMETER(lpszOutput);
       UNREFERENCED_PARAMETER(lpInitData);
@@ -164,7 +164,7 @@ namespace draw2d
    {
 
       UNREFERENCED_PARAMETER(pgraphics);
-      
+
       throw interface_only_exception(get_app());
 
       return false;
@@ -172,12 +172,12 @@ namespace draw2d
    }
 
 
-/*   int32_t graphics::ExcludeUpdateRgn(::window_sp pwindow)
-   {
-      UNREFERENCED_PARAMETER(pwindow);
-      throw interface_only_exception(get_app());
-   }
-   */
+   /*   int32_t graphics::ExcludeUpdateRgn(::window_sp pwindow)
+      {
+         UNREFERENCED_PARAMETER(pwindow);
+         throw interface_only_exception(get_app());
+      }
+      */
 
    int32_t graphics::GetDeviceCaps(int32_t nIndex) const
    {
@@ -212,9 +212,9 @@ namespace draw2d
    point graphics::SetBrushOrg(int32_t x, int32_t y)
    {
 
-       UNREFERENCED_PARAMETER(x);
-        UNREFERENCED_PARAMETER(y);
-        throw interface_only_exception(get_app());
+      UNREFERENCED_PARAMETER(x);
+      UNREFERENCED_PARAMETER(y);
+      throw interface_only_exception(get_app());
 
       return null_point();
 
@@ -420,7 +420,7 @@ namespace draw2d
 
    size graphics::SetViewportExt(SIZE size)
    {
-      
+
       UNREFERENCED_PARAMETER(size);
 
       throw interface_only_exception(get_app());
@@ -1816,7 +1816,7 @@ namespace draw2d
    }
 
    bool graphics::MaskBlt(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, ::draw2d::graphics * pgraphicsSrc,
-      int32_t xSrc, int32_t ySrc, ::draw2d::bitmap& maskBitmap, int32_t xMask, int32_t yMask, uint32_t dwRop)
+                          int32_t xSrc, int32_t ySrc, ::draw2d::bitmap& maskBitmap, int32_t xMask, int32_t yMask, uint32_t dwRop)
    {
       UNREFERENCED_PARAMETER(x);
       UNREFERENCED_PARAMETER(y);
@@ -1834,7 +1834,7 @@ namespace draw2d
       return false;
    }
    bool graphics::PlgBlt(LPPOINT lpPoint, ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc,
-      int32_t nWidth, int32_t nHeight, ::draw2d::bitmap& maskBitmap, int32_t xMask, int32_t yMask)
+                         int32_t nWidth, int32_t nHeight, ::draw2d::bitmap& maskBitmap, int32_t xMask, int32_t yMask)
    {
       UNREFERENCED_PARAMETER(lpPoint);
       UNREFERENCED_PARAMETER(pgraphicsSrc);
@@ -2144,7 +2144,7 @@ namespace draw2d
 #endif
 
    bool graphics::TransparentBlt(int32_t xDest, int32_t yDest, int32_t nDestWidth, int32_t nDestHeight,
-      ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight, UINT crTransparent)
+                                 ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight, UINT crTransparent)
    {
       UNREFERENCED_PARAMETER(xDest);
       UNREFERENCED_PARAMETER(yDest);
@@ -2481,26 +2481,26 @@ namespace draw2d
       return -1;
    }
 
-   
+
    point graphics::SetViewportOrg(int32_t x, int32_t y)
    {
-      
+
       UNREFERENCED_PARAMETER(x);
       UNREFERENCED_PARAMETER(y);
-      
+
       throw interface_only_exception(get_app());
-      
+
    }
 
 
    point graphics::OffsetViewportOrg(int32_t nWidth, int32_t nHeight)
    {
-      
+
       UNREFERENCED_PARAMETER(nWidth);
       UNREFERENCED_PARAMETER(nHeight);
 
       throw interface_only_exception(get_app());
-      
+
    }
 
    size graphics::SetViewportExt(int32_t x, int32_t y)
@@ -3100,6 +3100,14 @@ namespace draw2d
    }
 
 
+   bool graphics::alpha_blend(rect & r, ::draw2d::graphics * pgraphicsSrc, double dOpacity)
+   {
+
+      return alpha_blend(r.top_left(), r.size(), pgraphicsSrc, dOpacity);
+
+   }
+
+
    bool graphics::alpha_blend(size size,::draw2d::graphics * pgraphicsSrc, point ptSrc, double dOpacity)
    {
 
@@ -3116,47 +3124,47 @@ namespace draw2d
    }
 
 
-/*
-   bool graphics::alpha_blend(int32_t xDest, int32_t yDest, int32_t nDestWidth, int32_t nDestHeight,
-      ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight, BLENDFUNCTION blend)
-   {
-      UNREFERENCED_PARAMETER(xDest);
-      UNREFERENCED_PARAMETER(yDest);
-      UNREFERENCED_PARAMETER(nDestWidth);
-      UNREFERENCED_PARAMETER(nDestHeight);
-      UNREFERENCED_PARAMETER(pgraphicsSrc);
-      UNREFERENCED_PARAMETER(xSrc);
-      UNREFERENCED_PARAMETER(ySrc);
-      UNREFERENCED_PARAMETER(nSrcWidth);
-      UNREFERENCED_PARAMETER(nSrcHeight);
-      UNREFERENCED_PARAMETER(blend);
-      throw interface_only_exception(get_app());
-   }*/
+   /*
+      bool graphics::alpha_blend(int32_t xDest, int32_t yDest, int32_t nDestWidth, int32_t nDestHeight,
+         ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight, BLENDFUNCTION blend)
+      {
+         UNREFERENCED_PARAMETER(xDest);
+         UNREFERENCED_PARAMETER(yDest);
+         UNREFERENCED_PARAMETER(nDestWidth);
+         UNREFERENCED_PARAMETER(nDestHeight);
+         UNREFERENCED_PARAMETER(pgraphicsSrc);
+         UNREFERENCED_PARAMETER(xSrc);
+         UNREFERENCED_PARAMETER(ySrc);
+         UNREFERENCED_PARAMETER(nSrcWidth);
+         UNREFERENCED_PARAMETER(nSrcHeight);
+         UNREFERENCED_PARAMETER(blend);
+         throw interface_only_exception(get_app());
+      }*/
 
-/*   bool graphics::alpha_blend(point ptDst, size szDst,::draw2d::graphics * pgraphicsSrc, point ptSrc, size szSrc, BLENDFUNCTION blend)
-   {
-      return alpha_blend(ptDst.x, ptDst.y, szDst.cx, szDst.cy, pgraphicsSrc, ptSrc.x, ptSrc.y, szSrc.cx, szSrc.cy, blend);
-   }
+   /*   bool graphics::alpha_blend(point ptDst, size szDst,::draw2d::graphics * pgraphicsSrc, point ptSrc, size szSrc, BLENDFUNCTION blend)
+      {
+         return alpha_blend(ptDst.x, ptDst.y, szDst.cx, szDst.cy, pgraphicsSrc, ptSrc.x, ptSrc.y, szSrc.cx, szSrc.cy, blend);
+      }
 
-   bool graphics::alpha_blend(point ptDst, size size,::draw2d::graphics * pgraphicsSrc, point ptSrc, BLENDFUNCTION blend)
-   {
-      return alpha_blend(ptDst, size, pgraphicsSrc, ptSrc, size, blend);
-   }
+      bool graphics::alpha_blend(point ptDst, size size,::draw2d::graphics * pgraphicsSrc, point ptSrc, BLENDFUNCTION blend)
+      {
+         return alpha_blend(ptDst, size, pgraphicsSrc, ptSrc, size, blend);
+      }
 
-   bool graphics::alpha_blend(point ptDst, size size,::draw2d::graphics * pgraphicsSrc, BLENDFUNCTION blend)
-   {
-      return alpha_blend(ptDst, size, pgraphicsSrc, null_point(),blend);
-   }
+      bool graphics::alpha_blend(point ptDst, size size,::draw2d::graphics * pgraphicsSrc, BLENDFUNCTION blend)
+      {
+         return alpha_blend(ptDst, size, pgraphicsSrc, null_point(),blend);
+      }
 
-   bool graphics::alpha_blend(size size,::draw2d::graphics * pgraphicsSrc, point ptSrc, BLENDFUNCTION blend)
-   {
-      return alpha_blend(null_point(), size, pgraphicsSrc, ptSrc, blend);
-   }
+      bool graphics::alpha_blend(size size,::draw2d::graphics * pgraphicsSrc, point ptSrc, BLENDFUNCTION blend)
+      {
+         return alpha_blend(null_point(), size, pgraphicsSrc, ptSrc, blend);
+      }
 
-   bool graphics::alpha_blend(size size,::draw2d::graphics * pgraphicsSrc, BLENDFUNCTION blend)
-   {
-      return alpha_blend(size, pgraphicsSrc, null_point(), blend);
-   }*/
+      bool graphics::alpha_blend(size size,::draw2d::graphics * pgraphicsSrc, BLENDFUNCTION blend)
+      {
+         return alpha_blend(size, pgraphicsSrc, null_point(), blend);
+      }*/
 
    void graphics::set_alpha_mode(e_alpha_mode ealphamode)
    {
@@ -4360,7 +4368,7 @@ namespace draw2d
             dCircleY = dSign*sqrt(dPeriod *dPeriod / 4.0 - dCircleX*dCircleX) * 0.05;
             {
                double dy = (sin((double)dx * 2.0 * 3.1415 / dPeriod) - fmod(dx,(double)(dPeriod / 2.0)) / (dPeriod * dCurl)) + dCircleY;
-                  ;
+               ;
                dy = (dy * dHalfH + dH - dHSpan);
                int x = (int)round(dx);
                int y = (int)round(dy);

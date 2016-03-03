@@ -41,10 +41,10 @@ namespace draw2d
       virtual ~graphics();
 
 
-     void draw_ca2(int x,int y,int z,COLORREF crBk,COLORREF cr);
-     void draw_ca2_with_border(int x,int y,int z,int b,COLORREF crBk,COLORREF cr,COLORREF crOut);
-     void draw_ca2_border2(int x,int y,int z,int bOut,int bIn,COLORREF crBk,COLORREF cr,COLORREF crBorderOut,COLORREF crIn);
-     void draw_ca2_with_border2(int x,int y,int z,int bOut,int bIn,COLORREF crBk,COLORREF cr,COLORREF crBorderOut,COLORREF crIn);
+      void draw_ca2(int x,int y,int z,COLORREF crBk,COLORREF cr);
+      void draw_ca2_with_border(int x,int y,int z,int b,COLORREF crBk,COLORREF cr,COLORREF crOut);
+      void draw_ca2_border2(int x,int y,int z,int bOut,int bIn,COLORREF crBk,COLORREF cr,COLORREF crBorderOut,COLORREF crIn);
+      void draw_ca2_with_border2(int x,int y,int z,int bOut,int bIn,COLORREF crBk,COLORREF cr,COLORREF crBorderOut,COLORREF crIn);
 
 
       virtual bool is_set();
@@ -96,7 +96,7 @@ namespace draw2d
       virtual uint32_t GetLayout() const;
       virtual uint32_t SetLayout(uint32_t dwLayout);
 
-   // Constructors
+      // Constructors
       virtual bool CreateDC(const char * lpszDriverName, const char * lpszDeviceName, const char * lpszOutput, const void * lpInitData);
       virtual bool CreateIC(const char * lpszDriverName, const char * lpszDeviceName, const char * lpszOutput, const void * lpInitData);
       virtual bool CreateCompatibleDC(::draw2d::graphics * pgraphics);
@@ -104,7 +104,7 @@ namespace draw2d
       virtual bool DeleteDC();
 
 
-   // Device-Context Functions
+      // Device-Context Functions
       virtual int32_t SaveDC();
       virtual bool RestoreDC(int32_t nSavedDC);
       virtual int32_t GetDeviceCaps(int32_t nIndex) const;
@@ -114,17 +114,17 @@ namespace draw2d
       virtual bool ResetDC(const DEVMODE* lpDevMode);
 #endif
 
-   // Drawing-Tool Functions
+      // Drawing-Tool Functions
       virtual point GetBrushOrg() const;
       virtual point SetBrushOrg(int32_t x, int32_t y);
       virtual point SetBrushOrg(POINT point);
       virtual int32_t EnumObjects(int32_t nObjectType,
-            int32_t (CALLBACK* lpfn)(LPVOID, LPARAM), LPARAM lpData);
+                                  int32_t (CALLBACK* lpfn)(LPVOID, LPARAM), LPARAM lpData);
 
 
       virtual bool set_text_color(COLORREF clr);
 
-   // Type-safe selection helpers
+      // Type-safe selection helpers
    public:
       virtual ::draw2d::object* SelectStockObject(int32_t nIndex);
       virtual ::draw2d::pen* SelectObject(::draw2d::pen* pPen);
@@ -134,13 +134,13 @@ namespace draw2d
       virtual int32_t SelectObject(::draw2d::region* pRgn);       // special return for regions
 
 
-   // color and color Palette Functions
+      // color and color Palette Functions
       virtual COLORREF GetNearestColor(COLORREF crColor) const;
       virtual ::draw2d::palette* SelectPalette(::draw2d::palette* pPalette, bool bForceBackground);
       virtual UINT RealizePalette();
       virtual void UpdateColors();
 
-   // Drawing-Attribute Functions
+      // Drawing-Attribute Functions
       virtual int32_t GetPolyFillMode() const;
       virtual int32_t GetROP2() const;
       virtual int32_t GetStretchBltMode() const;
@@ -165,7 +165,7 @@ namespace draw2d
       virtual bool SetColorAdjustment(const COLORADJUSTMENT* lpColorAdjust);
 #endif
 
-   #if (_WIN32_WINNT >= 0x0500)
+#if (_WIN32_WINNT >= 0x0500)
 
       virtual COLORREF GetDCBrushColor() const;
       virtual COLORREF SetDCBrushColor(COLORREF crColor);
@@ -173,7 +173,7 @@ namespace draw2d
       virtual COLORREF GetDCPenColor() const;
       virtual COLORREF SetDCPenColor(COLORREF crColor);
 
-   #endif
+#endif
 
       // Graphics mode
       virtual int32_t SetGraphicsMode(int32_t iMode);
@@ -213,7 +213,7 @@ namespace draw2d
       virtual size SetWindowExt(SIZE size);
       virtual size ScaleWindowExt(int32_t xNum, int32_t xDenom, int32_t yNum, int32_t yDenom);
 
-   // Coordinate Functions
+      // Coordinate Functions
       virtual void DPtoLP(LPPOINT lpPoints,count nCount = 1) const;
       virtual void DPtoLP(LPRECT lpRect) const;
       virtual void DPtoLP(LPSIZE lpSize) const;
@@ -221,19 +221,19 @@ namespace draw2d
       virtual void LPtoDP(LPRECT lpRect) const;
       virtual void LPtoDP(LPSIZE lpSize) const;
 
-   // Special Coordinate Functions (useful for dealing with metafiles and OLE)
+      // Special Coordinate Functions (useful for dealing with metafiles and OLE)
       virtual void DPtoHIMETRIC(LPSIZE lpSize) const;
       virtual void LPtoHIMETRIC(LPSIZE lpSize) const;
       virtual void HIMETRICtoDP(LPSIZE lpSize) const;
       virtual void HIMETRICtoLP(LPSIZE lpSize) const;
 
-   // Region Functions
+      // Region Functions
       virtual bool FillRgn(::draw2d::region* pRgn, ::draw2d::brush* pBrush);
       virtual bool FrameRgn(::draw2d::region* pRgn, ::draw2d::brush* pBrush, int32_t nWidth, int32_t nHeight);
       virtual bool InvertRgn(::draw2d::region* pRgn);
       virtual bool PaintRgn(::draw2d::region* pRgn);
 
-   // Clipping Functions
+      // Clipping Functions
       virtual int32_t GetClipBox(LPRECT lpRect) const;
       virtual int32_t GetClipBox(rect64 * lpRect) const;
       virtual bool PtVisible(int32_t x, int32_t y) const;
@@ -249,7 +249,7 @@ namespace draw2d
       virtual int32_t OffsetClipRgn(SIZE size);
       virtual int32_t SelectClipRgn(::draw2d::region* pRgn, int32_t nMode);
 
-   // Line-Output Functions
+      // Line-Output Functions
 
       virtual bool DrawErrorLine(int32_t x1,int32_t y1,int32_t x2,int32_t y2);
 
@@ -310,7 +310,7 @@ namespace draw2d
       virtual bool PolyBezier(const POINT* lpPoints,count nCount);
       virtual bool PolyBezierTo(const POINT* lpPoints,count nCount);
 
-   // Simple Drawing Functions
+      // Simple Drawing Functions
       virtual void FillRect(const RECT & ect,::draw2d::brush* pBrush);
       virtual void FrameRect(const RECT & ect,::draw2d::brush* pBrush);
       virtual void InvertRect(const RECT &  lpRect);
@@ -318,28 +318,28 @@ namespace draw2d
       virtual bool DrawIcon(POINT point, ::visual::icon * picon);
       virtual bool DrawIcon(int32_t x, int32_t y, ::visual::icon * picon, int32_t cx, int32_t cy, UINT istepIfAniCur, HBRUSH hbrFlickerFreeDraw, UINT diFlags);
       virtual bool DrawState(point pt, size size, HBITMAP hBitmap, UINT nFlags,
-         HBRUSH hBrush = NULL);
+                             HBRUSH hBrush = NULL);
       virtual bool DrawState(point pt, size size, ::draw2d::bitmap* pBitmap, UINT nFlags,
-         ::draw2d::brush* pBrush = NULL);
+                             ::draw2d::brush* pBrush = NULL);
 #ifdef WINDOWS
       virtual bool DrawState(point pt, size size, HICON hIcon, UINT nFlags,
-         HBRUSH hBrush = NULL);
+                             HBRUSH hBrush = NULL);
       virtual bool DrawState(point pt, size size, HICON hIcon, UINT nFlags,
-         ::draw2d::brush* pBrush = NULL);
+                             ::draw2d::brush* pBrush = NULL);
 #endif
       virtual bool DrawState(point pt, size size, const char * lpszText, UINT nFlags,
-         bool bPrefixText = TRUE, int32_t nTextLen = 0, HBRUSH hBrush = NULL);
+                             bool bPrefixText = TRUE, int32_t nTextLen = 0, HBRUSH hBrush = NULL);
       virtual bool DrawState(point pt, size size, const char * lpszText, UINT nFlags,
-         bool bPrefixText = TRUE, int32_t nTextLen = 0, ::draw2d::brush* pBrush = NULL);
+                             bool bPrefixText = TRUE, int32_t nTextLen = 0, ::draw2d::brush* pBrush = NULL);
 #ifdef WINDOWSEX
       virtual bool DrawState(point pt, size size, DRAWSTATEPROC lpDrawProc,
-         LPARAM lData, UINT nFlags, HBRUSH hBrush = NULL);
+                             LPARAM lData, UINT nFlags, HBRUSH hBrush = NULL);
       virtual bool DrawState(point pt, size size, DRAWSTATEPROC lpDrawProc,
-         LPARAM lData, UINT nFlags, ::draw2d::brush* pBrush = NULL);
+                             LPARAM lData, UINT nFlags, ::draw2d::brush* pBrush = NULL);
 #endif
-   // Ellipse and Polygon Functions
+      // Ellipse and Polygon Functions
       virtual bool Chord(int32_t x1, int32_t y1, int32_t x2, int32_t y2, int32_t x3, int32_t y3,
-         int32_t x4, int32_t y4);
+                         int32_t x4, int32_t y4);
       virtual bool Chord(const RECT &  lpRect, POINT ptStart, POINT ptEnd);
       virtual void DrawFocusRect(const RECT &  lpRect);
       virtual bool Ellipse(int32_t x1, int32_t y1, int32_t x2, int32_t y2);
@@ -381,7 +381,7 @@ namespace draw2d
       virtual bool RoundRect(int32_t x1, int32_t y1, int32_t x2, int32_t y2, int32_t x3, int32_t y3);
       virtual bool RoundRect(const RECT &  lpRect, POINT point);
 
-   // Bitmap Functions
+      // Bitmap Functions
       virtual bool from(point ptDst, size size, ::draw2d::graphics * pgraphicsSrc, point ptSrc, uint32_t dwRop);
       virtual bool from(size size, ::draw2d::graphics * pgraphicsSrc, point ptSrc, uint32_t dwRop);
       virtual bool from(size size, ::draw2d::graphics * pgraphicsSrc, uint32_t dwRop);
@@ -392,7 +392,7 @@ namespace draw2d
       virtual bool BitBlt(POINT ptDst, SIZE size, ::draw2d::graphics * pgraphicsSrc, POINT ptSrc = ::null_point(), uint32_t dwRop = SRCCOPY);
 
       virtual bool StretchBlt(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, ::draw2d::graphics * pgraphicsSrc,
-         int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight, uint32_t dwRop);
+                              int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight, uint32_t dwRop);
       virtual COLORREF GetPixel(int32_t x, int32_t y) const;
       virtual COLORREF GetPixel(POINT point) const;
       virtual COLORREF SetPixel(int32_t x, int32_t y, COLORREF crColor);
@@ -400,35 +400,36 @@ namespace draw2d
       virtual bool FloodFill(int32_t x, int32_t y, COLORREF crColor);
       virtual bool ExtFloodFill(int32_t x, int32_t y, COLORREF crColor, UINT nFillType);
       virtual bool MaskBlt(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, ::draw2d::graphics * pgraphicsSrc,
-         int32_t xSrc, int32_t ySrc, ::draw2d::bitmap& maskBitmap, int32_t xMask, int32_t yMask,
-         uint32_t dwRop);
+                           int32_t xSrc, int32_t ySrc, ::draw2d::bitmap& maskBitmap, int32_t xMask, int32_t yMask,
+                           uint32_t dwRop);
       virtual bool PlgBlt(LPPOINT lpPoint, ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc,
-         int32_t nWidth, int32_t nHeight, ::draw2d::bitmap& maskBitmap, int32_t xMask, int32_t yMask);
+                          int32_t nWidth, int32_t nHeight, ::draw2d::bitmap& maskBitmap, int32_t xMask, int32_t yMask);
       virtual bool SetPixelV(int32_t x, int32_t y, COLORREF crColor);
       virtual bool SetPixelV(POINT point, COLORREF crColor);
       virtual bool GradientFill(TRIVERTEX* pVertices, ULONG nVertices,
-        void * pMesh, ULONG nMeshElements, uint32_t dwMode);
+                                void * pMesh, ULONG nMeshElements, uint32_t dwMode);
       virtual bool TransparentBlt(int32_t xDest, int32_t yDest, int32_t nDestWidth, int32_t nDestHeight,
-        ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight,
-        UINT clrTransparent);
+                                  ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight,
+                                  UINT clrTransparent);
 
       virtual bool alpha_blend(int32_t xDest, int32_t yDest, int32_t nDestWidth, int32_t nDestHeight, ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight, double dOpacity);
       virtual bool alpha_blend(point ptDst, size szDst,::draw2d::graphics * pgraphicsSrc, point ptSrc, size szSrc, double dOpacity);
       virtual bool alpha_blend(point ptDst, size sz,::draw2d::graphics * pgraphicsSrc, point ptSrc, double dOpacity);
       virtual bool alpha_blend(point ptDst, size sz,::draw2d::graphics * pgraphicsSrc, double dOpacity);
+      virtual bool alpha_blend(rect & r, ::draw2d::graphics * pgraphicsSrc, double dOpacity);
       virtual bool alpha_blend(size sz,::draw2d::graphics * pgraphicsSrc, point ptSrc, double dOpacity);
       virtual bool alpha_blend(size sz,::draw2d::graphics * pgraphicsSrc, double dOpacity);
 
-/*      virtual bool alpha_blend(int32_t xDest, int32_t yDest, int32_t nDestWidth, int32_t nDestHeight,
-        ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight,
-        BLENDFUNCTION blend);*/
-/*      virtual bool alpha_blend(point ptDst, size szDst,::draw2d::graphics * pgraphicsSrc, point ptSrc, size szSrc, BLENDFUNCTION blend);
-      virtual bool alpha_blend(point ptDst, size sz,::draw2d::graphics * pgraphicsSrc, point ptSrc, BLENDFUNCTION blend);
-      virtual bool alpha_blend(point ptDst, size sz,::draw2d::graphics * pgraphicsSrc, BLENDFUNCTION blend);
-      virtual bool alpha_blend(size sz,::draw2d::graphics * pgraphicsSrc, point ptSrc, BLENDFUNCTION blend);
-      virtual bool alpha_blend(size sz,::draw2d::graphics * pgraphicsSrc, BLENDFUNCTION blend);*/
+      /*      virtual bool alpha_blend(int32_t xDest, int32_t yDest, int32_t nDestWidth, int32_t nDestHeight,
+              ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight,
+              BLENDFUNCTION blend);*/
+      /*      virtual bool alpha_blend(point ptDst, size szDst,::draw2d::graphics * pgraphicsSrc, point ptSrc, size szSrc, BLENDFUNCTION blend);
+            virtual bool alpha_blend(point ptDst, size sz,::draw2d::graphics * pgraphicsSrc, point ptSrc, BLENDFUNCTION blend);
+            virtual bool alpha_blend(point ptDst, size sz,::draw2d::graphics * pgraphicsSrc, BLENDFUNCTION blend);
+            virtual bool alpha_blend(size sz,::draw2d::graphics * pgraphicsSrc, point ptSrc, BLENDFUNCTION blend);
+            virtual bool alpha_blend(size sz,::draw2d::graphics * pgraphicsSrc, BLENDFUNCTION blend);*/
 
-   // Text Functions
+      // Text Functions
       virtual bool TextOut(int32_t x, int32_t y, const char * lpszString, strsize nCount);
       virtual bool TextOut(int32_t x, int32_t y, const string & str);
       virtual bool TextOut(double x, double y, const char * lpszString, strsize nCount);
@@ -494,15 +495,15 @@ namespace draw2d
 
 
 
-   // Advanced Drawing
+      // Advanced Drawing
       virtual bool DrawEdge(const RECT & lpRect,UINT nEdge,UINT nFlags);
       virtual bool DrawFrameControl(const RECT & lpRect,UINT nType,UINT nState);
 
-   // Scrolling Functions
+      // Scrolling Functions
       virtual bool ScrollDC(int32_t dx, int32_t dy, const RECT &  lpRectScroll, const RECT &  lpRectClip,
-         ::draw2d::region* pRgnUpdate, LPRECT lpRectUpdate);
+                            ::draw2d::region* pRgnUpdate, LPRECT lpRectUpdate);
 
-   // font Functions
+      // font Functions
       virtual bool GetCharWidth(UINT nFirstChar, UINT nLastChar, LPINT lpBuffer) const;
       virtual bool GetOutputCharWidth(UINT nFirstChar, UINT nLastChar, LPINT lpBuffer) const;
       virtual uint32_t SetMapperFlags(uint32_t dwFlag);
@@ -537,7 +538,7 @@ namespace draw2d
 
 #endif
 
-   // Printer/Device Escape Functions
+      // Printer/Device Escape Functions
       virtual int32_t Escape(int32_t nEscape, int32_t nCount, const char * lpszInData, LPVOID lpOutData);
       virtual int32_t Escape(int32_t nEscape, int32_t nInputSize, const char * lpszInputData, int32_t nOutputSize, char * lpszOutputData);
       virtual int32_t DrawEscape(int32_t nEscape, int32_t nInputSize, const char * lpszInputData);
@@ -563,9 +564,9 @@ namespace draw2d
       virtual bool PlayMetaFile(HENHMETAFILE hEnhMetaFile, const RECT &  lpBounds);
 #endif
       virtual bool AddMetaFileComment(UINT nDataSize, const BYTE* pCommentData);
-         // can be used for enhanced metafiles only
+      // can be used for enhanced metafiles only
 
-   // Path Functions
+      // Path Functions
       virtual bool AbortPath();
       virtual bool BeginPath();
       virtual bool CloseFigure();
@@ -586,17 +587,17 @@ namespace draw2d
       virtual bool fill_path(::draw2d::path * ppath);
       virtual bool path(::draw2d::path * ppath);
 
-   // Misc Helper Functions
+      // Misc Helper Functions
       virtual ::draw2d::brush * GetHalftoneBrush();
       virtual void DrawDragRect(const RECT &  lpRect, SIZE size,
-         const RECT &  lpRectLast, SIZE sizeLast,
-         ::draw2d::brush* pBrush = NULL, ::draw2d::brush* pBrushLast = NULL);
+                                const RECT &  lpRectLast, SIZE sizeLast,
+                                ::draw2d::brush* pBrush = NULL, ::draw2d::brush* pBrushLast = NULL);
       virtual void FillSolidRect(const RECT64 * lpRect, COLORREF clr);
       virtual void FillSolidRect(const RECT &  lpRect, COLORREF clr);
       virtual void FillSolidRect(int32_t x, int32_t y, int32_t cx, int32_t cy, COLORREF clr);
       virtual void Draw3dRect(const RECT &  lpRect, COLORREF clrTopLeft, COLORREF clrBottomRight);
       virtual void Draw3dRect(int32_t x, int32_t y, int32_t cx, int32_t cy,
-         COLORREF clrTopLeft, COLORREF clrBottomRight);
+                              COLORREF clrTopLeft, COLORREF clrBottomRight);
 
       virtual void assert_valid() const;
       virtual void dump(dump_context & dumpcontext) const;
@@ -632,10 +633,10 @@ namespace draw2d
       bool draw_round_rect(const RECT & r, COLORREF color, int32_t radius, int32_t width);
       bool draw_round_top_left(const RECT & r, COLORREF color, int32_t radius, int32_t width);
       bool draw_round_bottom_right(const RECT & r, COLORREF color, int32_t radius, int32_t width);
-      
-      
+
+
       bool draw_stock_icon(const RECT & rect, e_stock_icon eicon);
-      
+
 
       //=============================================================================
       //
@@ -720,7 +721,7 @@ namespace draw2d
 
    };
 
-   
+
    class CLASS_DECL_AURA memory_graphics :
       public graphics_sp
    {
