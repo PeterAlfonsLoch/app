@@ -15,7 +15,7 @@ namespace metrowin
 
    ref class directx_application;
 
-   class CLASS_DECL_BASE window_draw : 
+   class CLASS_DECL_BASE window_draw :
       virtual public ::user::window_draw
    {
    public:
@@ -38,10 +38,10 @@ namespace metrowin
       mutex                                  m_mutexRender;
       critical_section                       m_csWndInterfaceMap;
       typed_pointer_map <
-         map_ptr_to_ptr,
-         oswindow, 
-         ::user::interaction_base *>
-                                             m_wndinterfacemap;
+      map_ptr_to_ptr,
+      oswindow,
+      ::user::interaction_base *>
+      m_wndinterfacemap;
       DWORD                                  m_dwLastUpdate;
       DWORD                                  m_dwLastDelay;
 
@@ -52,7 +52,7 @@ namespace metrowin
 
       //virtual bool start();
 
-      bool UpdateBuffer(LPCRECT lpcrect);
+      //bool UpdateBuffer(LPCRECT lpcrect);
       //void OnPaint(oswindow hwnd, CPaintDC & spgraphics);
 
       //semaphore * TwfGetBufferSemaphore();
@@ -84,13 +84,13 @@ namespace metrowin
       //   bool        bGdiLocked,
       //   bool        bExcludeParamWnd);
 
-   /*     EOptimize TwfOptimizeRender2(
-         user::oswindow_tree::Array & hwndtreea,
-         LPCRECT lpcrect);
+      /*     EOptimize TwfOptimizeRender2(
+            user::oswindow_tree::Array & hwndtreea,
+            LPCRECT lpcrect);
 
-      EOptimize TwfOptimizeRender2(
-         user::oswindow_tree & hwndtree,
-         LPCRECT lpcrect);*/
+         EOptimize TwfOptimizeRender2(
+            user::oswindow_tree & hwndtree,
+            LPCRECT lpcrect);*/
 
 
       //EOptimize TwfOptimizeRender(
@@ -133,9 +133,9 @@ namespace metrowin
       //   int iIndex,
       //   LPCRECT lpcrect);
 
-      virtual int32_t run();
+      //virtual int32_t run();
 
-      virtual UINT RedrawProc();
+      //virtual UINT RedrawProc();
 
       virtual void asynch_redraw();
       virtual void _asynch_redraw();

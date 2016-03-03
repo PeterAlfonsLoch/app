@@ -122,11 +122,11 @@ namespace metrowin
          DWORD iTimeFrame = 2000;
          DWORD iMaxFailureCount = 3;
          if(s_dwLastAnalysisFrame > iTimeFrame ||
-            dwTakeTime > (iFailureTime * iMaxFailureCount))
+               dwTakeTime > (iFailureTime * iMaxFailureCount))
          {
             s_dwLastAnalysisFrame = 0;
             if(s_iAnalysisFrameFailureCount > iMaxFailureCount
-            || (dwTakeTime > (iFailureTime * iMaxFailureCount)))
+                  || (dwTakeTime > (iFailureTime * iMaxFailureCount)))
             {
                s_iFrameFailureCount++;
             }
@@ -223,56 +223,57 @@ namespace metrowin
 //   }
 
 
-   UINT window_draw::RedrawProc()
-   {
-      m_bRun = true;
-      while(m_bRun)
-      {
-         try
-         {
-            if(m_bProDevianMode)
-            {
-               _synch_redraw();
-            }
-         }
-         catch(...)
-         {
-         }
-  /*       while(::PeekMessageA(&msg, NULL, NULL, NULL, PM_NOREMOVE))
-         {
-            __get_thread()->pump_message();
-         }*/
-         int iUiDataWriteWindowTimeForTheApplicationInThisMachine = 8;
-         if(m_iFramesPerSecond == 0)
-         {
-            Sleep(1000);
-         }
-         else if((1000 / m_iFramesPerSecond) > m_dwLastDelay)
-         {
-            Sleep(MAX((DWORD) MAX(0, iUiDataWriteWindowTimeForTheApplicationInThisMachine), (1000 / m_iFramesPerSecond) - m_dwLastDelay));
-         }
-         else
-         {
-            Sleep(iUiDataWriteWindowTimeForTheApplicationInThisMachine);
-         }
-      }
-      //delete this;
-      return 0;
-   }
+   //UINT window_draw::RedrawProc()
+   //{
+   //   m_bRun = true;
+   //   while(m_bRun)
+   //   {
+   //      try
+   //      {
+   //         if(m_bProDevianMode)
+   //         {
+   //            _synch_redraw();
+   //         }
+   //      }
+   //      catch(...)
+   //      {
+   //      }
+   //      /*       while(::PeekMessageA(&msg, NULL, NULL, NULL, PM_NOREMOVE))
+   //             {
+   //                __get_thread()->pump_message();
+   //             }*/
+   //      int iUiDataWriteWindowTimeForTheApplicationInThisMachine = 8;
+   //      if(m_iFramesPerSecond == 0)
+   //      {
+   //         Sleep(1000);
+   //      }
+   //      else if((1000 / m_iFramesPerSecond) > m_dwLastDelay)
+   //      {
+   //         Sleep(MAX((DWORD) MAX(0, iUiDataWriteWindowTimeForTheApplicationInThisMachine), (1000 / m_iFramesPerSecond) - m_dwLastDelay));
+   //      }
+   //      else
+   //      {
+   //         Sleep(iUiDataWriteWindowTimeForTheApplicationInThisMachine);
+   //      }
+   //   }
+   //   //delete this;
+   //   return 0;
+   //}
 
-   int32_t window_draw::run()
-   {
+   //int32_t window_draw::run()
+   //{
 
-      m_dwLastRedrawRequest = ::get_tick_count();
-      m_bRender = false;
-      m_dwLastUpdate = false;
+   //   m_dwLastRedrawRequest = ::get_tick_count();
+   //   m_bRender = false;
+   //   m_dwLastUpdate = false;
 
-      return RedrawProc();
-   }
+   //   return RedrawProc();
+   //}
 
 
    bool window_draw::UpdateBuffer()
    {
+
       //synch_lock ml(&user_mutex());
       if(m_bRender)
          return false;
@@ -281,13 +282,13 @@ namespace metrowin
          return false;
       keep<bool> keepRender(&m_bRender, true, false, true);
       static bool bTest = false;
-   //   semaphore * psemaphore = TwfGetBufferSemaphore();
-   //   single_lock slSemaphoreBuffer(psemaphore, FALSE);
-   //   if(!slSemaphoreBuffer.lock(duration::zero()))
-   //   {
-   ////xxx      AddUpdateRect(rectClip, true);
-   ////      return false;
-   //   }
+      //   semaphore * psemaphore = TwfGetBufferSemaphore();
+      //   single_lock slSemaphoreBuffer(psemaphore, FALSE);
+      //   if(!slSemaphoreBuffer.lock(duration::zero()))
+      //   {
+      ////xxx      AddUpdateRect(rectClip, true);
+      ////      return false;
+      //   }
 
 
 
@@ -295,13 +296,13 @@ namespace metrowin
 
 
 
-      user::interaction_ptra wndpa;
+      //user::interaction_ptra wndpa;
 
-      wndpa = System.m_uiptraFrame;
+      //wndpa = System.m_uiptraFrame;
 
-      user::oswindow_tree::Array hwndtreea;
+      //user::oswindow_tree::Array hwndtreea;
 
-      HRESULT hr = m_xapp->m_directx->Render(wndpa);
+      HRESULT hr = m_xapp->m_directx->Render();
 
 //      ml.unlock();
 

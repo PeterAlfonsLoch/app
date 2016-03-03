@@ -8,7 +8,7 @@ namespace user
 
    interaction_base::interaction_base()
    {
-      
+
       m_bRedraw = false;
 
    }
@@ -118,16 +118,16 @@ namespace user
 
       rect rect;
 
-   Restart:
+Restart:
 
       for(int32_t i = 0; i < array.get_size(); i++)
       {
          for(int32_t j = i + 1; j < array.get_size(); j++)
          {
             if(RedrawOptimize(
-               rect,
-               array[i],
-               array[j]))
+                     rect,
+                     array[i],
+                     array[j]))
             {
                array[i] = rect;
                array.remove_at(j);
@@ -1303,7 +1303,7 @@ namespace user
       }
       catch(...)
       {
-      
+
       }
 
       try
@@ -1339,8 +1339,8 @@ namespace user
 
 
    void interaction_base::RepositionBars(UINT nIDFirst,UINT nIDLast,id nIDLeftOver,
-      UINT nFlag,LPRECT lpRectParam,
-      LPCRECT lpRectClient,bool bStretch)
+                                         UINT nFlag,LPRECT lpRectParam,
+                                         LPCRECT lpRectClient,bool bStretch)
    {
 
       ::exception::throw_interface_only(get_app());
@@ -1889,7 +1889,7 @@ namespace user
    void interaction_base::_001UpdateWindow()
    {
 
-      ::exception::throw_interface_only(get_app());
+      //::exception::throw_interface_only(get_app());
 
    }
 

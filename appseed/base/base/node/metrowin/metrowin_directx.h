@@ -59,7 +59,7 @@ namespace metrowin
       virtual void SetDpi(float dpi);
       virtual void UpdateForWindowSizeChange();
       virtual void CreateWindowSizeDependentResources();
-      virtual HRESULT Render(::user::interaction_ptra & uiptra);
+      virtual HRESULT Render();
       virtual void Present();
       void ValidateDevice();
 

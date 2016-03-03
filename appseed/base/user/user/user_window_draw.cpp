@@ -206,9 +206,9 @@ namespace user
 
                char sz[512];
 
-               ::ultoa_dup(sz, micros, 10);
-               ::OutputDebugString(sz);
-               ::OutputDebugString("\n");
+               //::ultoa_dup(sz, micros, 10);
+               //::OutputDebugString(sz);
+               //::OutputDebugString("\n");
 
             }
 

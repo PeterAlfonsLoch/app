@@ -695,7 +695,7 @@ namespace metrowin
       virtual void _001BaseWndInterfaceMap();
 
 
-      void _001UpdateWindow();
+      // void _001UpdateWindow();
 
 
       void _001OnTriggerMouseInside();

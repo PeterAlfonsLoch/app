@@ -677,6 +677,13 @@ namespace metrowin
       parameters.pScrollRect = nullptr;
       parameters.pScrollOffset = nullptr;
 
+      if (m_swapChain == nullptr)
+      {
+
+         return;
+
+      }
+
       // The first argument instructs DXGI to block until VSync, putting the application
       // to sleep until the next VSync. This ensures we don't waste any cycles rendering
       // frames that will never be displayed to the screen.
@@ -758,7 +765,7 @@ namespace metrowin
    }
 
 
-   HRESULT directx_base::Render(::user::interaction_ptra & uiptra)
+   HRESULT directx_base::Render()
    {
       synch_lock sl(&draw2d_direct2_mutex());
 
