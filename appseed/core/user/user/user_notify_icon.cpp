@@ -67,8 +67,9 @@ namespace user
          DestroyWindow();
          return false;
       }
+#elif defined(LINUX)
+      app_indicator_set_status(m_pappindicator, APP_INDICATOR_STATUS_ACTIVE);
 #else
-      throw todo(get_app());
 #endif
 
       m_bCreated = true;
