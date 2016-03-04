@@ -139,7 +139,7 @@ namespace draw2d
          return true;
 
       sp(element) e;
-      
+
       e = canew(element);
 
       e->m_etype               = element::type_arc;
@@ -154,6 +154,101 @@ namespace draw2d
       e->u.m_arc.m_ptStart.y   = e->u.m_arc.m_yCenter + e->u.m_arc.m_dRadiusY * sin(e->u.m_arc.m_dAngle1);
       e->u.m_arc.m_ptEnd.x     = e->u.m_arc.m_xCenter + e->u.m_arc.m_dRadiusX * cos(e->u.m_arc.m_dAngle2);
       e->u.m_arc.m_ptEnd.y     = e->u.m_arc.m_yCenter + e->u.m_arc.m_dRadiusY * sin(e->u.m_arc.m_dAngle2);
+
+      m_elementa.add(e);
+
+      m_bHasPoint = true;
+      m_pt.x = (LONG)e->u.m_arc.m_ptEnd.x;
+      m_pt.y = (LONG)e->u.m_arc.m_ptEnd.y;
+
+      m_bUpdated = false;
+
+      return true;
+
+   }
+
+
+
+   bool path::varc(const POINT & pt, double h, double dAngle)
+   {
+
+      if (fabs(dAngle) <= 0.00001 || fabs(h) <= 0.001)
+      {
+         return false;
+      }
+
+      dAngle *= 3.1415 / 180.0;
+
+      sp(element) e;
+
+      e = canew(element);
+      double t = 3.1415 / 2.0 - dAngle;
+      double x = pt.x;
+      double y = pt.y;
+      e->u.m_arc.m_yCenter = pt.y + h/2.0;
+      double b = pt.y - e->u.m_arc.m_yCenter / sin(t);
+      double a = sqrt((b*b*x*x) / (y*y - b *b));
+
+      e->u.m_arc.m_dRadiusX = a;
+      e->u.m_arc.m_dRadiusY = b;
+      e->m_etype = element::type_arc;
+      e->u.m_arc.m_xCenter = pt.x - a * cos(t);
+      e->u.m_arc.m_dAngle1 = t * g_dPi / 180.0;
+      e->u.m_arc.m_dAngle2 = e->u.m_arc.m_dAngle1 / 2.0 - 90.0;
+      e->u.m_arc.m_dAngle = (e->u.m_arc.m_dAngle2 - e->u.m_arc.m_dAngle1) * g_dPi / 180.0;
+
+      e->u.m_arc.m_ptStart.x = e->u.m_arc.m_xCenter + e->u.m_arc.m_dRadiusX * cos(e->u.m_arc.m_dAngle1);
+      e->u.m_arc.m_ptStart.y = e->u.m_arc.m_yCenter + e->u.m_arc.m_dRadiusY * sin(e->u.m_arc.m_dAngle1);
+      e->u.m_arc.m_ptEnd.x = e->u.m_arc.m_xCenter + e->u.m_arc.m_dRadiusX * cos(e->u.m_arc.m_dAngle2);
+      e->u.m_arc.m_ptEnd.y = e->u.m_arc.m_yCenter + e->u.m_arc.m_dRadiusY * sin(e->u.m_arc.m_dAngle2);
+
+      m_elementa.add(e);
+
+      m_bHasPoint = true;
+      m_pt.x = (LONG)e->u.m_arc.m_ptEnd.x;
+      m_pt.y = (LONG)e->u.m_arc.m_ptEnd.y;
+
+      m_bUpdated = false;
+
+      return true;
+
+   }
+
+   bool path::harc(const POINT & pt, double w, double dAngle)
+   {
+
+
+      if (fabs(dAngle) <= 0.00001 || fabs(w) <= 0.001)
+      {
+         return false;
+      }
+
+      dAngle *= g_dPi / 180.0;
+
+      sp(element) e;
+
+      e = canew(element);
+      double t = dAngle + g_dPi / 2.0;
+      e->u.m_arc.m_xCenter = pt.x + w / 2.0;
+      double a = (pt.x - e->u.m_arc.m_xCenter) / cos(t);
+      double x = pt.x - e->u.m_arc.m_xCenter;
+      double b = 0;
+      double y = b * b  *w / (4.0* tan(dAngle));
+      y = 0;
+      b = sqrt((a*a*y*y) / (a*a-x *x));
+
+      e->u.m_arc.m_dRadiusX = a;
+      e->u.m_arc.m_dRadiusY = b;
+      e->m_etype = element::type_arc;
+      e->u.m_arc.m_yCenter = pt.y - b * sin(t);
+      e->u.m_arc.m_dAngle1 = t;
+      e->u.m_arc.m_dAngle2 = fmod(g_dPi - e->u.m_arc.m_dAngle1, g_dPi);
+      e->u.m_arc.m_dAngle = e->u.m_arc.m_dAngle2 - e->u.m_arc.m_dAngle1;
+
+      e->u.m_arc.m_ptStart.x = e->u.m_arc.m_xCenter + e->u.m_arc.m_dRadiusX * cos(e->u.m_arc.m_dAngle1);
+      e->u.m_arc.m_ptStart.y = e->u.m_arc.m_yCenter + e->u.m_arc.m_dRadiusY * sin(e->u.m_arc.m_dAngle1);
+      e->u.m_arc.m_ptEnd.x = e->u.m_arc.m_xCenter + e->u.m_arc.m_dRadiusX * cos(e->u.m_arc.m_dAngle2);
+      e->u.m_arc.m_ptEnd.y = e->u.m_arc.m_yCenter + e->u.m_arc.m_dRadiusY * sin(e->u.m_arc.m_dAngle2);
 
       m_elementa.add(e);
 
@@ -215,7 +310,7 @@ namespace draw2d
    {
 
       sp(element) e;
-      
+
       e = canew(element);
 
       e->m_etype               = element::type_move;
@@ -244,7 +339,7 @@ namespace draw2d
       }
 
       sp(element) e;
-      
+
       e = canew(element);
 
       e->m_etype               = element::type_line;
@@ -316,7 +411,7 @@ namespace draw2d
 
 
       sp(element) e;
-      
+
       e = canew(element);
 
       e->m_etype               = element::type_end;

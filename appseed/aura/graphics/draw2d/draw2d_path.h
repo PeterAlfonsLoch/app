@@ -11,7 +11,7 @@ namespace draw2d
    public:
 
 
-     class CLASS_DECL_AURA arc
+      class CLASS_DECL_AURA arc
       {
       public:
 
@@ -28,18 +28,18 @@ namespace draw2d
 
 
       };
-     class CLASS_DECL_AURA rect
-     {
-     public:
+      class CLASS_DECL_AURA rect
+      {
+      public:
 
 
-        double   m_x;
-        double   m_y;
-        double   m_cx;
-        double   m_cy;
+         double   m_x;
+         double   m_y;
+         double   m_cx;
+         double   m_cy;
 
 
-     };
+      };
 
       class CLASS_DECL_AURA move
       {
@@ -86,46 +86,46 @@ namespace draw2d
       };
 
       class CLASS_DECL_AURA element :
-      virtual public ::object
+         virtual public ::object
       {
       public:
 
 
-            enum e_type
-            {
-               type_none,
-               type_begin,
-               type_arc,
-               type_line,
-               type_move,
-               type_string,
-               type_rect,
-               type_end
-                  
-            };
+         enum e_type
+         {
+            type_none,
+            type_begin,
+            type_arc,
+            type_line,
+            type_move,
+            type_string,
+            type_rect,
+            type_end
+
+         };
 
 
-            union
-            {
+         union
+         {
 
 
-               arc      m_arc;
-               move     m_move;
-               line     m_line;
-               end      m_end;
-               rect     m_rect;
+            arc      m_arc;
+            move     m_move;
+            line     m_line;
+            end      m_end;
+            rect     m_rect;
 
-            } u;
+         } u;
 
-            string_path m_stringpath;
+         string_path m_stringpath;
 
-            e_type m_etype;
+         e_type m_etype;
 
-            element();
-            element(const element & e);
-            ~element();
+         element();
+         element(const element & e);
+         ~element();
 
-            element & operator = (const element & e);
+         element & operator = (const element & e);
 
       };
 
@@ -159,6 +159,8 @@ namespace draw2d
 
       virtual bool add_arc(const RECT & rect,double iStart,double iAngle);
       virtual bool add_arc(const RECTD & rect,double iStart,double iAngle);
+      virtual bool varc(const POINT & pt, double h, double dAngle);
+      virtual bool harc(const POINT & pt, double w, double dAngle);
 
       using ::draw2d::object::add_line;
       virtual bool add_line(int32_t x1, int32_t y1, int32_t x2, int32_t y2);
@@ -241,9 +243,9 @@ namespace draw2d
       {
 
          smart_pointer < path >::operator = (ppath);
-         
+
          return *this;
-         
+
       }
 
 
