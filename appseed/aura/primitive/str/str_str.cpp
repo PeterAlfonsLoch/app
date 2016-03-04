@@ -2,7 +2,7 @@
 
 
 #ifdef LINUX
-////#include <ctype.h>
+   ////#include <ctype.h>
 #endif
 
 
@@ -13,14 +13,14 @@ namespace str
 
 
    const char trailingBytesForUTF8[256] = {
-(const char)  -1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-            0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-            1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1, 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-            2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2, 3,3,3,3,3,3,3,3,4,4,4,4,5,5,5,5
+      (const char)  -1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+      0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+      0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+      0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+      0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+      0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+      1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1, 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+      2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2, 3,3,3,3,3,3,3,3,4,4,4,4,5,5,5,5
    };
 
    void          make_lower(char * psz)
@@ -629,11 +629,21 @@ namespace str
 
       index iLen = str.get_length() - iStart;
 
+      if (iLen < iFindLen)
+      {
+
+         return -1;
+
+      }
+
 
       strsize len1;
       strsize len2;
 
       const char * psz1 = str;
+
+      psz1 += iStart;
+
       const char * psz2 = pszFind;
 
       while(true)
@@ -983,7 +993,7 @@ namespace str
       {
 
          if(strFind == string(pszIter, strFind.get_length())
-            && (strlen(pszIter) == (size_t) strFind.get_length() || !::str::ch::is_letter_or_digit(pszIter + strFind.get_length())))
+               && (strlen(pszIter) == (size_t) strFind.get_length() || !::str::ch::is_letter_or_digit(pszIter + strFind.get_length())))
          {
             return i;
          }
@@ -1009,7 +1019,7 @@ namespace str
                break;
 
             if(strFind == string(pszIter, strFind.get_length())
-               && (strlen(pszIter) == (size_t) strFind.get_length() || !::str::ch::is_letter_or_digit(pszIter + strFind.get_length())))
+                  && (strlen(pszIter) == (size_t) strFind.get_length() || !::str::ch::is_letter_or_digit(pszIter + strFind.get_length())))
             {
 
                return iStart + i;
@@ -1047,7 +1057,7 @@ namespace str
       {
 
          if(strFind == string(pszIter, strFind.get_length())
-            && (strlen(pszIter) == (size_t) strFind.get_length() || !::str::ch::is_letter(pszIter + strFind.get_length())))
+               && (strlen(pszIter) == (size_t) strFind.get_length() || !::str::ch::is_letter(pszIter + strFind.get_length())))
          {
 
             return i;
@@ -1080,7 +1090,7 @@ namespace str
                break;
 
             if(strFind == string(pszIter, strFind.get_length())
-               && (strlen(pszIter) == (size_t) strFind.get_length() || !::str::ch::is_letter(pszIter + strFind.get_length())))
+                  && (strlen(pszIter) == (size_t) strFind.get_length() || !::str::ch::is_letter(pszIter + strFind.get_length())))
             {
 
                return iStart + i;
@@ -1514,7 +1524,7 @@ namespace str
 
    }
 
-     int_ptr to_int_ptr(const char * psz)
+   int_ptr to_int_ptr(const char * psz)
    {
 
 #if defined(_LP64) || defined(_AMD64_)
@@ -1570,8 +1580,8 @@ namespace str
 
    string & from(string & str, float f)
    {
-       char sz[256];
-        sprintf(sz, "%f", f);
+      char sz[256];
+      sprintf(sz, "%f", f);
       str = sz;
 
       return str;
@@ -1581,8 +1591,8 @@ namespace str
    string & from(string & str, double d)
    {
 
-       char sz[256];
-        sprintf(sz, "%f", d);
+      char sz[256];
+      sprintf(sz, "%f", d);
       str = sz;
 
       return str;
@@ -1678,19 +1688,40 @@ namespace str
    const char * utf8_inc_slide(strsize * pslide, const char * psz)
    {
       char len =  1 + ::str::trailingBytesForUTF8[(uchar) *psz];
-      if(len == 0)   { *pslide += 0; return psz; }
+      if(len == 0)   {
+         *pslide += 0;
+         return psz;
+      }
       if(*psz++ == 0)   throw invalid_character(get_thread_app(), "invalid utf8 character");
-      if(len == 1)   { *pslide += 1; return psz; }
+      if(len == 1)   {
+         *pslide += 1;
+         return psz;
+      }
       if(*psz++ == 0)   throw invalid_character(get_thread_app(), "invalid utf8 character");
-      if(len == 2)   { *pslide += 2; return psz; }
+      if(len == 2)   {
+         *pslide += 2;
+         return psz;
+      }
       if(*psz++ == 0)   throw invalid_character(get_thread_app(), "invalid utf8 character");
-      if(len == 3)   { *pslide += 3; return psz; }
+      if(len == 3)   {
+         *pslide += 3;
+         return psz;
+      }
       if(*psz++ == 0)   throw invalid_character(get_thread_app(), "invalid utf8 character");
-      if(len == 4)   { *pslide += 4; return psz; }
+      if(len == 4)   {
+         *pslide += 4;
+         return psz;
+      }
       if(*psz++ == 0)   throw invalid_character(get_thread_app(), "invalid utf8 character");
-      if(len == 5)   { *pslide += 5; return psz; }
+      if(len == 5)   {
+         *pslide += 5;
+         return psz;
+      }
       if(*psz++ == 0)   throw invalid_character(get_thread_app(), "invalid utf8 character");
-      if(len == 6)   { *pslide += 6; return psz; }
+      if(len == 6)   {
+         *pslide += 6;
+         return psz;
+      }
       throw invalid_character(get_thread_app(), "invalid utf8 character");
    }
 
@@ -2137,7 +2168,7 @@ namespace str
       {
          throw_parsing_exception("natural greater than MAX");
       }
-      end:
+end:
       pszXml = psz;
 
       return ui;
@@ -2277,7 +2308,7 @@ namespace str
       const char * pszQc = qc;
       string qc2;
       char qclen = (char) qc.get_length();
-       char i;
+      char i;
       while(true)
       {
          pszNext = __utf8_inc(psz);
@@ -2742,32 +2773,32 @@ namespace str
    along with this program; if not, write to the Free Software
    Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
    */
-/*   string l2string(long l)
-   {
-      string str;
-      char tmp[100];
-      sprintf(tmp,"%ld",l);
-      str = tmp;
-      return str;
-   }
+   /*   string l2string(long l)
+      {
+         string str;
+         char tmp[100];
+         sprintf(tmp,"%ld",l);
+         str = tmp;
+         return str;
+      }
 
 
-   string bigint2string(uint64_t l)
-   {
-      string str;
-      uint64_t tmp = l;
-      while (tmp)
+      string bigint2string(uint64_t l)
       {
-         uint64_t a = tmp % 10;
-         str = (char)(a + 48) + str;
-         tmp /= 10;
-      }
-      if (!str.get_length())
-      {
-         str = "0";
-      }
-      return str;
-   }*/
+         string str;
+         uint64_t tmp = l;
+         while (tmp)
+         {
+            uint64_t a = tmp % 10;
+            str = (char)(a + 48) + str;
+            tmp /= 10;
+         }
+         if (!str.get_length())
+         {
+            str = "0";
+         }
+         return str;
+      }*/
 
    int32_t to_int(const char * psz)
    {
@@ -3101,7 +3132,7 @@ namespace str
    }
 
 
-    string          to_lower(const char * psz)
+   string          to_lower(const char * psz)
    {
 
       return string(psz).make_lower();
