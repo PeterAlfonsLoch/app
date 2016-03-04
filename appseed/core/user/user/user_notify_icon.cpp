@@ -1,6 +1,11 @@
 //#include "framework.h"
 
 
+#ifdef LINUX
+#include <libappindicator-0.1/libappindicator/app-indicator.h>
+#endif
+
+
 namespace user
 {
 
@@ -9,6 +14,8 @@ namespace user
    {
 #ifdef WINDOWSEX
       m_nid.cbSize = sizeof(m_nid);
+#elif defined(LINUX)
+      m_pappindicator = NULL;
 #endif
       m_bCreated = false;
 
@@ -44,6 +51,11 @@ namespace user
       m_nid.hIcon                = *hicon;
       m_nid.uFlags               = NIF_ICON | NIF_MESSAGE;
       m_nid.uCallbackMessage     = MessageNotifyIcon;
+#elif defined(LINUX)
+      m_pappindicator            = app_indicator_new(
+                                    strNotifyIcon,
+                                    strNotifyIcon + ".icon",
+                                    APP_INDICATOR_CATEGORY_APPLICATION_STATUS);
 #else
       throw todo(get_app());
 #endif

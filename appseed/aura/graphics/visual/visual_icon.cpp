@@ -78,7 +78,35 @@ namespace visual
 
 #endif
 
-}
+
+   bool icon::load_app_tray_icon(string strApp)
+   {
+
+#ifdef WINDOWS
+
+      string strPath = Application.dir().matter("main/icon.ico");
+
+      int cx = GetSystemMetrics(SM_CXSMICON);
+      int cy = GetSystemMetrics(SM_CYSMICON);
+
+      HICON hIcon = (HICON) ::LoadImageW(NULL, wstring(strPath), IMAGE_ICON, cx, cy, LR_LOADFROMFILE);
+
+      m_picon = hIcon;
+
+      return m_picon != NULL;
+
+#else
+
+      m_strAppTrayIcon = strApp;
+
+      return true;
+
+#endif
+
+   }
+
+
+} // namespace visual
 
 
 

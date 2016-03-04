@@ -416,20 +416,20 @@ namespace draw2d_cairo
 
       pdata = (byte *) m_pcolorref;
 
-      if(bApplyAlphaTransform)
+      if(!bApplyAlphaTransform)
       {
-         //int size = m_iScan * m_size.cy / sizeof(COLORREF);
-         //while(size > 0)
-         //{
-         //   if(pdata[3] != 0)
-         //   {
-         //      pdata[0] = pdata[0] * 255 / pdata[3];
-         //      pdata[1] = pdata[1] * 255 / pdata[3];
-         //      pdata[2] = pdata[2] * 255 / pdata[3];
-         //   }
-         //   pdata += 4;
-         //   size--;
-         //}
+         int size = m_iScan * m_size.cy / sizeof(COLORREF);
+         while(size > 0)
+         {
+            if(pdata[3] != 0)
+            {
+               pdata[0] = pdata[0] * 255 / pdata[3];
+               pdata[1] = pdata[1] * 255 / pdata[3];
+               pdata[2] = pdata[2] * 255 / pdata[3];
+            }
+            pdata += 4;
+            size--;
+         }
          ((dib *) this)->m_bTrans = true;
       }
       else
@@ -2730,7 +2730,7 @@ namespace draw2d_cairo
 
       m_spgraphics->SetViewportOrg(0, 0);
 
-      map(false);
+      map(true);
 
       rect rect(rectWindow);
 

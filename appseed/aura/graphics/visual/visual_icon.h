@@ -13,7 +13,9 @@ namespace visual
 
       void *   m_picon;
       bool  m_bAutoDelete;
-
+#ifdef LINUX
+      string m_strAppTrayIcon;
+#endif
 
       icon();
       icon(void * picon);
@@ -28,6 +30,7 @@ namespace visual
       operator HICON();
 #endif
 
+      bool load_app_tray_icon(string strPath);
 
    };
 

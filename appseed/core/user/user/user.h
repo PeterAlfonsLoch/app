@@ -320,6 +320,10 @@ namespace user
 
 #include "user_document_manager.h"
 
+#ifdef LINUX
+      typedef struct _AppIndicator AppIndicator;
+#endif
+
 
 #include "user_notification_area.h"
 #include "user_notify_icon.h"

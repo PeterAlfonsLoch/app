@@ -24,6 +24,8 @@ namespace user
       bool     m_bCreated;
 #ifdef WINDOWSEX
       NOTIFYICONDATA m_nid;
+#elif defined(LINUX)
+      AppIndicator *    m_pappindicator;
 #endif
       notify_icon_listener * m_plistener;
 
