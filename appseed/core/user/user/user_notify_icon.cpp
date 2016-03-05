@@ -61,11 +61,11 @@ namespace user
       if(m_bCreated)
          return false;
 
-      string strNotifyIcon;
+      m_strId.Format("user::notify_icon - %d", uiId);
 
-      strNotifyIcon.Format("user::notify_icon - %d", uiId);
+      m_strId = "ca2-" + hicon->m_strAppTrayIcon + "-" + m_strId;
 
-      if(!create_message_queue(strNotifyIcon))
+      if(!create_message_queue(m_strId))
          return false;
 
       m_uiId                     = uiId;
@@ -78,48 +78,78 @@ namespace user
 #elif defined(LINUX)
 #else
       throw todo(get_app());
+
 #endif
+
       m_plistener                = plistener;
 
 #ifdef WINDOWSEX
+
       if(!Shell_NotifyIcon(NIM_ADD, &m_nid))
       {
+
+         m_plistener = NULL;
+
          DestroyWindow();
+
          return false;
+
       }
+
 #elif defined(LINUX)
-{
+
+      {
+
          BASECORE_APP_INDICATOR_NEW* f = (BASECORE_APP_INDICATOR_NEW *) dlsym(g_pbasecore, "basecore_app_indicator_new");
 
          string strFolder("/ca2/");
+
          string str = hicon->m_strAppTrayIcon;
+
          str.replace("-", "_");
+
          str.replace("/", "_");
+
          str.replace("\\", "_");
+
          if(::str::begins_eat_ci(str, "app_veriwell_"))
          {
+
             strFolder+="app-veriwell";
+
          }
          else if(::str::begins_eat_ci(str, "app_core_"))
          {
+
             strFolder+="app-core";
+
          }
          else
          {
+
             strFolder+="app";
+
          }
 
          strFolder+= "/appmatter/" + str;
 
          strFolder += "/_std/_std/main/";
 
-      m_pindicator = (*f)(strNotifyIcon,"icon128", strFolder, this);
-   }
-   if(m_pindicator == NULL)
-      {
-         DestroyWindow();
-         return false;
+         m_pindicator = (*f)(m_strId,"icon128", strFolder, this);
+
       }
+
+      if(m_pindicator == NULL)
+      {
+
+         m_plistener = NULL;
+
+         DestroyWindow();
+
+         return false;
+
+      }
+
 #else
 #endif
 

@@ -30,6 +30,7 @@ namespace user
 
       UINT     m_uiId;
       bool     m_bCreated;
+      string   m_strId;
 #ifdef WINDOWSEX
       NOTIFYICONDATA m_nid;
 #elif defined(LINUX)
