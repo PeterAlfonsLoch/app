@@ -154,6 +154,10 @@
 		<Unit filename="base/node/linux/linux.h" />
 		<Unit filename="base/node/linux/linux_copydesk.h" />
 		<Unit filename="base/node/linux/linux_factory_exchange.h" />
+		<Unit filename="base/node/linux/linux_interaction_impl.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="base/node/linux/linux_interaction_impl.h" />
 		<Unit filename="base/node/linux/linux_internal.h" />
 		<Unit filename="base/node/linux/linux_message_queue.h" />
