@@ -111,16 +111,21 @@ public:
    int                  m_iTry;
    void *               m_pvoidRet;
    GtkWidget *          m_pmenu;
-   GtkWidget *          m_pmenuitemClose;
-   int                  m_iClose;
+   int                  m_iOpen;
    bool                 m_bQuitGtk;
 
 
    basecore_data();
+   ~basecore_data()
+   {
+
+   }
    virtual void post();
    virtual void * process();
    virtual void * wait();
    gboolean run();
+
+   GtkMenuItem * get_menu_item_close();
 
 };
 
@@ -137,8 +142,7 @@ basecore_data::basecore_data()
    m_pmenu = NULL;
    m_bLoop = false;
    m_bTerm = true;
-   m_iClose = -1;
-   m_pmenuitemClose = NULL;
+   m_iOpen = -1;
    m_bQuitGtk = false;
 }
 
@@ -277,12 +281,16 @@ void * basecore_app_indicator_init(indicator * pind, i_close_quit * pi)
 }
 
 
-void basecore_app_indicator_term(void * pind)
+void basecore_app_indicator_term(void * pvoidInd)
 {
 
-   indicator_term * data = new indicator_term((indicator *) pind);
+   indicator * pind = (indicator *) pvoidInd;
+
+   indicator_term * data = new indicator_term(pind);
 
    data->process();
+
+   pind->wait();
 
 }
 
@@ -352,6 +360,22 @@ void basecore_term()
 }
 
 
+GtkMenuItem * basecore_data::get_menu_item_close()
+{
+
+   GtkMenuItem * pmenuitemClose = NULL;
+
+   GList * l = gtk_container_get_children(GTK_CONTAINER(m_pmenu));
+
+   GtkWidget * pwidget = (GtkWidget *)l->data;
+
+   g_list_free1(l);
+
+   pmenuitemClose = GTK_MENU_ITEM(pwidget);
+
+   return pmenuitemClose;
+
+}
 
 gboolean basecore_data::run()
 {
@@ -388,26 +412,16 @@ gboolean basecore_data::run()
          if(m_pmenu)
          {
 
-            if(m_pmenuitemClose == NULL)
-            {
-
-               GList * l = gtk_container_get_children(GTK_CONTAINER(m_pmenu));
-
-               m_pmenuitemClose = (GtkWidget *)l->data;
-
-               g_list_free1(l);
-
-            }
 
             if(m_piclosequit->__close_is_closed())
             {
 
-               if(m_iClose != 0)
+               if(m_iOpen != 0)
                {
 
-                  gtk_menu_item_set_label(GTK_MENU_ITEM(m_pmenuitemClose), "Open");
+                  gtk_menu_item_set_label(get_menu_item_close(), "Open");
 
-                  m_iClose = 0;
+                  m_iOpen = 0;
 
                }
 
@@ -415,12 +429,12 @@ gboolean basecore_data::run()
             else
             {
 
-               if(m_iClose != 1)
+               if(m_iOpen != 1)
                {
 
-                  gtk_menu_item_set_label(GTK_MENU_ITEM(m_pmenuitemClose), "Close");
+                  gtk_menu_item_set_label(get_menu_item_close(), "Close");
 
-                  m_iClose = 1;
+                  m_iOpen = 1;
 
                }
 
@@ -439,11 +453,11 @@ gboolean basecore_data::run()
 
             GtkWidget * pmenu = idle_basecore_app_indicator_init(m_pind, m_piclosequit);
 
-            indicator * pind = (indicator*)this;
+            m_pind->init(m_piclosequit, pmenu);
 
-            pind->init(m_piclosequit, pmenu);
+            m_pind->post();
 
-            pind->post();
+            m_pvoidRet = m_pind;
 
          }
 
@@ -454,8 +468,6 @@ gboolean basecore_data::run()
          app_indicator_set_status(m_pindicator, APP_INDICATOR_STATUS_PASSIVE);
 
          m_pind->m_bTerm = true;
-
-         m_pind->wait();
 
       }
    }

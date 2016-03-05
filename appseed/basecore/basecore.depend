@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1457193382 source:/ca2/app/appseed/basecore/basecore.cpp
+1457196498 source:/ca2/app/appseed/basecore/basecore.cpp
 	"basecore.h"
 	<gtk/gtk.h>
 	<libappindicator-0.1/libappindicator/app-indicator.h>

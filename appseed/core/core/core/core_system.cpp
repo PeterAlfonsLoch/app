@@ -205,7 +205,7 @@ namespace core
          g_pbasecore = dlopen("libbasecore.so", RTLD_LOCAL | RTLD_NOW);
          BASECORE_INIT * f =  (BASECORE_INIT *) dlsym(g_pbasecore, "basecore_init");
          (*f)();
-
+OutputDebugString("gtk_main exited");
 
          });
 

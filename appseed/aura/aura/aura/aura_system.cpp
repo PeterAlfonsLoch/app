@@ -2191,10 +2191,11 @@ namespace aura
 
       int i = 284;
 
+      MESSAGE msg;
       while(i > 0 && ptra.get_size() > 0)
       {
 
-         if(::PeekMessage(NULL, NULL, 0, 0, PM_NOREMOVE))
+         if(::PeekMessage(&msg, NULL, 0, 0, PM_NOREMOVE))
          {
             ::get_thread()->defer_pump_message();
          }
@@ -2258,7 +2259,7 @@ namespace aura
       while(i > 0 && ptra.get_size() > 0)
       {
 
-         if(::PeekMessage(NULL, NULL, 0, 0, PM_NOREMOVE))
+         if(::PeekMessage(&msg, NULL, 0, 0, PM_NOREMOVE))
          {
 
             ::get_thread()->defer_pump_message();
