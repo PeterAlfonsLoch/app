@@ -11,6 +11,15 @@
 #define new AURA_NEW
 #endif
 
+#ifdef LINUX
+#include "basecore/basecore.h"
+#include <dlfcn.h>
+
+void * g_pbasecore = NULL;
+
+
+typedef void BASECORE_INIT();
+#endif // LINUX
 
 
 namespace core
@@ -186,6 +195,22 @@ namespace core
 
 
 
+#ifdef LINUX
+
+         ::fork(get_app(),[=]()
+         {
+
+            ::get_thread()->unregister_from_required_threads();
+
+         g_pbasecore = dlopen("libbasecore.so", RTLD_LOCAL | RTLD_NOW);
+         BASECORE_INIT * f =  (BASECORE_INIT *) dlsym(g_pbasecore, "basecore_init");
+         (*f)();
+
+
+         });
+
+#endif
+
       //m_phtml = create_html();
 
       //m_phtml->add_ref();
@@ -297,7 +322,7 @@ namespace core
       m_spfilehandler->m_sptree->remove_all();
 
    }
-   
+
    void system::on_end_find_applications_from_cache(::file::byte_istream & is)
    {
 
@@ -381,6 +406,11 @@ namespace core
       __wait_threading_count(::millis((5000) * 8));
 
 
+      #ifdef LINUX
+      BASECORE_INIT * f =  (BASECORE_INIT *) dlsym(g_pbasecore, "basecore_term");
+      (*f)();
+
+      #endif
 
       int32_t iRet = m_iReturnCode;
 
@@ -488,10 +518,10 @@ namespace core
 
    ::core::session * system::get_platform(index iEdge,application_bias * pbiasCreation)
    {
-      
+
       if(iEdge == 0)
          return System.m_pcoresession;
-      
+
       ::core::session * pbergedge = NULL;
 
       if(m_pbergedgemap == NULL)
@@ -499,7 +529,7 @@ namespace core
 
       if(!m_pbergedgemap->Lookup(iEdge,pbergedge))
       {
-         
+
          ::aura::application * papp = create_application("application", "session", true, pbiasCreation);
 
          if (papp == NULL)
@@ -606,9 +636,9 @@ namespace core
    {
 
       ::core::session * pplatform = get_platform(pcreate->m_spCommandLine->m_iEdge,pcreate->m_spCommandLine->m_pbiasCreate);
-      
+
       ::base::system::on_request(pcreate);
- 
+
 
    }
 
@@ -741,9 +771,9 @@ namespace core
 
    index system::get_new_bergedge(application_bias * pbiasCreation)
    {
-      
+
       index iNewEdge = m_iNewEdge;
-      
+
       ::core::session * pbergedge = NULL;
 
       while(m_pbergedgemap->Lookup(iNewEdge,pbergedge))
@@ -860,7 +890,7 @@ namespace core
 
    }
 
-   
+
 
    void system::post_fork_uri(const char * pszUri,application_bias * pbiasCreate)
    {
@@ -919,7 +949,7 @@ namespace core
    bool system::set_main_init_data(::aura::main_init_data * pdata)
    {
 
-   
+
       return base::system::set_main_init_data(pdata);
 
    }

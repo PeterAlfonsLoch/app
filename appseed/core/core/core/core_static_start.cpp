@@ -2,8 +2,11 @@
 //  core_static_start
 //
 
+
+
 namespace core
 {
+
 
 
    namespace static_start
@@ -12,7 +15,6 @@ namespace core
 
       CLASS_DECL_CORE void init()
       {
-         
 
 
       }

@@ -1,10 +1,15 @@
 //#include "framework.h"
 
 
+static ::user::notify_icon * g_pnotifyiconLast = NULL;
 #ifdef LINUX
-#include <libappindicator-0.1/libappindicator/app-indicator.h>
+#include <dlfcn.h>
+BEGIN_EXTERN_C
+typedef void * BASECORE_APP_INDICATOR_NEW(const char *, const char *, i_close_quit *);
+typedef void BASECORE_APP_INDICATOR_TERM(void *);
+END_EXTERN_C
+extern void * g_pbasecore;
 #endif
-
 
 namespace user
 {
@@ -12,19 +17,38 @@ namespace user
    notify_icon::notify_icon(::aura::application * papp) :
       object(papp)
    {
+
+      g_pnotifyiconLast = this;
+
 #ifdef WINDOWSEX
+
       m_nid.cbSize = sizeof(m_nid);
+
 #elif defined(LINUX)
-      m_pappindicator = NULL;
+
+      m_pindicator = NULL;
+
 #endif
+
       m_bCreated = false;
 
    }
 
+
    notify_icon::~notify_icon()
    {
+
       Destroy();
+
+      if(g_pnotifyiconLast== this)
+      {
+
+         g_pnotifyiconLast = NULL;
+
+      }
+
    }
+
 
    void notify_icon::install_message_handling(::message::dispatch * pinterface)
    {
@@ -52,10 +76,6 @@ namespace user
       m_nid.uFlags               = NIF_ICON | NIF_MESSAGE;
       m_nid.uCallbackMessage     = MessageNotifyIcon;
 #elif defined(LINUX)
-      m_pappindicator            = app_indicator_new(
-                                    strNotifyIcon,
-                                    strNotifyIcon + ".icon",
-                                    APP_INDICATOR_CATEGORY_APPLICATION_STATUS);
 #else
       throw todo(get_app());
 #endif
@@ -68,7 +88,16 @@ namespace user
          return false;
       }
 #elif defined(LINUX)
-      app_indicator_set_status(m_pappindicator, APP_INDICATOR_STATUS_ACTIVE);
+{
+         BASECORE_APP_INDICATOR_NEW* f = (BASECORE_APP_INDICATOR_NEW *) dlsym(g_pbasecore, "basecore_app_indicator_new");
+
+      m_pindicator = (*f)(strNotifyIcon,hicon->m_strAppTrayIcon, this);
+   }
+   if(m_pindicator == NULL)
+      {
+         DestroyWindow();
+         return false;
+      }
 #else
 #endif
 
@@ -109,6 +138,7 @@ namespace user
       if(!m_bCreated)
          return false;
 
+
 #ifdef WINDOWSEX
       m_nid.uFlags = 0;
 
@@ -116,6 +146,12 @@ namespace user
       {
          return false;
       }
+#elif defined(LINUX)
+{
+         BASECORE_APP_INDICATOR_TERM * f =  (BASECORE_APP_INDICATOR_TERM *) dlsym(g_pbasecore, "basecore_app_indicator_term");
+
+      (*f)(m_pindicator);
+   }
 #else
       throw todo(get_app());
 #endif
@@ -138,5 +174,31 @@ namespace user
    }
 
 
+   void notify_icon::__close()
+   {
+
+      m_plistener->OnNotifyIconMessage(m_uiId, WM_CLOSE);
+
+   }
+
+
+   void notify_icon::__quit()
+   {
+
+      m_plistener->OnNotifyIconMessage(m_uiId, WM_QUIT);
+
+   }
+
+
+   bool notify_icon::__close_is_closed()
+   {
+
+
+      return m_plistener->__close_is_closed();
+
+   }
+
+
 } // namespace user
+
 

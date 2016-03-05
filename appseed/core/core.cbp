@@ -86,7 +86,6 @@
 			<Add option="-ldl" />
 			<Add option="-lpthread" />
 			<Add option="-lX11" />
-			<Add option="-lbase" />
 			<Add option="-laura" />
 			<Add option="-lauracharguess" />
 			<Add option="-laurasqlite" />
@@ -95,7 +94,7 @@
 			<Add option="-laxismysql" />
 			<Add option="-laxisbzip2" />
 			<Add option="-laxis" />
-			<Add option="-lappindicator" />
+			<Add option="-lbase" />
 			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../stage/x86" />
 			<Add directory="/usr/lib64/mysql/" />

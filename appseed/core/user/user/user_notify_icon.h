@@ -1,6 +1,11 @@
 #pragma once
 
 
+#ifdef LINUX
+#include "basecore/basecore.h"
+#endif // LINUX
+
+
 namespace user
 {
 
@@ -10,6 +15,9 @@ namespace user
 
    class CLASS_DECL_CORE notify_icon :
       virtual public ::user::interaction
+      #ifdef LINUX
+      , public i_close_quit
+      #endif
    {
    public:
 
@@ -25,7 +33,7 @@ namespace user
 #ifdef WINDOWSEX
       NOTIFYICONDATA m_nid;
 #elif defined(LINUX)
-      AppIndicator *    m_pappindicator;
+      void *    m_pindicator;
 #endif
       notify_icon_listener * m_plistener;
 
@@ -47,6 +55,9 @@ namespace user
 
       void install_message_handling(::message::dispatch * pinterface);
 
+      virtual void __close();
+      virtual void __quit();
+      virtual bool __close_is_closed();
 
    };
 

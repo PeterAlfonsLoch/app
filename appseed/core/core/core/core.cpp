@@ -12,6 +12,12 @@
 namespace core
 {
 
+   namespace static_start{
+
+   void init();
+   void term();
+   }
+
 
    void format_strings(string & rString, const char * lpszFormat, const char * const* rglpsz, int32_t nString)
    {
@@ -122,6 +128,8 @@ namespace core
       if(!defer_base_init())
          return false;
 
+      ::core::static_start::init();
+
       return true;
 
    }
@@ -129,6 +137,8 @@ namespace core
 
    CLASS_DECL_CORE bool term_core()
    {
+
+      ::core::static_start::term();
 
       defer_base_term();
 

@@ -2194,7 +2194,10 @@ namespace aura
       while(i > 0 && ptra.get_size() > 0)
       {
 
-         ::get_thread()->defer_pump_message();
+         if(::PeekMessage(NULL, NULL, 0, 0, PM_NOREMOVE))
+         {
+            ::get_thread()->defer_pump_message();
+         }
 
          for(index j = 0; j < ptra.get_size(); )
          {
@@ -2255,7 +2258,12 @@ namespace aura
       while(i > 0 && ptra.get_size() > 0)
       {
 
-         ::get_thread()->defer_pump_message();
+         if(::PeekMessage(NULL, NULL, 0, 0, PM_NOREMOVE))
+         {
+
+            ::get_thread()->defer_pump_message();
+
+         }
 
          for(index j = 0; j < ptra.get_size(); )
          {
