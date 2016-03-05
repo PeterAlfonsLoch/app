@@ -5,7 +5,7 @@ static ::user::notify_icon * g_pnotifyiconLast = NULL;
 #ifdef LINUX
 #include <dlfcn.h>
 BEGIN_EXTERN_C
-typedef void * BASECORE_APP_INDICATOR_NEW(const char *, const char *, i_close_quit *);
+typedef void * BASECORE_APP_INDICATOR_NEW(const char *, const char *, const char *, i_close_quit *);
 typedef void BASECORE_APP_INDICATOR_TERM(void *);
 END_EXTERN_C
 extern void * g_pbasecore;
@@ -91,7 +91,29 @@ namespace user
 {
          BASECORE_APP_INDICATOR_NEW* f = (BASECORE_APP_INDICATOR_NEW *) dlsym(g_pbasecore, "basecore_app_indicator_new");
 
-      m_pindicator = (*f)(strNotifyIcon,hicon->m_strAppTrayIcon, this);
+         string strFolder("/ca2/");
+         string str = hicon->m_strAppTrayIcon;
+         str.replace("-", "_");
+         str.replace("/", "_");
+         str.replace("\\", "_");
+         if(::str::begins_eat_ci(str, "app_veriwell_"))
+         {
+            strFolder+="app-veriwell";
+         }
+         else if(::str::begins_eat_ci(str, "app_core_"))
+         {
+            strFolder+="app-core";
+         }
+         else
+         {
+            strFolder+="app";
+         }
+
+         strFolder+= "/appmatter/" + str;
+
+         strFolder += "/_std/_std/main/";
+
+      m_pindicator = (*f)(strNotifyIcon,"icon128", strFolder, this);
    }
    if(m_pindicator == NULL)
       {

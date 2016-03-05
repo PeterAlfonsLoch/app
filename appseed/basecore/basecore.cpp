@@ -102,6 +102,7 @@ public:
 
    const char *         m_pszId;
    const char *         m_pszIcon;
+   const char *         m_pszFolder;
    AppIndicator *       m_pindicator;
    i_close_quit *       m_piclosequit;
    indicator *          m_pind;
@@ -148,10 +149,11 @@ basecore_data::basecore_data()
 
 struct indicator_new : public basecore_data
 {
-   indicator_new(const char * pszId, const char *pszIcon)
+   indicator_new(const char * pszId, const char *pszIcon, const char * pszFolder)
    {
       m_pszId     = pszId;
       m_pszIcon   = pszIcon;
+      m_pszFolder = pszFolder;
    }
 
 };
@@ -242,10 +244,10 @@ gboolean f1(gpointer p)
 }
 
 
-void * basecore_app_indicator_new(const char * pszId, const char * pszIcon, i_close_quit * pi)
+void * basecore_app_indicator_new(const char * pszId, const char * pszIcon, const char * pszFolder, i_close_quit * pi)
 {
 
-   indicator_new * data = new indicator_new(pszId, pszIcon);
+   indicator_new * data = new indicator_new(pszId, pszIcon, pszFolder);
 
    indicator * pind = (indicator *) data->process();
 
@@ -383,7 +385,7 @@ gboolean basecore_data::run()
    if(m_pszId != NULL && m_pszIcon != NULL)
    {
 
-      AppIndicator * pindicator = app_indicator_new_with_path(m_pszId, m_pszIcon, APP_INDICATOR_CATEGORY_APPLICATION_STATUS, "/ca2/app-veriwell/appmatter/waven/_std/_std/main/");
+      AppIndicator * pindicator = app_indicator_new_with_path(m_pszId, m_pszIcon, APP_INDICATOR_CATEGORY_APPLICATION_STATUS, m_pszFolder);
 
       if(pindicator == NULL)
       {
