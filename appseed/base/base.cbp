@@ -288,11 +288,19 @@
 		<Unit filename="base/os/ios_copy/ios_window_impl.h" />
 		<Unit filename="base/os/ios_copy/macos.h" />
 		<Unit filename="base/os/linux/linux.h" />
+		<Unit filename="base/os/linux/linux_cross_win_gdi.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="base/os/linux/linux_cross_win_gdi.h" />
 		<Unit filename="base/os/linux/linux_cross_win_gdi_internal.h" />
 		<Unit filename="base/os/linux/linux_graphics.h" />
 		<Unit filename="base/os/linux/linux_internal.h" />
 		<Unit filename="base/os/linux/linux_linux.h" />
+		<Unit filename="base/os/linux/linux_message_loop.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="base/os/linux/linux_multithreading.cpp">
 			<Option compile="0" />
 			<Option link="0" />
@@ -306,6 +314,10 @@
 			<Option link="0" />
 		</Unit>
 		<Unit filename="base/os/linux/linux_window_xlib.h" />
+		<Unit filename="base/os/linux/linux_windowing.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="base/os/linux/linux_windowing.h" />
 		<Unit filename="base/os/macos/macos.h" />
 		<Unit filename="base/os/macos/macos_cross_win_gdi.h" />
