@@ -1,8 +1,8 @@
 //#include "framework.h"
 
 #ifdef WINDOWS
-//#include <cderr.h>      // Commdlg Error definitions
-//#include <winspool.h>
+   //#include <cderr.h>      // Commdlg Error definitions
+   //#include <winspool.h>
 #endif
 
 
@@ -12,11 +12,13 @@
 namespace core
 {
 
-   namespace static_start{
+   namespace static_start
+   {
 
-   void init();
-   void term();
-   }
+      CLASS_DECL_CORE void init();
+      CLASS_DECL_CORE void term();
+
+   } // namespace static_start
 
 
    void format_strings(string & rString, const char * lpszFormat, const char * const* rglpsz, int32_t nString)
@@ -30,8 +32,8 @@ namespace core
       while (*pchSrc != '\0')
       {
          if (pchSrc[0] == '%' &&
-            ( (pchSrc[1] >= '1' && pchSrc[1] <= '9') ||
-            (pchSrc[1] >= 'A' && pchSrc[1] <= 'Z')) )
+               ( (pchSrc[1] >= '1' && pchSrc[1] <= '9') ||
+                 (pchSrc[1] >= 'A' && pchSrc[1] <= 'Z')) )
          {
             // %A comes after %9 -- we'll need it someday
             int32_t i;
@@ -56,8 +58,8 @@ namespace core
       while (*pchSrc != '\0')
       {
          if (pchSrc[0] == '%' &&
-            ( (pchSrc[1] >= '1' && pchSrc[1] <= '9') ||
-            (pchSrc[1] >= 'A' && pchSrc[1] <= 'Z')) )
+               ( (pchSrc[1] >= '1' && pchSrc[1] <= '9') ||
+                 (pchSrc[1] >= 'A' && pchSrc[1] <= 'Z')) )
          {
             // %A comes after %9 -- we'll need it someday
             int32_t i;

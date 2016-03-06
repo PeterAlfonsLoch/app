@@ -11,13 +11,12 @@ namespace visual
    public:
 
 
-      void *   m_picon;
-      bool  m_bAutoDelete;
-#ifdef LINUX
-      string m_strAppTrayIcon;
-#endif
+      void *      m_picon;
+      bool        m_bAutoDelete;
+      string      m_strAppTrayIcon;
 
-      icon();
+
+      icon(::aura::application * papp);
       icon(void * picon);
 #ifdef WINDOWS
       icon(HICON hicon);

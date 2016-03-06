@@ -3,11 +3,11 @@
 
 #ifdef WINDOWS
 
-#define DIR_SEPARATOR "\\"
+   #define DIR_SEPARATOR "\\"
 
 #else
 
-#define DIR_SEPARATOR "/"
+   #define DIR_SEPARATOR "/"
 
 #endif
 
@@ -136,13 +136,13 @@ namespace file
       }
 
 #define string_STRCAT2_beg_char_end(strCat, ch, str1, str2, beg1, end1, beg2, end2) \
-         { \
-            string & psz = strCat.GetBufferSetLength(end1 - beg1 + 1 + end2 - beg2 + 1 + 1); \
-            strncpy(psz, &((const string &)str1)[beg1], end1 - beg1 + 1); \
-            psz[end1 - beg1 + 1] = ch; \
-            strncpy(&psz[end1 - beg1 + 2], &((const string &)str2)[beg2], end2 - beg2 + 1); \
-            strPath.ReleaseBuffer(end1 - beg1 + 1 + end2 - beg2 + 1 + 1); \
-         }
+   { \
+      string & psz = strCat.GetBufferSetLength(end1 - beg1 + 1 + end2 - beg2 + 1 + 1); \
+      strncpy(psz, &((const string &)str1)[beg1], end1 - beg1 + 1); \
+      psz[end1 - beg1 + 1] = ch; \
+      strncpy(&psz[end1 - beg1 + 2], &((const string &)str2)[beg2], end2 - beg2 + 1); \
+      strPath.ReleaseBuffer(end1 - beg1 + 1 + end2 - beg2 + 1 + 1); \
+   }
 
       //::file::path system::simple_path(const string & strFolder, const string & strRelative)
       //{
@@ -824,6 +824,68 @@ namespace file
          return "";
       }
 
+      ::file::path system::appmatter(string strApp, ::file::path pathRel)
+      {
+
+         ::file::path e = element();
+
+         strsize iFind = strApp.find('/');
+
+         string strRepo;
+
+         if (iFind > 0)
+         {
+
+            strRepo = strApp.Left(iFind);
+
+            strApp = strApp.Mid(iFind + 1);
+
+         }
+         else
+         {
+
+            strApp.replace("-", "_");
+
+            strApp.replace("\\", "_");
+
+            if (::str::begins_eat_ci(strApp, "app_veriwell_"))
+            {
+
+               strRepo = "app-veriwell";
+
+            }
+            else if (::str::begins_eat_ci(strApp, "app_core_"))
+            {
+
+               strRepo = "app-core";
+
+            }
+            else if (::str::begins_eat_ci(strApp, "app_cidadedecuritiba_"))
+            {
+
+               strRepo = "app-cidadedecuritiba";
+
+            }
+            else if (::str::begins_eat_ci(strApp, "app_"))
+            {
+
+               strRepo = "app";
+
+            }
+            else
+            {
+
+               return "";
+
+            }
+
+         }
+
+         ::file::path p = e / strRepo / "appmatter" / strApp / "_std" / "_std" / pathRel;
+
+         return p;
+
+      }
 
 
       /* static const string strEn("en");
@@ -1179,7 +1241,7 @@ namespace file
       ::file::path system::commonappdata_root()
       {
 
-            return "/var/lib";
+         return "/var/lib";
 
       }
 
@@ -1193,26 +1255,26 @@ namespace file
       ::file::path system::element_commonappdata(const string & strElement)
       {
 
-      string strRelative;
+         string strRelative;
 
-      strRelative = strElement;
+         strRelative = strElement;
 
-      index iFind = strRelative.find(':');
+         index iFind = strRelative.find(':');
 
-      if(iFind >= 0)
-      {
+         if(iFind >= 0)
+         {
 
-         strsize iFind1 = strRelative.reverse_find("\\",iFind);
+            strsize iFind1 = strRelative.reverse_find("\\",iFind);
 
-         strsize iFind2 = strRelative.reverse_find("/",iFind);
+            strsize iFind2 = strRelative.reverse_find("/",iFind);
 
-         strsize iStart = MAX(iFind1 + 1,iFind2 + 1);
+            strsize iStart = MAX(iFind1 + 1,iFind2 + 1);
 
-         strRelative = strRelative.Left(iFind - 1) + "_" + strRelative.Mid(iStart,iFind - iStart) + strRelative.Mid(iFind + 1);
+            strRelative = strRelative.Left(iFind - 1) + "_" + strRelative.Mid(iStart,iFind - iStart) + strRelative.Mid(iFind + 1);
 
-      }
+         }
 
-      return commonappdata_root()/ strRelative;
+         return commonappdata_root()/ strRelative;
 
       }
 
@@ -1224,17 +1286,17 @@ namespace file
          throw interface_only_exception(get_app(), "this is an interface");
       }
 
-      
+
       ::file::path system::userappdata(::aura::application * papp)
       {
-         
+
          UNREFERENCED_PARAMETER(papp);
 
          throw interface_only_exception(get_app(), "this is an interface");
 
       }
 
-      
+
       ::file::path system::userdata(::aura::application * papp)
       {
 

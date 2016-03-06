@@ -6,7 +6,8 @@ namespace visual
 {
 
 
-   icon::icon()
+   icon::icon(::aura::application * papp) :
+      ::object(papp)
    {
 
       m_picon        = NULL;
@@ -84,7 +85,7 @@ namespace visual
 
 #ifdef WINDOWS
 
-      string strPath = Application.dir().matter("main/icon.ico");
+      string strPath = System.dir().appmatter(strApp, "main/icon.ico");
 
       int cx = GetSystemMetrics(SM_CXSMICON);
       int cy = GetSystemMetrics(SM_CYSMICON);

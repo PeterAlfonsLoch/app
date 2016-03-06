@@ -1,7 +1,7 @@
 //#include "framework.h"
 
 #ifndef METROWIN
-//#include "freeimage/Source/FreeImage.h"
+   //#include "freeimage/Source/FreeImage.h"
 #endif
 
 
@@ -22,11 +22,11 @@ image_list::image_list(::aura::application * papp) :
 
 
 image_list::image_list(const image_list & imagelist):
-::object(imagelist.get_app()),
-m_spdib(imagelist.allocer()),
-m_spdibWork(imagelist.allocer()),
-m_spdibWork2(imagelist.allocer()),
-m_spdibWork3(imagelist.allocer())
+   ::object(imagelist.get_app()),
+   m_spdib(imagelist.allocer()),
+   m_spdibWork(imagelist.allocer()),
+   m_spdibWork2(imagelist.allocer()),
+   m_spdibWork3(imagelist.allocer())
 {
    m_pmutex = new mutex(imagelist.get_app());
    m_iSize = 0;
@@ -211,16 +211,16 @@ int32_t image_list::add(::visual::icon * picon)
    //dibAlpha->Fill(255, 255, 255);
    //dibAlpha->SetIconMask(picon, m_size.cx, m_size.cy);
 
- //  ::draw2d::graphics_sp dcAlpha;
+//  ::draw2d::graphics_sp dcAlpha;
 //   dcAlpha.CreateCompatibleDC(NULL);
 //   dcAlpha.SelectObject(dibAlpha->m_hbitmap);
 
-/*  m_dcAlpha.BitBlt(
-      iItem * m_size.cx, 0,
-      m_size.cx, m_size.cy,
-      &dcAlpha,
-      0, 0,
-      SRCCOPY);*/
+   /*  m_dcAlpha.BitBlt(
+         iItem * m_size.cx, 0,
+         m_size.cx, m_size.cy,
+         &dcAlpha,
+         0, 0,
+         SRCCOPY);*/
 
 
    /*::draw2d::dib_sp dibIcon;
@@ -253,7 +253,7 @@ int32_t image_list::add(::visual::icon * picon)
 int32_t image_list::add_icon(const char * psz)
 {
 
-   ::visual::icon icon;
+   ::visual::icon icon(get_app());
 
 #ifdef WINDOWSEX
 

@@ -101,6 +101,8 @@ namespace file
          virtual ::file::path matter(::aura::application * papp,const ::file::patha & stra,bool bDir = false,const ::file::path & pszRoot = cnull,const ::file::path & pszApp = cnull);
          virtual ::file::path matter(::aura::application * papp,const ::file::path & path,bool bDir = false,const ::file::path & pszRoot = cnull,const ::file::path & pszApp = cnull);
 
+         virtual ::file::path appmatter(string strApp, ::file::path pathRel);
+
          virtual void   matter_ls(::aura::application * papp, const ::file::path & str, ::file::patha & stra);
          virtual void   matter_ls_file(::aura::application * papp,const ::file::path & str,::file::patha & stra);
 
