@@ -29,19 +29,13 @@ class BaseMiniDockFrameWnd;
 class CLASS_DECL_CORE simple_frame_window :
    virtual public ::user::frame_window,
    virtual public ::user::wndfrm::frame::WorkSetClientInterface,
-   virtual public ::user::wndfrm::frame::WorkSetListener
+   virtual public ::user::wndfrm::frame::WorkSetListener,
+   virtual public ::user::notify_icon_listener
 {
 public:
 
 
 
-   ::draw2d::dib_sp               m_dibAlpha;
-   ::database::id          m_datakeyFrame;
-
-   
-   sp(::user::wndfrm::frame::frame)       m_pframeschema;
-
-   
    class helper_task:
       public thread
    {
@@ -70,13 +64,8 @@ public:
 
    };
 
-   
-   //
+
    helper_task *                       m_phelpertask;
-//   HDC                           m_hdcOpenGL;
-//#ifdef WINDOWS
-//   HGLRC                         m_hglrc;
-//#endif
    bool                                m_bFullScreenAlt;
    bool                                m_bFullScreenCtrl;
    visual::dib_sp                      m_dibBk;
@@ -84,10 +73,20 @@ public:
    rect                                m_FullScreenWindowRect;
    visual::fastblur                    m_fastblur;
 
-   mapsp(id, id, ::user::toolbar)     m_toolbarmap;
+   mapsp(id, id, ::user::toolbar)      m_toolbarmap;
 
-   bool                             m_bTransparentFrame;
+   bool                                m_bTransparentFrame;
 
+   ::draw2d::dib_sp                    m_dibAlpha;
+   ::database::id                      m_datakeyFrame;
+
+
+   sp(::user::wndfrm::frame::frame)    m_pframeschema;
+
+
+   bool                                m_bDefaultNotifyIcon;
+   sp(::visual::icon)                  m_piconNotify;
+   sp(::user::notify_icon)             m_pnotifyicon;
 
 
    simple_frame_window(::aura::application * papp);
@@ -181,6 +180,8 @@ public:
    DECL_GEN_SIGNAL(_001OnUpdateToggleCustomFrame);
    DECL_GEN_SIGNAL(_001OnGetMinMaxInfo);
    DECL_GEN_SIGNAL(_001OnUser184);
+   DECL_GEN_SIGNAL(_001OnAppExit);
+
 
 #ifdef WINDOWSEX
    void OnNcCalcSize(bool bCalcValidRects, NCCALCSIZE_PARAMS FAR* lpncsp);
@@ -259,6 +260,11 @@ public:
    virtual bool frame_is_transparent() override;
 
 
+   virtual void OnNotifyIconClose(UINT uiNotifyIcon);
+   virtual void OnNotifyIconQuit(UINT uiNotifyIcon);
+
+
+   virtual bool __close_is_closed();
 
 
 };
