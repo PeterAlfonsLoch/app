@@ -1,6 +1,6 @@
 #pragma once
 
-
+#define WM_APPEXIT WM_APP + 1444
 
 namespace frame
 {

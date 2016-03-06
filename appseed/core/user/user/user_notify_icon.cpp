@@ -104,13 +104,15 @@ namespace user
 
          string strFolder("/ca2/");
 
-         string str = hicon->m_strAppTrayIcon;
+         string str1 = hicon->m_strAppTrayIcon;
 
-         str.replace("-", "_");
+         str1.replace("-", "_");
 
-         str.replace("/", "_");
+         str1.replace("/", "_");
 
-         str.replace("\\", "_");
+         str1.replace("\\", "_");
+
+         string str(str1);
 
          if(::str::begins_eat_ci(str, "app_veriwell_"))
          {
@@ -135,7 +137,7 @@ namespace user
 
          strFolder += "/_std/_std/main/";
 
-         m_pindicator = (*f)(m_strId,"icon128", strFolder, this);
+         m_pindicator = (*f)(m_strId,str1+"_128", strFolder, this);
 
       }
 

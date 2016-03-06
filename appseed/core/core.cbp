@@ -473,6 +473,10 @@
 		<Unit filename="user/simple/simple_edit_plain_text.h" />
 		<Unit filename="user/simple/simple_form_list_edit.h" />
 		<Unit filename="user/simple/simple_form_list_view.h" />
+		<Unit filename="user/simple/simple_frame_window.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="user/simple/simple_frame_window.h" />
 		<Unit filename="user/simple/simple_list_control.h" />
 		<Unit filename="user/simple/simple_list_header_control.h" />

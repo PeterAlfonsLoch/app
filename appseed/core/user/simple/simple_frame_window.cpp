@@ -91,6 +91,8 @@ m_dibBk(allocer()),
 m_fastblur(allocer())
 {
 
+   m_bDefaultNotifyIcon = false;
+
    m_bTransparentFrame = false;
 
    m_bblur_Background = false;
@@ -161,7 +163,22 @@ void simple_frame_window::install_message_handling(::message::dispatch * pinterf
 
    connect_update_cmd_ui("view_full_screen", &simple_frame_window::_001OnUpdateViewFullScreen);
    connect_command("view_full_screen", &simple_frame_window::_001OnViewFullScreen);
-   connect_command("app_exit", &simple_frame_window::_001OnClose);
+
+   if(m_bDefaultNotifyIcon)
+   {
+
+      connect_command("app_exit", &simple_frame_window::_001OnAppExit);
+
+   }
+   else
+   {
+
+      connect_command("app_exit", &simple_frame_window::_001OnClose);
+
+   }
+
+   IGUI_WIN_MSG_LINK(WM_APPEXIT, pinterface, this, &simple_frame_window::_001OnAppExit);
+
 }
 
 
@@ -169,15 +186,18 @@ void simple_frame_window::install_message_handling(::message::dispatch * pinterf
 
 bool simple_frame_window::IsFullScreen()
 {
+
    return WfiIsFullScreen();
+
 }
+
 
 sp(::user::interaction) simple_frame_window::WindowDataGetWnd()
 {
+
    return this;
+
 }
-
-
 
 
 void simple_frame_window::_001OnDestroy(signal_details * pobj)
@@ -396,6 +416,33 @@ void simple_frame_window::_001OnCreate(signal_details * pobj)
 
 
    create_bars();
+
+
+   if(m_bDefaultNotifyIcon)
+   {
+
+      m_piconNotify = canew(::visual::icon(get_app()));
+
+      const char * pszAppName = Application.m_strAppName;
+
+      m_piconNotify->load_app_tray_icon(pszAppName);
+
+      m_pnotifyicon = canew(::user::notify_icon(get_app()));
+
+      m_pnotifyicon->create(1, this, m_piconNotify);
+
+      if(m_workset.m_pframeschema != NULL)
+      {
+
+         m_workset.m_pframeschema->m_spcontrolbox->hide_button(::user::wndfrm::frame::button_minimize);
+
+      }
+
+      ModifyStyleEx(0, WS_EX_TOOLWINDOW, 0);
+
+   }
+
+
 
 
    pcreate->m_bRet = false;
@@ -748,8 +795,57 @@ bool simple_frame_window::GetCustomFrame()
    return m_bWindowFrame;
 }
 
+
+void simple_frame_window::_001OnAppExit(signal_details * pobj)
+{
+
+   if(pobj != NULL)
+   {
+
+      pobj->m_bRet = true;
+
+   }
+
+   System.request_exit();
+
+
+}
+
+
 void simple_frame_window::_001OnClose(signal_details * pobj)
 {
+
+   if(m_bDefaultNotifyIcon)
+   {
+
+      if(pobj != NULL)
+      {
+
+         SCAST_PTR(::message::base, pbase, pobj);
+
+         pbase->m_bRet = true;
+
+      }
+
+      if(IsWindowVisible())
+      {
+
+         ShowWindow(SW_HIDE);
+
+      }
+      else
+      {
+
+         ShowWindow(SW_SHOW);
+
+      }
+
+      return;
+
+   }
+
+
+
    if (m_iModalCount > 0)
    {
       EndModalLoop(IDOK);
@@ -2242,32 +2338,12 @@ bool simple_frame_window::on_create_bars()
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 void simple_frame_window::InitialUpdateFrame(::user::document * pDoc,bool bMakeVisible)
 {
 
    ::user::frame_window::InitialUpdateFrame(pDoc,bMakeVisible);
 
 }
-
-
-
-
-
-
 
 
 void simple_frame_window::_001OnTimer(::timer * ptimer)
@@ -2277,5 +2353,41 @@ void simple_frame_window::_001OnTimer(::timer * ptimer)
    ::user::wndfrm::frame::WorkSetClientInterface::_001OnTimer(ptimer);
 
 }
+
+
+void simple_frame_window::OnNotifyIconClose(UINT uiNotifyIcon)
+{
+
+   if(m_bDefaultNotifyIcon)
+   {
+
+      post_message(WM_CLOSE);
+
+   }
+
+}
+
+
+void simple_frame_window::OnNotifyIconQuit(UINT uiNotifyIcon)
+{
+
+   if(m_bDefaultNotifyIcon)
+   {
+
+      post_message(WM_APPEXIT);
+
+   }
+
+}
+
+
+bool simple_frame_window::__close_is_closed()
+{
+
+   return !IsWindowVisible();
+
+}
+
+
 
 
