@@ -13,8 +13,8 @@ namespace macos
    application::application(::aura::application * papp) :
       ::object(papp)
    {
-      m_pthreadimpl.alloc(allocer());
-      m_pthreadimpl->m_pthread = this;
+//      m_pthreadimpl.alloc(allocer());
+//      m_pthreadimpl->m_pthread = this;
 
       shell::theLinuxShell.Initialize();
 
@@ -110,11 +110,12 @@ namespace macos
 
       // avoid calling CloseHandle() on our own thread handle
       // during the thread destructor
-      m_pthreadimpl->set_os_data(NULL);
+      set_os_data(NULL);
 
 
-      int32_t iRet = ::aura::application::exit_instance();
+  //    int32_t iRet = ::aura::application::exit_instance();
 
+       int iRet = 0;
 
       return iRet;
    }

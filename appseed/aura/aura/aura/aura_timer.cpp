@@ -169,7 +169,7 @@ namespace aura
 
       }
 
-      void stop()
+      void stop(bool bWaitCompletion)
       {
 
          if (m_timer != NULL)
@@ -527,7 +527,7 @@ bool timer::call_on_timer()
       if (!m_bPeriodic)
       {
 
-         stop();
+         stop(true);
 
          return false;
 
