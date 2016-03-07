@@ -2791,17 +2791,31 @@ restart_mouse_hover_check:
 
       //::draw2d::dib * pdi = m_spdib;
 
-      ::draw2d::dib * pdib = m_spdibBuffer;
-
-      try
+      if (m_spdibBuffer.is_null())
       {
 
-         _001Print(pdib);
+         m_spdibBuffer.alloc(allocer());
 
       }
-      catch (...)
+
+      m_spdibBuffer->create(rectWindow.size());
+
+      ::draw2d::dib * pdib = m_spdibBuffer;
+
+      if (pdib != NULL)
       {
 
+         try
+         {
+
+            _001Print(pdib);
+
+         }
+         catch (...)
+         {
+
+
+         }
 
       }
 
