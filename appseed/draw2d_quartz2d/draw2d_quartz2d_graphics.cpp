@@ -1683,7 +1683,7 @@ namespace draw2d_quartz2d
          {
             rect.size.width += fMin;
             rectSub.size.width += fMin;
-            rect.origin.y -= fMin;
+            rect.origin.x -= fMin;
             rectSub.origin.x -= fMin;
          }
 

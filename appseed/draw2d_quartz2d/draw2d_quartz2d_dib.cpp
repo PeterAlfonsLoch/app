@@ -364,25 +364,25 @@ namespace draw2d_quartz2d
          return;
       
       
-      byte * pdata = (byte *) m_pcolorref;
+//      byte * pdata = (byte *) m_pcolorref;
       
-      if(bApplyTransform)
-      {
-      
-      int size = m_iScan * m_size.cy / sizeof(COLORREF);
-      while(size > 0)
-      {
-         if(pdata[3] != 0)
-         {
-            pdata[0] = pdata[0] * 255 / pdata[3];
-            pdata[1] = pdata[1] * 255 / pdata[3];
-            pdata[2] = pdata[2] * 255 / pdata[3];
-         }
-         pdata += 4;
-         size--;
-      }
-      
-      }
+//      if(bApplyTransform)
+//      {
+//      
+//      int size = m_iScan * m_size.cy / sizeof(COLORREF);
+//      while(size > 0)
+//      {
+//         if(pdata[3] != 0)
+//         {
+//            pdata[0] = pdata[0] * 255 / pdata[3];
+//            pdata[1] = pdata[1] * 255 / pdata[3];
+//            pdata[2] = pdata[2] * 255 / pdata[3];
+//         }
+//         pdata += 4;
+//         size--;
+//      }
+//      
+//      }
       
       ((dib *) this)->m_bMapped = true;
       
@@ -395,16 +395,16 @@ namespace draw2d_quartz2d
       if(!m_bMapped)
          return;
       
-      byte * pdata =  (byte *) m_pcolorref;
-      int size = m_iScan * m_size.cy / sizeof(COLORREF);
-      while(size > 0)
-      {
-         pdata[0] = pdata[0] * pdata[3] / 255;
-         pdata[1] = pdata[1] * pdata[3] / 255;
-         pdata[2] = pdata[2] * pdata[3] / 255;
-         pdata += 4;
-         size--;
-      }
+//      byte * pdata =  (byte *) m_pcolorref;
+//      int size = m_iScan * m_size.cy / sizeof(COLORREF);
+//      while(size > 0)
+//      {
+//         pdata[0] = pdata[0] * pdata[3] / 255;
+//         pdata[1] = pdata[1] * pdata[3] / 255;
+//         pdata[2] = pdata[2] * pdata[3] / 255;
+//         pdata += 4;
+//         size--;
+//      }
       
       ((dib *) this)->m_bMapped = false;
 

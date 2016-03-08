@@ -123,7 +123,6 @@
 		077A06161B4D7403001C85FF /* xml_output_tree.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A16413B19C4A4CE00966C5E /* xml_output_tree.h */; };
 		077A06171B4D7403001C85FF /* colorertake5_text_region.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC315AA198E4CB8008FB109 /* colorertake5_text_region.h */; };
 		077A06181B4D7403001C85FF /* macos_multithreading.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A16407219C4A4CE00966C5E /* macos_multithreading.h */; };
-		077A06191B4D7403001C85FF /* aura_departament_container.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A163D5D19C4A4CC00966C5E /* aura_departament_container.h */; };
 		077A061A1B4D7403001C85FF /* collection_typed_pointer_array.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B0943418495C2A007A0560 /* collection_typed_pointer_array.h */; };
 		077A061B1B4D7403001C85FF /* vms.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A16411E19C4A4CE00966C5E /* vms.h */; };
 		077A061C1B4D7403001C85FF /* primitive_color.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B0946B18495C2A007A0560 /* primitive_color.h */; };
@@ -246,7 +245,6 @@
 		077A06911B4D7403001C85FF /* file_byte_stream.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F5B140184A3B420092C3E1 /* file_byte_stream.h */; };
 		077A06921B4D7403001C85FF /* aura_live_signal.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A163D8319C4A4CC00966C5E /* aura_live_signal.h */; };
 		077A06931B4D7403001C85FF /* multithreading_thread_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 07AAB14A1926B2C20050A443 /* multithreading_thread_impl.h */; };
-		077A06941B4D7403001C85FF /* aura_libc.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A163D7D19C4A4CC00966C5E /* aura_libc.h */; };
 		077A06951B4D7403001C85FF /* aura_timer_event.h in Headers */ = {isa = PBXBuildFile; fileRef = 07EC4CD81B4C34CD00EB5965 /* aura_timer_event.h */; };
 		077A06961B4D7403001C85FF /* str_from_integer.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B0947F18495C2A007A0560 /* str_from_integer.h */; };
 		077A06971B4D7403001C85FF /* colorertake5_region_define.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC31594198E4CB8008FB109 /* colorertake5_region_define.h */; };
@@ -547,7 +545,6 @@
 		077A07BF1B4D7403001C85FF /* geometry_size.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B0945918495C2A007A0560 /* geometry_size.h */; };
 		077A07C01B4D7403001C85FF /* draw2d.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F5B210184A3B690092C3E1 /* draw2d.h */; };
 		077A07C11B4D7403001C85FF /* colorertake5_features.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC31575198E4CB8008FB109 /* colorertake5_features.h */; };
-		077A07C21B4D7403001C85FF /* aura_departament.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A163D5B19C4A4CC00966C5E /* aura_departament.h */; };
 		077A07C31B4D7403001C85FF /* draw2d_brush.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F5B214184A3B690092C3E1 /* draw2d_brush.h */; };
 		077A07C41B4D7403001C85FF /* file_stream_buffer_base.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F5B179184A3B430092C3E1 /* file_stream_buffer_base.h */; };
 		077A07C51B4D7403001C85FF /* exception_verisimple.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A163E3219C4A4CD00966C5E /* exception_verisimple.h */; };
@@ -881,8 +878,6 @@
 		9A16417119C4A4CE00966C5E /* aura_cregexp_util.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A163D5619C4A4CC00966C5E /* aura_cregexp_util.h */; };
 		9A16417319C4A4CE00966C5E /* aura_debug.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A163D5819C4A4CC00966C5E /* aura_debug.h */; };
 		9A16417419C4A4CE00966C5E /* aura_definition.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A163D5919C4A4CC00966C5E /* aura_definition.h */; };
-		9A16417619C4A4CE00966C5E /* aura_departament.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A163D5B19C4A4CC00966C5E /* aura_departament.h */; };
-		9A16417819C4A4CE00966C5E /* aura_departament_container.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A163D5D19C4A4CC00966C5E /* aura_departament_container.h */; };
 		9A16417919C4A4CE00966C5E /* aura_draw2d.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A163D5E19C4A4CC00966C5E /* aura_draw2d.h */; };
 		9A16417B19C4A4CE00966C5E /* aura_element.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A163D6019C4A4CC00966C5E /* aura_element.h */; };
 		9A16417C19C4A4CE00966C5E /* aura_enum.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A163D6119C4A4CC00966C5E /* aura_enum.h */; };
@@ -901,7 +896,6 @@
 		9A16419419C4A4CE00966C5E /* aura_keep.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A163D7A19C4A4CC00966C5E /* aura_keep.h */; };
 		9A16419519C4A4CE00966C5E /* aura_keep_true.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A163D7B19C4A4CC00966C5E /* aura_keep_true.h */; };
 		9A16419619C4A4CE00966C5E /* aura_launcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A163D7C19C4A4CC00966C5E /* aura_launcher.h */; };
-		9A16419719C4A4CE00966C5E /* aura_libc.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A163D7D19C4A4CC00966C5E /* aura_libc.h */; };
 		9A16419919C4A4CE00966C5E /* aura_library.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A163D7F19C4A4CC00966C5E /* aura_library.h */; };
 		9A16419B19C4A4CE00966C5E /* aura_live_object.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A163D8119C4A4CC00966C5E /* aura_live_object.h */; };
 		9A16419D19C4A4CE00966C5E /* aura_live_signal.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A163D8319C4A4CC00966C5E /* aura_live_signal.h */; };
@@ -1583,8 +1577,6 @@
 		9A163D5619C4A4CC00966C5E /* aura_cregexp_util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aura_cregexp_util.h; sourceTree = "<group>"; };
 		9A163D5819C4A4CC00966C5E /* aura_debug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aura_debug.h; sourceTree = "<group>"; };
 		9A163D5919C4A4CC00966C5E /* aura_definition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aura_definition.h; sourceTree = "<group>"; };
-		9A163D5B19C4A4CC00966C5E /* aura_departament.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aura_departament.h; sourceTree = "<group>"; };
-		9A163D5D19C4A4CC00966C5E /* aura_departament_container.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aura_departament_container.h; sourceTree = "<group>"; };
 		9A163D5E19C4A4CC00966C5E /* aura_draw2d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aura_draw2d.h; sourceTree = "<group>"; };
 		9A163D6019C4A4CC00966C5E /* aura_element.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aura_element.h; sourceTree = "<group>"; };
 		9A163D6119C4A4CC00966C5E /* aura_enum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aura_enum.h; sourceTree = "<group>"; };
@@ -1604,7 +1596,6 @@
 		9A163D7A19C4A4CC00966C5E /* aura_keep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aura_keep.h; sourceTree = "<group>"; };
 		9A163D7B19C4A4CC00966C5E /* aura_keep_true.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aura_keep_true.h; sourceTree = "<group>"; };
 		9A163D7C19C4A4CC00966C5E /* aura_launcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aura_launcher.h; sourceTree = "<group>"; };
-		9A163D7D19C4A4CC00966C5E /* aura_libc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aura_libc.h; sourceTree = "<group>"; };
 		9A163D7F19C4A4CC00966C5E /* aura_library.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aura_library.h; sourceTree = "<group>"; };
 		9A163D8119C4A4CC00966C5E /* aura_live_object.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aura_live_object.h; sourceTree = "<group>"; };
 		9A163D8319C4A4CC00966C5E /* aura_live_signal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aura_live_signal.h; sourceTree = "<group>"; };
@@ -2430,8 +2421,6 @@
 				9A163D5619C4A4CC00966C5E /* aura_cregexp_util.h */,
 				9A163D5819C4A4CC00966C5E /* aura_debug.h */,
 				9A163D5919C4A4CC00966C5E /* aura_definition.h */,
-				9A163D5B19C4A4CC00966C5E /* aura_departament.h */,
-				9A163D5D19C4A4CC00966C5E /* aura_departament_container.h */,
 				9A163D5E19C4A4CC00966C5E /* aura_draw2d.h */,
 				9A163D6019C4A4CC00966C5E /* aura_element.h */,
 				9A163D6119C4A4CC00966C5E /* aura_enum.h */,
@@ -2451,7 +2440,6 @@
 				9A163D7A19C4A4CC00966C5E /* aura_keep.h */,
 				9A163D7B19C4A4CC00966C5E /* aura_keep_true.h */,
 				9A163D7C19C4A4CC00966C5E /* aura_launcher.h */,
-				9A163D7D19C4A4CC00966C5E /* aura_libc.h */,
 				9A163D7F19C4A4CC00966C5E /* aura_library.h */,
 				9A163D8119C4A4CC00966C5E /* aura_live_object.h */,
 				9A163D8319C4A4CC00966C5E /* aura_live_signal.h */,
@@ -3095,7 +3083,6 @@
 				077A06161B4D7403001C85FF /* xml_output_tree.h in Headers */,
 				077A06171B4D7403001C85FF /* colorertake5_text_region.h in Headers */,
 				077A06181B4D7403001C85FF /* macos_multithreading.h in Headers */,
-				077A06191B4D7403001C85FF /* aura_departament_container.h in Headers */,
 				077A061A1B4D7403001C85FF /* collection_typed_pointer_array.h in Headers */,
 				077A061B1B4D7403001C85FF /* vms.h in Headers */,
 				077A061C1B4D7403001C85FF /* primitive_color.h in Headers */,
@@ -3218,7 +3205,6 @@
 				077A06911B4D7403001C85FF /* file_byte_stream.h in Headers */,
 				077A06921B4D7403001C85FF /* aura_live_signal.h in Headers */,
 				077A06931B4D7403001C85FF /* multithreading_thread_impl.h in Headers */,
-				077A06941B4D7403001C85FF /* aura_libc.h in Headers */,
 				077A06951B4D7403001C85FF /* aura_timer_event.h in Headers */,
 				077A06961B4D7403001C85FF /* str_from_integer.h in Headers */,
 				077A06971B4D7403001C85FF /* colorertake5_region_define.h in Headers */,
@@ -3520,7 +3506,6 @@
 				077A07BF1B4D7403001C85FF /* geometry_size.h in Headers */,
 				077A07C01B4D7403001C85FF /* draw2d.h in Headers */,
 				077A07C11B4D7403001C85FF /* colorertake5_features.h in Headers */,
-				077A07C21B4D7403001C85FF /* aura_departament.h in Headers */,
 				077A07C31B4D7403001C85FF /* draw2d_brush.h in Headers */,
 				077A07C41B4D7403001C85FF /* file_stream_buffer_base.h in Headers */,
 				077A07C51B4D7403001C85FF /* exception_verisimple.h in Headers */,
@@ -3665,7 +3650,6 @@
 				9A16452319C4A4CF00966C5E /* xml_output_tree.h in Headers */,
 				9AC315F1198E4CB8008FB109 /* colorertake5_text_region.h in Headers */,
 				9A16446619C4A4CF00966C5E /* macos_multithreading.h in Headers */,
-				9A16417819C4A4CE00966C5E /* aura_departament_container.h in Headers */,
 				07B094F918495C2B007A0560 /* collection_typed_pointer_array.h in Headers */,
 				9A16450719C4A4CF00966C5E /* vms.h in Headers */,
 				07B0952C18495C2B007A0560 /* primitive_color.h in Headers */,
@@ -3793,7 +3777,6 @@
 				07F5B1B0184A3B430092C3E1 /* file_byte_stream.h in Headers */,
 				9A16419D19C4A4CE00966C5E /* aura_live_signal.h in Headers */,
 				07AAB14B1926B2C20050A443 /* multithreading_thread_impl.h in Headers */,
-				9A16419719C4A4CE00966C5E /* aura_libc.h in Headers */,
 				07EC4CDC1B4C34CD00EB5965 /* aura_timer_event.h in Headers */,
 				07B0953E18495C2B007A0560 /* str_from_integer.h in Headers */,
 				07DF8D9D1C5289FC0050DDEA /* ios_application.h in Headers */,
@@ -4111,7 +4094,6 @@
 				07B0951B18495C2B007A0560 /* geometry_size.h in Headers */,
 				07F5B24D184A3B6A0092C3E1 /* draw2d.h in Headers */,
 				9AC315BC198E4CB8008FB109 /* colorertake5_features.h in Headers */,
-				9A16417619C4A4CE00966C5E /* aura_departament.h in Headers */,
 				07F5B251184A3B6A0092C3E1 /* draw2d_brush.h in Headers */,
 				07F5B1E9184A3B430092C3E1 /* file_stream_buffer_base.h in Headers */,
 				9A16424119C4A4CE00966C5E /* exception_verisimple.h in Headers */,

@@ -607,6 +607,101 @@ DWORD fixKeyCode(DWORD keyCode, unichar keyChar, enum APPLE_KEYBOARD_TYPE type)
 
 #define WINDOW_FRAME_PADDING 32
 
+- (void)drawDebugRect:(NSRect)rect
+{
+   
+   /*
+    
+    //   [super drawRect:rect];
+    
+    
+    // return;
+    
+    BOOL bWindowVisible = [m_roundwindow isVisible];
+    
+    BOOL bViewHidden = [self isHidden];
+    
+    NSRect e = [m_roundwindow frame];
+    
+    NSRect e2 = [[NSScreen mainScreen] frame];
+    
+    double a = [m_roundwindow alphaValue];
+    
+    
+    
+    
+    
+    CGContextRef cgc1 = (CGContextRef) [[NSGraphicsContext currentContext] graphicsPort];
+    
+    
+    COLORREF cr = ARGB(255, 0, 0, 0);
+    
+    
+    CGContextSetBlendMode(cgc1, kCGBlendModeCopy);
+    
+    
+    CGContextSetRGBFillColor(cgc1, argb_get_r_value(cr) / 255.0f, argb_get_g_value(cr) / 255.0f, argb_get_b_value(cr) / 255.0f, argb_get_a_value(cr) / 255.0f);
+    
+    
+    CGContextFillRect(cgc1, rect);
+    
+    
+    
+    
+    
+    //   [[NSColor greenColor] set];
+    
+    //   NSRectFill(rect);
+    
+    return;
+    
+    */
+   
+   /* 	[[NSColor clearColor] set];
+    NSRectFill(rect);
+    
+    NSBezierPath * rectPath = [NSBezierPath bezierPathWithRect : [self bounds]];
+    
+    NSGradient * gradient = [[NSGradient alloc] initWithColorsAndLocations : [NSColor whiteColor], (CGFloat) 0.0, [NSColor lightGrayColor], (CGFloat)1.0, nil];
+    
+    [gradient drawInBezierPath : rectPath angle:90];
+    
+    [[NSColor whiteColor] set];
+    [rectPath stroke];
+    
+    NSRect resizeRect = [self resizeRect];
+    NSBezierPath *resizePath = [NSBezierPath bezierPathWithRect:resizeRect];
+    
+    [[NSColor lightGrayColor] set];
+    [resizePath fill];
+    
+    [[NSColor darkGrayColor] set];
+    [resizePath stroke];
+    
+    
+    [[NSColor blackColor] set];
+    NSString *windowTitle = [[self window] title];
+    NSRect titleRect = [self bounds];
+    titleRect.origin.y = titleRect.size.height - (WINDOW_FRAME_PADDING - 7);
+    titleRect.size.height = (WINDOW_FRAME_PADDING - 7);
+    NSMutableParagraphStyle *paragraphStyle =
+    [[NSMutableParagraphStyle alloc] init];
+    [paragraphStyle setAlignment:NSCenterTextAlignment];
+    [windowTitle
+    drawWithRect:titleRect
+    options:0
+    attributes:[NSDictionary
+    dictionaryWithObjectsAndKeys:
+				paragraphStyle, NSParagraphStyleAttributeName,
+				[NSFont systemFontOfSize:14], NSFontAttributeName,
+    nil]];
+    
+    
+    return; */
+
+}
+
+
 //
 // drawRect:
 //
@@ -614,112 +709,17 @@ DWORD fixKeyCode(DWORD keyCode, unichar keyChar, enum APPLE_KEYBOARD_TYPE type)
 //
 - (void)drawRect:(NSRect)rect
 {
-   
-   /*
-   
-//   [super drawRect:rect];
-   
-   
-  // return;
-   
-   BOOL bWindowVisible = [m_roundwindow isVisible];
-   
-   BOOL bViewHidden = [self isHidden];
-   
-   NSRect e = [m_roundwindow frame];
-   
-   NSRect e2 = [[NSScreen mainScreen] frame];
-   
-   double a = [m_roundwindow alphaValue];
 
-
-
- 
-   
-   CGContextRef cgc1 = (CGContextRef) [[NSGraphicsContext currentContext] graphicsPort];
-
-   
-   COLORREF cr = ARGB(255, 0, 0, 0);
-   
-
-   CGContextSetBlendMode(cgc1, kCGBlendModeCopy);
-
-   
-   CGContextSetRGBFillColor(cgc1, argb_get_r_value(cr) / 255.0f, argb_get_g_value(cr) / 255.0f, argb_get_b_value(cr) / 255.0f, argb_get_a_value(cr) / 255.0f);
-
-   
-   CGContextFillRect(cgc1, rect);
- 
-
-
-
-   
-//   [[NSColor greenColor] set];
-  
-//   NSRectFill(rect);
-   
-   return;
-    
-    */
-   
-/* 	[[NSColor clearColor] set];
-	NSRectFill(rect);
-   
-	NSBezierPath * rectPath = [NSBezierPath bezierPathWithRect : [self bounds]];
-	
-	NSGradient * gradient = [[NSGradient alloc] initWithColorsAndLocations : [NSColor whiteColor], (CGFloat) 0.0, [NSColor lightGrayColor], (CGFloat)1.0, nil];
-
-   [gradient drawInBezierPath : rectPath angle:90];
-
-	[[NSColor whiteColor] set];
-	[rectPath stroke];
-	
-   NSRect resizeRect = [self resizeRect];
-	NSBezierPath *resizePath = [NSBezierPath bezierPathWithRect:resizeRect];
-
-	[[NSColor lightGrayColor] set];
-	[resizePath fill];
-
-	[[NSColor darkGrayColor] set];
-	[resizePath stroke];
-	
-
-   [[NSColor blackColor] set];
-	NSString *windowTitle = [[self window] title];
-	NSRect titleRect = [self bounds];
-	titleRect.origin.y = titleRect.size.height - (WINDOW_FRAME_PADDING - 7);
-	titleRect.size.height = (WINDOW_FRAME_PADDING - 7);
-	NSMutableParagraphStyle *paragraphStyle =
-		[[NSMutableParagraphStyle alloc] init];
-	[paragraphStyle setAlignment:NSCenterTextAlignment];
-	[windowTitle
-		drawWithRect:titleRect
-		options:0
-		attributes:[NSDictionary
-			dictionaryWithObjectsAndKeys:
-				paragraphStyle, NSParagraphStyleAttributeName,
-				[NSFont systemFontOfSize:14], NSFontAttributeName,
-			nil]];
- 
-   
-   return; */
+   // [[self drawDebugRect] rect];
   
    round_window * p = m_roundwindow->m_pwindow;
    
    if(p == NULL)
       return;
    
-   //   [m_roundwindow disableScreenUpdatesUntilFlush];
-   
-//   [m_roundwindow disableFlushWindow];
-   
    CGContextRef cgc = (CGContextRef) [[NSGraphicsContext currentContext] graphicsPort];
    
    p->round_window_draw(cgc);
-   
-  // [m_roundwindow enableFlushWindow];
-   
-//   [m_roundwindow flushWindow];
    
 }
 

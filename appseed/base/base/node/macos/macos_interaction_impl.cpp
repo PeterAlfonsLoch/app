@@ -561,6 +561,17 @@ namespace macos
        m_pui->m_rectParentClient = rectWindow;
        m_rectParentClient = rectWindow;
        }*/
+      
+      rect rect32;
+      
+      if(::GetWindowRect(get_handle(), rect32))
+      {
+         
+         ::copy(m_rectParentClient, rect32);
+         
+      }
+      
+      
    }
 
    void interaction_impl::_001OnSize(signal_details * pobj)
@@ -590,6 +601,15 @@ namespace macos
        {
        m_spdib->create(m_rectParentClient.size());
        }*/
+      
+      rect rect32;
+      
+      if(::GetWindowRect(get_handle(), rect32))
+      {
+       
+         ::copy(m_rectParentClient, rect32);
+         
+      }
 
       m_pui->layout();
 
@@ -4089,6 +4109,9 @@ namespace macos
 
    bool interaction_impl::GetWindowRect(RECT64 * lprect)
    {
+      
+      return ::user::interaction_impl::GetWindowRect(lprect);
+      
 //      if(!::IsWindow(get_handle()))
   //       throw simple_exception(get_app(), "no more a user::interaction");
       if(!::IsWindow(get_handle()))
@@ -5848,31 +5871,31 @@ namespace macos
 
       }
 
-//      single_lock sl(mutex_display(), true);
-
       cslock slDisplay(cs_display());
 
       if(m_spdibBuffer.is_null())
+      {
+         
          return;
+         
+      }
 
       if(m_spdibBuffer->get_data() == NULL)
+      {
+         
          return;
+         
+      }
 
       ::draw2d::graphics_sp g(allocer());
 
       g->attach(cgc);
 
-            ::rect rectClient;
+      ::rect rectClient;
 
-            GetClientRect(rectClient);
+      GetClientRect(rectClient);
 
-       //  g->BitBlt(0, 0, rectClient.width(), rectClient.height(), m_spdib->get_graphics(), 0, m_spdib->m_size.cy-rectClient.height(), SRCCOPY);
-
-   g->BitBlt(0, 0, m_spdibBuffer->m_size.cx, m_spdibBuffer->m_size.cy, m_spdibBuffer->get_graphics(), 0, 0, SRCCOPY);
-
-      //       g->set_alpha_mode(::draw2d::alpha_mode_blend);
-
-//      g->FillSolidRect(rectClient, ARGB(128, 0, 255, 0));
+      g->BitBlt(0, 0, m_spdibBuffer->m_size.cx, m_spdibBuffer->m_size.cy, m_spdibBuffer->get_graphics(), 0, 0, SRCCOPY);
 
    }
    

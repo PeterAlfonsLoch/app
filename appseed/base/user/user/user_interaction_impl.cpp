@@ -2827,6 +2827,8 @@ namespace user
          m_size = rectWindow.size();
 
       }
+      
+      m_bUpdateGraphics = false;
 
    }
 
