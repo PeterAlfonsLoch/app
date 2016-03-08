@@ -134,7 +134,7 @@ type & type::operator = (const std_type_info & info)
    m_idFriendly      = demangle(info.name());
    m_id              = info.name();
 #endif
-   m_pfactoryitem.release();
+//   m_pfactoryitem.release();
    m_spmutex.release();
 
    return *this;

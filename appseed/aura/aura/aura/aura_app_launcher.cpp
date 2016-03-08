@@ -9,6 +9,30 @@ namespace aura
 
    string app_launcher::get_executable_path()
    {
+      
+#ifdef MACOS
+      
+      if(file_exists_dup("/Users/carlos/.ca2/mypath/"+m_strApp+".txt"))
+      {
+         
+         string strPath = file_as_string_dup("/Users/carlos/.ca2/mypath/"+m_strApp+".txt");
+         
+         if(strPath.has_char())
+         {
+          
+            return strPath;
+            
+         }
+         
+      }
+      else
+      {
+         file_put_contents_dup("/Users/carlos/.ca2/mypath/tst.txt", "/Users/carlos/.ca2/mypath/"+m_strApp+".txt");
+      }
+      
+      return Sys(get_thread_app()).dir().ca2module() / "app";
+      
+#else
 
 #ifdef DEBUG
 
@@ -27,6 +51,7 @@ namespace aura
       return path::a_spa();
 
 #endif
+      #endif
 
    }
 

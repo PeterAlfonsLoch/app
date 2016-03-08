@@ -13,7 +13,7 @@ public:
    sp(mutex)                           m_spmutex;
    id                                  m_id;
    id                                  m_idFriendly;
-   sp(factory_item_base)               m_pfactoryitem;
+   factory_item_base *                 m_pfactoryitem;
 
 
    type();

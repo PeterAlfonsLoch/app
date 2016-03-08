@@ -684,26 +684,7 @@ namespace aura
 
       m_pmath.release();
 
-      //try
-      //{
-      //   if(m_pfactory != NULL)
-      //   {
-
-      //      m_pfactory->enable_simple_factory_request(false);
-
-      //      m_pfactory.release();
-
-      //   }
-
-      //}
-      //catch(...)
-      //{
-      //   TRACE("system::exit_instance: Potentially catastrophical error : error disabling simple factory request");
-      //}
-
-
       int32_t iRet = 0;
-
 
       try
       {

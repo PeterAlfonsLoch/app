@@ -442,7 +442,7 @@ namespace aura
 
       int_array iaPid;
 
-      #ifdef LINUX
+      #if defined(LINUX) || defined(MACOS)
 
 
          iaPid = app_get_pid(strApp);

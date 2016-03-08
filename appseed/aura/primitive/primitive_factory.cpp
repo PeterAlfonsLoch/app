@@ -103,8 +103,6 @@ object * base_factory::create(::aura::application * papp, ::type * ptype)
       if(m_bSimpleFactoryRequest)
          return ptype->m_pfactoryitem->create(papp);
 
-      ptype->m_pfactoryitem.release();
-
    }
 
    single_lock sl(m_pmutex, TRUE);
@@ -121,7 +119,7 @@ object * base_factory::create(::aura::application * papp, ::type * ptype)
    if(m_bSimpleFactoryRequest)
    {
       
-      m_typeinfoptraSimpleFactoryRequest.add(ptype);
+//      m_typeinfoptraSimpleFactoryRequest.add(ptype);
 
       ptype->m_pfactoryitem = pitem;
 

@@ -2392,8 +2392,6 @@
 		9A163D3119C4A4CC00966C5E /* aura */ = {
 			isa = PBXGroup;
 			children = (
-				0702141F1C51488700DB16A7 /* aura_ipc.h */,
-				070214201C51488700DB16A7 /* aura_ipi.h */,
 				07EC4CD61B4C34CD00EB5965 /* aura_timer_array.h */,
 				07EC4CD71B4C34CD00EB5965 /* aura_timer_callback.h */,
 				07EC4CD81B4C34CD00EB5965 /* aura_timer_event.h */,
@@ -2436,6 +2434,8 @@
 				9A163D7419C4A4CC00966C5E /* aura_heap_item.h */,
 				9A163D7519C4A4CC00966C5E /* aura_heap_item_array.h */,
 				9A163D7719C4A4CC00966C5E /* aura_id_pool.h */,
+				0702141F1C51488700DB16A7 /* aura_ipc.h */,
+				070214201C51488700DB16A7 /* aura_ipi.h */,
 				9A163D7919C4A4CC00966C5E /* aura_international.h */,
 				9A163D7A19C4A4CC00966C5E /* aura_keep.h */,
 				9A163D7B19C4A4CC00966C5E /* aura_keep_true.h */,

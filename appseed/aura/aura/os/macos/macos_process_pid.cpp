@@ -183,6 +183,20 @@ int_array app_get_pid(const char * psz)
    
    int_array pids = get_pids();
    
+   ::file::path path1;
+   
+   path1 = getenv("HOME");
+   
+   path1 = path1 / ".ca2" / "mypath" / psz + ".txt";
+   
+   if(file_exists_dup(path1))
+   {
+    
+      path1 = file_as_string_dup(path1);
+      
+   }
+   
+   
    string str(psz);
    
    str = "app=" + str;
@@ -205,7 +219,7 @@ int_array app_get_pid(const char * psz)
       
       ::file::path path = module_path_from_pid(pid);
          
-      if(path.title() == strApp)
+      if(path.title() == strApp || path == path1)
       {
             
          ia.add(pid);
