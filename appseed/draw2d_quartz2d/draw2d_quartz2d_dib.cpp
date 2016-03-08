@@ -183,10 +183,10 @@ namespace draw2d_quartz2d
    }
    
    
-   bool dib::create(::draw2d::dib * pdib)
+   bool dib::create(::draw2d::graphics * pgraphics)
    {
       
-      ::draw2d::bitmap_sp pbitmap = pdc->get_current_bitmap();
+      ::draw2d::bitmap_sp pbitmap = pgraphics->get_current_bitmap();
       
       if(pbitmap == NULL)
          return false;
@@ -200,7 +200,7 @@ namespace draw2d_quartz2d
          
       }
       
-      from(pdc);
+      from(null_point(), pgraphics, null_point(), size);
       
       return true;
       
@@ -233,34 +233,16 @@ namespace draw2d_quartz2d
       
       return pgraphics->BitBlt(pt.x, pt.y, size.cx, size.cy, get_graphics(), ptSrc.x, ptSrc.y, SRCCOPY) != FALSE;
       
-      /*  return SetDIBitsToDevice(
-       (dynamic_cast<::win::graphics * >(pgraphics))->get_handle1(),
-       pt.x, pt.y,
-       size.cx, size.cy,
-       ptSrc.x, ptSrc.y, ptSrc.y, cy - ptSrc.y,
-       m_pcolorref, &m_info, 0)
-       != FALSE; */
-      
    }
    
-   bool dib::from(::draw2d::dib * pdib)
-   {
-      ::draw2d::bitmap_sp bitmap(get_app());
-      bitmap->CreateCompatibleBitmap(pdc, 1, 1);
-      ::draw2d::bitmap * pbitmap = COCOA_DC(pdc)->SelectObject(bitmap);
-      if(pbitmap == NULL)
-         return false;
-      class size size = pbitmap->get_size();
-      if(!create(size))
-      {
-         COCOA_DC(pdc)->SelectObject(pbitmap);
-         return false;
-      }
-      throw todo(get_app());
-      // xxx bool bOk = GetDIBits(COCOA_HDC(pdc), (HBITMAP) pbitmap->get_os_data(), 0, cy, m_pcolorref, &(m_info), DIB_RGB_COLORS) != FALSE;
-      // xxx COCOA_DC(pdc)->SelectObject(pbitmap);
-      // xxx return bOk;
-   }
+    
+//   bool dib::from(::draw2d::graphics * pgraphics)
+//   {
+//       
+//      return pgraphics->BitBlt(0, 0, size.cx, size.cy,
+//      
+//   }
+   
    
    bool dib::from(point ptDest, ::draw2d::graphics * pdc, point pt, class size sz)
    {

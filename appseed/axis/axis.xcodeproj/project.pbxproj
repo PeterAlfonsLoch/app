@@ -74,6 +74,18 @@
 		0747A6FF1B2637BC00E85AC7 /* sqlitedb_set.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0747A6A61B2637BB00E85AC7 /* sqlitedb_set.cpp */; };
 		0747A7001B2637BC00E85AC7 /* sqlitedb_set.h in Headers */ = {isa = PBXBuildFile; fileRef = 0747A6A71B2637BB00E85AC7 /* sqlitedb_set.h */; };
 		0747A7091B2638C800E85AC7 /* libaurasqlite.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0747A7061B26387E00E85AC7 /* libaurasqlite.dylib */; };
+		074DA74F1C8E5B7A00748EB7 /* _html_lite_html_lite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 074DA7201C8E5B7A00748EB7 /* _html_lite_html_lite.cpp */; };
+		074DA7501C8E5B7A00748EB7 /* _html_lite_html_lite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 074DA7201C8E5B7A00748EB7 /* _html_lite_html_lite.cpp */; };
+		074DA7561C8E5B7A00748EB7 /* html.h in Headers */ = {isa = PBXBuildFile; fileRef = 074DA7251C8E5B7A00748EB7 /* html.h */; };
+		074DA7571C8E5B7A00748EB7 /* html_enum.h in Headers */ = {isa = PBXBuildFile; fileRef = 074DA7261C8E5B7A00748EB7 /* html_enum.h */; };
+		074DA75A1C8E5B7A00748EB7 /* html_html.h in Headers */ = {isa = PBXBuildFile; fileRef = 074DA7281C8E5B7A00748EB7 /* html_html.h */; };
+		074DA75F1C8E5B7A00748EB7 /* html_lite.h in Headers */ = {isa = PBXBuildFile; fileRef = 074DA7301C8E5B7A00748EB7 /* html_lite.h */; };
+		074DA7621C8E5B7A00748EB7 /* html_lite_application.h in Headers */ = {isa = PBXBuildFile; fileRef = 074DA7321C8E5B7A00748EB7 /* html_lite_application.h */; };
+		074DA7651C8E5B7A00748EB7 /* html_lite_html_attributes.h in Headers */ = {isa = PBXBuildFile; fileRef = 074DA7341C8E5B7A00748EB7 /* html_lite_html_attributes.h */; };
+		074DA7661C8E5B7A00748EB7 /* html_lite_html_common.h in Headers */ = {isa = PBXBuildFile; fileRef = 074DA7351C8E5B7A00748EB7 /* html_lite_html_common.h */; };
+		074DA7691C8E5B7A00748EB7 /* html_lite_html_entity_resolver.h in Headers */ = {isa = PBXBuildFile; fileRef = 074DA7371C8E5B7A00748EB7 /* html_lite_html_entity_resolver.h */; };
+		074DA76C1C8E5B7A00748EB7 /* html_lite_html_reader.h in Headers */ = {isa = PBXBuildFile; fileRef = 074DA7391C8E5B7A00748EB7 /* html_lite_html_reader.h */; };
+		074DA76F1C8E5B7A00748EB7 /* html_lite_html_tag.h in Headers */ = {isa = PBXBuildFile; fileRef = 074DA73B1C8E5B7A00748EB7 /* html_lite_html_tag.h */; };
 		07502CE51B25CADC008D207C /* dib_console.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07502CE31B25CADC008D207C /* dib_console.cpp */; };
 		07502CE61B25CADC008D207C /* dib_console.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07502CE31B25CADC008D207C /* dib_console.cpp */; };
 		07502CEA1B25CAE9008D207C /* _visual.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07502CE91B25CAE9008D207C /* _visual.cpp */; };
@@ -740,6 +752,17 @@
 		0747A6A61B2637BB00E85AC7 /* sqlitedb_set.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sqlitedb_set.cpp; sourceTree = "<group>"; };
 		0747A6A71B2637BB00E85AC7 /* sqlitedb_set.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sqlitedb_set.h; sourceTree = "<group>"; };
 		0747A7011B26387E00E85AC7 /* aurasqlite.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aurasqlite.xcodeproj; path = ../../aura/sqlite/aurasqlite.xcodeproj; sourceTree = "<group>"; };
+		074DA7201C8E5B7A00748EB7 /* _html_lite_html_lite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _html_lite_html_lite.cpp; sourceTree = "<group>"; };
+		074DA7251C8E5B7A00748EB7 /* html.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = html.h; sourceTree = "<group>"; };
+		074DA7261C8E5B7A00748EB7 /* html_enum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = html_enum.h; sourceTree = "<group>"; };
+		074DA7281C8E5B7A00748EB7 /* html_html.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = html_html.h; sourceTree = "<group>"; };
+		074DA7301C8E5B7A00748EB7 /* html_lite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = html_lite.h; sourceTree = "<group>"; };
+		074DA7321C8E5B7A00748EB7 /* html_lite_application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = html_lite_application.h; sourceTree = "<group>"; };
+		074DA7341C8E5B7A00748EB7 /* html_lite_html_attributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = html_lite_html_attributes.h; sourceTree = "<group>"; };
+		074DA7351C8E5B7A00748EB7 /* html_lite_html_common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = html_lite_html_common.h; sourceTree = "<group>"; };
+		074DA7371C8E5B7A00748EB7 /* html_lite_html_entity_resolver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = html_lite_html_entity_resolver.h; sourceTree = "<group>"; };
+		074DA7391C8E5B7A00748EB7 /* html_lite_html_reader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = html_lite_html_reader.h; sourceTree = "<group>"; };
+		074DA73B1C8E5B7A00748EB7 /* html_lite_html_tag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = html_lite_html_tag.h; sourceTree = "<group>"; };
 		07502CE31B25CADC008D207C /* dib_console.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dib_console.cpp; sourceTree = "<group>"; };
 		07502CE91B25CAE9008D207C /* _visual.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _visual.cpp; sourceTree = "<group>"; };
 		07502CEC1B25CB52008D207C /* _net.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _net.cpp; sourceTree = "<group>"; };
@@ -1196,6 +1219,40 @@
 				07108DBC1B4C999700A28F80 /* libaurasqlite.dylib */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		074DA71F1C8E5B7900748EB7 /* html_lite */ = {
+			isa = PBXGroup;
+			children = (
+				074DA7201C8E5B7A00748EB7 /* _html_lite_html_lite.cpp */,
+				074DA7231C8E5B7A00748EB7 /* html */,
+				074DA72E1C8E5B7A00748EB7 /* html_lite */,
+			);
+			path = html_lite;
+			sourceTree = "<group>";
+		};
+		074DA7231C8E5B7A00748EB7 /* html */ = {
+			isa = PBXGroup;
+			children = (
+				074DA7251C8E5B7A00748EB7 /* html.h */,
+				074DA7261C8E5B7A00748EB7 /* html_enum.h */,
+				074DA7281C8E5B7A00748EB7 /* html_html.h */,
+			);
+			path = html;
+			sourceTree = "<group>";
+		};
+		074DA72E1C8E5B7A00748EB7 /* html_lite */ = {
+			isa = PBXGroup;
+			children = (
+				074DA7301C8E5B7A00748EB7 /* html_lite.h */,
+				074DA7321C8E5B7A00748EB7 /* html_lite_application.h */,
+				074DA7341C8E5B7A00748EB7 /* html_lite_html_attributes.h */,
+				074DA7351C8E5B7A00748EB7 /* html_lite_html_common.h */,
+				074DA7371C8E5B7A00748EB7 /* html_lite_html_entity_resolver.h */,
+				074DA7391C8E5B7A00748EB7 /* html_lite_html_reader.h */,
+				074DA73B1C8E5B7A00748EB7 /* html_lite_html_tag.h */,
+			);
+			path = html_lite;
 			sourceTree = "<group>";
 		};
 		07557B611B4D88610065594B /* Products */ = {
@@ -1907,6 +1964,7 @@
 				07F5B12D184A3B420092C3E1 /* filesystem */,
 				9AE24D351904CEFE001AEFFB /* Frameworks */,
 				07F5B20E184A3B690092C3E1 /* graphics */,
+				074DA71F1C8E5B7900748EB7 /* html_lite */,
 				9AE7229617E83B69003E47F9 /* net */,
 				07F5B2C3184A3FA30092C3E1 /* programming */,
 				0747A4E01B26226300E85AC7 /* user */,
@@ -2012,6 +2070,7 @@
 				9A19A11219C692650018DF7D /* visual_font_central.h in Headers */,
 				0747A6321B262C6000E85AC7 /* filesystem_dir_axis_application.h in Headers */,
 				07A374B91B26054100E4F888 /* zipImpl.h in Headers */,
+				074DA7661C8E5B7A00748EB7 /* html_lite_html_common.h in Headers */,
 				07A374C51B26054100E4F888 /* fontopus_contact_list.h in Headers */,
 				0747A6D41B2637BB00E85AC7 /* file_set.h in Headers */,
 				079AE0911886489D00635C39 /* net_port_forward.h in Headers */,
@@ -2029,8 +2088,10 @@
 				0747A6F31B2637BB00E85AC7 /* simpledb_socket.h in Headers */,
 				0747A6B71B2637BB00E85AC7 /* database_definition.h in Headers */,
 				9A19A0C819C67B8E0018DF7D /* net_sockets.h in Headers */,
+				074DA7651C8E5B7A00748EB7 /* html_lite_html_attributes.h in Headers */,
 				07B0979918495CBE007A0560 /* sockets_sync_socket_handler.h in Headers */,
 				07A374921B26054100E4F888 /* axis_c_winrt.h in Headers */,
+				074DA75F1C8E5B7A00748EB7 /* html_lite.h in Headers */,
 				07B0980018495CBE007A0560 /* sockets_http_buffer.h in Headers */,
 				07B097C118495CBE007A0560 /* Event.h in Headers */,
 				07A3748D1B26054100E4F888 /* axis_application.h in Headers */,
@@ -2051,6 +2112,7 @@
 				07A374AB1B26054100E4F888 /* iowin32.h in Headers */,
 				07A376A21B26054200E4F888 /* macos_process.h in Headers */,
 				07B0978B18495CBE007A0560 /* sockets_net.h in Headers */,
+				074DA7691C8E5B7A00748EB7 /* html_lite_html_entity_resolver.h in Headers */,
 				07A374EF1B26054100E4F888 /* install_resource.h in Headers */,
 				07B097F918495CBE007A0560 /* sockets_http_socket.h in Headers */,
 				0747A6B21B2637BB00E85AC7 /* database_change_event.h in Headers */,
@@ -2059,6 +2121,7 @@
 				0747A6E11B2637BB00E85AC7 /* simpledb_manager.h in Headers */,
 				0747A6FE1B2637BC00E85AC7 /* sqlitedb_base.h in Headers */,
 				07A376971B26054200E4F888 /* macos_file.h in Headers */,
+				074DA76F1C8E5B7A00748EB7 /* html_lite_html_tag.h in Headers */,
 				07A374C71B26054100E4F888 /* fontopus_fontopus.h in Headers */,
 				07B0979D18495CBE007A0560 /* sockets_tls_socket.h in Headers */,
 				0747A5F31B26226300E85AC7 /* user_job.h in Headers */,
@@ -2091,6 +2154,7 @@
 				07A374DD1B26054100E4F888 /* geoip_update.h in Headers */,
 				07B0978318495CBE007A0560 /* sockets_base_socket_handler.h in Headers */,
 				0747A6DA1B2637BB00E85AC7 /* simpledb_database.h in Headers */,
+				074DA76C1C8E5B7A00748EB7 /* html_lite_html_reader.h in Headers */,
 				07A3749B1B26054100E4F888 /* boot.h in Headers */,
 				9AE7252A17E83B69003E47F9 /* net_net.h in Headers */,
 				9AE7252C17E83B69003E47F9 /* net_url_departament.h in Headers */,
@@ -2099,8 +2163,10 @@
 				07F5B1F8184A3B430092C3E1 /* filesystem.h in Headers */,
 				9A19A0BE19C67B6A0018DF7D /* webserver_http_cookie.h in Headers */,
 				0747A6D61B2637BB00E85AC7 /* simpledb.h in Headers */,
+				074DA7561C8E5B7A00748EB7 /* html.h in Headers */,
 				07A374D61B26054100E4F888 /* geoip.h in Headers */,
 				07A376931B26054200E4F888 /* macos_cross_win_gdi.h in Headers */,
+				074DA7571C8E5B7A00748EB7 /* html_enum.h in Headers */,
 				07A3749C1B26054100E4F888 /* boot_debug.h in Headers */,
 				07A374D81B26054100E4F888 /* geoip_city.h in Headers */,
 				07B097FE18495CBE007A0560 /* sockets_http_batch_buffer.h in Headers */,
@@ -2139,6 +2205,7 @@
 				07A375101B26054100E4F888 /* ansios.h in Headers */,
 				07A3769C1B26054200E4F888 /* macos_mm.h in Headers */,
 				07A374DE1B26054100E4F888 /* global.h in Headers */,
+				074DA75A1C8E5B7A00748EB7 /* html_html.h in Headers */,
 				07B097AD18495CBE007A0560 /* sip_udp_client_socket.h in Headers */,
 				07B0976A18495CBE007A0560 /* http_system.h in Headers */,
 				07A374A81B26054100E4F888 /* File.h in Headers */,
@@ -2181,6 +2248,7 @@
 				0747A6271B26226300E85AC7 /* userpresence.h in Headers */,
 				07B0979518495CBE007A0560 /* sockets_ssl_client_context_map.h in Headers */,
 				07B097C418495CBE007A0560 /* IEventHandler.h in Headers */,
+				074DA7621C8E5B7A00748EB7 /* html_lite_application.h in Headers */,
 				07A376071B26054200E4F888 /* windows.h in Headers */,
 				0747A6BC1B2637BB00E85AC7 /* database_id.h in Headers */,
 				07A374A61B26054100E4F888 /* api.h in Headers */,
@@ -2556,6 +2624,7 @@
 				07502CE51B25CADC008D207C /* dib_console.cpp in Sources */,
 				07A374F61B26054100E4F888 /* install_windows_win.cpp in Sources */,
 				07A374F41B26054100E4F888 /* install_windows_boot.cpp in Sources */,
+				074DA74F1C8E5B7A00748EB7 /* _html_lite_html_lite.cpp in Sources */,
 				07F5B2D4184A3FA30092C3E1 /* javascript_tinyjs_functions.cpp in Sources */,
 				0747A6441B2635D400E85AC7 /* _bsd.cpp in Sources */,
 				07D966ED1B4C5F54004A3D2A /* macos_base_user_mm.mm in Sources */,
@@ -2578,6 +2647,7 @@
 				07EDC4FD1B4F0C4100AF8928 /* sqlitedb_set.cpp in Sources */,
 				07EDC2B61B4ECB3C00AF8928 /* ios_fontopus.cpp in Sources */,
 				07502CEB1B25CAE9008D207C /* _visual.cpp in Sources */,
+				074DA7501C8E5B7A00748EB7 /* _html_lite_html_lite.cpp in Sources */,
 				07EDC2B11B4ECB3C00AF8928 /* ios_cross_win_file.cpp in Sources */,
 				07EDC2B51B4ECB3C00AF8928 /* ios_file_watcher.cpp in Sources */,
 				07EDC2B21B4ECB3C00AF8928 /* ios_crypt.cpp in Sources */,

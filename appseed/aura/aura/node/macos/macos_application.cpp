@@ -6,36 +6,37 @@
 
 string ca2_module_folder_dup();
 
-namespace macos
+//namespace macos
+namespace aura
 {
 
 
-   application::application(::aura::application * papp) :
-      ::object(papp)
-   {
-//      m_pthreadimpl.alloc(allocer());
-//      m_pthreadimpl->m_pthread = this;
-
-      shell::theLinuxShell.Initialize();
-
-   }
-
-   application::~application()
-   {
-
-   }
-
-
-   void application::_001OnFileNew()
-   {
-      //      ::ca2::smart_pointer < ::application_base > ::m_p->_001OnFileNew(NULL);
-   }
-
-   ::user::document * application::_001OpenDocumentFile(var varFile)
-   {
-      //    return ::ca2::smart_pointer < ::application_base > ::m_p->_001OpenDocumentFile(varFile);
-      return NULL;
-   }
+//   application::application(::aura::application * papp) :
+//      ::object(papp)
+//   {
+////      m_pthreadimpl.alloc(allocer());
+////      m_pthreadimpl->m_pthread = this;
+//
+//      shell::theLinuxShell.Initialize();
+//
+//   }
+//
+//   application::~application()
+//   {
+//
+//   }
+//
+//
+//   void application::_001OnFileNew()
+//   {
+//      //      ::ca2::smart_pointer < ::application_base > ::m_p->_001OnFileNew(NULL);
+//   }
+//
+//   ::user::document * application::_001OpenDocumentFile(var varFile)
+//   {
+//      //    return ::ca2::smart_pointer < ::application_base > ::m_p->_001OpenDocumentFile(varFile);
+//      return NULL;
+//   }
 
    void application::_001EnableShellOpen()
    {
@@ -45,19 +46,19 @@ namespace macos
       // xxx       m_atomSystemTopic    = ::GlobalAddAtomW(L"system");
    }
 
-   bool application::_001OnDDECommand(const char * lpcsz)
-   {
-      UNREFERENCED_PARAMETER(lpcsz);
-      return FALSE;
-   }
+//   bool application::_001OnDDECommand(const char * lpcsz)
+//   {
+//      UNREFERENCED_PARAMETER(lpcsz);
+//      return FALSE;
+//   }
 
-
-   HINSTANCE application::GetHinstance()
-   {
-
-      return NULL;
-
-   }
+//
+//   HINSTANCE application::GetHinstance()
+//   {
+//
+//      return NULL;
+//
+//   }
 
 
    string application::get_version()
@@ -68,15 +69,15 @@ namespace macos
 
    }
 
-   void application::TermThread(HINSTANCE hInstTerm)
-   {
+//   void application::TermThread(HINSTANCE hInstTerm)
+//   {
+//
+//
+//   }
 
 
-   }
 
-
-
-   bool application::process_initialize()
+   bool application::impl_process_initialize()
    {
 
       return true;
@@ -84,7 +85,7 @@ namespace macos
    }
 
 
-   bool application::initialize1()
+   bool application::impl_initialize1()
    {
 
          set_run();
@@ -94,18 +95,24 @@ namespace macos
    }
 
 
-   bool application::initialize2()
+   bool application::impl_initialize2()
    {
+       
       return true;
+       
    }
+    
 
-   bool application::initialize3()
+   bool application::impl_initialize3()
    {
+       
       return true;
+       
    }
+    
 
    // thread termination
-   int32_t application::exit_instance() // default will 'delete this'
+   int32_t application::impl_exit_instance() // default will 'delete this'
    {
 
       // avoid calling CloseHandle() on our own thread handle
@@ -121,89 +128,77 @@ namespace macos
    }
 
 
-   ::thread * application::GetThread()
-   {
-
-      return ::get_thread();
-
-   }
-
-
-   void application::set_thread(::thread * pthread)
-   {
-
-      ::set_thread(pthread);
-
-   }
+//   ::thread * application::GetThread()
+//   {
+//
+//      return ::get_thread();
+//
+//   }
+//
+//
+//   void application::set_thread(::thread * pthread)
+//   {
+//
+//      ::set_thread(pthread);
+//
+//   }
 
 
    ///////////////////////////////////////////////////////////////////////////
    // application Initialization
 
-   void application::SetCurrentHandles()
-   {
-      //ASSERT(this == afxCurrentWinApp);
-      //if(afxCurrentAppName != NULL)
-      // return;
-      //ASSERT(afxCurrentAppName == NULL);
-
-
-      // Note: there are a number of _tcsdup (aka _strdup) calls that are
-      // made here for the exe path, help file path, etc.  In previous
-      // versions of ca2 API, this memory was never freed.  In this and future
-      // versions this memory is automatically freed during application's
-      // destructor.  If you are freeing the memory yourself, you should
-      // either remove the code or set the pointers to NULL after freeing
-      // the memory.
-
-      // get path of executable
-      /*   char szBuff[_MAX_PATH];
-      DWORD dwRet = ::GetModuleFileName(m_hInstance, szBuff, _MAX_PATH);
-      ASSERT( dwRet != 0 && dwRet != _MAX_PATH );
-      if( dwRet == 0 || dwRet == _MAX_PATH )
-      throw user_exception();*/
-
-      /*
-      LPTSTR lpszExt = ::PathFindExtension(szBuff);
-      ASSERT(lpszExt != NULL);
-      if( lpszExt == NULL )
-      throw user_exception();
-
-      ASSERT(*lpszExt == '.');
-      *lpszExt = 0;       // no suffix
-      */
-
-//      string strExeName;
-      //string strTitle = System.load_string("System.title");
-      // get the exe title from the full path name [no extension]
-  //    strExeName = System.get_module_title();
-
-
-
-      m_pimpl->set_os_data(::GetCurrentThread());
-
-
-   }
+//   void application::SetCurrentHandles()
+//   {
+//      //ASSERT(this == afxCurrentWinApp);
+//      //if(afxCurrentAppName != NULL)
+//      // return;
+//      //ASSERT(afxCurrentAppName == NULL);
+//
+//
+//      // Note: there are a number of _tcsdup (aka _strdup) calls that are
+//      // made here for the exe path, help file path, etc.  In previous
+//      // versions of ca2 API, this memory was never freed.  In this and future
+//      // versions this memory is automatically freed during application's
+//      // destructor.  If you are freeing the memory yourself, you should
+//      // either remove the code or set the pointers to NULL after freeing
+//      // the memory.
+//
+//      // get path of executable
+//      /*   char szBuff[_MAX_PATH];
+//      DWORD dwRet = ::GetModuleFileName(m_hInstance, szBuff, _MAX_PATH);
+//      ASSERT( dwRet != 0 && dwRet != _MAX_PATH );
+//      if( dwRet == 0 || dwRet == _MAX_PATH )
+//      throw user_exception();*/
+//
+//      /*
+//      LPTSTR lpszExt = ::PathFindExtension(szBuff);
+//      ASSERT(lpszExt != NULL);
+//      if( lpszExt == NULL )
+//      throw user_exception();
+//
+//      ASSERT(*lpszExt == '.');
+//      *lpszExt = 0;       // no suffix
+//      */
+//
+////      string strExeName;
+//      //string strTitle = System.load_string("System.title");
+//      // get the exe title from the full path name [no extension]
+//  //    strExeName = System.get_module_title();
+//
+//
+//
+//      m_pimpl->set_os_data(::GetCurrentThread());
+//
+//
+//   }
 
 
 
    void application::get_time(struct timeval *p)
    {
-#ifdef _WIN32
-      
-      // iOS contribution - a Fatty acid to eat this green comment block ... (#ifdef _WIN32 in macos::application?)
-      //
-//      FILETIME ft; // Contains a 64-bit value representing the number of 100-nanosecond intervals since January 1, 1601 (UTC).
-//      GetSystemTimeAsFileTime(&ft);
-//      uint64_t tt;
-//      memcpy(&tt, &ft, sizeof(tt));
-//      tt /= 10; // make it usecs
-//      p->tv_sec = (long)tt / 1000000;
-//      p->tv_usec = (long)tt % 1000000;
-      
-#else
-      gettimeofday(p, NULL);
-#endif
+
+       gettimeofday(p, NULL);
+       
    }
 
    void application::set_env_var(const string & var,const string & value)
@@ -242,48 +237,33 @@ namespace macos
    bool application::set_main_init_data(::aura::main_init_data * pdata)
    {
 
-      m_pmaininitdata = (::macos::main_init_data *) pdata;
+      m_pinitmaindata = pdata;
 
-      if(m_pmaininitdata != NULL && m_pimpl->is_system())
+      if(m_pinitmaindata != NULL && is_system())
       {
-         if(!win_init(m_pmaininitdata))
-            return false;
+
+          string strCmdLine          = pdata->m_vssCommandLine;
+
+          System.m_strCmdLine = strCmdLine;
+
+          SetCurrentHandles();
+
+          __init_thread();
+
       }
 
       return true;
-
+       
    }
 
-   bool application::win_init(main_init_data * pdata)
+
+   string application::draw2d_get_default_library_name()
    {
-      ASSERT(pdata->m_hPrevInstance == NULL);
 
-      string strCmdLine          = pdata->m_strCommandLine;
-
-      // handle critical errors and avoid Windows message boxes
-      // xxx         SetErrorMode(SetErrorMode(0) | SEM_FAILCRITICALERRORS | SEM_NOOPENFILEERRORBOX);
-
-      System.m_strCmdLine = strCmdLine;
-      //pApp->SetCurrentHandles();
-      SetCurrentHandles();
-
-      __init_thread();
-
-      return true;
+       return "draw2d_quartz2d";
 
    }
-
-
-
-
-
-
-    string application::draw2d_get_default_library_name()
-    {
-
-        return "draw2d_quartz2d";
-
-    }
+    
    string application::multimedia_audio_get_default_library_name()
    {
 
@@ -314,7 +294,9 @@ namespace macos
 
 
 
-} // namespace macos
+//} // namespace macos
+    
+} // namespace aura
 
 
 

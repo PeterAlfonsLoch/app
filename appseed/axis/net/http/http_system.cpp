@@ -175,7 +175,7 @@ namespace http
       {
          if(ppair != NULL)
          {
-            delete ppair->m_element2;
+//            delete ppair->m_element2;
             m_mapPac.remove_key(pszUrl);
          }
 
@@ -236,7 +236,7 @@ namespace http
       {
          if(ppair != NULL)
          {
-            delete ppair->m_element2;
+//            delete ppair->m_element2;
             m_mapPac.remove_key(pszUrl);
          }
 

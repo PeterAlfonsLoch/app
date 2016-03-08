@@ -309,25 +309,26 @@ namespace macos
          {
             if(pui->oprop("session").is_new())
             {
-                try
-                {
-               pui->_001UpdateBuffer();
-                }
-                catch(...)
-                {
-                }
-                try
-                {
-                    pui->_001UpdateScreen();
-                }
-                catch(...)
-                {
-                }
+
+               try
+               {
+                   
+                  pui->_001UpdateWindow();
+                   
+               }
+               catch(...)
+               {
+               
+               }
+
             }
+            
          }
          catch(...)
          {
+            
          }
+         
       }
 
       return true;

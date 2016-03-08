@@ -200,7 +200,7 @@ namespace macos
 
         virtual ::draw2d::graphics * GetDC();
         virtual ::draw2d::graphics * GetWindowDC();
-        virtual bool ReleaseDC(::draw2d::dib * pdib);
+        virtual bool ReleaseDC(::draw2d::graphics * pgraphics);
         virtual void Print(::draw2d::graphics * pgraphics, DWORD dwFlags) const;
         virtual void PrintClient(::draw2d::graphics * pgraphics, DWORD dwFlags) const;
 
@@ -458,10 +458,10 @@ namespace macos
       void OnEnable(bool bEnable);
       void OnEndSession(bool bEnding);
       void OnEnterIdle(UINT nWhy, ::user::interaction * pWho);
-      bool OnEraseBkgnd(::draw2d::dib * pdib);
+      bool OnEraseBkgnd(::draw2d::graphics * pgraphics);
       void OnGetMinMaxInfo(MINMAXINFO* lpMMI);
       //xxx bool OnHelpInfo(HELPINFO* lpHelpInfo);
-      void OnIconEraseBkgnd(::draw2d::dib * pdib);
+      void OnIconEraseBkgnd(::draw2d::graphics * pgraphics);
       void OnKillFocus(::user::interaction * pNewWnd);
       LRESULT OnMenuChar(UINT nChar, UINT nFlags, ::user::menu* pMenu);
       void OnMenuSelect(UINT nItemID, UINT nFlags, HMENU hSysMenu);

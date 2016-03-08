@@ -4608,7 +4608,7 @@ namespace macos
       return g.detach();
    }
 
-   bool interaction_impl::ReleaseDC(::draw2d::dib * pdib)
+   bool interaction_impl::ReleaseDC(::draw2d::graphics * pgraphics)
    {
 
       if(pgraphics == NULL)
@@ -5838,13 +5838,13 @@ namespace macos
 
    void interaction_impl::round_window_draw(CGContextRef cgc)
    {
-        single_lock sl(m_pui->m_pmutex, true);
+      
+      single_lock sl(m_pui->m_pmutex, true);
+      
       if(m_bUpdateGraphics)
       {
 
          update_graphics_resources();
-
-//         _001UpdateWindow();
 
       }
 
@@ -5852,10 +5852,10 @@ namespace macos
 
       cslock slDisplay(cs_display());
 
-      if(m_spdib.is_null())
+      if(m_spdibBuffer.is_null())
          return;
 
-      if(m_spdib->get_data() == NULL)
+      if(m_spdibBuffer->get_data() == NULL)
          return;
 
       ::draw2d::graphics_sp g(allocer());
@@ -5868,7 +5868,7 @@ namespace macos
 
        //  g->BitBlt(0, 0, rectClient.width(), rectClient.height(), m_spdib->get_graphics(), 0, m_spdib->m_size.cy-rectClient.height(), SRCCOPY);
 
-   g->BitBlt(0, 0, m_spdib->m_size.cx, m_spdib->m_size.cy, m_spdib->get_graphics(), 0, 0, SRCCOPY);
+   g->BitBlt(0, 0, m_spdibBuffer->m_size.cx, m_spdibBuffer->m_size.cy, m_spdibBuffer->get_graphics(), 0, 0, SRCCOPY);
 
       //       g->set_alpha_mode(::draw2d::alpha_mode_blend);
 
@@ -6309,19 +6309,21 @@ namespace macos
    void interaction_impl::_001UpdateWindow()
    {
 
-      ::user::interaction_impl::_001UpdateBuffer();
-
-       ::user::interaction_impl::_001UpdateScreen();
+      ::user::interaction_impl::_001UpdateWindow();
 
       if(!m_pui->m_bMayProDevian)
       {
+         
          round_window_redraw();
+         
       }
 
    }
+   
 
    void interaction_impl::offset_viewport_org(LPRECT lprectScreen)
    {
+      
    }
 
 
@@ -6330,7 +6332,7 @@ namespace macos
 
       // graphics will be already set its view port to the user::interaction for linux - cairo with xlib
 
-      pgraphics->SetViewportOrg(point(0, 0));
+      pdib->SetViewportOrg(point(0, 0));
 
    }
 

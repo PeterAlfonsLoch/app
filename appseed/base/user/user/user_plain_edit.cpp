@@ -3014,28 +3014,45 @@ namespace user
 
    void plain_edit::set_root(plain_text_tree * pdata,bool bOwnData)
    {
+      
       synch_lock lockRoot(m_ptree == NULL ? NULL:m_ptree->m_pmutex);
+      
       if(m_ptree != NULL && m_bOwnData)
       {
-         delete m_ptree;
+
          m_ptree = NULL;
+         
       }
+      
       m_ptree = pdata;
+      
       m_pitem = m_ptree->get_base_item();
+      
       m_bOwnData = m_ptree != NULL && bOwnData;
+      
       if(m_ptree != NULL)
       {
+         
          listen(m_ptree);
+         
       }
+      
    }
+   
 
    void plain_edit::_001OnUpdateEditFocusCopy(signal_details * pobj)
    {
+      
       SCAST_PTR(::aura::cmd_ui,pupdatecmdui,pobj);
-         string str;
+      
+      string str;
+      
       _001GetSelText(str);
+      
       pupdatecmdui->m_pcmdui->Enable(str.has_char());
+      
    }
+   
 
    void plain_edit::_001OnEditFocusCopy(signal_details * pobj)
    {

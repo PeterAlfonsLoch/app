@@ -1392,7 +1392,8 @@ namespace exception
       return _str;
 
    }
-#elif defined(LINUX)
+    
+#elif defined(MACOS)
 
    void engine::backtrace(void *pui, int &c)
    {
@@ -1401,14 +1402,14 @@ namespace exception
 
       UINT32 maxframes = c;
 
-      c = ::backtrace(pui, maxframes);
+      c = ::backtrace(&pui, maxframes);
 
    }
 
    char * engine::stack_trace(void * pui, int c, const char * pszFormat)
    {
 
-      char ** messages = backtrace_symbols(pui, c);
+      char ** messages = backtrace_symbols(&pui, c);
 
       char szN[24];
 
@@ -1422,20 +1423,6 @@ namespace exception
 
       for (int32_t i = 1; i < c && messages != NULL; ++i)
       {
-#ifdef __USE_BFD
-
-         if(resolve_addr_file_func_line(((void **)pui)[i], &file, &func, iLine))
-         {
-
-
-            strcat(_strS, file);
-            strcat(_strS, ":");
-            ultoa_dup(szN, iLine, 10);
-            strcat(_strS, szN);
-            strcat(_strS, ":1: warning: ");
-
-         }
-#endif // __USE_BFD
 
          char *mangled_name = 0, *offset_begin = 0, *offset_end = 0;
 
@@ -1475,7 +1462,8 @@ namespace exception
 
             int32_t status;
 
-            char * real_name = abi::__cxa_demangle(mangled_name, 0, 0, &status);
+//            char * real_name = abi::__cxa_demangle(mangled_name, 0, 0, &status);
+             string real_name = demangle(mangled_name);
 
             strcat(_strS, "[bt]: (");
             ultoa_dup(szN, i, 10);
@@ -1502,12 +1490,12 @@ namespace exception
             strcat(_strS, offset_end);
             strcat(_strS,"\n");
 
-            if(real_name != NULL)
-            {
-
-               free(real_name);
-
-            }
+//            if(real_name != NULL)
+//            {
+//
+//               free(real_name);
+//
+//            }
 
          }
          else
@@ -1530,6 +1518,144 @@ namespace exception
    }
 
 
+#elif defined(LINUX) || defined(MACOS)
+    
+    void engine::backtrace(void *pui, int &c)
+    {
+        
+        synch_lock sl(&m_mutex);
+        
+        UINT32 maxframes = c;
+        
+        c = ::backtrace(pui, maxframes);
+        
+    }
+    
+    char * engine::stack_trace(void * pui, int c, const char * pszFormat)
+    {
+        
+        char ** messages = backtrace_symbols(pui, c);
+        
+        char szN[24];
+        
+        *_strS = '\0';
+        
+        char syscom[1024];
+        
+        const char * func;
+        const char * file;
+        unsigned iLine;
+        
+        for (int32_t i = 1; i < c && messages != NULL; ++i)
+        {
+#ifdef __USE_BFD
+            
+            if(resolve_addr_file_func_line(((void **)pui)[i], &file, &func, iLine))
+            {
+                
+                
+                strcat(_strS, file);
+                strcat(_strS, ":");
+                ultoa_dup(szN, iLine, 10);
+                strcat(_strS, szN);
+                strcat(_strS, ":1: warning: ");
+                
+            }
+#endif // __USE_BFD
+            
+            char *mangled_name = 0, *offset_begin = 0, *offset_end = 0;
+            
+            // find parantheses and +address offset surrounding mangled name
+            for (char *p = messages[i]; *p; ++p)
+            {
+                
+                if (*p == '(')
+                {
+                    
+                    mangled_name = p;
+                    
+                }
+                else if (*p == '+')
+                {
+                    
+                    offset_begin = p;
+                    
+                }
+                else if (*p == ')')
+                {
+                    
+                    offset_end = p;
+                    
+                    break;
+                    
+                }
+                
+            }
+            
+            if (mangled_name && offset_begin && offset_end && mangled_name < offset_begin)
+            {
+                
+                *mangled_name++ = '\0';
+                *offset_begin++ = '\0';
+                *offset_end++ = '\0';
+                
+                int32_t status;
+                
+                char * real_name = abi::__cxa_demangle(mangled_name, 0, 0, &status);
+                
+                strcat(_strS, "[bt]: (");
+                ultoa_dup(szN, i, 10);
+                strcat(_strS, szN);
+                strcat(_strS, ") ");
+                strcat(_strS, messages[i]);
+                strcat(_strS, " : ");
+                
+                if (status == 0)
+                {
+                    
+                    strcat(_strS, real_name);
+                    
+                }
+                else
+                {
+                    
+                    strcat(_strS, mangled_name);
+                    
+                }
+                
+                strcat(_strS, "+");
+                strcat(_strS, offset_begin);
+                strcat(_strS, offset_end);
+                strcat(_strS,"\n");
+                
+                if(real_name != NULL)
+                {
+                    
+                    free(real_name);
+                    
+                }
+                
+            }
+            else
+            {
+                
+                strcat(_strS, "[bt]: (");
+                ultoa_dup(szN, i, 10);
+                strcat(_strS, szN);
+                strcat(_strS, ") ");
+                strcat(_strS, messages[i]);
+                
+            }
+            
+            strcat(_strS,"\n");
+            
+        }
+        
+        return _strS;
+        
+    }
+    
+    
 #endif
 
 
