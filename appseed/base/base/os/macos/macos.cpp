@@ -159,6 +159,9 @@ int32_t base_main_command_line(const char * pszParams, int argc, char *argv[])
    
    ns_app_run();
    
+   
+   delete ::aura::system::g_p;
+   
    return 0;
    
 }

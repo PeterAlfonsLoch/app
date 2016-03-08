@@ -2975,7 +2975,16 @@ namespace macos
 
    void interaction_impl::_001RedrawWindow()
    {
-
+      
+      unsigned long long uiNow = get_nanos();
+      
+      if(m_uiLastUpdateEnd < m_uiLastUpdateBeg && uiNow - m_uiLastUpdateBeg < 200 * 1000 * 1000)
+      {
+      
+         return;
+         
+      }
+      
       RedrawWindow();
 
    }
@@ -5864,6 +5873,8 @@ namespace macos
       
       single_lock sl(m_pui->m_pmutex, true);
       
+      m_uiLastUpdateBeg = get_nanos();
+      
       if(m_bUpdateGraphics)
       {
 
@@ -5898,6 +5909,9 @@ namespace macos
       GetClientRect(rectClient);
 
       g->BitBlt(0, 0, m_spdibBuffer->m_size.cx, m_spdibBuffer->m_size.cy, m_spdibBuffer->get_graphics(), 0, 0, SRCCOPY);
+      
+      m_uiLastUpdateEnd = get_nanos();
+
 
    }
    
@@ -6336,12 +6350,12 @@ namespace macos
 
       ::user::interaction_impl::_001UpdateWindow();
 
-      if(!m_pui->m_bMayProDevian)
-      {
-         
-         round_window_redraw();
-         
-      }
+//      if(!m_pui->m_bMayProDevian)
+//      {
+//         
+//         round_window_redraw();
+//         
+//      }
 
    }
    

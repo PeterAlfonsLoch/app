@@ -88,14 +88,6 @@
 		0775CB6C1B8488C2005F8295 /* errconnect.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CB6A1B8488C2005F8295 /* errconnect.c */; };
 		0775CB6F1B8488E4005F8295 /* rdg.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CB6D1B8488E4005F8295 /* rdg.c */; };
 		0775CB701B8488E4005F8295 /* rdg.h in Headers */ = {isa = PBXBuildFile; fileRef = 0775CB6E1B8488E4005F8295 /* rdg.h */; };
-		078DF8701C52987000E65274 /* libwelscommon.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 078DF8531C52984900E65274 /* libwelscommon.dylib */; };
-		078DF8711C52987000E65274 /* libwelsdec.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 078DF8591C52984900E65274 /* libwelsdec.dylib */; };
-		078DF8721C52987000E65274 /* libwelsenc.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 078DF85F1C52984900E65274 /* libwelsenc.dylib */; };
-		078DF8731C52987000E65274 /* libwelsprocessing.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 078DF8651C52984900E65274 /* libwelsprocessing.dylib */; };
-		078DF87C1C52988C00E65274 /* libwelscommon.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 078DF8551C52984900E65274 /* libwelscommon.dylib */; };
-		078DF87D1C52988C00E65274 /* libwelsdec.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 078DF85B1C52984900E65274 /* libwelsdec.dylib */; };
-		078DF87E1C52988C00E65274 /* libwelsenc.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 078DF8611C52984900E65274 /* libwelsenc.dylib */; };
-		078DF87F1C52988C00E65274 /* libwelsprocessing.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 078DF8671C52984900E65274 /* libwelsprocessing.dylib */; };
 		078DF8901C5299E000E65274 /* bitmap.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CB281B8487D2005F8295 /* bitmap.c */; };
 		078DF8911C5299E000E65274 /* brush.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CB291B8487D2005F8295 /* brush.c */; };
 		078DF8921C5299E000E65274 /* cache.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CB2A1B8487D2005F8295 /* cache.c */; };
@@ -472,6 +464,10 @@
 		07DD6D7E1B5F0C61003A1CE1 /* primitives.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD6BB11B5F0C61003A1CE1 /* primitives.c */; };
 		07DD710F1B5F173E003A1CE1 /* libaxiswinpr.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07DD70A91B5F0FD4003A1CE1 /* libaxiswinpr.dylib */; };
 		07DD71121B5F1752003A1CE1 /* libaxiswinpr.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07DD70AB1B5F0FD4003A1CE1 /* libaxiswinpr.dylib */; };
+		07F61FE61C8F72B100D03984 /* libwelscommon.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07F61FC91C8F728900D03984 /* libwelscommon.dylib */; };
+		07F61FE71C8F72B100D03984 /* libwelsdec.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07F61FCF1C8F728900D03984 /* libwelsdec.dylib */; };
+		07F61FE81C8F72B100D03984 /* libwelsenc.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07F61FD51C8F728900D03984 /* libwelsenc.dylib */; };
+		07F61FE91C8F72B100D03984 /* libwelsprocessing.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07F61FDB1C8F728900D03984 /* libwelsprocessing.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -545,118 +541,6 @@
 			remoteGlobalIDString = 9AE24D871904CF46001AEFFB;
 			remoteInfo = ios_axisopenssl;
 		};
-		078DF8521C52984900E65274 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 078DF8441C52984900E65274 /* welscommon.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 4CE443D518B722CD0017DF25;
-			remoteInfo = welscommon;
-		};
-		078DF8541C52984900E65274 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 078DF8441C52984900E65274 /* welscommon.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 07B09A261B8497A9002AC4F0;
-			remoteInfo = ios_welscommon;
-		};
-		078DF8581C52984900E65274 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 078DF8471C52984900E65274 /* welsdec.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 4CE4427918B6FC360017DF25;
-			remoteInfo = welsdec;
-		};
-		078DF85A1C52984900E65274 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 078DF8471C52984900E65274 /* welsdec.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 07B098591B8491EC002AC4F0;
-			remoteInfo = ios_welsdec;
-		};
-		078DF85E1C52984900E65274 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 078DF84A1C52984900E65274 /* welsenc.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 4CE4431118B6FFA00017DF25;
-			remoteInfo = welsenc;
-		};
-		078DF8601C52984900E65274 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 078DF84A1C52984900E65274 /* welsenc.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 07B0988D1B849208002AC4F0;
-			remoteInfo = ios_welsenc;
-		};
-		078DF8641C52984900E65274 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 078DF84D1C52984900E65274 /* welsprocessing.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 5499477C196A3F3900BA3D87;
-			remoteInfo = welsprocessing;
-		};
-		078DF8661C52984900E65274 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 078DF84D1C52984900E65274 /* welsprocessing.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 07B09A681B849878002AC4F0;
-			remoteInfo = ios_welsprocessing;
-		};
-		078DF8681C52985F00E65274 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 078DF8441C52984900E65274 /* welscommon.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 4CE443D418B722CD0017DF25;
-			remoteInfo = welscommon;
-		};
-		078DF86A1C52985F00E65274 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 078DF8471C52984900E65274 /* welsdec.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 4CE4427818B6FC360017DF25;
-			remoteInfo = welsdec;
-		};
-		078DF86C1C52985F00E65274 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 078DF84A1C52984900E65274 /* welsenc.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 4CE4431018B6FFA00017DF25;
-			remoteInfo = welsenc;
-		};
-		078DF86E1C52985F00E65274 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 078DF84D1C52984900E65274 /* welsprocessing.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 5499477B196A3F3900BA3D87;
-			remoteInfo = welsprocessing;
-		};
-		078DF8741C52987D00E65274 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 078DF8441C52984900E65274 /* welscommon.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 07B09A071B8497A9002AC4F0;
-			remoteInfo = ios_welscommon;
-		};
-		078DF8761C52987D00E65274 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 078DF8471C52984900E65274 /* welsdec.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 07B098371B8491EC002AC4F0;
-			remoteInfo = ios_welsdec;
-		};
-		078DF8781C52987D00E65274 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 078DF84A1C52984900E65274 /* welsenc.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 07B0985A1B849208002AC4F0;
-			remoteInfo = ios_welsenc;
-		};
-		078DF87A1C52987D00E65274 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 078DF84D1C52984900E65274 /* welsprocessing.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 07B09A461B849878002AC4F0;
-			remoteInfo = ios_welsprocessing;
-		};
 		079FD65F1B601D0B007CB5C6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 079FD6591B601D0B007CB5C6 /* aura.xcodeproj */;
@@ -719,6 +603,90 @@
 			proxyType = 1;
 			remoteGlobalIDString = 07DD5D521B5F0A1E003A1CE1;
 			remoteInfo = ios_axiswinpr;
+		};
+		07F61FC81C8F728900D03984 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 07F61FBD1C8F728800D03984 /* welscommon.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4CE443D518B722CD0017DF25;
+			remoteInfo = welscommon;
+		};
+		07F61FCA1C8F728900D03984 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 07F61FBD1C8F728800D03984 /* welscommon.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 07B09A261B8497A9002AC4F0;
+			remoteInfo = ios_welscommon;
+		};
+		07F61FCE1C8F728900D03984 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 07F61FC01C8F728800D03984 /* welsdec.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4CE4427918B6FC360017DF25;
+			remoteInfo = welsdec;
+		};
+		07F61FD01C8F728900D03984 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 07F61FC01C8F728800D03984 /* welsdec.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 07B098591B8491EC002AC4F0;
+			remoteInfo = ios_welsdec;
+		};
+		07F61FD41C8F728900D03984 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 07F61FC31C8F728800D03984 /* welsenc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4CE4431118B6FFA00017DF25;
+			remoteInfo = welsenc;
+		};
+		07F61FD61C8F728900D03984 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 07F61FC31C8F728800D03984 /* welsenc.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 07B0988D1B849208002AC4F0;
+			remoteInfo = ios_welsenc;
+		};
+		07F61FDA1C8F728900D03984 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 07F61FBA1C8F728800D03984 /* welsprocessing.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5499477C196A3F3900BA3D87;
+			remoteInfo = welsprocessing;
+		};
+		07F61FDC1C8F728900D03984 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 07F61FBA1C8F728800D03984 /* welsprocessing.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 07B09A681B849878002AC4F0;
+			remoteInfo = ios_welsprocessing;
+		};
+		07F61FDE1C8F729E00D03984 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 07F61FBA1C8F728800D03984 /* welsprocessing.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 5499477B196A3F3900BA3D87;
+			remoteInfo = welsprocessing;
+		};
+		07F61FE01C8F729E00D03984 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 07F61FBD1C8F728800D03984 /* welscommon.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 4CE443D418B722CD0017DF25;
+			remoteInfo = welscommon;
+		};
+		07F61FE21C8F729E00D03984 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 07F61FC01C8F728800D03984 /* welsdec.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 4CE4427818B6FC360017DF25;
+			remoteInfo = welsdec;
+		};
+		07F61FE41C8F729E00D03984 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 07F61FC31C8F728800D03984 /* welsenc.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 4CE4431018B6FFA00017DF25;
+			remoteInfo = welsenc;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -802,10 +770,6 @@
 		0775CB6A1B8488C2005F8295 /* errconnect.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = errconnect.c; sourceTree = "<group>"; };
 		0775CB6D1B8488E4005F8295 /* rdg.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rdg.c; sourceTree = "<group>"; };
 		0775CB6E1B8488E4005F8295 /* rdg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rdg.h; sourceTree = "<group>"; };
-		078DF8441C52984900E65274 /* welscommon.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = welscommon.xcodeproj; path = /Volumes/AppleDev/ios/nodeapp/seed/metaseed/../../../app/axis/openh264/codec/build/iOS/common/welscommon.xcodeproj; sourceTree = "<absolute>"; };
-		078DF8471C52984900E65274 /* welsdec.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = welsdec.xcodeproj; path = /Volumes/AppleDev/ios/nodeapp/seed/metaseed/../../../app/axis/openh264/codec/build/iOS/dec/welsdec/welsdec.xcodeproj; sourceTree = "<absolute>"; };
-		078DF84A1C52984900E65274 /* welsenc.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = welsenc.xcodeproj; path = /Volumes/AppleDev/ios/nodeapp/seed/metaseed/../../../app/axis/openh264/codec/build/iOS/enc/welsenc/welsenc.xcodeproj; sourceTree = "<absolute>"; };
-		078DF84D1C52984900E65274 /* welsprocessing.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = welsprocessing.xcodeproj; path = /Volumes/AppleDev/ios/nodeapp/seed/metaseed/../../../app/axis/openh264/codec/build/iOS/processing/welsprocessing.xcodeproj; sourceTree = "<absolute>"; };
 		079FD6591B601D0B007CB5C6 /* aura.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aura.xcodeproj; path = ../../appseed/aura/aura.xcodeproj; sourceTree = "<group>"; };
 		07DD674C1B5F0C16003A1CE1 /* libaxisfreerdp.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libaxisfreerdp.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		07DD6AC51B5F0C60003A1CE1 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
@@ -958,6 +922,10 @@
 		07DD6BB11B5F0C61003A1CE1 /* primitives.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = primitives.c; sourceTree = "<group>"; };
 		07DD6BB21B5F0C61003A1CE1 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		07DD70A31B5F0FD4003A1CE1 /* axiswinpr.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axiswinpr.xcodeproj; path = ../winpr/axiswinpr.xcodeproj; sourceTree = "<group>"; };
+		07F61FBA1C8F728800D03984 /* welsprocessing.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = welsprocessing.xcodeproj; path = ../openh264/codec/build/iOS/processing/welsprocessing.xcodeproj; sourceTree = "<group>"; };
+		07F61FBD1C8F728800D03984 /* welscommon.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = welscommon.xcodeproj; path = ../openh264/codec/build/iOS/common/welscommon.xcodeproj; sourceTree = "<group>"; };
+		07F61FC01C8F728800D03984 /* welsdec.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = welsdec.xcodeproj; path = /macos/nodeapp/seed/metaseed/../../../app/axis/openh264/codec/build/iOS/dec/welsdec/welsdec.xcodeproj; sourceTree = "<absolute>"; };
+		07F61FC31C8F728800D03984 /* welsenc.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = welsenc.xcodeproj; path = /macos/nodeapp/seed/metaseed/../../../app/axis/openh264/codec/build/iOS/enc/welsenc/welsenc.xcodeproj; sourceTree = "<absolute>"; };
 		9A1B358C16A2D7A500875A94 /* libaxisfreerdp.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libaxisfreerdp.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -966,10 +934,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				078DF87C1C52988C00E65274 /* libwelscommon.dylib in Frameworks */,
-				078DF87D1C52988C00E65274 /* libwelsdec.dylib in Frameworks */,
-				078DF87E1C52988C00E65274 /* libwelsenc.dylib in Frameworks */,
-				078DF87F1C52988C00E65274 /* libwelsprocessing.dylib in Frameworks */,
 				079FD66C1B601D2D007CB5C6 /* libaura.dylib in Frameworks */,
 				074BD0B71B5F2F0800219723 /* libaxisopenssl.dylib in Frameworks */,
 				074BD0A41B5F2EBA00219723 /* libaxiscrypto.dylib in Frameworks */,
@@ -981,10 +945,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				078DF8701C52987000E65274 /* libwelscommon.dylib in Frameworks */,
-				078DF8711C52987000E65274 /* libwelsdec.dylib in Frameworks */,
-				078DF8721C52987000E65274 /* libwelsenc.dylib in Frameworks */,
-				078DF8731C52987000E65274 /* libwelsprocessing.dylib in Frameworks */,
+				07F61FE61C8F72B100D03984 /* libwelscommon.dylib in Frameworks */,
+				07F61FE71C8F72B100D03984 /* libwelsdec.dylib in Frameworks */,
+				07F61FE81C8F72B100D03984 /* libwelsenc.dylib in Frameworks */,
+				07F61FE91C8F72B100D03984 /* libwelsprocessing.dylib in Frameworks */,
 				079FD66B1B601D24007CB5C6 /* libaura.dylib in Frameworks */,
 				074BD0B81B5F2F1100219723 /* libaxisopenssl.dylib in Frameworks */,
 				074BD0A51B5F2EC300219723 /* libaxiscrypto.dylib in Frameworks */,
@@ -1011,42 +975,6 @@
 				074BD0AD1B5F2EDB00219723 /* libaxisopenssl.dylib */,
 				074BD0AF1B5F2EDB00219723 /* libaxisopenssl.dylib */,
 				074BD0B11B5F2EDB00219723 /* axisopenssl_iosTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		078DF8451C52984900E65274 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				078DF8531C52984900E65274 /* libwelscommon.dylib */,
-				078DF8551C52984900E65274 /* libwelscommon.dylib */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		078DF8481C52984900E65274 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				078DF8591C52984900E65274 /* libwelsdec.dylib */,
-				078DF85B1C52984900E65274 /* libwelsdec.dylib */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		078DF84B1C52984900E65274 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				078DF85F1C52984900E65274 /* libwelsenc.dylib */,
-				078DF8611C52984900E65274 /* libwelsenc.dylib */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		078DF84E1C52984900E65274 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				078DF8651C52984900E65274 /* libwelsprocessing.dylib */,
-				078DF8671C52984900E65274 /* libwelsprocessing.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1399,6 +1327,42 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		07F61FBB1C8F728800D03984 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				07F61FDB1C8F728900D03984 /* libwelsprocessing.dylib */,
+				07F61FDD1C8F728900D03984 /* libwelsprocessing.dylib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		07F61FBE1C8F728800D03984 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				07F61FC91C8F728900D03984 /* libwelscommon.dylib */,
+				07F61FCB1C8F728900D03984 /* libwelscommon.dylib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		07F61FC11C8F728800D03984 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				07F61FCF1C8F728900D03984 /* libwelsdec.dylib */,
+				07F61FD11C8F728900D03984 /* libwelsdec.dylib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		07F61FC41C8F728800D03984 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				07F61FD51C8F728900D03984 /* libwelsenc.dylib */,
+				07F61FD71C8F728900D03984 /* libwelsenc.dylib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		9A1B358116A2D7A500875A94 = {
 			isa = PBXGroup;
 			children = (
@@ -1406,10 +1370,10 @@
 				074BD0941B5F2E9B00219723 /* axiscrypto.xcodeproj */,
 				074BD0A61B5F2EDB00219723 /* axisopenssl.xcodeproj */,
 				07DD70A31B5F0FD4003A1CE1 /* axiswinpr.xcodeproj */,
-				078DF8441C52984900E65274 /* welscommon.xcodeproj */,
-				078DF8471C52984900E65274 /* welsdec.xcodeproj */,
-				078DF84A1C52984900E65274 /* welsenc.xcodeproj */,
-				078DF84D1C52984900E65274 /* welsprocessing.xcodeproj */,
+				07F61FBA1C8F728800D03984 /* welsprocessing.xcodeproj */,
+				07F61FBD1C8F728800D03984 /* welscommon.xcodeproj */,
+				07F61FC01C8F728800D03984 /* welsdec.xcodeproj */,
+				07F61FC31C8F728800D03984 /* welsenc.xcodeproj */,
 				07DD6ABB1B5F0C60003A1CE1 /* freerdp */,
 				9A1B358D16A2D7A500875A94 /* Products */,
 			);
@@ -1606,10 +1570,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				078DF8751C52987D00E65274 /* PBXTargetDependency */,
-				078DF8771C52987D00E65274 /* PBXTargetDependency */,
-				078DF8791C52987D00E65274 /* PBXTargetDependency */,
-				078DF87B1C52987D00E65274 /* PBXTargetDependency */,
 				079FD66A1B601D1B007CB5C6 /* PBXTargetDependency */,
 				074BD0B61B5F2F0100219723 /* PBXTargetDependency */,
 				074BD0A31B5F2EAA00219723 /* PBXTargetDependency */,
@@ -1631,10 +1591,10 @@
 			buildRules = (
 			);
 			dependencies = (
-				078DF8691C52985F00E65274 /* PBXTargetDependency */,
-				078DF86B1C52985F00E65274 /* PBXTargetDependency */,
-				078DF86D1C52985F00E65274 /* PBXTargetDependency */,
-				078DF86F1C52985F00E65274 /* PBXTargetDependency */,
+				07F61FDF1C8F729E00D03984 /* PBXTargetDependency */,
+				07F61FE11C8F729E00D03984 /* PBXTargetDependency */,
+				07F61FE31C8F729E00D03984 /* PBXTargetDependency */,
+				07F61FE51C8F729E00D03984 /* PBXTargetDependency */,
 				079FD6681B601D15007CB5C6 /* PBXTargetDependency */,
 				074BD0B41B5F2EFB00219723 /* PBXTargetDependency */,
 				074BD0A11B5F2EA400219723 /* PBXTargetDependency */,
@@ -1682,20 +1642,20 @@
 					ProjectRef = 07DD70A31B5F0FD4003A1CE1 /* axiswinpr.xcodeproj */;
 				},
 				{
-					ProductGroup = 078DF8451C52984900E65274 /* Products */;
-					ProjectRef = 078DF8441C52984900E65274 /* welscommon.xcodeproj */;
+					ProductGroup = 07F61FBE1C8F728800D03984 /* Products */;
+					ProjectRef = 07F61FBD1C8F728800D03984 /* welscommon.xcodeproj */;
 				},
 				{
-					ProductGroup = 078DF8481C52984900E65274 /* Products */;
-					ProjectRef = 078DF8471C52984900E65274 /* welsdec.xcodeproj */;
+					ProductGroup = 07F61FC11C8F728800D03984 /* Products */;
+					ProjectRef = 07F61FC01C8F728800D03984 /* welsdec.xcodeproj */;
 				},
 				{
-					ProductGroup = 078DF84B1C52984900E65274 /* Products */;
-					ProjectRef = 078DF84A1C52984900E65274 /* welsenc.xcodeproj */;
+					ProductGroup = 07F61FC41C8F728800D03984 /* Products */;
+					ProjectRef = 07F61FC31C8F728800D03984 /* welsenc.xcodeproj */;
 				},
 				{
-					ProductGroup = 078DF84E1C52984900E65274 /* Products */;
-					ProjectRef = 078DF84D1C52984900E65274 /* welsprocessing.xcodeproj */;
+					ProductGroup = 07F61FBB1C8F728800D03984 /* Products */;
+					ProjectRef = 07F61FBA1C8F728800D03984 /* welsprocessing.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -1749,62 +1709,6 @@
 			remoteRef = 074BD0B01B5F2EDB00219723 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		078DF8531C52984900E65274 /* libwelscommon.dylib */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libwelscommon.dylib;
-			remoteRef = 078DF8521C52984900E65274 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		078DF8551C52984900E65274 /* libwelscommon.dylib */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libwelscommon.dylib;
-			remoteRef = 078DF8541C52984900E65274 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		078DF8591C52984900E65274 /* libwelsdec.dylib */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libwelsdec.dylib;
-			remoteRef = 078DF8581C52984900E65274 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		078DF85B1C52984900E65274 /* libwelsdec.dylib */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libwelsdec.dylib;
-			remoteRef = 078DF85A1C52984900E65274 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		078DF85F1C52984900E65274 /* libwelsenc.dylib */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libwelsenc.dylib;
-			remoteRef = 078DF85E1C52984900E65274 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		078DF8611C52984900E65274 /* libwelsenc.dylib */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libwelsenc.dylib;
-			remoteRef = 078DF8601C52984900E65274 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		078DF8651C52984900E65274 /* libwelsprocessing.dylib */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libwelsprocessing.dylib;
-			remoteRef = 078DF8641C52984900E65274 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		078DF8671C52984900E65274 /* libwelsprocessing.dylib */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libwelsprocessing.dylib;
-			remoteRef = 078DF8661C52984900E65274 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		079FD6601B601D0B007CB5C6 /* libaura.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
@@ -1838,6 +1742,62 @@
 			fileType = "compiled.mach-o.dylib";
 			path = libaxiswinpr.dylib;
 			remoteRef = 07DD70AA1B5F0FD4003A1CE1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		07F61FC91C8F728900D03984 /* libwelscommon.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libwelscommon.dylib;
+			remoteRef = 07F61FC81C8F728900D03984 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		07F61FCB1C8F728900D03984 /* libwelscommon.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libwelscommon.dylib;
+			remoteRef = 07F61FCA1C8F728900D03984 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		07F61FCF1C8F728900D03984 /* libwelsdec.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libwelsdec.dylib;
+			remoteRef = 07F61FCE1C8F728900D03984 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		07F61FD11C8F728900D03984 /* libwelsdec.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libwelsdec.dylib;
+			remoteRef = 07F61FD01C8F728900D03984 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		07F61FD51C8F728900D03984 /* libwelsenc.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libwelsenc.dylib;
+			remoteRef = 07F61FD41C8F728900D03984 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		07F61FD71C8F728900D03984 /* libwelsenc.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libwelsenc.dylib;
+			remoteRef = 07F61FD61C8F728900D03984 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		07F61FDB1C8F728900D03984 /* libwelsprocessing.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libwelsprocessing.dylib;
+			remoteRef = 07F61FDA1C8F728900D03984 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		07F61FDD1C8F728900D03984 /* libwelsprocessing.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libwelsprocessing.dylib;
+			remoteRef = 07F61FDC1C8F728900D03984 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -2178,46 +2138,6 @@
 			name = ios_axisopenssl;
 			targetProxy = 074BD0B51B5F2F0100219723 /* PBXContainerItemProxy */;
 		};
-		078DF8691C52985F00E65274 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = welscommon;
-			targetProxy = 078DF8681C52985F00E65274 /* PBXContainerItemProxy */;
-		};
-		078DF86B1C52985F00E65274 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = welsdec;
-			targetProxy = 078DF86A1C52985F00E65274 /* PBXContainerItemProxy */;
-		};
-		078DF86D1C52985F00E65274 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = welsenc;
-			targetProxy = 078DF86C1C52985F00E65274 /* PBXContainerItemProxy */;
-		};
-		078DF86F1C52985F00E65274 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = welsprocessing;
-			targetProxy = 078DF86E1C52985F00E65274 /* PBXContainerItemProxy */;
-		};
-		078DF8751C52987D00E65274 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = ios_welscommon;
-			targetProxy = 078DF8741C52987D00E65274 /* PBXContainerItemProxy */;
-		};
-		078DF8771C52987D00E65274 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = ios_welsdec;
-			targetProxy = 078DF8761C52987D00E65274 /* PBXContainerItemProxy */;
-		};
-		078DF8791C52987D00E65274 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = ios_welsenc;
-			targetProxy = 078DF8781C52987D00E65274 /* PBXContainerItemProxy */;
-		};
-		078DF87B1C52987D00E65274 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = ios_welsprocessing;
-			targetProxy = 078DF87A1C52987D00E65274 /* PBXContainerItemProxy */;
-		};
 		079FD6681B601D15007CB5C6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = aura;
@@ -2237,6 +2157,26 @@
 			isa = PBXTargetDependency;
 			name = ios_axiswinpr;
 			targetProxy = 07DD71101B5F1748003A1CE1 /* PBXContainerItemProxy */;
+		};
+		07F61FDF1C8F729E00D03984 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = welsprocessing;
+			targetProxy = 07F61FDE1C8F729E00D03984 /* PBXContainerItemProxy */;
+		};
+		07F61FE11C8F729E00D03984 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = welscommon;
+			targetProxy = 07F61FE01C8F729E00D03984 /* PBXContainerItemProxy */;
+		};
+		07F61FE31C8F729E00D03984 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = welsdec;
+			targetProxy = 07F61FE21C8F729E00D03984 /* PBXContainerItemProxy */;
+		};
+		07F61FE51C8F729E00D03984 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = welsenc;
+			targetProxy = 07F61FE41C8F729E00D03984 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

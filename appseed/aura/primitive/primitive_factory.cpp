@@ -61,14 +61,14 @@ void base_factory::enable_simple_factory_request(bool bEnable)
 
    m_bSimpleFactoryRequest = bEnable;
 
-   if(!bEnable)
-   {
-
-      single_lock sl(m_pmutex, TRUE);
-
-      m_typeinfoptraSimpleFactoryRequest.remove_all();
-
-   }
+//   if(!bEnable)
+//   {
+//
+//      single_lock sl(m_pmutex, TRUE);
+//
+//      m_typeinfoptraSimpleFactoryRequest.remove_all();
+//
+//   }
 
 }
 

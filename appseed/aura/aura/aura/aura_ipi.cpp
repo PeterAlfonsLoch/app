@@ -167,8 +167,10 @@ namespace aura
             launcher.start();
 
             int iStep = 0;
+            
+            int iSubStep;
 
-            while(iStep < 8)
+            while(iStep < 8 && ::get_thread()->m_bRun)
             {
 
                iStep++;
@@ -182,7 +184,12 @@ namespace aura
 
                }
 
-               Sleep(iStep * 784);
+               for(iSubStep = 0; (iSubStep < (iStep + 1) * 10) && ::get_thread()->m_bRun; iSubStep++)
+               {
+                  
+                  Sleep(84);
+                  
+               }
 
             }
 

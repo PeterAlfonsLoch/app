@@ -198,7 +198,7 @@ public:
    idsp(factory_item_base)       m_mapItem;
    idsp(factory_allocator)       m_mapAllocator;
    bool                          m_bSimpleFactoryRequest;
-   spa(type)                     m_typeinfoptraSimpleFactoryRequest;
+//   spa(type)                     m_typeinfoptraSimpleFactoryRequest;
 
 
 

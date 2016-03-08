@@ -17,7 +17,11 @@ class round_window
 public:
 
 
-bool m_bDirty;
+   bool m_bDirty;
+   
+   unsigned long long   m_uiLastUpdateBeg;
+   unsigned long long   m_uiLastUpdateEnd;
+
    
 #ifdef __OBJC__
    RoundWindow * m_proundwindow;

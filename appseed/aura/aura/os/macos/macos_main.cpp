@@ -71,7 +71,7 @@ uint32_t __run_system_command_line(const char * pszCommandLine)
    
    int32_t nReturnCode = 0;
    
-   sp(::aura::system) psystem = create_aura_system();
+   ::aura::system * psystem = create_aura_system();
    
    ::macos::main_init_data * pinitmaindata   = new ::macos::main_init_data;
    
@@ -87,6 +87,8 @@ uint32_t __run_system_command_line(const char * pszCommandLine)
    
    
    psystem->init_main_data(pinitmaindata);
+   
+   psystem->m_bAutoDelete                    = false;
    
    //MessageBox(NULL, "box1", "box1", MB_ICONINFORMATION);
    

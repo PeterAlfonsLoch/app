@@ -93,7 +93,7 @@ int_array get_pids()
    
    pida.set_size(numberOfProcesses);
    
-   proc_listpids(PROC_ALL_PIDS, 0, pids, sizeof(pids));
+   proc_listpids(PROC_ALL_PIDS, 0, pida.get_data(), pida.get_size());
    
    for(auto pid : pida)
    {
