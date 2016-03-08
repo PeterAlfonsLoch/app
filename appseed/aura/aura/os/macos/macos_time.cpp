@@ -46,7 +46,7 @@ uint64_t get_nanos()
     ts.tv_sec = mts.tv_sec;
     ts.tv_nsec = mts.tv_nsec;
     
-    return ts.tv_sec * 1000 * 1000 * 1000 + ts.tv_nsec;
+    return (uint64_t) ts.tv_sec * 1000 * 1000 * 1000 + (uint64_t) ts.tv_nsec;
     
 }
 
