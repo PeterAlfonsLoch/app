@@ -102,7 +102,7 @@ namespace primitive
 
 
 
-   inline bool memory_base::allocate(memory_size_t dwNewLength)
+   bool memory_base::allocate(memory_size_t dwNewLength)
    {
 
       if(!is_enabled())

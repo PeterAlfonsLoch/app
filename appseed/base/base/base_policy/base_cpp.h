@@ -103,12 +103,6 @@ namespace user
 
 using window_sp = sp(::user::interaction_impl);
 
-namespace primitive
-{
-
-   class memory;
-
-} // namespace primitive
 
 namespace plane
 {

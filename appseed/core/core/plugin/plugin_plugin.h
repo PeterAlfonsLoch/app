@@ -4,12 +4,6 @@
 int32_t spaboot_start(const char * pszVersion, const char * pszId);
 
 
-namespace primitive
-{
-   class memory;
-}
-
-
 namespace core
 {
    class file;
