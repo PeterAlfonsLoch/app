@@ -71,7 +71,7 @@ namespace draw2d
          bool              m_bMapped; // optionally used by implementation
          descriptor        m_descriptor;
          bool              m_bReduced; // optionally used by implementation
-         int               m_iHeight;
+//         int               m_iHeight;
          point             m_pt;
          double            m_dFontFactor;
          e_alpha_mode      m_ealphamode;

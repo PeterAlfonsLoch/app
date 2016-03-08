@@ -43,7 +43,7 @@ namespace draw2d
    {
 
       m_iScan        = 0;
-      m_iHeight      = -1;
+//      m_iHeight      = -1;
       m_bMapped      = false;
 
    }
@@ -4640,13 +4640,13 @@ namespace draw2d
    ::size dib::get_size() const
    {
 
-      if(m_iHeight >= 0)
-      {
-
-         return ::size(m_size.cx, m_iHeight);
-
-      }
-      else
+//      if(m_iHeight >= 0)
+//      {
+//
+//         return ::size(m_size.cx, m_iHeight);
+//
+//      }
+//      else
       {
 
          return m_size;

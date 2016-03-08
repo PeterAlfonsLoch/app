@@ -1659,14 +1659,15 @@ namespace draw2d_quartz2d
          CGRect rectSub;
 
          rectSub.origin.x = xSrc;
-         if(pgraphicsSrc->m_pdib == NULL || pgraphicsSrc->m_pdib->m_iHeight < 0)
-         {
-            rectSub.origin.y =  ySrc;
-         }
-         else
-         {
-            rectSub.origin.y =  ySrc + (MAX(0,(int_ptr)pgraphicsSrc->m_pdib->m_size.cy - (int_ptr)pgraphicsSrc->m_pdib->m_iHeight));
-         }
+         rectSub.origin.y =  ySrc;
+//         if(pgraphicsSrc->m_pdib == NULL || pgraphicsSrc->m_pdib->m_iHeight < 0)
+//         {
+//            rectSub.origin.y =  ySrc;
+//         }
+//         else
+//         {
+//            rectSub.origin.y =  ySrc + (MAX(0,(int_ptr)pgraphicsSrc->m_pdib->m_size.cy - (int_ptr)pgraphicsSrc->m_pdib->m_iHeight));
+//         }
          rectSub.size.width = rect.size.width;
          rectSub.size.height = rect.size.height;
                   CGFloat fMin = MIN(rect.origin.y, rectSub.origin.y);

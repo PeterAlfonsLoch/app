@@ -5870,7 +5870,9 @@ namespace macos
          update_graphics_resources();
 
       }
-
+      
+      _001UpdateWindow();
+      
       cslock slDisplay(cs_display());
 
       if(m_spdibBuffer.is_null())

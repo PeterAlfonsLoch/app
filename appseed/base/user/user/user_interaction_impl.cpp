@@ -2783,32 +2783,32 @@ namespace user
 
       if(m_size != rectWindow.size())
       {
-      single_lock sl(m_spmutexBuffer, false);
 
-      if(!sl.lock())
-         return;
+         single_lock sl(m_spmutexBuffer, false);
 
-
-//         single_lock sl(m_pui->m_spmutex,false);
-
-  //       if(!sl.lock())
-    //     {
-      //      return;
-        // }
+         if(!sl.lock())
+         {
+            
+            return;
+            
+         }
 
          cslock sl2(cs_display());
 
          if(m_spdibBuffer.is_null())
+         {
+            
             m_spdibBuffer.alloc(allocer());
+            
+         }
 
-         if(rectWindow.width() > m_spdibBuffer->m_size.cx
-            || rectWindow.height() > m_spdibBuffer->m_size.cy)
+         if(rectWindow.size() != m_spdibBuffer->m_size)
          {
 
-            if(!m_spdibBuffer->create(rectWindow.size() + size(100,100)))
+            if(!m_spdibBuffer->create(rectWindow.size()))
             {
 
-               TRACE("Could not create window graphics buffer (1) requested_size = %d, %d", rectWindow.width() + 100, rectWindow.height() + 100);
+               TRACE("Could not create window graphics buffer (1) requested_size = %d, %d", rectWindow.width(), rectWindow.height());
 
                return;
 
@@ -2817,11 +2817,17 @@ namespace user
          }
 
          if(m_spdibBuffer.is_null())
+         {
+            
             m_spdibBuffer.alloc(allocer());
+            
+         }
 
          if(m_spdibBuffer->size() != m_spdibBuffer->size())
          {
+            
             m_spdibBuffer->create(m_spdibBuffer->size());
+            
          }
 
          m_size = rectWindow.size();

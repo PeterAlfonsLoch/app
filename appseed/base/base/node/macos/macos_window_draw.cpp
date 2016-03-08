@@ -206,6 +206,7 @@ namespace macos
 
    int32_t window_draw::run()
    {
+      return 0;
       return RedrawProc();
    }
 
@@ -276,8 +277,6 @@ namespace macos
    // lprect should be in screen coordinates
    bool window_draw::UpdateBuffer()
    {
-
-      return ::user::window_draw::UpdateBuffer();
 
        if(m_bRender)
          return false;

@@ -202,10 +202,10 @@ namespace visual
 
       int div2 = (radius * 2) + 1;
 
-      if(cx + 100 > m_p->m_size.cx || cy + 100 > m_p->m_size.cy)
+      if(cx != m_p->m_size.cx || cy != m_p->m_size.cy)
       {
 
-         if(!m_p->create(cx + 100,cy + 100))
+         if(!m_p->create(cx,cy))
          {
 
             return false;
@@ -311,7 +311,7 @@ namespace visual
 #endif
 
 
-      m_p->m_iHeight = cy;
+//      m_p->m_iHeight = cy;
 
       //      int32_t h         = cy;
         //    int32_t scan      = m_p->scan;
