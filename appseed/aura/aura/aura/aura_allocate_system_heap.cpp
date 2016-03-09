@@ -34,7 +34,7 @@ void * system_heap_alloc(size_t size)
    if(size > 16 * 1024)
    {
 
-      ::OutputDebugStringA("allocating memory block greater than 16kb\n");
+// xxx      ::OutputDebugStringA("allocating memory block greater than 16kb\n");
 
    }
 
