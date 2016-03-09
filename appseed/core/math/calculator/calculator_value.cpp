@@ -75,7 +75,7 @@ namespace calculator
             str.Format("%f", m_dR);
             return str;
          }
-         else if(m_dR == 0.0 || fabs(m_dR) < (1.0 / 1000000000.0) && (fabs(m_dI) / fabs(m_dR)) > 1000000000.0)
+         else if(m_dR == 0.0 || (fabs(m_dR) < (1.0 / 1000000000.0) && (fabs(m_dI) / fabs(m_dR)) > 1000000000.0))
          {
             // Real part is precisely or almost 0
             str.Format("i%f",m_dI);

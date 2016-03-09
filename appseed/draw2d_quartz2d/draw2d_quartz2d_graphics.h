@@ -249,7 +249,7 @@ namespace draw2d_quartz2d
       //  bool LineTo(POINT point);
       bool Arc(int32_t x1, int32_t y1, int32_t x2, int32_t y2, int32_t x3, int32_t y3, int32_t x4, int32_t y4);
       bool Arc(const RECT & lpRect, POINT ptStart, POINT ptEnd);
-      bool Polyline(const POINT* lpPoints, int32_t nCount);
+      bool Polyline(const POINT* lpPoints, count nCount);
       
       bool AngleArc(int32_t x, int32_t y, int32_t nRadius, float fStartAngle, float fSweepAngle);
       bool ArcTo(int32_t x1, int32_t y1, int32_t x2, int32_t y2, int32_t x3, int32_t y3, int32_t x4, int32_t y4);

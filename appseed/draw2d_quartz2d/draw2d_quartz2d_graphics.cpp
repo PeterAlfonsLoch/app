@@ -702,7 +702,7 @@ namespace draw2d_quartz2d
 
    }
 
-   bool graphics::Polyline(const POINT* lpPoints, int32_t nCount)
+   bool graphics::Polyline(const POINT* lpPoints, count nCount)
    {
 
       /*ASSERT(get_handle1() != NULL);
