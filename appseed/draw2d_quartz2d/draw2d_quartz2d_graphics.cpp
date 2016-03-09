@@ -1649,8 +1649,6 @@ namespace draw2d_quartz2d
 
          CGRect rect;
 
-    //     point ptOffset = this->GetViewportOrg();
-
          rect.origin.x = x;
          rect.origin.y = y;
          rect.size.width = nWidth;
@@ -1660,17 +1658,12 @@ namespace draw2d_quartz2d
 
          rectSub.origin.x = xSrc;
          rectSub.origin.y =  ySrc;
-//         if(pgraphicsSrc->m_pdib == NULL || pgraphicsSrc->m_pdib->m_iHeight < 0)
-//         {
-//            rectSub.origin.y =  ySrc;
-//         }
-//         else
-//         {
-//            rectSub.origin.y =  ySrc + (MAX(0,(int_ptr)pgraphicsSrc->m_pdib->m_size.cy - (int_ptr)pgraphicsSrc->m_pdib->m_iHeight));
-//         }
+
          rectSub.size.width = rect.size.width;
          rectSub.size.height = rect.size.height;
-                  CGFloat fMin = MIN(rect.origin.y, rectSub.origin.y);
+         
+         CGFloat fMin = MIN(rect.origin.y, rectSub.origin.y);
+         
          if(fMin < 0)
          {
             rect.size.height += fMin;
@@ -1708,22 +1701,87 @@ namespace draw2d_quartz2d
 
          }
 
-         //if(m_pdib != NULL)
-         //{
+         return true;
 
-           // m_pdib->map();
+      }
+      catch(...)
+      {
 
-         //}
+         return false;
 
-//
-//         cairo_pattern_t * ppattern = cairo_get_source((cairo_t *) pgraphicsSrc->get_os_data());
-//
-//         if(ppattern == NULL)
-//            return false;
-//
-//         cairo_set_source(m_pdc, ppattern);
-//
-//         cairo_paint(m_pdc);
+      }
+
+   }
+
+
+   bool graphics::StretchBlt(int32_t xDst, int32_t yDst, int32_t nDstWidth, int32_t nDstHeight, ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight, DWORD dwRop)
+   {
+
+      if(nDstWidth <= 0
+      || nDstHeight <= 0
+      || nSrcWidth <= 0
+      || nSrcHeight <= 0)
+         return false;
+
+
+      try
+      {
+
+         if(pgraphicsSrc == NULL)
+         {
+            
+            return false;
+            
+         }
+
+         if(pgraphicsSrc->get_os_data() == NULL)
+         {
+          
+            return false;
+            
+         }
+         
+         CGImageRef image = CGBitmapContextCreateImage((CGContextRef) pgraphicsSrc->get_os_data());
+
+         if(image == NULL)
+               return false;
+         
+         int DH = CGImageGetHeight(image);
+         
+         CGRect rect;
+
+         rect.origin.x = xDst;
+         rect.origin.y = yDst;
+         rect.size.width = nDstWidth;
+         rect.size.height = nDstHeight;
+
+         CGRect rectSub;
+
+         rectSub.origin.x = xSrc;
+         rectSub.origin.y = ySrc;
+         rectSub.size.width = nSrcWidth;
+         rectSub.size.height = nSrcHeight;
+
+         CGImageRef imageSub = CGImageCreateWithImageInRect(image, rectSub);
+
+         if(imageSub != NULL)
+         {
+
+            CGContextSaveGState(m_pdc);
+
+//            CGContextTranslateCTM(m_pdc, xDst, yDst);
+
+//            CGContextScaleCTM(m_pdc, (CGFloat) nDstWidth / (CGFloat) nSrcWidth, (CGFloat) nDstHeight / (CGFloat) nSrcHeight);
+
+            CGContextDrawImage(m_pdc, rect, imageSub);
+
+            CGContextRestoreGState(m_pdc);
+
+            CGImageRelease(imageSub);
+
+         }
+
+         CGImageRelease(image);
 
          return true;
 
@@ -1735,118 +1793,7 @@ namespace draw2d_quartz2d
 
       }
 
-      //return ::BitBlt(get_handle1(), x, y, nWidth, nHeight, WIN_HDC(pgraphicsSrc), xSrc, ySrc, dwRop);
-
-   }
-
-
-   bool graphics::StretchBlt(int32_t xDst, int32_t yDst, int32_t nDstWidth, int32_t nDstHeight, ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight, DWORD dwRop)
-   {
-
-//      if(pgraphicsSrc == NULL)
-//         return false;
-//
-//      if(nSrcWidth == 0 || nSrcHeight == 0 || nDstWidth == 0 || nDstHeight == 0)
-//         return false;
-//
-//      cairo_pattern_t * ppattern = cairo_get_source((cairo_t *) pgraphicsSrc->get_os_data());
-//
-//      if(ppattern == NULL)
-//         return false;
-//
-//      cairo_translate(m_pdc, xDst, yDst);
-//
-//      cairo_scale(m_pdc, (double) nDstWidth / (double) nSrcWidth, (double) nDstHeight / (double) nSrcHeight);
-//
-//      cairo_set_source(m_pdc, ppattern);
-//
-//      cairo_paint(m_pdc);
-//
-//      cairo_scale(m_pdc, (double) nSrcWidth / (double) nDstWidth, (double) nSrcHeight / (double) nDstHeight);
-//
-//      cairo_translate(m_pdc, -xDst, -yDst);
-
-
-       if(nDstWidth <= 0
-       || nDstHeight <= 0
-       || nSrcWidth <= 0
-       || nSrcHeight <= 0)
-           return false;
-
-
-       try
-       {
-
-           if(pgraphicsSrc == NULL)
-               return false;
-
-           if(pgraphicsSrc->get_os_data() == NULL)
-              return false;
-
-
-           CGImageRef image = CGBitmapContextCreateImage((CGContextRef) pgraphicsSrc->get_os_data());
-
-           if(image == NULL)
-               return false;
-
-           CGRect rect;
-
-           rect.origin.x = 0;
-           rect.origin.y = 0;
-           rect.size.width = nSrcWidth;
-           rect.size.height = nSrcHeight;
-
-           CGRect rectSub;
-
-           rectSub.origin.x = xSrc;
-           rectSub.origin.y = ySrc;
-           rectSub.size.width = nSrcWidth;
-           rectSub.size.height = nSrcHeight;
-
-           CGImageRef imageSub = CGImageCreateWithImageInRect(image, rectSub);
-
-           if(imageSub != NULL)
-           {
-
-               CGContextSaveGState(m_pdc);
-
-               CGContextTranslateCTM(m_pdc, xDst, yDst);
-
-               CGContextScaleCTM(m_pdc, (CGFloat) nDstWidth / (CGFloat) nSrcWidth, (CGFloat) nDstHeight / (CGFloat) nSrcHeight);
-
-               CGContextDrawImage(m_pdc, rect, imageSub);
-
-               CGContextRestoreGState(m_pdc);
-
-               CGImageRelease(imageSub);
-
-           }
-
-           CGImageRelease(image);
-
-           //
-           //         cairo_pattern_t * ppattern = cairo_get_source((cairo_t *) pgraphicsSrc->get_os_data());
-           //
-           //         if(ppattern == NULL)
-           //            return false;
-           //
-           //         cairo_set_source(m_pdc, ppattern);
-           //
-           //         cairo_paint(m_pdc);
-
-           return true;
-
-       }
-       catch(...)
-       {
-
-           return false;
-
-       }
-
       return true;
-
-      //return ::StretchBlt(get_handle1(), x, y, nWidth, nHeight, WIN_HDC(pgraphicsSrc), xSrc, ySrc, nSrcWidth, nSrcHeight, dwRop);
 
    }
 
@@ -3977,24 +3924,30 @@ namespace draw2d_quartz2d
    {
 
 //      throw not_implemented(get_app());
-      return 0;
+      //return 0;
 
 
-      /*
        if(nStretchMode == 0)
        {
-       m_pgraphics->SetInterpolationMode(Gdiplus::InterpolationModeNearestNeighbor);
+          
+          CGContextSetInterpolationQuality(m_pdc, kCGInterpolationDefault);
+          
        }
        else if(nStretchMode == HALFTONE)
        {
-       m_pgraphics->SetInterpolationMode(Gdiplus::InterpolationModeHighQualityBicubic);
+          
+          CGContextSetInterpolationQuality(m_pdc, kCGInterpolationHigh);
+          
        }
        else
        {
-       m_pgraphics->SetInterpolationMode(Gdiplus::InterpolationModeLowQuality);
+       
+          CGContextSetInterpolationQuality(m_pdc,kCGInterpolationLow);
+
        }
+      
        return 1;
-       */
+      
       /*int32_t nRetVal = 0;
        if(get_handle1() != NULL && get_handle1() != get_handle2())
        nRetVal = ::SetStretchBltMode(get_handle1(), nStretchMode);
