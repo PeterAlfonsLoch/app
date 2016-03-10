@@ -264,6 +264,12 @@ public:
    virtual void OnNotifyIconQuit(UINT uiNotifyIcon);
 
 
+
+
+   virtual void OnNotifyIconContextMenu(UINT uiNotifyIcon);
+   virtual void OnNotifyIconLButtonDblClk(UINT uiNotifyIcon);
+   virtual void OnNotifyIconLButtonDown(UINT uiNotifyIcon);
+
    virtual bool __close_is_closed();
 
 

@@ -1,6 +1,6 @@
 //#include "framework.h"
 #ifdef WINDOWSEX
-//#include <dde.h>
+   //#include <dde.h>
 #endif
 
 #define TEST 0
@@ -11,8 +11,8 @@ extern CLASS_DECL_CORE thread_int_ptr < DWORD_PTR > t_time1;
 manual_reset_event * simple_frame_window::helper_task::g_pevent = NULL;
 
 simple_frame_window::helper_task::helper_task(simple_frame_window * pframe) :
-::thread(pframe->get_app()),
-m_pframe(pframe) //,
+   ::thread(pframe->get_app()),
+   m_pframe(pframe) //,
 //m_ev(pframe->get_app())
 {
 
@@ -86,9 +86,9 @@ void simple_frame_window::helper_task::defer_save_window_rect()
 
 
 simple_frame_window::simple_frame_window(::aura::application * papp) :
-object(papp),
-m_dibBk(allocer()),
-m_fastblur(allocer())
+   object(papp),
+   m_dibBk(allocer()),
+   m_fastblur(allocer())
 {
 
    m_bDefaultNotifyIcon = false;
@@ -389,10 +389,10 @@ void simple_frame_window::_001OnCreate(signal_details * pobj)
       m_pframeschema = pinteractionframe;
       m_workset.AttachFrameSchema(m_pframeschema);
       if (!m_workset.update(
-         this,
-         this,
-         this,
-         this))
+               this,
+               this,
+               this,
+               this))
       {
          pcreate->m_bRet = false;
          return;
@@ -674,7 +674,7 @@ void simple_frame_window::_001OnMouseMove(signal_details * pobj)
 void simple_frame_window::_001OnUpdateViewFullScreen(signal_details * pobj)
 {
    SCAST_PTR(::aura::cmd_ui, pcmdui, pobj);
-      pcmdui->m_pcmdui->Enable();
+   pcmdui->m_pcmdui->Enable();
    pcmdui->m_pcmdui->_001SetCheck(WfiIsFullScreen());
    pcmdui->m_bRet = true;
 }
@@ -759,7 +759,7 @@ void simple_frame_window::_001OnToggleCustomFrame(signal_details * pobj)
 void simple_frame_window::_001OnUpdateToggleCustomFrame(signal_details * pobj)
 {
    SCAST_PTR(::aura::cmd_ui, pcmdui, pobj);
-      pcmdui->m_pcmdui->Enable();
+   pcmdui->m_pcmdui->Enable();
    pcmdui->m_pcmdui->_001SetCheck(m_bWindowFrame);
 }
 
@@ -853,7 +853,7 @@ void simple_frame_window::_001OnClose(signal_details * pobj)
       return;
    }
    else if (GetTopLevelFrame() != NULL
-      && (GetTopLevelFrame()->m_iModalCount > 0))
+            && (GetTopLevelFrame()->m_iModalCount > 0))
    {
       GetTopLevelFrame()->EndModalLoop(IDOK);
       pobj->m_bRet = true;
@@ -941,7 +941,7 @@ void simple_frame_window::OnNcCalcSize(bool bCalcValidRects, NCCALCSIZE_PARAMS F
 void simple_frame_window::_001OnNcActivate(signal_details * pobj)
 {
    SCAST_PTR(::message::nc_activate, pncactivate, pobj);
-      // stay active if WF_STAYACTIVE bit is on
+   // stay active if WF_STAYACTIVE bit is on
    if (m_nFlags & WF_STAYACTIVE)
       pncactivate->m_bActive = TRUE;
 
@@ -1035,7 +1035,7 @@ bool simple_frame_window::LoadFrame(const char * pszMatter, uint32_t dwDefaultSt
 void simple_frame_window::_001OnDdeInitiate(signal_details * pobj)
 {
    SCAST_PTR(::message::base, pbase, pobj);
-      pbase->set_lresult(DefWindowProc((uint32_t)pbase->m_wparam, pbase->m_lparam, pbase->get_lresult()));
+   pbase->set_lresult(DefWindowProc((uint32_t)pbase->m_wparam, pbase->m_lparam, pbase->get_lresult()));
 }
 
 
@@ -1164,18 +1164,18 @@ void simple_frame_window::InitialFramePosition(bool bForceRestore)
    {
 
       if(Application.command()->m_varTopicQuery.has_property("wfi_maximize")
-      && (GetParent() == NULL
+            && (GetParent() == NULL
 #if defined(ANDROID) || defined(METROWIN) || defined(APPLE_IOS)
-         || GetParent() == System.m_posdata->m_pui
+                || GetParent() == System.m_posdata->m_pui
 #endif
-))
+               ))
       {
 
          WfiMaximize();
 
       }
       else if(Application.command()->m_varTopicQuery.has_property("client_only")
-      || Application.command()->m_varTopicQuery.has_property("full_screen"))
+              || Application.command()->m_varTopicQuery.has_property("full_screen"))
       {
 
          if(m_workset.IsAppearanceEnabled())
@@ -1236,7 +1236,7 @@ void simple_frame_window::_001OnDeferPaintLayeredWindowBackground(::draw2d::dib 
    ::draw2d::graphics * pdc = pdib->get_graphics();
 
    if (Session.savings().is_trying_to_save(::aura::resource_processing)
-      || Session.savings().is_trying_to_save(::aura::resource_translucent_background))
+         || Session.savings().is_trying_to_save(::aura::resource_translucent_background))
    {
       rect rectClient;
       GetClientRect(rectClient);
@@ -1311,34 +1311,34 @@ void simple_frame_window::_000OnDraw(::draw2d::dib * pdibParam)
          _001DrawChildren(pdib);
       }
       else if(!Session.savings().is_trying_to_save(::aura::resource_processing)
-         && !Session.savings().is_trying_to_save(::aura::resource_display_bandwidth)
-         && !Session.savings().is_trying_to_save(::aura::resource_memory))
+              && !Session.savings().is_trying_to_save(::aura::resource_display_bandwidth)
+              && !Session.savings().is_trying_to_save(::aura::resource_memory))
          //&& (GetParent() != NULL || (this->GetExStyle() & WS_EX_LAYERED) != 0))
       {
-   #if TEST
+#if TEST
 
          pdc->FillSolidRect(60, 10, 50, 50, ARGB(128, 184, 177, 84));
-   #endif
+#endif
 
          _010OnDraw(pdib);
-   #if TEST
+#if TEST
 
          pdc->FillSolidRect(10, 60, 50, 50, ARGB(128, 255, 248, 84));
-   #endif
+#endif
       }
       else
       {
-   #if TEST
+#if TEST
 
          pdc->FillSolidRect(60, 10, 50, 50, ARGB(128, 184, 177, 84));
-   #endif
+#endif
 
          _001DrawThis(pdib);
          _001DrawChildren(pdib);
-   #if TEST
+#if TEST
 
          pdc->FillSolidRect(10, 60, 50, 50, ARGB(128, 184, 177, 84));
-   #endif
+#endif
       }
 
    }
@@ -1371,7 +1371,7 @@ void simple_frame_window::_001OnDraw(::draw2d::dib * pdib)
          //pdc->FillSolidRect(rectClient, RGB(150, 220, 140));
       }
       else if(Session.savings().is_trying_to_save(::aura::resource_processing)
-         || Session.savings().is_trying_to_save(::aura::resource_blur_background))
+              || Session.savings().is_trying_to_save(::aura::resource_blur_background))
       {
          imaging.color_blend(pdib->get_graphics(),rectClient,RGB(150,180,140),150);
       }
@@ -1399,9 +1399,9 @@ void simple_frame_window::_001OnDraw(::draw2d::dib * pdib)
                null_point(),
                49);
             pdib->get_graphics()->from(rectClient.size(),
-               m_fastblur->get_graphics(),
-               null_point(),
-               SRCCOPY);
+                                       m_fastblur->get_graphics(),
+                                       null_point(),
+                                       SRCCOPY);
          }
 #endif
       }
@@ -1567,7 +1567,7 @@ void simple_frame_window::_001OnUser184(signal_details * pobj)
 {
    SCAST_PTR(::message::base, pbase, pobj);
    if (pbase->m_wparam == 0 &&
-      pbase->m_lparam == 0)
+         pbase->m_lparam == 0)
    {
       InitialFramePosition(true);
       pbase->m_bRet = true;
@@ -1761,22 +1761,22 @@ LRESULT simple_frame_window::OnDDEInitiate(WPARAM wParam, LPARAM lParam)
 
    ::core::application* pApp = &System;
    if (pApp != NULL &&
-      LOWORD(lParam) != 0 && HIWORD(lParam) != 0 &&
-      (ATOM)LOWORD(lParam) == pApp->m_atomApp &&
-      (ATOM)HIWORD(lParam) == pApp->m_atomSystemTopic)
+         LOWORD(lParam) != 0 && HIWORD(lParam) != 0 &&
+         (ATOM)LOWORD(lParam) == pApp->m_atomApp &&
+         (ATOM)HIWORD(lParam) == pApp->m_atomSystemTopic)
    {
       // make duplicates of the incoming atoms (really adding a reference)
       char szAtomName[_MAX_PATH];
       VERIFY(GlobalGetAtomName(pApp->m_atomApp,
-         szAtomName, _MAX_PATH - 1) != 0);
+                               szAtomName, _MAX_PATH - 1) != 0);
       VERIFY(GlobalAddAtom(szAtomName) == pApp->m_atomApp);
       VERIFY(GlobalGetAtomName(pApp->m_atomSystemTopic,
-         szAtomName, _MAX_PATH - 1) != 0);
+                               szAtomName, _MAX_PATH - 1) != 0);
       VERIFY(GlobalAddAtom(szAtomName) == pApp->m_atomSystemTopic);
 
       // send the WM_DDE_ACK (caller will delete duplicate atoms)
       ::SendMessage((oswindow)wParam, WM_DDE_ACK, (WPARAM)get_handle(),
-         MAKELPARAM(pApp->m_atomApp, pApp->m_atomSystemTopic));
+                    MAKELPARAM(pApp->m_atomApp, pApp->m_atomSystemTopic));
    }
 
 #else
@@ -1819,15 +1819,15 @@ LRESULT simple_frame_window::OnDDEExecute(WPARAM wParam, LPARAM lParam)
 
    // acknowledge now - before attempting to execute
    ::PostMessage((oswindow)wParam, WM_DDE_ACK, (WPARAM)get_handle(),
-      //IA64: Assume DDE LPARAMs are still 32-bit
-      ReuseDDElParam(lParam, WM_DDE_EXECUTE, WM_DDE_ACK,
-      (UINT)0x8000, (uint_ptr)hData));
+                 //IA64: Assume DDE LPARAMs are still 32-bit
+                 ReuseDDElParam(lParam, WM_DDE_EXECUTE, WM_DDE_ACK,
+                                (UINT)0x8000, (uint_ptr)hData));
 
    // don't execute the command when the window is disabled
    if (!is_window_enabled())
    {
       TRACE(::aura::trace::category_AppMsg, 0, "Warning: DDE command '%s' ignored because window is disabled.\n",
-         strCommand.GetString());
+            strCommand.GetString());
       return 0;
    }
 
@@ -1960,7 +1960,7 @@ string simple_frame_window::get_window_default_matter()
 void simple_frame_window::guserbaseOnInitialUpdate(signal_details * pobj)
 {
    SCAST_PTR(::message::base, pbase, pobj);
-      ::user::FrameInitialUpdate * pfiu = (::user::FrameInitialUpdate *)pbase->m_lparam.m_lparam;
+   ::user::FrameInitialUpdate * pfiu = (::user::FrameInitialUpdate *)pbase->m_lparam.m_lparam;
    if (pfiu != NULL)
    {
       sp(::user::frame_window) pframe = (this);
@@ -2245,7 +2245,7 @@ bool simple_frame_window::calc_layered()
    if (m_bLayered && _001GetTranslucency() != ::user::TranslucencyNone)
    {
       return !Session.savings().is_trying_to_save(::aura::resource_processing)
-         && !Session.savings().is_trying_to_save(::aura::resource_display_bandwidth);
+             && !Session.savings().is_trying_to_save(::aura::resource_display_bandwidth);
    }
    else
    {
@@ -2352,6 +2352,24 @@ void simple_frame_window::_001OnTimer(::timer * ptimer)
    ::user::frame_window::_001OnTimer(ptimer);
    ::user::wndfrm::frame::WorkSetClientInterface::_001OnTimer(ptimer);
 
+}
+void simple_frame_window::OnNotifyIconContextMenu(UINT uiNotifyIcon)
+{
+   point pt;
+   ::GetCursorPos(&pt);
+   track_popup_xml_matter_menu("popup_notification.xml", 0, pt.x, pt.y);
+}
+
+void simple_frame_window::OnNotifyIconLButtonDblClk(UINT uiNotifyIcon)
+{
+   UNREFERENCED_PARAMETER(uiNotifyIcon);
+}
+
+void simple_frame_window::OnNotifyIconLButtonDown(UINT uiNotifyIcon)
+{
+   ShowWindow(SW_SHOW);
+   WfiRestore(true);
+   UNREFERENCED_PARAMETER(uiNotifyIcon);
 }
 
 
