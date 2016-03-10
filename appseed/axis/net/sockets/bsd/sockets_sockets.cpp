@@ -7,8 +7,8 @@ namespace sockets
 
 
    sockets::sockets(::aura::application * papp) :
-     ::object(papp),
-     ::aura::department(papp),
+      ::object(papp),
+      ::aura::department(papp),
       m_mutexHttpPostBoundary(papp),
       m_mutexResolvCache(papp),
       m_clientcontextmap(papp),
@@ -201,7 +201,16 @@ string ip_reverse(string str)
 
 #else
 
-   return gethostbyname(str);
+   hostent * pent = gethostbyname(str);
+
+   if (pent == NULL)
+   {
+
+      return "";
+
+   }
+
+   return pent->h_name;
 
 #endif
 
