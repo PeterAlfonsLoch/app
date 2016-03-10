@@ -2186,14 +2186,8 @@
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
 					APPLE_IOS,
-					_X86_,
-					_UNICODE,
-					WINPR_EXPORTS,
-					FREERDP_EXPORTS,
-					_DEBUG,
-					HAVE_CONFIG_H,
-					"EXT_PATH=“/Application/ca2/lib/freerdp/extensions\"\nCMAKE_BUILD_TYPE=Release\nCMAKE_INTDIR=\"Debug\"\nfreerdp_EXPORTS",
 				);
 				SDKROOT = iphoneos;
 			};
@@ -2204,14 +2198,8 @@
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
 					APPLE_IOS,
-					_X86_,
-					_UNICODE,
-					WINPR_EXPORTS,
-					FREERDP_EXPORTS,
-					_DEBUG,
-					HAVE_CONFIG_H,
-					"EXT_PATH=“/Application/ca2/lib/freerdp/extensions\"\nCMAKE_BUILD_TYPE=Release\nCMAKE_INTDIR=\"Debug\"\nfreerdp_EXPORTS",
 				);
 				SDKROOT = iphoneos;
 			};

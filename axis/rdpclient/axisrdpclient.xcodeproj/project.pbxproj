@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		071EFB6E1C5575A100EA68B0 /* client.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07B098071B848AA9002AC4F0 /* client.cpp */; };
+		071EFB6F1C5575A100EA68B0 /* cmdline.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07B098081B848AA9002AC4F0 /* cmdline.cpp */; };
+		071EFB701C5575A100EA68B0 /* compatibility.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07B098091B848AA9002AC4F0 /* compatibility.cpp */; };
+		071EFB711C5575A100EA68B0 /* file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07B0980A1B848AA9002AC4F0 /* file.cpp */; };
+		071EFB751C5575B500EA68B0 /* ca2rdp_event_queue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07E9DC931C499E1C009F99E7 /* ca2rdp_event_queue.cpp */; };
+		071EFB761C5575B500EA68B0 /* cf_channels.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07FACBA51B84BB660035DF9D /* cf_channels.cpp */; };
+		071EFB771C5575B500EA68B0 /* cf_client.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07FACBA71B84BB660035DF9D /* cf_client.cpp */; };
 		074BD0C71B5F3CDC00219723 /* libaxiswinpr.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07DD70BB1B5F1001003A1CE1 /* libaxiswinpr.dylib */; };
 		074BD0C81B5F3CE800219723 /* libaxisfreerdp.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07DD70DF1B5F1030003A1CE1 /* libaxisfreerdp.dylib */; };
 		074BD0C91B5F3CF400219723 /* libaxisclientchannels.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07DD70E81B5F1039003A1CE1 /* libaxisclientchannels.dylib */; };
@@ -510,6 +517,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				071EFB751C5575B500EA68B0 /* ca2rdp_event_queue.cpp in Sources */,
+				071EFB761C5575B500EA68B0 /* cf_channels.cpp in Sources */,
+				071EFB771C5575B500EA68B0 /* cf_client.cpp in Sources */,
+				071EFB6E1C5575A100EA68B0 /* client.cpp in Sources */,
+				071EFB6F1C5575A100EA68B0 /* cmdline.cpp in Sources */,
+				071EFB701C5575A100EA68B0 /* compatibility.cpp in Sources */,
+				071EFB711C5575A100EA68B0 /* file.cpp in Sources */,
 				07DD652E1B5F0BC2003A1CE1 /* ca2rdp.cpp in Sources */,
 				07DD65361B5F0BC2003A1CE1 /* ca2rdp_graphics.cpp in Sources */,
 				07DD65321B5F0BC2003A1CE1 /* ca2rdp_event.cpp in Sources */,

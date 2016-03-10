@@ -286,7 +286,7 @@ void simple_frame_window::_001OnCreate(signal_details * pobj)
       }
       else
       {
-#ifdef METROWIN
+#if defined(METROWIN) || defined(APPLE_IOS)
          m_bWindowFrame = GetParent() == NULL || GetParent()->m_pimpl != NULL;
 #else
          m_bWindowFrame = GetParent() == NULL;

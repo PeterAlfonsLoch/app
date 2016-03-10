@@ -7,6 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		071EFB291C5537E100EA68B0 /* libavcodec.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 071EFB281C5537E100EA68B0 /* libavcodec.a */; };
+		071EFB2B1C5537F700EA68B0 /* libavutil.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 071EFB2A1C5537F700EA68B0 /* libavutil.a */; };
+		071EFB2D1C55430B00EA68B0 /* libiconv.2.4.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 071EFB2C1C55430B00EA68B0 /* libiconv.2.4.0.tbd */; };
+		071EFB2F1C55432200EA68B0 /* libbz2.1.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 071EFB2E1C55432200EA68B0 /* libbz2.1.0.tbd */; };
+		071EFB311C55432D00EA68B0 /* libz.1.2.5.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 071EFB301C55432D00EA68B0 /* libz.1.2.5.tbd */; };
+		071EFB561C555ED300EA68B0 /* drive_file.c in Sources */ = {isa = PBXBuildFile; fileRef = 071EFB551C555ED300EA68B0 /* drive_file.c */; };
+		071EFB571C555EE700EA68B0 /* drive_file.c in Sources */ = {isa = PBXBuildFile; fileRef = 071EFB551C555ED300EA68B0 /* drive_file.c */; };
+		071EFB591C555F0E00EA68B0 /* drive_main.c in Sources */ = {isa = PBXBuildFile; fileRef = 071EFB581C555F0E00EA68B0 /* drive_main.c */; };
+		071EFB5F1C555FCA00EA68B0 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 071EFB5E1C555FCA00EA68B0 /* libaura.dylib */; };
+		071EFB611C5560F500EA68B0 /* winpr_dirent.h in Headers */ = {isa = PBXBuildFile; fileRef = 071EFB601C5560F500EA68B0 /* winpr_dirent.h */; };
+		071EFB621C5562FA00EA68B0 /* drive_main.c in Sources */ = {isa = PBXBuildFile; fileRef = 071EFB581C555F0E00EA68B0 /* drive_main.c */; };
+		071EFB631C55730700EA68B0 /* libswresample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 071EFB341C554AED00EA68B0 /* libswresample.a */; };
 		074BD0C21B5F361500219723 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 074BD0C11B5F361500219723 /* AudioToolbox.framework */; };
 		074BD0C41B5F366500219723 /* tables_mac.c in Sources */ = {isa = PBXBuildFile; fileRef = 074BD0C31B5F366500219723 /* tables_mac.c */; };
 		074BD0C61B5F368F00219723 /* libcups.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 074BD0C51B5F368F00219723 /* libcups.dylib */; };
@@ -213,6 +225,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		071EFB281C5537E100EA68B0 /* libavcodec.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libavcodec.a; path = ../../../../ffmpeg_ios/thin/x86_64/lib/libavcodec.a; sourceTree = "<group>"; };
+		071EFB2A1C5537F700EA68B0 /* libavutil.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libavutil.a; path = ../../../../ffmpeg_ios/thin/x86_64/lib/libavutil.a; sourceTree = "<group>"; };
+		071EFB2C1C55430B00EA68B0 /* libiconv.2.4.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.2.4.0.tbd; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.2.sdk/usr/lib/libiconv.2.4.0.tbd; sourceTree = DEVELOPER_DIR; };
+		071EFB2E1C55432200EA68B0 /* libbz2.1.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.1.0.tbd; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.2.sdk/usr/lib/libbz2.1.0.tbd; sourceTree = DEVELOPER_DIR; };
+		071EFB301C55432D00EA68B0 /* libz.1.2.5.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.2.5.tbd; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.2.sdk/usr/lib/libz.1.2.5.tbd; sourceTree = DEVELOPER_DIR; };
+		071EFB321C554A9E00EA68B0 /* libswscale.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libswscale.a; path = ../../../../ffmpeg_ios/thin/i386/lib/libswscale.a; sourceTree = "<group>"; };
+		071EFB341C554AED00EA68B0 /* libswresample.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libswresample.a; path = ../../../../ffmpeg_ios/thin/i386/lib/libswresample.a; sourceTree = "<group>"; };
+		071EFB551C555ED300EA68B0 /* drive_file.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = drive_file.c; sourceTree = "<group>"; };
+		071EFB581C555F0E00EA68B0 /* drive_main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = drive_main.c; sourceTree = "<group>"; };
+		071EFB5E1C555FCA00EA68B0 /* libaura.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaura.dylib; path = "../../appseed/aura/build/Debug-iphoneos/libaura.dylib"; sourceTree = "<group>"; };
+		071EFB601C5560F500EA68B0 /* winpr_dirent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = winpr_dirent.h; sourceTree = "<group>"; };
 		074BD0BB1B5F359A00219723 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		074BD0BD1B5F35C100219723 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		074BD0C11B5F361500219723 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -342,6 +365,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				071EFB631C55730700EA68B0 /* libswresample.a in Frameworks */,
+				071EFB5F1C555FCA00EA68B0 /* libaura.dylib in Frameworks */,
+				071EFB311C55432D00EA68B0 /* libz.1.2.5.tbd in Frameworks */,
+				071EFB2F1C55432200EA68B0 /* libbz2.1.0.tbd in Frameworks */,
+				071EFB2D1C55430B00EA68B0 /* libiconv.2.4.0.tbd in Frameworks */,
+				071EFB2B1C5537F700EA68B0 /* libavutil.a in Frameworks */,
+				071EFB291C5537E100EA68B0 /* libavcodec.a in Frameworks */,
 				07B0918B1B60905100B5BCA7 /* AudioToolbox.framework in Frameworks */,
 				07DD711C1B5F18E4003A1CE1 /* libaxisfreerdp.dylib in Frameworks */,
 				07DD711B1B5F18DC003A1CE1 /* libaxiswinpr.dylib in Frameworks */,
@@ -522,6 +552,9 @@
 		07DD6E6E1B5F0CA2003A1CE1 /* client */ = {
 			isa = PBXGroup;
 			children = (
+				071EFB601C5560F500EA68B0 /* winpr_dirent.h */,
+				071EFB581C555F0E00EA68B0 /* drive_main.c */,
+				071EFB551C555ED300EA68B0 /* drive_file.c */,
 				07DD6E711B5F0CA2003A1CE1 /* drive_file.h */,
 				07DD6E731B5F0CA2003A1CE1 /* module.def */,
 				07DD6E751B5F0CA2003A1CE1 /* statvfs.h */,
@@ -850,6 +883,14 @@
 		9A1B358116A2D7A500875A94 = {
 			isa = PBXGroup;
 			children = (
+				071EFB5E1C555FCA00EA68B0 /* libaura.dylib */,
+				071EFB341C554AED00EA68B0 /* libswresample.a */,
+				071EFB321C554A9E00EA68B0 /* libswscale.a */,
+				071EFB301C55432D00EA68B0 /* libz.1.2.5.tbd */,
+				071EFB2E1C55432200EA68B0 /* libbz2.1.0.tbd */,
+				071EFB2C1C55430B00EA68B0 /* libiconv.2.4.0.tbd */,
+				071EFB2A1C5537F700EA68B0 /* libavutil.a */,
+				071EFB281C5537E100EA68B0 /* libavcodec.a */,
 				07D0E2CA1C4D60DA0032C524 /* libfdk-aac.a */,
 				07ACFDF91C4A34E400953A75 /* libavcodec.a */,
 				07ACFDFA1C4A34E400953A75 /* libavutil.a */,
@@ -936,6 +977,7 @@
 				07DD6F3E1B5F0CA2003A1CE1 /* rail_main.h in Headers */,
 				07DD6F8A1B5F0CA2003A1CE1 /* isoch_queue.h in Headers */,
 				07DD6F241B5F0CA2003A1CE1 /* disp_main.h in Headers */,
+				071EFB611C5560F500EA68B0 /* winpr_dirent.h in Headers */,
 				07DD6F381B5F0CA2003A1CE1 /* printer_cups.h in Headers */,
 				07DD6F681B5F0CA2003A1CE1 /* remdesk_main.h in Headers */,
 				07DD6F861B5F0CA2003A1CE1 /* tsmf_types.h in Headers */,
@@ -1064,6 +1106,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				071EFB621C5562FA00EA68B0 /* drive_main.c in Sources */,
+				071EFB571C555EE700EA68B0 /* drive_file.c in Sources */,
 				078DF8DD1C529B4100E65274 /* codec_aac.c in Sources */,
 				078DF8DE1C529B4100E65274 /* TPCircularBuffer.c in Sources */,
 				07DD6F971B5F0CD3003A1CE1 /* audin_main.c in Sources */,
@@ -1111,6 +1155,8 @@
 			files = (
 				07DD6F231B5F0CA2003A1CE1 /* disp_main.c in Sources */,
 				07DD6F821B5F0CA2003A1CE1 /* tsmf_main.c in Sources */,
+				071EFB561C555ED300EA68B0 /* drive_file.c in Sources */,
+				071EFB591C555F0E00EA68B0 /* drive_main.c in Sources */,
 				07DD6F451B5F0CA2003A1CE1 /* irp.c in Sources */,
 				07DD6F361B5F0CA2003A1CE1 /* parallel_main.c in Sources */,
 				07DD6F181B5F0CA2003A1CE1 /* addin.c in Sources */,
@@ -1183,16 +1229,36 @@
 		07DD6E321B5F0C87003A1CE1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				COMBINE_HIDPI_IMAGES = YES;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/ffmpeg_ios/thin/i386/lib/,
+				);
+				OTHER_LDFLAGS = (
+					"-read_only_relocs",
+					suppress,
+				);
 				SDKROOT = iphoneos;
+				WARNING_LDFLAGS = "";
 			};
 			name = Debug;
 		};
 		07DD6E331B5F0C87003A1CE1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				COMBINE_HIDPI_IMAGES = YES;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/ffmpeg_ios/thin/i386/lib/,
+				);
+				OTHER_LDFLAGS = (
+					"-read_only_relocs",
+					suppress,
+				);
 				SDKROOT = iphoneos;
+				WARNING_LDFLAGS = "";
 			};
 			name = Release;
 		};
@@ -1234,7 +1300,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path /Library/Frameworks/ca2";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					/opt/local/lib,
 					"$(TARGET_BUILD_DIR)",
 				);
 				MACH_O_TYPE = mh_dylib;
@@ -1243,7 +1308,7 @@
 				PRODUCT_NAME = axisclientchannels;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				USER_HEADER_SEARCH_PATHS = ".. client $(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include/ . $(WorkspaceDir)/../../../ $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/axis $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../../../nodeapp/thirdparty/appseed $(WorkspaceDir)/../../ ../../appseed ../../ ../";
+				USER_HEADER_SEARCH_PATHS = ".. client $(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include/ . $(WorkspaceDir)/../../../ $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/axis $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../../../nodeapp/thirdparty/appseed $(WorkspaceDir)/../../ ../../appseed ../../ ../ $(WorkspaceDir)/../../../app/include/winpr";
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};
 			name = Debug;
@@ -1283,7 +1348,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path /Library/Frameworks/ca2";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					/opt/local/lib,
 					"$(TARGET_BUILD_DIR)",
 				);
 				MACH_O_TYPE = mh_dylib;
@@ -1291,7 +1355,7 @@
 				PRODUCT_NAME = axisclientchannels;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				USER_HEADER_SEARCH_PATHS = ".. client $(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include/ . $(WorkspaceDir)/../../../ $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/axis $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../../../nodeapp/thirdparty/appseed $(WorkspaceDir)/../../ ../../appseed ../../ ../";
+				USER_HEADER_SEARCH_PATHS = ".. client $(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include/ . $(WorkspaceDir)/../../../ $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/axis $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../../../nodeapp/thirdparty/appseed $(WorkspaceDir)/../../ ../../appseed ../../ ../ $(WorkspaceDir)/../../../app/include/winpr";
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};
 			name = Release;
