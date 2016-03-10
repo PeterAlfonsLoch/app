@@ -83,7 +83,7 @@ namespace visual
    bool icon::load_app_tray_icon(string strApp)
    {
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
       string strPath = System.dir().appmatter(strApp, "main/icon.ico");
 

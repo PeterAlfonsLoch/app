@@ -15,13 +15,14 @@ namespace file
       bool_array        m_baRecursive;
       stringa           m_straFilter;
       ::file::listing   m_straFile;
+      ::file::listing   m_straFileAddUp;
 
 
       set(::aura::application * papp);
       virtual ~set();
 
 
-   // composite
+      // composite
       virtual void add_search(stringa & stra, bool_array & baRecursive);
       virtual void add_filter(stringa & stra);
       virtual ::count get_file_count();
@@ -32,7 +33,7 @@ namespace file
       virtual void clear_filter();
       virtual void refresh();
 
-   // derived
+      // derived
       virtual bool get_next_file(const char * lpcszCurrentFilePath, string & wstrNextFilePath);
       virtual string get_next_file(const char * psz);
 

@@ -117,6 +117,8 @@ namespace file
 
       }
 
+      m_straFile.add(m_straFileAddUp);
+
    }
 
 
