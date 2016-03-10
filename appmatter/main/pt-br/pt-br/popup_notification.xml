@@ -1,0 +1,6 @@
+
+	<menubar id="link">
+		<item id="cancel">Cancel</item>
+		<separator />
+		<item id="app_exit">Exit</item>
+	</menubar>
