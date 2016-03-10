@@ -1584,7 +1584,18 @@ namespace draw2d_quartz2d
 
          if(pgraphicsSrc->m_pdib != NULL)
          {
-
+            
+//            if(m_pdib != NULL)
+//            {
+//               
+//               m_pdib->map();
+//               
+//               pgraphicsSrc->m_pdib->map();
+//               
+//               return m_pdib->from(point(x, y) - GetViewportOrg(), pgraphicsSrc->m_pdib, point(xSrc, ySrc), size(nWidth, nHeight));
+//               
+//            }
+            
             pgraphicsSrc->m_pdib->unmap();
 
          }
@@ -1603,23 +1614,19 @@ namespace draw2d_quartz2d
 
          }
 
+         CGContextRef pdcSrc = (CGContextRef) pgraphicsSrc->get_os_data();
 
-         CGImageRef imageDst;
-
-         if(m_pdib == NULL)
-         {
-
-            imageDst = NULL;
-
-         }
-         else
-         {
-
-            imageDst = CGBitmapContextCreateImage((CGContextRef) get_os_data());
-
-         }
-
-         CGImageRef image = CGBitmapContextCreateImage((CGContextRef) pgraphicsSrc->get_os_data());
+         CGContextSaveGState(pdcSrc);
+         
+         //pgraphicsSrc->SetViewportOrg(0, 0);
+         
+//         CGAffineTransform affineABCD = CGContextGetCTM(m_pdc);
+         
+//         CGAffineTransform affineABCDInvert = CGAffineTransformInvert(affineABCD);
+         
+//         CGContextConcatCTM(m_pdc, affineABCDInvert);
+         
+         CGImageRef image = CGBitmapContextCreateImage(pdcSrc);
 
          if(image == NULL)
          {
@@ -1627,26 +1634,11 @@ namespace draw2d_quartz2d
             return false;
 
          }
-
-         size_t SH = CGImageGetHeight(image);
-
-         size_t SW = CGImageGetWidth(image);
-
-         size_t DH;
-
-         size_t DW;
-
-         if(imageDst == NULL)
-         {
-            DH = (size_t) -1;
-            DW = (size_t) -1;
-         }
-         else
-         {
-            DH = CGImageGetHeight(imageDst);
-            DW = CGImageGetWidth(imageDst);
-         }
-
+         
+         size_t SrcW = CGImageGetWidth(image);
+         
+         size_t SrcH = CGImageGetHeight(image);
+         
          CGRect rect;
 
          rect.origin.x = x;
@@ -1655,51 +1647,67 @@ namespace draw2d_quartz2d
          rect.size.height = nHeight;
 
          CGRect rectSub;
+         
+         if(xSrc > SrcW)
+         {
+          
+            CGImageRelease(image);
+            
+            CGContextRestoreGState(pdcSrc);
+            
+            return true;
+            
+         }
 
+         if(ySrc > SrcH)
+         {
+            
+            CGImageRelease(image);
+            
+            CGContextRestoreGState(pdcSrc);
+            
+            return true;
+            
+         }
+         
          rectSub.origin.x = xSrc;
-         rectSub.origin.y =  ySrc;
+         rectSub.origin.y = ySrc;
+         
+         int64_t i = xSrc + nWidth - SrcW;
+         
+         if(i > 0)
+         {
 
+            rect.size.width -= i;
+            
+         }
+         
+         i = ySrc + nHeight - SrcH;
+         
+         if(i > 0)
+         {
+            
+            rect.size.height -= i;
+            
+         }
+         
          rectSub.size.width = rect.size.width;
          rectSub.size.height = rect.size.height;
-         
-         CGFloat fMin = MIN(rect.origin.y, rectSub.origin.y);
-         
-         if(fMin < 0)
-         {
-            rect.size.height += fMin;
-            rectSub.size.height += fMin;
-            rect.origin.y -= fMin;
-            rectSub.origin.y -= fMin;
-         }
-         fMin = MIN(rect.origin.x, rectSub.origin.x);
-         if(fMin < 0)
-
-         {
-            rect.size.width += fMin;
-            rectSub.size.width += fMin;
-            rect.origin.x -= fMin;
-            rectSub.origin.x -= fMin;
-         }
 
          CGImageRef imageSub = CGImageCreateWithImageInRect(image, rectSub);
-
+         
          if(imageSub != NULL)
          {
 
             CGContextDrawImage(m_pdc, rect, imageSub);
-
+            
             CGImageRelease(imageSub);
-
+            
          }
 
          CGImageRelease(image);
-
-         if(imageDst != NULL)
-         {
-
-            CGImageRelease(imageDst);
-
-         }
+         
+         CGContextRestoreGState(pdcSrc);
 
          return true;
 
@@ -1717,11 +1725,12 @@ namespace draw2d_quartz2d
    bool graphics::StretchBlt(int32_t xDst, int32_t yDst, int32_t nDstWidth, int32_t nDstHeight, ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight, DWORD dwRop)
    {
 
-      if(nDstWidth <= 0
-      || nDstHeight <= 0
-      || nSrcWidth <= 0
-      || nSrcHeight <= 0)
+      if(nDstWidth <= 0 || nDstHeight <= 0 || nSrcWidth <= 0 || nSrcHeight <= 0)
+      {
+         
          return false;
+         
+      }
 
 
       try
@@ -1745,8 +1754,10 @@ namespace draw2d_quartz2d
 
          if(image == NULL)
                return false;
-         
-         int DH = CGImageGetHeight(image);
+
+         size_t SrcW = CGImageGetWidth(image);
+
+         size_t SrcH = CGImageGetHeight(image);
          
          CGRect rect;
 
@@ -1754,31 +1765,34 @@ namespace draw2d_quartz2d
          rect.origin.y = yDst;
          rect.size.width = nDstWidth;
          rect.size.height = nDstHeight;
-
-         CGRect rectSub;
-
-         rectSub.origin.x = xSrc;
-         rectSub.origin.y = ySrc;
-         rectSub.size.width = nSrcWidth;
-         rectSub.size.height = nSrcHeight;
-
-         CGImageRef imageSub = CGImageCreateWithImageInRect(image, rectSub);
-
-         if(imageSub != NULL)
+         
+         if(xSrc == 0 && ySrc == 0 && SrcW == nSrcWidth && SrcH == nSrcHeight)
          {
+            
+            CGContextDrawImage(m_pdc, rect, image);
+            
+         }
+         else
+         {
+         
+            CGRect rectSub;
 
-            CGContextSaveGState(m_pdc);
+            rectSub.origin.x = xSrc;
+            rectSub.origin.y = ySrc;
+            rectSub.size.width = nSrcWidth;
+            rectSub.size.height = nSrcHeight;
+         
+            CGImageRef imageSub = CGImageCreateWithImageInRect(image, rectSub);
 
-//            CGContextTranslateCTM(m_pdc, xDst, yDst);
+            if(imageSub != NULL)
+            {
 
-//            CGContextScaleCTM(m_pdc, (CGFloat) nDstWidth / (CGFloat) nSrcWidth, (CGFloat) nDstHeight / (CGFloat) nSrcHeight);
+               CGContextDrawImage(m_pdc, rect, imageSub);
 
-            CGContextDrawImage(m_pdc, rect, imageSub);
+               CGImageRelease(imageSub);
 
-            CGContextRestoreGState(m_pdc);
-
-            CGImageRelease(imageSub);
-
+            }
+            
          }
 
          CGImageRelease(image);
