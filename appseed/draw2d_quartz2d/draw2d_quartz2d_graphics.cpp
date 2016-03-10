@@ -1616,7 +1616,7 @@ namespace draw2d_quartz2d
 
          CGContextRef pdcSrc = (CGContextRef) pgraphicsSrc->get_os_data();
 
-         CGContextSaveGState(pdcSrc);
+//         CGContextSaveGState(pdcSrc);
          
          //pgraphicsSrc->SetViewportOrg(0, 0);
          
@@ -1653,7 +1653,7 @@ namespace draw2d_quartz2d
           
             CGImageRelease(image);
             
-            CGContextRestoreGState(pdcSrc);
+//            CGContextRestoreGState(pdcSrc);
             
             return true;
             
@@ -1664,50 +1664,44 @@ namespace draw2d_quartz2d
             
             CGImageRelease(image);
             
-            CGContextRestoreGState(pdcSrc);
+//            CGContextRestoreGState(pdcSrc);
             
             return true;
             
          }
          
-         rectSub.origin.x = xSrc;
-         rectSub.origin.y = ySrc;
+         rectSub.origin.x = 0;
+         rectSub.origin.y = 0;
+         rectSub.size.width = SrcW;
+         rectSub.size.height = SrcH;
          
-         int64_t i = xSrc + nWidth - SrcW;
-         
-         if(i > 0)
+         if(xSrc == 0 && ySrc == 0 && nWidth == SrcW && nHeight == SrcH)
          {
-
-            rect.size.width -= i;
+         
+            CGContextDrawImage(m_pdc, rect, image);
             
          }
-         
-         i = ySrc + nHeight - SrcH;
-         
-         if(i > 0)
+         else
          {
+         
+            CGContextSaveGState(m_pdc);
+         
+            CGContextClipToRect(m_pdc, rect);
+
+            rect.origin.x -= xSrc;
+            rect.origin.y -= ySrc;
+            rect.size.width = SrcW;
+            rect.size.height =  SrcH;
+         
+            CGContextDrawImage(m_pdc, rect, image);
             
-            rect.size.height -= i;
-            
+            CGContextRestoreGState(m_pdc);
+
          }
          
-         rectSub.size.width = rect.size.width;
-         rectSub.size.height = rect.size.height;
-
-         CGImageRef imageSub = CGImageCreateWithImageInRect(image, rectSub);
-         
-         if(imageSub != NULL)
-         {
-
-            CGContextDrawImage(m_pdc, rect, imageSub);
-            
-            CGImageRelease(imageSub);
-            
-         }
-
          CGImageRelease(image);
          
-         CGContextRestoreGState(pdcSrc);
+         //CGContextRestoreGState(pdcSrc);
 
          return true;
 
