@@ -2360,7 +2360,12 @@ end:
             throw_parsing_exception("Quote character is required here, premature end");
             return "";
          }
-         if(*psz == '\"')
+         if (*psz == '\0')
+         {
+            throw_parsing_exception("Quote character is required here, premature end");
+            return "";
+         }
+         else if(*psz == '\"')
          {
             psz++;
             break;
