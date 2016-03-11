@@ -238,7 +238,7 @@ namespace visual
 
 #endif
 
-#ifdef VECTOR3_SSE
+#if VECTOR3_SSE
 
       // temporary output space for first pass.
       vector4 * timage;

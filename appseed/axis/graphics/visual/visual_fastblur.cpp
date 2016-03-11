@@ -16,7 +16,7 @@ void swap(uint32_t * & p1,uint32_t * & p2)
 }
 
 
-#ifdef VECTOR3_SSE
+#if VECTOR3_SSE
 
 void swap(vector4 * & p1,vector4 * & p2)
 {
@@ -152,7 +152,7 @@ namespace visual
    fastblur::~fastblur()
    {
 
-#ifdef VECTOR3_SSE
+#if VECTOR3_SSE
 
       if (m_stack != NULL)
       {
@@ -908,7 +908,7 @@ namespace visual
 
 #else
 
-#ifdef VECTOR3_SSE
+#if VECTOR3_SSE
 
    inline void boxBlurSSE(vector4* sourcePixel,vector4* destinationPixel,
                           unsigned dx,int dxLeft,int dxRight,int stride,int strideLine,int effectWidth,int effectHeight)

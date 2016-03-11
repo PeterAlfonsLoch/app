@@ -2066,6 +2066,9 @@
     <ProjectReference Include="..\..\axis\crypto\w_axiscrypto.vcxproj">
       <Project>{39807406-816f-4c0d-a632-4bb8ab13887b}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\..\axis\idn\w_axisidn.vcxproj">
+      <Project>{b8ac3ef0-11c5-4e12-a944-5f7efed6e0c4}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\axis\openssl\w_axisopenssl.vcxproj">
       <Project>{0edd2695-2bc3-43f5-9910-8f93aef84cd1}</Project>
     </ProjectReference>
