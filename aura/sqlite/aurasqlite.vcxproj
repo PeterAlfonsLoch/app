@@ -163,7 +163,7 @@
       <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
       <SubSystem>Windows</SubSystem>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../time/library/$(PlatformName)/$(ConfigurationName);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/$(ConfigurationName);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
@@ -230,7 +230,7 @@
       <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
       <FixedBaseAddress>false</FixedBaseAddress>
       <SubSystem>Windows</SubSystem>
-      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../time/library/$(PlatformName)/$(ConfigurationName);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/$(ConfigurationName);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
@@ -302,7 +302,7 @@
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <SubSystem>Windows</SubSystem>
       <MapFileName>$(TargetDir)$(TargetName).map</MapFileName>
-      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../time/library/$(PlatformName)/$(ConfigurationName);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/$(ConfigurationName);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
       <Command>
@@ -375,7 +375,7 @@
       <FixedBaseAddress>false</FixedBaseAddress>
       <MapFileName>$(TargetDir)$(TargetName).map</MapFileName>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
-      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../time/library/$(PlatformName)/$(ConfigurationName);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/$(ConfigurationName);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
       <Command>

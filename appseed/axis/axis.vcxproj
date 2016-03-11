@@ -152,7 +152,7 @@
       <GenerateDebugInformation>Debug</GenerateDebugInformation>
       <AdditionalDependencies>ws2_32.lib;windowscodecs.lib;gdiplus.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
-      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../time/library/$(PlatformName)/$(ConfigurationName);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/$(ConfigurationName);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <EntryPointSymbol>
       </EntryPointSymbol>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
@@ -228,7 +228,7 @@
       <GenerateDebugInformation>DebugFastLink</GenerateDebugInformation>
       <AdditionalDependencies>ws2_32.lib;windowscodecs.lib;gdiplus.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
-      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../time/library/$(PlatformName)/$(ConfigurationName);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/$(ConfigurationName);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
       <FixedBaseAddress>false</FixedBaseAddress>
       <SubSystem>Windows</SubSystem>
@@ -282,7 +282,7 @@
       <GenerateDebugInformation>Debug</GenerateDebugInformation>
       <AdditionalDependencies>ws2_32.lib;windowscodecs.lib;gdiplus.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
-      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../time/library/$(PlatformName)/$(ConfigurationName);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/$(ConfigurationName);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <EntryPointSymbol>
       </EntryPointSymbol>
@@ -358,7 +358,7 @@
       <GenerateDebugInformation>DebugFastLink</GenerateDebugInformation>
       <AdditionalDependencies>ws2_32.lib;windowscodecs.lib;gdiplus.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
-      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../time/library/$(PlatformName)/$(ConfigurationName);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/$(ConfigurationName);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
