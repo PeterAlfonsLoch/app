@@ -826,6 +826,21 @@ bool dir::is(const ::file::path & path1)
    {
       str = str.substr(0,str.length() - 1);
    }
+   string strPrefix;
+
+   if (::str::begins_eat_ci(str, "winmetro-Pictures:\\\\"))
+   {
+
+      strPrefix = "winmetro-Pictures:\\\\";
+
+   }
+
+   if (::str::begins_eat_ci(str, "winmetro-Music:\\\\"))
+   {
+
+      strPrefix = "winmetro-Music:\\\\";
+
+   }
 
    uint32_t dwFileAttributes = ::GetFileAttributesW(wstring(str));
    if(dwFileAttributes != INVALID_FILE_ATTRIBUTES &&
@@ -834,26 +849,20 @@ bool dir::is(const ::file::path & path1)
    else
    {
 
-      string strPrefix;
-
-      if (::str::begins_eat_ci(str, "winmetro-Pictures:\\\\"))
-      {
-
-         strPrefix = "winmetro-Pictures:\\\\";
-
-      }
-
-      if (::str::begins_eat_ci(str, "winmetro-Music:\\\\"))
-      {
-
-         strPrefix = "winmetro-Music:\\\\";
-
-      }
-
+      DWORD dwLastError = ::GetLastError();
 
       auto folder = wait(::Windows::Storage::StorageFolder::GetFolderFromPathAsync(str));
 
-      return folder != nullptr;
+      bool bOk = folder != nullptr;
+
+      if (!bOk)
+      {
+
+         SetLastError(dwLastError);
+
+      }
+
+      return bOk;
 
    }
 
