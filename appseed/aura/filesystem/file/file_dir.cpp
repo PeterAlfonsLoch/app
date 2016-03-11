@@ -832,7 +832,30 @@ bool dir::is(const ::file::path & path1)
          dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
       return true;
    else
-      return false;
+   {
+
+      string strPrefix;
+
+      if (::str::begins_eat_ci(str, "winmetro-Pictures:\\\\"))
+      {
+
+         strPrefix = "winmetro-Pictures:\\\\";
+
+      }
+
+      if (::str::begins_eat_ci(str, "winmetro-Music:\\\\"))
+      {
+
+         strPrefix = "winmetro-Music:\\\\";
+
+      }
+
+
+      auto folder = wait(::Windows::Storage::StorageFolder::GetFolderFromPathAsync(str));
+
+      return folder != nullptr;
+
+   }
 
 
 #elif defined(WINDOWSEX)
@@ -969,7 +992,7 @@ void dir::ls(::file::patha & stra,const ::file::path & psz)
    try
    {
 
-      if(string(psz).CompareNoCase("winmetro-Music:") == 0)
+      if(string(psz).CompareNoCase("winmetro-Pictures:") == 0)
       {
 
          strPrefix = "winmetro-Pictures://";
@@ -1010,9 +1033,19 @@ void dir::ls(::file::patha & stra,const ::file::path & psz)
       else
       {
 
-         ::str::begins_eat_ci(str, "winmetro-Pictures:\\\\");
+         if (::str::begins_eat_ci(str, "winmetro-Pictures:\\\\"))
+         {
 
-         ::str::begins_eat_ci(str, "winmetro-Music:\\\\");
+            strPrefix = "winmetro-Pictures:\\\\";
+
+         }
+
+         if(::str::begins_eat_ci(str, "winmetro-Music:\\\\"))
+         {
+
+            strPrefix = "winmetro-Music:\\\\";
+
+         }
 
          folder = wait(::Windows::Storage::StorageFolder::GetFolderFromPathAsync(str));
 

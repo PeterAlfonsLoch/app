@@ -11,24 +11,33 @@ namespace filemanager
    {
    public:
 
+
       enum EMode
       {
          ModeNormal, // a bit ridiculous that folder list
          ModeConfigurationItem,
       };
 
+
       class Folder
       {
       public:
-         string      m_strPath;
-         string      m_wstrName;
-         int32_t          m_iImage;
+
+
+         string         m_strFolderPath;
+         string         m_strName;
+         int32_t        m_iImage;
+
+
       };
+
+
       class FolderArray :
          protected array < Folder, Folder & >
       {
-
       public:
+
+
          void AddFolder(Folder & folder);
          ::count GetFolderCount();
 #ifdef WINDOWSEX
@@ -36,6 +45,8 @@ namespace filemanager
 #endif
          void clear();
          Folder & GetFolder(index i);
+
+
       };
 
       FolderArray         m_foldera;
@@ -44,16 +55,16 @@ namespace filemanager
 
       sp(manager)        m_pfilemanager;
 
-      
+
       folder_list (::aura::application * papp);
       virtual ~folder_list ();
-      
+
       virtual void install_message_handling(::message::dispatch * pinterface);
       virtual void OnDraw(::draw2d::dib * pdib);      // overridden to draw this ::user::impact
       virtual void on_update(::user::impact * pSender, LPARAM lHint, object* pHint);
       virtual bool pre_create_window(::user::create_struct& cs);
 
-      
+
 
       DECL_GEN_SIGNAL(_001OnLButtonDblClk);
       DECL_GEN_SIGNAL(_001OnCancelMode);

@@ -82,20 +82,49 @@ namespace fs
 
       string strRoot;
 
-      sp(::fs::data) pdata;
-
-      while(pos != NULL)
       {
 
-         m_fsdatamap.get_next_assoc(pos, strRoot, pdata);
+         sp(::fs::data) pdata;
 
-         if(pdata.is_set())
+         while (pos != NULL)
          {
 
-            if(::str::begins_ci(psz,strRoot))
+            m_fsdatamap.get_next_assoc(pos, strRoot, pdata);
+
+            if (pdata.is_set())
             {
 
-               return pdata;
+               if (::str::begins_ci(psz, strRoot))
+               {
+
+                  return pdata;
+
+               }
+
+            }
+
+         }
+
+      }
+
+      {
+
+         sp(::fs::data) pdata;
+
+         while (pos != NULL)
+         {
+
+            m_fsdatamap.get_next_assoc(pos, strRoot, pdata);
+
+            if (pdata.is_set())
+            {
+
+               if (pdata->is_dir(psz))
+               {
+
+                  return pdata;
+
+               }
 
             }
 
@@ -124,9 +153,9 @@ namespace fs
 
       if(listing.m_path.is_empty())
       {
-         
+
          return root_ones(listing);
-         
+
       }
 
       ::fs::data * pdata = path_data(listing.m_path);
@@ -149,7 +178,7 @@ namespace fs
 
       if(pdata != NULL)
       {
-         
+
          return pdata->is_dir(path);
 
       }

@@ -44,9 +44,9 @@ namespace filemanager
 
    void folder_list::OnDraw(::draw2d::dib * pdib)
    {
-      
+
       UNREFERENCED_PARAMETER(pdib);
-      
+
    }
 
    /////////////////////////////////////////////////////////////////////////////
@@ -64,7 +64,7 @@ namespace filemanager
    }
 #endif //DEBUG
 
-   void folder_list::on_update(::user::impact * pSender, LPARAM lHint, object * phint) 
+   void folder_list::on_update(::user::impact * pSender, LPARAM lHint, object * phint)
    {
       ::filemanager::impact::on_update(pSender, lHint, phint);
       if(phint != NULL)
@@ -87,17 +87,24 @@ namespace filemanager
       }
    }
 
-   void folder_list::_001OnLButtonDblClk(signal_details * pobj) 
+
+   void folder_list::_001OnLButtonDblClk(signal_details * pobj)
    {
+
       SCAST_PTR(::message::mouse, pmouse, pobj);
-         index iItem;
+
+      index iItem;
+
       if(_001HitTest_(pmouse->m_pt, iItem))
       {
-         get_filemanager_data()->OnFileManagerOpenFolder(canew(::fs::item(m_foldera.GetFolder(iItem).m_strPath)), ::action::source_user);
+
+         get_filemanager_data()->OnFileManagerOpenFolder(canew(::fs::item(m_foldera.GetFolder(iItem).m_strFolderPath)), ::action::source_user);
+
       }
+
    }
 
-   void folder_list::_001OnCancelMode(signal_details * pobj) 
+   void folder_list::_001OnCancelMode(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       // trans   ::user::impact::OnCancelMode();
@@ -106,7 +113,7 @@ namespace filemanager
 
    }
 
-   bool folder_list::pre_create_window(::user::create_struct& cs) 
+   bool folder_list::pre_create_window(::user::create_struct& cs)
    {
 
       cs.style |= WS_CLIPCHILDREN;
@@ -128,10 +135,14 @@ namespace filemanager
 
    }
 
+
    void folder_list::_001GetItemText(::user::mesh_item * pitem)
    {
-      pitem->m_strText = m_foldera.GetFolder(pitem->m_iItem).m_wstrName;
+
+      pitem->m_strText = m_foldera.GetFolder(pitem->m_iItem).m_strName;
+
       pitem->m_bOk = true;
+
    }
 
 
@@ -154,9 +165,9 @@ namespace filemanager
       for (int32_t i = 0; i < patha.get_count(); i++)
       {
 
-         folder.m_strPath = patha[i];
+         folder.m_strFolderPath = patha[i];
 
-         folder.m_wstrName = patha[i].title();
+         folder.m_strName = patha[i].title();
 
          m_foldera.AddFolder(folder);
 
@@ -310,10 +321,10 @@ namespace filemanager
    }
 
    folder_list::Folder &
-      folder_list::FolderArray::GetFolder(index i)
+   folder_list::FolderArray::GetFolder(index i)
    {
-         return this->element_at(i);
-      }
+      return this->element_at(i);
+   }
 
    ::count folder_list::FolderArray::GetFolderCount()
    {
@@ -352,7 +363,7 @@ namespace filemanager
       return m_foldera.GetFolderCount();
    }
 
-   
+
    COLORREF folder_list::get_background_color()
    {
       if (get_filemanager_data()->is_saving())

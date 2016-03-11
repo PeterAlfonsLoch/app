@@ -107,21 +107,38 @@ namespace metrowin
 
       string strPath = path;
 
-      
+      string strPrefix;
+
 
       if(str::begins_eat_ci(strPath,"winmetro-Pictures:\\\\"))
       {
-         m_folder = Windows::Storage::KnownFolders::PicturesLibrary;
+
+         strPrefix = "winmetro-Pictures:\\\\";
+
       }
       else if (str::begins_eat_ci(strPath, "winmetro-Music:\\\\"))
       {
-         m_folder = Windows::Storage::KnownFolders::MusicLibrary;
+
+         strPrefix = "winmetro-Music:\\\\";
+
       }
       else
       {
          return failure;
       }
 
+      ::file::path pathFolder = strPath;
+
+      pathFolder -= 1;
+
+      m_folder = wait(::Windows::Storage::StorageFolder::GetFolderFromPathAsync(pathFolder));
+
+      if (m_folder == nullptr)
+      {
+
+         return failure;
+
+      }
 
       ::file::path lpszfileName(strPath);
       if(nOpenFlags & ::file::defer_create_directory)
@@ -379,7 +396,7 @@ namespace metrowin
 
    // native_buffer does not support direct buffering (CMemnative_buffer does)
    uint64_t native_buffer::GetBufferPtr(UINT nCommand,uint64_t /*nCount*/,
-      void ** /*ppBufStart*/,void ** /*ppBufMax*/)
+                                        void ** /*ppBufStart*/,void ** /*ppBufMax*/)
    {
       ASSERT(nCommand == bufferCheck);
       UNUSED(nCommand);    // not used in retail build
@@ -414,8 +431,8 @@ namespace metrowin
       ::object::dump(dumpcontext);
 
 //      dumpcontext << "with handle " << (UINT)m_hnative_buffer;
-  //    dumpcontext << " and name \"" << m_strFileName << "\"";
-    //  dumpcontext << "\n";
+      //    dumpcontext << " and name \"" << m_strFileName << "\"";
+      //  dumpcontext << "\n";
    }
 
 

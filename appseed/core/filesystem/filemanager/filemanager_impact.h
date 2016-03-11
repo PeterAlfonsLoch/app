@@ -9,7 +9,7 @@ namespace filemanager
       virtual public ::signalizable
    {
    public:
-      
+
 
       ::filemanager::manager *      m_pmanager;
       bool                          m_bEditConnectInit;
@@ -24,6 +24,7 @@ namespace filemanager
 
 
       ::fs::item & get_filemanager_item();
+      ::file::path get_filemanager_path();
 
       virtual ::filemanager::manager *                get_filemanager_manager();
       virtual ::filemanager::manager_template *       get_filemanager_template();

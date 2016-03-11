@@ -50,7 +50,7 @@ namespace filemanager
 
    }
 
-   
+
    void impact::install_filemanager_impact_handling()
    {
 
@@ -139,6 +139,11 @@ namespace filemanager
 
    }
 
+   ::file::path impact::get_filemanager_path()
+   {
+
+      return get_filemanager_item().m_strPath;
+   }
 
    manager * impact::get_filemanager_manager()
    {
@@ -178,8 +183,8 @@ namespace filemanager
             if (puh->is_type_of(update_hint::TypeInitialize))
             {
                if (m_pmanager == NULL
-                  && (puh->m_pview == NULL ||
-                  puh->m_pview == dynamic_cast < ::user::impact * > (this)))
+                     && (puh->m_pview == NULL ||
+                         puh->m_pview == dynamic_cast < ::user::impact * > (this)))
                {
 
                   m_pmanager = puh->m_pmanager;
@@ -202,23 +207,23 @@ namespace filemanager
             }
 
          }
-      else if(base_class < ::user::view_update_hint > ::bases(phint))
-      {
-         sp(::user::view_update_hint) puh = phint;
-         if(puh->is_type_of(::user::view_update_hint::hint_create_views))
+         else if(base_class < ::user::view_update_hint > ::bases(phint))
          {
-            if(m_pmanager == NULL
-               && (puh->oprop("data").cast < impact >() == NULL ||
-               puh->oprop("data").cast < impact >() == (this)))
+            sp(::user::view_update_hint) puh = phint;
+            if(puh->is_type_of(::user::view_update_hint::hint_create_views))
             {
-               m_pmanager = puh->oprop("manager").cast <manager>();
+               if(m_pmanager == NULL
+                     && (puh->oprop("data").cast < impact >() == NULL ||
+                         puh->oprop("data").cast < impact >() == (this)))
+               {
+                  m_pmanager = puh->oprop("manager").cast <manager>();
+               }
             }
          }
       }
-      }
    }
 
-   
+
    void impact::_001Refresh()
    {
 
@@ -229,7 +234,7 @@ namespace filemanager
 
    void impact::browse_sync(::action::context actioncontext)
    {
-      
+
       UNREFERENCED_PARAMETER(actioncontext);
 
    }
@@ -245,7 +250,7 @@ namespace filemanager
    void impact::_001OnUpdateEditPaste(signal_details * pobj)
    {
       SCAST_PTR(::aura::cmd_ui,pcmdui,pobj);
-         pcmdui->m_pcmdui->Enable(Session.copydesk().get_file_count() > 0);
+      pcmdui->m_pcmdui->Enable(Session.copydesk().get_file_count() > 0);
       pobj->m_bRet = true;
    }
 

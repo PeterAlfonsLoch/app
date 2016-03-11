@@ -13,7 +13,6 @@ namespace userfs
    {
    public:
 
-      ::file::path                  m_strPath;
       bool                          m_bCreateImageList;
       bool                          m_bCreateImageListRedraw;
       int32_t                       m_iAnimate;
@@ -34,7 +33,7 @@ namespace userfs
       ::userfs::document * get_document();
 
       virtual void _001InsertColumns();
-      
+
 
 
       void install_message_handling(::message::dispatch * pinterface);
@@ -68,16 +67,16 @@ namespace userfs
       void RenameFile(int32_t iLine, string & str, ::action::context actioncontext);
 
       virtual void on_update(::user::impact * pSender, LPARAM lHint, object* pHint);
-    
+
       DECL_GEN_SIGNAL(_001OnLButtonDblClk);
       DECL_GEN_SIGNAL(_001OnContextMenu);
       DECL_GEN_SIGNAL(_001OnCreate);
       DECL_GEN_SIGNAL(_001OnShellCommand);
 
-   #ifdef DEBUG
+#ifdef DEBUG
       virtual void assert_valid() const;
       virtual void dump(dump_context & dumpcontext) const;
-   #endif
+#endif
 
 
    };

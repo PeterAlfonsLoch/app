@@ -1,8 +1,8 @@
 #pragma once
 
-#include <sdkddkver.h>
 
-#define _WIN32_WINNT _WIN32_WINNT_WIN8
+
+//#define _WIN32_WINNT _WIN32_WINNT_WIN8
 
 
 #include "app-core/appseed/multimedia/multimedia/multimedia.h"

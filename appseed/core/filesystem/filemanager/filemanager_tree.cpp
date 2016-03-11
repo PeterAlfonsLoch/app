@@ -134,7 +134,7 @@ namespace filemanager
 
 //      stringa & straRootTitle = get_document()->m_straRootTitle;
 
-  //    bool bTreeShowSubdir = get_document()->get_fs_data()->tree_show_subdir(strPath);
+      //    bool bTreeShowSubdir = get_document()->get_fs_data()->tree_show_subdir(strPath);
 
       ::data::tree_item_ptr_array ptraRemove;
 
@@ -287,7 +287,7 @@ namespace filemanager
 
                }
 
-/*               if(iLevel > 1)
+            /*               if(iLevel > 1)
                {
 
                   _017UpdateZipList(pitemChild->m_strPath, iLevel - 1, actioncontext);
@@ -353,9 +353,7 @@ namespace filemanager
 
 //      stringa & straRootTitle = get_document()->m_straRootTitle;
 
-      ::file::path strPath = get_filemanager_item().m_strPath;
-
-      m_strPath = strPath;
+      ::file::path strPath = get_filemanager_path();
 
       if(actioncontext &::action::source_system)
       {
@@ -386,7 +384,7 @@ namespace filemanager
 
       ::userfs::item * pitemChild;
 
-      ::file::path strDirParent = m_strPath.folder();
+      ::file::path strDirParent = get_filemanager_path().folder();
 
       ::data::tree_item * pitemParent = find_item(strDirParent);
 
@@ -444,7 +442,7 @@ namespace filemanager
       pitemParent = pitem;
 
       if(get_filemanager_template() != NULL && get_filemanager_data()->m_ptreeFileTreeMerge != NULL
-         && !(dynamic_cast < ::user::tree * > (get_filemanager_data()->m_ptreeFileTreeMerge))->m_treeptra.contains(this))
+            && !(dynamic_cast < ::user::tree * > (get_filemanager_data()->m_ptreeFileTreeMerge))->m_treeptra.contains(this))
       {
 
          get_filemanager_data()->m_ptreeFileTreeMerge->merge(this, true);
@@ -525,9 +523,9 @@ namespace filemanager
    void tree::_001OnMainPostMessage(signal_details * pobj)
    {
       SCAST_PTR(::message::base, pbase, pobj);
-         switch(pbase->m_wparam)
+      switch(pbase->m_wparam)
       {
-         case MessageMainPostCreateImageListItemRedraw:
+      case MessageMainPostCreateImageListItemRedraw:
          {
             ((::user::interaction *) pbase->m_pwnd->m_pvoidUserInteraction)->RedrawWindow();
             ((::user::interaction *) pbase->m_pwnd->m_pvoidUserInteraction)->KillTimer(123);
@@ -601,18 +599,18 @@ namespace filemanager
          LPITEMIDLIST lpidl;
 
          hr = SHGetSpecialFolderLocation(
-            NULL,
-            iCSIDL,
-            &lpidl);
+                 NULL,
+                 iCSIDL,
+                 &lpidl);
 
          if(FAILED(hr))
             return NULL;
 
          hr = psfDesktop->BindToObject(
-            lpidl,
-            NULL,
-            IID_IShellFolder,
-            (void **) &psf);
+                 lpidl,
+                 NULL,
+                 IID_IShellFolder,
+                 (void **) &psf);
 
          if(FAILED(hr))
             return NULL;
@@ -779,9 +777,10 @@ namespace filemanager
       }
       catch (...)
       {
-      
+
       }
-   finish:;
+finish:
+      ;
 
       try
       {
@@ -812,9 +811,9 @@ namespace filemanager
          m_pthreadPolishing->post_quit();
 
       }
-      
+
       m_pthreadPolishing = new polishing(get_app(),this,pusertree, false);
-      
+
       m_pthreadPolishing->begin();
 
       if (m_pthreadPolishingLowLatency != NULL)
@@ -887,7 +886,7 @@ namespace filemanager
       if(estep == step_has_subdir_visible)
       {
          if(pitem->m_pparent != NULL && ((estep == step_has_subdir_visible && pitem->m_pparent->is_expanded())
-            || (estep == step_has_subdir_hidden && !pitem->m_pparent->is_expanded())))
+                                         || (estep == step_has_subdir_hidden && !pitem->m_pparent->is_expanded())))
          {
             if(!(pitem->m_dwState & ::data::tree_item_state_expandable))
             {
@@ -896,22 +895,22 @@ namespace filemanager
                {
                   //sl.unlock();
                   //if(get_document()->get_fs_data()->tree_show_subdir(strPath)
-                    // && get_document()->get_fs_data()->has_subdir(strPath))
+                  // && get_document()->get_fs_data()->has_subdir(strPath))
                   {
-                    // sl.lock();
+                     // sl.lock();
                      //item->m_flags.signalize(::fs::FlagHasSubFolder);
                      pitem->m_dwState |= ::data::tree_item_state_expandable;
                      item->m_flags.signalize(::fs::FlagHasSubFolderUnknown);
                   }
                   //else
                   //{
-                    // sl.lock();
+                  // sl.lock();
                   //}
                }
                else
                {
                   if(get_document()->get_fs_data()->tree_show_subdir(strPath)
-                     && get_document()->get_fs_data()->has_subdir(strPath))
+                        && get_document()->get_fs_data()->has_subdir(strPath))
                   {
                      item->m_flags.signalize(::fs::FlagHasSubFolder);
                      pitem->m_dwState |= ::data::tree_item_state_expandable;
@@ -924,8 +923,8 @@ namespace filemanager
       {
 
          if((item->m_iImage < 0 ||
-            item->m_iImageSelected < 0) && pitem->m_pparent != NULL && ((estep == step_image_visible && pitem->m_pparent->is_expanded())
-            || (estep == step_image_hidden && !pitem->m_pparent->is_expanded())))
+               item->m_iImageSelected < 0) && pitem->m_pparent != NULL && ((estep == step_image_visible && pitem->m_pparent->is_expanded())
+                     || (estep == step_image_hidden && !pitem->m_pparent->is_expanded())))
          {
 
 #ifdef WINDOWSEX
@@ -994,226 +993,102 @@ namespace filemanager
 
 
 
-      void tree::assert_valid() const
-      {
-         ::data::tree::assert_valid();
-      }
+   void tree::assert_valid() const
+   {
+      ::data::tree::assert_valid();
+   }
 
-      void tree::dump(dump_context & dumpcontext) const
-      {
-         ::data::tree::dump(dumpcontext);
-      }
+   void tree::dump(dump_context & dumpcontext) const
+   {
+      ::data::tree::dump(dumpcontext);
+   }
 
 
-      void tree::on_update(::user::impact * pSender, LPARAM lHint, object* phint)
+   void tree::on_update(::user::impact * pSender, LPARAM lHint, object* phint)
+   {
+      ::filemanager::impact::on_update(pSender, lHint, phint);
+      if (phint != NULL)
       {
-         ::filemanager::impact::on_update(pSender, lHint, phint);
-         if (phint != NULL)
+         if (base_class < update_hint > ::bases(phint))
          {
-            if (base_class < update_hint > ::bases(phint))
+            update_hint * puh = (update_hint *)phint;
+            if (puh->is_type_of(update_hint::TypeInitialize))
             {
-               update_hint * puh = (update_hint *)phint;
-               if (puh->is_type_of(update_hint::TypeInitialize))
+
+
+            }
+            if (puh->is_type_of(update_hint::TypeFilter))
+            {
+               if (puh->m_wstrFilter.is_empty())
                {
-
-
+                  //               FilterClose();
                }
-               if (puh->is_type_of(update_hint::TypeFilter))
+               else
                {
-                  if (puh->m_wstrFilter.is_empty())
-                  {
-                     //               FilterClose();
-                  }
-                  else
-                  {
-                     //             FilterBegin();
-                     //           Filter1(puh->m_wstrFilter);
-                     //         FilterApply();
-                  }
+                  //             FilterBegin();
+                  //           Filter1(puh->m_wstrFilter);
+                  //         FilterApply();
                }
             }
          }
       }
+   }
 
 
-      void tree::_001OnLButtonDblClk(signal_details * pobj)
-      {
-         UNREFERENCED_PARAMETER(pobj);
-         //   int32_t iItem;
+   void tree::_001OnLButtonDblClk(signal_details * pobj)
+   {
+      UNREFERENCED_PARAMETER(pobj);
+      //   int32_t iItem;
 
-         /*   if(_001HitTest_(point, iItem))
-         {
-         if(m_itema.get_item(iItem).IsFolder())
-         {
-         ::fs::item item;
-         item.m_strPath         = m_itema.get_item(iItem).m_strPath;
-         item.m_lpiidlAbsolute   = m_itema.get_item(iItem).m_lpiidlAbsolute;
-         item.m_lpiidlRelative   = m_itema.get_item(iItem).m_lpiidlAbsolute;
-         get_document()->OpenFolder(item);
-         }
-         else
-         {
-         ::fs::item item;
-         item.m_strPath         = m_itema.get_item(iItem).m_strPath;
-         item.m_lpiidlAbsolute   = m_itema.get_item(iItem).m_lpiidlAbsolute;
-         item.m_lpiidlRelative   = m_itema.get_item(iItem).m_lpiidlAbsolute;
+   }
 
-         ::fs::item_array itema;
-         itema.add(item);
-
-         get_filemanager_data()->OnFileManagerOpenFile(itema);
-         }
-         }*/
-      }
-
-      /*
-      bool tree::OnSetData(const ::database::id &key, int32_t iLine, int32_t iColumn, var & var, ::database::update_hint * puh)
-      {
-      if(key.get_value() == FILE_MANAGER_ID_FILE_NAME)
-      {
-      ASSERT(var.get_type() == var::type_string
-      || var.is_empty());
-      string str;
-      str = var.m_str;
-      RenameFile(iLine, str);
-      }
-      return true;
-      }
-      */
-
-      /*
-      bool tree::get_data(const ::database::id & key, int32_t iLine, int32_t iColumn, var & var)
-      {
-      string str;
-      if(key.get_value() == FILE_MANAGER_ID_FILE_NAME)
-      {
-      str = m_itema.get_item(iLine).m_wstrName;
-      }
-      var.set_type(var::type_string);
-      var.m_str = str;
-      return true;
-      }
-
-      void tree::RenameFile(int32_t iLine, string &wstrNameNew)
-      {
-      string str = m_itema.get_item(iLine).m_strPath;
-
-      int32_t iFind = str.reverse_find(L'\\');
-
-
-      string wstrNew = str.Left(iFind + 1) + wstrNameNew;
-
-      if(!::win::shell::MoveFile(str, wstrNew))
-      {
-      System.simple_message_box("Could not rename the file");
-      }
-
-      }*/
-
-      void tree::_001OnContextMenu(signal_details * pobj)
-      {
-//         SCAST_PTR(::message::context_menu, pcontextmenu, pobj);
-            //   int32_t iItem;
-            //   HRESULT hr;
-//            point ptClient = pcontextmenu->GetPoint();
-//         ::user::tree::ScreenToClient(&ptClient);
-         /*     if(_001HitTest_(ptClient, iItem))
-         {
-         CSimpleMenu menu(CBaseMenuCentral::GetMenuCentral());
-         if (menu.LoadMenu(get_filemanager_template()->m_uiFilePopup))
-         {
-         CSimpleMenu* pPopup = (CSimpleMenu *) menu.GetSubMenu(0);
-         ASSERT(pPopup != NULL);
-         sp(::user::frame_window) pframe = GetTopLevelFrame();
-
-         pframe->SetActiveView(this);
-
-         //IContextMenu * pcontextmenu;
-
-         hr = m_spshellfolder->GetUIObjectOf(
-         NULL,
-         1,
-         (LPCITEMIDLIST *) &m_itema.get_item(iItem).m_lpiidlRelative,
-         IID_IContextMenu,
-         NULL,
-         (void **) &m_contextmenu.m_pcontextmenu);
-
-
-         if(SUCCEEDED(hr))
-         {
-         hr = m_contextmenu.m_pcontextmenu->QueryContextMenu(
-         pPopup->GetSafeHmenu(),
-         0,
-         SHELL_COMMAND_FIRST,
-         SHELL_COMMAND_LAST,
-         CMF_NORMAL);
-
-         }
-
-
-         pPopup->TrackPopupMenu(
-         point.x, point.y,
-         (::window_sp) pframe);
-         }
-         }
-         else
-         {
-         ::user::menu menu;
-         if (menu.LoadMenu(get_filemanager_template()->m_uiPopup))
-         {
-         ::user::menu* pPopup = menu.GetSubMenu(0);
-         ASSERT(pPopup != NULL);
-         sp(::user::frame_window) pframe = GetTopLevelFrame();
-         pPopup->TrackPopupMenu(
-         point.x, point.y,
-         (::window_sp) pframe);
-         }
-         }*/
-      }
+   void tree::_001OnContextMenu(signal_details * pobj)
+   {
+   }
 
 
 
 
-      void tree::_001OnShellCommand(signal_details * pobj)
-      {
-         SCAST_PTR(::message::command, pcommand, pobj);
-            m_contextmenu.OnCommand(pcommand->GetId());
-      }
+   void tree::_001OnShellCommand(signal_details * pobj)
+   {
+      SCAST_PTR(::message::command, pcommand, pobj);
+      m_contextmenu.OnCommand(pcommand->GetId());
+   }
 
-      void tree::_001OnCreate(signal_details * pobj)
-      {
+   void tree::_001OnCreate(signal_details * pobj)
+   {
 
-         pobj->previous();
-
-
-
-      }
+      pobj->previous();
 
 
-      void tree::on_merge_user_tree(::user::tree * pusertree)
-      {
 
-         m_iDefaultImage = Session.userex()->shellimageset().GetImage(
-            pusertree->get_handle(),
-            "foo",
-            _shell::FileAttributeDirectory,
-            _shell::IconNormal);
-
-         m_iDefaultImageSelected = Session.userex()->shellimageset().GetImage(
-            pusertree->get_handle(),
-            "foo",
-            _shell::FileAttributeDirectory,
-            _shell::IconOpen);
-
-      }
+   }
 
 
-      void tree::on_bind_user_tree(::user::tree * pusertree)
-      {
+   void tree::on_merge_user_tree(::user::tree * pusertree)
+   {
 
-         UNREFERENCED_PARAMETER(pusertree);
+      m_iDefaultImage = Session.userex()->shellimageset().GetImage(
+                           pusertree->get_handle(),
+                           "foo",
+                           _shell::FileAttributeDirectory,
+                           _shell::IconNormal);
 
-      }
+      m_iDefaultImageSelected = Session.userex()->shellimageset().GetImage(
+                                   pusertree->get_handle(),
+                                   "foo",
+                                   _shell::FileAttributeDirectory,
+                                   _shell::IconOpen);
+
+   }
+
+
+   void tree::on_bind_user_tree(::user::tree * pusertree)
+   {
+
+      UNREFERENCED_PARAMETER(pusertree);
+
+   }
 
 
 
