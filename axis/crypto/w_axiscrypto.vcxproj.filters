@@ -235,6 +235,9 @@
     <Filter Include="Assembler Files\x86\rc4">
       <UniqueIdentifier>{b108e6b5-53c5-4a4d-bfef-dcfff5b20ee4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Assembler Files\ARM">
+      <UniqueIdentifier>{0f442faf-0319-4f3c-b8ea-e731d7482529}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="asm\x64-win32-masm\aes\aes-x86_64.asm">
@@ -2667,6 +2670,9 @@
     </ClCompile>
     <ClCompile Include="crypto\bio\_bio.c">
       <Filter>Source Files\crypto\bio</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\aes\_aes.c">
+      <Filter>Source Files\crypto\aes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

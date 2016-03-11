@@ -1,9 +1,9 @@
 #if defined(METROWIN)
-#pragma push_macro("System")
-#undef System
-using namespace ::Windows::System;
+   #pragma push_macro("System")
+   #undef System
+   using namespace ::Windows::System;
 
-#pragma pop_macro("System")
+   #pragma pop_macro("System")
 #endif
 
 
@@ -13,19 +13,19 @@ using namespace ::Windows::System;
 
 #if defined(ANDROID)
 
-	if (!br_init_lib(NULL))
-		return "";
+   if (!br_init_lib(NULL))
+      return "";
 
-	char * lpszModule = br_find_exe(NULL);
+   char * lpszModule = br_find_exe(NULL);
 
-	if (lpszModule == NULL)
-		return "";
+   if (lpszModule == NULL)
+      return "";
 
-	::file::path path = lpszModule;
+   ::file::path path = lpszModule;
 
-	free(lpszModule);
+   free(lpszModule);
 
-	return path;
+   return path;
 
 #elif defined(METROWIN)
 
@@ -34,68 +34,68 @@ using namespace ::Windows::System;
 
    return "";
 
-/*   char lpszModuleFilePath[MAX_PATH * 8];
+   /*   char lpszModuleFilePath[MAX_PATH * 8];
 
-   HMODULE hmodule = ::LoadPackagedLibrary(L"ca.dll", 0);
+      HMODULE hmodule = ::LoadPackagedLibrary(L"ca.dll", 0);
 
-   if(hmodule == NULL)
-      hmodule = ::LoadPackagedLibrary(L"spalib.dll", 0);
+      if(hmodule == NULL)
+         hmodule = ::LoadPackagedLibrary(L"spalib.dll", 0);
 
-   if(hmodule == NULL)
-   {
-
-      string buf;
-
-      throw metrowin_todo();
-      //HRESULT hr = SHGetKnownFolderPath(FOLDERID_ProgramFiles, KF_FLAG_NO_ALIAS, NULL, wtostring(buf, 4096));
-      //if(FAILED(hr))
-      // throw "dir::ca2_module_dup : SHGetKnownFolderPath failed";
-
-      /*strcpy(lpszModuleFilePath, buf.c_str());
-
-      if(lpszModuleFilePath[strlen_dup(lpszModuleFilePath) - 1] == '\\'
-         || lpszModuleFilePath[strlen_dup(lpszModuleFilePath) - 1] == '/')
+      if(hmodule == NULL)
       {
-         lpszModuleFilePath[strlen_dup(lpszModuleFilePath) - 1] = '\0';
-      }
-      strcat_dup(lpszModuleFilePath, "\\core\\");
+
+         string buf;
+
+         throw metrowin_todo();
+         //HRESULT hr = SHGetKnownFolderPath(FOLDERID_ProgramFiles, KF_FLAG_NO_ALIAS, NULL, wtostring(buf, 4096));
+         //if(FAILED(hr))
+         // throw "dir::ca2_module_dup : SHGetKnownFolderPath failed";
+
+         /*strcpy(lpszModuleFilePath, buf.c_str());
+
+         if(lpszModuleFilePath[strlen_dup(lpszModuleFilePath) - 1] == '\\'
+            || lpszModuleFilePath[strlen_dup(lpszModuleFilePath) - 1] == '/')
+         {
+            lpszModuleFilePath[strlen_dup(lpszModuleFilePath) - 1] = '\0';
+         }
+         strcat_dup(lpszModuleFilePath, "\\core\\");
 #ifdef X86
-      strcat_dup(lpszModuleFilePath, "stage\\x86\\");
+         strcat_dup(lpszModuleFilePath, "stage\\x86\\");
 #else
-      strcat_dup(lpszModuleFilePath, "stage\\x64\\");
+         strcat_dup(lpszModuleFilePath, "stage\\x64\\");
 #endif
 
-      wcscpy_dup(lpszModuleFolder, lpszModuleFilePath);*/
+         wcscpy_dup(lpszModuleFolder, lpszModuleFilePath);*/
 
-  /*    return true;
+   /*    return true;
 
-   }
+    }
 
-   throw metrowin_todo();
-   //GetModuleFileName(hmodule, lpszModuleFilePath, sizeof(lpszModuleFilePath));
+    throw metrowin_todo();
+    //GetModuleFileName(hmodule, lpszModuleFilePath, sizeof(lpszModuleFilePath));
 
-   // xxx   LPTSTR lpszModuleFileName;
+    // xxx   LPTSTR lpszModuleFileName;
 
-   throw metrowin_todo();
-   //GetFullPathName(lpszModuleFilePath, sizeof(lpszModuleFilePath), lpszModuleFolder, &lpszModuleFileName);
+    throw metrowin_todo();
+    //GetFullPathName(lpszModuleFilePath, sizeof(lpszModuleFilePath), lpszModuleFolder, &lpszModuleFileName);
 
-   throw metrowin_todo();
-   //lpszModuleFolder[lpszModuleFileName - lpszModuleFolder] = '\0';
+    throw metrowin_todo();
+    //lpszModuleFolder[lpszModuleFileName - lpszModuleFolder] = '\0';
 
-   throw metrowin_todo();
-   /*
-   if(strlen_dup(lpszModuleFolder) > 0)
-   {
+    throw metrowin_todo();
+    /*
+    if(strlen_dup(lpszModuleFolder) > 0)
+    {
 
-   if(lpszModuleFolder[strlen_dup(lpszModuleFolder) - 1] == '\\' || lpszModuleFolder[strlen_dup(lpszModuleFolder) - 1] == '/')
-   {
+    if(lpszModuleFolder[strlen_dup(lpszModuleFolder) - 1] == '\\' || lpszModuleFolder[strlen_dup(lpszModuleFolder) - 1] == '/')
+    {
 
-   lpszModuleFolder[strlen_dup(lpszModuleFolder) - 1] = '\0';
+    lpszModuleFolder[strlen_dup(lpszModuleFolder) - 1] = '\0';
 
-   }
+    }
 
-   }
-   */
+    }
+    */
 
    return "";
 
@@ -128,7 +128,7 @@ using namespace ::Windows::System;
       }
 
       if(lpszModuleFilePath[wcslen(lpszModuleFilePath) - 1] == '\\'
-         || lpszModuleFilePath[wcslen(lpszModuleFilePath) - 1] == '/')
+            || lpszModuleFilePath[wcslen(lpszModuleFilePath) - 1] == '/')
       {
          lpszModuleFilePath[wcslen(lpszModuleFilePath) - 1] = '\0';
       }
@@ -205,7 +205,8 @@ using namespace ::Windows::System;
 
 
    }
-found:;
+found:
+   ;
 
    return str;
 
@@ -213,29 +214,29 @@ found:;
 
    char lpszModuleFolder[MAX_PATH * 8];
 
-         void * handle = dlopen("libaura.so", RTLD_NOW);
+   void * handle = dlopen("libaura.so", RTLD_NOW);
 
-         if(handle == NULL)
-         {
+   if(handle == NULL)
+   {
 
-            strcpy(lpszModuleFolder, "/ca2/");
+      strcpy(lpszModuleFolder, "/ca2/");
 
-         }
-         else
-         {
+   }
+   else
+   {
 
-            link_map * plm;
+      link_map * plm;
 
-            dlinfo(handle, RTLD_DI_LINKMAP, &plm);
+      dlinfo(handle, RTLD_DI_LINKMAP, &plm);
 
-            strcpy(lpszModuleFolder, plm->l_name);
+      strcpy(lpszModuleFolder, plm->l_name);
 
 
-            dlclose(handle);
+      dlclose(handle);
 
-            strcpy(lpszModuleFolder, ::dir::name(lpszModuleFolder));
+      strcpy(lpszModuleFolder, ::dir::name(lpszModuleFolder));
 
-         }
+   }
 
    return string(lpszModuleFolder);
 
@@ -268,70 +269,70 @@ found:;
 #if defined(METROWIN)
 
    return "";
-/*   unichar lpszModuleFolder[MAX_PATH * 8];
+   /*   unichar lpszModuleFolder[MAX_PATH * 8];
 
-   char lpszModuleFilePath[MAX_PATH * 8];
+      char lpszModuleFilePath[MAX_PATH * 8];
 
-   HMODULE hmodule = ::LoadPackagedLibrary(L"ca.dll", 0);
+      HMODULE hmodule = ::LoadPackagedLibrary(L"ca.dll", 0);
 
-   if (hmodule == NULL)
-      hmodule = ::LoadPackagedLibrary(L"spalib.dll", 0);
+      if (hmodule == NULL)
+         hmodule = ::LoadPackagedLibrary(L"spalib.dll", 0);
 
-   if (hmodule == NULL)
-   {
+      if (hmodule == NULL)
+      {
 
-      string buf;
+         string buf;
+
+         throw metrowin_todo();
+         //HRESULT hr = SHGetKnownFolderPath(FOLDERID_ProgramFiles, KF_FLAG_NO_ALIAS, NULL, wtostring(buf, 4096));
+         //if(FAILED(hr))
+         // throw "dir::ca2_module_dup : SHGetKnownFolderPath failed";
+
+         strcpy(lpszModuleFilePath, buf.c_str());
+
+         if (lpszModuleFilePath[strlen_dup(lpszModuleFilePath) - 1] == '\\'
+            || lpszModuleFilePath[strlen_dup(lpszModuleFilePath) - 1] == '/')
+         {
+            lpszModuleFilePath[strlen_dup(lpszModuleFilePath) - 1] = '\0';
+         }
+         strcat_dup(lpszModuleFilePath, "\\ca2\\");
+   #ifdef X86
+         strcat_dup(lpszModuleFilePath, "stage\\x86\\");
+   #else
+         strcat_dup(lpszModuleFilePath, "stage\\x64\\");
+   #endif
+
+         strcpy_dup(lpszModuleFolder, lpszModuleFilePath);
+
+         return lpszModuleFolder;
+
+      }
 
       throw metrowin_todo();
-      //HRESULT hr = SHGetKnownFolderPath(FOLDERID_ProgramFiles, KF_FLAG_NO_ALIAS, NULL, wtostring(buf, 4096));
-      //if(FAILED(hr))
-      // throw "dir::ca2_module_dup : SHGetKnownFolderPath failed";
+      //GetModuleFileName(hmodule, lpszModuleFilePath, sizeof(lpszModuleFilePath));
 
-      strcpy(lpszModuleFilePath, buf.c_str());
+      // xxx   LPTSTR lpszModuleFileName;
 
-      if (lpszModuleFilePath[strlen_dup(lpszModuleFilePath) - 1] == '\\'
-         || lpszModuleFilePath[strlen_dup(lpszModuleFilePath) - 1] == '/')
+      throw metrowin_todo();
+      //GetFullPathName(lpszModuleFilePath, sizeof(lpszModuleFilePath), lpszModuleFolder, &lpszModuleFileName);
+
+      throw metrowin_todo();
+      //lpszModuleFolder[lpszModuleFileName - lpszModuleFolder] = '\0';
+
+      throw metrowin_todo();
+      /*
+      if(strlen_dup(lpszModuleFolder) > 0)
       {
-         lpszModuleFilePath[strlen_dup(lpszModuleFilePath) - 1] = '\0';
+
+      if(lpszModuleFolder[strlen_dup(lpszModuleFolder) - 1] == '\\' || lpszModuleFolder[strlen_dup(lpszModuleFolder) - 1] == '/')
+      {
+
+      lpszModuleFolder[strlen_dup(lpszModuleFolder) - 1] = '\0';
+
       }
-      strcat_dup(lpszModuleFilePath, "\\ca2\\");
-#ifdef X86
-      strcat_dup(lpszModuleFilePath, "stage\\x86\\");
-#else
-      strcat_dup(lpszModuleFilePath, "stage\\x64\\");
-#endif
 
-      strcpy_dup(lpszModuleFolder, lpszModuleFilePath);
-
-      return lpszModuleFolder;
-
-   }
-
-   throw metrowin_todo();
-   //GetModuleFileName(hmodule, lpszModuleFilePath, sizeof(lpszModuleFilePath));
-
-   // xxx   LPTSTR lpszModuleFileName;
-
-   throw metrowin_todo();
-   //GetFullPathName(lpszModuleFilePath, sizeof(lpszModuleFilePath), lpszModuleFolder, &lpszModuleFileName);
-
-   throw metrowin_todo();
-   //lpszModuleFolder[lpszModuleFileName - lpszModuleFolder] = '\0';
-
-   throw metrowin_todo();
-   /*
-   if(strlen_dup(lpszModuleFolder) > 0)
-   {
-
-   if(lpszModuleFolder[strlen_dup(lpszModuleFolder) - 1] == '\\' || lpszModuleFolder[strlen_dup(lpszModuleFolder) - 1] == '/')
-   {
-
-   lpszModuleFolder[strlen_dup(lpszModuleFolder) - 1] = '\0';
-
-   }
-
-   }
-   */
+      }
+      */
 
 //   return true;
 
@@ -363,7 +364,7 @@ found:;
       }
 
       if(lpszModuleFilePath[wcslen(lpszModuleFilePath) - 1] == '\\'
-         || lpszModuleFilePath[wcslen(lpszModuleFilePath) - 1] == '/')
+            || lpszModuleFilePath[wcslen(lpszModuleFilePath) - 1] == '/')
       {
          lpszModuleFilePath[wcslen(lpszModuleFilePath) - 1] = '\0';
       }
@@ -540,11 +541,11 @@ string calc_ca2_module_folder_dup()
 
       free(pszCurDir);
 
-/*      if(file_exists_dup(::dir::path(strCurDir, "libbase.dylib")))
-      {
-         return strCurDir;
-      }
-*/
+      /*      if(file_exists_dup(::dir::path(strCurDir, "libbase.dylib")))
+            {
+               return strCurDir;
+            }
+      */
 
       str = ::dir::name(::dir::pathfind(getenv("DYLD_LIBRARY_PATH"), "libbase.dylib", "rfs")); // readable - normal file - non zero sized
 
@@ -557,7 +558,8 @@ string calc_ca2_module_folder_dup()
 
       str = ::dir::name(::dir::pathfind(getenv("DYLD_FALLBACK_LIBRARY_PATH"), "libbase.dylib", "rfs")); // readable - normal file - non zero sized
 
-   found:;
+found:
+      ;
    }
 
 #endif
@@ -655,7 +657,8 @@ string ca2_module_dup()
 
    }
 
-found:;
+found:
+   ;
 
 #endif
 
@@ -826,7 +829,7 @@ bool dir::is(const ::file::path & path1)
 
    uint32_t dwFileAttributes = ::GetFileAttributesW(wstring(str));
    if(dwFileAttributes != INVALID_FILE_ATTRIBUTES &&
-      dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
+         dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
       return true;
    else
       return false;
@@ -845,7 +848,7 @@ bool dir::is(const ::file::path & path1)
 
    uint32_t dwFileAttributes = ::GetFileAttributesW(wstring(str));
    if(dwFileAttributes != INVALID_FILE_ATTRIBUTES &&
-      dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
+         dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
       return true;
    else
       return false;
@@ -938,7 +941,7 @@ void dir::ls(::file::patha & stra,const ::file::path & psz)
       return;
 
    dirent * dp;
-::file::path path;
+   ::file::path path;
    while ((dp = readdir(dirp)) != NULL)
    {
 
@@ -961,10 +964,12 @@ void dir::ls(::file::patha & stra,const ::file::path & psz)
 
    string strPrefix;
 
+   string str = psz;
+
    try
    {
 
-      if(string(psz).CompareNoCase("winmetro-Pictures:") == 0)
+      if(string(psz).CompareNoCase("winmetro-Music:") == 0)
       {
 
          strPrefix = "winmetro-Pictures://";
@@ -1005,7 +1010,11 @@ void dir::ls(::file::patha & stra,const ::file::path & psz)
       else
       {
 
-         folder = wait(::Windows::Storage::StorageFolder::GetFolderFromPathAsync(string(psz)));
+         ::str::begins_eat_ci(str, "winmetro-Pictures:\\\\");
+
+         ::str::begins_eat_ci(str, "winmetro-Music:\\\\");
+
+         folder = wait(::Windows::Storage::StorageFolder::GetFolderFromPathAsync(str));
 
       }
 
@@ -1028,6 +1037,10 @@ void dir::ls(::file::patha & stra,const ::file::path & psz)
       string strPath = strPrefix + string(begin(a->GetAt(ui)->Path));
 
       ::file::path path(strPath);
+
+      string str = path;
+
+      path.m_iDir = a->GetAt(ui)->IsOfType( ::Windows::Storage::StorageItemTypes::Folder) ? 1 :0;
 
       stra.add(path);
 

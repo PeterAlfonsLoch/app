@@ -16,9 +16,9 @@ namespace metrowin
    inline bool myspace(char ch)
    {
       return ch == ' ' ||
-         ch == '\t' ||
-         ch == '\r' ||
-         ch == '\n';
+             ch == '\t' ||
+             ch == '\r' ||
+             ch == '\n';
    }
 
 
@@ -37,7 +37,7 @@ namespace metrowin
    }
 
 
-   
+
 
 
    ::file::listing & dir::ls(::aura::application *  papp, ::file::listing & listing)
@@ -144,7 +144,7 @@ namespace metrowin
 
          for(int i = 0; i < stra.get_count(); i++)
          {
-            
+
             ::file::path strPath = stra[i];
 
             string strName = strPath.name();
@@ -152,7 +152,7 @@ namespace metrowin
             if(listing.m_strPattern.has_char() && !matches_wildcard_criteria(listing.m_strPattern,strName))
                continue;
 
-            bool bDir = is(strPath, papp);
+            bool bDir = strPath.m_iDir < 0 ? is(strPath, papp) : strPath.m_iDir != 0;
 
             if((listing.m_bFile && !bDir) || (listing.m_bDir && bDir))
             {
@@ -372,13 +372,13 @@ namespace metrowin
       return time() / "time";
    }
 
-   
+
    ::file::path dir::time_log()
    {
       return appdata() / "log";
    }
 
-   
+
    bool dir::mk(const ::file::path & lpcsz,::aura::application *  papp)
    {
 
@@ -386,7 +386,7 @@ namespace metrowin
          return true;
 
       ::file::patha stra;
-      
+
       lpcsz.ascendants_path(stra);
 
       for(int i = 0; i < stra.get_size(); i++)
@@ -437,7 +437,7 @@ namespace metrowin
             {
                m_isdirmap.set(stra[i],true,0);
             }
-         try1:
+try1:
 
             if(!is(stra[i],papp))
             {
@@ -449,7 +449,7 @@ namespace metrowin
       return true;
    }
 
-   
+
    bool dir::rm(::aura::application *  papp,const ::file::path & psz,bool bRecursive)
    {
 
@@ -459,7 +459,7 @@ namespace metrowin
          ::file::listing straPath(papp);
 
          straPath.ls(psz);
-         
+
          for(int i = 0; i < straPath.get_count(); i++)
          {
 
@@ -532,7 +532,7 @@ namespace metrowin
 
    }
 
-   
+
    ::file::path dir::trash_that_is_not_trash(const ::file::path & psz)
    {
 
@@ -566,7 +566,7 @@ namespace metrowin
       return "";
    }
 
-   
+
    ::file::path dir::appdata()
    {
 
@@ -620,7 +620,7 @@ namespace metrowin
 
    ::file::path dir::default_os_user_path_prefix(::aura::application *  papp)
    {
-      
+
       UNREFERENCED_PARAMETER(papp);
 
       return "CurrentUser";

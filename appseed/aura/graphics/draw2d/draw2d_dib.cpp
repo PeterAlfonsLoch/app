@@ -716,6 +716,13 @@ namespace draw2d
 
       COLORREF * pcr = get_data();
 
+      if (pcr == NULL)
+      {
+
+         return;
+
+      }
+
       for(int32_t i=0; i < size; i++)
       {
          ((byte *) pcr)[0] = R;

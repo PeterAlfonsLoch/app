@@ -1539,7 +1539,11 @@ bool simple_frame_window::LoadToolBar(sp(::type) sptype, id idToolBar, const cha
    if(ptoolbar == NULL)
       return false;
 
-   if(!ptoolbar->LoadXmlToolBar(Application.file().as_string(Application.dir().matter(pszToolBar))))
+   string strMatter = Application.dir().matter(pszToolBar);
+
+   string strXml = Application.file().as_string(strMatter);
+
+   if(!ptoolbar->LoadXmlToolBar(strXml))
    {
       try
       {

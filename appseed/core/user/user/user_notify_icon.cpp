@@ -3,12 +3,12 @@
 
 static ::user::notify_icon * g_pnotifyiconLast = NULL;
 #ifdef LINUX
-#include <dlfcn.h>
-BEGIN_EXTERN_C
-typedef void * BASECORE_APP_INDICATOR_NEW(const char *, const char *, const char *, i_close_quit *);
-typedef void BASECORE_APP_INDICATOR_TERM(void *);
-END_EXTERN_C
-extern void * g_pbasecore;
+   #include <dlfcn.h>
+   BEGIN_EXTERN_C
+   typedef void * BASECORE_APP_INDICATOR_NEW(const char *, const char *, const char *, i_close_quit *);
+   typedef void BASECORE_APP_INDICATOR_TERM(void *);
+   END_EXTERN_C
+   extern void * g_pbasecore;
 #endif
 
 namespace user
@@ -77,6 +77,7 @@ namespace user
       m_nid.uCallbackMessage     = MessageNotifyIcon;
 #elif defined(LINUX)
 #elif defined(MACOS)
+#elif defined(METROWIN)
 #else
       throw todo(get_app());
 
@@ -202,11 +203,11 @@ namespace user
          return false;
       }
 #elif defined(LINUX)
-{
+      {
          BASECORE_APP_INDICATOR_TERM * f =  (BASECORE_APP_INDICATOR_TERM *) dlsym(g_pbasecore, "basecore_app_indicator_term");
 
-      (*f)(m_pindicator);
-   }
+         (*f)(m_pindicator);
+      }
 #else
       throw todo(get_app());
 #endif

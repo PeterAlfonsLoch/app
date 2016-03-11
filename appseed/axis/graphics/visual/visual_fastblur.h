@@ -6,8 +6,12 @@
 //
 #pragma once
 
-#ifdef _WIN32
-#if OSBIT == 32
+#if (defined(_WIN32) && !defined(_M_ARM)) && OSBIT == 32
+   #define VECTOR3_SSE
+#endif
+
+
+#if VECTOR3_SSE
 #include <smmintrin.h>
 
 ///////////////////////////////////////////////////////////////
@@ -23,7 +27,7 @@
 // Occupation: PhD Student
 // Interests: music, photography, reading, travel, computer vision
 // Favorite songs: Radiohead, Gershwin
-// 
+//
 /////////////////////////////////////////////////////////////////////////////////////////
 //
 /////////////////////////////////////////////////////////////////////////////////
@@ -47,55 +51,109 @@ public:
    inline vector4(__m128 m) : mmvalue(m) {}
 
    // arithmetic operators with vector4
-   inline vector4 operator+(const vector4& b) const { return _mm_add_ps(mmvalue,b.mmvalue); }
-   inline vector4 operator-(const vector4& b) const { return _mm_sub_ps(mmvalue,b.mmvalue); }
-   inline vector4 operator*(const vector4& b) const { return _mm_mul_ps(mmvalue,b.mmvalue); }
-   inline vector4 operator/(const vector4& b) const { return _mm_div_ps(mmvalue,b.mmvalue); }
+   inline vector4 operator+(const vector4& b) const {
+      return _mm_add_ps(mmvalue,b.mmvalue);
+   }
+   inline vector4 operator-(const vector4& b) const {
+      return _mm_sub_ps(mmvalue,b.mmvalue);
+   }
+   inline vector4 operator*(const vector4& b) const {
+      return _mm_mul_ps(mmvalue,b.mmvalue);
+   }
+   inline vector4 operator/(const vector4& b) const {
+      return _mm_div_ps(mmvalue,b.mmvalue);
+   }
 
    // op= operators
-   inline vector4& operator+=(const vector4& b) { mmvalue = _mm_add_ps(mmvalue,b.mmvalue); return *this; }
-   inline vector4& operator-=(const vector4& b) { mmvalue = _mm_sub_ps(mmvalue,b.mmvalue); return *this; }
-   inline vector4& operator*=(const vector4& b) { mmvalue = _mm_mul_ps(mmvalue,b.mmvalue); return *this; }
-   inline vector4& operator/=(const vector4& b) { mmvalue = _mm_div_ps(mmvalue,b.mmvalue); return *this; }
+   inline vector4& operator+=(const vector4& b) {
+      mmvalue = _mm_add_ps(mmvalue,b.mmvalue);
+      return *this;
+   }
+   inline vector4& operator-=(const vector4& b) {
+      mmvalue = _mm_sub_ps(mmvalue,b.mmvalue);
+      return *this;
+   }
+   inline vector4& operator*=(const vector4& b) {
+      mmvalue = _mm_mul_ps(mmvalue,b.mmvalue);
+      return *this;
+   }
+   inline vector4& operator/=(const vector4& b) {
+      mmvalue = _mm_div_ps(mmvalue,b.mmvalue);
+      return *this;
+   }
 
    // arithmetic operators with float
-   inline vector4 operator+(float b) const { return _mm_add_ps(mmvalue,_mm_set1_ps(b)); }
-   inline vector4 operator-(float b) const { return _mm_sub_ps(mmvalue,_mm_set1_ps(b)); }
-   inline vector4 operator*(float b) const { return _mm_mul_ps(mmvalue,_mm_set1_ps(b)); }
-   inline vector4 operator/(float b) const { return _mm_div_ps(mmvalue,_mm_set1_ps(b)); }
+   inline vector4 operator+(float b) const {
+      return _mm_add_ps(mmvalue,_mm_set1_ps(b));
+   }
+   inline vector4 operator-(float b) const {
+      return _mm_sub_ps(mmvalue,_mm_set1_ps(b));
+   }
+   inline vector4 operator*(float b) const {
+      return _mm_mul_ps(mmvalue,_mm_set1_ps(b));
+   }
+   inline vector4 operator/(float b) const {
+      return _mm_div_ps(mmvalue,_mm_set1_ps(b));
+   }
 
    // op= operators with float
-   inline vector4& operator+=(float b) { mmvalue = _mm_add_ps(mmvalue,_mm_set1_ps(b)); return *this; }
-   inline vector4& operator-=(float b) { mmvalue = _mm_sub_ps(mmvalue,_mm_set1_ps(b)); return *this; }
-   inline vector4& operator*=(float b) { mmvalue = _mm_mul_ps(mmvalue,_mm_set1_ps(b)); return *this; }
-   inline vector4& operator/=(float b) { mmvalue = _mm_div_ps(mmvalue,_mm_set1_ps(b)); return *this; }
+   inline vector4& operator+=(float b) {
+      mmvalue = _mm_add_ps(mmvalue,_mm_set1_ps(b));
+      return *this;
+   }
+   inline vector4& operator-=(float b) {
+      mmvalue = _mm_sub_ps(mmvalue,_mm_set1_ps(b));
+      return *this;
+   }
+   inline vector4& operator*=(float b) {
+      mmvalue = _mm_mul_ps(mmvalue,_mm_set1_ps(b));
+      return *this;
+   }
+   inline vector4& operator/=(float b) {
+      mmvalue = _mm_div_ps(mmvalue,_mm_set1_ps(b));
+      return *this;
+   }
 
    // cross product
    inline vector4 cross(const vector4& b) const
    {
       return _mm_sub_ps(
-         _mm_mul_ps(_mm_shuffle_ps(mmvalue,mmvalue,_MM_SHUFFLE(3,0,2,1)),_mm_shuffle_ps(b.mmvalue,b.mmvalue,_MM_SHUFFLE(3,1,0,2))),
-         _mm_mul_ps(_mm_shuffle_ps(mmvalue,mmvalue,_MM_SHUFFLE(3,1,0,2)),_mm_shuffle_ps(b.mmvalue,b.mmvalue,_MM_SHUFFLE(3,0,2,1)))
-         );
+                _mm_mul_ps(_mm_shuffle_ps(mmvalue,mmvalue,_MM_SHUFFLE(3,0,2,1)),_mm_shuffle_ps(b.mmvalue,b.mmvalue,_MM_SHUFFLE(3,1,0,2))),
+                _mm_mul_ps(_mm_shuffle_ps(mmvalue,mmvalue,_MM_SHUFFLE(3,1,0,2)),_mm_shuffle_ps(b.mmvalue,b.mmvalue,_MM_SHUFFLE(3,0,2,1)))
+             );
    }
 
    // dot product with another vector
-   inline float dot(const vector4& b) const { return _mm_cvtss_f32(_mm_dp_ps(mmvalue,b.mmvalue,0x55)); }
+   inline float dot(const vector4& b) const {
+      return _mm_cvtss_f32(_mm_dp_ps(mmvalue,b.mmvalue,0x55));
+   }
    // length of the vector
-   inline float length() const { return _mm_cvtss_f32(_mm_sqrt_ss(_mm_dp_ps(mmvalue,mmvalue,0x55))); }
+   inline float length() const {
+      return _mm_cvtss_f32(_mm_sqrt_ss(_mm_dp_ps(mmvalue,mmvalue,0x55)));
+   }
    // 1/length() of the vector
-   inline float rlength() const { return _mm_cvtss_f32(_mm_rsqrt_ss(_mm_dp_ps(mmvalue,mmvalue,0x55))); }
+   inline float rlength() const {
+      return _mm_cvtss_f32(_mm_rsqrt_ss(_mm_dp_ps(mmvalue,mmvalue,0x55)));
+   }
    // returns the vector scaled to unit length
-   inline vector4 normalize() const { return _mm_mul_ps(mmvalue,_mm_rsqrt_ps(_mm_dp_ps(mmvalue,mmvalue,0x55))); }
+   inline vector4 normalize() const {
+      return _mm_mul_ps(mmvalue,_mm_rsqrt_ps(_mm_dp_ps(mmvalue,mmvalue,0x55)));
+   }
 
    // overloaded operators that ensure alignment
-   inline void* operator new[](size_t x) { return _aligned_malloc(x,16); }
-   inline void operator delete[](void* x) { if(x) _aligned_free(x); }
+   inline void* operator new[](size_t x) {
+      return _aligned_malloc(x,16);
+   }
+   inline void operator delete[](void* x) {
+      if(x) _aligned_free(x);
+   }
 
-      // Member variables
+   // Member variables
    union
    {
-      struct { float w,x,y,z; };
+      struct {
+         float w,x,y,z;
+      };
       __m128 mmvalue;
    };
 
@@ -103,10 +161,18 @@ public:
 
 };
 
-inline vector4 operator+(float a,const vector4& b) { return b + a; }
-inline vector4 operator-(float a,const vector4& b) { return vector4(_mm_set1_ps(a)) - b; }
-inline vector4 operator*(float a,const vector4& b) { return b * a; }
-inline vector4 operator/(float a,const vector4& b) { return vector4(_mm_set1_ps(a)) / b; }
+inline vector4 operator+(float a,const vector4& b) {
+   return b + a;
+}
+inline vector4 operator-(float a,const vector4& b) {
+   return vector4(_mm_set1_ps(a)) - b;
+}
+inline vector4 operator*(float a,const vector4& b) {
+   return b * a;
+}
+inline vector4 operator/(float a,const vector4& b) {
+   return vector4(_mm_set1_ps(a)) / b;
+}
 //inline vector4 operator+(const vector4& a,const vector4& b) { return _mm_add_ps(a.mmvalue,b.mmvalue); }
 //inline vector4 operator-(const vector4& a,const vector4& b) { return _mm_sub_ps(a.mmvalue,b.mmvalue); }
 //inline vector4 operator*(const vector4& a,const vector4& b) { return _mm_mul_ps(a.mmvalue,b.mmvalue); }
@@ -151,8 +217,7 @@ inline vector4 Reflect(const vector4 & Incident,const vector4 & Normal)
 }
 #define new AURA_NEW
 
-#endif
-#endif
+#endif // VECTOR3_SSE
 
 
 
@@ -171,8 +236,7 @@ namespace visual
 
 #endif
 
-#ifdef _WIN32
-#if OSBIT == 32
+#ifdef VECTOR3_SSE
 
       // temporary output space for first pass.
       vector4 * timage;
@@ -189,8 +253,7 @@ namespace visual
 
       void stackblur(vector4* colorbuffer,const int w,const int h,const int radius, int wj);
 
-#endif
-#endif
+#endif // VECTOR3_SSE
 
 
       size              m_size;
@@ -218,10 +281,10 @@ namespace visual
 
       bool do_fastblur(uint32_t * pdata,int32_t w,int32_t h,int32_t radius,byte * r,byte * g,byte * b,byte * a,byte * dv,int32_t stride,int32_t * vmin,int32_t * vmax,int cx,int cy,int bottomup);
       bool do_fastblur(uint32_t * pdata,int32_t w,int32_t h,int32_t radius,uint32_t * prgba,byte * dv,int32_t stride,int cx,int cy,int bottomup);
-#if defined(_WIN32) && OSBIT == 32
+#if VECTOR3_SSE
       bool do_boxblur(vector4 * pdata,int32_t w,int32_t h,int32_t radius,uint32_t * prgba,byte * dv,int32_t stride,int cx,int cy,int bottomup);
       bool do_stackblur(vector4 * pdata,int32_t w,int32_t h,int32_t radius,uint32_t * prgba,byte * dv,int32_t stride,int cx,int cy,int bottomup);
-#endif
+#endif // VECTOR3_SSE
 
    };
 

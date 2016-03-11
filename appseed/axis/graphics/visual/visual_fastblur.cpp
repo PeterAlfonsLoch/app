@@ -16,8 +16,7 @@ void swap(uint32_t * & p1,uint32_t * & p2)
 }
 
 
-#ifdef WIN32
-#if OSBIT == 32
+#ifdef VECTOR3_SSE
 
 void swap(vector4 * & p1,vector4 * & p2)
 {
@@ -28,8 +27,7 @@ void swap(vector4 * & p1,vector4 * & p2)
 
 }
 
-#endif
-#endif
+#endif // VECTOR3_SSE
 
 inline void kernelPosition(int boxBlur,unsigned& std,int& dLeft,int& dRight)
 {
@@ -79,7 +77,7 @@ inline void kernelPosition(int boxBlur,unsigned& std,int& dLeft,int& dRight)
 
          std++;
 
-}
+      }
 
       break;
 
@@ -99,7 +97,7 @@ inline void kernelPosition(int boxBlur,unsigned& std,int& dLeft,int& dRight)
 inline float32x4_t loadRGBA8AsFloat(uint32_t* source)
 {
 
-   uint32x2_t temporary1 ={0, 0};
+   uint32x2_t temporary1 = {0, 0};
 
    temporary1 = vset_lane_u32(*source,temporary1,0);
 
@@ -137,9 +135,8 @@ namespace visual
       m_size.cx = 0;
       m_size.cy = 0;
 
-#if OSBIT == 32
+#if VECTOR3_SSE
 
-#ifdef WIN32
       vxmin = NULL;
       vymin = NULL;
 
@@ -147,9 +144,7 @@ namespace visual
       tsurface = NULL;
       timage = NULL;
 
-#endif
-
-#endif
+#endif // VECTOR3_SSE
 
    }
 
@@ -157,8 +152,7 @@ namespace visual
    fastblur::~fastblur()
    {
 
-#ifdef _WIN32
-#if OSBIT == 32
+#ifdef VECTOR3_SSE
 
       if (m_stack != NULL)
       {
@@ -186,8 +180,9 @@ namespace visual
          delete[] vymin;
          vymin = NULL;
       }
-#endif
-#endif
+
+#endif // VECTOR3_SSE
+
    }
 
 
@@ -232,10 +227,7 @@ namespace visual
 
       }
 
-#if OSBIT == 32
-
-#ifdef _WIN32
-#if OSBIT == 32
+#if VECTOR3_SSE
 
       if(m_stack != NULL)
       {
@@ -261,14 +253,15 @@ namespace visual
       //}
 
       const int wh = (wj)*(cy);
-#undef new 
+#undef new
       timage = new vector4[wh];
       // temporary output space for first pass.
       tsurface = new vector4[wh];
 
       m_stack = new vector4[div2];
+
 #define new AURA_NEW
-#endif
+
 
       if(vxmin != NULL)
       {
@@ -306,15 +299,13 @@ namespace visual
          vymin[y] = MIN(y + r1,hm)*s;
       }
 
-#endif
-
-#endif
+#endif // VECTOR3_SSE
 
 
 //      m_p->m_iHeight = cy;
 
       //      int32_t h         = cy;
-        //    int32_t scan      = m_p->scan;
+      //    int32_t scan      = m_p->scan;
       int32_t div       = radius + radius + 1;
       m_iRadius         = radius;
       m_uchaDiv.allocate(256 * div);
@@ -348,11 +339,11 @@ namespace visual
 
       //      int s = m_p->m_iScan / sizeof(COLORREF);
 
-        //    int maxsh = MAX(s, m_size.cy);
+      //    int maxsh = MAX(s, m_size.cy);
 
-          //  m_iaVmin.allocate(maxsh);
+      //  m_iaVmin.allocate(maxsh);
 
-            //m_iaVmax.allocate(maxsh);
+      //m_iaVmax.allocate(maxsh);
 
       return true;
 
@@ -400,7 +391,7 @@ namespace visual
 #endif
 
 
-#if defined(_WIN32) && OSBIT == 32
+#if VECTOR3_SSE
 
 #ifdef DO_BOX_BLUR
 
@@ -445,14 +436,14 @@ namespace visual
          {
 
             b = do_boxblur(
-               timage,
-               w,
-               h,
-               m_iRadius,
-               (uint32_t *)m_ucha.get_data(),
-               m_uchaDiv.get_data(),
-               w * 4,
-               w,h,bottomup);
+                   timage,
+                   w,
+                   h,
+                   m_iRadius,
+                   (uint32_t *)m_ucha.get_data(),
+                   m_uchaDiv.get_data(),
+                   w * 4,
+                   w,h,bottomup);
 
          }
          catch(...)
@@ -462,7 +453,7 @@ namespace visual
 
          DWORD dw2 = get_tick_count();
          DWORD dw3 = dw2 - dw1;
-         
+
          string str1;
          str1.Format("| Parameters: w=%d h=%d r=%d  \n",w,h,m_iRadius);
          string str2;
@@ -503,130 +494,130 @@ namespace visual
          string str;
 
          str.Format("%d",dwC2);
-   }
+      }
 #else
-   uint32_t * pdata = (uint32_t *)m_p->get_data();
+      uint32_t * pdata = (uint32_t *)m_p->get_data();
 
-   byte * p;
-   vector4 * t = timage;
+      byte * p;
+      vector4 * t = timage;
 
-   int w = m_size.cx;
-   int h = m_size.cy;
-   int wj = w; // w job
-   int hj = h; // h job
+      int w = m_size.cx;
+      int h = m_size.cy;
+      int wj = w; // w job
+      int hj = h; // h job
 
-   //if(wj % 16 > 0)
-   //{
-   //   wj = ((wj / 16) * 16) + 16;
-   //}
+      //if(wj % 16 > 0)
+      //{
+      //   wj = ((wj / 16) * 16) + 16;
+      //}
 
-   int s = m_p->m_iScan / 4;
+      int s = m_p->m_iScan / 4;
 
-   {
-
-      DWORD dwA0 = get_tick_count();
-
-      for(index y = 0; y < hj; y++)
       {
-         for(index x = 0; x < wj; x++)
+
+         DWORD dwA0 = get_tick_count();
+
+         for(index y = 0; y < hj; y++)
          {
-            p = (byte *)&pdata[y * s + x];
-            t[y * wj + x] = vector4(p[0],p[1],p[2],p[3]);
+            for(index x = 0; x < wj; x++)
+            {
+               p = (byte *)&pdata[y * s + x];
+               t[y * wj + x] = vector4(p[0],p[1],p[2],p[3]);
+            }
          }
-      }
 
-      DWORD dwA1 = get_tick_count();
-      DWORD dwA2 = dwA1 - dwA0;
-      string str;
+         DWORD dwA1 = get_tick_count();
+         DWORD dwA2 = dwA1 - dwA0;
+         string str;
 
-      str.Format("%d",dwA2);
-
-   }
-
-
-   DWORD dw1;
-   DWORD dw2;
-   DWORD dw3;
-   {
-
-      dw1 = get_tick_count();
-
-      try
-      {
-
-         b = do_stackblur(
-            timage,
-            w,
-            h,
-            m_iRadius,
-            (uint32_t *)m_ucha.get_data(),
-            m_uchaDiv.get_data(),
-            wj,
-            w,h,bottomup);
-
-      }
-      catch(...)
-      {
+         str.Format("%d",dwA2);
 
       }
 
-      dw2 = get_tick_count();
-      dw3 = dw2 - dw1;
 
-      if(0)
+      DWORD dw1;
+      DWORD dw2;
+      DWORD dw3;
       {
 
-         string str1;
-         str1.Format("| Parameters: w=%d h=%d r=%d  \n",wj,hj,m_iRadius);
-         string str2;
-         str2.Format("| time for calculating stack blur : %d\b",dw3);
+         dw1 = get_tick_count();
 
-         output_debug_string("/-----------------------------------------\n");
-         output_debug_string("| \n");
-         output_debug_string(str1);
-         output_debug_string(str2);
-         output_debug_string("| \n");
-
-         ::aura::application * papp = m_p->m_pauraapp;
-         APPTRACE("/--------------------------------");
-         APPTRACE("| fastblur::blur");
-         APPTRACE("| ");
-         APPTRACE("| do_fastblur = %d ms",dw3);
-
-      }
-
-   }
-
-   {
-
-      DWORD dwC0 = get_tick_count();
-
-      for(index y = 0; y < h; y++)
-      {
-         for(index x = 0; x < w; x++)
+         try
          {
-            p = (byte *)&pdata[y * s + x];
-            t = &timage[y * wj + x];
-            p[0] = (byte)t->w;
-            p[1] = (byte)t->x;
-            p[2] = (byte)t->y;
-            p[3] = (byte)t->z;
+
+            b = do_stackblur(
+                   timage,
+                   w,
+                   h,
+                   m_iRadius,
+                   (uint32_t *)m_ucha.get_data(),
+                   m_uchaDiv.get_data(),
+                   wj,
+                   w,h,bottomup);
+
          }
+         catch(...)
+         {
+
+         }
+
+         dw2 = get_tick_count();
+         dw3 = dw2 - dw1;
+
+         if(0)
+         {
+
+            string str1;
+            str1.Format("| Parameters: w=%d h=%d r=%d  \n",wj,hj,m_iRadius);
+            string str2;
+            str2.Format("| time for calculating stack blur : %d\b",dw3);
+
+            output_debug_string("/-----------------------------------------\n");
+            output_debug_string("| \n");
+            output_debug_string(str1);
+            output_debug_string(str2);
+            output_debug_string("| \n");
+
+            ::aura::application * papp = m_p->m_pauraapp;
+            APPTRACE("/--------------------------------");
+            APPTRACE("| fastblur::blur");
+            APPTRACE("| ");
+            APPTRACE("| do_fastblur = %d ms",dw3);
+
+         }
+
       }
 
-      DWORD dwC1 = get_tick_count();
-      DWORD dwC2 = dwC1 - dwC0;
-      string str;
+      {
 
-      str.Format("%d",dwC2);
-   }
+         DWORD dwC0 = get_tick_count();
+
+         for(index y = 0; y < h; y++)
+         {
+            for(index x = 0; x < w; x++)
+            {
+               p = (byte *)&pdata[y * s + x];
+               t = &timage[y * wj + x];
+               p[0] = (byte)t->w;
+               p[1] = (byte)t->x;
+               p[2] = (byte)t->y;
+               p[3] = (byte)t->z;
+            }
+         }
+
+         DWORD dwC1 = get_tick_count();
+         DWORD dwC2 = dwC1 - dwC0;
+         string str;
+
+         str.Format("%d",dwC2);
+      }
 
 #endif
 
 #else
 
 
-DWORD dw1 = get_tick_count();
+      DWORD dw1 = get_tick_count();
 
 #ifdef __arm__
 
@@ -636,21 +627,21 @@ DWORD dw1 = get_tick_count();
 
       ::count cCount = 2;
 
-     for(index i = 0; i < cCount; i++)
+      for(index i = 0; i < cCount; i++)
 #endif
       {
          try
          {
 
             b = do_fastblur(
-               (uint32_t *)m_p->get_data(),
-               m_size.cx,
-               m_size.cy,
-               m_iRadius,
-               (uint32_t *)m_ucha.get_data(),
-               m_uchaDiv.get_data(),
-               m_p->m_iScan,
-               cx,cy,bottomup);
+                   (uint32_t *)m_p->get_data(),
+                   m_size.cx,
+                   m_size.cy,
+                   m_iRadius,
+                   (uint32_t *)m_ucha.get_data(),
+                   m_uchaDiv.get_data(),
+                   m_p->m_iScan,
+                   cx,cy,bottomup);
 
          }
          catch(...)
@@ -660,24 +651,24 @@ DWORD dw1 = get_tick_count();
 
       }
 
-          DWORD dw2 = get_tick_count();
-     DWORD dw3 = dw2 - dw1;
-     string str1;
-     str1.Format("| Parameters: w=%d h=%d r=%d  \n",m_size.cx,m_size.cy,m_iRadius);
-     string str2;
-     str2.Format("| time for calculating fast blur : %d\b",dw3);
+      DWORD dw2 = get_tick_count();
+      DWORD dw3 = dw2 - dw1;
+      string str1;
+      str1.Format("| Parameters: w=%d h=%d r=%d  \n",m_size.cx,m_size.cy,m_iRadius);
+      string str2;
+      str2.Format("| time for calculating fast blur : %d\b",dw3);
 
-     output_debug_string("/-----------------------------------------\n");
-     output_debug_string("| \n");
-     output_debug_string(str1);
-     output_debug_string(str2);
-     output_debug_string("| \n");
+      output_debug_string("/-----------------------------------------\n");
+      output_debug_string("| \n");
+      output_debug_string(str1);
+      output_debug_string(str2);
+      output_debug_string("| \n");
 
-     ::aura::application * papp = m_p->m_pauraapp;
-     APPTRACE("/--------------------------------");
-     APPTRACE("| fastblur::blur");
-     APPTRACE("| ");
-     APPTRACE("| do_fastblur = %d ms",dw3);
+      ::aura::application * papp = m_p->m_pauraapp;
+      APPTRACE("/--------------------------------");
+      APPTRACE("| fastblur::blur");
+      APPTRACE("| ");
+      APPTRACE("| do_fastblur = %d ms",dw3);
 
 #endif
 
@@ -690,7 +681,7 @@ DWORD dw1 = get_tick_count();
 
 
    inline void boxBlurNEON(uint32_t* sourcePixel,uint32_t* destinationPixel,
-      unsigned dx,int dxLeft,int dxRight,int stride,int strideLine,int effectWidth,int effectHeight)
+                           unsigned dx,int dxLeft,int dxRight,int stride,int strideLine,int effectWidth,int effectHeight)
    {
 
       float32x4_t deltaX = vdupq_n_f32(1.0 / dx);
@@ -917,11 +908,10 @@ DWORD dw1 = get_tick_count();
 
 #else
 
-#ifdef WIN32
-#if OSBIT == 32
+#ifdef VECTOR3_SSE
 
    inline void boxBlurSSE(vector4* sourcePixel,vector4* destinationPixel,
-      unsigned dx,int dxLeft,int dxRight,int stride,int strideLine,int effectWidth,int effectHeight)
+                          unsigned dx,int dxLeft,int dxRight,int stride,int strideLine,int effectWidth,int effectHeight)
    {
 
       vector4 deltaX = vector4(1.0 / dx,1.0 / dx,1.0 / dx,1.0 / dx);
@@ -1100,9 +1090,9 @@ DWORD dw1 = get_tick_count();
 
       if(radius < 1) return;	// nothing to do
 
-                              // some values for convenience
-                              //const int w = image.width;
-                              //const int h = image.height;
+      // some values for convenience
+      //const int w = image.width;
+      //const int h = image.height;
       const int wm = w - 1;
       const int hm = h - 1;
       const int r1 = radius + 1;
@@ -1146,7 +1136,7 @@ DWORD dw1 = get_tick_count();
       int yi = 0; // current write offset in destination
 
 
-                  // blur horizontally, output to temporary buffer
+      // blur horizontally, output to temporary buffer
       for(int y=0; y<h; y++) {
 
          vector4 insum(0.f);
@@ -1171,8 +1161,12 @@ DWORD dw1 = get_tick_count();
 
             // add pixel to accumulators
             sum += sir * rbs;
-            if(i > 0) { insum  += sir; }
-            else { outsum += sir; }
+            if(i > 0) {
+               insum  += sir;
+            }
+            else {
+               outsum += sir;
+            }
          }
 
 
@@ -1229,9 +1223,9 @@ DWORD dw1 = get_tick_count();
 
 
 
-       // now blur vertically from the temporary
-       // buffer, using the original image buffer
-       // as the output
+      // now blur vertically from the temporary
+      // buffer, using the original image buffer
+      // as the output
       for(int x=0; x<w; x++) {
 
          vector4 insum(0);
@@ -1251,8 +1245,12 @@ DWORD dw1 = get_tick_count();
 
             const int rbs = r1 - abs(i);
             sum += sir * rbs;
-            if(i > 0) { insum  += sir; }
-            else { outsum += sir; }
+            if(i > 0) {
+               insum  += sir;
+            }
+            else {
+               outsum += sir;
+            }
 
             // only advance to the next row if there
             // are still more rows of image left.
@@ -1356,8 +1354,8 @@ DWORD dw1 = get_tick_count();
    }
 
 
-   #endif
-#endif
+#endif VECTOR3_SSE
+
 
 
    bool fastblur::do_fastblur(uint32_t * pdata,int32_t w,int32_t h,int32_t radius,uint32_t * prgba,byte * dv,int32_t stride,int cx,int cy,int bottomup)
@@ -1596,7 +1594,7 @@ DWORD dw1 = get_tick_count();
 
    }
 
-#endif
+#endif // VECTOR3_SSE
 
    bool fastblur::do_fastblur(uint32_t * pix,int32_t w,int32_t h,int32_t radius,byte * r,byte * g,byte * b,byte * a,byte * dv,int32_t stride,int32_t * vmin,int32_t * vmax,int cx,int cy,int bottomup)
    {

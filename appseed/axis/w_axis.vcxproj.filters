@@ -846,53 +846,147 @@
     <ClInclude Include="axis\compress\zip\zip_internal.h">
       <Filter>Source Files\axis\compress\zip</Filter>
     </ClInclude>
-    <ClInclude Include="net\net_email_department.h" />
-    <ClInclude Include="net\net_url_department.h" />
-    <ClInclude Include="net\sockets\bsd\asynch_dns\resolv_server.h" />
-    <ClInclude Include="net\sockets\bsd\asynch_dns\resolv_socket.h" />
-    <ClInclude Include="net\sockets\bsd\basic\sockets_listen_socket.h" />
-    <ClInclude Include="net\sockets\bsd\basic\sockets_net.h" />
-    <ClInclude Include="net\sockets\bsd\basic\sockets_sctp_socket.h" />
-    <ClInclude Include="net\sockets\bsd\basic\sockets_socket.h" />
-    <ClInclude Include="net\sockets\bsd\basic\sockets_socket_handler.h" />
-    <ClInclude Include="net\sockets\bsd\basic\sockets_ssl_client_context.h" />
-    <ClInclude Include="net\sockets\bsd\basic\sockets_ssl_client_context_map.h" />
-    <ClInclude Include="net\sockets\bsd\basic\sockets_ssl_server_context.h" />
-    <ClInclude Include="net\sockets\bsd\basic\sockets_ssl_server_context_map.h" />
-    <ClInclude Include="net\sockets\bsd\basic\sockets_stream_socket.h" />
-    <ClInclude Include="net\sockets\bsd\basic\sockets_sync_socket_handler.h" />
-    <ClInclude Include="net\sockets\bsd\basic\sockets_tcp_socket.h" />
-    <ClInclude Include="net\sockets\bsd\basic\sockets_tls_socket.h" />
-    <ClInclude Include="net\sockets\bsd\basic\sockets_udp_socket.h" />
-    <ClInclude Include="net\sockets\bsd\internal\SSLInitializer.h" />
-    <ClInclude Include="net\sockets\bsd\sip\sip_base.h" />
-    <ClInclude Include="net\sockets\bsd\sip\sip_base_client_socket.h" />
-    <ClInclude Include="net\sockets\bsd\sip\sip_callback.h" />
-    <ClInclude Include="net\sockets\bsd\sip\sip_client.h" />
-    <ClInclude Include="net\sockets\bsd\sip\sip_event.h" />
-    <ClInclude Include="net\sockets\bsd\sip\sip_request.h" />
-    <ClInclude Include="net\sockets\bsd\sip\sip_response.h" />
-    <ClInclude Include="net\sockets\bsd\sip\sip_server.h" />
-    <ClInclude Include="net\sockets\bsd\sip\sip_socket.h" />
-    <ClInclude Include="net\sockets\bsd\sip\sip_tcp_client_socket.h" />
-    <ClInclude Include="net\sockets\bsd\sip\sip_transaction.h" />
-    <ClInclude Include="net\sockets\bsd\sip\sip_udp_client_socket.h" />
-    <ClInclude Include="net\sockets\bsd\smtp\smtpd_socket.h" />
-    <ClInclude Include="net\sockets\bsd\smtp\smtp_socket.h" />
-    <ClInclude Include="net\sockets\bsd\sockets.h" />
-    <ClInclude Include="net\sockets\bsd\sockets_bsd.h" />
-    <ClInclude Include="net\sockets\bsd\sockets_config.h" />
-    <ClInclude Include="net\sockets\bsd\sockets_sockets.h" />
-    <ClInclude Include="net\sockets\bsd\timer\Event.h" />
-    <ClInclude Include="net\sockets\bsd\timer\EventHandler.h" />
-    <ClInclude Include="net\sockets\bsd\timer\EventTime.h" />
-    <ClInclude Include="net\sockets\bsd\timer\IEventHandler.h" />
-    <ClInclude Include="net\sockets\bsd\timer\IEventOwner.h" />
-    <ClInclude Include="net\sockets\bsd\webserver\ajp13.h" />
-    <ClInclude Include="net\sockets\bsd\webserver\Ajp13Socket.h" />
-    <ClInclude Include="net\sockets\bsd\webserver\AjpBaseSocket.h" />
-    <ClInclude Include="net\sockets\bsd\webserver\httpd_socket.h" />
-    <ClInclude Include="net\sockets\bsd\webserver\http_base_socket.h" />
+    <ClInclude Include="net\sockets\bsd\webserver\ajp13.h">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\webserver\Ajp13Socket.h">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\webserver\AjpBaseSocket.h">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\timer\Event.h">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\timer\EventHandler.h">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\timer\EventTime.h">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\webserver\http_base_socket.h">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\webserver\httpd_socket.h">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\timer\IEventHandler.h">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\timer\IEventOwner.h">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClInclude>
+    <ClInclude Include="net\net_email_department.h">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClInclude>
+    <ClInclude Include="net\net_url_department.h">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\asynch_dns\resolv_server.h">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\asynch_dns\resolv_socket.h">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\sip\sip_base.h">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\sip\sip_base_client_socket.h">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\sip\sip_callback.h">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\sip\sip_client.h">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\sip\sip_event.h">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\sip\sip_request.h">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\sip\sip_response.h">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\sip\sip_server.h">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\sip\sip_socket.h">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\sip\sip_tcp_client_socket.h">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\sip\sip_transaction.h">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\sip\sip_udp_client_socket.h">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\smtp\smtp_socket.h">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\smtp\smtpd_socket.h">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\sockets.h">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\sockets_bsd.h">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\sockets_config.h">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\basic\sockets_listen_socket.h">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\basic\sockets_net.h">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\basic\sockets_sctp_socket.h">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\basic\sockets_socket.h">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\basic\sockets_socket_handler.h">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\sockets_sockets.h">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\basic\sockets_ssl_client_context.h">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\basic\sockets_ssl_client_context_map.h">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\basic\sockets_ssl_server_context.h">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\basic\sockets_ssl_server_context_map.h">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\basic\sockets_stream_socket.h">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\basic\sockets_sync_socket_handler.h">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\basic\sockets_tcp_socket.h">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\basic\sockets_tls_socket.h">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\basic\sockets_udp_socket.h">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClInclude>
+    <ClInclude Include="net\sockets\bsd\internal\SSLInitializer.h">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="axis\axis\axis.inl">
@@ -1479,49 +1573,131 @@
     <ClCompile Include="net\sockets\bsd\_bsd.cpp">
       <Filter>Source Files\net\sockets</Filter>
     </ClCompile>
-    <ClCompile Include="net\net_email_department.cpp" />
-    <ClCompile Include="net\net_url_department.cpp" />
-    <ClCompile Include="net\sockets\bsd\asynch_dns\sockets_resolv_server.cpp" />
-    <ClCompile Include="net\sockets\bsd\asynch_dns\sockets_resolv_socket.cpp" />
-    <ClCompile Include="net\sockets\bsd\basic\sockets_listen_socket.cpp" />
-    <ClCompile Include="net\sockets\bsd\basic\sockets_net.cpp" />
-    <ClCompile Include="net\sockets\bsd\basic\sockets_sctp_socket.cpp" />
-    <ClCompile Include="net\sockets\bsd\basic\sockets_Socket.cpp" />
-    <ClCompile Include="net\sockets\bsd\basic\sockets_socket_handler.cpp" />
-    <ClCompile Include="net\sockets\bsd\basic\sockets_ssl_client_context.cpp" />
-    <ClCompile Include="net\sockets\bsd\basic\sockets_ssl_client_context_map.cpp" />
-    <ClCompile Include="net\sockets\bsd\basic\sockets_ssl_server_context.cpp" />
-    <ClCompile Include="net\sockets\bsd\basic\sockets_ssl_server_context_map.cpp" />
-    <ClCompile Include="net\sockets\bsd\basic\sockets_stream_socket.cpp" />
-    <ClCompile Include="net\sockets\bsd\basic\sockets_sync_socket_handler.cpp" />
-    <ClCompile Include="net\sockets\bsd\basic\sockets_tcp_socket.cpp" />
-    <ClCompile Include="net\sockets\bsd\basic\sockets_tls_socket.cpp" />
-    <ClCompile Include="net\sockets\bsd\basic\sockets_udp_socket.cpp" />
-    <ClCompile Include="net\sockets\bsd\internal\sockets_SSLInitializer.cpp" />
-    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_base.cpp" />
-    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_base_client_socket.cpp" />
-    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_callback.cpp" />
-    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_client.cpp" />
-    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_request.cpp" />
-    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_response.cpp" />
-    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_server.cpp" />
-    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_tcp_client_socket.cpp" />
-    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_transaction.cpp" />
-    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_udp_client_socket.cpp" />
-    <ClCompile Include="net\sockets\bsd\smtp\sockets_smtpd_socket.cpp" />
-    <ClCompile Include="net\sockets\bsd\smtp\sockets_smtp_socket.cpp" />
-    <ClCompile Include="net\sockets\bsd\sockets_include.cpp" />
-    <ClCompile Include="net\sockets\bsd\sockets_sockets.cpp" />
-    <ClCompile Include="net\sockets\bsd\timer\sockets_Event.cpp" />
-    <ClCompile Include="net\sockets\bsd\timer\sockets_EventHandler.cpp" />
-    <ClCompile Include="net\sockets\bsd\timer\sockets_EventTime.cpp" />
-    <ClCompile Include="net\sockets\bsd\timer\sockets_IEventOwner.cpp" />
-    <ClCompile Include="net\sockets\bsd\webserver\sockets_Ajp13Socket.cpp" />
-    <ClCompile Include="net\sockets\bsd\webserver\sockets_AjpBaseSocket.cpp" />
-    <ClCompile Include="net\sockets\bsd\webserver\sockets_httpd_socket.cpp" />
-    <ClCompile Include="net\sockets\bsd\webserver\sockets_http_base_socket.cpp" />
     <ClCompile Include="html_lite\_html_lite_html_lite.cpp">
       <Filter>Source Files\html_lite</Filter>
+    </ClCompile>
+    <ClCompile Include="net\net_email_department.cpp">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClCompile>
+    <ClCompile Include="net\net_url_department.cpp">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\webserver\sockets_Ajp13Socket.cpp">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\webserver\sockets_AjpBaseSocket.cpp">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\timer\sockets_Event.cpp">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\timer\sockets_EventHandler.cpp">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\timer\sockets_EventTime.cpp">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\webserver\sockets_http_base_socket.cpp">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\webserver\sockets_httpd_socket.cpp">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\timer\sockets_IEventOwner.cpp">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\sockets_include.cpp">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\basic\sockets_listen_socket.cpp">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\basic\sockets_net.cpp">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\asynch_dns\sockets_resolv_server.cpp">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\asynch_dns\sockets_resolv_socket.cpp">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\basic\sockets_sctp_socket.cpp">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_base.cpp">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_base_client_socket.cpp">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_callback.cpp">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_client.cpp">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_request.cpp">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_response.cpp">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_server.cpp">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_tcp_client_socket.cpp">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_transaction.cpp">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\sip\sockets_sip_udp_client_socket.cpp">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\smtp\sockets_smtp_socket.cpp">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\smtp\sockets_smtpd_socket.cpp">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\basic\sockets_Socket.cpp">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\basic\sockets_socket_handler.cpp">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\sockets_sockets.cpp">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\basic\sockets_ssl_client_context.cpp">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\basic\sockets_ssl_client_context_map.cpp">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\basic\sockets_ssl_server_context.cpp">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\basic\sockets_ssl_server_context_map.cpp">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\internal\sockets_SSLInitializer.cpp">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\basic\sockets_stream_socket.cpp">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\basic\sockets_sync_socket_handler.cpp">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\basic\sockets_tcp_socket.cpp">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\basic\sockets_tls_socket.cpp">
+      <Filter>Source Files\net\sockets\bsd</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\bsd\basic\sockets_udp_socket.cpp">
+      <Filter>Source Files\net\sockets\bsd</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -9,7 +9,7 @@ namespace user
 #ifdef METROWIN
 
 
-	Agile<Windows::UI::Core::CoreWindow>(*interaction::s_get_os_window)(interaction * pui) = &interaction::get_os_window_default;
+   Agile<Windows::UI::Core::CoreWindow>(*interaction::s_get_os_window)(interaction * pui) = &interaction::get_os_window_default;
 
 
 #endif
@@ -761,7 +761,7 @@ namespace user
    {
 
       single_lock sl(get_wnd() == NULL || get_wnd()->m_pimpl.is_null()
-         || get_wnd()->m_pimpl.cast < ::user::interaction_impl >()==NULL ? NULL : get_wnd()->m_pimpl.cast < ::user::interaction_impl >()->draw_mutex(), true);
+                     || get_wnd()->m_pimpl.cast < ::user::interaction_impl >()==NULL ? NULL : get_wnd()->m_pimpl.cast < ::user::interaction_impl >()->draw_mutex(), true);
 
       //single_lock sl(m_pmutex,true);
 
@@ -883,7 +883,7 @@ namespace user
          try
          {
 
-             System.remove_frame(this); // guess this may be a frame, it doesn't hurt to remove if this is not there
+            System.remove_frame(this); // guess this may be a frame, it doesn't hurt to remove if this is not there
 
          }
          catch(...)
@@ -894,7 +894,7 @@ namespace user
 
       //try
       //{
-      //   
+      //
       //    m_pauraapp->remove(this);
 
       //}
@@ -937,7 +937,7 @@ namespace user
 
 
 
-      
+
 
    }
 
@@ -996,7 +996,7 @@ namespace user
 
    void interaction::set_viewport_org(::draw2d::dib * pdib)
    {
-      
+
       if(m_pimpl == NULL)
          return;
 
@@ -1431,10 +1431,10 @@ namespace user
 
          if((GetParent() == NULL
 #ifdef METROWIN
-            || GetParent() == System.m_posdata->m_pui
+               || GetParent() == System.m_posdata->m_pui
 #endif
             )
-            && !is_message_only_window())
+               && !is_message_only_window())
          {
 
 //            synch_lock slUser(m_pmutex);
@@ -1573,7 +1573,7 @@ namespace user
       catch(...)
       {
       }
-      #endif
+#endif
    }
 
 
@@ -1586,8 +1586,8 @@ namespace user
          if(!m_bVisible) // assume parent visibility already checked
             return;
          if(!_001IsPointInside(pmouse->m_pt)
-            && !(System.get_capture_uie() == this ||
-            is_descendant(System.get_capture_uie())))
+               && !(System.get_capture_uie() == this ||
+                    is_descendant(System.get_capture_uie())))
             return;
       }
       catch(...)
@@ -1729,13 +1729,13 @@ namespace user
       if(bTestedIfParentVisible)
       {
          if(!m_bVisible
-            || !_001IsPointInside(pt)) // inline version - do not need pointer to the function
+               || !_001IsPointInside(pt)) // inline version - do not need pointer to the function
             return NULL;
       }
       else
       {
          if(!IsWindowVisible()
-            || !_001IsPointInside(pt)) // inline version - do not need pointer to the function
+               || !_001IsPointInside(pt)) // inline version - do not need pointer to the function
             return NULL;
       }
       sp(interaction) pui = top_child();
@@ -1761,25 +1761,25 @@ namespace user
       //if(Session.get_keyboard_focus() != this
       //   && Session.get_keyboard_focus() != NULL)
       //{
-        // Session.get_keyboard_focus()->keyboard_focus_OnKeyDown(pobj);
+      // Session.get_keyboard_focus()->keyboard_focus_OnKeyDown(pobj);
       //}
    }
 
    void interaction::_001OnKeyUp(signal_details * pobj)
    {
       //if(Session.get_keyboard_focus() != this
-         ///&& Session.get_keyboard_focus() != NULL)
+      ///&& Session.get_keyboard_focus() != NULL)
       //{
-        // Session.get_keyboard_focus()->keyboard_focus_OnKeyUp(pobj);
+      // Session.get_keyboard_focus()->keyboard_focus_OnKeyUp(pobj);
       //}
    }
 
    void interaction::_001OnChar(signal_details * pobj)
    {
       //if(Session.get_keyboard_focus() != this
-        // && Session.get_keyboard_focus() != NULL)
+      // && Session.get_keyboard_focus() != NULL)
       //{
-        // Session.get_keyboard_focus()->keyboard_focus_OnChar(pobj);
+      // Session.get_keyboard_focus()->keyboard_focus_OnChar(pobj);
       //}
    }
 
@@ -2970,7 +2970,7 @@ namespace user
 
       if (pui == NULL)
       {
-       
+
          return NULL;
 
       }
@@ -3123,7 +3123,7 @@ namespace user
       if(!IsWindow())
       {
 
-  
+
          user_interaction_on_destroy();
 
          return true;
@@ -3206,7 +3206,7 @@ namespace user
 
       }
 
-      
+
       {
 
          m_pimpl.release();
@@ -3229,8 +3229,8 @@ namespace user
 
 
    void interaction::RepositionBars(UINT nIDFirst,UINT nIDLast,id nIDLeftOver,
-      UINT nFlag,LPRECT lpRectParam,
-      LPCRECT lpRectClient,bool bStretch)
+                                    UINT nFlag,LPRECT lpRectParam,
+                                    LPCRECT lpRectClient,bool bStretch)
    {
       if(m_pimpl == NULL)
          return;
@@ -3734,11 +3734,11 @@ namespace user
 
             // show the interaction_impl when certain special messages rec'd
             //if(bShowIdle &&
-              // (msg.message == 0x118 || msg.message == WM_SYSKEYDOWN))
+            // (msg.message == 0x118 || msg.message == WM_SYSKEYDOWN))
             //{
-              // ShowWindow(SW_SHOWNORMAL);
-               //UpdateWindow();
-               //bShowIdle = FALSE;
+            // ShowWindow(SW_SHOWNORMAL);
+            //UpdateWindow();
+            //bShowIdle = FALSE;
             //}
 
             if(!ContinueModal(iLevel))
@@ -3760,7 +3760,7 @@ namespace user
 
 
 
-   ExitModal:
+ExitModal:
 
       //#ifdef WINDOWS
 
@@ -4423,9 +4423,9 @@ namespace user
       try
       {
          if(m_uiptraChild.get_count() <= 0)
-         return NULL;
-      else
-         return m_uiptraChild.first_sp();
+            return NULL;
+         else
+            return m_uiptraChild.first_sp();
 
       }
       catch(...)
@@ -4506,7 +4506,7 @@ namespace user
 
    ::user::interaction * interaction::next_sibling(::user::interaction * pui)
    {
-synch_lock sl(m_pmutex);
+      synch_lock sl(m_pmutex);
       try
       {
 
@@ -4514,7 +4514,7 @@ synch_lock sl(m_pmutex);
          if(i < 0)
             return NULL;
          i++;
-      restart:
+restart:
          if(i >= m_uiptraChild.get_count())
             return NULL;
          else
@@ -4625,7 +4625,7 @@ synch_lock sl(m_pmutex);
       index i = m_uiptraChild.find_first(pui);
       if(i < 0)
          return NULL;
-   restart:
+restart:
       i--;
       if(i < 0)
          return NULL;
@@ -4647,7 +4647,7 @@ synch_lock sl(m_pmutex);
    {
       SCAST_PTR(::message::base,pbase,pobj);
       if(pbase->m_wparam == 0 &&
-         pbase->m_lparam == 0)
+            pbase->m_lparam == 0)
       {
          class rect rect;
          ::exception::throw_not_implemented(get_app());
@@ -4863,9 +4863,9 @@ synch_lock sl(m_pmutex);
 
    }
    /*
-#ifdef METROWIN
+   #ifdef METROWIN
 
-#ifdef METROWIN
+   #ifdef METROWIN
 
    Agile<Windows::UI::Core::CoreWindow> interaction::get_os_window()
    {
@@ -4945,59 +4945,59 @@ synch_lock sl(m_pmutex);
    }
 
 
-/*
+   /*
 
-   bool interaction::_001SetSchema(::user::schema * pschema)
-   {
+      bool interaction::_001SetSchema(::user::schema * pschema)
+      {
 
-      m_pschema = pschema;
+         m_pschema = pschema;
 
-      return true ;
+         return true ;
 
-   }
-
-
-   bool interaction::_008SetSchema(::user::schema * pschema)
-   {
-
-      SendMessageToDescendants(message_set_schema,0,pschema,true,true);
-
-      return true;
-
-   }
+      }
 
 
-   bool interaction::_009SetSchema(::user::schema * pschema)
-   {
+      bool interaction::_008SetSchema(::user::schema * pschema)
+      {
 
-      _001SetSchema(pschema);
+         SendMessageToDescendants(message_set_schema,0,pschema,true,true);
 
-      _008SetSchema(pschema);
+         return true;
 
-      return true;
-
-   }
+      }
 
 
-*/
+      bool interaction::_009SetSchema(::user::schema * pschema)
+      {
+
+         _001SetSchema(pschema);
+
+         _008SetSchema(pschema);
+
+         return true;
+
+      }
 
 
-/*
+   */
 
-   void interaction::_001OnSetSchema(signal_details * pobj)
-   {
 
-      SCAST_PTR(::message::base,pbase,pobj);
+   /*
 
-      LRESULT lresult = 0;
+      void interaction::_001OnSetSchema(signal_details * pobj)
+      {
 
-      _001SetSchema((::user::schema *) pbase->m_lparam);
+         SCAST_PTR(::message::base,pbase,pobj);
 
-      pbase->set_lresult(lresult);
+         LRESULT lresult = 0;
 
-   }
+         _001SetSchema((::user::schema *) pbase->m_lparam);
 
-*/
+         pbase->set_lresult(lresult);
+
+      }
+
+   */
 
 
    bool interaction::OnCommand(::message::base * pbase)
@@ -5044,9 +5044,9 @@ synch_lock sl(m_pmutex);
       switch(ecommand)
       {
       case simple_command_layout:
-      {
-                                   layout();
-      }
+         {
+            layout();
+         }
          return true;
       default:
          break;
@@ -6252,7 +6252,7 @@ synch_lock sl(m_pmutex);
                if(ml.lock().succeeded())
                {
 
-                  if(GetParent()->m_uiptraChild.last_ptr() != this)
+                  if(GetParent()->m_uiptraChild.get_count() > 0 && GetParent()->m_uiptraChild.last_ptr() != this)
                   {
 
                      index iFind = GetParent()->m_uiptraChild.find_first(this);
@@ -6328,7 +6328,7 @@ synch_lock sl(m_pmutex);
          //else
          //{
 
-            RedrawWindow();
+         RedrawWindow();
 
          //}
 
@@ -6568,7 +6568,7 @@ synch_lock sl(m_pmutex);
    void interaction::_001OnBaseWndGetProperty(signal_details * pobj)
    {
       SCAST_PTR(::message::base,pbase,pobj);
-         pbase->set_lresult(_001BaseWndGetProperty((EProperty)pbase->m_wparam,pbase->m_lparam));
+      pbase->set_lresult(_001BaseWndGetProperty((EProperty)pbase->m_wparam,pbase->m_lparam));
    }
 
 
@@ -6578,10 +6578,10 @@ synch_lock sl(m_pmutex);
       {
       case PropertyBaseWndInterface:
       case PropertyDrawBaseWndInterface:
-      {
-                                          const interaction_base ** ppinterface = (const interaction_base **)lparam;
-                                          *ppinterface = this;
-      }
+         {
+            const interaction_base ** ppinterface = (const interaction_base **)lparam;
+            *ppinterface = this;
+         }
          return 1;
       default:
          break;
@@ -6777,13 +6777,13 @@ synch_lock sl(m_pmutex);
    CLASS_DECL_BASE bool is_docking_appearance(::user::EAppearance eappearance)
    {
       return eappearance == ::user::AppearanceLeft
-         || eappearance == ::user::AppearanceTop
-         || eappearance == ::user::AppearanceRight
-         || eappearance == ::user::AppearanceBottom
-         || eappearance == ::user::AppearanceTopLeft
-         || eappearance == ::user::AppearanceTopRight
-         || eappearance == ::user::AppearanceBottomRight
-         || eappearance == ::user::AppearanceBottomLeft;
+             || eappearance == ::user::AppearanceTop
+             || eappearance == ::user::AppearanceRight
+             || eappearance == ::user::AppearanceBottom
+             || eappearance == ::user::AppearanceTopLeft
+             || eappearance == ::user::AppearanceTopRight
+             || eappearance == ::user::AppearanceBottomRight
+             || eappearance == ::user::AppearanceBottomLeft;
    }
 
    void interaction::_001OnShowWindow(signal_details * pobj)
@@ -6855,72 +6855,72 @@ synch_lock sl(m_pmutex);
 //
 //   }
 
-/*
+   /*
 
-   sp(::message::base) interaction::peek_message(LPMESSAGE lpmsg,::user::interaction * pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax,UINT wRemoveMsg)
-   {
+      sp(::message::base) interaction::peek_message(LPMESSAGE lpmsg,::user::interaction * pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax,UINT wRemoveMsg)
+      {
 
-      if(!::PeekMessage(lpmsg,pwnd->get_safe_handle(),wMsgFilterMin,wMsgFilterMax,wRemoveMsg))
-         return NULL;
+         if(!::PeekMessage(lpmsg,pwnd->get_safe_handle(),wMsgFilterMin,wMsgFilterMax,wRemoveMsg))
+            return NULL;
 
-      return get_base(lpmsg,pwnd);
+         return get_base(lpmsg,pwnd);
 
-   }
-
-
-   sp(::message::base) interaction::get_message(LPMESSAGE lpmsg,::user::interaction * pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax)
-   {
-
-      if(!::GetMessage(lpmsg,pwnd->get_safe_handle(),wMsgFilterMin,wMsgFilterMax))
-         return NULL;
-
-      return get_base(lpmsg,pwnd);
-
-   }
+      }
 
 
-   sp(::message::base) interaction::peek_message(::user::interaction * pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax,UINT wRemoveMsg)
-   {
-      MESSAGE msg;
-      return peek_message(&msg,pwnd,wMsgFilterMin,wMsgFilterMax,wRemoveMsg);
-   }
+      sp(::message::base) interaction::get_message(LPMESSAGE lpmsg,::user::interaction * pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax)
+      {
+
+         if(!::GetMessage(lpmsg,pwnd->get_safe_handle(),wMsgFilterMin,wMsgFilterMax))
+            return NULL;
+
+         return get_base(lpmsg,pwnd);
+
+      }
 
 
-   sp(::message::base) interaction::get_message(::user::interaction * pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax)
-   {
-      MESSAGE msg;
-      return get_message(&msg,pwnd,wMsgFilterMin,wMsgFilterMax);
-   }
+      sp(::message::base) interaction::peek_message(::user::interaction * pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax,UINT wRemoveMsg)
+      {
+         MESSAGE msg;
+         return peek_message(&msg,pwnd,wMsgFilterMin,wMsgFilterMax,wRemoveMsg);
+      }
 
 
-   sp(::message::base) interaction::peek_message(LPMESSAGE lpmsg,::user::interaction * pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax,UINT wRemoveMsg)
-   {
-      if(!::PeekMessage(lpmsg,pwnd->get_safe_handle(),wMsgFilterMin,wMsgFilterMax,wRemoveMsg))
-         return NULL;
-      return get_base(lpmsg,pwnd);
-   }
-
-   sp(::message::base) interaction::get_message(LPMESSAGE lpmsg,::user::interaction * pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax)
-   {
-      if(!::GetMessage(lpmsg,pwnd->get_safe_handle(),wMsgFilterMin,wMsgFilterMax))
-         return NULL;
-      return get_base(lpmsg,pwnd);
-   }
-
-   sp(::message::base) interaction::peek_message(::user::interaction * pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax,UINT wRemoveMsg)
-   {
-      MESSAGE msg;
-      return peek_message(&msg,pwnd,wMsgFilterMin,wMsgFilterMax,wRemoveMsg);
-   }
+      sp(::message::base) interaction::get_message(::user::interaction * pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax)
+      {
+         MESSAGE msg;
+         return get_message(&msg,pwnd,wMsgFilterMin,wMsgFilterMax);
+      }
 
 
-   sp(::message::base) interaction::get_message(::user::interaction * pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax)
-   {
-      MESSAGE msg;
-      return get_message(&msg,pwnd,wMsgFilterMin,wMsgFilterMax);
-   }
+      sp(::message::base) interaction::peek_message(LPMESSAGE lpmsg,::user::interaction * pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax,UINT wRemoveMsg)
+      {
+         if(!::PeekMessage(lpmsg,pwnd->get_safe_handle(),wMsgFilterMin,wMsgFilterMax,wRemoveMsg))
+            return NULL;
+         return get_base(lpmsg,pwnd);
+      }
 
-   */
+      sp(::message::base) interaction::get_message(LPMESSAGE lpmsg,::user::interaction * pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax)
+      {
+         if(!::GetMessage(lpmsg,pwnd->get_safe_handle(),wMsgFilterMin,wMsgFilterMax))
+            return NULL;
+         return get_base(lpmsg,pwnd);
+      }
+
+      sp(::message::base) interaction::peek_message(::user::interaction * pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax,UINT wRemoveMsg)
+      {
+         MESSAGE msg;
+         return peek_message(&msg,pwnd,wMsgFilterMin,wMsgFilterMax,wRemoveMsg);
+      }
+
+
+      sp(::message::base) interaction::get_message(::user::interaction * pwnd,UINT wMsgFilterMin,UINT wMsgFilterMax)
+      {
+         MESSAGE msg;
+         return get_message(&msg,pwnd,wMsgFilterMin,wMsgFilterMax);
+      }
+
+      */
 
    sp(::message::base) interaction::get_base(UINT uiMessage,WPARAM wparam,LPARAM lparam)
    {
@@ -6935,102 +6935,102 @@ synch_lock sl(m_pmutex);
       switch(eprototype)
       {
       case ::message::PrototypeNone:
-      {
-                           pbase = canew(::message::base(get_app()));
-      }
+         {
+            pbase = canew(::message::base(get_app()));
+         }
          break;
       case ::message::PrototypeCreate:
-      {
-                             pbase = canew(::message::create(get_app()));
-      }
+         {
+            pbase = canew(::message::create(get_app()));
+         }
          break;
       case ::message::PrototypeNcActivate:
-      {
-                                 pbase = canew(::message::nc_activate(get_app()));
-      }
+         {
+            pbase = canew(::message::nc_activate(get_app()));
+         }
          break;
       case ::message::PrototypeKey:
-      {
-                          pbase = canew(::message::key(get_app()));
-      }
+         {
+            pbase = canew(::message::key(get_app()));
+         }
          break;
       case ::message::PrototypeTimer:
-      {
-         throw simple_exception(get_app(),"do not use WM_TIMER or Windows SetTimer/KillTimer");
-                 //           pbase = canew(::message::timer(get_app()));
-      }
+         {
+            throw simple_exception(get_app(),"do not use WM_TIMER or Windows SetTimer/KillTimer");
+            //           pbase = canew(::message::timer(get_app()));
+         }
          break;
       case ::message::PrototypeShowWindow:
-      {
-                                 pbase = canew(::message::show_window(get_app()));
-      }
+         {
+            pbase = canew(::message::show_window(get_app()));
+         }
          break;
       case ::message::PrototypeSetCursor:
-      {
-                                pbase = canew(::message::set_cursor(get_app()));
-      }
+         {
+            pbase = canew(::message::set_cursor(get_app()));
+         }
          break;
       case ::message::PrototypeNcHitTest:
-      {
-                                pbase = canew(::message::nchittest(get_app()));
-      }
+         {
+            pbase = canew(::message::nchittest(get_app()));
+         }
          break;
       case ::message::PrototypeMove:
-      {
-                           pbase = canew(::message::move(get_app()));
-      }
+         {
+            pbase = canew(::message::move(get_app()));
+         }
          break;
       case ::message::PrototypeEraseBkgnd:
-      {
-                                 pbase = canew(::message::erase_bkgnd(get_app()));
-      }
+         {
+            pbase = canew(::message::erase_bkgnd(get_app()));
+         }
          break;
       case ::message::PrototypeScroll:
-      {
-                             pbase = canew(::message::scroll(get_app()));
-      }
+         {
+            pbase = canew(::message::scroll(get_app()));
+         }
          break;
       case ::message::PrototypeSetFocus:
-      {
-                               pbase = canew(::message::set_focus(get_app()));
-      }
+         {
+            pbase = canew(::message::set_focus(get_app()));
+         }
          break;
 #if !defined(METROWIN) && !defined(LINUX) && !defined(APPLEOS)
       case ::message::PrototypeWindowPos:
-      {
-                                pbase = canew(::message::window_pos(get_app()));
-      }
+         {
+            pbase = canew(::message::window_pos(get_app()));
+         }
          break;
       case ::message::PrototypeNcCalcSize:
-      {
-                                 pbase = canew(::message::nc_calc_size(get_app()));
-      }
+         {
+            pbase = canew(::message::nc_calc_size(get_app()));
+         }
          break;
 #endif
       case ::message::PrototypeMouse:
-      {
-                            pbase = canew(::message::mouse(get_app()));
-      }
+         {
+            pbase = canew(::message::mouse(get_app()));
+         }
          break;
       case ::message::PrototypeMouseWheel:
-      {
-                                 pbase = canew(::message::mouse_wheel(get_app()));
-      }
+         {
+            pbase = canew(::message::mouse_wheel(get_app()));
+         }
          break;
       case ::message::PrototypeSize:
-      {
-                           pbase = canew(::message::size(get_app()));
-      }
+         {
+            pbase = canew(::message::size(get_app()));
+         }
          break;
       case ::message::PrototypeActivate:
-      {
-                               pbase = canew(::message::activate(get_app()));
-      }
+         {
+            pbase = canew(::message::activate(get_app()));
+         }
          break;
       default:
-      {
-                pbase = canew(::message::base(get_app()));
-      }
+         {
+            pbase = canew(::message::base(get_app()));
+         }
          break;
       }
       if(pbase == NULL)
@@ -7220,20 +7220,20 @@ synch_lock sl(m_pmutex);
 
       SCAST_PTR(::message::key,pkey,pobj);
 
-         if(pkey->m_ekey == ::user::key_tab)
-         {
+      if(pkey->m_ekey == ::user::key_tab)
+      {
 
-            control_event ev;
+         control_event ev;
 
-            ev.m_puie                  = dynamic_cast <::user::interaction * > (this);
-            ev.m_eevent                = ::user::event_tab_key;
-            ev.m_actioncontext         = ::action::source_user;
+         ev.m_puie                  = dynamic_cast <::user::interaction * > (this);
+         ev.m_eevent                = ::user::event_tab_key;
+         ev.m_actioncontext         = ::action::source_user;
 
-            GetParent()->BaseOnControlEvent(&ev);
+         GetParent()->BaseOnControlEvent(&ev);
 
-            BaseOnControlEvent(&ev);
+         BaseOnControlEvent(&ev);
 
-         }
+      }
 
    }
 
