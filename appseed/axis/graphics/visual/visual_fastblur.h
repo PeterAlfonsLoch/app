@@ -7,7 +7,9 @@
 #pragma once
 
 #if (defined(_WIN32) && !defined(_M_ARM)) && OSBIT == 32
-   #define VECTOR3_SSE
+   #define VECTOR3_SSE 1
+#else
+   #define VECTOR3_SSE 0
 #endif
 
 
