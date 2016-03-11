@@ -261,7 +261,7 @@ Opened:
          //    View->Show Analytic and Debug Logs.
          //    Applications and Services Logs / Microsoft / Windows / XAudio2.
          //    Right click on Microsoft Windows XAudio2 debug logging, Properties, then Enable Logging, and hit OK
-         XAUDIO2_DEBUG_CONFIGURATION debug ={0};
+         XAUDIO2_DEBUG_CONFIGURATION debug = {0};
          debug.TraceMask = XAUDIO2_LOG_ERRORS | XAUDIO2_LOG_WARNINGS;
          debug.BreakMask = XAUDIO2_LOG_ERRORS;
          m_pxaudio->SetDebugConfiguration(&debug,0);
@@ -428,7 +428,7 @@ Opened:
             {
 
                m_pxaudio->StopEngine();
-            
+
             }
 
          }
@@ -443,7 +443,7 @@ Opened:
 
          //m_hwaveout = NULL;
 
-		 ::multimedia::audio::wave_out::wave_out_close();
+         ::multimedia::audio::wave_out::wave_out_close();
 
          return ::multimedia::result_success;
 
@@ -455,7 +455,7 @@ Opened:
       */
 
       void *
-         memmem(const void *l,size_t l_len,const void *s,size_t s_len)
+      memmem(const void *l,size_t l_len,const void *s,size_t s_len)
       {
          register char *cur,*last;
          const char *cl = (const char *)l;
@@ -524,7 +524,7 @@ Opened:
          {
             output_debug_string("too much delay for submitting audio buffer\n");
          }
-            g_dwLastBuffer = dwTick;
+         g_dwLastBuffer = dwTick;
 
          mmr = xaudio::translate(m_psourcevoice->SubmitSourceBuffer(&b));
 
@@ -695,7 +695,7 @@ Opened:
 
             int64_t i = s.SamplesPlayed;
             i *= 1000;
-            i /= m_pwaveformat->nChannels * m_pwaveformat->nSamplesPerSec;
+            i /= m_pwaveformat->nSamplesPerSec;
             return i;
 
          }
@@ -728,7 +728,7 @@ Opened:
 
             m_psourcevoice->GetState(&s);
 
-               return s.SamplesPlayed;
+            return s.SamplesPlayed;
          }
          else
             return 0;
@@ -812,7 +812,7 @@ Opened:
 
       void wave_out::OnStreamEnd()
       {
-         
+
          //wave_out_on_playback_end();
 
       }
@@ -872,8 +872,8 @@ Opened:
          {
             ::output_debug_string("too much delay to create audio\n");
          }
-       
-      
+
+
 
       }
 
@@ -886,8 +886,8 @@ Opened:
       }
       wave_out::run_step_thread::run_step_thread(wave_out * pout):
          ::thread(pout->get_app())
-{
-}
+      {
+      }
 
 
       int32_t wave_out::run_step_thread::run()
