@@ -96,34 +96,6 @@ namespace file
       }
 
 
-      //bool application::exists(const ::file::path & strPath)
-      //{
-
-      //   if(::str::begins_ci_iws(strPath,"uifs://"))
-      //   {
-      //      ::fontopus::user & user = AppUser(m_pauraapp);
-      //      return user.m_pifs->file_exists(strPath);
-      //   }
-
-      //   return m_pauraapp->m_paurasystem->m_spfile->exists(strPath,m_pauraapp);
-
-      //}
-
-      //bool application::exists(const var & var)
-      //{
-
-      //   const string & strPath = var.get_string();
-
-      //   if(::str::begins_ci_iws(strPath,"uifs://"))
-      //   {
-      //      return AppUser(m_pauraapp).m_pifs->file_exists(strPath);
-      //   }
-
-      //   return m_pauraapp->m_paurasystem->m_spfile->exists(strPath,m_pauraapp);
-
-      //}
-
-
       var application::length(const ::file::path & pszPath)
       {
 
@@ -139,36 +111,6 @@ namespace file
       }
 
 
-      //var application::length(const string & strPath)
-      //{
-
-      //   if(::str::begins_ci_iws(strPath,"uifs://"))
-      //   {
-
-      //      return AppUser(m_pauraapp).m_pifs->file_length(strPath);
-
-      //   }
-
-      //   return m_pauraapp->m_paurasystem->m_spfile->length(strPath,m_pauraapp);
-
-      //}
-
-
-      //var application::length(const var & var)
-      //{
-
-      //   const string & strPath = var.get_string();
-
-      //   if(::str::begins_ci_iws(strPath,"uifs://"))
-      //   {
-
-      //      return AppUser(m_pauraapp).m_pifs->file_length(strPath);
-
-      //   }
-
-      //   return m_pauraapp->m_paurasystem->m_spfile->length(strPath,m_pauraapp);
-
-      //}
 
 
       ::file::path application::time(const ::file::path & pszBasePath, int32_t iDepth, const string & pszPrefix, const string & pszSuffix)
