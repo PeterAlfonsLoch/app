@@ -34,32 +34,32 @@ namespace userfs
       }
       else if(pitem->m_iSubItem == m_iSizeSubItem)
       {
-   /*      bool bPendingSize = false;
+         /*      bool bPendingSize = false;
 
-         bool bGet;
-         bGet = System.get_fs_size(str, m_itema.get_item(iItem).m_strPath, bPendingSize);
-         if(bGet)
-         {
-            m_straFileSize.set_at_grow(iItem, str);
-         }
-         else
-         {
-            if(iItem < m_straFileSize.get_size())
-            {
-               str = m_straFileSize[iItem];
-            }
-         }
-         if(bPendingSize)
-         {
-            schedule_file_size(m_itema.get_item(iItem).m_strPath);
-            m_bPendingSize = true;
-         }*/
+               bool bGet;
+               bGet = System.get_fs_size(str, m_itema.get_item(iItem).m_strPath, bPendingSize);
+               if(bGet)
+               {
+                  m_straFileSize.set_at_grow(iItem, str);
+               }
+               else
+               {
+                  if(iItem < m_straFileSize.get_size())
+                  {
+                     str = m_straFileSize[iItem];
+                  }
+               }
+               if(bPendingSize)
+               {
+                  schedule_file_size(m_itema.get_item(iItem).m_strPath);
+                  m_bPendingSize = true;
+               }*/
          pitem->m_bOk = false;
          return;
       }
       //else if(m_bStatic)
       //{
-         // return ::user::list::_001GetItemText(str, iItem, iSubItem, iListItem);
+      // return ::user::list::_001GetItemText(str, iItem, iSubItem, iListItem);
       //}
       else
          return_(pitem->m_bOk, false);
@@ -78,9 +78,15 @@ namespace userfs
    void list_data::_001GetItemImage(::user::mesh_item * pitem)
    {
 //      if(is_locked())
-         //return;
+      //return;
       if(pitem->m_iSubItem == m_iNameSubItemText)
       {
+         if (pitem->m_iItem < 0 || pitem->m_iItem >= m_itema.get_size())
+         {
+            pitem->m_bOk = false;
+            return;
+
+         }
          pitem->m_iImage = m_itema.get_item(pitem->m_iItem).m_iImage;
          pitem->m_bOk = true;
          return;

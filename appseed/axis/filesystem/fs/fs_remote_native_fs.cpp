@@ -112,7 +112,7 @@ namespace fs
       string strUrl;
 
       strUrl = "http://fs.veriwell.net/fs/ls?path=" + System.url().url_encode(System.url().get_script(listing.m_path))
-         + "&server=" + System.url().url_encode(System.url().get_server(listing.m_path));
+               + "&server=" + System.url().url_encode(System.url().get_server(listing.m_path));
 
       string strSource;
 
@@ -198,7 +198,7 @@ namespace fs
       }
 
       if(System.url().get_script(path).is_empty() ||
-         System.url().get_script(path) == "/")
+            System.url().get_script(path) == "/")
       {
          return true;
       }
@@ -348,7 +348,7 @@ namespace fs
 
       if(!m_bInitialized)
       {
-         //Application.http().get("http://file.veriwell.net/");
+         //Application.http().get("http://file.ca2.cc/");
          m_bInitialized = true;
       }
 

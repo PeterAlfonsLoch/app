@@ -1,7 +1,7 @@
 #pragma once
 
 
-// ifs - implementation of file system interface - file.veriwell.net
+// ifs - implementation of file system interface - file.ca2.cc
 
 class CLASS_DECL_AXIS ifs :
    virtual public ::fs::data
@@ -40,7 +40,7 @@ public:
 
    ifs(::aura::application * papp, const char * pszRoot);
 
-   
+
    virtual bool has_subdir(const ::file::path & pszPath);
    virtual bool fast_has_subdir(const ::file::path  & pszPath);
    virtual ::file::listing & ls(::file::listing & listing);

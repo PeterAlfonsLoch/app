@@ -52,7 +52,7 @@ namespace user
 
       // otherwise check template
       if (m_pimpactsystem != NULL &&
-         m_pimpactsystem->_001OnCmdMsg(pcmdmsg))
+            m_pimpactsystem->_001OnCmdMsg(pcmdmsg))
          return TRUE;
 
       return FALSE;
@@ -208,7 +208,7 @@ namespace user
 
 
    void document::send_update(sp(::user::impact) pSender, LPARAM lHint, ::object * pHint)
-      // walk through all views
+   // walk through all views
    {
       ASSERT(pSender == NULL || !m_viewptra.is_empty());
       // must have views if sent by one of them
@@ -229,7 +229,7 @@ namespace user
    }
 
    void document::call_initial_update()
-      // walk through all views and call OnInitialUpdate
+   // walk through all views and call OnInitialUpdate
    {
       ::count count = get_view_count();
       for (index index = 0; index < count; index++)
@@ -312,13 +312,15 @@ namespace user
    // document
    const string & document::get_title() const
    {
-      ASSERT(this != NULL); return m_strTitle;
+      ASSERT(this != NULL);
+      return m_strTitle;
    }
 
    const ::file::path & document::get_file_path() const
    {
 
-      ASSERT(this != NULL); return m_filepath;
+      ASSERT(this != NULL);
+      return m_filepath;
 
    }
 
@@ -334,11 +336,13 @@ namespace user
 
    bool document::is_modified()
    {
-      ASSERT(this != NULL); return m_bModified;
+      ASSERT(this != NULL);
+      return m_bModified;
    }
    void document::set_modified_flag(bool bModified)
    {
-      ASSERT(this != NULL); m_bModified = bModified;
+      ASSERT(this != NULL);
+      m_bModified = bModified;
    }
    void document::set_new(bool bNew)
    {
@@ -474,14 +478,6 @@ namespace user
 
          spfile = Application.file().get_file(varFile, ::file::mode_read | ::file::share_deny_write | ::file::type_binary);
 
-         /*if(::str::begins_ci(varFile, "uifs://"))
-         {
-         spfile = ifs(get_app(), "").get_file(varFile, ::file::mode_read | ::file::share_deny_write | ::file::type_binary, &fe);
-         }
-         else
-         {
-         spfile = System.fs()->get_file(varFile, ::file::mode_read | ::file::share_deny_write | ::file::type_binary, &fe);
-         }*/
       }
       catch (::exception::base & e)
       {
@@ -603,7 +599,7 @@ namespace user
 
 
    void document::on_close_document(single_lock * psl)
-      // must close all views now (no prompting) - usually destroys this
+   // must close all views now (no prompting) - usually destroys this
    {
       single_lock sl(m_pmutex, false);
       if (psl == NULL || psl->m_pobjectSync != m_pmutex)
@@ -706,7 +702,7 @@ namespace user
                ::file::exception * pfe = dynamic_cast < ::file::exception * > (e);
                // ::exception::throw_not_implemented(get_app());
                TRACE(::aura::trace::category_AppMsg, 0, "Reporting file I/O exception on Save/Load with lOsError = $%lX.\n",
-                  pfe->m_lOsError);
+                     pfe->m_lOsError);
 
 
                if (pfe->m_strFileName.is_empty())
@@ -765,8 +761,8 @@ namespace user
 
 
    bool document::can_close_frame(sp(::user::frame_window) pFrameArg)
-      // permission to close all views using this frame
-      //  (at least one of our views must be in this frame)
+   // permission to close all views using this frame
+   //  (at least one of our views must be in this frame)
    {
       single_lock sl(m_pmutex, true);
       ASSERT_VALID(pFrameArg);
@@ -846,12 +842,12 @@ namespace user
    }
 
    bool document::do_save(var varFile, bool bReplace)
-      // Save the document_interface data to a file
-      // lpszPathName = path name where to save document_interface file
-      // if lpszPathName is NULL then the ::fontopus::user will be prompted (SaveAs)
-      // note: lpszPathName can be different than 'm_strPathName'
-      // if 'bReplace' is TRUE will change file name if successful (SaveAs)
-      // if 'bReplace' is FALSE will not change path name (SaveCopyAs)
+   // Save the document_interface data to a file
+   // lpszPathName = path name where to save document_interface file
+   // if lpszPathName is NULL then the ::fontopus::user will be prompted (SaveAs)
+   // note: lpszPathName can be different than 'm_strPathName'
+   // if 'bReplace' is TRUE will change file name if successful (SaveAs)
+   // if 'bReplace' is FALSE will not change path name (SaveCopyAs)
    {
 
       var newName = varFile;
@@ -880,7 +876,7 @@ namespace user
             // append the default suffix if there is one
             string strExt;
             if (ptemplate->GetDocString(strExt, impact_system::filterExt) &&
-               !strExt.is_empty())
+                  !strExt.is_empty())
             {
                ASSERT(strExt[0] == '.');
                strsize iStart = 0;
@@ -966,7 +962,7 @@ namespace user
    }
 
    void document::update_frame_counts(single_lock * psl)
-      // assumes 1 doc per frame
+   // assumes 1 doc per frame
    {
       single_lock sl(m_pmutex, false);
       if (psl == NULL || psl->m_pobjectSync != m_pmutex)
@@ -1124,7 +1120,7 @@ namespace user
       ::user::document(papp)
    {
    }
-*/
+   */
    void document::OnBeforeNavigate2(::html::data * pdata,var & varFile,uint32_t nFlags,const char * lpszTargetFrameName,byte_array& baPostedData,const char * lpszHeaders,bool* pbCancel)
    {
 

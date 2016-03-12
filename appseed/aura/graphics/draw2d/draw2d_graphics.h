@@ -1,6 +1,8 @@
 #pragma once
 
 
+struct NSVGimage;
+
 namespace draw2d
 {
 
@@ -691,6 +693,20 @@ namespace draw2d
 
 
       virtual void enum_fonts(stringa & straFile, stringa & stra);
+
+
+      virtual float nanosvg_distPtSeg(float x, float y, float px, float py, float qx, float qy);
+      virtual void nanosvg_cubicBez(float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4, float tol, int level);
+      virtual void nanosvg_drawPath(float* pts, int npts, char closed, float tol, COLORREF lineColor);
+      virtual void nanosvg_drawControlPts(float* pts, int npts);
+      virtual void nanosvg_drawframe(NSVGimage* pimage, int x, int y, int w, int h);
+      // virtual void nanosvg_resizecb(int width, int height, int x, int y, int w, int h);
+
+      virtual bool nanosvg(string str, int x, int y, int w, int h);
+
+
+
+
 
    };
 

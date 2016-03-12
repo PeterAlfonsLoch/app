@@ -142,7 +142,7 @@ bool ifs::has_subdir(const ::file::path & path)
 
    string strUrl;
 
-   strUrl = "http://file.veriwell.net/ifs/ls?path=" + System.url().url_encode(listing.m_path);
+   strUrl = "http://file.ca2.cc/ifs/ls?path=" + System.url().url_encode(listing.m_path);
 
    string strSource;
 
@@ -191,7 +191,7 @@ bool ifs::has_subdir(const ::file::path & path)
          ::file::path & path = dir.add(::file::path(listing.m_path / pchild->attr("name").get_string(),::file::path_url));
 
          path.m_iDir = 1;
-         
+
       }
 
    }
@@ -208,7 +208,7 @@ bool ifs::has_subdir(const ::file::path & path)
             continue;
 
          string strExtension = pchild->attr("extension");
-         
+
          ::file::path & path = dir.add(::file::path(listing.m_path / pchild->attr("name").get_string(),::file::path_url));
 
          path.m_iSize = pchild->attr("size");
@@ -314,7 +314,7 @@ bool ifs::is_dir(const ::file::path & path)
 
    if(iFind < 0)
    {
-      
+
       return false;
 
    }
@@ -324,24 +324,6 @@ bool ifs::is_dir(const ::file::path & path)
 
 }
 
-//string ifs::file_name(const char * pszPath)
-//{
-//
-//   string strPath(pszPath);
-//
-//   if(!::str::begins_eat_ci(strPath, "ifs://") && !::str::begins_eat_ci(strPath, "uifs://"))
-//   {
-//      return "";
-//   }
-//
-//   strsize iFind = strPath.reverse_find("/");
-//
-//   if(iFind < 0)
-//      iFind = -1;
-//
-//   return strPath.Mid(iFind + 1);
-//
-//}
 
 bool ifs::file_move(const ::file::path & pszDst,const ::file::path & pszSrc)
 {
@@ -369,7 +351,7 @@ bool ifs::file_move(const ::file::path & pszDst,const ::file::path & pszSrc)
 
    if(cres.failed())
    {
-      
+
       spfile.release();
 
       if(pfesp != NULL)

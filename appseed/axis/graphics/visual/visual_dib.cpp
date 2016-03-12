@@ -1,7 +1,7 @@
 //#include "framework.h"
 
 #ifdef WINDOWS
-#include <wincodec.h>
+   #include <wincodec.h>
 #endif
 
 
@@ -39,12 +39,22 @@ namespace visual
 
    bool dib_sp::load_from_file(var varFile,bool bCache)
    {
-      
+
       if(varFile.is_empty())
       {
-         
+
          return false;
-         
+
+      }
+
+      if (varFile.get_file_path().extension().CompareNoCase("svg") == 0
+            || varFile.get_file_path().find_ci(".svg?") > 0)
+      {
+
+         m_p->create_nanosvg(App(m_p->m_pauraapp).file().as_string(varFile));
+
+         return true;
+
       }
 
       return Sys(m_p->m_pauraapp).visual().imaging().load_from_file(m_p,varFile,bCache,m_p->m_pauraapp);
@@ -323,11 +333,11 @@ bool windows_load_dib_from_file(::draw2d::dib * pdib,::file::buffer_sp pfile,::a
 
       comptr< IWICBitmapDecoder > decoder;
       HRESULT hr = CoCreateInstance(
-         CLSID_WICImagingFactory,
-         NULL,
-         CLSCTX_INPROC_SERVER,
-         IID_IWICImagingFactory,
-         (LPVOID*)&piFactory);
+                      CLSID_WICImagingFactory,
+                      NULL,
+                      CLSCTX_INPROC_SERVER,
+                      IID_IWICImagingFactory,
+                      (LPVOID*)&piFactory);
 
       if(SUCCEEDED(hr))
       {
@@ -351,7 +361,7 @@ bool windows_load_dib_from_file(::draw2d::dib * pdib,::file::buffer_sp pfile,::a
 
       }
 
-  //    int color_type,palette_entries = 0;
+      //    int color_type,palette_entries = 0;
       //int palette_entries = 0;
 //      int bit_depth,pixel_depth;		// pixel_depth = bit_depth * channels
 
@@ -361,88 +371,88 @@ bool windows_load_dib_from_file(::draw2d::dib * pdib,::file::buffer_sp pfile,::a
       {
          return false;
       }
-                  {
-                     hr =   pframe->GetPixelFormat(&px);
+      {
+         hr =   pframe->GetPixelFormat(&px);
 
-                  }
-                  //if(SUCCEEDED(hr))
-                  //{
+      }
+      //if(SUCCEEDED(hr))
+      //{
 
-                  //   if(!wic_info(&px,&color_type,&pixel_depth,&bit_depth))
-                  //   {
-                  //      color_type = PNG_COLOR_TYPE_RGB_ALPHA;
-                  //      pixel_depth = 32;
-                  //      bit_depth = 8;
-                  //   }
+      //   if(!wic_info(&px,&color_type,&pixel_depth,&bit_depth))
+      //   {
+      //      color_type = PNG_COLOR_TYPE_RGB_ALPHA;
+      //      pixel_depth = 32;
+      //      bit_depth = 8;
+      //   }
 
-                  //}
-                  //else
-                  //{
-                  //   color_type = PNG_COLOR_TYPE_RGB_ALPHA;
-                  //   pixel_depth = 32;
-                  //   bit_depth = 8;
-                  //}
+      //}
+      //else
+      //{
+      //   color_type = PNG_COLOR_TYPE_RGB_ALPHA;
+      //   pixel_depth = 32;
+      //   bit_depth = 8;
+      //}
 
-                  if(px == GUID_WICPixelFormat32bppBGRA)
-                  {
-                     UINT width=0;
-                     UINT height=0;
+      if(px == GUID_WICPixelFormat32bppBGRA)
+      {
+         UINT width=0;
+         UINT height=0;
 
-                     pframe->GetSize(&width,&height);
-                     pdib->create(width,height);
-                     pdib->map();
-                     hr = pframe->CopyPixels(NULL,pdib->m_iScan,pdib->m_iScan * height,(BYTE *)pdib->m_pcolorref);
+         pframe->GetSize(&width,&height);
+         pdib->create(width,height);
+         pdib->map();
+         hr = pframe->CopyPixels(NULL,pdib->m_iScan,pdib->m_iScan * height,(BYTE *)pdib->m_pcolorref);
 
-                  }
-                  else
-                  {
+      }
+      else
+      {
 
-                     comptr<IWICFormatConverter> pbitmap;
+         comptr<IWICFormatConverter> pbitmap;
 
-                     if(SUCCEEDED(hr))
-                     {
+         if(SUCCEEDED(hr))
+         {
 
-                        hr = piFactory->CreateFormatConverter(&pbitmap.get());
+            hr = piFactory->CreateFormatConverter(&pbitmap.get());
 
-                     }
+         }
 
 
 
-                     px  = GUID_WICPixelFormat32bppBGRA;
+         px  = GUID_WICPixelFormat32bppBGRA;
 
-                     if(SUCCEEDED(hr))
-                     {
+         if(SUCCEEDED(hr))
+         {
 
-                        hr = pbitmap->Initialize(pframe,px,WICBitmapDitherTypeNone,NULL,0.f,WICBitmapPaletteTypeCustom);
-                     }
+            hr = pbitmap->Initialize(pframe,px,WICBitmapDitherTypeNone,NULL,0.f,WICBitmapPaletteTypeCustom);
+         }
 
-                     //Step 4: Create render target and D2D bitmap from IWICBitmapSource
-                     UINT width=0;
-                     UINT height=0;
-                     if(SUCCEEDED(hr))
-                     {
-                        hr = pbitmap->GetSize(&width,&height);
-                     }
+         //Step 4: Create render target and D2D bitmap from IWICBitmapSource
+         UINT width=0;
+         UINT height=0;
+         if(SUCCEEDED(hr))
+         {
+            hr = pbitmap->GetSize(&width,&height);
+         }
 
-                     pdib->create(width,height);
+         pdib->create(width,height);
 
-                     pdib->map();
+         pdib->map();
 
-                     hr = pbitmap->CopyPixels(NULL,pdib->m_iScan,pdib->m_iScan * height,(BYTE *)pdib->m_pcolorref);
+         hr = pbitmap->CopyPixels(NULL,pdib->m_iScan,pdib->m_iScan * height,(BYTE *)pdib->m_pcolorref);
 
-                     //for(int k = 0; k < height; k++)
-                     //{
-                     //   memcpy(&pb[k * iStride],&mem.get_data()[(height - 1 - k) * iStride],iStride);
-                     //}
+         //for(int k = 0; k < height; k++)
+         //{
+         //   memcpy(&pb[k * iStride],&mem.get_data()[(height - 1 - k) * iStride],iStride);
+         //}
 
-                  }
+      }
 
 
 //               end:;
 
 
-                  //synch_lock sl(&m_parea->m_mutex);
-                  //m_parea->m_iArea++;
+      //synch_lock sl(&m_parea->m_mutex);
+      //m_parea->m_iArea++;
 
    }
    catch(...)
@@ -494,11 +504,11 @@ bool windows_write_dib_to_file(::file::buffer_sp pfile,::draw2d::dib * pdib,::vi
    UINT uiHeight = pdib->size().cy;
 
    HRESULT hr = CoCreateInstance(
-      CLSID_WICImagingFactory,
-      NULL,
-      CLSCTX_INPROC_SERVER,
-      IID_IWICImagingFactory,
-      (LPVOID*)&piFactory);
+                   CLSID_WICImagingFactory,
+                   NULL,
+                   CLSCTX_INPROC_SERVER,
+                   IID_IWICImagingFactory,
+                   (LPVOID*)&piFactory);
 
    if(SUCCEEDED(hr))
    {
@@ -596,7 +606,7 @@ bool windows_write_dib_to_file(::file::buffer_sp pfile,::draw2d::dib * pdib,::vi
       //}
       if(psaveimage->m_eformat == ::visual::image::format_jpeg)
       {
-         PROPBAG2 option ={0};
+         PROPBAG2 option = {0};
          option.pstrName = L"ImageQuality";
          VARIANT varValue;
          VariantInit(&varValue);
@@ -641,13 +651,13 @@ bool windows_write_dib_to_file(::file::buffer_sp pfile,::draw2d::dib * pdib,::vi
          if(SUCCEEDED(hr))
          {
             hr=piFactory->CreateBitmapFromMemory(
-               pdib->size().cx,
-               pdib->size().cy,
-               GUID_WICPixelFormat32bppBGRA,
-               pdib->m_iScan,
-               pdib->m_iScan * pdib->size().cy,
-               (BYTE *)pdib->m_pcolorref,
-               &pbitmap.get()
+                  pdib->size().cx,
+                  pdib->size().cy,
+                  GUID_WICPixelFormat32bppBGRA,
+                  pdib->m_iScan,
+                  pdib->m_iScan * pdib->size().cy,
+                  (BYTE *)pdib->m_pcolorref,
+                  &pbitmap.get()
                );
          }
 

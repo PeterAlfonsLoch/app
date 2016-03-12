@@ -1,15 +1,15 @@
 #include "framework.h"
 
 #ifndef METROWIN
-#include <openssl/ssl.h>
+   #include <openssl/ssl.h>
 #endif
 
 #include <openssl/md5.h>
 #include <openssl/whrlpool.h>
 
 #ifndef WINDOWS
-#include <sys/stat.h>
-//#include <ctype.h>
+   #include <sys/stat.h>
+   //#include <ctype.h>
 #endif
 
 
@@ -87,20 +87,20 @@ namespace file
       //   }
 
 
-         //bool system::exists(const char * pszPath, ::aura::application * papp)
-         //{
+      //bool system::exists(const char * pszPath, ::aura::application * papp)
+      //{
 
-         //   return exists(pszPath, NULL, papp);
+      //   return exists(pszPath, NULL, papp);
 
-         //}
+      //}
 
 
-         //bool system::exists(const char * pszPath, var * pvarQuery, ::aura::application * papp)
-         //{
+      //bool system::exists(const char * pszPath, var * pvarQuery, ::aura::application * papp)
+      //{
 
-         //   return exists(string(pszPath), pvarQuery, papp);
+      //   return exists(string(pszPath), pvarQuery, papp);
 
-         //}
+      //}
 
 
       bool system::exists(const ::file::path & strPath, ::aura::application * papp)
@@ -159,17 +159,17 @@ namespace file
          //if (!papp->m_paxissystem->dir().name_is(strPath, papp))
          //   return false;
 
-   //#ifdef WINDOWS
+         //#ifdef WINDOWS
 
 
          return file_exists_dup(strPath) != FALSE;
 
          //#else
 
-           //    struct stat st;
+         //    struct stat st;
 
-             //  if (stat(strPath, &st) != 0)
-               //   return false;
+         //  if (stat(strPath, &st) != 0)
+         //   return false;
 
          //      return S_ISREG(st.st_mode) || S_ISDIR(st.st_mode);
 
@@ -281,7 +281,7 @@ namespace file
          ::file::path str;
          string strPrefix(pszPrefix);
          string strSuffix(pszSuffix);
-      restart:
+restart:
          str.Empty();
          str = psz;
          System.dir().mk(str, papp);
@@ -413,7 +413,7 @@ namespace file
          }
          else
          {
-            string strFilePath(varFile);
+            string strFilePath(varFile.get_file_path());
             if (::get_thread() != NULL && ::get_thread()->m_bZipIsDir && (::str::find_file_extension("zip:", strFilePath) >= 0))
             {
                if (!exists(strFilePath, papp))
@@ -438,7 +438,7 @@ namespace file
                as_memory(strFilePath, storage, papp);
             }
             else if (::str::begins(strFilePath, astr.strHttpProtocol)
-               || ::str::begins(strFilePath, astr.strHttpsProtocol))
+                     || ::str::begins(strFilePath, astr.strHttpsProtocol))
             {
                if (!exists(strFilePath, &varQuery, papp))
                   return "";
@@ -481,14 +481,14 @@ namespace file
          }
          string strResult;
          if (storage.get_size() >= 2
-            && storage.get_data()[0] == 255
-            && storage.get_data()[1] == 60)
+               && storage.get_data()[0] == 255
+               && storage.get_data()[1] == 60)
          {
             ::str::international::unicode_to_utf8(strResult, (const unichar *)&storage.get_data()[2], (int32_t)(storage.get_size() - 2));
          }
          else if (storage.get_size() >= 2
-            && storage.get_data()[0] == 255
-            && storage.get_data()[1] == 254)
+                  && storage.get_data()[0] == 255
+                  && storage.get_data()[1] == 254)
          {
 #ifdef VSNORD
             //for (index i = 2; i < storage.get_size(); i += 2)
@@ -501,9 +501,9 @@ namespace file
             ::str::international::unicode_to_utf8(strResult, (const unichar *)&storage.get_data()[2], (int32_t)(storage.get_size() - 2));
          }
          else if (storage.get_size() >= 3
-            && storage.get_data()[0] == 0xef
-            && storage.get_data()[1] == 0xbb
-            && storage.get_data()[2] == 0xbf)
+                  && storage.get_data()[0] == 0xef
+                  && storage.get_data()[1] == 0xbb
+                  && storage.get_data()[2] == 0xbf)
          {
             strResult = string((const char *)(const unichar *)&storage.get_data()[3], (int32_t)(storage.get_size() - 3));
          }
@@ -559,10 +559,10 @@ namespace file
          try
          {
 
-         if(varFile.get_string().find_ci("/left/") >= 0)
-         {
-         TRACE("left folder");
-         }
+            if(varFile.get_string().find_ci("/left/") >= 0)
+            {
+               TRACE("left folder");
+            }
 
             spfile = App(papp).file().get_file(varFile, ::file::type_binary | ::file::mode_read | ::file::share_deny_none);
 
@@ -839,7 +839,7 @@ namespace file
          {
 
             if(pszNew.m_epath == ::file::path_file
-               && psz.m_epath == ::file::path_file)
+                  && psz.m_epath == ::file::path_file)
             {
 
                return ::file::system::copy(pszNew, psz, bFailIfExists, eextract, papp);
@@ -988,8 +988,8 @@ namespace file
       {
 #ifdef WINDOWSEX
          if (!::MoveFileW(
-            ::str::international::utf8_to_unicode(psz),
-            ::str::international::utf8_to_unicode(pszNew)))
+                  ::str::international::utf8_to_unicode(psz),
+                  ::str::international::utf8_to_unicode(pszNew)))
          {
             uint32_t dwError = ::GetLastError();
             string strError;
@@ -1350,8 +1350,8 @@ namespace file
             return;
 
          while (str.has_char() &&
-            (str.Right(1) == "\\" ||
-               str.Right(1) == "/"))
+                (str.Right(1) == "\\" ||
+                 str.Right(1) == "/"))
          {
 
             str = str.Left(str.get_length() - 1);

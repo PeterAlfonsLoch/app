@@ -6,7 +6,7 @@
 
 namespace filemanager
 {
-   
+
 
    namespace fs
    {
@@ -19,18 +19,18 @@ namespace filemanager
          view::view(::aura::application * papp) :
             object(papp),
             ::user::split_layout(papp),
-            
+
             ::user::split_view(papp),
             place_holder_container(papp)
          {
-         //   m_pinetsession = NULL;
+            //   m_pinetsession = NULL;
             m_prequestinterface = NULL;
          }
 
          view::~view()
          {
-           // if(m_pinetsession != NULL)
-             //  delete m_pinetsession;
+            // if(m_pinetsession != NULL)
+            //  delete m_pinetsession;
          }
 
          void view::install_message_handling(::message::dispatch * pinterface)
@@ -39,7 +39,7 @@ namespace filemanager
          }
 
 
-         #ifdef DEBUG
+#ifdef DEBUG
          void view::assert_valid() const
          {
             ::user::split_view::assert_valid();
@@ -49,15 +49,15 @@ namespace filemanager
          {
             ::user::split_view::dump(dumpcontext);
          }
-         #endif //DEBUG
+#endif //DEBUG
 
          void view::CreateViews()
          {
-            
+
             SetPaneCount(2);
 
             SetSplitOrientation(orientation_vertical);
-        
+
             set_position_rate(0, 0.2);
 
             initialize_split_layout();
@@ -88,7 +88,7 @@ namespace filemanager
 
             property_set set(get_app());
 
-//            Application.http().get("http://file.veriwell.net/", set);
+//            Application.http().get("http://file.ca2.cc/", set);
 
             open_folder(1000); // user ::music folder
 
@@ -100,7 +100,7 @@ namespace filemanager
 
             property_set set(get_app());
 
-  //          Application.http().get("http://file.veriwell.net/", set);
+            //          Application.http().get("http://file.ca2.cc/", set);
 
             open_folder(1); // user root folder
 
@@ -129,12 +129,12 @@ namespace filemanager
 
          void view::open_folder(int64_t iFolder)
          {
-         
+
             ::http::signal * psignal = new ::http::signal;
 
             (*psignal)()["request"] = "";
 
-            psignal->m_strUrl.Format("http://file.veriwell.net/ifs/ls?id=%I64d", iFolder); 
+            psignal->m_strUrl.Format("http://file.ca2.cc/ifs/ls?id=%I64d", iFolder);
 
             psignal->m_puser = &ApplicationUser;
 
@@ -147,7 +147,7 @@ namespace filemanager
          {
             string strUrl;
 
-            strUrl.Format("http://file.veriwell.net/ifs/get?name=" + System.url().url_encode(lpszFileName)+ "&folder=%I64d&extension=.%s", iFolder, pszExtension);
+            strUrl.Format("http://file.ca2.cc/ifs/get?name=" + System.url().url_encode(lpszFileName)+ "&folder=%I64d&extension=.%s", iFolder, pszExtension);
 
             if(m_prequestinterface != NULL)
             {

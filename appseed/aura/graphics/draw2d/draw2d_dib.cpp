@@ -6,6 +6,9 @@
 //#include "draw2d.h"
 //#include <math.h>
 
+#include "nanosvg.h"
+#include "nanosvgrast.h"
+
 byte byte_clip(double d);
 
 
@@ -4659,6 +4662,82 @@ namespace draw2d
          return m_size;
 
       }
+
+   }
+
+   void dib::nanosvg(NSVGimage *image)
+   {
+
+      NSVGrasterizer *rast = NULL;
+      unsigned char* img = NULL;
+      int w, h;
+
+      w = (int)m_size.cx;
+      h = (int)m_size.cy;
+
+      rast = nsvgCreateRasterizer();
+      if (rast == NULL) {
+         printf("Could not init rasterizer.\n");
+         goto error;
+      }
+
+      nsvgRasterize(rast, image, 0, 0, 1, (unsigned char *)m_pcolorref, w, h, m_iScan);
+
+
+error:
+      nsvgDeleteRasterizer(rast);
+
+   }
+
+
+
+   void dib::nanosvg(string str)
+   {
+
+      NSVGimage *image = NULL;
+
+      image = nsvgParse((char *) (const char *) str, "px", 96.0f);
+
+      if (image == NULL)
+      {
+
+         printf("Could not open SVG image.\n");
+
+         goto error;
+
+      }
+
+      nanosvg(image);
+
+error:
+
+      nsvgDelete(image);
+
+   }
+
+   void dib::create_nanosvg(string str)
+   {
+
+      NSVGimage *image = NULL;
+
+      image = nsvgParse((char *)(const char *)str, "px", 96.0f);
+
+      if (image == NULL)
+      {
+
+         printf("Could not open SVG image.\n");
+
+         goto error;
+
+      }
+
+      create(image->width, image->height);
+
+      nanosvg(image);
+
+error:
+
+      nsvgDelete(image);
 
    }
 
