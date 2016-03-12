@@ -3604,6 +3604,9 @@
     <ClCompile Include="aura\aura\aura_department_container.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="draw2d_nanosvg.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">
