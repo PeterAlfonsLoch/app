@@ -33,15 +33,19 @@ void window_gdi::create_window_graphics(oswindow interaction_impl, int64_t cxPar
    ZERO(m_bitmapinfo);
 
 
-   int iStride = (int32_t) (cxParam * sizeof(COLORREF));
+   //int iStride = (int32_t) (cxParam * sizeof(COLORREF));
+
+   int iStride = iStrideParam;
 
    m_bitmapinfo.bmiHeader.biSize          = sizeof (BITMAPINFOHEADER);
-   m_bitmapinfo.bmiHeader.biWidth         = (LONG) cxParam;
+   m_bitmapinfo.bmiHeader.biWidth         = (LONG)iStrideParam / 4;
    m_bitmapinfo.bmiHeader.biHeight        = (LONG) -cyParam;
    m_bitmapinfo.bmiHeader.biPlanes        = 1;
    m_bitmapinfo.bmiHeader.biBitCount      = 32;
    m_bitmapinfo.bmiHeader.biCompression   = BI_RGB;
-   m_bitmapinfo.bmiHeader.biSizeImage     = (LONG) (iStride * cyParam);
+   m_bitmapinfo.bmiHeader.biSizeImage     = (LONG) (iStrideParam * cyParam);
+
+
 
    m_hbitmap = CreateDIBSection(NULL, &m_bitmapinfo, DIB_RGB_COLORS, (void **) &m_pcolorref, NULL, 0);
 

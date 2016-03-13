@@ -126,6 +126,8 @@ typedef struct NSVGpaint {
 
 typedef struct NSVGpath
 {
+   char id[64];
+   int list;
    float* pts;					// Cubic bezier points: x0,y0, [cpx1,cpx1,cpx2,cpy2,x1,y1], ...
    int npts;					// Total number of bezier points.
    char closed;				// Flag indicating if shapes should be treated as closed.
@@ -409,6 +411,7 @@ typedef struct NSVGgradientData
 typedef struct NSVGattrib
 {
    char id[64];
+   char link[64];
    float xform[6];
    unsigned int fillColor;
    unsigned int strokeColor;
@@ -431,6 +434,9 @@ typedef struct NSVGattrib
    char hasFill;
    char hasStroke;
    char visible;
+   float x;
+   float y;
+
 } NSVGattrib;
 
 typedef struct NSVGparser
@@ -441,6 +447,7 @@ typedef struct NSVGparser
    int npts;
    int cpts;
    NSVGpath* plist;
+   NSVGpath* pdefs;
    NSVGimage* image;
    NSVGgradientData* gradients;
    float viewMinx, viewMiny, viewWidth, viewHeight;
@@ -970,6 +977,11 @@ static void nsvg__addShape(NSVGparser* p)
    if (p->plist == NULL)
       return;
 
+   if (p->plist->id != NULL)
+   {
+
+   }
+
    shape = (NSVGshape*)malloc(sizeof(NSVGshape));
    if (shape == NULL) goto error;
    memset(shape, 0, sizeof(NSVGshape));
@@ -1066,12 +1078,19 @@ static void nsvg__addPath(NSVGparser* p, char closed)
    if (p->npts < 4)
       return;
 
+
    if (closed)
       nsvg__lineTo(p, p->pts[0], p->pts[1]);
 
    path = (NSVGpath*)malloc(sizeof(NSVGpath));
    if (path == NULL) goto error;
    memset(path, 0, sizeof(NSVGpath));
+   if (p->defsFlag)
+   {
+
+      strcpy(path->id, attr->id);
+
+   }
 
    path->pts = (float*)malloc(p->npts*2*sizeof(float));
    if (path->pts == NULL) goto error;
@@ -1099,8 +1118,19 @@ static void nsvg__addPath(NSVGparser* p, char closed)
       }
    }
 
-   path->next = p->plist;
-   p->plist = path;
+   if (p->defsFlag)
+   {
+
+      path->next = p->pdefs;
+      p->pdefs = path;
+
+   }
+   else
+   {
+      path->next = p->plist;
+      p->plist = path;
+
+   }
 
    return;
 
@@ -1740,6 +1770,17 @@ static int nsvg__parseAttr(NSVGparser* p, const char* name, const char* value)
    } else if (strcmp(name, "id") == 0) {
       strncpy(attr->id, value, 63);
       attr->id[63] = '\0';
+   }
+   else if (strcmp(name, "x") == 0) {
+      attr->x = nsvg__parseCoordinate(p, value, 0.0f, nsvg__actualWidth(p));
+   }
+   else if (strcmp(name, "y") == 0) {
+      attr->y = nsvg__parseCoordinate(p, value, 0.0f, nsvg__actualWidth(p));
+
+   }
+   else if (strcmp(name, "xlink:href") == 0) {
+      strncpy(attr->link, value, 63);
+      attr->link[63] = '\0';
    } else {
       return 0;
    }
@@ -2150,6 +2191,130 @@ static void nsvg__pathArcTo(NSVGparser* p, float* cpx, float* cpy, float* args, 
    *cpx = x2;
    *cpy = y2;
 }
+
+static void nsvg__addUse(NSVGparser* p);
+
+static void nsvg__parseUse(NSVGparser* p, const char** attr)
+{
+   const char* s = NULL;
+   char cmd = '\0';
+   float args[10];
+   int nargs;
+   int rargs = 0;
+   float cpx, cpy, cpx2, cpy2;
+   const char* tmp[4];
+   char closedFlag;
+   int i;
+   char item[64];
+
+   for (i = 0; attr[i]; i += 2) {
+      if (strcmp(attr[i], "d") == 0) {
+         s = attr[i + 1];
+      }
+      else {
+         tmp[0] = attr[i];
+         tmp[1] = attr[i + 1];
+         tmp[2] = 0;
+         tmp[3] = 0;
+         nsvg__parseAttribs(p, tmp);
+      }
+   }
+
+   nsvg__addUse(p);
+
+   nsvg__addShape(p);
+
+}
+
+static void nsvg__addUse(NSVGparser* p)
+{
+   NSVGattrib* attr = nsvg__getAttr(p);
+   NSVGpath* path = NULL;
+
+   NSVGpath* list = p->pdefs;
+   while(list != NULL)
+   {
+      if (attr->link[0] == '#')
+      {
+         if (strcmp(&attr->link[1], list->id) == 0)
+         {
+            break;
+         }
+      }
+      list = list->next;
+   }
+   if (list == NULL)
+      return;
+
+   path = (NSVGpath *)malloc(sizeof(path));
+   if (path == NULL)
+      return;
+
+
+   //NSVGattrib* attr = nsvg__getAttr(p);
+   //NSVGpath* path = NULL;
+   float bounds[4];
+   float* curve;
+   int i;
+
+   if (list->npts < 4)
+      return;
+
+
+   if (list->closed)
+      nsvg__lineTo(p, p->pts[0], p->pts[1]);
+
+   path = (NSVGpath*)malloc(sizeof(NSVGpath));
+   if (path == NULL) goto error;
+   memset(path, 0, sizeof(NSVGpath));
+
+   path->pts = (float*)malloc(list->npts * 2 * sizeof(float));
+   if (path->pts == NULL) goto error;
+   path->closed = list->closed;
+   path->npts = list->npts;
+
+   float x = attr->x;
+   float y = attr->y;
+   for (index i = 0; i < path->npts; i++)
+   {
+
+      path->pts[i * 2] = list->pts[i * 2] + x;
+      path->pts[i * 2 + 1] = list->pts[i * 2 + 1] + y;
+
+   }
+
+   // Find bounds
+   for (i = 0; i < path->npts - 1; i += 3) {
+      curve = &path->pts[i * 2];
+      nsvg__curveBounds(bounds, curve);
+      if (i == 0) {
+         path->bounds[0] = bounds[0];
+         path->bounds[1] = bounds[1];
+         path->bounds[2] = bounds[2];
+         path->bounds[3] = bounds[3];
+      }
+      else {
+         path->bounds[0] = nsvg__minf(path->bounds[0], bounds[0]);
+         path->bounds[1] = nsvg__minf(path->bounds[1], bounds[1]);
+         path->bounds[2] = nsvg__maxf(path->bounds[2], bounds[2]);
+         path->bounds[3] = nsvg__maxf(path->bounds[3], bounds[3]);
+      }
+   }
+
+   path->next = p->plist;
+   p->plist = path;
+
+   return;
+
+error:
+   if (path != NULL) {
+      if (path->pts != NULL) free(path->pts);
+      free(path);
+   }
+
+
+}
+
 
 static void nsvg__parsePath(NSVGparser* p, const char** attr)
 {
@@ -2638,6 +2803,14 @@ static void nsvg__startElement(void* ud, const char* el, const char** attr)
       } else if (strcmp(el, "stop") == 0) {
          nsvg__parseGradientStop(p, attr);
       }
+      else if (strcmp(el, "path") == 0) {
+         if (p->pathFlag)	// Do not allow nested paths.
+            return;
+         nsvg__pushAttr(p);
+         nsvg__parsePath(p, attr);
+         nsvg__popAttr(p);
+      }
+
       return;
    }
 
@@ -2649,6 +2822,13 @@ static void nsvg__startElement(void* ud, const char* el, const char** attr)
          return;
       nsvg__pushAttr(p);
       nsvg__parsePath(p, attr);
+      nsvg__popAttr(p);
+   }
+   else if (strcmp(el, "use") == 0) {
+      if (p->pathFlag)	// Do not allow nested paths.
+         return;
+      nsvg__pushAttr(p);
+      nsvg__parseUse(p, attr);
       nsvg__popAttr(p);
    } else if (strcmp(el, "rect") == 0) {
       nsvg__pushAttr(p);
