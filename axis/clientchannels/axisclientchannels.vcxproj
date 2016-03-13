@@ -494,9 +494,9 @@
     <ClInclude Include="channels\cliprdr\client\cliprdr_main.h" />
     <ClInclude Include="channels\disp\client\disp_main.h" />
     <ClInclude Include="channels\drdynvc\client\drdynvc_main.h" />
-    <ClInclude Include="channels\drive\client\dirent.h" />
     <ClInclude Include="channels\drive\client\drive_file.h" />
     <ClInclude Include="channels\drive\client\statvfs.h" />
+    <ClInclude Include="channels\drive\client\winpr_dirent.h" />
     <ClInclude Include="channels\echo\client\echo_main.h" />
     <ClInclude Include="channels\printer\client\printer_cups.h" />
     <ClInclude Include="channels\printer\client\printer_main.h" />

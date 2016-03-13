@@ -149,3 +149,4 @@ public:
 
 
 
+#define ap(x) ::auto_pointer < x >

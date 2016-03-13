@@ -165,9 +165,6 @@
     <ClInclude Include="channels\drdynvc\client\drdynvc_main.h">
       <Filter>Header Files\channels\drdynvc</Filter>
     </ClInclude>
-    <ClInclude Include="channels\drive\client\dirent.h">
-      <Filter>Header Files\channels\drive</Filter>
-    </ClInclude>
     <ClInclude Include="channels\drive\client\drive_file.h">
       <Filter>Header Files\channels\drive</Filter>
     </ClInclude>
@@ -245,6 +242,9 @@
     </ClInclude>
     <ClInclude Include="channels\rdpsnd\client\codec_aac.h">
       <Filter>Header Files\channels\rdpsnd</Filter>
+    </ClInclude>
+    <ClInclude Include="channels\drive\client\winpr_dirent.h">
+      <Filter>Header Files\channels\drive</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
