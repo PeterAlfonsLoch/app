@@ -695,9 +695,6 @@
     <ClInclude Include="aura\xml\xml_data.h">
       <Filter>Header Files\aura\xml</Filter>
     </ClInclude>
-    <ClInclude Include="aura\xml\xml_departament.h">
-      <Filter>Header Files\aura\xml</Filter>
-    </ClInclude>
     <ClInclude Include="aura\xml\xml_disp_option.h">
       <Filter>Header Files\aura\xml</Filter>
     </ClInclude>
@@ -1220,9 +1217,6 @@
     <ClInclude Include="aura\process\process_bidi_pipe.h">
       <Filter>Header Files\aura\process</Filter>
     </ClInclude>
-    <ClInclude Include="aura\process\process_departament.h">
-      <Filter>Header Files\aura\process</Filter>
-    </ClInclude>
     <ClInclude Include="aura\process\process_pipe.h">
       <Filter>Header Files\aura\process</Filter>
     </ClInclude>
@@ -1236,9 +1230,6 @@
       <Filter>Header Files\aura\node\windows</Filter>
     </ClInclude>
     <ClInclude Include="primitive\math\math_complex.h">
-      <Filter>Header Files\primitive\math</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\math\math_departament.h">
       <Filter>Header Files\primitive\math</Filter>
     </ClInclude>
     <ClInclude Include="primitive\math\math_std_template.h">
@@ -1302,12 +1293,6 @@
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
     <ClInclude Include="aura\aura\aura_definition.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\aura_departament.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\aura_departament_container.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
     <ClInclude Include="aura\aura\aura_draw2d.h">
@@ -1706,6 +1691,21 @@
     <ClInclude Include="aura\aura\aura_shell_launcher.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
+    <ClInclude Include="aura\aura\aura_department.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\aura\aura_department_container.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\process\process_department.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\xml\xml_department.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\math\math_department.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="version.cpp">
@@ -1776,6 +1776,9 @@
     </ClCompile>
     <ClCompile Include="aura\exception\exception_engine.cpp">
       <Filter>Source Files\aura\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\draw2d_nanosvg.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

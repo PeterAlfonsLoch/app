@@ -38,7 +38,11 @@ namespace primitive
    HGLOBAL shared_file::detach_storage()
    {
 
-      return (dynamic_cast < shared_memory * >(get_memory()))->detach();
+      HGLOBAL hglobal = NULL;
+
+      (dynamic_cast < shared_memory * >(get_memory()))->detach_shared_memory(hglobal);
+
+      return hglobal;
 
    }
 

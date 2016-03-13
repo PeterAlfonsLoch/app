@@ -81,37 +81,37 @@ namespace primitive
    }
 
 
-   //LPBYTE shared_memory::detach_shared_memory(HGLOBAL & hglobal)
-   //{
+   LPBYTE shared_memory::detach_shared_memory(HGLOBAL & hglobal)
+   {
 
-   //   if(m_iOffset > 0)
-   //   {
-   //      
-   //      sp(memory_base) pbase = clone();
+      if(m_iOffset > 0)
+      {
+         
+         sp(shared_memory) pbase = clone();
 
-   //      impl_free(m_pbStorage);
+         impl_free(m_pbStorage);
 
-   //      pbase->detach_shared_memory(hglobal);
+         pbase->detach_shared_memory(hglobal);
 
-   //   }
-   //   else
-   //   {
+      }
+      else
+      {
 
-   //      hglobal              = m_hGlobalMemory;
+         hglobal              = m_hGlobalMemory;
 
-   //   }
+      }
 
-   //   LPBYTE pbStorage     = m_pbStorage;
+      LPBYTE pbStorage     = m_pbStorage;
 
-   //   m_hGlobalMemory      = NULL;
-   //   m_pbStorage          = NULL;
-   //   m_pbComputed   = NULL;
-   //   m_cbStorage          = 0;
-   //   m_dwAllocation       = 0;
+      m_hGlobalMemory      = NULL;
+      m_pbStorage          = NULL;
+      m_pbComputed   = NULL;
+      m_cbStorage          = 0;
+      m_dwAllocation       = 0;
 
-   //   return pbStorage;
+      return pbStorage;
 
-   //}
+   }
 
 
    void shared_memory::SetHandle(HGLOBAL hGlobalMemory, bool bAllowGrow)

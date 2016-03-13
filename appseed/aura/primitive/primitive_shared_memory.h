@@ -33,7 +33,7 @@ namespace primitive
 
 
       LPBYTE detach_shared_memory(HGLOBAL & hglobal);
-      LPBYTE detach(HGLOBAL & hglobal);
+      //LPBYTE detach(HGLOBAL & hglobal);
 //      virtual bool allocate_internal(memory_size_t dwNewLength);
 
 

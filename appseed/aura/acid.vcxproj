@@ -982,6 +982,7 @@
     <ClInclude Include="user\colorertake5\colorertake5_Writer.h" />
     <ClInclude Include="user\colorertake5\colorertake5_xmldom.h" />
     <ClInclude Include="user\simple\simple_message_box.h" />
+    <ClCompile Include="graphics\draw2d\draw2d_nanosvg.cpp" />
     <ClCompile Include="graphics\draw2d\_draw2d.cpp" />
     <ClCompile Include="graphics\visual\visual_cursor.cpp" />
     <ClCompile Include="graphics\visual\visual_icon.cpp" />

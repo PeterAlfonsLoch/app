@@ -53,14 +53,13 @@ namespace file
          bufferSize = kMinBlockSize;
       if (m_memory.get_size() == bufferSize)
          return true;
-      m_memory.free_data();
       m_memory.allocate(bufferSize);
       return m_memory.get_data() != NULL;
    }
 
    void out_buffer::destroy()
    {
-      m_memory.free_data();
+      m_memory.allocate(0);
    }
 
    void out_buffer::SetStream(writer *stream)
