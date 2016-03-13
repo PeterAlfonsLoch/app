@@ -355,7 +355,7 @@ namespace user
    }
    */
 
-   void document_manager::add_document_template(sp(::user::impact_system) ptemplate)
+   void document_manager::add_document_template(::user::impact_system * ptemplate)
    {
       ASSERT_VALID(ptemplate);
       if(m_templateptra.add_unique(ptemplate))
@@ -364,17 +364,40 @@ namespace user
       }
    }
 
+   void document_manager::remove_document_template(::user::impact_system * ptemplate)
+   {
+      
+      ASSERT_VALID(ptemplate);
+      
+      ::count c = m_templateptra.remove(ptemplate);
+
+      if (c <= 0)
+      {
+
+         TRACE("removing document template not managed by document manager");
+
+      }
+      
+      ptemplate->close_all_documents(false);
+      
+   }
+
    ::count document_manager::get_template_count() const
    {
       return m_templateptra.get_count();
    }
 
-   sp(::user::impact_system) document_manager::get_template(index index) const
+
+   ::user::impact_system * document_manager::get_template(index index) const
    {
+
       if(index < 0 || index >= m_templateptra.get_count())
          return NULL;
+
       return m_templateptra.element_at(index);
+
    }
+
 
    bool document_manager::save_all_modified()
    {

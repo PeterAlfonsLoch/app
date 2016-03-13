@@ -2129,8 +2129,6 @@ Restart:
    ::user::interaction * interaction_base::previous_sibling()
    {
 
-      ::exception::throw_interface_only(get_app());
-
       return NULL;
 
    }
@@ -2140,16 +2138,12 @@ Restart:
 
       UNREFERENCED_PARAMETER(pui);
 
-      ::exception::throw_interface_only(get_app());
-
       return NULL;
 
    }
 
    ::user::interaction * interaction_base::next_sibling()
    {
-
-      ::exception::throw_interface_only(get_app());
 
       return NULL;
 
@@ -2159,8 +2153,6 @@ Restart:
    {
 
       UNREFERENCED_PARAMETER(pui);
-
-      ::exception::throw_interface_only(get_app());
 
       return NULL;
 

@@ -29,6 +29,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include <openssl/crypto.h>
 #include <openssl/rand.h>
 #include <openssl/engine.h>
+#include <openssl/conf.h>
 
 #if defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
 
@@ -203,12 +204,30 @@ namespace sockets
 
 //      bio_err = NULL;
       //ENGINE_cleanup();
-      sk_SSL_COMP_free(SSL_COMP_get_compression_methods());
+      //sk_SSL_COMP_free(SSL_COMP_get_compression_methods());
       //SSL_COMP_free_compression_methods(); .
-      ERR_free_strings();
-      EVP_cleanup();
+      //ERR_free_strings();
+      //EVP_cleanup();
 
       ERR_remove_state(0);
+
+
+
+      EVP_cleanup();
+
+      ERR_free_strings();
+
+      CRYPTO_cleanup_all_ex_data();
+
+      ENGINE_cleanup();
+
+      CONF_modules_unload(1);
+
+      CONF_modules_free();
+
+      sk_SSL_COMP_free(SSL_COMP_get_compression_methods());
+
+      RAND_cleanup();
 
       //      TRACE("~SSLInitializer()\n");
             //DeleteRandFile();

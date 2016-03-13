@@ -46,9 +46,10 @@ namespace user
       virtual void assert_valid() const;
       virtual void dump(dump_context & dumpcontext) const;
 
-      virtual void add_document_template(sp(::user::impact_system) ptemplate);
+      virtual void add_document_template(::user::impact_system * ptemplate);
+      virtual void remove_document_template(::user::impact_system * ptemplate);
       virtual ::count get_template_count() const;
-      virtual sp(::user::impact_system) get_template(index index) const;
+      virtual ::user::impact_system * get_template(index index) const;
       virtual void RegisterShellFileTypes(bool bCompat);
       void UnregisterShellFileTypes();
       virtual void request(sp(::create) pcreatecontext); // open named file

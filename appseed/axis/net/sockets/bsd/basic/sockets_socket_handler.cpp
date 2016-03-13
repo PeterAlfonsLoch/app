@@ -858,36 +858,40 @@ namespace sockets
       // check erased sockets
       while(m_fds_erase.get_size())
       {
+         
          SOCKET socket = m_fds_erase.remove_head();
+         
          m_fds_detach.remove(socket);
+
          m_fds.remove(socket);
+
+         m_fds_close.remove(socket);
+
          sp(base_socket) psocket;
-         if(m_sockets.Lookup(socket,psocket))
+
+         if(m_sockets.Lookup(socket, psocket))
          {
-            psocket->SetErasedByHandler();
-            if(m_slave)
-            {
-               if(psocket != NULL)
-               {
-                  try
-                  {
-                     psocket->release();
-                  }
-                  catch(...)
-                  {
-                  }
-               }
-            }
+
             m_sockets.remove_key(socket);
+
+            m_delete.remove(psocket);
+
+            m_add.remove_key(socket);
+
          }
+
          check_max_fd = true;
+
       }
 
       // calculate MAX file descriptor for select() call
       if(check_max_fd)
       {
+
          m_maxsock = m_fds.maximum(0);
+
       }
+
       // remove add's that fizzed
       while(m_delete.get_size() > 0)
       {
@@ -928,7 +932,6 @@ namespace sockets
                   }
                }
             } while(again);
-            p.release();
          }
       }
       return n;

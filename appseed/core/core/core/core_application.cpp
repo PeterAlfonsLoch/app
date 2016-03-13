@@ -3637,7 +3637,7 @@ namespace core
       if (m_pdocmanager == NULL)
          return;
 
-      document_manager().add_document_template(pimpactsystem);
+      document_manager().remove_document_template(pimpactsystem);
 
    }
 

@@ -10,20 +10,20 @@ namespace file
    {
 
       if (pmutex == NULL)
-         m_spmutex = new mutex(papp);
+         m_spmutex = canew(mutex(papp));
       else
          m_spmutex = pmutex;
 
-      m_pmemory = new memory;
+      m_pmemory = canew(memory);
       m_pmemory->set_app(papp);
       m_pmemory->m_spmutex = m_spmutex;
 
-      m_pmemoryfileIn = new ::file::memory_buffer(papp, m_pmemory.m_p);
+      m_pmemoryfileIn = canew(::file::memory_buffer(papp, m_pmemory.m_p));
 
-      m_pmemoryfileOut = new ::file::memory_buffer(papp, m_pmemory.m_p);
+      m_pmemoryfileOut = canew(::file::memory_buffer(papp, m_pmemory.m_p));
 
       // (uint64_t) -1 - initially unknown size
-      m_ptimeoutfile = new ::file::timeout_buffer(papp, m_pmemoryfileOut, (uint64_t)-1);
+      m_ptimeoutfile = canew(::file::timeout_buffer(papp, m_pmemoryfileOut, (uint64_t)-1));
       m_ptimeoutfile->m_spmutex = m_spmutex;
 
       m_spfile = m_ptimeoutfile;
@@ -40,16 +40,16 @@ namespace file
    {
 
       if (pmemoryfileIn->get_memory()->m_spmutex.is_null())
-         pmemoryfileIn->get_memory()->m_spmutex = new mutex(papp);
+         pmemoryfileIn->get_memory()->m_spmutex = canew(mutex(papp));
 
       m_spmutex = pmemoryfileIn->get_memory()->m_spmutex;
 
       m_pmemory = pmemoryfileIn->get_memory();
       m_pmemoryfileIn = pmemoryfileIn;
 
-      m_pmemoryfileOut = new ::file::memory_buffer(papp, m_pmemory.m_p);
+      m_pmemoryfileOut = canew(::file::memory_buffer(papp, m_pmemory.m_p));
 
-      m_ptimeoutfile = new ::file::timeout_buffer(papp, m_pmemoryfileOut);
+      m_ptimeoutfile = canew(::file::timeout_buffer(papp, m_pmemoryfileOut));
       m_ptimeoutfile->m_spmutex = m_spmutex;
 
       m_spfile = m_ptimeoutfile;

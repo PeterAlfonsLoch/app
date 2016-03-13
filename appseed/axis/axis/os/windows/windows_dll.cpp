@@ -55,6 +55,8 @@ BOOL WINAPI DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
    {
 
 
+      ERR_remove_state(::GetCurrentProcessId());
+
       OutputDebugStringW(L"axis.dll terminating!\n");
 
 

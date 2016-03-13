@@ -81,7 +81,7 @@ namespace primitive
       if(m_spmemory.is_null())
       {
 
-         m_spmemory = new memory(this);
+         m_spmemory =canew(memory(this));
 
          if(m_spmemory.is_null())
          {
@@ -104,12 +104,12 @@ namespace primitive
 
    void memory_container ::allocate_internal(memory_size_t dwNewLength)
    {
-      if(m_spmemory == NULL)
+      if(m_spmemory.is_null())
       {
-         m_spmemory = new memory(this);
+         m_spmemory = canew(memory(this));
          if(m_spmemory.is_null())
          {
-            throw new memory_exception(get_app());
+            throw memory_exception(get_app());
          }
       }
       m_spmemory->allocate_internal(dwNewLength);
@@ -142,7 +142,7 @@ namespace primitive
    {
       if(m_spmemory.is_null())
       {
-         m_spmemory = new memory(this);
+         m_spmemory = canew(memory(this));
       }
       m_spmemory->copy_from(pmemory);
    }
@@ -152,7 +152,7 @@ namespace primitive
    {
       if(m_spmemory.is_null())
       {
-         m_spmemory = new memory(this);
+         m_spmemory = canew(memory(this));
       }
       m_spmemory->read(is);
    }
@@ -186,7 +186,7 @@ namespace primitive
          m_spmemory.release();
       else
       {
-         m_spmemory = new memory(this);
+         m_spmemory = canew(memory(this));
          m_spmemory->copy_from(container.m_spmemory);
       }
 
