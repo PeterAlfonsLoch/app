@@ -1357,7 +1357,14 @@ namespace user
 
          get_color(cr, ::user::color_background);
 
-         pdc->FillSolidRect(rectClient, cr);
+         if (cr != 0)
+
+         {
+
+            pdc->FillSolidRect(rectClient, cr);
+
+
+         }
 
       }
       else

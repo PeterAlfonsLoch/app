@@ -489,8 +489,9 @@ namespace user
       if(pdrawitem->m_bListItemHover)
       {
          if(!pdrawitem->m_plist->m_bMorePlain)
-         {
-            pdrawitem->m_pgraphics->FillSolidRect(pdrawitem->m_rectItem,ARGB(128,255,255,255));
+         {         
+            pdrawitem->m_pgraphics->Draw3dRect(pdrawitem->m_rectItem, ARGB(77, 235, 235, 255), ARGB(77, 235, 235, 255));
+            pdrawitem->m_pgraphics->FillSolidRect(pdrawitem->m_rectItem,ARGB(40,255,255,255));
          }
          pfont = _001GetFontHover();
       }
@@ -5697,14 +5698,14 @@ namespace user
       else
       {
          synch_lock sl(get_image_list()->m_pmutex);
-         if(m_plist->m_bMorePlain)
-         {
+         //if(m_plist->m_bMorePlain)
+         //{
 
-            m_pgraphics->set_alpha_mode(::draw2d::alpha_mode_set);
-            return m_pgraphics->BitBlt(m_rectImage.left, m_rectImage.top, m_rectImage.width(), m_rectImage.height(),get_image_list()->m_spdib->get_graphics(), m_iImage * m_rectImage.width());
+         //   m_pgraphics->set_alpha_mode(::draw2d::alpha_mode_set);
+         //   return m_pgraphics->BitBlt(m_rectImage.left, m_rectImage.top, m_rectImage.width(), m_rectImage.height(),get_image_list()->m_spdib->get_graphics(), m_iImage * m_rectImage.width());
 
-         }
-         else
+         //}
+         //else
          {
             m_pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
             return get_image_list()->draw(m_pgraphics,(int32_t)m_iImage,m_rectImage.top_left(),m_rectImage.size(),point(0,0),0);
