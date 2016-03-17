@@ -264,6 +264,22 @@ namespace aura
 
    }
 
+   void application::throw_not_installed()
+   {
+      
+      string strBuildNumber = System.command()->m_varTopicQuery["build_number"];
+      
+      if(strBuildNumber.is_empty())
+      {
+         
+         strBuildNumber = "installed";
+         
+      }
+      
+       throw not_installed(get_app(),System.install_get_version(),strBuildNumber,"application",m_strAppName,Session.m_strLocale,Session.m_strSchema);
+   }
+   
+
 
    void application::on_create(::create * pcreate)
    {
@@ -1680,6 +1696,7 @@ namespace aura
 
    }
 
+   
    bool application::stop_service()
    {
 
@@ -4154,7 +4171,12 @@ namespace aura
 
 
             //                     strPath += ".app/Contents/MacOS/app";
-            strPath = get_exe_path();
+            // please be extremely careful with code below.
+            // Package app.app project with the <your-app> project!
+            // The code below will seem to be guilty and blameable if you skipp app.app packaging with your app.
+            ::file::path path = get_exe_path();
+            path-=4;
+            strPath = path/"app.app/Contents/MacOS/app";
             //                     setenv("DYLD_FALLBACK_LIBRARY_PATH",System.dir().ca2module(), 1 );
             //                     setenv("DYLD_FALLBACK_LIBRARY_PATH",strPath, 1 );
 

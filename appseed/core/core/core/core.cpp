@@ -202,6 +202,8 @@ CLASS_DECL_CORE bool defer_core_init()
 
    if(g_iCoreRefCount > 1)
       return true;
+   
+   
 
    if(!::core::init_core())
       return false;

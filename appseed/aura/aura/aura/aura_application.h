@@ -507,6 +507,7 @@ namespace aura
 
       virtual void dispatch_user_message_object(::object * pobject);
 
+      virtual void throw_not_installed();
 
    };
 

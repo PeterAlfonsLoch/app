@@ -114,14 +114,22 @@ int32_t base_main_command_line(const char * pszParams, int argc, char *argv[])
    
    string strCommandLine;
    
-   strCommandLine = "app";
+   strCommandLine = argv[0];
    
-   if(strlen(pszParams) > 0)
+   string strP = pszParams;
+   
+   strsize iFind = strP.find(':');
+   
+   string str1;
+   
+   string str2;
+   
+   if(iFind >= 0)
    {
       
-      strCommandLine += " ";
+      str1 = strP.Left(iFind);
       
-      strCommandLine += pszParams;
+      str2 = strP.Mid(iFind + 1);
       
    }
    
@@ -131,25 +139,38 @@ int32_t base_main_command_line(const char * pszParams, int argc, char *argv[])
    
    string strAddUp;
    
-   for(index i = 0; i < argc; i++)
+   bool bColon = false;
+   
+   for(index i = 1; i < argc; i++)
    {
       
-      if(strcmp(argv[i], "install") == 0)
+      if(strcmp(argv[i], ":") == 0)
       {
          
-         strAddUp += " install";
+         bColon = true;
          
       }
-      else if(strcmp(argv[i], "uninstall") == 0)
+      else
       {
          
-         strAddUp += " uninstall";
+         if(!bColon)
+         {
+            
+            str1 += string(" ") + argv[i];
+            
+         }
+         else
+         {
+
+            str2 += string(" ") + argv[i];
+            
+         }
          
       }
       
    }
    
-   strCommandLine += strAddUp;
+   strCommandLine += str1 + " : " + str2;
    
    setlocale(LC_ALL,"");
    

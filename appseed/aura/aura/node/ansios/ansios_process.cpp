@@ -511,12 +511,39 @@ namespace ansios
  //        int pptp_pid = 0;
 
   //       fscanf(pipe, "%d", &pptp_pid);
+         bool bNewLine = true;
+         while(true)
+         {
+            char str[1000];
+            memset(str, 0, sizeof(str));
+            fgets(str, sizeof(str), pipe);
+            if(str[sizeof(str)-2] == '\n' || str[sizeof(str)-2] == '\0')
+            {
+               if(bNewLine)
+               {
+                  string strLine = str;
+                  if(::str::begins_eat_ci(strLine, "application_process_id="))
+                  {
+                     m_iPid = atoi(strLine);
+                     break;
+                  }
+               }
+               else
+               {
+                  bNewLine = true;
+               }
+            }
+            else
+            {
+               bNewLine = false;
+            }
+         }
 
-         pid_t pptp_pid = 0;
+//         pid_t pptp_pid = 0;
 
-         fread(&pptp_pid,sizeof(pptp_pid),1,pipe); // get pid
+  //       fread(&pptp_pid,sizeof(pptp_pid),1,pipe); // get pid
 
-         m_iPid = pptp_pid;
+    //     m_iPid = pptp_pid;
 
          DWORD dwStart = get_tick_count();
          

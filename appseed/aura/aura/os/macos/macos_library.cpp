@@ -29,8 +29,10 @@
       
       if(plibrary == NULL)
       {
+
+         string strError(dlerror());
          
-         ::output_debug_string("\n\n__node_library_open Failed " + strPath + "\n\n");
+         ::output_debug_string("\n\n__node_library_open Failed " + strPath + " with the error: \""+strError+"\"\n\n");
          
       }
       else
