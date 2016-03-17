@@ -24,7 +24,7 @@
 @interface RoundWindowApp : NSObject<NSApplicationDelegate>
 {
 @public
-   
+
    
 }
 

@@ -24,9 +24,7 @@
 		07DA47901B71EEB5006F27E6 /* libbase.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07DA47691B71ED03006F27E6 /* libbase.dylib */; };
 		07DA47911B71EECF006F27E6 /* libcore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07DA47751B71ED0F006F27E6 /* libcore.dylib */; };
 		07DA47A01B71EF4E006F27E6 /* libhtml.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07DA479B1B71EF33006F27E6 /* libhtml.dylib */; };
-		07DA47A31B71EF63006F27E6 /* libhtml.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07DA47991B71EF33006F27E6 /* libhtml.dylib */; };
 		07DA47B41B71EFA3006F27E6 /* libmath.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07DA47AB1B71EF89006F27E6 /* libmath.dylib */; };
-		07DA47B51B71EFB3006F27E6 /* libmath.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07DA47AB1B71EF89006F27E6 /* libmath.dylib */; };
 		07DA47E21B71F03B006F27E6 /* console.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DA47D71B71F03B006F27E6 /* console.h */; };
 		07DA47E41B71F03B006F27E6 /* console_application.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DA47D91B71F03B006F27E6 /* console_application.h */; };
 		07DA47E61B71F03B006F27E6 /* console_prompt.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DA47DB1B71F03B006F27E6 /* console_prompt.h */; };
@@ -395,8 +393,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07DA47B51B71EFB3006F27E6 /* libmath.dylib in Frameworks */,
-				07DA47A31B71EF63006F27E6 /* libhtml.dylib in Frameworks */,
 				07DA478D1B71EE85006F27E6 /* libcore.dylib in Frameworks */,
 				07DA478C1B71ED92006F27E6 /* libbase.dylib in Frameworks */,
 				07DA478B1B71ED83006F27E6 /* libaxis.dylib in Frameworks */,
@@ -751,7 +747,7 @@
 		9A574B8F16AAB906000CC4EF /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "Camilo Sasuke Tsumanuma";
 				TargetAttributes = {
 					07B657F0190F3CCC002DAADE = {
@@ -1140,6 +1136,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = "sphere_iosTests/sphere_iosTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				PRODUCT_BUNDLE_IDENTIFIER = "ca2.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				TEST_HOST = "$(BUNDLE_LOADER)";
@@ -1174,6 +1171,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = "sphere_iosTests/sphere_iosTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				PRODUCT_BUNDLE_IDENTIFIER = "ca2.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				TEST_HOST = "$(BUNDLE_LOADER)";
@@ -1194,6 +1192,7 @@
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				EXECUTABLE_EXTENSION = dylib;
 				EXECUTABLE_PREFIX = lib;
 				GCC_C_LANGUAGE_STANDARD = c99;

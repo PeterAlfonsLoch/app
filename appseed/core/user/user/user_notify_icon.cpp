@@ -153,7 +153,42 @@ namespace user
          return false;
 
       }
-
+#elif defined(MACOS)
+      string strFolder("/macos/");
+      
+      string str1 = hicon->m_strAppTrayIcon;
+      
+      str1.replace("-", "_");
+      
+      str1.replace("/", "_");
+      
+      str1.replace("\\", "_");
+      
+      string str(str1);
+      
+      if(::str::begins_eat_ci(str, "app_veriwell_"))
+      {
+         
+         strFolder+="app-veriwell";
+         
+      }
+      else if(::str::begins_eat_ci(str, "app_core_"))
+      {
+         
+         strFolder+="app-core";
+         
+      }
+      else
+      {
+         
+         strFolder+="app";
+         
+      }
+      
+      strFolder+= "/appmatter/" + str;
+      
+      strFolder += "/_std/_std/main/";
+      notify_icon_init(strFolder+"menubar-icon-22.png");
 #else
 #endif
 
@@ -229,7 +264,19 @@ namespace user
 
    }
 
-
+void notify_icon::notify_icon_play(const char * action)
+   {
+      string strAction(action);
+      
+      if(strAction == "close")
+      {
+         __close();
+      }
+      else if(strAction== "quite")
+      {
+         __quit();
+      }
+   }
    void notify_icon::__close()
    {
 
@@ -240,6 +287,8 @@ namespace user
 
    void notify_icon::__quit()
    {
+      
+      
 
       m_plistener->OnNotifyIconMessage(m_uiId, WM_QUIT);
 

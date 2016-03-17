@@ -750,7 +750,7 @@ public:
 
    bool has_char() const NOTHROW
    {
-      return *m_pszData != '\0';
+      return m_pszData != NULL && *m_pszData != '\0';
    }
 
    char * LockBuffer()

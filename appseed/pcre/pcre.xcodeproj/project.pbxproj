@@ -79,7 +79,7 @@
 		074DA70D1C8E550500748EB7 /* pcre.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pcre.cpp; sourceTree = SOURCE_ROOT; };
 		074DA70E1C8E550500748EB7 /* pcre.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pcre.h; sourceTree = SOURCE_ROOT; };
 		074DA9691C8E6B2200748EB7 /* aurapcre.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aurapcre.xcodeproj; path = ../../aura/pcre/aurapcre.xcodeproj; sourceTree = "<group>"; };
-		07D6A8471B4CBB45004FEBC2 /* libpcre.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libpcre.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		07D6A8471B4CBB45004FEBC2 /* libios_pcre.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_pcre.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A1EDB4719C83FE800F5CCE8 /* aura.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aura.xcodeproj; path = ../../appseed/aura/aura.xcodeproj; sourceTree = "<group>"; };
 		9AA539B119B763C400B9F861 /* libpcre.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libpcre.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -121,7 +121,7 @@
 				074DA9691C8E6B2200748EB7 /* aurapcre.xcodeproj */,
 				9A1EDAE819C83CD000F5CCE8 /* pcre */,
 				9AA539B119B763C400B9F861 /* libpcre.dylib */,
-				07D6A8471B4CBB45004FEBC2 /* libpcre.dylib */,
+				07D6A8471B4CBB45004FEBC2 /* libios_pcre.dylib */,
 			);
 			sourceTree = "<group>";
 		};
@@ -183,7 +183,7 @@
 			);
 			name = ios_pcre;
 			productName = FreeImage;
-			productReference = 07D6A8471B4CBB45004FEBC2 /* libpcre.dylib */;
+			productReference = 07D6A8471B4CBB45004FEBC2 /* libios_pcre.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 		9AA5E4C216F7C61B005C45CE /* pcre */ = {
@@ -321,6 +321,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INSTALL_PATH = "@executable_path/../Frameworks";
+				PRODUCT_NAME = ios_pcre;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = NO;
 			};
@@ -330,6 +331,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INSTALL_PATH = "@executable_path/../Frameworks";
+				PRODUCT_NAME = ios_pcre;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = NO;
 			};

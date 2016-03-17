@@ -157,15 +157,23 @@ namespace axis
 
    }
 
+   
    bool application::load_string(string & str,id id)
    {
+      
       synch_lock sl(&m_mutexStr);
+      
       if(!load_cached_string(str,id,true))
       {
+         
          return false;
+         
       }
+      
       return true;
+      
    }
+   
 
    bool application::load_cached_string(string & str,id id,bool bLoadStringTable)
    {
@@ -173,7 +181,7 @@ namespace axis
       ::xml::document doc(this);
       if(!doc.load(id))
       {
-         return load_cached_string_by_id(str,id,(const string &) *((const string *) NULL),bLoadStringTable);
+         return load_cached_string_by_id(str,id,"",bLoadStringTable);
       }
       sp(::xml::node) pnodeRoot = doc.get_root();
       if(pnodeRoot->get_name() == "string")

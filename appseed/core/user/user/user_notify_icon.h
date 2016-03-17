@@ -3,7 +3,9 @@
 
 #ifdef LINUX
 #include "basecore/basecore.h"
-#endif // LINUX
+#elif defined (__APPLE__)
+#include "user_notify_icon_mm_bridge.h"
+#endif
 
 
 namespace user
@@ -17,6 +19,8 @@ namespace user
       virtual public ::user::interaction
       #ifdef LINUX
       , public i_close_quit
+      #elif defined (__APPLE__)
+      , public user_notify_icon_mm_bridge
       #endif
    {
    public:
@@ -59,6 +63,7 @@ namespace user
       virtual void __close();
       virtual void __quit();
       virtual bool __close_is_closed();
+      virtual void notify_icon_play(const char * action);
 
    };
 

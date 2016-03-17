@@ -399,9 +399,6 @@ namespace aura
       if(!load_string(str,id))
       {
 
-         if(&strDefault == NULL)
-            return (const string &)id;
-
          if(strDefault.has_char())
             return strDefault;
 

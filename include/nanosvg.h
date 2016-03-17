@@ -2256,6 +2256,8 @@ static void nsvg__addUse(NSVGparser* p)
    float bounds[4];
    float* curve;
    int i;
+   float x;
+   float y;
 
    if (list->npts < 4)
       return;
@@ -2273,8 +2275,8 @@ static void nsvg__addUse(NSVGparser* p)
    path->closed = list->closed;
    path->npts = list->npts;
 
-   float x = attr->x;
-   float y = attr->y;
+   x = attr->x;
+   y = attr->y;
    for (index i = 0; i < path->npts; i++)
    {
 

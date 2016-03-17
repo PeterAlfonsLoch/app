@@ -767,6 +767,7 @@
 		07B4AFE119CB9D8500E56AFA /* file_file_stream_base.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B4AFD919CB9D8500E56AFA /* file_file_stream_base.h */; };
 		07B4AFE319CB9D8500E56AFA /* file_file_stream.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B4AFDB19CB9D8500E56AFA /* file_file_stream.h */; };
 		07C530BD1B6FBA1300379625 /* ns_exe_path.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07C530BC1B6FBA1200379625 /* ns_exe_path.cpp */; };
+		07C64B7B1C9A29A400F54872 /* draw2d_nanosvg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07C64B7A1C9A29A400F54872 /* draw2d_nanosvg.cpp */; };
 		07CAA96D1B4DBC4000180410 /* os.h in Headers */ = {isa = PBXBuildFile; fileRef = 07CAA96C1B4DBC4000180410 /* os.h */; };
 		07CAA9731B4DC5E900180410 /* DDInvocationGrabber.mm in Sources */ = {isa = PBXBuildFile; fileRef = 077A05341B4D70B7001C85FF /* DDInvocationGrabber.mm */; };
 		07CAA9741B4DC5E900180410 /* ios_cross_gdi.mm in Sources */ = {isa = PBXBuildFile; fileRef = 077A053A1B4D70B7001C85FF /* ios_cross_gdi.mm */; };
@@ -1473,6 +1474,7 @@
 		07B4AFDB19CB9D8500E56AFA /* file_file_stream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = file_file_stream.h; sourceTree = "<group>"; };
 		07BD556C16210BD4008E31F0 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		07C530BC1B6FBA1200379625 /* ns_exe_path.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ns_exe_path.cpp; sourceTree = "<group>"; };
+		07C64B7A1C9A29A400F54872 /* draw2d_nanosvg.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = draw2d_nanosvg.cpp; sourceTree = "<group>"; };
 		07CAA96C1B4DBC4000180410 /* os.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = os.h; sourceTree = "<group>"; };
 		07CABC101B3DFF200009F5B9 /* user_frame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = user_frame.cpp; sourceTree = "<group>"; };
 		07CABC111B3DFF200009F5B9 /* user_frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = user_frame.h; sourceTree = "<group>"; };
@@ -2340,6 +2342,7 @@
 		07F5B20F184A3B690092C3E1 /* draw2d */ = {
 			isa = PBXGroup;
 			children = (
+				07C64B7A1C9A29A400F54872 /* draw2d_nanosvg.cpp */,
 				077CEF211B23D0B3009A57EF /* _draw2d.cpp */,
 				9A16453219C4A52800966C5E /* draw2d_const.h */,
 				9A16453319C4A52800966C5E /* draw2d_fwd.h */,
@@ -4337,6 +4340,7 @@
 			files = (
 				07CABC141B3DFF200009F5B9 /* user_frame.cpp in Sources */,
 				0705619C1C4115F2004085DF /* exception_engine.cpp in Sources */,
+				07C64B7B1C9A29A400F54872 /* draw2d_nanosvg.cpp in Sources */,
 				07CABC161B3DFF200009F5B9 /* user_primitive.cpp in Sources */,
 				077CEF221B23D0B3009A57EF /* _draw2d.cpp in Sources */,
 				9A1EDB6019C841D600F5CCE8 /* service_plain_service.cpp in Sources */,

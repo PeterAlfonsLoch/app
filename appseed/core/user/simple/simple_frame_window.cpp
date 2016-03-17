@@ -439,6 +439,13 @@ void simple_frame_window::_001OnCreate(signal_details * pobj)
       }
 
       ModifyStyleEx(0, WS_EX_TOOLWINDOW, 0);
+      
+#ifdef MACOS
+      
+      ProcessSerialNumber psn = { 0, kCurrentProcess };
+      TransformProcessType(&psn, kProcessTransformToUIElementApplication);
+
+#endif
 
    }
 
