@@ -861,14 +861,15 @@ namespace filemanager
 
       int32_t ImageSet::GetImage(
          oswindow oswindow,
-         IShellFolder * lpsf,
          LPITEMIDLIST lpiidlAbsolute,
          LPITEMIDLIST lpiidlChild,
          const unichar * lpcszExtra,
          EIcon eicon, COLORREF crBk)
       {
 
-         single_lock sl(&m_mutex,true);
+         ::windows::comptr < IShellFolder> lpsf;
+         
+         lpsf.m_p = _017GetShellFolder(lpiidlAbsolute);
 
          if(lpsf == NULL)
             return 0x80000000;
@@ -1024,7 +1025,6 @@ namespace filemanager
 
                int32_t iImage = GetImage(
                   oswindow,
-                  lpsf,
                   lpiidl2,
                   lpiidlChild2,
                   NULL,
@@ -1706,21 +1706,14 @@ namespace filemanager
       {
 
 
-         single_lock sl(&m_mutex,true);
-
-         IShellFolder  * lpsf = _017GetShellFolder(lpiidlAbsolute);
-
-
          LPITEMIDLIST lpiidlChild = _017ItemIDListGetLast(lpiidlAbsolute);
          int32_t iImage = GetImage(
             oswindow,
-            lpsf,
             lpiidlAbsolute,
             lpiidlChild,
             lpcszExtra,
             eicon, crBk);
 
-         lpsf->Release();
 
          _017ItemIDListFree(lpiidlChild);
 

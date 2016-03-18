@@ -168,9 +168,6 @@ namespace filemanager
 
       }
 
-      single_lock sl(&m_mutex, true);
-      synch_lock sl1(m_pil48Hover->m_pmutex);
-      synch_lock sl2(m_pil48->m_pmutex);
 
       int32_t iImage = 0x80000000;
 
@@ -198,12 +195,15 @@ namespace filemanager
       if(crBk != 0)
       {
 
+         synch_lock sl1(m_pil48Hover->m_pmutex);
+         synch_lock sl2(m_pil48->m_pmutex);
 
          {
             ::draw2d::dib_sp dib(allocer());
             dib->create(48,48);
             dib->Fill(255,argb_get_r_value(crBk),argb_get_g_value(crBk),argb_get_b_value(crBk));
             dib->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_blend);
+
             m_pil48Hover->draw(dib->get_graphics(),iImage,null_point(),0);
             m_pil48Hover->m_spdib->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
             m_pil48Hover->m_spdib->get_graphics()->BitBlt(iImage * 48,0,48,48,dib->get_graphics());
@@ -402,10 +402,10 @@ namespace filemanager
 #ifdef WINDOWSEX
             HICON hicon16 = (HICON) ::LoadImage(NULL,Application.dir().matter(str + "/mainframe/icon.ico"),IMAGE_ICON,16,16,LR_LOADFROMFILE);
             HICON hicon48 = (HICON) ::LoadImage(NULL,Application.dir().matter(str + "/mainframe/icon.ico"),IMAGE_ICON,48,48,LR_LOADFROMFILE);
-            iImage = m_pil16->add_icon_os_data(hicon16);
-            m_pil48Hover->add_icon_os_data(hicon48);
             synch_lock sl1(m_pil48Hover->m_pmutex);
             synch_lock sl2(m_pil48->m_pmutex);
+            iImage = m_pil16->add_icon_os_data(hicon16);
+            m_pil48Hover->add_icon_os_data(hicon48);
 
             if(crBk == 0)
             {

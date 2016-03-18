@@ -181,20 +181,24 @@ namespace axis
       ::xml::document doc(this);
       if(!doc.load(id))
       {
-         return load_cached_string_by_id(str,id,"",bLoadStringTable);
+         return load_cached_string_by_id(str,id,bLoadStringTable);
       }
       sp(::xml::node) pnodeRoot = doc.get_root();
       if(pnodeRoot->get_name() == "string")
       {
          string strId = pnodeRoot->attr("id");
-         string strValue = pnodeRoot->get_value();
-         return load_cached_string_by_id(str,strId,strValue,bLoadStringTable);
+         if (!load_cached_string_by_id(str, strId, bLoadStringTable))
+         {
+            str = pnodeRoot->get_value();
+            return false;
+         }
+         return true;
       }
       str = doc.get_name();
       return true;
    }
 
-   bool application::load_cached_string_by_id(string & str,id id,const string & pszFallbackValue,bool bLoadStringTable)
+   bool application::load_cached_string_by_id(string & str,id id,bool bLoadStringTable)
    {
 
       synch_lock sl(&m_mutexStr);
@@ -231,16 +235,13 @@ namespace axis
       else if(bLoadStringTable)
       {
          load_string_table(strTable,"");
-         return load_cached_string_by_id(str,id,pszFallbackValue,false);
+         return load_cached_string_by_id(str,id,false);
       }
-      if(&pszFallbackValue == NULL)
-         return false;
-      else if(pszFallbackValue.is_empty())
-         str = strId;
-      else
-         str = pszFallbackValue;
-      return true;
+
+      return false;
+
    }
+
 
    void application::load_string_table(const string & pszApp,const string & pszId)
    {
