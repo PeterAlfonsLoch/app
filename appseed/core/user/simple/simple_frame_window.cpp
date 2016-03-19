@@ -470,6 +470,7 @@ void simple_frame_window::_001OnShowWindow(signal_details * pobj)
    if(m_bDefaultNotifyIcon)
    {
       
+#ifdef MACOS
       ProcessSerialNumber psn;
       if (noErr == GetCurrentProcess(&psn))
       {
@@ -501,6 +502,9 @@ void simple_frame_window::_001OnShowWindow(signal_details * pobj)
       }
          
       }
+
+#endif
+
       
    }
 

@@ -5237,10 +5237,12 @@ restart_mouse_hover_check:
 
       SCAST_PTR(::message::base,pbase,pobj);
 
-      if(Session.get_cursor() != NULL && Session.get_cursor()->m_ecursor != ::visual::cursor_system)
+      auto pcursor = Session.get_cursor();
+
+      if(pcursor != NULL && pcursor->m_ecursor != ::visual::cursor_system)
       {
 
-         ::SetCursor(Session.get_cursor()->get_HCURSOR());
+         ::SetCursor(pcursor->get_HCURSOR());
 
       }
 
