@@ -177,26 +177,40 @@ namespace axis
 
    bool application::load_cached_string(string & str,id id,bool bLoadStringTable)
    {
+      
       synch_lock sl(&m_mutexStr);
+      
       ::xml::document doc(this);
+      
       if(!doc.load(id))
       {
+         
          return load_cached_string_by_id(str,id,bLoadStringTable);
+         
       }
+      
       sp(::xml::node) pnodeRoot = doc.get_root();
+      
       if(pnodeRoot->get_name() == "string")
       {
+         
          string strId = pnodeRoot->attr("id");
+
          if (!load_cached_string_by_id(str, strId, bLoadStringTable))
          {
+
             str = pnodeRoot->get_value();
-            return false;
+            
          }
+         
          return true;
+         
       }
-      str = doc.get_name();
-      return true;
+      
+      return false;
+      
    }
+   
 
    bool application::load_cached_string_by_id(string & str,id id,bool bLoadStringTable)
    {

@@ -7,6 +7,9 @@
 
 extern CLASS_DECL_CORE thread_int_ptr < DWORD_PTR > t_time1;
 
+void nsapp_activate_ignoring_other_apps(int i);
+void nsapp_activation_policy_regular();
+void nsapp_activation_policy_prohibited();
 
 manual_reset_event * simple_frame_window::helper_task::g_pevent = NULL;
 
@@ -462,21 +465,41 @@ void simple_frame_window::_001OnCreate(signal_details * pobj)
 void simple_frame_window::_001OnShowWindow(signal_details * pobj)
 {
    
+   SCAST_PTR(::message::show_window, pshow, pobj);
+   
    if(m_bDefaultNotifyIcon)
    {
       
-      ProcessSerialNumber psn = { 0, kCurrentProcess };
-
-      if(IsWindowVisible())
+      ProcessSerialNumber psn;
+      if (noErr == GetCurrentProcess(&psn))
+      {
+      if(!pshow->m_bShow)
       {
    
          TransformProcessType(&psn, kProcessTransformToUIElementApplication);
+         
+         nsapp_activation_policy_prohibited();
          
       }
       else
       {
          
          TransformProcessType(&psn, kProcessTransformToForegroundApplication);
+         
+         nsapp_activation_policy_regular();
+         
+         nsapp_activate_ignoring_other_apps(1);
+         
+         InitialFramePosition();
+         
+         SetForegroundWindow();
+         
+         BringWindowToTop();
+         
+         SetFrontProcess(&psn);
+         
+      }
+         
       }
       
    }

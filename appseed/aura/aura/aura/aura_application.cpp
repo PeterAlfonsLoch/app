@@ -448,10 +448,19 @@ namespace aura
 
    bool application::load_cached_string(string & str,id id,bool bLoadStringTable)
    {
+      
       ::xml::document doc(this);
+      
       if(!doc.load(id))
       {
-         return load_cached_string_by_id(str,id,bLoadStringTable);
+         
+         if(load_cached_string_by_id(str,id,bLoadStringTable))
+         {
+            
+            return true;
+            
+         }
+         
       }
 
       sp(::xml::node) pnodeRoot = doc.get_root();
@@ -473,8 +482,8 @@ namespace aura
 
       }
 
-      str = doc.get_name();
-      return true;
+      return false;
+      
    }
 
 
