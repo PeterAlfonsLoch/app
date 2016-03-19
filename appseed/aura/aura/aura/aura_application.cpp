@@ -451,64 +451,100 @@ namespace aura
       ::xml::document doc(this);
       if(!doc.load(id))
       {
-         return load_cached_string_by_id(str,id,"",bLoadStringTable);
+         return load_cached_string_by_id(str,id,bLoadStringTable);
       }
+
       sp(::xml::node) pnodeRoot = doc.get_root();
+
       if(pnodeRoot->get_name() == "string")
       {
+
          string strId = pnodeRoot->attr("id");
-         string strValue = pnodeRoot->get_value();
-         return load_cached_string_by_id(str,strId,strValue,bLoadStringTable);
+
+         if (load_cached_string_by_id(str, strId, bLoadStringTable))
+         {
+
+            return true;
+         }
+
+         str = pnodeRoot->get_value();
+
+         return true;
+
       }
+
       str = doc.get_name();
       return true;
    }
 
-   bool application::load_cached_string_by_id(string & str,id id,const string & pszFallbackValue,bool bLoadStringTable)
+
+   bool application::load_cached_string_by_id(string & str,id id,bool bLoadStringTable)
    {
 
       synch_lock sl(&m_mutexStr);
 
       string strId(id.str());
+
       string strTable;
+
       string strString;
+
       string_to_string * pmap = NULL;
+
       index iFind = 0;
+
       if((iFind = strId.find(':')) <= 0)
       {
+
          strTable = "";
+
          strString = strId;
+
       }
       else
       {
+
          strTable = strId.Mid(0,iFind);
+
          strString = strId.Mid(iFind + 1);
+
       }
+
       if(m_stringtableStd.Lookup(strTable,pmap))
       {
+
          if(pmap->Lookup(strString,str))
          {
+
             return true;
+
          }
+
       }
       else if(m_stringtable.Lookup(strTable,pmap))
       {
+         
          if(pmap->Lookup(strString,str))
          {
+
             return true;
+
          }
+
       }
       else if(bLoadStringTable)
       {
+         
          load_string_table(strTable,"");
-         return load_cached_string_by_id(str,id,pszFallbackValue,false);
+         
+         return load_cached_string_by_id(str,id,false);
+
       }
-      if(pszFallbackValue.is_empty())
-         str = strId;
-      else
-         str = pszFallbackValue;
-      return true;
+     
+      return false;
+
    }
+
 
    void application::load_string_table(const string & pszApp,const string & pszId)
    {

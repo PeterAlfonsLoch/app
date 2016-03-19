@@ -165,7 +165,7 @@ namespace aura
       //   virtual string load_string(id id);
       // virtual bool load_string(string & str, id id);
       bool load_cached_string(string & str,id id,bool bLoadStringTable);
-      bool load_cached_string_by_id(string & str,id id,const string & pszFallbackValue,bool bLoadStringTable);
+      bool load_cached_string_by_id(string & str,id id,bool bLoadStringTable);
       void load_string_table(const string & pszApp,const string & pszId);
 
       virtual int32_t hotplugin_host_starter_start_sync(const char * pszCommandLine,::aura::application * papp,hotplugin::host * phost,hotplugin::plugin * pplugin = NULL);
