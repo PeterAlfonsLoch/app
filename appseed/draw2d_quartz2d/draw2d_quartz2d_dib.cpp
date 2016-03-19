@@ -345,7 +345,7 @@ namespace draw2d_quartz2d
    void dib::stretch_dib(::draw2d::dib * pdib)
    {
       
-      throw todo(get_app());
+      ::draw2d::dib::stretch_dib(pdib);
       
    }
    

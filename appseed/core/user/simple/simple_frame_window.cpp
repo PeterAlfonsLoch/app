@@ -160,6 +160,7 @@ void simple_frame_window::install_message_handling(::message::dispatch * pinterf
    IGUI_WIN_MSG_LINK(WM_USER + 184, pinterface, this, &simple_frame_window::_001OnUser184);
    IGUI_WIN_MSG_LINK(WM_MOUSEMOVE, pinterface, this, &simple_frame_window::_001OnMouseMove);
    IGUI_WIN_MSG_LINK(WM_DISPLAYCHANGE, pinterface, this, &simple_frame_window::_001OnDisplayChange);
+   IGUI_WIN_MSG_LINK(WM_SHOWWINDOW, pinterface, this, &simple_frame_window::_001OnShowWindow);
 
    connect_update_cmd_ui("view_full_screen", &simple_frame_window::_001OnUpdateViewFullScreen);
    connect_command("view_full_screen", &simple_frame_window::_001OnViewFullScreen);
@@ -458,7 +459,29 @@ void simple_frame_window::_001OnCreate(signal_details * pobj)
 
 }
 
+void simple_frame_window::_001OnShowWindow(signal_details * pobj)
+{
+   
+   if(m_bDefaultNotifyIcon)
+   {
+      
+      ProcessSerialNumber psn = { 0, kCurrentProcess };
 
+      if(IsWindowVisible())
+      {
+   
+         TransformProcessType(&psn, kProcessTransformToUIElementApplication);
+         
+      }
+      else
+      {
+         
+         TransformProcessType(&psn, kProcessTransformToForegroundApplication);
+      }
+      
+   }
+
+}
 
 void simple_frame_window::_001OnDisplayChange(signal_details * pobj)
 {

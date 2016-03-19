@@ -158,6 +158,17 @@ int32_t base_main_command_line(const char * pszParams, int argc, char *argv[])
       }
       else
       {
+         if(!bColon)
+         {
+         
+            if(argv[i][0] == '-')
+            {
+            
+               bColon = true;
+            
+            }
+            
+         }
          
          if(!bColon)
          {

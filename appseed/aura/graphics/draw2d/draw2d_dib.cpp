@@ -3356,8 +3356,16 @@ namespace draw2d
 
    void dib::stretch_dib(dib * pdib)
    {
-      UNREFERENCED_PARAMETER(pdib);
-      ::exception::throw_interface_only(get_app());
+      
+      get_graphics()->StretchBlt(0, 0,
+                                 m_size.cx,
+                                 m_size.cy,
+                                 pdib->get_graphics(),
+                                 0,0,
+                                 pdib->m_size.cx,
+                                 pdib->m_size.cy,
+                                 SRCCOPY);
+      
    }
 
 
