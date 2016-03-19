@@ -4174,11 +4174,42 @@ namespace aura
             // please be extremely careful with code below.
             // Package app.app project with the <your-app> project!
             // The code below will seem to be guilty and blameable if you skipp app.app packaging with your app.
-            ::file::path path = get_exe_path();
-            path-=4;
-            strPath = path/"app.app/Contents/MacOS/app";
-            //                     setenv("DYLD_FALLBACK_LIBRARY_PATH",System.dir().ca2module(), 1 );
-            //                     setenv("DYLD_FALLBACK_LIBRARY_PATH",strPath, 1 );
+//            ::file::path path = get_exe_path();
+//            
+//            index i = 5;
+//
+//            while(i >= 0)
+//            {
+//            
+//               path = path.folder();
+//               
+//               strPath = path / "app";
+//               
+//               output_debug_string("\n xyzxyzx " + strPath + "\n");
+//               output_debug_string("\n xyzxyzx " + strPath + "\n");
+//               output_debug_string("\n xyzxyzx " + strPath + "\n");
+//               output_debug_string("\n xyzxyzx " + strPath + "\n");
+//               output_debug_string("\n xyzxyzx " + strPath + "\n");
+//               
+//               if(Application.file().exists(strPath))
+//               {
+//               
+//                  output_debug_string("\n OK OK K " + strPath + "\n");
+//                  
+//                  break;
+//                  
+//               }
+//
+//               i--;
+//               
+//            }
+//
+//            //                     setenv("DYLD_FALLBACK_LIBRARY_PATH",System.dir().ca2module(), 1 );
+//            //                     setenv("DYLD_FALLBACK_LIBRARY_PATH",strPath, 1 );
+            
+            strPath = get_exe_path();
+            
+            ::output_debug_string("\n\n xyzxyzx OK OK K " + strPath + "\n\n");
 
             strPath = "\"" + strPath + "\"";
 
@@ -4271,6 +4302,7 @@ namespace aura
             //               }
             //else
             int iRet = IDNO;
+            output_debug_string("\n not_installed Params " + strParam + "\n");
 
             {
 

@@ -133,7 +133,7 @@ struct heap_memory
          if(((byte *)&m_paddingBefore[16])[m_size + i] != 0)
          {
 
-            ::output_debug_string("*&!@");
+//            ::output_debug_string("*&!@");
 
          }
 

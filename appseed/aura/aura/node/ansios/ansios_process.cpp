@@ -307,7 +307,52 @@ namespace ansios
 #if defined(MACOS)
 
 
-      string strFallback = ::ca2_module_folder_dup();
+//      string strFallback = ::ca2_module_folder_dup();
+      
+      string str(pszCmdLineParam);
+      
+      
+      {
+         
+         stringa stra;
+         
+         ptr_array < char > argv;
+      
+         stra.explode_command_line(str, &argv);
+         
+         str = argv[0];
+         
+      }
+      
+      string strFallback;
+      
+      ::file::path path = str;
+      
+      if(Application.file().exists(path.folder() / "libaura.dylib"))
+      {
+         
+         strFallback = path.folder();
+         
+      }
+      else
+      {
+         
+         string strFolder = path.folder();
+         
+         if(::str::ends_eat_ci(strFolder, (::file::path(str).name() + ".app")/"Contents"/ "MacOS"))
+         {
+            
+            strFallback = strFolder;
+            
+         }
+         else
+         {
+          
+            strFallback = ::ca2_module_folder_dup();
+            
+         }
+         
+      }
 
       string strFolder = strFallback;
 
@@ -354,10 +399,8 @@ namespace ansios
       // kAuthorizationRightExecute == "system.privilege.admin"
       AuthorizationItem right = {kAuthorizationRightExecute, 0, NULL, 0};
       AuthorizationRights rights = {1, &right};
-      AuthorizationFlags flags = kAuthorizationFlagDefaults |
-      kAuthorizationFlagInteractionAllowed |
-      kAuthorizationFlagPreAuthorize |
-      kAuthorizationFlagExtendRights;
+      AuthorizationFlags flags = kAuthorizationFlagDefaults | kAuthorizationFlagInteractionAllowed |
+         kAuthorizationFlagPreAuthorize | kAuthorizationFlagExtendRights;
 
 
 
@@ -512,16 +555,17 @@ namespace ansios
 
   //       fscanf(pipe, "%d", &pptp_pid);
          bool bNewLine = true;
-         while(true)
+         index i = 0;
+         while(i < 1000)
          {
-            char str[1000];
-            memset(str, 0, sizeof(str));
-            fgets(str, sizeof(str), pipe);
-            if(str[sizeof(str)-2] == '\n' || str[sizeof(str)-2] == '\0')
+            char szBuffer[1000];
+            memset(szBuffer, 0, sizeof(szBuffer));
+            fgets(szBuffer, sizeof(szBuffer), pipe);
+            if(szBuffer[sizeof(szBuffer)-2] == '\n' || szBuffer[sizeof(szBuffer)-2] == '\0')
             {
                if(bNewLine)
                {
-                  string strLine = str;
+                  string strLine = szBuffer;
                   if(::str::begins_eat_ci(strLine, "application_process_id="))
                   {
                      m_iPid = atoi(strLine);
@@ -537,6 +581,7 @@ namespace ansios
             {
                bNewLine = false;
             }
+            i++;
          }
 
 //         pid_t pptp_pid = 0;

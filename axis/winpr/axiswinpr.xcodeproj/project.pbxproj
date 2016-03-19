@@ -537,7 +537,7 @@
 		0775CAC61B848722005F8295 /* synch.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = synch.c; sourceTree = "<group>"; };
 		0775CAC71B848722005F8295 /* timer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = timer.c; sourceTree = "<group>"; };
 		0775CAC81B848722005F8295 /* work.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = work.c; sourceTree = "<group>"; };
-		07DD5DF91B5F0A1E003A1CE1 /* libaxiswinpr.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libaxiswinpr.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		07DD5DF91B5F0A1E003A1CE1 /* libios_axiswinpr.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_axiswinpr.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		07DD5E051B5F0B4C003A1CE1 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
 		07DD5E081B5F0B4C003A1CE1 /* asn1.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = asn1.c; sourceTree = "<group>"; };
 		07DD5E0E1B5F0B4C003A1CE1 /* bcrypt.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = bcrypt.c; sourceTree = "<group>"; };
@@ -1482,7 +1482,7 @@
 			isa = PBXGroup;
 			children = (
 				9A1B358C16A2D7A500875A94 /* libaxiswinpr.dylib */,
-				07DD5DF91B5F0A1E003A1CE1 /* libaxiswinpr.dylib */,
+				07DD5DF91B5F0A1E003A1CE1 /* libios_axiswinpr.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1665,7 +1665,7 @@
 			);
 			name = ios_axiswinpr;
 			productName = freetype;
-			productReference = 07DD5DF91B5F0A1E003A1CE1 /* libaxiswinpr.dylib */;
+			productReference = 07DD5DF91B5F0A1E003A1CE1 /* libios_axiswinpr.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 		9A1B358B16A2D7A500875A94 /* axiswinpr */ = {
@@ -2114,6 +2114,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				PRODUCT_NAME = ios_axiswinpr;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -2122,6 +2123,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				PRODUCT_NAME = ios_axiswinpr;
 				SDKROOT = iphoneos;
 			};
 			name = Release;

@@ -110,7 +110,7 @@
 
 /* Begin PBXFileReference section */
 		077832E41B72FC99005D0C27 /* pcre2_chartables.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pcre2_chartables.c; sourceTree = "<group>"; };
-		07D6A8471B4CBB45004FEBC2 /* libaurapcre.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libaurapcre.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		07D6A8471B4CBB45004FEBC2 /* libios_aurapcre.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_aurapcre.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		07EF5D271B72F09600863D39 /* config.h.generic */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = config.h.generic; sourceTree = "<group>"; };
 		07EF5D281B72F09600863D39 /* config.h.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = config.h.in; sourceTree = "<group>"; };
 		07EF5D2A1B72F09600863D39 /* pcre2.h.generic */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = pcre2.h.generic; sourceTree = "<group>"; };
@@ -229,7 +229,7 @@
 				9A1EDB4719C83FE800F5CCE8 /* aura.xcodeproj */,
 				9A1EDAE819C83CD000F5CCE8 /* pcre */,
 				9AA539B119B763C400B9F861 /* libaurapcre.dylib */,
-				07D6A8471B4CBB45004FEBC2 /* libaurapcre.dylib */,
+				07D6A8471B4CBB45004FEBC2 /* libios_aurapcre.dylib */,
 			);
 			sourceTree = "<group>";
 		};
@@ -296,7 +296,7 @@
 			);
 			name = ios_aurapcre;
 			productName = FreeImage;
-			productReference = 07D6A8471B4CBB45004FEBC2 /* libaurapcre.dylib */;
+			productReference = 07D6A8471B4CBB45004FEBC2 /* libios_aurapcre.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 		9AA5E4C216F7C61B005C45CE /* aurapcre */ = {
@@ -459,6 +459,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INSTALL_PATH = "@executable_path/../Frameworks";
+				PRODUCT_NAME = ios_aurapcre;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = NO;
 			};
@@ -468,6 +469,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INSTALL_PATH = "@executable_path/../Frameworks";
+				PRODUCT_NAME = ios_aurapcre;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = NO;
 			};

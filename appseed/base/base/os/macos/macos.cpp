@@ -133,6 +133,10 @@ int32_t base_main_command_line(const char * pszParams, int argc, char *argv[])
       
    }
    
+   string strA;
+   
+   string strB;
+   
    processid = getpid();
    
    printf("%d\n", processid);
@@ -140,6 +144,8 @@ int32_t base_main_command_line(const char * pszParams, int argc, char *argv[])
    string strAddUp;
    
    bool bColon = false;
+   
+   bool bOverride = false;
    
    for(index i = 1; i < argc; i++)
    {
@@ -156,13 +162,20 @@ int32_t base_main_command_line(const char * pszParams, int argc, char *argv[])
          if(!bColon)
          {
             
-            str1 += string(" ") + argv[i];
+            strA += string(" ") + argv[i];
             
          }
          else
          {
+            
+            if(::str::begins_ci(argv[i], "app="))
+            {
+               
+               bOverride = true;
+               
+            }
 
-            str2 += string(" ") + argv[i];
+            strB += string(" ") + argv[i];
             
          }
          
@@ -170,7 +183,14 @@ int32_t base_main_command_line(const char * pszParams, int argc, char *argv[])
       
    }
    
-   strCommandLine += str1 + " : " + str2;
+   if(bOverride)
+   {
+      
+      str2.replace_ci("app=", "fallback_app=");
+      
+   }
+   
+   strCommandLine += str1 + strA + " : " + str2 + strB;
    
    setlocale(LC_ALL,"");
    
