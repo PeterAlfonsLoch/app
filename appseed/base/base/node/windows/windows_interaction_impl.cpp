@@ -2,6 +2,13 @@
 //#include "base/user/user.h"
 //#include "aura/node/windows/windows.h"
 //#include "windows.h"
+//#include <windows.h>
+//#include <shobjidl.h>
+
+// const GUID CLSID_TaskbarList = { 0x56FDF344, 0xFD6D, 0x11D0,{ 0x95, 0x8A, 0x00, 0x60, 0x97, 0xC9, 0xA0, 0x90 } };
+//const GUID IID_ITaskbarList = { 0x56FDF342, 0xFD6D, 0x11D0,{ 0x95, 0x8A, 0x00, 0x60, 0x97, 0xC9, 0xA0, 0x90 } };
+//const GUID IID_ITaskbarList2 = { 0x602D4995, 0xB13A, 0x429b,{ 0xA6, 0x6E, 0x19, 0x35, 0xE4, 0x4F, 0x43, 0x17 } };
+//const GUID IID_ITaskList3 = { 0xEA1AFB91, 0x9E28, 0x4B86,{ 0x90, 0xE9, 0x9E, 0x9F, 0x8A, 0x5E, 0xEF, 0xAF } };
 
 CLASS_DECL_BASE int g_iMouseDown = 0;
 
@@ -3783,12 +3790,12 @@ restart_mouse_hover_check:
          else
          {
 
-            if(!(GetStyle() & WS_VISIBLE))
-            {
+            //if(!(GetStyle() & WS_VISIBLE))
+            //{
 
-               ModifyStyle(get_handle(),0,WS_VISIBLE,0);
+            //   ModifyStyle(get_handle(),0,WS_VISIBLE,0);
 
-            }
+            //}
 
          }
 
@@ -4343,19 +4350,19 @@ restart_mouse_hover_check:
       try
       {
 
-         if(m_pui != NULL)
-         {
+         //if(m_pui != NULL)
+         //{
 
-            if(!m_pui->m_bVisible)
-               return false;
+         //   if(!m_pui->m_bVisible)
+         //      return false;
 
-            if(m_pui->GetParent() != NULL && !m_pui->GetParent()->IsWindowVisible())
-               return false;
+         //   if(m_pui->GetParent() != NULL && !m_pui->GetParent()->IsWindowVisible())
+         //      return false;
 
-         }
+         //}
 
-         if(!::IsWindow(get_handle()))
-            return true;
+         //if(!::IsWindow(get_handle()))
+         //   return true;
 
          if(!::IsWindowVisible(get_handle()))
             return false;
@@ -6045,7 +6052,70 @@ lCallNextHook:
 
    }
 
+   void interaction_impl::show_taskbar_icon(bool bShow)
+   {
 
+      synch_lock sl(m_pmutex);
+
+      // https://www.daniweb.com/programming/software-development/threads/457564/mfc-application-disablehide-taskbar-icon
+
+      if (bShow)
+      {
+
+         ModifyStyleEx(WS_EX_TOOLWINDOW, 0, SWP_FRAMECHANGED);
+
+      }
+      else
+      {
+
+         ModifyStyleEx(0, WS_EX_TOOLWINDOW, SWP_FRAMECHANGED);
+
+      }
+      //CoInitialize(nullptr);
+
+         HRESULT Result = S_OK;
+
+         comptr < ITaskbarList>                     tasklist;
+
+         tasklist.CoCreateInstance(CLSID_TaskbarList, nullptr, CLSCTX_SERVER);
+
+         //if (m_tasklist.is_null())
+         {
+           // Result = CoCreateInstance(, IID_ITaskbarList, reinterpret_cast<void**>(&tasklist.m_p));
+            if (FAILED(tasklist->HrInit()))
+            {
+             //  m_tasklist.Release();
+               return;
+            }
+         }
+
+
+
+         if (SUCCEEDED(Result))
+         {
+
+            
+            if (bShow)
+            {
+
+               HRESULT hr = tasklist->AddTab(get_handle());
+
+               TRACE("result = %d", hr);
+
+            }
+            else
+            {
+
+               tasklist->DeleteTab(get_handle());
+
+            }
+
+         }
+
+
+   //   //CoUninitialize();
+
+   }
 
 
 } // namespace windows

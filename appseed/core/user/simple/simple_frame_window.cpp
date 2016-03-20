@@ -299,17 +299,19 @@ void simple_frame_window::_001OnCreate(signal_details * pobj)
 #ifdef WINDOWSEX
    if(GetParent() == NULL)
    {
-      string strMatter = get_window_default_matter();
+      ::file::path strMatter = get_window_default_matter();
       //http://www.cplusplus.com/forum/general/28470/
       //blackcoder41 (1426)  Sep 12, 2010 at 2:43pm
       //hIconSm = (HICON)LoadImage(NULL, "menu_two.ico", IMAGE_ICON, 16, 16, LR_LOADFROMFILE);
       HICON hicon;
-      hicon = (HICON)LoadImage(NULL,Application.dir().matter(strMatter,"icon.ico"),IMAGE_ICON,16,16,LR_LOADFROMFILE);
+      ::file::path path = Application.dir().matter(strMatter / "icon.ico");
+      hicon = (HICON)LoadImage(NULL, path , IMAGE_ICON, 16, 16, LR_LOADFROMFILE);
       if(hicon != NULL)
       {
          SendMessage(get_handle(),(UINT)WM_SETICON,ICON_SMALL,(LPARAM)hicon);
       }
-      hicon = (HICON)LoadImage(NULL,Application.dir().matter(strMatter, "icon.ico"),IMAGE_ICON,48,48,LR_LOADFROMFILE);
+      path = Application.dir().matter(strMatter/ "icon.ico");
+      hicon = (HICON)LoadImage(NULL,path,IMAGE_ICON,48,48,LR_LOADFROMFILE);
       if(hicon != NULL)
       {
          SendMessage(get_handle(),(UINT)WM_SETICON,ICON_BIG,(LPARAM)hicon);
@@ -2483,6 +2485,8 @@ void simple_frame_window::OnUpdateToolWindow(bool bVisible)
    }
 
    defer_dock_application(bVisible);
+
+   m_pimpl->show_taskbar_icon(bVisible);
 
 }
 
