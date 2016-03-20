@@ -7,12 +7,14 @@
 
 extern CLASS_DECL_CORE thread_int_ptr < DWORD_PTR > t_time1;
 
+#ifdef __APPLE__
 void nsapp_activate_ignoring_other_apps(int i);
 void nsapp_activation_policy_regular();
 void nsapp_activation_policy_prohibited();
 void nsapp_activation_policy_accessory();
 bool nsapp_activation_policy_is_accessory();
 bool nsapp_activation_policy_is_regular();
+#endif
 
 manual_reset_event * simple_frame_window::helper_task::g_pevent = NULL;
 
@@ -442,59 +444,42 @@ void simple_frame_window::_001OnShowWindow(signal_details * pobj)
    
    SCAST_PTR(::message::show_window, pshow, pobj);
    
+#ifdef __APPLE__
+
    if(m_bDefaultNotifyIcon)
    {
       
-#ifdef MACOS
-//      ProcessSerialNumber psn;
-  //    if (noErr == GetCurrentProcess(&psn))
+      if (!pshow->m_bShow)
       {
-      if(!pshow->m_bShow)
-      {
-   
-//         TransformProcessType(&psn, kProcessTransformToUIElementApplication);
-         
-         if(!nsapp_activation_policy_is_accessory())
-         {
-            
-            nsapp_activation_policy_accessory();
-            
+
+         if (!nsapp_activation_policy_is_accessory())
+            {
+
+               nsapp_activation_policy_accessory();
+
+            }
+
          }
-         
-      }
       else
       {
-         
-//         TransformProcessType(&psn, kProcessTransformToForegroundApplication);
-         
-         
-         if(!nsapp_activation_policy_is_regular())
+
+         if (!nsapp_activation_policy_is_regular())
          {
 
             nsapp_activation_policy_regular();
-         
-//            nsapp_activate_ignoring_other_apps(1);
-         
-            InitialFramePosition(true);
-         
-//            SetForegroundWindow();
-         
-//            BringWindowToTop();
-            
+
+            InitialFramePosition();
+
          }
-         
-//         SetFrontProcess(&psn);
-         
+
       }
-         
-      }
+
+   }
 
 #endif
 
-      
-   }
-
 }
+
 
 void simple_frame_window::_001OnDisplayChange(signal_details * pobj)
 {
@@ -2509,48 +2494,38 @@ void simple_frame_window::OnInitialFrameUpdate(bool bMakeVisible)
       
    }
 
-  // ProcessSerialNumber psn;
-//   if (noErr == GetCurrentProcess(&psn))
-   {
+#ifdef __APPLE__
 
-      if(!bMakeVisible)
+   if(!bMakeVisible)
+   {
+         
+      if(!nsapp_activation_policy_is_accessory())
       {
-         
-//         TransformProcessType(&psn, kProcessTransformToUIElementApplication);
-         
-         if(!nsapp_activation_policy_is_accessory())
-         {
             
-            nsapp_activation_policy_accessory();
+         nsapp_activation_policy_accessory();
             
-         }
-         
       }
-      else
-      {
          
-         //         TransformProcessType(&psn, kProcessTransformToForegroundApplication);
-         
-         
-         if(!nsapp_activation_policy_is_regular())
-         {
-            
-            nsapp_activation_policy_regular();
-            
-         }
-         
-            //            nsapp_activate_ignoring_other_apps(1);
-            
-            InitialFramePosition();
-            
-            //            SetForegroundWindow();
-            
-            //            BringWindowToTop();
-         
-         
-      }
-      
    }
+   else
+   {
+         
+      if(!nsapp_activation_policy_is_regular())
+      {
+            
+         nsapp_activation_policy_regular();
+            
+      }
+         
+      InitialFramePosition();
+         
+   }
+
+#else
+
+   InitialFramePosition();
+
+#endif
    
 }
 
