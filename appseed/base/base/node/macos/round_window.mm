@@ -150,7 +150,7 @@ void round_window::round_window_make_main_window()
 void round_window::round_window_redraw()
 {
 
-   [[m_proundwindow dd_invokeOnMainThreadAndWaitUntilDone:TRUE] display ];
+   [[m_proundwindow dd_invokeOnMainThreadAndWaitUntilDone:FALSE] display ];
    
 }
 

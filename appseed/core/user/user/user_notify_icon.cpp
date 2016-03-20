@@ -303,6 +303,14 @@ void notify_icon::notify_icon_play(const char * action)
 
    }
 
+   
+   bool notify_icon::notify_icon_frame_is_opened()
+   {
+      
+      return m_plistener->notify_icon_frame_is_opened();
+      
+   }
+
 
 } // namespace user
 

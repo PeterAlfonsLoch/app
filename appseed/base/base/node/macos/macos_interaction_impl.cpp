@@ -4261,7 +4261,7 @@ namespace macos
        }
        else*/
       {
-//         ::ShowWindow(get_handle(), nCmdShow);
+         ::ShowWindow(get_handle(), nCmdShow);
          m_pui->m_bVisible = ::IsWindowVisible(get_handle()) != FALSE;
          return m_pui->m_bVisible;
       }

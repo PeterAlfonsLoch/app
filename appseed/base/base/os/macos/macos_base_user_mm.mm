@@ -39,17 +39,19 @@ bool oswindow_data::show_window(int32_t nCmdShow)
    {
    
 //   printf("\nhide window");
-
-      [m_nswindow orderOut : nil];
+    
+      [[m_nswindow dd_invokeOnMainThreadAndWaitUntilDone:TRUE ]orderOut : nil];
       
    }
    else
    {
   //    printf("\nshow window");
-   
-      [m_nswindow makeKeyAndOrderFront : nil];
+//      [[m_nswindow dd_invokeOnMainThreadAndWaitUntilDone:TRUE ]showWindow: nil];
       
-      [m_nswindow display];
+
+      [[m_nswindow dd_invokeOnMainThreadAndWaitUntilDone:TRUE] makeKeyAndOrderFront : nil];
+      
+      [[m_nswindow dd_invokeOnMainThreadAndWaitUntilDone:FALSE ]display];
       
    }
    

@@ -776,6 +776,24 @@ namespace user
       return 0;   // create ok
    }
 
+   
+   void frame_window::OnInitialFrameUpdate(bool bMakeVisible)
+   {
+      
+      if(bMakeVisible)
+      {
+      
+         if (GetParent() == NULL || !GetParent()->is_place_holder())
+         {
+         
+            InitialFramePosition();
+         
+         }
+         
+      }
+
+   }
+   
 
    bool frame_window::LoadFrame(const char * pszMatter, uint32_t dwDefaultStyle,
       sp(::user::interaction) pParentWnd, sp(::create) pContext)
@@ -854,15 +872,10 @@ namespace user
       //   uint32_t dwStyle = ::GetWindowLong(oswindow, GWL_STYLE);
       //   bool bChild =  dwStyle & WS_CHILD;
 
+      OnInitialFrameUpdate(bMakeVisible);
+      
       if (bMakeVisible)
       {
-
-         if (GetParent() == NULL || !GetParent()->is_place_holder())
-         {
-
-            InitialFramePosition();
-
-         }
 
          m_bLayoutEnable = true;
 

@@ -21,9 +21,7 @@
 //
 - (id)init:(NSString*)strIconFile bridge:(user_notify_icon_mm_bridge *)pbridge
 {
-   
    m_pbridge = pbridge;
-   
    // http://stackoverflow.com/questions/3409985/how-to-create-a-menubar-application-for-mac
    statusItem = [[NSStatusBar systemStatusBar]
                   statusItemWithLength:NSVariableStatusItemLength];
@@ -44,10 +42,31 @@
    
    [jcMenu addItem:quitItem];
    
+   [jcMenu setDelegate:self];
+   
    [statusItem setMenu:jcMenu];
    [statusItem setEnabled:YES];
    
    return self;
+   
+}
+
+- (void) menuWillOpen:(NSMenu *)menu
+{
+   
+   if(m_pbridge->notify_icon_frame_is_opened())
+   {
+    
+      [closeItem setTitle:@"Close"];
+      
+   }
+   else
+   {
+
+      [closeItem setTitle:@"Open"];
+
+   
+   }
    
 }
 

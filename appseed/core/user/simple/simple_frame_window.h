@@ -272,8 +272,13 @@ public:
    virtual void OnNotifyIconLButtonDown(UINT uiNotifyIcon);
 
    virtual bool __close_is_closed();
+   virtual bool notify_icon_frame_is_opened();
 
 
+   
+   virtual void OnInitialFrameUpdate(bool bMakeVisible);
+   
+   
 };
 
 

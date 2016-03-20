@@ -17,6 +17,7 @@ namespace user
       virtual void OnNotifyIconQuit(UINT uiNotifyIcon);
 
       virtual bool __close_is_closed();
+      virtual bool notify_icon_frame_is_opened();
 
 
    };

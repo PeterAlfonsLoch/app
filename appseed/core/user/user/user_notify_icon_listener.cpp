@@ -83,5 +83,13 @@ namespace user
       return false;
 
    }
+   
+   
+   bool notify_icon_listener::notify_icon_frame_is_opened()
+   {
+      
+      return false;
+      
+   }
 
 } // namespace user

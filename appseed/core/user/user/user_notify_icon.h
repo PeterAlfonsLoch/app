@@ -64,6 +64,7 @@ namespace user
       virtual void __quit();
       virtual bool __close_is_closed();
       virtual void notify_icon_play(const char * action);
+      virtual bool notify_icon_frame_is_opened();
 
    };
 

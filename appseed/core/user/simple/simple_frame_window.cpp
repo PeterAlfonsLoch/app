@@ -10,6 +10,9 @@ extern CLASS_DECL_CORE thread_int_ptr < DWORD_PTR > t_time1;
 void nsapp_activate_ignoring_other_apps(int i);
 void nsapp_activation_policy_regular();
 void nsapp_activation_policy_prohibited();
+void nsapp_activation_policy_accessory();
+bool nsapp_activation_policy_is_accessory();
+bool nsapp_activation_policy_is_regular();
 
 manual_reset_event * simple_frame_window::helper_task::g_pevent = NULL;
 
@@ -422,36 +425,7 @@ void simple_frame_window::_001OnCreate(signal_details * pobj)
    create_bars();
 
 
-   if(m_bDefaultNotifyIcon)
-   {
-
-      m_piconNotify = canew(::visual::icon(get_app()));
-
-      const char * pszAppName = Application.m_strAppName;
-
-      m_piconNotify->load_app_tray_icon(pszAppName);
-
-      m_pnotifyicon = canew(::user::notify_icon(get_app()));
-
-      m_pnotifyicon->create(1, this, m_piconNotify);
-
-      if(m_workset.m_pframeschema != NULL)
-      {
-
-         m_workset.m_pframeschema->m_spcontrolbox->hide_button(::user::wndfrm::frame::button_minimize);
-
-      }
-
-      ModifyStyleEx(0, WS_EX_TOOLWINDOW, 0);
-      
-#ifdef MACOS
-      
-      ProcessSerialNumber psn = { 0, kCurrentProcess };
-      TransformProcessType(&psn, kProcessTransformToUIElementApplication);
-
-#endif
-
-   }
+   post_message(WM_USER + 184, 2);
 
 
 
@@ -462,6 +436,7 @@ void simple_frame_window::_001OnCreate(signal_details * pobj)
 
 }
 
+
 void simple_frame_window::_001OnShowWindow(signal_details * pobj)
 {
    
@@ -471,33 +446,44 @@ void simple_frame_window::_001OnShowWindow(signal_details * pobj)
    {
       
 #ifdef MACOS
-      ProcessSerialNumber psn;
-      if (noErr == GetCurrentProcess(&psn))
+//      ProcessSerialNumber psn;
+  //    if (noErr == GetCurrentProcess(&psn))
       {
       if(!pshow->m_bShow)
       {
    
-         TransformProcessType(&psn, kProcessTransformToUIElementApplication);
+//         TransformProcessType(&psn, kProcessTransformToUIElementApplication);
          
-         nsapp_activation_policy_prohibited();
+         if(!nsapp_activation_policy_is_accessory())
+         {
+            
+            nsapp_activation_policy_accessory();
+            
+         }
          
       }
       else
       {
          
-         TransformProcessType(&psn, kProcessTransformToForegroundApplication);
+//         TransformProcessType(&psn, kProcessTransformToForegroundApplication);
          
-         nsapp_activation_policy_regular();
          
-         nsapp_activate_ignoring_other_apps(1);
+         if(!nsapp_activation_policy_is_regular())
+         {
+
+            nsapp_activation_policy_regular();
          
-         InitialFramePosition();
+//            nsapp_activate_ignoring_other_apps(1);
          
-         SetForegroundWindow();
+            InitialFramePosition(true);
          
-         BringWindowToTop();
+//            SetForegroundWindow();
          
-         SetFrontProcess(&psn);
+//            BringWindowToTop();
+            
+         }
+         
+//         SetFrontProcess(&psn);
          
       }
          
@@ -1633,7 +1619,42 @@ void simple_frame_window::_001OnUser184(signal_details * pobj)
       InitialFramePosition(true);
       pbase->m_bRet = true;
    }
-   if(pbase->m_wparam == 123)
+   else if(pbase->m_wparam == 2)
+   {
+      
+      if(m_bDefaultNotifyIcon)
+      {
+         
+         m_piconNotify = canew(::visual::icon(get_app()));
+         
+         const char * pszAppName = Application.m_strAppName;
+         
+         m_piconNotify->load_app_tray_icon(pszAppName);
+         
+         m_pnotifyicon = canew(::user::notify_icon(get_app()));
+         
+         m_pnotifyicon->create(1, this, m_piconNotify);
+         
+         if(m_workset.m_pframeschema != NULL)
+         {
+            
+            m_workset.m_pframeschema->m_spcontrolbox->hide_button(::user::wndfrm::frame::button_minimize);
+            
+         }
+         
+         ModifyStyleEx(0, WS_EX_TOOLWINDOW, 0);
+         
+         //#ifdef MACOS
+         //
+         //      ProcessSerialNumber psn = { 0, kCurrentProcess };
+         //      TransformProcessType(&psn, kProcessTransformToUIElementApplication);
+         //
+         //#endif
+         
+      }
+
+   }
+   else if(pbase->m_wparam == 123)
    {
       if(does_display_match())
       {
@@ -2467,6 +2488,71 @@ bool simple_frame_window::__close_is_closed()
 
 }
 
+
+bool simple_frame_window::notify_icon_frame_is_opened()
+{
+ 
+   return !__close_is_closed();
+   
+}
+
+
+void simple_frame_window::OnInitialFrameUpdate(bool bMakeVisible)
+{
+   
+   if(!m_bDefaultNotifyIcon)
+   {
+      
+      ::user::frame_window::OnInitialFrameUpdate(bMakeVisible);
+      
+      return;
+      
+   }
+
+  // ProcessSerialNumber psn;
+//   if (noErr == GetCurrentProcess(&psn))
+   {
+
+      if(!bMakeVisible)
+      {
+         
+//         TransformProcessType(&psn, kProcessTransformToUIElementApplication);
+         
+         if(!nsapp_activation_policy_is_accessory())
+         {
+            
+            nsapp_activation_policy_accessory();
+            
+         }
+         
+      }
+      else
+      {
+         
+         //         TransformProcessType(&psn, kProcessTransformToForegroundApplication);
+         
+         
+         if(!nsapp_activation_policy_is_regular())
+         {
+            
+            nsapp_activation_policy_regular();
+            
+         }
+         
+            //            nsapp_activate_ignoring_other_apps(1);
+            
+            InitialFramePosition();
+            
+            //            SetForegroundWindow();
+            
+            //            BringWindowToTop();
+         
+         
+      }
+      
+   }
+   
+}
 
 
 

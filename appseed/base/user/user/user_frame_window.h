@@ -178,6 +178,7 @@ namespace user
       void CommonConstruct();
 
 
+      virtual void OnInitialFrameUpdate(bool bMakeVisible);
 
 
       virtual void SetBorderRect(const RECT & rect);

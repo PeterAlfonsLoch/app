@@ -16,7 +16,7 @@
 class user_notify_icon_mm_bridge;
 
 
-@interface user_notify_icon :  NSObject {
+@interface user_notify_icon :  NSObject < NSMenuDelegate> {
 @public
    
    

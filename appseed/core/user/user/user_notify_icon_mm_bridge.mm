@@ -17,11 +17,44 @@ void user_notify_icon_mm_bridge::notify_icon_init(const char * strIconFile)
    
 }
 
+bool nsapp_activation_policy_is_regular()
+{
+   
+   if(NSApp.activationPolicy == NSApplicationActivationPolicyRegular)
+   {
+      return true;
+   }
+   
+   return false;
+   
+}
+
+bool nsapp_activation_policy_is_accessory()
+{
+   
+   if(NSApp.activationPolicy == NSApplicationActivationPolicyAccessory)
+   {
+      
+      return true;
+      
+   }
+   
+   return false;
+   
+}
+
 
 void nsapp_activation_policy_regular()
 {
    
    [NSApp setActivationPolicy:NSApplicationActivationPolicyRegular];
+   
+}
+
+void nsapp_activation_policy_accessory()
+{
+   
+   [NSApp setActivationPolicy:NSApplicationActivationPolicyAccessory];
    
 }
 
