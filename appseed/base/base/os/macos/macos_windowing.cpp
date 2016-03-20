@@ -227,7 +227,7 @@ int32_t oswindow_data::get_window_long(int32_t iIndex)
 }
 
 
-int32_t oswindow_data::set_window_long(int32_t iIndex, int32_t iNewLong)
+int32_t oswindow_data::set_window_long(int_ptr iIndex, int_ptr iNewLong)
 {
    
    if(this == NULL)
@@ -236,7 +236,30 @@ int32_t oswindow_data::set_window_long(int32_t iIndex, int32_t iNewLong)
    if(m_plongmap == NULL)
       return 0;
    
-   int32_t iLong = m_plongmap->operator[](iIndex);
+   int_ptr iLong = m_plongmap->operator[](iIndex);
+   
+   if(iLong & WS_EX_TOOLWINDOW)
+   {
+    
+      if(!nsapp_activation_policy_is_accessory())
+      {
+       
+         nsapp_activation_policy_accessory();
+         
+      }
+      
+   }
+   else
+   {
+      
+      if(!nsapp_activation_policy_is_regular())
+      {
+         
+         nsapp_activation_policy_regular();
+         
+      }
+      
+   }
    
    m_plongmap->operator[](iIndex) = iNewLong;
    

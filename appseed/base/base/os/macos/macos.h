@@ -6,6 +6,14 @@
 #define MAC_WINDOW(pwnd) (dynamic_cast < ::macos::interaction_impl * > (dynamic_cast < ::user::interaction_impl * >(pwnd)))
 
 
+void nsapp_activate_ignoring_other_apps(int i);
+void nsapp_activation_policy_regular();
+void nsapp_activation_policy_prohibited();
+void nsapp_activation_policy_accessory();
+bool nsapp_activation_policy_is_accessory();
+bool nsapp_activation_policy_is_regular();
+
+
 //
 //#include "macos_oswindow.h"
 //

@@ -11,4 +11,7 @@ using int_to_int= int_map < int,int >;
 
 using int_to_string =  int_map < string, const string & > ;
 
+using int_ptr_to_int_ptr= int_ptr_map < int_ptr,int_ptr >;
+
+using int_ptr_to_string =  int_ptr_map < string, const string & > ;
 

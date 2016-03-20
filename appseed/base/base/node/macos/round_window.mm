@@ -162,3 +162,77 @@ void round_window::round_window_invalidate()
    
 }
 
+
+
+
+bool nsapp_activation_policy_is_regular()
+{
+   
+   if(NSApp.activationPolicy == NSApplicationActivationPolicyRegular)
+   {
+      return true;
+   }
+   
+   return false;
+   
+}
+
+bool nsapp_activation_policy_is_accessory()
+{
+   
+   if(NSApp.activationPolicy == NSApplicationActivationPolicyAccessory)
+   {
+      
+      return true;
+      
+   }
+   
+   return false;
+   
+}
+
+
+void nsapp_activation_policy_regular()
+{
+   
+   [NSApp setActivationPolicy:NSApplicationActivationPolicyRegular];
+   
+}
+
+void nsapp_activation_policy_accessory()
+{
+   
+   [NSApp setActivationPolicy:NSApplicationActivationPolicyAccessory];
+   
+}
+
+
+void nsapp_activation_policy_prohibited()
+{
+   
+   [NSApp setActivationPolicy:NSApplicationActivationPolicyProhibited];
+   
+}
+
+
+void nsapp_activate_ignoring_other_apps(int i)
+{
+   
+   if(i)
+   {
+      
+      [NSApp activateIgnoringOtherApps:YES];
+      
+   }
+   else
+   {
+      
+      [NSApp activateIgnoringOtherApps:NO];
+      
+   }
+   
+   
+}
+
+
+
