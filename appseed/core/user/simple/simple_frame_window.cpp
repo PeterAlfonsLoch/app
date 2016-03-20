@@ -92,6 +92,8 @@ simple_frame_window::simple_frame_window(::aura::application * papp) :
    m_fastblur(allocer())
 {
 
+   m_bShowTask = true;
+
    m_bDefaultNotifyIcon = false;
 
    m_bTransparentFrame = false;
@@ -204,6 +206,24 @@ sp(::user::interaction) simple_frame_window::WindowDataGetWnd()
 
 void simple_frame_window::_001OnDestroy(signal_details * pobj)
 {
+
+   try
+   {
+
+      if (m_pnotifyicon != NULL)
+      {
+
+         m_pnotifyicon->Destroy();
+
+      }
+
+   }
+   catch(...)
+   {
+
+   }
+
+
    try
    {
       if (m_pauraapp != NULL && &Application != NULL)
@@ -295,29 +315,6 @@ void simple_frame_window::_001OnCreate(signal_details * pobj)
 #endif
       }
    }
-
-#ifdef WINDOWSEX
-   if(GetParent() == NULL)
-   {
-      ::file::path strMatter = get_window_default_matter();
-      //http://www.cplusplus.com/forum/general/28470/
-      //blackcoder41 (1426)  Sep 12, 2010 at 2:43pm
-      //hIconSm = (HICON)LoadImage(NULL, "menu_two.ico", IMAGE_ICON, 16, 16, LR_LOADFROMFILE);
-      HICON hicon;
-      ::file::path path = Application.dir().matter(strMatter / "icon.ico");
-      hicon = (HICON)LoadImage(NULL, path , IMAGE_ICON, 16, 16, LR_LOADFROMFILE);
-      if(hicon != NULL)
-      {
-         SendMessage(get_handle(),(UINT)WM_SETICON,ICON_SMALL,(LPARAM)hicon);
-      }
-      path = Application.dir().matter(strMatter/ "icon.ico");
-      hicon = (HICON)LoadImage(NULL,path,IMAGE_ICON,48,48,LR_LOADFROMFILE);
-      if(hicon != NULL)
-      {
-         SendMessage(get_handle(),(UINT)WM_SETICON,ICON_BIG,(LPARAM)hicon);
-      }
-   }
-#endif
 
    if (m_bWindowFrame)
    {
@@ -420,6 +417,50 @@ void simple_frame_window::_001OnCreate(signal_details * pobj)
 
 
    create_bars();
+
+#ifdef WINDOWSEX
+   if (GetParent() == NULL)
+   {
+      ::file::path strMatter = get_window_default_matter();
+      //http://www.cplusplus.com/forum/general/28470/
+      //blackcoder41 (1426)  Sep 12, 2010 at 2:43pm
+      //hIconSm = (HICON)LoadImage(NULL, "menu_two.ico", IMAGE_ICON, 16, 16, LR_LOADFROMFILE);
+      HICON hicon;
+      ::file::path path = Application.dir().matter(strMatter / "icon.ico");
+      hicon = (HICON)LoadImage(NULL, path, IMAGE_ICON, 16, 16, LR_LOADFROMFILE);
+      if (hicon != NULL)
+      {
+         SendMessage(get_handle(), (UINT)WM_SETICON, ICON_SMALL, (LPARAM)hicon);
+      }
+      path = Application.dir().matter(strMatter / "icon.ico");
+      hicon = (HICON)LoadImage(NULL, path, IMAGE_ICON, 48, 48, LR_LOADFROMFILE);
+      if (hicon != NULL)
+      {
+         SendMessage(get_handle(), (UINT)WM_SETICON, ICON_BIG, (LPARAM)hicon);
+      }
+      if (m_bWindowFrame)
+      {
+         path = Application.dir().matter(strMatter / "icon.ico");
+         hicon = (HICON)LoadImage(NULL, path, IMAGE_ICON, 24, 24, LR_LOADFROMFILE);
+
+         if (hicon != NULL)
+         {
+
+            ::visual::icon * picon = new ::visual::icon(hicon);
+
+            if (picon != NULL)
+            {
+
+               m_workset.m_pappearance->m_picon = picon;
+
+            }
+
+         }
+
+      }
+   }
+#endif
+
 
 
    post_message(WM_USER + 184, 2);
@@ -1565,12 +1606,16 @@ bool simple_frame_window::LoadToolBar(sp(::type) sptype, id idToolBar, const cha
 
 void simple_frame_window::_001OnUser184(signal_details * pobj)
 {
+   
    SCAST_PTR(::message::base, pbase, pobj);
-   if (pbase->m_wparam == 0 &&
-         pbase->m_lparam == 0)
+
+   if (pbase->m_wparam == 0 && pbase->m_lparam == 0)
    {
+
       InitialFramePosition(true);
+
       pbase->m_bRet = true;
+
    }
    else if(pbase->m_wparam == 2)
    {
@@ -1595,16 +1640,9 @@ void simple_frame_window::_001OnUser184(signal_details * pobj)
             
          }
          
-         ModifyStyleEx(0, WS_EX_TOOLWINDOW, 0);
-         
-         //#ifdef MACOS
-         //
-         //      ProcessSerialNumber psn = { 0, kCurrentProcess };
-         //      TransformProcessType(&psn, kProcessTransformToUIElementApplication);
-         //
-         //#endif
-         
       }
+      
+      m_pimpl->show_task(IsWindowVisible() && m_bShowTask);
 
    }
    else if(pbase->m_wparam == 123)
@@ -2486,7 +2524,7 @@ void simple_frame_window::OnUpdateToolWindow(bool bVisible)
 
    defer_dock_application(bVisible);
 
-   m_pimpl->show_taskbar_icon(bVisible);
+   m_pimpl->show_task(bVisible && m_bShowTask);
 
 }
 

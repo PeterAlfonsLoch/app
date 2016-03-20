@@ -210,8 +210,7 @@ namespace user
       DECL_GEN_SIGNAL(_001OnShowWindow);
 
 
-      virtual void show_taskbar_icon(bool bShow);
-
+      virtual void show_task(bool bShow);
 
    };
 

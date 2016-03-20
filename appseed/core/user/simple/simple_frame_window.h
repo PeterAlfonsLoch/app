@@ -85,6 +85,7 @@ public:
 
 
    bool                                m_bDefaultNotifyIcon;
+   bool                                m_bShowTask;
    sp(::visual::icon)                  m_piconNotify;
    sp(::user::notify_icon)             m_pnotifyicon;
 

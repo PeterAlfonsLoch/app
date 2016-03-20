@@ -6052,7 +6052,7 @@ lCallNextHook:
 
    }
 
-   void interaction_impl::show_taskbar_icon(bool bShow)
+   void interaction_impl::show_task(bool bShow)
    {
 
       synch_lock sl(m_pmutex);
@@ -6071,49 +6071,46 @@ lCallNextHook:
          ModifyStyleEx(0, WS_EX_TOOLWINDOW, SWP_FRAMECHANGED);
 
       }
-      //CoInitialize(nullptr);
 
-         HRESULT Result = S_OK;
+      HRESULT Result = S_OK;
 
-         comptr < ITaskbarList>                     tasklist;
+      comptr < ITaskbarList>                     tasklist;
 
-         tasklist.CoCreateInstance(CLSID_TaskbarList, nullptr, CLSCTX_SERVER);
+      tasklist.CoCreateInstance(CLSID_TaskbarList, nullptr, CLSCTX_SERVER);
 
-         //if (m_tasklist.is_null())
+      {
+
+         if (FAILED(tasklist->HrInit()))
          {
-           // Result = CoCreateInstance(, IID_ITaskbarList, reinterpret_cast<void**>(&tasklist.m_p));
-            if (FAILED(tasklist->HrInit()))
-            {
-             //  m_tasklist.Release();
-               return;
-            }
+
+            return;
+
          }
 
+      }
 
 
-         if (SUCCEEDED(Result))
-         {
+
+      if (SUCCEEDED(Result))
+      {
 
             
-            if (bShow)
-            {
+         if (bShow)
+         {
 
-               HRESULT hr = tasklist->AddTab(get_handle());
+            HRESULT hr = tasklist->AddTab(get_handle());
 
-               TRACE("result = %d", hr);
+            TRACE("result = %d", hr);
 
-            }
-            else
-            {
+         }
+         else
+         {
 
-               tasklist->DeleteTab(get_handle());
-
-            }
+            tasklist->DeleteTab(get_handle());
 
          }
 
-
-   //   //CoUninitialize();
+      }
 
    }
 

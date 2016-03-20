@@ -1418,7 +1418,7 @@ namespace user
    }
 
 
-   void interaction_impl_base::show_taskbar_icon(bool bShow)
+   void interaction_impl_base::show_task(bool bShow)
    {
 
       UNREFERENCED_PARAMETER(bShow);
@@ -1426,6 +1426,7 @@ namespace user
    }
 
 } // namespace user
+
 
 
 

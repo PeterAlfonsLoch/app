@@ -240,10 +240,11 @@ namespace user
 
    void interaction_child::install_message_handling(::message::dispatch * pinterface)
    {
+      last_install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_DESTROY,pinterface,this,&interaction_child::_001OnDestroy);
-      IGUI_WIN_MSG_LINK(WM_SHOWWINDOW, pinterface, this, &interaction_child::_001OnShowWindow);
       IGUI_WIN_MSG_LINK(WM_NCDESTROY,pinterface,this,&interaction_child::_001OnNcDestroy);
       m_pui->install_message_handling(pinterface);
+      prio_install_message_handling(pinterface);
       
    }
 
@@ -522,7 +523,12 @@ namespace user
    bool interaction_child::ShowWindow(int32_t nCmdShow)
    {
 
-      UNREFERENCED_PARAMETER(nCmdShow);
+      if (!::user::interaction_impl_base::ShowWindow(nCmdShow))
+      {
+
+         return false;
+
+      }
 
       return true;
 

@@ -14,7 +14,7 @@ namespace visual
       void *      m_picon;
       bool        m_bAutoDelete;
       string      m_strAppTrayIcon;
-
+      size        m_size;
 
       icon(::aura::application * papp);
       icon(void * picon);
@@ -30,6 +30,10 @@ namespace visual
 #endif
 
       bool load_app_tray_icon(string strPath);
+
+      ::size get_size();
+
+      virtual void on_update_icon();
 
    };
 

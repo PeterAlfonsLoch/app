@@ -680,7 +680,7 @@ namespace windows
       virtual bool get_rect_normal(LPRECT lprect);
       virtual void register_drop_target();
 
-      virtual void show_taskbar_icon(bool bShow);
+      virtual void show_task(bool bShow);
       
    };
 
