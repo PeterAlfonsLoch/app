@@ -277,6 +277,8 @@ public:
 
    
    virtual void OnInitialFrameUpdate(bool bMakeVisible);
+
+   virtual void OnUpdateToolWindow(bool bVisible);
    
    
 };

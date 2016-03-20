@@ -437,39 +437,12 @@ void simple_frame_window::_001OnShowWindow(signal_details * pobj)
    
    SCAST_PTR(::message::show_window, pshow, pobj);
    
-#ifdef __APPLE__
-
    if(m_bDefaultNotifyIcon)
    {
       
-      if (!pshow->m_bShow)
-      {
-
-         if (!nsapp_activation_policy_is_accessory())
-            {
-
-               nsapp_activation_policy_accessory();
-
-            }
-
-         }
-      else
-      {
-
-         if (!nsapp_activation_policy_is_regular())
-         {
-
-            nsapp_activation_policy_regular();
-
-            InitialFramePosition();
-
-         }
-
-      }
+      OnUpdateToolWindow(pshow->m_bShow);
 
    }
-
-#endif
 
 }
 
@@ -2487,39 +2460,43 @@ void simple_frame_window::OnInitialFrameUpdate(bool bMakeVisible)
       
    }
 
-#ifdef __APPLE__
+   OnUpdateToolWindow(bMakeVisible);
+         
+   if(bMakeVisible)
+   {
 
-   if(!bMakeVisible)
-   {
-         
-      if(!nsapp_activation_policy_is_accessory())
-      {
-            
-         nsapp_activation_policy_accessory();
-            
-      }
-         
-   }
-   else
-   {
-         
-      if(!nsapp_activation_policy_is_regular())
-      {
-            
-         nsapp_activation_policy_regular();
-            
-      }
-         
       InitialFramePosition();
          
    }
 
-#else
+}
 
-   InitialFramePosition();
 
-#endif
-   
+void simple_frame_window::OnUpdateToolWindow(bool bVisible)
+{
+
+   if (!m_bDefaultNotifyIcon)
+   {
+
+      return;
+
+   }
+
+   if (bVisible)
+   {
+
+      ModifyStyleEx(WS_EX_TOOLWINDOW, 0, RDW_FRAME);
+
+      InitialFramePosition(true);
+
+   }
+   else
+   {
+
+      ModifyStyleEx(0, WS_EX_TOOLWINDOW, RDW_FRAME);
+
+   }
+
 }
 
 
