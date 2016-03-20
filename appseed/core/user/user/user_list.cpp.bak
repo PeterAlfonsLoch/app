@@ -1238,16 +1238,6 @@ namespace user
          }
       }
 
-      ::draw2d::font * pfont = _001GetFont();
-      ::draw2d::memory_graphics pdc(allocer());
-      pdc->SelectObject(pfont);
-      size size;
-      size = pdc->GetTextExtent("Áp");
-      if(size.cy + 2 > iItemHeight)
-      {
-         iItemHeight = MAX(size.cy + 2, iItemHeight);
-      }
-
       m_iItemHeight = (int32_t)_001CalcItemHeight(iItemHeight);
 
       m_iItemWidth = (int32_t) iItemWidth;

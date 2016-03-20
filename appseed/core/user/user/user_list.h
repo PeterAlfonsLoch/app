@@ -203,7 +203,7 @@ namespace user
       sp(simple_list_data)             m_psimplelistdata;
 
       int                              m_iItemMouseDown;
-
+      
 
 
 
@@ -212,8 +212,11 @@ namespace user
 
 
 
-      int32_t _001CalcItemWidth(::draw2d::graphics * pdc, index iItem, index iSubItem);
-      int32_t _001CalcItemWidth(::draw2d::graphics * pdc, ::draw2d::font * pfont, index iItem, index iSubItem);
+      virtual int32_t _001CalcItemWidth(::draw2d::graphics * pdc, index iItem, index iSubItem);
+      virtual int32_t _001CalcItemWidth(::draw2d::graphics * pdc, ::draw2d::font * pfont, index iItem, index iSubItem);
+      virtual int32_t _001CalcItemHeight(int iBaseHeight);
+      virtual int32_t _001GetDrawTextFlags(EView eview);
+
 
 
 
