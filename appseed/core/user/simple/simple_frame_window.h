@@ -281,6 +281,7 @@ public:
 
    virtual void OnUpdateToolWindow(bool bVisible);
    
+   virtual void show_task(bool bShow);
    
 };
 

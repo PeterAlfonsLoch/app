@@ -755,7 +755,7 @@ namespace user
 
             m_rectWindow = rectClient;
 
-            ::rect rectIcon;
+            ::rect rectIcon = ::null_rect();
 
             if(pappearance->GetAppearance() == ::user::AppearanceMinimal)
             {
@@ -777,6 +777,8 @@ namespace user
             else
             {
 
+               get_element_rect(rectIcon, ElementTopLeftIcon);
+
                m_pointWindowIcon.x = prectMargin->left + prectControlBoxMargin->left + 5;
 
             }
@@ -790,7 +792,7 @@ namespace user
             if (pappearance->m_picon != NULL)
             {
 
-               m_rectWindowText.left = m_pointWindowIcon.x + 16 + 2;
+               m_rectWindowText.left = m_pointWindowIcon.x + rectIcon.width() + 2;
 
             }
             else

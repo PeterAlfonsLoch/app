@@ -2524,9 +2524,28 @@ void simple_frame_window::OnUpdateToolWindow(bool bVisible)
 
    defer_dock_application(bVisible);
 
+   if (m_pimpl == NULL)
+   {
+
+      return;
+
+   }
+
    m_pimpl->show_task(bVisible && m_bShowTask);
 
 }
 
 
+void simple_frame_window::show_task(bool bShow)
+{
 
+   if (m_pimpl == NULL)
+   {
+
+      return;
+
+   }
+
+   m_pimpl->show_task(bShow);
+
+}
