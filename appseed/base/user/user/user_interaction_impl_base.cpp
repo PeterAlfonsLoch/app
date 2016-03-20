@@ -1371,6 +1371,53 @@ namespace user
    }
 
 
+   bool interaction_impl_base::ShowWindow(int32_t nCmdShow)
+   {
+    
+      send_message(WM_SHOWWINDOW, nCmdShow != SW_HIDE ? 1 : 0);
+
+      return true;
+
+   }
+
+
+   void interaction_impl_base::_001OnShowWindow(signal_details * pobj)
+   {
+
+      SCAST_PTR(::message::show_window, pshowwindow, pobj);
+
+      if (pshowwindow->m_bShow)
+      {
+
+         m_pui->m_bVisible = true;
+
+      }
+      else
+      {
+
+         m_pui->m_bVisible = false;
+
+      }
+
+
+   }
+
+
+   void interaction_impl_base::prio_install_message_handling(::message::dispatch * pinterface)
+   {
+
+      IGUI_WIN_MSG_LINK(WM_SHOWWINDOW, pinterface, this, &interaction_impl_base::_001OnShowWindow);
+
+   }
+
+
+   void interaction_impl_base::last_install_message_handling(::message::dispatch * pinterface)
+   {
+
+
+   }
+
+
 } // namespace user
 
 

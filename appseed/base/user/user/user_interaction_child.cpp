@@ -241,10 +241,20 @@ namespace user
    void interaction_child::install_message_handling(::message::dispatch * pinterface)
    {
       IGUI_WIN_MSG_LINK(WM_DESTROY,pinterface,this,&interaction_child::_001OnDestroy);
+      IGUI_WIN_MSG_LINK(WM_SHOWWINDOW, pinterface, this, &interaction_child::_001OnShowWindow);
       IGUI_WIN_MSG_LINK(WM_NCDESTROY,pinterface,this,&interaction_child::_001OnNcDestroy);
       m_pui->install_message_handling(pinterface);
       
    }
+
+   
+   void interaction_child::_001OnShowWindow(signal_details * pobj)
+   {
+
+
+
+   }
+
 
    void interaction_child::_002InstallMessageHandling(::message::dispatch * pinterface)
    {

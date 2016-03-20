@@ -33,6 +33,12 @@ bool __node_base_pos_term()
 }
 
 
+void defer_dock_application(bool bDock)
+{
+
+   UNREFERENCED_PARAMETER(bDock);
+
+}
 
 
 

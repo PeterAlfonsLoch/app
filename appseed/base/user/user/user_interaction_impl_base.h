@@ -25,6 +25,11 @@ namespace user
       virtual ::user::interaction_child * get_user_interaction_child();
 
 
+      virtual void prio_install_message_handling(::message::dispatch * pinterface);
+      virtual void last_install_message_handling(::message::dispatch * pinterface);
+
+
+
       virtual bool check_need_layout();
       virtual void clear_need_layout();
       virtual void set_need_layout();
@@ -200,6 +205,9 @@ namespace user
 
       virtual void PostNcDestroy();
 
+      virtual bool ShowWindow(int32_t nCmdShow);
+
+      DECL_GEN_SIGNAL(_001OnShowWindow);
 
    };
 

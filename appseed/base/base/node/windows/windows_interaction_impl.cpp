@@ -623,6 +623,7 @@ namespace windows
    void interaction_impl::install_message_handling(::message::dispatch * pinterface)
    {
 
+      ::user::interaction_impl::last_install_message_handling(pinterface);
       ::user::interaction_impl::install_message_handling(pinterface);
 
       IGUI_WIN_MSG_LINK(WM_NCDESTROY,pinterface,this,&interaction_impl::_001OnNcDestroy);
@@ -642,10 +643,10 @@ namespace windows
          IGUI_WIN_MSG_LINK(WM_WINDOWPOSCHANGING,pinterface,this,&interaction_impl::_001OnWindowPosChanging);
          IGUI_WIN_MSG_LINK(WM_WINDOWPOSCHANGED,pinterface,this,&interaction_impl::_001OnWindowPosChanged);
          IGUI_WIN_MSG_LINK(WM_GETMINMAXINFO,pinterface,this,&interaction_impl::_001OnGetMinMaxInfo);
-         IGUI_WIN_MSG_LINK(WM_SHOWWINDOW,pinterface,this,&interaction_impl::_001OnShowWindow);
          IGUI_WIN_MSG_LINK(WM_SETFOCUS,pinterface,this,&interaction_impl::_001OnSetFocus);
          IGUI_WIN_MSG_LINK(WM_KILLFOCUS,pinterface,this,&interaction_impl::_001OnKillFocus);
          IGUI_WIN_MSG_LINK(ca2m_PRODEVIAN_SYNCH,pinterface,this,&interaction_impl::_001OnProdevianSynch);
+         ::user::interaction_impl::prio_install_message_handling(pinterface);
       }
       IGUI_WIN_MSG_LINK(WM_DESTROY,pinterface,this,&interaction_impl::_001OnDestroy);
       IGUI_WIN_MSG_LINK(WM_NCCALCSIZE,pinterface,this,&interaction_impl::_001OnNcCalcSize);
@@ -729,26 +730,7 @@ namespace windows
    }
 
 
-   void interaction_impl::_001OnShowWindow(signal_details * pobj)
-   {
-
-      SCAST_PTR(::message::show_window,pshowwindow,pobj);
-
-      if(pshowwindow->m_bShow != FALSE)
-      {
-
-         m_pui->m_bVisible = true;
-
-      }
-      else
-      {
-
-         m_pui->m_bVisible = false;
-
-      }
-
-
-   }
+   
 
    void interaction_impl::_001OnDestroy(signal_details * pobj)
    {
@@ -5279,154 +5261,160 @@ restart_mouse_hover_check:
 
    void interaction_impl::_001OnWindowPosChanging(signal_details * pobj)
    {
+  
       return;
-      SCAST_PTR(::message::window_pos,pwindowpos,pobj);
+
+//      SCAST_PTR(::message::window_pos,pwindowpos,pobj);
 
       //TRACE("::windows::interaction_impl::_001OnWindowPosChanging");
 
-      if(GetExStyle() & WS_EX_LAYERED)
-      {
-
-         if(pwindowpos->m_pwindowpos->flags & 0x8000) // SWP_STATECHANGED
-         {
-
-            pwindowpos->m_pwindowpos->flags |= SWP_NOSIZE;
-            pwindowpos->m_pwindowpos->flags |= SWP_NOMOVE;
-            pwindowpos->m_pwindowpos->flags |= 0x0800; // SWP_NOCLIENTSIZE
-            pwindowpos->m_pwindowpos->flags |= 0x1000; // SWP_NOCLIENTMOVE
-
-            pobj->m_bRet = true;
-
-         }
-         else
-         {
-
-            ::rect rectBefore = m_rectParentClient;
-
-            //::GetWindowRect(get_handle(),rectBefore);
-
-            //m_rectParentClient = rectBefore;
-
-            ::rect rect = m_rectParentClient;
-
-            if(pwindowpos->m_pwindowpos->flags & SWP_NOMOVE)
-            {
-
-               //TRACE("::user::interaction_impl::interaction_impl::_001OnWindowPosChanging SWP_NOMOVE");
-
-            }
-            else
-            {
-
-               rect.move_to(pwindowpos->m_pwindowpos->x,pwindowpos->m_pwindowpos->y);
-
-            }
-
-            if(pwindowpos->m_pwindowpos->flags & SWP_NOSIZE)
-            {
-
-               //TRACE("::user::interaction_impl::interaction_impl::_001OnWindowPosChanging SWP_NOSIZE");
-
-            }
-            else
-            {
-
-               rect.size(pwindowpos->m_pwindowpos->cx,pwindowpos->m_pwindowpos->cy);
-
-            }
-
-            m_rectParentClient = rect;
-
-            //keep < bool > keepRectParentClient(&m_bRectParentClient,true,false,true);
-
-            keep < bool > keepLockWindowUpdate(&m_pui->m_bLockWindowUpdate,true,false,true);
-
-
-            bool bUpdate = false;
-
-            if(rectBefore.top_left() != rect.top_left())
-            {
-
-               send_message(WM_MOVE);
-
-               bUpdate = true;
-
-            }
-
-            if(rectBefore.size() != rect.size() || m_pui->get_appearance() != m_eapperanceLayout)
-            {
-
-               m_eapperanceLayout = m_pui->get_appearance();
-
-               send_message(WM_SIZE,0,MAKELONG(MAX(0,rect.width()),MAX(0,rect.height())));
-
-               bUpdate = true;
-
-            }
-
-            if(bUpdate)
-            {
-
-               keepLockWindowUpdate.KeepAway();
-
-               if(!(pwindowpos->m_pwindowpos->flags & SWP_NOSIZE))
-               {
-
-                  {
-
-                     DWORD dwTime2 = ::get_tick_count();
-
-                     //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
-                     //TRACE("OnSize::WndImpl call timem= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
-
-                  }
-
-
-
-//                  _001UpdateBuffer();
-                  {
-
-                     DWORD dwTime2 = ::get_tick_count();
-
-                     //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
-                     //TRACE("OnSize::WndImpl call timen= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
-
-                  }
-
-
-                  //_001UpdateWindow();
-
-                  {
-
-                     DWORD dwTime2 = ::get_tick_count();
-
-                     //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
-                     //TRACE("OnSize::WndImpl call timeo= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
-
-                  }
-
-               }
-
-            }
-
-         }
-
-      }
+//      if(GetExStyle() & WS_EX_LAYERED)
+//      {
+//
+//         if(pwindowpos->m_pwindowpos->flags & 0x8000) // SWP_STATECHANGED
+//         {
+//
+//            pwindowpos->m_pwindowpos->flags |= SWP_NOSIZE;
+//            pwindowpos->m_pwindowpos->flags |= SWP_NOMOVE;
+//            pwindowpos->m_pwindowpos->flags |= 0x0800; // SWP_NOCLIENTSIZE
+//            pwindowpos->m_pwindowpos->flags |= 0x1000; // SWP_NOCLIENTMOVE
+//
+//            pobj->m_bRet = true;
+//
+//         }
+//         else
+//         {
+//
+//            ::rect rectBefore = m_rectParentClient;
+//
+//            //::GetWindowRect(get_handle(),rectBefore);
+//
+//            //m_rectParentClient = rectBefore;
+//
+//            ::rect rect = m_rectParentClient;
+//
+//            if(pwindowpos->m_pwindowpos->flags & SWP_NOMOVE)
+//            {
+//
+//               //TRACE("::user::interaction_impl::interaction_impl::_001OnWindowPosChanging SWP_NOMOVE");
+//
+//            }
+//            else
+//            {
+//
+//               rect.move_to(pwindowpos->m_pwindowpos->x,pwindowpos->m_pwindowpos->y);
+//
+//            }
+//
+//            if(pwindowpos->m_pwindowpos->flags & SWP_NOSIZE)
+//            {
+//
+//               //TRACE("::user::interaction_impl::interaction_impl::_001OnWindowPosChanging SWP_NOSIZE");
+//
+//            }
+//            else
+//            {
+//
+//               rect.size(pwindowpos->m_pwindowpos->cx,pwindowpos->m_pwindowpos->cy);
+//
+//            }
+//
+//            m_rectParentClient = rect;
+//
+//            //keep < bool > keepRectParentClient(&m_bRectParentClient,true,false,true);
+//
+//            keep < bool > keepLockWindowUpdate(&m_pui->m_bLockWindowUpdate,true,false,true);
+//
+//
+//            bool bUpdate = false;
+//
+//            if(rectBefore.top_left() != rect.top_left())
+//            {
+//
+//               send_message(WM_MOVE);
+//
+//               bUpdate = true;
+//
+//            }
+//
+//            if(rectBefore.size() != rect.size() || m_pui->get_appearance() != m_eapperanceLayout)
+//            {
+//
+//               m_eapperanceLayout = m_pui->get_appearance();
+//
+//               send_message(WM_SIZE,0,MAKELONG(MAX(0,rect.width()),MAX(0,rect.height())));
+//
+//               bUpdate = true;
+//
+//            }
+//
+//            if(bUpdate)
+//            {
+//
+//               keepLockWindowUpdate.KeepAway();
+//
+//               if(!(pwindowpos->m_pwindowpos->flags & SWP_NOSIZE))
+//               {
+//
+//                  {
+//
+//                     DWORD dwTime2 = ::get_tick_count();
+//
+//                     //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+//                     //TRACE("OnSize::WndImpl call timem= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+//
+//                  }
+//
+//
+//
+////                  _001UpdateBuffer();
+//                  {
+//
+//                     DWORD dwTime2 = ::get_tick_count();
+//
+//                     //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+//                     //TRACE("OnSize::WndImpl call timen= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+//
+//                  }
+//
+//
+//                  //_001UpdateWindow();
+//
+//                  {
+//
+//                     DWORD dwTime2 = ::get_tick_count();
+//
+//                     //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+//                     //TRACE("OnSize::WndImpl call timeo= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+//
+//                  }
+//
+//               }
+//
+//            }
+//
+//         }
+//
+//      }
 
    }
 
 
    void interaction_impl::_001OnWindowPosChanged(signal_details * pobj)
    {
+
+      
       return;
-      SCAST_PTR(::message::window_pos,pwindowpos,pobj);
+      
+      
+      //SCAST_PTR(::message::window_pos,pwindowpos,pobj);
 
-      if(GetExStyle() & WS_EX_LAYERED)
-      {
+      //if(GetExStyle() & WS_EX_LAYERED)
+      //{
 
-         pwindowpos->m_bRet = true;
+      //   pwindowpos->m_bRet = true;
 
-      }
+      //}
 
    }
 

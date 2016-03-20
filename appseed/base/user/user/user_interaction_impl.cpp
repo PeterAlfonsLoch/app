@@ -297,10 +297,19 @@ namespace user
       return false;
    }
 
-   void interaction_impl::install_message_handling(::message::dispatch * pinterface)
+   void interaction_impl::prio_install_message_handling(::message::dispatch * pinterface)
    {
 
-      IGUI_WIN_MSG_LINK(WM_CREATE,pinterface,this,&interaction_impl::_001OnCreate);
+      ::user::interaction_impl_base::prio_install_message_handling(pinterface);
+
+   }
+
+   void interaction_impl::last_install_message_handling(::message::dispatch * pinterface)
+   {
+
+      IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &interaction_impl::_001OnCreate);
+
+      ::user::interaction_impl_base::last_install_message_handling(pinterface);
 
    }
 
@@ -3043,6 +3052,7 @@ namespace user
       throw invalid_argument_exception(get_app(),"Focus of a window implementation should be set NULL, to itself or to a descendant window");
 
    }
+
 
 
 } // namespace user

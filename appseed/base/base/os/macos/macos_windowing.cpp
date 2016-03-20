@@ -237,28 +237,12 @@ int32_t oswindow_data::set_window_long(int_ptr iIndex, int_ptr iNewLong)
       return 0;
    
    int_ptr iLong = m_plongmap->operator[](iIndex);
-   
-   if(iLong & WS_EX_TOOLWINDOW)
+
+   if (iIndex == GWL_EXSTYLE)
    {
-    
-      if(!nsapp_activation_policy_is_accessory())
-      {
-       
-         nsapp_activation_policy_accessory();
-         
-      }
-      
-   }
-   else
-   {
-      
-      if(!nsapp_activation_policy_is_regular())
-      {
-         
-         nsapp_activation_policy_regular();
-         
-      }
-      
+
+      defer_dock_application(iLong & WS_EX_TOOLWINDOW);
+
    }
    
    m_plongmap->operator[](iIndex) = iNewLong;
@@ -400,4 +384,35 @@ oswindow SetActiveWindow(oswindow window)
 oswindow GetWindow(oswindow window, int iParentHood)
 {
    return NULL;
+}
+
+
+
+
+void defer_dock_application(bool bDock)
+{
+
+   if (bDock)
+   {
+
+      if (!nsapp_activation_policy_is_regular())
+      {
+
+         nsapp_activation_policy_regular();
+
+      }
+
+   }
+   else
+   {
+
+      if (!nsapp_activation_policy_is_accessory())
+      {
+
+         nsapp_activation_policy_accessory();
+
+      }
+
+   }
+
 }

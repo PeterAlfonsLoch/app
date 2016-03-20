@@ -2035,22 +2035,7 @@ namespace user
 
       }
 
-      if(nCmdShow != SW_HIDE)
-      {
-
-         m_bVisible = true;
-
-      }
-      else
-      {
-
-         m_bVisible = false;
-
-      }
-
-      send_message(WM_SHOWWINDOW,m_bVisible ? 1 : 0);
-
-      return m_bVisible ? TRUE : FALSE;
+      return m_bVisible;
 
    }
 

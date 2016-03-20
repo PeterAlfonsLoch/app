@@ -104,7 +104,8 @@ namespace user
 #endif
 
 
-      virtual void install_message_handling(::message::dispatch * pinterface);
+      virtual void prio_install_message_handling(::message::dispatch * pinterface);
+      virtual void last_install_message_handling(::message::dispatch * pinterface);
 
       bool operator==(const interaction_impl& wnd) const;
       bool operator!=(const interaction_impl& wnd) const;

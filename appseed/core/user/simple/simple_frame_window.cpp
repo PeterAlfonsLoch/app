@@ -2482,20 +2482,7 @@ void simple_frame_window::OnUpdateToolWindow(bool bVisible)
 
    }
 
-   if (bVisible)
-   {
-
-      ModifyStyleEx(WS_EX_TOOLWINDOW, 0, RDW_FRAME);
-
-      InitialFramePosition(true);
-
-   }
-   else
-   {
-
-      ModifyStyleEx(0, WS_EX_TOOLWINDOW, RDW_FRAME);
-
-   }
+   defer_dock_application(bVisible);
 
 }
 
