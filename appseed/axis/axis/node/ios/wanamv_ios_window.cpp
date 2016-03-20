@@ -68,10 +68,8 @@ namespace ios
 
       m_pcallback          = NULL;
       m_pui              = this;
-      //set_handle(NULL);
       m_puiOwner         = NULL;
       m_pui->m_nFlags    = 0;
-      //m_pfnSuper         = NULL;
       m_nModalResult       = 0;
       m_bMouseHover        = false;
       m_pfont              = NULL;
@@ -106,10 +104,8 @@ namespace ios
 
       m_pcallback          = NULL;
       m_pui              = this;
-      //set_handle(NULL);
       m_puiOwner         = NULL;
       m_pui->m_nFlags    = 0;
-      //m_pfnSuper         = NULL;
       m_nModalResult       = 0;
       m_bMouseHover        = false;
       m_pfont              = NULL;
@@ -922,29 +918,10 @@ namespace ios
 
    LRESULT window::DefWindowProc(UINT nMsg, WPARAM wparam, LPARAM lparam)
    {
-      /*  if (m_pfnSuper != NULL)
-       return ::CallWindowProc(m_pfnSuper, get_handle(), nMsg, wparam, lparam);
-
-       WNDPROC pfnWndProc;
-       if ((pfnWndProc = *GetSuperWndProcAddr()) == NULL)
-       return ::DefWindowProc(get_handle(), nMsg, wparam, lparam);
-       else
-       return ::CallWindowProc(pfnWndProc, get_handle(), nMsg, wparam, lparam);*/
 
       return 0;
    }
 
-   /*
-    WNDPROC* window::GetSuperWndProcAddr()
-    {
-    // Note: it is no longer necessary to override GetSuperWndProcAddr
-    //  for each control class with a different WNDCLASS.
-    //  This implementation now uses instance data, such that the previous
-    //  WNDPROC can be anything.
-
-    return &m_pfnSuper;
-    }
-    */
    void window::pre_translate_message(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
@@ -4159,45 +4136,6 @@ namespace ios
       pre_subclass_window();
 
       throw not_implemented(get_app());
-      //      m_pfnSuper = (WNDPROC)::GetWindowLongPtr(hWnd, GWLP_WNDPROC);
-
-      // now hook into the AFX WndProc
-      //      WNDPROC* lplpfn = GetSuperWndProcAddr();
-      //      WNDPROC oldWndProc = (WNDPROC)::SetWindowLongPtr(hWnd, GWLP_WNDPROC,
-      //         (int_ptr)__get_window_procedure());
-      //      ASSERT(oldWndProc != __get_window_procedure());
-      //
-      //      if (*lplpfn == NULL)
-      //         *lplpfn = oldWndProc;   // the first control of that type created
-      //#ifdef DEBUG
-      //      else if (*lplpfn != oldWndProc)
-      //      {
-      //         TRACE(::ca2::trace::category_AppMsg, 0, "p: Trying to use SubclassWindow with incorrect window\n");
-      //         TRACE(::ca2::trace::category_AppMsg, 0, "\tderived class.\n");
-      //         TRACE(::ca2::trace::category_AppMsg, 0, "\thWnd = $%08X (nIDC=$%08X) is not a %hs.\n", (UINT)(uint_ptr)hWnd,
-      //            __get_dialog_control_id(hWnd), typeid(*this).name());
-      //         ASSERT(FALSE);
-      //         // undo the subclassing if continuing after assert
-      //         ::SetWindowLongPtr(hWnd, GWLP_WNDPROC, (int_ptr)oldWndProc);
-      //      }
-      //#endif
-      //      ::message::size size(get_app());
-      //      _001OnSize(&size);
-      //      return TRUE;
-      //   }
-      //
-      //   bool window::SubclassDlgItem(UINT nID, ::window * pParent)
-      //   {
-      //      ASSERT(pParent != NULL);
-      //      ASSERT(::IsWindow(IOS_WINDOW(pParent)->get_handle()));
-      //
-      //      // check for normal dialog control first
-      //      oswindow hWndControl = ::GetDlgItem(IOS_WINDOW(pParent)->get_handle(), nID);
-      //      if (hWndControl != NULL)
-      //         return SubclassWindow(hWndControl);
-      //
-      //
-      //      return FALSE;   // control not found
    }
 
    oswindow window::UnsubclassWindow()
@@ -4205,13 +4143,6 @@ namespace ios
       ASSERT(::IsWindow(get_handle()));
 
       throw not_implemented(get_app());
-      //      // set WNDPROC back to original value
-      //      WNDPROC* lplpfn = GetSuperWndProcAddr();
-      //      SetWindowLongPtr(get_handle(), GWLP_WNDPROC, (int_ptr)*lplpfn);
-      //      *lplpfn = NULL;
-      //
-      //      // and Detach the oswindow from the window object
-      //      return Detach();
    }
 
 
