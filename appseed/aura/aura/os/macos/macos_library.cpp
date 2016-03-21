@@ -24,9 +24,27 @@
          strPath = "lib" + strPath;
       
       ::output_debug_string("\n\nGoing to dlopen(\"" + strPath + "\", RTLD_LOCAL | RTLD_LAZY)\n\n");
-
-      void * plibrary = dlopen(strPath, RTLD_LOCAL | RTLD_LAZY);
       
+      void * plibrary = dlopen(::file::path(::get_exe_path()).folder() / strPath, RTLD_LOCAL | RTLD_LAZY);
+      
+      if(plibrary == NULL)
+      {
+      
+         string strError(dlerror());
+         
+         ::output_debug_string("\n\n__node_library_open Failed " + strPath + " with the error: \""+strError+"\"\n\n");
+         
+         plibrary = dlopen(strPath, RTLD_LOCAL | RTLD_LAZY);
+         
+      }
+      else
+      {
+         
+         ::output_debug_string("\n\n__node_library_open Succeeded " + strPath + "\n\n");
+         
+      }
+      
+
       if(plibrary == NULL)
       {
 
@@ -34,35 +52,19 @@
          
          ::output_debug_string("\n\n__node_library_open Failed " + strPath + " with the error: \""+strError+"\"\n\n");
          
-      }
-      else
-      {
-
-         ::output_debug_string("\n\n__node_library_open Succeeded " + strPath + "\n\n");
-         
-      }
-      
-      if(plibrary == NULL)
-      {
-
          plibrary = dlopen(::file::path(::ca2_module_folder_dup()) / strPath, RTLD_LOCAL | RTLD_LAZY);
          
-         string strError(dlerror());
-         
-         ::output_debug_string("\n\n__node_library_open Failed " + strPath + " with the error: \""+strError+"\"\n\n");
-         
       }
       else
       {
-         
+
          ::output_debug_string("\n\n__node_library_open Succeeded " + strPath + "\n\n");
          
       }
+      
       if(plibrary == NULL)
       {
-         
-         plibrary = dlopen(::file::path(::get_exe_path()).folder() / strPath, RTLD_LOCAL | RTLD_LAZY);
-         
+
          string strError(dlerror());
          
          ::output_debug_string("\n\n__node_library_open Failed " + strPath + " with the error: \""+strError+"\"\n\n");
