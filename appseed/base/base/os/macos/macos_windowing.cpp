@@ -213,7 +213,7 @@ oswindow oswindow_data::set_parent(oswindow oswindow)
 }
 
 
-int32_t oswindow_data::get_window_long(int32_t iIndex)
+int_ptr oswindow_data::get_window_long(int_ptr iIndex)
 {
    
    if(this == NULL)
@@ -227,7 +227,7 @@ int32_t oswindow_data::get_window_long(int32_t iIndex)
 }
 
 
-int32_t oswindow_data::set_window_long(int_ptr iIndex, int_ptr iNewLong)
+int_ptr oswindow_data::set_window_long(int_ptr iIndex, int_ptr iNewLong)
 {
    
    if(this == NULL)
@@ -238,12 +238,12 @@ int32_t oswindow_data::set_window_long(int_ptr iIndex, int_ptr iNewLong)
    
    int_ptr iLong = m_plongmap->operator[](iIndex);
 
-   if (iIndex == GWL_EXSTYLE)
-   {
-
-      defer_dock_application(iLong & WS_EX_TOOLWINDOW);
-
-   }
+//   if (iIndex == GWL_EXSTYLE)
+//   {
+//
+//      defer_dock_application(iLong & WS_EX_TOOLWINDOW);
+//
+//   }
    
    m_plongmap->operator[](iIndex) = iNewLong;
    

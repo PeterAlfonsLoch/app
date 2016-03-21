@@ -195,14 +195,14 @@ bool nsapp_activation_policy_is_accessory()
 void nsapp_activation_policy_regular()
 {
    
-   [NSApp setActivationPolicy:NSApplicationActivationPolicyRegular];
+   [[NSApp dd_invokeOnMainThreadAndWaitUntilDone:TRUE ]setActivationPolicy:NSApplicationActivationPolicyRegular];
    
 }
 
 void nsapp_activation_policy_accessory()
 {
    
-   [NSApp setActivationPolicy:NSApplicationActivationPolicyAccessory];
+   [[NSApp dd_invokeOnMainThreadAndWaitUntilDone:TRUE ]setActivationPolicy:NSApplicationActivationPolicyAccessory];
    
 }
 
@@ -210,7 +210,7 @@ void nsapp_activation_policy_accessory()
 void nsapp_activation_policy_prohibited()
 {
    
-   [NSApp setActivationPolicy:NSApplicationActivationPolicyProhibited];
+   [[NSApp dd_invokeOnMainThreadAndWaitUntilDone:TRUE ]setActivationPolicy:NSApplicationActivationPolicyProhibited];
    
 }
 
@@ -221,13 +221,13 @@ void nsapp_activate_ignoring_other_apps(int i)
    if(i)
    {
       
-      [NSApp activateIgnoringOtherApps:YES];
+      [[NSApp dd_invokeOnMainThreadAndWaitUntilDone:TRUE ]activateIgnoringOtherApps:YES];
       
    }
    else
    {
       
-      [NSApp activateIgnoringOtherApps:NO];
+      [[NSApp dd_invokeOnMainThreadAndWaitUntilDone:TRUE ]activateIgnoringOtherApps:NO];
       
    }
    

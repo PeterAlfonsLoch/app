@@ -2521,8 +2521,13 @@ void simple_frame_window::OnUpdateToolWindow(bool bVisible)
       return;
 
    }
+   
+   if(!bVisible)
+   {
 
-   defer_dock_application(bVisible);
+      defer_dock_application(false);
+      
+   }
 
    if (m_pimpl == NULL)
    {

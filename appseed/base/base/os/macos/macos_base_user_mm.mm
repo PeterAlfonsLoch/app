@@ -16,7 +16,7 @@ void copy(LPRECT lprectDst, const CGRect & rectSrc);
 bool oswindow_data::is_window_visible()
 {
    
-   return 1;
+   return [window() isVisible];
    
 }
 
@@ -41,17 +41,23 @@ bool oswindow_data::show_window(int32_t nCmdShow)
 //   printf("\nhide window");
     
       [[m_nswindow dd_invokeOnMainThreadAndWaitUntilDone:TRUE ]orderOut : nil];
-      
+
    }
    else
    {
   //    printf("\nshow window");
-//      [[m_nswindow dd_invokeOnMainThreadAndWaitUntilDone:TRUE ]showWindow: nil];
+//
       
+      
+      defer_dock_application(true);
+      
+      nsapp_activate_ignoring_other_apps(1);
+      
+//      [[m_nswindow dd_invokeOnMainThreadAndWaitUntilDone:FALSE ]showWindow: nil];
 
       [[m_nswindow dd_invokeOnMainThreadAndWaitUntilDone:TRUE] makeKeyAndOrderFront : nil];
       
-      [[m_nswindow dd_invokeOnMainThreadAndWaitUntilDone:FALSE ]display];
+//      [[m_nswindow dd_invokeOnMainThreadAndWaitUntilDone:FALSE ]display];
       
    }
    

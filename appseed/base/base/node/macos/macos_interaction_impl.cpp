@@ -477,6 +477,7 @@ namespace macos
        {
        ASSERT(FALSE); // should have been set in send msg hook
        }*/
+      m_pui->add_ref();
       return TRUE;
    }
 
@@ -4261,9 +4262,15 @@ namespace macos
        }
        else*/
       {
+         
          ::ShowWindow(get_handle(), nCmdShow);
-         m_pui->m_bVisible = ::IsWindowVisible(get_handle()) != FALSE;
-         return m_pui->m_bVisible;
+         
+         m_pui->send_message(WM_SHOWWINDOW, ::IsWindowVisible(get_handle()));
+         
+//         m_pui->m_bVisible = ::IsWindowVisible(get_handle()) != FALSE;
+  //       return m_pui->m_bVisible;
+         
+         return IsWindowVisible();
       }
    }
 
