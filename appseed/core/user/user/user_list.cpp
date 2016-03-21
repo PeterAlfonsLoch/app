@@ -1,4 +1,4 @@
-//#include "framework.h"
+﻿//#include "framework.h"
 
 namespace user
 {
@@ -1242,7 +1242,7 @@ namespace user
       ::draw2d::memory_graphics pdc(allocer());
       pdc->SelectObject(pfont);
       size size;
-      size = pdc->GetTextExtent("�p");
+      size = pdc->GetTextExtent(unitext("Ág"));
       if(size.cy + 2 > iItemHeight)
       {
          iItemHeight = MAX(size.cy + 2, iItemHeight);
