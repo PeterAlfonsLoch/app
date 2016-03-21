@@ -366,9 +366,9 @@ namespace user
 
    void document_manager::remove_document_template(::user::impact_system * ptemplate)
    {
-      
-      ASSERT_VALID(ptemplate);
-      
+
+      ptemplate->close_all_documents(false);
+
       ::count c = m_templateptra.remove(ptemplate);
 
       if (c <= 0)
@@ -378,7 +378,6 @@ namespace user
 
       }
       
-      ptemplate->close_all_documents(false);
       
    }
 

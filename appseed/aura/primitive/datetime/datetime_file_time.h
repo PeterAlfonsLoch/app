@@ -58,6 +58,7 @@ namespace datetime
 } // namesace datetime
 
 
+CLASS_DECL_AURA FILETIME get_file_time_now();
 
 
 struct CLASS_DECL_AURA file_time
@@ -93,7 +94,36 @@ struct CLASS_DECL_AURA file_time
 	   && !memcmp(&access   ,  &t.access   ,sizeof(access));
    }
 
+   bool modified_timeout(const FILETIME & current, int iSeconds)
+   {
+
+      uint64_t mod = (uint64_t)modified.dwLowDateTime | ((uint64_t) modified.dwHighDateTime << 32);
+      uint64_t now = (uint64_t)current.dwLowDateTime | ((uint64_t)current.dwHighDateTime << 32);
+
+      if (now - mod > (iSeconds * 1000 * 1000 * 10))
+      {
+
+         return true;
+
+      }
+
+      return false;
+
+   }
+
+   bool modified_timeout( int iSeconds)
+   {
+      
+      FILETIME current = get_file_time_now();
+
+      return modified_timeout(current, iSeconds);
+
+   }
+
 };
+
+CLASS_DECL_AURA bool file_modified_timeout(const char * path, int iSeconds);
+
 
 CLASS_DECL_AURA void get_file_time(const char * psz,file_time & time);
 

@@ -1923,6 +1923,7 @@ namespace str
       return string(ch.m_sz);
    }
 
+   
    string get_utf8_char(const char * psz, const char * pszEnd)
    {
       const char * pszNext = __utf8_inc(psz);

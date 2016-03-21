@@ -6,7 +6,7 @@ template < class TYPE, class ALLOCATOR >
 array_base < TYPE, ALLOCATOR >::array_base(int iTypeSize,bool bRaw)
 {
 
-   m_nGrowBy = 32;
+   m_nGrowBy = 0;
    m_pData = NULL;
    m_nSize = 0;
    m_nMaxSize = 0;
@@ -19,7 +19,7 @@ array_base < TYPE, ALLOCATOR >::array_base(::aura::application * papp, int iType
    object(papp)
 {
 
-   m_nGrowBy = 32;
+   m_nGrowBy = 0;
    m_pData = NULL;
    m_nSize = 0;
    m_nMaxSize = 0;
@@ -433,7 +433,7 @@ template < class TYPE,class ALLOCATOR >
       {
          // heuristically determine growth when nGrowBy == 0
          //  (this avoids heap fragmentation in many situations)
-         nGrowBy = m_nSize / 8;
+         nGrowBy = m_nSize;
          nGrowBy = (nGrowBy < 4) ? 4 : ((nGrowBy > 1024) ? 1024 : nGrowBy);
       }
       ::count nNewMax;

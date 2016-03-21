@@ -150,8 +150,32 @@ namespace datetime
 
 
 
+CLASS_DECL_AURA bool file_modified_timeout(const char * path, int iSeconds)
+{
 
+   ::file_time filetime = ::get_file_time(path);
 
+   if (filetime.modified_timeout(iSeconds))
+   {
+
+      return true;
+
+   }
+
+   return false;
+
+}
+
+FILETIME get_file_time_now()
+{
+
+   FILETIME t = {};
+
+   GetSystemTimeAsFileTime(&t);
+   
+   return t;
+
+}
 
 
 

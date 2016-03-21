@@ -9,8 +9,8 @@ namespace xml
 
 
    class CLASS_DECL_AURA document :
-      public node,
-      public ::data::data
+      virtual public node,
+      virtual public ::data::data
    {
    public:
 

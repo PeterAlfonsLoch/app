@@ -157,6 +157,7 @@ namespace str
 
    CLASS_DECL_AURA  const char *   utf8_dec(const char * pszBeg, const char * psz);
    CLASS_DECL_AURA  string         get_utf8_char(const char *psz);
+   CLASS_DECL_AURA  int            get_utf8_char_length(const char *psz);
    CLASS_DECL_AURA  string         get_utf8_char(const char *psz, const char * pszEnd);
    CLASS_DECL_AURA  bool           get_utf8_char(string & strChar, const char * & psz, const char * pszEnd);
    CLASS_DECL_AURA  string         get_utf8_char(const char * pszBeg, const char *psz, strsize i);
@@ -360,6 +361,48 @@ namespace str
 
 
    //inline bool begins(const id & id, const string & strPrefix) { return begins(id.m_psz, strPrefix); }
+
+   inline int get_utf8_char_length(const char * psz)
+   {
+
+      int len = ch_uni_len(*psz);
+      if (len == 0) return 0;
+      if (*psz++ == 0)
+      {
+         return -1;
+      }
+      if (len == 1) return 1;
+      if (*psz++ == 0)
+      {
+         return -1;
+      }
+      if (len == 2) return 2;
+      if (*psz++ == 0)
+      {
+         return -1;
+      }
+      if (len == 3) return 3;
+      if (*psz++ == 0)
+      {
+         return -1;
+      }
+      if (len == 4) return 4;
+      if (*psz++ == 0)
+      {
+         return -1;
+      }
+      if (len == 5) return 5;
+      if (*psz++ == 0)
+      {
+         return -1;
+      }
+      if (len == 6) return 6;
+
+      {
+         return -1;
+      }
+      return -1;
+   }
 
 
 } // namespace str

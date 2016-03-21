@@ -69,7 +69,7 @@ void * system_heap_alloc(size_t size)
 
    }
 
-   memset(p, 0x00, size);
+   //memset(p, 0x00, size);
 
    return p;
 
@@ -157,7 +157,7 @@ p = pblock;
 
    }
 
-   memset(p, 0x00, size);
+   //memset(p, 0x00, size);
 
    return p;
 

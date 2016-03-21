@@ -1090,7 +1090,7 @@ public:
 
 
 
-   array(::aura::application * papp = NULL, ::count nGrowBy = 32);
+   array(::aura::application * papp = NULL, ::count nGrowBy = 0);
    array(const array & a);
    array(::std::initializer_list < TYPE > l);
    array(::count n);

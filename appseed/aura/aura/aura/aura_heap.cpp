@@ -439,7 +439,7 @@ void * unaligned_memory_alloc_dbg(size_t size, int32_t nBlockUse, const char * s
 
 #endif
 
-   zero(p, size);
+   //zero(p, size);
 
    return p;
 

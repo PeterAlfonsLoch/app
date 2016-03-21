@@ -301,6 +301,7 @@ CLASS_DECL_AURA int_bool file_put_contents_dup(const char * path, const char * c
 CLASS_DECL_AURA bool file_get_memory_dup(::primitive::memory_base & memory, const char * path);
 
 
+
 //namespace md5
 //{
 //

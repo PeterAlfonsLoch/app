@@ -49,16 +49,6 @@ namespace user
    impact_system::~impact_system()
    {
 
-      try
-      {
-
-         Application.remove_document_template(this);
-
-      }
-      catch (...)
-      {
-
-      }
    }
 
    bool impact_system::GetDocString(string & rString, enum DocStringIndex i) const
