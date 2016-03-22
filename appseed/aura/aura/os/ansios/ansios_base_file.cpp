@@ -185,18 +185,18 @@ bool file_get_memory_dup(::primitive::memory_base & memory, const char * path)
 
 }
 
-memory_size_t file_get_memory_dup(::primitive::memory_base & memory, void * p, memory_size_t s)
+memory_size_t file_get_memory_dup(const char * path, void * p, memory_size_t s)
 {
    FILE * f = fopen(path, "rb");
    if (f == NULL)
       return 0;
 
+   memory_size_t sRead = 0;
+   
    try
    {
 
-      memory_size_t sRead = 0;
-
-      sRead = fread(mem.get_data(), 1, p, f);
+      sRead = fread(p, 1, s, f);
 
 
    }

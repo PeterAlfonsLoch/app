@@ -46,7 +46,12 @@ void application::on_application_signal(signal_details * pobj)
 } // namespace programming
 
 
-
+#ifdef MACOS
+int get_processor_count()
+{
+   return 1;
+}
+#endif
 
 
 
