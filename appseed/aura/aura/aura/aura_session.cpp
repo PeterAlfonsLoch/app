@@ -762,84 +762,37 @@ namespace aura
       
       ::aura::library library(pappNewApplicationParent,0,NULL);
       
-//#if defined(METROWIN)
       string strLibrary = pszAppId;
 
       strLibrary.replace("/","_");
+      
       strLibrary.replace("-","_");
-
-//#else
-//#if defined(CUBE) || defined(VSNORD) || defined(APPLE_IOS)
-
-  //    string strLibrary = pszAppId;
-
-    //  strLibrary.replace("/","_");
-      //strLibrary.replace("-","_");
-
-
-//#else
-
-  //    string strLibrary = System.m_mapAppLibrary[pszAppId];
-
-    //  if(strLibrary.is_empty())
-      //{
+        
+      ::output_debug_string("\n\n::aura::session::get_new_app assembled library path " + strLibrary + "\n\n");
          
-         //strLibrary =  pszAppId;
-         
-         //strLibrary.replace("/","_");
-         //strLibrary.replace("-","_");
-      
-#ifdef WINDOWS
-         
-  //      strLibrary = System.dir().ca2module() / strLibrary;
-      
-#else
-
-//      strLibrary = System.dir().ca2module() / "lib" + strLibrary;
-      
-#endif
-         
-         ::output_debug_string("\n\n::aura::session::get_new_app assembled library path " + strLibrary + "\n\n");
-         
-         
-         if(!library.open(strLibrary,false))
-         {
-
-        // System.find_applications_to_cache(false);
-
-        // strLibrary = System.m_mapAppLibrary[pszAppId];
-
-        // if(strLibrary.is_empty())
-         //{
+      if(!library.open(strLibrary,false))
+      {
 
 #ifdef METROWIN
 
-            simple_message_box(NULL,"where's the application DLL?", MB_OK);
+         simple_message_box(NULL,"where's the application DLL?", MB_OK);
 
 #else
 
-            if(System.directrix()->m_varTopicQuery.has_property("uninstall") &&
-               System.directrix()->m_varTopicQuery["app"] == strApplicationId)
-               return NULL;
+         if(System.directrix()->m_varTopicQuery.has_property("uninstall") &&
+            System.directrix()->m_varTopicQuery["app"] == strApplicationId)
+            return NULL;
             
-            ::output_debug_string("\n\nSystem.find_applications_to_cache Failed(3) " + string(pszAppId) + "\n\n");
+         ::output_debug_string("\n\nSystem.find_applications_to_cache Failed(3) " + string(pszAppId) + "\n\n");
 
-            throw not_installed(get_app(),System.install_get_version(),strBuildNumber,pszType,strApplicationId,Session.m_strLocale,Session.m_strSchema);
+         throw not_installed(get_app(),System.install_get_version(),strBuildNumber,pszType,strApplicationId,Session.m_strLocale,Session.m_strSchema);
 #endif
 
-         }
+      }
             
-         //}
-
-      //}
-
       ::output_debug_string("\n\n::aura::session::get_new_app Found library : " + strLibrary + "\n\n");
       
-//#endif
-//#endif
-
-//      if(!library.is_opened() && !library.open(strLibrary,false,false))
-                  if(!library.is_opened())
+      if(!library.is_opened())
       {
          
          ::output_debug_string("\n\n::aura::session::get_new_app Failed to load library : " + strLibrary + "\n\n");
@@ -849,7 +802,6 @@ namespace aura
       }
 
       ::output_debug_string("\n\n::aura::session::get_new_app Opened library : " + strLibrary + "\n\n");
-      //Sleep(4984);
       
       if(!library.open_ca2_library())
       {
