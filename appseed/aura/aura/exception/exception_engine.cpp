@@ -1271,10 +1271,13 @@ namespace exception
 
       m_iAddressWrite = c;
       m_iAddressRead = 0;
-
+      char * psz;
       do
       {
-         strcat(_strS, get_frame(pszFormat));
+         psz = get_frame(pszFormat);
+         if (psz == NULL)
+            break;
+         strcat(_strS, psz);
       } while (stack_next());
 
       return _strS;
@@ -1368,6 +1371,14 @@ namespace exception
                }
                else
                {
+                  if (strncmp(_strSymbol, "dispatch::AddMessageHandler", strlen("dispatch::AddMessageHandler")) == 0)
+                  {
+//                     strcpy(_strS, "\n");
+  //                   strcat(_strS, _strSymbol);
+    //                 strcat(_strS, "\n");
+      //               return NULL;
+                     strcat(_strS, " * * * ");
+                  }
                   strcat(_str, _strSymbol);
                }
                break;

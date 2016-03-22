@@ -393,6 +393,8 @@ namespace user
 
       ponopendocument->m_pschema->do_open_document(ponopendocument->m_pdocument, ponopendocument->m_varFile);
 
+      delete ponopendocument;
+
       return 0;
 
    }

@@ -235,7 +235,7 @@ void * aligned_memory_alloc(size_t size)
 
 #endif
 
-   zero(p, size);
+   //zero(p, size);
 
    return p;
 
@@ -560,7 +560,7 @@ void * memory_realloc_dbg(void * pmemory, size_t size, int32_t nBlockUse, const 
 
    if (s_pmemdleakList == pblock)
    {
-      s_pmemdleakList = pblock->m_pnext;
+      s_pmemdleakList = s_pmemdleakList->m_pnext;
       s_pmemdleakList->m_pprevious = NULL;
    }
    else
@@ -727,7 +727,7 @@ void memory_free_dbg(void * pmemory, int32_t iBlockType)
 
    if (s_pmemdleakList == pblock)
    {
-      s_pmemdleakList = pblock->m_pnext;
+      s_pmemdleakList = s_pmemdleakList->m_pnext;
       if (s_pmemdleakList != NULL)
       {
          s_pmemdleakList->m_pprevious = NULL;

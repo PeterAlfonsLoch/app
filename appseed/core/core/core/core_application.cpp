@@ -486,7 +486,7 @@ namespace core
       try
       {
 
-         close_all_documents(false);
+         close(end_app);
 
       }
       catch (...)
@@ -495,16 +495,6 @@ namespace core
       }
 
 
-      try
-      {
-
-         m_pdocmanager.release();
-
-      }
-      catch (...)
-      {
-
-      }
 
       try
       {
@@ -1941,123 +1931,123 @@ namespace core
       return TRUE;
    }
 
-   void application::close_all_documents(bool bEndSession)
+   void application::close(e_end eend)
    {
 
       if (m_pdocmanager != NULL)
       {
 
-         document_manager().close_all_documents(bEndSession);
+         document_manager().close_all_documents(eend != end_close);
 
       }
 
-      string strApp;
-
-      if (System.command()->m_spcommandline.is_set())
+      if (eend == end_close)
       {
 
-         strApp = System.command()->m_spcommandline->m_strApp;
+         return;
 
       }
 
-      if (strApp == m_strAppId)
-      {
-         try
-         {
-
-            if (m_pcoresession != NULL && m_pcoresession->m_pdocmanager != NULL)
-            {
-
-               m_pcoresession->document_manager().close_all_documents(false);
-
-            }
-
-         }
-         catch (...)
-         {
-         }
-         try
-         {
-
-            if (m_pcoresystem != NULL && m_pcoresystem->m_pdocmanager != NULL)
-            {
-
-               m_pcoresystem->document_manager().close_all_documents(false);
-
-            }
-
-         }
-         catch (...)
-         {
-         }
-
-#if !defined(LINUX) && !defined(METROWIN) && !defined(ANDROID) && !defined(MACOS)
-
-         try
-         {
-            if (m_pcoresystem != NULL && m_pcoresystem->m_psystemwindow != NULL)
-            {
-               m_pcoresystem->m_psystemwindow->DestroyWindow();
-
-            }
-
-         }
-         catch (...)
-         {
-
-            m_iReturnCode = -2;
-
-         }
-
-         try
-         {
-            if (m_pcoresystem != NULL)
-            {
-               ::aura::del(m_pcoresystem->m_psystemwindow);
-
-            }
-
-         }
-         catch (...)
-         {
-
-            m_iReturnCode = -2;
-
-         }
-
-#endif
-
-
-         try
-         {
-
-            if (m_paurasystem != NULL)
-            {
-
-               m_paurasystem->post_quit();
-
-            }
-
-         }
-         catch (...)
-         {
-
-         }
-
-      }
-      else if(bEndSession)
+      try
       {
 
-         System.post_quit();
+         m_pdocmanager.release();
 
       }
-      else
+      catch (...)
+      {
+
+      }
+
+      if (eend == end_app)
       {
 
          post_quit();
 
+         return;
+
       }
 
+      if (m_pcoresession->m_pdocmanager != NULL)
+      {
+
+         m_pcoresession->document_manager().close_all_documents(false);
+
+         m_pcoresession->m_pdocmanager.release();
+
+      }
+
+      if (eend == end_session)
+      {
+
+         Session.post_quit();
+
+         return;
+
+      }
+
+      if (m_pcoresystem->m_pdocmanager != NULL)
+      {
+
+         m_pcoresystem->document_manager().close_all_documents(false);
+
+         m_pcoresystem->m_pdocmanager.release();
+
+      }
+
+
+#if !defined(LINUX) && !defined(METROWIN) && !defined(ANDROID) && !defined(MACOS)
+
+      try
+      {
+         if (m_pcoresystem != NULL && m_pcoresystem->m_psystemwindow != NULL)
+         {
+            m_pcoresystem->m_psystemwindow->DestroyWindow();
+
+         }
+
+      }
+      catch (...)
+      {
+
+         m_iReturnCode = -2;
+
+      }
+
+      try
+      {
+
+         if (m_pcoresystem != NULL)
+         {
+            ::aura::del(m_pcoresystem->m_psystemwindow);
+
+         }
+
+      }
+      catch (...)
+      {
+
+         m_iReturnCode = -2;
+
+      }
+
+#endif
+
+      try
+      {
+
+         if (m_paurasystem != NULL)
+         {
+
+            m_paurasystem->post_quit();
+
+         }
+
+      }
+      catch (...)
+      {
+
+      }
 
    }
 
@@ -3257,7 +3247,7 @@ namespace core
       // hide the application's windows before closing all the documents
       HideApplication();
 
-      close_all_documents(false);
+      close(end_app);
 
       return true;
 

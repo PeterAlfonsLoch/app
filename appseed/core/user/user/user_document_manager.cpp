@@ -411,16 +411,34 @@ namespace user
       return TRUE;
    }
 
-   void document_manager::close_all_documents(bool bEndSession)
+
+   void document_manager::close_all_documents(bool bEndApp)
    {
+
       ::count count = m_templateptra.get_count();
+
       for(index index = 0; index < count; index++)
       {
+
          sp(::user::impact_system) ptemplate = m_templateptra[index];
+
          ASSERT_KINDOF(::user::impact_system, ptemplate);
-         ptemplate->close_all_documents(bEndSession);
+
+         ptemplate->close_all_documents(bEndApp);
+
       }
+
+      ::count count2 = m_templateptra.get_count();
+
+      if (bEndApp)
+      {
+
+         m_templateptra.remove_all();
+
+      }
+
    }
+
 
    bool document_manager::do_prompt_file_name(var & varFile, UINT nIDSTitle, uint32_t lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument)
    {

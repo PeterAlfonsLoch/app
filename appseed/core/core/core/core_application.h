@@ -6,6 +6,15 @@ namespace userex {
 namespace core
 {
 
+   enum e_end
+   {
+
+      end_close,
+      end_app,
+      end_session,
+      end_system
+
+   };
 
    class CLASS_DECL_CORE application:
       virtual public ::base::application,
@@ -300,7 +309,7 @@ namespace core
       // exiting
       virtual bool save_all_modified(); // save before exit
       void HideApplication();
-      void close_all_documents(bool bEndSession); // close documents before exiting
+      void close(e_end eend); // close documents before exiting
 
       // Advanced: to override message boxes and other hooks
       virtual int32_t DoMessageBox(const char * lpszPrompt,UINT nType,UINT nIDPrompt);

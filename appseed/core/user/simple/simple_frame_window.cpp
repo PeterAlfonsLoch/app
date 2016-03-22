@@ -1803,7 +1803,7 @@ void simple_frame_window::OnEndSession(bool bEnding)
    if(!bEnding)
       return;
 
-   Application.close_all_documents(true);
+   Application.close(::core::end_system);
 
 }
 

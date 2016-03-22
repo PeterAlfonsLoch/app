@@ -1896,7 +1896,7 @@ restart:
 
                   sl.unlock();
 
-                  spfile = new ::sockets::http_buffer(papp);
+                  spfile = canew(::sockets::http_buffer(papp));
 
                   if((cres = spfile->open(strPath,nOpenFlags)).failed())
                   {
@@ -1939,7 +1939,7 @@ restart:
             else
             {
 
-               spfile = new ::sockets::http_buffer(papp);
+               spfile = canew(::sockets::http_buffer(papp));
 
                spfile->oprop("http_set") = varFile["http_set"];
 

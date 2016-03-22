@@ -18,7 +18,7 @@ namespace user
 
       string                           m_strTitle;
       ::file::path                     m_filepath;
-      sp(::user::impact_system)        m_pimpactsystem;
+      ::user::impact_system *          m_pimpactsystem;
       ptr_array < ::user::impact >     m_viewptra;
       bool                             m_bModified;
       bool                             m_bNew;

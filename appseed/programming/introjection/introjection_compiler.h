@@ -75,7 +75,8 @@ public:
 
 } // namespace dynamic_source
 
-class xyz
+class xyz :
+   virtual public ::object
 {
 public:
    xyz(string strName)
@@ -103,7 +104,7 @@ public:
    }
    virtual ::object *  create_object(::aura::application * papp,object * p)
    {
-      return new T(papp,p);
+      return canew(T(papp,p));
    }
 
 };
@@ -111,14 +112,14 @@ public:
 
 
 #define BEGIN_LIBRARY  class library : virtual public ::aura::library { public: \
-ptr_array < xyz > m_xyzptra; library(::aura::application * papp) : object(papp), ::aura::library(papp) { initialize_factory(); }
+spa(xyz) m_xyzptra; library(::aura::application * papp) : object(papp), ::aura::library(papp) { initialize_factory(); }
 
 #define BEGIN_CREATE_OBJECT \
       virtual sp(::object) create_object(::aura::application * papp, const char * pszClass, object * p) override { xyz * pxyz = find_xyz(pszClass); if(pxyz == NULL) return NULL; return pxyz->create_object(papp, p); } \
       virtual bool has_object_class(const char * pszClass) override { return find_xyz(pszClass) != NULL; } \
 	  xyz * find_xyz(const char * pszClass) { index iFind = m_xyzptra.pred_find_first([&](auto pxy){return pxy->m_strName == pszClass; }); if(iFind < 0) return NULL; return m_xyzptra[iFind]; } \
 	  void initialize_factory() {
-#define CREATE_OBJECT_ENTRY(name, cl) m_xyzptra.add(new xy < cl>(name));
+#define CREATE_OBJECT_ENTRY(name, cl) m_xyzptra.add(canew(xy < cl>(name)));
 
 #define END_CREATE_OBJECT }
 

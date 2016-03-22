@@ -32,8 +32,15 @@ namespace user
       virtual void assert_valid() const;
 
 
-      
+      virtual int64_t add_ref()
+      {
+         return ::user::impact_system::add_ref();
+      }
 
+      virtual int64_t dec_ref()
+      {
+         return ::user::impact_system::dec_ref();
+      }
 
    };
 
