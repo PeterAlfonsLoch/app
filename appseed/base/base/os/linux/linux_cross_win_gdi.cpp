@@ -305,7 +305,12 @@ int32_t _c_XErrorHandler(Display * display, XErrorEvent * perrorevent)
 
 
 
+CLASS_DECL_BASE void defer_dock_application(bool bDock)
+{
 
+   UNREFERENCED_PARAMETER(bDock);
+
+}
 
 
 
