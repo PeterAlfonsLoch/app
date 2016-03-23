@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		07473E0D1B503FE4004688C5 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07473E0C1B503FE4004688C5 /* libaura.dylib */; };
 		07CE92441CA2172C0039EE8B /* amigaconfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 07CE92241CA2172C0039EE8B /* amigaconfig.h */; };
 		07CE92451CA2172C0039EE8B /* ascii.h in Headers */ = {isa = PBXBuildFile; fileRef = 07CE92251CA2172C0039EE8B /* ascii.h */; };
 		07CE92461CA2172C0039EE8B /* asciitab.h in Headers */ = {isa = PBXBuildFile; fileRef = 07CE92261CA2172C0039EE8B /* asciitab.h */; };
@@ -26,7 +25,6 @@
 		07CE92531CA2172C0039EE8B /* xmltok_ns.c in Sources */ = {isa = PBXBuildFile; fileRef = 07CE92411CA2172C0039EE8B /* xmltok_ns.c */; };
 		07CE92541CA2172C0039EE8B /* xmltok.c in Sources */ = {isa = PBXBuildFile; fileRef = 07CE92421CA2172C0039EE8B /* xmltok.c */; };
 		07CE92551CA2172C0039EE8B /* xmltok.h in Headers */ = {isa = PBXBuildFile; fileRef = 07CE92431CA2172C0039EE8B /* xmltok.h */; };
-		9A1EDB5519C83FFB00F5CCE8 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A1EDB4E19C83FE800F5CCE8 /* libaura.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,13 +34,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = 077A080B1B4D7403001C85FF;
 			remoteInfo = ios_aura;
-		};
-		07557C321B4D905B0065594B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A1EDB4719C83FE800F5CCE8 /* aura.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 077A05B41B4D7403001C85FF;
-			remoteInfo = aura_ios;
 		};
 		9A1EDB4D19C83FE800F5CCE8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -57,13 +48,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = 9AE24D431904CEFE001AEFFB;
 			remoteInfo = aura_iosTests;
-		};
-		9A1EDB5319C83FF200F5CCE8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A1EDB4719C83FE800F5CCE8 /* aura.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 9A98A6031771D67E000AE16E;
-			remoteInfo = aura;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -88,7 +72,7 @@
 		07CE92431CA2172C0039EE8B /* xmltok.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xmltok.h; path = lib/xmltok.h; sourceTree = SOURCE_ROOT; };
 		07D6A8471B4CBB45004FEBC2 /* libios_auraexpat.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_auraexpat.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A1EDB4719C83FE800F5CCE8 /* aura.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aura.xcodeproj; path = ../../appseed/aura/aura.xcodeproj; sourceTree = "<group>"; };
-		9AA539B119B763C400B9F861 /* libaurapcre.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libaurapcre.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AA539B119B763C400B9F861 /* libauraexpat.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libauraexpat.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,7 +80,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07473E0D1B503FE4004688C5 /* libaura.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -104,7 +87,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A1EDB5519C83FFB00F5CCE8 /* libaura.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -116,7 +98,7 @@
 			children = (
 				9A1EDB4719C83FE800F5CCE8 /* aura.xcodeproj */,
 				9A1EDAE819C83CD000F5CCE8 /* pcre */,
-				9AA539B119B763C400B9F861 /* libaurapcre.dylib */,
+				9AA539B119B763C400B9F861 /* libauraexpat.dylib */,
 				07D6A8471B4CBB45004FEBC2 /* libios_auraexpat.dylib */,
 			);
 			sourceTree = "<group>";
@@ -201,7 +183,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				07557C331B4D905B0065594B /* PBXTargetDependency */,
 			);
 			name = ios_auraexpat;
 			productName = FreeImage;
@@ -219,11 +200,10 @@
 			buildRules = (
 			);
 			dependencies = (
-				9A1EDB5419C83FF200F5CCE8 /* PBXTargetDependency */,
 			);
 			name = auraexpat;
 			productName = FreeImage;
-			productReference = 9AA539B119B763C400B9F861 /* libaurapcre.dylib */;
+			productReference = 9AA539B119B763C400B9F861 /* libauraexpat.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 /* End PBXNativeTarget section */
@@ -305,19 +285,6 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		07557C331B4D905B0065594B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = aura_ios;
-			targetProxy = 07557C321B4D905B0065594B /* PBXContainerItemProxy */;
-		};
-		9A1EDB5419C83FF200F5CCE8 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = aura;
-			targetProxy = 9A1EDB5319C83FF200F5CCE8 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin XCBuildConfiguration section */
 		07D6A8451B4CBB45004FEBC2 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -357,9 +324,10 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
+					MACOS_CLASSIC,
+					HAVE_CONFIG_H,
 					"DEBUG=1",
 					"$(inherited)",
-					HAVE_CONFIG_H,
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -404,7 +372,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					HAVE_CONFIG_H,
+					MACOS_CLASSIC,
 					HAVE_CONFIG_H,
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
