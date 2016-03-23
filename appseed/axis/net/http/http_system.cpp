@@ -1247,7 +1247,119 @@ retry:
          strVersion = "HTTP/1.1";
       }
 
+
       string strUrl(pszUrl);
+      if (Session.fontopus()->m_strBestApiServer.has_char() && strUrl.find_ci("://api.ca2.cc/") > 0)
+      {
+
+         strUrl.replace("://api.ca2.cc/", "://" + Session.fontopus()->m_strBestApiServer + "/");
+
+      }
+
+
+      string strIp;
+
+      string strSessId;
+
+      {
+         property_set setQuery(get_app());
+
+         setQuery.parse_url_query(System.url().get_query(strUrl));
+         if ((bool)set["raw_http"])
+         {
+         }
+         else
+         {
+
+            if (!(bool)set["disable_ca2_sessid"] && !setQuery.has_property("authnone"))
+            {
+               if ((bool)set["optional_ca2_sessid"])
+               {
+
+
+                  if (papp != NULL)
+                  {
+
+                     string strFontopusServer = Session.fontopus()->get_server(strUrl, 8);
+
+                     url_domain domainFontopus;
+
+                     domainFontopus.create(strFontopusServer);
+
+                     if (domainFontopus.m_strRadix == "ca2")
+                     {
+                        set["user"] = &AppUser(papp);
+                        if (set["user"].cast < ::fontopus::user >() != NULL && (strSessId = set["user"].cast < ::fontopus::user >()->get_sessid(strUrl, !set["interactive_user"].is_new()
+                           && (bool)set["interactive_user"])).has_char() &&
+                           if_then(set.has_property("optional_ca2_login"), !(bool)set["optional_ca2_login"]))
+                        {
+                           System.url().string_set(strUrl, "sessid", strSessId);
+                        }
+                     }
+
+                  }
+
+               }
+               else if (set["user"].cast < ::fontopus::user >() != NULL &&
+                  (strSessId = set["user"].cast < ::fontopus::user >()->get_sessid(strUrl, !set["interactive_user"].is_new() && (bool)set["interactive_user"])).has_char() &&
+                  if_then(set.has_property("optional_ca2_login"), !(bool)set["optional_ca2_login"]))
+               {
+                  System.url().string_set(strUrl, "sessid", strSessId);
+                  string strHost;
+                  string strFontopus = Session.fontopus()->get_server(pszUrl, 8);
+                  ::net::address ad1(strFontopus);
+
+                  strIp = ad1.get_display_number();
+
+                  string str1 = strFontopus;
+
+                  if (::str::ends_eat_ci(str1, "-account.ca2.cc") && strIp.has_char())
+                  {
+
+                     str1 = str1 + ".fontopus.com";
+
+                     ::net::address ad1(str1);
+
+                     Session.fontopus()->m_strBestFontopusServerIp = ad1.get_display_number();
+
+                  }
+
+
+                  strHost = System.url().get_server(pszUrl);
+
+                  if (strUrl.find_ci("://api.ca2.cc/") > 0)
+                  {
+
+                     if (::str::ends_eat_ci(strFontopus, "-account.ca2.cc"))
+                     {
+                        strHost = strFontopus + "-api.ca2.cc";
+                        strUrl.replace("://api.ca2.cc/", "://" + strHost + "/");
+                        Session.fontopus()->m_strBestApiServer = strHost;
+                     }
+
+                  }
+                  ::net::address ad(strHost);
+
+                  strIp = ad.get_display_number();;
+
+
+                  set["headers"]["host"] = strHost;
+
+               }
+               else if (if_then(set.has_property("optional_ca2_login"), (bool)set["optional_ca2_login"]))
+               {
+               }
+               else
+               {
+                  System.url().string_set(strUrl, "authnone", 1);
+               }
+            }
+            else
+            {
+               System.url().string_set(strUrl, "authnone", 1);
+            }
+         }
+      }
 
       // Format of script name example "system://server.com/the rain.mp3" => "system://server.com/the%20rain.mp3"
       {
@@ -1257,98 +1369,16 @@ retry:
          strUrl = System.url().set_script(strUrl, strScript);
       }
 
-      property_set setQuery(get_app());
-
-      setQuery.parse_url_query(System.url().get_query(strUrl));
-
-      string strIp;
-
-      string strSessId;
-      if ((bool)set["raw_http"])
+      if (strUrl.find_ci("://fontopus.com/") > 0 && Session.fontopus()->m_strBestFontopusServerIp.has_char())
       {
-      }
-      else
-      {
+         
+         strIp = Session.fontopus()->m_strBestFontopusServerIp;
 
-         if (!(bool)set["disable_ca2_sessid"] && !setQuery.has_property("authnone"))
-         {
-            if ((bool)set["optional_ca2_sessid"])
-            {
-
-
-               if (papp != NULL)
-               {
-
-                  string strFontopusServer = Session.fontopus()->get_server(strUrl, 8);
-
-                  url_domain domainFontopus;
-
-                  domainFontopus.create(strFontopusServer);
-
-                  if (domainFontopus.m_strRadix == "ca2")
-                  {
-                     set["user"] = &AppUser(papp);
-                     if (set["user"].cast < ::fontopus::user >() != NULL && (strSessId = set["user"].cast < ::fontopus::user >()->get_sessid(strUrl, !set["interactive_user"].is_new()
-                           && (bool)set["interactive_user"])).has_char() &&
-                           if_then(set.has_property("optional_ca2_login"), !(bool)set["optional_ca2_login"]))
-                     {
-                        System.url().string_set(strUrl, "sessid", strSessId);
-                     }
-                  }
-
-               }
-
-            }
-            else if (set["user"].cast < ::fontopus::user >() != NULL &&
-                     (strSessId = set["user"].cast < ::fontopus::user >()->get_sessid(strUrl, !set["interactive_user"].is_new() && (bool)set["interactive_user"])).has_char() &&
-                     if_then(set.has_property("optional_ca2_login"), !(bool)set["optional_ca2_login"]))
-            {
-               System.url().string_set(strUrl, "sessid", strSessId);
-               if (strUrl.find_ci("://api.ca2.cc/") > 0)
-               {
-                  stringa stra = Session.fontopus()->m_mapSomeBrothersAndSisters[Session.fontopus()->m_strFirstFontopusServer];
-                  for (index i = 0; i < stra.get_size(); i++)
-                  {
-                     string str = stra[i];
-                     
-                     if (::str::ends_eat_ci(str, "-api.ca2.cc"))
-                     {
-
-                        strUrl.replace("://api.ca2.cc/", "://" + str + "-api.ca2.cc/");
-
-                           break;
-
-                     }
-                  }
-                  //string strApi(Session.fontopus()->get_server(strUrl, 8));
-                  //strApi.replace("account", "api");
-                  //strUrl.replace("://api.ca2.cc/", "://" + strApi + "/");
-//                  set["user"].cast < ::fontopus::user >()->set_sessid(set["user"].cast < ::fontopus::user >()->get_sessid(strApi), "api.ca2.cc");
-               }
-
-               string strFontopus = Session.fontopus()->get_server(pszUrl, 8);
-
-               ::net::address ad(strFontopus);
-
-               strIp = ad.get_display_number();;
-
-               set["headers"]["host"] = System.url().get_server(pszUrl);
-
-            }
-            else if (if_then(set.has_property("optional_ca2_login"), (bool)set["optional_ca2_login"]))
-            {
-            }
-            else
-            {
-               System.url().string_set(strUrl, "authnone", 1);
-            }
-         }
-         else
-         {
-            System.url().string_set(strUrl, "authnone", 1);
-         }
       }
 
+      //property_set setQuery(get_app());
+
+      //setQuery.parse_url_query(System.url().get_query(strUrl));
 
       sp(::sockets::http_client_socket) psocket;
 

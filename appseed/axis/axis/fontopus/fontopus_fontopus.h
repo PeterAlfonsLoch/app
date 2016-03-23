@@ -16,6 +16,8 @@ namespace fontopus
       user *                                       m_puser;
       string_to_string                             m_mapFontopusServer;
       string                                       m_strFirstFontopusServer;
+      string                                       m_strBestFontopusServerIp;
+      string                                       m_strBestApiServer;
       authentication_map                           m_authmap;
       string_map < ::sockets::http_session * >     m_mapFontopusSession;
       string_map < stringa >                       m_mapSomeBrothersAndSisters;
