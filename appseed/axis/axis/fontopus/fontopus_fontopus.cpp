@@ -587,10 +587,12 @@ namespace fontopus
 
          straSomeBrothersAndSisters.explode(";",strSomeBrothersAndSisters);
 
-         for(index i = 0; i < straSomeBrothersAndSisters; i++)
+         for (index i = 0; i < straSomeBrothersAndSisters; i++)
          {
 
-            m_mapFontopusServer.set_at(straSomeBrothersAndSisters[i],strFontopusServer);
+            m_mapFontopusServer.set_at(straSomeBrothersAndSisters[i], strFontopusServer);
+
+            m_mapSomeBrothersAndSisters[strFontopusServer].add_unique(straSomeBrothersAndSisters);
 
             Session.sockets().net().m_mapCache.set_at(straSomeBrothersAndSisters[i],item);
 

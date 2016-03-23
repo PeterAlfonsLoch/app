@@ -1306,9 +1306,23 @@ retry:
                System.url().string_set(strUrl, "sessid", strSessId);
                if (strUrl.find_ci("://api.ca2.cc/") > 0)
                {
-                  string strApi(Session.fontopus()->get_server(strUrl, 8));
-                  strApi.replace("account", "api");
-                  strUrl.replace("://api.ca2.cc/", "://" + strApi + "/");
+                  stringa stra = Session.fontopus()->m_mapSomeBrothersAndSisters[Session.fontopus()->m_strFirstFontopusServer];
+                  for (index i = 0; i < stra.get_size(); i++)
+                  {
+                     string str = stra[i];
+                     
+                     if (::str::ends_eat_ci(str, "-api.ca2.cc"))
+                     {
+
+                        strUrl.replace("://api.ca2.cc/", "://" + str + "-api.ca2.cc/");
+
+                           break;
+
+                     }
+                  }
+                  //string strApi(Session.fontopus()->get_server(strUrl, 8));
+                  //strApi.replace("account", "api");
+                  //strUrl.replace("://api.ca2.cc/", "://" + strApi + "/");
 //                  set["user"].cast < ::fontopus::user >()->set_sessid(set["user"].cast < ::fontopus::user >()->get_sessid(strApi), "api.ca2.cc");
                }
 
