@@ -4846,14 +4846,16 @@ restart:
 
    void interaction::_001OnClose(signal_details * pobj)
    {
-      UNREFERENCED_PARAMETER(pobj);
-      if(!IsWindow())
-         return;
+
       pobj->m_bRet = true;
+
       ShowWindow(SW_HIDE);
+
       DestroyWindow();
 
    }
+
+
    /*
    #ifdef METROWIN
 
@@ -6220,28 +6222,12 @@ restart:
          if(GetParent() != NULL)
          {
 
-            sync_object_ptra ptra;
-
-            if(GetParent() != NULL && GetParent()->m_pmutex != NULL)
-            {
-
-               ptra.add(GetParent()->m_pmutex);
-
-            }
-
-            if(m_pmutex != NULL)
-            {
-
-               ptra.add(m_pmutex);
-
-            }
-
-            multi_lock ml(ptra);
+            single_lock sl(GetParent() != NULL ? GetParent()->m_pmutex : NULL, false);
 
             if(z == ZORDER_TOP || z == ZORDER_TOPMOST)
             {
 
-               if(ml.lock().succeeded())
+               if(sl.lock())
                {
 
                   if(GetParent()->m_uiptraChild.get_count() > 0 && GetParent()->m_uiptraChild.last_ptr() != this)

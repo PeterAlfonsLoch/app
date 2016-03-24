@@ -824,7 +824,6 @@ namespace windows
       // call special post-cleanup routine
       PostNcDestroy();
       m_pui->PostNcDestroy();
-
    }
 
    void interaction_impl::PostNcDestroy()
