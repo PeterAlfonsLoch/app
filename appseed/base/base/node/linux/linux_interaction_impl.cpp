@@ -481,6 +481,8 @@ namespace linux
 
          m_oswindow->set_user_interaction(m_pui);
 
+         m_pui->add_ref();
+
          HTHREAD hthread = ::GetCurrentThread();
 
          m_oswindow->m_hthread = hthread;

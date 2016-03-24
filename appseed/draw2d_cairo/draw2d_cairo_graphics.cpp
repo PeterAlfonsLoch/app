@@ -2662,6 +2662,9 @@ VOID Example_EnumerateMetafile9(HDC hdc)
          if(nDstWidth <= 0 || nDstWidth <= 0)
             return false;
 
+         if(pgraphicsSrc->get_os_data() == NULL)
+            return false;
+
          cairo_surface_t * psurface = cairo_get_target((cairo_t *) pgraphicsSrc->get_os_data());
 
          if(psurface == NULL)
