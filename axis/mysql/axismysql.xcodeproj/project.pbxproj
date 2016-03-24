@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		07A371EB1B25EC0700E4F888 /* libaxiscrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07A371E21B25EBE900E4F888 /* libaxiscrypto.dylib */; };
 		07A4AA81190C452A005B6DE5 /* dbug.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AE72C0D17E90B86003E47F9 /* dbug.c */; };
 		07A4AA82190C452A005B6DE5 /* factorial.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AE72C1417E90B86003E47F9 /* factorial.c */; };
 		07A4AA83190C452A005B6DE5 /* errmsg.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AE72C3217E90B86003E47F9 /* errmsg.c */; };
@@ -454,34 +453,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		07A371E11B25EBE900E4F888 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 07A371D81B25EBE900E4F888 /* axiscrypto.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 07B2729A19A01A4600E822E1;
-			remoteInfo = axiscrypto;
-		};
-		07A371E31B25EBE900E4F888 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 07A371D81B25EBE900E4F888 /* axiscrypto.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 07B2729219A019AB00E822E1;
-			remoteInfo = axiscrypto_ios;
-		};
-		07A371E51B25EBE900E4F888 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 07A371D81B25EBE900E4F888 /* axiscrypto.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 0778A245199FEF0700206CA1;
-			remoteInfo = axiscrypto_iosTests;
-		};
-		07A371E91B25EBF800E4F888 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 07A371D81B25EBE900E4F888 /* axiscrypto.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 07B2729319A01A4600E822E1;
-			remoteInfo = axiscrypto;
-		};
 		9A2EA33419A62C6A004DAFFC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9A2EA32E19A62C6A004DAFFC /* axis.xcodeproj */;
@@ -546,7 +517,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		07A371D81B25EBE900E4F888 /* axiscrypto.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axiscrypto.xcodeproj; path = ../crypto/axiscrypto.xcodeproj; sourceTree = "<group>"; };
 		9A2EA32E19A62C6A004DAFFC /* axis.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axis.xcodeproj; path = ../../appseed/axis/axis.xcodeproj; sourceTree = "<group>"; };
 		9A9F2DA419A64412007AE2C7 /* axisopenssl.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axisopenssl.xcodeproj; path = ../openssl/axisopenssl.xcodeproj; sourceTree = "<group>"; };
 		9AA5E6D616F7C61B005C45CE /* libaxismysql.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libaxismysql.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -839,7 +809,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				9AEEB84419C5249900866C9E /* libz.1.2.5.dylib in Frameworks */,
-				07A371EB1B25EC0700E4F888 /* libaxiscrypto.dylib in Frameworks */,
 				9AEEB84019C5231C00866C9E /* libaxisopenssl.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -866,16 +835,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		07A371D91B25EBE900E4F888 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				07A371E21B25EBE900E4F888 /* libaxiscrypto.dylib */,
-				07A371E41B25EBE900E4F888 /* libaxiscrypto.dylib */,
-				07A371E61B25EBE900E4F888 /* axiscrypto_iosTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		07B6586E190F3E2C002DAADE /* basemysql */ = {
 			isa = PBXGroup;
 			children = (
@@ -959,7 +918,6 @@
 			isa = PBXGroup;
 			children = (
 				9A2EA32E19A62C6A004DAFFC /* axis.xcodeproj */,
-				07A371D81B25EBE900E4F888 /* axiscrypto.xcodeproj */,
 				9A9F2DA419A64412007AE2C7 /* axisopenssl.xcodeproj */,
 				07B6586E190F3E2C002DAADE /* basemysql */,
 				9AE72BF717E90B86003E47F9 /* atomic */,
@@ -1449,7 +1407,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				07A371EA1B25EBF800E4F888 /* PBXTargetDependency */,
 				9A9F2DB119A6441E007AE2C7 /* PBXTargetDependency */,
 			);
 			name = axismysql;
@@ -1521,10 +1478,6 @@
 					ProjectRef = 9A2EA32E19A62C6A004DAFFC /* axis.xcodeproj */;
 				},
 				{
-					ProductGroup = 07A371D91B25EBE900E4F888 /* Products */;
-					ProjectRef = 07A371D81B25EBE900E4F888 /* axiscrypto.xcodeproj */;
-				},
-				{
 					ProductGroup = 9A9F2DA519A64412007AE2C7 /* Products */;
 					ProjectRef = 9A9F2DA419A64412007AE2C7 /* axisopenssl.xcodeproj */;
 				},
@@ -1539,27 +1492,6 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		07A371E21B25EBE900E4F888 /* libaxiscrypto.dylib */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libaxiscrypto.dylib;
-			remoteRef = 07A371E11B25EBE900E4F888 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		07A371E41B25EBE900E4F888 /* libaxiscrypto.dylib */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libaxiscrypto.dylib;
-			remoteRef = 07A371E31B25EBE900E4F888 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		07A371E61B25EBE900E4F888 /* axiscrypto_iosTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = axiscrypto_iosTests.xctest;
-			remoteRef = 07A371E51B25EBE900E4F888 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		9A2EA33519A62C6A004DAFFC /* libaxis.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
@@ -1973,11 +1905,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		07A371EA1B25EBF800E4F888 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = axiscrypto;
-			targetProxy = 07A371E91B25EBF800E4F888 /* PBXContainerItemProxy */;
-		};
 		9A9F2DB119A6441E007AE2C7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = axisopenssl;
