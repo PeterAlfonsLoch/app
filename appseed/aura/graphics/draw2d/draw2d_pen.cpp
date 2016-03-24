@@ -62,6 +62,18 @@ namespace draw2d
 
    }
 
+   bool pen::create_brush(double dWidth, ::draw2d::brush * pbrush)
+   {
+
+
+      m_etype = type_brush;
+      m_dWidth = dWidth;
+      m_br = pbrush;
+      m_bUpdated = false;
+
+      return true;
+
+   }
 
    pen & pen::operator = (const pen & penSrc)
    {
@@ -69,6 +81,7 @@ namespace draw2d
       m_etype           = penSrc.m_etype;
       m_dWidth          = penSrc.m_dWidth;
       m_cr              = penSrc.m_cr;
+      m_br = penSrc.m_br;
       m_elinecapBeg     = penSrc.m_elinecapBeg;
       m_elinecapEnd     = penSrc.m_elinecapEnd;
       m_elinejoin       = penSrc.m_elinejoin;

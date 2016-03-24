@@ -4,6 +4,10 @@
 namespace draw2d
 {
 
+   class brush;
+
+
+
 
    class CLASS_DECL_AURA pen :
       virtual public ::draw2d::object
@@ -17,6 +21,7 @@ namespace draw2d
          type_null,
          type_solid,
          type_dot,
+         type_brush,
             
       };
 
@@ -48,6 +53,7 @@ namespace draw2d
       e_line_join       m_elinejoin;
       double            m_dWidth;
       COLORREF          m_cr;
+      sp(brush)         m_br;
 
 
       pen();
@@ -56,6 +62,7 @@ namespace draw2d
 
       virtual bool create_null();
       virtual bool create_solid(double dWidth, COLORREF crColor);
+      virtual bool create_brush(double dWidth, ::draw2d::brush * pbrush);
 
       virtual e_line_cap get_beg_cap();
       virtual bool set_beg_cap(e_line_cap ebegcap);
