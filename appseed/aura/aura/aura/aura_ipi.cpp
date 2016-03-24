@@ -101,6 +101,52 @@ namespace aura
       return map;
 
    }
+   int_map < var > ipi::call(const stringa & straApp, const string & strObject, const string & strMember, var_array & va)
+   {
+
+      int_map < var > map;
+
+      stringa straApp2;
+
+      int_array iaPid2;
+
+      for (index i = 0; i < straApp.get_size(); i++)
+      {
+
+         int_array iaPid = get_pid(straApp[i]);
+
+         for (index j = 0; j < iaPid.get_size(); j++)
+         {
+
+            int iPid = iaPid[j];
+
+            if (iaPid2.add_unique(iPid))
+            {
+
+               string strApp = straApp[i];
+          
+               straApp2.add(strApp);
+
+            }
+
+         }
+
+      }
+
+      for (index i = 0; i < straApp2.get_size(); i++)
+      {
+
+         int iPid = iaPid2[i];
+
+         string strApp = straApp2[i];
+
+         map[iPid] = call(strApp, iPid, strObject, strMember, va);
+
+      }
+
+      return map;
+
+   }
 
 
    int_map < var > ipi::ecall(const string & strApp,int_array iaExcludePid, const string & strObject,const string & strMember,var_array & va)
@@ -503,8 +549,8 @@ namespace aura
 
          if(str.has_char())
          {
-
-            iaPid.add(module_path_get_pid(str));
+            
+            iaPid.add_unique(module_path_get_pid(str));
 
          }
 

@@ -52,6 +52,7 @@ namespace aura
 
       virtual int_map < var > call(const string & strApp,const string & strObject,const string & strMember,var_array & va);
 
+      virtual int_map < var > call(const stringa & straApp, const string & strObject, const string & strMember, var_array & va);
 
       template<typename T,typename... Args>
       int_map < var > scall(bool bAutoLaunch, const string & strApp,const string & strObject,const string & strMember,const T & t,Args... args)
