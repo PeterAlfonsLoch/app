@@ -87,8 +87,8 @@ namespace introjection
 
 #ifdef WINDOWS
       Application.dir().mk("C:\\ca2\\introjection\\symbols");
-#else
-      Application.dir().mk("/tmp/ca2/introjection/symbols");
+//#else
+      //Application.dir().mk("/tmp/ca2/introjection/symbols");
 #endif
       //string strVars = getenv("VS100COMNTOOLS");
       ::file::path strVars;

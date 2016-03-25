@@ -421,7 +421,7 @@ namespace linux
 
          attr.colormap = XCreateColormap( display, rootwin, vis, AllocNone);
 
-         attr.event_mask = ExposureMask | ButtonPressMask | ButtonReleaseMask | KeyPressMask | KeyReleaseMask | PointerMotionMask | StructureNotifyMask;
+         attr.event_mask = ExposureMask | ButtonPressMask | ButtonReleaseMask | KeyPressMask | KeyReleaseMask | PointerMotionMask | StructureNotifyMask | FocusChangeMask;
 
          attr.background_pixmap = None ;
 

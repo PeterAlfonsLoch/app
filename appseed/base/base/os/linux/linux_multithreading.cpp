@@ -309,6 +309,24 @@ void process_message(Display * display)
       send_message(msg);
 
    }
+   else if(e.type == FocusIn)
+   {
+
+      msg.hwnd          = oswindow_get(display, e.xdestroywindow.window);
+      msg.message       = WM_SETFOCUS;
+
+      send_message(msg);
+
+   }
+   else if(e.type == FocusOut)
+   {
+
+      msg.hwnd          = oswindow_get(display, e.xdestroywindow.window);
+      msg.message       = WM_KILLFOCUS;
+
+      send_message(msg);
+
+   }
 
 
 }
