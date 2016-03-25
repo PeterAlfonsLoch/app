@@ -477,12 +477,12 @@ void simple_frame_window::_001OnCreate(signal_details * pobj)
 
 void simple_frame_window::_001OnShowWindow(signal_details * pobj)
 {
-   
+
    SCAST_PTR(::message::show_window, pshow, pobj);
-   
+
    if(m_bDefaultNotifyIcon)
    {
-      
+
       OnUpdateToolWindow(pshow->m_bShow);
 
    }
@@ -874,6 +874,8 @@ void simple_frame_window::_001OnClose(signal_details * pobj)
       {
 
          ShowWindow(SW_SHOW);
+
+         InitialFramePosition(true);
 
       }
 
@@ -1606,7 +1608,7 @@ bool simple_frame_window::LoadToolBar(sp(::type) sptype, id idToolBar, const cha
 
 void simple_frame_window::_001OnUser184(signal_details * pobj)
 {
-   
+
    SCAST_PTR(::message::base, pbase, pobj);
 
    if (pbase->m_wparam == 0 && pbase->m_lparam == 0)
@@ -1619,29 +1621,29 @@ void simple_frame_window::_001OnUser184(signal_details * pobj)
    }
    else if(pbase->m_wparam == 2)
    {
-      
+
       if(m_bDefaultNotifyIcon)
       {
-         
+
          m_piconNotify = canew(::visual::icon(get_app()));
-         
+
          const char * pszAppName = Application.m_strAppName;
-         
+
          m_piconNotify->load_app_tray_icon(pszAppName);
-         
+
          m_pnotifyicon = canew(::user::notify_icon(get_app()));
-         
+
          m_pnotifyicon->create(1, this, m_piconNotify);
-         
+
          if(m_workset.m_pframeschema != NULL)
          {
-            
+
             m_workset.m_pframeschema->m_spcontrolbox->hide_button(::user::wndfrm::frame::button_minimize);
-            
+
          }
-         
+
       }
-      
+
       m_pimpl->show_task(IsWindowVisible() && m_bShowTask);
 
    }
@@ -2482,31 +2484,31 @@ bool simple_frame_window::__close_is_closed()
 
 bool simple_frame_window::notify_icon_frame_is_opened()
 {
- 
+
    return !__close_is_closed();
-   
+
 }
 
 
 void simple_frame_window::OnInitialFrameUpdate(bool bMakeVisible)
 {
-   
+
    if(!m_bDefaultNotifyIcon)
    {
-      
+
       ::user::frame_window::OnInitialFrameUpdate(bMakeVisible);
-      
+
       return;
-      
+
    }
 
    OnUpdateToolWindow(bMakeVisible);
-         
+
    if(bMakeVisible)
    {
 
       InitialFramePosition();
-         
+
    }
 
 }
@@ -2521,12 +2523,12 @@ void simple_frame_window::OnUpdateToolWindow(bool bVisible)
       return;
 
    }
-   
+
    if(!bVisible)
    {
 
       defer_dock_application(false);
-      
+
    }
 
    if (m_pimpl == NULL)
