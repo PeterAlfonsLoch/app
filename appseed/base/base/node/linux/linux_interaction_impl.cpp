@@ -7,7 +7,7 @@
 #define TEST 0
 
 Display * x11_get_display();
-
+void wm_state_above(oswindow w, bool bSet);
 //#include <X11/extensions/Xcomposite.h>
 
 CLASS_DECL_BASE thread_int_ptr < DWORD_PTR > t_time1;
@@ -3885,39 +3885,6 @@ throw not_implemented(get_app());
 
       xdisplay d(m_oswindow->display());
 
-      rect rectScreen;
-
-      m_pui->best_monitor(rectScreen);
-
-      int iPalaceGuard = 256;
-
-      if(nFlags & SWP_IGNOREPALACEGUARD)
-         iPalaceGuard = 1;
-
-      if(x > rectScreen.right - iPalaceGuard)
-         x = rectScreen.right - iPalaceGuard;
-
-      if(x < 0)
-         x = 0;
-
-      if(y > rectScreen.bottom - iPalaceGuard)
-         y = rectScreen.bottom - iPalaceGuard;
-
-      if(y < 0)
-         y = 0;
-
-      if(cx > rectScreen.width())
-         cx = rectScreen.width();
-
-      if(cx < iPalaceGuard)
-         cx = iPalaceGuard;
-
-      if(cy > rectScreen.height())
-         cy = rectScreen.height();
-
-      if(cy < iPalaceGuard)
-         cy = iPalaceGuard;
-
 
       /*bool b;
       bool * pb = &b;
@@ -3928,6 +3895,8 @@ throw not_implemented(get_app());
       ASSERT(::IsWindow((oswindow) get_handle()));
       /*   return ::SetWindowPos(get_handle(), pWndInsertAfter->get_handle(),
       x, y, cx, cy, nFlags) != FALSE; */
+
+      wm_state_above((oswindow)get_handle(), nFlags & ZORDER_TOPMOST);
 
       //throw not_implemented(get_app());
 
@@ -6041,7 +6010,7 @@ __STATIC void CLASS_DECL_BASE __post_init_dialog(
 
 
 
-
+void wm_state_above(oswindow w, bool bSet);
 
 
 

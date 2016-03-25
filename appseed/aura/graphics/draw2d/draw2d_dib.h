@@ -216,6 +216,7 @@ namespace draw2d
 
 
       virtual void fill_channel(int32_t C, visual::rgba::echannel echannel);
+      virtual void white_fill_channel(int32_t C, visual::rgba::echannel echannel);
       virtual void FillByte(uchar uch);
       virtual void Fill(COLORREF level);
       virtual void Fill (int32_t A, int32_t R, int32_t G, int32_t B );

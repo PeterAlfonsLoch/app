@@ -5154,7 +5154,15 @@ synch_lock ml(m_pmutex);
    bool graphics::set(const ::draw2d::pen * ppen)
    {
 synch_lock ml(m_pmutex);
+if(ppen->m_etype == ::draw2d::pen::type_brush)
+{
+         set(ppen->m_br);
+      }
+      else
+      {
       cairo_set_source_rgba(m_pdc, argb_get_r_value(ppen->m_cr) / 255.0, argb_get_g_value(ppen->m_cr) / 255.0, argb_get_b_value(ppen->m_cr) / 255.0, argb_get_a_value(ppen->m_cr) / 255.0);
+
+      }
 
       cairo_set_line_width(m_pdc, ppen->m_dWidth);
 

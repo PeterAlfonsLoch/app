@@ -1377,9 +1377,72 @@ void message_box_paint(::draw2d::graphics * pdc, stringa & stra, bool_array  & b
 
 }
 
+#define _NET_WM_STATE_REMOVE        0    // remove/unset property
+#define _NET_WM_STATE_ADD           1    // add/set property
+#define _NET_WM_STATE_TOGGLE        2    // toggle property
+
+void wm_state_above(oswindow w, bool bSet)
+{
+   int set;
 
 
+//   single_lock sl(&user_mutex(),true);
 
+   xdisplay d(w->display());
+   Display * display = w->display();
+   Window window = w->window();
+
+   int scr=DefaultScreen(display);
+   Window rootw=RootWindow(display,scr);
+
+   Atom wmStateAbove = XInternAtom( display, "_NET_WM_STATE_ABOVE", 1 );
+if( wmStateAbove != None ) {
+    printf( "_NET_WM_STATE_ABOVE has atom of %ld\n", (long)wmStateAbove );
+} else {
+    printf( "ERROR: cannot find atom for _NET_WM_STATE_ABOVE !\n" );
+}
+
+Atom wmNetWmState = XInternAtom( display, "_NET_WM_STATE", 1 );
+if( wmNetWmState != None ) {
+    printf( "_NET_WM_STATE has atom of %ld\n", (long)wmNetWmState );
+} else {
+    printf( "ERROR: cannot find atom for _NET_WM_STATE !\n" );
+}
+// set window always on top hint
+if( wmStateAbove != None ) {
+    XClientMessageEvent xclient;
+    memset( &xclient, 0, sizeof (xclient) );
+    //
+    //window  = the respective client window
+    //message_type = _NET_WM_STATE
+    //format = 32
+    //data.l[0] = the action, as listed below
+    //data.l[1] = first property to alter
+    //data.l[2] = second property to alter
+    //data.l[3] = source indication (0-unk,1-normal app,2-pager)
+    //other data.l[] elements = 0
+    //
+    xclient.type = ClientMessage;
+    xclient.window = window; // GDK_WINDOW_XID(window);
+    xclient.message_type = wmNetWmState; //gdk_x11_get_xatom_by_name_for_display( display, "_NET_WM_STATE" );
+    xclient.format = 32;
+    xclient.data.l[0] = bSet ? _NET_WM_STATE_ADD : _NET_WM_STATE_REMOVE; // add ? _NET_WM_STATE_ADD : _NET_WM_STATE_REMOVE;
+    xclient.data.l[1] = wmStateAbove; //gdk_x11_atom_to_xatom_for_display (display, state1);
+    xclient.data.l[2] = 0; //gdk_x11_atom_to_xatom_for_display (display, state2);
+    xclient.data.l[3] = 0;
+    xclient.data.l[4] = 0;
+    //gdk_wmspec_change_state( FALSE, window,
+    //  gdk_atom_intern_static_string ("_NET_WM_STATE_BELOW"),
+    //  GDK_NONE );
+    XSendEvent( display,
+      //mywin - wrong, not app window, send to root window!
+      rootw, // !! DefaultRootWindow( display ) !!!
+      False,
+      SubstructureRedirectMask | SubstructureNotifyMask,
+      (XEvent *)&xclient );
+  }
+
+  }
 
 
 
