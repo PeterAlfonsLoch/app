@@ -666,6 +666,7 @@ namespace linux
 
       ::user::interaction * get_next(bool bIgnoreChildren,int32_t * piLevel);
 
+      void show_task(bool bShow);
 
    };
 

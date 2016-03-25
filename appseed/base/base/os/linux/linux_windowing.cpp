@@ -625,7 +625,21 @@ LONG oswindow_data::set_window_long(int32_t nIndex, LONG l)
 
    LONG lOld = m_plongmap->operator[](nIndex);
 
+   if(nIndex == GWL_EXSTYLE)
+   {
+
+      if((l & WS_EX_TOOLWINDOW) ^ (m_plongmap->operator[](nIndex) & WS_EX_TOOLWINDOW) != 0)
+      {
+
+         wm_toolwindow(this, (l & WS_EX_TOOLWINDOW) != 0);
+
+      }
+
+   }
+
    m_plongmap->operator[](nIndex) = l;
+
+
 /*   LONG lOld = get_window_long(nIndex);
 
    XChangeProperty(display(), window(), m_osdisplay.get_window_long_atom(nIndex), m_osdisplay.atom_long_type(), 32, PropModeReplace, (unsigned char *) &l, 1);*/
@@ -1447,6 +1461,70 @@ if( wmStateAbove != None ) {
 
 
 
+void wm_toolwindow(oswindow w,bool bSet)
+{
+   int set;
+
+
+//   single_lock sl(&user_mutex(),true);
+
+   xdisplay d(w->display());
+   Display * display = w->display();
+   Window window = w->window();
+
+   int scr=DefaultScreen(display);
+   Window rootw=RootWindow(display,scr);
+
+   Atom wmStateAbove = XInternAtom( display, "_NET_WM_STATE_SKIP_TASKBAR", 1 );
+if( wmStateAbove != None ) {
+    printf( "_NET_WM_STATE_ABOVE has atom of %ld\n", (long)wmStateAbove );
+} else {
+    printf( "ERROR: cannot find atom for _NET_WM_STATE_ABOVE !\n" );
+}
+
+Atom wmNetWmState = XInternAtom( display, "_NET_WM_STATE", 1 );
+if( wmNetWmState != None ) {
+    printf( "_NET_WM_STATE has atom of %ld\n", (long)wmNetWmState );
+} else {
+    printf( "ERROR: cannot find atom for _NET_WM_STATE !\n" );
+}
+// set window always on top hint
+if( wmStateAbove != None ) {
+    XClientMessageEvent xclient;
+    memset( &xclient, 0, sizeof (xclient) );
+    //
+    //window  = the respective client window
+    //message_type = _NET_WM_STATE
+    //format = 32
+    //data.l[0] = the action, as listed below
+    //data.l[1] = first property to alter
+    //data.l[2] = second property to alter
+    //data.l[3] = source indication (0-unk,1-normal app,2-pager)
+    //other data.l[] elements = 0
+    //
+    xclient.type = ClientMessage;
+    xclient.window = window; // GDK_WINDOW_XID(window);
+    xclient.message_type = wmNetWmState; //gdk_x11_get_xatom_by_name_for_display( display, "_NET_WM_STATE" );
+    xclient.format = 32;
+    xclient.data.l[0] = bSet ? _NET_WM_STATE_ADD : _NET_WM_STATE_REMOVE; // add ? _NET_WM_STATE_ADD : _NET_WM_STATE_REMOVE;
+    xclient.data.l[1] = wmStateAbove; //gdk_x11_atom_to_xatom_for_display (display, state1);
+    xclient.data.l[2] = 0; //gdk_x11_atom_to_xatom_for_display (display, state2);
+    xclient.data.l[3] = 0;
+    xclient.data.l[4] = 0;
+    //gdk_wmspec_change_state( FALSE, window,
+    //  gdk_atom_intern_static_string ("_NET_WM_STATE_BELOW"),
+    //  GDK_NONE );
+    XSendEvent( display,
+      //mywin - wrong, not app window, send to root window!
+      rootw, // !! DefaultRootWindow( display ) !!!
+      False,
+      SubstructureRedirectMask | SubstructureNotifyMask,
+      (XEvent *)&xclient );
+  }
+
+}
+
+
 void wm_nodecorations(oswindow w,int map)
 {
    Atom WM_HINTS;
@@ -1497,7 +1575,7 @@ void wm_nodecorations(oswindow w,int map)
       Atom NET_WMHints[2];
       NET_WMHints[0] = XInternAtom(dpy,
          "_KDE_NET_WM_WINDOW_TYPE_OVERRIDE",True);
-      NET_WMHints[1] = XInternAtom(dpy,"_NET_WM_WINDOW_TYPE_NORMAL",True);
+      NET_WMHints[1] = XInternAtom(dpy,"_NET_WM_WINDOW_TYPE_TOOLBAR",True);
       XChangeProperty(dpy,window,
          WM_HINTS,XA_ATOM,32,PropModeReplace,
          (unsigned char *)&NET_WMHints,2);

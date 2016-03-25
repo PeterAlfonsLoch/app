@@ -8,6 +8,7 @@
 
 Display * x11_get_display();
 void wm_state_above(oswindow w, bool bSet);
+void wm_toolwindow(oswindow w, bool bSet);
 //#include <X11/extensions/Xcomposite.h>
 
 CLASS_DECL_BASE thread_int_ptr < DWORD_PTR > t_time1;
@@ -432,6 +433,8 @@ namespace linux
 
          Window window = XCreateWindow( display, DefaultRootWindow(display), cs.x, cs.cy, cs.cx, cs.cy, 0, m_iDepth, InputOutput, vis, CWColormap|CWEventMask|CWBackPixmap|CWBorderPixel, &attr);
 
+         //Window window = None;
+
 
 
          /*oswindow hWnd = ::CreateWindowEx(cs.dwExStyle, cs.lpszClass,
@@ -506,6 +509,14 @@ namespace linux
          }
 
          wm_nodecorations(m_oswindow, 0);
+
+         if(cs.dwExStyle & WS_EX_TOOLWINDOW)
+         {
+
+            m_oswindow->set_window_long(GWL_EXSTYLE, m_oswindow->get_window_long(GWL_EXSTYLE) |  WS_EX_TOOLWINDOW);
+
+         }
+
 
          //XSelectInput(m_oswindow->display(), m_oswindow->interaction_impl(), ExposureMask | ButtonPressMask | ButtonReleaseMask | PointerMotionMask | KeyPressMask);
 
@@ -6190,6 +6201,13 @@ namespace linux
       m_guieptraMouseHover.remove(pinterface);
    }
 
+
+   void interaction_impl::show_task(bool bShow)
+   {
+
+      wm_toolwindow(get_handle(), bShow ? 1: 0);
+
+   }
 
 }
 
