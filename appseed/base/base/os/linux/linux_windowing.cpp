@@ -1463,10 +1463,6 @@ if( wmStateAbove != None ) {
 
 void wm_toolwindow(oswindow w,bool bSet)
 {
-   int set;
-
-
-//   single_lock sl(&user_mutex(),true);
 
    xdisplay d(w->display());
    Display * display = w->display();
@@ -1474,6 +1470,37 @@ void wm_toolwindow(oswindow w,bool bSet)
 
    int scr=DefaultScreen(display);
    Window rootw=RootWindow(display,scr);
+
+   Atom type = XInternAtom(display,"_NET_WM_WINDOW_TYPE",False);
+
+   if(type != None)
+   {
+
+      Atom window_type;
+
+      window_type = XInternAtom(display,"_NET_WM_WINDOW_TYPE_SPLASH",False);
+
+      if(window_type != None)
+      {
+
+         XChangeProperty(display,window,type,XA_ATOM,32,PropModeReplace, (unsigned char *)&window_type,1);
+
+      }
+
+   }
+
+
+   int set;
+
+
+//   single_lock sl(&user_mutex(),true);
+
+//   xdisplay d(w->display());
+//   Display * display = w->display();
+//   Window window = w->window();
+//
+//   int scr=DefaultScreen(display);
+//   Window rootw=RootWindow(display,scr);
 
    Atom wmStateAbove = XInternAtom( display, "_NET_WM_STATE_SKIP_TASKBAR", 1 );
 if( wmStateAbove != None ) {
@@ -1529,7 +1556,7 @@ void wm_nodecorations(oswindow w,int map)
 {
    Atom WM_HINTS;
    int set;
-
+//return;
 
 //   single_lock sl(&user_mutex(),true);
 
@@ -1563,24 +1590,24 @@ void wm_nodecorations(oswindow w,int map)
         // sizeof(KWMHints) / 4);
    //}
 
-   WM_HINTS = XInternAtom(dpy,"_WIN_HINTS",True);
-   if(WM_HINTS != None) {
-      long GNOMEHints = 0;
-      XChangeProperty(dpy,window,WM_HINTS,WM_HINTS,32,
-         PropModeReplace,(unsigned char *)&GNOMEHints,
-         sizeof(GNOMEHints) / 4);
-   }
-   WM_HINTS = XInternAtom(dpy,"_NET_WM_WINDOW_TYPE",True);
-   if(WM_HINTS != None) {
-      Atom NET_WMHints[2];
-      NET_WMHints[0] = XInternAtom(dpy,
-         "_KDE_NET_WM_WINDOW_TYPE_OVERRIDE",True);
-      NET_WMHints[1] = XInternAtom(dpy,"_NET_WM_WINDOW_TYPE_TOOLBAR",True);
-      XChangeProperty(dpy,window,
-         WM_HINTS,XA_ATOM,32,PropModeReplace,
-         (unsigned char *)&NET_WMHints,2);
-   }
-   XSetTransientForHint(dpy,window,rootw);
+//   WM_HINTS = XInternAtom(dpy,"_WIN_HINTS",True);
+//   if(WM_HINTS != None) {
+//      long GNOMEHints = 0;
+//      XChangeProperty(dpy,window,WM_HINTS,WM_HINTS,32,
+//         PropModeReplace,(unsigned char *)&GNOMEHints,
+//         sizeof(GNOMEHints) / 4);
+//   }
+//   WM_HINTS = XInternAtom(dpy,"_NET_WM_WINDOW_TYPE",True);
+//   if(WM_HINTS != None) {
+//      Atom NET_WMHints[2];
+//      NET_WMHints[0] = XInternAtom(dpy,
+//         "_KDE_NET_WM_WINDOW_TYPE_OVERRIDE",True);
+//      NET_WMHints[1] = XInternAtom(dpy,"_NET_WM_WINDOW_TYPE_TOOLBAR",True);
+//      XChangeProperty(dpy,window,
+//         WM_HINTS,XA_ATOM,32,PropModeReplace,
+//         (unsigned char *)&NET_WMHints,2);
+//   }
+   //XSetTransientForHint(dpy,window,rootw);
    if(map)
    {
       XUnmapWindow(dpy,window);

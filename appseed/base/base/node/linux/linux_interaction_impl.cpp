@@ -429,7 +429,7 @@ namespace linux
 
          attr.border_pixel = 0 ;
 
-         attr.override_redirect = True;
+         attr.override_redirect = False;
 
          Window window = XCreateWindow( display, DefaultRootWindow(display), cs.x, cs.cy, cs.cx, cs.cy, 0, m_iDepth, InputOutput, vis, CWColormap|CWEventMask|CWBackPixmap|CWBorderPixel, &attr);
 
@@ -508,7 +508,7 @@ namespace linux
             XStoreName(m_oswindow->display(), m_oswindow->window(), lpszWindowName);
          }
 
-         wm_nodecorations(m_oswindow, 0);
+
 
          if(cs.dwExStyle & WS_EX_TOOLWINDOW)
          {
@@ -516,6 +516,10 @@ namespace linux
             m_oswindow->set_window_long(GWL_EXSTYLE, m_oswindow->get_window_long(GWL_EXSTYLE) |  WS_EX_TOOLWINDOW);
 
          }
+
+         wm_nodecorations(m_oswindow, 0);
+
+
 
 
          //XSelectInput(m_oswindow->display(), m_oswindow->interaction_impl(), ExposureMask | ButtonPressMask | ButtonReleaseMask | PointerMotionMask | KeyPressMask);
@@ -3907,7 +3911,7 @@ throw not_implemented(get_app());
       /*   return ::SetWindowPos(get_handle(), pWndInsertAfter->get_handle(),
       x, y, cx, cy, nFlags) != FALSE; */
 
-      wm_state_above((oswindow)get_handle(), nFlags & ZORDER_TOPMOST);
+      //wm_state_above((oswindow)get_handle(), nFlags & ZORDER_TOPMOST);
 
       //throw not_implemented(get_app());
 
