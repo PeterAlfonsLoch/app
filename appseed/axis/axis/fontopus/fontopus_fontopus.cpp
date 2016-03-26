@@ -479,7 +479,16 @@ namespace fontopus
 
       if(::str::ends(strHost,".ca2.cc"))
       {
+
+         if (m_strFirstAccountServer.has_char())
+         {
+
+            return m_strFirstAccountServer;
+
+         }
+
          strGetFontopus = "https://" + strHost + "/get_fontopus_login";
+
       }
       else
       {
@@ -576,7 +585,7 @@ namespace fontopus
 
       strSomeBrothersAndSisters = doc.get_root()->attr("some_brothers_and_sisters");
 
-      ::sockets::net::dns_cache_item item = Session.sockets().net().m_mapCache[strHost];
+      //::sockets::net::dns_cache_item item = Session.sockets().net().m_mapCache[strHost];
 
       sl.lock();
 
@@ -587,14 +596,18 @@ namespace fontopus
 
          straSomeBrothersAndSisters.explode(";",strSomeBrothersAndSisters);
 
-         for (index i = 0; i < straSomeBrothersAndSisters; i++)
+         for (index i = 0; i < straSomeBrothersAndSisters.get_count(); i++)
          {
+
+            string strX = straSomeBrothersAndSisters[i];
 
             m_mapFontopusServer.set_at(straSomeBrothersAndSisters[i], strFontopusServer);
 
-            m_mapSomeBrothersAndSisters[strFontopusServer].add_unique(straSomeBrothersAndSisters);
+            strX.replace("-api.ca2.cc", "-account.ca2.cc");
 
-            Session.sockets().net().m_mapCache.set_at(straSomeBrothersAndSisters[i],item);
+            m_mapSomeBrothersAndSisters[strFontopusServer].add_unique(strX);
+
+            //Session.sockets().net().m_mapCache.set_at(straSomeBrothersAndSisters[i],item);
 
          }
 
@@ -623,13 +636,13 @@ namespace fontopus
 
          m_mapFontopusServer.set_at(strFontopusServer,strFontopusServer);
 
-         Session.sockets().net().m_mapCache.set_at(strFontopusServer,item);
+//         Session.sockets().net().m_mapCache.set_at(strFontopusServer,item);
 
       }
 
       m_mapFontopusServer.set_at(strHost, strFontopusServer);
 
-      Session.sockets().net().m_mapCache.set_at(strHost,item);
+      //Session.sockets().net().m_mapCache.set_at(strHost,item);
 
       return strFontopusServer;
 

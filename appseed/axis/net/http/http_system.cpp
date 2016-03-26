@@ -1249,12 +1249,12 @@ retry:
 
 
       string strUrl(pszUrl);
-      if (Session.fontopus()->m_strBestApiServer.has_char() && strUrl.find_ci("://api.ca2.cc/") > 0)
+/*      if (Session.fontopus()->m_strBestApiServer.has_char() && strUrl.find_ci("://api.ca2.cc/") > 0)
       {
 
          strUrl.replace("://api.ca2.cc/", "://" + Session.fontopus()->m_strBestApiServer + "/");
 
-      }
+      }*/
 
 
       string strIp;
@@ -1320,7 +1320,9 @@ retry:
 
                      ::net::address ad1(str1);
 
-                     Session.fontopus()->m_strBestFontopusServerIp = ad1.get_display_number();
+                     string strIp2 = ad1.get_display_number();
+
+                     Session.fontopus()->m_strBestFontopusServerIp = strIp2;
 
                   }
 

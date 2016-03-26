@@ -135,6 +135,30 @@ namespace http
 
    }
 
+  
+   string application::api_get(const char * pszUrl, property_set & set)
+   {
+
+      ::file::path url("https://api.ca2.cc/");
+      
+      url /= pszUrl;
+
+      return get(url, set);
+
+   }
+
+
+   string application::api_get(const char * pszUrl)
+   {
+
+      property_set set;
+
+      set["disable_common_name_cert_check"] = true;
+
+      return api_get(pszUrl, set);
+
+   }
+
 
    string application::get(const char * pszUrl, property_set & set)
    {

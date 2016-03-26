@@ -849,6 +849,7 @@ namespace fontopus
       {
 
          Session.fontopus()->m_strFirstFontopusServer = m_strFontopusServer;
+         Session.fontopus()->m_strFirstAccountServer = Session.fontopus()->m_mapSomeBrothersAndSisters[m_strFontopusServer][0];
 
       }
 

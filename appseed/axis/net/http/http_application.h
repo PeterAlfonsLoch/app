@@ -27,6 +27,8 @@ namespace http
 
       bool get(const char * pszUrl, primitive::memory_base & memory, property_set & set);
       bool get(const char * pszUrl, string & str, property_set & set);
+      string api_get(const char * pszUrl, property_set & set);
+      string api_get(const char * pszUrl);
 
       bool exists(const char * pszUrl, property_set & set);
       bool exists(const char * pszUrl, var * pvarQuery, property_set & set);

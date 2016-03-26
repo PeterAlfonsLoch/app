@@ -153,7 +153,15 @@ restart:
       strText = System.url().get_server(strText);
       if(strText.is_empty())
          strText = pszText;
-      string strSessId = m_sessionidmap[strText];
+      string strSessId;
+      if (strText == "api.ca2.cc")
+      {
+         strSessId = Session.fontopus()->m_mapFontopusSessId[Session.fontopus()->m_strFirstFontopusServer];
+         if (strSessId.has_char())
+            return strSessId;
+
+      }
+      strSessId = m_sessionidmap[strText];
       if(strSessId.has_char())
          return strSessId;
       string strFontopusServer = Session.fontopus()->get_server(strText);
