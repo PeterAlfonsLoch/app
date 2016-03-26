@@ -3911,7 +3911,7 @@ throw not_implemented(get_app());
       /*   return ::SetWindowPos(get_handle(), pWndInsertAfter->get_handle(),
       x, y, cx, cy, nFlags) != FALSE; */
 
-      //wm_state_above((oswindow)get_handle(), nFlags & ZORDER_TOPMOST);
+      wm_state_above((oswindow)get_handle(), nFlags & ZORDER_TOPMOST);
 
       //throw not_implemented(get_app());
 
