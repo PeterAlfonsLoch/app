@@ -865,7 +865,7 @@ namespace introjection
       string strBuildCmd;
 
 #ifdef LINUX
-      strBuildCmd.Format(System.dir().element() / "nodeapp\\stage\\introjection" / m_strDynamicSourceConfiguration + "_cl" + m_strPlat1 + ".bash");
+      strBuildCmd.Format(System.dir().element() / "nodeapp\\stage\\introjection" / m_strDynamicSourceConfiguration + "_c" + m_strPlat1 + ".bash");
 #else
       strBuildCmd.Format(System.dir().element() / "nodeapp\\stage\\introjection" / m_strDynamicSourceConfiguration + ::file::path("_c") + m_strPlat1 + ".bat");
 #endif
@@ -907,6 +907,7 @@ namespace introjection
       string strTargetPath = System.dir().element() / "time" / m_strPlatform / m_strDynamicSourceConfiguration / strT2 ;
       ::str::ends_eat_ci(strTargetPath,".cpp");
 #ifdef LINUX
+      strTargetPath =  System.dir().element() / "stage/x86" / lib->m_pathScript.title();
       ::str::ends_eat_ci(strTargetPath,".so");
 #else
       ::str::ends_eat_ci(strTargetPath,".dll");
@@ -925,8 +926,19 @@ namespace introjection
       ::process::process_sp process(allocer());
 
       //      ::multithreading::set_thread_priority(::multithreading::priority_highest);
+      #ifdef LINUX
+
+      file_put_contents_dup("/tmp/introj.bash", str);
+
+      chmod("/tmp/introj.bash", S_IRWXU | S_IRWXG | S_IRWXO);
+
+      process->create_child_process("/tmp/introj.bash",true,NULL,::multithreading::priority_highest);
+
+      #else
 
       process->create_child_process(str,true,NULL,::multithreading::priority_highest);
+
+      #endif
 
       uint32_t dwStart = ::get_tick_count();
 
@@ -964,7 +976,11 @@ namespace introjection
 
       }
 
+      #ifdef LINUX
+      if(!bTimeout)
+      #else
       if(!bTimeout && strLog.has_char())
+      #endif
       {
 
 #ifdef LINUX
@@ -973,10 +989,7 @@ namespace introjection
 
 #endif
 
-
          str = strLog;
-
-
 
          str.trim();
 
@@ -1002,7 +1015,7 @@ namespace introjection
          strBuildCmd;
 
 #ifdef LINUX
-         strBuildCmd.Format(System.dir().element() / "nodeapp\\stage\\introjection" / m_strDynamicSourceConfiguration + "_cl" + m_strPlat1 + ".bash");
+         strBuildCmd.Format(System.dir().element() / "nodeapp\\stage\\introjection" / m_strDynamicSourceConfiguration + "_l" + m_strPlat1 + ".bash");
 #else
          strBuildCmd.Format(System.dir().element() / "nodeapp\\stage\\introjection" / m_strDynamicSourceConfiguration + ::file::path("_l") + m_strPlat1 + ".bat");
 #endif
@@ -1051,8 +1064,18 @@ namespace introjection
 
          //         set_thread_priority(::multithreading::priority_highest);
 
-         process->create_child_process(str,true,NULL,::multithreading::priority_highest);
+      #ifdef LINUX
 
+      file_put_contents_dup("/tmp/introl.bash", str);
+
+      chmod("/tmp/introl.bash", S_IRWXU | S_IRWXG | S_IRWXO);
+
+      process->create_child_process("/tmp/introl.bash",true,NULL,::multithreading::priority_highest);
+
+      #else
+
+         process->create_child_process(str,true,NULL,::multithreading::priority_highest);
+#endif
          uint32_t dwStart = ::get_tick_count();
 
          uint32_t dwExitCode;
@@ -1145,7 +1168,15 @@ namespace introjection
 
 #endif
 
+#ifdef WINDOWS
+
       lib->m_library.open(strTargetPath + ".dll");
+
+#else
+
+      lib->m_library.open(strTargetPath + ".so");
+
+#endif
 
       lib->m_library.open_ca2_library();
 
@@ -1153,6 +1184,10 @@ namespace introjection
 
    }
 
+
 }
+
+
+
 
 
