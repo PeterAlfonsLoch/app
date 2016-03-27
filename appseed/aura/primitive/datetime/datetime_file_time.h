@@ -100,7 +100,7 @@ struct CLASS_DECL_AURA file_time
       uint64_t mod = (uint64_t)modified.dwLowDateTime | ((uint64_t) modified.dwHighDateTime << 32);
       uint64_t now = (uint64_t)current.dwLowDateTime | ((uint64_t)current.dwHighDateTime << 32);
 
-      if (now - mod > (iSeconds * 1000 * 1000 * 10))
+      if (now - mod > ((int64_t) iSeconds * 1000 * 1000 * 10))
       {
 
          return true;
