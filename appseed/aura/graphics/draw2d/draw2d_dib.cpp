@@ -3597,11 +3597,16 @@ namespace draw2d
 //         pb[31 * 4] = (byte) intensity;
 //      }
 
+      
       for (i=0; i<size; i++)
       {
-         *((BYTE * ) &pcr) = (byte) (((int)intensity * (int)(BYTE * ) &pcr[i]) / 255);
+         
+         *((BYTE * ) &pcr) = (byte) (((int)intensity * (int)*((BYTE * ) &pcr)) / 255);
+         
          pcr++;
+         
       }
+      
    }
 
 
@@ -4739,15 +4744,38 @@ namespace draw2d
 
       w = (int)m_size.cx;
       h = (int)m_size.cy;
-
+      COLORREF * pdata = NULL;
+      int iScan = 0;
       rast = nsvgCreateRasterizer();
       if (rast == NULL) {
          printf("Could not init rasterizer.\n");
          goto error;
       }
-
-      nsvgRasterize(rast, image, 0, 0, 1, (unsigned char *)m_pcolorref, w, h, m_iScan);
-
+      Fill(0);
+      {
+#ifdef __APPLE__
+      memory m;
+      m.allocate(w * h * 4);
+      m.zero();
+      pdata = (COLORREF *) m.get_data();
+      iScan = w * 4;
+#else
+      pdata = (unsigned char *)m_pcolorref;
+      iScan = m_iScan;
+#endif
+      
+      nsvgRasterize(rast, image, 0, 0, 1, (unsigned char *)pdata, w, h, iScan);
+      
+#ifdef __APPLE__
+         int wscan =m_iScan / 4;
+         index i = 0;
+         index j = h -1;
+         for(; i < h; i++, j--)
+      {
+         memcpy(&m_pcolorref[wscan * i], &pdata[w * j], iScan);
+      }
+#endif
+      }
 
 error:
       nsvgDeleteRasterizer(rast);

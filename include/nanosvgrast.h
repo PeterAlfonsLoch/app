@@ -976,11 +976,17 @@ static void nsvg__fillActiveEdges(unsigned char* scanline, int len, NSVGactiveEd
 static float nsvg__clampf(float a, float mn, float mx) {
    return a < mn ? mn : (a > mx ? mx : a);
 }
-
+#ifdef __APPLE__
+static unsigned int nsvg__RGBA(unsigned char r, unsigned char g, unsigned char b, unsigned char a)
+{
+   return (r) | (g << 8) | (b << 16) | (a << 24);
+}
+#else
 static unsigned int nsvg__RGBA(unsigned char r, unsigned char g, unsigned char b, unsigned char a)
 {
    return (b) | (g << 8) | (r << 16) | (a << 24);
 }
+#endif
 
 static unsigned int nsvg__lerpRGBA(unsigned int c0, unsigned int c1, float u)
 {
@@ -1407,8 +1413,8 @@ void nsvgRasterize(NSVGrasterizer* r,
       if (r->scanline == NULL) return;
    }
 
-   for (i = 0; i < h; i++)
-      memset(&dst[i*stride], 0, w*4);
+   //for (i = 0; i < h; i++)
+     // memset(&dst[i*stride], 0, w*4);
 
    for (shape = image->shapes; shape != NULL; shape = shape->next) {
       if (!(shape->flags & NSVG_FLAGS_VISIBLE))

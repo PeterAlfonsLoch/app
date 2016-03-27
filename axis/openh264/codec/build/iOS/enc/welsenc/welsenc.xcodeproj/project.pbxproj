@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		07574DEF1C45B5DF0020E1F1 /* libwelsprocessing.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07574DE51C45B59F0020E1F1 /* libwelsprocessing.dylib */; };
-		07574DF01C45B6040020E1F1 /* libwelscommon.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07574DD31C45B5850020E1F1 /* libwelscommon.dylib */; };
-		078DF88A1C52991100E65274 /* libwelscommon.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07574DD51C45B5850020E1F1 /* libwelscommon.dylib */; };
 		078DF88B1C52991100E65274 /* libwelsprocessing.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07574DE71C45B59F0020E1F1 /* libwelsprocessing.dylib */; };
 		07B0985C1B849208002AC4F0 /* set_mb_syn_cavlc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CE446F018BC605C0017DF25 /* set_mb_syn_cavlc.cpp */; };
 		07B0985D1B849208002AC4F0 /* encode_mb_aux.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CE446E018BC605C0017DF25 /* encode_mb_aux.cpp */; };
@@ -90,20 +88,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		07574DD21C45B5850020E1F1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 07574DCD1C45B5850020E1F1 /* welscommon.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 4CE443D518B722CD0017DF25;
-			remoteInfo = welscommon;
-		};
-		07574DD41C45B5850020E1F1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 07574DCD1C45B5850020E1F1 /* welscommon.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 07B09A261B8497A9002AC4F0;
-			remoteInfo = ios_welscommon;
-		};
 		07574DE41C45B59F0020E1F1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 07574DDF1C45B59E0020E1F1 /* welsprocessing.xcodeproj */;
@@ -118,26 +102,12 @@
 			remoteGlobalIDString = 07B09A681B849878002AC4F0;
 			remoteInfo = ios_welsprocessing;
 		};
-		07574DEB1C45B5C40020E1F1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 07574DCD1C45B5850020E1F1 /* welscommon.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 4CE443D418B722CD0017DF25;
-			remoteInfo = welscommon;
-		};
 		07574DED1C45B5C40020E1F1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 07574DDF1C45B59E0020E1F1 /* welsprocessing.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 5499477B196A3F3900BA3D87;
 			remoteInfo = welsprocessing;
-		};
-		078DF8841C52990300E65274 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 07574DCD1C45B5850020E1F1 /* welscommon.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 07B09A071B8497A9002AC4F0;
-			remoteInfo = ios_welscommon;
 		};
 		078DF8861C52990300E65274 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -171,7 +141,6 @@
 
 /* Begin PBXFileReference section */
 		04FE0684196FD9370004D7CE /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = version.h; path = ../../../common/inc/version.h; sourceTree = "<group>"; };
-		07574DCD1C45B5850020E1F1 /* welscommon.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = welscommon.xcodeproj; path = ../../common/welscommon.xcodeproj; sourceTree = "<group>"; };
 		07574DDF1C45B59E0020E1F1 /* welsprocessing.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = welsprocessing.xcodeproj; path = ../../processing/welsprocessing.xcodeproj; sourceTree = "<group>"; };
 		07B0988D1B849208002AC4F0 /* libwelsenc.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libwelsenc.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		07BB9F601B84A1EC007ADA8F /* libwelscommon.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libwelscommon.a; path = "../../../../../../../../../Users/carlos/Library/Developer/Xcode/DerivedData/all-mac-exvrklrokleuokawrbpzmvyzamwr/Build/Products/Debug/libwelscommon.a"; sourceTree = "<group>"; };
@@ -279,7 +248,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				078DF88A1C52991100E65274 /* libwelscommon.dylib in Frameworks */,
 				078DF88B1C52991100E65274 /* libwelsprocessing.dylib in Frameworks */,
 				07B098881B849208002AC4F0 /* Foundation.framework in Frameworks */,
 			);
@@ -289,7 +257,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07574DF01C45B6040020E1F1 /* libwelscommon.dylib in Frameworks */,
 				07574DEF1C45B5DF0020E1F1 /* libwelsprocessing.dylib in Frameworks */,
 				4CE4431518B6FFA00017DF25 /* Foundation.framework in Frameworks */,
 			);
@@ -298,15 +265,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		07574DCE1C45B5850020E1F1 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				07574DD31C45B5850020E1F1 /* libwelscommon.dylib */,
-				07574DD51C45B5850020E1F1 /* libwelscommon.dylib */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		07574DE01C45B59E0020E1F1 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -345,7 +303,6 @@
 		4CE4430818B6FFA00017DF25 = {
 			isa = PBXGroup;
 			children = (
-				07574DCD1C45B5850020E1F1 /* welscommon.xcodeproj */,
 				07574DDF1C45B59E0020E1F1 /* welsprocessing.xcodeproj */,
 				4CE446A018BC605B0017DF25 /* encoder */,
 				4CE4431318B6FFA00017DF25 /* Frameworks */,
@@ -527,7 +484,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				078DF8851C52990300E65274 /* PBXTargetDependency */,
 				078DF8871C52990300E65274 /* PBXTargetDependency */,
 			);
 			name = ios_welsenc;
@@ -546,7 +502,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				07574DEC1C45B5C40020E1F1 /* PBXTargetDependency */,
 				07574DEE1C45B5C40020E1F1 /* PBXTargetDependency */,
 			);
 			name = welsenc;
@@ -575,10 +530,6 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 07574DCE1C45B5850020E1F1 /* Products */;
-					ProjectRef = 07574DCD1C45B5850020E1F1 /* welscommon.xcodeproj */;
-				},
-				{
 					ProductGroup = 07574DE01C45B59E0020E1F1 /* Products */;
 					ProjectRef = 07574DDF1C45B59E0020E1F1 /* welsprocessing.xcodeproj */;
 				},
@@ -592,20 +543,6 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		07574DD31C45B5850020E1F1 /* libwelscommon.dylib */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libwelscommon.dylib;
-			remoteRef = 07574DD21C45B5850020E1F1 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		07574DD51C45B5850020E1F1 /* libwelscommon.dylib */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libwelscommon.dylib;
-			remoteRef = 07574DD41C45B5850020E1F1 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		07574DE51C45B59F0020E1F1 /* libwelsprocessing.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -714,20 +651,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		07574DEC1C45B5C40020E1F1 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = welscommon;
-			targetProxy = 07574DEB1C45B5C40020E1F1 /* PBXContainerItemProxy */;
-		};
 		07574DEE1C45B5C40020E1F1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = welsprocessing;
 			targetProxy = 07574DED1C45B5C40020E1F1 /* PBXContainerItemProxy */;
-		};
-		078DF8851C52990300E65274 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = ios_welscommon;
-			targetProxy = 078DF8841C52990300E65274 /* PBXContainerItemProxy */;
 		};
 		078DF8871C52990300E65274 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

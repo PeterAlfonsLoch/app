@@ -3023,8 +3023,10 @@ namespace axis
       var varQuery;
 
       varQuery["disable_ca2_sessid"] = true;
+      
+      string strMatter = dir().matter(::file::path(pszMatter) / pszMatter2);
 
-      return file().as_string(dir().matter(::file::path(pszMatter) / pszMatter2),varQuery);
+      return file().as_string(strMatter,varQuery);
 
    }
 
