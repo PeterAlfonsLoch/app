@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		072E433B1CA896050096952D /* libaxisopenssl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 072E433A1CA896050096952D /* libaxisopenssl.dylib */; };
+		072E43401CA8961C0096952D /* libaxiscrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 072E433F1CA8961B0096952D /* libaxiscrypto.dylib */; };
 		0775CAD91B84876F005F8295 /* base64.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CAD11B84876F005F8295 /* base64.c */; };
 		0775CADA1B84876F005F8295 /* ber.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CAD21B84876F005F8295 /* ber.c */; };
 		0775CADB1B84876F005F8295 /* certificate.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CAD31B84876F005F8295 /* certificate.c */; };
@@ -573,6 +575,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		072E433A1CA896050096952D /* libaxisopenssl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaxisopenssl.dylib; path = "../../../../Users/carlos/Library/Developer/Xcode/DerivedData/all-mac-cwfnwlqfzegpfnflaajsxmrshhyj/Build/Products/Debug/libaxisopenssl.dylib"; sourceTree = "<group>"; };
+		072E433F1CA8961B0096952D /* libaxiscrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaxiscrypto.dylib; path = "../../../../Users/carlos/Library/Developer/Xcode/DerivedData/all-mac-cwfnwlqfzegpfnflaajsxmrshhyj/Build/Products/Debug/libaxiscrypto.dylib"; sourceTree = "<group>"; };
 		0775CAD11B84876F005F8295 /* base64.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = base64.c; sourceTree = "<group>"; };
 		0775CAD21B84876F005F8295 /* ber.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ber.c; sourceTree = "<group>"; };
 		0775CAD31B84876F005F8295 /* certificate.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = certificate.c; sourceTree = "<group>"; };
@@ -821,6 +825,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				072E43401CA8961C0096952D /* libaxiscrypto.dylib in Frameworks */,
+				072E433B1CA896050096952D /* libaxisopenssl.dylib in Frameworks */,
 				07F61FE71C8F72B100D03984 /* libwelsdec.dylib in Frameworks */,
 				07F61FE81C8F72B100D03984 /* libwelsenc.dylib in Frameworks */,
 				079FD66B1B601D24007CB5C6 /* libaura.dylib in Frameworks */,
@@ -1200,6 +1206,8 @@
 		9A1B358116A2D7A500875A94 = {
 			isa = PBXGroup;
 			children = (
+				072E433F1CA8961B0096952D /* libaxiscrypto.dylib */,
+				072E433A1CA896050096952D /* libaxisopenssl.dylib */,
 				079FD6591B601D0B007CB5C6 /* aura.xcodeproj */,
 				07DD70A31B5F0FD4003A1CE1 /* axiswinpr.xcodeproj */,
 				07F61FC01C8F728800D03984 /* welsdec.xcodeproj */,

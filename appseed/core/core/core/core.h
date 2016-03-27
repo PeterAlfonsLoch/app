@@ -143,12 +143,12 @@ namespace dynamic_source
 #define CoreApp(pbaseapp) (*pbaseapp->m_pcoreapp)
 #define CoreApplication (CoreApp(m_pauraapp))
 
-inline ::core::session & plat(::aura::application * papp)
-{
-
-   return *papp->m_pcoresession;
-
-}
+//inline ::core::session & plat(::aura::application * papp)
+//{
+//
+//   return *papp->m_pcoresession;
+//
+//}
 
 
 

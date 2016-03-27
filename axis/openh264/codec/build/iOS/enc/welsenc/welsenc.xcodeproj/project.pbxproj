@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		072E43391CA895E20096952D /* libwelscommon.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 072E43381CA895E20096952D /* libwelscommon.dylib */; };
 		07574DEF1C45B5DF0020E1F1 /* libwelsprocessing.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07574DE51C45B59F0020E1F1 /* libwelsprocessing.dylib */; };
 		078DF88B1C52991100E65274 /* libwelsprocessing.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07574DE71C45B59F0020E1F1 /* libwelsprocessing.dylib */; };
 		07B0985C1B849208002AC4F0 /* set_mb_syn_cavlc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CE446F018BC605C0017DF25 /* set_mb_syn_cavlc.cpp */; };
@@ -141,6 +142,7 @@
 
 /* Begin PBXFileReference section */
 		04FE0684196FD9370004D7CE /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = version.h; path = ../../../common/inc/version.h; sourceTree = "<group>"; };
+		072E43381CA895E20096952D /* libwelscommon.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libwelscommon.dylib; path = ../../common/build/Debug/libwelscommon.dylib; sourceTree = "<group>"; };
 		07574DDF1C45B59E0020E1F1 /* welsprocessing.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = welsprocessing.xcodeproj; path = ../../processing/welsprocessing.xcodeproj; sourceTree = "<group>"; };
 		07B0988D1B849208002AC4F0 /* libwelsenc.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libwelsenc.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		07BB9F601B84A1EC007ADA8F /* libwelscommon.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libwelscommon.a; path = "../../../../../../../../../Users/carlos/Library/Developer/Xcode/DerivedData/all-mac-exvrklrokleuokawrbpzmvyzamwr/Build/Products/Debug/libwelscommon.a"; sourceTree = "<group>"; };
@@ -257,6 +259,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				072E43391CA895E20096952D /* libwelscommon.dylib in Frameworks */,
 				07574DEF1C45B5DF0020E1F1 /* libwelsprocessing.dylib in Frameworks */,
 				4CE4431518B6FFA00017DF25 /* Foundation.framework in Frameworks */,
 			);
@@ -322,6 +325,7 @@
 		4CE4431318B6FFA00017DF25 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				072E43381CA895E20096952D /* libwelscommon.dylib */,
 				07BB9F6E1B84A21D007ADA8F /* libwelsdec.a */,
 				07BB9F601B84A1EC007ADA8F /* libwelscommon.a */,
 				4CE4431418B6FFA00017DF25 /* Foundation.framework */,

@@ -117,8 +117,41 @@ int32_t base_main_command_line(const char * pszParams, int argc, char *argv[])
    strCommandLine = argv[0];
    
    string strP = pszParams;
-   
+
    strsize iFind = strP.find(':');
+   
+   if(iFind == 0)
+   {
+   }
+   else
+   {
+      int iQuote;
+      while(iFind > 0)
+      {
+      
+      iQuote = 0;
+      const char * psz = &strP[iFind];
+      for(; psz >= strP.c_str(); psz = ::str::utf8_dec(strP, psz))
+{
+         if(*psz == '\"')
+         {
+            iQuote++;
+         }
+      }
+      
+      if(iQuote % 2 == 0)
+      {
+         break;
+         
+      }
+         iFind = strP.find(':', iFind + 1);
+         
+      }
+      
+
+      
+   }
+   
    
    string str1;
    
@@ -129,7 +162,21 @@ int32_t base_main_command_line(const char * pszParams, int argc, char *argv[])
       
       str1 = strP.Left(iFind);
       
+      if(str1.has_char())
+      {
+         
+         str1 = " " + str1 + " ";
+         
+      }
+      
       str2 = strP.Mid(iFind + 1);
+      
+      if(str2.has_char())
+      {
+         
+         str2 = " " + str2 + " ";
+         
+      }
       
    }
    

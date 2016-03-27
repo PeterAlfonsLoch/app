@@ -2610,7 +2610,7 @@ namespace core
       if (puiParent == NULL && m_pbasesession != NULL && m_pbasesession->m_pcoresession != NULL
             && !pcreatecontext->m_bOuterPopupAlertLike && m_pbasesession->m_pcoresession != this)
       {
-         puiParent = plat(this).get_request_parent_ui(pinteraction, pcreatecontext);
+         puiParent = Session.get_request_parent_ui(pinteraction, pcreatecontext);
       }
 
       return puiParent;
