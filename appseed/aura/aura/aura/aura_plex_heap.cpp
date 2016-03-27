@@ -1126,7 +1126,7 @@ void plex_heap_alloc_array::_free(void * p,size_t size)
    memset(&((byte *)p)[xxx],0xCD,size - xxx); // attempt to invalidate memory so it get unusable (as it should be after free). // but preserve first xxx bytes so vtable indicating object type may be eventually preserved for debugging
    */
 
-   memset(p,0xCD,size); // attempt to invalidate memory so it get unusable (as it should be after free).
+   //memset(p,0xCD,size); // attempt to invalidate memory so it get unusable (as it should be after free).
 
    plex_heap_alloc * palloc = find(size);
 
