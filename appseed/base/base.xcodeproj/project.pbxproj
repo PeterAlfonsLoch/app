@@ -171,6 +171,27 @@
 			remoteGlobalIDString = 9AE24D331904CEFE001AEFFB;
 			remoteInfo = axis_ios;
 		};
+		071C19BB1CA8A36600AD32F3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 071C19B51CA8A36600AD32F3 /* axiswinpr.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9A1B358C16A2D7A500875A94;
+			remoteInfo = axiswinpr;
+		};
+		071C19BD1CA8A36600AD32F3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 071C19B51CA8A36600AD32F3 /* axiswinpr.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 07DD5DF91B5F0A1E003A1CE1;
+			remoteInfo = ios_axiswinpr;
+		};
+		071C19BF1CA8A37E00AD32F3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 071C19B51CA8A36600AD32F3 /* axiswinpr.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A1B358B16A2D7A500875A94;
+			remoteInfo = axiswinpr;
+		};
 		07A371221B25D4A000E4F888 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 07A3711C1B25D49F00E4F888 /* axis.xcodeproj */;
@@ -225,6 +246,7 @@
 		070FC0F21B85657800D12AD0 /* Keyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Keyboard.h; sourceTree = "<group>"; };
 		070FC1001B856D5A00D12AD0 /* InputMethodKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = InputMethodKit.framework; path = System/Library/Frameworks/InputMethodKit.framework; sourceTree = SDKROOT; };
 		070FC1021B856DBE00D12AD0 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		071C19B51CA8A36600AD32F3 /* axiswinpr.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axiswinpr.xcodeproj; path = ../../axis/winpr/axiswinpr.xcodeproj; sourceTree = "<group>"; };
 		073EDDE1164E968100818801 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		073EDDE4164E96DA00818801 /* SecurityFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SecurityFoundation.framework; path = System/Library/Frameworks/SecurityFoundation.framework; sourceTree = SDKROOT; };
 		07703C4B1B6FE324009026EA /* database_user_interaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = database_user_interaction.h; sourceTree = "<group>"; };
@@ -454,6 +476,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		071C19B61CA8A36600AD32F3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				071C19BC1CA8A36600AD32F3 /* libaxiswinpr.dylib */,
+				071C19BE1CA8A36600AD32F3 /* libios_axiswinpr.dylib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		07703C491B6FE324009026EA /* database */ = {
 			isa = PBXGroup;
 			children = (
@@ -840,6 +871,7 @@
 		CEA754B914411F2B007E04DE = {
 			isa = PBXGroup;
 			children = (
+				071C19B51CA8A36600AD32F3 /* axiswinpr.xcodeproj */,
 				07A3711C1B25D49F00E4F888 /* axis.xcodeproj */,
 				07BD556C16210BD4008E31F0 /* AppKit.framework */,
 				CE931714155F1599005F90F6 /* Carbon.framework */,
@@ -994,6 +1026,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				071C19C01CA8A37E00AD32F3 /* PBXTargetDependency */,
 				07A3712C1B25D96A00E4F888 /* PBXTargetDependency */,
 			);
 			name = base;
@@ -1066,6 +1099,10 @@
 					ProductGroup = 07A3711D1B25D49F00E4F888 /* Products */;
 					ProjectRef = 07A3711C1B25D49F00E4F888 /* axis.xcodeproj */;
 				},
+				{
+					ProductGroup = 071C19B61CA8A36600AD32F3 /* Products */;
+					ProjectRef = 071C19B51CA8A36600AD32F3 /* axiswinpr.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -1077,6 +1114,20 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		071C19BC1CA8A36600AD32F3 /* libaxiswinpr.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libaxiswinpr.dylib;
+			remoteRef = 071C19BB1CA8A36600AD32F3 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		071C19BE1CA8A36600AD32F3 /* libios_axiswinpr.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libios_axiswinpr.dylib;
+			remoteRef = 071C19BD1CA8A36600AD32F3 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		07A371231B25D4A000E4F888 /* libaxis.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
@@ -1167,6 +1218,11 @@
 			isa = PBXTargetDependency;
 			name = axis_ios;
 			targetProxy = 07108A2D1B4C84B900A28F80 /* PBXContainerItemProxy */;
+		};
+		071C19C01CA8A37E00AD32F3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = axiswinpr;
+			targetProxy = 071C19BF1CA8A37E00AD32F3 /* PBXContainerItemProxy */;
 		};
 		07A3712C1B25D96A00E4F888 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
