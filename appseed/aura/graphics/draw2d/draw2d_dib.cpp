@@ -4760,7 +4760,7 @@ namespace draw2d
       pdata = (COLORREF *) m.get_data();
       iScan = w * 4;
 #else
-      pdata = (unsigned char *)m_pcolorref;
+      pdata = m_pcolorref;
       iScan = m_iScan;
 #endif
       
