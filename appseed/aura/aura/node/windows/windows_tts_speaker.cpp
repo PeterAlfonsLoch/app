@@ -409,7 +409,8 @@ namespace windows
 
          bool bTts = false;
 
-         if((!m_tts.Lookup(strLang, bTts) || bTts) && m_voice[strLang].is_set() || (!is_speaking(strLang) && get_tick_count() - m_time[strLang] > 30 * 1000))
+         //if((!m_tts.Lookup(strLang, bTts) || bTts) && m_voice[strLang].is_set() || (!is_speaking(strLang) && get_tick_count() - m_time[strLang] > 30 * 1000))
+         if (!m_tts.Lookup(strLang, bTts))
          {
 
             if (initialize(strLang))
@@ -420,6 +421,8 @@ namespace windows
             }
             else
             {
+
+               m_tts[strLang] = false;
 
                if (!initialize_translator(strLang))
                {
@@ -434,22 +437,29 @@ namespace windows
 
 
          wstring wstr(text);
-         //
-         // Speak input text
-         //
-         ULONG streamNumber;
 
-         HRESULT hr = m_voice[strLang]->Speak(
-            wstr,
-            SPF_IS_NOT_XML | SPF_ASYNC | SPF_PURGEBEFORESPEAK,
-            &streamNumber);
-
-         if(FAILED(hr))
+         ::fork(get_app(), [=]()
          {
+            //
+            // Speak input text
+            //
+            ULONG streamNumber;
 
-            return false;
+            m_voice[strLang]->WaitUntilDone(5 * 60 * 60 * 1000);
+            
+            HRESULT hr = m_voice[strLang]->Speak(
+               wstr,
+               //SPF_IS_NOT_XML | SPF_ASYNC | SPF_PURGEBEFORESPEAK,
+               SPF_IS_NOT_XML | SPF_ASYNC,
+               &streamNumber);
 
-         }
+            if (FAILED(hr))
+            {
+
+               return false;
+
+            }
+         });
 
          return true;
 
