@@ -82,6 +82,8 @@ namespace user
       if(m_bSlide)
       {
 
+         ReleaseCapture();
+
          m_bSlide = false;
 
          m_pscalar->set_rate(get_slide_rate(), scalar_set);
@@ -140,6 +142,8 @@ namespace user
          dScalar = (double) (pt.x - r.left) / (double) r.width();
 
       }
+
+      dScalar = MIN(1.0, MAX(0.0, dScalar));
 
       return dScalar;
 
