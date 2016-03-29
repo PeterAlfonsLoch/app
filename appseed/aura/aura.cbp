@@ -79,6 +79,7 @@
 		<Unit filename="aura/_aura_aura.cpp" />
 		<Unit filename="aura/aura/aura.h" />
 		<Unit filename="aura/aura/aura.inl" />
+		<Unit filename="aura/aura/aura__c.h" />
 		<Unit filename="aura/aura/aura_action_context.h" />
 		<Unit filename="aura/aura/aura_action_source.h" />
 		<Unit filename="aura/aura/aura_allocate.h" />

@@ -65,6 +65,8 @@
 
 #include "aura/aura/aura_policy/aura_policy.h"
 
+#include "aura__c.h"
+
 #define new AURA_NEW
 
 #endif
