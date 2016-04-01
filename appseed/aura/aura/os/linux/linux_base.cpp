@@ -76,7 +76,9 @@ CLASS_DECL_AURA bool __node_aura_pos_term()
 ::file::path dir::sys_temp()
 {
 
-   return ::file::path("/var/tmp");
+
+
+   return ::file::path(getenv("HOME")) / ".ca2tmp";
 
 }
 
