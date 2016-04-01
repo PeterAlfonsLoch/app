@@ -36,6 +36,7 @@ namespace file_watcher
       bool m_bStop;
       file_watcher_impl* m_pwatcher;
       file_watch_listener* m_plistener;
+      bool  m_bOwn;
       string m_strDirName;
       id m_id;
       bool m_bRecursive;
@@ -177,7 +178,7 @@ namespace file_watcher
    }
 
 
-   id os_file_watcher::add_watch(const string & directory,file_watch_listener* watcher,bool bRecursive)
+   id os_file_watcher::add_watch(const string & directory,file_watch_listener* watcher,bool bRecursive, bool bOwn)
    {
 
       id id = ++m_idLast;
@@ -196,6 +197,7 @@ namespace file_watcher
       pwatch->m_pwatcher = this;
       pwatch->m_plistener = watcher;
       pwatch->m_strDirName = directory;
+      pwatch->m_bOwn = bOwn;
 
       m_watchmap.set_at(id,pwatch);
 

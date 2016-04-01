@@ -10,7 +10,8 @@ namespace file
 
 
       class CLASS_DECL_AURA system :
-         virtual public ::object
+         virtual public ::object,
+         virtual public ::file_watcher::listener_thread
       {
       public:
 
@@ -57,6 +58,7 @@ namespace file
          ::file::path         m_pathModule;
          ::file::path         m_pathProfile;
          ::file::path         m_pathUser;
+
 
 
          system(::aura::application * papp);
@@ -147,6 +149,8 @@ namespace file
          virtual ::file::path get_api_cc();
 
          virtual bool update_module_path();
+
+
 
       };
 

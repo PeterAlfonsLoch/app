@@ -14,8 +14,14 @@ namespace file_watcher
 
    }
 
-
    id listener_thread::add_file_watch(const char * directory, bool bRecursive)
+   {
+      
+      return add_file_watch(directory, this, bRecursive);
+
+   }
+
+   id listener_thread::add_file_watch(const char * directory, file_watch_listener * plistener, bool bRecursive, bool bOwn)
    {
 
       if(get_os_data() == NULL)
@@ -29,7 +35,8 @@ namespace file_watcher
 
       pop->m_str = directory;
       pop->m_bRecursive = bRecursive;
-      pop->m_plistener = this;
+      pop->m_plistener = plistener;
+      pop->m_bOwn = bOwn;
 
 //      uint32_t uiId = m_nId;
 
@@ -37,8 +44,8 @@ namespace file_watcher
     //  {
   //       Sleep(100);
 //      }
-
-      post_thread_message(WM_USER + 123, 0, pop);
+      LPARAM lparam = (LPARAM)(int_ptr)(void *)(listener_thread::op *)pop;
+      post_thread_message(WM_USER + 123, 0, lparam);
 
       pop->m_event.wait();
 

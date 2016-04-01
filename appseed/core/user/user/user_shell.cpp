@@ -186,6 +186,8 @@ namespace filemanager
       if(m_imagemap.Lookup(imagekey,iImage))
          return iImage;
 
+
+
       iImage = GetImage(oswindow,lpcsz,NULL,eicon,eattribute == FileAttributeDirectory, crBk);
 
       m_imagemap.set_at(imagekey,iImage);
@@ -448,6 +450,39 @@ namespace filemanager
       }
 
 #ifdef WINDOWSEX
+
+      if (::str::ends_ci(string(strPath), ".sln"))
+      {
+         ImageKey imagekey;
+
+         imagekey.m_strPath = strPath;
+         imagekey.m_iIcon = 0;
+         imagekey.m_strExtension.Empty();
+
+         if (m_imagemap.Lookup(imagekey, iImage))
+            return iImage;
+
+         ::file::path p = ::file::path(strPath);
+         string strIcon;
+         if (p.title().CompareNoCase("dark") == 0)
+         {
+            strIcon = "C:\\ca2\\visual_studio\\dark_solution.ico";
+         }
+         else if (p.title().CompareNoCase("blue") == 0)
+         {
+            strIcon = "C:\\ca2\\visual_studio\\blue_solution.ico";
+         }
+         else
+         {
+            strIcon = "C:\\ca2\\visual_studio\\lite_solution.ico";
+         }
+         int iImage = m_pil16->add_icon_os_data((HICON)LoadImage(NULL, strIcon, IMAGE_ICON, 16, 16, LR_LOADFROMFILE));
+         m_pil48->add_icon_os_data((HICON)LoadImage(NULL, strIcon, IMAGE_ICON, 48, 48, LR_LOADFROMFILE));
+         m_pil48Hover->add_icon_os_data((HICON)LoadImage(NULL, strIcon, IMAGE_ICON, 48, 48, LR_LOADFROMFILE));
+         m_imagemap.set_at(imagekey, iImage);
+         return iImage;
+      }
+
 
 
       string str(psz);

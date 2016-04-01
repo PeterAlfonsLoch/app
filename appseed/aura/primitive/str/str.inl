@@ -274,7 +274,7 @@ inline strsize string::replace_ci(const char * pszOld,const char * pszNew, strsi
 
 
 
-inline bool string::ends_ci(const string & strSuffixCandidate)
+inline bool string::ends_ci(const string & strSuffixCandidate) const
 {
 
    return ::str::ends_ci(*this, strSuffixCandidate);

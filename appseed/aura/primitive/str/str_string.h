@@ -505,7 +505,7 @@ public:
    }
 
 
-   inline bool ends_ci(const string & strSuffixCandidate);
+   inline bool ends_ci(const string & strSuffixCandidate) const;
 
 
    bool begins_ci(const char * s) const;

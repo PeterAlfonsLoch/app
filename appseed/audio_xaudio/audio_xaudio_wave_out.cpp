@@ -53,18 +53,18 @@ namespace multimedia
 
       }
 
-      int32_t wave_out::run()
-      {
-         //m_durationRunLock = millis(1);
-         while(m_bRun)
-         {
-            ::thread::run();
-         }
+      //int32_t wave_out::run()
+      //{
+      //   //m_durationRunLock = millis(1);
+      //   //while(m_bRun)
+      //   //{
+      //   //   ::thread::run();
+      //   //}
 
 
 
-         return 0;
-      }
+      //   return 0;
+      //}
 
       //bool wave_out::on_run_step()
       //{
@@ -73,14 +73,14 @@ namespace multimedia
 
       //}
 
-      int32_t wave_out::exit_instance()
-      {
+      //int32_t wave_out::exit_instance()
+      //{
 
-         ::multimedia::audio::wave_out::exit_instance();
+      //   ::multimedia::audio::wave_out::exit_instance();
 
-         return ::thread::exit_instance();
+      //   return ::thread::exit_instance();
 
-      }
+      //}
 
       ::multimedia::e_result wave_out::wave_out_open(::thread * pthreadCallback, int32_t iBufferCount, int32_t iBufferSampleCount)
       {
@@ -794,13 +794,13 @@ Opened:
       }
 
 
-      void wave_out::wave_out_run_step()
-      {
+      //void wave_out::wave_out_run_step()
+      //{
 
-         int iPlay =  -1;
+      //   int iPlay =  -1;
 
 
-      }
+      //}
 
       void wave_out::wave_out_prebuffer_eof()
       {
@@ -884,23 +884,23 @@ Opened:
       void wave_out::OnVoiceError(void* /*bufferContext*/, HRESULT /*error*/)
       {
       }
-      wave_out::run_step_thread::run_step_thread(wave_out * pout):
-         ::thread(pout->get_app())
-      {
-      }
+      //wave_out::run_step_thread::run_step_thread(wave_out * pout):
+      //   ::thread(pout->get_app())
+      //{
+      //}
 
 
-      int32_t wave_out::run_step_thread::run()
-      {
+      //int32_t wave_out::run_step_thread::run()
+      //{
 
-         while(m_bRun && m_pout->m_estate == wave_out::state_playing)
-         {
-            m_pout->wave_out_run_step();
-         }
+      //   while(m_bRun && m_pout->m_estate == wave_out::state_playing)
+      //   {
+      //      m_pout->wave_out_run_step();
+      //   }
 
 
-         return 0;
-      }
+      //   return 0;
+      //}
 
 
    } // namespace audio_xaudio

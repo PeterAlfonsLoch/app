@@ -131,24 +131,24 @@ namespace multimedia
             STDMETHOD_(void,OnBufferStart(void * pBufferContext));
             STDMETHOD_(void,OnLoopEnd(void * pBufferContext));
             STDMETHOD_(void,OnVoiceError(void * pBufferContext,HRESULT Error));
-         class run_step_thread :
-            virtual public ::thread
-         {
-         public:
+         //class run_step_thread :
+         //   virtual public ::thread
+         //{
+         //public:
 
-            wave_out * m_pout;
+         //   wave_out * m_pout;
 
-            run_step_thread(wave_out * pout);
+         //   run_step_thread(wave_out * pout);
 
-            virtual int32_t run();
+         //   virtual int32_t run();
 
-         };
+         //};
 
          ::windows::comptr<IXAudio2>                       m_pxaudio;
          ::windows::comptr<IXAudio2MasteringVoice>         m_pvoice;
          ::windows::comptr <IXAudio2SourceVoice>            m_psourcevoice;
 
-         run_step_thread *                m_prunstepthread;
+//         run_step_thread *                m_prunstepthread;
 
          int                              m_iBuffer;
 
@@ -183,11 +183,11 @@ namespace multimedia
          //virtual void wave_out_free(LPWAVEHDR lpwavehdr);
 
          virtual bool initialize_instance();
-         virtual int32_t exit_instance();
+         //virtual int32_t exit_instance();
 
          int32_t wave_out_get_buffered_buffer_count();
 
-         virtual int32_t run();
+         //virtual int32_t run();
 
          //DECL_GEN_SIGNAL(OnMultimediaOpen);
          //DECL_GEN_SIGNAL(OnMultimediaDone);
@@ -198,7 +198,7 @@ namespace multimedia
 
          WAVEFORMATEX * wave_format();
          //LPWAVEHDR wave_hdr(int iBuffer);
-         virtual void wave_out_run_step();
+         //virtual void wave_out_run_step();
          virtual void wave_out_prebuffer_eof();
       };
 

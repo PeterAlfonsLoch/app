@@ -541,6 +541,7 @@ namespace filemanager
                NULL,
                IID_IShellFolder,
                (void **)&lpsfParent);
+            _017ItemIDListFree(lpiidlParent);
 
             lpsfDesktop->Release();
 
@@ -549,7 +550,6 @@ namespace filemanager
                return lpsfParent;
             }
 
-            _017ItemIDListFree(lpiidlParent);
 
          }
          else
@@ -901,6 +901,7 @@ namespace filemanager
             szFilePath);
 
          CHAR szPath[_MAX_PATH * 10];
+         WCHAR wszPath[_MAX_PATH * 10];
          string strPath;
          int32_t iImage = 0x80000000;
 
@@ -922,14 +923,15 @@ namespace filemanager
          }
 
 
-
          int32_t iIcon = 0x80000000;
          UINT uiFlags = 0;
 
-         SHFILEINFO shfi16;
-         SHFILEINFO shfi48;
+         SHFILEINFOW shfi16;
+         SHFILEINFOW shfi48;
 
          IExtractIcon * lpiextracticon = NULL;
+         IShellIconOverlayIdentifier * lpioverlay = NULL;
+         IExtractImage * lpiextractimage = NULL;
 
          /*EFolder efolder = GetFolderType(wszFilePath);
          if(efolder !)
@@ -983,6 +985,84 @@ namespace filemanager
                }
             }
          }
+         else if (SUCCEEDED(lpsf->GetUIObjectOf(
+            oswindow,
+            1,
+            (LPCITEMIDLIST *)&lpiidlChild,
+            IID_IShellIconOverlayIdentifier,
+            NULL,
+            (void **)&lpioverlay)))
+         {
+            int iIndex = 0;
+            DWORD dwFlags = 0;
+            if (SUCCEEDED(hrIconLocation = lpioverlay->GetOverlayInfo(
+               wszPath,
+               sizeof(wszPath),
+               &iIndex,
+               &dwFlags)))
+            {
+               if (strcmp(szPath, "*") == 0)
+               {
+                  strsize iFind = strFilePath.reverse_find('.');
+
+                  imagekey.m_iIcon = 0x80000000;
+                  imagekey.m_strExtension = strFilePath.Mid(iFind);
+                  imagekey.m_strPath.Empty();
+               }
+               else
+               {
+                  imagekey.m_strPath = expand_env(szPath);
+                  imagekey.m_iIcon = iIcon;
+                  imagekey.m_strExtension.Empty();
+               }
+            }
+         }
+         else if (SUCCEEDED(lpsf->GetUIObjectOf(
+            oswindow,
+            1,
+            (LPCITEMIDLIST *)&lpiidlChild,
+            IID_IExtractImage,
+            NULL,
+            (void **)&lpiextractimage)))
+         {
+            SIZE s;
+            s.cx = 48;
+            s.cy = 48;
+            DWORD dwDepth = 32;
+            DWORD dwFlags = 0;
+            if (SUCCEEDED(hrIconLocation = lpiextractimage->GetLocation(
+               wszPath,
+               sizeof(wszPath),
+               NULL,
+               &s,
+               dwDepth,
+               &dwFlags)))
+            {
+               string strP = wszPath;
+               if (strcmp(strP, "*") == 0)
+               {
+                  strsize iFind = strFilePath.reverse_find('.');
+
+                  imagekey.m_iIcon = 0x80000000;
+                  imagekey.m_strExtension = strFilePath.Mid(iFind);
+                  imagekey.m_strPath.Empty();
+               }
+               else
+               {
+                  imagekey.m_strPath = expand_env(strP);
+                  imagekey.m_iIcon = iIcon;
+                  imagekey.m_strExtension.Empty();
+               }
+            }
+         }
+         else
+         {
+
+            imagekey.m_strPath = szFilePath;
+            imagekey.m_iIcon = iIcon;
+            imagekey.m_strExtension.Empty();
+
+         }
          if(imagekey.m_iIcon == 0x80000000)
          {
             
@@ -997,6 +1077,8 @@ namespace filemanager
             {
 
                wstring wstr = ::str::international::utf8_to_unicode(strTarget);
+
+               return GetImage(oswindow, strTarget, NULL, eicon, Application.dir().is(strTarget), crBk);
 
                LPITEMIDLIST lpiidl2 = NULL;
 
@@ -1045,7 +1127,106 @@ namespace filemanager
             if(imagekey.m_iIcon == 0x80000000)
             {
 
-               iImage = GetFooImage(oswindow,eicon,imagekey.m_strPath == "folder",imagekey.m_strExtension, crBk);
+               if (imagekey.m_strPath.has_char())
+               {
+                  try
+                  {
+
+                     hicon16 = NULL;
+
+                     strPath.Truncate(0);
+
+                     strPath.free_extra();
+
+                     strPath = imagekey.m_strPath;
+
+                     HICON hicon32 = NULL;
+
+                     SHGetFileInfoW(
+                        wstring(imagekey.m_strPath),
+                        FILE_ATTRIBUTE_NORMAL,
+                        &shfi16,
+                        sizeof(shfi16),
+                        SHGFI_USEFILEATTRIBUTES
+                        | SHGFI_ICON
+                        | SHGFI_OVERLAYINDEX
+                        | SHGFI_SMALLICON);
+                     hicon16 = shfi16.hIcon;
+                     SHGetFileInfoW(
+                        wstring(imagekey.m_strPath),
+                        FILE_ATTRIBUTE_NORMAL,
+                        &shfi48,
+                        sizeof(shfi48),
+                        SHGFI_USEFILEATTRIBUTES
+                        | SHGFI_ICON
+                        | SHGFI_OVERLAYINDEX
+                        | SHGFI_LARGEICON);
+
+                     hicon48 = shfi48.hIcon;
+
+                     if (hicon16 != NULL && hicon48 != NULL)
+                     {
+
+                        iImage = m_pil16->add_icon_os_data(hicon16);
+
+                        synch_lock sl1(m_pil48Hover->m_pmutex);
+
+                        synch_lock sl2(m_pil48->m_pmutex);
+
+                        if (crBk == 0)
+                        {
+
+                           System.visual().imaging().Createcolor_blend_ImageList(
+                              m_pil48,
+                              m_pil48Hover,
+                              RGB(255, 255, 240),
+                              64);
+
+                        }
+                        else
+                        {
+
+                           *m_pil48 = *m_pil48Hover;
+
+                        }
+
+                        m_pil48Hover->add_icon_os_data(hicon48);
+
+                        if (crBk == 0)
+                        {
+
+                           System.visual().imaging().Createcolor_blend_ImageList(
+                              m_pil48,
+                              m_pil48Hover,
+                              RGB(255, 255, 240),
+                              64);
+
+                        }
+                        else
+                        {
+                           *m_pil48 = *m_pil48Hover;
+                        }
+
+                        m_pil48->add_icon_os_data(hicon48);
+
+                        m_imagemap.set_at(imagekey, iImage);
+
+                     }
+
+                  }
+                  catch (...)
+                  {
+
+                  }
+
+               }
+
+               if (iImage < 0)
+               {
+
+                  iImage = GetFooImage(oswindow, eicon, imagekey.m_strPath == "folder", imagekey.m_strExtension, crBk);
+
+               }
 
             }
             else
@@ -1122,23 +1303,21 @@ namespace filemanager
                      HICON hicon32 = NULL;
                      if(imagekey.m_strPath.is_empty())
                      {
-                        SHGetFileInfo(
-                           (const char *)lpiidlAbsolute,
+                        SHGetFileInfoW(
+                           wstring(imagekey.m_strPath),
                            FILE_ATTRIBUTE_NORMAL,
                            &shfi16,
                            sizeof(shfi16),
-                           SHGFI_PIDL
-                           | SHGFI_USEFILEATTRIBUTES
+                           SHGFI_USEFILEATTRIBUTES
                            | SHGFI_ICON
                            | SHGFI_SMALLICON);
                         hicon16 = shfi16.hIcon;
-                        SHGetFileInfo(
-                           (const char *)lpiidlAbsolute,
+                        SHGetFileInfoW(
+                           wstring(imagekey.m_strPath),
                            FILE_ATTRIBUTE_NORMAL,
                            &shfi48,
                            sizeof(shfi48),
-                           SHGFI_PIDL
-                           | SHGFI_USEFILEATTRIBUTES
+                           SHGFI_USEFILEATTRIBUTES
                            | SHGFI_ICON
                            | SHGFI_LARGEICON);
                         hicon48 = shfi48.hIcon;
@@ -1225,8 +1404,8 @@ namespace filemanager
 
                      if(hicon16 == NULL)
                      {
-                        SHGetFileInfo(
-                           "foo",
+                        SHGetFileInfoW(
+                           L"foo",
                            FILE_ATTRIBUTE_NORMAL,
                            &shfi16,
                            sizeof(shfi16),
@@ -1237,8 +1416,8 @@ namespace filemanager
                      }
                      if(hicon48 == NULL)
                      {
-                        SHGetFileInfo(
-                           "foo",
+                        SHGetFileInfoW(
+                           L"foo",
                            FILE_ATTRIBUTE_NORMAL,
                            &shfi48,
                            sizeof(shfi48),

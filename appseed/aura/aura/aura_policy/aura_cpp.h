@@ -1166,6 +1166,10 @@ CLASS_DECL_AURA string get_exe_path();
 
 #include "aura/filesystem/filesystem/filesystem_system.h"
 
+#include "aura/aura/aura/aura_file_watcher.h"
+#include "aura/aura/aura/aura_file_watcher_thread.h"
+#include "aura/aura/aura/aura_file_watcher_listener_thread.h"
+
 #include "aura/filesystem/filesystem/filesystem_dir_system.h"
 
 #include "aura/aura/aura/aura_core_os.h"
@@ -1414,8 +1418,6 @@ inline void string_format::format(const char * & s)
 #include "aura/aura/aura/aura_shell_launcher.h"
 
 
-#include "aura/aura/aura/aura_file_watcher_thread.h"
-#include "aura/aura/aura/aura_file_watcher_listener_thread.h"
 #include "aura/aura/aura/aura_async.h"
 
 

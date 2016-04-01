@@ -82,6 +82,56 @@ namespace file_watcher
 		action_modify = 4
 
 	};
+
+   /// Basic interface for listening for file events.
+   /// @class file_watch_listener
+   class CLASS_DECL_AURA file_watch_listener
+   {
+   public:
+
+
+      file_watch_listener();
+      virtual ~file_watch_listener();
+
+      /// Handles the action file action
+      /// @param watchid The watch id for the directory
+      /// @param dir The directory
+      /// @param filename The filename that was accessed (not full path)
+      /// @param action Action that was performed
+      virtual void handle_file_action(id watchid, const char * dir, const char * filename, e_action action);
+
+
+   }; // class file_watch_listener
+
+   template < typename PRED >
+   class pred_file_watch_listener :
+      virtual public file_watch_listener
+   {
+   public:
+
+
+      PRED m_pred;
+
+      pred_file_watch_listener(PRED pred):
+         m_pred(pred)
+      {
+      }
+
+      /// Handles the action file action
+      /// @param watchid The watch id for the directory
+      /// @param dir The directory
+      /// @param filename The filename that was accessed (not full path)
+      /// @param action Action that was performed
+      virtual void handle_file_action(id watchid, const char * dir, const char * filename, e_action action)
+      {
+
+         m_pred(watchid, dir, filename, action);
+
+      }
+
+
+   }; // class file_watch_listener
+
    
    
 	/// Listens to files and directories and dispatches events
@@ -105,7 +155,15 @@ namespace file_watcher
 
 		/// Add a directory watch
 		/// @exception file_not_found_exception Thrown when the requested directory does not exist
-		id add_watch(const char * directory, file_watch_listener * pwatcher, bool bRecursive);
+		id add_watch(const char * directory, file_watch_listener * pwatcher, bool bRecursive, bool bOwn = false);
+
+      template < typename PRED >
+      id pred_add_watch(const char * directory, PRED pred, bool bRecursive)
+      {
+
+         return add_watch(directory, new pred_file_watch_listener < PRED >(pred), bRecursive, true);
+
+      }
 
 		/// Remove a directory watch. This is a brute force search O(nlogn).
 		void remove_watch(const char * directory);
@@ -119,26 +177,45 @@ namespace file_watcher
 	};//end file_watcher
 
 
-	/// Basic interface for listening for file events.
-	/// @class file_watch_listener
-	class CLASS_DECL_AURA file_watch_listener
-	{
-	public:
-      
-      
-		file_watch_listener() {}
-		virtual ~file_watch_listener() {}
+   //class CLASS_DECL_AURA file_watcher_pool :
+   //   virtual public ::thread
+   //{
+   //public:
 
-		/// Handles the action file action
-		/// @param watchid The watch id for the directory
-		/// @param dir The directory
-		/// @param filename The filename that was accessed (not full path)
-		/// @param action Action that was performed
-		virtual void handle_file_action(id watchid, const char * dir, const char * filename, e_action action) = 0;
+   //   class CLASS_DECL_AURA add
+   //   {
+   //   public:
+   //      
+   //      string directory;
+   //      file_watch_listener * pwatcher;
+   //      bool bRecursive;
+   //      bool bOwn;
+   //   };
 
-      
-	}; // class file_watch_listener
 
+   //   map < id, id, file_watcher *, file_watcher * > m_pool;
+
+   //   file_watcher_pool() {}
+   //   virtual ~file_watcher_pool() {}
+
+   //   virtual void install_message_handling(::message::dispatch * pdispatch);
+
+   //   /// Add a directory watch
+   //   /// @exception file_not_found_exception Thrown when the requested directory does not exist
+   //   id add_watch(const char * directory, file_watch_listener * pwatcher, bool bRecursive, bool bOwn = false);
+
+   //   template < typename PRED >
+   //   id pred_add_watch(const char * directory, PRED pred, bool bRecursive)
+   //   {
+
+   //      return add_watch(directory, new pred_file_watch_listener < PRED >(pred), bRecursive, true);
+
+   //   }
+
+
+   //   int32_t run();
+
+   //};
 
 } // namespace file_watcher
 

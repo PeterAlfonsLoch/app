@@ -5,7 +5,7 @@ namespace file_watcher
 {
 
 
-   bool thread::file_watcher_initialize_thread(::aura::application * papp)
+   bool listener_thread::file_watcher_initialize_thread(::aura::application * papp)
    {
 
       set_app(papp);
@@ -19,7 +19,7 @@ namespace file_watcher
 
    }
 
-   int32_t thread::run()
+   int32_t listener_thread::run()
    {
 
 
@@ -51,7 +51,7 @@ namespace file_watcher
                         try
                         {
 
-                           pop->m_id = add_watch(pop->m_str, pop->m_plistener, pop->m_bRecursive);
+                           pop->m_id = add_watch(pop->m_str, pop->m_plistener, pop->m_bRecursive, pop->m_bOwn);
 
                         }
                         catch(...)
