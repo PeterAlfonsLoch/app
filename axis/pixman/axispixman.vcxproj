@@ -368,10 +368,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <None Include="axispixman.def" />
-    <None Include="Source\LibJPEG\LibJPEG.2008.vcxproj.filters" />
-    <None Include="Source\LibOpenJPEG\LibOpenJPEG.2008.vcxproj.filters" />
-    <None Include="Source\LibPNG\LibPNG.2008.vcxproj.filters" />
-    <None Include="Source\LibTIFF4\LibTIFF4.2008.vcxproj.filters" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pixman\pixman-access-accessors.c" />

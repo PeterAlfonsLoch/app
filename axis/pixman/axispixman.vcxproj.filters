@@ -9,10 +9,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Source\LibJPEG\LibJPEG.2008.vcxproj.filters" />
-    <None Include="Source\LibOpenJPEG\LibOpenJPEG.2008.vcxproj.filters" />
-    <None Include="Source\LibPNG\LibPNG.2008.vcxproj.filters" />
-    <None Include="Source\LibTIFF4\LibTIFF4.2008.vcxproj.filters" />
     <None Include="axispixman.def">
       <Filter>Source Files</Filter>
     </None>

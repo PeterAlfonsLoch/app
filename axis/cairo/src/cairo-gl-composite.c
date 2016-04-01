@@ -52,6 +52,17 @@
 #include "cairo-error-private.h"
 #include "cairo-image-surface-private.h"
 
+#ifdef _WIN32
+typedef void APIENTRY FN_glActiveTexture(GLenum texture);
+typedef FN_glActiveTexture * PFNGLACTIVETEXTUREPROC;
+extern PFNGLACTIVETEXTUREPROC glActiveTexture2;
+#define glActiveTexture glActiveTexture2
+typedef void APIENTRY FN_glBlendFuncSeparate(GLenum sfactorRGB, GLenum dfactorRGB, GLenum sfactorAlpha, GLenum dfactorAlpha);
+typedef FN_glBlendFuncSeparate * PFNGLBLENDFUNCSEPARATE;
+extern PFNGLBLENDFUNCSEPARATE glBlendFuncSeparate2;
+#define glBlendFuncSeparate glBlendFuncSeparate2
+#endif
+
 cairo_int_status_t
 _cairo_gl_composite_set_source (cairo_gl_composite_t *setup,
 			        const cairo_pattern_t *pattern,
