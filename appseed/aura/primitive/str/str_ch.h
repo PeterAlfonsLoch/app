@@ -177,7 +177,7 @@ namespace str
             ch += c = source[len++];
             if(c == '\0' && extraBytesToRead) return -1;
          }
-         ch -= utf8_e(extraBytesToRead);
+         ch -= utf8_o(extraBytesToRead);
          return ch;
       }
 
@@ -217,7 +217,7 @@ namespace str
 
       inline bool is_legal_uni_index(int64_t iUnicodeIndex)
       {
-         
+
          return iUnicodeIndex < 65536 ? true : false;
 
          //return ca >= ((uint64_t) 0xffffffffu) ? false : true;
@@ -307,6 +307,15 @@ namespace str
       /** @deprecated For debug purposes only. */
       CLASS_DECL_AURA int32_t size_of_tables();
 
+
+      inline CLASS_DECL_AURA bool is_kanji(int64_t i) { return i >=0x4E00 && i <=0x9FBF; }
+      inline CLASS_DECL_AURA bool is_hiragana(int64_t i) { return i >= 0x3040 && i <= 0x309F; }
+      inline CLASS_DECL_AURA bool is_katakana(int64_t i) { return i >= 0x30A0 && i <= 0x30FF; }
+      inline CLASS_DECL_AURA bool is_japanese(int64_t i) { return is_kanji(i) || is_hiragana(i) || is_katakana(i); }
+      inline CLASS_DECL_AURA bool is_kanji(const char * pszUtf8) { return is_kanji(uni_index(pszUtf8)); }
+      inline CLASS_DECL_AURA bool is_hiragana(const char * pszUtf8) { return is_hiragana(uni_index(pszUtf8));  }
+      inline CLASS_DECL_AURA bool is_katakana(const char * pszUtf8) { return is_katakana(uni_index(pszUtf8));  }
+      inline CLASS_DECL_AURA bool is_japanese(const char * pszUtf8) { return is_japanese(uni_index(pszUtf8));  }
 
 
 

@@ -5729,7 +5729,6 @@ synch_lock ml(m_pmutex);
       fs = FcFontList(g_fcConfig, pat, os);
 
       printf("Total fonts: %d", fs->nfont);
-
       for (i=0; fs && i < fs->nfont; i++)
       {
 
@@ -5765,7 +5764,8 @@ synch_lock ml(m_pmutex);
 
          }
 
-         //printf("Font: %s", s);
+         //printf("Font: %s\n", str.c_str());
+         //printf("Font: %s\n", s);
 
          stra.add(str);
 
@@ -5799,6 +5799,13 @@ string graphics::get_font_path(string str)
 
    }
 
+   if(str == "TakaoPGothic")
+   {
+
+      output_debug_string("searching TakaoPGothic");
+
+   }
+
 
    string strPath;
 
@@ -5811,7 +5818,14 @@ string graphics::get_font_path(string str)
 
       enum_fonts(straPath, stra);
 
-      int iFind = stra.find_first(str);
+      if(str == "TakaoPGothic")
+      {
+
+         output_debug_string("searching TakaoPGothic");
+
+      }
+
+      int iFind = stra.find_first_ci(str);
 
       if(iFind >= 0)
       {
@@ -5822,7 +5836,47 @@ string graphics::get_font_path(string str)
       else
       {
 
-         strPath = str;
+         iFind = stra.find_first_begins_ci(str + " Regular");
+
+         if(iFind >= 0)
+         {
+
+            strPath = straPath[iFind];
+
+         }
+         else
+         {
+
+            iFind = stra.find_first_begins_ci(str + ",");
+
+            if(iFind >= 0)
+            {
+
+               strPath = straPath[iFind];
+
+            }
+            else
+            {
+
+               iFind = stra.find_first_begins_ci(str + " ");
+
+               if(iFind >= 0)
+               {
+
+                  strPath = straPath[iFind];
+
+               }
+               else
+               {
+
+                  strPath = str;
+
+               }
+
+
+            }
+
+         }
 
       }
 
