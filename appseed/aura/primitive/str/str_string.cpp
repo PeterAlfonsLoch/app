@@ -1063,7 +1063,7 @@ string& string::operator=(const unichar32 * pszSrc)
    {
       Empty();
    }
-   
+
    return *this;
 }
 
@@ -2377,7 +2377,7 @@ string& string::trim_right(const char * pszTargets)
    const char * psz = GetString();
    const char * pszLast = NULL;
 
-   while(*psz != 0)
+   while(!is_ptr_null(psz, 1024) && *psz != 0)
    {
       if(string_trait::StringFindChar(pszTargets,*psz) != NULL)
       {

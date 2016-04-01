@@ -486,7 +486,7 @@ void * plex_heap_alloc_array::alloc_dbg(size_t size, int32_t nBlockUse, const ch
 
    }
 
-   memset(&psize[1], 0, size);
+   //memset(&psize[1], 0, size);
 
    return &psize[1];
 
@@ -961,7 +961,7 @@ string get_mem_info_report1()
 
 void memdleak_dump()
 {
-   
+
 
    memdleak_block * pblock = s_pmemdleakList;
 
