@@ -393,6 +393,10 @@
 			<Option compile="0" />
 			<Option link="0" />
 		</Unit>
+		<Unit filename="aura/os/linux/linux_process.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="aura/os/linux/linux_process.h" />
 		<Unit filename="aura/os/os.h" />
 		<Unit filename="aura/os/os_binreloc.h" />

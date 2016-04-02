@@ -23,56 +23,165 @@ CLASS_DECL_AURA void dll_processes(uint_array & dwa, stringa & straProcesses, co
 
 int32_t create_process(const char * _cmd_line, int32_t * pprocessId)
 {
+
    char *   exec_path_name;
+
    char *	cmd_line;
+
    char *	cmd_line2;
 
    cmd_line = (char *) memory_alloc(strlen(_cmd_line ) + 1 );
 
    if(cmd_line == NULL)
-            return 0;
+   {
+
+      return 0;
+
+   }
+
    cmd_line2 = (char *) memory_alloc(strlen(_cmd_line ) + 1 );
 
    if(cmd_line2 == NULL)
-            return 0;
+   {
+
+      return 0;
+
+   }
 
    strcpy_dup(cmd_line, _cmd_line);
 
    strcpy_dup(cmd_line2, _cmd_line);
 
+   const char * pszEnv = getenv("LD_LIBRARY_PATH");
+
    if((*pprocessId = fork()) == 0)
    {
-      // child
+
       char *      pArg;
+
       char *      pPtr = NULL;
+
       char *      argv[1024 + 1];
+
       int32_t		argc = 0;
 
-      pArg = strtok_r_dup(cmd_line, " ", &pPtr);
+      char * p;
 
-      exec_path_name = pArg;
+      setenv("LD_LIBRARY_PATH", pszEnv, 1);
 
-      while(pArg != NULL)
+      char * psz = cmd_line;
+
+      enum e_state
+      {
+         state_initial,
+         state_quote,
+         state_non_space,
+      };
+
+      e_state e = state_initial;
+
+      char quote;
+
+      while(psz != NULL && *psz != '\0')
       {
 
-         argv[argc] = pArg;
-
-         argc++;
-
-         if( argc >= 1024 )
+         if(e == state_initial)
          {
 
-            break;
+            if(*psz == ' ')
+            {
+
+               psz = ::str::utf8_inc(psz);
+
+            }
+            else if(*psz == '\"')
+            {
+
+               quote = '\"';
+
+               psz = ::str::utf8_inc(psz);
+
+               argv[argc++] = psz;
+
+               e = state_quote;
+
+            }
+            else if(*psz == '\'')
+            {
+
+               quote = '\'';
+
+               psz = ::str::utf8_inc(psz);
+
+               argv[argc++] = psz;
+
+               e = state_quote;
+
+            }
+            else
+            {
+
+               argv[argc++] = psz;
+
+               psz = ::str::utf8_inc(psz);
+
+               e = state_non_space;
+
+            }
 
          }
+         else if(e == state_quote)
+         {
 
-         pArg = strtok_r_dup(NULL, " ", &pPtr);
+            if(*psz == quote)
+            {
+
+               p = ::str::utf8_inc(psz);
+
+               *psz = '\0';
+
+               psz = p;
+
+               e = state_initial;
+
+            }
+            else
+            {
+
+               psz = ::str::utf8_inc(psz);
+
+            }
+
+         }
+         else
+         {
+
+            if(*psz == ' ')
+            {
+
+               p = ::str::utf8_inc(psz);
+
+               *psz = '\0';
+
+               psz = p;
+
+               e = state_initial;
+
+            }
+            else
+            {
+
+               psz = ::str::utf8_inc(psz);
+
+            }
+
+         }
 
       }
 
       argv[argc] = NULL;
 
-      execv(exec_path_name, argv);
+      execv(argv[0], argv);
 
       int status = 0;
 
@@ -81,9 +190,9 @@ int32_t create_process(const char * _cmd_line, int32_t * pprocessId)
       exit(status);
 
       memory_free(cmd_line);
-      
+
       memory_free(cmd_line2);
-      
+
    }
    else if(*pprocessId == -1)
    {
