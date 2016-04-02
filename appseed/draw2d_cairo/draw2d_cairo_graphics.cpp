@@ -4834,7 +4834,7 @@ synch_lock ml(m_pmutex);
       }
       else
       {
-         set_os_color(m_spbrush->m_cr);
+         set(m_spbrush);
       }
 
       cairo_move_to(m_pdc, x, y + e.ascent);
