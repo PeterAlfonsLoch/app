@@ -7,9 +7,7 @@ sync_object::sync_object(const char * pstrName)
 #ifdef WINDOWS
    m_object = NULL;
 #endif
-#ifdef DEBUG
    m_pszName = pstrName == NULL ? NULL : strdup(pstrName);
-#endif
 }
 
 sync_object::~sync_object()
@@ -20,11 +18,11 @@ sync_object::~sync_object()
       ::CloseHandle(m_object);
       m_object = NULL;
    }
+#endif
    if (m_pszName != NULL)
    {
-      ::free((void*) m_pszName);
+      ::free((void*)m_pszName);
    }
-#endif
 }
 
 

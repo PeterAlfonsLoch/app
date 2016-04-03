@@ -319,7 +319,7 @@ namespace file
             return spfile;
          }
 
-         spfile = Application.alloc(System.type_info < ::file::binary_buffer > ());
+         spfile = Application.alloc(System.type_info < ::file::stream_buffer > ());
 
          cres = spfile->open(strPath,nOpenFlags);
 
