@@ -2112,7 +2112,8 @@ namespace aura
                                  || set["app"] == "bergedge" || directrix()->m_varTopicQuery["appid"] == "bergedge")) &&
             !(set.has_property("install") || set.has_property("uninstall")))
       {
-         if(!set.has_property("show_platform") || set["show_platform"] == 1)
+         //if(!set.has_property("show_platform") || set["show_platform"] == 1)
+         if (set["show_platform"] == 1)
          {
             command()->add_line(" : show_platform=1");
          }

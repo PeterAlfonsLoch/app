@@ -1425,7 +1425,7 @@ restart:
          }
          */
 
-         spfile = App(papp).alloc(System.type_info < ::file::binary_buffer >());
+         spfile = App(papp).alloc(System.type_info < ::file::stream_buffer >());
 
          cres = spfile->open(strPath,nOpenFlags);
 

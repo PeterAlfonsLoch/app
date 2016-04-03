@@ -1272,6 +1272,8 @@ install_begin:;
       ::sockets::http_session * & psession = m_httpsessionptra.element_at_grow(omp_get_thread_num() + 1);
       sl.unlock();
 
+      System.install().trace().trace_add("\ndownloading " + strUrl + "\n");
+
       psession = Application.http().download(psession,strUrl,(dir + file),set);
 
       return psession != NULL;
@@ -1467,6 +1469,8 @@ install_begin:;
             ::sockets::http_session * & psession = m_httpsessionptra.element_at_grow(omp_get_thread_num()+1);
             sl.unlock();
 
+            System.install().trace().trace_add("\ndownloading " + strUrl + "\n");
+
             bOk = (psession = Application.http().download(psession,strUrl,strBsPatch,set)) != NULL;
 
 //            if(iStatus == 404)
@@ -1625,6 +1629,8 @@ install_begin:;
             set["disable_ca2_sessid"] = true;
 
             set["raw_http"] = true;
+
+            System.install().trace().trace_add("\ndownloading " + (::file::path(url_in + "." + pszMd5)) + "\n");
 
             bOk = (psession = Application.http().download(psession,::file::path(url_in + "." + pszMd5),::file::path(dir + file + "." + pszMd5),set)) != NULL;
             //bOk = Application.http().download((url_in + "." + pszMd5), (dir + file + "." + pszMd5), set);
@@ -1794,6 +1800,7 @@ install_begin:;
 
    ::file::path installer::ca2inplace_get_dir(LPCSTR lpcszUrl)
    {
+
       string url_in(lpcszUrl);
       string dir;
       string url;
@@ -3235,6 +3242,8 @@ RetryBuildNumber:
          sl.lock();
          ::sockets::http_session * & psession = m_httpsessionptra.element_at_grow(omp_get_thread_num() + 1);
          sl.unlock();
+
+         System.install().trace().trace_add("\ndownloading " +  strUrl + "\n");
 
          psession = Application.http().download(psession,strUrl, &file,set);
 
