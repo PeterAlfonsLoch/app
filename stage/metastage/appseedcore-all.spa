@@ -17,5 +17,6 @@ stage\basis\axiszlib.dll
 stage\basis\base.dll
 stage\basis\core.dll
 stage\basis\draw2d_gdiplus.dll
+stage\basis\pcre.dll
 stage\basis\vcruntime140d.dll
 stage\basis\vcomp140d.dll
