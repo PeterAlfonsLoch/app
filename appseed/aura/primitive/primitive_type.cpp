@@ -47,6 +47,7 @@ string demangle (const char* name)
 type::type(const id & id, const class id & idFriendly)
 {
 
+   m_pfactoryitem = NULL;
    m_id              = id;
    m_idFriendly      = idFriendly;
 
@@ -56,6 +57,7 @@ type::type(const id & id, const class id & idFriendly)
 type::type()
 {
 
+   m_pfactoryitem = NULL;
 
 }
 
@@ -79,6 +81,7 @@ type::type(const type & info)
 type::type(const std_type_info & info)
 {
 
+   m_pfactoryitem = NULL;
 #ifdef WINDOWS
    m_idFriendly      = info.name();
    m_id              = info.raw_name();
@@ -99,6 +102,7 @@ type::type(const std_type_info & info)
 type::type(const string & strName, const string & strFriendlyName)
 {
 
+   m_pfactoryitem = NULL;
    m_id              = strName;
    m_idFriendly      = strFriendlyName;
 
