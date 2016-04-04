@@ -1,17 +1,17 @@
 #pragma once
 
 
-namespace draw2d_gdiplus
+namespace draw2d_gl2d
 {
 
 
-   class CLASS_DECL_DRAW2D_GDIPLUS font : 
+   class CLASS_DECL_DRAW2D_GL2D font : 
       virtual public ::draw2d::font
    {
    public:
 
       
-      Gdiplus::Font *   m_pfont;
+      //plusplus::Font *   m_pfont;
 
 
       font(::aura::application * papp);
@@ -19,7 +19,7 @@ namespace draw2d_gdiplus
       virtual ~font();
 
 
-      virtual void * get_os_data() const;
+      //virtual void * get_os_data() const;
 
 
       virtual void construct(const ::draw2d::font & fontParam);
@@ -34,7 +34,7 @@ namespace draw2d_gdiplus
    };
 
 
-} // namespace draw2d_gdiplus
+} // namespace draw2d_gl2d
 
 
 

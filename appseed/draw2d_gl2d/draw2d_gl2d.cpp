@@ -8,7 +8,7 @@ BOOL WINAPI DllMain(HINSTANCE hInstance,DWORD dwReason,LPVOID lpReserved)
 
    //   ASSERT(FALSE);
 
-   xxdebug_box("draw2d_gdiplus.dll DllMain (0)","box",MB_OK);
+   xxdebug_box("draw2d_gl2d.dll DllMain (0)","box",MB_OK);
 
    UNREFERENCED_PARAMETER(hInstance);
    UNREFERENCED_PARAMETER(lpReserved);
@@ -48,13 +48,13 @@ BOOL WINAPI DllMain(HINSTANCE hInstance,DWORD dwReason,LPVOID lpReserved)
 //   UINT  num = 0;          // number of image encoders
 //   UINT  size = 0;         // size of the image encoder array in bytes
 //
-//   Gdiplus::ImageCodecInfo* pImageCodecInfo = NULL;
+//   plusplus::ImageCodecInfo* pImageCodecInfo = NULL;
 //
-//   Gdiplus::GetImageEncodersSize(&num,&size);
+//   plusplus::GetImageEncodersSize(&num,&size);
 //   if(size == 0)
 //      return -1;  // Failure
 //
-//   pImageCodecInfo = (Gdiplus::ImageCodecInfo*)(malloc(size));
+//   pImageCodecInfo = (plusplus::ImageCodecInfo*)(malloc(size));
 //   if(pImageCodecInfo == NULL)
 //      return -1;  // Failure
 //
@@ -74,3 +74,14 @@ BOOL WINAPI DllMain(HINSTANCE hInstance,DWORD dwReason,LPVOID lpReserved)
 //   return -1;  // Failure
 //}
 
+
+
+
+#ifdef WINDOWS
+
+
+#pragma comment (lib, "opengl32.lib")
+#pragma comment (lib, "glu32.lib")
+
+
+#endif

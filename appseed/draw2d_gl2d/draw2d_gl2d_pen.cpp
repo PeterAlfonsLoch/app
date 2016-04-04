@@ -4,25 +4,25 @@
 #undef new
 
 
-namespace draw2d_gdiplus
+namespace draw2d_gl2d
 {
 
 
    pen::pen(::aura::application * papp) :
       ::object(papp)
    { 
-      m_egdiplusalign = (Gdiplus::PenAlignment) -1;
-      m_ppen = NULL;
+      //m_egl2dalign = (plusplus::PenAlignment) -1;
+      //m_ppen = NULL;
 
    }
 
    pen::~pen()
    { 
-      if(m_ppen != NULL)
+   /*   if(m_ppen != NULL)
       {
          delete m_ppen;
          m_ppen = NULL;
-      }
+      }*/
    }
 
    /*bool pen::CreatePen(int32_t nPenStyle, int32_t nWidth, COLORREF crColor)
@@ -54,7 +54,7 @@ namespace draw2d_gdiplus
       m_nPenStyle    = nPenStyle;
       m_dWidth       = dWidth;
       m_crColor      = crColor;
-      m_ppen         = new Gdiplus::Pen(Gdiplus::Color(crColor), dWidth);
+      m_ppen         = new plusplus::Pen(plusplus::Color(crColor), dWidth);
 
    }
 
@@ -356,88 +356,90 @@ namespace draw2d_gdiplus
    void * pen::get_os_data() const
    {
       
-      if(m_ppen == NULL || !m_bUpdated)
-      {
-         if(m_ppen != NULL)
-         {
-            delete m_ppen;
-         }
-         if (m_etype == type_brush)
-         {
-            
-            ((pen *) this)->m_ppen = new Gdiplus::Pen((Gdiplus::Brush *) m_br.cast < brush >()->get_os_data(), (Gdiplus::REAL) m_dWidth);
+      //if(m_ppen == NULL || !m_bUpdated)
+      //{
+      //   if(m_ppen != NULL)
+      //   {
+      //      delete m_ppen;
+      //   }
+      //   if (m_etype == type_brush)
+      //   {
+      //      
+      //      ((pen *) this)->m_ppen = new plusplus::Pen((plusplus::Brush *) m_br.cast < brush >()->get_os_data(), (plusplus::REAL) m_dWidth);
 
-         }
-         else
-         {
-            ((pen *) this)->m_ppen = new Gdiplus::Pen(Gdiplus::Color(
-               argb_get_a_value(m_cr),
-               argb_get_r_value(m_cr),
-               argb_get_g_value(m_cr),
-               argb_get_b_value(m_cr)), (Gdiplus::REAL) m_dWidth);
+      //   }
+      //   else
+      //   {
+      //      ((pen *) this)->m_ppen = new plusplus::Pen(plusplus::Color(
+      //         argb_get_a_value(m_cr),
+      //         argb_get_r_value(m_cr),
+      //         argb_get_g_value(m_cr),
+      //         argb_get_b_value(m_cr)), (plusplus::REAL) m_dWidth);
 
-         }
-         switch(m_elinejoin)
-         {
-         case line_join_miter:
-            ((pen *) this)->m_ppen->SetLineJoin(Gdiplus::LineJoinMiter);
-            break;
-         case line_join_bevel:
-            ((pen *) this)->m_ppen->SetLineJoin(Gdiplus::LineJoinBevel);
-            break;
-         case line_join_round:
-            ((pen *) this)->m_ppen->SetLineJoin(Gdiplus::LineJoinRound);
-            break;
-         case line_join_miter_clipped:
-            ((pen *) this)->m_ppen->SetLineJoin(Gdiplus::LineJoinMiterClipped);
-            break;
-         }
-         switch(m_elinecapBeg)
-         {
-         case line_cap_flat:
-            ((pen *) this)->m_ppen->SetStartCap(Gdiplus::LineCapFlat);
-            break;
-         case line_cap_round:
-            ((pen *) this)->m_ppen->SetStartCap(Gdiplus::LineCapRound);
-            break;
-         case line_cap_square:
-            ((pen *) this)->m_ppen->SetStartCap(Gdiplus::LineCapSquare);
-            break;
-         }
-         switch(m_elinecapEnd)
-         {
-         case line_cap_flat:
-            ((pen *) this)->m_ppen->SetEndCap(Gdiplus::LineCapFlat);
-            break;
-         case line_cap_round:
-            ((pen *) this)->m_ppen->SetEndCap(Gdiplus::LineCapRound);
-            break;
-         case line_cap_square:
-            ((pen *) this)->m_ppen->SetEndCap(Gdiplus::LineCapSquare);
-            break;
-         }
-         if(m_etype == type_dot)
-         {
-            Gdiplus::REAL dashVals[4];
+      //   }
+      //   switch(m_elinejoin)
+      //   {
+      //   case line_join_miter:
+      //      ((pen *) this)->m_ppen->SetLineJoin(plusplus::LineJoinMiter);
+      //      break;
+      //   case line_join_bevel:
+      //      ((pen *) this)->m_ppen->SetLineJoin(plusplus::LineJoinBevel);
+      //      break;
+      //   case line_join_round:
+      //      ((pen *) this)->m_ppen->SetLineJoin(plusplus::LineJoinRound);
+      //      break;
+      //   case line_join_miter_clipped:
+      //      ((pen *) this)->m_ppen->SetLineJoin(plusplus::LineJoinMiterClipped);
+      //      break;
+      //   }
+      //   switch(m_elinecapBeg)
+      //   {
+      //   case line_cap_flat:
+      //      ((pen *) this)->m_ppen->SetStartCap(plusplus::LineCapFlat);
+      //      break;
+      //   case line_cap_round:
+      //      ((pen *) this)->m_ppen->SetStartCap(plusplus::LineCapRound);
+      //      break;
+      //   case line_cap_square:
+      //      ((pen *) this)->m_ppen->SetStartCap(plusplus::LineCapSquare);
+      //      break;
+      //   }
+      //   switch(m_elinecapEnd)
+      //   {
+      //   case line_cap_flat:
+      //      ((pen *) this)->m_ppen->SetEndCap(plusplus::LineCapFlat);
+      //      break;
+      //   case line_cap_round:
+      //      ((pen *) this)->m_ppen->SetEndCap(plusplus::LineCapRound);
+      //      break;
+      //   case line_cap_square:
+      //      ((pen *) this)->m_ppen->SetEndCap(plusplus::LineCapSquare);
+      //      break;
+      //   }
+      //   if(m_etype == type_dot)
+      //   {
+      //      plusplus::REAL dashVals[4];
 
-            dashVals[0] = 1;
-            dashVals[1] = 2;
+      //      dashVals[0] = 1;
+      //      dashVals[1] = 2;
 
-            // Create a Pen object.
+      //      // Create a Pen object.
 
-            // Set the dash pattern for the custom dashed line.
-            ((pen *) this)->m_ppen->SetDashPattern(dashVals,2);
-         }
-      }
+      //      // Set the dash pattern for the custom dashed line.
+      //      ((pen *) this)->m_ppen->SetDashPattern(dashVals,2);
+      //   }
+      //}
 
-      if(m_ppen != NULL)
-      {
-         ((pen *) this)->m_bUpdated = true;
-      }
+      //if(m_ppen != NULL)
+      //{
+      //   ((pen *) this)->m_bUpdated = true;
+      //}
 
-      return (void *) (Gdiplus::Pen *) m_ppen;
+      //return (void *) (plusplus::Pen *) m_ppen;
+
+      return NULL;
 
    }
 
 
-} // namespace draw2d_gdiplus
+} // namespace draw2d_gl2d

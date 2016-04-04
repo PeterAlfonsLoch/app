@@ -4,7 +4,7 @@
 #undef new
 
 
-namespace draw2d_gdiplus
+namespace draw2d_gl2d
 {
 
 
@@ -12,7 +12,7 @@ namespace draw2d_gdiplus
    path::path(::aura::application * papp)
    {
 
-      m_ppath = NULL;
+//      m_ppath = NULL;
 
 
    }
@@ -26,19 +26,19 @@ namespace draw2d_gdiplus
    }
 
 
-   Gdiplus::GraphicsPath * path::get_os_path(Gdiplus::Graphics * pgraphics)
-   {
+   //plusplus::GraphicsPath * path::get_os_path(plusplus::Graphics * pgraphics)
+   //{
 
-      if(m_bUpdated)
-         return m_ppath;
+   //   if(m_bUpdated)
+   //      return m_ppath;
 
-      destroy();
+   //   destroy();
 
-      create(pgraphics);
+   //   create(pgraphics);
 
-      return m_ppath;
+   //   return m_ppath;
 
-   }
+   //}
 
 
    pointd path::internal_last_point()
@@ -47,7 +47,9 @@ namespace draw2d_gdiplus
       if(m_bHasPointInternal)
       {
 
-         return pointd((LONG) m_ptInternal.X, (LONG) m_ptInternal.Y);
+         //return pointd((LONG) m_ptInternal.X, (LONG) m_ptInternal.Y);
+
+         return pointd(0, 0);
 
       }
       else
@@ -63,84 +65,90 @@ namespace draw2d_gdiplus
    bool path::internal_begin_figure(bool bFill, ::draw2d::e_fill_mode efillmode)
    {
 
-      return m_ppath->StartFigure() == Gdiplus::Status::Ok;
+      //return m_ppath->StartFigure() == plusplus::Status::Ok;
+
+      return true;
 
    }
 
    bool path::internal_end_figure(bool bClose)
    {
 
-      if(bClose)
-      {
+      //if(bClose)
+      //{
 
-         m_bHasPointInternal = false;
-         return m_ppath->CloseFigure() == Gdiplus::Status::Ok;
+      //   m_bHasPointInternal = false;
+      //   return m_ppath->CloseFigure() == plusplus::Status::Ok;
 
-      }
-      else
-      {
-         m_bHasPointInternal = false;
-         return true;
+      //}
+      //else
+      //{
+      //   m_bHasPointInternal = false;
+      //   return true;
 
-      }
+      //}
 
+      return true;
    }
 
    bool path::internal_add_line(int32_t x1, int32_t y1, int32_t x2, int32_t y2)
    {
 
-      bool bOk1 = true;
+      ////bool bOk1 = true;
 
-      if(m_bHasPointInternal)
-      {
+      ////if(m_bHasPointInternal)
+      ////{
 
-         bOk1 = m_ppath->AddLine(m_ptInternal.X, m_ptInternal.Y, (FLOAT) x1, (FLOAT) y1) == Gdiplus::Status::Ok;
+      ////   bOk1 = m_ppath->AddLine(m_ptInternal.X, m_ptInternal.Y, (FLOAT) x1, (FLOAT) y1) == plusplus::Status::Ok;
 
-      }
+      ////}
 
-      bool bOk2 = m_ppath->AddLine(x1, y1, x2, y2) == Gdiplus::Status::Ok;
+      ////bool bOk2 = m_ppath->AddLine(x1, y1, x2, y2) == plusplus::Status::Ok;
 
-      m_ptInternal.X = (Gdiplus::REAL) x2;
-      m_ptInternal.Y = (Gdiplus::REAL) y2;
+      ////m_ptInternal.X = (plusplus::REAL) x2;
+      ////m_ptInternal.Y = (plusplus::REAL) y2;
 
-      m_bHasPointInternal = true;
+      ////m_bHasPointInternal = true;
 
-      return bOk1 && bOk2;
+      //return bOk1 && bOk2;
 
+      return true;
    }
 
 
    bool path::internal_add_rect(int32_t x,int32_t y,int32_t cx,int32_t cy)
    {
 
-      Gdiplus::Rect rect(x,y,cx,cy);
+      //plusplus::Rect rect(x,y,cx,cy);
 
-      bool bOk2 = m_ppath->AddRectangle(rect) == Gdiplus::Status::Ok;
+      //bool bOk2 = m_ppath->AddRectangle(rect) == plusplus::Status::Ok;
 
 
-      return bOk2;
+      //return bOk2;
 
+      return true;
    }
 
    bool path::internal_add_line(int32_t x, int32_t y)
    {
 
-      bool bOk1 = true;
+      //bool bOk1 = true;
 
-      if(m_bHasPointInternal)
-      {
+      //if(m_bHasPointInternal)
+      //{
 
-         bOk1 = m_ppath->AddLine(m_ptInternal.X, m_ptInternal.Y, (FLOAT) x, (FLOAT) y) == Gdiplus::Status::Ok;
+      //   bOk1 = m_ppath->AddLine(m_ptInternal.X, m_ptInternal.Y, (FLOAT) x, (FLOAT) y) == plusplus::Status::Ok;
 
-      }
+      //}
 
-      m_bHasPointInternal = true;
+      //m_bHasPointInternal = true;
 
-      m_ptInternal.X = (Gdiplus::REAL) x;
-      m_ptInternal.Y = (Gdiplus::REAL) y;
+      //m_ptInternal.X = (plusplus::REAL) x;
+      //m_ptInternal.Y = (plusplus::REAL) y;
 
-      return bOk1;
+      //return bOk1;
 
+      return true;
    }
 
    pointd path::internal_current_point()
@@ -154,14 +162,14 @@ namespace draw2d_gdiplus
    bool path::internal_add_move(int32_t x, int32_t y)
    {
 
-      if(!m_bHasPointInternal)
-      {
-         internal_begin_figure(m_bFill,m_efillmode);
-      }
+      //if(!m_bHasPointInternal)
+      //{
+      //   internal_begin_figure(m_bFill,m_efillmode);
+      //}
 
-      m_ptInternal.X   = (Gdiplus::REAL) x;
-      m_ptInternal.Y   = (Gdiplus::REAL) y;
-      m_bHasPointInternal     = true;
+      //m_ptInternal.X   = (plusplus::REAL) x;
+      //m_ptInternal.Y   = (plusplus::REAL) y;
+      //m_bHasPointInternal     = true;
 
 
       return true;
@@ -171,12 +179,14 @@ namespace draw2d_gdiplus
    bool path::internal_add_rect(double x,double y,double cx,double cy)
    {
 
-      Gdiplus::RectF rectf((Gdiplus::REAL)x,(Gdiplus::REAL)y,(Gdiplus::REAL)cx,(Gdiplus::REAL)cy);
+      //plusplus::RectF rectf((plusplus::REAL)x,(plusplus::REAL)y,(plusplus::REAL)cx,(plusplus::REAL)cy);
 
-      bool bOk2 = m_ppath->AddRectangle(rectf) == Gdiplus::Status::Ok;
+      //bool bOk2 = m_ppath->AddRectangle(rectf) == plusplus::Status::Ok;
 
 
-      return bOk2;
+//      return bOk2;
+
+      return true;
 
    }
 
@@ -189,9 +199,9 @@ namespace draw2d_gdiplus
          internal_begin_figure(m_bFill,m_efillmode);
       }
 
-      m_ptInternal.X   = (Gdiplus::REAL) x;
-      m_ptInternal.Y   = (Gdiplus::REAL) y;
-      m_bHasPointInternal     = true;
+      ////m_ptInternal.X   = (plusplus::REAL) x;
+      ////m_ptInternal.Y   = (plusplus::REAL) y;
+      //m_bHasPointInternal     = true;
 
 
       return true;
@@ -199,162 +209,162 @@ namespace draw2d_gdiplus
    }
 
 
-   bool path::create(Gdiplus::Graphics * pgraphics)
-   {
+   //bool path::create(plusplus::Graphics * pgraphics)
+   //{
 
-      if(m_efillmode == ::draw2d::fill_mode_winding)
-      {
+   //   //if(m_efillmode == ::draw2d::fill_mode_winding)
+   //   //{
 
-         m_ppath = new Gdiplus::GraphicsPath(Gdiplus::FillModeWinding);
+   //   //   m_ppath = new plusplus::GraphicsPath(plusplus::FillModeWinding);
 
-      }
-      else
-      {
+   //   //}
+   //   //else
+   //   //{
 
-         m_ppath = new Gdiplus::GraphicsPath(Gdiplus::FillModeAlternate);
+   //   //   m_ppath = new plusplus::GraphicsPath(plusplus::FillModeAlternate);
 
-      }
+   //   //}
 
-      m_bHasPoint = false;
+   //   //m_bHasPoint = false;
 
-      m_ptInternal.X = 69;
+   //   //m_ptInternal.X = 69;
 
-      m_ptInternal.Y = 69;
+   //   //m_ptInternal.Y = 69;
 
-      m_bHasPointInternal = false;
+   //   //m_bHasPointInternal = false;
 
-      //if(m_elementa.get_count() != 1 && m_elementa[0].m_etype != element::type_string)
-      {
-         //internal_begin_figure(m_bFill,m_efillmode);
-      }
+   //   ////if(m_elementa.get_count() != 1 && m_elementa[0].m_etype != element::type_string)
+   //   //{
+   //   //   //internal_begin_figure(m_bFill,m_efillmode);
+   //   //}
 
-      for(int32_t i = 0; i < m_elementa.get_count(); i++)
-      {
+   //   //for(int32_t i = 0; i < m_elementa.get_count(); i++)
+   //   //{
 
-         set(pgraphics, m_elementa(i));
+   //   //   set(pgraphics, m_elementa(i));
 
-      }
+   //   //}
 
-      return true;
+   //   return true;
 
-   }
+   //}
 
 
    bool path::destroy()
    {
 
-      if(m_ppath != NULL)
-      {
+      //if(m_ppath != NULL)
+      //{
 
-         delete m_ppath;
+      //   delete m_ppath;
 
-         m_ppath = NULL;
+      //   m_ppath = NULL;
 
-      }
+      //}
 
       return true;
 
    }
 
 
-   bool path::set(Gdiplus::Graphics * pgraphics, const ::draw2d::path::element & e)
-   {
+   //bool path::set(plusplus::Graphics * pgraphics, const ::draw2d::path::element & e)
+   //{
 
-      switch(e.m_etype)
-      {
-      case ::draw2d::path::element::type_arc:
-         set(e.u.m_arc);
-         break;
-      case ::draw2d::path::element::type_move:
-         set(e.u.m_move);
-         break;
-      case ::draw2d::path::element::type_line:
-         set(e.u.m_line);
-         break;
-      case ::draw2d::path::element::type_rect:
-         set(e.u.m_rect);
-         break;
-      case ::draw2d::path::element::type_string:
-         set(pgraphics,e.m_stringpath);
-         break;
-      case ::draw2d::path::element::type_end:
-         internal_end_figure(e.u.m_end.m_bClose);
-         break;
-      default:
-         throw "unexpected simple os graphics element type";
-      }
+   //   switch(e.m_etype)
+   //   {
+   //   case ::draw2d::path::element::type_arc:
+   //      set(e.u.m_arc);
+   //      break;
+   //   case ::draw2d::path::element::type_move:
+   //      set(e.u.m_move);
+   //      break;
+   //   case ::draw2d::path::element::type_line:
+   //      set(e.u.m_line);
+   //      break;
+   //   case ::draw2d::path::element::type_rect:
+   //      set(e.u.m_rect);
+   //      break;
+   //   //case ::draw2d::path::element::type_string:
+   //   //   set(pgraphics,e.m_stringpath);
+   //   //   break;
+   //   case ::draw2d::path::element::type_end:
+   //      internal_end_figure(e.u.m_end.m_bClose);
+   //      break;
+   //   default:
+   //      throw "unexpected simple os graphics element type";
+   //   }
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
    bool path::internal_add_arc(const RECT & rect, double iStart, double iAngle)
    {
 
-      ::Gdiplus::RectF rectf((Gdiplus::REAL) rect.left, (Gdiplus::REAL) rect.top, (Gdiplus::REAL) width(rect), (Gdiplus::REAL) height(rect));
+      //::plusplus::RectF rectf((plusplus::REAL) rect.left, (plusplus::REAL) rect.top, (plusplus::REAL) width(rect), (plusplus::REAL) height(rect));
 
 
-      m_ppath->AddArc(rectf, (Gdiplus::REAL) iStart, (Gdiplus::REAL) iAngle);
+      //m_ppath->AddArc(rectf, (plusplus::REAL) iStart, (plusplus::REAL) iAngle);
 
 
-
-      return true;
-
-   }
-
-
-   bool path::internal_add_string(Gdiplus::Graphics * pgraphics,int32_t x,int32_t y,const string & strText,::draw2d::font_sp spfont)
-   {
-
-      Gdiplus::FontFamily fontFamily;
-
-      Gdiplus::StringFormat format(Gdiplus::StringFormat::GenericTypographic());
-
-      wstring wstr(strText);
-
-      Gdiplus::REAL dSize = (Gdiplus::REAL) spfont->m_dFontSize;
-
-      Gdiplus::Unit unit = pgraphics->GetPageUnit();
-
-      switch(unit)
-
-      {
-
-      case Gdiplus::UnitMillimeter:
-         dSize = dSize * 25.4f / pgraphics->GetDpiY();
-         break;
-
-      case Gdiplus::UnitInch:
-
-         dSize = dSize / pgraphics->GetDpiY();
-         break;
-      case Gdiplus::UnitPoint:
-
-         dSize = dSize * 72.0f / pgraphics->GetDpiY();
-         break;
-
-      }
-
-      INT iStyle = ((Gdiplus::Font *) spfont->get_os_data())->GetStyle();
-      ((Gdiplus::Font *) spfont->get_os_data())->GetFamily(&fontFamily);
-//      Gdiplus::Status status;
-
-      //Gdiplus::StringFormat format();
-
-      format.SetFormatFlags(format.GetFormatFlags()
-                            | Gdiplus::StringFormatFlagsNoClip | Gdiplus::StringFormatFlagsMeasureTrailingSpaces
-                            | Gdiplus::StringFormatFlagsLineLimit | Gdiplus::StringFormatFlagsNoWrap
-                            | Gdiplus::StringFormatFlagsNoFitBlackBox);
-
-
-      format.SetLineAlignment(Gdiplus::StringAlignmentNear);
-
-
-      m_ppath->AddString(wstr, (INT) wstr.get_length(),&fontFamily,iStyle,dSize,Gdiplus::Point(x,y),&format);
 
       return true;
 
    }
+
+
+//   bool path::internal_add_string(plusplus::Graphics * pgraphics,int32_t x,int32_t y,const string & strText,::draw2d::font_sp spfont)
+//   {
+//
+//      plusplus::FontFamily fontFamily;
+//
+//      plusplus::StringFormat format(plusplus::StringFormat::GenericTypographic());
+//
+//      wstring wstr(strText);
+//
+//      plusplus::REAL dSize = (plusplus::REAL) spfont->m_dFontSize;
+//
+//      plusplus::Unit unit = pgraphics->GetPageUnit();
+//
+//      switch(unit)
+//
+//      {
+//
+//      case plusplus::UnitMillimeter:
+//         dSize = dSize * 25.4f / pgraphics->GetDpiY();
+//         break;
+//
+//      case plusplus::UnitInch:
+//
+//         dSize = dSize / pgraphics->GetDpiY();
+//         break;
+//      case plusplus::UnitPoint:
+//
+//         dSize = dSize * 72.0f / pgraphics->GetDpiY();
+//         break;
+//
+//      }
+//
+//      INT iStyle = ((plusplus::Font *) spfont->get_os_data())->GetStyle();
+//      ((plusplus::Font *) spfont->get_os_data())->GetFamily(&fontFamily);
+////      plusplus::Status status;
+//
+//      //plusplus::StringFormat format();
+//
+//      format.SetFormatFlags(format.GetFormatFlags()
+//                            | plusplus::StringFormatFlagsNoClip | plusplus::StringFormatFlagsMeasureTrailingSpaces
+//                            | plusplus::StringFormatFlagsLineLimit | plusplus::StringFormatFlagsNoWrap
+//                            | plusplus::StringFormatFlagsNoFitBlackBox);
+//
+//
+//      format.SetLineAlignment(plusplus::StringAlignmentNear);
+//
+//
+//      m_ppath->AddString(wstr, (INT) wstr.get_length(),&fontFamily,iStyle,dSize,plusplus::Point(x,y),&format);
+//
+//      return true;
+//
+//   }
 
 
    bool path::set( const ::draw2d::path::arc & arc)
@@ -408,17 +418,17 @@ namespace draw2d_gdiplus
 
    }
 
-   bool path::set(Gdiplus::Graphics * pgraphics, const ::draw2d::path::string_path & s)
-   {
+   //bool path::set(plusplus::Graphics * pgraphics, const ::draw2d::path::string_path & s)
+   //{
 
-      internal_add_string(pgraphics,(int32_t)s.m_x,(int32_t)s.m_y,s.m_strText,s.m_spfont);
+   //   internal_add_string(pgraphics,(int32_t)s.m_x,(int32_t)s.m_y,s.m_strText,s.m_spfont);
 
-      return true;
+   //   return true;
 
-   }
+   //}
 
 
-} // namespace draw2d_gdiplus
+} // namespace draw2d_gl2d
 
 
 #define new AURA_NEW

@@ -8,20 +8,20 @@
 #include <GdiPlus.h>
 
 
-namespace draw2d_gdiplus
+namespace draw2d_gl2d
 {
 
 
-   class CLASS_DECL_DRAW2D_GDIPLUS pen : 
-      virtual public ::draw2d_gdiplus::object,
+   class CLASS_DECL_DRAW2D_GL2D pen : 
+      virtual public ::draw2d_gl2d::object,
       virtual public ::draw2d::pen
    {
    public:
 
 
-      Gdiplus::PenAlignment m_egdiplusalign;
+//      plusplus::PenAlignment m_egl2dalign;
 
-      ::Gdiplus::Pen *  m_ppen;
+      //::plusplus::Pen *  m_ppen;
 
       pen(::aura::application * papp);
       /*virtual void construct(int32_t nPenStyle, double nWidth, COLORREF crColor);
@@ -39,6 +39,6 @@ namespace draw2d_gdiplus
    };
 
 
-} // namespace draw2d_gdiplus
+} // namespace draw2d_gl2d
 
 

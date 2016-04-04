@@ -1,17 +1,17 @@
 #pragma once
 
 
-namespace draw2d_gdiplus
+namespace draw2d_gl2d
 {
 
 
-   class CLASS_DECL_DRAW2D_GDIPLUS brush : 
+   class CLASS_DECL_DRAW2D_GL2D brush : 
       virtual public ::draw2d::brush
    {
    public:
 
 
-      Gdiplus::Brush * m_pbrush;
+      //plusplus::Brush * m_pbrush;
 
 
       brush(::aura::application * papp);
@@ -21,7 +21,7 @@ namespace draw2d_gdiplus
       virtual ~brush();
 
 
-      virtual void * get_os_data() const;
+      //virtual void * get_os_data() const;
 
 
 
@@ -39,6 +39,6 @@ namespace draw2d_gdiplus
    };
 
 
-} // namespace draw2d_gdiplus
+} // namespace draw2d_gl2d
 
 

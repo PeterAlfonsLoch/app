@@ -1,10 +1,10 @@
 #pragma once
 
-namespace draw2d_gdiplus
+namespace draw2d_gl2d
 {
 
-   class CLASS_DECL_DRAW2D_GDIPLUS palette : 
-      virtual public ::draw2d_gdiplus::object,
+   class CLASS_DECL_DRAW2D_GL2D palette : 
+      virtual public ::draw2d_gl2d::object,
       virtual public ::draw2d::palette
    {
    public:
@@ -32,4 +32,4 @@ namespace draw2d_gdiplus
       virtual ~palette();
    };
 
-} // namespace draw2d_gdiplus
+} // namespace draw2d_gl2d

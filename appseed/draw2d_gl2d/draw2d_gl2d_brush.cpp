@@ -2,7 +2,7 @@
 
 #undef new
 
-namespace draw2d_gdiplus
+namespace draw2d_gl2d
 {
 
 
@@ -10,13 +10,13 @@ namespace draw2d_gdiplus
       ::object(papp)
    { 
 
-      m_pbrush = NULL;
+//      m_pbrush = NULL;
 
    }
 
    brush::~brush()
    { 
-      ::aura::del(m_pbrush);
+      //::aura::del(m_pbrush);
    }
 
    //bool brush::create_solid(COLORREF crColor)
@@ -27,7 +27,7 @@ namespace draw2d_gdiplus
    //      delete m_pbrush;
    //   }
 
-   //   m_pbrush = new Gdiplus::SolidBrush(Gdiplus::Color(argb_get_a_value(crColor), argb_get_r_value(crColor), argb_get_g_value(crColor), argb_get_b_value(crColor)));
+   //   m_pbrush = new plusplus::SolidBrush(plusplus::Color(argb_get_a_value(crColor), argb_get_r_value(crColor), argb_get_g_value(crColor), argb_get_b_value(crColor)));
 
    //   return m_pbrush != NULL;
    //      
@@ -118,82 +118,84 @@ namespace draw2d_gdiplus
 
 
 
-   void * brush::get_os_data() const
-   {
-      
-      if(m_pbrush == NULL || !m_bUpdated)
-      {
-         ::aura::del(((brush *) this)->m_pbrush);
-         if(m_etype == type_solid)
-         {
-            try
-            {
-               ((brush *) this)->m_pbrush = new Gdiplus::SolidBrush(Gdiplus::Color(argb_get_a_value(m_cr), argb_get_r_value(m_cr), argb_get_g_value(m_cr), argb_get_b_value(m_cr)));
-            }
-            catch(...)
-            {
-            }
-         }
-         else if(m_etype == type_linear_gradient_point_color)
-         {
-            try
-            {
-               ((brush *) this)->m_pbrush = new Gdiplus::LinearGradientBrush(
-                  Gdiplus::PointF((Gdiplus::REAL) m_pt1.x,(Gdiplus::REAL) m_pt1.y),
-                  Gdiplus::PointF((Gdiplus::REAL) m_pt2.x,(Gdiplus::REAL) m_pt2.y),
-                  Gdiplus::Color(argb_get_a_value(m_cr1), argb_get_r_value(m_cr1), argb_get_g_value(m_cr1), argb_get_b_value(m_cr1)),
-                  Gdiplus::Color(argb_get_a_value(m_cr2), argb_get_r_value(m_cr2), argb_get_g_value(m_cr2), argb_get_b_value(m_cr2)));
-            }
-            catch(...)
-            {
-            }
-         }
-         else if(m_etype == type_radial_gradient_color)
-         {
-            try
-            {
+   //void * brush::get_os_data() const
+   //{
+   //   
+   //   //if(m_pbrush == NULL || !m_bUpdated)
+   //   //{
+   //   //   ::aura::del(((brush *) this)->m_pbrush);
+   //   //   if(m_etype == type_solid)
+   //   //   {
+   //   //      try
+   //   //      {
+   //   //         ((brush *) this)->m_pbrush = new plusplus::SolidBrush(plusplus::Color(argb_get_a_value(m_cr), argb_get_r_value(m_cr), argb_get_g_value(m_cr), argb_get_b_value(m_cr)));
+   //   //      }
+   //   //      catch(...)
+   //   //      {
+   //   //      }
+   //   //   }
+   //   //   else if(m_etype == type_linear_gradient_point_color)
+   //   //   {
+   //   //      try
+   //   //      {
+   //   //         ((brush *) this)->m_pbrush = new plusplus::LinearGradientBrush(
+   //   //            plusplus::PointF((plusplus::REAL) m_pt1.x,(plusplus::REAL) m_pt1.y),
+   //   //            plusplus::PointF((plusplus::REAL) m_pt2.x,(plusplus::REAL) m_pt2.y),
+   //   //            plusplus::Color(argb_get_a_value(m_cr1), argb_get_r_value(m_cr1), argb_get_g_value(m_cr1), argb_get_b_value(m_cr1)),
+   //   //            plusplus::Color(argb_get_a_value(m_cr2), argb_get_r_value(m_cr2), argb_get_g_value(m_cr2), argb_get_b_value(m_cr2)));
+   //   //      }
+   //   //      catch(...)
+   //   //      {
+   //   //      }
+   //   //   }
+   //   //   else if(m_etype == type_radial_gradient_color)
+   //   //   {
+   //   //      try
+   //   //      {
 
-               Gdiplus::GraphicsPath * gp = new Gdiplus::GraphicsPath();
-               gp->AddEllipse((Gdiplus::REAL) (m_pt.x - m_size.cx / 2),(Gdiplus::REAL)(m_pt.y - m_size.cy / 2),(Gdiplus::REAL) (m_size.cx),(Gdiplus::REAL) (m_size.cy));
+   //   //         plusplus::GraphicsPath * gp = new plusplus::GraphicsPath();
+   //   //         gp->AddEllipse((plusplus::REAL) (m_pt.x - m_size.cx / 2),(plusplus::REAL)(m_pt.y - m_size.cy / 2),(plusplus::REAL) (m_size.cx),(plusplus::REAL) (m_size.cy));
 
-               Gdiplus::PathGradientBrush * pgb = new Gdiplus::PathGradientBrush(gp);
+   //   //         plusplus::PathGradientBrush * pgb = new plusplus::PathGradientBrush(gp);
 
-               Gdiplus::Color c1(argb_get_a_value(m_cr1),argb_get_r_value(m_cr1),argb_get_g_value(m_cr1),argb_get_b_value(m_cr1));
-               Gdiplus::Color c2(argb_get_a_value(m_cr2),argb_get_r_value(m_cr2),argb_get_g_value(m_cr2),argb_get_b_value(m_cr2));
+   //   //         plusplus::Color c1(argb_get_a_value(m_cr1),argb_get_r_value(m_cr1),argb_get_g_value(m_cr1),argb_get_b_value(m_cr1));
+   //   //         plusplus::Color c2(argb_get_a_value(m_cr2),argb_get_r_value(m_cr2),argb_get_g_value(m_cr2),argb_get_b_value(m_cr2));
 
-                  INT c = 1;
+   //   //            INT c = 1;
 
-                  pgb->SetCenterPoint(Gdiplus::PointF((Gdiplus::REAL) m_pt.x,(Gdiplus::REAL) m_pt.y));
-               pgb->SetCenterColor(c1);
-               pgb->SetSurroundColors(&c2,&c);
+   //   //            pgb->SetCenterPoint(plusplus::PointF((plusplus::REAL) m_pt.x,(plusplus::REAL) m_pt.y));
+   //   //         pgb->SetCenterColor(c1);
+   //   //         pgb->SetSurroundColors(&c2,&c);
 
-               ((brush *) this)->m_pbrush = pgb;
-            }
-            catch(...)
-            {
-            }
-         }
-         else
-         {
-            try
-            {
-               ((brush *) this)->m_pbrush = new Gdiplus::SolidBrush(Gdiplus::Color(argb_get_a_value(m_cr), argb_get_r_value(m_cr), argb_get_g_value(m_cr), argb_get_b_value(m_cr)));
-            }
-            catch(...)
-            {
-            }
-         }
-      }
+   //   //         ((brush *) this)->m_pbrush = pgb;
+   //   //      }
+   //   //      catch(...)
+   //   //      {
+   //   //      }
+   //   //   }
+   //   //   else
+   //   //   {
+   //   //      try
+   //   //      {
+   //   //         ((brush *) this)->m_pbrush = new plusplus::SolidBrush(plusplus::Color(argb_get_a_value(m_cr), argb_get_r_value(m_cr), argb_get_g_value(m_cr), argb_get_b_value(m_cr)));
+   //   //      }
+   //   //      catch(...)
+   //   //      {
+   //   //      }
+   //   //   }
+   //   //}
 
-      if(m_pbrush != NULL)
-      {
-         ((brush *) this)->m_bUpdated = true;
-      }
+   //   //if(m_pbrush != NULL)
+   //   //{
+   //   //   ((brush *) this)->m_bUpdated = true;
+   //   //}
 
-      return (void *) (Gdiplus::Brush *) m_pbrush;
+   //   //return (void *) (plusplus::Brush *) m_pbrush;
 
-   }
+   //   return NULL;
 
-} // namespace draw2d_gdiplus
+   //}
+
+} // namespace draw2d_gl2d
 
 

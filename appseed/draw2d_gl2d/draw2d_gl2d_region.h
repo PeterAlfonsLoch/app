@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace draw2d_gdiplus
+namespace draw2d_gl2d
 {
 
 
@@ -11,7 +11,7 @@ namespace draw2d_gdiplus
    public:
 
 
-      Gdiplus::Region *       m_pregion;
+      //plusplus::Region *       m_pregion;
 
       region(const region & r);
       region(::aura::application * papp);
@@ -40,17 +40,17 @@ namespace draw2d_gdiplus
 
       // platform-specific or platform-internals
       // "get" set of funcionts translate ::draw2d::region data into platform specific data
-      Gdiplus::Region * get();
-      Gdiplus::Region * get_rect();
-      Gdiplus::Region * get_oval();
-      Gdiplus::Region * get_polygon();
-      Gdiplus::Region * get_poly_polygon();
-      Gdiplus::Region * get_combine();
+      //plusplus::Region * get();
+      //plusplus::Region * get_rect();
+      //plusplus::Region * get_oval();
+      //plusplus::Region * get_polygon();
+      //plusplus::Region * get_poly_polygon();
+      //plusplus::Region * get_combine();
 
    };
 
 
-} // namespace draw2d_gdiplus
+} // namespace draw2d_gl2d
 
 
 

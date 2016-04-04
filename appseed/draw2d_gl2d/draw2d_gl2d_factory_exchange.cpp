@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace draw2d_gdiplus
+namespace draw2d_gl2d
 {
 
 
@@ -28,18 +28,18 @@ namespace draw2d_gdiplus
    }
 
 
-} // namespace draw2d_gdiplus
+} // namespace draw2d_gl2d
 
 
 #ifdef CUBE
 void draw2d_factory_exchange(::aura::application * papp)
 {
-   draw2d_gdiplus::factory_exchange factoryexchange(papp);
+   draw2d_gl2d::factory_exchange factoryexchange(papp);
 }
 #else
 void ca2_factory_exchange(::aura::application * papp)
 {
-   draw2d_gdiplus::factory_exchange factoryexchange(papp);
+   draw2d_gl2d::factory_exchange factoryexchange(papp);
 }
 #endif
 

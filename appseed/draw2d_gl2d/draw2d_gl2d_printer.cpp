@@ -2,7 +2,7 @@
 #include <WinSpool.h>
 
 
-namespace draw2d_gdiplus
+namespace draw2d_gl2d
 {
 
 
@@ -70,7 +70,7 @@ namespace draw2d_gdiplus
       close();
    }
 
-   bool printer::document_properties::initialize(::draw2d_gdiplus::printer * pprinter, DEVMODE * pdevmode)
+   bool printer::document_properties::initialize(::draw2d_gl2d::printer * pprinter, DEVMODE * pdevmode)
    {
       UNREFERENCED_PARAMETER(pdevmode);
       if (m_pdevmode != NULL)
@@ -118,5 +118,5 @@ namespace draw2d_gdiplus
    }
 
 
-} // namespace draw2d_gdiplus
+} // namespace draw2d_gl2d
 

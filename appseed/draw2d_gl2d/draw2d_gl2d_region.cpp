@@ -4,14 +4,14 @@
 #undef new
 
 
-namespace draw2d_gdiplus
+namespace draw2d_gl2d
 {
 
    region::region(const region & r) :
       ::object(r.get_app()),
       ::draw2d::region(r)
    {
-      m_pregion = NULL;
+      //m_pregion = NULL;
       m_bUpdated = false;
    }
 
@@ -20,7 +20,7 @@ namespace draw2d_gdiplus
       ::object(papp)
    { 
       
-      m_pregion = NULL;
+      /*m_pregion = NULL;*/
       m_bUpdated = false;
 
    }
@@ -28,11 +28,11 @@ namespace draw2d_gdiplus
    region::~region()
    {
       
-      if(m_pregion != NULL)
-      {
-         delete m_pregion;
-         m_pregion = NULL;
-      }
+      //if(m_pregion != NULL)
+      //{
+      //   delete m_pregion;
+      //   m_pregion = NULL;
+      //}
 
    }
 
@@ -71,17 +71,17 @@ namespace draw2d_gdiplus
    bool region::get_bounding_box(LPRECT lprect) const
    {
 
-      ((region *)this)->defer_update();
+      //((region *)this)->defer_update();
 
-      Gdiplus::Rect rect;
+      //plusplus::Rect rect;
 
-      ((region *) this)->m_pregion->GetBounds(&rect, &Gdiplus::Graphics((HDC) NULL));
+      //((region *) this)->m_pregion->GetBounds(&rect, &plusplus::Graphics((HDC) NULL));
 
 
-      lprect->left = rect.X;
-      lprect->top = rect.Y;
-      lprect->right = rect.X + rect.Width;
-      lprect->bottom = rect.Y + rect.Height;
+      //lprect->left = rect.X;
+      //lprect->top = rect.Y;
+      //lprect->right = rect.X + rect.Width;
+      //lprect->bottom = rect.Y + rect.Height;
       
       return true;
 
@@ -90,7 +90,7 @@ namespace draw2d_gdiplus
    bool region::PtInRegion(int32_t x, int32_t y) const
    { 
 
-      Gdiplus::PointF pointf((Gdiplus::REAL) x, (Gdiplus::REAL) y);
+      plusplus::PointF pointf((plusplus::REAL) x, (plusplus::REAL) y);
       
       ASSERT(get_os_data() != NULL); //return ::PtInRegion((HRGN)get_os_data(), x, y); 
 
@@ -101,21 +101,22 @@ namespace draw2d_gdiplus
    bool region::contains(POINT point) const
    { 
 
-      ((region *) (this))->defer_update();
+    /*  ((region *) (this))->defer_update();
 
-      Gdiplus::PointF pointf((Gdiplus::REAL) point.x, (Gdiplus::REAL) point.y);
+      plusplus::PointF pointf((plusplus::REAL) point.x, (plusplus::REAL) point.y);
       
       ASSERT(get_os_data() != NULL);
 
       return m_pregion->IsVisible(pointf)  != FALSE;
-
+*/
+      return true;
    }
    /*
    bool region::RectInRegion(LPCRECT lpRect) const
    { 
       //ASSERT(get_os_data() != NULL); return ::RectInRegion((HRGN)get_os_data(), lpRect); 
 
-      Gdiplus::RectF rectf((Gdiplus::REAL) lpRect->left, (Gdiplus::REAL) lpRect->top, (Gdiplus::REAL) (lpRect->right - lpRect->left), (Gdiplus::REAL) (lpRect->bottom - lpRect->top));
+      plusplus::RectF rectf((plusplus::REAL) lpRect->left, (plusplus::REAL) lpRect->top, (plusplus::REAL) (lpRect->right - lpRect->left), (plusplus::REAL) (lpRect->bottom - lpRect->top));
       
       ASSERT(get_os_data() != NULL); //return ::PtInRegion((HRGN)get_os_data(), x, y); 
 
@@ -127,9 +128,11 @@ namespace draw2d_gdiplus
    void * region::get_os_data() const
    {
 
-      ((region *) this)->defer_update();
+      //((region *) this)->defer_update();
 
-      return m_pregion;
+      //return m_pregion;
+
+      return NULL;
 
    }
 
@@ -137,17 +140,17 @@ namespace draw2d_gdiplus
    void region::defer_update()
    {
       
-      if(m_pregion == NULL || !m_bUpdated)
-      {
+      //if(m_pregion == NULL || !m_bUpdated)
+      //{
 
-         if(m_pregion != NULL)
-         {
-            delete m_pregion;
-         }
+      //   if(m_pregion != NULL)
+      //   {
+      //      delete m_pregion;
+      //   }
 
-         m_pregion = get();
+      //   m_pregion = get();
 
-      }
+      //}
 
    }
 
@@ -155,159 +158,159 @@ namespace draw2d_gdiplus
    bool region::destroy()
    {
 
-      if(m_pregion != NULL)
+      /*if(m_pregion != NULL)
       {
 
          delete m_pregion;
 
          m_pregion = NULL;
 
-      }
+      }*/
 
       return ::draw2d::region::destroy();
 
    }
 
-   Gdiplus::Region * region::get()
-   {
-      
-      switch(m_etype)
-      {
-      case type_none:
-         return new Gdiplus::Region();
-      case type_rect:
-         return get_rect();
-      case type_oval:
-         return get_oval();
-      case type_polygon:
-         return get_polygon();
-      case type_poly_polygon:
-         return get_polygon();
-      case type_combine:
-         return get_combine();
-      default:
-         ::exception::throw_not_implemented(get_app());
-      }
+   //plusplus::Region * region::get()
+   //{
+   //   
+   //   //switch(m_etype)
+   //   //{
+   //   //case type_none:
+   //   //   return new plusplus::Region();
+   //   //case type_rect:
+   //   //   return get_rect();
+   //   //case type_oval:
+   //   //   return get_oval();
+   //   //case type_polygon:
+   //   //   return get_polygon();
+   //   //case type_poly_polygon:
+   //   //   return get_polygon();
+   //   //case type_combine:
+   //   //   return get_combine();
+   //   //default:
+   //   //   ::exception::throw_not_implemented(get_app());
+   //   //}
 
-      return NULL;
+   //   return NULL;
 
-   }
+   //}
 
-   Gdiplus::Region * region::get_rect()
-   {
+   //plusplus::Region * region::get_rect()
+   //{
 
-      Gdiplus::GraphicsPath path;
+   //   plusplus::GraphicsPath path;
 
-      Gdiplus::RectF rect;
+   //   plusplus::RectF rect;
 
-      rect.X      = (Gdiplus::REAL) m_x1;
-      rect.Y      = (Gdiplus::REAL) m_y1;
-      rect.Width  = (Gdiplus::REAL) (m_x2 - m_x1);
-      rect.Height = (Gdiplus::REAL) (m_y2 - m_y1);
+   //   rect.X      = (plusplus::REAL) m_x1;
+   //   rect.Y      = (plusplus::REAL) m_y1;
+   //   rect.Width  = (plusplus::REAL) (m_x2 - m_x1);
+   //   rect.Height = (plusplus::REAL) (m_y2 - m_y1);
 
-      path.AddRectangle(rect);
+   //   path.AddRectangle(rect);
 
-      return new Gdiplus::Region(&path);
-         
-   }
+   //   return new plusplus::Region(&path);
+   //      
+   //}
 
-   Gdiplus::Region * region::get_oval()
-   {
-      
-      Gdiplus::GraphicsPath path;
+   //plusplus::Region * region::get_oval()
+   //{
+   //   
+   //   plusplus::GraphicsPath path;
 
-      path.AddEllipse((INT) m_x1, (INT) m_y1, (INT) (m_x2 - m_x1), (INT) (m_y2 - m_y1));
+   //   path.AddEllipse((INT) m_x1, (INT) m_y1, (INT) (m_x2 - m_x1), (INT) (m_y2 - m_y1));
 
-      return new Gdiplus::Region(&path);
+   //   return new plusplus::Region(&path);
 
-   }
+   //}
 
-   Gdiplus::Region * region::get_polygon()
-   {
+   //plusplus::Region * region::get_polygon()
+   //{
 
-      Gdiplus::GraphicsPath path;
+   //   plusplus::GraphicsPath path;
 
-      array < Gdiplus::PointF > pa;
+   //   array < plusplus::PointF > pa;
 
-      for(int32_t i = 0; i < m_nCount; i++)
-      {
-         pa.add(Gdiplus::PointF((Gdiplus::REAL) m_lppoints[i].x, (Gdiplus::REAL) m_lppoints[i].y));
-      }
+   //   for(int32_t i = 0; i < m_nCount; i++)
+   //   {
+   //      pa.add(plusplus::PointF((plusplus::REAL) m_lppoints[i].x, (plusplus::REAL) m_lppoints[i].y));
+   //   }
 
-      if(m_efillmode == ::draw2d::fill_mode_alternate)
-      {
-         path.SetFillMode(Gdiplus::FillModeAlternate);
-      }
-      else
-      {
-         path.SetFillMode(Gdiplus::FillModeWinding);
-      }
+   //   if(m_efillmode == ::draw2d::fill_mode_alternate)
+   //   {
+   //      path.SetFillMode(plusplus::FillModeAlternate);
+   //   }
+   //   else
+   //   {
+   //      path.SetFillMode(plusplus::FillModeWinding);
+   //   }
 
-      path.AddPolygon(pa.get_data(), (int32_t) pa.get_count());
+   //   path.AddPolygon(pa.get_data(), (int32_t) pa.get_count());
 
-      return new Gdiplus::Region(&path);
+   //   return new plusplus::Region(&path);
 
-   }
+   //}
 
-   Gdiplus::Region * region::get_poly_polygon()
-   {
-      Gdiplus::GraphicsPath path;
+   //plusplus::Region * region::get_poly_polygon()
+   //{
+   //   plusplus::GraphicsPath path;
 
-      array < Gdiplus::PointF > pa;
+   //   array < plusplus::PointF > pa;
 
-      if(m_efillmode == ::draw2d::fill_mode_alternate)
-      {
-         path.SetFillMode(Gdiplus::FillModeAlternate);
-      }
-      else
-      {
-         path.SetFillMode(Gdiplus::FillModeWinding);
-      }
+   //   if(m_efillmode == ::draw2d::fill_mode_alternate)
+   //   {
+   //      path.SetFillMode(plusplus::FillModeAlternate);
+   //   }
+   //   else
+   //   {
+   //      path.SetFillMode(plusplus::FillModeWinding);
+   //   }
 
-      int32_t n = 0;
+   //   int32_t n = 0;
 
-      for(int32_t i = 0; i < m_nCount; i++)
-      {
-         int32_t jCount = m_lppolycounts[i];
-         pa.remove_all();
-         for(int32_t j = 0; j < jCount; j++)
-         {
-            pa.add(Gdiplus::PointF((Gdiplus::REAL) m_lppoints[n].x, (Gdiplus::REAL) m_lppoints[n].y));
-            n++;
-         }
-         path.AddPolygon(pa.get_data(), (int32_t) pa.get_count());
-         path.CloseFigure();
-      }
+   //   for(int32_t i = 0; i < m_nCount; i++)
+   //   {
+   //      int32_t jCount = m_lppolycounts[i];
+   //      pa.remove_all();
+   //      for(int32_t j = 0; j < jCount; j++)
+   //      {
+   //         pa.add(plusplus::PointF((plusplus::REAL) m_lppoints[n].x, (plusplus::REAL) m_lppoints[n].y));
+   //         n++;
+   //      }
+   //      path.AddPolygon(pa.get_data(), (int32_t) pa.get_count());
+   //      path.CloseFigure();
+   //   }
 
-      return new Gdiplus::Region(&path);
+   //   return new plusplus::Region(&path);
 
-   }
+   //}
 
-   Gdiplus::Region * region::get_combine()
-   {
+   //plusplus::Region * region::get_combine()
+   //{
 
-      Gdiplus::Region * pregion = ((Gdiplus::Region *) m_pregion1->get_os_data())->Clone();
-      Gdiplus::Region * pregionOp = (Gdiplus::Region *) m_pregion2->get_os_data();
+   //   plusplus::Region * pregion = ((plusplus::Region *) m_pregion1->get_os_data())->Clone();
+   //   plusplus::Region * pregionOp = (plusplus::Region *) m_pregion2->get_os_data();
 
-      if(m_ecombine == combine_add)
-      {
-         pregion->Union(pregionOp);
-      }
-      else if(m_ecombine == combine_exclude)
-      {
-         pregion->Exclude(pregionOp);
-      }
-      else if(m_ecombine == combine_intersect)
-      {
-         pregion->Intersect(pregionOp);
-      }
-      else
-      {
-         pregion->Union(pregionOp);
-      }
-      
-      return pregion;
+   //   if(m_ecombine == combine_add)
+   //   {
+   //      pregion->Union(pregionOp);
+   //   }
+   //   else if(m_ecombine == combine_exclude)
+   //   {
+   //      pregion->Exclude(pregionOp);
+   //   }
+   //   else if(m_ecombine == combine_intersect)
+   //   {
+   //      pregion->Intersect(pregionOp);
+   //   }
+   //   else
+   //   {
+   //      pregion->Union(pregionOp);
+   //   }
+   //   
+   //   return pregion;
 
-   }
+   //}
 
-} // namespace draw2d_gdiplus
+} // namespace draw2d_gl2d

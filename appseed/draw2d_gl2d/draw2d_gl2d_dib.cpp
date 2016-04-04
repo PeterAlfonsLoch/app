@@ -5,7 +5,7 @@
 #include "aqua/aqua.h"
 
 
-namespace draw2d_gdiplus
+namespace draw2d_gl2d
 {
 
 
@@ -162,7 +162,7 @@ namespace draw2d_gdiplus
    bool dib::create(::draw2d::graphics * pgraphics)
    {
 
-      ::draw2d::bitmap * pbitmap = (dynamic_cast<::draw2d_gdiplus::graphics * >(pgraphics))->get_current_bitmap();
+      ::draw2d::bitmap * pbitmap = (dynamic_cast<::draw2d_gl2d::graphics * >(pgraphics))->get_current_bitmap();
 
       if(pbitmap == NULL)
          return FALSE;
@@ -201,7 +201,7 @@ namespace draw2d_gdiplus
       return pgraphics->BitBlt(pt, size, get_graphics(), ptSrc);
 
     /*  return SetDIBitsToDevice(
-         (dynamic_cast<::draw2d_gdiplus::graphics * >(pgraphics))->get_handle1(), 
+         (dynamic_cast<::draw2d_gl2d::graphics * >(pgraphics))->get_handle1(), 
          pt.x, pt.y, 
          size.cx, size.cy, 
          ptSrc.x, ptSrc.y, ptSrc.y, cy - ptSrc.y, 
@@ -218,7 +218,7 @@ namespace draw2d_gdiplus
 
       bitmap->CreateCompatibleBitmap(pgraphics, 1, 1);
 
-      ::draw2d::bitmap * pbitmap = GDIPLUS_GRAPHICS(pgraphics)->SelectObject(bitmap);
+      ::draw2d::bitmap * pbitmap = GL2D_GRAPHICS(pgraphics)->SelectObject(bitmap);
 
       if (pbitmap == NULL)
       {
@@ -232,15 +232,15 @@ namespace draw2d_gdiplus
       if(!create(size))
       {
 
-         GDIPLUS_GRAPHICS(pgraphics)->SelectObject(pbitmap);
+         GL2D_GRAPHICS(pgraphics)->SelectObject(pbitmap);
 
          return false;
 
       }
 
-      bool bOk = GetDIBits(GDIPLUS_HDC(pgraphics), (HBITMAP) pbitmap->get_os_data(), 0, m_size.cy, m_pcolorref, &(m_info), DIB_RGB_COLORS) != FALSE;
+      bool bOk = GetDIBits(GL2D_HDC(pgraphics), (HBITMAP) pbitmap->get_os_data(), 0, m_size.cy, m_pcolorref, &(m_info), DIB_RGB_COLORS) != FALSE;
 
-      GDIPLUS_GRAPHICS(pgraphics)->SelectObject(pbitmap);
+      GL2D_GRAPHICS(pgraphics)->SelectObject(pbitmap);
 
       return bOk;
 
@@ -2352,16 +2352,16 @@ namespace draw2d_gdiplus
       if (area() <= 0 || pdib->area() <= 0)
          return;
 
-      Gdiplus::RectF rectDest(0, 0, (Gdiplus::REAL) m_size.cx, (Gdiplus::REAL) m_size.cy);
+      //plusplus::RectF rectDest(0, 0, (plusplus::REAL) m_size.cx, (plusplus::REAL) m_size.cy);
 
-      Gdiplus::RectF rectSource(0, 0, (Gdiplus::REAL) pdib->m_size.cx, (Gdiplus::REAL) pdib->m_size.cy);
+      //plusplus::RectF rectSource(0, 0, (plusplus::REAL) pdib->m_size.cx, (plusplus::REAL) pdib->m_size.cy);
 
       unmap();
       pdib->unmap();
 
       m_spgraphics->set_alpha_mode(::draw2d::alpha_mode_set);
 
-      ((Gdiplus::Graphics * ) m_spgraphics->get_os_data())->DrawImage(((Gdiplus::Bitmap *)pdib->get_bitmap()->get_os_data()), rectDest, rectSource, Gdiplus::UnitPixel);
+      //((plusplus::Graphics * ) m_spgraphics->get_os_data())->DrawImage(((plusplus::Bitmap *)pdib->get_bitmap()->get_os_data()), rectDest, rectSource, plusplus::UnitPixel);
 
    }
 
@@ -2549,7 +2549,19 @@ namespace draw2d_gdiplus
 #endif 
       rect rect(rectWindow);
 
-      m_pauraapp->window_graphics_update_window(pwnd->get_window_graphics(),pwnd->get_handle(),m_pcolorref,rect,m_size.cx,m_size.cy,m_iScan,bTransferBuffer);
+      // Copy the contents of the framebuffer - which in our case is our pbuffer -
+      // to our bitmap image in local system memory. Notice that we also need
+      // to invert the pbuffer's pixel data since OpenGL by default orients the
+      // bitmap image bottom up. Our Windows DIB wrapper expects images to be
+      // top down in orientation.
+
+      //synch_lock sl(&m);
+
+      sp(bitmap) b = m_spbitmap;
+
+      b->defer_reveal();
+
+      m_pauraapp->window_graphics_update_window(pwnd->get_window_graphics(),pwnd->get_handle(),(COLORREF*)b->m_memOut.get_data(),rect, b->m_sizeOut.cx, b->m_sizeOut.cy, b->m_sizeOut.cx * 4,bTransferBuffer);
 
       return true;
 
@@ -2645,6 +2657,8 @@ namespace draw2d_gdiplus
 
       }
 
+      m_spbitmap.cast < bitmap >()->defer_reveal();
+
 //      if (m_spgraphics.is_null())
   //       return;
 
@@ -2666,13 +2680,19 @@ namespace draw2d_gdiplus
          ((dib*)this)->m_bMapped = false;
 
       }
-//      if (m_spgraphics.is_null())
-  //       return;
 
-    //  m_spgraphics->flush();
+
+      if (m_spbitmap.is_set())
+      {
+
+         m_spbitmap.cast < bitmap >()->flash();
+
+      }
+
+      //m_spgraphics->SelectObject(m_spbitmap);
 
    }
 
 
-} // namespace draw2d_gdiplus
+} // namespace draw2d_gl2d
 

@@ -1,19 +1,19 @@
 #pragma once
 
 
-namespace draw2d_gdiplus
+namespace draw2d_gl2d
 {
 
 
-   class CLASS_DECL_DRAW2D_GDIPLUS graphics :
+   class CLASS_DECL_DRAW2D_GL2D graphics :
       virtual public ::draw2d::graphics
    {
    public:
 
-      ::Gdiplus::Matrix *           m_pm;
-      ::Gdiplus::Graphics *         m_pgraphics;
-      ::Gdiplus::GraphicsPath *     m_ppath;
-      ::Gdiplus::GraphicsPath *     m_ppathPaint;
+      //::plusplus::Matrix *           m_pm;
+      //::plusplus::Graphics *         m_pgraphics;
+      //::plusplus::GraphicsPath *     m_ppath;
+      //::plusplus::GraphicsPath *     m_ppathPaint;
       HDC                           m_hdc;
       HDC                           m_hdcGraphics;
 
@@ -22,14 +22,14 @@ namespace draw2d_gdiplus
       virtual ~graphics();
 
 
-      Gdiplus::Graphics & g()
-      {
-         if(m_pgraphics == NULL)
-         {
-            m_pgraphics = ::Gdiplus::Graphics::FromHDC(get_handle1());
-         }
-         return *m_pgraphics;
-      }
+      //plusplus::Graphics & g()
+      //{
+      //   if(m_pgraphics == NULL)
+      //   {
+      //      m_pgraphics = ::plusplus::Graphics::FromHDC(get_handle1());
+      //   }
+      //   return *m_pgraphics;
+      //}
 
 //      ::window_sp GetWindow() const;
 
@@ -56,9 +56,9 @@ namespace draw2d_gdiplus
       ::draw2d::bitmap_sp  get_current_bitmap() const;
 
 
-      Gdiplus::Pen *       gdiplus_pen();
-      Gdiplus::Brush *     gdiplus_brush();
-      Gdiplus::Font *      gdiplus_font();
+      //plusplus::Pen *       gl2d_pen();
+      //plusplus::Brush *     gl2d_brush();
+      //plusplus::Font *      gl2d_font();
 
       // for bidi and mirrored localization
       uint32_t GetLayout() const;
@@ -496,7 +496,7 @@ namespace draw2d_gdiplus
 //      virtual bool attach(void * pdata);
 
 
-      virtual Gdiplus::FillMode gdiplus_get_fill_mode();
+      //virtual plusplus::FillMode gl2d_get_fill_mode();
 
       bool blur(bool bExpand, double dRadius, const RECT & rect);
 
@@ -515,7 +515,7 @@ namespace draw2d_gdiplus
    };
 
 
-} // namespace draw2d_gdiplus
+} // namespace draw2d_gl2d
 
 
 #define new AURA_NEW

@@ -1,6 +1,6 @@
 #include "framework.h"
 
-namespace draw2d_gdiplus
+namespace draw2d_gl2d
 {
 
    object::object()
@@ -93,7 +93,7 @@ namespace draw2d_gdiplus
    }
 
 
-} // namespace draw2d_gdiplus
+} // namespace draw2d_gl2d
 
 
 

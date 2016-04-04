@@ -1,18 +1,18 @@
 #pragma once
 
 
-namespace draw2d_gdiplus
+namespace draw2d_gl2d
 {
 
 
-   class CLASS_DECL_DRAW2D_GDIPLUS path :
+   class CLASS_DECL_DRAW2D_GL2D path :
       virtual public ::draw2d::path
    {
    public:
 
 
-      Gdiplus::GraphicsPath *    m_ppath;
-      Gdiplus::PointF            m_ptInternal;
+      //plusplus::GraphicsPath *    m_ppath;
+      //plusplus::PointF            m_ptInternal;
       bool                       m_bHasPointInternal;
 
 
@@ -21,7 +21,7 @@ namespace draw2d_gdiplus
       virtual ~path();
 
 
-      virtual Gdiplus::GraphicsPath * get_os_path(Gdiplus::Graphics * pgraphics);
+      //virtual plusplus::GraphicsPath * get_os_path(plusplus::Graphics * pgraphics);
 
       virtual bool internal_add_arc(const RECT & rect, double iStart, double iAngle);
 
@@ -41,12 +41,12 @@ namespace draw2d_gdiplus
       virtual bool internal_add_rect(double x,double y,double cx,double cy);
       virtual bool internal_add_move(double x,double y);
 
-      virtual bool internal_add_string(Gdiplus::Graphics * pgraphics, int32_t x,int32_t y,const string & strText,::draw2d::font_sp spfont);
+      //virtual bool internal_add_string(plusplus::Graphics * pgraphics, int32_t x,int32_t y,const string & strText,::draw2d::font_sp spfont);
 
-      virtual bool create(Gdiplus::Graphics * pgraphics);
+//      virtual bool create(plusplus::Graphics * pgraphics);
       virtual bool destroy();
 
-      virtual bool set(Gdiplus::Graphics * pgraphics, const ::draw2d::path::element & e);
+//      virtual bool set(plusplus::Graphics * pgraphics, const ::draw2d::path::element & e);
 
       virtual bool set(const ::draw2d::path::arc & a);
 
@@ -56,13 +56,13 @@ namespace draw2d_gdiplus
 
       virtual bool set(const ::draw2d::path::move & p);
 
-      virtual bool set(Gdiplus::Graphics * pgraphics, const ::draw2d::path::string_path & p);
+//      virtual bool set(plusplus::Graphics * pgraphics, const ::draw2d::path::string_path & p);
 
 
    };
 
 
-} // namespace draw2d_gdiplus
+} // namespace draw2d_gl2d
 
 
 
