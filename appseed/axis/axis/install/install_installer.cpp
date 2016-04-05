@@ -359,8 +359,8 @@ install_begin:;
          strBuild.replace(":","-");
 
          //m_strInstall = "http://" + strSpaHost + "/ccvotagus/" + m_strVersion + "/" + strBuild + "/";
-
-         m_strInstall = "http://" + strSpaHost + "/ccvotagus/" + m_strVersion + "/";
+         //m_strInstall = "http://" + strSpaHost + "/ccvotagus/" + m_strVersion + "/";
+         m_strInstall = "http://server.ca2.cc/ccvotagus/" + m_strVersion + "/";
 
          m_strInstallGz = m_strInstall;
 
