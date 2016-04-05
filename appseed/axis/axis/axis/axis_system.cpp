@@ -181,6 +181,29 @@ namespace axis
       if(!::aura::system::process_initialize())
          return false;
 
+      bool bOk = true;
+
+      try
+      {
+
+         draw2d_factory_exchange();
+
+      }
+      catch (...)
+      {
+
+         bOk = false;
+
+      }
+
+      if (!bOk)
+      {
+
+         simple_message_box("Unable to find draw2d plugin. Quitting...", MB_OK);
+
+         return false;
+
+      }
 
 
       m_spos.alloc(allocer());

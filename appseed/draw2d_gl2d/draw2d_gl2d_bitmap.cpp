@@ -6,6 +6,7 @@ void resizeBilinear(memory & m, int w2, int h2, int * pixels, int w, int h);
 #include <windowsx.h>
 #endif
 
+extern WNDCLASSEX g_wcl;
 
 
 #ifdef LINUX
@@ -425,7 +426,7 @@ namespace draw2d_gl2d
       case WM_DESTROY:
          //KillTimer(hWnd, 1);
          //       timeEndPeriod(1);
-         PostQuitMessage(0);
+         //PostQuitMessage(0);
          return 0;
 
       case WM_KEYDOWN:
@@ -460,41 +461,35 @@ namespace draw2d_gl2d
       if (!m_bPBuffer && m_sizeOut.area() > 0)
       {
 
-            MSG msg = { 0 };
-            WNDCLASSEX wcl = { 0 };
+         MSG msg;
+          
 
-            wcl.cbSize = sizeof(wcl);
-            wcl.style = CS_HREDRAW | CS_VREDRAW;
-            wcl.lpfnWndProc = WindowProc;
-            wcl.cbClsExtra = 0;
-            wcl.cbWndExtra = 0;
-            wcl.hInstance = ::GetModuleHandle("app_core_fuel.dll");
-            wcl.hIcon = LoadIcon(0, IDI_APPLICATION);
-            wcl.hCursor = LoadCursor(0, IDC_ARROW);
-            wcl.hbrBackground = 0;
-            wcl.lpszMenuName = 0;
-            wcl.lpszClassName = _T("GLLayeredWindowClass");
-            wcl.hIconSm = 0;
+            g_hWnd = CreateWindowEx(WS_EX_LAYERED | WS_EX_TOPMOST, g_wcl.lpszClassName,
+               _T("GL Layered Window Demo"), 0, 0, 0, 0,
+               0, 0, 0, g_wcl.hInstance, 0);
 
-            if (!RegisterClassEx(&wcl))
+            if (g_hWnd == NULL)
+            {
+
                return false;
 
-            g_hWnd = CreateWindowEx(WS_EX_LAYERED | WS_EX_TOPMOST, wcl.lpszClassName,
-               _T("GL Layered Window Demo"), 0, 0, 0, 0,
-               0, 0, 0, wcl.hInstance, 0);
+            }
 
             bool bLayout = true;
 
             while (true)
             {
 #ifdef WINDOWS
-               if (PeekMessage(&msg, 0, 0, 0, PM_REMOVE))
+               if (PeekMessage(&msg, g_hWnd, 0, 0, PM_REMOVE))
                {
-                  if (msg.message == WM_QUIT)
-                     break;
+
 
                   TranslateMessage(&msg);
                   DispatchMessage(&msg);
+
+                  if (msg.message == WM_NCDESTROY)
+                     break;
+
                }
                else
 #else
@@ -525,19 +520,26 @@ namespace draw2d_gl2d
 
                            glMatrixMode(GL_MODELVIEW);							// Select The Modelview Matrix
                            glLoadIdentity();									// Reset The Modelview Matrix
+                           glTranslatef(-1.0, -1.0, 0);
+                           glScalef(2.0/(float)m_sizeOut.cx, 2.0/(float)m_sizeOut.cy, 0);
 
                         }
 
                      }
+                     break;
                   }
 
                }
             }
 
+            g_hWnd = NULL;
+
 
          m_bPBuffer = true;
 
       }
+
+      wglMakeCurrent(g_hPBufferDC, g_hPBufferRC);
       m_bFlashed = true;
 
    }
@@ -550,15 +552,24 @@ namespace draw2d_gl2d
 
          m_bFlashed = false;
 
-         wglMakeCurrent(g_hDC, g_hRC);
+         //wglMakeCurrent(g_hDC, g_hRC);
+
+         wglMakeCurrent(g_hPBufferDC, g_hPBufferRC);
+         GLenum e = glGetError();
 
 //         glFlush();
 
          //m_mem.allocate(cxDIB * cyDIB * 4);
          //m_mem.zero();
          glPixelStorei(GL_PACK_ALIGNMENT, 1);
+         e = glGetError();
 
-         glReadPixels(0, 0, m_sizeOut.cx, m_sizeOut.cy, GL_BGRA_EXT, GL_UNSIGNED_BYTE, m_memOut.get_data());
+         COLORREF * pdata = (COLORREF *) m_memOut.get_data();
+
+         glReadPixels(0, 0, m_sizeOut.cx, m_sizeOut.cy, GL_BGRA_EXT, GL_UNSIGNED_BYTE, pdata);
+          e = glGetError();
+
+         output_debug_string("error " + ::str::from((int)e));
 
       }
 
@@ -686,7 +697,6 @@ namespace draw2d_gl2d
       //   return false;
       //}
       ::DestroyWindow(g_hWnd);
-      g_hWnd = NULL;
       return true;
    }
 

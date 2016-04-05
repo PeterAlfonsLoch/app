@@ -17,6 +17,8 @@ namespace draw2d_gl2d
       HDC                           m_hdc;
       HDC                           m_hdcGraphics;
 
+      point                   m_ptTranslate;
+      // bool                                      m_bFont;
 
       graphics(::aura::application * papp);
       virtual ~graphics();
@@ -511,6 +513,9 @@ namespace draw2d_gl2d
 
       virtual bool prefer_mapped_dib_on_mix();
 
+      virtual void set(::draw2d::pen * ppen);
+      virtual void set(::draw2d::brush * pbrush);
+      virtual void set(const ::draw2d::font * pfont) const;
 
    };
 

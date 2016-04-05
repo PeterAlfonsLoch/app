@@ -2370,6 +2370,7 @@ namespace draw2d_gl2d
    {
       ((dib *) this)->unmap();
 
+      m_spgraphics->SelectObject(m_spbitmap);
  
       return m_spgraphics;
 
@@ -2476,77 +2477,77 @@ namespace draw2d_gl2d
 
       pwnd->GetWindowRect(rectWindow);
 
-#if !NO_SCREEN_PRE_MULTIPLY_ALPHA
-      if(bTransferBuffer && pwnd->is_composite() && !m_bReduced)
-      {
-
-         m_bReduced = true;
-
-         m_spgraphics->SetViewportOrg(0,0);
-
-         map();
-
-         //pre_multiply_alpha((unsigned int *) get_data(),m_size.cx,m_size.cy,m_size.cx * 4);
-
-         BYTE *dstR=(BYTE*)get_data();
-         BYTE *dstG=dstR + 1;
-         BYTE *dstB=dstR + 2;
-         BYTE *dstA=dstR + 3;
-         int64_t size = area() * 4;
-
-
-         // >> 8 instead of / 255 subsequent alpha_blend operations say thanks on true_blend because (255) * (1/254) + (255) * (254/255) > 255
-//#if defined(_OPENMP)
-//         #pragma omp parallel num_threads(3)
-//                  {
-//         
-//                     BYTE *dst = dstR + omp_get_thread_num();
-//      #pragma omp parallel for
-//                     for(index i = 0; i < size; i+=4)
-//                     {
-//                           dst[i] = LOBYTE(((int32_t)dst[i] * (int32_t)dstA[i]) >> 8);
-//                     }
-//                  }
+//#if !NO_SCREEN_PRE_MULTIPLY_ALPHA
+//      if(bTransferBuffer && pwnd->is_composite() && !m_bReduced)
+//      {
 //
-////#pragma omp parallel num_threads(4)
-////         {
+//         m_bReduced = true;
+//
+//         m_spgraphics->SetViewportOrg(0,0);
+//
+//         map();
+//
+//         //pre_multiply_alpha((unsigned int *) get_data(),m_size.cx,m_size.cy,m_size.cx * 4);
+//
+//         BYTE *dstR=(BYTE*)get_data();
+//         BYTE *dstG=dstR + 1;
+//         BYTE *dstB=dstR + 2;
+//         BYTE *dstA=dstR + 3;
+//         int64_t size = area() * 4;
+//
+//
+//         // >> 8 instead of / 255 subsequent alpha_blend operations say thanks on true_blend because (255) * (1/254) + (255) * (254/255) > 255
+////#if defined(_OPENMP)
+////         #pragma omp parallel num_threads(3)
+////                  {
+////         
+////                     BYTE *dst = dstR + omp_get_thread_num();
+////      #pragma omp parallel for
+////                     for(index i = 0; i < size; i+=4)
+////                     {
+////                           dst[i] = LOBYTE(((int32_t)dst[i] * (int32_t)dstA[i]) >> 8);
+////                     }
+////                  }
 ////
-////            if(omp_get_thread_num() == 3)
-////            {
-////               COLORREF *dst = get_data();
-////#pragma omp parallel for
-////               for(index i = 0; i < size; i+=4)
-////               {
-////                  if(dstA[i] <= 3)
-////                  {
-////                     dst[i>>2] = 0;
-////                  }
-////               }
-////            }
-////            else
-////            {
-////               BYTE *dst = dstR + omp_get_thread_num();
-////#pragma omp parallel for
-////               for(index i = 0; i < size; i+=4)
-////               {
-////                  if(dstA[i] > 3)
-////                  {
-////                     dst[i] = LOBYTE(((int32_t)dst[i] * (int32_t)dstA[i]) >> 8);
-////                  }
-////               }
-////            }
+//////#pragma omp parallel num_threads(4)
+//////         {
+//////
+//////            if(omp_get_thread_num() == 3)
+//////            {
+//////               COLORREF *dst = get_data();
+//////#pragma omp parallel for
+//////               for(index i = 0; i < size; i+=4)
+//////               {
+//////                  if(dstA[i] <= 3)
+//////                  {
+//////                     dst[i>>2] = 0;
+//////                  }
+//////               }
+//////            }
+//////            else
+//////            {
+//////               BYTE *dst = dstR + omp_get_thread_num();
+//////#pragma omp parallel for
+//////               for(index i = 0; i < size; i+=4)
+//////               {
+//////                  if(dstA[i] > 3)
+//////                  {
+//////                     dst[i] = LOBYTE(((int32_t)dst[i] * (int32_t)dstA[i]) >> 8);
+//////                  }
+//////               }
+//////            }
+//////         }
+////#else
+////         for(index i = 0; i < size; i+=4)
+////         {
+////            dstR[i] = LOBYTE(((int32_t)dstR[i] * (int32_t)dstA[i]) >> 8);
+////            dstG[i] = LOBYTE(((int32_t)dstG[i] * (int32_t)dstA[i]) >> 8);
+////            dstB[i] = LOBYTE(((int32_t)dstB[i] * (int32_t)dstA[i]) >> 8);
 ////         }
-//#else
-//         for(index i = 0; i < size; i+=4)
-//         {
-//            dstR[i] = LOBYTE(((int32_t)dstR[i] * (int32_t)dstA[i]) >> 8);
-//            dstG[i] = LOBYTE(((int32_t)dstG[i] * (int32_t)dstA[i]) >> 8);
-//            dstB[i] = LOBYTE(((int32_t)dstB[i] * (int32_t)dstA[i]) >> 8);
-//         }
-//#endif
-//         
-      }
-#endif 
+////#endif
+////         
+//      }
+//#endif 
       rect rect(rectWindow);
 
       // Copy the contents of the framebuffer - which in our case is our pbuffer -
@@ -2557,11 +2558,33 @@ namespace draw2d_gl2d
 
       //synch_lock sl(&m);
 
+      glFlush();
+
       sp(bitmap) b = m_spbitmap;
 
       b->defer_reveal();
 
+      {
+         // This is a special case. When the image width is already a multiple
+         // of 4 the image does not require any padding bytes at the end of each
+         // scan line. Consequently we do not need to address each scan line
+         // separately. This is much faster than the below case where the image
+         // width is not a multiple of 4.
+
+         int totalBytes = b->m_sizeOut.cx * b->m_sizeOut.cy * 4;
+         BYTE * p = (BYTE*)b->m_memOut.get_data();
+         for (int i = 0; i < totalBytes; i += 4)
+         {
+            p[0] = (BYTE)(p[0] * p[3] / 255);
+            p[1] = (BYTE)(p[1] * p[3] / 255);
+            p[2] = (BYTE)(p[2] * p[3] / 255);
+            p+=4;
+         }
+      }
+
+
       m_pauraapp->window_graphics_update_window(pwnd->get_window_graphics(),pwnd->get_handle(),(COLORREF*)b->m_memOut.get_data(),rect, b->m_sizeOut.cx, b->m_sizeOut.cy, b->m_sizeOut.cx * 4,bTransferBuffer);
+      b->m_bFlashed = true;
 
       return true;
 
@@ -2657,7 +2680,12 @@ namespace draw2d_gl2d
 
       }
 
-      m_spbitmap.cast < bitmap >()->defer_reveal();
+      if (m_spbitmap.is_set())
+      {
+
+         m_spbitmap.cast < bitmap >()->defer_reveal();
+
+      }
 
 //      if (m_spgraphics.is_null())
   //       return;
@@ -2690,6 +2718,14 @@ namespace draw2d_gl2d
       }
 
       //m_spgraphics->SelectObject(m_spbitmap);
+
+   }
+
+   
+   bool dib::is_valid_update_window_thread()
+   {
+      
+      return ::GetCurrentThreadId() == System.get_twf()->m_uiThread;
 
    }
 

@@ -1925,34 +1925,11 @@ namespace axis
       //if(!ca_process_initialize())
       //   return false;
 
-      if(is_system())
-      {
+      //if(is_system())
+      //{
 
-         bool bOk = true;
 
-         try
-         {
-
-            draw2d_factory_exchange();
-
-         }
-         catch (...)
-         {
-
-            bOk = false;
-
-         }
-
-         if (!bOk)
-         {
-
-            simple_message_box("Unable to find draw2d plugin. Quitting...", MB_OK);
-
-            return false;
-
-         }
-
-      }
+      //}
 
       //if(!m_pimpl->process_initialize())
       //   return false;
@@ -4357,15 +4334,51 @@ namespace axis
 
 #else
 
-      string strLibrary = draw2d_get_default_library_name();
-
-      if(strLibrary.is_empty())
-         strLibrary = "draw2d_cairo";
-
       ::aura::library & library = System.m_libraryDraw2d;
 
-      if(library.is_opened())
+      if (library.is_opened())
          return;
+
+      string strLibrary;
+
+      if (command()->m_varTopicQuery.has_property("draw2d"))
+      {
+
+         string strDraw2d = command()->m_varTopicQuery["draw2d"];
+
+         strDraw2d.trim();
+
+         if (strDraw2d.has_char())
+         {
+
+            ::str::begins_eat_ci(strDraw2d, "draw2d_");
+
+            ::str::begins_eat_ci(strDraw2d, "draw2d");
+
+            strLibrary = "draw2d_" + strDraw2d;
+
+         }
+
+      }
+
+      if (strLibrary.has_char())
+      {
+
+         library.open(strLibrary);
+
+         if (library.is_opened())
+            goto finalize;
+
+      }
+
+      strLibrary = draw2d_get_default_library_name();
+
+      if (strLibrary.is_empty())
+#ifdef WINDOWS
+         strLibrary = "draw2d_gdiplus";
+#else
+         strLibrary = "draw2d_cairo";
+#endif
 
       library.open(strLibrary);
 

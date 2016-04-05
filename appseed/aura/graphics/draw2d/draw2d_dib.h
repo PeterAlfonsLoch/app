@@ -290,7 +290,7 @@ namespace draw2d
 
       virtual bool update_window(::aura::draw_interface * pui,signal_details * pobj,bool bTransferBuffer = true);
       virtual bool print_window(::aura::draw_interface * pui,signal_details * pobj);
-
+      virtual bool is_valid_update_window_thread();
 
       static void static_initialize();
 

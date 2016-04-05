@@ -14,43 +14,43 @@
     <ClInclude Include="framework.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="draw2d_gdiplus.h">
+    <ClInclude Include="draw2d_gl2d.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="draw2d_gdiplus_bitmap.h">
+    <ClInclude Include="draw2d_gl2d_bitmap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="draw2d_gdiplus_brush.h">
+    <ClInclude Include="draw2d_gl2d_brush.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="draw2d_gdiplus_dib.h">
+    <ClInclude Include="draw2d_gl2d_dib.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="draw2d_gdiplus_factory_exchange.h">
+    <ClInclude Include="draw2d_gl2d_factory_exchange.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="draw2d_gdiplus_font.h">
+    <ClInclude Include="draw2d_gl2d_font.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="draw2d_gdiplus_graphics.h">
+    <ClInclude Include="draw2d_gl2d_graphics.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="draw2d_gdiplus_object.h">
+    <ClInclude Include="draw2d_gl2d_object.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="draw2d_gdiplus_palette.h">
+    <ClInclude Include="draw2d_gl2d_palette.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="draw2d_gdiplus_path.h">
+    <ClInclude Include="draw2d_gl2d_path.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="draw2d_gdiplus_pen.h">
+    <ClInclude Include="draw2d_gl2d_pen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="draw2d_gdiplus_region.h">
+    <ClInclude Include="draw2d_gl2d_printer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="draw2d_gdiplus_printer.h">
+    <ClInclude Include="draw2d_gl2d_region.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -58,59 +58,59 @@
     <ClCompile Include="framework.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="draw2d_gdiplus_bitmap.cpp">
+    <ClCompile Include="draw2d_gl2d.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="draw2d_gdiplus_brush.cpp">
+    <ClCompile Include="draw2d_gl2d_bitmap.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="draw2d_gdiplus_dib.cpp">
+    <ClCompile Include="draw2d_gl2d_brush.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="draw2d_gdiplus_factory_exchange.cpp">
+    <ClCompile Include="draw2d_gl2d_dib.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="draw2d_gdiplus_font.cpp">
+    <ClCompile Include="draw2d_gl2d_factory_exchange.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="draw2d_gdiplus_graphics.cpp">
+    <ClCompile Include="draw2d_gl2d_font.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="draw2d_gdiplus_object.cpp">
+    <ClCompile Include="draw2d_gl2d_graphics.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="draw2d_gdiplus_palette.cpp">
+    <ClCompile Include="draw2d_gl2d_object.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="draw2d_gdiplus_path.cpp">
+    <ClCompile Include="draw2d_gl2d_palette.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="draw2d_gdiplus_pen.cpp">
+    <ClCompile Include="draw2d_gl2d_path.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="draw2d_gdiplus_preview_dc.cpp">
+    <ClCompile Include="draw2d_gl2d_pen.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="draw2d_gdiplus_region.cpp">
+    <ClCompile Include="draw2d_gl2d_preview_dc.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="draw2d_gdiplus_printer.cpp">
+    <ClCompile Include="draw2d_gl2d_printer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="draw2d_gdiplus.cpp">
+    <ClCompile Include="draw2d_gl2d_region.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="_draw2d_gdiplus.cpp">
+    <ClCompile Include="_draw2d_gl2d.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="draw2d_gdiplus.def">
+    <None Include="draw2d_gl2d.def">
       <Filter>Source Files</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="draw2d_gdiplus.rc">
+    <ResourceCompile Include="draw2d_gl2d.rc">
       <Filter>Source Files</Filter>
     </ResourceCompile>
   </ItemGroup>

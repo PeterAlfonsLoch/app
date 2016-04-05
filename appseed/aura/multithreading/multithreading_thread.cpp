@@ -1856,12 +1856,13 @@ bool thread::post_thread_message(UINT message,WPARAM wParam,lparam lParam)
    if (m_hthread == (HTHREAD)NULL || (!m_bRun && message != WM_QUIT))
    {
 
-      if (message == WM_APP + 1984)
+      if (message == message_system)
       {
 
-         if (wParam == 49)
+         if (wParam == system_message_command)
          {
 
+            // destruct the object in lparam (thread is either destroyed or quitting : it cannot process the object anymore)
             sp(object) spo((lparam) lParam);
 
          }
@@ -2458,10 +2459,10 @@ bool thread::process_message(LPMESSAGE lpmessage)
 
       MESSAGE & msg = *lpmessage;
 
-      if (msg.message == WM_APP + 1984)
+      if (msg.message == message_system)
       {
 
-         if (msg.wParam == 77)
+         if (msg.wParam == system_message_user)
          {
 
             sp(::object) pobject((lparam) msg.lParam);
@@ -2469,7 +2470,7 @@ bool thread::process_message(LPMESSAGE lpmessage)
             Application.dispatch_user_message_object(pobject);
 
          }
-         else if (msg.wParam == 49)
+         else if (msg.wParam == system_message_command)
          {
 
             sp(::primitive::command) pcommand((lparam)msg.lParam);
@@ -2477,7 +2478,7 @@ bool thread::process_message(LPMESSAGE lpmessage)
             m_pcommandthread->on_command(pcommand);
 
          }
-         else if (msg.wParam == 51)
+         else if (msg.wParam == system_message_meta)
          {
 
             ::send_thread_message * pmessage = dynamic_cast <::send_thread_message *>((object *)(uint_ptr)msg.lParam);
@@ -2489,13 +2490,13 @@ bool thread::process_message(LPMESSAGE lpmessage)
             pmessage->m_bOk = true;
 
          }
-         else if (msg.wParam == 90)
+         else if (msg.wParam == system_message_register_dependent_thread)
          {
 
             on_register_dependent_thread((thread*)msg.lParam);
 
          }
-         else if (msg.wParam == 91)
+         else if (msg.wParam == system_message_unregister_dependent_thread)
          {
 
             on_unregister_dependent_thread((thread*)msg.lParam);

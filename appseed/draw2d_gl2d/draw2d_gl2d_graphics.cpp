@@ -34,7 +34,7 @@ namespace draw2d_gl2d
       object(papp),
       ::draw2d::graphics(papp)
    {
-
+      m_ptTranslate = null_point();
       m_bPrinting       = FALSE;
       m_pdibAlphaBlend  = NULL;
       //m_pgraphics       = NULL;
@@ -44,7 +44,6 @@ namespace draw2d_gl2d
       //m_ppathPaint      = NULL;
       m_etextrendering  = ::draw2d::text_rendering_anti_alias_grid_fit;
       m_dFontFactor     = 1.0;
-
       //m_pm = new plusplus::Matrix();
 
    }
@@ -72,7 +71,6 @@ namespace draw2d_gl2d
 
    graphics::~graphics()
    {
-//      ::aura::del(m_pm);
 
       DeleteDC();
 
@@ -242,6 +240,8 @@ namespace draw2d_gl2d
 
       if(pBitmap == NULL)
          return NULL;
+
+      m_spbitmap = pBitmap;
 
       /*      if(get_handle1() == NULL)
                return NULL;
@@ -669,6 +669,78 @@ namespace draw2d_gl2d
       //plusplus::Rect rect(rectParam.left,rectParam.top,width(rectParam), height(rectParam));
 
       //return m_pgraphics->DrawRectangle((::plusplus::Pen *) ppen->get_os_data(), rect) == ::plusplus::Ok;
+
+
+      try
+      {
+
+         if (m_spbitmap.is_null())
+            return false;
+
+         ::size s = m_spbitmap.cast < bitmap>()->m_sizeOut;
+
+         if (s.area() <= 0)
+            return false;
+
+         if (is_ptr_null(ppen, 1024))
+            return false;
+
+         m_spbitmap.cast < bitmap>()->flash();
+
+         glColor4f(argb_get_r_value(ppen->m_cr) / 255.f, argb_get_g_value(ppen->m_cr) / 255.f, argb_get_b_value(ppen->m_cr) / 255.f, argb_get_a_value(ppen->m_cr) / 255.f);						// Set Top Point Of Triangle To Red
+         glEnd();
+         glLineWidth(ppen->m_dWidth);
+         glBegin(GL_LINE_LOOP);
+         glVertex2f(rectParam.left, rectParam.top);
+         glVertex2f(rectParam.right, rectParam.top);
+         glVertex2f(rectParam.right, rectParam.bottom);
+         glVertex2f(rectParam.left, rectParam.bottom);
+         //glVertex2f(rectParam.left, rectParam.top);
+         glEnd();
+
+
+         //if(m_pgraphics == NULL)
+         //   return;
+
+         //if(m_esmoothmode != ::draw2d::smooth_mode_none)
+         //{
+
+         //   set_smooth_mode(::draw2d::smooth_mode_none);
+
+         //}
+         //else
+         //{
+         //   //TRACE("optimized smoothing mode");
+         //}
+
+         //::draw2d::brush_sp brushCurrent;
+
+         //if(m_spbrush.is_null() || m_spbrush->m_etype != ::draw2d::brush::type_solid || m_spbrush->m_cr != clr)
+         //{
+
+         //   brushCurrent = m_spbrush;
+
+         //   ::draw2d::brush_sp brush(allocer(),clr);
+
+         //   SelectObject(brush);
+
+         //}
+         //else
+         //{
+
+         //   //TRACE("optimized brush");
+
+         //}
+
+         //m_pgraphics->FillRectangle(gl2d_brush(), x, y, cx, cy);
+
+
+      }
+      catch (...)
+      {
+         return false;
+      }
+
 
       return true;
 
@@ -1701,6 +1773,19 @@ return true;
 
    bool graphics::get_text_metrics(::draw2d::text_metric * lpMetrics) const
    {
+
+      set(m_spfont);
+
+      sp(font) pfont = m_spfont;
+
+      TEXTMETRIC tm;
+
+      GetTextMetrics(pfont->m_hdcFont, &tm);
+
+      lpMetrics->tmAscent = tm.tmAscent;
+      lpMetrics->tmHeight = tm.tmHeight;
+      lpMetrics->tmDescent = tm.tmDescent;
+      lpMetrics->tmAveCharWidth = tm.tmAveCharWidth;
 
       //if (m_pgraphics == NULL)
       //   return false;
@@ -3378,7 +3463,7 @@ return true;
 
       //return point((int64_t) origin.X, (int64_t) origin.Y);
 
-      return null_point();
+      return m_ptTranslate;
 
    }
 
@@ -3386,6 +3471,14 @@ return true;
 
    point graphics::SetViewportOrg(int32_t x, int32_t y)
    {
+
+      if (m_spbitmap.is_null())
+         return null_point();
+
+      ::size s = m_spbitmap.cast < bitmap>()->m_sizeOut;
+
+      if (s.area() <= 0)
+         return null_point();
 
       //if (m_pgraphics == NULL)
       //{
@@ -3401,6 +3494,17 @@ return true;
       //m_pgraphics->SetTransform(m_pm);
 
       //return point(x, y);
+      glLoadIdentity();
+      
+      
+      glScalef(2.0 / (float)s.cx, 2.0 / (float)s.cy, 0);
+      
+      glTranslatef(-s.cx/2.0+x, -s.cy/2.0+y, 0);
+
+      
+      m_ptTranslate.x = x;
+      m_ptTranslate.y = y;
+
 
       return null_point();
 
@@ -4194,6 +4298,7 @@ return true;
       if(iIndex < 0)
          return size(0, 0);
 
+
       wstring wstr = ::str::international::utf8_to_unicode(lpszString, nCount);
 
       strsize iRange = 0;
@@ -4212,117 +4317,34 @@ return true;
             break;
       }
 
-//      plusplus::CharacterRange charRanges[1] = { plusplus::CharacterRange(0, (INT) iRange) };
+      set(m_spfont);
 
-      //plusplus::StringFormat strFormat(plusplus::StringFormat::GenericTypographic());
-      ////plusplus::StringFormat strFormat;
+      sp(font) pfont = m_spfont;
 
-      //strFormat.SetMeasurableCharacterRanges(1, charRanges);
+      SIZE s = { 0 };
 
-      //strFormat.SetFormatFlags(strFormat.GetFormatFlags()
-      //                         | plusplus::StringFormatFlagsNoClip | plusplus::StringFormatFlagsMeasureTrailingSpaces
-      //                         | plusplus::StringFormatFlagsLineLimit | plusplus::StringFormatFlagsNoWrap);
+      ::GetTextExtentPointW(pfont->m_hdcFont, wstr, wstr.get_length(), &s);
 
-      //int32_t count = strFormat.GetMeasurableCharacterRangeCount();
-
-      //plusplus::Region * pCharRangeRegions = new plusplus::Region[count];
-
-      //plusplus::RectF box(0.0f, 0.0f, 128.0f * 1024.0f, 128.0f * 1024.0f);
-
-      //plusplus::PointF origin(0, 0);
-
-      ////m_pgraphics->MeasureString(wstr, (int32_t) wstr.get_length(), ((graphics *)this)->gl2d_font(), origin, plusplus::StringFormat::GenericTypographic(), &box);
-
-      //((graphics *)this)->m_pgraphics->MeasureCharacterRanges(wstr, (INT) wstr.get_length(), ((graphics *)this)->gl2d_font(), box, &strFormat, (INT) count, pCharRangeRegions);
-
-      //plusplus::Region * pregion = NULL;
-
-
-      //if(count > 0)
-      //{
-
-      //   pregion = pCharRangeRegions[0].Clone();
-
-      //}
-
-
-
-      //for(i = 1; i < count; i++)
-      //{
-      //   pregion->Union(&pCharRangeRegions[i]);
-      //}
-
-
-      //if(pregion == NULL)
-      //   return size(0, 0);
-
-      //delete [] pCharRangeRegions;
-
-
-      //plusplus::RectF rectBound;
-
-      //pregion->GetBounds(&rectBound, m_pgraphics);
-
-      //delete pregion;
-
-
-
-      //plusplus::SizeF size;
-
-      //rectBound.GetSize(&size);
-
-      //return class ::size((int64_t) (size.Width * m_spfont->m_dFontWidth), (int64_t) (size.Height));
-
-      return ::size(0, 0);
+      return s;
 
    }
+
 
    size graphics::GetTextExtent(const char * lpszString, strsize nCount) const
    {
 
-      //retry_single_lock slplusplus(&System.s_mutexplusplus, millis(1), millis(1));
+      class sized size;
 
-      //wstring wstr = ::str::international::utf8_to_unicode(lpszString, nCount);
+      if (!GetTextExtent(size, lpszString, nCount, 0))
+         return class size(0, 0);
 
-      //plusplus::RectF box;
+      return ::size(size.cx, size.cy);
 
-      //plusplus::PointF origin(0, 0);
-
-      //plusplus::StringFormat strFormat(plusplus::StringFormat::GenericTypographic());
-
-      //strFormat.SetFormatFlags(strFormat.GetFormatFlags()
-      //                         | plusplus::StringFormatFlagsNoClip | plusplus::StringFormatFlagsMeasureTrailingSpaces
-      //                         | plusplus::StringFormatFlagsLineLimit | plusplus::StringFormatFlagsNoWrap);
-
-      //m_pgraphics->MeasureString(wstr, (int32_t) wstr.get_length(), ((graphics *)this)->gl2d_font(), origin, &strFormat,  &box);
-
-      //return size((int64_t) (box.Width * m_spfont->m_dFontWidth), (int64_t) (box.Height));
-
-      ///*if(get_handle2() == NULL)
-      //   return size(0, 0);
-      //SIZE size;
-      //string str(lpszString, nCount);
-      //wstring wstr = ::str::international::utf8_to_unicode(str);
-      //if(!::GetTextExtentPoint32W(get_handle2(), wstr, (int32_t)wstr.get_length(), &size))
-      //{
-      //   return class size(0, 0);
-      //}
-      //return size;*/
-
-      return ::size(0, 0);
    }
+
 
    size graphics::GetTextExtent(const string & str) const
    {
-      /*      if(get_handle2() == NULL)
-               return size(0, 0);
-            SIZE size;
-            wstring wstr = ::str::international::utf8_to_unicode(str);
-            if(!::GetTextExtentPoint32W(get_handle2(), wstr, (int32_t)wstr.get_length(), &size))
-            {
-               return class size(0, 0);
-            }
-            return size;*/
 
       class sized size;
 
@@ -4330,30 +4352,6 @@ return true;
          return class size(0, 0);
 
       return class size((long) size.cx, (long) size.cy);
-
-      /*if(m_pgraphics == NULL)
-         return size(0, 0);
-
-      wstring wstr = ::str::international::utf8_to_unicode(str);
-
-      plusplus::RectF box;
-
-      plusplus::PointF origin(0, 0);
-
-
-      if(m_pgraphics == NULL)
-         return size(0, 0);
-
-      try
-      {
-         m_pgraphics->MeasureString(wstr, (int32_t) wstr.get_length(), ((graphics *)this)->gl2d_font(), origin, &box);
-      }
-      catch(...)
-      {
-         return size(0, 0);
-      }
-
-      return size((int64_t) (box.Width * m_fontxyz.m_dFontWidth), (int64_t) box.Height);*/
 
    }
 
@@ -4378,7 +4376,7 @@ return true;
 
       wstring wstr = ::str::international::utf8_to_unicode(str);
 
-      VERIFY(::GetTextExtentPoint32W(get_handle1(), wstr, (int32_t)wstr.get_length(), &size));
+      ::GetTextExtentPoint32W(get_handle1(), wstr, (int32_t)wstr.get_length(), &size);
 
       return size;
 
@@ -4388,216 +4386,76 @@ return true;
    bool graphics::GetTextExtent(sized & size, const char * lpszString, strsize nCount, strsize iIndex) const
    {
 
-      //retry_single_lock slplusplus(&System.s_mutexplusplus, millis(1), millis(1));
+      ASSERT(get_handle1() != NULL);
 
-      //if (m_pgraphics == NULL)
-      //   return false;
+      set(m_spfont);
 
-      //if(lpszString == NULL || *lpszString == '\0')
-      //   return false;
+      sp(font) pfont = m_spfont;
 
-      //if(nCount < 0)
-      //   nCount = strlen(lpszString);
+      SIZE s;
 
-      //if(iIndex > nCount)
-      //   return false;
+      wstring wstr = ::str::international::utf8_to_unicode(string(&lpszString[iIndex], nCount));
 
-      //if(iIndex < 0)
-      //   return false;
+      if (!::GetTextExtentPoint32W(pfont->m_hdcFont, wstr, (int32_t)wstr.get_length(), &s))
+         return false;
 
-      //wstring wstr = ::str::international::utf8_to_unicode(lpszString, nCount);
+      size.cx = s.cx;
 
-      //strsize iRange = 0;
-      //strsize i = 0;
-      //strsize iLen;
-      //const char * psz = lpszString;
-      //while(i < iIndex)
-      //{
-      //   try
-      //   {
-      //      iLen = ::str::get_utf8_char_length(psz);
-      //   }
-      //   catch(...)
-      //   {
-      //      break;
-      //   }
-      //   if (iLen < 0)
-      //      break;
-      //   iRange++;
-      //   i += iLen;
-      //   if(i >= iIndex)
-      //      break;
-      //   try
-      //   {
-      //      psz += iLen;
-      //   }
-      //   catch(...)
-      //   {
-      //      break;
-      //   }
-      //   if(psz == NULL)
-      //      break;
-      //   if(*psz == '\0')
-      //      break;
-      //}
-
-      //plusplus::CharacterRange charRanges[1] = { plusplus::CharacterRange(0, (INT) iRange) };
-
-      //plusplus::StringFormat strFormat(plusplus::StringFormat::GenericTypographic());
-      ////plusplus::StringFormat strFormat;
-
-      //strFormat.SetMeasurableCharacterRanges(1, charRanges);
-
-      //strFormat.SetFormatFlags(strFormat.GetFormatFlags()
-      //                         | plusplus::StringFormatFlagsNoClip | plusplus::StringFormatFlagsMeasureTrailingSpaces
-      //                         | plusplus::StringFormatFlagsLineLimit | plusplus::StringFormatFlagsNoWrap);
-
-      //int32_t count = strFormat.GetMeasurableCharacterRangeCount();
-
-      //plusplus::Region * pCharRangeRegions = new plusplus::Region[count];
-
-      ////plusplus::RectF box(0.0f, 0.0f, 128.0f * 1024.0f, 128.0f * 1024.0f);
-
-      //plusplus::PointF origin(0, 0);
-
-
-      //// Generate a layout rect for the text
-
-      //plusplus::RectF layoutRect(0, 0, 10000, 10000);
-      //plusplus::Status status = ((graphics *)this)->m_pgraphics->MeasureString( wstr, (INT) nCount, ((graphics *)this)->gl2d_font(), origin, &layoutRect );
-
-
-      //// Prevent clipping
-
-      ////StringFormat strFormat( StringFormat::GenericTypographic() );
-      ////status = ((graphics *)this)->m_pgraphics->SetFormatFlags( StringFormatFlagsNoWrap | StringFormatFlagsNoClip );
-
-
-
-      ////m_pgraphics->MeasureString(wstr, (int32_t) wstr.get_length(), ((graphics *)this)->gl2d_font(), origin, plusplus::StringFormat::GenericTypographic(), &box);
-
-      //((graphics *)this)->m_pgraphics->MeasureCharacterRanges(wstr, (INT) nCount, ((graphics *)this)->gl2d_font(), layoutRect, &strFormat, (INT) count, pCharRangeRegions);
-
-      //plusplus::Region * pregion = NULL;
-
-
-      //if(count > 0)
-      //{
-
-      //   pregion = pCharRangeRegions[0].Clone();
-
-      //}
-
-      //for(i = 1; i < count; i++)
-      //{
-      //   pregion->Union(&pCharRangeRegions[i]);
-      //}
-
-      //delete [] pCharRangeRegions;
-
-      //if(pregion == NULL)
-      //   return false;
-
-      //plusplus::RectF rectBound;
-
-      //pregion->GetBounds(&rectBound, m_pgraphics);
-
-      //delete pregion;
-
-      //plusplus::SizeF sizef;
-
-      //rectBound.GetSize(&sizef);
-
-      //size.cx = sizef.Width * m_spfont->m_dFontWidth;
-
-      //size.cy = sizef.Height;
+      size.cy = s.cy;
 
       return true;
 
-
    }
+
 
    bool graphics::GetTextExtent(sized & size, const char * lpszString, strsize nCount) const
    {
 
-      //retry_single_lock slplusplus(&System.s_mutexplusplus, millis(1), millis(1));
+      ASSERT(get_handle1() != NULL);
 
-      //wstring wstr = ::str::international::utf8_to_unicode(lpszString, nCount);
+      set(m_spfont);
 
-      //plusplus::RectF box;
+      sp(font) pfont = m_spfont;
 
-      //plusplus::PointF origin(0, 0);
+      SIZE s;
 
-      //plusplus::StringFormat strFormat(plusplus::StringFormat::GenericTypographic());
+      wstring wstr = ::str::international::utf8_to_unicode(lpszString, nCount);
 
-      //strFormat.SetFormatFlags(strFormat.GetFormatFlags()
-      //                         | plusplus::StringFormatFlagsNoClip | plusplus::StringFormatFlagsMeasureTrailingSpaces
-      //                         | plusplus::StringFormatFlagsLineLimit | plusplus::StringFormatFlagsNoWrap);
-      //bool bOk = true;
+      if (!::GetTextExtentPoint32W(pfont->m_hdcFont, wstr, (int32_t)wstr.get_length(), &s))
+         return false;
 
-      //try
-      //{
-      //   if(m_pgraphics->MeasureString(wstr, (int32_t) wstr.get_length(), ((graphics *)this)->gl2d_font(), origin, &strFormat,  &box) != plusplus::Status::Ok)
-      //      bOk = false;
-      //}
-      //catch(...)
-      //{
-      //   bOk = false;
-      //}
+      size.cx = s.cx;
 
-      //if(!bOk)
-      //   return false;
-
-      //size.cx = box.Width * m_spfont->m_dFontWidth;
-
-      //size.cy = box.Height;
-
+      size.cy = s.cy;
+   
       return true;
 
    }
+
 
    bool graphics::GetTextExtent(sized & size, const string & str) const
    {
 
-      //if(m_pgraphics == NULL)
-      //   return false;
+      ASSERT(get_handle1() != NULL);
 
-      //wstring wstr = ::str::international::utf8_to_unicode(str);
+      set(m_spfont);
 
-      //plusplus::RectF box;
+      sp(font) pfont = m_spfont;
 
-      //plusplus::PointF origin(0, 0);
+      SIZE s;
 
+      wstring wstr = ::str::international::utf8_to_unicode(str);
 
-      //if(m_pgraphics == NULL)
-      //   return false;
+      if (::GetTextExtentPoint32W(pfont->m_hdcFont, wstr, (int32_t)wstr.get_length(), &s))
+         return false;
 
-      //bool bOk = true;
+      size.cx = s.cx;
 
-      //try
-      //{
-      //   if(m_pgraphics->MeasureString(wstr, (int32_t) wstr.get_length(), ((graphics *)this)->gl2d_font(), origin, &box) != plusplus::Status::Ok)
-      //      bOk = false;
-      //}
-      //catch(...)
-      //{
-      //   bOk = false;
-      //}
-
-      //if(!bOk)
-      //   return false;
-
-      //size.cx = box.Width * m_spfont->m_dFontWidth;
-
-      //size.cy = box.Height;
+      size.cy = s.cy;
 
       return true;
 
    }
-
-
-
-
 
 } // namespace draw2d_gl2d
 
@@ -4616,7 +4474,7 @@ namespace draw2d_gl2d
 
    }
 
-   void graphics::FillSolidRect(int32_t xParam, int32_t yParam, int32_t cxParam, int32_t cyParam, COLORREF clr)
+   void graphics::FillSolidRect(int32_t l, int32_t t, int32_t cx, int32_t cy, COLORREF clr)
    {
 
       try
@@ -4627,17 +4485,21 @@ namespace draw2d_gl2d
 
          ::size s = m_spbitmap.cast < bitmap>()->m_sizeOut;
 
-         float x = xParam;
-         float y = yParam;
-         float cx = cxParam;
-         float cy = cyParam;
+         if (s.area() <= 0)
+            return;
+
+         float r = l + cx;
+         float b = t + cy;
+
+         m_spbitmap.cast < bitmap>()->flash();
 
          glBegin(GL_QUADS);
          // Front Face
-         glTexCoord2f(x/ (float) s.cx, y / (float)s.cy); glVertex3f(-1.0f, -1.0f, 1.0f);
-         glTexCoord2f((x+cx) / (float)s.cx, y / (float)s.cy); glVertex3f(1.0f, -1.0f, 1.0f);
-         glTexCoord2f((x+cx) / (float)s.cx, (y+cy) / (float)s.cy); glVertex3f(1.0f, 1.0f, 1.0f);
-         glTexCoord2f(x / (float)s.cx, (y+cy) / (float)s.cy); glVertex3f(-1.0f, 1.0f, 1.0f);
+         glColor4f(argb_get_r_value(clr) / 255.f, argb_get_g_value(clr) / 255.f, argb_get_b_value(clr) / 255.f, argb_get_a_value(clr) / 255.f);						// Set Top Point Of Triangle To Red
+         glVertex2f(l, t);
+         glVertex2f(r, t);
+         glVertex2f(r, b);
+         glVertex2f(l, b);
          glEnd();
 
 
@@ -4703,149 +4565,76 @@ namespace draw2d_gl2d
       if (::draw2d::graphics::TextOut(x, y, lpszString, nCount))
          return true;
 
-//      ::plusplus::PointF origin(0, 0);
-//
-//      string str(lpszString, nCount);
-//
-//      wstring wstr = ::str::international::utf8_to_unicode(str);
-//
-//      try
-//      {
-//
-//         if(m_pgraphics == NULL)
-//            return FALSE;
-//
-////         m_pgraphics->SetCompositingMode(plusplus::CompositingModeSourceOver);
-////         m_pgraphics->SetTextRenderingHint(plusplus::TextRenderingHintAntiAlias);
-//
-//         switch(m_etextrendering)
-//         {
-//         case ::draw2d::text_rendering_anti_alias:
-//            m_pgraphics->SetCompositingMode(plusplus::CompositingModeSourceOver);
-//            m_pgraphics->SetTextRenderingHint(plusplus::TextRenderingHintAntiAlias);
-//            break;
-//         case ::draw2d::text_rendering_anti_alias_grid_fit:
-//            m_pgraphics->SetCompositingMode(plusplus::CompositingModeSourceOver);
-//            m_pgraphics->SetTextRenderingHint(plusplus::TextRenderingHintAntiAliasGridFit);
-//            break;
-//         case ::draw2d::text_rendering_single_bit_per_pixel:
-//            m_pgraphics->SetCompositingMode(plusplus::CompositingModeSourceOver);
-//            m_pgraphics->SetTextRenderingHint(plusplus::TextRenderingHintSingleBitPerPixel);
-//            break;
-//         case ::draw2d::text_rendering_clear_type_grid_fit:
-//            m_pgraphics->SetCompositingMode(plusplus::CompositingModeSourceOver);
-//            m_pgraphics->SetTextRenderingHint(plusplus::TextRenderingHintClearTypeGridFit);
-//            break;
-//         }
-//
-//      }
-//      catch(...)
-//      {
-//      }
-//
-//
-//      //
-//      //m_pgraphics->SetCompositingMode(plusplus::CompositingModeSourceOver);
-//      //m_pgraphics->SetTextRenderingHint(plusplus::TextRenderingHintAntiAliasGridFit);
-//      //m_pgraphics->SetTextRenderingHint(plusplus::TextRenderingHintClearTypeGridFit);
-//      //m_pgraphics->SetTextRenderingHint(plusplus::TextRenderingHintAntiAlias);
-//
-//
-//
-//      FLOAT fDpiX = m_pgraphics->GetDpiX();
-//
-//      plusplus::Matrix m;
-//      m_pgraphics->GetTransform(&m);
-//
-//      plusplus::Matrix * pmNew;
-//
-//      if(m_ppath != NULL)
-//      {
-//         pmNew = new plusplus::Matrix();
-//      }
-//      else
-//      {
-//         pmNew = m.Clone();
-//      }
-//
-//      pmNew->Translate((plusplus::REAL)  (x / m_spfont->m_dFontWidth), (plusplus::REAL) y);
-//      pmNew->Scale((plusplus::REAL) m_spfont->m_dFontWidth, (plusplus::REAL) 1.0, plusplus::MatrixOrderAppend);
-//
-//      plusplus::Status status;
-//
-//      plusplus::StringFormat format(plusplus::StringFormat::GenericTypographic());
-//
-//      format.SetFormatFlags(format.GetFormatFlags()
-//                            | plusplus::StringFormatFlagsNoClip | plusplus::StringFormatFlagsMeasureTrailingSpaces
-//                            | plusplus::StringFormatFlagsLineLimit | plusplus::StringFormatFlagsNoWrap
-//                            | plusplus::StringFormatFlagsNoFitBlackBox);
-//
-//
-//      format.SetLineAlignment(plusplus::StringAlignmentNear);
-//
-//      if(m_ppath != NULL)
-//      {
-//
-//         plusplus::GraphicsPath path;
-//
-//         plusplus::FontFamily fontfamily;
-//
-//         gl2d_font()->GetFamily(&fontfamily);
-//
-//         double d1 = gl2d_font()->GetSize() * m_pgraphics->GetDpiX() / 72.0;
-//         double d2 = fontfamily.GetEmHeight(gl2d_font()->GetStyle());
-//         double d3 = d1 * d2;
-//
-//         status = path.AddString(wstr,(INT) wstr.get_length(),&fontfamily,gl2d_font()->GetStyle(),(plusplus::REAL) d1,origin,&format);
-//
-//         path.Transform(pmNew);
-//
-//
-//         m_ppath->AddPath(&path, FALSE);
-//
-//      }
-//      else
-//      {
-//
-//         m_pgraphics->SetTransform(pmNew);
-//
-//         status = m_pgraphics->DrawString(wstr, (INT) wstr.get_length(), gl2d_font(), origin, &format, gl2d_brush());
-//
-//         m_pgraphics->SetTransform(&m);
-//
-//      }
-//
-//      delete pmNew;
-//
-//      return status  == plusplus::Status::Ok;
-//
+      set(m_spfont);
 
+      sp(font) pfont = m_spfont;
 
-return true;
+      int length = 0;
+
+      for (unsigned int loop = 0; loop < (strlen(lpszString)); loop++)	// Loop To Find Text Length
+      {
+
+         length += pfont->m_gmf[lpszString[loop]].gmfCellIncX;			// Increase Length By Each Characters Width
+
+      }
+
+      glTranslatef(x, y, 0.0f);					// Center Our Text On The Screen
+
+      glPushAttrib(GL_LIST_BIT);							// Pushes The Display List Bits
+      glListBase(pfont->m_baseFont);									// Sets The Base Character to 0
+      glCallLists(strlen(lpszString), GL_UNSIGNED_BYTE, lpszString);	// Draws The Display List Text
+      glPopAttrib();										// Pops The Display List Bits      }
+
+      glTranslatef(-x, -y, 0.0f);					// Center Our Text On The Screen
+
+      return true;
 
    }
 
+   
+   void graphics::set(::draw2d::pen * ppen)
+   {
+
+      glLineWidth(ppen->m_dWidth);
+      glColor4f(
+         argb_get_r_value(ppen->m_cr) / 255.f, 
+         argb_get_g_value(ppen->m_cr) / 255.f, 
+         argb_get_b_value(ppen->m_cr) / 255.f, 
+         argb_get_a_value(ppen->m_cr) / 255.f);	
+
+   }
+
+   void graphics::set(::draw2d::brush * pbrush)
+   {
+
+      glColor4f(
+         argb_get_r_value(pbrush->m_cr) / 255.f, 
+         argb_get_g_value(pbrush->m_cr) / 255.f,
+         argb_get_b_value(pbrush->m_cr) / 255.f,
+         argb_get_a_value(pbrush->m_cr) / 255.f);
+
+   }
+
+
+   void graphics::set(const ::draw2d::font * pfont) const 
+   {
+
+      pfont->get_os_data();
+
+   }
 
 
    bool graphics::LineTo(double x, double y)
    {
 
-   //   synch_lock sl(m_pmutex);
+      set(m_sppen);
 
-   //   if(m_sppen.cast < ::draw2d_gl2d::pen >()->m_egl2dalign != plusplus::PenAlignment::PenAlignmentCenter)
-   //   {
-
-   //      gl2d_pen()->SetAlignment(plusplus::PenAlignment::PenAlignmentCenter);
-
-   //      m_sppen.cast < ::draw2d_gl2d::pen >()->m_egl2dalign = plusplus::PenAlignment::PenAlignmentCenter;
-
-   //   }
-
-   //   m_pgraphics->DrawLine(gl2d_pen(), plusplus::PointF((plusplus::REAL) m_x, (plusplus::REAL)  m_y), plusplus::PointF((plusplus::REAL) x, (plusplus::REAL) y));
-
-   //   m_x = x;
-
-   //   m_y = y;
+      glBegin(GL_LINE);
+      glVertex2f(m_x, m_y);
+      glVertex2f(x, y);
+      glEnd();
+      m_x = x;
+      m_y = y;
 
       return TRUE;
 
@@ -4854,22 +4643,14 @@ return true;
    bool graphics::LineTo(int x,int y)
    {
 
-   //   synch_lock sl(m_pmutex);
+      set(m_sppen);
 
-   //   if(m_sppen.cast < ::draw2d_gl2d::pen >()->m_egl2dalign != plusplus::PenAlignment::PenAlignmentCenter)
-   //   {
-
-   //      gl2d_pen()->SetAlignment(plusplus::PenAlignment::PenAlignmentCenter);
-
-   //      m_sppen.cast < ::draw2d_gl2d::pen >()->m_egl2dalign = plusplus::PenAlignment::PenAlignmentCenter;
-
-   //   }
-
-   //   m_pgraphics->DrawLine(gl2d_pen(),plusplus::Point((INT) m_x,(INT) m_y),plusplus::Point((INT) x,(INT) y));
-
-   //   m_x = x;
-
-   //   m_y = y;
+      glBegin(GL_LINE);
+      glVertex2f(m_x, m_y);
+      glVertex2f(x, y);
+      glEnd();
+      m_x = x;
+      m_y = y;
 
       return TRUE;
 
@@ -4878,15 +4659,14 @@ return true;
    bool graphics::DrawLine(float x1, float y1, float x2, float y2, ::draw2d::pen * ppen)
    {
 
-      //synch_lock sl(m_pmutex);
+      set(m_sppen);
 
-      //((plusplus::Pen *) ppen->get_os_data())->SetAlignment(plusplus::PenAlignment::PenAlignmentCenter);
-
-      //m_pgraphics->DrawLine((plusplus::Pen *) ppen->get_os_data(), plusplus::PointF((plusplus::REAL) x1, (plusplus::REAL)  y1), plusplus::PointF((plusplus::REAL) x2, (plusplus::REAL) y2));
-
-      //m_x = x2;
-
-      //m_y = y2;
+      glBegin(GL_LINE);
+      glVertex2f(x1, y1);
+      glVertex2f(x2, y2);
+      glEnd();
+      m_x = x2;
+      m_y = y2;
 
       return TRUE;
 
@@ -4896,15 +4676,14 @@ return true;
    bool graphics::DrawLine(int32_t x1, int32_t y1, int32_t x2, int32_t y2, ::draw2d::pen * ppen)
    {
 
-      //synch_lock sl(m_pmutex);
+      set(m_sppen);
 
-      //((plusplus::Pen *) ppen->get_os_data())->SetAlignment(plusplus::PenAlignment::PenAlignmentCenter);
-
-      //m_pgraphics->DrawLine((plusplus::Pen *) ppen->get_os_data(), plusplus::Point(x1, y1), plusplus::Point(x2, y2));
-
-      //m_x = x2;
-
-      //m_y = y2;
+      glBegin(GL_LINE);
+      glVertex2f(x1, y1);
+      glVertex2f(x2, y2);
+      glEnd();
+      m_x = x2;
+      m_y = y2;
 
       return TRUE;
 
@@ -4961,15 +4740,17 @@ return true;
          //if(m_pgraphics == NULL)
          //   return;
 
-         //::draw2d::graphics::set_alpha_mode(ealphamode);
-         //if(m_ealphamode == ::draw2d::alpha_mode_blend)
-         //{
-         //   m_pgraphics->SetCompositingMode(plusplus::CompositingModeSourceOver);
-         //}
-         //else if(m_ealphamode == ::draw2d::alpha_mode_set)
-         //{
-         //   m_pgraphics->SetCompositingMode(plusplus::CompositingModeSourceCopy);
-         //}
+         ::draw2d::graphics::set_alpha_mode(ealphamode);
+         if(m_ealphamode == ::draw2d::alpha_mode_blend)
+         {
+            glEnable(GL_BLEND);
+            glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+         }
+         else if(m_ealphamode == ::draw2d::alpha_mode_set)
+         {
+            glEnable(GL_BLEND);
+            glBlendFunc(GL_ONE, GL_ZERO);
+         }
 
       }
       catch(...)
@@ -5293,7 +5074,6 @@ return true;
       return true;
 
    }
-
 
 
 } // namespace draw2d_gl2d

@@ -29,7 +29,7 @@ void command_thread::request_create(sp(::create) pcreate)
 void command_thread::command(::primitive::command * pcommand)
 {
 
-   m_pthread->post_thread_message(WM_APP + 1984, 49, pcommand);
+   m_pthread->post_thread_message(message_system, system_message_command, pcommand);
 
 }
 

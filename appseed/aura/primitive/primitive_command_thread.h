@@ -1,11 +1,28 @@
 #pragma once
 
 
+enum e_message
+{
+
+   message_system = WM_APP + 1984,
+
+};
+
+enum e_system_message
+{
+
+   system_message_command = 49,
+   system_message_user = 77,
+   system_message_meta = 51,
+   system_message_register_dependent_thread = 90,
+   system_message_unregister_dependent_thread = 91,
+
+};
+
 class CLASS_DECL_AURA command_thread :
    virtual public ::object
 {
 public:
-
 
    spa(::primitive::command)        m_ptraHistory; // accumulatted as command_thread history passes
    //spa(::primitive::command)        m_ptra; // pending commands to be run - command_thread does not "run" forks, let it's own thread/process run it

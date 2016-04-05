@@ -1,6 +1,6 @@
 #include "framework.h"
 
-
+WNDCLASSEX g_wcl = { 0 };
 namespace draw2d_gl2d
 {
 
@@ -8,6 +8,24 @@ namespace draw2d_gl2d
    factory_exchange::factory_exchange(::aura::application * papp) :
       object(papp)
    {
+
+      MSG msg = { 0 };
+      
+
+      g_wcl.cbSize = sizeof(g_wcl);
+      g_wcl.style = 0;
+      g_wcl.lpfnWndProc = WindowProc;
+      g_wcl.cbClsExtra = 0;
+      g_wcl.cbWndExtra = 0;
+      g_wcl.hInstance = ::GetModuleHandle("draw2d_gl2d.dll");
+      g_wcl.hIcon = NULL;
+      g_wcl.hCursor = NULL;
+      g_wcl.hbrBackground = 0;
+      g_wcl.lpszMenuName = 0;
+      g_wcl.lpszClassName = _T("GLLayeredWindowClass");
+      g_wcl.hIconSm = 0;
+
+      RegisterClassEx(&g_wcl);
 
       System.factory().cloneable_large < dib                   >  (System.type_info < ::draw2d::dib                  > ());
       System.factory().cloneable_large < graphics              >  (System.type_info < ::draw2d::graphics             > ());

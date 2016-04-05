@@ -4835,6 +4835,12 @@ error:
    }
 
 
+   bool dib::is_valid_update_window_thread()
+   {
+      return true;
+   }
+
+
 } // namespace draw2d
 
 

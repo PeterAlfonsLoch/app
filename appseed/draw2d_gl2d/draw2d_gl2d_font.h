@@ -11,7 +11,14 @@ namespace draw2d_gl2d
    public:
 
       
-      //plusplus::Font *   m_pfont;
+      HDC                           m_hdcFont;
+      HFONT                         m_hfont;
+      GLuint	                     m_baseFont;				// Base Display List For The Font Set
+
+#ifdef WINDOWS
+      GLYPHMETRICSFLOAT             m_gmf[256];	// Storage For Information About Our Outline Font Characters
+#endif
+
 
 
       font(::aura::application * papp);
@@ -19,7 +26,7 @@ namespace draw2d_gl2d
       virtual ~font();
 
 
-      //virtual void * get_os_data() const;
+      virtual void * get_os_data() const;
 
 
       virtual void construct(const ::draw2d::font & fontParam);

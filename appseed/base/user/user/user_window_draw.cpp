@@ -47,16 +47,6 @@ namespace user
 
       keep<bool> keepRender(&m_bRender, true, false, true);
 
-
-
-      //::user::interaction_spa wndpa(get_app());
-
-      //wndpa = get_wnda();
-
-      //rect rectWindow;
-
-      //rect rect9;
-
       ::user::oswindow_array wndaApp;
 
       ::user::interaction * pui = NULL;
