@@ -1,6 +1,2 @@
-app\stage\metastage\bergedge.spa
-app\stage\metastage\audio.spa
+app\stage\metastage\app-veriwell\asciimedia.spa
 stage\basis\app_veriwell_waven.dll
-stage\basis\audio_decode_spotify.dll
-stage\basis\multimedia_playlist_spotify.dll
-stage\basis\libspotify.dll
