@@ -25,22 +25,22 @@ stringa install_get_plugin_base_library_list(const string & strVersion)
    straFile.add("base.dll");
    straFile.add("draw2d_gdiplus.dll");
 
-   if(strVersion == "stage")
-   {
+   //if(strVersion == "stage")
+   //{
 
-      //straFile.add("ucrtbase.dll");
-      straFile.add("vcruntime140.dll");
-      straFile.add("vcomp140.dll");
+   //   //straFile.add("ucrtbase.dll");
+   //   straFile.add("vcruntime140.dll");
+   //   straFile.add("vcomp140.dll");
 
-   }
-   else
-   {
+   //}
+   //else
+   //{
 
-      //straFile.add("ucrtbased.dll");
-      straFile.add("vcruntime140d.dll");
-      straFile.add("vcomp140d.dll");
+   //   //straFile.add("ucrtbased.dll");
+   //   straFile.add("vcruntime140d.dll");
+   //   straFile.add("vcomp140d.dll");
 
-   }
+   //}
 
    return straFile;
 

@@ -57,6 +57,15 @@ namespace path
 
    }
 
+
+   ::file::path vcredist()
+   {
+
+      return ::dir::a_spa() / "vcredist.exe";
+
+   }
+
+
    ::file::path module(HMODULE hmodule)
    {
 #ifdef WINDOWSEX
