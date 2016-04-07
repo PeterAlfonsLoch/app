@@ -319,7 +319,7 @@ namespace user
             rect rectWindow;
             GetWindowRect(rectWindow);
             puiParent->ScreenToClient(rectWindow);
-            if(!pimplNew->create_window(NULL,strName,iStyle,rectWindow,puiParent,GetDlgCtrlId()))
+            if(!pimplNew->create_window(this, NULL,strName,iStyle,rectWindow,puiParent,GetDlgCtrlId()))
             {
                m_pimpl = pimplOld;
 
@@ -1441,7 +1441,8 @@ namespace user
                || GetParent() == System.m_posdata->m_pui
 #endif
             )
-               && !is_message_only_window())
+               && !is_message_only_window()
+            && (::user::interaction *) System.m_psystemwindow != this)
          {
 
 //            synch_lock slUser(m_pmutex);
@@ -2300,7 +2301,7 @@ namespace user
 
       //}
 
-      if(!m_pimpl->create_window(rect, pparent,id))
+      if(!m_pimpl->create_window(this, rect, pparent,id))
       {
          //m_threadptra.remove_all();
          m_pimpl.release();
@@ -2396,7 +2397,7 @@ namespace user
 
          m_pimpl = pimplNew;
 
-         if(!pimplNew->create_window(lpszClassName,lpszWindowName,dwStyle,rect,pParentWnd,id,pContext))
+         if(!pimplNew->create_window(this, lpszClassName,lpszWindowName,dwStyle,rect,pParentWnd,id,pContext))
          {
 
             m_pimpl.release();
@@ -2413,7 +2414,7 @@ namespace user
 
          pimplNew->m_pui = this;
 
-         if(!pimplNew->create_window(lpszClassName,lpszWindowName,dwStyle,rect,pParentWnd,id,pContext))
+         if(!pimplNew->create_window(this, lpszClassName,lpszWindowName,dwStyle,rect,pParentWnd,id,pContext))
          {
 
             pimplNew.release();
@@ -2535,7 +2536,7 @@ namespace user
          m_pimpl->m_pui = this;
          //oswindow window = m_pimpl->m_pui->get_handle();
          dwStyle &= ~WS_CHILD;
-         if(!m_pimpl->create_window_ex(dwExStyle,lpszClassName,lpszWindowName,dwStyle,rect,pParentWnd,id,lpParam))
+         if(!m_pimpl->create_window_ex(this, dwExStyle,lpszClassName,lpszWindowName,dwStyle,rect,pParentWnd,id,lpParam))
          {
 
             //m_threadptra.remove_all();
@@ -2579,7 +2580,7 @@ namespace user
 
          m_pimpl = canew(::user::interaction_child(get_app()));
          m_pimpl->m_pui = this;
-         if(!m_pimpl->create_window_ex(dwExStyle,lpszClassName,lpszWindowName,dwStyle,rectFrame,pParentWnd,id,lpParam))
+         if(!m_pimpl->create_window_ex(this, dwExStyle,lpszClassName,lpszWindowName,dwStyle,rectFrame,pParentWnd,id,lpParam))
          {
 
             //m_threadptra.remove_all();
@@ -4252,7 +4253,7 @@ ExitModal:
 
       //}
 
-      if(!m_pimpl->create_message_queue(pszName))
+      if(!m_pimpl->create_message_queue(this, pszName))
       {
 
          //m_threadptra.remove_all();

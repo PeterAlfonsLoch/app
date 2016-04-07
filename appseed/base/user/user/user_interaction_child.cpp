@@ -50,7 +50,7 @@ namespace user
    }
 
 
-   bool interaction_child::create_window_ex(uint32_t dwExStyle,const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,::user::interaction * pparent,id id,LPVOID lpParam)
+   bool interaction_child::create_window_ex(::user::interaction * pui, uint32_t dwExStyle,const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,::user::interaction * pparent,id id,LPVOID lpParam)
    {
 
       if(m_bCreate)
@@ -61,6 +61,8 @@ namespace user
       }
 
       m_bCreate = true;
+
+      m_pui = pui;
 
       m_pui->m_pimpl = this;
 
@@ -111,7 +113,7 @@ namespace user
    }
 
 
-   bool interaction_child::create_window(const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,::user::interaction *  pparent,id id,sp(::create) pContext)
+   bool interaction_child::create_window(::user::interaction * pui, const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,::user::interaction *  pparent,id id,sp(::create) pContext)
    {
 
       if(m_bCreate)
@@ -122,6 +124,8 @@ namespace user
       }
 
       m_bCreate = true;
+
+      m_pui = pui;
 
       m_pui->m_pimpl = this;
 
@@ -171,7 +175,7 @@ namespace user
    }
 
 
-   bool interaction_child::create_window(const RECT & rect, ::user::interaction * pparent,id id)
+   bool interaction_child::create_window(::user::interaction * pui, const RECT & rect, ::user::interaction * pparent,id id)
    {
 
       if(m_bCreate)
@@ -182,6 +186,8 @@ namespace user
       }
 
       m_bCreate         = true;
+
+      m_pui = pui;
 
       m_pui->m_pimpl    = this;
 

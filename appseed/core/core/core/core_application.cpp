@@ -3802,33 +3802,54 @@ namespace core
    string application::get_cred(const string & strRequestUrl, const RECT & rect, string & strUsername, string & strPassword, string strToken, string strTitle, bool bInteractive)
    {
 
-      string str = ::fontopus::get_cred(this, strUsername, strPassword, strToken);
+      string strRet;
 
-      if (str == "ok" && strUsername.has_char() && strPassword.has_char())
-         return "ok";
+      manual_reset_event ev(this);
 
-      if (!bInteractive)
-         return "failed";
-
-
-      if (m_pmainpane != NULL && m_pmainpane == NULL)
+      ::fork(this, [&]()
       {
+         
+         attach_thread_input_to_main_thread(true);
 
-         try
+         string str = ::fontopus::get_cred(this, strUsername, strPassword, strToken);
+
+         if (str == "ok" && strUsername.has_char() && strPassword.has_char())
+            return "ok";
+
+         if (!bInteractive)
+            return "failed";
+
+
+         if (m_pmainpane != NULL && m_pmainpane == NULL)
          {
 
-            return m_pmainpane->get_cred(strRequestUrl, rect, strUsername, strPassword, strToken, strTitle, bInteractive);
+            try
+            {
+
+               strRet = m_pmainpane->get_cred(strRequestUrl, rect, strUsername, strPassword, strToken, strTitle, bInteractive);
+
+               goto finished;
+
+            }
+            catch (...)
+            {
+
+
+            }
 
          }
-         catch (...)
-         {
 
+         strRet = ::base::application::get_cred(strRequestUrl, rect, strUsername, strPassword, strToken, strTitle, bInteractive);
 
-         }
+      finished:
 
-      }
+         ev.SetEvent();
 
-      return ::base::application::get_cred(strRequestUrl, rect, strUsername, strPassword, strToken, strTitle, bInteractive);
+      });
+      
+      ev.wait();
+
+      return strRet;
 
    }
 

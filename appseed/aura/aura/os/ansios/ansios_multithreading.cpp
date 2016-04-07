@@ -828,51 +828,6 @@ int32_t WINAPI GetThreadPriority(HTHREAD  hthread)
 //
 //}
 //
-//uint32_t os_thread::run()
-//{
-//
-//   synch_lock mlThreadHandle(g_pmutexThreadHandleLock);
-//
-//   currentThread =  m_hthread;
-//
-//   mlThreadHandle.unlock();
-//
-//   synch_lock mlThreadId(g_pmutexThreadIdLock);
-//
-//   currentThreadId =  thread_id_map()[currentThread];
-//
-//   mlThreadId.unlock();
-//
-//   mlThreadHandle.unlock();
-//
-//   // Run the user callback.
-//   //attach_thread_input_to_main_thread();
-//
-//   DWORD dwRet = 0xffffffff;
-//
-//   try
-//   {
-//
-//      dwRet = m_pfn(m_pv);
-//
-//   }
-//   catch(...)
-//   {
-//
-//   }
-//
-//   // Clean up any TLS allocations made by this thread.
-//   TlsShutdown();
-//
-//   // Signal that the thread has completed.
-//   currentThread->m_pevent->set_event();
-//
-//   currentThread->release();
-//
-//   return dwRet;
-//
-//}
-//
 //
 //HTHREAD start_thread(DWORD(WINAPI * pfn)(LPVOID),LPVOID pv,int32_t iPriority)
 //{

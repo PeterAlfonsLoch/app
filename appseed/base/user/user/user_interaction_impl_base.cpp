@@ -25,6 +25,44 @@ namespace user
 
    }
 
+   bool interaction_impl_base::create_message_queue(::user::interaction * pui, const char * pszName)
+   {
+
+      ::exception::throw_interface_only(get_app());
+
+      return true;
+
+   }
+
+
+   bool interaction_impl_base::create_window(::user::interaction * pui, const RECT & rect, ::user::interaction *pparent, id id)
+   {
+
+      ::exception::throw_interface_only(get_app());
+
+      return true;
+
+   }
+
+
+   bool interaction_impl_base::create_window(::user::interaction * pui, const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle, const RECT & rect, ::user::interaction * pParentWnd, id id, sp(::create) pContext)
+   {
+
+      ::exception::throw_interface_only(get_app());
+
+      return false;
+
+   }
+
+
+   bool interaction_impl_base::create_window_ex(::user::interaction * pui, uint32_t dwExStyle, const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle, const RECT & rect, ::user::interaction * pParentWnd, id id, LPVOID lpParam)
+   {
+
+      ::exception::throw_interface_only(get_app());
+
+      return true;
+
+   }
 
    ::user::interaction_impl * interaction_impl_base::get_user_interaction_impl()
    {

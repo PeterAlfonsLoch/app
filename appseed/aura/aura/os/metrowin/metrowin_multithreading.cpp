@@ -584,33 +584,6 @@ WorkItemPriority GetWorkItemPriority(int nPriority)
 
 
 
-//uint32_t thread_proc_create_thread(void * lpparameter)
-//{
-//
-//   os_thread * posthread = (os_thread *) lpparameter;
-//
-//
-//   attach_thread_input_to_main_thread(true);
-//
-//   DWORD dwRet = 0xffffffff;
-//
-//   try
-//   {
-//
-//      dwRet = posthread->m_pfn(posthread->m_pv);
-//
-//   }
-//   catch(...)
-//   {
-//   }
-//
-//
-//   delete posthread;
-//
-//   return dwRet;
-//
-//}
-
 
 HTHREAD start_thread(uint32_t ( * pfn)(void *), void * pv, int iPriority)
 {

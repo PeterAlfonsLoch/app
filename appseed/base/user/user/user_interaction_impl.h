@@ -97,7 +97,7 @@ namespace user
       virtual void clear_need_layout();
       virtual void set_need_layout();
 
-      virtual bool create_message_queue(const char * pszName);
+      virtual bool create_message_queue(::user::interaction * pui, const char * pszName);
 
 #if defined(METROWIN) || defined(APPLE_IOS) || defined(ANDROID)
       virtual bool initialize(::user::native_window_initialize * pinitialize) = 0;
@@ -158,9 +158,9 @@ namespace user
       using ::user::interaction_base::create_window;
       using ::user::interaction_base::create_window_ex;
       // for child windows, views, panes etc
-      virtual bool create_window(const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,::user::interaction * pParentWnd,id id,sp(::create) pContext = NULL);
+      virtual bool create_window(::user::interaction * pui, const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,::user::interaction * pParentWnd,id id,sp(::create) pContext = NULL);
 
-      virtual bool create_window_ex(uint32_t dwExStyle,const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,::user::interaction * pParentWnd,id id,LPVOID lpParam = NULL);
+      virtual bool create_window_ex(::user::interaction * pui, uint32_t dwExStyle,const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,::user::interaction * pParentWnd,id id,LPVOID lpParam = NULL);
 
       virtual bool DestroyWindow();
 
