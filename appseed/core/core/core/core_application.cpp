@@ -3809,16 +3809,25 @@ namespace core
       ::fork(this, [&]()
       {
          
-         attach_thread_input_to_main_thread(true);
-
          string str = ::fontopus::get_cred(this, strUsername, strPassword, strToken);
 
          if (str == "ok" && strUsername.has_char() && strPassword.has_char())
-            return "ok";
+         {
+
+            strRet = "ok";
+
+            goto finished;
+
+         }
 
          if (!bInteractive)
-            return "failed";
+         {
 
+            str = "failed";
+
+            goto finished;
+
+         }
 
          if (m_pmainpane != NULL && m_pmainpane == NULL)
          {
@@ -3834,10 +3843,11 @@ namespace core
             catch (...)
             {
 
-
             }
 
          }
+
+         attach_thread_input_to_main_thread(false);
 
          strRet = ::base::application::get_cred(strRequestUrl, rect, strUsername, strPassword, strToken, strTitle, bInteractive);
 
