@@ -1743,7 +1743,7 @@ namespace base
    //         else
    //         {
    //
-   //            strRequestUrl = "https://fontopus.com/";
+   //            strRequestUrl = "https://account.ca2.cc/";
    //
    //         }
    //
@@ -2026,7 +2026,7 @@ namespace base
          else
          {
 
-            strRequestUrl = "https://fontopus.com/";
+            strRequestUrl = "https://account.ca2.cc/";
 
          }
 

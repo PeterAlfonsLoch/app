@@ -442,7 +442,7 @@ namespace fontopus
    //   return 0;
 
    //   login_thread thread(papp);
-   //   thread.m_strRequestingServer = "fontopus.com";
+   //   thread.m_strRequestingServer = "account.ca2.cc";
    //   thread.m_strUsername = "";
    //   thread.m_strPassword = "";
    //   thread.run();

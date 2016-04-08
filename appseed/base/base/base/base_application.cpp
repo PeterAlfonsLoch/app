@@ -2160,7 +2160,7 @@ namespace base
 
          }
 
-         strRequestUrl = "https://fontopus.com/";
+         strRequestUrl = "https://account.ca2.cc/";
 
       }
 

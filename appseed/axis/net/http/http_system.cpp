@@ -109,12 +109,12 @@ namespace http
 
       string strHost = Application.file().as_string(System.dir().appdata()/"database\\text\\last_good_known_fontopus_com.txt");
       stringa straRequestingServer;
-      straRequestingServer.add("fontopus.com");
-      //straRequestingServer.add("eu-fontopus.com");
-      //straRequestingServer.add("asia-fontopus.com");
+      straRequestingServer.add("account.ca2.cc");
+      //straRequestingServer.add("eu-account.ca2.cc");
+      //straRequestingServer.add("asia-account.ca2.cc");
       if(!straRequestingServer.contains_ci(strHost))
       {
-         strHost = "fontopus.com";
+         strHost = "account.ca2.cc";
       }
 
       straRequestingServer.remove(strHost);
@@ -1316,7 +1316,7 @@ retry:
                   if (::str::ends_eat_ci(str1, "-account.ca2.cc") && strIp.has_char())
                   {
 
-                     str1 = str1 + ".fontopus.com";
+                     str1 = str1 + ".account.ca2.cc";
 
                      ::net::address ad1(str1);
 
@@ -1371,7 +1371,7 @@ retry:
          strUrl = System.url().set_script(strUrl, strScript);
       }
 
-      if (strUrl.find_ci("://fontopus.com/") > 0 && Session.fontopus()->m_strBestFontopusServerIp.has_char())
+      if (strUrl.find_ci("://account.ca2.cc/") > 0 && Session.fontopus()->m_strBestFontopusServerIp.has_char())
       {
          
          strIp = Session.fontopus()->m_strBestFontopusServerIp;

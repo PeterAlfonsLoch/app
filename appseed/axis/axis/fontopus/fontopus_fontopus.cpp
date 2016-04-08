@@ -433,7 +433,7 @@ namespace fontopus
    string fontopus::get_server(const char * pszUrl,int32_t iRetry)
    {
 
-      //return "fontopus.com";
+      //return "account.ca2.cc";
 
 
 
@@ -450,9 +450,9 @@ namespace fontopus
 
       string strFontopusServer;
 
-      if(strHost == "fontopus.com")
+      if(strHost == "account.ca2.cc")
       {
-         strFontopusServer = "fontopus.com";
+         strFontopusServer = "account.ca2.cc";
       }
       else
       {
@@ -545,7 +545,7 @@ namespace fontopus
       if(strSessId.is_empty())
          goto retry;
 
-      if(strHost != "fontopus.com")
+      if(strHost != "account.ca2.cc")
       {
 
          strFontopusServer = doc.get_root()->attr("fontopus_server");
@@ -677,8 +677,8 @@ namespace fontopus
       if(domainFontopus.m_strRadix != "ca2" && domainFontopus.m_strRadix != "fontopus")
          return "";
 
-      if(strRequestingServer == "fontopus.com")
-         return "fontopus.com";
+      if(strRequestingServer == "account.ca2.cc")
+         return "account.ca2.cc";
 
       DWORD dwGetFontopusEnd = ::get_tick_count();
 
