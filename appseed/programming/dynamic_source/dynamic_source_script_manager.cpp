@@ -1198,7 +1198,7 @@ bool script_manager::extract_image_size(const ::file::path & strFile,::size * ps
 bool script_manager::should_build(const ::file::path & strScriptPath)
 {
 
-   UNREFERENCED_PARAMETER(strScriptPath);
+   single_lock sl(&m_mutexIncludeHasScript, TRUE);
 
    if(m_mapIncludeHasScript[strScriptPath])
       return false;
