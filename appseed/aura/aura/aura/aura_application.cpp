@@ -1582,23 +1582,31 @@ namespace aura
    int32_t application::run()
    {
 
-      if(command()->m_varTopicQuery.has_property("service"))
+      if (!is_system() && !is_session())
       {
-         create_new_service();
-         ::service_base::serve(*m_pservice);
-      }
-      else if(command()->m_varTopicQuery.has_property("run") || is_serviceable())
-      {
-         create_new_service();
-         m_pservice->Start(0);
-         return ::thread::run();
-      }
-      else
-      {
-         return ::thread::run();
+         
+         if (command()->m_varTopicQuery.has_property("service"))
+         {
+            
+            create_new_service();
+
+            ::service_base::serve(*m_pservice);
+
+         }
+         else if (command()->m_varTopicQuery.has_property("run") || is_serviceable())
+         {
+
+            create_new_service();
+
+            m_pservice->Start(0);
+
+            return ::thread::run();
+
+         }
+
       }
 
-      return 0;
+      return ::thread::run();
 
    }
 
