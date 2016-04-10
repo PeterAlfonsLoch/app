@@ -7142,33 +7142,16 @@ restart:
 
       string str;
 
-      ::user::interaction * puiParent = GetParent();
-
-#if defined(APPLE_IOS) || defined(VSNORD) || defined(METROWIN)
-      if(puiParent != NULL && puiParent != System.m_posdata->m_pui)
-#else
-      if(puiParent != NULL)
-#endif
+      if(Application.m_dataid.m_id.is_empty())
       {
 
-         str = puiParent->calc_data_id();
+         str = Application.m_strAppId;
 
       }
       else
       {
 
-         if(Application.m_dataid.m_id.is_empty())
-         {
-
-            str = Application.m_strAppId;
-
-         }
-         else
-         {
-
-            str = Application.m_dataid.m_id;
-
-         }
+         str = Application.m_dataid.m_id;
 
       }
 
