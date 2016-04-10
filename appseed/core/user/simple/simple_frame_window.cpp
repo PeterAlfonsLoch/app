@@ -2442,8 +2442,7 @@ void simple_frame_window::OnNotifyIconLButtonDblClk(UINT uiNotifyIcon)
 
 void simple_frame_window::OnNotifyIconLButtonDown(UINT uiNotifyIcon)
 {
-   ShowWindow(SW_SHOW);
-   WfiRestore(true);
+   InitialFramePosition(true);
    UNREFERENCED_PARAMETER(uiNotifyIcon);
 }
 
