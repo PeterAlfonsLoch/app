@@ -21,6 +21,7 @@ namespace user
 
       menu_base();
       menu_base(::aura::application * papp);
+      menu_base(::aura::application * papp, menu_base_item * pitem);
       virtual ~menu_base();
 
 

@@ -25,16 +25,18 @@ namespace visual
       ::object(papp)
    {
 
-      m_picon        = NULL;
-      m_bAutoDelete  = true;
+      m_picon = NULL;
+      m_bAutoDelete = true;
 
    }
 
    icon::icon(void * picon)
    {
+      
+      set_app(::get_thread_app());
 
-      m_picon        = picon;
-      m_bAutoDelete  = true;
+      m_picon = picon;
+      m_bAutoDelete = true;
 
       on_update_icon();
 
@@ -45,8 +47,10 @@ namespace visual
    icon::icon(HICON hicon)
    {
 
-      m_picon        = hicon;
-      m_bAutoDelete  = true;
+      set_app(::get_thread_app());
+
+      m_picon = hicon;
+      m_bAutoDelete = true;
 
       on_update_icon();
 
@@ -57,15 +61,15 @@ namespace visual
    icon::~icon()
    {
 
-      if(m_bAutoDelete)
+      if (m_bAutoDelete)
       {
 
-         if(m_picon != NULL)
+         if (m_picon != NULL)
          {
 
 #ifdef WINDOWSEX
 
-            ::DestroyIcon((HICON) m_picon);
+            ::DestroyIcon((HICON)m_picon);
 
 #else
 
@@ -92,7 +96,7 @@ namespace visual
    icon::operator HICON()
    {
 
-      return (HICON) m_picon;
+      return (HICON)m_picon;
 
    }
 
@@ -129,7 +133,7 @@ namespace visual
 
    void icon::on_update_icon()
    {
-      
+
       if (m_picon == NULL)
       {
 
@@ -142,7 +146,7 @@ namespace visual
 
 #ifdef WINDOWSEX
 
-      auto info = MyGetIconInfo((HICON) m_picon);
+      auto info = MyGetIconInfo((HICON)m_picon);
 
       m_size.cx = info.nWidth;
       m_size.cy = info.nHeight;
@@ -169,6 +173,164 @@ namespace visual
       return m_size;
 
    }
+
+
+   ::draw2d::dib * icon::get_dib(int cx, int cy)
+   {
+
+      ::draw2d::dib_sp & dib = m_dibmap[size(cx, cy)];
+
+      if (dib.is_set() && dib->area() == size(cx, cy).area())
+      {
+
+         return dib;
+
+      }
+
+      dib.alloc(allocer());
+
+      if (dib.is_null())
+         return NULL;
+
+      if (!dib->create(cx, cy))
+         return NULL;
+
+
+      bool bOk = false;
+
+      HBITMAP hbitmap = NULL;
+
+      HDC hdc = NULL;
+
+      HBITMAP hbitmapOld = NULL;
+
+      try
+      {
+
+         BITMAPINFO info;
+         COLORREF * pcolorref;
+
+         ZeroMemory(&info, sizeof(BITMAPINFO));
+
+         info.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
+         info.bmiHeader.biWidth = cx;
+         info.bmiHeader.biHeight = -cy;
+         info.bmiHeader.biPlanes = 1;
+         info.bmiHeader.biBitCount = 32;
+         info.bmiHeader.biCompression = BI_RGB;
+         info.bmiHeader.biSizeImage = cx * cy * 4;
+
+         hbitmap = ::CreateDIBSection(NULL, &info, DIB_RGB_COLORS, (void **)&pcolorref, NULL, 0);
+
+         hdc = ::CreateCompatibleDC(NULL);
+
+         hbitmapOld = (HBITMAP) ::SelectObject(hdc, hbitmap);
+
+         ICONINFO ii;
+         BITMAPINFO biC;
+         BITMAPINFO biM;
+
+         ZERO(biC);
+         ZERO(biM);
+
+         if (::GetIconInfo((HICON)m_picon, &ii))
+         {
+
+            ::GetObject(ii.hbmColor, sizeof(biC), (LPVOID)&biC);
+
+            ::GetObject(ii.hbmMask, sizeof(biM), (LPVOID)&biM);
+
+         }
+
+         if (!::DrawIconEx(hdc, 0, 0, (HICON)m_picon, cx, cy, 0, NULL, DI_IMAGE | DI_MASK))
+         {
+
+            output_debug_string("nok");
+         }
+         else
+         {
+
+            bool bAllZeroAlpha = true;
+            bool bTheresUint32 = false;
+
+            int area = cx * cy;
+
+            COLORREF * pc = pcolorref;
+            BYTE * pA = &((BYTE *)pcolorref)[3];
+
+            for (int i = 0; i < area; i++)
+            {
+               if (*pc != 0)
+               {
+                  bTheresUint32 = true;
+               }
+               if (*pA != 0)
+               {
+                  bAllZeroAlpha = false;
+                  break;
+               }
+               pc++;
+               pA += 4;
+            }
+
+            if (bAllZeroAlpha && bTheresUint32)
+            {
+
+               pc = pcolorref;
+               pA = &((BYTE *)pcolorref)[3];
+
+               for (int i = 0; i < area; i++)
+               {
+                  if (*pc != 0)
+                  {
+                     *pA = 255;
+                  }
+                  pc++;
+                  pA += 4;
+               }
+            }
+
+            ::SelectObject(hdc, hbitmapOld);
+
+            ::draw2d::copy_colorref(cx, cy, dib->m_pcolorref, dib->m_iScan, pcolorref, cx * sizeof(COLORREF));
+
+         }
+
+      }
+      catch (...)
+      {
+
+         output_debug_string("!");
+
+      }
+
+      if (hdc != NULL)
+      {
+
+         if (hbitmapOld != NULL)
+         {
+
+            ::SelectObject(hdc, hbitmapOld);
+
+         }
+
+         ::DeleteDC(hdc);
+
+      }
+
+      if (hbitmap != NULL)
+      {
+
+         ::DeleteObject(hbitmap);
+
+      }
+
+      return dib;
+
+
+   }
+
+
 
 
 } // namespace visual

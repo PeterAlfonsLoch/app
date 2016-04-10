@@ -19,3 +19,18 @@ public:
 
 
 };
+
+
+class CLASS_DECL_AURA index_out_of_bounds :
+   virtual public error_exception
+{
+   // aura class for resource-critical core API exceptions
+   // handles ownership and initialization of an error message
+public:
+
+
+   index_out_of_bounds(::aura::application * papp, const char * pszError = NULL);
+   virtual ~index_out_of_bounds();
+
+
+};

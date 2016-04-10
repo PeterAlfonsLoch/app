@@ -15,6 +15,7 @@ namespace visual
       bool        m_bAutoDelete;
       string      m_strAppTrayIcon;
       size        m_size;
+      map < size, size, ::draw2d::dib_sp, ::draw2d::dib_sp> m_dibmap;
 
       icon(::aura::application * papp);
       icon(void * picon);
@@ -34,6 +35,8 @@ namespace visual
       ::size get_size();
 
       virtual void on_update_icon();
+
+      ::draw2d::dib * get_dib(int cx, int cy);
 
    };
 

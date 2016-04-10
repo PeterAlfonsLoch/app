@@ -18,7 +18,7 @@ namespace user
    menu_item::~menu_item()
    {
 
-      //m_button.DestroyWindow();
+      m_button.DestroyWindow();
 
    }
 

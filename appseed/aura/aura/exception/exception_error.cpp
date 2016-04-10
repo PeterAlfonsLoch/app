@@ -32,3 +32,35 @@ bool error_exception::get_error_message(string & str,PUINT pnHelpContext)
    return TRUE;
 }
 
+
+
+//#include "framework.h"
+
+
+index_out_of_bounds::index_out_of_bounds(::aura::application * papp, const char * pszError) :
+   object(papp),
+   ::call_stack(papp),
+   ::exception::base(papp),
+   error_exception(papp, pszError)
+{
+
+   if (pszError == NULL)
+   {
+
+      debug_print(":index_out_of_bounds(NULL)");
+
+   }
+   else
+   {
+
+      debug_print(":index_out_of_bounds(\"%s\")", pszError);
+
+   }
+
+}
+
+
+index_out_of_bounds::~index_out_of_bounds()
+{
+
+}

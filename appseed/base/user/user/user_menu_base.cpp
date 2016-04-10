@@ -22,6 +22,15 @@ namespace user
    }
 
 
+   menu_base::menu_base(::aura::application * papp, menu_base_item * pitem) :
+      ::object(papp)
+   {
+
+      m_pitem = pitem;
+
+   }
+
+
    menu_base::~menu_base()
    {
 

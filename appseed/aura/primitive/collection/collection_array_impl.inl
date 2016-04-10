@@ -162,13 +162,15 @@ inline void array < TYPE, ARG_TYPE, ALLOCATOR > ::set_at(index nIndex, ARG_TYPE 
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 inline const TYPE& array < TYPE, ARG_TYPE, ALLOCATOR > ::element_at(index nIndex) const
 {
-   ASSERT(nIndex >= 0 && nIndex < this->m_nSize);
+   if (nIndex < 0 && nIndex >= this->m_nSize)
+      throw index_out_of_bounds(get_app());
    return get_data()[nIndex];
 }
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 inline TYPE& array < TYPE, ARG_TYPE, ALLOCATOR > ::element_at(index nIndex)
 {
-   ASSERT(nIndex >= 0 && nIndex < this->m_nSize);
+   if (nIndex < 0 && nIndex >= this->m_nSize)
+      throw index_out_of_bounds(get_app());
    return get_data()[nIndex];
 }
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >

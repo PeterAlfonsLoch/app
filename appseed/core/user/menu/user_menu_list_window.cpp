@@ -25,7 +25,6 @@ namespace user
       m_bAutoDelete        = true;
       m_bOwnItem           = false;
       m_puiNotify         = NULL;
-      m_pitem              = new menu_item(papp);
       m_pschema            = NULL;
       m_bAutoClose         = true;
 
@@ -34,7 +33,7 @@ namespace user
 
    menu_list_window::menu_list_window(::aura::application * papp, sp(menu_item) pitem) :
       object(papp),
-      menu_base(papp),
+      menu_base(papp, pitem),
       menu(papp),
       m_buttonClose(papp)
    {
@@ -43,7 +42,6 @@ namespace user
       m_bAutoClose         = true;
       m_bAutoDelete        = true;
       m_pschema            = NULL;
-      m_pitem              = pitem;
       m_bOwnItem           = false;
 
    }
