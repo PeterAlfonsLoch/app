@@ -1708,6 +1708,8 @@ int32_t var::int32(int32_t iDefault) const
       return iDefault;
    case type_string:
       return atoi(m_str);
+   case type_double:
+      return (int32_t) m_d;
    case type_int32:
       return m_i32;
    case type_uint32:
