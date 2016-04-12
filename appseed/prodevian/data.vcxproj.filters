@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Header Files\math">
+      <UniqueIdentifier>{ea69b92a-78e5-4384-a578-f69e1f88c3e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\simpledb">
+      <UniqueIdentifier>{1bf96c34-20d7-4e87-ad01-f490f89f929d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\simpledb">
+      <UniqueIdentifier>{33c31b31-c43c-4307-9c28-64b0c0db9d6c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="framework.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="simpledb\mysql_database.h">
+      <Filter>Header Files\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="simpledb\mysql_result.h">
+      <Filter>Header Files\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="data\data.h">
+      <Filter>Header Files\math</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="framework.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="simpledb\simpledb_mysql_database.cpp">
+      <Filter>Source Files\simpledb</Filter>
+    </ClCompile>
+    <ClCompile Include="simpledb\simpledb_mysql_result.cpp">
+      <Filter>Source Files\simpledb</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="data.def">
+      <Filter>Source Files</Filter>
+    </None>
+  </ItemGroup>
+</Project>
