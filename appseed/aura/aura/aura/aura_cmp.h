@@ -53,7 +53,7 @@ class reference_wrapper;
 
 
 template < typename TYPE >
-void swap(const TYPE & t1,const TYPE & t2)
+void swap(TYPE & t1,TYPE & t2)
 {
 
    TYPE t = t1;

@@ -300,6 +300,27 @@ int32_t image_list::add_file(const char * lpcsz)
    return iItem;
 }
 
+int32_t image_list::add_dib(::draw2d::dib * pdib, int x, int y)
+{
+
+   int32_t iItem = m_iSize;
+   if (iItem >= _get_alloc_count())
+   {
+      _grow();
+   }
+
+   m_spdib->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
+
+   m_spdib->get_graphics()->FillSolidRect(iItem * m_size.cx, 0, m_size.cx, m_size.cy, ARGB(0, 0, 0, 0));
+
+   m_spdib->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_blend);
+
+   m_spdib->get_graphics()->BitBlt(iItem * m_size.cx, 0, m_size.cx, m_size.cy, pdib->get_graphics(), x, y, SRCCOPY);
+
+   m_iSize++;
+   return iItem;
+}
+
 int32_t image_list::add_matter(const char * lpcsz, ::aura::application * papp)
 {
    if(papp == NULL)

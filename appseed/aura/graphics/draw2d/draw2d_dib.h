@@ -240,6 +240,8 @@ namespace draw2d
       virtual void nanosvg(NSVGimage * pimage);
       virtual void nanosvg(string str);
 
+      virtual bool op(string str);
+
       //virtual void from( dib *dib );
 
       virtual void Blend ( dib *dib, int32_t A );

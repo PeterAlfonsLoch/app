@@ -1495,6 +1495,33 @@ namespace draw2d
       return true;
    }
 
+   bool dib::op(string str)
+   {
+
+      if (str == "horz-swap")
+      {
+
+         // half width
+         int hx = m_size.cx / 2;
+         // aligned scan
+         int as = m_iScan / sizeof(COLORREF);
+
+         for (index i = 0; i < m_size.cy; i++)
+         {
+            for (index j = 0; j < hx; j++)
+            {
+               swap(m_pcolorref[i * as + j], m_pcolorref[i * as + m_size.cx - j]);
+            }
+         }
+
+         return true;
+      }
+
+
+      return false;
+
+   }
+
 
    void dib::Blend(dib * dib, int32_t A)
    {

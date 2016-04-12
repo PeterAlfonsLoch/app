@@ -44,6 +44,7 @@ public:
 
    int32_t add(::visual::icon * picon);
    int32_t add_icon(const char * lpcsz);
+   int32_t add_dib(::draw2d::dib * pdib, int x, int y);
    int32_t add_icon_os_data(void * pvoid);
    int32_t add_matter_icon(const char * lpcszMatter);
    int32_t add_file(const char * lpcsz);

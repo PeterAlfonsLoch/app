@@ -4,13 +4,21 @@
 namespace aura
 {
 
-
-   class CLASS_DECL_AURA draw_interface
+   class CLASS_DECL_AURA drawable:
+      virtual public ::object
    {
    public:
 
 
       virtual void _001OnDraw(::draw2d::dib * pdib);
+
+   };
+
+   class CLASS_DECL_AURA draw_interface :
+      virtual public drawable
+   {
+   public:
+
 
       virtual void _000OnDraw(::draw2d::dib * pdib) = 0;
 

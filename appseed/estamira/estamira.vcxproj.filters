@@ -9,43 +9,43 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
-    <Filter Include="Header Files\math">
-      <UniqueIdentifier>{ea69b92a-78e5-4384-a578-f69e1f88c3e6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\simpledb">
-      <UniqueIdentifier>{1bf96c34-20d7-4e87-ad01-f490f89f929d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\simpledb">
-      <UniqueIdentifier>{33c31b31-c43c-4307-9c28-64b0c0db9d6c}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="simpledb\mysql_database.h">
-      <Filter>Header Files\simpledb</Filter>
+    <ClInclude Include="estamira.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="simpledb\mysql_result.h">
-      <Filter>Header Files\simpledb</Filter>
+    <ClInclude Include="estamira_tileset.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="data\data.h">
-      <Filter>Header Files\math</Filter>
+    <ClInclude Include="estamira_character.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="estamira_game.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="simpledb\simpledb_mysql_database.cpp">
-      <Filter>Source Files\simpledb</Filter>
+    <ClCompile Include="estamira.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="simpledb\simpledb_mysql_result.cpp">
-      <Filter>Source Files\simpledb</Filter>
+    <ClCompile Include="estamira_tileset.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="estamira_character.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="estamira_game.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="data.def">
+    <None Include="estamira.def">
       <Filter>Source Files</Filter>
     </None>
   </ItemGroup>

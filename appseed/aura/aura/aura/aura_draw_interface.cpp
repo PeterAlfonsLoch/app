@@ -5,7 +5,7 @@ namespace aura
 {
 
 
-   void draw_interface::_001OnDraw(::draw2d::dib * pdib)
+   void drawable::_001OnDraw(::draw2d::dib * pdib)
    {
 
       UNREFERENCED_PARAMETER(pdib);
