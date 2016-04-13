@@ -312,7 +312,7 @@ bool thread::send_thread_message(UINT message,WPARAM wParam,lparam lParam, ::dur
    pmessage->m_message.lParam = lParam;
    pmessage->m_bOk = false;
 
-   post_thread_message(WM_APP + 1984,51, (LPARAM) (uint_ptr) (object *) pmessage.m_p);
+   post_thread_message(message_system,system_message_meta, (LPARAM) (uint_ptr) (object *) pmessage.m_p);
 
    while(defer_pump_message())
    {
@@ -707,7 +707,7 @@ void thread::Delete()
 void thread::register_dependent_thread(::thread * pthreadDependent)
 {
 
-   //post_thread_message(WM_APP + 1984, 90, (LPARAM) pthreadDependent);
+   //post_thread_message(message_system, 90, (LPARAM) pthreadDependent);
    on_register_dependent_thread(pthreadDependent);
 
 }
@@ -715,7 +715,7 @@ void thread::register_dependent_thread(::thread * pthreadDependent)
 void thread::unregister_dependent_thread(::thread * pthreadDependent)
 {
 
-   //post_thread_message(WM_APP + 1984, 91, (LPARAM)pthreadDependent);
+   //post_thread_message(message_system, 91, (LPARAM)pthreadDependent);
    on_unregister_dependent_thread(pthreadDependent);
 
 }
@@ -1868,7 +1868,7 @@ bool thread::post_thread_message(UINT message,WPARAM wParam,lparam lParam)
          }
 
       }
-    
+
       return false;
 
    }
@@ -2063,7 +2063,7 @@ int32_t thread::main()
       }
    }
 
-   
+
    // let translator run undefinetely
    //translator::detach();
    try

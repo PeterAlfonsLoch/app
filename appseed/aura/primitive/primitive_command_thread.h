@@ -5,7 +5,13 @@ enum e_message
 {
 
    message_system = WM_APP + 1984,
-
+   message_berdge,
+   message_display_change,
+   MessageBaseWndGetProperty,
+   MessageProperty,
+   MessageGeneralEvent,
+   message_simple_command,
+   message_set_schema,
 };
 
 enum e_system_message

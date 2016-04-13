@@ -858,88 +858,6 @@ namespace core
 ////   }
 ////
 ////
-////   void thread::DispatchThreadMessageEx(signal_details * pobj)
-////   {
-////      SCAST_PTR(::message::base, pbase, pobj);
-////      if(!pbase->m_bRet && pbase->m_uiMessage == WM_APP + 1984 && pbase->m_wparam == 77)
-////      {
-////         smart_pointer < ::user::message > spmessage(pbase->m_lparam);
-////         spmessage->send();
-////         pbase->m_uiMessage   = 0;    // ssshhhh.... - self-healing - sh...
-////         pbase->m_wparam      = 0;    // ssshhhh.... - self-healing - sh...
-////         pbase->m_bRet        = true;
-////         return;
-////      }
-////      /*   const __MSGMAP* pMessageMap; pMessageMap = GetMessageMap();
-////      const __MSGMAP_ENTRY* lpEntry;
-////
-////      for (/* pMessageMap already init'ed *//*; pMessageMap->pfnGetBaseMap != NULL;
-////      pMessageMap = (*pMessageMap->pfnGetBaseMap)())
-////      {
-////      // Note: catch not so common but fatal mistake!!
-////      //       // BEGIN_MESSAGE_MAP(CMyThread, CMyThread)
-////
-////      ASSERT(pMessageMap != (*pMessageMap->pfnGetBaseMap)());
-////      if (pMsg->message < 0xC000)
-////      {
-////      // constant window message
-////      if ((lpEntry = ::ca2::FindMessageEntry(pMessageMap->lpEntries,
-////      pMsg->message, 0, 0)) != NULL)
-////      goto LDispatch;
-////      }
-////      else
-////      {
-////      // registered windows message
-////      lpEntry = pMessageMap->lpEntries;
-////      while ((lpEntry = ::ca2::FindMessageEntry(lpEntry, 0xC000, 0, 0)) != NULL)
-////      {
-////      UINT* pnID = (UINT*)(lpEntry->nSig);
-////      ASSERT(*pnID >= 0xC000);
-////      // must be successfully registered
-////      if (*pnID == pMsg->message)
-////      goto LDispatch;
-////      lpEntry++;      // keep looking past this one
-////      }
-////      }
-////      }
-////      return FALSE;
-////
-////      LDispatch:
-////      union MessageMapFunctions mmf;
-////      mmf.pfn = lpEntry->pfn;
-////
-////      // always posted, so return value is meaningless
-////
-////      (this->*mmf.pfn_THREAD)(pMsg->wParam, pMsg->lParam);*/
-////
-////      LRESULT lresult;
-////      SignalPtrArray signalptra;
-////      m_signala.GetSignalsByMessage(signalptra, pbase->m_uiMessage, 0, 0);
-////      for(int i = 0; i < signalptra.get_size(); i++)
-////      {
-////         Signal & signal = *signalptra[i];
-////         ::signal * psignal = signal.m_psignal;
-////         ::message::e_prototype eprototype = signal.m_eprototype;
-////         if(eprototype == ::message::PrototypeNone)
-////         {
-////            //::message::base aura(get_app());
-////            pbase->m_psignal = psignal;
-////            lresult = 0;
-////            //aura.set(pmsg->message, pmsg->wParam, pmsg->lParam, lresult);
-////            psignal->emit(pbase);
-////            if(pbase->m_bRet)
-////               return;
-////         }
-////         break;
-////      }
-////      pbase->m_bRet = true;
-////   }
-////
-////   void thread::pre_translate_message(signal_details * pobj)
-////   {
-////      ASSERT_VALID(this);
-////      return __internal_pre_translate_message(pobj);
-////   }
 ////
 ////   void thread::ProcessWndProcException(::exception::aura* e, signal_details * pobj)
 ////   {
@@ -1202,17 +1120,6 @@ namespace core
 ////   }
 ////
 ////
-////   bool thread::post_message(sp(::user::interaction) pguie, UINT uiMessage, WPARAM wparam, lparam lparam)
-////   {
-////      if(m_hThread == NULL)
-////         return false;
-////      ::user::message * pmessage = new ::user::message;
-////      pmessage->m_pguie       = pguie;
-////      pmessage->m_uiMessage   = uiMessage;
-////      pmessage->m_wparam      = wparam;
-////      pmessage->m_lparam      = lparam;
-////      return post_thread_message(WM_APP + 1984, 77, (LPARAM) pmessage) != FALSE;
-////   }
 ////
 ////
 ////   bool thread::on_run_exception(::exception::exception & e)
@@ -2125,14 +2032,6 @@ namespace core
 //////}
 //////
 //////
-//////bool thread::DispatchThreadMessageEx(MSG* pmsg)
-//////{
-//////if(pmsg->message == WM_APP + 1984 && pmsg->wParam == 77)
-//////{
-//////::ca2::scoped_ptr < metrowin::message > spmessage(pmsg->lParam);
-//////spmessage->send();
-//////return TRUE;
-//////}
 ///////*   const __MSGMAP* pMessageMap; pMessageMap = GetMessageMap();
 //////const __MSGMAP_ENTRY* lpEntry;
 //////
@@ -2377,15 +2276,6 @@ namespace core
 //////}
 //////
 //////
-//////bool thread::post_message(sp(::user::interaction) pguie, UINT uiMessage, WPARAM wparam, LPARAM lparam)
-//////{
-//////metrowin::message * pmessage = new metrowin::message;
-//////pmessage->m_pguie       = pguie;
-//////pmessage->m_uiMessage   = uiMessage;
-//////pmessage->m_wparam      = wparam;
-//////pmessage->m_lparam      = lparam;
-//////return PostThreadMessage(WM_APP + 1984, 77, (LPARAM) pmessage);
-//////}
 //////
 //////
 //////bool thread::on_run_exception(::exception::exception & e)

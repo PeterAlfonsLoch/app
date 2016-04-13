@@ -806,39 +806,6 @@ namespace ios
 //   }
 //
 //
-//   void thread::DispatchThreadMessageEx(signal_details * pobj)
-//   {
-//      SCAST_PTR(::message::aura, pbase, pobj);
-//      if(pbase->m_uiMessage == WM_APP + 1984 && pbase->m_wparam == 77)
-//      {
-//         ::smart_pointer < ::user::message > spmessage(pbase->m_lparam);
-//         spmessage->send();
-//         pbase->m_bRet = true;
-//         return;
-//      }
-//
-//      LRESULT lresult;
-//      SignalPtrArray signalptra;
-//      m_signala.GetSignalsByMessage(signalptra, pbase->m_uiMessage, 0, 0);
-//      for(int32_t i = 0; i < signalptra.get_size(); i++)
-//      {
-//         Signal & signal = *signalptra[i];
-//         class ::signal * psignal = signal.m_psignal;
-//         ::message::e_prototype eprototype = signal.m_eprototype;
-//         if(eprototype == ::message::PrototypeNone)
-//         {
-//            //::message::aura aura(get_app());
-//            pbase->m_psignal = psignal;
-//            lresult = 0;
-//            //aura.set(pmsg->message, pmsg->wParam, pmsg->lParam, lresult);
-//            psignal->emit(pbase);
-//            if(pbase->m_bRet)
-//               return;
-//         }
-//         break;
-//      }
-//      pbase->m_bRet = true;
-//   }
 //
 //   void thread::pre_translate_message(signal_details * pobj)
 //   {
@@ -1014,17 +981,6 @@ namespace ios
 //   }
 //#endif
 //
-//   bool thread::post_message(sp(::user::interaction) pguie, UINT uiMessage, WPARAM wparam, lparam lparam)
-//   {
-//      //      if(m_hThread == NULL)
-//      //       return false;
-//      ::user::message * pmessage = new ::user::message;
-//      pmessage->m_pui       = pguie;
-//      pmessage->m_uiMessage   = uiMessage;
-//      pmessage->m_wparam      = wparam;
-//      pmessage->m_lparam      = lparam;
-//      return post_thread_message(WM_APP + 1984, 77, (LPARAM) pmessage) != FALSE;
-//   }
 //
 //
 //   bool thread::on_run_exception(::exception::exception & e)
@@ -1770,25 +1726,25 @@ namespace ios
 //   // EoF
 //   ///////
 //
-   
-   
-   
+
+
+
    thread::thread(::aura::application * papp) :
    ::object(papp),
    ::thread_impl(papp),
    ::ansios::thread_impl(papp)
    {
-      
-      
+
+
    }
-   
-   
+
+
    thread::~thread()
    {
-      
-      
+
+
    }
-   
+
 
 
 } // namespace ios
@@ -1815,22 +1771,22 @@ namespace ios
 
 bool __node_init_thread(::thread * pthread)
 {
-   
+
    UNREFERENCED_PARAMETER(pthread);
-   
+
    return true;
-   
+
 }
 
 
 
 bool __node_term_thread(::thread * pthread)
 {
-   
+
    UNREFERENCED_PARAMETER(pthread);
-   
+
    return true;
-   
+
 }
 
 

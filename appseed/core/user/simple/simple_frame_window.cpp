@@ -1083,7 +1083,7 @@ void simple_frame_window::pre_translate_message(signal_details * pobj)
 
    SCAST_PTR(::message::base, pbase, pobj);
 
-   if(pbase->m_uiMessage == WM_APP + 1984 + 21)
+   if(pbase->m_uiMessage == message_display_change)
    {
 
       Wfi();

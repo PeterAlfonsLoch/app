@@ -97,42 +97,6 @@
 //
 //}
 //
-//void thread_impl::dispatch_thread_message(signal_details * pbase)
-//{
-//
-//
-//   if(pbase->m_uiMessage == WM_APP + 1984 && pbase->m_wparam == 77)
-//   {
-//
-//      Application.dispatch_user_message(pbase);
-//
-//      return;
-//
-//   }
-//   //LRESULT lresult;
-//
-//   synch_lock sl(m_pmutex);
-//   int i = 0;
-//   Signal * pSignal;
-//   while((pSignal = m_signala.GetSignal(pbase->m_uiMessage,0,0, i)) != NULL)
-//   {
-//      class signal * psignal = pSignal->m_psignal;
-//      message::e_prototype eprototype = pSignal->m_eprototype;
-//      if(eprototype == message::PrototypeNone)
-//      {
-//         //::message::base aura(get_app());
-//         pbase->m_psignal = psignal;
-//         //lresult = 0;
-//         //aura.set(pmsg->message, pmsg->wParam, pmsg->lParam, lresult);
-//         psignal->emit(pbase);
-//         if(pbase->m_bRet)
-//            return;
-//      }
-//      break;
-//   }
-//   pbase->m_bRet = true;
-//
-//}
 //
 //
 //void thread_impl::pre_translate_message(signal_details * pobj)

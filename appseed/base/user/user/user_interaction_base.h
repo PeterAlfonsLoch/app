@@ -24,17 +24,6 @@ namespace user
       };
 
 
-      enum e_message
-      {
-
-         MessageBaseWndGetProperty = WM_USER + 96,
-         MessageProperty,
-         MessageGeneralEvent,
-         message_simple_command = WM_APP + 1985,
-         message_set_schema = WM_APP + 1984 + 23 + 49,
-
-      };
-
 
       enum EProperty
       {

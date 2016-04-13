@@ -809,13 +809,6 @@ namespace ios
    void thread::DispatchThreadMessageEx(signal_details * pobj)
    {
       SCAST_PTR(::message::aura, pbase, pobj);
-      if(pbase->m_uiMessage == WM_APP + 1984 && pbase->m_wparam == 77)
-      {
-         ::smart_pointer < ::user::message > spmessage(pbase->m_lparam);
-         spmessage->send();
-         pbase->m_bRet = true;
-         return;
-      }
 
       LRESULT lresult;
       SignalPtrArray signalptra;
@@ -1025,17 +1018,6 @@ namespace ios
    }
 #endif
 
-   bool thread::post_message(sp(::user::interaction) pguie, UINT uiMessage, WPARAM wparam, lparam lparam)
-   {
-      //      if(m_hThread == NULL)
-      //       return false;
-      ::user::message * pmessage = new ::user::message;
-      pmessage->m_pui       = pguie;
-      pmessage->m_uiMessage   = uiMessage;
-      pmessage->m_wparam      = wparam;
-      pmessage->m_lparam      = lparam;
-      return post_thread_message(WM_APP + 1984, 77, (LPARAM) pmessage) != FALSE;
-   }
 
 
    bool thread::on_run_exception(::exception::exception & e)

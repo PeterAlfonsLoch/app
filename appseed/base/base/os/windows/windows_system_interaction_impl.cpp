@@ -50,7 +50,7 @@ namespace base
                try
                {
 
-                  pui->post_message(WM_APP + 1984 + 21);
+                  pui->post_message(message_display_change);
 
                }
                catch(...)
