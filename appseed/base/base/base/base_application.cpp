@@ -2074,8 +2074,10 @@ namespace base
    void application::add_frame(::user::interaction * pwnd)
    {
 
+#if !defined(LINUX)
       if (dynamic_cast <::base::system_interaction_impl *>(pwnd) != NULL)
          return;
+#endif
 
       synch_lock sl(&m_mutexFrame); // recursive lock (on m_framea.add(pwnd)) but m_puiMain is "cared" by m_frame.m_mutex
 

@@ -32,7 +32,7 @@ namespace visual
 
    icon::icon(void * picon)
    {
-      
+
       set_app(::get_thread_app());
 
       m_picon = picon;
@@ -195,6 +195,7 @@ namespace visual
       if (!dib->create(cx, cy))
          return NULL;
 
+#ifdef WINDOWS
 
       bool bOk = false;
 
@@ -324,6 +325,8 @@ namespace visual
          ::DeleteObject(hbitmap);
 
       }
+
+#endif
 
       return dib;
 

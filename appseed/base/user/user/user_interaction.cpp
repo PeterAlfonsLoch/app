@@ -1442,7 +1442,10 @@ namespace user
 #endif
             )
                && !is_message_only_window()
-            && (::user::interaction *) System.m_psystemwindow != this)
+#if !defined(LINUX)
+            && (::user::interaction *) System.m_psystemwindow != this
+            #endif
+            )
          {
 
 //            synch_lock slUser(m_pmutex);

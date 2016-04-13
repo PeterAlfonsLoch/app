@@ -3808,7 +3808,7 @@ namespace core
 
       ::fork(this, [&]()
       {
-         
+
          string str = ::fontopus::get_cred(this, strUsername, strPassword, strToken);
 
          if (str == "ok" && strUsername.has_char() && strPassword.has_char())
@@ -3847,7 +3847,9 @@ namespace core
 
          }
 
+         #if !defined(LINUX)
          attach_thread_input_to_main_thread(false);
+#endif
 
          strRet = ::base::application::get_cred(strRequestUrl, rect, strUsername, strPassword, strToken, strTitle, bInteractive);
 
@@ -3856,7 +3858,7 @@ namespace core
          ev.SetEvent();
 
       });
-      
+
       ev.wait();
 
       return strRet;

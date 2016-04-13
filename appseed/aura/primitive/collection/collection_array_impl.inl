@@ -163,14 +163,14 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 inline const TYPE& array < TYPE, ARG_TYPE, ALLOCATOR > ::element_at(index nIndex) const
 {
    if (nIndex < 0 && nIndex >= this->m_nSize)
-      throw index_out_of_bounds(get_app());
+      throw index_out_of_bounds(this->get_app());
    return get_data()[nIndex];
 }
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 inline TYPE& array < TYPE, ARG_TYPE, ALLOCATOR > ::element_at(index nIndex)
 {
    if (nIndex < 0 && nIndex >= this->m_nSize)
-      throw index_out_of_bounds(get_app());
+      throw index_out_of_bounds(this->get_app());
    return get_data()[nIndex];
 }
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >

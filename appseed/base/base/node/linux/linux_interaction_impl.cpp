@@ -261,13 +261,20 @@ namespace linux
 
    }
 
-   bool interaction_impl::create_window_ex(DWORD dwExStyle, const char * lpszClassName,
-      const char * lpszWindowName, DWORD dwStyle,
-      const RECT& rect, ::user::interaction * puiParent, id id,
+
+   bool interaction_impl::create_window_ex(
+      ::user::interaction * pui,
+      DWORD dwExStyle,
+      const char * lpszClassName,
+      const char * lpszWindowName,
+      DWORD dwStyle,
+      const RECT& rect,
+      ::user::interaction * puiParent,
+      id id,
       LPVOID lpParam /* = NULL */)
    {
 
-      if(!native_create_window_ex(dwExStyle, lpszClassName, lpszWindowName, dwStyle, rect, puiParent == NULL ? NULL : puiParent->get_safe_handle(), id, lpParam))
+      if(!native_create_window_ex(pui, dwExStyle, lpszClassName, lpszWindowName, dwStyle, rect, puiParent == NULL ? NULL : puiParent->get_safe_handle(), id, lpParam))
          return false;
 
       return true;
@@ -275,11 +282,20 @@ namespace linux
    }
 
 
-   bool interaction_impl::native_create_window_ex(DWORD dwExStyle, const char * lpszClassName,
-      const char * lpszWindowName, DWORD dwStyle,
-      const RECT& rect, oswindow hWndParent, id id,
+   bool interaction_impl::native_create_window_ex(
+      ::user::interaction * pui,
+      DWORD dwExStyle,
+      const char * lpszClassName,
+      const char * lpszWindowName,
+      DWORD dwStyle,
+      const RECT& rect,
+      oswindow hWndParent,
+      id id,
       LPVOID lpParam /* = NULL */)
    {
+
+
+      m_pui = pui;
 
       UNREFERENCED_PARAMETER(id);
 //      ASSERT(lpszClassName == NULL || __is_valid_string(lpszClassName) ||
@@ -557,17 +573,21 @@ d.unlock();
    }
 
 
-   bool interaction_impl::create_window(const char * lpszClassName,
-      const char * lpszWindowName, DWORD dwStyle,
+   bool interaction_impl::create_window(
+      ::user::interaction * pui,
+      const char * lpszClassName,
+      const char * lpszWindowName,
+      DWORD dwStyle,
       const RECT& rect,
-      ::user::interaction * pParentWnd, id id,
-      ::user::create_context * pContext)
+      ::user::interaction * pParentWnd,
+      id id,
+      sp(::create) pContext)
    {
       // can't use for desktop or pop-up windows (use CreateEx instead)
       ASSERT(pParentWnd != NULL);
       ASSERT((dwStyle & WS_POPUP) == 0);
 
-      if(!create_window_ex(0, lpszClassName, lpszWindowName,dwStyle | WS_CHILD, rect, pParentWnd, id, (LPVOID)pContext))
+      if(!create_window_ex(pui, 0, lpszClassName, lpszWindowName,dwStyle | WS_CHILD, rect, pParentWnd, id, (LPVOID)pContext))
         return false;
 
       return true;
@@ -575,7 +595,9 @@ d.unlock();
    }
 
 
-   bool interaction_impl::create_message_queue(const char * pszName)
+   bool interaction_impl::create_message_queue(
+      ::user::interaction * pui,
+      const char * pszName)
    {
 
       if(IsWindow())
@@ -587,7 +609,7 @@ d.unlock();
       else
       {
 
-         if(!native_create_window_ex(0, NULL, pszName, WS_CHILD,null_rect(),HWND_MESSAGE))
+         if(!native_create_window_ex(pui, 0, NULL, pszName, WS_CHILD,null_rect(),HWND_MESSAGE))
          {
 
             return false;
