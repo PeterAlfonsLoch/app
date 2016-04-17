@@ -392,8 +392,10 @@ namespace filemanager
 
    void manager::_001OnUpdateLevelUp(signal_details * pobj)
    {
+      
       SCAST_PTR(::aura::cmd_ui,pcmdui,pobj);
-      if(m_item->m_strPath.is_empty())
+
+      if(m_item.is_null() || m_item->m_strPath.is_empty())
       {
          pcmdui->m_pcmdui->Enable(FALSE);
       }
