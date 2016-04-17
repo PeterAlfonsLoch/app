@@ -204,6 +204,12 @@ public:
    void reverse_implode(Type & rwstr,const char * lpcszSeparator = NULL,index iStart = 0,::count iCount = -1) const;
    Type reverse_implode(const char * lpcszSeparator = NULL,index iStart = 0,::count iCount = -1) const;
 
+   void _008Implode(Type & rwstr, const char * lpcszSeparator = NULL, const char * lpcszLastSeparator = NULL, index iStart = 0, ::count iCount = -1) const;
+   Type _008Implode(const char * lpcszSeparator = NULL, const char * lpcszLastSeparator = NULL, index iStart = 0, ::count iCount = -1) const;
+
+   void _008IfImplode(Type & rwstr, const char * lpcszIfHasElementPrefix = NULL, const char * lpcszSeparator = NULL, const char * lpcszLastSeparator = NULL, bool bUseLast = true, index iStart = 0, ::count iCount = -1) const;
+   Type _008IfImplode(const char * lpcszIfHasElementPrefix = NULL, const char * lpcszSeparator = NULL, const char * lpcszLastSeparator = NULL, bool bUseLast = true, index iStart = 0, ::count iCount = -1) const;
+
    void surround(const char * pszPrefix = NULL,const char * pszSuffix = NULL,index iStart = 0,::count iCount = -1);
    Type surround_and_implode(const char * lpcszSeparator = NULL,const char * pszPrefix = NULL,const char * pszSuffix = NULL,index iStart = 0,::count iCount = -1);
 
@@ -3011,3 +3017,96 @@ Type & string_array < Type, RawType > ::get_json(Type & str) const
 
 
 
+
+template < class Type, class RawType >
+void string_array < Type, RawType > ::_008Implode(Type & str, const char * lpcszSeparator, const char * lpcszLastSeparator, index start, ::count count) const
+{
+   str.Empty();
+   Type strSeparator(lpcszSeparator);
+   if (start < 0)
+   {
+      start += this->get_size();
+   }
+   index last;
+   if (count < 0)
+   {
+      last = this->get_size() + count;
+   }
+   else
+   {
+      last = start + count - 1;
+   }
+   for (index i = start; i <= last; i++)
+   {
+      if (i > start)
+      {
+         if (i == last)
+         {
+            str += lpcszLastSeparator;
+         }
+         else
+         {
+            str += strSeparator;
+         }
+      }
+      str += this->element_at(i);
+   }
+}
+
+
+template < class Type, class RawType >
+Type string_array < Type, RawType > ::_008Implode(const char * lpcszSeparator, const char * lpcszLastSeparator, index iStart, index iEnd) const
+{
+   Type str;
+   _008Implode(str, lpcszSeparator, lpcszLastSeparator, iStart, iEnd);
+   return str;
+}
+
+
+template < class Type, class RawType >
+void string_array < Type, RawType > ::_008IfImplode(Type & str, const char * lpcszIfHasElementPrefix, const char * lpcszSeparator, const char * lpcszLastSeparator, bool bUseLast, index start, ::count count) const
+{
+   str.Empty();
+   Type strSeparator(lpcszSeparator);
+   if (start < 0)
+   {
+      start += this->get_size();
+   }
+   index last;
+   if (count < 0)
+   {
+      last = this->get_size() + count;
+   }
+   else
+   {
+      last = start + count - 1;
+   }
+   if (last >= start)
+   {
+      str += lpcszIfHasElementPrefix;
+   }
+   for (index i = start; i <= last; i++)
+   {
+      if (i > start)
+      {
+         if (i == last && bUseLast)
+         {
+            str += lpcszLastSeparator;
+         }
+         else
+         {
+            str += strSeparator;
+         }
+      }
+      str += this->element_at(i);
+   }
+}
+
+
+template < class Type, class RawType >
+Type string_array < Type, RawType > ::_008IfImplode(const char * lpcszIfHasElementPrefix, const char * lpcszSeparator, const char * lpcszLastSeparator, bool bUseLast, index iStart, index iEnd) const
+{
+   Type str;
+   _008IfImplode(str, lpcszIfHasElementPrefix, lpcszSeparator, lpcszLastSeparator, bUseLast, iStart, iEnd);
+   return str;
+}
