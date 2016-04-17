@@ -1429,6 +1429,7 @@
     <ClInclude Include="primitive\datetime\datetime_time.h" />
     <ClInclude Include="primitive\datetime\datetime_time_span.h" />
     <ClInclude Include="primitive\datetime\datetime_value.h" />
+    <ClInclude Include="primitive\enum.h" />
     <ClInclude Include="primitive\geometry\geometry.h" />
     <ClInclude Include="primitive\geometry\geometry_align.h" />
     <ClInclude Include="primitive\geometry\geometry_box.h" />

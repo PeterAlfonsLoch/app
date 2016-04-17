@@ -2138,6 +2138,9 @@
     <ClInclude Include="primitive\math\math_department.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="primitive\enum.h">
+      <Filter>Header Files\primitive</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="multithreading\multithreading_condition.cpp">

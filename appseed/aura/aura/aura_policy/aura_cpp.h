@@ -704,7 +704,7 @@ namespace file
 #include "aura/primitive/datetime/datetime_file_time_span.h"
 #include "aura/primitive/datetime/datetime_file_time.h"
 
-
+#include "aura/primitive/enum.h"
 
 
 #include "aura/aura/aura/aura_element.h"
