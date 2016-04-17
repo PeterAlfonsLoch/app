@@ -30,27 +30,6 @@ inline void CopyElements(TYPE* pDest, const TYPE* pSrc, ::count nCount)
 
 #undef new
 
-#if !defined(__MCRTDBG) && !defined(__VLD)
-
-//#if defined(APPLEOS) || defined(VSNORD)
-#if defined(APPLEOS)
-
-void * __cdecl operator new(size_t nSize) new_throw_spec;
-
-#else
-
-inline void * __cdecl operator new(size_t nSize) new_throw_spec
-{
-
-    return memory_alloc(nSize);
-
-}
-
-#endif
-
-#endif
-
-
 #if defined(LINUX) || defined(METROWIN) || defined(ANDROID)
 
 
@@ -62,6 +41,7 @@ inline void * __cdecl operator new(size_t nSize, void * p)
    return p;
 
 }
+
 
 
 inline void __cdecl operator delete(void * p, void * palloc)
@@ -76,14 +56,20 @@ inline void __cdecl operator delete(void * p, void * palloc)
 #endif
 
 
-//#if defined(APPLEOS) || defined(VSNORD)
-#if defined(APPLEOS)
 
-void __cdecl operator delete(void * p) del_throw_spec;
-void * __cdecl operator new[](size_t nSize) new_throw_spec;
-void __cdecl operator delete[](void * p) del_throw_spec;
+#if defined(WINDOWS) && !defined(__MCRTDBG) && !defined(__VLD)
 
-#else
+#define GLOBAL_INLINE_NEW
+
+#pragma warning (push)
+#pragma warning(disable : 4595)
+
+inline void * __cdecl operator new(size_t nSize) new_throw_spec
+{
+
+    return memory_alloc(nSize);
+
+}
 
 inline void __cdecl operator delete(void * p) del_throw_spec
 {
@@ -91,7 +77,6 @@ inline void __cdecl operator delete(void * p) del_throw_spec
    memory_free(p);
 
 }
-
 
 inline void * __cdecl operator new[](size_t nSize) new_throw_spec
 {
@@ -107,6 +92,8 @@ inline void __cdecl operator delete[](void * p) del_throw_spec
    ::operator delete(p);
 
 }
+
+#pragma warning (pop)
 
 #endif
 
