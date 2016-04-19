@@ -485,6 +485,10 @@ bool imaging::from(::draw2d::dib * pdib,::draw2d::graphics * pgraphics,FIBITMAP 
    }
 #endif
 
+#if defined(LINUX)
+   pdib->mult_alpha();
+#endif
+
    //   RGBQUAD bkcolor;
    FreeImage_Unload(pimage32);
    if(bUnloadFI)
@@ -4876,7 +4880,7 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
       BYTE *lpwDestination;
       BYTE *lpFilter;
       BYTE *pFilter;
-      
+
 
       int32_t i;
       int32_t x;
@@ -5623,7 +5627,7 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
       {
          pFilter = filter->get_data();
       }
-      else 
+      else
       {
          filter = canew(memory());
          filter->allocate(iFilterArea);
