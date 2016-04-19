@@ -139,7 +139,7 @@ namespace user
       virtual bool keyboard_focus_is_focusable();
       virtual bool keyboard_focus_OnSetFocus();
 
-      
+
 
       void clipboard_copy();
       void clipboard_paste();
@@ -241,7 +241,7 @@ namespace user
 
       virtual bool ShowWindow(int32_t nCmdShow);
 
-      //virtual void on_change_viewport_offset();
+      virtual void on_change_viewport_offset();
 
 
       virtual size get_total_size();

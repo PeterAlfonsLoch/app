@@ -32,9 +32,9 @@ namespace user
 
    plain_edit::~plain_edit()
    {
-      
+
       ::aura::del(m_peditor);
-      
+
       ::aura::del(m_plines);
 
    }
@@ -61,6 +61,10 @@ namespace user
 
 
       m_bCalcLayoutHintNoTextChange = false;
+
+      m_scrolldataHorz.m_bScrollEnable = false;
+      m_scrolldataVert.m_bScrollEnable = false;
+
 
 
       /*m_straSep.add("\n");
@@ -630,7 +634,7 @@ namespace user
 
       //synch_lock sl(m_pmutex);
 
-      
+
 
       SCAST_PTR(::message::key,pkey,pobj);
 
@@ -917,7 +921,7 @@ namespace user
          return;
 
       synch_lock lock(m_ptree->m_pmutex);
-      
+
       file_size_t iSize = m_ptree->m_editfile.get_length();
 
       char * psz = str.GetBufferSetLength((strsize)(iSize + 1));
@@ -1075,14 +1079,14 @@ namespace user
    }
 
 
-   //void plain_edit::on_change_viewport_offset()
-   //{
-   //
-   //   scroll_control::on_change_viewport_offset();
+   void plain_edit::on_change_viewport_offset()
+   {
 
-   //   m_bNeedCalcLayout = true;
+      ::user::control::on_change_viewport_offset();
 
-   //}
+      m_bNeedCalcLayout = true;
+
+   }
 
 
    void plain_edit::_001OnLButtonDown(signal_details * pobj)
@@ -1313,7 +1317,7 @@ namespace user
       m_ptree->m_editfile.read(mem.get_data(),m_iViewSize);
 
       mem.get_data()[m_iViewSize] = 0;
-      
+
       int iPos = 0;
 
       strsize iLen;
@@ -1771,7 +1775,7 @@ namespace user
          pszPrevious = pszEnd;
 
          pszEnd = ::str::utf8_inc(pszEnd);
-         
+
          if(pszEnd == NULL)
             break;
 
@@ -2462,7 +2466,7 @@ namespace user
 
    void plain_edit::_001OnSysChar(signal_details * pobj)
    {
-      
+
       synch_lock lockRoot(m_ptree == NULL ? NULL:m_ptree->m_pmutex);
 
       SCAST_PTR(::message::key,pkey,pobj);
@@ -3014,45 +3018,45 @@ namespace user
 
    void plain_edit::set_root(plain_text_tree * pdata,bool bOwnData)
    {
-      
+
       synch_lock lockRoot(m_ptree == NULL ? NULL:m_ptree->m_pmutex);
-      
+
       if(m_ptree != NULL && m_bOwnData)
       {
 
          m_ptree = NULL;
-         
+
       }
-      
+
       m_ptree = pdata;
-      
+
       m_pitem = m_ptree->get_base_item();
-      
+
       m_bOwnData = m_ptree != NULL && bOwnData;
-      
+
       if(m_ptree != NULL)
       {
-         
+
          listen(m_ptree);
-         
+
       }
-      
+
    }
-   
+
 
    void plain_edit::_001OnUpdateEditFocusCopy(signal_details * pobj)
    {
-      
+
       SCAST_PTR(::aura::cmd_ui,pupdatecmdui,pobj);
-      
+
       string str;
-      
+
       _001GetSelText(str);
-      
+
       pupdatecmdui->m_pcmdui->Enable(str.has_char());
-      
+
    }
-   
+
 
    void plain_edit::_001OnEditFocusCopy(signal_details * pobj)
    {

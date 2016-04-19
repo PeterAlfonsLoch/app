@@ -2265,7 +2265,7 @@ namespace user
    {
       try
       {
-         if (m_piLink != NULL)
+         if (!is_ptr_null(m_piLink, 4096))
          {
             return *m_piLink == iItem;
          }
@@ -4959,10 +4959,10 @@ namespace user
       _001SetColumnWidth(iColumn,_001CalcColumnWidth(iColumn));
    }
 
-   
+
    void mesh::_OnDraw(::draw2d::dib * pdib)
    {
-      
+
       UNREFERENCED_PARAMETER(pdib);
 
    }
@@ -5148,7 +5148,7 @@ namespace user
 
    mesh::range::range()
    {
-      
+
       m_piLink = NULL;
 
    }

@@ -1176,7 +1176,7 @@ void thread::dispatch_thread_message(signal_details * pbase)
       break;
       pbase->m_bRet = true;
    }
-   
+
 
 }
 
@@ -2453,7 +2453,12 @@ void thread::message_handler(signal_details * pobj)
 bool thread::process_message(LPMESSAGE lpmessage)
 {
 
+   if(lpmessage->message == WM_LBUTTONDOWN)
+   {
 
+      output_debug_string("WM_LBUTTONDOWN");
+
+   }
 
    try
    {

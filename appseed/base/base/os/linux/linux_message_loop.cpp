@@ -145,6 +145,12 @@ LRESULT axis_DispatchMessage(const MESSAGE * lpmessage)
       lpmessage->hwnd->m_dwLastMouseMove = dwNow;
 
    }
+   else if(lpmessage->message == WM_LBUTTONDOWN)
+   {
+
+      DWORD dwNow = get_tick_count();
+
+   }
 
    if(lpmessage->hwnd->get_user_interaction_base() == NULL)
       return false;
