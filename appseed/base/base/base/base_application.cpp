@@ -2074,7 +2074,7 @@ namespace base
    void application::add_frame(::user::interaction * pwnd)
    {
 
-#if !defined(LINUX)
+#if !defined(LINUX) && !defined(METROWIN)
       if (dynamic_cast <::base::system_interaction_impl *>(pwnd) != NULL)
          return;
 #endif

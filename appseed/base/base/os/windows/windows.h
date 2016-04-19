@@ -9,10 +9,10 @@
 
 
 
-
-
 #ifdef cplusplus
 
+
+#ifdef WINDOWSEX
 
 namespace base
 {
@@ -24,7 +24,7 @@ namespace base
 } // namespace axis
 
 
-
+#endif
 
 namespace base
 {

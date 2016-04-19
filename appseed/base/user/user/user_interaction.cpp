@@ -1442,9 +1442,9 @@ namespace user
 #endif
             )
                && !is_message_only_window()
-#if !defined(LINUX)
+#if !defined(LINUX) && !defined(METROWIN)
             && (::user::interaction *) System.m_psystemwindow != this
-            #endif
+#endif
             )
          {
 

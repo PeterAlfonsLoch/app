@@ -40,14 +40,15 @@ namespace file_watcher
 		id mWatchid;*/
 
 
-      property Windows::Storage::StorageFolder ^                   m_folder;
-      property Windows::Storage::Search::StorageItemQueryResult ^  m_queryresult;
-      property Windows::Foundation::EventRegistrationToken         m_evtoken;
-      property String ^                                  m_strDirName;
+      property Windows::Storage::StorageFolder ^                     m_folder;
+      property Windows::Storage::Search::StorageItemQueryResult ^    m_queryresult;
+      property Windows::Foundation::EventRegistrationToken           m_evtoken;
+      property String ^                                              m_strDirName;
       property size_t                                                m_pwatcher;   // should be exactly file_watcher_impl *
       property size_t                                                m_plistener;  // should be exactly file_watch_listener *
       property uint64_t                                              m_id;
       property bool                                                  m_bRecursive;
+      property bool                                                  m_bOwn;
 
       static watch_struct ^ create_watch(String ^ strDirectory, bool bRecursive);
 
@@ -179,7 +180,7 @@ namespace file_watcher
 		m_watchmap.remove_all();
 	}
 
-	id os_file_watcher::add_watch(const string & directory, file_watch_listener * watcher, bool bRecursive)
+	id os_file_watcher::add_watch(const string & directory, file_watch_listener * watcher, bool bRecursive, bool bOwn)
 	{
 		id watchid = ++m_idLast;
 
@@ -193,6 +194,7 @@ namespace file_watcher
 		pwatch->m_pwatcher      = (size_t) (int_ptr) (file_watcher_impl *) this;
 		pwatch->m_plistener     = (size_t) (int_ptr) (file_watch_listener *) watcher;
 		pwatch->m_strDirName    = directory;
+      pwatch->m_bOwn          = bOwn;
 
       watch_holder holder;
 

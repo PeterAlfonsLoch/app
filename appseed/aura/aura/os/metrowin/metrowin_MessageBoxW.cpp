@@ -33,11 +33,14 @@ int message_box_w::do_modal(String ^ text,String ^ caption,unsigned int uiFlags)
 
    uint32_t uiType = uiFlags & MB_TYPEMASK;
 
+   int iCancel = -1;
+
    switch(uiType)
    {
    case MB_OKCANCEL:
       create_a_button("ok","OK");
       create_a_button("cancel","Cancel");
+      iCancel = 1;
       break;
    case MB_ABORTRETRYIGNORE:
       create_a_button("abort","Abort");
@@ -48,6 +51,7 @@ int message_box_w::do_modal(String ^ text,String ^ caption,unsigned int uiFlags)
       create_a_button("yes","Yes");
       create_a_button("no","No");
       create_a_button("cancel","Cancel");
+      iCancel = 2;
       break;
    case MB_YESNO:
       create_a_button("yes","Yes");
@@ -56,11 +60,13 @@ int message_box_w::do_modal(String ^ text,String ^ caption,unsigned int uiFlags)
    case MB_RETRYCANCEL:
       create_a_button("retry","Retry");
       create_a_button("cancel","Cancel");
+      iCancel = 1;
       break;
    case MB_CANCELTRYCONTINUE:
       create_a_button("cancel","Cancel");
       create_a_button("try","Try");
       create_a_button("continue","Continue");
+      iCancel = 0;
       break;
    default:
       create_a_button("ok","OK");
@@ -71,11 +77,19 @@ int message_box_w::do_modal(String ^ text,String ^ caption,unsigned int uiFlags)
    // Set the command that will be invoked by default 
    msg->DefaultCommandIndex = 0;
 
-   // Set the command to be invoked when escape is pressed 
-   msg->CancelCommandIndex = 1;
+   if (iCancel >= 0)
+   {
+      // Set the command to be invoked when escape is pressed 
+      msg->CancelCommandIndex = iCancel;
+   }
 
    // Show the message dialog 
    IUICommand ^ cmd = ::wait(msg->ShowAsync());
+
+   if (cmd == nullptr)
+   {
+      throw simple_exception(get_thread_app(), string(text) + " - " + string(caption));
+   }
 
    int iResult = IDCANCEL;
 

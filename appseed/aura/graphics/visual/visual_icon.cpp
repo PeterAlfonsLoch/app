@@ -195,7 +195,7 @@ namespace visual
       if (!dib->create(cx, cy))
          return NULL;
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
       bool bOk = false;
 

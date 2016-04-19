@@ -1,5 +1,9 @@
 #pragma once
 
+
+#ifdef WINDOWSEX
+
+
 namespace base
 {
 
@@ -22,4 +26,8 @@ namespace base
 
 
 } // namespace base
+
+
+#endif
+
 
