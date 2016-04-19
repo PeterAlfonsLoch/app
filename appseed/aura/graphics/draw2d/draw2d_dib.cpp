@@ -4852,6 +4852,7 @@ error:
       }
 
       create(image->width, image->height);
+      map();
 
       nanosvg(image);
 

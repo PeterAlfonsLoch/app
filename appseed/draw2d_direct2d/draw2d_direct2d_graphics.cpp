@@ -2507,14 +2507,43 @@ namespace draw2d_direct2d
          if(pgraphicsSrc == NULL)
             return FALSE;
 
-         if(&pgraphicsSrc->get_current_bitmap() == NULL)
+         if(pgraphicsSrc->get_current_bitmap() == NULL)
             return FALSE;
 
          if(pgraphicsSrc->get_current_bitmap()->get_os_data() == NULL)
             return FALSE;
 
-         D2D1_RECT_F rectDst = D2D1::RectF((float) xDst, (float) yDst, (float) (xDst + nDstWidth), (float) (yDst + nDstHeight));
-         D2D1_RECT_F rectSrc = D2D1::RectF((float) xSrc, (float) ySrc, (float) (xSrc + nSrcWidth), (float) (ySrc + nSrcHeight));
+         //D2D1_RECT_F rectDst = D2D1::RectF((float) xDst, (float) yDst, (float) (xDst + nDstWidth), (float) (yDst + nDstHeight));
+         //D2D1_RECT_F rectSrc = D2D1::RectF((float) xSrc, (float) ySrc, (float) (xSrc + nSrcWidth), (float) (ySrc + nSrcHeight));
+/*
+         if (get_current_bitmap() != NULL && get_current_bitmap()->get_os_data() != NULL)
+         {
+
+            D2D1_SIZE_U sz = ((ID2D1Bitmap *)get_current_bitmap()->get_os_data())->GetPixelSize();
+
+            if (natural(nDstWidth + xDst) > sz.width)
+               nDstWidth = sz.width - xDst;
+
+            if (natural(nDstHeight + yDst) > sz.height)
+               nDstHeight = sz.height - yDst;
+
+         }
+
+         {
+
+            D2D1_SIZE_U sz = ((ID2D1Bitmap *)pgraphicsSrc->get_current_bitmap()->get_os_data())->GetPixelSize();
+
+            if (natural(nSrcWidth + xSrc) > sz.width)
+               nSrcWidth = sz.width - xSrc;
+
+            if (natural(nSrcHeight + ySrc) > sz.height)
+               nSrcHeight = sz.height - ySrc;
+
+         }*/
+
+         D2D1_RECT_F rectDst = D2D1::RectF((float)xDst, (float)yDst, (float)(xDst + nDstWidth), (float)(yDst + nDstHeight));
+         D2D1_RECT_F rectSrc = D2D1::RectF((float)xSrc, (float)ySrc, (float)(xSrc + nSrcWidth), (float)(ySrc + nSrcHeight));
+
 
          dynamic_cast <::draw2d_direct2d::graphics *> (pgraphicsSrc)->SaveClip();
 

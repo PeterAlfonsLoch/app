@@ -402,6 +402,9 @@ bool windows_load_dib_from_file(::draw2d::dib * pdib,::file::buffer_sp pfile,::a
          pdib->create(width,height);
          pdib->map();
          hr = pframe->CopyPixels(NULL,pdib->m_iScan,pdib->m_iScan * height,(BYTE *)pdib->m_pcolorref);
+#ifdef METROWIN
+         pdib->mult_alpha();
+#endif
 
       }
       else
