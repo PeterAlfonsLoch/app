@@ -2107,9 +2107,25 @@ namespace aura
 
       }
 
+      string strAppId;
 
-      if((varFile.is_empty() && ((!set.has_property("app") && !directrix()->m_varTopicQuery.has_property("appid") && !set.has_property("show_platform"))
-                                 || set["app"] == "bergedge" || directrix()->m_varTopicQuery["appid"] == "bergedge")) &&
+      if (set.has_property("app"))
+      {
+
+         strAppId = set["app"];
+
+      }
+
+      if (set.has_property("appid"))
+      {
+
+         strAppId = set["appid"];
+
+      }
+
+
+      if((varFile.is_empty() && ((strAppId.is_empty() && !set.has_property("show_platform"))
+                                 || strAppId == "bergedge")) &&
             !(set.has_property("install") || set.has_property("uninstall")))
       {
          //if(!set.has_property("show_platform") || set["show_platform"] == 1)

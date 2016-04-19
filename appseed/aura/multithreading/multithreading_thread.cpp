@@ -1174,8 +1174,9 @@ void thread::dispatch_thread_message(signal_details * pbase)
             return;
       }
       break;
+      pbase->m_bRet = true;
    }
-   pbase->m_bRet = true;
+   
 
 }
 
