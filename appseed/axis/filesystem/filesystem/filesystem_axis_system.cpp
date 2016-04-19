@@ -541,7 +541,7 @@ restart:
 
                property_set set(papp);
 
-               set["user"] = &AppUser(papp);
+               //set["user"] = &AppUser(papp);
 
                App(papp).http().get(strPath, mem, set);
 
