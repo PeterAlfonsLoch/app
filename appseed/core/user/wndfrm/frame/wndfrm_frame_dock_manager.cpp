@@ -60,10 +60,10 @@ namespace user
 
             }
 
-            if(GetDockWindow().cast < ::database::user::interaction >() != NULL)
+            if(GetDockWindow().cast < ::user::box >() != NULL)
             {
 
-               GetDockWindow().cast < ::database::user::interaction >()->WindowDataEnableSaveWindowRect(false);
+               GetDockWindow().cast < ::user::box >()->WindowDataEnableSaveWindowRect(false);
 
             }
 
@@ -168,10 +168,10 @@ namespace user
 
             if(pmouse->m_uiMessage == WM_LBUTTONUP)
             {
-               if(GetDockWindow().cast < ::database::user::interaction >() != NULL)
+               if(GetDockWindow().cast < ::user::box >() != NULL)
                {
 
-                  GetDockWindow().cast < ::database::user::interaction >()->WindowDataEnableSaveWindowRect(true);
+                  GetDockWindow().cast < ::user::box >()->WindowDataEnableSaveWindowRect(true);
 
                }
             }

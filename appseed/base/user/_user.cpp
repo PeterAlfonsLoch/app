@@ -94,6 +94,8 @@
 
 #include "user/user_tooltip.cpp"
 
+#include "user/user_box.cpp"
+
 //Pasta de Z:\nordroid\app\appseed\base\user\userpresence
 
 //#include "userpresence/userpresence_userpresence.cpp"
@@ -108,3 +110,5 @@
 
 #include "hotplugin/_hotplugin.cpp"
 #include "install/_install.cpp"
+
+

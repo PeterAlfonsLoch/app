@@ -280,7 +280,8 @@ using user_interaction = ::user::interaction;
 #include "base/user/user/user_wait_cursor.h"
 #include "simple_ui/simple_ui_style.h"
 #include "simple_ui/simple_ui_interaction.h"
-#include "base/database/database/database_user_interaction.h"
+#include "base/user/user/user_scroll.h"
+#include "base/user/user/user_box.h"
 #include "base/user/user/user_frame_window.h"
 #include "base/user/user/user_server.h"
 #include "base/user/user/user_impact_system.h"
@@ -341,8 +342,7 @@ using user_interaction = ::user::interaction;
 
 #include "base/user/user/user_control.h"
 #include "base/user/user/user_scroll_bar.h"
-#include "base/user/user/user_scroll.h"
-#include "base/user/userex/userex_scroll.h"
+//#include "base/user/user/userex_scroll.h"
 
 #include "base/user/user/user_plain_text_data.h"
 #include "base/user/user/user_plain_edit.h"
@@ -397,11 +397,9 @@ using user_interaction = ::user::interaction;
 namespace user
 {
 
-   typedef show < ::userex::scroll < control > > scroll_ex_view;
+   typedef show < control > scroll_view;
 
-   typedef show < scroll < control > > scroll_view;
-
-   typedef show < scroll < plain_edit > > plain_edit_view;
+   typedef show < plain_edit > plain_edit_view;
 
 
 } // namespace user

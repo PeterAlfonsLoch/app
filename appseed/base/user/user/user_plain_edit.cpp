@@ -1404,7 +1404,7 @@ namespace user
    //void plain_edit::on_change_view_size()
    //{
    //
-   //   ::user::control::on_change_view_size();
+   //   ::user::box::on_change_view_size();
 
    //}
 

@@ -6,7 +6,7 @@ namespace user
 
 
    class CLASS_DECL_BASE control :
-      virtual public ::database::user::interaction
+      virtual public ::user::box
    {
    public:
 

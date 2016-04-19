@@ -2,11 +2,11 @@
 
 
 class CLASS_DECL_CORE simple_list_view :
-   virtual public ::user::show < ::user::scroll < ::user::form_list > >
+   virtual public ::user::show <  ::user::form_list > 
 {
 public:
 
-   using BASE_TYPE = ::user::show < ::user::scroll < ::user::form_list > >;
+   using BASE_TYPE = ::user::show <  ::user::form_list > ;
 
    
    simple_list_view(::aura::application * papp);   

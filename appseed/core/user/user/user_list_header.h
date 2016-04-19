@@ -51,7 +51,7 @@ namespace user
 
 
    class CLASS_DECL_CORE list_header :
-      virtual public database::user::interaction
+      virtual public box
    {
    public:
 

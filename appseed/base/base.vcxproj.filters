@@ -117,9 +117,6 @@
     <Filter Include="Header Files\user\install">
       <UniqueIdentifier>{63cabbdd-9a9f-4d6e-8dec-65756cd1d875}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\user\userex">
-      <UniqueIdentifier>{c974c6a4-c8c7-4f1f-90af-d036e1d0b7d3}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\database">
       <UniqueIdentifier>{ba08ab2c-d4ff-4526-b3fe-af42610cb903}</UniqueIdentifier>
     </Filter>
@@ -362,9 +359,6 @@
     <ClInclude Include="user\user\user_place_holder_container.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\user_plain_edit.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
     <ClInclude Include="user\user\user_plain_text_data.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
@@ -413,9 +407,6 @@
     <ClInclude Include="user\user\user_windowing.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\userex\userex_scroll.h">
-      <Filter>Header Files\user\userex</Filter>
-    </ClInclude>
     <ClInclude Include="user\user.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
@@ -427,9 +418,6 @@
     </ClInclude>
     <ClInclude Include="base\os\windows\windows_system_interaction_impl.h">
       <Filter>Header Files\base\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database\database_user_interaction.h">
-      <Filter>Header Files\database\database</Filter>
     </ClInclude>
     <ClInclude Include="user\user\user_message_queue.h">
       <Filter>Header Files\user\user</Filter>
@@ -462,6 +450,12 @@
       <Filter>Header Files\base\message</Filter>
     </ClInclude>
     <ClInclude Include="user\user\user_tooltip.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_plain_edit.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_box.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
   </ItemGroup>
@@ -815,6 +809,9 @@
       <Filter>Source Files\base\message</Filter>
     </ClCompile>
     <ClCompile Include="user\user\user_tooltip.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user_box.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
   </ItemGroup>

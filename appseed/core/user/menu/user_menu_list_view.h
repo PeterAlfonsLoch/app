@@ -6,12 +6,12 @@ namespace user
 
 
    class CLASS_DECL_CORE menu_list_view : 
-      virtual public ::user::show < ::user::scroll < ::user::menu_list_window > >
+      virtual public ::user::show <  ::user::menu_list_window  >
    {
    public:
 
 
-      typedef ::user::show < ::user::scroll < ::user::menu_list_window > > BASE;
+      typedef ::user::show <  ::user::menu_list_window  > BASE;
 
 
       menu_list_view(::aura::application * papp);

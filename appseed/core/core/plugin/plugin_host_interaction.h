@@ -11,7 +11,7 @@ namespace plugin
 
 
    class CLASS_DECL_CORE host_interaction :
-      public ::database::user::interaction
+      public ::user::box
    {
    public:
 
@@ -39,11 +39,11 @@ namespace plugin
       virtual void layout();
 
       
-      using ::database::user::interaction::GetWindowRect;
+      using ::user::box::GetWindowRect;
       virtual bool GetWindowRect(RECT64 * lprect);
 
       
-      using ::database::user::interaction::GetClientRect;
+      using ::user::box::GetClientRect;
       virtual bool GetClientRect(RECT64 * lprect);
 
       

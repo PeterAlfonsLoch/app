@@ -14,7 +14,7 @@ namespace user
 
 
          class CLASS_DECL_CORE WorkSetClientInterface :
-            virtual public database::user::interaction
+            virtual public box
          {
          public:
 

@@ -207,8 +207,8 @@ namespace user
       {
       public:
 
-
-         array < item_range > m_itemrangea;
+         index *                 m_piLink;
+         array < item_range >    m_itemrangea;
 
 
          range(const range & range);

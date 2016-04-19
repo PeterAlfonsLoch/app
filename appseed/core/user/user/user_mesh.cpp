@@ -1062,7 +1062,7 @@ namespace user
 
       }
 
-//      ::user::control::on_change_view_size();
+//      ::user::box::on_change_view_size();
 
    }
 
@@ -2263,6 +2263,16 @@ namespace user
 
    bool mesh::range::has_item(index iItem) const
    {
+      try
+      {
+         if (m_piLink != NULL)
+         {
+            return *m_piLink == iItem;
+         }
+      }
+      catch (...)
+      {
+      }
       for(index i = 0; i < m_itemrangea.get_size(); i++)
       {
          const item_range & itemrange = m_itemrangea[i];
@@ -5138,6 +5148,8 @@ namespace user
 
    mesh::range::range()
    {
+      
+      m_piLink = NULL;
 
    }
 
@@ -5145,6 +5157,7 @@ namespace user
    mesh::range::range(const range & range)
    {
 
+      m_piLink = NULL;
       m_itemrangea = range.m_itemrangea;
 
    }
@@ -5928,7 +5941,7 @@ namespace user
    //   else
    //   {
    //
-   //      ::user::control::on_change_view_size();
+   //      ::user::box::on_change_view_size();
 
    //   }
 

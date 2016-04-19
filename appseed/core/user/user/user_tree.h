@@ -216,7 +216,7 @@ namespace user
       virtual void install_message_handling(::message::dispatch * pinterface);
    };
 
-   typedef show < scroll < tree > > tree_view;
+   typedef show < tree > tree_view;
 
 } // namespace user
 

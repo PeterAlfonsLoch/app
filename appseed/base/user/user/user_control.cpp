@@ -331,7 +331,7 @@ namespace user
    {
 
 //      ::user::impact::install_message_handling(pdispatch);
-      ::database::user::interaction::install_message_handling(pdispatch);
+      ::user::box::install_message_handling(pdispatch);
       IGUI_MSG_LINK(WM_MOUSEMOVE, pdispatch, this, &::user::control::_001OnMouseMove);
 
 #ifdef WINDOWS
@@ -696,7 +696,7 @@ namespace user
    bool control::keyboard_focus_OnSetFocus()
    {
 
-      if(!::database::user::interaction::keyboard_focus_OnSetFocus())
+      if(!::user::box::keyboard_focus_OnSetFocus())
       {
 
          return false;
@@ -719,7 +719,7 @@ namespace user
    bool control::keyboard_focus_OnKillFocus()
    {
 
-      ::database::user::interaction::keyboard_focus_OnKillFocus();
+      ::user::box::keyboard_focus_OnKillFocus();
 
       ::user::control_event ev;
 
@@ -1114,7 +1114,7 @@ namespace user
    void control::_001OnDraw(::draw2d::dib * pdib)
    {
 
-      ::database::user::interaction::_001OnDraw(pdib);
+      ::user::box::_001OnDraw(pdib);
    }
 
 

@@ -62,45 +62,6 @@ namespace user
    }
 
 
-   template < class BASE >
-   void scroll_x < BASE >::create_x_scroll_bar(const RECT & rect)
-   {
-
-      if(m_pscrollbarHorz != NULL)
-         return;
-
-      scroll_bar * pbar = canew(simple_scroll_bar(this->get_app()));
-
-      if(!pbar->create_window(::orientation_horizontal,WS_CHILD | WS_VISIBLE,null_rect(),this,7000 + 1))
-      {
-         delete pbar;
-         return;
-      }
-
-      m_pscrollbarHorz = pbar;
-
-   }
-
-
-   template < class BASE >
-   void scroll_y < BASE >::create_y_scroll_bar(const RECT & rect)
-   {
-
-      if(m_pscrollbarVert != NULL)
-         return;
-
-      scroll_bar * pbar = canew(simple_scroll_bar(this->get_app()));
-
-      if(!pbar->create_window(::orientation_vertical,WS_CHILD | WS_VISIBLE,null_rect(),this,7002))
-      {
-         delete pbar;
-         return;
-      }
-
-      m_pscrollbarVert = pbar;
-
-   }
-
 
 
 } //   namespace aura

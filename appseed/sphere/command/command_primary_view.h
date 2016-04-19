@@ -6,12 +6,12 @@ namespace command
 
 
    class CLASS_DECL_SPHERE primary_view :
-      public ::user::show < ::user::scroll < ::user::plain_edit > >
+      public ::user::show < ::user::plain_edit >
    {
    public:
 
 
-      typedef ::user::show < ::user::scroll < ::user::plain_edit > > BASE;
+      typedef ::user::show <  ::user::plain_edit > BASE;
 
 
       strsize m_iCompromised;

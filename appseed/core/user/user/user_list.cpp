@@ -949,13 +949,13 @@ namespace user
             }
             _001GetItemRect(&itemLast);
 
-            ::rect rectMargin;
+            //::rect rectMargin;
 
-            get_margin_rect(rectMargin);
+            //get_margin_rect(rectMargin);
 
-            itemLast.m_rectItem.right     -= (rectMargin.left + rectMargin.right);
-            itemLast.m_rectItem.bottom    -= (rectMargin.top  + rectMargin.bottom);
-
+            //itemLast.m_rectItem.right     -= (rectMargin.left + rectMargin.right);
+            //itemLast.m_rectItem.bottom    -= (rectMargin.top  + rectMargin.bottom);
+            itemFirst.m_rectItem.top = 0;
             rect.unite(itemFirst.m_rectItem, itemLast.m_rectItem);
          }
       }
@@ -1011,7 +1011,7 @@ namespace user
 
       m_sizeTotal = rect.size();
 
-      ::user::control::on_change_view_size();
+      ::user::box::on_change_view_size();
 
    }
 
@@ -5962,6 +5962,28 @@ namespace user
 
    }
 
+
+   void list::GetScrollRect(LPRECT lprect)
+   {
+
+      mesh::GetScrollRect(lprect);
+
+      if (m_bHeaderCtrl && m_plistheader != NULL)
+      {
+
+         rect rectClient;
+
+         m_plistheader->GetClientRect(rectClient);
+
+         m_plistheader->ClientToScreen(rectClient);
+
+         ScreenToClient(rectClient);
+
+         lprect->top = rectClient.bottom;
+
+      }
+
+   }
 
 } // namespace user
 

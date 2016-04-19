@@ -104,7 +104,7 @@ namespace plugin
 
    void host_interaction::_001OnTimer(::timer * ptimer)
    {
-      ::database::user::interaction::_001OnTimer(ptimer);;
+      ::user::box::_001OnTimer(ptimer);;
       if(ptimer->m_nIDEvent == 88881115)
       {
          KillTimer(19841115);

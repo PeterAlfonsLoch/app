@@ -6,11 +6,11 @@ namespace userstack
 
 
    class CLASS_DECL_SPHERE view :
-      virtual public ::user::show < ::user::scroll < ::user::control > >
+      virtual public ::user::show < ::user::control >
    {
    public:
 
-      typedef ::user::show < ::user::scroll < ::user::control > > BASE;
+      typedef ::user::show < ::user::control > BASE;
 
       sp(pane_view)    m_ppaneview;
 

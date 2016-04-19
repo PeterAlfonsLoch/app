@@ -511,10 +511,12 @@ namespace user
 
       virtual void _001OnClip(::draw2d::dib * pdib);
 
+      virtual void GetScrollRect(LPRECT lprect);
+
    };
 
 
-   typedef show < scroll < list > > list_view;
+   typedef show < list > list_view;
 
 } // namespace user
 

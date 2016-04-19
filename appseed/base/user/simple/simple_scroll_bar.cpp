@@ -414,7 +414,7 @@ int32_t simple_scroll_bar::SetTrackingPos(point point)
       int32_t iWidth = rectClient.width() - GetSystemMetrics(SM_CXHSCROLL) * 2 - sizeTrack.cx;
       nPos = point.x - m_ptTrackOffset.x;
       nPos -= GetSystemMetrics(SM_CXHSCROLL);
-      nPos *= (m_scrollinfo.nMax - m_scrollinfo.nMin  - m_scrollinfo.nPage);
+      nPos *= (m_scrollinfo.nMax - m_scrollinfo.nMin );
       if(iWidth != 0)
          nPos /= iWidth;
       nPos += m_scrollinfo.nMin;
@@ -422,13 +422,17 @@ int32_t simple_scroll_bar::SetTrackingPos(point point)
    }
    else if(m_eorientation == orientation_vertical)
    {
+
       int32_t iHeight = rectClient.height() - GetSystemMetrics(SM_CYVSCROLL) * 2 - sizeTrack.cy;
-      nPos = point.y - m_ptTrackOffset.y;
-      nPos -= GetSystemMetrics(SM_CXHSCROLL);
-      nPos *= (m_scrollinfo.nMax - m_scrollinfo.nMin  - m_scrollinfo.nPage);
-      if(iHeight != 0)
-         nPos /= iHeight;
+
+      double dRate = (double) (point.y - m_ptTrackOffset.y) / (double) iHeight;
+
+      dRate = MIN(1.0, dRate);
+
+      nPos = dRate * (m_scrollinfo.nMax - m_scrollinfo.nMin - m_scrollinfo.nPage);
+
       nPos += m_scrollinfo.nMin;
+
    }
    else
    {
@@ -436,8 +440,8 @@ int32_t simple_scroll_bar::SetTrackingPos(point point)
    }
    if(nPos < m_scrollinfo.nMin)
       nPos = m_scrollinfo.nMin;
-   else if(nPos > m_scrollinfo.nMax - m_scrollinfo.nPage)
-      nPos = m_scrollinfo.nMax - m_scrollinfo.nPage;
+   else if(nPos > m_scrollinfo.nMax)
+      nPos = m_scrollinfo.nMax;
    if(m_bTracking)
    {
       m_scrollinfo.nTrackPos = nPos;

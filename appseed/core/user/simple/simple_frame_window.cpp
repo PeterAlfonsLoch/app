@@ -1457,7 +1457,7 @@ bool simple_frame_window::on_before_set_parent(sp(::user::interaction) pinterfac
 
    WindowDataSaveWindowRect();
 
-   if (!::database::user::interaction::on_before_set_parent(pinterface))
+   if (!::user::box::on_before_set_parent(pinterface))
       return false;
 
    return true;
@@ -1468,7 +1468,7 @@ bool simple_frame_window::on_before_set_parent(sp(::user::interaction) pinterfac
 void simple_frame_window::on_set_parent(sp(::user::interaction) puiParent)
 {
 
-   ::database::user::interaction::on_set_parent(puiParent);
+   ::user::box::on_set_parent(puiParent);
 
    UNREFERENCED_PARAMETER(puiParent);
    m_workset.m_pwndEvent = m_pimpl->m_pui;
@@ -2334,7 +2334,7 @@ bool simple_frame_window::calc_layered()
 
 void simple_frame_window::data_on_after_change(signal_details * pobj)
 {
-   database::user::interaction::data_on_after_change(pobj);
+   user::box::data_on_after_change(pobj);
    SCAST_PTR(database::change_event, phint, pobj);
    if (phint->m_key.m_id == "ca2.savings")
    {

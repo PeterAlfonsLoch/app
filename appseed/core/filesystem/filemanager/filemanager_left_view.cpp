@@ -97,7 +97,7 @@ namespace filemanager
 
       */
 
-      m_pusertree = create_view < ::user::show < ::user::scroll  < ::user::tree > > >();
+      m_pusertree = create_view < ::user::show < ::user::tree > > ();
 
       if(m_pusertree == NULL)
       {

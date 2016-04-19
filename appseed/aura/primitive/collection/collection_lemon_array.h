@@ -232,6 +232,21 @@ namespace lemon
 
    CLASS_DECL_AURA string x1_encode_ida(const stringa & stra);
 
+
+   template < class A >
+   void x1_on_remove(const A & a, typename A::BASE_TYPE & n)
+   {
+      ::count c = 0;
+      for (index i = 0; i < a.get_size(); i++)
+      {
+         if (a[i] < n)
+         {
+            c++;
+         }
+      }
+      n -= c;
+   }
+
 /*	function array_remove_by_keys($a, $keys, $bStrict = false)
 {
 	$newa = array();
