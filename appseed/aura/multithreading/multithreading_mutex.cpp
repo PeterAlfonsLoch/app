@@ -168,17 +168,37 @@ mutex::mutex(::aura::application * papp, bool bInitiallyOwn, const char * pstrNa
       ::file_put_contents_dup(m_pszName, m_pszName);
 
       m_key = ftok(m_pszName, 0); //Generate a unique key or supply a value
-
+bool bAlreadyExists = false;
       m_semid = semget(
                   m_key, // a unique identifier to identify semaphore set
                   1,  // number of semaphore in the semaphore set
-                  0666 | IPC_CREAT // permissions (rwxrwxrwx) on the new
+                  0666 | IPC_CREAT | IPC_EXCL// permissions (rwxrwxrwx) on the new
                        //semaphore set and creation flag
                   );
+
+
+      if(m_semid == -1)
+      {
+      if(errno == EEXIST)
+      {
+         bAlreadyExists = true;
+         }
+         m_semid = semget(
+                     m_key, // a unique identifier to identify semaphore set
+                     1,  // number of semaphore in the semaphore set
+                     0666 | IPC_CREAT// permissions (rwxrwxrwx) on the new
+                          //semaphore set and creation flag
+                     );
+      }
 
       if(m_semid < 0)
          throw resource_exception(get_app());
 
+         if(bAlreadyExists)
+         {
+                  SetLastError(ERROR_ALREADY_EXISTS);
+
+         }
       semun semctl_arg;
 
       //set Initial value for the resource
