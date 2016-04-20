@@ -350,6 +350,7 @@ namespace draw2d_cairo
       size GetTextExtent(const char * lpszString, strsize nCount, strsize iIndex) const;
       size GetTextExtent(const char * lpszString, strsize nCount) const;
       size GetTextExtent(const string & str) const;
+      bool _GetTextExtent(sized & size, const char * lpszString, strsize nCount, strsize iIndex) const;
       bool GetTextExtent(sized & size, const char * lpszString, strsize nCount, strsize iIndex) const;
       bool GetTextExtent(sized & size, const char * lpszString, strsize nCount) const;
       bool GetTextExtent(sized & size, const string & str) const;

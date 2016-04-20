@@ -4528,7 +4528,7 @@ synch_lock ml(m_pmutex);
       for(auto & strLine : stra)
       {
 
-         cairo_move_to(m_pdc, lpRect.left + dx, lpRect.top + dy + e.ascent + sz.cy * (i));
+         cairo_move_to(m_pdc, lpRect.left + dx, lpRect.top + dy + e.ascent + sz.cy * (i) / stra.get_size());
 
          cairo_show_text(m_pdc, strLine);
 
@@ -4644,6 +4644,41 @@ synch_lock ml(m_pmutex);
 
       string str(lpszString, MIN(iIndex, nCount));
 
+      stringa stra;
+
+      stra.add_lines(str, true);
+
+      sized s0(0.0, 0.0);
+      size.cx = 0.0;
+      size.cy = 0.0;
+
+      for(auto & str : stra)
+      {
+
+         _GetTextExtent(s0, str, str.get_length(), str.get_length());
+
+         size.cx =MAX(size.cx, s0.cx);
+         size.cy += s0.cy;
+
+
+      }
+
+
+      return true;
+
+
+   }
+
+      bool graphics::_GetTextExtent(sized & size, const char * lpszString, strsize nCount, strsize iIndex) const
+   {
+
+      synch_lock ml(m_pmutex);
+
+      if (iIndex < 0)
+         iIndex = (int32_t) nCount;
+
+      string str(lpszString, MIN(iIndex, nCount));
+
       cairo_keep keep(m_pdc);
 
       ((graphics *) this)->set(m_spfont);
@@ -4682,6 +4717,7 @@ synch_lock ml(m_pmutex);
 
 
    }
+
 
    bool graphics::GetTextExtent(sized & size, const char * lpszString, strsize nCount) const
    {
