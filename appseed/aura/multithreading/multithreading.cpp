@@ -157,12 +157,10 @@ namespace multithreading
 
       __end_thread(papp);
 
-      bool bOk = true;
-
       try
       {
 
-         if(pthread->m_bAutoDelete)
+         if(pthread->is_heap())
          {
 
             ::aura::del(pthread);
@@ -173,17 +171,7 @@ namespace multithreading
       catch(...)
       {
 
-         bOk = false;
-
       }
-
-      if(!bOk)
-      {
-
-         ::aura::del(pthread);
-
-      }
-
 
       return nExitCode;
 

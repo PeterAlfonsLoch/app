@@ -28,7 +28,7 @@ namespace hotplugin
       uint32_t                      m_last_redraw;
       int32_t                       m_iEdge;
       bool                          m_bAppStarted;
-      bool *                        m_pbReady;
+      manual_reset_event            m_evReady;
       bool                          m_bApp;
       host *                        m_phost;
       bool                          m_bOk;
@@ -126,7 +126,7 @@ namespace hotplugin
 
       virtual void plugin_system_redraw();
 
-      
+
 #if !defined(WINDOWS) && !defined(APPLEOS) && !defined(ANDROID)
       using ::user::interaction::message_handler;
       virtual int32_t message_handler(XEvent * pevent);
@@ -169,7 +169,7 @@ namespace hotplugin
       virtual void get_progress_color(BYTE & uchR, BYTE & uchG, BYTE & uchB, double dRate, int32_t iProfile);
 
       virtual void on_host_timer();
-      
+
    };
 
 

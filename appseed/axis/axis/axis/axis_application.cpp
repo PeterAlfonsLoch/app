@@ -157,60 +157,60 @@ namespace axis
 
    }
 
-   
+
    bool application::load_string(string & str,id id)
    {
-      
+
       synch_lock sl(&m_mutexStr);
-      
+
       if(!load_cached_string(str,id,true))
       {
-         
+
          return false;
-         
+
       }
-      
+
       return true;
-      
+
    }
-   
+
 
    bool application::load_cached_string(string & str,id id,bool bLoadStringTable)
    {
-      
+
       synch_lock sl(&m_mutexStr);
-      
+
       ::xml::document doc(this);
-      
+
       if(!doc.load(id))
       {
-         
+
          return load_cached_string_by_id(str,id,bLoadStringTable);
-         
+
       }
-      
+
       sp(::xml::node) pnodeRoot = doc.get_root();
-      
+
       if(pnodeRoot->get_name() == "string")
       {
-         
+
          string strId = pnodeRoot->attr("id");
 
          if (!load_cached_string_by_id(str, strId, bLoadStringTable))
          {
 
             str = pnodeRoot->get_value();
-            
+
          }
-         
+
          return true;
-         
+
       }
-      
+
       return false;
-      
+
    }
-   
+
 
    bool application::load_cached_string_by_id(string & str,id id,bool bLoadStringTable)
    {
@@ -1442,9 +1442,9 @@ namespace axis
       try
       {
          thread * pthread = this;
-         if(pthread != NULL && pthread->m_pbReady != NULL)
+         if(pthread != NULL && pthread->m_pevReady != NULL)
          {
-            *pthread->m_pbReady = true;
+            pthread->m_pevReady->SetEvent();
          }
       }
       catch(...)
@@ -2014,7 +2014,7 @@ namespace axis
 
       }
 
-      
+
 
       m_bAxisInitialize1Result = true;
 
@@ -3000,7 +3000,7 @@ namespace axis
       var varQuery;
 
       varQuery["disable_ca2_sessid"] = true;
-      
+
       string strMatter = dir().matter(::file::path(pszMatter) / pszMatter2);
 
       return file().as_string(strMatter,varQuery);

@@ -266,19 +266,19 @@ namespace aura
 
    void application::throw_not_installed()
    {
-      
+
       string strBuildNumber = System.command()->m_varTopicQuery["build_number"];
-      
+
       if(strBuildNumber.is_empty())
       {
-         
+
          strBuildNumber = "installed";
-         
+
       }
-      
+
        throw not_installed(get_app(),System.install_get_version(),strBuildNumber,"application",m_strAppName,Session.m_strLocale,Session.m_strSchema);
    }
-   
+
 
 
    void application::on_create(::create * pcreate)
@@ -448,19 +448,19 @@ namespace aura
 
    bool application::load_cached_string(string & str,id id,bool bLoadStringTable)
    {
-      
+
       ::xml::document doc(this);
-      
+
       if(!doc.load(id))
       {
-         
+
          if(load_cached_string_by_id(str,id,bLoadStringTable))
          {
-            
+
             return true;
-            
+
          }
-         
+
       }
 
       sp(::xml::node) pnodeRoot = doc.get_root();
@@ -483,7 +483,7 @@ namespace aura
       }
 
       return false;
-      
+
    }
 
 
@@ -532,7 +532,7 @@ namespace aura
       }
       else if(m_stringtable.Lookup(strTable,pmap))
       {
-         
+
          if(pmap->Lookup(strString,str))
          {
 
@@ -543,13 +543,13 @@ namespace aura
       }
       else if(bLoadStringTable)
       {
-         
+
          load_string_table(strTable,"");
-         
+
          return load_cached_string_by_id(str,id,false);
 
       }
-     
+
       return false;
 
    }
@@ -1180,9 +1180,9 @@ namespace aura
       try
       {
          thread * pthread = this;
-         if(pthread != NULL && pthread->m_pbReady != NULL)
+         if(pthread != NULL && pthread->m_pevReady != NULL)
          {
-            *pthread->m_pbReady = true;
+            pthread->m_pevReady->SetEvent();
          }
       }
       catch(...)
@@ -1584,10 +1584,10 @@ namespace aura
 
       if (!is_system() && !is_session())
       {
-         
+
          if (command()->m_varTopicQuery.has_property("service"))
          {
-            
+
             create_new_service();
 
             ::service_base::serve(*m_pservice);
@@ -1749,7 +1749,7 @@ namespace aura
 
    }
 
-   
+
    bool application::stop_service()
    {
 
@@ -2668,7 +2668,7 @@ namespace aura
             //System.simple_message_box("A instance of the application:<br><br>           - " + string(m_strAppName) + "<br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same account.<br><br>Exiting this new instance.");
             TRACE("A instance of the application:<br><br>           - " + string(m_strAppName) + "<br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same account.<br><br>Exiting this new instance.");
             on_exclusive_instance_conflict(ExclusiveInstanceLocal);
-            System.post_quit();
+            //System.post_quit();
             return false;
          }
          if(m_eexclusiveinstance == ExclusiveInstanceLocalId)
@@ -4054,17 +4054,6 @@ namespace aura
       if(!papp->start_application(bSynch,pbias))
       {
 
-         try
-         {
-
-            ::release(pbaseapp);
-
-         }
-         catch(...)
-         {
-
-         }
-
          return NULL;
 
       }
@@ -4228,40 +4217,40 @@ namespace aura
             // Package app.app project with the <your-app> project!
             // The code below will seem to be guilty and blameable if you skipp app.app packaging with your app.
 //            ::file::path path = get_exe_path();
-//            
+//
 //            index i = 5;
 //
 //            while(i >= 0)
 //            {
-//            
+//
 //               path = path.folder();
-//               
+//
 //               strPath = path / "app";
-//               
+//
 //               output_debug_string("\n xyzxyzx " + strPath + "\n");
 //               output_debug_string("\n xyzxyzx " + strPath + "\n");
 //               output_debug_string("\n xyzxyzx " + strPath + "\n");
 //               output_debug_string("\n xyzxyzx " + strPath + "\n");
 //               output_debug_string("\n xyzxyzx " + strPath + "\n");
-//               
+//
 //               if(Application.file().exists(strPath))
 //               {
-//               
+//
 //                  output_debug_string("\n OK OK K " + strPath + "\n");
-//                  
+//
 //                  break;
-//                  
+//
 //               }
 //
 //               i--;
-//               
+//
 //            }
 //
 //            //                     setenv("DYLD_FALLBACK_LIBRARY_PATH",System.dir().ca2module(), 1 );
 //            //                     setenv("DYLD_FALLBACK_LIBRARY_PATH",strPath, 1 );
-            
+
             strPath = get_exe_path();
-            
+
             ::output_debug_string("\n\n xyzxyzx OK OK K " + strPath + "\n\n");
 
             strPath = "\"" + strPath + "\"";

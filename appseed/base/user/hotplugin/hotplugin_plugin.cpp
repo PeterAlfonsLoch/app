@@ -43,9 +43,10 @@ namespace hotplugin
       ::axis::session(papp),
       ::aura::ipc::base(papp),
       ::aura::ipc::tx(papp),
-      ::aura::ipc::ipc(papp)
+      ::aura::ipc::ipc(papp),
+      m_evReady(papp)
    {
-      
+
       m_dwSync = 0;
 
       m_iDelta = 5000;
@@ -771,7 +772,7 @@ namespace hotplugin
          uint_ptr size = m_sizeBitmapData.cx * m_sizeBitmapData.cy * sizeof(COLORREF);
 
          ::file::path strName = Application.dir().userappdata()/"time"/"core\\app.plugin.container-" + m_strBitmapChannel;
-         
+
          if(!m_memBitmap.open(strName,true,true,bCreate,size))
          {
 
@@ -969,7 +970,7 @@ namespace hotplugin
 
       if(!m_phost->GetClientRect(prect))
       {
-         
+
          return false;
 
       }

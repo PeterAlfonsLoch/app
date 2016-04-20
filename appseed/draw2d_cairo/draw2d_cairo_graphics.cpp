@@ -3350,7 +3350,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
    int32_t graphics::SaveDC()
    {
 
-      ::exception::throw_not_implemented(get_app());
+      //::exception::throw_not_implemented(get_app());
       return 0;
 
 /*
@@ -3367,7 +3367,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
    bool graphics::RestoreDC(int32_t nSavedDC)
    {
 
-      ::exception::throw_not_implemented(get_app());
+      //::exception::throw_not_implemented(get_app());
       return false;
 
 /*

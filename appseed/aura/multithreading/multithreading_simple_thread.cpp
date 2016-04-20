@@ -16,17 +16,6 @@ simple_thread::simple_thread(::aura::application * papp) :
 simple_thread::~simple_thread()
 {
 
-//   if(m_pthreadimpl->m_pthread != NULL)
-//   {
-//
-//      m_pthreadimpl->m_pthread = NULL;
-//
-//   }
-
-   set_run(false);
-
-   get_finish_event().wait(millis(m_dwFinishTimeout));
-
 }
 
 

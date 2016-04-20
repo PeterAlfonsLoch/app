@@ -51,7 +51,7 @@ namespace plugin
       m_iHealingSurface       = 0;
       m_iEdge                 = -1;
       m_bAppStarted           = false;
-      m_pbReady               = NULL;
+//      m_pbReady               = NULL;
       m_bMainReady            = false;
 
       m_pbitmap               = NULL;
@@ -227,8 +227,8 @@ namespace plugin
       System.add_frame(m_puiHost);
       m_puiHost->layout();
 
-      if(m_pbReady == NULL)
-         m_pbReady = (bool *) memory_alloc(sizeof(bool));
+//      if(m_pbReady == NULL)
+  //       m_pbReady = (bool *) memory_alloc(sizeof(bool));
 
 
 #ifdef WINDOWS
@@ -791,9 +791,8 @@ namespace plugin
                   m_puiHost->layout();
                   if(!m_bApp)
                   {
-                     while(!*m_pbReady)
+                     while(!m_evReady.lock(millis(284)) && m_bApp)
                      {
-                        Sleep(284);
                      }
                      if(!m_bApp)
                      {
@@ -1058,29 +1057,17 @@ namespace plugin
 
          if(pthread->get_run())
          {
-            if(m_pbReady != NULL)
-            {
-               *m_pbReady = false;
-            }
-            pthread->m_pbReady = m_pbReady;
+            m_evReady.ResetEvent();
+            pthread->m_pevReady = &m_evReady;
             pthread->set_end_thread();
-            int32_t iRepeat = 0;
-            while((m_pbReady != NULL || !*m_pbReady) && iRepeat < 49)
+            int iRepeat = 0;
+            while(!m_evReady.lock(millis(284)) && iRepeat < 49)
             {
-               Sleep(284);
                iRepeat++;
             }
          }
 
 
-      }
-      catch(...)
-      {
-      }
-
-      try
-      {
-         memory_free(m_pbReady);
       }
       catch(...)
       {

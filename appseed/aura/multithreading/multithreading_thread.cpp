@@ -74,7 +74,6 @@ DWORD thread::get_file_sharing_violation_timeout_total_milliseconds()
 
 thread::thread() :
    ::object(::get_thread_app()),
-   m_evFinish(::get_thread_app()),
    m_mutexUiPtra(::get_thread_app())
 {
 
@@ -91,7 +90,6 @@ thread::thread() :
 
 thread::thread(::aura::application * papp) :
    object(papp),
-   m_evFinish(papp),
    m_mutexUiPtra(papp)
 {
 
@@ -110,7 +108,6 @@ thread::thread(::aura::application * papp) :
 
 thread::thread(::aura::application * papp, __THREADPROC pfnThreadProc, LPVOID pParam) :
    object(papp),
-   m_evFinish(papp),
    m_mutexUiPtra(papp)
 {
 
@@ -150,7 +147,7 @@ void thread::CommonConstruct()
 
    m_bReady = false;
    m_bRun = true;
-   m_pbReady = NULL;
+   m_pevReady = NULL;
 
    m_puiActive = NULL;
    m_puiMain = NULL;
@@ -178,7 +175,6 @@ void thread::CommonConstruct()
    m_hthread = (HTHREAD) NULL;
    m_uiThread = 0;
 
-   m_evFinish.SetEvent();
    m_pThreadParams = NULL;
    m_pfnThreadProc = NULL;
 
@@ -1956,8 +1952,6 @@ int32_t thread::thread_startup(::thread_startup * pstartup)
 
    //::thread * pthreadimpl = pstartup->m_pthreadimpl;
 
-   m_evFinish.ResetEvent();
-
    IGUI_WIN_MSG_LINK(WM_APP + 1000, this, this, &::thread::_001OnThreadMessage);
 
    install_message_handling(this);
@@ -2225,12 +2219,6 @@ int32_t thread::thread_term()
 //}
 
 
-event & thread::get_finish_event()
-{
-
-   return m_evFinish;
-
-}
 
 
 //void thread::step_timer()
@@ -2769,10 +2757,10 @@ void thread::thread_delete()
    try
    {
 
-      if(m_pbReady != NULL)
+      if(m_pevReady != NULL)
       {
 
-         *m_pbReady = true;
+         m_pevReady->SetEvent();
 
       }
 
@@ -2782,55 +2770,7 @@ void thread::thread_delete()
 
    }
 
-   try
-   {
-
-      m_evFinish.SetEvent();
-
-   }
-   catch(...)
-   {
-
-   }
-
-   try
-   {
-
-      set_end_thread();
-
-   }
-   catch(...)
-   {
-
-   }
-
-   //if(m_preplacethread != NULL)
-   //{
-
-   //   single_lock sl(&m_preplacethread->m_mutex,true);
-
-   //   m_preplacethread->m_spthread.release();
-
-   //}
-   //else if(m_bAutoDelete)
-   //{
-   //   //if(m_countReference > 1)
-   //   //{
-   //   //   throw simple_exception(get_app(), "thread should be deleted here");
-   //   //}
-   //    release();
-
-   //}
-   //else
-   {
-      //if(m_countReference > 1)
-      //{
-      //   throw simple_exception(get_app(),"thread should be deleted here");
-      //}
-
-      set_os_data(NULL);
-
-   }
+   set_os_data(NULL);
 
 }
 

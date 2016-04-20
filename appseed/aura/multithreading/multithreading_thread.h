@@ -47,7 +47,6 @@ public:
    int32_t                                m_iReturnCode;
    ::user::primitive *                  m_puiMain;           // main interaction_impl (usually same System.m_puiMain)
    ::user::primitive *                  m_puiActive;         // active main interaction_impl (may not be m_puiMain)
-   bool *                                 m_pbReady;
    //property_set                           m_set;
    string                                 m_strWorkUrl;
    ptr_array < thread >                   m_threadptraDependent;
@@ -82,7 +81,7 @@ public:
    LPVOID                                    m_pThreadParams;
    __THREADPROC                              m_pfnThreadProc;
 
-   manual_reset_event                        m_evFinish;
+   manual_reset_event *                      m_pevReady;
    UINT                                      m_nDisablePumpCount;
    mutex                                     m_mutexUiPtra;
 
@@ -203,7 +202,6 @@ public:
    //virtual void unset_timer(::user::primitive * pui, uint_ptr nIDEvent);
    virtual void set_auto_delete(bool bAutoDelete = true);
    virtual void set_run(bool bRun = true);
-   virtual event & get_finish_event();
    virtual bool get_run();
    virtual ::user::primitive * get_active_ui();
    virtual ::user::primitive * set_active_ui(::user::primitive * pui);

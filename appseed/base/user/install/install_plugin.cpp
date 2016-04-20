@@ -78,14 +78,14 @@ namespace install
 
       m_bCa2Login             = false;
       m_bCa2Logout            = false;
-         
+
 
       m_pstyle = this;
 
       m_iHealingSurface       = 0;
       m_iEdge                 = -1;
       m_bAppStarted           = false;
-      m_pbReady               = NULL;
+      //m_evReady               = NULL;
 
       //m_bHasCred              = false;
       //m_bHasCredEval          = false;
@@ -134,7 +134,7 @@ namespace install
 
    bool plugin::set_host(::hotplugin::host * phost)
    {
-      
+
       if (!::hotplugin::plugin::set_host(phost))
          return false;
 
@@ -143,7 +143,7 @@ namespace install
       return true;
 
    }
-    
+
 
    void plugin::on_prepare_memory()
    {
@@ -453,12 +453,12 @@ namespace install
 
       if(bTimedOut)
       {
-         
+
          //::simple_message_box(NULL," - " + set["app"].get_string() + "\nhas timed out while trying to run.\n\nFor developers it is recommended to\nfix this timeout problem.\n\nYou may kill it manually :\n - \"" + strPath + "\"\nif it it does not come up.","Error Message",MB_ICONINFORMATION | MB_OK);
-         
+
          //m_phost->m_pbasecomposer->m_strEntryHallText = "Starting Application...";
 
-         //m_bNativeLaunchFail = true; 
+         //m_bNativeLaunchFail = true;
 
          m_phost->m_pbasecomposer->m_strEntryHallText = "***Application started.";
 
@@ -467,7 +467,7 @@ namespace install
       }
       else if((int) dwExitCode >= 0)
       {
-         
+
          //  ::simple_message_box(NULL,"Successfully run : " + strPath,"Debug only message, please install.",MB_ICONINFORMATION | MB_OK);
 
          m_phost->m_pbasecomposer->m_strEntryHallText = "***Application started.";
@@ -477,7 +477,7 @@ namespace install
       }
       else
       {
-         
+
          //::simple_message_box(NULL,strPath + "\n\nFailed return code : " + ::str::from(dwExitCode),"Error Message",MB_ICONINFORMATION | MB_OK);
 
          //m_phost->m_pbasecomposer->m_strEntryHallText = "***Failed to start application.";
@@ -498,7 +498,7 @@ namespace install
 
       //if(!m_bHasCredEval)
       //{
-      //   
+      //
       //   string strUsername;
 
       //   string strPassword;
@@ -574,20 +574,20 @@ namespace install
       {
 
          m_bCa2Login = true;
-         
+
          m_bOk = false;
-         
+
          m_phost->m_bOk = false;
-         
+
          property_set set(get_app());
-         
+
          set.parse_url_query(System.url().get_query(m_phost->m_pbasecomposer->m_strPluginUrl));
-         
+
          string strUrl(set["ruri"]);
 
          if(strUrl.is_empty())
          {
-          
+
             strUrl = "http://" + Session.fontopus()->get_server(m_phost->m_pbasecomposer->m_strPluginUrl) + "/";
 
          }
@@ -603,7 +603,7 @@ namespace install
       }
       else if(!m_bCa2Logout && strScript == "/ca2logout")
       {
-         
+
          m_phost->m_pbasecomposer->m_strEntryHallText = "Performing Log Out...";
 
          m_bCa2Logout = true;
@@ -615,7 +615,7 @@ namespace install
          property_set set(get_app());
 
          set.parse_url_query(System.url().get_query(m_phost->m_pbasecomposer->m_strPluginUrl));
-         
+
          //ca2logout(set);
 
          m_startca2.set_end_thread();
@@ -1013,7 +1013,7 @@ namespace install
       }
       else if (System.install().is_installing_ca2())
       {
-         
+
          bInstallingCa2 = true;
 
          m_canvas.on_paint(pgraphics, rect);
@@ -1094,7 +1094,7 @@ namespace install
 
       if(pobj->previous())
          return;
-      
+
       m_iHealingSurface = m_canvas.increment_mode();
 
    }
@@ -1117,7 +1117,7 @@ namespace install
          ::simple_ui::interaction::message_handler(pobj);
 
       }
-      
+
    }
 
 
@@ -1140,7 +1140,7 @@ namespace install
    //      return m_phost->get_focus();
 
    //   }
-   //   
+   //
    //   return NULL;
 
    //}
@@ -1478,7 +1478,7 @@ namespace install
 
          if (strSchema.is_empty())
             strSchema = "_std";
-         
+
          if(strVersion.is_empty())
             strVersion = "stage";
 
@@ -1617,7 +1617,7 @@ restart:
 
 #else
 
-         
+
          ::rect rect;
 
          GetWindowRect(rect);

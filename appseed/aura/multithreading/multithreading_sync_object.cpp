@@ -1,13 +1,30 @@
 #include "framework.h"
 
 
-sync_object::sync_object(const char * pstrName)
+sync_object::sync_object(const char * pszName)
 {
+
    m_bOwner = true;
+
 #ifdef WINDOWS
+
    m_object = NULL;
+
 #endif
-   m_pszName = pstrName == NULL ? NULL : strdup(pstrName);
+
+   if(pszName == NULL)
+   {
+
+      m_pszName = NULL;
+
+   }
+   else
+   {
+
+      m_pszName = strdup(pszName);
+
+   }
+
 }
 
 sync_object::~sync_object()
@@ -19,10 +36,14 @@ sync_object::~sync_object()
       m_object = NULL;
    }
 #endif
-   if (m_pszName != NULL)
+
+   if(m_pszName != NULL)
    {
-      ::free((void*)m_pszName);
+
+      ::free(m_pszName);
+
    }
+
 }
 
 
@@ -50,17 +71,12 @@ wait_result sync_object::wait(const duration & durationTimeout)
 
 #else
 
-   //if(!lock(durationTimeout))
-   //{
-
-      return wait_result(wait_result::Failure);
-
-//   }
-
-  // return wait_result(wait_result::Event0);
+   return wait_result(wait_result::Failure);
 
 #endif
+
 }
+
 
 void sync_object::dump(dump_context & dumpcontext) const
 {
@@ -76,10 +92,14 @@ void sync_object::dump(dump_context & dumpcontext) const
 
 }
 
+
 void sync_object::assert_valid() const
 {
+
    object::assert_valid();
+
 }
+
 
 #ifdef WINDOWS
 
@@ -92,19 +112,27 @@ sync_object::operator HANDLE() const
 
 void * sync_object::get_os_data() const
 {
+
 #ifdef WINDOWS
+
    return (void *) m_object;
+
 #else
+
    return 0;
+
 #endif
+
 }
+
 
 bool sync_object::unlock(LONG /* lCount */, LPLONG /* lpPrevCount=NULL */)
 {
 
-   return TRUE;
+   return true;
 
 }
+
 
 bool sync_object::unlock()
 {
@@ -112,3 +140,7 @@ bool sync_object::unlock()
    return true;
 
 }
+
+
+
+

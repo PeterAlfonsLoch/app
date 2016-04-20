@@ -245,7 +245,7 @@ namespace xml
 //namespace file
 //{
 //
-//   
+//
 //   template < class T >
 //   bool system::output(::aura::application * papp,const char * pszOutput,T * p,bool (T::*lpfnOuput)(::file::ostream &,const char *),const char * lpszSource)
 //   {
@@ -325,7 +325,7 @@ namespace aura
       if(!contains_app(pszAppId))
          return NULL;
 
-      sp(::aura::application) papp = canew(APP());
+      sp(::aura::application) papp = new APP();
 
       if(papp == NULL)
          return NULL;
@@ -339,7 +339,7 @@ namespace aura
       catch(...)
       {
 
-         papp.release();
+         delete papp;
 
          return NULL;
 
