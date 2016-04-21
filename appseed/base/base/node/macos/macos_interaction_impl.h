@@ -37,7 +37,7 @@ namespace macos
         virtual void mouse_hover_add(::user::interaction *   pinterface);
         virtual void mouse_hover_remove(::user::interaction *   pinterface);
 
-        virtual bool create_message_queue(const char * pszName);
+        virtual bool create_message_queue(::user::interaction * pui, const char * pszName);
 
 		static_function const MESSAGE* PASCAL GetCurrentMessage();
 
@@ -97,20 +97,20 @@ namespace macos
 
       using ::user::interaction_impl::create_window;
       // for child windows, views, panes etc
-      virtual bool create_window(const char * lpszClassName,
+      virtual bool create_window(::user::interaction * pui, const char * lpszClassName,
                           const char * lpszWindowName, DWORD dwStyle,
                           const RECT& rect,
                           ::user::interaction *   pParentWnd, id id,
                           sp(::create) pContext = NULL);
 
       // advanced creation (allows access to extended styles)
-      virtual bool create_window_ex(DWORD dwExStyle = 0, const char * lpszClassName=0,
+      virtual bool create_window_ex(::user::interaction * pui, DWORD dwExStyle = 0, const char * lpszClassName=0,
                             const char * lpszWindowName= 0, DWORD dwStyle= 0,
                             const RECT& rect= null_rect(),
                                     ::user::interaction *   pParentWnd=NULL, id id=::id(),
                             LPVOID lpParam = NULL);
 
-       virtual bool native_create_window_ex(DWORD dwExStyle= 0, const char * lpszClassName= NULL,
+       virtual bool native_create_window_ex(::user::interaction * pui, DWORD dwExStyle= 0, const char * lpszClassName= NULL,
                                      const char * lpszWindowName= 0, DWORD dwStyle= 0,
                                             const RECT& rect = ::null_rect(),
                                             oswindow hwndParent= NULL, id id=::id(),

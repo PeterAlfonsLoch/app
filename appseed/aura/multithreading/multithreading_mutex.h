@@ -1,6 +1,8 @@
 #pragma once
 
-
+#ifdef APPLEOS
+#include <semaphore.h>
+#endif
 
 
 
@@ -16,7 +18,7 @@ public:
    pthread_mutex_t         m_mutex;
    //string                  m_strName;
 
-#ifdef ANDROID
+#if defined(ANDROID) || defined(APPLEOS)
 
    sem_t *                 m_psem;
 
@@ -37,7 +39,7 @@ public:
    mutex(const mutex & m);
 #ifdef WINDOWS
    mutex(::aura::application * papp,const char * pstrName,void * posdata, bool bOwner = true);
-#elif defined(ANDROID)
+#elif defined(ANDROID) || defined(APPLEOS)
    mutex(::aura::application * papp,const char * pstrName,sem_t * psem,bool bOwner = true);
 #else
    mutex(::aura::application * papp,const char * pstrName,key_t key, int32_t semid, bool bOwner = true);

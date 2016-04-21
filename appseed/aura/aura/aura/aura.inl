@@ -325,7 +325,7 @@ namespace aura
       if(!contains_app(pszAppId))
          return NULL;
 
-      sp(::aura::application) papp = new APP();
+      ::aura::application * papp = new APP();
 
       if(papp == NULL)
          return NULL;
@@ -339,7 +339,7 @@ namespace aura
       catch(...)
       {
 
-         delete papp;
+         ::aura::del(papp);
 
          return NULL;
 

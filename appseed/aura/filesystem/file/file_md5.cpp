@@ -35,3 +35,19 @@ string file_md5_dup(const char * psz)
    }
    return str;
 }
+
+string str_md5_dup(const char * psz)
+{
+   aura::md5 alg;
+   alg.update((void *) psz,strlen(psz));
+   alg.finalize();
+   string str;
+   char chbuf[32];
+   for(int i = 0; i < 16; i++)
+   {
+      sprintf(chbuf,"%02x",alg.digest()[i]);
+      str += chbuf;
+   }
+   return str;
+}
+

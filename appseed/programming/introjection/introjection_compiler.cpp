@@ -528,11 +528,67 @@ namespace introjection
       strName.replace("/","\\");
 
 #endif
+      
+      string str;
+
+      ::file::path strClog;
+      ::file::path strLlog;
+      
+      ::file::path strScript;
+      strScript = strName.title();
+      ::file::path strTransformName = strName;
+      if(Application.file().exists(strName))
+      {
+         //         lib->m_strSourcePath = strName;
+         strTransformName.replace(":","");
+         ::str::ends_eat_ci(strTransformName,".cpp");
+      }
+      else
+      {
+         return lib->m_library;
+      }
+
+
+#ifdef MACOS
+      
+      string strCmd = strFilePath;
+      string strLCmd;
+      string strDCmd;
+      
+      ::str::ends_eat_ci(strCmd, ".cpp");
+      string strTargetPath;
+      string strSrcName = ::file::path(strCmd).title();
+      strTargetPath =  System.dir().module() / "lib" + strSrcName;
+      string strDsymPath = (System.dir().module().folder(3)) /  "lib" + strSrcName;
+      string strDdPath = System.dir().module().folder(6);
+      string strSrcFolder = ::file::path(strCmd).folder();
+      strClog = strCmd + "-osxc.txt";
+      strLlog = strCmd + "-osxl.txt";
+      strLCmd = strCmd + "-osxl";
+      strDCmd = strCmd + "-osxd";
+      string strLfl = strCmd + "-osx";
+      strCmd += "-osxc";
+      
+      {
+      
+         string str2 = Application.file().as_string(strLfl+".LinkFileList");
+         str2.replace("%TARGET_PATH%", strTargetPath);
+         str2.replace("%DSYM_PATH%", strDsymPath);
+         str2.replace("%DERIVED_DATA%", strDdPath);
+         str2.replace("%SRC_FOLDER%", strSrcFolder);
+         str2.replace("%SRC_NAME%", strSrcName);
+         Application.file().put_contents(strLfl + "2.LinkFileList", str2);
+         
+      }
+      
+      ::dir::mk("/var/tmp/ca2/intermediate");
+      
+#else
+
 
       //strName.replace("/", "\\");
       //string strFolder;
       //strFolder = System.dir().element();
-      string str;
       //::file::path strB;
       ::file::path strO;
       ::file::path strP;
@@ -548,8 +604,6 @@ namespace introjection
       //::file::path strSO2;
       //::file::path strDO1;
       //::file::path strDO2;
-      ::file::path strClog;
-      ::file::path strLlog;
       ::file::path strObj;
 
 
@@ -557,19 +611,6 @@ namespace introjection
       strScript.replace("\\", ",");
       strScript.replace("/", ",");
       strScript = "ca2" + m_pmanager->m_strNamespace + "_script." + strScript;*/
-      ::file::path strScript;
-      strScript = strName.title();
-      ::file::path strTransformName = strName;
-      if(Application.file().exists(strName))
-      {
-         //         lib->m_strSourcePath = strName;
-         strTransformName.replace(":","");
-         ::str::ends_eat_ci(strTransformName,".cpp");
-      }
-      else
-      {
-         return lib->m_library;
-      }
 
       ::file::path strSourceDir;
       strSourceDir = strName.folder();
@@ -904,12 +945,12 @@ namespace introjection
       strT2.replace("\\",".");
       strT2.replace("/",".");
       strT2.replace(":","_");
-      string strTargetPath = System.dir().element() / "time" / m_strPlatform / m_strDynamicSourceConfiguration / strT2 ;
       ::str::ends_eat_ci(strTargetPath,".cpp");
 #ifdef LINUX
-      strTargetPath =  System.dir().element() / "stage/x86" / lib->m_pathScript.title();
+      string strTargetPath =  System.dir().element() / "stage/x86" / lib->m_pathScript.title();
       ::str::ends_eat_ci(strTargetPath,".so");
 #else
+      string strTargetPath = System.dir().element() / "time" / m_strPlatform / m_strDynamicSourceConfiguration / strT2 ;
       ::str::ends_eat_ci(strTargetPath,".dll");
 #endif
       strTargetPath += "-"+strRndTitle;
@@ -921,8 +962,7 @@ namespace introjection
 
 
 
-      bool bTimeout = false;
-
+      
       ::process::process_sp process(allocer());
 
       //      ::multithreading::set_thread_priority(::multithreading::priority_highest);
@@ -939,12 +979,45 @@ namespace introjection
       process->create_child_process(str,true,NULL,::multithreading::priority_highest);
 
       #endif
+      
+#endif
+      
+      string strLog;
+      bool bTimeout = false;
+
+#ifdef MACOS
+      
+      //::process::process_sp process(allocer());
+
+      //process->create_child_process(strCmd,false,NULL,::multithreading::priority_highest);
+      
+      {
+
+         string str2 = Application.file().as_string(strCmd);
+         str2.replace("%TARGET_PATH%", strTargetPath);
+         str2.replace("%DSYM_PATH%", strDsymPath);
+         str2.replace("%DERIVED_DATA%", strDdPath);
+         str2.replace("%SRC_FOLDER%", strSrcFolder);
+         str2.replace("%SRC_NAME%", strSrcName);
+         Application.file().put_contents(strCmd + "2", str2);
+         ::system(strCmd + "2");
+         
+      }
+      
+      
+      int err = errno;
+      strLog= file_as_string_dup(strClog);
+      
+#else
+      
+      
 
       uint32_t dwStart = ::get_tick_count();
 
       uint32_t dwExitCode;
 
-      string strLog;
+      
+
 
       while(true)
       {
@@ -968,13 +1041,15 @@ namespace introjection
       }
 
       strLog += process->read();
-
       if(bTimeout)
       {
-
+         
          process->kill();
-
+         
       }
+#endif
+
+
 
       #ifdef LINUX
       if(!bTimeout)
@@ -995,9 +1070,9 @@ namespace introjection
 
          if(str.has_char())
          {
-
+#ifndef MACOS
             Application.file().put_contents_utf8(strClog,strLog);
-
+#endif
             lib->m_memfileError << "<pre>";
 
             lib->m_memfileError << "Compiling...\n";
@@ -1012,7 +1087,9 @@ namespace introjection
 
          }
 
-         strBuildCmd;
+         string strBuildCmd;
+         
+#ifndef MACOS
 
 #ifdef LINUX
          strBuildCmd.Format(System.dir().element() / "nodeapp\\stage\\introjection" / m_strDynamicSourceConfiguration + "_l" + m_strPlat1 + ".bash");
@@ -1029,7 +1106,6 @@ namespace introjection
          str.replace("%LIBS_LIBS%",m_strLibsLibs);
          str.replace("%VS_VARS%",m_strEnv);
          str.replace("%VS_VARS_PLAT2%",m_strPlat2);
-
          str.replace("%HMH_LCTVWILD_PDB_PATH%",strHmhLctvWildPdbPath);
 
          str.replace("%CA2_ROOT%",strElem);
@@ -1050,7 +1126,6 @@ namespace introjection
          //#endif
          //         strTargetPath = System.dir().element() /
          str.replace("%TARGET_PATH%",strTargetPath);
-
          //strBuildCmd = lib->m_strBuildBat;
          //Application.file().put_contents_utf8(strBuildCmd, str);
 
@@ -1076,12 +1151,44 @@ namespace introjection
 
          process->create_child_process(str,true,NULL,::multithreading::priority_highest);
 #endif
+#else
+         
+         {
+         
+            string str2 = Application.file().as_string(strLCmd);
+            str2.replace("%TARGET_PATH%", strTargetPath);
+            str2.replace("%DSYM_PATH%", strDsymPath);
+            str2.replace("%DERIVED_DATA%", strDdPath);
+            str2.replace("%SRC_FOLDER%", strSrcFolder);
+            str2.replace("%SRC_NAME%", strSrcName);
+            Application.file().put_contents(strLCmd + "2", str2);
+            ::system(strLCmd + "2");
+            
+            if(!::str::begins_ci(System.dir().module(), "/Applications/"))
+            {
+               string str2 = Application.file().as_string(strDCmd);
+               str2.replace("%TARGET_PATH%", strTargetPath);
+               str2.replace("%DSYM_PATH%", strDsymPath);
+               str2.replace("%DERIVED_DATA%", strDdPath);
+               str2.replace("%SRC_FOLDER%", strSrcFolder);
+               str2.replace("%SRC_NAME%", strSrcName);
+               Application.file().put_contents(strDCmd + "2", str2);
+               ::system(strDCmd + "2");
+            }
+            
+         }
+         
+         //process->create_child_process(strLCmd,false,NULL,::multithreading::priority_highest);
+#endif
+         
          uint32_t dwStart = ::get_tick_count();
 
          uint32_t dwExitCode;
 
          string strLog;
-
+#ifdef MACOS
+          strLog= file_as_string_dup(strLlog);
+#else
          while(true)
          {
 
@@ -1105,7 +1212,7 @@ namespace introjection
 
          strLog += process->read();
 
-
+#endif
 
          if(!bTimeout && strLog.has_char())
          {
@@ -1117,15 +1224,15 @@ namespace introjection
 #endif
 
 
-
             str = strLog;
 
             str.trim();
 
             if(str.has_char())
             {
-
+#ifndef MACOS
                Application.file().put_contents_utf8(strLlog,strLog);
+#endif
                lib->m_memfileError << "Linking...\n";
                str.replace("\r\n","\n");
                lib->m_memfileError << str;
@@ -1151,6 +1258,7 @@ namespace introjection
       //catch(...)
       //{
       //}
+#ifndef MACOS
       try
       {
          Application.file().del(strDVP);
@@ -1158,6 +1266,7 @@ namespace introjection
       catch(...)
       {
       }
+#endif
       //try
       //{
       //   Application.file().del(strDPC);
@@ -1172,6 +1281,10 @@ namespace introjection
 
       lib->m_library.open(strTargetPath + ".dll");
 
+#elif defined(MACOS)
+
+      lib->m_library.open(strTargetPath + ".dylib");
+      
 #else
 
       lib->m_library.open(strTargetPath + ".so");

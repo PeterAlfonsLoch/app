@@ -163,7 +163,7 @@ void command_line::_001ParseCommandLine(const string & strCommandLine)
 
    m_strCommandLine = strCommandLine;
 
-   m_varQuery.propset()._008Parse(true, strCommandLine,m_varFile, m_strApp);
+   m_varQuery.propset()._008Parse(true, strCommandLine,m_varFile, m_strExe);
 
    if(!m_varFile.is_empty())
    {
@@ -258,7 +258,7 @@ void command_line::_001ParseCommandFork(const string & strCommandFork)
 
    m_strCommandLine = strCommandFork;
 
-   m_varQuery.propset()._008ParseCommandFork(strCommandFork,m_varFile,m_strApp);
+   m_varQuery.propset()._008ParseCommandFork(strCommandFork,m_varFile,m_strExe);
 
    if(!m_varFile.is_empty())
    {
@@ -300,6 +300,8 @@ void command_line::_001ParseCommandFork(const string & strCommandFork)
       m_varQuery["show_platform"] = 1;
 
    }
+   
+
 
    if(m_varQuery.propset().has_property("app"))
    {

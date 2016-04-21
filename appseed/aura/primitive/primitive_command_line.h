@@ -51,6 +51,7 @@ public:
    ::fs::item_array *            m_pitema;
 
    sp(::aura::application)       m_pappFork;
+   string                        m_strExe;
    string                        m_strApp;
    string                        m_strAppType;
    ::user::primitive *           m_puiParent;

@@ -15,6 +15,7 @@ namespace aura
 
       System.factory().cloneable_large < stdio_file           >   (System.type_info < ::file::text_buffer     > ());
       System.factory().cloneable_large < file                 >   (System.type_info < ::file::binary_buffer   > ());
+      System.factory().cloneable_large < file                 >   (System.type_info < ::file::stream_buffer   > ());
 //      System.factory().cloneable < application                >   (System.type_info < ::aura::application     > (), 1);
        System.factory().creatable_large < ::thread               >   (System.type_info < ::thread           > ());
       System.factory().creatable < os                         >   (System.type_info < ::aura::os              > (), 1);

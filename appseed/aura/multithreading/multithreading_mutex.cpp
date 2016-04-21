@@ -15,7 +15,7 @@
 
 static int g_iMutex = 0;
 
-
+string str_md5_dup(const char * psz);
 
 mutex::mutex(::aura::application * papp, bool bInitiallyOwn, const char * pstrName, LPSECURITY_ATTRIBUTES lpsaAttribute /* = NULL */) :
    sync_object(pstrName)
@@ -138,11 +138,67 @@ mutex::mutex(::aura::application * papp, bool bInitiallyOwn, const char * pstrNa
       pthread_mutex_init(&m_mutex, &attr);
 
    }
-
-#else
+   
+#elif defined(APPLEOS)
 
    if(pstrName != NULL && *pstrName != '\0')
    {
+      
+      m_pmutex = NULL;
+      
+      SetLastError(0);
+      
+      m_pszName = strdup(string("/") + str_md5_dup(pstrName).Left(24-1));
+      
+      if ((m_psem = sem_open(m_pszName, O_CREAT|O_EXCL, 0644, 1)) != SEM_FAILED)
+      {
+      
+         m_bOwner = true;
+      
+      }
+      else
+      {
+      
+         int err = errno;
+      
+         if (err != EEXIST)
+            throw resource_exception(get_app());
+      
+         
+         SetLastError(ERROR_ALREADY_EXISTS);
+         
+         m_bOwner = false;
+
+         // We're not first.  Try again
+      
+         m_psem = sem_open(m_pszName, 0);
+      
+         if (m_psem == SEM_FAILED)
+            throw resource_exception(get_app());;
+      
+      }
+      
+   }
+   else
+   {
+      
+      m_psem = SEM_FAILED;
+      
+      pthread_mutexattr_t attr;
+      
+      pthread_mutexattr_init(&attr);
+      
+      pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_RECURSIVE);
+      
+      pthread_mutex_init(&m_mutex, &attr);
+      
+   }
+   
+#else
+   
+   if(pstrName != NULL && *pstrName != '\0')
+   {
+
 
       m_pmutex = NULL;
 
@@ -168,6 +224,8 @@ mutex::mutex(::aura::application * papp, bool bInitiallyOwn, const char * pstrNa
       bool bAlreadyExists;
 
       get_existing:
+      
+      SetLastError(0);
 
       m_semid = semget(
                   m_key, // a unique identifier to identify semaphore set
@@ -266,7 +324,7 @@ sync_object(m.m_pszName)
 
 }
 
-#elif defined(ANDROID)
+#elif defined(ANDROID) || defined(APPLEOS)
 
 mutex::mutex(::aura::application * papp, const char * pstrName, sem_t * psem, bool bOwner) :
    object(papp),
@@ -325,12 +383,17 @@ mutex::mutex(const mutex & m):
 mutex::~mutex()
 {
 
-#if defined(ANDROID)
+#if defined(ANDROID) || defined(APPLEOS)
 
    if(m_psem != SEM_FAILED)
    {
-
-      sem_wait(m_psem);
+      
+      //if(m_bOwner)
+      {
+         sem_close(m_psem);
+         sem_unlink(m_pszName);
+         
+      }
 
    }
    else
@@ -345,8 +408,8 @@ mutex::~mutex()
 
    }
 
-#elif defined(LINUX) || defined(APPLEOS)
-
+#elif defined(LINUX) 
+   
    if(m_semid >= 0)
    {
 
@@ -530,7 +593,7 @@ wait_result mutex::wait(const duration & duration)
       //((::duration&)  duration) = millis(dwTimeout);
    }
 
-#ifndef ANDROID
+#if !defined(ANDROID) && !defined(APPLEOS)
    if(m_semid >= 0)
    {
       //Wait for Zero
@@ -673,7 +736,7 @@ bool mutex::unlock()
 
    return ::ReleaseMutex(m_object) != FALSE;
 
-#elif defined(ANDROID)
+#elif defined(ANDROID) || defined(APPLEOS)
 
 
    if(m_psem != SEM_FAILED)
@@ -736,7 +799,7 @@ mutex * mutex::open_mutex(::aura::application * papp,  const char * pstrName)
 
    return pmutex;
 
-#elif defined(ANDROID)
+#elif defined(ANDROID) || defined(APPLEOS)
 
    string strName = pstrName;
 

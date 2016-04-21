@@ -651,6 +651,7 @@ namespace visual
 
       }
 
+      /*
       DWORD dw2 = get_tick_count();
       DWORD dw3 = dw2 - dw1;
       string str1;
@@ -669,7 +670,7 @@ namespace visual
       APPTRACE("| fastblur::blur");
       APPTRACE("| ");
       APPTRACE("| do_fastblur = %d ms",dw3);
-
+*/
 #endif
 
 

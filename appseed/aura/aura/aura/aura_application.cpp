@@ -2242,10 +2242,10 @@ namespace aura
          m_plemonarray = NULL;
          */
 
+         release_exclusive();
 
          m_pcommandthread.release();
 
-         release_exclusive();
 
 //         if(m_spuiMessage.is_set())
          {
@@ -2647,6 +2647,30 @@ namespace aura
             }
          }
          bResourceException = false;
+         
+#ifdef MACOS
+         
+         
+         
+         ::file::path p;
+         
+         p = "/var/tmp";
+         
+         p /= get_local_mutex_name();
+         
+         ::dir::mk(p.folder());
+         
+         int i = open(p,O_WRONLY | O_CREAT, 0777);
+         
+         int err =errno;
+         
+         i = lockf(i, F_TLOCK, 0);
+         
+         if(i<0)
+#else
+            
+         
+         
          try
          {
             m_pmutexLocal = canew(mutex(this,FALSE,get_local_mutex_name(),lpsa));
@@ -2663,11 +2687,18 @@ namespace aura
             }
          }
          if(m_eexclusiveinstance == ExclusiveInstanceLocal && (::GetLastError() == ERROR_ALREADY_EXISTS || bResourceException))
+#endif
          {
+            try
+            {
             // Should in some way activate the other instance
             //System.simple_message_box("A instance of the application:<br><br>           - " + string(m_strAppName) + "<br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same account.<br><br>Exiting this new instance.");
             TRACE("A instance of the application:<br><br>           - " + string(m_strAppName) + "<br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same account.<br><br>Exiting this new instance.");
             on_exclusive_instance_conflict(ExclusiveInstanceLocal);
+            }
+            catch(...)
+            {
+            }
             //System.post_quit();
             return false;
          }
@@ -2691,10 +2722,17 @@ namespace aura
             }
             if(::GetLastError() == ERROR_ALREADY_EXISTS || bResourceException)
             {
+               try
+               {
                // Should in some way activate the other instance
                //System.simple_message_box("A instance of the application:<br><br>           - " + string(m_strAppName) + "<br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same account.<br><br>Exiting this new instance.");
                TRACE("A instance of the application:<br><br>           - " + string(m_strAppName) + "with the id \"" + get_local_mutex_id() + "\" <br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same ac::count with the same id.<br><br>Exiting this new instance.");
-               on_exclusive_instance_conflict(ExclusiveInstanceLocalId);
+                  on_exclusive_instance_conflict(ExclusiveInstanceLocalId);
+               }
+               catch(...)
+               {
+               }
+               release_exclusive();
                return false;
             }
          }
@@ -4054,6 +4092,10 @@ namespace aura
       if(!papp->start_application(bSynch,pbias))
       {
 
+         /*
+         MessageBox(NULL, "application::start_application failed at create_application(\""+string(pszType)+"\",\""+string(pszId)+"\")", "aura::application::create_application", MB_ICONEXCLAMATION | MB_OK);
+         */
+         
          return NULL;
 
       }

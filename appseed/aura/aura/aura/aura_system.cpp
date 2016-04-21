@@ -2149,6 +2149,36 @@ namespace aura
          //   strCommandLine = strCommandLine.Mid(iFind + 1);
          //}
          command()->add_line(strCommandLine);
+         
+         if(command()->m_spcommandline->m_strExe[0] == '/')
+         {
+            
+            ::file::path p;
+            
+            p = getenv("HOME");
+            
+            p /= ".ca2/mypath" / command()->m_spcommandline->m_varQuery.propset()["app"].get_string() + ".txt";
+            
+            file_put_contents_dup(p, command()->m_spcommandline->m_strExe);
+            
+            string strApp = command()->m_spcommandline->m_strExe;
+            
+            strsize iFind = strApp.find_ci(".app/");
+            
+            if(iFind > 0)
+            {
+               
+               p = getenv("HOME");
+            
+               p /= ".ca2/mypath" / command()->m_spcommandline->m_varQuery.propset()["app"].get_string() + "-app";
+            
+            
+               file_put_contents_dup(p, "open -a \""+strApp.Left(iFind + strlen(".app")) + "\"");
+               
+            }
+            
+         }
+         
       }
 
       //if(!(set.has_property("install") || set.has_property("uninstall")))

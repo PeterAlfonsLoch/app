@@ -2015,16 +2015,19 @@ strsize string::find_first_of(const string & strCharSet,strsize pos) const RELEA
 }
 
 strsize string::find_first_not_of(const string& str,strsize pos) const
+RELEASENOTHROW
 {
    return find_first_not_of(str,pos,str.get_length());
 }
 
 strsize string::find_first_not_of(const char* s,strsize pos) const
+RELEASENOTHROW
 {
    return find_first_not_of(s,pos,strlen(s));
 }
 
 strsize string::find_first_not_of(char ca,strsize pos) const
+RELEASENOTHROW
 {
    strsize nLength = get_length();
 
@@ -2042,6 +2045,7 @@ strsize string::find_first_not_of(char ca,strsize pos) const
 }
 
 strsize string::find_first_not_of(const char* s,strsize pos,strsize n) const
+RELEASENOTHROW
 {
    string strChars(s,n);
 
