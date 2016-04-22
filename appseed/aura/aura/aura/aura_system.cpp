@@ -2107,7 +2107,7 @@ namespace aura
 
       }
 
-      string strAppId;
+      string strAppId(strApp);
 
       if (set.has_property("app"))
       {

@@ -30,9 +30,6 @@
     <Filter Include="Source Files\user">
       <UniqueIdentifier>{8832ff75-5113-4095-b832-a6e62e777cfd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Binary Files">
-      <UniqueIdentifier>{0e5699d5-e5c9-4fe6-bf50-fdbc06f88940}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\graphics">
       <UniqueIdentifier>{99770166-4760-4a1f-97fa-e3f6766a517c}</UniqueIdentifier>
     </Filter>
@@ -215,24 +212,6 @@
     </Filter>
     <Filter Include="Header Files\aura\process">
       <UniqueIdentifier>{2fedfefb-a349-4ba7-9fa2-f86d10306aa9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Binary Files\Release">
-      <UniqueIdentifier>{07566002-da3f-4c45-9a08-43a163645de2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Binary Files\Release\x86">
-      <UniqueIdentifier>{803678a7-d90e-494b-9e39-77a7f447896d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Binary Files\Debug">
-      <UniqueIdentifier>{badd9e03-ba10-4a34-b249-39fe33e07ece}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Binary Files\Debug\x86">
-      <UniqueIdentifier>{8bedbbf7-bbee-4bec-b9ca-3e59352115ef}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Binary Files\Debug\x64">
-      <UniqueIdentifier>{bf6e62f4-c0ee-4267-b9f2-badb91fbfe3f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Binary Files\Release\x64">
-      <UniqueIdentifier>{edf7b633-1d75-420c-935f-afe5bebc121b}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\primitive\data">
       <UniqueIdentifier>{a96fca9e-248b-448a-b0bd-dee53b174b85}</UniqueIdentifier>
@@ -3472,9 +3451,6 @@
     <ClCompile Include="filesystem\file\file_plain_text_ostream_string_buffer.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
-    <ClCompile Include="teste.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\str\str_sz.cpp">
       <Filter>Source Files\primitive\str</Filter>
     </ClCompile>
@@ -3592,26 +3568,29 @@
     <ClCompile Include="aura\aura\aura_lparam.cpp">
       <Filter>Source Files\aura\aura</Filter>
     </ClCompile>
-    <ClCompile Include="aura\process\process_department.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\datetime\datetime_department.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\math\math_department.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="aura\aura\aura_department.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="aura\aura\aura_department_container.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="graphics\draw2d\draw2d_nanosvg.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
     <ClCompile Include="aura\aura\aura_new.cpp">
       <Filter>Source Files\aura\aura</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\aura\aura_department.cpp">
+      <Filter>Source Files\aura\aura</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\aura\aura_department_container.cpp">
+      <Filter>Source Files\aura\aura</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\datetime\datetime_department.cpp">
+      <Filter>Source Files\primitive\datetime</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\math\math_department.cpp">
+      <Filter>Source Files\primitive\math</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\process\process_department.cpp">
+      <Filter>Source Files\aura\process</Filter>
+    </ClCompile>
+    <ClCompile Include="test.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -3684,15 +3663,5 @@
     <None Include="aura\aura\aura_timer_event.cpp">
       <Filter>Source Files\aura\aura</Filter>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\debug\x64\vcomp140d.dll" />
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\debug\x64\vcruntime140d.dll" />
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\debug\x86\vcomp140d.dll" />
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\debug\x86\vcruntime140d.dll" />
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\release\x64\vcomp140.dll" />
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\release\x64\vcruntime140.dll" />
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\release\x86\vcomp140.dll" />
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\release\x86\vcruntime140.dll" />
   </ItemGroup>
 </Project>

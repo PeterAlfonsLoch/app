@@ -2800,7 +2800,7 @@ void thread::thread_delete()
 void thread::start()
 {
 
-#if defined (WINODWSEX)
+#if defined (WINDOWSEX)
 
    ::ResumeThread(m_hthread);
 

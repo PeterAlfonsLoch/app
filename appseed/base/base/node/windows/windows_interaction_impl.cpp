@@ -419,7 +419,7 @@ namespace windows
       ::user::create_struct cs;
       cs.dwExStyle = dwExStyle;
 
-
+      m_pui = pui;
       string strClass = calc_window_class();
       cs.lpszClass = strClass.is_empty() ? NULL : (const char *)strClass;
       cs.lpszName = lpszWindowName;

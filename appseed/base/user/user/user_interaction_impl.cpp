@@ -2548,8 +2548,13 @@ namespace user
       if(m_spdibBuffer.is_null())
          return;
    
-      if (!m_spdibBuffer->is_valid_update_window_thread())
-         return;
+      if (m_pui->m_bMayProDevian)
+      {
+       
+         if (!m_spdibBuffer->is_valid_update_window_thread())
+            return;
+
+      }
 
       m_spdibBuffer->map();
    
