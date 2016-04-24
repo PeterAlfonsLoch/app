@@ -14,6 +14,7 @@ namespace user
       m_pdoc               = NULL;
       m_pviewdata          = NULL;
       m_pholder            = NULL;
+      m_bOk                = true;
 
    }
 
@@ -165,6 +166,10 @@ namespace user
       catch(...)
       {
       }
+      if (!pcreatordata->m_bOk)
+      {
+         return NULL;
+      }
       if(pcreatordata->m_pholder->m_uiptraChild.get_count() > 0)
       {
          return pcreatordata;
@@ -201,10 +206,14 @@ namespace user
       return pcreatordata;
    }
 
+   
    void view_creator::on_create_view(::user::view_creator_data * pcreatordata)
    {
+      
       UNREFERENCED_PARAMETER(pcreatordata);
+
    }
+
 
    void view_creator::on_show_view()
    {

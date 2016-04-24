@@ -77,8 +77,6 @@ namespace user
       DECL_GEN_SIGNAL(_001OnSetFocus);
 
 
-      //virtual void on_create_tabs();
-
 
    };
 

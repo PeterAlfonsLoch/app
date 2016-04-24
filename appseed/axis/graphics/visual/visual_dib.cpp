@@ -81,7 +81,7 @@ namespace visual
    bool dib_sp::save_to_file(var varFile,save_image * psaveimage)
    {
       ::file::buffer_sp spfile;
-      spfile = Sess(m_p->m_pauraapp).file().get_file(varFile,::file::mode_create | ::file::mode_write | ::file::type_binary | ::file::defer_create_directory);
+      spfile = Sess(m_p->m_pauraapp).file().get_file(varFile,::file::mode_create | ::file::share_deny_write | ::file::mode_write | ::file::type_binary | ::file::defer_create_directory);
       if(spfile.is_null())
          return false;
       return write_to_file(spfile,psaveimage);

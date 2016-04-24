@@ -31,7 +31,8 @@ namespace user
       flags < eflag >                  m_eflag;
       string                           m_strTitle;
       void *                           m_pviewdata;
-      rect m_rectCreate;
+      rect                             m_rectCreate;
+      bool                             m_bOk;
 
       view_creator_data();
 

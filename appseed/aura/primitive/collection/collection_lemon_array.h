@@ -47,6 +47,12 @@ namespace lemon
          a = b;
       }
 
+      template < class A >
+      typename A::BASE_TYPE pick_random(A & a)
+      {
+         index i = (index)(rand() % a.get_size());
+         return a.element_at(i);
+      }
 
       template < class A, class TYPE >
       ::count populate(A & a, TYPE start, TYPE end, TYPE step, bool bIncludeStart = true, bool bIncludeEnd = true, bool bIncludeEndOnStep = true)

@@ -283,6 +283,8 @@ namespace user
       }
    }
 
+
+
    void tab_view::on_show_view()
    {
 
@@ -290,65 +292,45 @@ namespace user
       class id idSplit;
       ::user::view_creator_data * pcreatordata = ensure_impact(id,get_data()->m_rectTabClient);
 
+      if (pcreatordata == NULL)
+      {
+
+         return;
+
+      }
+
       index iTab = ::user::tab::get_tab_by_id(id);
 
-      if(pcreatordata != NULL)
+      if(iTab >= 0)
       {
-         if(iTab >= 0)
+         if(pcreatordata->m_pholder != NULL)
          {
-            if(pcreatordata->m_pholder != NULL)
+            get_data()->m_panea[iTab]->m_pholder = pcreatordata->m_pholder;
+         }
+         else if(pcreatordata->m_pwnd != NULL)
+         {
+            if(get_tab_holder(iTab) == NULL)
             {
-               get_data()->m_panea[iTab]->m_pholder = pcreatordata->m_pholder;
-            }
-            else if(pcreatordata->m_pwnd != NULL)
-            {
-               if(get_tab_holder(iTab) == NULL)
-               {
-                  get_data()->m_panea[iTab]->m_pholder = place(pcreatordata->m_pwnd,get_data()->m_rectTabClient);
-               }
-               else
-               {
-                  get_data()->m_panea[iTab]->m_pholder->m_uiptraChild.remove_all();
-                  get_data()->m_panea[iTab]->m_pholder->hold(pcreatordata->m_pwnd);
-               }
+               get_data()->m_panea[iTab]->m_pholder = place(pcreatordata->m_pwnd,get_data()->m_rectTabClient);
             }
             else
             {
-               get_data()->m_panea[iTab]->m_pholder = get_new_place_holder(get_data()->m_rectTabClient);
+               get_data()->m_panea[iTab]->m_pholder->m_uiptraChild.remove_all();
+               get_data()->m_panea[iTab]->m_pholder->hold(pcreatordata->m_pwnd);
             }
-         }
-         if(pcreatordata->m_strTitle.has_char())
-         {
-            get_data()->m_panea[_001GetSel()]->m_istrTitleEx = pcreatordata->m_strTitle;
-         }
-         idSplit = pcreatordata->m_idSplit;
-      }
-      /*
-      if(idSplit.has_char())
-      {
-         ::user::split_view * psplitview = dynamic_cast < ::user::split_view * >
-            (m_pviewcreator->m_viewmap[idSplit]->m_pwnd);
-         bool bSwap = m_pviewcreator->m_viewmap[idSplit]->m_bTabSplitSwap;
-         if(bSwap)
-         {
-            m_pviewcreator->m_viewmap[idSplit]->m_pwnd =
-               psplitview->_001GetPane(1);
-
          }
          else
          {
-            m_pviewcreator->m_viewmap[idSplit]->m_pwnd =
-               psplitview->_001GetPane(0);
+            get_data()->m_panea[iTab]->m_pholder = get_new_place_holder(get_data()->m_rectTabClient);
          }
-         psplitview->_001GetPane(0)->SetParent(this);
-         psplitview->_001GetPane(1)->SetParent(this);
-         m_pviewcreator->m_viewmap[psplitview->get_pane_id(0)]->m_idSplit.is_empty();
-         m_pviewcreator->m_viewmap[psplitview->get_pane_id(1)]->m_idSplit.is_empty();
-         psplitview->ShowWindow(SW_HIDE);
-         psplitview->ModifyStyle(WS_CHILD, 0, 0);
-         psplitview->SetParent(NULL);
-         psplitview->DestroyWindow();
-      }*/
+      }
+      if(pcreatordata->m_strTitle.has_char())
+      {
+         get_data()->m_panea[_001GetSel()]->m_istrTitleEx = pcreatordata->m_strTitle;
+      }
+
+      idSplit = pcreatordata->m_idSplit;
+
       if(pcreatordata != m_pviewdata)
       {
          m_pviewdataOld = m_pviewdata;
@@ -461,13 +443,14 @@ namespace user
    {
       if(m_pviewcreator == NULL)
          return NULL;
-      if(get_tab_by_id(id) == -1)
-      {
-         ::user::tab::add_tab("", id);
-      }
       ::user::view_creator_data * pcreatordata = m_pviewcreator->::user::view_creator::ensure_impact(id,lpcrectCreate);
       if(pcreatordata != NULL)
       {
+         if (get_tab_by_id(id) == -1)
+         {
+            ::user::tab::add_tab("", id);
+         }
+
          /*if(pcreatordata->m_pwnd != NULL)
          {
             pcreatordata->m_pwnd->SetParent(this);
@@ -485,8 +468,8 @@ namespace user
                ppane->m_pholder = pcreatordata->m_pholder;
             }
          }
+         on_change_pane_count();
       }
-      on_change_pane_count();
       return pcreatordata;
    }
 

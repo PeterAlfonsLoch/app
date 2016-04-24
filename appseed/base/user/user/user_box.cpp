@@ -411,7 +411,7 @@ namespace user
    bool box::on_before_set_parent(sp(::user::box) puiParent)
    {
 
-      if (!::user::box::on_before_set_parent(puiParent))
+      if (!::simple_ui::interaction::on_before_set_parent(puiParent))
          return false;
 
       WindowDataEnableSaveWindowRect(false);

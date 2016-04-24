@@ -1189,28 +1189,33 @@ namespace user
 
       string str;
 
-      sp(::user::interaction) puiParent = GetParent();
+      //sp(::user::interaction) puiParent = GetParent();
 
-      if(puiParent.is_set())
+      //if(puiParent.is_set())
+      //{
+
+      //   str = puiParent->calc_data_id();
+
+      //}
+
+      //if(str.has_char())
+      //{
+
+      //   str += ".";
+
+      //}
+
+      if(get_document() != NULL && !get_document()->m_dataid.m_id.is_empty())
       {
 
-         str = puiParent->calc_data_id();
+         str += get_document()->m_dataid.m_id.to_string();
 
       }
 
       if(str.has_char())
       {
 
-         str += ".";
-
-      }
-
-      if(get_document() != NULL && !get_document()->m_dataid.m_id.is_empty())
-      {
-
-         str += ".";
-
-         str += get_document()->m_dataid.m_id.to_string();
+         str += "/";
 
       }
 
