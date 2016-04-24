@@ -1,6 +1,14 @@
 //#include "framework.h"
 //#include "windows.h"
-
+string get_volume_path(const char * psz)
+{
+   WCHAR wsz[4096];
+   if (!GetVolumePathNameW(::str::international::utf8_to_unicode(psz), wsz, sizeof(wsz) / sizeof(wsz[0])))
+   {
+      return "";
+   }
+   return wsz;
+}
 
 namespace windows
 {
@@ -30,7 +38,7 @@ namespace windows
 
    int32_t folder_watch::run() // thread procedure
    {
-      HANDLE hDirectory = ::CreateFileW(::str::international::utf8_to_unicode(m_strPath), 
+      HANDLE hDirectory = ::CreateFileW(::str::international::utf8_to_unicode(get_volume_path(m_strPath)),
                       FILE_LIST_DIRECTORY,
                       FILE_SHARE_READ|FILE_SHARE_WRITE|FILE_SHARE_DELETE,
                       NULL, OPEN_EXISTING, FILE_FLAG_BACKUP_SEMANTICS, NULL);
@@ -46,7 +54,7 @@ namespace windows
       const DWORD dwBuffLength = 4096;
       BYTE buffer[dwBuffLength];
       WCHAR wchFileName[dwBuffLength];
-      
+
    
       while(::ReadDirectoryChangesW(hDirectory, buffer, dwBuffLength, TRUE,
                                     FILE_NOTIFY_CHANGE_FILE_NAME |

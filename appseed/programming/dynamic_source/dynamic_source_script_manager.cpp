@@ -496,15 +496,15 @@ void script_manager::clear_include_matches()
    }
 
 
-   try
-   {
-      single_lock sl(&m_mutexIncludeHasScript, TRUE);
-      m_mapIncludeHasScript.remove_all();
-   }
-   catch(...)
-   {
+   //try
+   //{
+   //   single_lock sl(&m_mutexIncludeHasScript, TRUE);
+   //   m_mapIncludeHasScript.remove_all();
+   //}
+   //catch(...)
+   //{
 
-   }
+   //}
 
 
    try
@@ -619,6 +619,25 @@ void script_manager::clear_include_matches_folder_watch::handle_file_action(::fi
 
    }
    catch(...)
+   {
+
+   }
+
+   try
+   {
+
+      //bool b;
+      //if (m_pmanager->m_mapIncludeHasScript.Lookup(::file::path(dir) / filename, b))
+      //{
+      //   m_pmanager->m_mapIncludeHasScript.remove_key(::file::path(dir) / filename);
+      //}
+
+      synch_lock sl(&m_pmanager->m_mutexShouldBuild);
+
+      m_pmanager->m_mapShouldBuild[::file::path(dir) / filename] = true;
+   
+   }
+   catch (...)
    {
 
    }
@@ -1198,12 +1217,14 @@ bool script_manager::extract_image_size(const ::file::path & strFile,::size * ps
 bool script_manager::should_build(const ::file::path & strScriptPath)
 {
 
-   single_lock sl(&m_mutexIncludeHasScript, TRUE);
+   single_lock sl(&m_mutexShouldBuild, TRUE);
 
-   if(m_mapIncludeHasScript[strScriptPath])
+   bool bShouldBuild = false;
+
+   if(!m_mapShouldBuild.Lookup(strScriptPath, bShouldBuild))
       return false;
 
-   return true;
+   return bShouldBuild;
 
 }
 

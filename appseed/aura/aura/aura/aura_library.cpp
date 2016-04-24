@@ -276,7 +276,7 @@ void * library::get_os_data()
 
          }
 
-         if (m_bAutoClose)
+         //if (m_bAutoClose)
          {
 
             try
@@ -285,6 +285,11 @@ void * library::get_os_data()
                if (m_plibrary != NULL)
                {
 
+                  ::__node_library_close(m_plibrary);
+                  ::__node_library_close(m_plibrary);
+                  ::__node_library_close(m_plibrary);
+                  ::__node_library_close(m_plibrary);
+                  ::__node_library_close(m_plibrary);
                   if (::__node_library_close(m_plibrary))
                   {
 

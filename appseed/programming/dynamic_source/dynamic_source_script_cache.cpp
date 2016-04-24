@@ -98,6 +98,7 @@ script_instance * script_cache::create_instance(const char * lpcszName)
    //::OutputDebugString(strName);
    strName.replace("\\", "/");
    single_lock sl(&m_cs, TRUE);
+   m_pmanager->include_has_script(strName);
    script * pscript  = get(strName);
    sl.unlock();
    return pscript->create_instance();
@@ -112,6 +113,7 @@ void script_cache::cache(script * pscript)
 
 void script_cache::set_all_out_of_date()
 {
+   return;
    single_lock sl(&m_cs, TRUE);
    sp(script) pscript;
    string strName;

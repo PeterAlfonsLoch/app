@@ -92,11 +92,10 @@ bool ds_script::DoesMatchVersion()
 
 bool ds_script::ShouldBuild()
 {
+   
    synch_lock sl(&m_mutex);
-   return  m_pmanager->should_build(m_strScriptPath) &&
-           (m_bShouldBuild
-            || HasDelayedTempError()
-            || !DoesMatchVersion());
+
+   return  m_pmanager->should_build(m_strSourcePath) || m_bShouldBuild || HasDelayedTempError() || !DoesMatchVersion();
 
 }
 
@@ -461,6 +460,14 @@ script_instance * ds_script::create_instance()
       Load();
       // retried at least 8 times, give up any rebuild attemp until file is changed
       m_bShouldBuild = false;
+
+      {
+      
+         synch_lock sl(&m_pmanager->m_mutexShouldBuild);
+
+         m_pmanager->m_mapShouldBuild[m_strSourcePath] = false;
+
+      }
 
       // don't bother with sleeps if not compiling even if there are errors
 
