@@ -79,7 +79,7 @@ public:
    index_array                      m_iaLinkEnd;
 
 
-   double                           m_dBlend;
+   double                           m_dXfplayerViewLineBlend;
    int32_t                              m_nFont;
    rect                             m_rectInvalidate;
    int32_t                              m_iAnimateType;

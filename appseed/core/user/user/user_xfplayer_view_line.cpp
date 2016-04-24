@@ -30,7 +30,7 @@ XfplayerViewLine::XfplayerViewLine(::aura::application * papp) :
    m_dAnimateProgress = 0;
    m_iIndent = 0;
    m_dAnimateProgressIncrement = 1.0;
-   m_dBlend = 1.0;
+   m_dXfplayerViewLineBlend = 1.0;
    m_iIndex = 0;
 }
 
@@ -155,12 +155,12 @@ bool XfplayerViewLine::to(::draw2d::dib * pdib, bool bDraw, const RECT & rect, r
 
    double dBlend;
 
-   if (m_dBlend <= 0.0)
+   if (m_dXfplayerViewLineBlend <= 0.0)
       return true;
-   if (m_dBlend >= 1.0)
+   if (m_dXfplayerViewLineBlend >= 1.0)
       dBlend = 1.0;
    else
-      dBlend = m_dBlend;
+      dBlend = m_dXfplayerViewLineBlend;
 
    pdc->SelectObject(m_font);
 
@@ -974,7 +974,7 @@ XfplayerViewLine & XfplayerViewLine::operator = (const XfplayerViewLine & src)
    m_font = src.m_font;
    m_bEnhancedEmboss = src.m_bEnhancedEmboss;
    m_bCacheEmboss = false;
-   m_dBlend = src.m_dBlend;
+   m_dXfplayerViewLineBlend = src.m_dXfplayerViewLineBlend;
    m_iIndex = src.m_iIndex;
    return *this;
 }
@@ -2025,7 +2025,7 @@ void XfplayerViewLine::SetBlend(double d)
 
    }
 
-   m_dBlend = d;
+   m_dXfplayerViewLineBlend = d;
 
 }
 
