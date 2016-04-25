@@ -945,12 +945,13 @@ namespace introjection
       strT2.replace("\\",".");
       strT2.replace("/",".");
       strT2.replace(":","_");
-      ::str::ends_eat_ci(strTargetPath,".cpp");
 #ifdef LINUX
       string strTargetPath =  System.dir().element() / "stage/x86" / lib->m_pathScript.title();
+      ::str::ends_eat_ci(strTargetPath,".cpp");
       ::str::ends_eat_ci(strTargetPath,".so");
 #else
       string strTargetPath = System.dir().element() / "time" / m_strPlatform / m_strDynamicSourceConfiguration / strT2 ;
+      ::str::ends_eat_ci(strTargetPath, ".cpp");
       ::str::ends_eat_ci(strTargetPath,".dll");
 #endif
       strTargetPath += "-"+strRndTitle;
