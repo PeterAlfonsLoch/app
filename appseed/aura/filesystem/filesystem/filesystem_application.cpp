@@ -419,7 +419,7 @@ namespace file
    bool application::load(::file::serializable & o,var varFile)
    {
 
-      sp(::file::memory_buffer) pfile = Application.file().get_file("C:\\ca2\\config\\xmpp_resident\\followers.dat",::file::mode_read | ::file::type_binary);
+      sp(::file::memory_buffer) pfile = Application.file().get_file(varFile,::file::mode_read | ::file::type_binary);
 
       if(pfile.is_null())
       {

@@ -891,7 +891,7 @@ namespace introjection
 
       Application.dir().mk(lib->m_pathScript.folder());
       Application.dir().mk(strL.folder());
-      Application.dir().mk(m_strTime / "intermediate" / m_strPlatform / m_strDynamicSourceConfiguration / "xmpp_resident" / strTransformName);
+      Application.dir().mk(m_strTime / "intermediate" / m_strPlatform / m_strDynamicSourceConfiguration / "+m_strLctvApp+" / strTransformName);
 
       //string strV(System.dir().element());
       //strV.replace("\\","/");

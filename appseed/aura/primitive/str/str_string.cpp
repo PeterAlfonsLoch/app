@@ -2379,6 +2379,7 @@ string& string::trim_right(const char * pszTargets)
    // by starting at beginning (DBCS aware)
 
    const char * psz = GetString();
+   const char * pszStart = psz;
    const char * pszLast = NULL;
 
    while(!is_ptr_null(psz, 1024) && *psz != 0)
@@ -2400,7 +2401,7 @@ string& string::trim_right(const char * pszTargets)
    if(pszLast != NULL)
    {
       // truncate at left-most matching character
-      strsize iLast = strsize(pszLast - GetString());
+      strsize iLast = strsize(pszLast - pszStart);
       Truncate(iLast);
    }
 
