@@ -118,8 +118,6 @@ namespace user
 
       SCAST_PTR(::message::scroll, pscroll, pobj);
 
-      keep < bool > keepHscroll(&m_scrolldataHorz.m_bScroll, true, false, true);
-
       {
 
          synch_lock slUser(m_pmutex);
@@ -964,8 +962,6 @@ namespace user
       SCAST_PTR(::message::scroll, pscroll, pobj);
 
 
-      keep < bool > keepVscroll(&m_scrolldataVert.m_bScroll, true, false, true);
-
       {
 
          synch_lock slUser(m_pmutex);
@@ -998,6 +994,13 @@ namespace user
    void scroll_y::_001OnMouseWheel(signal_details * pobj)
    {
 
+      if (!m_scrolldataVert.m_bScroll || !m_scrolldataVert.m_bScrollEnable)
+      {
+      
+         return;
+
+      }
+
       SCAST_PTR(::message::mouse_wheel, pmousewheel, pobj);
 
       if (pmousewheel->GetDelta() > 0)
@@ -1027,8 +1030,17 @@ namespace user
 
       m_iWheelDelta -= (int16_t)(WHEEL_DELTA * iDelta);
 
-      offset_viewport_offset_y(-iDelta * get_wheel_scroll_delta());
+      int nPos = m_pscrollbarVert->m_scrollinfo.nPos - iDelta * get_wheel_scroll_delta();
 
+      if (nPos < m_pscrollbarVert->m_scrollinfo.nMin)
+         nPos = m_pscrollbarVert->m_scrollinfo.nMin;
+      else if (nPos > m_pscrollbarVert->m_scrollinfo.nMax - m_pscrollbarVert->m_scrollinfo.nPage)
+         nPos = m_pscrollbarVert->m_scrollinfo.nMax - m_pscrollbarVert->m_scrollinfo.nPage;
+
+      m_pscrollbarVert->m_scrollinfo.nPos = nPos;
+
+      m_pscrollbarVert->send_scroll_message(SB_THUMBPOSITION);
+         
       pmousewheel->set_lresult(0);
 
       pmousewheel->m_bRet = true;
