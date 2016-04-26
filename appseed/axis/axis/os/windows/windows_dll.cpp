@@ -46,8 +46,6 @@ BOOL WINAPI DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
    else if (dwReason == DLL_THREAD_ATTACH)
    {
 
-      OutputDebugStringW(L"axis.dll initializing!\n");
-
       xxdebug_box("axis.dll DllMain", "box", MB_OK);
 
    }
@@ -56,10 +54,6 @@ BOOL WINAPI DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
 
 
       ERR_remove_state(::GetCurrentProcessId());
-
-      OutputDebugStringW(L"axis.dll terminating!\n");
-
-
 
 
    }
