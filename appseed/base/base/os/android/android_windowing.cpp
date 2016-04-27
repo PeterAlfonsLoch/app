@@ -1734,3 +1734,13 @@ void android_on_text(const wchar_t * pwch, size_t len)
 
 
 }
+
+
+
+CLASS_DECL_BASE void defer_dock_application(bool bDock)
+{
+
+   UNREFERENCED_PARAMETER(bDock);
+
+
+}

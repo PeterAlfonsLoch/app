@@ -3847,7 +3847,7 @@ namespace core
 
          }
 
-#if !defined(LINUX) && !defined(MACOS)
+#if !defined(LINUX) && !defined(MACOS) && !defined(VSNORD)
          attach_thread_input_to_main_thread(false);
 #endif
 
