@@ -631,6 +631,38 @@ namespace user
       try
       {
 
+         for (index i = 0; i < m_uiptraChild.get_size(); i++)
+         {
+
+            try
+            {
+
+               m_uiptraChild[i]->user_interaction_on_hide();
+
+            }
+            catch (...)
+            {
+
+            }
+
+         }
+
+      }
+      catch (...)
+      {
+
+      }
+
+      if(Session.get_capture_uie() == this)
+      {
+
+         ReleaseCapture();
+
+      }
+
+      try
+      {
+
          mouse_hover_remove(this);
 
       }
