@@ -540,9 +540,6 @@
     <ClInclude Include="base\os\android\android_window_anative.h">
       <Filter>Header Files\base\os\android</Filter>
     </ClInclude>
-    <ClInclude Include="user\userex\userex_scroll.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
     <ClInclude Include="user\fontopus\simple_ui_style.h">
       <Filter>Header Files\user\fontopus</Filter>
     </ClInclude>
@@ -602,9 +599,6 @@
     </ClInclude>
     <ClInclude Include="graphics\graphics_window_graphics.h">
       <Filter>Header Files\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database\database_user_interaction.h">
-      <Filter>Header Files\database\database</Filter>
     </ClInclude>
     <ClInclude Include="base\node\android\android_window_draw.h">
       <Filter>Header Files\base\node\android</Filter>
@@ -856,12 +850,6 @@
     </Filter>
     <Filter Include="Header Files\base\base_policy">
       <UniqueIdentifier>{3e8e0bfe-bf4f-492d-81fb-47507cd1cb45}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\database">
-      <UniqueIdentifier>{c0f81585-50d5-4321-a2b6-82e5302316e8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\database\database">
-      <UniqueIdentifier>{adcbae24-41d7-447e-bc61-2b22e88781ce}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files">
       <UniqueIdentifier>{ee40fdb7-2df5-45d6-bbc4-c3eddbf2ef4f}</UniqueIdentifier>

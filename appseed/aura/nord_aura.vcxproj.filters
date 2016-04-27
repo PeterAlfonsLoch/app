@@ -46,9 +46,6 @@
     <ClCompile Include="filesystem\filesystem\_filesystem.cpp">
       <Filter>Source Files\filesystem\filesystem</Filter>
     </ClCompile>
-    <ClCompile Include="teste.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="net\net_url.cpp">
       <Filter>Source Files\net</Filter>
     </ClCompile>
@@ -1402,13 +1399,29 @@
     <ClCompile Include="user\colorertake5\TextConsoleViewer.cpp">
       <Filter>Source Files\user\colorertake5</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_department.cpp" />
-    <ClCompile Include="aura\aura\aura_department_container.cpp" />
-    <ClCompile Include="aura\process\process_department.cpp" />
-    <ClCompile Include="primitive\datetime\datetime_department.cpp" />
-    <ClCompile Include="primitive\math\math_department.cpp" />
     <ClCompile Include="aura\os\android\aaa_want_to_remove_android.c">
       <Filter>Source Files\aura\os\android</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\aura\aura_department.cpp">
+      <Filter>Source Files\aura\aura</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\aura\aura_department_container.cpp">
+      <Filter>Source Files\aura\aura</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\datetime\datetime_department.cpp">
+      <Filter>Source Files\primitive\datetime</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\math\math_department.cpp">
+      <Filter>Source Files\primitive\math</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\process\process_department.cpp">
+      <Filter>Source Files\aura\process</Filter>
+    </ClCompile>
+    <ClCompile Include="test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\draw2d_nanosvg.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -3164,16 +3177,26 @@
     <ClInclude Include="aura\os\android\android_init_data.h">
       <Filter>Header Files\aura\os\android</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_department.h" />
-    <ClInclude Include="aura\aura\aura_department_container.h" />
-    <ClInclude Include="aura\process\process_department.h" />
-    <ClInclude Include="aura\xml\xml_department.h" />
-    <ClInclude Include="primitive\math\math_department.h" />
     <ClInclude Include="primitive\datetime\datetime_file_time.h">
       <Filter>Header Files\primitive\datetime</Filter>
     </ClInclude>
     <ClInclude Include="primitive\datetime\datetime_c.h">
       <Filter>Header Files\primitive\datetime</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\aura\aura_department.h">
+      <Filter>Header Files\aura\aura</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\math\math_department.h">
+      <Filter>Header Files\primitive\math</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\aura\aura_department_container.h">
+      <Filter>Header Files\aura\aura</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\process\process_department.h">
+      <Filter>Header Files\aura\process</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\xml\xml_department.h">
+      <Filter>Header Files\aura\xml</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

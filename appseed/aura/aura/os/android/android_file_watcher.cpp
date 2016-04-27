@@ -46,6 +46,7 @@ namespace file_watcher
 	   bool m_bRecursive;
 		file_watch_listener* m_plistener;
 	   array < watch_struct_item > m_itema;
+      bool m_bOwn;
 	};
 
 
@@ -82,7 +83,7 @@ namespace file_watcher
 	}
 
 	//--------
-	id os_file_watcher::add_watch(const string & directory,  file_watch_listener * pwatcher, bool bRecursive)
+	id os_file_watcher::add_watch(const string & directory,  file_watch_listener * pwatcher, bool bRecursive, bool bOwn)
 	{
 		int32_t wd = inotify_add_watch (mFD, directory, IN_CLOSE_WRITE | IN_MOVED_TO | IN_CREATE | IN_MOVED_FROM | IN_DELETE);
 		if (wd < 0)
@@ -100,6 +101,7 @@ namespace file_watcher
 		pWatch->m_plistener = pwatcher;
 		pWatch->m_id = wd;
 		pWatch->m_strDirName = directory;
+      pWatch->m_bOwn = bOwn;
 		if(bRecursive)
 		{
 

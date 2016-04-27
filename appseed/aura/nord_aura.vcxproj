@@ -31,7 +31,7 @@
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>Gcc_4_9</PlatformToolset>
-    <AndroidAPILevel>android-19</AndroidAPILevel>
+    <AndroidAPILevel>android-14</AndroidAPILevel>
     <UseOfStl>gnustl_shared</UseOfStl>
     <ThumbMode>Disabled</ThumbMode>
   </PropertyGroup>
@@ -41,12 +41,13 @@
     <PlatformToolset>Gcc_4_9</PlatformToolset>
     <UseOfStl>gnustl_shared</UseOfStl>
     <ThumbMode>ARM</ThumbMode>
+    <AndroidAPILevel>android-14</AndroidAPILevel>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|x86'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>Gcc_4_9</PlatformToolset>
-    <AndroidAPILevel>android-19</AndroidAPILevel>
+    <AndroidAPILevel>android-14</AndroidAPILevel>
     <UseOfStl>gnustl_shared</UseOfStl>
     <ThumbMode>Disabled</ThumbMode>
   </PropertyGroup>
@@ -56,6 +57,7 @@
     <PlatformToolset>Gcc_4_9</PlatformToolset>
     <UseOfStl>gnustl_shared</UseOfStl>
     <ThumbMode>Disabled</ThumbMode>
+    <AndroidAPILevel>android-14</AndroidAPILevel>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings" />
@@ -1808,6 +1810,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="graphics\draw2d\draw2d_nanosvg.cpp" />
     <ClCompile Include="graphics\draw2d\draw2d_object.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
@@ -2675,7 +2678,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="primitive\_primitive.cpp" />
-    <ClCompile Include="teste.cpp" />
+    <ClCompile Include="test.cpp" />
     <ClCompile Include="user\colorertake5\colorertake5_base_editor.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
