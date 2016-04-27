@@ -210,20 +210,20 @@ namespace android
    }
 
 
-   bool interaction_impl::create_window_ex(uint32_t dwExStyle,const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,::user::interaction * puiParent,id id,LPVOID lpParam)
+   bool interaction_impl::create_window_ex(::user::interaction * pui, uint32_t dwExStyle,const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,::user::interaction * puiParent,id id,LPVOID lpParam)
    {
 
       if(puiParent == NULL)
       {
 
-         if(!native_create_window_ex(dwExStyle,lpszClassName,lpszWindowName,dwStyle,rect,NULL,id,lpParam))
+         if(!native_create_window_ex(pui, dwExStyle,lpszClassName,lpszWindowName,dwStyle,rect,NULL,id,lpParam))
             return false;
 
       }
       else
       {
 
-         if(!native_create_window_ex(dwExStyle,lpszClassName,lpszWindowName,dwStyle,rect,puiParent->get_safe_handle(),id,lpParam))
+         if(!native_create_window_ex(pui, dwExStyle,lpszClassName,lpszWindowName,dwStyle,rect,puiParent->get_safe_handle(),id,lpParam))
             return false;
 
       }
@@ -233,12 +233,15 @@ namespace android
    }
 
 
-   bool interaction_impl::native_create_window_ex(uint32_t dwExStyle,const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,oswindow oswindowParent,id id,LPVOID lpParam)
+   bool interaction_impl::native_create_window_ex(::user::interaction * pui, uint32_t dwExStyle,const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,oswindow oswindowParent,id id,LPVOID lpParam)
    {
 
       //::simple_message_box(NULL,"h1","h1",MB_OK);
       UNREFERENCED_PARAMETER(id);
       ENSURE_ARG(lpszWindowName == NULL || __is_valid_string(lpszWindowName));
+
+
+      m_pui = pui;
 
       // allow modification of several common create parameters
       ::user::create_struct cs;
@@ -266,6 +269,8 @@ namespace android
       {
 
          PostNcDestroy();
+
+         m_pui = NULL;
 
          return false;
 
@@ -306,8 +311,16 @@ namespace android
 
          //::simple_message_box(NULL,"h3","h3",MB_OK);
 
-         if(m_pauraapp == NULL)
-            return FALSE;
+         if (m_pauraapp == NULL)
+         {
+
+            PostNcDestroy();
+
+            m_pui = NULL;
+
+            return false;
+
+         }
 
          uint32_t dwLastError = GetLastError();
          string strLastError = FormatMessageFromSystem(dwLastError);
@@ -344,7 +357,15 @@ namespace android
       }
 
       if(m_oswindow == NULL)
-         return FALSE;
+      {
+
+         PostNcDestroy();
+
+         m_pui = NULL;
+
+         return false;
+
+      }
 
       send_message(WM_CREATE, 0, (LPARAM)&cs);
 
@@ -369,8 +390,10 @@ namespace android
       }
       //::simple_message_box(NULL,"h4.ok","h4.ok",MB_OK);
 
-      return TRUE;
+      return true;
+
    }
+
 
    bool interaction_impl::initialize(::user::native_window_initialize * pinitialize)
    {
@@ -404,19 +427,19 @@ namespace android
    }
 
 
-   bool interaction_impl::create_window(const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,::user::interaction * pParentWnd,id id,sp(::create) pContext)
+   bool interaction_impl::create_window(::user::interaction * pui, const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,::user::interaction * pParentWnd,id id,sp(::create) pContext)
    {
 
       // can't use for desktop or pop-up android (use create_window_ex instead)
       ASSERT(pParentWnd != NULL);
       ASSERT((dwStyle & WS_POPUP) == 0);
 
-      return create_window_ex(0,lpszClassName,lpszWindowName,dwStyle | WS_CHILD,rect,pParentWnd,id,(LPVOID)pContext);
+      return create_window_ex(pui, 0,lpszClassName,lpszWindowName,dwStyle | WS_CHILD,rect,pParentWnd,id,(LPVOID)pContext);
 
    }
 
 
-   bool interaction_impl::create_message_queue(const char * pszName)
+   bool interaction_impl::create_message_queue(::user::interaction * pui, const char * pszName)
    {
 
       if(IsWindow())
@@ -426,7 +449,7 @@ namespace android
 
       }
 
-      if(!native_create_window_ex(0,NULL,pszName,WS_CHILD,null_rect(),HWND_MESSAGE,0,NULL))
+      if(!native_create_window_ex(pui, 0,NULL,pszName,WS_CHILD,null_rect(),HWND_MESSAGE,0,NULL))
       {
 
          return false;

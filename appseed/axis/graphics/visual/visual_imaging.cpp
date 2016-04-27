@@ -485,7 +485,7 @@ bool imaging::from(::draw2d::dib * pdib,::draw2d::graphics * pgraphics,FIBITMAP 
    }
 #endif
 
-#if defined(LINUX)
+#if defined(LINUX) || defined(VSNORD)
    pdib->mult_alpha();
 #endif
 

@@ -739,8 +739,6 @@
     <ClCompile Include="axis\geoip\_geoip.cpp">
       <Filter>Source Files\axis\geoip</Filter>
     </ClCompile>
-    <ClCompile Include="net\net_email_department.cpp" />
-    <ClCompile Include="net\net_url_department.cpp" />
     <ClCompile Include="net\sockets\bsd\sockets_include.cpp">
       <Filter>Source Files\net\sockets\bsd</Filter>
     </ClCompile>
@@ -749,6 +747,12 @@
     </ClCompile>
     <ClCompile Include="html_lite\_html_lite_html_lite.cpp">
       <Filter>Source Files\html_lite</Filter>
+    </ClCompile>
+    <ClCompile Include="net\net_email_department.cpp">
+      <Filter>Source Files\net</Filter>
+    </ClCompile>
+    <ClCompile Include="net\net_url_department.cpp">
+      <Filter>Source Files\net</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1514,8 +1518,12 @@
     <ClInclude Include="axis\node\android\aaa_want_to_remove_android_file_set.h">
       <Filter>Header Files\axis\node\android</Filter>
     </ClInclude>
-    <ClInclude Include="net\net_email_department.h" />
-    <ClInclude Include="net\net_url_department.h" />
+    <ClInclude Include="net\net_email_department.h">
+      <Filter>Header Files\net</Filter>
+    </ClInclude>
+    <ClInclude Include="net\net_url_department.h">
+      <Filter>Header Files\net</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">

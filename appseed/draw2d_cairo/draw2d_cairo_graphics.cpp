@@ -2687,7 +2687,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
 
          cairo_pattern_set_matrix(ppattern, &matrix);
 
-         cairo_rectangle(m_pdc, 0, 0, nDstWidth, nDstWidth);
+         cairo_rectangle(m_pdc, 0, 0, nDstWidth, nDstHeight);
 
          cairo_clip(m_pdc);
 

@@ -976,7 +976,7 @@ static void nsvg__fillActiveEdges(unsigned char* scanline, int len, NSVGactiveEd
 static float nsvg__clampf(float a, float mn, float mx) {
    return a < mn ? mn : (a > mx ? mx : a);
 }
-#ifdef __APPLE__
+#if defined(__APPLE__) || defined(VSNORD)
 static unsigned int nsvg__RGBA(unsigned char r, unsigned char g, unsigned char b, unsigned char a)
 {
    return (r) | (g << 8) | (b << 16) | (a << 24);
