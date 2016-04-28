@@ -1943,6 +1943,10 @@ restart:
 
                spfile->oprop("http_set") = varFile["http_set"];
 
+               bool bRawHttp1 = (bool)varFile["http_set"]["raw_http"];
+
+               bool bRawHttp2 = (bool)spfile->oprop("http_set")["raw_http"];
+
                cres = spfile->open(strPath,nOpenFlags);
 
             }

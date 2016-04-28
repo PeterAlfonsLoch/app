@@ -59,6 +59,8 @@ namespace sockets
          m_ptimeoutfile->m_uiExpectedSize = (uint64_t) -1;
       }
 
+      bool bRawHttp = (bool)psignal -> m_set["raw_http"];
+
       ::emit(get_app(), this, &http_buffer::on_http_request_response, &Application.http(), &::http::application::get, psignal);
 
       return ::no_exception;
