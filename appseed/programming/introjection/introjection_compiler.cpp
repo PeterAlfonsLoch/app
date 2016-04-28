@@ -65,22 +65,27 @@ namespace introjection
       m_strDynamicSourceStageFolder = System.dir().element() / m_strDynamicSourceStage;
 
 
-      initialize();
-
    }
 
    compiler::~compiler()
    {
    }
 
-   void compiler::initialize()
+
+   void compiler::initialize(const char * pszApp)
    {
+
+      m_strApp = pszApp;
+
       prepare_compile_and_link_environment();
+
       //   folder_watch();
       //      compile_library();
       // run_persistent();
       // parse_pstr_set();
+
    }
+
 
    void compiler::prepare_compile_and_link_environment()
    {
@@ -493,6 +498,13 @@ namespace introjection
    ::aura::library & compiler::compile(string strFilePath,bool & bNew)
    {
 
+      if (m_strApp.is_empty())
+      {
+
+         throw simple_exception(get_app(), "call compiler::initialize");
+
+      }
+
       sp(library) & lib = m_lib[strFilePath];
 
       if(lib.is_null())
@@ -891,7 +903,7 @@ namespace introjection
 
       Application.dir().mk(lib->m_pathScript.folder());
       Application.dir().mk(strL.folder());
-      Application.dir().mk(m_strTime / "intermediate" / m_strPlatform / m_strDynamicSourceConfiguration / "+m_strLctvApp+" / strTransformName);
+      Application.dir().mk(m_strTime / "intermediate" / m_strPlatform / m_strDynamicSourceConfiguration / m_strApp / strTransformName);
 
       //string strV(System.dir().element());
       //strV.replace("\\","/");

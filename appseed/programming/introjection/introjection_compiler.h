@@ -35,6 +35,7 @@ public:
    ::file::path                              m_strDynamicSourceStage;
    ::file::path                              m_strDynamicSourceStageFolder;
 
+   string                                    m_strApp;
 
    string      m_strLibPlatform;
 
@@ -62,7 +63,7 @@ public:
    compiler(::aura::application * papp);
    virtual ~compiler();
 
-   void initialize();
+   void initialize(const char * pszApp);
    void prepare1(const char * lpcszSource,const char * lpcszDest);
    void prepare_compile_and_link_environment();
 
