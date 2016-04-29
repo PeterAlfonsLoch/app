@@ -39,7 +39,11 @@ namespace user
       m_bTopText                 = false;
 
       m_bEmboss                  = true;
-      m_bHoverSelect             = true;
+#if defined(VSNORD)
+      m_bHoverSelect = false;
+#else
+      m_bHoverSelect = true;
+#endif
       m_bMultiSelect             = true;
       m_iLateralGroupWidth       = 200;
 
