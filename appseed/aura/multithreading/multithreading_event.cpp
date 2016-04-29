@@ -466,8 +466,16 @@ wait_result event::wait (const duration & durationTimeout)
 
    pthread_mutex_lock((pthread_mutex_t *) m_pmutex);
 
+   timespec end;
+   clock_gettime(CLOCK_REALTIME, &end);
+
    ((duration & ) durationTimeout).normalize();
 
+   end.tv_sec +=durationTimeout.m_iSeconds;
+   end.tv_nsec +=durationTimeout.m_iNanoseconds;
+
+   end.tv_sec += end.tv_nsec / (1000 * 1000 * 1000);
+   end.tv_nsec %= 1000 * 1000 * 1000;
 
    if(m_bManualEvent)
    {
@@ -477,10 +485,7 @@ wait_result event::wait (const duration & durationTimeout)
       while(!m_bSignaled && iSignal == m_iSignalId)
       {
 
-         timespec delay;
-         delay.tv_sec = durationTimeout.m_iSeconds;
-         delay.tv_nsec = durationTimeout.m_iNanoseconds;
-         if(pthread_cond_timedwait((pthread_cond_t *) m_pcond, (pthread_mutex_t *) m_pmutex, &delay))
+         if(pthread_cond_timedwait((pthread_cond_t *) m_pcond, (pthread_mutex_t *) m_pmutex, &end))
             break;
 
       }
