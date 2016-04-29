@@ -115,6 +115,7 @@
       </RuntimeTypeInfo>
       <CLanguageStandard>gnu11</CLanguageStandard>
       <CppLanguageStandard>gnu++1y</CppLanguageStandard>
+      <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>
     </ClCompile>
     <Link>
       <LibraryDependencies>aurapcre;aura;$(StlLibraryName);log;android</LibraryDependencies>
