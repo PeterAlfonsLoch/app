@@ -398,8 +398,39 @@ namespace sockets
 
    void http_socket::SendResponseBody()
    {
+      if (response().m_strFile.has_char())
+      {
 
-      if(response().file().get_length() > 0)
+         string strFile = response().m_strFile;
+
+         response().m_strFile.Empty();
+
+         ::file::buffer_sp spfile(allocer());
+
+         try
+         {
+            
+            if (spfile->open(strFile, ::file::type_binary | ::file::mode_read | ::file::share_deny_none).failed())
+            {
+
+               throw io_exception(get_app(), "http_socket::SendResponseBody(1) file=" + strFile + "\n");
+
+            }
+
+         }
+         catch (...)
+         {
+
+            throw io_exception(get_app(), "http_socket::SendResponseBody(2) file=" + strFile + "\n");
+
+         }
+
+         ::file::istream is(spfile);
+
+         transfer_from_begin(is);
+
+      }
+      else if(response().file().get_length() > 0)
       {
 
          transfer_from_begin(response().file());

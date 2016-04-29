@@ -123,7 +123,7 @@ int_bool file_put_contents_dup(const char * path, const char * contents, count l
 uint64_t file_length_dup(const char * path)
 {
 
-   HANDLE hfile = create_file(path, GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+   HANDLE hfile = create_file(path, GENERIC_READ, FILE_SHARE_WRITE | FILE_SHARE_READ | FILE_SHARE_DELETE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 
    if(hfile == INVALID_HANDLE_VALUE)
       return 0;

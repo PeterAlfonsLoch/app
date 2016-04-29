@@ -12,8 +12,8 @@ namespace http
 
       //Utility::ncmap<string>         m_cookie;
       file::memory_buffer              m_memfileBody;
-      ::http::ostream            m_ostream;
-   
+      ::http::ostream                  m_ostream;
+      string                           m_strFile;
 
 
       response(::aura::application * papp, const string & version = "HTTP/1.0");

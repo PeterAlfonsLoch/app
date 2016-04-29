@@ -346,20 +346,33 @@ namespace sockets
          }
          else
          {
-            ::file::buffer_sp spfile(allocer());
-            try
-            {
-               if(spfile->open(lpcsz,::file::type_binary | ::file::mode_read | ::file::share_deny_none).failed())
-               {
-                  return false;
-               }
-            }
-            catch(...)
-            {
-               return false;
-            }
+			 if (response().ostream().get_position() == 0)
+			 {
 
-            response().ostream().transfer_from(*spfile);
+				 response().m_strFile = lpcsz;
+
+             
+
+			 }
+			 else
+			 {
+
+				 ::file::buffer_sp spfile(allocer());
+				try
+				{
+				   if(spfile->open(lpcsz,::file::type_binary | ::file::mode_read | ::file::share_deny_none).failed())
+				   {
+					  return false;
+				   }
+				}
+				catch(...)
+				{
+				   return false;
+				}
+			
+				response().ostream().transfer_from(*spfile);
+
+			}
          }
       }
       else

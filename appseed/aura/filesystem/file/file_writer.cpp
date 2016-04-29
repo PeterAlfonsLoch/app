@@ -56,7 +56,7 @@ namespace file
 
       memory_size_t uiRead;
       memory_size_t uiSize = 0;
-      uiBufSize = MAX(8 * 1024, uiBufSize);
+      uiBufSize = MAX(32 * 1024, uiBufSize);
 
       memory buf;
 
@@ -70,12 +70,12 @@ namespace file
          while(true)
          {
             uiRead = reader.read(buf.get_data(), buf.get_size());
-            write(buf.get_data(), uiRead);
             if(uiRead <= 0)
             {
                break;
             }
-            uiSize += uiBufSize;
+            write(buf.get_data(), uiRead);
+            uiSize += uiRead;
          }
       }
       catch(...)

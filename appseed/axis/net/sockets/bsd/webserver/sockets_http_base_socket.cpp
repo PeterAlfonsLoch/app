@@ -179,7 +179,18 @@ namespace sockets
 
       }
 
-      m_response.m_propertysetHeader.set(__id(content_length), (int64_t) m_response.file().get_length());
+      if (response().m_strFile.has_char())
+      {
+
+         response().m_propertysetHeader[__id(content_length)] = file_length_dup(response().m_strFile);
+
+      }
+      else
+      {
+
+         m_response.m_propertysetHeader.set(__id(content_length), (int64_t)m_response.file().get_length());
+
+      }
 
       for(int32_t i = 0; i < m_response.cookies().get_size(); i++)
       {
