@@ -673,6 +673,11 @@ namespace visual
 */
 #endif
 
+#if defined(VSNORD)
+
+      m_p->mult_alpha();
+
+#endif
 
       return b;
 

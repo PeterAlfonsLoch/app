@@ -286,3 +286,12 @@ CLASS_DECL_AURA int __node_is_debugger_attached()
 {
    return 0;
 }
+
+
+
+
+int get_processor_count()
+{
+   return 1;
+}
+

@@ -21,6 +21,7 @@ class script_manager;
 
 
 #include "dynamic_source_exit_exception.h"
+
 #include "dynamic_source_session.h"
 
 
