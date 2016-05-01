@@ -1,6 +1,19 @@
 //#include "framework.h"
-#ifdef WINDOWS
-//#include <Shlobj.h>
+
+
+#ifdef WINDOWSEX
+
+
+namespace windows
+{
+
+
+   ::file::path get_known_folder(REFKNOWNFOLDERID kfid);
+
+
+} // namespace windows
+
+
 #endif
 
 
@@ -68,20 +81,18 @@
 
 #ifdef WINDOWSEX
 
-
-   ::SHGetSpecialFolderPath(NULL, str, CSIDL_PROFILE, TRUE);
+   str = ::windows::get_known_folder(FOLDERID_RoamingAppData);
 
    str /= "ca2";
 
-
 #elif defined(METROWIN)
-
 
    str = begin(::Windows::Storage::ApplicationData::Current->LocalFolder->Path);
 
-
 #endif
    
+   str /= "app";
+
    string strCa2 = dir::element();
    
    index iFind = strCa2.find(':');
@@ -105,3 +116,26 @@
    
 }
 
+
+::file::path dir::system()
+{
+
+   ::file::path str;
+
+#ifdef WINDOWSEX
+
+   str = ::windows::get_known_folder(FOLDERID_RoamingAppData);
+
+   str /= "ca2";
+
+#elif defined(METROWIN)
+
+   str = begin(::Windows::Storage::ApplicationData::Current->LocalFolder->Path);
+
+#endif
+
+   str /= "system";
+
+   return str;
+
+}

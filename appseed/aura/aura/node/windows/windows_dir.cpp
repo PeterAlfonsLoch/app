@@ -863,11 +863,12 @@ namespace windows
          m_strCommonAppData,
          CSIDL_COMMON_APPDATA,
          FALSE);
-      SHGetSpecialFolderPath(
-         NULL,
-         m_pathProfile,
-         CSIDL_PROFILE,
-         FALSE);
+      //SHGetSpecialFolderPath(
+        // NULL,
+         //m_pathProfile,
+         //CSIDL_PROFILE,
+         //FALSE);
+      m_pathProfile = get_known_folder(FOLDERID_RoamingAppData);
       //SHGetSpecialFolderPath(
       //   NULL,
       //   m_strAppData,
@@ -902,7 +903,7 @@ namespace windows
             strRelative = strRelative.Left(iFind - 1) + "_" + strRelative.Mid(iStart,iFind - iStart) + strRelative.Mid(iFind + 1);
          }
 
-         m_strCa2AppData = m_strAppData / "ca2" / strRelative;
+         m_strCa2AppData = m_strAppData / "ca2" / "app" / strRelative;
 
          m_strCa2AppData /= System.install_get_platform();
 
@@ -967,7 +968,7 @@ namespace windows
   //       strUserFolderShift = strRelative;
 //      }
 
-      m_pathUser = ::file::path(str) / "ca2" / strRelative;
+      m_pathUser = ::file::path(str) /"app"/ strRelative;
 
 
 

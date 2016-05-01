@@ -228,7 +228,7 @@ namespace introjection
 
 
 
-   DWORD RunSilent(char* strFunct,char* strstrParams)
+   DWORD RunSilent(const char* strFunct,char* strstrParams)
    {
 
 #ifdef WINDOWSEX

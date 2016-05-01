@@ -18,6 +18,7 @@ namespace dir
    CLASS_DECL_AURA ::file::path module();
    CLASS_DECL_AURA ::file::path appdata();
    CLASS_DECL_AURA ::file::path userappdata();
+   CLASS_DECL_AURA ::file::path system();
    CLASS_DECL_AURA bool is(const ::file::path & path);
    CLASS_DECL_AURA bool mk(const  ::file::path & path);
    CLASS_DECL_AURA void ls(::file::patha & patha,const ::file::path & path);
