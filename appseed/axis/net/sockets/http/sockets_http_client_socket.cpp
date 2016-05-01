@@ -132,7 +132,7 @@ namespace sockets
       {
          m_memoryfile.allocate_internal(m_content_length);
           if(outheader(__id(content_encoding)).compare_value_ci("gzip") != 0
-             && m_response.attr(__id(http_status_code)) < 300 && m_response.attr(__id(http_status_code)) >= 400)
+             && (m_response.attr(__id(http_status_code)) < 300 || m_response.attr(__id(http_status_code)) >= 400))
           {
 
               m_iFinalSize = m_content_length;
@@ -177,7 +177,7 @@ namespace sockets
 
       m_b_complete = true;
 
-      if(m_pfile != NULL && m_response.attr(__id(http_status_code)) < 300 && m_response.attr(__id(http_status_code)) >= 400)
+      if(m_pfile != NULL && (m_response.attr(__id(http_status_code)) < 300 || m_response.attr(__id(http_status_code)) >= 400))
       {
 
          m_iFinalSize = m_pfile->get_length();
