@@ -177,3 +177,33 @@ CLASS_DECL_AURA bool main_finalize()
 
 
 
+
+
+
+
+namespace process
+{
+
+   CLASS_DECL_AURA bool set_priority(int32_t priority)
+   {
+
+      int32_t iPolicy = SCHED_OTHER;
+
+      sched_param schedparam;
+
+      schedparam.sched_priority = 0;
+
+      get_os_priority(&iPolicy, &schedparam, priority);
+
+      sched_setscheduler(0, iPolicy, &schedparam);
+
+      return true;
+
+   }
+
+
+
+
+} // namespace process
+
+
