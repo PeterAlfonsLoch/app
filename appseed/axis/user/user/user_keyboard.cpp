@@ -457,7 +457,7 @@ namespace user
 #ifdef WINDOWSEX
 
 
-      string strOverride = file_as_string_dup("C:\\ca2\\config\\system\\keyboard_layout.txt");
+      string strOverride = file_as_string_dup(::dir::system() / "config\\system\\keyboard_layout.txt");
 
       if(strOverride.has_char())
       {

@@ -230,10 +230,10 @@ void command_line::_001ParseCommandLine(const string & strCommandLine)
    if (!m_varQuery.propset().has_property("build_number") || m_varQuery["build_number"].is_empty())
    {
 
-      if (file_exists_dup("C:\\ca2\\config\\plugin\\build_number.txt"))
+      if (file_exists_dup(::dir::system() / "config\\plugin\\build_number.txt"))
       {
 
-         string str = file_as_string_dup("C:\\ca2\\config\\plugin\\build_number.txt");
+         string str = file_as_string_dup(::dir::system() / "config\\plugin\\build_number.txt");
 
          m_varQuery["build_number"] = str;
 

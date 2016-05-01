@@ -479,9 +479,9 @@ CLASS_DECL_AURA int_bool freerdp_authenticate(void * instance, char** username,c
 
    strTitle = "Enter Credentials for : " + string(pszServerName);
 
-   strUsername = file_as_string_dup("C:\\ca2\\config\\user.txt");
+   strUsername = file_as_string_dup(::dir::system() / "config\\user.txt");
 
-   strPassword = file_as_string_dup("C:\\ca2\\config\\pass.txt");
+   strPassword = file_as_string_dup(::dir::system() / "config\\pass.txt");
 
    if(strUsername.has_char() && strPassword.has_char())
    {

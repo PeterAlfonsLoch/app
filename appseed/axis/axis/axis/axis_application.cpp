@@ -2974,10 +2974,10 @@ namespace axis
 
       string strRequestUrl;
 
-      if(file_as_string_dup("C:\\ca2\\config\\system\\ignition_server.txt").has_char())
+      if(file_as_string_dup(::dir::system() / "config\\system\\ignition_server.txt").has_char())
       {
 
-         strRequestUrl = "https://" + file_as_string_dup("C:\\ca2\\config\\system\\ignition_server.txt") + "/api/spaignition";
+         strRequestUrl = "https://" + file_as_string_dup(::dir::system() / "config\\system\\ignition_server.txt") + "/api/spaignition";
 
          pszRequestUrl = strRequestUrl;
 

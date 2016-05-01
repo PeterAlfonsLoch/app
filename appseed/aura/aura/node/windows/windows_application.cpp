@@ -392,10 +392,10 @@ namespace aura
 
       string str;
 
-      if(file_exists_dup("C:\\ca2\\config\\system\\audio.txt"))
+      if(file_exists_dup(::dir::system() / "config\\system\\audio.txt"))
       {
 
-         str = file_as_string_dup("C:\\ca2\\config\\system\\audio.txt");
+         str = file_as_string_dup(::dir::system() / "config\\system\\audio.txt");
 
       }
       else
@@ -421,10 +421,10 @@ namespace aura
 
       string str;
 
-      if (file_exists_dup("C:\\ca2\\config\\system\\draw2d.txt"))
+      if (file_exists_dup(::dir::system() / "config\\system\\draw2d.txt"))
       {
 
-         str = file_as_string_dup("C:\\ca2\\config\\system\\draw2d.txt");
+         str = file_as_string_dup(::dir::system() / "config\\system\\draw2d.txt");
 
       }
       else

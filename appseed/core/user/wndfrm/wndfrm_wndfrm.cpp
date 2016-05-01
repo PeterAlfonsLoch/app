@@ -141,7 +141,7 @@ namespace user
          if(strLibrary.is_empty())
          {
 
-            string strConfig = Application.file().as_string("C:\\ca2\\config\\system\\wndfrm.txt");
+            string strConfig = Application.file().as_string(::dir::system() / "config\\system\\wndfrm.txt");
 
             if(strConfig.is_empty())
             {

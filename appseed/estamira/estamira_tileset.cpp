@@ -69,7 +69,7 @@ namespace estamira
 
          *dib= *m_il.m_spdib;
 
-         dib.save_to_file("C:\\ca2\\estamira\\imagelisttest\\"+strMatter+".png");
+         dib.save_to_file(::dir::system() / "estamira\\imagelisttest\\"+strMatter+".png");
 
       }
 

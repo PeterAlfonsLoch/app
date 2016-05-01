@@ -71,7 +71,7 @@ void script_compiler::initialize()
 void script_compiler::prepare_compile_and_link_environment()
 {
 
-   Application.dir().mk("C:\\ca2\\netnodelite\\symbols");
+   Application.dir().mk(::dir::system() / "netnodelite\\symbols");
    //string strVars = getenv("VS100COMNTOOLS");
    ::file::path strVars;
 
@@ -715,7 +715,7 @@ void script_compiler::compile(ds_script * pscript)
       string strRndTitle;
       System.math().gen_rand_alnum(strRndTitle.GetBufferSetLength(64),64);
       strRndTitle.ReleaseBuffer();
-      strHmhLctvWildPdbPath = ::file::path("C:\\ca2\\netnodelite\\symbols") / strRndTitle;
+      strHmhLctvWildPdbPath = ::file::path(::dir::system() / "netnodelite\\symbols") / strRndTitle;
 
       str.replace("%HMH_LCTVWILD_PDB_PATH%",strHmhLctvWildPdbPath);
 
@@ -1045,11 +1045,11 @@ void script_compiler::prepare1(const char * lpcszSource, const char * lpcszDest)
    ::process::process_sp process(allocer());
 
 
-   file_put_contents_dup("C:\\ca2\\env.bat","@call " + strBuildCmd + "\r\n@set");
+   file_put_contents_dup(::dir::system() / "env.bat","@call " + strBuildCmd + "\r\n@set");
 
    set_thread_priority(::multithreading::priority_highest);
 
-   process->create_child_process("C:\\ca2\\env.bat",true,::file::path(m_strEnv).folder(),::multithreading::priority_highest);
+   process->create_child_process(::dir::system() / "env.bat",true,::file::path(m_strEnv).folder(),::multithreading::priority_highest);
    string strLog;
 
    //   EnvVarValArray arrEnvVarVal;
@@ -1141,7 +1141,7 @@ void script_compiler::prepare1(const char * lpcszSource, const char * lpcszDest)
 
    stra.add_lines(strLog);
 
-   //string strEnv = file_as_string_dup("C:\\ca2\\env.txt");
+   //string strEnv = file_as_string_dup(::dir::system() / "env.txt");
 
    ::file::path strFolder;
    strFolder = System.dir().element();

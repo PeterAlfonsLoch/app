@@ -12,7 +12,7 @@ CLASS_DECL_CORE int app_core_main(const char * pszCmdLine)
    if(!defer_core_init())
       return -1;
 
-   if(file_exists_dup("C:\\ca2\\config\\system\\beg_debug_box.txt"))
+   if(file_exists_dup(::dir::system() / "config\\system\\beg_debug_box.txt"))
    {
       debug_box("zzzAPPzzz app","zzzAPPzzz app",MB_ICONINFORMATION);
    }

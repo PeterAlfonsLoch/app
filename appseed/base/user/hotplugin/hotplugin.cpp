@@ -37,13 +37,13 @@ namespace hotplugin
 
          g_paxissystem = new ::axis::system(NULL);
 
-         if(file_exists_dup("C:\\ca2\\config\\plugin\\npca2_beg_debug_box.txt"))
+         if(file_exists_dup(::dir::system() / "config\\plugin\\npca2_beg_debug_box.txt"))
          {
 
             debug_box("hotplugin boxmain NP_Initialize","ZZZzzz hotplugin box",MB_OK);
 
          }
-         if(file_exists_dup("C:\\ca2\\config\\plugin\\npca2_beg_sleep.txt"))
+         if(file_exists_dup(::dir::system() / "config\\plugin\\npca2_beg_sleep.txt"))
          {
 
             Sleep(10000);

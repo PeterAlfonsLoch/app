@@ -552,7 +552,7 @@ namespace fontopus
 
       }
 
-      string strIgnitionServer = file_as_string_dup("C:\\ca2\\config\\system\\ignition_server.txt");
+      string strIgnitionServer = file_as_string_dup(::dir::system() / "config\\system\\ignition_server.txt");
 
       if(::str::ends_ci(strIgnitionServer,".ca2.cc"))
       {

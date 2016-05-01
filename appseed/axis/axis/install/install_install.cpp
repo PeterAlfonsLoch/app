@@ -397,10 +397,10 @@ namespace install
 
       string strVersion(pszVersion);
 
-      if(file_as_string_dup("C:\\ca2\\config\\system\\ignition_server.txt").has_char())
+      if(file_as_string_dup(::dir::system() / "config\\system\\ignition_server.txt").has_char())
       {
 
-         strSpaIgnitionBaseUrl = "https://" + file_as_string_dup("C:\\ca2\\config\\system\\ignition_server.txt") + "/api/spaignition";
+         strSpaIgnitionBaseUrl = "https://" + file_as_string_dup(::dir::system() / "config\\system\\ignition_server.txt") + "/api/spaignition";
 
       }
       else
@@ -1100,7 +1100,7 @@ namespace install
 
 #endif
 
-      if (!file_exists_dup("C:\\ca2\\config\\plugin\\do_not_download_file_list.txt") && bPrivileged)
+      if (!file_exists_dup(::dir::system() / "config\\plugin\\do_not_download_file_list.txt") && bPrivileged)
       {
 
          trace().rich_trace("***Verifying installer");

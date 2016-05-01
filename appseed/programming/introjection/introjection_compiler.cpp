@@ -90,12 +90,8 @@ namespace introjection
    void compiler::prepare_compile_and_link_environment()
    {
 
-#ifdef WINDOWS
-      Application.dir().mk("C:\\ca2\\introjection\\symbols");
-//#else
-      //Application.dir().mk("/tmp/ca2/introjection/symbols");
-#endif
-      //string strVars = getenv("VS100COMNTOOLS");
+      Application.dir().mk(::dir::system() / "introjection\\symbols");
+
       ::file::path strVars;
 
 #ifndef METROWIN
@@ -333,12 +329,12 @@ namespace introjection
       ::process::process_sp process(allocer());
 
 
-      file_put_contents_dup("C:\\ca2\\env1.bat","C:\\ca2\\env.bat > C:\\ca2\\env.txt");
-      file_put_contents_dup("C:\\ca2\\env.bat","@call " + strBuildCmd + "\r\n@set");
+      file_put_contents_dup(::dir::system() / "env1.bat",::dir::system() / "env.bat > C:\\ca2\\env.txt");
+      file_put_contents_dup(::dir::system() / "env.bat","@call " + strBuildCmd + "\r\n@set");
 
       //      set_thread_priority(::multithreading::priority_highest);
-      RunSilent("C:\\ca2\\env1.bat","");
-      //::system("Y:\\bergedge\\hi5\\program\\hstart.exe /NOCONSOLE \"C:\\ca2\\env1.bat\"");
+      RunSilent(::dir::system() / "env1.bat","");
+      //::system("Y:\\bergedge\\hi5\\program\\hstart.exe /NOCONSOLE \::dir::system() / "env1.bat\"");
       string strLog;
 
 //         EnvVarValArray arrEnvVarVal;
@@ -405,7 +401,7 @@ namespace introjection
       //}
 
       //strLog += process->read();
-      strLog = file_as_string_dup("C:\\ca2\\env.txt");
+      strLog = file_as_string_dup(  ::dir::system() / "env.txt");
 
       stringa stra;
 
@@ -439,7 +435,7 @@ namespace introjection
 
 //      stra.add_lines(strLog);
 
-      //string strEnv = file_as_string_dup("C:\\ca2\\env.txt");
+      //string strEnv = file_as_string_dup(::dir::system() / "env.txt");
 
 #endif
 #endif
@@ -941,7 +937,7 @@ namespace introjection
       string strRndTitle;
       System.math().gen_rand_alnum(strRndTitle.GetBufferSetLength(64),64);
       strRndTitle.ReleaseBuffer();
-      strHmhLctvWildPdbPath = ::file::path("C:\\ca2\\netnodelite\\symbols") / strRndTitle;
+      strHmhLctvWildPdbPath = ::file::path(::dir::system() / "netnodelite\\symbols") / strRndTitle;
       strHmhLctvWildPdbPath.replace("\\","/");
       Application.dir().mk(::file::path(strHmhLctvWildPdbPath).folder());
       str.replace("%HMH_LCTVWILD_PDB_PATH%",strHmhLctvWildPdbPath);

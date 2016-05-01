@@ -353,14 +353,14 @@ namespace user
                   dib->create(r.size());
                   dib->get_graphics()->BitBlt(0,0,r.width(),r.height(),pimpl->m_spdibBuffer->get_graphics(),0,0,SRCCOPY);
                   Session.copydesk().dib_to_desk(dib);
-                  dib.save_to_file("C:\\ca2\\control_alt_p.png");
+                  dib.save_to_file(::dir::system() / "control_alt_p.png");
 
                   ::visual::dib_sp dib2(allocer());
 
                   dib2->create(284,r.size().cy * 284 / r.size().cx);
                   dib2->get_graphics()->SetStretchBltMode(HALFTONE);
                   dib2->get_graphics()->StretchBlt(0,0,dib2->m_size.cx,dib2->m_size.cy,dib->get_graphics(),0,0, r.size().cx,r.size().cy,SRCCOPY);
-                  dib2.save_to_file("C:\\ca2\\control_alt_p_w284.png");
+                  dib2.save_to_file(::dir::system() / "control_alt_p_w284.png");
                   pkey->m_bRet = true;
                   pkey->set_lresult(1);
                }

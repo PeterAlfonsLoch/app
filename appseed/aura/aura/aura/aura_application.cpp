@@ -2002,12 +2002,7 @@ namespace aura
    bool application::initialize1()
    {
 
-#if defined(WINDOWS)
-      g_pf1 = (void *) (uint_ptr) ::str::to_uint64(file().as_string("C:\\ca2\\config\\system\\pf1.txt"));
-#else
-      g_pf1 = (void *) (uint_ptr) ::str::to_uint64(file().as_string("/ca2/pf1.txt"));
-#endif
-
+      g_pf1 = (void *) (uint_ptr) ::str::to_uint64(file().as_string(::dir::system() / "config\\system\\pf1.txt"));
 
       if(m_bAuraInitialize1)
          return m_bAuraInitialize1Result;
@@ -4222,8 +4217,8 @@ namespace aura
 
 #endif
 
-      if(((!bDebuggerCheck || ::is_debugger_attached()) && !file_exists_dup("C:\\ca2\\config\\plugin\\disable_manual_install_warning.txt")
-         && !file_exists_dup("C:\\ca2\\config\\system\\skip_debug_install.txt")) || file_exists_dup("C:\\ca2\\config\\system\\enable_debug_install.txt"))
+      if(((!bDebuggerCheck || ::is_debugger_attached()) && !file_exists_dup(::dir::system() / "config\\plugin\\disable_manual_install_warning.txt")
+         && !file_exists_dup(::dir::system() / "config\\system\\skip_debug_install.txt")) || file_exists_dup(::dir::system() / "config\\system\\enable_debug_install.txt"))
          //|| (App(notinstalled.get_app()).is_serviceable() && !App(notinstalled.get_app()).is_user_service()))
       {
 

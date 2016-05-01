@@ -1732,7 +1732,7 @@ namespace base
    //      if(strRequestUrl.is_empty())
    //      {
    //
-   //         string strIgnitionServer = file_as_string_dup("C:\\ca2\\config\\system\\ignition_server.txt");
+   //         string strIgnitionServer = file_as_string_dup(::dir::system() / "config\\system\\ignition_server.txt");
    //
    //         if(::str::ends_ci(strIgnitionServer,".ca2.cc"))
    //         {
@@ -2015,7 +2015,7 @@ namespace base
       if(strRequestUrl.is_empty())
       {
 
-         string strIgnitionServer = file_as_string_dup("C:\\ca2\\config\\system\\ignition_server.txt");
+         string strIgnitionServer = file_as_string_dup(::dir::system() / "config\\system\\ignition_server.txt");
 
          if(::str::ends_ci(strIgnitionServer,".ca2.cc"))
          {
@@ -2104,7 +2104,7 @@ namespace base
       if(strId.is_empty())
       {
 
-         strId = "wndfrm_" + Application.file().as_string("C:\\ca2\\config\\system\\wndfrm.txt");
+         strId = "wndfrm_" + Application.file().as_string(::dir::system() / "config\\system\\wndfrm.txt");
 
       }
 

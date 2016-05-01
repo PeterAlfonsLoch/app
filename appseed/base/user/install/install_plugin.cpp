@@ -55,8 +55,8 @@ namespace install
 
 #endif
 
-      if(file_exists_dup("C:\\ca2\\config\\plugin\\version.txt"))
-         strVersion = file_as_string_dup("C:\\ca2\\config\\plugin\\version.txt");
+      if(file_exists_dup(::dir::system() / "config\\plugin\\version.txt"))
+         strVersion = file_as_string_dup(::dir::system() / "config\\plugin\\version.txt");
 
       return strVersion;
 

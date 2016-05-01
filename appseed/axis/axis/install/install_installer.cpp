@@ -809,7 +809,7 @@ install_begin:;
          new_progress_end(0.49);
          if(m_bInternetInstall)
          {
-            if (file_exists_dup("C:\\ca2\\config\\plugin\\do_not_download_file_list.txt"))
+            if (file_exists_dup(::dir::system() / "config\\plugin\\do_not_download_file_list.txt"))
             {
                Sleep(15000);
             }

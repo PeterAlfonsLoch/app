@@ -54,15 +54,7 @@ namespace programming
          
          bool bNew;
 
-#ifdef WINDOWS
-
-         ::aura::library & lib = pcompiler->compile("C:\\ca2\\config\\xmpp_resident\\room\\ca2@livecoding.tv\\xmpp_bot.cpp", bNew);
-
-#else
-
-         ::aura::library & lib = pcompiler->compile("", bNew);
-
-#endif
+         ::aura::library & lib = pcompiler->compile(::dir::system() / "config\\xmpp_resident\\room\\ca2@livecoding.tv\\xmpp_bot.cpp", bNew);
 
          if (lib.m_pca2library == NULL)
          {

@@ -513,15 +513,7 @@ namespace aura
 
       ::file::path pathModule;
 
-      #ifdef LINUX
-
-      pathModule = "/tmp/ca2/config/ipi";
-
-      #else
-
-      pathModule = "C:/ca2/config/ipi";
-
-      #endif
+      pathModule = ::dir::system() /"config/ipi";
 
       pathModule /= strApp + ".module_list";
 
@@ -570,15 +562,7 @@ namespace aura
 
       m_straModule.remove_all();
 
-#ifdef LINUX
-
-	pathModule = "/tmp/ca2/config/ipi";
-
-#else
-
-      pathModule = "C:/ca2/config/ipi";
-
-#endif
+      pathModule = ::dir::system() / "config/ipi";
 
       pathModule /= m_strApp + ".module_list";
 

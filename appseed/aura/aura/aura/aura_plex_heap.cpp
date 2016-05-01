@@ -992,7 +992,7 @@ void memdleak_dump()
    OutputDebugString(sz);
    OutputDebugString(" memory leaks.");
 
-   //file_put_contents_dup("C:\\ca2\\m.html", get_mem_info_report1());
+   //file_put_contents_dup(::dir::system() / "m.html", get_mem_info_report1());
 }
 
 #undef print
