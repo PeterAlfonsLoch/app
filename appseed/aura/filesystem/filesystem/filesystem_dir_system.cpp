@@ -25,8 +25,11 @@ namespace file
          m_isdirmap(papp),
          m_mutex(papp)
       {
-//         m_pziputil = new zip::Util;
+
          m_isdirmap.m_dwTimeOut = 15000;
+
+         m_strCa2 = ::dir::root();
+
       }
 
       system::~system()

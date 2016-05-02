@@ -28,98 +28,38 @@ namespace windows
 ::file::path dir::appdata()
 {
 
-   ::file::path str;
-
-
-#ifdef METROWIN
-
-   str = ::file::path(::file::path(::Windows::Storage::ApplicationData::Current->LocalFolder->Path));
-
-   
-   //memory_free_dbg(buf, 0);
-
-#elif defined(WIN32)
-   
-   SHGetSpecialFolderPath(NULL, str, CSIDL_COMMON_APPDATA, FALSE);
-   
-   str /= "ca2";
-
-#endif
-   
-   string strCa2 = dir::element();
-   
-   index iFind = strCa2.find(':');
-   
-   if(iFind >= 0)
-   {
-      
-      index iFind1 = strCa2.reverse_find('\\', iFind);
-      
-      index iFind2 = strCa2.reverse_find('/', iFind);
-      
-      index iStart = MAX(iFind1 + 1, iFind2 + 1);
-      
-      strCa2 = strCa2.substr(0, iFind - 1) + "_" + strCa2.substr(iStart, iFind - iStart) + strCa2.substr(iFind + 1);
-
-   }
-
-   str /= process_platform_dir_name();
-   
-   return str / strCa2;
+   return app() / process_platform_dir_name() / app_relative();
 
 }
-
-
-
-
 
 
 ::file::path dir::userappdata()
 {
 
-   ::file::path str;
-
-#ifdef WINDOWSEX
-
-   str = ::windows::get_known_folder(FOLDERID_RoamingAppData);
-
-   str /= "ca2";
-
-#elif defined(METROWIN)
-
-   str = begin(::Windows::Storage::ApplicationData::Current->LocalFolder->Path);
-
-#endif
+   return app() / app_relative() / "appdata";
    
-   str /= "app";
+}
 
-   string strCa2 = dir::element();
-   
-   index iFind = strCa2.find(':');
-   
-   if(iFind >= 0)
-   {
-      
-      index iFind1 = strCa2.reverse_find('\\', iFind);
-      
-      index iFind2 = strCa2.reverse_find('/', iFind);
-      
-      index iStart = MAX(iFind1 + 1, iFind2 + 1);
-      
-      strCa2 = strCa2.substr(0, iFind - 1) + "_" + strCa2.substr(iStart, iFind - iStart) + strCa2.substr(iFind + 1);
 
-   }
-   
-   str /= strCa2;
+::file::path dir::app()
+{
 
-   return str/ "appdata";
-   
+   return root() / "app";
+
 }
 
 
 ::file::path dir::system()
 {
 
+   return root() / "system";
+
+}
+
+
+::file::path dir::root()
+{
+
    ::file::path str;
 
 #ifdef WINDOWSEX
@@ -132,10 +72,37 @@ namespace windows
 
    str = begin(::Windows::Storage::ApplicationData::Current->LocalFolder->Path);
 
+#elif defined(VSNORD)
+
+   str = ::aura::system::g_p->m_pandroidinitdata->m_pszCacheDir;
+
 #endif
 
-   str /= "system";
-
    return str;
+
+}
+
+
+::file::path dir::app_relative()
+{
+
+   string strRelative = dir::element();
+
+   index iFind = strRelative.find(':');
+
+   if (iFind >= 0)
+   {
+
+      index iFind1 = strRelative.reverse_find('\\', iFind);
+
+      index iFind2 = strRelative.reverse_find('/', iFind);
+
+      index iStart = MAX(iFind1 + 1, iFind2 + 1);
+
+      strRelative = strRelative.substr(0, iFind - 1) + "_" + strRelative.substr(iStart, iFind - iStart) + strRelative.substr(iFind + 1);
+
+   }
+
+   return strRelative;
 
 }

@@ -17,13 +17,7 @@ namespace android
       ::file::dir::system(papp)
    {
 
-      //string strCa2Module = ca2module();
-
-      string strCacheDir = string(System.m_pandroidinitdata->m_pszCacheDir);
-
-      m_strCa2 = strCacheDir;
-
-      //m_strCa2 -=2;
+      m_strCa2 = ::dir::root();
 
    }
 
@@ -1081,7 +1075,7 @@ namespace android
          CSIDL_COMMON_APPDATA,
          FALSE);*/
 
-      str = string(System.m_pandroidinitdata->m_pszCacheDir) / ".ca2/appdata";
+      str = string(System.m_pandroidinitdata->m_pszCacheDir) / ".ca2/app/appdata";
       string strRelative;
       strRelative = element();
       //index iFind = strRelative.find(':');
@@ -1104,47 +1098,31 @@ namespace android
    }
 
 
-   ::file::path dir::element_commonappdata(const string & strElement)
-   {
-
-      string strRelative;
-
-      strRelative = strElement;
-
-      index iFind = strRelative.find(':');
-
-      if(iFind >= 0)
-      {
-
-         strsize iFind1 = strRelative.reverse_find("\\",iFind);
-
-         strsize iFind2 = strRelative.reverse_find("/",iFind);
-
-         strsize iStart = MAX(iFind1 + 1,iFind2 + 1);
-
-         strRelative = strRelative.Left(iFind - 1) + "_" + strRelative.Mid(iStart,iFind - iStart) + strRelative.Mid(iFind + 1);
-
-      }
-
-      return m_strCommonAppData / "ca2" / strRelative;
-
-   }
-
    ::file::path dir::usersystemappdata(::aura::application * papp, const string & lpcszPrefix)
    {
+
       UNREFERENCED_PARAMETER(papp);
+
       return appdata() / lpcszPrefix;
+
    }
+
 
    ::file::path dir::userappdata(::aura::application * papp)
    {
+
       return userfolder(papp) /  "appdata";
+
    }
+
 
    ::file::path dir::userdata(::aura::application * papp)
    {
+
       return userfolder(papp) / "data";
+
    }
+
 
 //   ::file::path dir::userfolder(::aura::application * papp)
 //   {
@@ -1213,17 +1191,25 @@ namespace android
       }*/
       /*return ::str::international::unicode_to_utf8(buf);*/
       return ::getlogin();
+
    }
+
 
    ::file::path dir::default_userappdata(::aura::application * papp, const string & lpcszPrefix, const string & lpcszLogin)
    {
+
       return default_userfolder(papp, lpcszPrefix, lpcszLogin) /  "appdata";
+
    }
+
 
    ::file::path dir::default_userdata(::aura::application * papp, const string & lpcszPrefix, const string & lpcszLogin)
    {
+
 	   return default_userfolder(papp, lpcszPrefix, lpcszLogin) / "data";
+
    }
+
 
    ::file::path dir::default_userfolder(::aura::application *  papp, const string & lpcszPrefix, const string & lpcszLogin)
    {
@@ -1236,7 +1222,7 @@ namespace android
    ::file::path dir::userquicklaunch(::aura::application * papp)
    {
    
-	   return string(System.m_pandroidinitdata->m_pszCacheDir) /  "Microsoft\\Internet Explorer\\Quick Launch";
+	   return ::dir::root() /  ".ca2/app/Microsoft/Internet Explorer/Quick Launch";
    
    }
 
@@ -1244,7 +1230,7 @@ namespace android
    ::file::path dir::userprograms(::aura::application * papp)
    {
 
-	   return  "/usr/bin";
+	   return ::dir::root() / system::userprograms(papp);
 
    }
 
@@ -1252,7 +1238,7 @@ namespace android
    ::file::path dir::commonprograms()
    {
 
-	   return "/usr/share/";
+	   return ::dir::root() / system::commonprograms();
 
    }
 
@@ -1265,17 +1251,33 @@ namespace android
    }
 
 
+
    bool dir::is_inside(const ::file::path & pszDir, const ::file::path & pszPath, ::aura::application * papp)
    {
+
       return ::str::begins_ci(pszDir, pszPath);
+
    }
+
 
    bool dir::has_subdir(::aura::application * papp, const ::file::path & pszDir)
    {
+
 	   ::file::listing ls(papp);
+
       ls.ls_dir(pszDir);
+
       return ls.get_size() > 0;
 
    }
+
+
+   ::file::path dir::commonappdata_root()
+   {
+
+      return m_strCommonAppData;
+
+   }
+
 
 } // namespace android

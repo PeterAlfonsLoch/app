@@ -14,12 +14,11 @@ namespace android
       ::file::path				m_strTimeFolder;
       ::file::path				m_strNetSeedFolder;
 
-      ::file::path        		m_strCa2;
       ::file::path				m_strCommonAppData;
       ::file::path      		m_strProfile;
       ::file::path   			m_strAppData;
       ::file::path				m_strPrograms;
-      ::file::path  			m_strCommonPrograms;
+      ::file::path  			   m_strCommonPrograms;
 
 
       dir(::aura::application * papp);
@@ -59,7 +58,6 @@ namespace android
 
       virtual ::file::path appdata();
       virtual ::file::path commonappdata();
-      virtual ::file::path element_commonappdata(const string & strElement);
 
 
       virtual ::file::path usersystemappdata(::aura::application * papp, const string & lpcszPrefix);
@@ -74,6 +72,8 @@ namespace android
       virtual ::file::path userprograms(::aura::application * papp);
 
       virtual ::file::path commonprograms();
+
+      virtual ::file::path commonappdata_root();
 
       virtual bool initialize();
 

@@ -54,6 +54,7 @@ namespace file
          mutex                m_mutex;
          string               m_strApiCc;
 
+         ::file::path         m_strCa2;
          ::file::path         m_pathCa2Module;
          ::file::path         m_pathModule;
          ::file::path         m_pathProfile;
