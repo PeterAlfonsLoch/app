@@ -695,6 +695,7 @@ namespace sockets
                SetLost();
                const char *errbuf = ERR_error_string(errnr,NULL);
                log("OnWrite/SSL_write",errnr,errbuf,::aura::log::level_fatal);
+               throw io_exception(get_app(), errbuf);
             }
             return 0;
          }
@@ -707,11 +708,13 @@ namespace sockets
             int32_t errnr = SSL_get_error(m_ssl,(int32_t)n);
             const char *errbuf = ERR_error_string(errnr,NULL);
             TRACE("SSL_write() returns 0: %d : %s\n",errnr,errbuf);
+            throw io_exception(get_app(), errbuf);
          }
       }
       else
 #endif // HAVE_OPENSSL
       {
+         retry:
 #if defined(APPLEOS)
          int iSocket = GetSocket();
          n = send(iSocket,buf,len,SO_NOSIGPIPE);
@@ -722,13 +725,14 @@ namespace sockets
 #endif
          if(n == -1)
          {
+            int iError = Errno;
             // normal error codes:
             // WSAEWOULDBLOCK
             //       EAGAIN or EWOULDBLOCK
 #ifdef _WIN32
-            if(Errno != WSAEWOULDBLOCK)
+            if(iError != WSAEWOULDBLOCK) // 10035L
 #else
-            if(Errno != EWOULDBLOCK)
+            if(iError != EWOULDBLOCK)
 #endif
             {
                log("send",Errno,StrError(Errno),::aura::log::level_fatal);
@@ -736,7 +740,23 @@ namespace sockets
                SetCloseAndDelete(true);
                SetFlushBeforeClose(false);
                SetLost();
+               throw io_exception(get_app(), StrError(Errno));
             }
+            else
+            {
+               fd_set w;
+               fd_set e;
+               FD_ZERO(&e);
+               FD_ZERO(&w);
+               FD_SET(GetSocket(), &e);
+               FD_SET(GetSocket(), &w);
+               struct timeval tv;
+               tv.tv_sec = 1;
+               tv.tv_usec = 0;
+               ::select(GetSocket() + 1, NULL, &w, &e, &tv);
+               goto retry;
+            }
+
             return 0;
          }
       }
