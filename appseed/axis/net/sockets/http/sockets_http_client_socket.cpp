@@ -177,19 +177,15 @@ namespace sockets
 
       m_b_complete = true;
 
-      if(m_pfile != NULL && (m_response.attr(__id(http_status_code)) < 300 || m_response.attr(__id(http_status_code)) >= 400))
+      if (outheader(__id(content_encoding)).compare_value_ci("gzip") == 0)
       {
-
-         m_iFinalSize = m_pfile->get_length();
-
+         System.compress().ungz(m_memoryfile);
       }
-      else if(m_pfile == NULL)
-      {
 
-         if(outheader(__id(content_encoding)).compare_value_ci("gzip") == 0)
-         {
-            System.compress().ungz(m_memoryfile);
-         }
+      if(m_pfile != NULL && (m_response.attr(__id(http_status_code)) < 300 || m_response.attr(__id(http_status_code)) >= 400))
+     { 
+
+         m_pfile->write(m_memoryfile.get_data(), m_memoryfile.get_size());
 
       }
 

@@ -156,7 +156,7 @@ namespace file
          uiRead += uiReadNow;
          nCount -= uiReadNow;
          if (nCount <= 0 || (::get_tick_count() - m_dwLastCall > m_dwTimeOut) ||
-               (m_pfile->get_position() >= m_uiExpectedSize &&
+               (m_pfile->get_length() >= m_uiExpectedSize &&
                 m_uiExpectedSize != ((uint64_t)-1)
                 && m_uiExpectedSize != ((uint64_t)-2)))
             break;
