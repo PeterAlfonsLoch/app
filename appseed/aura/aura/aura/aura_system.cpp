@@ -38,9 +38,16 @@ namespace aura
    system * system::g_p = NULL;
 
 
-   system::system(::aura::application * papp) :
+   system::system(::aura::application * papp, void * pdata) :
       m_process(this)
    {
+
+#ifdef VSNORD
+
+      m_pandroidinitdata = (android_init_data *) pdata;
+
+#endif
+
       m_bRun = true;
       if (g_p == NULL)
       {

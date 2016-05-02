@@ -97,7 +97,7 @@ CLASS_DECL_AURA int get_aura_init()
 ::aura::system * aura_create_aura_system()
 {
 
-   return new ::aura::system(NULL);
+   return new ::aura::system(NULL, NULL);
 
 }
 

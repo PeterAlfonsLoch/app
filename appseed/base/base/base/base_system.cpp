@@ -67,7 +67,7 @@ namespace base
 
 
    system::system(::aura::application * papp):
-      ::aura::system(this),
+      ::aura::system(this, NULL),
       ::axis::system(this) //,
       //m_libraryDraw2d(this)
    {

@@ -533,7 +533,7 @@ namespace aura
 
       ::aura::system * aura_create_system()
       {
-         return new ::aura::system(NULL);
+         return new ::aura::system(NULL, NULL);
       }
 
 

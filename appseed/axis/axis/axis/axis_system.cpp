@@ -14,7 +14,7 @@ namespace axis
 
 
    system::system(::aura::application * papp):
-      aura::system(this),
+      aura::system(this, NULL),
       m_httpsystem(this),
       m_visual(this),
       m_emaildepartment(this),

@@ -110,7 +110,7 @@ namespace aura
       DWORD                                        m_dwAfterApplicationFirstRequest;
 
 
-      system(::aura::application * papp);
+      system(::aura::application * papp, void * pdata);
       virtual ~system();
 
 
