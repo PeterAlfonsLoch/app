@@ -97,6 +97,14 @@ namespace windows
 
       }
 
+      template < class IFACE >
+      HRESULT As(comptr < IFACE > & iface)
+      {
+
+         return m_p->QueryInterface< IFACE >(&iface);
+
+      }
+
 
       TYPE * operator ->()
       {

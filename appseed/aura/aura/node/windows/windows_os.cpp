@@ -1437,10 +1437,12 @@ namespace windows
       }
 
       HRESULT hr ;
-      if(FAILED(hr = CoCreateInstance(CLSID_ShellLink,NULL,CLSCTX_INPROC_SERVER,IID_IShellLinkW,
-         (LPVOID*)&psl)))
+
+      if(FAILED(hr = psl.CoCreateInstance(CLSID_ShellLink,NULL,CLSCTX_INPROC_SERVER)))
       {
-         return FALSE;
+         
+         return false;
+
       }
 
       bool bOk = false;
@@ -1448,7 +1450,7 @@ namespace windows
 
       comptr < IPersistFile > ppf;
 
-      if(SUCCEEDED(psl->QueryInterface(IID_IPersistFile,(LPVOID*)&ppf)))
+      if(SUCCEEDED(psl.As(ppf)))
       {
       
          if(SUCCEEDED(ppf->Load(wstrFileIn,STGM_READ)))
