@@ -29,23 +29,36 @@ CLASS_DECL_AURA void * __node_library_open(const char * pszPath)
    //void * plibrary = dlopen(strPath,RTLD_LOCAL | RTLD_NOW | RTLD_NODELETE);
    void * plibrary = dlopen(strPath,RTLD_LOCAL | RTLD_NOW);
 
-   int iError = errno;
-
-   const char * psz = strerror(iError);
-
-   if(psz != NULL)
+   if (plibrary != NULL)
    {
 
-      fprintf(stderr,"%s\n",psz);
+      output_debug_string("Successfully loaded library : \"" + strPath +"\"!!");
 
    }
-
-   const char * psz2 = dlerror();
-
-   if(psz2 != NULL)
+   else
    {
 
-      fprintf(stderr,"%s\n",psz2);
+      int iError = errno;
+
+      const char * psz = strerror(iError);
+
+      const char * psz2 = dlerror();
+
+      output_debug_string("Failed to load library : \"" + strPath + "\"!");
+
+      if (psz != NULL)
+      {
+
+         output_debug_string("strerror("+::str::from(iError) +") = " + string(psz));
+
+      }
+
+      if (psz2 != NULL)
+      {
+
+         output_debug_string("dlerror = " + string(psz2));
+
+      }
 
    }
 
