@@ -363,8 +363,11 @@ namespace aura
 
          try
          {
-
+#ifdef VSNORD
+            ::output_debug_string(stra[i]);
+#else
             ::OutputDebugStringW(::str::international::utf8_to_unicode(strLine));
+#endif
 
             if(plog->m_pfile)
             {
