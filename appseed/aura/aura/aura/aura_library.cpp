@@ -643,3 +643,31 @@ string_map < sp(::aura::library) > * g_pmapLibCall = NULL;
 }
 
 
+
+#if defined(LINUX)
+
+::file::path libfilename(const string & str) {
+   return "lib" + str + ".so";
+}
+
+#elif defined(VSNORD)
+
+::file::path libfilename(const string & str) {
+   return "lib" + str + ".so";
+}
+
+#elif defined(WINDOWS)
+
+::file::path libfilename(const string & str) {
+   return str + ".dll";
+}
+
+#elif defined(APPLEOS)
+
+::file::path libfilename(const string & str) {
+   return "lib" + str + ".dylib";
+}
+
+#endif
+
+

@@ -121,3 +121,7 @@ CLASS_DECL_AURA void * __node_library_raw_get(void * plibrary,const char * pszEn
 CLASS_DECL_AURA ::aura::library * lib(const char * psz);
 
 #define LIBCALL(library, entry)  (lib(#library)->get<decltype(&entry)>(#entry))
+
+
+CLASS_DECL_AURA ::file::path libfilename(const string & str);
+
