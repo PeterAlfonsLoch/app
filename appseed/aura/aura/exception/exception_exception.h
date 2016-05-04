@@ -14,6 +14,7 @@ namespace exception
       bool        m_bHandled;
       bool        m_bContinue;
       string      m_strMessage;
+      string      m_strException;
       bool        m_bLog;
 
 

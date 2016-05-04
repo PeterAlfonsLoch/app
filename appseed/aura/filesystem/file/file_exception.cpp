@@ -4,6 +4,8 @@
 //#include <Shellapi.h>
 #endif
 
+#define DUMP_FILE_EXCEPTION_BACK_TRACE 0
+
 /////////////////////////////////////////////////////////////////////////////
 // file_exception helpers
 
@@ -38,17 +40,26 @@ namespace file
       ::simple_exception(papp),
       ::io_exception(papp)
    {
+
+      m_bDumpBackTrace = DUMP_FILE_EXCEPTION_BACK_TRACE != 0;
+
       const char * lpsz;
 
       if(cause >= 0 && cause < _countof(rgszFileExceptionCause))
          lpsz = rgszFileExceptionCause[cause];
       else
          lpsz = szUnknown;
+
+      string strException;
+
 #ifdef WINDOWSEX
-      debug_print(":file(%hs(%d),%d,%s)",lpsz,cause,lOsError,string(lpszArchiveName).c_str());
+      strException.Format(":file(%hs(%d),%d,%s)",lpsz,cause,lOsError,string(lpszArchiveName).c_str());
 #else
-      debug_print(":file(%s(%d),%d,%s)",lpsz, cause,lOsError,string(lpszArchiveName).c_str());
+      strException.Format(":file(%s(%d),%d,%s)",lpsz, cause,lOsError,string(lpszArchiveName).c_str());
 #endif
+
+      m_strException = strException;
+
       Construct(cause, lOsError, lpszArchiveName);
    }
 

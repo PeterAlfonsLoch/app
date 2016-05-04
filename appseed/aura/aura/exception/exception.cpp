@@ -42,27 +42,28 @@ namespace exception
 
          if(m_bContinue)
          {
-            debug_print("-continue");
+            m_strException += "-continue";
          }
          else
          {
-            debug_print("-should_not_continue(fatal_exception_instance_candidate)");
+            m_strException += "-should_not_continue(fatal_exception_instance_candidate)";
          }
 
          if(m_bHandled)
          {
-            debug_print("-explicitly_handled");
+            m_strException += "-explicitly_handled";
          }
          else
          {
-            debug_print("-not_handled_explicitly");
+            m_strException += "-not_handled_explicitly";
          }
 
          debug_print("\n");
 
-         }
+      }
 
    }
+
 
    void exception::Delete()
    {

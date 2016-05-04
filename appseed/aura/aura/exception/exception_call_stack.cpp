@@ -5,14 +5,27 @@
 
 bool call_stack::s_bDoStackTrace = false;
 
+#define CALL_STACK_DEFAULT_SKIP 3
+
+#elif defined(VSNORD)
+
+bool call_stack::s_bDoStackTrace = true;
+
+#define CALL_STACK_DEFAULT_SKIP 4
+
 #else
 
 bool call_stack::s_bDoStackTrace = false;
 
+#define CALL_STACK_DEFAULT_SKIP 3
+
 #endif
 
 
-#if defined(LINUX) || defined(APPLEOS) || defined(SOLARIS)
+
+
+
+#if defined(LINUX) || defined(APPLEOS) || defined(SOLARIS) || defined(VSNORD)
 call_stack::call_stack(::aura::application * papp, uint32_t uiSkip, void * address) :
    object(papp)
    ,m_caller_address(address)
@@ -22,8 +35,15 @@ call_stack::call_stack(::aura::application * papp, uint32_t uiSkip) :
 #endif
 {
 
-   if(s_bDoStackTrace && uiSkip != 0xffffffffu)
+   if(s_bDoStackTrace && uiSkip != SKIP_CALL_STACK)
    {
+
+      if (uiSkip == CALL_STACK_DEFAULT_SKIP_TRIGGER)
+      {
+
+         uiSkip = CALL_STACK_DEFAULT_SKIP;
+
+      }
 
       m_strCallStack = call_stack::get(uiSkip);
 
@@ -44,13 +64,16 @@ string call_stack::get(uint32_t uiSkip)
 
    string str;
 
-   UNREFERENCED_PARAMETER(uiSkip);
+#ifdef LINUX || defined(VSNORD)
 
-#ifdef LINUX
    System.eengine().stack_trace(str, uiSkip, m_caller_address);
+
 #else
+
    System.eengine().stack_trace(uiSkip);
+
    str = System.eengine()._strS;
+
 #endif
 
    return str;

@@ -27,6 +27,10 @@
 #pragma once
 
 
+#define CALL_STACK_DEFAULT_SKIP_TRIGGER ((uint32_t) -2)
+
+#define SKIP_CALL_STACK ((uint32_t) -1)
+
 class CLASS_DECL_AURA call_stack :
    virtual public object
 {
@@ -36,21 +40,24 @@ public:
 
    static bool s_bDoStackTrace;
 
-#if defined(LINUX) || defined(APPLEOS) || defined(SOLARIS)
+
+   /* -1 for disable call stack*/
+
+#if defined(LINUX) || defined(APPLEOS) || defined(SOLARIS) || defined(VSNORD)
 
    void * m_caller_address;
 
-   call_stack(::aura::application * papp, uint32_t uiSkip = 3, void * caller_address = NULL);
+   call_stack(::aura::application * papp, uint32_t uiSkip = CALL_STACK_DEFAULT_SKIP_TRIGGER, void * caller_address = NULL);
 
 #else
 
-   call_stack(::aura::application * papp, uint32_t uiSkip = 3);
+   call_stack(::aura::application * papp, uint32_t uiSkip = CALL_STACK_DEFAULT_SKIP_TRIGGER);
 
 #endif
 
    call_stack(const ::call_stack & cs);
 
-   string get(uint32_t uiSkip = 2);
+   string get(uint32_t uiSkip = CALL_STACK_DEFAULT_SKIP_TRIGGER);
 
    const char * stack_trace() const;
 

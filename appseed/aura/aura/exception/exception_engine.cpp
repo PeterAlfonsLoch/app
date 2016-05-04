@@ -31,6 +31,7 @@ It is provided "as is" without express or implied warranty.
 #include <unistd.h>
 #include <unwind.h>
 #include <dlfcn.h>
+#include <cxxabi.h>
 #endif
 #ifdef __USE_BFD
 bool resolve_addr_file_func_line(void *address, const char * * filename, const char ** func, unsigned & iLine);
@@ -76,20 +77,43 @@ string dumpBacktrace(void** buffer,size_t count)
       const char* symbol = "";
 
       Dl_info info;
-      if(dladdr(addr,&info) && info.dli_sname) {
+
+      if(dladdr(addr,&info) && info.dli_sname)
+      {
+
          symbol = info.dli_sname;
+
       }
 
-      str = "  #";
+      int status = 0;
+
+      char * demangled = __cxxabiv1::__cxa_demangle(symbol, 0, 0, &status);
+
+      //str += "  #";
+      if (idx < 10)
+      {
+         str += "0";
+      }
       str += ::str::from(idx);
-      str += ": ";
-      str += ::str::from((uint_ptr) addr);
+      //str += ": 0x";
+      //str += ::hex::upper_from((uint_ptr) addr);
       str += "  ";
-      str += symbol;
+      str += (NULL != demangled && 0 == status) ? demangled : symbol;
       str += "\n";
+
+      if (demangled != NULL)
+      {
+
+         free(demangled);
+
+      }
+
    }
+
    return str;
+
 }
+
 
 #endif
 
@@ -1198,9 +1222,21 @@ namespace exception
 #elif defined(ANDROID)
 
       const size_t max = 30;
+
       void* buffer[max];
 
-      strncpy(_strS, dumpBacktrace(buffer, captureBacktrace(buffer, max)), sizeof(_strS));
+      int iSkip = MIN(uiSkip, max - 1);
+
+      if (iSkip == max - 1)
+      {
+
+         return "";
+
+      }
+
+      int iCount = captureBacktrace(buffer, max);
+
+      strncpy(_strS, dumpBacktrace(&buffer[iSkip], iCount - iSkip), sizeof(_strS));
 
       return _strS;
 
@@ -1529,7 +1565,7 @@ namespace exception
    }
 
 
-#elif defined(LINUX) || defined(MACOS)
+#elif defined(LINUX) || defined(MACOS) 
     
     void engine::backtrace(void *pui, int &c)
     {

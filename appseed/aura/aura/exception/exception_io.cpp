@@ -8,7 +8,7 @@ object(papp),
 simple_exception(papp)
 {
 
-   debug_print(":io_exception");
+   m_strException += ":io_exception";
 
 }
 
@@ -23,13 +23,15 @@ simple_exception(papp,pszMessage)
    if(pszMessage == NULL)
    {
 
-      debug_print(":io_exception(NULL)");
+      m_strException += ":io_exception(NULL)";
 
    }
    else
    {
 
-      debug_print(":io_exception(\"%s\")",pszMessage);
+      m_strException += ":io_exception(\"";
+      m_strException += pszMessage;
+      m_strException += "\")";
 
    }
 

@@ -117,7 +117,7 @@ void plex_heap_alloc_sync::NewBlock()
       if(nAllocSize == 1024)
       {
 
-      output_debug_string("plex_heap_alloc_sync::NewBlock() 1024");
+      //output_debug_string("plex_heap_alloc_sync::NewBlock() 1024");
 
       }
 

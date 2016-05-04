@@ -78,6 +78,7 @@ namespace user
 #elif defined(LINUX)
 #elif defined(MACOS)
 #elif defined(METROWIN)
+#elif defined(VSNORD)
 #else
       throw todo(get_app());
 

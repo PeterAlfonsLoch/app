@@ -9,6 +9,8 @@ namespace exception
       object(papp),
       ::call_stack(papp, uiSkip)
    {
+
+      m_bDumpBackTrace = true;
       // most exceptions are deleted when not needed
       m_ulFlags |= flag_auto_clean;
       m_ulFlags &= ~flag_ready_for_delete;
@@ -18,6 +20,9 @@ namespace exception
       object(papp),
       ::call_stack(papp, uiSkip)
    {
+
+      m_bDumpBackTrace = true;
+
       // for exceptions which are not auto-delete (usually)
       if(bAutoDelete)
       {
@@ -33,7 +38,9 @@ namespace exception
    base::~base()
    {
 
-      debug_print(m_strCallStack);
+      debug_print(m_strException);
+
+      defer_dump_back_trace();
 
    }
 
@@ -116,8 +123,43 @@ namespace exception
       operator delete(pbData);
    }
 
+   
+   void base::defer_dump_back_trace()
+   {
 
+      if (m_bDumpBackTrace)
+      {
 
+         dump_back_trace();
+
+      }
+
+   }
+   
+   
+   void base::dump_back_trace()
+   {
+
+#ifdef VSNORD
+
+      stringa stra;
+
+      stra.add_lines(m_strCallStack);
+
+      for (auto & str : stra)
+      {
+
+         output_debug_string(str);
+
+      }
+
+#else
+
+      debug_print(m_strCallStack);
+
+#endif
+
+   }
 
 } // namespace exception
 

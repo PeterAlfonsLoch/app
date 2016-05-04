@@ -7,7 +7,7 @@ object(papp),
 ::exception::base(papp)
 {
 
-   debug_print(":simple");
+   m_strException = ":simple";
 
 }
 
@@ -21,13 +21,15 @@ object(papp),
    if(pszMessage == NULL)
    {
 
-      debug_print(":simple(NULL)");
+      m_strException = ":simple(NULL)";
 
    }
    else
    {
 
-      debug_print(":simple(\"%s\")",pszMessage);
+      m_strException = ":simple(\"";
+      m_strException += pszMessage;
+      m_strException += "\")";
 
    }
 

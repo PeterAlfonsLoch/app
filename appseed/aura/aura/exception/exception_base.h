@@ -16,8 +16,11 @@ namespace exception
    public:
 
 
-      base(::aura::application * papp,uint32_t uiSkip = 4 /* -1 for disable call stack*/);   // sets m_bAutoDelete = TRUE
-      explicit base(::aura::application * papp,bool bAutoDelete,uint32_t uiSkip = 4 /* -1 for disable call stack*/);   // sets m_bAutoDelete = bAutoDelete
+      bool     m_bDumpBackTrace;
+
+
+      base(::aura::application * papp,uint32_t uiSkip = CALL_STACK_DEFAULT_SKIP_TRIGGER);   // sets m_bAutoDelete = TRUE
+      explicit base(::aura::application * papp,bool bAutoDelete,uint32_t uiSkip = CALL_STACK_DEFAULT_SKIP_TRIGGER /* -1 for disable call stack*/);   // sets m_bAutoDelete = bAutoDelete
       // Implementation (setting m_bAutoDelete to FALSE is advanced)
       virtual ~base();
 
@@ -36,6 +39,11 @@ namespace exception
       void operator delete(void * pbData, const char * lpszFileName, int32_t nLine);
 
       virtual const char * getMessage() const throw();
+
+
+      void defer_dump_back_trace();
+      void dump_back_trace();
+
 
    };
 
