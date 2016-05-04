@@ -414,8 +414,6 @@ extern "C" {
    void xmpp_base64_decode_bin(xmpp_ctx_t *ctx, const char *base64, size_t len,
       unsigned char **out, size_t *outlen);
 
-#include "ca2_strophe.h"
-
 #ifdef __cplusplus
 }
 #endif
