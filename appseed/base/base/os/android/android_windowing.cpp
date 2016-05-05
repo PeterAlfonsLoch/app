@@ -1667,6 +1667,9 @@ int translate_android_key_message(::message::key * pkey, int keyCode, int iUni)
    case 60:
       pkey->m_ekey = ::user::key_rshift;
       break;
+   case 66:
+      pkey->m_ekey = ::user::key_return;
+      break;
    default:
       bOk = false;
    }
