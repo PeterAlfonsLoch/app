@@ -22,7 +22,7 @@
     <ProjectGuid>{1131558A-9986-4F4B-A13F-8B7F4C8438BF}</ProjectGuid>
     <RootNamespace>WelsDecPlus</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
-    <ProjectName>welsdecplus</ProjectName>
+    <ProjectName>basewelsdecplus</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'" Label="Configuration">
