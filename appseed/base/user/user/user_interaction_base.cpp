@@ -226,6 +226,7 @@ Restart:
    {
 
       _001OnDraw(pdib);
+      _008OnDraw(pdib);
 
    }
 
@@ -678,6 +679,14 @@ Restart:
 
 
    void interaction_base::_001OnDraw(::draw2d::dib * pdib)
+   {
+
+      ::exception::throw_interface_only(get_app());
+
+   }
+
+
+   void interaction_base::_008OnDraw(::draw2d::dib * pdib)
    {
 
       ::exception::throw_interface_only(get_app());

@@ -1730,7 +1730,22 @@ void android_on_text(const wchar_t * pwch, size_t len)
 
    pkey->m_strText   = string(pwch,len);
 
-   ::aura::system::g_p->m_pbasesystem->m_posdata->m_pui->message_handler(pkey);
+   if (pkey->m_strText == "\n" || pkey->m_strText == "\r\n" || pkey->m_strText == "\r")
+   {
+
+      pkey->m_strText.Empty();
+
+      pkey->m_ekey = ::user::key_return;
+
+      ::aura::system::g_p->m_pbasesystem->m_posdata->m_pui->message_handler(pkey);
+
+   }
+   else
+   {
+
+      ::aura::system::g_p->m_pbasesystem->m_posdata->m_pui->message_handler(pkey);
+
+   }
 
 
 }

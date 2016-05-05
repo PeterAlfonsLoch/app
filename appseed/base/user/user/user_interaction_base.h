@@ -354,6 +354,7 @@ namespace user
       virtual void _001DrawThis(::draw2d::dib * pdib);
       virtual void _001DrawChildren(::draw2d::dib * pdib);
       virtual void _001OnDraw(::draw2d::dib * pdib);
+      virtual void _008OnDraw(::draw2d::dib * pdib);
       virtual void draw_control_background(::draw2d::dib * pdib);
 
 

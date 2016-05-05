@@ -74,7 +74,11 @@ namespace draw2d
    {
 
       m_strFontFamilyName     = lpszFacename;
+#ifdef VSNORD
+      m_dFontSize             = dSize * 1.6;
+#else
       m_dFontSize             = dSize;
+#endif
       m_dFontWidth            = 1.0;
       m_eunitFontSize         = ::draw2d::unit_point;
       m_iFontWeight           = iWeight;

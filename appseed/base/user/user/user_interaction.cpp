@@ -1201,6 +1201,18 @@ namespace user
 
    }
 
+
+   void interaction::_008CallOnDraw(::draw2d::dib * pdib)
+   {
+
+      on_viewport_offset(pdib);
+
+      synch_lock sl(m_pmutex);
+
+      _008OnDraw(pdib);
+
+   }
+
    void interaction::on_viewport_offset(::draw2d::dib * pdib)
    {
 
@@ -1336,6 +1348,9 @@ namespace user
 
       }
 
+
+      _008CallOnDraw(pdib);
+
    }
 
 
@@ -1350,6 +1365,11 @@ namespace user
    {
 
       draw_control_background(pdib);
+
+   }
+
+   void interaction::_008OnDraw(::draw2d::dib * pdib)
+   {
 
    }
 
