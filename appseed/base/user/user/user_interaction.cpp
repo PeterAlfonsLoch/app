@@ -1205,9 +1205,11 @@ namespace user
    void interaction::_008CallOnDraw(::draw2d::dib * pdib)
    {
 
-      on_viewport_offset(pdib);
+      set_viewport_org(pdib);
 
       synch_lock sl(m_pmutex);
+
+      pdib->get_graphics()->SelectClipRgn(NULL);
 
       _008OnDraw(pdib);
 

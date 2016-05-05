@@ -1343,11 +1343,13 @@ void simple_frame_window::_000OnDraw(::draw2d::dib * pdibParam)
       {
          _001DrawThis(pdib);
          _001DrawChildren(pdib);
+         _008CallOnDraw(pdib);
       }
       else if (m_bblur_Background)
       {
          _001DrawThis(pdib);
          _001DrawChildren(pdib);
+         _008CallOnDraw(pdib);
       }
       else if(!Session.savings().is_trying_to_save(::aura::resource_processing)
               && !Session.savings().is_trying_to_save(::aura::resource_display_bandwidth)
@@ -1374,6 +1376,7 @@ void simple_frame_window::_000OnDraw(::draw2d::dib * pdibParam)
 
          _001DrawThis(pdib);
          _001DrawChildren(pdib);
+         _008CallOnDraw(pdib);
 #if TEST
 
          pdc->FillSolidRect(10, 60, 50, 50, ARGB(128, 184, 177, 84));
@@ -2147,6 +2150,9 @@ void simple_frame_window::_010OnDraw(::draw2d::dib * pdib)
          }
          pui = pui->above_sibling();
       }
+
+      _008CallOnDraw(pdib);
+
    }
    else
    {
@@ -2154,6 +2160,8 @@ void simple_frame_window::_010OnDraw(::draw2d::dib * pdib)
       _001DrawThis(pdib);
 
       _001DrawChildren(pdib);
+
+      _008CallOnDraw(pdib);
 
    }
 
