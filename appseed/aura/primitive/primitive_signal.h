@@ -123,23 +123,24 @@ public:
 class CLASS_DECL_AURA signal :
    virtual public object
 {
-protected:
+public:
 
 
    class signal_delegate :
       virtual public object
    {
    public:
-      virtual ~signal_delegate()
-      {
-      };
+
+      virtual ~signal_delegate() { }
       virtual void emit(signal_details * pobject) = 0;
       virtual signalizable * get_signalizable() { return NULL;}
    };
+
    template < class T >
    class signal_delegate_instance : public signal_delegate
    {
    public:
+   
       signal_delegate_instance(T * psignalizable)
       {
 #if defined(DEBUG) && defined(WINDOWS)
@@ -156,8 +157,7 @@ protected:
       bool operator == (const signal_delegate_instance & deleg) const;
       virtual signalizable * get_signalizable() { return m_psignalizable;}
    };
-   friend class signalizable;
-public:
+
    signal();
    virtual ~signal();
 
@@ -165,6 +165,7 @@ public:
    void emit(signal_details * pobject = NULL);
    void emit_previous(signal_details * pobject);
    void emit_all_previous(signal_details * pobject);
+
    template < class T >
    void connect(T * psignalizable, void (T::*pfn)(signal_details *))
    {
@@ -173,6 +174,7 @@ public:
       m_delegatea.add(pdelegate);
       psignalizable->register_signal(this);
    }
+
    template < class T >
    bool is_connected(T * psignalizable, void (T::*pfn)(signal_details *))
    {
@@ -184,6 +186,7 @@ public:
       }
       return false;
    }
+
    template < class T >
    bool disconnect(T * psignalizable,void (T::*pfn)(signal_details *))
    {
@@ -200,12 +203,12 @@ public:
       return false;
    }
 
-
-
-protected:
+   
    spa(signal_delegate) m_delegatea;
    void disconnect(signalizable * psignalizable);
    void leave_only(signalizable * psignalizable);
+
+
 };
 
 

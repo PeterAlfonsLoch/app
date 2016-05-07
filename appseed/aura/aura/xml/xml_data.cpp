@@ -7,8 +7,8 @@ namespace xml
 
    data::data(::aura::application * papp, ::xml::parse_info * pparseinfo) :
       ::object(papp),
-      ::data::data(papp),
       ::xml::node(papp),
+      ::data::data(papp),
       ::xml::document(papp, pparseinfo)
    {
 

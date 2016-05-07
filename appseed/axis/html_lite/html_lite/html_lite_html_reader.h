@@ -29,53 +29,21 @@ class lite_html_tag;   // forward declaration
  */
 class CLASS_DECL_AXIS ILiteHTMLReaderEvents
 {
-   friend class lite_html_reader;
-
-// Events
-protected:
-   virtual void BeginParse(uint_ptr dwAppData, bool &bAbort)
-   {
-      UNREFERENCED_PARAMETER(dwAppData);
-      bAbort = false;
-   }
-
-   virtual void StartTag(lite_html_tag *pTag, uint_ptr dwAppData, bool &bAbort)
-   {
-      UNREFERENCED_PARAMETER(pTag);
-      UNREFERENCED_PARAMETER(dwAppData);
-      bAbort = false;
-   }
-
-   virtual void EndTag(lite_html_tag *pTag, uint_ptr dwAppData, bool &bAbort)
-   {
-      UNREFERENCED_PARAMETER(pTag);
-      UNREFERENCED_PARAMETER(dwAppData);
-      bAbort = false;
-   }
-
-   virtual void Characters(const string &rText, uint_ptr dwAppData, bool &bAbort)
-   {
-      UNREFERENCED_PARAMETER(rText);
-      UNREFERENCED_PARAMETER(dwAppData);
-      bAbort = false;
-   }
-
-   virtual void Comment(const string &rComment, uint_ptr dwAppData, bool &bAbort)
-   {
-      UNREFERENCED_PARAMETER(rComment);
-      UNREFERENCED_PARAMETER(dwAppData);
-      bAbort = false;
-   }
-
-   virtual void EndParse(uint_ptr dwAppData, bool bIsAborted)
-   {
-      UNREFERENCED_PARAMETER(dwAppData);
-      UNREFERENCED_PARAMETER(bIsAborted);
-   }
-
 public:
 
-   virtual ~ILiteHTMLReaderEvents() { }
+   virtual void BeginParse(uint_ptr dwAppData, bool &bAbort);
+
+   virtual void StartTag(lite_html_tag *pTag, uint_ptr dwAppData, bool &bAbort);
+
+   virtual void EndTag(lite_html_tag *pTag, uint_ptr dwAppData, bool &bAbort);
+
+   virtual void Characters(const string &rText, uint_ptr dwAppData, bool &bAbort);
+
+   virtual void Comment(const string &rComment, uint_ptr dwAppData, bool &bAbort);
+
+   virtual void EndParse(uint_ptr dwAppData, bool bIsAborted);
+
+   virtual ~ILiteHTMLReaderEvents();
 
 };
 
@@ -107,7 +75,8 @@ public:
 
 
 
-   enum EventMaskEnum {
+   enum EventMaskEnum
+   {
       /** @since 1.0 */
       notifyStartStop      = 0x00000001L,   // raise BeginParse and EndParse?
 
@@ -193,25 +162,9 @@ public:
 
 // Construction/Destruction
 
-   lite_html_reader(::aura::application * papp)  :
-      ::object(papp)
-   {
-      m_bResolveEntities = true;   // entities are resolved, by default
-      m_dwAppData = 0L;   // reasonable default!
-      m_dwBufPos = 0L;   // start from the very beginning
-      //m_dwBufLen = 0L;   // buffer length is unknown yet
+   lite_html_reader(::aura::application * papp);
 
-      // default is to raise all of the events
-      m_eventMask = (EventMaskEnum)(notifyStartStop  |
-                             notifyTagStart   |
-                             notifyTagEnd     |
-                             notifyCharacters |
-                             notifyComment    );
 
-      m_pEventHandler = NULL;   // no event handler is associated
-   }
-
-public:
    /**
     * Returns an event mask which signifies the notification
     * messages a lite_html_reader will send while parsing HTML
@@ -233,12 +186,7 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   EventMaskEnum setEventMask(uint32_t dwNewEventMask)
-   {
-      EventMaskEnum   oldMask = m_eventMask;
-      m_eventMask = (EventMaskEnum)dwNewEventMask;
-      return (oldMask);
-   }
+   EventMaskEnum setEventMask(uint32_t dwNewEventMask);
 
    /**
     * Changes the current event mask by adding and removing
@@ -251,13 +199,7 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   EventMaskEnum setEventMask(uint32_t addFlags, uint32_t removeFlags)
-   {
-      uint32_t   dwOldMask = (uint32_t)m_eventMask;
-      uint32_t   dwNewMask = (dwOldMask | addFlags) & ~removeFlags;
-      m_eventMask = (EventMaskEnum)dwNewMask;
-      return ((EventMaskEnum)dwOldMask);
-   }
+   EventMaskEnum setEventMask(uint32_t addFlags, uint32_t removeFlags);
 
    /**
     * Returns a 32-bit application-specific data
@@ -280,12 +222,7 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   uint_ptr setAppData(uint32_t dwNewAppData)
-   {
-      uint_ptr   dwOldAppData = m_dwAppData;
-      m_dwAppData = dwNewAppData;
-      return (dwOldAppData);
-   }
+   uint_ptr setAppData(uint32_t dwNewAppData);
 
    /**
     * Returns a pointer to an event handler registered with
@@ -312,12 +249,7 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   ILiteHTMLReaderEvents* setEventHandler(ILiteHTMLReaderEvents* pNewHandler)
-   {
-      ILiteHTMLReaderEvents *pOldHandler = m_pEventHandler;
-      m_pEventHandler = pNewHandler;
-      return (pOldHandler);
-   }
+   ILiteHTMLReaderEvents* setEventHandler(ILiteHTMLReaderEvents* pNewHandler);
 
    // returns the current value for the specified option
    bool getBoolOption(ReaderOptionsEnum option, bool& bCurVal) const;
@@ -325,19 +257,17 @@ public:
    bool setBoolOption(ReaderOptionsEnum option, bool bNewVal);
 
 // Operations
-public:
    // parses an HTML document from the specified string
-   uint_ptr read(const string & str);
+   uint_ptr read_html_document(const string & str);
 #ifdef WINDOWS
    // parses an HTML document from a file given its HANDLE
-   uint_ptr ReadFile(HANDLE hFile);
+   uint_ptr read_html_file(HANDLE hFile);
 #else
    // parses an HTML document from a file given its file descriptor
-   uint_ptr ReadFile(int32_t fd);
+   uint_ptr read_html_file(int32_t fd);
 #endif
 
 // Helpers
-protected:
    /** Parsing Helpers */
 
    // parses an HTML document, and returns the

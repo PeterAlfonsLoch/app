@@ -6,9 +6,7 @@ namespace aura
 
 
    class CLASS_DECL_AURA trace_add_file_and_line
-#if defined(LINUX) || defined(APPLEOS)
       : public string_format_printer
-#endif
    {
    public:
 
@@ -47,8 +45,6 @@ namespace aura
       {
          return m_pauraapp;
       }
-
-#ifndef VARIADIC_TEMPLATE
 
       inline void __cdecl operator()(uint32_t dwCategory, UINT nLevel, const char *pszFmt, ...) const
       {

@@ -87,7 +87,7 @@ inline void kernelPosition(int boxBlur,unsigned& std,int& dLeft,int& dRight)
 
 
 
-#ifdef __arm__
+#if defined(__arm__) && !defined(VSNORD)
 
 #include <arm_neon.h>
 
@@ -683,7 +683,7 @@ namespace visual
 
    }
 
-#ifdef __arm__
+#if defined(__arm__) && !defined(VSNORD)
 
 
    inline void boxBlurNEON(uint32_t* sourcePixel,uint32_t* destinationPixel,

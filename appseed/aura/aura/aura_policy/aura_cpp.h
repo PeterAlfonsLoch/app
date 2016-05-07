@@ -812,6 +812,9 @@ namespace file
 #include "aura/filesystem/file/file_string_buffer.h"
 
 
+#include "aura/primitive/str/str_format.h"
+
+
 #include "aura/primitive/primitive_var2.h"
 
 

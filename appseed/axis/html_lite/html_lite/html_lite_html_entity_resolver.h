@@ -43,22 +43,25 @@
  */
 class CLASS_DECL_AXIS LiteHTMLEntityResolver
 {
-private:
-   class CharEntityRefs : public string_map < char, char >
+public:
+   
+   
+   class CharEntityRefs :
+      public string_map < char, char >
    {
    public:
+      
       CharEntityRefs(::aura::application * papp);
+
    };
 
    CharEntityRefs m_CharEntityRefs;
 
 
 // Constructors
-public:
-   LiteHTMLEntityResolver(::aura::application * papp) : m_CharEntityRefs(papp)  { }
+   LiteHTMLEntityResolver(::aura::application * papp);
 
 // Operations
-public:
    /**
     * Resolves a character or numeric entity reference.
     *

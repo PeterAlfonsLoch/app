@@ -30,6 +30,103 @@
 #include <unistd.h>
 #endif
 
+void ILiteHTMLReaderEvents::BeginParse(uint_ptr dwAppData, bool &bAbort)
+{
+   UNREFERENCED_PARAMETER(dwAppData);
+   bAbort = false;
+}
+
+void ILiteHTMLReaderEvents::StartTag(lite_html_tag *pTag, uint_ptr dwAppData, bool &bAbort)
+{
+   UNREFERENCED_PARAMETER(pTag);
+   UNREFERENCED_PARAMETER(dwAppData);
+   bAbort = false;
+}
+
+void ILiteHTMLReaderEvents::EndTag(lite_html_tag *pTag, uint_ptr dwAppData, bool &bAbort)
+{
+   UNREFERENCED_PARAMETER(pTag);
+   UNREFERENCED_PARAMETER(dwAppData);
+   bAbort = false;
+}
+
+void ILiteHTMLReaderEvents::Characters(const string &rText, uint_ptr dwAppData, bool &bAbort)
+{
+   UNREFERENCED_PARAMETER(rText);
+   UNREFERENCED_PARAMETER(dwAppData);
+   bAbort = false;
+}
+
+void ILiteHTMLReaderEvents::Comment(const string &rComment, uint_ptr dwAppData, bool &bAbort)
+{
+   UNREFERENCED_PARAMETER(rComment);
+   UNREFERENCED_PARAMETER(dwAppData);
+   bAbort = false;
+}
+
+void ILiteHTMLReaderEvents::EndParse(uint_ptr dwAppData, bool bIsAborted)
+{
+   UNREFERENCED_PARAMETER(dwAppData);
+   UNREFERENCED_PARAMETER(bIsAborted);
+}
+
+ILiteHTMLReaderEvents::~ILiteHTMLReaderEvents()
+{
+
+}
+
+
+lite_html_reader::lite_html_reader(::aura::application * papp)  :
+::object(papp)
+{
+   m_bResolveEntities = true;   // entities are resolved, by default
+   m_dwAppData = 0L;   // reasonable default!
+   m_dwBufPos = 0L;   // start from the very beginning
+                      //m_dwBufLen = 0L;   // buffer length is unknown yet
+
+                      // default is to raise all of the events
+   m_eventMask = (EventMaskEnum)(notifyStartStop |
+      notifyTagStart |
+      notifyTagEnd |
+      notifyCharacters |
+      notifyComment);
+
+   m_pEventHandler = NULL;   // no event handler is associated
+}
+
+
+lite_html_reader::EventMaskEnum lite_html_reader::setEventMask(uint32_t dwNewEventMask)
+{
+   EventMaskEnum   oldMask = m_eventMask;
+   m_eventMask = (EventMaskEnum)dwNewEventMask;
+   return (oldMask);
+}
+
+
+lite_html_reader::EventMaskEnum lite_html_reader::setEventMask(uint32_t addFlags, uint32_t removeFlags)
+{
+   uint32_t   dwOldMask = (uint32_t)m_eventMask;
+   uint32_t   dwNewMask = (dwOldMask | addFlags) & ~removeFlags;
+   m_eventMask = (EventMaskEnum)dwNewMask;
+   return ((EventMaskEnum)dwOldMask);
+}
+
+uint_ptr lite_html_reader::setAppData(uint32_t dwNewAppData)
+{
+   uint_ptr   dwOldAppData = m_dwAppData;
+   m_dwAppData = dwNewAppData;
+   return (dwOldAppData);
+}
+
+
+ILiteHTMLReaderEvents* lite_html_reader::setEventHandler(ILiteHTMLReaderEvents* pNewHandler)
+{
+   ILiteHTMLReaderEvents *pOldHandler = m_pEventHandler;
+   m_pEventHandler = pNewHandler;
+   return (pOldHandler);
+}
+
+
 uint_ptr lite_html_reader::parseDocument()
 {
    bool   bAbort = false;         // continue parsing or abort?
@@ -213,7 +310,7 @@ LEndParse:
 * @since 1.0
 * @author Gurmeet S. Kochar
 */
-uint_ptr lite_html_reader::read(const string & str)
+uint_ptr lite_html_reader::read_html_document(const string & str)
 {
 
    m_strBuffer    = str;
@@ -235,7 +332,7 @@ uint_ptr lite_html_reader::read(const string & str)
 * @since 1.0
 * @author Gurmeet S. Kochar
 */
-uint_ptr lite_html_reader::ReadFile(HANDLE hFile)
+uint_ptr lite_html_reader::read_html_file(HANDLE hFile)
 {
    ASSERT(hFile != INVALID_HANDLE_VALUE);
    ASSERT(::GetFileType(hFile) == FILE_TYPE_DISK);
@@ -311,7 +408,7 @@ LCleanExit:
 * @since 1.0
 * @author Gurmeet S. Kochar
 */
-uint_ptr lite_html_reader::ReadFile(HANDLE hFile)
+uint_ptr lite_html_reader::read_html_file(HANDLE hFile)
 {
    ASSERT(hFile != INVALID_HANDLE_VALUE);
    //ASSERT(::GetFileType(hFile) == FILE_TYPE_DISK);
@@ -398,7 +495,7 @@ LCleanExit:
 * @since 1.0
 * @author Gurmeet S. Kochar
 */
-uint_ptr lite_html_reader::ReadFile(int32_t fd)
+uint_ptr lite_html_reader::read_html_file(int32_t fd)
 {
 //   ASSERT(hFile != INVALID_HANDLE_VALUE);
 //   ASSERT(::GetFileType(hFile) == FILE_TYPE_DISK);

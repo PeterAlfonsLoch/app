@@ -135,6 +135,13 @@ LiteHTMLEntityResolver::CharEntityRefs::CharEntityRefs(::aura::application * pap
 }
 
 
+LiteHTMLEntityResolver::LiteHTMLEntityResolver(::aura::application * papp)
+{
+
+
+}
+
+
 int32_t LiteHTMLEntityResolver::resolveEntity(const char * lpszEntity, string & strChar)
 {
    if (m_CharEntityRefs.get_count() <= 0)

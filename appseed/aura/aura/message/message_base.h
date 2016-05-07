@@ -32,7 +32,7 @@ namespace message
       virtual LRESULT & get_lresult();
       virtual void set(::user::primitive * pwnd,UINT uiMessage,WPARAM wparam,::lparam lparam,LRESULT & lresult);
       virtual void set(::user::primitive * pwnd,UINT uiMessage,WPARAM wparam,::lparam lparam);
-   protected:
+
       LRESULT * m_plresult;
       LRESULT  m_lresult;
    };

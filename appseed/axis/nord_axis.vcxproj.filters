@@ -1524,6 +1524,24 @@
     <ClInclude Include="net\net_url_department.h">
       <Filter>Header Files\net</Filter>
     </ClInclude>
+    <ClInclude Include="html_lite\html_lite\html_lite_application.h">
+      <Filter>Header Files\html_lite\html_lite</Filter>
+    </ClInclude>
+    <ClInclude Include="html_lite\html_lite\html_lite_html_attributes.h">
+      <Filter>Header Files\html_lite\html_lite</Filter>
+    </ClInclude>
+    <ClInclude Include="html_lite\html_lite\html_lite_html_common.h">
+      <Filter>Header Files\html_lite\html_lite</Filter>
+    </ClInclude>
+    <ClInclude Include="html_lite\html_lite\html_lite_html_entity_resolver.h">
+      <Filter>Header Files\html_lite\html_lite</Filter>
+    </ClInclude>
+    <ClInclude Include="html_lite\html_lite\html_lite_html_reader.h">
+      <Filter>Header Files\html_lite\html_lite</Filter>
+    </ClInclude>
+    <ClInclude Include="html_lite\html_lite\html_lite_html_tag.h">
+      <Filter>Header Files\html_lite\html_lite</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
@@ -1816,6 +1834,12 @@
     </Filter>
     <Filter Include="Source Files\html_lite">
       <UniqueIdentifier>{145abe13-045b-4142-a4d3-04f50ab807f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\html_lite">
+      <UniqueIdentifier>{33733399-d58b-483b-afcf-bfd90b317b87}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\html_lite\html_lite">
+      <UniqueIdentifier>{14f57fb5-9997-418a-a5a2-0f84a9c81aa6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

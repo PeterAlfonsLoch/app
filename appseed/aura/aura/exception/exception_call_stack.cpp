@@ -64,7 +64,7 @@ string call_stack::get(uint32_t uiSkip)
 
    string str;
 
-#ifdef LINUX || defined(VSNORD)
+#if defined(LINUX)
 
    System.eengine().stack_trace(str, uiSkip, m_caller_address);
 
