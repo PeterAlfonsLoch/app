@@ -1524,9 +1524,9 @@ sort_string_map < VALUE, ARG_VALUE, COMPARE > & sort_string_map < VALUE, ARG_VAL
 
 }
 
-template < class VALUE, class ARG_VALUE = const VALUE &, class COMPARE = ::comparison::strid_binary  >
+template < class VALUE, class ARG_VALUE = const VALUE & >
 class sort_strid_map :
-   virtual public sort_attrib_map < sort_map < id, const id &, VALUE, ARG_VALUE, COMPARE > >
+   virtual public sort_attrib_map < sort_map < id, const id &, VALUE, ARG_VALUE > >
 {
 public:
 
@@ -1540,21 +1540,21 @@ public:
 };
 
 
-template < class VALUE, class ARG_VALUE, class COMPARE >
-sort_strid_map < VALUE, ARG_VALUE, COMPARE >::sort_strid_map(::count nBlockSize) :
-   sort_attrib_map < sort_map < id, const id &, VALUE, ARG_VALUE, COMPARE > > (nBlockSize)
+template < class VALUE, class ARG_VALUE >
+sort_strid_map < VALUE, ARG_VALUE >::sort_strid_map(::count nBlockSize) :
+   sort_attrib_map < sort_map < id, const id &, VALUE, ARG_VALUE > > (nBlockSize)
 {
 }
 
 
-template < class VALUE, class ARG_VALUE, class COMPARE >
-sort_strid_map < VALUE, ARG_VALUE, COMPARE >::sort_strid_map(const sort_strid_map & sortmap) :
+template < class VALUE, class ARG_VALUE >
+sort_strid_map < VALUE, ARG_VALUE >::sort_strid_map(const sort_strid_map & sortmap) :
    sort_attrib_map < sort_map < id, const id &, VALUE, ARG_VALUE > > (sortmap)
 {
 }
 
-template < class VALUE, class ARG_VALUE, class COMPARE >
-sort_strid_map < VALUE, ARG_VALUE, COMPARE > & sort_strid_map < VALUE, ARG_VALUE, COMPARE >::operator = (const sort_strid_map & sortmap)
+template < class VALUE, class ARG_VALUE >
+sort_strid_map < VALUE, ARG_VALUE > & sort_strid_map < VALUE, ARG_VALUE >::operator = (const sort_strid_map & sortmap)
 {
 
    if(this != &sortmap)

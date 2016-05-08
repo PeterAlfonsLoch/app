@@ -19,14 +19,9 @@ void __clear_mq();
 typedef HTHREAD IDTHREAD;
 
 template <  >
-inline bool EqualsCompareElements(const IDTHREAD & r1, const IDTHREAD & r2)
+inline bool EqualElements<IDTHREAD>(IDTHREAD r1, IDTHREAD r2)
 {
    return id_thread_equals(r1, r2) != 0;
-}
-template <  >
-inline bool EqualsCompareElements(const IDTHREAD * pElement1, const IDTHREAD  element2)
-{
-   return EqualsCompareElements(*pElement1,element2);
 }
 template <  >
 inline UINT HashKey(IDTHREAD key)

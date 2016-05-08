@@ -107,7 +107,7 @@ public:
 //}
 //
 //
-template < class TYPE,class ARG_TYPE = TYPE const &,class ARRAY_TYPE = comparable_array < TYPE,ARG_TYPE >,class COMPARE = ::comparison::compare_type_arg_type < TYPE,ARG_TYPE >  >
+template < class TYPE,class ARG_TYPE = TYPE const &,class ARRAY_TYPE = comparable_array < TYPE,ARG_TYPE > >
 class full_comparable_array:
    virtual public ARRAY_TYPE
 {
@@ -187,14 +187,14 @@ public:
 
 
 
-template < class TYPE,class ARG_TYPE,class ARRAY_TYPE,class COMPARE>
-full_comparable_array<  TYPE,ARG_TYPE,ARRAY_TYPE,COMPARE>::
+template < class TYPE,class ARG_TYPE,class ARRAY_TYPE >
+full_comparable_array<  TYPE,ARG_TYPE,ARRAY_TYPE >::
 full_comparable_array()
 {
 }
-template < class TYPE,class ARG_TYPE,class ARRAY_TYPE,class COMPARE>
-full_comparable_array<  TYPE,ARG_TYPE,ARRAY_TYPE,COMPARE>::
-full_comparable_array(const full_comparable_array<  TYPE,ARG_TYPE,ARRAY_TYPE,COMPARE> & a):
+template < class TYPE,class ARG_TYPE,class ARRAY_TYPE >
+full_comparable_array<  TYPE,ARG_TYPE,ARRAY_TYPE >::
+full_comparable_array(const full_comparable_array<  TYPE,ARG_TYPE,ARRAY_TYPE > & a):
 ARRAY_TYPE(a)
 {
    this->operator = (a);

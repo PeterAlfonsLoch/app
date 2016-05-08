@@ -7,7 +7,7 @@ namespace html
 
    class CLASS_DECL_AURA file:
       virtual public ::object
-#if defined(LINUX) || defined(APPLEOS)
+#if defined(VARIADIC_TEMPLATE_FORMAT)
       ,public string_format_printer
 #endif
    {
@@ -29,7 +29,7 @@ namespace html
       virtual void raw_print(const string & str);
 
 
-#ifdef WINDOWS
+#ifndef VARIADIC_TEMPLATE_FORMAT
 
       virtual void printf(string str,...);
 

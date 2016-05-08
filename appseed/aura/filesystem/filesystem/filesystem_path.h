@@ -406,3 +406,10 @@ inline UINT HashKey<::file::path>(::file::path key)
    return HashKey<const char * >(key);
 
 }
+
+
+
+inline const char * FormatArgument(const ::file::path & value) noexcept
+{
+   return value.c_str();
+}

@@ -3198,6 +3198,24 @@
     <ClInclude Include="aura\xml\xml_department.h">
       <Filter>Header Files\aura\xml</Filter>
     </ClInclude>
+    <ClInclude Include="filesystem\filesystem\filesystem_application.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\filesystem_dir_application.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\filesystem_dir_system.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\filesystem_listing.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\filesystem_path.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\filesystem_system.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
@@ -3439,6 +3457,9 @@
     </Filter>
     <Filter Include="Source Files\filesystem\filesystem\NewFilter1">
       <UniqueIdentifier>{38e5e1c2-aa82-4da7-9b73-a95bf4a89eb7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\filesystem\filesystem">
+      <UniqueIdentifier>{cf33ca26-3a3f-4822-bfd4-2e6fb4fff10f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

@@ -6,6 +6,12 @@ CLASS_DECL_AURA int64_t strtoi(const char * psz);
 CLASS_DECL_AURA int64_t strtoi(const unichar * psz);
 
 
+template <typename T>
+inline T FormatArgument(T value) noexcept
+{
+   return value;
+}
+
 
 inline UINT _gen_GetConversionACP()
 {
@@ -645,61 +651,19 @@ public:
    // Format data using format string 'pszFormat'
 #ifdef VARIADIC_TEMPLATE_FORMAT
 
-   void FormatPrinter(void * , const char * s)
+
+   template <typename ... Args>
+   void Format(char const * const format, Args const & ... args) noexcept
    {
-
-      *this = s;
-
+      _Format(format, FormatArgument(args) ...);
    }
 
 
-   void Format(const char * s)
-   {
 
-      string_format format(this, &string::FormatPrinter, NULL);
+   void __cdecl _Format(const char * pszFormat, ...);
 
-      format.format(s);
+   void __cdecl _AppendFormat(const char *pszFormat, ...);
 
-   }
-
-   template<typename T, typename... Args>
-   void Format(const char *s, const T & value, Args... args)
-   {
-
-      string_format format(this, &string::FormatPrinter, NULL);
-
-      format.format(s, value, args...);
-
-   }
-
-   // append formatted data using format string 'pszFormat'
-   void AppendFormat(const char * s)
-   {
-
-      string str;
-
-      string_format format(&str, &string::FormatPrinter, NULL);
-
-      format.format(s);
-
-      operator += (str);
-
-   }
-
-   template<typename T, typename... Args>
-   void AppendFormat(const char *s, const T & value, Args... args)
-   {
-
-
-      string str;
-
-      string_format format(&str, &string::FormatPrinter, NULL);
-
-      format.format(s, value, args...);
-
-      operator += (str);
-
-   }
 
 
 #else
@@ -1778,4 +1742,10 @@ inline string to_string(STRINGALBLE * pstringable)
 
 
 
+
+
+inline const char * FormatArgument (const string & value) noexcept
+{
+   return value.c_str();
+}
 

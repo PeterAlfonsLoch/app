@@ -411,7 +411,14 @@ namespace file
             try
             {
 
-               strbuffer.alloc_up(1024);
+               if (strbuffer.m_pstr == NULL)
+               {
+
+                  strbuffer.m_pstr = new string();
+
+                  strbuffer.m_bOwn = true;
+
+               }
 
             }
             catch(...)
@@ -421,13 +428,13 @@ namespace file
 
             }
 
-            uiRead =  m_spbuffer->read((void *) &((const char *) strbuffer)[uiPos], (memory_size_t) (strbuffer.get_allocation_size() - uiPos));
+            uiRead =  m_spbuffer->read((void *) &((const char *) strbuffer)[uiPos], (memory_size_t) (strbuffer.get_length() - uiPos));
 
             uiPos += uiRead;
 
          } while(uiRead > 0);
 
-         strbuffer.m_iSize = uiPos;
+         //strbuffer.m_iSize = uiPos;
 
          str = strbuffer.str();
 

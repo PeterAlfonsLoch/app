@@ -23,16 +23,12 @@ namespace file
    {
    public:
 
-      char *      m_psz;
-
-   public:
-
-      strsize     m_iSize;
-      strsize     m_iAlloc; // if alloced, should be at least one character (for the terminating null character) greater than m_iSize
-      strsize     m_iPos;
-
+      string *       m_pstr;
+      strsize        m_iPos;
+      bool           m_bOwn;
 
       string_buffer();
+      string_buffer(string * pstr, bool bReferenceOnly = true);
       string_buffer(::aura::application * papp);
       string_buffer(const string & str);
       string_buffer(const string_buffer & str);
@@ -61,21 +57,16 @@ namespace file
 
       file_size_t get_length() const
       {
-         return m_iSize;
-      }
-
-      strsize get_allocation_size() const
-      {
-         return m_iAlloc;
+         return m_pstr->get_length();
       }
 
 
       virtual file_position_t get_position() const;
 
       void destroy();
-      void alloc(strsize iSize);
+      //void alloc(strsize iSize);
 
-      void alloc_up(strsize iAtLeast);
+      //void alloc_up(strsize iAtLeast);
 
       void set(const char * psz,strsize len);
 
@@ -96,13 +87,13 @@ namespace file
 
       operator const char *() const
       {
-         return m_psz;
+         return *m_pstr;
       }
 
       string & to_string(string &str) const
       {
 
-         str.assign(m_psz, m_iSize);
+         str = *m_pstr;
 
          return str;
 
@@ -121,7 +112,6 @@ namespace file
       }
 
    };
-
 
 
 

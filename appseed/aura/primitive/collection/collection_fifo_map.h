@@ -865,9 +865,9 @@ fifo_string_map < VALUE, ARG_VALUE, COMPARE > & fifo_string_map < VALUE, ARG_VAL
 
 }
 
-template < class VALUE, class ARG_VALUE = const VALUE & , class COMPARE = ::comparison::strid_binary  >
+template < class VALUE, class ARG_VALUE = const VALUE &   >
 class fifo_strid_map :
-   virtual public fifo_attrib_map < fifo_map < id, const id &, VALUE, ARG_VALUE, COMPARE > >
+   virtual public fifo_attrib_map < fifo_map < id, const id &, VALUE, ARG_VALUE > >
 {
 public:
 
@@ -881,21 +881,21 @@ public:
 };
 
 
-template < class VALUE, class ARG_VALUE, class COMPARE >
-fifo_strid_map < VALUE, ARG_VALUE, COMPARE >::fifo_strid_map(::count nBlockSize) :
-   fifo_attrib_map < fifo_map < id, const id &, VALUE, ARG_VALUE, COMPARE > > (nBlockSize)
+template < class VALUE, class ARG_VALUE>
+fifo_strid_map < VALUE, ARG_VALUE>::fifo_strid_map(::count nBlockSize) :
+   fifo_attrib_map < fifo_map < id, const id &, VALUE, ARG_VALUE > > (nBlockSize)
 {
 }
 
 
-template < class VALUE, class ARG_VALUE, class COMPARE >
-fifo_strid_map < VALUE, ARG_VALUE, COMPARE >::fifo_strid_map(const fifo_strid_map & fifo_map) :
+template < class VALUE, class ARG_VALUE >
+fifo_strid_map < VALUE, ARG_VALUE>::fifo_strid_map(const fifo_strid_map & fifo_map) :
    fifo_attrib_map < ::fifo_map < id, const id &, VALUE, ARG_VALUE > > (fifo_map)
 {
 }
 
-template < class VALUE, class ARG_VALUE, class COMPARE >
-fifo_strid_map < VALUE, ARG_VALUE, COMPARE > & fifo_strid_map < VALUE, ARG_VALUE, COMPARE >::operator = (const fifo_strid_map & fifo_map)
+template < class VALUE, class ARG_VALUE >
+fifo_strid_map < VALUE, ARG_VALUE > & fifo_strid_map < VALUE, ARG_VALUE >::operator = (const fifo_strid_map & fifo_map)
 {
 
    if(this != &fifo_map)

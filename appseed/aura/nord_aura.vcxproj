@@ -74,7 +74,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">
     <OutDir>$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
-    <UseMultiToolTask>true</UseMultiToolTask>
+    <UseMultiToolTask>false</UseMultiToolTask>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|x86'">
     <OutDir>$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\</OutDir>
@@ -138,6 +138,7 @@
       <FunctionLevelLinking>false</FunctionLevelLinking>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <AdditionalOptions>-Wno-attributes -Wno-sign-compare -Wno-comment -Wno-strict-overflow -Wno-unused-local-typedefs -Wno-unknown-pragmas -Wno-unused-function -Wno-unused-but-set-variable -Wno-unused-variable -Wno-unused-value -Wno-reorder </AdditionalOptions>
+      <Optimization>Disabled</Optimization>
     </ClCompile>
     <Link>
       <LibraryDependencies>aqua;atomiconv;$(StlLibraryName);log;m</LibraryDependencies>
@@ -3176,6 +3177,12 @@
     <ClInclude Include="aura\xml\xml_var_exchange.h" />
     <ClInclude Include="aura\xml\xml_xmlite.h" />
     <ClInclude Include="filesystem\filesystem.h" />
+    <ClInclude Include="filesystem\filesystem\filesystem_application.h" />
+    <ClInclude Include="filesystem\filesystem\filesystem_dir_application.h" />
+    <ClInclude Include="filesystem\filesystem\filesystem_dir_system.h" />
+    <ClInclude Include="filesystem\filesystem\filesystem_listing.h" />
+    <ClInclude Include="filesystem\filesystem\filesystem_path.h" />
+    <ClInclude Include="filesystem\filesystem\filesystem_system.h" />
     <ClInclude Include="filesystem\file\file.h" />
     <ClInclude Include="filesystem\file\file_binary_buffer.h" />
     <ClInclude Include="filesystem\file\file_buffer.h" />

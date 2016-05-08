@@ -1521,7 +1521,7 @@ namespace sort
       iIndex = (iUpperBound + iLowerBound) / 2;
       while(iUpperBound - iLowerBound >= 8)
       {
-         iCompare = ::comparison::compare_type_arg_type < typename ARRAY::BASE_TYPE, typename ARRAY::BASE_ARG_TYPE > ::CompareElements(a.element_at(iIndex),arg);
+         iCompare = CompareElements(a.element_at(iIndex),arg);
          if(iCompare == 0)
          {
             return true;
@@ -1549,7 +1549,7 @@ namespace sort
       // do sequential search
       while(iIndex < a.get_count())
       {
-         iCompare = ::comparison::compare_type_arg_type < typename ARRAY::BASE_TYPE, typename ARRAY::BASE_ARG_TYPE > ::CompareElements(a.element_at(iIndex),arg);
+         iCompare = CompareElements(a.element_at(iIndex),arg);
          if(iCompare == 0)
             return true;
          else if(iCompare < 0)
@@ -1561,7 +1561,7 @@ namespace sort
          return false;
       while(iIndex >= 0)
       {
-         iCompare = ::comparison::compare_type_arg_type < typename ARRAY::BASE_TYPE, typename ARRAY::BASE_ARG_TYPE > ::CompareElements(a.element_at(iIndex),arg);
+         iCompare = CompareElements(a.element_at(iIndex),arg);
          if(iCompare == 0)
             return true;
          else if(iCompare > 0)

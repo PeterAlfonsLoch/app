@@ -2893,7 +2893,34 @@ return( TRUE );
 #define _CSTRING_BUFFER_SIZE(_CStringObj) ((_CStringObj).GetAllocLength() + 1)
 #endif
 
-#if !defined(VARIADIC_TEMPLATE_FORMAT)
+#if defined(VARIADIC_TEMPLATE_FORMAT)
+
+void __cdecl string::_Format(const char * pszFormat, ...)
+{
+   ASSERT(__is_valid_string(pszFormat));
+
+   va_list argList;
+   va_start(argList, pszFormat);
+   FormatV(pszFormat, argList);
+   va_end(argList);
+}
+
+
+// append formatted data using format string 'pszFormat'
+void __cdecl string::_AppendFormat(const char * pszFormat, ...)
+{
+   ASSERT(__is_valid_string(pszFormat));
+
+   va_list argList;
+   va_start(argList, pszFormat);
+
+   AppendFormatV(pszFormat, argList);
+
+   va_end(argList);
+}
+
+
+#else
 
 
 void __cdecl string::Format(const char * pszFormat,...)
