@@ -235,61 +235,6 @@ inline id & id::operator = (const id & id)
 }
 
 
-namespace comparison
-{
-
-
-   template < >
-   class equals_type_arg_type < id, const id & >
-   {
-   public:
-
-      inline static bool CompareElements(const id * pElement1, const id & element2)
-      {
-         return *pElement1 == element2;
-      }
-
-   };
-
-
-   class strid_equals
-   {
-   public:
-
-      inline static bool CompareElements(const id * pElement1, const id & element2)
-      {
-         return strcmp(pElement1->m_psz, element2.m_psz) == 0;
-      }
-
-   };
-
-
-   template < >
-   class less < id, const id & >
-   {
-   public:
-
-      inline bool operator()(const id & element1, const id & element2) const
-      {
-         return element1 < element2;
-      }
-
-   };
-
-
-
-
-
-   class strid_less
-   {
-   public:
-
-      inline static bool compare(const id & element1, const id & element2)
-      {
-         return strcmp(element1.m_psz,  element2.m_psz) < 0;
-      }
-
-   };
 
 
 
@@ -298,59 +243,6 @@ namespace comparison
 
 
 
-
-
-
-  class CLASS_DECL_AURA strid_hash
-   {
-   public:
-
-      inline static UINT HashKey(const id & key)
-      {
-         return ((((UINT)(uint_ptr)key.m_iType) << 24) & 0xffffffffu) | ((((UINT)(uint_ptr)key.m_iBody) >> 8) & 0xffffffffu) ;
-      }
-
-   };
-
-
-   template < >
-   class CLASS_DECL_AURA hash < id >
-   {
-   public:
-
-      inline static UINT HashKey(const id & key)
-      {
-         return strid_hash::HashKey(key);
-      }
-
-
-   };
-
-
-
-
-
-
-} // namespace comparison
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-template <> inline UINT HashKey(const id & id)
-{
-   // default identity hash - works for most primitive values
-   return ::comparison::strid_hash::HashKey(id);
-}
 
 
 
@@ -716,65 +608,21 @@ inline int_ptr id::compare_ci(const char * psz) const
 
 
 
-namespace comparison
+
+
+
+
+template < >
+inline bool EqualElements< id >(id element1, id element2)
 {
+   return element1 == element2;
+}
 
 
-   template < >
-   class compare_type_arg_type < id,const id & >
-   {
-   public:
-
-
-      inline static int_ptr CompareElements(const id * pElement1,const id & element2)
-      {
-
-         int_ptr iCompare = (int_ptr)(pElement1->m_iType - element2.m_iType);
-         if(iCompare != 0)
-            return iCompare;
-         return pElement1->m_psz - element2.m_psz;
-
-      }
-
-
-   };
-
-
-   class strid_compare
-   {
-   public:
-
-
-      inline static int_ptr CompareElements(const id * pElement1,const id  * pelement2)
-      {
-
-         return pElement1->m_psz - pelement2->m_psz;
-
-      }
-
-
-   };
-
-
-   class CLASS_DECL_AURA strid_binary
-   {
-   public:
-
-
-      inline static int_ptr CompareElements(const id * pElement1,const id * pElement2)
-      {
-
-         return pElement1->m_psz - pElement2->m_psz;
-
-      }
-
-
-   };
-
-
-} // namespace comparison
-
-
-
+template < >
+inline UINT HashKey< id>(id key)
+{
+   return ((((UINT)(uint_ptr)key.m_iType) << 24) & 0xffffffffu) | ((((UINT)(uint_ptr)key.m_iBody) >> 8) & 0xffffffffu);
+}
 
 

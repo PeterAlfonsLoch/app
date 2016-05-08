@@ -21,10 +21,10 @@ namespace xml
       if(m_ppropertyset == NULL)
          return;
       var_exchange varexchange(get_app());
-      for(auto property : *m_ppropertyset)
+      for(auto assoc : *m_ppropertyset)
       {
-         varexchange.m_pvar = &property.get_value();
-         xmlot.export_node(property.name(), varexchange);
+         varexchange.m_pvar = &assoc.get_value();
+         xmlot.export_node(assoc.name(), varexchange);
       }
    }
 
@@ -34,10 +34,10 @@ namespace xml
       if(m_ppropertyset == NULL)
          return;
       var_exchange varexchange(get_app());
-      for(auto property : *m_ppropertyset)
+      for(auto assoc : *m_ppropertyset)
       {
-         varexchange.m_pvar = &property.get_value();
-         xmlit.import_node(property.name(), varexchange);
+         varexchange.m_pvar = &assoc.get_value();
+         xmlit.import_node(assoc.name(), varexchange);
       }
    }
 

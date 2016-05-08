@@ -266,7 +266,7 @@ namespace calculator
 
 
 
-//#ifndef NO_VARIADIC_TEMPLATE
+#ifdef VARIADIC_TEMPLATE_FORMAT
 
 
 
@@ -288,4 +288,4 @@ namespace str
 
 
 
-//#endif
+#endif

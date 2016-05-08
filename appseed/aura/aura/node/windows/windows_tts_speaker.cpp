@@ -459,6 +459,9 @@ namespace windows
                return false;
 
             }
+            
+            return true;
+
          });
 
          return true;

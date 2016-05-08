@@ -2893,31 +2893,32 @@ return( TRUE );
 #define _CSTRING_BUFFER_SIZE(_CStringObj) ((_CStringObj).GetAllocLength() + 1)
 #endif
 
-#ifdef WINDOWS
+#if !defined(VARIADIC_TEMPLATE_FORMAT)
 
-//void __cdecl string::Format(const char * pszFormat,...)
-//{
-//   ASSERT(__is_valid_string(pszFormat));
-//
-//   va_list argList;
-//   va_start(argList,pszFormat);
-//   FormatV(pszFormat,argList);
-//   va_end(argList);
-//}
-//
+
+void __cdecl string::Format(const char * pszFormat,...)
+{
+   ASSERT(__is_valid_string(pszFormat));
+
+   va_list argList;
+   va_start(argList,pszFormat);
+   FormatV(pszFormat,argList);
+   va_end(argList);
+}
+
 
 // append formatted data using format string 'pszFormat'
-//void __cdecl string::AppendFormat(const char * pszFormat,...)
-//{
-//   ASSERT(__is_valid_string(pszFormat));
-//
-//   va_list argList;
-//   va_start(argList,pszFormat);
-//
-//   AppendFormatV(pszFormat,argList);
-//
-//   va_end(argList);
-//}
+void __cdecl string::AppendFormat(const char * pszFormat,...)
+{
+   ASSERT(__is_valid_string(pszFormat));
+
+   va_list argList;
+   va_start(argList,pszFormat);
+
+   AppendFormatV(pszFormat,argList);
+
+   va_end(argList);
+}
 
 // Format a message using format string 'pszFormat'
 void __cdecl string::format_message(const char * pszFormat,...)

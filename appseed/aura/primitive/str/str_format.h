@@ -1,7 +1,7 @@
 #pragma once
 
 
-//#if defined(VARIADIC_TEMPLATE)
+#if defined(VARIADIC_TEMPLATE_FORMAT)
 
 
 class CLASS_DECL_AURA string_format_printer
@@ -273,4 +273,4 @@ public:
 
 };
 
-//#endif
+#endif

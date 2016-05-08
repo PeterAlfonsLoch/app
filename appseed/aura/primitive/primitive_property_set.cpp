@@ -886,7 +886,7 @@ property * property_set::find_value(const char * psz) const
       if(it->get_string() == psz)
       {
 
-         return it.m_ppair;
+         return (property *) &it->m_element2;
 
       }
 
@@ -906,7 +906,7 @@ property * property_set::find_value_ci(const char * psz) const
       if(it->get_string().CompareNoCase(psz) == 0)
       {
        
-         return it.m_ppair;
+         return (property *) &it->m_element2;
 
       }
    }
@@ -1013,22 +1013,22 @@ property_set & property_set::merge(const property_set & set)
 
          property * ppropertyThis = find(idName);
 
-         if(!pproperty->m_element2.is_new())
+         if(!pproperty->is_new())
          {
 
             if(ppropertyThis != NULL)
             {
 
-               if(ppropertyThis->m_element2.get_type() == ::var::type_element || pproperty->m_element2.get_type() == ::var::type_element)
+               if(ppropertyThis->get_value().get_type() == ::var::type_element || pproperty->get_value().get_type() == ::var::type_element)
                {
 
                   operator[](pproperty->name()).m_element2 = pproperty->m_element2;
 
                }
-               else if(ppropertyThis->m_element2.get_type() == ::var::type_propset)
+               else if(ppropertyThis->get_value().get_type() == ::var::type_propset)
                {
 
-                  if(pproperty->m_element2.get_type() == ::var::type_propset)
+                  if(pproperty->get_value().get_type() == ::var::type_propset)
                   {
 
                      ppropertyThis->propset().merge(pproperty->propset());
@@ -1181,7 +1181,7 @@ property * property_set::str_find(const property & property) const
       if(it->str_compare(property) == 0)
       {
 
-         return it.m_ppair;
+         return (::property *) &it->m_element2;
 
       }
 
@@ -1198,7 +1198,7 @@ bool property_set::str_contains(const property_set & set) const
    for(const_iterator it = begin(); it != end(); it++)
    {
       
-      if(str_find(*it.m_ppair) < 0)
+      if(str_find(*it) < 0)
       {
 
          return false;

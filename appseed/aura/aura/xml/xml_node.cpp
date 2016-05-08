@@ -1066,9 +1066,9 @@ namespace xml
          // <?TAG Attr1="Val1"
          if(m_attra.has_properties())
             ostring += ' ';
-         for(auto property : m_attra)
+         for(auto assoc : m_attra)
          {
-            ostring += property.get_xml(opt);
+            ostring += assoc.get_xml(opt);
          }
          //?>
          ostring += astr.szXMLPIClose;
@@ -1100,10 +1100,10 @@ namespace xml
       if(m_attra.has_properties())
          ostring += ' ';
 
-      for(auto property : m_attra)
+      for(auto assoc : m_attra)
       {
 
-         ostring += property.get_xml(opt);
+         ostring += assoc.get_xml(opt);
 
       }
 

@@ -118,9 +118,9 @@ void string_array < Type, RawType >::add(const var & var)
    }
    else if(var.get_type() == var::type_propset)
    {
-      for(auto property : var.propset())
+      for(auto assoc : var.propset())
       {
-         ::lemon::array::add(*this, property.get_value().get_string());
+         ::lemon::array::add(*this, assoc.get_value().get_string());
       }
    }
    else

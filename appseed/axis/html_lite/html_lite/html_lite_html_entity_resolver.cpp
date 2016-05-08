@@ -135,7 +135,8 @@ LiteHTMLEntityResolver::CharEntityRefs::CharEntityRefs(::aura::application * pap
 }
 
 
-LiteHTMLEntityResolver::LiteHTMLEntityResolver(::aura::application * papp)
+LiteHTMLEntityResolver::LiteHTMLEntityResolver(::aura::application * papp) :
+   m_CharEntityRefs(papp)
 {
 
 

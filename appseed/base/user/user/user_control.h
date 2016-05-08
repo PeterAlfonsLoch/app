@@ -228,7 +228,7 @@ namespace user
    public:
       
       
-      id_to_id < >      m_mapControlCommand;
+      id_to_id      m_mapControlCommand;
 
 
       control_cmd_ui(class ::signal * psignal);

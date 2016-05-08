@@ -1,6 +1,6 @@
 #pragma once
 
-template < class TYPE, class ARG_TYPE = const TYPE &, class ARRAY_TYPE = array < TYPE, ARG_TYPE >, typename EQUALS = comparison::equals_ref < TYPE, TYPE > >
+template < class TYPE, class ARG_TYPE = const TYPE &, class ARRAY_TYPE = array < TYPE, ARG_TYPE > >
 class comparable_eq_array:
    public ARRAY_TYPE
 {
@@ -119,35 +119,35 @@ public:
 //
 //}
 
-template <class TYPE,class ARG_TYPE,class ARRAY_TYPE,typename EQUALS>
-index comparable_eq_array < TYPE,ARG_TYPE,ARRAY_TYPE,EQUALS>::
+template <class TYPE,class ARG_TYPE,class ARRAY_TYPE >
+index comparable_eq_array < TYPE,ARG_TYPE,ARRAY_TYPE >::
 find_first(ARG_TYPE t) const
 {
    index find = 0;
    index c = this->get_size();
    for(; find < c; find++)
    {
-      if(EQUALS::CompareElements(this->element_at(find),t))
+      if(EqualElements(this->element_at(find),t))
          return find;
    }
    return -1;
 }
 
-template <class TYPE,class ARG_TYPE,class ARRAY_TYPE,typename EQUALS>
-index comparable_eq_array < TYPE,ARG_TYPE,ARRAY_TYPE,EQUALS>::
+template <class TYPE,class ARG_TYPE,class ARRAY_TYPE >
+index comparable_eq_array < TYPE,ARG_TYPE,ARRAY_TYPE >::
 find_last(ARG_TYPE t) const
 {
    index find = this->get_upper_bound();
    for(; find >= 0; find--)
    {
-      if(EQUALS::CompareElements(this->element_at(find),t))
+      if(EqualElements(this->element_at(find),t))
          return find;
    }
    return -1;
 }
 
-template <class TYPE, class ARG_TYPE, class ARRAY_TYPE, typename EQUALS>
-index comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE,EQUALS>::
+template <class TYPE, class ARG_TYPE, class ARRAY_TYPE >
+index comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::
 find_first(ARG_TYPE t, index find, index last) const
 {
    if(find < 0)
@@ -156,22 +156,22 @@ find_first(ARG_TYPE t, index find, index last) const
       last += this->get_count();
    for(; find <= last; find++)
    {
-      if(EQUALS::CompareElements(this->element_at(find), t))
+      if(EqualElements(this->element_at(find), t))
          return find;
    }
    return -1;
 }
 
-template <class TYPE, class ARG_TYPE, class ARRAY_TYPE, typename EQUALS>
-inline ::count comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE,EQUALS>::
+template <class TYPE, class ARG_TYPE, class ARRAY_TYPE >
+inline ::count comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::
 get_count() const
 {
    return ARRAY_TYPE::get_count();
 }
 
 
-template <class TYPE, class ARG_TYPE, class ARRAY_TYPE, typename EQUALS>
-::count comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE,EQUALS>::
+template <class TYPE, class ARG_TYPE, class ARRAY_TYPE >
+::count comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::
 get_count(ARG_TYPE t, index find, index last, ::count countMax) const
 {
    ::count count = 0;
@@ -182,8 +182,8 @@ get_count(ARG_TYPE t, index find, index last, ::count countMax) const
 }
 
 
-template <class TYPE,class ARG_TYPE,class ARRAY_TYPE,typename EQUALS>
-bool comparable_eq_array < TYPE,ARG_TYPE,ARRAY_TYPE,EQUALS>::
+template <class TYPE,class ARG_TYPE,class ARRAY_TYPE >
+bool comparable_eq_array < TYPE,ARG_TYPE,ARRAY_TYPE >::
 contains(ARG_TYPE t) const
 {
 
@@ -192,8 +192,8 @@ contains(ARG_TYPE t) const
 }
 
 
-template <class TYPE, class ARG_TYPE, class ARRAY_TYPE, typename EQUALS>
-bool comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE,EQUALS>::
+template <class TYPE, class ARG_TYPE, class ARRAY_TYPE >
+bool comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::
 contains(ARG_TYPE t, index find, index last, ::count countMin, ::count countMax) const
 {
    ::count count = 0;
@@ -204,8 +204,8 @@ contains(ARG_TYPE t, index find, index last, ::count countMin, ::count countMax)
 }
 
 
-template <class TYPE, class ARG_TYPE, class ARRAY_TYPE, typename EQUALS>
-bool comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE,EQUALS>::add_unique(ARG_TYPE t)
+template <class TYPE, class ARG_TYPE, class ARRAY_TYPE >
+bool comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::add_unique(ARG_TYPE t)
 {
    if(contains(t))
       return false;
@@ -213,8 +213,8 @@ bool comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE,EQUALS>::add_unique(ARG_TY
    return true;
 }
 
-template <class TYPE, class ARG_TYPE, class ARRAY_TYPE, typename EQUALS>
-::count comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE,EQUALS>::add_unique(const ARRAY_TYPE & a)
+template <class TYPE, class ARG_TYPE, class ARRAY_TYPE >
+::count comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::add_unique(const ARRAY_TYPE & a)
 {
 
    ::count ca = 0;
@@ -232,9 +232,9 @@ template <class TYPE, class ARG_TYPE, class ARRAY_TYPE, typename EQUALS>
 }
 
 
-template <class TYPE, class ARG_TYPE, class ARRAY_TYPE, typename EQUALS>
-void comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE,EQUALS>::
-intersect(const comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE,EQUALS> & a)
+template <class TYPE, class ARG_TYPE, class ARRAY_TYPE >
+void comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::
+intersect(const comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE > & a)
 {
    for(int_ptr i = 0; i < this->get_size();)
    {
@@ -249,9 +249,9 @@ intersect(const comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE,EQUALS> & a)
    }
 }
 
-template <class TYPE, class ARG_TYPE, class ARRAY_TYPE, typename EQUALS>
-void comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE,EQUALS>::
-merge(const comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE,EQUALS> & a)
+template <class TYPE, class ARG_TYPE, class ARRAY_TYPE >
+void comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::
+merge(const comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE > & a)
 {
    for(int_ptr i = 0; i < a.get_size(); i++)
    {
@@ -263,16 +263,16 @@ merge(const comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE,EQUALS> & a)
 }
 
 
-template <class TYPE, class ARG_TYPE, class ARRAY_TYPE, typename EQUALS>
-inline comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE,EQUALS> &  comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE,EQUALS>::
-operator &= (const comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE,EQUALS> & a)
+template <class TYPE, class ARG_TYPE, class ARRAY_TYPE >
+inline comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE > &  comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::
+operator &= (const comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE > & a)
 {
    intersect(a);
    return *this;
 }
 
-template <class TYPE, class ARG_TYPE, class ARRAY_TYPE, typename EQUALS>
-inline comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE,EQUALS> &  comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE,EQUALS>::
+template <class TYPE, class ARG_TYPE, class ARRAY_TYPE >
+inline comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE > &  comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::
 operator -= (const TYPE & t)
 {
    remove(t);
@@ -280,34 +280,34 @@ operator -= (const TYPE & t)
 }
 
 
-template <class TYPE, class ARG_TYPE, class ARRAY_TYPE, typename EQUALS>
-inline comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE,EQUALS> &  comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE,EQUALS>::
-operator -= (const comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE,EQUALS> & a)
+template <class TYPE, class ARG_TYPE, class ARRAY_TYPE >
+inline comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE > &  comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::
+operator -= (const comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE > & a)
 {
    remove(a);
    return *this;
 }
 
 
-template <class TYPE, class ARG_TYPE, class ARRAY_TYPE, typename EQUALS>
-inline comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE,EQUALS> comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE,EQUALS>::
-operator - (const comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE,EQUALS> & a) const
+template <class TYPE, class ARG_TYPE, class ARRAY_TYPE >
+inline comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE > comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::
+operator - (const comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE > & a) const
 {
-   comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE,EQUALS> aRet(*this);
+   comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE > aRet(*this);
    aRet.remove(a);
    return aRet;
 }
 
-template <class TYPE, class ARG_TYPE, class ARRAY_TYPE, typename EQUALS>
-inline comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE,EQUALS> &  comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE,EQUALS>::
-operator |= (const comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE,EQUALS> & a)
+template <class TYPE, class ARG_TYPE, class ARRAY_TYPE >
+inline comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE > &  comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::
+operator |= (const comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE > & a)
 {
    merge(a);
    return *this;
 }
 
-template <class TYPE,class ARG_TYPE,class ARRAY_TYPE,typename EQUALS>
-index comparable_eq_array < TYPE,ARG_TYPE,ARRAY_TYPE,EQUALS>::
+template <class TYPE,class ARG_TYPE,class ARRAY_TYPE >
+index comparable_eq_array < TYPE,ARG_TYPE,ARRAY_TYPE >::
 remove_last(ARG_TYPE t)
 {
    index find;
@@ -319,8 +319,8 @@ remove_last(ARG_TYPE t)
 }
 
 
-template <class TYPE,class ARG_TYPE,class ARRAY_TYPE,typename EQUALS>
-index comparable_eq_array < TYPE,ARG_TYPE,ARRAY_TYPE,EQUALS>::
+template <class TYPE,class ARG_TYPE,class ARRAY_TYPE >
+index comparable_eq_array < TYPE,ARG_TYPE,ARRAY_TYPE >::
 remove_first(ARG_TYPE t)
 {
    index find;
@@ -332,8 +332,8 @@ remove_first(ARG_TYPE t)
 }
 
 
-template <class TYPE, class ARG_TYPE, class ARRAY_TYPE, typename EQUALS>
-index comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE,EQUALS>::
+template <class TYPE, class ARG_TYPE, class ARRAY_TYPE >
+index comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::
 remove_first(ARG_TYPE t, index find, index last)
 {
    if((find = find_first(t, find, last)) >= 0)
@@ -343,8 +343,8 @@ remove_first(ARG_TYPE t, index find, index last)
    return find;
 }
 
-template <class TYPE, class ARG_TYPE, class ARRAY_TYPE, typename EQUALS>
-::count comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE,EQUALS>::
+template <class TYPE, class ARG_TYPE, class ARRAY_TYPE >
+::count comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::
 remove(ARG_TYPE t, index find, index last, ::count countMin, ::count countMax)
 {
    ::count count = 0;
@@ -356,8 +356,8 @@ remove(ARG_TYPE t, index find, index last, ::count countMin, ::count countMax)
 }
 
 
-template <class TYPE,class ARG_TYPE,class ARRAY_TYPE,typename EQUALS>
-::count comparable_eq_array < TYPE,ARG_TYPE,ARRAY_TYPE,EQUALS>::
+template <class TYPE,class ARG_TYPE,class ARRAY_TYPE >
+::count comparable_eq_array < TYPE,ARG_TYPE,ARRAY_TYPE >::
 remove(ARG_TYPE t)
 {
 
@@ -370,30 +370,30 @@ remove(ARG_TYPE t)
 
 }
 
-template <class TYPE, class ARG_TYPE, class ARRAY_TYPE, typename EQUALS>
-::count comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE,EQUALS>::
+template <class TYPE, class ARG_TYPE, class ARRAY_TYPE >
+::count comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::
 erase(ARG_TYPE t, index find, index last, ::count countMin, ::count countMax)
 {
    return remove(t, find, last, countMin, countMax);
 }
 
 
-template <class TYPE, class ARG_TYPE, class ARRAY_TYPE, typename EQUALS>
-typename ARRAY_TYPE::iterator comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE,EQUALS>::
+template <class TYPE, class ARG_TYPE, class ARRAY_TYPE >
+typename ARRAY_TYPE::iterator comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::
 erase(typename  ARRAY_TYPE::iterator it)
 {
    return ARRAY_TYPE::erase(it);
 }
 
-template <class TYPE, class ARG_TYPE, class ARRAY_TYPE, typename EQUALS>
-typename ARRAY_TYPE::iterator comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE,EQUALS>::
+template <class TYPE, class ARG_TYPE, class ARRAY_TYPE >
+typename ARRAY_TYPE::iterator comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::
 erase(typename ARRAY_TYPE::iterator first, typename ARRAY_TYPE::iterator last)
 {
    return ARRAY_TYPE::erase(first, last);
 }
 
-template <class TYPE, class ARG_TYPE, class ARRAY_TYPE, typename EQUALS>
-index comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE,EQUALS>::
+template <class TYPE, class ARG_TYPE, class ARRAY_TYPE >
+index comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::
 remove(const comparable_eq_array & a)
 {
 
@@ -422,8 +422,8 @@ remove(const comparable_eq_array & a)
 }
 
 
-template <class TYPE, class ARG_TYPE, class ARRAY_TYPE, typename EQUALS>
-bool comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE,EQUALS>::operator == (const comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE,EQUALS> & a)
+template <class TYPE, class ARG_TYPE, class ARRAY_TYPE >
+bool comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::operator == (const comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE > & a)
 {
    if(this->get_size() != a.get_size())
       return false;
@@ -435,24 +435,24 @@ bool comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE,EQUALS>::operator == (cons
    return true;
 }
 
-template <class TYPE, class ARG_TYPE, class ARRAY_TYPE, typename EQUALS>
-bool comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE,EQUALS>::operator != (const comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE,EQUALS> & a)
+template <class TYPE, class ARG_TYPE, class ARRAY_TYPE >
+bool comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::operator != (const comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE > & a)
 {
    return !operator==(a);
 }
 
-//template <class TYPE, class ARG_TYPE, class ARRAY_TYPE, typename EQUALS>
-//inline comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE,EQUALS> & comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE,EQUALS>::
-//operator = (const comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE,EQUALS> & a)
+//template <class TYPE, class ARG_TYPE, class ARRAY_TYPE >
+//inline comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE > & comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::
+//operator = (const comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE > & a)
 //{
 //   this->ARRAY_TYPE::operator = (a);
 //   return *this;
 //}
 //
 //
-//template <class TYPE, class ARG_TYPE, class ARRAY_TYPE, typename EQUALS>
-//inline comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE,EQUALS> & comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE,EQUALS>::
-//operator = (comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE,EQUALS> && a)
+//template <class TYPE, class ARG_TYPE, class ARRAY_TYPE >
+//inline comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE > & comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::
+//operator = (comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE > && a)
 //{
 //
 //   return move(::move(a));
@@ -460,9 +460,9 @@ bool comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE,EQUALS>::operator != (cons
 //}
 //
 //
-//template <class TYPE, class ARG_TYPE, class ARRAY_TYPE, typename EQUALS>
-//inline comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE,EQUALS> & comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE,EQUALS>::
-//move(comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE,EQUALS> && a)
+//template <class TYPE, class ARG_TYPE, class ARRAY_TYPE >
+//inline comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE > & comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::
+//move(comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE > && a)
 //{
 //
 //	this->ARRAY_TYPE::move(::move(a));

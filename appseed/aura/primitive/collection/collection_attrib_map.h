@@ -45,11 +45,10 @@ namespace lemon
 
 } // namespace lemon
 
-template < typename TYPE,typename ARG_TYPE = const TYPE &,class HASH =::comparison::hash < const id & > , class EQUALS =::comparison::equals_type_arg_type < id,const id & >,class PAIR = pair < id,TYPE >, class HASH_TABLE = map_dynamic_hash_table < PAIR > >
-using id_map = ::map < id,const id &, TYPE, ARG_TYPE, HASH, EQUALS, PAIR, HASH_TABLE > ;
 
-template < class HASH =::comparison::hash < const id & > ,class EQUALS =::comparison::equals_type_arg_type < id, const id & >  >
-using id_to_id = id_map < id,const id &,HASH,EQUALS > ;
+template < typename TYPE,typename ARG_TYPE = const TYPE &, typename PAIR = pair < id, TYPE > >
+using id_map = ::map < id,const id &, TYPE, ARG_TYPE, PAIR > ;
 
-template < class HASH =::comparison::hash < const id & > , class EQUALS =::comparison::equals_type_arg_type < id, const id & >  >
-using id_to_index = id_map < index,index,HASH,EQUALS > ;
+using id_to_id = id_map < id,const id & > ;
+
+using id_to_index = id_map < index,index > ;

@@ -1,8 +1,8 @@
 #pragma once
 
 
-template < class VALUE, class ARG_VALUE = const VALUE &, class HASH = ::comparison::hash < const string & > , class EQUALS = ::comparison::equals_type_arg_type < string, const string & > >
-using string_map =map < string,const string &,VALUE,ARG_VALUE,HASH,EQUALS > ;
+template < class VALUE, class ARG_VALUE = const VALUE & >
+using string_map =map < string,const string &,VALUE,ARG_VALUE > ;
 
 using string_to_intptr = string_map < int_ptr,int_ptr > ;
 

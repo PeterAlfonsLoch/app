@@ -361,29 +361,16 @@ namespace draw2d
 } // namespace draw2d
 
 
-namespace comparison
+template < >
+inline UINT HashKey<::draw2d::dib::descriptor >(::draw2d::dib::descriptor key)
 {
-
-
-   template < >
-   class CLASS_DECL_AURA hash < const ::draw2d::dib::descriptor & >
+   UINT ui = (UINT) key.m_etype;
+   if(key.m_etype == ::draw2d::dib::type_plain_color)
    {
-   public:
-
-      inline static UINT HashKey (const ::draw2d::dib::descriptor & key)
-      {
-         UINT ui = (UINT) key.m_etype;
-         if(key.m_etype == ::draw2d::dib::type_plain_color)
-         {
-            ui |= key.m_cr;
-         }
-         return ui;
-      }
-
-   };
-
-
-} // namespace axis - for class ::comparison::hash const < ::draw2d::dib::descriptor & >
+      ui |= key.m_cr;
+   }
+   return ui;
+}
 
 
 

@@ -398,3 +398,11 @@ namespace file
 
 
 
+
+template<>
+inline UINT HashKey<::file::path>(::file::path key)
+{
+
+   return HashKey<const char * >(key);
+
+}

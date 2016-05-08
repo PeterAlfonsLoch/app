@@ -1,8 +1,8 @@
 #pragma once
 
 
-template < class VALUE,class ARG_VALUE = const VALUE &,class HASH = ::comparison::hash < const string & >,class EQUALS = ::comparison::equals_type_arg_type < string,const string & > >
-using file_path_map =map < ::file::path,const ::file::path &,VALUE,ARG_VALUE,HASH,EQUALS > ;
+template < class VALUE,class ARG_VALUE = const VALUE & >
+using file_path_map =map < ::file::path,const ::file::path &,VALUE,ARG_VALUE > ;
 
 using file_path_to_intptr = string_map < int_ptr,int_ptr > ;
 

@@ -1,8 +1,8 @@
 #pragma once
 
 
-template < class VALUE, class ARG_VALUE = const VALUE &, class HASH = ::comparison::strid_hash, class EQUALS = ::comparison::strid_equals  >
-using strid_map = id_map < VALUE,ARG_VALUE,HASH,EQUALS > ;
+template < class VALUE, class ARG_VALUE = const VALUE &  >
+using strid_map = id_map < VALUE,ARG_VALUE > ;
 
 template < class T >
 class CLASS_DECL_AURA string_to_pointer :

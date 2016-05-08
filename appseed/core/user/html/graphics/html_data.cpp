@@ -184,7 +184,9 @@ namespace html
       lite_html_reader htmlreader(get_app());
       ::html::reader reader;
       htmlreader.setEventHandler(&reader);
-      htmlreader.read(psz);
+      
+      htmlreader.read_html_document(psz);
+
       if(m_ptag != NULL)
       {
          delete m_ptag;

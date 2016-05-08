@@ -1582,7 +1582,7 @@ inline const TYPE & list < TYPE, ARG_TYPE >::back() const
       }
 
       for (; pnode != NULL; pnode = pnode->m_pnext)
-         if (::comparison::equals_type_arg_type < TYPE, ARG_TYPE > ::CompareElements(&pnode->m_value, searchValue))
+         if (EqualElements(pnode->m_value, searchValue))
             return (POSITION)pnode;
       return NULL;
    }

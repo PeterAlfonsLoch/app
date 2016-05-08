@@ -1,86 +1,28 @@
 #pragma once
 
 
-template < class TYPE,class ARG_TYPE >
-inline int_ptr CompareElements(const TYPE * pElement1,const ARG_TYPE element2)
+template < typename ARG_KEY >
+inline int_ptr CompareElements(ARG_KEY element1, ARG_KEY element2)
 {
 
-   return *pElement1 - element2;
+   return element2 - element1;
+}
+
+
+
+template <  >
+inline int_ptr CompareElements<string>(string element1,string  element2)
+{
+
+   return element1.Compare(element2);
 
 }
 
-namespace comparison
+template <  >
+inline int_ptr CompareElements<void *>(void * element1, void *  element2)
 {
 
+   return (byte *) element2 - (byte *) element1;
 
-   template < class TYPE,class ARG_TYPE >
-   class compare_type_arg_type
-   {
-   public:
-
-
-      inline static int_ptr CompareElements(const TYPE * pElement1,const ARG_TYPE element2)
-      {
-
-         return ::CompareElements < TYPE,ARG_TYPE >(pElement1,element2);
-
-      }
-
-
-   };
-
-
-
-} // namespace comparison
-
-
-
-
-namespace comparison
-{
-
-
-
-
-   class compare_string_case:
-      public compare_type_arg_type < string,const string & >
-   {
-   public:
-
-
-      inline static int_ptr CompareElements(const string * pElement1,const string  & element2)
-      {
-
-         return pElement1->Compare(element2);
-
-      }
-
-
-   };
-
-
-   class compare_string_no_case:
-      public compare_type_arg_type < string,const string & >
-   {
-   public:
-
-      inline static int_ptr CompareElements(const string * pElement1,const string & element2)
-      {
-         return pElement1->CompareNoCase(element2);
-      }
-
-   };
-
-
-
-
-} // namespace comparison
-
-
-
-
-
-
-
-
+}
 

@@ -6,7 +6,9 @@ namespace aura
 
 
    class CLASS_DECL_AURA trace_add_file_and_line
+#if defined(VARIADIC_TEMPLATE_FORMAT)
       : public string_format_printer
+#endif
    {
    public:
 
@@ -16,7 +18,7 @@ namespace aura
       const int32_t              m_nLineNo;
       string                     m_str;
 
-#if defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
+//#if defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
 
       class CLASS_DECL_AURA category_level
       {
@@ -29,7 +31,7 @@ namespace aura
 
       };
 
-#endif
+//#endif
 
       trace_add_file_and_line(::aura::application * papp, const char *pszFileName, int32_t nLineNo)
          : m_pauraapp(papp),m_pszFileName(pszFileName),m_nLineNo(nLineNo)
@@ -45,6 +47,9 @@ namespace aura
       {
          return m_pauraapp;
       }
+
+
+#if !defined(VARIADIC_TEMPLATE_FORMAT)
 
       inline void __cdecl operator()(uint32_t dwCategory, UINT nLevel, const char *pszFmt, ...) const
       {
@@ -80,6 +85,9 @@ namespace aura
 
       }
 
+//#if defined(VARIADIC_TEMPLATE_FORMAT)
+
+
       inline void __cdecl operator()(uint32_t dwCategory, UINT nLevel, const char *pszFmt) const
       {
 
@@ -110,6 +118,8 @@ namespace aura
 
       }
 
+//#endif
+
       inline void __cdecl operator()(const char *psz) const
       {
 
@@ -121,6 +131,9 @@ namespace aura
 
 
       }
+
+//#if defined(VARIADIC_TEMPLATE_FORMAT)
+
 
       template<typename T, typename... Args>
       inline void __cdecl operator()(const char * pszFmt, const T & value, Args... args) const

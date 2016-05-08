@@ -13,74 +13,35 @@ inline UINT HashKey(ARG_KEY key)
 }
 
 
-namespace comparison
+template < >
+inline UINT HashKey (const wstring & key)
 {
-
-   template < class ARG_KEY >
-   class hash
+   uint64_t * puiKey = (uint64_t *) (const unichar *) key;
+   strsize counter = key.get_length() * sizeof(unichar);
+   uint64_t nHash = 0;
+   while(compare::ge(counter, sizeof(*puiKey)))
    {
-   public:
-
-      inline static UINT HashKey(ARG_KEY key)
-      {
-         return ::HashKey < ARG_KEY > (key);
-      }
-
-   };
-
-   template < >
-   class CLASS_DECL_AURA hash < const wstring & >
+      nHash = (nHash<<5) + nHash + *puiKey++;
+      counter -= sizeof(*puiKey);
+   }
+   const unichar * pszKey = (const unichar *) puiKey;
+   while(true)
    {
-   public:
-
-      inline static UINT HashKey (const wstring & key)
-      {
-         uint64_t * puiKey = (uint64_t *) (const unichar *) key;
-         strsize counter = key.get_length() * sizeof(unichar);
-         uint64_t nHash = 0;
-         while(compare::ge(counter, sizeof(*puiKey)))
-         {
-            nHash = (nHash<<5) + nHash + *puiKey++;
-            counter -= sizeof(*puiKey);
-         }
-         const unichar * pszKey = (const unichar *) puiKey;
-         while(true)
-         {
-            counter -= 2;
-            if(counter < 0)
-               break;
-            nHash = (nHash<<5) + nHash + *pszKey++;
-         }
-         return (UINT)(nHash & 0xffffffff);
-      }
-
-   };
-
-
-
-   template < class T >
-   class CLASS_DECL_AURA hash < const sp(T) & >
-   {
-   public:
-
-      inline static UINT HashKey(const sp(T) & key)
-      {
-         return ::HashKey(key.m_p);
-      }
-
-   };
-
-
-} // namespace comparison
-
-
-
-template<> CLASS_DECL_AURA UINT HashKey<const unichar *> (const unichar * key);
+      counter -= 2;
+      if(counter < 0)
+         break;
+      nHash = (nHash<<5) + nHash + *pszKey++;
+   }
+   return (UINT)(nHash & 0xffffffff);
+}
 
 
 
 
-template<> inline UINT HashKey<const char *> (const char * key)
+
+
+template<> 
+inline UINT HashKey<const char *> (const char * key)
 {
    uint64_t * puiKey = (uint64_t *) key;
    strsize counter = strlen(key);
@@ -96,40 +57,43 @@ template<> inline UINT HashKey<const char *> (const char * key)
 }
 
 
-
-
-
-namespace comparison
+template<>
+inline UINT HashKey<string>(string key)
 {
 
+   return HashKey<const char * >(key);
+
+}
 
 
-   template < >
-   class CLASS_DECL_AURA hash < const string & >
-   {
-   public:
 
-      inline static UINT HashKey(const string & key)
-      {
-         uint64_t * puiKey = (uint64_t *)(const char *)key;
-         strsize counter = key.get_length();
-         uint64_t nHash = 0;
-         while(::compare::ge(counter,sizeof(*puiKey)))
-         {
-            nHash = (nHash << 5) + nHash + *puiKey++;
-            counter -= sizeof(*puiKey);
-         }
-         const char * pszKey = (const char *)puiKey;
-         while(counter-- >= 0) nHash = (nHash << 5) + nHash + *pszKey++;
-         return (UINT)(nHash & 0xffffffff);
-      }
-
-   };
-
-
-} // namespace comparison
+//template < >
+//inline UINT HashKey(const string & key)
+//{
+//   uint64_t * puiKey = (uint64_t *)(const char *)key;
+//   strsize counter = key.get_length();
+//   uint64_t nHash = 0;
+//   while(::compare::ge(counter,sizeof(*puiKey)))
+//   {
+//      nHash = (nHash << 5) + nHash + *puiKey++;
+//      counter -= sizeof(*puiKey);
+//   }
+//   const char * pszKey = (const char *)puiKey;
+//   while(counter-- >= 0) nHash = (nHash << 5) + nHash + *pszKey++;
+//   return (UINT)(nHash & 0xffffffff);
+//}
 
 
 
 
 
+
+
+//
+//template <  >
+//inline UINT HashKey(const ::file::path & path)
+//{
+//   
+//   return HashKey<const string &> ((const string &) path);
+//}
+//

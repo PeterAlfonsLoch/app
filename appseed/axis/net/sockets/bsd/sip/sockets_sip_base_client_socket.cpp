@@ -294,11 +294,11 @@ namespace sockets
       strTrace = strLine;
       strTrace.replace("%", "%%");
       TRACE(strTrace + "\n");
-      for(auto property : m_response.m_propertysetHeader)
+      for(auto assoc : m_response.m_propertysetHeader)
       {
-         strLine = string(property.name()) +
+         strLine = string(assoc.name()) +
                    ": " +
-                   property.get_string();
+                   assoc.get_string();
          msg += strLine + "\r\n";
          strTrace = strLine;
          strTrace.replace("%", "%%");
@@ -318,9 +318,9 @@ namespace sockets
    {
       string msg;
       msg = m_request.attr("http_method").get_string() + " " + m_request.attr("request_uri").get_string() + " " + m_request.attr("http_version").get_string() + "\r\n";
-      for(auto property : m_response.m_propertysetHeader)
+      for(auto assoc : m_response.m_propertysetHeader)
       {
-         msg += property.name() + ": " + property.get_string() + "\r\n";
+         msg += assoc.name() + ": " + assoc.get_string() + "\r\n";
       }
       msg += "\r\n";
       write( msg );
