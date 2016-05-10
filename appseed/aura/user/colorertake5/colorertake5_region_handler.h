@@ -20,10 +20,12 @@ namespace colorertake5
 
 
       RegionHandler();
-      virtual ~RegionHandler();
 
 
    public:
+      
+      virtual ~RegionHandler();
+
       /** Start of text parsing.
       Called only once, when text_parser starts
       parsing of the specified block of text.

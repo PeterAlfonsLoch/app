@@ -7,4 +7,5 @@ class typed_pointer_array :
 {
 public:
 
+
 };

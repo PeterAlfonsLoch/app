@@ -158,6 +158,10 @@ public:
       virtual signalizable * get_signalizable() { return m_psignalizable;}
    };
 
+
+   ptr_array < signal_delegate > m_delegateptra;
+
+
    signal();
    virtual ~signal();
 
@@ -169,18 +173,18 @@ public:
    template < class T >
    void connect(T * psignalizable, void (T::*pfn)(signal_details *))
    {
-      signal_delegate_instance < T > * pdelegate = canew(signal_delegate_instance < T >(psignalizable));
+      signal_delegate_instance < T > * pdelegate = new signal_delegate_instance < T >(psignalizable);
       pdelegate->m_pfn = pfn;
-      m_delegatea.add(pdelegate);
+      m_delegateptra.add(pdelegate);
       psignalizable->register_signal(this);
    }
 
    template < class T >
    bool is_connected(T * psignalizable, void (T::*pfn)(signal_details *))
    {
-      for(int32_t i = 0; i < m_delegatea.get_size(); i++)
+      for(int32_t i = 0; i < m_delegateptra.get_size(); i++)
       {
-         signal_delegate_instance < T > * pdelegate = m_delegatea.typed_ptr_at < signal_delegate_instance < T > > (i);
+         signal_delegate_instance < T > * pdelegate = m_delegateptra.typed_ptr_at < signal_delegate_instance < T > > (i);
          if(pdelegate != NULL && pdelegate->m_psignalizable == psignalizable && pdelegate->m_pfn == pfn)
             return true;
       }
@@ -204,7 +208,6 @@ public:
    }
 
    
-   spa(signal_delegate) m_delegatea;
    void disconnect(signalizable * psignalizable);
    void leave_only(signalizable * psignalizable);
 

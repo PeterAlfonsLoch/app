@@ -181,14 +181,14 @@ template<class TYPE,class ARG_TYPE = const TYPE &>
 }
 
 
-template < class TYPE,class ARRAY_TYPE = raw_ptr_array < TYPE * > >
+template < class TYPE,class ARRAY_TYPE = raw_ref_array < TYPE * > >
 ::file::ostream & operator << (::file::ostream & os,const ptr_array < TYPE,ARRAY_TYPE> & a)
 {
    ::file::ptra::write(os,a);
    return os;
 }
 
-template < class TYPE,class ARRAY_TYPE = raw_ptr_array < TYPE * > >
+template < class TYPE,class ARRAY_TYPE = raw_ref_array < TYPE * > >
 ::file::istream & operator >> (::file::istream & is,ptr_array < TYPE,ARRAY_TYPE > & a)
 {
    ::file::ptra::read(is,a);

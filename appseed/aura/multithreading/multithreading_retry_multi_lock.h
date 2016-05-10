@@ -8,7 +8,7 @@ protected:
 
    spa(sync_object)              m_syncobjectptra;
 #ifdef WINDOWS
-   raw_ptr_array < HANDLE >      m_objecta;
+   raw_ref_array < HANDLE >      m_objecta;
 #else
    array<sync_object *>        m_objecta;
 #endif

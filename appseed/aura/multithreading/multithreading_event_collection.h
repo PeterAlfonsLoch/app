@@ -13,9 +13,9 @@ class CLASS_DECL_AURA event_collection :
 {
 public:
 #ifdef WINDOWS
-   typedef raw_ptr_array < HANDLE > CollectionType;
+   typedef raw_ref_array < HANDLE > CollectionType;
 #else
-    typedef array < sync_object * > CollectionType;
+   typedef array < sync_object * > CollectionType;
 #endif
 
 private:

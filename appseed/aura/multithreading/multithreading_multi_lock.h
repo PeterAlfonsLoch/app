@@ -11,7 +11,7 @@ public:
 
 #ifdef WINDOWS
 
-   raw_ptr_array < HANDLE >      m_handlea;
+   raw_ref_array < HANDLE >      m_handlea;
 
 #else
 

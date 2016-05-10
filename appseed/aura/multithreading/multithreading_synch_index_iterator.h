@@ -15,7 +15,7 @@
 //   synch_index_ptr_array *       m_pindexptra;
 //   ::mutex *                     m_pmutex;
 //   ::count                       m_c;
-//   raw_ptr_array < void * > *    m_pptra;
+//   raw_ref_array < void * > *    m_pptra;
 //
 //
 //   synch_index_iterator(synch_index_ptr_array * pindexptra,mutex * pmutex,bool bInitialLock = true):

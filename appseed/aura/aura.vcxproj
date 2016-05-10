@@ -1377,6 +1377,7 @@
     <ClInclude Include="primitive\collection\collection_point_array.h" />
     <ClInclude Include="primitive\collection\collection_primitive_array.h" />
     <ClInclude Include="primitive\collection\collection_priority_queue.h" />
+    <ClInclude Include="primitive\collection\collection_ptr_array.h" />
     <ClInclude Include="primitive\collection\collection_queue.h" />
     <ClInclude Include="primitive\collection\collection_raw_array_decl.h" />
     <ClInclude Include="primitive\collection\collection_rect_array.h" />

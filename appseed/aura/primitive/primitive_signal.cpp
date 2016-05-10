@@ -151,7 +151,7 @@ void signalizable::unregister_target(signalizable* psignalizable)
    for(int32_t i = 0; i < m_signalptra.get_size();)
    {
       m_signalptra[i]->disconnect(psignalizable);
-      if(m_signalptra[i]->m_delegatea.get_count() <= 0)
+      if(m_signalptra[i]->m_delegateptra.get_count() <= 0)
       {
          m_signalptra.remove_at(i);
       }
@@ -170,7 +170,7 @@ void signalizable::filter_target(signalizable* psignalizable)
    }
    for (int32_t i = 0; i < m_signalptra.get_size();)
    {
-      if (m_signalptra[i]->m_delegatea.get_count() <= 0)
+      if (m_signalptra[i]->m_delegateptra.get_count() <= 0)
       {
          m_signalptra.remove_at(i);
       }
@@ -193,10 +193,10 @@ signal::signal()
 signal::~signal()
 {
 
-   for (index i = 0; i < m_delegatea.get_count(); i++)
+   for (index i = 0; i < m_delegateptra.get_count(); i++)
    {
 
-      m_delegatea[i]->get_signalizable()->unregister_signal(this);
+      m_delegateptra[i]->get_signalizable()->unregister_signal(this);
 
    }
 }
@@ -206,16 +206,16 @@ void signal::emit(signal_details * pobj)
 {
    if(pobj == NULL)
    {
-      for(index i = m_delegatea.get_size() - 1; i >= 0 ; i++)
+      for(index i = m_delegateptra.get_size() - 1; i >= 0 ; i++)
       {
-         m_delegatea[i]->emit(NULL);
+         m_delegateptra[i]->emit(NULL);
       }
    }
    else
    {
-      for(pobj->m_iIndex = m_delegatea.get_upper_bound(); pobj->m_iIndex >= 0 ; pobj->m_iIndex = MIN(pobj->m_iIndex - 1, m_delegatea.get_upper_bound()))
+      for(pobj->m_iIndex = m_delegateptra.get_upper_bound(); pobj->m_iIndex >= 0 ; pobj->m_iIndex = MIN(pobj->m_iIndex - 1, m_delegateptra.get_upper_bound()))
       {
-         signal_delegate * pdelegate = m_delegatea.element_at(pobj->m_iIndex);
+         signal_delegate * pdelegate = m_delegateptra.element_at(pobj->m_iIndex);
          pdelegate->emit(pobj);
          if(pobj->m_bRet)
             return;
@@ -228,7 +228,7 @@ void signal::emit_previous(signal_details * pobj)
    if(pobj->m_iIndex <= 0)
       return;
    pobj->m_iIndex--;
-   signal_delegate * pdelegate = m_delegatea.element_at(pobj->m_iIndex);
+   signal_delegate * pdelegate = m_delegateptra.element_at(pobj->m_iIndex);
    pdelegate->emit(pobj);
 }
 
@@ -242,47 +242,71 @@ void signal::emit_all_previous(signal_details * pobj)
    }
 }
 
+
 bool signal::has_handler()
 {
-   return m_delegatea.get_size() > 0;
+
+   return m_delegateptra.get_size() > 0;
+
 }
+
 
 void signal::disconnect(signalizable * psignalizable)
 {
-   for(int32_t i = 0; i < m_delegatea.get_size();)
+
+   for(int32_t i = 0; i < m_delegateptra.get_size();)
    {
-      if(m_delegatea[i]->get_signalizable() == psignalizable)
+
+      if(m_delegateptra[i]->get_signalizable() == psignalizable)
       {
+
          try
          {
-            m_delegatea.remove_at(i);
+
+            m_delegateptra.remove_at(i);
+
          }
          catch(...)
          {
+
          }
+
       }
       else
       {
+
          i++;
+
       }
+
    }
 
 }
 
+
 void signal::leave_only(signalizable * psignalizable)
 {
-   for(int32_t i = 0; i < m_delegatea.get_size();)
+
+   for(int32_t i = 0; i < m_delegateptra.get_size();)
    {
-      if(m_delegatea[i]->get_signalizable() != psignalizable)
+
+      if(m_delegateptra[i]->get_signalizable() != psignalizable)
       {
-         m_delegatea[i]->get_signalizable()->unregister_signal(this);
-         m_delegatea.remove_at(i);
+
+         m_delegateptra[i]->get_signalizable()->unregister_signal(this);
+
+         m_delegateptra.remove_at(i);
+
       }
       else
       {
+
          i++;
+
       }
+
    }
+
 }
 
 
