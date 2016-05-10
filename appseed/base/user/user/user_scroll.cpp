@@ -1358,7 +1358,13 @@ namespace user
 
    }
 
+   
+   ::size scroll::get_total_size()
+   {
 
+      return m_sizeTotal;
+
+   }
 
 
 }  // namespace core

@@ -124,6 +124,9 @@ namespace user
    public:
 
 
+      ::size            m_sizeTotal;
+
+
       scroll();
       scroll(::aura::application * papp);
       virtual ~scroll();
@@ -137,6 +140,8 @@ namespace user
 
 
       void GetScrollRect(LPRECT lprect);
+
+      virtual ::size get_total_size();
 
    };
 

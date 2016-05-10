@@ -46,7 +46,7 @@ namespace user
 
       };
 
-      size                          m_sizeTotal;
+      //size                          m_sizeTotal;
       spa(::data::tree)             m_treeptra;
       spa(::data::tree)             m_treeptraBound;
       ::data::tree_item_ptr_array   m_itemptraSelected;

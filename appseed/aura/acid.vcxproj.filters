@@ -1765,12 +1765,6 @@
     <ClCompile Include="filesystem\filesystem\filesystem_path.cpp">
       <Filter>Source Files\filesystem\filesystem</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filesystem\filesystem_listing.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="teste.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="aura\os\windows\windows_ipc.cpp">
       <Filter>Source Files\aura\os\windows</Filter>
     </ClCompile>
@@ -1779,6 +1773,12 @@
     </ClCompile>
     <ClCompile Include="graphics\draw2d\draw2d_nanosvg.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filesystem\filesystem_listing.cpp">
+      <Filter>Source Files\filesystem\filesystem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

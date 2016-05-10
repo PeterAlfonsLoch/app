@@ -293,7 +293,7 @@ namespace user
 
       };
 
-      size                             m_sizeTotal;
+      //size                             m_sizeTotal;
       size                             m_sizePage;
       ::user::list *                   m_plist; // should be set to this ::user::list if this is a list
 

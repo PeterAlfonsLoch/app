@@ -13,27 +13,31 @@ inline UINT HashKey(ARG_KEY key)
 }
 
 
-template < >
-inline UINT HashKey (const wstring & key)
+template<>
+inline UINT HashKey<const wchar_t *>(const wchar_t * key)
 {
-   uint64_t * puiKey = (uint64_t *) (const unichar *) key;
-   strsize counter = key.get_length() * sizeof(unichar);
+   uint64_t * puiKey = (uint64_t *)key;
+   strsize counter = wcslen(key) * sizeof(wchar_t);
    uint64_t nHash = 0;
-   while(compare::ge(counter, sizeof(*puiKey)))
+   while (compare::ge(counter, sizeof(*puiKey)))
    {
-      nHash = (nHash<<5) + nHash + *puiKey++;
+      nHash = (nHash << 5) + nHash + *puiKey++;
       counter -= sizeof(*puiKey);
    }
-   const unichar * pszKey = (const unichar *) puiKey;
-   while(true)
-   {
-      counter -= 2;
-      if(counter < 0)
-         break;
-      nHash = (nHash<<5) + nHash + *pszKey++;
-   }
-   return (UINT)(nHash & 0xffffffff);
+   const char * pszKey = (const char *)puiKey;
+   while (counter-- >= 0) nHash = (nHash << 5) + nHash + *pszKey++;
+   return (UINT)nHash;
 }
+
+
+template<>
+inline UINT HashKey<wstring>(wstring key)
+{
+
+   return HashKey<const wchar_t * >(key);
+
+}
+
 
 
 

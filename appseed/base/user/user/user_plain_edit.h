@@ -35,7 +35,7 @@ namespace user
       //WPARAM                        m_dwLastKeyWparam;
       //LPARAM                        m_dwLastKeyLparam;
       ::message::key                m_keymessageLast;
-      size                          m_sizeTotal;
+      //size                          m_sizeTotal;
 
       bool                          m_bNeedCalcLayout;
       bool                          m_bCalcLayoutHintNoTextChange;
