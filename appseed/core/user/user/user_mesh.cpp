@@ -790,6 +790,24 @@ namespace user
       on_change_view_size();
 
 
+      //if (m_eview == view_icon)
+      //{
+      //   //            if(m_iconlayout.m_iWidth <= 0)
+      //   {
+      //      rect rectClient;
+      //      GetClientRect(rectClient);
+      //      index iIconSize;
+      //      if (m_nColumnCount > 0)
+      //         //                  iIconSize = MAX(32,m_columna[0]->m_sizeIcon.cy);
+      //         iIconSize = 32;
+      //      else
+      //         iIconSize = 32;
+      //      index iItemSize = iIconSize * 2;
+      //      m_iconlayout.m_iWidth = (int32_t)(MAX(1, rectClient.width() / iItemSize));
+      //   }
+      //}
+
+
    }
 
 
@@ -1043,7 +1061,7 @@ namespace user
          _001GetItemRect(&itemLast);
 
          draw_mesh_item itemTopRight(this);
-         if(m_flags.is_signalized(flag_auto_arrange) || m_iconlayout.m_iWidth <= 0)
+//         if(m_flags.is_signalized(flag_auto_arrange) || m_iconlayout.m_iWidth <= 0)
          {
             class rect rectClient;
 
@@ -1051,11 +1069,11 @@ namespace user
 
             itemTopRight.m_iItem = (index)MAX(1,rectClient.width() / get_item_size().cx) - 1;
          }
-         else
+  /*       else
          {
             itemTopRight.m_iItem = MAX(1,m_iconlayout.m_iWidth) - 1;
          }
-         itemTopRight.m_iDisplayItem = itemTopRight.m_iDisplayItem;
+  */       itemTopRight.m_iDisplayItem = itemTopRight.m_iDisplayItem;
          _001GetItemRect(&itemTopRight);
 
          rect.unite(itemFirst.m_rectItem,itemLast.m_rectItem);
@@ -1630,13 +1648,13 @@ namespace user
          iy = MAX(rectClient.top,iy);
          iy /= iItemSize;
 
-         if(m_flags.is_signalized(flag_auto_arrange) || m_iconlayout.m_iWidth <= 0)
+         //if(m_flags.is_signalized(flag_auto_arrange))
          {
             iItemParam = iy * (MAX(1,rectClient.width() / iItemSize)) + ix;
          }
-         else
+         //else
          {
-            iItemParam = iy * (MAX(1,m_iconlayout.m_iWidth)) + ix;
+           // iItemParam = iy * (MAX(1,m_iconlayout.m_iWidth)) + ix;
          }
 
 
@@ -1955,7 +1973,7 @@ namespace user
       }
       else if(m_eview == view_icon)
       {
-         if(m_flags.is_signalized(flag_auto_arrange) || m_iconlayout.m_iWidth <= 0)
+//         if(m_flags.is_signalized(flag_auto_arrange) || m_iconlayout.m_iWidth <= 0)
          {
             class rect rectClient;
             GetClientRect(&rectClient);
@@ -1971,20 +1989,20 @@ namespace user
             pdrawitem->m_rectItem.bottom = (LONG)(pdrawitem->m_rectItem.top + iItemSize);
             pdrawitem->m_rectItem.right = (LONG)(pdrawitem->m_rectItem.left + iItemSize);
          }
-         else
-         {
-            class rect rectClient;
-            GetClientRect(&rectClient);
-            if(m_bTopText)
-            {
-               rectClient.top += m_rectTopText.height();
-            }
-            index iItemSize = get_item_size().cy;
-            pdrawitem->m_rectItem.left = (LONG)(iItemSize * (pdrawitem->m_iDisplayItem % m_iconlayout.m_iWidth));
-            pdrawitem->m_rectItem.top = (LONG)(rectClient.top + iItemSize * (pdrawitem->m_iDisplayItem / m_iconlayout.m_iWidth));
-            pdrawitem->m_rectItem.bottom = (LONG)(pdrawitem->m_rectItem.top + iItemSize);
-            pdrawitem->m_rectItem.right = (LONG)(pdrawitem->m_rectItem.left + iItemSize);
-         }
+         //else
+         //{
+         //   class rect rectClient;
+         //   GetClientRect(&rectClient);
+         //   if(m_bTopText)
+         //   {
+         //      rectClient.top += m_rectTopText.height();
+         //   }
+         //   index iItemSize = get_item_size().cy;
+         //   pdrawitem->m_rectItem.left = (LONG)(iItemSize * (pdrawitem->m_iDisplayItem % m_iconlayout.m_iWidth));
+         //   pdrawitem->m_rectItem.top = (LONG)(rectClient.top + iItemSize * (pdrawitem->m_iDisplayItem / m_iconlayout.m_iWidth));
+         //   pdrawitem->m_rectItem.bottom = (LONG)(pdrawitem->m_rectItem.top + iItemSize);
+         //   pdrawitem->m_rectItem.right = (LONG)(pdrawitem->m_rectItem.left + iItemSize);
+         //}
          pdrawitem->m_rectItem.offset(-ptScroll.x,-ptScroll.y);
       }
 
@@ -5412,19 +5430,19 @@ namespace user
       {
          if(m_eview == view_icon)
          {
-            if(m_iconlayout.m_iWidth <= 0)
-            {
-               rect rectClient;
-               GetClientRect(rectClient);
-               index iIconSize;
-               if(m_nColumnCount > 0)
-//                  iIconSize = MAX(32,m_columna[0]->m_sizeIcon.cy);
-                     iIconSize = 32;
-               else
-                  iIconSize = 32;
-               index iItemSize = iIconSize * 2;
-               m_iconlayout.m_iWidth = (int32_t)(MAX(1,rectClient.width() / iItemSize));
-            }
+//            if(m_iconlayout.m_iWidth <= 0)
+//            {
+//               rect rectClient;
+//               GetClientRect(rectClient);
+//               index iIconSize;
+//               if(m_nColumnCount > 0)
+////                  iIconSize = MAX(32,m_columna[0]->m_sizeIcon.cy);
+//                     iIconSize = 32;
+//               else
+//                  iIconSize = 32;
+//               index iItemSize = iIconSize * 2;
+//               m_iconlayout.m_iWidth = (int32_t)(MAX(1,rectClient.width() / iItemSize));
+//            }
             return do_drop(iDisplayDrop,iDisplayDrag);
          }
          else
@@ -5460,6 +5478,7 @@ namespace user
 
    mesh::icon_layout::icon_layout()
    {
+//      m_iWidth = -1;
    }
 
    mesh::icon_layout::~icon_layout()
@@ -5469,13 +5488,13 @@ namespace user
    void mesh::icon_layout::write(::file::ostream & ostream) const
    {
       ostream << m_iaDisplayToStrict;
-      ostream << m_iWidth;
+//      ostream << m_iWidth;
    }
 
    void mesh::icon_layout::read(::file::istream & istream)
    {
       istream >> m_iaDisplayToStrict;
-      istream >> m_iWidth;
+//      istream >> m_iWidth;
    }
 
    class size mesh::get_item_size()

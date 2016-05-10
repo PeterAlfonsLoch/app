@@ -254,7 +254,7 @@ namespace user
          virtual ~icon_layout();
 
          index_biunique    m_iaDisplayToStrict;
-         int32_t           m_iWidth;
+         //int32_t           m_iWidth;
 
          virtual void write(::file::ostream & ostream) const;
          virtual void read(::file::istream & istream);

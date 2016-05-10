@@ -148,28 +148,42 @@ namespace file
 
    void string_buffer::set(const char * psz,strsize len)
    {
+      
       if(psz == NULL || *psz == '\0' || len <= 0)
       {
          psz = "";
          len = 0;
       }
-      throw todo(get_app());
-      //alloc(len);
-      //memcpy(m_psz,psz,len);
-      //m_iSize = len;
-      //m_psz[m_iSize] = '\0';
+
+      if (m_pstr == NULL)
+      {
+
+         m_pstr = new string();
+
+         m_bOwn = true;
+
+      }
+
+      m_pstr->assign(psz, len);
    }
 
    void string_buffer::append(const char * psz,strsize len)
    {
+
       if(psz == NULL || *psz == '\0' || len <= 0)
          return;
-      throw todo(get_app());
-      //alloc_up(len);
-      //memcpy(&m_psz[m_iSize],psz,len);
-      //m_iSize += len;
-      //m_psz[m_iSize] = '\0'; // for security/safety the buffer is left with a terminating null, even
-                             // it if haven't finished appending
+
+      if (m_pstr == NULL)
+      {
+
+         m_pstr = new string();
+
+         m_bOwn = true;
+
+      }
+
+      m_pstr->append(psz, len);
+
    }
 
 } // namespace file
