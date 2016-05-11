@@ -65,7 +65,7 @@ public:
    Window                        m_parent;
    RECT                          m_rect;
 
-   //ptr_array < bool >            m_bptraTellMeDestroyed; // Telmo why!! :-)
+   //ref_array < bool >            m_bptraTellMeDestroyed; // Telmo why!! :-)
 
 
    static oswindow_dataptra * s_pdataptra;

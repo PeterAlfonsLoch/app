@@ -34,7 +34,7 @@ namespace html
          float                                           m_iCellPadding;
 
          array < array < cell::holder > >                m_cellholdera;
-         ptr_array < table_row >                m_rowptra;
+         ref_array < table_row >                m_rowptra;
          array < column >                                m_columna;
 
 

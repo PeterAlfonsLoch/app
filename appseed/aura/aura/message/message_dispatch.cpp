@@ -324,10 +324,14 @@ namespace message
 
    dispatch::Signal::Signal()
    {
+
+      m_psignal = NULL;
+
    }
 
    dispatch::Signal::~Signal()
    {
+      ::aura::del(m_psignal);
    }
 
 //   dispatch::HandlerItemBase::~HandlerItemBase()

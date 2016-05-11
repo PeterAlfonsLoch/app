@@ -49,7 +49,7 @@ namespace user
       virtual int32_t run() override;
 
 
-      //ptr_array < ::user::interaction > get_wnda();
+      //ref_array < ::user::interaction > get_wnda();
 
 
    };

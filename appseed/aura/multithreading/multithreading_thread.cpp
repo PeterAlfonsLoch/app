@@ -1724,7 +1724,7 @@ void thread::post_to_all_threads(UINT message,WPARAM wparam,LPARAM lparam)
    {
 
       single_lock sl(::multithreading::s_pmutex,true);
-      ptr_array < thread > threadptra = *::multithreading::s_pthreadptra;
+      ref_array < thread > threadptra = *::multithreading::s_pthreadptra;
 
       for(index i = 0; i < threadptra.get_size(); i++)
       {
@@ -1789,7 +1789,7 @@ int32_t thread::exit_instance()
 //      if(m_spuiptra.is_set())
 //      {
 //
-//         sp(ptr_array < ::user::primitive >) puiptra = m_spuiptra;
+//         sp(ref_array < ::user::primitive >) puiptra = m_spuiptra;
 //
 //         m_spuiptra.release();
 //
@@ -2246,7 +2246,7 @@ bool thread::initialize_message_queue()
    //if(m_spuiptra.is_null())
    //{
 
-   //   m_spuiptra = canew(ptr_array < ::user::primitive >);
+   //   m_spuiptra = canew(ref_array < ::user::primitive >);
 
    //}
 

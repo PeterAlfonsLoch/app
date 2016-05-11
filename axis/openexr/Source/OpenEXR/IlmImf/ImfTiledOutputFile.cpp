@@ -227,7 +227,7 @@ struct TiledOutputFile::Data: public Mutex
 						// over all channels
 
     
-    ptr_array < TileBuffer > tileBuffers;
+    ref_array < TileBuffer > tileBuffers;
     size_t		tileBufferSize;         // size of a tile buffer
 
     Int64		tileOffsetsPosition;	// position of the tile index

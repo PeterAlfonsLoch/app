@@ -5,8 +5,8 @@ namespace data
 {
 
 
-   typedef CLASS_DECL_AURA ptr_array < listener > data_listener_ptra;
-   typedef CLASS_DECL_AURA ptr_array < data > data_ptra;
+   typedef CLASS_DECL_AURA ref_array < listener > data_listener_ptra;
+   typedef CLASS_DECL_AURA ref_array < data > data_ptra;
    typedef CLASS_DECL_AURA comparable_array < sp(object) > ca_ptra;
 
 

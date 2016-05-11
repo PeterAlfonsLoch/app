@@ -70,8 +70,8 @@ public:
 
    int32_t                                      m_i;
    int32_t                                      m_iShareCount;
-   ptr_array <  critical_section  >             m_protectptra;
-   ptr_array < fixed_alloc_no_sync >          m_allocptra;
+   ref_array <  critical_section  >             m_protectptra;
+   ref_array < fixed_alloc_no_sync >          m_allocptra;
 
 
    fixed_alloc_sync(UINT nAllocSize, UINT nBlockSize = 64, int32_t iShareCount = 2);
@@ -95,7 +95,7 @@ public:
 
    int32_t                                         m_i;
    int32_t                                         m_iShareCount;
-   ptr_array < fixed_alloc_sync >                    m_allocptra;
+   ref_array < fixed_alloc_sync >                    m_allocptra;
 
 
    fixed_alloc(UINT nAllocSize, UINT nBlockSize = 64);
@@ -113,7 +113,7 @@ public:
 
 
 class CLASS_DECL_AURA fixed_alloc_array :
-   public ptr_array < fixed_alloc >
+   public ref_array < fixed_alloc >
 {
 public:
 

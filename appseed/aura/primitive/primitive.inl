@@ -68,25 +68,21 @@ inline bool dispatch::AddMessageHandler(
    if(psignal == NULL)
    {
       psignal                    = canew(signal_item);
-      psignal->m_pid             = pid->copy();
+      psignal->m_pid             = pid;
       psignal->m_psignal         = new class ::signal();
-      psignal->m_psignal->connect(psignalizable,pfn);
-      handler_item <T> * pitem   = new handler_item<T>();
-      pitem->m_psignalizable     = psignalizable;
-      psignal->m_handlera.add(pitem);
       m_signala.add(psignal);
    }
    else
    {
       if(bAddUnique && psignal->m_psignal->is_connected(psignalizable,pfn))
-         return true;
-      // If a matching Signal is found, connect to
-      // this signal.
-      psignal->m_psignal->connect(psignalizable,pfn);
-      handler_item <T> * pitem = new handler_item<T>;
-      pitem->m_psignalizable = psignalizable;
-      psignal->m_handlera.add(pitem);
+         return false;
    }
+
+   // connect to the signal.
+   psignal->m_psignal->connect(psignalizable, pfn);
+   handler_item <T> * pitem = new handler_item<T>;
+   pitem->m_psignalizable = psignalizable;
+   psignal->m_handlera.add(pitem);
    m_iHandling++;
    return true;
 }

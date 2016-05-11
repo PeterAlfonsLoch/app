@@ -7,7 +7,7 @@
 //
 //void itemswap(void * pswaparg, index i1, index i2)
 //{
-//   ptr_array < factory_item_base > * pitemptra = (ptr_array < factory_item_base > *) pswaparg;
+//   ref_array < factory_item_base > * pitemptra = (ref_array < factory_item_base > *) pswaparg;
 //   pitemptra->swap(i1, i2);
 //}
 

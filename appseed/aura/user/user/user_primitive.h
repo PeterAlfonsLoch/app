@@ -11,7 +11,7 @@ namespace user
    {
    public:
 
-      //ptr_array < thread >                m_threadptra;
+      //ref_array < thread >                m_threadptra;
 
       void *                              m_pvoidUserInteraction; // ::user::primitive * 
 
@@ -33,7 +33,7 @@ namespace user
       virtual void _001OnTimer(::timer * ptimer);
 
 
-//      virtual ptr_array < ::thread > get_thread(::user::primitive * pui);
+//      virtual ref_array < ::thread > get_thread(::user::primitive * pui);
 //      virtual void add_thread(::thread * pthread);
   //    virtual void remove_thread(::thread * pthread);
 

@@ -32,7 +32,7 @@ namespace axis
 
 
       mutex                                           m_mutexFrame;
-      ptr_array < ::user::interaction >               m_uiptraFrame;
+      ref_array < ::user::interaction >               m_uiptraFrame;
 
       bool                                            m_bUpdateMatterOnInstall;
 

@@ -164,8 +164,8 @@ bool isAlphaNum(const string &str);
 
 #if DEBUG_MEMORY
 
-ptr_array < CScriptVar > allocatedVars;
-ptr_array < CScriptVarLink > allocatedLinks;
+ref_array < CScriptVar > allocatedVars;
+ref_array < CScriptVarLink > allocatedLinks;
 
 
 
@@ -1316,7 +1316,7 @@ void tinyjs::trace() {
 
 void tinyjs::execute(const string &code) {
     CScriptLex *oldLex = l;
-    ptr_array <  CScriptVar >  oldScopes = scopes;
+    ref_array <  CScriptVar >  oldScopes = scopes;
     l = new CScriptLex(code);
 #ifdef TINYJS_CALL_STACK
     call_stack.clear();
@@ -1346,7 +1346,7 @@ void tinyjs::execute(const string &code) {
 
 CScriptVarLink tinyjs::evaluateComplex(const string &code) {
     CScriptLex *oldLex = l;
-    ptr_array <  CScriptVar >  oldScopes = scopes;
+    ref_array <  CScriptVar >  oldScopes = scopes;
 
     l = new CScriptLex(code);
 #ifdef TINYJS_CALL_STACK

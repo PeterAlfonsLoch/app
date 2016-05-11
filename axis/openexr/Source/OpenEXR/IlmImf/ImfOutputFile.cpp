@@ -161,7 +161,7 @@ struct OutputFile::Data: public Mutex
                                                 // offset table
     Int64		 currentPosition;       // current file position
 
-    ptr_array < LineBuffer >  lineBuffers;           // each holds one line buffer
+    ref_array < LineBuffer >  lineBuffers;           // each holds one line buffer
     int			 linesInBuffer;         // number of scanlines each
                                                 // buffer holds
     size_t		 lineBufferSize;        // size of the line buffer

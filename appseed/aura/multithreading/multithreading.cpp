@@ -6,7 +6,7 @@ namespace multithreading
 
 
    CLASS_DECL_AURA comparable_eq_array<IDTHREAD> * s_piaThread = NULL;
-   CLASS_DECL_AURA ptr_array < thread > * s_pthreadptra = NULL;
+   CLASS_DECL_AURA ref_array < thread > * s_pthreadptra = NULL;
    CLASS_DECL_AURA mutex * s_pmutex = NULL;
 
 
@@ -14,7 +14,7 @@ namespace multithreading
    {
       s_pmutex = new mutex(NULL);
       s_piaThread = new comparable_eq_array<IDTHREAD>;
-      s_pthreadptra = new ptr_array < thread >;
+      s_pthreadptra = new ref_array < thread >;
 
       __node_init_multithreading();
 
@@ -160,7 +160,7 @@ namespace multithreading
       try
       {
 
-         if(pthread->is_heap())
+         if(pthread->m_bAutoDelete)
          {
 
             ::aura::del(pthread);

@@ -321,10 +321,6 @@ signalid_array::signalid_array()
 
 signalid_array::~signalid_array()
 {
-   for (int32_t i = 0; i < this->get_size(); i++)
-   {
-      delete this->element_at(i);
-   }
 }
 
 
@@ -358,10 +354,6 @@ dispatch::handler_item_base::~handler_item_base()
 
 dispatch::handler_item_array::~handler_item_array()
 {
-   for (int32_t i = 0; i < this->get_size(); i++)
-   {
-      delete this->element_at(i);
-   }
 }
 
 bool dispatch::handler_item_array::HasSignalizable(signalizable* psignalizable)
@@ -383,8 +375,7 @@ dispatch::signal_item::signal_item()
 
 dispatch::signal_item::~signal_item()
 {
-   //::aura::del(m_psignal);
-   ::aura::del(m_pid);
+   ::aura::del(m_psignal);
 }
 
 dispatch::dispatch()

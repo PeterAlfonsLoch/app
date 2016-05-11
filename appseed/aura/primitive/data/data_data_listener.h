@@ -13,7 +13,7 @@ namespace data
    public:
 
 
-      ptr_array < data > m_dataptra;
+      ref_array < data > m_dataptra;
 
 
       listener();

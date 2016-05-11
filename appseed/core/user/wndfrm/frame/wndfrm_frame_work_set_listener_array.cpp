@@ -84,7 +84,7 @@ namespace user
 
          /*void WorkSetListenerArray::add(WorkSetListener *plistener)
          {
-         ptr_array < WorkSetListener >
+         ref_array < WorkSetListener >
          ::add(plistener);
          }*/
 

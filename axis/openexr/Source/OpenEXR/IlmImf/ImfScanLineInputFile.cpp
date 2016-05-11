@@ -163,7 +163,7 @@ struct ScanLineInputFile::Data: public Mutex
     vector<InSliceInfo>	slices;             // info about channels in file
     IStream *		is;                 // file stream to read from
     
-    ptr_array < LineBuffer > lineBuffers;        // each holds one line buffer
+    ref_array < LineBuffer > lineBuffers;        // each holds one line buffer
     int			linesInBuffer;      // number of scanlines each buffer
                                             // holds
     size_t		lineBufferSize;     // size of the line buffer

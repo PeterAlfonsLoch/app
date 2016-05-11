@@ -53,18 +53,27 @@ class ref_array:
 public:
 
 
-   //DECLARE_AND_IMPLEMENT_DEFAULT_CONSTRUCTION_AND_ASSIGNMENT(ptr_array, ARRAY_TYPE)
-   //inline ptr_array() {}
-   //inline ptr_array(const ptr_array & a) { this->operator = (a); }
-   //inline ptr_array(ptr_array && a) { this->operator = (a); }
+   //DECLARE_AND_IMPLEMENT_DEFAULT_CONSTRUCTION_AND_ASSIGNMENT(ref_array, ARRAY_TYPE)
+   //inline ref_array() {}
+   //inline ref_array(const ref_array & a) { this->operator = (a); }
+   //inline ref_array(ref_array && a) { this->operator = (a); }
 
 
-   //inline ptr_array & operator = (const ptr_array & a) { this->ARRAY_TYPE::operator = (a); return *this; }
-   //inline ptr_array & operator = (ptr_array && a){ this->ARRAY_TYPE::operator = (a); return *this; }
+   //inline ref_array & operator = (const ref_array & a) { this->ARRAY_TYPE::operator = (a); return *this; }
+   //inline ref_array & operator = (ref_array && a){ this->ARRAY_TYPE::operator = (a); return *this; }
 
 
    inline TYPE & operator()(index i) { return *this->element_at(i); }
    inline const TYPE & operator()(index i) const { return *this->element_at(i); }
+
+   template < class T >
+   T * typed_ptr_at(index i)
+   {
+
+      return dynamic_cast <T *> (element_at(i));
+
+   }
+
 
 };
 
@@ -94,17 +103,17 @@ typedef raw_ref_array < void * > void_ptra;
 
 
 
-template < class TYPE, class ARRAY_TYPE = raw_ref_array < TYPE * > >
+template < class TYPE, class ARRAY_TYPE = ref_array < TYPE > >
 class ptr_array :
    public ARRAY_TYPE
 {
 public:
 
 
-   //DECLARE_AND_IMPLEMENT_DEFAULT_CONSTRUCTION_AND_ASSIGNMENT(ptr_array, ARRAY_TYPE)
-   //inline ptr_array() {}
-   //inline ptr_array(const ptr_array & a) { this->operator = (a); }
-   //inline ptr_array(ptr_array && a) { this->operator = (a); }
+   //DECLARE_AND_IMPLEMENT_DEFAULT_CONSTRUCTION_AND_ASSIGNMENT(ref_array, ARRAY_TYPE)
+   //inline ref_array() {}
+   //inline ref_array(const ref_array & a) { this->operator = (a); }
+   //inline ref_array(ref_array && a) { this->operator = (a); }
 
   
 
@@ -117,9 +126,47 @@ public:
 
    void remove_all()
    {
-      for (auto p : *this)
+
+      index i;
+
+      while((i = get_upper_bound()) >= 0)
       {
 
+         try
+         {
+
+            remove_at(i);
+
+         }
+         catch (...)
+         {
+
+         }
+
+      }
+
+   }
+
+
+   ::count remove(TYPE * p)
+   {
+
+      ::count cRemoved = 0;
+
+      index iFind = 0;
+
+      while ((iFind = find_first(p, iFind)) >= 0)
+      {
+
+         cRemoved++;
+
+         remove_at(iFind);
+
+      }
+
+      if (cRemoved > 0)
+      {
+       
          try
          {
 
@@ -133,42 +180,68 @@ public:
 
       }
 
-      ARRAY_TYPE::remove_all();
+      return cRemoved;
 
    }
+
+
+   index find_first(TYPE * p, index iFind = 0)
+   {
+
+      for (; iFind < get_size(); iFind++)
+      {
+
+         if (element_at(iFind) == p)
+         {
+
+            return iFind;
+
+         }
+
+      }
+
+      return -1;
+
+   }
+
+
+   bool contains(TYPE * p, index iFind = 0)
+   {
+
+      return find_first(p, iFind) >= 0;
+
+   }
+
 
    void remove_at(index i)
    {
 
+      TYPE * p = element_at(i);
+
+      ARRAY_TYPE::remove_at(i);
+
       try
       {
 
-         delete element_at(i);
+         delete p;
 
       }
       catch (...)
       {
 
       }
-      ARRAY_TYPE::remove_at(i);
+
    }
 
 
-   //inline ptr_array & operator = (const ptr_array & a) { this->ARRAY_TYPE::operator = (a); return *this; }
-   //inline ptr_array & operator = (ptr_array && a){ this->ARRAY_TYPE::operator = (a); return *this; }
+   //inline ref_array & operator = (const ref_array & a) { this->ARRAY_TYPE::operator = (a); return *this; }
+   //inline ref_array & operator = (ref_array && a){ this->ARRAY_TYPE::operator = (a); return *this; }
 
 
    inline TYPE & operator()(index i) { return *this->element_at(i); }
    inline const TYPE & operator()(index i) const { return *this->element_at(i); }
 
 
-   template < class T >
-   T * typed_ptr_at(index i)
-   {
-
-      return dynamic_cast <T *> (element_at(i));
-
-   }
-
+ 
 };
 

@@ -3,7 +3,7 @@
 
 //template < class T >
 //class synch_ptr_array:
-//   virtual public ptr_array < T >
+//   virtual public ref_array < T >
 //{
 //public:
 //
@@ -59,10 +59,10 @@
 //   }
 //
 //
-//   ptr_array < T > base_ptra()
+//   ref_array < T > base_ptra()
 //   {
 //      synch_lock sl(&m_mutex);
-//      return *dynamic_cast < ptr_array < T > * > (this);
+//      return *dynamic_cast < ref_array < T > * > (this);
 //
 //   }
 //

@@ -525,7 +525,7 @@ bool XfplayerViewLine::to(::draw2d::dib * pdib, bool bDraw, const RECT & rect, r
 
 /*void XfplayerViewLine::CalcCharsPositions(
 ::draw2d::graphics * pdcForeground,
-   ptr_array <  visual::font > * pFonts,
+   ref_array <  visual::font > * pFonts,
    const RECT & rect)
 {
    m_bCacheEmboss = false;
@@ -1078,7 +1078,7 @@ void XfplayerViewLine::SetForegroundColor(COLORREF cr)
    m_crForeground = cr;
 }
 
-/*ptr_array <  visual::font > * XfplayerViewLine::GetFonts()
+/*ref_array <  visual::font > * XfplayerViewLine::GetFonts()
 {
     return &m_fonts;
 }

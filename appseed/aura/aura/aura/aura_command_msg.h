@@ -21,7 +21,7 @@ namespace aura
       ::cmd_ui  *                                    m_pcmdui;
       id                                           m_id;
       e_type                                       m_etype;
-      ptr_array < ::command_target >      m_commandtargetptraHandle;
+      ref_array < ::command_target >      m_commandtargetptraHandle;
 
 
       cmd_msg();

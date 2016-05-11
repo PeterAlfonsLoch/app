@@ -18,11 +18,11 @@ namespace user
    };
 
    class CLASS_DECL_BASE interaction_ptra:
-      public ptr_array < ::user::interaction >
+      public ref_array < ::user::interaction >
    {
    public:
 
-      //DECLARE_AND_IMPLEMENT_DEFAULT_CONSTRUCTION_AND_ASSIGNMENT(interaction_ptra, ptr_array < ::user::interaction >)
+      //DECLARE_AND_IMPLEMENT_DEFAULT_CONSTRUCTION_AND_ASSIGNMENT(interaction_ptra, ref_array < ::user::interaction >)
 
       //interaction_ptra(const interaction_spa & a);
 
@@ -31,7 +31,7 @@ namespace user
 
       ::user::oswindow_array get_hwnda();
 
-      using ptr_array < ::user::interaction >::find_first;
+      using ref_array < ::user::interaction >::find_first;
       ::user::interaction * find_first_typed(sp(type) info);
       ::user::interaction * find_first(oswindow oswindow);
 
@@ -48,7 +48,7 @@ namespace user
 
       interaction_spa();
       interaction_spa(::aura::application * papp);
-      interaction_spa(const ptr_array < ::user::interaction > & a);
+      interaction_spa(const ref_array < ::user::interaction > & a);
       interaction_spa(const ::user::interaction_spa & a)
       {
 

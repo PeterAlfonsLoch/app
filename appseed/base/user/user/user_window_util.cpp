@@ -921,7 +921,7 @@ namespace user
 
    }
 
-   interaction_ptra::interaction_ptra(const ptr_array < ::user::interaction > & a)
+   interaction_ptra::interaction_ptra(const ref_array < ::user::interaction > & a)
    {
 
       this->operator = (a);
@@ -966,17 +966,17 @@ namespace user
    interaction_ptra & interaction_ptra::operator = (const interaction_ptra & a)
    {
 
-      ptr_array < ::user::interaction >::operator = (a);
+      ref_array < ::user::interaction >::operator = (a);
 
       return *this;
 
    }
 
 
-   interaction_ptra & interaction_ptra::operator = (const ptr_array < ::user::interaction > & a)
+   interaction_ptra & interaction_ptra::operator = (const ref_array < ::user::interaction > & a)
    {
 
-      ptr_array < ::user::interaction >::operator = (a);
+      ref_array < ::user::interaction >::operator = (a);
 
       return *this;
 
@@ -986,7 +986,7 @@ namespace user
    interaction_ptra & interaction_ptra::operator = (interaction_ptra && a)
    {
 
-      ptr_array < ::user::interaction >::operator = (a);
+      ref_array < ::user::interaction >::operator = (a);
 
       return *this;
 
@@ -1106,7 +1106,7 @@ namespace user
 
    }
 
-   interaction_spa::interaction_spa(const ptr_array < ::user::interaction > & ptra)
+   interaction_spa::interaction_spa(const ref_array < ::user::interaction > & ptra)
    {
 
     for(index i = 0; i < ptra.get_count(); i++)

@@ -20,7 +20,7 @@ namespace html
       data *                     m_pdata;
 
       style                      m_style;
-      ptr_array < elemental >    m_elementalptra;
+      ref_array < elemental >    m_elementalptra;
 
       e_tag                      m_etag;
       string                     m_strBody;

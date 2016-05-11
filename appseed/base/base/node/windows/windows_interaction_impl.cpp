@@ -272,7 +272,7 @@ namespace windows
    void interaction_impl::construct(oswindow oswindow)
    {
 
-//      m_guieptraMouseHover = canew(ptr_array < ::user::interaction >);
+//      m_guieptraMouseHover = canew(ref_array < ::user::interaction >);
       //      m_bRectParentClient  = false;
       m_pfnSuper           = NULL;
       m_bMouseHover        = false;
@@ -293,7 +293,7 @@ namespace windows
       ::aura::timer_array(papp)
    {
 
-      //    m_guieptraMouseHover = canew(ptr_array < ::user::interaction >);
+      //    m_guieptraMouseHover = canew(ref_array < ::user::interaction >);
       //      m_bRectParentClient  = false;
       m_pfnSuper           = NULL;
       m_bMouseHover        = false;

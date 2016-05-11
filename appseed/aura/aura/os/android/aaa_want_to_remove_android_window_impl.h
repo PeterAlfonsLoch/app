@@ -23,7 +23,7 @@
 //} // namespace user
 //
 
-typedef ptr_array < oswindow_data > oswindow_dataptra;
+typedef ref_array < oswindow_data > oswindow_dataptra;
 
 
 struct CLASS_DECL_AURA oswindow_data

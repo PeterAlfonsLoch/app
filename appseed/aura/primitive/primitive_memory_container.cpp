@@ -328,13 +328,13 @@ namespace primitive
 
    }
 
-   ptr_array < void * > & memory_container::vppa()
+   ref_array < void * > & memory_container::vppa()
    {
 
       if(m_pvppa == NULL)
       {
 
-         m_pvppa = new ptr_array < void * > ();
+         m_pvppa = new ref_array < void * > ();
 
       }
 

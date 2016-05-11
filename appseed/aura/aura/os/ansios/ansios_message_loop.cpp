@@ -8,7 +8,7 @@ public:
 
    simple_event                     m_event;
    mutex                     m_mutex;
-   ::ptr_array < MESSAGE >           m_msgptra;
+   ::ref_array < MESSAGE >           m_msgptra;
 
 
    WINBOOL GetMessage(MESSAGE * pmsg);

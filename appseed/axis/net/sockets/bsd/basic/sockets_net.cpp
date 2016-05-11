@@ -307,7 +307,7 @@ namespace sockets
    #endif // NO_GETADDRINFO
       }
       item.r = true;
-      ptr_array <  addrinfo > vec;
+      ref_array <  addrinfo > vec;
       addrinfo *ai = res;
       while (ai)
       {
@@ -630,7 +630,7 @@ namespace sockets
       int32_t n = getaddrinfo(host, NULL, &hints, &res);
       if (!n)
       {
-         ptr_array <  addrinfo > vec;
+         ref_array <  addrinfo > vec;
          addrinfo *ai = res;
          while (ai)
          {
@@ -744,7 +744,7 @@ namespace sockets
       int32_t n = getaddrinfo(host, NULL, &hints, &res);
       if (!n)
       {
-         ptr_array <  addrinfo > vec;
+         ref_array <  addrinfo > vec;
          struct addrinfo *ai = res;
          while (ai)
          {

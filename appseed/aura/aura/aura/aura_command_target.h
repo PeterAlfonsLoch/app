@@ -109,7 +109,11 @@ public:
       ::signalid * pid;
       signalid.m_id = id;
       pid = m_signalidaCommand.get(&signalid);
-      return m_dispatchUpdateCmdUi.AddMessageHandler(pid,dynamic_cast < T *> (this),pfn,true);
+      if (!m_dispatchUpdateCmdUi.AddMessageHandler(pid, dynamic_cast <T *> (this), pfn, true))
+      {
+         return false;
+      }
+      return true;
    }
    template < class T >
    bool connect_command(id id,void (T::*pfn)(signal_details *))
@@ -118,7 +122,11 @@ public:
       ::signalid * pid;
       signalid.m_id = id;
       pid = m_signalidaCommand.get(&signalid);
-      return m_dispatchCommand.AddMessageHandler(pid,dynamic_cast < T *> (this),pfn,true);
+      if (!m_dispatchCommand.AddMessageHandler(pid, dynamic_cast <T *> (this), pfn, true))
+      {
+         return false;
+      }
+      return true;
    }
    template < class T >
    bool connect_update_cmd_ui(id id,T * psignalizable, void (T::*pfn)(signal_details *))
@@ -127,7 +135,11 @@ public:
       ::signalid * pid;
       signalid.m_id = id;
       pid = m_signalidaCommand.get(&signalid);
-      return m_dispatchUpdateCmdUi.AddMessageHandler(pid,psignalizable,pfn,true);
+      if (!m_dispatchUpdateCmdUi.AddMessageHandler(pid, psignalizable, pfn, true))
+      {
+         return false;
+      }
+      return true;
    }
    template < class T >
    bool connect_command(id id,T * psignalizable,void (T::*pfn)(signal_details *))
@@ -136,7 +148,11 @@ public:
       ::signalid * pid;
       signalid.m_id = id;
       pid = m_signalidaCommand.get(&signalid);
-      return m_dispatchCommand.AddMessageHandler(pid,psignalizable,pfn,true);
+      if (!m_dispatchCommand.AddMessageHandler(pid, psignalizable, pfn, true))
+      {
+         return false;
+      }
+      return true;
    }
    template < class T >
    bool connect_update_cmd_range_ui(int32_t iStart,int32_t iEnd,void (T::*pfn)(signal_details *))
@@ -146,7 +162,11 @@ public:
       signalrange.m_iStart = iStart;
       signalrange.m_iEnd = iEnd;
       pid = m_signalidaCommand.get(&signalrange);
-      return m_dispatchUpdateCmdUi.AddMessageHandler(pid,dynamic_cast < T *> (this),pfn,true);
+      if (!m_dispatchUpdateCmdUi.AddMessageHandler(pid, dynamic_cast <T *> (this), pfn, true))
+      {
+         return false;
+      }
+      return true;
    }
    template < class T >
    bool connect_command_range(int32_t iStart,int32_t iEnd,void (T::*pfn)(signal_details *))
@@ -156,7 +176,11 @@ public:
       signalrange.m_iStart = iStart;
       signalrange.m_iEnd = iEnd;
       pid = m_signalidaCommand.get(&signalrange);
-      return m_dispatchCommand.AddMessageHandler(pid,dynamic_cast < T *> (this),pfn,true);
+      if (!m_dispatchCommand.AddMessageHandler(pid, dynamic_cast <T *> (this), pfn, true))
+      {
+         return false;
+      }
+      return true;
    }
 
    virtual bool _001SendCommand(id id);

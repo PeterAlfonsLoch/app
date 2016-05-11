@@ -54,7 +54,7 @@ namespace math
 
       string strNumber;
 //      binary_operation * pbinopNew;
-      ptr_array < number > stackptra;
+      ref_array < number > stackptra;
 
       throw not_implemented(get_thread_app());
 

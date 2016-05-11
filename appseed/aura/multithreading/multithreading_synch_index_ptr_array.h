@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_AURA synch_index_ptr_array:
-   virtual protected ptr_array < index >
+   virtual protected ref_array < index >
 {
 public:
 

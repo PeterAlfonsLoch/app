@@ -10,7 +10,7 @@ namespace aura
    {
 
 
-      m_plocaleschema = canew(::str::international::locale_schema(papp));
+      m_plocaleschema = new ::str::international::locale_schema(papp);
 
 
       m_pstr = NULL;
@@ -20,6 +20,8 @@ namespace aura
 
    str_context::~str_context()
    {
+
+      ::aura::del(m_plocaleschema);
 
    }
 

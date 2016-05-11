@@ -129,10 +129,10 @@ namespace aura
 
 
 
-      sp(::str::international::locale_schema)    m_plocaleschema;
+      ::str::international::locale_schema *     m_plocaleschema;
 
 
-      str *                                      m_pstr;
+      str *                                     m_pstr;
 
       str_locale *                              m_plocale;
 
@@ -143,7 +143,7 @@ namespace aura
 
 
 
-      ptr_array < str_schema >         m_schemaptra;
+      ref_array < str_schema >                  m_schemaptra;
 
 
 

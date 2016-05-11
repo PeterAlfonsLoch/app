@@ -45,7 +45,7 @@ namespace html
    };
 
 
-   typedef ptr_array < base > base_ptr_array;
+   typedef ref_array < base > base_ptr_array;
 
 
 } // namespace html

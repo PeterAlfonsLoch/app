@@ -215,7 +215,7 @@ public:
 
    comparable_array < id > get_comparable_ida() const;
 
-   ::count explode_command_line(const Type & str,ptr_array < char > * argv = NULL);
+   ::count explode_command_line(const Type & str,ref_array < char > * argv = NULL);
 
 
 
@@ -2340,7 +2340,7 @@ void string_array < Type, RawType > ::replace(const char * lpszSearch,const char
 
 
 template < class Type, class RawType >
-::count string_array < Type, RawType > ::explode_command_line(const Type & str,ptr_array < char > * argv)
+::count string_array < Type, RawType > ::explode_command_line(const Type & str,ref_array < char > * argv)
 {
 
    Type strParse(str);

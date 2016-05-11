@@ -11,8 +11,8 @@ namespace user
    public:
 
 
-      ptr_array < ::user::tree >          m_treeptra; 
-      ptr_array < ::user::tree >          m_treeptraBound; 
+      ref_array < ::user::tree >          m_treeptra; 
+      ref_array < ::user::tree >          m_treeptraBound; 
       sp(image_list)                      m_pimagelist;
 
 

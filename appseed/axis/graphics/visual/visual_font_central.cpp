@@ -95,14 +95,14 @@ void font_central::Finalize()
     return m_fontMenu;
 }
 
-//ptr_array <  visual::font > *
+//ref_array <  visual::font > *
 //   font_central::GetLyricViewFonts_()
 //{
 //   return m_pLyricViewFonts;
 
 //}
 
-//ptr_array <  visual::font > *
+//ref_array <  visual::font > *
 //   font_central::GetLyricViewCompactFonts_()
 //{
 //   return m_pLyricViewCompactFonts;
@@ -194,9 +194,9 @@ void font_central::CreateLyricViewFonts()
 
    string strLucida;
 
-   //m_pTitleFonts = new ptr_array <  visual::font >;
-   //m_pSubTitleFonts = new ptr_array <  visual::font >;
-   //m_pH3TitleFonts = new ptr_array <  visual::font >;
+   //m_pTitleFonts = new ref_array <  visual::font >;
+   //m_pSubTitleFonts = new ref_array <  visual::font >;
+   //m_pH3TitleFonts = new ref_array <  visual::font >;
 
    visual::font * pPlayerFont = canew(visual::font(get_app()));
    pPlayerFont->GetFont()->create_point_font(FONTFACENAME_LUCIDA, 54, FW_BOLD);

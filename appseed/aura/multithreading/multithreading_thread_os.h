@@ -27,7 +27,7 @@
 //#endif
 //
 //   static mutex *                  s_pmutex;
-//   static ptr_array <  hthread > *  s_pptra;
+//   static ref_array <  hthread > *  s_pptra;
 //
 //
 //   hthread(uint32_t ( * pfn)(void *) = NULL, void * pv = NULL);
@@ -230,7 +230,7 @@ namespace multithreading
    CLASS_DECL_AURA uint32_t __on_thread_finally(thread * pthread);
 
    CLASS_DECL_AURA extern comparable_eq_array <IDTHREAD> * s_piaThread;
-   CLASS_DECL_AURA extern ptr_array < thread > * s_pthreadptra;
+   CLASS_DECL_AURA extern ref_array < thread > * s_pthreadptra;
    CLASS_DECL_AURA extern mutex * s_pmutex;
 
 

@@ -237,7 +237,7 @@ namespace aura
 
          //os_thread::s_pmutex = new mutex();
 
-         //os_thread::s_pptra = new ptr_array <  os_thread > ();
+         //os_thread::s_pptra = new ref_array <  os_thread > ();
 
 #endif
 
@@ -266,7 +266,7 @@ namespace aura
 
          //hthread::s_pmutex = new mutex();
 
-         //hthread::s_pptra = new ptr_array <  hthread > ();
+         //hthread::s_pptra = new ref_array <  hthread > ();
 
 #endif // defined(LINUX) || defined(APPLEOS) || defined(METROWIN)
 

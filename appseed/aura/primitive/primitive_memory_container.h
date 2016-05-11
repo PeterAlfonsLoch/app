@@ -16,7 +16,7 @@ namespace primitive
 
 
       sp(memory_base)                        m_spmemory;
-      ptr_array < void * > *                 m_pvppa;
+      ref_array < void * > *                 m_pvppa;
 
    public:
 
@@ -84,7 +84,7 @@ namespace primitive
 
    protected:
 
-      ptr_array < void * > & vppa();
+      ref_array < void * > & vppa();
 
 
    };

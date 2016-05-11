@@ -13,8 +13,8 @@ namespace colorertake5
    protected:
 
 
-      ptr_array < LineRegion > lineRegions;
-      ptr_array < LineRegion > schemeStack;
+      ref_array < LineRegion > lineRegions;
+      ref_array < LineRegion > schemeStack;
 
       RegionMapper *regionMapper;
       LineRegion *flowBackground;

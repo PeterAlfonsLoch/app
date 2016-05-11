@@ -34,7 +34,7 @@ namespace user
 
 } // namespace user
 
-typedef ptr_array < ::command_target > command_target_ptra;
+typedef ref_array < ::command_target > command_target_ptra;
 
 namespace user
 {
@@ -46,14 +46,14 @@ namespace user
       {
 
          class CLASS_DECL_CORE DispatchHandlerItemArray :
-            public ptr_array < DispatchHandlerItemBase >
+            public ref_array < DispatchHandlerItemBase >
          {
          public:
             bool HasSignalizable(signalizable* psignalizable);
          };
 
          class DispatchSignalPtrArray :
-            public ptr_array < DispatchSignal >
+            public ref_array < DispatchSignal >
          {
          };
 

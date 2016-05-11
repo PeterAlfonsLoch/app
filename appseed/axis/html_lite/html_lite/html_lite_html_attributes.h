@@ -488,6 +488,6 @@ public:
 
 // Data Members
 private:
-   typedef ptr_array < LiteHTMLElemAttr >   CElemAttrArray;
+   typedef ref_array < LiteHTMLElemAttr >   CElemAttrArray;
    CElemAttrArray   *m_parrAttrib;   // array of attributes/value pairs
 };

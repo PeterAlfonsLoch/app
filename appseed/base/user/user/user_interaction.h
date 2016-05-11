@@ -95,7 +95,7 @@ namespace user
 
 
 
-      //ptr_array < bool >                  m_bptraTellMeDestroyed; // Telmo why!! :-)
+      //ref_array < bool >                  m_bptraTellMeDestroyed; // Telmo why!! :-)
 
 
       interaction();

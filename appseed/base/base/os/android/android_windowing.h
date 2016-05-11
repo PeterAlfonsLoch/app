@@ -15,7 +15,7 @@ namespace boot
 struct oswindow_data;
 
 
-typedef ptr_array < oswindow_data > oswindow_dataptra;
+typedef ref_array < oswindow_data > oswindow_dataptra;
 
 
 
@@ -43,7 +43,7 @@ namespace user
 } // namespace user
 
 
-typedef ptr_array < oswindow_data > oswindow_dataptra;
+typedef ref_array < oswindow_data > oswindow_dataptra;
 
 /*
 * Copyright (C) 2010 The Android Open Source Project

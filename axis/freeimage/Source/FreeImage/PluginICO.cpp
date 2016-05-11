@@ -94,7 +94,7 @@ CalculateImageSize(FIBITMAP* icon_dib) {
 @return Returns the file offset for that image
 */
 static DWORD
-CalculateImageOffset(ptr_array < FIBITMAP >& vPages, int nIndex ) {
+CalculateImageOffset(ref_array < FIBITMAP >& vPages, int nIndex ) {
 	DWORD	dwSize;
 
     // calculate the ICO header size
@@ -640,7 +640,7 @@ SaveStandardIcon(FreeImageIO *io, FIBITMAP *dib, fi_handle handle) {
 static WINBOOL DLL_CALLCONV
 Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void *data) {
 	ICONHEADER *icon_header = NULL;
-	ptr_array < FIBITMAP > vPages;
+	ref_array < FIBITMAP > vPages;
 	int k;
 
 	if(!dib || !handle || !data) {

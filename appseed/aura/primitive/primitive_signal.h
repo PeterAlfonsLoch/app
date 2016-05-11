@@ -53,7 +53,7 @@ class CLASS_DECL_AURA signalizable :
 public:
 
 
-   ptr_array < class signal > m_signalptra;
+   ref_array < class signal > m_signalptra;
 
 
    signalizable();
@@ -75,25 +75,25 @@ public:
 };
 
 class CLASS_DECL_AURA base_signalizable_array :
-   virtual protected ptr_array < signalizable >
+   virtual protected ref_array < signalizable >
 {
 public:
 
    inline index add(signalizable * psignalizable)
    {
       install_handlers(psignalizable);
-      return ::ptr_array < signalizable >::add(psignalizable);
+      return ::ref_array < signalizable >::add(psignalizable);
    }
    inline index remove(signalizable * psignalizable)
    {
-      return ::ptr_array < signalizable >::remove(psignalizable);
+      return ::ref_array < signalizable >::remove(psignalizable);
    }
 
-   inline signalizable * element_at(index i) { return ::ptr_array < signalizable >::element_at(i); }
-   inline ::count get_size() { return ::ptr_array < signalizable >::get_size(); }
-   inline ::count get_count() { return ::ptr_array < signalizable >::get_count(); }
-   inline ::count size() { return ::ptr_array < signalizable >::size(); }
-   inline ::count count() { return ::ptr_array < signalizable >::count(); }
+   inline signalizable * element_at(index i) { return ::ref_array < signalizable >::element_at(i); }
+   inline ::count get_size() { return ::ref_array < signalizable >::get_size(); }
+   inline ::count get_count() { return ::ref_array < signalizable >::get_count(); }
+   inline ::count size() { return ::ref_array < signalizable >::size(); }
+   inline ::count count() { return ::ref_array < signalizable >::count(); }
 
    virtual void install_handlers(signalizable *) {}
 
@@ -256,7 +256,7 @@ public:
 };
 
 class CLASS_DECL_AURA signalid_array :
-   virtual protected ptr_array < signalid >
+   virtual public ptr_array < signalid >
 {
 public:
 
@@ -264,8 +264,8 @@ public:
    virtual ~signalid_array();
    signalid * get(signalid * pid);
 
-   using ptr_array < signalid >::get_size;
-   using ptr_array < signalid >::operator[];
+   using ref_array < signalid >::get_size;
+   using ref_array < signalid >::operator[];
 
 };
 
@@ -329,7 +329,7 @@ public:
 
 
    class CLASS_DECL_AURA signal_item_ptr_array :
-      public ptr_array < signal_item >
+      public ref_array < signal_item >
    {
    public:
 
@@ -339,7 +339,7 @@ public:
 
 
    class CLASS_DECL_AURA signal_item_array :
-      public spa(signal_item)
+      public ptr_array < signal_item >
    {
    public:
 

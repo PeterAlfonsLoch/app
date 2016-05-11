@@ -127,7 +127,7 @@ public:
    };
 
 
-   ptr_array < pair >   m_ptra;
+   ref_array < pair >   m_ptra;
 
 
 

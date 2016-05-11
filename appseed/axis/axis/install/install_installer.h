@@ -156,7 +156,7 @@ namespace install
       bool              m_bLaunchDesktopApplicationOnIgnitPhase2;
 
       ::sockets::http_session * m_phttpsession;
-      ptr_array <::sockets::http_session > m_httpsessionptra;
+      ref_array <::sockets::http_session > m_httpsessionptra;
       mutex m_mutexOmp;
 
       installer(::aura::application * papp);

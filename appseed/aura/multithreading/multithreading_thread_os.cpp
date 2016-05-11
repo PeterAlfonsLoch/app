@@ -3,7 +3,7 @@
 //void _on_os_hthread_end();
 //
 //mutex * hthread::s_pmutex = NULL;
-//ptr_array < hthread  > * hthread::s_pptra = NULL;
+//ref_array < hthread  > * hthread::s_pptra = NULL;
 //thread_pointer < hthread >  t_phthread;
 //
 //hthread::hthread(uint32_t(* pfn)(void *),void * pv)

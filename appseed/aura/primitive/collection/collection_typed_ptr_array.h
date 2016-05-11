@@ -2,8 +2,8 @@
 
 /*
 
-class CLASS_DECL_AURA ptr_array :
-   virtual public ptr_array < void >
+class CLASS_DECL_AURA ref_array :
+   virtual public ref_array < void >
 {
 public:
 
@@ -167,7 +167,7 @@ public:
 /////////////////////////////////////////////////////////////////////////////
 // CTypedPtrArray<AXIS_CLASS, POINTER>
 
-template < class POINTER, class AXIS_CLASS = ptr_array>
+template < class POINTER, class AXIS_CLASS = ref_array>
 class typed_ptr_array :
    public AXIS_CLASS
 {

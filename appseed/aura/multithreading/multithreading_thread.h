@@ -49,8 +49,8 @@ public:
    ::user::primitive *                  m_puiActive;         // active main interaction_impl (may not be m_puiMain)
    //property_set                           m_set;
    string                                 m_strWorkUrl;
-   ptr_array < thread >                   m_threadptraDependent;
-   ptr_array < thread >                   m_threadptraRequired;
+   ref_array < thread >                   m_threadptraDependent;
+   ref_array < thread >                   m_threadptraRequired;
 
 
    bool                                   m_bZipIsDir;
@@ -70,7 +70,7 @@ public:
 
    //thread *                                  m_pthread;
 
-   //sp(ptr_array < ::user::primitive >)     m_spuiptra;
+   //sp(ref_array < ::user::primitive >)     m_spuiptra;
 
    bool                                      m_bDupHandle;
    HTHREAD                                   m_hthread;

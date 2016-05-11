@@ -519,7 +519,7 @@ namespace axis
    //}
 
 
-   //ptr_array < ::user::interaction > application::frames()
+   //ref_array < ::user::interaction > application::frames()
    //{
 
    //   return m_framea.axis_ptra();

@@ -1735,7 +1735,7 @@ out.set_os_crypt_buffer(::Windows::Security::Cryptography::Core::CryptographicEn
       stack_st_X509 * pstack509 = NULL;
       {
          string strOthers = Application.file().as_string(strOthersPath);
-         ptr_array < X509 > xptra;
+         ref_array < X509 > xptra;
          strsize iStart = 0;
          strsize iFind;
          string strEnd = "-----END CERTIFICATE-----";

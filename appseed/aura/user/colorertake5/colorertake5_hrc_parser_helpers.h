@@ -75,7 +75,7 @@ public:
 enum SchemeNodeType { SNT_EMPTY, SNT_RE, SNT_SCHEME, SNT_KEYWORDS, SNT_INHERIT };
 extern const char * schemeNodeTypeNames[];
 
-typedef ptr_array < VirtualEntry > VirtualEntryVector;
+typedef ref_array < VirtualEntry > VirtualEntryVector;
 
 /** scheme node.
     @ingroup colorer_parsers
@@ -127,7 +127,7 @@ public:
 
 protected:
   string schemeName;
-  ptr_array < SchemeNode > nodes;
+  ref_array < SchemeNode > nodes;
   file_type_impl *fileType;
 public:
   scheme_impl(const char *sn){

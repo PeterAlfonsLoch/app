@@ -448,7 +448,7 @@ void * os_thread_thread_proc(LPVOID lpparameter);
 
 
 //mutex * hthread::s_pmutex = NULL;
-//ptr_array <  hthread > * hthread::s_pptra = NULL;
+//ref_array <  hthread > * hthread::s_pptra = NULL;
 
 
 // Converts a Win32 thread priority to WinRT format.

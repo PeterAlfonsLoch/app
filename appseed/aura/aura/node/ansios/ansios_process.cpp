@@ -50,7 +50,7 @@ namespace ansios
 
       stringa straParam;
 
-      ptr_array < char > argv;
+      ref_array < char > argv;
 
       straParam.explode_command_line(pszCmdLine, &argv);
 
@@ -102,7 +102,7 @@ namespace ansios
 
       }
 
-      ptr_array < char > env;
+      ref_array < char > env;
 
       char * const * e = environ;
 
@@ -316,7 +316,7 @@ namespace ansios
          
          stringa stra;
          
-         ptr_array < char > argv;
+         ref_array < char > argv;
       
          stra.explode_command_line(str, &argv);
          
@@ -417,7 +417,7 @@ namespace ansios
 
       stringa straParam;
 
-      ptr_array < char > argv;
+      ref_array < char > argv;
 
       straParam.add("/bin/bash");
 
@@ -478,7 +478,7 @@ namespace ansios
       /*
       stringa straParam;
 
-      ptr_array < char > argv;
+      ref_array < char > argv;
 
 
       straParam.explode_command_line(pszCmdLineParam, &argv);
@@ -672,7 +672,7 @@ namespace ansios
 
        stringa straParam;
 
-       ptr_array < char > argv;
+       ref_array < char > argv;
 
 #ifdef MACOS
 

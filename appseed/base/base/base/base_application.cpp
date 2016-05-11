@@ -270,7 +270,7 @@ namespace base
    //   }
    //
    //
-   //   //ptr_array < ::user::interaction > application::frames()
+   //   //ref_array < ::user::interaction > application::frames()
    //   //{
    //
    //   //   return m_framea.base_ptra();
@@ -1614,7 +1614,7 @@ namespace base
    //   }
    //
    //
-   //   ptr_array < ::thread > application::get_thread(::user::primitive * pui)
+   //   ref_array < ::thread > application::get_thread(::user::primitive * pui)
    //   {
    //
    //      return ((::user::interaction *)pui->m_pvoidUserInteraction)->m_threadptra;

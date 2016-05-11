@@ -137,7 +137,7 @@ namespace user
    }
 
 
-   //ptr_array < ::user::interaction > window_draw::get_wnda()
+   //ref_array < ::user::interaction > window_draw::get_wnda()
    //{
 
    //   return System.frames();

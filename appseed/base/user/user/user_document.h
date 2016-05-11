@@ -19,7 +19,7 @@ namespace user
       string                           m_strTitle;
       ::file::path                     m_filepath;
       ::user::impact_system *          m_pimpactsystem;
-      ptr_array < ::user::impact >     m_viewptra;
+      ref_array < ::user::impact >     m_viewptra;
       bool                             m_bModified;
       bool                             m_bNew;
       bool                             m_bAutoDelete;     // TRUE => delete document when no more views

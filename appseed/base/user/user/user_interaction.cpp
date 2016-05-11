@@ -827,7 +827,7 @@ namespace user
 
       }
 
-      ptr_array <  ::user::interaction  > uiptra;
+      ref_array <  ::user::interaction  > uiptra;
 
       {
 

@@ -193,7 +193,7 @@ struct TiledInputFile::Data: public Mutex
 					    // over all channels
 
     
-    ptr_array < TileBuffer > tileBuffers;        // each holds a single tile
+    ref_array < TileBuffer > tileBuffers;        // each holds a single tile
     size_t          tileBufferSize;	    // size of the tile buffers
 
      Data (bool deleteStream, int numThreads);

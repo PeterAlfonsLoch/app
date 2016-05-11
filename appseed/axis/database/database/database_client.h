@@ -179,7 +179,7 @@ namespace database
    };
 
    class CLASS_DECL_AXIS client_array :
-      public ptr_array < client >
+      public ref_array < client >
    {
    public:
 

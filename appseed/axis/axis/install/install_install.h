@@ -48,7 +48,7 @@ namespace install
       string               m_strPlatform;
 
 
-      ptr_array <::sockets::http_session > m_httpsessionptra;
+      ref_array <::sockets::http_session > m_httpsessionptra;
       //mutex m_mutexOmp;
 
 

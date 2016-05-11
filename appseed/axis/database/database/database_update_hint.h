@@ -24,7 +24,7 @@ namespace database
       
 
       flags < e_update > m_flagsupdate;
-      ptr_array < client > m_selfa;
+      ref_array < client > m_selfa;
 
 
       update_hint();

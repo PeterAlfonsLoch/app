@@ -718,7 +718,7 @@ public:
 
 
 class CLASS_DECL_AURA property_ptra :
-   public ptr_array < property >
+   public ref_array < property >
 {
 public:
 

@@ -949,7 +949,7 @@ int32_t g_add_smallest_tokens = 0;
 //}
 //
 //
-//::count stringa::explode_command_line(const string & str,ptr_array < char > * argv)
+//::count stringa::explode_command_line(const string & str,ref_array < char > * argv)
 //{
 //
 //   string strParse(str);

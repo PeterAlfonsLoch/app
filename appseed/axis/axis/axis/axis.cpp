@@ -103,7 +103,7 @@ bool axis_init()
    /*
    ::os_thread::s_pmutex = new mutex();
 
-   ::os_thread::s_pptra = new ptr_array <  os_thread >();
+   ::os_thread::s_pptra = new ref_array <  os_thread >();
 
 
    if(!__node_axis_pos_init())

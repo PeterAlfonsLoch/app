@@ -7,57 +7,13 @@ namespace message
 
    class dispatch;
 
-   typedef void (dispatch::           *  PFN_DISPATCH_MESSAGE_HANDLER)(signal_details * pobj);
+   typedef void (dispatch::*PFN_DISPATCH_MESSAGE_HANDLER)(signal_details * pobj);
 
    class CLASS_DECL_AURA dispatch:
       virtual public ::object
    {
    public:
 
-
-//      class CLASS_DECL_AURA HandlerItemBase:
-//         virtual public object
-//      {
-//      public:
-//
-//
-//         virtual ~HandlerItemBase();
-//         virtual signalizable* get_signalizable() = 0;
-//
-//
-//      };
-//
-
-//      template < class T >
-//      class HandlerItem: public HandlerItemBase
-//      {
-//      public:
-//
-//
-//         T *                     m_psignalizable;
-//
-//
-//         // Pointer to signal object directly associate with the
-//         // prototype.
-//         // This is a cached value and not the
-//         // storage holder of the object.
-//         virtual signalizable* get_signalizable() { return m_psignalizable; }
-//
-//
-//      };
-//
-//
-//      class CLASS_DECL_AURA HandlerItemArray:
-//         public ptr_array < HandlerItemBase >
-//      {
-//      public:
-//
-//
-//         virtual ~HandlerItemArray();
-//         bool HasSignalizable(signalizable* psignalizable);
-//
-//
-//      };
 
 
       class CLASS_DECL_AURA Signal:
@@ -71,7 +27,7 @@ namespace message
          UINT                    m_uiCode;
          UINT                    m_uiIdStart;
          UINT                    m_uiIdEnd;
-         sp(class ::signal)      m_psignal;
+         class ::signal *        m_psignal;
 
          //HandlerItemArray        m_handlera;
 
@@ -83,14 +39,14 @@ namespace message
 
 
       class CLASS_DECL_AURA SignalPtrArray:
-         public ptr_array < Signal >
+         public ref_array < Signal >
       {
 
 
       };
 
       class CLASS_DECL_AURA SignalArray:
-         public spa(Signal)
+         public ptr_array < Signal >
       {
       public:
 
@@ -145,16 +101,8 @@ namespace message
 
       virtual PFN_DISPATCH_MESSAGE_HANDLER _calc_user_message_handler();
 
-//#ifdef WINDOWS
-//      virtual bool igui_RelayEvent(LPMESSAGE lpmsg);
-//#endif
-
-//      virtual bool OnWndMsgPosCreate();
-
 
    };
-
-
 
 
    template < class T >
@@ -168,30 +116,23 @@ namespace message
       // If not found a existing Signal, create one
       if(psignal == NULL)
       {
-         psignal = canew(Signal);
+         psignal = new Signal;
          psignal->m_uiMessage = message;
          psignal->m_uiCode = uiCode;
          psignal->m_uiIdStart = uiIdStart;
          psignal->m_uiIdEnd = uiIdEnd;
          psignal->m_eprototype = GetMessagePrototype(message,0);
-         psignal->m_psignal = canew(class ::signal());
-         psignal->m_psignal->connect(psignalizable,pfn);
-         //HandlerItem <T> * pitem = canew(HandlerItem < T >);
-         //pitem->m_psignalizable = psignalizable;
-         //psignal->m_handlera.add(pitem);
+         psignal->m_psignal = new class ::signal();
          m_signala.add(psignal);
       }
       else
       {
          if(bAddUnique && psignal->m_psignal->is_connected(psignalizable,pfn))
             return true;
-         // If a matching Signal is found, connect to
-         // this signal.
-         psignal->m_psignal->connect(psignalizable,pfn);
-         //HandlerItem <T> * pitem = canew(HandlerItem<T>);
-         //pitem->m_psignalizable = psignalizable;
-         //psignal->m_handlera.add(pitem);
       }
+
+      // connect to this signal.
+      psignal->m_psignal->connect(psignalizable, pfn);
 
       m_iHandling++;
 
