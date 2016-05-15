@@ -160,9 +160,14 @@ public:
    index reverse_find_ci(const char * lpcsz,index find = -1,index last = 0) const;
    index reverse_find(const char * lpcsz,index find = -1,index last = 0) const;
 
+   bool begins_ci(const char * lpcsz, index find = 0, index last = -1) const;
+   bool begins(const char * lpcsz, index find = 0, index last = -1) const;
 
    index find_first_begins_ci(const char * lpcsz,index find = 0,index last = -1) const;
    index find_first_begins(const Type & strPrefix,index find = 0,index last = -1) const;
+
+   bool str_begins_ci(const char * lpcsz, index find = 0, index last = -1) const;
+   bool str_begins(const char * lpcsz, index find = 0, index last = -1) const;
 
    index str_find_first_begins_ci(const char * lpcsz,index find = 0,index last = -1) const;
    index str_find_first_begins(const char * lpcsz,index find = 0,index last = -1) const;
@@ -1759,6 +1764,30 @@ index string_array < Type, RawType > ::reverse_find(const char * lpcsz,index fin
    return -1;
 }
 
+
+template < class Type, class RawType >
+bool string_array < Type, RawType > ::str_begins_ci(const char * lpcsz, index find, index last) const
+{
+   return str_find_first_begins_ci(lpcsz, find, last) >= 0;
+}
+
+template < class Type, class RawType >
+bool string_array < Type, RawType > ::str_begins(const char * lpcsz, index find, index last) const
+{
+   return str_find_first_begins(lpcsz, find, last) >= 0;
+}
+
+template < class Type, class RawType >
+bool string_array < Type, RawType > ::begins_ci(const char * lpcsz, index find, index last) const
+{
+   return find_first_begins_ci(lpcsz, find, last) >= 0;
+}
+
+template < class Type, class RawType >
+bool string_array < Type, RawType > ::begins(const char * lpcsz, index find, index last) const
+{
+   return find_first_begins(lpcsz, find, last) >= 0;
+}
 
 template < class Type, class RawType >
 index string_array < Type, RawType > ::find_first_begins_ci(const char * lpcsz,index find,index last) const
