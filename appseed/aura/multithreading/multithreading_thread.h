@@ -1,6 +1,50 @@
 #pragma once
 
+class pred_holder_base :
+   virtual public object
+{
+public:
 
+   sp(object) m_pholdref;
+
+   pred_holder_base(::aura::application * papp, sp(object) pholdref = NULL) :
+      object(papp),
+      m_pholdref(pholdref)
+   {
+
+   }
+
+   virtual void run() {}
+
+};
+
+template < typename PRED >
+class pred_holder :
+   virtual public pred_holder_base
+{
+public:
+
+   PRED m_pred;
+
+   pred_holder(::aura::application * papp, PRED pred) :
+      object(papp),
+      pred_holder_base(papp),
+      m_pred(pred)
+   {
+
+   }
+
+   pred_holder(::aura::application * papp, sp(object) pholdref, PRED pred) :
+      object(papp),
+      pred_holder_base(papp, pholdref),
+      m_pred(pred)
+   {
+
+   }
+
+   virtual void run() { m_pred(); }
+
+};
 //class replace_thread;
 
 class user_interaction_ptr_array;
@@ -168,6 +212,18 @@ public:
    virtual bool post_thread_message(UINT message, WPARAM wParam = 0, lparam lParam = cnull);
    virtual bool send_thread_message(UINT message,WPARAM wParam = 0,lparam lParam = cnull, ::duration durWaitStep = millis(1));
    virtual bool post_message(::user::primitive * pui, UINT message, WPARAM wParam = 0, lparam lParam = cnull);
+
+   template < typename PRED >
+   bool post_pred(sp(object) phold, PRED pred)
+   {
+      return post_thread_message(message_system, system_message_pred, dynamic_cast < pred_holder_base *>(canew(pred_holder < PRED >(get_app(), phold, pred))));
+   }
+
+   template < typename PRED >
+   bool post_pred(PRED pred)
+   {
+      return post_thread_message(message_system, system_message_pred, dynamic_cast < pred_holder_base *>(canew(pred_holder < PRED >(get_app(), pred))));
+   }
 
    virtual bool pre_init_instance();
 

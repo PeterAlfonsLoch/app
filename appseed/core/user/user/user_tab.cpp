@@ -1838,6 +1838,8 @@ namespace user
 
       m_spcreatecontext = (sp(::create)) NULL;
 
+      layout();
+
       return true;
 
    }
@@ -2047,6 +2049,7 @@ namespace user
          get_restore_tab(vara);
          data_save("restore_tab", vara);
       }
+      layout();
    }
 
    void tab::get_text_id(stringa & stra)

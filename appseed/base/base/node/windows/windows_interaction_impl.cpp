@@ -3691,6 +3691,8 @@ restart_mouse_hover_check:
    bool interaction_impl::GetClientRect(RECT64 * lprect)
    {
 
+      oswindow handle = get_handle();
+
       if(!::IsWindow(get_handle()))
       {
 

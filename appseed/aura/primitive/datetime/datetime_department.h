@@ -1,6 +1,8 @@
 #pragma once
 
 
+#define INTERNATIONAL_DATE_TIME_FORMAT "%Y-%m-%d %H:%M:%S"
+
 CLASS_DECL_AURA int32_t SWN(int32_t y,int32_t m,int32_t d);
 //where DP ("Days Passed") is given by:
 //   DP( y, 1 ) = 0
@@ -30,16 +32,16 @@ namespace datetime
          void parse_str(const char * psz,property_set & set);
          
          
-         string get_gmt_date_time(const ::datetime::time & time);
-         string get_gmt_date_time();
-         string get_local_date_time(const ::datetime::time & time);
-         string get_local_date_time();
+         string get_gmt_date_time(const ::datetime::time & time, string strFormat = INTERNATIONAL_DATE_TIME_FORMAT);
+         string get_gmt_date_time(string strFormat = INTERNATIONAL_DATE_TIME_FORMAT);
+         string get_local_date_time(const ::datetime::time & time, string strFormat = INTERNATIONAL_DATE_TIME_FORMAT);
+         string get_local_date_time(string strFormat = INTERNATIONAL_DATE_TIME_FORMAT);
          
          
-         inline string get_gmt() { return get_gmt_date_time();  }
-         inline string get_gmt(const ::datetime::time & time) { return get_gmt_date_time(time); }
-         inline string get_local() { return get_local_date_time(); }
-         inline string get_local(const ::datetime::time & time) { return get_local_date_time(time); }
+         inline string get_gmt(string strFormat = INTERNATIONAL_DATE_TIME_FORMAT) { return get_gmt_date_time(strFormat);  }
+         inline string get_gmt(const ::datetime::time & time, string strFormat = INTERNATIONAL_DATE_TIME_FORMAT) { return get_gmt_date_time(time, strFormat); }
+         inline string get_local(string strFormat = INTERNATIONAL_DATE_TIME_FORMAT) { return get_local_date_time(strFormat); }
+         inline string get_local(const ::datetime::time & time, string strFormat = INTERNATIONAL_DATE_TIME_FORMAT) { return get_local_date_time(time, strFormat); }
          
          
          inline string gmt() { return get_gmt(); }

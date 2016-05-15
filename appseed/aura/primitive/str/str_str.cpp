@@ -2094,6 +2094,35 @@ namespace str
       pszXml += len;
    }
 
+   bool eats(const char * & pszXml, const char * psz)
+   {
+      index idx;
+
+      strsize len = strlen(psz);
+      for (idx = 0; idx < len; idx++)
+      {
+         if (pszXml[idx] != psz[idx])
+         {
+            return false;
+         }
+      }
+      pszXml += len;
+   }
+
+   bool eats_ci(const char * & pszXml, const char * psz)
+   {
+      index idx;
+
+      strsize len = strlen(psz);
+      for (idx = 0; idx < len; idx++)
+      {
+         if (tolower(pszXml[idx]) != tolower(psz[idx]))
+         {
+            return false;
+         }
+      }
+      pszXml += len;
+   }
    void consume(const char * & pszXml, const char * psz, const char * pszEnd)
    {
       UNREFERENCED_PARAMETER(pszEnd);

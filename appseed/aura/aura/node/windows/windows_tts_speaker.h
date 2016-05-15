@@ -54,7 +54,7 @@ namespace windows
          //--------------------------------------------------------------------
          virtual bool speak(const string & text) override;
 
-         virtual bool speak(const string & strLang, const string & text) override;
+         virtual bool speak(const string & strLang, const string & text, bool bSync = false) override;
 
          virtual bool is_speaking(string strLang) override;
 

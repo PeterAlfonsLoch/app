@@ -263,6 +263,8 @@ namespace str
       // otherwise, return is_empty
       bool bEndIsSeparator = true);
 
+   CLASS_DECL_AURA bool eats(const char * & pszXml, const char * psz);
+   CLASS_DECL_AURA bool eats_ci(const char * & pszXml, const char * psz);
    CLASS_DECL_AURA void consume(const char * & pszXml, const char * psz);
    CLASS_DECL_AURA void consume(const char * & pszXml, const char * psz, const char * pszEnd);
    CLASS_DECL_AURA void consume(const char * & pszXml, const char * psz, ::count iLen, const char * pszEnd);

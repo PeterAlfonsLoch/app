@@ -393,7 +393,7 @@ namespace windows
       // Speaks some text.
       // (The input text must not be empty.)
       //--------------------------------------------------------------------
-      bool speaker::speak(const string & strLang, const string & text)
+      bool speaker::speak(const string & strLang, const string & text, bool bSync)
       {
          
          //
@@ -438,19 +438,19 @@ namespace windows
 
          wstring wstr(text);
 
-         ::fork(get_app(), [=]()
-         {
+         if(bSync)
+         { 
             //
             // Speak input text
             //
             ULONG streamNumber;
 
             m_voice[strLang]->WaitUntilDone(5 * 60 * 60 * 1000);
-            
+
             HRESULT hr = m_voice[strLang]->Speak(
                wstr,
                //SPF_IS_NOT_XML | SPF_ASYNC | SPF_PURGEBEFORESPEAK,
-               SPF_IS_NOT_XML | SPF_ASYNC,
+               SPF_IS_NOT_XML | (bSync ? 0 : SPF_ASYNC),
                &streamNumber);
 
             if (FAILED(hr))
@@ -459,10 +459,38 @@ namespace windows
                return false;
 
             }
-            
-            return true;
 
-         });
+         }
+         else
+         {
+
+            ::fork(get_app(), [=]()
+            {
+               //
+               // Speak input text
+               //
+               ULONG streamNumber;
+
+               m_voice[strLang]->WaitUntilDone(5 * 60 * 60 * 1000);
+
+               HRESULT hr = m_voice[strLang]->Speak(
+                  wstr,
+                  //SPF_IS_NOT_XML | SPF_ASYNC | SPF_PURGEBEFORESPEAK,
+                  SPF_IS_NOT_XML | (bSync ? 0 : SPF_ASYNC),
+                  &streamNumber);
+
+               if (FAILED(hr))
+               {
+
+                  return false;
+
+               }
+
+               return true;
+
+            });
+
+         }
 
          return true;
 

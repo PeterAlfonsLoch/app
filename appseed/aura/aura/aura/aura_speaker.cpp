@@ -23,7 +23,7 @@ namespace tts
 
    }
 
-   bool speaker::speak(const string & strLang, const string & strText)
+   bool speaker::speak(const string & strLang, const string & strText, bool bSynch)
    {
 
       return false;

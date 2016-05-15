@@ -190,28 +190,28 @@ namespace datetime
    }
 
 
-   string department::international::get_gmt_date_time(const ::datetime::time & time)
+   string department::international::get_gmt_date_time(const ::datetime::time & time, string strFormat)
    {
       string str;
-      time.FormatGmt(str,"%Y-%m-%d %H:%M:%S");
+      time.FormatGmt(str,strFormat);
       return str;
    }
 
-   string department::international::get_gmt_date_time()
+   string department::international::get_gmt_date_time(string strFormat)
    {
       ::datetime::time time;
       time = time.get_current_time();
       return get_gmt_date_time(time);
    }
 
-   string department::international::get_local_date_time(const ::datetime::time & time)
+   string department::international::get_local_date_time(const ::datetime::time & time, string strFormat)
    {
       string str;
-      time.Format(str,"%Y-%m-%d %H:%M:%S");
+      time.Format(str,strFormat);
       return str;
    }
 
-   string department::international::get_local_date_time()
+   string department::international::get_local_date_time(string strFormat)
    {
       ::datetime::time time;
       time = time.get_current_time();

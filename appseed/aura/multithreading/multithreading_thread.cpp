@@ -2472,6 +2472,14 @@ bool thread::process_message(LPMESSAGE lpmessage)
             m_pcommandthread->on_command(pcommand);
 
          }
+         else if (msg.wParam == system_message_pred)
+         {
+
+            sp(::pred_holder_base) ppred((lparam)msg.lParam);
+
+            ppred->run();
+
+         }
          else if (msg.wParam == system_message_meta)
          {
 
