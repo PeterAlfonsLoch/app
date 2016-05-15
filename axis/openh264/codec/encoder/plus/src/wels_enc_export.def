@@ -1,4 +1,4 @@
-LIBRARY "WelsEncPlus"
+LIBRARY "basewelsencplus"
 EXPORTS
     WelsCreateSVCEncoder
     WelsDestroySVCEncoder

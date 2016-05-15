@@ -13,6 +13,7 @@ namespace user
       m_scrolldataHorz.m_iPage = 0;
       m_scrolldataHorz.m_iLine = 0;
       m_scrolldataHorz.m_bScrollEnable = true;
+      m_scrolldataHorz.m_iWidth = GetSystemMetrics(SM_CXHSCROLL);
 
    }
 
@@ -857,6 +858,7 @@ namespace user
       m_scrolldataVert.m_iPage = 0;
       m_scrolldataVert.m_iLine = 0;
       m_scrolldataVert.m_bScrollEnable = true;
+      m_scrolldataVert.m_iWidth = GetSystemMetrics(SM_CYVSCROLL);
 
    }
 
@@ -1219,9 +1221,6 @@ namespace user
 
       m_scrolldataVert.m_bScroll = false;
 
-      m_scrolldataHorz.m_iWidth = GetSystemMetrics(SM_CXHSCROLL);
-
-      m_scrolldataVert.m_iWidth = GetSystemMetrics(SM_CYVSCROLL);
 
 
       size sizeTotal = get_total_size();

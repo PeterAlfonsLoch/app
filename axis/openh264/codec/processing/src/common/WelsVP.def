@@ -30,7 +30,7 @@
 ;*
 ;*
 
-LIBRARY         welsvp
+LIBRARY         basewelsvp
 EXPORTS
                 WelsCreateVpInterface
                 WelsDestroyVpInterface
