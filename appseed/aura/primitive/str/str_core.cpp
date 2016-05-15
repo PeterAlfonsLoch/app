@@ -16,7 +16,7 @@ CLASS_DECL_AURA int64_t strtoi(const unichar * psz)
 
 // string support for template collections
 
-#if !defined(WINDOWSEX)
+#if !defined(WINDOWS)
 
 template<> UINT HashKey<const unichar *> (const unichar * key)
 {

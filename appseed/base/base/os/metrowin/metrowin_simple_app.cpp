@@ -6,7 +6,7 @@ namespace base
 
 
    simple_app::simple_app():
-      ::aura::system(this),
+      ::aura::system(this, NULL),
       ::axis::system(this),
       ::base::system(this)
    {

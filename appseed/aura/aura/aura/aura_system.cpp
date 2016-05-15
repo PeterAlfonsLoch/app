@@ -2156,6 +2156,9 @@ namespace aura
          //   strCommandLine = strCommandLine.Mid(iFind + 1);
          //}
          command()->add_line(strCommandLine);
+
+
+#if defined(MACOS)
          
          if(command()->m_spcommandline->m_strExe[0] == '/')
          {
@@ -2185,6 +2188,8 @@ namespace aura
             }
             
          }
+
+#endif
          
       }
 
