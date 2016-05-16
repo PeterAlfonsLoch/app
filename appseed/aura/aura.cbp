@@ -793,7 +793,7 @@
 		<Unit filename="primitive/str/x/x_defines.h" />
 		<Unit filename="primitive/str/x/x_encodings.h" />
 		<Unit filename="primitive/str/x/x_tables.h" />
-		<Unit filename="teste.cpp" />
+		<Unit filename="test.cpp" />
 		<Unit filename="user/colorertake5/_colorertake5.cpp" />
 		<Unit filename="user/colorertake5/colorertake5.h" />
 		<Unit filename="user/colorertake5/colorertake5_Writer.h" />

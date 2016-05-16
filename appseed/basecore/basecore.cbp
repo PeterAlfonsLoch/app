@@ -64,7 +64,7 @@
 			<Add option="-Wl,-R\\$$$ORIGIN" />
 			<Add option="-Wl,-z,origin" />
 			<Add option="-lappindicator" />
-			<Add option="`pkg-config --cflags --libs gtk+-2.0`" />
+			<Add option="`pkg-config --libs gtk+-2.0`" />
 			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../stage/x86" />
 			<Add directory="/usr/lib64/mysql/" />

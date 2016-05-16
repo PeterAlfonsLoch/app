@@ -17,7 +17,22 @@
    return pszEnd - str;
 
 }
+#ifdef LINUX
+::count wcslen_dup(const wchar_t * str)
+{
 
+   if(str == NULL)
+      return 0;
+
+   const wchar_t * pszEnd = str;
+
+   while(*pszEnd != 0)
+      pszEnd++;
+
+   return pszEnd - str;
+
+}
+#endif
 int32_t iswalpha_dup(int32_t ch)
 {
    return (ch >= L'A' && ch <= L'Z') || (ch >= L'a' && ch <= L'z');

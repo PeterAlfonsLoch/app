@@ -70,7 +70,7 @@ public:
    T * typed_ptr_at(index i)
    {
 
-      return dynamic_cast <T *> (element_at(i));
+      return dynamic_cast <T *> (this->element_at(i));
 
    }
 
@@ -115,12 +115,12 @@ public:
    //inline ref_array(const ref_array & a) { this->operator = (a); }
    //inline ref_array(ref_array && a) { this->operator = (a); }
 
-  
+
 
    virtual ~ptr_array()
    {
-   
-      remove_all();
+
+      this->remove_all();
 
    }
 
@@ -129,13 +129,13 @@ public:
 
       index i;
 
-      while((i = get_upper_bound()) >= 0)
+      while((i = this->get_upper_bound()) >= 0)
       {
 
          try
          {
 
-            remove_at(i);
+            this->remove_at(i);
 
          }
          catch (...)
@@ -160,13 +160,13 @@ public:
 
          cRemoved++;
 
-         remove_at(iFind);
+         this->remove_at(iFind);
 
       }
 
       if (cRemoved > 0)
       {
-       
+
          try
          {
 
@@ -188,10 +188,10 @@ public:
    index find_first(TYPE * p, index iFind = 0)
    {
 
-      for (; iFind < get_size(); iFind++)
+      for (; iFind < this->get_size(); iFind++)
       {
 
-         if (element_at(iFind) == p)
+         if (this->element_at(iFind) == p)
          {
 
             return iFind;
@@ -208,7 +208,7 @@ public:
    bool contains(TYPE * p, index iFind = 0)
    {
 
-      return find_first(p, iFind) >= 0;
+      return this->find_first(p, iFind) >= 0;
 
    }
 
@@ -216,7 +216,7 @@ public:
    void remove_at(index i)
    {
 
-      TYPE * p = element_at(i);
+      TYPE * p = this->element_at(i);
 
       ARRAY_TYPE::remove_at(i);
 
@@ -242,6 +242,6 @@ public:
    inline const TYPE & operator()(index i) const { return *this->element_at(i); }
 
 
- 
+
 };
 

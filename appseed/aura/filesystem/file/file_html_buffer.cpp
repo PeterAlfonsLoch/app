@@ -27,7 +27,7 @@ namespace html
       print(str);
    }
 
-#ifdef WINDOWS
+#ifndef VARIADIC_TEMPLATE_FORMAT
 
    void file::printf(string str,...)
    {

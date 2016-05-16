@@ -13,38 +13,8 @@ inline UINT HashKey(ARG_KEY key)
 }
 
 
-template<>
-inline UINT HashKey<const wchar_t *>(const wchar_t * key)
-{
-   uint64_t * puiKey = (uint64_t *)key;
-   strsize counter = wcslen(key) * sizeof(wchar_t);
-   uint64_t nHash = 0;
-   while (compare::ge(counter, sizeof(*puiKey)))
-   {
-      nHash = (nHash << 5) + nHash + *puiKey++;
-      counter -= sizeof(*puiKey);
-   }
-   const char * pszKey = (const char *)puiKey;
-   while (counter-- >= 0) nHash = (nHash << 5) + nHash + *pszKey++;
-   return (UINT)nHash;
-}
-
 
 template<>
-inline UINT HashKey<wstring>(wstring key)
-{
-
-   return HashKey<const wchar_t * >(key);
-
-}
-
-
-
-
-
-
-
-template<> 
 inline UINT HashKey<const char *> (const char * key)
 {
    uint64_t * puiKey = (uint64_t *) key;
@@ -59,6 +29,61 @@ inline UINT HashKey<const char *> (const char * key)
    while(counter-- >= 0) nHash = (nHash<<5) + nHash + *pszKey++;
    return (UINT) nHash;
 }
+
+
+
+#if !defined(WINDOWS)
+
+template<>
+inline UINT HashKey<const unichar *> (const unichar * key)
+{
+//   ENSURE_ARG(__is_valid_string(key));
+   UINT nHash = 0;
+   while (*key)
+      nHash = (nHash<<5) + nHash + *key++;
+   return nHash;
+}
+
+#endif
+
+template<>
+inline UINT HashKey<const wchar_t *>(const wchar_t * key)
+{
+   uint64_t * puiKey = (uint64_t *)key;
+   #ifdef LINUX
+   strsize counter = wcs32len_dup(key) * sizeof(wchar_t);
+   #else
+   strsize counter = wcslen(key) * sizeof(wchar_t);
+   #endif
+   uint64_t nHash = 0;
+   while (compare::ge(counter, sizeof(*puiKey)))
+   {
+      nHash = (nHash << 5) + nHash + *puiKey++;
+      counter -= sizeof(*puiKey);
+   }
+   const char * pszKey = (const char *)puiKey;
+   while (counter-- >= 0) nHash = (nHash << 5) + nHash + *pszKey++;
+   return (UINT)nHash;
+}
+
+
+
+template<>
+inline UINT HashKey<wstring>(wstring key)
+{
+#ifdef LINUX
+   return HashKey(key.c_str());
+#else
+   return HashKey<const wchar_t * >(key.c_str());
+#endif
+
+}
+
+
+
+
+
+
 
 
 template<>
@@ -97,7 +122,7 @@ inline UINT HashKey<string>(string key)
 //template <  >
 //inline UINT HashKey(const ::file::path & path)
 //{
-//   
+//
 //   return HashKey<const string &> ((const string &) path);
 //}
 //

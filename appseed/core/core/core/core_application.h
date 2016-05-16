@@ -206,11 +206,7 @@ namespace core
       virtual int32_t simple_message_box(::user::primitive * puiOwner,const char * pszMessage,UINT fuStyle = MB_OK);
 
 
-#ifdef WINDOWS
-
-      virtual int32_t simple_message_box(::user::primitive * puiOwner,UINT fuStyle,const char * pszFormat,...);
-
-#else
+#ifdef VARIADIC_TEMPLATE
 
       template<typename T, typename... Args>
       int32_t simple_message_box(::user::primitive * puiOwner, UINT fuStyle, const char * pszFormat, const T & value, Args... args)
@@ -226,6 +222,10 @@ namespace core
 
       }
 
+
+#else
+
+      virtual int32_t simple_message_box(::user::primitive * puiOwner,UINT fuStyle,const char * pszFormat,...);
 
 #endif
 

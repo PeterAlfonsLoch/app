@@ -2097,7 +2097,7 @@ namespace core
 
 
 
-#ifdef WINDOWS
+#ifndef VARIADIC_TEMPLATE
 
    int32_t application::simple_message_box(::user::primitive * pwndOwner, UINT fuStyle, const char * pszFormat, ...)
    {

@@ -186,14 +186,20 @@ namespace aura
       template < typename T >
       inline T * cast_clone(T * pt)
       {
+
          return ::clone(pt);
+
       }
+
 
       template < class T >
       ::type * type_info()
       {
+
          return get_type_info(typeid(T));
+
       }
+
 
       virtual ::type * get_type_info(const ::std_type_info & info);
 

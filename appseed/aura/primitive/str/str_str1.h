@@ -67,6 +67,9 @@ CLASS_DECL_AURA void wcscpy_dup(unichar * dest, const unichar * src);
 CLASS_DECL_AURA void wcsncpy_dup(unichar * dest, const unichar * src, strsize n);
 CLASS_DECL_AURA int32_t iswalnum_dup(int32_t wch);
 CLASS_DECL_AURA count wcslen_dup(const unichar * pwsz);
+#ifdef LINUX
+CLASS_DECL_AURA count wcs32len_dup(const wchar_t * pwsz);
+#endif
 CLASS_DECL_AURA unichar * wcschr_dup(const unichar * sz, unichar ch);
 CLASS_DECL_AURA int32_t wcscmp_dup(const unichar * sz1, const unichar * sz2);
 CLASS_DECL_AURA int32_t wcsicmp_dup(const unichar * sz1, const unichar * sz2);

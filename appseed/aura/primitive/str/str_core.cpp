@@ -16,29 +16,18 @@ CLASS_DECL_AURA int64_t strtoi(const unichar * psz)
 
 // string support for template collections
 
-#if !defined(WINDOWS)
 
-template<> UINT HashKey<const unichar *> (const unichar * key)
-{
-   ENSURE_ARG(__is_valid_string(key));
-   UINT nHash = 0;
-   while (*key)
-      nHash = (nHash<<5) + nHash + *key++;
-   return nHash;
-}
-
-#endif
 
 CLASS_DECL_AURA string_manager * s_pstringmanager = NULL;
 
 
 string_manager * __get_string_manager()
 {
-   
-   
+
+
    return s_pstringmanager;
-   
-   
+
+
 }
 
 

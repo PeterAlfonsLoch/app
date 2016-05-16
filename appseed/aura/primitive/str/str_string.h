@@ -190,7 +190,7 @@ class fixed_alloc_array;
 
 class CLASS_DECL_AURA string :
    public stdstring < simple_string >
-#if defined(LINUX)
+#if defined(VARIADIC_TEMPLATE_FORMAT)
    , public string_format_printer
 #endif
 {
