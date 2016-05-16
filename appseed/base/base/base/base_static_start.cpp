@@ -37,6 +37,10 @@ extern oswindow_dataptra * g_poswindowdataptra;
 
 #undef new
 
+#ifdef LINUX
+int32_t _c_XErrorHandler(Display * display, XErrorEvent * perrorevent);
+#endif
+
 
 struct lconv * g_plconv = NULL;
 
@@ -67,6 +71,8 @@ namespace base
          osdisplay_data::s_pdataptra = new osdisplay_dataptra;
 
          osdisplay_data::s_pmutex = new mutex;
+
+         XSetErrorHandler(_c_XErrorHandler);
 
 #endif // defined(LINUX)
 

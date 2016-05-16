@@ -266,7 +266,7 @@ namespace calculator
 
 
 
-#ifdef VARIADIC_TEMPLATE_FORMAT
+#ifdef VARIADIC_TEMPLATE_FORMAT2
 
 
 

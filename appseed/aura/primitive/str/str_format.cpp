@@ -2,7 +2,7 @@
 
 
 
-#ifdef VARIADIC_TEMPLATE_FORMAT
+#ifdef VARIADIC_TEMPLATE_FORMAT2
 
 
 #ifdef APPLEOS
@@ -503,7 +503,7 @@ bool string_format::parse(const char * & s)
                pformat->append(::str::from(d));
                return;
             }
-#elif defined(LINUX) || defined(MACOS) 
+#elif defined(LINUX) || defined(MACOS)
             if(gcvt(fabs(d),digits, sz))
             {
                pformat->append(::str::from(d));

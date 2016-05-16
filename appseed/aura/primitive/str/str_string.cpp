@@ -2749,7 +2749,7 @@ void string::FormatV(const char * pszFormat,va_list args)
 
    strsize nLength = string_trait::GetFormattedLength(pszFormat,args);
    char * pszBuffer = GetBuffer(nLength);
-#if _SECURE_TEMPLATE
+#if _SECURE_TEMPLATE || defined(LINUX)
    string_trait::Format(pszBuffer,nLength + 1,pszFormat,args);
 #else
    string_trait::Format(pszBuffer,pszFormat,args);
@@ -2920,7 +2920,7 @@ void __cdecl string::_AppendFormat(const char * pszFormat, ...)
 }
 
 
-#else
+#elif !defined(VARIADIC_TEMPLATE_FORMAT2)
 
 
 void __cdecl string::Format(const char * pszFormat,...)

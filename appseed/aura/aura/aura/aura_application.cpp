@@ -2642,30 +2642,30 @@ namespace aura
             }
          }
          bResourceException = false;
-         
-#ifdef MACOS
-         
-         
-         
+
+#if defined(MACOS) || defined(LINUX)
+
+
+
          ::file::path p;
-         
+
          p = "/var/tmp";
-         
+
          p /= get_local_mutex_name();
-         
+
          ::dir::mk(p.folder());
-         
+
          int i = open(p,O_WRONLY | O_CREAT, 0777);
-         
+
          int err =errno;
-         
+
          i = lockf(i, F_TLOCK, 0);
-         
+
          if(i<0)
 #else
-            
-         
-         
+
+
+
          try
          {
             m_pmutexLocal = canew(mutex(this,FALSE,get_local_mutex_name(),lpsa));
@@ -4090,7 +4090,7 @@ namespace aura
          /*
          MessageBox(NULL, "application::start_application failed at create_application(\""+string(pszType)+"\",\""+string(pszId)+"\")", "aura::application::create_application", MB_ICONEXCLAMATION | MB_OK);
          */
-         
+
          return NULL;
 
       }

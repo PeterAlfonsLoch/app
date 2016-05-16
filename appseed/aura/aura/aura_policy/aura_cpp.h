@@ -1271,7 +1271,7 @@ return ::str::from(value);
 */
 
 
-#ifdef VARIADIC_TEMPLATE_FORMAT
+#ifdef VARIADIC_TEMPLATE_FORMAT2
 
 template<typename T,typename... Args>
 inline void string_format::format(const char * & s,const T & value,Args... args)

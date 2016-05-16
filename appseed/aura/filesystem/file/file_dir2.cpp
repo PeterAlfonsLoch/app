@@ -37,7 +37,7 @@ namespace windows
 {
 
    return app() / app_relative() / "appdata";
-   
+
 }
 
 
@@ -75,6 +75,10 @@ namespace windows
 #elif defined(VSNORD)
 
    str = ::aura::system::g_p->m_pandroidinitdata->m_pszCacheDir;
+
+#else
+
+   str = ::file::path(getenv("HOME")) / ".ca2/appdata";
 
 #endif
 

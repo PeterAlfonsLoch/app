@@ -8,7 +8,7 @@ namespace aura
 
 
    class CLASS_DECL_AURA trace_add_file_and_line
-#if defined(VARIADIC_TEMPLATE_FORMAT)
+#if defined(VARIADIC_TEMPLATE_FORMAT2)
       : public string_format_printer
 #endif
    {
@@ -50,24 +50,7 @@ namespace aura
          return m_pauraapp;
       }
 
-
-#if !defined(VARIADIC_TEMPLATE_FORMAT)
-
-      inline void __cdecl operator()(uint32_t dwCategory, UINT nLevel, const char *pszFmt, ...) const
-      {
-         va_list ptr; va_start(ptr, pszFmt);
-         System.log().trace_v(m_pszFileName, m_nLineNo, dwCategory, nLevel, pszFmt, ptr);
-         va_end(ptr);
-      }
-
-      inline void __cdecl operator()(const char *pszFmt, ...) const
-      {
-         va_list ptr; va_start(ptr, pszFmt);
-         System.log().trace_v(m_pszFileName, m_nLineNo, trace::category_General, 0, pszFmt, ptr);
-         va_end(ptr);
-      }
-
-#else
+#if defined(VARIADIC_TEMPLATE_FORMAT2)
 
 
 
@@ -76,7 +59,7 @@ namespace aura
 
          category_level * pcategorylevel = (category_level *)pvoid;
 
-         System.log().trace(m_pszFileName, m_nLineNo, pcategorylevel->m_dwCategory, pcategorylevel->m_nLevel, psz);
+         System.log().trace_str(m_pszFileName, m_nLineNo, pcategorylevel->m_dwCategory, pcategorylevel->m_nLevel, psz);
 
       }
 
@@ -148,8 +131,23 @@ namespace aura
       }
 
 
-#endif
+#elif !defined(VARIADIC_TEMPLATE_FORMAT)
 
+      inline void __cdecl operator()(uint32_t dwCategory, UINT nLevel, const char *pszFmt, ...) const
+      {
+         va_list ptr; va_start(ptr, pszFmt);
+         System.log().trace_v(m_pszFileName, m_nLineNo, dwCategory, nLevel, pszFmt, ptr);
+         va_end(ptr);
+      }
+
+      inline void __cdecl operator()(const char *pszFmt, ...) const
+      {
+         va_list ptr; va_start(ptr, pszFmt);
+         System.log().trace_v(m_pszFileName, m_nLineNo, trace::category_General, 0, pszFmt, ptr);
+         va_end(ptr);
+      }
+
+#endif
    private:
       /* unimplemented */
       trace_add_file_and_line &__cdecl operator=(const trace_add_file_and_line &right);

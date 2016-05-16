@@ -1,7 +1,7 @@
 #pragma once
 
 
-#if defined(VARIADIC_TEMPLATE_FORMAT)
+#if defined(VARIADIC_TEMPLATE_FORMAT2)
 
 
 class CLASS_DECL_AURA string_format_printer

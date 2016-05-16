@@ -190,7 +190,7 @@ class fixed_alloc_array;
 
 class CLASS_DECL_AURA string :
    public stdstring < simple_string >
-#if defined(VARIADIC_TEMPLATE_FORMAT)
+#if defined(VARIADIC_TEMPLATE_FORMAT2)
    , public string_format_printer
 #endif
 {
@@ -649,11 +649,71 @@ public:
    string SpanExcluding(const char * pszCharSet ) const;
 
    // Format data using format string 'pszFormat'
-#ifdef VARIADIC_TEMPLATE_FORMAT
+
+#ifdef VARIADIC_TEMPLATE_FORMAT2
+
+   void FormatPrinter(void * , const char * s)
+   {
+
+      *this = s;
+
+   }
+
+
+   void Format(const char * s)
+   {
+
+      string_format format(this, &string::FormatPrinter, NULL);
+
+      format.format(s);
+
+   }
+
+   template<typename T, typename... Args>
+   void Format(const char *s, const T & value, Args... args)
+   {
+
+      string_format format(this, &string::FormatPrinter, NULL);
+
+      format.format(s, value, args...);
+
+   }
+
+   // append formatted data using format string 'pszFormat'
+   void AppendFormat(const char * s)
+   {
+
+      string str;
+
+      string_format format(&str, &string::FormatPrinter, NULL);
+
+      format.format(s);
+
+      operator += (str);
+
+   }
+
+   template<typename T, typename... Args>
+   void AppendFormat(const char *s, const T & value, Args... args)
+   {
+
+
+      string str;
+
+      string_format format(&str, &string::FormatPrinter, NULL);
+
+      format.format(s, value, args...);
+
+      operator += (str);
+
+   }
+
+
+#elif defined(VARIADIC_TEMPLATE_FORMAT)
 
 
    template <typename ... Args>
-   void Format(char const * const format, Args const & ... args) noexcept
+   void Format(char const * const format, Args && ... args) noexcept
    {
       _Format(format, FormatArgument(args) ...);
    }
