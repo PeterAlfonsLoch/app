@@ -48,6 +48,8 @@ namespace aura
       m_mutexStr(this)
    {
 
+      m_eexclusiveinstance = ExclusiveInstanceNone;
+
       m_peventReady = NULL;
 
       m_bAgreeExit = true;
@@ -2661,7 +2663,7 @@ namespace aura
 
          i = lockf(i, F_TLOCK, 0);
 
-         if(i<0)
+         if(m_eexclusiveinstance == ExclusiveInstanceLocal && i<0)
 #else
 
 
