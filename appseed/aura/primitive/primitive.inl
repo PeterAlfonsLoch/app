@@ -86,3 +86,27 @@ inline bool dispatch::AddMessageHandler(
    m_iHandling++;
    return true;
 }
+
+
+
+template<>
+inline UINT HashKey<const wchar_t *>(const wchar_t * key)
+{
+    uint64_t * puiKey = (uint64_t *)key;
+#if defined(LINUX) || defined(MACOS)
+    strsize counter = wcs32len_dup(key) * sizeof(wchar_t);
+#else
+    strsize counter = wcslen(key) * sizeof(wchar_t);
+#endif
+    uint64_t nHash = 0;
+    while (compare::ge(counter, sizeof(*puiKey)))
+    {
+        nHash = (nHash << 5) + nHash + *puiKey++;
+        counter -= sizeof(*puiKey);
+    }
+    const char * pszKey = (const char *)puiKey;
+    while (counter-- >= 0) nHash = (nHash << 5) + nHash + *pszKey++;
+    return (UINT)nHash;
+}
+
+

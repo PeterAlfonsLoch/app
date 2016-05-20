@@ -4,16 +4,6 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>core.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>53</integer>
-		</dict>
-		<key>core_ios.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>42</integer>
-		</dict>
 		<key>libca2 copy.xcscheme</key>
 		<dict>
 			<key>orderHint</key>

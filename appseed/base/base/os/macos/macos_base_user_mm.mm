@@ -85,29 +85,34 @@ bool oswindow_data::screen_to_client(POINT *lppoint)
 }
 
 
+WINBOOL move_nswindow(oswindow hwnd, int x, int y);
+
+
 
 WINBOOL set_nswindow_frame(oswindow hwnd, LPCRECT lpcrect, int iDisplay)
 {
    
    NSRect rect;
    
-   NSRect frame = [[NSScreen mainScreen] frame];
+   NSRect frame = [[[NSScreen screens] objectAtIndex:0] frame];
    
    rect.origin.x     = lpcrect->left;
    rect.origin.y     = frame.size.height  -     lpcrect->bottom;
    rect.size.width   = lpcrect->right     -     lpcrect->left;
    rect.size.height  = lpcrect->bottom    -     lpcrect->top;
    
-   //   rect.origin.x     = 500;
-   //   rect.origin.y     = 400;
-   //   rect.size.width   = 500;
-   //   rect.size.height  = 500;
+      //rect.origin.x     = 500;
+      //rect.origin.y     = 100;
+      //rect.size.width   = 500;
+      //rect.size.height  = 500;
    
 //   printf("\nset nswindow frame (%f, %f)[%f, %f]", rect.origin.x, rect.origin.y, rect.size.width, rect.size.height);
 
    
    
-   [hwnd->window() setFrame : rect display : iDisplay];
+   [[hwnd->window() dd_invokeOnMainThreadAndWaitUntilDone:TRUE] setFrame : rect display : iDisplay];
+   
+   move_nswindow(hwnd, lpcrect->left, lpcrect->top);
    
    return 1;
    
@@ -130,7 +135,7 @@ WINBOOL move_nswindow(oswindow hwnd, int x, int y)
 //   printf("\nmove nswindow (%f, %f)", point.x, point.y);
 
    
-   [hwnd->window() setFrameTopLeftPoint : point];
+   [[hwnd->window() dd_invokeOnMainThreadAndWaitUntilDone:TRUE]setFrameTopLeftPoint : point];
    
    return 1;
    
@@ -207,7 +212,7 @@ void on_end_thread()
 void ns_redraw_window(oswindow w)
 {
    
-   [w->window() display];
+   [[w->window() dd_invokeOnMainThreadAndWaitUntilDone:FALSE] display];
    
 }
 
@@ -246,7 +251,7 @@ WINBOOL SetWindowPos(oswindow hwnd, oswindow hwndInsertAfter, int x, int y, int 
       rect.right     = rect.left + cx;
       rect.bottom    = rect.top + cy;
       
-      set_nswindow_frame(hwnd, &rect, (uFlags & SWP_SHOWWINDOW));
+      set_nswindow_frame(hwnd, &rect, (uFlags & SWP_SHOWWINDOW) != 0);
       
    }
    else if(bSize) // bSize only
@@ -259,7 +264,7 @@ WINBOOL SetWindowPos(oswindow hwnd, oswindow hwndInsertAfter, int x, int y, int 
       rect.right     = rect.left + cx;
       rect.bottom    = rect.top + cy;
       
-      set_nswindow_frame(hwnd, &rect, (uFlags & SWP_SHOWWINDOW));
+      set_nswindow_frame(hwnd, &rect, (uFlags & SWP_SHOWWINDOW) != 0);
       
    }
    else if(bMove) // bMove only
