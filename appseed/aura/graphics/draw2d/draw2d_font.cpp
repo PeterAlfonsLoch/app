@@ -74,7 +74,9 @@ namespace draw2d
    {
 
       m_strFontFamilyName     = lpszFacename;
-#ifdef VSNORD
+#ifdef MACOS
+      m_dFontSize             = dSize * 1.2;
+#elif defined(VSNORD)
       m_dFontSize             = dSize * 1.6;
 #else
       m_dFontSize             = dSize;

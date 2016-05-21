@@ -984,6 +984,9 @@ void var::write(::file::ostream & ostream) const
    case type_int64:
       ostream << m_i64;
       break;
+   case type_uint64:
+      ostream << m_ui64;
+      break;
    case type_double:
       ostream << m_d;
       break;
@@ -1033,7 +1036,7 @@ void var::write(::file::ostream & ostream) const
       }
       break;
    default:
-      throw "WHAT!!";
+         throw simple_exception(::get_thread_app(), "var::write var type not recognized");
    }
 }
 

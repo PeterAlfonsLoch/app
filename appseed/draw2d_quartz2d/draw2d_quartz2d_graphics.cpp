@@ -5050,124 +5050,19 @@ namespace draw2d_quartz2d
 
    }
 
+   
    size graphics::GetTextExtent(const char * lpszString, strsize nCount, int32_t iIndex) const
    {
 
-
-      string str(&lpszString[iIndex], nCount);
-
-
-      ((graphics *) this)->set(m_spfont);
-
-//      cairo_text_extents_t ex;
-//
-//      cairo_text_extents(m_pdc, str, &ex);
-//
-//      SIZE size;
-//
-//      size.cx = ex.width;
-//
-//      size.cy = ex.height;
-
-      SIZE size;
-      size.cx = 0;
-      size.cy = 0;
-
-      return size;
-
-
-      /*      if(lpszString == NULL || *lpszString == '\0')
-       return size(0, 0);
-
-       if(nCount < 0)
-       nCount = strlen(lpszString);
-
-       if(iIndex > nCount)
-       return size(0, 0);
-
-       if(iIndex < 0)
-       return size(0, 0);
-
-       wstring wstr = ::str::international::utf8_to_unicode(lpszString, nCount);
-
-       strsize iRange = 0;
-       strsize i = 0;
-       strsize iLen;
-       const char * psz = lpszString;
-       while(i < iIndex)
-       {
-       iLen = ::str::utf8_char(psz).length();
-       iRange++;
-       i += iLen;
-       psz = ::str::utf8_inc(psz);
-       if(psz == NULL)
-       break;
-       if(*psz == '\0')
-       break;
-       }
-
-       Gdiplus::CharacterRange charRanges[1] = { Gdiplus::CharacterRange(0, (INT) iRange) };
-
-       Gdiplus::StringFormat strFormat(Gdiplus::StringFormat::GenericTypographic());
-       //Gdiplus::StringFormat strFormat;
-
-       strFormat.SetMeasurableCharacterRanges(1, charRanges);
-
-       strFormat.SetFormatFlags(strFormat.GetFormatFlags()
-       | Gdiplus::StringFormatFlagsNoClip | Gdiplus::StringFormatFlagsMeasureTrailingSpaces
-       | Gdiplus::StringFormatFlagsLineLimit | Gdiplus::StringFormatFlagsNoWrap);
-
-       int32_t count = strFormat.GetMeasurableCharacterRangeCount();
-
-       Gdiplus::Region * pCharRangeRegions = new Gdiplus::Region[count];
-
-       Gdiplus::RectF box(0.0f, 0.0f, 128.0f * 1024.0f, 128.0f * 1024.0f);
-
-       Gdiplus::PointF origin(0, 0);
-
-       //m_pgraphics->MeasureString(wstr, (int32_t) wstr.get_length(), ((graphics *)this)->gdiplus_font(), origin, Gdiplus::StringFormat::GenericTypographic(), &box);
-
-       ((graphics *)this)->m_pgraphics->MeasureCharacterRanges(wstr, (INT) wstr.get_length(), ((graphics *)this)->gdiplus_font(), box, &strFormat, (INT) count, pCharRangeRegions);
-
-       Gdiplus::Region * pregion = NULL;
-
-
-       if(count > 0)
-       {
-
-       pregion = pCharRangeRegions[0].Clone();
-
-       }
-
-
-
-       for(i = 1; i < count; i++)
-       {
-       pregion->Union(&pCharRangeRegions[i]);
-       }
-
-
-       if(pregion == NULL)
-       return size(0, 0);
-
-       delete [] pCharRangeRegions;
-
-
-       Gdiplus::RectF rectBound;
-
-       pregion->GetBounds(&rectBound, m_pgraphics);
-
-       delete pregion;
-
-
-
-       Gdiplus::SizeF size;
-
-       rectBound.GetSize(&size);
-
-       return class ::size((int64_t) (size.Width * m_fontxyz.m_dFontWidth), (int64_t) (size.Height));
-       */
+      sized sz;
+      
+      if (!GetTextExtent(sz, lpszString, nCount, iIndex))
+         return ::size(0, 0);
+      
+      return size((int) sz.cx, (int) sz.cy);
+      
    }
+   
 
    size graphics::GetTextExtent(const char * lpszString, strsize nCount) const
    {
@@ -5207,17 +5102,9 @@ namespace draw2d_quartz2d
        return size;*/
    }
 
+
    size graphics::GetTextExtent(const string & str) const
    {
-      /*      if(get_handle2() == NULL)
-       return size(0, 0);
-       SIZE size;
-       wstring wstr = ::str::international::utf8_to_unicode(str);
-       if(!::GetTextExtentPoint32W(get_handle2(), wstr, (int32_t)wstr.get_length(), &size))
-       {
-       return class size(0, 0);
-       }
-       return size;*/
 
       class sized size;
 
@@ -5226,32 +5113,9 @@ namespace draw2d_quartz2d
 
       return ::size((long) size.cx, (long) size.cy);
 
-      /*if(m_pgraphics == NULL)
-       return size(0, 0);
-
-       wstring wstr = ::str::international::utf8_to_unicode(str);
-
-       Gdiplus::RectF box;
-
-       Gdiplus::PointF origin(0, 0);
-
-
-       if(m_pgraphics == NULL)
-       return size(0, 0);
-
-       try
-       {
-       m_pgraphics->MeasureString(wstr, (int32_t) wstr.get_length(), ((graphics *)this)->gdiplus_font(), origin, &box);
-       }
-       catch(...)
-       {
-       return size(0, 0);
-       }
-
-       return size((int64_t) (box.Width * m_fontxyz.m_dFontWidth), (int64_t) box.Height);*/
-
    }
 
+   
    size graphics::GetOutputTextExtent(const char * lpszString, strsize nCount) const
    {
 
@@ -5289,26 +5153,12 @@ namespace draw2d_quartz2d
    {
 
       CGFloat ascent, descent, leading, width;
-
-//      const_cast < graphics * > (this)->internal_show_text(0, 0, &lpszString[iIndex], (int32_t) nCount, kCGTextInvisible, false, &ascent, &descent, &leading, &width);
-      const_cast < graphics * > (this)->internal_show_text(0, 0, &lpszString[0], (int32_t) iIndex, kCGTextInvisible, false, &ascent, &descent, &leading, &width);
-
-//      CGPoint pt = CGContextGetTextPosition(m_pdc);
-
-//      size.cx = pt.x;
-
-//      size.cy = pt.y;
+      
+      const_cast < graphics * > (this)->internal_show_text(0, 0, &lpszString[0], (int32_t) MIN(iIndex, nCount), kCGTextInvisible, false, &ascent, &descent, &leading, &width);
 
       size.cy = ascent + descent + leading;
 
-//      double dRate = m_spfont->m_dFontSize / size.cy;
-
       size.cx = width;
-
-  //    size.cy *= dRate;
-
-      //if(size.cy < m_spfont->m_dFontSize)
-      //   size.cy = m_spfont->m_dFontSize;
 
       return true;
 
@@ -5318,58 +5168,10 @@ namespace draw2d_quartz2d
    bool graphics::GetTextExtent(sized & size, const char * lpszString, strsize nCount) const
    {
 
-      //retry_single_lock slGdiplus(&System.s_mutexGdiplus, millis(1), millis(1));
-
-
-      string str(lpszString, nCount);
-
-
-      ((graphics *) this)->set(m_spfont);
-//
-//      cairo_text_extents_t ex;
-//
-//      cairo_text_extents(m_pdc, str, &ex);
-//
-//      size.cx = ex.width;
-//
-//      size.cy = ex.height;
-//
-      return size;
-
-
-      /*      wstring wstr = ::str::international::utf8_to_unicode(lpszString, nCount);
-
-       Gdiplus::RectF box;
-
-       Gdiplus::PointF origin(0, 0);
-
-       Gdiplus::StringFormat strFormat(Gdiplus::StringFormat::GenericTypographic());
-
-       strFormat.SetFormatFlags(strFormat.GetFormatFlags()
-       | Gdiplus::StringFormatFlagsNoClip | Gdiplus::StringFormatFlagsMeasureTrailingSpaces
-       | Gdiplus::StringFormatFlagsLineLimit | Gdiplus::StringFormatFlagsNoWrap);
-       bool bOk = true;
-
-       try
-       {
-       if(m_pgraphics->MeasureString(wstr, (int32_t) wstr.get_length(), ((graphics *)this)->gdiplus_font(), origin, &strFormat,  &box) != Gdiplus::Status::Ok)
-       bOk = false;
-       }
-       catch(...)
-       {
-       bOk = false;
-       }
-
-       if(!bOk)
-       return false;
-
-       size.cx = box.Width * m_fontxyz.m_dFontWidth;
-
-       size.cy = box.Height;
-
-       return true;
-       */
+      return GetTextExtent(size, lpszString, nCount, nCount);
+      
    }
+   
 
    bool graphics::GetTextExtent(sized & size, const string & str) const
    {
@@ -5434,7 +5236,6 @@ namespace draw2d_quartz2d
    {
 
       return ::draw2d_quartz2d::internal_show_text(m_pdc, pfont == NULL ? m_spfont.m_p : pfont, pbrush == NULL ? m_spbrush.m_p : pbrush, ppen == NULL ? m_sppen.m_p : ppen, x, y, lpszString, nCount, emode, bDraw, pascent,pdescent, pleading, pwidth);
-
 
    }
 
@@ -5936,7 +5737,7 @@ namespace draw2d_quartz2d
 
 
 
-   bool internal_show_text(CGContextRef pdc, ::draw2d::font_sp spfont,::draw2d::brush_sp spbrush,::draw2d::pen_sp sppen, double x, double y, const char * lpszString, int32_t nCount, CGTextDrawingMode emode, bool bDraw, CGFloat * pascent, CGFloat * pdescent, CGFloat * pleading, CGFloat * pwidth)
+bool internal_show_text(CGContextRef pdc, ::draw2d::font_sp spfont,::draw2d::brush_sp spbrush,::draw2d::pen_sp sppen, double x, double y, const char * lpszString, int32_t nCount, CGTextDrawingMode emode, bool bDraw, CGFloat * pascent, CGFloat * pdescent, CGFloat * pleading, CGFloat * pwidth)
 {
 
    string str(lpszString, nCount);

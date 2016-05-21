@@ -3867,7 +3867,7 @@ namespace macos
          if(!IsWindowVisible())
          {
 
-            m_pui->ShowWindow(SW_SHOW);
+            m_pui->ShowWindow(nFlags & SWP_NOACTIVATE ? SW_SHOWNOACTIVATE : SW_SHOW);
             //round_window_show();
 
          }

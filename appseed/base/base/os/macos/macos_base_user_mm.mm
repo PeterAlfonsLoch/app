@@ -43,6 +43,12 @@ bool oswindow_data::show_window(int32_t nCmdShow)
       [[m_nswindow dd_invokeOnMainThreadAndWaitUntilDone:TRUE ]orderOut : nil];
 
    }
+   else if(nCmdShow == SW_SHOWNOACTIVATE)
+   {
+
+      [[m_nswindow dd_invokeOnMainThreadAndWaitUntilDone:TRUE] orderFront : nil];
+      
+   }
    else
    {
   //    printf("\nshow window");
@@ -112,7 +118,7 @@ WINBOOL set_nswindow_frame(oswindow hwnd, LPCRECT lpcrect, int iDisplay)
    
    [[hwnd->window() dd_invokeOnMainThreadAndWaitUntilDone:TRUE] setFrame : rect display : iDisplay];
    
-   move_nswindow(hwnd, lpcrect->left, lpcrect->top);
+   //move_nswindow(hwnd, lpcrect->left, lpcrect->top);
    
    return 1;
    
