@@ -4,6 +4,42 @@
 #include <CoreFoundation/CFDictionary.h>
 
 
+void fill_with_brush(CGContextRef pdc, ::draw2d::brush * pbrush)
+{
+   
+if(pbrush->m_etype == ::draw2d::brush::type_linear_gradient_point_color)
+{
+   
+   CGContextSaveGState(pdc);
+   
+   CGContextClip(pdc);
+   
+   CGPoint myStartPoint, myEndPoint;
+   
+   myStartPoint.x = pbrush->m_pt1.x;
+   
+   myStartPoint.y = pbrush->m_pt1.y;
+   
+   myEndPoint.x = pbrush->m_pt2.x;
+   
+   myEndPoint.y = pbrush->m_pt2.y;
+   
+   CGContextDrawLinearGradient(pdc, (CGGradientRef) pbrush->get_os_data(), myStartPoint, myEndPoint, 0);
+   
+   CGContextRestoreGState(pdc);
+   
+}
+else
+{
+   
+   CGContextSetFillColorWithColor(pdc, (CGColorRef) pbrush->get_os_data());
+   
+   CGContextFillPath(pdc);
+   
+}
+
+}
+
 
 namespace draw2d_quartz2d
 {
@@ -5409,24 +5445,6 @@ namespace draw2d_quartz2d
 
       CGContextSetLineWidth(m_pdc, ppen->m_dWidth);
 
-      if(ppen->m_elinecapBeg == ::draw2d::pen::line_cap_round || ppen->m_elinecapEnd == ::draw2d::pen::line_cap_round)
-      {
-         
-         CGContextSetLineCap(m_pdc, kCGLineCapRound);
-         
-      }
-      else if(ppen->m_elinecapBeg == ::draw2d::pen::line_cap_square || ppen->m_elinecapEnd == ::draw2d::pen::line_cap_square)
-      {
-         
-         CGContextSetLineCap(m_pdc, kCGLineCapSquare);
-         
-      }
-      else
-      {
-         
-         CGContextSetLineCap(m_pdc, kCGLineCapButt);
-         
-      }
       
       return true;
 
@@ -5488,37 +5506,8 @@ namespace draw2d_quartz2d
 
       if(pbrush == NULL || pbrush->m_etype == ::draw2d::brush::type_null)
          return true;
-
-      if(pbrush->m_etype == ::draw2d::brush::type_linear_gradient_point_color)
-      {
-
-         CGContextSaveGState(m_pdc);
-
-         CGContextClip(m_pdc);
-
-         CGPoint myStartPoint, myEndPoint;
-
-         myStartPoint.x = pbrush->m_pt1.x;
-
-         myStartPoint.y = pbrush->m_pt1.y;
-
-         myEndPoint.x = pbrush->m_pt2.x;
-
-         myEndPoint.y = pbrush->m_pt2.y;
-
-         CGContextDrawLinearGradient(m_pdc, (CGGradientRef) pbrush->get_os_data(), myStartPoint, myEndPoint, 0);
-
-         CGContextRestoreGState(m_pdc);
-
-      }
-      else
-      {
-
-         CGContextSetFillColorWithColor(m_pdc, (CGColorRef) pbrush->get_os_data());
-
-         CGContextFillPath(m_pdc);
-
-      }
+      
+      fill_with_brush(m_pdc, pbrush);
 
       return true;
 
@@ -5538,24 +5527,27 @@ namespace draw2d_quartz2d
          CGContextSaveGState(m_pdc);
 
          set(ppen);
-
-         //CGContextSetRGBStrokeColor(m_pdc, argb_get_r_value(ppen->m_cr) / 255.f, argb_get_g_value(ppen->m_cr) / 255.f, argb_get_b_value(ppen->m_cr) / 255.f, argb_get_a_value(ppen->m_cr) / 255.f);
-
-         //CGContextSetLineWidth(m_pdc, ppen->m_dWidth);
-
-
-         /*
-
-         if(fmod(ppen->m_dWidth, 2.0) <= 1.0)
+         
+         if(ppen->m_etype == ::draw2d::pen::type_brush && ppen->m_br.is_set()
+            && (ppen->m_br->m_etype == ::draw2d::brush::type_linear_gradient_point_color
+                || ppen->m_br->m_etype == ::draw2d::brush::type_radial_gradient_color)
+            )
          {
-
-            CGContextTranslateCTM(m_pdc, 0.5f, 0.5f);
+            
+            CGContextReplacePathWithStrokedPath(m_pdc);
+            
+            // Turn the fillable path in to a clipping region.
+            CGContextClip(m_pdc);
+            
+            fill(ppen->m_br);
 
          }
+         else
+         {
 
-         */
-
-         CGContextStrokePath(m_pdc);
+            CGContextStrokePath(m_pdc);
+            
+         }
 
          CGContextRestoreGState(m_pdc);
 
@@ -5766,8 +5758,10 @@ bool internal_show_text(CGContextRef pdc, ::draw2d::font_sp spfont,::draw2d::bru
 
    if(string == NULL)
       return false;
+   
+   CGContextSaveGState(pdc);
 
-   CGContextBeginPath(pdc);
+   //CGContextBeginPath(pdc);
 
    ::string strFontName;
 
@@ -5830,18 +5824,28 @@ bool internal_show_text(CGContextRef pdc, ::draw2d::font_sp spfont,::draw2d::bru
 
       if(emode == kCGTextFill || emode == kCGTextFillStroke)
       {
+         
+         if(spbrush->m_etype == ::draw2d::brush::type_linear_gradient_point_color)
+         {
+            
+            emode = kCGTextClip;
+            
+         }
+         else
+         {
 
-         cr = spbrush.is_null() ? ARGB(255, 0, 0, 0) : spbrush->m_cr;
+            cr = spbrush.is_null() ? ARGB(255, 0, 0, 0) : spbrush->m_cr;
+            
+            components[0] = argb_get_r_value(cr) / 255.f;
+            components[1] = argb_get_g_value(cr) / 255.f;
+            components[2] = argb_get_b_value(cr) / 255.f;
+            components[3] = argb_get_a_value(cr) / 255.f;
 
-         components[0] = argb_get_r_value(cr) / 255.f;
-         components[1] = argb_get_g_value(cr) / 255.f;
-         components[2] = argb_get_b_value(cr) / 255.f;
-         components[3] = argb_get_a_value(cr) / 255.f;
+            pkeys.add(kCTForegroundColorAttributeName);
+            pvals.add(CGColorCreate(rgbColorSpace, components));
+            crrel.add((CGColorRef)pvals.last());
 
-         pkeys.add(kCTForegroundColorAttributeName);
-         pvals.add(CGColorCreate(rgbColorSpace, components));
-         crrel.add((CGColorRef)pvals.last());
-
+         }
 
       }
       if(emode == kCGTextStroke|| emode == kCGTextFillStroke)
@@ -5908,6 +5912,13 @@ bool internal_show_text(CGContextRef pdc, ::draw2d::font_sp spfont,::draw2d::bru
       CTLineDraw(line,pdc);
 
    }
+   
+   if(emode == kCGTextClip && spbrush->m_etype == ::draw2d::brush::type_linear_gradient_point_color)
+   {
+      
+      fill_with_brush(pdc, spbrush);
+      
+   }
 
    CFRelease(line);
 
@@ -5954,6 +5965,8 @@ bool internal_show_text(CGContextRef pdc, ::draw2d::font_sp spfont,::draw2d::bru
       *pwidth = width;
 
    }
+   
+   CGContextRestoreGState(pdc);
 
    return true;
 
