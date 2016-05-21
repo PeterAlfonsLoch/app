@@ -5388,11 +5388,46 @@ namespace draw2d_quartz2d
 
       if(ppen == NULL)
          return false;
+      
+      if(ppen->m_etype == ::draw2d::pen::type_brush && ppen->m_br.is_set())
+      {
+         
+         if(ppen->m_br->m_etype == ::draw2d::brush::type_solid)
+         {
 
-      CGContextSetRGBStrokeColor(m_pdc, argb_get_r_value(ppen->m_cr) / 255.0, argb_get_g_value(ppen->m_cr) / 255.0, argb_get_b_value(ppen->m_cr) / 255.0, argb_get_a_value(ppen->m_cr) / 255.0);
+            CGContextSetRGBStrokeColor(m_pdc, argb_get_r_value(ppen->m_br->m_cr) / 255.0, argb_get_g_value(ppen->m_br->m_cr) / 255.0, argb_get_b_value(ppen->m_br->m_cr) / 255.0, argb_get_a_value(ppen->m_br->m_cr) / 255.0);
+            
+         }
+         
+      }
+      else
+      {
+
+         CGContextSetRGBStrokeColor(m_pdc, argb_get_r_value(ppen->m_cr) / 255.0, argb_get_g_value(ppen->m_cr) / 255.0, argb_get_b_value(ppen->m_cr) / 255.0, argb_get_a_value(ppen->m_cr) / 255.0);
+         
+      }
 
       CGContextSetLineWidth(m_pdc, ppen->m_dWidth);
 
+      if(ppen->m_elinecapBeg == ::draw2d::pen::line_cap_round || ppen->m_elinecapEnd == ::draw2d::pen::line_cap_round)
+      {
+         
+         CGContextSetLineCap(m_pdc, kCGLineCapRound);
+         
+      }
+      else if(ppen->m_elinecapBeg == ::draw2d::pen::line_cap_square || ppen->m_elinecapEnd == ::draw2d::pen::line_cap_square)
+      {
+         
+         CGContextSetLineCap(m_pdc, kCGLineCapSquare);
+         
+      }
+      else
+      {
+         
+         CGContextSetLineCap(m_pdc, kCGLineCapButt);
+         
+      }
+      
       return true;
 
    }
@@ -5496,33 +5531,18 @@ namespace draw2d_quartz2d
       if(ppen == NULL || ppen->m_etype == ::draw2d::pen::type_null)
          return true;
 
-      if(ppen->m_etype == ::draw2d::pen::type_solid)
+      //if(ppen->m_etype == ::draw2d::pen::type_solid)
       {
+         
 
          CGContextSaveGState(m_pdc);
 
-         CGContextSetRGBStrokeColor(m_pdc, argb_get_r_value(ppen->m_cr) / 255.f, argb_get_g_value(ppen->m_cr) / 255.f, argb_get_b_value(ppen->m_cr) / 255.f, argb_get_a_value(ppen->m_cr) / 255.f);
+         set(ppen);
 
-         CGContextSetLineWidth(m_pdc, ppen->m_dWidth);
+         //CGContextSetRGBStrokeColor(m_pdc, argb_get_r_value(ppen->m_cr) / 255.f, argb_get_g_value(ppen->m_cr) / 255.f, argb_get_b_value(ppen->m_cr) / 255.f, argb_get_a_value(ppen->m_cr) / 255.f);
 
-         if(ppen->m_elinecapBeg == ::draw2d::pen::line_cap_round || ppen->m_elinecapEnd == ::draw2d::pen::line_cap_round)
-         {
+         //CGContextSetLineWidth(m_pdc, ppen->m_dWidth);
 
-            CGContextSetLineCap(m_pdc, kCGLineCapRound);
-
-         }
-         else if(ppen->m_elinecapBeg == ::draw2d::pen::line_cap_square || ppen->m_elinecapEnd == ::draw2d::pen::line_cap_square)
-         {
-
-            CGContextSetLineCap(m_pdc, kCGLineCapSquare);
-
-         }
-         else
-         {
-
-            CGContextSetLineCap(m_pdc, kCGLineCapButt);
-
-         }
 
          /*
 
