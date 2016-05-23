@@ -2836,7 +2836,7 @@ namespace user
             }
          }
          m_uiRButtonUpFlags = (UINT) pmouse->m_nFlags;
-         m_ptRButtonUp = pt;
+         m_ptRButtonUp = pmouse->m_pt;
          SetTimer(8477, 500, NULL);
       }
 
@@ -2845,15 +2845,15 @@ namespace user
    }
 
 
-   void list::_001OnItemClick(index iItem)
+   bool list::_001OnItemClick(index iItem)
    {
 
       UNREFERENCED_PARAMETER(iItem);
-
+      return false;
    }
 
 
-   void list::_001OnClick(uint_ptr nFlag, point point)
+   bool list::_001OnClick(uint_ptr nFlag, point point)
    {
       UNREFERENCED_PARAMETER(nFlag);
       UNREFERENCED_PARAMETER(point);
@@ -2874,13 +2874,14 @@ namespace user
          GetParent()->send_message(
             ::message::message_event, 0, (LPARAM) &ev);
       }
-
+      return false;
    }
 
-   void list::_001OnRightClick(uint_ptr nFlag, point point)
+   bool list::_001OnRightClick(uint_ptr nFlag, point point)
    {
       UNREFERENCED_PARAMETER(nFlag);
       UNREFERENCED_PARAMETER(point);
+      return false;
    }
 
    //void list::range::clear()

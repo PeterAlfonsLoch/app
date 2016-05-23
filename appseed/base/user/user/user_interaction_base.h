@@ -526,9 +526,9 @@ namespace user
 
 
 
-      virtual bool track_popup_menu(::user::menu_base_item * pitem,int32_t iFlags,int32_t x,int32_t y);
-      virtual bool track_popup_menu(::xml::node * lpnode,int32_t iFlags,int32_t x,int32_t y);
-      virtual bool track_popup_xml_matter_menu(const char * pszMatter,int32_t iFlags,int32_t x,int32_t y);
+      virtual bool track_popup_menu(::user::menu_base_item * pitem,int32_t iFlags, POINT pt);
+      virtual bool track_popup_menu(::xml::node * lpnode,int32_t iFlags, POINT pt);
+      virtual bool track_popup_xml_matter_menu(const char * pszMatter,int32_t iFlags, POINT pt);
 
       virtual bool track_popup_menu(::user::menu_base_item * pitem,int32_t iFlags,signal_details * pobj);
       virtual bool track_popup_menu(::xml::node * lpnode,int32_t iFlags,signal_details * pobj);

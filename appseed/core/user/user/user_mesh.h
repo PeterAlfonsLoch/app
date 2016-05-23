@@ -632,8 +632,8 @@ namespace user
       DECL_GEN_SIGNAL(_001OnMeshViewAutoArrange);
 
 
-      virtual void _001OnClick(uint_ptr uiFlags,point point);
-      virtual void _001OnRightClick(uint_ptr uiFlags,point point);
+      virtual bool _001OnClick(uint_ptr uiFlags,point point);
+      virtual bool _001OnRightClick(uint_ptr uiFlags,point point);
 
       void _001GetSelection(range & selection);
 

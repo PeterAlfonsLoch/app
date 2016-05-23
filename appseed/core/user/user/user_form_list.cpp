@@ -40,7 +40,7 @@ namespace user
 
    }
 
-   void form_list::_001OnClick(uint_ptr uiFlags,point point)
+   bool form_list::_001OnClick(uint_ptr uiFlags,point point)
    {
       //form::_000OnPosCreate
       list::_001OnClick(uiFlags,point);
@@ -49,9 +49,10 @@ namespace user
       {
          _001OnClick(uiFlags,point,iItem,iSubItem);
       }
+      return true;
    }
 
-   void form_list::_001OnClick(uint_ptr uiFlags,point point,index iItem,index iSubItem)
+   bool form_list::_001OnClick(uint_ptr uiFlags,point point,index iItem,index iSubItem)
    {
       UNREFERENCED_PARAMETER(uiFlags);
       UNREFERENCED_PARAMETER(point);
@@ -102,6 +103,7 @@ namespace user
             _001PlaceControl(pcontrol);
          }
       }
+      return true;
    }
 
 

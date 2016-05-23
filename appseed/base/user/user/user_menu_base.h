@@ -37,7 +37,7 @@ namespace user
       virtual void layout_menu(point pt) = 0;
 
 
-      virtual bool TrackPopupMenu(int32_t iFlags, int32_t x, int32_t y, ::user::interaction * oswindowParent);
+      virtual bool TrackPopupMenu(int32_t iFlags, POINT pt, ::user::interaction * oswindowParent);
 
       DECL_GEN_SIGNAL(_001OnShowWindow);
       DECL_GEN_SIGNAL(_001OnDestroy);

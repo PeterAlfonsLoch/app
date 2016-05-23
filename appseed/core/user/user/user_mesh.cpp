@@ -2705,7 +2705,7 @@ namespace user
             }
          }
          m_uiRButtonUpFlags = (UINT)pmouse->m_nFlags;
-         m_ptRButtonUp = pt;
+         m_ptRButtonUp = pmouse->m_pt;
          SetTimer(8477,500,NULL);
       }
 
@@ -2714,7 +2714,7 @@ namespace user
    }
 
 
-   void mesh::_001OnClick(uint_ptr nFlag,point point)
+   bool mesh::_001OnClick(uint_ptr nFlag,point point)
    {
       UNREFERENCED_PARAMETER(nFlag);
       UNREFERENCED_PARAMETER(point);
@@ -2735,13 +2735,14 @@ namespace user
          GetParent()->send_message(
             ::message::message_event,0,(LPARAM)&ev);
       }
-
+      return true;
    }
 
-   void mesh::_001OnRightClick(uint_ptr nFlag,point point)
+   bool mesh::_001OnRightClick(uint_ptr nFlag,point point)
    {
       UNREFERENCED_PARAMETER(nFlag);
       UNREFERENCED_PARAMETER(point);
+      return false;
    }
 
    void mesh::range::clear()
@@ -3841,8 +3842,8 @@ namespace user
          KillTimer(8477);
          //if(!_001IsEditing())
          {
-            uint_ptr nFlags = m_uiLButtonUpFlags;
-            point point = m_ptLButtonUp;
+            uint_ptr nFlags = m_uiRButtonUpFlags;
+            point point = m_ptRButtonUp;
             _001OnRightClick(nFlags,point);
             Redraw();
 

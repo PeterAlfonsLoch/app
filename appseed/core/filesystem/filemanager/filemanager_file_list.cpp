@@ -227,7 +227,7 @@ namespace filemanager
       }
    }
 
-  void file_list::_001OnClick(uint_ptr nFlags, point point)
+  bool file_list::_001OnClick(uint_ptr nFlags, point point)
    {
       UNREFERENCED_PARAMETER(nFlags);
       index iItem;
@@ -238,11 +238,18 @@ namespace filemanager
          {
            _017OpenSelected(true, ::action::source_user);
          }
+         return true;
       }
+      
+      return ::user::list::_001OnClick(nFlags, point);
+
+
    }
 
-   void file_list::_001OnRightClick(uint_ptr nFlags, point point)
+   
+   bool file_list::_001OnRightClick(uint_ptr nFlags, point point)
    {
+
       UNREFERENCED_PARAMETER(nFlags);
       index iItem;
       index iSubItem;
@@ -254,6 +261,7 @@ namespace filemanager
       {
          _017OpenContextMenu(::action::source_user);
       }
+      return true;
    }
 
 
@@ -513,7 +521,7 @@ namespace filemanager
          if(pmenu->create_menu(straCommand, straCommandTitle))
          {
 
-            pmenu->TrackPopupMenu(0, ptCursor.x, ptCursor.y, GetParentFrame());
+            pmenu->TrackPopupMenu(0, ptCursor, GetParentFrame());
 
          }
 

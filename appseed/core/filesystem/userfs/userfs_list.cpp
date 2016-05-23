@@ -55,7 +55,7 @@ namespace userfs
    }
 
 
-   void list::_001OnClick(uint_ptr uiFlags, point point)
+   bool list::_001OnClick(uint_ptr uiFlags, point point)
    {
       UNREFERENCED_PARAMETER(uiFlags);
       UNREFERENCED_PARAMETER(point);
@@ -72,9 +72,9 @@ namespace userfs
             iUItem = pdata->m_itema.get_upper_bound();
          }
          if(iLItem < 0)
-            return;
+            return false;
          if(iLItem >= pdata->m_itema.get_size())
-            return;
+            return false;
          if(iUItem >= pdata->m_itema.get_size())
             iUItem = pdata->m_itema.get_upper_bound();
          var varFile;
@@ -94,6 +94,7 @@ namespace userfs
          }
          get_document()->request_file_query(varFile, varQuery);
       }
+      return true;
    }
 
 

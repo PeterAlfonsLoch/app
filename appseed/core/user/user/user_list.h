@@ -427,10 +427,10 @@ namespace user
       DECL_GEN_SIGNAL(_001OnListViewAutoArrange);
 
 
-      virtual void _001OnItemClick(index iItem);
+      virtual bool _001OnItemClick(index iItem);
 
-      virtual void _001OnClick(uint_ptr uiFlags, point point);
-      virtual void _001OnRightClick(uint_ptr uiFlags, point point);
+      virtual bool _001OnClick(uint_ptr uiFlags, point point);
+      virtual bool _001OnRightClick(uint_ptr uiFlags, point point);
 
       void _001GetSelection(range & selection);
 

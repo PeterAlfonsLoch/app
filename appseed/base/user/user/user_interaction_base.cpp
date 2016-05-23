@@ -2435,7 +2435,7 @@ Restart:
    }
 
 
-   bool interaction_base::track_popup_menu(::user::menu_base_item * pitem,int32_t iFlags,int32_t x,int32_t y)
+   bool interaction_base::track_popup_menu(::user::menu_base_item * pitem,int32_t iFlags, POINT pt)
    {
 
       ::exception::throw_interface_only(get_app());
@@ -2444,7 +2444,7 @@ Restart:
 
    }
 
-   bool interaction_base::track_popup_menu(::xml::node * lpnode,int32_t iFlags,int32_t x,int32_t y)
+   bool interaction_base::track_popup_menu(::xml::node * lpnode,int32_t iFlags, POINT pt)
    {
 
       ::exception::throw_interface_only(get_app());
@@ -2454,7 +2454,7 @@ Restart:
    }
 
 
-   bool interaction_base::track_popup_xml_matter_menu(const char * pszMatter,int32_t iFlags,int32_t x,int32_t y)
+   bool interaction_base::track_popup_xml_matter_menu(const char * pszMatter,int32_t iFlags, POINT pt)
    {
 
       ::exception::throw_interface_only(get_app());

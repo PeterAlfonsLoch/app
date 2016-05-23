@@ -76,7 +76,7 @@ namespace userfs
 
 
 
-      virtual void _001OnClick(uint_ptr uiFlags, point point);
+      virtual bool _001OnClick(uint_ptr uiFlags, point point);
 
       
       virtual void on_update(::user::impact * pSender, LPARAM lHint, object* pHint);

@@ -5144,7 +5144,7 @@ restart:
 
       Session.get_cursor_pos(&pt);
 
-      return track_popup_menu(pitem,iFlags,pt.x,pt.y);
+      return track_popup_menu(pitem,iFlags,pt);
 
    }
 
@@ -5156,7 +5156,7 @@ restart:
 
       Session.get_cursor_pos(&pt);
 
-      return track_popup_menu(lpnode,iFlags,pt.x,pt.y);
+      return track_popup_menu(lpnode,iFlags,pt);
 
    }
 
@@ -5168,7 +5168,7 @@ restart:
 
       Session.get_cursor_pos(&pt);
 
-      return track_popup_xml_matter_menu(pszMatter,iFlags,pt.x,pt.y);
+      return track_popup_xml_matter_menu(pszMatter,iFlags,pt);
 
    }
 
@@ -5183,7 +5183,7 @@ restart:
 
       ScreenToClient(&pt);
 
-      return track_popup_menu(pitem,iFlags,pt.x,pt.y);
+      return track_popup_menu(pitem,iFlags,pt);
 
    }
 
@@ -5197,7 +5197,7 @@ restart:
 
       ScreenToClient(&pt);
 
-      return track_popup_menu(lpnode,iFlags,pt.x,pt.y);
+      return track_popup_menu(lpnode,iFlags,pt);
 
    }
 
@@ -5211,19 +5211,19 @@ restart:
 
       ScreenToClient(&pt);
 
-      return track_popup_xml_matter_menu(pszMatter,iFlags,pt.x,pt.y);
+      return track_popup_xml_matter_menu(pszMatter,iFlags,pt);
 
    }
 
 
-   bool interaction::track_popup_menu(::user::menu_base_item * pitem,int32_t iFlags,int32_t x,int32_t y)
+   bool interaction::track_popup_menu(::user::menu_base_item * pitem,int32_t iFlags, POINT pt)
    {
 
       sp(::user::menu_base) pmenu = Application.alloc(System.type_info < ::user::menu_base >());
 
       pmenu->m_pitem = pitem;
 
-      if(!pmenu->TrackPopupMenu(iFlags,x,y,this))
+      if(!pmenu->TrackPopupMenu(iFlags,pt,this))
       {
 
          pmenu.release();
@@ -5236,7 +5236,7 @@ restart:
 
    }
 
-   bool interaction::track_popup_menu(::xml::node * lpnode,int32_t iFlags,int32_t x,int32_t y)
+   bool interaction::track_popup_menu(::xml::node * lpnode,int32_t iFlags, POINT pt)
    {
 
       sp(::user::menu_base) pmenu = Application.alloc(System.type_info < ::user::menu_base >());
@@ -5250,7 +5250,7 @@ restart:
 
       }
 
-      if(!pmenu->TrackPopupMenu(iFlags,x,y,this))
+      if(!pmenu->TrackPopupMenu(iFlags,pt,this))
       {
 
          pmenu.release();
@@ -5263,7 +5263,7 @@ restart:
 
    }
 
-   bool interaction::track_popup_xml_matter_menu(const char * pszMatter,int32_t iFlags,int32_t x,int32_t y)
+   bool interaction::track_popup_xml_matter_menu(const char * pszMatter,int32_t iFlags, POINT pt)
    {
 
       sp(::user::menu_base) pmenu = Application.alloc(System.type_info < ::user::menu_base >());
@@ -5277,7 +5277,7 @@ restart:
 
       }
 
-      if(!pmenu->TrackPopupMenu(iFlags,x,y,this))
+      if(!pmenu->TrackPopupMenu(iFlags,pt,this))
       {
 
          pmenu.release();

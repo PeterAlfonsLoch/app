@@ -93,7 +93,7 @@ namespace user
    }
 
 
-   bool menu_base::TrackPopupMenu(int32_t iFlags, int32_t x, int32_t y, ::user::interaction * oswindowParent)
+   bool menu_base::TrackPopupMenu(int32_t iFlags, POINT pt, ::user::interaction * oswindowParent)
    {
 
       return true;

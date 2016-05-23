@@ -126,7 +126,7 @@ public:
   bool SetItem(UINT itemIndex, bool byPosition, const CMenuItem &item);
   bool InsertItem(UINT itemIndex, bool byPosition, const CMenuItem &item);
 
-  int Track(UINT flags, int x, int y, HWND hWnd) { return ::TrackPopupMenuEx(_menu, flags, x, y, hWnd, NULL); }
+  int Track(UINT flags, POINT pt, HWND hWnd) { return ::TrackPopupMenuEx(_menu, flags, x, y, hWnd, NULL); }
 
   bool CheckRadioItem(UINT idFirst, UINT idLast, UINT idCheck, UINT flags)
     { return BOOLToBool(::CheckMenuRadioItem(_menu, idFirst, idLast, idCheck, flags)); }

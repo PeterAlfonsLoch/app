@@ -218,7 +218,7 @@ namespace filemanager
             }
          }
 
-         void list_view::_001OnClick(uint_ptr nFlags, point point)
+         bool list_view::_001OnClick(uint_ptr nFlags, point point)
          {
             UNREFERENCED_PARAMETER(nFlags);
             index iItem;
@@ -233,7 +233,9 @@ namespace filemanager
                {
                   m_pserver->open_file(m_iParentFolder, m_itema[iItem]->m_strFileName, m_itema[iItem]->m_strExtension);
                }
+               return true;
             }
+            return ::user::list::_001OnClick(nFlags, point);
          }
 
          bool list_view::GetSongPath(string &str, index iItem)

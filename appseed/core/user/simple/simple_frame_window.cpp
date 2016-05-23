@@ -2440,7 +2440,7 @@ void simple_frame_window::OnNotifyIconContextMenu(UINT uiNotifyIcon)
 {
    point pt;
    ::GetCursorPos(&pt);
-   track_popup_xml_matter_menu("popup_notification.xml", 0, pt.x, pt.y);
+   track_popup_xml_matter_menu("popup_notification.xml", 0, pt);
 }
 
 void simple_frame_window::OnNotifyIconLButtonDblClk(UINT uiNotifyIcon)

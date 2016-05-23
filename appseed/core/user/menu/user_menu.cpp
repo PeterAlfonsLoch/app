@@ -65,20 +65,20 @@ namespace user
    }
 
 
-   bool menu::TrackPopupMenu(int32_t iFlags, int32_t x, int32_t y, ::user::interaction * oswindowParent)
+   bool menu::TrackPopupMenu(int32_t iFlags, POINT pt, ::user::interaction * oswindowParent)
    {
 
       ASSERT(oswindowParent != NULL);
 
-      if (!menu_base::TrackPopupMenu(iFlags, x, y, oswindowParent))
+      if (!menu_base::TrackPopupMenu(iFlags, pt, oswindowParent))
          return false;
 
-      return _TrackPopupMenu(iFlags, x, y, oswindowParent, NULL);
+      return _TrackPopupMenu(iFlags, pt, oswindowParent, NULL);
 
    }
 
 
-   bool menu::_TrackPopupMenu(int32_t iFlags, int32_t x, int32_t y, sp(::user::interaction) oswindowParent, menu * pmenuParent)
+   bool menu::_TrackPopupMenu(int32_t iFlags, POINT pt, sp(::user::interaction) oswindowParent, menu * pmenuParent)
    {
 
       UNREFERENCED_PARAMETER(iFlags);
@@ -112,7 +112,7 @@ namespace user
 
       //System.add_frame(this);
 
-      layout_menu(point(x, y));
+      layout_menu(pt);
 
       SetActiveWindow();
 
@@ -435,8 +435,7 @@ namespace user
                         rect rect;
                         spitema->find(pevent->m_puie->m_id)->m_button.GetWindowRect(rect);
                         m_psubmenu->_TrackPopupMenu(0,
-                           rect.right,
-                           rect.top, m_oswindowParent, this);
+                           rect.top_right(), m_oswindowParent, this);
                      }
                   }
                }
@@ -480,8 +479,7 @@ namespace user
             rect rect;
             spitema->find(m_idTimerMenu)->m_button.GetWindowRect(rect);
             m_psubmenu->_TrackPopupMenu(0,
-               rect.right,
-               rect.top, m_oswindowParent, this);
+               rect.top_right(), m_oswindowParent, this);
          }
          m_idTimerMenu.is_empty();
       }

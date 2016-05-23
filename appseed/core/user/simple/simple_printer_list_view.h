@@ -16,7 +16,7 @@ public:
 
    virtual void install_message_handling(::message::dispatch * pdispatch);
 
-   virtual void _001OnClick(uint_ptr nFlags, point point);
+   virtual bool _001OnClick(uint_ptr nFlags, point point);
 
    DECL_GEN_SIGNAL(_001OnCreate);
 

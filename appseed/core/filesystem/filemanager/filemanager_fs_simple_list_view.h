@@ -129,7 +129,7 @@ namespace filemanager
 
             virtual void on_update(::user::impact * pSender, LPARAM lHint, object* pHint);
 
-            virtual void _001OnClick(uint_ptr nFlags, point point);
+            virtual bool _001OnClick(uint_ptr nFlags, point point);
 
             virtual ~list_view();
          #ifdef DEBUG

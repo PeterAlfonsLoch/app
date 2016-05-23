@@ -68,8 +68,6 @@ namespace user
 
       void layout_menu(point pt);
 
-      virtual bool TrackPopupMenu(int32_t iFlags, int32_t x, int32_t y, ::user::interaction * oswindowParent) override;
-
       DECL_GEN_SIGNAL(_001OnLButtonDown);
 
       void _001OnDraw(::draw2d::dib * pdib);
@@ -86,8 +84,8 @@ namespace user
       DECL_GEN_SIGNAL(_001OnNcCalcSize);
       DECL_GEN_SIGNAL(_001OnEnable);
 
-
-      bool _TrackPopupMenu(int32_t iFlags, int32_t x, int32_t y, sp(::user::interaction) oswindowParent, menu * pmenuParent);
+      virtual bool TrackPopupMenu(int32_t iFlags, POINT pt, ::user::interaction * oswindowParent) override;
+      virtual bool _TrackPopupMenu(int32_t iFlags, POINT pt, sp(::user::interaction) oswindowParent, menu * pmenuParent);
       /*DECL_GEN_SIGNAL(OnMouseProc);*/
       bool pre_create_window(::user::create_struct& cs);
       //virtual void PostNcDestroy();

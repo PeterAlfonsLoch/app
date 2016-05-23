@@ -73,7 +73,7 @@ void simple_printer_list_view::_001OnCreate(signal_details * pobj)
 }
 
 
-void simple_printer_list_view::_001OnClick(uint_ptr nFlags, point point)
+bool simple_printer_list_view::_001OnClick(uint_ptr nFlags, point point)
 {
    UNREFERENCED_PARAMETER(nFlags);
    index iItem;
@@ -93,5 +93,6 @@ void simple_printer_list_view::_001OnClick(uint_ptr nFlags, point point)
       m_pview->collaborate(pprintjob);
       pprintjob->begin();
    }
+   return true;
 }
 

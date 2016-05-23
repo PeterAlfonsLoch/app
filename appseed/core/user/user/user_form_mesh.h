@@ -81,8 +81,8 @@ namespace user
       void _001SetEditControl(sp(control) pcontrol);
       virtual void _001PlaceControl(sp(control) pcontrol);
       virtual sp(control) _001GetControl(index iItem, index iSubItem);
-      virtual void _001OnClick(uint_ptr uiFlags,point point);
-      virtual void _001OnClick(uint_ptr uiFlags,point point,index iItem,index iSubItem);
+      virtual bool _001OnClick(uint_ptr uiFlags,point point);
+      virtual bool _001OnClick(uint_ptr uiFlags,point point,index iItem,index iSubItem);
       void _001OnTimer(::timer * ptimer);
 
       virtual void _001GetSelection(::database::id & key,::database::selection & selection);
