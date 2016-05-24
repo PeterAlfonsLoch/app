@@ -7489,6 +7489,12 @@ restart:
    }
 
 
+   void alpha_source::on_alpha_target_initial_frame_position()
+   {
+
+
+   }
+
 
 } // namespace user
 

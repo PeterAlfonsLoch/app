@@ -1263,6 +1263,13 @@ void simple_frame_window::InitialFramePosition(bool bForceRestore)
 
    layout();
 
+   if (m_palphasource != NULL)
+   {
+
+      m_palphasource->on_alpha_target_initial_frame_position();
+
+   }
+
    m_bInitialFramePosition = false;
 
 

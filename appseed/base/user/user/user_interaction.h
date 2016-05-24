@@ -12,6 +12,7 @@ namespace user
 
 
       virtual double get_alpha(::user::interaction * puiTarget);
+      virtual void on_alpha_target_initial_frame_position();
 
 
    };

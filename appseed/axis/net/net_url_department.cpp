@@ -586,7 +586,7 @@ namespace url
       if(iPos < 0)
          return var(var::type_empty);
       else
-         return query_get_param(strUrl.Mid(iPos + 1), pszKey);
+         return url_decode(query_get_param(strUrl.Mid(iPos + 1), pszKey));
 
    }
 

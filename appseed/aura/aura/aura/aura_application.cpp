@@ -1995,7 +1995,7 @@ namespace aura
    ::aura::ipi * application::create_ipi()
    {
 
-      return NULL;
+      return canew(::aura::ipi(this, m_strAppName));
 
    }
 
