@@ -147,12 +147,14 @@ static int void_ptr_is_null(const void * p)
 
 #define MAKELONG64(a, b)      (((uint64_t)(((uint32_t)(((uint64_t)(a)) & 0xffffffff)) | ((uint64_t)((uint32_t)(((uint64_t)(b)) & 0xffffffff))) << 32)))
 
+
 #ifndef GET_X_LPARAM
 #define GET_X_LPARAM(lp)                        ((int32_t)(int16_t)LOWORD(lp))
 #endif
 #ifndef GET_Y_LPARAM
 #define GET_Y_LPARAM(lp)                        ((int32_t)(int16_t)HIWORD(lp))
 #endif
+
 
 #define GET_X_LPARAM64(lp)                        ((int32_t)(int16_t)LODWORD(lp))
 #define GET_Y_LPARAM64(lp)                        ((int32_t)(int16_t)HIDWORD(lp))
