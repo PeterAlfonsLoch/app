@@ -2356,6 +2356,167 @@ namespace aura
    }
 
 
+   void system::defer_check_city_list()
+   {
+
+      
+      single_lock sl(&m_mutexCit);
+
+      if (m_straCit.get_size() == m_straIds.get_size()
+         && m_straIds.get_size() == m_straLon.get_size()
+         && m_straLon.get_size() == m_straLat.get_size()
+         && m_straCit.get_size() > 1)
+      {
+         
+         return;
+
+      }
+
+      file_as(m_straCit, dir::system() / "weather-cit.bin");
+      file_as(m_straIds, dir::system() / "weather-ids.bin");
+      file_as(m_straLon, dir::system() / "weather-lon.bin");
+      file_as(m_straLat, dir::system() / "weather-lat.bin");
+
+      if (m_straCit.get_size() == m_straIds.get_size()
+       && m_straIds.get_size() == m_straLon.get_size()
+       && m_straLon.get_size() == m_straLat.get_size()
+       && m_straCit.get_size() > 1)
+      {
+      }
+      else
+      {
+
+         string str;
+
+         str = file().as_string("matter://city.list.json", this);
+
+
+         if (str.has_char())
+         {
+
+            stringa stra;
+
+            stra.add_lines(str);
+
+            var v;
+
+            for (auto strJson : stra)
+            {
+
+               const char * pszJson = strJson;
+
+               v.parse_json(pszJson);
+
+               string strLine = v["name"] + ", " + v["country"];
+
+               m_straCit.add(strLine);
+
+               string strId = v["_id"];
+
+               m_straIds.add(strId);
+
+               string strLon = v["coord"]["lon"];
+
+               if (strLon.is_empty())
+               {
+
+                  strLon = "-";
+
+               }
+
+               m_straLon.add(strLon);
+
+               string strLat = v["coord"]["lat"];
+
+               if (strLon.is_empty())
+               {
+
+                  strLat = "-";
+
+               }
+
+               m_straLat.add(strLat);
+
+            }
+
+            file_put(dir::system() / "weather-cit.bin", m_straCit);
+            file_put(dir::system() / "weather-ids.bin", m_straIds);
+            file_put(dir::system() / "weather-lon.bin", m_straLon);
+            file_put(dir::system() / "weather-lat.bin", m_straLat);
+
+         }
+
+      }
+
+   }
+
+   
+   index system::find_city(string strQuery, string & strCit, string & strId, double & dLat, double & dLon)
+   {
+
+      defer_check_city_list();
+
+      if (strQuery.CompareNoCase("Cologne, DE") == 0)
+      {
+
+         strQuery = "Koeln, DE";
+
+      }
+      else if (::str::begins_ci(strQuery, "Washington DC"))
+      {
+
+         strQuery = "Washington, D. C., US";
+
+      }
+
+      index iFind = m_straCit.find_first_begins_ci(strQuery);
+
+      if (iFind < 0)
+      {
+
+         stringa stra;
+
+         stra.explode(",", strQuery);
+
+         stra.trim();
+
+         if (stra.get_size() > 2)
+         {
+
+            strQuery = stra[0];
+
+            strQuery += ", ";
+
+            strQuery += stra.last();
+
+            iFind = m_straCit.find_first_begins_ci(strQuery);
+
+            if (iFind < 0)
+            {
+
+               return -1;
+
+            }
+
+         }
+
+      }
+
+      strCit   = m_straCit[iFind];
+
+      strId    = m_straIds[iFind];
+
+      dLat     = atof(m_straLat[iFind]);
+
+      dLon     = atof(m_straLon[iFind]);
+
+      return iFind;
+
+   }
+
+
+
+
 } // namespace aura
 
 

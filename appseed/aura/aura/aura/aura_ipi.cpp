@@ -363,25 +363,33 @@ namespace aura
    string ipi::str_from_va(var_array & va)
    {
 
-      if(va.get_count() <= 0)
-      {
+      memory_file m(get_app());
 
-         return ";";
+      ::file::byte_ostream os(&m);
 
-      }
+      os << va;
 
-      string str;
+      return System.base64().encode(*m.get_primitive_memory());
 
-      for(var & v : va)
-      {
+      //if(va.get_count() <= 0)
+      //{
 
-         str += v.get_string();
+      //   return ";";
 
-         str += ";";
+      //}
 
-      }
+      //string str;
 
-      return str;
+      //for(var & v : va)
+      //{
+
+      //   str += v.get_string();
+
+      //   str += ";";
+
+      //}
+
+      //return str;
 
    }
 
@@ -439,18 +447,33 @@ namespace aura
 
       str1 = str.Mid(iFind + 1);
 
-      stra.explode(";",str1);
 
-      if(stra.has_elements())
-      {
 
-         stra.remove_last();
+      memory_file m(get_app());
 
-      }
+      str1.trim();
 
-      stra.trim();
+      System.base64().decode(*m.get_primitive_memory(), str1);
 
-      va = stra;
+      m.seek_to_begin();
+
+      ::file::byte_istream is(&m);
+
+      is >> va;
+
+      //return 
+      //stra.explode(";",str1);
+
+      //if(stra.has_elements())
+      //{
+
+      //   stra.remove_last();
+
+      //}
+
+      //stra.trim();
+
+      //va = stra;
 
       on_call(strObject,strMember,va);
 

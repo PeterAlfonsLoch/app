@@ -110,6 +110,15 @@ namespace aura
       DWORD                                        m_dwAfterApplicationFirstRequest;
 
 
+      mutex                                        m_mutexCit;
+
+      stringa                                      m_straCit;
+      stringa                                      m_straIds;
+      stringa                                      m_straLon;
+      stringa                                      m_straLat;
+
+
+
       system(::aura::application * papp, void * pdata);
       virtual ~system();
 
@@ -402,14 +411,15 @@ namespace aura
 
       virtual bool set_main_init_data(::aura::main_init_data * pdata);
 
-
       virtual void request_exit();
-
 
       virtual void defer_check_exit();
 
       virtual void on_command(::primitive::command * pcommand) override;
 
+      virtual void defer_check_city_list();
+
+      virtual index find_city(string strQuery, string & strCit, string & strId, double & dLat, double & dLon);
 
    };
 
