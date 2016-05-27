@@ -594,7 +594,7 @@ namespace user
    void status_bar::_001OnDraw(::draw2d::graphics * pgraphics)
    {
 
-      UNREFERENCED_PARAMETER(pdib);
+      UNREFERENCED_PARAMETER(pgraphics);
 
       UpdateAllPanes(FALSE, TRUE);
 

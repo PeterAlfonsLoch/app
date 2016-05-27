@@ -144,7 +144,7 @@ void XfplayerViewLine::GetPlacement(LPRECT lprect)
    *lprect = m_rect;
 }
 
-bool XfplayerViewLine::to(::draw2d::dib * pdib, bool bDraw, const RECT & rect, rect_array & rectaModified, bool bRecalcLayout)
+bool XfplayerViewLine::to(::draw2d::graphics * pgraphics, bool bDraw, const RECT & rect, rect_array & rectaModified, bool bRecalcLayout)
 {
 
    single_lock sl(m_pContainer->m_pmutex);
@@ -355,7 +355,7 @@ bool XfplayerViewLine::to(::draw2d::dib * pdib, bool bDraw, const RECT & rect, r
 
 }
 
-bool XfplayerViewLine::to(::draw2d::dib * pdib, bool bDraw, const RECT & rect, rect_array & rectaModified, ::count * count, bool bRecalcLayout, COLORREF crColor, ::draw2d::pen_sp sppen)
+bool XfplayerViewLine::to(::draw2d::graphics * pgraphics, bool bDraw, const RECT & rect, rect_array & rectaModified, ::count * count, bool bRecalcLayout, COLORREF crColor, ::draw2d::pen_sp sppen)
 {
 
    single_lock sl(m_pContainer->m_pmutex);

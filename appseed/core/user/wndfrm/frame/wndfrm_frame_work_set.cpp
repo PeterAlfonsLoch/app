@@ -122,7 +122,7 @@ namespace user
                try
                {
 
-                  m_pframeschema->_001OnDraw(pdib);
+                  m_pframeschema->_001OnDraw(pgraphics);
 
                }
                catch(...)

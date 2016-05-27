@@ -24,7 +24,7 @@ simple_status_bar::~simple_status_bar()
 
 
 /*
-bool simple_status_bar::OnEraseBkgnd(::draw2d::dib * pdib)
+bool simple_status_bar::OnEraseBkgnd(::draw2d::graphics * pgraphics)
 {
    return TRUE;
 }

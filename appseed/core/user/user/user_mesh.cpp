@@ -147,9 +147,9 @@ namespace user
       if(m_bLockViewUpdate)
          return;
 
-      ::user::control::_001OnDraw(pdib);
+      ::user::control::_001OnDraw(pgraphics);
 
-      draw_framing(pdib);
+      draw_framing(pgraphics);
 
       rect rectClient;
 
@@ -629,7 +629,7 @@ namespace user
 
    }
 
-   void mesh::draw_framing(::draw2d::dib * pdib)
+   void mesh::draw_framing(::draw2d::graphics * pgraphics)
    {
 
    }
@@ -4983,10 +4983,10 @@ namespace user
    }
 
 
-   void mesh::_OnDraw(::draw2d::dib * pdib)
+   void mesh::_OnDraw(::draw2d::graphics * pgraphics)
    {
 
-      UNREFERENCED_PARAMETER(pdib);
+      UNREFERENCED_PARAMETER(pgraphics);
 
    }
 

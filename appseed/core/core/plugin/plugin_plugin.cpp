@@ -296,7 +296,7 @@ namespace plugin
 
 
 
-   void plugin::on_paint(::draw2d::dib * pdib, const RECT & lprectOut)
+   void plugin::on_paint(::draw2d::graphics * pgraphics, const RECT & lprectOut)
    {
 
       UNREFERENCED_PARAMETER(lprectOut);

@@ -510,9 +510,9 @@ namespace user
       if(!m_bVisible)
          return;
       
-      _001DrawChildren(pdib);
+      _001DrawChildren(pgraphics);
 
-      _001DrawThis(pdib);
+      _001DrawThis(pgraphics);
 
    }
 

@@ -110,7 +110,7 @@ namespace user
       if(m_bLockViewUpdate)
          return;
 
-      ::user::interaction::_001OnDraw(pdib);
+      ::user::interaction::_001OnDraw(pgraphics);
 
       rect rectClient;
 
@@ -5074,10 +5074,10 @@ namespace user
    }
 
    
-   void list::_OnDraw(::draw2d::dib * pdib)
+   void list::_OnDraw(::draw2d::graphics * pgraphics)
    {
       
-      UNREFERENCED_PARAMETER(pdib);
+      UNREFERENCED_PARAMETER(pgraphics);
 
    }
 
@@ -5919,7 +5919,7 @@ namespace user
    void list::_001OnClip(::draw2d::graphics * pgraphics)
    {
 
-      mesh::_001OnClip(pdib);
+      mesh::_001OnClip(pgraphics);
 
       if(m_bHeaderCtrl && m_plistheader != NULL)
       {
@@ -5939,7 +5939,7 @@ namespace user
 
             rgnClip->create_rect(rectClient);
 
-            pdib->get_graphics()->SelectClipRgn(rgnClip,RGN_DIFF);
+            pgraphics->SelectClipRgn(rgnClip,RGN_DIFF);
 
          }
          catch(...)

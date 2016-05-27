@@ -248,8 +248,8 @@ namespace user
       void _001OnDraw(::draw2d::graphics * pgraphics);
 
 
-      void _001OnDrawStandard(::draw2d::dib * pdib);
-      void _001OnDrawSchema01(::draw2d::dib * pdib);
+      void _001OnDrawStandard(::draw2d::graphics * pgraphics);
+      void _001OnDrawSchema01(::draw2d::graphics * pgraphics);
 
 
 

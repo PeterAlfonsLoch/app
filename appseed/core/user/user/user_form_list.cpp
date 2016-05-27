@@ -300,14 +300,14 @@ namespace user
    void form_list::_001OnDraw(::draw2d::graphics * pgraphics)
    {
 
-      list::_001OnDraw(pdib);
+      list::_001OnDraw(pgraphics);
 
    }
 
    void form_list::_001DrawChildren(::draw2d::graphics * pgraphics)
    {
 
-      form_mesh::_001DrawChildren(pdib);
+      form_mesh::_001DrawChildren(pgraphics);
 
    }
 

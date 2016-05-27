@@ -63,7 +63,7 @@ namespace user
    }
 
 
-   void combo_box::_001OnDrawStaticText(::draw2d::dib * pdib)
+   void combo_box::_001OnDrawStaticText(::draw2d::graphics * pgraphics)
    {
 
       
@@ -99,7 +99,7 @@ namespace user
 
 
 
-   void combo_box::_001OnDrawVerisimple(::draw2d::dib * pdib)
+   void combo_box::_001OnDrawVerisimple(::draw2d::graphics * pgraphics)
    {
 
       
@@ -109,13 +109,13 @@ namespace user
       if(m_bEdit)
       {
 
-         ::user::plain_edit::_001OnDraw(pdib);
+         ::user::plain_edit::_001OnDraw(pgraphics);
 
       }
       else
       {
 
-         _001OnDrawStaticText(pdib);
+         _001OnDrawStaticText(pgraphics);
 
       }
 
@@ -169,7 +169,7 @@ namespace user
 
    }
 
-   void combo_box::_001OnDrawSimply(::draw2d::dib * pdib)
+   void combo_box::_001OnDrawSimply(::draw2d::graphics * pgraphics)
    {
 
       rect rectClient;
@@ -181,13 +181,13 @@ namespace user
       if(m_bEdit)
       {
 
-         ::user::plain_edit::_001OnDraw(pdib);
+         ::user::plain_edit::_001OnDraw(pgraphics);
 
       }
       else
       {
 
-         pdib->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_blend);
+         pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
          //if(m_bDropDownHover)
          //{
@@ -218,7 +218,7 @@ namespace user
 
          //pgraphics->Draw3dRect(rectClient, crBorder, crBorder);
 
-         _001OnDrawStaticText(pdib);
+         _001OnDrawStaticText(pgraphics);
 
       }
 
@@ -335,20 +335,20 @@ namespace user
    void combo_box::_001OnDraw(::draw2d::graphics * pgraphics)
    {
 
-      ::user::control::_001OnDraw(pdib);
+      ::user::control::_001OnDraw(pgraphics);
 
 
       //if(m_estyle == style_simply)
       if(m_plist == NULL)
       {
 
-         _001OnDrawSimply(pdib);
+         _001OnDrawSimply(pgraphics);
 
       }
       else
       {
 
-         _001OnDrawVerisimple(pdib);
+         _001OnDrawVerisimple(pgraphics);
 
       }
 

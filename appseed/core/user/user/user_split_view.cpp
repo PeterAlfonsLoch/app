@@ -143,7 +143,7 @@ namespace user
    void split_view::_001OnNcDraw(::draw2d::graphics * pgraphics)
    {
 
-      UNREFERENCED_PARAMETER(pdib);
+      UNREFERENCED_PARAMETER(pgraphics);
 
    }
 

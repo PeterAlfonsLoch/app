@@ -61,19 +61,19 @@ namespace user
       if(m_pcombo->m_estyle == ::user::combo_box::style_simply)
       {
 
-         _002OnDrawSimply(pdib);
+         _002OnDrawSimply(pgraphics);
 
       }
       else
       {
 
-         _002OnDrawVerisimple(pdib);
+         _002OnDrawVerisimple(pgraphics);
 
       }
 
    }
 
-   void combo_list::_001OnDrawVerisimple(::draw2d::dib * pdib)
+   void combo_list::_001OnDrawVerisimple(::draw2d::graphics * pgraphics)
    {
 
       
@@ -174,7 +174,7 @@ namespace user
    }
 
 
-   void combo_list::_001OnDrawSimply(::draw2d::dib * pdib)
+   void combo_list::_001OnDrawSimply(::draw2d::graphics * pgraphics)
    {
       
       
@@ -275,7 +275,7 @@ namespace user
    }
 
 
-   void combo_list::_002OnDrawVerisimple(::draw2d::dib * pdib)
+   void combo_list::_002OnDrawVerisimple(::draw2d::graphics * pgraphics)
    {
 
       
@@ -379,7 +379,7 @@ namespace user
    }
 
 
-   void combo_list::_002OnDrawSimply(::draw2d::dib * pdib)
+   void combo_list::_002OnDrawSimply(::draw2d::graphics * pgraphics)
    {
 
       

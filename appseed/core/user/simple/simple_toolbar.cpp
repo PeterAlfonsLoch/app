@@ -247,7 +247,7 @@ void simple_toolbar::_001OnDraw(::draw2d::graphics * pgraphics)
 
 
 /*
-bool simple_toolbar::OnEraseBkgnd(::draw2d::dib * pdib)
+bool simple_toolbar::OnEraseBkgnd(::draw2d::graphics * pgraphics)
 {
 return true;
 }

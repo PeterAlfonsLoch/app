@@ -54,7 +54,7 @@ namespace plugin
 
       virtual bool os_native_bergedge_start();
 
-      virtual void on_paint(::draw2d::dib * pdib,const RECT & lprect);
+      virtual void on_paint(::draw2d::graphics * pgraphics,const RECT & lprect);
 
       virtual int32_t  start_ca2_system();
 

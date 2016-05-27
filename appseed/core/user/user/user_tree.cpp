@@ -163,7 +163,7 @@ namespace user
    void tree::_001OnDraw(::draw2d::graphics * pgraphics)
    {
 
-      ::user::interaction::_001OnDraw(pdib);
+      ::user::interaction::_001OnDraw(pgraphics);
 
       rect rectClient;
 

@@ -17,7 +17,7 @@ public:
    oswindow GetHandle();
    sp(::user::interaction) OnDrawInterfaceGetWnd();
 
-   virtual void OnDraw(::draw2d::dib * pdib);     
+   virtual void OnDraw(::draw2d::graphics * pgraphics);     
    virtual bool pre_create_window(::user::create_struct& cs);
    
    

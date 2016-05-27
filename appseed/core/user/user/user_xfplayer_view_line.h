@@ -205,9 +205,9 @@ public:
       strsize &index,
       visual::font * pFont);
 
-   bool to(::draw2d::dib * pdib, bool bDraw, const RECT & rect, rect_array & rectaModified, bool bRecalcLayout);
+   bool to(::draw2d::graphics * pgraphics, bool bDraw, const RECT & rect, rect_array & rectaModified, bool bRecalcLayout);
 
-   bool to(::draw2d::dib *pdib, bool bDraw, const RECT & rect, rect_array & rectaModified, strsize * count, bool bRecalcLayout, COLORREF crColor, ::draw2d::pen_sp sppen);
+   bool to(::draw2d::graphics * pgraphics, bool bDraw, const RECT & rect, rect_array & rectaModified, strsize * count, bool bRecalcLayout, COLORREF crColor, ::draw2d::pen_sp sppen);
 
 
    DECL_GEN_SIGNAL(OnMouseMove);

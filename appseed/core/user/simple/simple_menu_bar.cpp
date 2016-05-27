@@ -760,7 +760,7 @@ void simple_menu_bar::_001OnTimer(::timer * ptimer)
 }
 
 /*
-bool simple_menu_bar::OnEraseBkgnd(::draw2d::dib * pdib)
+bool simple_menu_bar::OnEraseBkgnd(::draw2d::graphics * pgraphics)
 {
    return TRUE;
 }

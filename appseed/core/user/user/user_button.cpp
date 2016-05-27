@@ -574,7 +574,7 @@ namespace user
    }
 
 
-   void button::_002OnDraw(::draw2d::dib * pdib)
+   void button::_002OnDraw(::draw2d::graphics * pgraphics)
    {
 
       if(m_pschema == NULL)
@@ -733,7 +733,7 @@ namespace user
 
 
 
-   void button::_001OnDrawBitmap(::draw2d::dib * pdibParam)
+   void button::_001OnDrawBitmap(::draw2d::graphics * pgraphics)
    {
 
       if(!(m_pbitmap->m_dib.is_set() && m_pbitmap->m_dib->area() > 0))
@@ -753,12 +753,12 @@ namespace user
       else if(!is_window_enabled() && m_pbitmap->m_dibDisabled.is_set() && m_pbitmap->m_dibDisabled->area() > 0)
          pdib = m_pbitmap->m_dibDisabled;   // last image for disabled
 
-      pdibParam->get_graphics()->from(pdib->m_size, pdib->get_graphics(), SRCCOPY);
+      pgraphics->from(pdib->m_size, pdib->get_graphics(), SRCCOPY);
 
    }
 
 
-   void button::_001OnDrawPush(::draw2d::dib * pdib)
+   void button::_001OnDrawPush(::draw2d::graphics * pgraphics)
    {
 
       
@@ -1061,7 +1061,7 @@ namespace user
 
 
 
-   void button::_001OnDrawList(::draw2d::dib * pdib)
+   void button::_001OnDrawList(::draw2d::graphics * pgraphics)
    {
       rect rectClient;
       bool bItemHover;

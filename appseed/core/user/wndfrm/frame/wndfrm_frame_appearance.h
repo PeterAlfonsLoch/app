@@ -38,7 +38,7 @@ namespace user
                   COLORREF crBody,
                   COLORREF crShadow,
                   COLORREF crDkShadow);
-               void draw(::draw2d::dib * pdib);
+               void draw(::draw2d::graphics * pgraphics);
 
                class CColorBezier
                {

@@ -267,7 +267,7 @@ namespace user
    void form_mesh::_001OnDraw(::draw2d::graphics * pgraphics)
    {
 
-      mesh::_001OnDraw(pdib);
+      mesh::_001OnDraw(pgraphics);
 
    }
 

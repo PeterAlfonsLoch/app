@@ -45,10 +45,14 @@ void html_form_view::install_message_handling(::message::dispatch * pinterface)
 /////////////////////////////////////////////////////////////////////////////
 // html_form_view drawing
 
-void html_form_view::OnDraw(::draw2d::dib * pdib)
+
+void html_form_view::OnDraw(::draw2d::graphics * pgraphics)
 {
-   UNREFERENCED_PARAMETER(pdib);
+   
+   UNREFERENCED_PARAMETER(pgraphics);
+
 }
+
 
 /////////////////////////////////////////////////////////////////////////////
 // html_form_view diagnostics

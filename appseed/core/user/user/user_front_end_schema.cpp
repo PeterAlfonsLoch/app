@@ -142,7 +142,7 @@ namespace user
       //}
    }
 
-   void front_end_schema::DrawCheck(check::e_check echeck, const RECT & rect, ::draw2d::dib * pdib)
+   void front_end_schema::DrawCheck(check::e_check echeck, const RECT & rect, ::draw2d::graphics * pgraphics)
    {
 
       

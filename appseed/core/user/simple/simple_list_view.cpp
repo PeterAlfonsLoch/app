@@ -27,10 +27,10 @@ void simple_list_view::install_message_handling(::message::dispatch * pinterface
 // simple_list_view drawing
 
 
-void simple_list_view::OnDraw(::draw2d::dib * pdib)
+void simple_list_view::OnDraw(::draw2d::graphics * pgraphics)
 {
    
-   UNREFERENCED_PARAMETER(pdib);
+   UNREFERENCED_PARAMETER(pgraphics);
    
    ASSERT(FALSE);
 
@@ -39,13 +39,19 @@ void simple_list_view::OnDraw(::draw2d::dib * pdib)
 
 void simple_list_view::assert_valid() const
 {
+
    ::user::impact::assert_valid();
+
 }
+
 
 void simple_list_view::dump(dump_context & dumpcontext) const
 {
+
    ::user::impact::dump(dumpcontext);
+
 }
+
 
 bool simple_list_view::pre_create_window(::user::create_struct& cs)
 {

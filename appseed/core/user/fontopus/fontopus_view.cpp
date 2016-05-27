@@ -215,7 +215,7 @@ namespace fontopus
 
       //return;
 
-      simple_ui_draw_frame_window_rect(pdib);
+      simple_ui_draw_frame_window_rect(pgraphics);
 
       
 
@@ -461,12 +461,12 @@ namespace fontopus
       if (!m_bVisible)
          return;
 
-      _001DrawThis(pdib);
+      _001DrawThis(pgraphics);
 
       try
       {
 
-         _001DrawChildren(pdib);
+         _001DrawChildren(pgraphics);
 
       }
       catch (...)
@@ -500,7 +500,7 @@ namespace fontopus
             if (pui->m_bVisible && !pui->is_custom_draw())
             {
 
-               pui->_000OnDraw(pdib);
+               pui->_000OnDraw(pgraphics);
 
             }
 

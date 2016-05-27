@@ -1232,7 +1232,7 @@ throw todo(get_app());
    void toolbar::_001OnDraw(::draw2d::graphics * pgraphics)
    {
       
-      UNREFERENCED_PARAMETER(pdib);
+      UNREFERENCED_PARAMETER(pgraphics);
       
       if (m_bDelayedButtonLayout)
       {

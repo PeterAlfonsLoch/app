@@ -452,20 +452,20 @@ namespace user
       if(m_puserschema == NULL)
       {
 
-         _001OnDrawStandard(pdib);
+         _001OnDrawStandard(pgraphics);
 
          return;
 
       }
 
 
-      m_puserschema->_001TabOnDrawSchema01(pdib,this);
+      m_puserschema->_001TabOnDrawSchema01(pgraphics,this);
 //      _001OnDrawSchema01(pgraphics);
 
    }
 
 
-   void tab::_001OnDrawStandard(::draw2d::dib * pdib)
+   void tab::_001OnDrawStandard(::draw2d::graphics * pgraphics)
    {
 
       

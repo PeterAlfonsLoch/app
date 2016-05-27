@@ -20,10 +20,14 @@ namespace filemanager
       IGUI_WIN_MSG_LINK(WM_CREATE,pinterface,this,&operation_list_view::_001OnCreate);
    }
 
-   void operation_list_view::OnDraw(::draw2d::dib * pdib)
+  
+   void operation_list_view::OnDraw(::draw2d::graphics * pgraphics)
    {
-      UNREFERENCED_PARAMETER(pdib);
+      
+      UNREFERENCED_PARAMETER(pgraphics);
+
    }
+
 
    ::count operation_list_view::_001GetItemCount()
    {
