@@ -468,6 +468,15 @@ namespace windows
 
       //::simple_message_box(NULL,"h2","h2",MB_OK);
 
+      if (cs.hwndParent != HWND_MESSAGE)
+      {
+
+         m_pgraphics = Application.alloc < window_graphics >(System.type_info < window_graphics >());
+
+         m_pgraphics->on_create_window(oswindow);
+
+      }
+
       if(oswindow == NULL)
       {
 
@@ -1347,7 +1356,7 @@ namespace windows
    {
 
       ::exception::throw_not_implemented(get_app());
-      //::CallWindowProc(*GetSuperWndProcAddr(), get_handle(), WM_PRINT, (WPARAM)((dynamic_cast<::windows::graphics * >(pdc))->get_handle()), (LPARAM)(PRF_CHILDREN | PRF_CLIENT));
+      //::CallWindowProc(*GetSuperWndProcAddr(), get_handle(), WM_PRINT, (WPARAM)((dynamic_cast<::windows::graphics * >(pgraphics))->get_handle()), (LPARAM)(PRF_CHILDREN | PRF_CLIENT));
 
    }
 
@@ -2430,7 +2439,7 @@ restart_mouse_hover_check:
 
    /*   void interaction_impl::_001OnDeferPaintLayeredWindowBackground(::draw2d::dib * pdib)
    {
-   _001DeferPaintLayeredWindowBackground(pdc);
+   _001DeferPaintLayeredWindowBackground(pgraphics);
    }*/
 
 
@@ -2494,7 +2503,7 @@ restart_mouse_hover_check:
       GetClientRect(rectClient);
 
 
-      //pdc->FillSolidRect(rectClient, 0x00000000);
+      //pgraphics->FillSolidRect(rectClient, 0x00000000);
 
       //return;
       rect rectUpdate;
@@ -2626,7 +2635,7 @@ restart_mouse_hover_check:
                   }
                   if(pwnd != NULL)
                   {
-                  pwnd->_001Print(pdc);
+                  pwnd->_001Print(pgraphics);
                   }*/
 
                   //if(::GetWindowLong(wndaApp[j], GWL_EXSTYLE) & WS_EX_LAYERED)
@@ -2801,7 +2810,7 @@ restart_mouse_hover_check:
          try
          {
 
-            _001Print(pdib);
+            _001Print(pdib->get_graphics());
 
          }
          catch (...)
@@ -5968,12 +5977,12 @@ lCallNextHook:
 
 
 
-   void interaction_impl::set_viewport_org(::draw2d::dib * pdib)
+   void interaction_impl::set_viewport_org(::draw2d::graphics * pgraphics)
    {
 
       // graphics will be already set its view port to the interaction_impl for linux - cairo with xlib
 
-      pdib->SetViewportOrg(point(0,0));
+      pgraphics->SetViewportOrg(point(0,0));
 
    }
 

@@ -2585,7 +2585,7 @@ namespace user
    
       }
    
-      _001Print(m_spdibBuffer);
+      _001Print(m_spdibBuffer->get_graphics());
 
       m_spdibBuffer->m_bReduced = false;
    
@@ -3012,10 +3012,10 @@ namespace user
    //}
 
 
-   window_graphics ** interaction_impl::get_window_graphics()
+   window_graphics * interaction_impl::get_window_graphics()
    {
 
-      return &m_pgraphics;
+      return m_pgraphics;
 
    }
 

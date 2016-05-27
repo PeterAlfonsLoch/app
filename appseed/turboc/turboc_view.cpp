@@ -188,7 +188,7 @@ namespace turboc
 
       GetClientRect(rectClient);
 
-      pdc->BitBlt(rectClient,Application.m_pcontext->m_dib->get_graphics());
+      pgraphics->BitBlt(rectClient,Application.m_pcontext->m_dib->get_graphics());
 
 
       if(Application.m_etype == application::type_mili)
@@ -206,11 +206,11 @@ namespace turboc
 
             m_font->create_pixel_font(FONT_SANS,fHeight,FW_BOLD);
 
-            pdc->set_font(m_font);
+            pgraphics->set_font(m_font);
 
-            pdc->set_text_rendering(::draw2d::text_rendering_anti_alias);
+            pgraphics->set_text_rendering(::draw2d::text_rendering_anti_alias);
 
-            class size size = pdc->GetTextExtent(strHelloMultiverse);
+            class size size = pgraphics->GetTextExtent(strHelloMultiverse);
 
             double ratey = fHeight * 0.84 / size.cy;
 
@@ -222,9 +222,9 @@ namespace turboc
 
             //m_dibFast->Fill(0,0,0,0);
 
-            //pdc->set_font(m_font);
+            //pgraphics->set_font(m_font);
 
-            //size = pdc->GetTextExtent(strHelloMultiverse);
+            //size = pgraphics->GetTextExtent(strHelloMultiverse);
 
             //::draw2d::path_sp path(allocer());
 
@@ -234,11 +234,11 @@ namespace turboc
 
             //pen->create_solid(1.0,ARGB(255,84 / 2,84 / 2,77 / 2));
 
-            //pdc->FillSolidRect(0,0,m_cx,m_cy,ARGB(0,0,0,0));
+            //pgraphics->FillSolidRect(0,0,m_cx,m_cy,ARGB(0,0,0,0));
 
-            //pdc->set_alpha_mode(::draw2d::alpha_mode_blend);
+            //pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-            //pdc->draw_path(path,pen);
+            //pgraphics->draw_path(path,pen);
 
             m_bNewLayout = false;
 
@@ -255,17 +255,17 @@ namespace turboc
 
          brush->create_solid(ARGB(255,ca.m_uchR,ca.m_uchG,ca.m_uchB));
 
-         pdc->SelectObject(brush);
+         pgraphics->SelectObject(brush);
 
-         pdc->set_font(m_font);
+         pgraphics->set_font(m_font);
 
-         pdc->set_alpha_mode(::draw2d::alpha_mode_blend);
+         pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-         pdc->set_text_rendering(::draw2d::text_rendering_anti_alias);
+         pgraphics->set_text_rendering(::draw2d::text_rendering_anti_alias);
 
-         ::size size = pdc->GetTextExtent(strHelloMultiverse);
+         ::size size = pgraphics->GetTextExtent(strHelloMultiverse);
 
-         pdc->TextOut((m_cx - size.cx) / 2,(m_cy - size.cy) / 2,strHelloMultiverse);
+         pgraphics->TextOut((m_cx - size.cx) / 2,(m_cy - size.cy) / 2,strHelloMultiverse);
 
          return;
 
@@ -294,9 +294,9 @@ namespace turboc
 
          }
 
-         pdc->BitBlt(null_point(),size(m_cx,m_cy),m_dibFast->get_graphics());
+         pgraphics->BitBlt(null_point(),size(m_cx,m_cy),m_dibFast->get_graphics());
 
-         //pdc->FillSolidRect(400,400,100,100,ARGB(128,0,0,128));
+         //pgraphics->FillSolidRect(400,400,100,100,ARGB(128,0,0,128));
 
          m_bOkPending = true;
 
@@ -341,7 +341,7 @@ namespace turboc
       if(pdib->area() <= 0)
          return;
 
-      pdc->set_alpha_mode(::draw2d::alpha_mode_blend);
+      pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
       if(::get_tick_count() - m_dwLastOk < m_dwAnime)
       {
@@ -352,28 +352,28 @@ namespace turboc
 
          GetClientRect(rectClient);
 
-         //pdc->FillSolidRect(rectClient,0);
+         //pgraphics->FillSolidRect(rectClient,0);
 
-         System.visual().imaging().bitmap_blend(pdc,null_point(),pdib->m_size,pdib->get_graphics(),null_point(),uchAlpha);
+         System.visual().imaging().bitmap_blend(pgraphics,null_point(),pdib->m_size,pdib->get_graphics(),null_point(),uchAlpha);
 
-         System.visual().imaging().bitmap_blend(pdc,null_point(),pdibFast->m_size,pdibFast->get_graphics(),null_point(),255 - uchAlpha);
+         System.visual().imaging().bitmap_blend(pgraphics,null_point(),pdibFast->m_size,pdibFast->get_graphics(),null_point(),255 - uchAlpha);
 
       }
       else
       {
 
-         pdc->from(pdib->m_size,pdib->get_graphics(),SRCCOPY);
+         pgraphics->from(pdib->m_size,pdib->get_graphics(),SRCCOPY);
 
       }
 
-      //System.visual().imaging().bitmap_blend(pdc,null_point(),pdibFast->m_size,pdibFast->get_graphics(),null_point(),255);
+      //System.visual().imaging().bitmap_blend(pgraphics,null_point(),pdibFast->m_size,pdibFast->get_graphics(),null_point(),255);
 
 
-      //pdc->FillSolidRect(100,100,100,100,ARGB(128,0,128,0));
+      //pgraphics->FillSolidRect(100,100,100,100,ARGB(128,0,128,0));
 
    }
 
-   void view::_001OnDraw(::draw2d::dib * pdib)
+   void view::_001OnDraw(::draw2d::graphics * pgraphics)
    {
 
       ::rect rectClient;
@@ -387,9 +387,9 @@ namespace turboc
 
       m_dibPost->Fill(0,0,0,0);
 
-      ::draw2d::graphics * pdc = m_dibPost->get_graphics();
+      ::draw2d::graphics * pgraphics = m_dibPost->get_graphics();
 
-      _001OnHelloDraw(pdc);
+      _001OnHelloDraw(pgraphics);
 
       _001OnPostProcess(m_dibPost);
 
@@ -424,17 +424,17 @@ namespace turboc
 
       m_dibFast->Fill(0,0,0,0);
 
-      ::draw2d::graphics * pdc = m_dibFast->get_graphics();
+      ::draw2d::graphics * pgraphics = m_dibFast->get_graphics();
 
       float fHeight = 100.0;
 
       m_font->create_pixel_font(FONT_SANS,fHeight,FW_BOLD);
 
-      pdc->set_font(m_font);
+      pgraphics->set_font(m_font);
 
-      pdc->set_text_rendering(::draw2d::text_rendering_anti_alias);
+      pgraphics->set_text_rendering(::draw2d::text_rendering_anti_alias);
 
-      class size size = pdc->GetTextExtent(strHelloMultiverse);
+      class size size = pgraphics->GetTextExtent(strHelloMultiverse);
 
       double ratey = fHeight * 0.84 / size.cy;
 
@@ -446,9 +446,9 @@ namespace turboc
 
 
 
-      pdc->set_font(m_font);
+      pgraphics->set_font(m_font);
 
-      size = pdc->GetTextExtent(strHelloMultiverse);
+      size = pgraphics->GetTextExtent(strHelloMultiverse);
 
       ::draw2d::path_sp path(allocer());
 
@@ -460,14 +460,14 @@ namespace turboc
 
       pen->create_solid(1.0,ARGB(255,84 / 2,84 / 2,77 / 2));
 
-      pdc->set_alpha_mode(::draw2d::alpha_mode_set);
+      pgraphics->set_alpha_mode(::draw2d::alpha_mode_set);
 
-      //pdc->FillSolidRect(0, 0, m_cx, m_cy, ARGB(0,0,0,0));
+      //pgraphics->FillSolidRect(0, 0, m_cx, m_cy, ARGB(0,0,0,0));
 
-      pdc->set_alpha_mode(::draw2d::alpha_mode_blend);
+      pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-      pdc->draw_path(path,pen);
-      //pdc->FillSolidRect(00,00,100,100,ARGB(128,128,0,0));
+      pgraphics->draw_path(path,pen);
+      //pgraphics->FillSolidRect(00,00,100,100,ARGB(128,128,0,0));
 
    }
 

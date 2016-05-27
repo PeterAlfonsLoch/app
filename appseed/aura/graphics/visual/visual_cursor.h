@@ -26,7 +26,7 @@ namespace visual
 
       cursor(::aura::application * papp);
 
-      bool to(::draw2d::dib * pdib, point pt);
+      bool to(::draw2d::graphics * pgraphics, point pt);
 
 
 #ifdef WINDOWSEX

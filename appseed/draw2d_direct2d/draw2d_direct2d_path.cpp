@@ -102,7 +102,7 @@ namespace draw2d_direct2d
 
    }
 
-   bool graphics_path::internal_add_string(::draw2d_direct2d::graphics * pdc, int32_t x,int32_t y,const string & strText,::draw2d::font_sp spfont)
+   bool graphics_path::internal_add_string(::draw2d_direct2d::graphics * pgraphics, int32_t x,int32_t y,const string & strText,::draw2d::font_sp spfont)
    {
 
       HRESULT hr;
@@ -122,7 +122,7 @@ namespace draw2d_direct2d
       Microsoft::WRL::ComPtr<IDWriteTextLayout>                       textLayout;
 
 
-      pfactory->CreateTextLayout(szOutline,szOutline.length(),(IDWriteTextFormat *)spfont.cast <font>()->get_os_font(pdc),1024 * 1024,1024 * 1024,&textLayout);
+      pfactory->CreateTextLayout(szOutline,szOutline.length(),(IDWriteTextFormat *)spfont.cast <font>()->get_os_font(pgraphics),1024 * 1024,1024 * 1024,&textLayout);
 
 
       Microsoft::WRL::ComPtr<IDWriteTextRenderer>                       textRenderer;
@@ -273,7 +273,7 @@ namespace draw2d_direct2d
 
    }
 
-   ID2D1PathGeometry * graphics_path::get_os_path(::draw2d_direct2d::graphics * pdc)
+   ID2D1PathGeometry * graphics_path::get_os_path(::draw2d_direct2d::graphics * pgraphics)
    {
 
 
@@ -288,7 +288,7 @@ namespace draw2d_direct2d
       for(int32_t i = 0; i < m_elementa.get_count(); i++)
       {
 
-         set(pdc,m_elementa(i));
+         set(pgraphics,m_elementa(i));
 
       }
 
@@ -337,7 +337,7 @@ namespace draw2d_direct2d
 
    }
 
-   bool graphics_path::set(::draw2d_direct2d::graphics * pdc, const ::draw2d::path::element & e)
+   bool graphics_path::set(::draw2d_direct2d::graphics * pgraphics, const ::draw2d::path::element & e)
    {
 
       switch(e.m_etype)
@@ -355,7 +355,7 @@ namespace draw2d_direct2d
          set(e.u.m_rect);
          break;
       case ::draw2d::path::element::type_string:
-         set(pdc,e.m_stringpath);
+         set(pgraphics,e.m_stringpath);
          break;
       case ::draw2d::path::element::type_end:
          internal_end_figure(e.u.m_end.m_bClose);
@@ -415,10 +415,10 @@ namespace draw2d_direct2d
 
    }
 
-   bool graphics_path::set(::draw2d_direct2d::graphics * pdc,const ::draw2d::path::string_path & path)
+   bool graphics_path::set(::draw2d_direct2d::graphics * pgraphics,const ::draw2d::path::string_path & path)
    {
-      return true; // done at pdc
-      //return internal_add_string(pdc, (int) path.m_x,(int)path.m_y, path.m_strText, path.m_spfont);
+      return true; // done at pgraphics
+      //return internal_add_string(pgraphics, (int) path.m_x,(int)path.m_y, path.m_strText, path.m_spfont);
 
    }
 

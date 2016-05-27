@@ -1,6 +1,6 @@
 #include "framework.h"
 
-namespace draw2d_gl2d
+namespace draw2d_opengl
 {
 
    palette::palette(::aura::application * papp) :
@@ -15,7 +15,7 @@ namespace draw2d_gl2d
    }
    palette* palette::from_handle(::aura::application * papp, HPALETTE hPalette)
    { 
-      //return dynamic_cast < palette * > (::draw2d_gl2d::object::from_handle(papp, hPalette)); 
+      //return dynamic_cast < palette * > (::draw2d_opengl::object::from_handle(papp, hPalette)); 
       return NULL;
    }
    bool palette::CreatePalette(LPLOGPALETTE lpLogPalette)
@@ -25,8 +25,8 @@ namespace draw2d_gl2d
    }
    bool palette::CreateHalftonePalette(::draw2d::dib * pdib)
    {
-      //ASSERT(pgraphics != NULL && (dynamic_cast<::draw2d_gl2d::graphics * >(pgraphics))->get_handle1() != NULL); 
-      //return attach(::CreateHalftonePalette((dynamic_cast<::draw2d_gl2d::graphics * >(pgraphics))->get_handle1())); 
+      //ASSERT(pgraphics != NULL && (dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->get_handle1() != NULL); 
+      //return attach(::CreateHalftonePalette((dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->get_handle1())); 
       return FALSE;
 
    }
@@ -55,4 +55,4 @@ namespace draw2d_gl2d
    { ASSERT(get_os_data() != NULL); WORD nEntries;
    ::GetObject((HANDLE) get_os_data(), sizeof(WORD), &nEntries); return (int32_t)nEntries; }
 
-} // namespace draw2d_gl2d
+} // namespace draw2d_opengl

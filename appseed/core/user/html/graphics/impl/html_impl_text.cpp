@@ -75,9 +75,9 @@ namespace html
          if (pelemental->m_elementalptra.get_size() > 0 || pelemental->m_strBody.is_empty())
             return;
 
-         ::draw2d::graphics * pdc = pdata->m_pdib->get_graphics();
+         ::draw2d::graphics * pgraphics = pdata->m_pgraphics;
 
-         if(pdc == NULL)
+         if(pgraphics == NULL)
             return;
 
          font * pfont = pdata->get_font(m_pelemental);
@@ -85,7 +85,7 @@ namespace html
          if(pfont != NULL)
          {
 
-            pdc->SelectObject(pfont->m_font);
+            pgraphics->SelectObject(pfont->m_font);
 
          }
 
@@ -122,9 +122,9 @@ namespace html
 
 //         e_tag etag = m_pelemental->m_etag;
 
-         ::draw2d::graphics * pdc = pdata->m_pdib->get_graphics();
+         ::draw2d::graphics * pgraphics = pdata->m_pgraphics;
 
-         if (pdc == NULL)
+         if (pgraphics == NULL)
             return;
 
          font * pfont = pdata->get_font(m_pelemental);
@@ -132,7 +132,7 @@ namespace html
          if (pfont != NULL)
          {
 
-            pdc->SelectObject(pfont->m_font);
+            pgraphics->SelectObject(pfont->m_font);
 
          }
 
@@ -147,7 +147,7 @@ namespace html
 
          }
 
-         ::size size = pdc->GetTextExtent(strMax);
+         ::size size = pgraphics->GetTextExtent(strMax);
 
          m_cxMax = (float)size.cx;
 
@@ -238,7 +238,7 @@ namespace html
             if (!isspace(uch))
             {
 
-               size = pdc->GetTextExtent(m_straWordSpace[i]);
+               size = pgraphics->GetTextExtent(m_straWordSpace[i]);
 
                if (size.cx > m_cxMin)
                   m_cxMin = (float)size.cx;
@@ -272,19 +272,19 @@ namespace html
          if (etag == tag_br)
          {
 
-            ::draw2d::graphics * pdc = pdata->m_pdib->get_graphics();
+            ::draw2d::graphics * pgraphics = pdata->m_pgraphics;
 
-            if (pdc == NULL)
+            if (pgraphics == NULL)
                return;
 
             if (pdata->m_layoutstate1.m_cy <= 0)
             {
 
-               pdc->SelectObject(pdata->get_font(m_pelemental)->m_font);
+               pgraphics->SelectObject(pdata->get_font(m_pelemental)->m_font);
 
                m_box.set_cx(0);
 
-               class ::size size = pdc->GetTextExtent(unitext("MAÚqg"));
+               class ::size size = pgraphics->GetTextExtent(unitext("MAÚqg"));
 
                pdata->m_layoutstate1.m_cy = (float)size.cy;
 
@@ -309,12 +309,12 @@ namespace html
           || etag == tag_tr)
             return;
 
-         ::draw2d::graphics * pdc = pdata->m_pdib->get_graphics();
+         ::draw2d::graphics * pgraphics = pdata->m_pgraphics;
 
-         if (pdc == NULL)
+         if (pgraphics == NULL)
             return;
 
-         pdc->SelectObject(pdata->get_font(m_pelemental)->m_font);
+         pgraphics->SelectObject(pdata->get_font(m_pelemental)->m_font);
 
          string str = m_pelemental->m_strBody;
 
@@ -393,7 +393,7 @@ namespace html
 
             }
 
-            sizeText = pdc->GetTextExtent(strLine);
+            sizeText = pgraphics->GetTextExtent(strLine);
 
             if ((x + sizeText.cx) > pointBound.x + sizeContent.cx)
             {
@@ -409,7 +409,7 @@ namespace html
                else if (iLastSpace > 0)
                {
 
-                  sizeText = pdc->GetTextExtent(strLine.Left(iLastSpace));
+                  sizeText = pgraphics->GetTextExtent(strLine.Left(iLastSpace));
 
                   m_straLines.add(strLine.Left(iLastSpace));
 
@@ -438,7 +438,7 @@ namespace html
          if (strLine.get_length() > 0)
          {
 
-            sizeText = pdc->GetTextExtent(strLine);
+            sizeText = pgraphics->GetTextExtent(strLine);
 
             m_straLines.add(strLine);
 
@@ -530,7 +530,7 @@ namespace html
 //            return;
 //         }
 
-         ::draw2d::graphics * pdc = pdata->m_pdib->get_graphics();
+         ::draw2d::graphics * pgraphics = pdata->m_pgraphics;
 
          COLORREF crBkSel = RGB(120, 240, 150);
 
@@ -558,7 +558,7 @@ namespace html
 
             }
 
-            pdc->set_alpha_mode(::draw2d::alpha_mode_blend);
+            pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
             COLORREF cr = 0;
 
@@ -569,7 +569,7 @@ namespace html
                if(m_bHover && m_pelemental->m_style.get_color("background-color", "hover", pdata, m_pelemental, cr))
                {
                   Sys(pdata->get_app()).visual().imaging().color_blend(
-                     pdc,
+                     pgraphics,
                      rect,
                      cr,
                      MAX(0, MIN(255, (BYTE)(d * 255))));
@@ -577,7 +577,7 @@ namespace html
                else if(has_link() && m_pelemental->m_style.get_color("background-color", "link", pdata, m_pelemental, cr))
                {
                   Sys(pdata->get_app()).visual().imaging().color_blend(
-                     pdc,
+                     pgraphics,
                      rect,
                      cr,
                      MAX(0, MIN(255, (BYTE)(d * 255))));
@@ -585,7 +585,7 @@ namespace html
                else if (m_pelemental->m_style.get_color("background-color", "", pdata, m_pelemental, cr))
                {
                   Sys(pdata->get_app()).visual().imaging().color_blend(
-                     pdc,
+                     pgraphics,
                      rect,
                      cr,
                      MAX(0, MIN(255, (BYTE)(d * 255))));
@@ -595,21 +595,21 @@ namespace html
             {
                if(m_bHover && m_pelemental->m_style.get_color("background-color", "hover", pdata, m_pelemental, cr))
                {
-                  pdc->FillSolidRect(rect, cr);
+                  pgraphics->FillSolidRect(rect, cr);
                }
                else if(has_link() && m_pelemental->m_style.get_color("background-color", "link", pdata, m_pelemental, cr))
                {
-                  pdc->FillSolidRect(rect, cr);
+                  pgraphics->FillSolidRect(rect, cr);
                }
                else if (m_pelemental->m_style.get_color("background-color", "", pdata, m_pelemental, cr))
                {
-                  pdc->FillSolidRect(rect, cr);
+                  pgraphics->FillSolidRect(rect, cr);
                }
             }
          }
          if(m_pelemental->m_elementalptra.get_size() > 0 || m_pelemental->m_strBody.is_empty())
             return;
-//       ::draw2d::graphics * pdc = pdc;
+//       ::draw2d::graphics * pgraphics = pgraphics;
          ::html::impl::elemental::_001OnDraw(pdata);
 
 
@@ -619,28 +619,28 @@ namespace html
          if(m_bHover && m_pelemental->m_style.get_color("background-color", "hover", pdata, m_pelemental, cr))
          {
             bOpaque = true;
-            //pdc->SetBkMode(OPAQUE);
-            //pdc->SetBkColor(cr);
+            //pgraphics->SetBkMode(OPAQUE);
+            //pgraphics->SetBkColor(cr);
             crBkColor = cr;
          }
          else if(has_link() && m_pelemental->m_style.get_color("background-color", "link", pdata, m_pelemental, cr))
          {
             bOpaque = true;
-            //pdc->SetBkMode(OPAQUE);
-            //pdc->SetBkColor(cr);
+            //pgraphics->SetBkMode(OPAQUE);
+            //pgraphics->SetBkColor(cr);
             crBkColor = cr;
          }
          else if (m_pelemental->m_style.get_color("background-color", "", pdata, m_pelemental, cr))
          {
             bOpaque = true;
-            //pdc->SetBkMode(OPAQUE);
-            //pdc->SetBkColor(cr);
+            //pgraphics->SetBkMode(OPAQUE);
+            //pgraphics->SetBkColor(cr);
             crBkColor = cr;
          }
          else
          {
             bOpaque = false;
-            //pdc->SetBkMode(TRANSPARENT);
+            //pgraphics->SetBkMode(TRANSPARENT);
          }
 
          ::draw2d::brush_sp brushText(allocer());
@@ -672,7 +672,7 @@ namespace html
          strsize iSelStart;
          strsize iSelEnd;
          ::size size3;
-         visual::graphics_extension(pdata->m_pauraapp).GetTextExtent(pdc, unitext("gGYIﾍ"), size3);
+         visual::graphics_extension(pdata->m_pauraapp).GetTextExtent(pgraphics, unitext("gGYIﾍ"), size3);
          int32_t maxcy = size3.cy;
 
          _001GetViewSel(iSelStart, iSelEnd);
@@ -684,7 +684,7 @@ namespace html
          if(pfont != NULL)
          {
 
-            pdc->SelectObject(pfont->m_font);
+            pgraphics->SelectObject(pfont->m_font);
 
          }
 
@@ -717,7 +717,7 @@ namespace html
          if(!pdata->m_bEdit)
          {
 //            brushText->create_solid(cr);
-            pdc->SelectObject(brushText);
+            pgraphics->SelectObject(brushText);
          }
 
 
@@ -747,56 +747,56 @@ namespace html
                   strExtent1.replace("\t","   ");
                   strExtent2.replace("\t","   ");
                   strExtent3.replace("\t","   ");
-                  //pdc->SetBkMode(TRANSPARENT);
+                  //pgraphics->SetBkMode(TRANSPARENT);
                   brushText->create_solid(cr);
-                  pdc->SelectObject(brushText);
-                  //pdc->SetBkColor(crBkSel);
-                  pdc->TextOut(left,y,strExtent1);
-                  ::size size1 = pdc->GetTextExtent(strExtent1);
+                  pgraphics->SelectObject(brushText);
+                  //pgraphics->SetBkColor(crBkSel);
+                  pgraphics->TextOut(left,y,strExtent1);
+                  ::size size1 = pgraphics->GetTextExtent(strExtent1);
 
                   brushBackground->create_solid(crBkSel);
-                  //pdc->SetBkMode(OPAQUE);
-                  pdc->SelectObject(brushBackground);
-                  ::size size2 = pdc->GetTextExtent(strExtent2);
-                  pdc->FillSolidRect((int32_t)(left + size1.cx),(int32_t)y,size2.cx,size2.cy,crBkSel);
+                  //pgraphics->SetBkMode(OPAQUE);
+                  pgraphics->SelectObject(brushBackground);
+                  ::size size2 = pgraphics->GetTextExtent(strExtent2);
+                  pgraphics->FillSolidRect((int32_t)(left + size1.cx),(int32_t)y,size2.cx,size2.cy,crBkSel);
 
-                  //pdc->set_text_color(crSel);
+                  //pgraphics->set_text_color(crSel);
                   brushText->create_solid(crSel);
-                  pdc->SelectObject(brushText);
-                  pdc->TextOut(left + size1.cx,y,strExtent2);
+                  pgraphics->SelectObject(brushText);
+                  pgraphics->TextOut(left + size1.cx,y,strExtent2);
 
-                  //            pdc->set_text_color(cr);
+                  //            pgraphics->set_text_color(cr);
                   brushText->create_solid(cr);
-                  pdc->SelectObject(brushText);
-                  //pdc->SetBkColor(RGB(120, 240, 180));
-                  //          pdc->SetBkMode(TRANSPARENT);
-                  pdc->TextOut(left + size1.cx + size2.cx,y,strExtent3);
+                  pgraphics->SelectObject(brushText);
+                  //pgraphics->SetBkColor(RGB(120, 240, 180));
+                  //          pgraphics->SetBkMode(TRANSPARENT);
+                  pgraphics->TextOut(left + size1.cx + size2.cx,y,strExtent3);
 
                   maxcy = MAX(size1.cy,size2.cy);
                   maxcy = MAX(maxcy,size3.cy);
                   if(m_bFocus && bCaretOn && i3 == str1.get_length())
                   {
-                     pdc->MoveTo(left + size1.cx,y);
-                     pdc->LineTo(left + size1.cx,y + maxcy);
+                     pgraphics->MoveTo(left + size1.cx,y);
+                     pgraphics->LineTo(left + size1.cx,y + maxcy);
                   }
                   if(m_bFocus && bCaretOn && i3 == (str1.get_length() + str2.get_length()))
                   {
-                     pdc->MoveTo(left + size1.cx + size2.cx,y);
-                     pdc->LineTo(left + size1.cx + size2.cx,y + maxcy);
+                     pgraphics->MoveTo(left + size1.cx + size2.cx,y);
+                     pgraphics->LineTo(left + size1.cx + size2.cx,y + maxcy);
                   }
 
                }
                else
                {
-                  pdc->TextOut(left,top,strLine);
-                  //pdc->FillSolidRect(left,top,50,50,ARGB(255,0,255,0));
+                  pgraphics->TextOut(left,top,strLine);
+                  //pgraphics->FillSolidRect(left,top,50,50,ARGB(255,0,255,0));
                }
 
                cy += m_sizea[i].cy;
                lim += strLine.get_length();
             }
          }
-        //pdc->FillSolidRect(0, 0, 100, 100, RGB(0, 255, 0));
+        //pgraphics->FillSolidRect(0, 0, 100, 100, RGB(0, 255, 0));
 
       }
 
@@ -941,7 +941,7 @@ namespace html
       }
 
 
-      strsize text::char_hit_test(::draw2d::graphics * pdc, int32_t px, int32_t py)
+      strsize text::char_hit_test(::draw2d::graphics * pgraphics, int32_t px, int32_t py)
       {
 
 //         e_tag etag = m_pelemental->m_etag;
@@ -949,7 +949,7 @@ namespace html
          rect rect;
          m_box.get(rect);
 
-         pdc->SelectObject(m_pelemental->m_pdata->get_font(m_pelemental)->m_font);
+         pgraphics->SelectObject(m_pelemental->m_pdata->get_font(m_pelemental)->m_font);
          float x = get_x();
          float y = get_y();
          float cy = 0;
@@ -972,7 +972,7 @@ namespace html
                {
                   if(px < cur_x + size.cx)
                      return iLen + iChar;
-                  size = pdc->GetTextExtent(string(lpszStart, lpszEnd - lpszStart));
+                  size = pgraphics->GetTextExtent(string(lpszStart, lpszEnd - lpszStart));
                   if(*lpszEnd == '\0')
                      break;
                   lpszEnd = ::str::utf8_inc(lpszEnd);
@@ -1004,10 +1004,10 @@ namespace html
       }
 
 
-      void text::_001OnDraw(::draw2d::dib * pdib)
+      void text::_001OnDraw(::draw2d::graphics * pgraphics)
       {
 
-         UNREFERENCED_PARAMETER(pdib);
+         UNREFERENCED_PARAMETER(pgraphics);
 
       }
 

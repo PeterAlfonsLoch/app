@@ -24,7 +24,7 @@ namespace visual
       virtual void GetRectDay(int32_t iWeekDay,int32_t iLine,LPRECT lprect);
       virtual void GetRect(LPRECT lprect,enum EElement eelement);
 
-      void _001OnDraw(::draw2d::dib * pdib);
+      void _001OnDraw(::draw2d::graphics * pgraphics);
 
       void set_pos(point pt,size sz);
 

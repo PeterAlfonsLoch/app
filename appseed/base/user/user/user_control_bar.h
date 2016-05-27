@@ -169,7 +169,7 @@ namespace user
       // Overridables
       virtual void OnUpdateCmdUI(sp(::user::frame_window) pTarget, bool bDisableIfNoHndler) = 0;
 
-      virtual void _001OnDraw(::draw2d::dib * pdib);
+      virtual void _001OnDraw(::draw2d::graphics * pgraphics);
       
       using ::user::interaction::message_handler;
       virtual void message_handler(signal_details * pobj);
@@ -190,9 +190,9 @@ namespace user
       virtual bool pre_create_window(::user::create_struct& cs);
       virtual void PostNcDestroy();
 
-      virtual void DoPaint(::draw2d::dib * pdib);
-      void DrawBorders(::draw2d::dib * pdib, rect& rect);
-      void DrawGripper(::draw2d::dib * pdib, const rect& rect);
+      virtual void DoPaint(::draw2d::graphics * pgraphics);
+      void DrawBorders(::draw2d::graphics * pgraphics, rect& rect);
+      void DrawGripper(::draw2d::graphics * pgraphics, const rect& rect);
 
       // implementation helpers
       void CalcInsideRect(rect& rect, bool bHorz) const; // adjusts borders etc
@@ -200,7 +200,7 @@ namespace user
       virtual bool SetStatusText(int32_t nHit);
       void ResetTimer(UINT nEvent, UINT nTime);
       void EraseNonClient();
-      void EraseNonClient(::draw2d::dib * pdib);
+      void EraseNonClient(::draw2d::graphics * pgraphics);
 
       void GetBarInfo(BaseControlBarInfo* pInfo);
       void SetBarInfo(BaseControlBarInfo* pInfo, sp(::user::frame_window) pFrameWnd);
@@ -223,7 +223,7 @@ namespace user
       //DECL_GEN_SIGNAL(_001OnCancelMode);
 
       //   DECL_GEN_SIGNAL(_001OnPaint);
-      //   virtual void _001OnDraw(::draw2d::dib * pdib);
+      //   virtual void _001OnDraw(::draw2d::graphics * pgraphics);
 
       virtual void install_message_handling(::message::dispatch * pinterface);
 

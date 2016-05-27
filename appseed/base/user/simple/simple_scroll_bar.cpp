@@ -948,19 +948,18 @@ public:
    }
 
 
-   virtual void _001OnDraw(::draw2d::dib * pdib)
+   virtual void _001OnDraw(::draw2d::graphics * pgraphics)
    {
-      ::draw2d::graphics * pdc = pdib->get_graphics();
-      pdc->MoveTo(pt1);
-      pdc->LineTo(pt2);
+      pgraphics->MoveTo(pt1);
+      pgraphics->LineTo(pt2);
    }
 };
 
 
-void simple_scroll_bar::_001OnDraw(::draw2d::dib * pdib)
+void simple_scroll_bar::_001OnDraw(::draw2d::graphics * pgraphics)
 {
-   ::draw2d::graphics * pdc = pdib->get_graphics();
-   pdc->SelectClipRgn(NULL);
+
+   pgraphics->SelectClipRgn(NULL);
 
    rect rectClient;
 
@@ -969,13 +968,13 @@ void simple_scroll_bar::_001OnDraw(::draw2d::dib * pdib)
    if(Session.savings().is_trying_to_save(::aura::resource_processing))
    {
 
-      pdc->FillSolidRect(rectClient, RGB(255,255,255));
+      pgraphics->FillSolidRect(rectClient, RGB(255,255,255));
 
    }
    else
    {
 
-      pdc->FillSolidRect(rectClient,ARGB(127, 255,255,255));
+      pgraphics->FillSolidRect(rectClient,ARGB(127, 255,255,255));
 
    }
 
@@ -992,12 +991,12 @@ void simple_scroll_bar::_001OnDraw(::draw2d::dib * pdib)
 
    m_brushDraw->create_solid(scrollbar_color(element_scrollbar_rect));
 
-   pdc->SelectObject(m_penDraw);
+   pgraphics->SelectObject(m_penDraw);
 
 
-   pdc->SelectObject(m_brushDraw);
+   pgraphics->SelectObject(m_brushDraw);
 
-   pdc->Rectangle(rectTrack);
+   pgraphics->Rectangle(rectTrack);
 
 
    if(m_bTracking || (bool)oprop("tracking_on"))
@@ -1101,7 +1100,7 @@ void simple_scroll_bar::_001OnDraw(::draw2d::dib * pdib)
 
          rectMachineThumb.inflate(1 + iSize * (iSize * iSize) * 4 / (iArea * 5),1 + iSize * (iSize * iSize) * 2 / (iArea * 3));
 
-         draw_mac_thumb_simple(pdc,rectMachineThumb,rectTrack,uchAlpha);
+         draw_mac_thumb_simple(pgraphics,rectMachineThumb,rectTrack,uchAlpha);
 
       }
       else
@@ -1119,7 +1118,7 @@ void simple_scroll_bar::_001OnDraw(::draw2d::dib * pdib)
 
          rectMachineThumb.deflate(1,1);
 
-         draw_mac_thumb_dots(pdc,rectMachineThumb,rectTrack,uchAlpha);
+         draw_mac_thumb_dots(pgraphics,rectMachineThumb,rectTrack,uchAlpha);
 
       }
 
@@ -1133,7 +1132,7 @@ void simple_scroll_bar::_001OnDraw(::draw2d::dib * pdib)
 
    penGrip->create_solid(2.0,scrollbar_lite_border_color(element_scrollbar_rect));
 
-   pdc->SelectObject(penGrip);
+   pgraphics->SelectObject(penGrip);
 
    point ptCenter = rectTrack.center();
 
@@ -1141,23 +1140,23 @@ void simple_scroll_bar::_001OnDraw(::draw2d::dib * pdib)
    {
 
 
-      pdc->MoveTo(ptCenter.x - 5,ptCenter.y - 5);
-      pdc->LineTo(ptCenter.x - 5,ptCenter.y + 5);
-      pdc->MoveTo(ptCenter.x,ptCenter.y - 5);
-      pdc->LineTo(ptCenter.x,ptCenter.y + 5);
-      pdc->MoveTo(ptCenter.x + 5,ptCenter.y - 5);
-      pdc->LineTo(ptCenter.x + 5,ptCenter.y + 5);
+      pgraphics->MoveTo(ptCenter.x - 5,ptCenter.y - 5);
+      pgraphics->LineTo(ptCenter.x - 5,ptCenter.y + 5);
+      pgraphics->MoveTo(ptCenter.x,ptCenter.y - 5);
+      pgraphics->LineTo(ptCenter.x,ptCenter.y + 5);
+      pgraphics->MoveTo(ptCenter.x + 5,ptCenter.y - 5);
+      pgraphics->LineTo(ptCenter.x + 5,ptCenter.y + 5);
 
 
    }
    else
    {
-      pdc->MoveTo(ptCenter.x - 5,ptCenter.y - 5);
-      pdc->LineTo(ptCenter.x + 5,ptCenter.y - 5);
-      pdc->MoveTo(ptCenter.x - 5,ptCenter.y);
-      pdc->LineTo(ptCenter.x + 5,ptCenter.y);
-      pdc->MoveTo(ptCenter.x - 5,ptCenter.y + 5);
-      pdc->LineTo(ptCenter.x + 5,ptCenter.y + 5);
+      pgraphics->MoveTo(ptCenter.x - 5,ptCenter.y - 5);
+      pgraphics->LineTo(ptCenter.x + 5,ptCenter.y - 5);
+      pgraphics->MoveTo(ptCenter.x - 5,ptCenter.y);
+      pgraphics->LineTo(ptCenter.x + 5,ptCenter.y);
+      pgraphics->MoveTo(ptCenter.x - 5,ptCenter.y + 5);
+      pgraphics->LineTo(ptCenter.x + 5,ptCenter.y + 5);
 
    }
 
@@ -1166,23 +1165,23 @@ void simple_scroll_bar::_001OnDraw(::draw2d::dib * pdib)
 
    penArrow->create_solid(1.0,scrollbar_lite_border_color(element_scrollbar_rectA));
 
-   pdc->SelectObject(penArrow);
+   pgraphics->SelectObject(penArrow);
 
    m_brushDraw->create_solid(scrollbar_color(element_scrollbar_rectA));
 
-   pdc->SelectObject(m_brushDraw);
+   pgraphics->SelectObject(m_brushDraw);
 
-   pdc->Rectangle(m_rectA);
+   pgraphics->Rectangle(m_rectA);
 
    penArrow->create_solid(1.0,scrollbar_lite_border_color(element_scrollbar_rectB));
 
-   pdc->SelectObject(penArrow);
+   pgraphics->SelectObject(penArrow);
 
    m_brushDraw->create_solid(scrollbar_color(element_scrollbar_rectB));
 
-   pdc->SelectObject(m_brushDraw);
+   pgraphics->SelectObject(m_brushDraw);
 
-   pdc->Rectangle(m_rectB);
+   pgraphics->Rectangle(m_rectB);
 
    ::rect rect;
 
@@ -1193,9 +1192,9 @@ void simple_scroll_bar::_001OnDraw(::draw2d::dib * pdib)
 
       m_brushDraw->create_solid(scrollbar_color(element_scrollbar_pageA));
 
-      pdc->SelectObject(m_brushDraw);
+      pgraphics->SelectObject(m_brushDraw);
 
-      pdc->FillRectangle(rect);
+      pgraphics->FillRectangle(rect);
 
    }
    else if(m_eelement == element_scrollbar_pageB || m_eelementHover == element_scrollbar_pageB)
@@ -1205,9 +1204,9 @@ void simple_scroll_bar::_001OnDraw(::draw2d::dib * pdib)
 
       m_brushDraw->create_solid(scrollbar_color(element_scrollbar_pageB));
 
-      pdc->SelectObject(m_brushDraw);
+      pgraphics->SelectObject(m_brushDraw);
 
-      pdc->FillRectangle(rect);
+      pgraphics->FillRectangle(rect);
 
 
    }
@@ -1219,15 +1218,15 @@ void simple_scroll_bar::_001OnDraw(::draw2d::dib * pdib)
 
    penArrow->create_solid(1.0,scrollbar_lite_border_color(element_scrollbar_rectA));
 
-   pdc->SelectObject(penArrow);
+   pgraphics->SelectObject(penArrow);
 
-   pdc->Polyline(m_ptaA,3);
+   pgraphics->Polyline(m_ptaA,3);
 
    penArrow->create_solid(1.0,scrollbar_lite_border_color(element_scrollbar_rectB));
 
-   pdc->SelectObject(penArrow);
+   pgraphics->SelectObject(penArrow);
 
-   pdc->Polyline(m_ptaB,3);
+   pgraphics->Polyline(m_ptaB,3);
 
 
 
@@ -1247,7 +1246,7 @@ void simple_scroll_bar::_001OnDestroy(signal_details * pobj)
    UNREFERENCED_PARAMETER(pobj);
 }
 
-void simple_scroll_bar::draw_mac_thumb_simple(::draw2d::graphics * pdc,LPCRECT lpcrectDraw,LPCRECT lpcrectClip,byte uchAlpha)
+void simple_scroll_bar::draw_mac_thumb_simple(::draw2d::graphics * pgraphics,LPCRECT lpcrectDraw,LPCRECT lpcrectClip,byte uchAlpha)
 {
 
    rect rectDraw(lpcrectDraw);
@@ -1258,9 +1257,9 @@ void simple_scroll_bar::draw_mac_thumb_simple(::draw2d::graphics * pdc,LPCRECT l
 
    pen->create_solid(2.0,ARGB(149 * uchAlpha / 255,84 + 23,84 + 23,77 + 23));
 
-   pdc->SelectObject(pen);
+   pgraphics->SelectObject(pen);
 
-   pdc->DrawEllipse(rectDraw);
+   pgraphics->DrawEllipse(rectDraw);
 
    ::draw2d::brush_sp brush(allocer());
 
@@ -1268,17 +1267,17 @@ void simple_scroll_bar::draw_mac_thumb_simple(::draw2d::graphics * pdc,LPCRECT l
 
    brush->create_solid(ARGB(149 * uchAlpha / 255,84 + 23,84 + 23,77 + 23));
 
-   pdc->SelectObject(brush);
+   pgraphics->SelectObject(brush);
 
    rectDotto.CenterOf(rectDraw);
 
-   pdc->FillEllipse(rectDotto);
+   pgraphics->FillEllipse(rectDotto);
 
 }
 
 
 
-void simple_scroll_bar::draw_mac_thumb_dots(::draw2d::graphics * pdc,LPCRECT lpcrectDraw,LPCRECT lpcrectClip,byte uchAlpha)
+void simple_scroll_bar::draw_mac_thumb_dots(::draw2d::graphics * pgraphics,LPCRECT lpcrectDraw,LPCRECT lpcrectClip,byte uchAlpha)
 {
 
    ::draw2d::dib_sp dib(allocer());
@@ -1309,10 +1308,10 @@ void simple_scroll_bar::draw_mac_thumb_dots(::draw2d::graphics * pdc,LPCRECT lpc
 
    rectDraw = rectBound;
 
-   pdc->from(rectDraw.top_left(),size(1,1),dib->get_graphics(), null_point(),SRCCOPY);
-   pdc->from(rectDraw.top_right(),size(1,1),dib->get_graphics(),null_point(),SRCCOPY);
-   pdc->from(rectDraw.bottom_left(),size(1,1),dib->get_graphics(),null_point(),SRCCOPY);
-   pdc->from(rectDraw.bottom_right(),size(1,1),dib->get_graphics(),null_point(),SRCCOPY);
+   pgraphics->from(rectDraw.top_left(),size(1,1),dib->get_graphics(), null_point(),SRCCOPY);
+   pgraphics->from(rectDraw.top_right(),size(1,1),dib->get_graphics(),null_point(),SRCCOPY);
+   pgraphics->from(rectDraw.bottom_left(),size(1,1),dib->get_graphics(),null_point(),SRCCOPY);
+   pgraphics->from(rectDraw.bottom_right(),size(1,1),dib->get_graphics(),null_point(),SRCCOPY);
 
    int iSize2 = iModelSize / 4;
 
@@ -1320,19 +1319,19 @@ void simple_scroll_bar::draw_mac_thumb_dots(::draw2d::graphics * pdc,LPCRECT lpc
 
    rectDraw.deflate(iSize2+1,0);
 
-   pdc->from(rectDraw.top_left(),size(1,1),dib->get_graphics(),null_point(),SRCCOPY);
-   pdc->from(rectDraw.top_right(),size(1,1),dib->get_graphics(),null_point(),SRCCOPY);
-   pdc->from(rectDraw.bottom_left(),size(1,1),dib->get_graphics(),null_point(),SRCCOPY);
-   pdc->from(rectDraw.bottom_right(),size(1,1),dib->get_graphics(),null_point(),SRCCOPY);
+   pgraphics->from(rectDraw.top_left(),size(1,1),dib->get_graphics(),null_point(),SRCCOPY);
+   pgraphics->from(rectDraw.top_right(),size(1,1),dib->get_graphics(),null_point(),SRCCOPY);
+   pgraphics->from(rectDraw.bottom_left(),size(1,1),dib->get_graphics(),null_point(),SRCCOPY);
+   pgraphics->from(rectDraw.bottom_right(),size(1,1),dib->get_graphics(),null_point(),SRCCOPY);
 
    rectDraw = rectBound;
 
    rectDraw.deflate(0,iSize2+1);
 
-   pdc->from(rectDraw.top_left(),size(1,1),dib->get_graphics(),null_point(),SRCCOPY);
-   pdc->from(rectDraw.top_right(),size(1,1),dib->get_graphics(),null_point(),SRCCOPY);
-   pdc->from(rectDraw.bottom_left(),size(1,1),dib->get_graphics(),null_point(),SRCCOPY);
-   pdc->from(rectDraw.bottom_right(),size(1,1),dib->get_graphics(),null_point(),SRCCOPY);
+   pgraphics->from(rectDraw.top_left(),size(1,1),dib->get_graphics(),null_point(),SRCCOPY);
+   pgraphics->from(rectDraw.top_right(),size(1,1),dib->get_graphics(),null_point(),SRCCOPY);
+   pgraphics->from(rectDraw.bottom_left(),size(1,1),dib->get_graphics(),null_point(),SRCCOPY);
+   pgraphics->from(rectDraw.bottom_right(),size(1,1),dib->get_graphics(),null_point(),SRCCOPY);
 
    rectDraw = rectBound;
 
@@ -1346,39 +1345,39 @@ void simple_scroll_bar::draw_mac_thumb_dots(::draw2d::graphics * pdc,LPCRECT lpc
 
    brushGrip->create_solid(ARGB(184 * uchAlpha / 255,84 - iDarkLevel + iSmoothing,84 - iDarkLevel + iSmoothing,77 - iDarkLevel + iSmoothing));
 
-   pdc->SelectObject(brushGrip);
+   pgraphics->SelectObject(brushGrip);
 
    rect.Align(align_top_left,rectDraw);
 
-   pdc->FillEllipse(rect);
+   pgraphics->FillEllipse(rect);
 
    rect.Align(align_top_center,rectDraw);
 
-   pdc->FillEllipse(rect);
+   pgraphics->FillEllipse(rect);
 
    rect.Align(align_top_right,rectDraw);
 
-   pdc->FillEllipse(rect);
+   pgraphics->FillEllipse(rect);
 
    rect.Align(align_left_center,rectDraw);
 
-   pdc->FillEllipse(rect);
+   pgraphics->FillEllipse(rect);
 
    rect.Align(align_right_center,rectDraw);
 
-   pdc->FillEllipse(rect);
+   pgraphics->FillEllipse(rect);
 
    rect.Align(align_bottom_left,rectDraw);
 
-   pdc->FillEllipse(rect);
+   pgraphics->FillEllipse(rect);
 
    rect.Align(align_bottom_center,rectDraw);
 
-   pdc->FillEllipse(rect);
+   pgraphics->FillEllipse(rect);
 
    rect.Align(align_bottom_right,rectDraw);
 
-   pdc->FillEllipse(rect);
+   pgraphics->FillEllipse(rect);
 
    rectDraw.deflate(iSize,iSize);
 
@@ -1386,25 +1385,25 @@ void simple_scroll_bar::draw_mac_thumb_dots(::draw2d::graphics * pdc,LPCRECT lpc
 
    brushGrip->create_solid(ARGB(184 * uchAlpha / 255,84 - iDarkLevel + iSmoothing * 2,84 - iDarkLevel + iSmoothing * 2,77 - iDarkLevel + iSmoothing * 2));
 
-   pdc->SelectObject(brushGrip);
+   pgraphics->SelectObject(brushGrip);
 
    rect = ::rect(0,0,iSize,iSize);
 
    rect.Align(align_top_left,rectDraw);
 
-   pdc->FillEllipse(rect);
+   pgraphics->FillEllipse(rect);
 
    rect.Align(align_top_right,rectDraw);
 
-   pdc->FillEllipse(rect);
+   pgraphics->FillEllipse(rect);
 
    rect.Align(align_bottom_left,rectDraw);
 
-   pdc->FillEllipse(rect);
+   pgraphics->FillEllipse(rect);
 
    rect.Align(align_bottom_right,rectDraw);
 
-   pdc->FillEllipse(rect);
+   pgraphics->FillEllipse(rect);
 
    //iSize += 2;
 
@@ -1412,7 +1411,7 @@ void simple_scroll_bar::draw_mac_thumb_dots(::draw2d::graphics * pdc,LPCRECT lpc
 
    rect.CenterOf(rectDraw);
 
-   pdc->FillEllipse(rect);
+   pgraphics->FillEllipse(rect);
 
 }
 

@@ -210,7 +210,7 @@ virtual      void load_string_table(const string & pszApp,const string & pszId);
       virtual ::user::primitive * get_parent(::user::primitive * pui);
       virtual bool enable_window(::user::primitive * pui, bool bEnable = true);
       virtual bool set_window_text(::user::primitive * pui, const string & strText);
-      virtual void window_graphics_update_window(window_graphics **  ppdata,oswindow interaction_impl,COLORREF * pOsBitmapData,const RECT & rect,int cxParam,int cyParam,int iStride = -1,bool bTransferBuffer = true);
+      //virtual void window_graphics_update_window(window_graphics **  ppdata,oswindow interaction_impl,COLORREF * pOsBitmapData,const RECT & rect,int cxParam,int cyParam,int iStride = -1,bool bTransferBuffer = true);
 
 
 

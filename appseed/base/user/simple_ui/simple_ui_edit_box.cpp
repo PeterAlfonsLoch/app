@@ -104,14 +104,15 @@ namespace simple_ui
    */
 
 
-   void edit_box::_001OnDraw(::draw2d::dib * pdib)
+   void edit_box::_001OnDraw(::draw2d::graphics * pgraphics)
    {
 
 
-      ::user::plain_edit::_001OnDraw(pdib);
+      ::user::plain_edit::_001OnDraw(pgraphics);
 
 
    }
+
 
    void edit_box::_001OnKeyDown(signal_details * pobj)
    {

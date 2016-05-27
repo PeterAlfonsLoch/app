@@ -20,35 +20,35 @@ namespace visual
       bool close();
 
       void DrawAndFillBeziers(
-         ::draw2d::graphics                     *pdc,
+         ::draw2d::graphics * pgraphics,
          LPPOINT             lppoints,
          int32_t                  iCount,
          double               dRateX,
          LPPOINT               lppointOffset);
 
       void DrawBeziers(
-         ::draw2d::graphics                     *pdc,
+         ::draw2d::graphics * pgraphics,
          LPPOINT             lppoints,
          int32_t                  iCount,
          double               dRateX,
          LPPOINT               lppointOffset);
 
       void DrawAndFillBeziers(
-         ::draw2d::graphics                     *pdc,
+         ::draw2d::graphics * pgraphics,
          array<point_array, point_array &> *
                             lpglyph,
          double               dRateX,
          LPPOINT               lppointOffset);
 
       void EmbossedTextOut(
-            ::draw2d::dib *                pdc,
+         ::draw2d::graphics * pgraphics,
             const RECT &               lpcrect,
             double               dRateX,
             double               dHeight,
             const char *         psz);
 
       void EmbossedTextOut(
-         ::draw2d::dib *                pdc,
+         ::draw2d::graphics * pgraphics,
          const RECT &               lpcrect,
          double               dRateX,
          double               dHeight,
@@ -58,7 +58,7 @@ namespace visual
          int32_t                  iOffset);
 
       void EmbossedTextOut(
-         ::draw2d::dib *             pdc,
+         ::draw2d::graphics * pgraphics,
          const char *      lpcsz,
          int32_t               iLeft,
          int32_t               iTop,
@@ -69,7 +69,7 @@ namespace visual
 
 
       void SimpleTextOut(
-         ::draw2d::graphics               *pdc,
+         ::draw2d::graphics * pgraphics,
          const RECT &            lpcrect,
          double            dRateX,
          double            dHeight,

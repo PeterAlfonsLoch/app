@@ -65,7 +65,7 @@ namespace draw2d_xlib
 
       using ::draw2d::dib::from;
       bool from(::draw2d::dib * pdib);
-      bool from(point ptDest, ::draw2d::graphics * pdc, point pt, class size sz);
+      bool from(point ptDest, ::draw2d::graphics * pgraphics, point pt, class size sz);
 
       using ::draw2d::dib::to;
       bool to(::draw2d::graphics * pgraphics, point pt, class size size, point ptSrc);

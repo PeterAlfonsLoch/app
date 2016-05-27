@@ -5,10 +5,10 @@
 #undef new
 
 
-BOOL CALLBACK draw2d_gl2d_EnumFamCallBack(LPLOGFONT lplf,LPNEWTEXTMETRIC lpntm,DWORD FontType,LPVOID p);
+BOOL CALLBACK draw2d_opengl_EnumFamCallBack(LPLOGFONT lplf,LPNEWTEXTMETRIC lpntm,DWORD FontType,LPVOID p);
 
 
-class draw2d_gl2d_enum_fonts
+class draw2d_opengl_enum_fonts
 {
 public:
 
@@ -16,7 +16,7 @@ public:
    stringa &      m_stra;
 
 
-   draw2d_gl2d_enum_fonts(stringa & stra):
+   draw2d_opengl_enum_fonts(stringa & stra):
       m_stra(stra)
    {
 
@@ -26,7 +26,7 @@ public:
 };
 
 
-namespace draw2d_gl2d
+namespace draw2d_opengl
 {
 
 
@@ -79,7 +79,7 @@ namespace draw2d_gl2d
 
    //::window_sp graphics::GetWindow() const
    //{
-   //   //ASSERT(get_handle1() != NULL); return ::draw2d_gl2d::user::interaction_impl::from_handle(::WindowFromDC(get_handle1()));
+   //   //ASSERT(get_handle1() != NULL); return ::draw2d_opengl::user::interaction_impl::from_handle(::WindowFromDC(get_handle1()));
    //   return NULL;
    //}
 
@@ -306,7 +306,7 @@ namespace draw2d_gl2d
          if(m_spbitmap.is_null())
             return NULL;
 
-         //(dynamic_cast < ::draw2d_gl2d::bitmap * > (m_spbitmap.m_p))->m_pbitmap = new plusplus::Bitmap(hbitmap, NULL);
+         //(dynamic_cast < ::draw2d_opengl::bitmap * > (m_spbitmap.m_p))->m_pbitmap = new plusplus::Bitmap(hbitmap, NULL);
 
          //if(m_pgraphics != NULL)
          //{
@@ -1790,12 +1790,12 @@ return true;
       //if (m_pgraphics == NULL)
       //   return false;
 
-      //graphics * pdc = ((graphics *)this);
+      //graphics * pgraphics = ((graphics *)this);
 
-      //if(pdc->gl2d_font() == NULL)
+      //if(pgraphics->gl2d_font() == NULL)
       //   return false;
 
-      //plusplus::Font * pfont = pdc->gl2d_font();
+      //plusplus::Font * pfont = pgraphics->gl2d_font();
 
       //plusplus::FontFamily family;
 
@@ -1807,7 +1807,7 @@ return true;
 
       //double dSize = pfont->GetSize();
 
-      //double dFontHeight = pfont->GetHeight((plusplus::REAL) pdc->get_dpiy());
+      //double dFontHeight = pfont->GetHeight((plusplus::REAL) pgraphics->get_dpiy());
 
       //lpMetrics->tmAscent              = (LONG) (dSize * family.GetCellAscent(iStyle) / dHeight);
       //lpMetrics->tmDescent             = (LONG) (dSize * family.GetCellDescent(iStyle) / dHeight);
@@ -2313,7 +2313,7 @@ return true;
       //m_pgraphics->SetInterpolationMode(plusplus::InterpolationModeHighQualityBicubic);
 
 
-      //return m_pgraphics->DrawPath(gl2d_pen(),(dynamic_cast < ::draw2d_gl2d::path * > (ppath))->get_os_path(m_pgraphics)) == plusplus::Status::Ok;
+      //return m_pgraphics->DrawPath(gl2d_pen(),(dynamic_cast < ::draw2d_opengl::path * > (ppath))->get_os_path(m_pgraphics)) == plusplus::Status::Ok;
       return true;
 
 
@@ -2322,7 +2322,7 @@ return true;
    bool graphics::draw_path(::draw2d::path * ppath, ::draw2d::pen * ppen)
    {
 
-      //return m_pgraphics->DrawPath((::plusplus::Pen *) ppen->get_os_data(),(dynamic_cast < ::draw2d_gl2d::path * > (ppath))->get_os_path(m_pgraphics)) == plusplus::Status::Ok;
+      //return m_pgraphics->DrawPath((::plusplus::Pen *) ppen->get_os_data(),(dynamic_cast < ::draw2d_opengl::path * > (ppath))->get_os_path(m_pgraphics)) == plusplus::Status::Ok;
 
       return true;
 
@@ -2331,7 +2331,7 @@ return true;
    bool graphics::fill_path(::draw2d::path * ppath)
    {
 
-      //return m_pgraphics->FillPath(gl2d_brush(),(dynamic_cast < ::draw2d_gl2d::path * > (ppath))->get_os_path(m_pgraphics)) == plusplus::Status::Ok;
+      //return m_pgraphics->FillPath(gl2d_brush(),(dynamic_cast < ::draw2d_opengl::path * > (ppath))->get_os_path(m_pgraphics)) == plusplus::Status::Ok;
 
       return true;
 
@@ -2340,7 +2340,7 @@ return true;
    bool graphics::fill_path(::draw2d::path * ppath, ::draw2d::brush * pbrush)
    {
 
-      //return m_pgraphics->FillPath((::plusplus::Brush *) pbrush->get_os_data(),(dynamic_cast < ::draw2d_gl2d::path * > (ppath))->get_os_path(m_pgraphics)) == plusplus::Status::Ok;
+      //return m_pgraphics->FillPath((::plusplus::Brush *) pbrush->get_os_data(),(dynamic_cast < ::draw2d_opengl::path * > (ppath))->get_os_path(m_pgraphics)) == plusplus::Status::Ok;
 
       return true;
 
@@ -2829,7 +2829,7 @@ return true;
                gen_WingdixTerm = (char)!atexit(&__win_gdi_x_term);
             ::core::UnlockGlobals(CRIT_HALFTONEBRUSH);
 
-      //      return ::draw2d_gl2d::brush::from_handle(papp, gen_HalftoneBrush);*/
+      //      return ::draw2d_opengl::brush::from_handle(papp, gen_HalftoneBrush);*/
       return NULL;
    }
 
@@ -2957,12 +2957,12 @@ return true;
 
 
 
-   //::draw2d::graphics * ::draw2d_gl2d::graphics::from_handle(HDC hDC)
+   //::draw2d::graphics * ::draw2d_opengl::graphics::from_handle(HDC hDC)
    //{
    //hdc_map* pMap = afxMapHDC(TRUE); //create map if not exist
    //ASSERT(pMap != NULL);
 //      ::draw2d::graphics * pgraphics = (::draw2d::graphics *)pMap->from_handle(hDC);
-   //    ASSERT(pgraphics == NULL || (dynamic_cast<::draw2d_gl2d::graphics * >(pgraphics))->get_handle1() == hDC);
+   //    ASSERT(pgraphics == NULL || (dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->get_handle1() == hDC);
    //  return pgraphics;
    // return NULL;
    //}
@@ -3238,7 +3238,7 @@ return true;
 
 //   ::draw2d::object* graphics::SelectGdiObject(::aura::application * papp, HDC hDC, HGDIOBJ h)
    // {
-//      return ::draw2d_gl2d::object::from_handle(papp, ::SelectObject(hDC, h));
+//      return ::draw2d_opengl::object::from_handle(papp, ::SelectObject(hDC, h));
    //}
 
    ::draw2d::object* graphics::SelectStockObject(int32_t nIndex)
@@ -3250,7 +3250,7 @@ return true;
                hOldObj = ::SelectObject(get_handle1(), hObject);
             if(get_handle2() != NULL)
                hOldObj = ::SelectObject(get_handle2(), hObject);
-            return ::draw2d_gl2d::object::from_handle(get_app(), hOldObj);*/
+            return ::draw2d_opengl::object::from_handle(get_app(), hOldObj);*/
 
       return NULL;
    }
@@ -3264,7 +3264,7 @@ return true;
          hOldObj = ::SelectObject(get_handle1(), pPen->get_os_data());
       if(get_handle2() != NULL)
          hOldObj = ::SelectObject(get_handle2(), pPen->get_os_data());
-      return dynamic_cast < pen * > (::draw2d_gl2d::object::from_handle(get_app(), hOldObj));*/
+      return dynamic_cast < pen * > (::draw2d_opengl::object::from_handle(get_app(), hOldObj));*/
       m_sppen = pPen;
       return m_sppen;
    }
@@ -3278,7 +3278,7 @@ return true;
                hOldObj = ::SelectObject(get_handle1(), pBrush->get_os_data());
             if(get_handle2() != NULL)
                hOldObj = ::SelectObject(get_handle2(), pBrush->get_os_data());
-            return dynamic_cast < ::draw2d::brush * > (::draw2d_gl2d::object::from_handle(get_app(), hOldObj));*/
+            return dynamic_cast < ::draw2d::brush * > (::draw2d_opengl::object::from_handle(get_app(), hOldObj));*/
       m_spbrush = pBrush;
       return m_spbrush;
 
@@ -3293,7 +3293,7 @@ return true;
                hOldObj = ::SelectObject(get_handle1(), pFont->get_os_data());
             if(get_handle2() != NULL)
                hOldObj = ::SelectObject(get_handle2(), pFont->get_os_data());
-            return dynamic_cast < ::draw2d::font * > (::draw2d_gl2d::object::from_handle(get_app(), hOldObj));*/
+            return dynamic_cast < ::draw2d::font * > (::draw2d_opengl::object::from_handle(get_app(), hOldObj));*/
 
       /*ASSERT(pFont != NULL);
 
@@ -3323,7 +3323,7 @@ return true;
    ::draw2d::palette* graphics::SelectPalette(::draw2d::palette* pPalette, bool bForceBackground)
    {
       return NULL;
-//      return dynamic_cast < ::draw2d::palette * > (::draw2d_gl2d::object::from_handle(get_app(), ::SelectPalette(get_handle1(), (HPALETTE)pPalette->get_os_data(), bForceBackground)));
+//      return dynamic_cast < ::draw2d::palette * > (::draw2d_opengl::object::from_handle(get_app(), ::SelectPalette(get_handle1(), (HPALETTE)pPalette->get_os_data(), bForceBackground)));
    }
 
    int32_t graphics::SetPolyFillMode(int32_t nPolyFillMode)
@@ -3963,54 +3963,54 @@ return true;
       {
       // these records have effects different for each graphics derived class
       case META_SETMAPMODE:
-         (dynamic_cast<::draw2d_gl2d::graphics * >(pgraphics))->SetMapMode((int32_t)(int16_t)pMetaRec->rdParm[0]);
+         (dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->SetMapMode((int32_t)(int16_t)pMetaRec->rdParm[0]);
          break;
       case META_SETWINDOWEXT:
-         (dynamic_cast<::draw2d_gl2d::graphics * >(pgraphics))->SetWindowExt(
+         (dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->SetWindowExt(
             (int32_t)(int16_t)pMetaRec->rdParm[1], (int32_t)(int16_t)pMetaRec->rdParm[0]);
          break;
       case META_SETWINDOWORG:
-         (dynamic_cast<::draw2d_gl2d::graphics * >(pgraphics))->SetWindowOrg(
+         (dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->SetWindowOrg(
             (int32_t)(int16_t)pMetaRec->rdParm[1], (int32_t)(int16_t)pMetaRec->rdParm[0]);
          break;
       case META_SETVIEWPORTEXT:
-         (dynamic_cast<::draw2d_gl2d::graphics * >(pgraphics))->SetViewportExt(
+         (dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->SetViewportExt(
             (int32_t)(int16_t)pMetaRec->rdParm[1], (int32_t)(int16_t)pMetaRec->rdParm[0]);
          break;
       case META_SETVIEWPORTORG:
-         (dynamic_cast<::draw2d_gl2d::graphics * >(pgraphics))->SetViewportOrg(
+         (dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->SetViewportOrg(
             (int32_t)(int16_t)pMetaRec->rdParm[1], (int32_t)(int16_t)pMetaRec->rdParm[0]);
          break;
       case META_SCALEWINDOWEXT:
-         (dynamic_cast<::draw2d_gl2d::graphics * >(pgraphics))->ScaleWindowExt(
+         (dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->ScaleWindowExt(
             (int32_t)(int16_t)pMetaRec->rdParm[3], (int32_t)(int16_t)pMetaRec->rdParm[2],
             (int32_t)(int16_t)pMetaRec->rdParm[1], (int32_t)(int16_t)pMetaRec->rdParm[0]);
          break;
       case META_SCALEVIEWPORTEXT:
-         (dynamic_cast<::draw2d_gl2d::graphics * >(pgraphics))->ScaleViewportExt(
+         (dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->ScaleViewportExt(
             (int32_t)(int16_t)pMetaRec->rdParm[3], (int32_t)(int16_t)pMetaRec->rdParm[2],
             (int32_t)(int16_t)pMetaRec->rdParm[1], (int32_t)(int16_t)pMetaRec->rdParm[0]);
          break;
       case META_OFFSETVIEWPORTORG:
-         (dynamic_cast<::draw2d_gl2d::graphics * >(pgraphics))->OffsetViewportOrg(
+         (dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->OffsetViewportOrg(
             (int32_t)(int16_t)pMetaRec->rdParm[1], (int32_t)(int16_t)pMetaRec->rdParm[0]);
          break;
       case META_SAVEDC:
-         (dynamic_cast<::draw2d_gl2d::graphics * >(pgraphics))->SaveDC();
+         (dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->SaveDC();
          break;
       case META_RESTOREDC:
-         (dynamic_cast<::draw2d_gl2d::graphics * >(pgraphics))->RestoreDC((int32_t)(int16_t)pMetaRec->rdParm[0]);
+         (dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->RestoreDC((int32_t)(int16_t)pMetaRec->rdParm[0]);
          break;
       case META_SETBKCOLOR:
          {
-            ::draw2d::brush_sp brush((dynamic_cast<::draw2d_gl2d::graphics * >(pgraphics))->allocer(), *(UNALIGNED COLORREF*)&pMetaRec->rdParm[0]);
-            (dynamic_cast<::draw2d_gl2d::graphics * >(pgraphics))->SelectObject(brush);
+            ::draw2d::brush_sp brush((dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->allocer(), *(UNALIGNED COLORREF*)&pMetaRec->rdParm[0]);
+            (dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->SelectObject(brush);
          }
          break;
       case META_SETTEXTCOLOR:
          {
-            ::draw2d::brush_sp brush((dynamic_cast<::draw2d_gl2d::graphics * >(pgraphics))->allocer(), *(UNALIGNED COLORREF*)&pMetaRec->rdParm[0]);
-            (dynamic_cast<::draw2d_gl2d::graphics * >(pgraphics))->SelectObject(brush);
+            ::draw2d::brush_sp brush((dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->allocer(), *(UNALIGNED COLORREF*)&pMetaRec->rdParm[0]);
+            (dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->SelectObject(brush);
          }
          break;
 
@@ -4023,27 +4023,27 @@ return true;
             {
                // object type is unknown, determine if it is a font
                HFONT hStockFont = (HFONT)::GetStockObject(SYSTEM_FONT);
-               HFONT hFontOld = (HFONT)::SelectObject((dynamic_cast<::draw2d_gl2d::graphics * >(pgraphics))->get_handle1(), hStockFont);
-               HGDIOBJ hObjOld = ::SelectObject((dynamic_cast<::draw2d_gl2d::graphics * >(pgraphics))->get_handle1(), hObject);
+               HFONT hFontOld = (HFONT)::SelectObject((dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->get_handle1(), hStockFont);
+               HGDIOBJ hObjOld = ::SelectObject((dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->get_handle1(), hObject);
                if (hObjOld == hStockFont)
                {
                   // got the stock object back, so must be selecting a font
                   throw not_implemented(get_thread_app());
-//                  (dynamic_cast<::draw2d_gl2d::graphics * >(pgraphics))->SelectObject(::draw2d_gl2d::font::from_handle(pgraphics->get_app(), (HFONT)hObject));
+//                  (dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->SelectObject(::draw2d_opengl::font::from_handle(pgraphics->get_app(), (HFONT)hObject));
                   break;  // don't play the default record
                }
                else
                {
                   // didn't get the stock object back, so restore everything
-                  ::SelectObject((dynamic_cast<::draw2d_gl2d::graphics * >(pgraphics))->get_handle1(), hFontOld);
-                  ::SelectObject((dynamic_cast<::draw2d_gl2d::graphics * >(pgraphics))->get_handle1(), hObjOld);
+                  ::SelectObject((dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->get_handle1(), hFontOld);
+                  ::SelectObject((dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->get_handle1(), hObjOld);
                }
                // and fall through to PlayMetaFileRecord...
             }
             else if (nObjType == OBJ_FONT)
             {
                // play back as graphics::SelectObject(::draw2d::font*)
-//               (dynamic_cast<::draw2d_gl2d::graphics * >(pgraphics))->SelectObject(::draw2d_gl2d::font::from_handle(pgraphics->get_app(), (HFONT)hObject));
+//               (dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->SelectObject(::draw2d_opengl::font::from_handle(pgraphics->get_app(), (HFONT)hObject));
                throw not_implemented(get_thread_app());
                break;  // don't play the default record
             }
@@ -4386,7 +4386,7 @@ return true;
    bool graphics::GetTextExtent(sized & size, const char * lpszString, strsize nCount, strsize iIndex) const
    {
 
-      ASSERT(get_handle1() != NULL);
+      //ASSERT(get_handle1() != NULL);
 
       set(m_spfont);
 
@@ -4411,7 +4411,7 @@ return true;
    bool graphics::GetTextExtent(sized & size, const char * lpszString, strsize nCount) const
    {
 
-      ASSERT(get_handle1() != NULL);
+      //ASSERT(get_handle1() != NULL);
 
       set(m_spfont);
 
@@ -4436,7 +4436,7 @@ return true;
    bool graphics::GetTextExtent(sized & size, const string & str) const
    {
 
-      ASSERT(get_handle1() != NULL);
+      //ASSERT(get_handle1() != NULL);
 
       set(m_spfont);
 
@@ -4457,14 +4457,14 @@ return true;
 
    }
 
-} // namespace draw2d_gl2d
+} // namespace draw2d_opengl
 
 
 
 
 
 
-namespace draw2d_gl2d
+namespace draw2d_opengl
 {
 
    void graphics::FillSolidRect(const RECT &  rectParam,COLORREF clr)
@@ -5055,11 +5055,11 @@ namespace draw2d_gl2d
 
       synch_lock sl(m_pmutex);
 
-      draw2d_gl2d_enum_fonts fonts(stra);
+      draw2d_opengl_enum_fonts fonts(stra);
 
       HDC hdc = ::CreateCompatibleDC(NULL);
 
-      ::EnumFontFamilies(hdc,(LPCTSTR)NULL,(FONTENUMPROC)draw2d_gl2d_EnumFamCallBack,(LPARAM)&fonts);
+      ::EnumFontFamilies(hdc,(LPCTSTR)NULL,(FONTENUMPROC)draw2d_opengl_EnumFamCallBack,(LPARAM)&fonts);
 
       ::DeleteDC(hdc);
 
@@ -5076,16 +5076,16 @@ namespace draw2d_gl2d
    }
 
 
-} // namespace draw2d_gl2d
+} // namespace draw2d_opengl
 
 
 
 
 
-BOOL CALLBACK draw2d_gl2d_EnumFamCallBack(LPLOGFONT lplf,LPNEWTEXTMETRIC lpntm,DWORD FontType,LPVOID p)
+BOOL CALLBACK draw2d_opengl_EnumFamCallBack(LPLOGFONT lplf,LPNEWTEXTMETRIC lpntm,DWORD FontType,LPVOID p)
 {
 
-   draw2d_gl2d_enum_fonts * pfonts = (draw2d_gl2d_enum_fonts *) p;
+   draw2d_opengl_enum_fonts * pfonts = (draw2d_opengl_enum_fonts *) p;
 
    if(FontType & RASTER_FONTTYPE)
    {

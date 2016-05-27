@@ -15,7 +15,7 @@ namespace simple_ui
       virtual ~label();
 
 
-      virtual void _001OnDraw(::draw2d::dib * pdib);
+      virtual void _001OnDraw(::draw2d::graphics * pgraphics);
 
 
 

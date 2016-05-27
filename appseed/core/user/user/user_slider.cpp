@@ -173,10 +173,10 @@ namespace user
    }
 
 
-   void slider::_001OnDraw(::draw2d::dib * pdib)
+   void slider::_001OnDraw(::draw2d::graphics * pgraphics)
    {
 
-      ::draw2d::graphics * pdc = pdib->get_graphics();
+      
 
       if(m_bSlide)
       {
@@ -199,7 +199,7 @@ namespace user
 
       byte bAlpha1 = (byte) (128.0* get_alpha());
 
-      imaging.color_blend(pdc, rectClient, RGB(250,255,255), bAlpha1);
+      imaging.color_blend(pgraphics, rectClient, RGB(250,255,255), bAlpha1);
 
       rect rect;
 
@@ -207,20 +207,20 @@ namespace user
 
       byte bAlpha = (byte) (220.0* get_alpha());
 
-      pdc->Draw3dRect(rect,ARGB(bAlpha / 255,84 + 23,77+23,184+ 23),ARGB(bAlpha,84,77,184));
+      pgraphics->Draw3dRect(rect,ARGB(bAlpha / 255,84 + 23,77+23,184+ 23),ARGB(bAlpha,84,77,184));
       rect.deflate(1,1);
-      pdc->Draw3dRect(rect,ARGB(bAlpha / 255,177 -13- 49,184 -13- 49,200 - 49),ARGB(bAlpha,177-49 - 49,184-49 - 49,200-49));
+      pgraphics->Draw3dRect(rect,ARGB(bAlpha / 255,177 -13- 49,184 -13- 49,200 - 49),ARGB(bAlpha,177-49 - 49,184-49 - 49,200-49));
       rect.deflate(1,1);
-      pdc->Draw3dRect(rect,ARGB(bAlpha / 255,84+23,77+23,184+23),ARGB(bAlpha,84,77,184));
+      pgraphics->Draw3dRect(rect,ARGB(bAlpha / 255,84+23,77+23,184+23),ARGB(bAlpha,84,77,184));
       rect.deflate(1,1);
-      pdc->FillSolidRect(rect,ARGB(bAlpha1,84 + 49,77 + 49,184 + 49));
+      pgraphics->FillSolidRect(rect,ARGB(bAlpha1,84 + 49,77 + 49,184 + 49));
       //if(m_bSlide)
       //{
-      //   pdc->MoveTo(rect.center());
+      //   pgraphics->MoveTo(rect.center());
       //   POINT pt;
       //   Session.get_cursor_pos(&pt);
       //   ScreenToClient(&pt);
-      //   pdc->LineTo(pt);
+      //   pgraphics->LineTo(pt);
       //}
    }
 

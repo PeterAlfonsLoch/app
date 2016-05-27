@@ -288,8 +288,8 @@ namespace user
       // load the bitmap
       HBITMAP hbmImageWell;
    //   hbmImageWell = ::core::LoadSysColorBitmap(hInstImageWell, hRsrcImageWell);
-      ::draw2d::memory_graphics pdc(this);
-      hbmImageWell = imaging::LoadSysColorBitmap(pdc, hInstImageWell, hRsrcImageWell);
+      ::draw2d::memory_graphics pgraphics(this);
+      hbmImageWell = imaging::LoadSysColorBitmap(pgraphics, hInstImageWell, hRsrcImageWell);
 
 
       // tell common control toolbar about the new bitmap
@@ -636,7 +636,7 @@ namespace user
 
       ASSERT(pData != NULL && nCount > 0);
 
-      ::draw2d::memory_graphics pdc(allocer());
+      ::draw2d::memory_graphics pgraphics(allocer());
 
       int32_t nResult = 0;
       int32_t x = 0;
@@ -662,7 +662,7 @@ namespace user
    //         str = (const unichar *) pData[i].iString;
             size size;
             ::GetTextExtentPoint32U(
-               (HDC)pdc->get_os_data(),
+               (HDC)pgraphics->get_os_data(),
                str,
                (int32_t) str.get_length(),
                &size);
@@ -888,7 +888,7 @@ namespace user
                }
             }
 
-               //::draw2d::memory_graphics pdc(this);
+               //::draw2d::memory_graphics pgraphics(this);
             string str;
             if ((m_dwStyle & CBRS_FLOATING) && (m_dwStyle & CBRS_SIZE_DYNAMIC))
                m_nMRUWidth = sizeResult.cx;
@@ -900,7 +900,7 @@ namespace user
    //            if(!str.is_empty())
    //            {
    //               ::GetTextExtentPointW(
-   //                  (HDC)pdc->get_os_data(),
+   //                  (HDC)pgraphics->get_os_data(),
    //                  str,
    //                  str.get_length(),
    //                  &size);
@@ -1229,7 +1229,7 @@ throw todo(get_app());
    */
 
 
-   void toolbar::_001OnDraw(::draw2d::dib * pdib)
+   void toolbar::_001OnDraw(::draw2d::graphics * pgraphics)
    {
       
       UNREFERENCED_PARAMETER(pdib);

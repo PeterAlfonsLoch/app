@@ -199,7 +199,7 @@ namespace draw2d
       virtual bool to(dib *dib) const;
       virtual bool from(const ::draw2d::dib * pdib);
       virtual bool from(::draw2d::graphics * pgraphics);
-      virtual bool from(point ptDst, ::draw2d::graphics * pdc, point ptSrc, class size size);
+      virtual bool from(point ptDst, ::draw2d::graphics * pgraphics, point ptSrc, class size size);
       virtual bool from(point ptDst, ::draw2d::dib * pdc, point ptSrc, class size size);
       virtual bool from_ignore_alpha(point ptDst, ::draw2d::dib * pdc, point ptSrc, class size size);
 

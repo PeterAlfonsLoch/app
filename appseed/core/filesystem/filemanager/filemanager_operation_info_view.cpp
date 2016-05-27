@@ -6,10 +6,10 @@ namespace filemanager
 {
 
 
-   void DoBar(::draw2d::graphics * pdc,int32_t ileft,int32_t iTop,int32_t cx,int32_t cy,double dAnime);
+   void DoBar(::draw2d::graphics * pgraphics,int32_t ileft,int32_t iTop,int32_t cx,int32_t cy,double dAnime);
 
 
-   void DoBar(::draw2d::graphics * pdc,int32_t ileft,int32_t iTop,int32_t cx,int32_t cy,double dAnime)
+   void DoBar(::draw2d::graphics * pgraphics,int32_t ileft,int32_t iTop,int32_t cx,int32_t cy,double dAnime)
    {
       int32_t iDeltaDark = 23;
       int32_t iDeltaVermelho = 77;
@@ -28,7 +28,7 @@ namespace filemanager
             255 - iDeltaVermelho - iDeltaDark,
             (255 - (iDeltaV2 / 2.0) + (int32_t)(sin((double)x / dSoft + dAnime)  *(iDeltaV2 / 2.0))) - iDeltaV1 - iDeltaDark,
             255 - iDeltaAzul - 23 - iDeltaDark);
-         pdc->FillSolidRect(x,iTop,iW,cy,cr);
+         pgraphics->FillSolidRect(x,iTop,iW,cy,cr);
       }
       if(x < iRight)
       {
@@ -36,7 +36,7 @@ namespace filemanager
             255 - iDeltaVermelho - iDeltaDark,
             (255 - (iDeltaV2 / 2.0) + (int32_t)(sin((double)x / dSoft + dAnime)  *(iDeltaV2 / 2.0))) - iDeltaV1 - iDeltaDark,
             255 - iDeltaAzul - 23 - iDeltaDark);
-         pdc->FillSolidRect(x,iTop,iRight - x,cy,cr);
+         pgraphics->FillSolidRect(x,iTop,iRight - x,cy,cr);
       }
    }
 
@@ -48,10 +48,10 @@ namespace filemanager
    }
 
 
-   void operation_info_view::_001OnDraw(::draw2d::dib * pdib)
+   void operation_info_view::_001OnDraw(::draw2d::graphics * pgraphics)
    {
 
-      ::draw2d::graphics * pdc = pdib->get_graphics();
+      
 
       /*::FillRect(hdc, &rectProgress, g_hbrushProgress3);
       rectProgress.left++;
@@ -82,7 +82,7 @@ namespace filemanager
          dProgressU = dProgressL + dProgressD;
          if(dProgress < dProgressU)
          {
-            pdc->FillSolidRect(rectProgress,RGB(255,240,200));
+            pgraphics->FillSolidRect(rectProgress,RGB(255,240,200));
          }
          if(dProgress > dProgressL)
          {
@@ -90,7 +90,7 @@ namespace filemanager
             {
                rectBar.right = ((int32_t)((rectProgress.right - rectProgress.left) * (dProgress - dProgressL) * ((double)iLineCount))) + rectProgress.left;
             }
-            DoBar(pdc,rectBar.left,rectBar.top,
+            DoBar(pgraphics,rectBar.left,rectBar.top,
                rectBar.right - rectBar.left,rectBar.bottom - rectBar.top,m_dAnime);
          }
          dTop += dBarHeight;

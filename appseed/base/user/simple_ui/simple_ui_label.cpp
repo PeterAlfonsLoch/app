@@ -19,10 +19,8 @@ namespace simple_ui
 
 
 
-   void label::_001OnDraw(::draw2d::dib * pdib)
+   void label::_001OnDraw(::draw2d::graphics * pgraphics)
    {
-
-      ::draw2d::graphics * pgraphics = pdib->get_graphics();
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 

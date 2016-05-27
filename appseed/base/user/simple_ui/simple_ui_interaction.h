@@ -60,20 +60,20 @@ namespace simple_ui
 
       //virtual void set_parent(interaction * puiParent);
 
-      virtual void _001OnNcDraw(::draw2d::dib * pdib);
+      virtual void _001OnNcDraw(::draw2d::graphics * pgraphics);
 
-      virtual void _001OnDraw(::draw2d::dib * pdib);
-      //virtual void _001OnDraw(::draw2d::dib * pdib);
-      //virtual void draw_children(::draw2d::dib * pdib);
+      virtual void _001OnDraw(::draw2d::graphics * pgraphics);
+      //virtual void _001OnDraw(::draw2d::graphics * pgraphics);
+      //virtual void draw_children(::draw2d::graphics * pgraphics);
 
-      virtual void simple_ui_draw_focus_rect(::draw2d::dib * pdib);
+      virtual void simple_ui_draw_focus_rect(::draw2d::graphics * pgraphics);
 
 
-      virtual void simple_ui_draw_auth_box(::draw2d::dib * pdib);
-      virtual void simple_ui_draw_frame_window_rect(::draw2d::dib * pdib);
-      virtual void simple_ui_draw_dark_glass(::draw2d::dib * pdib);
-      virtual void simple_ui_draw_pestana(::draw2d::dib * pdib);
-      virtual void simple_ui_draw_fuzzy_color_spread(::draw2d::dib * pdib);
+      virtual void simple_ui_draw_auth_box(::draw2d::graphics * pgraphics);
+      virtual void simple_ui_draw_frame_window_rect(::draw2d::graphics * pgraphics);
+      virtual void simple_ui_draw_dark_glass(::draw2d::graphics * pgraphics);
+      virtual void simple_ui_draw_pestana(::draw2d::graphics * pgraphics);
+      virtual void simple_ui_draw_fuzzy_color_spread(::draw2d::graphics * pgraphics);
 
       virtual void simple_ui_draw_back_01_old(style::e_schema eschema,rect m_rect,::draw2d::graphics * pgraphics);
       virtual void simple_ui_draw_back_01_new(rect m_rect,::draw2d::graphics * pgraphics);

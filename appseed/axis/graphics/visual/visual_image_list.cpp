@@ -143,29 +143,29 @@ int32_t image_list::get_image_count() const
 
 }
 
-bool image_list::draw(::draw2d::graphics *pdc, int32_t iImage, point pt, int32_t iFlag)
+bool image_list::draw(::draw2d::graphics *pgraphics, int32_t iImage, point pt, int32_t iFlag)
 {
 
    UNREFERENCED_PARAMETER(iFlag);
 
-   return pdc->BitBlt(pt.x, pt.y, m_size.cx, m_size.cy, m_spdib->get_graphics(), iImage * m_size.cx, 0, SRCCOPY);
+   return pgraphics->BitBlt(pt.x, pt.y, m_size.cx, m_size.cy, m_spdib->get_graphics(), iImage * m_size.cx, 0, SRCCOPY);
 
 }
 
 
-bool image_list::draw(::draw2d::graphics *pdc, int32_t iImage, point pt, int32_t iFlag, BYTE alpha)
+bool image_list::draw(::draw2d::graphics *pgraphics, int32_t iImage, point pt, int32_t iFlag, BYTE alpha)
 {
 
    UNREFERENCED_PARAMETER(iFlag);
 
    if(alpha == 255)
-      return draw(pdc, iImage, pt, iFlag);
+      return draw(pgraphics, iImage, pt, iFlag);
 
-   return System.visual().imaging().color_blend(pdc, pt, m_size, m_spdib->get_graphics(), point(iImage * m_size.cx, 0), alpha / 255.0);
+   return System.visual().imaging().color_blend(pgraphics, pt, m_size, m_spdib->get_graphics(), point(iImage * m_size.cx, 0), alpha / 255.0);
 
 }
 
-bool image_list::draw(::draw2d::graphics * pdc, int32_t iImage, point pt, size sz, point ptOffset, int32_t iFlag)
+bool image_list::draw(::draw2d::graphics * pgraphics, int32_t iImage, point pt, size sz, point ptOffset, int32_t iFlag)
 {
 
    UNREFERENCED_PARAMETER(iFlag);
@@ -175,7 +175,7 @@ bool image_list::draw(::draw2d::graphics * pdc, int32_t iImage, point pt, size s
    ptOffset.x = MIN(m_size.cx, ptOffset.x);
    ptOffset.y = MIN(m_size.cy, ptOffset.y);
 
-   return pdc->BitBlt(pt.x, pt.y, sz.cx, sz.cy, m_spdib->get_graphics(), iImage * m_size.cx + ptOffset.x, ptOffset.y, SRCCOPY);
+   return pgraphics->BitBlt(pt.x, pt.y, sz.cx, sz.cy, m_spdib->get_graphics(), iImage * m_size.cx + ptOffset.x, ptOffset.y, SRCCOPY);
 
 }
 

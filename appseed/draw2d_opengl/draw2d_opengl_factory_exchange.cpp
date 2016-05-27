@@ -1,7 +1,9 @@
 #include "framework.h"
+#include "base/base/os/windows/windows_window_opengl.h"
+
 
 WNDCLASSEX g_wcl = { 0 };
-namespace draw2d_gl2d
+namespace draw2d_opengl
 {
 
 
@@ -17,7 +19,7 @@ namespace draw2d_gl2d
       g_wcl.lpfnWndProc = WindowProc;
       g_wcl.cbClsExtra = 0;
       g_wcl.cbWndExtra = 0;
-      g_wcl.hInstance = ::GetModuleHandle("draw2d_gl2d.dll");
+      g_wcl.hInstance = ::GetModuleHandle("draw2d_opengl.dll");
       g_wcl.hIcon = NULL;
       g_wcl.hCursor = NULL;
       g_wcl.hbrBackground = 0;
@@ -37,6 +39,7 @@ namespace draw2d_gl2d
       System.factory().cloneable_large < font                  >  (System.type_info < ::draw2d::font                 > ());
       System.factory().cloneable_large < path                  >  (System.type_info < ::draw2d::path                 > ());
       System.factory().cloneable_large < printer               >  (System.type_info < ::aura::printer                > ());
+      System.factory().cloneable_large < window_opengl         >  (System.type_info < window_graphics                >());
 
    }
 
@@ -46,18 +49,18 @@ namespace draw2d_gl2d
    }
 
 
-} // namespace draw2d_gl2d
+} // namespace draw2d_opengl
 
 
 #ifdef CUBE
 void draw2d_factory_exchange(::aura::application * papp)
 {
-   draw2d_gl2d::factory_exchange factoryexchange(papp);
+   draw2d_opengl::factory_exchange factoryexchange(papp);
 }
 #else
 void ca2_factory_exchange(::aura::application * papp)
 {
-   draw2d_gl2d::factory_exchange factoryexchange(papp);
+   draw2d_opengl::factory_exchange factoryexchange(papp);
 }
 #endif
 

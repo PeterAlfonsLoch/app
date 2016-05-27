@@ -48,7 +48,7 @@ namespace macos
 
    }
 
-   extern void _001DeferPaintLayeredWindowBackground(void * hwnd, ::draw2d::graphics * pdc);
+   extern void _001DeferPaintLayeredWindowBackground(void * hwnd, ::draw2d::graphics * pgraphics);
    window_draw::~window_draw()
    {
 

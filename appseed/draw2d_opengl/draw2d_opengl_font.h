@@ -1,11 +1,11 @@
 #pragma once
 
 
-namespace draw2d_gl2d
+namespace draw2d_opengl
 {
 
 
-   class CLASS_DECL_DRAW2D_GL2D font : 
+   class CLASS_DECL_DRAW2D_OPENGL font : 
       virtual public ::draw2d::font
    {
    public:
@@ -41,7 +41,7 @@ namespace draw2d_gl2d
    };
 
 
-} // namespace draw2d_gl2d
+} // namespace draw2d_opengl
 
 
 

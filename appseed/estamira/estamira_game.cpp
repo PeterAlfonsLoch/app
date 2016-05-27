@@ -37,7 +37,7 @@ namespace estamira
 
    }
 
-   void game::_001OnDraw(::draw2d::dib * pdib)
+   void game::_001OnDraw(::draw2d::graphics * pgraphics)
    {
 
       rect rectClient;

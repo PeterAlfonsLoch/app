@@ -212,8 +212,8 @@ namespace user
 
 
 
-      virtual int32_t _001CalcItemWidth(::draw2d::graphics * pdc, index iItem, index iSubItem);
-      virtual int32_t _001CalcItemWidth(::draw2d::graphics * pdc, ::draw2d::font * pfont, index iItem, index iSubItem);
+      virtual int32_t _001CalcItemWidth(::draw2d::graphics * pgraphics, index iItem, index iSubItem);
+      virtual int32_t _001CalcItemWidth(::draw2d::graphics * pgraphics, ::draw2d::font * pfont, index iItem, index iSubItem);
       virtual int32_t _001CalcItemHeight(int iBaseHeight);
       virtual int32_t _001GetDrawTextFlags(EView eview);
 
@@ -315,7 +315,7 @@ namespace user
 
       bool CreateHeaderCtrl();
 
-      virtual void _001OnDraw(::draw2d::dib * pdib);
+      virtual void _001OnDraw(::draw2d::graphics * pgraphics);
 
       virtual void _001DrawGroups(draw_list_item * pdrawitem, index iGroupFirst, index iGroupLast, index iItemFirst, index iItemLast);
 
@@ -507,9 +507,9 @@ namespace user
 
       virtual void defer_create_mesh_data();
 
-      virtual void on_viewport_offset(::draw2d::dib * pdib);
+      virtual void on_viewport_offset(::draw2d::graphics * pgraphics);
 
-      virtual void _001OnClip(::draw2d::dib * pdib);
+      virtual void _001OnClip(::draw2d::graphics * pgraphics);
 
       virtual void GetScrollRect(LPRECT lprect);
 

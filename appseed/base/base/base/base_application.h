@@ -269,7 +269,6 @@ namespace base
       virtual ::user::interaction * get_parent(::user::interaction * pui);
       virtual bool enable_window(::user::primitive * pui,bool bEnable = true);
       virtual bool set_window_text(::user::interaction * pui,const string & strText);
-      virtual void window_graphics_update_window(window_graphics ** pdata,oswindow interaction_impl,COLORREF * pOsBitmapData,const RECT & rect,int cxParam,int cyParam,int iStride = -1,bool bTransferBuffer = true);
 
       virtual void process_message(signal_details * pobj);
       virtual bool process_message(LPMESSAGE lpmessage);

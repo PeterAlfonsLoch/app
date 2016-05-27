@@ -94,10 +94,10 @@ namespace user
    }
 
 
-   void step_slider::_001OnDraw(::draw2d::dib * pdib)
+   void step_slider::_001OnDraw(::draw2d::graphics * pgraphics)
    {
 
-      ::draw2d::graphics * pdc = pdib->get_graphics();
+      
 
       if(m_scalar.is_null())
          return;
@@ -109,7 +109,7 @@ namespace user
       byte bAlpha = (byte) (128.0 * get_alpha());
 
       imaging.color_blend(
-         pdc,
+         pgraphics,
          rectClient,
          RGB(150, 200, 255),
          bAlpha);
@@ -127,7 +127,7 @@ namespace user
             if(i == m_iHover)
             {
                imaging.color_blend(
-                  pdc,
+                  pgraphics,
                   rect,
                   RGB(255, 255, 240),
                   bAlpha);
@@ -135,7 +135,7 @@ namespace user
             else
             {
                imaging.color_blend(
-                  pdc,
+                  pgraphics,
                   rect,
                   RGB(255, 255, 150),
                   bAlpha);
@@ -146,7 +146,7 @@ namespace user
             if(i == m_iHover)
             {
                imaging.color_blend(
-                  pdc,
+                  pgraphics,
                   rect,
                   RGB(255, 180, 180),
                   bAlpha);
@@ -154,7 +154,7 @@ namespace user
             else
             {
                imaging.color_blend(
-                  pdc,
+                  pgraphics,
                   rect,
                   RGB(100, 100, 255),
                   bAlpha);

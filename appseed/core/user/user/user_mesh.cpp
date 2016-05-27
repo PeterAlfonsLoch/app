@@ -131,10 +131,10 @@ namespace user
    }
 
 
-   void mesh::_001OnDraw(::draw2d::dib * pdib)
+   void mesh::_001OnDraw(::draw2d::graphics * pgraphics)
    {
 
-      ::draw2d::graphics * pdc = pdib->get_graphics();
+      
 
       //single_lock sl(&m_mutex,true);
 
@@ -142,7 +142,7 @@ namespace user
 
       m_penHighlight->create_solid(2,ARGB(255,0,255,255));
 
-      pdc->set_text_rendering(::draw2d::text_rendering_anti_alias_grid_fit);
+      pgraphics->set_text_rendering(::draw2d::text_rendering_anti_alias_grid_fit);
 
       if(m_bLockViewUpdate)
          return;
@@ -159,7 +159,7 @@ namespace user
       point ptScroll = get_viewport_offset();
 
 
-      //      pdc->SetBkMode(TRANSPARENT);
+      //      pgraphics->SetBkMode(TRANSPARENT);
 
       if(m_bTopText)
       {
@@ -168,10 +168,10 @@ namespace user
 
          brushText->create_solid(_001GetColor(color_text));
 
-         point ptViewportOrg = pdc->GetViewportOrg();
-         pdc->SelectObject(brushText);
+         point ptViewportOrg = pgraphics->GetViewportOrg();
+         pgraphics->SelectObject(brushText);
          array < size > sizea;
-         m_dcextension.GetTextExtent(pdc,m_strTopText,sizea);
+         m_dcextension.GetTextExtent(pgraphics,m_strTopText,sizea);
          index x = 0;
          index right = (index)rectClient.right;
          index y = m_iItemHeight;
@@ -205,11 +205,11 @@ namespace user
                rect.right = rectClient.right;
                rect.bottom = LONG(y - ptScroll.y);
 
-               pdc->_DrawText(m_strTopText.Mid(iStart,i - iStart),rect,DT_LEFT);
+               pgraphics->_DrawText(m_strTopText.Mid(iStart,i - iStart),rect,DT_LEFT);
                iStart = iNewStart;
             }
          }
-         pdc->SetViewportOrg(ptViewportOrg);
+         pgraphics->SetViewportOrg(ptViewportOrg);
       }
 
 
@@ -224,7 +224,7 @@ namespace user
 
 
 
-      m_pdrawmeshitem->m_pgraphics              = pdc;
+      m_pdrawmeshitem->m_pgraphics              = pgraphics;
       m_pdrawmeshitem->m_iItemRectItem          = -1;
       m_pdrawmeshitem->m_iSubItemRectOrder      = -1;
       m_pdrawmeshitem->m_iSubItemRectSubItem    = -1;
@@ -4061,10 +4061,10 @@ namespace user
    void mesh::_001LayoutTopText()
    {
       ::draw2d::font * pfont = _001GetFont();
-      ::draw2d::memory_graphics pdc(allocer());
-      pdc->SelectObject(pfont);
+      ::draw2d::memory_graphics pgraphics(allocer());
+      pgraphics->SelectObject(pfont);
       array < size > sizea;
-      m_dcextension.GetTextExtent(pdc,m_strTopText,sizea);
+      m_dcextension.GetTextExtent(pgraphics,m_strTopText,sizea);
       rect rectClient;
       GetClientRect(rectClient);
       index x = 0;
@@ -4219,21 +4219,21 @@ namespace user
 
    int32_t mesh::_001CalcItemWidth(index iItem,index iSubItem)
    {
-      ::draw2d::memory_graphics pdc(allocer());
+      ::draw2d::memory_graphics pgraphics(allocer());
       ::draw2d::font * pfont = _001GetFont();
-      index cx = _001CalcItemWidth(pdc,pfont,iItem,iSubItem);
+      index cx = _001CalcItemWidth(pgraphics,pfont,iItem,iSubItem);
 
       return (int32_t)cx;
 
    }
 
-   int32_t mesh::_001CalcItemWidth(::draw2d::graphics * pdc,::draw2d::font * pfont,index iItem,index iSubItem)
+   int32_t mesh::_001CalcItemWidth(::draw2d::graphics * pgraphics,::draw2d::font * pfont,index iItem,index iSubItem)
    {
-      pdc->SelectObject(pfont);
-      return _001CalcItemWidth(pdc,iItem,iSubItem);
+      pgraphics->SelectObject(pfont);
+      return _001CalcItemWidth(pgraphics,iItem,iSubItem);
    }
 
-   int32_t mesh::_001CalcItemWidth(::draw2d::graphics * pdc,index iItem,index iSubItem)
+   int32_t mesh::_001CalcItemWidth(::draw2d::graphics * pgraphics,index iItem,index iSubItem)
    {
 #ifdef WINDOWSEX
       ::image_list::info ii;
@@ -4259,7 +4259,7 @@ namespace user
       _001GetItemText(&item);
       if(item.m_bOk)
       {
-         m_dcextension.GetTextExtent(pdc,item.m_strText,size);
+         m_dcextension.GetTextExtent(pgraphics,item.m_strText,size);
          cx += size.cx;
       }
 
@@ -4946,15 +4946,15 @@ namespace user
    int32_t mesh::_001CalcColumnWidth(index iColumn)
    {
       UNREFERENCED_PARAMETER(iColumn);
-      ::draw2d::memory_graphics pdc(allocer());
+      ::draw2d::memory_graphics pgraphics(allocer());
       ::draw2d::font * pfont = _001GetFont();
-      pdc->SelectObject(pfont);
+      pgraphics->SelectObject(pfont);
       int32_t iMaxWidth = 0;
       ::count iCount = m_nItemCount;
       int32_t iWidth;
       for(index i = 0; i < iCount; i++)
       {
-         iWidth = _001CalcItemWidth(pdc,i,0);
+         iWidth = _001CalcItemWidth(pgraphics,i,0);
          if(iWidth > iMaxWidth)
          {
             iMaxWidth = iWidth;

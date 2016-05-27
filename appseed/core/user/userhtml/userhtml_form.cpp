@@ -25,10 +25,10 @@ html_form::~html_form()
 
 
 
-void html_form::_001OnDraw(::draw2d::dib * pdib)
+void html_form::_001OnDraw(::draw2d::graphics * pgraphics)
 {
 
-//   ::user::interaction::_001OnDraw(pdc);
+//   ::user::interaction::_001OnDraw(pgraphics);
 
 
    sp(::html::data) sphtmldata;
@@ -47,7 +47,7 @@ void html_form::_001OnDraw(::draw2d::dib * pdib)
    if(sphtmldata.is_set())
    {
 
-      sphtmldata->_001OnDraw(pdib);
+      sphtmldata->_001OnDraw(pgraphics);
 
    }
 
@@ -56,24 +56,32 @@ void html_form::_001OnDraw(::draw2d::dib * pdib)
 }
 
 
-void html_form::_001DrawChildren(::draw2d::dib * pdib)
+void html_form::_001DrawChildren(::draw2d::graphics * pgraphics)
 {
 
    sp(::user::interaction) pui = first_child();
 
    while(pui != NULL)
    {
+
       try
       {
+
          if(pui->m_bVisible && (get_html_data() == NULL || !get_html_data()->contains(pui)))
          {
-            pui->_000OnDraw(pdib);
+
+            pui->_000OnDraw(pgraphics);
+
          }
+
          pui = pui->above_sibling();
+
       }
       catch(...)
       {
+
       }
+
    }
 
 }
@@ -97,13 +105,19 @@ void html_form::_001OnImageLoaded(signal_details * pobj)
          synch_lock lock(get_html_data()->m_pmutex);
 
          ::draw2d::dib_sp pdib(allocer());
+
          pdib->create(50, 50);
+
          get_html_data()->delete_implementation();
-         get_html_data()->layout(pdib);
+
+         get_html_data()->layout(pdib->get_graphics());
 
          RedrawWindow();
+
       }
+
    }
+
 }
 
 
@@ -429,8 +443,10 @@ void html_form::defer_implement()
    pdib->create(50, 50);
 
    get_html_data()->m_pui = this;
+
    get_html_data()->m_pform = this;
-   get_html_data()->implement(pdib);
+
+   get_html_data()->implement(pdib->get_graphics());
 
 
 }
@@ -452,8 +468,10 @@ void html_form::defer_layout()
    pdib->create(50, 50);
 
    get_html_data()->m_pui = this;
+
    get_html_data()->m_pform = this;
-   get_html_data()->layout(pdib);
+
+   get_html_data()->layout(pdib->get_graphics());
 
    RedrawWindow();
 

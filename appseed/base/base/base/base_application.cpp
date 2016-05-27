@@ -2395,13 +2395,6 @@ namespace base
 
 
 
-   void application::window_graphics_update_window(window_graphics ** ppdata,oswindow interaction_impl,COLORREF * pOsBitmapData,const RECT & rect,int cxParam,int cyParam,int iStride,bool bTransferBuffer)
-   {
-
-      ::window_graphics::update_window(ppdata,interaction_impl,pOsBitmapData,rect,cxParam,cyParam,iStride,bTransferBuffer);
-
-   }
-
 
    sp(::message::base) application::get_message_base(LPMESSAGE lpmsg)
    {

@@ -51,7 +51,7 @@ namespace draw2d_cairo
    }
 
 
-   bool region::mask(cairo_t * pdc)
+   bool region::mask(cairo_t * pgraphics)
    {
 synch_lock ml(&cairo_mutex());
       if(m_pdc != NULL)
@@ -128,24 +128,24 @@ synch_lock ml(&cairo_mutex());
          ::exception::throw_not_implemented(get_app());
       }
 
-      cairo_mask_surface(pdc, m_psurface, m_rectBoundingBoxInternal.left, m_rectBoundingBoxInternal.top);
+      cairo_mask_surface(pgraphics, m_psurface, m_rectBoundingBoxInternal.left, m_rectBoundingBoxInternal.top);
 
       return true;
 
    }
 
-   bool region::mask_rect(cairo_t * pdc)
+   bool region::mask_rect(cairo_t * pgraphics)
    {
 synch_lock ml(&cairo_mutex());
-      cairo_rectangle(pdc, m_x1, m_y1, m_x2, m_y2);
+      cairo_rectangle(pgraphics, m_x1, m_y1, m_x2, m_y2);
 
-      cairo_fill(pdc);
+      cairo_fill(pgraphics);
 
       return true;
 
    }
 
-   bool region::mask_oval(cairo_t * pdc)
+   bool region::mask_oval(cairo_t * pgraphics)
    {
 synch_lock ml(&cairo_mutex());
       double centerx    = (m_x2 + m_x1) / 2.0;
@@ -157,42 +157,42 @@ synch_lock ml(&cairo_mutex());
       if(radiusx == 0.0 || radiusy == 0.0)
          return false;
 
-      cairo_keep k(pdc);
+      cairo_keep k(pgraphics);
 
-      cairo_translate(pdc, centerx, centery);
+      cairo_translate(pgraphics, centerx, centery);
 
-      cairo_scale(pdc, radiusx, radiusy);
+      cairo_scale(pgraphics, radiusx, radiusy);
 
-      cairo_arc(pdc, 0.0, 0.0, 1.0, 0.0, 2.0 * 3.1415);
+      cairo_arc(pgraphics, 0.0, 0.0, 1.0, 0.0, 2.0 * 3.1415);
 
-      cairo_fill(pdc);
+      cairo_fill(pgraphics);
 
       return true;
 
    }
 
-   bool region::mask_polygon(cairo_t * pdc)
+   bool region::mask_polygon(cairo_t * pgraphics)
    {
 synch_lock ml(&cairo_mutex());
       if(m_nCount <= 0)
          return true;
 
 
-      cairo_move_to(pdc, m_lppoints[0].x, m_lppoints[0].y);
+      cairo_move_to(pgraphics, m_lppoints[0].x, m_lppoints[0].y);
 
       for(int32_t i = 1; i < m_nCount; i++)
       {
 
-         cairo_line_to(pdc, m_lppoints[i].x, m_lppoints[i].y);
+         cairo_line_to(pgraphics, m_lppoints[i].x, m_lppoints[i].y);
 
       }
-      cairo_fill(pdc);
+      cairo_fill(pgraphics);
 
       return true;
 
    }
 
-   bool region::mask_poly_polygon(cairo_t * pdc)
+   bool region::mask_poly_polygon(cairo_t * pgraphics)
    {
 synch_lock ml(&cairo_mutex());
       int32_t n = 0;
@@ -202,56 +202,56 @@ synch_lock ml(&cairo_mutex());
          int32_t jCount = m_lppolycounts[i];
          if(jCount > 0)
          {
-            cairo_move_to(pdc, m_lppoints[n].x, m_lppoints[n].y);
+            cairo_move_to(pgraphics, m_lppoints[n].x, m_lppoints[n].y);
             n++;
             for(int32_t j = 1; i < jCount; j++)
             {
-               cairo_line_to(pdc, m_lppoints[n].x, m_lppoints[n].y);
+               cairo_line_to(pgraphics, m_lppoints[n].x, m_lppoints[n].y);
                n++;
             }
          }
 
       }
-      cairo_fill(pdc);
+      cairo_fill(pgraphics);
 
       return true;
 
    }
 
-   bool region::mask_combine(cairo_t * pdc)
+   bool region::mask_combine(cairo_t * pgraphics)
    {
 
       synch_lock ml(&cairo_mutex());
 
-      cairo_push_group(pdc);
+      cairo_push_group(pgraphics);
 
-      m_pregion1.cast < ::draw2d_cairo::region >()->mask(pdc);
+      m_pregion1.cast < ::draw2d_cairo::region >()->mask(pgraphics);
 
-      cairo_pop_group_to_source(pdc);
+      cairo_pop_group_to_source(pgraphics);
 
-      cairo_paint(pdc);
+      cairo_paint(pgraphics);
 
-      cairo_push_group(pdc);
+      cairo_push_group(pgraphics);
 
-      m_pregion2.cast < ::draw2d_cairo::region >()->mask(pdc);
+      m_pregion2.cast < ::draw2d_cairo::region >()->mask(pgraphics);
 
-      cairo_pop_group_to_source(pdc);
+      cairo_pop_group_to_source(pgraphics);
 
       if(m_ecombine == ::draw2d::region::combine_add)
       {
-         cairo_set_operator(pdc, CAIRO_OPERATOR_SOURCE);
+         cairo_set_operator(pgraphics, CAIRO_OPERATOR_SOURCE);
       }
       else if(m_ecombine == ::draw2d::region::combine_exclude)
       {
-         cairo_set_operator(pdc, CAIRO_OPERATOR_CLEAR);
+         cairo_set_operator(pgraphics, CAIRO_OPERATOR_CLEAR);
       }
       else if(m_ecombine == ::draw2d::region::combine_intersect)
       {
-         cairo_set_operator(pdc, CAIRO_OPERATOR_IN);
+         cairo_set_operator(pgraphics, CAIRO_OPERATOR_IN);
       }
       else
       {
-         cairo_set_operator(pdc, CAIRO_OPERATOR_SOURCE);
+         cairo_set_operator(pgraphics, CAIRO_OPERATOR_SOURCE);
       }
 
       cairo_paint(m_pdc);
@@ -260,7 +260,7 @@ synch_lock ml(&cairo_mutex());
 
    }
 
-   bool region::clip(cairo_t * pdc)
+   bool region::clip(cairo_t * pgraphics)
    {
 synch_lock ml(&cairo_mutex());
       if(m_pdc != NULL)
@@ -286,13 +286,13 @@ synch_lock ml(&cairo_mutex());
       case type_none:
          break;
       case type_rect:
-         clip_rect(pdc);
+         clip_rect(pgraphics);
          break;
       case type_oval:
-         clip_oval(pdc);
+         clip_oval(pgraphics);
          break;
       case type_polygon:
-         clip_polygon(pdc);
+         clip_polygon(pgraphics);
          break;
       default:
          ::exception::throw_not_implemented(get_app());
@@ -302,18 +302,18 @@ synch_lock ml(&cairo_mutex());
 
    }
 
-   bool region::clip_rect(cairo_t * pdc)
+   bool region::clip_rect(cairo_t * pgraphics)
    {
 synch_lock ml(&cairo_mutex());
-      cairo_rectangle(pdc, m_x1, m_y1, m_x2, m_y2);
+      cairo_rectangle(pgraphics, m_x1, m_y1, m_x2, m_y2);
 
-      cairo_clip(pdc);
+      cairo_clip(pgraphics);
 
       return true;
 
    }
 
-   bool region::clip_oval(cairo_t * pdc)
+   bool region::clip_oval(cairo_t * pgraphics)
    {
 synch_lock ml(&cairo_mutex());
       double centerx    = (m_x2 + m_x1) / 2.0;
@@ -325,39 +325,39 @@ synch_lock ml(&cairo_mutex());
       if(radiusx == 0.0 || radiusy == 0.0)
          return false;
 
-      cairo_translate(pdc, centerx, centery);
+      cairo_translate(pgraphics, centerx, centery);
 
-      cairo_scale(pdc, radiusx, radiusy);
+      cairo_scale(pgraphics, radiusx, radiusy);
 
-      cairo_arc(pdc, 0.0, 0.0, 1.0, 0.0, 2.0 * 3.1415);
+      cairo_arc(pgraphics, 0.0, 0.0, 1.0, 0.0, 2.0 * 3.1415);
 
-      cairo_clip(pdc);
+      cairo_clip(pgraphics);
 
-      cairo_scale(pdc, 1.0 / radiusx, 1.0 / radiusy);
+      cairo_scale(pgraphics, 1.0 / radiusx, 1.0 / radiusy);
 
-      cairo_translate(pdc, -centerx, -centery);
+      cairo_translate(pgraphics, -centerx, -centery);
 
 
       return true;
 
    }
 
-   bool region::clip_polygon(cairo_t * pdc)
+   bool region::clip_polygon(cairo_t * pgraphics)
    {
 synch_lock ml(&cairo_mutex());
       if(m_nCount <= 0)
          return true;
 
 
-      cairo_move_to(pdc, m_lppoints[0].x, m_lppoints[0].y);
+      cairo_move_to(pgraphics, m_lppoints[0].x, m_lppoints[0].y);
 
       for(int32_t i = 1; i < m_nCount; i++)
       {
 
-         cairo_line_to(pdc, m_lppoints[i].x, m_lppoints[i].y);
+         cairo_line_to(pgraphics, m_lppoints[i].x, m_lppoints[i].y);
 
       }
-      cairo_clip(pdc);
+      cairo_clip(pgraphics);
 
       return true;
 

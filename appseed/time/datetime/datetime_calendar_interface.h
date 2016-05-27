@@ -41,7 +41,7 @@ public:
 
    virtual int32_t get_week_of_month(::datetime::time & time);
 
-   virtual void _001OnDraw(::draw2d::dib * pdib);
+   virtual void _001OnDraw(::draw2d::graphics * pgraphics);
 
    void set_pos(point pt, size sz);
 

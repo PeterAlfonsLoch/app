@@ -146,10 +146,10 @@ namespace filemanager
    }
 
 
-   void path_view::_001OnDraw(::draw2d::dib * pdib)
+   void path_view::_001OnDraw(::draw2d::graphics * pgraphics)
    {
 
-      ::user::plain_edit::_001OnDraw(pdib);
+      ::user::plain_edit::_001OnDraw(pgraphics);
 
    }
 

@@ -244,9 +244,9 @@ namespace draw2d_quartz2d
 //   }
    
    
-   bool dib::from(point ptDest, ::draw2d::graphics * pdc, point pt, class size sz)
+   bool dib::from(point ptDest, ::draw2d::graphics * pgraphics, point pt, class size sz)
    {
-      return m_spgraphics->BitBlt(ptDest.x, ptDest.y, sz.cx, sz.cy, pdc, pt.x, pt.y, SRCCOPY) != FALSE;
+      return m_spgraphics->BitBlt(ptDest.x, ptDest.y, sz.cx, sz.cy, pgraphics, pt.x, pt.y, SRCCOPY) != FALSE;
    }
    
 

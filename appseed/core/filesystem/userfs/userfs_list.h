@@ -54,7 +54,7 @@ namespace userfs
       virtual void _017OpenContextMenu(::action::context actioncontext);
       void TakeAnimationSnapshot();
       virtual void StartAnimation();
-      virtual void _001OnDraw(::draw2d::dib * pdib);
+      virtual void _001OnDraw(::draw2d::graphics * pgraphics);
       void GetSelectedFilePath(stringa & array);
       virtual void _001GetItemImage(::user::mesh_item * pitem);
       virtual void _001GetItemText(::user::mesh_item * pitem);

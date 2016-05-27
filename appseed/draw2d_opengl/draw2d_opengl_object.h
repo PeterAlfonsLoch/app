@@ -1,11 +1,11 @@
 #pragma once
 
 
-namespace draw2d_gl2d
+namespace draw2d_opengl
 {
 
 
-   class CLASS_DECL_DRAW2D_GL2D object :
+   class CLASS_DECL_DRAW2D_OPENGL object :
       virtual public ::draw2d::object
    {
    public:

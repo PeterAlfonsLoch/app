@@ -504,7 +504,7 @@ namespace user
       return m_pviewdata->m_pdoc;
    }
 
-   void tab_view::_000OnDraw(::draw2d::dib * pdib)
+   void tab_view::_000OnDraw(::draw2d::graphics * pgraphics)
    {
       
       if(!m_bVisible)
@@ -560,10 +560,10 @@ namespace user
       IGUI_WIN_MSG_LINK(WM_LBUTTONUP, pinterface, this, &tab_drop_target_window::_001OnLButtonUp);
    }
 
-   void tab_drop_target_window::_001OnDraw(::draw2d::dib * pdib)
+   void tab_drop_target_window::_001OnDraw(::draw2d::graphics * pgraphics)
    {
 
-      ::draw2d::graphics * pdc = pdib->get_graphics();
+      
 
 //      class imaging & imaging = System.visual().imaging();
 
@@ -572,7 +572,7 @@ namespace user
 
       rect rectClient;
       GetClientRect(rectClient);
-      pdc->FillSolidRect(rectClient, ARGB(84, 255,255,255));
+      pgraphics->FillSolidRect(rectClient, ARGB(84, 255,255,255));
 
       point ptCursor;
       Session.get_cursor_pos(&ptCursor);
@@ -623,20 +623,20 @@ namespace user
       {
          crLeft = ARGB(iAlpha, 150,200,255);
       }
-      pdc->FillSolidRect(rectTop,crTop);
-      pdc->FillSolidRect(rectLeft,crLeft);
-      pdc->FillSolidRect(rectRight,crRight);
-      pdc->FillSolidRect(rectBottom,crBottom);
-      pdc->Draw3dRect(rectTop,crBorder,crBorder);
-      pdc->Draw3dRect(rectLeft, crBorder, crBorder);
-      pdc->Draw3dRect(rectRight, crBorder, crBorder);
-      pdc->Draw3dRect(rectBottom, crBorder, crBorder);
+      pgraphics->FillSolidRect(rectTop,crTop);
+      pgraphics->FillSolidRect(rectLeft,crLeft);
+      pgraphics->FillSolidRect(rectRight,crRight);
+      pgraphics->FillSolidRect(rectBottom,crBottom);
+      pgraphics->Draw3dRect(rectTop,crBorder,crBorder);
+      pgraphics->Draw3dRect(rectLeft, crBorder, crBorder);
+      pgraphics->Draw3dRect(rectRight, crBorder, crBorder);
+      pgraphics->Draw3dRect(rectBottom, crBorder, crBorder);
 
       if(epositionDrag != position_none)
       {
          rect rectSel;
          m_ptab->GetDragRect(rectSel, epositionDrag);
-         pdc->Draw3dRect(rectSel, crBorderSel, crBorderSel);
+         pgraphics->Draw3dRect(rectSel, crBorderSel, crBorderSel);
       }
 
    }

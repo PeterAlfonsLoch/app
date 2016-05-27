@@ -89,7 +89,7 @@ namespace turboc
       virtual void _001OnPostProcess(::draw2d::dib * pdib);
 
       virtual void _001OnHelloDraw(::draw2d::dib * pdib);
-      virtual void _001OnDraw(::draw2d::dib * pdib);
+      virtual void _001OnDraw(::draw2d::graphics * pgraphics);
 
       virtual void on_update(::aura::impact * pSender, LPARAM lHint, object* pHint);
 

@@ -160,7 +160,7 @@ namespace user
    //}
 
 
-   void tree::_001OnDraw(::draw2d::dib * pdib)
+   void tree::_001OnDraw(::draw2d::graphics * pgraphics)
    {
 
       ::user::interaction::_001OnDraw(pdib);
@@ -223,23 +223,23 @@ namespace user
       }
       //      ::aura::savings & savings = Session.savings();
 
-      ///      ::draw2d::graphics * pDCBuffer = pdc;
+      ///      ::draw2d::graphics * pDCBuffer = pgraphics;
 
-      //      point ptOriginalViewportOrg = pdc->GetViewportOrg();
+      //      point ptOriginalViewportOrg = pgraphics->GetViewportOrg();
       //
       //      rect rectClientOffset = rectClient;
 
-      ::draw2d::graphics * pdc = pdib->get_graphics();
+      
 
       point ptOffset = get_viewport_offset();
 
-      pdc->OffsetViewportOrg((int32_t)-ptOffset.x,(int32_t)-(ptOffset.y % _001GetItemHeight()));
+      pgraphics->OffsetViewportOrg((int32_t)-ptOffset.x,(int32_t)-(ptOffset.y % _001GetItemHeight()));
 
 
       //   BaseTreeItemData itemdata;
       /*      ::core::tree_path itempath;*/
       ::user::tree_draw_item drawitemdata;
-      drawitemdata.m_pdc = pdc;
+      drawitemdata.m_pdc = pgraphics;
       drawitemdata.m_iIndentation = _001GetIndentation();
       //   drawitemdata.m_pdata = &itemdata;
       //      drawitemdata.m_ppath = &itempath;
@@ -1598,7 +1598,7 @@ namespace user
    }
 
 
-   void tree::on_viewport_offset(::draw2d::dib * pdib)
+   void tree::on_viewport_offset(::draw2d::graphics * pgraphics)
    {
 
    }

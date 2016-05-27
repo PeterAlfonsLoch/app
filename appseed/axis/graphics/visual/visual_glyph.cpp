@@ -514,15 +514,15 @@ namespace visual
    }
 
 
-   void glyph::DrawGlyph(::draw2d::graphics * pdc, bool bFill, double dRateX, LPPOINT lppointOffset)
+   void glyph::DrawGlyph(::draw2d::graphics * pgraphics, bool bFill, double dRateX, LPPOINT lppointOffset)
    {
 
-      UNREFERENCED_PARAMETER(pdc);
+      UNREFERENCED_PARAMETER(pgraphics);
       UNREFERENCED_PARAMETER(bFill);
       UNREFERENCED_PARAMETER(dRateX);
       UNREFERENCED_PARAMETER(lppointOffset);
 
-      //System.visual().api().DrawAndFillBeziers(pdc, &m_pointsets, dRateX, lppointOffset);
+      //System.visual().api().DrawAndFillBeziers(pgraphics, &m_pointsets, dRateX, lppointOffset);
 
    }
 

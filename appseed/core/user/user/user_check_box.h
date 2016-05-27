@@ -18,7 +18,7 @@ namespace user
       bool  m_bMouseDown;
 
    public:
-      virtual void _001OnDraw(::draw2d::dib * pdib);
+      virtual void _001OnDraw(::draw2d::graphics * pgraphics);
       virtual check::e_check _001GetCheck();
       virtual void _001SetCheck(check::e_check check, ::action::context actioncontext);
 

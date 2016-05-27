@@ -13,7 +13,8 @@
 #endif
 
 
-window_graphics::window_graphics()
+window_graphics::window_graphics(::aura::application * papp) :
+   object(papp)
 {
 
    cx = 0;
@@ -26,6 +27,12 @@ window_graphics::~window_graphics()
 {
 
    destroy_window_graphics();
+
+}
+
+
+void window_graphics::on_create_window(oswindow wnd)
+{
 
 }
 
@@ -49,60 +56,58 @@ void window_graphics::destroy_window_graphics()
 }
 
 
-void window_graphics::update_window(window_graphics * * ppdata,oswindow interaction_impl,COLORREF * pOsBitmapData,const RECT & rect,int cxParam,int cyParam,int iStride,bool bTransferBuffer)
+void window_graphics::update_window(oswindow interaction_impl,COLORREF * pOsBitmapData,const RECT & rect,int cxParam,int cyParam,int iStride,bool bTransferBuffer)
 {
 
-   if(ppdata == NULL)
+
+//   window_graphics * & pdata = *ppdata;
+//
+//
+   //if(pdata == NULL || ((pdata->cx != cxParam || pdata->cy != cyParam)))
+   if (cx != cxParam || cy != cyParam)
    {
 
-      return;
+//      if (pdata == NULL)
+//      {
+//
+//#ifdef WINDOWSEX
+//
+//         pdata = new window_gdi();
+//
+//#elif defined(LINUX)
+//
+//         pdata = new window_xlib();
+//
+//#elif defined(VSNORD)
+//
+//         //pdata = new window_android_anative();
+//         pdata = new ::android::view_bitmap(interaction_impl->m_pui->get_app());
+//
+//#elif defined(ANDROID)
+//
+//         pdata = new window_android();
+//
+//#endif
+//
+//      }
 
-   }
-
-   window_graphics * & pdata = *ppdata;
-
-
-   if(pdata == NULL || ((pdata->cx != cxParam || pdata->cy != cyParam)))
-   {
-
-      if (pdata == NULL)
+      //if (pdata != NULL)
       {
 
-#ifdef WINDOWSEX
-
-         pdata = new window_gdi();
-
-#elif defined(LINUX)
-
-         pdata = new window_xlib();
-
-#elif defined(VSNORD)
-
-         //pdata = new window_android_anative();
-         pdata = new ::android::view_bitmap(interaction_impl->m_pui->get_app());
-
-#elif defined(ANDROID)
-
-         pdata = new window_android();
-
-#endif
-
-      }
-
-      if (pdata != NULL)
-      {
-
-         pdata->create_window_graphics(interaction_impl, cxParam, cyParam, iStride);
+        // pdata->create_window_graphics(interaction_impl, cxParam, cyParam, iStride);
+         create_window_graphics(interaction_impl, cxParam, cyParam, iStride);
 
       }
 
    }
 
 
-   if (pdata != NULL)
+   //if (pdata != NULL)
    {
 
-      pdata->update_window(pOsBitmapData, rect, cxParam, cyParam, iStride, bTransferBuffer);
+      //pdata->update_window(pOsBitmapData, rect, cxParam, cyParam, iStride, bTransferBuffer);
+
+      update_window(pOsBitmapData, rect, cxParam, cyParam, iStride, bTransferBuffer);
 
    }
 

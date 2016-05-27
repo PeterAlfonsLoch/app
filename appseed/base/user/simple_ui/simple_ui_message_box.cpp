@@ -187,32 +187,32 @@ namespace simple_ui
    }
 
 
-   void message_box::_001OnDraw(::draw2d::dib * pdib)
+   void message_box::_001OnDraw(::draw2d::graphics * pgraphics)
    {
 
-      ::draw2d::graphics * pdc = pdib->get_graphics();
+      
 
       rect rectClient;
 
       GetClientRect(rectClient);
 
-      pdc->FillSolidRect(rectClient,ARGB(255,0xcc,0xcc,0xc5));
+      pgraphics->FillSolidRect(rectClient,ARGB(255,0xcc,0xcc,0xc5));
 
       sp(::draw2d::font) font(allocer());
 
       font->create_point_font(FONT_SANS,12);
 
-      pdc->selectFont(font);
+      pgraphics->selectFont(font);
 
       ::draw2d::text_metric tm;
 
-      pdc->get_text_metrics(&tm);
+      pgraphics->get_text_metrics(&tm);
 
       int iHeight = tm.tmHeight;
 
       int y = 10;
 
-      pdc->set_text_color(ARGB(255,49,49,42));
+      pgraphics->set_text_color(ARGB(255,49,49,42));
 
       string strMessage = m_stra.implode("\n");
 
@@ -220,12 +220,12 @@ namespace simple_ui
 
       r.deflate(10, 10);
 
-      pdc->draw_text(strMessage,r,DT_LEFT | DT_TOP | DT_EXPANDTABS);
+      pgraphics->draw_text(strMessage,r,DT_LEFT | DT_TOP | DT_EXPANDTABS);
 
       //for(int i = 0; i < m_stra.get_size(); i++)
       //{
 
-      //   pdc->TextOut(10,y,m_stra[i]);
+      //   pgraphics->TextOut(10,y,m_stra[i]);
 
       //   y+= iHeight;
 

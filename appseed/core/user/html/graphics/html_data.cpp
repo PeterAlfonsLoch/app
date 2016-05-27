@@ -202,22 +202,35 @@ namespace html
       m_elemental.load(this, m_ptag);
    }
 
-   void data::implement(::draw2d::dib * pdib)
+   void data::implement(::draw2d::graphics * pgraphics)
    {
+
       int32_t iCount = 24;
+
       while(m_bImplement && iCount >= 0)
       {
+
          Sleep(100);
+
          iCount--;
+
       }
+
       if(m_bImplement)
          return;
+
       keep < bool > keepImplement(&m_bImplement, true, false, true);
-      m_pdib = pdib;
+
+      m_pgraphics = pgraphics;
+
       m_focusptra.remove_all();
+
       m_elemental.implement(this);
+
       IGUI_WIN_MSG_LINK(WM_KEYDOWN, m_pui, this, &data::_001OnKeyDown);
+
       m_bImplemented = true;
+
    }
 
 
@@ -246,34 +259,44 @@ namespace html
    }
 
 
-   void data::layout(::draw2d::dib * pdib)
+   void data::layout(::draw2d::graphics * pgraphics)
    {
-
 
       synch_lock sl(m_pmutex);
 
-
       int32_t iCount = 24;
+
       while(m_bLayout && iCount >= 0)
       {
+
          Sleep(100);
+
          iCount--;
+
       }
+
       if(m_bLayout)
          return;
+
       if(!m_bImplemented)
-         implement(pdib);
+         implement(pgraphics);
+
       keep < bool > keepLayout(&m_bLayout, true, false, true);
-      m_pdib = pdib;
+
+      m_pgraphics = pgraphics;
+
       m_layoutstate1.reset();
+
       m_layoutstate2.reset();
+
       m_layoutstate3.reset();
+
       m_elemental.layout(this);
 
    }
 
 
-   void data::_001OnDraw(::draw2d::dib * pdib)
+   void data::_001OnDraw(::draw2d::graphics * pgraphics)
    {
 
       if(m_bImplement || m_bLayout)
@@ -284,12 +307,12 @@ namespace html
 //      if(is_locked())
   //       return;
 
-      m_pdib = pdib;
+      m_pgraphics = pgraphics;
 
       //if(m_strPathName.find_ci("alarms_index") >= 0)
       //{
 
-      //   pdc->FillSolidRect(100,100,100,100,ARGB(184,255,0,0));
+      //   pgraphics->FillSolidRect(100,100,100,100,ARGB(184,255,0,0));
 
       //}
 
@@ -300,7 +323,7 @@ namespace html
       //if(m_strPathName.find_ci("alarms_index") >= 0)
       //{
 
-      //   pdc->FillSolidRect(200,200,100,100,ARGB(184,0,255,0));
+      //   pgraphics->FillSolidRect(200,200,100,100,ARGB(184,0,255,0));
 
       //}
 
@@ -682,14 +705,14 @@ restart:
 
       m_pform  = pform;
 
-      implement(pdib);
+      implement(pdib->get_graphics());
 
       pform->GetClientBox(m_box);
 
       if(m_box.area() <= 0.f)
          return;
 
-      layout(pdib);
+      layout(pdib->get_graphics());
 
    }
 

@@ -5,7 +5,7 @@
 #include "aqua/aqua.h"
 
 
-namespace draw2d_gl2d
+namespace draw2d_opengl
 {
 
 
@@ -162,7 +162,7 @@ namespace draw2d_gl2d
    bool dib::create(::draw2d::graphics * pgraphics)
    {
 
-      ::draw2d::bitmap * pbitmap = (dynamic_cast<::draw2d_gl2d::graphics * >(pgraphics))->get_current_bitmap();
+      ::draw2d::bitmap * pbitmap = (dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->get_current_bitmap();
 
       if(pbitmap == NULL)
          return FALSE;
@@ -201,7 +201,7 @@ namespace draw2d_gl2d
       return pgraphics->BitBlt(pt, size, get_graphics(), ptSrc);
 
     /*  return SetDIBitsToDevice(
-         (dynamic_cast<::draw2d_gl2d::graphics * >(pgraphics))->get_handle1(), 
+         (dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->get_handle1(), 
          pt.x, pt.y, 
          size.cx, size.cy, 
          ptSrc.x, ptSrc.y, ptSrc.y, cy - ptSrc.y, 
@@ -247,13 +247,13 @@ namespace draw2d_gl2d
    }
 
 
-   bool dib::from(point ptDest, ::draw2d::graphics * pdc, point pt, class size sz)
+   bool dib::from(point ptDest, ::draw2d::graphics * pgraphics, point pt, class size sz)
    {
 
       if (m_spgraphics.is_null())
          return false;
 
-      return m_spgraphics->BitBlt(ptDest, sz, pdc, pt, SRCCOPY) != FALSE;
+      return m_spgraphics->BitBlt(ptDest, sz, pgraphics, pt, SRCCOPY) != FALSE;
 
    }
 
@@ -2583,7 +2583,7 @@ namespace draw2d_gl2d
       }
 
 
-      m_pauraapp->window_graphics_update_window(pwnd->get_window_graphics(),pwnd->get_handle(),(COLORREF*)b->m_memOut.get_data(),rect, b->m_sizeOut.cx, b->m_sizeOut.cy, b->m_sizeOut.cx * 4,bTransferBuffer);
+      pwnd->get_window_graphics()->update_window(pwnd->get_handle(),(COLORREF*)b->m_memOut.get_data(),rect, b->m_sizeOut.cx, b->m_sizeOut.cy, b->m_sizeOut.cx * 4,bTransferBuffer);
       b->m_bFlashed = true;
 
       return true;
@@ -2627,9 +2627,9 @@ namespace draw2d_gl2d
          if(!dib->create(rectWindow.bottom_right()))
             return false;
 
-         ::draw2d::graphics * pdc = dib->get_graphics();
+         ::draw2d::graphics * pgraphics = dib->get_graphics();
 
-         if(pdc->get_os_data() == NULL)
+         if(pgraphics->get_os_data() == NULL)
             return false;
 
          rect rectPaint;
@@ -2638,19 +2638,19 @@ namespace draw2d_gl2d
          rectPaint = rectWindow;
          rectPaint.offset(-rectPaint.top_left());
          m_spgraphics->SelectClipRgn(NULL);
-         pwnd->_001OnDeferPaintLayeredWindowBackground(dib);
+         pwnd->_001OnDeferPaintLayeredWindowBackground(dib->get_graphics());
          m_spgraphics->SelectClipRgn(NULL);
          m_spgraphics-> SetViewportOrg(point(0, 0));
-         pwnd->_000OnDraw(dib);
+         pwnd->_000OnDraw(dib->get_graphics());
          m_spgraphics->SetViewportOrg(point(0, 0));
-         //(dynamic_cast<::win::graphics * >(pdc))->FillSolidRect(rectUpdate.left, rectUpdate.top, 100, 100, 255);
+         //(dynamic_cast<::win::graphics * >(pgraphics))->FillSolidRect(rectUpdate.left, rectUpdate.top, 100, 100, 255);
          m_spgraphics->SelectClipRgn(NULL);
          m_spgraphics->SetViewportOrg(point(0, 0));
 
          m_spgraphics->SelectClipRgn( NULL);
          m_spgraphics->BitBlt(rectPaint.left, rectPaint.top, 
             rectPaint.width(), rectPaint.height(),
-            pdc, rectUpdate.left, rectUpdate.top,
+            pgraphics, rectUpdate.left, rectUpdate.top,
             SRCCOPY);
 
       }
@@ -2730,5 +2730,5 @@ namespace draw2d_gl2d
    }
 
 
-} // namespace draw2d_gl2d
+} // namespace draw2d_opengl
 

@@ -25,7 +25,7 @@ namespace draw2d_xlib
 
    }
 
-   bool bitmap::CreateBitmap(::draw2d::graphics * pdc, int32_t cx, int32_t cy, UINT nPlanes, UINT nBitcount, const void * pdata, int32_t iStrideParam)
+   bool bitmap::CreateBitmap(::draw2d::graphics * pgraphics, int32_t cx, int32_t cy, UINT nPlanes, UINT nBitcount, const void * pdata, int32_t iStrideParam)
    {
 
       cy = abs(cy);
@@ -103,7 +103,7 @@ namespace draw2d_xlib
    }
 
 
-   bool bitmap::CreateBitmapIndirect(::draw2d::graphics * pdc, LPBITMAP lpBitmap)
+   bool bitmap::CreateBitmapIndirect(::draw2d::graphics * pgraphics, LPBITMAP lpBitmap)
    {
 
       return false;
@@ -111,7 +111,7 @@ namespace draw2d_xlib
    }
 
 
-   bool bitmap::CreateDIBSection(::draw2d::graphics * pdc, const BITMAPINFO * lpbmi, UINT usage, void ** ppdata, int * pstride, HANDLE hSection, uint32_t offset)
+   bool bitmap::CreateDIBSection(::draw2d::graphics * pgraphics, const BITMAPINFO * lpbmi, UINT usage, void ** ppdata, int * pstride, HANDLE hSection, uint32_t offset)
    {
 
       int cy = abs(lpbmi->bmiHeader.biHeight);
@@ -211,7 +211,7 @@ namespace draw2d_xlib
    }
 
 
-   bool bitmap::CreateDIBitmap(::draw2d::graphics * pdc, const BITMAPINFOHEADER *pbmih, DWORD flInit, const void *pjBits, const BITMAPINFO *pbmi, UINT iUsage)
+   bool bitmap::CreateDIBitmap(::draw2d::graphics * pgraphics, const BITMAPINFOHEADER *pbmih, DWORD flInit, const void *pjBits, const BITMAPINFO *pbmi, UINT iUsage)
    {
       return FALSE;
    }

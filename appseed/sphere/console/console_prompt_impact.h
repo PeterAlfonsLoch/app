@@ -50,7 +50,7 @@ namespace console
       DECL_GEN_SIGNAL(_001OnKeyUp);
       DECL_GEN_SIGNAL(_001OnShowWindow);
 
-      virtual void _001OnDraw(::draw2d::dib * pdib);
+      virtual void _001OnDraw(::draw2d::graphics * pgraphics);
 
 
       virtual void interpret_command();

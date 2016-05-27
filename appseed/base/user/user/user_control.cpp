@@ -349,16 +349,16 @@ namespace user
    }
 
 
-   void control::_003OnCustomDraw(::draw2d::dib * pdib, ::aura::draw_context * pdrawcontext)
+   void control::_003OnCustomDraw(::draw2d::graphics * pgraphics, ::aura::draw_context * pdrawcontext)
    {
 
-      ::draw2d::graphics * pdc = pdib->get_graphics();
+      
 
-      pdc->chain(pdrawcontext);
+      pgraphics->chain(pdrawcontext);
 
-      _000OnDraw(pdib);
+      _000OnDraw(pgraphics);
 
-      pdc->unchain(pdrawcontext);
+      pgraphics->unchain(pdrawcontext);
 
    }
 
@@ -371,10 +371,10 @@ namespace user
    }
 
 
-   void control::_003CallCustomDraw(::draw2d::dib * pdib, ::aura::draw_context * pdrawcontext)
+   void control::_003CallCustomDraw(::draw2d::graphics * pgraphics, ::aura::draw_context * pdrawcontext)
    {
 
-      _003OnCustomDraw(pdib, pdrawcontext);
+      _003OnCustomDraw(pgraphics, pdrawcontext);
 
    }
 
@@ -1111,10 +1111,10 @@ namespace user
    }
 
 
-   void control::_001OnDraw(::draw2d::dib * pdib)
+   void control::_001OnDraw(::draw2d::graphics * pgraphics)
    {
 
-      ::user::box::_001OnDraw(pdib);
+      ::user::box::_001OnDraw(pgraphics);
    }
 
 

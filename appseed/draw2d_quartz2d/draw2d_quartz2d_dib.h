@@ -69,7 +69,7 @@ namespace draw2d_quartz2d
       
       
 //      bool from(::draw2d::graphics * pdib);
-      bool from(point ptDest, ::draw2d::graphics * pdc, point pt, class size sz);
+      bool from(point ptDest, ::draw2d::graphics * pgraphics, point pt, class size sz);
       
       bool to(::draw2d::graphics * pgraphics, point pt, class size size, point ptSrc);
       
@@ -233,7 +233,7 @@ namespace draw2d_quartz2d
       void DivideA(int32_t iDivide);
       
       bool from(::draw2d::dib * pdib);
-      bool from(point ptDest, ::draw2d::graphics * pdc, point pt, class size sz);
+      bool from(point ptDest, ::draw2d::graphics * pgraphics, point pt, class size sz);
       
       bool to(::draw2d::graphics * pgraphics, point pt, class size size, point ptSrc);
       

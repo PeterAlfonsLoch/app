@@ -489,12 +489,12 @@ namespace fontopus
 
    }
 
-   void fontopus::boot_window_draw(CGContextRef pdc)
+   void fontopus::boot_window_draw(CGContextRef pgraphics)
    {
       
       simple_graphics g;
       
-      g.m_pdc = pdc;
+      g.m_pdc = pgraphics;
       
       draw(g);
       

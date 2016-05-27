@@ -139,15 +139,19 @@ namespace html
 
       void select::_001OnDraw(data * pdata)
       {
+
+         ::draw2d::graphics * pgraphics = pdata->m_pgraphics;
+
          rect rectWindow;
          m_pcombo->GetWindowRect(rectWindow);
          m_pcombo->ScreenToClient(rectWindow);
-         ::draw2d::graphics * pdc = pdata->m_pdib->get_graphics();
-         ::point ptPreviousViewportOrg = pdc->GetViewportOrg();
-         pdc->SetViewportOrg(rectWindow.top_left());
-         m_pcombo->_000OnDraw(pdata->m_pdib);
-         pdc->SetViewportOrg(ptPreviousViewportOrg);
+         ::point ptPreviousViewportOrg = pgraphics->GetViewportOrg();
+         pgraphics->SetViewportOrg(rectWindow.top_left());
+         m_pcombo->_000OnDraw(pgraphics);
+         pgraphics->SetViewportOrg(ptPreviousViewportOrg);
+
       }
+
 
       void select::on_change_layout(data * pdata)
       {

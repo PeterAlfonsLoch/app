@@ -19,7 +19,7 @@ namespace visual
 
 
    void api::DrawBeziers(
-      ::draw2d::graphics                     *pdc,
+      ::draw2d::graphics * pgraphics,
       LPPOINT             lppoints,
       int32_t                  iCount,
       double               dRateX,
@@ -28,27 +28,27 @@ namespace visual
 
       rect clipRect;
 
-      size viewportExt = pdc->GetViewportExt();
-      point viewportOrg = pdc->GetViewportOrg();
+      size viewportExt = pgraphics->GetViewportExt();
+      point viewportOrg = pgraphics->GetViewportOrg();
 
-      pdc->OffsetViewportOrg(
+      pgraphics->OffsetViewportOrg(
          lppointOffset->x,
          lppointOffset->y);
 
-      pdc->ScaleViewportExt((int32_t) dRateX, 1, 1, 1);
+      pgraphics->ScaleViewportExt((int32_t)dRateX, 1, 1, 1);
 
-      pdc->BeginPath();
-      pdc->PolyBezier(lppoints, iCount);
-      pdc->EndPath();
-      pdc->StrokePath();
+      pgraphics->BeginPath();
+      pgraphics->PolyBezier(lppoints, iCount);
+      pgraphics->EndPath();
+      pgraphics->StrokePath();
 
-      pdc->SetWindowExt(viewportExt);
-      pdc->SetViewportOrg(viewportOrg);
+      pgraphics->SetWindowExt(viewportExt);
+      pgraphics->SetViewportOrg(viewportOrg);
 
    }
 
    void api::DrawAndFillBeziers(
-      ::draw2d::graphics                     *pdc,
+      ::draw2d::graphics * pgraphics,
       LPPOINT             lppoints,
       int32_t                  iCount,
       double               dRateX,
@@ -57,56 +57,56 @@ namespace visual
 
       rect clipRect;
 
-      size viewportExt = pdc->GetViewportExt();
-      point viewportOrg = pdc->GetViewportOrg();
+      size viewportExt = pgraphics->GetViewportExt();
+      point viewportOrg = pgraphics->GetViewportOrg();
 
-      pdc->OffsetViewportOrg(
+      pgraphics->OffsetViewportOrg(
          lppointOffset->x,
          lppointOffset->y);
 
-      pdc->ScaleViewportExt((int32_t) dRateX, 1, 1, 1);
+      pgraphics->ScaleViewportExt((int32_t)dRateX, 1, 1, 1);
 
-      pdc->BeginPath();
-      pdc->PolyBezier(lppoints, iCount);
-      pdc->EndPath();
-      pdc->StrokeAndFillPath();
+      pgraphics->BeginPath();
+      pgraphics->PolyBezier(lppoints, iCount);
+      pgraphics->EndPath();
+      pgraphics->StrokeAndFillPath();
 
-      pdc->SetWindowExt(viewportExt);
-      pdc->SetViewportOrg(viewportOrg);
+      pgraphics->SetWindowExt(viewportExt);
+      pgraphics->SetViewportOrg(viewportOrg);
 
    }
 
    void api::DrawAndFillBeziers(
-      ::draw2d::graphics                     *pdc,
+      ::draw2d::graphics * pgraphics,
       array<point_array, point_array &> *
-                            lpglyph,
+      lpglyph,
       double               dRateX,
       LPPOINT               lppointOffset)
    {
 
       rect clipRect;
 
-      size viewportExt = pdc->GetViewportExt();
-      point viewportOrg = pdc->GetViewportOrg();
+      size viewportExt = pgraphics->GetViewportExt();
+      point viewportOrg = pgraphics->GetViewportOrg();
 
-      pdc->OffsetViewportOrg(
+      pgraphics->OffsetViewportOrg(
          lppointOffset->x,
          lppointOffset->y);
 
-      pdc->ScaleViewportExt((int32_t)(dRateX * 1000.0), 1, 1, 1);
+      pgraphics->ScaleViewportExt((int32_t)(dRateX * 1000.0), 1, 1, 1);
 
-      for(int32_t i = 0; i < lpglyph->get_size(); i++)
+      for (int32_t i = 0; i < lpglyph->get_size(); i++)
       {
-         pdc->PolyBezier(lpglyph->element_at(i).get_data(), (int32_t) lpglyph->element_at(i).get_size());
+         pgraphics->PolyBezier(lpglyph->element_at(i).get_data(), (int32_t)lpglyph->element_at(i).get_size());
       }
 
-      pdc->SetWindowExt(viewportExt);
-      pdc->SetViewportOrg(viewportOrg);
+      pgraphics->SetWindowExt(viewportExt);
+      pgraphics->SetViewportOrg(viewportOrg);
 
    }
 
    void api::EmbossedTextOut(
-      ::draw2d::dib *             pdib,
+      ::draw2d::graphics * pgraphics,
       const RECT &            rect,
       double            dRateX,
       double            dHeight,
@@ -115,46 +115,46 @@ namespace visual
       int32_t               iCharsPositions,
       int32_t               iOffset)
    {
-         ::rect clipRect;
-
-         ::draw2d::graphics * pdc = pdib->get_graphics();
-
-   //      int32_t iOldMapMode = ::GetMapMode(pdc->m_hDC);
-   //      point viewportOrg;
-   //      ::draw2d::font * pfont = pdc->get_current_font();
-   //      ASSERT(pfont != NULL);
-   //      VERIFY(::GetViewportOrgEx(pdc->m_hDC, &viewportOrg));
-
-   //      VERIFY(::OffsetViewportOrgEx(
-   //         pdc->m_hDC,
-   //         rect.left,
-   //         rect.top,
-   //         NULL));
-   //      VERIFY(::SetMapMode(pdc->m_hDC, MM_ANISOTROPIC));
-   //      if(floatRateX == 0.0)
-   //         floatRateX = 1.0;
-   //      VERIFY(::ScaleViewportExtEx(pdc->m_hDC, floatRateX * 30000.0, 10000, 1, 1, NULL));
-
-   //      VERIFY(::SelectObject(pdc->m_hDC, pfont->m_hObject));
-
-         pdc->TextOut(rect.left, rect.top, psz);
-         pdc->BeginPath();
-         pdc->TextOut(rect.left, rect.top, psz);
-         pdc->EndPath();
-         pdc->StrokePath();
+      ::rect clipRect;
 
 
-   //      VERIFY(::SetMapMode(pdc->m_hDC, iOldMapMode));
-   //      VERIFY(::SetViewportOrgEx(
-   //         pdc->m_hDC,
-   //         viewportOrg.x,
-   //         viewportOrg.y,
-   //         NULL));
+
+      //      int32_t iOldMapMode = ::GetMapMode(pgraphics->m_hDC);
+      //      point viewportOrg;
+      //      ::draw2d::font * pfont = pgraphics->get_current_font();
+      //      ASSERT(pfont != NULL);
+      //      VERIFY(::GetViewportOrgEx(pgraphics->m_hDC, &viewportOrg));
+
+      //      VERIFY(::OffsetViewportOrgEx(
+      //         pgraphics->m_hDC,
+      //         rect.left,
+      //         rect.top,
+      //         NULL));
+      //      VERIFY(::SetMapMode(pgraphics->m_hDC, MM_ANISOTROPIC));
+      //      if(floatRateX == 0.0)
+      //         floatRateX = 1.0;
+      //      VERIFY(::ScaleViewportExtEx(pgraphics->m_hDC, floatRateX * 30000.0, 10000, 1, 1, NULL));
+
+      //      VERIFY(::SelectObject(pgraphics->m_hDC, pfont->m_hObject));
+
+      pgraphics->TextOut(rect.left, rect.top, psz);
+      pgraphics->BeginPath();
+      pgraphics->TextOut(rect.left, rect.top, psz);
+      pgraphics->EndPath();
+      pgraphics->StrokePath();
+
+
+      //      VERIFY(::SetMapMode(pgraphics->m_hDC, iOldMapMode));
+      //      VERIFY(::SetViewportOrgEx(
+      //         pgraphics->m_hDC,
+      //         viewportOrg.x,
+      //         viewportOrg.y,
+      //         NULL));
    }
 
 
    void api::EmbossedTextOut(
-      ::draw2d::dib *          pdib,
+      ::draw2d::graphics * pgraphics,
       const char *   psz,
       int32_t            iLeft,
       int32_t            iTop,
@@ -163,58 +163,58 @@ namespace visual
       COLORREF       crOutline,
       int32_t            iLen)
    {
-         rect clipRect;
-         ::draw2d::graphics * pdc = pdib->get_graphics();
-   //      int32_t iOldMapMode = ::GetMapMode(pdc->m_hDC);
-   //      point viewportOrg;
-   //      ::draw2d::font * pfont = pdc->get_current_font();
-   //      ASSERT(pfont != NULL);
-   //      VERIFY(::GetViewportOrgEx(pdc->m_hDC, &viewportOrg));
+      rect clipRect;
 
-   //      VERIFY(::OffsetViewportOrgEx(
-   //         pdc->m_hDC,
-   //         rect.left,
-   //         rect.top,
-   //         NULL));
-   //      VERIFY(::SetMapMode(pdc->m_hDC, MM_ANISOTROPIC));
-   //      if(floatRateX == 0.0)
-   //         floatRateX = 1.0;
-   //      VERIFY(::ScaleViewportExtEx(pdc->m_hDC, floatRateX * 30000.0, 10000, 1, 1, NULL));
+      //      int32_t iOldMapMode = ::GetMapMode(pgraphics->m_hDC);
+      //      point viewportOrg;
+      //      ::draw2d::font * pfont = pgraphics->get_current_font();
+      //      ASSERT(pfont != NULL);
+      //      VERIFY(::GetViewportOrgEx(pgraphics->m_hDC, &viewportOrg));
 
-   //      VERIFY(::SelectObject(pdc->m_hDC, pfont->m_hObject));
+      //      VERIFY(::OffsetViewportOrgEx(
+      //         pgraphics->m_hDC,
+      //         rect.left,
+      //         rect.top,
+      //         NULL));
+      //      VERIFY(::SetMapMode(pgraphics->m_hDC, MM_ANISOTROPIC));
+      //      if(floatRateX == 0.0)
+      //         floatRateX = 1.0;
+      //      VERIFY(::ScaleViewportExtEx(pgraphics->m_hDC, floatRateX * 30000.0, 10000, 1, 1, NULL));
 
-         string str;
-         str = ::str::international::utf8_to_unicode(psz);
+      //      VERIFY(::SelectObject(pgraphics->m_hDC, pfont->m_hObject));
+
+      string str;
+      str = ::str::international::utf8_to_unicode(psz);
 
 #ifdef WINDOWSEX
-         ::SetTextColor((HDC)pdc->get_os_data(), crOutline);
-         ::TextOutU((HDC)pdc->get_os_data(), iLeft - iWidth, iTop, str, iLen);
-         ::TextOutU((HDC)pdc->get_os_data(), iLeft, iTop - iWidth, str, iLen);
-         ::TextOutU((HDC)pdc->get_os_data(), iLeft + iWidth, iTop, str, iLen);
-         ::TextOutU((HDC)pdc->get_os_data(), iLeft, iTop + iWidth, str, iLen);
+      ::SetTextColor((HDC)pgraphics->get_os_data(), crOutline);
+      ::TextOutU((HDC)pgraphics->get_os_data(), iLeft - iWidth, iTop, str, iLen);
+      ::TextOutU((HDC)pgraphics->get_os_data(), iLeft, iTop - iWidth, str, iLen);
+      ::TextOutU((HDC)pgraphics->get_os_data(), iLeft + iWidth, iTop, str, iLen);
+      ::TextOutU((HDC)pgraphics->get_os_data(), iLeft, iTop + iWidth, str, iLen);
 
-         ::SetTextColor((HDC)pdc->get_os_data(), crText);
-         ::TextOutU((HDC)pdc->get_os_data(), iLeft, iTop, str, iLen);
+      ::SetTextColor((HDC)pgraphics->get_os_data(), crText);
+      ::TextOutU((HDC)pgraphics->get_os_data(), iLeft, iTop, str, iLen);
 #endif
 
-         //pdc->TextOut(rect.left, rect.top, str);
-   //      pdc->BeginPath();
-   //      ::TextOutW((HDC)pdc->get_os_data(), rect.left, rect.top, lpcsz, iLen);
-         //pdc->TextOut(rect.left, rect.top, str);
-   //      pdc->EndPath();
-   //      pdc->StrokePath();
+      //pgraphics->TextOut(rect.left, rect.top, str);
+//      pgraphics->BeginPath();
+//      ::TextOutW((HDC)pgraphics->get_os_data(), rect.left, rect.top, lpcsz, iLen);
+      //pgraphics->TextOut(rect.left, rect.top, str);
+//      pgraphics->EndPath();
+//      pgraphics->StrokePath();
 
 
-   //      VERIFY(::SetMapMode(pdc->m_hDC, iOldMapMode));
-   //      VERIFY(::SetViewportOrgEx(
-   //         pdc->m_hDC,
-   //         viewportOrg.x,
-   //         viewportOrg.y,
-   //         NULL));
+//      VERIFY(::SetMapMode(pgraphics->m_hDC, iOldMapMode));
+//      VERIFY(::SetViewportOrgEx(
+//         pgraphics->m_hDC,
+//         viewportOrg.x,
+//         viewportOrg.y,
+//         NULL));
    }
 
    void api::SimpleTextOut(
-      ::draw2d::graphics *          pdc,
+      ::draw2d::graphics * pgraphics,
       const RECT &        lpcrect,
       double         dRateX,
       double         dHeight,
@@ -229,35 +229,42 @@ namespace visual
       UNREFERENCED_PARAMETER(iCharsPositions);
       UNREFERENCED_PARAMETER(lpiCharsPositions);
 
-      pdc->TextOut(lpcrect.left, lpcrect.top, psz);
+      pgraphics->TextOut(lpcrect.left, lpcrect.top, psz);
       return;
 
       string str;
       str = ::str::international::utf8_to_unicode(psz);
-      ::TextOutU((HDC)pdc->get_os_data(), lpcrect.left, lpcrect.top, str, (int32_t) str.get_length());
+      ::TextOutU((HDC)pgraphics->get_os_data(), lpcrect.left, lpcrect.top, str, (int32_t)str.get_length());
    }
 
 
-   void api::EmbossedTextOut(::draw2d::dib * pdib, const RECT & rect, double dHeight, double dRateX, const char * psz)
+   void api::EmbossedTextOut(::draw2d::graphics * pgraphics, const RECT & rect, double dHeight, double dRateX, const char * psz)
    {
-      ::draw2d::graphics * pdc = pdib->get_graphics();
-         pdc->TextOut(rect.left, rect.top, psz);
-         pdc->BeginPath();
-         pdc->TextOut(rect.left, rect.top, psz);
-         pdc->EndPath();
-         pdc->StrokePath();
+
+      pgraphics->TextOut(rect.left, rect.top, psz);
+      pgraphics->BeginPath();
+      pgraphics->TextOut(rect.left, rect.top, psz);
+      pgraphics->EndPath();
+      pgraphics->StrokePath();
 
    }
+
 
    bool api::open()
    {
+
       return true;
+
    }
+
 
    bool api::close()
    {
+
       return true;
+
    }
+
 
 } // namespace visual
 

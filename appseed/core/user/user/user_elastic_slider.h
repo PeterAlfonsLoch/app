@@ -55,7 +55,7 @@ namespace user
       void CalcTension();
 
 
-      virtual void _001OnDraw(::draw2d::dib * pdib);
+      virtual void _001OnDraw(::draw2d::graphics * pgraphics);
 
       double GetForce();
 

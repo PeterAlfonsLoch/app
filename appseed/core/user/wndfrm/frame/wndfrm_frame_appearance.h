@@ -32,7 +32,7 @@ namespace user
 
                CTool001(::aura::application * papp);
 
-               void Update(::draw2d::graphics * pdc, const RECT & rect,
+               void Update(::draw2d::graphics * pgraphics, const RECT & rect,
                   COLORREF crHighlight,
                   COLORREF crLight,
                   COLORREF crBody,
@@ -43,7 +43,7 @@ namespace user
                class CColorBezier
                {
                public:
-                  void draw(::draw2d::brush & brush, ::draw2d::graphics * pdc);
+                  void draw(::draw2d::brush & brush, ::draw2d::graphics * pgraphics);
                   point_array m_pointset;
                   ::draw2d::pen  *   m_ppen;
                   void clear();

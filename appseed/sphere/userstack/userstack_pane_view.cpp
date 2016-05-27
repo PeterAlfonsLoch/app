@@ -448,7 +448,7 @@ namespace userstack
    }
 
 
-   void pane_view::_001OnDraw(::draw2d::dib * pdib)
+   void pane_view::_001OnDraw(::draw2d::graphics * pgraphics)
    {
 
       if(m_iNewArea != m_iArea)
@@ -476,17 +476,17 @@ namespace userstack
          }
          FIBITMAP * pfi;
 
-         ::draw2d::memory_graphics pdc(this);
+         ::draw2d::memory_graphics pgraphics(this);
 
          pfi = System.visual().imaging().LoadImageFile(strWallpaper);
 
-         m_dibBk.From((HDC)pdc->get_os_data(), pfi, true);
+         m_dibBk.From((HDC)pgraphics->get_os_data(), pfi, true);
 
          */
          //_001RedrawWindow();
       }
 
-      //m_dibBk.to(pdc, 0, 0, rectClient.right, rectClient.bottom);
+      //m_dibBk.to(pgraphics, 0, 0, rectClient.right, rectClient.bottom);
       
       ::userex::pane_tab_view::_001OnDraw(pdib);
 

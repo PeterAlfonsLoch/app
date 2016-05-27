@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace draw2d_gl2d
+namespace draw2d_opengl
 {
 
 
@@ -12,7 +12,7 @@ namespace draw2d_gl2d
    //////////////////////////////////////////////////////////////////////
 
 
-   class CLASS_DECL_DRAW2D_GL2D dib :
+   class CLASS_DECL_DRAW2D_OPENGL dib :
       virtual public ::draw2d::dib
    {
    public:
@@ -53,7 +53,7 @@ namespace draw2d_gl2d
 
 
       bool from(::draw2d::graphics * pgraphics);
-      bool from(point ptDest, ::draw2d::graphics * pdc, point pt, class size sz);
+      bool from(point ptDest, ::draw2d::graphics * pgraphics, point pt, class size sz);
 
       bool to(::draw2d::graphics * pgraphics, point pt, class size size, point ptSrc);
 
@@ -156,7 +156,7 @@ namespace draw2d_gl2d
    };
 
 
-} // namespace draw2d_gl2d
+} // namespace draw2d_opengl
 
 
 

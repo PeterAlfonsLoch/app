@@ -76,7 +76,7 @@ namespace user
 
       rect rect;
 
-      ::draw2d::memory_graphics pdc(allocer());
+      ::draw2d::memory_graphics pgraphics(allocer());
 
       GetToolRect(iTool, rect);
 
@@ -116,7 +116,7 @@ namespace user
          class rect rectToolScreen;
          ptool->BaseToolTipGetRect(rectToolScreen);
          ptool->BaseToolTipGetWnd()->ClientToScreen(rectToolScreen);
-         CalcRect(pdc, rect, rectToolScreen, m_strTip);
+         CalcRect(pgraphics, rect, rectToolScreen, m_strTip);
 
 
          size sizeScreen;
@@ -177,10 +177,10 @@ namespace user
    //
    //
    ///////////////////////////////////////////////////////////
-   bool tool_tip_window::CalcRect(::draw2d::graphics * pdc, LPRECT lprect, LPCRECT lprectTool, const char * lpcsz)
+   bool tool_tip_window::CalcRect(::draw2d::graphics * pgraphics, LPRECT lprect, LPCRECT lprectTool, const char * lpcsz)
    {
-      pdc->SelectObject(m_font);
-      size size = pdc->GetTextExtent(lpcsz);
+      pgraphics->SelectObject(m_font);
+      size size = pgraphics->GetTextExtent(lpcsz);
       if(((m_ealign & AlignLeft) == AlignLeft) &&
          ((m_ealign & AlignTop) == AlignTop))
       {
@@ -223,25 +223,25 @@ namespace user
    {
       ::exception::throw_not_implemented(get_app());
        /*CPaintDC spgraphics(this);
-      ::draw2d::graphics * pdc = &spgraphics;
-      pdc->SelectObject(m_font);
+      ::draw2d::graphics * pgraphics = &spgraphics;
+      pgraphics->SelectObject(m_font);
       rect rectClient;
       GetClientRect(rectClient);
       rect rectText;
-      pdc->SetBkMode(TRANSPARENT);
+      pgraphics->SetBkMode(TRANSPARENT);
       if(((m_ealign & AlignLeft) == AlignLeft) &&
          ((m_ealign & AlignTop) == AlignTop))
       {
          rect rectArrow(rectClient.right - m_sizeArrow.cx * 2, rectClient.bottom - m_sizeArrow.cy * 2, rectClient.right, rectClient.bottom);
          rectClient.right -= m_sizeArrow.cx;
          rectClient.bottom -= m_sizeArrow.cy;
-         pdc->FillSolidRect(rectArrow, RGB(0, 120, 180));
-         pdc->FillSolidRect(rectClient, RGB(220, 240, 250));
-         pdc->Draw3dRect(rectClient, RGB(0, 120, 180), RGB(0, 120, 180));
-         pdc->set_text_color(RGB(0, 60, 90));
+         pgraphics->FillSolidRect(rectArrow, RGB(0, 120, 180));
+         pgraphics->FillSolidRect(rectClient, RGB(220, 240, 250));
+         pgraphics->Draw3dRect(rectClient, RGB(0, 120, 180), RGB(0, 120, 180));
+         pgraphics->set_text_color(RGB(0, 60, 90));
          rectText = rectClient;
          rectText.deflate(2, 2, 2, 2);
-         pdc->draw_text(m_strTip, rectText, DT_LEFT | DT_BOTTOM | DT_END_ELLIPSIS);
+         pgraphics->draw_text(m_strTip, rectText, DT_LEFT | DT_BOTTOM | DT_END_ELLIPSIS);
       }
       else if(((m_ealign & AlignRight) == AlignRight) &&
          ((m_ealign & AlignTop) == AlignTop))
@@ -249,26 +249,26 @@ namespace user
          rect rectArrow(0, rectClient.bottom - m_sizeArrow.cy * 2, m_sizeArrow.cx * 2, rectClient.bottom);
          rectClient.left = m_sizeArrow.cx;
          rectClient.bottom -= m_sizeArrow.cy;
-         pdc->FillSolidRect(rectArrow, RGB(0, 120, 180));
-         pdc->FillSolidRect(rectClient, RGB(220, 240, 250));
-         pdc->Draw3dRect(rectClient, RGB(0, 120, 180), RGB(0, 120, 180));
-         pdc->set_text_color(RGB(0, 60, 90));
+         pgraphics->FillSolidRect(rectArrow, RGB(0, 120, 180));
+         pgraphics->FillSolidRect(rectClient, RGB(220, 240, 250));
+         pgraphics->Draw3dRect(rectClient, RGB(0, 120, 180), RGB(0, 120, 180));
+         pgraphics->set_text_color(RGB(0, 60, 90));
          rectText = rectClient;
          rectText.deflate(2, 2, 2, 2);
-         pdc->draw_text(m_strTip, rectText, DT_LEFT | DT_BOTTOM | DT_END_ELLIPSIS);
+         pgraphics->draw_text(m_strTip, rectText, DT_LEFT | DT_BOTTOM | DT_END_ELLIPSIS);
       }
       else
       {
          rect rectArrow(0, 0, m_sizeArrow.cx * 2, m_sizeArrow.cy * 2);
          rectClient.left = m_sizeArrow.cx;
          rectClient.top = m_sizeArrow.cy;
-         pdc->FillSolidRect(rectArrow, RGB(0, 120, 180));
-         pdc->FillSolidRect(rectClient, RGB(220, 240, 250));
-         pdc->Draw3dRect(rectClient, RGB(0, 120, 180), RGB(0, 120, 180));
-         pdc->set_text_color(RGB(0, 60, 90));
+         pgraphics->FillSolidRect(rectArrow, RGB(0, 120, 180));
+         pgraphics->FillSolidRect(rectClient, RGB(220, 240, 250));
+         pgraphics->Draw3dRect(rectClient, RGB(0, 120, 180), RGB(0, 120, 180));
+         pgraphics->set_text_color(RGB(0, 60, 90));
          rectText = rectClient;
          rectText.deflate(2, 2, 2, 2);
-         pdc->draw_text(m_strTip, rectText, DT_LEFT | DT_BOTTOM | DT_END_ELLIPSIS);
+         pgraphics->draw_text(m_strTip, rectText, DT_LEFT | DT_BOTTOM | DT_END_ELLIPSIS);
       }*/
    }
 

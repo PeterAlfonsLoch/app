@@ -17,32 +17,32 @@ simple_static::~simple_static()
 {
 }
 
-void simple_static::_001OnDraw(::draw2d::dib * pdib)
+void simple_static::_001OnDraw(::draw2d::graphics * pgraphics)
 {
    if(get_type() == type_icon)
    {
       ::visual::icon * picon = get_icon();
       if(picon != NULL)
       {
-         pdib->get_graphics()->DrawIcon(null_point(), picon);
+         pgraphics->DrawIcon(null_point(), picon);
       }
    }
    else if(get_type() == type_text)
    {
 
-      ::draw2d::graphics * pdc = pdib->get_graphics();
+      
 
-      select_font(pdc);
+      select_font(pgraphics);
 
       ::draw2d::brush_sp brush(allocer(), Session.userex()->GetUfeSchema()->m_crTextNormal);
 
-      pdc->SelectObject(brush);
+      pgraphics->SelectObject(brush);
 
       string str;
 
       GetWindowText(str);
 
-      pdc->TextOut(0, 0, str);
+      pgraphics->TextOut(0, 0, str);
 
    }
 

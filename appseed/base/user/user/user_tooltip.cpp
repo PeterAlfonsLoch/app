@@ -76,12 +76,12 @@ namespace user
    }
 
 
-   void tooltip::_001OnDraw(::draw2d::dib * pdib)
+   void tooltip::_001OnDraw(::draw2d::graphics * pgraphics)
    {
 
-      ::draw2d::graphics * pdc = pdib->get_graphics();
+      
 
-      pdc->SelectClipRgn(NULL);
+      pgraphics->SelectClipRgn(NULL);
 
       rect rectClient;
 
@@ -109,19 +109,19 @@ namespace user
 
       b->create_solid(ARGB(184,255,255,123));
 
-      pdc->SelectObject(b);
+      pgraphics->SelectObject(b);
 
-      pdc->fill_path(path);
+      pgraphics->fill_path(path);
 
       ::draw2d::pen_sp p(allocer());
 
-      pdc->SelectObject(p);
+      pgraphics->SelectObject(p);
 
       p->create_solid(1.0, ARGB(184,123,123,255));
 
-      pdc->draw_path(path);
+      pgraphics->draw_path(path);
 
-      pdc->set_text_color(ARGB(255,123,123,255));
+      pgraphics->set_text_color(ARGB(255,123,123,255));
 
       //::rect rect;
 
@@ -133,11 +133,11 @@ namespace user
 
       //rectText.bottom = m_size.cy;
 
-      pdc->SelectFont(m_font);
+      pgraphics->SelectFont(m_font);
 
       rectBody.offset(4,0);
 
-      pdc->draw_text(m_str,rectBody,DT_VCENTER);
+      pgraphics->draw_text(m_str,rectBody,DT_VCENTER);
 
    }
 

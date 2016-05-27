@@ -283,9 +283,9 @@ namespace draw2d
    }
 
 
-   bool dib::from(point ptDst, ::draw2d::graphics * pdc, point ptSrc, class size size)
+   bool dib::from(point ptDst, ::draw2d::graphics * pgraphics, point ptSrc, class size size)
    {
-      return get_graphics()->from(ptDst, size, pdc, ptSrc, SRCCOPY) != FALSE;
+      return get_graphics()->from(ptDst, size, pgraphics, ptSrc, SRCCOPY) != FALSE;
    }
 
    bool dib::from(point ptDst, ::draw2d::dib * pdibSrc, point ptSrc, class size size)

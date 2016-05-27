@@ -78,10 +78,10 @@ void simple_tab_view::_001OnCreate(signal_details * pobj)
 }
 
 
-void simple_tab_view::_001OnDraw(::draw2d::dib * pdib)
+void simple_tab_view::_001OnDraw(::draw2d::graphics * pgraphics)
 {
 
-   ::user::tab::_001OnDraw(pdib);
+   ::user::tab::_001OnDraw(pgraphics);
 
 }
 

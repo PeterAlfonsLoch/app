@@ -161,7 +161,7 @@ namespace user
             void relay_event(signal_details * pobj);
             void message_handler(signal_details * pobj);
 
-            void _001OnDraw(::draw2d::dib * pdib);
+            void _001OnDraw(::draw2d::graphics * pgraphics);
 
             virtual bool BaseOnControlEvent(::user::control_event * pevent);
 

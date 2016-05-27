@@ -59,7 +59,7 @@ namespace user
       virtual void install_message_handling(::message::dispatch * pdispatch);
 
 
-      virtual void _001OnDraw(::draw2d::dib * pdib);
+      virtual void _001OnDraw(::draw2d::graphics * pgraphics);
       virtual void _001OnDrawVerisimple(::draw2d::dib * pdib);
       virtual void _001OnDrawSimply(::draw2d::dib * pdib);
       virtual void _001OnDrawStaticText(::draw2d::dib * pdib);
@@ -194,7 +194,7 @@ namespace user
       virtual COLORREF get_action_hover_border_color();
 
 
-      //virtual void _001OnDraw(::draw2d::dib * pdib);
+      //virtual void _001OnDraw(::draw2d::graphics * pgraphics);
 
 //      virtual void _001GetListText(index iSel,string & str) const;
   //    virtual index _001FindListText(const string & str) const;

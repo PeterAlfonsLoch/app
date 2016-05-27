@@ -18,12 +18,12 @@ namespace visual
    }
 
 
-   void calendar::_001OnDraw(::draw2d::dib * pdib)
+   void calendar::_001OnDraw(::draw2d::graphics * pgraphics)
    {
 
-      ::draw2d::graphics * pdc = pdib->get_graphics();
+      
 
-      pdc->SelectObject(m_font);
+      pgraphics->SelectObject(m_font);
       ::datetime::time timeNow = ::datetime::time::get_current_time();
       int32_t iMonth = m_iMonth;
       int32_t iYear = m_iYear;
@@ -36,11 +36,11 @@ namespace visual
       {
          GetRectDay(iDay,0,rectDay);
          //crBorder = RGB(184, 184, 177);
-         //pdc->Draw3dRect(rectDay, crBorder, crBorder);
+         //pgraphics->Draw3dRect(rectDay, crBorder, crBorder);
          rectDay.deflate(m_iColWidth / 10,m_iLineHeight / 10);
          string strDay;
-         strDay.Format("%s",GetTinyWeekDay(pdc->str_context(),iDay));
-         pdc->draw_text(strDay,rectDay,DT_BOTTOM | DT_RIGHT);
+         strDay.Format("%s",GetTinyWeekDay(pgraphics->str_context(),iDay));
+         pgraphics->draw_text(strDay,rectDay,DT_BOTTOM | DT_RIGHT);
       }
       for(iDay = 1; iDay <= 33; iDay++)
       {
@@ -59,11 +59,11 @@ namespace visual
          }
          GetRectDay(time,rectDay);
          crBorder = RGB(184,184,177);
-         pdc->Draw3dRect(rectDay,crBorder,crBorder);
+         pgraphics->Draw3dRect(rectDay,crBorder,crBorder);
          rectDay.deflate(m_iColWidth / 5,m_iLineHeight / 5);
          string strDay;
          strDay.Format("%d",iDay);
-         pdc->draw_text(strDay,rectDay,DT_BOTTOM | DT_RIGHT);
+         pgraphics->draw_text(strDay,rectDay,DT_BOTTOM | DT_RIGHT);
          time += timespan;
          if(time.GetMonth() != iMonth)
             break;
@@ -74,14 +74,14 @@ namespace visual
          crBorder = RGB(84,84,77);
          GetRectDay(timeNow,rectDay);
          rectDay.inflate(m_iColWidth / 10,m_iColWidth / 10);
-         pdc->FillSolidRect(rectDay,RGB(220,220,210));
-         pdc->Draw3dRect(rectDay,crBorder,crBorder);
+         pgraphics->FillSolidRect(rectDay,RGB(220,220,210));
+         pgraphics->Draw3dRect(rectDay,crBorder,crBorder);
          rectDay.deflate(1,1);
-         pdc->Draw3dRect(rectDay,crBorder,crBorder);
+         pgraphics->Draw3dRect(rectDay,crBorder,crBorder);
          rectDay.deflate(m_iColWidth / 5,m_iLineHeight / 5);
          string strDay;
          strDay.Format("%d",timeNow.GetDay());
-         pdc->draw_text(strDay,rectDay,DT_BOTTOM | DT_RIGHT);
+         pgraphics->draw_text(strDay,rectDay,DT_BOTTOM | DT_RIGHT);
       }
       ::datetime::time timeEmp = m_time;
       for(int32_t iDay = timeEmp.GetDay(); time.GetYear() == iYear
@@ -92,37 +92,37 @@ namespace visual
          crBorder = RGB(240,120,52);
          GetRectDay(m_time,rectDay);
          rectDay.inflate(m_iColWidth / 10,m_iColWidth / 10);
-         pdc->Draw3dRect(rectDay,crBorder,crBorder);
+         pgraphics->Draw3dRect(rectDay,crBorder,crBorder);
          rectDay.deflate(1,1);
-         pdc->Draw3dRect(rectDay,crBorder,crBorder);
+         pgraphics->Draw3dRect(rectDay,crBorder,crBorder);
          rectDay.deflate(m_iColWidth / 5,m_iLineHeight / 5);
          string strDay;
          strDay.Format("%d",timeEmp.GetDay());
-         pdc->draw_text(strDay,rectDay,DT_BOTTOM | DT_RIGHT);
+         pgraphics->draw_text(strDay,rectDay,DT_BOTTOM | DT_RIGHT);
       }
 
-      pdc->SelectObject(m_fontYear);
+      pgraphics->SelectObject(m_fontYear);
       class rect rect;
       GetRect(rect,ElementYearTitle);
       string strYear;
       strYear.Format("%d",iYear);
-      pdc->draw_text(strYear,rect,DT_CENTER | DT_VCENTER);
+      pgraphics->draw_text(strYear,rect,DT_CENTER | DT_VCENTER);
 
-      pdc->SelectObject(m_fontMonth);
+      pgraphics->SelectObject(m_fontMonth);
       GetRect(rect,ElementMonthTitle);
       string strMonth;
-      strMonth = GetMonth(pdc->str_context(),iMonth);
-      pdc->draw_text(strMonth,rect,DT_CENTER | DT_VCENTER);
+      strMonth = GetMonth(pgraphics->str_context(),iMonth);
+      pgraphics->draw_text(strMonth,rect,DT_CENTER | DT_VCENTER);
 
-      pdc->SelectObject(m_fontSpin);
+      pgraphics->SelectObject(m_fontSpin);
       GetRect(rect,ElementPreviousYear);
-      pdc->draw_text("<<",rect,DT_CENTER | DT_VCENTER);
+      pgraphics->draw_text("<<",rect,DT_CENTER | DT_VCENTER);
       GetRect(rect,ElementNextYear);
-      pdc->draw_text(">>",rect,DT_CENTER | DT_VCENTER);
+      pgraphics->draw_text(">>",rect,DT_CENTER | DT_VCENTER);
       GetRect(rect,ElementPreviousMonth);
-      pdc->draw_text("<",rect,DT_CENTER | DT_VCENTER);
+      pgraphics->draw_text("<",rect,DT_CENTER | DT_VCENTER);
       GetRect(rect,ElementNextMonth);
-      pdc->draw_text(">",rect,DT_CENTER | DT_VCENTER);
+      pgraphics->draw_text(">",rect,DT_CENTER | DT_VCENTER);
    }
 
 

@@ -61,31 +61,31 @@ namespace user
 
 
 
-   void button::_001OnDraw(::draw2d::dib * pdib)
+   void button::_001OnDraw(::draw2d::graphics * pgraphics)
    {
 
       if(m_estyle == style_push)
       {
 
-         _001OnDrawPush(pdib);
+         _001OnDrawPush(pgraphics);
 
       }
       else if(m_estyle == style_list)
       {
 
-         _001OnDrawList(pdib);
+         _001OnDrawList(pgraphics);
 
       }
       else if(m_estyle == style_bitmap)
       {
 
-         _001OnDrawBitmap(pdib);
+         _001OnDrawBitmap(pgraphics);
 
       }
       else
       {
 
-         ::draw2d::graphics * pdc = pdib->get_graphics();
+         
 
          string strText(m_strWindowText);
 
@@ -99,17 +99,17 @@ namespace user
             if(m_iHover == 0 || Session.m_puiLastLButtonDown == this)
             {
 
-               pdc->FillSolidRect(rectClient,ARGB(255,127,127,127));
+               pgraphics->FillSolidRect(rectClient,ARGB(255,127,127,127));
 
-               pdc->set_text_color(ARGB(255,0,100,255));
+               pgraphics->set_text_color(ARGB(255,0,100,255));
 
             }
             else
             {
 
-               pdc->FillSolidRect(rectClient,ARGB(255,127,127,127));
+               pgraphics->FillSolidRect(rectClient,ARGB(255,127,127,127));
 
-               pdc->set_text_color(ARGB(255,0,0,0));
+               pgraphics->set_text_color(ARGB(255,0,0,0));
 
             }
 
@@ -119,25 +119,25 @@ namespace user
             if(m_iHover == 0 || Session.m_puiLastLButtonDown == this)
             {
 
-               //pdc->Draw3dRect(rectClient,m_pschema->_001GetColor(color_border_hover),m_pschema->_001GetColor(color_border_hover));
+               //pgraphics->Draw3dRect(rectClient,m_pschema->_001GetColor(color_border_hover),m_pschema->_001GetColor(color_border_hover));
 
                //rectClient.deflate(1,1);
 
-               pdc->FillSolidRect(rectClient,m_pschema->_001GetColor(color_background_hover));
+               pgraphics->FillSolidRect(rectClient,m_pschema->_001GetColor(color_background_hover));
 
-               pdc->set_text_color(m_pschema->_001GetColor(color_text_hover));
+               pgraphics->set_text_color(m_pschema->_001GetColor(color_text_hover));
 
             }
             else
             {
 
-               //pdc->Draw3dRect(rectClient,m_pschema->_001GetColor(color_border_normal),m_pschema->_001GetColor(color_border_normal));
+               //pgraphics->Draw3dRect(rectClient,m_pschema->_001GetColor(color_border_normal),m_pschema->_001GetColor(color_border_normal));
 
                //rectClient.deflate(1,1);
 
-               pdc->FillSolidRect(rectClient,m_pschema->_001GetColor(color_background_normal));
+               pgraphics->FillSolidRect(rectClient,m_pschema->_001GetColor(color_background_normal));
 
-               pdc->set_text_color(m_pschema->_001GetColor(color_text_normal));
+               pgraphics->set_text_color(m_pschema->_001GetColor(color_text_normal));
 
             }
 
@@ -146,9 +146,9 @@ namespace user
          if(m_estockicon == stock_icon_none)
          {
 
-            select_font(pdc);
+            select_font(pgraphics);
 
-            pdc->TextOut(m_rectText.left,m_rectText.top,strText);
+            pgraphics->TextOut(m_rectText.left,m_rectText.top,strText);
 
          }
          else
@@ -156,23 +156,23 @@ namespace user
 
             //::draw2d::brush_sp brush(allocer());
 
-            //brush->create_solid(pdc->get_current_pen()->m_cr);
+            //brush->create_solid(pgraphics->get_current_pen()->m_cr);
 
-            //pdc->SelectObject(brush);
+            //pgraphics->SelectObject(brush);
 
             ::draw2d::pen_sp pen(allocer());
 
-            pen->m_cr = pdc->get_current_brush()->m_cr;
+            pen->m_cr = pgraphics->get_current_brush()->m_cr;
 
             pen->m_dWidth = 1.0;
 
-            pdc->SelectObject(pen);
+            pgraphics->SelectObject(pen);
 
             class rect rectIcon(rectClient);
 
             rectIcon.deflate(rectIcon.width() / 4,rectIcon.height() / 4);
 
-            pdc->draw_stock_icon(rectIcon,m_estockicon);
+            pgraphics->draw_stock_icon(rectIcon,m_estockicon);
 
 
          }
@@ -375,20 +375,20 @@ namespace user
    ::size button::calc_text_size()
    {
 
-      ::draw2d::memory_graphics pdc(allocer());
+      ::draw2d::memory_graphics pgraphics(allocer());
 
-      if(pdc.is_null())
+      if(pgraphics.is_null())
          return size(0, 0);
 
-      select_font(pdc);
+      select_font(pgraphics);
 
       string strText(m_strWindowText);
 
-      size size = pdc->GetTextExtent(strText);
+      size size = pgraphics->GetTextExtent(strText);
 
       ::draw2d::text_metric tm;
 
-      pdc->get_text_metrics(&tm);
+      pgraphics->get_text_metrics(&tm);
 
       ::size sizeTotal;
 
@@ -407,13 +407,13 @@ namespace user
       if(m_estyle == style_simple)
       {
 
-            ::draw2d::memory_graphics pdc(allocer());
+            ::draw2d::memory_graphics pgraphics(allocer());
 
-            select_font(pdc);
+            select_font(pgraphics);
 
             string str;
             GetWindowText(str);
-            size size = pdc->GetTextExtent(str);
+            size size = pgraphics->GetTextExtent(str);
 
             rect rect(0,0,0,0);
             rect.right = size.cx + 4;
@@ -580,7 +580,7 @@ namespace user
       if(m_pschema == NULL)
          return;
 
-      ::draw2d::graphics * pdc = pdib->get_graphics();
+      
 
       rect rectClient;
 
@@ -609,14 +609,14 @@ namespace user
       {
          class imaging & imaging = System.visual().imaging();
          imaging.color_blend(
-            pdc,
+            pgraphics,
             rectClient,
             crBk,
             127);
       }
       else
       {
-         pdc->FillSolidRect(rectClient, crBk);
+         pgraphics->FillSolidRect(rectClient, crBk);
       }
 
 
@@ -640,10 +640,10 @@ namespace user
 
       if(m_pschema->m_bBorder)
       {
-         pdc->Draw3dRect(rectClient, crBorder, crBorder);
+         pgraphics->Draw3dRect(rectClient, crBorder, crBorder);
       }
 
-//      pdc->SetBkMode(TRANSPARENT);
+//      pgraphics->SetBkMode(TRANSPARENT);
 
       rectClient.left   += 3;
       rectClient.top    += 3;
@@ -657,8 +657,8 @@ namespace user
             rectDib = m_rectText;
             rectDib.bottom = MIN(rectText.top + m_pbitmap->m_dib->m_size.cy,rectText.bottom);
             rectDib.right = MIN(rectText.left + m_pbitmap->m_dib->m_size.cx,rectText.right);
-            //m_dib->to(pdc, rectDib);
-            m_pbitmap->m_dib->bitmap_blend(pdc,rectDib);
+            //m_dib->to(pgraphics, rectDib);
+            m_pbitmap->m_dib->bitmap_blend(pgraphics,rectDib);
             rectText.left += m_pbitmap->m_dib->m_size.cx;
          }
       }
@@ -669,32 +669,32 @@ namespace user
 
       if(!is_window_enabled())
       {
-//         pdc->set_text_color(m_pschema->m_crTextDisabled);
+//         pgraphics->set_text_color(m_pschema->m_crTextDisabled);
          brushText->create_solid(m_pschema->_001GetColor(color_text_disabled));
       }
       else if(is_pressed())
       {
-//         pdc->set_text_color(m_pschema->m_crTextPress);
+//         pgraphics->set_text_color(m_pschema->m_crTextPress);
          brushText->create_solid(m_pschema->_001GetColor(color_text_press));
       }
       else if(m_iHover >= 0)
       {
-//         pdc->set_text_color(m_pschema->m_crTextHover);
+//         pgraphics->set_text_color(m_pschema->m_crTextHover);
          brushText->create_solid(m_pschema->_001GetColor(color_text_hover));
       }
       else
       {
-//         pdc->set_text_color(m_pschema->m_crTextNormal);
+//         pgraphics->set_text_color(m_pschema->m_crTextNormal);
          brushText->create_solid(m_pschema->_001GetColor(color_text_normal));
       }
 
-      pdc->SelectObject(brushText);
+      pgraphics->SelectObject(brushText);
 
       string strText(GetWindowText());
 
-      select_font(pdc);
+      select_font(pgraphics);
 
-      pdc->draw_text(strText, rectText, DT_LEFT | DT_TOP);
+      pgraphics->draw_text(strText, rectText, DT_LEFT | DT_TOP);
 
    }
 
@@ -761,10 +761,10 @@ namespace user
    void button::_001OnDrawPush(::draw2d::dib * pdib)
    {
 
-      ::draw2d::graphics * pdc = pdib->get_graphics();
+      
 
-      //   int32_t iOriginalBkMode = pdc->GetBkMode();
-      //   pdc->SetBkMode(TRANSPARENT);
+      //   int32_t iOriginalBkMode = pgraphics->GetBkMode();
+      //   pgraphics->SetBkMode(TRANSPARENT);
       rect rectClient;
       GetClientRect(rectClient);
 
@@ -871,29 +871,29 @@ namespace user
       class imaging & imaging = System.visual().imaging();
 
       rect rect = rectClient;
-      imaging.color_blend_3dRect(pdc,rect,colorExt1TL,215,colorExt1BR,215);
+      imaging.color_blend_3dRect(pgraphics,rect,colorExt1TL,215,colorExt1BR,215);
       rect.deflate(1,1,1,1);
-      imaging.color_blend_3dRect(pdc,rect,colorExt1TL,210,colorExt1BR,210);
+      imaging.color_blend_3dRect(pgraphics,rect,colorExt1TL,210,colorExt1BR,210);
       rect.deflate(1,1,1,1);
-      imaging.color_blend_3dRect(pdc,rect,colorExt2TL,205,colorExt2BR,205);
+      imaging.color_blend_3dRect(pgraphics,rect,colorExt2TL,205,colorExt2BR,205);
       rect.deflate(1,1,1,1);
-      imaging.color_blend_3dRect(pdc,rect,colorExt2TL,200,colorExt2BR,200);
+      imaging.color_blend_3dRect(pgraphics,rect,colorExt2TL,200,colorExt2BR,200);
       rect.deflate(1,1,1,1);
-      imaging.color_blend(pdc,rect.left,rect.top,rect.width(),rect.height(),cr,200);
+      imaging.color_blend(pgraphics,rect.left,rect.top,rect.width(),rect.height(),cr,200);
       rect.deflate(1,1,1,1);
       int32_t x1 = rect.left;
       int32_t x2 = x1 + rect.width() / 3;
       rect.left = x1;
       rect.right = x2;
       rect.bottom = rect.top + 5;
-      ::draw2d::pen_sp pen(pdc,1,colorExt1TL);
-      pdc->SelectObject(pen);
-      imaging.color_blend_3dRect(pdc,rect,colorExt1TL,220,colorExt1BR,220);
+      ::draw2d::pen_sp pen(pgraphics,1,colorExt1TL);
+      pgraphics->SelectObject(pen);
+      imaging.color_blend_3dRect(pgraphics,rect,colorExt1TL,220,colorExt1BR,220);
 
 
 
 
-      //   pdc->SetBkMode(iOriginalBkMode);
+      //   pgraphics->SetBkMode(iOriginalBkMode);
 
    }
 
@@ -1067,9 +1067,9 @@ namespace user
       bool bItemHover;
       bool bSubItemHover;
 
-      ::draw2d::graphics * pdc = pdib->get_graphics();
+      
 
-      ::aura::draw_context * pdrawcontext = pdc->::core::simple_chain < ::aura::draw_context >::get_last();
+      ::aura::draw_context * pdrawcontext = pgraphics->::core::simple_chain < ::aura::draw_context >::get_last();
 
       if(pdrawcontext != NULL)
       {
@@ -1091,7 +1091,7 @@ namespace user
 
       if(bSubItemHover)
       {
-         pdc->Draw3dRect(
+         pgraphics->Draw3dRect(
             rectClient,
             RGB(255,255,255),
             RGB(155,155,105));
@@ -1099,7 +1099,7 @@ namespace user
          if(m_plist->m_pimagelistSubItemHover != NULL)
          {
             m_plist->m_pimagelistSubItemHover->draw(
-               pdc,
+               pgraphics,
                m_plist->m_iImageSubItemHover,
                pt,
                0);
@@ -1107,7 +1107,7 @@ namespace user
          else if(m_plist->m_pimagelistItemHover != NULL)
          {
             m_plist->m_pimagelistItemHover->draw(
-               pdc,
+               pgraphics,
                m_plist->m_iImageItemHover,
                pt,
                0);
@@ -1115,7 +1115,7 @@ namespace user
          else if(m_plist->m_pimagelistNormal != NULL)
          {
             m_plist->m_pimagelistNormal->draw(
-               pdc,
+               pgraphics,
                m_plist->m_iImageNormal,
                pt,
                0);
@@ -1126,7 +1126,7 @@ namespace user
          if(m_plist->m_pimagelistItemHover != NULL)
          {
             m_plist->m_pimagelistItemHover->draw(
-               pdc,
+               pgraphics,
                m_plist->m_iImageItemHover,
                pt,
                0);
@@ -1134,7 +1134,7 @@ namespace user
          else if(m_plist->m_pimagelistSubItemHover != NULL)
          {
             m_plist->m_pimagelistSubItemHover->draw(
-               pdc,
+               pgraphics,
                m_plist->m_iImageSubItemHover,
                pt,
                0);
@@ -1142,7 +1142,7 @@ namespace user
          else if(m_plist->m_pimagelistNormal != NULL)
          {
             m_plist->m_pimagelistNormal->draw(
-               pdc,
+               pgraphics,
                m_plist->m_iImageNormal,
                pt,
                0);
@@ -1153,7 +1153,7 @@ namespace user
          if(m_plist->m_pimagelistNormal != NULL)
          {
             m_plist->m_pimagelistNormal->draw(
-               pdc,
+               pgraphics,
                m_plist->m_iImageNormal,
                pt,
                0);
@@ -1161,7 +1161,7 @@ namespace user
          else if(m_plist->m_pimagelistItemHover != NULL)
          {
             m_plist->m_pimagelistItemHover->draw(
-               pdc,
+               pgraphics,
                m_plist->m_iImageItemHover,
                pt,
                0);
@@ -1169,7 +1169,7 @@ namespace user
          else if(m_plist->m_pimagelistSubItemHover != NULL)
          {
             m_plist->m_pimagelistSubItemHover->draw(
-               pdc,
+               pgraphics,
                m_plist->m_iImageSubItemHover,
                pt,
                0);

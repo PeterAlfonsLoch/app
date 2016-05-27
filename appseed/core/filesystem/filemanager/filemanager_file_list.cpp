@@ -1546,32 +1546,32 @@ namespace filemanager
 
 
 
-   void file_list::_001OnDraw(::draw2d::dib * pdib)
+   void file_list::_001OnDraw(::draw2d::graphics * pgraphics)
    {
 
       if (m_iAnimate <= 0)
       {
 
-         ::user::form_list::_001OnDraw(pdib);
+         ::user::form_list::_001OnDraw(pgraphics);
 
       }
       else
       {
 
-         ::draw2d::graphics * pdc = pdib->get_graphics();
+         
 
          // Animation Drawing
          rect rectClipBox;
-         pdc->GetClipBox(rectClipBox);
+         pgraphics->GetClipBox(rectClipBox);
          class imaging & imaging = System.visual().imaging();
          imaging.color_blend(
-            pdc,
+            pgraphics,
             rectClipBox,
             RGB(255, 255, 255),
             127);
 
          //imaging.bitmap_blend(
-         //   pdc,
+         //   pgraphics,
          //   null_point(),
          //   rectClipBox.size(),
          //   m_gdibuffer.GetBuffer(),

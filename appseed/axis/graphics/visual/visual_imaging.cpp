@@ -233,14 +233,14 @@ FIBITMAP * imaging::HBITMAPtoFI(::draw2d::bitmap_sp pbitmap)
    //return dibSource->detach_bitmap();
 }
 
-::draw2d::bitmap_sp imaging::CreateDIBitmap(::draw2d::graphics * pdc,FIBITMAP * pFreeImage)
+::draw2d::bitmap_sp imaging::CreateDIBitmap(::draw2d::graphics * pgraphics,FIBITMAP * pFreeImage)
 {
 
 
 #ifdef WINDOWSEX
    ::draw2d::bitmap_sp bitmap(get_app());
 
-   if(!bitmap->CreateDIBitmap(pdc,FreeImage_GetInfoHeader(pFreeImage),CBM_INIT,FreeImage_GetBits(pFreeImage),FreeImage_GetInfo(pFreeImage),DIB_RGB_COLORS))
+   if(!bitmap->CreateDIBitmap(pgraphics,FreeImage_GetInfoHeader(pFreeImage),CBM_INIT,FreeImage_GetBits(pFreeImage),FreeImage_GetInfo(pFreeImage),DIB_RGB_COLORS))
    {
 
       TRACELASTERROR();
@@ -259,7 +259,7 @@ FIBITMAP * imaging::HBITMAPtoFI(::draw2d::bitmap_sp pbitmap)
 }
 
 
-::draw2d::bitmap_sp imaging::CreateBitmap(::draw2d::graphics * pdc,FIBITMAP * pFreeImage)
+::draw2d::bitmap_sp imaging::CreateBitmap(::draw2d::graphics * pgraphics,FIBITMAP * pFreeImage)
 {
    ::visual::dib_sp dib(allocer());
 
@@ -273,7 +273,7 @@ FIBITMAP * imaging::HBITMAPtoFI(::draw2d::bitmap_sp pbitmap)
 
 
 
-   dib.from(pdc,pFreeImage,false);
+   dib.from(pgraphics,pFreeImage,false);
 
 
    return dib->detach_bitmap();
@@ -282,7 +282,7 @@ FIBITMAP * imaging::HBITMAPtoFI(::draw2d::bitmap_sp pbitmap)
 
    /*   ::draw2d::bitmap_sp bitmap(get_app());
    void * pBits = FreeImage_GetBits(pFreeImage);
-   if(!bitmap->CreateDIBitmap(pdc,
+   if(!bitmap->CreateDIBitmap(pgraphics,
    FreeImage_GetInfoHeader(pFreeImage),
    CBM_INIT,
    pBits,
@@ -307,7 +307,7 @@ FIBITMAP * imaging::HBITMAPtoFI(::draw2d::bitmap_sp pbitmap)
    int32_t iSizeBitsZ = ((pbi->bmiHeader.biWidth * pbi->bmiHeader.biBitCount / 8 + 3) & ~3) * pbi->bmiHeader.biHeight;
    void * pDataZ = malloc(iSizeBitsZ);
    if(pbi->bmiHeader.biHeight != GetDIBits(
-   (HDC)pdc->get_os_data(),           // handle to device context
+   (HDC)pgraphics->get_os_data(),           // handle to device context
    (HBITMAP)bitmap->get_os_data(),      // handle to bitmap
    0,   // first scan line to set in destination bitmap
    FreeImage_GetInfo(pFreeImage)->bmiHeader.biHeight,   // number of scan lines to copy
@@ -655,7 +655,7 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
 
 
    void EmbossedTextOut(
-      ::draw2d::graphics *        pdc,
+      ::draw2d::graphics *        pgraphics,
       int32_t                 x,
       int32_t                 y,
       const char *            lpcsz,
@@ -683,15 +683,15 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
       RECT                    rcText;
 
       if(crShadow == (COLORREF)-1)
-         crShadow = Sess(pdc->m_pauraapp).get_default_color(COLOR_BTNSHADOW);
+         crShadow = Sess(pgraphics->m_pauraapp).get_default_color(COLOR_BTNSHADOW);
 
       if(crText == (COLORREF)-1)
-         crText = Sess(pdc->m_pauraapp).get_default_color(COLOR_BTNTEXT);
+         crText = Sess(pgraphics->m_pauraapp).get_default_color(COLOR_BTNTEXT);
 
       /* setup the DC, saving off the old values
       */
-      //uMode = pdc->SetBkMode(OPAQUE);
-      //crOld = pdc->set_text_color(crShadow);
+      //uMode = pgraphics->SetBkMode(OPAQUE);
+      //crOld = pgraphics->set_text_color(crShadow);
 
       /* draw the text at the desired offset using the
       ** shadow color, then again at the normal position
@@ -699,27 +699,27 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
       ** or 'drop shadowed' look depending on what shadow color
       ** and offset are used.
       */
-      sizeText = pdc->GetTextExtent(string(lpcsz,cb));
+      sizeText = pgraphics->GetTextExtent(string(lpcsz,cb));
       rcText.left   = x;    rcText.right  = x + cx + sizeText.cx;
       rcText.top    = y;    rcText.bottom = y + cy + sizeText.cy;
       //ExtTextOut(hDC, x+cx, y+cy, ETO_OPAQUE, &rcText, lpsz, cb, NULL);
-      //pdc->SetBkMode(TRANSPARENT);
+      //pgraphics->SetBkMode(TRANSPARENT);
       //ExtTextOut(hDC, x-cx, y+cy, NULL, &rcText, lpsz, cb, NULL);
       //ExtTextOut(hDC, x-cx, y-cy, NULL, &rcText, lpsz, cb, NULL);
       //ExtTextOut(hDC, x+cx, y-cy, NULL, &rcText, lpsz, cb, NULL);
       //ExtTextOut(hDC, x+cx, y+cy, NULL, &rcText, lpsz, cb, NULL);
-      pdc->ExtTextOut(x + cx,y + cy,0,null_rect(),lpcsz,(int)cb,NULL);
-      //pdc->SetBkMode(TRANSPARENT);
-      //pdc->set_text_color(crText);
-      if(!pdc->ExtTextOut(x,y,0,null_rect(),lpcsz,(int)cb,NULL))
+      pgraphics->ExtTextOut(x + cx,y + cy,0,null_rect(),lpcsz,(int)cb,NULL);
+      //pgraphics->SetBkMode(TRANSPARENT);
+      //pgraphics->set_text_color(crText);
+      if(!pgraphics->ExtTextOut(x,y,0,null_rect(),lpcsz,(int)cb,NULL))
       {
          //      TRACE("Failed to ExtTextOut, GetLastError() -->%d\n", GetLastError());
       }
 
       /* restore the DC
       */
-      //pdc->set_text_color(crOld);
-      //pdc->SetBkMode(uMode);
+      //pgraphics->set_text_color(crOld);
+      //pgraphics->SetBkMode(uMode);
 
 
    }
@@ -801,14 +801,14 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
    }
 
    bool imaging::GrayVRCP(
-      ::draw2d::graphics * pdc,
+      ::draw2d::graphics * pgraphics,
       int32_t x,
       int32_t y,
       int32_t cx,
       int32_t cy,
       COLORREF crAlpha)
    {
-      UNREFERENCED_PARAMETER(pdc);
+      UNREFERENCED_PARAMETER(pgraphics);
       UNREFERENCED_PARAMETER(x);
       UNREFERENCED_PARAMETER(y);
       UNREFERENCED_PARAMETER(cx);
@@ -822,7 +822,7 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
    }
 
    bool imaging::GrayVRCP(
-      ::draw2d::graphics * pdc,
+      ::draw2d::graphics * pgraphics,
       ::draw2d::bitmap * pbitmap,
       ::draw2d::bitmap * pbitmapMask,
       const RECT & rect,
@@ -830,7 +830,7 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
    {
 
       return GrayVRCP(
-         pdc,
+         pgraphics,
          pbitmap,
          pbitmapMask,
          rect.left,
@@ -841,7 +841,7 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
    }
 
    /*sp(::image_list) imaging::CreateGrayVRCPImageList(
-   ::draw2d::graphics * pdc,
+   ::draw2d::graphics * pgraphics,
    sp(::image_list) pilGray,
    sp(::image_list) pilParam)
    {
@@ -851,7 +851,7 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
 
    ::draw2d::graphics_sp spgraphics(allocer());
 
-   spgraphics->CreateCompatibleDC(pdc);
+   spgraphics->CreateCompatibleDC(pgraphics);
 
    ::image_list::info ii;
 
@@ -867,7 +867,7 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
 
 
    bool imaging::CreateHueImageList(
-   ::draw2d::graphics * pdc,
+   ::draw2d::graphics * pgraphics,
    sp(::image_list) pilGray,
    sp(::image_list) pilParam,
    COLORREF crHue,
@@ -880,7 +880,7 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
 
    ::draw2d::graphics_sp spgraphics(allocer());
 
-   spgraphics->CreateCompatibleDC(pdc);
+   spgraphics->CreateCompatibleDC(pgraphics);
 
    ::image_list::info ii;
 
@@ -904,7 +904,7 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
 
 
 
-   bool imaging::CreateHueImageList(::draw2d::graphics * pdc, image_list * pilGray, image_list * pilParam,COLORREF crHue,double dCompress)
+   bool imaging::CreateHueImageList(::draw2d::graphics * pgraphics, image_list * pilGray, image_list * pilParam,COLORREF crHue,double dCompress)
    {
       //synch_lock ml(&user_mutex());
       image_list * pil = pilGray;
@@ -913,7 +913,7 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
 
       ::draw2d::graphics_sp spgraphics(allocer());
 
-      spgraphics->CreateCompatibleDC(pdc);
+      spgraphics->CreateCompatibleDC(pgraphics);
 
 
       HueVRCP(pil->m_spdib,crHue,dCompress);
@@ -980,7 +980,7 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
 
    /*
    sp(::image_list) imaging::CreateGrayVRCPImageList(
-   ::draw2d::graphics * pdc,
+   ::draw2d::graphics * pgraphics,
    sp(::image_list) pilParam)
    {
    sp(::image_list) pil = new ::image_list();
@@ -989,7 +989,7 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
 
    ::draw2d::graphics_sp spgraphics(allocer());
 
-   spgraphics->CreateCompatibleDC(pdc);
+   spgraphics->CreateCompatibleDC(pgraphics);
 
    ::image_list::info ii;
 
@@ -1007,7 +1007,7 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
 
 
    bool imaging::GrayVRCP(
-      ::draw2d::graphics * pdc,
+      ::draw2d::graphics * pgraphics,
       ::draw2d::bitmap * pbitmap,
       ::draw2d::bitmap * pbitmapMask,
       int32_t x,
@@ -1085,7 +1085,7 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
 
 
       if(!GetDIBits(
-         (HDC)pdc->get_os_data(),
+         (HDC)pgraphics->get_os_data(),
          (HBITMAP)pbitmap->get_os_data(),
          0,
          uiScanLines,
@@ -1120,7 +1120,7 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
 
 #ifdef WINDOWSEX
 
-      if(!GetDIBits((HDC)pdc->get_os_data(),
+      if(!GetDIBits((HDC)pgraphics->get_os_data(),
          (HBITMAP)pbitmapMask->get_os_data(),
          0,uiScanLines,
          lpbMask,pbmiMask,DIB_RGB_COLORS))
@@ -1290,7 +1290,7 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
 #ifdef WINDOWSEX
 
       if(!SetDIBits(
-         (HDC)pdc->get_os_data(),
+         (HDC)pgraphics->get_os_data(),
          (HBITMAP)pbitmap->get_os_data(),
          0,
          uiScanLines,
@@ -1302,7 +1302,7 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
       }
 
       if(!SetDIBits(
-         (HDC)pdc->get_os_data(),
+         (HDC)pgraphics->get_os_data(),
          (HBITMAP)pbitmapMask->get_os_data(),
          0,
          uiScanLines,
@@ -1329,7 +1329,7 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
    }
 
    bool imaging::GetDeviceContext24BitsCC(
-      ::draw2d::graphics *pdc,
+      ::draw2d::graphics *pgraphics,
       BITMAP & bm,
       BITMAPINFO & bmi,
       memory & memorystorage,
@@ -1349,12 +1349,12 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
       int32_t cy = rect.height();
 
       ::draw2d::bitmap_sp spbmpTemp(get_app());
-      if(!spbmpTemp->CreateCompatibleBitmap(pdc,1,1))
+      if(!spbmpTemp->CreateCompatibleBitmap(pgraphics,1,1))
       {
          return false;
       }
 
-      ::draw2d::bitmap * pbmpOld = pdc->SelectObject(spbmpTemp);
+      ::draw2d::bitmap * pbmpOld = pgraphics->SelectObject(spbmpTemp);
 
       if(pbmpOld != NULL)
       {
@@ -1367,7 +1367,7 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
             ::exception::throw_not_implemented(get_app());
             /*         if(!pbmp->GetObject(sizeof(bm), &bm))
             {
-            pdc->SelectObject(pbmpOld);
+            pgraphics->SelectObject(pbmpOld);
             return false;
             }*/
 
@@ -1397,7 +1397,7 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
 
             LPVOID lpv = memorystorage.get_data();
 #endif
-            //       point pointViewport = pdc->GetViewportOrg();
+            //       point pointViewport = pgraphics->GetViewportOrg();
 
             UINT uiStartScanLine = MAX(0,bm.bmHeight - y - cy);
             UINT uiScanLines = cy + MIN(0,bm.bmHeight - y - cy);
@@ -1409,7 +1409,7 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
 
             if(!(iLimitYParam = GetDIBits
                (
-               (HDC)pdc->get_os_data(),
+               (HDC)pgraphics->get_os_data(),
                (HBITMAP)pbmp->get_os_data(),
                uiStartScanLine,
                uiScanLines,
@@ -1419,7 +1419,7 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
                )
                ))
             {
-               pdc->SelectObject(pbmpOld);
+               pgraphics->SelectObject(pbmpOld);
                return false;
             }
 
@@ -1433,21 +1433,21 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
          catch(int32_t)
          {
             //         UINT user = GetLastError();
-            pdc->SelectObject(pbmpOld);
+            pgraphics->SelectObject(pbmpOld);
             return false;
          }
-         pdc->SelectObject(pbmpOld);
+         pgraphics->SelectObject(pbmpOld);
          return true;
       }
       else
       {
-         pdc->SelectObject(pbmpOld);
+         pgraphics->SelectObject(pbmpOld);
          return false;
       }
    }
 
    /*bool imaging::GetDeviceContext24BitsAllCC(
-   ::draw2d::graphics *pdc,
+   ::draw2d::graphics *pgraphics,
    BITMAP & bm,
    BITMAPINFO & bmi,
    memory & memorystorage,
@@ -1464,21 +1464,21 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
    int32_t cx = -1;
    int32_t cy = -1;
 
-   ::draw2d::bitmap * pbmpOld = pdc->get_current_bitmap();
+   ::draw2d::bitmap * pbmpOld = pgraphics->get_current_bitmap();
    if(pbmpOld == NULL)
    {
    return false;
    }
 
    ::draw2d::bitmap spbmpTemp;
-   if(!spbmpTemp->CreateCompatibleBitmap(pdc, 1, 1))
+   if(!spbmpTemp->CreateCompatibleBitmap(pgraphics, 1, 1))
    {
    return false;
    }
 
-   if(pdc->SelectObject(spbmpTemp))
+   if(pgraphics->SelectObject(spbmpTemp))
    {
-   // pdc is a pointer to a memory device context
+   // pgraphics is a pointer to a memory device context
    try
    {
    ::draw2d::bitmap * pbmp = pbmpOld;
@@ -1515,7 +1515,7 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
    throw 4000;
    }
    LPVOID lpv = memorystorage.get_data();
-   point pointViewport = pdc->GetViewportOrg();
+   point pointViewport = pgraphics->GetViewportOrg();
 
    UINT uiStartScanLine = 0;
    UINT uiScanLines = cy;
@@ -1525,7 +1525,7 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
 
    if(!(iLimitYParam = GetDIBits
    (
-   (HDC)pdc->get_os_data(),
+   (HDC)pgraphics->get_os_data(),
    (HBITMAP) pbmp->get_os_data(),
    uiStartScanLine,
    uiScanLines,
@@ -1539,7 +1539,7 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
    catch(int32_t)
    {
    UINT user = GetLastError();
-   pdc->SelectObject(pbmpOld);
+   pgraphics->SelectObject(pbmpOld);
    return false;
    }
    }
@@ -1567,12 +1567,12 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
    }
 
    ::draw2d::graphics_sp graphicsMem(allocer());
-   graphicsMem->CreateCompatibleDC(pdc);
+   graphicsMem->CreateCompatibleDC(pgraphics);
    ::draw2d::bitmap * pbmpMemOld = graphicsMem->SelectObject(pbitmap);
    graphicsMem->BitBlt(
    0, 0,
    cx, cy,
-   pdc,
+   pgraphics,
    x, y,
    SRCCOPY);
    if(!pbitmap->GetObject(sizeof(bm), &bm))
@@ -1607,7 +1607,7 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
    LPVOID lpv = memorystorage.get_data();
 
    point pointViewport;
-   pointViewport = pdc->GetViewportOrg();
+   pointViewport = pgraphics->GetViewportOrg();
    UINT uiStartScanLine = bm.bmHeight;
 
    uiStartScanLineParam = uiStartScanLine;
@@ -1638,7 +1638,7 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
 
    graphicsMem->SelectObject(pbmpMemOld);
    graphicsMem->DeleteDC();
-   pdc->SelectObject(pbmpOld);
+   pgraphics->SelectObject(pbmpOld);
    return true;
    }
    catch(int32_t)
@@ -1647,7 +1647,7 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
    }
    }
 
-   pdc->SelectObject(pbmpOld);
+   pgraphics->SelectObject(pbmpOld);
    return true;
    }*/
 
@@ -2230,7 +2230,7 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
 
 
 
-   bool imaging::ColorInvert(::draw2d::graphics * pdc,int32_t x,int32_t y,int32_t cx,int32_t cy)
+   bool imaging::ColorInvert(::draw2d::graphics * pgraphics,int32_t x,int32_t y,int32_t cx,int32_t cy)
    {
 
 
@@ -2247,15 +2247,15 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
 
       ::draw2d::bitmap_sp bitmapA(get_app());
 
-      iOriginalMapMode = pdc->GetMapMode();
-      pdc->SetMapMode(MM_TEXT);
-      if(!spbmpTemp->CreateCompatibleBitmap(pdc, 1, 1))
+      iOriginalMapMode = pgraphics->GetMapMode();
+      pgraphics->SetMapMode(MM_TEXT);
+      if(!spbmpTemp->CreateCompatibleBitmap(pgraphics, 1, 1))
       {
-      pdc->SetMapMode(iOriginalMapMode);
+      pgraphics->SetMapMode(iOriginalMapMode);
       return false;
       }
 
-      if(!pdc->SelectObject(spbmpTemp))
+      if(!pgraphics->SelectObject(spbmpTemp))
       {
       try
       {
@@ -2278,12 +2278,12 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
       }
 
       ::draw2d::graphics_sp graphicsMem(allocer());
-      graphicsMem->CreateCompatibleDC(pdc);
+      graphicsMem->CreateCompatibleDC(pgraphics);
       ::draw2d::bitmap * pbmpMemOld = graphicsMem->SelectObject(bitmapA);
       graphicsMem->BitBlt(
       0, 0,
       cx, cy,
-      pdc,
+      pgraphics,
       x, y,
       SRCCOPY);
       BITMAP bm;
@@ -2319,7 +2319,7 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
       LPVOID lpv = memstorageA.get_data();
 
       point pointViewport;
-      pointViewport = pdc->GetViewportOrg();
+      pointViewport = pgraphics->GetViewportOrg();
       UINT uiStartScanLine = bm.bmHeight - y - cy - pointViewport.y;
       //UINT uiStartScanLine = bm.bmHeight - y - cy;
       UINT uiScanLines = cy;
@@ -2365,15 +2365,15 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
       &bmi,
       DIB_RGB_COLORS))
       throw 6000;
-      pdc->BitBlt(x, y, cx, cy, graphicsMem, 0, 0, SRCCOPY);
+      pgraphics->BitBlt(x, y, cx, cy, graphicsMem, 0, 0, SRCCOPY);
       graphicsMem->SelectObject(pbmpMemOld);
       graphicsMem->DeleteDC();
-      pdc->SetMapMode(iOriginalMapMode);
+      pgraphics->SetMapMode(iOriginalMapMode);
       return true;
       }
       catch(int32_t)
       {
-      pdc->SetMapMode(iOriginalMapMode);
+      pgraphics->SetMapMode(iOriginalMapMode);
       return false;
       }
       }
@@ -2412,7 +2412,7 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
       throw 4000;
       }
       LPVOID lpv = memstorageA.get_data();
-      point pointViewport = pdc->GetViewportOrg();
+      point pointViewport = pgraphics->GetViewportOrg();
       UINT uiStartScanLine = bm.bmHeight - y - cy - pointViewport.y;
       //UINT uiStartScanLine = bm.bmHeight - y - cy;
       UINT uiScanLines = cy;
@@ -2423,7 +2423,7 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
       int32_t iLimitY = cy;
       if(!(iLimitY =
       GetDIBits(
-      (HDC)pdc->get_os_data(),
+      (HDC)pgraphics->get_os_data(),
       (HBITMAP) pbmp->get_os_data(),
       uiStartScanLine,
       uiScanLines,
@@ -2454,7 +2454,7 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
       }
       }
 
-      if(!SetDIBits((HDC)pdc->get_os_data(),
+      if(!SetDIBits((HDC)pgraphics->get_os_data(),
       (HBITMAP) pbmp->get_os_data(),
       uiStartScanLine, uiScanLines,
       lpv, &bmi, DIB_RGB_COLORS))
@@ -2462,11 +2462,11 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
       }
       catch(int32_t)
       {
-      pdc->SetMapMode(iOriginalMapMode);
+      pgraphics->SetMapMode(iOriginalMapMode);
       return false;
       }
       }
-      pdc->SetMapMode(iOriginalMapMode);
+      pgraphics->SetMapMode(iOriginalMapMode);
       return true;*/
    }
 
@@ -2553,29 +2553,29 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
    }
 
 
-   bool imaging::color_blend_3dRect(::draw2d::graphics *pdc,const RECT & rectParam,COLORREF crTopLeft,BYTE bAlphaTopLeft,COLORREF crBottomRight,BYTE bAlphaBottomRight)
+   bool imaging::color_blend_3dRect(::draw2d::graphics *pgraphics,const RECT & rectParam,COLORREF crTopLeft,BYTE bAlphaTopLeft,COLORREF crBottomRight,BYTE bAlphaBottomRight)
    {
       ::rect rect(rectParam);
       int32_t x = rect.left;
       int32_t y = rect.top;
       int32_t cx = rect.width();
       int32_t cy = rect.height();
-      color_blend(pdc,point(x,y),size(cx - 1,1),crTopLeft,bAlphaTopLeft);
-      color_blend(pdc,point(x,y),size(1,cy - 1),crTopLeft,bAlphaTopLeft);
-      color_blend(pdc,point(x + cx - 1,y + 1),size(1,cy - 1),crBottomRight,bAlphaBottomRight);
-      color_blend(pdc,point(x + 1,y + cy - 1),size(cx - 1,1),crBottomRight,bAlphaBottomRight);
+      color_blend(pgraphics,point(x,y),size(cx - 1,1),crTopLeft,bAlphaTopLeft);
+      color_blend(pgraphics,point(x,y),size(1,cy - 1),crTopLeft,bAlphaTopLeft);
+      color_blend(pgraphics,point(x + cx - 1,y + 1),size(1,cy - 1),crBottomRight,bAlphaBottomRight);
+      color_blend(pgraphics,point(x + 1,y + cy - 1),size(cx - 1,1),crBottomRight,bAlphaBottomRight);
       return true;
    }
 
    bool imaging::clip_color_blend(
-      ::draw2d::graphics * pdc,
+      ::draw2d::graphics * pgraphics,
       const RECT & rectParam,
       COLORREF cr,
       BYTE alpha)
    {
       class ::rect rect(rectParam);
       return clip_color_blend(
-         pdc,
+         pgraphics,
          rect.top_left(),
          rect.size(),
          cr,
@@ -2583,10 +2583,10 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
    }
 
 
-   bool imaging::clip_color_blend(::draw2d::graphics * pdc,point pt,size size,COLORREF cr,BYTE bA)
+   bool imaging::clip_color_blend(::draw2d::graphics * pgraphics,point pt,size size,COLORREF cr,BYTE bA)
    {
 
-      pdc->FillSolidRect(0,0,size.cx,size.cy,ARGB(bA,argb_get_r_value(cr),argb_get_g_value(cr),argb_get_b_value(cr)));
+      pgraphics->FillSolidRect(0,0,size.cx,size.cy,ARGB(bA,argb_get_r_value(cr),argb_get_g_value(cr),argb_get_b_value(cr)));
 
       return true;
 
@@ -2594,17 +2594,17 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
 
    /*
 
-   bool imaging::clip_color_blend(::draw2d::graphics * pdc, const RECT & rect, COLORREF cr, BYTE alpha, ::draw2d::region * prgnClip)
+   bool imaging::clip_color_blend(::draw2d::graphics * pgraphics, const RECT & rect, COLORREF cr, BYTE alpha, ::draw2d::region * prgnClip)
    {
 
    class rect rect(lpcrect);
 
-   return clip_color_blend(pdc, rect.top_left(), rect.size(), cr, alpha, prgnClip);
+   return clip_color_blend(pgraphics, rect.top_left(), rect.size(), cr, alpha, prgnClip);
 
    }
 
 
-   bool imaging::clip_color_blend(::draw2d::graphics * pdc, point pt, size size, COLORREF cr, BYTE bA, ::draw2d::region * prgnClip)
+   bool imaging::clip_color_blend(::draw2d::graphics * pgraphics, point pt, size size, COLORREF cr, BYTE bA, ::draw2d::region * prgnClip)
    {
    ::draw2d::bitmap_sp bitmapA(get_app());
 
@@ -2612,29 +2612,29 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
 
    rect rect(pt, size);
 
-   point ptViewport = pdc->GetViewportOrg();
+   point ptViewport = pgraphics->GetViewportOrg();
 
    rect.offset(ptViewport);
 
    ClipSave(
-   pdc,
+   pgraphics,
    bitmapA,
    NULL,
    &bm,
    rect,
    prgnClip);
 
-   bool bOk = color_blend(pdc, pt, size, cr, bA);
+   bool bOk = color_blend(pgraphics, pt, size, cr, bA);
 
    ClipRestore(
-   pdc,
+   pgraphics,
    bitmapA,
    NULL,
    &bm,
    rect,
    prgnClip);
 
-   pdc->SetViewportOrg(ptViewport);
+   pgraphics->SetViewportOrg(ptViewport);
 
    return bOk;
    }
@@ -2642,26 +2642,26 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
    */
 
    bool imaging::color_blend(
-      ::draw2d::graphics * pdc,
+      ::draw2d::graphics * pgraphics,
       const RECT64 * lpcrect,
       COLORREF cr,
       BYTE alpha)
    {
       rect rect32;
       ::copy(rect32,lpcrect);
-      return color_blend(pdc,rect32,cr,alpha);
+      return color_blend(pgraphics,rect32,cr,alpha);
    }
 
 
    bool imaging::color_blend(
-      ::draw2d::graphics * pdc,
+      ::draw2d::graphics * pgraphics,
       const RECT & rectParam,
       COLORREF cr,
       BYTE alpha)
    {
       class rect rect(rectParam);
       return color_blend(
-         pdc,
+         pgraphics,
          rect.top_left(),
          rect.size(),
          cr,
@@ -2669,17 +2669,17 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
    }
 
 
-   bool imaging::color_blend(::draw2d::graphics * pdc,int32_t x,int32_t y,int32_t cx,int32_t cy,COLORREF cr,BYTE bA)
+   bool imaging::color_blend(::draw2d::graphics * pgraphics,int32_t x,int32_t y,int32_t cx,int32_t cy,COLORREF cr,BYTE bA)
    {
 
-      return color_blend(pdc,point(x,y),size(cx,cy),cr,bA);
+      return color_blend(pgraphics,point(x,y),size(cx,cy),cr,bA);
 
    }
 
-   bool imaging::color_blend(::draw2d::graphics * pdc,point pt,size size,COLORREF cr,BYTE bA)
+   bool imaging::color_blend(::draw2d::graphics * pgraphics,point pt,size size,COLORREF cr,BYTE bA)
    {
 
-      pdc->FillSolidRect(pt.x,pt.y,size.cx,size.cy,(cr & 0x00ffffff) | (bA << 24));
+      pgraphics->FillSolidRect(pt.x,pt.y,size.cx,size.cy,(cr & 0x00ffffff) | (bA << 24));
 
       return true;
 
@@ -2691,7 +2691,7 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
    /*
 
    bool imaging::ClipSave(
-   ::draw2d::graphics * pdc,
+   ::draw2d::graphics * pgraphics,
    ::draw2d::bitmap * pbitmap,
    ::draw2d::bitmap * pbitmapOld,
    BITMAP * pbmp,
@@ -2699,7 +2699,7 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
    ::draw2d::region * prgnClip)
    {
 
-   if(pdc == NULL)
+   if(pgraphics == NULL)
    return false;
 
    if(pbitmap == NULL)
@@ -2720,11 +2720,11 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
    //   if(!rectUpdate.is_empty())
    //   {
    ::draw2d::graphics_sp spgraphics(allocer());
-   spgraphics->CreateCompatibleDC(pdc);
-   spgraphics->SetViewportOrg(pdc->GetViewportOrg());
+   spgraphics->CreateCompatibleDC(pgraphics);
+   spgraphics->SetViewportOrg(pgraphics->GetViewportOrg());
    if(!CreateBitmap(
    spgraphics,
-   pdc,
+   pgraphics,
    pbitmap,
    pbitmapOld,
    pbmp,
@@ -2751,7 +2751,7 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
    rectUpdate.top,
    rectUpdate.width(),
    rectUpdate.height(),
-   pdc,
+   pgraphics,
    rectUpdate.left,
    rectUpdate.top,
    SRCCOPY))
@@ -2759,7 +2759,7 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
    //   }
    return true;
 
-   /*   if(pdc == NULL)
+   /*   if(pgraphics == NULL)
    return false;
 
    if(pbitmap == NULL)
@@ -2777,12 +2777,12 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
    //   rgnUpdate.create_rect(lpcrect);
    //   rgnUpdate.CombineRgn(&rgnUpdate, prgnClip, ::draw2d::region::combine_exclude);
    ::draw2d::graphics_sp spgraphics(allocer());
-   spgraphics->CreateCompatibleDC(pdc);
-   spgraphics->SetViewportOrg(pdc->GetViewportOrg());
+   spgraphics->CreateCompatibleDC(pgraphics);
+   spgraphics->SetViewportOrg(pgraphics->GetViewportOrg());
 
    if(!CreateBitmap(
    &spgraphics,
-   pdc,
+   pgraphics,
    pbitmapOld,
    pbitmap,
    pbmp,
@@ -2797,7 +2797,7 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
    rect.top,
    rect.right - rect.left,
    rect.bottom - rect.top,
-   pdc,
+   pgraphics,
    rect.left,
    rect.top,
    SRCCOPY))
@@ -2813,7 +2813,7 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
 
    /*
    bool imaging::ClipRestore(
-   ::draw2d::graphics * pdc,
+   ::draw2d::graphics * pgraphics,
    ::draw2d::bitmap * pbitmap,
    ::draw2d::bitmap * pbitmapOld,
    BITMAP * pbmp,
@@ -2822,7 +2822,7 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
    {
    UNREFERENCED_PARAMETER(pbitmapOld);
    UNREFERENCED_PARAMETER(pbmp);
-   if(pdc == NULL)
+   if(pgraphics == NULL)
    return false;
 
    if(pbitmap == NULL)
@@ -2839,8 +2839,8 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
    if(!rectUpdate.is_empty())
    {
    ::draw2d::graphics_sp spgraphics(allocer());
-   spgraphics->CreateCompatibleDC(pdc);
-   spgraphics->SetViewportOrg(pdc->GetViewportOrg());
+   spgraphics->CreateCompatibleDC(pgraphics);
+   spgraphics->SetViewportOrg(pgraphics->GetViewportOrg());
    spgraphics->SelectObject(pbitmap);
    ::draw2d::region_sp rgnClip(allocer());
    //rgnClip->create_rect(0, 0, 0, 0);
@@ -2851,7 +2851,7 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
 
    #ifdef WINDOWS
 
-   ::GetClipRgn((HDC)pdc->get_os_data(), (HRGN) rgnClip->get_os_data());
+   ::GetClipRgn((HDC)pgraphics->get_os_data(), (HRGN) rgnClip->get_os_data());
 
    rgnUpdate->create_rect(lpcrect);
 
@@ -2863,10 +2863,10 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
 
    #endif
 
-   pdc->SelectClipRgn(rgnUpdate);
+   pgraphics->SelectClipRgn(rgnUpdate);
    rgnUpdate->GetRgnBox(rectUpdate);
    bool bOk;
-   bOk = pdc->BitBlt(
+   bOk = pgraphics->BitBlt(
    rectUpdate.left,
    rectUpdate.top,
    rectUpdate.width(),
@@ -2880,15 +2880,15 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
 
    if(iClip == 1)
    {
-   pdc->SelectClipRgn(rgnClip);
+   pgraphics->SelectClipRgn(rgnClip);
    }
    else
-   pdc->SelectClipRgn(NULL);
+   pgraphics->SelectClipRgn(NULL);
    return bOk;
    }
    return true;
 
-   /*   if(pdc == NULL)
+   /*   if(pgraphics == NULL)
    return false;
 
    if(pbitmap == NULL)
@@ -2903,22 +2903,22 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
    //rectUpdate.intersect(rectClipBox, lpcrect);
 
    ::draw2d::graphics_sp spgraphics(allocer());
-   spgraphics->CreateCompatibleDC(pdc);
-   spgraphics->SetViewportOrg(pdc->GetViewportOrg());
+   spgraphics->CreateCompatibleDC(pgraphics);
+   spgraphics->SetViewportOrg(pgraphics->GetViewportOrg());
    spgraphics->SelectObject(pbitmap);
    ::draw2d::region rgnClip;
    rgnClip.create_rect(0, 0, 0, 0);
-   int32_t iClip = ::GetClipRgn((HDC)pdc->get_os_data(), (HRGN) rgnClip);
+   int32_t iClip = ::GetClipRgn((HDC)pgraphics->get_os_data(), (HRGN) rgnClip);
    rect rC;
    prgnClip->GetRgnBox(rC);
    ::draw2d::region rgnUpdate;
    rgnUpdate.create_rect(rectUpdate);
    rgnUpdate.CombineRgn(&rgnUpdate, prgnClip, ::draw2d::region::combine_exclude);
-   pdc->SelectClipRgn(&rgnUpdate);
+   pgraphics->SelectClipRgn(&rgnUpdate);
    rect r1;
    rgnUpdate.get_bounding_box(r1);
    bool bOk;
-   bOk = pdc->BitBlt(
+   bOk = pgraphics->BitBlt(
    rectUpdate.left,
    rectUpdate.top,
    rectUpdate.width(),
@@ -2932,23 +2932,23 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
 
    if(iClip == 1)
    {
-   pdc->SelectClipRgn(&rgnClip);
+   pgraphics->SelectClipRgn(&rgnClip);
    }
    else
-   pdc->SelectClipRgn(NULL);
+   pgraphics->SelectClipRgn(NULL);
    return bOk;*/
    //}
 
    /*
    bool imaging::ClipSave(
-   ::draw2d::graphics * pdc,
+   ::draw2d::graphics * pgraphics,
    ::draw2d::bitmap * pbitmap,
    ::draw2d::bitmap * pbitmapOld,
    BITMAP * pbmp,
    const RECT & rect)
    {
 
-   if(pdc == NULL)
+   if(pgraphics == NULL)
    return false;
 
    if(pbitmap == NULL)
@@ -2960,10 +2960,10 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
 
    #ifdef WINDOWS
 
-   if(::GetClipRgn((HDC)pdc->get_os_data(), (HRGN) rgnClip->get_os_data()) == 1)
+   if(::GetClipRgn((HDC)pgraphics->get_os_data(), (HRGN) rgnClip->get_os_data()) == 1)
    {
    return ClipSave(
-   pdc,
+   pgraphics,
    pbitmap,
    pbitmapOld,
    pbmp,
@@ -2982,13 +2982,13 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
    }
 
    bool imaging::ClipRestore(
-   ::draw2d::graphics * pdc,
+   ::draw2d::graphics * pgraphics,
    ::draw2d::bitmap * pbitmap,
    ::draw2d::bitmap * pbitmapOld,
    BITMAP * pbmp,
    const RECT & rect)
    {
-   if(pdc == NULL)
+   if(pgraphics == NULL)
    return false;
 
    if(pbitmap == NULL)
@@ -3000,10 +3000,10 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
 
    #ifdef WINDOWS
 
-   if(::GetClipRgn((HDC)pdc->get_os_data(), (HRGN) rgnClip->get_os_data()) == 1)
+   if(::GetClipRgn((HDC)pgraphics->get_os_data(), (HRGN) rgnClip->get_os_data()) == 1)
    {
    return ClipRestore(
-   pdc,
+   pgraphics,
    pbitmap,
    pbitmapOld,
    pbmp,
@@ -3023,7 +3023,7 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
    */
 
    bool imaging::CreateBitmap(
-      ::draw2d::graphics * pdc,
+      ::draw2d::graphics * pgraphics,
       ::draw2d::graphics * pdcScreen,
       ::draw2d::bitmap * pbitmap,
       ::draw2d::bitmap * pbitmapOld,
@@ -3034,7 +3034,7 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
       int32_t cxout = cx;
       int32_t cyout = cy;
 
-      pdc->SelectObject(pbitmapOld);
+      pgraphics->SelectObject(pbitmapOld);
       bool bCreate = true;
       if(pbitmap->get_os_data() != NULL)
       {
@@ -3052,31 +3052,31 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
             return false;
          }
       }
-      if(!pdc->SelectObject(pbitmap))
+      if(!pgraphics->SelectObject(pbitmap))
       {
          if(!pbitmap->CreateCompatibleBitmap(pdcScreen,cxout,cyout))
          {
             return false;
          }
-         if(!pdc->SelectObject(pbitmap))
+         if(!pgraphics->SelectObject(pbitmap))
          {
             return false;
          }
       }
       if(bCreate)
       {
-         pdc->FillSolidRect(rect(0,0,cxout,cyout),RGB(0,0,0));
+         pgraphics->FillSolidRect(rect(0,0,cxout,cyout),RGB(0,0,0));
       }
       return true;
    }
 
 
-   bool imaging::CreateBitmap(::draw2d::graphics *pdc,::draw2d::bitmap * pbitmapOld,::draw2d::bitmap *pbitmap,BITMAP *pbmp,int32_t cx,int32_t cy)
+   bool imaging::CreateBitmap(::draw2d::graphics *pgraphics,::draw2d::bitmap * pbitmapOld,::draw2d::bitmap *pbitmap,BITMAP *pbmp,int32_t cx,int32_t cy)
    {
       int32_t cxout = cx;
       int32_t cyout = cy;
 
-      pdc->SelectObject(pbitmapOld);
+      pgraphics->SelectObject(pbitmapOld);
       bool bCreate = true;
       if(pbitmap->get_os_data() != NULL)
       {
@@ -3089,25 +3089,25 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
       }
       if(bCreate)
       {
-         if(!pbitmap->CreateCompatibleBitmap(pdc,cxout,cyout))
+         if(!pbitmap->CreateCompatibleBitmap(pgraphics,cxout,cyout))
          {
             return false;
          }
       }
-      if(!pdc->SelectObject(pbitmap))
+      if(!pgraphics->SelectObject(pbitmap))
       {
-         if(!pbitmap->CreateCompatibleBitmap(pdc,cxout,cyout))
+         if(!pbitmap->CreateCompatibleBitmap(pgraphics,cxout,cyout))
          {
             return false;
          }
-         if(!pdc->SelectObject(pbitmap))
+         if(!pgraphics->SelectObject(pbitmap))
          {
             return false;
          }
       }
       if(bCreate)
       {
-         pdc->FillSolidRect(rect(0,0,cxout,cyout),RGB(255,196,255));
+         pgraphics->FillSolidRect(rect(0,0,cxout,cyout),RGB(255,196,255));
       }
       return true;
    }
@@ -4272,25 +4272,25 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
 
 
 
-   bool imaging::color_blend(::draw2d::graphics * pdc,const RECT & rect,::draw2d::graphics * pdcColorAlpha,point ptAlpha,::draw2d::dib * pdibWork)
+   bool imaging::color_blend(::draw2d::graphics * pgraphics,const RECT & rect,::draw2d::graphics * pdcColorAlpha,point ptAlpha,::draw2d::dib * pdibWork)
    {
 
-      return pdc->BitBlt(rect.left,rect.top,width(rect),height(rect),pdcColorAlpha,ptAlpha.x,ptAlpha.y,SRCCOPY);
+      return pgraphics->BitBlt(rect.left,rect.top,width(rect),height(rect),pdcColorAlpha,ptAlpha.x,ptAlpha.y,SRCCOPY);
 
    }
 
 
-   bool imaging::true_blend(::draw2d::graphics * pdc,const RECT & rect,::draw2d::graphics * pdcColorAlpha,point ptAlpha,::draw2d::dib * pdibWork,::draw2d::dib * pdibWork2,::draw2d::dib * pdibWork3)
+   bool imaging::true_blend(::draw2d::graphics * pgraphics,const RECT & rect,::draw2d::graphics * pdcColorAlpha,point ptAlpha,::draw2d::dib * pdibWork,::draw2d::dib * pdibWork2,::draw2d::dib * pdibWork3)
    {
 
-      return pdc->BitBlt(rect.left,rect.top,width(rect),height(rect),pdcColorAlpha,ptAlpha.x,ptAlpha.y,SRCCOPY);
+      return pgraphics->BitBlt(rect.left,rect.top,width(rect),height(rect),pdcColorAlpha,ptAlpha.x,ptAlpha.y,SRCCOPY);
 
    }
 
    // COLOR_DEST = SRC_ALPHA * COLOR_SRC  + (1 - SRC_ALPHA) * COLOR_DST
 
    /*
-   bool imaging::color_blend(::draw2d::graphics * pdc, point pt, size size, ::draw2d::graphics * pdcColorAlpha, point ptAlpha, ::draw2d::dib * pdibWork, ::draw2d::dib * pdibWork2)
+   bool imaging::color_blend(::draw2d::graphics * pgraphics, point pt, size size, ::draw2d::graphics * pdcColorAlpha, point ptAlpha, ::draw2d::dib * pdibWork, ::draw2d::dib * pdibWork2)
    {
 
 
@@ -4301,7 +4301,7 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
    }
    */
 
-   bool imaging::color_blend(::draw2d::graphics * pdc,point pt,size size,::draw2d::graphics * pdcColorAlpha,point ptAlpha,double dBlend)
+   bool imaging::color_blend(::draw2d::graphics * pgraphics,point pt,size size,::draw2d::graphics * pdcColorAlpha,point ptAlpha,double dBlend)
    {
 
       if(pt.x < 0)
@@ -4320,7 +4320,7 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
       if(dBlend >= 1.0)
       {
 
-         return pdc->BitBlt(pt.x,pt.y,size.cx,size.cy,pdcColorAlpha,0,0,SRCCOPY) != FALSE;
+         return pgraphics->BitBlt(pt.x,pt.y,size.cx,size.cy,pdcColorAlpha,0,0,SRCCOPY) != FALSE;
 
       }
       else
@@ -4335,17 +4335,17 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
          dib->from(point(0,0),pdcColorAlpha,ptAlpha,size);
          dib->channel_multiply(visual::rgba::channel_alpha,dBlend);
 
-         return pdc->BitBlt(pt.x,pt.y,size.cx,size.cy,dib->get_graphics(),0,0,SRCCOPY) != FALSE;
+         return pgraphics->BitBlt(pt.x,pt.y,size.cx,size.cy,dib->get_graphics(),0,0,SRCCOPY) != FALSE;
 
       }
 
    }
 
 
-   bool imaging::color_blend(::draw2d::graphics * pdc,const RECT & rectParam,::draw2d::graphics * pdcColorAlpha,point ptAlpha,double dBlend)
+   bool imaging::color_blend(::draw2d::graphics * pgraphics,const RECT & rectParam,::draw2d::graphics * pdcColorAlpha,point ptAlpha,double dBlend)
    {
       class rect rect(rectParam);
-      return color_blend(pdc,rect.top_left(),rect.size(),pdcColorAlpha,ptAlpha,dBlend);
+      return color_blend(pgraphics,rect.top_left(),rect.size(),pdcColorAlpha,ptAlpha,dBlend);
    }
 
 
@@ -6979,7 +6979,7 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
    }
 
 
-   void imaging::AlphaTextOut(::draw2d::graphics *pdc,int32_t left,int32_t top,const char * lpcsz,int32_t len,COLORREF cr,double dBlend)
+   void imaging::AlphaTextOut(::draw2d::graphics *pgraphics,int32_t left,int32_t top,const char * lpcsz,int32_t len,COLORREF cr,double dBlend)
    {
       string str(lpcsz,len);
       if(dBlend <= 0.0)
@@ -6988,13 +6988,13 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
       if(dBlend >= 1.0)
       {
          brushText->create_solid(cr);
-         pdc->SelectObject(brushText);
-         pdc->TextOut(left,top,str);
+         pgraphics->SelectObject(brushText);
+         pgraphics->TextOut(left,top,str);
          return;
       }
       brushText->create_solid(ARGB((BYTE)(255 * dBlend),argb_get_r_value(cr),argb_get_g_value(cr),argb_get_b_value(cr)));
-      pdc->SelectObject(brushText);
-      pdc->TextOut(left,top,str);
+      pgraphics->SelectObject(brushText);
+      pgraphics->TextOut(left,top,str);
    }
 
 

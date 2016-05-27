@@ -29,7 +29,7 @@ namespace user
    void list_header::DrawItem(::draw2d::item * pdrawitem)
    {
 
-      ::draw2d::graphics * pdc = pdrawitem->m_pgraphics;
+      ::draw2d::graphics * pgraphics = pdrawitem->m_pgraphics;
 
       rect rectColumn = pdrawitem->rcItem;
 
@@ -41,11 +41,11 @@ namespace user
 
       str = System.load_string(plist->_001GetColumnTextId(ItemToColumnKey(iColumn)));
 
-      pdc->SelectObject(m_font);
+      pgraphics->SelectObject(m_font);
 
-//      pdc->SetBkMode(TRANSPARENT);
+//      pgraphics->SetBkMode(TRANSPARENT);
 
-      pdc->_DrawText(str,str.get_length(),rectColumn,DT_TOP | DT_LEFT | DT_END_ELLIPSIS | DT_NOPREFIX);
+      pgraphics->_DrawText(str,str.get_length(),rectColumn,DT_TOP | DT_LEFT | DT_END_ELLIPSIS | DT_NOPREFIX);
 
    }
 
@@ -525,10 +525,10 @@ namespace user
       pmouse->m_bRet = false;
    }
 
-   void list_header::_001OnDraw(::draw2d::dib * pdib)
+   void list_header::_001OnDraw(::draw2d::graphics * pgraphics)
    {
 
-      ::draw2d::graphics * pdc = pdib->get_graphics();
+      
 
       rect rectClient;
 
@@ -538,7 +538,7 @@ namespace user
 
       rect rectClipBox;
 
-      pdc->GetClipBox(rectClipBox);
+      pgraphics->GetClipBox(rectClipBox);
 
       if(rectClipBox.is_empty())
       {
@@ -549,10 +549,10 @@ namespace user
 
       class imaging & imaging = System.visual().imaging();
 
-      imaging.color_blend(pdc, rectUpdate, RGB(127, 127, 117), 128);
+      imaging.color_blend(pgraphics, rectUpdate, RGB(127, 127, 117), 128);
 
       ::draw2d::item drawitem;
-      drawitem.m_pgraphics = pdc;
+      drawitem.m_pgraphics = pgraphics;
       list * plist = m_plistctrlinterface;
       rect rectDivider;
       for(int32_t iItem = 0; iItem < plist->_001GetColumnCount(); iItem++)
@@ -561,7 +561,7 @@ namespace user
          GetItemRect(&drawitem.rcItem, ElementItemBox, iItem);
          DrawItem(&drawitem);
          GetItemRect(rectDivider, ElementDivider, iItem);
-         pdc->Draw3dRect(rectDivider, Session.get_default_color(COLOR_BTNSHADOW), Session.get_default_color(COLOR_BTNHIGHLIGHT));
+         pgraphics->Draw3dRect(rectDivider, Session.get_default_color(COLOR_BTNSHADOW), Session.get_default_color(COLOR_BTNHIGHLIGHT));
       }
 
    }

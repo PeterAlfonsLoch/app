@@ -2112,7 +2112,7 @@ namespace user
 
 
 
-   void frame_window::_000OnDraw(::draw2d::dib * pdib)
+   void frame_window::_000OnDraw(::draw2d::graphics * pgraphics)
    {
    }
 

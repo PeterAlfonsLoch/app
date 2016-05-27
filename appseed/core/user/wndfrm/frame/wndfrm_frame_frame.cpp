@@ -62,7 +62,7 @@ namespace user
          }
 
 
-         void frame::_001OnDraw(::draw2d::dib * pdib)
+         void frame::_001OnDraw(::draw2d::graphics * pgraphics)
          {
 
             UNREFERENCED_PARAMETER(pdib);

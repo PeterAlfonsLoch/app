@@ -416,7 +416,7 @@ bool simple_menu_bar::ReloadMenuBar()
    return true;
 }
 
-/*void simple_menu_bar::_001OnDraw(::draw2d::dib * pdib)
+/*void simple_menu_bar::_001OnDraw(::draw2d::graphics * pgraphics)
 {
    rect rectClient;
    GetClientRect(rectClient);
@@ -424,7 +424,7 @@ bool simple_menu_bar::ReloadMenuBar()
    if(m_iHover >= -1)
    {
       imaging.color_blend(
-         pdc,
+         pgraphics,
          rectClient.left,
          rectClient.top,
          rectClient.width(),
@@ -435,7 +435,7 @@ bool simple_menu_bar::ReloadMenuBar()
    else
    {
       imaging.color_blend(
-         pdc,
+         pgraphics,
          rectClient.left,
          rectClient.top,
          rectClient.width(),
@@ -444,11 +444,11 @@ bool simple_menu_bar::ReloadMenuBar()
          56);
    }
 
-   pdc->SelectObject(System.visual().font_central().GetMenuFont());
-   pdc->SetBkMode(TRANSPARENT);
+   pgraphics->SelectObject(System.visual().font_central().GetMenuFont());
+   pgraphics->SetBkMode(TRANSPARENT);
    for(int32_t iItem = 0; iItem < m_buttona.get_size(); iItem++)
    {
-      _001DrawItem(pdc, iItem);
+      _001DrawItem(pgraphics, iItem);
    }
 
 }
@@ -517,8 +517,8 @@ int32_t simple_menu_bar::_001HitTest(const POINT *lppoint)
 
 /*void simple_menu_bar::_001Layout()
 {
-   ::draw2d::memory_graphics pdc(this);;
-   pdc->SelectObject(System.visual().font_central().GetMenuFont());
+   ::draw2d::memory_graphics pgraphics(this);;
+   pgraphics->SelectObject(System.visual().font_central().GetMenuFont());
 
    size size;
    int32_t ix = ITEMCHECKEDPADLEFT;
@@ -526,7 +526,7 @@ int32_t simple_menu_bar::_001HitTest(const POINT *lppoint)
    for(int32_t iItem = 0; iItem < m_buttona.get_size(); iItem++)
    {
       ::GetTextExtentPoint32W(
-         (HDC)pdc->get_os_data(),
+         (HDC)pgraphics->get_os_data(),
          m_buttona[iItem].m_wstr,
          m_buttona[iItem].m_wstr.get_length(),
          &size);
@@ -639,7 +639,7 @@ size simple_menu_bar::CalcFixedLayout(bool bStretch, bool bHorz)
 }
 */
 
-/*void simple_menu_bar::_001DrawItem(::draw2d::graphics *pdc, int32_t iItem)
+/*void simple_menu_bar::_001DrawItem(::draw2d::graphics *pgraphics, int32_t iItem)
 {
    rect rectItem;
    rect rectText;
@@ -676,29 +676,29 @@ size simple_menu_bar::CalcFixedLayout(bool bStretch, bool bHorz)
 
       ::draw2d::pen_sp penShadow(get_app(), PS_SOLID, 1, RGB(127, 127, 127));
       ::draw2d::brush_sp brushShadow(get_app(), RGB(127, 127, 127));
-      ::draw2d::pen * ppenOld = pdc->SelectObject(penShadow);
-      ::draw2d::brush * pbrushOld = pdc->SelectObject(brushShadow);
-      pdc->Rectangle(rectShadow);
+      ::draw2d::pen * ppenOld = pgraphics->SelectObject(penShadow);
+      ::draw2d::brush * pbrushOld = pgraphics->SelectObject(brushShadow);
+      pgraphics->Rectangle(rectShadow);
 
       ::draw2d::pen_sp pen(get_app(), PS_SOLID, 1, RGB(92, 92, 92));
       ::draw2d::brush_sp brush(get_app(), RGB(255, 255, 255));
-      pdc->SelectObject(pen);
-      pdc->SelectObject(brush);
-      pdc->Rectangle(rectItem);
-      pdc->SelectObject(ppenOld);
-      pdc->SelectObject(pbrushOld);
+      pgraphics->SelectObject(pen);
+      pgraphics->SelectObject(brush);
+      pgraphics->Rectangle(rectItem);
+      pgraphics->SelectObject(ppenOld);
+      pgraphics->SelectObject(pbrushOld);
 
       rect rect;
       _001GetItemRect(iItem, rect, element_text);
-      pdc->set_text_color(RGB(192, 192, 192));
-      visual::graphics_extension::_DrawText(pdc,
+      pgraphics->set_text_color(RGB(192, 192, 192));
+      visual::graphics_extension::_DrawText(pgraphics,
          button.m_wstr,
          rect,
          DT_VCENTER | DT_LEFT);
    }
 
-   pdc->set_text_color(RGB(0, 0, 0));
-   visual::graphics_extension::_DrawText(pdc,
+   pgraphics->set_text_color(RGB(0, 0, 0));
+   visual::graphics_extension::_DrawText(pgraphics,
       button.m_wstr,
       rectText,
       DT_VCENTER | DT_LEFT);

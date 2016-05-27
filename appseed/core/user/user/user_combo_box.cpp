@@ -66,7 +66,7 @@ namespace user
    void combo_box::_001OnDrawStaticText(::draw2d::dib * pdib)
    {
 
-      ::draw2d::graphics * pdc = pdib->get_graphics();
+      
 
       string strText;
 
@@ -76,10 +76,10 @@ namespace user
 
       GetClientRect(rectClient);
 
-      if(!select_text_color(pdc,color_text))
+      if(!select_text_color(pgraphics,color_text))
       {
 
-         pdc->set_text_color(ARGB(255,0,0,0));
+         pgraphics->set_text_color(ARGB(255,0,0,0));
 
       }
 
@@ -91,9 +91,9 @@ namespace user
 
       rectText.deflate(iMargin, iMargin);
 
-      select_font(pdc);
+      select_font(pgraphics);
 
-      pdc->draw_text(strText, rectText, 0);
+      pgraphics->draw_text(strText, rectText, 0);
 
    }
 
@@ -102,9 +102,9 @@ namespace user
    void combo_box::_001OnDrawVerisimple(::draw2d::dib * pdib)
    {
 
-      ::draw2d::graphics * pdc = pdib->get_graphics();
+      
 
-      pdc->set_alpha_mode(::draw2d::alpha_mode_blend);
+      pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
       if(m_bEdit)
       {
@@ -133,9 +133,9 @@ namespace user
 
       br->create_solid(ARGB(184, 255, 255, 255));
 
-      pdc->SelectObject(br);
+      pgraphics->SelectObject(br);
 
-      pdc->FillRectangle(rectDropDown);
+      pgraphics->FillRectangle(rectDropDown);
 
       ::draw2d::path_sp path(allocer());
 
@@ -161,9 +161,9 @@ namespace user
 
       br->create_solid(ARGB(210, 77, 184, 49));
 
-      pdc->SelectObject(br);
+      pgraphics->SelectObject(br);
 
-      pdc->fill_path(path);
+      pgraphics->fill_path(path);
 
 
 
@@ -202,11 +202,11 @@ namespace user
 
          //}
 
-         //pdc->SelectObject(br);
+         //pgraphics->SelectObject(br);
 
-         //pdc->FillRectangle(rectClient);
+         //pgraphics->FillRectangle(rectClient);
 
-         //pdc->set_alpha_mode(::draw2d::alpha_mode_set);
+         //pgraphics->set_alpha_mode(::draw2d::alpha_mode_set);
 
          //color ca;
 
@@ -216,15 +216,15 @@ namespace user
 
          //COLORREF crBorder = ca.get_rgb() | (0xff << 24);
 
-         //pdc->Draw3dRect(rectClient, crBorder, crBorder);
+         //pgraphics->Draw3dRect(rectClient, crBorder, crBorder);
 
          _001OnDrawStaticText(pdib);
 
       }
 
-      ::draw2d::graphics * pdc = pdib->get_graphics();
+      
 
-      pdc->set_alpha_mode(::draw2d::alpha_mode_blend);
+      pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
       rect rectDropDown;
 
@@ -247,34 +247,34 @@ namespace user
             if(i == 0)
             {
                COLORREF ca(ARGB(230, 130, 130, 120));
-               pdc->draw_round_top_left(r, ca, radius, 1);
+               pgraphics->draw_round_top_left(r, ca, radius, 1);
             }
             else if(i == 1)
             {
                COLORREF ca(ARGB(230, 210, 210, 200));
-               pdc->draw_round_top_left(r, ca, radius, 1);
+               pgraphics->draw_round_top_left(r, ca, radius, 1);
             }
             else
             {
                COLORREF ca(ARGB(230, 230 - iColorRate, 230 - iColorRate, 220 - iColorRate));
-               pdc->draw_round_top_left(r, ca, radius, 1);
+               pgraphics->draw_round_top_left(r, ca, radius, 1);
             }
          }
          {
             if(i == 0)
             {
                COLORREF ca(ARGB(230, 130, 130, 120));
-               pdc->draw_round_bottom_right(r, ca, radius, 1);
+               pgraphics->draw_round_bottom_right(r, ca, radius, 1);
             }
             else if(i == 1)
             {
                COLORREF ca(ARGB(230, 210, 210, 200));
-               pdc->draw_round_bottom_right(r, ca, radius, 1);
+               pgraphics->draw_round_bottom_right(r, ca, radius, 1);
             }
             else
             {
                COLORREF ca(ARGB(230, 190 + iColorRate, 190 + iColorRate, 180 + iColorRate));
-               pdc->draw_round_bottom_right(r, ca, radius, 1);
+               pgraphics->draw_round_bottom_right(r, ca, radius, 1);
             }
          }
 
@@ -290,11 +290,11 @@ namespace user
 
       br->create_solid(ARGB(210, 230 - iColorRate, 230 - iColorRate, 220 - iColorRate));
 
-      pdc->SelectObject(br);
+      pgraphics->SelectObject(br);
 
       rectDropIn.right++;
       rectDropIn.bottom++;
-      pdc->FillRectangle(rectDropIn);
+      pgraphics->FillRectangle(rectDropIn);
 
 
       br->create_solid(ARGB(210, 77, 184, 49));
@@ -324,15 +324,15 @@ namespace user
 
       br->create_solid(ARGB(210, 77, 184, 49));
 
-      pdc->SelectObject(br);
+      pgraphics->SelectObject(br);
 
-      pdc->fill_path(path);
+      pgraphics->fill_path(path);
 
 
    }
 
 
-   void combo_box::_001OnDraw(::draw2d::dib * pdib)
+   void combo_box::_001OnDraw(::draw2d::graphics * pgraphics)
    {
 
       ::user::control::_001OnDraw(pdib);

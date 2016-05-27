@@ -4,7 +4,7 @@
 #undef new
 
 
-namespace draw2d_gl2d
+namespace draw2d_opengl
 {
 
    region::region(const region & r) :
@@ -313,4 +313,4 @@ namespace draw2d_gl2d
 
    //}
 
-} // namespace draw2d_gl2d
+} // namespace draw2d_opengl

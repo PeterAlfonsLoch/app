@@ -19,10 +19,10 @@ bool BaseSplitWnd::pre_create_window(::user::create_struct& cs)
    return ::user::interaction::pre_create_window(cs);
 }
 
-void BaseSplitWnd::_001OnDraw(::draw2d::dib * pdib)
+void BaseSplitWnd::_001OnDraw(::draw2d::graphics * pgraphics)
 {
 
-   ::draw2d::graphics * pdc = pdib->get_graphics();
+   
    
    int32_t i;
    rect rect;
@@ -32,7 +32,7 @@ void BaseSplitWnd::_001OnDraw(::draw2d::dib * pdib)
       CalcPaneRect(i, &rect);
 
       // Top
-      pdc->FillSolidRect(
+      pgraphics->FillSolidRect(
          rect.left, 
          rect.top, 
          rect.width(),
@@ -40,7 +40,7 @@ void BaseSplitWnd::_001OnDraw(::draw2d::dib * pdib)
          cr);
 
       // Right
-      pdc->FillSolidRect(
+      pgraphics->FillSolidRect(
          rect.right - m_cxBorder, 
          rect.top, 
          m_cxBorder,
@@ -48,7 +48,7 @@ void BaseSplitWnd::_001OnDraw(::draw2d::dib * pdib)
          cr);
 
       // Bottom
-      pdc->FillSolidRect(
+      pgraphics->FillSolidRect(
          rect.left, 
          rect.bottom - m_cyBorder, 
          rect.width(),
@@ -56,7 +56,7 @@ void BaseSplitWnd::_001OnDraw(::draw2d::dib * pdib)
          cr);
 
       // Left
-      pdc->FillSolidRect(
+      pgraphics->FillSolidRect(
          rect.left, 
          rect.top, 
          m_cxBorder,

@@ -14,7 +14,7 @@ public:
 
    virtual void pre_subclass_window();
    
-   virtual void _001OnDraw(::draw2d::dib * pdib);
+   virtual void _001OnDraw(::draw2d::graphics * pgraphics);
    virtual ~simple_static();
 
    LRESULT OnSetIcon(WPARAM wparam, LPARAM lparam);

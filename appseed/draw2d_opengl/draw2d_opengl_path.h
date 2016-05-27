@@ -1,11 +1,11 @@
 #pragma once
 
 
-namespace draw2d_gl2d
+namespace draw2d_opengl
 {
 
 
-   class CLASS_DECL_DRAW2D_GL2D path :
+   class CLASS_DECL_DRAW2D_OPENGL path :
       virtual public ::draw2d::path
    {
    public:
@@ -62,7 +62,7 @@ namespace draw2d_gl2d
    };
 
 
-} // namespace draw2d_gl2d
+} // namespace draw2d_opengl
 
 
 

@@ -94,12 +94,12 @@ namespace user
 
 
 
-      virtual void _001Print(::draw2d::dib * pdib);
-      virtual void _000OnDraw(::draw2d::dib * pdib);
-      virtual void _001DrawThis(::draw2d::dib * pdib);
-      virtual void _001DrawChildren(::draw2d::dib * pdib);
-      virtual void _001OnDraw(::draw2d::dib * pdib);
-      virtual void draw_control_background(::draw2d::dib * pdib);
+      virtual void _001Print(::draw2d::graphics * pgraphics);
+      virtual void _000OnDraw(::draw2d::graphics * pgraphics);
+      virtual void _001DrawThis(::draw2d::graphics * pgraphics);
+      virtual void _001DrawChildren(::draw2d::graphics * pgraphics);
+      virtual void _001OnDraw(::draw2d::graphics * pgraphics);
+      virtual void draw_control_background(::draw2d::graphics * pgraphics);
 
 
 
@@ -108,7 +108,7 @@ namespace user
       virtual ::user::interaction * get_wnd() const;
 
 
-      virtual void set_viewport_org(::draw2d::dib * pdib);
+      virtual void set_viewport_org(::draw2d::graphics * pgraphics);
 
       virtual void viewport_screen_to_client(POINT * ppt);
       virtual void viewport_client_to_screen(POINT * ppt);

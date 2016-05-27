@@ -47,14 +47,14 @@ namespace user
    }
 
 
-   void check_box::_001OnDraw(::draw2d::dib * pdib)
+   void check_box::_001OnDraw(::draw2d::graphics * pgraphics)
    {
 
-      ::draw2d::graphics * pdc = pdib->get_graphics();
+      
 
       rect rectClient;
       GetClientRect(rectClient);
-      pdc->OffsetViewportOrg(rectClient.left, rectClient.top);
+      pgraphics->OffsetViewportOrg(rectClient.left, rectClient.top);
 
       // if no image
       {
@@ -65,24 +65,24 @@ namespace user
          rectCheckBox.bottom = 15;
          if(m_echeck == check::tristate)
          {
-            pdc->FillSolidRect(rectCheckBox, ARGB(255, 220, 220, 220));
+            pgraphics->FillSolidRect(rectCheckBox, ARGB(255, 220, 220, 220));
          }
-         pdc->Draw3dRect(rectCheckBox, ARGB(255, 128, 128, 128), ARGB(255, 128, 128, 128));
+         pgraphics->Draw3dRect(rectCheckBox, ARGB(255, 128, 128, 128), ARGB(255, 128, 128, 128));
          if(m_echeck == check::tristate
          || m_echeck == check::checked)
          {
             ::draw2d::pen_sp pen(allocer());
             pen->create_solid(1, m_echeck == check::checked ? ARGB(255, 0, 0, 0) : ARGB(255, 96, 96, 96));
-            pdc->SelectObject(pen);
-            pdc->MoveTo(2, 8);
-            pdc->LineTo(6, 12);
-            pdc->LineTo(13, 5);
-            pdc->MoveTo(2, 9);
-            pdc->LineTo(6, 13);
-            pdc->LineTo(13, 6);
+            pgraphics->SelectObject(pen);
+            pgraphics->MoveTo(2, 8);
+            pgraphics->LineTo(6, 12);
+            pgraphics->LineTo(13, 5);
+            pgraphics->MoveTo(2, 9);
+            pgraphics->LineTo(6, 13);
+            pgraphics->LineTo(13, 6);
          }
       }
-      pdc->OffsetViewportOrg(-rectClient.left, -rectClient.top);
+      pgraphics->OffsetViewportOrg(-rectClient.left, -rectClient.top);
 
    }
 

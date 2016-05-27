@@ -247,7 +247,7 @@ namespace linux
          UINT flags = RDW_INVALIDATE | RDW_UPDATENOW | RDW_ERASE);
 // xxx      virtual bool EnableScrollBar(int32_t nSBFlags, UINT nArrowFlags = ESB_ENABLE_BOTH);
 
-      virtual void set_viewport_org(::draw2d::dib * pdib);
+      virtual void set_viewport_org(::draw2d::graphics * pgraphics);
 
 
       virtual bool DrawAnimatedRects(int32_t idAni, CONST RECT *lprcFrom, CONST RECT *lprcTo);

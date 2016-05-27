@@ -228,7 +228,7 @@ namespace ios
 //      virtual bool round_window_key_up(unsigned int uiKeyCode);
       
       
-      void set_viewport_org(::draw2d::dib * pdib);
+      void set_viewport_org(::draw2d::graphics * pgraphics);
       void offset_viewport_org(LPRECT lprectScreen);
       
       

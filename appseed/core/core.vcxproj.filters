@@ -93,9 +93,6 @@
     <Filter Include="Header Files\user\wndfrm\frame">
       <UniqueIdentifier>{fe769cb1-523c-4018-a3ee-cf60483555c6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\core\NewFilter1">
-      <UniqueIdentifier>{c49111cc-ec66-43b9-84a4-40d43534207e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\user\databaseuser">
       <UniqueIdentifier>{56a24fd7-78cf-4e4b-8a0e-8ecbfd069f00}</UniqueIdentifier>
     </Filter>

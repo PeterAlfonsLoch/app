@@ -137,7 +137,7 @@ namespace user
 #endif
       void layout(); // called for for delayed button layout
 
-      virtual void _001OnDraw(::draw2d::dib * pdib);
+      virtual void _001OnDraw(::draw2d::graphics * pgraphics);
 
       //{{__MSG(toolbar)
       DECL_GEN_SIGNAL(_001OnNcHitTest);

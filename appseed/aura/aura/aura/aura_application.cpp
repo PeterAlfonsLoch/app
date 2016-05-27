@@ -3690,12 +3690,12 @@ namespace aura
 
 
 
-   void application::window_graphics_update_window(window_graphics ** ppdata,oswindow interaction_impl,COLORREF * pOsBitmapData,const RECT & rect,int cxParam,int cyParam,int iStride,bool bTransferBuffer)
-   {
+   //void application::window_graphics_update_window(window_graphics ** ppdata,oswindow interaction_impl,COLORREF * pOsBitmapData,const RECT & rect,int cxParam,int cyParam,int iStride,bool bTransferBuffer)
+   //{
 
-      // derived classes should implement this function in order to update window
+   //   // derived classes should implement this function in order to update window
 
-   }
+   //}
 
    sp(::message::base) application::get_message_base(LPMESSAGE lpmsg)
    {

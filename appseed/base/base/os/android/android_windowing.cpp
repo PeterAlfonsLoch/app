@@ -684,18 +684,18 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
 */
 
 
-void message_box_paint(::draw2d::graphics * pdc, stringa & stra, bool_array  & baTab, int_array  & ya, SIZE * psize)
+void message_box_paint(::draw2d::graphics * pgraphics, stringa & stra, bool_array  & baTab, int_array  & ya, SIZE * psize)
 {
 
-	pdc->FillSolidRect(0, 0, psize->cx, psize->cy, RGB(84, 84, 77));
+	pgraphics->FillSolidRect(0, 0, psize->cx, psize->cy, RGB(84, 84, 77));
 
-	draw2d::brush_sp pen(pdc->allocer());
+	draw2d::brush_sp pen(pgraphics->allocer());
 
 	pen->create_solid(0);
 
 	for (index i = 0; i < stra.get_count(); i++)
 	{
-		pdc->TextOut(10.0 + 50.0 + (baTab[i] ? 25.0 : 0), 10.0 + 50.0 + ya[i], stra[i]);
+		pgraphics->TextOut(10.0 + 50.0 + (baTab[i] ? 25.0 : 0), 10.0 + 50.0 + ya[i], stra[i]);
 	}
 
 
@@ -718,13 +718,13 @@ void message_box_paint(::draw2d::graphics * pdc, stringa & stra, bool_array  & b
 //   }
 //
 //
-//   void _001OnDraw(::draw2d::graphics *  pdc)
+//   void _001OnDraw(::draw2d::graphics *  pgraphics)
 //   {
 //      rect rect;
 //
 //      GetClientRect(rect);
 //
-//      pdc->FillSolidRect(rect, ARGB(255, 240, 240, 240));
+//      pgraphics->FillSolidRect(rect, ARGB(255, 240, 240, 240));
 //   }
 //
 //   int32_t show_window(const char * lpText, const char * lpCaption)

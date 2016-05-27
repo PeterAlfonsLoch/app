@@ -30,19 +30,19 @@ bool simple_status_bar::OnEraseBkgnd(::draw2d::dib * pdib)
 }
 */
 
-void simple_status_bar::_001OnDraw(::draw2d::dib * pdib)
+void simple_status_bar::_001OnDraw(::draw2d::graphics * pgraphics)
 {
    return;
    rect rectClient;
 
    GetClientRect(rectClient);
 
-   ::draw2d::graphics * pdc = pdib->get_graphics();
+   
 
    class imaging & imaging = System.visual().imaging();
 #ifdef WINDOWSEX
    imaging.color_blend(
-      pdc,
+      pgraphics,
       rectClient.left,
       rectClient.top,
       rectClient.width(),
@@ -51,7 +51,7 @@ void simple_status_bar::_001OnDraw(::draw2d::dib * pdib)
       208);
 #else
    imaging.color_blend(
-      pdc,
+      pgraphics,
       rectClient.left,
       rectClient.top,
       rectClient.width(),

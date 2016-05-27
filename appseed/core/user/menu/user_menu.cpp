@@ -136,10 +136,10 @@ namespace user
 
       m_ptTrack = pt;
 
-      ::draw2d::memory_graphics pdc(allocer());
+      ::draw2d::memory_graphics pgraphics(allocer());
 
-      pdc->SelectObject(m_pschema->m_font);
-      size size = pdc->GetTextExtent("XXXMMM");
+      pgraphics->SelectObject(m_pschema->m_font);
+      size size = pgraphics->GetTextExtent("XXXMMM");
       int32_t iMaxHeight = size.cy;
       int32_t iMaxWidth = size.cx;
       m_iHeaderHeight = size.cy;
@@ -150,7 +150,7 @@ namespace user
 
       for (int32_t i = 0; i < spitema->get_size(); i++)
       {
-         class size size = pdc->GetTextExtent(spitema->element_at(i)->m_button.GetWindowText());
+         class size size = pgraphics->GetTextExtent(spitema->element_at(i)->m_button.GetWindowText());
          if (spitema->element_at(i)->IsPopup())
             size.cx += 12 + 16;
          if(size.cy > iMaxHeight)
@@ -195,7 +195,7 @@ namespace user
             pta.add(point(rectPopupArrow.right, (rectPopupArrow.bottom + rectPopupArrow.top) / 2));
             pta.add(point(rectPopupArrow.left, rectPopupArrow.top + 2));
             pta.add(point(rectPopupArrow.left, rectPopupArrow.bottom - 2));
-            pdc->Polygon(pta.get_data(), pta.get_size());
+            pgraphics->Polygon(pta.get_data(), pta.get_size());
          }*/
          rect.top = rect.bottom;
       }
@@ -218,7 +218,7 @@ namespace user
    }
 
 
-   void menu::_001OnDraw(::draw2d::dib * pdib)
+   void menu::_001OnDraw(::draw2d::graphics * pgraphics)
    {
 //      bool bEnabled = is_window_enabled();
 //      rect rectClient;
@@ -227,7 +227,7 @@ namespace user
 //      {
 //         class imaging & imaging = System.visual().imaging();
 //         imaging.color_blend(
-//            pdc,
+//            pgraphics,
 //            rectClient,
 //            RGB(200, 255, 255),
 //            127);
@@ -237,7 +237,7 @@ namespace user
 //
 //#ifdef WINDOWSEX
 //
-//         pdc->FillSolidRect(rectClient, Session.get_default_color(COLOR_WINDOW));
+//         pgraphics->FillSolidRect(rectClient, Session.get_default_color(COLOR_WINDOW));
 //
 //#else
 //
@@ -250,9 +250,9 @@ namespace user
       /*int32_t iMaxHeight = 0;
       int32_t iMaxWidth = 0;
       rect rect(4, m_iHeaderHeight + 4, m_size.cx - 8, 4);
-      pdc->set_text_color(RGB(0, 0, 0));
-      pdc->SetBkMode(TRANSPARENT);
-      pdc->SelectObject(m_pschema->m_font);
+      pgraphics->set_text_color(RGB(0, 0, 0));
+      pgraphics->SetBkMode(TRANSPARENT);
+      pgraphics->SelectObject(m_pschema->m_font);
       string str;
       for(int32_t i = 0; i < m_pitem->m_pitema->get_size(); i++)
       {
@@ -265,7 +265,7 @@ namespace user
          {
             rect.bottom = rect.top + m_iItemHeight;
             str = pitem->m_str;
-            pdc->draw_text(str, rect, DT_LEFT | DT_BOTTOM);
+            pgraphics->draw_text(str, rect, DT_LEFT | DT_BOTTOM);
          }
          if(pitem->IsPopup())
          {
@@ -276,11 +276,13 @@ namespace user
             pta.add(point(rectPopupArrow.right, (rectPopupArrow.bottom + rectPopupArrow.top) / 2));
             pta.add(point(rectPopupArrow.left, rectPopupArrow.top + 2));
             pta.add(point(rectPopupArrow.left, rectPopupArrow.bottom - 2));
-            pdc->Polygon(pta.get_data(), pta.get_size());
+            pgraphics->Polygon(pta.get_data(), pta.get_size());
          }
          rect.top = rect.bottom;
       }*/
-      ::user::interaction::_001OnDraw(pdib);
+
+      ::user::interaction::_001OnDraw(pgraphics);
+
    }
 
 

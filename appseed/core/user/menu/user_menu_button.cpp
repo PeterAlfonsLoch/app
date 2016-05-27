@@ -29,10 +29,10 @@ namespace user
 
 
 
-   void menu_button::_001OnDraw(::draw2d::dib * pdib)
+   void menu_button::_001OnDraw(::draw2d::graphics * pgraphics)
    {
 
-      button::_001OnDraw(pdib);
+      button::_001OnDraw(pgraphics);
 
       rect rectClient;
 
@@ -41,15 +41,15 @@ namespace user
       if(m_pitem != NULL && m_pitem->m_bPopup)
       {
 
-         ::draw2d::graphics * pdc = pdib->get_graphics();
+         
 
          ::draw2d::brush_sp br(allocer(), RGB(0, 0, 0));
 
          ::draw2d::pen_sp pen(allocer());
 
          pen->create_solid(1, RGB(0, 0, 0));
-         pdc->SelectObject(pen);
-         pdc->SelectObject(br);
+         pgraphics->SelectObject(pen);
+         pgraphics->SelectObject(br);
          rect rectPopupArrow;
          rectPopupArrow.left = rectClient.right - 9;
          rectPopupArrow.right = rectClient.right - 4;
@@ -60,10 +60,10 @@ namespace user
          pta.add(point(rectPopupArrow.right, (rectPopupArrow.bottom + rectPopupArrow.top) / 2));
          pta.add(point(rectPopupArrow.left, rectPopupArrow.top));
          pta.add(point(rectPopupArrow.left, rectPopupArrow.bottom));
-         pdc->Polygon(pta.get_data(), (int32_t) pta.get_size());
+         pgraphics->Polygon(pta.get_data(), (int32_t) pta.get_size());
       }
 
-      _001DrawCheck(pdib);
+      _001DrawCheck(pgraphics);
 
    }
 
@@ -90,7 +90,7 @@ namespace user
    }
 
 
-   void menu_button::_001DrawCheck(::draw2d::dib * pdib)
+   void menu_button::_001DrawCheck(::draw2d::graphics * pgraphics)
    {
       
       UINT uiImage = 0xffffffffu;
@@ -105,7 +105,7 @@ namespace user
       if(uiImage != 0xffffffffu)
       {
 
-         ::draw2d::graphics * pdc = pdib->get_graphics();
+         
 
          rect rectImage = m_rectCheckBox;
          rect rectImageBorder = rectImage;
@@ -129,11 +129,11 @@ namespace user
          {
 
             
-            pdc->FillSolidRect(rectImageBorder, RGB(127, 127, 127));
-            pdc->Draw3dRect(rectImageBorder, Session.get_default_color(COLOR_3DSHADOW), Session.get_default_color(COLOR_3DHILIGHT));
+            pgraphics->FillSolidRect(rectImageBorder, RGB(127, 127, 127));
+            pgraphics->Draw3dRect(rectImageBorder, Session.get_default_color(COLOR_3DSHADOW), Session.get_default_color(COLOR_3DHILIGHT));
          }
          pimagelist->draw(
-            pdc,
+            pgraphics,
             uiImage,
             rectImage.top_left(),
             0);
@@ -141,7 +141,7 @@ namespace user
       else
       {
 
-         ::userex::GetUfeSchema(get_app())->DrawCheck(m_echeck, m_rectCheckBox, pdib);
+         ::userex::GetUfeSchema(get_app())->DrawCheck(m_echeck, m_rectCheckBox, pgraphics);
 
       }
 

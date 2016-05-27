@@ -87,7 +87,7 @@ namespace user
 
       void user_tree_common_construct();
 
-      virtual void _001OnDraw(::draw2d::dib * pdib);
+      virtual void _001OnDraw(::draw2d::graphics * pgraphics);
       virtual void _001DrawItem(tree_draw_item & data);
 
       void layout();
@@ -192,7 +192,7 @@ namespace user
 
       virtual size get_total_size();
 
-      virtual void on_viewport_offset(::draw2d::dib * pdib);
+      virtual void on_viewport_offset(::draw2d::graphics * pgraphics);
 
 
    };

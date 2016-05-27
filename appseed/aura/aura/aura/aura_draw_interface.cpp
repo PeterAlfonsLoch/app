@@ -5,10 +5,10 @@ namespace aura
 {
 
 
-   void drawable::_001OnDraw(::draw2d::dib * pdib)
+   void drawable::_001OnDraw(::draw2d::graphics * pgraphics)
    {
 
-      UNREFERENCED_PARAMETER(pdib);
+      UNREFERENCED_PARAMETER(pgraphics);
 
    }
 

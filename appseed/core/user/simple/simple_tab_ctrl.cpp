@@ -19,10 +19,10 @@ simple_tab_control::~simple_tab_control()
 }
 
 
-void simple_tab_control::_001OnDraw(::draw2d::dib * pdib)
+void simple_tab_control::_001OnDraw(::draw2d::graphics * pgraphics)
 {
    
-   ::user::tab::_001OnDraw(pdib);
+   ::user::tab::_001OnDraw(pgraphics);
 
 }
 

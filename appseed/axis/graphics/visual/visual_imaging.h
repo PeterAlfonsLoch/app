@@ -117,7 +117,7 @@ public:
       int32_t iRadius,
       COLORREF cr);
 
-   bool true_blend(::draw2d::graphics * pdc, const RECT & rect, ::draw2d::graphics * pdcColorAlpha, point ptAlpha, ::draw2d::dib * pdibWork = NULL, ::draw2d::dib * pdibWork2 = NULL, ::draw2d::dib * pdibWork3 = NULL);
+   bool true_blend(::draw2d::graphics * pgraphics, const RECT & rect, ::draw2d::graphics * pdcColorAlpha, point ptAlpha, ::draw2d::dib * pdibWork = NULL, ::draw2d::dib * pdibWork2 = NULL, ::draw2d::dib * pdibWork3 = NULL);
 
    bool blur(::draw2d::graphics * pdcDst, point ptDst, size size, ::draw2d::graphics * pdcSrc, point ptSrc, int32_t iRadius);
 
@@ -135,27 +135,27 @@ public:
       int32_t w3);
 
 
-   bool color_blend(::draw2d::graphics * pdc, const RECT & rect, ::draw2d::graphics * pdcColorAlpha, point ptAlpha, ::draw2d::dib * pdibWork = NULL);
+   bool color_blend(::draw2d::graphics * pgraphics, const RECT & rect, ::draw2d::graphics * pdcColorAlpha, point ptAlpha, ::draw2d::dib * pdibWork = NULL);
 
-   bool color_blend(::draw2d::graphics * pdc, const RECT & rect, ::draw2d::graphics * pdcColorAlpha, point ptAlpha, double dBlend);
-   bool color_blend(::draw2d::graphics * pdc, point pt, size size, ::draw2d::graphics * pdcColorAlpha, point ptAlpha, double dBlend);
+   bool color_blend(::draw2d::graphics * pgraphics, const RECT & rect, ::draw2d::graphics * pdcColorAlpha, point ptAlpha, double dBlend);
+   bool color_blend(::draw2d::graphics * pgraphics, point pt, size size, ::draw2d::graphics * pdcColorAlpha, point ptAlpha, double dBlend);
 
-   bool color_blend(::draw2d::graphics * pdc, int32_t x, int32_t y, int32_t cx, int32_t cy, COLORREF cr, BYTE bAlpha);
-   bool color_blend(::draw2d::graphics * pdc, point pt, size size, COLORREF cr, BYTE alpha);
-   bool color_blend(::draw2d::graphics * pdc, const RECT & rect, COLORREF cr, BYTE alpha);
-   bool color_blend(::draw2d::graphics * pdc,   const RECT64 * lpcrect, COLORREF cr,   BYTE alpha);
+   bool color_blend(::draw2d::graphics * pgraphics, int32_t x, int32_t y, int32_t cx, int32_t cy, COLORREF cr, BYTE bAlpha);
+   bool color_blend(::draw2d::graphics * pgraphics, point pt, size size, COLORREF cr, BYTE alpha);
+   bool color_blend(::draw2d::graphics * pgraphics, const RECT & rect, COLORREF cr, BYTE alpha);
+   bool color_blend(::draw2d::graphics * pgraphics,   const RECT64 * lpcrect, COLORREF cr,   BYTE alpha);
 
-   bool clip_color_blend(::draw2d::graphics * pdc, point pt, size size, COLORREF cr, BYTE alpha);
-   bool clip_color_blend(::draw2d::graphics * pdc, const RECT & rect, COLORREF cr, BYTE alpha);
+   bool clip_color_blend(::draw2d::graphics * pgraphics, point pt, size size, COLORREF cr, BYTE alpha);
+   bool clip_color_blend(::draw2d::graphics * pgraphics, const RECT & rect, COLORREF cr, BYTE alpha);
 
 /*
-   bool clip_color_blend(::draw2d::graphics * pdc, point pt, size size, COLORREF cr, BYTE alpha, ::draw2d::region * prgnClip);
-   bool clip_color_blend(::draw2d::graphics * pdc, const RECT & rect, COLORREF cr, BYTE alpha, ::draw2d::region * prgnClip);
+   bool clip_color_blend(::draw2d::graphics * pgraphics, point pt, size size, COLORREF cr, BYTE alpha, ::draw2d::region * prgnClip);
+   bool clip_color_blend(::draw2d::graphics * pgraphics, const RECT & rect, COLORREF cr, BYTE alpha, ::draw2d::region * prgnClip);
 */
 
 
    static_function bool CreateBitmap(
-      ::draw2d::graphics * pdc,
+      ::draw2d::graphics * pgraphics,
       ::draw2d::bitmap * pbitmapOld,
       ::draw2d::bitmap * pbitmap,
       BITMAP * pbmp,
@@ -163,7 +163,7 @@ public:
       int32_t cy);
 
    static_function bool CreateBitmap(
-      ::draw2d::graphics * pdc,
+      ::draw2d::graphics * pgraphics,
       ::draw2d::graphics * pdcScreen,
       ::draw2d::bitmap * pbitmap,
       ::draw2d::bitmap * pbitmapOld,
@@ -171,26 +171,26 @@ public:
       int32_t cx,
       int32_t cy);
 
-   void AlphaTextOut(::draw2d::graphics * pdc, int32_t left, int32_t top, const char * lpcsz, int32_t len, COLORREF cr, double dBlend);
+   void AlphaTextOut(::draw2d::graphics * pgraphics, int32_t left, int32_t top, const char * lpcsz, int32_t len, COLORREF cr, double dBlend);
 
 /*
 
    bool ClipSave(
-      ::draw2d::graphics * pdc,
+      ::draw2d::graphics * pgraphics,
       ::draw2d::bitmap * pbitmap,
       ::draw2d::bitmap * pbitmapOld,
       BITMAP * pbmp,
       const RECT & rect);
 
    bool ClipRestore(
-      ::draw2d::graphics * pdc,
+      ::draw2d::graphics * pgraphics,
       ::draw2d::bitmap * pbitmap,
       ::draw2d::bitmap * pbitmapOld,
       BITMAP * pbmp,
       const RECT & rect);
 
    bool ClipSave(
-      ::draw2d::graphics * pdc,
+      ::draw2d::graphics * pgraphics,
       ::draw2d::bitmap * pbitmap,
       ::draw2d::bitmap * pbitmapOld,
       BITMAP * pbmp,
@@ -198,7 +198,7 @@ public:
       ::draw2d::region * prgnClip);
 
    bool ClipRestore(
-      ::draw2d::graphics * pdc,
+      ::draw2d::graphics * pgraphics,
       ::draw2d::bitmap * pbitmap,
       ::draw2d::bitmap * pbitmapOld,
       BITMAP * pbmp,
@@ -251,7 +251,7 @@ public:
       int32_t cy,
       COLORREF crAlpha);
 
-   bool CreateHueImageList(::draw2d::graphics * pdc, image_list * pilGray, image_list * pilParam, COLORREF crHue, double dCompress);
+   bool CreateHueImageList(::draw2d::graphics * pgraphics, image_list * pilGray, image_list * pilParam, COLORREF crHue, double dCompress);
    bool Createcolor_blend_ImageList(image_list * pilGray, image_list * pilParam, COLORREF cr, BYTE bAlpha);
 
 
@@ -292,9 +292,9 @@ public:
       int32_t wSrc,
       BYTE bAlpha);
 
-   virtual bool color_blend_3dRect(::draw2d::graphics * pdc, const RECT & rect, COLORREF crTopLeft, BYTE bAlphaTopLeft, COLORREF crBottomRight, BYTE bAlphaBottomRight);
+   virtual bool color_blend_3dRect(::draw2d::graphics * pgraphics, const RECT & rect, COLORREF crTopLeft, BYTE bAlphaTopLeft, COLORREF crBottomRight, BYTE bAlphaBottomRight);
 
-   virtual bool ColorInvert(::draw2d::graphics * pdc, int32_t x, int32_t y, int32_t cx, int32_t cy);
+   virtual bool ColorInvert(::draw2d::graphics * pgraphics, int32_t x, int32_t y, int32_t cx, int32_t cy);
 
 
 /*   virtual ::draw2d::bitmap * LoadSysColorBitmap(
@@ -308,8 +308,8 @@ public:
 
 #ifndef WINDOWS
 
-   virtual ::draw2d::bitmap_sp CreateDIBitmap(::draw2d::graphics * pdc,FIBITMAP * pFreeImage);
-   virtual ::draw2d::bitmap_sp CreateBitmap(::draw2d::graphics * pdc,FIBITMAP * pFreeImage);
+   virtual ::draw2d::bitmap_sp CreateDIBitmap(::draw2d::graphics * pgraphics,FIBITMAP * pFreeImage);
+   virtual ::draw2d::bitmap_sp CreateBitmap(::draw2d::graphics * pgraphics,FIBITMAP * pFreeImage);
    virtual bool from(::draw2d::dib * pdib,::draw2d::graphics * pgraphics,FIBITMAP *pfibitmap,bool bUnloadFI,::aura::application * papp = NULL);
    virtual FIBITMAP * LoadImageFile(var varFile,::aura::application * papp);
    virtual FIBITMAP * LoadImageFile(::file::buffer_sp  pfile);

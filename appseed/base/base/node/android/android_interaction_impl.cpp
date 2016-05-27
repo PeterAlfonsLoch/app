@@ -1203,7 +1203,7 @@ namespace android
    {
 
       ::exception::throw_not_implemented(get_app());
-      //::CallWindowProc(*GetSuperWndProcAddr(), get_handle(), WM_PRINT, (WPARAM)((dynamic_cast<::android::graphics * >(pdc))->get_handle()), (LPARAM)(PRF_CHILDREN | PRF_CLIENT));
+      //::CallWindowProc(*GetSuperWndProcAddr(), get_handle(), WM_PRINT, (WPARAM)((dynamic_cast<::android::graphics * >(pgraphics))->get_handle()), (LPARAM)(PRF_CHILDREN | PRF_CLIENT));
 
    }
 
@@ -2275,7 +2275,7 @@ void interaction_impl::get_app_wnda(user::oswindow_array & wnda)
 
 /*   void interaction_impl::_001OnDeferPaintLayeredWindowBackground(::draw2d::dib * pdib)
 {
-_001DeferPaintLayeredWindowBackground(pdc);
+_001DeferPaintLayeredWindowBackground(pgraphics);
 }*/
 
 
@@ -2331,7 +2331,7 @@ void interaction_impl::_001DeferPaintLayeredWindowBackground(HDC hdc)
    GetClientRect(rectClient);
 
 
-   //pdc->FillSolidRect(rectClient, 0x00000000);
+   //pgraphics->FillSolidRect(rectClient, 0x00000000);
 
    //return;
    rect rectUpdate;
@@ -2436,7 +2436,7 @@ void interaction_impl::_001DeferPaintLayeredWindowBackground(HDC hdc)
    //                  }
    //                  if(pwnd != NULL)
    //                  {
-   //                  pwnd->_001Print(pdc);
+   //                  pwnd->_001Print(pgraphics);
    //                  }*/
    //                  //if(::GetWindowLong(wndaApp[j], GWL_EXSTYLE) & WS_EX_LAYERED)
    //                  if(true)
@@ -2537,10 +2537,10 @@ void interaction_impl::_001OnPaint(::signal_details * pobj)
    //         if(!dib->create(rectWindow.bottom_right()))
    //            return;
    //
-   //         ::draw2d::graphics * pdc = dib->get_graphics();
+   //         ::draw2d::graphics * pgraphics = dib->get_graphics();
    //
-   //         if((dynamic_cast<::android::graphics * >(pdc))->get_handle() == NULL
-   //            || (dynamic_cast<::android::graphics * >(pdc))->get_os_data2() == NULL)
+   //         if((dynamic_cast<::android::graphics * >(pgraphics))->get_handle() == NULL
+   //            || (dynamic_cast<::android::graphics * >(pgraphics))->get_os_data2() == NULL)
    //            return;
    //
    //         rect rectPaint;
@@ -2557,25 +2557,25 @@ void interaction_impl::_001OnPaint(::signal_details * pobj)
    //            rectUpdate = rectPaint;
    //            ClientToScreen(rectUpdate);
    //         }
-   //         (dynamic_cast<::android::graphics * >(pdc))->SelectClipRgn(NULL);
+   //         (dynamic_cast<::android::graphics * >(pgraphics))->SelectClipRgn(NULL);
    //         if(m_pui != NULL && m_pui != this)
    //         {
-   //            m_pui->_001OnDeferPaintLayeredWindowBackground(pdc);
+   //            m_pui->_001OnDeferPaintLayeredWindowBackground(pgraphics);
    //         }
    //         else
    //         {
-   //            _001OnDeferPaintLayeredWindowBackground(pdc);
+   //            _001OnDeferPaintLayeredWindowBackground(pgraphics);
    //         }
-   //         (dynamic_cast<::android::graphics * >(pdc))->SelectClipRgn(NULL);
-   //         (dynamic_cast<::android::graphics * >(pdc))->SetViewportOrg(point(0, 0));
-   //         _000OnDraw(pdc);
-   //         (dynamic_cast<::android::graphics * >(pdc))->SetViewportOrg(point(0, 0));
-   //         //(dynamic_cast<::android::graphics * >(pdc))->FillSolidRect(rectUpdate.left, rectUpdate.top, 100, 100, 255);
-   //         (dynamic_cast<::android::graphics * >(pdc))->SelectClipRgn(NULL);
-   //         (dynamic_cast<::android::graphics * >(pdc))->SetViewportOrg(point(0, 0));
+   //         (dynamic_cast<::android::graphics * >(pgraphics))->SelectClipRgn(NULL);
+   //         (dynamic_cast<::android::graphics * >(pgraphics))->SetViewportOrg(point(0, 0));
+   //         _000OnDraw(pgraphics);
+   //         (dynamic_cast<::android::graphics * >(pgraphics))->SetViewportOrg(point(0, 0));
+   //         //(dynamic_cast<::android::graphics * >(pgraphics))->FillSolidRect(rectUpdate.left, rectUpdate.top, 100, 100, 255);
+   //         (dynamic_cast<::android::graphics * >(pgraphics))->SelectClipRgn(NULL);
+   //         (dynamic_cast<::android::graphics * >(pgraphics))->SetViewportOrg(point(0, 0));
    //         BitBlt(hdc, rectPaint.left, rectPaint.top,
    //            rectPaint.width(), rectPaint.height(),
-   //            (HDC) pdc->get_handle(), rectUpdate.left, rectUpdate.top,
+   //            (HDC) pgraphics->get_handle(), rectUpdate.left, rectUpdate.top,
    //            SRCCOPY);
    //
    //      }
@@ -2617,9 +2617,9 @@ void interaction_impl::_001OnPrint(::signal_details * pobj)
    //         if(!dib->create(rectWindow.bottom_right()))
    //            return;
    //
-   //         ::draw2d::graphics * pdc = dib->get_graphics();
+   //         ::draw2d::graphics * pgraphics = dib->get_graphics();
    //
-   //         if(pdc->get_handle() == NULL)
+   //         if(pgraphics->get_handle() == NULL)
    //            return;
    //
    //         rect rectPaint;
@@ -2627,27 +2627,27 @@ void interaction_impl::_001OnPrint(::signal_details * pobj)
    //         rectUpdate = rectWindow;
    //         rectPaint = rectWindow;
    //         rectPaint.offset(-rectPaint.top_left());
-   //         (dynamic_cast<::android::graphics * >(pdc))->SelectClipRgn(NULL);
+   //         (dynamic_cast<::android::graphics * >(pgraphics))->SelectClipRgn(NULL);
    //         if(m_pui != NULL && m_pui != this)
    //         {
-   //            m_pui->_001OnDeferPaintLayeredWindowBackground(pdc);
+   //            m_pui->_001OnDeferPaintLayeredWindowBackground(pgraphics);
    //         }
    //         else
    //         {
-   //            _001OnDeferPaintLayeredWindowBackground(pdc);
+   //            _001OnDeferPaintLayeredWindowBackground(pgraphics);
    //         }
-   //         (dynamic_cast<::android::graphics * >(pdc))->SelectClipRgn(NULL);
-   //         (dynamic_cast<::android::graphics * >(pdc))->SetViewportOrg(point(0, 0));
-   //         _000OnDraw(pdc);
-   //         (dynamic_cast<::android::graphics * >(pdc))->SetViewportOrg(point(0, 0));
-   //         //(dynamic_cast<::android::graphics * >(pdc))->FillSolidRect(rectUpdate.left, rectUpdate.top, 100, 100, 255);
-   //         (dynamic_cast<::android::graphics * >(pdc))->SelectClipRgn(NULL);
-   //         (dynamic_cast<::android::graphics * >(pdc))->SetViewportOrg(point(0, 0));
+   //         (dynamic_cast<::android::graphics * >(pgraphics))->SelectClipRgn(NULL);
+   //         (dynamic_cast<::android::graphics * >(pgraphics))->SetViewportOrg(point(0, 0));
+   //         _000OnDraw(pgraphics);
+   //         (dynamic_cast<::android::graphics * >(pgraphics))->SetViewportOrg(point(0, 0));
+   //         //(dynamic_cast<::android::graphics * >(pgraphics))->FillSolidRect(rectUpdate.left, rectUpdate.top, 100, 100, 255);
+   //         (dynamic_cast<::android::graphics * >(pgraphics))->SelectClipRgn(NULL);
+   //         (dynamic_cast<::android::graphics * >(pgraphics))->SetViewportOrg(point(0, 0));
    //
    //         graphics->SelectClipRgn( NULL);
    //         graphics->BitBlt(rectPaint.left, rectPaint.top,
    //            rectPaint.width(), rectPaint.height(),
-   //            pdc, rectUpdate.left, rectUpdate.top,
+   //            pgraphics, rectUpdate.left, rectUpdate.top,
    //            SRCCOPY);
    //
    //         graphics->TextOut(0, 0, "Te Amo Carlinhos!!", 11);
@@ -5491,7 +5491,7 @@ namespace android
 
 
 
-   void interaction_impl::set_viewport_org(::draw2d::dib * pdib)
+   void interaction_impl::set_viewport_org(::draw2d::graphics * pgraphics)
    {
       // graphics will be already set its view port to the interaction_impl for android - cairo with xlib
 

@@ -222,11 +222,11 @@ Restart:
    }
 
 
-   void interaction_base::_000OnDraw(::draw2d::dib * pdib)
+   void interaction_base::_000OnDraw(::draw2d::graphics * pgraphics)
    {
 
-      _001OnDraw(pdib);
-      _008OnDraw(pdib);
+      _001OnDraw(pgraphics);
+      _008OnDraw(pgraphics);
 
    }
 
@@ -280,10 +280,10 @@ Restart:
    }
 
 
-   bool interaction_base::Redraw(::draw2d::dib * pdib)
+   bool interaction_base::Redraw(::draw2d::graphics * pgraphics)
    {
 
-      UNREFERENCED_PARAMETER(pdib);
+      UNREFERENCED_PARAMETER(pgraphics);
 
       if(get_wnd() == NULL)
          return false;
@@ -654,7 +654,7 @@ Restart:
    }
 
 
-   void interaction_base::_001DrawThis(::draw2d::dib * pdib)
+   void interaction_base::_001DrawThis(::draw2d::graphics * pgraphics)
    {
 
       ::exception::throw_interface_only(get_app());
@@ -662,7 +662,7 @@ Restart:
    }
 
 
-   void interaction_base::_001DrawChildren(::draw2d::dib * pdib)
+   void interaction_base::_001DrawChildren(::draw2d::graphics * pgraphics)
    {
 
       ::exception::throw_interface_only(get_app());
@@ -670,7 +670,7 @@ Restart:
    }
 
 
-   void interaction_base::_001Print(::draw2d::dib * pdib)
+   void interaction_base::_001Print(::draw2d::graphics * pgraphics)
    {
 
       ::exception::throw_interface_only(get_app());
@@ -678,7 +678,7 @@ Restart:
    }
 
 
-   void interaction_base::_001OnDraw(::draw2d::dib * pdib)
+   void interaction_base::_001OnDraw(::draw2d::graphics * pgraphics)
    {
 
       ::exception::throw_interface_only(get_app());
@@ -686,7 +686,7 @@ Restart:
    }
 
 
-   void interaction_base::_008OnDraw(::draw2d::dib * pdib)
+   void interaction_base::_008OnDraw(::draw2d::graphics * pgraphics)
    {
 
       ::exception::throw_interface_only(get_app());
@@ -694,7 +694,7 @@ Restart:
    }
 
 
-   void interaction_base::draw_control_background(::draw2d::dib * pdib)
+   void interaction_base::draw_control_background(::draw2d::graphics * pgraphics)
    {
 
       ::exception::throw_interface_only(get_app());
@@ -1437,7 +1437,7 @@ Restart:
    }
 
 
-   void interaction_base::set_viewport_org(::draw2d::dib * pdib)
+   void interaction_base::set_viewport_org(::draw2d::graphics * pgraphics)
    {
 
       ::exception::throw_interface_only(get_app());
@@ -1942,7 +1942,7 @@ Restart:
    }
 
 
-   void interaction_base::_001DeferPaintLayeredWindowBackground(::draw2d::dib * pdib)
+   void interaction_base::_001DeferPaintLayeredWindowBackground(::draw2d::graphics * pgraphics)
    {
 
       ::exception::throw_interface_only(get_app());
@@ -1950,7 +1950,7 @@ Restart:
    }
 
 
-   void interaction_base::_001OnDeferPaintLayeredWindowBackground(::draw2d::dib * pdib)
+   void interaction_base::_001OnDeferPaintLayeredWindowBackground(::draw2d::graphics * pgraphics)
    {
 
       ::exception::throw_interface_only(get_app());
@@ -2679,7 +2679,7 @@ Restart:
    }
 
 
-   window_graphics ** interaction_base::get_window_graphics()
+   window_graphics * interaction_base::get_window_graphics()
    {
 
       return NULL;

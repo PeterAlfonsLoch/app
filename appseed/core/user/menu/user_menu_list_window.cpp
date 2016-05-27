@@ -223,14 +223,14 @@ namespace user
    }
 
 
-   void menu_list_window::_CalcSize(sp(menu_item) pitemParent, ::draw2d::graphics * pdc, int32_t & iMaxWidth, int32_t & iMaxHeight)
+   void menu_list_window::_CalcSize(sp(menu_item) pitemParent, ::draw2d::graphics * pgraphics, int32_t & iMaxWidth, int32_t & iMaxHeight)
    {
       if(pitemParent->m_spitema == NULL)
          return;
       for(int32_t i = 0; i < pitemParent->m_spitema->get_size(); i++)
       {
          menu_item * pitem = pitemParent->m_spitema->element_at(i);
-         size size = pdc->GetTextExtent(pitem->m_button.GetWindowText());
+         size size = pgraphics->GetTextExtent(pitem->m_button.GetWindowText());
          size.cx += pitem->m_iLevel * g_base_menu_indent;
          if(pitem->IsPopup())
             size.cx += 12 + 16;
@@ -238,7 +238,7 @@ namespace user
             iMaxHeight = size.cy;
          if(size.cx > iMaxWidth)
             iMaxWidth = size.cx;
-         _CalcSize(pitem, pdc, iMaxWidth, iMaxHeight);
+         _CalcSize(pitem, pgraphics, iMaxWidth, iMaxHeight);
       }
 
    }
@@ -250,13 +250,13 @@ namespace user
          return;
       rect rectClient;
       GetParent()->GetClientRect(rectClient);
-      ::draw2d::memory_graphics pdc(allocer());
-      pdc->SelectObject(m_pschema->m_font);
-      size size = pdc->GetTextExtent("XXXMMM");
+      ::draw2d::memory_graphics pgraphics(allocer());
+      pgraphics->SelectObject(m_pschema->m_font);
+      size size = pgraphics->GetTextExtent("XXXMMM");
       int32_t iMaxHeight = size.cy;
       int32_t iMaxWidth = size.cx;
       m_iHeaderHeight = size.cy;
-      _CalcSize(m_pitem, pdc, iMaxWidth, iMaxHeight);
+      _CalcSize(m_pitem, pgraphics, iMaxWidth, iMaxHeight);
       m_iItemHeight = iMaxHeight + 6 + 2;
       m_size.cx = iMaxWidth + 4;
 
@@ -322,7 +322,7 @@ namespace user
    }
 
 
-   void menu_list_window::_001OnDraw(::draw2d::dib * pdib)
+   void menu_list_window::_001OnDraw(::draw2d::graphics * pgraphics)
    {
 /*      rect rectClient;
       GetClientRect(rectClient);
@@ -330,7 +330,7 @@ namespace user
       {
          class imaging & imaging = System.visual().imaging();
          imaging.color_blend(
-            pdc,
+            pgraphics,
             rectClient,
             RGB(200, 255, 255),
             127);
@@ -338,13 +338,13 @@ namespace user
       else
       {
 #ifdef WINDOWSEX
-         pdc->FillSolidRect(rectClient, Session.get_default_color(COLOR_WINDOW));
+         pgraphics->FillSolidRect(rectClient, Session.get_default_color(COLOR_WINDOW));
 #else
          throw todo(get_app());
 #endif
       }*/
 
-      ::user::interaction::_001OnDraw(pdib);
+      ::user::interaction::_001OnDraw(pgraphics);
 
    }
 

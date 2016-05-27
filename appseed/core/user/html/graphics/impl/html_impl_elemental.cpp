@@ -625,7 +625,7 @@ namespace html
       void elemental::_001OnDraw(data * pdata)
       {
 
-         ::draw2d::graphics * pdc = pdata->m_pdib->get_graphics();
+         ::draw2d::graphics * pgraphics = pdata->m_pgraphics;
 
          e_tag etag = m_pelemental->m_etag;
 
@@ -640,7 +640,7 @@ namespace html
 
             double d;
 
-            pdc->set_alpha_mode(::draw2d::alpha_mode_blend);
+            pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
             if (m_pelemental->m_style.get_alpha("", pdata, m_pelemental, d))
             {
@@ -648,7 +648,7 @@ namespace html
                if (m_pelemental->get_color(cr, ::user::color_background))
                {
 
-                  Sys(pdata->get_app()).visual().imaging().color_blend(pdc, rect, cr, MAX(0, MIN(255, (BYTE)(d * 255))));
+                  Sys(pdata->get_app()).visual().imaging().color_blend(pgraphics, rect, cr, MAX(0, MIN(255, (BYTE)(d * 255))));
 
                }
 
@@ -659,7 +659,7 @@ namespace html
                if(m_pelemental->get_color(cr,::user::color_background))
                {
 
-                  pdc->FillSolidRect(rect, cr);
+                  pgraphics->FillSolidRect(rect, cr);
 
                }
 
@@ -697,8 +697,8 @@ namespace html
                point p2(m_box.left + m_margin.left + m_border.left / 2.f, m_box.bottom - m_margin.bottom - m_border.bottom / 2.f);
                ::draw2d::pen_sp pen(pdata->get_app()->allocer());
                pen->create_solid(m_border.left, m_border.crLeft);
-               pdc->SelectObject(pen);
-               pdc->drawLine(p1.x, p1.y, p2.x, p2.y);
+               pgraphics->SelectObject(pen);
+               pgraphics->drawLine(p1.x, p1.y, p2.x, p2.y);
             }
             else
             {
@@ -709,8 +709,8 @@ namespace html
                pa[3] = ::pointd(bOut.left, bOut.bottom);
                ::draw2d::brush_sp brush(pdata->get_app()->allocer());
                brush->create_solid(m_border.crLeft);
-               pdc->SelectObject(brush);
-               pdc->fill_polygon(pa, 4);
+               pgraphics->SelectObject(brush);
+               pgraphics->fill_polygon(pa, 4);
             }
          }
          if (m_border.top > 0.f)
@@ -721,8 +721,8 @@ namespace html
                point p2(m_box.right - m_margin.right - m_border.right / 2.f, m_box.top + m_margin.top + m_border.top / 2.f);
                ::draw2d::pen_sp pen(pdata->get_app()->allocer());
                pen->create_solid(m_border.top, m_border.crTop);
-               pdc->SelectObject(pen);
-               pdc->drawLine(p1.x, p1.y, p2.x, p2.y);
+               pgraphics->SelectObject(pen);
+               pgraphics->drawLine(p1.x, p1.y, p2.x, p2.y);
             }
             else
             {
@@ -733,8 +733,8 @@ namespace html
                pa[3] = ::pointd(bIn.left, bIn.top);
                ::draw2d::brush_sp brush(pdata->get_app()->allocer());
                brush->create_solid(m_border.crTop);
-               pdc->SelectObject(brush);
-               pdc->fill_polygon(pa, 4);
+               pgraphics->SelectObject(brush);
+               pgraphics->fill_polygon(pa, 4);
             }
          }
          if (m_border.right > 0.f)
@@ -745,8 +745,8 @@ namespace html
                point p2(m_box.right - m_margin.right - m_border.right / 2.f, m_box.bottom - m_margin.bottom - m_border.bottom / 2.f);
                ::draw2d::pen_sp pen(pdata->get_app()->allocer());
                pen->create_solid(m_border.right, m_border.crRight);
-               pdc->SelectObject(pen);
-               pdc->drawLine(p1.x, p1.y, p2.x, p2.y);
+               pgraphics->SelectObject(pen);
+               pgraphics->drawLine(p1.x, p1.y, p2.x, p2.y);
             }
             else
             {
@@ -757,8 +757,8 @@ namespace html
                pa[3] = ::pointd(bIn.right, bIn.top);
                ::draw2d::brush_sp brush(pdata->get_app()->allocer());
                brush->create_solid(m_border.crRight);
-               pdc->SelectObject(brush);
-               pdc->fill_polygon(pa, 4);
+               pgraphics->SelectObject(brush);
+               pgraphics->fill_polygon(pa, 4);
             }
          }
          if (m_border.bottom > 0.f)
@@ -769,8 +769,8 @@ namespace html
                point p2(m_box.right - m_margin.right - m_border.right / 2.f, m_box.bottom - m_margin.bottom - m_border.bottom / 2.f);
                ::draw2d::pen_sp pen(pdata->get_app()->allocer());
                pen->create_solid(m_border.bottom, m_border.crBottom);
-               pdc->SelectObject(pen);
-               pdc->drawLine(p1.x, p1.y, p2.x, p2.y);
+               pgraphics->SelectObject(pen);
+               pgraphics->drawLine(p1.x, p1.y, p2.x, p2.y);
             }
             else
             {
@@ -781,8 +781,8 @@ namespace html
                pa[3] = ::pointd(bOut.left, bOut.bottom);
                ::draw2d::brush_sp brush(pdata->get_app()->allocer());
                brush->create_solid(m_border.crBottom);
-               pdc->SelectObject(brush);
-               pdc->fill_polygon(pa, 4);
+               pgraphics->SelectObject(brush);
+               pgraphics->fill_polygon(pa, 4);
             }
          }
 

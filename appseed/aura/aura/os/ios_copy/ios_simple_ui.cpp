@@ -430,12 +430,12 @@ namespace os
    }
 
 
-   void simple_ui::boot_window_draw(CGContextRef pdc)
+   void simple_ui::boot_window_draw(CGContextRef pgraphics)
    {
 
       ::draw2d::graphics_sp g(allocer());
 
-      g->attach(pdc);
+      g->attach(pgraphics);
 
       draw(g);
 

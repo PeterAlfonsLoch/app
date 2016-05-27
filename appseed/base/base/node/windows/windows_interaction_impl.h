@@ -669,7 +669,7 @@ namespace windows
 
       void _001OnTriggerMouseInside();
 
-      void set_viewport_org(::draw2d::dib * pdib);
+      void set_viewport_org(::draw2d::graphics * pgraphics);
 
       string calc_icon_window_class(uint32_t dwDefaultStyle,const char * pszMatter);
       string calc_window_class();

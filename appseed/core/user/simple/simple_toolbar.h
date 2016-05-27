@@ -86,7 +86,7 @@ public:
    void layout();
 
 
-   void _001DrawItem(::draw2d::graphics * pdc, int32_t iItem);
+   void _001DrawItem(::draw2d::graphics * pgraphics, int32_t iItem);
 
 /*
    bool LoadToolBar(const char * lpszResourceName);
@@ -106,9 +106,9 @@ public:
    void OnUpdateCmdUI(sp(::user::frame_window) pTarget, bool bDisableIfNoHndler);
 
 
-   void TransparentEraseNonClient(::draw2d::dib * pdib);
+   void TransparentEraseNonClient(::draw2d::graphics * pgraphics);
    void SetTransparentBackground(bool bSet);
-   virtual void _001OnDraw(::draw2d::dib * pdib);
+   virtual void _001OnDraw(::draw2d::graphics * pgraphics);
    size CalcSimpleLayout();
 
    void _001OnImageListAttrib();

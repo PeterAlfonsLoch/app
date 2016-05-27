@@ -24,10 +24,10 @@ namespace simple_ui
       IMH();
       DRAWDD();
 
-      virtual void simple_ui_draw_simple(::draw2d::dib * pdib);
-      virtual void simple_ui_draw_volume(::draw2d::dib * pdib);
+      virtual void simple_ui_draw_simple(::draw2d::graphics * pgraphics);
+      virtual void simple_ui_draw_volume(::draw2d::graphics * pgraphics);
 
-      virtual void simple_ui_draw_text(::draw2d::dib * pdib);
+      virtual void simple_ui_draw_text(::draw2d::graphics * pgraphics);
 
 
       DECL_GEN_SIGNAL(_001OnKeyDown);
@@ -42,9 +42,9 @@ namespace simple_ui
       virtual void layout();
 
 
-      virtual void _000OnDraw(::draw2d::dib * pdib);
-      virtual void _001DrawThis(::draw2d::dib * pdib);
-      virtual void _001CallOnDraw(::draw2d::dib * pdib);
+      virtual void _000OnDraw(::draw2d::graphics * pgraphics);
+      virtual void _001DrawThis(::draw2d::graphics * pgraphics);
+      virtual void _001CallOnDraw(::draw2d::graphics * pgraphics);
 
    };
 

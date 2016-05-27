@@ -14,7 +14,7 @@ namespace user
    //   virtual ~buffer();
 
    //   void BitBlt(::draw2d::dib * pdib);
-   //   void BitBlt(LPRECT lprect, ::draw2d::graphics * pdc);
+   //   void BitBlt(LPRECT lprect, ::draw2d::graphics * pgraphics);
 
    //   void InstallMessageHandling(::message::dispatch * pinterface);
 

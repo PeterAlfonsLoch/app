@@ -49,7 +49,7 @@ namespace linux
       m_iFramesPerSecond = 20;
    }
 
-   extern void _001DeferPaintLayeredWindowBackground(void * hwnd, ::draw2d::graphics * pdc);
+   extern void _001DeferPaintLayeredWindowBackground(void * hwnd, ::draw2d::graphics * pgraphics);
    window_draw::~window_draw()
    {
 
@@ -207,7 +207,7 @@ namespace linux
    }
 
 //   bool window_draw::to(
-//      ::draw2d::graphics *          pdc,
+//      ::draw2d::graphics *          pgraphics,
 //      LPCRECT        lpcrectUpdate,
 //      user::oswindow_tree::Array & hwndtreea,
 //      bool           bGdiLocked,
@@ -229,14 +229,14 @@ namespace linux
 //         ::GetWindowRect((oswindow) hwndChild, rectChild);
 //         if(rectNewUpdate.intersect(rectChild, rectUpdate))
 //         {
-//            to(pdc, rectNewUpdate, hwndtreeChild, true, false);
+//            to(pgraphics, rectNewUpdate, hwndtreeChild, true, false);
 //         }
 //       }
 //       return true;
 //   }
 //
 //   bool window_draw::to(
-//      ::draw2d::graphics *          pdc,
+//      ::draw2d::graphics *          pgraphics,
 //      LPCRECT        lpcrectUpdate,
 //      user::oswindow_tree & hwndtree,
 //      bool           bGdiLocked,
@@ -286,7 +286,7 @@ namespace linux
 //         //::ClientToScreen(hwndParam, &rectWindow.top_left());
 //         //::ClientToScreen(hwndParam, &rectWindow.bottom_right());
 //
-//         //(dynamic_cast < ::linux::graphics * >(pdc))->SetViewportOrg(rectWindow.left, rectWindow.top);
+//         //(dynamic_cast < ::linux::graphics * >(pgraphics))->SetViewportOrg(rectWindow.left, rectWindow.top);
 //
 //
 //         if(ptwi != NULL)
@@ -296,7 +296,7 @@ namespace linux
 //            if(!bExcludeParamWnd &&
 //               pguie != NULL )
 //            {
-//               pguie->_001OnDraw(pdc);
+//               pguie->_001OnDraw(pgraphics);
 //            }
 //
 //
@@ -308,7 +308,7 @@ namespace linux
 ///*            ::DefWindowProc(
 //               (oswindow) hwndParam,
 //               (bWin4 ? WM_PRINT : WM_PAINT),
-//               (WPARAM)((dynamic_cast<::linux::graphics * >(pdc))->get_os_data()),
+//               (WPARAM)((dynamic_cast<::linux::graphics * >(pgraphics))->get_os_data()),
 //               (LPARAM)(bWin4 ? PRF_CHILDREN | PRF_CLIENT : 0));*/
 //            //::RedrawWindow(hwndParam, NULL, rgnClient, RDW_INVALIDATE | RDW_UPDATENOW | RDW_NOCHILDREN);
 //         }
@@ -325,7 +325,7 @@ namespace linux
 //
 //
 //      return to(
-//         pdc,
+//         pgraphics,
 //         rectUpdate,
 //         hwndtree.m_oswindowtreea,
 //         true,
@@ -438,9 +438,9 @@ namespace linux
       if(m_pbuffer->GetBuffer()->get_os_data() == NULL)
          return true;
 
-      ::draw2d::graphics * pdc = (dynamic_cast < ::linux::graphics * > (m_pbuffer->GetBuffer()));
+      ::draw2d::graphics * pgraphics = (dynamic_cast < ::linux::graphics * > (m_pbuffer->GetBuffer()));
 
-      if(pdc == NULL)
+      if(pgraphics == NULL)
       {
          return false;
       }*/
@@ -645,7 +645,7 @@ namespace linux
                rgnClip);
          }*/
 
-   //    TwfReleaseDC(pdc);
+   //    TwfReleaseDC(pgraphics);
 
 //      DWORD dwTimeOut = get_tick_count();
    //   TRACE("//\n");
@@ -1124,7 +1124,7 @@ namespace linux
    /*
 
    bool window_draw::ScreenOutput(
-      // pdc is the source memory device context
+      // pgraphics is the source memory device context
       // from which bitmap the screen is updated.
       user::buffer * pbuffer,
       // hwndParam ::user::interaction_impl device context

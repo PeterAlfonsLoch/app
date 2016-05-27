@@ -58,7 +58,7 @@ namespace estamira
 
    }
 
-   void character::_001OnDraw(::draw2d::dib * pdib)
+   void character::_001OnDraw(::draw2d::graphics * pgraphics)
    {
 
       int w = pdib->m_size.cx;

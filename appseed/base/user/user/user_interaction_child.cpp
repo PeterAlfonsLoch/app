@@ -687,7 +687,7 @@ namespace user
    }
 
 
-   void interaction_child::set_viewport_org(::draw2d::dib * pdib)
+   void interaction_child::set_viewport_org(::draw2d::graphics * pgraphics)
    {
       // graphics will be already set its view port to the interaction_impl for linux - cairo with xlib
 
@@ -697,7 +697,7 @@ namespace user
       rect rectWindow;
       GetWindowRect(rectWindow);
       get_wnd()->viewport_screen_to_client(rectWindow);
-      pdib->SetViewportOrg(rectWindow.top_left());
+      pgraphics->SetViewportOrg(rectWindow.top_left());
 
    }
 

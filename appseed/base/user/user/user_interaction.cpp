@@ -1026,13 +1026,13 @@ namespace user
    }
 
 
-   void interaction::set_viewport_org(::draw2d::dib * pdib)
+   void interaction::set_viewport_org(::draw2d::graphics * pgraphics)
    {
 
       if(m_pimpl == NULL)
          return;
 
-      m_pimpl->set_viewport_org(pdib);
+      m_pimpl->set_viewport_org(pgraphics);
 
       /*      rect64 rectWindow;
       GetWindowRect(rectWindow);
@@ -1044,12 +1044,12 @@ namespace user
    }
 
 
-   void interaction::_001OnClip(::draw2d::dib * pdib)
+   void interaction::_001OnClip(::draw2d::graphics * pgraphics)
    {
 
       //return;
 
-      ::draw2d::graphics * pgraphics = pdib->get_graphics();
+      
 
       try
       {
@@ -1131,12 +1131,12 @@ namespace user
    }
 
 
-   void interaction::_001DrawThis(::draw2d::dib * pdib)
+   void interaction::_001DrawThis(::draw2d::graphics * pgraphics)
    {
 
-      ::draw2d::graphics * pgraphics = pdib->get_graphics();
+      
 
-      point ptOrg =  pdib->m_pt;
+      point ptOrg = pgraphics->GetViewportOrg();
 
       try
       {
@@ -1144,11 +1144,11 @@ namespace user
          if(!is_custom_draw() && pgraphics->m_pnext == NULL)
          {
 
-            set_viewport_org(pdib);
+            set_viewport_org(pgraphics);
 
          }
 
-         pdib->set_font_factor(1.0);
+         pgraphics->m_dFontFactor = 1.0;
 
          try
          {
@@ -1167,13 +1167,13 @@ namespace user
 
             synch_lock sl(m_pmutex);
 
-            _001OnNcDraw(pdib);
+            _001OnNcDraw(pgraphics);
 
          }
 
-         _001OnClip(pdib);
+         _001OnClip(pgraphics);
 
-         _001CallOnDraw(pdib);
+         _001CallOnDraw(pgraphics);
 
 
       }
@@ -1190,35 +1190,35 @@ namespace user
 
    }
 
-   void interaction::_001CallOnDraw(::draw2d::dib * pdib)
+   void interaction::_001CallOnDraw(::draw2d::graphics * pgraphics)
    {
 
-      on_viewport_offset(pdib);
+      on_viewport_offset(pgraphics);
 
       synch_lock sl(m_pmutex);
 
-      _001OnDraw(pdib);
+      _001OnDraw(pgraphics);
 
    }
 
 
-   void interaction::_008CallOnDraw(::draw2d::dib * pdib)
+   void interaction::_008CallOnDraw(::draw2d::graphics * pgraphics)
    {
 
-      set_viewport_org(pdib);
+      set_viewport_org(pgraphics);
 
       synch_lock sl(m_pmutex);
 
-      pdib->get_graphics()->SelectClipRgn(NULL);
+      pgraphics->SelectClipRgn(NULL);
 
-      _008OnDraw(pdib);
+      _008OnDraw(pgraphics);
 
    }
 
-   void interaction::on_viewport_offset(::draw2d::dib * pdib)
+   void interaction::on_viewport_offset(::draw2d::graphics * pgraphics)
    {
 
-      ::draw2d::graphics * pgraphics = pdib->get_graphics();
+      
 
       point ptViewportOffset = get_viewport_offset();
 
@@ -1226,7 +1226,7 @@ namespace user
 
    }
 
-   void interaction::_001DrawChildren(::draw2d::dib * pdib)
+   void interaction::_001DrawChildren(::draw2d::graphics * pgraphics)
    {
 
       //single_lock sl(m_pmutex, true);
@@ -1242,7 +1242,7 @@ namespace user
             if(pui->m_bVisible && !pui->is_custom_draw())
             {
 
-               pui->_000OnDraw(pdib);
+               pui->_000OnDraw(pgraphics);
 
             }
 
@@ -1256,10 +1256,10 @@ namespace user
 
    }
 
-   void interaction::_001Print(::draw2d::dib * pdib)
+   void interaction::_001Print(::draw2d::graphics * pgraphics)
    {
 
-      ::draw2d::graphics * pgraphics = pdib->get_graphics();
+      
 
       point ptViewport(0,0);
 
@@ -1267,17 +1267,17 @@ namespace user
 
       pgraphics->SetViewportOrg(ptViewport);
 
-      _001OnDeferPaintLayeredWindowBackground(pdib);
+      _001OnDeferPaintLayeredWindowBackground(pgraphics);
 
       pgraphics->SelectClipRgn(NULL);
 
       pgraphics->SetViewportOrg(ptViewport);
 
-      _000OnDraw(pdib);
+      _000OnDraw(pgraphics);
 
       pgraphics->SelectClipRgn(NULL);
 
-      set_viewport_org(pdib);
+      set_viewport_org(pgraphics);
 
       if(&Session != NULL && Session.m_bDrawCursor)
       {
@@ -1295,7 +1295,7 @@ namespace user
 
             pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-            pcursor->to(pdib,ptCursor);
+            pcursor->to(pgraphics,ptCursor);
 
          }
 
@@ -1324,7 +1324,7 @@ namespace user
    }
 
 
-   void interaction::_000OnDraw(::draw2d::dib * pdib)
+   void interaction::_000OnDraw(::draw2d::graphics * pgraphics)
    {
 
       single_lock sl(m_pmutex, true);
@@ -1332,7 +1332,7 @@ namespace user
       if(!m_bVisible)
          return;
 
-      _001DrawThis(pdib);
+      _001DrawThis(pgraphics);
 
       if (m_uiptraChild.get_count() <= 0)
          return;
@@ -1340,7 +1340,7 @@ namespace user
       try
       {
 
-         _001DrawChildren(pdib);
+         _001DrawChildren(pgraphics);
 
       }
       catch(...)
@@ -1351,37 +1351,37 @@ namespace user
       }
 
 
-      _008CallOnDraw(pdib);
+      _008CallOnDraw(pgraphics);
 
    }
 
 
-   void interaction::_001OnNcDraw(::draw2d::dib * pdib)
+   void interaction::_001OnNcDraw(::draw2d::graphics * pgraphics)
    {
 
 
    }
 
 
-   void interaction::_001OnDraw(::draw2d::dib * pdib)
+   void interaction::_001OnDraw(::draw2d::graphics * pgraphics)
    {
 
-      draw_control_background(pdib);
+      draw_control_background(pgraphics);
 
    }
 
-   void interaction::_008OnDraw(::draw2d::dib * pdib)
+   void interaction::_008OnDraw(::draw2d::graphics * pgraphics)
    {
 
    }
 
 
-   void interaction::draw_control_background(::draw2d::dib * pdib)
+   void interaction::draw_control_background(::draw2d::graphics * pgraphics)
    {
 
-      ::draw2d::graphics * pdc = pdib->get_graphics();
+      
 
-      ::aura::draw_context * pdrawcontext = pdc->::core::simple_chain < ::aura::draw_context >::get_last();
+      ::aura::draw_context * pdrawcontext = pgraphics->::core::simple_chain < ::aura::draw_context >::get_last();
 
       rect rectClient;
 
@@ -1405,7 +1405,7 @@ namespace user
       {
 
 
-         pdc->set_alpha_mode(::draw2d::alpha_mode_blend);
+         pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
          COLORREF cr = ARGB(184,255,255,255);
 
@@ -1415,7 +1415,7 @@ namespace user
 
          {
 
-            pdc->FillSolidRect(rectClient, cr);
+            pgraphics->FillSolidRect(rectClient, cr);
 
 
          }
@@ -1424,7 +1424,7 @@ namespace user
       else
       {
 
-         pdc->set_alpha_mode(::draw2d::alpha_mode_set);
+         pgraphics->set_alpha_mode(::draw2d::alpha_mode_set);
 
          COLORREF cr = ARGB(255,255,255,255);
 
@@ -1432,7 +1432,7 @@ namespace user
 
          cr |= (255 << 24);
 
-         pdc->FillSolidRect(rectClient,cr);
+         pgraphics->FillSolidRect(rectClient,cr);
 
       }
 
@@ -4184,18 +4184,18 @@ ExitModal:
       UNREFERENCED_PARAMETER(pobj);
    }
 
-   void interaction::_001DeferPaintLayeredWindowBackground(::draw2d::dib * pdib)
+   void interaction::_001DeferPaintLayeredWindowBackground(::draw2d::graphics * pgraphics)
    {
       if(m_pimpl != NULL)
       {
-         //         m_pimpl->_001DeferPaintLayeredWindowBackground(pdc);
+         //         m_pimpl->_001DeferPaintLayeredWindowBackground(pgraphics);
       }
    }
 
-   void interaction::_001OnDeferPaintLayeredWindowBackground(::draw2d::dib * pdib)
+   void interaction::_001OnDeferPaintLayeredWindowBackground(::draw2d::graphics * pgraphics)
    {
 
-      _001DeferPaintLayeredWindowBackground(pdib);
+      _001DeferPaintLayeredWindowBackground(pgraphics);
 
    }
 
@@ -7078,7 +7078,7 @@ restart:
    }
 
 
-   window_graphics ** interaction::get_window_graphics()
+   window_graphics * interaction::get_window_graphics()
    {
 
       if(m_pimpl == NULL)

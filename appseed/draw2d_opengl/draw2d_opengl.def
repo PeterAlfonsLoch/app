@@ -1,4 +1,4 @@
-LIBRARY "draw2d_gl2d"
+LIBRARY "draw2d_opengl"
 
 EXPORTS
 ca2_factory_exchange

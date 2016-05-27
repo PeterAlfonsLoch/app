@@ -109,7 +109,7 @@ namespace user
 
       virtual bool post_message(UINT uiMessage,WPARAM wparam,lparam lparam);
 
-      virtual void set_viewport_org(::draw2d::dib * pdib);
+      virtual void set_viewport_org(::draw2d::graphics * pgraphics);
 
 
       virtual bool RedrawWindow(LPCRECT lpRectUpdate,::draw2d::region* prgnUpdate,UINT flags);

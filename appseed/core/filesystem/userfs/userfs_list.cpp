@@ -204,12 +204,13 @@ namespace userfs
    }
 
 
-
-   void list::_001OnDraw(::draw2d::dib * pdib)
+   void list::_001OnDraw(::draw2d::graphics * pgraphics)
    {
-      BASE::_001OnDraw(pdib);
+
+      BASE::_001OnDraw(pgraphics);
 
    }
+
 
    void list::StartAnimation()
    {

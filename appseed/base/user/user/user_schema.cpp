@@ -348,18 +348,18 @@ namespace user
    }
 
 
-   bool schema::simple_ui_draw_focus_rect(::user::interaction * pui,::draw2d::dib * pdib)
+   bool schema::simple_ui_draw_focus_rect(::user::interaction * pui,::draw2d::graphics * pgraphics)
    {
 
       if(m_puserschema != NULL && m_puserschema != this)
       {
 
-         if(m_puserschema->simple_ui_draw_focus_rect(pui, pdib))
+         if(m_puserschema->simple_ui_draw_focus_rect(pui, pgraphics))
             return true;
 
       }
 
-      ::draw2d::graphics * pgraphics = pdib->get_graphics();
+      
 
       bool bError = pui->m_ptooltip.is_set()
          && pui->m_ptooltip->IsWindowVisible()
@@ -610,13 +610,13 @@ namespace user
 
    }
 
-   void schema::_001TabOnDrawSchema01(::draw2d::dib * pdib,tab * ptab)
+   void schema::_001TabOnDrawSchema01(::draw2d::graphics * pgraphics,tab * ptab)
    {
 
    }
 
 
-   void schema::_001OnTabPaneDrawTitle(::user::tab_pane & pane,::user::tab * ptab,::draw2d::dib * pdib,LPCRECT lpcrect,::draw2d::brush_sp & brushText)
+   void schema::_001OnTabPaneDrawTitle(::user::tab_pane & pane,::user::tab * ptab,::draw2d::graphics * pgraphics,LPCRECT lpcrect,::draw2d::brush_sp & brushText)
    {
 
    }
@@ -636,7 +636,7 @@ namespace user
    }
 
    
-   bool schema::_001OnDrawMainFrameBackground(::draw2d::dib * pdib,::user::frame_window * pframe)
+   bool schema::_001OnDrawMainFrameBackground(::draw2d::graphics * pgraphics,::user::frame_window * pframe)
    {
 
       return false;

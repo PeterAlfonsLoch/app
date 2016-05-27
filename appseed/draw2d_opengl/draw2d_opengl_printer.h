@@ -1,17 +1,17 @@
 #pragma once
 
 
-namespace draw2d_gl2d
+namespace draw2d_opengl
 {
 
 
-   class CLASS_DECL_DRAW2D_GL2D printer :
+   class CLASS_DECL_DRAW2D_OPENGL printer :
       virtual public ::aura::printer
    {
    public:
 
 
-      class CLASS_DECL_DRAW2D_GL2D document_properties :
+      class CLASS_DECL_DRAW2D_OPENGL document_properties :
          virtual public ::object
       {
       public:
@@ -25,7 +25,7 @@ namespace draw2d_gl2d
          virtual ~document_properties();
 
 
-         virtual bool initialize(::draw2d_gl2d::printer * pprinter, DEVMODE * pdevmode = NULL);
+         virtual bool initialize(::draw2d_opengl::printer * pprinter, DEVMODE * pdevmode = NULL);
          virtual bool close();
          virtual ::draw2d::graphics * create_graphics();
 
@@ -51,6 +51,6 @@ namespace draw2d_gl2d
 
 
 
-} // namespace draw2d_gl2d
+} // namespace draw2d_opengl
 
 

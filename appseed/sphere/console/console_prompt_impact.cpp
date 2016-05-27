@@ -279,10 +279,10 @@ namespace console
    }
 
 
-   void prompt_impact::_001OnDraw(::draw2d::dib * pdib)
+   void prompt_impact::_001OnDraw(::draw2d::graphics * pgraphics)
    {
 
-      ::draw2d::graphics * pgraphics = pdib->get_graphics();
+      
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
       ::draw2d::font_sp f(allocer());

@@ -21,7 +21,7 @@ namespace html
             check_box(::aura::application * papp): object(papp),::user::check_box(papp) {}
             virtual ~check_box() {}
 
-            virtual void _001OnClip(::draw2d::dib * pdib) {}
+            virtual void _001OnClip(::draw2d::graphics * pgraphics) {}
          };
 
       } // namespace user
@@ -124,14 +124,14 @@ namespace html
       void input_checkbox::_001OnDraw(data * pdata)
       {
 
-         ::draw2d::graphics * pdc = pdata->m_pdib->get_graphics();
+         ::draw2d::graphics * pgraphics = pdata->m_pgraphics;
 
          //rect rectWindow;
          //m_pcheckbox->GetWindowRect(rectWindow);
-         ::point ptPreviousViewportOrg = pdc->GetViewportOrg();
-         pdc->OffsetViewportOrg((int32_t) m_box.left, (int32_t) m_box.top);
-         m_pcheckbox->_000OnDraw(pdata->m_pdib);
-         pdc->SetViewportOrg(ptPreviousViewportOrg);
+         ::point ptPreviousViewportOrg = pgraphics->GetViewportOrg();
+         pgraphics->OffsetViewportOrg((int32_t) m_box.left, (int32_t) m_box.top);
+         m_pcheckbox->_000OnDraw(pdata->m_pgraphics);
+         pgraphics->SetViewportOrg(ptPreviousViewportOrg);
       }
 
       void input_checkbox::on_change_layout(data * pdata)

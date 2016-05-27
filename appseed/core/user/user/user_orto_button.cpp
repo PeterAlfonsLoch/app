@@ -24,10 +24,10 @@ bool OrtoButton::pre_create_window(::user::create_struct& cs)
 
 
 
-void OrtoButton::_001OnDraw(::draw2d::dib * pdib)
+void OrtoButton::_001OnDraw(::draw2d::graphics * pgraphics)
 {
 
-   ::draw2d::graphics * pdc = pdib->get_graphics();
+   
 
    rect rectClient;
 
@@ -41,7 +41,7 @@ void OrtoButton::_001OnDraw(::draw2d::dib * pdib)
    if(!is_window_enabled())
    {
 
-      pdc->FillSolidRect(rectClient,ARGB(255,84,84,77));
+      pgraphics->FillSolidRect(rectClient,ARGB(255,84,84,77));
 
       crText = ARGB(255,49,49,23);
 
@@ -49,7 +49,7 @@ void OrtoButton::_001OnDraw(::draw2d::dib * pdib)
    else if(m_iHover >= 0)
    {
 
-      pdc->FillSolidRect(rectClient,ARGB(184,49,49,23));
+      pgraphics->FillSolidRect(rectClient,ARGB(184,49,49,23));
 
       crText = ARGB(255,255,255,255);
 
@@ -57,7 +57,7 @@ void OrtoButton::_001OnDraw(::draw2d::dib * pdib)
    else if(Session.get_keyboard_focus() == this)
    {
 
-      pdc->FillSolidRect(rectClient,ARGB(255,255,250,184));
+      pgraphics->FillSolidRect(rectClient,ARGB(255,255,250,184));
 
       crText = ARGB(255,255,255,255);
 
@@ -76,11 +76,11 @@ void OrtoButton::_001OnDraw(::draw2d::dib * pdib)
 
       GetWindowText(str);
 
-      select_font(pdc);
+      select_font(pgraphics);
 
-      pdc->set_text_color(crText);
+      pgraphics->set_text_color(crText);
 
-      pdc->draw_text(str,rectClient,DT_CENTER | DT_VCENTER | DT_SINGLELINE);
+      pgraphics->draw_text(str,rectClient,DT_CENTER | DT_VCENTER | DT_SINGLELINE);
 
    }
    else
@@ -90,7 +90,7 @@ void OrtoButton::_001OnDraw(::draw2d::dib * pdib)
 
       brush->create_solid(crText);
 
-      pdc->SelectObject(brush);
+      pgraphics->SelectObject(brush);
 
       ::draw2d::pen_sp pen(allocer());
 
@@ -100,13 +100,13 @@ void OrtoButton::_001OnDraw(::draw2d::dib * pdib)
 
       pen->m_bUpdated = false;
 
-      pdc->SelectObject(pen);
+      pgraphics->SelectObject(pen);
 
       class rect rectIcon(rectClient);
 
       rectIcon.deflate(rectIcon.width() / 6,rectIcon.height() / 6);
 
-      pdc->draw_stock_icon(rectIcon,m_estockicon);
+      pgraphics->draw_stock_icon(rectIcon,m_estockicon);
 
 
    }

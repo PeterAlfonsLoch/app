@@ -33,7 +33,7 @@ namespace plugin
 
       void install_message_handling(::message::dispatch * pmessage);
 
-      virtual void _000OnDraw(::draw2d::dib * pdib);
+      virtual void _000OnDraw(::draw2d::graphics * pgraphics);
 
       virtual bool defer_check(e_check echeck);
       virtual void layout();

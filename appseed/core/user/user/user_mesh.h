@@ -421,8 +421,8 @@ namespace user
 
 
 
-      int32_t _001CalcItemWidth(::draw2d::graphics * pdc,index iItem,index iSubItem);
-      int32_t _001CalcItemWidth(::draw2d::graphics * pdc,::draw2d::font * pfont,index iItem,index iSubItem);
+      int32_t _001CalcItemWidth(::draw2d::graphics * pgraphics,index iItem,index iSubItem);
+      int32_t _001CalcItemWidth(::draw2d::graphics * pgraphics,::draw2d::font * pfont,index iItem,index iSubItem);
 
 
 
@@ -519,7 +519,7 @@ namespace user
 
 
 
-      virtual void _001OnDraw(::draw2d::dib * pdib);
+      virtual void _001OnDraw(::draw2d::graphics * pgraphics);
 
       virtual void _001DrawGroups(draw_mesh_item * pdrawitem,index iGroupFirst,index iGroupLast,index iItemFirst,index iItemLast);
 

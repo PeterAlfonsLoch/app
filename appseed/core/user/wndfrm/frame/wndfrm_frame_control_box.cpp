@@ -817,15 +817,15 @@ namespace user
          int32_t control_box::calc_button_size()
          {
 
-            ::draw2d::graphics_sp pdc(allocer());
+            ::draw2d::graphics_sp pgraphics(allocer());
 
-            pdc->CreateCompatibleDC(NULL);
+            pgraphics->CreateCompatibleDC(NULL);
 
             ::draw2d::text_metric tm;
 
-            pdc->SelectObject(m_fontMarlett);
+            pgraphics->SelectObject(m_fontMarlett);
 
-            pdc->get_text_metrics(&tm);
+            pgraphics->get_text_metrics(&tm);
 
             int32_t iButtonSize = tm.tmHeight + m_iDefaultButtonMargin * 3;
 

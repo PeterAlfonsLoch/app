@@ -45,14 +45,14 @@ namespace simple_ui
 
 
 
-   void password::_001OnDraw(::draw2d::dib * pdib)
+   void password::_001OnDraw(::draw2d::graphics * pgraphics)
    {
 
-      ::draw2d::graphics * pdc = pdib->get_graphics();
+      
 
       //return;
 
-      pdc->set_text_rendering(::draw2d::text_rendering_anti_alias);
+      pgraphics->set_text_rendering(::draw2d::text_rendering_anti_alias);
 
       COLORREF crBk;
       COLORREF crBkSel;
@@ -66,7 +66,7 @@ namespace simple_ui
       crBkSel     = _001GetColor(::user::color_background_selected);
 
 
-      ::job * pjob = pdc->m_pjob;
+      ::job * pjob = pgraphics->m_pjob;
 
       ::user::print_job * pprintjob = NULL;
       if(pjob != NULL)
@@ -88,12 +88,12 @@ namespace simple_ui
 
       //rectClient.deflate(0, 0, 1, 1);
 
-      //::draw2d::graphics * pdc = pdib->get_graphics();
+      //
 
       if(pprintjob == NULL)
       {
 
-         ::user::interaction::_001OnDraw(pdib);
+         ::user::interaction::_001OnDraw(pgraphics);
 
       }
 
@@ -101,7 +101,7 @@ namespace simple_ui
       && !Session.savings().is_trying_to_save(::aura::resource_blur_background))
       {
 
-      pdc->blur(true, 4, rectClient);
+      pgraphics->blur(true, 4, rectClient);
       //class imaging & imaging = System.visual().imaging();
       //rect rectClient;
       //         GetWindowRect(rectClient);
@@ -117,7 +117,7 @@ namespace simple_ui
       }
       if(m_fastblur.is_set() && m_fastblur->get_graphics() != NULL)
       {
-      m_fastblur->get_graphics()->BitBlt(0, 0, rectClient.width(), rectClient.height(), pdc, 0, 0, SRCCOPY);
+      m_fastblur->get_graphics()->BitBlt(0, 0, rectClient.width(), rectClient.height(), pgraphics, 0, 0, SRCCOPY);
       m_fastblur.blur();
       imaging.bitmap_blend(
       m_fastblur->get_graphics(),
@@ -126,7 +126,7 @@ namespace simple_ui
       m_dibBk->get_graphics(),
       null_point(),
       49);
-      pdc->from(rectClient.size(),
+      pgraphics->from(rectClient.size(),
       m_fastblur->get_graphics(),
       null_point(),
       SRCCOPY);
@@ -135,9 +135,9 @@ namespace simple_ui
       else
       {
       class imaging & imaging = System.visual().imaging();
-      //_001DrawBackground(pdc, rectClipBox);
+      //_001DrawBackground(pgraphics, rectClipBox);
       imaging.color_blend(
-      pdc,
+      pgraphics,
       rectClient,
       RGB(200, 255, 255),
       127);
@@ -147,18 +147,18 @@ namespace simple_ui
       ca.set_rgb(RGB(227,227,210));
       ca.hls_rate(0.0,-0.33,-0.23);
 //      COLORREF crBorder = ca.get_rgb() | (0xff << 24);
-      //pdc->Draw3dRect(rectClient,crBorder,crBorder);
+      //pgraphics->Draw3dRect(rectClient,crBorder,crBorder);
 
       if(m_ptree == NULL)
          return;
 
       /*if(m_iLineHeight == 0)
       {
-         pdc->OffsetViewportOrg(-m_scrolldata.m_ptScroll.x,m_scrolldata.m_ptScroll.y);
+         pgraphics->OffsetViewportOrg(-m_scrolldata.m_ptScroll.x,m_scrolldata.m_ptScroll.y);
       }
       else
       {
-         pdc->OffsetViewportOrg(-m_scrolldata.m_ptScroll.x,-(m_scrolldata.m_ptScroll.y % m_iLineHeight));
+         pgraphics->OffsetViewportOrg(-m_scrolldata.m_ptScroll.x,-(m_scrolldata.m_ptScroll.y % m_iLineHeight));
       }*/
 
 
@@ -171,7 +171,7 @@ namespace simple_ui
 
       double left = rectClient.left;
 
-      //   pdc->SelectClipRgn(&rgn);
+      //   pgraphics->SelectClipRgn(&rgn);
 
       if(Session.get_keyboard_focus() == this)
       {
@@ -197,17 +197,17 @@ namespace simple_ui
       rectClient.left = m_pt.x;
       rectClient.bottom = rectClient.top + m_size.cy;
       rectClient.right = rectClient.left + m_size.cx;*/
-      //      pdc->FillSolidRect(rectClient, crBk);
+      //      pgraphics->FillSolidRect(rectClient, crBk);
 
-//      ::draw2d::graphics * pdc = pdib->get_graphics();
+//      
 
       double y = rectClient.top;
       _001GetViewSel(iSelStart,iSelEnd);
       strsize iCursor = iSelEnd;
       sort::sort(iSelStart,iSelEnd);
-      select_font(pdc);
+      select_font(pgraphics);
       size size3;
-      size3 = pdc->GetTextExtent(unitext("gGYIﾍ"));
+      size3 = pgraphics->GetTextExtent(unitext("gGYIﾍ"));
       int32_t iLineHeight = size3.cy;
       stringa & straLines = m_plines->lines;
       stringa straLineFeed;
@@ -254,42 +254,42 @@ namespace simple_ui
             str_fill(strExtent3,'*');
 
          brushText->create_solid(cr);
-         pdc->SelectObject(brushText);
-         pdc->TextOut(left,y,strExtent1);
+         pgraphics->SelectObject(brushText);
+         pgraphics->TextOut(left,y,strExtent1);
 
          sized size1(0.0,0.0);
-         pdc->GetTextExtent(size1,strLine,(int32_t)strLine.length(),(int32_t)iStart);
+         pgraphics->GetTextExtent(size1,strLine,(int32_t)strLine.length(),(int32_t)iStart);
          sized sizeb(0.0,0.0);
-         pdc->GetTextExtent(sizeb,strLine,iEnd);
+         pgraphics->GetTextExtent(sizeb,strLine,iEnd);
          sized size2(0.0,0.0);
-         pdc->GetTextExtent(size2,strLine,(int32_t)strLine.length(),(int32_t)iEnd);
+         pgraphics->GetTextExtent(size2,strLine,(int32_t)strLine.length(),(int32_t)iEnd);
          size2.cx -= size1.cx;
 
          if(iEnd > iStart)
          {
-            pdc->FillSolidRect((int32_t)(left + size1.cx),(int32_t)y,(int32_t)size2.cx,(int32_t)size2.cy,ARGB(255,120,240,180));
+            pgraphics->FillSolidRect((int32_t)(left + size1.cx),(int32_t)y,(int32_t)size2.cx,(int32_t)size2.cy,ARGB(255,120,240,180));
             brushText->create_solid(crSel);
-            pdc->SelectObject(brushText);
-            pdc->TextOut(left + size1.cx,y,strExtent2);
+            pgraphics->SelectObject(brushText);
+            pgraphics->TextOut(left + size1.cx,y,strExtent2);
          }
 
          brushText->create_solid(cr);
-         pdc->SelectObject(brushText);
-         pdc->TextOut(left + size1.cx + size2.cx,y,strExtent3);
+         pgraphics->SelectObject(brushText);
+         pgraphics->TextOut(left + size1.cx + size2.cx,y,strExtent3);
 
          //maxcy = MAX(size1.cy, size2.cy);
          //maxcy = MAX(maxcy, size3.cy);
          if(m_bFocus && bCaretOn && i3 == str1.get_length())
          {
-            pdc->SelectObject(penCaret);
-            pdc->MoveTo(left + size1.cx,y);
-            pdc->LineTo(left + size1.cx,y + iLineHeight);
+            pgraphics->SelectObject(penCaret);
+            pgraphics->MoveTo(left + size1.cx,y);
+            pgraphics->LineTo(left + size1.cx,y + iLineHeight);
          }
          else if(m_bFocus && bCaretOn && i3 == (str1.get_length() + str2.get_length()))
          {
-            pdc->SelectObject(penCaret);
-            pdc->MoveTo(left + size2.cx + size1.cx,y);
-            pdc->LineTo(left + size2.cx + size1.cx,y + iLineHeight);
+            pgraphics->SelectObject(penCaret);
+            pgraphics->MoveTo(left + size2.cx + size1.cx,y);
+            pgraphics->LineTo(left + size2.cx + size1.cx,y + iLineHeight);
          }
          y += iLineHeight;
          lim += straLines[i].get_length();

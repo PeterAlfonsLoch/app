@@ -75,27 +75,27 @@ namespace draw2d_xlib
    int_bool region::RectInRegion(LPCRECT lpRect) const
    { ASSERT(get_os_data() != NULL); return ::RectInRegion((HRGN)get_os_data(), lpRect); }*/
 
-/*   bool region::get(xlib_t * pdc)
+/*   bool region::get(xlib_t * pgraphics)
    {
 
-      xlib_set_source_rgba(pdc, 0.0, 0.0, 0.0, 0.0);
+      xlib_set_source_rgba(pgraphics, 0.0, 0.0, 0.0, 0.0);
 
-      xlib_set_operator(pdc, CAIRO_OPERATOR_SOURCE);
+      xlib_set_operator(pgraphics, CAIRO_OPERATOR_SOURCE);
 
       switch(m_etype)
       {
       case type_none:
          return true;
       case type_rect:
-         return get_rect(pdc);
+         return get_rect(pgraphics);
       case type_oval:
-         return get_oval(pdc);
+         return get_oval(pgraphics);
       case type_polygon:
-         return get_polygon(pdc);
+         return get_polygon(pgraphics);
       case type_poly_polygon:
-         return get_polygon(pdc);
+         return get_polygon(pgraphics);
       case type_combine:
-         return get_combine(pdc);
+         return get_combine(pgraphics);
       default:
          throw not_implemented(get_app());
       }
@@ -104,18 +104,18 @@ namespace draw2d_xlib
 
    }
 
-   bool region::get_rect(xlib_t * pdc)
+   bool region::get_rect(xlib_t * pgraphics)
    {
 
-      xlib_rectangle(pdc, m_x1, m_y1, m_x2, m_y2);
+      xlib_rectangle(pgraphics, m_x1, m_y1, m_x2, m_y2);
 
-      xlib_fill(pdc);
+      xlib_fill(pgraphics);
 
       return true;
 
    }
 
-   bool region::get_oval(xlib_t * pdc)
+   bool region::get_oval(xlib_t * pgraphics)
    {
 
       double centerx    = (m_x2 + m_x1) / 2.0;
@@ -127,44 +127,44 @@ namespace draw2d_xlib
       if(radiusx == 0.0 || radiusy == 0.0)
          return false;
 
-      xlib_translate(pdc, centerx, centery);
+      xlib_translate(pgraphics, centerx, centery);
 
-      xlib_scale(pdc, radiusx, radiusy);
+      xlib_scale(pgraphics, radiusx, radiusy);
 
-      xlib_arc(pdc, 0.0, 0.0, 1.0, 0.0, 2.0 * 3.1415);
+      xlib_arc(pgraphics, 0.0, 0.0, 1.0, 0.0, 2.0 * 3.1415);
 
-      xlib_fill(pdc);
+      xlib_fill(pgraphics);
 
-      xlib_scale(pdc, 1.0 / radiusx, 1.0 / radiusy);
+      xlib_scale(pgraphics, 1.0 / radiusx, 1.0 / radiusy);
 
-      xlib_translate(pdc, -centerx,  -centery);
+      xlib_translate(pgraphics, -centerx,  -centery);
 
       return true;
 
    }
 
-   bool region::get_polygon(xlib_t * pdc)
+   bool region::get_polygon(xlib_t * pgraphics)
    {
 
       if(m_nCount <= 0)
          return true;
 
 
-      xlib_move_to(pdc, m_lppoints[0].x, m_lppoints[0].y);
+      xlib_move_to(pgraphics, m_lppoints[0].x, m_lppoints[0].y);
 
       for(int32_t i = 1; i < m_nCount; i++)
       {
 
-         xlib_line_to(pdc, m_lppoints[i].x, m_lppoints[i].y);
+         xlib_line_to(pgraphics, m_lppoints[i].x, m_lppoints[i].y);
 
       }
-      xlib_fill(pdc);
+      xlib_fill(pgraphics);
 
       return true;
 
    }
 
-   bool region::get_poly_polygon(xlib_t * pdc)
+   bool region::get_poly_polygon(xlib_t * pgraphics)
    {
 
       int32_t n = 0;
@@ -174,57 +174,57 @@ namespace draw2d_xlib
          int32_t jCount = m_lppolycounts[i];
          if(jCount > 0)
          {
-            xlib_move_to(pdc, m_lppoints[n].x, m_lppoints[n].y);
+            xlib_move_to(pgraphics, m_lppoints[n].x, m_lppoints[n].y);
             n++;
             for(int32_t j = 1; i < jCount; j++)
             {
-               xlib_line_to(pdc, m_lppoints[n].x, m_lppoints[n].y);
+               xlib_line_to(pgraphics, m_lppoints[n].x, m_lppoints[n].y);
                n++;
             }
          }
 
       }
-      xlib_fill(pdc);
+      xlib_fill(pgraphics);
 
       return true;
 
    }
 
-   bool region::get_combine(xlib_t * pdc)
+   bool region::get_combine(xlib_t * pgraphics)
    {
 
-      xlib_push_group( pdc);
+      xlib_push_group( pgraphics);
 
-      dynamic_cast < ::draw2d_xlib::region * >(m_pregion1)->get( pdc);
+      dynamic_cast < ::draw2d_xlib::region * >(m_pregion1)->get( pgraphics);
 
-      xlib_pop_group_to_source(pdc);
+      xlib_pop_group_to_source(pgraphics);
 
-      xlib_paint(pdc);
+      xlib_paint(pgraphics);
 
-      xlib_push_group(pdc);
+      xlib_push_group(pgraphics);
 
-      dynamic_cast < ::draw2d_xlib::region * >(m_pregion2)->get( pdc);
+      dynamic_cast < ::draw2d_xlib::region * >(m_pregion2)->get( pgraphics);
 
-      xlib_pop_group_to_source(pdc);
+      xlib_pop_group_to_source(pgraphics);
 
       if(m_ecombine == ::draw2d::region::combine_add)
       {
-         xlib_set_operator(pdc, CAIRO_OPERATOR_SOURCE);
+         xlib_set_operator(pgraphics, CAIRO_OPERATOR_SOURCE);
       }
       else if(m_ecombine == ::draw2d::region::combine_exclude)
       {
-         xlib_set_operator(pdc, CAIRO_OPERATOR_CLEAR);
+         xlib_set_operator(pgraphics, CAIRO_OPERATOR_CLEAR);
       }
       else if(m_ecombine == ::draw2d::region::combine_intersect)
       {
-         xlib_set_operator(pdc, CAIRO_OPERATOR_IN);
+         xlib_set_operator(pgraphics, CAIRO_OPERATOR_IN);
       }
       else
       {
-         xlib_set_operator(pdc, CAIRO_OPERATOR_SOURCE);
+         xlib_set_operator(pgraphics, CAIRO_OPERATOR_SOURCE);
       }
 
-      xlib_paint(pdc);
+      xlib_paint(pgraphics);
 
       return true;
 

@@ -138,13 +138,13 @@ namespace draw2d_quartz2d
       s.width =1000;
       s.height=1000;
       
-      CGContextRef pdc = CGContextCreate(s);
+      CGContextRef pgraphics = CGContextCreate(s);
       
-      internal_show_text(pdc, spfont,NULL,NULL, x, y, strText, (int)strText.get_length(), kCGTextStroke);
+      internal_show_text(pgraphics, spfont,NULL,NULL, x, y, strText, (int)strText.get_length(), kCGTextStroke);
       
-      CGPathAddPath(m_path, NULL, CGContextCopyPath(pdc));
+      CGPathAddPath(m_path, NULL, CGContextCopyPath(pgraphics));
       
-      CGContextRelease(pdc);
+      CGContextRelease(pgraphics);
       
       return true;
       

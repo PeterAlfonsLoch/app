@@ -171,7 +171,7 @@ namespace hotplugin
    }
 
 
-   void host::on_paint(::draw2d::dib * pdib,const RECT & lprect)
+   void host::on_paint(::draw2d::graphics * pgraphics,const RECT & lprect)
    {
 
       if(m_pplugin != NULL)
@@ -181,7 +181,7 @@ namespace hotplugin
          {
             //DWORD dwTime1 = ::get_tick_count();
 
-            m_pplugin->on_paint(pdib, lprect);
+            m_pplugin->on_paint(pgraphics, lprect);
             //DWORD dwTime9 = ::get_tick_count();
 
             //TRACE("plugin->on_paint %d",dwTime9 - dwTime1);
@@ -196,16 +196,16 @@ namespace hotplugin
       else
       {
 
-         plugin::on_paint(pdib, lprect);
+         plugin::on_paint(pgraphics, lprect);
 
       }
 
-      if(::user::interaction::m_pimpl != NULL && pdib != NULL)
+      if(::user::interaction::m_pimpl != NULL && pgraphics != NULL)
       {
          //DWORD dwTime1 = ::get_tick_count();
 
 
-         ::user::interaction::m_pimpl->_001Print(pdib);
+         ::user::interaction::m_pimpl->_001Print(pgraphics);
          //DWORD dwTime9 = ::get_tick_count();
 
          //TRACE("m_pimpl->_001Print %d",dwTime9 - dwTime1);
@@ -458,7 +458,7 @@ namespace hotplugin
    }
 
 
-   void host::set_bitmap(::draw2d::dib * pdib,const RECT & lprect)
+   void host::set_bitmap(::draw2d::graphics * pgraphics,const RECT & lprect)
    {
 
       ensure_bitmap_data((int32_t)width(lprect), (int32_t)height(lprect), false);
@@ -498,7 +498,7 @@ namespace hotplugin
    }
 
 
-   void host::paint_bitmap(::draw2d::dib * pdib,const RECT & lprect)
+   void host::paint_bitmap(::draw2d::graphics * pgraphics,const RECT & lprect)
    {
 
       ensure_bitmap_data((int32_t)width(lprect), (int32_t)height(lprect), false);
@@ -538,7 +538,7 @@ namespace hotplugin
    }
 
 
-   void host::blend_bitmap(::draw2d::dib * pdib,const RECT & lprectOut)
+   void host::blend_bitmap(::draw2d::graphics * pgraphics,const RECT & lprectOut)
    {
 
       ::rect rect;
@@ -569,7 +569,7 @@ namespace hotplugin
 
       memcpy(m_dib->m_pcolorref, m_memBitmap.get_data(), (size_t) (m_dib->area() * sizeof(COLORREF)));
 
-      pdib->from(point(lprectOut.left,lprectOut.top), m_dib, null_point(), size(m_sizeBitmap.cx,m_sizeBitmap.cy));
+      pgraphics->BitBlt(point(lprectOut.left,lprectOut.top), size(m_sizeBitmap.cx, m_sizeBitmap.cy), m_dib->get_graphics(), null_point());
 
       //{
 

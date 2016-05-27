@@ -18,16 +18,16 @@ namespace visual
    }
 
 
-   bool graphics_extension::TextOut(::draw2d::graphics * pdc, int32_t x, int32_t y, const char * lpcsz, strsize iCount, size & s)
+   bool graphics_extension::TextOut(::draw2d::graphics * pgraphics, int32_t x, int32_t y, const char * lpcsz, strsize iCount, size & s)
    {
-      s = pdc->GetTextExtent(string(lpcsz,iCount));
-      return pdc->TextOut(x, y, string(lpcsz, iCount));
-      //return ::TextOutU((HDC)pdc->get_os_data(), x, y, lpcsz, iCount);
+      s = pgraphics->GetTextExtent(string(lpcsz,iCount));
+      return pgraphics->TextOut(x, y, string(lpcsz, iCount));
+      //return ::TextOutU((HDC)pgraphics->get_os_data(), x, y, lpcsz, iCount);
 
    }
 
 
-   void graphics_extension::GetTextExtent(::draw2d::graphics *pdc, const char * lpcsz, array < size > & sizea)
+   void graphics_extension::GetTextExtent(::draw2d::graphics *pgraphics, const char * lpcsz, array < size > & sizea)
    {
       string str(lpcsz);
       strsize iLen = str.get_length();
@@ -39,7 +39,7 @@ namespace visual
       for(int32_t i = 1; i < iLen; i++)
       {
          ::GetTextExtentPoint32U(
-            (HDC)pdc->get_os_data(),
+            (HDC)pgraphics->get_os_data(),
             str,
             i,
             &sizea[i]);
@@ -47,33 +47,33 @@ namespace visual
 
    }
 
-   void graphics_extension::GetTextExtent(::draw2d::graphics *pdc, const char * lpsz, size & size)
+   void graphics_extension::GetTextExtent(::draw2d::graphics *pgraphics, const char * lpsz, size & size)
    {
 
       //synch_lock ml(&user_mutex());
 
       /*string str(lpwsz);
-      if(pdc == NULL)
+      if(pgraphics == NULL)
          return;
       ::GetTextExtentPoint32U(
-         (HDC)pdc->get_os_data(),
+         (HDC)pgraphics->get_os_data(),
          (const char *) str,
          str.get_length(),
          &size);*/
 
-      size = pdc->GetTextExtent(lpsz);
+      size = pgraphics->GetTextExtent(lpsz);
 
    }
 
-   void graphics_extension::GetTextExtent(::draw2d::graphics *pdc, const char * lpcsz, strsize iCount, size & size)
+   void graphics_extension::GetTextExtent(::draw2d::graphics *pgraphics, const char * lpcsz, strsize iCount, size & size)
    {
       /*::GetTextExtentPoint32U(
-         (HDC)pdc->get_os_data(),
+         (HDC)pgraphics->get_os_data(),
          lpcsz,
          iCount,
          &size);*/
 
-      size = pdc->GetTextExtent(string(lpcsz, iCount));
+      size = pgraphics->GetTextExtent(string(lpcsz, iCount));
 
    }
 

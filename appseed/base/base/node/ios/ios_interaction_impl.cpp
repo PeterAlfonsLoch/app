@@ -1120,7 +1120,7 @@ namespace ios
    void interaction_impl::_002OnDraw(::draw2d::dib * pdib)
    {
       
-      //      ::CallWindowProc(*GetSuperWndProcAddr(), get_handle(), WM_PRINT, (WPARAM)((dynamic_cast<::draw2d_quartz2d::graphics * >(pdc))->get_handle()), (LPARAM)(PRF_CHILDREN | PRF_CLIENT));
+      //      ::CallWindowProc(*GetSuperWndProcAddr(), get_handle(), WM_PRINT, (WPARAM)((dynamic_cast<::draw2d_quartz2d::graphics * >(pgraphics))->get_handle()), (LPARAM)(PRF_CHILDREN | PRF_CLIENT));
       
    }
    
@@ -3000,7 +3000,7 @@ namespace ios
    
    /*   void interaction_impl::_001OnDeferPaintLayeredWindowBackground(::draw2d::dib * pdib)
     {
-    _001DeferPaintLayeredWindowBackground(pdc);
+    _001DeferPaintLayeredWindowBackground(pgraphics);
     }*/
    
    
@@ -3056,7 +3056,7 @@ namespace ios
       GetClientRect(rectClient);
       
       
-      //pdc->FillSolidRect(rectClient, 0x00000000);
+      //pgraphics->FillSolidRect(rectClient, 0x00000000);
       
       //return;
       rect rectUpdate;
@@ -3161,7 +3161,7 @@ namespace ios
       //                  }
       //                  if(pwnd != NULL)
       //                  {
-      //                  pwnd->_001Print(pdc);
+      //                  pwnd->_001Print(pgraphics);
       //                  }*/
       //                  //if(::GetWindowLong(wndaApp[j], GWL_EXSTYLE) & WS_EX_LAYERED)
       //                  if(true)
@@ -3260,10 +3260,10 @@ namespace ios
       //         if(!dib->create(rectWindow.bottom_right()))
       //            return;
       //
-      //         ::draw2d::graphics * pdc = dib->get_graphics();
+      //         ::draw2d::graphics * pgraphics = dib->get_graphics();
       //
-      //         if((dynamic_cast<::draw2d_quartz2d::graphics * >(pdc))->get_handle() == NULL
-      //            || (dynamic_cast<::draw2d_quartz2d::graphics * >(pdc))->get_os_data2() == NULL)
+      //         if((dynamic_cast<::draw2d_quartz2d::graphics * >(pgraphics))->get_handle() == NULL
+      //            || (dynamic_cast<::draw2d_quartz2d::graphics * >(pgraphics))->get_os_data2() == NULL)
       //            return;
       //
       //         rect rectPaint;
@@ -3280,25 +3280,25 @@ namespace ios
       //            rectUpdate = rectPaint;
       //            ClientToScreen(rectUpdate);
       //         }
-      //         (dynamic_cast<::draw2d_quartz2d::graphics * >(pdc))->SelectClipRgn(NULL);
+      //         (dynamic_cast<::draw2d_quartz2d::graphics * >(pgraphics))->SelectClipRgn(NULL);
       //         if(m_pui != NULL && m_pui != this)
       //         {
-      //            m_pui->_001OnDeferPaintLayeredWindowBackground(pdc);
+      //            m_pui->_001OnDeferPaintLayeredWindowBackground(pgraphics);
       //         }
       //         else
       //         {
-      //            _001OnDeferPaintLayeredWindowBackground(pdc);
+      //            _001OnDeferPaintLayeredWindowBackground(pgraphics);
       //         }
-      //         (dynamic_cast<::draw2d_quartz2d::graphics * >(pdc))->SelectClipRgn(NULL);
-      //         (dynamic_cast<::draw2d_quartz2d::graphics * >(pdc))->SetViewportOrg(point(0, 0));
-      //         _000OnDraw(pdc);
-      //         (dynamic_cast<::draw2d_quartz2d::graphics * >(pdc))->SetViewportOrg(point(0, 0));
-      //         //(dynamic_cast<::draw2d_quartz2d::graphics * >(pdc))->FillSolidRect(rectUpdate.left, rectUpdate.top, 100, 100, 255);
-      //         (dynamic_cast<::draw2d_quartz2d::graphics * >(pdc))->SelectClipRgn(NULL);
-      //         (dynamic_cast<::draw2d_quartz2d::graphics * >(pdc))->SetViewportOrg(point(0, 0));
+      //         (dynamic_cast<::draw2d_quartz2d::graphics * >(pgraphics))->SelectClipRgn(NULL);
+      //         (dynamic_cast<::draw2d_quartz2d::graphics * >(pgraphics))->SetViewportOrg(point(0, 0));
+      //         _000OnDraw(pgraphics);
+      //         (dynamic_cast<::draw2d_quartz2d::graphics * >(pgraphics))->SetViewportOrg(point(0, 0));
+      //         //(dynamic_cast<::draw2d_quartz2d::graphics * >(pgraphics))->FillSolidRect(rectUpdate.left, rectUpdate.top, 100, 100, 255);
+      //         (dynamic_cast<::draw2d_quartz2d::graphics * >(pgraphics))->SelectClipRgn(NULL);
+      //         (dynamic_cast<::draw2d_quartz2d::graphics * >(pgraphics))->SetViewportOrg(point(0, 0));
       //         BitBlt(hdc, rectPaint.left, rectPaint.top,
       //            rectPaint.width(), rectPaint.height(),
-      //            (HDC) pdc->get_handle(), rectUpdate.left, rectUpdate.top,
+      //            (HDC) pgraphics->get_handle(), rectUpdate.left, rectUpdate.top,
       //            SRCCOPY);
       //
       //      }
@@ -3340,9 +3340,9 @@ namespace ios
       //         if(!dib->create(rectWindow.bottom_right()))
       //            return;
       //
-      //         ::draw2d::graphics * pdc = dib->get_graphics();
+      //         ::draw2d::graphics * pgraphics = dib->get_graphics();
       //
-      //         if(pdc->get_handle() == NULL)
+      //         if(pgraphics->get_handle() == NULL)
       //            return;
       //
       //         rect rectPaint;
@@ -3350,27 +3350,27 @@ namespace ios
       //         rectUpdate = rectWindow;
       //         rectPaint = rectWindow;
       //         rectPaint.offset(-rectPaint.top_left());
-      //         (dynamic_cast<::draw2d_quartz2d::graphics * >(pdc))->SelectClipRgn(NULL);
+      //         (dynamic_cast<::draw2d_quartz2d::graphics * >(pgraphics))->SelectClipRgn(NULL);
       //         if(m_pui != NULL && m_pui != this)
       //         {
-      //            m_pui->_001OnDeferPaintLayeredWindowBackground(pdc);
+      //            m_pui->_001OnDeferPaintLayeredWindowBackground(pgraphics);
       //         }
       //         else
       //         {
-      //            _001OnDeferPaintLayeredWindowBackground(pdc);
+      //            _001OnDeferPaintLayeredWindowBackground(pgraphics);
       //         }
-      //         (dynamic_cast<::draw2d_quartz2d::graphics * >(pdc))->SelectClipRgn(NULL);
-      //         (dynamic_cast<::draw2d_quartz2d::graphics * >(pdc))->SetViewportOrg(point(0, 0));
-      //         _000OnDraw(pdc);
-      //         (dynamic_cast<::draw2d_quartz2d::graphics * >(pdc))->SetViewportOrg(point(0, 0));
-      //         //(dynamic_cast<::draw2d_quartz2d::graphics * >(pdc))->FillSolidRect(rectUpdate.left, rectUpdate.top, 100, 100, 255);
-      //         (dynamic_cast<::draw2d_quartz2d::graphics * >(pdc))->SelectClipRgn(NULL);
-      //         (dynamic_cast<::draw2d_quartz2d::graphics * >(pdc))->SetViewportOrg(point(0, 0));
+      //         (dynamic_cast<::draw2d_quartz2d::graphics * >(pgraphics))->SelectClipRgn(NULL);
+      //         (dynamic_cast<::draw2d_quartz2d::graphics * >(pgraphics))->SetViewportOrg(point(0, 0));
+      //         _000OnDraw(pgraphics);
+      //         (dynamic_cast<::draw2d_quartz2d::graphics * >(pgraphics))->SetViewportOrg(point(0, 0));
+      //         //(dynamic_cast<::draw2d_quartz2d::graphics * >(pgraphics))->FillSolidRect(rectUpdate.left, rectUpdate.top, 100, 100, 255);
+      //         (dynamic_cast<::draw2d_quartz2d::graphics * >(pgraphics))->SelectClipRgn(NULL);
+      //         (dynamic_cast<::draw2d_quartz2d::graphics * >(pgraphics))->SetViewportOrg(point(0, 0));
       //
       //         graphics->SelectClipRgn( NULL);
       //         graphics->BitBlt(rectPaint.left, rectPaint.top,
       //            rectPaint.width(), rectPaint.height(),
-      //            pdc, rectUpdate.left, rectUpdate.top,
+      //            pgraphics, rectUpdate.left, rectUpdate.top,
       //            SRCCOPY);
       //
       //         graphics->TextOut(0, 0, "Te Amo Carlinhos!!", 11);
@@ -5878,7 +5878,7 @@ namespace ios
    }
    
    
-   void interaction_impl::set_viewport_org(::draw2d::dib * pdib)
+   void interaction_impl::set_viewport_org(::draw2d::graphics * pgraphics)
    {
       
       // graphics will be already set its view port to the user::interaction for linux - cairo with xlib

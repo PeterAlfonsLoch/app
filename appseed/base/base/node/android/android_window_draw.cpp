@@ -4,7 +4,7 @@
 
 #define DISABLE_UPDATE_BUFFER 0
 
-extern void _001DeferPaintLayeredWindowBackground(oswindow oswindow, ::draw2d::graphics * pdc);
+extern void _001DeferPaintLayeredWindowBackground(oswindow oswindow, ::draw2d::graphics * pgraphics);
 
 
 class keep_event_reset

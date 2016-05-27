@@ -1276,34 +1276,37 @@ void simple_frame_window::InitialFramePosition(bool bForceRestore)
 }
 
 
-void simple_frame_window::_001OnDeferPaintLayeredWindowBackground(::draw2d::dib * pdib)
+void simple_frame_window::_001OnDeferPaintLayeredWindowBackground(::draw2d::graphics * pgraphics)
 {
 
-   ::draw2d::graphics * pdc = pdib->get_graphics();
+   
 
    if (Session.savings().is_trying_to_save(::aura::resource_processing)
          || Session.savings().is_trying_to_save(::aura::resource_translucent_background))
    {
+      
       rect rectClient;
+
       GetClientRect(rectClient);
-      pdc->FillSolidRect(rectClient, RGB(0, 0, 0));
+
+      pgraphics->FillSolidRect(rectClient, RGB(0, 0, 0));
+
    }
    else
    {
 
-      ::user::frame_window::_001OnDeferPaintLayeredWindowBackground(pdib);
+      ::user::frame_window::_001OnDeferPaintLayeredWindowBackground(pgraphics);
+
    }
 
 }
 
 
-void simple_frame_window::_000OnDraw(::draw2d::dib * pdibParam)
+void simple_frame_window::_000OnDraw(::draw2d::graphics * pgraphicsParam)
 {
 
    if (!(IsWindowVisible() && (GetParent() == NULL || GetTopLevelFrame() == NULL || !GetTopLevelFrame()->WfiIsIconic())))
       return;
-
-   ::draw2d::graphics * pdcParam = pdibParam->get_graphics();
 
    rect rectClient;
 
@@ -1315,9 +1318,7 @@ void simple_frame_window::_000OnDraw(::draw2d::dib * pdibParam)
 
    double dAlpha = get_alpha();
 
-   ::draw2d::graphics * pdc = pdcParam;
-
-   ::draw2d::dib * pdib = pdibParam;
+   ::draw2d::graphics * pgraphics = pgraphicsParam;
 
    if(rectClient.area() > 0 && dAlpha > 0.0 && dAlpha < 1.0 && GetExStyle() & WS_EX_LAYERED)
    {
@@ -1333,11 +1334,9 @@ void simple_frame_window::_000OnDraw(::draw2d::dib * pdibParam)
 
       m_dibAlpha->Fill(0,0,0,0);
 
-      pdc = m_dibAlpha->get_graphics();
+      pgraphics = m_dibAlpha->get_graphics();
 
-      pdib = m_dibAlpha;
-
-      pdc->SetViewportOrg(pdc->GetViewportOrg());
+      pgraphics->SetViewportOrg(pgraphics->GetViewportOrg());
 
       bDib = true;
 
@@ -1346,48 +1345,68 @@ void simple_frame_window::_000OnDraw(::draw2d::dib * pdibParam)
    if(dAlpha > 0.0)
    {
 
-      if(m_puserschema != NULL && m_puserschema->_001OnDrawMainFrameBackground(pdib,this))
+      if(m_puserschema != NULL && m_puserschema->_001OnDrawMainFrameBackground(pgraphics,this))
       {
-         _001DrawThis(pdib);
-         _001DrawChildren(pdib);
-         _008CallOnDraw(pdib);
+
+         _001DrawThis(pgraphics);
+
+         _001DrawChildren(pgraphics);
+
+         _008CallOnDraw(pgraphics);
+
       }
       else if (m_bblur_Background)
       {
-         _001DrawThis(pdib);
-         _001DrawChildren(pdib);
-         _008CallOnDraw(pdib);
+
+         _001DrawThis(pgraphics);
+
+         _001DrawChildren(pgraphics);
+
+         _008CallOnDraw(pgraphics);
+
       }
       else if(!Session.savings().is_trying_to_save(::aura::resource_processing)
               && !Session.savings().is_trying_to_save(::aura::resource_display_bandwidth)
               && !Session.savings().is_trying_to_save(::aura::resource_memory))
          //&& (GetParent() != NULL || (this->GetExStyle() & WS_EX_LAYERED) != 0))
       {
+
 #if TEST
 
-         pdc->FillSolidRect(60, 10, 50, 50, ARGB(128, 184, 177, 84));
+         pgraphics->FillSolidRect(60, 10, 50, 50, ARGB(128, 184, 177, 84));
+
 #endif
 
-         _010OnDraw(pdib);
+         _010OnDraw(pgraphics);
+
 #if TEST
 
-         pdc->FillSolidRect(10, 60, 50, 50, ARGB(128, 255, 248, 84));
+         pgraphics->FillSolidRect(10, 60, 50, 50, ARGB(128, 255, 248, 84));
+
 #endif
+
       }
       else
       {
+
 #if TEST
 
-         pdc->FillSolidRect(60, 10, 50, 50, ARGB(128, 184, 177, 84));
+         pgraphics->FillSolidRect(60, 10, 50, 50, ARGB(128, 184, 177, 84));
+
 #endif
 
-         _001DrawThis(pdib);
-         _001DrawChildren(pdib);
-         _008CallOnDraw(pdib);
+         _001DrawThis(pgraphics);
+
+         _001DrawChildren(pgraphics);
+
+         _008CallOnDraw(pgraphics);
+
 #if TEST
 
-         pdc->FillSolidRect(10, 60, 50, 50, ARGB(128, 184, 177, 84));
+         pgraphics->FillSolidRect(10, 60, 50, 50, ARGB(128, 184, 177, 84));
+
 #endif
+
       }
 
    }
@@ -1395,34 +1414,43 @@ void simple_frame_window::_000OnDraw(::draw2d::dib * pdibParam)
    if(bDib)
    {
 
-      pdcParam->set_alpha_mode(::draw2d::alpha_mode_blend);
+      pgraphicsParam->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-      pdcParam->alpha_blend(null_point(),rectClient.size(),pdc,null_point(),dAlpha);
+      pgraphicsParam->alpha_blend(null_point(),rectClient.size(),pgraphics,null_point(),dAlpha);
 
    }
 
 }
 
 
-void simple_frame_window::_001OnDraw(::draw2d::dib * pdib)
+void simple_frame_window::_001OnDraw(::draw2d::graphics * pgraphics)
 {
+   
    single_lock sl(m_pmutex, true);
-
 
    if(m_bblur_Background)
    {
+      
       class imaging & imaging = System.visual().imaging();
+      
       rect rectClient;
+      
       GetClientRect(rectClient);
+      
       //rectClient.offset(rectClient.top_left());
+
       if(Session.savings().is_trying_to_save(::aura::resource_translucent_background))
       {
-         //pdc->FillSolidRect(rectClient, RGB(150, 220, 140));
+
+         //pgraphics->FillSolidRect(rectClient, RGB(150, 220, 140));
+
       }
       else if(Session.savings().is_trying_to_save(::aura::resource_processing)
               || Session.savings().is_trying_to_save(::aura::resource_blur_background))
       {
-         imaging.color_blend(pdib->get_graphics(),rectClient,RGB(150,180,140),150);
+
+         imaging.color_blend(pgraphics,rectClient,RGB(150,180,140),150);
+
       }
       else
       {
@@ -1438,7 +1466,8 @@ void simple_frame_window::_001OnDraw(::draw2d::dib * pdib)
          }
          if(m_fastblur.is_set() && m_fastblur->area() > 0)
          {
-            m_fastblur->get_graphics()->BitBlt(0,0,rectClient.width(),rectClient.height(),pdib->get_graphics(),0,0,SRCCOPY);
+            
+            m_fastblur->get_graphics()->BitBlt(0,0,rectClient.width(),rectClient.height(),pgraphics,0,0,SRCCOPY);
             m_fastblur.blur();
             imaging.bitmap_blend(
                m_fastblur->get_graphics(),
@@ -1447,7 +1476,7 @@ void simple_frame_window::_001OnDraw(::draw2d::dib * pdib)
                m_dibBk->get_graphics(),
                null_point(),
                49);
-            pdib->get_graphics()->from(rectClient.size(),
+            pgraphics->from(rectClient.size(),
                                        m_fastblur->get_graphics(),
                                        null_point(),
                                        SRCCOPY);
@@ -1456,7 +1485,7 @@ void simple_frame_window::_001OnDraw(::draw2d::dib * pdib)
       }
    }
 
-   _011OnDraw(pdib);
+   _011OnDraw(pgraphics);
 
 
 }
@@ -2106,7 +2135,7 @@ void simple_frame_window::guserbaseOnInitialUpdate(signal_details * pobj)
 }
 
 
-void simple_frame_window::_010OnDraw(::draw2d::dib * pdib)
+void simple_frame_window::_010OnDraw(::draw2d::graphics * pgraphics)
 {
 
    if (!m_bVisible)
@@ -2123,7 +2152,7 @@ void simple_frame_window::_010OnDraw(::draw2d::dib * pdib)
          if (pui->IsWindowVisible() && !base_class < ::user::wndfrm::frame::control_box > ::bases(pui))
          {
 
-            pui->_000OnDraw(pdib);
+            pui->_000OnDraw(pgraphics);
 
          }
 
@@ -2131,7 +2160,7 @@ void simple_frame_window::_010OnDraw(::draw2d::dib * pdib)
 
       }
 
-      _001DrawThis(pdib);
+      _001DrawThis(pgraphics);
 
       pui = bottom_child();
 
@@ -2151,37 +2180,37 @@ void simple_frame_window::_010OnDraw(::draw2d::dib * pdib)
                {
                   //TRACE0("x button visible");
                }
-               pui->_000OnDraw(pdib);
+               pui->_000OnDraw(pgraphics);
             }
 
          }
          pui = pui->above_sibling();
       }
 
-      _008CallOnDraw(pdib);
+      _008CallOnDraw(pgraphics);
 
    }
    else
    {
 
-      _001DrawThis(pdib);
+      _001DrawThis(pgraphics);
 
-      _001DrawChildren(pdib);
+      _001DrawChildren(pgraphics);
 
-      _008CallOnDraw(pdib);
+      _008CallOnDraw(pgraphics);
 
    }
 
 }
 
 
-void simple_frame_window::_011OnDraw(::draw2d::dib * pdib)
+void simple_frame_window::_011OnDraw(::draw2d::graphics * pgraphics)
 {
 
    if ((m_bWindowFrame || _001IsTranslucent()) && !Session.savings().is_trying_to_save(::aura::resource_display_bandwidth))
    {
 
-      ::user::wndfrm::frame::WorkSetClientInterface::_001OnDraw(pdib);
+      ::user::wndfrm::frame::WorkSetClientInterface::_001OnDraw(pgraphics);
 
    }
    else
@@ -2191,7 +2220,7 @@ void simple_frame_window::_011OnDraw(::draw2d::dib * pdib)
 
       GetClientRect(rect);
 
-      pdib->get_graphics()->FillSolidRect(rect, _001GetColor(::user::color_background));
+      pgraphics->FillSolidRect(rect, _001GetColor(::user::color_background));
 
    }
 

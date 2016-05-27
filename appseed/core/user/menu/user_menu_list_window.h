@@ -46,7 +46,7 @@ namespace user
       DECL_GEN_SIGNAL(_001OnDestroy);
       void _001OnTimer(::timer * ptimer);
 
-      void _001OnDraw(::draw2d::dib * pdib);
+      void _001OnDraw(::draw2d::graphics * pgraphics);
 
       bool BaseOnControlEvent(::user::control_event * pevent);
 
@@ -54,7 +54,7 @@ namespace user
       bool _TrackPopupMenu(sp(::user::interaction) pwndParent, sp(::user::interaction) pwndNotify);
       void _CreateButtons(sp(menu_item) pitem);
       void _UpdateCmdUi(sp(menu_item) pitem);
-      void _CalcSize(sp(menu_item) pitem, ::draw2d::graphics * pdc, int32_t & iMaxWidth, int32_t & iMaxHeight);
+      void _CalcSize(sp(menu_item) pitem, ::draw2d::graphics * pgraphics, int32_t & iMaxWidth, int32_t & iMaxHeight);
       void _LayoutButtons(sp(menu_item) pitem, int32_t iMaxWidth, LPRECT lprect, LPCRECT lpcrectBound);
 
    };

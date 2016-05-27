@@ -13,7 +13,7 @@ public:
    //static xlib_t *  g_xlib;
 
 
-   xlib_keep(::draw2d::graphics * pdc, bool bSave = true);
+   xlib_keep(::draw2d::graphics * pgraphics, bool bSave = true);
    ~xlib_keep();
 
 

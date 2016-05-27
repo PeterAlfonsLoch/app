@@ -36,7 +36,7 @@ public:
    virtual bool create_window(const char * lpszClassName,const char * lpszWindowName,uint32_t dwStyle,const RECT & rect,sp(::user::interaction) pParentWnd,UINT nID,sp(::create) pContext = NULL);
    virtual void install_message_handling(::message::dispatch * pinterface);
 
-   virtual void _001OnDraw(::draw2d::dib * pdib);
+   virtual void _001OnDraw(::draw2d::graphics * pgraphics);
 
    void update_drawing_objects();
 
@@ -68,8 +68,8 @@ public:
    DECL_GEN_SIGNAL(_001OnDestroy);
    LRESULT OnEconoModeChange(WPARAM wParam, LPARAM lParam);
 
-   void draw_mac_thumb_simple(::draw2d::graphics * pdc,LPCRECT lpcrectDraw,LPCRECT lpcrectClip,byte uchAlpha);
-   void draw_mac_thumb_dots(::draw2d::graphics * pdc,LPCRECT lpcrectDraw,LPCRECT lpcrectClip,byte uchAlpha);
+   void draw_mac_thumb_simple(::draw2d::graphics * pgraphics,LPCRECT lpcrectDraw,LPCRECT lpcrectClip,byte uchAlpha);
+   void draw_mac_thumb_dots(::draw2d::graphics * pgraphics,LPCRECT lpcrectDraw,LPCRECT lpcrectClip,byte uchAlpha);
 
 
    virtual void layout();

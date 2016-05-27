@@ -766,14 +766,14 @@ namespace user
    //void impact::on_draw_view_nc(::draw2d::dib * pdib)
    //{
 
-   //   UNREFERENCED_PARAMETER(pdc);
+   //   UNREFERENCED_PARAMETER(pgraphics);
 
    //}
 
-   //void impact::on_draw_view(::draw2d::graphics * pdc, spa(::data::data) spadata)
+   //void impact::on_draw_view(::draw2d::graphics * pgraphics, spa(::data::data) spadata)
    //{
 
-   //   UNREFERENCED_PARAMETER(pdc);
+   //   UNREFERENCED_PARAMETER(pgraphics);
    //   UNREFERENCED_PARAMETER(spadata);
 
    //}
@@ -801,7 +801,7 @@ namespace user
 
    //   try
    //   {
-   //      on_draw_view(pdc, spadata);
+   //      on_draw_view(pgraphics, spadata);
    //   }
    //   catch (...)
    //   {
@@ -809,10 +809,10 @@ namespace user
 
    //}
 
-   //void impact::_001OnDraw(::draw2d::dib * pdib)
+   //void impact::_001OnDraw(::draw2d::graphics * pgraphics)
    //{
 
-   //   on_draw_view_nc(pdc);
+   //   on_draw_view_nc(pgraphics);
 
    //   int32_t iTry = 0;
 
@@ -824,7 +824,7 @@ namespace user
 
    //   try
    //   {
-   //      defer_draw_view(pdc);
+   //      defer_draw_view(pgraphics);
    //   }
    //   catch (...)
    //   {
@@ -915,16 +915,16 @@ namespace user
    }
 
 
-   void impact::_001CallOnDraw(::draw2d::dib * pdib)
+   void impact::_001CallOnDraw(::draw2d::graphics * pgraphics)
    {
 
-      on_viewport_offset(pdib);
+      on_viewport_offset(pgraphics);
 
       synch_lock slView(m_pmutex);
 
       //synch_lock slDocument(get_document()->m_pmutex);
 
-      _001OnDraw(pdib);
+      _001OnDraw(pgraphics);
 
    }
 

@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace draw2d_gl2d
+namespace draw2d_opengl
 {
 
 
@@ -48,7 +48,7 @@ namespace draw2d_gl2d
 
    void font::construct(const ::draw2d::font & fontParam)
    {
-      //class font & font = const_cast < ::draw2d_gl2d::font & > (dynamic_cast < const ::draw2d_gl2d::font & > (fontParam));
+      //class font & font = const_cast < ::draw2d_opengl::font & > (dynamic_cast < const ::draw2d_opengl::font & > (fontParam));
       //if(font.m_pfont == NULL)
       //{
       //   if(m_pfont != NULL)
@@ -138,4 +138,4 @@ namespace draw2d_gl2d
 
    //}
 
-} // namespace draw2d_gl2d
+} // namespace draw2d_opengl

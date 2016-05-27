@@ -131,7 +131,7 @@ public:
    void SetColors(COLORREF cr, COLORREF crOutline);
 
    void EmbossedTextOut(
-      ::draw2d::graphics * pdc,
+      ::draw2d::graphics * pgraphics,
       const char * lpcsz,
       int32_t left,
       int32_t top,
@@ -142,7 +142,7 @@ public:
       double dBlend);
 
    void EmbossedTextOut(
-      ::draw2d::graphics * pdc,
+      ::draw2d::graphics * pgraphics,
       ::draw2d::dib * pdibCache,
       const char * lpcsz,
       int32_t iLeft,
@@ -155,7 +155,7 @@ public:
 
 
    void CacheEmboss(
-      ::draw2d::graphics * pdc,
+      ::draw2d::graphics * pgraphics,
       const char * lpcsz,
       strsize iLen,
       ::draw2d::dib * pdibCache);
@@ -180,7 +180,7 @@ public:
 
    void SetAnimateType(int32_t iAnimateType);
 
-   void OnTimerAnimate(::draw2d::graphics * pdc, rect_array &   rectaModified);
+   void OnTimerAnimate(::draw2d::graphics * pgraphics, rect_array &   rectaModified);
 
    void Show(bool bShow = true);
    virtual XfplayerViewLine & operator = (const XfplayerViewLine & src);
@@ -194,7 +194,7 @@ public:
 
 
 
-   bool PrepareLine(::draw2d::graphics * pdc, const string & str, int32_t flags, const RECT & rect);
+   bool PrepareLine(::draw2d::graphics * pgraphics, const string & str, int32_t flags, const RECT & rect);
 
    void AddChar(
       WCHAR wch,

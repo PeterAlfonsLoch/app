@@ -186,11 +186,11 @@ namespace user
       UNREFERENCED_PARAMETER(pobj);
    }
 
-   void plain_edit::on_viewport_offset(::draw2d::dib * pdib)
+   void plain_edit::on_viewport_offset(::draw2d::graphics * pgraphics)
    {
    }
 
-   void plain_edit::_001OnDraw(::draw2d::dib * pdib)
+   void plain_edit::_001OnDraw(::draw2d::graphics * pgraphics)
    {
 
       //return;
@@ -206,9 +206,9 @@ namespace user
 
       }
 
-      ::draw2d::graphics * pdc = pdib->get_graphics();
+      
 
-      pdc->set_text_rendering(::draw2d::text_rendering_anti_alias);
+      pgraphics->set_text_rendering(::draw2d::text_rendering_anti_alias);
 
       COLORREF crBk;
       COLORREF crBkSel;
@@ -222,7 +222,7 @@ namespace user
       crBkSel     = _001GetColor(color_background_selected);
 
 
-      ::job * pjob = pdc->m_pjob;
+      ::job * pjob = pgraphics->m_pjob;
 
       ::user::print_job * pprintjob = NULL;
       if(pjob != NULL)
@@ -243,12 +243,12 @@ namespace user
 
       //rectClient.deflate(0, 0, 1, 1);
 
-      //::draw2d::graphics * pdc = pdib->get_graphics();
+      //
 
       if(pprintjob == NULL)
       {
 
-         ::user::interaction::_001OnDraw(pdib);
+         ::user::interaction::_001OnDraw(pgraphics);
 
       }
 
@@ -258,7 +258,7 @@ namespace user
       //ca.set_rgb(RGB(227,227,210));
       //ca.hls_rate(0.0,-0.33,-0.23);
       ////      COLORREF crBorder = ca.get_rgb() | (0xff << 24);
-      ////pdc->Draw3dRect(rectClient, crBorder, crBorder);
+      ////pgraphics->Draw3dRect(rectClient, crBorder, crBorder);
 
       bool bCaretOn = ((get_tick_count() - m_dwFocustStart) % (m_dwCaretTime * 2)) < m_dwCaretTime;
 
@@ -267,11 +267,11 @@ namespace user
 
       //if(m_iLineHeight == 0)
       //{
-      //   pdc->OffsetViewportOrg(-m_scrolldata.m_ptScroll.x,m_scrolldata.m_ptScroll.y);
+      //   pgraphics->OffsetViewportOrg(-m_scrolldata.m_ptScroll.x,m_scrolldata.m_ptScroll.y);
       //}
       //else
       //{
-      //   pdc->OffsetViewportOrg(-m_scrolldata.m_ptScroll.x,-(m_scrolldata.m_ptScroll.y % m_iLineHeight));
+      //   pgraphics->OffsetViewportOrg(-m_scrolldata.m_ptScroll.x,-(m_scrolldata.m_ptScroll.y % m_iLineHeight));
       //}
 
       ::draw2d::region_sp rgn(allocer());
@@ -283,7 +283,7 @@ namespace user
 
       double left = rectClient.left;
 
-      //   pdc->SelectClipRgn(&rgn);
+      //   pgraphics->SelectClipRgn(&rgn);
 
       if(Session.get_keyboard_focus() == this)
       {
@@ -309,16 +309,16 @@ namespace user
          rectClient.left = m_pt.x;
          rectClient.bottom = rectClient.top + m_size.cy;
          rectClient.right = rectClient.left + m_size.cx;*/
-      //      pdc->FillSolidRect(rectClient, crBk);
+      //      pgraphics->FillSolidRect(rectClient, crBk);
 
 
       double y = rectClient.top;
       _001GetViewSel(iSelStart,iSelEnd);
       strsize iCursor = iSelEnd;
       sort::sort(iSelStart,iSelEnd);
-      select_font(pdc);
+      select_font(pgraphics);
       size size3;
-      size3 = pdc->GetTextExtent(unitext("gGYIﾍ"));
+      size3 = pgraphics->GetTextExtent(unitext("gGYIﾍ"));
       int32_t iLineHeight = size3.cy;
       stringa & straLines = m_plines->lines;
       stringa straLineFeed;
@@ -371,10 +371,10 @@ namespace user
                string strExtent2;
                strExtent2 = strLine.Mid(x,len);
                class size size1;
-               size1 = pdc->GetTextExtent(strExtent1);
+               size1 = pgraphics->GetTextExtent(strExtent1);
                if(pregion->styled()->bback)
                {
-                  pdc->FillSolidRect((int32_t)(left + size1.cx),(int32_t)y,size1.cx,size1.cy,pregion->styled()->back);
+                  pgraphics->FillSolidRect((int32_t)(left + size1.cx),(int32_t)y,size1.cx,size1.cy,pregion->styled()->back);
                }
                ::draw2d::brush_sp brushText(allocer());
                if(pregion->styled()->bfore)
@@ -385,8 +385,8 @@ namespace user
                {
                   brushText->create_solid(cr);
                }
-               pdc->SelectObject(brushText);
-               pdc->TextOut(left + size1.cx,y,strExtent2);
+               pgraphics->SelectObject(brushText);
+               pgraphics->TextOut(left + size1.cx,y,strExtent2);
 
             }
          }
@@ -444,55 +444,55 @@ namespace user
             }
 
             brushText->create_solid(cr);
-            pdc->SelectObject(brushText);
-            pdc->TextOut(left,y,strExtent1);
+            pgraphics->SelectObject(brushText);
+            pgraphics->TextOut(left,y,strExtent1);
 
 
             sized size1(0.0,0.0);
-            pdc->GetTextExtent(size1,strLine,(int32_t)strLine.length(),(int32_t)iStart);
+            pgraphics->GetTextExtent(size1,strLine,(int32_t)strLine.length(),(int32_t)iStart);
             if(0 <= iErrorBeg && iErrorEnd <= strExtent1.length())
             {
                sized sizeA(0.0,0.0);
-               pdc->GetTextExtent(sizeA,strLine,(int32_t)strLine.length(),(int32_t)iErrorBeg);
+               pgraphics->GetTextExtent(sizeA,strLine,(int32_t)strLine.length(),(int32_t)iErrorBeg);
                sized sizeB(0.0,0.0);
-               pdc->GetTextExtent(sizeB,strLine,(int32_t)strLine.length(),(int32_t)iErrorEnd);
+               pgraphics->GetTextExtent(sizeB,strLine,(int32_t)strLine.length(),(int32_t)iErrorEnd);
                int y = MAX(sizeA.cy,sizeB.cy);
                ::draw2d::pen_sp p(allocer());
                p->create_solid(1.0,ARGB(iErrorA,255,0,0));
-               pdc->SelectObject(p);
-               pdc->DrawErrorLine(sizeA.cx,y, sizeB.cx, 1);
+               pgraphics->SelectObject(p);
+               pgraphics->DrawErrorLine(sizeA.cx,y, sizeB.cx, 1);
             }
             sized sizeb(0.0,0.0);
-            pdc->GetTextExtent(sizeb,strLine,iEnd);
+            pgraphics->GetTextExtent(sizeb,strLine,iEnd);
             sized size2(0.0,0.0);
-            pdc->GetTextExtent(size2,strLine,(int32_t)strLine.length(),(int32_t)iEnd);
+            pgraphics->GetTextExtent(size2,strLine,(int32_t)strLine.length(),(int32_t)iEnd);
             size2.cx -= size1.cx;
 
             if(iEnd > iStart)
             {
-               pdc->FillSolidRect((int32_t)(left + size1.cx),(int32_t)y,(int32_t)size2.cx,(int32_t)size2.cy,ARGB(255,120,240,180));
+               pgraphics->FillSolidRect((int32_t)(left + size1.cx),(int32_t)y,(int32_t)size2.cx,(int32_t)size2.cy,ARGB(255,120,240,180));
                brushText->create_solid(crSel);
-               pdc->SelectObject(brushText);
-               pdc->TextOut(left + size1.cx,y,strExtent2);
+               pgraphics->SelectObject(brushText);
+               pgraphics->TextOut(left + size1.cx,y,strExtent2);
             }
 
             brushText->create_solid(cr);
-            pdc->SelectObject(brushText);
-            pdc->TextOut(left + size1.cx + size2.cx,y,strExtent3);
+            pgraphics->SelectObject(brushText);
+            pgraphics->TextOut(left + size1.cx + size2.cx,y,strExtent3);
 
             //maxcy = MAX(size1.cy, size2.cy);
             //maxcy = MAX(maxcy, size3.cy);
             if(m_bFocus && bCaretOn && i3 == str1.get_length())
             {
-               pdc->SelectObject(penCaret);
-               pdc->MoveTo(left + size1.cx,y);
-               pdc->LineTo(left + size1.cx,y + iLineHeight);
+               pgraphics->SelectObject(penCaret);
+               pgraphics->MoveTo(left + size1.cx,y);
+               pgraphics->LineTo(left + size1.cx,y + iLineHeight);
             }
             else if(m_bFocus && bCaretOn && i3 == (str1.get_length() + str2.get_length()))
             {
-               pdc->SelectObject(penCaret);
-               pdc->MoveTo(left + size2.cx + size1.cx,y);
-               pdc->LineTo(left + size2.cx + size1.cx,y + iLineHeight);
+               pgraphics->SelectObject(penCaret);
+               pgraphics->MoveTo(left + size2.cx + size1.cx,y);
+               pgraphics->LineTo(left + size2.cx + size1.cx,y + iLineHeight);
             }
          }
          y += iLineHeight;
@@ -575,9 +575,9 @@ namespace user
 
          ScreenToClient(&pt);
 
-         ::draw2d::memory_graphics pdc(allocer());
+         ::draw2d::memory_graphics pgraphics(allocer());
 
-         m_ptree->m_iSelEnd = char_hit_test(pdc,pt.x,pt.y);
+         m_ptree->m_iSelEnd = char_hit_test(pgraphics,pt.x,pt.y);
 
          m_iColumn = SelToColumn(m_ptree->m_iSelEnd);
 
@@ -903,7 +903,7 @@ namespace user
 
    //   graphics->CreateCompatibleDC(NULL);
 
-   //   ::draw2d::graphics * pdc = graphics;
+   //   ::draw2d::graphics * pgraphics = graphics;
 
    //   pview->_001OnCalcLayoutProc(pview);
 
@@ -1100,12 +1100,12 @@ namespace user
 
       m_bMouseDown = true;
 
-      ::draw2d::memory_graphics pdc(allocer());
+      ::draw2d::memory_graphics pgraphics(allocer());
 
-      if(pdc.is_null())
+      if(pgraphics.is_null())
          return;
 
-      m_ptree->m_iSelStart = char_hit_test(pdc,pt.x,pt.y);
+      m_ptree->m_iSelStart = char_hit_test(pgraphics,pt.x,pt.y);
 
       m_ptree->m_iSelEnd = m_ptree->m_iSelStart;
 
@@ -1131,9 +1131,9 @@ namespace user
 
       ScreenToClient(&pt);
 
-      ::draw2d::memory_graphics pdc(allocer());
+      ::draw2d::memory_graphics pgraphics(allocer());
 
-      m_ptree->m_iSelEnd = char_hit_test(pdc,pt.x,pt.y);
+      m_ptree->m_iSelEnd = char_hit_test(pgraphics,pt.x,pt.y);
 
       m_iColumn = SelToColumn(m_ptree->m_iSelEnd);
 
@@ -1159,9 +1159,9 @@ namespace user
 
       m_bMouseDown = true;
 
-      ::draw2d::memory_graphics pdc(allocer());
+      ::draw2d::memory_graphics pgraphics(allocer());
 
-      m_ptree->m_iSelStart = char_hit_test(pdc,pt.x,pt.y);
+      m_ptree->m_iSelStart = char_hit_test(pgraphics,pt.x,pt.y);
 
       m_ptree->m_iSelEnd = m_ptree->m_iSelStart;
 
@@ -1182,19 +1182,19 @@ namespace user
    //void plain_edit::_001OnCalcLayoutProc(::user::primitive * pview)
    //{
 
-   //   ::draw2d::memory_graphics pdc(allocer());
+   //   ::draw2d::memory_graphics pgraphics(allocer());
 
    //   ::data::simple_lock lockRoot(m_ptree);
 
    //   UNREFERENCED_PARAMETER(pview);
 
-   //   select_font(pdc);
+   //   select_font(pgraphics);
 
    //   int32_t y = 0;
 
-   //   pdc->set_text_rendering(::draw2d::text_rendering_anti_alias_grid_fit);
+   //   pgraphics->set_text_rendering(::draw2d::text_rendering_anti_alias_grid_fit);
 
-   //   size size3 = pdc->GetTextExtent(unitext("gqYALﾍ"));
+   //   size size3 = pgraphics->GetTextExtent(unitext("gqYALﾍ"));
 
    //   rect rectClient;
 
@@ -1251,17 +1251,17 @@ namespace user
 
       ::index iLine;
 
-      ::draw2d::memory_graphics pdc(allocer());
+      ::draw2d::memory_graphics pgraphics(allocer());
 
-      select_font(pdc);
+      select_font(pgraphics);
 
       const int iLenUniText = 14;
 
       sized sizeUniText;
 
-      pdc->set_text_rendering(::draw2d::text_rendering_anti_alias_grid_fit);
+      pgraphics->set_text_rendering(::draw2d::text_rendering_anti_alias_grid_fit);
 
-      pdc->GetTextExtent(sizeUniText,unitext("gqYALﾍWMÍÎÄÃÄÅ"));
+      pgraphics->GetTextExtent(sizeUniText,unitext("gqYALﾍWMÍÎÄÃÄÅ"));
 
       m_iLineHeight = sizeUniText.cy;
 
@@ -1347,7 +1347,7 @@ namespace user
 
       m_peditor->visibleTextEvent(m_iLineOffset,m_iLineCount);
 
-      select_font(pdc);
+      select_font(pgraphics);
 
       stringa & straLines = m_plines->lines;
 
@@ -1656,12 +1656,12 @@ namespace user
    }
 
 
-   strsize plain_edit::char_hit_test(::draw2d::graphics * pdc,int32_t px,int32_t py)
+   strsize plain_edit::char_hit_test(::draw2d::graphics * pgraphics,int32_t px,int32_t py)
    {
 
       synch_lock sl(m_pmutex);
 
-      select_font(pdc);
+      select_font(pgraphics);
 
       rect rectClient;
 
@@ -1708,7 +1708,7 @@ namespace user
 
       size size3;
 
-      size3 = pdc->GetTextExtent(unitext("gqYALﾍ"));
+      size3 = pgraphics->GetTextExtent(unitext("gqYALﾍ"));
 
       iLineHeight = size3.cy;
 
@@ -1742,7 +1742,7 @@ namespace user
 
          size size;
 
-         size = pdc->GetTextExtent(strExtent);
+         size = pgraphics->GetTextExtent(strExtent);
 
          if(py >= y && py < y + iLineHeight)
          {
@@ -1787,9 +1787,9 @@ namespace user
 
          class size size;
 
-         class ::size size1 = pdc->GetTextExtent(strLine,(int32_t)strLine.length(),(int32_t)strExtent.length());
+         class ::size size1 = pgraphics->GetTextExtent(strLine,(int32_t)strLine.length(),(int32_t)strExtent.length());
 
-         class ::size size2 = pdc->GetTextExtent(strLine,strExtent.length());
+         class ::size size2 = pgraphics->GetTextExtent(strLine,strExtent.length());
 
          lim2 = (size1.cx + size2.cx) / 2;
 
@@ -1835,9 +1835,9 @@ namespace user
          if(m_bMouseDown)
          {
 
-            ::draw2d::memory_graphics pdc(allocer());
+            ::draw2d::memory_graphics pgraphics(allocer());
 
-            m_ptree->m_iSelEnd = char_hit_test(pdc,pt.x,pt.y);
+            m_ptree->m_iSelEnd = char_hit_test(pgraphics,pt.x,pt.y);
 
          }
 

@@ -2919,9 +2919,9 @@ namespace draw2d_direct2d
    if(!dib->create(rectWindow.bottom_right()))
    return false;
 
-   ::draw2d::graphics * pdc = dib->get_graphics();
+   ::draw2d::graphics * pgraphics = dib->get_graphics();
 
-   if(pdc->get_os_data() == NULL)
+   if(pgraphics->get_os_data() == NULL)
    return false;
 
    rect rectPaint;
@@ -2932,24 +2932,24 @@ namespace draw2d_direct2d
    m_spgraphics->SelectClipRgn(NULL);
    if(pwnd->m_pui != NULL && pwnd->m_pui != this)
    {
-   pwnd->m_pui->_001OnDeferPaintLayeredWindowBackground(pdc);
+   pwnd->m_pui->_001OnDeferPaintLayeredWindowBackground(pgraphics);
    }
    else
    {
-   pwnd->_001OnDeferPaintLayeredWindowBackground(pdc);
+   pwnd->_001OnDeferPaintLayeredWindowBackground(pgraphics);
    }
    m_spgraphics->SelectClipRgn(NULL);
    m_spgraphics-> SetViewportOrg(point(0, 0));
-   pwnd->_000OnDraw(pdc);
+   pwnd->_000OnDraw(pgraphics);
    m_spgraphics->SetViewportOrg(point(0, 0));
-   //(dynamic_cast<::win::graphics * >(pdc))->FillSolidRect(rectUpdate.left, rectUpdate.top, 100, 100, 255);
+   //(dynamic_cast<::win::graphics * >(pgraphics))->FillSolidRect(rectUpdate.left, rectUpdate.top, 100, 100, 255);
    m_spgraphics->SelectClipRgn(NULL);
    m_spgraphics->SetViewportOrg(point(0, 0));
 
    m_spgraphics->SelectClipRgn( NULL);
    m_spgraphics->BitBlt(rectPaint.left, rectPaint.top,
    rectPaint.width(), rectPaint.height(),
-   pdc, rectUpdate.left, rectUpdate.top,
+   pgraphics, rectUpdate.left, rectUpdate.top,
    SRCCOPY);
 
    }

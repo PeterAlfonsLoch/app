@@ -210,11 +210,11 @@ namespace fontopus
    }
 
 
-   void login::_001OnDraw(::draw2d::dib * pdib)
+   void login::_001OnDraw(::draw2d::graphics * pgraphics)
    {
       //return;
 
-      simple_ui_draw_frame_window_rect(pdib);
+      simple_ui_draw_frame_window_rect(pgraphics);
 
       COLORREF crOut, crIn, crBorderOut, crBorderIn, cr, crBk;
 
@@ -301,8 +301,6 @@ namespace fontopus
       double rx = m_dRateX;
 
       double ry = m_dRateY;
-
-      ::draw2d::graphics * pgraphics = pdib->get_graphics();
 
       if (m_bCred && m_strCred.has_char())
       {
@@ -450,21 +448,21 @@ namespace fontopus
    //}
 
 
-   void login::_000OnDraw(::draw2d::dib * pdib)
+   void login::_000OnDraw(::draw2d::graphics * pgraphics)
    {
 
-      //simple_ui::interaction::_000OnDraw(pdc);
+      //simple_ui::interaction::_000OnDraw(pgraphics);
 
 
       if(!m_bVisible)
          return;
 
-      _001DrawThis(pdib);
+      _001DrawThis(pgraphics);
 
       try
       {
 
-         _001DrawChildren(pdib);
+         _001DrawChildren(pgraphics);
 
       }
       catch(...)
@@ -477,7 +475,7 @@ namespace fontopus
    }
 
 
-   void login::_001DrawChildren(::draw2d::dib * pdib)
+   void login::_001DrawChildren(::draw2d::graphics * pgraphics)
    {
 
       //single_lock sl(m_pmutex, true);
@@ -498,7 +496,7 @@ namespace fontopus
             if(pui->m_bVisible && !pui->is_custom_draw())
             {
 
-               pui->_000OnDraw(pdib);
+               pui->_000OnDraw(pgraphics);
 
             }
 

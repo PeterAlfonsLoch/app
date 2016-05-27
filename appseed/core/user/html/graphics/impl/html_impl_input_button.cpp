@@ -103,15 +103,15 @@ namespace html
       void input_button::_001OnDraw(data * pdata)
       {
 
-         ::draw2d::graphics * pdc = pdata->m_pdib->get_graphics();
+         ::draw2d::graphics * pgraphics = pdata->m_pgraphics;
 
          //rect rectWindow;
          //m_pbutton->GetWindowRect(rectWindow);
          //m_pbutton->GetWindow()->ScreenToClient(rectWindow);
-         ::point ptPreviousViewportOrg = pdc->GetViewportOrg();
-         pdc->OffsetViewportOrg((int32_t) m_box.left, (int32_t) m_box.top);
-         m_pbutton->_000OnDraw(pdata->m_pdib);
-         pdc->SetViewportOrg(ptPreviousViewportOrg);
+         ::point ptPreviousViewportOrg = pgraphics->GetViewportOrg();
+         pgraphics->OffsetViewportOrg((int32_t) m_box.left, (int32_t) m_box.top);
+         m_pbutton->_000OnDraw(pgraphics);
+         pgraphics->SetViewportOrg(ptPreviousViewportOrg);
       }
 
       void input_button::on_change_layout(data * pdata)

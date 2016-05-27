@@ -25,7 +25,7 @@ namespace visual
       virtual ~glyph();
 
 
-      void DrawGlyph(::draw2d::graphics * pdc, bool bFill, double dRateX, LPPOINT lppointoffset);
+      void DrawGlyph(::draw2d::graphics * pgraphics, bool bFill, double dRateX, LPPOINT lppointoffset);
 
 #ifdef WINDOWSEX
 

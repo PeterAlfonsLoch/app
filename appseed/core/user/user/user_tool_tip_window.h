@@ -84,7 +84,7 @@ namespace user
       void EnableTip(bool bEnable = true);
       bool HideTip();
       virtual bool create(sp(::user::interaction) pwnd, id id);
-      bool CalcRect(::draw2d::graphics * pdc, LPRECT lprect, LPCRECT lprectToolScreen, const char * lpcsz);
+      bool CalcRect(::draw2d::graphics * pgraphics, LPRECT lprect, LPCRECT lprectToolScreen, const char * lpcsz);
       void ShowTip(int32_t iTool, bool bForce = false);
       void SetPositionHint(::window_sp pwnd, e_position eposition);
       void relay_event(tool_tip_tool * pwnd, signal_details * pobj);

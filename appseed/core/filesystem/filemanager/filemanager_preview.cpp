@@ -68,14 +68,14 @@ namespace filemanager
 
 
 
-   void preview::_001OnDraw(::draw2d::dib * pdib)
+   void preview::_001OnDraw(::draw2d::graphics * pgraphics)
    {
 
-      ::draw2d::graphics * pdc = pdib->get_graphics();
+      
 
       rect rectClient;
       GetClientRect(rectClient);
-      pdc->FillSolidRect(rectClient, RGB(200, 200, 190));
+      pgraphics->FillSolidRect(rectClient, RGB(200, 200, 190));
 
       if(get_filemanager_manager() == NULL)
          return;
@@ -85,12 +85,12 @@ namespace filemanager
       }
       else if (m_iCurFile == 0 && get_filemanager_manager()->m_straPath.get_size() == 0)
       {
-         pdc->TextOut(10, 10, "No files in this directory");
+         pgraphics->TextOut(10, 10, "No files in this directory");
       }
       else if(m_iCurFile < get_filemanager_manager()->m_straPath.get_size())
       {
 
-         pdc->TextOut(10,10,get_filemanager_manager()->m_straPath.title(m_iCurFile));
+         pgraphics->TextOut(10,10,get_filemanager_manager()->m_straPath.title(m_iCurFile));
 
       }
 

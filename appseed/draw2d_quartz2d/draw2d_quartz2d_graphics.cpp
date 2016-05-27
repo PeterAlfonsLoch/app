@@ -4,15 +4,15 @@
 #include <CoreFoundation/CFDictionary.h>
 
 
-void fill_with_brush(CGContextRef pdc, ::draw2d::brush * pbrush)
+void fill_with_brush(CGContextRef pgraphics, ::draw2d::brush * pbrush)
 {
    
 if(pbrush->m_etype == ::draw2d::brush::type_linear_gradient_point_color)
 {
    
-   CGContextSaveGState(pdc);
+   CGContextSaveGState(pgraphics);
    
-   CGContextClip(pdc);
+   CGContextClip(pgraphics);
    
    CGPoint myStartPoint, myEndPoint;
    
@@ -24,17 +24,17 @@ if(pbrush->m_etype == ::draw2d::brush::type_linear_gradient_point_color)
    
    myEndPoint.y = pbrush->m_pt2.y;
    
-   CGContextDrawLinearGradient(pdc, (CGGradientRef) pbrush->get_os_data(), myStartPoint, myEndPoint, 0);
+   CGContextDrawLinearGradient(pgraphics, (CGGradientRef) pbrush->get_os_data(), myStartPoint, myEndPoint, 0);
    
-   CGContextRestoreGState(pdc);
+   CGContextRestoreGState(pgraphics);
    
 }
 else
 {
    
-   CGContextSetFillColorWithColor(pdc, (CGColorRef) pbrush->get_os_data());
+   CGContextSetFillColorWithColor(pgraphics, (CGColorRef) pbrush->get_os_data());
    
-   CGContextFillPath(pdc);
+   CGContextFillPath(pgraphics);
    
 }
 
@@ -5360,11 +5360,11 @@ namespace draw2d_quartz2d
    void * graphics::detach()
    {
 
-      CGContextRef pdc = m_pdc;
+      CGContextRef pgraphics = m_pdc;
 
       m_pdc = NULL;
 
-      return pdc;
+      return pgraphics;
 
    }
 
@@ -5749,7 +5749,7 @@ namespace draw2d_quartz2d
 
 
 
-bool internal_show_text(CGContextRef pdc, ::draw2d::font_sp spfont,::draw2d::brush_sp spbrush,::draw2d::pen_sp sppen, double x, double y, const char * lpszString, int32_t nCount, CGTextDrawingMode emode, bool bDraw, CGFloat * pascent, CGFloat * pdescent, CGFloat * pleading, CGFloat * pwidth)
+bool internal_show_text(CGContextRef pgraphics, ::draw2d::font_sp spfont,::draw2d::brush_sp spbrush,::draw2d::pen_sp sppen, double x, double y, const char * lpszString, int32_t nCount, CGTextDrawingMode emode, bool bDraw, CGFloat * pascent, CGFloat * pdescent, CGFloat * pleading, CGFloat * pwidth)
 {
 
    string str(lpszString, nCount);
@@ -5759,9 +5759,9 @@ bool internal_show_text(CGContextRef pdc, ::draw2d::font_sp spfont,::draw2d::bru
    if(string == NULL)
       return false;
    
-   CGContextSaveGState(pdc);
+   CGContextSaveGState(pgraphics);
 
-   //CGContextBeginPath(pdc);
+   //CGContextBeginPath(pgraphics);
 
    ::string strFontName;
 
@@ -5905,18 +5905,18 @@ bool internal_show_text(CGContextRef pdc, ::draw2d::font_sp spfont,::draw2d::bru
    if(bDraw)
    {
 
-      CGContextSetTextDrawingMode(pdc, emode);
+      CGContextSetTextDrawingMode(pgraphics, emode);
 
-      CGContextSetTextMatrix(pdc, CGAffineTransformScale(CGAffineTransformMakeTranslation(x, y + ascent), 1.f, -1.f));
+      CGContextSetTextMatrix(pgraphics, CGAffineTransformScale(CGAffineTransformMakeTranslation(x, y + ascent), 1.f, -1.f));
 
-      CTLineDraw(line,pdc);
+      CTLineDraw(line,pgraphics);
 
    }
    
    if(emode == kCGTextClip && spbrush->m_etype == ::draw2d::brush::type_linear_gradient_point_color)
    {
       
-      fill_with_brush(pdc, spbrush);
+      fill_with_brush(pgraphics, spbrush);
       
    }
 
@@ -5966,7 +5966,7 @@ bool internal_show_text(CGContextRef pdc, ::draw2d::font_sp spfont,::draw2d::bru
 
    }
    
-   CGContextRestoreGState(pdc);
+   CGContextRestoreGState(pgraphics);
 
    return true;
 

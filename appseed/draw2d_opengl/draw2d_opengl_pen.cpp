@@ -4,7 +4,7 @@
 #undef new
 
 
-namespace draw2d_gl2d
+namespace draw2d_opengl
 {
 
 
@@ -442,4 +442,4 @@ namespace draw2d_gl2d
    }
 
 
-} // namespace draw2d_gl2d
+} // namespace draw2d_opengl

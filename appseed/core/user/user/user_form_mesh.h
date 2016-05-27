@@ -55,7 +55,7 @@ namespace user
       virtual ~form_mesh();
 
 
-      void _001OnDraw(::draw2d::dib * pdib);
+      void _001OnDraw(::draw2d::graphics * pgraphics);
 
       virtual void _001DrawSubItem(draw_mesh_item * pdrawitem);
 
@@ -74,7 +74,7 @@ namespace user
 
       void _001HideEditingControls();
       void _001HideControl(sp(control) pcontrol);
-      //virtual void _001OnDraw(::draw2d::dib * pdib);
+      //virtual void _001OnDraw(::draw2d::graphics * pgraphics);
       virtual LRESULT _001BaseWndGetProperty(EProperty eprop,LPARAM lparam);
       ;;void _001UpdateColumns();
       sp(control) _001GetEditControl();

@@ -113,7 +113,7 @@ namespace user
          }
 
 
-         void WorkSet::_001OnDraw(::draw2d::dib * pdib)
+         void WorkSet::_001OnDraw(::draw2d::graphics * pgraphics)
          {
 
             if(IsAppearanceEnabled() && m_pframeschema != NULL && !IsFullScreen())

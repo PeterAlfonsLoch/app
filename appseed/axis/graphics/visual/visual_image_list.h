@@ -51,9 +51,9 @@ public:
    int32_t add_matter(const char * lpcsz, ::aura::application * papp = NULL);
    int32_t add_std_matter(const char * lpcsz);
 
-   bool draw(::draw2d::graphics * pdc, int32_t iImage, point pt, int32_t iFlag);
-   bool draw(::draw2d::graphics * pdc, int32_t iImage, point pt, int32_t iFlag, BYTE alpha);
-   bool draw(::draw2d::graphics * pdc, int32_t iImage, point pt, size sz, point ptOffset, int32_t iFlag);
+   bool draw(::draw2d::graphics * pgraphics, int32_t iImage, point pt, int32_t iFlag);
+   bool draw(::draw2d::graphics * pgraphics, int32_t iImage, point pt, int32_t iFlag, BYTE alpha);
+   bool draw(::draw2d::graphics * pgraphics, int32_t iImage, point pt, size sz, point ptOffset, int32_t iFlag);
    int32_t get_image_count() const;
    
 

@@ -6,7 +6,7 @@ class CLASS_DECL_CORE BaseSplitWnd :
 public:
    BaseSplitWnd(::aura::application * papp);
 
-   virtual void _001OnDraw(::draw2d::dib * pdib);
+   virtual void _001OnDraw(::draw2d::graphics * pgraphics);
 
    virtual bool pre_create_window(::user::create_struct& cs);
 

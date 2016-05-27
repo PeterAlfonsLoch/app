@@ -116,15 +116,18 @@ namespace html
 
       void input_text::_001OnDraw(data * pdata)
       {
+
+         ::draw2d::graphics * pgraphics = pdata->m_pgraphics;
+
          rect rectWindow;
          m_pedit->GetWindowRect(rectWindow);
          m_pedit->get_wnd()->ScreenToClient(rectWindow);
-         ::draw2d::graphics * pdc = pdata->m_pdib->get_graphics();
-         ::point ptPreviousViewportOrg = pdc->GetViewportOrg();
-         pdc->SetViewportOrg(rectWindow.top_left());
-         m_pedit->_000OnDraw(pdata->m_pdib);
-         pdc->SelectClipRgn(NULL);
-         pdc->SetViewportOrg(ptPreviousViewportOrg);
+         
+         ::point ptPreviousViewportOrg = pgraphics->GetViewportOrg();
+         pgraphics->SetViewportOrg(rectWindow.top_left());
+         m_pedit->_000OnDraw(pgraphics);
+         pgraphics->SelectClipRgn(NULL);
+         pgraphics->SetViewportOrg(ptPreviousViewportOrg);
       }
 
       void input_text::on_change_layout(data * pdata)

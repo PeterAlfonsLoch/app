@@ -106,7 +106,7 @@ namespace filehandler
 
       UNREFERENCED_PARAMETER(plist);
 
-      ::draw2d::graphics * pdc = pdib->get_graphics();
+      
 
       COLORREF cr;
       sp(::aura::application) papp = pview->get_app();
@@ -117,14 +117,14 @@ namespace filehandler
          && !Sess(papp).savings().is_trying_to_save(::aura::resource_memory))
       {
          class imaging & imaging = Sys(papp).visual().imaging();
-         imaging.color_blend(pdc, m_rectItem, cr, 127);
+         imaging.color_blend(pgraphics, m_rectItem, cr, 127);
       }
       else
       {
-         pdc->FillSolidRect(m_rectItem, cr);
+         pgraphics->FillSolidRect(m_rectItem, cr);
       }
       cr = bHover ? ARGB(255, 150, 255, 150) : ARGB(255, 50, 255, 50);
-      pdc->FillSolidRect(m_rectStatusImage, cr);
+      pgraphics->FillSolidRect(m_rectStatusImage, cr);
       COLORREF cr1;
       COLORREF cr2;
       if(bHover)
@@ -139,12 +139,12 @@ namespace filehandler
          cr1 = ARGB(255, 100, 100, 100);
          cr2 = ARGB(255, 10, 10, 10);
       }
-      pdc->Draw3dRect(m_rectItem, cr1, cr2);
+      pgraphics->Draw3dRect(m_rectItem, cr1, cr2);
       cr |= 0xff000000;
       ::draw2d::brush_sp brushText(allocer());
       brushText->create_solid(cr);
-      //pdc->set_color(cr);
-      pdc->draw_text(m_strApp, m_rectName, DT_LEFT | DT_BOTTOM);
+      //pgraphics->set_color(cr);
+      pgraphics->draw_text(m_strApp, m_rectName, DT_LEFT | DT_BOTTOM);
    }
 
 
@@ -198,7 +198,7 @@ namespace filehandler
    void view::layout_list(list * plist)
    {
 
-      ::draw2d::memory_graphics pdc(allocer());
+      ::draw2d::memory_graphics pgraphics(allocer());
 
       rect rectClient;
 
@@ -209,7 +209,7 @@ namespace filehandler
    }
 
 
-   void view::_001OnDraw(::draw2d::dib * pdib)
+   void view::_001OnDraw(::draw2d::graphics * pgraphics)
    {
 
       if (m_plist.is_null())

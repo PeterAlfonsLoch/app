@@ -5,7 +5,6 @@ LIBRARY  "core"
 
 EXPORTS
 get_new_library
-new_hotplugin
 defer_core_init
 defer_core_term
 

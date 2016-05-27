@@ -126,7 +126,7 @@ namespace userstack
    }
 
 
-   void view:: _001OnDraw(::draw2d::dib * pdib)
+   void view:: _001OnDraw(::draw2d::graphics * pgraphics)
    {
 
 

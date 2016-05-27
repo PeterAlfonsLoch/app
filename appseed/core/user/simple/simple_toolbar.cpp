@@ -199,7 +199,7 @@ size simple_toolbar::CalcSimpleLayout()
 }
 
 
-void simple_toolbar::_001OnDraw(::draw2d::dib * pdib)
+void simple_toolbar::_001OnDraw(::draw2d::graphics * pgraphics)
 {
 
    sp(::user::tab) ptab = GetTypedParent < ::user::tab >();
@@ -215,9 +215,9 @@ void simple_toolbar::_001OnDraw(::draw2d::dib * pdib)
    if(m_bDelayedButtonLayout)
       layout();
 
-   ::user::interaction::_001OnDraw(pdib);
+   ::user::interaction::_001OnDraw(pgraphics);
 
-   ::draw2d::graphics * pgraphics = pdib->get_graphics();
+   
 
    pgraphics->SelectObject(System.visual().font_central().GetMenuFont());
 
@@ -259,12 +259,12 @@ void simple_toolbar::SetTransparentBackground(bool bSet)
    m_bTransparentBackground = bSet;
 }
 
-void simple_toolbar::TransparentEraseNonClient(::draw2d::dib * pdib)
+void simple_toolbar::TransparentEraseNonClient(::draw2d::graphics * pgraphics)
 {
 
-   ::draw2d::graphics * pdc = pdib->get_graphics();
+   
 
-   m_dibDraft->get_graphics()->BitBlt(0, 0, 7, 7, pdc, 0, 0, SRCCOPY);
+   m_dibDraft->get_graphics()->BitBlt(0, 0, 7, 7, pgraphics, 0, 0, SRCCOPY);
 
    rect rectWindow;
    GetWindowRect(rectWindow);
@@ -275,7 +275,7 @@ void simple_toolbar::TransparentEraseNonClient(::draw2d::dib * pdib)
       if(m_iHover >= -1)
       {
          imaging.color_blend(
-            pdc,
+            pgraphics,
             rectWindow.left,
             rectWindow.top,
             rectWindow.width(),
@@ -286,7 +286,7 @@ void simple_toolbar::TransparentEraseNonClient(::draw2d::dib * pdib)
       else
       {
          imaging.color_blend(
-            pdc,
+            pgraphics,
             rectWindow.left,
             rectWindow.top,
             rectWindow.width(),
@@ -298,63 +298,63 @@ void simple_toolbar::TransparentEraseNonClient(::draw2d::dib * pdib)
    else
    {
 #ifdef WINDOWSEX
-      pdc->FillSolidRect(rectWindow, Session.get_default_color(COLOR_3DFACE));
+      pgraphics->FillSolidRect(rectWindow, Session.get_default_color(COLOR_3DFACE));
 #else
-      pdc->FillSolidRect(rectWindow, ARGB(255, 184, 184, 177));
+      pgraphics->FillSolidRect(rectWindow, ARGB(255, 184, 184, 177));
 #endif
    }
 
    // Desenha chanfro
    COLORREF cr = m_dibDraft->GetPixel(0, 0);
-   pdc->SetPixel(0, 0, cr);
-   pdc->SetPixel(0, 1, m_dibDraft->GetPixel(0, 1));
-   pdc->SetPixel(0, 2, m_dibDraft->GetPixel(0, 2));
-   pdc->SetPixel(0, 3, m_dibDraft->GetPixel(0, 3));
-   pdc->SetPixel(0, 4, m_dibDraft->GetPixel(0, 4));
-   pdc->SetPixel(0, 5, m_dibDraft->GetPixel(0, 5));
-   pdc->SetPixel(0, 6, m_dibDraft->GetPixel(0, 6));
-   pdc->SetPixel(1, 0, m_dibDraft->GetPixel(1, 0));
-   pdc->SetPixel(1, 1, m_dibDraft->GetPixel(1, 1));
-   pdc->SetPixel(1, 2, m_dibDraft->GetPixel(1, 2));
-   pdc->SetPixel(1, 3, m_dibDraft->GetPixel(1, 3));
-   pdc->SetPixel(1, 4, m_dibDraft->GetPixel(1, 4));
-   pdc->SetPixel(1, 5, m_dibDraft->GetPixel(1, 5));
-   pdc->SetPixel(2, 0, m_dibDraft->GetPixel(2, 0));
-   pdc->SetPixel(2, 1, m_dibDraft->GetPixel(2, 1));
-   pdc->SetPixel(2, 2, m_dibDraft->GetPixel(2, 2));
-   pdc->SetPixel(2, 3, m_dibDraft->GetPixel(2, 3));
-   pdc->SetPixel(2, 4, m_dibDraft->GetPixel(2, 4));
-   pdc->SetPixel(3, 0, m_dibDraft->GetPixel(3, 0));
-   pdc->SetPixel(3, 1, m_dibDraft->GetPixel(3, 1));
-   pdc->SetPixel(3, 2, m_dibDraft->GetPixel(3, 2));
-   pdc->SetPixel(3, 3, m_dibDraft->GetPixel(3, 3));
-   pdc->SetPixel(4, 0, m_dibDraft->GetPixel(4, 0));
-   pdc->SetPixel(4, 1, m_dibDraft->GetPixel(4, 1));
-   pdc->SetPixel(4, 2, m_dibDraft->GetPixel(4, 2));
-   pdc->SetPixel(5, 0, m_dibDraft->GetPixel(5, 0));
-   pdc->SetPixel(5, 1, m_dibDraft->GetPixel(5, 1));
-   pdc->SetPixel(6, 0, m_dibDraft->GetPixel(6, 0));
+   pgraphics->SetPixel(0, 0, cr);
+   pgraphics->SetPixel(0, 1, m_dibDraft->GetPixel(0, 1));
+   pgraphics->SetPixel(0, 2, m_dibDraft->GetPixel(0, 2));
+   pgraphics->SetPixel(0, 3, m_dibDraft->GetPixel(0, 3));
+   pgraphics->SetPixel(0, 4, m_dibDraft->GetPixel(0, 4));
+   pgraphics->SetPixel(0, 5, m_dibDraft->GetPixel(0, 5));
+   pgraphics->SetPixel(0, 6, m_dibDraft->GetPixel(0, 6));
+   pgraphics->SetPixel(1, 0, m_dibDraft->GetPixel(1, 0));
+   pgraphics->SetPixel(1, 1, m_dibDraft->GetPixel(1, 1));
+   pgraphics->SetPixel(1, 2, m_dibDraft->GetPixel(1, 2));
+   pgraphics->SetPixel(1, 3, m_dibDraft->GetPixel(1, 3));
+   pgraphics->SetPixel(1, 4, m_dibDraft->GetPixel(1, 4));
+   pgraphics->SetPixel(1, 5, m_dibDraft->GetPixel(1, 5));
+   pgraphics->SetPixel(2, 0, m_dibDraft->GetPixel(2, 0));
+   pgraphics->SetPixel(2, 1, m_dibDraft->GetPixel(2, 1));
+   pgraphics->SetPixel(2, 2, m_dibDraft->GetPixel(2, 2));
+   pgraphics->SetPixel(2, 3, m_dibDraft->GetPixel(2, 3));
+   pgraphics->SetPixel(2, 4, m_dibDraft->GetPixel(2, 4));
+   pgraphics->SetPixel(3, 0, m_dibDraft->GetPixel(3, 0));
+   pgraphics->SetPixel(3, 1, m_dibDraft->GetPixel(3, 1));
+   pgraphics->SetPixel(3, 2, m_dibDraft->GetPixel(3, 2));
+   pgraphics->SetPixel(3, 3, m_dibDraft->GetPixel(3, 3));
+   pgraphics->SetPixel(4, 0, m_dibDraft->GetPixel(4, 0));
+   pgraphics->SetPixel(4, 1, m_dibDraft->GetPixel(4, 1));
+   pgraphics->SetPixel(4, 2, m_dibDraft->GetPixel(4, 2));
+   pgraphics->SetPixel(5, 0, m_dibDraft->GetPixel(5, 0));
+   pgraphics->SetPixel(5, 1, m_dibDraft->GetPixel(5, 1));
+   pgraphics->SetPixel(6, 0, m_dibDraft->GetPixel(6, 0));
 
 
-   //pdc->BitBlt(0, 0, 7, 7, &m_dcDraft, 0, 0, SRCCOPY);
+   //pgraphics->BitBlt(0, 0, 7, 7, &m_dcDraft, 0, 0, SRCCOPY);
 
    //
 
    // draw borders in non-client area
-   DrawBorders(pdib, rectWindow);
-   /*   pdc->FillSolidRect(
+   DrawBorders(pgraphics, rectWindow);
+   /*   pgraphics->FillSolidRect(
    rectWindow.left + 7, rectWindow.top,
    rectWindow.right, rectWindow.top + 1,
    RGB(128, 128, 123));*/
 
    // erase parts not drawn
-   //pdc->IntersectClipRect(rectWindow);
-   //SendMessage(WM_ERASEBKGND, (WPARAM)pdc->get_handle1());
+   //pgraphics->IntersectClipRect(rectWindow);
+   //SendMessage(WM_ERASEBKGND, (WPARAM)pgraphics->get_handle1());
 
    // draw gripper in non-client area
-   DrawGripper(pdib, rectWindow);
+   DrawGripper(pgraphics, rectWindow);
 
-   //pdc->SetViewportOrg(ptViewport);
+   //pgraphics->SetViewportOrg(ptViewport);
 }
 
 
@@ -532,15 +532,15 @@ return true;
 
 
 
-void simple_toolbar::_001DrawItem(::draw2d::graphics * pdc, int32_t iItem)
+void simple_toolbar::_001DrawItem(::draw2d::graphics * pgraphics, int32_t iItem)
 {
 
-   pdc->set_alpha_mode(::draw2d::alpha_mode_blend);
+   pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
    rect rectItem;
    rect rectImage;
 
-   pdc->SelectObject(System.visual().font_central().GetMenuFont());
+   pgraphics->SelectObject(System.visual().font_central().GetMenuFont());
 
 
    ::user::toolbar_item & item = m_itema(iItem);
@@ -616,7 +616,7 @@ void simple_toolbar::_001DrawItem(::draw2d::graphics * pdc, int32_t iItem)
       rectSeparator.right = rectSeparator.left + 2;
       rectSeparator.top = rectImage.top;
       rectSeparator.bottom = rectImage.bottom;
-      pdc->Draw3dRect(rectSeparator, ARGB(255, 92, 92, 92), ARGB(255, 255, 255, 255));
+      pgraphics->Draw3dRect(rectSeparator, ARGB(255, 92, 92, 92), ARGB(255, 255, 255, 255));
    }
    else
    {
@@ -629,14 +629,14 @@ void simple_toolbar::_001DrawItem(::draw2d::graphics * pdc, int32_t iItem)
             if((m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
             {
                System.visual().imaging().color_blend(
-                  pdc,
+                  pgraphics,
                   rectItem.left,
                   rectItem.top,
                   rectItem.width(),
                   rectItem.height(),
                   RGB(255, 255, 250), 208);
 
-               pdc->Draw3dRect(rectItem,
+               pgraphics->Draw3dRect(rectItem,
                   ARGB(255, 127, 127, 127),
                   ARGB(255, 255, 255, 255));
             }
@@ -646,13 +646,13 @@ void simple_toolbar::_001DrawItem(::draw2d::graphics * pdc, int32_t iItem)
                {
                   // button is enabled
                   pmenucentral->MenuV033GetImageListBlend()->draw(
-                     pdc, uiImage, rectImage.top_left(), 0);
+                     pgraphics, uiImage, rectImage.top_left(), 0);
                }
                else
                {
                   // button is disabled
                   pmenucentral->MenuV033GetImageListHueLight()->draw(
-                     pdc, uiImage, rectImage.top_left(), 0);
+                     pgraphics, uiImage, rectImage.top_left(), 0);
                }
             }
          }
@@ -663,36 +663,36 @@ void simple_toolbar::_001DrawItem(::draw2d::graphics * pdc, int32_t iItem)
             if((m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
             {
 
-               //::draw2d::pen_sp penShadow(pdc, 1, ARGB(255, 127, 127, 227));
+               //::draw2d::pen_sp penShadow(pgraphics, 1, ARGB(255, 127, 127, 227));
                //::draw2d::brush_sp brushShadow(allocer(), ARGB(123, 127, 127, 127));
-               //::draw2d::pen * ppenOld = pdc->SelectObject(penShadow);
-               //::draw2d::brush * pbrushOld = pdc->SelectObject(brushShadow);
-               //pdc->Rectangle(rectShadow);
+               //::draw2d::pen * ppenOld = pgraphics->SelectObject(penShadow);
+               //::draw2d::brush * pbrushOld = pgraphics->SelectObject(brushShadow);
+               //pgraphics->Rectangle(rectShadow);
 
-               ::draw2d::pen_sp pen(pdc, 1, ARGB(184, 92, 184, 92));
+               ::draw2d::pen_sp pen(pgraphics, 1, ARGB(184, 92, 184, 92));
                ::draw2d::brush_sp brush(allocer(), ARGB(123, 177, 184, 255));
-               ::draw2d::pen * ppenOld =pdc->SelectObject(pen);
-               ::draw2d::brush * pbrushOld =pdc->SelectObject(brush);
-               pdc->Rectangle(rectItem);
-               pdc->SelectObject(ppenOld);
-               pdc->SelectObject(pbrushOld);
+               ::draw2d::pen * ppenOld =pgraphics->SelectObject(pen);
+               ::draw2d::brush * pbrushOld =pgraphics->SelectObject(brush);
+               pgraphics->Rectangle(rectItem);
+               pgraphics->SelectObject(ppenOld);
+               pgraphics->SelectObject(pbrushOld);
             }
 
             if(item.m_spdib.is_set())
             {
                rect rect;
                _001GetElementRect(iItem, rect, ElementImageHover);
-               System.visual().imaging().color_blend(pdc, rect.top_left(), rect.size(), item.m_spdib->get_graphics(), null_point(), 0.84);
+               System.visual().imaging().color_blend(pgraphics, rect.top_left(), rect.size(), item.m_spdib->get_graphics(), null_point(), 0.84);
             }
             else if(uiImage != 0xffffffffu)
             {
                rect rect;
                _001GetElementRect(iItem, rect, ElementItemHover);
                pmenucentral->MenuV033GetImageListHue()->draw(
-                  pdc, uiImage, rect.top_left(), 0);
+                  pgraphics, uiImage, rect.top_left(), 0);
 
                pmenucentral->MenuV033GetImageList()->draw(
-                  pdc, uiImage, rectImage.top_left(), 0);
+                  pgraphics, uiImage, rectImage.top_left(), 0);
             }
          }
       }
@@ -702,28 +702,28 @@ void simple_toolbar::_001DrawItem(::draw2d::graphics * pdc, int32_t iItem)
          if((m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
          {
 
-            ::draw2d::pen_sp pen(pdc, 1, ARGB(255, 92, 92, 92));
+            ::draw2d::pen_sp pen(pgraphics, 1, ARGB(255, 92, 92, 92));
             ::draw2d::brush_sp brush(allocer(), ARGB(255, 255, 255, 255));
-            ::draw2d::pen * ppenOld = pdc->SelectObject(pen);
-            ::draw2d::brush * pbrushOld = pdc->SelectObject(brush);
-            pdc->Rectangle(rectItem);
-            pdc->SelectObject(ppenOld);
-            pdc->SelectObject(pbrushOld);
+            ::draw2d::pen * ppenOld = pgraphics->SelectObject(pen);
+            ::draw2d::brush * pbrushOld = pgraphics->SelectObject(brush);
+            pgraphics->Rectangle(rectItem);
+            pgraphics->SelectObject(ppenOld);
+            pgraphics->SelectObject(pbrushOld);
 
          }
 
          //      rect rect;
          //    _001GetElementRect(iItem, rect, element_image);
-         //  m_pimagelistHue->draw(pdc, uiImage, rect.top_left(), 0);
+         //  m_pimagelistHue->draw(pgraphics, uiImage, rect.top_left(), 0);
          if(item.m_spdib.is_set())
          {
             rect rect;
             _001GetElementRect(iItem, rect, ElementImagePress);
-            System.visual().imaging().color_blend(pdc, rect.top_left(), rect.size(), item.m_spdib->get_graphics(), null_point(), 1.0);
+            System.visual().imaging().color_blend(pgraphics, rect.top_left(), rect.size(), item.m_spdib->get_graphics(), null_point(), 1.0);
          }
          else if(uiImage != 0xffffffff)
          {
-            pmenucentral->MenuV033GetImageList()->draw(pdc, uiImage, rectImage.top_left(), 0);
+            pmenucentral->MenuV033GetImageList()->draw(pgraphics, uiImage, rectImage.top_left(), 0);
          }
 
       }
@@ -733,31 +733,31 @@ void simple_toolbar::_001DrawItem(::draw2d::graphics * pdc, int32_t iItem)
          {
             _001GetElementRect(iItem, rectItem, element_item);
 
-            pdc->FillSolidRect(rectItem,  ARGB(184, 255, 255, 255));
+            pgraphics->FillSolidRect(rectItem,  ARGB(184, 255, 255, 255));
          }
 
          if((nStyle & TBBS_CHECKED) != 0)
          {
-            pdc->Draw3dRect(rectItem, ARGB(255, 127, 127, 127), ARGB(255, 255, 255, 255));
+            pgraphics->Draw3dRect(rectItem, ARGB(255, 127, 127, 127), ARGB(255, 255, 255, 255));
          }
 
          if(item.m_spdib.is_set())
          {
             rect rect;
             _001GetElementRect(iItem, rect, element_image);
-            System.visual().imaging().color_blend(pdc, rect.top_left(), rect.size(), item.m_spdib->get_graphics(), null_point(), 0.23);
+            System.visual().imaging().color_blend(pgraphics, rect.top_left(), rect.size(), item.m_spdib->get_graphics(), null_point(), 0.23);
          }
          else if(uiImage != 0xffffffff)
          {
             if((nStyle & TBBS_DISABLED) == 0)
             {
                // button is enabled
-               pmenucentral->MenuV033GetImageListBlend()->draw(pdc, uiImage, rectImage.top_left(), 0);
+               pmenucentral->MenuV033GetImageListBlend()->draw(pgraphics, uiImage, rectImage.top_left(), 0);
             }
             else
             {
                // button is disabled
-               pmenucentral->MenuV033GetImageListHueLight()->draw(pdc, uiImage, rectImage.top_left(), 0);
+               pmenucentral->MenuV033GetImageListHueLight()->draw(pgraphics, uiImage, rectImage.top_left(), 0);
             }
          }
       }
@@ -777,11 +777,11 @@ void simple_toolbar::_001DrawItem(::draw2d::graphics * pdc, int32_t iItem)
          brushText->create_solid(ARGB(255, 123, 123, 118));
 
       }
-      pdc->SelectObject(brushText);
+      pgraphics->SelectObject(brushText);
 
       if(_001GetElementRect(iItem, rectText, element_text) && rectText.right > 0)
       {
-         pdc->_DrawText(item.m_str,item.m_str.get_length(),rectText,DT_BOTTOM | DT_LEFT | DT_NOPREFIX);
+         pgraphics->_DrawText(item.m_str,item.m_str.get_length(),rectText,DT_BOTTOM | DT_LEFT | DT_NOPREFIX);
       }
    }
 
@@ -1092,8 +1092,8 @@ return FALSE;
 // load the bitmap
 HBITMAP hbmImageWell;
 //   hbmImageWell = ::core::LoadSysColorBitmap(hInstImageWell, hRsrcImageWell);
-::draw2d::memory_graphics pdc(this);;
-hbmImageWell = imaging::LoadSysColorBitmap(pdc, hInstImageWell, hRsrcImageWell);
+::draw2d::memory_graphics pgraphics(this);;
+hbmImageWell = imaging::LoadSysColorBitmap(pgraphics, hInstImageWell, hRsrcImageWell);
 
 
 // tell common control toolbar about the new bitmap
@@ -1632,7 +1632,7 @@ int32_t simple_toolbar::WrapToolBar(int32_t nCount, int32_t nWidth)
 {
    int32_t nResult = 0;
    ASSERT(nCount > 0);
-   ::draw2d::memory_graphics pdc(allocer());
+   ::draw2d::memory_graphics pgraphics(allocer());
     int32_t x = 0;
    string str;
    for (int32_t i = 0; i < nCount; i++)
@@ -1655,7 +1655,7 @@ int32_t simple_toolbar::WrapToolBar(int32_t nCount, int32_t nWidth)
          //         str = (const unichar *) m_itema[i]->iString;
          size size;
          ::GetTextExtentPoint32U(
-            (HDC)pdc->get_os_data(),
+            (HDC)pgraphics->get_os_data(),
             str,
             (int32_t) str.get_length(),
             &size);
@@ -1884,7 +1884,7 @@ size simple_toolbar::CalcLayout(uint32_t dwMode, int32_t nLength)
             }
          }
 
-         //::draw2d::memory_graphics pdc(this);
+         //::draw2d::memory_graphics pgraphics(this);
          string str;
          if ((m_dwStyle & CBRS_FLOATING) && (m_dwStyle & CBRS_SIZE_DYNAMIC))
             m_nMRUWidth = sizeResult.cx;
@@ -1896,7 +1896,7 @@ size simple_toolbar::CalcLayout(uint32_t dwMode, int32_t nLength)
             //            if(!str.is_empty())
             //            {
             //               ::GetTextExtentPointW(
-            //                  (HDC)pdc->get_os_data(),
+            //                  (HDC)pgraphics->get_os_data(),
             //                  str,
             //                  str.get_length(),
             //                  &size);

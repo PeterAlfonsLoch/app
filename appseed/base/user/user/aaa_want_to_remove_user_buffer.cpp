@@ -62,15 +62,15 @@ namespace user
    //void buffer::BitBlt(::draw2d::dib * pdib)
    //{
 
-   //   pdc->BitBlt(null_point(), m_spdib->size(), GetBuffer());
+   //   pgraphics->BitBlt(null_point(), m_spdib->size(), GetBuffer());
 
    //}
 
 
-   //void buffer::BitBlt(LPRECT lprect, ::draw2d::graphics * pdc)
+   //void buffer::BitBlt(LPRECT lprect, ::draw2d::graphics * pgraphics)
    //{
 
-   //   pdc->BitBlt(*lprect, GetBuffer(), top_left(lprect));
+   //   pgraphics->BitBlt(*lprect, GetBuffer(), top_left(lprect));
 
    //}
 

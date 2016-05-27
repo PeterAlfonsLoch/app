@@ -38,7 +38,7 @@ namespace user
 
       string get_title();
 
-      virtual void do_split_layout(::visual::graphics_extension & dc,::draw2d::graphics * pdc);
+      virtual void do_split_layout(::visual::graphics_extension & dc,::draw2d::graphics * pgraphics);
 
    };
 
@@ -245,7 +245,7 @@ namespace user
 
 
 
-      void _001OnDraw(::draw2d::dib * pdib);
+      void _001OnDraw(::draw2d::graphics * pgraphics);
 
 
       void _001OnDrawStandard(::draw2d::dib * pdib);

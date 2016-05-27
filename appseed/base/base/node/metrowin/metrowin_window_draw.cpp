@@ -39,7 +39,7 @@ namespace metrowin
    {
    }
 
-   extern void _001DeferPaintLayeredWindowBackground(oswindow hwnd, ::draw2d::graphics * pdc);
+   extern void _001DeferPaintLayeredWindowBackground(oswindow hwnd, ::draw2d::graphics * pgraphics);
    window_draw::~window_draw()
    {
    }
@@ -174,7 +174,7 @@ namespace metrowin
    }
 
 //   bool window_draw::to(
-//      ::draw2d::graphics *          pdc,
+//      ::draw2d::graphics *          pgraphics,
 //      LPCRECT        lpcrectUpdate,
 //      user::oswindow_tree::Array & hwndtreea,
 //      bool           bGdiLocked,
@@ -194,7 +194,7 @@ namespace metrowin
 //   }
 //
 //   bool window_draw::to(
-//      ::draw2d::graphics *          pdc,
+//      ::draw2d::graphics *          pgraphics,
 //      LPCRECT        lpcrectUpdate,
 //      user::oswindow_tree & hwndtree,
 //      bool           bGdiLocked,
@@ -214,7 +214,7 @@ namespace metrowin
 //      }
 //
 //      return to(
-//         pdc,
+//         pgraphics,
 //         rectUpdate,
 //         hwndtree.m_oswindowtreea,
 //         true,
@@ -755,7 +755,7 @@ namespace metrowin
 //
 //
 //   bool window_draw::ScreenOutput(
-//      // pdc is the source memory device context
+//      // pgraphics is the source memory device context
 //      // from which bitmap the screen is updated.
 //      user::buffer * pbuffer,
 //      // hwndParam ::user::interaction_impl device context

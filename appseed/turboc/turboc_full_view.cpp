@@ -78,17 +78,17 @@ namespace turboc
    }
 
 
-   void full_view::_001OnDraw(::draw2d::dib * pdib)
+   void full_view::_001OnDraw(::draw2d::graphics * pgraphics)
    {
 
-      view::_001OnDraw(pdc);
+      view::_001OnDraw(pgraphics);
 
    }
 
    void full_view::turboc_render(::draw2d::dib * pdib)
    {
 
-      turboc_render_full_view(pdc);
+      turboc_render_full_view(pgraphics);
 
    }
 
@@ -172,11 +172,11 @@ namespace turboc
 
       }
 
-      pdc->set_font(m_font);
+      pgraphics->set_font(m_font);
 
       string strHelloMultiverse = get_processed_turboc();
 
-     ::size size = pdc->GetTextExtent(strHelloMultiverse);
+     ::size size = pgraphics->GetTextExtent(strHelloMultiverse);
 
       if(!Session.savings().is_trying_to_save(::aura::resource_display_bandwidth))
       {
@@ -194,7 +194,7 @@ namespace turboc
 
          }
 
-         m_dib->defer_realize(pdc);
+         m_dib->defer_realize(pgraphics);
 
          m_dib->Fill(0,0,0,0);
 
@@ -237,15 +237,15 @@ namespace turboc
 
          }
 
-         pdc->SetStretchBltMode(HALFTONE);
+         pgraphics->SetStretchBltMode(HALFTONE);
 
-         pdc->set_alpha_mode(::draw2d::alpha_mode_blend);
+         pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-         pdc->BitBlt(rectClient,m_dib->get_graphics());
+         pgraphics->BitBlt(rectClient,m_dib->get_graphics());
 
       }
 
-      pdc->set_text_rendering(::draw2d::text_rendering_anti_alias);
+      pgraphics->set_text_rendering(::draw2d::text_rendering_anti_alias);
 
       if(Session.savings().is_trying_to_save(::aura::resource_display_bandwidth))
       {
@@ -271,9 +271,9 @@ namespace turboc
 
       }
 
-      pdc->SelectObject(brushText);
+      pgraphics->SelectObject(brushText);
 
-      pdc->TextOut((m_cx - size.cx) / 2,(m_cy - size.cy) / 2,strHelloMultiverse);
+      pgraphics->TextOut((m_cx - size.cx) / 2,(m_cy - size.cy) / 2,strHelloMultiverse);
 
       byte a,R,g,b;
 
@@ -334,15 +334,15 @@ namespace turboc
 
                      dib->create(face->glyph->bitmap.width,face->glyph->bitmap.rows);
 
-                     dib->realize(pdc);
+                     dib->realize(pgraphics);
 
                      draw_freetype_bitmap(dib.m_p,0,0,&face->glyph->bitmap,0,0,a,R,g,b);
 
-                     pdc->SetStretchBltMode(HALFTONE);
+                     pgraphics->SetStretchBltMode(HALFTONE);
 
-                     pdc->StretchBlt(0,0,dib->m_size.cx / 40,dib->m_size.cy / 40,dib->get_graphics(),0,0,dib->m_size.cx,dib->m_size.cy,SRCCOPY);
+                     pgraphics->StretchBlt(0,0,dib->m_size.cx / 40,dib->m_size.cy / 40,dib->get_graphics(),0,0,dib->m_size.cx,dib->m_size.cy,SRCCOPY);
 
-                     pdc->StretchBlt(0,m_cy - dib->m_size.cy / 40,dib->m_size.cx / 40,dib->m_size.cy / 40,dib->get_graphics(),0,0,dib->m_size.cx,dib->m_size.cy,SRCCOPY);
+                     pgraphics->StretchBlt(0,m_cy - dib->m_size.cy / 40,dib->m_size.cx / 40,dib->m_size.cy / 40,dib->get_graphics(),0,0,dib->m_size.cx,dib->m_size.cy,SRCCOPY);
 
                   }
 
@@ -385,15 +385,15 @@ namespace turboc
 
                      dib->create(face->glyph->bitmap.width,face->glyph->bitmap.rows);
 
-                     dib->realize(pdc);
+                     dib->realize(pgraphics);
 
                      draw_freetype_bitmap(dib.m_p,0,0,&face->glyph->bitmap,0,0,a,R,g,b);
 
-                     pdc->SetStretchBltMode(HALFTONE);
+                     pgraphics->SetStretchBltMode(HALFTONE);
 
-                     pdc->StretchBlt(m_cx - dib->m_size.cx / 32,0,dib->m_size.cx / 32,dib->m_size.cy / 32,dib->get_graphics(),0,0,dib->m_size.cx,dib->m_size.cy,SRCCOPY);
+                     pgraphics->StretchBlt(m_cx - dib->m_size.cx / 32,0,dib->m_size.cx / 32,dib->m_size.cy / 32,dib->get_graphics(),0,0,dib->m_size.cx,dib->m_size.cy,SRCCOPY);
 
-                     pdc->StretchBlt(m_cx - dib->m_size.cx / 32,m_cy - dib->m_size.cy / 32,dib->m_size.cx / 32,dib->m_size.cy / 32,dib->get_graphics(),0,0,dib->m_size.cx,dib->m_size.cy,SRCCOPY);
+                     pgraphics->StretchBlt(m_cx - dib->m_size.cx / 32,m_cy - dib->m_size.cy / 32,dib->m_size.cx / 32,dib->m_size.cy / 32,dib->get_graphics(),0,0,dib->m_size.cx,dib->m_size.cy,SRCCOPY);
 
                   }
 

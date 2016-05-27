@@ -41,7 +41,7 @@ namespace draw2d
    }
 
 
-   bool bitmap::CreateBitmap(::draw2d::graphics * pdc,int32_t nWidth,int32_t nHeight,UINT nPlanes,UINT nBitcount,const void * lpBits,int32_t stride)
+   bool bitmap::CreateBitmap(::draw2d::graphics * pgraphics,int32_t nWidth,int32_t nHeight,UINT nPlanes,UINT nBitcount,const void * lpBits,int32_t stride)
    {
       UNREFERENCED_PARAMETER(nWidth);
       UNREFERENCED_PARAMETER(nHeight);
@@ -53,16 +53,16 @@ namespace draw2d
       return false;
    }
 
-   bool bitmap::CreateBitmapIndirect(::draw2d::graphics * pdc,LPBITMAP lpBitmap)
+   bool bitmap::CreateBitmapIndirect(::draw2d::graphics * pgraphics,LPBITMAP lpBitmap)
    {
       UNREFERENCED_PARAMETER(lpBitmap);
       ::exception::throw_not_implemented(get_app());
       return false;
    }
 
-   bool bitmap::CreateDIBSection(::draw2d::graphics * pdc,const BITMAPINFO * lpbmi,UINT usage,void **ppvBits,int * stride,HANDLE hSection,uint32_t offset)
+   bool bitmap::CreateDIBSection(::draw2d::graphics * pgraphics,const BITMAPINFO * lpbmi,UINT usage,void **ppvBits,int * stride,HANDLE hSection,uint32_t offset)
    {
-      UNREFERENCED_PARAMETER(pdc);
+      UNREFERENCED_PARAMETER(pgraphics);
       UNREFERENCED_PARAMETER(lpbmi);
       UNREFERENCED_PARAMETER(usage);
       UNREFERENCED_PARAMETER(ppvBits);
@@ -72,9 +72,9 @@ namespace draw2d
       ::exception::throw_not_implemented(get_app());
       return false;
    }
-   bool bitmap::CreateDIBitmap(::draw2d::graphics * pdc,const BITMAPINFOHEADER *pbmih,uint32_t flInit,const void *pjBits,const BITMAPINFO *pbmi,UINT iUsage)
+   bool bitmap::CreateDIBitmap(::draw2d::graphics * pgraphics,const BITMAPINFOHEADER *pbmih,uint32_t flInit,const void *pjBits,const BITMAPINFO *pbmi,UINT iUsage)
    {
-      UNREFERENCED_PARAMETER(pdc);
+      UNREFERENCED_PARAMETER(pgraphics);
       UNREFERENCED_PARAMETER(pbmih);
       UNREFERENCED_PARAMETER(flInit);
       UNREFERENCED_PARAMETER(pjBits);

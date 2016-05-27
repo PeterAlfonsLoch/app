@@ -605,7 +605,7 @@ namespace user
          }
 
          
-         void WorkSetClientInterface::_001OnDraw(::draw2d::dib * pdib)
+         void WorkSetClientInterface::_001OnDraw(::draw2d::graphics * pgraphics)
          {
             
             m_workset._001OnDraw(pdib);

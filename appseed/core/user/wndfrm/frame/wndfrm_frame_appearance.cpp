@@ -250,7 +250,7 @@ namespace user
          }
 
 
-         void appearance::CTool001::Update(::draw2d::graphics * pdc, const RECT & rect,
+         void appearance::CTool001::Update(::draw2d::graphics * pgraphics, const RECT & rect,
             COLORREF crHighlight,
             COLORREF crLight,
             COLORREF crBody,
@@ -365,20 +365,20 @@ namespace user
          void appearance::CTool001::draw(::draw2d::dib * pdib)
          {
 
-            ::draw2d::graphics * pdc = pdib->get_graphics();
+            
 
-            pdc->SelectObject(m_brushBody);
+            pgraphics->SelectObject(m_brushBody);
 
             ::draw2d::pen_sp pen(allocer());
 
             pen->create_solid(0, RGB(255, 255, 255));
 
-            pdc->SelectObject(pen);
+            pgraphics->SelectObject(pen);
 
             point pt(0, 0);
 
             System.visual().api().DrawAndFillBeziers(
-               pdc,
+               pgraphics,
                m_pointsetBody.get_data(),
                (int32_t)m_pointsetBody.get_size(),
                1.0,
@@ -387,19 +387,19 @@ namespace user
             for (int32_t i = 0; i < m_colorbezieraOutsideBorder.get_size(); i++)
             {
                CColorBezier & bezier = m_colorbezieraOutsideBorder[i];
-               bezier.draw(*m_brushNull, pdc);
+               bezier.draw(*m_brushNull, pgraphics);
             }
 
          }
 
-         void appearance::CTool001::CColorBezier::draw(::draw2d::brush & brush, ::draw2d::graphics * pdc)
+         void appearance::CTool001::CColorBezier::draw(::draw2d::brush & brush, ::draw2d::graphics * pgraphics)
          {
-            pdc->SelectObject(&brush);
-            pdc->SelectObject(m_ppen);
+            pgraphics->SelectObject(&brush);
+            pgraphics->SelectObject(m_ppen);
             point pt(0, 0);
 
-            Sys(pdc->get_app()).visual().api().DrawAndFillBeziers(
-               pdc,
+            Sys(pgraphics->get_app()).visual().api().DrawAndFillBeziers(
+               pgraphics,
                m_pointset.get_data(),
                (int32_t)m_pointset.get_size(),
                1.0,

@@ -7,7 +7,7 @@ namespace visual
 
    visual::visual(::draw2d::dib * pdib)
    {
-      m_pdc = pdc;
+      m_pdc = pgraphics;
    }
 
 

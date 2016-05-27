@@ -193,8 +193,8 @@ namespace user
 
 
       virtual bool on_simple_command(e_simple_command ecommand, lparam lparam, LRESULT & lresult);
-      //virtual void _000OnDraw(::draw2d::dib * pdib);
-      //virtual void _001OnDraw(::draw2d::dib * pdib);
+      //virtual void _000OnDraw(::draw2d::graphics * pgraphics);
+      //virtual void _001OnDraw(::draw2d::graphics * pgraphics);
       virtual void install_message_handling(::message::dispatch * pinterface);
 
       DECL_GEN_SIGNAL(_guserbaseOnInitialUpdate);
@@ -354,7 +354,7 @@ namespace user
 
 
 
-      virtual void _000OnDraw(::draw2d::dib * pdib);
+      virtual void _000OnDraw(::draw2d::graphics * pgraphics);
 
 
       virtual bool BaseOnControlEvent(::user::control_event * pevent);

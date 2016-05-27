@@ -39,7 +39,7 @@ namespace user
             sp(::user::interaction) WfiGetWindow();
 
 
-            virtual void _001OnDraw(::draw2d::dib * pdib);
+            virtual void _001OnDraw(::draw2d::graphics * pgraphics);
 
 
             virtual void WfiEnableFullScreen(bool bEnable = true);

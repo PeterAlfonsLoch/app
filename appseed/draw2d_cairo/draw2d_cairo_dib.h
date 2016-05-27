@@ -64,7 +64,7 @@ namespace draw2d_cairo
 
 
       bool from(::draw2d::graphics * pgraphics);
-      bool from(point ptDest, ::draw2d::graphics * pdc, point pt, class size sz);
+      bool from(point ptDest, ::draw2d::graphics * pgraphics, point pt, class size sz);
 
       bool to(::draw2d::graphics * pgraphics, point pt, class size size, point ptSrc);
 #if defined(WINDOWS) || defined(LINUX) || defined(VSNORD)

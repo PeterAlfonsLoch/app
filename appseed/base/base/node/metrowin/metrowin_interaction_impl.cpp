@@ -1169,7 +1169,7 @@ namespace metrowin
    void interaction_impl::_002OnDraw(::draw2d::dib * pdib)
    {
       throw todo(get_app());
-      //::CallWindowProc(*GetSuperWndProcAddr(), get_handle(), WM_PRINT, (WPARAM)((dynamic_cast<::metrowin::graphics * >(pdc))->get_os_data()), (LPARAM)(PRF_CHILDREN | PRF_CLIENT));
+      //::CallWindowProc(*GetSuperWndProcAddr(), get_handle(), WM_PRINT, (WPARAM)((dynamic_cast<::metrowin::graphics * >(pgraphics))->get_os_data()), (LPARAM)(PRF_CHILDREN | PRF_CLIENT));
 
    }
 
@@ -2973,7 +2973,7 @@ return TRUE;
 
    /*   void interaction_impl::_001OnDeferPaintLayeredWindowBackground(::draw2d::dib * pdib)
    {
-   _001DeferPaintLayeredWindowBackground(pdc);
+   _001DeferPaintLayeredWindowBackground(pgraphics);
    }*/
 
 
@@ -3030,7 +3030,7 @@ return TRUE;
       GetClientRect(rectClient);
 
 
-      //pdc->FillSolidRect(rectClient, 0x00000000);
+      //pgraphics->FillSolidRect(rectClient, 0x00000000);
 
       //return;
       rect rectUpdate;
@@ -3133,7 +3133,7 @@ return TRUE;
                   }
                   if(pwnd != NULL)
                   {
-                  pwnd->_001Print(pdc);
+                  pwnd->_001Print(pgraphics);
                   }*/
                   //if(::GetWindowLong(wndaApp[j], GWL_EXSTYLE) & WS_EX_LAYERED)
                   if(true)
@@ -3232,10 +3232,10 @@ return TRUE;
       //   if(!dib->create(rectWindow.bottom_right()))
       //      return;
 
-      //   ::draw2d::graphics * pdc = dib->get_graphics();
+      //   ::draw2d::graphics * pgraphics = dib->get_graphics();
 
-      //   if((dynamic_cast<::metrowin::graphics * >(pdc))->get_os_data() == NULL
-      //      || (dynamic_cast<::metrowin::graphics * >(pdc))->get_handle2() == NULL)
+      //   if((dynamic_cast<::metrowin::graphics * >(pgraphics))->get_os_data() == NULL
+      //      || (dynamic_cast<::metrowin::graphics * >(pgraphics))->get_handle2() == NULL)
       //      return;
 
       //   rect rectPaint;
@@ -3252,25 +3252,25 @@ return TRUE;
       //      rectUpdate = rectPaint;
       //      ClientToScreen(rectUpdate);
       //   }
-      //   (dynamic_cast<::metrowin::graphics * >(pdc))->SelectClipRgn(NULL);
+      //   (dynamic_cast<::metrowin::graphics * >(pgraphics))->SelectClipRgn(NULL);
       //   if(m_pui != NULL)
       //   {
-      //      m_pui->_001OnDeferPaintLayeredWindowBackground(pdc);
+      //      m_pui->_001OnDeferPaintLayeredWindowBackground(pgraphics);
       //   }
       //   else
       //   {
-      //      _001OnDeferPaintLayeredWindowBackground(pdc);
+      //      _001OnDeferPaintLayeredWindowBackground(pgraphics);
       //   }
-      //   (dynamic_cast<::metrowin::graphics * >(pdc))->SelectClipRgn(NULL);
-      //   (dynamic_cast<::metrowin::graphics * >(pdc))->SetViewportOrg(point(0, 0));
-      //   _000OnDraw(pdc);
-      //   (dynamic_cast<::metrowin::graphics * >(pdc))->SetViewportOrg(point(0, 0));
-      //   //(dynamic_cast<::metrowin::graphics * >(pdc))->FillSolidRect(rectUpdate.left, rectUpdate.top, 100, 100, 255);
-      //   (dynamic_cast<::metrowin::graphics * >(pdc))->SelectClipRgn(NULL);
-      //   (dynamic_cast<::metrowin::graphics * >(pdc))->SetViewportOrg(point(0, 0));
+      //   (dynamic_cast<::metrowin::graphics * >(pgraphics))->SelectClipRgn(NULL);
+      //   (dynamic_cast<::metrowin::graphics * >(pgraphics))->SetViewportOrg(point(0, 0));
+      //   _000OnDraw(pgraphics);
+      //   (dynamic_cast<::metrowin::graphics * >(pgraphics))->SetViewportOrg(point(0, 0));
+      //   //(dynamic_cast<::metrowin::graphics * >(pgraphics))->FillSolidRect(rectUpdate.left, rectUpdate.top, 100, 100, 255);
+      //   (dynamic_cast<::metrowin::graphics * >(pgraphics))->SelectClipRgn(NULL);
+      //   (dynamic_cast<::metrowin::graphics * >(pgraphics))->SetViewportOrg(point(0, 0));
       //   BitBlt(hdc, rectPaint.left, rectPaint.top,
       //      rectPaint.width(), rectPaint.height(),
-      //      (HDC) pdc->get_os_data(), rectUpdate.left, rectUpdate.top,
+      //      (HDC) pgraphics->get_os_data(), rectUpdate.left, rectUpdate.top,
       //      SRCCOPY);
 
       //}
@@ -3313,9 +3313,9 @@ return TRUE;
       //   if(!dib->create(rectWindow.bottom_right()))
       //      return;
 
-      //   ::draw2d::graphics * pdc = dib->get_graphics();
+      //   ::draw2d::graphics * pgraphics = dib->get_graphics();
 
-      //   if(pdc->get_os_data() == NULL)
+      //   if(pgraphics->get_os_data() == NULL)
       //      return;
 
       //   rect rectPaint;
@@ -3323,27 +3323,27 @@ return TRUE;
       //   rectUpdate = rectWindow;
       //   rectPaint = rectWindow;
       //   rectPaint.offset(-rectPaint.top_left());
-      //   (dynamic_cast<::metrowin::graphics * >(pdc))->SelectClipRgn(NULL);
+      //   (dynamic_cast<::metrowin::graphics * >(pgraphics))->SelectClipRgn(NULL);
       //   if(m_pui != NULL)
       //   {
-      //      m_pui->_001OnDeferPaintLayeredWindowBackground(pdc);
+      //      m_pui->_001OnDeferPaintLayeredWindowBackground(pgraphics);
       //   }
       //   else
       //   {
-      //      _001OnDeferPaintLayeredWindowBackground(pdc);
+      //      _001OnDeferPaintLayeredWindowBackground(pgraphics);
       //   }
-      //   (dynamic_cast<::metrowin::graphics * >(pdc))->SelectClipRgn(NULL);
-      //   (dynamic_cast<::metrowin::graphics * >(pdc))->SetViewportOrg(point(0, 0));
-      //   _000OnDraw(pdc);
-      //   (dynamic_cast<::metrowin::graphics * >(pdc))->SetViewportOrg(point(0, 0));
-      //   //(dynamic_cast<::metrowin::graphics * >(pdc))->FillSolidRect(rectUpdate.left, rectUpdate.top, 100, 100, 255);
-      //   (dynamic_cast<::metrowin::graphics * >(pdc))->SelectClipRgn(NULL);
-      //   (dynamic_cast<::metrowin::graphics * >(pdc))->SetViewportOrg(point(0, 0));
+      //   (dynamic_cast<::metrowin::graphics * >(pgraphics))->SelectClipRgn(NULL);
+      //   (dynamic_cast<::metrowin::graphics * >(pgraphics))->SetViewportOrg(point(0, 0));
+      //   _000OnDraw(pgraphics);
+      //   (dynamic_cast<::metrowin::graphics * >(pgraphics))->SetViewportOrg(point(0, 0));
+      //   //(dynamic_cast<::metrowin::graphics * >(pgraphics))->FillSolidRect(rectUpdate.left, rectUpdate.top, 100, 100, 255);
+      //   (dynamic_cast<::metrowin::graphics * >(pgraphics))->SelectClipRgn(NULL);
+      //   (dynamic_cast<::metrowin::graphics * >(pgraphics))->SetViewportOrg(point(0, 0));
 
       //   graphics->SelectClipRgn( NULL);
       //   graphics->BitBlt(rectPaint.left, rectPaint.top,
       //      rectPaint.width(), rectPaint.height(),
-      //      pdc, rectUpdate.left, rectUpdate.top,
+      //      pgraphics, rectUpdate.left, rectUpdate.top,
       //      SRCCOPY);
 
       //   graphics->TextOut(0, 0, "Te Amo Carlinhos!!", 11);

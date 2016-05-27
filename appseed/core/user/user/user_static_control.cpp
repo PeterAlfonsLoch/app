@@ -110,10 +110,10 @@ namespace user
 
    }
 
-   void static_control::_001OnDraw(::draw2d::dib * pdib)
+   void static_control::_001OnDraw(::draw2d::graphics * pgraphics)
    {
 
-      ::draw2d::graphics * pdc = pdib->get_graphics();
+      
 
       COLORREF crText = ARGB(255, 0, 0, 0);
 
@@ -149,11 +149,11 @@ namespace user
 
       }
 
-      pdc->set_text_color(crText);
+      pgraphics->set_text_color(crText);
 
-      select_font(pdc);
+      select_font(pgraphics);
 
-      pdc->TextOut(0, 0, GetWindowText());
+      pgraphics->TextOut(0, 0, GetWindowText());
 
    }
 

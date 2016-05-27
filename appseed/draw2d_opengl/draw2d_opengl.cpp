@@ -8,7 +8,7 @@ BOOL WINAPI DllMain(HINSTANCE hInstance,DWORD dwReason,LPVOID lpReserved)
 
    //   ASSERT(FALSE);
 
-   xxdebug_box("draw2d_gl2d.dll DllMain (0)","box",MB_OK);
+   xxdebug_box("draw2d_opengl.dll DllMain (0)","box",MB_OK);
 
    UNREFERENCED_PARAMETER(hInstance);
    UNREFERENCED_PARAMETER(lpReserved);

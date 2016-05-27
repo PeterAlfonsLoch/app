@@ -16,7 +16,7 @@ namespace draw2d
       m_p->create_solid(dWidth,crColor);
    }
 
-   bool word_break(::draw2d::graphics * pdc,const string & strSource, RECT & rectParam,string &str1,string & str2,int iEll);
+   bool word_break(::draw2d::graphics * pgraphics,const string & strSource, RECT & rectParam,string &str1,string & str2,int iEll);
 
    strsize _EncodeV033(string & str);
 
@@ -3703,7 +3703,7 @@ namespace draw2d
 
       int iLineSpacing = tm2.tmHeight;
 
-      ::draw2d::graphics * pdc = this;
+      ::draw2d::graphics * pgraphics = this;
 
       string strParam(lpcsz, iCount);
 
@@ -3739,15 +3739,15 @@ namespace draw2d
       if((uiFormat & DT_WORDBREAK) != 0)
       {
 
-         bLastLine = !word_break(pdc, lpcsz, rectClip, str, str2, (uiFormat & DT_END_ELLIPSIS));
+         bLastLine = !word_break(pgraphics, lpcsz, rectClip, str, str2, (uiFormat & DT_END_ELLIPSIS));
 
-         sz = pdc->GetTextExtent(str);
+         sz = pgraphics->GetTextExtent(str);
 
 
       }
       else if ((uiFormat & DT_END_ELLIPSIS) != 0)
       {
-         sz = pdc->GetTextExtent(str, (int32_t)iLen);
+         sz = pgraphics->GetTextExtent(str, (int32_t)iLen);
          if (sz.cx > rectClip.width())
          {
             iLen += 3;
@@ -3764,7 +3764,7 @@ namespace draw2d
                lpsz[i - 3] = '.';
                lpsz[i - 2] = '.';
                lpsz[i - 1] = '\0';
-               sz = pdc->GetTextExtent(lpsz, (int32_t)i);
+               sz = pgraphics->GetTextExtent(lpsz, (int32_t)i);
                if (sz.cx < rectClip.width())
                {
                   if (i >= iLen)
@@ -3785,7 +3785,7 @@ namespace draw2d
                lpsz[i - 3] = L'.';
                lpsz[i - 2] = L'.';
                lpsz[i - 1] = L'\0';
-               sz = pdc->GetTextExtent(lpsz, (int32_t)i);
+               sz = pgraphics->GetTextExtent(lpsz, (int32_t)i);
                if (sz.cx > rectClip.width())
                {
                   i--;
@@ -3801,9 +3801,9 @@ namespace draw2d
       }
       else
       {
-         sz = pdc->GetTextExtent(str, (int32_t)iLen);
+         sz = pgraphics->GetTextExtent(str, (int32_t)iLen);
          /*::GetTextExtentPoint32U(
-         (HDC) pdc->get_os_data(),
+         (HDC) pgraphics->get_os_data(),
          str,
          iLen,
          &sz);*/
@@ -3816,7 +3816,7 @@ namespace draw2d
             char * lpsz = str.GetBuffer(MAX(0, i));
             while (i > 0)
             {
-               sz = pdc->GetTextExtent(str, (int32_t)i);
+               sz = pgraphics->GetTextExtent(str, (int32_t)i);
                if (sz.cx > rectClip.width())
                {
                   i = ::str::utf8_dec(str, &((const char *)str)[i]) - ((const char *)str);
@@ -3847,7 +3847,7 @@ namespace draw2d
          {
             fontUnderline.alloc(allocer());
             pfontUnderline = fontUnderline;
-            fontUnderline ->operator=(*pdc->get_current_font());
+            fontUnderline ->operator=(*pgraphics->get_current_font());
             fontUnderline->set_bold();
          }
       }
@@ -3891,55 +3891,55 @@ namespace draw2d
 
          ::draw2d::font * pfontOld;
 
-         pdc->TextOut(rect.left, rect.top, str, (int32_t)MIN(iUnderline, str.get_length()));
+         pgraphics->TextOut(rect.left, rect.top, str, (int32_t)MIN(iUnderline, str.get_length()));
          /*::TextOutU(
-         (HDC)pdc->get_os_data(),
+         (HDC)pgraphics->get_os_data(),
          rect.left,
          rect.top,
          str,
          MIN(iUnderline, str.get_length()));*/
          if (iUnderline <= str.get_length())
          {
-            ::draw2d::font fPrevious = *pdc->get_current_font();
-            pfontOld = pdc->SelectObject(pfontUnderline);
+            ::draw2d::font fPrevious = *pgraphics->get_current_font();
+            pfontOld = pgraphics->SelectObject(pfontUnderline);
             /*::GetTextExtentPoint32U(
-            (HDC)pdc->get_os_data(),
+            (HDC)pgraphics->get_os_data(),
             str,
             iUnderline,
             &sz);*/
-            sz = pdc->GetTextExtent(str, (int32_t)iUnderline);
+            sz = pgraphics->GetTextExtent(str, (int32_t)iUnderline);
             char wch = str[iUnderline];
             /*::TextOutU(
-            (HDC)pdc->get_os_data(),
+            (HDC)pgraphics->get_os_data(),
             rect.left + sz.cx,
             rect.top,
             &wch,
             1);*/
-            pdc->TextOut(rect.left + sz.cx, rect.top, &wch, 1);
-            pdc->SelectObject(&fPrevious);
+            pgraphics->TextOut(rect.left + sz.cx, rect.top, &wch, 1);
+            pgraphics->SelectObject(&fPrevious);
             if (iUnderline + 1 <= str.get_length())
             {
-               sz = pdc->GetTextExtent(str, (int32_t)(iUnderline + 1));
+               sz = pgraphics->GetTextExtent(str, (int32_t)(iUnderline + 1));
                /*::GetTextExtentPoint32U(
-               (HDC)pdc->get_os_data(),
+               (HDC)pgraphics->get_os_data(),
                str,
                iUnderline + 1,
                &sz);*/
                strsize iCount = str.get_length() - iUnderline - 1;
-               pdc->TextOut(rect.left + sz.cx, rect.top, str.Right(iCount), (int32_t)iCount);
+               pgraphics->TextOut(rect.left + sz.cx, rect.top, str.Right(iCount), (int32_t)iCount);
                /*::TextOutU(
-               (HDC)pdc->get_os_data(),
+               (HDC)pgraphics->get_os_data(),
                rect.left + sz.cx,
                rect.top,
                str.Right(iCount),
                iCount);*/
             }
-            pdc->SelectObject(pfontOld);
+            pgraphics->SelectObject(pfontOld);
          }
       }
       else
       {
-         pdc->TextOut(rect.left, rect.top, str);
+         pgraphics->TextOut(rect.left, rect.top, str);
       }
 
       if (!bLastLine && str2.get_length() > 0)
@@ -3957,7 +3957,7 @@ namespace draw2d
 
 
 
-   bool word_break(::draw2d::graphics * pdc, const string & strSource, RECT & rectParam, string &str1, string & str2, int iEll)
+   bool word_break(::draw2d::graphics * pgraphics, const string & strSource, RECT & rectParam, string &str1, string & str2, int iEll)
    {
 
       string str;
@@ -3996,7 +3996,7 @@ namespace draw2d
       while(lpsz <= lpszEnd)
       {
 
-         sz = pdc->GetTextExtent(lpszSource, lpsz - lpszSource);
+         sz = pgraphics->GetTextExtent(lpszSource, lpsz - lpszSource);
 
          iNewY = y + sz.cy;
 
@@ -4010,7 +4010,7 @@ namespace draw2d
 
             strsize iLen = str.length();
 
-            sz = pdc->GetTextExtent(str,(int32_t)iLen);
+            sz = pgraphics->GetTextExtent(str,(int32_t)iLen);
 
 
             if(sz.cx > rectClip.width())
@@ -4025,7 +4025,7 @@ namespace draw2d
 
                   str = strSource.Left(iSampleLen) + "...";
 
-                  sz = pdc->GetTextExtent(str);
+                  sz = pgraphics->GetTextExtent(str);
 
                   if(sz.cx < rectClip.width())
                   {

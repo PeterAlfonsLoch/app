@@ -52,7 +52,7 @@ namespace user
    }
 
 
-   void combo_list::_001OnDraw(::draw2d::dib * pdib)
+   void combo_list::_001OnDraw(::draw2d::graphics * pgraphics)
    {
 
       if(m_pcombo == NULL)
@@ -76,7 +76,7 @@ namespace user
    void combo_list::_001OnDrawVerisimple(::draw2d::dib * pdib)
    {
 
-      ::draw2d::graphics * pdc = pdib->get_graphics();
+      
 
       ::count ca = m_pcombo->_001GetListCount();
 
@@ -90,9 +90,9 @@ namespace user
 
       br->create_solid(ARGB(230, 255, 255, 255));
 
-      pdc->SelectObject(br);
+      pgraphics->SelectObject(br);
 
-      pdc->FillRectangle(rectClient);
+      pgraphics->FillRectangle(rectClient);
 
       {
 
@@ -104,7 +104,7 @@ namespace user
 
          COLORREF crBorder = ca.get_rgb() | (0xff << 24);
 
-         pdc->Draw3dRect(rectClient, crBorder, crBorder);
+         pgraphics->Draw3dRect(rectClient, crBorder, crBorder);
 
       }
 
@@ -128,9 +128,9 @@ namespace user
     //  GetFont()->m_eunitFontSize = ::draw2d::unit_pixel;
 //      GetFont()->m_bUpdated = false;
 
-      select_font(pdc);
+      select_font(pgraphics);
 
-      pdc->SelectObject(br);
+      pgraphics->SelectObject(br);
 
       for(index i = 0; i < ca; i++)
       {
@@ -142,11 +142,11 @@ namespace user
             {
                ::draw2d::pen_sp pen(allocer());
                pen->create_solid(m_iItemHeight / 8, ARGB(230, 77, 184, 63));
-               pdc->SelectObject(pen);
-               pdc->DrawRectangle(rectItem);
+               pgraphics->SelectObject(pen);
+               pgraphics->DrawRectangle(rectItem);
             }
             m_pcombo->_001GetListText(i, strItem);
-            pdc->draw_text(strItem, rectItem, 0);
+            pgraphics->draw_text(strItem, rectItem, 0);
          }
       }
 
@@ -162,12 +162,12 @@ namespace user
          {
             br->create_solid(ARGB(184, 77, 184, 63));
          }
-         pdc->SelectObject(br);
-         pdc->FillRectangle(rectItem);
+         pgraphics->SelectObject(br);
+         pgraphics->FillRectangle(rectItem);
          br->create_solid(ARGB(255, 255, 255, 240));
          m_pcombo->_001GetListText(m_pcombo->m_iSel, strItem);
-         pdc->SelectObject(br);
-         pdc->draw_text(strItem, rectItem, 0);
+         pgraphics->SelectObject(br);
+         pgraphics->draw_text(strItem, rectItem, 0);
       }
 
 
@@ -177,7 +177,7 @@ namespace user
    void combo_list::_001OnDrawSimply(::draw2d::dib * pdib)
    {
       
-      ::draw2d::graphics * pdc = pdib->get_graphics();
+      
 
       ::count ca = m_pcombo->_001GetListCount();
 
@@ -191,9 +191,9 @@ namespace user
 
       br->create_solid(ARGB(230, 255, 255, 255));
 
-      pdc->SelectObject(br);
+      pgraphics->SelectObject(br);
 
-      pdc->FillRectangle(rectClient);
+      pgraphics->FillRectangle(rectClient);
 
       {
 
@@ -205,7 +205,7 @@ namespace user
 
          COLORREF crBorder = ca.get_rgb() | (0xff << 24);
 
-         pdc->Draw3dRect(rectClient, crBorder, crBorder);
+         pgraphics->Draw3dRect(rectClient, crBorder, crBorder);
 
       }
 
@@ -229,9 +229,9 @@ namespace user
       //GetFont()->m_eunitFontSize = ::draw2d::unit_pixel;
       //GetFont()->m_bUpdated = false;
 
-      select_font(pdc);
+      select_font(pgraphics);
 
-      pdc->SelectObject(br);
+      pgraphics->SelectObject(br);
 
       for(index i = 0; i < ca; i++)
       {
@@ -243,11 +243,11 @@ namespace user
             {
                ::draw2d::pen_sp pen(allocer());
                pen->create_solid(m_iItemHeight / 8, ARGB(230, 77, 184, 63));
-               pdc->SelectObject(pen);
-               pdc->DrawRectangle(rectItem);
+               pgraphics->SelectObject(pen);
+               pgraphics->DrawRectangle(rectItem);
             }
             m_pcombo->_001GetListText(i, strItem);
-            pdc->draw_text(strItem, rectItem, 0);
+            pgraphics->draw_text(strItem, rectItem, 0);
          }
       }
 
@@ -263,12 +263,12 @@ namespace user
          {
             br->create_solid(ARGB(184, 77, 184, 63));
          }
-         pdc->SelectObject(br);
-         pdc->FillRectangle(rectItem);
+         pgraphics->SelectObject(br);
+         pgraphics->FillRectangle(rectItem);
          br->create_solid(ARGB(255, 255, 255, 240));
          m_pcombo->_001GetListText(m_pcombo->m_iSel, strItem);
-         pdc->SelectObject(br);
-         pdc->draw_text(strItem, rectItem, 0);
+         pgraphics->SelectObject(br);
+         pgraphics->draw_text(strItem, rectItem, 0);
       }
 
 
@@ -278,7 +278,7 @@ namespace user
    void combo_list::_002OnDrawVerisimple(::draw2d::dib * pdib)
    {
 
-      ::draw2d::graphics * pdc = pdib->get_graphics();
+      
 
       ::count ca = m_pcombo->_001GetListCount();
 
@@ -292,9 +292,9 @@ namespace user
 
       br->create_solid(ARGB(230,255,255,255));
 
-      pdc->SelectObject(br);
+      pgraphics->SelectObject(br);
 
-      pdc->FillRectangle(rectClient);
+      pgraphics->FillRectangle(rectClient);
 
       //{
 
@@ -306,7 +306,7 @@ namespace user
 
       //   COLORREF crBorder = ca.get_rgb() | (0xff << 24);
 
-      //   pdc->Draw3dRect(rectClient,crBorder,crBorder);
+      //   pgraphics->Draw3dRect(rectClient,crBorder,crBorder);
 
       //}
 
@@ -341,9 +341,9 @@ namespace user
       //  GetFont()->m_eunitFontSize = ::draw2d::unit_pixel;
       //      GetFont()->m_bUpdated = false;
 
-      select_font(pdc);
+      select_font(pgraphics);
 
-      //pdc->SelectObject(br);
+      //pgraphics->SelectObject(br);
 
       int iHover = m_iHover;
 
@@ -361,18 +361,18 @@ namespace user
          if(iHover == i)
          {
             br->create_solid(ARGB(184,77,184,63));
-            pdc->SelectObject(br);
-            pdc->FillRectangle(rectItem);
+            pgraphics->SelectObject(br);
+            pgraphics->FillRectangle(rectItem);
             br->create_solid(ARGB(255,255,255,240));
             m_pcombo->_001GetListText(i,strItem);
-            pdc->SelectObject(br);
-            pdc->draw_text(strItem,rectItem,0);
+            pgraphics->SelectObject(br);
+            pgraphics->draw_text(strItem,rectItem,0);
          }
          else
          {
-            pdc->set_text_color(ARGB(255,84,84,77));
+            pgraphics->set_text_color(ARGB(255,84,84,77));
             m_pcombo->_001GetListText(i,strItem);
-            pdc->draw_text(strItem,rectItem,0);
+            pgraphics->draw_text(strItem,rectItem,0);
          }
       }
 
@@ -382,7 +382,7 @@ namespace user
    void combo_list::_002OnDrawSimply(::draw2d::dib * pdib)
    {
 
-      ::draw2d::graphics * pdc = pdib->get_graphics();
+      
 
       ::count ca = m_pcombo->_001GetListCount();
 
@@ -396,9 +396,9 @@ namespace user
 
       br->create_solid(ARGB(230,255,255,255));
 
-      pdc->SelectObject(br);
+      pgraphics->SelectObject(br);
 
-      pdc->FillRectangle(rectClient);
+      pgraphics->FillRectangle(rectClient);
 
       //{
 
@@ -410,7 +410,7 @@ namespace user
 
       //   COLORREF crBorder = ca.get_rgb() | (0xff << 24);
 
-      //   pdc->Draw3dRect(rectClient,crBorder,crBorder);
+      //   pgraphics->Draw3dRect(rectClient,crBorder,crBorder);
 
       //}
 
@@ -441,9 +441,9 @@ namespace user
       //GetFont()->m_eunitFontSize = ::draw2d::unit_pixel;
       //GetFont()->m_bUpdated = false;
 
-      select_font(pdc);
+      select_font(pgraphics);
 
-      //pdc->SelectObject(br);
+      //pgraphics->SelectObject(br);
 
       int iHover = m_iHover;
 
@@ -461,18 +461,18 @@ namespace user
          if(i == iHover)
          {
             br->create_solid(ARGB(184,77,184,63));
-            pdc->SelectObject(br);
-            pdc->FillRectangle(rectItem);
+            pgraphics->SelectObject(br);
+            pgraphics->FillRectangle(rectItem);
             br->create_solid(ARGB(255,255,255,240));
             m_pcombo->_001GetListText(i,strItem);
-            pdc->SelectObject(br);
-            pdc->draw_text(strItem,rectItem,0);
+            pgraphics->SelectObject(br);
+            pgraphics->draw_text(strItem,rectItem,0);
          }
          else
          {
-            pdc->set_text_color(ARGB(255,84,84,77));
+            pgraphics->set_text_color(ARGB(255,84,84,77));
             m_pcombo->_001GetListText(i,strItem);
-            pdc->draw_text(strItem,rectItem,0);
+            pgraphics->draw_text(strItem,rectItem,0);
          }
       }
 
@@ -485,16 +485,16 @@ namespace user
       if (!((combo_list *)this)->IsWindow())
          return;
 
-      ::draw2d::graphics_sp pdc(((combo_list *) this)->allocer());
+      ::draw2d::graphics_sp pgraphics(((combo_list *) this)->allocer());
 
 
-      pdc->CreateCompatibleDC(NULL);
+      pgraphics->CreateCompatibleDC(NULL);
 
       ::draw2d::dib_sp tameshi(((combo_list *) this)->allocer());
 
       tameshi->create(100, 100);
 
-      pdc->SelectObject(tameshi->get_bitmap());
+      pgraphics->SelectObject(tameshi->get_bitmap());
 
     //  int32_t dSize = (int32_t) (_001GetItemHeight() * 0.7);
 ////
@@ -504,7 +504,7 @@ namespace user
 //
 //      ((combo_list *) this)->GetFont()->m_bUpdated = false;
 //
-      ((combo_list *)this)->select_font(pdc);
+      ((combo_list *)this)->select_font(pgraphics);
 
       string strItem;
 
@@ -519,7 +519,7 @@ namespace user
 
          m_pcombo->_001GetListText(i, strItem);
 
-         sz = pdc->GetTextExtent(strItem);
+         sz = pgraphics->GetTextExtent(strItem);
 
          if(sz.cx > lpsize->cx)
          {

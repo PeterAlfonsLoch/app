@@ -145,7 +145,7 @@ namespace user
    void front_end_schema::DrawCheck(check::e_check echeck, const RECT & rect, ::draw2d::dib * pdib)
    {
 
-      ::draw2d::graphics * pdc = pdib->get_graphics();
+      
 
       if(echeck == check::checked)
       {
@@ -160,7 +160,7 @@ namespace user
 
          pta.offset(rect.left, rect.top);
 
-         pdc->Polygon(pta);
+         pgraphics->Polygon(pta);
 
       }
 

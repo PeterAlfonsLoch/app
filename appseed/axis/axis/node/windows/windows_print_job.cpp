@@ -72,7 +72,7 @@ namespace windows
             pgraphics->AbortDoc();
             return -1;
          }
-         m_pui->_001OnDraw(pdib);
+         m_pui->_001OnDraw(pgraphics);
          if(m_bCancel)
          {
             pgraphics->AbortDoc();

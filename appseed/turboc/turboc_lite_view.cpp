@@ -80,10 +80,10 @@ namespace turboc
    }
 
 
-   void lite_view::_001OnDraw(::draw2d::dib * pdib)
+   void lite_view::_001OnDraw(::draw2d::graphics * pgraphics)
    {
 
-      view::_001OnDraw(pdc);
+      view::_001OnDraw(pgraphics);
 
    }
 
@@ -91,7 +91,7 @@ namespace turboc
    void lite_view::turboc_render(::draw2d::dib * pdib)
    {
 
-      turboc_render_lite_view(pdc);
+      turboc_render_lite_view(pgraphics);
 
    }
 
@@ -117,9 +117,9 @@ namespace turboc
 
       rectClient.bottom = m_cy;
 
-      //pdc->set_alpha_mode(::draw2d::alpha_mode_set);
+      //pgraphics->set_alpha_mode(::draw2d::alpha_mode_set);
 
-      //pdc->FillSolidRect(rectClient,ARGB(0, 0, 0, 0));
+      //pgraphics->FillSolidRect(rectClient,ARGB(0, 0, 0, 0));
 
 //      int32_t iCount = 30;
 
@@ -164,9 +164,9 @@ namespace turboc
       //   iBlur = iCount - i;
       string strHelloMultiverse = get_processed_turboc();
 
-      pdc->set_font(m_font);
+      pgraphics->set_font(m_font);
 
-      ::size size = pdc->GetTextExtent(strHelloMultiverse);
+      ::size size = pgraphics->GetTextExtent(strHelloMultiverse);
 
 
       if(!m_bFirstDone)
@@ -181,7 +181,7 @@ namespace turboc
 
             m_dib.initialize(m_cxCache1,m_cyCache1,m_dMaxRadius);
 
-            //m_dib->defer_realize(pdc);
+            //m_dib->defer_realize(pgraphics);
 
             m_dib->Fill(0,0,0,0);
 
@@ -259,17 +259,17 @@ namespace turboc
 
       }
 
-      pdc->SetStretchBltMode(HALFTONE);
+      pgraphics->SetStretchBltMode(HALFTONE);
 
-      pdc->set_alpha_mode(::draw2d::alpha_mode_blend);
+      pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-      System.visual().imaging().bitmap_blend(pdc,null_point(),rectClient.size(),m_dibTemplate->get_graphics(),null_point(),84 + 49 + (255 - 84 - 49) * r);
+      System.visual().imaging().bitmap_blend(pgraphics,null_point(),rectClient.size(),m_dibTemplate->get_graphics(),null_point(),84 + 49 + (255 - 84 - 49) * r);
 
-      //pdc->BitBlt(rectClient,m_dibTemplate->get_graphics());
+      //pgraphics->BitBlt(rectClient,m_dibTemplate->get_graphics());
 
-      pdc->set_font(m_font);
+      pgraphics->set_font(m_font);
 
-      pdc->set_text_rendering(::draw2d::text_rendering_anti_alias);
+      pgraphics->set_text_rendering(::draw2d::text_rendering_anti_alias);
 
       if(Session.savings().is_trying_to_save(::aura::resource_display_bandwidth))
       {
@@ -295,16 +295,16 @@ namespace turboc
 
       }
 
-      pdc->SelectObject(brushText);
+      pgraphics->SelectObject(brushText);
 
       //if(!m_bAlternate)
       {
 
-         pdc->TextOut((m_cx - size.cx) / 2,(m_cy - size.cy) / 2,strHelloMultiverse);
+         pgraphics->TextOut((m_cx - size.cx) / 2,(m_cy - size.cy) / 2,strHelloMultiverse);
 
       }
 
-      //pdc->FillSolidRect(200,200,100,100,ARGB(128,128,128,0));
+      //pgraphics->FillSolidRect(200,200,100,100,ARGB(128,128,128,0));
 
 
       if(strHelloMultiverse == get_processed_turboc() && m_cxCache1 == m_cx && m_cyCache1 == m_cy)

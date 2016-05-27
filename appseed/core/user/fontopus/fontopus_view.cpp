@@ -208,7 +208,7 @@ namespace fontopus
    }
 
 
-   void view::_001OnDraw(::draw2d::dib * pdib)
+   void view::_001OnDraw(::draw2d::graphics * pgraphics)
    {
 
 
@@ -217,7 +217,7 @@ namespace fontopus
 
       simple_ui_draw_frame_window_rect(pdib);
 
-      ::draw2d::graphics * pgraphics = pdib->get_graphics();
+      
 
       COLORREF crOut, crIn, crBorderOut, crBorderIn, cr, crBk;
 
@@ -452,10 +452,10 @@ namespace fontopus
    //}
 
 
-   void view::_000OnDraw(::draw2d::dib * pdib)
+   void view::_000OnDraw(::draw2d::graphics * pgraphics)
    {
 
-      //simple_ui::interaction::_000OnDraw(pdc);
+      //simple_ui::interaction::_000OnDraw(pgraphics);
 
 
       if (!m_bVisible)
@@ -479,7 +479,7 @@ namespace fontopus
    }
 
 
-   void view::_001DrawChildren(::draw2d::dib * pdib)
+   void view::_001DrawChildren(::draw2d::graphics * pgraphics)
    {
 
       //single_lock sl(m_pmutex, true);

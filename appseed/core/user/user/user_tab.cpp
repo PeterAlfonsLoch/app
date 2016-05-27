@@ -8,7 +8,7 @@
 
 extern CLASS_DECL_CORE thread_int_ptr < DWORD_PTR > t_time1;
 
-// pdc->GetTextExtent("->:<-"); // oh no!! omg!! The size is the size of the alien!!
+// pgraphics->GetTextExtent("->:<-"); // oh no!! omg!! The size is the size of the alien!!
 #define MAGIC_PALACE_TAB_SPLT "->:<-"
 #define MAGIC_PALACE_TAB_SIZE "-/-"
 #define MAGIC_PALACE_TAB_TEXT "/"
@@ -433,10 +433,10 @@ namespace user
    }
 
 
-   void tab::_001OnDraw(::draw2d::dib * pdib)
+   void tab::_001OnDraw(::draw2d::graphics * pgraphics)
    {
 
-      //::draw2d::graphics * pdc = pdib->get_graphics();
+      //
 
       defer_handle_full_screen_show_tabs();
 
@@ -460,7 +460,7 @@ namespace user
 
 
       m_puserschema->_001TabOnDrawSchema01(pdib,this);
-//      _001OnDrawSchema01(pdc);
+//      _001OnDrawSchema01(pgraphics);
 
    }
 
@@ -468,7 +468,7 @@ namespace user
    void tab::_001OnDrawStandard(::draw2d::dib * pdib)
    {
 
-      ::draw2d::graphics * pdc = pdib->get_graphics();
+      
 
       class rect rect;
       class rect rectBorder;
@@ -479,13 +479,13 @@ namespace user
 
       get_data()->m_pen->create_solid(1,RGB(32,32,32));
 
-      pdc->set_text_rendering(::draw2d::text_rendering_anti_alias_grid_fit);
+      pgraphics->set_text_rendering(::draw2d::text_rendering_anti_alias_grid_fit);
 
-      pdc->set_alpha_mode(::draw2d::alpha_mode_blend);
+      pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-      pdc->FillSolidRect(get_data()->m_rectTab, ARGB(0xc0, 250, 255, 255));
+      pgraphics->FillSolidRect(get_data()->m_rectTab, ARGB(0xc0, 250, 255, 255));
 
-      pdc->set_alpha_mode(::draw2d::alpha_mode_set);
+      pgraphics->set_alpha_mode(::draw2d::alpha_mode_set);
 
       int32_t iVisiblePane = 0;
 
@@ -515,8 +515,8 @@ namespace user
          {
             if(get_element_rect(iVisiblePane, rectIcon, element_icon))
             {
-               pdc->set_alpha_mode(::draw2d::alpha_mode_blend);
-               tab_pane.m_dib->bitmap_blend(pdc, rectIcon);
+               pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+               tab_pane.m_dib->bitmap_blend(pgraphics, rectIcon);
             }
 
             if(get_data()->m_iaSel.contains(iPane))
@@ -526,15 +526,15 @@ namespace user
 
                pen->create_solid(1.0, ARGB(255, 0, 0, 0));
 
-               pdc->SelectObject(pen);
+               pgraphics->SelectObject(pen);
 
-               pdc->MoveTo(rectBorder.right, rectBorder.bottom);
-               pdc->LineTo(rectBorder.left + 1, rectBorder.bottom);
-               pdc->LineTo(rectBorder.left, rectBorder.top - (rectBorder.left - rectClient.left));
-               pdc->LineTo(rectClient.left, rectBorder.top);
-               pdc->LineTo(rectBorder.right, rectBorder.top);
+               pgraphics->MoveTo(rectBorder.right, rectBorder.bottom);
+               pgraphics->LineTo(rectBorder.left + 1, rectBorder.bottom);
+               pgraphics->LineTo(rectBorder.left, rectBorder.top - (rectBorder.left - rectClient.left));
+               pgraphics->LineTo(rectClient.left, rectBorder.top);
+               pgraphics->LineTo(rectBorder.right, rectBorder.top);
 
-               pdc->set_font(get_data()->m_fontBold);
+               pgraphics->set_font(get_data()->m_fontBold);
 
                brushText = get_data()->m_brushTextSel;
 
@@ -546,22 +546,22 @@ namespace user
 
                pen->create_solid(1.0, ARGB(255, 0, 0, 0));
 
-               pdc->SelectObject(pen);
+               pgraphics->SelectObject(pen);
 
-               pdc->MoveTo(rectBorder.right, rectBorder.bottom);
-               pdc->LineTo(rectBorder.left + 1, rectBorder.bottom);
-               pdc->LineTo(rectBorder.left, rectBorder.top - (rectBorder.left - rectClient.left));
-               pdc->LineTo(rectText.left, rectBorder.top);
-               pdc->LineTo(rectBorder.right, rectBorder.top);
-               pdc->LineTo(rectBorder.right, rectBorder.bottom);
+               pgraphics->MoveTo(rectBorder.right, rectBorder.bottom);
+               pgraphics->LineTo(rectBorder.left + 1, rectBorder.bottom);
+               pgraphics->LineTo(rectBorder.left, rectBorder.top - (rectBorder.left - rectClient.left));
+               pgraphics->LineTo(rectText.left, rectBorder.top);
+               pgraphics->LineTo(rectBorder.right, rectBorder.top);
+               pgraphics->LineTo(rectBorder.right, rectBorder.bottom);
                if(iVisiblePane == m_iHover && m_eelementHover != element_close_tab_button)
                {
-                  pdc->set_font(get_data()->m_fontUnderline);
+                  pgraphics->set_font(get_data()->m_fontUnderline);
                   brushText = get_data()->m_brushClose;
                }
                else
                {
-                  pdc->set_font(get_data()->m_font);
+                  pgraphics->set_font(get_data()->m_font);
                   brushText = get_data()->m_brushText;
                }
             }
@@ -573,8 +573,8 @@ namespace user
 
             if(get_element_rect(iVisiblePane, rectIcon, element_icon))
             {
-               pdc->set_alpha_mode(::draw2d::alpha_mode_blend);
-               tab_pane.m_dib->bitmap_blend(pdc, rectIcon);
+               pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+               tab_pane.m_dib->bitmap_blend(pgraphics, rectIcon);
             }
 
             if(get_data()->m_iaSel.contains(iPane))
@@ -584,16 +584,16 @@ namespace user
 
                pen->create_solid(1.0, ARGB(255, 0, 0, 0));
 
-               pdc->SelectObject(pen);
+               pgraphics->SelectObject(pen);
 
-               pdc->MoveTo(rectBorder.left, rectClient.bottom);
-               //pdc->LineTo(rectBorder.left, rectText.bottom);
-               pdc->LineTo(rectBorder.left, rectBorder.top);
-               pdc->LineTo(rectClient.right, rectBorder.top);
-               pdc->LineTo(rectBorder.right, rectBorder.top + (rectBorder.right - rectClient.right));
-               pdc->LineTo(rectBorder.right - 1, rectClient.bottom);
-               //pdc->LineTo(rect.right, rectText.bottom);
-               pdc->set_font(get_data()->m_fontBold);
+               pgraphics->MoveTo(rectBorder.left, rectClient.bottom);
+               //pgraphics->LineTo(rectBorder.left, rectText.bottom);
+               pgraphics->LineTo(rectBorder.left, rectBorder.top);
+               pgraphics->LineTo(rectClient.right, rectBorder.top);
+               pgraphics->LineTo(rectBorder.right, rectBorder.top + (rectBorder.right - rectClient.right));
+               pgraphics->LineTo(rectBorder.right - 1, rectClient.bottom);
+               //pgraphics->LineTo(rect.right, rectText.bottom);
+               pgraphics->set_font(get_data()->m_fontBold);
                brushText->create_solid(ARGB(255, 0, 0, 0));
             }
             else
@@ -603,25 +603,25 @@ namespace user
 
                pen->create_solid(1.0, ARGB(255, 0, 0, 0));
 
-               pdc->SelectObject(pen);
+               pgraphics->SelectObject(pen);
 
-               //pdc->MoveTo(rect.left, rectBorder.bottom);
-               //pdc->LineTo(rect.right, rectBorder.bottom);
-               pdc->MoveTo(rectBorder.left, rectClient.bottom);
-               pdc->LineTo(rectBorder.left, rectBorder.top);
-               pdc->LineTo(rectClient.right, rectBorder.top);
-               pdc->LineTo(rectBorder.right, rectBorder.top + (rectBorder.right - rectClient.right));
-               pdc->LineTo(rectBorder.right - 1, rectClient.bottom);
-               pdc->LineTo(rectBorder.left, rectClient.bottom);
+               //pgraphics->MoveTo(rect.left, rectBorder.bottom);
+               //pgraphics->LineTo(rect.right, rectBorder.bottom);
+               pgraphics->MoveTo(rectBorder.left, rectClient.bottom);
+               pgraphics->LineTo(rectBorder.left, rectBorder.top);
+               pgraphics->LineTo(rectClient.right, rectBorder.top);
+               pgraphics->LineTo(rectBorder.right, rectBorder.top + (rectBorder.right - rectClient.right));
+               pgraphics->LineTo(rectBorder.right - 1, rectClient.bottom);
+               pgraphics->LineTo(rectBorder.left, rectClient.bottom);
 
                if(iVisiblePane == m_iHover && m_eelementHover != element_close_tab_button)
                {
-                  pdc->set_font(get_data()->m_fontUnderline);
+                  pgraphics->set_font(get_data()->m_fontUnderline);
                   brushText->create_solid(ARGB(255, 0, 127, 255));
                }
                else
                {
-                  pdc->set_font(get_data()->m_font);
+                  pgraphics->set_font(get_data()->m_font);
                   brushText = get_data()->m_brushText;
                }
             }
@@ -631,15 +631,15 @@ namespace user
          if(get_element_rect(iVisiblePane, rectText, element_text))
          {
 
-            pdc->SelectObject(brushText);
+            pgraphics->SelectObject(brushText);
 
-            pdc->_DrawText(tab_pane.get_title(), tab_pane.get_title().get_length(), rectText, DT_LEFT | DT_BOTTOM);
+            pgraphics->_DrawText(tab_pane.get_title(), tab_pane.get_title().get_length(), rectText, DT_LEFT | DT_BOTTOM);
 
          }
 
          if(get_element_rect(iVisiblePane, rectClose, element_close_tab_button))
          {
-            pdc->set_font(get_data()->m_fontBold);
+            pgraphics->set_font(get_data()->m_fontBold);
             if(iVisiblePane == m_iHover && m_eelementHover == element_close_tab_button)
             {
                brushText = get_data()->m_brushCloseSel;
@@ -649,15 +649,15 @@ namespace user
             {
                brushText->create_solid(ARGB(0xff, 0, 0, 0));
             }
-            pdc->SelectObject(brushText);
-            pdc->draw_text("x", rectClose, DT_CENTER | DT_VCENTER);
+            pgraphics->SelectObject(brushText);
+            pgraphics->draw_text("x", rectClose, DT_CENTER | DT_VCENTER);
          }
 
 
          iVisiblePane++;
 
       }
-      //pdc->SelectObject(hOldPen);
+      //pgraphics->SelectObject(hOldPen);
 
    }
 
@@ -709,10 +709,10 @@ namespace user
 
       defer_handle_full_screen_show_tabs(false);
 
-      ::draw2d::memory_graphics pdc(allocer());
-      pdc->SelectObject(get_data()->m_fontBold);
+      ::draw2d::memory_graphics pgraphics(allocer());
+      pgraphics->SelectObject(get_data()->m_fontBold);
 
-      m_dcextension.GetTextExtent(pdc,MAGIC_PALACE_TAB_SIZE,get_data()->m_sizeSep);
+      m_dcextension.GetTextExtent(pgraphics,MAGIC_PALACE_TAB_SIZE,get_data()->m_sizeSep);
 
 
 
@@ -733,11 +733,11 @@ namespace user
 
             string str = tab_pane.get_title();
 
-            tab_pane.do_split_layout(m_dcextension, pdc);
+            tab_pane.do_split_layout(m_dcextension, pgraphics);
 
             ::size size;
 
-            m_dcextension.GetTextExtent(pdc, str, size);
+            m_dcextension.GetTextExtent(pgraphics, str, size);
 
 
 
@@ -811,8 +811,8 @@ namespace user
          int32_t cy;
          ::draw2d::graphics_sp graphics(allocer());
          graphics->CreateCompatibleDC(NULL);
-         ::draw2d::graphics * pdc = graphics;
-         pdc->SelectObject(get_data()->m_fontBold);
+         ::draw2d::graphics * pgraphics = graphics;
+         pgraphics->SelectObject(get_data()->m_fontBold);
 
          rect rectClient;
          GetClientRect(rectClient);
@@ -829,11 +829,11 @@ namespace user
 
             string str = tab_pane.get_title();
 
-            tab_pane.do_split_layout(m_dcextension,pdc);
+            tab_pane.do_split_layout(m_dcextension,pgraphics);
 
             size size;
 
-            m_dcextension.GetTextExtent(pdc, str, size);
+            m_dcextension.GetTextExtent(pgraphics, str, size);
 
             if(tab_pane.m_dib.m_p != NULL)
             {
@@ -1145,7 +1145,7 @@ namespace user
       {
          ASSERT(iTabParam >= 0);
          ASSERT(iTabParam < GetTabCount());
-         ::draw2d::memory_graphics pdc(allocer());
+         ::draw2d::memory_graphics pgraphics(allocer());
          rect rect = get_data()->m_rectTab;
          rect.bottom = rect.top;
 
@@ -1184,7 +1184,7 @@ namespace user
          ////Gdiplus::Graphics * pg = new Gdiplus::Graphics(hdc);
          ////delete pg;
          ////::DeleteDC(hdc);
-         //::draw2d::graphics * pdc = graphics;
+         //::draw2d::graphics * pgraphics = graphics;
          //rect rect = get_data()->m_rectTab;
          //rect.right = rect.left;
          //int32_t ixAdd;
@@ -1218,14 +1218,14 @@ namespace user
 
          //   /*if(get_data()->m_iaSel.contains(iPane))
          //   {
-         //      pdc->SelectObject(get_data()->m_fontBold);
+         //      pgraphics->SelectObject(get_data()->m_fontBold);
          //   }
          //   else
          //   {
-         //      pdc->SelectObject(get_data()->m_font);
+         //      pgraphics->SelectObject(get_data()->m_font);
          //   }
          //   m_dcextension.GetTextExtent(
-         //      pdc,
+         //      pgraphics,
          //      str,
          //      size);*/
          //   rect.right = rect.left + ixAdd + size.cx +
@@ -1475,7 +1475,7 @@ namespace user
 
    }
 
-   void tab_pane::do_split_layout(::visual::graphics_extension & dc, ::draw2d::graphics * pdc)
+   void tab_pane::do_split_layout(::visual::graphics_extension & dc, ::draw2d::graphics * pgraphics)
    {
 
       stringa & straTitle = m_straTitle;
@@ -1487,7 +1487,7 @@ namespace user
       for(int iTitle = 0; iTitle < straTitle.get_count(); iTitle++)
       {
 
-         dc.GetTextExtent(pdc,straTitle[iTitle],m_sizeaText[iTitle]);
+         dc.GetTextExtent(pgraphics,straTitle[iTitle],m_sizeaText[iTitle]);
 
       }
 

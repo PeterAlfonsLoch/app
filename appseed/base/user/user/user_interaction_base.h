@@ -90,7 +90,7 @@ namespace user
 
 //      virtual bool is_window_enabled();
       virtual bool enable_window(bool bEnable = true);
-      virtual void _000OnDraw(::draw2d::dib * pdib);
+      virtual void _000OnDraw(::draw2d::graphics * pgraphics);
 
       virtual void PreSubClassWindow();
 
@@ -176,7 +176,7 @@ namespace user
 
       virtual bool Redraw(rect_array & recta);
       virtual bool Redraw(LPCRECT lprect = NULL,::draw2d::region * prgn = NULL);
-      virtual bool Redraw(::draw2d::dib * pdib);
+      virtual bool Redraw(::draw2d::graphics * pgraphics);
 
       void _001BaseWndInterfaceMap();
 
@@ -350,12 +350,12 @@ namespace user
 
       virtual bool is_window_enabled();
 
-      virtual void _001Print(::draw2d::dib * pdib);
-      virtual void _001DrawThis(::draw2d::dib * pdib);
-      virtual void _001DrawChildren(::draw2d::dib * pdib);
-      virtual void _001OnDraw(::draw2d::dib * pdib);
-      virtual void _008OnDraw(::draw2d::dib * pdib);
-      virtual void draw_control_background(::draw2d::dib * pdib);
+      virtual void _001Print(::draw2d::graphics * pgraphics);
+      virtual void _001DrawThis(::draw2d::graphics * pgraphics);
+      virtual void _001DrawChildren(::draw2d::graphics * pgraphics);
+      virtual void _001OnDraw(::draw2d::graphics * pgraphics);
+      virtual void _008OnDraw(::draw2d::graphics * pgraphics);
+      virtual void draw_control_background(::draw2d::graphics * pgraphics);
 
 
       virtual bool IsAscendant(const interaction * puiIsAscendant) const;
@@ -472,9 +472,9 @@ namespace user
 //      virtual LRESULT message_handler(LPMESSAGE lpmessage);
       virtual void GuieProc(signal_details * pobj);
 
-      virtual void _001DeferPaintLayeredWindowBackground(::draw2d::dib * pdib);
+      virtual void _001DeferPaintLayeredWindowBackground(::draw2d::graphics * pgraphics);
 
-      virtual void _001OnDeferPaintLayeredWindowBackground(::draw2d::dib * pdib);
+      virtual void _001OnDeferPaintLayeredWindowBackground(::draw2d::graphics * pgraphics);
 
 
       oswindow get_safe_handle() const;
@@ -494,7 +494,7 @@ namespace user
       //#endif
 
 
-      virtual void set_viewport_org(::draw2d::dib * pdib);
+      virtual void set_viewport_org(::draw2d::graphics * pgraphics);
 
       virtual void viewport_screen_to_client(POINT * ppt);
       virtual void viewport_client_to_screen(POINT * ppt);
@@ -569,7 +569,7 @@ namespace user
       virtual void keep_alive(::object * pliveobject = NULL);
 
 
-      virtual window_graphics ** get_window_graphics();
+      virtual window_graphics * get_window_graphics();
 
 
       virtual bool is_composite();

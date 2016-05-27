@@ -195,10 +195,10 @@ namespace user
    }
 
 
-   void elastic_slider::_001OnDraw(::draw2d::dib * pdib)
+   void elastic_slider::_001OnDraw(::draw2d::graphics * pgraphics)
    {
 
-      ::draw2d::graphics * pdc = pdib->get_graphics();
+      
 
       rect rectClient;
       GetClientRect(rectClient);
@@ -208,7 +208,7 @@ namespace user
       byte bAlpha = (byte) (128.0 * get_alpha());
 
       imaging.color_blend(
-         pdc,
+         pgraphics,
          rectClient,
          RGB(250, 255, 255),
          bAlpha);
@@ -216,18 +216,18 @@ namespace user
       rect rect;
       GetSliderRect(rect);
 
-      pdc->Draw3dRect(rect,ARGB(bAlpha,255,255,255),ARGB(bAlpha,255,255,255));
+      pgraphics->Draw3dRect(rect,ARGB(bAlpha,255,255,255),ARGB(bAlpha,255,255,255));
       rect.deflate(1, 1);
-      pdc->Draw3dRect(rect,ARGB(bAlpha,255,255,0),ARGB(bAlpha,255,255,0));
+      pgraphics->Draw3dRect(rect,ARGB(bAlpha,255,255,0),ARGB(bAlpha,255,255,0));
       rect.deflate(1, 1);
-      pdc->Draw3dRect(rect,ARGB(bAlpha,255,255,255),ARGB(bAlpha,255,255,255));
+      pgraphics->Draw3dRect(rect,ARGB(bAlpha,255,255,255),ARGB(bAlpha,255,255,255));
       if(m_bSlide)
       {
-         pdc->MoveTo(rect.center());
+         pgraphics->MoveTo(rect.center());
          POINT pt;
          Session.get_cursor_pos(&pt);
          ScreenToClient(&pt);
-         pdc->LineTo(pt);
+         pgraphics->LineTo(pt);
       }
    }
 

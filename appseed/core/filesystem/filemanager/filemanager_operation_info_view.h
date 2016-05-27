@@ -18,7 +18,7 @@ namespace filemanager
       void assert_valid() const;
       void dump(dump_context & context) const;
 
-      virtual void _001OnDraw(::draw2d::dib * pdib);
+      virtual void _001OnDraw(::draw2d::graphics * pgraphics);
 
       sp(operation_document) get_document();
 

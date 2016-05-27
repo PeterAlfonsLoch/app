@@ -1,10 +1,10 @@
 #pragma once
 
-namespace draw2d_gl2d
+namespace draw2d_opengl
 {
 
-   class CLASS_DECL_DRAW2D_GL2D palette : 
-      virtual public ::draw2d_gl2d::object,
+   class CLASS_DECL_DRAW2D_OPENGL palette : 
+      virtual public ::draw2d_opengl::object,
       virtual public ::draw2d::palette
    {
    public:
@@ -32,4 +32,4 @@ namespace draw2d_gl2d
       virtual ~palette();
    };
 
-} // namespace draw2d_gl2d
+} // namespace draw2d_opengl

@@ -90,7 +90,7 @@ namespace install
 
       virtual bool plugin_initialize();
 
-      virtual void on_paint(::draw2d::dib * pdib, const RECT & lprect);
+      virtual void on_paint(::draw2d::graphics * pgraphics, const RECT & lprect);
 
       virtual void on_prepare_memory();
 

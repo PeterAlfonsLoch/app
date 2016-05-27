@@ -114,28 +114,28 @@ namespace plugin
 
 
 
-   void host_interaction::_000OnDraw(::draw2d::dib * pdib)
+   void host_interaction::_000OnDraw(::draw2d::graphics * pgraphics)
    {
 
       //rect rectWindow;
       //m_pui->GetWindowRect(rectWindow);
-      //point ptPreviousViewportOrg = pdc->GetViewportOrg();
-      //pdc->SetViewportOrg(rectWindow.top_left());
+      //point ptPreviousViewportOrg = pgraphics->GetViewportOrg();
+      //pgraphics->SetViewportOrg(rectWindow.top_left());
 
       //rect rectClient;
       //GetClientRect(rectClient);
 
-      _001DrawChildren(pdib);
+      _001DrawChildren(pgraphics);
 
-      //pdc->SetViewportOrg(ptPreviousViewportOrg);
-      //pdc->SelectClipRgn(NULL);
+      //pgraphics->SetViewportOrg(ptPreviousViewportOrg);
+      //pgraphics->SelectClipRgn(NULL);
       point ptCursor;
       Session.get_cursor_pos(&ptCursor);
       ScreenToClient(&ptCursor);
       ::visual::cursor * pcursor = Session.get_cursor();
       if(pcursor != NULL)
       {
-         pcursor->to(pdib, ptCursor);
+         pcursor->to(pgraphics, ptCursor);
       }
 
    }

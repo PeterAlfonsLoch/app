@@ -2,7 +2,10 @@
 //#include "windows_window_gdi.h"
 
 
-window_gdi::window_gdi()
+
+window_gdi::window_gdi(::aura::application * papp) :
+   object(papp),
+   window_graphics(papp)
 {
 
    m_hbitmap         = NULL;

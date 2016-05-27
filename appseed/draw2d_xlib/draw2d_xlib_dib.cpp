@@ -157,7 +157,7 @@ namespace draw2d_xlib
 
    bool dib::create(::draw2d::dib * pdib)
    {
-      ::draw2d::bitmap * pbitmap = (dynamic_cast < ::draw2d_xlib::graphics * > (pdc))->get_current_bitmap();
+      ::draw2d::bitmap * pbitmap = (dynamic_cast < ::draw2d_xlib::graphics * > (pgraphics))->get_current_bitmap();
       if(pbitmap == NULL)
          return FALSE;
       ::size size = pbitmap->get_size();
@@ -165,7 +165,7 @@ namespace draw2d_xlib
       {
          return FALSE;
       }
-      from(pdc);
+      from(pgraphics);
       return TRUE;
    }
 
@@ -210,25 +210,25 @@ namespace draw2d_xlib
    bool dib::from(::draw2d::dib * pdib)
    {
       ::draw2d::bitmap_sp bitmap(get_app());
-      bitmap->CreateCompatibleBitmap(pdc, 1, 1);
-      ::draw2d::bitmap * pbitmap = pdc->SelectObject(bitmap);
+      bitmap->CreateCompatibleBitmap(pgraphics, 1, 1);
+      ::draw2d::bitmap * pbitmap = pgraphics->SelectObject(bitmap);
       if(pbitmap == NULL)
          return false;
       class size size = pbitmap->get_size();
       if(!create(size))
       {
-         pdc->SelectObject(pbitmap);
+         pgraphics->SelectObject(pbitmap);
          return false;
       }
       throw todo(get_app());
-      // xxx bool bOk = GetDIBits(LNX_HDC(pdc), (HBITMAP) pbitmap->get_os_data(), 0, cy, m_pcolorref, &(m_info), DIB_RGB_COLORS) != FALSE;
-      // xxx pdc->SelectObject(pbitmap);
+      // xxx bool bOk = GetDIBits(LNX_HDC(pgraphics), (HBITMAP) pbitmap->get_os_data(), 0, cy, m_pcolorref, &(m_info), DIB_RGB_COLORS) != FALSE;
+      // xxx pgraphics->SelectObject(pbitmap);
       // xxx return bOk;
    }
 
-   bool dib::from(point ptDest, ::draw2d::graphics * pdc, point pt, class size sz)
+   bool dib::from(point ptDest, ::draw2d::graphics * pgraphics, point pt, class size sz)
    {
-      return m_spgraphics->BitBlt(ptDest.x, ptDest.y, sz.cx, sz.cy, pdc, pt.x, pt.y, SRCCOPY) != FALSE;
+      return m_spgraphics->BitBlt(ptDest.x, ptDest.y, sz.cx, sz.cy, pgraphics, pt.x, pt.y, SRCCOPY) != FALSE;
    }
 
    //void dib::Fill ( int32_t R, int32_t G, int32_t B )
@@ -2616,9 +2616,9 @@ namespace draw2d_xlib
          if(!dib->create(rectWindow.bottom_right()))
             return false;
 
-         ::draw2d::graphics * pdc = dib->get_graphics();
+         ::draw2d::graphics * pgraphics = dib->get_graphics();
 
-         if(pdc->get_os_data() == NULL)
+         if(pgraphics->get_os_data() == NULL)
             return false;
 
          rect rectPaint;
@@ -2629,24 +2629,24 @@ namespace draw2d_xlib
          m_spgraphics->SelectClipRgn(NULL);
          if(pwnd->m_pguie != NULL && pwnd->m_pguie != this)
          {
-            pwnd->m_pguie->_001OnDeferPaintLayeredWindowBackground(pdc);
+            pwnd->m_pguie->_001OnDeferPaintLayeredWindowBackground(pgraphics);
          }
          else
          {
-            pwnd->_001OnDeferPaintLayeredWindowBackground(pdc);
+            pwnd->_001OnDeferPaintLayeredWindowBackground(pgraphics);
          }
          m_spgraphics->SelectClipRgn(NULL);
         m_spgraphics-> SetViewportOrg(point(0, 0));
-         pwnd->_000OnDraw(pdc);
+         pwnd->_000OnDraw(pgraphics);
          m_spgraphics->SetViewportOrg(point(0, 0));
-         //(dynamic_cast<::win::graphics * >(pdc))->FillSolidRect(rectUpdate.left, rectUpdate.top, 100, 100, 255);
+         //(dynamic_cast<::win::graphics * >(pgraphics))->FillSolidRect(rectUpdate.left, rectUpdate.top, 100, 100, 255);
          m_spgraphics->SelectClipRgn(NULL);
          m_spgraphics->SetViewportOrg(point(0, 0));
 
          m_spgraphics->SelectClipRgn( NULL);
          m_spgraphics->BitBlt(rectPaint.left, rectPaint.top,
             rectPaint.width(), rectPaint.height(),
-            pdc, rectUpdate.left, rectUpdate.top,
+            pgraphics, rectUpdate.left, rectUpdate.top,
             SRCCOPY);
 
          m_spgraphics->TextOut(0, 0, "Te Amo Carlinhos!!", 11);

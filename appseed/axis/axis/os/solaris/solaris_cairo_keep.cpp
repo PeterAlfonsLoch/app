@@ -5,10 +5,10 @@ cairo_surface_t *  ca_cairo_keep::g_cairosurface = NULL;
 cairo_t *  ca_cairo_keep::g_cairo = NULL;
 
 
-ca_cairo_keep::ca_cairo_keep(cairo_t * pdc, bool bSave)
+ca_cairo_keep::ca_cairo_keep(cairo_t * pgraphics, bool bSave)
 {
 
-   m_pdc = pdc;
+   m_pdc = pgraphics;
 
    m_bSave = false;
 

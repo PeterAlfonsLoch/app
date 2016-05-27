@@ -8,7 +8,7 @@ namespace user
 {
    
    
-   void DrawGripperElement001(::draw2d::graphics * pdc, int32_t ix, int32_t iy);
+   void DrawGripperElement001(::draw2d::graphics * pgraphics, int32_t ix, int32_t iy);
    
 
    control_bar::control_bar()
@@ -467,7 +467,7 @@ namespace user
       return;
    }
 
-   void control_bar::_001OnDraw(::draw2d::dib * pdib)
+   void control_bar::_001OnDraw(::draw2d::graphics * pgraphics)
    {
       // background is already filled in gray
       //CPaintDC spgraphics(this);
@@ -476,7 +476,7 @@ namespace user
       //if (IsVisible())
       //DoPaint(&spgraphics);       // delegate to paint helper
       if (IsVisible())
-         DoPaint(pdib);       // delegate to paint helper
+         DoPaint(pgraphics);       // delegate to paint helper
    }
 
    void control_bar::EraseNonClient()
@@ -503,10 +503,10 @@ namespace user
       DrawGripper(&spgraphics, rectWindow);*/
    }
 
-   void control_bar::EraseNonClient(::draw2d::dib * pdib)
+   void control_bar::EraseNonClient(::draw2d::graphics * pgraphics)
    {
 
-      ::draw2d::graphics * pdc = pdib->get_graphics();
+      
 
       // get interaction_impl DC that is clipped to the non-client area
       rect rectClient;
@@ -515,17 +515,17 @@ namespace user
       GetWindowRect(rectWindow);
       ScreenToClient(rectWindow);
       rectClient.offset(-rectWindow.left, -rectWindow.top);
-      pdc->ExcludeClipRect(rectClient);
+      pgraphics->ExcludeClipRect(rectClient);
 
       // draw borders in non-client area
       rectWindow.offset(-rectWindow.left, -rectWindow.top);
-      DrawBorders(pdib, rectWindow);
+      DrawBorders(pgraphics, rectWindow);
 
       // erase parts not drawn
-      //pdc->IntersectClipRect(rectWindow);
+      //pgraphics->IntersectClipRect(rectWindow);
       //SendMessage(WM_ERASEBKGND, (WPARAM)spgraphics->get_handle1());
-      pdc->SelectClipRgn(NULL);
-      pdc->FillSolidRect(
+      pgraphics->SelectClipRgn(NULL);
+      pgraphics->FillSolidRect(
          0,
          0,
          rectWindow.width(),
@@ -534,7 +534,7 @@ namespace user
 
 
       // draw gripper in non-client area
-      DrawGripper(pdib, rectWindow);
+      DrawGripper(pgraphics, rectWindow);
 
    }
 
@@ -782,7 +782,7 @@ namespace user
    }
 
    
-   void control_bar::DoPaint(::draw2d::dib * pdib)
+   void control_bar::DoPaint(::draw2d::graphics * pgraphics)
    {
       
       ASSERT_VALID(this);
@@ -793,19 +793,19 @@ namespace user
 
       GetClientRect(rect);
 
-      DrawBorders(pdib, rect);
+      DrawBorders(pgraphics, rect);
 
-      DrawGripper(pdib, rect);
+      DrawGripper(pgraphics, rect);
 
    }
 
 
-   void control_bar::DrawBorders(::draw2d::dib * pdib, rect& rect)
+   void control_bar::DrawBorders(::draw2d::graphics * pgraphics, rect& rect)
    {
 
       ASSERT_VALID(this);
 
-      ASSERT_VALID(pdib);
+      ASSERT_VALID(pgraphics);
 
       uint32_t dwStyle = m_dwStyle;
       if (!(dwStyle & CBRS_BORDER_ANY))
@@ -821,7 +821,7 @@ namespace user
       COLORREF clr;
       clr = RGB(128, 128, 123);
 
-      ::draw2d::graphics * pdc = pdib->get_graphics();
+      
 
 #ifdef WINDOWSEX
       // draw dark line one pixel back/up
@@ -842,18 +842,18 @@ namespace user
       {
          if(dwStyle & CBRS_GRIPPER)
          {
-            pdc->FillSolidRect(0, rect.top + 7, CX_BORDER, rect.height() - 7, clr);
+            pgraphics->FillSolidRect(0, rect.top + 7, CX_BORDER, rect.height() - 7, clr);
          }
          else
          {
-            pdc->FillSolidRect(0, rect2.top, CX_BORDER, rect2.height(), clr);
+            pgraphics->FillSolidRect(0, rect2.top, CX_BORDER, rect2.height(), clr);
          }
       }
       if (dwStyle & CBRS_BORDER_TOP)
       {
          if(dwStyle & CBRS_GRIPPER)
          {
-            pdc->FillSolidRect(
+            pgraphics->FillSolidRect(
                rect.left + 7,
                rect.top,
                rect.right - 7,
@@ -862,33 +862,33 @@ namespace user
          }
          else
          {
-            pdc->FillSolidRect(
+            pgraphics->FillSolidRect(
                rect.left,
                rect.top,
                rect.right,
                1,
                RGB(128, 128, 123));
          }
-   //      pdc->FillSolidRect(0, 0, rect.right, CY_BORDER, clr);
+   //      pgraphics->FillSolidRect(0, 0, rect.right, CY_BORDER, clr);
       }
       if (dwStyle & (CBRS_BORDER_LEFT | CBRS_BORDER_TOP))
       {
 
          if(dwStyle & CBRS_GRIPPER)
          {
-            ::draw2d::pen_sp pen(pdc, 1, clr);
-            ::draw2d::pen * ppenOld = pdc->SelectObject(pen);
-            pdc->MoveTo(0, 7);
-            pdc->LineTo(7, 0);
-            pdc->SelectObject(ppenOld);
+            ::draw2d::pen_sp pen(pgraphics, 1, clr);
+            ::draw2d::pen * ppenOld = pgraphics->SelectObject(pen);
+            pgraphics->MoveTo(0, 7);
+            pgraphics->LineTo(7, 0);
+            pgraphics->SelectObject(ppenOld);
          }
       }
 
       // draw right and bottom
       if (dwStyle & CBRS_BORDER_RIGHT)
-         pdc->FillSolidRect(rect1.right, rect2.top, -CX_BORDER, rect2.height(), clr);
+         pgraphics->FillSolidRect(rect1.right, rect2.top, -CX_BORDER, rect2.height(), clr);
       if (dwStyle & CBRS_BORDER_BOTTOM)
-         pdc->FillSolidRect(0, rect1.bottom, rect.right, -CY_BORDER, clr);
+         pgraphics->FillSolidRect(0, rect1.bottom, rect.right, -CY_BORDER, clr);
 
       if (dwStyle & CBRS_BORDER_3D)
       {
@@ -898,21 +898,21 @@ namespace user
 
          // draw left and top
          if (dwStyle & CBRS_BORDER_LEFT)
-            pdc->FillSolidRect(1, rect2.top, CX_BORDER, rect2.height(), clr);
+            pgraphics->FillSolidRect(1, rect2.top, CX_BORDER, rect2.height(), clr);
          if (dwStyle & CBRS_BORDER_TOP)
          {
             if(dwStyle & CBRS_GRIPPER)
-               pdc->FillSolidRect(rect.left + 7, rect.top + 1, rect.width() - 7, 1, clr);
+               pgraphics->FillSolidRect(rect.left + 7, rect.top + 1, rect.width() - 7, 1, clr);
             else
-               pdc->FillSolidRect(rect.left, rect.top + 1, rect.width(), 1, clr);
-            //pdc->FillSolidRect(0, 1, rect.right, CY_BORDER, clr);
+               pgraphics->FillSolidRect(rect.left, rect.top + 1, rect.width(), 1, clr);
+            //pgraphics->FillSolidRect(0, 1, rect.right, CY_BORDER, clr);
          }
 
          // draw right and bottom
          if (dwStyle & CBRS_BORDER_RIGHT)
-            pdc->FillSolidRect(rect.right, rect2.top, -CX_BORDER, rect2.height(), clr);
+            pgraphics->FillSolidRect(rect.right, rect2.top, -CX_BORDER, rect2.height(), clr);
          if (dwStyle & CBRS_BORDER_BOTTOM)
-            pdc->FillSolidRect(0, rect.bottom, rect.right, -CY_BORDER, clr);
+            pgraphics->FillSolidRect(0, rect.bottom, rect.right, -CY_BORDER, clr);
       }
 
       if (dwStyle & CBRS_BORDER_LEFT)
@@ -941,24 +941,24 @@ namespace user
    #define CX_BORDER_GRIPPER 2
    #define CY_BORDER_GRIPPER 2
 
-   void DrawGripperElement001(::draw2d::graphics * pdc, int32_t ix, int32_t iy)
+   void DrawGripperElement001(::draw2d::graphics * pgraphics, int32_t ix, int32_t iy)
    {
-      UNREFERENCED_PARAMETER(pdc);
+      UNREFERENCED_PARAMETER(pgraphics);
       UNREFERENCED_PARAMETER(ix);
       UNREFERENCED_PARAMETER(iy);
-/*      pdc->SetPixel(ix    , iy + 1, afxData.clrBtnHilite);
-      pdc->SetPixel(ix + 1, iy + 1, afxData.clrBtnHilite);
-      pdc->SetPixel(ix + 1, iy    , afxData.clrBtnHilite);
-      pdc->SetPixel(ix + 2, iy    , afxData.clrBtnShadow);
-      pdc->SetPixel(ix + 3, iy + 1, afxData.clrBtnShadow);
-      pdc->SetPixel(ix + 3, iy + 2, afxData.clrBtnShadow);
-      pdc->SetPixel(ix + 2, iy + 3, afxData.clrBtnShadow);*/
+/*      pgraphics->SetPixel(ix    , iy + 1, afxData.clrBtnHilite);
+      pgraphics->SetPixel(ix + 1, iy + 1, afxData.clrBtnHilite);
+      pgraphics->SetPixel(ix + 1, iy    , afxData.clrBtnHilite);
+      pgraphics->SetPixel(ix + 2, iy    , afxData.clrBtnShadow);
+      pgraphics->SetPixel(ix + 3, iy + 1, afxData.clrBtnShadow);
+      pgraphics->SetPixel(ix + 3, iy + 2, afxData.clrBtnShadow);
+      pgraphics->SetPixel(ix + 2, iy + 3, afxData.clrBtnShadow);*/
    }
 
-   void control_bar::DrawGripper(::draw2d::dib * pdib, const rect& rect)
+   void control_bar::DrawGripper(::draw2d::graphics * pgraphics, const rect& rect)
    {
 
-      ::draw2d::graphics * pdc = pdib->get_graphics();
+      
 
       // only draw the gripper if not floating and gripper is specified
       if ((m_dwStyle & (CBRS_GRIPPER|CBRS_FLOATING)) == CBRS_GRIPPER)
@@ -978,15 +978,15 @@ namespace user
 
             for(; iy < cy; iy += dy)
             {
-               DrawGripperElement001(pdc, ix + dx, iy);
+               DrawGripperElement001(pgraphics, ix + dx, iy);
                iy += dy;
-               DrawGripperElement001(pdc, ix,      iy);
+               DrawGripperElement001(pgraphics, ix,      iy);
             }
-            DrawGripperElement001(pdc, ix + dx, iy);
+            DrawGripperElement001(pgraphics, ix + dx, iy);
          }
          else
          {
-   //         pdc->Draw3dRect(rect.left+m_cyTopBorder,
+   //         pgraphics->Draw3dRect(rect.left+m_cyTopBorder,
    //            rect.top+CY_BORDER_GRIPPER,
    //            rect.width()-m_cyTopBorder-m_cyBottomBorder, CY_GRIPPER,
    //            afxData.clrBtnHilite, afxData.clrBtnShadow);
@@ -998,11 +998,11 @@ namespace user
 
             for(; ix < cx; ix += dx)
             {
-               DrawGripperElement001(pdc, ix, iy + dy);
+               DrawGripperElement001(pgraphics, ix, iy + dy);
                ix += dx;
-               DrawGripperElement001(pdc, ix, iy);
+               DrawGripperElement001(pgraphics, ix, iy);
             }
-            DrawGripperElement001(pdc, ix, iy + dy);
+            DrawGripperElement001(pgraphics, ix, iy + dy);
          }
       }
    }

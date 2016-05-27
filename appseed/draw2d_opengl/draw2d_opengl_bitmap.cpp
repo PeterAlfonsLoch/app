@@ -60,7 +60,7 @@ PFNWGLGETPIXELFORMATATTRIBIVARBPROC               wglGetPixelFormatAttribivARB;
 #else verify(expr) expr
 #endif
 
-namespace draw2d_gl2d
+namespace draw2d_opengl
 {
 
 
@@ -148,7 +148,7 @@ namespace draw2d_gl2d
    }
 
 
-   bool bitmap::CreateDIBitmap(::draw2d::graphics * pdc, const BITMAPINFOHEADER *pbmih, uint32_t flInit, const void *pjBits, const BITMAPINFO *pbmi, UINT iUsage)
+   bool bitmap::CreateDIBitmap(::draw2d::graphics * pgraphics, const BITMAPINFOHEADER *pbmih, uint32_t flInit, const void *pjBits, const BITMAPINFO *pbmi, UINT iUsage)
    { 
       return FALSE;
    }
@@ -542,6 +542,9 @@ namespace draw2d_gl2d
       wglMakeCurrent(g_hPBufferDC, g_hPBufferRC);
       m_bFlashed = true;
 
+
+      return true;
+
    }
 
    void bitmap::defer_reveal()
@@ -844,7 +847,7 @@ namespace draw2d_gl2d
 
 
 
-} // namespace draw2d_gl2d
+} // namespace draw2d_opengl
 
 
 void resizeBilinear(memory & m, int w2, int h2, int * pixels, int w, int h)

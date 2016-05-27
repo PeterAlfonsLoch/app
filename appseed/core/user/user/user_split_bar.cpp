@@ -57,7 +57,7 @@ namespace user
    }
 
 
-   void split_bar::_001OnDraw(::draw2d::dib * pdib)
+   void split_bar::_001OnDraw(::draw2d::graphics * pgraphics)
    {
 
       UNREFERENCED_PARAMETER(pdib);

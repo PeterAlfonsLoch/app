@@ -17,7 +17,7 @@ public:
    bool                 m_bOwnDC;
 
 
-   window_gdi();
+   window_gdi(::aura::application * papp);
    virtual ~window_gdi();
 
    virtual void create_window_graphics(oswindow interaction_impl, int64_t cx, int64_t cy, int iStride = -1);

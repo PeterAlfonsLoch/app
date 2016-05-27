@@ -100,10 +100,10 @@ namespace user
       void plain_edit_common_construct();
 
 
-      virtual void _001OnDraw(::draw2d::dib * pdib);
+      virtual void _001OnDraw(::draw2d::graphics * pgraphics);
 
 
-      virtual void on_viewport_offset(::draw2d::dib * pdib);
+      virtual void on_viewport_offset(::draw2d::graphics * pgraphics);
 
 
       //void on_change_view_size();
@@ -174,7 +174,7 @@ namespace user
 
       virtual bool create_control(class ::user::control::descriptor * pdescriptor, index iItem);
 
-      virtual strsize char_hit_test(::draw2d::graphics * pdc, int32_t x, int32_t y);
+      virtual strsize char_hit_test(::draw2d::graphics * pgraphics, int32_t x, int32_t y);
 
       colorertake5::file_type * colorer_select_type();
 
