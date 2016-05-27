@@ -2499,6 +2499,12 @@ namespace aura
             }
 
          }
+         else
+         {
+
+            return -1;
+
+         }
 
       }
 
