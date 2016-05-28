@@ -2362,9 +2362,9 @@ namespace aura
       
       single_lock sl(&m_mutexCit);
 
-      if (m_straCit.get_size() == m_straIds.get_size()
-         && m_straIds.get_size() == m_straLon.get_size()
-         && m_straLon.get_size() == m_straLat.get_size()
+      if (m_straCit.get_size() == m_iaIds.get_size()
+         && m_iaIds.get_size() == m_daLon.get_size()
+         && m_daLon.get_size() == m_daLat.get_size()
          && m_straCit.get_size() > 1)
       {
          
@@ -2373,13 +2373,13 @@ namespace aura
       }
 
       file_as(m_straCit, dir::system() / "weather-cit.bin");
-      file_as(m_straIds, dir::system() / "weather-ids.bin");
-      file_as(m_straLon, dir::system() / "weather-lon.bin");
-      file_as(m_straLat, dir::system() / "weather-lat.bin");
+      file_as_array(m_iaIds, dir::system() / "weather-ids.bin");
+      file_as_array(m_daLon, dir::system() / "weather-lon.bin");
+      file_as_array(m_daLat, dir::system() / "weather-lat.bin");
 
-      if (m_straCit.get_size() == m_straIds.get_size()
-       && m_straIds.get_size() == m_straLon.get_size()
-       && m_straLon.get_size() == m_straLat.get_size()
+      if (m_straCit.get_size() == m_iaIds.get_size()
+       && m_iaIds.get_size() == m_daLon.get_size()
+       && m_daLon.get_size() == m_daLat.get_size()
        && m_straCit.get_size() > 1)
       {
       }
@@ -2398,12 +2398,14 @@ namespace aura
 
             stra.add_lines(str);
 
-            var v;
-
             for (auto strJson : stra)
             {
 
                const char * pszJson = strJson;
+
+               //const char * pszJson = "{\"_id\":6322752, \"name\" : \"Curitiba\", \"country\" : \"BR\", \"coord\" : {\"lon\":-49.290821, \"lat\" : -25.50395}}";
+
+               var v;
 
                v.parse_json(pszJson);
 
@@ -2411,38 +2413,24 @@ namespace aura
 
                m_straCit.add(strLine);
 
-               string strId = v["_id"];
+               int64_t iId = v["_id"];
 
-               m_straIds.add(strId);
+               m_iaIds.add(iId);
 
-               string strLon = v["coord"]["lon"];
+               double dLon = v["coord"]["lon"];
 
-               if (strLon.is_empty())
-               {
+               m_daLon.add(dLon);
 
-                  strLon = "-";
+               double dLat = v["coord"]["lat"];
 
-               }
-
-               m_straLon.add(strLon);
-
-               string strLat = v["coord"]["lat"];
-
-               if (strLon.is_empty())
-               {
-
-                  strLat = "-";
-
-               }
-
-               m_straLat.add(strLat);
+               m_daLat.add(dLat);
 
             }
 
             file_put(dir::system() / "weather-cit.bin", m_straCit);
-            file_put(dir::system() / "weather-ids.bin", m_straIds);
-            file_put(dir::system() / "weather-lon.bin", m_straLon);
-            file_put(dir::system() / "weather-lat.bin", m_straLat);
+            file_put_array(dir::system() / "weather-ids.bin", m_iaIds);
+            file_put_array(dir::system() / "weather-lon.bin", m_daLon);
+            file_put_array(dir::system() / "weather-lat.bin", m_daLat);
 
          }
 
@@ -2451,7 +2439,7 @@ namespace aura
    }
 
    
-   index system::find_city(string strQuery, string & strCit, string & strId, double & dLat, double & dLon)
+   index system::find_city(string strQuery, string & strCit, int64_t & iId, double & dLat, double & dLon)
    {
 
       defer_check_city_list();
@@ -2510,11 +2498,11 @@ namespace aura
 
       strCit   = m_straCit[iFind];
 
-      strId    = m_straIds[iFind];
+      iId      = m_iaIds[iFind];
 
-      dLat     = atof(m_straLat[iFind]);
+      dLat     = m_daLat[iFind];
 
-      dLon     = atof(m_straLon[iFind]);
+      dLon     = m_daLon[iFind];
 
       return iFind;
 

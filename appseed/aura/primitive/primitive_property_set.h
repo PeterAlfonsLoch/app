@@ -425,8 +425,8 @@ inline property & property_set::get(id idName)
    
    assoc * p = get_assoc(idName);
 
-   if(p->m_element2 < 0)
-      p->m_element2= get_count() - 1;
+   //if(p->m_element2 < 0)
+     // p->m_element2= get_count() - 1;
 
    return *p;
 

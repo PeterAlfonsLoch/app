@@ -113,9 +113,9 @@ namespace aura
       mutex                                        m_mutexCit;
 
       stringa                                      m_straCit;
-      stringa                                      m_straIds;
-      stringa                                      m_straLon;
-      stringa                                      m_straLat;
+      int64_array                                  m_iaIds;
+      double_array                                 m_daLon;
+      double_array                                 m_daLat;
 
 
 
@@ -419,7 +419,7 @@ namespace aura
 
       virtual void defer_check_city_list();
 
-      virtual index find_city(string strQuery, string & strCit, string & strId, double & dLat, double & dLon);
+      virtual index find_city(string strQuery, string & strCit, int64_t & iId, double & dLat, double & dLon);
 
    };
 
