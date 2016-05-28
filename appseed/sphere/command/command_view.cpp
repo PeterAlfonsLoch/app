@@ -51,9 +51,9 @@ namespace command
    /////////////////////////////////////////////////////////////////////////////
    // view drawing
 
-   void view::OnDraw(::draw2d::dib * pdib)
+   void view::OnDraw(::draw2d::graphics * pgraphics)
    {
-      UNREFERENCED_PARAMETER(pdib);
+      UNREFERENCED_PARAMETER(pgraphics);
    }
 
    /////////////////////////////////////////////////////////////////////////////
@@ -149,8 +149,11 @@ namespace command
 
    void view:: _001OnDraw(::draw2d::graphics * pgraphics)
    {
-      UNREFERENCED_PARAMETER(pdib);
+      
+      UNREFERENCED_PARAMETER(pgraphics);
+
    }
+
 
    void view::_001OnCreate(signal_details * pobj)
    {

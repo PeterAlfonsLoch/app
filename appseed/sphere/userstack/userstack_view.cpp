@@ -55,10 +55,10 @@ namespace userstack
    /////////////////////////////////////////////////////////////////////////////
    // ::view drawing
 
-   void view::OnDraw(::draw2d::dib * pdib)
+   void view::OnDraw(::draw2d::graphics * pgraphics)
    {
       
-      UNREFERENCED_PARAMETER(pdib);
+      UNREFERENCED_PARAMETER(pgraphics);
 
    }
 

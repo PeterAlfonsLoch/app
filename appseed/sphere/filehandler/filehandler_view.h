@@ -31,7 +31,7 @@ namespace filehandler
 
          void parse(const char * pszApp);
 
-         void draw(sp(view) pview, ::draw2d::dib * pdib, list * plist);
+         void draw(sp(view) pview, ::draw2d::graphics * pgraphics, list * plist);
 
       };
 
@@ -48,7 +48,7 @@ namespace filehandler
          void parse(handler * phandler, const char * pszTopic);
 
          void layout(LPCRECT lpcrect);
-         void draw(sp(view) pview, ::draw2d::dib * pdib);
+         void draw(sp(view) pview, ::draw2d::graphics * pgraphics);
 
       };
 

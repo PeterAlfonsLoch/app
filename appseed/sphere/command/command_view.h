@@ -37,7 +37,7 @@ namespace command
 
       virtual void install_message_handling(::message::dispatch * pinterface);
       virtual bool pre_create_window(::user::create_struct& cs);
-	   virtual void OnDraw(::draw2d::dib * pdib);      // overridden to draw this ::view
+	   virtual void OnDraw(::draw2d::graphics * pgraphics);      // overridden to draw this ::view
       virtual void _001OnInitialUpdate();
       DECL_GEN_SIGNAL(_001OnLButtonDown);
       DECL_GEN_SIGNAL(_001OnLButtonUp);

@@ -101,7 +101,7 @@ namespace filehandler
 
    }
 
-   void view::item::draw(sp(view) pview, ::draw2d::dib * pdib, list * plist)
+   void view::item::draw(sp(view) pview, ::draw2d::graphics * pgraphics, list * plist)
    {
 
       UNREFERENCED_PARAMETER(plist);
@@ -175,11 +175,11 @@ namespace filehandler
       }
    }
 
-   void view::list::draw(sp(view) pview, ::draw2d::dib * pdib)
+   void view::list::draw(sp(view) pview, ::draw2d::graphics * pgraphics)
    {
       for(int32_t i = 0; i < get_count(); i++)
       {
-         element_at(i)->draw(pview, pdib, this);
+         element_at(i)->draw(pview, pgraphics, this);
       }
    }
 
@@ -217,7 +217,7 @@ namespace filehandler
 
       //select_font(pdib->get_graphics());
 
-      m_plist->draw(this,pdib);
+      m_plist->draw(this, pgraphics);
 
 
    }

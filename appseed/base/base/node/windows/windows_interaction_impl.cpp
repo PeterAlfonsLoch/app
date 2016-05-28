@@ -461,7 +461,7 @@ namespace windows
 
       }
 
-      oswindow oswindow = ::CreateWindowEx(cs.dwExStyle & ~WS_EX_LAYERED,cs.lpszClass,cs.lpszName,cs.style,cs.x,cs.y,cs.cx,cs.cy,cs.hwndParent,cs.hMenu,cs.hInstance,cs.lpCreateParams);
+      oswindow oswindow = ::CreateWindowEx(cs.dwExStyle,cs.lpszClass,cs.lpszName,cs.style,cs.x,cs.y,cs.cx,cs.cy,cs.hwndParent,cs.hMenu,cs.hInstance,cs.lpCreateParams);
 
       if(!unhook_window_create())
          PostNcDestroy();        // cleanup if CreateWindowEx fails too soon
