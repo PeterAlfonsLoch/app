@@ -112,6 +112,8 @@ public:
    operator SIZE64 *() throw();
    operator const SIZE64 *() const throw();
 
+   operator SIZE() throw();
+
 // Operations
    bool operator==(SIZE64 size64) const throw();
    bool operator!=(SIZE64 size64) const throw();

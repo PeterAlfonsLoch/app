@@ -149,9 +149,9 @@ namespace draw2d_opengl
       virtual void map(bool bApplyTransform = true) const override;
       virtual void unmap() const override;
 
-      virtual bool update_window(::aura::draw_interface * pwnd, signal_details * pobj, bool bTransferBuffer = true) override;
-      virtual bool print_window(::aura::draw_interface * pwnd, signal_details * pobj) override;
-      virtual bool is_valid_update_window_thread() override;
+      //virtual bool update_window(::aura::draw_interface * pwnd, signal_details * pobj, bool bTransferBuffer = true) override;
+      //virtual bool print_window(::aura::draw_interface * pwnd, signal_details * pobj) override;
+      
 
    };
 

@@ -174,6 +174,17 @@ namespace draw2d
 
    }
 
+   bool graphics::CreateWindowDC(oswindow wnd)
+   {
+
+      UNREFERENCED_PARAMETER(wnd);
+
+      throw interface_only_exception(get_app());
+
+      return false;
+
+   }
+
 
    /*   int32_t graphics::ExcludeUpdateRgn(::window_sp pwindow)
       {
@@ -4923,6 +4934,26 @@ namespace draw2d
 
    }
 
+
+
+   bool graphics::is_valid_update_window_thread()
+   {
+
+      return true;
+
+   }
+
+
+   void graphics::on_begin_draw(oswindow wnd, SIZE sz)
+   {
+
+   }
+
+   void graphics::on_end_draw(oswindow wnd)
+   {
+
+
+   }
 
 } // namespace draw2d
 

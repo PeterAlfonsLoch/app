@@ -341,18 +341,31 @@ namespace user
 
          if(Session.is_key_pressed(::user::key_alt) && Session.is_key_pressed(::user::key_control))
          {
+            
             if(pkey->m_ekey == ::user::key_p)
             {
+               
                sp(::user::interaction_impl) pimpl = m_pimpl;
+               
                if(pimpl.is_set())
                {
+                  
                   synch_lock sl(pimpl->m_spmutexBuffer);
+                  
                   ::visual::dib_sp dib(allocer());
+                  
                   ::rect r;
+                  
                   GetWindowRect(r);
+
                   dib->create(r.size());
-                  dib->get_graphics()->BitBlt(0,0,r.width(),r.height(),pimpl->m_spdibBuffer->get_graphics(),0,0,SRCCOPY);
+
+                  ::draw2d::graphics * pgraphics = pimpl->m_spgraphics->on_begin_draw(pimpl->get_handle(), r.size());
+
+                  dib->get_graphics()->BitBlt(0,0,r.width(),r.height(),pgraphics,0,0,SRCCOPY);
+
                   Session.copydesk().dib_to_desk(dib);
+
                   dib.save_to_file(::dir::system() / "control_alt_p.png");
 
                   ::visual::dib_sp dib2(allocer());

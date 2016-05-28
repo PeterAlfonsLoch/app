@@ -4421,35 +4421,35 @@ namespace draw2d
 
    }
 
+//
+//   bool dib::update_window(::aura::draw_interface * pwnd,signal_details * pobj,bool bTransferBuffer)
+//   {
+//
+//      UNREFERENCED_PARAMETER(pwnd);
+//      UNREFERENCED_PARAMETER(pobj);
+//
+//      // default implementation does nothing, dib should be now updated (before calling update interaction_impl)
+//      // and ready to be queried if post queried
+//
+////      ::exception::throw_interface_only(get_app());
+//
+//
+//      return true;
+//
+//   }
 
-   bool dib::update_window(::aura::draw_interface * pwnd,signal_details * pobj,bool bTransferBuffer)
-   {
 
-      UNREFERENCED_PARAMETER(pwnd);
-      UNREFERENCED_PARAMETER(pobj);
+   //bool dib::print_window(::aura::draw_interface * pwnd,signal_details * pobj)
+   //{
 
-      // default implementation does nothing, dib should be now updated (before calling update interaction_impl)
-      // and ready to be queried if post queried
+   //   UNREFERENCED_PARAMETER(pwnd);
+   //   UNREFERENCED_PARAMETER(pobj);
 
-//      ::exception::throw_interface_only(get_app());
+   //   ::exception::throw_interface_only(get_app());
 
+   //   return false;
 
-      return true;
-
-   }
-
-
-   bool dib::print_window(::aura::draw_interface * pwnd,signal_details * pobj)
-   {
-
-      UNREFERENCED_PARAMETER(pwnd);
-      UNREFERENCED_PARAMETER(pobj);
-
-      ::exception::throw_interface_only(get_app());
-
-      return false;
-
-   }
+   //}
 
 
 
@@ -4862,11 +4862,6 @@ error:
 
    }
 
-
-   bool dib::is_valid_update_window_thread()
-   {
-      return true;
-   }
 
 
 } // namespace draw2d

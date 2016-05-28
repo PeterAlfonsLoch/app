@@ -24,6 +24,9 @@ window_gdi::~window_gdi()
 void window_gdi::create_window_graphics(oswindow interaction_impl, int64_t cxParam, int64_t cyParam, int iStrideParam)
 {
 
+
+   //::draw2d::dib * pdi = m_spdib;
+
    //if(cxParam < cx && cyParam < cy)
    // return;
 
@@ -142,72 +145,155 @@ void window_gdi::destroy_window_graphics()
 }
 
 
-void window_gdi::update_window(COLORREF * pcolorref,const RECT & rect,int cxParam,int cyParam,int iStride,bool bTransferBuffer)
+void window_gdi::update_window()
 {
 
-   if (width(rect) <= 0 || height(rect) <= 0)
+
+   rect64 rectWindow;
+
+//#if !NO_SCREEN_PRE_MULTIPLY_ALPHA
+//   if (bTransferBuffer && pwnd->is_composite() && !m_bReduced)
+//   {
+//
+//      m_bReduced = true;
+//
+//      m_spgraphics->SetViewportOrg(0, 0);
+//
+//      map();
+//
+//      //pre_multiply_alpha((unsigned int *) get_data(),m_size.cx,m_size.cy,m_size.cx * 4);
+//
+//      BYTE *dstR = (BYTE*)get_data();
+//      BYTE *dstG = dstR + 1;
+//      BYTE *dstB = dstR + 2;
+//      BYTE *dstA = dstR + 3;
+//      int64_t size = area() * 4;
+//
+//
+//      // >> 8 instead of / 255 subsequent alpha_blend operations say thanks on true_blend because (255) * (1/254) + (255) * (254/255) > 255
+//      //#if defined(_OPENMP)
+//      //         #pragma omp parallel num_threads(3)
+//      //                  {
+//      //         
+//      //                     BYTE *dst = dstR + omp_get_thread_num();
+//      //      #pragma omp parallel for
+//      //                     for(index i = 0; i < size; i+=4)
+//      //                     {
+//      //                           dst[i] = LOBYTE(((int32_t)dst[i] * (int32_t)dstA[i]) >> 8);
+//      //                     }
+//      //                  }
+//      //
+//      ////#pragma omp parallel num_threads(4)
+//      ////         {
+//      ////
+//      ////            if(omp_get_thread_num() == 3)
+//      ////            {
+//      ////               COLORREF *dst = get_data();
+//      ////#pragma omp parallel for
+//      ////               for(index i = 0; i < size; i+=4)
+//      ////               {
+//      ////                  if(dstA[i] <= 3)
+//      ////                  {
+//      ////                     dst[i>>2] = 0;
+//      ////                  }
+//      ////               }
+//      ////            }
+//      ////            else
+//      ////            {
+//      ////               BYTE *dst = dstR + omp_get_thread_num();
+//      ////#pragma omp parallel for
+//      ////               for(index i = 0; i < size; i+=4)
+//      ////               {
+//      ////                  if(dstA[i] > 3)
+//      ////                  {
+//      ////                     dst[i] = LOBYTE(((int32_t)dst[i] * (int32_t)dstA[i]) >> 8);
+//      ////                  }
+//      ////               }
+//      ////            }
+//      ////         }
+//      //#else
+//      //         for(index i = 0; i < size; i+=4)
+//      //         {
+//      //            dstR[i] = LOBYTE(((int32_t)dstR[i] * (int32_t)dstA[i]) >> 8);
+//      //            dstG[i] = LOBYTE(((int32_t)dstG[i] * (int32_t)dstA[i]) >> 8);
+//      //            dstB[i] = LOBYTE(((int32_t)dstB[i] * (int32_t)dstA[i]) >> 8);
+//      //         }
+//      //#endif
+//      //         
+//   }
+//#endif 
+//   rect rect(rectWindow);
+
+   update_window(m_spdibBuffer->get_data(), m_spdibBuffer->m_size.cx, m_spdibBuffer->m_size.cy, m_spdibBuffer->m_iScan);
+
+}
+
+
+
+
+void window_gdi::update_window(COLORREF * pcolorref,int cxParam,int cyParam,int iStride)
+{
+
+   if (cxParam <= 0 || cyParam <= 0)
       return;
 
-   //if(cxParam < 800)
-   //{
-   //   memset(pcolorref,128,iStride * cyParam);
 
-   //}
+
 
    RECT rectWindow;
 
-   rectWindow =rect;
+   GetWindowRect(m_hwnd, &rectWindow);
 
    bool bLayered = (::GetWindowLong(m_hwnd,GWL_EXSTYLE) & WS_EX_LAYERED) != 0;
 
-   if(bTransferBuffer)
+   //if(bTransferBuffer)
+   //{
+
+   //   ::SelectClipRgn(m_hdcScreen,NULL);
+
+   //   ::SelectClipRgn(m_hdc,NULL);
+
+
+   //   RECT rectOutputClient;
+
+   //   rectOutputClient = rect;
+
+   //   rectOutputClient.left   -= rect.left;
+   //   rectOutputClient.right  -= rect.left;
+   //   rectOutputClient.top    -= rect.top;
+   //   rectOutputClient.bottom -= rect.top;
+
+   try
    {
 
-      ::SelectClipRgn(m_hdcScreen,NULL);
-
-      ::SelectClipRgn(m_hdc,NULL);
-
-
-      RECT rectOutputClient;
-
-      rectOutputClient = rect;
-
-      rectOutputClient.left   -= rect.left;
-      rectOutputClient.right  -= rect.left;
-      rectOutputClient.top    -= rect.top;
-      rectOutputClient.bottom -= rect.top;
-
-      try
-      {
-
-         ::draw2d::copy_colorref(cxParam,cyParam,m_pcolorref,scan,pcolorref,iStride);
-
-      }
-      catch(...)
-      {
-
-      }
-
-      /*   for (int i = 1920 * 32; i < 1920 * 64; i++)
-         {
-         m_pcolorref[i] = ARGB(255, 127, 255, 127);
-         }*/
-
-      ::GdiFlush();
-
-      ::SetViewportOrgEx(m_hdcScreen,0,0,NULL);
-
+      ::draw2d::copy_colorref(cxParam,cyParam,m_pcolorref,scan,pcolorref,iStride);
 
    }
+   catch(...)
+   {
+
+   }
+
+      //   /*   for (int i = 1920 * 32; i < 1920 * 64; i++)
+   //      {
+   //      m_pcolorref[i] = ARGB(255, 127, 255, 127);
+   //      }*/
+
+   //   ::GdiFlush();
+
+   //   ::SetViewportOrgEx(m_hdcScreen,0,0,NULL);
+
+
+   //}
 
    if(bLayered)
    {
 
       POINT pt;
 
-      pt.x = rect.left;
+      pt.x = rectWindow.left;
 
-      pt.y = rect.top;
+      pt.y = rectWindow.top;
 
       SIZE sz;
 
@@ -244,3 +330,30 @@ void window_gdi::update_window(COLORREF * pcolorref,const RECT & rect,int cxPara
 
 
 
+::draw2d::graphics * window_gdi::on_begin_draw(oswindow wnd, SIZE sz)
+{
+
+   if (m_spdibBuffer.is_null())
+   {
+
+      m_spdibBuffer.alloc(allocer());
+
+   }
+
+   if(!m_spdibBuffer->create(sz))
+   {
+
+      return NULL;
+
+   }
+
+   if (m_hwnd != wnd || cx != sz.cx || cy != sz.cy)
+   {
+
+      create_window_graphics(wnd, sz.cx, sz.cy, m_spdibBuffer->m_iScan);
+
+   }
+
+   return m_spdibBuffer->get_graphics();
+
+}

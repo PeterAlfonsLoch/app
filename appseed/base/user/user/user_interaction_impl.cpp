@@ -14,7 +14,6 @@ namespace user
 
       m_bScreenRelativeMouseMessagePosition  = true;
       m_bTranslateMouseMessageCursor         = true;
-      m_pgraphics                            = NULL;
       m_bComposite                           = true;
       m_bUpdateGraphics                      = false;
       m_oswindow                             = NULL;
@@ -28,21 +27,6 @@ namespace user
 
    interaction_impl::~interaction_impl()
    {
-
-      {
-
-         cslock sl(m_pcsDisplay);
-
-//         m_spdibBuffer.release();
-
-         if(m_pgraphics != NULL)
-         {
-
-            delete m_pgraphics;
-
-         }
-
-      }
 
       ::aura::del(m_pcsDisplay);
 
@@ -2535,7 +2519,10 @@ namespace user
    {
    }
 
+
 #define HARD_DEBUG 0
+
+
    void interaction_impl::_001UpdateWindow()
    {
    
@@ -2545,56 +2532,55 @@ namespace user
    
       synch_lock sl(m_spmutexBuffer);
    
-      if(m_spdibBuffer.is_null())
+      if(m_spgraphics.is_null())
          return;
+
+      rect64 rectWindow;
+
+      m_pui->GetWindowRect(rectWindow);
+
+      ::draw2d::graphics * pgraphics = m_spgraphics->on_begin_draw(get_handle(), rectWindow.size());
+
+      if (pgraphics == NULL || pgraphics->get_os_data() == NULL)
+      {
+
+         return;
+
+      }
    
       if (m_pui->m_bMayProDevian)
       {
        
-         if (!m_spdibBuffer->is_valid_update_window_thread())
+         if (!pgraphics->is_valid_update_window_thread())
             return;
 
       }
 
-      m_spdibBuffer->map();
-   
-      if(m_spdibBuffer->get_data() == NULL)
-         return;
-   
-      rect64 rectWindow;
-   
-      m_pui->GetWindowRect(rectWindow);
-   
+      rect r;
+      
+      r = rectWindow;
+
+      r.offset(-r.top_left());
+
+      pgraphics->set_alpha_mode(::draw2d::alpha_mode_set);
+
       if(m_bComposite)
       {
 
-         m_spdibBuffer->Fill(0,0,0,0);
+         pgraphics->FillSolidRect(r, ARGB(0,0,0,0));
 
       }
       else
       {
 
-         m_spdibBuffer->Fill(255,184,184,177);
+         pgraphics->FillSolidRect(r, ARGB(255,184,184,177));
 
       }
 
-      if (m_spdibBuffer.is_null())
-      {
-   
-         return;
-   
-      }
-   
-      _001Print(m_spdibBuffer->get_graphics());
+      
+      _001Print(pgraphics);
 
-      m_spdibBuffer->m_bReduced = false;
-   
-   
 #if HARD_DEBUG
-   
-      m_spdibBuffer->Destroy();
-   
-      m_spdibBuffer->Destroy();
    
       ::draw2d::graphics_sp g(allocer());
    
@@ -2605,7 +2591,7 @@ namespace user
    
 #endif
    
-      m_spdibBuffer->update_window(m_pui,NULL, true);
+      m_spgraphics->update_window();
    
    }
 
@@ -2772,86 +2758,19 @@ namespace user
    void interaction_impl::update_graphics_resources()
    {
 
-      if(m_spmutexBuffer.is_null())
+      single_lock sl(m_pmutex);
+
+      if (m_spgraphics.is_set())
       {
 
-         m_spmutexBuffer.alloc(allocer());
-
-      }
-
-
-      rect rectWindow;
-
-      WINBOOL bGet1 = GetWindowRect(rectWindow);
-
-      if(rectWindow.right > 32000)
-      {
-         output_debug_string("rectWindow.right > 32000");
-      }
-
-      rect rectWindow2;
-
-      WINBOOL bGet2 = GetWindowRect(rectWindow2);
-
-      m_pt = rectWindow.top_left();
-
-      if(rectWindow.area() <= 0)
          return;
 
-      if(m_size != rectWindow.size())
-      {
-
-         single_lock sl(m_spmutexBuffer, false);
-
-         if(!sl.lock())
-         {
-            
-            return;
-            
-         }
-
-         cslock sl2(cs_display());
-
-         if(m_spdibBuffer.is_null())
-         {
-            
-            m_spdibBuffer.alloc(allocer());
-            
-         }
-
-         if(rectWindow.size() != m_spdibBuffer->m_size)
-         {
-
-            if(!m_spdibBuffer->create(rectWindow.size()))
-            {
-
-               TRACE("Could not create window graphics buffer (1) requested_size = %d, %d", rectWindow.width(), rectWindow.height());
-
-               return;
-
-            }
-
-         }
-
-         if(m_spdibBuffer.is_null())
-         {
-            
-            m_spdibBuffer.alloc(allocer());
-            
-         }
-
-         if(m_spdibBuffer->size() != m_spdibBuffer->size())
-         {
-            
-            m_spdibBuffer->create(m_spdibBuffer->size());
-            
-         }
-
-         m_size = rectWindow.size();
-
       }
+
+      m_spgraphics.alloc(allocer());
+
+      m_spgraphics->on_create_window(get_handle());
       
-      m_bUpdateGraphics = false;
 
    }
 
@@ -3015,7 +2934,7 @@ namespace user
    window_graphics * interaction_impl::get_window_graphics()
    {
 
-      return m_pgraphics;
+      return m_spgraphics;
 
    }
 

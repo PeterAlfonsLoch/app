@@ -1,53 +1,4 @@
 
-BOOL window_opengl::CreateHGLRC(HWND hWnd)
-{
-
-   PIXELFORMATDESCRIPTOR pfd = {
-      sizeof(PIXELFORMATDESCRIPTOR),
-      1,                                // Version Number
-      PFD_DRAW_TO_WINDOW |         // Format Must Support Window
-      PFD_SUPPORT_OPENGL |         // Format Must Support OpenGL
-      PFD_SUPPORT_COMPOSITION |         // Format Must Support Composition
-      PFD_DOUBLEBUFFER,                 // Must Support Double Buffering
-      PFD_TYPE_RGBA,                    // Request An RGBA Format
-      32,                               // Select Our Color Depth
-      0, 0, 0, 0, 0, 0,                 // Color Bits Ignored
-      8,                                // An Alpha Buffer
-      0,                                // Shift Bit Ignored
-      0,                                // No Accumulation Buffer
-      0, 0, 0, 0,                       // Accumulation Bits Ignored
-      24,                               // 16Bit Z-Buffer (Depth Buffer)
-      8,                                // Some Stencil Buffer
-      0,                                // No Auxiliary Buffer
-      PFD_MAIN_PLANE,                   // Main Drawing Layer
-      0,                                // Reserved
-      0, 0, 0                           // Layer Masks Ignored
-   };
-
-   HDC hdc = GetDC(hWnd);
-   int PixelFormat = ChoosePixelFormat(hdc, &pfd);
-   if (PixelFormat == 0) {
-      ASSERT(0);
-      return FALSE;
-   }
-
-   BOOL bResult = SetPixelFormat(hdc, PixelFormat, &pfd);
-   if (bResult == FALSE) {
-      ASSERT(0);
-      return FALSE;
-   }
-
-   m_hrc = wglCreateContext(hdc);
-   if (!m_hrc) {
-      ASSERT(0);
-      return FALSE;
-   }
-
-   ReleaseDC(hWnd, hdc);
-
-   return TRUE;
-
-}
 
 
 
@@ -56,14 +7,7 @@ BOOL window_opengl::CreateHGLRC(HWND hWnd)
 void window_opengl::on_create_window(oswindow wnd)
 {
 
-   BOOL bOk = CreateHGLRC(wnd);
-
-   if (!bOk)
-   {
-
-      throw simple_exception(get_app(), "failed to composite");;
-
-   }
+//   m_hwnd = wnd;
 
 }
 
@@ -77,8 +21,6 @@ window_opengl::window_opengl(::aura::application * papp) :
    object(papp),
    window_graphics(papp)
 {
-
-   m_hrc = NULL;
 
 }
 
@@ -115,20 +57,68 @@ void window_opengl::destroy_window_graphics()
 }
 
 
-void window_opengl::update_window(COLORREF * pcolorref, const RECT & rect, int cxParam, int cyParam, int iStride, bool bTransferBuffer)
+//void window_opengl::update_window(COLORREF * pcolorref, int cxParam, int cyParam, int iStride)
+//{
+//
+//   if (width(rect) <= 0 || height(rect) <= 0)
+//      return;
+//
+//   //if(cxParam < 800)
+//   //{
+//   //   memset(pcolorref,128,iStride * cyParam);
+//
+//   //}
+//
+//
+//}
+
+::draw2d::graphics * window_opengl::on_begin_draw(oswindow wnd, SIZE sz)
 {
 
-   if (width(rect) <= 0 || height(rect) <= 0)
-      return;
+ 
+   if (m_spgraphics.is_null())
+   {
 
-   //if(cxParam < 800)
+      m_spgraphics.alloc(allocer());
+
+   }
+
+   if(m_spgraphics->get_os_data() == NULL)
+   {
+
+      m_hwnd = wnd;
+
+
+      bool bOk = m_spgraphics->CreateWindowDC(wnd);
+
+      if (!bOk)
+      {
+
+         throw simple_exception(get_app(), "failed to composite");;
+
+      }
+
+   }
+
+   m_spgraphics->on_begin_draw(wnd, sz);
+
+   //if (m_spgraphics->get_os_data() == NULL)
    //{
-   //   memset(pcolorref,128,iStride * cyParam);
+
+   //   m_spgraphics->CreateWindowDC(wnd);
 
    //}
-
+   //
+   return m_spgraphics;
 
 }
 
+
+void window_opengl::update_window()
+{
+
+   m_spgraphics->on_end_draw(m_hwnd);
+
+}
 
 

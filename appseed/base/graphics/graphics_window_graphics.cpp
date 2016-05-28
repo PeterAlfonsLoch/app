@@ -56,73 +56,89 @@ void window_graphics::destroy_window_graphics()
 }
 
 
-void window_graphics::update_window(oswindow interaction_impl,COLORREF * pOsBitmapData,const RECT & rect,int cxParam,int cyParam,int iStride,bool bTransferBuffer)
-{
-
-
-//   window_graphics * & pdata = *ppdata;
+//void window_graphics::update_window(oswindow interaction_impl,COLORREF * pOsBitmapData,const RECT & rect,int cxParam,int cyParam,int iStride,bool bTransferBuffer)
+//{
 //
 //
-   //if(pdata == NULL || ((pdata->cx != cxParam || pdata->cy != cyParam)))
-   if (cx != cxParam || cy != cyParam)
-   {
-
-//      if (pdata == NULL)
+////   window_graphics * & pdata = *ppdata;
+////
+////
+//   //if(pdata == NULL || ((pdata->cx != cxParam || pdata->cy != cyParam)))
+//   if (cx != cxParam || cy != cyParam)
+//   {
+//
+////      if (pdata == NULL)
+////      {
+////
+////#ifdef WINDOWSEX
+////
+////         pdata = new window_gdi();
+////
+////#elif defined(LINUX)
+////
+////         pdata = new window_xlib();
+////
+////#elif defined(VSNORD)
+////
+////         //pdata = new window_android_anative();
+////         pdata = new ::android::view_bitmap(interaction_impl->m_pui->get_app());
+////
+////#elif defined(ANDROID)
+////
+////         pdata = new window_android();
+////
+////#endif
+////
+////      }
+//
+//      //if (pdata != NULL)
 //      {
 //
-//#ifdef WINDOWSEX
-//
-//         pdata = new window_gdi();
-//
-//#elif defined(LINUX)
-//
-//         pdata = new window_xlib();
-//
-//#elif defined(VSNORD)
-//
-//         //pdata = new window_android_anative();
-//         pdata = new ::android::view_bitmap(interaction_impl->m_pui->get_app());
-//
-//#elif defined(ANDROID)
-//
-//         pdata = new window_android();
-//
-//#endif
+//        // pdata->create_window_graphics(interaction_impl, cxParam, cyParam, iStride);
+//         create_window_graphics(interaction_impl, cxParam, cyParam, iStride);
 //
 //      }
+//
+//   }
+//
+//
+//   //if (pdata != NULL)
+//   {
+//
+//      //pdata->update_window(pOsBitmapData, rect, cxParam, cyParam, iStride, bTransferBuffer);
+//
+//      update_window(pOsBitmapData, rect, cxParam, cyParam, iStride, bTransferBuffer);
+//
+//   }
+//
+//}
+//
+//
+//void window_graphics::update_window(COLORREF * pOsBitmapData,const RECT & rect,int cxParam,int cyParam,int iStride,bool bTransferBuffer)
+//{
+//
+//   UNREFERENCED_PARAMETER(pOsBitmapData);
+//   UNREFERENCED_PARAMETER(rect);
+//   UNREFERENCED_PARAMETER(iStride);
+//   UNREFERENCED_PARAMETER(cxParam);
+//   UNREFERENCED_PARAMETER(cyParam);
+//
+//}
+//
 
-      //if (pdata != NULL)
-      {
 
-        // pdata->create_window_graphics(interaction_impl, cxParam, cyParam, iStride);
-         create_window_graphics(interaction_impl, cxParam, cyParam, iStride);
-
-      }
-
-   }
-
-
-   //if (pdata != NULL)
-   {
-
-      //pdata->update_window(pOsBitmapData, rect, cxParam, cyParam, iStride, bTransferBuffer);
-
-      update_window(pOsBitmapData, rect, cxParam, cyParam, iStride, bTransferBuffer);
-
-   }
-
-}
-
-
-void window_graphics::update_window(COLORREF * pOsBitmapData,const RECT & rect,int cxParam,int cyParam,int iStride,bool bTransferBuffer)
+void window_graphics::update_window()
 {
 
-   UNREFERENCED_PARAMETER(pOsBitmapData);
-   UNREFERENCED_PARAMETER(rect);
-   UNREFERENCED_PARAMETER(iStride);
-   UNREFERENCED_PARAMETER(cxParam);
-   UNREFERENCED_PARAMETER(cyParam);
+}
+
+
+::draw2d::graphics * window_graphics::on_begin_draw(oswindow wnd, SIZE sz)
+{
+
+   return NULL;
 
 }
+
 
 

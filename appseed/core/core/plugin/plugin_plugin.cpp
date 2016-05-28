@@ -325,30 +325,30 @@ namespace plugin
          if(pimpl.is_null())
             return;
 
-         ::draw2d::dib_sp dib = pimpl->m_spdibBuffer;
+         //::draw2d::dib_sp dib = pimpl->m_spdibBuffer;
 
-         if(dib.is_null())
-            return;
+         //if(dib.is_null())
+         //   return;
 
-         if(dib->area() <= 0)
-            return;
+         //if(dib->area() <= 0)
+         //   return;
 
-         cslock sl(pimpl->cs_display());
+         //cslock sl(pimpl->cs_display());
 
 
-         {
+         //{
 
-            synch_lock sl(m_pmutexBitmap);
+         //   synch_lock sl(m_pmutexBitmap);
 
-            copy_colorref(
-               MIN(dib->m_size.cx,m_sizeBitmap.cx),
-               MIN(dib->m_size.cy,m_sizeBitmap.cy),
-               (COLORREF *) m_memBitmap.get_data(),
-               dib->m_pcolorref,
-               abs_dup(m_sizeBitmap.cx) * sizeof(COLORREF),
-               abs_dup(dib->m_size.cx) * sizeof(COLORREF));
+         //   copy_colorref(
+         //      MIN(dib->m_size.cx,m_sizeBitmap.cx),
+         //      MIN(dib->m_size.cy,m_sizeBitmap.cy),
+         //      (COLORREF *) m_memBitmap.get_data(),
+         //      dib->m_pcolorref,
+         //      abs_dup(m_sizeBitmap.cx) * sizeof(COLORREF),
+         //      abs_dup(dib->m_size.cx) * sizeof(COLORREF));
 
-         }
+         //}
 
 
       }

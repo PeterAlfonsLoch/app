@@ -102,6 +102,10 @@ namespace draw2d
       virtual bool CreateDC(const char * lpszDriverName, const char * lpszDeviceName, const char * lpszOutput, const void * lpInitData);
       virtual bool CreateIC(const char * lpszDriverName, const char * lpszDeviceName, const char * lpszOutput, const void * lpInitData);
       virtual bool CreateCompatibleDC(::draw2d::graphics * pgraphics);
+      virtual bool CreateWindowDC(oswindow wnd);
+
+      virtual void on_begin_draw(oswindow wnd, SIZE sz);
+      virtual void on_end_draw(oswindow wnd);
 
       virtual bool DeleteDC();
 
@@ -704,7 +708,7 @@ namespace draw2d
 
       virtual bool nanosvg(string str, int x, int y, int w, int h);
 
-
+      virtual bool is_valid_update_window_thread();
 
 
 

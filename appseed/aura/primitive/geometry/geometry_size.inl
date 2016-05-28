@@ -330,3 +330,15 @@ inline LPARAM    size::lparam() const throw()
 
 
 
+
+inline size64::operator SIZE()
+{
+   
+   SIZE sz = { (LONG)cx, (LONG)cy };
+
+   return sz;
+
+}
+
+
+

@@ -461,21 +461,21 @@ namespace windows
 
       }
 
-      oswindow oswindow = ::CreateWindowEx(cs.dwExStyle,cs.lpszClass,cs.lpszName,cs.style,cs.x,cs.y,cs.cx,cs.cy,cs.hwndParent,cs.hMenu,cs.hInstance,cs.lpCreateParams);
+      oswindow oswindow = ::CreateWindowEx(cs.dwExStyle & ~WS_EX_LAYERED,cs.lpszClass,cs.lpszName,cs.style,cs.x,cs.y,cs.cx,cs.cy,cs.hwndParent,cs.hMenu,cs.hInstance,cs.lpCreateParams);
 
       if(!unhook_window_create())
          PostNcDestroy();        // cleanup if CreateWindowEx fails too soon
 
       //::simple_message_box(NULL,"h2","h2",MB_OK);
 
-      if (cs.hwndParent != HWND_MESSAGE)
-      {
+      //if (cs.hwndParent != HWND_MESSAGE)
+      //{
 
-         m_pgraphics = Application.alloc < window_graphics >(System.type_info < window_graphics >());
+      //   m_pgraphics = Application.alloc < window_graphics >(System.type_info < window_graphics >());
 
-         m_pgraphics->on_create_window(oswindow);
+      //   m_pgraphics->on_create_window(oswindow);
 
-      }
+      //}
 
       if(oswindow == NULL)
       {
@@ -2789,48 +2789,31 @@ restart_mouse_hover_check:
 
       }
 
-      ::draw2d::graphics_sp g(allocer());
-
-      //::draw2d::dib * pdi = m_spdib;
-
-      if (m_spdibBuffer.is_null())
-      {
-
-         m_spdibBuffer.alloc(allocer());
-
-      }
-
-      m_spdibBuffer->create(rectWindow.size());
-
-      ::draw2d::dib * pdib = m_spdibBuffer;
-
-      if (pdib != NULL)
-      {
-
-         try
-         {
-
-            _001Print(pdib->get_graphics());
-
-         }
-         catch (...)
-         {
-
-
-         }
-
-      }
-
+      ::draw2d::graphics * pgraphics = m_spgraphics->on_begin_draw(get_handle(), rectWindow.size());
 
       try
       {
 
-         if(pdib != NULL && g->Attach(hdc))
+         _001Print(pgraphics);
+
+      }
+      catch (...)
+      {
+
+
+      }
+
+      ::draw2d::graphics_sp g(allocer());
+
+      try
+      {
+
+         if(pgraphics != NULL && g->Attach(hdc))
          {
 
-            pdib->get_graphics()->SetViewportOrg(0,0);
+            pgraphics->SetViewportOrg(0,0);
 
-            g->BitBlt(rectPaint.left,rectPaint.top,rectPaint.width(),rectPaint.height(),pdib->get_graphics(),rectUpdate.left,rectUpdate.top,SRCCOPY);
+            g->BitBlt(rectPaint.left,rectPaint.top,rectPaint.width(),rectPaint.height(), pgraphics,rectUpdate.left,rectUpdate.top,SRCCOPY);
 
             g->Detach();
 
@@ -2859,7 +2842,7 @@ restart_mouse_hover_check:
 
       //m_spdib->print_window(this,pobj);
 
-      m_spdibBuffer->print_window(this, pobj);
+      //m_spdibBuffer->print_window(this, pobj);
 
    }
 

@@ -1,12 +1,57 @@
 #include "framework.h"
 #include <math.h>
-
+#include <dwmapi.h>
 
 #undef new
 
 
 BOOL CALLBACK draw2d_opengl_EnumFamCallBack(LPLOGFONT lplf,LPNEWTEXTMETRIC lpntm,DWORD FontType,LPVOID p);
 
+
+BOOL initSC()
+{
+   glEnable(GL_ALPHA_TEST);
+   glEnable(GL_DEPTH_TEST);
+   glEnable(GL_COLOR_MATERIAL);
+
+   //glEnable(GL_LIGHTING);
+   //glEnable(GL_LIGHT0);
+
+   glEnable(GL_BLEND);
+   glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+   glClearColor(0, 0.0, 0.0, 0);
+
+   return 0;
+}
+void resizeSC(SIZE s)
+{
+   if (s.cx == 0 || s.cy == 0)
+   {
+      glViewport(0, 0, 1, 1);
+   }
+   else
+   {
+      //glViewport(0, 0, 1.0/(double)sz.cx, 1.0/(double)sz.cy);
+      //glViewport(0, 0, s.cx/2, s.cy/2);
+      //glViewport(0, 0, 1, 1);
+      glViewport(0, 0, s.cx, s.cy);
+     
+
+   }
+   
+   glMatrixMode(GL_PROJECTION);
+   glLoadIdentity();
+
+   glMatrixMode(GL_MODELVIEW);
+   glLoadIdentity();
+
+
+   glScalef(2.0 / (float)s.cx, -2.0 / (float)s.cy, 0);
+   glTranslatef(-s.cx / 2.0 , -s.cy / 2.0, 0);
+   //glScalef(0.5, 0.5, 0);
+   //glTranslatef(0.5 , 0.5, 0);
+
+}
 
 class draw2d_opengl_enum_fonts
 {
@@ -34,6 +79,9 @@ namespace draw2d_opengl
       object(papp),
       ::draw2d::graphics(papp)
    {
+
+      m_hwnd = NULL;
+      m_hrc = NULL;
       m_ptTranslate = null_point();
       m_bPrinting       = FALSE;
       m_pdibAlphaBlend  = NULL;
@@ -674,18 +722,20 @@ namespace draw2d_opengl
       try
       {
 
-         if (m_spbitmap.is_null())
-            return false;
+         if (m_spbitmap.is_set())
+         {
 
-         ::size s = m_spbitmap.cast < bitmap>()->m_sizeOut;
+            ::size s = m_spbitmap.cast < bitmap>()->m_sizeOut;
 
-         if (s.area() <= 0)
-            return false;
+            if (s.area() <= 0)
+               return false;
+
+            m_spbitmap.cast < bitmap>()->flash();
+
+         }
 
          if (is_ptr_null(ppen, 1024))
             return false;
-
-         m_spbitmap.cast < bitmap>()->flash();
 
          glColor4f(argb_get_r_value(ppen->m_cr) / 255.f, argb_get_g_value(ppen->m_cr) / 255.f, argb_get_b_value(ppen->m_cr) / 255.f, argb_get_a_value(ppen->m_cr) / 255.f);						// Set Top Point Of Triangle To Red
          glEnd();
@@ -3168,6 +3218,13 @@ return true;
 
       //}
 
+      if (m_hdc != NULL)
+      {
+
+         ::ReleaseDC(m_hwnd, m_hdc);
+
+      }
+
       return true;
 
    }
@@ -3472,13 +3529,35 @@ return true;
    point graphics::SetViewportOrg(int32_t x, int32_t y)
    {
 
-      if (m_spbitmap.is_null())
+      ::size s;
+
+      if (m_spbitmap.is_set())
+      {
+
+         s = m_spbitmap.cast < bitmap>()->m_sizeOut;
+
+         if (s.area() <= 0)
+            return null_point();
+
+      }
+      else if(m_hwnd != NULL)
+      {
+
+         RECT rectWindow;
+         
+         ::GetWindowRect(m_hwnd, &rectWindow);
+
+         s.cx = width(rectWindow);
+
+         s.cy = height(rectWindow);
+
+      }
+      else
+      {
+
          return null_point();
 
-      ::size s = m_spbitmap.cast < bitmap>()->m_sizeOut;
-
-      if (s.area() <= 0)
-         return null_point();
+      }
 
       //if (m_pgraphics == NULL)
       //{
@@ -3497,9 +3576,14 @@ return true;
       glLoadIdentity();
       
       
-      glScalef(2.0 / (float)s.cx, 2.0 / (float)s.cy, 0);
-      
-      glTranslatef(-s.cx/2.0+x, -s.cy/2.0+y, 0);
+
+      glScalef(2.0 / (float)s.cx, -2.0 / (float)s.cy, 0);
+
+      glTranslatef(-s.cx / 2.0 + x, -s.cy / 2.0 + y, 0);
+
+      //glScalef(2.0 / (float)s.cx, 2.0 / (float)s.cy, 0);
+      //
+      //glTranslatef(-s.cx/2.0+x, -s.cy/2.0+y, 0);
 
       
       m_ptTranslate.x = x;
@@ -4480,18 +4564,21 @@ namespace draw2d_opengl
       try
       {
 
-         if (m_spbitmap.is_null())
-            return;
+         if (m_spbitmap.is_set())
+         {
+            
 
-         ::size s = m_spbitmap.cast < bitmap>()->m_sizeOut;
+            ::size s = m_spbitmap.cast < bitmap>()->m_sizeOut;
 
-         if (s.area() <= 0)
-            return;
+            if (s.area() <= 0)
+               return;
+
+            m_spbitmap.cast < bitmap>()->flash();
+
+         }
 
          float r = l + cx;
          float b = t + cy;
-
-         m_spbitmap.cast < bitmap>()->flash();
 
          glBegin(GL_QUADS);
          // Front Face
@@ -4773,7 +4860,7 @@ namespace draw2d_opengl
 
 //      return (void *) m_pgraphics;
 
-      return NULL;
+      return m_hrc;
 
    }
 
@@ -5076,6 +5163,114 @@ namespace draw2d_opengl
    }
 
 
+
+   bool graphics::CreateWindowDC(oswindow wnd)
+   {
+
+      // http://stackoverflow.com/questions/4052940/how-to-make-an-opengl-rendering-context-with-transparent-background
+      // 
+
+      PIXELFORMATDESCRIPTOR pfd = {
+         sizeof(PIXELFORMATDESCRIPTOR),
+         1,                                // Version Number
+         PFD_DRAW_TO_WINDOW |         // Format Must Support Window
+         PFD_SUPPORT_OPENGL |         // Format Must Support OpenGL
+         PFD_SUPPORT_COMPOSITION |         // Format Must Support Composition
+         PFD_DOUBLEBUFFER,                 // Must Support Double Buffering
+         PFD_TYPE_RGBA,                    // Request An RGBA Format
+         32,                               // Select Our Color Depth
+         0, 0, 0, 0, 0, 0,                 // Color Bits Ignored
+         8,                                // An Alpha Buffer
+         0,                                // Shift Bit Ignored
+         0,                                // No Accumulation Buffer
+         0, 0, 0, 0,                       // Accumulation Bits Ignored
+         24,                               // 16Bit Z-Buffer (Depth Buffer)
+         8,                                // Some Stencil Buffer
+         0,                                // No Auxiliary Buffer
+         PFD_MAIN_PLANE,                   // Main Drawing Layer
+         0,                                // Reserved
+         0, 0, 0                           // Layer Masks Ignored
+      };
+
+
+      DWM_BLURBEHIND bb = { 0 };
+      //HRGN hRgn = CreateRectRgn(0, 0, -1, -1);
+      //bb.dwFlags = DWM_BB_ENABLE | DWM_BB_BLURREGION;
+      bb.dwFlags = DWM_BB_ENABLE;
+      //bb.hRgnBlur = hRgn;
+      bb.fEnable = TRUE;
+      DwmEnableBlurBehindWindow(wnd, &bb);
+
+
+      m_hdc = GetDC(wnd);
+      int PixelFormat = ChoosePixelFormat(m_hdc, &pfd);
+      if (PixelFormat == 0) {
+         ASSERT(0);
+         return FALSE;
+      }
+
+      BOOL bResult = SetPixelFormat(m_hdc, PixelFormat, &pfd);
+      if (bResult == FALSE) {
+         ASSERT(0);
+         return FALSE;
+      }
+
+      m_hrc = wglCreateContext(m_hdc);
+      if (!m_hrc) {
+         ASSERT(0);
+         return FALSE;
+      }
+
+      return TRUE;
+
+   }
+
+
+
+   bool graphics::is_valid_update_window_thread()
+   {
+
+      return ::GetCurrentThreadId() == System.get_twf()->m_uiThread;
+
+   }
+
+
+   void graphics::on_begin_draw(oswindow wnd, SIZE sz)
+   {
+      
+      wglMakeCurrent(m_hdc, m_hrc);
+      initSC();
+      resizeSC(sz);
+
+
+         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+      
+         //glPushMatrix();
+      
+         //glColor3f(0, 1, 1);
+         //glBegin(GL_TRIANGLES);                              // Drawing Using Triangles
+         //glColor3f(1.0f, 0.0f, 0.0f);                      // Set The Color To Red
+         //glVertex3f(sz.cx/2, 0, 0.0f);                  // Top
+         //glColor3f(0.0f, 1.0f, 0.0f);                      // Set The Color To Green
+         //glVertex3f(0, sz.cy, 0.0f);                  // Bottom Left
+         //glColor3f(0.0f, 0.0f, 1.0f);                      // Set The Color To Blue
+         //glVertex3f(sz.cx, sz.cy, 0.0f);                  // Bottom Right
+         //glEnd();
+      
+         //glPopMatrix();
+         //glFlush();
+
+   }
+
+   void graphics::on_end_draw(oswindow wnd)
+   {
+
+      glFlush();
+
+      SwapBuffers(m_hdc);
+
+   }
+
 } // namespace draw2d_opengl
 
 
@@ -5106,3 +5301,216 @@ BOOL CALLBACK draw2d_opengl_EnumFamCallBack(LPLOGFONT lplf,LPNEWTEXTMETRIC lpntm
 
 }
 
+
+// http://stackoverflow.com/questions/4052940/how-to-make-an-opengl-rendering-context-with-transparent-background
+// http://stackoverflow.com/users/1650217/wilkie
+// https://repos.ca2.cc/hi5/user/ace/wilkie/david.png
+//
+//
+//#define _WIN32_WINNT 0x0500
+//
+//#include <windows.h>
+//#include <windowsx.h>
+//#include <GL/gl.h>
+//#include <GL/glu.h>
+//
+//#include <dwmapi.h>
+//
+//#pragma comment (lib, "opengl32.lib")
+//#pragma comment (lib, "glu32.lib")
+//
+//#pragma comment (lib, "dwmapi.lib")
+//
+//#include <assert.h>
+//#include <tchar.h>
+//
+//#ifdef  assert
+//#define verify(expr) if(!expr) assert(0)
+//#else verify(expr) expr
+//#endif
+//
+//const TCHAR szAppName[] = _T("TransparentGL");
+//const TCHAR wcWndName[] = _T("TransparentGL");
+//
+//HDC hDC;
+//HGLRC m_hrc;
+//int w = 240;
+//int h = 240;
+//
+//BOOL initSC() {
+//   glEnable(GL_ALPHA_TEST);
+//   glEnable(GL_DEPTH_TEST);
+//   glEnable(GL_COLOR_MATERIAL);
+//
+//   glEnable(GL_LIGHTING);
+//   glEnable(GL_LIGHT0);
+//
+//   glEnable(GL_BLEND);
+//   glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+//   glClearColor(0, 0, 0, 0);
+//
+//   return 0;
+//}
+//
+//void resizeSC(int width, int height) {
+//   glViewport(0, 0, width, height);
+//   glMatrixMode(GL_PROJECTION);
+//   glLoadIdentity();
+//
+//   glMatrixMode(GL_MODELVIEW);
+//   glLoadIdentity();
+//}
+//
+//BOOL renderSC() {
+//   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+//
+//   glPushMatrix();
+//
+//   glColor3f(0, 1, 1);
+//   glBegin(GL_TRIANGLES);                              // Drawing Using Triangles
+//   glColor3f(1.0f, 0.0f, 0.0f);                      // Set The Color To Red
+//   glVertex3f(0.0f, 1.0f, 0.0f);                  // Top
+//   glColor3f(0.0f, 1.0f, 0.0f);                      // Set The Color To Green
+//   glVertex3f(-1.0f, -1.0f, 0.0f);                  // Bottom Left
+//   glColor3f(0.0f, 0.0f, 1.0f);                      // Set The Color To Blue
+//   glVertex3f(1.0f, -1.0f, 0.0f);                  // Bottom Right
+//   glEnd();
+//
+//   glPopMatrix();
+//   glFlush();
+//
+//   return 0;
+//}
+//
+//BOOL CreateHGLRC(HWND hWnd) {
+//   PIXELFORMATDESCRIPTOR pfd = {
+//      sizeof(PIXELFORMATDESCRIPTOR),
+//      1,                                // Version Number
+//      PFD_DRAW_TO_WINDOW |         // Format Must Support Window
+//      PFD_SUPPORT_OPENGL |         // Format Must Support OpenGL
+//      PFD_SUPPORT_COMPOSITION |         // Format Must Support Composition
+//      PFD_DOUBLEBUFFER,                 // Must Support Double Buffering
+//      PFD_TYPE_RGBA,                    // Request An RGBA Format
+//      32,                               // Select Our Color Depth
+//      0, 0, 0, 0, 0, 0,                 // Color Bits Ignored
+//      8,                                // An Alpha Buffer
+//      0,                                // Shift Bit Ignored
+//      0,                                // No Accumulation Buffer
+//      0, 0, 0, 0,                       // Accumulation Bits Ignored
+//      24,                               // 16Bit Z-Buffer (Depth Buffer)
+//      8,                                // Some Stencil Buffer
+//      0,                                // No Auxiliary Buffer
+//      PFD_MAIN_PLANE,                   // Main Drawing Layer
+//      0,                                // Reserved
+//      0, 0, 0                           // Layer Masks Ignored
+//   };
+//
+//   HDC hdc = GetDC(hWnd);
+//   int PixelFormat = ChoosePixelFormat(hdc, &pfd);
+//   if (PixelFormat == 0) {
+//      assert(0);
+//      return FALSE;
+//   }
+//
+//   BOOL bResult = SetPixelFormat(hdc, PixelFormat, &pfd);
+//   if (bResult == FALSE) {
+//      assert(0);
+//      return FALSE;
+//   }
+//
+//   m_hrc = wglCreateContext(hdc);
+//   if (!m_hrc) {
+//      assert(0);
+//      return FALSE;
+//   }
+//
+//   ReleaseDC(hWnd, hdc);
+//
+//   return TRUE;
+//}
+//
+//LRESULT CALLBACK WindowFunc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
+//   PAINTSTRUCT ps;
+//
+//   switch (msg) {
+//   case WM_CREATE:
+//      break;
+//
+//   case WM_DESTROY:
+//      if (m_hrc) {
+//         wglMakeCurrent(NULL, NULL);
+//         wglDeleteContext(m_hrc);
+//      }
+//      PostQuitMessage(0);
+//      break;
+//
+//   default:
+//      return DefWindowProc(hWnd, msg, wParam, lParam);
+//   }
+//
+//   return 0;
+//}
+//
+//int WINAPI _tWinMain(HINSTANCE hThisInst, HINSTANCE hPrevInst, LPSTR str, int nWinMode) {
+//   WNDCLASSEX wc;
+//   memset(&wc, 0, sizeof(wc));
+//   wc.cbSize = sizeof(WNDCLASSEX);
+//   wc.hIconSm = LoadIcon(NULL, IDI_APPLICATION);
+//   wc.style = CS_HREDRAW | CS_VREDRAW;
+//   wc.lpfnWndProc = (WNDPROC)WindowFunc;
+//   wc.cbClsExtra = 0;
+//   wc.cbWndExtra = 0;
+//   wc.hInstance = hThisInst;
+//   wc.hIcon = LoadIcon(NULL, IDI_APPLICATION);
+//   wc.hCursor = LoadCursor(NULL, IDC_ARROW);
+//   wc.hbrBackground = (HBRUSH)CreateSolidBrush(0x00000000);
+//   wc.lpszClassName = szAppName;
+//
+//   if (!RegisterClassEx(&wc)) {
+//      MessageBox(NULL, _T("RegisterClassEx - failed"), _T("Error"), MB_OK | MB_ICONERROR);
+//      return FALSE;
+//   }
+//
+//   HWND hWnd = CreateWindowEx(WS_EX_APPWINDOW, szAppName, wcWndName,
+//      WS_VISIBLE | WS_POPUP, 200, 150, w, h,
+//      NULL, NULL, hThisInst, NULL);
+//
+//   if (!hWnd) {
+//      MessageBox(NULL, _T("CreateWindowEx - failed"), _T("Error"), MB_OK | MB_ICONERROR);
+//      return FALSE;
+//   }
+//
+//   DWM_BLURBEHIND bb = { 0 };
+//   HRGN hRgn = CreateRectRgn(0, 0, -1, -1);
+//   bb.dwFlags = DWM_BB_ENABLE | DWM_BB_BLURREGION;
+//   bb.hRgnBlur = hRgn;
+//   bb.fEnable = TRUE;
+//   DwmEnableBlurBehindWindow(hWnd, &bb);
+//
+//   CreateHGLRC(hWnd);
+//
+//   HDC hdc = GetDC(hWnd);
+//   wglMakeCurrent(hdc, m_hrc);
+//   initSC();
+//   resizeSC(w, h);
+//   ReleaseDC(hWnd, hdc);
+//
+//   MSG msg;
+//   while (1) {
+//      if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE)) {
+//         TranslateMessage(&msg);
+//         DispatchMessage(&msg);
+//      }
+//      else {
+//         HDC hdc = GetDC(hWnd);
+//         wglMakeCurrent(hdc, m_hrc);
+//
+//         renderSC();
+//
+//         SwapBuffers(hdc);
+//         ReleaseDC(hWnd, hdc);
+//      }
+//   }
+//
+//   return (FALSE);
+//}

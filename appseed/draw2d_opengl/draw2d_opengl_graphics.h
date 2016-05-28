@@ -14,7 +14,9 @@ namespace draw2d_opengl
       //::plusplus::Graphics *         m_pgraphics;
       //::plusplus::GraphicsPath *     m_ppath;
       //::plusplus::GraphicsPath *     m_ppathPaint;
+      HGLRC                         m_hrc;
       HDC                           m_hdc;
+      HWND                          m_hwnd;
       HDC                           m_hdcGraphics;
 
       point                   m_ptTranslate;
@@ -516,6 +518,12 @@ namespace draw2d_opengl
       virtual void set(::draw2d::pen * ppen);
       virtual void set(::draw2d::brush * pbrush);
       virtual void set(const ::draw2d::font * pfont) const;
+
+      virtual bool CreateWindowDC(oswindow wnd) override;
+      virtual bool is_valid_update_window_thread() override;
+
+      virtual void on_begin_draw(oswindow wnd, SIZE sz);
+      virtual void on_end_draw(oswindow wnd);
 
    };
 

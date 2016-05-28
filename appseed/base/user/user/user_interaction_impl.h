@@ -72,9 +72,8 @@ namespace user
       native_window *               m_pwindow;
 
 
-      window_graphics *             m_pgraphics;
+      sp(window_graphics)           m_spgraphics;
       //::visual::dib_sp              m_spdib;
-      ::visual::dib_sp              m_spdibBuffer;
 
       sp(mutex)                     m_spmutexBuffer;
 
@@ -82,7 +81,7 @@ namespace user
 
       bool                          m_bNeedLayout;
 
-      mutex *                                   m_pmutexDraw;
+      mutex *                       m_pmutexDraw;
 
 
       interaction_impl();
