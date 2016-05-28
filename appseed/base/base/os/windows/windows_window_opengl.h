@@ -7,7 +7,7 @@ class CLASS_DECL_BASE window_opengl :
 public:
 
 
-   oswindow                      m_hwnd;
+   //oswindow                      m_hwnd;
    ::draw2d::graphics_sp         m_spgraphics;
 
 
@@ -27,6 +27,6 @@ public:
    virtual void update_window();
    //virtual void update_window(COLORREF * pcolorref, int cxParam, int cyParam, int iStride = -1);
 
-   ::draw2d::graphics * on_begin_draw(oswindow wnd, SIZE sz);
+   ::draw2d::graphics * on_begin_draw();
 
 };

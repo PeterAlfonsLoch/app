@@ -923,8 +923,10 @@ namespace core
 
 } // namespace core
 
+extern "C"
 CLASS_DECL_CORE bool defer_core_init();
 
+extern "C"
 CLASS_DECL_CORE bool defer_core_term();
 
 

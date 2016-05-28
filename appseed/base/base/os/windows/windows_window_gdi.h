@@ -29,7 +29,7 @@ public:
    virtual void update_window(COLORREF * pcolorref,int cxParam,int cyParam,int iStride = -1);
 
    
-   ::draw2d::graphics * on_begin_draw(oswindow wnd, SIZE sz);
+   ::draw2d::graphics * on_begin_draw();
 
 
 };

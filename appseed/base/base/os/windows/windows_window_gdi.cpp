@@ -240,9 +240,9 @@ void window_gdi::update_window(COLORREF * pcolorref,int cxParam,int cyParam,int 
 
 
 
-   RECT rectWindow;
+   rect rectWindow = m_pimpl->m_rectParentClient;
 
-   GetWindowRect(m_hwnd, &rectWindow);
+   //GetWindowRect(m_hwnd, &rectWindow);
 
    bool bLayered = (::GetWindowLong(m_hwnd,GWL_EXSTYLE) & WS_EX_LAYERED) != 0;
 
@@ -330,7 +330,7 @@ void window_gdi::update_window(COLORREF * pcolorref,int cxParam,int cyParam,int 
 
 
 
-::draw2d::graphics * window_gdi::on_begin_draw(oswindow wnd, SIZE sz)
+::draw2d::graphics * window_gdi::on_begin_draw()
 {
 
    if (m_spdibBuffer.is_null())
@@ -340,17 +340,17 @@ void window_gdi::update_window(COLORREF * pcolorref,int cxParam,int cyParam,int 
 
    }
 
-   if(!m_spdibBuffer->create(sz))
+   if(!m_spdibBuffer->create(m_pimpl->m_rectParentClient.size()))
    {
 
       return NULL;
 
    }
 
-   if (m_hwnd != wnd || cx != sz.cx || cy != sz.cy)
+   if (m_hwnd != m_pimpl->m_oswindow || cx != m_pimpl->m_rectParentClient.size().cx || cy != m_pimpl->m_rectParentClient.size().cy)
    {
 
-      create_window_graphics(wnd, sz.cx, sz.cy, m_spdibBuffer->m_iScan);
+      create_window_graphics(m_pimpl->m_oswindow, m_pimpl->m_rectParentClient.size().cx, m_pimpl->m_rectParentClient.size().cy, m_spdibBuffer->m_iScan);
 
    }
 

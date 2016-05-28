@@ -360,7 +360,7 @@ namespace user
 
                   dib->create(r.size());
 
-                  ::draw2d::graphics * pgraphics = pimpl->m_spgraphics->on_begin_draw(pimpl->get_handle(), r.size());
+                  ::draw2d::graphics * pgraphics = pimpl->m_spgraphics->on_begin_draw();
 
                   dib->get_graphics()->BitBlt(0,0,r.width(),r.height(),pgraphics,0,0,SRCCOPY);
 

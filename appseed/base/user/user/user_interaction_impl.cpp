@@ -2535,11 +2535,13 @@ namespace user
       if(m_spgraphics.is_null())
          return;
 
+      //cslock csl(cs_display());
+
       rect64 rectWindow;
 
       m_pui->GetWindowRect(rectWindow);
 
-      ::draw2d::graphics * pgraphics = m_spgraphics->on_begin_draw(get_handle(), rectWindow.size());
+      ::draw2d::graphics * pgraphics = m_spgraphics->on_begin_draw();
 
       if (pgraphics == NULL || pgraphics->get_os_data() == NULL)
       {
@@ -2767,9 +2769,9 @@ namespace user
 
       }
 
-      m_spgraphics.alloc(allocer());
+//      m_spgraphics.alloc(allocer());
 
-      m_spgraphics->on_create_window(get_handle());
+  //    m_spgraphics->on_create_window(this);
       
 
    }

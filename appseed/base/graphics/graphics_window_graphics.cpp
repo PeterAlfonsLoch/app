@@ -31,8 +31,10 @@ window_graphics::~window_graphics()
 }
 
 
-void window_graphics::on_create_window(oswindow wnd)
+void window_graphics::on_create_window(::user::interaction_impl * pimpl)
 {
+   
+   m_pimpl = pimpl;
 
 }
 
@@ -133,7 +135,7 @@ void window_graphics::update_window()
 }
 
 
-::draw2d::graphics * window_graphics::on_begin_draw(oswindow wnd, SIZE sz)
+::draw2d::graphics * window_graphics::on_begin_draw()
 {
 
    return NULL;

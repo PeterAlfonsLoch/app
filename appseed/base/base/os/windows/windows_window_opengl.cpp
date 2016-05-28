@@ -72,7 +72,7 @@ void window_opengl::destroy_window_graphics()
 //
 //}
 
-::draw2d::graphics * window_opengl::on_begin_draw(oswindow wnd, SIZE sz)
+::draw2d::graphics * window_opengl::on_begin_draw()
 {
 
  
@@ -86,10 +86,7 @@ void window_opengl::destroy_window_graphics()
    if(m_spgraphics->get_os_data() == NULL)
    {
 
-      m_hwnd = wnd;
-
-
-      bool bOk = m_spgraphics->CreateWindowDC(wnd);
+      bool bOk = m_spgraphics->CreateWindowDC(m_pimpl->m_oswindow);
 
       if (!bOk)
       {
@@ -100,15 +97,8 @@ void window_opengl::destroy_window_graphics()
 
    }
 
-   m_spgraphics->on_begin_draw(wnd, sz);
+   m_spgraphics->on_begin_draw(m_pimpl->m_oswindow, m_pimpl->m_rectParentClient.size());
 
-   //if (m_spgraphics->get_os_data() == NULL)
-   //{
-
-   //   m_spgraphics->CreateWindowDC(wnd);
-
-   //}
-   //
    return m_spgraphics;
 
 }
@@ -117,7 +107,7 @@ void window_opengl::destroy_window_graphics()
 void window_opengl::update_window()
 {
 
-   m_spgraphics->on_end_draw(m_hwnd);
+   m_spgraphics->on_end_draw(m_pimpl->m_oswindow);
 
 }
 

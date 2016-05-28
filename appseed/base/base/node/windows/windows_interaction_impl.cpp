@@ -468,14 +468,14 @@ namespace windows
 
       //::simple_message_box(NULL,"h2","h2",MB_OK);
 
-      //if (cs.hwndParent != HWND_MESSAGE)
-      //{
+      if (cs.hwndParent != HWND_MESSAGE)
+      {
 
-      //   m_pgraphics = Application.alloc < window_graphics >(System.type_info < window_graphics >());
+         m_spgraphics.alloc(allocer());
 
-      //   m_pgraphics->on_create_window(oswindow);
+         m_spgraphics->on_create_window(this);
 
-      //}
+      }
 
       if(oswindow == NULL)
       {
@@ -2789,7 +2789,7 @@ restart_mouse_hover_check:
 
       }
 
-      ::draw2d::graphics * pgraphics = m_spgraphics->on_begin_draw(get_handle(), rectWindow.size());
+      ::draw2d::graphics * pgraphics = m_spgraphics->on_begin_draw();
 
       try
       {

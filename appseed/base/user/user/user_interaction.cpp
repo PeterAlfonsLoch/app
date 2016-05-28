@@ -1329,7 +1329,7 @@ namespace user
 
       single_lock sl(m_pmutex, true);
 
-      if(!m_bVisible)
+      if(!IsWindowVisible())
          return;
 
       _001DrawThis(pgraphics);
