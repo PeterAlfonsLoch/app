@@ -752,7 +752,7 @@ namespace user
 
          //}
 
-         keyboard_set_focus();
+//         keyboard_set_focus();
 
          if(m_plist.is_set())
          {

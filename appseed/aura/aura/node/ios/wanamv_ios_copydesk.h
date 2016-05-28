@@ -28,9 +28,9 @@ namespace ios
       virtual string get_plain_text();
 
 
-      virtual bool desk_to_dib(::draw2d::dib * pdib);
+      virtual bool desk_to_dib(::draw2d::graphics * pgraphics);
       // todo
-      //bool dib_to_desk(::draw2d::dib * pdib);
+      //bool dib_to_desk(::draw2d::graphics * pgraphics);
 
    };
 

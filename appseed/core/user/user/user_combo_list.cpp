@@ -588,7 +588,12 @@ namespace user
    bool combo_list::keyboard_focus_OnKillFocus()
    {
 
-      m_pcombo->_001ShowDropDown(false);
+      if (IsWindowVisible())
+      {
+
+         m_pcombo->_001ShowDropDown(false);
+
+      }
 
       return true;
 
