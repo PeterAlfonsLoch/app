@@ -16,7 +16,7 @@ calendar_interface::calendar_interface(::aura::application * papp) :
 void calendar_interface::_001OnDraw(::draw2d::graphics * pgraphics)
 {
    
-   UNREFERENCED_PARAMETER(pdib);
+   UNREFERENCED_PARAMETER(pgraphics);
 
 }
 
