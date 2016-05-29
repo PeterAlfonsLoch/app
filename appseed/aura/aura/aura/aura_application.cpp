@@ -1863,7 +1863,16 @@ namespace aura
       if(!is_system() && !is_session())
       {
 
-         m_pipi = create_ipi();
+         try
+         {
+          
+            m_pipi = create_ipi();
+
+         }
+         catch(...)
+         {
+
+         }
 
          if(!check_exclusive())
          {
