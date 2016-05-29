@@ -825,7 +825,7 @@ namespace metrowin
       }
       m_dib->create(1920, 1080);
       m_dib->Fill(0, 0, 0, 0);
-      System.m_posdata->m_pui->_000OnDraw(m_dib);
+      System.m_posdata->m_pui->_000OnDraw(m_dib->get_graphics());
       //}
       dc->from(m_dib->get_size(), m_dib->get_graphics(), SRCCOPY);
       sl.lock();
