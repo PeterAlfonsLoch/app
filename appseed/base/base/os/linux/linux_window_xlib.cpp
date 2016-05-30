@@ -2,7 +2,9 @@
 #include "base/os/linux/linux_window_xlib.h"
 
 
-window_xlib::window_xlib()
+window_xlib::window_xlib(::aura::application * papp) :
+    object(papp),
+    window_graphics(papp)
 {
 
    m_window = NULL;
@@ -120,7 +122,7 @@ void window_xlib::destroy_window_graphics()
 }
 
 
-void window_xlib::update_window(COLORREF * pOsBitmapData, const RECT & lpcrect, int cxParam, int cyParam, int iStride, bool bTransferBuffer)
+void window_xlib::update_window(COLORREF * pOsBitmapData, int cxParam, int cyParam, int iStride)
 {
 
    //single_lock sl(&user_mutex());
@@ -142,7 +144,7 @@ void window_xlib::update_window(COLORREF * pOsBitmapData, const RECT & lpcrect, 
 
    xdisplay d(m_window->display());
 
-   if(bTransferBuffer)
+//   if(bTransferBuffer)
    {
 
       ::draw2d::copy_colorref(cxParam, cyParam, (COLORREF *) m_mem.get_data(), m_iScan, pOsBitmapData, iStride);
@@ -210,3 +212,122 @@ void window_xlib::update_window(COLORREF * pOsBitmapData, const RECT & lpcrect, 
 
 
 
+
+
+
+
+
+
+void window_xlib::update_window()
+{
+
+
+   rect64 rectWindow;
+
+//#if !NO_SCREEN_PRE_MULTIPLY_ALPHA
+//   if (bTransferBuffer && pwnd->is_composite() && !m_bReduced)
+//   {
+//
+//      m_bReduced = true;
+//
+//      m_spgraphics->SetViewportOrg(0, 0);
+//
+//      map();
+//
+//      //pre_multiply_alpha((unsigned int *) get_data(),m_size.cx,m_size.cy,m_size.cx * 4);
+//
+//      BYTE *dstR = (BYTE*)get_data();
+//      BYTE *dstG = dstR + 1;
+//      BYTE *dstB = dstR + 2;
+//      BYTE *dstA = dstR + 3;
+//      int64_t size = area() * 4;
+//
+//
+//      // >> 8 instead of / 255 subsequent alpha_blend operations say thanks on true_blend because (255) * (1/254) + (255) * (254/255) > 255
+//      //#if defined(_OPENMP)
+//      //         #pragma omp parallel num_threads(3)
+//      //                  {
+//      //
+//      //                     BYTE *dst = dstR + omp_get_thread_num();
+//      //      #pragma omp parallel for
+//      //                     for(index i = 0; i < size; i+=4)
+//      //                     {
+//      //                           dst[i] = LOBYTE(((int32_t)dst[i] * (int32_t)dstA[i]) >> 8);
+//      //                     }
+//      //                  }
+//      //
+//      ////#pragma omp parallel num_threads(4)
+//      ////         {
+//      ////
+//      ////            if(omp_get_thread_num() == 3)
+//      ////            {
+//      ////               COLORREF *dst = get_data();
+//      ////#pragma omp parallel for
+//      ////               for(index i = 0; i < size; i+=4)
+//      ////               {
+//      ////                  if(dstA[i] <= 3)
+//      ////                  {
+//      ////                     dst[i>>2] = 0;
+//      ////                  }
+//      ////               }
+//      ////            }
+//      ////            else
+//      ////            {
+//      ////               BYTE *dst = dstR + omp_get_thread_num();
+//      ////#pragma omp parallel for
+//      ////               for(index i = 0; i < size; i+=4)
+//      ////               {
+//      ////                  if(dstA[i] > 3)
+//      ////                  {
+//      ////                     dst[i] = LOBYTE(((int32_t)dst[i] * (int32_t)dstA[i]) >> 8);
+//      ////                  }
+//      ////               }
+//      ////            }
+//      ////         }
+//      //#else
+//      //         for(index i = 0; i < size; i+=4)
+//      //         {
+//      //            dstR[i] = LOBYTE(((int32_t)dstR[i] * (int32_t)dstA[i]) >> 8);
+//      //            dstG[i] = LOBYTE(((int32_t)dstG[i] * (int32_t)dstA[i]) >> 8);
+//      //            dstB[i] = LOBYTE(((int32_t)dstB[i] * (int32_t)dstA[i]) >> 8);
+//      //         }
+//      //#endif
+//      //
+//   }
+//#endif
+//   rect rect(rectWindow);
+
+   update_window(m_spdibBuffer->get_data(), m_spdibBuffer->m_size.cx, m_spdibBuffer->m_size.cy, m_spdibBuffer->m_iScan);
+
+}
+
+
+
+
+::draw2d::graphics * window_xlib::on_begin_draw()
+{
+
+   if (m_spdibBuffer.is_null())
+   {
+
+      m_spdibBuffer.alloc(allocer());
+
+   }
+
+   if(!m_spdibBuffer->create(m_pimpl->m_rectParentClient.size()))
+   {
+
+      return NULL;
+
+   }
+
+   if (m_window != m_pimpl->m_oswindow || cx != m_pimpl->m_rectParentClient.size().cx || cy != m_pimpl->m_rectParentClient.size().cy)
+   {
+
+      create_window_graphics(m_pimpl->m_oswindow, m_pimpl->m_rectParentClient.size().cx, m_pimpl->m_rectParentClient.size().cy, m_spdibBuffer->m_iScan);
+
+   }
+
+   return m_spdibBuffer->get_graphics();
+
+}

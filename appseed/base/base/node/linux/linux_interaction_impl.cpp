@@ -508,7 +508,9 @@ namespace linux
 
          XGetWindowAttributes(m_oswindow->display(), m_oswindow->window(), &m_attr);
 
-         m_pgraphics = new window_xlib();
+         m_spgraphics.alloc(allocer());
+
+         m_spgraphics->on_create_window(this);
 
          int event_base, error_base, major_version, minor_version;
 
@@ -6179,7 +6181,7 @@ namespace linux
    {
       // graphics will be already set its view port to the interaction_impl for linux - cairo with xlib
 
-      pdib->SetViewportOrg(point(0, 0));
+      pgraphics->SetViewportOrg(point(0, 0));
 
 /*      rect64 rectWindow;
       GetWindowRect(rectWindow);

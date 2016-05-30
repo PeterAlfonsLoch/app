@@ -42,8 +42,8 @@ inline size::size(no_init) throw()
 inline size::size(int64_t initCX,int64_t initCY) throw()
 {
 
-   cx = (int32_t)initCX; 
-   
+   cx = (int32_t)initCX;
+
    cy = (int32_t)initCY;
 
 }
@@ -51,7 +51,7 @@ inline size::size(int64_t initCX,int64_t initCY) throw()
 
 inline size::size(SIZE initSize) throw()
 {
-   
+
    *(SIZE*)this = initSize;
 
 }
@@ -67,7 +67,7 @@ inline size::size(const SIZE * pinitSize) throw()
 
 inline size::size(const RECT & rect) throw()
 {
-   
+
    cx = width(rect);
 
    cy = height(rect);
@@ -77,7 +77,7 @@ inline size::size(const RECT & rect) throw()
 
 inline size::size(LPCRECT lpcrect) throw()
 {
-   
+
    if(lpcrect == NULL)
    {
 
@@ -101,8 +101,8 @@ inline size::size(LPCRECT lpcrect) throw()
 inline size::size(SIZE64  initSize) throw()
 {
 
-   cx = (int32_t)initSize.cx; 
-   
+   cx = (int32_t)initSize.cx;
+
    cy = (int32_t)initSize.cy;
 
 }
@@ -111,8 +111,8 @@ inline size::size(SIZE64  initSize) throw()
 inline size::size(const SIZE64 *  pinitSize) throw()
 {
 
-   cx = (int32_t)pinitSize->cx; 
-   
+   cx = (int32_t)pinitSize->cx;
+
    cy = (int32_t)pinitSize->cy;
 
 }
@@ -120,9 +120,9 @@ inline size::size(const SIZE64 *  pinitSize) throw()
 
 inline size::size(SIZED  initSize) throw()
 {
-   
-   cx = (int32_t)initSize.cx; 
-   
+
+   cx = (int32_t)initSize.cx;
+
    cy = (int32_t)initSize.cy;
 
 }
@@ -130,9 +130,9 @@ inline size::size(SIZED  initSize) throw()
 
 inline size::size(const SIZED *  pinitSize) throw()
 {
-   
-   cx = (int32_t)pinitSize->cx; 
-   
+
+   cx = (int32_t)pinitSize->cx;
+
    cy = (int32_t)pinitSize->cy;
 
 }
@@ -191,8 +191,8 @@ inline bool size::operator!=(SIZE size) const throw()
 inline void size::operator+=(SIZE size) throw()
 {
 
-   cx += size.cx; 
-   
+   cx += size.cx;
+
    cy += size.cy;
 
 }
@@ -201,8 +201,8 @@ inline void size::operator+=(SIZE size) throw()
 inline void size::operator-=(SIZE size) throw()
 {
 
-   cx -= size.cx; 
-   
+   cx -= size.cx;
+
    cy -= size.cy;
 
 }
@@ -210,8 +210,8 @@ inline void size::operator-=(SIZE size) throw()
 inline void size::set_size(int32_t CX,int32_t CY) throw()
 {
 
-   cx = CX; 
-   
+   cx = CX;
+
    cy = CY;
 
 }
@@ -331,9 +331,9 @@ inline LPARAM    size::lparam() const throw()
 
 
 
-inline size64::operator SIZE()
+inline size64::operator SIZE() throw()
 {
-   
+
    SIZE sz = { (LONG)cx, (LONG)cy };
 
    return sz;

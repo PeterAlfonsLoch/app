@@ -36,3 +36,142 @@ inline ::file::path operator + (const var & var,const ::file::path & path) { ret
 inline ::file::path operator / (const string & str,const ::file::path & path) { ::file::path p(str);  return p / path; }
 inline ::file::path operator / (const char * psz,const ::file::path & path) { ::file::path p(psz);  return p / path; }
 inline ::file::path operator / (const var & var,const ::file::path & path) { ::file::path p(var.get_file_path());  return p / path; }
+
+
+
+template < class ARRAY >
+bool file_put_array(const char * path, const ARRAY & a, ::aura::application * papp)
+{
+
+
+   try
+   {
+
+      if (papp == NULL)
+      {
+
+         papp = ::get_thread_app();
+
+      }
+
+      if (papp == NULL)
+      {
+
+         return false;
+
+      }
+
+      ::file::buffer_sp pfile = App(papp).file().get_file(path, ::file::mode_create | ::file::mode_write | ::file::type_binary | ::file::defer_create_directory);
+
+      if (pfile.is_null())
+      {
+
+         return false;
+
+      }
+
+      ::file::byte_ostream ostream(pfile);
+
+      ::count count = a.get_count();
+
+      ostream.write_arbitrary(count);
+
+      for (index index = 0; index < count; index++)
+      {
+
+         ostream << a.element_at(index);
+
+      }
+
+      return true;
+
+   }
+   catch (...)
+   {
+
+
+   }
+
+   return false;
+
+}
+
+
+template < class ARRAY >
+bool file_as_array(ARRAY & a, const char * path, ::aura::application * papp)
+{
+
+   try
+   {
+
+      if (papp == NULL)
+      {
+
+         papp = ::get_thread_app();
+
+      }
+
+      if (papp == NULL)
+      {
+
+         return false;
+
+      }
+
+      ::file::buffer_sp pfile = App(papp).file().get_file(path, ::file::mode_read | ::file::type_binary);
+
+      if (pfile.is_null())
+      {
+
+         return false;
+
+      }
+
+      ::file::byte_istream istream(pfile);
+
+      ::count count;
+      //istream >> count;
+      istream.read_arbitrary(count);
+
+      if (istream.fail())
+      {
+
+         return false;
+
+      }
+
+      a.allocate(count);
+
+      for (index index = 0; index < count; index++)
+      {
+
+         istream >> a.element_at(index);
+
+         if (istream.fail())
+         {
+
+            return false;
+
+         }
+
+      }
+
+      a.on_after_read();
+
+      return true;
+
+   }
+   catch (...)
+   {
+
+
+   }
+
+   return false;
+
+}
+
+
+
+
+

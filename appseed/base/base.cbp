@@ -363,6 +363,10 @@
 		<Unit filename="base/os/solaris/solaris_window_xlib.h" />
 		<Unit filename="base/os/windows/windows.h" />
 		<Unit filename="base/os/windows/windows_internal.h" />
+		<Unit filename="base/os/windows/windows_window_gdi.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="base/os/windows/windows_window_gdi.h" />
 		<Unit filename="base/os/x11/x11_exception.h" />
 		<Unit filename="base/os/x11/x11_keyboard.h" />
