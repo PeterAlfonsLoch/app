@@ -89,8 +89,10 @@ PluginList::PluginList() :
 m_plugin_map(),
 m_node_count(0) {
 }
+
+
 FREE_IMAGE_FORMAT
-PluginList::AddNode(Plugin * plugin,PluginNode * node,void *instance,const char *format,const char *description,const char *extension,const char *regexpr) {
+PluginList::AddNode(Plugin * plugin,FREE_IMAGE_FORMAT f, PluginNode * node,void *instance,const char *format,const char *description,const char *extension,const char *regexpr) {
 
    // get the format string (two possible ways)
 
@@ -112,7 +114,7 @@ PluginList::AddNode(Plugin * plugin,PluginNode * node,void *instance,const char 
 
       return FIF_UNKNOWN;
    }
-   node->m_id = (int)m_plugin_map.size();
+   node->m_id = f;
    node->m_instance = instance;
    node->m_plugin = plugin;
    node->m_format = format;
@@ -121,7 +123,8 @@ PluginList::AddNode(Plugin * plugin,PluginNode * node,void *instance,const char 
    node->m_regexpr = regexpr;
    node->m_enabled = TRUE;
 
-   m_plugin_map[(const int)m_plugin_map.size()] = node;
+   m_plugin_map[f] = node;
+   m_formata.add_unique(f);
 
    return (FREE_IMAGE_FORMAT)node->m_id;
 
@@ -151,9 +154,13 @@ PluginList::AddNode(FI_InitProc init_proc, void *instance, const char *format, c
    // fill-in the plugin structure
    // note we have memset to 0, so all unset pointers should be NULL)
 
-   init_proc(plugin,(int)m_plugin_map.size());
+   int iFormat = -1;
 
-   return AddNode(plugin,node,instance,format,description,extension,regexpr);
+   init_proc(plugin,(int *)&iFormat);
+
+   FREE_IMAGE_FORMAT f = (FREE_IMAGE_FORMAT) iFormat;
+
+   return AddNode(plugin,f, node,instance,format,description,extension,regexpr);
 
 }
 
@@ -187,7 +194,7 @@ PluginList::AddNode(FI_InitProc init_proc, void *instance, const char *format, c
 //
 PluginNode *
 PluginList::FindNodeFromFormat(const char *format) {
-	for (std::map<int, PluginNode *>::iterator i = m_plugin_map.begin(); i != m_plugin_map.end(); ++i) {
+	for (std::map<FREE_IMAGE_FORMAT, PluginNode *>::iterator i = m_plugin_map.begin(); i != m_plugin_map.end(); ++i) {
 		const char *the_format = ((*i).m_element2->m_format != NULL) ? (*i).m_element2->m_format : (*i).m_element2->m_plugin->format_proc();
 
 		if ((*i).m_element2->m_enabled) {
@@ -202,7 +209,7 @@ PluginList::FindNodeFromFormat(const char *format) {
 
 PluginNode *
 PluginList::FindNodeFromMime(const char *mime) {
-   for(std::map<int,PluginNode *>::iterator i = m_plugin_map.begin(); i != m_plugin_map.end(); ++i) {
+   for(std::map<FREE_IMAGE_FORMAT, PluginNode *>::iterator i = m_plugin_map.begin(); i != m_plugin_map.end(); ++i) {
 		const char *the_mime = ((*i).m_element2->m_plugin->mime_proc != NULL) ? (*i).m_element2->m_plugin->mime_proc() : "";
 
 		if ((*i).m_element2->m_enabled) {
@@ -217,7 +224,7 @@ PluginList::FindNodeFromMime(const char *mime) {
 
 PluginNode *
 PluginList::FindNodeFromFIF(int node_id) {
-   std::map<int,PluginNode *>::iterator i = m_plugin_map.find(node_id);
+   std::map<FREE_IMAGE_FORMAT, PluginNode *>::iterator i = m_plugin_map.find((FREE_IMAGE_FORMAT)node_id);
 
 	if (i != m_plugin_map.end()) {
 		return (*i).m_element2;
@@ -237,7 +244,7 @@ PluginList::IsEmpty() const {
 }
 
 PluginList::~PluginList() {
-   for(std::map<int,PluginNode *>::iterator i = m_plugin_map.begin(); i != m_plugin_map.end(); ++i) {
+   for(std::map<FREE_IMAGE_FORMAT, PluginNode *>::iterator i = m_plugin_map.begin(); i != m_plugin_map.end(); ++i) {
 #ifdef _WIN32
 		if ((*i).m_element2->m_instance != NULL) {
 			FreeLibrary((HINSTANCE)(*i).m_element2->m_instance);
@@ -351,41 +358,41 @@ TagLib::instance();
                if(::str::ends_ci(path,".so") && ::str::begins_ci(path.name(), "libaxis_image_"))
 #endif
                {
-                  
+
                   ::aura::library l(get_thread_app());
-                  
+
                   l.open(path, false);
-                  
+
                   if(l.is_opened())
                   {
-                     
+
                      string strProcName;
-                     
+
                      string strTitle = path.title();
-                     
+
                      ::str::begins_eat_ci(strTitle, "lib");
-                     
+
                      strTitle.make_lower();
-                     
+
                      strProcName = "FreeImage_InitPlugin_" + strTitle;
-                     
+
                      FI_InitProc pproc =l.get < FI_InitProc >(strProcName);
-                     
+
                      if(pproc != NULL)
                      {
-                        
+
                         s_plugins->AddNode(pproc,(void *)l.get_os_data());
-                        
+
                      }
                      else
                      {
-                        
+
                         l.close();
-                        
+
                      }
-                     
+
                   }
-               
+
                }
 
 
@@ -438,7 +445,8 @@ FreeImage_Close(PluginNode *node, FreeImageIO *io, fi_handle handle, void *data)
 
 FIBITMAP * DLL_CALLCONV
 FreeImage_LoadFromHandle(FREE_IMAGE_FORMAT fif, FreeImageIO *io, fi_handle handle, int flags) {
-	if ((fif >= 0) && (fif < FreeImage_GetFIFCount())) {
+	//if ((fif >= 0) && (fif < FreeImage_GetFIFCount()))
+	{
 		PluginNode *node = s_plugins->FindNodeFromFIF(fif);
 
 		if (node != NULL) {
@@ -505,7 +513,8 @@ FreeImage_SaveToHandle(FREE_IMAGE_FORMAT fif, FIBITMAP *dib, FreeImageIO *io, fi
 		return FALSE;
 	}
 
-	if ((fif >= 0) && (fif < FreeImage_GetFIFCount())) {
+	//if ((fif >= 0) && (fif < FreeImage_GetFIFCount()))
+	{
 		PluginNode *node = s_plugins->FindNodeFromFIF(fif);
 
 		if (node) {
@@ -635,6 +644,11 @@ FreeImage_IsPluginEnabled(FREE_IMAGE_FORMAT fif) {
 int DLL_CALLCONV
 FreeImage_GetFIFCount() {
 	return (s_plugins != NULL) ? s_plugins->Size() : 0;
+}
+
+FREE_IMAGE_FORMAT DLL_CALLCONV
+FreeImage_GetFIFType(int iIndex) {
+	return (s_plugins != NULL) ? s_plugins->m_formata[iIndex] : (FREE_IMAGE_FORMAT) -1;
 }
 
 FREE_IMAGE_FORMAT DLL_CALLCONV
@@ -800,20 +814,20 @@ FreeImage_GetFIFFromFilename(const char *filename) {
 
 		// look for the extension in the plugin table
 
-		for (int i = 0; i < FreeImage_GetFIFCount(); ++i) {
+		for (int i = 0; i < s_plugins->m_formata.get_size(); ++i) {
 
-			if (s_plugins->FindNodeFromFIF(i)->m_enabled) {
+			if (s_plugins->FindNodeFromFIF(s_plugins->m_formata[i])->m_enabled) {
 
 				// compare the format id with the extension
 
-				if (FreeImage_stricmp(FreeImage_GetFormatFromFIF((FREE_IMAGE_FORMAT)i), extension) == 0) {
-					return (FREE_IMAGE_FORMAT)i;
+				if (FreeImage_stricmp(FreeImage_GetFormatFromFIF(s_plugins->m_formata[i]), extension) == 0) {
+					return s_plugins->m_formata[i];
 				} else {
 					// make a copy of the extension list and split it
 
-					char *copy = (char *)malloc(strlen(FreeImage_GetFIFExtensionList((FREE_IMAGE_FORMAT)i)) + 1);
-					memset(copy, 0, strlen(FreeImage_GetFIFExtensionList((FREE_IMAGE_FORMAT)i)) + 1);
-					memcpy(copy, FreeImage_GetFIFExtensionList((FREE_IMAGE_FORMAT)i), strlen(FreeImage_GetFIFExtensionList((FREE_IMAGE_FORMAT)i)));
+					char *copy = (char *)malloc(strlen(FreeImage_GetFIFExtensionList(s_plugins->m_formata[i])) + 1);
+					memset(copy, 0, strlen(FreeImage_GetFIFExtensionList(s_plugins->m_formata[i])) + 1);
+					memcpy(copy, FreeImage_GetFIFExtensionList(s_plugins->m_formata[i]), strlen(FreeImage_GetFIFExtensionList(s_plugins->m_formata[i])));
 
 					// get the first token
 
@@ -823,7 +837,7 @@ FreeImage_GetFIFFromFilename(const char *filename) {
 						if (FreeImage_stricmp(token, extension) == 0) {
 							free(copy);
 
-								return (FREE_IMAGE_FORMAT)i;
+								return s_plugins->m_formata[i];
 						}
 
 						token = strtok(NULL, ",");

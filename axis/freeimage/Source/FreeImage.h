@@ -647,7 +647,7 @@ FI_STRUCT (Plugin) {
 	FI_SupportsNoPixelsProc supports_no_pixels_proc;
 };
 
-typedef void (*FI_InitProc)(Plugin *plugin,int format_id);
+typedef void (*FI_InitProc)(Plugin *plugin,int * format_id);
 
 #endif // PLUGINS
 
@@ -820,6 +820,7 @@ DLL_API WINBOOL DLL_CALLCONV FreeImage_SaveMultiBitmapToMemory(FREE_IMAGE_FORMAT
 DLL_API FREE_IMAGE_FORMAT DLL_CALLCONV FreeImage_RegisterLocalPlugin(FI_InitProc proc_address, const char *format FI_DEFAULT(0), const char *description FI_DEFAULT(0), const char *extension FI_DEFAULT(0), const char *regexpr FI_DEFAULT(0));
 DLL_API FREE_IMAGE_FORMAT DLL_CALLCONV FreeImage_RegisterExternalPlugin(const char *path, const char *format FI_DEFAULT(0), const char *description FI_DEFAULT(0), const char *extension FI_DEFAULT(0), const char *regexpr FI_DEFAULT(0));
 DLL_API int DLL_CALLCONV FreeImage_GetFIFCount(void);
+DLL_API FREE_IMAGE_FORMAT DLL_CALLCONV FreeImage_GetFIFType(int iIndex);
 DLL_API int DLL_CALLCONV FreeImage_SetPluginEnabled(FREE_IMAGE_FORMAT fif, WINBOOL enable);
 DLL_API int DLL_CALLCONV FreeImage_IsPluginEnabled(FREE_IMAGE_FORMAT fif);
 DLL_API FREE_IMAGE_FORMAT DLL_CALLCONV FreeImage_GetFIFFromFormat(const char *format);

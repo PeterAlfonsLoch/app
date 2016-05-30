@@ -52,7 +52,7 @@ namespace aura
             long     mtype;
             long     request;
             int      size;
-            char     data[512];
+            char     data[0];
 
 
          };
@@ -105,7 +105,7 @@ namespace aura
       {
       public:
 
-      
+
          class CLASS_DECL_AURA receiver
          {
          public:

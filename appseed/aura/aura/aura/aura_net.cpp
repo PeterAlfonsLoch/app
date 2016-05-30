@@ -326,9 +326,9 @@ void openURL(const string &url_str) {
 //      NULL                         // baseURL
 //      );
 //       LSOpenCFURLRef(url,0);
-   
+
    ui_open_url(url_str);
-   
+
 //   CFRelease(url);
 }
 
@@ -419,18 +419,18 @@ bool open_url::open()
    return success;
 
 #elif defined(LINUX)
-   ::system("xdg-open " + strLink);
+   ::system("xdg-open \"" + strLink+ "\"");
    return true;
 #elif defined(APPLEOS)
    openURL(strLink);
    return true;
 #else
-   
+
    string strOpenUrl;
 
    if(System.m_pandroidinitdata->m_pszOpenUrl != NULL)
    {
-      
+
       strOpenUrl = System.m_pandroidinitdata->m_pszOpenUrl;
 
       free((void *) System.m_pandroidinitdata->m_pszOpenUrl);

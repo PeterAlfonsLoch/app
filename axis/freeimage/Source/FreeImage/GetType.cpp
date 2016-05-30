@@ -19,9 +19,9 @@
 // Use at your own risk!
 // ==========================================================
 
-#ifdef _MSC_VER 
+#ifdef _MSC_VER
 #pragma warning (disable : 4786) // identifier was truncated to 'number' characters
-#endif 
+#endif
 
 #include  "FreeImageFramework.h"
 //#include "Utilities.h"
@@ -37,7 +37,7 @@ FreeImage_GetFileTypeFromHandle(FreeImageIO *io, fi_handle handle, int size) {
 		int fif_count = FreeImage_GetFIFCount();
 
 		for (int i = 0; i < fif_count; ++i) {
-			FREE_IMAGE_FORMAT fif = (FREE_IMAGE_FORMAT)i;
+			FREE_IMAGE_FORMAT fif = (FREE_IMAGE_FORMAT)FreeImage_GetFIFType(i);
 			if (FreeImage_Validate(fif, io, handle)) {
 				if(fif == FIF_TIFF) {
 					// many camera raw files use a TIFF signature ...
@@ -58,7 +58,7 @@ FREE_IMAGE_FORMAT DLL_CALLCONV
 FreeImage_GetFileType(const char *filename, int size) {
 	FreeImageIO io;
 	SetDefaultIO(&io);
-	
+
 	FILE *handle = fopen(filename, "rb");
 
 	if (handle != NULL) {
@@ -72,9 +72,9 @@ FreeImage_GetFileType(const char *filename, int size) {
 	return FIF_UNKNOWN;
 }
 
-FREE_IMAGE_FORMAT DLL_CALLCONV 
+FREE_IMAGE_FORMAT DLL_CALLCONV
 FreeImage_GetFileTypeU(const wchar_t *filename, int size) {
-#ifdef _WIN32	
+#ifdef _WIN32
 	FreeImageIO io;
 	SetDefaultIO(&io);
 	FILE *handle = _wfopen(filename, L"rb");

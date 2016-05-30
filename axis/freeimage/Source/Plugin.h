@@ -69,7 +69,7 @@ public :
 
 	//FREE_IMAGE_FORMAT AddNode(FI_InitProc proc, void *instance = NULL, const char *format = 0, const char *description = 0, const char *extension = 0, const char *regexpr = 0);
    FREE_IMAGE_FORMAT AddNode(FI_InitProc proc,void *instance = NULL,const char *format = 0,const char *description = 0,const char *extension = 0,const char *regexpr = 0);
-   FREE_IMAGE_FORMAT AddNode(Plugin * pplugin,PluginNode * node, void *instance = NULL,const char *format = 0,const char *description = 0,const char *extension = 0,const char *regexpr = 0);
+   FREE_IMAGE_FORMAT AddNode(Plugin * pplugin,FREE_IMAGE_FORMAT f, PluginNode * node, void *instance = NULL,const char *format = 0,const char *description = 0,const char *extension = 0,const char *regexpr = 0);
 	PluginNode *FindNodeFromFormat(const char *format);
 	PluginNode *FindNodeFromMime(const char *mime);
 	PluginNode *FindNodeFromFIF(int node_id);
@@ -77,8 +77,8 @@ public :
 	int Size() const;
 	WINBOOL IsEmpty() const;
 
-private :
-	std::map<int, PluginNode *> m_plugin_map;
+	std::map<FREE_IMAGE_FORMAT, PluginNode *> m_plugin_map;
+	comparable_array <FREE_IMAGE_FORMAT> m_formata;
 	int m_node_count;
 };
 

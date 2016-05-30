@@ -153,7 +153,7 @@ namespace visual
 
 
       FIMEMORY * pfm1 = FreeImage_OpenMemory();
-      FIBITMAP * pfi7 = Sys(m_p->m_pauraapp).visual().imaging().HBITMAPtoFI(m_p->get_bitmap());
+      FIBITMAP * pfi7 = Sys(m_p->m_pauraapp).visual().imaging().dib_to_FI(m_p);
       FIBITMAP * pfi8 = NULL;
       bool bConv;
       if(b8)

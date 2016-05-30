@@ -86,15 +86,24 @@ namespace aura
       bool tx::send(const char * pszMessage,DWORD dwTimeout)
       {
 
-         data_struct data;
-         data.mtype        = 15111984;
-         data.request      = 0x80000000;
-         data.size         = strlen_dup(pszMessage);
-         if(data.size > 512)
-            return false;
+
+//      int iLimit = MSGMNB;
+
+        memory m;
+
+         int iLen = strlen_dup(pszMessage);
+
+         m.allocate(sizeof(data_struct) + iLen);
+
+         data_struct * pdata = (data_struct *)m.get_data();
+         pdata->mtype        = 15111984;
+         pdata->request      = 0x80000000;
+         pdata->size         = iLen;
+         //if(data.size > 512)
+           // return false;
 
          /* The length is essentially the size of the structure minus sizeof(mtype) */
-         int32_t length = sizeof(data_struct) - sizeof(long);
+/*         int32_t length = sizeof(data_struct) - sizeof(long);
 
          int32_t result;
 
@@ -104,6 +113,44 @@ namespace aura
          {
             return false;
          }
+         */
+
+                  //const char * pszMessage = (const char *)pdata;
+
+         memcpy(pdata->data,pszMessage,iLen);
+
+         int result = 0;
+
+
+         msqid_ds b;
+
+         ZERO(b);
+
+
+
+//         if(msgctl(m_iQueue, IPC_STAT, &b) == -1)
+//         {
+//         return false;
+//         }
+//
+//         if(b.msg_qbytes < m.get_size() * 2)
+//         {
+//            b.msg_qbytes += m.get_size() * 2;
+//         if(msgctl(m_iQueue, IPC_SET, &b) == -1)
+//         {
+//         int iError = errno;
+//         return false;
+//         }
+//
+//         }
+
+
+        if((result = msgsnd(m_iQueue,pdata,m.get_size() - sizeof(long),0)) == -1)
+        {
+        int iError = errno;
+           return false;
+        }
+
 
          ::OutputDebugString("functon: \"tx::send\"\n");
          ::OutputDebugString("channel: \"" +m_strBaseChannel+ "\"\n");
@@ -113,7 +160,7 @@ namespace aura
       }
 
 
-      bool tx::send(int32_t message,void * pdata,int32_t len,DWORD dwTimeout)
+      bool tx::send(int32_t message,void * p,int32_t iLen,DWORD dwTimeout)
       {
 
          if(message == 0x80000000)
@@ -123,46 +170,40 @@ namespace aura
          if(!is_tx_ok())
             return false;
 
-         const char * pszMessage = (const char *)pdata;
+        memory m;
 
-         ::count c = len;
+         m.allocate(sizeof(data_struct) + iLen);
 
-         ::count cSend;
+         data_struct * pdata = (data_struct *)m.get_data();
+         pdata->mtype        = 15111984;
+         pdata->request      = 0x80000000;
+         pdata->size         = iLen;
+         //if(data.size > 512)
+           // return false;
 
-         data_struct data;
-         data.mtype        = 15111984;
-         data.request      = 0x80000000;
-         data.size         = (int32_t)strlen_dup(pszMessage);
+         /* The length is essentially the size of the structure minus sizeof(mtype) */
+/*         int32_t length = sizeof(data_struct) - sizeof(long);
 
-         ::count cPos = 0;
+         int32_t result;
 
-         while(c > 0)
+         memcpy(data.data, pszMessage, data.size);
+
+         if((result = msgsnd(m_iQueue,&data,length,0)) == -1)
          {
-
-            cSend = MIN(c,511);
-
-            memcpy(data.data,&pszMessage[cPos],MIN(c,511));
-
-            c -= cSend;
-
-            cPos += cSend;
-
-            if(c > 0)
-               data.size = 512;
-            else
-               data.size = (int32_t)cSend;
-
-            /* The length is essentially the size of the structure minus sizeof(mtype) */
-            int32_t length = sizeof(data_struct) - sizeof(long);
-
-            int32_t result;
-
-            if((result = msgsnd(m_iQueue,&data,length,0)) == -1)
-            {
-               return false;
-            }
-
+            return false;
          }
+         */
+
+                  //const char * pszMessage = (const char *)pdata;
+
+         memcpy(pdata->data,p,iLen);
+
+         int result = 0;
+
+        if((result = msgsnd(m_iQueue,pdata,m.get_size() - sizeof(long),0)) == -1)
+        {
+           return false;
+        }
 
          return true;
 
@@ -370,6 +411,8 @@ namespace aura
       {
             memory mem;
 
+            memory m;
+            m.allocate(10000000);
          while(m_bRun)
          {
 
@@ -379,38 +422,30 @@ namespace aura
 
             int32_t length;
 
-            data_struct data;
+            data_struct * pdata = (data_struct *) m.get_data();
 
             /* The length is essentially the size of the structure minus sizeof(mtype) */
-            length = sizeof(data_struct) - sizeof(long);
+            length = m.get_size() - sizeof(long);
 
-            mem.allocate(0);
-            do
-            {
+           if((result = msgrcv(m_iQueue,pdata,length,15111984,0)) == -1)
+           {
 
-               if((result = msgrcv(m_iQueue,&data,length,15111984,0)) == -1)
-               {
+              if(errno == ENOMSG)
+              {
+              }
+              else
+              {
+                 return (void *)-1;
+              }
 
-                  if(errno == ENOMSG)
-                  {
-                  }
-                  else
-                  {
-                     return (void *)-1;
-                  }
+           }
 
-               }
-
-               mem.append(data.data,data.size);
+               mem.assign(pdata->data,pdata->size);
 
 
-               if(data.size < 512)
-                  break;
-
-            } while(true);
 
 
-            if(data.request == 0x80000000)
+            if(pdata->request == 0x80000000)
             {
 
                on_receive(this,mem.to_string());
@@ -419,7 +454,7 @@ namespace aura
             else
             {
 
-               on_receive(this,data.request,mem.get_data(),mem.get_size());
+               on_receive(this,pdata->request,mem.get_data(),mem.get_size());
 
             }
 

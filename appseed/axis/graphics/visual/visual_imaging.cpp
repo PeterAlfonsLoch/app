@@ -123,6 +123,9 @@ void imaging::SavePng(const char * lpcszFile,FIBITMAP *dib,bool bUnload)
 #endif
 
 }
+
+#ifdef WINDOWSEX
+
 FIBITMAP * imaging::HBITMAPtoFI(::draw2d::bitmap_sp pbitmap)
 {
 
@@ -130,7 +133,6 @@ FIBITMAP * imaging::HBITMAPtoFI(::draw2d::bitmap_sp pbitmap)
       return NULL;
 
 
-#ifdef WINDOWSEX
 
    HBITMAP hbitmap = pbitmap->GetHBITMAP();
 
@@ -168,14 +170,83 @@ FIBITMAP * imaging::HBITMAPtoFI(::draw2d::bitmap_sp pbitmap)
    FreeImage_GetInfoHeader(fi)->biClrImportant = nColors;
    return fi;
 
-#else
-
-   throw todo(get_app());
-
-#endif
 
 }
 
+#else
+
+FIBITMAP * imaging::dib_to_FI(::draw2d::dib * pdib)
+{
+
+   if(pdib == NULL)
+      return NULL;
+
+   if(pdib->area() <= 0)
+      return NULL;
+
+   FIBITMAP * fi;
+
+//   if(bm.bmBitsPixel == 32)
+   {
+      fi = FreeImage_AllocateT(FIT_BITMAP,pdib->m_size.cx, pdib->m_size.cy,32);
+   }
+  // else
+   {
+    //  fi = FreeImage_Allocate(bm.bmWidth,bm.bmHeight,bm.bmBitsPixel);
+   }
+   // The GetDIBits function clears the biClrUsed and biClrImportant BITMAPINFO members (dont't know why)
+   // So we save these infos below. This is needed for palettized images only.
+   int32_t nColors = FreeImage_GetColorsUsed(fi);
+   //HDC hdc = ::CreateCompatibleDC(NULL);
+
+   int iWidth;
+   int iHeight;
+   COLORREF * pcolorref;
+   int iStrideDst;
+
+   iWidth = FreeImage_GetWidth(fi);
+
+   iHeight = FreeImage_GetHeight(fi);
+
+   pcolorref = (COLORREF *)FreeImage_GetBits(fi);
+
+   if(FreeImage_GetInfo(fi)->bmiHeader.biSizeImage <= 0)
+   {
+
+        iStrideDst = iWidth * sizeof(COLORREF);
+
+   }
+   else
+   {
+
+       iStrideDst = FreeImage_GetInfo(fi)->bmiHeader.biSizeImage / iHeight;
+
+   }
+
+   for(int i = 0; i < pdib->m_size.cy; i++)
+   {
+
+      memcpy(
+         &((byte *)pcolorref)[pdib->m_iScan * (pdib->m_size.cy - i - 1)],
+         &((byte *)pdib->m_pcolorref)[pdib->m_size.cx * sizeof(COLORREF) * i],
+         pdib->m_iScan);
+
+   }
+   //GetDIBits(hdc,(HBITMAP)hbitmap,0,FreeImage_GetHeight(fi),FreeImage_GetBits(fi),FreeImage_GetInfo(fi),DIB_RGB_COLORS);
+
+   //::DeleteDC(hdc);
+
+   //pbitmap->ReleaseHBITMAP(hbitmap);
+
+   // restore BITMAPINFO members
+   FreeImage_GetInfoHeader(fi)->biClrUsed = nColors;
+   FreeImage_GetInfoHeader(fi)->biClrImportant = nColors;
+   return fi;
+
+
+}
+
+#endif
 
 
 ::draw2d::bitmap_sp imaging::FItoHBITMAP(FIBITMAP * pfibitmap,bool bUnloadFI)
@@ -517,7 +588,7 @@ FIBITMAP * imaging::LoadImageFile(::file::buffer_sp  pfile)
    {
       pfile->seek_to_begin();
       FREE_IMAGE_FORMAT format;
-      format = FreeImage_GetFileTypeFromHandle(&io,(::file::stream_buffer *)pfile.m_p,16);
+      format = FreeImage_GetFileTypeFromHandle(&io,(::file::stream_buffer *)pfile.m_p);
       pfile->seek_to_begin();
       if(true)
       {
