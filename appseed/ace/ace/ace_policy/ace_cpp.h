@@ -733,8 +733,6 @@ namespace file
 #include "ace/primitive/primitive_object.h"
 
 
-#include "ace/ace/xml/xml_exportable.h"
-#include "ace/ace/xml/xml_importable.h"
 
 
 #include "ace/primitive/comparison/comparison.h"
