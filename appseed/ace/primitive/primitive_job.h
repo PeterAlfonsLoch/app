@@ -10,7 +10,7 @@ public:
    bool        m_bCancel;
 
 
-   job(::aura::application * papp);
+   job(::ace::application * papp);
    virtual ~job();
 
 

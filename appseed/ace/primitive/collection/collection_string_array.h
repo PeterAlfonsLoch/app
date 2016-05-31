@@ -15,7 +15,7 @@ public:
 
 
    string_array() {}
-   string_array(::aura::application * papp);
+   string_array(::ace::application * papp);
    string_array(::std::initializer_list < Type > l) {   for(auto & e : l) {    add(e);    }  }
    string_array(const string_array & array);
    virtual ~string_array();
@@ -1365,7 +1365,7 @@ inline ::count string_array < Type, RawType > ::get_count_except_ci(const char *
 __STATIC UINT __read_string_length(::file::istream & ar);
 
 template < class Type, class RawType >
-string_array < Type, RawType > ::string_array(::aura::application * papp):
+string_array < Type, RawType > ::string_array(::ace::application * papp):
 object(papp)
 {
 }

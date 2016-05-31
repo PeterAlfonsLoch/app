@@ -10,7 +10,7 @@ namespace primitive
    public:
 
 
-      virtual_memory(::aura::application * papp);
+      virtual_memory(::ace::application * papp);
       virtual_memory(const void *, memory_size_t iCount);
       virtual_memory(const memory_base & memory);
       virtual_memory(const char * psz);

@@ -1,5 +1,5 @@
 
-#include "framework.h" // from "base/aura/aura.h"
+#include "framework.h" // from "base/ace/ace.h"
 #include <time.h>
 //#ifdef ANDROID
 //#include <sys/time.h>
@@ -16,9 +16,9 @@ namespace datetime
    }
 
 
-   department::department(::aura::application * papp):
+   department::department(::ace::application * papp):
       object(papp),
-      ::aura::department(papp),
+      ::ace::department(papp),
       m_international(papp),
       m_str(papp)
    {
@@ -85,7 +85,7 @@ namespace datetime
       return strtotime(NULL,strInternationalDate,0,i);
    }
 
-   int64_t department::strtotime(::aura::str_context * pcontext,const char * psz,int32_t iPath,int32_t & iPathCount)
+   int64_t department::strtotime(::ace::str_context * pcontext,const char * psz,int32_t iPath,int32_t & iPathCount)
    {
       ::datetime::time time;
       ::datetime::value val =::datetime::strtotime(get_app(),pcontext,psz,iPath,iPathCount,false);
@@ -96,7 +96,7 @@ namespace datetime
       return time.get_time();
    }
 
-   int64_t department::strtotime(::aura::str_context * pcontext,const char * psz,time_t timeParam,int32_t iPath,int32_t & iPathCount)
+   int64_t department::strtotime(::ace::str_context * pcontext,const char * psz,time_t timeParam,int32_t iPath,int32_t & iPathCount)
    {
       UNREFERENCED_PARAMETER(iPath);
       ::datetime::time time(timeParam);
@@ -106,7 +106,7 @@ namespace datetime
       return val.get_time().get_time();
    }
 
-   int64_t department::gmt_strtotime(::aura::str_context * pcontext,const char * psz,int32_t iPath,int32_t & iPathCount)
+   int64_t department::gmt_strtotime(::ace::str_context * pcontext,const char * psz,int32_t iPath,int32_t & iPathCount)
    {
       ::datetime::time time;
       ::datetime::value val = ::datetime::strtotime(get_app(),pcontext,psz,iPath,iPathCount,true);
@@ -117,7 +117,7 @@ namespace datetime
       return time.get_time();
    }
 
-   department::international::international(::aura::application * papp):
+   department::international::international(::ace::application * papp):
       object(papp)
    {
    }
@@ -218,7 +218,7 @@ namespace datetime
       return get_local_date_time(time);
    }
 
-   department::str::str(::aura::application * papp)
+   department::str::str(::ace::application * papp)
    {
       UNREFERENCED_PARAMETER(papp);
       m_pdatetime = NULL;
@@ -246,22 +246,22 @@ namespace datetime
 #endif
    }
 
-   string department::get_week_day_str(aura::str_context * pcontext,int32_t iWeekDay) // 1 - domingo
+   string department::get_week_day_str(ace::str_context * pcontext,int32_t iWeekDay) // 1 - domingo
    {
       return System.str().get(pcontext,"datetimestr_weekday_long[" + ::str::from(iWeekDay - 1) + "]");
    }
 
-   string department::get_tiny_week_day_str(aura::str_context * pcontext,int32_t iWeekDay) // 1 - domingo
+   string department::get_tiny_week_day_str(ace::str_context * pcontext,int32_t iWeekDay) // 1 - domingo
    {
       return System.str().get(pcontext,"datetimestr_weekday_tiny[" + ::str::from(iWeekDay - 1) + "]");
    }
 
-   string department::get_month_str(aura::str_context * pcontext,int32_t iMonth)
+   string department::get_month_str(ace::str_context * pcontext,int32_t iMonth)
    {
       return System.str().get(pcontext,"datetimestr_month[" + ::str::from(iMonth - 1) + "]");
    }
 
-   string department::get_short_month_str(aura::str_context * pcontext,int32_t iMonth)
+   string department::get_short_month_str(ace::str_context * pcontext,int32_t iMonth)
    {
       return System.str().get(pcontext,"datetimestr_month_short[" + ::str::from(iMonth - 1) + "]");
    }
@@ -490,7 +490,7 @@ namespace datetime
       return str;
    }
 
-   string department::friend_time(aura::str_context * pcontext,::datetime::time timeNow,::datetime::time time)
+   string department::friend_time(ace::str_context * pcontext,::datetime::time timeNow,::datetime::time time)
    {
       bool bDiff = false;
       bool bSolved = false;

@@ -10,7 +10,7 @@
 #include "str_str.h"
 
 
-#include "aura/exception/exception_throw.h"
+#include "ace/exception/exception_throw.h"
 
 #include "str_simple.h"
 #include "str_format.h"

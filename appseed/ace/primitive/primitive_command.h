@@ -26,8 +26,8 @@ namespace primitive
       e_command         m_ecommand;
 
 
-      command(::aura::application * papp);
-      command(::aura::application * papp, e_command ecommand);
+      command(::ace::application * papp);
+      command(::ace::application * papp, e_command ecommand);
       virtual ~command();
 
       virtual var run();

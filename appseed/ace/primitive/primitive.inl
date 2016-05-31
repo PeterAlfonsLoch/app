@@ -1,6 +1,6 @@
 #pragma once
 
-#include "aura/primitive/comparison/comparison_equals.h"
+#include "ace/primitive/comparison/comparison_equals.h"
 
 inline property & object::oprop(const char * psz)
 {
@@ -35,7 +35,7 @@ inline property_set & object::oprop_set()
 
 
 
-inline ::aura::allocatorsp & object::allocer()
+inline ::ace::allocatorsp & object::allocer()
 {
 
    return m_pauraapp->m_allocer;

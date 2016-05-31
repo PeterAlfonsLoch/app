@@ -269,7 +269,7 @@ inline array < TYPE, ARG_TYPE, ALLOCATOR >  & array < TYPE, ARG_TYPE, ALLOCATOR 
 // out-of-line functions
 
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-array < TYPE, ARG_TYPE, ALLOCATOR > ::array(::aura::application * papp, ::count nGrowBy) :
+array < TYPE, ARG_TYPE, ALLOCATOR > ::array(::ace::application * papp, ::count nGrowBy) :
 object(papp),
 array_base < TYPE, ALLOCATOR >(papp,sizeof(TYPE),false)
 {

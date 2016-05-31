@@ -8,7 +8,7 @@
 //IMPLEMENT_AXIS_FIXED_ALLOC_STATIC(property);
 
 
-void prop_id_debug(::aura::application * papp);
+void prop_id_debug(::ace::application * papp);
 
 
 
@@ -152,7 +152,7 @@ void prop_id_debug(::aura::application * papp);
 //   return str::empty_string();
 //}
 
-property::property(::aura::application * papp, index iIndex)
+property::property(::ace::application * papp, index iIndex)
 {
 
    m_iIndex = iIndex;
@@ -1388,7 +1388,7 @@ property & property::operator *= (const property & prop)
 
 
 
-property_ptra::property_ptra(::aura::application * papp):
+property_ptra::property_ptra(::ace::application * papp):
    object(papp)
 {
    set_size(0, 64);
@@ -1449,7 +1449,7 @@ string property::get_xml(::xml::disp_option * opt /*= &optDefault*/ )
 
 
 
-void prop_id_debug(::aura::application * papp)
+void prop_id_debug(::ace::application * papp)
 {
 
    comparable_array < ::id > idaSchema;

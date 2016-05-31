@@ -5,7 +5,7 @@ class var;
 class application_bias;
 class create;
 class command_line;
-#include "aura/multithreading/multithreading_wait_result.h"
+#include "ace/multithreading/multithreading_wait_result.h"
 // Duplicated root here... element is essentially like root (Rute, Inha, Lenir) for templates, but not for polymorphism
 
 
@@ -42,7 +42,7 @@ public:
    factory_item_base *           m_pfactoryitembase;
    void *                        m_pthis;
    int64_t                       m_countReference;
-   ::aura::application *         m_pauraapp;
+   ::ace::application *         m_pauraapp;
    mutex *                       m_pmutex;
    property_set *                m_psetObject;
 
@@ -54,11 +54,11 @@ public:
 
    //element();
    //element(const element & o);
-   //element(::aura::application * papp);
+   //element(::ace::application * papp);
    //virtual ~element();
 
    object();
-   object(::aura::application * papp);
+   object(::ace::application * papp);
    object(const object & objectSrc);              // no implementation
    virtual ~object();  // virtual destructors are necessary
 
@@ -75,13 +75,13 @@ public:
 
    static void system(const char * pszProjectName);
 
-   inline ::aura::allocatorsp & allocer();
+   inline ::ace::allocatorsp & allocer();
 
-   inline ::aura::allocatorsp & allocer() const { return ((object *)this)->allocer(); }
+   inline ::ace::allocatorsp & allocer() const { return ((object *)this)->allocer(); }
 
-   inline ::aura::application * get_app() const { return m_pauraapp; }
+   inline ::ace::application * get_app() const { return m_pauraapp; }
 
-   virtual void set_app(::aura::application * papp);
+   virtual void set_app(::ace::application * papp);
 
    inline bool is_set_ca_flag(object::flag eflag)
    {
@@ -206,7 +206,7 @@ public:
 
 
    DECLARE_AND_IMPLEMENT_DEFAULT_ALLOCATION
-   // OBJECT :: object :> is an aura::live_object
+   // OBJECT :: object :> is an ace::live_object
 //{
 //
 //
@@ -222,7 +222,7 @@ public:
    //};
 
 
-//} // namespace aura
+//} // namespace ace
 
 
 };
@@ -233,7 +233,7 @@ public:
 //};
 
 
-namespace aura
+namespace ace
 {
 
 
@@ -255,14 +255,14 @@ namespace aura
    public:
 
 
-      allocatorsp(::aura::application * papp);
+      allocatorsp(::ace::application * papp);
 
 
    };
 
 
 
-} // namespace aura
+} // namespace ace
 
 
 

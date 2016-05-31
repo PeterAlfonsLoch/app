@@ -135,7 +135,7 @@ public:
 
 
 
-namespace aura
+namespace ace
 {
 
 
@@ -150,7 +150,7 @@ namespace aura
    } // namespace pal - platform abstraction layer
 
 
-} // namespace aura
+} // namespace ace
 
 
 

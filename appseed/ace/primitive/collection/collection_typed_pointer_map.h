@@ -7,7 +7,7 @@ class typed_pointer_map :
 {
 public:
 
-   typed_pointer_map(::aura::application * papp = NULL, ::count nBlockSize = 10) :
+   typed_pointer_map(::ace::application * papp = NULL, ::count nBlockSize = 10) :
       object(papp),
       AXIS_CLASS(papp, nBlockSize)
    {

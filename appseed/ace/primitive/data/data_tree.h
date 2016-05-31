@@ -17,7 +17,7 @@ namespace data
       bool                                m_bFill;
 
 
-      tree(::aura::application * papp);
+      tree(::ace::application * papp);
       virtual ~tree();
 
       virtual int64_t add_ref()

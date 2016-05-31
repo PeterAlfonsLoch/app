@@ -9,7 +9,7 @@ namespace str
    {
 
 
-      locale_schema::locale_schema(::aura::application * papp) :
+      locale_schema::locale_schema(::ace::application * papp) :
          object(papp)
       {
 

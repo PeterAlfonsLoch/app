@@ -1,8 +1,8 @@
 #pragma once
 
-#include "aura/primitive/str/x/x_charcategory.h"
-#include "aura/primitive/str/x/x_defines.h"
-#include "aura/primitive/str/x/x_tables.h"
+#include "ace/primitive/str/x/x_charcategory.h"
+#include "ace/primitive/str/x/x_defines.h"
+#include "ace/primitive/str/x/x_tables.h"
 
 
 /** Character information class.

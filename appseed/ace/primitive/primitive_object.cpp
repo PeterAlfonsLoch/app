@@ -58,7 +58,7 @@ void object::common_construct()
 }
 
 
-object::object(::aura::application * papp)
+object::object(::ace::application * papp)
 {
    common_construct();
 
@@ -75,9 +75,9 @@ object::object(::aura::application * papp)
 object::~object()
 {
 
-   ::aura::del(m_pmutex);
+   ::ace::del(m_pmutex);
 
-   ::aura::del(m_psetObject);
+   ::ace::del(m_psetObject);
 
 }
 
@@ -187,14 +187,14 @@ void assert_valid_object(const object * pOb, const char * lpszFileName, int32_t 
 {
    if (pOb == NULL)
    {
-//      TRACE(::aura::trace::category_AppMsg, 0, "ASSERT_VALID fails with NULL pointer.\n");
+//      TRACE(::ace::trace::category_AppMsg, 0, "ASSERT_VALID fails with NULL pointer.\n");
       if (__assert_failed_line(lpszFileName, nLine))
          debug_break();
       return;     // quick escape
    }
    if (!__is_valid_address(pOb, sizeof(object)))
    {
-      ///TRACE(::aura::trace::category_AppMsg, 0, "ASSERT_VALID fails with illegal pointer.\n");
+      ///TRACE(::ace::trace::category_AppMsg, 0, "ASSERT_VALID fails with illegal pointer.\n");
       if (__assert_failed_line(lpszFileName, nLine))
          debug_break();
       return;     // quick escape
@@ -205,7 +205,7 @@ void assert_valid_object(const object * pOb, const char * lpszFileName, int32_t 
    //   if (!__is_valid_address(*(void **)pOb, sizeof(void *), FALSE))
    if (!__is_valid_address(*(void **)pOb, sizeof(void *), FALSE))
    {
-//      TRACE(::aura::trace::category_AppMsg, 0, "ASSERT_VALID fails with illegal vtable pointer.\n");
+//      TRACE(::ace::trace::category_AppMsg, 0, "ASSERT_VALID fails with illegal vtable pointer.\n");
       if (__assert_failed_line(lpszFileName, nLine))
          debug_break();
       return;     // quick escape
@@ -213,7 +213,7 @@ void assert_valid_object(const object * pOb, const char * lpszFileName, int32_t 
 
    /*if (!__is_valid_address(pOb, typeid(pOb->GetRuntimeClass()->m_nObjectSize, FALSE))
    {
-   TRACE(::aura::trace::category_AppMsg, 0, "ASSERT_VALID fails with illegal pointer.\n");
+   TRACE(::ace::trace::category_AppMsg, 0, "ASSERT_VALID fails with illegal pointer.\n");
    if (__assert_failed_line(lpszFileName, nLine))
    debug_break();
    return;     // quick escape
@@ -676,7 +676,7 @@ void object::on_request(sp(::create) pcreatecontext)
 //}
 //
 
-/*sp(::aura::application) object::get_app() const
+/*sp(::ace::application) object::get_app() const
 {
 
 return m_pauraapp;
@@ -684,7 +684,7 @@ return m_pauraapp;
 }*/
 
 
-void object::set_app(::aura::application * papp)
+void object::set_app(::ace::application * papp)
 {
 
    m_pauraapp = papp;
@@ -761,11 +761,11 @@ string object::lstr(id id,const string & strDefault)
 
 
 
-namespace aura
+namespace ace
 {
 
 
-   allocatorsp::allocatorsp(::aura::application * papp)
+   allocatorsp::allocatorsp(::ace::application * papp)
    {
 
       allocator * pallocator = canew(allocator());
@@ -777,7 +777,7 @@ namespace aura
    }
 
 
-} // namespace aura
+} // namespace ace
 
 
 

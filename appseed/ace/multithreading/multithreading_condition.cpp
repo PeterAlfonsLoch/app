@@ -10,7 +10,7 @@
 #endif
 
 
-condition::condition(::aura::application * papp) :
+condition::condition(::ace::application * papp) :
 object(papp),
 sync_object(NULL)
 {

@@ -5,7 +5,7 @@ namespace primitive
 {
 
 
-   virtual_memory::virtual_memory(::aura::application * papp) :
+   virtual_memory::virtual_memory(::ace::application * papp) :
       object(papp)
    {
       m_pbStorage = NULL;

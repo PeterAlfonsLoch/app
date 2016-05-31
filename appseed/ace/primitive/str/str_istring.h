@@ -6,12 +6,12 @@ class CLASS_DECL_AURA istring
 public:
 
 
-   ::aura::application *   m_pauraapp;
+   ::ace::application *   m_pauraapp;
    string                  m_str;
    string                  m_strTemplate;
 
 
-   istring(::aura::application * papp);
+   istring(::ace::application * papp);
    ~istring();
 
 

@@ -6,7 +6,7 @@
 /// This class represents a collection of object items. A collection can be mixed
 /// of any kind of object items (threads, events, semaphores, ...).
 ///  \brief		default constructor
-event_collection::event_collection(::aura::application * papp) :
+event_collection::event_collection(::ace::application * papp) :
    object(papp),
    callback_cnt(0)
 {

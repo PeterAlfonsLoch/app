@@ -35,7 +35,7 @@ namespace data
    }
 
 
-   data_container_base::data_container_base(::aura::application * papp)
+   data_container_base::data_container_base(::ace::application * papp)
    {
    }
 

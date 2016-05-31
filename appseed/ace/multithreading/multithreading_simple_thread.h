@@ -12,7 +12,7 @@ public:
    uint32_t          m_dwFinishTimeout;
 
 
-   simple_thread(::aura::application * papp);
+   simple_thread(::ace::application * papp);
    virtual ~simple_thread();
 
 

@@ -11,7 +11,7 @@ public:
    var         m_varQuery;
 
 
-   request_signal(::aura::application * papp, class ::signal * psignal = NULL);
+   request_signal(::ace::application * papp, class ::signal * psignal = NULL);
 
 
 };

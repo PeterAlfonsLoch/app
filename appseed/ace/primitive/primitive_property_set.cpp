@@ -1,7 +1,7 @@
 //#include "framework.h"
 
 
-property_set::property_set(::aura::application * papp, bool bAutoAdd, bool bMultiValue) :
+property_set::property_set(::ace::application * papp, bool bAutoAdd, bool bMultiValue) :
    object(papp)
 {
 

@@ -1,7 +1,7 @@
 //#include "framework.h"
 
 
-istring::istring(::aura::application * papp)
+istring::istring(::ace::application * papp)
 {
 
    m_pauraapp = papp;

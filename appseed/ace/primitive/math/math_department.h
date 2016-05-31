@@ -6,7 +6,7 @@ namespace math
 
 
    class CLASS_DECL_AURA math :
-   virtual public ::aura::department
+   virtual public ::ace::department
    {
    private:
 
@@ -30,7 +30,7 @@ namespace math
       mutex          m_mutex;
 
 
-      math(::aura::application * papp);
+      math(::ace::application * papp);
       virtual ~math();
 
 

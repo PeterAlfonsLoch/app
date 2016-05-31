@@ -315,7 +315,7 @@ public:
    }
 
    void construct(::count nBlockSize = 10);
-   map(::aura::application * papp = NULL, ::count nBlockSize = 10);
+   map(::ace::application * papp = NULL, ::count nBlockSize = 10);
    map(pair pairs[], int32_t iCount);
    map(const map & m);
 
@@ -718,7 +718,7 @@ public:
 //   }
 //
 //   void construct(::count nBlockSize = 10);
-//   map(::aura::application * papp = NULL, ::count nBlockSize = 10);
+//   map(::ace::application * papp = NULL, ::count nBlockSize = 10);
 //   map(pair pairs[], int32_t iCount);
 //   map(const map & m);
 //
@@ -973,7 +973,7 @@ void map < KEY, ARG_KEY, VALUE, ARG_VALUE, PAIR >::construct(::count nBlockSize)
 }
 
 template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class PAIR >
-map < KEY, ARG_KEY, VALUE, ARG_VALUE, PAIR >::map(::aura::application * papp, ::count nBlockSize) :
+map < KEY, ARG_KEY, VALUE, ARG_VALUE, PAIR >::map(::ace::application * papp, ::count nBlockSize) :
    object(papp)
 {
    construct(nBlockSize);

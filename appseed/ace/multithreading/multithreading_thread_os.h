@@ -126,7 +126,7 @@ CLASS_DECL_AURA IDTHREAD get_current_thread_id();
 
 
 
-CLASS_DECL_AURA thread* __begin_thread(::aura::application * papp,__THREADPROC pfnThreadProc,LPVOID pParam,int32_t epriority = ::multithreading::priority_normal,UINT nStackSize = 0,uint32_t dwCreateFlags = 0,LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
+CLASS_DECL_AURA thread* __begin_thread(::ace::application * papp,__THREADPROC pfnThreadProc,LPVOID pParam,int32_t epriority = ::multithreading::priority_normal,UINT nStackSize = 0,uint32_t dwCreateFlags = 0,LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
 /* xxx CLASS_DECL_AURA thread* __begin_thread(sp(::coretype) pThreadClass,
 int32_t nPriority = scheduling_priority_normal, UINT nStackSize = 0,
 uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL); xxxx */
@@ -141,7 +141,7 @@ T * c_new(T * p)
 #define cnew(x) c_new(new x)
 
 template < class THREAD_TYPE >
-THREAD_TYPE * __begin_thread(::aura::application * papp,int32_t epriority = ::multithreading::priority_normal,UINT nStackSize = 0,uint32_t dwCreateFlags = 0,LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL)
+THREAD_TYPE * __begin_thread(::ace::application * papp,int32_t epriority = ::multithreading::priority_normal,UINT nStackSize = 0,uint32_t dwCreateFlags = 0,LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL)
 {
    THREAD_TYPE * pthread = cnew(THREAD_TYPE(papp));
    pthread->begin(epriority,nStackSize,dwCreateFlags,lpSecurityAttrs);
@@ -238,9 +238,9 @@ namespace multithreading
 
 
 
-CLASS_DECL_AURA void __end_thread(::aura::application * papp);
+CLASS_DECL_AURA void __end_thread(::ace::application * papp);
 
-CLASS_DECL_AURA void __term_thread(::aura::application * papp);
+CLASS_DECL_AURA void __term_thread(::ace::application * papp);
 
 
 

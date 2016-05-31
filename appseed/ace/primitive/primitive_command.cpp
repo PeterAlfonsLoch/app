@@ -5,7 +5,7 @@ namespace primitive
 {
 
 
-   command::command(::aura::application * papp) :
+   command::command(::ace::application * papp) :
       object(papp)
    {
 
@@ -13,7 +13,7 @@ namespace primitive
 
    }
 
-   command::command(::aura::application * papp, e_command ecommand) :
+   command::command(::ace::application * papp, e_command ecommand) :
       object(papp)
    {
 

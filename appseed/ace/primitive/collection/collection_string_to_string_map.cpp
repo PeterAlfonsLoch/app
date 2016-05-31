@@ -1,7 +1,7 @@
 //#include "framework.h"
 
 
-//string_to_string::string_to_string(::aura::application * papp, int_ptr nBlockSize) :
+//string_to_string::string_to_string(::ace::application * papp, int_ptr nBlockSize) :
 //   object(papp),
 //   base_string_to_string(papp,  nBlockSize)
 //{

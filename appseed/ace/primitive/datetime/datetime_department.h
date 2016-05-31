@@ -21,14 +21,14 @@ namespace datetime
 
 
    class CLASS_DECL_AURA department:
-      virtual public ::aura::department
+      virtual public ::ace::department
    {
    public:
       class CLASS_DECL_AURA international:
          virtual public ::object
       {
       public:
-         international(::aura::application * papp);
+         international(::ace::application * papp);
          void parse_str(const char * psz,property_set & set);
          
          
@@ -56,7 +56,7 @@ namespace datetime
          virtual public ::object
       {
       public:
-         str(::aura::application * papp);
+         str(::ace::application * papp);
          department * m_pdatetime;
          string get_gmt_date_time();
       };
@@ -66,23 +66,23 @@ namespace datetime
       class ::datetime::department::str m_str;
 
 
-      department(::aura::application * papp);
+      department(::ace::application * papp);
 
       int32_t get_month_day_count(int32_t year,int32_t month);
       int32_t get_weekday(int32_t year,int32_t month,int32_t day);
       int64_t get_timestamp(int32_t year,int32_t month,int32_t day);
-      int64_t strtotime(::aura::str_context * pcontext,const char * psz,time_t time,int32_t iPath,int32_t & iPathCount);
-      int64_t strtotime(::aura::str_context * pcontext,const char * psz,int32_t iPath,int32_t & iPathCount);
-      int64_t gmt_strtotime(::aura::str_context * pcontext,const char * psz,int32_t iPath,int32_t & iPathCount);
+      int64_t strtotime(::ace::str_context * pcontext,const char * psz,time_t time,int32_t iPath,int32_t & iPathCount);
+      int64_t strtotime(::ace::str_context * pcontext,const char * psz,int32_t iPath,int32_t & iPathCount);
+      int64_t gmt_strtotime(::ace::str_context * pcontext,const char * psz,int32_t iPath,int32_t & iPathCount);
 
       ::datetime::time from(const string & str);
 
       // 1 - domingo
-      string get_week_day_str(aura::str_context * pcontext,int32_t iWeekDay);
+      string get_week_day_str(ace::str_context * pcontext,int32_t iWeekDay);
       // 1 - domingo
-      string get_tiny_week_day_str(aura::str_context * pcontext,int32_t iWeekDay);
-      string get_month_str(aura::str_context * pcontext,int32_t iMonth);
-      string get_short_month_str(aura::str_context * pcontext,int32_t iMonth);
+      string get_tiny_week_day_str(ace::str_context * pcontext,int32_t iWeekDay);
+      string get_month_str(ace::str_context * pcontext,int32_t iMonth);
+      string get_short_month_str(ace::str_context * pcontext,int32_t iMonth);
 
       time_t mktime(int32_t iHour,int32_t iMinute,int32_t iSecond,int32_t iMonth,int32_t iDay,int32_t iYear);
 
@@ -106,10 +106,10 @@ namespace datetime
       int32_t ISO_WN(int32_t  y,int32_t m,int32_t d);
 
 
-      string friend_time(aura::str_context * pcontext,::datetime::time timeNow,::datetime::time time);
+      string friend_time(ace::str_context * pcontext,::datetime::time timeNow,::datetime::time time);
 
 
    };
 
 
-} // namespace aura
+} // namespace ace

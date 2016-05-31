@@ -17,7 +17,7 @@ static int g_iMutex = 0;
 
 string str_md5_dup(const char * psz);
 
-mutex::mutex(::aura::application * papp, bool bInitiallyOwn, const char * pstrName, LPSECURITY_ATTRIBUTES lpsaAttribute /* = NULL */) :
+mutex::mutex(::ace::application * papp, bool bInitiallyOwn, const char * pstrName, LPSECURITY_ATTRIBUTES lpsaAttribute /* = NULL */) :
    sync_object(pstrName)
 {
 
@@ -74,7 +74,7 @@ mutex::mutex(::aura::application * papp, bool bInitiallyOwn, const char * pstrNa
        ////if(str::begins_ci(pstrName, "Global"))
        ////{
 
-       ////   m_strName = ::file::path(::aura::system::g_p->m_pandroidinitdata->m_pszCacheDir) / "var" / "tmp"/ strName;
+       ////   m_strName = ::file::path(::ace::system::g_p->m_pandroidinitdata->m_pszCacheDir) / "var" / "tmp"/ strName;
 
        ////   ::dir::mk(::file::path(m_strName).folder());
 
@@ -306,7 +306,7 @@ mutex::mutex(::aura::application * papp, bool bInitiallyOwn, const char * pstrNa
 
 #ifdef WINDOWS
 
-mutex::mutex(::aura::application * papp, const char * pstrName, void * h, bool bOwner) :
+mutex::mutex(::ace::application * papp, const char * pstrName, void * h, bool bOwner) :
    object(papp),
    sync_object(pstrName)
 {
@@ -326,7 +326,7 @@ sync_object(m.m_pszName)
 
 #elif defined(ANDROID) || defined(APPLEOS)
 
-mutex::mutex(::aura::application * papp, const char * pstrName, sem_t * psem, bool bOwner) :
+mutex::mutex(::ace::application * papp, const char * pstrName, sem_t * psem, bool bOwner) :
    object(papp),
    sync_object(pstrName)
 {
@@ -351,7 +351,7 @@ mutex::mutex(const mutex & m):
 
 #else
 
-mutex::mutex(::aura::application * papp,const char * pstrName,key_t key,int32_t semid,bool bOwner):
+mutex::mutex(::ace::application * papp,const char * pstrName,key_t key,int32_t semid,bool bOwner):
    object(papp),
    sync_object(pstrName)
 {
@@ -785,7 +785,7 @@ bool mutex::unlock()
 
 
 
-mutex * mutex::open_mutex(::aura::application * papp,  const char * pstrName)
+mutex * mutex::open_mutex(::ace::application * papp,  const char * pstrName)
 {
 
 #ifdef WINDOWS

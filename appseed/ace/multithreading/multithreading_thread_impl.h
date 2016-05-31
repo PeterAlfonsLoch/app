@@ -1,6 +1,6 @@
 //
 //  multithreading_thread_impl.h
-//  aura
+//  ace
 //
 //
 //
@@ -49,7 +49,7 @@ public:
    bool                    m_bSynch;
 
 
-   thread_startup(::aura::application * papp);
+   thread_startup(::ace::application * papp);
    ~thread_startup();
 
 };
@@ -68,7 +68,7 @@ public:
 ////   ::user::message_queue_sp                 m_spqueue;
 //
 //
-//   thread_impl(::aura::application * papp);
+//   thread_impl(::ace::application * papp);
 //   virtual ~thread_impl();
 //
 //

@@ -7,7 +7,7 @@
 //O volume na unidade Z ‚ eco
  //O N£mero de S‚rie do Volume ‚ 4A91-94E4
 
- //Pasta de Z:\nordroid\app\appseed\aura\multithreading
+ //Pasta de Z:\nordroid\app\appseed\ace\multithreading
 
 #include "multithreading.cpp"
 #include "multithreading_condition.cpp"

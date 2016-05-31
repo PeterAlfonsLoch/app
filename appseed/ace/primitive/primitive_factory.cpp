@@ -13,7 +13,7 @@
 
 bool is_safe_set(void * p);
 
-base_factory::base_factory(::aura::application * papp) :
+base_factory::base_factory(::ace::application * papp) :
    object(papp)
 {
    m_pmutex = new mutex(papp);
@@ -78,7 +78,7 @@ void base_factory::enable_simple_factory_request(bool bEnable)
 
 
 
-object * base_factory::create(::aura::application * papp, ::type * ptype)
+object * base_factory::create(::ace::application * papp, ::type * ptype)
 {
 
    if(ptype == NULL)
@@ -157,7 +157,7 @@ object * base_factory::typed_clone(id idType,object * pobject)
 }
 
 
-object * factory_item_base::create(::aura::application * papp)
+object * factory_item_base::create(::ace::application * papp)
 {
    
    UNREFERENCED_PARAMETER(papp);

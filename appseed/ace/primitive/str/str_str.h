@@ -116,7 +116,7 @@ namespace str
    string CLASS_DECL_AURA replace(const char * pszFind, const char * pszReplace, const char * psz, strsize iStart = 0);
    string CLASS_DECL_AURA replace_ci(const char * pszFind, const char * pszReplace, const char * psz, strsize iStart = 0);
 
-   string CLASS_DECL_AURA random_replace(::aura::application * papp, const stringa & straReplacement, const stringa & straSearch, const char * psz);
+   string CLASS_DECL_AURA random_replace(::ace::application * papp, const stringa & straReplacement, const stringa & straSearch, const char * psz);
 
    strsize CLASS_DECL_AURA find_first(const stringa & straSearch, index & iFound, const string & str, index iStart = 0);
 

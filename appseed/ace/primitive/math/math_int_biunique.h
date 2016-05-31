@@ -6,7 +6,7 @@ class  biunique :
    public ::file::serializable
 {
 public:
-   biunique(::aura::application * papp = NULL);
+   biunique(::ace::application * papp = NULL);
    virtual ~biunique()
    {
    }
@@ -76,7 +76,7 @@ protected:
 
 
 template < class T, class T_to_T >
-biunique < T, T_to_T > ::biunique(::aura::application * papp) :
+biunique < T, T_to_T > ::biunique(::ace::application * papp) :
    object(papp)
 {
    m_bBiunivoca = true;
@@ -479,7 +479,7 @@ class CLASS_DECL_AURA index_biunique :
    public biunique < index >
 {
 public:
-   index_biunique(::aura::application * papp = NULL);
+   index_biunique(::ace::application * papp = NULL);
    virtual ~index_biunique() {}
 };
 
@@ -487,7 +487,7 @@ class CLASS_DECL_AURA int_biunique :
    public biunique < int32_t, int_to_int >
 {
 public:
-   int_biunique(::aura::application * papp = NULL);
+   int_biunique(::ace::application * papp = NULL);
    virtual ~int_biunique() {}
 };
 

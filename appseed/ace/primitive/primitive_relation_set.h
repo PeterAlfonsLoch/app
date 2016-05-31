@@ -7,7 +7,7 @@ class CLASS_DECL_AURA relation_set :
 public:
 
 
-   relation_set(::aura::application * papp = NULL);
+   relation_set(::ace::application * papp = NULL);
    virtual ~relation_set();
 
 

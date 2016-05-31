@@ -12,7 +12,7 @@
 ///  \brief		constructor with passed socket handle and read state
 ///  \param		socket socket handle (default: -1)
 ///  \param		read true if socket should be ready to read (default: true)
-socket_event::socket_event(::aura::application * papp, uint32_t socket, bool read) :
+socket_event::socket_event(::ace::application * papp, uint32_t socket, bool read) :
    object(papp),
 	event(papp, false, true),
 	m_bRead(read),

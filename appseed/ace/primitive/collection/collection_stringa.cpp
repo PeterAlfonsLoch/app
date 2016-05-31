@@ -5,7 +5,7 @@
 //__STATIC UINT __read_string_length(::file::istream & ar);
 //
 //
-//stringa::stringa(::aura::application * papp):
+//stringa::stringa(::ace::application * papp):
 //object(papp)
 //{
 //}

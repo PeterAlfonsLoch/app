@@ -10,7 +10,7 @@ public:
 
 
    inline raw_ref_array() {}
-   inline raw_ref_array(::aura::application * papp):object(papp) {   }
+   inline raw_ref_array(::ace::application * papp):object(papp) {   }
    inline raw_ref_array(const raw_ref_array & a) { this->operator = (a); }
    inline raw_ref_array(raw_ref_array && a) { this->operator = (a); }
 

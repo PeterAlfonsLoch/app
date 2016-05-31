@@ -12,7 +12,7 @@
 #endif
 
 
-semaphore::semaphore(::aura::application * papp, LONG lInitialCount, LONG lMaxCount, const char * pstrName, LPSECURITY_ATTRIBUTES lpsaAttributes) :
+semaphore::semaphore(::ace::application * papp, LONG lInitialCount, LONG lMaxCount, const char * pstrName, LPSECURITY_ATTRIBUTES lpsaAttributes) :
    object(papp),
    sync_object(pstrName)
 {

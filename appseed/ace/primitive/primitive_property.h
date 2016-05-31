@@ -108,7 +108,7 @@ public:
 
    index      m_iIndex;
 
-   property(::aura::application * papp,::index iIndex = -1);
+   property(::ace::application * papp,::index iIndex = -1);
    property(::index iIndex = -1);
    property(const property & prop);
    property(id strName,::index iIndex = -1);
@@ -723,7 +723,7 @@ class CLASS_DECL_AURA property_ptra :
 public:
 
 
-   property_ptra(::aura::application * papp = NULL);
+   property_ptra(::ace::application * papp = NULL);
 
 
 
@@ -736,7 +736,7 @@ class CLASS_DECL_AURA propertya :
 public:
 
 
-   propertya(::aura::application * papp = NULL) :
+   propertya(::ace::application * papp = NULL) :
       object(papp)
    {
 

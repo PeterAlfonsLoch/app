@@ -6,7 +6,7 @@ namespace geometry
 {
 
 
-   geometry::geometry(::aura::application * papp) :
+   geometry::geometry(::ace::application * papp) :
       object(papp)
    {
 

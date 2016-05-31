@@ -1,6 +1,6 @@
 //
 //  math_objects.h
-//  aura
+//  ace
 //
 //  Created by Carlos Gustavo Cecyn Lundgren on 8/2/15.
 //

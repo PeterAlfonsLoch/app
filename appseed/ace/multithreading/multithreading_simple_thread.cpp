@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-simple_thread::simple_thread(::aura::application * papp) :
+simple_thread::simple_thread(::ace::application * papp) :
    object(papp),
    thread(papp)
 {

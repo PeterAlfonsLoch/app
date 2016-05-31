@@ -7,7 +7,7 @@ class CLASS_DECL_AURA base_edit :
 public:
 
 
-   base_edit(::aura::application * papp);
+   base_edit(::ace::application * papp);
    virtual ~base_edit();
 
 
@@ -57,7 +57,7 @@ class edit :
 public:      
 
 
-   edit(::aura::application * papp);
+   edit(::ace::application * papp);
    virtual ~edit();
 
 
@@ -72,7 +72,7 @@ public:
 
 
 template < class DATA >
-edit < DATA >::edit(::aura::application * papp) :
+edit < DATA >::edit(::ace::application * papp) :
    object(papp),
    base_edit(papp)
 {

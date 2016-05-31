@@ -2101,7 +2101,7 @@ const ::duration & var::duration() const
 }
 
 
-property_set & var::propset(::aura::application * papp)
+property_set & var::propset(::ace::application * papp)
 {
    property_set * pset = NULL;
    if(m_etype == type_pvar)

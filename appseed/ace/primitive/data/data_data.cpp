@@ -38,7 +38,7 @@ namespace data
    
    simple_data::~simple_data()
    {
-      //::aura::del(m_pmutex);
+      //::ace::del(m_pmutex);
    }
 
    
@@ -73,7 +73,7 @@ namespace data
 //   }
 
 
-   data::data(::aura::application * papp) :
+   data::data(::ace::application * papp) :
       object(papp)
    {
       

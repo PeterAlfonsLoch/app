@@ -18,7 +18,7 @@ class CLASS_DECL_AURA manual_reset_event :
 public:
 
 
-   manual_reset_event(::aura::application * papp, bool bInitiallyOwn = false);
+   manual_reset_event(::ace::application * papp, bool bInitiallyOwn = false);
 
    
 };

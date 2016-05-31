@@ -2,7 +2,7 @@
 //#include "signal.h"
 
 
-signal_details::signal_details(::aura::application * papp) :
+signal_details::signal_details(::ace::application * papp) :
    object(papp)
 {
    m_iParam    = 0;
@@ -23,7 +23,7 @@ signal_details::signal_details(class signal * psignal) :
    m_pset      = NULL;
 }
 
-signal_details::signal_details(::aura::application * papp,class signal * psignal):
+signal_details::signal_details(::ace::application * papp,class signal * psignal):
    object(papp)
 {
 
@@ -375,7 +375,7 @@ dispatch::signal_item::signal_item()
 
 dispatch::signal_item::~signal_item()
 {
-   ::aura::del(m_psignal);
+   ::ace::del(m_psignal);
 }
 
 dispatch::dispatch()

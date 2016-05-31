@@ -293,7 +293,7 @@ public:
    };
 
 
-   raw_array(::aura::application * papp = NULL, ::count nGrowBy = 32);
+   raw_array(::ace::application * papp = NULL, ::count nGrowBy = 32);
    raw_array(std::initializer_list < TYPE >  l);
    raw_array(const raw_array <TYPE, ARG_TYPE, ALLOCATOR> & a);
    raw_array(raw_array <TYPE,ARG_TYPE,ALLOCATOR> && a);

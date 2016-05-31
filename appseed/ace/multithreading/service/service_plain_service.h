@@ -7,7 +7,7 @@ class CLASS_DECL_AURA plain_service :
 public:
 
 
-   plain_service(::aura::application * papp);
+   plain_service(::ace::application * papp);
    virtual ~plain_service();
 
 

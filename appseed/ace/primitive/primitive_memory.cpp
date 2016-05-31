@@ -69,7 +69,7 @@ memory::memory(const byte * pchSrc,strsize nLength,manager * pmanager)
 }
 
 
-memory::memory(::aura::application * papp) :
+memory::memory(::ace::application * papp) :
    object(papp)
 {
 
@@ -84,7 +84,7 @@ memory::memory(::aura::application * papp) :
 
 }
 
-memory::memory(::aura::application * papp, bool bAligned) :
+memory::memory(::ace::application * papp, bool bAligned) :
    object(papp)
 {
 

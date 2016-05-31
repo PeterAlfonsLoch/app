@@ -38,31 +38,31 @@ id::id(const string & str)
 {
    m_all ={};
 
-   operator = (::aura::system::id((const char *)str));
+   operator = (::ace::system::id((const char *)str));
 }
 
 //id::id(const string_interface & str)
 //{
 //   m_all ={};
 //
-//   operator = (::aura::system::id(string(str)));
+//   operator = (::ace::system::id(string(str)));
 //}
 
 id & id::operator = (const char * psz)
 {
-   operator = (::aura::system::id(psz));
+   operator = (::ace::system::id(psz));
    return *this;
 }
 
 id & id::operator = (const string & str)
 {
-   operator = (::aura::system::id(str));
+   operator = (::ace::system::id(str));
    return *this;
 }
 
 //id & id::operator = (const string_interface & str)
 //{
-//   operator = (::aura::system::id(string(str)));
+//   operator = (::ace::system::id(string(str)));
 //   return *this;
 //}
 

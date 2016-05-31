@@ -88,7 +88,7 @@ thread::thread() :
 
 
 
-thread::thread(::aura::application * papp) :
+thread::thread(::ace::application * papp) :
    object(papp),
    m_mutexUiPtra(papp)
 {
@@ -106,7 +106,7 @@ thread::thread(::aura::application * papp) :
 }
 
 
-thread::thread(::aura::application * papp, __THREADPROC pfnThreadProc, LPVOID pParam) :
+thread::thread(::ace::application * papp, __THREADPROC pfnThreadProc, LPVOID pParam) :
    object(papp),
    m_mutexUiPtra(papp)
 {
@@ -218,7 +218,7 @@ thread::~thread()
 
    //}
 
-   ::aura::del(m_pfileinfo);
+   ::ace::del(m_pfileinfo);
 
 }
 
@@ -460,7 +460,7 @@ bool thread::pump_message()
       if(::GetMessage(&msg,NULL,0,0) == 0)
       {
 
-         TRACE(::aura::trace::category_AppMsg,1,"thread::pump_message - Received WM_QUIT.\n");
+         TRACE(::ace::trace::category_AppMsg,1,"thread::pump_message - Received WM_QUIT.\n");
 
          ::output_debug_string("thread::pump_message - Received WM_QUIT.\n");
 
@@ -640,7 +640,7 @@ bool thread::get_run()
 //
 //   //step_timer();
 //
-//   sp(::aura::application) papp = (this);
+//   sp(::ace::application) papp = (this);
 //
 //   m_dwAlive = ::get_tick_count();
 //
@@ -651,7 +651,7 @@ bool thread::get_run()
 //
 //   }
 //
-//   sp(::aura::application) pappP = (this);
+//   sp(::ace::application) pappP = (this);
 //
 //   if (pappP != NULL)
 //   {
@@ -1161,10 +1161,10 @@ void thread::dispatch_thread_message(signal_details * pbase)
       message::e_prototype eprototype = pSignal->m_eprototype;
       if(eprototype == message::PrototypeNone)
       {
-         //::message::base aura(get_app());
+         //::message::base ace(get_app());
          pbase->m_psignal = psignal;
          //lresult = 0;
-         //aura.set(pmsg->message, pmsg->wParam, pmsg->lParam, lresult);
+         //ace.set(pmsg->message, pmsg->wParam, pmsg->lParam, lresult);
          psignal->emit(pbase);
          if(pbase->m_bRet)
             return;
@@ -1305,7 +1305,7 @@ void thread::process_message_filter(int32_t code,signal_details * pobj)
 
 
 
-thread_startup::thread_startup(::aura::application * papp) :
+thread_startup::thread_startup(::ace::application * papp) :
    object(papp),
    m_event(papp),
    m_event2(papp)
@@ -1676,7 +1676,7 @@ uint32_t __thread_entry(void * pparam)
 }
 
 
-void CLASS_DECL_AURA __end_thread(::aura::application * papp)
+void CLASS_DECL_AURA __end_thread(::ace::application * papp)
 {
 
    __term_thread(papp);
@@ -1684,7 +1684,7 @@ void CLASS_DECL_AURA __end_thread(::aura::application * papp)
 }
 
 
-void CLASS_DECL_AURA __term_thread(::aura::application * papp)
+void CLASS_DECL_AURA __term_thread(::ace::application * papp)
 {
 
    UNREFERENCED_PARAMETER(papp);
@@ -2393,7 +2393,7 @@ void thread::message_handler(signal_details * pobj)
 //      if(!::GetMessage(&msg,NULL,0,0))
 //      {
 //
-//         TRACE(::aura::trace::category_AppMsg,1,"thread::pump_message - Received WM_QUIT.\n");
+//         TRACE(::ace::trace::category_AppMsg,1,"thread::pump_message - Received WM_QUIT.\n");
 //
 //         ::output_debug_string("thread::pump_message - Received WM_QUIT.\n");
 //
@@ -2519,7 +2519,7 @@ bool thread::process_message(LPMESSAGE lpmessage)
       if(m_nDisablePumpCount != 0)
       {
 
-         TRACE(::aura::trace::category_AppMsg,0,"Error: thread::pump_message called when not permitted.\n");
+         TRACE(::ace::trace::category_AppMsg,0,"Error: thread::pump_message called when not permitted.\n");
 
 //         ASSERT(FALSE);
 

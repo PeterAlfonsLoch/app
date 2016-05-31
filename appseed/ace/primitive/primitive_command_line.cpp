@@ -1,7 +1,7 @@
 //#include "framework.h"
 
 
-command_line::command_line(::aura::application * papp) :
+command_line::command_line(::ace::application * papp) :
    object(papp),
    m_eventReady(papp)
 {
@@ -385,7 +385,7 @@ command_line_sp::command_line_sp()
 }
 
 
-command_line_sp::command_line_sp(const ::aura::allocatorsp & allocer) :
+command_line_sp::command_line_sp(const ::ace::allocatorsp & allocer) :
    smart_pointer < command_line > (allocer)
 {
 

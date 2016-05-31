@@ -28,7 +28,7 @@ public:
 	///				it monitors only the specified directory
 	///  \param		filter filter conditions that satisfy a change notification wait
 	///				can take values described by enum filter
-	file_change_event (::aura::application * papp, const char * path, bool watchsubtree, uint32_t filter);
+	file_change_event (::ace::application * papp, const char * path, bool watchsubtree, uint32_t filter);
 
 	///  \brief		destructor
 	~file_change_event();

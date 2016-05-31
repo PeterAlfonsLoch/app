@@ -336,7 +336,7 @@ public:
    string& operator+=(unichar ch );
    string& operator+=(const id & id);
 
-   // Override from aura class
+   // Override from ace class
    string_manager * GetManager() const throw();
 
 
@@ -767,7 +767,7 @@ public:
    bool getenv(const char * pszVar);
 
    // Load the string from resource 'nID'
-   bool load_string(::aura::application * papp, id id);
+   bool load_string(::ace::application * papp, id id);
 
    // Load the string from resource 'nID' in module 'hInstance'
    /*    bool load_string(HINSTANCE hInstance,strsize nID )
@@ -1130,9 +1130,9 @@ inline strsize string::utf8_length() const
 /// macro - number of elements in array
 #define ARRAY_SIZE(a) (sizeof(a)/sizeof(*(a)))
 
-#include "aura/primitive/str/x/x_charcategory.h"
-#include "aura/primitive/primitive_bit.h"
-#include "aura/primitive/collection/collection_bit_array.h"
+#include "ace/primitive/str/x/x_charcategory.h"
+#include "ace/primitive/primitive_bit.h"
+#include "ace/primitive/collection/collection_bit_array.h"
 
 
 

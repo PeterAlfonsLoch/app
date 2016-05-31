@@ -5,7 +5,7 @@ namespace primitive
 {
 
 
-   memory_container ::memory_container(::aura::application * papp) :
+   memory_container ::memory_container(::ace::application * papp) :
       object(papp)
    {
       
@@ -16,7 +16,7 @@ namespace primitive
    }
 
 
-   memory_container ::memory_container(::aura::application * papp, void * pmemory, memory_size_t dwSize) :
+   memory_container ::memory_container(::ace::application * papp, void * pmemory, memory_size_t dwSize) :
       object(papp)
    {
       m_pvppa = NULL;
@@ -24,7 +24,7 @@ namespace primitive
    }
 
 
-   memory_container ::memory_container(::aura::application * papp, memory_base * pmemory) :
+   memory_container ::memory_container(::ace::application * papp, memory_base * pmemory) :
       object(papp)
    {
       m_pvppa = NULL;

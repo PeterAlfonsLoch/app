@@ -19,8 +19,8 @@ public:
    memory(const memory * pmemory,manager * pmanager);
    memory(const byte * pchSrc,strsize nLength,manager * pmanager);
 
-   memory(::aura::application * papp);
-   memory(::aura::application * papp, bool bAligned);
+   memory(::ace::application * papp);
+   memory(::ace::application * papp, bool bAligned);
    memory(const byte *,memory_size_t iCount);
    memory(const void *, memory_size_t iCount);
    memory(const memory_base & memorybase);

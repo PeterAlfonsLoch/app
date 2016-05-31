@@ -1,6 +1,6 @@
 //
 //  multithreading_thread_impl.cpp
-//  aura
+//  ace
 //
 //
 //
@@ -11,7 +11,7 @@
 //
 //uint32_t __thread_entry(void * pparam);
 //
-//thread_impl::thread_impl(::aura::application * papp):
+//thread_impl::thread_impl(::ace::application * papp):
 //object(papp),
 //m_evFinish(papp),
 //m_mutexUiPtra(papp)
@@ -199,7 +199,7 @@
 //
 //
 //
-//thread_startup::thread_startup(::aura::application * papp) :
+//thread_startup::thread_startup(::ace::application * papp) :
 //   object(papp),
 //   m_event(papp),
 //   m_event2(papp)
@@ -573,7 +573,7 @@
 //}
 //
 //
-//void CLASS_DECL_AURA __end_thread(::aura::application * papp)
+//void CLASS_DECL_AURA __end_thread(::ace::application * papp)
 //{
 //
 //   __term_thread(papp);
@@ -581,7 +581,7 @@
 //}
 //
 //
-//void CLASS_DECL_AURA __term_thread(::aura::application * papp)
+//void CLASS_DECL_AURA __term_thread(::ace::application * papp)
 //{
 //
 //   UNREFERENCED_PARAMETER(papp);
@@ -1233,7 +1233,7 @@
 //      if(!::GetMessage(&msg,NULL,0,0))
 //      {
 //
-//         TRACE(::aura::trace::category_AppMsg,1,"thread_impl::pump_message - Received WM_QUIT.\n");
+//         TRACE(::ace::trace::category_AppMsg,1,"thread_impl::pump_message - Received WM_QUIT.\n");
 //
 //         ::output_debug_string("thread_impl::pump_message - Received WM_QUIT.\n");
 //
@@ -1292,7 +1292,7 @@
 //      if(m_nDisablePumpCount != 0)
 //      {
 //
-//         TRACE(::aura::trace::category_AppMsg,0,"Error: thread::pump_message called when not permitted.\n");
+//         TRACE(::ace::trace::category_AppMsg,0,"Error: thread::pump_message called when not permitted.\n");
 //
 ////         ASSERT(FALSE);
 //

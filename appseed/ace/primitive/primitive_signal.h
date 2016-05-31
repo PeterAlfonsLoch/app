@@ -29,9 +29,9 @@ public:
 
 
 
-   signal_details(::aura::application * papp = NULL);
+   signal_details(::ace::application * papp = NULL);
    signal_details(class signal * psignal);
-   signal_details(::aura::application * pap, class signal * psignal);
+   signal_details(::ace::application * pap, class signal * psignal);
    virtual ~signal_details();
 
 

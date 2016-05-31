@@ -262,7 +262,7 @@ inline raw_array < TYPE, ARG_TYPE, ALLOCATOR > & raw_array < TYPE, ARG_TYPE, ALL
 // out-of-line functions
 
 template<class TYPE, class ARG_TYPE, class ALLOCATOR >
-raw_array < TYPE, ARG_TYPE, ALLOCATOR >::raw_array(::aura::application * papp, ::count nGrowBy) :
+raw_array < TYPE, ARG_TYPE, ALLOCATOR >::raw_array(::ace::application * papp, ::count nGrowBy) :
 object(papp),
 array_base < TYPE, ALLOCATOR > (papp, sizeof(TYPE), true)
 {
@@ -480,7 +480,7 @@ raw_array < TYPE, ARG_TYPE, ALLOCATOR >::~raw_array()
 //#define new AURA_NEW
 //
 //      // copy new data from old
-//      ::aura::memcpy_s(pNewData, (size_t)nNewMax * sizeof(TYPE),
+//      ::ace::memcpy_s(pNewData, (size_t)nNewMax * sizeof(TYPE),
 //         m_pData, (size_t)m_nSize * sizeof(TYPE));
 //
 //      // construct remaining elements
@@ -517,7 +517,7 @@ raw_array < TYPE, ARG_TYPE, ALLOCATOR >::~raw_array()
 //      {
 //         pNewData = (TYPE*) new BYTE[m_nSize * sizeof(TYPE)];
 //         // copy new data from old
-//         ::aura::memcpy_s(pNewData, m_nSize * sizeof(TYPE),
+//         ::ace::memcpy_s(pNewData, m_nSize * sizeof(TYPE),
 //            m_pData, m_nSize * sizeof(TYPE));
 //      }
 //

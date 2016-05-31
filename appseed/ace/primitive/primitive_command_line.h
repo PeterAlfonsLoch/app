@@ -50,7 +50,7 @@ public:
    var                           m_varQuery;
    ::fs::item_array *            m_pitema;
 
-   sp(::aura::application)       m_pappFork;
+   sp(::ace::application)       m_pappFork;
    string                        m_strExe;
    string                        m_strApp;
    string                        m_strAppType;
@@ -62,7 +62,7 @@ public:
 
 
 
-   command_line(::aura::application * papp);
+   command_line(::ace::application * papp);
    ~command_line();
 
    void common_construct();

@@ -45,7 +45,7 @@ private:
 
 public:
    ///  \brief		default constructor
-   event_collection(::aura::application * papp);
+   event_collection(::ace::application * papp);
 
    //template<typename InIt>
    //event_collection( InIt first, InIt last )

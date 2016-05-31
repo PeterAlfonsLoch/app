@@ -6,7 +6,7 @@
 #endif
 
 
-go_thread::go_thread(::aura::application * papp, bool bRelease) :
+go_thread::go_thread(::ace::application * papp, bool bRelease) :
    object(papp),
    thread(papp),
    simple_thread(papp),

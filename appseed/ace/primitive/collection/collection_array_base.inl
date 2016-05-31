@@ -15,7 +15,7 @@ array_base < TYPE, ALLOCATOR >::array_base(int iTypeSize,bool bRaw)
 
 
 template < class TYPE,class ALLOCATOR >
-array_base < TYPE, ALLOCATOR >::array_base(::aura::application * papp, int iTypeSize, bool bRaw):
+array_base < TYPE, ALLOCATOR >::array_base(::ace::application * papp, int iTypeSize, bool bRaw):
    object(papp)
 {
 
@@ -75,7 +75,7 @@ index array_base < TYPE, ALLOCATOR >::remove_at(index nIndex,::count nCount)
 
    if(nMoveCount)
    {
-      ::aura::memmove_s(&m_pData[nIndex],(size_t)nMoveCount * sizeof(TYPE),&m_pData[nUpperBound],(size_t)nMoveCount * sizeof(TYPE));
+      ::ace::memmove_s(&m_pData[nIndex],(size_t)nMoveCount * sizeof(TYPE),&m_pData[nUpperBound],(size_t)nMoveCount * sizeof(TYPE));
    }
 
    m_nSize -= nCount;
@@ -131,7 +131,7 @@ void array_base < TYPE, ALLOCATOR >::free_extra()
          pNewData = (TYPE *)ALLOCATOR::alloc(m_nSize * sizeof(TYPE));
 #endif      // copy new data from old
          // copy new data from old
-         ::aura::memcpy_s(pNewData,m_nSize * sizeof(TYPE),m_pData,m_nSize * sizeof(TYPE));
+         ::ace::memcpy_s(pNewData,m_nSize * sizeof(TYPE),m_pData,m_nSize * sizeof(TYPE));
       }
 
       // get rid of old stuff (note: no destructors called)
@@ -193,7 +193,7 @@ index array_base < TYPE, ALLOCATOR >::insert_at(index nIndex,const TYPE * newEle
       set_size(m_nSize + nCount,-1);  // grow it to new size
       // destroy intial data before copying over it
       // shift old data up to fill gap
-      ::aura::memmove_s(m_pData + nIndex + nCount,(nOldSize - nIndex) * sizeof(TYPE),m_pData + nIndex,(nOldSize - nIndex) * sizeof(TYPE));
+      ::ace::memmove_s(m_pData + nIndex + nCount,(nOldSize - nIndex) * sizeof(TYPE),m_pData + nIndex,(nOldSize - nIndex) * sizeof(TYPE));
 
       ALLOCATOR::construct(&m_pData[nIndex],nCount);
 
@@ -481,7 +481,7 @@ template < class TYPE,class ALLOCATOR >
 #else
       pNewData = (TYPE *)ALLOCATOR::alloc(nNewMax * sizeof(TYPE));
 #endif      // copy new data from old
-      ::aura::memcpy_s(pNewData,(size_t)nNewMax * sizeof(TYPE),m_pData,(size_t)m_nSize * sizeof(TYPE));
+      ::ace::memcpy_s(pNewData,(size_t)nNewMax * sizeof(TYPE),m_pData,(size_t)m_nSize * sizeof(TYPE));
 
       ///for(int32_t i = 0; i < nNewSize - m_nSize; i++)
          // get rid of old stuff (note: no destructors called)
@@ -664,7 +664,7 @@ template < class TYPE,class ALLOCATOR >
       #endif
 
       // copy new data from old
-      ::aura::memcpy_s(pNewData,(size_t)nNewMax * sizeof(TYPE),m_pData,(size_t)m_nSize * sizeof(TYPE));
+      ::ace::memcpy_s(pNewData,(size_t)nNewMax * sizeof(TYPE),m_pData,(size_t)m_nSize * sizeof(TYPE));
 
       // construct remaining elements
       ASSERT(nNewSize > m_nSize);

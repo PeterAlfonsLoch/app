@@ -18,7 +18,7 @@ id_space::~id_space()
 
    free_all();
 
-   ::aura::del(m_pcs);
+   ::ace::del(m_pcs);
 
 }
 

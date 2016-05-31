@@ -43,7 +43,7 @@ void clock_getrealtime(struct timespec * pts)
 
 
 
-event::event(::aura::application * papp, bool bInitiallyOwn, bool bManualReset, const char * pstrName,LPSECURITY_ATTRIBUTES lpsaAttribute) :
+event::event(::ace::application * papp, bool bInitiallyOwn, bool bManualReset, const char * pstrName,LPSECURITY_ATTRIBUTES lpsaAttribute) :
    object(papp)
 {
 
@@ -184,9 +184,9 @@ event:: ~event()
 
    semctl(m_object, 0, IPC_RMID, ignored_argument);
 
-   ::aura::del((pthread_mutex_t * &)m_pmutex);
+   ::ace::del((pthread_mutex_t * &)m_pmutex);
 
-   ::aura::del((pthread_cond_t * &)m_pcond);
+   ::ace::del((pthread_cond_t * &)m_pcond);
 
 #elif defined(ANDROID)
 

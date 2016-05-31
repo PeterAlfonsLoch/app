@@ -38,13 +38,13 @@ public:
 
    mutex(const mutex & m);
 #ifdef WINDOWS
-   mutex(::aura::application * papp,const char * pstrName,void * posdata, bool bOwner = true);
+   mutex(::ace::application * papp,const char * pstrName,void * posdata, bool bOwner = true);
 #elif defined(ANDROID) || defined(APPLEOS)
-   mutex(::aura::application * papp,const char * pstrName,sem_t * psem,bool bOwner = true);
+   mutex(::ace::application * papp,const char * pstrName,sem_t * psem,bool bOwner = true);
 #else
-   mutex(::aura::application * papp,const char * pstrName,key_t key, int32_t semid, bool bOwner = true);
+   mutex(::ace::application * papp,const char * pstrName,key_t key, int32_t semid, bool bOwner = true);
 #endif
-   mutex(::aura::application * papp = NULL,bool bInitiallyOwn = FALSE,const char * lpszName = NULL,LPSECURITY_ATTRIBUTES lpsaAttribute = NULL);
+   mutex(::ace::application * papp = NULL,bool bInitiallyOwn = FALSE,const char * lpszName = NULL,LPSECURITY_ATTRIBUTES lpsaAttribute = NULL);
 
 
 
@@ -70,7 +70,7 @@ public:
    bool already_exists();
 
 
-   static mutex * open_mutex(::aura::application * papp, const char * pstrName);
+   static mutex * open_mutex(::ace::application * papp, const char * pstrName);
 
 
 };

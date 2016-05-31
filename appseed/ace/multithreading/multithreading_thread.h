@@ -7,7 +7,7 @@ public:
 
    sp(object) m_pholdref;
 
-   pred_holder_base(::aura::application * papp, sp(object) pholdref = NULL) :
+   pred_holder_base(::ace::application * papp, sp(object) pholdref = NULL) :
       object(papp),
       m_pholdref(pholdref)
    {
@@ -26,7 +26,7 @@ public:
 
    PRED m_pred;
 
-   pred_holder(::aura::application * papp, PRED pred) :
+   pred_holder(::ace::application * papp, PRED pred) :
       object(papp),
       pred_holder_base(papp),
       m_pred(pred)
@@ -34,7 +34,7 @@ public:
 
    }
 
-   pred_holder(::aura::application * papp, sp(object) pholdref, PRED pred) :
+   pred_holder(::ace::application * papp, sp(object) pholdref, PRED pred) :
       object(papp),
       pred_holder_base(papp, pholdref),
       m_pred(pred)
@@ -140,8 +140,8 @@ public:
 
 
    thread();
-   thread(::aura::application * papp);
-   thread(::aura::application * papp, __THREADPROC pfnThreadProc, LPVOID pParam);
+   thread(::ace::application * papp);
+   thread(::ace::application * papp, __THREADPROC pfnThreadProc, LPVOID pParam);
    virtual ~thread();
 
 

@@ -229,7 +229,7 @@ public:
    }
 
 
-   smart_pointer_array(::aura::application * papp) :
+   smart_pointer_array(::ace::application * papp) :
       object(papp),
       array < smart_pointer < T > >(papp)
    {
@@ -1080,7 +1080,7 @@ public:
    }
 
 
-   smart_pointer_array2(::aura::application * papp):
+   smart_pointer_array2(::ace::application * papp):
       object(papp),
       array < smart_pointer < T > >(papp)
    {

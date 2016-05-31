@@ -12,7 +12,7 @@ public:
    //DECLARE_AND_IMPLEMENT_DEFAULT_CONSTRUCTION_AND_ASSIGNMENT(comparable_eq_array, ARRAY_TYPE)
    comparable_eq_array(::std::initializer_list < TYPE > l) : BASE_ARRAY(l) {   }
    comparable_eq_array() {}
-   comparable_eq_array(::aura::application * papp) : object(papp), ARRAY_TYPE(papp) {}
+   comparable_eq_array(::ace::application * papp) : object(papp), ARRAY_TYPE(papp) {}
    comparable_eq_array(const comparable_eq_array & array)
    {
       operator = (array);

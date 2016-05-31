@@ -13,7 +13,7 @@ public:
 
    sp(object) m_pholdref;
 
-   forking_thread(::aura::application * papp, sp(object) pholdref, PRED pred) :
+   forking_thread(::ace::application * papp, sp(object) pholdref, PRED pred) :
       object(papp),
       thread(papp),
       m_pholdref(pholdref),
@@ -24,7 +24,7 @@ public:
 
    }
 
-   forking_thread(::aura::application * papp,PRED pred) :
+   forking_thread(::ace::application * papp,PRED pred) :
       object(papp),
       thread(papp),
       m_pred(pred)
@@ -53,7 +53,7 @@ public:
 
 
 template < typename PRED >
-void fork(::aura::application * papp, sp(object) pholdref, PRED pred)
+void fork(::ace::application * papp, sp(object) pholdref, PRED pred)
 {
 
    new forking_thread < PRED >(papp, pholdref, pred);
@@ -61,7 +61,7 @@ void fork(::aura::application * papp, sp(object) pholdref, PRED pred)
 }
 
 template < typename PRED >
-void fork(::aura::application * papp,PRED pred)
+void fork(::ace::application * papp,PRED pred)
 {
 
    new forking_thread < PRED >(papp,pred);

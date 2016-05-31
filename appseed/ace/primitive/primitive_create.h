@@ -13,7 +13,7 @@ public:
 
 
    command_line_sp();
-   command_line_sp(const ::aura::allocatorsp & allocer);
+   command_line_sp(const ::ace::allocatorsp & allocer);
 
 
    using smart_pointer < command_line >::operator =;
@@ -42,12 +42,12 @@ public:
    ::user::primitive *                                         m_puiAlloc;
    sp(application_bias)                                        m_spApplicationBias;
    command_line_sp                                             m_spCommandLine;
-   stack < ::aura::create_context >                            m_user; 
+   stack < ::ace::create_context >                            m_user; 
    ::command_thread *                                          m_pthreadParent;
 
 
 
-   create(::aura::application * papp);
+   create(::ace::application * papp);
    create(::command_thread * pthreadParent);
    create(::command_thread * pthreadParent,var varFile,bool bMakeVisible = true,::user::primitive * puiParent = NULL);
    create(const create & createcontext);

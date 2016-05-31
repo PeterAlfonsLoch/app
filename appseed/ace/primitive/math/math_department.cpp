@@ -10,9 +10,9 @@ namespace math
 
 
 
-   math::math(::aura::application * papp) :
+   math::math(::ace::application * papp) :
       object(papp),
-      ::aura::department(papp),
+      ::ace::department(papp),
       m_mutex(papp)
    {
       // initial rng seed
@@ -237,7 +237,7 @@ namespace math
       else
       {
 
-         ::aura::microtimer timer;
+         ::ace::microtimer timer;
 
          double d1 = timer.getTimeInMicroSec();
 

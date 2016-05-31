@@ -180,14 +180,14 @@ class CLASS_DECL_AURA map_word_to_ptr :
    virtual public map < WORD, WORD, void *, void * >
 {
 public:
-   map_word_to_ptr(::aura::application * papp = NULL, ::count nBlockSize = 10);
+   map_word_to_ptr(::ace::application * papp = NULL, ::count nBlockSize = 10);
 };
 
 class CLASS_DECL_AURA map_ptr_to_word :
    virtual public map < void *, void *, WORD, WORD >
 {
 public:
-   map_ptr_to_word(::aura::application * papp = NULL, ::count nBlockSize = 10);
+   map_ptr_to_word(::ace::application * papp = NULL, ::count nBlockSize = 10);
 };
 
 
@@ -195,14 +195,14 @@ class CLASS_DECL_AURA map_ptr_to_ptr :
    virtual public map < void *, void *, void *, void * >
 {
 public:
-   map_ptr_to_ptr(::aura::application * papp = NULL, ::count nBlockSize = 10);
+   map_ptr_to_ptr(::ace::application * papp = NULL, ::count nBlockSize = 10);
 };
 
 class CLASS_DECL_AURA map_word_to_ob :
    virtual public map < WORD, WORD, object *, object * >
 {
 public:
-   map_word_to_ob(::aura::application * papp = NULL, ::count nBlockSize = 10);
+   map_word_to_ob(::ace::application * papp = NULL, ::count nBlockSize = 10);
 };
 
 
@@ -210,14 +210,14 @@ class CLASS_DECL_AURA map_string_to_ptr :
    virtual public map < string, const string &, void *, void * >
 {
 public:
-   map_string_to_ptr(::aura::application * papp = NULL, ::count nBlockSize = 10);
+   map_string_to_ptr(::ace::application * papp = NULL, ::count nBlockSize = 10);
 };
 
 class CLASS_DECL_AURA map_string_to_ob :
    virtual public map < string, const string &, object *, object * >
 {
 public:
-   map_string_to_ob(::aura::application * papp = NULL, ::count nBlockSize = 10);
+   map_string_to_ob(::ace::application * papp = NULL, ::count nBlockSize = 10);
 };
 
 
@@ -228,20 +228,20 @@ public:
 #include "collection_bit_array.h"
 #include "collection_string_array.h"
 
-#include "aura/primitive/primitive_var.h"
+#include "ace/primitive/primitive_var.h"
 
 #include "collection_stringa.h"
 
 
 #include "collection_var_array.h"
-#include "aura/primitive/primitive_property.h"
+#include "ace/primitive/primitive_property.h"
 
 
 
 
-#include "aura/primitive/primitive_signal.h"
-#include "aura/primitive/primitive_property_set.h"
-#include "aura/primitive/primitive_relation_set.h"
+#include "ace/primitive/primitive_signal.h"
+#include "ace/primitive/primitive_property_set.h"
+#include "ace/primitive/primitive_relation_set.h"
 
 
 #include "collection_point_array.h"

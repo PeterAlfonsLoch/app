@@ -1,7 +1,7 @@
 //#include "framework.h"
 
 
-relation_set::relation_set(::aura::application * papp) :
+relation_set::relation_set(::ace::application * papp) :
 property_set(papp, true, true)
 {
 

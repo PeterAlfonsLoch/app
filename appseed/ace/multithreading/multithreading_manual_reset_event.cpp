@@ -17,7 +17,7 @@
 //                      manual_reset_event class with an initial state.
 //
 //*****************************************************************************
-manual_reset_event::manual_reset_event(::aura::application * papp, bool bInitiallyOwn) :
+manual_reset_event::manual_reset_event(::ace::application * papp, bool bInitiallyOwn) :
    object(papp),
     ::event(papp, bInitiallyOwn, true)
 {

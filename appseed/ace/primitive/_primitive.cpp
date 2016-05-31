@@ -33,7 +33,7 @@
 //O volume na unidade Z ‚ eco
  //O N£mero de S‚rie do Volume ‚ 4A91-94E4
 
- //Pasta de Z:\nordroid\app\appseed\aura\primitive
+ //Pasta de Z:\nordroid\app\appseed\ace\primitive
 
 #include "primitive_application_bias.cpp"
 #include "primitive_bit.cpp"
@@ -67,7 +67,7 @@
 //#include "_primitive.cpp"
  //             30 arquivo(s)        231.951 bytes
 
- //Pasta de Z:\nordroid\app\appseed\aura\primitive\collection
+ //Pasta de Z:\nordroid\app\appseed\ace\primitive\collection
 
 #include "collection/collection_2d_array.cpp"
 #include "collection/collection_array.cpp"
@@ -92,13 +92,13 @@
 #include "collection/collection_var_array.cpp"
  //             22 arquivo(s)        125.800 bytes
 
- //Pasta de Z:\nordroid\app\appseed\aura\primitive\comparison
+ //Pasta de Z:\nordroid\app\appseed\ace\primitive\comparison
 
 //#include "comparison/comparison_md5.cpp"
 #include "comparison/comparison_var_strict.cpp"
  //              2 arquivo(s)         21.985 bytes
 
- //Pasta de Z:\nordroid\app\appseed\aura\primitive\data
+ //Pasta de Z:\nordroid\app\appseed\ace\primitive\data
 
 #include "data/data_data.cpp"
 #include "data/data_data_container.cpp"
@@ -110,7 +110,7 @@
 #include "data/data_tree.cpp"
 #include "data/data_tree_item.cpp"
 
- //Pasta de Z:\nordroid\app\appseed\aura\primitive\datetime
+ //Pasta de Z:\nordroid\app\appseed\ace\primitive\datetime
 
 #include "datetime/datetime.cpp"
 #include "datetime/datetime_duration.cpp"
@@ -123,7 +123,7 @@
  //              5 arquivo(s)         49.027 bytes
 #include "datetime/datetime_department.cpp"
 
- //Pasta de Z:\nordroid\app\appseed\aura\primitive\geometry
+ //Pasta de Z:\nordroid\app\appseed\ace\primitive\geometry
 
 #include "geometry/geometry_geometry.cpp"
 #include "geometry/geometry_point.cpp"
@@ -133,7 +133,7 @@
 #include "geometry/geometry_types.cpp"
  //              5 arquivo(s)         74.155 bytes
 
- //Pasta de Z:\nordroid\app\appseed\aura\primitive\math
+ //Pasta de Z:\nordroid\app\appseed\ace\primitive\math
 
 #include "math/_double.cpp"
 #include "math/_float.cpp"
@@ -156,7 +156,7 @@
 #include "math/math_int_biunique.cpp"
  //              8 arquivo(s)         27.817 bytes
 
- //Pasta de Z:\nordroid\app\appseed\aura\primitive\str
+ //Pasta de Z:\nordroid\app\appseed\ace\primitive\str
 
 #include "str/str_base64.cpp"
 #include "str/str_c.cpp"
