@@ -5,7 +5,7 @@ namespace ace
 {
 
 
-   class CLASS_DECL_AURA log :
+   class CLASS_DECL_ACE log :
       virtual public object
    {
    public:
@@ -82,7 +82,7 @@ namespace ace
    };
 
 
-   CLASS_DECL_AURA int32_t SimpleDebugReport(int32_t, const char *, int32_t, const char *, const char * pszFormat, va_list list);
+   CLASS_DECL_ACE int32_t SimpleDebugReport(int32_t, const char *, int32_t, const char *, const char * pszFormat, va_list list);
 
 
 } // namespace ace

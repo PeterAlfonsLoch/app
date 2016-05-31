@@ -5,7 +5,7 @@
 //{
 //
 //
-//   class CLASS_DECL_AURA thread :
+//   class CLASS_DECL_ACE thread :
 //      virtual public ::thread_impl
 //   {
 //   public:

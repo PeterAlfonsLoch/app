@@ -22,7 +22,7 @@ void foo()
    throw simple_exception(::get_thread_app());
 }
 
-void aura_auto_debug_teste() {
+void ace_auto_debug_teste() {
    return;
    try
    {
@@ -43,7 +43,7 @@ void aura_auto_debug_teste() {
 
 
 
-void teste_aura_cmp()
+void teste_ace_cmp()
 {
    //auto a = MAKE(PARAMETER);
 

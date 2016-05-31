@@ -13,7 +13,7 @@ void smart_pointer < T >::alloc(const ::ace::allocatorsp & spallocator)
    if(m_p != NULL)
       ::release(m_p);
 
-   object * pca = CaSys(spallocator).alloc(spallocator->m_pauraapp,idType);
+   object * pca = CaSys(spallocator).alloc(spallocator->m_paceapp,idType);
 
    if(pca != NULL)
    {

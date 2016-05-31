@@ -5,7 +5,7 @@
 //class synch_ptr_array;
 //
 //
-//class  CLASS_DECL_AURA synch_index_iterator:
+//class  CLASS_DECL_ACE synch_index_iterator:
 //   public single_lock
 //{
 //public:

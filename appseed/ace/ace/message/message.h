@@ -20,7 +20,7 @@
 #undef new
 #include "message_base.h"
 //#include "message_user.h"
-#define new AURA_NEW
+#define new ACE_NEW
 #include "message.inl"
 
 
@@ -30,10 +30,10 @@ namespace message
 
 
 
-   CLASS_DECL_AURA bool is_idle_message(::signal_details * pobj);
+   CLASS_DECL_ACE bool is_idle_message(::signal_details * pobj);
 
 
-   CLASS_DECL_AURA bool is_idle_message(MESSAGE* pMsg);
+   CLASS_DECL_ACE bool is_idle_message(MESSAGE* pMsg);
 
 
 

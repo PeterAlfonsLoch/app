@@ -73,7 +73,7 @@ namespace core
 namespace ace
 {
 
-   class CLASS_DECL_AURA draw_context :
+   class CLASS_DECL_ACE draw_context :
       public ::core::simple_chain < draw_context >
    {
    public:

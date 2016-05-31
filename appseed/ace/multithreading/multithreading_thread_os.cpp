@@ -367,14 +367,14 @@
 //static HTHREAD g_hMainThread = NULL;
 //static UINT g_uiMainThread = -1;
 //
-//CLASS_DECL_AURA void set_main_thread(HTHREAD hThread)
+//CLASS_DECL_ACE void set_main_thread(HTHREAD hThread)
 //{
 //
 //   g_hMainThread = hThread;
 //
 //}
 //
-//CLASS_DECL_AURA void set_main_thread_id(UINT uiThread)
+//CLASS_DECL_ACE void set_main_thread_id(UINT uiThread)
 //{
 //
 //   g_uiMainThread = uiThread;
@@ -382,12 +382,12 @@
 //}
 //
 //
-//CLASS_DECL_AURA HTHREAD get_main_thread()
+//CLASS_DECL_ACE HTHREAD get_main_thread()
 //{
 //   return g_hMainThread;
 //
 //}
-//CLASS_DECL_AURA UINT   get_main_thread_id()
+//CLASS_DECL_ACE UINT   get_main_thread_id()
 //{
 //   return g_uiMainThread;
 //}
@@ -460,7 +460,7 @@ struct create_thread_data
 };
 
 
-CLASS_DECL_AURA HTHREAD create_thread(LPSECURITY_ATTRIBUTES lpsa,uint_ptr cbStack,PFN_THREAD_FUNCTION pfn,void * pv,uint32_t uiFlags,IDTHREAD * puiId)
+CLASS_DECL_ACE HTHREAD create_thread(LPSECURITY_ATTRIBUTES lpsa,uint_ptr cbStack,PFN_THREAD_FUNCTION pfn,void * pv,uint32_t uiFlags,IDTHREAD * puiId)
 {
 
 #ifdef WINDOWS

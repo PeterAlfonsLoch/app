@@ -33,7 +33,7 @@ namespace ace
    void department::connect_to_application_signal()
    {
 
-      m_pauraapp->m_psignal->connect(this,&department::on_signal);
+      m_paceapp->m_psignal->connect(this,&department::on_signal);
 
    }
 

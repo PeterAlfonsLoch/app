@@ -103,11 +103,11 @@ namespace draw2d
    (__PMSG)(__PMSGW)(void (__MSG_CALLwindow::*)())&memberFxn },
 
 
-#include "aura_draw_interface.h"
+#include "ace_draw_interface.h"
 #include "ace/user/user/user_primitive.h"
 #include "ace/user/user/user_frame.h"
 
 
 
-#include "aura_draw_context.h"
-#include "aura_printer.h"
+#include "ace_draw_context.h"
+#include "ace_printer.h"

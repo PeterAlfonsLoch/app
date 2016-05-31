@@ -1,6 +1,6 @@
 #pragma once
 
-class CLASS_DECL_AURA rect_array :
+class CLASS_DECL_ACE rect_array :
    public array < rect >
 {
 public:

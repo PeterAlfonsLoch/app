@@ -5,7 +5,7 @@ namespace ios
 {
    
    
-   class CLASS_DECL_AURA file_set :
+   class CLASS_DECL_ACE file_set :
       public ::file::set
    {
    public:

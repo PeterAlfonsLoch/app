@@ -4,7 +4,7 @@
 #if defined(VARIADIC_TEMPLATE_FORMAT2)
 
 
-class CLASS_DECL_AURA string_format_printer
+class CLASS_DECL_ACE string_format_printer
 {
 public:
 
@@ -79,7 +79,7 @@ Depending on the format string, the function may expect a sequence of additional
 */
 
 
-class CLASS_DECL_AURA string_format
+class CLASS_DECL_ACE string_format
 {
 public:
 

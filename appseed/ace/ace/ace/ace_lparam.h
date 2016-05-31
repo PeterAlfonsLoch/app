@@ -9,7 +9,7 @@
 class object;
 
 
-class CLASS_DECL_AURA lparam
+class CLASS_DECL_ACE lparam
 {
 public:
 

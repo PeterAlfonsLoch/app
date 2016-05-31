@@ -63,7 +63,7 @@ int32_t create_process(const char * _cmd_line, int32_t * pprocessId)
    return 1;
 }
 
-CLASS_DECL_AURA int32_t call_async(
+CLASS_DECL_ACE int32_t call_async(
                             const char * pszPath,
                             const char * pszParam,
                             const char * pszDir,
@@ -88,7 +88,7 @@ CLASS_DECL_AURA int32_t call_async(
 
 }
 
-CLASS_DECL_AURA DWORD call_sync(
+CLASS_DECL_ACE DWORD call_sync(
                              const char * pszPath,
                              const char * pszParam,
                              const char * pszDir,
@@ -133,7 +133,7 @@ CLASS_DECL_AURA DWORD call_sync(
 
 
 
-CLASS_DECL_AURA bool main_initialize()
+CLASS_DECL_ACE bool main_initialize()
 {
 
 //   t_posthread = new os_thread(NULL,NULL);
@@ -145,7 +145,7 @@ CLASS_DECL_AURA bool main_initialize()
 }
 
 
-CLASS_DECL_AURA bool main_finalize()
+CLASS_DECL_ACE bool main_finalize()
 {
 
    //if(t_posthread != NULL)
@@ -184,7 +184,7 @@ CLASS_DECL_AURA bool main_finalize()
 namespace process
 {
 
-   CLASS_DECL_AURA bool set_priority(int32_t priority)
+   CLASS_DECL_ACE bool set_priority(int32_t priority)
    {
 
       int32_t iPolicy = SCHED_OTHER;

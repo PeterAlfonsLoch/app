@@ -9,7 +9,7 @@ namespace primitive
    class virtual_memory;
 
 
-   class CLASS_DECL_AURA memory_container :
+   class CLASS_DECL_ACE memory_container :
       virtual public ::object
    {
    protected:

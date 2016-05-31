@@ -7,7 +7,7 @@ namespace ace
 {
 
 
-   class CLASS_DECL_AURA trace_add_file_and_line
+   class CLASS_DECL_ACE trace_add_file_and_line
 #if defined(VARIADIC_TEMPLATE_FORMAT2)
       : public string_format_printer
 #endif
@@ -15,14 +15,14 @@ namespace ace
    public:
 
 
-      ::ace::application *      m_pauraapp;
+      ::ace::application *      m_paceapp;
       const char * const         m_pszFileName;
       const int32_t              m_nLineNo;
       string                     m_str;
 
 //#if defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
 
-      class CLASS_DECL_AURA category_level
+      class CLASS_DECL_ACE category_level
       {
       public:
 
@@ -36,18 +36,18 @@ namespace ace
 //#endif
 
       trace_add_file_and_line(::ace::application * papp, const char *pszFileName, int32_t nLineNo)
-         : m_pauraapp(papp),m_pszFileName(pszFileName),m_nLineNo(nLineNo)
+         : m_paceapp(papp),m_pszFileName(pszFileName),m_nLineNo(nLineNo)
       {
       }
 
       inline sp(::ace::application) get_app() const
       {
-         return m_pauraapp;
+         return m_paceapp;
       }
 
       inline sp(::ace::application) get_app()
       {
-         return m_pauraapp;
+         return m_paceapp;
       }
 
 #if defined(VARIADIC_TEMPLATE_FORMAT2)

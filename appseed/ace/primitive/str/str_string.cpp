@@ -771,7 +771,7 @@ void __cdecl string::Construct(class string * pstring)
 {
    new (pstring) class string;
 }
-#define new AURA_NEW
+#define new ACE_NEW
 
 // copy constructor
 string::string(const string & strSrc):

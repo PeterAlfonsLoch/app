@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_AURA go_thread :
+class CLASS_DECL_ACE go_thread :
    virtual public simple_thread
 {
 public:

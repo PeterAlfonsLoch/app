@@ -22,7 +22,7 @@ namespace windows
    }
 
 
-   bool CLASS_DECL_AURA SHGetSpecialFolderPath(oswindow oswindow,::file::path &str,int32_t csidl,bool fCreate)
+   bool CLASS_DECL_ACE SHGetSpecialFolderPath(oswindow oswindow,::file::path &str,int32_t csidl,bool fCreate)
    {
 
       return ::SHGetSpecialFolderPathW(oswindow,wtostring(str,MAX_PATH * 8),csidl,fCreate) != FALSE;
@@ -91,7 +91,7 @@ namespace windows
    return iLen;
    }*/
 
-   CLASS_DECL_AURA void TimeToFileTime(::ace::application * papp,const ::datetime::time& time,LPFILETIME pFileTime)
+   CLASS_DECL_ACE void TimeToFileTime(::ace::application * papp,const ::datetime::time& time,LPFILETIME pFileTime)
    {
       SYSTEMTIME sysTime;
       sysTime.wYear           = (WORD)time.GetYear();

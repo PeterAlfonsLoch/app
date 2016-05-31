@@ -1,14 +1,14 @@
 #pragma once
 
 
-bool CLASS_DECL_AURA vfxResolveShortcut(string & strTarget, const char * pszSource, ::user::primitive * puiMessageParentOptional = NULL);
+bool CLASS_DECL_ACE vfxResolveShortcut(string & strTarget, const char * pszSource, ::user::primitive * puiMessageParentOptional = NULL);
 
 
 namespace metrowin
 {
 
 
-   class CLASS_DECL_AURA os :
+   class CLASS_DECL_ACE os :
       public ::ace::os
    {
    public:

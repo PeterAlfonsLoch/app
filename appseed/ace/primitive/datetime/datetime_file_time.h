@@ -5,7 +5,7 @@ namespace datetime
 {
 
 
-   class CLASS_DECL_AURA file_time:
+   class CLASS_DECL_ACE file_time:
       public FILETIME
    {
    public:
@@ -46,8 +46,8 @@ namespace datetime
    };
 
    // Used only if these strings could not be found in resources.
-   extern CLASS_DECL_AURA const char * const szInvalidDateTime;
-   extern CLASS_DECL_AURA const char * const szInvalidDateTimeSpan;
+   extern CLASS_DECL_ACE const char * const szInvalidDateTime;
+   extern CLASS_DECL_ACE const char * const szInvalidDateTimeSpan;
 
    const int32_t maxTimeBufferSize = 128;
    const long maxDaysInSpan  =   3615897L;
@@ -58,10 +58,10 @@ namespace datetime
 } // namesace datetime
 
 
-CLASS_DECL_AURA FILETIME get_file_time_now();
+CLASS_DECL_ACE FILETIME get_file_time_now();
 
 
-struct CLASS_DECL_AURA file_time
+struct CLASS_DECL_ACE file_time
 {
 
 
@@ -122,12 +122,12 @@ struct CLASS_DECL_AURA file_time
 
 };
 
-CLASS_DECL_AURA bool file_modified_timeout(const char * path, int iSeconds);
+CLASS_DECL_ACE bool file_modified_timeout(const char * path, int iSeconds);
 
 
-CLASS_DECL_AURA void get_file_time(const char * psz,file_time & time);
+CLASS_DECL_ACE void get_file_time(const char * psz,file_time & time);
 
-CLASS_DECL_AURA void get_file_time(const char * psz,FILETIME & creation,FILETIME & modified);
+CLASS_DECL_ACE void get_file_time(const char * psz,FILETIME & creation,FILETIME & modified);
 
 inline file_time get_file_time(const char * psz)
 {

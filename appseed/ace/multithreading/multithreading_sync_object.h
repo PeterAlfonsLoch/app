@@ -9,7 +9,7 @@
  **   \author grymse@alhem.net
 **/
 
-class CLASS_DECL_AURA sync_object :
+class CLASS_DECL_ACE sync_object :
    virtual public object
 {
 public:

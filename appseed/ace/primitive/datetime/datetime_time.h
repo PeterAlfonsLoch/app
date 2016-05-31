@@ -13,7 +13,7 @@ namespace datetime
 
 
 
-   class CLASS_DECL_AURA time
+   class CLASS_DECL_ACE time
    {
    public:
 
@@ -142,14 +142,14 @@ namespace datetime
 
 
 
-CLASS_DECL_AURA dump_context & operator <<(dump_context & dumpcontext, ::datetime::time time);
-CLASS_DECL_AURA dump_context & operator <<(dump_context & dumpcontext, ::datetime::time_span time);
+CLASS_DECL_ACE dump_context & operator <<(dump_context & dumpcontext, ::datetime::time time);
+CLASS_DECL_ACE dump_context & operator <<(dump_context & dumpcontext, ::datetime::time_span time);
 
-CLASS_DECL_AURA ::file::ostream & operator <<(::file::ostream & os, ::datetime::time time);
-CLASS_DECL_AURA ::file::istream & operator >>(::file::istream & is, ::datetime::time & time);
+CLASS_DECL_ACE ::file::ostream & operator <<(::file::ostream & os, ::datetime::time time);
+CLASS_DECL_ACE ::file::istream & operator >>(::file::istream & is, ::datetime::time & time);
 
 
-inline CLASS_DECL_AURA ::datetime::time_span operator - (const duration & duration, const ::datetime::time & time)
+inline CLASS_DECL_ACE ::datetime::time_span operator - (const duration & duration, const ::datetime::time & time)
 {
 
    return ::datetime::time_span(::datetime::time::get_current_time().m_time - duration.GetTimeSpan() - time.m_time);
@@ -157,7 +157,7 @@ inline CLASS_DECL_AURA ::datetime::time_span operator - (const duration & durati
 }
 
 
-inline CLASS_DECL_AURA ::datetime::time operator + (const duration & duration, const ::datetime::time & time)
+inline CLASS_DECL_ACE ::datetime::time operator + (const duration & duration, const ::datetime::time & time)
 {
 
    return ::datetime::time(duration.GetTimeSpan() + time.m_time);

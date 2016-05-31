@@ -32,7 +32,7 @@ namespace user
 } // namespace user
 
 
-class CLASS_DECL_AURA oswindow_data
+class CLASS_DECL_ACE oswindow_data
 {
 public:
    

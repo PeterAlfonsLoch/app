@@ -11,7 +11,7 @@ namespace ace
 } // namespace ace
 
 
-class CLASS_DECL_AURA cregexp_util
+class CLASS_DECL_ACE cregexp_util
 {
 public:
 

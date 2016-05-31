@@ -403,7 +403,7 @@ void ca2_heap_free_dbg(void * pvoid)
 
 thread_pointer < memdleak_block > t_plastblock;
 
-CLASS_DECL_AURA exception::engine * g_ee = NULL;
+CLASS_DECL_ACE exception::engine * g_ee = NULL;
 
 void * plex_heap_alloc_array::alloc_dbg(size_t size, int32_t nBlockUse, const char * pszFileName, int32_t iLine)
 {

@@ -7,11 +7,11 @@ class create;
 class command_line;
 
 
-////class CLASS_DECL_AURA ::object :
-//class CLASS_DECL_AURA object :
+////class CLASS_DECL_ACE ::object :
+//class CLASS_DECL_ACE object :
 //   virtual public element
-//   //class CLASS_DECL_AURA object :
-//   //class CLASS_DECL_AURA object
+//   //class CLASS_DECL_ACE object :
+//   //class CLASS_DECL_ACE object
 //   //   virtual public ::object
 //
 //{

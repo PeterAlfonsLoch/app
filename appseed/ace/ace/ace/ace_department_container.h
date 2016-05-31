@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_AURA department_container_base :
+class CLASS_DECL_ACE department_container_base :
    virtual public ::object
 {
 public:

@@ -1,13 +1,13 @@
 #pragma once
 
 
-class CLASS_DECL_AURA command_target_interface:
+class CLASS_DECL_ACE command_target_interface:
    virtual public signalizable,
    virtual public ::message::dispatch
 {
 public:
 
-   class CLASS_DECL_AURA command_signalid: public signalid
+   class CLASS_DECL_ACE command_signalid: public signalid
    {
    public:
 
@@ -43,7 +43,7 @@ public:
       }
    };
 
-   class CLASS_DECL_AURA command_signalrange: public signalid
+   class CLASS_DECL_ACE command_signalrange: public signalid
    {
    public:
 
@@ -204,7 +204,7 @@ public:
 
 
 
-class CLASS_DECL_AURA command_target:
+class CLASS_DECL_ACE command_target:
    virtual public command_target_interface
 {
 public:

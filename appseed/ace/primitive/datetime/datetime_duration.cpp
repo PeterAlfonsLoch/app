@@ -97,7 +97,7 @@ void duration::fset(double d, double dNano)
 
 
 
-CLASS_DECL_AURA void Sleep(const duration & duration)
+CLASS_DECL_ACE void Sleep(const duration & duration)
 {
 
    ::Sleep(duration.tick_duration());

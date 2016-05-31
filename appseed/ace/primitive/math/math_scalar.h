@@ -83,7 +83,7 @@ public:
 
 
 
-class CLASS_DECL_AURA scalar_base
+class CLASS_DECL_ACE scalar_base
 {
 public:
 

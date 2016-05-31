@@ -32,10 +32,10 @@ void * __cdecl operator new[](size_t nSize) new_throw_spec;
 void __cdecl operator delete[](void * p) del_throw_spec;
 
 
-CLASS_DECL_AURA void * __cdecl operator new(size_t nSize, const char * lpszFileName, int32_t nLine) new_throw_spec;
-CLASS_DECL_AURA void __cdecl operator delete(void * p, const char * lpszFileName, int32_t nLine) del_throw_spec;
-CLASS_DECL_AURA void * __cdecl operator new[](size_t nSize, const char * lpszFileName, int32_t nLine) new_throw_spec;
-CLASS_DECL_AURA void __cdecl operator delete[](void * p, const char * lpszFileName, int32_t nLine) del_throw_spec;
+CLASS_DECL_ACE void * __cdecl operator new(size_t nSize, const char * lpszFileName, int32_t nLine) new_throw_spec;
+CLASS_DECL_ACE void __cdecl operator delete(void * p, const char * lpszFileName, int32_t nLine) del_throw_spec;
+CLASS_DECL_ACE void * __cdecl operator new[](size_t nSize, const char * lpszFileName, int32_t nLine) new_throw_spec;
+CLASS_DECL_ACE void __cdecl operator delete[](void * p, const char * lpszFileName, int32_t nLine) del_throw_spec;
 
 
 #define DECLARE_AND_IMPLEMENT_DEFAULT_ALLOCATION \

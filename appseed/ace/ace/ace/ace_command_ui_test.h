@@ -48,7 +48,7 @@ enum __DISPMAP_FLAGS
 //IA64: __DISPMAP_ENTRY could be ordered more efficiently to reduce size
 // bloat from alignment
 #pragma warning( disable: 4121 )
-struct CLASS_DECL_AURA __DISPMAP_ENTRY
+struct CLASS_DECL_ACE __DISPMAP_ENTRY
 {
    const char * lpszName;       // member/property name
    long lDispID;           // DISPID (may be DISPID_UNKNOWN)
@@ -61,7 +61,7 @@ struct CLASS_DECL_AURA __DISPMAP_ENTRY
 };
 #pragma warning( default: 4121 )
 
-struct CLASS_DECL_AURA __EVENTSINKMAP_ENTRY
+struct CLASS_DECL_ACE __EVENTSINKMAP_ENTRY
 {
    __DISPMAP_ENTRY dispEntry;
    UINT nCtrlIDFirst;

@@ -5,7 +5,7 @@ namespace ace
 {
 
 
-   class CLASS_DECL_AURA cmd_msg:
+   class CLASS_DECL_ACE cmd_msg:
       public object
    {
    public:

@@ -3,7 +3,7 @@
 
 // thread allocated as non-heap
 // 
-class CLASS_DECL_AURA simple_thread :
+class CLASS_DECL_ACE simple_thread :
    virtual public thread
 {
 public:

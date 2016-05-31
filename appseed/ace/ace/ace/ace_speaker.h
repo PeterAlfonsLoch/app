@@ -5,7 +5,7 @@ namespace tts
 {
 
 
-   class CLASS_DECL_AURA speaker:
+   class CLASS_DECL_ACE speaker:
       virtual public object
    {
    public:

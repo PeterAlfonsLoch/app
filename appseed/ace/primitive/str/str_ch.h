@@ -26,7 +26,7 @@
     @ingroup unicode
 */
 
-extern CLASS_DECL_AURA const char trailingBytesForUTF8[256];
+extern CLASS_DECL_ACE const char trailingBytesForUTF8[256];
 
 #define ch_uni_len(c) (trailingBytesForUTF8[(byte)c] + 1)
 #define str_uni_len(pszUtf8) (ch_uni_len(*(pszUtf8)))
@@ -37,7 +37,7 @@ namespace str
 {
 
 
-   class CLASS_DECL_AURA utf8_char
+   class CLASS_DECL_ACE utf8_char
    {
    public:
 
@@ -120,7 +120,7 @@ namespace str
       //inline  char uni_len(const char * pszUtf8);
       //char uni_len(const char * pszUtf8);
 
-      CLASS_DECL_AURA  int64_t uni_index(const char * pszUtf8,const char * pszEnd);
+      CLASS_DECL_ACE  int64_t uni_index(const char * pszUtf8,const char * pszEnd);
 
       inline int64_t uni_index_len(const char * pszUtf8,strsize & len)
       {
@@ -279,43 +279,43 @@ namespace str
       }
 
 
-      CLASS_DECL_AURA string to_lower_case(const char * pszUtf8Char);
-      CLASS_DECL_AURA string to_upper_case(const char * pszUtf8Char);
-      CLASS_DECL_AURA string to_title_case(const char * pszUtf8Char);
+      CLASS_DECL_ACE string to_lower_case(const char * pszUtf8Char);
+      CLASS_DECL_ACE string to_upper_case(const char * pszUtf8Char);
+      CLASS_DECL_ACE string to_title_case(const char * pszUtf8Char);
 
-      CLASS_DECL_AURA bool is_lower_case(const char * pszUtf8Char);
-      CLASS_DECL_AURA bool is_upper_case(const char * pszUtf8Char);
-      CLASS_DECL_AURA bool is_title_case(const char * pszUtf8Char);
-      CLASS_DECL_AURA bool is_letter(const char * pszUtf8Char);
-      CLASS_DECL_AURA bool is_letter_or_digit(const char * pszUtf8Char);
-      CLASS_DECL_AURA bool is_digit(const char * pszUtf8Char);
-      CLASS_DECL_AURA bool is_digit(int64_t iUniIndex);
-      CLASS_DECL_AURA bool is_assigned(const char * pszUtf8Char);
-      CLASS_DECL_AURA bool is_space_char(const char * pszUtf8Char);
-      CLASS_DECL_AURA bool is_whitespace(const char * pszUtf8Char);
-      CLASS_DECL_AURA bool is_whitespace(const char * pszUtf8Char, const char * pszEnd);
+      CLASS_DECL_ACE bool is_lower_case(const char * pszUtf8Char);
+      CLASS_DECL_ACE bool is_upper_case(const char * pszUtf8Char);
+      CLASS_DECL_ACE bool is_title_case(const char * pszUtf8Char);
+      CLASS_DECL_ACE bool is_letter(const char * pszUtf8Char);
+      CLASS_DECL_ACE bool is_letter_or_digit(const char * pszUtf8Char);
+      CLASS_DECL_ACE bool is_digit(const char * pszUtf8Char);
+      CLASS_DECL_ACE bool is_digit(int64_t iUniIndex);
+      CLASS_DECL_ACE bool is_assigned(const char * pszUtf8Char);
+      CLASS_DECL_ACE bool is_space_char(const char * pszUtf8Char);
+      CLASS_DECL_ACE bool is_whitespace(const char * pszUtf8Char);
+      CLASS_DECL_ACE bool is_whitespace(const char * pszUtf8Char, const char * pszEnd);
 
-      CLASS_DECL_AURA bool is_number(const char * pszUtf8Char);
-//      CLASS_DECL_AURA bool to_numeric_value(const char * pszUtf8Char, float *f);
+      CLASS_DECL_ACE bool is_number(const char * pszUtf8Char);
+//      CLASS_DECL_ACE bool to_numeric_value(const char * pszUtf8Char, float *f);
 
-      CLASS_DECL_AURA string get_category_name(const char * pszUtf8Char);
+      CLASS_DECL_ACE string get_category_name(const char * pszUtf8Char);
       ECharCategory get_category(const char * pszUtf8Char);
 
-      CLASS_DECL_AURA int32_t get_combining_class(const char * pszUtf8Char);
-      CLASS_DECL_AURA bool is_mirrored(const char * pszUtf8Char);
+      CLASS_DECL_ACE int32_t get_combining_class(const char * pszUtf8Char);
+      CLASS_DECL_ACE bool is_mirrored(const char * pszUtf8Char);
 
       /** @deprecated For debug purposes only. */
-      CLASS_DECL_AURA int32_t size_of_tables();
+      CLASS_DECL_ACE int32_t size_of_tables();
 
 
-      inline CLASS_DECL_AURA bool is_kanji(int64_t i) { return i >=0x4E00 && i <=0x9FBF; }
-      inline CLASS_DECL_AURA bool is_hiragana(int64_t i) { return i >= 0x3040 && i <= 0x309F; }
-      inline CLASS_DECL_AURA bool is_katakana(int64_t i) { return i >= 0x30A0 && i <= 0x30FF; }
-      inline CLASS_DECL_AURA bool is_japanese(int64_t i) { return is_kanji(i) || is_hiragana(i) || is_katakana(i); }
-      inline CLASS_DECL_AURA bool is_kanji(const char * pszUtf8) { return is_kanji(uni_index(pszUtf8)); }
-      inline CLASS_DECL_AURA bool is_hiragana(const char * pszUtf8) { return is_hiragana(uni_index(pszUtf8));  }
-      inline CLASS_DECL_AURA bool is_katakana(const char * pszUtf8) { return is_katakana(uni_index(pszUtf8));  }
-      inline CLASS_DECL_AURA bool is_japanese(const char * pszUtf8) { return is_japanese(uni_index(pszUtf8));  }
+      inline CLASS_DECL_ACE bool is_kanji(int64_t i) { return i >=0x4E00 && i <=0x9FBF; }
+      inline CLASS_DECL_ACE bool is_hiragana(int64_t i) { return i >= 0x3040 && i <= 0x309F; }
+      inline CLASS_DECL_ACE bool is_katakana(int64_t i) { return i >= 0x30A0 && i <= 0x30FF; }
+      inline CLASS_DECL_ACE bool is_japanese(int64_t i) { return is_kanji(i) || is_hiragana(i) || is_katakana(i); }
+      inline CLASS_DECL_ACE bool is_kanji(const char * pszUtf8) { return is_kanji(uni_index(pszUtf8)); }
+      inline CLASS_DECL_ACE bool is_hiragana(const char * pszUtf8) { return is_hiragana(uni_index(pszUtf8));  }
+      inline CLASS_DECL_ACE bool is_katakana(const char * pszUtf8) { return is_katakana(uni_index(pszUtf8));  }
+      inline CLASS_DECL_ACE bool is_japanese(const char * pszUtf8) { return is_japanese(uni_index(pszUtf8));  }
 
 
 

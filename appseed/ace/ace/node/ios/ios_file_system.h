@@ -5,7 +5,7 @@ namespace ios
 {
    
    
-   class CLASS_DECL_AURA file_system :
+   class CLASS_DECL_ACE file_system :
    virtual public ::file::system
    {
    public:

@@ -4,7 +4,7 @@
 //#include "exception_installing.h"
 
 
-class CLASS_DECL_AURA installing_exception : 
+class CLASS_DECL_ACE installing_exception : 
    virtual public temporary_exception
 {
 public:

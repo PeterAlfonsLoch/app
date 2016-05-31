@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_AURA condition :
+class CLASS_DECL_ACE condition :
    virtual public sync_object
 {
 public:

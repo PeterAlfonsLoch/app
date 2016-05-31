@@ -20,7 +20,7 @@ multi_lock::multi_lock(std::initializer_list < sync_object * > list,bool bInitia
    }
    ::new((void *) this) multi_lock(syncobjectptra,bInitialLock);
 }
-#define new AURA_NEW
+#define new ACE_NEW
 multi_lock::multi_lock(const sync_object_ptra & syncobjectptra,bool bInitialLock)
 {
 

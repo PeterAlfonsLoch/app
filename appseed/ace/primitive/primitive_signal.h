@@ -12,7 +12,7 @@ class signal;
 class request_signal;
 
 
-class CLASS_DECL_AURA signal_details :
+class CLASS_DECL_ACE signal_details :
    public object
 {
 public:
@@ -47,7 +47,7 @@ public:
 };
 
 
-class CLASS_DECL_AURA signalizable :
+class CLASS_DECL_ACE signalizable :
    virtual public ::object
 {
 public:
@@ -74,7 +74,7 @@ public:
 
 };
 
-class CLASS_DECL_AURA base_signalizable_array :
+class CLASS_DECL_ACE base_signalizable_array :
    virtual protected ref_array < signalizable >
 {
 public:
@@ -120,7 +120,7 @@ public:
 
 };
 
-class CLASS_DECL_AURA signal :
+class CLASS_DECL_ACE signal :
    virtual public object
 {
 public:
@@ -242,7 +242,7 @@ bool signal::signal_delegate_instance<T>::operator == (const signal_delegate_ins
 }
 
 
-class CLASS_DECL_AURA signalid
+class CLASS_DECL_ACE signalid
 {
 public:
 
@@ -255,7 +255,7 @@ public:
 
 };
 
-class CLASS_DECL_AURA signalid_array :
+class CLASS_DECL_ACE signalid_array :
    virtual public ptr_array < signalid >
 {
 public:
@@ -270,13 +270,13 @@ public:
 };
 
 
-class CLASS_DECL_AURA dispatch :
+class CLASS_DECL_ACE dispatch :
    virtual public ::object
 {
 public:
 
 
-   class CLASS_DECL_AURA handler_item_base
+   class CLASS_DECL_ACE handler_item_base
    {
    public:
 
@@ -301,7 +301,7 @@ public:
    };
 
 
-   class CLASS_DECL_AURA handler_item_array :
+   class CLASS_DECL_ACE handler_item_array :
       public ptr_array < handler_item_base >
    {
    public:
@@ -310,7 +310,7 @@ public:
    };
 
 
-   class CLASS_DECL_AURA signal_item :
+   class CLASS_DECL_ACE signal_item :
       virtual public ::object
    {
    public:
@@ -328,7 +328,7 @@ public:
    };
 
 
-   class CLASS_DECL_AURA signal_item_ptr_array :
+   class CLASS_DECL_ACE signal_item_ptr_array :
       public ref_array < signal_item >
    {
    public:
@@ -338,7 +338,7 @@ public:
    };
 
 
-   class CLASS_DECL_AURA signal_item_array :
+   class CLASS_DECL_ACE signal_item_array :
       public ptr_array < signal_item >
    {
    public:

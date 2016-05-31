@@ -203,7 +203,7 @@ int32_t utf8_len_len(const unichar * pwsz, strsize srclen)
 }
 
 
-CLASS_DECL_AURA string utf16_to_utf8(const unichar * pwsz,strsize srcLen)
+CLASS_DECL_ACE string utf16_to_utf8(const unichar * pwsz,strsize srcLen)
 {
 
    string str;

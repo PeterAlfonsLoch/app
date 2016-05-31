@@ -2,8 +2,8 @@
 
 
 template < typename T > class numeric_array;
-typedef CLASS_DECL_AURA numeric_array < index > index_array;
-typedef CLASS_DECL_AURA numeric_array < count > count_array;
+typedef CLASS_DECL_ACE numeric_array < index > index_array;
+typedef CLASS_DECL_ACE numeric_array < count > count_array;
 
 
 

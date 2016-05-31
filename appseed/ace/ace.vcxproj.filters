@@ -18,7 +18,7 @@
     <Filter Include="Header Files\primitive\datetime">
       <UniqueIdentifier>{0510e3ff-0079-4cb1-b9e8-2cca759dcb0a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\aura">
+    <Filter Include="Header Files\ace">
       <UniqueIdentifier>{c884c593-8d0f-465b-8314-98944d5dac4f}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\user">
@@ -45,31 +45,31 @@
     <Filter Include="Header Files\primitive\str\x">
       <UniqueIdentifier>{edfaa98d-6860-4c70-a837-aa8ee4641806}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\aura\xml">
+    <Filter Include="Header Files\ace\xml">
       <UniqueIdentifier>{42770ef4-1efe-40e5-864d-38ad28249a78}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\aura\exception">
+    <Filter Include="Header Files\ace\exception">
       <UniqueIdentifier>{3057931a-c1e2-4b6c-9059-d0ece06cdca4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\aura\aura">
+    <Filter Include="Header Files\ace\ace">
       <UniqueIdentifier>{5dc0d2bc-fc5d-4202-9b04-2343b93cccb5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\aura\os">
+    <Filter Include="Header Files\ace\os">
       <UniqueIdentifier>{9e92b674-0ae7-4e1e-bd86-d513ccacb6a8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\aura\os\windows">
+    <Filter Include="Header Files\ace\os\windows">
       <UniqueIdentifier>{719bbac6-b1e2-43be-9042-48cec85915ad}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\aura">
+    <Filter Include="Source Files\ace">
       <UniqueIdentifier>{225c8e24-bbc5-4bf4-9da8-92ec39a039ec}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\aura\node">
+    <Filter Include="Header Files\ace\node">
       <UniqueIdentifier>{cbc7bdb2-868d-47ca-9594-7ff7e1135989}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\aura\node\windows">
+    <Filter Include="Header Files\ace\node\windows">
       <UniqueIdentifier>{8a9f35dd-3924-4dfe-bc44-6a823f0200b7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\aura\message">
+    <Filter Include="Header Files\ace\message">
       <UniqueIdentifier>{6ea91d16-af59-4653-ad87-aaa3548a7437}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\primitive\data">
@@ -81,22 +81,22 @@
     <Filter Include="Header Files\user\simple">
       <UniqueIdentifier>{87359dfc-dc8d-48ea-9e7a-cc1bd37769e0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\aura\aura_policy">
+    <Filter Include="Header Files\ace\ace_policy">
       <UniqueIdentifier>{0c0346ef-bd1c-4a0a-85b1-cfd8ef8ec242}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\aura\process">
+    <Filter Include="Header Files\ace\process">
       <UniqueIdentifier>{5d74699a-06f9-4f48-a523-e566763c1ca8}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\primitive\str">
       <UniqueIdentifier>{1dccc58a-e09d-4227-ab19-be8f96e04381}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\aura\os">
+    <Filter Include="Source Files\ace\os">
       <UniqueIdentifier>{214091d7-ba72-4f75-8794-8b1eae9f02c9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\aura\os\windows">
+    <Filter Include="Source Files\ace\os\windows">
       <UniqueIdentifier>{88863203-e2ba-4bbe-a04c-fd1001f4711d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\aura\exception">
+    <Filter Include="Source Files\ace\exception">
       <UniqueIdentifier>{0de7baac-641f-4c37-8a79-0a88ffce5142}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -554,209 +554,209 @@
     <ClInclude Include="primitive\str\x\x_tables.h">
       <Filter>Header Files\primitive\str\x</Filter>
     </ClInclude>
-    <ClInclude Include="aura\xml\xml.h">
-      <Filter>Header Files\aura\xml</Filter>
+    <ClInclude Include="ace\xml\xml.h">
+      <Filter>Header Files\ace\xml</Filter>
     </ClInclude>
-    <ClInclude Include="aura\xml\xml_attr.h">
-      <Filter>Header Files\aura\xml</Filter>
+    <ClInclude Include="ace\xml\xml_attr.h">
+      <Filter>Header Files\ace\xml</Filter>
     </ClInclude>
-    <ClInclude Include="aura\xml\xml_base_array.h">
-      <Filter>Header Files\aura\xml</Filter>
+    <ClInclude Include="ace\xml\xml_base_array.h">
+      <Filter>Header Files\ace\xml</Filter>
     </ClInclude>
-    <ClInclude Include="aura\xml\xml_data.h">
-      <Filter>Header Files\aura\xml</Filter>
+    <ClInclude Include="ace\xml\xml_data.h">
+      <Filter>Header Files\ace\xml</Filter>
     </ClInclude>
-    <ClInclude Include="aura\xml\xml_disp_option.h">
-      <Filter>Header Files\aura\xml</Filter>
+    <ClInclude Include="ace\xml\xml_disp_option.h">
+      <Filter>Header Files\ace\xml</Filter>
     </ClInclude>
-    <ClInclude Include="aura\xml\xml_document.h">
-      <Filter>Header Files\aura\xml</Filter>
+    <ClInclude Include="ace\xml\xml_document.h">
+      <Filter>Header Files\ace\xml</Filter>
     </ClInclude>
-    <ClInclude Include="aura\xml\xml_edit.h">
-      <Filter>Header Files\aura\xml</Filter>
+    <ClInclude Include="ace\xml\xml_edit.h">
+      <Filter>Header Files\ace\xml</Filter>
     </ClInclude>
-    <ClInclude Include="aura\xml\xml_entity.h">
-      <Filter>Header Files\aura\xml</Filter>
+    <ClInclude Include="ace\xml\xml_entity.h">
+      <Filter>Header Files\ace\xml</Filter>
     </ClInclude>
-    <ClInclude Include="aura\xml\xml_enum.h">
-      <Filter>Header Files\aura\xml</Filter>
+    <ClInclude Include="ace\xml\xml_enum.h">
+      <Filter>Header Files\ace\xml</Filter>
     </ClInclude>
-    <ClInclude Include="aura\xml\xml_exportable.h">
-      <Filter>Header Files\aura\xml</Filter>
+    <ClInclude Include="ace\xml\xml_exportable.h">
+      <Filter>Header Files\ace\xml</Filter>
     </ClInclude>
-    <ClInclude Include="aura\xml\xml_importable.h">
-      <Filter>Header Files\aura\xml</Filter>
+    <ClInclude Include="ace\xml\xml_importable.h">
+      <Filter>Header Files\ace\xml</Filter>
     </ClInclude>
-    <ClInclude Include="aura\xml\xml_input_tree.h">
-      <Filter>Header Files\aura\xml</Filter>
+    <ClInclude Include="ace\xml\xml_input_tree.h">
+      <Filter>Header Files\ace\xml</Filter>
     </ClInclude>
-    <ClInclude Include="aura\xml\xml_node.h">
-      <Filter>Header Files\aura\xml</Filter>
+    <ClInclude Include="ace\xml\xml_node.h">
+      <Filter>Header Files\ace\xml</Filter>
     </ClInclude>
-    <ClInclude Include="aura\xml\xml_output_tree.h">
-      <Filter>Header Files\aura\xml</Filter>
+    <ClInclude Include="ace\xml\xml_output_tree.h">
+      <Filter>Header Files\ace\xml</Filter>
     </ClInclude>
-    <ClInclude Include="aura\xml\xml_parse_info.h">
-      <Filter>Header Files\aura\xml</Filter>
+    <ClInclude Include="ace\xml\xml_parse_info.h">
+      <Filter>Header Files\ace\xml</Filter>
     </ClInclude>
-    <ClInclude Include="aura\xml\xml_property_exchange.h">
-      <Filter>Header Files\aura\xml</Filter>
+    <ClInclude Include="ace\xml\xml_property_exchange.h">
+      <Filter>Header Files\ace\xml</Filter>
     </ClInclude>
-    <ClInclude Include="aura\xml\xml_tree_base.h">
-      <Filter>Header Files\aura\xml</Filter>
+    <ClInclude Include="ace\xml\xml_tree_base.h">
+      <Filter>Header Files\ace\xml</Filter>
     </ClInclude>
-    <ClInclude Include="aura\xml\xml_tree_schema.h">
-      <Filter>Header Files\aura\xml</Filter>
+    <ClInclude Include="ace\xml\xml_tree_schema.h">
+      <Filter>Header Files\ace\xml</Filter>
     </ClInclude>
-    <ClInclude Include="aura\xml\xml_var_exchange.h">
-      <Filter>Header Files\aura\xml</Filter>
+    <ClInclude Include="ace\xml\xml_var_exchange.h">
+      <Filter>Header Files\ace\xml</Filter>
     </ClInclude>
-    <ClInclude Include="aura\xml\xml_xmlite.h">
-      <Filter>Header Files\aura\xml</Filter>
+    <ClInclude Include="ace\xml\xml_xmlite.h">
+      <Filter>Header Files\ace\xml</Filter>
     </ClInclude>
-    <ClInclude Include="aura\os\cross.h">
-      <Filter>Header Files\aura\os</Filter>
+    <ClInclude Include="ace\os\cross.h">
+      <Filter>Header Files\ace\os</Filter>
     </ClInclude>
-    <ClInclude Include="aura\os\os.h">
-      <Filter>Header Files\aura\os</Filter>
+    <ClInclude Include="ace\os\os.h">
+      <Filter>Header Files\ace\os</Filter>
     </ClInclude>
-    <ClInclude Include="aura\os\os_process.h">
-      <Filter>Header Files\aura\os</Filter>
+    <ClInclude Include="ace\os\os_process.h">
+      <Filter>Header Files\ace\os</Filter>
     </ClInclude>
-    <ClInclude Include="aura\exception\exception.h">
-      <Filter>Header Files\aura\exception</Filter>
+    <ClInclude Include="ace\exception\exception.h">
+      <Filter>Header Files\ace\exception</Filter>
     </ClInclude>
-    <ClInclude Include="aura\exception\exception_assert.h">
-      <Filter>Header Files\aura\exception</Filter>
+    <ClInclude Include="ace\exception\exception_assert.h">
+      <Filter>Header Files\ace\exception</Filter>
     </ClInclude>
-    <ClInclude Include="aura\exception\exception_base.h">
-      <Filter>Header Files\aura\exception</Filter>
+    <ClInclude Include="ace\exception\exception_base.h">
+      <Filter>Header Files\ace\exception</Filter>
     </ClInclude>
-    <ClInclude Include="aura\exception\exception_call_stack.h">
-      <Filter>Header Files\aura\exception</Filter>
+    <ClInclude Include="ace\exception\exception_call_stack.h">
+      <Filter>Header Files\ace\exception</Filter>
     </ClInclude>
-    <ClInclude Include="aura\exception\exception_debug.h">
-      <Filter>Header Files\aura\exception</Filter>
+    <ClInclude Include="ace\exception\exception_debug.h">
+      <Filter>Header Files\ace\exception</Filter>
     </ClInclude>
-    <ClInclude Include="aura\exception\exception_debug_stream.h">
-      <Filter>Header Files\aura\exception</Filter>
+    <ClInclude Include="ace\exception\exception_debug_stream.h">
+      <Filter>Header Files\ace\exception</Filter>
     </ClInclude>
-    <ClInclude Include="aura\exception\exception_dump_context.h">
-      <Filter>Header Files\aura\exception</Filter>
+    <ClInclude Include="ace\exception\exception_dump_context.h">
+      <Filter>Header Files\ace\exception</Filter>
     </ClInclude>
-    <ClInclude Include="aura\exception\exception_engine.h">
-      <Filter>Header Files\aura\exception</Filter>
+    <ClInclude Include="ace\exception\exception_engine.h">
+      <Filter>Header Files\ace\exception</Filter>
     </ClInclude>
-    <ClInclude Include="aura\exception\exception_error.h">
-      <Filter>Header Files\aura\exception</Filter>
+    <ClInclude Include="ace\exception\exception_error.h">
+      <Filter>Header Files\ace\exception</Filter>
     </ClInclude>
-    <ClInclude Include="aura\exception\exception_exception.h">
-      <Filter>Header Files\aura\exception</Filter>
+    <ClInclude Include="ace\exception\exception_exception.h">
+      <Filter>Header Files\ace\exception</Filter>
     </ClInclude>
-    <ClInclude Include="aura\exception\exception_exit.h">
-      <Filter>Header Files\aura\exception</Filter>
+    <ClInclude Include="ace\exception\exception_exit.h">
+      <Filter>Header Files\ace\exception</Filter>
     </ClInclude>
-    <ClInclude Include="aura\exception\exception_hresult.h">
-      <Filter>Header Files\aura\exception</Filter>
+    <ClInclude Include="ace\exception\exception_hresult.h">
+      <Filter>Header Files\ace\exception</Filter>
     </ClInclude>
-    <ClInclude Include="aura\exception\exception_installing.h">
-      <Filter>Header Files\aura\exception</Filter>
+    <ClInclude Include="ace\exception\exception_installing.h">
+      <Filter>Header Files\ace\exception</Filter>
     </ClInclude>
-    <ClInclude Include="aura\exception\exception_interface_only.h">
-      <Filter>Header Files\aura\exception</Filter>
+    <ClInclude Include="ace\exception\exception_interface_only.h">
+      <Filter>Header Files\ace\exception</Filter>
     </ClInclude>
-    <ClInclude Include="aura\exception\exception_invalid_argument.h">
-      <Filter>Header Files\aura\exception</Filter>
+    <ClInclude Include="ace\exception\exception_invalid_argument.h">
+      <Filter>Header Files\ace\exception</Filter>
     </ClInclude>
-    <ClInclude Include="aura\exception\exception_invalid_character.h">
-      <Filter>Header Files\aura\exception</Filter>
+    <ClInclude Include="ace\exception\exception_invalid_character.h">
+      <Filter>Header Files\ace\exception</Filter>
     </ClInclude>
-    <ClInclude Include="aura\exception\exception_invalid_handle.h">
-      <Filter>Header Files\aura\exception</Filter>
+    <ClInclude Include="ace\exception\exception_invalid_handle.h">
+      <Filter>Header Files\ace\exception</Filter>
     </ClInclude>
-    <ClInclude Include="aura\exception\exception_invalid_index.h">
-      <Filter>Header Files\aura\exception</Filter>
+    <ClInclude Include="ace\exception\exception_invalid_index.h">
+      <Filter>Header Files\ace\exception</Filter>
     </ClInclude>
-    <ClInclude Include="aura\exception\exception_io.h">
-      <Filter>Header Files\aura\exception</Filter>
+    <ClInclude Include="ace\exception\exception_io.h">
+      <Filter>Header Files\ace\exception</Filter>
     </ClInclude>
-    <ClInclude Include="aura\exception\exception_last_error.h">
-      <Filter>Header Files\aura\exception</Filter>
+    <ClInclude Include="ace\exception\exception_last_error.h">
+      <Filter>Header Files\ace\exception</Filter>
     </ClInclude>
-    <ClInclude Include="aura\exception\exception_memory.h">
-      <Filter>Header Files\aura\exception</Filter>
+    <ClInclude Include="ace\exception\exception_memory.h">
+      <Filter>Header Files\ace\exception</Filter>
     </ClInclude>
-    <ClInclude Include="aura\exception\exception_memory_state.h">
-      <Filter>Header Files\aura\exception</Filter>
+    <ClInclude Include="ace\exception\exception_memory_state.h">
+      <Filter>Header Files\ace\exception</Filter>
     </ClInclude>
-    <ClInclude Include="aura\exception\exception_misc.h">
-      <Filter>Header Files\aura\exception</Filter>
+    <ClInclude Include="ace\exception\exception_misc.h">
+      <Filter>Header Files\ace\exception</Filter>
     </ClInclude>
-    <ClInclude Include="aura\exception\exception_not_implemented.h">
-      <Filter>Header Files\aura\exception</Filter>
+    <ClInclude Include="ace\exception\exception_not_implemented.h">
+      <Filter>Header Files\ace\exception</Filter>
     </ClInclude>
-    <ClInclude Include="aura\exception\exception_not_installed.h">
-      <Filter>Header Files\aura\exception</Filter>
+    <ClInclude Include="ace\exception\exception_not_installed.h">
+      <Filter>Header Files\ace\exception</Filter>
     </ClInclude>
-    <ClInclude Include="aura\exception\exception_not_licensed.h">
-      <Filter>Header Files\aura\exception</Filter>
+    <ClInclude Include="ace\exception\exception_not_licensed.h">
+      <Filter>Header Files\ace\exception</Filter>
     </ClInclude>
-    <ClInclude Include="aura\exception\exception_not_supported.h">
-      <Filter>Header Files\aura\exception</Filter>
+    <ClInclude Include="ace\exception\exception_not_supported.h">
+      <Filter>Header Files\ace\exception</Filter>
     </ClInclude>
-    <ClInclude Include="aura\exception\exception_operation_canceled.h">
-      <Filter>Header Files\aura\exception</Filter>
+    <ClInclude Include="ace\exception\exception_operation_canceled.h">
+      <Filter>Header Files\ace\exception</Filter>
     </ClInclude>
-    <ClInclude Include="aura\exception\exception_os.h">
-      <Filter>Header Files\aura\exception</Filter>
+    <ClInclude Include="ace\exception\exception_os.h">
+      <Filter>Header Files\ace\exception</Filter>
     </ClInclude>
-    <ClInclude Include="aura\exception\exception_overflow_error.h">
-      <Filter>Header Files\aura\exception</Filter>
+    <ClInclude Include="ace\exception\exception_overflow_error.h">
+      <Filter>Header Files\ace\exception</Filter>
     </ClInclude>
-    <ClInclude Include="aura\exception\exception_range_error.h">
-      <Filter>Header Files\aura\exception</Filter>
+    <ClInclude Include="ace\exception\exception_range_error.h">
+      <Filter>Header Files\ace\exception</Filter>
     </ClInclude>
-    <ClInclude Include="aura\exception\exception_resource.h">
-      <Filter>Header Files\aura\exception</Filter>
+    <ClInclude Include="ace\exception\exception_resource.h">
+      <Filter>Header Files\ace\exception</Filter>
     </ClInclude>
-    <ClInclude Include="aura\exception\exception_runtime_error.h">
-      <Filter>Header Files\aura\exception</Filter>
+    <ClInclude Include="ace\exception\exception_runtime_error.h">
+      <Filter>Header Files\ace\exception</Filter>
     </ClInclude>
-    <ClInclude Include="aura\exception\exception_simple.h">
-      <Filter>Header Files\aura\exception</Filter>
+    <ClInclude Include="ace\exception\exception_simple.h">
+      <Filter>Header Files\ace\exception</Filter>
     </ClInclude>
-    <ClInclude Include="aura\exception\exception_standard.h">
-      <Filter>Header Files\aura\exception</Filter>
+    <ClInclude Include="ace\exception\exception_standard.h">
+      <Filter>Header Files\ace\exception</Filter>
     </ClInclude>
-    <ClInclude Include="aura\exception\exception_standard_translator.h">
-      <Filter>Header Files\aura\exception</Filter>
+    <ClInclude Include="ace\exception\exception_standard_translator.h">
+      <Filter>Header Files\ace\exception</Filter>
     </ClInclude>
-    <ClInclude Include="aura\exception\exception_system.h">
-      <Filter>Header Files\aura\exception</Filter>
+    <ClInclude Include="ace\exception\exception_system.h">
+      <Filter>Header Files\ace\exception</Filter>
     </ClInclude>
-    <ClInclude Include="aura\exception\exception_temporary.h">
-      <Filter>Header Files\aura\exception</Filter>
+    <ClInclude Include="ace\exception\exception_temporary.h">
+      <Filter>Header Files\ace\exception</Filter>
     </ClInclude>
-    <ClInclude Include="aura\exception\exception_todo.h">
-      <Filter>Header Files\aura\exception</Filter>
+    <ClInclude Include="ace\exception\exception_todo.h">
+      <Filter>Header Files\ace\exception</Filter>
     </ClInclude>
-    <ClInclude Include="aura\exception\exception_trap.h">
-      <Filter>Header Files\aura\exception</Filter>
+    <ClInclude Include="ace\exception\exception_trap.h">
+      <Filter>Header Files\ace\exception</Filter>
     </ClInclude>
-    <ClInclude Include="aura\exception\exception_unhandled_report.h">
-      <Filter>Header Files\aura\exception</Filter>
+    <ClInclude Include="ace\exception\exception_unhandled_report.h">
+      <Filter>Header Files\ace\exception</Filter>
     </ClInclude>
-    <ClInclude Include="aura\exception\exception_user.h">
-      <Filter>Header Files\aura\exception</Filter>
+    <ClInclude Include="ace\exception\exception_user.h">
+      <Filter>Header Files\ace\exception</Filter>
     </ClInclude>
-    <ClInclude Include="aura\exception\exception_void_implementation.h">
-      <Filter>Header Files\aura\exception</Filter>
+    <ClInclude Include="ace\exception\exception_void_implementation.h">
+      <Filter>Header Files\ace\exception</Filter>
     </ClInclude>
-    <ClInclude Include="aura\exception\exception2.h">
-      <Filter>Header Files\aura\exception</Filter>
+    <ClInclude Include="ace\exception\exception2.h">
+      <Filter>Header Files\ace\exception</Filter>
     </ClInclude>
-    <ClInclude Include="aura\os\os_binreloc.h">
-      <Filter>Header Files\aura\os</Filter>
+    <ClInclude Include="ace\os\os_binreloc.h">
+      <Filter>Header Files\ace\os</Filter>
     </ClInclude>
     <ClInclude Include="primitive\math\math_scalar.h">
       <Filter>Header Files\primitive\math</Filter>
@@ -782,107 +782,107 @@
     <ClInclude Include="framework_c.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="aura\os\windows\windows.h">
-      <Filter>Header Files\aura\os\windows</Filter>
+    <ClInclude Include="ace\os\windows\windows.h">
+      <Filter>Header Files\ace\os\windows</Filter>
     </ClInclude>
-    <ClInclude Include="aura\os\windows\windows_implementation.h">
-      <Filter>Header Files\aura\os\windows</Filter>
+    <ClInclude Include="ace\os\windows\windows_implementation.h">
+      <Filter>Header Files\ace\os\windows</Filter>
     </ClInclude>
-    <ClInclude Include="aura\os\windows\windows_multithreading.h">
-      <Filter>Header Files\aura\os\windows</Filter>
+    <ClInclude Include="ace\os\windows\windows_multithreading.h">
+      <Filter>Header Files\ace\os\windows</Filter>
     </ClInclude>
-    <ClInclude Include="aura\os\windows\windows_port_forward.h">
-      <Filter>Header Files\aura\os\windows</Filter>
+    <ClInclude Include="ace\os\windows\windows_port_forward.h">
+      <Filter>Header Files\ace\os\windows</Filter>
     </ClInclude>
-    <ClInclude Include="aura\os\windows\windows_process.h">
-      <Filter>Header Files\aura\os\windows</Filter>
+    <ClInclude Include="ace\os\windows\windows_process.h">
+      <Filter>Header Files\ace\os\windows</Filter>
     </ClInclude>
-    <ClInclude Include="aura\os\windows\windows_shell.h">
-      <Filter>Header Files\aura\os\windows</Filter>
+    <ClInclude Include="ace\os\windows\windows_shell.h">
+      <Filter>Header Files\ace\os\windows</Filter>
     </ClInclude>
-    <ClInclude Include="aura\os\windows\windows_simple_hold_handle.h">
-      <Filter>Header Files\aura\os\windows</Filter>
+    <ClInclude Include="ace\os\windows\windows_simple_hold_handle.h">
+      <Filter>Header Files\ace\os\windows</Filter>
     </ClInclude>
-    <ClInclude Include="aura\os\windows\windows_utils.h">
-      <Filter>Header Files\aura\os\windows</Filter>
+    <ClInclude Include="ace\os\windows\windows_utils.h">
+      <Filter>Header Files\ace\os\windows</Filter>
     </ClInclude>
-    <ClInclude Include="aura\os\windows\windows_windows.h">
-      <Filter>Header Files\aura\os\windows</Filter>
+    <ClInclude Include="ace\os\windows\windows_windows.h">
+      <Filter>Header Files\ace\os\windows</Filter>
     </ClInclude>
-    <ClInclude Include="aura\node\node.h">
-      <Filter>Header Files\aura\node</Filter>
+    <ClInclude Include="ace\node\node.h">
+      <Filter>Header Files\ace\node</Filter>
     </ClInclude>
-    <ClInclude Include="aura\node\windows\windows_application.h">
-      <Filter>Header Files\aura\node\windows</Filter>
+    <ClInclude Include="ace\node\windows\windows_application.h">
+      <Filter>Header Files\ace\node\windows</Filter>
     </ClInclude>
-    <ClInclude Include="aura\node\windows\windows_exception.h">
-      <Filter>Header Files\aura\node\windows</Filter>
+    <ClInclude Include="ace\node\windows\windows_exception.h">
+      <Filter>Header Files\ace\node\windows</Filter>
     </ClInclude>
-    <ClInclude Include="aura\node\windows\windows_factory_exchange.h">
-      <Filter>Header Files\aura\node\windows</Filter>
+    <ClInclude Include="ace\node\windows\windows_factory_exchange.h">
+      <Filter>Header Files\ace\node\windows</Filter>
     </ClInclude>
-    <ClInclude Include="aura\node\windows\windows_file.h">
-      <Filter>Header Files\aura\node\windows</Filter>
+    <ClInclude Include="ace\node\windows\windows_file.h">
+      <Filter>Header Files\ace\node\windows</Filter>
     </ClInclude>
-    <ClInclude Include="aura\node\windows\windows_file_find.h">
-      <Filter>Header Files\aura\node\windows</Filter>
+    <ClInclude Include="ace\node\windows\windows_file_find.h">
+      <Filter>Header Files\ace\node\windows</Filter>
     </ClInclude>
-    <ClInclude Include="aura\node\windows\windows_folder_watch.h">
-      <Filter>Header Files\aura\node\windows</Filter>
+    <ClInclude Include="ace\node\windows\windows_folder_watch.h">
+      <Filter>Header Files\ace\node\windows</Filter>
     </ClInclude>
-    <ClInclude Include="aura\node\windows\windows_os.h">
-      <Filter>Header Files\aura\node\windows</Filter>
+    <ClInclude Include="ace\node\windows\windows_os.h">
+      <Filter>Header Files\ace\node\windows</Filter>
     </ClInclude>
-    <ClInclude Include="aura\node\windows\windows_registry.h">
-      <Filter>Header Files\aura\node\windows</Filter>
+    <ClInclude Include="ace\node\windows\windows_registry.h">
+      <Filter>Header Files\ace\node\windows</Filter>
     </ClInclude>
-    <ClInclude Include="aura\node\windows\windows_shell.h">
-      <Filter>Header Files\aura\node\windows</Filter>
+    <ClInclude Include="ace\node\windows\windows_shell.h">
+      <Filter>Header Files\ace\node\windows</Filter>
     </ClInclude>
-    <ClInclude Include="aura\node\windows\windows_simple_hold_handle.h">
-      <Filter>Header Files\aura\node\windows</Filter>
+    <ClInclude Include="ace\node\windows\windows_simple_hold_handle.h">
+      <Filter>Header Files\ace\node\windows</Filter>
     </ClInclude>
-    <ClInclude Include="aura\node\windows\windows_stdio_file.h">
-      <Filter>Header Files\aura\node\windows</Filter>
+    <ClInclude Include="ace\node\windows\windows_stdio_file.h">
+      <Filter>Header Files\ace\node\windows</Filter>
     </ClInclude>
-    <ClInclude Include="aura\node\windows\windows_thread.h">
-      <Filter>Header Files\aura\node\windows</Filter>
+    <ClInclude Include="ace\node\windows\windows_thread.h">
+      <Filter>Header Files\ace\node\windows</Filter>
     </ClInclude>
-    <ClInclude Include="aura\os\windows\windows_base_file.h">
-      <Filter>Header Files\aura\os\windows</Filter>
+    <ClInclude Include="ace\os\windows\windows_base_file.h">
+      <Filter>Header Files\ace\os\windows</Filter>
     </ClInclude>
-    <ClInclude Include="aura\os\windows\windows_base_internal.h">
-      <Filter>Header Files\aura\os\windows</Filter>
+    <ClInclude Include="ace\os\windows\windows_base_internal.h">
+      <Filter>Header Files\ace\os\windows</Filter>
     </ClInclude>
-    <ClInclude Include="aura\os\windows\windows_base_registry.h">
-      <Filter>Header Files\aura\os\windows</Filter>
+    <ClInclude Include="ace\os\windows\windows_base_registry.h">
+      <Filter>Header Files\ace\os\windows</Filter>
     </ClInclude>
-    <ClInclude Include="aura\os\windows\windows_file_watcher.h">
-      <Filter>Header Files\aura\os\windows</Filter>
+    <ClInclude Include="ace\os\windows\windows_file_watcher.h">
+      <Filter>Header Files\ace\os\windows</Filter>
     </ClInclude>
-    <ClInclude Include="aura\node\windows\windows_uac_tools.h">
-      <Filter>Header Files\aura\node\windows</Filter>
+    <ClInclude Include="ace\node\windows\windows_uac_tools.h">
+      <Filter>Header Files\ace\node\windows</Filter>
     </ClInclude>
-    <ClInclude Include="aura\message\message_dispatch.h">
-      <Filter>Header Files\aura\message</Filter>
+    <ClInclude Include="ace\message\message_dispatch.h">
+      <Filter>Header Files\ace\message</Filter>
     </ClInclude>
-    <ClInclude Include="aura\message\message_definition.h">
-      <Filter>Header Files\aura\message</Filter>
+    <ClInclude Include="ace\message\message_definition.h">
+      <Filter>Header Files\ace\message</Filter>
     </ClInclude>
-    <ClInclude Include="aura\message\message.h">
-      <Filter>Header Files\aura\message</Filter>
+    <ClInclude Include="ace\message\message.h">
+      <Filter>Header Files\ace\message</Filter>
     </ClInclude>
-    <ClInclude Include="aura\message\message_cross_windows.h">
-      <Filter>Header Files\aura\message</Filter>
+    <ClInclude Include="ace\message\message_cross_windows.h">
+      <Filter>Header Files\ace\message</Filter>
     </ClInclude>
-    <ClInclude Include="aura\message\message_base.h">
-      <Filter>Header Files\aura\message</Filter>
+    <ClInclude Include="ace\message\message_base.h">
+      <Filter>Header Files\ace\message</Filter>
     </ClInclude>
     <ClInclude Include="primitive\comparison\comparison_compare.h">
       <Filter>Header Files\primitive\comparison</Filter>
     </ClInclude>
-    <ClInclude Include="aura\exception\exception_parsing.h">
-      <Filter>Header Files\aura\exception</Filter>
+    <ClInclude Include="ace\exception\exception_parsing.h">
+      <Filter>Header Files\ace\exception</Filter>
     </ClInclude>
     <ClInclude Include="primitive\data\data_data.h">
       <Filter>Header Files\primitive\data</Filter>
@@ -899,44 +899,44 @@
     <ClInclude Include="primitive\collection\collection_set.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
-    <ClInclude Include="aura\exception\exception_verisimple.h">
-      <Filter>Header Files\aura\exception</Filter>
+    <ClInclude Include="ace\exception\exception_verisimple.h">
+      <Filter>Header Files\ace\exception</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura_policy\aura_c.h">
-      <Filter>Header Files\aura\aura_policy</Filter>
+    <ClInclude Include="ace\ace_policy\ace_c.h">
+      <Filter>Header Files\ace\ace_policy</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura_policy\aura_cpp.h">
-      <Filter>Header Files\aura\aura_policy</Filter>
+    <ClInclude Include="ace\ace_policy\ace_cpp.h">
+      <Filter>Header Files\ace\ace_policy</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura_policy\aura_policy.h">
-      <Filter>Header Files\aura\aura_policy</Filter>
+    <ClInclude Include="ace\ace_policy\ace_policy.h">
+      <Filter>Header Files\ace\ace_policy</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura_policy\aura_policy_objc.h">
-      <Filter>Header Files\aura\aura_policy</Filter>
+    <ClInclude Include="ace\ace_policy\ace_policy_objc.h">
+      <Filter>Header Files\ace\ace_policy</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura_policy\aura_policy_objcpp.h">
-      <Filter>Header Files\aura\aura_policy</Filter>
+    <ClInclude Include="ace\ace_policy\ace_policy_objcpp.h">
+      <Filter>Header Files\ace\ace_policy</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura_policy\aura_policy_winrt.h">
-      <Filter>Header Files\aura\aura_policy</Filter>
+    <ClInclude Include="ace\ace_policy\ace_policy_winrt.h">
+      <Filter>Header Files\ace\ace_policy</Filter>
     </ClInclude>
     <ClInclude Include="user\simple\simple_message_box.h">
       <Filter>Header Files\user\simple</Filter>
     </ClInclude>
-    <ClInclude Include="aura\process\process_bidi_pipe.h">
-      <Filter>Header Files\aura\process</Filter>
+    <ClInclude Include="ace\process\process_bidi_pipe.h">
+      <Filter>Header Files\ace\process</Filter>
     </ClInclude>
-    <ClInclude Include="aura\process\process_pipe.h">
-      <Filter>Header Files\aura\process</Filter>
+    <ClInclude Include="ace\process\process_pipe.h">
+      <Filter>Header Files\ace\process</Filter>
     </ClInclude>
-    <ClInclude Include="aura\process\process_process.h">
-      <Filter>Header Files\aura\process</Filter>
+    <ClInclude Include="ace\process\process_process.h">
+      <Filter>Header Files\ace\process</Filter>
     </ClInclude>
-    <ClInclude Include="aura\node\windows\windows_pipe.h">
-      <Filter>Header Files\aura\node\windows</Filter>
+    <ClInclude Include="ace\node\windows\windows_pipe.h">
+      <Filter>Header Files\ace\node\windows</Filter>
     </ClInclude>
-    <ClInclude Include="aura\node\windows\windows_process.h">
-      <Filter>Header Files\aura\node\windows</Filter>
+    <ClInclude Include="ace\node\windows\windows_process.h">
+      <Filter>Header Files\ace\node\windows</Filter>
     </ClInclude>
     <ClInclude Include="primitive\math\math_complex.h">
       <Filter>Header Files\primitive\math</Filter>
@@ -944,304 +944,304 @@
     <ClInclude Include="primitive\math\math_std_template.h">
       <Filter>Header Files\primitive\math</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_action_context.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_action_context.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_action_source.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_action_source.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_allocate.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_allocate.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_application.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_application.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_application_signal_details.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_application_signal_details.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_async.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_async.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_auto_pointer.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_auto_pointer.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_class.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_class.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_command.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_command.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_command_target.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_command_target.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_common.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_common.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_conv.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_conv.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_core.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_core.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_core_os.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_core_os.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_cpu_architecture.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_cpu_architecture.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_cregexp.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_cregexp.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_cregexp_util.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_cregexp_util.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_debug.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_debug.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_definition.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_definition.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_draw2d.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_draw2d.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_element.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_element.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_enum.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_enum.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_file_watcher.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_file_watcher.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_file_watcher_impl.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_file_watcher_impl.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_file_watcher_listener_thread.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_file_watcher_listener_thread.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_file_watcher_thread.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_file_watcher_thread.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_fixed_alloc.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_fixed_alloc.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_fixed_alloc_impl.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_fixed_alloc_impl.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_flags.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_flags.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_gudo.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_gudo.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_gudo_application.inl">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_gudo_application.inl">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_heap_item.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_heap_item.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_heap_item_array.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_heap_item_array.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_id_pool.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_id_pool.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_international.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_international.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_keep.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_keep.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_keep_true.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_keep_true.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_launcher.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_launcher.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_library.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_library.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_live_object.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_live_object.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_live_signal.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_live_signal.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_log.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_log.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_lparam.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_lparam.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_machine_event.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_machine_event.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_machine_event_central.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_machine_event_central.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_machine_event_data.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_machine_event_data.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_main_init_data.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_main_init_data.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_math.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_math.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_message_loop.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_message_loop.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_microtimer.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_microtimer.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_muldiv64.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_muldiv64.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_net.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_net.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_new.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_new.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_number.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_number.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_os.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_os.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_plex.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_plex.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_plex_heap.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_plex_heap.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_plex_heap_impl.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_plex_heap_impl.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_printf.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_printf.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_progress.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_progress.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_savings.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_savings.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_session.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_session.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_simple_app.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_simple_app.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_simple_pixel_font.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_simple_pixel_font.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_smart_pointer1.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_smart_pointer1.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_smart_pointer2.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_smart_pointer2.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_sprintf.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_sprintf.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_static_start.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_static_start.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_system.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_system.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_system_str.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_system_str.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_system_trace.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_system_trace.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_trace.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_trace.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_types.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_types.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_url.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_url.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_application_ptra.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_application_ptra.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_assert_running_task.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_assert_running_task.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_aura.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_ace.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_command_msg.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_command_msg.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_command_ui.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_command_ui.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_command_ui_test.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_command_ui_test.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_create_context.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_create_context.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_draw_context.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_draw_context.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_draw_interface.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_draw_interface.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_local_memory_map.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_local_memory_map.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_printer.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_printer.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_str_context.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_str_context.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_template.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_template.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_timer_array.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_timer_array.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_timer_item.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_timer_item.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_user.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_user.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\axis.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\axis.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive_create.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_ipc.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_ipc.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_app_launcher.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_app_launcher.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_shell_launcher.h">
-      <Filter>Header Files\aura\aura</Filter>
+    <ClInclude Include="ace\ace\ace_shell_launcher.h">
+      <Filter>Header Files\ace\ace</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_department.h">
+    <ClInclude Include="ace\ace\ace_department.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_department_container.h">
+    <ClInclude Include="ace\ace\ace_department_container.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="aura\process\process_department.h">
+    <ClInclude Include="ace\process\process_department.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="aura\xml\xml_department.h">
+    <ClInclude Include="ace\xml\xml_department.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="primitive\math\math_department.h">
@@ -1258,8 +1258,8 @@
     <ClCompile Include="user\simple\simple_message_box.cpp">
       <Filter>Source Files\user\simple</Filter>
     </ClCompile>
-    <ClCompile Include="aura\_aura_aura.cpp">
-      <Filter>Source Files\aura</Filter>
+    <ClCompile Include="ace\_ace_ace.cpp">
+      <Filter>Source Files\ace</Filter>
     </ClCompile>
     <ClCompile Include="primitive\_primitive.cpp">
       <Filter>Source Files\primitive</Filter>
@@ -1270,13 +1270,16 @@
     <ClCompile Include="primitive\str\str_ch_class.cpp">
       <Filter>Source Files\primitive\str</Filter>
     </ClCompile>
-    <ClCompile Include="aura\os\windows\windows_ipc.cpp">
-      <Filter>Source Files\aura\os\windows</Filter>
+    <ClCompile Include="ace\os\windows\windows_ipc.cpp">
+      <Filter>Source Files\ace\os\windows</Filter>
     </ClCompile>
-    <ClCompile Include="aura\exception\exception_engine.cpp">
-      <Filter>Source Files\aura\exception</Filter>
+    <ClCompile Include="ace\exception\exception_engine.cpp">
+      <Filter>Source Files\ace\exception</Filter>
     </ClCompile>
     <ClCompile Include="test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\_multithreading.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1290,36 +1293,36 @@
     <None Include="primitive\collection\collection.inl">
       <Filter>Header Files\primitive\collection</Filter>
     </None>
-    <None Include="aura.def">
+    <None Include="ace.def">
       <Filter>Source Files</Filter>
     </None>
-    <None Include="aura\message\message.inl">
-      <Filter>Header Files\aura\message</Filter>
+    <None Include="ace\message\message.inl">
+      <Filter>Header Files\ace\message</Filter>
     </None>
-    <None Include="aura\aura\aura.inl">
-      <Filter>Header Files\aura\aura</Filter>
+    <None Include="ace\ace\ace.inl">
+      <Filter>Header Files\ace\ace</Filter>
     </None>
-    <None Include="aura\aura\aura_system_factory.inl">
-      <Filter>Header Files\aura\aura</Filter>
+    <None Include="ace\ace\ace_system_factory.inl">
+      <Filter>Header Files\ace\ace</Filter>
     </None>
-    <None Include="aura\aura\aura_system_id.inl">
-      <Filter>Header Files\aura\aura</Filter>
+    <None Include="ace\ace\ace_system_id.inl">
+      <Filter>Header Files\ace\ace</Filter>
     </None>
-    <None Include="aura\aura\aura_system_object.inl">
-      <Filter>Header Files\aura\aura</Filter>
+    <None Include="ace\ace\ace_system_object.inl">
+      <Filter>Header Files\ace\ace</Filter>
     </None>
-    <None Include="aura\aura\aura_system_primitive_var.inl">
-      <Filter>Header Files\aura\aura</Filter>
+    <None Include="ace\ace\ace_system_primitive_var.inl">
+      <Filter>Header Files\ace\ace</Filter>
     </None>
-    <None Include="aura\aura\aura_system_smart_pointer.inl">
-      <Filter>Header Files\aura\aura</Filter>
+    <None Include="ace\ace\ace_system_smart_pointer.inl">
+      <Filter>Header Files\ace\ace</Filter>
     </None>
-    <None Include="aura\aura\aura_system_xml.inl">
-      <Filter>Header Files\aura\aura</Filter>
+    <None Include="ace\ace\ace_system_xml.inl">
+      <Filter>Header Files\ace\ace</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="aura.rc">
+    <ResourceCompile Include="ace.rc">
       <Filter>Source Files</Filter>
     </ResourceCompile>
   </ItemGroup>

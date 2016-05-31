@@ -1,4 +1,4 @@
 
 
 
-CLASS_DECL_AURA aura_str_pool * s_paurastrpool = NULL;
+CLASS_DECL_ACE ace_str_pool * s_pacestrpool = NULL;

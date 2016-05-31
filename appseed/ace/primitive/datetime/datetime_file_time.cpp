@@ -150,7 +150,7 @@ namespace datetime
 
 
 
-CLASS_DECL_AURA bool file_modified_timeout(const char * path, int iSeconds)
+CLASS_DECL_ACE bool file_modified_timeout(const char * path, int iSeconds)
 {
 
    ::file_time filetime = ::get_file_time(path);

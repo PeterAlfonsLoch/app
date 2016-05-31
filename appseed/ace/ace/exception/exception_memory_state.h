@@ -5,7 +5,7 @@
 
 
 // Memory state for snapshots/leak detection
-struct CLASS_DECL_AURA memory_state :
+struct CLASS_DECL_ACE memory_state :
    public MEMORY_STATE
 {
 // Attributes

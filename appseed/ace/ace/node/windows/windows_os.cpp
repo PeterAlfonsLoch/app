@@ -18,7 +18,7 @@ _Inout_ DWORD*                                  pcbPackedCredentials
 //#include <Psapi.h>
 //#include <WinCred.h>
 
-CLASS_DECL_AURA HBITMAP get_icon_hbitmap(HICON hICON);
+CLASS_DECL_ACE HBITMAP get_icon_hbitmap(HICON hICON);
 
 namespace windows
 {

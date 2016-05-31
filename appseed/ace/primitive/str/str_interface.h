@@ -11,7 +11,7 @@
 //class istring;
 //
 //
-//class CLASS_DECL_AURA string_interface
+//class CLASS_DECL_ACE string_interface
 ////   virtual public root
 //{
 //public:
@@ -41,7 +41,7 @@
 //
 //
 //
-//class CLASS_DECL_AURA const_empty_string:
+//class CLASS_DECL_ACE const_empty_string:
 //   public string_interface
 //{
 //public:

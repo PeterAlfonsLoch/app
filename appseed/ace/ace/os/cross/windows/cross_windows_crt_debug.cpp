@@ -1,18 +1,18 @@
 //#include "framework.h"
 
-CLASS_DECL_AURA int32_t __cdecl _CrtReportBlockType(const void * p);
+CLASS_DECL_ACE int32_t __cdecl _CrtReportBlockType(const void * p);
 
-CLASS_DECL_AURA int32_t __cdecl _CrtSetReportMode(int32_t, int32_t);
+CLASS_DECL_ACE int32_t __cdecl _CrtSetReportMode(int32_t, int32_t);
 
-CLASS_DECL_AURA int32_t __cdecl _CrtSetReportHook2(int32_t, int32_t(__cdecl*)(int32_t, char *, int32_t *));
+CLASS_DECL_ACE int32_t __cdecl _CrtSetReportHook2(int32_t, int32_t(__cdecl*)(int32_t, char *, int32_t *));
 
-//CLASS_DECL_AURA _CRT_DUMP_CLIENT DECL_C _CrtSetDumpClient(_CRT_DUMP_CLIENT _PFnNewDump);
+//CLASS_DECL_ACE _CRT_DUMP_CLIENT DECL_C _CrtSetDumpClient(_CRT_DUMP_CLIENT _PFnNewDump);
 
-CLASS_DECL_AURA int32_t __cdecl _CrtSetDbgFlag(int32_t);
+CLASS_DECL_ACE int32_t __cdecl _CrtSetDbgFlag(int32_t);
 
-CLASS_DECL_AURA int32_t __cdecl _CrtDumpMemoryLeaks();
+CLASS_DECL_ACE int32_t __cdecl _CrtDumpMemoryLeaks();
 
-CLASS_DECL_AURA int32_t DECL_C _CrtCheckMemory();
+CLASS_DECL_ACE int32_t DECL_C _CrtCheckMemory();
 
 
 /*
@@ -48,7 +48,7 @@ free(_Memory);
 
 */
 
-//CLASS_DECL_AURA int __cdecl debug_report(
+//CLASS_DECL_ACE int __cdecl debug_report(
 //   int _ReportType,
 //   const char * _Filename,
 //   int _LineNumber,
@@ -60,37 +60,37 @@ free(_Memory);
 //}
 
 
-CLASS_DECL_AURA int32_t __cdecl _CrtReportBlockType(const void * p)
+CLASS_DECL_ACE int32_t __cdecl _CrtReportBlockType(const void * p)
 {
    return ___CLIENT_BLOCK;
 }
 
-CLASS_DECL_AURA int32_t __cdecl _CrtSetReportMode(int32_t, int32_t)
+CLASS_DECL_ACE int32_t __cdecl _CrtSetReportMode(int32_t, int32_t)
 {
    return TRUE;
 }
 
-CLASS_DECL_AURA int32_t __cdecl _CrtSetReportHook2(int32_t, int32_t(__cdecl*)(int32_t, char *, int32_t *))
+CLASS_DECL_ACE int32_t __cdecl _CrtSetReportHook2(int32_t, int32_t(__cdecl*)(int32_t, char *, int32_t *))
 {
    return TRUE;
 }
 
-//CLASS_DECL_AURA _CRT_DUMP_CLIENT DECL_C _CrtSetDumpClient(_CRT_DUMP_CLIENT _PFnNewDump)
+//CLASS_DECL_ACE _CRT_DUMP_CLIENT DECL_C _CrtSetDumpClient(_CRT_DUMP_CLIENT _PFnNewDump)
 //{
 //   return NULL;
 //}
 
-CLASS_DECL_AURA int32_t __cdecl _CrtSetDbgFlag(int32_t)
+CLASS_DECL_ACE int32_t __cdecl _CrtSetDbgFlag(int32_t)
 {
    return TRUE;
 }
 
-CLASS_DECL_AURA int32_t __cdecl _CrtDumpMemoryLeaks()
+CLASS_DECL_ACE int32_t __cdecl _CrtDumpMemoryLeaks()
 {
    return TRUE;
 }
 
-CLASS_DECL_AURA int32_t DECL_C _CrtCheckMemory()
+CLASS_DECL_ACE int32_t DECL_C _CrtCheckMemory()
 {
    return 1;
 }

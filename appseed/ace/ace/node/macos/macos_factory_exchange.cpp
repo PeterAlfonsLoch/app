@@ -39,7 +39,7 @@ namespace ace
 
 
 
-void __node_aura_factory_exchange(::ace::application * papp)
+void __node_ace_factory_exchange(::ace::application * papp)
 {
 
    ::macos::ace::factory_exchange factoryexchange(papp);

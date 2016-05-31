@@ -6,7 +6,7 @@
 //{
 //
 //
-//   class CLASS_DECL_AURA thread :
+//   class CLASS_DECL_ACE thread :
 //      virtual public ::thread_impl//,
 //      //virtual public ::message_queue
 //   {
@@ -178,8 +178,8 @@
 //   };
 //
 //
-//   //CLASS_DECL_AURA ::thread * get_thread();
-////   CLASS_DECL_AURA ::thread_state * get_thread_state();
+//   //CLASS_DECL_ACE ::thread * get_thread();
+////   CLASS_DECL_ACE ::thread_state * get_thread_state();
 //
 //
 //} // namespace metrowin

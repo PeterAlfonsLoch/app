@@ -559,7 +559,7 @@ namespace ios
 #endif
    
    
-   /*void CLASS_DECL_AURA vfxThrowFileException(int32_t cause, LONG lOsError,
+   /*void CLASS_DECL_ACE vfxThrowFileException(int32_t cause, LONG lOsError,
     //   const char * lpszFileName  == NULL */
    /*{
     #ifdef DEBUG
@@ -931,7 +931,7 @@ namespace ios
    
    
    /*
-    UINT CLASS_DECL_AURA vfxGetFileTitle(const unichar * lpszPathName, unichar * lpszTitle, UINT nMax)
+    UINT CLASS_DECL_ACE vfxGetFileTitle(const unichar * lpszPathName, unichar * lpszTitle, UINT nMax)
     {
     ASSERT(lpszTitle == NULL ||
     __is_valid_address(lpszTitle, _MAX_FNAME));
@@ -1115,7 +1115,7 @@ namespace ios
 
 
 // turn a file, relative path or other into an absolute path
-bool CLASS_DECL_AURA vfxFullPath(wstring & wstrFullPath, const wstring & wstrPath)
+bool CLASS_DECL_ACE vfxFullPath(wstring & wstrFullPath, const wstring & wstrPath)
 // lpszPathOut = buffer of _MAX_PATH
 // lpszFileIn = file, relative path or absolute path
 // (both in ANSI character set)
@@ -1206,7 +1206,7 @@ bool CLASS_DECL_AURA vfxFullPath(wstring & wstrFullPath, const wstring & wstrPat
     return TRUE;*/
 }
 
-/*void CLASS_DECL_AURA __get_root_path(const char * lpszPath, string & strRoot)
+/*void CLASS_DECL_ACE __get_root_path(const char * lpszPath, string & strRoot)
  {
  ASSERT(lpszPath != NULL);
  // determine the root name of the volume
@@ -1249,7 +1249,7 @@ bool CLASS_DECL_AURA vfxFullPath(wstring & wstrFullPath, const wstring & wstrPat
  strRoot.ReleaseBuffer();
  }*/
 
-/*bool CLASS_DECL_AURA ::ca2::ComparePath(const char * lpszPath1, const char * lpszPath2)
+/*bool CLASS_DECL_ACE ::ca2::ComparePath(const char * lpszPath1, const char * lpszPath2)
  {
  // use case insensitive compare as a starter
  if (lstrcmpi(lpszPath1, lpszPath2) != 0)
@@ -1302,7 +1302,7 @@ bool CLASS_DECL_AURA vfxFullPath(wstring & wstrFullPath, const wstring & wstrPat
  return TRUE; // otherwise file name is truly the same
  }*/
 
-/*UINT CLASS_DECL_AURA __get_file_title(const char * lpszPathName, LPTSTR lpszTitle, UINT nMax)
+/*UINT CLASS_DECL_ACE __get_file_title(const char * lpszPathName, LPTSTR lpszTitle, UINT nMax)
  {
  ASSERT(lpszTitle == NULL ||
  __is_valid_address(lpszTitle, _MAX_FNAME));
@@ -1324,7 +1324,7 @@ bool CLASS_DECL_AURA vfxFullPath(wstring & wstrFullPath, const wstring & wstrPat
  return lpszTitle == NULL ? lstrlen(lpszTemp)+1 : 0;
  }*/
 
-CLASS_DECL_AURA void vfxGetModuleShortFileName(HINSTANCE hInst, string& strShortName)
+CLASS_DECL_ACE void vfxGetModuleShortFileName(HINSTANCE hInst, string& strShortName)
 {
    throw todo(::get_thread_app());
    //link_map * plm;
@@ -1352,7 +1352,7 @@ CLASS_DECL_AURA void vfxGetModuleShortFileName(HINSTANCE hInst, string& strShort
 
 
 
-CLASS_DECL_AURA string vfxStringFromCLSID(REFCLSID rclsid)
+CLASS_DECL_ACE string vfxStringFromCLSID(REFCLSID rclsid)
 {
    CHAR szCLSID[256];
    sprintf(szCLSID, "{%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X}",
@@ -1363,7 +1363,7 @@ CLASS_DECL_AURA string vfxStringFromCLSID(REFCLSID rclsid)
 }
 
 /*
- bool CLASS_DECL_AURA vfxGetInProcServer(const char * lpszCLSID, string & str)
+ bool CLASS_DECL_ACE vfxGetInProcServer(const char * lpszCLSID, string & str)
  {
  HKEY hKey = NULL;
  bool b = FALSE;
@@ -1397,7 +1397,7 @@ CLASS_DECL_AURA string vfxStringFromCLSID(REFCLSID rclsid)
 
 
 /*
- void CLASS_DECL_AURA vfxGetRoot(wstring & wstrRoot, const wstring & wstrPath)
+ void CLASS_DECL_ACE vfxGetRoot(wstring & wstrRoot, const wstring & wstrPath)
  {
  //   ASSERT(lpszPath != NULL);
  // determine the root name of the volume
@@ -1440,7 +1440,7 @@ CLASS_DECL_AURA string vfxStringFromCLSID(REFCLSID rclsid)
  }*/
 
 /*
- void CLASS_DECL_AURA vfxGetRoot(const unichar * lpszPath, string& strRoot)
+ void CLASS_DECL_ACE vfxGetRoot(const unichar * lpszPath, string& strRoot)
  {
  ASSERT(lpszPath != NULL);
  wstring wstrRoot;
@@ -1486,7 +1486,7 @@ CLASS_DECL_AURA string vfxStringFromCLSID(REFCLSID rclsid)
  */
 
 
-/*bool CLASS_DECL_AURA vfxFullPath(char * lpszPathOut, const char * lpszFileIn)
+/*bool CLASS_DECL_ACE vfxFullPath(char * lpszPathOut, const char * lpszFileIn)
  // lpszPathOut = buffer of _MAX_PATH
  // lpszFileIn = file, relative path or absolute path
  // (both in ANSI character set)
@@ -1540,7 +1540,7 @@ CLASS_DECL_AURA string vfxStringFromCLSID(REFCLSID rclsid)
 
 
 
-/*CLASS_DECL_AURA UINT vfxGetFileName(const char * lpszPathName, char * lpszTitle, UINT nMax)
+/*CLASS_DECL_ACE UINT vfxGetFileName(const char * lpszPathName, char * lpszTitle, UINT nMax)
  {
  ASSERT(lpszTitle == NULL ||
  __is_valid_address(lpszTitle, _MAX_FNAME));
@@ -1571,7 +1571,7 @@ CLASS_DECL_AURA string vfxStringFromCLSID(REFCLSID rclsid)
 /////////////////////////////////////////////////////////////////////////////
 // WinFileException helpers
 
-void CLASS_DECL_AURA vfxThrowFileException(::ace::application * papp, ::file::exception::e_cause cause, LONG lOsError, const char * lpszFileName /* == NULL */)
+void CLASS_DECL_ACE vfxThrowFileException(::ace::application * papp, ::file::exception::e_cause cause, LONG lOsError, const char * lpszFileName /* == NULL */)
 {
 #ifdef DEBUG
    const char * lpsz;
@@ -1584,7 +1584,7 @@ void CLASS_DECL_AURA vfxThrowFileException(::ace::application * papp, ::file::ex
    throw ::file::exception(papp, cause, lOsError, lpszFileName);
 }
 
-::file::exception * CLASS_DECL_AURA get_FileException(::ace::application * papp, ::file::exception::e_cause cause, LONG lOsError, const char * lpszFileName /* == NULL */)
+::file::exception * CLASS_DECL_ACE get_FileException(::ace::application * papp, ::file::exception::e_cause cause, LONG lOsError, const char * lpszFileName /* == NULL */)
 {
 #ifdef DEBUG
    const char * lpsz;

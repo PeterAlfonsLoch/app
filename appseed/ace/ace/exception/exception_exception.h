@@ -5,7 +5,7 @@ namespace exception
 {
 
 
-   class CLASS_DECL_AURA exception :
+   class CLASS_DECL_ACE exception :
       virtual public ::object
    {
    public:
@@ -30,10 +30,10 @@ namespace exception
    };
 
 
-   void CLASS_DECL_AURA rethrow(exception * pe);
+   void CLASS_DECL_ACE rethrow(exception * pe);
 
 
-   class CLASS_DECL_AURA result:
+   class CLASS_DECL_ACE result:
       virtual public exception,
       virtual public spa(exception)
    {
@@ -57,7 +57,7 @@ namespace exception
 
 
 
-   class CLASS_DECL_AURA result_sp:
+   class CLASS_DECL_ACE result_sp:
       virtual public sp(result)
    {
    public:

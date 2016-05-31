@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_AURA hresult_exception : 
+class CLASS_DECL_ACE hresult_exception : 
    virtual public ::exception::base
 {
 public:

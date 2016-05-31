@@ -93,12 +93,12 @@
 //
 /////  \brief		pauses object for specified time
 /////  \param		duration sleeping time of object
-///*CLASS_DECL_AURA void sleep(const duration & duration)
+///*CLASS_DECL_ACE void sleep(const duration & duration)
 //{
 //   Sleep((uint32_t)duration.total_milliseconds());
 //}*/
 //
-//CLASS_DECL_AURA void sleep(const duration & duration)
+//CLASS_DECL_ACE void sleep(const duration & duration)
 //{
 //   ::Sleep(static_cast<uint32_t>(duration.total_milliseconds()));
 //}

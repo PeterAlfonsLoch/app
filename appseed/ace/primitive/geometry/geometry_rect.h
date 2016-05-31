@@ -7,7 +7,7 @@ class point_array;
 /////////////////////////////////////////////////////////////////////////////
 // rect - A 2-D rectangle, similar to Windows RECT structure.
 
-class CLASS_DECL_AURA rect : public tagRECT
+class CLASS_DECL_ACE rect : public tagRECT
 {
 // Constructors
 public:
@@ -194,7 +194,7 @@ public:
 /////////////////////////////////////////////////////////////////////////////
 // rect64 - A 2-D rect64angle, similar to Windows RECT structure.
 
-class CLASS_DECL_AURA rect64 : public RECT64
+class CLASS_DECL_ACE rect64 : public RECT64
 {
 // Constructors
 public:
@@ -455,7 +455,7 @@ class pointd_array;
 /////////////////////////////////////////////////////////////////////////////
 // rect - A 2-D rectangle, similar to Windows RECT structure.
 
-class CLASS_DECL_AURA rectd : public RECTD
+class CLASS_DECL_ACE rectd : public RECTD
 {
 // Constructors
 public:
@@ -630,8 +630,8 @@ public:
 };
 
 
-inline CLASS_DECL_AURA ::rect null_rect() { return ::rect(0, 0, 0, 0); }
-inline CLASS_DECL_AURA ::rect64 null_rect64() { return ::rect64(0, 0, 0, 0); }
+inline CLASS_DECL_ACE ::rect null_rect() { return ::rect(0, 0, 0, 0); }
+inline CLASS_DECL_ACE ::rect64 null_rect64() { return ::rect64(0, 0, 0, 0); }
 
 
 inline void rect::assign(const RECT & rect,e_orientation eorientation) throw()
@@ -769,7 +769,7 @@ template<> inline UINT HashKey<rect> (rect key)
 
 
 
-class CLASS_DECL_AURA rect3d
+class CLASS_DECL_ACE rect3d
 {
 public:
 

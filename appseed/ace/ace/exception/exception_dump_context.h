@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_AURA dump_context :
+class CLASS_DECL_ACE dump_context :
    virtual public object
 {
 public:

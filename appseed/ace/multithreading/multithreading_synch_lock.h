@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_AURA synch_lock :
+class CLASS_DECL_ACE synch_lock :
    public initial_single_lock
 {
 public:

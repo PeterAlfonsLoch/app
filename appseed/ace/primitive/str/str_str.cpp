@@ -9,7 +9,7 @@
 namespace str
 {
 
-   CLASS_DECL_AURA e_err g_eerr = err_none;
+   CLASS_DECL_ACE e_err g_eerr = err_none;
 
 
    const char trailingBytesForUTF8[256] = {
@@ -3212,7 +3212,7 @@ end:
    }
 
 
-   CLASS_DECL_AURA  bool           trim(string & str)
+   CLASS_DECL_ACE  bool           trim(string & str)
    {
 
       strsize iLen = str.length();
@@ -3223,7 +3223,7 @@ end:
 
    }
 
-   CLASS_DECL_AURA  bool         _008Trim(string & str)
+   CLASS_DECL_ACE  bool         _008Trim(string & str)
    {
 
       ::count c = 1;
@@ -3260,7 +3260,7 @@ end:
    }
 
 
-   CLASS_DECL_AURA  bool         trim_any_quotes(string & strParam)
+   CLASS_DECL_ACE  bool         trim_any_quotes(string & strParam)
    {
 
       string str(strParam);
@@ -3276,7 +3276,7 @@ end:
 
    }
 
-   CLASS_DECL_AURA  bool paired_trim(string & str,char ch)
+   CLASS_DECL_ACE  bool paired_trim(string & str,char ch)
    {
 
       if(str.get_length() <= 1)
@@ -3299,7 +3299,7 @@ end:
 
    }
 
-   CLASS_DECL_AURA string zero_pad(const string & strSrc,int iPad)
+   CLASS_DECL_ACE string zero_pad(const string & strSrc,int iPad)
    {
 
       string str(strSrc);

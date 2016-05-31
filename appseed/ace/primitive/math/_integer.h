@@ -5,7 +5,7 @@ namespace math
 {
 
 
-   class CLASS_DECL_AURA _integer :
+   class CLASS_DECL_ACE _integer :
       virtual public value_impl
    {
    public:

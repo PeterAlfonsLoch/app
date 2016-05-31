@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_AURA progress_listener :
+class CLASS_DECL_ACE progress_listener :
    virtual public object
 {
 public:
@@ -12,7 +12,7 @@ public:
 
 
 
-class CLASS_DECL_AURA int_progress :
+class CLASS_DECL_ACE int_progress :
    virtual public int_scalar_listener
 {
 public:

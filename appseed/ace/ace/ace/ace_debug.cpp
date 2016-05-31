@@ -1,7 +1,7 @@
 ﻿//#include "framework.h"
 
 
-CLASS_DECL_AURA int32_t FUNCTION_DEBUGBOX(const char * pszMessage, const char * pszTitle, int32_t iFlags)
+CLASS_DECL_ACE int32_t FUNCTION_DEBUGBOX(const char * pszMessage, const char * pszTitle, int32_t iFlags)
 {
 
    return ::MessageBoxA(NULL,pszMessage,pszTitle,iFlags);
@@ -12,7 +12,7 @@ CLASS_DECL_AURA int32_t FUNCTION_DEBUGBOX(const char * pszMessage, const char * 
 #ifdef DEBUG
 void TRACELASTERROR()
 {
-   sp(::ace::application) m_pauraapp = get_thread_app();
+   sp(::ace::application) m_paceapp = get_thread_app();
    string strErrorMessage = ::get_system_error_message(::GetLastError());
    TRACE("Error Message :\n%s\n", strErrorMessage.c_str());
 }

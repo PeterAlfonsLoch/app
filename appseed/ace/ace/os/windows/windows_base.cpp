@@ -8,14 +8,14 @@
 #include <gdiplus.h>
 #undef min
 #undef max
-#define new AURA_NEW
+#define new ACE_NEW
 #include <ddeml.h>
 
 void __term_threading();
 void __term_windowing();
 
 
-CLASS_DECL_AURA int32_t __cdecl _memory_type(const void * p);
+CLASS_DECL_ACE int32_t __cdecl _memory_type(const void * p);
 
 Gdiplus::GdiplusStartupInput *   g_pgdiplusStartupInput     = NULL;
 Gdiplus::GdiplusStartupOutput *  g_pgdiplusStartupOutput    = NULL;
@@ -45,9 +45,9 @@ LSTATUS
 
 LPFN_RegGetValueW g_pfnRegGetValueW = NULL;
 
-CLASS_DECL_AURA thread_int_ptr < int_ptr >                             t_iCoInitialize;
+CLASS_DECL_ACE thread_int_ptr < int_ptr >                             t_iCoInitialize;
 
-CLASS_DECL_AURA thread_int_ptr < HRESULT > t_hresultCoInitialize;
+CLASS_DECL_ACE thread_int_ptr < HRESULT > t_hresultCoInitialize;
 
 
 
@@ -74,13 +74,13 @@ bool defer_co_initialize_ex()
 
 }
 
-bool __node_aura_pre_init()
+bool __node_ace_pre_init()
 {
    
 
-   OutputDebugStringW(L"__node_aura_pre_init\n");
+   OutputDebugStringW(L"__node_ace_pre_init\n");
 
-   xxdebug_box("__node_aura_pre_init","box",MB_OK);
+   xxdebug_box("__node_ace_pre_init","box",MB_OK);
    g_pgdiplusStartupInput     = new Gdiplus::GdiplusStartupInput();
    g_pgdiplusStartupOutput    = new Gdiplus::GdiplusStartupOutput();
    g_gdiplusToken             = NULL;
@@ -119,7 +119,7 @@ bool __node_aura_pre_init()
 
 }
 
-bool __node_aura_pos_init()
+bool __node_ace_pos_init()
 {
 
    _set_purecall_handler(_ca2_purecall);
@@ -138,7 +138,7 @@ bool __node_aura_pos_init()
 } 
 
 
-bool __node_aura_pre_term()
+bool __node_ace_pre_term()
 {
 
 
@@ -147,7 +147,7 @@ bool __node_aura_pre_term()
 
 }
 
-bool __node_aura_pos_term()
+bool __node_ace_pos_term()
 {
    g_pgdiplusStartupOutput->NotificationUnhook(g_gdiplusHookToken);
 
@@ -552,7 +552,7 @@ int_bool is_windows_native_unicode()
 
 // Obsolete API
 /*
-void CLASS_DECL_AURA __set_alloc_stop(LONG lRequestNumber)
+void CLASS_DECL_ACE __set_alloc_stop(LONG lRequestNumber)
 {
 _CrtSetBreakAlloc(lRequestNumber);
 }
@@ -561,7 +561,7 @@ _CrtSetBreakAlloc(lRequestNumber);
 /*
 // -- true if block of exact size, allocated on the heap
 // -- set *plRequestNumber to request number (or 0)
-bool CLASS_DECL_AURA __is_memory_block(const void * pData, UINT nBytes,
+bool CLASS_DECL_ACE __is_memory_block(const void * pData, UINT nBytes,
 LONG* plRequestNumber)
 {
 return _CrtIsMemoryBlock(pData, nBytes, plRequestNumber, NULL, NULL);
@@ -573,19 +573,19 @@ END_EXTERN_C
 #ifdef DEBUG
 
 #if !defined(__MCRTDBG) && !defined(__VLD)
-CLASS_DECL_AURA int32_t __cdecl _CrtDumpMemoryLeaks()
+CLASS_DECL_ACE int32_t __cdecl _CrtDumpMemoryLeaks()
 {
    return TRUE;
 }
 #endif
 
-CLASS_DECL_AURA int32_t DECL_C _check_memory()
+CLASS_DECL_ACE int32_t DECL_C _check_memory()
 {
    return 1;
 }
 
 
-CLASS_DECL_AURA bool  __check_memory()
+CLASS_DECL_ACE bool  __check_memory()
 {
 
    return _check_memory() != FALSE;
@@ -675,7 +675,7 @@ int32_t __cdecl __crt_report_hook(int32_t nRptType,__in char *szMsg,int32_t* pRe
    return FALSE;
 }
 
-CLASS_DECL_AURA int32_t __cdecl _memory_type(const void * p)
+CLASS_DECL_ACE int32_t __cdecl _memory_type(const void * p)
 {
    return ___CLIENT_BLOCK;
 }
@@ -689,12 +689,12 @@ CLASS_DECL_AURA int32_t __cdecl _memory_type(const void * p)
 
 
 // out-of-line cleanup called from inline __exception_link destructor
-CLASS_DECL_AURA void __try_cleanup()
+CLASS_DECL_ACE void __try_cleanup()
 {
 }
 
 // special out-of-line implementation of THROW_LAST (for auto-delete behavior)
-void CLASS_DECL_AURA __throw_last_cleanup()
+void CLASS_DECL_ACE __throw_last_cleanup()
 {
 }
 
@@ -708,7 +708,7 @@ namespace core
 
 #if defined( _CUSTOM_THROW )  // You can define your own throw hresult_exception to throw a custom exception.
 
-   CLASS_DECL_AURA void WINAPI atl_throw_impl(HRESULT hr)
+   CLASS_DECL_ACE void WINAPI atl_throw_impl(HRESULT hr)
    {
       TRACE(atlTraceException,0,"throw hresult_exception: hr = 0x%x\n",hr);
 #ifdef _AFX
@@ -731,7 +731,7 @@ namespace core
    // Throw a atl_exception with th given HRESULT
 #if !defined( _CUSTOM_THROW )  // You can define your own throw hresult_exception
 
-   //CLASS_DECL_AURA void WINAPI atl_throw_impl(HRESULT hr)
+   //CLASS_DECL_ACE void WINAPI atl_throw_impl(HRESULT hr)
    //{
    //   TRACE("throw hresult_exception: hr = 0x%x\n", hr);
    //  throw hresult_exception(hr);

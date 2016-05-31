@@ -1325,7 +1325,7 @@ void SortEx(ARRAYCOMPARE * pacompare,
 }
 
 
-typedef CLASS_DECL_AURA string_array < string > stringa;
+typedef CLASS_DECL_ACE string_array < string > stringa;
 
 
 class string2a:

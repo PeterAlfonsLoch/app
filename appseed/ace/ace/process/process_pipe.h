@@ -5,7 +5,7 @@ namespace process
 {
 
 
-   class CLASS_DECL_AURA pipe :
+   class CLASS_DECL_ACE pipe :
       virtual public ::object
    {
    public:

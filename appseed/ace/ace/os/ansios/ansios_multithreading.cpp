@@ -3,13 +3,13 @@
 //#include <time.h>
 //#include <pthread.h>
 
-CLASS_DECL_AURA void thread_get_os_priority(int32_t * piOsPolicy, sched_param * pparam, int32_t iCa2Priority);
+CLASS_DECL_ACE void thread_get_os_priority(int32_t * piOsPolicy, sched_param * pparam, int32_t iCa2Priority);
 
-CLASS_DECL_AURA void process_get_os_priority(int32_t * piOsPolicy, sched_param * pparam, int32_t iCa2Priority);
+CLASS_DECL_ACE void process_get_os_priority(int32_t * piOsPolicy, sched_param * pparam, int32_t iCa2Priority);
 
-CLASS_DECL_AURA int32_t thread_get_scheduling_priority(int iOsPolicy, const sched_param * pparam);
+CLASS_DECL_ACE int32_t thread_get_scheduling_priority(int iOsPolicy, const sched_param * pparam);
 
-CLASS_DECL_AURA int32_t process_get_scheduling_priority(int iOsPolicy, const sched_param * pparam);
+CLASS_DECL_ACE int32_t process_get_scheduling_priority(int iOsPolicy, const sched_param * pparam);
 
 //mq * __get_mq(HTHREAD  h);
 //
@@ -280,7 +280,7 @@ void thread_data::set(void * p)
 
 
 
-CLASS_DECL_AURA HTHREAD get_current_thread()
+CLASS_DECL_ACE HTHREAD get_current_thread()
 {
 
    return ::GetCurrentThread();
@@ -288,7 +288,7 @@ CLASS_DECL_AURA HTHREAD get_current_thread()
 }
 
 
-CLASS_DECL_AURA IDTHREAD get_current_thread_id()
+CLASS_DECL_ACE IDTHREAD get_current_thread_id()
 {
 
    return ::GetCurrentThreadId();
@@ -351,7 +351,7 @@ void __node_term_multithreading()
 
 bool (* g_pfn_defer_process_x_message)(HTHREAD hthread,LPMESSAGE lpMsg,oswindow oswindow,bool bPeek) = NULL;
 
-bool aura_defer_process_x_message(HTHREAD hthread,LPMESSAGE lpMsg,oswindow oswindow,bool bPeek)
+bool ace_defer_process_x_message(HTHREAD hthread,LPMESSAGE lpMsg,oswindow oswindow,bool bPeek)
 {
 
    if(g_pfn_defer_process_x_message == NULL)
@@ -854,7 +854,7 @@ int32_t WINAPI GetThreadPriority(HTHREAD  hthread)
 static HANDLE g_hMainThread = NULL;
 static UINT g_uiMainThread = -1;
 
-CLASS_DECL_AURA void set_main_thread(HANDLE hThread)
+CLASS_DECL_ACE void set_main_thread(HANDLE hThread)
 {
 
    //   MESSAGE msg;
@@ -867,7 +867,7 @@ CLASS_DECL_AURA void set_main_thread(HANDLE hThread)
 
 }
 
-CLASS_DECL_AURA void set_main_thread_id(UINT uiThread)
+CLASS_DECL_ACE void set_main_thread_id(UINT uiThread)
 {
 
    //   MESSAGE msg;
@@ -881,18 +881,18 @@ CLASS_DECL_AURA void set_main_thread_id(UINT uiThread)
 }
 
 
-CLASS_DECL_AURA HANDLE get_main_thread()
+CLASS_DECL_ACE HANDLE get_main_thread()
 {
    return g_hMainThread;
 
 }
-CLASS_DECL_AURA UINT   get_main_thread_id()
+CLASS_DECL_ACE UINT   get_main_thread_id()
 {
    return g_uiMainThread;
 }
 
 
-CLASS_DECL_AURA void attach_thread_input_to_main_thread(bool bAttach)
+CLASS_DECL_ACE void attach_thread_input_to_main_thread(bool bAttach)
 {
    return;
    //   MESSAGE msg;
@@ -955,7 +955,7 @@ int_bool WINAPI thread_set_data(HTHREAD hthread,DWORD dwIndex,LPVOID lpTlsValue)
 //
 //
 
-//CLASS_DECL_AURA int_bool WINAPI GetMessageW(LPMESSAGE lpMsg,oswindow oswindow,UINT wMsgFilterMin,UINT wMsgFilterMax)
+//CLASS_DECL_ACE int_bool WINAPI GetMessageW(LPMESSAGE lpMsg,oswindow oswindow,UINT wMsgFilterMin,UINT wMsgFilterMax)
 //{
 //
 //
@@ -1022,7 +1022,7 @@ int_bool WINAPI thread_set_data(HTHREAD hthread,DWORD dwIndex,LPVOID lpTlsValue)
 //
 //   }
 //
-//   if(aura_defer_process_x_message(hthread,lpMsg,oswindow,false))
+//   if(ace_defer_process_x_message(hthread,lpMsg,oswindow,false))
 //      return TRUE;
 //
 //#endif
@@ -1061,7 +1061,7 @@ int_bool WINAPI thread_set_data(HTHREAD hthread,DWORD dwIndex,LPVOID lpTlsValue)
 //}
 //
 //
-//CLASS_DECL_AURA int_bool WINAPI PeekMessageW(LPMESSAGE lpMsg,oswindow oswindow,UINT wMsgFilterMin,UINT wMsgFilterMax,UINT wRemoveMsg)
+//CLASS_DECL_ACE int_bool WINAPI PeekMessageW(LPMESSAGE lpMsg,oswindow oswindow,UINT wMsgFilterMin,UINT wMsgFilterMax,UINT wRemoveMsg)
 //{
 //
 //   mq * pmq = __get_mq();
@@ -1097,7 +1097,7 @@ int_bool WINAPI thread_set_data(HTHREAD hthread,DWORD dwIndex,LPVOID lpTlsValue)
 //   ml.unlock();
 //
 //#if defined(LINUX) // || defined(ANDROID)
-//   if(aura_defer_process_x_message(hthread,lpMsg,oswindow,!(wRemoveMsg & PM_REMOVE)))
+//   if(ace_defer_process_x_message(hthread,lpMsg,oswindow,!(wRemoveMsg & PM_REMOVE)))
 //      return TRUE;
 //#endif
 //
@@ -1107,7 +1107,7 @@ int_bool WINAPI thread_set_data(HTHREAD hthread,DWORD dwIndex,LPVOID lpTlsValue)
 
 
 
-//CLASS_DECL_AURA DWORD WINAPI GetThreadId(HTHREAD Thread)
+//CLASS_DECL_ACE DWORD WINAPI GetThreadId(HTHREAD Thread)
 //{
 //
 //   synch_lock mlThreadId(g_pmutexThreadIdLock);
@@ -1122,7 +1122,7 @@ int_bool WINAPI thread_set_data(HTHREAD hthread,DWORD dwIndex,LPVOID lpTlsValue)
 //
 //}
 
-//CLASS_DECL_AURA HTHREAD  WINAPI get_thread_handle(DWORD dw)
+//CLASS_DECL_ACE HTHREAD  WINAPI get_thread_handle(DWORD dw)
 //{
 //
 //   synch_lock mlThreadIdHandle(g_pmutexThreadIdHandleLock);
@@ -1140,7 +1140,7 @@ int_bool WINAPI thread_set_data(HTHREAD hthread,DWORD dwIndex,LPVOID lpTlsValue)
 DWORD dwDebugPostThreadMessageTime;
 int iDebugPostThreadMessageTime;
 
-CLASS_DECL_AURA int_bool WINAPI PostThreadMessageW(IDTHREAD iThreadId,UINT Msg,WPARAM wParam,LPARAM lParam)
+CLASS_DECL_ACE int_bool WINAPI PostThreadMessageW(IDTHREAD iThreadId,UINT Msg,WPARAM wParam,LPARAM lParam)
 {
 
    //HTHREAD h = ::get_thread_handle(idThread);
@@ -1295,14 +1295,14 @@ CLASS_DECL_AURA int_bool WINAPI PostThreadMessageW(IDTHREAD iThreadId,UINT Msg,W
 //
 
 
-CLASS_DECL_AURA HTHREAD GetCurrentThread()
+CLASS_DECL_ACE HTHREAD GetCurrentThread()
 {
 
    return pthread_self();
 
 }
 
-CLASS_DECL_AURA IDTHREAD GetCurrentThreadId()
+CLASS_DECL_ACE IDTHREAD GetCurrentThreadId()
 {
 
    return pthread_self();
@@ -1313,14 +1313,14 @@ CLASS_DECL_AURA IDTHREAD GetCurrentThreadId()
 namespace multithreading
 {
 
-   CLASS_DECL_AURA bool set_priority(int32_t priority)
+   CLASS_DECL_ACE bool set_priority(int32_t priority)
    {
 
       return (::SetThreadPriority(::GetCurrentThread(),priority) != 0);
    }
 
 
-   CLASS_DECL_AURA int32_t thread_priority()
+   CLASS_DECL_ACE int32_t thread_priority()
    {
       return ::GetThreadPriority(::GetCurrentThread());
    }
@@ -1362,7 +1362,7 @@ bool on_term_thread()
 
 
 
-//CLASS_DECL_AURA IDTHREAD get_current_thread_id()
+//CLASS_DECL_ACE IDTHREAD get_current_thread_id()
 //{
 //   return ::GetCurrentThreadId();
 //}

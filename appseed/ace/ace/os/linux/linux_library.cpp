@@ -2,7 +2,7 @@
 //#include <dlfcn.h>
 
 
-CLASS_DECL_AURA void * __node_library_open(const char * pszPath)
+CLASS_DECL_ACE void * __node_library_open(const char * pszPath)
 {
 
    string strPath(pszPath);
@@ -71,7 +71,7 @@ CLASS_DECL_AURA void * __node_library_open(const char * pszPath)
 }
 
 
-CLASS_DECL_AURA void * __node_library_open_ca2(const char * pszPath)
+CLASS_DECL_ACE void * __node_library_open_ca2(const char * pszPath)
 {
 
    void * plibrary = dlopen(pszPath, RTLD_LOCAL | RTLD_NOW | RTLD_NODELETE);
@@ -101,7 +101,7 @@ CLASS_DECL_AURA void * __node_library_open_ca2(const char * pszPath)
 }
 
 
-CLASS_DECL_AURA bool __node_library_close(void * plibrary)
+CLASS_DECL_ACE bool __node_library_close(void * plibrary)
 {
 
    if(plibrary == NULL)
@@ -112,7 +112,7 @@ CLASS_DECL_AURA bool __node_library_close(void * plibrary)
 }
 
 
-CLASS_DECL_AURA void * __node_library_raw_get(void * plibrary,const char * pszEntryName)
+CLASS_DECL_ACE void * __node_library_raw_get(void * plibrary,const char * pszEntryName)
 {
 
    return dlsym(plibrary, pszEntryName);

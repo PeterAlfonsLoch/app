@@ -4,7 +4,7 @@
 
 
 // property set key is case insensitive
-class CLASS_DECL_AURA property_set :
+class CLASS_DECL_ACE property_set :
    public property_map,
    public ::file::serializable
 {
@@ -188,7 +188,7 @@ public:
 };
 
 
-class CLASS_DECL_AURA PropertySignalObject : public signal_details
+class CLASS_DECL_ACE PropertySignalObject : public signal_details
 {
 public:
 

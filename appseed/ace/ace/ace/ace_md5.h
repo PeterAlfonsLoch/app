@@ -16,7 +16,7 @@ namespace ace
    //    intentional duplication because spa
    //    needs md5
    //
-   class CLASS_DECL_AURA md5
+   class CLASS_DECL_ACE md5
    {
    public:
 

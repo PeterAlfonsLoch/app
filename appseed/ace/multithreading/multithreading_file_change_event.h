@@ -5,7 +5,7 @@
 
 
 /// This class represents events for file changes
-class CLASS_DECL_AURA file_change_event :
+class CLASS_DECL_ACE file_change_event :
    virtual public event_base
 {
 public:

@@ -4,7 +4,7 @@
 #ifndef WINDOWS
 
 
-struct CLASS_DECL_AURA hglobal
+struct CLASS_DECL_ACE hglobal
 {
 
    char        m_szFile[256];

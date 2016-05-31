@@ -3,8 +3,8 @@
 // from 7-zip on 2012-12-23, dawn
 #pragma once
 
-#ifndef AURA_CPU_ARCHITECTURE_H
-#define AURA_CPU_ARCHITECTURE_H
+#ifndef ACE_CPU_ARCHITECTURE_H
+#define ACE_CPU_ARCHITECTURE_H
 
 /*
 MY_CPU_LE means that CPU is LITTLE ENDIAN.
@@ -136,18 +136,18 @@ enum
    CPU_FIRM_VIA
 };
 
-CLASS_DECL_AURA int32_t x86cpuid_CheckAndRead(struct Cx86cpuid *p);
-CLASS_DECL_AURA int32_t x86cpuid_GetFirm(const struct Cx86cpuid *p);
+CLASS_DECL_ACE int32_t x86cpuid_CheckAndRead(struct Cx86cpuid *p);
+CLASS_DECL_ACE int32_t x86cpuid_GetFirm(const struct Cx86cpuid *p);
 
 #define x86cpuid_GetFamily(p) (((p)->ver >> 8) & 0xFF00F)
 #define x86cpuid_GetModel(p) (((p)->ver >> 4) & 0xF00F)
 #define x86cpuid_GetStepping(p) ((p)->ver & 0xF)
 
-CLASS_DECL_AURA int32_t CPU_Is_InOrder();
-CLASS_DECL_AURA int32_t CPU_Is_Aes_Supported();
+CLASS_DECL_ACE int32_t CPU_Is_InOrder();
+CLASS_DECL_ACE int32_t CPU_Is_Aes_Supported();
 
 BEGIN_EXTERN_C
-CLASS_DECL_AURA int32_t cpu_has_avx();
+CLASS_DECL_ACE int32_t cpu_has_avx();
 END_EXTERN_C
 
 #ifndef ANDROID
@@ -272,4 +272,4 @@ static_inline uint32_t __swap32gen(uint32_t x)
 #endif
 
 
-#endif // AURA_CPU_ARCHITECTURE_H
+#endif // ACE_CPU_ARCHITECTURE_H

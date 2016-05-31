@@ -5,7 +5,7 @@ namespace ace
 {
 
 
-   class CLASS_DECL_AURA printer :
+   class CLASS_DECL_ACE printer :
       virtual public ::object
    {
    public:

@@ -30,7 +30,7 @@ namespace ace
          {
             // simple integrity check by calling "inoffensive" function
             // if it fails, most probably the object is damaged.
-            bWindow = m_pauraapp->is_window(m_pui) != FALSE;
+            bWindow = m_paceapp->is_window(m_pui) != FALSE;
             if(bWindow)
                bWindow = m_pui != NULL;
          }

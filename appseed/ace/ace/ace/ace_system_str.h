@@ -5,14 +5,14 @@ namespace str
 {
 
 
-   inline CLASS_DECL_AURA string         from(const id & id)
+   inline CLASS_DECL_ACE string         from(const id & id)
    {
 
       return id;
 
    }
 
-   inline CLASS_DECL_AURA string &       from(string & str, const id & id)
+   inline CLASS_DECL_ACE string &       from(string & str, const id & id)
    {
 
       str = id;

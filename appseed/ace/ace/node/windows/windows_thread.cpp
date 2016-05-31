@@ -12,7 +12,7 @@
 //LRESULT CALLBACK __message_filter_hook(int32_t code,WPARAM wParam,LPARAM lParam);
 
 
-void CLASS_DECL_AURA __init_thread()
+void CLASS_DECL_ACE __init_thread()
 {
 
    //if(t_hHookOldMsgFilter == NULL)
@@ -25,7 +25,7 @@ void CLASS_DECL_AURA __init_thread()
 }
 
 
-void CLASS_DECL_AURA __term_thread()
+void CLASS_DECL_ACE __term_thread()
 {
   
 
@@ -259,7 +259,7 @@ void CLASS_DECL_AURA __term_thread()
 //   return lresult;
 //}
 
-__STATIC bool CLASS_DECL_AURA IsHelpKey(LPMSG lpMsg)
+__STATIC bool CLASS_DECL_ACE IsHelpKey(LPMSG lpMsg)
 // return TRUE only for non-repeat F1 keydowns.
 {
    return lpMsg->message == WM_KEYDOWN &&

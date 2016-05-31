@@ -32,7 +32,7 @@ namespace primitive
    class shared_memory;
    class virtual_memory;
 
-   class CLASS_DECL_AURA memory_base :
+   class CLASS_DECL_ACE memory_base :
       virtual public object,
       public ::file::serializable
    {

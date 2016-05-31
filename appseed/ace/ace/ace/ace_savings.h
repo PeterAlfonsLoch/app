@@ -18,7 +18,7 @@ namespace ace
    };
    
 
-   class CLASS_DECL_AURA savings :
+   class CLASS_DECL_ACE savings :
       virtual public ::object
    {
    public:

@@ -6,7 +6,7 @@
 namespace macos
 {
    
-   class CLASS_DECL_AURA shell
+   class CLASS_DECL_ACE shell
    {
    public:
       shell();

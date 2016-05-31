@@ -6,7 +6,7 @@ namespace windows
 {
 
 
-   class CLASS_DECL_AURA os :
+   class CLASS_DECL_ACE os :
       public ::ace::os
    {
    public:

@@ -4,7 +4,7 @@
 
 
 
-class CLASS_DECL_AURA memory :
+class CLASS_DECL_ACE memory :
    public ::primitive::memory_base
 {
 public:

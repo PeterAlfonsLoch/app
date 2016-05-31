@@ -46,7 +46,7 @@ namespace exception
 {
 
 
-   class CLASS_DECL_AURA engine :
+   class CLASS_DECL_ACE engine :
       virtual public object
    {
    public:

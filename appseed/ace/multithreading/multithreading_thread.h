@@ -54,7 +54,7 @@ class thread_startup;
 namespace primitive { class command;  }
 
 
-class CLASS_DECL_AURA thread :
+class CLASS_DECL_ACE thread :
    virtual public command_target
 #ifdef WINDOWS
    ,virtual public ::exception::translator
@@ -62,7 +62,7 @@ class CLASS_DECL_AURA thread :
 {
 public:
 
-   class CLASS_DECL_AURA file_info
+   class CLASS_DECL_ACE file_info
    {
    public:
 
@@ -356,7 +356,7 @@ public:
 
 
 //
-//class CLASS_DECL_AURA replace_thread
+//class CLASS_DECL_ACE replace_thread
 //{
 //public:
 //

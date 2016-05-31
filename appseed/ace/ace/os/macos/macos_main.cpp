@@ -71,7 +71,7 @@ uint32_t __run_system_command_line(const char * pszCommandLine)
    
    int32_t nReturnCode = 0;
    
-   ::ace::system * psystem = create_aura_system();
+   ::ace::system * psystem = create_ace_system();
    
    ::macos::main_init_data * pinitmaindata   = new ::macos::main_init_data;
    

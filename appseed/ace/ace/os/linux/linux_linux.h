@@ -29,11 +29,11 @@ DWORD get_tick_count();
 
 
 
-CLASS_DECL_AURA DWORD GetLastError();
-CLASS_DECL_AURA DWORD SetLastError(DWORD dw);
+CLASS_DECL_ACE DWORD GetLastError();
+CLASS_DECL_ACE DWORD SetLastError(DWORD dw);
 
 
-CLASS_DECL_AURA bool _istlead(int32_t ch);
+CLASS_DECL_ACE bool _istlead(int32_t ch);
 
 
 
@@ -44,8 +44,8 @@ extern oswindow g_oswindowDesktop;
 
 
 
-CLASS_DECL_AURA bool main_initialize();
-CLASS_DECL_AURA bool main_finalize();
+CLASS_DECL_ACE bool main_initialize();
+CLASS_DECL_ACE bool main_finalize();
 
 
 

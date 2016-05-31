@@ -13,18 +13,18 @@
 #pragma once
 
 
-#include "ace/ace/ace/aura_cpu_architecture.h"
+#include "ace/ace/ace/ace_cpu_architecture.h"
 
 
 BEGIN_EXTERN_C
-extern CLASS_DECL_AURA int g_bAura;
-CLASS_DECL_AURA int __assert_failed_line(const char * lpszFileName,int iLineNumber);
-CLASS_DECL_AURA int is_debugger_attached();
-CLASS_DECL_AURA void debug_print(const char * psz,...);
+extern CLASS_DECL_ACE int g_bAura;
+CLASS_DECL_ACE int __assert_failed_line(const char * lpszFileName,int iLineNumber);
+CLASS_DECL_ACE int is_debugger_attached();
+CLASS_DECL_ACE void debug_print(const char * psz,...);
 
 END_EXTERN_C
 
-CLASS_DECL_AURA int throw_assert_exception(const char * lpszFileName,int iLineNumber);
+CLASS_DECL_ACE int throw_assert_exception(const char * lpszFileName,int iLineNumber);
 
 #ifndef __cplusplus
 
@@ -160,28 +160,28 @@ static int void_ptr_is_null(const void * p)
 #define GET_Y_LPARAM64(lp)                        ((int32_t)(int16_t)HIDWORD(lp))
 
 
-CLASS_DECL_AURA int get_aura_init();
-CLASS_DECL_AURA int_bool defer_aura_init();
-CLASS_DECL_AURA int_bool defer_aura_term();
+CLASS_DECL_ACE int get_ace_init();
+CLASS_DECL_ACE int_bool defer_ace_init();
+CLASS_DECL_ACE int_bool defer_ace_term();
 
 BEGIN_EXTERN_C
 
 typedef struct rdp_freerdp freerdp;
 
-CLASS_DECL_AURA int_bool freerdp_authenticate(void * instance, char** username,char** password,char** domain, const char * pszServerName, int bInteractive);
+CLASS_DECL_ACE int_bool freerdp_authenticate(void * instance, char** username,char** password,char** domain, const char * pszServerName, int bInteractive);
 
 
 #if !defined(O_BINARY) && !defined(WINDOWS)
 # define O_BINARY 0
 #endif
 
-CLASS_DECL_AURA int32_t ansi_open(const char * psz,int32_t i);
-CLASS_DECL_AURA FILE * ansi_fopen(const char * psz,const char * pszMode);
-CLASS_DECL_AURA int ansi_file_flag(int iFlag);
-CLASS_DECL_AURA void ansi_get_errno(int32_t * perrno);
-CLASS_DECL_AURA void ansi_unlink(const char * psz);
+CLASS_DECL_ACE int32_t ansi_open(const char * psz,int32_t i);
+CLASS_DECL_ACE FILE * ansi_fopen(const char * psz,const char * pszMode);
+CLASS_DECL_ACE int ansi_file_flag(int iFlag);
+CLASS_DECL_ACE void ansi_get_errno(int32_t * perrno);
+CLASS_DECL_ACE void ansi_unlink(const char * psz);
 
-//CLASS_DECL_AURA int module_name_get_count(const char * pszModuleName);
+//CLASS_DECL_ACE int module_name_get_count(const char * pszModuleName);
 
 END_EXTERN_C
 
@@ -193,7 +193,7 @@ END_EXTERN_C
 
 BEGIN_EXTERN_C
 
-CLASS_DECL_AURA extern uint32_t g_dwStartTime;
+CLASS_DECL_ACE extern uint32_t g_dwStartTime;
 
 END_EXTERN_C
 

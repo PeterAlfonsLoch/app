@@ -10,16 +10,16 @@ class command_line;
 
 
 
-//class CLASS_DECL_AURA ::object :
-class CLASS_DECL_AURA object
+//class CLASS_DECL_ACE ::object :
+class CLASS_DECL_ACE object
    // virtual public element
-   //class CLASS_DECL_AURA waitable :
-   //class CLASS_DECL_AURA object
+   //class CLASS_DECL_ACE waitable :
+   //class CLASS_DECL_ACE object
    //   virtual public ::object
 {
 public:
 
-   //class CLASS_DECL_AURA element //:
+   //class CLASS_DECL_ACE element //:
    //   //virtual public root
    //{
    //public:
@@ -42,7 +42,7 @@ public:
    factory_item_base *           m_pfactoryitembase;
    void *                        m_pthis;
    int64_t                       m_countReference;
-   ::ace::application *         m_pauraapp;
+   ::ace::application *         m_paceapp;
    mutex *                       m_pmutex;
    property_set *                m_psetObject;
 
@@ -79,7 +79,7 @@ public:
 
    inline ::ace::allocatorsp & allocer() const { return ((object *)this)->allocer(); }
 
-   inline ::ace::application * get_app() const { return m_pauraapp; }
+   inline ::ace::application * get_app() const { return m_paceapp; }
 
    virtual void set_app(::ace::application * papp);
 
@@ -210,7 +210,7 @@ public:
 //{
 //
 //
-//   class CLASS_DECL_AURA live_object:
+//   class CLASS_DECL_ACE live_object:
 //   virtual public root
 //   {
 //   public:
@@ -237,7 +237,7 @@ namespace ace
 {
 
 
-   class CLASS_DECL_AURA allocator:
+   class CLASS_DECL_ACE allocator:
       virtual public object
    {
    public:
@@ -249,7 +249,7 @@ namespace ace
    };
 
 
-   class CLASS_DECL_AURA allocatorsp:
+   class CLASS_DECL_ACE allocatorsp:
       public sp(allocator)
    {
    public:
@@ -269,7 +269,7 @@ namespace ace
 
 
 
-//class CLASS_DECL_AURA object :
+//class CLASS_DECL_ACE object :
 //   virtual public waitable
 //{
 //public:

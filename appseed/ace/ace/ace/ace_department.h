@@ -7,7 +7,7 @@ namespace ace
 
 
 
-   class CLASS_DECL_AURA department :
+   class CLASS_DECL_ACE department :
    virtual public signalizable
    {
    public:

@@ -5,7 +5,7 @@
 
 
 
-void CLASS_DECL_AURA __abort()
+void CLASS_DECL_ACE __abort()
 {
    //__android_term();
    abort();
@@ -16,7 +16,7 @@ void CLASS_DECL_AURA __abort()
 
 
 #ifdef DEBUG
-bool CLASS_DECL_AURA __check_memory()
+bool CLASS_DECL_ACE __check_memory()
 // check all of memory (look for memory tromps)
 {
    //return _CrtCheckMemory() != FALSE;

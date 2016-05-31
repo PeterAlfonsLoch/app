@@ -6,7 +6,7 @@
 //
 
 
-class CLASS_DECL_AURA set_event_on_exit
+class CLASS_DECL_ACE set_event_on_exit
 {
 public:
    

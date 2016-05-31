@@ -703,7 +703,7 @@ HANDLE OnlyGetDrv()
 }
 
 
-extern "C" CLASS_DECL_AURA void GetOpenedFiles(LPCWSTR lpPath,OF_TYPE Filter,OF_CALLBACK CallBackProc,uint_ptr pUserContext)
+extern "C" CLASS_DECL_ACE void GetOpenedFiles(LPCWSTR lpPath,OF_TYPE Filter,OF_CALLBACK CallBackProc,uint_ptr pUserContext)
 {
    string csPath = lpPath;
    csPath.make_lower();

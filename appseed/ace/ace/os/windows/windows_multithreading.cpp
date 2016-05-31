@@ -308,7 +308,7 @@ void __node_term_multithreading()
 
 
 
-extern CLASS_DECL_AURA thread_int_ptr < HRESULT > t_hresultCoInitialize;
+extern CLASS_DECL_ACE thread_int_ptr < HRESULT > t_hresultCoInitialize;
 
 
 
@@ -387,7 +387,7 @@ bool __os_term_thread()
 //
 //}
 
-CLASS_DECL_AURA uint32_t thread_alloc()
+CLASS_DECL_ACE uint32_t thread_alloc()
 {
 
    return (uint32_t) TlsAlloc();
@@ -395,7 +395,7 @@ CLASS_DECL_AURA uint32_t thread_alloc()
 }
 
 
-CLASS_DECL_AURA void * thread_get_data(uint32_t uiIndex)
+CLASS_DECL_ACE void * thread_get_data(uint32_t uiIndex)
 {
    
    return (void *) TlsGetValue((DWORD) uiIndex);
@@ -403,7 +403,7 @@ CLASS_DECL_AURA void * thread_get_data(uint32_t uiIndex)
 }
 
 
-CLASS_DECL_AURA int32_t thread_set_data(uint32_t uiIndex, void * pvalue)
+CLASS_DECL_ACE int32_t thread_set_data(uint32_t uiIndex, void * pvalue)
 {
   
    return TlsSetValue((DWORD)uiIndex, (LPVOID) pvalue);
@@ -411,7 +411,7 @@ CLASS_DECL_AURA int32_t thread_set_data(uint32_t uiIndex, void * pvalue)
 }
 
 
-CLASS_DECL_AURA int_bool thread_free(uint32_t uiIndex)
+CLASS_DECL_ACE int_bool thread_free(uint32_t uiIndex)
 {
 
    return TlsFree((DWORD) uiIndex);
@@ -419,7 +419,7 @@ CLASS_DECL_AURA int_bool thread_free(uint32_t uiIndex)
 }
 
 
-CLASS_DECL_AURA void thread_shutdown()
+CLASS_DECL_ACE void thread_shutdown()
 {
 
 }

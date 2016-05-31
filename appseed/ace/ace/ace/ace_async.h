@@ -11,7 +11,7 @@ namespace async
 
 
 
-   struct CLASS_DECL_AURA token
+   struct CLASS_DECL_ACE token
    {
       token *     m_ptoken;
       uint_ptr    m_uiToken;
@@ -75,13 +75,13 @@ namespace async
 
    };
 
-   struct CLASS_DECL_AURA registration_token : public token
+   struct CLASS_DECL_ACE registration_token : public token
    {
 
    };
 
 
-   struct CLASS_DECL_AURA cancellation_token : public token
+   struct CLASS_DECL_ACE cancellation_token : public token
    {
       callback *   m_pcallback;
       void(callback ::*m_pfnCancel)();
@@ -160,7 +160,7 @@ namespace async
 
 
    template < class T >
-   class CLASS_DECL_AURA task :
+   class CLASS_DECL_ACE task :
       public ::thread
    {
    public:

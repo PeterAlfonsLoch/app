@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_AURA interface_only_exception : 
+class CLASS_DECL_ACE interface_only_exception : 
    virtual public not_implemented
 {
 public:

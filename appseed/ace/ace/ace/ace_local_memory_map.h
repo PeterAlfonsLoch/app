@@ -5,7 +5,7 @@
 // old struct beside classy still c spirit/soul // no compositing and also no factoring (so no virtual functions also... )
 
 
-class CLASS_DECL_AURA local_memory_map :
+class CLASS_DECL_ACE local_memory_map :
    virtual public object
 {
 public:

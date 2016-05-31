@@ -41,7 +41,7 @@ namespace console
    const int BLACK    = 0;
 
 
-   class CLASS_DECL_AURA window:
+   class CLASS_DECL_ACE window:
       virtual public ::object
    {
    public:

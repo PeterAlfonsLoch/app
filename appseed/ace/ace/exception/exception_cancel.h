@@ -3,7 +3,7 @@
 
 
 
-class CLASS_DECL_AURA cancel_exception:
+class CLASS_DECL_ACE cancel_exception:
    virtual public ::exception::base
 {
 public:

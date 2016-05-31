@@ -11,7 +11,7 @@
 
 #pragma once
 
-class CLASS_DECL_AURA service_base :
+class CLASS_DECL_ACE service_base :
    virtual public ::object
 {
 public:

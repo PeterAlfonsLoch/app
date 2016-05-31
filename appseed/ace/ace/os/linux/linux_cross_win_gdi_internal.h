@@ -4,7 +4,7 @@
 
 
 
-struct CLASS_DECL_AURA gdi_object
+struct CLASS_DECL_ACE gdi_object
 {
 
 

@@ -61,11 +61,11 @@ union semun
 
 #endif
 
-CLASS_DECL_AURA DWORD GetLastError();
-CLASS_DECL_AURA DWORD SetLastError(DWORD dw);
+CLASS_DECL_ACE DWORD GetLastError();
+CLASS_DECL_ACE DWORD SetLastError(DWORD dw);
 
 
-CLASS_DECL_AURA bool _istlead(int32_t ch);
+CLASS_DECL_ACE bool _istlead(int32_t ch);
 
 
 

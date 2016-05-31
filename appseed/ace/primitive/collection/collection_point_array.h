@@ -58,7 +58,7 @@ public:
 
 
 
-class CLASS_DECL_AURA point_array :
+class CLASS_DECL_ACE point_array :
    public point2d_array_base < point >,
    virtual public ::xml::exportable,
    virtual public ::xml::importable
@@ -117,7 +117,7 @@ public:
 
 };
 
-class CLASS_DECL_AURA point64_array :
+class CLASS_DECL_ACE point64_array :
    public point2d_array_base < point64 >
 {
 public:
@@ -128,7 +128,7 @@ public:
 };
 
 
-class CLASS_DECL_AURA pointd_array :
+class CLASS_DECL_ACE pointd_array :
    //public comparable_array < pointd >
    public point2d_array_base < pointd >
 {

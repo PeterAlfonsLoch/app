@@ -4,7 +4,7 @@
 /////////////////////////////////////////////////////////////////////////////
 // point - A 2-D point, similar to Windows POINT structure.
 
-class CLASS_DECL_AURA point : public POINT
+class CLASS_DECL_ACE point : public POINT
 {
 public:
 // Constructors
@@ -96,7 +96,7 @@ inline point null_point() { return point(0, 0); }
 /////////////////////////////////////////////////////////////////////////////
 // point64 - A 2-D point64, similar to Windows POINT64 structure.
 
-class CLASS_DECL_AURA point64 : public POINT64
+class CLASS_DECL_ACE point64 : public POINT64
 {
 public:
 // Constructors
@@ -182,7 +182,7 @@ public:
 /////////////////////////////////////////////////////////////////////////////
 // pointd - A 2-D pointd, similar to Windows POINTD structure.
 
-class CLASS_DECL_AURA pointd : public POINTD
+class CLASS_DECL_ACE pointd : public POINTD
 {
 public:
 // Constructors
@@ -479,14 +479,14 @@ template<> inline UINT HashKey<point> (point key)
 
 
 
-struct CLASS_DECL_AURA POINT3D
+struct CLASS_DECL_ACE POINT3D
 {
    double x;
    double y;
    double z;
 };
 
-class CLASS_DECL_AURA point3d:
+class CLASS_DECL_ACE point3d:
    public POINT3D
 {
 public:

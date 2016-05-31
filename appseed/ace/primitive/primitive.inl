@@ -38,7 +38,7 @@ inline property_set & object::oprop_set()
 inline ::ace::allocatorsp & object::allocer()
 {
 
-   return m_pauraapp->m_allocer;
+   return m_paceapp->m_allocer;
 
 }
 
@@ -47,7 +47,7 @@ inline ::ace::allocatorsp & object::allocer()
 inline sp(::command_thread) object::command_thread()
 {
 
-   return m_pauraapp->command_thread();
+   return m_paceapp->command_thread();
 
 }
 

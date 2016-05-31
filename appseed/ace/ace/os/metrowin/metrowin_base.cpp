@@ -404,7 +404,7 @@ string get_system_error_message(uint32_t dwError)
 
 BEGIN_EXTERN_C
 
-//CLASS_DECL_AURA
+//CLASS_DECL_ACE
 //HANDLE
 //WINAPI
 //CreateMutex(
@@ -416,13 +416,13 @@ BEGIN_EXTERN_C
 //   return CreateMutexW(lpMutexAttributes, bInitialOwner, wstring(lpName));
 //}
 
-CLASS_DECL_AURA char* getenv (const char* name)
+CLASS_DECL_ACE char* getenv (const char* name)
 {
    return "";
 }
 END_EXTERN_C
 
-//CLASS_DECL_AURA
+//CLASS_DECL_ACE
 //_Ret_maybenull_
 //HANDLE
 //WINAPI
@@ -632,12 +632,12 @@ END_EXTERN_C
 
 
 // out-of-line cleanup called from inline __exception_link destructor
-CLASS_DECL_AURA void __try_cleanup()
+CLASS_DECL_ACE void __try_cleanup()
 {
 }
 
 // special out-of-line implementation of THROW_LAST (for auto-delete behavior)
-void CLASS_DECL_AURA __throw_last_cleanup()
+void CLASS_DECL_ACE __throw_last_cleanup()
 {
 }
 
@@ -770,9 +770,9 @@ void CLASS_DECL_AURA __throw_last_cleanup()
 
 
 
-CLASS_DECL_AURA thread_int_ptr < int_ptr >                             t_iCoInitialize;
+CLASS_DECL_ACE thread_int_ptr < int_ptr >                             t_iCoInitialize;
 
-CLASS_DECL_AURA thread_int_ptr < HRESULT > t_hresultCoInitialize;
+CLASS_DECL_ACE thread_int_ptr < HRESULT > t_hresultCoInitialize;
 
 
 
@@ -803,7 +803,7 @@ bool defer_co_initialize_ex()
 
 
 
-bool __node_aura_pre_init()
+bool __node_ace_pre_init()
 {
 
    HRESULT hresult = ::CoInitializeEx(NULL,COINIT_MULTITHREADED);
@@ -841,9 +841,9 @@ bool __node_aura_pre_init()
 
 }
 
-void CLASS_DECL_AURA __cdecl _ca2_purecall();
+void CLASS_DECL_ACE __cdecl _ca2_purecall();
 
-bool __node_aura_pos_init()
+bool __node_ace_pos_init()
 {
 
    _set_purecall_handler(_ca2_purecall);
@@ -890,14 +890,14 @@ bool __node_aura_pos_init()
 }
 
 
-bool __node_aura_pre_term()
+bool __node_ace_pre_term()
 {
 
    return true;
 
 }
 
-bool __node_aura_pos_term()
+bool __node_ace_pos_term()
 {
 
    ::CoUninitialize();

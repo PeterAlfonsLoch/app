@@ -5,7 +5,7 @@
 #include <sys/sem.h>
 #endif
 
-class CLASS_DECL_AURA event :
+class CLASS_DECL_ACE event :
    public event_base
 {
 public:

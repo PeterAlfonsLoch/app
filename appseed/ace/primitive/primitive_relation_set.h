@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_AURA relation_set :
+class CLASS_DECL_ACE relation_set :
    public property_set
 {
 public:

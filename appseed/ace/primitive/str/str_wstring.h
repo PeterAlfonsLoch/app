@@ -8,15 +8,15 @@ class string;
 typedef stdstring < verisimple_wstring > wstring;
 
 
-CLASS_DECL_AURA verisimple_wstring operator + (const verisimple_wstring & wstr1, const verisimple_wstring & wstr2);
-CLASS_DECL_AURA verisimple_wstring operator + (const verisimple_wstring & str, const unichar * psz);
-CLASS_DECL_AURA verisimple_wstring operator + (const unichar * psz, const verisimple_wstring & str);
+CLASS_DECL_ACE verisimple_wstring operator + (const verisimple_wstring & wstr1, const verisimple_wstring & wstr2);
+CLASS_DECL_ACE verisimple_wstring operator + (const verisimple_wstring & str, const unichar * psz);
+CLASS_DECL_ACE verisimple_wstring operator + (const unichar * psz, const verisimple_wstring & str);
 
 
-CLASS_DECL_AURA wstring gen_utf8_to_16(const char * psz);
+CLASS_DECL_ACE wstring gen_utf8_to_16(const char * psz);
 
 
-class CLASS_DECL_AURA wstring_data
+class CLASS_DECL_ACE wstring_data
 {
 protected:
 
@@ -92,7 +92,7 @@ class wstring_manager;
 #define unilen wcslen_dup
 #endif
 
-class CLASS_DECL_AURA verisimple_wstring
+class CLASS_DECL_ACE verisimple_wstring
 {
 public:
 

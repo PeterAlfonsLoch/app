@@ -1199,13 +1199,13 @@ int_bool matches_wildcard_criteria_ci(const char * pszCriteria, const char * psz
 }
 
 
-//CLASS_DECL_AURA string get_md5(const char * psz)
+//CLASS_DECL_ACE string get_md5(const char * psz)
 //{
 //   return get_md5(psz, strlen(psz));
 //}
 
 /*
-CLASS_DECL_AURA void zero_pad(string & str, count iPad)
+CLASS_DECL_ACE void zero_pad(string & str, count iPad)
 {
    while(str.get_length() < iPad)
    {
@@ -1216,7 +1216,7 @@ CLASS_DECL_AURA void zero_pad(string & str, count iPad)
 
 
 
-CLASS_DECL_AURA void * memmem_dup(const void * src, strsize srclen, const void * find, strsize findlen)
+CLASS_DECL_ACE void * memmem_dup(const void * src, strsize srclen, const void * find, strsize findlen)
 {
 
    if(src == NULL)
@@ -1707,12 +1707,12 @@ wstring utf32_to_utf16(const unichar32 *input, strsize input_size)
 }
 
 #ifdef WINDOWS
-CLASS_DECL_AURA string w_to_8(const wchar_t * pcwsz, strsize input_size)
+CLASS_DECL_ACE string w_to_8(const wchar_t * pcwsz, strsize input_size)
 {
    return utf16_to_utf8(pcwsz, input_size);
 }
 #else
-CLASS_DECL_AURA string w_to_8(const wchar_t * pcwsz, strsize input_size)
+CLASS_DECL_ACE string w_to_8(const wchar_t * pcwsz, strsize input_size)
 {
    return utf32_to_utf8(pcwsz, input_size);
 }

@@ -6,7 +6,7 @@
 
 
 
-class CLASS_DECL_AURA mutex :
+class CLASS_DECL_ACE mutex :
    virtual public sync_object
 {
 public:
@@ -76,11 +76,11 @@ public:
 };
 
 
-CLASS_DECL_AURA void wait_until_mutex_does_not_exist(const char * pszName);
+CLASS_DECL_ACE void wait_until_mutex_does_not_exist(const char * pszName);
 
 
 
-CLASS_DECL_AURA mutex * get_ui_destroyed_mutex();
+CLASS_DECL_ACE mutex * get_ui_destroyed_mutex();
 
 
 

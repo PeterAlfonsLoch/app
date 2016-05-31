@@ -70,7 +70,7 @@
 //
 //#undef new
 //   DECLARE_AND_IMPLEMENT_DEFAULT_ALLOCATION
-//#define new AURA_NEW
+//#define new ACE_NEW
 //
 //
 //};

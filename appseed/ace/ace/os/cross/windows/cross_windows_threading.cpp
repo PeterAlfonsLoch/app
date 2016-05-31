@@ -5,7 +5,7 @@ typedef void_ptra ThreadLocalData;
 
 #if defined(LINUX) // || defined(ANDROID)
 
-bool aura_defer_process_x_message(HTHREAD hthread,LPMESSAGE lpMsg,oswindow oswindow,bool bPeek);
+bool ace_defer_process_x_message(HTHREAD hthread,LPMESSAGE lpMsg,oswindow oswindow,bool bPeek);
 
 #endif
 
@@ -60,7 +60,7 @@ map < HTHREAD,HTHREAD,mq *,mq * > * g_pmapMq = NULL;
 //
 //
 
-CLASS_DECL_AURA int_bool WINAPI GetMessageW(LPMESSAGE lpMsg,oswindow oswindow,UINT wMsgFilterMin,UINT wMsgFilterMax)
+CLASS_DECL_ACE int_bool WINAPI GetMessageW(LPMESSAGE lpMsg,oswindow oswindow,UINT wMsgFilterMin,UINT wMsgFilterMax)
 {
 
 
@@ -123,7 +123,7 @@ restart:
 //
 //   }
 
-   //if(aura_defer_process_x_message(hthread,lpMsg,oswindow,false))
+   //if(ace_defer_process_x_message(hthread,lpMsg,oswindow,false))
      // return TRUE;
 
 #endif
@@ -170,7 +170,7 @@ restart:
 }
 
 
-CLASS_DECL_AURA int_bool WINAPI PeekMessageW(LPMESSAGE lpMsg,oswindow oswindow,UINT wMsgFilterMin,UINT wMsgFilterMax,UINT wRemoveMsg)
+CLASS_DECL_ACE int_bool WINAPI PeekMessageW(LPMESSAGE lpMsg,oswindow oswindow,UINT wMsgFilterMin,UINT wMsgFilterMax,UINT wRemoveMsg)
 {
 
    mq * pmq = __get_mq(GetCurrentThreadId());
@@ -206,7 +206,7 @@ CLASS_DECL_AURA int_bool WINAPI PeekMessageW(LPMESSAGE lpMsg,oswindow oswindow,U
    ml.unlock();
 
 #if defined(LINUX) // || defined(ANDROID)
-   if(aura_defer_process_x_message(hthread,lpMsg,oswindow,!(wRemoveMsg & PM_REMOVE)))
+   if(ace_defer_process_x_message(hthread,lpMsg,oswindow,!(wRemoveMsg & PM_REMOVE)))
       return TRUE;
 #endif
 

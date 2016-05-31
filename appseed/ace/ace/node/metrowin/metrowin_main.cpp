@@ -3,14 +3,14 @@
 //#include "sal.h"
 
 
-CLASS_DECL_AURA int ca2_main();
+CLASS_DECL_ACE int ca2_main();
 
 
 //CLASS_DECL_BOOT extern fixed_alloc_array * g_pfixedallocaWstring;
 
 //CLASS_DECL_BOOT fixed_alloc_array * new_wstring_manager();
 
-void CLASS_DECL_AURA __cdecl _ca2_purecall()
+void CLASS_DECL_ACE __cdecl _ca2_purecall()
 {
     throw simple_exception(::get_thread_app());
 }
@@ -28,7 +28,7 @@ void __cdecl _null_se_translator(unsigned int uiCode, EXCEPTION_POINTERS * ppoin
 //  Can be replaced as long as '::ca2::WinInit' is called first
 
 
-int CLASS_DECL_AURA win_main(::ace::system * psystem, ::Array < ::String ^ > ^ args)
+int CLASS_DECL_ACE win_main(::ace::system * psystem, ::Array < ::String ^ > ^ args)
 {
 
    if(!main_initialize())
@@ -134,7 +134,7 @@ int CLASS_DECL_AURA win_main(::ace::system * psystem, ::Array < ::String ^ > ^ a
 }
 
 
-//int CLASS_DECL_AURA ca2_main(HINSTANCE hInstance, HINSTANCE hPrevInstance, const char * lpCmdLine, int nCmdShow)
+//int CLASS_DECL_ACE ca2_main(HINSTANCE hInstance, HINSTANCE hPrevInstance, const char * lpCmdLine, int nCmdShow)
 //{
 //   try
 //   {

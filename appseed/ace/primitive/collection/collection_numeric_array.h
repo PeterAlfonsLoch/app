@@ -905,43 +905,43 @@ unique_number_sort_array < TYPE >::
 
 
 
-typedef CLASS_DECL_AURA numeric_array < int8_t  > int8_array;
-typedef CLASS_DECL_AURA numeric_array < int16_t  > int16_array;
-typedef CLASS_DECL_AURA numeric_array < int32_t  > int32_array;
-typedef CLASS_DECL_AURA numeric_array < int64_t  > int64_array;
+typedef CLASS_DECL_ACE numeric_array < int8_t  > int8_array;
+typedef CLASS_DECL_ACE numeric_array < int16_t  > int16_array;
+typedef CLASS_DECL_ACE numeric_array < int32_t  > int32_array;
+typedef CLASS_DECL_ACE numeric_array < int64_t  > int64_array;
 
-typedef CLASS_DECL_AURA numeric_array < uint8_t  > uint8_array;
-typedef CLASS_DECL_AURA numeric_array < uint16_t  > uint16_array;
-typedef CLASS_DECL_AURA numeric_array < uint32_t  > uint32_array;
-typedef CLASS_DECL_AURA numeric_array < uint64_t  > uint64_array;
+typedef CLASS_DECL_ACE numeric_array < uint8_t  > uint8_array;
+typedef CLASS_DECL_ACE numeric_array < uint16_t  > uint16_array;
+typedef CLASS_DECL_ACE numeric_array < uint32_t  > uint32_array;
+typedef CLASS_DECL_ACE numeric_array < uint64_t  > uint64_array;
 
-typedef CLASS_DECL_AURA int32_array int_array;
-typedef CLASS_DECL_AURA uint32_array uint_array;
+typedef CLASS_DECL_ACE int32_array int_array;
+typedef CLASS_DECL_ACE uint32_array uint_array;
 
 #ifdef OS64BIT
 
-typedef CLASS_DECL_AURA int64_array int_ptr_array;
-typedef CLASS_DECL_AURA uint64_array uint_ptr_array;
+typedef CLASS_DECL_ACE int64_array int_ptr_array;
+typedef CLASS_DECL_ACE uint64_array uint_ptr_array;
 
 #else
 
-typedef CLASS_DECL_AURA int32_array int_ptr_array;
-typedef CLASS_DECL_AURA uint32_array uint_ptr_array;
+typedef CLASS_DECL_ACE int32_array int_ptr_array;
+typedef CLASS_DECL_ACE uint32_array uint_ptr_array;
 
 #endif
 
-typedef CLASS_DECL_AURA numeric_array < float  > float_array;
-typedef CLASS_DECL_AURA numeric_array < double  > double_array;
+typedef CLASS_DECL_ACE numeric_array < float  > float_array;
+typedef CLASS_DECL_ACE numeric_array < double  > double_array;
 
-typedef CLASS_DECL_AURA uint8_array byte_array;
+typedef CLASS_DECL_ACE uint8_array byte_array;
 
-typedef CLASS_DECL_AURA int_ptr_array index_array;
-typedef CLASS_DECL_AURA int_ptr_array count_array;
+typedef CLASS_DECL_ACE int_ptr_array index_array;
+typedef CLASS_DECL_ACE int_ptr_array count_array;
 
 
 
-typedef CLASS_DECL_AURA unique_number_sort_array < int32_t > unique_int_sort_array;
-typedef CLASS_DECL_AURA unique_number_sort_array < index > unique_index_sort_array;
+typedef CLASS_DECL_ACE unique_number_sort_array < int32_t > unique_int_sort_array;
+typedef CLASS_DECL_ACE unique_number_sort_array < index > unique_index_sort_array;
 
 
 

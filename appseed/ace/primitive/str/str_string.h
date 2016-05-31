@@ -1,9 +1,9 @@
 #pragma once
 
 
-CLASS_DECL_AURA string_manager * __get_string_manager();
-CLASS_DECL_AURA int64_t strtoi(const char * psz);
-CLASS_DECL_AURA int64_t strtoi(const unichar * psz);
+CLASS_DECL_ACE string_manager * __get_string_manager();
+CLASS_DECL_ACE int64_t strtoi(const char * psz);
+CLASS_DECL_ACE int64_t strtoi(const unichar * psz);
 
 
 template <typename T>
@@ -167,7 +167,7 @@ public:
 
 
 
-extern CLASS_DECL_AURA string_manager * s_pstringmanager;
+extern CLASS_DECL_ACE string_manager * s_pstringmanager;
 
 
 class string_trait :
@@ -188,7 +188,7 @@ class fixed_alloc_array;
 
 
 
-class CLASS_DECL_AURA string :
+class CLASS_DECL_ACE string :
    public stdstring < simple_string >
 #if defined(VARIADIC_TEMPLATE_FORMAT2)
    , public string_format_printer
@@ -827,21 +827,21 @@ public:
    }
 
 
-   friend string CLASS_DECL_AURA operator+(const string & str1,const string & str2 );
-   friend string CLASS_DECL_AURA operator+(const string & str1,const char * psz2 );
-   friend string CLASS_DECL_AURA operator+(const char * psz1,const string & str2 );
-   friend string CLASS_DECL_AURA operator+(const string & str1,unichar ch2 );
-   friend string CLASS_DECL_AURA operator+(unichar ch1,const string & str2 );
-   friend string CLASS_DECL_AURA operator+(const string & str1,char ch2 );
-   friend string CLASS_DECL_AURA operator+(char ch1,const string & str2 );
-   friend string CLASS_DECL_AURA operator+(const string & str1,int32_t ch2 );
-   friend string CLASS_DECL_AURA operator+(int32_t ch1,const string & str2 );
-   friend string CLASS_DECL_AURA operator+(const string & str1,int64_t ch2 );
-   friend string CLASS_DECL_AURA operator+(int64_t ch1,const string & str2 );
-   friend string CLASS_DECL_AURA operator+(const var & var, const char * psz);
-   friend string CLASS_DECL_AURA operator+(const char * psz, const var & var);
-   friend string CLASS_DECL_AURA operator+(const var & var, const string & str);
-   friend string CLASS_DECL_AURA operator+(const string & str, const var & var);
+   friend string CLASS_DECL_ACE operator+(const string & str1,const string & str2 );
+   friend string CLASS_DECL_ACE operator+(const string & str1,const char * psz2 );
+   friend string CLASS_DECL_ACE operator+(const char * psz1,const string & str2 );
+   friend string CLASS_DECL_ACE operator+(const string & str1,unichar ch2 );
+   friend string CLASS_DECL_ACE operator+(unichar ch1,const string & str2 );
+   friend string CLASS_DECL_ACE operator+(const string & str1,char ch2 );
+   friend string CLASS_DECL_ACE operator+(char ch1,const string & str2 );
+   friend string CLASS_DECL_ACE operator+(const string & str1,int32_t ch2 );
+   friend string CLASS_DECL_ACE operator+(int32_t ch1,const string & str2 );
+   friend string CLASS_DECL_ACE operator+(const string & str1,int64_t ch2 );
+   friend string CLASS_DECL_ACE operator+(int64_t ch1,const string & str2 );
+   friend string CLASS_DECL_ACE operator+(const var & var, const char * psz);
+   friend string CLASS_DECL_ACE operator+(const char * psz, const var & var);
+   friend string CLASS_DECL_ACE operator+(const var & var, const string & str);
+   friend string CLASS_DECL_ACE operator+(const string & str, const var & var);
 
 
 
@@ -1216,7 +1216,7 @@ inline int32_t string::CompareNoCase(const char * psz ) const RELEASENOTHROW
 }
 
 
-inline   string CLASS_DECL_AURA operator+(const string & str1,const string & str2 )
+inline   string CLASS_DECL_ACE operator+(const string & str1,const string & str2 )
 {
    string strResult( str1.GetManager() );
 
@@ -1225,7 +1225,7 @@ inline   string CLASS_DECL_AURA operator+(const string & str1,const string & str
    return( strResult );
 }
 
-inline   string CLASS_DECL_AURA operator+(const string & str1,const char * psz2 )
+inline   string CLASS_DECL_ACE operator+(const string & str1,const char * psz2 )
 {
    string strResult( str1.GetManager() );
 
@@ -1234,7 +1234,7 @@ inline   string CLASS_DECL_AURA operator+(const string & str1,const char * psz2 
    return( strResult );
 }
 
-inline   string CLASS_DECL_AURA operator+(const char * psz1,const string & str2 )
+inline   string CLASS_DECL_ACE operator+(const char * psz1,const string & str2 )
 {
    string strResult( str2.GetManager() );
 
@@ -1243,7 +1243,7 @@ inline   string CLASS_DECL_AURA operator+(const char * psz1,const string & str2 
    return( strResult );
 }
 
-inline   string CLASS_DECL_AURA operator+(const string & str1,unichar ch2 )
+inline   string CLASS_DECL_ACE operator+(const string & str1,unichar ch2 )
 {
    string strResult( str1.GetManager() );
    char chTemp = char( ch2 );
@@ -1253,7 +1253,7 @@ inline   string CLASS_DECL_AURA operator+(const string & str1,unichar ch2 )
    return( strResult );
 }
 
-inline   string CLASS_DECL_AURA operator+(const string & str1,char ch2 )
+inline   string CLASS_DECL_ACE operator+(const string & str1,char ch2 )
 {
    string strResult( str1.GetManager() );
    char chTemp = char( ch2 );
@@ -1263,7 +1263,7 @@ inline   string CLASS_DECL_AURA operator+(const string & str1,char ch2 )
    return( strResult );
 }
 
-inline   string CLASS_DECL_AURA operator+(unichar ch1,const string & str2 )
+inline   string CLASS_DECL_ACE operator+(unichar ch1,const string & str2 )
 {
    string strResult( str2.GetManager() );
    char chTemp = char( ch1 );
@@ -1273,7 +1273,7 @@ inline   string CLASS_DECL_AURA operator+(unichar ch1,const string & str2 )
    return( strResult );
 }
 
-inline   string CLASS_DECL_AURA operator+(char ch1,const string & str2 )
+inline   string CLASS_DECL_ACE operator+(char ch1,const string & str2 )
 {
    string strResult( str2.GetManager() );
    char chTemp = char( ch1 );
@@ -1284,7 +1284,7 @@ inline   string CLASS_DECL_AURA operator+(char ch1,const string & str2 )
 }
 
 
-inline   string CLASS_DECL_AURA operator+ (const string & str1, int32_t i2)
+inline   string CLASS_DECL_ACE operator+ (const string & str1, int32_t i2)
 {
 
    string strResult( str1.GetManager() );
@@ -1294,7 +1294,7 @@ inline   string CLASS_DECL_AURA operator+ (const string & str1, int32_t i2)
    return strResult;
 }
 
-inline   string CLASS_DECL_AURA operator+ (int32_t i1, const string & str2)
+inline   string CLASS_DECL_ACE operator+ (int32_t i1, const string & str2)
 {
 
    string strResult( str2.GetManager() );
@@ -1304,7 +1304,7 @@ inline   string CLASS_DECL_AURA operator+ (int32_t i1, const string & str2)
    return strResult;
 }
 
-inline   string CLASS_DECL_AURA operator+ (const string & str1, int64_t i2)
+inline   string CLASS_DECL_ACE operator+ (const string & str1, int64_t i2)
 {
 
    string strResult( str1.GetManager() );
@@ -1314,7 +1314,7 @@ inline   string CLASS_DECL_AURA operator+ (const string & str1, int64_t i2)
    return strResult;
 }
 
-inline   string CLASS_DECL_AURA operator+ (int64_t i1, const string & str2)
+inline   string CLASS_DECL_ACE operator+ (int64_t i1, const string & str2)
 {
 
    string strResult( str2.GetManager() );
@@ -1509,105 +1509,105 @@ inline strsize string::remove(strsize iIndex,strsize nCount)
 }
 
 
-//inline bool CLASS_DECL_AURA operator==(const string_interface & str1   , const string & str2)  { return str2 == str1; }
-inline bool CLASS_DECL_AURA operator==(const char *  psz                     , const string & str )  {
+//inline bool CLASS_DECL_ACE operator==(const string_interface & str1   , const string & str2)  { return str2 == str1; }
+inline bool CLASS_DECL_ACE operator==(const char *  psz                     , const string & str )  {
    return str  == psz ;
 }
-inline bool CLASS_DECL_AURA operator==(const unichar *  psz                     , const string & str )  {
+inline bool CLASS_DECL_ACE operator==(const unichar *  psz                     , const string & str )  {
    return str  == psz ;
 }
-inline bool CLASS_DECL_AURA operator==(char   ch                      , const string & str )  {
+inline bool CLASS_DECL_ACE operator==(char   ch                      , const string & str )  {
    return str  == ch  ;
 }
-inline bool CLASS_DECL_AURA operator==(unichar   ch                      , const string & str )  {
+inline bool CLASS_DECL_ACE operator==(unichar   ch                      , const string & str )  {
    return str  == ch  ;
 }
-inline bool CLASS_DECL_AURA operator==(int32_t i                       , const string & str )  {
+inline bool CLASS_DECL_ACE operator==(int32_t i                       , const string & str )  {
    return str  == i   ;
 }
 
-//inline bool CLASS_DECL_AURA operator>(const string_interface & str1   , const string & str2 )   { return str2 < str1; }
-inline bool CLASS_DECL_AURA operator>(const char * psz                      , const string & str  )   {
+//inline bool CLASS_DECL_ACE operator>(const string_interface & str1   , const string & str2 )   { return str2 < str1; }
+inline bool CLASS_DECL_ACE operator>(const char * psz                      , const string & str  )   {
    return str  < psz ;
 }
-inline bool CLASS_DECL_AURA operator>(const unichar * psz                      , const string & str  )   {
+inline bool CLASS_DECL_ACE operator>(const unichar * psz                      , const string & str  )   {
    return str  < psz ;
 }
-inline bool CLASS_DECL_AURA operator>(char ch                        , const string & str  )   {
+inline bool CLASS_DECL_ACE operator>(char ch                        , const string & str  )   {
    return str  < ch  ;
 }
-inline bool CLASS_DECL_AURA operator>(unichar ch                        , const string & str  )   {
+inline bool CLASS_DECL_ACE operator>(unichar ch                        , const string & str  )   {
    return str  < ch  ;
 }
-inline bool CLASS_DECL_AURA operator>(int32_t i                       , const string & str  )   {
+inline bool CLASS_DECL_ACE operator>(int32_t i                       , const string & str  )   {
    return str  < i   ;
 }
 
-//inline bool CLASS_DECL_AURA operator<(const string_interface & str1   , const string & str2 )   { return str2 > str1; }
-inline bool CLASS_DECL_AURA operator<(const char * psz                      , const string & str  )   {
+//inline bool CLASS_DECL_ACE operator<(const string_interface & str1   , const string & str2 )   { return str2 > str1; }
+inline bool CLASS_DECL_ACE operator<(const char * psz                      , const string & str  )   {
    return str  > psz ;
 }
-inline bool CLASS_DECL_AURA operator<(const unichar * psz                      , const string & str  )   {
+inline bool CLASS_DECL_ACE operator<(const unichar * psz                      , const string & str  )   {
    return str  > psz ;
 }
-inline bool CLASS_DECL_AURA operator<(char ch                        , const string & str  )   {
+inline bool CLASS_DECL_ACE operator<(char ch                        , const string & str  )   {
    return str  > ch  ;
 }
-inline bool CLASS_DECL_AURA operator<(unichar ch                        , const string & str  )   {
+inline bool CLASS_DECL_ACE operator<(unichar ch                        , const string & str  )   {
    return str  > ch  ;
 }
-inline bool CLASS_DECL_AURA operator<(int32_t i                       , const string & str  )   {
+inline bool CLASS_DECL_ACE operator<(int32_t i                       , const string & str  )   {
    return str  > i   ;
 }
 
-//inline bool CLASS_DECL_AURA operator!=(const string_interface & str1,const string & str2)  { return !::operator==(str1, str2); }
-inline bool CLASS_DECL_AURA operator!=(const char * psz,const string & str)                      {
+//inline bool CLASS_DECL_ACE operator!=(const string_interface & str1,const string & str2)  { return !::operator==(str1, str2); }
+inline bool CLASS_DECL_ACE operator!=(const char * psz,const string & str)                      {
    return !::operator==(psz, str);
 }
-inline bool CLASS_DECL_AURA operator!=(const unichar * psz,const string & str)                      {
+inline bool CLASS_DECL_ACE operator!=(const unichar * psz,const string & str)                      {
    return !::operator==(psz, str);
 }
-inline bool CLASS_DECL_AURA operator!=(char ch,const string & str)                        {
+inline bool CLASS_DECL_ACE operator!=(char ch,const string & str)                        {
    return !::operator==(ch, str);
 }
-inline bool CLASS_DECL_AURA operator!=(unichar ch,const string & str)                        {
+inline bool CLASS_DECL_ACE operator!=(unichar ch,const string & str)                        {
    return !::operator==(ch, str);
 }
-inline bool CLASS_DECL_AURA operator!=(int32_t i, const string & str)                      {
+inline bool CLASS_DECL_ACE operator!=(int32_t i, const string & str)                      {
    return !::operator==(i, str);
 }
 
-//inline bool CLASS_DECL_AURA operator>=(const string_interface & str1,const string & str2)  { return !::operator<(str1, str2); }
-inline bool CLASS_DECL_AURA operator>=(const char * psz,const string & str)                      {
+//inline bool CLASS_DECL_ACE operator>=(const string_interface & str1,const string & str2)  { return !::operator<(str1, str2); }
+inline bool CLASS_DECL_ACE operator>=(const char * psz,const string & str)                      {
    return !::operator<(psz, str);
 }
-inline bool CLASS_DECL_AURA operator>=(const unichar * psz,const string & str)                      {
+inline bool CLASS_DECL_ACE operator>=(const unichar * psz,const string & str)                      {
    return !::operator<(psz, str);
 }
-inline bool CLASS_DECL_AURA operator>=(char ch,const string & str)                        {
+inline bool CLASS_DECL_ACE operator>=(char ch,const string & str)                        {
    return !::operator<(ch, str);
 }
-inline bool CLASS_DECL_AURA operator>=(unichar ch,const string & str)                        {
+inline bool CLASS_DECL_ACE operator>=(unichar ch,const string & str)                        {
    return !::operator<(ch, str);
 }
-inline bool CLASS_DECL_AURA operator>=(int32_t i, const string & str)                      {
+inline bool CLASS_DECL_ACE operator>=(int32_t i, const string & str)                      {
    return !::operator<(i, str);
 }
 
-//inline bool CLASS_DECL_AURA operator<=(const string_interface & str1,const string & str2)  { return !::operator>(str1, str2); }
-inline bool CLASS_DECL_AURA operator<=(const char * psz,const string & str)                      {
+//inline bool CLASS_DECL_ACE operator<=(const string_interface & str1,const string & str2)  { return !::operator>(str1, str2); }
+inline bool CLASS_DECL_ACE operator<=(const char * psz,const string & str)                      {
    return !::operator>(psz, str);
 }
-inline bool CLASS_DECL_AURA operator<=(const unichar * psz,const string & str)                      {
+inline bool CLASS_DECL_ACE operator<=(const unichar * psz,const string & str)                      {
    return !::operator>(psz, str);
 }
-inline bool CLASS_DECL_AURA operator<=(char ch,const string & str)                        {
+inline bool CLASS_DECL_ACE operator<=(char ch,const string & str)                        {
    return !::operator>(ch, str);
 }
-inline bool CLASS_DECL_AURA operator<=(unichar ch,const string & str)                        {
+inline bool CLASS_DECL_ACE operator<=(unichar ch,const string & str)                        {
    return !::operator>(ch, str);
 }
-inline bool CLASS_DECL_AURA operator<=(int32_t i, const string & str)                      {
+inline bool CLASS_DECL_ACE operator<=(int32_t i, const string & str)                      {
    return !::operator>(i, str);
 }
 
@@ -1705,7 +1705,7 @@ inline string & to_string(string & str, String ^ & strSrc)
 namespace str
 {
 
-   inline CLASS_DECL_AURA bool ends_eat(string & str, const char * lpcszSuffix)
+   inline CLASS_DECL_ACE bool ends_eat(string & str, const char * lpcszSuffix)
    {
 
       strsize iLen = strlen(lpcszSuffix);
@@ -1725,7 +1725,7 @@ namespace str
 } // namespace str
 
 
-inline CLASS_DECL_AURA string operator + (const id & id, const char * psz)
+inline CLASS_DECL_ACE string operator + (const id & id, const char * psz)
 {
 
    return string(id) + psz;
@@ -1734,7 +1734,7 @@ inline CLASS_DECL_AURA string operator + (const id & id, const char * psz)
 
 
 
-inline CLASS_DECL_AURA string operator + (const char * psz, const id & id)
+inline CLASS_DECL_ACE string operator + (const char * psz, const id & id)
 {
 
    return psz + string(id);
@@ -1742,7 +1742,7 @@ inline CLASS_DECL_AURA string operator + (const char * psz, const id & id)
 }
 
 
-inline CLASS_DECL_AURA string operator + (const string & str, const id & id)
+inline CLASS_DECL_ACE string operator + (const string & str, const id & id)
 {
 
    return str + string(id);

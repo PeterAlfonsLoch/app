@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_AURA stringtow :
+class CLASS_DECL_ACE stringtow :
    public string
 {
 public:

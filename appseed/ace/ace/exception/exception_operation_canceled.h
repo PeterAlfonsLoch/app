@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_AURA operation_canceled_exception : 
+class CLASS_DECL_ACE operation_canceled_exception : 
    virtual public simple_exception
 {
 public:

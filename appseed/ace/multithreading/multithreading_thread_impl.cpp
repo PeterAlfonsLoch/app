@@ -120,10 +120,10 @@
 //
 //      try
 //      {
-//         if(m_pauraapp->m_paurasession != NULL)
+//         if(m_paceapp->m_pacesession != NULL)
 //         {
 //
-//            m_pauraapp->m_paurasession->frame_pre_translate_message(pobj);
+//            m_paceapp->m_pacesession->frame_pre_translate_message(pobj);
 //         }
 //      }
 //      catch(exit_exception & e)
@@ -550,7 +550,7 @@
 //      catch(::exit_exception &)
 //      {
 //
-//         Sys(pthreadimpl->m_pauraapp).post_quit();
+//         Sys(pthreadimpl->m_paceapp).post_quit();
 //
 //         return ::multithreading::__on_thread_finally(pthread);
 //
@@ -573,7 +573,7 @@
 //}
 //
 //
-//void CLASS_DECL_AURA __end_thread(::ace::application * papp)
+//void CLASS_DECL_ACE __end_thread(::ace::application * papp)
 //{
 //
 //   __term_thread(papp);
@@ -581,7 +581,7 @@
 //}
 //
 //
-//void CLASS_DECL_AURA __term_thread(::ace::application * papp)
+//void CLASS_DECL_ACE __term_thread(::ace::application * papp)
 //{
 //
 //   UNREFERENCED_PARAMETER(papp);
@@ -1343,25 +1343,25 @@
 //                  try
 //                  {
 //
-//                     if(m_pauraapp != NULL)
+//                     if(m_paceapp != NULL)
 //                     {
 //
 //                        try
 //                        {
 //
-//                           if(m_pauraapp->m_paurasystem != NULL)
+//                           if(m_paceapp->m_pacesystem != NULL)
 //                           {
 //
-//                              m_pauraapp->m_paurasystem->pre_translate_message(spbase);
+//                              m_paceapp->m_pacesystem->pre_translate_message(spbase);
 //
 //                              if(spbase->m_bRet)
 //                                 return true;
 //
 //                              /*                                 try
 //                              {
-//                              if(m_pauraapp->m_paurasystem->m_pcube != NULL)
+//                              if(m_paceapp->m_pacesystem->m_pcube != NULL)
 //                              {
-//                              m_pauraapp->m_paurasystem->m_pcubeInterface->pre_translate_message(spbase);
+//                              m_paceapp->m_pacesystem->m_pcubeInterface->pre_translate_message(spbase);
 //                              if(spbase->m_bRet)
 //                              return TRUE;
 //                              }
@@ -1380,13 +1380,13 @@
 //
 //                        }
 //
-//                        if(m_pauraapp->m_paurasession != NULL)
+//                        if(m_paceapp->m_pacesession != NULL)
 //                        {
 //
 //                           try
 //                           {
 //
-//                              m_pauraapp->m_paurasession->pre_translate_message(spbase);
+//                              m_paceapp->m_pacesession->pre_translate_message(spbase);
 //
 //                              if(spbase->m_bRet)
 //                                 return true;
@@ -1399,9 +1399,9 @@
 //
 //                           /*                              try
 //                           {
-//                           if(m_pauraapp->m_paurasession->m_pbergedge != NULL)
+//                           if(m_paceapp->m_pacesession->m_pbergedge != NULL)
 //                           {
-//                           m_pauraapp->m_paurasession->m_pbergedgeInterface->pre_translate_message(spbase);
+//                           m_paceapp->m_pacesession->m_pbergedgeInterface->pre_translate_message(spbase);
 //                           if(spbase->m_bRet)
 //                           return TRUE;
 //                           }
@@ -1423,10 +1423,10 @@
 //                  try
 //                  {
 //
-//                     if(!m_pauraapp->is_system() && m_pauraapp->is_session())
+//                     if(!m_paceapp->is_system() && m_paceapp->is_session())
 //                     {
 //
-//                        m_pauraapp->pre_translate_message(spbase);
+//                        m_paceapp->pre_translate_message(spbase);
 //
 //                        if(spbase->m_bRet)
 //                           return true;

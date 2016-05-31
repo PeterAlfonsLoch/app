@@ -127,7 +127,7 @@ namespace ca2
 
 ///  \brief		global function to set thread priority for current thread
 	///  \param		new priority
-	CLASS_DECL_AURA bool set_thread_priority(int32_t priority)
+	CLASS_DECL_ACE bool set_thread_priority(int32_t priority)
 	{
 
       return SetThreadPrioriy(GetCurrentThread(), priority) != FALSE;
@@ -139,7 +139,7 @@ namespace ca2
 	///  \brief		global function to get thread priority for current thread
 	///  \return	priority of current thread
 
-	CLASS_DECL_AURA int32_t thread_priority()
+	CLASS_DECL_ACE int32_t thread_priority()
 	{
 
       return GetThreadPrioriy(GetCurrentThread());

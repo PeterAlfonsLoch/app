@@ -472,7 +472,7 @@ namespace exception
 } // namespace exception
 
 
-CLASS_DECL_AURA bool g_bExiting;
+CLASS_DECL_ACE bool g_bExiting;
 
 
 

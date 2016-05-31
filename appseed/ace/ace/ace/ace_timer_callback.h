@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_AURA timer_callback
+class CLASS_DECL_ACE timer_callback
 {
 public:
 

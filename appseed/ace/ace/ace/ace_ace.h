@@ -54,7 +54,7 @@
 #ifndef NON_CONVERGING_LANG_IS_TERMINAL_LANG
 
 
-#define AURA_LANGUAGE
+#define ACE_LANGUAGE
 
 
 #endif
@@ -64,7 +64,7 @@
 
 
 
-#ifdef AURA_LANGUAGE
+#ifdef ACE_LANGUAGE
 
 
 #if defined(__cplusplus) 

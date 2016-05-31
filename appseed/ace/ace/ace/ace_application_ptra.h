@@ -5,7 +5,7 @@ namespace ace
 {
 
 
-   class CLASS_DECL_AURA application_ptra:
+   class CLASS_DECL_ACE application_ptra:
       virtual public spa(application)
    {
    public:

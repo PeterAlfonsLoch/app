@@ -8,12 +8,12 @@ namespace metrowin
    class thread;
 } // namespace metrowin
 
-bool CLASS_DECL_AURA __internal_pump_message();
-LRESULT CLASS_DECL_AURA __internal_process_wnd_proc_exception(::exception::base*, const MSG* pMsg);
+bool CLASS_DECL_ACE __internal_pump_message();
+LRESULT CLASS_DECL_ACE __internal_process_wnd_proc_exception(::exception::base*, const MSG* pMsg);
 bool __internal_pre_translate_message(MSG* pMsg);
 bool __internal_is_idle_message(MSG* pMsg);
-//__STATIC void CLASS_DECL_AURA __pre_init_dialog(sp(::user::interaction) pWnd, LPRECT lpRectOld, uint32_t* pdwStyleOld);
-//__STATIC void CLASS_DECL_AURA __post_init_dialog(sp(::user::interaction) pWnd, const RECT& rectOld, uint32_t dwStyleOld);
+//__STATIC void CLASS_DECL_ACE __pre_init_dialog(sp(::user::interaction) pWnd, LPRECT lpRectOld, uint32_t* pdwStyleOld);
+//__STATIC void CLASS_DECL_ACE __post_init_dialog(sp(::user::interaction) pWnd, const RECT& rectOld, uint32_t dwStyleOld);
 
 
 //__declspec(thread) HHOOK t_hHookOldMsgFilter = NULL;
@@ -22,7 +22,7 @@ bool __internal_is_idle_message(MSG* pMsg);
 //LRESULT CALLBACK __message_filter_hook(int32_t code,WPARAM wParam,LPARAM lParam);
 
 
-void CLASS_DECL_AURA __init_thread()
+void CLASS_DECL_ACE __init_thread()
 {
 
    //if(t_hHookOldMsgFilter == NULL)
@@ -35,7 +35,7 @@ void CLASS_DECL_AURA __init_thread()
 }
 
 
-void CLASS_DECL_AURA __term_thread()
+void CLASS_DECL_ACE __term_thread()
 {
 
 
@@ -1274,7 +1274,7 @@ namespace core
 ////   }
 ////
 ////
-////   CLASS_DECL_AURA ::thread * get_thread()
+////   CLASS_DECL_ACE ::thread * get_thread()
 ////   {
 ////      ::metrowin::thread * pwinthread = __get_thread();
 ////      if(pwinthread == NULL)
@@ -1282,7 +1282,7 @@ namespace core
 ////      return pwinthread->m_p;
 ////   }
 ////
-////   CLASS_DECL_AURA ::thread_state * get_thread_state()
+////   CLASS_DECL_ACE ::thread_state * get_thread_state()
 ////   {
 ////      return __get_thread_state();
 ////   }
@@ -1543,14 +1543,14 @@ namespace core
 //
 //////
 //////
-//////bool CLASS_DECL_AURA __internal_pump_message();
-//////LRESULT CLASS_DECL_AURA __internal_process_wnd_proc_exception(::exception::ace*, const MSG* pMsg);
+//////bool CLASS_DECL_ACE __internal_pump_message();
+//////LRESULT CLASS_DECL_ACE __internal_process_wnd_proc_exception(::exception::ace*, const MSG* pMsg);
 //////void __internal_pre_translate_message(signal_details * pobj);
 //////bool __internal_is_idle_message(signal_details * pobj);
 //////bool __internal_is_idle_message(LPMSG lpmsg);
 //////
 //////
-///////*thread* CLASS_DECL_AURA System.GetThread()
+///////*thread* CLASS_DECL_ACE System.GetThread()
 //////{
 //////// check for current thread in module thread state
 //////__MODULE_THREAD_STATE* pState = __get_module_thread_state();
@@ -1558,14 +1558,14 @@ namespace core
 //////return pThread;
 //////}
 //////
-//////MSG* CLASS_DECL_AURA __get_current_message()
+//////MSG* CLASS_DECL_ACE __get_current_message()
 //////{
 //////___THREAD_STATE* pState = __get_thread_state();
 //////ASSERT(pState);
 //////return &(pState->m_msgCur);
 //////}
 //////
-//////bool CLASS_DECL_AURA __internal_pump_message()
+//////bool CLASS_DECL_ACE __internal_pump_message()
 //////{
 //////___THREAD_STATE *pState = __get_thread_state();
 //////
@@ -1602,7 +1602,7 @@ namespace core
 //////return TRUE;
 //////}
 //////
-//////bool CLASS_DECL_AURA ::ca2::PumpMessage()
+//////bool CLASS_DECL_ACE ::ca2::PumpMessage()
 //////{
 //////thread *pThread = System.GetThread();
 //////if( pThread )
@@ -1611,7 +1611,7 @@ namespace core
 //////return __internal_pump_message();
 //////}
 //////
-//////LRESULT CLASS_DECL_AURA __internal_process_wnd_proc_exception(::exception::ace*, const MSG* pMsg)
+//////LRESULT CLASS_DECL_ACE __internal_process_wnd_proc_exception(::exception::ace*, const MSG* pMsg)
 //////{
 //////if (pMsg->message == WM_CREATE)
 //////{
@@ -1626,7 +1626,7 @@ namespace core
 //////return 0;   // sensible default for rest of commands
 //////}
 //////
-//////LRESULT CLASS_DECL_AURA __process_window_procedure_exception(::exception::ace* e, const MSG* pMsg)
+//////LRESULT CLASS_DECL_ACE __process_window_procedure_exception(::exception::ace* e, const MSG* pMsg)
 //////{
 //////thread *pThread = System.GetThread();
 //////if( pThread )
@@ -1706,7 +1706,7 @@ namespace core
 //////}
 //////
 ///////*
-//////thread* CLASS_DECL_AURA __begin_thread(::ca2::type_info pThreadClass,
+//////thread* CLASS_DECL_ACE __begin_thread(::ca2::type_info pThreadClass,
 //////int nPriority, UINT nStackSize, uint32_t dwCreateFlags,
 //////LPSECURITY_ATTRIBUTES lpSecurityAttrs)
 //////{
@@ -1740,7 +1740,7 @@ namespace core
 //////}*/
 //////
 ///////*
-//////void CLASS_DECL_AURA __end_thread(UINT nExitCode, bool bDelete)
+//////void CLASS_DECL_ACE __end_thread(UINT nExitCode, bool bDelete)
 //////{
 //////#ifndef _MT
 //////nExitCode;
@@ -1772,7 +1772,7 @@ namespace core
 //////
 //////LRESULT CALLBACK __message_filter_hook(int code, WPARAM wParam, LPARAM lParam);
 //////
-//////void CLASS_DECL_AURA __init_thread()
+//////void CLASS_DECL_ACE __init_thread()
 //////{
 //////if (!afxContextIsDLL)
 //////{
@@ -2130,7 +2130,7 @@ namespace core
 //////}
 //////
 //////
-//////__STATIC bool CLASS_DECL_AURA IsHelpKey(LPMSG lpMsg)
+//////__STATIC bool CLASS_DECL_ACE IsHelpKey(LPMSG lpMsg)
 //////   // return TRUE only for non-repeat F1 keydowns.
 //////{
 //////   return lpMsg->message == WM_KEYDOWN &&

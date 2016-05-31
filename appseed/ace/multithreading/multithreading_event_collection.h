@@ -8,7 +8,7 @@ typedef ref_array < ::sync_object > sync_object_ptra;
 
 /// This class represents a collection of object items. A collection can be mixed
 /// of any kind of object items (threads, events, semaphores, ...).
-class CLASS_DECL_AURA event_collection :
+class CLASS_DECL_ACE event_collection :
    public object
 {
 public:

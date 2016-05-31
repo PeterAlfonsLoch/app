@@ -586,7 +586,7 @@ namespace metrowin
 
 
    /*
-   UINT CLASS_DECL_AURA vfxGetnative_bufferTitle(const unichar * lpszPathName, unichar * lpszTitle, UINT nMax)
+   UINT CLASS_DECL_ACE vfxGetnative_bufferTitle(const unichar * lpszPathName, unichar * lpszTitle, UINT nMax)
    {
    ASSERT(lpszTitle == NULL ||
    __is_valid_address(lpszTitle, _MAX_FNAME));

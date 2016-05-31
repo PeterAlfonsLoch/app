@@ -170,7 +170,7 @@ int32_t process_get_scheduling_priority(int32_t iOsPolicy, const sched_param * p
 namespace process
 {
 
-   CLASS_DECL_AURA bool set_priority(int32_t priority)
+   CLASS_DECL_ACE bool set_priority(int32_t priority)
 	{
 
       int32_t iPolicy = SCHED_OTHER;

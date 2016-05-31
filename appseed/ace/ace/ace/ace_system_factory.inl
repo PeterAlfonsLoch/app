@@ -27,7 +27,7 @@ object * creatable_factory_item < CREATABLE_TYPE > ::create(::ace::application *
 
    CREATABLE_TYPE * pt = ::new (pv) CREATABLE_TYPE(papp);
 
-#define new AURA_NEW
+#define new ACE_NEW
 
    ::dereference_no_delete(pt);
 
@@ -78,7 +78,7 @@ object * cloneable_factory_item < CLONEABLE_TYPE > ::clone(sp(object) pobject)
 
    CLONEABLE_TYPE * pt = ::new (pv) CLONEABLE_TYPE(*ptSrc);
 
-#define new AURA_NEW
+#define new ACE_NEW
 
    ::dereference_no_delete(pt);
 
@@ -123,7 +123,7 @@ object * default_creatable_factory_item < CREATABLE_TYPE > ::create()
 
    CREATABLE_TYPE * pt = ::new (pv)CREATABLE_TYPE();
 
-#define new AURA_NEW
+#define new ACE_NEW
 
    ::dereference_no_delete(pt);
 
@@ -174,7 +174,7 @@ object * default_cloneable_factory_item < CLONEABLE_TYPE > ::clone(sp(object) po
 
    CLONEABLE_TYPE * pt = ::new (pv)CLONEABLE_TYPE(*ptSrc);
 
-#define new AURA_NEW
+#define new ACE_NEW
 
    ::dereference_no_delete(pt);
 

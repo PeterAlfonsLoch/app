@@ -272,7 +272,7 @@ namespace file
 
    class listing;
    class path;
-   typedef CLASS_DECL_AURA ::string_array < ::file::path,string > patha;
+   typedef CLASS_DECL_ACE ::string_array < ::file::path,string > patha;
    class stream_buffer;
    class istream;
    class ostream;
@@ -293,7 +293,7 @@ namespace html
 } // namespace html
 
 
-#include "ace/ace/ace/aura_auto.h"
+#include "ace/ace/ace/ace_auto.h"
 
 
 
@@ -416,8 +416,8 @@ namespace ace
 //
 //   };
 //
-//   CLASS_DECL_AURA bool get_window_rect(system_window ^ pwindow,RECTD * lprect);
-//   CLASS_DECL_AURA bool get_window_rect(system_window ^ pwindow,LPRECT lprect);
+//   CLASS_DECL_ACE bool get_window_rect(system_window ^ pwindow,RECTD * lprect);
+//   CLASS_DECL_ACE bool get_window_rect(system_window ^ pwindow,LPRECT lprect);
 //
 //#endif
 
@@ -471,8 +471,8 @@ namespace core
 typedef ::ace::system * CREATE_SYSTEM();
 typedef CREATE_SYSTEM * LPFN_CREATE_SYSTEM;
 
-CLASS_DECL_AURA extern LPFN_CREATE_SYSTEM g_pfn_create_system;
-CLASS_DECL_AURA extern const char * g_pszCooperativeLevel;
+CLASS_DECL_ACE extern LPFN_CREATE_SYSTEM g_pfn_create_system;
+CLASS_DECL_ACE extern const char * g_pszCooperativeLevel;
 
 namespace data
 {
@@ -584,19 +584,19 @@ namespace html
 #define SCAST_REF(TYPE, rtarget, psource) TYPE & rtarget = *(dynamic_cast < TYPE * > (psource))
 
 
-#define CaSys(pca) (*pca->m_pauraapp->m_paurasystem)
-#define Sys(pauraapp) (*pauraapp->m_paurasystem)
-#define System (Sys(this->m_pauraapp))
+#define CaSys(pca) (*pca->m_paceapp->m_pacesystem)
+#define Sys(paceapp) (*paceapp->m_pacesystem)
+#define System (Sys(this->m_paceapp))
 #define threadSystem (Sys(get_thread_app()))
 
 
-#define Sess(pauraapp) (*pauraapp->m_paurasession)
-#define Session (Sess(m_pauraapp))
+#define Sess(paceapp) (*paceapp->m_pacesession)
+#define Session (Sess(m_paceapp))
 
 
 #undef App
-#define App(pauraapp) (*pauraapp)
-#define Application (App(m_pauraapp))
+#define App(paceapp) (*paceapp)
+#define Application (App(m_paceapp))
 
 
 // return - result - if not ok
@@ -625,31 +625,31 @@ typedef void * HDWP;
 typedef  void(*PFN_ca2_factory_exchange)(::ace::application * papp);
 
 #ifdef WINDOWS
-CLASS_DECL_AURA bool defer_co_initialize_ex();
+CLASS_DECL_ACE bool defer_co_initialize_ex();
 #endif
 
-CLASS_DECL_AURA bool aura_init();
-CLASS_DECL_AURA bool aura_term();
+CLASS_DECL_ACE bool ace_init();
+CLASS_DECL_ACE bool ace_term();
 
-CLASS_DECL_AURA bool __node_aura_pre_init();
-CLASS_DECL_AURA bool __node_aura_pos_init();
+CLASS_DECL_ACE bool __node_ace_pre_init();
+CLASS_DECL_ACE bool __node_ace_pos_init();
 
-CLASS_DECL_AURA bool __node_aura_pre_term();
-CLASS_DECL_AURA bool __node_aura_pos_term();
+CLASS_DECL_ACE bool __node_ace_pre_term();
+CLASS_DECL_ACE bool __node_ace_pos_term();
 
 
-CLASS_DECL_AURA ::ace::application * get_thread_app();
+CLASS_DECL_ACE ::ace::application * get_thread_app();
 
 #include "ace/primitive/primitive_cflag.h"
 
-#include "ace/ace/ace/aura_definition.h"
+#include "ace/ace/ace/ace_definition.h"
 
-#include "ace/ace/ace/aura_action_source.h"
+#include "ace/ace/ace/ace_action_source.h"
 
-#include "ace/ace/ace/aura_new.h"
+#include "ace/ace/ace/ace_new.h"
 
-#include "ace/ace/ace/aura_lparam.h"
-#include "ace/ace/ace/aura_muldiv64.h"
+#include "ace/ace/ace/ace_lparam.h"
+#include "ace/ace/ace/ace_muldiv64.h"
 
 
 
@@ -662,13 +662,13 @@ inline bool is_null(const TYPE & ref)
 #define NULL_REF(class) (*((class *) NULL))
 
 
-#include "ace/ace/ace/aura_auto_pointer.h"
+#include "ace/ace/ace/ace_auto_pointer.h"
 
-#include "ace/ace/ace/aura_smart_pointer1.h"
-#include "ace/ace/ace/aura_smart_pointer2.h"
+#include "ace/ace/ace/ace_smart_pointer1.h"
+#include "ace/ace/ace/ace_smart_pointer2.h"
 
 
-#include "ace/ace/ace/aura_keep_true.h"
+#include "ace/ace/ace/ace_keep_true.h"
 
 
 namespace file
@@ -707,22 +707,22 @@ namespace file
 #include "ace/primitive/enum.h"
 
 
-#include "ace/ace/ace/aura_element.h"
+#include "ace/ace/ace/ace_element.h"
 
-#include "ace/ace/ace/aura_debug.h"
-
-
-#include "ace/ace/aura_app_core.h"
+#include "ace/ace/ace/ace_debug.h"
 
 
+#include "ace/ace/ace_app_core.h"
 
-#include "ace/ace/ace/aura_class.h"
+
+
+#include "ace/ace/ace/ace_class.h"
 
 #include "ace/primitive/comparison/comparison_md5.h"
 
-#include "ace/ace/ace/aura_conv.h"
+#include "ace/ace/ace/ace_conv.h"
 
-#include "ace/ace/ace/aura_core.h"
+#include "ace/ace/ace/ace_core.h"
 
 #include "ace/primitive/primitive_request_interface.h"
 
@@ -756,16 +756,16 @@ namespace file
 #include "ace/primitive/collection/collection_lemon_heap.h"
 
 
-#include "ace/ace/ace/aura_action_context.h"
+#include "ace/ace/ace/ace_action_context.h"
 
 
 
-#include "ace/ace/ace/aura_fixed_alloc.h"
+#include "ace/ace/ace/ace_fixed_alloc.h"
 
 
 
-#include "ace/ace/ace/aura_allocate.h"
-#include "ace/ace/ace/aura_plex.h"
+#include "ace/ace/ace/ace_allocate.h"
+#include "ace/ace/ace/ace_plex.h"
 
 
 #include "ace/primitive/primitive_id.h"
@@ -777,14 +777,14 @@ namespace file
 
 
 #include "ace/ace/exception/exception.h"
-#include "ace/ace/ace/aura_common.h"
+#include "ace/ace/ace/ace_common.h"
 #include "ace/filesystem/filesystem/filesystem_path.h"
 
 
 
 
 
-#include "ace/ace/ace/aura_library.h"
+#include "ace/ace/ace/ace_library.h"
 
 
 
@@ -806,7 +806,7 @@ namespace file
 #include "ace/primitive/geometry/geometry_box.h"
 
 
-#include "ace/ace/ace/aura_cmp.h"
+#include "ace/ace/ace/ace_cmp.h"
 
 
 #include "ace/filesystem/file/file_string_buffer.h"
@@ -827,22 +827,22 @@ namespace file
 #include "ace/primitive/math/math_scalar.h"
 
 
-#include "ace/ace/ace/aura_progress.h"
+#include "ace/ace/ace/ace_progress.h"
 
 
-#include "ace/ace/ace/aura_enum.h"
+#include "ace/ace/ace/ace_enum.h"
 
 
 #include "ace/multithreading/multithreading.h"
 
 
-#include "ace/ace/ace/aura_draw2d.h"
+#include "ace/ace/ace/ace_draw2d.h"
 
 
-CLASS_DECL_AURA mutex & draw2d_direct2_mutex();
+CLASS_DECL_ACE mutex & draw2d_direct2_mutex();
 
 
-#include "ace/ace/ace/aura_gudo.h"
+#include "ace/ace/ace/ace_gudo.h"
 
 
 
@@ -897,10 +897,10 @@ CLASS_DECL_AURA mutex & draw2d_direct2_mutex();
 
 
 
-CLASS_DECL_AURA string get_system_error_message(uint32_t dwError);
+CLASS_DECL_ACE string get_system_error_message(uint32_t dwError);
 
 
-#include "ace/ace/ace/aura_plex_heap.h"
+#include "ace/ace/ace/ace_plex_heap.h"
 
 #include "ace/primitive/primitive_type.h"
 
@@ -909,18 +909,18 @@ CLASS_DECL_AURA string get_system_error_message(uint32_t dwError);
 //#include "user/user/user_keyboard_focus.h"
 //#include "user/user/user_mouse_focus.h"
 //#include "user/user/user_elemental.h"
-#include "ace/ace/ace/aura_flags.h"
+#include "ace/ace/ace/ace_flags.h"
 #include "ace/primitive/primitive_check.h"
 //#include "user/user/user_check_interface.h"
-#include "ace/ace/ace/aura_command.h"
-#include "ace/ace/ace/aura_command_msg.h"
-#include "ace/ace/ace/aura_command_ui.h"
-#include "ace/ace/ace/aura_command_ui_test.h"
+#include "ace/ace/ace/ace_command.h"
+#include "ace/ace/ace/ace_command_msg.h"
+#include "ace/ace/ace/ace_command_ui.h"
+#include "ace/ace/ace/ace_command_ui_test.h"
 //#include "graphics/visual/visual_const.h"
 //#include "user/user/user_key_enum.h"
 #include "ace/ace/message/message.h"
 //#include "ace/user/user/user_check_interface.h"
-#include "ace/ace/ace/aura_command_target.h"
+#include "ace/ace/ace/ace_command_target.h"
 //#include "user/user/user_schema.h"
 //#include "user/user/user_schema_simple_impl.h"
 //#include "user/user/user_schema_layered_frame.h"
@@ -929,9 +929,9 @@ CLASS_DECL_AURA string get_system_error_message(uint32_t dwError);
 //#include "user/user/user_window_util.h"
 //#include "user/user/user_interaction_base.h"
 //#include "user/user/user_buffer.h"
-#include "ace/ace/ace/aura_keep.h"
-#include "ace/ace/ace/aura_restore.h"
-#include "ace/ace/ace/aura_md5.h"
+#include "ace/ace/ace/ace_keep.h"
+#include "ace/ace/ace/ace_restore.h"
+#include "ace/ace/ace/ace_md5.h"
 #include "ace/filesystem/file/file_stream2.h"
 //#include "user/user/user_interaction.h"
 //#include "user/user/user_interaction_impl_base.h"
@@ -986,8 +986,8 @@ CLASS_DECL_AURA string get_system_error_message(uint32_t dwError);
 #include "ace/primitive/collection/collection_file_path_map.h"
 
 #include "ace/primitive/primitive_edit.h"
-#include "ace/ace/ace/aura_department.h"
-#include "ace/ace/ace/aura_department_container.h"
+#include "ace/ace/ace/ace_department.h"
+#include "ace/ace/ace/ace_department_container.h"
 #include "ace/ace/xml/xml.h"
 
 //#include "ace/user/simple_ui/simple_ui_style.h"
@@ -996,18 +996,18 @@ CLASS_DECL_AURA string get_system_error_message(uint32_t dwError);
 //#include "user/user/user_document_data_map.h"
 //#include "user/user/user_document.h"
 //#include "user/user/user_impact.h"
-#include "ace/ace/ace/aura_live_object.h"
-#include "ace/ace/ace/aura_live_signal.h"
+#include "ace/ace/ace/ace_live_object.h"
+#include "ace/ace/ace/ace_live_signal.h"
 #include "ace/multithreading/multithreading_thread.h"
 #include "ace/multithreading/multithreading_forking_thread.h"
-#include "ace/ace/aura_timer_callback.h"
-#include "ace/ace/ace/aura_timer_item.h"
-#include "ace/ace/ace/aura_timer_array.h"
-#include "ace/ace/aura_timer.h"
-#include "ace/ace/aura_timer_event.h"
+#include "ace/ace/ace_timer_callback.h"
+#include "ace/ace/ace/ace_timer_item.h"
+#include "ace/ace/ace/ace_timer_array.h"
+#include "ace/ace/ace_timer.h"
+#include "ace/ace/ace_timer_event.h"
 
-//#include "ace/ace/ace/aura_message_queue_listener.h"
-//#include "ace/ace/ace/aura_message_queue.h"
+//#include "ace/ace/ace/ace_message_queue_listener.h"
+//#include "ace/ace/ace/ace_message_queue.h"
 #include "ace/multithreading/multithreading_thread_impl.h"
 #include "ace/multithreading/multithreading_simple_thread.h"
 #include "ace/multithreading/multithreading_go_thread.h"
@@ -1018,10 +1018,10 @@ CLASS_DECL_AURA string get_system_error_message(uint32_t dwError);
 
 #include "ace/user/simple/simple_message_box.h"
 
-#include "ace/ace/ace/aura_user.h"
+#include "ace/ace/ace/ace_user.h"
 
-#include "ace/ace/ace/aura_log.h"
-#include "ace/ace/ace/aura_trace.h"
+#include "ace/ace/ace/ace_log.h"
+#include "ace/ace/ace/ace_trace.h"
 
 
 
@@ -1042,7 +1042,7 @@ CLASS_DECL_AURA string get_system_error_message(uint32_t dwError);
 #include "ace/filesystem/file/file_timeout_buffer.h"
 #include "ace/filesystem/file/file_transfer_buffer.h"
 
-#include "ace/ace/ace/aura_local_memory_map.h"
+#include "ace/ace/ace/ace_local_memory_map.h"
 
 #include "ace/primitive/str/str_international2.h"
 
@@ -1063,7 +1063,7 @@ CLASS_DECL_AURA string get_system_error_message(uint32_t dwError);
 #include "ace/primitive/geometry/geometry_geometry.h"
 
 
-CLASS_DECL_AURA string get_exe_path();
+CLASS_DECL_ACE string get_exe_path();
 
 
 //#include "user/user/user_window_map.h"
@@ -1072,23 +1072,23 @@ CLASS_DECL_AURA string get_exe_path();
 //#include "user/user/user_keyboard.h"
 //#include "user/user/user_user.h"
 
-#include "ace/ace/ace/aura_main_init_data.h"
+#include "ace/ace/ace/ace_main_init_data.h"
 
-#include "ace/ace/ace/aura_savings.h"
+#include "ace/ace/ace/ace_savings.h"
 
 #include "ace/net/net.h"
 
 
-#include "ace/ace/ace/aura_launcher.h"
+#include "ace/ace/ace/ace_launcher.h"
 
 
-#include "ace/ace/ace/aura_ipc.h"
+#include "ace/ace/ace/ace_ipc.h"
 
 
-#include "ace/ace/ace/aura_app_launcher.h"
+#include "ace/ace/ace/ace_app_launcher.h"
 
 
-#include "ace/ace/ace/aura_ipi.h"
+#include "ace/ace/ace/ace_ipi.h"
 
 
 
@@ -1104,34 +1104,34 @@ CLASS_DECL_AURA string get_exe_path();
 #include "ace/primitive/primitive_application_bias.h"
 
 
-//#include "ace/ace/ace/aura_application_interface.h"
-#include "ace/ace/ace/aura_application.h"
-#include "ace/ace/ace/aura_application_ptra.h"
+//#include "ace/ace/ace/ace_application_interface.h"
+#include "ace/ace/ace/ace_application.h"
+#include "ace/ace/ace/ace_application_ptra.h"
 
 
-#include "ace/ace/ace/aura_gudo_application.inl"
+#include "ace/ace/ace/ace_gudo_application.inl"
 
 
-#include "ace/ace/ace/aura_application_signal_details.h"
+#include "ace/ace/ace/ace_application_signal_details.h"
 
-#include "ace/ace/ace/aura_session.h"
+#include "ace/ace/ace/ace_session.h"
 
 
 
 #include "ace/ace/exception/exception_engine.h"
 
-#include "ace/ace/ace/aura_fixed_alloc_impl.h"
-#include "ace/ace/ace/aura_plex_heap_impl.h"
+#include "ace/ace/ace/ace_fixed_alloc_impl.h"
+#include "ace/ace/ace/ace_plex_heap_impl.h"
 #include "ace/primitive/primitive_command_line.h"
 #include "ace/primitive/primitive_command.h"
-#include "ace/ace/ace/aura_create_context.h"
+#include "ace/ace/ace/ace_create_context.h"
 #include "ace/primitive/primitive_create.h"
 #include "ace/primitive/primitive_request_signal.h"
 
 
 
 
-#include "ace/ace/ace/aura_net.h"
+#include "ace/ace/ace/ace_net.h"
 
 
 
@@ -1143,20 +1143,20 @@ CLASS_DECL_AURA string get_exe_path();
 #include "ace/filesystem/file/file_buffered_buffer.h"
 
 
-#include "ace/ace/ace/aura_machine_event_data.h"
-#include "ace/ace/ace/aura_machine_event.h"
-#include "ace/ace/ace/aura_machine_event_central.h"
+#include "ace/ace/ace/ace_machine_event_data.h"
+#include "ace/ace/ace/ace_machine_event.h"
+#include "ace/ace/ace/ace_machine_event_central.h"
 
 #include "ace/primitive/datetime/datetime.h"
 
 #include "ace/primitive/str/str_international_locale_schema.h"
 
-#include "ace/ace/ace/aura_id_pool.h"
+#include "ace/ace/ace/ace_id_pool.h"
 
 
 
-#include "ace/ace/ace/aura_cregexp.h"
-#include "ace/ace/ace/aura_cregexp_util.h"
+#include "ace/ace/ace/ace_cregexp.h"
+#include "ace/ace/ace/ace_cregexp_util.h"
 
 #ifdef VSNORD
 
@@ -1169,17 +1169,17 @@ CLASS_DECL_AURA string get_exe_path();
 
 #include "ace/filesystem/filesystem/filesystem_system.h"
 
-#include "ace/ace/ace/aura_file_watcher.h"
-#include "ace/ace/ace/aura_file_watcher_thread.h"
-#include "ace/ace/ace/aura_file_watcher_listener_thread.h"
+#include "ace/ace/ace/ace_file_watcher.h"
+#include "ace/ace/ace/ace_file_watcher_thread.h"
+#include "ace/ace/ace/ace_file_watcher_listener_thread.h"
 
 #include "ace/filesystem/filesystem/filesystem_dir_system.h"
 
-#include "ace/ace/ace/aura_core_os.h"
+#include "ace/ace/ace/ace_core_os.h"
 
-#include "ace/ace/ace/aura_system.h"
+#include "ace/ace/ace/ace_system.h"
 
-#include "ace/ace/ace/aura_system_str.h"
+#include "ace/ace/ace/ace_system_str.h"
 
 #include "ace/os/os_process.h"
 
@@ -1194,10 +1194,10 @@ CLASS_DECL_AURA string get_exe_path();
 //#include "ace/install/install_trace.h"
 
 
-#define new AURA_NEW
+#define new ACE_NEW
 
 
-#include "ace/ace/ace/aura_system_trace.h"
+#include "ace/ace/ace/ace_system_trace.h"
 
 
 
@@ -1353,27 +1353,19 @@ inline void string_format::format(const char * & s)
 
 
 
-#include "ace/ace/ace/aura_system_smart_pointer.inl"
-#include "ace/ace/ace/aura_system_object.inl"
-#include "ace/ace/ace/aura_system_id.inl"
-#include "ace/ace/ace/aura_system_factory.inl"
-#include "ace/ace/ace/aura_system_primitive_var.inl"
-#include "ace/ace/ace/aura_system_xml.inl"
+#include "ace/ace/ace/ace_system_smart_pointer.inl"
+#include "ace/ace/ace/ace_system_object.inl"
+#include "ace/ace/ace/ace_system_id.inl"
+#include "ace/ace/ace/ace_system_factory.inl"
+#include "ace/ace/ace/ace_system_primitive_var.inl"
+#include "ace/ace/ace/ace_system_xml.inl"
 
 
 
-#include "ace/ace/ace/aura_core_os.h"
+#include "ace/ace/ace/ace_core_os.h"
 
 
-#include "ace/ace/ace/aura_microtimer.h"
-
-
-
-
-
-
-
-#include "ace/ace/ace/aura_assert_running_task.h"
+#include "ace/ace/ace/ace_microtimer.h"
 
 
 
@@ -1381,21 +1373,7 @@ inline void string_format::format(const char * & s)
 
 
 
-
-
-
-#include "ace/ace/ace/aura_number.h"
-
-
-#include "ace/ace/ace/aura_debug.h"
-
-
-#include "ace/ace/ace/aura_printf.h"
-#include "ace/ace/ace/aura_sprintf.h"
-
-
-
-#include "ace/ace/ace/aura_math.h"
+#include "ace/ace/ace/ace_assert_running_task.h"
 
 
 
@@ -1405,32 +1383,54 @@ inline void string_format::format(const char * & s)
 
 
 
-#include "ace/ace/ace/aura_file_watcher.h"
-#include "ace/ace/ace/aura_file_watcher_impl.h"
+
+#include "ace/ace/ace/ace_number.h"
 
 
-#include "ace/ace/aura_console_window.h"
+#include "ace/ace/ace/ace_debug.h"
 
 
-#include "ace/ace/ace/aura_os.h"
+#include "ace/ace/ace/ace_printf.h"
+#include "ace/ace/ace/ace_sprintf.h"
+
+
+
+#include "ace/ace/ace/ace_math.h"
+
+
+
+
+
+
+
+
+
+#include "ace/ace/ace/ace_file_watcher.h"
+#include "ace/ace/ace/ace_file_watcher_impl.h"
+
+
+#include "ace/ace/ace_console_window.h"
+
+
+#include "ace/ace/ace/ace_os.h"
 
 
 #include "ace/multithreading/multithreading_data.h"
 
 
-#include "ace/ace/ace/aura_shell_launcher.h"
+#include "ace/ace/ace/ace_shell_launcher.h"
 
 
-#include "ace/ace/ace/aura_async.h"
+#include "ace/ace/ace/ace_async.h"
 
 
-#include "ace/ace/ace/aura_message_loop.h"
+#include "ace/ace/ace/ace_message_loop.h"
 
-#include "ace/ace/ace/aura_url.h"
+#include "ace/ace/ace/ace_url.h"
 
-#include "ace/ace/ace/aura_international.h"
+#include "ace/ace/ace/ace_international.h"
 
-#include "ace/ace/ace/aura_static_start.h"
+#include "ace/ace/ace/ace_static_start.h"
 
 
 
@@ -1449,15 +1449,15 @@ extern "C"
 }
 
 
-CLASS_DECL_AURA string _ca_get_file_name(const char * psz,bool bCreate = false,int32_t * pfd = NULL);
+CLASS_DECL_ACE string _ca_get_file_name(const char * psz,bool bCreate = false,int32_t * pfd = NULL);
 
-CLASS_DECL_AURA string get_system_error_message(uint32_t dwError);
-
-
-#include "ace/ace/ace/aura_simple_app.h"
+CLASS_DECL_ACE string get_system_error_message(uint32_t dwError);
 
 
-#include "ace/ace/ace/aura_profiler.h"
+#include "ace/ace/ace/ace_simple_app.h"
+
+
+#include "ace/ace/ace/ace_profiler.h"
 
 
 #include "ace/os/os2.h"
@@ -1640,7 +1640,7 @@ inline string & to_json(string & str, const T & value)
 }
 
 
-CLASS_DECL_AURA void dappy(const char * psz);
+CLASS_DECL_ACE void dappy(const char * psz);
 
 
 
@@ -1651,7 +1651,7 @@ CLASS_DECL_AURA void dappy(const char * psz);
 #include "ace/graphics/graphics.h"
 
 
-#include "ace/ace/ace/aura_str_context.h"
+#include "ace/ace/ace/ace_str_context.h"
 
 
 #include "ace/filesystem/file/file_html_buffer.h"
@@ -1669,7 +1669,7 @@ CLASS_DECL_AURA void dappy(const char * psz);
 #include "ace/filesystem/file/file_edit_buffer.h"
 
 
-CLASS_DECL_AURA int trace_hr(const char * psz,HRESULT hr);
+CLASS_DECL_ACE int trace_hr(const char * psz,HRESULT hr);
 
 
 
@@ -1677,15 +1677,15 @@ CLASS_DECL_AURA int trace_hr(const char * psz,HRESULT hr);
 
 
 
-CLASS_DECL_AURA void set_aura(void * p,::ace::application * papp);
-CLASS_DECL_AURA ::ace::application * get_aura(void * p);
+CLASS_DECL_ACE void set_ace(void * p,::ace::application * papp);
+CLASS_DECL_ACE ::ace::application * get_ace(void * p);
 
 
 
 #include "ace/user/user.h"
 
 
-#include "ace/ace/aura_speaker.h"
+#include "ace/ace/ace_speaker.h"
 
 
 

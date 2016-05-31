@@ -6,6 +6,6 @@
 
 
 
-#define new AURA_NEW
+#define new ACE_NEW
 
 

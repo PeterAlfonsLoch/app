@@ -8,7 +8,7 @@ namespace ios
    namespace ace
    {
    
-   class CLASS_DECL_AURA factory_exchange :
+   class CLASS_DECL_ACE factory_exchange :
       virtual public ::object
    {
    public:

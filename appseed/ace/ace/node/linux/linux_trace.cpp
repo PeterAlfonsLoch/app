@@ -8,7 +8,7 @@
 /////////////////////////////////////////////////////////////////////////////
 // Build data tables by including data file three times
 
-//struct CLASS_DECL_AURA __MAP_MESSAGE
+//struct CLASS_DECL_ACE __MAP_MESSAGE
 //{
 //   UINT    nMsg;
 //   const char *  lpszMsg;

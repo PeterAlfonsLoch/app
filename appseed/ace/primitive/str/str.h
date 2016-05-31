@@ -20,9 +20,9 @@
 #include "str_from_integer.h"
 
 
-//CLASS_DECL_AURA string get_md5(const void * data, ::count c);
-//CLASS_DECL_AURA string get_md5(const char * psz);
-CLASS_DECL_AURA void zero_pad(string & str, count iPad);
+//CLASS_DECL_ACE string get_md5(const void * data, ::count c);
+//CLASS_DECL_ACE string get_md5(const char * psz);
+CLASS_DECL_ACE void zero_pad(string & str, count iPad);
 
 
 #include "str_ch_class.h"

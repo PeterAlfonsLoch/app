@@ -39,7 +39,7 @@ namespace ace
 
       }
 
-      void ipc::restart_aura_ipc()
+      void ipc::restart_ace_ipc()
       {
       }
 
@@ -55,7 +55,7 @@ namespace ace
          if(!send(pszMessage,dwTimeout))
          {
 
-            restart_aura_ipc();
+            restart_ace_ipc();
 
             return false;
 
@@ -78,7 +78,7 @@ namespace ace
             if(!is_tx_ok())
             {
 
-               restart_aura_ipc();
+               restart_ace_ipc();
 
                return false;
 
@@ -88,7 +88,7 @@ namespace ace
          else if(!send(message,pdata,len,dwTimeout))
          {
 
-            restart_aura_ipc();
+            restart_ace_ipc();
 
             return false;
 

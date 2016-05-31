@@ -1,18 +1,18 @@
 #pragma once
 
 
-CLASS_DECL_AURA bool vfxFullPath(unichar * lpszPathOut, const unichar * lpszFileIn);
-CLASS_DECL_AURA bool vfxFullPath(wstring & wstrFullPath, const wstring & wstrPath);
-CLASS_DECL_AURA UINT vfxGetFileName(const unichar * lpszPathName, unichar * lpszTitle, UINT nMax);
-CLASS_DECL_AURA void vfxGetModuleShortFileName(HINSTANCE hInst, string & strShortName);
-CLASS_DECL_AURA void vfxGetModuleShortFileName(HINSTANCE hInst, string& strShortName);
+CLASS_DECL_ACE bool vfxFullPath(unichar * lpszPathOut, const unichar * lpszFileIn);
+CLASS_DECL_ACE bool vfxFullPath(wstring & wstrFullPath, const wstring & wstrPath);
+CLASS_DECL_ACE UINT vfxGetFileName(const unichar * lpszPathName, unichar * lpszTitle, UINT nMax);
+CLASS_DECL_ACE void vfxGetModuleShortFileName(HINSTANCE hInst, string & strShortName);
+CLASS_DECL_ACE void vfxGetModuleShortFileName(HINSTANCE hInst, string& strShortName);
 
 
 namespace windows
 {
 
 
-   class CLASS_DECL_AURA file_system:
+   class CLASS_DECL_ACE file_system:
       virtual public ::file::system
    {
    public:

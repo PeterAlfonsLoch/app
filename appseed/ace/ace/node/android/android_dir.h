@@ -5,7 +5,7 @@ namespace android
 {
 
 
-   class CLASS_DECL_AURA dir :
+   class CLASS_DECL_ACE dir :
       virtual public ::file::dir::system
    {
    public:

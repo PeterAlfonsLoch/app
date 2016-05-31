@@ -15,7 +15,7 @@ namespace check
 //{
 //
 //
-//   class CLASS_DECL_AURA elemental:
+//   class CLASS_DECL_ACE elemental:
 //      virtual public ::object
 //   {
 //   public:

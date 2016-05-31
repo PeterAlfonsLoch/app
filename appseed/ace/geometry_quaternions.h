@@ -4,7 +4,7 @@
 #include <math.h>
 
 
-class CLASS_DECL_AURA q4 :
+class CLASS_DECL_ACE q4 :
    public Q4
 {
 public:

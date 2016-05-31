@@ -3,7 +3,7 @@
 
 #ifdef WINDOWS
 
-class CLASS_DECL_AURA simple_hold_handle
+class CLASS_DECL_ACE simple_hold_handle
 {
 public:
 

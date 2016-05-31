@@ -22,127 +22,127 @@
 //
 //2014-12-19  18:28             1.225 aaa_want_to_remove_user_check_interface.cpp"
 #include "ace.cpp"
-#include "aura_action_context.cpp"
-#include "aura_allocate_mid_big.cpp"
-#include "aura_allocate_system_heap.cpp"
+#include "ace_action_context.cpp"
+#include "ace_allocate_mid_big.cpp"
+#include "ace_allocate_system_heap.cpp"
 
 // THANK YOU ("jai") = Jonathan Blow - Data-Oriented intercourse
 #if defined(_M_IX86)
-#include "aura_allocate_x86_cache_oriented.cpp"
+#include "ace_allocate_x86_cache_oriented.cpp"
 #endif
-#include "aura_allocate_processor_cache_oriented.cpp"
+#include "ace_allocate_processor_cache_oriented.cpp"
 
 
 
-#include "aura_application.cpp"
-#include "aura_argcargv.cpp"
-#include "aura_assert.cpp"
-#include "aura_assert_running_task.cpp"
-#include "aura_checked.cpp"
-#include "aura_command.cpp"
-#include "aura_command_msg.cpp"
-#include "aura_command_target.cpp"
-#include "aura_command_target_interface.cpp"
-#include "aura_command_ui.cpp"
-#include "aura_command_ui_test.cpp"
-#include "aura_conv.cpp"
-#include "aura_core_os.cpp"
-//#include "aura_cpu_architecture.cpp"
-#include "aura_create_context.cpp"
-#include "aura_cregexp.cpp"
-#include "aura_cregexp_util.cpp"
-#include "aura_debug.cpp"
-#include "aura_department.cpp"
-#include "aura_department_container.cpp"
-#include "aura_draw_context.cpp"
-#include "aura_draw_interface.cpp"
-#include "aura_element.cpp"
-#include "aura_file_watcher.cpp"
-#include "aura_file_watcher_impl.cpp"
-#include "aura_file_watcher_listener_thread.cpp"
-#include "aura_file_watcher_thread.cpp"
-#include "aura_fixed_alloc.cpp"
-#include "aura_flags.cpp"
-#include "aura_gudo.cpp"
-#include "aura_heap.cpp"
-#include "aura_id_pool.cpp"
-#include "aura_international.cpp"
-#include "aura_library.cpp"
-#include "aura_live_object.cpp"
-#include "aura_live_signal.cpp"
-#include "aura_local_memory_map.cpp"
-#include "aura_log.cpp"
-#include "aura_machine_event.cpp"
-#include "aura_machine_event_central.cpp"
-#include "aura_machine_event_data.cpp"
-#include "aura_math.cpp"
-//#include "aura_message_queue.cpp"
-#include "aura_microtimer.cpp"
-#include "aura_mktime.cpp"
-#include "aura_muldiv64.cpp"
-#include "aura_net.cpp"
-#include "aura_new.cpp"
-//#include "aura_platform_interface.cpp"
-#include "aura_plex.cpp"
-#include "aura_plex_heap.cpp"
-#include "aura_printer.cpp"
-#include "aura_printf.cpp"
-#include "aura_progress.cpp"
-#include "aura_savings.cpp"
-#include "aura_session.cpp"
-//#include "aura_session_interface.cpp"
-#include "aura_shell_launcher.cpp"
-#include "aura_ipc.cpp"
-#include "aura_sprintf.cpp"
-#include "aura_static_start.cpp"
-#include "aura_str_context.cpp"
-#include "aura_system.cpp"
-#include "aura_template.cpp"
-#include "aura_timer_callback.cpp"
-#include "aura_timer.cpp"
-#include "aura_timer_event.cpp"
-#include "aura_timer_array.cpp"
-#include "aura_timer_item.cpp"
-#include "aura_trace.cpp"
-//2015-01-05  07:52                 0 _aura.cpp"
+#include "ace_application.cpp"
+#include "ace_argcargv.cpp"
+#include "ace_assert.cpp"
+#include "ace_assert_running_task.cpp"
+#include "ace_checked.cpp"
+#include "ace_command.cpp"
+#include "ace_command_msg.cpp"
+#include "ace_command_target.cpp"
+#include "ace_command_target_interface.cpp"
+#include "ace_command_ui.cpp"
+#include "ace_command_ui_test.cpp"
+#include "ace_conv.cpp"
+#include "ace_core_os.cpp"
+//#include "ace_cpu_architecture.cpp"
+#include "ace_create_context.cpp"
+#include "ace_cregexp.cpp"
+#include "ace_cregexp_util.cpp"
+#include "ace_debug.cpp"
+#include "ace_department.cpp"
+#include "ace_department_container.cpp"
+#include "ace_draw_context.cpp"
+#include "ace_draw_interface.cpp"
+#include "ace_element.cpp"
+#include "ace_file_watcher.cpp"
+#include "ace_file_watcher_impl.cpp"
+#include "ace_file_watcher_listener_thread.cpp"
+#include "ace_file_watcher_thread.cpp"
+#include "ace_fixed_alloc.cpp"
+#include "ace_flags.cpp"
+#include "ace_gudo.cpp"
+#include "ace_heap.cpp"
+#include "ace_id_pool.cpp"
+#include "ace_international.cpp"
+#include "ace_library.cpp"
+#include "ace_live_object.cpp"
+#include "ace_live_signal.cpp"
+#include "ace_local_memory_map.cpp"
+#include "ace_log.cpp"
+#include "ace_machine_event.cpp"
+#include "ace_machine_event_central.cpp"
+#include "ace_machine_event_data.cpp"
+#include "ace_math.cpp"
+//#include "ace_message_queue.cpp"
+#include "ace_microtimer.cpp"
+#include "ace_mktime.cpp"
+#include "ace_muldiv64.cpp"
+#include "ace_net.cpp"
+#include "ace_new.cpp"
+//#include "ace_platform_interface.cpp"
+#include "ace_plex.cpp"
+#include "ace_plex_heap.cpp"
+#include "ace_printer.cpp"
+#include "ace_printf.cpp"
+#include "ace_progress.cpp"
+#include "ace_savings.cpp"
+#include "ace_session.cpp"
+//#include "ace_session_interface.cpp"
+#include "ace_shell_launcher.cpp"
+#include "ace_ipc.cpp"
+#include "ace_sprintf.cpp"
+#include "ace_static_start.cpp"
+#include "ace_str_context.cpp"
+#include "ace_system.cpp"
+#include "ace_template.cpp"
+#include "ace_timer_callback.cpp"
+#include "ace_timer.cpp"
+#include "ace_timer_event.cpp"
+#include "ace_timer_array.cpp"
+#include "ace_timer_item.cpp"
+#include "ace_trace.cpp"
+//2015-01-05  07:52                 0 _ace.cpp"
 //              77 arquivo(s)        382.228 bytes
 //               0 pasta(s)   36.251.623.424 bytes dispon¡veis
 
 
-#include "aura_console_window.cpp"
+#include "ace_console_window.cpp"
 
 
-#include "aura_profiler.cpp"
-
-
-
-
-
-//#include "aura_timer_callback.cpp"
-//#include "aura_timer.cpp"
-//#include "aura_timer_event.cpp"
+#include "ace_profiler.cpp"
 
 
 
 
 
+//#include "ace_timer_callback.cpp"
+//#include "ace_timer.cpp"
+//#include "ace_timer_event.cpp"
 
 
 
-#include "aura_ipi.cpp"
-#include "aura_app_launcher.cpp"
 
 
-#include "aura_app_core.cpp"
 
 
-#include "aura_speaker.cpp"
+
+#include "ace_ipi.cpp"
+#include "ace_app_launcher.cpp"
 
 
-#include "aura_md5.cpp"
+#include "ace_app_core.cpp"
 
 
-#include "aura_lparam.cpp"
+#include "ace_speaker.cpp"
+
+
+#include "ace_md5.cpp"
+
+
+#include "ace_lparam.cpp"
 
 
 

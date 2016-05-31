@@ -5,7 +5,7 @@ namespace ace
 {
 
 
-   class CLASS_DECL_AURA create_context : // Creation information structure
+   class CLASS_DECL_ACE create_context : // Creation information structure
       // All fields are optional and may be NULL
       virtual public object
    {

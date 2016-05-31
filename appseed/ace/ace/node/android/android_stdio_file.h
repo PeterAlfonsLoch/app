@@ -9,7 +9,7 @@ namespace android
 {
 
 
-   class CLASS_DECL_AURA stdio_file :
+   class CLASS_DECL_ACE stdio_file :
       virtual public ::android::file,
       virtual public ::file::text_buffer
    {

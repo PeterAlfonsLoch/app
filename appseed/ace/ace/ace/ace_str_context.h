@@ -26,7 +26,7 @@ namespace ace
    class str_context;
 
 
-   class CLASS_DECL_AURA str_schema :
+   class CLASS_DECL_ACE str_schema :
       public strid_map < string >
    {
    public:
@@ -40,7 +40,7 @@ namespace ace
 
    };
 
-   class CLASS_DECL_AURA str_locale :
+   class CLASS_DECL_ACE str_locale :
       public strid_map < str_schema >
    {
    public:
@@ -63,7 +63,7 @@ namespace ace
    };
 
 
-   class CLASS_DECL_AURA str :
+   class CLASS_DECL_ACE str :
       public strid_map < str_locale >
    {
    public:
@@ -122,7 +122,7 @@ namespace ace
 
 
 
-   class CLASS_DECL_AURA str_context :
+   class CLASS_DECL_ACE str_context :
       virtual public ::object
    {
    public:

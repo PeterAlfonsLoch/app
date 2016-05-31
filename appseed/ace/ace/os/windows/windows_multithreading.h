@@ -6,7 +6,7 @@
 
 
 
-class CLASS_DECL_AURA thread_data
+class CLASS_DECL_ACE thread_data
 {
 public:
 
@@ -49,15 +49,15 @@ inline void thread_data::set(void * p)
 
 
 
-CLASS_DECL_AURA int32_t get_os_thread_priority(int32_t iCa2Priority);
+CLASS_DECL_ACE int32_t get_os_thread_priority(int32_t iCa2Priority);
 
 
-CLASS_DECL_AURA int32_t get_os_priority_class(int32_t iCa2Priority);
+CLASS_DECL_ACE int32_t get_os_priority_class(int32_t iCa2Priority);
 
 
-CLASS_DECL_AURA int32_t get_os_thread_scheduling_priority(int32_t iCa2Priority);
+CLASS_DECL_ACE int32_t get_os_thread_scheduling_priority(int32_t iCa2Priority);
 
 
-CLASS_DECL_AURA int32_t get_os_class_scheduling_priority(int32_t iCa2Priority);
+CLASS_DECL_ACE int32_t get_os_class_scheduling_priority(int32_t iCa2Priority);
 
 

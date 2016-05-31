@@ -5,7 +5,7 @@ namespace datetime
 {
 
 
-   class CLASS_DECL_AURA file_time_span
+   class CLASS_DECL_ACE file_time_span
    {
    protected:
 

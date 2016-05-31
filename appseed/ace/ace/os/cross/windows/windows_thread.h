@@ -54,11 +54,11 @@ typedef HTHREAD IDTHREAD;
 #ifndef METROWIN
 
 
-CLASS_DECL_AURA DWORD WINAPI ResumeThread(HTHREAD hThread);
-CLASS_DECL_AURA int_bool WINAPI SetThreadPriority(HTHREAD hThread, int32_t nPriority);
-CLASS_DECL_AURA int32_t WINAPI GetThreadPriority(HTHREAD hThread);
+CLASS_DECL_ACE DWORD WINAPI ResumeThread(HTHREAD hThread);
+CLASS_DECL_ACE int_bool WINAPI SetThreadPriority(HTHREAD hThread, int32_t nPriority);
+CLASS_DECL_ACE int32_t WINAPI GetThreadPriority(HTHREAD hThread);
 
-CLASS_DECL_AURA VOID WINAPI Sleep(DWORD dwMilliseconds);
+CLASS_DECL_ACE VOID WINAPI Sleep(DWORD dwMilliseconds);
 
 
 #endif
@@ -79,12 +79,12 @@ CLASS_DECL_AURA VOID WINAPI Sleep(DWORD dwMilliseconds);
 //interface ID3D11Device1;
 //interface IDXGIDevice;
 //
-//CLASS_DECL_AURA IDWriteFactory * TlsGetWriteFactory();
-//CLASS_DECL_AURA ID2D1Factory1 * GetD2D1Factory1();
-//CLASS_DECL_AURA ID3D11Device * TlsGetD3D11Device();
-//CLASS_DECL_AURA ID3D11DeviceContext * TlsGetD3D11DeviceContext();
-//CLASS_DECL_AURA ID3D11Device1 * TlsGetD3D11Device1();
-//CLASS_DECL_AURA IDXGIDevice * TlsGetDXGIDevice();
+//CLASS_DECL_ACE IDWriteFactory * TlsGetWriteFactory();
+//CLASS_DECL_ACE ID2D1Factory1 * GetD2D1Factory1();
+//CLASS_DECL_ACE ID3D11Device * TlsGetD3D11Device();
+//CLASS_DECL_ACE ID3D11DeviceContext * TlsGetD3D11DeviceContext();
+//CLASS_DECL_ACE ID3D11Device1 * TlsGetD3D11Device1();
+//CLASS_DECL_ACE IDXGIDevice * TlsGetDXGIDevice();
 //
 //#define TLS_WRITE_FACTORY     12
 //#define TLS_D2D1_FACTORY1     13

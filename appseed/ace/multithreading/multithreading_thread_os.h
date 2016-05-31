@@ -1,7 +1,7 @@
 #pragma once
 
 
-//struct CLASS_DECL_AURA hthread :
+//struct CLASS_DECL_ACE hthread :
 //   virtual public object
 //{
 //public:
@@ -85,12 +85,12 @@ inline int id_thread_equals(IDTHREAD a, IDTHREAD b) {return pthread_equal(a, b);
 
 #endif
 
-CLASS_DECL_AURA HTHREAD start_thread(uint32_t (*)(void *), void * pv, int32_t iPriority = 0);
+CLASS_DECL_ACE HTHREAD start_thread(uint32_t (*)(void *), void * pv, int32_t iPriority = 0);
 
-CLASS_DECL_AURA HTHREAD create_thread(LPSECURITY_ATTRIBUTES lpsa, uint_ptr cbStack, uint32_t (*)(void *), void * pv, uint32_t uiFlags, IDTHREAD * puiId);
+CLASS_DECL_ACE HTHREAD create_thread(LPSECURITY_ATTRIBUTES lpsa, uint_ptr cbStack, uint32_t (*)(void *), void * pv, uint32_t uiFlags, IDTHREAD * puiId);
 
 
-//class CLASS_DECL_AURA thread_layer
+//class CLASS_DECL_ACE thread_layer
 //{
 //public:
 //
@@ -121,13 +121,13 @@ CLASS_DECL_AURA HTHREAD create_thread(LPSECURITY_ATTRIBUTES lpsa, uint_ptr cbSta
 //
 
 
-CLASS_DECL_AURA IDTHREAD get_current_thread_id();
+CLASS_DECL_ACE IDTHREAD get_current_thread_id();
 
 
 
 
-CLASS_DECL_AURA thread* __begin_thread(::ace::application * papp,__THREADPROC pfnThreadProc,LPVOID pParam,int32_t epriority = ::multithreading::priority_normal,UINT nStackSize = 0,uint32_t dwCreateFlags = 0,LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
-/* xxx CLASS_DECL_AURA thread* __begin_thread(sp(::coretype) pThreadClass,
+CLASS_DECL_ACE thread* __begin_thread(::ace::application * papp,__THREADPROC pfnThreadProc,LPVOID pParam,int32_t epriority = ::multithreading::priority_normal,UINT nStackSize = 0,uint32_t dwCreateFlags = 0,LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
+/* xxx CLASS_DECL_ACE thread* __begin_thread(sp(::coretype) pThreadClass,
 int32_t nPriority = scheduling_priority_normal, UINT nStackSize = 0,
 uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL); xxxx */
 
@@ -149,37 +149,37 @@ THREAD_TYPE * __begin_thread(::ace::application * papp,int32_t epriority = ::mul
 }
 
 
-CLASS_DECL_AURA HTHREAD get_current_thread();
+CLASS_DECL_ACE HTHREAD get_current_thread();
 
 
 
 
 
-CLASS_DECL_AURA bool on_init_thread();
-CLASS_DECL_AURA bool on_term_thread();
+CLASS_DECL_ACE bool on_init_thread();
+CLASS_DECL_ACE bool on_term_thread();
 
 
-CLASS_DECL_AURA void __init_thread();
-CLASS_DECL_AURA void __term_thread();
+CLASS_DECL_ACE void __init_thread();
+CLASS_DECL_ACE void __term_thread();
 
 
-CLASS_DECL_AURA bool __os_init_thread();
-CLASS_DECL_AURA bool __os_term_thread();
+CLASS_DECL_ACE bool __os_init_thread();
+CLASS_DECL_ACE bool __os_term_thread();
 
 
-CLASS_DECL_AURA bool __node_init_thread(::thread * pthread);
-CLASS_DECL_AURA bool __node_term_thread(::thread * pthread);
+CLASS_DECL_ACE bool __node_init_thread(::thread * pthread);
+CLASS_DECL_ACE bool __node_term_thread(::thread * pthread);
 
 
-CLASS_DECL_AURA void __init_threading_count();
-CLASS_DECL_AURA void __term_threading_count();
+CLASS_DECL_ACE void __init_threading_count();
+CLASS_DECL_ACE void __term_threading_count();
 
 
-CLASS_DECL_AURA void __inc_threading_count();
-CLASS_DECL_AURA void __dec_threading_count();
+CLASS_DECL_ACE void __inc_threading_count();
+CLASS_DECL_ACE void __dec_threading_count();
 
 
-class CLASS_DECL_AURA keep_threading_count
+class CLASS_DECL_ACE keep_threading_count
 {
 public:
 
@@ -204,16 +204,16 @@ public:
 
 
 
-CLASS_DECL_AURA bool __wait_threading_count(::duration dur);
-CLASS_DECL_AURA bool __wait_threading_count_except(::thread * pthread,::duration dur);
+CLASS_DECL_ACE bool __wait_threading_count(::duration dur);
+CLASS_DECL_ACE bool __wait_threading_count_except(::thread * pthread,::duration dur);
 
 
-CLASS_DECL_AURA ::thread * get_thread();
-CLASS_DECL_AURA void set_thread(::thread * pthread);
+CLASS_DECL_ACE ::thread * get_thread();
+CLASS_DECL_ACE void set_thread(::thread * pthread);
 
 
-CLASS_DECL_AURA void __node_init_multithreading();
-CLASS_DECL_AURA void __node_term_multithreading();
+CLASS_DECL_ACE void __node_init_multithreading();
+CLASS_DECL_ACE void __node_term_multithreading();
 
 
 
@@ -221,26 +221,26 @@ namespace multithreading
 {
 
 
-   CLASS_DECL_AURA void init_multithreading();
-   CLASS_DECL_AURA void term_multithreading();
+   CLASS_DECL_ACE void init_multithreading();
+   CLASS_DECL_ACE void term_multithreading();
 
-   CLASS_DECL_AURA void __node_on_init_thread(thread * pthread);
-   CLASS_DECL_AURA void __node_on_term_thread(thread * pthread);
+   CLASS_DECL_ACE void __node_on_init_thread(thread * pthread);
+   CLASS_DECL_ACE void __node_on_term_thread(thread * pthread);
 
-   CLASS_DECL_AURA uint32_t __on_thread_finally(thread * pthread);
+   CLASS_DECL_ACE uint32_t __on_thread_finally(thread * pthread);
 
-   CLASS_DECL_AURA extern comparable_eq_array <IDTHREAD> * s_piaThread;
-   CLASS_DECL_AURA extern ref_array < thread > * s_pthreadptra;
-   CLASS_DECL_AURA extern mutex * s_pmutex;
+   CLASS_DECL_ACE extern comparable_eq_array <IDTHREAD> * s_piaThread;
+   CLASS_DECL_ACE extern ref_array < thread > * s_pthreadptra;
+   CLASS_DECL_ACE extern mutex * s_pmutex;
 
 
 } // namespace multithreading
 
 
 
-CLASS_DECL_AURA void __end_thread(::ace::application * papp);
+CLASS_DECL_ACE void __end_thread(::ace::application * papp);
 
-CLASS_DECL_AURA void __term_thread(::ace::application * papp);
+CLASS_DECL_ACE void __term_thread(::ace::application * papp);
 
 
 
@@ -283,7 +283,7 @@ wait_result wait(size_t numberOfItems,event_base * waitableItems[],const duratio
 
 
 
-CLASS_DECL_AURA void thread_alloc_ready(bool bReady);
+CLASS_DECL_ACE void thread_alloc_ready(bool bReady);
 
 
 
@@ -293,7 +293,7 @@ CLASS_DECL_AURA void thread_alloc_ready(bool bReady);
 
 
 
-//CLASS_DECL_AURA mutex & user_mutex();
-CLASS_DECL_AURA mutex & message_dispatch_mutex();
+//CLASS_DECL_ACE mutex & user_mutex();
+CLASS_DECL_ACE mutex & message_dispatch_mutex();
 
 

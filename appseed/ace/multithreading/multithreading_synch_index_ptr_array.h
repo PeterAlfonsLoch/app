@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_AURA synch_index_ptr_array:
+class CLASS_DECL_ACE synch_index_ptr_array:
    virtual protected ref_array < index >
 {
 public:
@@ -43,7 +43,7 @@ public:
    }
 #undef new
    DECLARE_AND_IMPLEMENT_DEFAULT_ALLOCATION
-#define new AURA_NEW
+#define new ACE_NEW
 
 };
 

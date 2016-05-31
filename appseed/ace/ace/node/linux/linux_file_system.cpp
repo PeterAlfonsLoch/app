@@ -44,7 +44,7 @@ namespace linux
 
       {
 
-         void * handle = dlopen("libaura.so", RTLD_NOW);
+         void * handle = dlopen("libace.so", RTLD_NOW);
 
          if(handle == NULL)
          {

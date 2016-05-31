@@ -21,10 +21,10 @@ hresult_exception::~hresult_exception()
 
 
 #define ERRMSGBUFFERSIZE 256
-CLASS_DECL_AURA int trace_hr(const char * psz,HRESULT hr)
+CLASS_DECL_ACE int trace_hr(const char * psz,HRESULT hr)
 {
    
-   ::ace::application * m_pauraapp = ::get_thread_app();
+   ::ace::application * m_paceapp = ::get_thread_app();
 
    string strError = get_system_error_message(hr);
    

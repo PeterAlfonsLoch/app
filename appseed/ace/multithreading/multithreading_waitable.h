@@ -21,7 +21,7 @@ Thank you Thomas Hoefer!!
 
 /// This class represents an item which can be waited for. Items can be threads, events, sockets,
 /// files, semaphores and so on.
-class CLASS_DECL_AURA object :
+class CLASS_DECL_ACE object :
    virtual public ::object
 {
 public:
@@ -38,8 +38,8 @@ public:
 };
 */
 
-//class CLASS_DECL_AURA object :
-//class CLASS_DECL_AURA object
+//class CLASS_DECL_ACE object :
+//class CLASS_DECL_ACE object
 //   virtual public ::object
 //{
 //public:
@@ -112,7 +112,7 @@ public:
 
 ///  \brief		pauses object for specified time
 ///  \param		duration sleeping time of object
-CLASS_DECL_AURA void sleep(const duration & duration);
+CLASS_DECL_ACE void sleep(const duration & duration);
 
 
 // forward declaration
@@ -123,7 +123,7 @@ class event_base;
 /// event_collection.
 
 
-class CLASS_DECL_AURA waitable_callback
+class CLASS_DECL_ACE waitable_callback
 {
 public:
 	virtual ~waitable_callback();

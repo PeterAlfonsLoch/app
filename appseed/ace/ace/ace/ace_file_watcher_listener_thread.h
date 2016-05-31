@@ -5,7 +5,7 @@ namespace file_watcher
 {
 
 
-   class CLASS_DECL_AURA listener_thread :
+   class CLASS_DECL_ACE listener_thread :
       virtual public ::thread,
       virtual public file_watcher,
       virtual public file_watch_listener

@@ -67,7 +67,7 @@ namespace ace
 
 #elif defined(WINDOWSEX)
 
-VOID CALLBACK aura_timer_TimerRoutine(PVOID lpParam, BOOLEAN TimerOrWaitFired);
+VOID CALLBACK ace_timer_TimerRoutine(PVOID lpParam, BOOLEAN TimerOrWaitFired);
 
 namespace ace
 {
@@ -146,7 +146,7 @@ void * CreateDispatchTimer(uint64_t interval, uint64_t leeway, void * queue, voi
 
 void ReleaseDispatch(void * p);
 
-void aura_timer(void * p);
+void ace_timer(void * p);
 
 namespace ace
 {
@@ -200,7 +200,7 @@ namespace ace
 #else
 
 
-void aura_timer_handler(sigval sigval);
+void ace_timer_handler(sigval sigval);
 
 
 namespace ace
@@ -231,7 +231,7 @@ namespace ace
 
          m_sev.sigev_value.sival_ptr = this;
 
-         m_sev.sigev_notify_function = aura_timer_handler;
+         m_sev.sigev_notify_function = ace_timer_handler;
 
          if (timer_create(CLOCK_REALTIME, &m_sev, &m_timerid) == -1)
             throw - 1;
@@ -348,7 +348,7 @@ bool timer::start(int millis, bool bPeriodic)
 
 #elif defined(WINDOWS)
 
-   if(!CreateTimerQueueTimer(&m_ptimer->m_hTimer,m_ptimer->m_hTimerQueue,(WAITORTIMERCALLBACK)aura_timer_TimerRoutine,m_ptimer,m_dwMillis,0,WT_EXECUTEONLYONCE | WT_EXECUTELONGFUNCTION))
+   if(!CreateTimerQueueTimer(&m_ptimer->m_hTimer,m_ptimer->m_hTimerQueue,(WAITORTIMERCALLBACK)ace_timer_TimerRoutine,m_ptimer,m_dwMillis,0,WT_EXECUTEONLYONCE | WT_EXECUTELONGFUNCTION))
    {
 
       return false;
@@ -364,7 +364,7 @@ bool timer::start(int millis, bool bPeriodic)
 
    m_ptimer->m_bFirst = true;
 
-   m_ptimer->m_timer = CreateDispatchTimer(millis, MAX(1, millis / 20), m_ptimer->m_queue, aura_timer, m_ptimer);
+   m_ptimer->m_timer = CreateDispatchTimer(millis, MAX(1, millis / 20), m_ptimer->m_queue, ace_timer, m_ptimer);
 
    if (m_ptimer->m_timer == NULL)
       return false;
@@ -513,7 +513,7 @@ bool timer::call_on_timer()
       if (m_bPeriodic)
       {
 
-         if(!CreateTimerQueueTimer(&m_ptimer->m_hTimer,m_ptimer->m_hTimerQueue,(WAITORTIMERCALLBACK)aura_timer_TimerRoutine,m_ptimer,m_dwMillis,0,WT_EXECUTEONLYONCE | WT_EXECUTELONGFUNCTION))
+         if(!CreateTimerQueueTimer(&m_ptimer->m_hTimer,m_ptimer->m_hTimerQueue,(WAITORTIMERCALLBACK)ace_timer_TimerRoutine,m_ptimer,m_dwMillis,0,WT_EXECUTEONLYONCE | WT_EXECUTELONGFUNCTION))
          {
 
             return false;
@@ -618,12 +618,12 @@ bool timer::on_timer()
 
 #ifdef WINDOWS
 
-VOID CALLBACK aura_timer_TimerRoutine(PVOID lpParam, BOOLEAN TimerOrWaitFired)
+VOID CALLBACK ace_timer_TimerRoutine(PVOID lpParam, BOOLEAN TimerOrWaitFired)
 {
 
    if(!g_bAura)
    {
-      output_debug_string("there is timer on (aura_timer_TimerRoutine) and ace is going away (!g_bAura)\n");
+      output_debug_string("there is timer on (ace_timer_TimerRoutine) and ace is going away (!g_bAura)\n");
       return;
    }
 
@@ -651,7 +651,7 @@ VOID CALLBACK aura_timer_TimerRoutine(PVOID lpParam, BOOLEAN TimerOrWaitFired)
 }
 #elif defined(__APPLE__)
 
-void aura_timer(void * p)
+void ace_timer(void * p)
 {
 
    ::ace::Timer * ptimer = (::ace::Timer *)p;
@@ -671,7 +671,7 @@ void aura_timer(void * p)
 
 #else
 
-void aura_timer_handler(sigval sigval)
+void ace_timer_handler(sigval sigval)
 {
 
    ::ace::Timer * ptimer = (::ace::Timer *)sigval.sival_ptr;

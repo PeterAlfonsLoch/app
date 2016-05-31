@@ -3,7 +3,7 @@
 
 
 
-class CLASS_DECL_AURA var_array :
+class CLASS_DECL_ACE var_array :
    public array < var >
 {
 public:

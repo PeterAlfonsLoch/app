@@ -1,7 +1,7 @@
 //#include "framework.h"
 
 
-CLASS_DECL_AURA string url_decode_dup(const char * psz)
+CLASS_DECL_ACE string url_decode_dup(const char * psz)
 {
    string str(psz);
 
@@ -113,7 +113,7 @@ string url_decode_dup(const char * lpszUrl,strsize iLen)
 
 
 
-CLASS_DECL_AURA bool url_query_get_param_dup(string & strParam,const char * pszKey,const char * pszUrl)
+CLASS_DECL_ACE bool url_query_get_param_dup(string & strParam,const char * pszKey,const char * pszUrl)
 {
 
    const char * pszBeg;
@@ -458,10 +458,10 @@ bool open_url::open()
 
 BEGIN_EXTERN_C
 
-CLASS_DECL_AURA int_bool freerdp_authenticate(void * instance, char** username,char** password,char** domain, const char * pszServerName, int bInteractive)
+CLASS_DECL_ACE int_bool freerdp_authenticate(void * instance, char** username,char** password,char** domain, const char * pszServerName, int bInteractive)
 {
 
-   ::ace::application * papp = ::get_aura(instance);
+   ::ace::application * papp = ::get_ace(instance);
 
    string strUsername;
 

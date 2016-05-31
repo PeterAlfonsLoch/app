@@ -19,7 +19,7 @@ namespace ace
    {
 
 
-      class CLASS_DECL_AURA base :
+      class CLASS_DECL_ACE base :
          virtual public object
       {
       public:
@@ -73,7 +73,7 @@ namespace ace
 
 
 
-      class CLASS_DECL_AURA tx:
+      class CLASS_DECL_ACE tx:
          virtual public  base
       {
       public:
@@ -100,13 +100,13 @@ namespace ace
       class rx_private;
 
 
-      class CLASS_DECL_AURA rx:
+      class CLASS_DECL_ACE rx:
          virtual public base
       {
       public:
 
 
-         class CLASS_DECL_AURA receiver
+         class CLASS_DECL_ACE receiver
          {
          public:
 
@@ -163,7 +163,7 @@ namespace ace
 
 
 
-      class CLASS_DECL_AURA ipc:
+      class CLASS_DECL_ACE ipc:
          virtual public tx,
          virtual public rx::receiver
       {
@@ -187,7 +187,7 @@ namespace ace
 #endif
          bool close();
 
-         virtual void restart_aura_ipc();
+         virtual void restart_ace_ipc();
 
          bool ensure_tx(const char * pszMessage,unsigned int dwTimeout = INFINITE);
          bool ensure_tx(int message,void * pdata,int len,unsigned int dwTimeout = INFINITE);
@@ -203,7 +203,7 @@ namespace ace
 
 
 
-      CLASS_DECL_AURA string app_install(string strPlatform = "");
+      CLASS_DECL_ACE string app_install(string strPlatform = "");
 
 
    } // namespace ipc

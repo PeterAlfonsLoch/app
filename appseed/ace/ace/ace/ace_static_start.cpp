@@ -10,13 +10,13 @@
 
 void init_draw2d_direct2_mutex();
 void term_draw2d_direct2_mutex();
-void aura_auto_debug_teste();
-void teste_aura_cmp();
+void ace_auto_debug_teste();
+void teste_ace_cmp();
 void init_resolve_addr_file_func_line();
 extern string * g_pstrCalcModuleFolderDup;
 string calc_ca2_module_folder_dup();
 extern mutex * s_pmutexMessageDispatch;
-CLASS_DECL_AURA array<object * > * g_paAura = NULL;
+CLASS_DECL_ACE array<object * > * g_paAura = NULL;
 namespace str
 {
 
@@ -148,7 +148,7 @@ namespace ace
    {
 
 
-      CLASS_DECL_AURA void init()
+      CLASS_DECL_ACE void init()
       {
 
 #ifdef WINDOWS
@@ -302,9 +302,9 @@ namespace ace
 
          init_draw2d_direct2_mutex();
 
-         aura_auto_debug_teste();
+         ace_auto_debug_teste();
 
-         teste_aura_cmp();
+         teste_ace_cmp();
 
          g_pmapLibCall = new string_map < sp(::ace::library) >();
 
@@ -356,7 +356,7 @@ namespace ace
 
 
 
-      CLASS_DECL_AURA void term()
+      CLASS_DECL_ACE void term()
       {
 
          delete g_pmapLibCall;
@@ -531,7 +531,7 @@ namespace ace
 
       }
 
-      ::ace::system * aura_create_system()
+      ::ace::system * ace_create_system()
       {
          return new ::ace::system(NULL, NULL);
       }

@@ -9,7 +9,7 @@ class string;
 namespace exception
 {
 
-   class CLASS_DECL_AURA base :
+   class CLASS_DECL_ACE base :
       virtual public ::exception::exception,
       virtual public call_stack
    {

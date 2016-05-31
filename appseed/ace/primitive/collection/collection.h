@@ -176,14 +176,14 @@ public:
 #include "collection_string_list.h"
 
 
-class CLASS_DECL_AURA map_word_to_ptr :
+class CLASS_DECL_ACE map_word_to_ptr :
    virtual public map < WORD, WORD, void *, void * >
 {
 public:
    map_word_to_ptr(::ace::application * papp = NULL, ::count nBlockSize = 10);
 };
 
-class CLASS_DECL_AURA map_ptr_to_word :
+class CLASS_DECL_ACE map_ptr_to_word :
    virtual public map < void *, void *, WORD, WORD >
 {
 public:
@@ -191,14 +191,14 @@ public:
 };
 
 
-class CLASS_DECL_AURA map_ptr_to_ptr :
+class CLASS_DECL_ACE map_ptr_to_ptr :
    virtual public map < void *, void *, void *, void * >
 {
 public:
    map_ptr_to_ptr(::ace::application * papp = NULL, ::count nBlockSize = 10);
 };
 
-class CLASS_DECL_AURA map_word_to_ob :
+class CLASS_DECL_ACE map_word_to_ob :
    virtual public map < WORD, WORD, object *, object * >
 {
 public:
@@ -206,14 +206,14 @@ public:
 };
 
 
-class CLASS_DECL_AURA map_string_to_ptr :
+class CLASS_DECL_ACE map_string_to_ptr :
    virtual public map < string, const string &, void *, void * >
 {
 public:
    map_string_to_ptr(::ace::application * papp = NULL, ::count nBlockSize = 10);
 };
 
-class CLASS_DECL_AURA map_string_to_ob :
+class CLASS_DECL_ACE map_string_to_ob :
    virtual public map < string, const string &, object *, object * >
 {
 public:
@@ -256,8 +256,8 @@ public:
 
 
 
-typedef CLASS_DECL_AURA spa(uint_array) dword_2darray;
-typedef CLASS_DECL_AURA spa(index_array) index_2darray;
+typedef CLASS_DECL_ACE spa(uint_array) dword_2darray;
+typedef CLASS_DECL_ACE spa(index_array) index_2darray;
 
 
 
@@ -277,7 +277,7 @@ typedef CLASS_DECL_AURA spa(index_array) index_2darray;
 
 #include "collection_priority_queue.h"
 
-class CLASS_DECL_AURA time_array :
+class CLASS_DECL_ACE time_array :
    public array < ::datetime::time, ::datetime::time & >
 {
 };

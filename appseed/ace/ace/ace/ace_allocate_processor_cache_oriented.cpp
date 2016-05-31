@@ -1,6 +1,6 @@
 
 
-CLASS_DECL_AURA void * processor_cache_oriented_memory_alloc(size_t s)
+CLASS_DECL_ACE void * processor_cache_oriented_memory_alloc(size_t s)
 {
 
 #if defined(_M_IX86)
@@ -16,7 +16,7 @@ CLASS_DECL_AURA void * processor_cache_oriented_memory_alloc(size_t s)
 }
 
 
-CLASS_DECL_AURA void processor_cache_oriented_memory_free(void * p)
+CLASS_DECL_ACE void processor_cache_oriented_memory_free(void * p)
 {
 
 #if defined(_M_IX86)
@@ -32,7 +32,7 @@ CLASS_DECL_AURA void processor_cache_oriented_memory_free(void * p)
 }
 
 
-CLASS_DECL_AURA void processor_cache_oriented_memory_reset()
+CLASS_DECL_ACE void processor_cache_oriented_memory_reset()
 {
 
 #if defined(_M_IX86)
@@ -44,7 +44,7 @@ CLASS_DECL_AURA void processor_cache_oriented_memory_reset()
 }
 
 
-CLASS_DECL_AURA int_bool processor_cache_oriented_set_thread_memory_pool(int iPoolIndex)
+CLASS_DECL_ACE int_bool processor_cache_oriented_set_thread_memory_pool(int iPoolIndex)
 {
 
 #if defined(_M_IX86)
@@ -59,7 +59,7 @@ CLASS_DECL_AURA int_bool processor_cache_oriented_set_thread_memory_pool(int iPo
 
 }
 
-CLASS_DECL_AURA  void processor_cache_oriented_destroy_all_memory_pools()
+CLASS_DECL_ACE  void processor_cache_oriented_destroy_all_memory_pools()
 {
 
 #if defined(_M_IX86)

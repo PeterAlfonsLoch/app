@@ -5,7 +5,7 @@ namespace str
 {
 
 
-   class CLASS_DECL_AURA base64 :
+   class CLASS_DECL_ACE base64 :
       virtual public ::object
    {
    protected:

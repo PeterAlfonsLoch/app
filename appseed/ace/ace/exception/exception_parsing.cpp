@@ -19,14 +19,14 @@ parsing_exception::~parsing_exception()
 }
 
 
-CLASS_DECL_AURA bool get_avoid_parsing_exception()
+CLASS_DECL_ACE bool get_avoid_parsing_exception()
 {
 
    return t_iAvoidParsingException != FALSE;
 
 }
 
-CLASS_DECL_AURA bool throw_parsing_exception(const string & strMessage)
+CLASS_DECL_ACE bool throw_parsing_exception(const string & strMessage)
 {
    
    if(get_avoid_parsing_exception())

@@ -1,10 +1,10 @@
 #pragma once
 
 
-CLASS_DECL_AURA IDTHREAD get_current_thread_id();
+CLASS_DECL_ACE IDTHREAD get_current_thread_id();
 
 
-class CLASS_DECL_AURA message_array:
+class CLASS_DECL_ACE message_array:
    public raw_array < MESSAGE >
 {
 
@@ -12,7 +12,7 @@ class CLASS_DECL_AURA message_array:
 };
 
 
-class CLASS_DECL_AURA mq{
+class CLASS_DECL_ACE mq{
 public:
 
 
@@ -32,8 +32,8 @@ public:
 
 #ifdef __cplusplus
 
-CLASS_DECL_AURA void * __thread_get_data(IDTHREAD thread,uint32_t dwIndex);
-CLASS_DECL_AURA int_bool __thread_set_data(IDTHREAD thread,uint32_t dwIndex,void * lpTlsValue);
+CLASS_DECL_ACE void * __thread_get_data(IDTHREAD thread,uint32_t dwIndex);
+CLASS_DECL_ACE int_bool __thread_set_data(IDTHREAD thread,uint32_t dwIndex,void * lpTlsValue);
 
 #endif
 
@@ -49,7 +49,7 @@ void __node_init_cross_windows_threading();
 void __node_term_cross_windows_threading();
 
 
-class CLASS_DECL_AURA thread_data
+class CLASS_DECL_ACE thread_data
 {
 public:
 

@@ -96,10 +96,10 @@ thread::thread(::ace::application * papp) :
    construct();
 
 
-   if(m_pauraapp != NULL && m_pauraapp->m_paurasession != NULL)
+   if(m_paceapp != NULL && m_paceapp->m_pacesession != NULL)
    {
 
-      m_bZipIsDir = m_pauraapp->m_paurasession->m_bZipIsDir;
+      m_bZipIsDir = m_paceapp->m_pacesession->m_bZipIsDir;
 
    }
 
@@ -117,10 +117,10 @@ thread::thread(::ace::application * papp, __THREADPROC pfnThreadProc, LPVOID pPa
 //   m_pthreadimpl->m_pthread = this;
    construct(pfnThreadProc, pParam);
 
-   if(m_pauraapp != NULL && m_pauraapp->m_paurasession != NULL)
+   if(m_paceapp != NULL && m_paceapp->m_pacesession != NULL)
    {
 
-      m_bZipIsDir = m_pauraapp->m_paurasession->m_bZipIsDir;
+      m_bZipIsDir = m_paceapp->m_pacesession->m_bZipIsDir;
 
    }
 
@@ -370,7 +370,7 @@ bool thread::is_auto_delete()
 
 
 
-CLASS_DECL_AURA void thread_alloc_ready(bool bReady)
+CLASS_DECL_ACE void thread_alloc_ready(bool bReady)
 {
 
    thread::s_bAllocReady = bReady;
@@ -1226,10 +1226,10 @@ void thread::pre_translate_message(signal_details * pobj)
 
       try
       {
-         if(m_pauraapp->m_paurasession != NULL)
+         if(m_paceapp->m_pacesession != NULL)
          {
 
-            m_pauraapp->m_paurasession->frame_pre_translate_message(pobj);
+            m_paceapp->m_pacesession->frame_pre_translate_message(pobj);
          }
       }
       catch(exit_exception & e)
@@ -1653,7 +1653,7 @@ uint32_t __thread_entry(void * pparam)
       catch(::exit_exception &)
       {
 
-         Sys(pthread->m_pauraapp).post_quit();
+         Sys(pthread->m_paceapp).post_quit();
 
          return ::multithreading::__on_thread_finally(pthread);
 
@@ -1676,7 +1676,7 @@ uint32_t __thread_entry(void * pparam)
 }
 
 
-void CLASS_DECL_AURA __end_thread(::ace::application * papp)
+void CLASS_DECL_ACE __end_thread(::ace::application * papp)
 {
 
    __term_thread(papp);
@@ -1684,7 +1684,7 @@ void CLASS_DECL_AURA __end_thread(::ace::application * papp)
 }
 
 
-void CLASS_DECL_AURA __term_thread(::ace::application * papp)
+void CLASS_DECL_ACE __term_thread(::ace::application * papp)
 {
 
    UNREFERENCED_PARAMETER(papp);
@@ -2565,25 +2565,25 @@ bool thread::process_message(LPMESSAGE lpmessage)
                   try
                   {
 
-                     if(m_pauraapp != NULL)
+                     if(m_paceapp != NULL)
                      {
 
                         try
                         {
 
-                           if(m_pauraapp->m_paurasystem != NULL)
+                           if(m_paceapp->m_pacesystem != NULL)
                            {
 
-                              m_pauraapp->m_paurasystem->pre_translate_message(spbase);
+                              m_paceapp->m_pacesystem->pre_translate_message(spbase);
 
                               if(spbase->m_bRet)
                                  return true;
 
                               /*                                 try
                               {
-                              if(m_pauraapp->m_paurasystem->m_pcube != NULL)
+                              if(m_paceapp->m_pacesystem->m_pcube != NULL)
                               {
-                              m_pauraapp->m_paurasystem->m_pcubeInterface->pre_translate_message(spbase);
+                              m_paceapp->m_pacesystem->m_pcubeInterface->pre_translate_message(spbase);
                               if(spbase->m_bRet)
                               return TRUE;
                               }
@@ -2602,13 +2602,13 @@ bool thread::process_message(LPMESSAGE lpmessage)
 
                         }
 
-                        if(m_pauraapp->m_paurasession != NULL)
+                        if(m_paceapp->m_pacesession != NULL)
                         {
 
                            try
                            {
 
-                              m_pauraapp->m_paurasession->pre_translate_message(spbase);
+                              m_paceapp->m_pacesession->pre_translate_message(spbase);
 
                               if(spbase->m_bRet)
                                  return true;
@@ -2621,9 +2621,9 @@ bool thread::process_message(LPMESSAGE lpmessage)
 
                            /*                              try
                            {
-                           if(m_pauraapp->m_paurasession->m_pbergedge != NULL)
+                           if(m_paceapp->m_pacesession->m_pbergedge != NULL)
                            {
-                           m_pauraapp->m_paurasession->m_pbergedgeInterface->pre_translate_message(spbase);
+                           m_paceapp->m_pacesession->m_pbergedgeInterface->pre_translate_message(spbase);
                            if(spbase->m_bRet)
                            return TRUE;
                            }
@@ -2645,10 +2645,10 @@ bool thread::process_message(LPMESSAGE lpmessage)
                   try
                   {
 
-                     if(!m_pauraapp->is_system() && m_pauraapp->is_session())
+                     if(!m_paceapp->is_system() && m_paceapp->is_session())
                      {
 
-                        m_pauraapp->pre_translate_message(spbase);
+                        m_paceapp->pre_translate_message(spbase);
 
                         if(spbase->m_bRet)
                            return true;

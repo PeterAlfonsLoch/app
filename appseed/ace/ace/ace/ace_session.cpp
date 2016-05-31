@@ -15,16 +15,16 @@ namespace ace
 
       m_psockets = NULL;
 
-      m_paurasession    = this;
+      m_pacesession    = this;
 
-      m_bMatterFromHttpCache = m_paurasystem->m_bMatterFromHttpCache;
+      m_bMatterFromHttpCache = m_pacesystem->m_bMatterFromHttpCache;
 
 #ifdef WINDOWS
 
       if(m_hinstance == NULL)
       {
 
-         m_hinstance = m_pauraapp->m_hinstance;
+         m_hinstance = m_paceapp->m_hinstance;
 
       }
 
@@ -34,7 +34,7 @@ namespace ace
 
       m_bZipIsDir                = true;
 
-//      m_paurasystem->m_basesessionptra.add_unique(this);
+//      m_pacesystem->m_basesessionptra.add_unique(this);
 
 
       m_iEdge                    = 0;
@@ -476,7 +476,7 @@ namespace ace
 
                   //pcreatecontext->m_spCommandLine->m_varQuery["bergedge_callback"] = dynamic_cast < ::ace::application * > (this);
 
-                  papp->m_pauraapp->command()->command(pcreatecontext);
+                  papp->m_paceapp->command()->command(pcreatecontext);
  
                   m_pappCurrent = papp;
 
@@ -629,7 +629,7 @@ namespace ace
 
       ::ace::application * papp = NULL;
 
-      if(m_paurasession->m_mapApplication.Lookup(string(pszType) + ":" + string(pszId),papp))
+      if(m_pacesession->m_mapApplication.Lookup(string(pszType) + ":" + string(pszId),papp))
       {
 
          return papp;
@@ -688,7 +688,7 @@ namespace ace
 
          }
 
-         m_paurasession->m_mapApplication.set_at(string(pszType) + ":" + string(pszId),papp);
+         m_pacesession->m_mapApplication.set_at(string(pszType) + ":" + string(pszId),papp);
 
          return papp;
 
@@ -858,8 +858,8 @@ namespace ace
       if(!papp->is_serviceable() || papp->is_user_service())
       {
 
-         System.m_spmutexUserAppData = canew(mutex(m_paurasystem,false,"Local\\ca2.UserAppData"));
-         System.m_spmutexSystemAppData = canew(mutex(m_paurasystem,false,"Local\\ca2.SystemAppData"));
+         System.m_spmutexUserAppData = canew(mutex(m_pacesystem,false,"Local\\ca2.UserAppData"));
+         System.m_spmutexSystemAppData = canew(mutex(m_pacesystem,false,"Local\\ca2.SystemAppData"));
 
       }
 
@@ -883,7 +883,7 @@ namespace ace
 
       }
 
-      pgenapp->m_paurasystem = m_paurasystem;
+      pgenapp->m_pacesystem = m_pacesystem;
 
       pgenapp->m_paxissystem = m_paxissystem;
 

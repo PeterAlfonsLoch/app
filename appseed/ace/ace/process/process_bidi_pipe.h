@@ -5,7 +5,7 @@ namespace process
 {
 
 
-   class CLASS_DECL_AURA bidi_pipe:
+   class CLASS_DECL_ACE bidi_pipe:
       virtual public ::object
    {
    public:

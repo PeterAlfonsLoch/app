@@ -11,14 +11,14 @@ class property_set;
 //class str_str_interface;
 
 
-var CLASS_DECL_AURA str_ends_get(const char * lpcsz, const char * lpcszSuffix);
+var CLASS_DECL_ACE str_ends_get(const char * lpcsz, const char * lpcszSuffix);
 
 
 namespace str
 {
 
-   CLASS_DECL_AURA var ends_get(const char * pszSuffix, const char * psz);
-   CLASS_DECL_AURA var ends_get_ci(const char * pszSuffix, const char * psz);
+   CLASS_DECL_ACE var ends_get(const char * pszSuffix, const char * psz);
+   CLASS_DECL_ACE var ends_get_ci(const char * pszSuffix, const char * psz);
 
 
 } // namespace str

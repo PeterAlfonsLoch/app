@@ -2,7 +2,7 @@
 
 
 
-struct CLASS_DECL_AURA blob
+struct CLASS_DECL_ACE blob
 {
 
 
@@ -17,10 +17,10 @@ struct CLASS_DECL_AURA blob
    blob & operator = (const char * psz);
 };
 
-class CLASS_DECL_AURA machine_event_data
+class CLASS_DECL_ACE machine_event_data
 {
 public:
-   struct CLASS_DECL_AURA fixed
+   struct CLASS_DECL_ACE fixed
    {
       fixed();
       bool  m_bRequestCloseApplication;

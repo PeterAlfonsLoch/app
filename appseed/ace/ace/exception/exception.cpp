@@ -165,12 +165,12 @@ void __cdecl __clearerr_s(FILE *stream)
 namespace exception
 {
 
-   CLASS_DECL_AURA void throw_interface_only(::ace::application * papp)
+   CLASS_DECL_ACE void throw_interface_only(::ace::application * papp)
    {
       throw interface_only_exception(papp);
    }
 
-   CLASS_DECL_AURA void throw_not_implemented(::ace::application * papp)
+   CLASS_DECL_ACE void throw_not_implemented(::ace::application * papp)
    {
       throw not_implemented(papp);
    }

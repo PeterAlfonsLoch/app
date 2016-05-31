@@ -5,7 +5,7 @@ namespace ace
 {
 
 
-   class CLASS_DECL_AURA assert_running_task:
+   class CLASS_DECL_ACE assert_running_task:
       virtual public ::thread
    {
    public:

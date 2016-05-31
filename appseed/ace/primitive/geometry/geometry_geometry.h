@@ -5,7 +5,7 @@ namespace geometry
 {
 
 
-   class CLASS_DECL_AURA rotation
+   class CLASS_DECL_ACE rotation
    {
    public:
       double   m_dCosPhi;
@@ -16,7 +16,7 @@ namespace geometry
       void rotate(LPPOINT lppoint, int32_t iCount);
    };
 
-   class CLASS_DECL_AURA geometry :
+   class CLASS_DECL_ACE geometry :
       virtual public ::object
    {
    public:

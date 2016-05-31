@@ -881,7 +881,7 @@ void wait_until_mutex_does_not_exist(const char * pszName)
 mutex * g_pmutexUiDestroyed = NULL;
 
 
-CLASS_DECL_AURA mutex * get_ui_destroyed_mutex()
+CLASS_DECL_ACE mutex * get_ui_destroyed_mutex()
 {
 
   return g_pmutexUiDestroyed;

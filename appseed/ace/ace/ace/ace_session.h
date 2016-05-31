@@ -10,13 +10,13 @@ namespace ace
 {
 
 
-   class CLASS_DECL_AURA session:
+   class CLASS_DECL_ACE session:
       virtual public ::ace::application
    {
    public:
 
 
-      class CLASS_DECL_AURA map:
+      class CLASS_DECL_ACE map:
          virtual public ::map < index,index, ::ace::session * , ::ace::session * >
       {
 

@@ -5,7 +5,7 @@ namespace math
 {
 
 
-   class CLASS_DECL_AURA math :
+   class CLASS_DECL_ACE math :
    virtual public ::ace::department
    {
    private:

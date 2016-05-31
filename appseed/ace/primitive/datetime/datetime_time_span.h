@@ -4,7 +4,7 @@ namespace datetime
 {
 
 
-   class CLASS_DECL_AURA time_span
+   class CLASS_DECL_ACE time_span
    {
    public:
 

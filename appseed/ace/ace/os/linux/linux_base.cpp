@@ -3,7 +3,7 @@
 //extern thread_pointer < os_thread > t_posthread;
 //extern thread_pointer < hthread > t_hthread;
 
-CLASS_DECL_AURA bool __node_aura_pre_init()
+CLASS_DECL_ACE bool __node_ace_pre_init()
 {
 
    return true;
@@ -11,7 +11,7 @@ CLASS_DECL_AURA bool __node_aura_pre_init()
 }
 
 
-CLASS_DECL_AURA bool __node_aura_pos_init()
+CLASS_DECL_ACE bool __node_ace_pos_init()
 {
 
 //   t_hthread = new hthread();
@@ -26,7 +26,7 @@ CLASS_DECL_AURA bool __node_aura_pos_init()
 
 void __clear_mq();
 
-CLASS_DECL_AURA bool __node_aura_pre_term()
+CLASS_DECL_ACE bool __node_ace_pre_term()
 {
    __clear_mq();
    __node_term_cross_windows_threading();
@@ -60,7 +60,7 @@ CLASS_DECL_AURA bool __node_aura_pre_term()
 
 
 
-CLASS_DECL_AURA bool __node_aura_pos_term()
+CLASS_DECL_ACE bool __node_ace_pos_term()
 {
 
    return true;

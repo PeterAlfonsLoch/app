@@ -4,7 +4,7 @@
 
 //
 //
-//class CLASS_DECL_AURA string_composite :
+//class CLASS_DECL_ACE string_composite :
 //   public string_interface
 //{
 //private:
@@ -66,9 +66,9 @@
 //namespace str
 //{
 //
-//   extern CLASS_DECL_AURA const_empty_string g_strEmpty;
+//   extern CLASS_DECL_ACE const_empty_string g_strEmpty;
 //
-//   CLASS_DECL_AURA string_interface & empty_string();
+//   CLASS_DECL_ACE string_interface & empty_string();
 //
 //}
 //

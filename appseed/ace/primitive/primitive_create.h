@@ -6,7 +6,7 @@
 
 class command_line;
 
-class CLASS_DECL_AURA command_line_sp :
+class CLASS_DECL_ACE command_line_sp :
    public smart_pointer < command_line >
 {
 public:
@@ -27,7 +27,7 @@ public:
 
 
 
-class CLASS_DECL_AURA create :
+class CLASS_DECL_ACE create :
    virtual public ::primitive::command
 {
 public:

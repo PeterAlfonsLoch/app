@@ -2,7 +2,7 @@
 
 
 
-class CLASS_DECL_AURA timer :
+class CLASS_DECL_ACE timer :
    virtual public thread
 {
 public:

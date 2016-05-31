@@ -7,7 +7,7 @@ namespace ace
 
 
 
-   class CLASS_DECL_AURA command:
+   class CLASS_DECL_ACE command:
       public signal_details
    {
    public:

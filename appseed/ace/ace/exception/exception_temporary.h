@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_AURA temporary_exception : 
+class CLASS_DECL_ACE temporary_exception : 
    virtual public ::exception::base
 {
 public:

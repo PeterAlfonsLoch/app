@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_AURA range_error : 
+class CLASS_DECL_ACE range_error : 
    virtual public error_exception
 {
    // ace class for resource-critical core API exceptions

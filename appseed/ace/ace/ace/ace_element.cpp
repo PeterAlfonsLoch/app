@@ -54,7 +54,7 @@ namespace ace
 //   // root like (Rute like, Thank you Rute and Inha and Lizir!!)
 //   m_countReference  = 1;
 //   m_bHeap           = false;
-//   m_pauraapp        = NULL;
+//   m_paceapp        = NULL;
 //
 //}
 //
@@ -62,7 +62,7 @@ namespace ace
 //element::element(const element & o)
 //{
 //
-//   m_pauraapp = o.m_pauraapp;
+//   m_paceapp = o.m_paceapp;
 //   m_ulFlags = o.m_ulFlags;
 //   m_pfactoryitembase   = o.m_pfactoryitembase;
 //
@@ -76,14 +76,14 @@ namespace ace
 //element::element(::ace::application * papp)
 //{
 //
-//   m_pauraapp = papp;
+//   m_paceapp = papp;
 //   m_ulFlags = (uint32_t)flag_auto_clean;
 //   m_pfactoryitembase   = NULL;
 //
 //   // root like (Rute like, Thank you Rute and Inha and Lizir!!)
 //   m_countReference  = 1;
 //   m_bHeap           = false;
-//   m_pauraapp        = papp;
+//   m_paceapp        = papp;
 //
 //}
 //
@@ -97,7 +97,7 @@ namespace ace
 ///*sp(::ace::application) element::get_app() const
 //{
 //
-//   return m_pauraapp;
+//   return m_paceapp;
 //
 //}*/
 //
@@ -105,7 +105,7 @@ namespace ace
 //void element::set_app(::ace::application * papp)
 //{
 //
-//   m_pauraapp = papp;
+//   m_paceapp = papp;
 //
 //}
 //
@@ -125,7 +125,7 @@ namespace ace
 //   {
 //
 //      m_ulFlags   = o.m_ulFlags;
-//      m_pauraapp      = o.m_pauraapp;
+//      m_paceapp      = o.m_paceapp;
 //
 //   }
 //
@@ -146,7 +146,7 @@ namespace ace
 //   else if(m_ulFlags & flag_discard_to_factory)
 //   {
 //
-//      m_pauraapp->m_paurasystem->discard_to_factory(this);
+//      m_paceapp->m_pacesystem->discard_to_factory(this);
 //
 //   }
 //   else if(is_heap())
@@ -179,7 +179,7 @@ namespace ace
 //
 //      allocator * pallocator = canew(allocator());
 //
-//      pallocator->m_pauraapp = papp;
+//      pallocator->m_paceapp = papp;
 //
 //      smart_pointer < allocator >::operator = (pallocator);
 //

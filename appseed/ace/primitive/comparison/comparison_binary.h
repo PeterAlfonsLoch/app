@@ -25,7 +25,7 @@ namespace comparison
    };
 
    template < >
-   class CLASS_DECL_AURA binary < int32_t >
+   class CLASS_DECL_ACE binary < int32_t >
    {
    public:
 

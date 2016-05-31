@@ -14,7 +14,7 @@ namespace data
       //{
       //   if(pdata->m_lockedlong == 1)
       //   {
-      //      Sys(pdata->m_pauraapp).wait_twf();
+      //      Sys(pdata->m_paceapp).wait_twf();
       //   }
       //}
    }
@@ -63,7 +63,7 @@ namespace data
 //      //{
 //      //   if (pdata->m_lockedlong == 1 && (pdata->m_spdataParentLock.is_null() || !pdata->m_spdataParentLock->is_locked()))
 //      //   {
-//      //      Sys(pdata->m_pauraapp).wait_twf();
+//      //      Sys(pdata->m_paceapp).wait_twf();
 //      //   }
 //      //}
 //   }

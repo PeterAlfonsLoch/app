@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_AURA semaphore :
+class CLASS_DECL_ACE semaphore :
    virtual public sync_object
 {
 public:

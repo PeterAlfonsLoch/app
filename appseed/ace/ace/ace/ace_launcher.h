@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_AURA launcher
+class CLASS_DECL_ACE launcher
 {
 public:
 

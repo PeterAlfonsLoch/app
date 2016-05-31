@@ -661,7 +661,7 @@ HTHREAD start_thread(uint32_t ( * pfn)(void *), void * pv, int iPriority)
 //HTHREAD g_hMainThread = NULL;
 //UINT g_uiMainThread = -1;
 //
-//CLASS_DECL_AURA void set_main_thread(HTHREAD hThread)
+//CLASS_DECL_ACE void set_main_thread(HTHREAD hThread)
 //{
 //
 //   //   MSG msg;
@@ -871,7 +871,7 @@ void attach_thread_input_to_main_thread(int_bool bAttach)
 //
 //}
 
-void _on_aura_thread_attach()
+void _on_ace_thread_attach()
 {
    
    //synch_lock mlThreadId(g_pmutexThreadIdLock);
@@ -883,7 +883,7 @@ void _on_aura_thread_attach()
    //thread_id_map()[hthread] = dwId;
 
 }
-void _on_aura_thread_detach()
+void _on_ace_thread_detach()
 {
    
    //synch_lock mlThreadId(g_pmutexThreadIdLock);
@@ -1033,7 +1033,7 @@ void __node_term_multithreading()
 
 //thread_int_ptr < HRESULT > t_hresultCoInitialize;
 
-//CLASS_DECL_AURA void __clear_mq();
+//CLASS_DECL_ACE void __clear_mq();
 
 bool __os_init_thread()
 {

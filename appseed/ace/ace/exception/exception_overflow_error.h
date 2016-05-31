@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_AURA overflow_error :
+class CLASS_DECL_ACE overflow_error :
    virtual public error_exception
 {
    // ace class for resource-critical core API exceptions

@@ -29,14 +29,14 @@
 #endif
 
 
-extern CLASS_DECL_AURA bool g_bExiting;
+extern CLASS_DECL_ACE bool g_bExiting;
 
 
 namespace exception
 {
 
 
-   class CLASS_DECL_AURA translator :
+   class CLASS_DECL_ACE translator :
       virtual public object
    {
    public:
@@ -78,7 +78,7 @@ namespace exception
 
 
 /*
-class CLASS_DECL_AURA the_se_translator : public translator
+class CLASS_DECL_ACE the_se_translator : public translator
 {
 public:
    the_se_translator();

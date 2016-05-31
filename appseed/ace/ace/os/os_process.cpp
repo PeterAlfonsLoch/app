@@ -243,7 +243,7 @@ string time_binary_platform(string strPlatform)
 
 
 
-CLASS_DECL_AURA string process_platform_dir_name()
+CLASS_DECL_ACE string process_platform_dir_name()
 {
 
 #if defined(_M_IX86)
@@ -258,7 +258,7 @@ CLASS_DECL_AURA string process_platform_dir_name()
 
 }
 
-CLASS_DECL_AURA string process_version_dir_name()
+CLASS_DECL_ACE string process_version_dir_name()
 {
 
    return _ca_is_stage() ? "stage" : "basis";

@@ -9,14 +9,14 @@ namespace message
 
    typedef void (dispatch::*PFN_DISPATCH_MESSAGE_HANDLER)(signal_details * pobj);
 
-   class CLASS_DECL_AURA dispatch:
+   class CLASS_DECL_ACE dispatch:
       virtual public ::object
    {
    public:
 
 
 
-      class CLASS_DECL_AURA Signal:
+      class CLASS_DECL_ACE Signal:
          virtual public object
       {
       public:
@@ -38,14 +38,14 @@ namespace message
       };
 
 
-      class CLASS_DECL_AURA SignalPtrArray:
+      class CLASS_DECL_ACE SignalPtrArray:
          public ref_array < Signal >
       {
 
 
       };
 
-      class CLASS_DECL_AURA SignalArray:
+      class CLASS_DECL_ACE SignalArray:
          public ptr_array < Signal >
       {
       public:

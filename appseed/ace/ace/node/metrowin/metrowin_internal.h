@@ -5,7 +5,7 @@
 #include <GdiPlus.h>
 #include <Gdipluseffects.h>
 
-#define new AURA_NEW
+#define new ACE_NEW
 
 #include <wincrypt.h>
 
@@ -30,5 +30,5 @@
 
 
 // Sanity checks for ATOMs
-//CLASS_DECL_AURA bool __is_valid_atom(ATOM nAtom);
-//CLASS_DECL_AURA bool __is_valid_atom(const char * psz);
+//CLASS_DECL_ACE bool __is_valid_atom(ATOM nAtom);
+//CLASS_DECL_ACE bool __is_valid_atom(const char * psz);

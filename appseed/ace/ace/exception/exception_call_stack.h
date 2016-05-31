@@ -31,7 +31,7 @@
 
 #define SKIP_CALL_STACK ((uint32_t) -1)
 
-class CLASS_DECL_AURA call_stack :
+class CLASS_DECL_ACE call_stack :
    virtual public object
 {
 public:

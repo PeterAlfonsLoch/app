@@ -7,7 +7,7 @@
 extern "C"
 {
 
-   CLASS_DECL_AURA void swab(const void *from,void*to,ssize_t n)
+   CLASS_DECL_ACE void swab(const void *from,void*to,ssize_t n)
    {
       ssize_t i;
 

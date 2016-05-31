@@ -24,7 +24,7 @@ extern char * const * environ;
 string ca2_module_folder_dup();
 
 
-CLASS_DECL_AURA void process_get_os_priority(int32_t * piOsPolicy, sched_param * pparam, int32_t iCa2Priority);
+CLASS_DECL_ACE void process_get_os_priority(int32_t * piOsPolicy, sched_param * pparam, int32_t iCa2Priority);
 namespace ansios
 {
 
@@ -328,7 +328,7 @@ namespace ansios
       
       ::file::path path = str;
       
-      if(Application.file().exists(path.folder() / "libaura.dylib"))
+      if(Application.file().exists(path.folder() / "libace.dylib"))
       {
          
          strFallback = path.folder();

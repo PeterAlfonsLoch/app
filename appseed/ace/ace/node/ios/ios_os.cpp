@@ -922,7 +922,7 @@ namespace ios
 //
 
 
-CLASS_DECL_AURA bool _istlead(int32_t ch)
+CLASS_DECL_ACE bool _istlead(int32_t ch)
 {
 
    return false;

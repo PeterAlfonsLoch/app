@@ -5,7 +5,7 @@ namespace windows
 {
 
 
-   class CLASS_DECL_AURA comptr_base
+   class CLASS_DECL_ACE comptr_base
    {
    public:
 

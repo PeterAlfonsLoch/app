@@ -221,8 +221,8 @@ namespace ace
 #endif
    }
 
-   CLASS_DECL_AURA int32_t get_errno();
-   CLASS_DECL_AURA void set_errno(int32_t _Value);
+   CLASS_DECL_ACE int32_t get_errno();
+   CLASS_DECL_ACE void set_errno(int32_t _Value);
 
 
 

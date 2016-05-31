@@ -73,7 +73,7 @@ void __term_thread_impl(ace::application*, HINSTANCE__*)
 
 
 
-void CLASS_DECL_AURA __init_thread()
+void CLASS_DECL_ACE __init_thread()
 {
 
 }
@@ -83,7 +83,7 @@ void CLASS_DECL_AURA __init_thread()
 
 
 
-void CLASS_DECL_AURA __term_thread()
+void CLASS_DECL_ACE __term_thread()
 {
 
 }

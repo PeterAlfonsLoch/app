@@ -10,7 +10,7 @@
 #include <gdiplus.h>
 #undef min
 #undef max
-#define new AURA_NEW
+#define new ACE_NEW
 #include <ddeml.h>
 #include <share.h>
 #include <io.h>

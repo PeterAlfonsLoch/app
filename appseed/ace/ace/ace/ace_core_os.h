@@ -8,7 +8,7 @@ namespace ace
 {
 
 
-    class CLASS_DECL_AURA os :
+    class CLASS_DECL_ACE os :
       virtual public object 
     {
     public:

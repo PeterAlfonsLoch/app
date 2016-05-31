@@ -4,7 +4,7 @@
 namespace ace
 {
 
-   class CLASS_DECL_AURA drawable:
+   class CLASS_DECL_ACE drawable:
       virtual public ::object
    {
    public:
@@ -14,7 +14,7 @@ namespace ace
 
    };
 
-   class CLASS_DECL_AURA draw_interface :
+   class CLASS_DECL_ACE draw_interface :
       virtual public drawable
    {
    public:

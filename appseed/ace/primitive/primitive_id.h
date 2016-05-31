@@ -8,7 +8,7 @@ struct id_all
 
 };
 
-class CLASS_DECL_AURA id
+class CLASS_DECL_ACE id
 {
 public:
 
@@ -361,7 +361,7 @@ inline bool id::is_empty() const
 
 
 
-inline CLASS_DECL_AURA int_ptr id_strcmp(const id * pid1,const id * pid2)
+inline CLASS_DECL_ACE int_ptr id_strcmp(const id * pid1,const id * pid2)
 {
    return strcmp(pid1->m_psz,pid2->m_psz);
 }
@@ -523,7 +523,7 @@ inline void id::clear()
 }
 
 
-inline CLASS_DECL_AURA id & id::operator += (const char * psz)
+inline CLASS_DECL_ACE id & id::operator += (const char * psz)
 {
 
    *this = *this + psz;
@@ -532,7 +532,7 @@ inline CLASS_DECL_AURA id & id::operator += (const char * psz)
 
 }
 
-inline CLASS_DECL_AURA id id::operator + (const id & id) const
+inline CLASS_DECL_ACE id id::operator + (const id & id) const
 {
 
    if(is_integer())

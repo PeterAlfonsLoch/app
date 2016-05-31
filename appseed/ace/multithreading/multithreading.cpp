@@ -5,12 +5,12 @@ namespace multithreading
 {
 
 
-   CLASS_DECL_AURA comparable_eq_array<IDTHREAD> * s_piaThread = NULL;
-   CLASS_DECL_AURA ref_array < thread > * s_pthreadptra = NULL;
-   CLASS_DECL_AURA mutex * s_pmutex = NULL;
+   CLASS_DECL_ACE comparable_eq_array<IDTHREAD> * s_piaThread = NULL;
+   CLASS_DECL_ACE ref_array < thread > * s_pthreadptra = NULL;
+   CLASS_DECL_ACE mutex * s_pmutex = NULL;
 
 
-   CLASS_DECL_AURA void init_multithreading()
+   CLASS_DECL_ACE void init_multithreading()
    {
       s_pmutex = new mutex(NULL);
       s_piaThread = new comparable_eq_array<IDTHREAD>;
@@ -21,7 +21,7 @@ namespace multithreading
    }
 
 
-   CLASS_DECL_AURA void term_multithreading()
+   CLASS_DECL_ACE void term_multithreading()
    {
 
       __node_term_multithreading();
@@ -37,7 +37,7 @@ namespace multithreading
 
    }
 
-   CLASS_DECL_AURA void __node_on_init_thread(thread * pthread)
+   CLASS_DECL_ACE void __node_on_init_thread(thread * pthread)
    {
 
       synch_lock sl(s_pmutex);
@@ -55,7 +55,7 @@ namespace multithreading
    }
 
 
-   CLASS_DECL_AURA void __node_on_term_thread(thread * pthread)
+   CLASS_DECL_ACE void __node_on_term_thread(thread * pthread)
    {
 
       synch_lock sl(s_pmutex);
@@ -69,7 +69,7 @@ namespace multithreading
    }
 
 
-   CLASS_DECL_AURA uint32_t __on_thread_finally(thread * pthread)
+   CLASS_DECL_ACE uint32_t __on_thread_finally(thread * pthread)
    {
 
       //try

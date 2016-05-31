@@ -5,7 +5,7 @@ class string_manager;
 
 
 
-struct CLASS_DECL_AURA string_data
+struct CLASS_DECL_ACE string_data
 {
    string_manager * pstringmanager;  // string manager for this string_data
    strsize nDataLength;  // Length of currently used data in XCHARs (not including terminating NULL)
@@ -27,7 +27,7 @@ struct CLASS_DECL_AURA string_data
 
 
 
-class CLASS_DECL_AURA nil_string_data :
+class CLASS_DECL_ACE nil_string_data :
    public string_data
 {
 public:
@@ -234,8 +234,8 @@ inline string_data * string_manager::GetNilString()
 namespace str
 {
 
-   CLASS_DECL_AURA inline void copy(char * pszDest, const char * pszSrc) { strcpy(pszDest, pszSrc); }
-   CLASS_DECL_AURA inline void copy(unichar * pszDest, const unichar * pszSrc) { wcscpy_dup(pszDest, pszSrc); }
+   CLASS_DECL_ACE inline void copy(char * pszDest, const char * pszSrc) { strcpy(pszDest, pszSrc); }
+   CLASS_DECL_ACE inline void copy(unichar * pszDest, const unichar * pszSrc) { wcscpy_dup(pszDest, pszSrc); }
 
 } // namespace str
 
@@ -248,10 +248,10 @@ namespace str
    namespace international
    {
 
-      CLASS_DECL_AURA strsize          UnicodeToMultiByteCount(UINT uiCodePage, const unichar * lpcsz);
-      CLASS_DECL_AURA bool         UnicodeToMultiByte(UINT uiCodePage, char * lpstrMultiByte, strsize nCount, const unichar * lpcsz);
-      CLASS_DECL_AURA const char * UnicodeToMultiByte(UINT uiCodePage, const unichar * lpcsz);
-      CLASS_DECL_AURA
+      CLASS_DECL_ACE strsize          UnicodeToMultiByteCount(UINT uiCodePage, const unichar * lpcsz);
+      CLASS_DECL_ACE bool         UnicodeToMultiByte(UINT uiCodePage, char * lpstrMultiByte, strsize nCount, const unichar * lpcsz);
+      CLASS_DECL_ACE const char * UnicodeToMultiByte(UINT uiCodePage, const unichar * lpcsz);
+      CLASS_DECL_ACE
       inline const char * _001GetUtf8(const char * psz)
       {
          return _strdup(psz);
@@ -276,7 +276,7 @@ extern "C"
 
       struct string_data;
 
-/*      class CLASS_DECL_AURA string_manager
+/*      class CLASS_DECL_ACE string_manager
       {
    public:
       // allocate a new string_data
@@ -377,7 +377,7 @@ static_string& operator=( const static_string& str ) NOTHROW;
 #define _SW( psz ) ::core::static_string< unichar, sizeof( L##psz ) >( L##psz )
 #define _SO( psz ) _SW( psz )
 
-class CLASS_DECL_AURA char_traits_base
+class CLASS_DECL_ACE char_traits_base
 {
 public:
 };
@@ -410,7 +410,7 @@ public:
 
       class string_buffer;
 
-class CLASS_DECL_AURA simple_string
+class CLASS_DECL_ACE simple_string
 {
 public:
 
@@ -1011,7 +1011,7 @@ public:
 
 };
 
-class CLASS_DECL_AURA string_buffer
+class CLASS_DECL_ACE string_buffer
 {
 public:
 

@@ -2,7 +2,7 @@
 
 
 
-class CLASS_DECL_AURA multi_lock
+class CLASS_DECL_ACE multi_lock
 {
 public:
 

@@ -23,7 +23,7 @@ namespace ace
 
    };
 
-   class CLASS_DECL_AURA application_signal_details:
+   class CLASS_DECL_ACE application_signal_details:
       public signal_details
    {
    public:

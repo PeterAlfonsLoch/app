@@ -43,7 +43,7 @@ namespace file_watcher
 
 	/// Base exception class
 	/// @class Exception
-	class CLASS_DECL_AURA exception
+	class CLASS_DECL_ACE exception
 	{
 	public:
 
@@ -57,7 +57,7 @@ namespace file_watcher
 
 	/// Exception thrown when a file is not found.
 	/// @class file_not_found_exception
-	class CLASS_DECL_AURA file_not_found_exception : public exception
+	class CLASS_DECL_ACE file_not_found_exception : public exception
 	{
 	public:
 		file_not_found_exception()
@@ -85,7 +85,7 @@ namespace file_watcher
 
    /// Basic interface for listening for file events.
    /// @class file_watch_listener
-   class CLASS_DECL_AURA file_watch_listener
+   class CLASS_DECL_ACE file_watch_listener
    {
    public:
 
@@ -137,7 +137,7 @@ namespace file_watcher
 	/// Listens to files and directories and dispatches events
 	/// to notify the parent program of the changes.
 	/// @class file_watcher
-	class CLASS_DECL_AURA file_watcher
+	class CLASS_DECL_ACE file_watcher
 	{
 	private:
 		
@@ -177,12 +177,12 @@ namespace file_watcher
 	};//end file_watcher
 
 
-   //class CLASS_DECL_AURA file_watcher_pool :
+   //class CLASS_DECL_ACE file_watcher_pool :
    //   virtual public ::thread
    //{
    //public:
 
-   //   class CLASS_DECL_AURA add
+   //   class CLASS_DECL_ACE add
    //   {
    //   public:
    //      

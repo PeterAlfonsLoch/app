@@ -4,7 +4,7 @@
 istring::istring(::ace::application * papp)
 {
 
-   m_pauraapp = papp;
+   m_paceapp = papp;
 
 }
       
@@ -16,7 +16,7 @@ istring::~istring()
 void istring::update_string()
 {
 
-   m_str = m_pauraapp->lstr(m_strTemplate, m_strTemplate);
+   m_str = m_paceapp->lstr(m_strTemplate, m_strTemplate);
 
 }
 

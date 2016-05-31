@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_AURA cmd_ui:
+class CLASS_DECL_ACE cmd_ui:
    virtual public ::object
 {
 public:
@@ -50,7 +50,7 @@ public:
 namespace ace
 {
 
-   class CLASS_DECL_AURA cmd_ui:
+   class CLASS_DECL_ACE cmd_ui:
       public signal_details
    {
    public:

@@ -22,7 +22,7 @@ namespace linux
 
 
 
-void CLASS_DECL_AURA __lnx_term()
+void CLASS_DECL_ACE __lnx_term()
 {
 
 

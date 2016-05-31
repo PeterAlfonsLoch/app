@@ -223,7 +223,7 @@ factory_item_base::~factory_item_base()
 
 
 
-CLASS_DECL_AURA mutex * g_pmutexFactory = NULL;
+CLASS_DECL_ACE mutex * g_pmutexFactory = NULL;
 
 
 
@@ -245,7 +245,7 @@ CLASS_DECL_AURA mutex * g_pmutexFactory = NULL;
 
 
 
-CLASS_DECL_AURA bool safe_destroy_element(object * pelement)
+CLASS_DECL_ACE bool safe_destroy_element(object * pelement)
 {
 
    try
@@ -266,7 +266,7 @@ CLASS_DECL_AURA bool safe_destroy_element(object * pelement)
 }
 
 
-CLASS_DECL_AURA bool safe_free_memory(void * ptype)
+CLASS_DECL_ACE bool safe_free_memory(void * ptype)
 {
 
 

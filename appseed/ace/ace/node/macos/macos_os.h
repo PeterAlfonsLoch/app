@@ -5,7 +5,7 @@ namespace macos
 {
 
 
-   class CLASS_DECL_AURA os :
+   class CLASS_DECL_ACE os :
       virtual public ::ace::os
    {
    public:

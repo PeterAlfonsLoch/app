@@ -2,8 +2,8 @@
 
 extern int __abi___threading_model;
 
-extern void _on_aura_thread_attach();
-extern void _on_aura_thread_detach();
+extern void _on_ace_thread_attach();
+extern void _on_ace_thread_detach();
 
 #ifdef METROWIN
 [MTAThread]
@@ -55,12 +55,12 @@ DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
    }
    else if(dwReason == DLL_THREAD_ATTACH)
    {
-      //_on_aura_thread_attach();
+      //_on_ace_thread_attach();
       
    }
    else if(dwReason == DLL_THREAD_DETACH)
    {
-      //_on_aura_thread_detach();
+      //_on_ace_thread_detach();
    }
 
 

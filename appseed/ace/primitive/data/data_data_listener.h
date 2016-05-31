@@ -7,7 +7,7 @@ namespace data
    class data;
 
 
-   class CLASS_DECL_AURA listener :
+   class CLASS_DECL_ACE listener :
       virtual public ::object
    {
    public:

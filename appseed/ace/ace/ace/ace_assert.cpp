@@ -1,10 +1,10 @@
 //#include "framework.h"
 
-CLASS_DECL_AURA int __cpp_assert_failed_line(const char * lpszFileName, int iLineNumber);
+CLASS_DECL_ACE int __cpp_assert_failed_line(const char * lpszFileName, int iLineNumber);
 
 BEGIN_EXTERN_C
 
-CLASS_DECL_AURA int __assert_failed_line(const char * lpszFileName, int iLineNumber)
+CLASS_DECL_ACE int __assert_failed_line(const char * lpszFileName, int iLineNumber)
 {
 
    return __cpp_assert_failed_line(lpszFileName, iLineNumber);
@@ -14,7 +14,7 @@ CLASS_DECL_AURA int __assert_failed_line(const char * lpszFileName, int iLineNum
 END_EXTERN_C
 
 
-CLASS_DECL_AURA int __cpp_assert_failed_line(const char * lpszFileName, int iLineNumber)
+CLASS_DECL_ACE int __cpp_assert_failed_line(const char * lpszFileName, int iLineNumber)
 {
 
    thread * pthread = get_thread();
@@ -22,7 +22,7 @@ CLASS_DECL_AURA int __cpp_assert_failed_line(const char * lpszFileName, int iLin
    if(pthread != NULL)
    {
 
-      pthread->m_pauraapp->m_paurasystem->assert_failed_line(lpszFileName,iLineNumber);
+      pthread->m_paceapp->m_pacesystem->assert_failed_line(lpszFileName,iLineNumber);
 
    }
 

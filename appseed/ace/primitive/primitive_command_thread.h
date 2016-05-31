@@ -2,7 +2,7 @@
 
 
 
-class CLASS_DECL_AURA command_thread :
+class CLASS_DECL_ACE command_thread :
    virtual public ::object
 {
 public:

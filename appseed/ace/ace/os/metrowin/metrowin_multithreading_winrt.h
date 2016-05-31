@@ -250,7 +250,7 @@ inline ::Windows::Foundation::AsyncStatus wait(::Windows::Foundation::IAsyncActi
 
 
 
-//class CLASS_DECL_AURA mq
+//class CLASS_DECL_ACE mq
 //{
 //public:
 //
@@ -264,7 +264,7 @@ inline ::Windows::Foundation::AsyncStatus wait(::Windows::Foundation::IAsyncActi
 //
 //};
 
-//CLASS_DECL_AURA mq * __get_mq(HTHREAD h);
+//CLASS_DECL_ACE mq * __get_mq(HTHREAD h);
 
 
 
@@ -293,7 +293,7 @@ inline ::Windows::Foundation::AsyncStatus wait(::Windows::Foundation::IAsyncActi
 //};
 //
 //
-//CLASS_DECL_AURA IDWriteFactory * TlsGetWriteFactory();
+//CLASS_DECL_ACE IDWriteFactory * TlsGetWriteFactory();
 //
-//CLASS_DECL_AURA ID2D1Factory1 * GetD2D1Factory1();
+//CLASS_DECL_ACE ID2D1Factory1 * GetD2D1Factory1();
 

@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_AURA user_exception : 
+class CLASS_DECL_ACE user_exception : 
    virtual public simple_exception   // general ::fontopus::user visible alert
 {
 public:

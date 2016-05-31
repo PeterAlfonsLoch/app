@@ -17,7 +17,7 @@ namespace primitive
 
 
 
-   class CLASS_DECL_AURA command :
+   class CLASS_DECL_ACE command :
       virtual public ::object
    {
    public:

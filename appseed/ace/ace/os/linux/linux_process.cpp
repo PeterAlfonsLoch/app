@@ -4,7 +4,7 @@
 //#include <unistd.h>
 
 
-CLASS_DECL_AURA void dll_processes(uint_array & dwa, stringa & straProcesses, const char * pszDll)
+CLASS_DECL_ACE void dll_processes(uint_array & dwa, stringa & straProcesses, const char * pszDll)
 {
 
    UNREFERENCED_PARAMETER(dwa);
@@ -206,7 +206,7 @@ int32_t create_process(const char * _cmd_line, int32_t * pprocessId)
    return 1;
 }
 
-CLASS_DECL_AURA int32_t call_async(
+CLASS_DECL_ACE int32_t call_async(
                             const char * pszPath,
                             const char * pszParam,
                             const char * pszDir,
@@ -231,7 +231,7 @@ CLASS_DECL_AURA int32_t call_async(
 
 }
 
-CLASS_DECL_AURA DWORD call_sync(const char * pszPath, const char * pszParam, const char * pszDir, int32_t iShow, int32_t iRetry, int32_t iSleep, PFNCALLSYNCONRETRY pfnOnRetry, uint_ptr dwParam)
+CLASS_DECL_ACE DWORD call_sync(const char * pszPath, const char * pszParam, const char * pszDir, int32_t iShow, int32_t iRetry, int32_t iSleep, PFNCALLSYNCONRETRY pfnOnRetry, uint_ptr dwParam)
 {
 
     string strCmdLine;

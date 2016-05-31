@@ -5,7 +5,7 @@ template < class VALUE, class ARG_VALUE = const VALUE &  >
 using strid_map = id_map < VALUE,ARG_VALUE > ;
 
 template < class T >
-class CLASS_DECL_AURA string_to_pointer :
+class CLASS_DECL_ACE string_to_pointer :
    virtual public string_to_ptr
 {
 public:

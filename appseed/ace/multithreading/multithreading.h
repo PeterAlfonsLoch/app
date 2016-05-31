@@ -13,13 +13,13 @@ class multi_lock;
 
 
 // Use instead of PostQuitMessage in OLE server applications
-CLASS_DECL_AURA void __post_quit_message(int32_t nExitCode);
+CLASS_DECL_ACE void __post_quit_message(int32_t nExitCode);
 
 typedef UINT(c_cdecl *__THREADPROC)(LPVOID);
 
 
-CLASS_DECL_AURA void do_events();
-CLASS_DECL_AURA void do_events(const duration & duration);
+CLASS_DECL_ACE void do_events();
+CLASS_DECL_ACE void do_events(const duration & duration);
 
 
 
@@ -41,9 +41,9 @@ namespace multithreading
 
    };
 
-   CLASS_DECL_AURA bool set_priority(int32_t priority);
+   CLASS_DECL_ACE bool set_priority(int32_t priority);
 
-   CLASS_DECL_AURA int32_t riority();
+   CLASS_DECL_ACE int32_t riority();
 
 
    inline int32_t get_priority_none()

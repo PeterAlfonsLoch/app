@@ -5,7 +5,7 @@ namespace ace
 {
 
 
-   class CLASS_DECL_AURA timer_array:
+   class CLASS_DECL_ACE timer_array:
       virtual public ::object,
       virtual public timer_callback
    {

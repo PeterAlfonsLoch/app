@@ -11,7 +11,7 @@
 
 class thread;
 //
-//class CLASS_DECL_AURA message_array :
+//class CLASS_DECL_ACE message_array :
 //public array < MESSAGE > {
 //};
 class mq;
@@ -19,25 +19,25 @@ class mq;
 
 typedef HTHREAD idthread;
 
-CLASS_DECL_AURA mq * __get_mq(HTHREAD h);
+CLASS_DECL_ACE mq * __get_mq(HTHREAD h);
 
-CLASS_DECL_AURA int_bool WINAPI GetMessageW(LPMESSAGE lpMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax);
+CLASS_DECL_ACE int_bool WINAPI GetMessageW(LPMESSAGE lpMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax);
 
 #define GetMessage GetMessageW
 
-CLASS_DECL_AURA int_bool WINAPI PeekMessageW(LPMESSAGE lpMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax, UINT wRemoveMsg);
+CLASS_DECL_ACE int_bool WINAPI PeekMessageW(LPMESSAGE lpMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax, UINT wRemoveMsg);
 
 #define PeekMessage PeekMessageW
 
-CLASS_DECL_AURA DWORD WINAPI GetThreadId(HTHREAD Thread);
+CLASS_DECL_ACE DWORD WINAPI GetThreadId(HTHREAD Thread);
 
 #define PostThreadMessage  PostThreadMessageW
 
-CLASS_DECL_AURA int_bool WINAPI PostThreadMessageW(IDTHREAD idthread, UINT Msg, WPARAM wParam, LPARAM lParam);
+CLASS_DECL_ACE int_bool WINAPI PostThreadMessageW(IDTHREAD idthread, UINT Msg, WPARAM wParam, LPARAM lParam);
 
-CLASS_DECL_AURA HTHREAD GetCurrentThread();
+CLASS_DECL_ACE HTHREAD GetCurrentThread();
 
-CLASS_DECL_AURA IDTHREAD GetCurrentThreadId();
+CLASS_DECL_ACE IDTHREAD GetCurrentThreadId();
 
 
 

@@ -314,13 +314,13 @@ namespace ace
 //      DWORD dwRet = ::GetModuleFileName(m_hInstance, szBuff, _MAX_PATH);
 //      ASSERT( dwRet != 0 && dwRet != _MAX_PATH );
 //      if( dwRet == 0 || dwRet == _MAX_PATH )
-//         throw aura_exception();*/
+//         throw ace_exception();*/
 //
 //      /*
 //      LPTSTR lpszExt = ::PathFindExtension(szBuff);
 //      ASSERT(lpszExt != NULL);
 //      if( lpszExt == NULL )
-//         throw aura_exception();
+//         throw ace_exception();
 //
 //      ASSERT(*lpszExt == '.');
 //      *lpszExt = 0;       // no suffix

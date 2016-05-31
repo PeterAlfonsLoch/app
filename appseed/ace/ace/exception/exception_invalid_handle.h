@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_AURA invalid_handle_exception :
+class CLASS_DECL_ACE invalid_handle_exception :
    virtual public os_exception
 {
 public:

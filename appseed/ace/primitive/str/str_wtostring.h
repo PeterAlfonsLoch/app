@@ -4,7 +4,7 @@
 class string;
 
 
-class CLASS_DECL_AURA wtostring :
+class CLASS_DECL_ACE wtostring :
    public wstring
 {
 public:

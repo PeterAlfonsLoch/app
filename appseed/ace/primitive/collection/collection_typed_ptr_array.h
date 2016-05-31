@@ -2,7 +2,7 @@
 
 /*
 
-class CLASS_DECL_AURA ref_array :
+class CLASS_DECL_ACE ref_array :
    virtual public ref_array < void >
 {
 public:

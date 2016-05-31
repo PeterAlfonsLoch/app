@@ -4,7 +4,7 @@ namespace primitive
 {
 
 
-   class CLASS_DECL_AURA virtual_memory :
+   class CLASS_DECL_ACE virtual_memory :
       public ::primitive::memory_base
    {
    public:

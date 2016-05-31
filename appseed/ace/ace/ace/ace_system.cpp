@@ -80,7 +80,7 @@ namespace ace
 //      m_phtml = NULL;
 
 
-      m_paurasystem = this;
+      m_pacesystem = this;
 
       if(papp == NULL)
       {
@@ -91,7 +91,7 @@ namespace ace
       else
       {
 
-         oprop("parent_system") = papp->m_paurasystem;
+         oprop("parent_system") = papp->m_pacesystem;
 
       }
 
@@ -168,7 +168,7 @@ namespace ace
 
       m_phtml = NULL;
 
-      __node_aura_factory_exchange(this);
+      __node_ace_factory_exchange(this);
 
       m_pdatetime = canew(class ::datetime::department(this));
 
@@ -567,7 +567,7 @@ namespace ace
    bool system::initialize_instance()
    {
 
-      if(!m_paurasession->begin_synch(&m_iReturnCode))
+      if(!m_pacesession->begin_synch(&m_iReturnCode))
       {
          return false;
       }
@@ -580,7 +580,7 @@ namespace ace
       if(!::ace::application::initialize_instance())
          return false;
 
-      //m_paurabergedgemap = new ::ace::session::map;
+      //m_pacebergedgemap = new ::ace::session::map;
 
       return true;
 
@@ -1537,7 +1537,7 @@ namespace ace
 
    }
 
-   CLASS_DECL_AURA void __start_system(::ace::system * psystem)
+   CLASS_DECL_ACE void __start_system(::ace::system * psystem)
    {
 
       ::create_thread(NULL,0,&_thread_proc_start_system,(LPVOID)psystem,0,0);
@@ -1564,25 +1564,25 @@ namespace ace
    bool system::alloc_session()
    {
 
-      if (m_paurasession != NULL)
+      if (m_pacesession != NULL)
       {
 
          return true;
 
       }
 
-      ::ace::session * paurasession = on_create_session();
+      ::ace::session * pacesession = on_create_session();
 
-      if(paurasession == NULL)
+      if(pacesession == NULL)
          return false;
 
-      m_paurasession = paurasession;
+      m_pacesession = pacesession;
 
-      m_paxissession = paurasession->m_paxissession;
+      m_paxissession = pacesession->m_paxissession;
 
-      m_pbasesession = paurasession->m_pbasesession;
+      m_pbasesession = pacesession->m_pbasesession;
 
-      m_paurasession->construct(this,0);
+      m_pacesession->construct(this,0);
 
       return true;
 
@@ -1602,30 +1602,30 @@ namespace ace
    ::ace::session * system::get_session(index iEdge,application_bias * pbiasCreation)
    {
 
-      ::ace::session * paurasession = NULL;
+      ::ace::session * pacesession = NULL;
 
-      //if(m_paurabergedgemap == NULL)
+      //if(m_pacebergedgemap == NULL)
       //   return NULL;
 
-      if(!m_aurabergedgemap.Lookup(iEdge,paurasession))
+      if(!m_acebergedgemap.Lookup(iEdge,pacesession))
       {
 
          // todo (camilo) real multiple session native support
 
-         //paurasession = create_application("application","session",true,pbiasCreation);
+         //pacesession = create_application("application","session",true,pbiasCreation);
 
-         paurasession = m_paurasession; // note (camilo) by the time, assigns always the session "0"
+         pacesession = m_pacesession; // note (camilo) by the time, assigns always the session "0"
 
-         if(paurasession == NULL)
+         if(pacesession == NULL)
             return NULL;
 
-         paurasession->m_iEdge = iEdge;
+         pacesession->m_iEdge = iEdge;
 
-         m_aurabergedgemap.set_at(iEdge,paurasession);
+         m_acebergedgemap.set_at(iEdge,pacesession);
 
       }
 
-      return paurasession;
+      return pacesession;
 
    }
 

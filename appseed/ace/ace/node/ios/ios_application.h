@@ -8,7 +8,7 @@ namespace gen
 namespace ios
 {
 
-   class CLASS_DECL_AURA main_init_data :
+   class CLASS_DECL_ACE main_init_data :
       public ::ace::main_init_data
    {
    public:
@@ -18,7 +18,7 @@ namespace ios
       int         m_nCmdShow;
    };
 
-   class CLASS_DECL_AURA application :
+   class CLASS_DECL_ACE application :
    virtual public ::ace::application
    {
    public:

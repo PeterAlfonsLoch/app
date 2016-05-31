@@ -3,7 +3,7 @@
 #if 0
 
 /// This class represents events for socket communication.
-class CLASS_DECL_AURA socket_event :
+class CLASS_DECL_ACE socket_event :
    public event
 {
 public:

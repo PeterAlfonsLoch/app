@@ -3,13 +3,13 @@
 namespace metrowin
 {
    
-   class CLASS_DECL_AURA printer :
+   class CLASS_DECL_ACE printer :
       virtual public ::user::printer
    {
    public:
 
 
-      class CLASS_DECL_AURA document_properties :
+      class CLASS_DECL_ACE document_properties :
          virtual public ::object
       {
       public:

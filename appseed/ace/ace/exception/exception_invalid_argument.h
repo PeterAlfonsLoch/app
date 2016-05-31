@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_AURA invalid_argument_exception :
+class CLASS_DECL_ACE invalid_argument_exception :
    virtual public simple_exception
 {
 public:

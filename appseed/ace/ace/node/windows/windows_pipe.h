@@ -5,7 +5,7 @@ namespace windows
 {
 
 
-   class CLASS_DECL_AURA pipe :
+   class CLASS_DECL_ACE pipe :
       virtual public ::process::pipe
    {
    public:

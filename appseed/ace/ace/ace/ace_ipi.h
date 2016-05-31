@@ -5,7 +5,7 @@ namespace ace
 {
 
 
-   class CLASS_DECL_AURA ipi:
+   class CLASS_DECL_ACE ipi:
       virtual public object,
       virtual public ::ace::ipc::rx::receiver
    {

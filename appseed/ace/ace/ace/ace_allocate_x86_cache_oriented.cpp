@@ -1,10 +1,10 @@
 
 
-CLASS_DECL_AURA void * x86_memory_pool_alloc(memory_size_t s);
-CLASS_DECL_AURA void x86_memory_pool_freec(void * p);
+CLASS_DECL_ACE void * x86_memory_pool_alloc(memory_size_t s);
+CLASS_DECL_ACE void x86_memory_pool_freec(void * p);
 
 
-class CLASS_DECL_AURA x86_oriented_memory_allocator
+class CLASS_DECL_ACE x86_oriented_memory_allocator
 {
 public:
 
@@ -212,7 +212,7 @@ static_inline void x86_cache_oriented_destroy_all_memory_pools()
 }
 
 
-CLASS_DECL_AURA void * x86_cache_oriented_memory_alloc(memory_size_t s)
+CLASS_DECL_ACE void * x86_cache_oriented_memory_alloc(memory_size_t s)
 {
    
    return x86_cache_oriented_get_thread_memory_pool()->alloc(s);
@@ -220,20 +220,20 @@ CLASS_DECL_AURA void * x86_cache_oriented_memory_alloc(memory_size_t s)
 }
 
 
-CLASS_DECL_AURA void x86_cache_oriented_memory_free(void * p)
+CLASS_DECL_ACE void x86_cache_oriented_memory_free(void * p)
 {
 
    return x86_cache_oriented_get_thread_memory_pool()->free(p);
 
 }
 
-CLASS_DECL_AURA void x86_cache_oriented_memory_reset()
+CLASS_DECL_ACE void x86_cache_oriented_memory_reset()
 {
 
    return x86_cache_oriented_get_thread_memory_pool()->reset();
 
 }
 
-#define new AURA_NEW
+#define new ACE_NEW
 
 

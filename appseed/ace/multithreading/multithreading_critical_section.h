@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_AURA critical_section
+class CLASS_DECL_ACE critical_section
 {
 public:
 
@@ -79,7 +79,7 @@ inline void critical_section::unlock()
 #endif
 
 
-class CLASS_DECL_AURA cslock
+class CLASS_DECL_ACE cslock
 {
 public:
 

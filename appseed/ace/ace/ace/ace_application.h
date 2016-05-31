@@ -10,7 +10,7 @@ namespace ace
 {
 
 
-   class CLASS_DECL_AURA application :
+   class CLASS_DECL_ACE application :
       virtual public ::thread,
       virtual public int_scalar_source,
       virtual public ::file::listing_provider
@@ -18,8 +18,8 @@ namespace ace
    public:
 
       // former ::ace::application_interface // moved on 2015-05-23 Sammstag while listening to RocketBeansTV (a German channel?) at TwitchTV
-      ::ace::system *                                m_paurasystem;
-      ::ace::session *                               m_paurasession;
+      ::ace::system *                                m_pacesystem;
+      ::ace::session *                               m_pacesession;
       :: axis :: application *                        m_paxisapp; // can be used only from axis and upper
       :: axis ::system *                              m_paxissystem; // can be used only from axis and upper
       :: axis ::session *                             m_paxissession; // can be used only from axis and upper
@@ -440,7 +440,7 @@ virtual      void load_string_table(const string & pszApp,const string & pszId);
       //virtual string dir_simple_path(const string & str1,const string & str2);
 
 //#ifdef APPLEOS
-//      virtual CLASS_DECL_AURA string dir_pathfind(const char * pszEnv, const char * pszTopic, const char * pszMode);
+//      virtual CLASS_DECL_ACE string dir_pathfind(const char * pszEnv, const char * pszTopic, const char * pszMode);
 //#endif
 
       //virtual ::file::buffer_sp file_get_file(var varFile,uint32_t uiFlags);

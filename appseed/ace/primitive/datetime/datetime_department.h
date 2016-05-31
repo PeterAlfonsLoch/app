@@ -3,28 +3,28 @@
 
 #define INTERNATIONAL_DATE_TIME_FORMAT "%Y-%m-%d %H:%M:%S"
 
-CLASS_DECL_AURA int32_t SWN(int32_t y,int32_t m,int32_t d);
+CLASS_DECL_ACE int32_t SWN(int32_t y,int32_t m,int32_t d);
 //where DP ("Days Passed") is given by:
 //   DP( y, 1 ) = 0
 //  DP( y, m+1 ) = DP( y, m ) + ML( y, m )
-CLASS_DECL_AURA int32_t DP(int32_t y,int32_t m);
-CLASS_DECL_AURA int32_t ML(int32_t y,int32_t m);
-CLASS_DECL_AURA int32_t LEAP(int32_t y);
-CLASS_DECL_AURA int32_t dayofweek(int32_t y,int32_t m,int32_t d);	/* 0 = Sunday */
-CLASS_DECL_AURA int32_t SDOW(int32_t y,int32_t m,int32_t d); // ( 0 = Monday, ..., 6 = Sunday )
-CLASS_DECL_AURA int32_t DOW(int32_t y,int32_t m,int32_t d);
-CLASS_DECL_AURA int32_t getDayOfWeek(int32_t month,int32_t day,int32_t year,int32_t CalendarSystem);
+CLASS_DECL_ACE int32_t DP(int32_t y,int32_t m);
+CLASS_DECL_ACE int32_t ML(int32_t y,int32_t m);
+CLASS_DECL_ACE int32_t LEAP(int32_t y);
+CLASS_DECL_ACE int32_t dayofweek(int32_t y,int32_t m,int32_t d);	/* 0 = Sunday */
+CLASS_DECL_ACE int32_t SDOW(int32_t y,int32_t m,int32_t d); // ( 0 = Monday, ..., 6 = Sunday )
+CLASS_DECL_ACE int32_t DOW(int32_t y,int32_t m,int32_t d);
+CLASS_DECL_ACE int32_t getDayOfWeek(int32_t month,int32_t day,int32_t year,int32_t CalendarSystem);
 
 
 namespace datetime
 {
 
 
-   class CLASS_DECL_AURA department:
+   class CLASS_DECL_ACE department:
       virtual public ::ace::department
    {
    public:
-      class CLASS_DECL_AURA international:
+      class CLASS_DECL_ACE international:
          virtual public ::object
       {
       public:
@@ -52,7 +52,7 @@ namespace datetime
 
       };
 
-      class CLASS_DECL_AURA str:
+      class CLASS_DECL_ACE str:
          virtual public ::object
       {
       public:

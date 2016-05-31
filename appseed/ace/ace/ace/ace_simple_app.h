@@ -4,7 +4,7 @@
 namespace ace
 {
 
-   class CLASS_DECL_AURA simple_app:
+   class CLASS_DECL_ACE simple_app:
       virtual public ::ace::system
    {
    public:

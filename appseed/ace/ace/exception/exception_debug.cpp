@@ -13,7 +13,7 @@ BYTE OriginalBytes[5] = {0};
 
 BEGIN_EXTERN_C
 
-CLASS_DECL_AURA int is_debugger_attached()
+CLASS_DECL_ACE int is_debugger_attached()
 {
    
    return __node_is_debugger_attached() != FALSE;
@@ -22,7 +22,7 @@ CLASS_DECL_AURA int is_debugger_attached()
 
 END_EXTERN_C
 
-CLASS_DECL_AURA int throw_assert_exception(const char * lpszFileName,int iLineNumber)
+CLASS_DECL_ACE int throw_assert_exception(const char * lpszFileName,int iLineNumber)
 {
 
    throw assert_exception(::get_thread_app(),lpszFileName,iLineNumber);
@@ -289,7 +289,7 @@ namespace win
 {
 
 
-   CLASS_DECL_AURA string error_message(uint32_t dwError)
+   CLASS_DECL_ACE string error_message(uint32_t dwError)
    {
 
       return get_system_error_message(dwError);

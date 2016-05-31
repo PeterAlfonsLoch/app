@@ -5,7 +5,7 @@ namespace process
 {
 
 
-   class CLASS_DECL_AURA department:
+   class CLASS_DECL_ACE department:
       public ::ace::department
    {
    public:

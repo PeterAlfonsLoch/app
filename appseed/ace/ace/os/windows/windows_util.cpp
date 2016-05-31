@@ -5,7 +5,7 @@
 
 
 
-bool CLASS_DECL_AURA __is_combo_box_control(oswindow oswindow, UINT nStyle)
+bool CLASS_DECL_ACE __is_combo_box_control(oswindow oswindow, UINT nStyle)
 {
    if (oswindow == NULL)
       return FALSE;
@@ -19,7 +19,7 @@ bool CLASS_DECL_AURA __is_combo_box_control(oswindow oswindow, UINT nStyle)
    return ::__invariant_stricmp(szCompare, "combobox") == 0;
 }
 
-bool CLASS_DECL_AURA __compare_class_name(oswindow oswindow, const char * lpszClassName)
+bool CLASS_DECL_ACE __compare_class_name(oswindow oswindow, const char * lpszClassName)
 {
    ASSERT(::IsWindow(oswindow));
    char szTemp[32];
@@ -27,7 +27,7 @@ bool CLASS_DECL_AURA __compare_class_name(oswindow oswindow, const char * lpszCl
    return ::__invariant_stricmp(szTemp, lpszClassName) == 0;
 }
 
-oswindow CLASS_DECL_AURA __child_window_from_point(oswindow oswindow, POINT pt)
+oswindow CLASS_DECL_ACE __child_window_from_point(oswindow oswindow, POINT pt)
 {
    ASSERT(oswindow != NULL);
 

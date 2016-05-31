@@ -14,7 +14,7 @@ namespace action
    };
    
 
-   class CLASS_DECL_AURA context :
+   class CLASS_DECL_ACE context :
       public cflag < e_source > 
    {
    public:
@@ -51,7 +51,7 @@ namespace action
    };
 
 
-   CLASS_DECL_AURA e_source translation_source(e_source esource, e_context econtextDst, e_context econtextSrc);
+   CLASS_DECL_ACE e_source translation_source(e_source esource, e_context econtextDst, e_context econtextSrc);
 
    namespace source
    {

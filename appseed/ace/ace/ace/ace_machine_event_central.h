@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_AURA machine_event_central :
+class CLASS_DECL_ACE machine_event_central :
    virtual public simple_thread
 {
 public:

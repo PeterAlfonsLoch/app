@@ -4,7 +4,7 @@
 class factory_item_base;
 
 
-class CLASS_DECL_AURA type :
+class CLASS_DECL_ACE type :
    virtual public object
 {
 public:
@@ -53,8 +53,8 @@ public:
 };
 
 
-CLASS_DECL_AURA bool operator == (const std_type_info & info1, const sp(type) info2);
-CLASS_DECL_AURA bool operator != (const std_type_info & info1, const sp(type) info2);
+CLASS_DECL_ACE bool operator == (const std_type_info & info1, const sp(type) info2);
+CLASS_DECL_ACE bool operator != (const std_type_info & info1, const sp(type) info2);
 
 
 template<>
@@ -65,7 +65,7 @@ inline UINT HashKey(sp(type) key)
 }
 
 
-CLASS_DECL_AURA string demangle(const char* name);
+CLASS_DECL_ACE string demangle(const char* name);
 
 template < typename T >
 inline string friendly_this_name(T const * pthis)

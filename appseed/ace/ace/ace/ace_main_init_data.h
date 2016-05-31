@@ -5,7 +5,7 @@ namespace ace
 {
 
 
-   class CLASS_DECL_AURA main_init_data
+   class CLASS_DECL_ACE main_init_data
    {
    public:
 

@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_AURA plain_service :
+class CLASS_DECL_ACE plain_service :
    public service_base
 {
 public:

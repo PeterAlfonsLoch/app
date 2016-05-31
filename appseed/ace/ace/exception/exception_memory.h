@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_AURA memory_exception :
+class CLASS_DECL_ACE memory_exception :
    virtual public simple_exception
 {
 public:
@@ -22,7 +22,7 @@ namespace std
 {
 
 
-   class CLASS_DECL_AURA bad_alloc :
+   class CLASS_DECL_ACE bad_alloc :
       virtual public memory_exception
    {
    public:

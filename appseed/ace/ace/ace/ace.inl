@@ -58,7 +58,7 @@ inline void __cdecl operator delete(void * p, void * palloc)
 
 
 
-class CLASS_DECL_AURA c_class
+class CLASS_DECL_ACE c_class
 {
 public:
 
@@ -74,7 +74,7 @@ public:
 };
 
 
-inline CLASS_DECL_AURA void * __cdecl operator new (size_t size, const c_class &)
+inline CLASS_DECL_ACE void * __cdecl operator new (size_t size, const c_class &)
 {
 
    return memory_alloc(size);
@@ -82,7 +82,7 @@ inline CLASS_DECL_AURA void * __cdecl operator new (size_t size, const c_class &
 }
 
 
-inline CLASS_DECL_AURA void * __cdecl operator new[](size_t size, const c_class &)
+inline CLASS_DECL_ACE void * __cdecl operator new[](size_t size, const c_class &)
 {
 
    return memory_alloc(size);
@@ -211,7 +211,7 @@ namespace xml
 //
 //      System.dir().mk(System.dir().name(pszOutput),papp);
 //
-//      ::file::buffer_sp fileOut = papp->m_paurasession->file_get_file(pszOutput,::file::mode_create | ::file::type_binary | ::file::mode_write);
+//      ::file::buffer_sp fileOut = papp->m_pacesession->file_get_file(pszOutput,::file::mode_create | ::file::type_binary | ::file::mode_write);
 //
 //      if(fileOut.is_null())
 //         return false;
@@ -229,12 +229,12 @@ namespace xml
 //
 //      System.dir().mk(System.dir().name(pszOutput),papp);
 //
-//      ::file::buffer_sp fileOut = papp->m_paurasession->file_get_file(pszOutput,::file::mode_create | ::file::type_binary | ::file::mode_write);
+//      ::file::buffer_sp fileOut = papp->m_pacesession->file_get_file(pszOutput,::file::mode_create | ::file::type_binary | ::file::mode_write);
 //
 //      if(fileOut.is_null())
 //         return false;
 //
-//      ::file::buffer_sp fileIn = papp->m_paurasession->file_get_file(lpszInput,::file::type_binary | ::file::mode_read);
+//      ::file::buffer_sp fileIn = papp->m_pacesession->file_get_file(lpszInput,::file::type_binary | ::file::mode_read);
 //
 //      if(fileIn.is_null())
 //         return false;
@@ -357,4 +357,4 @@ inline bool IsDirSep(WCHAR ch)
 
 }
 
-#define new AURA_NEW
+#define new ACE_NEW

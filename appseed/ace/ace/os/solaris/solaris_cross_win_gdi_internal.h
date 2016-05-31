@@ -4,7 +4,7 @@
 
 
 
-struct CLASS_DECL_AURA gdi_object
+struct CLASS_DECL_ACE gdi_object
 {
 
 
@@ -35,7 +35,7 @@ struct tag_WINDOW
 
 };
 
-class CLASS_DECL_AURA device_context
+class CLASS_DECL_ACE device_context
 {
 public:
 

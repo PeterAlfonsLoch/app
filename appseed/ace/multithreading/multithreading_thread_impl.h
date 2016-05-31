@@ -56,7 +56,7 @@ public:
 
 
 
-//class CLASS_DECL_AURA thread_impl :
+//class CLASS_DECL_ACE thread_impl :
 //   virtual public command_target
 //{
 //public:

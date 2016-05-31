@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_AURA void_implementation_exception :
+class CLASS_DECL_ACE void_implementation_exception :
    virtual public not_implemented
 {
 public:

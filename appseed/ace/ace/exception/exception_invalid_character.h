@@ -3,7 +3,7 @@
 
 
 
-class CLASS_DECL_AURA invalid_character : 
+class CLASS_DECL_ACE invalid_character : 
    virtual public simple_exception
 {
 public:

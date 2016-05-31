@@ -853,7 +853,7 @@ LPCSTR lpcaption,
 UINT uType);
 
 
-CLASS_DECL_AURA int32_t
+CLASS_DECL_ACE int32_t
 WINAPI
 MessageBoxW(
 oswindow hWnd,
@@ -2441,7 +2441,7 @@ TrackMouseEvent(
 //#pragma region Desktop Family
 //#if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
 
-CLASS_DECL_AURA int32_t WINAPI GetSystemMetrics(int32_t nIndex);
+CLASS_DECL_ACE int32_t WINAPI GetSystemMetrics(int32_t nIndex);
 
 
 //#endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP) */
@@ -2657,18 +2657,18 @@ CLASS_DECL_AURA int32_t WINAPI GetSystemMetrics(int32_t nIndex);
 
 
 
-CLASS_DECL_AURA int_bool CopyRect(LPRECT prectDest, LPCRECT pcrectSrc);
-CLASS_DECL_AURA int_bool PtInRect(LPCRECT prect, POINT point);
-CLASS_DECL_AURA int_bool SetRect(LPRECT prect, int32_t x1, int32_t y1, int32_t x2, int32_t y2);
-CLASS_DECL_AURA int_bool SetRectEmpty(LPRECT prect);
-CLASS_DECL_AURA int_bool EqualRect(LPCRECT prect1, LPCRECT prect2);
-CLASS_DECL_AURA int_bool InflateRect(LPRECT prect, int32_t x, int32_t y);
-CLASS_DECL_AURA int_bool OffsetRect(LPRECT prect, int32_t x, int32_t y);
-CLASS_DECL_AURA int_bool IntersectRect(LPRECT prect, LPCRECT prect1, LPCRECT prect2);
-//CLASS_DECL_AURA int_bool x_intersect_rect(LPRECT prect, LPCRECT prect1, LPCRECT prect2);
-//CLASS_DECL_AURA int_bool y_intersect_rect(LPRECT prect, LPCRECT prect1, LPCRECT prect2);
-CLASS_DECL_AURA int_bool UnionRect(LPRECT prect, LPCRECT prect1, LPCRECT prect2);
-CLASS_DECL_AURA int_bool SubtractRect(LPRECT prect, LPCRECT prect1, LPCRECT prect2);
+CLASS_DECL_ACE int_bool CopyRect(LPRECT prectDest, LPCRECT pcrectSrc);
+CLASS_DECL_ACE int_bool PtInRect(LPCRECT prect, POINT point);
+CLASS_DECL_ACE int_bool SetRect(LPRECT prect, int32_t x1, int32_t y1, int32_t x2, int32_t y2);
+CLASS_DECL_ACE int_bool SetRectEmpty(LPRECT prect);
+CLASS_DECL_ACE int_bool EqualRect(LPCRECT prect1, LPCRECT prect2);
+CLASS_DECL_ACE int_bool InflateRect(LPRECT prect, int32_t x, int32_t y);
+CLASS_DECL_ACE int_bool OffsetRect(LPRECT prect, int32_t x, int32_t y);
+CLASS_DECL_ACE int_bool IntersectRect(LPRECT prect, LPCRECT prect1, LPCRECT prect2);
+//CLASS_DECL_ACE int_bool x_intersect_rect(LPRECT prect, LPCRECT prect1, LPCRECT prect2);
+//CLASS_DECL_ACE int_bool y_intersect_rect(LPRECT prect, LPCRECT prect1, LPCRECT prect2);
+CLASS_DECL_ACE int_bool UnionRect(LPRECT prect, LPCRECT prect1, LPCRECT prect2);
+CLASS_DECL_ACE int_bool SubtractRect(LPRECT prect, LPCRECT prect1, LPCRECT prect2);
 
 //typedef struct oswindow_data *   oswindow;
 
@@ -2687,20 +2687,20 @@ DWORD       lPrivate;
 #endif
 } MESSAGE, *PMESSAGE, NEAR *NPMESSAGE, FAR *LPMESSAGE;
 
-CLASS_DECL_AURA int_bool TranslateMessage(const MESSAGE * pmsg);
-CLASS_DECL_AURA LRESULT DispatchMessage(const MESSAGE * pmsg);
+CLASS_DECL_ACE int_bool TranslateMessage(const MESSAGE * pmsg);
+CLASS_DECL_ACE LRESULT DispatchMessage(const MESSAGE * pmsg);
 
 
 
 void set_TranslateMessage(int_bool (*pfn)(const MESSAGE * lpmessage));
 void set_DispatchMessage(LRESULT (*pfn)(const MESSAGE * lpmessage));
 
-CLASS_DECL_AURA int_bool IsRectEmpty(LPCRECT lpcrect);
+CLASS_DECL_ACE int_bool IsRectEmpty(LPCRECT lpcrect);
 
 
 #ifdef cplusplus
 
-CLASS_DECL_AURA int_bool IsRectEmpty(const RECT & rect);
+CLASS_DECL_ACE int_bool IsRectEmpty(const RECT & rect);
 
 #endif
 

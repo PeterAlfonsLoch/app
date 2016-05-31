@@ -11,7 +11,7 @@
 #define _NORMAL_BLOCK 1
 
 
-CLASS_DECL_AURA int32_t DECL_C debug_report(
+CLASS_DECL_ACE int32_t DECL_C debug_report(
    int32_t _ReportType,
    const char * _Filename,
    int32_t _LineNumber,
@@ -212,7 +212,7 @@ typedef struct _MEMORY_STATE
 
 
 
-CLASS_DECL_AURA int32_t FUNCTION_DEBUGBOX(const char * pszMessage, const char * pszTitle, int32_t iFlags);
+CLASS_DECL_ACE int32_t FUNCTION_DEBUGBOX(const char * pszMessage, const char * pszTitle, int32_t iFlags);
 
 inline int32_t FUNCTION_XXDEBUGBOX(const char * pszMessage, const char * pszTitle, int32_t iFlags) {
 
@@ -232,14 +232,14 @@ inline int32_t FUNCTION_XXDEBUGBOX(const char * pszMessage, const char * pszTitl
 
 
 #ifdef DEBUG
-void CLASS_DECL_AURA TRACELASTERROR();
+void CLASS_DECL_ACE TRACELASTERROR();
 #else
 #define TRACELASTERROR() ((void)0)
 #endif
 
 
 
-CLASS_DECL_AURA string FormatMessageFromSystem(uint32_t dwError);
+CLASS_DECL_ACE string FormatMessageFromSystem(uint32_t dwError);
 
 
 #endif // __AXIS_AXIS_DEBUG_H__
@@ -257,9 +257,9 @@ CLASS_DECL_AURA string FormatMessageFromSystem(uint32_t dwError);
 
 #ifdef MEMDLEAK
 
-CLASS_DECL_AURA string get_mem_info_report1();
-CLASS_DECL_AURA ::count get_mem_info(int32_t ** ppiUse, const char *** ppszFile, const char *** pszCallStack, int32_t ** ppiLine, int64_t ** ppiSize);
-CLASS_DECL_AURA ::count get_mem_info2(int32_t ** ppiUse, const char *** ppszFile, DWORD64 ** ppuiStack[64], int64_t ** ppiStack, int32_t ** ppiLine, int64_t ** ppiSize);
+CLASS_DECL_ACE string get_mem_info_report1();
+CLASS_DECL_ACE ::count get_mem_info(int32_t ** ppiUse, const char *** ppszFile, const char *** pszCallStack, int32_t ** ppiLine, int64_t ** ppiSize);
+CLASS_DECL_ACE ::count get_mem_info2(int32_t ** ppiUse, const char *** ppszFile, DWORD64 ** ppuiStack[64], int64_t ** ppiStack, int32_t ** ppiLine, int64_t ** ppiSize);
 
 
 

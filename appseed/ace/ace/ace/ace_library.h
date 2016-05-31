@@ -5,7 +5,7 @@ namespace ace
 {
 
 
-   class CLASS_DECL_AURA library:
+   class CLASS_DECL_ACE library:
       virtual public ::object
    {
    public:
@@ -79,7 +79,7 @@ namespace ace
 
 
 
-   CLASS_DECL_AURA void * open_ca2_library(const char * psz);
+   CLASS_DECL_ACE void * open_ca2_library(const char * psz);
 
 
 
@@ -112,16 +112,16 @@ namespace ace
 
 
 
-CLASS_DECL_AURA void * __node_library_open(const char * pszPath);
-CLASS_DECL_AURA void * __node_library_open_ca2(const char * pszPath);
-CLASS_DECL_AURA bool __node_library_close(void * plibrary);
-CLASS_DECL_AURA void * __node_library_raw_get(void * plibrary,const char * pszEntryName);
+CLASS_DECL_ACE void * __node_library_open(const char * pszPath);
+CLASS_DECL_ACE void * __node_library_open_ca2(const char * pszPath);
+CLASS_DECL_ACE bool __node_library_close(void * plibrary);
+CLASS_DECL_ACE void * __node_library_raw_get(void * plibrary,const char * pszEntryName);
 
 
-CLASS_DECL_AURA ::ace::library * lib(const char * psz);
+CLASS_DECL_ACE ::ace::library * lib(const char * psz);
 
 #define LIBCALL(library, entry)  (lib(#library)->get<decltype(&entry)>(#entry))
 
 
-CLASS_DECL_AURA ::file::path libfilename(const string & str);
+CLASS_DECL_ACE ::file::path libfilename(const string & str);
 

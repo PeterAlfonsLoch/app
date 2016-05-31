@@ -37,7 +37,7 @@ object(papp),
 #endif
 {
 
-   papp->m_paurasystem->m_serviceptra.add(this);
+   papp->m_pacesystem->m_serviceptra.add(this);
 
 #ifdef WINDOWSEX
     m_status.dwServiceType = SERVICE_WIN32_OWN_PROCESS;
@@ -333,7 +333,7 @@ void service_base::call_server()
    //   ::hthread::set(posthreadNew = new ::hthread(NULL, NULL));
 
 
-   ::set_thread(m_pauraapp);
+   ::set_thread(m_paceapp);
 
    serve();
 

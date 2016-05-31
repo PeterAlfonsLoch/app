@@ -64,7 +64,7 @@ typedef array<EnvVariableValuePair> EnvVarValArray;
 /**
 * Class provides interfaces to read process information and other misc services
 **/
-class CLASS_DECL_AURA CProcessEnvReader
+class CLASS_DECL_ACE CProcessEnvReader
 {
 public:
    // Wrapper to call NtQueryInformationProcess using Run-time dynamic linking

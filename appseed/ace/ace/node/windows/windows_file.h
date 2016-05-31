@@ -5,8 +5,8 @@ class FileException;
 struct FileStatus;
 
 
-void CLASS_DECL_AURA vfxGetRoot(const unichar * lpszPath, string& wstrRoot);
-void CLASS_DECL_AURA vfxGetRoot(wstring & wstrRoot, const wstring & wstrPath);
+void CLASS_DECL_ACE vfxGetRoot(const unichar * lpszPath, string& wstrRoot);
+void CLASS_DECL_ACE vfxGetRoot(wstring & wstrRoot, const wstring & wstrPath);
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -18,7 +18,7 @@ namespace windows
 {
 
 
-   class CLASS_DECL_AURA file :
+   class CLASS_DECL_ACE file :
       virtual public ::file::binary_buffer
    {
    public:

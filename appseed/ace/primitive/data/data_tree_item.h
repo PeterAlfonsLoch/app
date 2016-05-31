@@ -40,7 +40,7 @@ namespace data
       tree_item_state_selected   = 4,
    };
 
-   class CLASS_DECL_AURA tree_item :
+   class CLASS_DECL_ACE tree_item :
       virtual public object
    {
    public:
@@ -117,7 +117,7 @@ namespace data
    };
 
 
-   class CLASS_DECL_AURA tree_item_ptr_array :
+   class CLASS_DECL_ACE tree_item_ptr_array :
       public spa(tree_item)
    {
    public:

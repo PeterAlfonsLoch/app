@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_AURA not_implemented : 
+class CLASS_DECL_ACE not_implemented : 
    virtual public ::exception::base
 {
 public:

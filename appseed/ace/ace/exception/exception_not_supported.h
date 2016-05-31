@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_AURA not_supported_exception : 
+class CLASS_DECL_ACE not_supported_exception : 
    virtual public interface_only_exception
 {
 public:

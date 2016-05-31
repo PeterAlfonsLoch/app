@@ -638,7 +638,7 @@ namespace str
 
 
 
-class CLASS_DECL_AURA aura_str_pool
+class CLASS_DECL_ACE ace_str_pool
 {
 public:
 
@@ -673,9 +673,9 @@ public:
 
 
 
-extern CLASS_DECL_AURA aura_str_pool * s_paurastrpool;
+extern CLASS_DECL_ACE ace_str_pool * s_pacestrpool;
 
-#define astr (*s_paurastrpool)
+#define astr (*s_pacestrpool)
 
 //#ifndef __GNUC__
 //inline id::operator string() const

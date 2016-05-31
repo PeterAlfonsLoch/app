@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_AURA device_context
+class CLASS_DECL_ACE device_context
 {
 public:
 

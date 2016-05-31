@@ -12,7 +12,7 @@
 #pragma once
 
 
-class CLASS_DECL_AURA manual_reset_event :
+class CLASS_DECL_ACE manual_reset_event :
    public event
 {
 public:

@@ -17,7 +17,7 @@ ENUM enum_default()
 }
 
 
-class CLASS_DECL_AURA var
+class CLASS_DECL_ACE var
 {
 public:
 
@@ -442,17 +442,17 @@ public:
    bool strict_different(int32_t i) const;
    bool strict_different(bool b) const;
 
-   friend bool CLASS_DECL_AURA strict_equal(const char * psz,const var & var);
-   friend bool CLASS_DECL_AURA strict_equal(const string & str,const var & var);
-   friend bool CLASS_DECL_AURA strict_equal(double d,const var & var);
-   friend bool CLASS_DECL_AURA strict_equal(int32_t i,const var & var);
-   friend bool CLASS_DECL_AURA strict_equal(bool b,const var & var);
+   friend bool CLASS_DECL_ACE strict_equal(const char * psz,const var & var);
+   friend bool CLASS_DECL_ACE strict_equal(const string & str,const var & var);
+   friend bool CLASS_DECL_ACE strict_equal(double d,const var & var);
+   friend bool CLASS_DECL_ACE strict_equal(int32_t i,const var & var);
+   friend bool CLASS_DECL_ACE strict_equal(bool b,const var & var);
 
-   friend bool CLASS_DECL_AURA strict_different(const char * psz,const var & var);
-   friend bool CLASS_DECL_AURA strict_different(const string & str,const var & var);
-   friend bool CLASS_DECL_AURA strict_different(double d,const var & var);
-   friend bool CLASS_DECL_AURA strict_different(int32_t i,const var & var);
-   friend bool CLASS_DECL_AURA strict_different(bool b,const var & var);
+   friend bool CLASS_DECL_ACE strict_different(const char * psz,const var & var);
+   friend bool CLASS_DECL_ACE strict_different(const string & str,const var & var);
+   friend bool CLASS_DECL_ACE strict_different(double d,const var & var);
+   friend bool CLASS_DECL_ACE strict_different(int32_t i,const var & var);
+   friend bool CLASS_DECL_ACE strict_different(bool b,const var & var);
 
    int32_t compare(const var & var) const;
    int32_t compare(const char * psz) const;
@@ -548,12 +548,12 @@ public:
    var operator - (uint64_t ui) const;
    var operator - (double d) const;
 
-   friend var CLASS_DECL_AURA operator - (int32_t i,const var & var);
-   friend var CLASS_DECL_AURA operator - (uint32_t ui,const var & var);
-   friend var CLASS_DECL_AURA operator - (int64_t l,const var & var);
-   friend var CLASS_DECL_AURA operator - (uint64_t ul,const var & var);
-   friend var CLASS_DECL_AURA operator - (double d,const var & var);
-   friend var CLASS_DECL_AURA operator - (const var & var1,const var & var2);
+   friend var CLASS_DECL_ACE operator - (int32_t i,const var & var);
+   friend var CLASS_DECL_ACE operator - (uint32_t ui,const var & var);
+   friend var CLASS_DECL_ACE operator - (int64_t l,const var & var);
+   friend var CLASS_DECL_ACE operator - (uint64_t ul,const var & var);
+   friend var CLASS_DECL_ACE operator - (double d,const var & var);
+   friend var CLASS_DECL_ACE operator - (const var & var1,const var & var2);
 
    var operator + (int32_t i) const;
    var operator + (uint32_t ui) const;
@@ -561,12 +561,12 @@ public:
    var operator + (uint64_t ui) const;
    var operator + (double d) const;
 
-   friend var CLASS_DECL_AURA operator + (int32_t i,const var & var);
-   friend var CLASS_DECL_AURA operator + (uint32_t ui,const var & var);
-   friend var CLASS_DECL_AURA operator + (int64_t l,const var & var);
-   friend var CLASS_DECL_AURA operator + (uint64_t ul,const var & var);
-   friend var CLASS_DECL_AURA operator + (double d,const var & var);
-   friend var CLASS_DECL_AURA operator + (const var & var1,const var & var2);
+   friend var CLASS_DECL_ACE operator + (int32_t i,const var & var);
+   friend var CLASS_DECL_ACE operator + (uint32_t ui,const var & var);
+   friend var CLASS_DECL_ACE operator + (int64_t l,const var & var);
+   friend var CLASS_DECL_ACE operator + (uint64_t ul,const var & var);
+   friend var CLASS_DECL_ACE operator + (double d,const var & var);
+   friend var CLASS_DECL_ACE operator + (const var & var1,const var & var2);
 
    var operator / (int32_t i) const;
    var operator / (uint32_t ui) const;
@@ -574,12 +574,12 @@ public:
    var operator / (uint64_t ui) const;
    var operator / (double d) const;
 
-   friend var CLASS_DECL_AURA operator / (int32_t i,const var & var);
-   friend var CLASS_DECL_AURA operator / (uint32_t ui,const var & var);
-   friend var CLASS_DECL_AURA operator / (int64_t l,const var & var);
-   friend var CLASS_DECL_AURA operator / (uint64_t ul,const var & var);
-   friend var CLASS_DECL_AURA operator / (double d,const var & var);
-   friend var CLASS_DECL_AURA operator / (const var & var1,const var & var2);
+   friend var CLASS_DECL_ACE operator / (int32_t i,const var & var);
+   friend var CLASS_DECL_ACE operator / (uint32_t ui,const var & var);
+   friend var CLASS_DECL_ACE operator / (int64_t l,const var & var);
+   friend var CLASS_DECL_ACE operator / (uint64_t ul,const var & var);
+   friend var CLASS_DECL_ACE operator / (double d,const var & var);
+   friend var CLASS_DECL_ACE operator / (const var & var1,const var & var2);
 
    var operator * (int32_t i) const;
    var operator * (uint32_t ui) const;
@@ -587,12 +587,12 @@ public:
    var operator * (uint64_t ui) const;
    var operator * (double d) const;
 
-   friend var CLASS_DECL_AURA operator * (int32_t i,const var & var);
-   friend var CLASS_DECL_AURA operator * (uint32_t ui,const var & var);
-   friend var CLASS_DECL_AURA operator * (int64_t l,const var & var);
-   friend var CLASS_DECL_AURA operator * (uint64_t ul,const var & var);
-   friend var CLASS_DECL_AURA operator * (double d,const var & var);
-   friend var CLASS_DECL_AURA operator * (const var & var1,const var & var2);
+   friend var CLASS_DECL_ACE operator * (int32_t i,const var & var);
+   friend var CLASS_DECL_ACE operator * (uint32_t ui,const var & var);
+   friend var CLASS_DECL_ACE operator * (int64_t l,const var & var);
+   friend var CLASS_DECL_ACE operator * (uint64_t ul,const var & var);
+   friend var CLASS_DECL_ACE operator * (double d,const var & var);
+   friend var CLASS_DECL_ACE operator * (const var & var1,const var & var2);
 
    var & operator -= (int32_t i);
    var & operator -= (uint32_t ui);
@@ -646,7 +646,7 @@ namespace str
 {
 
 
-   inline CLASS_DECL_AURA string from(const var & var)
+   inline CLASS_DECL_ACE string from(const var & var)
    {
 
       return var.get_string();
@@ -657,7 +657,7 @@ namespace str
 } // namespace str
 
 
-inline string CLASS_DECL_AURA operator+ (const char * psz,const var & var)
+inline string CLASS_DECL_ACE operator+ (const char * psz,const var & var)
 {
 
    string strResult(psz);
@@ -668,7 +668,7 @@ inline string CLASS_DECL_AURA operator+ (const char * psz,const var & var)
 }
 
 
-inline string CLASS_DECL_AURA operator+ (const var & var,const char * psz)
+inline string CLASS_DECL_ACE operator+ (const var & var,const char * psz)
 {
 
    string strResult(var.get_string());
@@ -679,7 +679,7 @@ inline string CLASS_DECL_AURA operator+ (const var & var,const char * psz)
 }
 
 
-inline string CLASS_DECL_AURA operator+ (const string & str,const var & var)
+inline string CLASS_DECL_ACE operator+ (const string & str,const var & var)
 {
 
    string strResult(str);
@@ -690,7 +690,7 @@ inline string CLASS_DECL_AURA operator+ (const string & str,const var & var)
 }
 
 
-inline string CLASS_DECL_AURA operator+ (const var & var,const string & str)
+inline string CLASS_DECL_ACE operator+ (const var & var,const string & str)
 {
 
    string strResult(var.get_string());

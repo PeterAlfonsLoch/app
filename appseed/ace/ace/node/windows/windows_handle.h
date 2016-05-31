@@ -138,7 +138,7 @@ struct ConstructDestruct
    {
 #undef new
       new (pObject) TYPE;
-#define new AURA_NEW
+#define new ACE_NEW
    }
    static void Destruct(TYPE * pObject)
    {
@@ -184,14 +184,14 @@ public:
    friend class thread;
 };
 
-class CLASS_DECL_AURA oswindow_map :
+class CLASS_DECL_ACE oswindow_map :
    public handle_map < ::windows::oswindow_handle, ::windows::window >
 {
 public:
    oswindow_map(sp(::ace::application) papp) : handle_map < ::windows::oswindow_handle, ::windows::window >(papp) {}
 };
 
-/*class CLASS_DECL_AURA hdc_map :
+/*class CLASS_DECL_ACE hdc_map :
    public handle_map < ::windows::hdc_handle, ::windows::graphics >
 {
 public:
@@ -204,7 +204,7 @@ public:
 };*/
 
 /*
-class CLASS_DECL_AURA hdc_map :
+class CLASS_DECL_ACE hdc_map :
    public handle_map < ::windows::hmenu_handle, ::windows::menu >
 {
 public:
@@ -443,4 +443,4 @@ inline CT* handle_map <HT, CT>::lookup_temporary(HANDLE h)
 }
 
 
-CLASS_DECL_AURA oswindow_map * get_oswindow_map(bool bCreate = FALSE);
+CLASS_DECL_ACE oswindow_map * get_oswindow_map(bool bCreate = FALSE);

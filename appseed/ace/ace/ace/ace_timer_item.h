@@ -5,7 +5,7 @@ namespace ace
 {
 
 
-   class CLASS_DECL_AURA timer_item :
+   class CLASS_DECL_ACE timer_item :
       virtual public object
    {
    public:

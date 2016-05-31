@@ -5,40 +5,40 @@
 class property;
 
 
-string CLASS_DECL_AURA operator + (const char * psz, const property & prop);
-string CLASS_DECL_AURA operator + (const string & str, const property & prop);
+string CLASS_DECL_ACE operator + (const char * psz, const property & prop);
+string CLASS_DECL_ACE operator + (const string & str, const property & prop);
 
-var CLASS_DECL_AURA operator - (int32_t i, const property & prop);
-var CLASS_DECL_AURA operator - (uint32_t user, const property & prop);
-var CLASS_DECL_AURA operator - (int64_t i, const property & prop);
-var CLASS_DECL_AURA operator - (uint64_t ui, const property & prop);
-var CLASS_DECL_AURA operator - (double d, const property & prop);
-var CLASS_DECL_AURA operator - (const var & var, const property & prop);
-var CLASS_DECL_AURA operator - (const property & prop1, const property & prop2);
+var CLASS_DECL_ACE operator - (int32_t i, const property & prop);
+var CLASS_DECL_ACE operator - (uint32_t user, const property & prop);
+var CLASS_DECL_ACE operator - (int64_t i, const property & prop);
+var CLASS_DECL_ACE operator - (uint64_t ui, const property & prop);
+var CLASS_DECL_ACE operator - (double d, const property & prop);
+var CLASS_DECL_ACE operator - (const var & var, const property & prop);
+var CLASS_DECL_ACE operator - (const property & prop1, const property & prop2);
 
-var CLASS_DECL_AURA operator + (int32_t i, const property & prop);
-var CLASS_DECL_AURA operator + (uint32_t user, const property & prop);
-var CLASS_DECL_AURA operator + (int64_t i, const property & prop);
-var CLASS_DECL_AURA operator + (uint64_t ui, const property & prop);
-var CLASS_DECL_AURA operator + (double d, const property & prop);
-var CLASS_DECL_AURA operator + (const var & var, const property & prop);
-var CLASS_DECL_AURA operator + (const property & prop1, const property & prop2);
+var CLASS_DECL_ACE operator + (int32_t i, const property & prop);
+var CLASS_DECL_ACE operator + (uint32_t user, const property & prop);
+var CLASS_DECL_ACE operator + (int64_t i, const property & prop);
+var CLASS_DECL_ACE operator + (uint64_t ui, const property & prop);
+var CLASS_DECL_ACE operator + (double d, const property & prop);
+var CLASS_DECL_ACE operator + (const var & var, const property & prop);
+var CLASS_DECL_ACE operator + (const property & prop1, const property & prop2);
 
-var CLASS_DECL_AURA operator / (int32_t i, const property & prop);
-var CLASS_DECL_AURA operator / (uint32_t user, const property & prop);
-var CLASS_DECL_AURA operator / (int64_t i, const property & prop);
-var CLASS_DECL_AURA operator / (uint64_t ui, const property & prop);
-var CLASS_DECL_AURA operator / (double d, const property & prop);
-var CLASS_DECL_AURA operator / (const var & var, const property & prop);
-var CLASS_DECL_AURA operator / (const property & prop1, const property & prop2);
+var CLASS_DECL_ACE operator / (int32_t i, const property & prop);
+var CLASS_DECL_ACE operator / (uint32_t user, const property & prop);
+var CLASS_DECL_ACE operator / (int64_t i, const property & prop);
+var CLASS_DECL_ACE operator / (uint64_t ui, const property & prop);
+var CLASS_DECL_ACE operator / (double d, const property & prop);
+var CLASS_DECL_ACE operator / (const var & var, const property & prop);
+var CLASS_DECL_ACE operator / (const property & prop1, const property & prop2);
 
-var CLASS_DECL_AURA operator * (int32_t i, const property & prop);
-var CLASS_DECL_AURA operator * (uint32_t user, const ::core:: property & prop);
-var CLASS_DECL_AURA operator * (int64_t i, const property & prop);
-var CLASS_DECL_AURA operator * (uint64_t ui, const property & prop);
-var CLASS_DECL_AURA operator * (double d, const property & prop);
-var CLASS_DECL_AURA operator * (const var & var, const property & prop);
-var CLASS_DECL_AURA operator * (const property & prop1, const property & prop2);
+var CLASS_DECL_ACE operator * (int32_t i, const property & prop);
+var CLASS_DECL_ACE operator * (uint32_t user, const ::core:: property & prop);
+var CLASS_DECL_ACE operator * (int64_t i, const property & prop);
+var CLASS_DECL_ACE operator * (uint64_t ui, const property & prop);
+var CLASS_DECL_ACE operator * (double d, const property & prop);
+var CLASS_DECL_ACE operator * (const var & var, const property & prop);
+var CLASS_DECL_ACE operator * (const property & prop1, const property & prop2);
 
 
 namespace xml
@@ -51,7 +51,7 @@ namespace xml
 } // namespace xml
 
 
-//class CLASS_DECL_AURA pair_set_interface
+//class CLASS_DECL_ACE pair_set_interface
 //{
 //public:
 //
@@ -73,7 +73,7 @@ namespace xml
 //   var & operator[](const char * pszName);
 //};
 
-//class CLASS_DECL_AURA str_str_interface
+//class CLASS_DECL_ACE str_str_interface
 //{
 //public:
 //
@@ -100,7 +100,7 @@ class property_map;
 
 
 
-class CLASS_DECL_AURA property :
+class CLASS_DECL_ACE property :
    public pair < id, var >
 {
 public:
@@ -599,8 +599,8 @@ public:
    string operator + (const char * psz) const;
    string operator + (const string & str) const;
 
-   //      friend string CLASS_DECL_AURA operator + (const char * psz, const property & var);
-   //      friend string CLASS_DECL_AURA operator + (const string & str, const property & var);
+   //      friend string CLASS_DECL_ACE operator + (const char * psz, const property & var);
+   //      friend string CLASS_DECL_ACE operator + (const string & str, const property & var);
 
    var operator - (int32_t i) const;
    var operator - (uint32_t user) const;
@@ -609,13 +609,13 @@ public:
    var operator - (double d) const;
    var operator - (const var & var) const;
 
-   //      friend var CLASS_DECL_AURA operator - (int32_t i, const property & prop);
-   //      friend var CLASS_DECL_AURA operator - (uint32_t user, const property & prop);
-   //      friend var CLASS_DECL_AURA operator - (int64_t i, const property & prop);
-   //      friend var CLASS_DECL_AURA operator - (uint64_t ui, const property & prop);
-   //      friend var CLASS_DECL_AURA operator - (double d, const property & prop);
-   //      friend var CLASS_DECL_AURA operator - (const var & var, const property & prop);
-   //      friend var CLASS_DECL_AURA operator - (const property & prop1, const property & prop2);
+   //      friend var CLASS_DECL_ACE operator - (int32_t i, const property & prop);
+   //      friend var CLASS_DECL_ACE operator - (uint32_t user, const property & prop);
+   //      friend var CLASS_DECL_ACE operator - (int64_t i, const property & prop);
+   //      friend var CLASS_DECL_ACE operator - (uint64_t ui, const property & prop);
+   //      friend var CLASS_DECL_ACE operator - (double d, const property & prop);
+   //      friend var CLASS_DECL_ACE operator - (const var & var, const property & prop);
+   //      friend var CLASS_DECL_ACE operator - (const property & prop1, const property & prop2);
 
    var operator + (int32_t i) const;
    var operator + (uint32_t user) const;
@@ -624,13 +624,13 @@ public:
    var operator + (double d) const;
    var operator + (const var & var) const;
 
-   //      friend var CLASS_DECL_AURA operator + (int32_t i, const property & prop);
-   //      friend var CLASS_DECL_AURA operator + (uint32_t user, const property & prop);
-   //      friend var CLASS_DECL_AURA operator + (int64_t i, const property & prop);
-   //      friend var CLASS_DECL_AURA operator + (uint64_t ui, const property & prop);
-   //      friend var CLASS_DECL_AURA operator + (double d, const property & prop);
-   //      friend var CLASS_DECL_AURA operator + (const var & var, const property & prop);
-   //      friend var CLASS_DECL_AURA operator + (const property & prop1, const property & prop2);
+   //      friend var CLASS_DECL_ACE operator + (int32_t i, const property & prop);
+   //      friend var CLASS_DECL_ACE operator + (uint32_t user, const property & prop);
+   //      friend var CLASS_DECL_ACE operator + (int64_t i, const property & prop);
+   //      friend var CLASS_DECL_ACE operator + (uint64_t ui, const property & prop);
+   //      friend var CLASS_DECL_ACE operator + (double d, const property & prop);
+   //      friend var CLASS_DECL_ACE operator + (const var & var, const property & prop);
+   //      friend var CLASS_DECL_ACE operator + (const property & prop1, const property & prop2);
 
    var operator / (int32_t i) const;
    var operator / (uint32_t user) const;
@@ -639,13 +639,13 @@ public:
    var operator / (double d) const;
    var operator / (const var & var) const;
 
-   //      friend var CLASS_DECL_AURA operator / (int32_t i, const property & prop);
-   //      friend var CLASS_DECL_AURA operator / (uint32_t user, const property & prop);
-   //      friend var CLASS_DECL_AURA operator / (int64_t i, const property & prop);
-   //      friend var CLASS_DECL_AURA operator / (uint64_t ui, const property & prop);
-   //      friend var CLASS_DECL_AURA operator / (double d, const property & prop);
-   //      friend var CLASS_DECL_AURA operator / (const var & var, const property & prop);
-   //      friend var CLASS_DECL_AURA operator / (const property & prop1, const property & prop2);
+   //      friend var CLASS_DECL_ACE operator / (int32_t i, const property & prop);
+   //      friend var CLASS_DECL_ACE operator / (uint32_t user, const property & prop);
+   //      friend var CLASS_DECL_ACE operator / (int64_t i, const property & prop);
+   //      friend var CLASS_DECL_ACE operator / (uint64_t ui, const property & prop);
+   //      friend var CLASS_DECL_ACE operator / (double d, const property & prop);
+   //      friend var CLASS_DECL_ACE operator / (const var & var, const property & prop);
+   //      friend var CLASS_DECL_ACE operator / (const property & prop1, const property & prop2);
 
    var operator * (int32_t i) const;
    var operator * (uint32_t user) const;
@@ -654,13 +654,13 @@ public:
    var operator * (double d) const;
    var operator * (const var & var) const;
 
-   //      friend var CLASS_DECL_AURA operator * (int32_t i, const property & prop);
-   //      friend var CLASS_DECL_AURA operator * (uint32_t user, const property & prop);
-   //      friend var CLASS_DECL_AURA operator * (int64_t i, const property & prop);
-   //      friend var CLASS_DECL_AURA operator * (uint64_t ui, const property & prop);
-   //      friend var CLASS_DECL_AURA operator * (double d, const property & prop);
-   //      friend var CLASS_DECL_AURA operator * (const var & var, const property & prop);
-   //      friend var CLASS_DECL_AURA operator * (const property & prop1, const property & prop2);
+   //      friend var CLASS_DECL_ACE operator * (int32_t i, const property & prop);
+   //      friend var CLASS_DECL_ACE operator * (uint32_t user, const property & prop);
+   //      friend var CLASS_DECL_ACE operator * (int64_t i, const property & prop);
+   //      friend var CLASS_DECL_ACE operator * (uint64_t ui, const property & prop);
+   //      friend var CLASS_DECL_ACE operator * (double d, const property & prop);
+   //      friend var CLASS_DECL_ACE operator * (const var & var, const property & prop);
+   //      friend var CLASS_DECL_ACE operator * (const property & prop1, const property & prop2);
 
    property & operator -= (int32_t i);
    property & operator -= (uint32_t user);
@@ -717,7 +717,7 @@ public:
 
 
 
-class CLASS_DECL_AURA property_ptra :
+class CLASS_DECL_ACE property_ptra :
    public ref_array < property >
 {
 public:
@@ -730,7 +730,7 @@ public:
 
 };
 
-class CLASS_DECL_AURA propertya :
+class CLASS_DECL_ACE propertya :
    public array < property >
 {
 public:
@@ -747,7 +747,7 @@ public:
 
 };
 
-class CLASS_DECL_AURA property_map :
+class CLASS_DECL_ACE property_map :
    public id_map < var, const var &, property >
 {
 public:
@@ -768,7 +768,7 @@ inline property & property::operator[](const char * pszName)
 
 namespace str
 {
-   inline bool CLASS_DECL_AURA begins(const property & property, const string & strPrefix) { return begins(property.get_string(), strPrefix); };
+   inline bool CLASS_DECL_ACE begins(const property & property, const string & strPrefix) { return begins(property.get_string(), strPrefix); };
 }
 
 

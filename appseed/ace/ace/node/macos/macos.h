@@ -13,26 +13,26 @@ string get_error_message(DWORD dwError);
 /////////////////////////////////////////////////////////////////////////////
 // explicit initialization for general purpose classes
 
-CLASS_DECL_AURA WINBOOL AfxInitialize(WINBOOL bDLL = FALSE, DWORD dwVersion = 0);
+CLASS_DECL_ACE WINBOOL AfxInitialize(WINBOOL bDLL = FALSE, DWORD dwVersion = 0);
 
 /////////////////////////////////////////////////////////////////////////////
 // stop on a specific memory request
 
 // Debugger hook on specified allocation request - Obsolete
-CLASS_DECL_AURA void AfxSetAllocStop(LONG lRequestNumber);
+CLASS_DECL_ACE void AfxSetAllocStop(LONG lRequestNumber);
 
 // Return TRUE if memory is sane or print out what is wrong
-CLASS_DECL_AURA WINBOOL AfxCheckMemory();
+CLASS_DECL_ACE WINBOOL AfxCheckMemory();
 
 // Return TRUE if valid memory block of nBytes
-CLASS_DECL_AURA WINBOOL AfxIsMemoryBlock(const void * p, UINT nBytes, LONG* plRequestNumber = NULL);
+CLASS_DECL_ACE WINBOOL AfxIsMemoryBlock(const void * p, UINT nBytes, LONG* plRequestNumber = NULL);
 
 // helper routines for non-C++ EH implementations
 // for THROW_LAST auto-delete backward compatiblity
-CLASS_DECL_AURA void AfxThrowLastCleanup();
+CLASS_DECL_ACE void AfxThrowLastCleanup();
 
 // other out-of-line helper functions
-CLASS_DECL_AURA void AfxTryCleanup();
+CLASS_DECL_ACE void AfxTryCleanup();
 
 
 #define NULL_REF(class) (*((class *) NULL))
@@ -40,12 +40,12 @@ CLASS_DECL_AURA void AfxTryCleanup();
 #define MAC_THREAD(pthread) (dynamic_cast < ::mac::thread * > (dynamic_cast < ::thread * >(pthread)))
 
 
-CLASS_DECL_AURA void __trace_message(const char * lpszPrefix, signal_details * pobj);
-CLASS_DECL_AURA void __trace_message(const char * lpszPrefix, LPMESSAGE lpmsg);
+CLASS_DECL_ACE void __trace_message(const char * lpszPrefix, signal_details * pobj);
+CLASS_DECL_ACE void __trace_message(const char * lpszPrefix, LPMESSAGE lpmsg);
 WINBOOL PeekMessage(LPMESSAGE lpMsg,oswindow hWnd,UINT wMsgFilterMin,UINT wMsgFilterMax,UINT wRemoveMsg);
 WINBOOL GetMessage(LPMESSAGE lpMsg,oswindow hWnd,UINT wMsgFilterMin,UINT wMsgFilterMax);
-int32_t CLASS_DECL_AURA __mac_main(int32_t argc, char * argv[]);
-CLASS_DECL_AURA void vfxThrowFileException(::ace::application * papp, ::file::exception::e_cause ecause, LONG lOsError, const char * lpszFileName = NULL);
+int32_t CLASS_DECL_ACE __mac_main(int32_t argc, char * argv[]);
+CLASS_DECL_ACE void vfxThrowFileException(::ace::application * papp, ::file::exception::e_cause ecause, LONG lOsError, const char * lpszFileName = NULL);
 
 
 

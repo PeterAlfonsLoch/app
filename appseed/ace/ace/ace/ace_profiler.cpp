@@ -21,7 +21,7 @@ namespace core
       }
 
 
-      CLASS_DECL_AURA int64_t micros()
+      CLASS_DECL_ACE int64_t micros()
       {
 
          return ::get_nanos() / 1000;

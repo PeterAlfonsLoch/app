@@ -1,12 +1,12 @@
 #pragma once
 
 
-class CLASS_DECL_AURA istring
+class CLASS_DECL_ACE istring
 {
 public:
 
 
-   ::ace::application *   m_pauraapp;
+   ::ace::application *   m_paceapp;
    string                  m_str;
    string                  m_strTemplate;
 

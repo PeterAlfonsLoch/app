@@ -20,7 +20,7 @@ namespace android
 
 
 
-struct CLASS_DECL_AURA __exception_link
+struct CLASS_DECL_ACE __exception_link
 {
 
 
@@ -36,24 +36,24 @@ struct CLASS_DECL_AURA __exception_link
 
 };
 
-struct CLASS_DECL_AURA __EXCEPTION_CONTEXT
+struct CLASS_DECL_ACE __EXCEPTION_CONTEXT
 {
 
    __exception_link* m_pLinkTop;
 
 };
 
-//void CLASS_DECL_AURA __abort();
+//void CLASS_DECL_ACE __abort();
 //
 //
-//CLASS_DECL_AURA LRESULT CALLBACK __window_procedure(oswindow hWnd, UINT nMsg, WPARAM wParam, LPARAM lParam);
+//CLASS_DECL_ACE LRESULT CALLBACK __window_procedure(oswindow hWnd, UINT nMsg, WPARAM wParam, LPARAM lParam);
 //
-//CLASS_DECL_AURA MESSAGE * __get_current_message();
+//CLASS_DECL_ACE MESSAGE * __get_current_message();
 //
-//CLASS_DECL_AURA void __android_term();
+//CLASS_DECL_ACE void __android_term();
 //
-//CLASS_DECL_AURA sp(::ace::application)  __get_app();
-//CLASS_DECL_AURA ::user::primitive * __get_main_window();
-//CLASS_DECL_AURA const char * __get_app_name();
+//CLASS_DECL_ACE sp(::ace::application)  __get_app();
+//CLASS_DECL_ACE ::user::primitive * __get_main_window();
+//CLASS_DECL_ACE const char * __get_app_name();
 //
 //

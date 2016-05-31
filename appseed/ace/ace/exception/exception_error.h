@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_AURA error_exception : 
+class CLASS_DECL_ACE error_exception : 
    virtual public ::exception::base
 {
    // ace class for resource-critical core API exceptions
@@ -21,7 +21,7 @@ public:
 };
 
 
-class CLASS_DECL_AURA index_out_of_bounds :
+class CLASS_DECL_ACE index_out_of_bounds :
    virtual public error_exception
 {
    // ace class for resource-critical core API exceptions

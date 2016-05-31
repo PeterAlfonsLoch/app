@@ -11,7 +11,7 @@ namespace ace
    // to detect erronous adaptations of replacement
 
 
-   class CLASS_DECL_AURA shell_launcher
+   class CLASS_DECL_ACE shell_launcher
    {
    public:
 

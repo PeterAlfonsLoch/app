@@ -1,10 +1,10 @@
 
 #undef __id
-#define __id(x) (m_pauraapp->m_paurasystem->m_cidpool.id_##x)
+#define __id(x) (m_paceapp->m_pacesystem->m_cidpool.id_##x)
 
 
 
-class CLASS_DECL_AURA id_pool
+class CLASS_DECL_ACE id_pool
 {
 public:
 

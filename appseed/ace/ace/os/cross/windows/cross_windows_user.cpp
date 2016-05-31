@@ -6,7 +6,7 @@
 //#endif
 
 
-CLASS_DECL_AURA COLORREF GetSysColor(DWORD dw)
+CLASS_DECL_ACE COLORREF GetSysColor(DWORD dw)
 {
 
    switch(dw)
@@ -25,7 +25,7 @@ CLASS_DECL_AURA COLORREF GetSysColor(DWORD dw)
 
 
 
-CLASS_DECL_AURA int32_t WINAPI GetSystemMetrics(int32_t nIndex)
+CLASS_DECL_ACE int32_t WINAPI GetSystemMetrics(int32_t nIndex)
 {
 
    switch(nIndex)
@@ -46,7 +46,7 @@ CLASS_DECL_AURA int32_t WINAPI GetSystemMetrics(int32_t nIndex)
 
 
 
-CLASS_DECL_AURA int_bool CopyRect(LPRECT prectDest, LPCRECT pcrectSrc)
+CLASS_DECL_ACE int_bool CopyRect(LPRECT prectDest, LPCRECT pcrectSrc)
 {
 
    prectDest->left      = pcrectSrc->left;
@@ -58,14 +58,14 @@ CLASS_DECL_AURA int_bool CopyRect(LPRECT prectDest, LPCRECT pcrectSrc)
 
 }
 
-CLASS_DECL_AURA int_bool PtInRect(LPCRECT prect, POINT point)
+CLASS_DECL_ACE int_bool PtInRect(LPCRECT prect, POINT point)
 {
    return point.x >= prect->left && point.x <= prect->right
    && point.y >= prect->top && point.y <= prect->bottom;
 
 }
 
-CLASS_DECL_AURA int_bool SetRect(LPRECT prect, int32_t x1, int32_t y1, int32_t x2, int32_t y2)
+CLASS_DECL_ACE int_bool SetRect(LPRECT prect, int32_t x1, int32_t y1, int32_t x2, int32_t y2)
 {
 
    prect->left = x1;
@@ -77,7 +77,7 @@ CLASS_DECL_AURA int_bool SetRect(LPRECT prect, int32_t x1, int32_t y1, int32_t x
 }
 
 
-CLASS_DECL_AURA int_bool SetRectEmpty(LPRECT prect)
+CLASS_DECL_ACE int_bool SetRectEmpty(LPRECT prect)
 {
 
    SetRect(prect, 0, 0, 0, 0);
@@ -85,7 +85,7 @@ CLASS_DECL_AURA int_bool SetRectEmpty(LPRECT prect)
 }
 
 
-CLASS_DECL_AURA int_bool EqualRect(LPCRECT prect1, LPCRECT prect2)
+CLASS_DECL_ACE int_bool EqualRect(LPCRECT prect1, LPCRECT prect2)
 {
       return prect1->left == prect2->left
          &&  prect1->top == prect2->top
@@ -94,7 +94,7 @@ CLASS_DECL_AURA int_bool EqualRect(LPCRECT prect1, LPCRECT prect2)
 }
 
 
-CLASS_DECL_AURA int_bool InflateRect(LPRECT prect, int32_t x, int32_t y)
+CLASS_DECL_ACE int_bool InflateRect(LPRECT prect, int32_t x, int32_t y)
 {
       prect->left -= x;
       prect->top -= y;
@@ -103,7 +103,7 @@ CLASS_DECL_AURA int_bool InflateRect(LPRECT prect, int32_t x, int32_t y)
       return true;
 }
 
-CLASS_DECL_AURA int_bool OffsetRect(LPRECT prect, int32_t x, int32_t y)
+CLASS_DECL_ACE int_bool OffsetRect(LPRECT prect, int32_t x, int32_t y)
 {
       prect->left += x;
       prect->top += y;
@@ -113,14 +113,14 @@ CLASS_DECL_AURA int_bool OffsetRect(LPRECT prect, int32_t x, int32_t y)
 }
 
 /*
-CLASS_DECL_AURA bool x_intersect_rect(LPRECT prect, LPCRECT prect1, LPCRECT prect2)
+CLASS_DECL_ACE bool x_intersect_rect(LPRECT prect, LPCRECT prect1, LPCRECT prect2)
 {
    prect->left = MAX(prect1->left, prect2->left);
    prect->right = MIN(prect1->right, prect2->right);
    return prect->right >= prect->left;
 }
 
-CLASS_DECL_AURA bool y_intersect_rect(LPRECT prect, LPCRECT prect1, LPCRECT prect2)
+CLASS_DECL_ACE bool y_intersect_rect(LPRECT prect, LPCRECT prect1, LPCRECT prect2)
 {
    prect->top = MAX(prect1->top, prect2->top);
    prect->bottom = MIN(prect1->bottom, prect2->bottom);
@@ -128,7 +128,7 @@ CLASS_DECL_AURA bool y_intersect_rect(LPRECT prect, LPCRECT prect1, LPCRECT prec
 }
 */
 
-CLASS_DECL_AURA int_bool IntersectRect(LPRECT prect, LPCRECT prect1, LPCRECT prect2)
+CLASS_DECL_ACE int_bool IntersectRect(LPRECT prect, LPCRECT prect1, LPCRECT prect2)
 {
    int_bool bXIntersects = x_intersect_rect(prect, prect1, prect2);
    int_bool bYIntersects = y_intersect_rect(prect, prect1, prect2);
@@ -136,7 +136,7 @@ CLASS_DECL_AURA int_bool IntersectRect(LPRECT prect, LPCRECT prect1, LPCRECT pre
 }
 
 
-CLASS_DECL_AURA int_bool UnionRect(LPRECT prect, LPCRECT prect1, LPCRECT prect2)
+CLASS_DECL_ACE int_bool UnionRect(LPRECT prect, LPCRECT prect1, LPCRECT prect2)
 {
    prect->left = MIN(prect1->left, prect2->left);
    prect->top = MIN(prect1->top, prect2->top);
@@ -146,7 +146,7 @@ CLASS_DECL_AURA int_bool UnionRect(LPRECT prect, LPCRECT prect1, LPCRECT prect2)
 }
 
 
-CLASS_DECL_AURA int_bool SubtractRect(LPRECT prect, LPCRECT prect1, LPCRECT prect2)
+CLASS_DECL_ACE int_bool SubtractRect(LPRECT prect, LPCRECT prect1, LPCRECT prect2)
 {
    RECT rect;
    int_bool bXIntersects = x_intersect_rect(&rect, prect1, prect2);
@@ -393,7 +393,7 @@ WideCharToMultiByte(
 
 }
 
-CLASS_DECL_AURA string get_system_error_message(uint32_t dwError)
+CLASS_DECL_ACE string get_system_error_message(uint32_t dwError)
 {
 
    string str;
@@ -407,7 +407,7 @@ CLASS_DECL_AURA string get_system_error_message(uint32_t dwError)
 
 
 /*
-CLASS_DECL_AURA int_bool TranslateMessage(const MESSAGE * pmsg)
+CLASS_DECL_ACE int_bool TranslateMessage(const MESSAGE * pmsg)
 {
 
    if(pmsg == NULL)
@@ -426,7 +426,7 @@ CLASS_DECL_AURA int_bool TranslateMessage(const MESSAGE * pmsg)
 
 /*
 
-CLASS_DECL_AURA int_bool DispatchMessage(const MESSAGE * pmsg)
+CLASS_DECL_ACE int_bool DispatchMessage(const MESSAGE * pmsg)
 {
 
    if(pmsg == NULL)
@@ -450,7 +450,7 @@ CLASS_DECL_AURA int_bool DispatchMessage(const MESSAGE * pmsg)
 
 
 
-CLASS_DECL_AURA int_bool IsRectEmpty(LPCRECT lpcrect)
+CLASS_DECL_ACE int_bool IsRectEmpty(LPCRECT lpcrect)
 {
 
    return lpcrect == NULL || lpcrect->right <=lpcrect->left || lpcrect->bottom <= lpcrect->top;

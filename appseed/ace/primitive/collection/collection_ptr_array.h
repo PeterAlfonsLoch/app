@@ -89,7 +89,7 @@ public:
 
 
 
-class CLASS_DECL_AURA const_char_ptra:
+class CLASS_DECL_ACE const_char_ptra:
    public ref_array < const char >
 {
 };

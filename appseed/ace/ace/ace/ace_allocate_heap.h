@@ -19,45 +19,45 @@ BEGIN_EXTERN_C
 #define memory_free_dbg _free_dbg
 
 #else
-   CLASS_DECL_AURA void * unaligned_memory_alloc(size_t size);
-   CLASS_DECL_AURA void * unaligned_memory_alloc_dbg(size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine);
+   CLASS_DECL_ACE void * unaligned_memory_alloc(size_t size);
+   CLASS_DECL_ACE void * unaligned_memory_alloc_dbg(size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine);
 
-   CLASS_DECL_AURA void * aligned_memory_alloc(size_t size);
-   CLASS_DECL_AURA void * aligned_memory_alloc_dbg(size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine);
-   CLASS_DECL_AURA void * memory_alloc_no_track(size_t size);
-   CLASS_DECL_AURA void * memory_calloc(size_t size, size_t bytes);
-   CLASS_DECL_AURA void * memory_alloc_dbg(size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine);
-   CLASS_DECL_AURA void * memory_realloc_dbg(void * pvoid, size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine);
-   CLASS_DECL_AURA void   memory_free_dbg(void * pvoid, int32_t iBlockType);
+   CLASS_DECL_ACE void * aligned_memory_alloc(size_t size);
+   CLASS_DECL_ACE void * aligned_memory_alloc_dbg(size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine);
+   CLASS_DECL_ACE void * memory_alloc_no_track(size_t size);
+   CLASS_DECL_ACE void * memory_calloc(size_t size, size_t bytes);
+   CLASS_DECL_ACE void * memory_alloc_dbg(size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine);
+   CLASS_DECL_ACE void * memory_realloc_dbg(void * pvoid, size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine);
+   CLASS_DECL_ACE void   memory_free_dbg(void * pvoid, int32_t iBlockType);
 #endif
-   CLASS_DECL_AURA size_t memory_size(void * p);
-   CLASS_DECL_AURA size_t memory_size_dbg(void * p, int32_t iBlockType);
+   CLASS_DECL_ACE size_t memory_size(void * p);
+   CLASS_DECL_ACE size_t memory_size_dbg(void * p, int32_t iBlockType);
 
 
 #if !defined(MCHECK) && !defined(__VLD) && !defined(__MCRTDBG)
-   CLASS_DECL_AURA void * memory_alloc(size_t size);
-   CLASS_DECL_AURA void * memory_realloc(void * pvoid, size_t nSize);
-   CLASS_DECL_AURA void   memory_free(void * pvoid);
+   CLASS_DECL_ACE void * memory_alloc(size_t size);
+   CLASS_DECL_ACE void * memory_realloc(void * pvoid, size_t nSize);
+   CLASS_DECL_ACE void   memory_free(void * pvoid);
 #endif
 
 
    END_EXTERN_C
 
 #if MEMDLEAK
-      CLASS_DECL_AURA void set_last_block_file_name(const char * psz);
-   CLASS_DECL_AURA void memdleak_dump();
+      CLASS_DECL_ACE void set_last_block_file_name(const char * psz);
+   CLASS_DECL_ACE void memdleak_dump();
 #endif
 
 #if MEMDLEAK  || defined(__MCRTDBG)
-CLASS_DECL_AURA void * system_heap_alloc_dbg(size_t size, int nBlockUse, const char * pszFile, int iLine);
+CLASS_DECL_ACE void * system_heap_alloc_dbg(size_t size, int nBlockUse, const char * pszFile, int iLine);
 #define system_heap_alloc(s) system_heap_alloc_dbg(s, 49, __FILE__, __LINE__)
-CLASS_DECL_AURA void * system_heap_realloc_dbg(void * p, size_t size, int nBlockUse, const char * pszFile, int iLine);
+CLASS_DECL_ACE void * system_heap_realloc_dbg(void * p, size_t size, int nBlockUse, const char * pszFile, int iLine);
 #define system_heap_realloc(p, s) system_heap_realloc_dbg(p, s, 49, __FILE__, __LINE__)
 #else
-CLASS_DECL_AURA void * system_heap_alloc(size_t size);
-CLASS_DECL_AURA void * system_heap_realloc(void * pvoidOld, size_t size);
+CLASS_DECL_ACE void * system_heap_alloc(size_t size);
+CLASS_DECL_ACE void * system_heap_realloc(void * pvoidOld, size_t size);
 #endif
-CLASS_DECL_AURA void   system_heap_free(void * pvoid);
+CLASS_DECL_ACE void   system_heap_free(void * pvoid);
 
 
 struct memdleak_block
@@ -89,7 +89,7 @@ namespace heap
 {
 
 
-   class CLASS_DECL_AURA system_memory_allocator
+   class CLASS_DECL_ACE system_memory_allocator
    {
    public:
 
@@ -124,7 +124,7 @@ namespace heap
    };
 
 
-   class CLASS_DECL_AURA default_memory_allocator
+   class CLASS_DECL_ACE default_memory_allocator
    {
    public:
 
@@ -160,7 +160,7 @@ namespace heap
    };
 
 
-   class CLASS_DECL_AURA heap_base
+   class CLASS_DECL_ACE heap_base
    {
    public:
 
@@ -271,7 +271,7 @@ namespace heap
 
 typedef ::heap::heap < char > hstring_base;
 
-class CLASS_DECL_AURA hstring:
+class CLASS_DECL_ACE hstring:
    public hstring_base
 {
 public:
@@ -284,7 +284,7 @@ public:
 
 typedef ::heap::heap < unichar > hwstring_base;
 
-class CLASS_DECL_AURA hwstring:
+class CLASS_DECL_ACE hwstring:
    public hwstring_base
 {
 public:

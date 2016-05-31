@@ -11,7 +11,7 @@
 // Obrigado Carlos!! Você poderia colaborar, não é!!
 // Meu Deus me ajude!!
 
-CLASS_DECL_AURA HBITMAP CreateAlphaBitmapV5(::draw2d::dib * pdib)
+CLASS_DECL_ACE HBITMAP CreateAlphaBitmapV5(::draw2d::dib * pdib)
 {
 //   HDC hMemDC;
    DWORD dwWidth,dwHeight;

@@ -1721,7 +1721,7 @@ namespace exception
 #include <unistd.h>
 
 /* globals retained across calls to resolve. */
-static const char * moda[]={"/ca2/stage/x86/libaura.so", "/ca2/stage/x86/libbase.so", "/ca2/stage/x86/libcore.so", NULL};
+static const char * moda[]={"/ca2/stage/x86/libace.so", "/ca2/stage/x86/libbase.so", "/ca2/stage/x86/libcore.so", NULL};
 static bfd* abfda[64];
 static asymbol **symsa[64];
 static asection *texta[64];

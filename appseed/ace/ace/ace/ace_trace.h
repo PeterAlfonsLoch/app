@@ -5,7 +5,7 @@
 namespace ace
 {
 
-   CLASS_DECL_AURA void raw_trace_v(const char *pszFileName,int32_t nLine,uint32_t dwCategory,uint32_t nLevel,const char * pszFmt,va_list args);
+   CLASS_DECL_ACE void raw_trace_v(const char *pszFileName,int32_t nLine,uint32_t dwCategory,uint32_t nLevel,const char * pszFmt,va_list args);
 
    namespace trace
    {
@@ -63,7 +63,7 @@ namespace ace
 
 
       // Declare a global instance of this class to automatically register a custom trace category at startup
-      class CLASS_DECL_AURA category
+      class CLASS_DECL_ACE category
       {
       public:
 
@@ -86,15 +86,15 @@ namespace ace
       };
 
 
-      class CLASS_DECL_AURA trace
+      class CLASS_DECL_ACE trace
       {
       public:
 
-         sp(::ace::application) m_pauraapp;
+         sp(::ace::application) m_paceapp;
 
          trace(::ace::application * papp)
          {
-            m_pauraapp = papp;
+            m_paceapp = papp;
          }
 
          ~trace()
@@ -121,10 +121,10 @@ namespace ace
 
 
 
-      CLASS_DECL_AURA void __cdecl __trace(const char * pszFormat,...);
-      CLASS_DECL_AURA void __cdecl __trace(const unichar * pszFormat,...);
-      CLASS_DECL_AURA void __cdecl __trace(uint_ptr dwCategory,UINT nLevel,const char * pszFormat,...);
-      CLASS_DECL_AURA void __cdecl __trace(uint_ptr dwCategory,UINT nLevel,const unichar * pszFormat,...);
+      CLASS_DECL_ACE void __cdecl __trace(const char * pszFormat,...);
+      CLASS_DECL_ACE void __cdecl __trace(const unichar * pszFormat,...);
+      CLASS_DECL_ACE void __cdecl __trace(uint_ptr dwCategory,UINT nLevel,const char * pszFormat,...);
+      CLASS_DECL_ACE void __cdecl __trace(uint_ptr dwCategory,UINT nLevel,const unichar * pszFormat,...);
       
    } // namespace trace
 
@@ -132,5 +132,5 @@ namespace ace
 };  // namespace ace
 
 
-CLASS_DECL_AURA const char * get_windows_message_name(UINT nMsg);
+CLASS_DECL_ACE const char * get_windows_message_name(UINT nMsg);
 

@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_AURA event_base :
+class CLASS_DECL_ACE event_base :
    public sync_object
 {
 public:

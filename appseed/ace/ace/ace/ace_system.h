@@ -2,7 +2,7 @@
 
 
 
-class CLASS_DECL_AURA ptra:
+class CLASS_DECL_ACE ptra:
    virtual public spa(object)
 {
 public:
@@ -19,12 +19,12 @@ namespace ace
 {
 
 
-   class CLASS_DECL_AURA system:
+   class CLASS_DECL_ACE system:
       virtual public ::ace::application
    {
    public:
 
-      ::ace::session::map                         m_aurabergedgemap;
+      ::ace::session::map                         m_acebergedgemap;
 
       ::object *                                   m_pDraw2dFactoryExchange;
 
@@ -429,6 +429,6 @@ namespace ace
 
 
 
-CLASS_DECL_AURA ::ace::system * create_aura_system();
+CLASS_DECL_ACE ::ace::system * create_ace_system();
 
 

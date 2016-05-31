@@ -58,8 +58,8 @@ namespace ace
 
       //m_pmutex = new mutex(this);
 
-      m_paurasystem     = NULL;
-      m_paurasession    = NULL;
+      m_pacesystem     = NULL;
+      m_pacesession    = NULL;
       m_paxisapp        = NULL;
       m_paxissystem     = NULL;
       m_paxissession    = NULL;
@@ -77,52 +77,52 @@ namespace ace
 
 #endif
 
-      if(m_pauraapp == NULL)
+      if(m_paceapp == NULL)
       {
 
-         m_pauraapp              = this;
+         m_paceapp              = this;
 
       }
 
-      if(m_pauraapp != NULL)
+      if(m_paceapp != NULL)
       {
 
-         m_paurasystem           = m_pauraapp->m_paurasystem;
+         m_pacesystem           = m_paceapp->m_pacesystem;
 
-         m_paxissystem           = m_pauraapp->m_paxissystem;
+         m_paxissystem           = m_paceapp->m_paxissystem;
 
-         m_paxissession          = m_pauraapp->m_paxissession;
+         m_paxissession          = m_paceapp->m_paxissession;
 
-         m_paxisapp              = m_pauraapp->m_paxisapp;
+         m_paxisapp              = m_paceapp->m_paxisapp;
 
-         m_pbasesystem           = m_pauraapp->m_pbasesystem;
+         m_pbasesystem           = m_paceapp->m_pbasesystem;
 
-         m_pbasesession          = m_pauraapp->m_pbasesession;
+         m_pbasesession          = m_paceapp->m_pbasesession;
 
-         m_pbaseapp              = m_pauraapp->m_pbaseapp;
+         m_pbaseapp              = m_paceapp->m_pbaseapp;
 
-         m_pcoresystem           = m_pauraapp->m_pcoresystem;
+         m_pcoresystem           = m_paceapp->m_pcoresystem;
 
-         m_pcoresession         = m_pauraapp->m_pcoresession;
+         m_pcoresession         = m_paceapp->m_pcoresession;
 
-         m_pcoreapp              = m_pauraapp->m_pcoreapp;
+         m_pcoreapp              = m_paceapp->m_pcoreapp;
 
-         if(m_pauraapp->m_paurasession == NULL && m_paurasystem != NULL)
+         if(m_paceapp->m_pacesession == NULL && m_pacesystem != NULL)
          {
 
-            m_paurasession       = m_paurasystem->m_paurasession;
+            m_pacesession       = m_pacesystem->m_pacesession;
 
          }
          else
          {
 
-            m_paurasession       = m_pauraapp->m_paurasession;
+            m_pacesession       = m_paceapp->m_pacesession;
 
          }
 
 #ifdef WINDOWS
 
-         m_hinstance             = m_pauraapp->m_hinstance;
+         m_hinstance             = m_paceapp->m_hinstance;
 
 #endif
 
@@ -130,7 +130,7 @@ namespace ace
       else
       {
 
-         m_paurasystem           = NULL;
+         m_pacesystem           = NULL;
 
       }
 
@@ -815,7 +815,7 @@ namespace ace
 //#endif
 
 
-   string CLASS_DECL_AURA application::get_cred(const string & strRequestUrl,const RECT & rect,string & strUsername,string & strPassword,string strToken,string strTitle,bool bInteractive)
+   string CLASS_DECL_ACE application::get_cred(const string & strRequestUrl,const RECT & rect,string & strUsername,string & strPassword,string strToken,string strTitle,bool bInteractive)
    {
 
       throw not_implemented(this);
@@ -2324,10 +2324,10 @@ namespace ace
          if (!is_session() && !is_system())
          {
 
-            if (m_paurasystem != NULL && m_paurasystem->m_pcommandthread != NULL)
+            if (m_pacesystem != NULL && m_pacesystem->m_pcommandthread != NULL)
             {
 
-               m_paurasystem->m_pcommandthread->command(::primitive::command_check_exit);
+               m_pacesystem->m_pcommandthread->command(::primitive::command_check_exit);
 
             }
 
@@ -3970,7 +3970,7 @@ namespace ace
       if(strId.CompareNoCase("session") == 0)
       {
 
-         papp = create_platform(m_pauraapp->m_paurasession);
+         papp = create_platform(m_paceapp->m_pacesession);
 
          papp->construct("session");
 
@@ -4006,7 +4006,7 @@ namespace ace
          if(papp == NULL)
             return NULL;
 
-         papp->m_paurasession = m_paurasession;
+         papp->m_pacesession = m_pacesession;
 
          papp->m_paxissession = m_paxissession;
 

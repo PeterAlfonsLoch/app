@@ -24,8 +24,8 @@ namespace ace
    namespace trace
    {
       typedef void ( * PFN_trace_v)(const char *pszFileName, int32_t nLine, uint32_t dwCategory, uint32_t nLevel, const char * pszFmt, va_list args);
-      CLASS_DECL_AURA void raw_trace_v(const char *pszFileName, int32_t nLine, uint32_t dwCategory, uint32_t nLevel, const char * pszFmt, va_list args);
-      CLASS_DECL_AURA PFN_trace_v trace_v = &raw_trace_v;
+      CLASS_DECL_ACE void raw_trace_v(const char *pszFileName, int32_t nLine, uint32_t dwCategory, uint32_t nLevel, const char * pszFmt, va_list args);
+      CLASS_DECL_ACE PFN_trace_v trace_v = &raw_trace_v;
 
       /*   category::category( const char * pszCategoryName, UINT nStartingLevel ) throw() :
       m_dwCategory( 0 )
@@ -129,7 +129,7 @@ namespace ace
          return m_uiLevel;
       }
 
-      CLASS_DECL_AURA void raw_trace_v(const char *pszFileName, int32_t nLine, uint32_t dwCategory, uint32_t nLevel, const char * pszFmt, va_list args)
+      CLASS_DECL_ACE void raw_trace_v(const char *pszFileName, int32_t nLine, uint32_t dwCategory, uint32_t nLevel, const char * pszFmt, va_list args)
       {
          UNREFERENCED_PARAMETER(pszFileName);
          UNREFERENCED_PARAMETER(nLine);
@@ -141,7 +141,7 @@ namespace ace
          ::OutputDebugStringW(::str::international::utf8_to_unicode(str));
       }
 
-      /*CLASS_DECL_AURA void system_log_trace_v(const char *pszFileName, int32_t nLine, uint32_t dwCategory, uint32_t nLevel, const char * pszFmt, va_list args)
+      /*CLASS_DECL_ACE void system_log_trace_v(const char *pszFileName, int32_t nLine, uint32_t dwCategory, uint32_t nLevel, const char * pszFmt, va_list args)
       {
       System.log().trace_v(pszFileName, nLine, dwCategory, nLevel, pszFmt, args);
       }*/
@@ -356,7 +356,7 @@ static const MAP_WM_MESSAGE allMessagesArray[] =
 };
 
 
-CLASS_DECL_AURA const char *  get_windows_message_name(UINT nMsg)
+CLASS_DECL_ACE const char *  get_windows_message_name(UINT nMsg)
 {
 
    MAP_WM_MESSAGE * pmessage = (MAP_WM_MESSAGE *) allMessagesArray;

@@ -5,7 +5,7 @@
 //{
 //
 //
-//   class CLASS_DECL_AURA live_object :
+//   class CLASS_DECL_ACE live_object :
 //      virtual public root
 //   {
 //   public:

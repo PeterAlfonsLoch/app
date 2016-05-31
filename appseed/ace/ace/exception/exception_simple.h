@@ -3,7 +3,7 @@
 
 
 
-class CLASS_DECL_AURA simple_exception : 
+class CLASS_DECL_ACE simple_exception : 
    virtual public ::exception::base
 {
 public:

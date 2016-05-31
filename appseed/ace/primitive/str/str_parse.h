@@ -36,7 +36,7 @@ namespace str
 
    // Splits a string whatever way you want.
 
-   class CLASS_DECL_AURA parse
+   class CLASS_DECL_ACE parse
    {
    public:
 

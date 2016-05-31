@@ -9,7 +9,7 @@ namespace message
 {
 
 
-   class CLASS_DECL_AURA base :
+   class CLASS_DECL_ACE base :
       public signal_details
    {
    public:
@@ -38,7 +38,7 @@ namespace message
    };
 
 
-   class CLASS_DECL_AURA timer: public base
+   class CLASS_DECL_ACE timer: public base
    {
    public:
 
@@ -54,4 +54,4 @@ namespace message
 } // namespace message
 
 
-#define new AURA_NEW
+#define new ACE_NEW

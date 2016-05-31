@@ -96,4 +96,4 @@ inline void fixed_alloc::Free(void * p)
 
 
 
-extern CLASS_DECL_AURA fixed_alloc_array g_fixedalloca;
+extern CLASS_DECL_ACE fixed_alloc_array g_fixedalloca;

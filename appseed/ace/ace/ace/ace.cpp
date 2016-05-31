@@ -1,19 +1,19 @@
 //#include "framework.h"
 
 BEGIN_EXTERN_C
-CLASS_DECL_AURA int g_bAura = 0;
+CLASS_DECL_ACE int g_bAura = 0;
 END_EXTERN_C
 
 
 BEGIN_EXTERN_C
 
-CLASS_DECL_AURA uint32_t g_dwStartTime = 0;
+CLASS_DECL_ACE uint32_t g_dwStartTime = 0;
 
 
 END_EXTERN_C
 
 extern "C"
-CLASS_DECL_AURA void debug_print(const char * pszFormat,...)
+CLASS_DECL_ACE void debug_print(const char * pszFormat,...)
 {
    
    //if (strstr(pszFormat, "%") == NULL)
@@ -86,7 +86,7 @@ string_map < INT_PTR, INT_PTR > & __library()
 int g_iAuraRefCount = 0;
 
 
-CLASS_DECL_AURA int get_aura_init()
+CLASS_DECL_ACE int get_ace_init()
 {
 
    return g_iAuraRefCount;
@@ -94,7 +94,7 @@ CLASS_DECL_AURA int get_aura_init()
 }
 
 
-::ace::system * aura_create_aura_system()
+::ace::system * ace_create_ace_system()
 {
 
    return new ::ace::system(NULL, NULL);
@@ -102,7 +102,7 @@ CLASS_DECL_AURA int get_aura_init()
 }
 
 
-CLASS_DECL_AURA int_bool defer_aura_init()
+CLASS_DECL_ACE int_bool defer_ace_init()
 {
 
    g_iAuraRefCount++;
@@ -110,12 +110,12 @@ CLASS_DECL_AURA int_bool defer_aura_init()
    if(g_iAuraRefCount > 1)
       return TRUE;
 
-   if(!aura_init())
+   if(!ace_init())
       return FALSE;
 
-   g_pfn_create_system = aura_create_aura_system;
+   g_pfn_create_system = ace_create_ace_system;
 
-   s_paurastrpool = new aura_str_pool();
+   s_pacestrpool = new ace_str_pool();
 
    g_bAura = 1;
 
@@ -125,7 +125,7 @@ CLASS_DECL_AURA int_bool defer_aura_init()
 }
 
 
-CLASS_DECL_AURA int_bool defer_aura_term()
+CLASS_DECL_ACE int_bool defer_ace_term()
 {
 
    g_iAuraRefCount--;
@@ -135,9 +135,9 @@ CLASS_DECL_AURA int_bool defer_aura_term()
 
    g_bAura = 0;
 
-   ::ace::del(s_paurastrpool);
+   ::ace::del(s_pacestrpool);
 
-   aura_term();
+   ace_term();
 
    return TRUE;
 
@@ -151,12 +151,12 @@ void set_extended_output_debug_string();
 
 #endif
 
-bool aura_init()
+bool ace_init()
 {
 
    ::ace::static_start::init();
 
-   if(!__node_aura_pre_init())
+   if(!__node_ace_pre_init())
       return false;
 
    //::ace::static_start::init();
@@ -170,7 +170,7 @@ bool aura_init()
   // ::hthread::s_pptra = new ref_array <  hthread >();
 
 
-   if(!__node_aura_pos_init())
+   if(!__node_ace_pos_init())
       return false;
 
 
@@ -185,12 +185,12 @@ bool aura_init()
 }
 
 
-bool aura_term()
+bool ace_term()
 {
 
    __wait_threading_count(::millis((5000) * 8));
 
-   __node_aura_pre_term();
+   __node_ace_pre_term();
 
    ::multithreading::term_multithreading();
 
@@ -204,7 +204,7 @@ bool aura_term()
 
    processor_cache_oriented_destroy_all_memory_pools();
 
-   __node_aura_pos_term();
+   __node_ace_pos_term();
 
    ::ace::static_start::term();
 
@@ -229,14 +229,14 @@ void dappy(const char * psz)
 
 ::map < void *,void *,::ace::application *,::ace::application * > * g_pmapAura = NULL;
 
-void set_aura(void * p,::ace::application * papp)
+void set_ace(void * p,::ace::application * papp)
 {
 
    g_pmapAura->set_at(p,papp);
 
 }
 
-::ace::application * get_aura(void * p)
+::ace::application * get_ace(void * p)
 {
 
    return g_pmapAura->operator [](p);
@@ -247,11 +247,11 @@ void set_aura(void * p,::ace::application * papp)
 
 
 // note (casey) : according to cmuratori (Casey Muratori) "non initialized" (for "static" variables) is zero initialized
-CLASS_DECL_AURA LPFN_CREATE_SYSTEM g_pfn_create_system;
+CLASS_DECL_ACE LPFN_CREATE_SYSTEM g_pfn_create_system;
 
-CLASS_DECL_AURA const char * g_pszCooperativeLevel;
+CLASS_DECL_ACE const char * g_pszCooperativeLevel;
 
-::ace::system * create_aura_system()
+::ace::system * create_ace_system()
 {
    
    return g_pfn_create_system();
@@ -267,7 +267,7 @@ int __cdecl debug_report(int,char const *,int,char const *,char const *,...)
 
 }
 
-CLASS_DECL_AURA void writeln(const char * psz)
+CLASS_DECL_ACE void writeln(const char * psz)
 {
 
    output_debug_string(string(psz) + "\n");

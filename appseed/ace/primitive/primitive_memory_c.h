@@ -16,9 +16,9 @@ namespace primitive
 #elif defined(_M_X64) // X64
 
 
-//DEFINE_C_NUMBER(CLASS_DECL_AURA, memory_size_t         , uint64_t)
-//DEFINE_C_NUMBER(CLASS_DECL_AURA, memory_position_t     , uint64_t)
-//DEFINE_C_NUMBER(CLASS_DECL_AURA, memory_offset_t       ,  int64_t)
+//DEFINE_C_NUMBER(CLASS_DECL_ACE, memory_size_t         , uint64_t)
+//DEFINE_C_NUMBER(CLASS_DECL_ACE, memory_position_t     , uint64_t)
+//DEFINE_C_NUMBER(CLASS_DECL_ACE, memory_offset_t       ,  int64_t)
 
 #define memory_size_t uint64_t
 #define memory_position_t uint64_t
@@ -27,9 +27,9 @@ namespace primitive
 
 #else
 
-//DEFINE_C_NUMBER(CLASS_DECL_AURA,   memory_size_t         , uint32_t)
-//DEFINE_C_NUMBER(CLASS_DECL_AURA,   memory_position_t     , uint32_t)
-//DEFINE_C_NUMBER(CLASS_DECL_AURA,   memory_offset_t       ,  int32_t)
+//DEFINE_C_NUMBER(CLASS_DECL_ACE,   memory_size_t         , uint32_t)
+//DEFINE_C_NUMBER(CLASS_DECL_ACE,   memory_position_t     , uint32_t)
+//DEFINE_C_NUMBER(CLASS_DECL_ACE,   memory_offset_t       ,  int32_t)
 
 #define memory_size_t uint32_t
 #define memory_position_t uint32_t
@@ -46,14 +46,14 @@ namespace primitive
 
 
 
-CLASS_DECL_AURA void * memset_dup(void * p, int32_t i, size_t iSize);
-CLASS_DECL_AURA void * memand_dup(void * p, const void * p1, const void * p2, size_t iSize);
-CLASS_DECL_AURA void * memcpy_dup(void * dst, const void * src, size_t iSize);
-CLASS_DECL_AURA void * memmov_dup(void * dst, const void * src, size_t iSize);
-CLASS_DECL_AURA int32_t  memcmp_dup(const void * sz1, const void * sz2, size_t iSize);
-CLASS_DECL_AURA unichar * wmemcpy_dup(unichar * dst, const unichar * src, size_t iSize);
+CLASS_DECL_ACE void * memset_dup(void * p, int32_t i, size_t iSize);
+CLASS_DECL_ACE void * memand_dup(void * p, const void * p1, const void * p2, size_t iSize);
+CLASS_DECL_ACE void * memcpy_dup(void * dst, const void * src, size_t iSize);
+CLASS_DECL_ACE void * memmov_dup(void * dst, const void * src, size_t iSize);
+CLASS_DECL_ACE int32_t  memcmp_dup(const void * sz1, const void * sz2, size_t iSize);
+CLASS_DECL_ACE unichar * wmemcpy_dup(unichar * dst, const unichar * src, size_t iSize);
 
-CLASS_DECL_AURA void * mem_reverse(void * p, size_t iSize);
+CLASS_DECL_ACE void * mem_reverse(void * p, size_t iSize);
 
 #ifdef __cplusplus
 

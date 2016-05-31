@@ -27,10 +27,10 @@ signal_details::signal_details(::ace::application * papp,class signal * psignal)
    object(papp)
 {
 
-   if(m_pauraapp == NULL && psignal != NULL)
+   if(m_paceapp == NULL && psignal != NULL)
    {
 
-      m_pauraapp = psignal->m_pauraapp;
+      m_paceapp = psignal->m_paceapp;
 
    }
 

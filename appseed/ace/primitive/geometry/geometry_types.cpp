@@ -86,7 +86,7 @@ bool y_null_intersect_rect(LPRECT lprect,LPCRECT lpcrect1,LPCRECT lpcrect2)
 }
 
 
-CLASS_DECL_AURA bool null_intersect_rect(LPRECT lprect,LPCRECT lpcrect1,LPCRECT lpcrect2)
+CLASS_DECL_ACE bool null_intersect_rect(LPRECT lprect,LPCRECT lpcrect1,LPCRECT lpcrect2)
 {
    if(x_null_intersect_rect(lprect,lpcrect1,lpcrect2)
       && y_null_intersect_rect(lprect,lpcrect1,lpcrect2))
@@ -136,7 +136,7 @@ bool y_top_null_intersect_rect(LPRECT lprect,LPCRECT lpcrect1,LPCRECT lpcrect2)
 }
 
 
-CLASS_DECL_AURA bool top_left_null_intersect_rect(LPRECT lprect,LPCRECT lpcrect1,LPCRECT lpcrect2)
+CLASS_DECL_ACE bool top_left_null_intersect_rect(LPRECT lprect,LPCRECT lpcrect1,LPCRECT lpcrect2)
 {
    if(x_left_null_intersect_rect(lprect,lpcrect1,lpcrect2)
       && y_top_null_intersect_rect(lprect,lpcrect1,lpcrect2))
@@ -388,22 +388,22 @@ bool unite(RECTD * prect, const RECTD * prect1, const RECTD * prect2)
 
 
 
-CLASS_DECL_AURA double width(LPCRECTD lpcrect)
+CLASS_DECL_ACE double width(LPCRECTD lpcrect)
 {
    return lpcrect->right - lpcrect->left;
 }
 
-CLASS_DECL_AURA double height(LPCRECTD lpcrect)
+CLASS_DECL_ACE double height(LPCRECTD lpcrect)
 {
    return lpcrect->bottom - lpcrect->top;
 }
 
-CLASS_DECL_AURA double width(const RECTD & rect)
+CLASS_DECL_ACE double width(const RECTD & rect)
 {
    return ::width(&rect);
 }
 
-CLASS_DECL_AURA double height(const RECTD & rect)
+CLASS_DECL_ACE double height(const RECTD & rect)
 {
    return ::height(&rect);
 }
@@ -641,7 +641,7 @@ bool unite(RECT64 * prect, const RECT64 * prect1, const RECT64 * prect2)
 
 
 
-CLASS_DECL_AURA bool deflate(LPRECT prect, LPCRECT lpcrect)
+CLASS_DECL_ACE bool deflate(LPRECT prect, LPCRECT lpcrect)
 {
    prect->left    += lpcrect->left;
    prect->right   -= lpcrect->right;
@@ -650,7 +650,7 @@ CLASS_DECL_AURA bool deflate(LPRECT prect, LPCRECT lpcrect)
    return true;
 }
 
-CLASS_DECL_AURA bool deflate(LPRECT prect,const RECT & rect)
+CLASS_DECL_ACE bool deflate(LPRECT prect,const RECT & rect)
 {
    return deflate(prect, &rect);
 }
@@ -720,7 +720,7 @@ bool polygon_contains(LPPOINTD lppt,LPPOINTD lpptPolygon,int iCount)
 
 }
 
-CLASS_DECL_AURA bool copy(POINT64 * lpptDst,const POINT * lpptSrc)
+CLASS_DECL_ACE bool copy(POINT64 * lpptDst,const POINT * lpptSrc)
 {
    
    lpptDst->x = lpptSrc->x;
@@ -732,7 +732,7 @@ CLASS_DECL_AURA bool copy(POINT64 * lpptDst,const POINT * lpptSrc)
 }
 
 
-CLASS_DECL_AURA bool copy(LPPOINT lpptDst,const POINT64 * lpptSrc)
+CLASS_DECL_ACE bool copy(LPPOINT lpptDst,const POINT64 * lpptSrc)
 {
 
    lpptDst->x = (LONG)lpptSrc->x;
@@ -783,7 +783,7 @@ void copy(CGRect & rect, LPCRECT lpcrect)
 #endif
 
 
-CLASS_DECL_AURA int_bool IsRectEmpty(const RECT & rect)
+CLASS_DECL_ACE int_bool IsRectEmpty(const RECT & rect)
 {
 
    return IsRectEmpty((LPCRECT)&rect);

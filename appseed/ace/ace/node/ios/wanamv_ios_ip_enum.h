@@ -14,7 +14,7 @@ namespace ios
 {
 
 
-   class CLASS_DECL_AURA ip_enum :
+   class CLASS_DECL_ACE ip_enum :
       virtual public ::net::ip_enum
    {
    public:

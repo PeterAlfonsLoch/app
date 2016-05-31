@@ -2,12 +2,12 @@
 
 
 
-CLASS_DECL_AURA int64_t strtoi(const char * psz)
+CLASS_DECL_ACE int64_t strtoi(const char * psz)
 {
    return ::str::to_int64(psz);
 }
 
-CLASS_DECL_AURA int64_t strtoi(const unichar * psz)
+CLASS_DECL_ACE int64_t strtoi(const unichar * psz)
 {
    return wtoi64_dup(psz);
 }
@@ -18,7 +18,7 @@ CLASS_DECL_AURA int64_t strtoi(const unichar * psz)
 
 
 
-CLASS_DECL_AURA string_manager * s_pstringmanager = NULL;
+CLASS_DECL_ACE string_manager * s_pstringmanager = NULL;
 
 
 string_manager * __get_string_manager()
@@ -50,9 +50,9 @@ string_manager * __get_string_manager()
 //
 //namespace str
 //{
-//   CLASS_DECL_AURA const_empty_string g_strEmpty;
+//   CLASS_DECL_ACE const_empty_string g_strEmpty;
 //
-//   CLASS_DECL_AURA string_interface & empty_string()
+//   CLASS_DECL_ACE string_interface & empty_string()
 //   {
 //      return g_strEmpty;
 //   }

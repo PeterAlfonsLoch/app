@@ -2,7 +2,7 @@
 //#include "windows.h"
 
 
-bool CLASS_DECL_AURA vfxFullPath(wstring & wstrFullPath,const wstring & wstrPath);
+bool CLASS_DECL_ACE vfxFullPath(wstring & wstrFullPath,const wstring & wstrPath);
 
 
 
@@ -828,7 +828,7 @@ namespace windows
 
 
    /*
-   UINT CLASS_DECL_AURA vfxGetFileTitle(const unichar * lpszPathName, unichar * lpszTitle, UINT nMax)
+   UINT CLASS_DECL_ACE vfxGetFileTitle(const unichar * lpszPathName, unichar * lpszTitle, UINT nMax)
    {
    ASSERT(lpszTitle == NULL ||
    __is_valid_address(lpszTitle, _MAX_FNAME));
@@ -1023,7 +1023,7 @@ namespace windows
 
 
 // turn a file, relative path or other into an absolute path
-bool CLASS_DECL_AURA vfxFullPath(wstring & wstrFullPath, const wstring & wstrPath)
+bool CLASS_DECL_ACE vfxFullPath(wstring & wstrFullPath, const wstring & wstrPath)
    // lpszPathOut = buffer of _MAX_PATH
    // lpszFileIn = file, relative path or absolute path
    // (both in ANSI character set)
@@ -1106,7 +1106,7 @@ bool CLASS_DECL_AURA vfxFullPath(wstring & wstrFullPath, const wstring & wstrPat
    return TRUE;
 }
 
-/*void CLASS_DECL_AURA __get_root_path(const char * lpszPath, string & strRoot)
+/*void CLASS_DECL_ACE __get_root_path(const char * lpszPath, string & strRoot)
 {
 ASSERT(lpszPath != NULL);
 // determine the root name of the volume
@@ -1149,7 +1149,7 @@ lpsz[1] = '\0';
 strRoot.ReleaseBuffer();
 }*/
 
-/*bool CLASS_DECL_AURA ::core::ComparePath(const char * lpszPath1, const char * lpszPath2)
+/*bool CLASS_DECL_ACE ::core::ComparePath(const char * lpszPath1, const char * lpszPath2)
 {
 // use case insensitive compare as a starter
 if (lstrcmpi(lpszPath1, lpszPath2) != 0)
@@ -1202,7 +1202,7 @@ return FALSE;
 return TRUE; // otherwise file name is truly the same
 }*/
 
-/*UINT CLASS_DECL_AURA __get_file_title(const char * lpszPathName, LPTSTR lpszTitle, UINT nMax)
+/*UINT CLASS_DECL_ACE __get_file_title(const char * lpszPathName, LPTSTR lpszTitle, UINT nMax)
 {
 ASSERT(lpszTitle == NULL ||
 __is_valid_address(lpszTitle, _MAX_FNAME));
@@ -1224,7 +1224,7 @@ return ::core::GetFileName(lpszPathName, lpszTitle, nMax);
 return lpszTitle == NULL ? lstrlen(lpszTemp)+1 : 0;
 }*/
 
-void CLASS_DECL_AURA vfxGetModuleShortFileName(HINSTANCE hInst, string& strShortName)
+void CLASS_DECL_ACE vfxGetModuleShortFileName(HINSTANCE hInst, string& strShortName)
 {
    WCHAR szLongPathName[_MAX_PATH];
    wstring wstrShortName;
@@ -1244,7 +1244,7 @@ void CLASS_DECL_AURA vfxGetModuleShortFileName(HINSTANCE hInst, string& strShort
 
 
 
-string CLASS_DECL_AURA vfxStringFromCLSID(REFCLSID rclsid)
+string CLASS_DECL_ACE vfxStringFromCLSID(REFCLSID rclsid)
 {
    WCHAR szCLSID[256];
    wsprintfW(szCLSID, L"{%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X}",
@@ -1254,7 +1254,7 @@ string CLASS_DECL_AURA vfxStringFromCLSID(REFCLSID rclsid)
    return szCLSID;
 }
 
-bool CLASS_DECL_AURA vfxGetInProcServer(const char * lpszCLSID, string & str)
+bool CLASS_DECL_ACE vfxGetInProcServer(const char * lpszCLSID, string & str)
 {
    HKEY hKey = NULL;
    bool b = FALSE;
@@ -1287,7 +1287,7 @@ bool CLASS_DECL_AURA vfxGetInProcServer(const char * lpszCLSID, string & str)
 
 
 // turn a file, relative path or other into an absolute path
-bool CLASS_DECL_AURA vfxFullPath(unichar * lpszPathOut, const unichar * lpszFileIn)
+bool CLASS_DECL_ACE vfxFullPath(unichar * lpszPathOut, const unichar * lpszFileIn)
    // lpszPathOut = buffer of _MAX_PATH
    // lpszFileIn = file, relative path or absolute path
    // (both in ANSI character set)
@@ -1339,7 +1339,7 @@ bool CLASS_DECL_AURA vfxFullPath(unichar * lpszPathOut, const unichar * lpszFile
 
 
 
-void CLASS_DECL_AURA vfxGetRoot(wstring & wstrRoot, const wstring & wstrPath)
+void CLASS_DECL_ACE vfxGetRoot(wstring & wstrRoot, const wstring & wstrPath)
 {
    //   ASSERT(lpszPath != NULL);
    // determine the root name of the volume
@@ -1382,7 +1382,7 @@ void CLASS_DECL_AURA vfxGetRoot(wstring & wstrRoot, const wstring & wstrPath)
 }
 
 
-void CLASS_DECL_AURA vfxGetRoot(const unichar * lpszPath, string& strRoot)
+void CLASS_DECL_ACE vfxGetRoot(const unichar * lpszPath, string& strRoot)
 {
    ASSERT(lpszPath != NULL);
    wstring wstrRoot;
@@ -1427,7 +1427,7 @@ void CLASS_DECL_AURA vfxGetRoot(const unichar * lpszPath, string& strRoot)
 }
 
 
-/*bool CLASS_DECL_AURA vfxFullPath(char * lpszPathOut, const char * lpszFileIn)
+/*bool CLASS_DECL_ACE vfxFullPath(char * lpszPathOut, const char * lpszFileIn)
 // lpszPathOut = buffer of _MAX_PATH
 // lpszFileIn = file, relative path or absolute path
 // (both in ANSI character set)
@@ -1481,7 +1481,7 @@ return TRUE;
 
 
 
-UINT CLASS_DECL_AURA vfxGetFileName(const unichar * lpszPathName, unichar * lpszTitle, UINT nMax)
+UINT CLASS_DECL_ACE vfxGetFileName(const unichar * lpszPathName, unichar * lpszTitle, UINT nMax)
 {
    ASSERT(lpszTitle == NULL ||
       __is_valid_address(lpszTitle, _MAX_FNAME));

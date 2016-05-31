@@ -9,26 +9,26 @@ namespace str
    {
 
 
-//      void CLASS_DECL_AURA unicode_to_utf8(stringa & stra, stringa & stra);
-  //    void CLASS_DECL_AURA utf8_to_unicode(stringa & stra, stringa & stra);
+//      void CLASS_DECL_ACE unicode_to_utf8(stringa & stra, stringa & stra);
+  //    void CLASS_DECL_ACE utf8_to_unicode(stringa & stra, stringa & stra);
 
 
-      bool CLASS_DECL_AURA UnicodeToMultiByte(UINT uiCodePage, memory & str, const unichar * lpcsz);
+      bool CLASS_DECL_ACE UnicodeToMultiByte(UINT uiCodePage, memory & str, const unichar * lpcsz);
 
-      bool CLASS_DECL_AURA MultiByteToMultiByte(UINT uiCodePageDest, memory & str, UINT uiCodePageSrc, const char * lpcsz);
-      bool CLASS_DECL_AURA MultiByteToMultiByte(UINT uiCodePageDest, memory & str, UINT uiCodePageSrc, const char * lpcsz, strsize nCount);
+      bool CLASS_DECL_ACE MultiByteToMultiByte(UINT uiCodePageDest, memory & str, UINT uiCodePageSrc, const char * lpcsz);
+      bool CLASS_DECL_ACE MultiByteToMultiByte(UINT uiCodePageDest, memory & str, UINT uiCodePageSrc, const char * lpcsz, strsize nCount);
 
-      bool CLASS_DECL_AURA multibyte_to_utf8(UINT uiCodePageSrc, memory & str, const char * lpcsz);
-      bool CLASS_DECL_AURA multibyte_to_utf8(UINT uiCodePageSrc, memory & str, const char * lpcsz, strsize nCount);
+      bool CLASS_DECL_ACE multibyte_to_utf8(UINT uiCodePageSrc, memory & str, const char * lpcsz);
+      bool CLASS_DECL_ACE multibyte_to_utf8(UINT uiCodePageSrc, memory & str, const char * lpcsz, strsize nCount);
 
-//      bool CLASS_DECL_AURA OEMToMultiByte(UINT uiCodePage, memory & str, const char * lpcsz);
-//      bool CLASS_DECL_AURA OEMToMultiByte(UINT uiCodePage, memory & str, const char * lpcsz, strsize nCount);
+//      bool CLASS_DECL_ACE OEMToMultiByte(UINT uiCodePage, memory & str, const char * lpcsz);
+//      bool CLASS_DECL_ACE OEMToMultiByte(UINT uiCodePage, memory & str, const char * lpcsz, strsize nCount);
 
-      bool CLASS_DECL_AURA utf8_to_multibyte(UINT uiCodePage, memory & str, const char * lpcsz);
-      bool CLASS_DECL_AURA utf8_to_multibyte(UINT uiCodePage, memory & str, const char * lpcsz, strsize nCount);
+      bool CLASS_DECL_ACE utf8_to_multibyte(UINT uiCodePage, memory & str, const char * lpcsz);
+      bool CLASS_DECL_ACE utf8_to_multibyte(UINT uiCodePage, memory & str, const char * lpcsz, strsize nCount);
 
-//      bool CLASS_DECL_AURA OemToUtf8(memory & str, const char * lpcsz);
-//      bool CLASS_DECL_AURA OemToUtf8(memory & str, const char * lpcsz, strsize nCount);
+//      bool CLASS_DECL_ACE OemToUtf8(memory & str, const char * lpcsz);
+//      bool CLASS_DECL_ACE OemToUtf8(memory & str, const char * lpcsz, strsize nCount);
 
 /*      inline void unicode_to_utf8(stringa & stra, stringa & stra)
       {

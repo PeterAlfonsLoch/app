@@ -76,9 +76,9 @@ get_b_pack_count()
 }
 
 
-typedef CLASS_DECL_AURA spreadset < int32_t, int32_t, int32_t, int32_t, unique_int_sort_array, unique_int_sort_array > int_int_spreadset;
+typedef CLASS_DECL_ACE spreadset < int32_t, int32_t, int32_t, int32_t, unique_int_sort_array, unique_int_sort_array > int_int_spreadset;
 
-typedef CLASS_DECL_AURA spreadset < index, index, index, index, unique_index_sort_array, unique_index_sort_array > index_index_spreadset;
+typedef CLASS_DECL_ACE spreadset < index, index, index, index, unique_index_sort_array, unique_index_sort_array > index_index_spreadset;
 
 
 

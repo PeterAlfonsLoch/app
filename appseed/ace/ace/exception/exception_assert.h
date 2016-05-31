@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_AURA assert_exception : 
+class CLASS_DECL_ACE assert_exception : 
    virtual public simple_exception
 {
 public:

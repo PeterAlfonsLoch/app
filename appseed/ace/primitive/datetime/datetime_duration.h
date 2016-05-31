@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_AURA duration
+class CLASS_DECL_ACE duration
 {
 public:
 
@@ -236,7 +236,7 @@ inline bool duration::operator == (const duration & duration) const
 }
 
 
-class CLASS_DECL_AURA millis :
+class CLASS_DECL_ACE millis :
    public duration
 {
 public:
@@ -250,7 +250,7 @@ public:
 };
 
 
-class CLASS_DECL_AURA seconds :
+class CLASS_DECL_ACE seconds :
    public millis
 {
 public:
@@ -265,7 +265,7 @@ public:
 };
 
 
-class CLASS_DECL_AURA minutes :
+class CLASS_DECL_ACE minutes :
    public seconds
 {
 public:
@@ -280,7 +280,7 @@ public:
 };
 
 
-class CLASS_DECL_AURA hours :
+class CLASS_DECL_ACE hours :
    public minutes
 {
 public:
@@ -295,7 +295,7 @@ public:
 };
 
 
-class CLASS_DECL_AURA days :
+class CLASS_DECL_ACE days :
    public hours
 {
 public:
@@ -433,7 +433,7 @@ inline int64_t duration::total_seconds() const
 }
 
 
-CLASS_DECL_AURA void Sleep(const duration & duration);
+CLASS_DECL_ACE void Sleep(const duration & duration);
 
 
 

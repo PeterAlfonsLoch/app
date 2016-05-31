@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_AURA timer_event:
+class CLASS_DECL_ACE timer_event:
    virtual public timer
 {
 public:

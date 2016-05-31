@@ -17,8 +17,8 @@ namespace ace
    {
 
       
-      CLASS_DECL_AURA void init();
-      CLASS_DECL_AURA void term();
+      CLASS_DECL_ACE void init();
+      CLASS_DECL_ACE void term();
 
    
    } // namespace static_start

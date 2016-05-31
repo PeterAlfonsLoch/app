@@ -5,7 +5,7 @@ namespace ace
 {
 
 
-   class CLASS_DECL_AURA live_signal :
+   class CLASS_DECL_ACE live_signal :
       virtual public object
    {
    public:

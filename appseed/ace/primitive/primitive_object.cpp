@@ -15,7 +15,7 @@ object::object()
 
    // root like (Rute like, Thank you Rute and Inha and Lizir!!)
    m_countReference  = 1;
-   m_pauraapp        = NULL;
+   m_paceapp        = NULL;
 
 }
 
@@ -63,7 +63,7 @@ object::object(::ace::application * papp)
    common_construct();
 
    // ::element
-   m_pauraapp = papp;
+   m_paceapp = papp;
    m_ulFlags = (uint32_t)flag_auto_clean;
    m_pfactoryitembase   = NULL;
 
@@ -148,7 +148,7 @@ object & object::operator=(const object & objectSrc)
       *m_psetObject = *objectSrc.m_psetObject;
 
       // :: element
-      m_pauraapp = objectSrc.m_pauraapp;
+      m_paceapp = objectSrc.m_paceapp;
       m_ulFlags = objectSrc.m_ulFlags;
       m_pfactoryitembase   = objectSrc.m_pfactoryitembase;
 
@@ -345,12 +345,12 @@ waitable_callback::~waitable_callback()
 
 ///  \brief		pauses waitable for specified time
 ///  \param		duration sleeping time of waitable
-/*CLASS_DECL_AURA void sleep(const duration & duration)
+/*CLASS_DECL_ACE void sleep(const duration & duration)
 {
 Sleep((uint32_t)duration.total_milliseconds());
 }*/
 
-CLASS_DECL_AURA void sleep(const duration & duration)
+CLASS_DECL_ACE void sleep(const duration & duration)
 {
    ::Sleep(static_cast<uint32_t>(duration.total_milliseconds()));
 }
@@ -649,7 +649,7 @@ void object::on_request(sp(::create) pcreatecontext)
 //   // root like (Rute like, Thank you Rute and Inha and Lizir!!)
 //   m_countReference  = 1;
 //   m_bHeap           = false;
-//   m_pauraapp        = NULL;
+//   m_paceapp        = NULL;
 //
 //}
 
@@ -657,7 +657,7 @@ void object::on_request(sp(::create) pcreatecontext)
 //object::object(const object & o)
 //{
 //
-//   m_pauraapp = o.m_pauraapp;
+//   m_paceapp = o.m_paceapp;
 //   m_ulFlags = o.m_ulFlags;
 //   m_pfactoryitembase   = o.m_pfactoryitembase;
 //
@@ -679,7 +679,7 @@ void object::on_request(sp(::create) pcreatecontext)
 /*sp(::ace::application) object::get_app() const
 {
 
-return m_pauraapp;
+return m_paceapp;
 
 }*/
 
@@ -687,7 +687,7 @@ return m_pauraapp;
 void object::set_app(::ace::application * papp)
 {
 
-   m_pauraapp = papp;
+   m_paceapp = papp;
 
 }
 
@@ -707,7 +707,7 @@ void object::system(const char * pszProjectName)
 //   {
 //
 //      m_ulFlags   = o.m_ulFlags;
-//      m_pauraapp      = o.m_pauraapp;
+//      m_paceapp      = o.m_paceapp;
 //
 //   }
 //
@@ -728,7 +728,7 @@ void object::delete_this()
    else if(m_ulFlags & flag_discard_to_factory)
    {
 
-      m_pauraapp->m_paurasystem->discard_to_factory(this);
+      m_paceapp->m_pacesystem->discard_to_factory(this);
 
    }
    else if(is_heap())
@@ -755,7 +755,7 @@ object * object::clone()
 string object::lstr(id id,const string & strDefault)
 {
 
-   return m_pauraapp->lstr(id,strDefault);
+   return m_paceapp->lstr(id,strDefault);
 
 }
 
@@ -770,7 +770,7 @@ namespace ace
 
       allocator * pallocator = canew(allocator());
 
-      pallocator->m_pauraapp = papp;
+      pallocator->m_paceapp = papp;
 
       smart_pointer < allocator >::operator = (pallocator);
 

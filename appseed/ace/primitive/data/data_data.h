@@ -5,12 +5,12 @@ namespace data
 {
 
 
-   typedef CLASS_DECL_AURA ref_array < listener > data_listener_ptra;
-   typedef CLASS_DECL_AURA ref_array < data > data_ptra;
-   typedef CLASS_DECL_AURA comparable_array < sp(object) > ca_ptra;
+   typedef CLASS_DECL_ACE ref_array < listener > data_listener_ptra;
+   typedef CLASS_DECL_ACE ref_array < data > data_ptra;
+   typedef CLASS_DECL_ACE comparable_array < sp(object) > ca_ptra;
 
 
-//   class CLASS_DECL_AURA simple_lock :
+//   class CLASS_DECL_ACE simple_lock :
 //      public interlocked_long_pulse
 //   {
 //   public:
@@ -27,7 +27,7 @@ namespace data
    
 
 
-   class CLASS_DECL_AURA simple_data :
+   class CLASS_DECL_ACE simple_data :
       virtual public ::object
    {
    public:
@@ -52,7 +52,7 @@ namespace data
 
 
 
-//   class CLASS_DECL_AURA lock :
+//   class CLASS_DECL_ACE lock :
 //      public interlocked_long_pulse
 //   {
 //   public:
@@ -69,7 +69,7 @@ namespace data
 
 
 
-   class CLASS_DECL_AURA data :
+   class CLASS_DECL_ACE data :
       virtual public simple_data
    {
    public:

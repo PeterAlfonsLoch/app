@@ -5,7 +5,7 @@ namespace datetime
 {
 
 
-   class CLASS_DECL_AURA value
+   class CLASS_DECL_ACE value
    {
    public:
 
@@ -41,10 +41,10 @@ namespace datetime
 } // namespace datetime
 
 
-CLASS_DECL_AURA datetime::value operator + (const datetime::value & val1, const datetime::value & val2);
-CLASS_DECL_AURA datetime::value operator - (const datetime::value & val1, const datetime::value & val2);
-CLASS_DECL_AURA datetime::value operator * (const datetime::value & val1, double d);
-CLASS_DECL_AURA datetime::value operator / (const datetime::value & val1, double d);
+CLASS_DECL_ACE datetime::value operator + (const datetime::value & val1, const datetime::value & val2);
+CLASS_DECL_ACE datetime::value operator - (const datetime::value & val1, const datetime::value & val2);
+CLASS_DECL_ACE datetime::value operator * (const datetime::value & val1, double d);
+CLASS_DECL_ACE datetime::value operator / (const datetime::value & val1, double d);
 
 
 

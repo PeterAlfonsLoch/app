@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_AURA pointer_list :
+class CLASS_DECL_ACE pointer_list :
    virtual public ::object
 {
 public:

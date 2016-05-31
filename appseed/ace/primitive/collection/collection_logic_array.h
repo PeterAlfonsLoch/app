@@ -2,7 +2,7 @@
 
 using bool_array_base = raw_array < bool,bool  > ;
 
-class CLASS_DECL_AURA bool_array :
+class CLASS_DECL_ACE bool_array :
    public bool_array_base
 {
 public:

@@ -25,7 +25,7 @@
 namespace win
 {
 
-   CLASS_DECL_AURA string error_message(uint32_t dwError);
+   CLASS_DECL_ACE string error_message(uint32_t dwError);
 
 }
 
@@ -33,8 +33,8 @@ namespace win
 namespace exception
 {
 
-   CLASS_DECL_AURA void throw_interface_only(::ace::application * papp);
-   CLASS_DECL_AURA void throw_not_implemented(::ace::application * papp);
+   CLASS_DECL_ACE void throw_interface_only(::ace::application * papp);
+   CLASS_DECL_ACE void throw_not_implemented(::ace::application * papp);
 
 }
 
@@ -94,8 +94,8 @@ class dump_context;
 
 
 // ::datetime::time_span diagnostics and serialization
-CLASS_DECL_AURA dump_context & operator<<(dump_context & dumpcontext, const ::datetime::time_span & dateSpanSrc);
-CLASS_DECL_AURA dump_context & operator<<(dump_context & dumpcontext, const ::datetime::time & dateSrc);
+CLASS_DECL_ACE dump_context & operator<<(dump_context & dumpcontext, const ::datetime::time_span & dateSpanSrc);
+CLASS_DECL_ACE dump_context & operator<<(dump_context & dumpcontext, const ::datetime::time & dateSrc);
 
 
 #if defined(DEBUG) && !defined(___NO_DEBUG_CRT)
@@ -103,10 +103,10 @@ CLASS_DECL_AURA dump_context & operator<<(dump_context & dumpcontext, const ::da
 
 
 // Return TRUE if memory is sane or print out what is wrong
-CLASS_DECL_AURA bool __check_memory();
+CLASS_DECL_ACE bool __check_memory();
 
 // Return TRUE if valid memory block of nBytes
-CLASS_DECL_AURA bool __is_memory_block(const void * p,UINT nBytes,LONG* plRequestNumber = NULL);
+CLASS_DECL_ACE bool __is_memory_block(const void * p,UINT nBytes,LONG* plRequestNumber = NULL);
 
 
 
@@ -126,13 +126,13 @@ enum e_memdbg // memory debug/diagnostic flags
 #define __output_debug_string TRACE
 
 // turn on/off tracking for a int16_t while
-CLASS_DECL_AURA bool __enable_memory_tracking(bool bTrack);
+CLASS_DECL_ACE bool __enable_memory_tracking(bool bTrack);
 
 // Turn on/off the global flag gen_MemoryLeakOverride. if bEnable is TRUE
 // then further calls to __enable_memory_tracking() wont change the current
 // memory tracking state, until __enable_memory_leak_override(bool bEnable)
 // is called again with bEnable == FALSE.
-CLASS_DECL_AURA bool __enable_memory_leak_override(bool bEnable);
+CLASS_DECL_ACE bool __enable_memory_leak_override(bool bEnable);
 
 
 
@@ -148,7 +148,7 @@ void ::core::DoForAllClasses(void (c_cdecl *pfn)(sp(type) pClass,
 #else
 
 // non-DEBUG_ALLOC version that assume everything is OK
-#define AURA_NEW new
+#define ACE_NEW new
 #define __check_memory() TRUE
 #define __is_memory_block(p, nBytes) TRUE
 #define __enable_memory_tracking(bTrack) FALSE
@@ -175,8 +175,8 @@ void __dump_stack(uint32_t dwFlags = __stack_dump_TARGET_DEFAULT);
 #include "exception_dump_context.h"
 
 #ifdef DEBUG
-extern CLASS_DECL_AURA dump_context g_dumpcontext;
-extern CLASS_DECL_AURA bool g_bTraceEnabled;
+extern CLASS_DECL_ACE dump_context g_dumpcontext;
+extern CLASS_DECL_ACE bool g_bTraceEnabled;
 #endif
 
 #ifdef DEBUG
@@ -190,9 +190,9 @@ extern CLASS_DECL_AURA bool g_bTraceEnabled;
 #ifdef DEBUG
 #define DEBUG_NOTE __FILE__
 #ifdef __MCRTDBG
-#define AURA_NEW new
+#define ACE_NEW new
 #else
-#define AURA_NEW new(DEBUG_NOTE, __LINE__)
+#define ACE_NEW new(DEBUG_NOTE, __LINE__)
 #endif
 #define THREAD_NOTE __get_thread_note()
 #define SET_THREAD_NOTE(x) __set_thread_note(x);
@@ -201,8 +201,8 @@ extern CLASS_DECL_AURA bool g_bTraceEnabled;
 #endif
 
 
-CLASS_DECL_AURA string __get_thread_note();
-CLASS_DECL_AURA void __set_thread_note(const char * pszNote);
+CLASS_DECL_ACE string __get_thread_note();
+CLASS_DECL_ACE void __set_thread_note(const char * pszNote);
 
 
 
@@ -211,19 +211,19 @@ CLASS_DECL_AURA void __set_thread_note(const char * pszNote);
 
 
 
-CLASS_DECL_AURA int __assert_failed_line(const char * lpszFileName, int nLine);
+CLASS_DECL_ACE int __assert_failed_line(const char * lpszFileName, int nLine);
 
-CLASS_DECL_AURA void c_cdecl __trace(const char * lpszFormat, ...);
+CLASS_DECL_ACE void c_cdecl __trace(const char * lpszFormat, ...);
 // Note: file names are still ANSI strings (filenames rarely need UNICODE)
-CLASS_DECL_AURA void assert_valid_object(const object* pOb,
+CLASS_DECL_ACE void assert_valid_object(const object* pOb,
             const char * lpszFileName, int32_t nLine);
-CLASS_DECL_AURA void __dump(const object* pOb); // dump an object from CodeView
+CLASS_DECL_ACE void __dump(const object* pOb); // dump an object from CodeView
 
 
 // extern ::core::CTrace TRACE;
 #ifdef DEBUG
 #ifndef TRACE
-#define TRACE ::ace::trace_add_file_and_line(m_pauraapp, __FILE__, __LINE__)
+#define TRACE ::ace::trace_add_file_and_line(m_paceapp, __FILE__, __LINE__)
 #define APPTRACE ::ace::trace_add_file_and_line(papp, __FILE__, __LINE__)
 //#define TRACE2 TRACE
 #endif
@@ -365,8 +365,8 @@ do { \
 #endif // C_RUNTIME_ERRORCHECK_SPRINTF
 
 
-CLASS_DECL_AURA errno_t c_runtime_error_check(errno_t error);
-CLASS_DECL_AURA void __cdecl __clearerr_s(FILE *stream);
+CLASS_DECL_ACE errno_t c_runtime_error_check(errno_t error);
+CLASS_DECL_ACE void __cdecl __clearerr_s(FILE *stream);
 
 
 

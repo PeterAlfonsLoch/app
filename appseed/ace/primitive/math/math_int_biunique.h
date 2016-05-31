@@ -475,7 +475,7 @@ T biunique < T, T_to_T > ::calc_max_b()
 
 
 
-class CLASS_DECL_AURA index_biunique :
+class CLASS_DECL_ACE index_biunique :
    public biunique < index >
 {
 public:
@@ -483,7 +483,7 @@ public:
    virtual ~index_biunique() {}
 };
 
-class CLASS_DECL_AURA int_biunique :
+class CLASS_DECL_ACE int_biunique :
    public biunique < int32_t, int_to_int >
 {
 public:

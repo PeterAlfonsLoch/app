@@ -16,7 +16,7 @@ namespace datetime
 
 #if 0
 
-extern "C" CLASS_DECL_AURA time_t timegm(struct tm *tmp)
+extern "C" CLASS_DECL_ACE time_t timegm(struct tm *tmp)
 {
 
    static time_t gmtime_offset;
@@ -149,11 +149,11 @@ namespace datetime
          {
             if(bAdd)
             {
-               Sys(pbaseapp->m_paurasystem).log().trace("strtotime: invalid char +");
+               Sys(pbaseapp->m_pacesystem).log().trace("strtotime: invalid char +");
             }
             else if(bMinus)
             {
-               Sys(pbaseapp->m_paurasystem).log().trace("strtotime: invalid char + on Minus state");
+               Sys(pbaseapp->m_pacesystem).log().trace("strtotime: invalid char + on Minus state");
             }
             bAdd = true;
             bMinus = false;
@@ -163,11 +163,11 @@ namespace datetime
          {
             if(bAdd)
             {
-               Sys(pbaseapp->m_paurasystem).log().trace("strtotime: invalid char - on add state");
+               Sys(pbaseapp->m_pacesystem).log().trace("strtotime: invalid char - on add state");
             }
             else if(bMinus)
             {
-               Sys(pbaseapp->m_paurasystem).log().trace("strtotime: invalid char - on Minus state");
+               Sys(pbaseapp->m_pacesystem).log().trace("strtotime: invalid char - on Minus state");
             }
             bAdd = false;
             bMinus = true;
@@ -272,7 +272,7 @@ namespace datetime
                && str.Mid(16,1) == ":")
          {
             bBaseTime = true;
-            Sys(pbaseapp->m_paurasystem).datetime().international().parse_str(str,set);
+            Sys(pbaseapp->m_pacesystem).datetime().international().parse_str(str,set);
             string strWord = str.Mid(19);
             strWord.trim_left();
             strWord = ::str::get_word(strWord," ");
@@ -317,7 +317,7 @@ namespace datetime
                && str.Mid(7,1) == "-")
          {
             bBaseTime = true;
-            Sys(pbaseapp->m_paurasystem).datetime().international().parse_str(str,set);
+            Sys(pbaseapp->m_pacesystem).datetime().international().parse_str(str,set);
             time = ::datetime::time(
                       set["year"],
                       set["month"],
@@ -391,14 +391,14 @@ namespace datetime
          if(i1 != i2
                && i1 >= 1 && i1 <= 12
                && i2 >= 1 && i2 <=
-               Sys(pbaseapp->m_paurasystem).datetime().get_month_day_count(time.GetYear(),i1))
+               Sys(pbaseapp->m_pacesystem).datetime().get_month_day_count(time.GetYear(),i1))
          {
             bFirst = true;
             iCount++;
          }
          if(i2 >= 1 && i2 <= 12
                && i1 >= 1 && i1 <=
-               Sys(pbaseapp->m_paurasystem).datetime().get_month_day_count(time.GetYear(),i2))
+               Sys(pbaseapp->m_pacesystem).datetime().get_month_day_count(time.GetYear(),i2))
          {
             iCount++;
          }
@@ -531,20 +531,20 @@ namespace datetime
             if(time.GetHour() == 0 && time.GetMinute() == 0)
             {
                str = time.Format("%Y-");
-               Sys(pbaseapp->m_paurasystem).datetime().get_month_str(pcontext,time.GetMonth());
+               Sys(pbaseapp->m_pacesystem).datetime().get_month_str(pcontext,time.GetMonth());
                str += time.Format("-%d");
             }
             else
             {
                str = time.Format("%Y-");
-               str += Sys(pbaseapp->m_paurasystem).datetime().get_month_str(pcontext,time.GetMonth());
+               str += Sys(pbaseapp->m_pacesystem).datetime().get_month_str(pcontext,time.GetMonth());
                str += time.Format("-%d %H:%M");
             }
          }
          else
          {
             str = time.Format("%Y-");
-            str += Sys(pbaseapp->m_paurasystem).datetime().get_month_str(pcontext,time.GetMonth());
+            str += Sys(pbaseapp->m_pacesystem).datetime().get_month_str(pcontext,time.GetMonth());
             str += time.Format("-%d %H:%M:%S");
          }
       }
@@ -562,14 +562,14 @@ namespace datetime
 uint64_t g_firstNano;
 
 
-CLASS_DECL_AURA DWORD get_tick_count()
+CLASS_DECL_ACE DWORD get_tick_count()
 {
 
    return (DWORD) ((uint64_t) get_nanos() / (uint64_t) (1000 * 1000));
 
 }
 
-CLASS_DECL_AURA DWORD get_first_tick()
+CLASS_DECL_ACE DWORD get_first_tick()
 {
 
    return (DWORD)(get_first_nano() / (uint64_t)(1000 * 1000));
@@ -577,7 +577,7 @@ CLASS_DECL_AURA DWORD get_first_tick()
 }
 
 
-CLASS_DECL_AURA uint64_t get_first_nano()
+CLASS_DECL_ACE uint64_t get_first_nano()
 {
 
    return g_firstNano;

@@ -5,7 +5,7 @@ namespace process
 {
 
 
-   CLASS_DECL_AURA bool set_priority(int32_t priority);
+   CLASS_DECL_ACE bool set_priority(int32_t priority);
 
    
 } // namespace process

@@ -16,7 +16,7 @@ inline index BaseSortCompare(const id & id1, const id & id2)
 class mutex;
 
 
-class CLASS_DECL_AURA id_space
+class CLASS_DECL_ACE id_space
 {
 protected:
 
@@ -48,7 +48,7 @@ public:
 
 
 
-class CLASS_DECL_AURA strid_array :
+class CLASS_DECL_ACE strid_array :
    virtual public object
 {
 protected:
@@ -87,4 +87,4 @@ public:
 
 
 
-CLASS_DECL_AURA ::id_space & get_id_space();
+CLASS_DECL_ACE ::id_space & get_id_space();

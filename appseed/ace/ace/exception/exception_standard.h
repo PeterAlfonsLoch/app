@@ -27,7 +27,7 @@
 
 
 
-#define DECLARE_SE_EXCEPTION_CLASS(name) class CLASS_DECL_AURA name : virtual public standard_exception \
+#define DECLARE_SE_EXCEPTION_CLASS(name) class CLASS_DECL_ACE name : virtual public standard_exception \
    { \
     friend class translator; \
    protected: \
@@ -50,7 +50,7 @@
 
 #endif
 
-class CLASS_DECL_AURA standard_exception :
+class CLASS_DECL_ACE standard_exception :
    virtual public ::exception::base
 {
 public:
@@ -370,7 +370,7 @@ namespace exception
 #include <sys/ucontext.h>
 #endif*/
 
-/*class CLASS_DECL_AURA standard_exception :
+/*class CLASS_DECL_ACE standard_exception :
    public bastandard_exception
 {
 public:

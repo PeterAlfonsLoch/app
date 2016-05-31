@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_AURA job :
+class CLASS_DECL_ACE job :
    virtual public ::thread
 {
 public:

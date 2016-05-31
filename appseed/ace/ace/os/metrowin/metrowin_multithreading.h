@@ -7,7 +7,7 @@
 
 
 //
-//class CLASS_DECL_AURA thread_data
+//class CLASS_DECL_ACE thread_data
 //{
 //public:
 //
@@ -40,40 +40,40 @@ POINT       pt;
 
 
 
-CLASS_DECL_AURA WINBOOL WINAPI GetMessageW(LPMESSAGE lpMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax);
+CLASS_DECL_ACE WINBOOL WINAPI GetMessageW(LPMESSAGE lpMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax);
 
 #define GetMessage GetMessageW
 
-CLASS_DECL_AURA WINBOOL WINAPI PeekMessageW(LPMESSAGE lpMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax,UINT wRemoveMsg);
+CLASS_DECL_ACE WINBOOL WINAPI PeekMessageW(LPMESSAGE lpMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax,UINT wRemoveMsg);
 
 #define PeekMessage PeekMessageW
 
-//CLASS_DECL_AURA DWORD WINAPI get_thread_id(HTHREAD Thread);
+//CLASS_DECL_ACE DWORD WINAPI get_thread_id(HTHREAD Thread);
 
 #define PostThreadMessage  PostThreadMessageW
 
-CLASS_DECL_AURA WINBOOL WINAPI PostThreadMessageW(IDTHREAD idthread, UINT Msg, WPARAM wParam, LPARAM lParam);
+CLASS_DECL_ACE WINBOOL WINAPI PostThreadMessageW(IDTHREAD idthread, UINT Msg, WPARAM wParam, LPARAM lParam);
 
-CLASS_DECL_AURA void WINAPI TlsShutdown();
+CLASS_DECL_ACE void WINAPI TlsShutdown();
 
-//CLASS_DECL_AURA DWORD WINAPI GetThreadId(HTHREAD Thread);
+//CLASS_DECL_ACE DWORD WINAPI GetThreadId(HTHREAD Thread);
 
 
 #ifdef __cplusplus
 
 class mq;
 
-CLASS_DECL_AURA mq * __get_mq();
-CLASS_DECL_AURA mq * __get_mq(IDTHREAD iThreadId);
+CLASS_DECL_ACE mq * __get_mq();
+CLASS_DECL_ACE mq * __get_mq(IDTHREAD iThreadId);
 
 
 #endif
 
 #ifndef METROWIN
 
-CLASS_DECL_AURA BOOL WINAPI SetThreadPriority(HTHREAD hThread,int iPriority);
+CLASS_DECL_ACE BOOL WINAPI SetThreadPriority(HTHREAD hThread,int iPriority);
 
-CLASS_DECL_AURA int WINAPI GetThreadPriority(_In_ HTHREAD hThread);
+CLASS_DECL_ACE int WINAPI GetThreadPriority(_In_ HTHREAD hThread);
 
 #endif
 

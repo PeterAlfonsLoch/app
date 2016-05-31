@@ -59,7 +59,7 @@ namespace numeric_info_internal
 
 
    template < >
-   class CLASS_DECL_AURA numeric_info < int8_t > :
+   class CLASS_DECL_ACE numeric_info < int8_t > :
    public numeric_integer_base
    {
    public:
@@ -79,7 +79,7 @@ namespace numeric_info_internal
    };
 
    template < >
-   class CLASS_DECL_AURA numeric_info < uint8_t > :
+   class CLASS_DECL_ACE numeric_info < uint8_t > :
    public numeric_integer_base
    {
    public:
@@ -98,7 +98,7 @@ namespace numeric_info_internal
 
    };
    template < >
-   class CLASS_DECL_AURA numeric_info < int16_t > :
+   class CLASS_DECL_ACE numeric_info < int16_t > :
    public numeric_integer_base
    {
    public:
@@ -118,7 +118,7 @@ namespace numeric_info_internal
    };
 
    template < >
-   class CLASS_DECL_AURA numeric_info < uint16_t > :
+   class CLASS_DECL_ACE numeric_info < uint16_t > :
    public numeric_integer_base
    {
    public:
@@ -138,7 +138,7 @@ namespace numeric_info_internal
    };
 
    template < >
-   class CLASS_DECL_AURA numeric_info < int32_t > :
+   class CLASS_DECL_ACE numeric_info < int32_t > :
    public numeric_integer_base
    {
    public:
@@ -158,7 +158,7 @@ namespace numeric_info_internal
    };
 
    template < >
-   class CLASS_DECL_AURA numeric_info < uint32_t > :
+   class CLASS_DECL_ACE numeric_info < uint32_t > :
    public numeric_integer_base
    {
    public:
@@ -178,7 +178,7 @@ namespace numeric_info_internal
    };
 
    template < >
-   class CLASS_DECL_AURA numeric_info < int64_t > :
+   class CLASS_DECL_ACE numeric_info < int64_t > :
    public numeric_integer_base
    {
    public:
@@ -198,7 +198,7 @@ namespace numeric_info_internal
    };
 
    template < >
-   class CLASS_DECL_AURA numeric_info < uint64_t >:
+   class CLASS_DECL_ACE numeric_info < uint64_t >:
    public numeric_integer_base
    {
    public:
@@ -219,7 +219,7 @@ namespace numeric_info_internal
 
 
    template < >
-   class CLASS_DECL_AURA numeric_info < float >:
+   class CLASS_DECL_ACE numeric_info < float >:
    public numeric_floating_base
    {
    public:
@@ -239,7 +239,7 @@ namespace numeric_info_internal
 
 
    template < >
-   class CLASS_DECL_AURA numeric_info < double >:
+   class CLASS_DECL_ACE numeric_info < double >:
    public numeric_floating_base
    {
    public:

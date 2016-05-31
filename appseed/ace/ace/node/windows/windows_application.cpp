@@ -14,7 +14,7 @@ namespace ace
 //
 //      //m_pthreadimpl->m_pthread = this;
 //
-//      m_paurasystem                    =  papp->m_pauraapp->m_paurasystem;
+//      m_pacesystem                    =  papp->m_paceapp->m_pacesystem;
 //
 //      m_atomApp = m_atomSystemTopic    = NULL;
 //
@@ -301,16 +301,16 @@ namespace ace
 
 
 
-   bool application::set_main_init_data(::ace::main_init_data * pauradata)
+   bool application::set_main_init_data(::ace::main_init_data * pacedata)
    {
 
-      // m_pmaininitdata = pauradata;
+      // m_pmaininitdata = pacedata;
 
-      if(m_pinitmaindata != NULL && m_pauraapp->is_system())
+      if(m_pinitmaindata != NULL && m_paceapp->is_system())
       {
 
          ::windows::main_init_data * pdata = (::windows::main_init_data *) m_pinitmaindata;
-         if (!m_pauraapp->is_system())
+         if (!m_paceapp->is_system())
             return false;
 
          ASSERT(pdata->m_hPrevInstance == NULL);
@@ -324,20 +324,20 @@ namespace ace
          SetErrorMode(SetErrorMode(0) | SEM_FAILCRITICALERRORS | SEM_NOOPENFILEERRORBOX);
 
          m_hinstance = hInstance;
-         m_pauraapp->m_hinstance = hInstance;
-         m_pauraapp->m_hinstance = hInstance;
+         m_paceapp->m_hinstance = hInstance;
+         m_paceapp->m_hinstance = hInstance;
          //hPrevInstance; // Obsolete.
          System.m_strCmdLine = strCmdLine;
          System.m_nCmdShow = nCmdShow;
          //pApp->SetCurrentHandles();
-         m_pauraapp->SetCurrentHandles();
+         m_paceapp->SetCurrentHandles();
 
          string strAppId = read_resource_as_string_dup(NULL, 1984, "APPID");
 
          if (strAppId.has_char())
          {
             directrix()->m_varTopicQuery["appid"] = strAppId;
-            m_pauraapp->directrix()->m_varTopicQuery["appid"] = strAppId;
+            m_paceapp->directrix()->m_varTopicQuery["appid"] = strAppId;
          }
 
          // Initialize interaction_impl::m_pfnNotifyWinEvent

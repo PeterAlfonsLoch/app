@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_AURA box
+class CLASS_DECL_ACE box
 {
 public:
 

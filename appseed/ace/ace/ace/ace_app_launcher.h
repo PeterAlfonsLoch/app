@@ -5,7 +5,7 @@ namespace ace
 {
 
 
-   class CLASS_DECL_AURA app_launcher:
+   class CLASS_DECL_ACE app_launcher:
       virtual public ::launcher
    {
    public:

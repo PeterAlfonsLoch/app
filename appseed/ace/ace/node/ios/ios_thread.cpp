@@ -10,10 +10,10 @@
 //};
 //
 //
-//WINBOOL CLASS_DECL_AURA AfxInternalPumpMessage();
-//LRESULT CLASS_DECL_AURA AfxInternalProcessWndProcException(::exception::ace*, const MESSAGE* pMsg);
-//__STATIC void CLASS_DECL_AURA __pre_init_dialog(::user::interaction * pWnd, LPRECT lpRectOld, DWORD* pdwStyleOld);
-//__STATIC void CLASS_DECL_AURA __post_init_dialog(::user::interaction * pWnd, const RECT& rectOld, DWORD dwStyleOld);
+//WINBOOL CLASS_DECL_ACE AfxInternalPumpMessage();
+//LRESULT CLASS_DECL_ACE AfxInternalProcessWndProcException(::exception::ace*, const MESSAGE* pMsg);
+//__STATIC void CLASS_DECL_ACE __pre_init_dialog(::user::interaction * pWnd, LPRECT lpRectOld, DWORD* pdwStyleOld);
+//__STATIC void CLASS_DECL_ACE __post_init_dialog(::user::interaction * pWnd, const RECT& rectOld, DWORD dwStyleOld);
 
 //namespace ios
 //{
@@ -92,7 +92,7 @@
 //   thread_pointer < ::thread > t_pthread;
 //
 //
-//   CLASS_DECL_AURA ::thread * __get_thread()
+//   CLASS_DECL_ACE ::thread * __get_thread()
 //   {
 //
 //      return t_pthread;
@@ -100,7 +100,7 @@
 //   }
 //
 //
-//   CLASS_DECL_AURA void __set_thread(::thread * pthread)
+//   CLASS_DECL_ACE void __set_thread(::thread * pthread)
 //   {
 //
 //      t_pthread = pthread;
@@ -116,7 +116,7 @@
 //
 //
 //
-//void CLASS_DECL_AURA __end_thread(::ace::application * papp, UINT nExitCode, bool bDelete)
+//void CLASS_DECL_ACE __end_thread(::ace::application * papp, UINT nExitCode, bool bDelete)
 //{
 //
 //   ::ios::thread* pThread = ::ios::__get_thread();
@@ -138,7 +138,7 @@
 //   //   _endthreadex(nExitCode);
 //}
 //
-//void CLASS_DECL_AURA __term_thread(::ace::application * papp, HINSTANCE hInstTerm)
+//void CLASS_DECL_ACE __term_thread(::ace::application * papp, HINSTANCE hInstTerm)
 //{
 //
 //
@@ -1116,7 +1116,7 @@ namespace ios
 //   }
 //
 //
-//   CLASS_DECL_AURA ::thread * get_thread()
+//   CLASS_DECL_ACE ::thread * get_thread()
 //   {
 //      ::thread * pthread = ::get_thread();
 //      if(pthread == NULL)
@@ -1752,8 +1752,8 @@ namespace ios
 
 
 //
-//WINBOOL CLASS_DECL_AURA AfxInternalPumpMessage();
-//LRESULT CLASS_DECL_AURA AfxInternalProcessWndProcException(::exception::ace*, const MESSAGE* pMsg);
+//WINBOOL CLASS_DECL_ACE AfxInternalPumpMessage();
+//LRESULT CLASS_DECL_ACE AfxInternalProcessWndProcException(::exception::ace*, const MESSAGE* pMsg);
 //void AfxInternalPreTranslateMessage(signal_details * pobj);
 //WINBOOL AfxInternalIsIdleMessage(signal_details * pobj);
 //WINBOOL AfxInternalIsIdleMessage(LPMESSAGE lpmsg);
