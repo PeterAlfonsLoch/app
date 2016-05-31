@@ -1,0 +1,48 @@
+//#include "framework.h"
+
+
+not_supported_exception::not_supported_exception(const not_supported_exception & e) :
+   object(e.get_app()),
+   ::call_stack(e.get_app()),
+   ::exception::base(e.get_app()),
+   not_implemented(e),
+   interface_only_exception(e)
+{
+
+   debug_print(":not_supported");
+
+}
+
+
+not_supported_exception::not_supported_exception(::aura::application * papp, const char * pszTip) :
+   object(papp),
+   ::call_stack(papp),
+   ::exception::base(papp),
+   not_implemented(papp, pszTip),
+   interface_only_exception(papp, pszTip)
+{
+
+   if(pszTip == NULL)
+   {
+
+      debug_print(":not_supported_exception(NULL)");
+
+   }
+   else
+   {
+
+      debug_print(":not_supported_exception(\"%s\")",pszTip);
+
+   }
+
+}
+
+not_supported_exception::~not_supported_exception()
+{
+
+}
+
+
+
+
+

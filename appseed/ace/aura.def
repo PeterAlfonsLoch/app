@@ -1,0 +1,8 @@
+LIBRARY  "aura"
+
+
+EXPORTS
+o_debug_string
+
+
+
