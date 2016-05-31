@@ -1354,7 +1354,7 @@ namespace str
       }
    }
 
-   bool to(const char * psz, int64_t & i)
+   bool to(int64_t & i, const char * psz)
    {
 
       char * pszEnd;
@@ -1370,7 +1370,7 @@ namespace str
 
    }
 
-   bool to(const char * psz, int32_t & i)
+   bool to(int32_t & i, const char * psz)
    {
 
       const char * pszEnd;
@@ -1390,7 +1390,7 @@ namespace str
    }
 
 
-   bool to(const char * psz, int64_t & i, int32_t iBase)
+   bool to(int64_t & i, int32_t iBase, const char * psz)
    {
 
       if(iBase < 0 || iBase == 1 || iBase > 36)
@@ -1417,7 +1417,7 @@ namespace str
 
    }
 
-   bool to(const char * psz, int32_t & i, int32_t iBase)
+   bool to(int32_t & i, int32_t iBase, const char * psz)
    {
 
       if(iBase < 0 || iBase == 1 || iBase > 36)
@@ -1447,7 +1447,7 @@ namespace str
 
    }
 
-   bool to(const char * psz, uint64_t & ui)
+   bool to(uint64_t & ui, const char * psz)
    {
 
       char * pszEnd;
@@ -1463,7 +1463,7 @@ namespace str
 
    }
 
-   bool to(const char * psz, uint32_t & ui)
+   bool to(uint32_t & ui, const char * psz)
    {
 
       const char * pszEnd;
@@ -1483,7 +1483,7 @@ namespace str
    }
 
 
-   bool to(const char * psz, uint64_t & ui, int32_t iBase)
+   bool to(uint64_t & ui, int32_t iBase, const char * psz)
    {
 
       if(iBase < 0 || iBase == 1 || iBase > 36)
@@ -1502,7 +1502,7 @@ namespace str
 
    }
 
-   bool to(const char * psz, uint32_t & ui, int32_t iBase)
+   bool to(uint32_t & ui, int32_t iBase, const char * psz)
    {
 
       if(iBase < 0 || iBase == 1 || iBase > 36)
@@ -2094,35 +2094,47 @@ namespace str
       pszXml += len;
    }
 
+   
    bool eats(const char * & pszXml, const char * psz)
    {
-      index idx;
-
-      strsize len = strlen(psz);
-      for (idx = 0; idx < len; idx++)
+      
+      for (; *psz != '\0'; pszXml++, psz++)
       {
-         if (pszXml[idx] != psz[idx])
+
+         if (*pszXml != *psz)
          {
+
             return false;
+
          }
+
       }
-      pszXml += len;
+
+      return true;
+
    }
+
 
    bool eats_ci(const char * & pszXml, const char * psz)
    {
-      index idx;
-
-      strsize len = strlen(psz);
-      for (idx = 0; idx < len; idx++)
+      
+      for (; *psz != '\0'; pszXml++, psz++)
       {
-         if (tolower(pszXml[idx]) != tolower(psz[idx]))
+
+         if (tolower(*pszXml) != tolower(*psz))
          {
+
             return false;
+
          }
+
       }
-      pszXml += len;
+
+      return true;
+
    }
+
+
    void consume(const char * & pszXml, const char * psz, const char * pszEnd)
    {
       UNREFERENCED_PARAMETER(pszEnd);

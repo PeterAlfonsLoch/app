@@ -290,7 +290,7 @@ namespace multimedia
          if(m_estate != state_recording)
             return ::multimedia::result_error;
 
-         ::multimedia::e_result mmr;
+//         ::multimedia::e_result mmr;
 
          m_estate = state_stopping;
 

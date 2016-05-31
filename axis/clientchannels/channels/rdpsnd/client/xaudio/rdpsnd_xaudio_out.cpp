@@ -406,9 +406,9 @@ else
 return dwMillis + dwPosition - ((m_dwLostSampleCount) * 1000 / m_waveformatex.nSamplesPerSec);
 }*/
 
-/*imedia::position xaudio_wave_out::get_position_for_synch()
+/*imedia_position xaudio_wave_out::get_position_for_synch()
 {
-imedia::position position = get_position();
+imedia_position position = get_position();
 if(m_pprebuffer != NULL && m_pprebuffer->m_pdecoder != NULL)
 return m_pprebuffer->m_position + position - m_pprebuffer->m_pdecoder->DecoderGetLostPositionOffset(position) - m_dwLostSampleCount * m_waveformatex.wBitsPerSample * m_waveformatex.nChannels / 8;
 else

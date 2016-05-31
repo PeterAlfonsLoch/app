@@ -93,7 +93,7 @@ namespace multimedia
 
 
          m_pthreadCallback = pthreadCallback;
-         ::multimedia::e_result mmr;
+//         ::multimedia::e_result mmr;
          ASSERT(m_pxaudio == NULL);
          ASSERT(m_pvoice == NULL);
          ASSERT(m_psourcevoice == NULL);
@@ -164,7 +164,7 @@ namespace multimedia
          //   return mmr;
          //}
 
-Opened:
+//Opened:
          uint32_t uiBufferSizeLog2;
          uint32_t uiBufferSize;
          uint32_t uiAnalysisSize;
@@ -300,7 +300,7 @@ Opened:
 
          }
 
-Opened:
+//Opened:
          if(epurpose == ::multimedia::audio::purpose_playback)
          {
 
@@ -366,7 +366,8 @@ Opened:
 
          ::multimedia::e_result mmr;
 
-         int32_t i, iSize;
+//         int32_t i, iSize;
+         int32_t iSize;
 
          iSize =  wave_out_get_buffer()->GetBufferCount();
 
@@ -604,7 +605,7 @@ Opened:
 
       }
 
-      ::multimedia::e_result wave_out::wave_out_start(const imedia::position & position)
+      ::multimedia::e_result wave_out::wave_out_start(const imedia_position & position)
       {
 
          single_lock sLock(&m_mutex,TRUE);
@@ -684,7 +685,7 @@ Opened:
 
          single_lock sLock(&m_mutex, TRUE);
 
-         ::multimedia::e_result                mmr;
+//         ::multimedia::e_result                mmr;
 
          XAUDIO2_VOICE_STATE s;
 
@@ -705,21 +706,21 @@ Opened:
 
       }
 
-      /*imedia::position wave_out::get_position_for_synch()
+      /*imedia_position wave_out::get_position_for_synch()
       {
-         imedia::position position = get_position();
+         imedia_position position = get_position();
          if(m_pprebuffer != NULL && m_pprebuffer->m_pdecoder != NULL)
             return m_pprebuffer->m_position + position - m_pprebuffer->m_pdecoder->DecoderGetLostPositionOffset(position) - m_dwLostSampleCount * m_pwaveformat->wBitsPerSample * m_pwaveformat->nChannels / 8;
          else
             return m_pprebuffer->m_position + position - m_dwLostSampleCount * m_pwaveformat->wBitsPerSample * m_pwaveformat->nChannels / 8;
       }*/
 
-      imedia::position wave_out::wave_out_get_position()
+      imedia_position wave_out::wave_out_get_position()
       {
 
          single_lock sLock(&m_mutex, TRUE);
 
-         ::multimedia::e_result                mmr;
+//         ::multimedia::e_result                mmr;
 
          XAUDIO2_VOICE_STATE s;
 

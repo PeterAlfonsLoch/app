@@ -73,7 +73,7 @@ struct memdleak_block
 #endif
    int                     m_iStack;
    int32_t                 m_iLine;
-   int64_t                 m_iSize;
+   int_ptr                 m_iSize;
    struct memdleak_block *        m_pnext;
    struct memdleak_block *        m_pprevious;
 

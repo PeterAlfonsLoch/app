@@ -572,12 +572,12 @@ CLASS_DECL_AURA DWORD get_tick_count()
 CLASS_DECL_AURA DWORD get_first_tick()
 {
 
-   return (DWORD)((uint64_t)get_first_nano() / (uint64_t)(1000 * 1000));
+   return (DWORD)(get_first_nano() / (uint64_t)(1000 * 1000));
 
 }
 
 
-CLASS_DECL_AURA DWORD get_first_nano()
+CLASS_DECL_AURA uint64_t get_first_nano()
 {
 
    return g_firstNano;

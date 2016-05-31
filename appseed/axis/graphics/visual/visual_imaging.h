@@ -306,11 +306,15 @@ public:
    virtual bool LoadImageFile(::draw2d::dib * pdib, var varFile, ::aura::application * papp);
    virtual bool LoadImageSync(::draw2d::dib * pdib, const char * lpcszImageFilePath, ::aura::application * papp);
 
-#ifdef WINDOWS
+//#ifdef WINDOWS
 
-   virtual FIBITMAP * HBITMAPtoFI(::draw2d::bitmap_sp hbitmap);
+//   virtual FIBITMAP * HBITMAPtoFI(HBITMAP hbitmap);
+//
+//#elif defined(METROWIN)
+//
+//#else
 
-#else
+#ifndef WINDOWS
 
    virtual ::draw2d::bitmap_sp CreateDIBitmap(::draw2d::graphics * pgraphics,FIBITMAP * pFreeImage);
    virtual ::draw2d::bitmap_sp CreateBitmap(::draw2d::graphics * pgraphics,FIBITMAP * pFreeImage);

@@ -314,10 +314,12 @@ var_array & var_array::operator = (const property_set & propset)
 
    remove_all();
 
+   index i = 0;
+
    for(auto assoc : propset)
    {
 
-      set_at(assoc.m_element1, assoc.m_element2);
+      set_at(i++, assoc.m_element2);
 
    }
 

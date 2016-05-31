@@ -79,8 +79,56 @@ imaging::~imaging()
 
 
 
+//FIBITMAP * imaging::HBITMAPtoFI(HBITMAP hbitmap)
+//{
+//
+//   //if (pbitmap == NULL)
+//   //   return NULL;
+//
+//
+//
+//   //HBITMAP hbitmap = pbitmap->GetHBITMAP();
+//
+//   if (hbitmap == NULL)
+//      return NULL;
+//
+//   // ...
+//   // the following code assumes that you have a valid HBITMAP loaded into the memory
+//   BITMAP bm;
+//   ::GetObject(hbitmap, sizeof(BITMAP), (char *)&bm);
+//   if (bm.bmWidth <= 0 || bm.bmHeight <= 0)
+//      return NULL;
+//   FIBITMAP * fi;
+//   //if(bm.bmBitsPixel == 32)
+//   {
+//      // fi = FreeImage_AllocateT(bm.bmWidth,bm.bmHeight,bm.bmBitsPixel);
+//   }
+//   //else
+//   {
+//      fi = FreeImage_Allocate(bm.bmWidth, bm.bmHeight, bm.bmBitsPixel);
+//   }
+//   // The GetDIBits function clears the biClrUsed and biClrImportant BITMAPINFO members (dont't know why)
+//   // So we save these infos below. This is needed for palettized images only.
+//   int32_t nColors = FreeImage_GetColorsUsed(fi);
+//   HDC hdc = ::CreateCompatibleDC(NULL);
+//
+//   GetDIBits(hdc, (HBITMAP)hbitmap, 0, FreeImage_GetHeight(fi), FreeImage_GetBits(fi), FreeImage_GetInfo(fi), DIB_RGB_COLORS);
+//
+//   ::DeleteDC(hdc);
+//
+//   ///   pbitmap->ReleaseHBITMAP(hbitmap);
+//
+//   // restore BITMAPINFO members
+//   FreeImage_GetInfoHeader(fi)->biClrUsed = nColors;
+//   FreeImage_GetInfoHeader(fi)->biClrImportant = nColors;
+//   return fi;
+//
+//
+//}
+
 
 #ifndef  WINDOWS
+
 
 FIBITMAP * imaging::LoadImageFile(var varFile,::aura::application * papp)
 {
@@ -124,56 +172,6 @@ void imaging::SavePng(const char * lpcszFile,FIBITMAP *dib,bool bUnload)
 
 }
 
-#ifdef WINDOWSEX
-
-FIBITMAP * imaging::HBITMAPtoFI(::draw2d::bitmap_sp pbitmap)
-{
-
-   if(pbitmap == NULL)
-      return NULL;
-
-
-
-   HBITMAP hbitmap = pbitmap->GetHBITMAP();
-
-   if(hbitmap == NULL)
-      return NULL;
-
-   // ...
-   // the following code assumes that you have a valid HBITMAP loaded into the memory
-   BITMAP bm;
-   ::GetObject(hbitmap,sizeof(BITMAP),(char *)&bm);
-   if(bm.bmWidth <= 0 || bm.bmHeight <= 0)
-      return NULL;
-   FIBITMAP * fi;
-   if(bm.bmBitsPixel == 32)
-   {
-      fi = FreeImage_AllocateT(FIT_UINT32,bm.bmWidth,bm.bmHeight,bm.bmBitsPixel);
-   }
-   else
-   {
-      fi = FreeImage_Allocate(bm.bmWidth,bm.bmHeight,bm.bmBitsPixel);
-   }
-   // The GetDIBits function clears the biClrUsed and biClrImportant BITMAPINFO members (dont't know why)
-   // So we save these infos below. This is needed for palettized images only.
-   int32_t nColors = FreeImage_GetColorsUsed(fi);
-   HDC hdc = ::CreateCompatibleDC(NULL);
-
-   GetDIBits(hdc,(HBITMAP)hbitmap,0,FreeImage_GetHeight(fi),FreeImage_GetBits(fi),FreeImage_GetInfo(fi),DIB_RGB_COLORS);
-
-   ::DeleteDC(hdc);
-
-   pbitmap->ReleaseHBITMAP(hbitmap);
-
-   // restore BITMAPINFO members
-   FreeImage_GetInfoHeader(fi)->biClrUsed = nColors;
-   FreeImage_GetInfoHeader(fi)->biClrImportant = nColors;
-   return fi;
-
-
-}
-
-#else
 
 FIBITMAP * imaging::dib_to_FI(::draw2d::dib * pdib)
 {
@@ -246,7 +244,6 @@ FIBITMAP * imaging::dib_to_FI(::draw2d::dib * pdib)
 
 }
 
-#endif
 
 
 ::draw2d::bitmap_sp imaging::FItoHBITMAP(FIBITMAP * pfibitmap,bool bUnloadFI)

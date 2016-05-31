@@ -168,14 +168,14 @@ namespace str
    CLASS_DECL_AURA  const char *   utf8_dec(::str::utf8_char * pchar, const char * pszBeg, const char * psz);
 
 
-   CLASS_DECL_AURA  bool           to(const char * psz, int32_t & i);
-   CLASS_DECL_AURA  bool           to(const char * psz, int64_t & i);
-   CLASS_DECL_AURA  bool           to(const char * psz, int32_t & i, int32_t iBase);
-   CLASS_DECL_AURA  bool           to(const char * psz, int64_t & i, int32_t iBase);
-   CLASS_DECL_AURA  bool           to(const char * psz, uint32_t & i);
-   CLASS_DECL_AURA  bool           to(const char * psz, uint64_t & i);
-   CLASS_DECL_AURA  bool           to(const char * psz, uint32_t & i, int32_t iBase);
-   CLASS_DECL_AURA  bool           to(const char * psz, uint64_t & i, int32_t iBase);
+   CLASS_DECL_AURA  bool           to(int32_t & i, const char * psz);
+   CLASS_DECL_AURA  bool           to(int64_t & i, const char * psz);
+   CLASS_DECL_AURA  bool           to(int32_t & i, int32_t iBase, const char * psz);
+   CLASS_DECL_AURA  bool           to(int64_t & i, int32_t iBase, const char * psz);
+   CLASS_DECL_AURA  bool           to(uint32_t & i, const char * psz);
+   CLASS_DECL_AURA  bool           to(uint64_t & i, const char * psz);
+   CLASS_DECL_AURA  bool           to(uint32_t & i, int32_t iBase, const char * psz);
+   CLASS_DECL_AURA  bool           to(uint64_t & i, int32_t iBase, const char * psz);
 
    CLASS_DECL_AURA  bool           trim_any_quotes(string & str);
    CLASS_DECL_AURA  bool           paired_trim(string & str, char ch);
@@ -207,10 +207,10 @@ namespace str
 
 
 
-   inline CLASS_DECL_AURA int32_t      to_with_fallback(const char * psz, int32_t iDefault){ to(psz, iDefault); return iDefault; }
-   inline CLASS_DECL_AURA int64_t  to_with_fallback(const char * psz, int64_t & iDefault) { to(psz, iDefault); return iDefault; }
-   inline CLASS_DECL_AURA int32_t      to_with_fallback(const char * psz, int32_t iDefault, int32_t iBase){ to(psz, iDefault, iBase); return iDefault; }
-   inline CLASS_DECL_AURA int64_t  to_with_fallback(const char * psz, int64_t & iDefault, int32_t iBase) { to(psz, iDefault, iBase); return iDefault; }
+   inline CLASS_DECL_AURA int32_t  to_with_fallback(const char * psz, int32_t iDefault) { to(iDefault, psz); return iDefault; }
+   inline CLASS_DECL_AURA int64_t  to_with_fallback(const char * psz, int64_t iDefault) { to(iDefault, psz); return iDefault; }
+   inline CLASS_DECL_AURA int32_t  to_with_fallback(const char * psz, int32_t iDefault, int32_t iBase) { to(iDefault, iBase, psz); return iDefault; }
+   inline CLASS_DECL_AURA int64_t  to_with_fallback(const char * psz, int64_t iDefault, int32_t iBase) { to(iDefault, iBase, psz); return iDefault; }
 
 
 
@@ -415,7 +415,7 @@ namespace str
 template < typename T >
 inline c_number < T > & c_number < T >::from(const string & str)
 {
-   ::str::to(str, m_number);
+   ::str::to(m_number, str);
    return *this;
 }
 

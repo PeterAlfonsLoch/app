@@ -66,6 +66,7 @@ namespace numeric_info_internal
 
       typedef int8_t TYPE;
       typedef int8_t OFFSET_TYPE;
+      typedef int64_t TOTAL_TYPE;
 
       static inline TYPE maximum(){ return (TYPE)CHAR_MAX; }
       static inline TYPE minimum(){ return (TYPE)CHAR_MIN; }
@@ -85,6 +86,7 @@ namespace numeric_info_internal
 
       typedef uint8_t TYPE;
       typedef int8_t OFFSET_TYPE;
+      typedef uint64_t TOTAL_TYPE;
 
       static inline TYPE maximum(){ return (TYPE)UCHAR_MAX; }
       static inline TYPE minimum(){ return (TYPE)0; }
@@ -103,6 +105,7 @@ namespace numeric_info_internal
 
       typedef int16_t TYPE;
       typedef int16_t OFFSET_TYPE;
+      typedef int64_t TOTAL_TYPE;
 
       static inline TYPE maximum(){ return (TYPE)SHRT_MAX; }
       static inline TYPE minimum(){ return (TYPE)SHRT_MIN; }
@@ -122,6 +125,7 @@ namespace numeric_info_internal
 
       typedef uint16_t TYPE;
       typedef int16_t OFFSET_TYPE;
+      typedef uint64_t TOTAL_TYPE;
 
       static inline TYPE maximum(){ return (TYPE)USHRT_MAX; }
       static inline TYPE minimum(){ return (TYPE)0; }
@@ -141,6 +145,7 @@ namespace numeric_info_internal
 
       typedef int32_t TYPE;
       typedef int32_t OFFSET_TYPE;
+      typedef int64_t TOTAL_TYPE;
 
       static inline TYPE maximum(){ return (TYPE)INT_MAX; }
       static inline TYPE minimum(){ return (TYPE)INT_MIN; }
@@ -160,6 +165,7 @@ namespace numeric_info_internal
 
       typedef uint32_t TYPE;
       typedef int32_t OFFSET_TYPE;
+      typedef uint64_t TOTAL_TYPE;
 
       static inline TYPE maximum(){ return (TYPE)UINT_MAX; }
       static inline TYPE minimum(){ return (TYPE)0; }
@@ -179,6 +185,7 @@ namespace numeric_info_internal
 
       typedef int64_t TYPE;
       typedef int64_t OFFSET_TYPE;
+      typedef int64_t TOTAL_TYPE;
 
       static inline TYPE maximum(){ return (TYPE)LLONG_MAX; }
       static inline TYPE minimum(){ return (TYPE)LLONG_MIN; }
@@ -198,6 +205,7 @@ namespace numeric_info_internal
 
       typedef uint64_t TYPE;
       typedef int64_t OFFSET_TYPE;
+      typedef uint64_t TOTAL_TYPE;
 
       static inline TYPE maximum(){ return (TYPE)ULLONG_MAX; }
       static inline TYPE minimum(){ return (TYPE)0; }
@@ -218,6 +226,7 @@ namespace numeric_info_internal
 
       typedef float TYPE;
       typedef float OFFSET_TYPE;
+      typedef double TOTAL_TYPE;
 
       static inline TYPE maximum(){ return (TYPE)FLT_MAX; }
       static inline TYPE minimum(){ return (TYPE)FLT_MIN; }
@@ -237,6 +246,7 @@ namespace numeric_info_internal
 
       typedef double TYPE;
       typedef double OFFSET_TYPE;
+      typedef double TOTAL_TYPE;
 
 
       static inline TYPE maximum(){ return (TYPE)DBL_MAX; }
@@ -313,4 +323,40 @@ template <typename T>
 int sgn(T val)
 {
    return (::numeric_info < T >::null() < val) - (val < ::numeric_info < T >::null());
+}
+
+
+
+template <typename T>
+inline T & set_maximum(T & var)
+{
+
+   return var = ::numeric_info < T >::maximum();
+
+}
+
+template <typename T>
+inline T & set_minimum(T & var)
+{
+
+   return var = ::numeric_info < T >::minimum();
+
+}
+
+
+template <typename T>
+inline T & set_null(T & var)
+{
+
+   return var = ::numeric_info < T >::null();
+
+}
+
+
+template <typename T>
+inline T & set_unitary(T & var)
+{
+
+   return var = ::numeric_info < T >::unitary();
+
 }

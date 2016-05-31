@@ -1759,7 +1759,7 @@ namespace draw2d_direct2d
 
       double ratio = get_os_font(m_spfont)->GetFontSize() / (float)metrics.designUnitsPerEm;
 
-      string str("AP\C1pgfditflmnopw");
+      string str("APC1pgfditflmnopw");
 
       ::size sz = GetTextExtent(str);
 

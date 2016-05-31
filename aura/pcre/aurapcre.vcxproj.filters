@@ -121,6 +121,8 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="aurapcre.def" />
+    <None Include="aurapcre.def">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
 </Project>
