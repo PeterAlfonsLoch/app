@@ -363,12 +363,12 @@ bool operator !=(LPARAM l, const smart_pointer < T > & sp) { return ((T *) l) ==
 bool operator ==(void * p, const smart_pointer < T > & sp) { return ((T *) p) == sp.m_p; }
 template < class T >
 bool operator !=(void * p, const smart_pointer < T > & sp) { return ((T *) p) == sp.m_p; }*/
-#if !defined(ANDROID) && !defined(SOLARIS) && !defined(APPLE_OS)
-template < class T >
-inline bool operator ==(int i, const smart_pointer < T > & sp) { return ((T *) i) == sp.m_p; }
-template < class T >
-inline bool operator !=(int i, const smart_pointer < T > & sp) { return ((T *) i) == sp.m_p; }
-#endif
+//#if !defined(ANDROID) && !defined(SOLARIS) && !defined(APPLE_OS)
+//template < class T >
+//inline bool operator ==(int_ptr i, const smart_pointer < T > & sp) { return ((T *) i) == sp.m_p; }
+//template < class T >
+//inline bool operator !=(int_ptr i, const smart_pointer < T > & sp) { return ((T *) i) == sp.m_p; }
+//#endif
 
 
 
