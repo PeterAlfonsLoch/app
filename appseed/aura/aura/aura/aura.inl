@@ -57,47 +57,6 @@ inline void __cdecl operator delete(void * p, void * palloc)
 
 
 
-#if defined(WINDOWS) && !defined(__MCRTDBG) && !defined(__VLD)
-
-#define GLOBAL_INLINE_NEW
-
-#pragma warning (push)
-#pragma warning(disable : 4595)
-
-inline void * __cdecl operator new(size_t nSize) new_throw_spec
-{
-
-    return memory_alloc(nSize);
-
-}
-
-inline void __cdecl operator delete(void * p) del_throw_spec
-{
-
-   memory_free(p);
-
-}
-
-inline void * __cdecl operator new[](size_t nSize) new_throw_spec
-{
-
-   return ::operator new(nSize);
-
-}
-
-
-inline void __cdecl operator delete[](void * p) del_throw_spec
-{
-
-   ::operator delete(p);
-
-}
-
-#pragma warning (pop)
-
-#endif
-
-
 
 class CLASS_DECL_AURA c_class
 {

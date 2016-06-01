@@ -2253,6 +2253,9 @@
     <ProjectReference Include="..\..\axis\zlib\axiszlib.vcxproj">
       <Project>{34fcfbf1-e922-4fdc-bc83-b3c04623e8c2}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\ace\ace.vcxproj">
+      <Project>{21dcc811-4bce-4f16-b674-c0941f847127}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\aqua\aqua.vcxproj">
       <Project>{51778453-c0aa-419d-a87f-4338c9dde3fa}</Project>
     </ProjectReference>

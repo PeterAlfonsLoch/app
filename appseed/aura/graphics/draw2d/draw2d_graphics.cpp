@@ -4027,7 +4027,7 @@ namespace draw2d
             if(sz.cx > rectClip.width())
             {
 
-               int iSampleLen = strSource.get_length();
+               strsize iSampleLen = strSource.get_length();
 
                while(iSampleLen > 0)
                {

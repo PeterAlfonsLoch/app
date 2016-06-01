@@ -247,7 +247,7 @@ public:
          t = this->element_at(i) - a[i];
 
          if(t != 0)
-            return ::sgn(t);
+            return ::lemon::sgn(t);
 
       }
 

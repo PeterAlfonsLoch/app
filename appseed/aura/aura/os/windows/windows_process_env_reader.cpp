@@ -86,7 +86,7 @@ BOOL CProcessEnvReader::ReadEnvironmentBlock(HANDLE hProcess,_ENVSTRING_t& stEnv
 
       // Get the address of RTL_USER_PROCESS_PARAMETERS structure 
       UCHAR* puPEB = (UCHAR*)&peb;
-      UCHAR* pRTLUserInfo = (UCHAR*)*((long*)(puPEB + 0x10));
+      UCHAR* pRTLUserInfo = (UCHAR*)*((int_ptr*)(puPEB + 0x10));
 
       int nReadbleSize = 0;
       if(!HasReadAccess(hProcess,pRTLUserInfo,nReadbleSize))
@@ -107,7 +107,7 @@ BOOL CProcessEnvReader::ReadEnvironmentBlock(HANDLE hProcess,_ENVSTRING_t& stEnv
       }
 
       // Get the value at offset 0x48 to get the pointer to environment string block
-      UCHAR* pAddrEnvStrBlock = (UCHAR*)*((long*)(&cBuffRTLUserInfo[0] + 0x48));
+      UCHAR* pAddrEnvStrBlock = (UCHAR*)*((int_ptr*)(&cBuffRTLUserInfo[0] + 0x48));
 
       if(!HasReadAccess(hProcess,pAddrEnvStrBlock,nReadbleSize))
       {
@@ -129,7 +129,7 @@ BOOL CProcessEnvReader::ReadEnvironmentBlock(HANDLE hProcess,_ENVSTRING_t& stEnv
       {
          // Set the values in the return pointer
          stEnvData.pData = (LPCWSTR)pchBuffEnvString;
-         stEnvData.nSize = nReturnNumBytes;
+         stEnvData.nSize = (int) nReturnNumBytes;
          return TRUE;
       }
       else
@@ -163,7 +163,7 @@ BOOL CProcessEnvReader::HasReadAccess(HANDLE hProcess,
          return FALSE;
       }
 
-      nSize = memInfo.RegionSize;
+      nSize = (int) memInfo.RegionSize;
       return TRUE;
    }
    __except(SHOW_ERR_DLG(_T("Failed to close Handle")))
@@ -304,10 +304,10 @@ void CProcessEnvReader::ParseEnvironmentStrings(LPCWSTR lpStringToConvert,int nL
       LPCTSTR lpcsStr = (wchar_t*)&lpStringToConvert[nIdx];
 #else // Convert to MBCS otherwise
       string csValue;
-      CProcessEnvReader::ConvertUnicodeToMBCS(&lpStringToConvert[nIdx],nSingleLen,csValue);
+      CProcessEnvReader::ConvertUnicodeToMBCS(&lpStringToConvert[nIdx],(int) nSingleLen,csValue);
       LPCTSTR lpcsStr = (LPCTSTR)csValue;
 #endif
-      nIdx += nSingleLen + 1;
+      nIdx += (int) nSingleLen + 1;
       EnvStrArr.add(lpcsStr); // add string to array
    }
 }
@@ -321,11 +321,11 @@ void CProcessEnvReader::ParseEnvironmentStrings(LPCWSTR lpStringToConvert,int nL
 void CProcessEnvReader::SeparateVariablesAndValues(const stringa& EnvStrArray,EnvVarValArray& varValArr)
 {
 
-   int nLen = EnvStrArray.get_size();
+   int nLen = (int) EnvStrArray.get_size();
    for(int i = 0; i< nLen; i++)
    {
       const string& csVal = EnvStrArray[i];
-      int nIndex = csVal.find(_T("="),0);
+      int nIndex = (int) csVal.find(_T("="),0);
 
       if(-1 == nIndex || 0 == nIndex)
       {

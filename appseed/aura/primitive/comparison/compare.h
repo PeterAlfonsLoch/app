@@ -185,6 +185,12 @@ namespace compare
       return i < 0 ? false : (unsigned int) i >= ui;
    }
 
+   template < >
+   inline bool ge(unsigned int ui, int i)
+   {
+      return i < 0 ? true : ui >= (unsigned int)i;
+   }
+
 
    
 

@@ -3,6 +3,8 @@ LIBRARY  "aura"
 
 EXPORTS
 o_debug_string
+ace_memory_alloc
+ace_memory_free
 
 
 

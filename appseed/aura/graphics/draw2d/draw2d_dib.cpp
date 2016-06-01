@@ -4683,6 +4683,95 @@ namespace draw2d
    }
 
 
+   bool dib::create_circle(::draw2d::dib * pdib, int diameter)
+   {
+
+      if (!create(diameter, diameter))
+      {
+
+         return false;
+
+      }
+
+      if (pdib == NULL || pdib->area() <= 0)
+      {
+
+         Fill(255, 0, 0, 0);
+
+      }
+      else
+      {
+
+         get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
+
+         get_graphics()->StretchBlt(0, 0, diameter, diameter, pdib->get_graphics(), 0, 0, pdib->m_size.cx, pdib->m_size.cy, SRCCOPY);
+
+      }
+
+      ::size s = m_size;
+
+      COLORREF * pcolorref = m_pcolorref;
+
+      int iScan = m_iScan;
+
+      int wscan = iScan / sizeof(COLORREF);
+
+      double r = diameter / 2.0;
+
+      double r2 = r * r;
+
+      double rlim = r2 - r;
+
+      COLORREF crA;
+
+      COLORREF * pcolorref2;
+
+      for (int y = 0; y < s.cx; y++)
+      {
+
+         pcolorref2 = &pcolorref[y * wscan];
+
+         for (int x = 0; x < s.cx; x++)
+         {
+
+            double dx = x;
+
+            double dy = y;
+
+            double distance = (dx - r) * (dx - r) + (dy - r) * (dy - r);
+
+            if (distance < rlim)
+            {
+
+               crA = 255 << 24;
+
+            }
+            else if (distance > r)
+            {
+
+               crA = 0;
+
+            }
+            else
+            {
+
+               crA = ((byte)((r - MIN(1.0, MAX(0.0, distance - r))) * 255.0 / r)) << 24;
+
+            }
+
+            *pcolorref2 = (*pcolorref2 & 0x00ffffff) | crA;
+
+            pcolorref2++;
+
+         }
+
+      }
+
+      return true;
+
+   }
+
+
    void dib_copy(dib * pdibthis, dib *pdib)
    {
 

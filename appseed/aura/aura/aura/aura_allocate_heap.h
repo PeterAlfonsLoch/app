@@ -35,9 +35,9 @@ BEGIN_EXTERN_C
 
 
 #if !defined(MCHECK) && !defined(__VLD) && !defined(__MCRTDBG)
-   CLASS_DECL_AURA void * memory_alloc(size_t size);
-   CLASS_DECL_AURA void * memory_realloc(void * pvoid, size_t nSize);
-   CLASS_DECL_AURA void   memory_free(void * pvoid);
+   CLASS_DECL_AURA void * CDECL memory_alloc(size_t size);
+   CLASS_DECL_AURA void * CDECL memory_realloc(void * pvoid, size_t nSize);
+   CLASS_DECL_AURA void   CDECL memory_free(void * pvoid);
 #endif
 
 

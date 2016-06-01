@@ -1,26 +1,8 @@
-#define __NORMAL_BLOCK    1
 
 
+#include "ace/ace_new.h"
 
-#if defined(SOLARIS)
 
-#define inplace_new_throw_spec
-#define new_throw_spec throw (std::bad_alloc)
-#define del_throw_spec throw()
-
-#elif defined(MACOS)
-
-#define inplace_new_throw_spec throw ()
-#define new_throw_spec throw (std::bad_alloc)
-#define del_throw_spec throw()
-
-#else
-
-#define inplace_new_throw_spec
-#define new_throw_spec
-#define del_throw_spec 
-
-#endif
 
 void * __cdecl operator new(size_t nSize, void * p) inplace_new_throw_spec;
 void __cdecl operator delete(void * p, void * palloc) del_throw_spec;
@@ -75,5 +57,11 @@ void * __cdecl operator new(size_t nSize, int32_t nType, const char * lpszFileNa
 void * __cdecl operator new[](size_t nSize, int32_t nType, const char * lpszFileName, int32_t nLine);
 void __cdecl operator delete(void * p, int32_t nType, const char * lpszFileName, int32_t nLine);
 void __cdecl operator delete[](void * p, int32_t nType, const char * lpszFileName, int32_t nLine);
+
+
+
+
+
+
 
 

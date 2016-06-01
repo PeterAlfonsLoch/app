@@ -3965,6 +3965,9 @@
     <None Include="primitive\str\str.inl" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ace\ace.vcxproj">
+      <Project>{21dcc811-4bce-4f16-b674-c0941f847127}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\aqua\aqua.vcxproj">
       <Project>{51778453-c0aa-419d-a87f-4338c9dde3fa}</Project>
     </ProjectReference>

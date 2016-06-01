@@ -276,6 +276,8 @@ namespace draw2d
       virtual void get_frame(void * lpdata, int32_t iFrame, int32_t iFrameCount);
       virtual void xor_dib_frame2(void * lpdata, int32_t iFrame, int32_t iFrameCount);
 
+      virtual bool create_circle(dib * pdib, int diameter);
+
 
       //virtual int32_t width();
       //virtual int32_t height();
