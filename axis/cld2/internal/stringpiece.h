@@ -21,8 +21,9 @@
 #ifndef STRINGS_STRINGPIECE_H_
 #define STRINGS_STRINGPIECE_H_
 
-#include <string.h>
-#include <string>
+#include "aura/aura/aura.h"
+//#include <string.h>
+//#include <string>
 
 
 typedef int stringpiece_ssize_type;

@@ -3,18 +3,30 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "atomiconv", "atomcld2.vcxproj", "{7CFB99A0-47A8-4485-BEFF-3D0104D66509}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "axiscld2", "axiscld2.vcxproj", "{7CFB99A0-47A8-4485-BEFF-3D0104D66509}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		basis|Android = basis|Android
+		basis|Win32 = basis|Win32
+		basis|x86 = basis|x86
 		codeanalysis|Android = codeanalysis|Android
+		codeanalysis|Win32 = codeanalysis|Win32
+		codeanalysis|x86 = codeanalysis|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.basis|Android.ActiveCfg = basis|Android
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.basis|Android.Build.0 = basis|Android
+		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.basis|Win32.ActiveCfg = basis|Win32
+		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.basis|Win32.Build.0 = basis|Win32
+		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.basis|x86.ActiveCfg = basis|Win32
+		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.basis|x86.Build.0 = basis|Win32
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.codeanalysis|Android.ActiveCfg = codeanalysis|Android
 		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.codeanalysis|Android.Build.0 = codeanalysis|Android
+		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.codeanalysis|Win32.ActiveCfg = codeanalysis|Win32
+		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.codeanalysis|Win32.Build.0 = codeanalysis|Win32
+		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.codeanalysis|x86.ActiveCfg = codeanalysis|Win32
+		{7CFB99A0-47A8-4485-BEFF-3D0104D66509}.codeanalysis|x86.Build.0 = codeanalysis|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -39,21 +39,6 @@
     <ClCompile Include="internal\cld_generated_score_quad_octa_1024_256.cc">
       <Filter>Source Files\internal</Filter>
     </ClCompile>
-    <ClCompile Include="internal\cld2_do_score.cc">
-      <Filter>Source Files\internal</Filter>
-    </ClCompile>
-    <ClCompile Include="internal\cld2_dynamic_data.cc">
-      <Filter>Source Files\internal</Filter>
-    </ClCompile>
-    <ClCompile Include="internal\cld2_dynamic_data_extractor.cc">
-      <Filter>Source Files\internal</Filter>
-    </ClCompile>
-    <ClCompile Include="internal\cld2_dynamic_data_loader.cc">
-      <Filter>Source Files\internal</Filter>
-    </ClCompile>
-    <ClCompile Include="internal\cld2_dynamic_data_tool.cc">
-      <Filter>Source Files\internal</Filter>
-    </ClCompile>
     <ClCompile Include="internal\cld2_generated_cjk_compatible.cc">
       <Filter>Source Files\internal</Filter>
     </ClCompile>
@@ -88,9 +73,6 @@
       <Filter>Source Files\internal</Filter>
     </ClCompile>
     <ClCompile Include="internal\cld2_generated_quadchrome_16.cc">
-      <Filter>Source Files\internal</Filter>
-    </ClCompile>
-    <ClCompile Include="internal\cld2_unittest.cc">
       <Filter>Source Files\internal</Filter>
     </ClCompile>
     <ClCompile Include="internal\cld2_unittest_full.cc">

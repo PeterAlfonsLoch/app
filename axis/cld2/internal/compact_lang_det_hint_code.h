@@ -20,7 +20,8 @@
 #define I18N_ENCODINGS_COMPACT_LANG_DET_COMPACT_LANG_DET_HINT_CODE_H__
 
 
-#include <string>
+//#include <string>
+#include "aura/aura/aura.h"
 #include "integral_types.h"
 #include "lang_script.h"
 #include "../public/encodings.h"

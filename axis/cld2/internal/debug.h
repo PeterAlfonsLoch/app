@@ -21,7 +21,8 @@
 #ifndef I18N_ENCODINGS_CLD2_INTERNAL_DEBUG_H_
 #define I18N_ENCODINGS_CLD2_INTERNAL_DEBUG_H_
 
-#include <string>
+#include "aura/aura/aura.h"
+//#include <string>
 #include "scoreonescriptspan.h"
 
 namespace CLD2 {

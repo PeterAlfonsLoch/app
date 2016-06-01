@@ -22,7 +22,8 @@
 #ifndef UTIL_UTF8_UTF8STATETABLE_H_
 #define UTIL_UTF8_UTF8STATETABLE_H_
 
-#include <string>
+#include "aura/aura/aura.h"
+//#include <string>
 #include "integral_types.h"             // for uint8, uint32, uint16
 #include "stringpiece.h"
 

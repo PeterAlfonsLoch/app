@@ -19,7 +19,8 @@
 #ifndef UTIL_UTF8_OFFSETMAP_H_
 #define UTIL_UTF8_OFFSETMAP_H_
 
-#include <string>                       // for string
+#include "aura/aura/aura.h"
+//#include <string>                       // for string
 #include "integral_types.h"             // for uint32
 
 // ***************************** OffsetMap **************************
