@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "fiasco_finder.h"
 
+
 namespace axis
 {
 
@@ -2683,12 +2684,13 @@ namespace axis
       return true;
    }
 
+
    bool application::Ex2OnAppUninstall()
    {
+
       return true;
+
    }
-
-
 
 
    bool application::update_appmatter(::sockets::http_session * & psession,const ::file::path & pszRoot,const string & pszRelative)

@@ -94,10 +94,12 @@ struct CLASS_DECL_AURA file_time
 	   && !memcmp(&access   ,  &t.access   ,sizeof(access));
    }
 
+   
    bool modified_timeout(const FILETIME & current, int iSeconds)
    {
 
       uint64_t mod = (uint64_t)modified.dwLowDateTime | ((uint64_t) modified.dwHighDateTime << 32);
+
       uint64_t now = (uint64_t)current.dwLowDateTime | ((uint64_t)current.dwHighDateTime << 32);
 
       if (now - mod > (natural(iSeconds) * 1000 * 1000 * 10))
@@ -110,6 +112,7 @@ struct CLASS_DECL_AURA file_time
       return false;
 
    }
+
 
    bool modified_timeout( int iSeconds)
    {

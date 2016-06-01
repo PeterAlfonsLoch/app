@@ -275,9 +275,9 @@ void * unaligned_memory_alloc(size_t size)
       //pblock->m_pszFileName = strdup(pszFileName); // not trackable, at least think so certainly causes memory leak
    }
 
-   pblock->m_iLine = -1;
+   ::lemon::set_maximum(pblock->m_uiLine);
 
-   pblock->m_iSize = nAllocSize;
+   pblock->m_size = nAllocSize;
 
    synch_lock lock(g_pmutgen);
 
@@ -596,16 +596,22 @@ void * memory_realloc_dbg(void * pmemory, size_t size, int32_t nBlockUse, const 
       g_ee->backtrace(pblock->m_puiStack, pblock->m_iStack);
       pblock->m_pszFileName = NULL;
    }
-   pblock->m_iLine = -1;
-   pblock->m_iSize = nAllocSize;
-
+   
+   ::lemon::set_maximum(pblock->m_uiLine);
+   
+   pblock->m_size = nAllocSize;
 
    pblock->m_pprevious = NULL;
+
    pblock->m_pnext = s_pmemdleakList;
+
    if (s_pmemdleakList != NULL)
    {
+
       s_pmemdleakList->m_pprevious = pblock;
+
    }
+
    s_pmemdleakList = pblock;
    lock.unlock();
 
@@ -836,7 +842,7 @@ size_t memory_size_dbg(void * pmemory, int32_t iBlockType)
 
    memdleak_block * pblock = &((memdleak_block *)pmemory)[-1];
 
-   return pblock->m_iSize;
+   return pblock->m_size;
 
 #elif defined(MCHECK)
 

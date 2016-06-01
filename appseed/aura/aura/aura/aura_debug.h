@@ -258,7 +258,7 @@ CLASS_DECL_AURA string FormatMessageFromSystem(uint32_t dwError);
 #ifdef MEMDLEAK
 
 CLASS_DECL_AURA string get_mem_info_report1();
-CLASS_DECL_AURA ::count get_mem_info(int32_t ** ppiUse, const char *** ppszFile, const char *** pszCallStack, int32_t ** ppiLine, int64_t ** ppiSize);
+CLASS_DECL_AURA ::count get_mem_info(int32_t ** ppiUse, const char *** ppszFile, const char *** pszCallStack, uint32_t ** ppuiLine, size_t ** ppsize);
 CLASS_DECL_AURA ::count get_mem_info2(int32_t ** ppiUse, const char *** ppszFile, DWORD64 ** ppuiStack[64], int64_t ** ppiStack, int32_t ** ppiLine, int64_t ** ppiSize);
 
 

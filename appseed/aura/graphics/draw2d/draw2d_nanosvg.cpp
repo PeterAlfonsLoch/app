@@ -1,5 +1,9 @@
 #include "framework.h"
-#pragma warning(disable : 4101)
+
+#ifdef WINDOWS
+#pragma warning(disable:4101)
+#endif
+
 #define NANOSVG_IMPLEMENTATION  // Expands implementation
 #include "nanosvg.h"
 #define NANOSVGRAST_IMPLEMENTATION

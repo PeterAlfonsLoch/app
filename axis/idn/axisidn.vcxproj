@@ -50,6 +50,11 @@
   <ItemGroup>
     <None Include="axisidn.def" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\appseed\aura\aura.vcxproj">
+      <Project>{03e5b8e7-9e3b-44dd-9ede-e0a74d52c1c5}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{E8AC3EF0-11C5-4E12-A944-5F7EFED6E0C4}</ProjectGuid>
     <ProjectName>axisidn</ProjectName>

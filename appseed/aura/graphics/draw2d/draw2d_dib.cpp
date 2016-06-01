@@ -3583,7 +3583,7 @@ namespace draw2d
 
       COLORREF * pcr = (COLORREF *) &((byte *)m_pcolorref)[offset];
 
-      //BYTE * pb;
+//      BYTE * pb;
 
       int64_t iSize32 = size / 32;
       int32_t i;
@@ -4852,6 +4852,7 @@ error:
       }
 
       create((int) image->width, (int) image->height);
+
       map();
 
       nanosvg(image);

@@ -18,7 +18,7 @@
 
 #define inplace_new_throw_spec
 #define new_throw_spec
-#define del_throw_spec noexcept
+#define del_throw_spec 
 
 #endif
 
@@ -77,16 +77,3 @@ void __cdecl operator delete(void * p, int32_t nType, const char * lpszFileName,
 void __cdecl operator delete[](void * p, int32_t nType, const char * lpszFileName, int32_t nLine);
 
 
-
-
-
-
-void * operator new(size_t nSize) new_throw_spec;
-
-void operator delete(void * p) del_throw_spec;
-
-void * operator new[](size_t nSize) new_throw_spec;
-
-void operator delete[](void * p) del_throw_spec;
-
-void operator delete(void * p, size_t) noexcept;

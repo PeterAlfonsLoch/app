@@ -99,11 +99,6 @@ virtual      bool load_cached_string(string & str,id id,bool bLoadStringTable);
 
 
 
-
-
-
-
-
       //// Wall-eeeeee aliases
       //sp(::command_thread) command_central();
       //sp(::command_thread) command_thread();

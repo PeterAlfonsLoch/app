@@ -2444,143 +2444,57 @@ namespace aura
 
       defer_check_city_list();
 
-      string strTry;
-
-      stringa stra;
-
-      strTry = strQuery;
-
-      if (strTry.CompareNoCase("Cologne, DE") == 0)
+      if (strQuery.CompareNoCase("Cologne, DE") == 0)
       {
 
-         strTry = "Koeln, DE";
+         strQuery = "Koeln, DE";
 
       }
-      else if (::str::begins_ci(strTry, "Washington DC"))
+      else if (::str::begins_ci(strQuery, "Washington DC"))
       {
 
-         strTry = "Washington, D. C., US";
+         strQuery = "Washington, D. C., US";
 
       }
 
-      index iFind = m_straCit.find_first_begins_ci(strTry);
+      index iFind = m_straCit.find_first_begins_ci(strQuery);
 
-      if (iFind >= 0)
+      if (iFind < 0)
       {
 
-         goto found;
+         stringa stra;
 
-      }
+         stra.explode(",", strQuery);
 
-      stra.explode(",", strQuery);
+         stra.trim();
 
-      stra.trim();
-
-      if (stra.get_size() > 2)
-      {
-
-         strTry = stra[0];
-
-         strTry += ", ";
-
-         strTry += stra.last();
-
-         iFind = m_straCit.find_first_begins_ci(strTry);
-
-         if (iFind >= 0)
+         if (stra.get_size() > 2)
          {
 
-            goto found;
+            strQuery = stra[0];
+
+            strQuery += ", ";
+
+            strQuery += stra.last();
+
+            iFind = m_straCit.find_first_begins_ci(strQuery);
+
+            if (iFind < 0)
+            {
+
+               return -1;
+
+            }
 
          }
-
-         strTry = stra[0];
-
-         strTry += ",";
-
-         iFind = m_straCit.find_first_begins_ci(strTry);
-
-         if (iFind >= 0)
+         else
          {
 
-            goto found;
+            return -1;
 
          }
 
       }
-
-      strTry = strQuery;
-
-      strTry.replace("'", "");
-
-      iFind = m_straCit.find_first_begins_ci(strTry);
-
-      if (iFind >= 0)
-      {
-
-         goto found;
-
-      }
-
-      stra.remove_all();
-
-      strTry = strQuery;
-
-      strTry.replace("'", "");
-
-      stra.explode(",", strTry);
-
-      stra.trim();
-
-      if (stra.get_size() > 2)
-      {
-
-         strTry = stra[0];
-
-         strTry += ", ";
-
-         strTry += stra.last();
-
-         iFind = m_straCit.find_first_begins_ci(strTry);
-
-         if (iFind >= 0)
-         {
-
-            goto found;
-
-         }
-
-         strTry = stra[0];
-
-         strTry += ",";
-
-         iFind = m_straCit.find_first_begins_ci(strTry);
-
-         if (iFind >= 0)
-         {
-
-            goto found;
-
-         }
-
-      }
-
-      strTry = strQuery;
-
-      strTry.replace("'", "");
-
-      iFind = m_straCit.find_first_begins_ci(strTry);
-
-      if (iFind >= 0)
-      {
-
-         goto found;
-
-      }
-
-      return -1;
-
-found:
 
       strCit   = m_straCit[iFind];
 

@@ -448,9 +448,9 @@ void * plex_heap_alloc_array::alloc_dbg(size_t size, int32_t nBlockUse, const ch
       //pblock->m_pszFileName = strdup(pszFileName); // not trackable, at least think so certainly causes memory leak
    }
 
-   pblock->m_iLine         = iLine;
+   pblock->m_uiLine        = iLine;
 
-   pblock->m_iSize         = nAllocSize;
+   pblock->m_size          = nAllocSize;
 
    synch_lock lock(g_pmutgen);
 
@@ -756,8 +756,8 @@ void * plex_heap_alloc_array::realloc_dbg(void * p,  size_t size, size_t sizeOld
 
       //pblock->m_pszFileName = strdup(pszFileName == NULL ? "" : pszFileName);
    }
-   pblock->m_iLine         = iLine;
-   pblock->m_iSize         = nAllocSize;
+   pblock->m_uiLine        = iLine;
+   pblock->m_size          = nAllocSize;
 
 
    pblock->m_pprevious                 = NULL;
@@ -826,13 +826,13 @@ string get_mem_info_report1()
       	int * piUse = NULL;
 	const char ** pszFile = NULL;
    const char ** pszCallStack = NULL;
-	int * piLine = NULL;
-	int64_t * piSize = NULL;
+	uint32_t * puiLine = NULL;
+	size_t * psize = NULL;
 
 	try
 	{
 
-		::count c = get_mem_info(&piUse, &pszFile, &pszCallStack, &piLine, & piSize);
+		::count c = get_mem_info(&piUse, &pszFile, &pszCallStack, &puiLine, & psize);
 
 		memblocka bla;
 
@@ -844,10 +844,10 @@ string get_mem_info_report1()
 			for(j = 0; j < bla.get_size(); j++)
 			{
 				memblock * pbl 			= bla.ptr_at(j);
-				if(pbl->m_iUse == piUse[i] && pbl->m_strFile == pszFile[i] && pbl->m_iLine == piLine[i])
+				if(pbl->m_iUse == piUse[i] && pbl->m_strFile == pszFile[i] && pbl->m_iLine == puiLine[i])
 				{
 					pbl->m_iCount++;
-					pbl->m_iSize+= piSize[i];
+					pbl->m_iSize+= psize[i];
 					break;
 				}
 			}
@@ -857,9 +857,9 @@ string get_mem_info_report1()
 				auto & pbl 			= bla[bla.get_upper_bound()];
 				pbl->m_iUse 			= piUse[i];
 				pbl->m_strFile 			= pszFile[i];
-				pbl->m_iLine 			= piLine[i];
+				pbl->m_iLine 			= puiLine[i];
 				pbl->m_iCount			= 1;
-				pbl->m_iSize         = piSize[i];
+				pbl->m_iSize         = psize[i];
 			}
 //			free((void *) pszFile[i]);
 		}
@@ -949,8 +949,10 @@ string get_mem_info_report1()
 		::free(piUse);
 		if(pszFile)
 		::free(pszFile);
-		if(piLine)
-		::free(piLine);
+		if(puiLine)
+		::free(puiLine);
+      if (psize)
+         ::free(psize);
 
 
 		return str;
@@ -977,7 +979,7 @@ void memdleak_dump()
          OutputDebugString("Index : ");
          OutputDebugString(sz);
          OutputDebugString("\n");
-         ultoa_dup(sz, pblock->m_iSize, 10);
+         ultoa_dup(sz, pblock->m_size, 10);
          OutputDebugString("Size : ");
          OutputDebugString(sz);
          OutputDebugString("\n");

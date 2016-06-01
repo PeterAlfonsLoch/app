@@ -8,8 +8,13 @@
 //
 //
 
+//#include "framework.h"
+
 
 #undef new
+
+
+#ifndef GLOBAL_INLINE_NEW
 
 
 void * __cdecl operator new(size_t nSize) new_throw_spec
@@ -46,7 +51,7 @@ void __cdecl operator delete[](void * p) del_throw_spec
 
 
 
-
+#endif
 
 
 

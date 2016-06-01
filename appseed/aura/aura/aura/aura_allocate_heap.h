@@ -64,18 +64,18 @@ struct memdleak_block
 {
 
 
-   int32_t                 m_iBlockUse;
-   const char *            m_pszFileName;
+   int32_t                       m_iBlockUse;
+   const char *                  m_pszFileName;
 #if OSBIT == 32
-   DWORD                m_puiStack[64];
+   DWORD                         m_puiStack[64];
 #else
-   DWORD64                m_puiStack[64];
+   DWORD64                       m_puiStack[64];
 #endif
-   int                     m_iStack;
-   int32_t                 m_iLine;
-   int_ptr                 m_iSize;
-   struct memdleak_block *        m_pnext;
-   struct memdleak_block *        m_pprevious;
+   int                           m_iStack;
+   uint32_t                      m_uiLine;
+   size_t                        m_size;
+   struct memdleak_block *       m_pnext;
+   struct memdleak_block *       m_pprevious;
 
 };
 

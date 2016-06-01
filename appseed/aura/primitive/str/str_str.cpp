@@ -2094,16 +2094,15 @@ namespace str
       pszXml += len;
    }
 
-   
+
    bool eats(const char * & pszXml, const char * psz)
    {
       
       for (; *psz != '\0'; pszXml++, psz++)
       {
-
+         
          if (*pszXml != *psz)
          {
-
             return false;
 
          }
@@ -2117,13 +2116,12 @@ namespace str
 
    bool eats_ci(const char * & pszXml, const char * psz)
    {
-      
+
       for (; *psz != '\0'; pszXml++, psz++)
       {
 
          if (tolower(*pszXml) != tolower(*psz))
          {
-
             return false;
 
          }

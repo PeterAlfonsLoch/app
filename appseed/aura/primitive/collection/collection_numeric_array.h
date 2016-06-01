@@ -712,31 +712,16 @@ TYPE & numeric_array < TYPE >::
    return this->element_at(find_first_maximum_value());
 }
 
-
 template < class TYPE >
 TYPE numeric_array < TYPE >::GetMean()
 {
-   
-   if (this->get_size() <= 0)
-   {
-
-      return ::numeric_info < TYPE >::null();
-
-   }
-
-   ::numeric_info_internal::numeric_info < TYPE >::TOTAL_TYPE sum = ::numeric_info < TYPE >::null();
-
+   double dSum = 0.0;
    for(index i = 0; i < this->get_size(); i++)
    {
-
-      sum += this->element_at(i);
-
+      dSum += this->element_at(i);
    }
-
-   return (typename ::numeric_info < TYPE >::TYPE) (sum / this->get_size());
-
+   return (typename ::numeric_info < TYPE >::TYPE) (dSum / (double) this->get_size());
 }
-
 
 template < class TYPE >
 void numeric_array < TYPE >::set(const TYPE & t, index iStart, index iEnd)

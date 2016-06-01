@@ -207,10 +207,10 @@ namespace str
 
 
 
-   inline CLASS_DECL_AURA int32_t  to_with_fallback(const char * psz, int32_t iDefault) { to(iDefault, psz); return iDefault; }
-   inline CLASS_DECL_AURA int64_t  to_with_fallback(const char * psz, int64_t iDefault) { to(iDefault, psz); return iDefault; }
-   inline CLASS_DECL_AURA int32_t  to_with_fallback(const char * psz, int32_t iDefault, int32_t iBase) { to(iDefault, iBase, psz); return iDefault; }
-   inline CLASS_DECL_AURA int64_t  to_with_fallback(const char * psz, int64_t iDefault, int32_t iBase) { to(iDefault, iBase, psz); return iDefault; }
+   inline CLASS_DECL_AURA int32_t to_with_fallback(const char * psz, int32_t iDefault) { to(iDefault, psz); return iDefault; }
+   inline CLASS_DECL_AURA int64_t to_with_fallback(const char * psz, int64_t iDefault) { to(iDefault, psz); return iDefault; }
+   inline CLASS_DECL_AURA int32_t to_with_fallback(const char * psz, int32_t iDefault, int32_t iBase) { to(iDefault, iBase, psz); return iDefault; }
+   inline CLASS_DECL_AURA int64_t to_with_fallback(const char * psz, int64_t iDefault, int32_t iBase) { to(iDefault, iBase, psz); return iDefault; }
 
 
 
@@ -415,8 +415,11 @@ namespace str
 template < typename T >
 inline c_number < T > & c_number < T >::from(const string & str)
 {
+
    ::str::to(m_number, str);
+
    return *this;
+
 }
 
 

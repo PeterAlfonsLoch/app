@@ -383,7 +383,7 @@ void system_heap_free(void * p)
 
 
 
-::count get_mem_info(int32_t ** ppiUse, const char *** ppszFile, const char *** ppszCallStack, int32_t ** ppiLine, int64_t ** ppiSize)
+::count get_mem_info(int32_t ** ppiUse, const char *** ppszFile, const char *** ppszCallStack, uint32_t ** ppuiLine, size_t ** ppsize)
 {
 
 #if MEMDLEAK
@@ -410,8 +410,8 @@ void system_heap_free(void * p)
    int32_t * piUse =(int32_t *)  malloc(sizeof(int32_t) * ca);
    const char ** pszFile = (const char **) malloc(sizeof(const char *) * ca);
    const char ** pszCallStack = (const char **)malloc(sizeof(const char *) * ca);
-   int32_t * piLine =(int32_t *)  malloc(sizeof(int32_t) * ca);
-   int64_t * piSize =(int64_t *)  malloc(sizeof(int64_t) * ca);
+   uint32_t * puiLine =(uint32_t *)  malloc(sizeof(uint32_t) * ca);
+   size_t * psize =(size_t *)  malloc(sizeof(size_t) * ca);
 
    index i = 0;
 
@@ -422,8 +422,8 @@ void system_heap_free(void * p)
       piUse[i] = pblock->m_iBlockUse;
       pszFile[i] = pblock->m_pszFileName== NULL ? NULL : _strdup(pblock->m_pszFileName);
       pszCallStack[i] = pblock->m_iStack <= 0 ? NULL :_strdup(g_ee->stack_trace(pblock->m_puiStack, pblock->m_iStack));
-      piLine[i] = pblock->m_iLine;
-      piSize[i] = pblock->m_iSize;
+      puiLine[i] = pblock->m_uiLine;
+      psize[i] = pblock->m_size;
 
       i++;
 
@@ -436,8 +436,8 @@ void system_heap_free(void * p)
    *ppiUse = piUse;
    *ppszFile = pszFile;
    *ppszCallStack = pszCallStack;
-   *ppiLine = piLine;
-   *ppiSize = piSize;
+   *ppuiLine = puiLine;
+   *ppsize = psize;
 
 
    return ca;
