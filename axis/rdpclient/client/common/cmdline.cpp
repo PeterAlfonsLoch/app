@@ -2060,7 +2060,7 @@ int freerdp_client_settings_parse_command_line_arguments(rdpSettings* settings,
 		{
 			if (arg->Flags & COMMAND_LINE_VALUE_PRESENT)
 			{
-				UINT32 i;
+				int i;
 				char** p;
 				int count = 0;
 

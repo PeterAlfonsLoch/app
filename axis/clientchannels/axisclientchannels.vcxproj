@@ -473,6 +473,9 @@
     <None Include="axisclientchannels.def" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\appseed\ace\ace.vcxproj">
+      <Project>{21dcc811-4bce-4f16-b674-c0941f847127}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\appseed\aura\aura.vcxproj">
       <Project>{03e5b8e7-9e3b-44dd-9ede-e0a74d52c1c5}</Project>
     </ProjectReference>
@@ -690,7 +693,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <EnableParallelCodeGeneration>false</EnableParallelCodeGeneration>
-      <DisableSpecificWarnings>4018</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4018;4244;4267</DisableSpecificWarnings>
       <CreateHotpatchableImage>false</CreateHotpatchableImage>
       <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
       <UseFullPaths>true</UseFullPaths>
@@ -772,6 +775,7 @@
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <OpenMPSupport>false</OpenMPSupport>
       <UseFullPaths>true</UseFullPaths>
+      <DisableSpecificWarnings>4018;4244;4267</DisableSpecificWarnings>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -843,6 +847,7 @@
       <EnableParallelCodeGeneration>false</EnableParallelCodeGeneration>
       <CreateHotpatchableImage>false</CreateHotpatchableImage>
       <UseFullPaths>true</UseFullPaths>
+      <DisableSpecificWarnings>4018;4244;4267</DisableSpecificWarnings>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -919,6 +924,7 @@
       <OpenMPSupport>false</OpenMPSupport>
       <CreateHotpatchableImage>false</CreateHotpatchableImage>
       <UseFullPaths>true</UseFullPaths>
+      <DisableSpecificWarnings>4018;4244;4267</DisableSpecificWarnings>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>

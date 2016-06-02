@@ -50,7 +50,7 @@ static const BYTE NTLM_NULL_BUFFER[16] =
  * VERSION @msdn{cc236654}
  * @param s
  */
-#ifdef _WIN32 && !defined(METROWIN)
+#if defined(_WIN32) && !defined(METROWIN)
 void ntlm_get_version_info(NTLM_VERSION_INFO* versionInfo)
 {
    RTL_OSVERSIONINFOEXW osVersionInfo;

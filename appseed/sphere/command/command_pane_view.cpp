@@ -324,7 +324,7 @@ namespace command
 
 #ifdef WINDOWSEX
 
-         i = (int32_t) ::ShellExecuteW(
+         i = (int_ptr) ::ShellExecuteW(
             GetTopLevel()->get_handle(),
             NULL,
             ::str::international::utf8_to_unicode("\"" + itema[0]->m_strPath + "\""),

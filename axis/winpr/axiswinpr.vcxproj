@@ -19,6 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\appseed\ace\ace.vcxproj">
+      <Project>{21dcc811-4bce-4f16-b674-c0941f847127}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\appseed\aura\aura.vcxproj">
       <Project>{03e5b8e7-9e3b-44dd-9ede-e0a74d52c1c5}</Project>
     </ProjectReference>
@@ -57,7 +60,12 @@
     <ClCompile Include="libwinpr\input\keycode.c" />
     <ClCompile Include="libwinpr\input\scancode.c" />
     <ClCompile Include="libwinpr\input\virtualkey.c" />
-    <ClCompile Include="libwinpr\interlocked\interlocked.c" />
+    <ClCompile Include="libwinpr\interlocked\interlocked.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="libwinpr\io\device.c" />
     <ClCompile Include="libwinpr\io\io.c" />
     <ClCompile Include="libwinpr\library\library.c" />
@@ -405,6 +413,7 @@
       <CreateHotpatchableImage>false</CreateHotpatchableImage>
       <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
       <UseFullPaths>true</UseFullPaths>
+      <DisableSpecificWarnings>4090;4018;4133;4091;4477;4244;4267;4334</DisableSpecificWarnings>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -484,6 +493,7 @@
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>true</WholeProgramOptimization>
       <UseFullPaths>true</UseFullPaths>
+      <DisableSpecificWarnings>4090;4018;4133;4091;4477;4244;4267;4334</DisableSpecificWarnings>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -560,6 +570,7 @@
       <EnableParallelCodeGeneration>false</EnableParallelCodeGeneration>
       <CreateHotpatchableImage>false</CreateHotpatchableImage>
       <UseFullPaths>true</UseFullPaths>
+      <DisableSpecificWarnings>4090;4018;4133;4091;4477;4244;4267;4334</DisableSpecificWarnings>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -638,6 +649,7 @@
       <SDLCheck>
       </SDLCheck>
       <UseFullPaths>true</UseFullPaths>
+      <DisableSpecificWarnings>4090;4018;4133;4091;4477;4244;4267;4334</DisableSpecificWarnings>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>

@@ -325,7 +325,7 @@ CLASS_DECL_EXPORT BOOL wf_pre_connect(freerdp* instance)
 		return FALSE;
 	}
 
-	freerdp_set_param_uint32(settings, FreeRDP_KeyboardLayout, (int) GetKeyboardLayout(0) & 0x0000FFFF);
+	freerdp_set_param_uint32(settings, FreeRDP_KeyboardLayout, (size_t) GetKeyboardLayout(0) & 0x0000FFFF);
 
 	PubSub_SubscribeChannelConnected(instance->context->pubSub,
 		(pChannelConnectedEventHandler) wf_OnChannelConnectedEventHandler);

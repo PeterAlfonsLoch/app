@@ -27,7 +27,7 @@
 BOOL ca2rdp_Pointer_New(rdpContext* context, rdpPointer* pointer)
 {
 	ca2rdpInfo* ca2rdpi;
-	int result;
+//	int result;
 	ca2rdpPointer* ca2rdp_pointer;
 	//DFBSurfaceDescription dsc;
 
@@ -35,7 +35,7 @@ BOOL ca2rdp_Pointer_New(rdpContext* context, rdpPointer* pointer)
 	ca2rdp_pointer = (ca2rdpPointer*) pointer;
 
 
-	int pitch;
+//	int pitch;
 
 	ca2rdp_pointer->xhot = pointer->xPos;
 	ca2rdp_pointer->yhot = pointer->yPos;
@@ -71,7 +71,7 @@ BOOL ca2rdp_Pointer_Set(rdpContext* context, rdpPointer* pointer)
 {
 
    ca2rdpInfo* ca2rdpi;
-   int result;
+//   int result;
    ca2rdpPointer* ca2rdp_pointer;
    //DFBSurfaceDescription dsc;
 

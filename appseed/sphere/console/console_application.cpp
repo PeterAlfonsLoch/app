@@ -77,7 +77,7 @@ namespace console
 
       bool bShow = pobj->m_wparam & 1;
 
-      bool bCreateMini = pobj->m_wparam & 2;
+      bool bCreateMini = (pobj->m_wparam & 2) != 0;
 
       bool bCreate = false;
 

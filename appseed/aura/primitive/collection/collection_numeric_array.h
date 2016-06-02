@@ -236,10 +236,11 @@ public:
    int compare(const numeric_array < TYPE > & a) const
    {
 
-      int iCompare = this->get_size() - a.get_size();
+      ::count iCompare = this->get_size() - a.get_size();
 
       if(iCompare != 0)
-         return iCompare;
+         return ::lemon::sgn(iCompare);
+
       TYPE t;
       for(index i = 0; i < this->get_size(); i++)
       {

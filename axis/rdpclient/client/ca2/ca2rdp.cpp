@@ -107,7 +107,7 @@ BOOL ca2rdp_get_fds(freerdp* instance, void** rfds, int* rcount, void** wfds, in
 
 	ca2rdpi = ((ca2rdpContext*) instance->context)->ca2rdpi;
 
-	rfds[*rcount] = (void*)(long)(ca2rdpi->read_fds);
+	rfds[*rcount] = (void*)(size_t)(ca2rdpi->read_fds);
 	(*rcount)++;
 
 	return TRUE;
@@ -387,7 +387,7 @@ int ca2rdpreerdp_run(freerdp* instance)
 
 		for (i = 0; i < rcount; i++)
 		{
-			fds = (int)(long)(rfds[i]);
+			fds = (int)(size_t)(rfds[i]);
 
 			if (fds > max_fds)
 				max_fds = fds;

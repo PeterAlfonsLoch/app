@@ -37,8 +37,8 @@
 
 #define TAG CLIENT_TAG("windows")
 
-extern BOOL WINAPI AddClipboardFormatListener(_In_ HWND hwnd);
-extern BOOL WINAPI RemoveClipboardFormatListener(_In_  HWND hwnd);
+extern WINUSERAPI BOOL WINAPI AddClipboardFormatListener(_In_ HWND hwnd);
+extern WINUSERAPI BOOL WINAPI RemoveClipboardFormatListener(_In_  HWND hwnd);
 
 #define WM_CLIPRDR_MESSAGE  (WM_USER + 156)
 #define OLE_SETCLIPBOARD    1

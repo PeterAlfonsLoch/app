@@ -205,7 +205,7 @@ void ca2rdp_send_mouse_button_event(rdpInput* input, UINT uiMessage, POINT pt)
 
 
 	if (flags != 0)
-      input->MouseEvent(input,flags,pt.x,pt.y);
+      input->MouseEvent(input,(UINT16) flags,(UINT16) pt.x, (UINT16)pt.y);
 
 }
 

@@ -79,7 +79,7 @@ int mf_aac_init(AAC_CONTEXT* h264,int rate,int channels,AUDIO_FORMAT * in)
 
 
    avcodec_register_all();
-   HRESULT hr;
+//   HRESULT hr;
    AAC_CONTEXT_MF* sys;
 
    sys = (AAC_CONTEXT_MF*)calloc(1,sizeof(AAC_CONTEXT_MF));
@@ -272,8 +272,8 @@ int audio_decode_example2(AAC_CONTEXT* h264,void ** pout,const void * inbuf,int 
       {
 
          short * psh = *pout;
-         float * f1 = sys->decoded_frame->data[0];
-         float * f2 = sys->decoded_frame->data[0];
+         float * f1 = (float *) sys->decoded_frame->data[0];
+         float * f2 = (float *) sys->decoded_frame->data[0];
          int sample;
          for(i = 0; i < sys->decoded_frame->nb_samples; i++)
          {
@@ -345,5 +345,7 @@ int mf_aac_uninit(AAC_CONTEXT* h264)
    free(h264->pSystemData);
    
    free(h264);
+
+   return 0;
    
 }

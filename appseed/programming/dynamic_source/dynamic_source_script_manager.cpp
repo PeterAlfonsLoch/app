@@ -442,10 +442,10 @@ string script_manager::get_library_build_log()
 {
    file::plain_text_stream_memory_buffer memfile(get_app());
    POSITION pos = m_pcompiler->m_mapLib.get_start_position();
-   while(pos != NULL)
+   //while(pos != NULL)
    {
-      library_class * plib;
-      string strClass;
+//      library_class * plib;
+//      string strClass;
 //         m_pcompiler->m_mapLib.get_next_assoc(pos, strClass, (void * &) plib);
 //         memfile.transfer_from(plib->m_memfileError);
    }
