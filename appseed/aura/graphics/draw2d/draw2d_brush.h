@@ -22,14 +22,15 @@ namespace draw2d
       };
 
 
-      COLORREF    m_cr;
-      e_type      m_etype;
-      pointd      m_pt1;
-      pointd      m_pt2;
-      COLORREF    m_cr1;
-      COLORREF    m_cr2;
-      pointd      m_pt;
-      sized       m_size;
+      COLORREF             m_cr;
+      e_type               m_etype;
+      pointd               m_pt1;
+      pointd               m_pt2;
+      COLORREF             m_cr1;
+      COLORREF             m_cr2;
+      pointd               m_pt;
+      sized                m_size;
+      ::draw2d::dib_sp     m_dib;
 
 
       brush();
@@ -44,7 +45,7 @@ namespace draw2d
       virtual bool create_solid(COLORREF crColor);
       virtual bool CreateHatchBrush(int32_t nIndex, COLORREF crColor);
       virtual bool CreateBrushIndirect(const LOGBRUSH* lpLogBrush);
-      virtual bool CreatePatternBrush(::draw2d::bitmap* pBitmap);
+      virtual bool CreatePatternBrush(::draw2d::dib * pdib);
 #ifdef WINDOWS
       virtual bool CreateDIBPatternBrush(HGLOBAL hPackedDIB, UINT nUsage);
 #endif

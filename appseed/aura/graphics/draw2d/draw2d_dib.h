@@ -305,35 +305,6 @@ namespace draw2d
 
    };
 
-   class CLASS_DECL_AURA dib_sp :
-      public smart_pointer < dib >
-   {
-   public:
-
-      dib_sp()
-      {
-      }
-
-      dib_sp(const smart_pointer < dib > & p) :
-         smart_pointer < dib > (p)
-      {
-      }
-
-      dib_sp(const ::aura::allocatorsp & allocer) :
-         smart_pointer < dib > (allocer)
-      {
-      }
-
-      dib_sp & operator = (::draw2d::dib * pdib)
-      {
-
-         smart_pointer < dib >::operator = (pdib);
-
-         return *this;
-
-      }
-
-   };
 
    class CLASS_DECL_AURA dibmap :
       virtual public map < class size, class size, ::draw2d::dib_sp, ::draw2d::dib_sp >

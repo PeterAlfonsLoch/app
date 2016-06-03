@@ -115,12 +115,17 @@ namespace draw2d
       return false;
    }
 
-   bool brush::CreatePatternBrush(::draw2d::bitmap* pBitmap)
+   
+   bool brush::CreatePatternBrush(::draw2d::dib * pdib)
    {
-      UNREFERENCED_PARAMETER(pBitmap);
-      ::exception::throw_interface_only(get_app());
-      return false;
+      
+      m_dib = pdib;
+
+      return true;
+
    }
+
+
    bool brush::CreateDIBPatternBrush(const void * lpPackedDIB, UINT nUsage)
    {
       UNREFERENCED_PARAMETER(lpPackedDIB);
