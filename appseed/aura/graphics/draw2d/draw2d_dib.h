@@ -114,6 +114,7 @@ namespace draw2d
       virtual bool dc_select(bool bSelect = true);
 
       virtual COLORREF GetAverageColor();
+      virtual COLORREF GetAverageOpaqueColor();
       virtual bool blend(dib * pdib, dib * pdibRate);
       virtual bool Blend(dib *pdib, dib * pdibA, int32_t A);
       virtual bool Blend(dib *pdib, dib * pdibA);

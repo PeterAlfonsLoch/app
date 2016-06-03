@@ -3157,6 +3157,52 @@ namespace draw2d
       }
 
    }
+   COLORREF dib::GetAverageOpaqueColor()
+   {
+      map();
+      double dR = 0.0;
+      double dG = 0.0;
+      double dB = 0.0;
+      int32_t iRLine;
+      int32_t iGLine;
+      int32_t iBLine;
+      double dDiv = m_size.cx * m_size.cy;
+      if (dDiv > 0)
+      {
+
+         for (int32_t y = 0; y < m_size.cy; y++)
+         {
+            iRLine = 0;
+            iGLine = 0;
+            iBLine = 0;
+            LPBYTE lpb = ((LPBYTE)get_data()) + m_iScan * y;
+            for (int32_t x = 0; x < m_size.cx; x++)
+            {
+               if (lpb[3] == 255)
+               {
+                
+                  iRLine += lpb[2];
+                  iGLine += lpb[1];
+                  iBLine += lpb[0];
+
+               }
+               lpb += 4;
+            }
+            dR += iRLine / dDiv;
+            dG += iGLine / dDiv;
+            dB += iBLine / dDiv;
+         }
+         int32_t iR = (int32_t)dR;
+         int32_t iG = (int32_t)dG;
+         int32_t iB = (int32_t)dB;
+         return RGB(iR, iG, iB);
+      }
+      else
+      {
+         return 0;
+      }
+
+   }
 
 
    void dib::do_xor(dib * pdib)
