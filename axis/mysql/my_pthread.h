@@ -154,7 +154,11 @@ int pthread_cancel(pthread_t thread);
 #ifndef ETIMEDOUT
 #define ETIMEDOUT 145		    /* Win32 doesn't have this */
 #endif
+#ifdef _WIN32
+#define HAVE_LOCALTIME_R		0
+#else
 #define HAVE_LOCALTIME_R		1
+#endif
 #define _REENTRANT			1
 #define HAVE_PTHREAD_ATTR_SETSTACKSIZE	1
 

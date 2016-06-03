@@ -174,3 +174,94 @@ array < point3d > box::vertices()
 
    return p;
 }
+
+
+
+inline double sqr(double x)
+{
+   return x*x;
+}
+
+point3d box::get_nearest_vertice(point3d p)
+{
+
+   array < point3d >  verts = vertices();
+
+   double dMin = sqrt(::sqr(p.x - verts[0].x) + sqr(p.y - verts[0].y) + sqr(p.z - verts[0].z));
+
+   double d;
+
+   index iFound = 0;
+
+   for (index i = 1; i < verts.get_count(); i++)
+   {
+      d = sqrt(::sqr(p.x - verts[i].x) + sqr(p.y - verts[i].y) + sqr(p.z - verts[i].z));
+
+      if (d < dMin)
+      {
+         dMin = d;
+         iFound = i;
+      }
+   }
+
+
+   return verts[iFound];
+
+}
+
+index box::find_nearest_vertice(point3d p)
+{
+
+   array < point3d >  verts = vertices();
+
+   double dMin = sqrt(::sqr(p.x - verts[0].x) + sqr(p.y - verts[0].y) + sqr(p.z - verts[0].z));
+
+   double d;
+
+   index iFound = 0;
+
+   for (index i = 1; i < verts.get_count(); i++)
+   {
+      d = sqrt(::sqr(p.x - verts[i].x) + sqr(p.y - verts[i].y) + sqr(p.z - verts[i].z));
+
+      if (d < dMin)
+      {
+         dMin = d;
+         iFound = i;
+      }
+   }
+
+
+   return iFound;
+
+}
+
+
+index box::find_nearest_vertice(LONG x, LONG y)
+{
+
+   array < point3d >  verts = vertices();
+
+   double dMin = sqrt(::sqr(x - verts[0].x) + sqr(y - verts[0].y));
+
+   double d;
+
+   index iFound = 0;
+
+   for (index i = 1; i < verts.get_count(); i++)
+   {
+      d = sqrt(::sqr(x - verts[i].x) + sqr(y - verts[i].y));
+
+      if (d < dMin)
+      {
+         dMin = d;
+         iFound = i;
+      }
+   }
+
+
+   return iFound;
+
+}
+
+

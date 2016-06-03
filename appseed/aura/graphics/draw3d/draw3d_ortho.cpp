@@ -188,8 +188,10 @@ namespace draw3d
       return ia;
    }
 
+   
    int_array ortho::draw_ortho_plain_fill(::box * pbox,int iHint,int bA,bool bFirst,::draw2d::dib * pdib)
    {
+
       ::draw2d::bitmap bm;
 
       point pt[3];
@@ -310,7 +312,7 @@ namespace draw3d
             pt[1]=point((int64_t)p[f[iMax][1]].x,(int64_t)p[f[iMax][1]].y);
             pt[2]=point((int64_t)p[f[iMax][2]].x,(int64_t)p[f[iMax][2]].y);
 
-            m_pdc->PlgBlt(pt,pdib->get_graphics(),0,0,pdib->m_size.cx,pdib->m_size.cx,bm,0,0);
+            m_pdc->PlgBlt(pt, pdib->get_graphics(),0,0,pdib->m_size.cx,pdib->m_size.cx,bm,0,0);
          }
 
          f.remove_at(iMax);

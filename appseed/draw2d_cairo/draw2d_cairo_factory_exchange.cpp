@@ -1,6 +1,7 @@
 #include "framework.h"
+#if defined(LINUX)
 #include "base/os/linux/linux_window_xlib.h"
-
+#endif
 
 namespace draw2d_cairo
 {

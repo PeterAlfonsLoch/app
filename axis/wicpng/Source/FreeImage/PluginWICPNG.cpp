@@ -891,7 +891,7 @@ if(SUCCEEDED(hr))
 
          hr = pbitmap->CopyPixels(NULL,iStride,iStride * height,mem.get_data());
 
-         for (int k = 0; k < height; k++)
+         for (UINT k = 0; k < height; k++)
          {
             memcpy(&pb[k * iStride],&mem.get_data()[(height - 1 - k) * iStride],iStride);
          }
@@ -949,7 +949,7 @@ if(SUCCEEDED(hr))
 //	}
 //
 //	return NULL;
-end:
+//end:
 
 pbitmap->Release();
 pstream->Release();
