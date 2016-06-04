@@ -289,15 +289,28 @@ extern "C" {
 #define APR_HAVE_SIGSUSPEND     0
 #define APR_HAVE_SIGWAIT        0
 #define APR_HAVE_SA_STORAGE     0
-#define APR_HAVE_STRCASECMP     0
 #define APR_HAVE_STRDUP         1
-#define APR_HAVE_STRNCASECMP    0
 #define APR_HAVE_STRSTR         1
 #define APR_HAVE_MEMCHR         1
 #define APR_HAVE_STRUCT_RLIMIT  0
 #define APR_HAVE_UNION_SEMUN    0
 #define APR_HAVE_SCTP           0
 #define APR_HAVE_IOVEC          0
+
+#ifdef APR_HAVE_STRCASECMP
+#undef APR_HAVE_STRCASECMP
+#endif
+#ifdef APR_HAVE_STRNCASECMP
+#undef APR_HAVE_STRNCASECMP
+#endif
+
+#ifdef _WIN32
+#define APR_HAVE_STRCASECMP     1
+#define APR_HAVE_STRNCASECMP    1
+#else
+#define APR_HAVE_STRCASECMP     0
+#define APR_HAVE_STRNCASECMP    0
+#endif
 
 #ifndef _WIN32_WCE
 #define APR_HAVE_STRICMP        1

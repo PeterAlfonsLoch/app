@@ -65,6 +65,12 @@ namespace compare
       return i < 0 ? true : (unsigned __int64)i < ui;
    }
 
+   template < >
+   inline bool lt(DWORD dw, int i)
+   {
+      return i < 0 ? false : dw < (DWORD)i;
+   }
+
 #endif
 
 

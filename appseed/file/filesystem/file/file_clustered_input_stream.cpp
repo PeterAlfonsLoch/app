@@ -22,7 +22,7 @@ namespace file
 
       if (_curRem == 0)
       {
-         file_size_t blockSize = 1 << BlockSizeLog;
+         file_size_t blockSize = (file_size_t)1 << (file_size_t) BlockSizeLog;
          file_size_t virtBlock = _virtPos >> BlockSizeLog;
          file_size_t offsetInBlock = _virtPos & (blockSize - 1);
          file_size_t phyBlock = Vector[(index)virtBlock];
@@ -34,7 +34,7 @@ namespace file
          }
          _curRem = blockSize - offsetInBlock;
          for (int32_t i = 1; i < 64 && (virtBlock + i) < (uint32_t)Vector.get_size() && phyBlock + i == Vector[(index)(virtBlock + i)]; i++)
-            _curRem += (uint64_t)((uint32_t) 1 << (uint32_t) BlockSizeLog);
+            _curRem += (uint64_t)((uint64_t) 1 << (uint64_t) BlockSizeLog);
          uint64_t rem = Size - _virtPos;
          if (_curRem > rem)
             _curRem = rem;
