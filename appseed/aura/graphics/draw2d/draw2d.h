@@ -8,12 +8,8 @@
 namespace draw2d
 {
 
-   class dib;
-
    CLASS_DECL_AURA void copy_colorref(int cx,int cy,COLORREF * pcolorrefDst,int iStrideDst,COLORREF * pcolorrefSrc,int iStrideSrc);
    CLASS_DECL_AURA void copy_colorref(int x, int y, int cx,int cy,COLORREF * pcolorrefDst,int iStrideDst,COLORREF * pcolorrefSrc,int iStrideSrc);
-
-   CLASS_DECL_AURA typedef smart_pointer < dib > dib_sp;
 
 } // namespace draw2d
 
@@ -37,13 +33,12 @@ void draw2d_factory_exchange(::aura::application * papp);
 #include "draw2d_object.h"
 #include "draw2d_pen.h"
 #include "draw2d_bitmap.h"
+#include "draw2d_dib.h"
 #include "draw2d_brush.h"
 #include "draw2d_font.h"
 #include "draw2d_palette.h"
 #include "draw2d_region.h"
 #include "draw2d_igui.h"
-#include "draw2d_dib.h"
-//#include "ca2_draw_dib.h"
 #include "draw2d_path.h"
 
 

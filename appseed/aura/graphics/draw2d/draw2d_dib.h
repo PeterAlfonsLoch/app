@@ -306,6 +306,9 @@ namespace draw2d
    };
 
 
+   using dib_sp = sp(dib);
+
+
    class CLASS_DECL_AURA dibmap :
       virtual public map < class size, class size, ::draw2d::dib_sp, ::draw2d::dib_sp >
          {
