@@ -119,7 +119,16 @@ namespace draw2d
    bool brush::CreatePatternBrush(::draw2d::dib * pdib)
    {
       
-      m_dib = pdib;
+      if (m_dib != pdib || m_etype != type_pattern)
+      {
+
+         m_dib = pdib;
+
+         m_etype = type_pattern;
+
+         m_bUpdated = false;
+
+      }
 
       return true;
 
@@ -211,6 +220,7 @@ namespace draw2d
       m_cr2             = brushSrc.m_cr2;
       m_pt              = brushSrc.m_pt;
       m_size            = brushSrc.m_size;
+      m_dib             = brushSrc.m_dib;
       m_bUpdated        = false;
 
       return *this;

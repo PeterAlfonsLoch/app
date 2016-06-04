@@ -17,7 +17,8 @@ namespace draw2d
          type_null,
          type_solid,
          type_linear_gradient_point_color,
-         type_radial_gradient_color
+         type_radial_gradient_color,
+         type_pattern,
 
       };
 
