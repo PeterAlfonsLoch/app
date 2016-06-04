@@ -2442,6 +2442,12 @@ namespace aura
    index system::find_city(string strQuery, string & strCit, int64_t & iId, double & dLat, double & dLon)
    {
 
+      string strTry;
+
+      index iFind;
+
+      stringa stra;
+
       defer_check_city_list();
 
       if (strQuery.CompareNoCase("Cologne, DE") == 0)
@@ -2457,44 +2463,112 @@ namespace aura
 
       }
 
-      index iFind = m_straCit.find_first_begins_ci(strQuery);
+      iFind = m_straCit.find_first_begins_ci(strQuery);
 
-      if (iFind < 0)
+      if (iFind >= 0)
       {
 
-         stringa stra;
+         goto found;
 
-         stra.explode(",", strQuery);
+      }
 
-         stra.trim();
+      strTry = strQuery;
 
-         if (stra.get_size() > 2)
+      stra.explode(",", strTry);
+
+      stra.trim();
+
+      if (stra.get_size() > 2)
+      {
+
+         strTry = stra[0];
+
+         strTry += ", ";
+
+         strTry += stra.last();
+
+         iFind = m_straCit.find_first_begins_ci(strQuery);
+
+         if (iFind >= 0)
          {
 
-            strQuery = stra[0];
-
-            strQuery += ", ";
-
-            strQuery += stra.last();
-
-            iFind = m_straCit.find_first_begins_ci(strQuery);
-
-            if (iFind < 0)
-            {
-
-               return -1;
-
-            }
+            goto found;
 
          }
-         else
+
+         strTry = stra[0];
+
+         strTry += ", ";
+
+         iFind = m_straCit.find_first_begins_ci(strQuery);
+
+         if (iFind >= 0)
          {
 
-            return -1;
+            goto found;
 
          }
 
       }
+
+      strTry = strQuery;
+
+      strTry.replace("'", "");
+
+      iFind = m_straCit.find_first_begins_ci(strQuery);
+
+      if (iFind >= 0)
+      {
+
+         goto found;
+
+      }
+
+      strTry = strQuery;
+
+      strTry.replace("'", "");
+
+      stra.explode(",", strTry);
+
+      stra.trim();
+
+      if (stra.get_size() > 2)
+      {
+
+         strTry = stra[0];
+
+         strTry += ", ";
+
+         strTry += stra.last();
+
+         iFind = m_straCit.find_first_begins_ci(strQuery);
+
+         if (iFind >= 0)
+         {
+
+            goto found;
+
+         }
+
+         strTry = stra[0];
+
+         strTry += ", ";
+
+         iFind = m_straCit.find_first_begins_ci(strQuery);
+
+         if (iFind >= 0)
+         {
+
+            goto found;
+
+         }
+
+      }
+
+
+      return -1;
+
+   found:
 
       strCit   = m_straCit[iFind];
 
