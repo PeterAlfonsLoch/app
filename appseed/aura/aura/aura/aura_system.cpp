@@ -2487,7 +2487,7 @@ namespace aura
 
          strTry += stra.last();
 
-         iFind = m_straCit.find_first_begins_ci(strQuery);
+         iFind = m_straCit.find_first_begins_ci(strTry);
 
          if (iFind >= 0)
          {
@@ -2500,7 +2500,27 @@ namespace aura
 
          strTry += ", ";
 
-         iFind = m_straCit.find_first_begins_ci(strQuery);
+         strTry += stra[1];
+
+         iFind = m_straCit.find_first_begins_ci(strTry);
+
+         if (iFind >= 0)
+         {
+
+            goto found;
+
+         }
+
+      }
+
+      if (stra.get_size() >= 2)
+      {
+
+         strTry = stra[0];
+
+         strTry += ", ";
+
+         iFind = m_straCit.find_first_begins_ci(strTry);
 
          if (iFind >= 0)
          {
@@ -2515,7 +2535,7 @@ namespace aura
 
       strTry.replace("'", "");
 
-      iFind = m_straCit.find_first_begins_ci(strQuery);
+      iFind = m_straCit.find_first_begins_ci(strTry);
 
       if (iFind >= 0)
       {
@@ -2541,7 +2561,7 @@ namespace aura
 
          strTry += stra.last();
 
-         iFind = m_straCit.find_first_begins_ci(strQuery);
+         iFind = m_straCit.find_first_begins_ci(strTry);
 
          if (iFind >= 0)
          {
@@ -2554,7 +2574,28 @@ namespace aura
 
          strTry += ", ";
 
-         iFind = m_straCit.find_first_begins_ci(strQuery);
+         strTry += stra[1];
+
+         iFind = m_straCit.find_first_begins_ci(strTry);
+
+         if (iFind >= 0)
+         {
+
+            goto found;
+
+         }
+
+      }
+
+
+      if (stra.get_size() >= 2)
+      {
+
+         strTry = stra[0];
+
+         strTry += ", ";
+
+         iFind = m_straCit.find_first_begins_ci(strTry);
 
          if (iFind >= 0)
          {
