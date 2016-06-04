@@ -44,7 +44,7 @@ uint32_t readCDAudioLBA_D8( HCDROM hCD, LPTRACKBUF t )
   uint32_t dwStatus;
   HANDLE heventSRB;
   SRB_ExecSCSICmd s;
-  int32_t idx = (int32_t)hCD - 1;
+  int_ptr idx = (int_ptr)hCD - 1;
 
   if ( (idx<0) || (idx>=MAXCDHAND) || !cdHandles[idx].used )
     {

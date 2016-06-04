@@ -45,7 +45,7 @@ uint32_t readCDAudioLBA_D4( HCDROM hCD, LPTRACKBUF t )
   uint32_t dwStatus;
   HANDLE heventSRB;
   SRB_ExecSCSICmd s;
-  int32_t idx = (int32_t)hCD - 1;
+  int_ptr idx = (int_ptr)hCD - 1;
 
   if ( (idx<0) || (idx>=MAXCDHAND) || !cdHandles[idx].used )
     {
@@ -144,7 +144,7 @@ uint32_t d4_1ModeSelect( HCDROM hCD )
   uint32_t dwStatus;
   HANDLE heventSRB;
   SRB_ExecSCSICmd s;
-  int32_t idx = (int32_t)hCD - 1;
+  int_ptr idx = (int_ptr)hCD - 1;
   BYTE buf[12] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x09, 0x30 };
 
   if ( (idx<0) || (idx>=MAXCDHAND) || !cdHandles[idx].used )

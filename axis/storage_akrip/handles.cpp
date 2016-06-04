@@ -133,7 +133,7 @@ HCDROM  GetCDHandle( LPGETCDHAND lpcd )
 
   for( i = 0; i < MAXCDHAND; i++ )
     {
-      int32_t j;
+       int_ptr j;
       j = (i + *nextHandle ) % MAXCDHAND;
 
       if ( !cdHandles[j].used )
@@ -203,7 +203,7 @@ HCDROM  GetCDHandle( LPGETCDHAND lpcd )
  ****************************************************************/
 bool CloseCDHandle( HCDROM hCD )
 {
-  int32_t idx = (int32_t)hCD - 1;
+   int_ptr idx = (int_ptr)hCD - 1;
 
   if ( (idx<0) || (idx>=MAXCDHAND) || !cdHandles[idx].used )
     return FALSE;

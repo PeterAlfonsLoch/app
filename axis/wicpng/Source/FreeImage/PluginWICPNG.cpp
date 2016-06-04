@@ -409,7 +409,7 @@ Load(FreeImageIO *io,fi_handle handle,int page,int flags,void *data) {
 
    io->seek_proc(handle,0,SEEK_SET);
 
-   io->read_proc(mem.get_data(),mem.get_size(),1,handle);
+   io->read_proc(mem.get_data(), (unsigned int) mem.get_size(),1,handle);
 
 #ifdef METROWIN
 
@@ -422,7 +422,7 @@ Load(FreeImageIO *io,fi_handle handle,int page,int flags,void *data) {
 
 #else
 
-   pstream = SHCreateMemStream(mem.get_data(),mem.get_size());
+   pstream = SHCreateMemStream(mem.get_data(),(UINT) mem.get_size());
 
 #endif
 
@@ -1056,7 +1056,7 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 //
 //} while(ulRead > 0 && stg.cbSize.QuadPart - ulPos > 0);
 //
-io->write_proc(mem.get_data(),mem.get_size(), 1, handle);
+io->write_proc(mem.get_data(),(unsigned int) mem.get_size(), 1, handle);
 //
 //delete pbitmap;
 //

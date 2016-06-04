@@ -148,7 +148,7 @@ bool WINAPI DllMain( HANDLE hModule, uint32_t dwReason, LPVOID lpReserved )
       dbprintf( "akrip32: DLL_PROCESS_ATTACH (hModule=%04X)", hModule );
 #endif
       loadAspi();
-      hMapObject = CreateFileMapping( (HANDLE)0xFFFFFFFF, NULL,
+      hMapObject = CreateFileMapping( (HANDLE)(INVALID_HANDLE_VALUE), NULL,
 				      PAGE_READWRITE, 0, sizeof(AKSHAREDMEM),
 				      "akrip32memmap2" );
       if ( hMapObject == NULL )
@@ -557,7 +557,7 @@ uint32_t ReadTOC( HCDROM hCD, LPTOC toc )
   uint32_t retVal = SS_COMP;
   HANDLE heventSRB;
   SRB_ExecSCSICmd s;
-  int32_t idx = (int32_t)hCD - 1;
+  int_ptr idx = (int_ptr)hCD - 1;
 
   if ( (idx<0) || (idx>=MAXCDHAND) )
     {
@@ -748,7 +748,7 @@ int32_t GetCDList( LPCDLIST cd )
 
 uint32_t ReadCDAudioLBA( HCDROM hCD, LPTRACKBUF t )
 {
-  int32_t idx = (int32_t)hCD - 1;
+   int_ptr idx = (int_ptr)hCD - 1;
   uint32_t retVal;
 
   if ( (idx<0) || (idx>=MAXCDHAND) )
@@ -789,7 +789,7 @@ uint32_t testReadCDAudio( HCDROM hCD, LPTRACKBUF t )
   uint32_t i;
   uint32_t dwStatus;
   BYTE *p;
-  int32_t idx = (int32_t)hCD - 1;
+  int_ptr idx = (int_ptr)hCD - 1;
   int32_t count;
 
   // fill buffer with dummy data
@@ -830,7 +830,7 @@ uint32_t testReadCDAudio( HCDROM hCD, LPTRACKBUF t )
 uint32_t readCDAudioLBA_ANY( HCDROM hCD, LPTRACKBUF t )
 {
   uint32_t dwStatus;
-  int32_t idx = (int32_t)hCD - 1;
+  int_ptr idx = (int_ptr)hCD - 1;
   int32_t i, j;
   int32_t ord[7] = { 2, 1, 8, 4, 5, 6, 7 };
 
@@ -899,7 +899,7 @@ uint32_t readCDParameters( HCDROM hCD, bool bChangeMask )
   BYTE *p;
   BYTE *pMax = b + 256;
   LPSENSEMASK psm;
-  int32_t idx = (int32_t)hCD - 1;
+  int_ptr idx = (int_ptr)hCD - 1;
 
 #if _GEN_CDPARMS
   FILE *fp;
@@ -1014,7 +1014,7 @@ bool QueryCDParms( HCDROM hCD, int32_t which, uint32_t *pNum )
 {
   bool retVal = FALSE;
   uint32_t dwTmp;
-  int32_t idx = (int32_t)hCD - 1;
+  int_ptr idx = (int_ptr)hCD - 1;
 
   if ( (idx<0) || (idx>=MAXCDHAND) || !cdHandles[idx].used )
     {
@@ -1253,7 +1253,7 @@ bool ModifyCDParms( HCDROM hCD, int32_t which, uint32_t val )
   //SENSEMASK smask;
   //bool smRead = FALSE;
   bool retVal = FALSE;
-  int32_t idx = (int32_t)hCD - 1;
+  int_ptr idx = (int_ptr)hCD - 1;
 
   if ( (idx<0) || (idx>=MAXCDHAND) || !cdHandles[idx].used )
     {
@@ -1320,7 +1320,7 @@ uint32_t setCDSpeed( HCDROM hCD, uint32_t speed )
   uint32_t dwStatus;
   HANDLE heventSRB;
   SRB_ExecSCSICmd s;
-  int32_t idx = (int32_t)hCD - 1;
+  int_ptr idx = (int_ptr)hCD - 1;
 
   if ( (idx<0) || (idx>=MAXCDHAND) || !cdHandles[idx].used )
     {
@@ -1369,7 +1369,7 @@ uint32_t pauseResumeCD( HCDROM hCD, bool bPause )
   uint32_t dwStatus;
   HANDLE heventSRB;
   SRB_ExecSCSICmd s;
-  int32_t idx = (int32_t)hCD - 1;
+  int_ptr idx = (int_ptr)hCD - 1;
 
   if ( (idx<0) || (idx>=MAXCDHAND) || !cdHandles[idx].used )
     {
@@ -1424,7 +1424,7 @@ uint32_t startStopUnit( HCDROM hCD, bool bLoEj, bool bStart )
   uint32_t dwStatus;
   HANDLE heventSRB;
   SRB_ExecSCSICmd s;
-  int32_t idx = (int32_t)hCD - 1;
+  int_ptr idx = (int_ptr)hCD - 1;
 
   if ( (idx<0) || (idx>=MAXCDHAND) || !cdHandles[idx].used )
     {
@@ -1522,7 +1522,7 @@ BYTE GetAspiLibAspiError( void )
  ****************************************************************/
 uint32_t  GetCDId( HCDROM hCD, char *buf, int32_t maxBuf )
 {
-  int32_t idx = (int32_t)hCD - 1;
+   int_ptr idx = (int_ptr)hCD - 1;
   CDREC cd;
 
   if ( (idx<0) || (idx>=MAXCDHAND) || !cdHandles[idx].used )
@@ -1628,7 +1628,7 @@ int32_t jitterAdjust( LPTRACKBUF tbuf, LPTRACKBUF tover, int32_t checkFrames )
 uint32_t ReadCDAudioLBAEx( HCDROM hCD, LPTRACKBUF t, LPTRACKBUF tOver )
 {
   uint32_t retVal;
-  int32_t idx = (int32_t)hCD - 1;
+  int_ptr idx = (int_ptr)hCD - 1;
   int32_t j, o;
   uchar *pOverAddr;
   bool bJitterCorr, bSaveJitter;

@@ -130,7 +130,7 @@ uint32_t GetCDDBDiskID( HCDROM hCD, uint32_t *pID, int32_t numEntries )
 {
   TOC toc;
   TOCTRACK *t1, *t2;
-  int32_t idx = (int32_t)hCD - 1;
+  int_ptr idx = (int_ptr)hCD - 1;
   uint32_t t;
   uint32_t n;
   int32_t i;
@@ -1015,7 +1015,7 @@ uint32_t genCDPlayerIniIndex( HCDROM hCD )
 {
   uint32_t retVal = 0;
   bool bMSF;
-  int32_t idx = (int32_t)hCD - 1;
+  int_ptr idx = (int_ptr)hCD - 1;
   int32_t i;
   TOC toc;
   uint32_t dwAddr;
