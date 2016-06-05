@@ -2607,6 +2607,125 @@ namespace aura
       }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      strTry = strQuery;
+
+      strTry.replace("St.", "Saint");
+      strTry.replace(unitext("São"), "Sao");
+
+      iFind = m_straCit.find_first_begins_ci(strTry);
+
+      if (iFind >= 0)
+      {
+
+         goto found;
+
+      }
+
+      strTry = strQuery;
+
+      strTry.replace("St.", "Saint");
+      strTry.replace(unitext("São"), "Sao");
+
+      stra.explode(",", strTry);
+
+      stra.trim();
+
+      if (stra.get_size() > 2)
+      {
+
+         strTry = stra[0];
+
+         strTry += ", ";
+
+         strTry += stra.last();
+
+         iFind = m_straCit.find_first_begins_ci(strTry);
+
+         if (iFind >= 0)
+         {
+
+            goto found;
+
+         }
+
+         strTry = stra[0];
+
+         strTry += ", ";
+
+         strTry += stra[1];
+
+         iFind = m_straCit.find_first_begins_ci(strTry);
+
+         if (iFind >= 0)
+         {
+
+            goto found;
+
+         }
+
+      }
+
+
+      if (stra.get_size() >= 2)
+      {
+
+         strTry = stra[0];
+
+         strTry += ", ";
+
+         iFind = m_straCit.find_first_begins_ci(strTry);
+
+         if (iFind >= 0)
+         {
+
+            goto found;
+
+         }
+
+      }
+
+
+
+
+
+
+
+
       return -1;
 
    found:
