@@ -14,8 +14,8 @@
 
 #include "cld2_dynamic_data.h"
 #include "integral_types.h"
-#include <assert.h>
-#include <stdint.h>
+//#include <assert.h>
+// #include <stdint.h>
 
 namespace CLD2DynamicData {
 static int DEBUG=0;

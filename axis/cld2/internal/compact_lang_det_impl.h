@@ -19,7 +19,7 @@
 #ifndef I18N_ENCODINGS_COMPACT_LANG_DET_COMPACT_LANG_DET_IMPL_H_
 #define I18N_ENCODINGS_COMPACT_LANG_DET_COMPACT_LANG_DET_IMPL_H_
 
-#include <vector>
+//#include <vector>
 
 #include "../public/compact_lang_det.h"   // For CLDHints, ResultChunkVector
 #include "integral_types.h"

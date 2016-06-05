@@ -19,7 +19,7 @@
 #include "cld2tablesummary.h"
 #include "utf8statetable.h"
 
-using namespace std;
+// using namespace std;
 namespace CLD2DynamicDataExtractor {
 static int DEBUG=0;
 void setDebug(int debug) {

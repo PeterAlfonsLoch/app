@@ -24,7 +24,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <sys/time.h>               // for gettimeofday
-#include <string>
+//#include <string>
 
 #include "cld2tablesummary.h"
 #include "compact_lang_det_impl.h"
@@ -35,7 +35,7 @@
 
 namespace CLD2 {
 
-using namespace std;
+// using namespace std;
 
 // Scaffolding
 typedef int32 Encoding;

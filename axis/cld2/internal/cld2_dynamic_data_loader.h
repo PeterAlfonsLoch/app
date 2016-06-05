@@ -15,7 +15,7 @@
 #ifndef CLD2_INTERNAL_CLD2_DYNAMIC_DATA_LOADER_H_
 #define CLD2_INTERNAL_CLD2_DYNAMIC_DATA_LOADER_H_
 
-#include <stdint.h>
+// #include <stdint.h>
 #include "scoreonescriptspan.h"
 #include "cld2_dynamic_data.h"
 

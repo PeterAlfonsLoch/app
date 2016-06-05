@@ -23,7 +23,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <fcntl.h>
-#include <fstream>
+//#include <fstream>
 #include <sys/mman.h>
 
 #include "cld2_dynamic_compat.h"

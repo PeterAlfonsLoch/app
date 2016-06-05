@@ -17,11 +17,11 @@
 // Updated 2014.01 for dual table lookup
 //
 
-#include <stdint.h>
+// #include <stdint.h>
 #include <stdio.h>
 #include <string.h>
-#include <string>
-#include <vector>
+//#include <string>
+//#include <vector>
 
 #include "cldutil.h"
 #include "debug.h"
@@ -43,7 +43,7 @@
 
 namespace CLD2 {
 
-using namespace std;
+// using namespace std;
 
 // Linker supplies the right tables, From files
 // cld_generated_cjk_uni_prop_80.cc  cld2_generated_cjk_compatible.cc

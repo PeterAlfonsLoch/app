@@ -22,11 +22,11 @@
 #include "cldutil.h"
 #include "debug.h"
 #include "lang_script.h"
-#include <stdint.h>
+// #include <stdint.h>
 
 #include <stdio.h>
 
-using namespace std;
+// using namespace std;
 
 namespace CLD2 {
 

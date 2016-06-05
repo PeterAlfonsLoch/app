@@ -1094,6 +1094,7 @@ public:
    array(const array & a);
    array(::std::initializer_list < TYPE > l);
    array(::count n);
+   array(::count n, ARG_TYPE t);
    array(array && a);
    virtual ~array();
 

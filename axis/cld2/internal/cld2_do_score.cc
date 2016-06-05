@@ -18,12 +18,12 @@
 
 #include <stdio.h>
 #include <string.h>
-#include <string>
+//#include <string>
 
 #include "compact_lang_det_impl.h"
 #include "lang_script.h"
 
-using namespace std;
+//// using namespace std;
 using namespace CLD2;
 
 double bytes[NUM_LANGUAGES][4];

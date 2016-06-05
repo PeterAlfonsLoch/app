@@ -22,14 +22,14 @@
 #include <math.h>                   // for sqrt
 #include <stdio.h>
 #include <string.h>
-#include <string>
+//#include <string>
 
 #include "debug.h"        // for uint8 etc
 #include "integral_types.h"        // for uint8 etc
 #include "compact_lang_det_impl.h"
 #include "lang_script.h"
 
-using namespace std;
+// using namespace std;
 
 namespace CLD2 {
 

@@ -24,7 +24,7 @@
 #include "lang_script.h"
 #include "port.h"
 
-using namespace std;
+// using namespace std;
 
 namespace CLD2 {
 

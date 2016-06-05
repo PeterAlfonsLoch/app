@@ -26,7 +26,7 @@
 
 #include "utf8statetable.h"
 
-#include <stdint.h>                     // for uintptr_t
+// #include <stdint.h>                     // for uintptr_t
 #include <string.h>                     // for NULL, memcpy, memmove
 
 #include "integral_types.h"        // for uint8, uint32, int8

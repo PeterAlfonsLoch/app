@@ -314,7 +314,16 @@ array_base < TYPE, ALLOCATOR >(sizeof(TYPE),false)
    this->allocate(n);
 }
 
-
+template < class TYPE, class ARG_TYPE, class ALLOCATOR >
+array < TYPE, ARG_TYPE, ALLOCATOR > ::array(::count n, ARG_TYPE t) :
+   array_base < TYPE, ALLOCATOR >(sizeof(TYPE), false)
+{
+   while (n > 0)
+   {
+      add(t);
+      n--;
+   }
+}
 
 
 

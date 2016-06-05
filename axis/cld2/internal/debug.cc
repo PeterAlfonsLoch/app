@@ -18,13 +18,13 @@
 
 #include "debug.h"
 #include <stdio.h>
-#include <string>
+//#include <string>
 
 #include "cldutil.h"
 #include "getonescriptspan.h"
 #include "lang_script.h"
 
-using namespace std;
+// using namespace std;
 
 namespace CLD2 {
 

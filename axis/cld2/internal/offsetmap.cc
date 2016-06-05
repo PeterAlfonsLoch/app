@@ -21,9 +21,9 @@
 
 #include <string.h>                     // for strcmp
 #include <stdio.h>                      // for fprintf, stderr, fclose, etc
-#include <algorithm>                    // for min
+//#include <algorithm>                    // for min
 
-using namespace std;
+// using namespace std;
 
 namespace CLD2 {
 

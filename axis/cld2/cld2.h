@@ -1,2 +1,2 @@
-#include "public/compact_land_det.h"
-#include "public/encodings.h"
+#include "axis/cld2/public/compact_lang_det.h"
+#include "axis/cld2/public/encodings.h"
