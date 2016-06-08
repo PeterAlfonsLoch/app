@@ -166,7 +166,7 @@ void OffsetMap::Flush() {
     MapOp prior_op = static_cast<MapOp>(OpPart(c));
     int prior_len = LenPart(c);
     if ((prior_op == COPY_OP) && ((prior_len + pending_length_) <= 0x3f)) {
-      diffs_[diffs_.size() - 1] += pending_length_;
+      diffs_.set_at(diffs_.size() - 1, diffs_[diffs_.size() - 1] + pending_length_);
       pending_length_ = 0;
       return;
     }
@@ -541,7 +541,7 @@ void OffsetMap::ComposeOffsetMap(
      }
 
      // Compose one operation which moves A' from lo to hi.
-     int hi = min(f->current_hi_aprimeoffset_, g->current_hi_aoffset_);
+     int hi = MIN(f->current_hi_aprimeoffset_, g->current_hi_aoffset_);
      if (f->current_lo_aoffset_ != f->current_hi_aoffset_ &&
          g->current_lo_aprimeoffset_ != g->current_hi_aprimeoffset_) {
        h->Copy(hi - lo);

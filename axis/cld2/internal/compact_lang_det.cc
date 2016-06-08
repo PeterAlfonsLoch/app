@@ -41,7 +41,7 @@ namespace CLD2 {
 // In all cases, valid_prefix_bytes will be set to the number of leading
 // bytes that are valid UTF-8. If this is < buffer_length, there is invalid
 // input starting at the following byte.
-Language DetectLanguageCheckUTF8(
+   CLASS_DECL_AXISCLD2 Language DetectLanguageCheckUTF8(
                         const char* buffer,
                         int buffer_length,
                         bool is_plain_text,

@@ -66,6 +66,13 @@
 #include "../internal/integral_types.h"   // For uint8 etc.
 #include "../internal/lang_script.h"      // For Language
 
+
+#ifdef _APP_AXISCLD2_LIBRARY
+#define CLASS_DECL_AXISCLD2  CLASS_DECL_EXPORT
+#else
+#define CLASS_DECL_AXISCLD2  CLASS_DECL_IMPORT
+#endif
+
 namespace CLD2 {
 
 // NOTE: If you cannot prove the the input text is valid UTF-8 by design because
@@ -163,7 +170,7 @@ namespace CLD2 {
   // In all cases, valid_prefix_bytes will be set to the number of leading
   // bytes that are valid UTF-8. If this is < buffer_length, there is invalid
   // input starting at the following byte.
-  Language DetectLanguageCheckUTF8(
+  CLASS_DECL_AXISCLD2 Language DetectLanguageCheckUTF8(
                           const char* buffer,
                           int buffer_length,
                           bool is_plain_text,
@@ -173,7 +180,7 @@ namespace CLD2 {
   // Use this one ONLY if you can prove the the input text is valid UTF-8 by
   // design because it went through a known-good conversion program.
   // Scan interchange-valid UTF-8 bytes and detect most likely language
-  Language DetectLanguage(
+  CLASS_DECL_AXISCLD2 Language DetectLanguage(
                           const char* buffer,
                           int buffer_length,
                           bool is_plain_text,
@@ -183,7 +190,7 @@ namespace CLD2 {
   // design because it went through a known-good conversion program.
   // Scan interchange-valid UTF-8 bytes and detect list of top 3 languages.
   // language3[0] is usually also the return value
-  Language DetectLanguageSummary(
+  CLASS_DECL_AXISCLD2 Language DetectLanguageSummary(
                           const char* buffer,
                           int buffer_length,
                           bool is_plain_text,
@@ -197,7 +204,7 @@ namespace CLD2 {
   // Same as above, with hints supplied
   // Scan interchange-valid UTF-8 bytes and detect list of top 3 languages.
   // language3[0] is usually also the return value
-  Language DetectLanguageSummary(
+  CLASS_DECL_AXISCLD2 Language DetectLanguageSummary(
                           const char* buffer,
                           int buffer_length,
                           bool is_plain_text,
@@ -218,7 +225,7 @@ namespace CLD2 {
   // single-language scripts, from lang_script.h
   //
   // language3[0] is usually also the return value
-  Language ExtDetectLanguageSummary(
+  CLASS_DECL_AXISCLD2 Language ExtDetectLanguageSummary(
                           const char* buffer,
                           int buffer_length,
                           bool is_plain_text,
@@ -237,7 +244,7 @@ namespace CLD2 {
   // single-language scripts, from lang_script.h
   //
   // language3[0] is usually also the return value
-  Language ExtDetectLanguageSummary(
+  CLASS_DECL_AXISCLD2 Language ExtDetectLanguageSummary(
                           const char* buffer,
                           int buffer_length,
                           bool is_plain_text,
@@ -256,7 +263,7 @@ namespace CLD2 {
   // normal text, while scores far away from 1.0 indicate badly-skewed text or
   // gibberish
   //
-  Language ExtDetectLanguageSummary(
+  CLASS_DECL_AXISCLD2 Language ExtDetectLanguageSummary(
                           const char* buffer,
                           int buffer_length,
                           bool is_plain_text,
@@ -290,7 +297,7 @@ namespace CLD2 {
   // In all cases, valid_prefix_bytes will be set to the number of leading
   // bytes that are valid UTF-8. If this is < buffer_length, there is invalid
   // input starting at the following byte.
-  Language ExtDetectLanguageSummaryCheckUTF8(
+  CLASS_DECL_AXISCLD2 Language ExtDetectLanguageSummaryCheckUTF8(
                           const char* buffer,
                           int buffer_length,
                           bool is_plain_text,

@@ -68,53 +68,42 @@
     <ClCompile>
       <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include/;.;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../nodeapp/thirdparty/include;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(SolutionDir)../../../app/base/include/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4838</DisableSpecificWarnings>
+      <PreprocessorDefinitions>_APP_AXISCLD2_LIBRARY;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">
     <ClCompile>
       <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include/;.;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../nodeapp/thirdparty/include;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(SolutionDir)../../../app/base/include/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_APP_AXISCLD2_LIBRARY;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
     <ClCompile>
       <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include/;.;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../nodeapp/thirdparty/include;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(SolutionDir)../../../app/base/include/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_APP_AXISCLD2_LIBRARY;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|x64'">
     <ClCompile>
       <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include/;.;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../nodeapp/thirdparty/include;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(SolutionDir)../../../app/base/include/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_APP_AXISCLD2_LIBRARY;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="internal\cld2_generated_cjk_compatible.cc" />
-    <ClCompile Include="internal\cld2_generated_deltaocta0122.cc" />
-    <ClCompile Include="internal\cld2_generated_deltaocta0527.cc" />
     <ClCompile Include="internal\cld2_generated_deltaoctachrome.cc" />
-    <ClCompile Include="internal\cld2_generated_distinctocta0122.cc" />
-    <ClCompile Include="internal\cld2_generated_distinctocta0527.cc" />
     <ClCompile Include="internal\cld2_generated_distinctoctachrome.cc" />
     <ClCompile Include="internal\cld2_generated_octa2_dummy.cc" />
-    <ClCompile Include="internal\cld2_generated_quad0122.cc" />
-    <ClCompile Include="internal\cld2_generated_quad0720.cc" />
     <ClCompile Include="internal\cld2_generated_quadchrome_16.cc" />
-    <ClCompile Include="internal\cld2_generated_quadchrome_2.cc" />
-    <ClCompile Include="internal\cld2_unittest_full.cc" />
     <ClCompile Include="internal\cldutil.cc" />
-    <ClCompile Include="internal\cldutil_offline.cc" />
     <ClCompile Include="internal\cldutil_shared.cc" />
     <ClCompile Include="internal\cld_generated_cjk_delta_bi_32.cc" />
-    <ClCompile Include="internal\cld_generated_cjk_delta_bi_4.cc" />
     <ClCompile Include="internal\cld_generated_cjk_uni_prop_80.cc" />
-    <ClCompile Include="internal\cld_generated_score_quad_octa_0122.cc" />
-    <ClCompile Include="internal\cld_generated_score_quad_octa_0122_2.cc" />
     <ClCompile Include="internal\cld_generated_score_quad_octa_1024_256.cc" />
-    <ClCompile Include="internal\cld_generated_score_quad_octa_2.cc" />
     <ClCompile Include="internal\compact_lang_det.cc" />
     <ClCompile Include="internal\compact_lang_det_hint_code.cc" />
     <ClCompile Include="internal\compact_lang_det_impl.cc" />
-    <ClCompile Include="internal\compact_lang_det_test.cc" />
     <ClCompile Include="internal\debug.cc" />
-    <ClCompile Include="internal\debug_empty.cc" />
     <ClCompile Include="internal\fixunicodevalue.cc" />
     <ClCompile Include="internal\generated_distinct_bi_0.cc" />
     <ClCompile Include="internal\generated_entities.cc" />
@@ -124,7 +113,6 @@
     <ClCompile Include="internal\lang_script.cc" />
     <ClCompile Include="internal\offsetmap.cc" />
     <ClCompile Include="internal\scoreonescriptspan.cc" />
-    <ClCompile Include="internal\scoreutf8text.cc" />
     <ClCompile Include="internal\tote.cc" />
     <ClCompile Include="internal\utf8statetable.cc" />
   </ItemGroup>

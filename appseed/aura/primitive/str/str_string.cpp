@@ -3092,3 +3092,13 @@ bool string::begins_ci(const char * s) const
    return ::str::begins_ci(*this,s);
 }
 
+
+
+
+
+void string::push_back(char ch)
+{
+   
+   operator += (ch);
+
+}

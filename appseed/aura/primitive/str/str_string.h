@@ -340,6 +340,8 @@ public:
    string_manager * GetManager() const throw();
 
 
+   void push_back(char ch);
+
    string & assign(const string & str);
    string & assign(const string & str, strsize pos, strsize n);
    string & assign(const char * s, strsize n);
