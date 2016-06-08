@@ -239,7 +239,8 @@ public:
 //   string_array operator +(const string_array & stra) const;
 
 
-
+   bool operator == (const RawStringArray & a) const;
+   bool operator != (const RawStringArray & a) const;
 
 
    void replace(const char * lpszSearch,const char * lpszReplace);
@@ -2353,6 +2354,43 @@ string_array < Type, RawType >  & string_array < Type, RawType > ::csstidy_explo
    }
 
    return *this;
+
+}
+
+
+template < class Type, class RawType >
+bool string_array < Type, RawType > ::operator == (const typename string_array < Type, RawType >::RawStringArray & a) const
+{
+
+   if (a.get_size() != get_size())
+   {
+
+      return false;
+
+   }
+
+   for (index i = 0; i < get_size(); i++)
+   {
+
+      if (a[i] != element_at(i))
+      {
+
+         return false;
+
+      }
+
+   }
+
+   return true;
+
+}
+
+
+template < class Type, class RawType >
+bool string_array < Type, RawType > ::operator != (const typename string_array < Type, RawType >::RawStringArray & a) const
+{
+
+   return !operator == (a);
 
 }
 
