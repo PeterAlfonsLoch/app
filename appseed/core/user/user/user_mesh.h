@@ -311,10 +311,11 @@ namespace user
       bool                             m_bMultiSelect;
 
 
+      index                            m_iStrictItemDrag;
       index                            m_iItemDrag;
       index                            m_iItemDrop;
       bool                             m_bDrag;
-
+      index                            m_iItemMouseDown;
 
       // Sort
       bool                             m_bSort;

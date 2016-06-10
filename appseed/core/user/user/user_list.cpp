@@ -476,7 +476,7 @@ namespace user
 
       pdrawitem->m_bListItemHover = pdrawitem->m_iDisplayItem == m_iItemHover &&
          (m_eview != view_icon ||
-         ((m_iconlayout.m_iaDisplayToStrict.get_a(m_iItemHover) >= 0 && m_iconlayout.m_iaDisplayToStrict.get_a(m_iItemHover) < m_nItemCount)));
+         ((m_iconlayout.m_iaDisplayToStrict.get_b(m_iItemHover) >= 0 && m_iconlayout.m_iaDisplayToStrict.get_b(m_iItemHover) < m_nItemCount)));
 
       ::draw2d::font * pfont;
       if(pdrawitem->m_bListItemHover)
@@ -2021,8 +2021,8 @@ namespace user
             }
             index iIconSize = MAX(32, m_columna[0]->m_sizeIcon.cy);
             index iItemSize = iIconSize * 2;
-            pdrawitem->m_rectItem.left = (LONG) (iItemSize * (pdrawitem->m_iItem % (MAX(1, rectClient.width() / iItemSize) )));
-            pdrawitem->m_rectItem.top = (LONG) (iItemSize * (pdrawitem->m_iItem / (MAX(1, rectClient.width() / iItemSize) )));
+            pdrawitem->m_rectItem.left = (LONG) (iItemSize * (pdrawitem->m_iDisplayItem % (MAX(1, rectClient.width() / iItemSize) )));
+            pdrawitem->m_rectItem.top = (LONG) (iItemSize * (pdrawitem->m_iDisplayItem / (MAX(1, rectClient.width() / iItemSize) )));
             pdrawitem->m_rectItem.bottom = (LONG) (pdrawitem->m_rectItem.top + iItemSize);
             pdrawitem->m_rectItem.right = (LONG) (pdrawitem->m_rectItem.left + iItemSize);
          }
@@ -2654,6 +2654,7 @@ namespace user
          {
 
             m_iItemMouseDown = iItem;
+            SetTimer(224455, 500, NULL);
 
          }
          else
@@ -2686,33 +2687,34 @@ namespace user
       ScreenToClient(&pt);
 
       KillTimer(12345678);
+      KillTimer(224455);
 
       synch_lock sl(m_pmutex);
 
       if(m_bDrag)
       {
-         m_bDrag = false;
-         if(_001DisplayHitTest(pt, m_iItemDrop))
-         {
-            if(m_eview == view_icon)
-            {
-               if(m_iItemDrop != 0)
-               {
-                  defer_drop(m_iItemDrop, m_iItemDrag);
-               }
-            }
-            else
-            {
-               if(m_iItemDrag != m_iItemDrop && m_iItemDrop != -1)
-               {
-                  // swap
-                  index i = m_meshlayout.m_iaDisplayToStrict[m_iItemDrag];
-                  m_meshlayout.m_iaDisplayToStrict[m_iItemDrag] = m_meshlayout.m_iaDisplayToStrict[m_iItemDrop];
-                  m_meshlayout.m_iaDisplayToStrict[m_iItemDrop] = i;
-                  _001OnAfterSort();
-               }
-            }
-         }
+         //m_bDrag = false;
+         //if(_001DisplayHitTest(pt, m_iItemDrop))
+         //{
+         //   if(m_eview == view_icon)
+         //   {
+         //      //if(m_iItemDrop != 0)
+         //      //{
+         //        // defer_drop(m_iItemDrop, m_iItemDrag);
+         //      //}
+         //   }
+         //   else
+         //   {
+         //      if(m_iItemDrag != m_iItemDrop && m_iItemDrop != -1)
+         //      {
+         //         // swap
+         //         index i = m_meshlayout.m_iaDisplayToStrict[m_iItemDrag];
+         //         m_meshlayout.m_iaDisplayToStrict[m_iItemDrag] = m_meshlayout.m_iaDisplayToStrict[m_iItemDrop];
+         //         m_meshlayout.m_iaDisplayToStrict[m_iItemDrop] = i;
+         //         _001OnAfterSort();
+         //      }
+         //   }
+         //}
       }
       else if(!m_bSelect)
       {
@@ -2735,6 +2737,11 @@ namespace user
             }
 
          }
+         m_iItemMouseDown = -1;
+
+         pobj->m_bRet = true;
+
+         pmouse->set_lresult(1);
 
       }
       else
@@ -2785,13 +2792,13 @@ namespace user
             SetTimer(12345679, 500, NULL);
 
          }
+         m_iItemMouseDown = -1;
+
+         pobj->m_bRet = true;
+
+         pmouse->set_lresult(1);
       }
 
-      m_iItemMouseDown = -1;
-
-      pobj->m_bRet = true;
-
-      pmouse->set_lresult(1);
 
    }
 
@@ -5157,18 +5164,18 @@ namespace user
 
       synch_lock sl(m_pmutex);
 
-      if(m_bDrag)
-      {
-         index iItemOld = m_iItemDrop;
-         if(!_001DisplayHitTest(pt, m_iItemDrop))
-         {
-            m_iItemDrop = m_iItemDrag;
-         }
-         if(iItemOld != m_iItemDrop)
-         {
-            RedrawWindow();
-         }
-      }
+      //if(m_bDrag)
+      //{
+      //   index iItemOld = m_iItemDrop;
+      //   if(!_001DisplayHitTest(pt, m_iItemDrop))
+      //   {
+      //      m_iItemDrop = m_iItemDrag;
+      //   }
+      //   if(iItemOld != m_iItemDrop)
+      //   {
+      //      RedrawWindow();
+      //   }
+      //}
 
       track_mouse_leave();
 
@@ -5382,6 +5389,8 @@ namespace user
       {
          if(m_eview == view_icon)
          {
+            return m_iconlayout.m_iaDisplayToStrict[m_iItemDrag] != -1;
+
             if(m_iconlayout.m_iaDisplayToStrict[m_iItemDrop] == -1 || m_iconlayout.m_iaDisplayToStrict[m_iItemDrop] >= m_nItemCount)
             {
                return true;
@@ -5405,7 +5414,7 @@ namespace user
       UNREFERENCED_PARAMETER(iDisplayDrag);
       if(m_eview == view_icon)
       {
-         m_iconlayout.m_iaDisplayToStrict.translate_a(m_iItemDrop, m_iItemDrag);
+         m_iconlayout.m_iaDisplayToStrict.swap(m_iItemDrag, m_iItemDrop);
       }
       else
       {

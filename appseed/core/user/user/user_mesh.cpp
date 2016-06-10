@@ -2636,14 +2636,33 @@ namespace user
       if(m_bDrag)
       {
          m_bDrag = false;
+         index iItemOld = m_iItemDrop;
          if(_001DisplayHitTest(pt,m_iItemDrop))
          {
             if(m_eview == view_icon)
             {
-               if(m_iItemDrop != 0)
+               if (iItemOld != m_iItemDrop)
                {
-                  defer_drop(m_iItemDrop,m_iItemDrag);
+                  if (m_eview == view_icon)
+                  {
+                     //if (iItemOld >= 0)
+                     //{
+                     //   m_iconlayout.m_iaDisplayToStrict.array_remove_a(iItemOld);
+                     //}
+                     m_iconlayout.m_iaDisplayToStrict.array_insert(m_iItemDrop, m_iStrictItemDrag);
+
+                  }
+                  RedrawWindow();
                }
+               //if(m_iItemDrop != 0)
+               //{
+               //   if (!defer_drop(m_iItemDrop, m_iItemDrag))
+               //   {
+
+
+
+               //   }
+               //}
             }
             else
             {
@@ -3874,6 +3893,58 @@ namespace user
          if(!Filter1Step())
             KillTimer(ptimer->m_nIDEvent);
       }
+      else if (ptimer->m_nIDEvent == 224455)
+      {
+
+         KillTimer(ptimer->m_nIDEvent);
+         
+         m_iItemDrop = -1;
+
+         if (m_eview == view_icon)
+         {
+            
+            m_iStrictItemDrag = m_iconlayout.m_iaDisplayToStrict.get_b(m_iItemMouseDown);
+
+            if (m_iStrictItemDrag >= 0)
+            {
+
+               //if (iItemOld >= 0)
+               {
+                  
+                  m_iconlayout.m_iaDisplayToStrict.array_remove_a(m_iItemMouseDown);
+
+               }
+
+               m_iItemDrag = m_iItemMouseDown;
+
+               m_iItemDrop = m_iItemDrag;
+
+               m_bDrag = true;
+
+            }
+            
+         }
+         else
+         {
+            
+            m_iStrictItemDrag = m_meshlayout.m_iaDisplayToStrict.find_first(m_iItemDrag);
+
+            if (m_iStrictItemDrag >= 0)
+            {
+
+               m_meshlayout.m_iaDisplayToStrict.remove_at(m_iStrictItemDrag);
+
+               m_iItemDrop = -1;
+
+               m_iItemDrag = m_iItemMouseDown;
+
+               m_bDrag = true;
+
+            }
+            
+         }
+
+      }
       else if(ptimer->m_nIDEvent == 12345678)
       {
          KillTimer(ptimer->m_nIDEvent);
@@ -5103,10 +5174,18 @@ namespace user
          index iItemOld = m_iItemDrop;
          if(!_001DisplayHitTest(pt,m_iItemDrop))
          {
-            m_iItemDrop = m_iItemDrag;
          }
          if(iItemOld != m_iItemDrop)
          {
+            if (m_eview == view_icon)
+            {
+               if (iItemOld != m_iItemDrag)
+               {
+                  m_iconlayout.m_iaDisplayToStrict.array_remove_a(iItemOld);
+               }
+               m_iconlayout.m_iaDisplayToStrict.array_insert(m_iItemDrop, m_iStrictItemDrag);
+
+            }
             RedrawWindow();
          }
       }

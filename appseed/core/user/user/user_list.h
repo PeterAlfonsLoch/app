@@ -202,7 +202,7 @@ namespace user
 
       sp(simple_list_data)             m_psimplelistdata;
 
-      int                              m_iItemMouseDown;
+      
       
 
 

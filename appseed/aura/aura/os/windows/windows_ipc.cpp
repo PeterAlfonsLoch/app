@@ -299,10 +299,19 @@ namespace aura
       void * rx::on_receive(rx * prx,const char * pszMessage)
       {
 
-         if(m_preceiver != NULL)
+         string strMessage(pszMessage);
+
+         ::fork(get_app(), [=]()
          {
-            m_preceiver->on_receive(prx,pszMessage);
-         }
+          
+            if (m_preceiver != NULL)
+            {
+
+               m_preceiver->on_receive(prx, strMessage);
+
+            }
+
+         });
 
          // ODOW - on date of writing : return ignored by this windows implementation
 
