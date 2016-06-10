@@ -382,7 +382,9 @@ namespace fontopus
 
       //strApiHost.replace("account","api");
 
-      strAuthUrl = "https://" + strHost + "/api/account/license3?sessid=" + Session.fontopus()->m_mapFontopusSessId[strHost];
+      string strReqSessId = Session.fontopus()->m_mapFontopusSessId[strHost];
+
+      strAuthUrl = "https://" + System.dir().get_api_cc() + "/account/license3?sessid=" + strReqSessId;
 
       property_set set;
 
@@ -421,8 +423,19 @@ namespace fontopus
 
          string strId = doc.get_root()->attr("id");
 
-         if(strId.has_char() && atoi64_dup(strId) > 0)
+         string strLicense = doc.get_root()->attr("license");
+
+         string strResSessId = doc.get_root()->attr("sessid");
+
+         if(strId.has_char() 
+            && strId == "licensed"
+            && m_strLicense == strLicense
+            && strReqSessId == strResSessId)
          {
+
+            string strLogStats = doc.get_root()->attr("stats");
+
+            return true;
 
          }
 
