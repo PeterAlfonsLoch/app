@@ -26,7 +26,7 @@ thread_pointer < ::windows::interaction_impl  > t_pwndInit;
 const char * gen_OldWndProc = "::core::OldWndProc423";
 
 
-#define __WNDCLASS(s)    "ca2" _T(s)
+#define __WNDCLASS(s)    L"ca2" L##s
 #define __WND             __WNDCLASS("Wnd")
 #define __WNDCONTROLBAR   __WNDCLASS("ControlBar")
 #define __WNDMDIFRAME     __WNDCLASS("MDIFrame")
@@ -34,10 +34,10 @@ const char * gen_OldWndProc = "::core::OldWndProc423";
 #define __WNDOLECONTROL   __WNDCLASS("OleControl")
 
 
-const char gen_WndControlBar[] = __WNDCONTROLBAR;
-const char gen_WndMDIFrame[] = __WNDMDIFRAME;
-const char gen_WndFrameOrView[] = __WNDFRAMEORVIEW;
-const char gen_WndOleControl[] = __WNDOLECONTROL;
+const unichar gen_WndControlBar[] = __WNDCONTROLBAR;
+const unichar gen_WndMDIFrame[] = __WNDMDIFRAME;
+const unichar gen_WndFrameOrView[] = __WNDFRAMEORVIEW;
+const unichar gen_WndOleControl[] = __WNDOLECONTROL;
 
 struct __CTLCOLOR
 {
@@ -47,7 +47,7 @@ struct __CTLCOLOR
 };
 
 
-const char gen_Wnd[] = __WND;
+const unichar gen_Wnd[] = __WND;
 
 
 namespace windows
@@ -420,9 +420,10 @@ namespace windows
       cs.dwExStyle = dwExStyle;
 
       m_pui = pui;
-      string strClass = calc_window_class();
-      cs.lpszClass = strClass.is_empty() ? NULL : (const char *)strClass;
-      cs.lpszName = lpszWindowName;
+      wstring wstrClassName = calc_window_class();
+      wstring wstrWindowName(lpszWindowName);
+      cs.lpszClass = wstrClassName.is_empty() ? NULL : (const unichar *)wstrClassName;
+      cs.lpszName = wstrWindowName;
       cs.style = dwStyle;
 
       cs.x = rect.left;
@@ -461,7 +462,7 @@ namespace windows
 
       }
 
-      oswindow oswindow = ::CreateWindowEx(cs.dwExStyle,cs.lpszClass,cs.lpszName,cs.style,cs.x,cs.y,cs.cx,cs.cy,cs.hwndParent,cs.hMenu,cs.hInstance,cs.lpCreateParams);
+      oswindow oswindow = ::CreateWindowExW(cs.dwExStyle,cs.lpszClass,cs.lpszName,cs.style,cs.x,cs.y,cs.cx,cs.cy,cs.hwndParent,cs.hMenu,cs.hInstance,cs.lpCreateParams);
 
       if(!unhook_window_create())
          PostNcDestroy();        // cleanup if CreateWindowEx fails too soon
@@ -521,9 +522,24 @@ namespace windows
 
       if(oswindow == NULL)
          return FALSE;
-      WNDCLASS wndcls;
-      if(lpszClassName != NULL &&
-            GetClassInfo(System.m_hinstance,lpszClassName,&wndcls) &&
+
+      bool bUnicode = ::IsWindowUnicode(oswindow);
+
+      if (bUnicode)
+      {
+
+         output_debug_string("window is unicode");
+
+      }
+      else
+      {
+
+         output_debug_string("window is ANSI");
+
+      }
+
+      WNDCLASSW wndcls;
+      if(wstrClassName.get_length() > 0 && GetClassInfoW(System.m_hinstance, wstrClassName,&wndcls) &&
             wndcls.hIcon != NULL)
       {
          Application.set_icon(m_pui,new ::visual::icon(wndcls.hIcon),false);
@@ -589,7 +605,7 @@ namespace windows
    }
 
 
-   string interaction_impl:: calc_window_class()
+   wstring interaction_impl:: calc_window_class()
    {
 
       uint32_t uiStyle = m_pui->get_window_default_style();
@@ -612,14 +628,14 @@ namespace windows
    }
 
 
-   string interaction_impl::calc_icon_window_class(uint32_t dwDefaultStyle,const char * pszMatter)
+   wstring interaction_impl::calc_icon_window_class(uint32_t dwDefaultStyle,const char * pszMatter)
    {
 
       string strPath = Application.dir().matter(pszMatter,"icon.ico");
 
-      HICON hIcon = (HICON) ::LoadImage(NULL,strPath,IMAGE_ICON,256,256,LR_LOADFROMFILE);
+      HICON hIcon = (HICON) ::LoadImageW(NULL,wstring(strPath),IMAGE_ICON,256,256,LR_LOADFROMFILE);
 
-      string strClass = get_user_interaction_window_class(m_pui);
+      wstring strClass = get_user_interaction_window_class(m_pui);
 
       if(hIcon != NULL)
       {
@@ -628,8 +644,8 @@ namespace windows
          // will fill lpszClassName with default WNDCLASS name
          // ignore instance handle from pre_create_window.
 
-         WNDCLASS wndcls;
-         if(strClass.has_char() && GetClassInfo(System.m_hinstance,strClass,&wndcls) && wndcls.hIcon != hIcon)
+         WNDCLASSW wndcls;
+         if(strClass.get_length() > 0 && GetClassInfoW(System.m_hinstance,strClass,&wndcls) && wndcls.hIcon != hIcon)
          {
             // register a very similar WNDCLASS
             return __register_window_class(get_app(),wndcls.style,wndcls.hCursor,wndcls.hbrBackground,hIcon);
@@ -4138,7 +4154,14 @@ restart_mouse_hover_check:
 
       DWORD_PTR lresult = 0;
 
-      ::SendMessageTimeoutW(get_handle(),WM_SETTEXT,0,(LPARAM)(const unichar *)wstring(m_pui->m_strWindowText),SMTO_ABORTIFHUNG,84,&lresult);
+      m_pui->m_strWindowText = lpszString;
+
+      wstring wstrText(m_pui->m_strWindowText);
+
+      const unichar * pwszText = wstrText;
+
+      if (!::SendMessageTimeoutW(get_handle(), WM_SETTEXT, 0, (LPARAM) pwszText, SMTO_ABORTIFHUNG, 84, &lresult))
+         return;
 
    }
 
@@ -5870,7 +5893,7 @@ restart_mouse_hover_check:
          //if (gen_DBCS)
          {
             // check for cheap CS_IME style first...
-            if(GetClassLong((oswindow)wParam,GCL_STYLE) & CS_IME)
+            if(GetClassLongW((oswindow)wParam,GCL_STYLE) & CS_IME)
                goto lCallNextHook;
 
             //// get class name of the interaction_impl that is being created
@@ -5915,7 +5938,7 @@ restart_mouse_hover_check:
 
             // subclass the interaction_impl with standard __window_procedure
             WNDPROC afxWndProc = __get_window_procedure();
-            oldWndProc = (WNDPROC)SetWindowLongPtr(oswindow,GWLP_WNDPROC,
+            oldWndProc = (WNDPROC)SetWindowLongPtrW(oswindow,GWLP_WNDPROC,
                                                    (uint_ptr)afxWndProc);
             ASSERT(oldWndProc != NULL);
             if(oldWndProc != afxWndProc)
@@ -6220,7 +6243,7 @@ CLASS_DECL_BASE bool hook_window_create(::windows::interaction_impl * pwindow)
    if(t_hHookOldCbtFilter == NULL)
    {
 
-      t_hHookOldCbtFilter = ::SetWindowsHookEx(WH_CBT,windows::__cbt_filter_hook,NULL,::GetCurrentThreadId());
+      t_hHookOldCbtFilter = ::SetWindowsHookExW(WH_CBT,windows::__cbt_filter_hook,NULL,::GetCurrentThreadId());
 
       if(t_hHookOldCbtFilter == NULL)
       {
@@ -6260,29 +6283,29 @@ CLASS_DECL_BASE bool unhook_window_create()
 
 #define ___TEMP_CLASS_NAME_SIZE 4096
 
-__declspec(thread) char t_szTempClassName[___TEMP_CLASS_NAME_SIZE] = {0};
+__declspec(thread) unichar t_szTempClassName[___TEMP_CLASS_NAME_SIZE] = {0};
 
-CLASS_DECL_BASE const char * __register_window_class(::aura::application * papp,UINT nClassStyle,HCURSOR hCursor,HBRUSH hbrBackground,HICON hIcon)
+CLASS_DECL_BASE const unichar * __register_window_class(::aura::application * papp,UINT nClassStyle,HCURSOR hCursor,HBRUSH hbrBackground,HICON hIcon)
 {
    // Returns a temporary string name for the class
    //  Save in a string if you want to use it for a long time
-   LPTSTR lpszName = t_szTempClassName;
+   LPWSTR lpszName = t_szTempClassName;
 
    // generate a synthetic name for this class
 
    if(hCursor == NULL && hbrBackground == NULL && hIcon == NULL)
    {
-      C_RUNTIME_ERRORCHECK_SPRINTF(_sntprintf_s(lpszName,___TEMP_CLASS_NAME_SIZE,___TEMP_CLASS_NAME_SIZE - 1,"::core:::%p:%x",papp->m_hinstance,nClassStyle));
+      C_RUNTIME_ERRORCHECK_SPRINTF(_snwprintf_s(lpszName,___TEMP_CLASS_NAME_SIZE,___TEMP_CLASS_NAME_SIZE - 1,L"::core:::%p:%x",papp->m_hinstance,nClassStyle));
    }
    else
    {
-      C_RUNTIME_ERRORCHECK_SPRINTF(_sntprintf_s(lpszName,___TEMP_CLASS_NAME_SIZE,___TEMP_CLASS_NAME_SIZE - 1,"::core:::%p:%x:%p:%p:%p",papp->m_hinstance,nClassStyle,
+      C_RUNTIME_ERRORCHECK_SPRINTF(_snwprintf_s(lpszName,___TEMP_CLASS_NAME_SIZE,___TEMP_CLASS_NAME_SIZE - 1,L"::core:::%p:%x:%p:%p:%p",papp->m_hinstance,nClassStyle,
                                    hCursor,hbrBackground,hIcon));
    }
 
    // see if the class already exists
-   WNDCLASS wndcls;
-   if(::GetClassInfo(papp->m_paxissystem->m_hinstance,lpszName,&wndcls))
+   WNDCLASSW wndcls;
+   if(::GetClassInfoW(papp->m_paxissystem->m_hinstance,lpszName,&wndcls))
    {
       // already registered, assert everything is good
       ASSERT(wndcls.style == nClassStyle);
@@ -6369,23 +6392,23 @@ __handle_activate(::window_sp pwindow,WPARAM nState,::window_sp pWndOther)
 /////////////////////////////////////////////////////////////////////////////
 // Standard init called by WinMain
 
-__STATIC bool CLASS_DECL_BASE __register_with_icon(WNDCLASS* pWndCls,
-      const char * lpszClassName,UINT nIDIcon)
+__STATIC bool CLASS_DECL_BASE __register_with_icon(WNDCLASSW* pWndCls,
+      const unichar * lpszClassName,UINT nIDIcon)
 {
    pWndCls->lpszClassName = lpszClassName;
-   pWndCls->hIcon = ::LoadIcon(NULL,IDI_APPLICATION);
+   pWndCls->hIcon = ::LoadIconW(NULL, MAKEINTRESOURCEW(32512));
    return __register_class(pWndCls);
 }
 
 
-string CLASS_DECL_BASE get_user_interaction_window_class(::user::interaction * pui)
+wstring CLASS_DECL_BASE get_user_interaction_window_class(::user::interaction * pui)
 {
 
    ::user::interaction::e_type etype = pui->get_window_type();
 
-   WNDCLASS wndcls;
-   memset(&wndcls,0,sizeof(WNDCLASS));   // start with NULL defaults
-   wndcls.lpfnWndProc = DefWindowProc;
+   WNDCLASSW wndcls;
+   memset(&wndcls,0,sizeof(WNDCLASSW));   // start with NULL defaults
+   wndcls.lpfnWndProc = DefWindowProcW;
    wndcls.hInstance = pui->m_pauraapp->m_hinstance;
 
    INITCOMMONCONTROLSEX init;
@@ -6398,7 +6421,7 @@ string CLASS_DECL_BASE get_user_interaction_window_class(::user::interaction * p
       wndcls.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
       if(__register_with_icon(&wndcls,gen_WndFrameOrView,0))
       {
-         return gen_WndFrameOrView;
+         return wndcls.lpszClassName;
       }
    }
 
@@ -6479,17 +6502,17 @@ string CLASS_DECL_BASE get_user_interaction_window_class(::user::interaction * p
 // Additional helpers for WNDCLASS init
 
 // like RegisterClass, except will automatically call UnregisterClass
-bool CLASS_DECL_BASE __register_class(WNDCLASS* lpWndClass)
+bool CLASS_DECL_BASE __register_class(WNDCLASSW* lpWndClass)
 {
 
-   WNDCLASS wndcls;
+   WNDCLASSW wndcls;
 
-   if(GetClassInfo(lpWndClass->hInstance,lpWndClass->lpszClassName,&wndcls))
+   if(GetClassInfoW(lpWndClass->hInstance,lpWndClass->lpszClassName,&wndcls))
    {
       return TRUE;
    }
 
-   if(!::RegisterClass(lpWndClass))
+   if(!::RegisterClassW(lpWndClass))
    {
       return FALSE;
    }

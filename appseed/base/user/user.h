@@ -180,7 +180,7 @@ namespace user
 
 
    class CLASS_DECL_BASE create_struct:
-      public CREATESTRUCTA
+      public CREATESTRUCTW
    {
    public:
 

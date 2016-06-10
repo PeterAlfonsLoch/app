@@ -78,11 +78,12 @@ namespace user
       ::user::create_struct cs;
 
       cs = rect;
-
+      wstring wstrClassName(lpszClassName);
+      wstring wstrWindowName(lpszWindowName);
       cs.dwExStyle   = dwExStyle;
       cs.style       = dwStyle;
-      cs.lpszClass = lpszClassName;
-      cs.lpszName = lpszWindowName;
+      cs.lpszClass = wstrClassName;
+      cs.lpszName = wstrWindowName;
       cs.hwndParent = pparent->get_handle();
       cs.hMenu = NULL;
       cs.hInstance = System.m_hinstance;
@@ -142,10 +143,12 @@ namespace user
 
       cs = rect;
 
+      wstring wstrClassName(lpszClassName);
+      wstring wstrWindowName(lpszWindowName);
       cs.dwExStyle = 0;
       cs.style = dwStyle;
-      cs.lpszClass   = lpszClassName;
-      cs.lpszName    = lpszWindowName;
+      cs.lpszClass   = wstrClassName;
+      cs.lpszName    = wstrWindowName;
       cs.hwndParent  = pparent->get_handle();
       cs.hInstance   = System.m_hinstance;
       cs.hMenu = NULL;

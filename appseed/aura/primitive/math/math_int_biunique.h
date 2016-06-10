@@ -143,15 +143,16 @@ T biunique < T, T_to_T > ::array_remove_a(T a)
       while(a + 1 <= m_iMaxA)
       {
          T b2 = get_b(a + 1);
-         if (b2 != m_iEmptyB)
+         if (b2 == m_iEmptyB)
          {
-            m_ba.remove_key(b2);
-            m_ab.remove_key(a + 1);
-            m_ba.set_at(b2, a);
-            m_ab.set_at(a, b2);
-            m_iMaxA = calc_max_a();
-            m_iMaxB = calc_max_b();
+            break;
          }
+         m_ba.remove_key(b2);
+         m_ab.remove_key(a + 1);
+         m_ba.set_at(b2, a);
+         m_ab.set_at(a, b2);
+         m_iMaxA = calc_max_a();
+         m_iMaxB = calc_max_b();
          a++;
       }
       return b;
@@ -171,13 +172,14 @@ void biunique < T, T_to_T > ::array_insert(T aParam, T bParam)
       while (a >= aParam)
       {
          b = get_b(a);
-         if (b != m_iEmptyB)
+         if (b == m_iEmptyB)
          {
-            m_ba.remove_key(b);
-            m_ab.remove_key(a);
-            m_ba.set_at(b, a + 1);
-            m_ab.set_at(a + 1, b);
+            break;
          }
+         m_ba.remove_key(b);
+         m_ab.remove_key(a);
+         m_ba.set_at(b, a + 1);
+         m_ab.set_at(a + 1, b);
          a--;
       }
 

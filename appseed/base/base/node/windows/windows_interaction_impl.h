@@ -671,8 +671,8 @@ namespace windows
 
       void set_viewport_org(::draw2d::graphics * pgraphics);
 
-      string calc_icon_window_class(uint32_t dwDefaultStyle,const char * pszMatter);
-      string calc_window_class();
+      wstring calc_icon_window_class(uint32_t dwDefaultStyle,const char * pszMatter);
+      wstring calc_window_class();
 
       void on_set_parent(::user::interaction * pui);
 

@@ -122,8 +122,11 @@ namespace windows
       }
 
       // If an error occurs, exit the application.
-      if(! bSuccess)
+      if (!bSuccess)
+      {
+         DWORD dwLastError = ::GetLastError();
          return false;
+      }
       else
       {
          m_iPid = m_pi.dwProcessId;
