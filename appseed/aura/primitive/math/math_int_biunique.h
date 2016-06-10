@@ -131,8 +131,9 @@ T biunique < T, T_to_T > ::remove_a(T a)
 }
 
 template < class T, class T_to_T >
-T biunique < T, T_to_T > ::array_remove_a(T a)
+T biunique < T, T_to_T > ::array_remove_a(T aParam)
 {
+   T a = aParam;
    if (has_a(a))
    {
       T b = get_b(a);
@@ -140,20 +141,23 @@ T biunique < T, T_to_T > ::array_remove_a(T a)
       m_ab.remove_key(a);
       m_iMaxA = calc_max_a();
       m_iMaxB = calc_max_b();
-      while(a + 1 <= m_iMaxA)
+      if (a == 0 || get_b(a - 1) != m_iEmptyB)
       {
-         T b2 = get_b(a + 1);
-         if (b2 == m_iEmptyB)
+         while (a + 1 <= m_iMaxA)
          {
-            break;
+            T b2 = get_b(a + 1);
+            if (b2 == m_iEmptyB)
+            {
+               break;
+            }
+            m_ba.remove_key(b2);
+            m_ab.remove_key(a + 1);
+            m_ba.set_at(b2, a);
+            m_ab.set_at(a, b2);
+            m_iMaxA = calc_max_a();
+            m_iMaxB = calc_max_b();
+            a++;
          }
-         m_ba.remove_key(b2);
-         m_ab.remove_key(a + 1);
-         m_ba.set_at(b2, a);
-         m_ab.set_at(a, b2);
-         m_iMaxA = calc_max_a();
-         m_iMaxB = calc_max_b();
-         a++;
       }
       return b;
    }
@@ -163,28 +167,69 @@ T biunique < T, T_to_T > ::array_remove_a(T a)
 template < class T, class T_to_T >
 void biunique < T, T_to_T > ::array_insert(T aParam, T bParam)
 {
+
    T a;
+
    T b;
+
    // making room
+
    if (has_a(aParam))
    {
-      a = m_iMaxA;
-      while (a >= aParam)
+
+      a = aParam;
+
+      while(true)
       {
+         
+         a++;
+         
+         if (a > m_iMaxA)
+         {
+         
+            break;
+
+         }
+
          b = get_b(a);
+
          if (b == m_iEmptyB)
          {
+
             break;
+
          }
-         m_ba.remove_key(b);
-         m_ab.remove_key(a);
-         m_ba.set_at(b, a + 1);
-         m_ab.set_at(a + 1, b);
+
+      }
+
+      a--;
+
+      while (a >= aParam)
+      {
+
+         b = get_b(a);
+
+         if (b != m_iEmptyB)
+         {
+
+            m_ba.remove_key(b);
+
+            m_ab.remove_key(a);
+
+            m_ba.set_at(b, a + 1);
+
+            m_ab.set_at(a + 1, b);
+
+         }
+
          a--;
+
       }
 
       //m_iMaxA = calc_max_a();
+
       //m_iMaxB = calc_max_b();
+
    }
    
    // actually (in)se(r)tting

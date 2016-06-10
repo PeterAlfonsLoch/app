@@ -3911,7 +3911,7 @@ namespace user
                //if (iItemOld >= 0)
                {
                   
-                  m_iconlayout.m_iaDisplayToStrict.array_remove_a(m_iItemMouseDown);
+                  //m_iconlayout.m_iaDisplayToStrict.array_remove_a(m_iItemMouseDown);
 
                }
 
@@ -5179,7 +5179,7 @@ namespace user
          {
             if (m_eview == view_icon)
             {
-               if (iItemOld != m_iItemDrag)
+               //if (iItemOld != m_iItemDrag)
                {
                   m_iconlayout.m_iaDisplayToStrict.array_remove_a(iItemOld);
                }

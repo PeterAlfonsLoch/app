@@ -83,43 +83,58 @@ namespace windows
 
       DWORD dwPriorityClass = ::get_os_priority_class(iCa2Priority);
 
+      wstring wstrDir(pszDir);
+
+      const unichar * pwszDir;
+
+      if (pszDir == NULL || *pszDir == '\0')
+      {
+
+         pwszDir = NULL;
+
+      }
+      else
+      {
+
+         pwszDir = wstrDir;
+
+      }
 
       // create the child process.
 
+      wstring wstrCommandLine;
+
       if(::str::ends_ci(szCmdline,".bat"))
       {
+
          string strCmd;
 
          strCmd = "";
          strCmd += szCmdline;
          strCmd += "";
 
-         wstring wstr = strCmd;
+         wstrCommandLine = strCmd;
 
-         bSuccess = CreateProcessW(NULL,
-            (unichar *)(const unichar *)wstr,     // command line
-            NULL,          // process security attributes
-            NULL,          // primary thread security attributes
-            TRUE,          // handles are inherited
-            CREATE_NEW_CONSOLE | CREATE_UNICODE_ENVIRONMENT | dwPriorityClass,             // creation flags
-            NULL,          // use parent's environment
-            wstring(pszDir),
-            &m_si,  // STARTUPINFO pointer
-            &m_pi) != FALSE;  // receives PROCESS_INFORMATION
       }
       else
       {
-         bSuccess = CreateProcessW(NULL,
-            (unichar *)(const unichar *)wstring(szCmdline),     // command line
-            NULL,          // process security attributes
-            NULL,          // primary thread security attributes
-            TRUE,          // handles are inherited
-            CREATE_NEW_CONSOLE | dwPriorityClass,             // creation flags
-            NULL,          // use parent's environment
-            wstring(pszDir),
-            &m_si,  // STARTUPINFO pointer
-            &m_pi) != FALSE;  // receives PROCESS_INFORMATION
+
+         wstrCommandLine = szCmdline;
+
       }
+
+      unichar * pwszCommandLine = (unichar * ) (const unichar *) wstrCommandLine;
+
+      bSuccess = CreateProcessW(NULL,
+         pwszCommandLine, 
+         NULL,          // process security attributes
+         NULL,          // primary thread security attributes
+         TRUE,          // handles are inherited
+         CREATE_NEW_CONSOLE | CREATE_UNICODE_ENVIRONMENT | dwPriorityClass,             // creation flags
+         NULL,          // use parent's environment
+         pwszDir,
+         &m_si,  // STARTUPINFO pointer
+         &m_pi) != FALSE;  // receives PROCESS_INFORMATION
 
       // If an error occurs, exit the application.
       if (!bSuccess)
