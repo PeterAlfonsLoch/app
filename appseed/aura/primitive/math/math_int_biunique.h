@@ -20,10 +20,9 @@ public:
 
 
    T remove_a(T a);
-   T array_remove_a(T a);
    T remove_b(T b);
 
-   void array_insert(T a, T b);
+   T array_translate_a(T aNew, T aOld);
 
    T translate_a(T a1, T a2);
    T translate_b(T b1, T b2);
@@ -66,7 +65,6 @@ public:
 
    void biunivoca(bool b = true);
 
-protected:
    bool m_bBiunivoca;
    T m_iMaxA;
    T m_iMaxB;
@@ -131,114 +129,93 @@ T biunique < T, T_to_T > ::remove_a(T a)
 }
 
 template < class T, class T_to_T >
-T biunique < T, T_to_T > ::array_remove_a(T aParam)
+T biunique < T, T_to_T > ::array_translate_a(T aNew, T aOld)
 {
-   T a = aParam;
-   if (has_a(a))
+
+   if (aOld < 0 || aNew < 0)
    {
-      T b = get_b(a);
-      m_ba.remove_key(b);
-      m_ab.remove_key(a);
-      m_iMaxA = calc_max_a();
-      m_iMaxB = calc_max_b();
-      if (a == 0 || get_b(a - 1) != m_iEmptyB)
-      {
-         while (a + 1 <= m_iMaxA)
-         {
-            T b2 = get_b(a + 1);
-            if (b2 == m_iEmptyB)
-            {
-               break;
-            }
-            m_ba.remove_key(b2);
-            m_ab.remove_key(a + 1);
-            m_ba.set_at(b2, a);
-            m_ab.set_at(a, b2);
-            m_iMaxA = calc_max_a();
-            m_iMaxB = calc_max_b();
-            a++;
-         }
-      }
-      return b;
+      return m_iEmptyB;
    }
-   return m_iEmptyB;
-}
 
-template < class T, class T_to_T >
-void biunique < T, T_to_T > ::array_insert(T aParam, T bParam)
-{
-
-   T a;
-
-   T b;
-
-   // making room
-
-   if (has_a(aParam))
+   T bParam = get_b(aOld);
+   if (bParam == m_iEmptyB)
    {
+      return m_iEmptyB;
+   }
 
-      a = aParam;
+   if (aNew == aOld)
+   {
+      return bParam;
+   }
 
-      while(true)
+   m_ba.remove_key(bParam);
+   m_ab.remove_key(aOld);
+   m_iMaxA = calc_max_a();
+   m_iMaxB = calc_max_b();
+   //if (aNew > aOld)
+   //{
+   //   T a = aOld;
+   //   while (a + 1 <= m_iMaxA)
+   //   {
+   //      T b = get_b(a + 1);
+   //      if (b == m_iEmptyB)
+   //      {
+   //         break;
+   //      }
+   //      m_ba.remove_key(b);
+   //      m_ab.remove_key(a + 1);
+   //      m_ba.set_at(b, a);
+   //      m_ab.set_at(a, b);
+   //      m_iMaxA = calc_max_a();
+   //      m_iMaxB = calc_max_b();
+   //      a++;
+   //   }
+   //}
+   
+   // making room
+   if (has_a(aNew))
+   {
+      T a = aNew;
+      T b;
+      while (true)
       {
-         
          a++;
-         
          if (a > m_iMaxA)
          {
-         
             break;
-
          }
-
          b = get_b(a);
-
          if (b == m_iEmptyB)
          {
-
             break;
-
          }
-
       }
-
       a--;
-
-      while (a >= aParam)
+      while (a >= aNew)
       {
-
          b = get_b(a);
-
          if (b != m_iEmptyB)
          {
-
             m_ba.remove_key(b);
-
             m_ab.remove_key(a);
-
             m_ba.set_at(b, a + 1);
-
             m_ab.set_at(a + 1, b);
-
          }
-
          a--;
-
       }
-
-      //m_iMaxA = calc_max_a();
-
-      //m_iMaxB = calc_max_b();
-
    }
-   
+
    // actually (in)se(r)tting
-   m_ba.set_at(bParam, aParam);
-   m_ab.set_at(aParam, bParam);
+   m_ba.set_at(bParam, aNew);
+   m_ab.set_at(aNew, bParam);
 
    m_iMaxA = calc_max_a();
    m_iMaxB = calc_max_b();
+
+   return bParam;
+
 }
+
 
 template < class T, class T_to_T >
 T biunique < T, T_to_T > ::remove_b(T b)

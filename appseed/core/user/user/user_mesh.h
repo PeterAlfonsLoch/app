@@ -709,6 +709,9 @@ namespace user
       virtual size get_page_size();
       virtual size get_total_size();
 
+      virtual string _001GetItemId(index iStrictItem);
+      virtual index _001GetItemById(const char * pszChar);
+
    };
 
 

@@ -1,5 +1,10 @@
 //#include "framework.h"
 
+
+CLASS_DECL_AURA index array_translate_a(index_biunique & ia, index aNew, index aOld);
+CLASS_DECL_AURA index_array array_translate_a(index_biunique & ia, index_array iaNew, index_array iaOld);
+
+
 namespace user
 {
 
@@ -2633,40 +2638,18 @@ namespace user
          point pt = pmouse->m_pt;
       ScreenToClient(&pt);
 
-      if(m_bDrag)
+      if (m_bDrag)
       {
+
          m_bDrag = false;
-         index iItemOld = m_iItemDrop;
-         if(_001DisplayHitTest(pt,m_iItemDrop))
+
+         if (m_eview != view_icon)
          {
-            if(m_eview == view_icon)
+
+            index iItemOld = m_iItemDrop;
+            if (_001DisplayHitTest(pt, m_iItemDrop))
             {
-               if (iItemOld != m_iItemDrop)
-               {
-                  if (m_eview == view_icon)
-                  {
-                     //if (iItemOld >= 0)
-                     //{
-                     //   m_iconlayout.m_iaDisplayToStrict.array_remove_a(iItemOld);
-                     //}
-                     m_iconlayout.m_iaDisplayToStrict.array_insert(m_iItemDrop, m_iStrictItemDrag);
-
-                  }
-                  RedrawWindow();
-               }
-               //if(m_iItemDrop != 0)
-               //{
-               //   if (!defer_drop(m_iItemDrop, m_iItemDrag))
-               //   {
-
-
-
-               //   }
-               //}
-            }
-            else
-            {
-               if(m_iItemDrag != m_iItemDrop && m_iItemDrop != -1)
+               if (m_iItemDrag != m_iItemDrop && m_iItemDrop != -1)
                {
                   // swap
                   index i = m_meshlayout.m_iaDisplayToStrict[m_iItemDrag];
@@ -2676,6 +2659,7 @@ namespace user
                }
             }
          }
+
       }
       else
       {
@@ -3902,7 +3886,7 @@ namespace user
 
          if (m_eview == view_icon)
          {
-            
+
             m_iStrictItemDrag = m_iconlayout.m_iaDisplayToStrict.get_b(m_iItemMouseDown);
 
             if (m_iStrictItemDrag >= 0)
@@ -3910,8 +3894,8 @@ namespace user
 
                //if (iItemOld >= 0)
                {
-                  
-                  //m_iconlayout.m_iaDisplayToStrict.array_remove_a(m_iItemMouseDown);
+
+                  //m_iconlayout.m_iaDisplayToStrict.remove_a(m_iItemMouseDown);
 
                }
 
@@ -3922,7 +3906,19 @@ namespace user
                m_bDrag = true;
 
             }
-            
+            else
+            {
+
+               m_iItemMouseDown = -1;
+
+               m_iItemDrag = -1;
+
+               m_iItemDrop = -1;
+
+               m_bDrag = true;
+
+            }
+
          }
          else
          {
@@ -4579,25 +4575,26 @@ namespace user
       {
          if(m_eview == view_icon)
          {
-            if(m_iconlayout.m_iaDisplayToStrict[m_iItemDrop] >= 0 && m_iconlayout.m_iaDisplayToStrict[m_iItemDrop] < m_nItemCount)
-            {
-               return m_iconlayout.m_iaDisplayToStrict[iDisplay];
-            }
-            else
-            {
-               if(iDisplay == m_iItemDrop)
-               {
-                  return m_iconlayout.m_iaDisplayToStrict[m_iItemDrag];
-               }
-               else if(iDisplay == m_iItemDrag)
-               {
-                  return -1;
-               }
-               else
-               {
-                  return m_iconlayout.m_iaDisplayToStrict[iDisplay];
-               }
-            }
+            return m_iconlayout.m_iaDisplayToStrict[iDisplay];
+            //if(m_iconlayout.m_iaDisplayToStrict[m_iItemDrop] >= 0 && m_iconlayout.m_iaDisplayToStrict[m_iItemDrop] < m_nItemCount)
+            //{
+            //   return m_iconlayout.m_iaDisplayToStrict[iDisplay];
+            //}
+            //else
+            //{
+            //   //if(iDisplay == m_iItemDrop)
+            //   //{
+            //     // return m_iconlayout.m_iaDisplayToStrict[m_iItemDrag];
+            //   //}
+            //   //else if(iDisplay == m_iItemDrag)
+            //   //{
+            //      //return -1;
+            //   //}
+            //   //else
+            //   {
+            //      return m_iconlayout.m_iaDisplayToStrict[iDisplay];
+            //   }
+            //}
          }
          else
          {
@@ -5171,22 +5168,28 @@ namespace user
 
       if(m_bDrag)
       {
-         index iItemOld = m_iItemDrop;
-         if(!_001DisplayHitTest(pt,m_iItemDrop))
+         
+         if(m_iItemMouseDown >= 0)
          {
-         }
-         if(iItemOld != m_iItemDrop)
-         {
-            if (m_eview == view_icon)
+            //index iItemOld = m_iItemDrop;
+            m_ptLButtonUp = pt;
+            //if (!_001DisplayHitTest(pt, m_iItemDrop))
             {
-               //if (iItemOld != m_iItemDrag)
-               {
-                  m_iconlayout.m_iaDisplayToStrict.array_remove_a(iItemOld);
-               }
-               m_iconlayout.m_iaDisplayToStrict.array_insert(m_iItemDrop, m_iStrictItemDrag);
-
             }
-            RedrawWindow();
+//            if (iItemOld != m_iItemDrop)
+            {
+  //             if (m_eview == view_icon)
+               {
+                  //if (iItemOld != m_iItemDrag)
+                  {
+                     //                  m_iconlayout.m_iaDisplayToStrict.array_remove_a(iItemOld);
+                  }
+                  //             m_iconlayout.m_iaDisplayToStrict.array_insert(m_iItemDrop, m_iStrictItemDrag);
+                  //array_translate_a(m_iconlayout.m_iaDisplayToStrict, m_iItemDrop, iItemOld);
+
+               }
+               RedrawWindow();
+            }
          }
       }
 
@@ -6164,6 +6167,36 @@ namespace user
    {
 
       m_pdrawmeshitem            = new draw_mesh_item(this);
+
+   }
+
+   string mesh::_001GetItemId(index iStrictItem)
+   {
+
+      return ::str::from(iStrictItem);
+
+   }
+
+   index mesh::_001GetItemById(const char * pszChar)
+   {
+
+      ::count c = _001GetItemCount();
+
+      string strId(pszChar);
+
+      for (index iItem = 0; iItem < c; iItem++)
+      {
+
+         if (strId == _001GetItemId(iItem))
+         {
+
+            return iItem;
+
+         }
+
+      }
+
+      return -1;
 
    }
 

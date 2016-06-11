@@ -513,6 +513,8 @@ namespace user
 
       virtual void GetScrollRect(LPRECT lprect);
 
+      virtual void update_icon_list_view_sort();
+
    };
 
 

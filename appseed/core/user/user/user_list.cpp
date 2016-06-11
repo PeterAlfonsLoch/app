@@ -3,7 +3,7 @@
 namespace user
 {
 
-    UINT c_cdecl data_update_list_visible_subitem_proc(LPVOID pparam);
+   UINT c_cdecl data_update_list_visible_subitem_proc(LPVOID pparam);
 
 
 
@@ -245,6 +245,29 @@ namespace user
          _001DrawGroups(m_pdrawlistitem, iGroupFirst, iGroupLast, iItemFirst, iItemLast);
       }
 
+      if (m_eview == view_icon)
+      {
+
+         if (m_bDrag && m_iItemMouseDown < 0)
+         {
+
+            int x1 = m_ptLButtonDown.x;
+            int x2 = m_ptLButtonUp.x;
+
+            ::sort::sort(x1, x2);
+
+            int y1 = m_ptLButtonDown.y;
+            int y2 = m_ptLButtonUp.y;
+
+            ::sort::sort(y1, y2);
+
+            pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+            pgraphics->Draw3dRect(x1, y1, x2 - x1, y2 - y1, ARGB(184, 184, 184, 208), ARGB(184, 184, 184, 208));
+            pgraphics->FillSolidRect(x1, y1, x2 - x1, y2 - y1, ARGB(84, 250, 250, 255));
+
+         }
+
+      }
 
    }
 
@@ -474,6 +497,7 @@ namespace user
       if(pdrawitem->m_iItem < 0)
          return;
 
+
       pdrawitem->m_bListItemHover = pdrawitem->m_iDisplayItem == m_iItemHover &&
          (m_eview != view_icon ||
          ((m_iconlayout.m_iaDisplayToStrict.get_b(m_iItemHover) >= 0 && m_iconlayout.m_iaDisplayToStrict.get_b(m_iItemHover) < m_nItemCount)));
@@ -494,7 +518,7 @@ namespace user
       }
       pdrawitem->m_pgraphics->set_font(pfont);
 
-      pdrawitem->m_bListItemSelected = (m_eview != view_icon || is_valid_display_item(pdrawitem->m_iItem)) && rangeSelection.has_item(pdrawitem->m_iDisplayItem);
+      pdrawitem->m_bListItemSelected = (m_eview != view_icon || is_valid_display_item(pdrawitem->m_iItem)) && rangeSelection.has_item(pdrawitem->m_iItem);
 
       if(pdrawitem->m_bListItemHover)
          pdrawitem->m_iState |= ItemStateHover;
@@ -807,7 +831,7 @@ namespace user
 
       LayoutHeaderCtrl();
 
-
+      update_icon_list_view_sort();
 
    }
 
@@ -834,19 +858,7 @@ namespace user
       if(m_eview == view_icon)
       {
 
-         synch_lock sl(m_pmutex);
-
-         for(index iStrict = 0; iStrict < m_nItemCount; iStrict++)
-         {
-
-            if(m_iconlayout.m_iaDisplayToStrict.get_a(iStrict) == -1)
-            {
-
-               m_iconlayout.m_iaDisplayToStrict.set(m_iconlayout.m_iaDisplayToStrict.get_free_a(), iStrict);
-
-            }
-
-         }
+         update_icon_list_view_sort();
 
       }
       else
@@ -2041,6 +2053,38 @@ namespace user
          //   pdrawitem->m_rectItem.right = (LONG) (pdrawitem->m_rectItem.left + iItemSize);
          //}
          pdrawitem->m_rectItem.offset(-ptOffset.x,-ptOffset.y);
+
+         //if (m_eview == view_icon)
+         {
+
+            if (m_bDrag)
+            {
+               if (m_iItemMouseDown >= 0 && m_iStrictItemDrag >= 0)
+               {
+                  if (m_rangeSelection.has_item(pdrawitem->m_iItem))
+                  {
+                     point pt = m_ptLButtonUp;
+                     point p2 = m_ptLButtonDown;
+                     //pt.x -= oprop("offx").int32();
+                     //pt.y -= oprop("offy").int32();
+                     pt -= p2;
+                     pdrawitem->m_rectItem.offset(pt);
+                  }
+                  else if(pdrawitem->m_iItem == m_iStrictItemDrag)
+                  {
+                     point pt = m_ptLButtonUp;
+                     pt.x -= oprop("offx").int32();
+                     pt.y -= oprop("offy").int32();
+                     pdrawitem->m_rectItem.move_to(pt);
+
+                  }
+
+               }
+
+            }
+
+         }
+
       }
 
       pdrawitem->m_bOk = true;
@@ -2656,14 +2700,34 @@ namespace user
             m_iItemMouseDown = iItem;
             SetTimer(224455, 500, NULL);
 
+            if (m_eview == view_icon)
+            {
+
+               
+
+               point pt = pmouse->m_pt;
+               ScreenToClient(pt);
+               draw_list_item item(this);
+               item.m_iItem = m_iconlayout.m_iaDisplayToStrict.get_b(iItem);
+               item.m_iDisplayItem = iItem;
+               _001GetItemRect(&item);
+               oprop("offx") = pt.x - item.m_rectItem.left;
+               oprop("offy") = pt.y - item.m_rectItem.top;
+               if (!m_rangeSelection.has_item(item.m_iItem))
+               {
+                  m_rangeSelection.clear();
+               }
+            }
+
          }
          else
          {
 
             m_iItemMouseDown = -1;
+            SetTimer(224455, 500, NULL);
 
          }
-
+         m_ptLButtonDown = pt;
       }
       RedrawWindow();
       if(!has_focus())
@@ -2693,28 +2757,131 @@ namespace user
 
       if(m_bDrag)
       {
-         //m_bDrag = false;
-         //if(_001DisplayHitTest(pt, m_iItemDrop))
-         //{
-         //   if(m_eview == view_icon)
-         //   {
-         //      //if(m_iItemDrop != 0)
-         //      //{
-         //        // defer_drop(m_iItemDrop, m_iItemDrag);
-         //      //}
-         //   }
-         //   else
-         //   {
-         //      if(m_iItemDrag != m_iItemDrop && m_iItemDrop != -1)
-         //      {
-         //         // swap
-         //         index i = m_meshlayout.m_iaDisplayToStrict[m_iItemDrag];
-         //         m_meshlayout.m_iaDisplayToStrict[m_iItemDrag] = m_meshlayout.m_iaDisplayToStrict[m_iItemDrop];
-         //         m_meshlayout.m_iaDisplayToStrict[m_iItemDrop] = i;
-         //         _001OnAfterSort();
-         //      }
-         //   }
-         //}
+
+         if (m_eview == view_icon)
+         {
+
+            if(m_iItemMouseDown >= 0)
+            {
+            
+               index iItemOld = m_iItemDrop;
+
+               if (_001DisplayHitTest(pt, m_iItemDrop))
+               {
+
+                  if (iItemOld != m_iItemDrop)
+                  {
+
+                     if (m_eview == view_icon)
+                     {
+
+                        if (m_rangeSelection.get_item_count() > 0)
+                        {
+
+                           class rect rectClient;
+
+                           GetClientRect(&rectClient);
+
+                           index iIconSize = MAX(32, m_columna[0]->m_sizeIcon.cy);
+
+                           index iItemSize = iIconSize * 2;
+
+                           int iItemColumnCount = MAX(1, rectClient.width() / iItemSize);
+
+                           index iCol1 = m_iItemDrag % iItemColumnCount;
+
+                           index iRow1 = m_iItemDrag / iItemColumnCount;
+
+                           index iCol2 = m_iItemDrop % iItemColumnCount;
+
+                           index iRow2 = m_iItemDrop / iItemColumnCount;
+
+                           index iColOffset = iCol2 - iCol1;
+
+                           index iRowOffset = iRow2 - iRow1;
+
+                           index_array iaNew;
+                           
+                           index_array iaOld;
+
+                           for (index i = 0; i < m_rangeSelection.get_item_count(); i++)
+                           {
+
+                              item_range & itemrange = m_rangeSelection.ItemAt(i);
+
+                              for (index iItem = itemrange.m_iLowerBound; iItem <= itemrange.m_iUpperBound; iItem++)
+                              {
+
+                                 index iDisplay = m_iconlayout.m_iaDisplayToStrict.get_a(iItem);
+
+                                 index iCol = (iDisplay + iColOffset) % iItemColumnCount;
+
+                                 index iRow = (iDisplay + iColOffset) / iItemColumnCount + iRowOffset;
+
+                                 iaNew.add(iRow * iItemColumnCount + iCol);
+
+                                 iaOld.add(iDisplay);
+
+                              }
+
+                           }
+
+                           array_translate_a(m_iconlayout.m_iaDisplayToStrict, iaNew, iaOld);
+
+                        }
+                        else
+                        {
+                           //if (iItemOld >= 0)
+                           //{
+                           //   m_iconlayout.m_iaDisplayToStrict.array_remove_a(iItemOld);
+                           //}
+                           array_translate_a(m_iconlayout.m_iaDisplayToStrict, m_iItemDrop, iItemOld);
+
+                        }
+
+                     }
+                     RedrawWindow();
+                  }
+                  //if(m_iItemDrop != 0)
+                  //{
+                  //   if (!defer_drop(m_iItemDrop, m_iItemDrag))
+                  //   {
+
+
+
+                  //   }
+                  //}
+
+                  string strSort = oprop("list_sort");
+
+                  if (strSort.has_char())
+                  {
+
+                     defer_update_display();
+
+                     strSort += "-" + m_strDisplay + ".icon_list_view_sort";
+
+                     stringa stra;
+
+                     for (index a = 0; a <= m_plist->m_iconlayout.m_iaDisplayToStrict.m_iMaxA; a++)
+                     {
+
+                        index b = m_plist->m_iconlayout.m_iaDisplayToStrict.get_b(a);
+
+                        stra.add(_001GetItemId(b));
+
+                     }
+
+                     Application.file().put_contents(strSort, stra.implode("\r\n"));
+
+                     update_icon_list_view_sort();
+
+                  }
+
+               }
+
+            }
+         }
       }
       else if(!m_bSelect)
       {
@@ -2727,10 +2894,17 @@ namespace user
             if(_001DisplayHitTest(pt,iItem))
             {
 
-               if(iItem >= 0 && m_iItemMouseDown == iItem)
+               if (iItem >= 0 && m_iItemMouseDown == iItem)
                {
 
-                  _001OnItemClick(iItem);
+                  iItem = m_iconlayout.m_iaDisplayToStrict.get_b(iItem);
+
+                  if (iItem >= 0)
+                  {
+
+                     _001OnItemClick(iItem);
+
+                  }
 
                }
 
@@ -4621,25 +4795,27 @@ namespace user
       {
          if(m_eview == view_icon)
          {
-            if(m_iconlayout.m_iaDisplayToStrict[m_iItemDrop] >= 0 && m_iconlayout.m_iaDisplayToStrict[m_iItemDrop] < m_nItemCount)
-            {
-               return m_iconlayout.m_iaDisplayToStrict[iDisplay];
-            }
-            else
-            {
-               if(iDisplay == m_iItemDrop)
-               {
-                  return m_iconlayout.m_iaDisplayToStrict[m_iItemDrag];
-               }
-               else if(iDisplay == m_iItemDrag)
-               {
-                  return -1;
-               }
-               else
-               {
-                  return m_iconlayout.m_iaDisplayToStrict[iDisplay];
-               }
-            }
+
+            return m_iconlayout.m_iaDisplayToStrict[iDisplay];
+            //if(m_iconlayout.m_iaDisplayToStrict[m_iItemDrop] >= 0 && m_iconlayout.m_iaDisplayToStrict[m_iItemDrop] < m_nItemCount)
+            //{
+            //   return m_iconlayout.m_iaDisplayToStrict[iDisplay];
+            //}
+            //else
+            //{
+            //   //if(iDisplay == m_iItemDrop)
+            //   //{
+            //   //   return m_iconlayout.m_iaDisplayToStrict[m_iItemDrag];
+            //   //}
+            //   //else if(iDisplay == m_iItemDrag)
+            //   //{
+            //   //   return -1;
+            //   //}
+            //   //else
+            //   {
+            //      return m_iconlayout.m_iaDisplayToStrict[iDisplay];
+            //   }
+            //}
          }
          else
          {
@@ -5164,8 +5340,58 @@ namespace user
 
       synch_lock sl(m_pmutex);
 
-      //if(m_bDrag)
-      //{
+      if (m_bDrag)
+      {
+         if (m_iItemMouseDown < 0)
+         {
+
+            if (m_eview == view_icon)
+            {
+               class rect rectClient;
+               GetClientRect(&rectClient);
+               index iIconSize = MAX(32, m_columna[0]->m_sizeIcon.cy);
+               index iItemSize = iIconSize * 2;
+               int iItemColumnCount = MAX(1, rectClient.width() / iItemSize);
+               m_ptLButtonUp = pt;
+               index iItemStart;
+               index iItemEnd;
+               if (_001DisplayHitTest(m_ptLButtonDown, iItemStart))
+               {
+                  if (_001DisplayHitTest(pt, iItemEnd))
+                  {
+
+                     int iCol1 = iItemStart % iItemColumnCount;
+                     int iCol2 = iItemEnd % iItemColumnCount;
+
+                     ::sort::sort(iCol1, iCol2);
+
+                     int iRow1 = iItemStart / iItemColumnCount;
+                     int iRow2 = iItemEnd / iItemColumnCount;
+
+                     ::sort::sort(iRow1, iRow2);
+
+                     m_rangeSelection.clear();
+
+                     for (index i = iRow1; i <= iRow2; i++)
+                     {
+                        for (index j = iCol1; j <= iCol2; j++)
+                        {
+                           item_range itemrange;
+                           itemrange.set_lower_bound(m_iconlayout.m_iaDisplayToStrict.get_b(i * iItemColumnCount + j));
+                           itemrange.set_upper_bound(m_iconlayout.m_iaDisplayToStrict.get_b(i * iItemColumnCount + j));
+                           m_rangeSelection.add_item(itemrange);
+                        }
+                     }
+
+                  }
+
+               }
+
+            }
+
+         }
+
+      }
       //   index iItemOld = m_iItemDrop;
       //   if(!_001DisplayHitTest(pt, m_iItemDrop))
       //   {
@@ -6003,6 +6229,55 @@ namespace user
       }
 
    }
+
+
+   void list::update_icon_list_view_sort()
+   {
+
+      if (m_eview != view_icon)
+         return;
+
+
+      synch_lock sl(m_pmutex);
+
+      string strSort = oprop("list_sort");
+
+      if (strSort.has_char())
+      {
+
+         defer_update_display();
+
+         strSort += "-" + m_strDisplay + ".icon_list_view_sort";
+
+         string str = Application.file().as_string(strSort);
+         stringa stra;
+         stra.add_lines(str);
+         for (index a = 0; a < stra.get_size(); a++)
+         {
+            index b = _001GetItemById(stra[a]);
+            if (b >= 0 && b < m_nItemCount)
+            {
+               m_iconlayout.m_iaDisplayToStrict.set(a, b);
+            }
+         }
+
+      }
+
+
+      for (index b = 0; b < m_nItemCount; b++)
+      {
+
+         if (m_iconlayout.m_iaDisplayToStrict.get_a(b) == -1)
+         {
+
+            m_iconlayout.m_iaDisplayToStrict.set(m_iconlayout.m_iaDisplayToStrict.get_free_a(), b);
+
+         }
+
+      }
+
+   }
+
 
 } // namespace user
 
