@@ -4547,6 +4547,15 @@ namespace aura
    }
 
 
+   void application::play_audio(var varFile, bool bSynch)
+   {
+
+      UNREFERENCED_PARAMETER(varFile);
+      UNREFERENCED_PARAMETER(bSynch);
+
+   }
+
+
 } // namespace aura
 
 

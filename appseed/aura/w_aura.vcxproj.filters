@@ -241,6 +241,9 @@
     <Filter Include="Source Files\aura\os\windows_common">
       <UniqueIdentifier>{60b50081-d6fa-47b8-8d49-21e721dd3aed}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\aura\node\windows">
+      <UniqueIdentifier>{4280469b-7403-46cd-a9a5-6b6c1cd213f1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="primitive\primitive_application_bias.h">
@@ -2034,6 +2037,9 @@
     <ClInclude Include="aura\xml\xml_department.h">
       <Filter>Header Files\aura\xml</Filter>
     </ClInclude>
+    <ClInclude Include="aura\node\metrowin\metrowin_tts_speaker.h">
+      <Filter>Header Files\aura\node\metrowin</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="primitive\primitive_factory_impl.inl">
@@ -3486,6 +3492,12 @@
     </ClCompile>
     <ClCompile Include="aura\aura\aura_new.cpp">
       <Filter>Source Files\aura\aura</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\node\metrowin\metrowin_tts_speaker.cpp">
+      <Filter>Source Files\aura\node\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\node\windows\_windows_node.cpp">
+      <Filter>Source Files\aura\node\windows</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

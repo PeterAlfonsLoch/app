@@ -19,6 +19,7 @@ inline void waiter_null_result(unsigned int & ui)
    ui = NULL;
 }
 
+
 template < typename T >
 ref class waiter_for_Windows_Foundation_IAsyncOperation sealed
 {
@@ -83,6 +84,18 @@ public:
       }
 
    }
+   
+internal:
+
+   template < typename PRED >
+   void wait(PRED pred,unsigned int dwMillis = INFINITE, ::Windows::Foundation::AsyncStatus * pstatus = NULL)
+   {
+      
+      pred(wait(dwMillis, pstatus));
+
+   }
+
+
 
 };
 
@@ -213,6 +226,35 @@ public:
 };
 
 
+template < typename T, typename PRED >
+void fork_then(::aura::application * papp, ::Windows::Foundation::IAsyncOperation < T > ^ operation, PRED pred, DWORD dwMillis = INFINITE, CallbackContext callbackcontext = CallbackContext::Any)
+{
+
+   ::fork(papp, [=]()
+   {
+
+      waiter_for_Windows_Foundation_IAsyncOperation < T > waiter(operation, callbackcontext);
+
+      waiter.wait(pred, dwMillis);
+
+   });
+
+}
+
+
+
+template < typename T, typename PRED >
+inline void wait_then(::Windows::Foundation::IAsyncOperation < T > ^ operation, PRED pred, DWORD dwMillis = INFINITE, ::Windows::Foundation::AsyncStatus * pstatus = NULL, CallbackContext callbackcontext = CallbackContext::Any)
+{
+
+   waiter_for_Windows_Foundation_IAsyncOperation < T > waiter(operation, callbackcontext);
+
+   waiter.wait(pred, dwMillis, pstatus);
+
+}
+
+
+
 template < typename T >
 inline T wait(::Windows::Foundation::IAsyncOperation < T > ^ operation, DWORD dwMillis = INFINITE, ::Windows::Foundation::AsyncStatus * pstatus = NULL, CallbackContext callbackcontext = CallbackContext::Any)
 {
@@ -296,4 +338,5 @@ inline ::Windows::Foundation::AsyncStatus wait(::Windows::Foundation::IAsyncActi
 //CLASS_DECL_AURA IDWriteFactory * TlsGetWriteFactory();
 //
 //CLASS_DECL_AURA ID2D1Factory1 * GetD2D1Factory1();
+
 

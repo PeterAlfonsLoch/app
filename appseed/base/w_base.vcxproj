@@ -110,7 +110,6 @@
     <ClInclude Include="base\os\os.h" />
     <ClInclude Include="database\database.h" />
     <ClInclude Include="database\database\database.h" />
-    <ClInclude Include="database\database\database_user_interaction.h" />
     <ClInclude Include="database\simpledb\simpledb.h" />
     <ClInclude Include="database\simpledb\simpledb_file_system_size.h" />
     <ClInclude Include="framework.h" />

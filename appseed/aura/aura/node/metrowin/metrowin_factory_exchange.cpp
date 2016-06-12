@@ -24,6 +24,7 @@ namespace metrowin
 
          System.factory().cloneable       < file_system           >(System.template type_info < ::file::system              >(),1);
          System.factory().cloneable       < dir                   >(System.template type_info < ::file::dir::system         >(),1);
+         System.factory().cloneable       < tts::speaker           >(System.template type_info < ::tts::speaker        >(), 1);
 
       }
 

@@ -6,6 +6,7 @@
 
 
 
+
 //O volume na unidade Y ‚ bergedge
 // O N£mero de S‚rie do Volume ‚ A2BD-DCFA
 //
@@ -37,5 +38,9 @@
 
 #include "metrowin_native_buffer.cpp" // soon, from axis library 2015-07-17 20:06 Livecoding(.tv)
 
+
+
+
+#include "metrowin_tts_speaker.cpp"
 
 

@@ -509,6 +509,8 @@ virtual      void load_string_table(const string & pszApp,const string & pszId);
 
       virtual void throw_not_installed();
 
+      virtual void play_audio(var varFile, bool bSynch = false);
+
    };
 
 
