@@ -33,6 +33,9 @@
     <ProjectReference Include="..\..\aura\pcre\w_aurapcre.vcxproj">
       <Project>{b9aa8bb5-51fa-46e7-b346-2a89828f3000}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\ace\w_ace.vcxproj">
+      <Project>{14871c98-8ada-467e-8d93-d2e340d21626}</Project>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pcre.cpp" />

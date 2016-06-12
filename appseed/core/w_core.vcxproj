@@ -1970,6 +1970,9 @@
     <ProjectReference Include="..\..\axis\bzip2\w_axisbzip2.vcxproj">
       <Project>{b5a649e1-d516-4f29-a627-da6884dd421c}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\ace\w_ace.vcxproj">
+      <Project>{14871c98-8ada-467e-8d93-d2e340d21626}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\aura\w_aura.vcxproj">
       <Project>{b3e5b8e7-9e3b-44dd-9ede-e0a74d52c1c5}</Project>
     </ProjectReference>

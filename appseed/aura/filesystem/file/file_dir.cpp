@@ -29,7 +29,7 @@
 
 #elif defined(METROWIN)
 
-   unichar lpszModuleFolder[MAX_PATH * 8];
+   //   unichar lpszModuleFolder[MAX_PATH * 8];
 
 
    return "";

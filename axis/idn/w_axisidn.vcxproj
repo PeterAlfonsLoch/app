@@ -59,6 +59,11 @@
   <ItemGroup>
     <None Include="axisidn.def" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\appseed\ace\w_ace.vcxproj">
+      <Project>{14871c98-8ada-467e-8d93-d2e340d21626}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{B8AC3EF0-11C5-4E12-A944-5F7EFED6E0C4}</ProjectGuid>
     <Keyword>DynamicLibrary</Keyword>

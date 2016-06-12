@@ -15,16 +15,13 @@
     <ClInclude Include="framework.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="aqua\aqua_aqua.h">
-      <Filter>Header Files\aqua</Filter>
+    <ClInclude Include="aqua.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
       <UniqueIdentifier>{60be4fb9-d467-4f8a-8a19-c4e8186b807b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\aqua">
-      <UniqueIdentifier>{9ed61fca-d2ae-4f50-a85f-9052af11c4f5}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files">
       <UniqueIdentifier>{31df3c90-b662-4cfc-baad-cc850436fd79}</UniqueIdentifier>

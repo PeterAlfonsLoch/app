@@ -28,7 +28,7 @@ namespace user
       ::DeleteObject(m_hfontHidden);
       ::DeleteObject(m_hfontRegular);
 #else
-      throw todo(get_app());
+//      throw todo(get_app());
 #endif
    }
 

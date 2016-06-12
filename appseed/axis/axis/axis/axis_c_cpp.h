@@ -114,8 +114,8 @@ namespace axis
 
    };
 
-   CLASS_DECL_AURA bool get_window_rect(system_window ^ pwindow,RECTD * lprect);
-   CLASS_DECL_AURA bool get_window_rect(system_window ^ pwindow,LPRECT lprect);
+   CLASS_DECL_AXIS bool get_window_rect(system_window ^ pwindow,RECTD * lprect);
+   CLASS_DECL_AXIS bool get_window_rect(system_window ^ pwindow,LPRECT lprect);
 
 #endif
 

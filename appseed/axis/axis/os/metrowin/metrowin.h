@@ -75,7 +75,7 @@ namespace base
 
 #endif
 
-extern CLASS_DECL_AXIS int g_iMouse;
+//extern CLASS_DECL_AXIS int g_iMouse;
 
 #define GW_HWNDFIRST        0
 #define GW_HWNDLAST         1

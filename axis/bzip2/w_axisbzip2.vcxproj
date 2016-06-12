@@ -46,6 +46,11 @@
   <ItemGroup>
     <None Include="metrowin_axisbzip2.def" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\appseed\ace\w_ace.vcxproj">
+      <Project>{14871c98-8ada-467e-8d93-d2e340d21626}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{B5A649E1-D516-4F29-A627-DA6884DD421C}</ProjectGuid>
     <Keyword>DynamicLibrary</Keyword>

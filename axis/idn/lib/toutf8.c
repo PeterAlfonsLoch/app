@@ -86,10 +86,13 @@
 const char *
 stringprep_locale_charset (void)
 {
+
+#ifndef METROWIN
   const char *charset = getenv ("CHARSET");	/* flawfinder: ignore */
 
   if (charset && *charset)
     return charset;
+#endif
 
 # ifdef HAVE_LANGINFO_CODESET
   charset = nl_langinfo (CODESET);

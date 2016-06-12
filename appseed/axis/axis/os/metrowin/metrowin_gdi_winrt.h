@@ -24,4 +24,4 @@
 //CLASS_DECL_BASE float x_dpi(float x);
 
 
-CLASS_DECL_AXIS WINBOOL GetCursorPos(LPPOINT lppoint);
+//CLASS_DECL_AXIS WINBOOL GetCursorPos(LPPOINT lppoint);

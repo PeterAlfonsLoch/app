@@ -1,7 +1,7 @@
 #pragma once
 
 
-CLASS_DECL_AXIS WINBOOL GetCursorPos(LPPOINT lpptCursor);
+//CLASS_DECL_AXIS WINBOOL GetCursorPos(LPPOINT lpptCursor);
 
 #ifndef HWND_MESSAGE
 
