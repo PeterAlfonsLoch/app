@@ -178,9 +178,12 @@ namespace user
 namespace user
 {
 
-
    class CLASS_DECL_BASE create_struct:
+#ifdef WINDOWSEX
       public CREATESTRUCTW
+#else
+      public CREATESTRUCT
+#endif
    {
    public:
 

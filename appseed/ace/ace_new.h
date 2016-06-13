@@ -2,15 +2,16 @@
 
 
 #define system_user_1 "system_user_1"
+
 #define system_user_2 "system_user_2"
 
 #include "nodeapp/operational_system/config_debug.h"
 
 #include "nodeapp/operational_system/config.h"
 
+#define CLASS_DECL_ACE
 
-#define __NORMAL_BLOCK    1
-
+#include "ace_new.h"
 
 #if defined(WINDOWS)
 
@@ -37,26 +38,10 @@
 
 #define inplace_new_throw_spec
 #define new_throw_spec
-#define del_throw_spec 
+#define del_throw_spec
 #define MEMORY_DECL
 
 #endif
-
-
-
-
-
-void * operator new(size_t nSize) new_throw_spec;
-
-void operator delete(void * p) del_throw_spec;
-
-void * operator new[](size_t nSize) new_throw_spec;
-
-void operator delete[](void * p) del_throw_spec;
-
-void operator delete(void * p, size_t s) del_throw_spec;
-
-
 
 
 

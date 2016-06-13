@@ -66,6 +66,7 @@
 		<Linker>
 			<Add option="-Wl,-R\\$$$ORIGIN" />
 			<Add option="-Wl,-z,origin" />
+			<Add option="-lace" />
 			<Add option="-ldl" />
 			<Add option="-lrt" />
 			<Add option="-lbfd" />

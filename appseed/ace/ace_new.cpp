@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "ace_new.h"
 #include <stdlib.h>
 
 

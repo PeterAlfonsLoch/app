@@ -190,9 +190,7 @@ namespace draw2d
    bool dib::destroy ()
    {
 
-      ::exception::throw_interface_only(get_app());
-
-      return false;
+      return true;
 
    }
 
@@ -3180,7 +3178,7 @@ namespace draw2d
             {
                if (lpb[3] == 255)
                {
-                
+
                   iRLine += lpb[2];
                   iGLine += lpb[1];
                   iBLine += lpb[0];
@@ -3670,16 +3668,16 @@ namespace draw2d
 //         pb[31 * 4] = (byte) intensity;
 //      }
 
-      
+
       for (i=0; i<size; i++)
       {
-         
+
          *((BYTE * ) &pcr) = (byte) (((int)intensity * (int)*((BYTE * ) &pcr)) / 255);
-         
+
          pcr++;
-         
+
       }
-      
+
    }
 
 
@@ -4925,9 +4923,9 @@ namespace draw2d
       pdata = m_pcolorref;
       iScan = m_iScan;
 #endif
-      
+
       nsvgRasterize(rast, image, 0, 0, 1, (unsigned char *)pdata, w, h, iScan);
-      
+
 #ifdef __APPLE__
          int wscan =m_iScan / 4;
          index i = 0;

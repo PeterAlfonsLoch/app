@@ -61,6 +61,18 @@ void __cdecl operator delete[](void * p, int32_t nType, const char * lpszFileNam
 
 
 
+// defined at ace
+void * operator new(size_t nSize) new_throw_spec;
+void operator delete(void * p) del_throw_spec;
+void * operator new[](size_t nSize) new_throw_spec;
+void operator delete[](void * p) del_throw_spec;
+void operator delete(void * p, size_t s) del_throw_spec;
+
+
+
+
+
+
 
 
 

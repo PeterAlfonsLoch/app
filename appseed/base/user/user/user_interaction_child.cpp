@@ -78,12 +78,17 @@ namespace user
       ::user::create_struct cs;
 
       cs = rect;
-      wstring wstrClassName(lpszClassName);
-      wstring wstrWindowName(lpszWindowName);
       cs.dwExStyle   = dwExStyle;
       cs.style       = dwStyle;
+      #ifdef WINDOWSEX
+      wstring wstrClassName(lpszClassName);
+      wstring wstrWindowName(lpszWindowName);
       cs.lpszClass = wstrClassName;
       cs.lpszName = wstrWindowName;
+      #else
+      cs.lpszClass = lpszClassName;
+      cs.lpszName = lpszWindowName;
+      #endif
       cs.hwndParent = pparent->get_handle();
       cs.hMenu = NULL;
       cs.hInstance = System.m_hinstance;
@@ -134,7 +139,7 @@ namespace user
 
       if(pparent != m_pui && !m_pui->is_descendant(pparent) && ! pparent->is_descendant(m_pui))
       {
-      
+
          m_pui->on_set_parent(pparent);
 
       }
@@ -143,12 +148,17 @@ namespace user
 
       cs = rect;
 
-      wstring wstrClassName(lpszClassName);
-      wstring wstrWindowName(lpszWindowName);
       cs.dwExStyle = 0;
       cs.style = dwStyle;
+      #ifdef WINDOWS
+      wstring wstrClassName(lpszClassName);
+      wstring wstrWindowName(lpszWindowName);
       cs.lpszClass   = wstrClassName;
       cs.lpszName    = wstrWindowName;
+      #else
+      cs.lpszClass   = lpszClassName;
+      cs.lpszName    = lpszWindowName;
+      #endif
       cs.hwndParent  = pparent->get_handle();
       cs.hInstance   = System.m_hinstance;
       cs.hMenu = NULL;
@@ -254,10 +264,10 @@ namespace user
       IGUI_WIN_MSG_LINK(WM_NCDESTROY,pinterface,this,&interaction_child::_001OnNcDestroy);
       m_pui->install_message_handling(pinterface);
       prio_install_message_handling(pinterface);
-      
+
    }
 
-   
+
    void interaction_child::_001OnShowWindow(signal_details * pobj)
    {
 
@@ -366,7 +376,7 @@ namespace user
 
    ::user::interaction * interaction_child::SetFocus()
    {
-      
+
       if(m_pui->keyboard_focus_is_focusable())
       {
 
@@ -386,7 +396,7 @@ namespace user
 
    }
 
-   
+
    bool interaction_child::enable_window(bool bEnable)
    {
 
@@ -571,7 +581,7 @@ namespace user
 
    void interaction_child::_001OnDestroy(signal_details * pobj)
    {
-      
+
       UNREFERENCED_PARAMETER(pobj);
 
       m_bCreate = false;
@@ -609,7 +619,7 @@ namespace user
       // unless we need to call this function recursively
       if(m_pui == NULL)
          return;
-      
+
       ::user::interaction * pui = m_pui->top_child();
 
       while(pui != NULL)
@@ -647,10 +657,10 @@ namespace user
 
    bool interaction_child::IsWindowVisible()
    {
-      
+
       if(!IsWindow())
       {
-         
+
          return false;
 
       }
@@ -660,7 +670,7 @@ namespace user
          return false;
 
       }
-      
+
       ::user::interaction * puiParent = m_pui->GetParent();
 
       if(puiParent != NULL && !puiParent->IsWindowVisible())
@@ -694,7 +704,7 @@ namespace user
    {
       // graphics will be already set its view port to the interaction_impl for linux - cairo with xlib
 
-      
+
 
 
       rect rectWindow;
@@ -1043,7 +1053,7 @@ namespace user
 
       if(GetParent() != NULL)
       {
-         
+
          if(!GetParent()->ScreenToClient(lppoint))
          {
 

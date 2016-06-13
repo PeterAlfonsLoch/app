@@ -2645,7 +2645,7 @@ namespace aura
       strTry = strQuery;
 
       strTry.replace("St.", "Saint");
-      strTry.replace(unitext("São"), "Sao");
+      strTry.replace(unitext("SÃ£o"), "Sao");
 
       iFind = m_straCit.find_first_begins_ci(strTry);
 
@@ -2659,7 +2659,7 @@ namespace aura
       strTry = strQuery;
 
       strTry.replace("St.", "Saint");
-      strTry.replace(unitext("São"), "Sao");
+      strTry.replace(unitext("SÃ£o"), "Sao");
 
       stra.explode(",", strTry);
 
