@@ -38,6 +38,21 @@ namespace aura
 
 #ifdef WINDOWS
 
+
+      string strApp = m_strApp;
+
+      strApp.replace("-", "_");
+      strApp.replace("/", "_");
+
+      ::file::path pathCandidate = Sys(get_thread_app()).dir().ca2module() / strApp + ".exe";
+
+      if (App(get_thread_app()).file().exists(pathCandidate))
+      {
+         
+         return pathCandidate;
+
+      }
+
       return Sys(get_thread_app()).dir().ca2module() / "app.exe";
 
 #else
@@ -60,7 +75,12 @@ namespace aura
 
       string strParameters;
 
-      strParameters = " : app=" + m_strApp;
+      if (::str::ends_ci(get_executable_path(), "\\app.exe"))
+      {
+
+         strParameters = " : app=" + m_strApp;
+
+      }
 
       return strParameters;
 
