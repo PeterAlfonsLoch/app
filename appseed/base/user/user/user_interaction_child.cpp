@@ -150,15 +150,15 @@ namespace user
 
       cs.dwExStyle = 0;
       cs.style = dwStyle;
-      #ifdef WINDOWS
+#ifdef WINDOWSEX
       wstring wstrClassName(lpszClassName);
       wstring wstrWindowName(lpszWindowName);
       cs.lpszClass   = wstrClassName;
       cs.lpszName    = wstrWindowName;
-      #else
+#else
       cs.lpszClass   = lpszClassName;
       cs.lpszName    = lpszWindowName;
-      #endif
+#endif
       cs.hwndParent  = pparent->get_handle();
       cs.hInstance   = System.m_hinstance;
       cs.hMenu = NULL;

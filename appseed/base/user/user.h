@@ -182,7 +182,7 @@ namespace user
 #ifdef WINDOWSEX
       public CREATESTRUCTW
 #else
-      public CREATESTRUCT
+      public CREATESTRUCTA
 #endif
    {
    public:
