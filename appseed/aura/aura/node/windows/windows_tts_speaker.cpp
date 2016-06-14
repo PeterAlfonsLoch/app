@@ -195,7 +195,7 @@ inline bool SpGetDefaultTokenFromCategoryIdAndLang(
             {
 
                wstrLang = L"Gender=";
-               wstrLang += L"Male";
+               wstrLang += L"Female";
                
                hr = ptoken->MatchesAttributes(wstrLang,&bMatches);
 
@@ -435,8 +435,26 @@ namespace windows
 
          }
 
+         string strT(text);
 
-         wstring wstr(text);
+         UINT uiFlag = 0;
+
+         strT.trim();
+
+         //if (::str::begins_eat_ci(strT, "xml:"))
+         {
+
+            uiFlag |= SPF_IS_XML;
+            
+         }
+         //else
+         //{
+
+           // uiFlag |= SPF_IS_NOT_XML;
+
+         //}
+
+         wstring wstr(strT);
 
          if(bSync)
          { 
@@ -450,7 +468,7 @@ namespace windows
             HRESULT hr = m_voice[strLang]->Speak(
                wstr,
                //SPF_IS_NOT_XML | SPF_ASYNC | SPF_PURGEBEFORESPEAK,
-               SPF_IS_NOT_XML | (bSync ? 0 : SPF_ASYNC),
+               uiFlag | (bSync ? 0 : SPF_ASYNC),
                &streamNumber);
 
             if (FAILED(hr))
@@ -476,7 +494,7 @@ namespace windows
                HRESULT hr = m_voice[strLang]->Speak(
                   wstr,
                   //SPF_IS_NOT_XML | SPF_ASYNC | SPF_PURGEBEFORESPEAK,
-                  SPF_IS_NOT_XML | (bSync ? 0 : SPF_ASYNC),
+                  uiFlag | (bSync ? 0 : SPF_ASYNC),
                   &streamNumber);
 
                if (FAILED(hr))
