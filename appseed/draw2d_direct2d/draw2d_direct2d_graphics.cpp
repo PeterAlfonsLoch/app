@@ -3145,8 +3145,8 @@ namespace draw2d_direct2d
 
    int graphics::SaveDC()
    {
-      
-      throw todo(get_app());
+      return 0;
+      //throw todo(get_app());
 
       //int nRetVal = 0;
       //if(get_handle2() != NULL)
@@ -3158,8 +3158,8 @@ namespace draw2d_direct2d
 
    bool graphics::RestoreDC(int nSavedDC)
    {
-      
-      throw todo(get_app());
+      return 0;
+      //throw todo(get_app());
 
    //   bool bRetVal = TRUE;
    //   if(get_handle1() != NULL && get_handle1() != get_handle2())
