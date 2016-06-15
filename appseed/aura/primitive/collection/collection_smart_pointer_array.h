@@ -304,6 +304,15 @@ public:
 
    }
 
+   
+   ::index add(const array < smart_pointer < T > > & a)
+   {
+
+      return array < smart_pointer < T > >::add(a);
+
+   }
+
+
    smart_pointer < T > & add(T * p)
    {
 
