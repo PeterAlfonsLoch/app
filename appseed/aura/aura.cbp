@@ -156,6 +156,10 @@
 		<Unit filename="aura/aura/aura_id_pool.h" />
 		<Unit filename="aura/aura/aura_international.h" />
 		<Unit filename="aura/aura/aura_ipc.h" />
+		<Unit filename="aura/aura/aura_ipi.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="aura/aura/aura_ipi.h" />
 		<Unit filename="aura/aura/aura_keep.h" />
 		<Unit filename="aura/aura/aura_keep_true.h" />

@@ -288,10 +288,10 @@ namespace aura
 
    //// only usable from base.dll and dependants
    //::sockets::sockets & session::sockets()
-   //{ 
+   //{
 
    //   throw interface_only_exception(get_app());
-   //   
+   //
    //   return *((::sockets::sockets *) NULL); // only usable from base.dll and dependants
    //
    //}
@@ -313,7 +313,7 @@ namespace aura
 
 
 
-   
+
 
 
 
@@ -477,7 +477,7 @@ namespace aura
                   //pcreatecontext->m_spCommandLine->m_varQuery["bergedge_callback"] = dynamic_cast < ::aura::application * > (this);
 
                   papp->m_pauraapp->command()->command(pcreatecontext);
- 
+
                   m_pappCurrent = papp;
 
                   m_pappCurrent = papp;
@@ -611,7 +611,7 @@ namespace aura
 
    bool session::open_by_file_extension(const char * pszPathName,application_bias * pbiasCreate)
    {
-      
+
       return Application.platform_open_by_file_extension(m_iEdge,pszPathName,pbiasCreate);
 
    }
@@ -660,7 +660,7 @@ namespace aura
 
             // aura::session, axis::session and ::base::session, could get more specialized handling in core::application (core::system)
             // Thank you Mummi (em São Paulo, cuidando do Lucinho e ajudando um monte a Carô 2015-02-03) !! Thank you God!!
-            if(!Sys(this).on_run_exception(e)) 
+            if(!Sys(this).on_run_exception(e))
             {
                if(!App(this).on_run_exception(e))
                {
@@ -742,34 +742,34 @@ namespace aura
 
 
 #endif
-      
+
 #if !defined(METROWIN) && !defined(VSNORD) && !defined(APPLE_IOS)
-      
-      
+
+
       if(((!System.directrix()->m_varTopicQuery.has_property("install")
            && !System.directrix()->m_varTopicQuery.has_property("uninstall"))
           ) //         || (papp->is_serviceable() && !papp->is_user_service() && strUserName != "NetworkService"))
          && strId.has_char()
          && !System.install_is(System.install_get_version(),strBuildNumber,pszType,strApplicationId,Session.m_strLocale,Session.m_strSchema))
       {
-         
-         throw not_installed(get_app(),System.install_get_version(),strBuildNumber,pszType,strApplicationId,Session.m_strLocale,Session.m_strSchema);
-         
+
+          throw not_installed(get_app(),System.install_get_version(),strBuildNumber,pszType,strApplicationId,Session.m_strLocale,Session.m_strSchema);
+
       }
-      
+
 #endif
 
-      
+
       ::aura::library library(pappNewApplicationParent,0,NULL);
-      
+
       string strLibrary = pszAppId;
 
       strLibrary.replace("/","_");
-      
+
       strLibrary.replace("-","_");
-        
+
       ::output_debug_string("\n\n::aura::session::get_new_app assembled library path " + strLibrary + "\n\n");
-         
+
       if(!library.open(strLibrary,false))
       {
 
@@ -782,34 +782,34 @@ namespace aura
          if(System.directrix()->m_varTopicQuery.has_property("uninstall") &&
             System.directrix()->m_varTopicQuery["app"] == strApplicationId)
             return NULL;
-            
+
          ::output_debug_string("\n\nSystem.find_applications_to_cache Failed(3) " + string(pszAppId) + "\n\n");
 
          throw not_installed(get_app(),System.install_get_version(),strBuildNumber,pszType,strApplicationId,Session.m_strLocale,Session.m_strSchema);
 #endif
 
       }
-            
+
       ::output_debug_string("\n\n::aura::session::get_new_app Found library : " + strLibrary + "\n\n");
-      
+
       if(!library.is_opened())
       {
-         
+
          ::output_debug_string("\n\n::aura::session::get_new_app Failed to load library : " + strLibrary + "\n\n");
-         
+
          return NULL;
-         
+
       }
 
       ::output_debug_string("\n\n::aura::session::get_new_app Opened library : " + strLibrary + "\n\n");
-      
+
       if(!library.open_ca2_library())
       {
-         
+
          ::output_debug_string("\n\n::aura::session::get_new_app open_ca2_library failed(2) : " + strLibrary+ "\n\n");
-         
+
          return NULL;
-         
+
       }
 
       ::output_debug_string("\n\n\n|(5)----");
@@ -819,13 +819,13 @@ namespace aura
       ::output_debug_string("|----");
 
       sp(::aura::application) papp = library.get_new_app(pszAppId);
-      
+
       ::output_debug_string("\n\n\n|(4)----");
       ::output_debug_string("| app : " + strApplicationId + "(papp="+::str::from(papp)+")\n");
       ::output_debug_string("|\n");
       ::output_debug_string("|\n");
       ::output_debug_string("|----");
-      
+
 
 #ifdef WINDOWSEX
 
@@ -867,7 +867,7 @@ namespace aura
 
       if(papp == NULL)
          return NULL;
-      
+
       ::output_debug_string("\n\n\n|(1)----");
       ::output_debug_string("| app : " + strApplicationId + "\n");
       ::output_debug_string("|\n");
@@ -909,10 +909,10 @@ namespace aura
 
    void session::request_create(sp(::create) pcreatecontext)
    {
-      
+
             //      if(m_pbergedgeInterface != NULL)
             {
-      
+
                if(m_pappCurrent != NULL && m_pappCurrent != this
                   && (pcreatecontext->m_spCommandLine->m_strApp.is_empty()
                   ||App(m_pappCurrent).m_strAppName == pcreatecontext->m_spCommandLine->m_strApp))
@@ -926,7 +926,7 @@ namespace aura
                   {
         //             goto alt1;
                   }
-      
+
                }
                else
                {
@@ -972,9 +972,9 @@ namespace aura
                   }
                }
                return;
-      
+
             }
-      
+
             if(pcreatecontext->m_spCommandLine->m_varFile.get_type() == var::type_string)
             {
                if(::str::ends_ci(pcreatecontext->m_spCommandLine->m_varFile, ".core"))
@@ -998,8 +998,8 @@ namespace aura
                && (pcreatecontext->m_spCommandLine->m_strApp.is_empty()
                ||App(m_pappCurrent).m_strAppName == pcreatecontext->m_spCommandLine->m_strApp))
             {
-      
-      
+
+
                /*         if(get_document() != NULL && get_document()->get_typed_view < ::platform::pane_view >() != NULL)
                {
                get_document()->get_typed_view < ::platform::pane_view >()->set_cur_tab_by_id("app:" + App(m_pappCurrent).m_strAppName);

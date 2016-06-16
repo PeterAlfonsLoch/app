@@ -2529,3 +2529,13 @@
 1457361942 /usr/include/gtk-2.0/gtk/gtktipsquery.h
 	<gtk/gtk.h>
 
+1463362584 source:/ca2/app/appseed/basecore/basecore.cpp
+	"basecore.h"
+	<gtk/gtk.h>
+	<libappindicator-0.1/libappindicator/app-indicator.h>
+	<malloc.h>
+	<time.h>
+	<new>
+
+1463362582 /ca2/app/appseed/basecore/basecore.h
+
