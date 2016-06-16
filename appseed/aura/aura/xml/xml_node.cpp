@@ -1,4 +1,4 @@
-﻿//#include "framework.h"
+//#include "framework.h"
 
 
 namespace xml
@@ -1170,7 +1170,13 @@ namespace xml
    //========================================================
    string node::get_text( disp_option * opt /*= &optDefault*/ ) const
    {
+
       string ostring;
+
+      if(opt == NULL)
+      {
+         opt = System.xml().m_poptionDefault;
+      }
 
       if( m_etype == node_document )
       {
@@ -1636,7 +1642,7 @@ namespace xml
    //========================================================
    bool node::remove_child( node * pnode )
    {
-   
+
       if(m_nodea.remove(pnode) > 0)
       {
 
@@ -1697,7 +1703,7 @@ namespace xml
    //========================================================
    bool node::remove_attr(::xml::attr * pattr )
    {
-      
+
       if(m_attra.remove_by_name(pattr->name()) > 0)
       {
 
