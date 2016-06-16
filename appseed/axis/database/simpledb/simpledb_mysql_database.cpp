@@ -59,6 +59,9 @@ namespace mysql
        m_pmysql = NULL;
          return false;
       }
+
+      mysql_options((MYSQL *)m_pmysql, MYSQL_SET_CHARSET_NAME, "utf8_unicode_ci");
+
 #ifdef WINDOWS
       if(stricmp(pszHost, "localhost") == 0)
       {
@@ -67,6 +70,8 @@ namespace mysql
          pszHost = NULL;
       }
 #endif
+
+
       if(mysql_real_connect(
          (MYSQL *) m_pmysql,
          pszHost,
@@ -82,8 +87,8 @@ namespace mysql
          m_pmysql = NULL;
          return false;
       }
-      mysql_query((MYSQL *) m_pmysql, "SET NAMES 'utf8' COLLATE 'utf8_unicode_ci'");
-      mysql_query((MYSQL *) m_pmysql, "SET CHARACTER SET 'utf8'");
+      mysql_query((MYSQL *)m_pmysql, "SET NAMES 'utf8' COLLATE 'utf8_unicode_ci'");
+      mysql_query((MYSQL *)m_pmysql, "SET CHARACTER SET 'utf8'");
       return true;
    }
 
