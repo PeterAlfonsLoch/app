@@ -5175,6 +5175,24 @@ synch_lock ml(m_pmutex);
          cairo_pattern_destroy(ppattern);
 
       }
+      else if(pbrush->m_etype == ::draw2d::brush::type_pattern)
+      {
+
+         cairo_surface_t * psurface = cairo_get_target((cairo_t *) pbrush->m_dib->get_graphics()->get_os_data());
+
+         if(psurface == NULL)
+            return false;
+
+         cairo_pattern_t * ppattern = cairo_pattern_create_for_surface(psurface);
+
+         if(ppattern == NULL)
+            return false;
+
+         cairo_set_source(m_pdc, ppattern);
+
+         cairo_pattern_destroy(ppattern);
+
+      }
       else
       {
 
