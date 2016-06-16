@@ -99,6 +99,10 @@
 		<Unit filename="aura/aura/aura_application.h" />
 		<Unit filename="aura/aura/aura_application_ptra.h" />
 		<Unit filename="aura/aura/aura_application_signal_details.h" />
+		<Unit filename="aura/aura/aura_assert.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="aura/aura/aura_assert_running_task.h" />
 		<Unit filename="aura/aura/aura_async.h" />
 		<Unit filename="aura/aura/aura_aura.h" />
