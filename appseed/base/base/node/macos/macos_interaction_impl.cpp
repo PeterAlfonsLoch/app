@@ -1,5 +1,6 @@
-	#include "framework.h"
+#include "framework.h"
 #include "macos.h"
+#include "base/os/macos/window_buffer.h"
 //#include <cairo/cairo-xlib.h>
 
 //#define COMPILE_MULTIMON_STUBS
@@ -388,7 +389,11 @@ namespace macos
       {
 
          m_oswindow = oswindow_get(new_round_window(this, rect));
-
+         
+         m_spgraphics.alloc(allocer());
+            
+         m_spgraphics->on_create_window(this);
+            
          m_oswindow->set_user_interaction(m_pui);
          
          oswindow_assign(m_oswindow, m_pui);
@@ -5896,15 +5901,19 @@ namespace macos
       _001UpdateWindow();
       
       cslock slDisplay(cs_display());
-
-      if(m_spdibBuffer.is_null())
+      
+      window_buffer * pbuffer = m_spgraphics.cast < window_buffer >();
+      
+      ::draw2d::dib_sp & spdibBuffer = pbuffer->m_spdibBuffer;
+      
+      if(spdibBuffer.is_null())
       {
          
          return;
          
       }
 
-      if(m_spdibBuffer->get_data() == NULL)
+      if(spdibBuffer->get_data() == NULL)
       {
          
          return;
@@ -5919,7 +5928,7 @@ namespace macos
 
       GetClientRect(rectClient);
 
-      g->BitBlt(0, 0, m_spdibBuffer->m_size.cx, m_spdibBuffer->m_size.cy, m_spdibBuffer->get_graphics(), 0, 0, SRCCOPY);
+      g->BitBlt(0, 0, spdibBuffer->m_size.cx, spdibBuffer->m_size.cy, spdibBuffer->get_graphics(), 0, 0, SRCCOPY);
       
       m_uiLastUpdateEnd = get_nanos();
 
@@ -6382,7 +6391,7 @@ namespace macos
 
       // graphics will be already set its view port to the user::interaction for linux - cairo with xlib
 
-      pdib->SetViewportOrg(point(0, 0));
+      pgraphics->SetViewportOrg(point(0, 0));
 
    }
 

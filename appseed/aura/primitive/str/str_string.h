@@ -422,6 +422,8 @@ public:
    strsize replace(const char * pszOld,const char * pszNew, strsize iStart = 0);
 
    strsize replace_ci(const char * pszOld,const char * pszNew, strsize iStart = 0);
+   
+   ::count utf8_replace(const char * pszOld,const char * pszNew, strsize iStart = 0);
 
    string & replace(strsize iStart, strsize nCount, const char * psz);
    string & replace(strsize iStart,strsize nCount,const char * psz, strsize nLen);

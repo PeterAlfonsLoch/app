@@ -486,7 +486,45 @@ namespace str
       return str;
    }
 
-   string replace_ci(const char * pszFind, const char * pszReplace, const char * psz, strsize iStart)
+   ::count utf8_replace(string & str, const char * pszFind, const char * pszReplace, strsize iStart)
+   {
+      
+      ::count c = 0;
+      
+      index iPos = iStart;
+      
+      ::count iReplaceLen = -1;
+      
+      ::count iFindLen = -1;
+      
+      while(true)
+      {
+         
+         iPos = utf8_find(pszFind, str, iPos);
+         
+         if(iPos < 0)
+            break;
+         
+         if(iReplaceLen < 0)
+            iReplaceLen = strlen(pszReplace);
+         
+         if(iFindLen < 0)
+            iFindLen = strlen(pszFind);
+         
+         str = str.Left(iPos) + pszReplace + str.Mid(iPos + iFindLen);
+         
+         iPos += iReplaceLen;
+         
+         c++;
+         
+      }
+      
+      return c;
+      
+   }
+   
+
+   string utf8_replace(const char * pszFind, const char * pszReplace, const char * psz, strsize iStart)
    {
 
       index iPos = iStart;
@@ -500,7 +538,7 @@ namespace str
       while(true)
       {
 
-         iPos = find_ci(pszFind, str, iPos);
+         iPos = utf8_find(pszFind, str, iPos);
 
          if(iPos < 0)
             break;
@@ -517,6 +555,40 @@ namespace str
 
       }
 
+      return str;
+   }
+
+   string replace_ci(const char * pszFind, const char * pszReplace, const char * psz, strsize iStart)
+   {
+      
+      index iPos = iStart;
+      
+      string str(psz);
+      
+      ::count iReplaceLen = -1;
+      
+      ::count iFindLen = -1;
+      
+      while(true)
+      {
+         
+         iPos = find_ci(pszFind, str, iPos);
+         
+         if(iPos < 0)
+            break;
+         
+         if(iReplaceLen < 0)
+            iReplaceLen = strlen(pszReplace);
+         
+         if(iFindLen < 0)
+            iFindLen = strlen(pszFind);
+         
+         str = str.Left(iPos) + pszReplace + str.Mid(iPos + iFindLen);
+         
+         iPos += iReplaceLen;
+         
+      }
+      
       return str;
    }
 
@@ -870,80 +942,131 @@ namespace str
    }
 
 
-   index find_ci(const char * pszFind, const char * psz, index iStart)
+   index utf8_find(const char * pszFind, const char * pszParam, index iStart)
    {
+      if(pszFind == NULL)
+         return -1;
+      
+      if(*pszFind == '\0')
+         return 0;
 
-      index iFindLen = strlen(pszFind);
-
-      index iLen = strlen(&psz[iStart]);
-
-      if(iFindLen > iLen)
+      if(pszParam == NULL || *pszParam == '\0')
          return -1;
 
-      if(iFindLen < 256)
+      const char * psz = &pszParam[iStart];
+      const char * pSrc;
+      const char * pFin = pszFind;
+      strsize lenSrc;
+      strsize lenFin;
+      while(*psz)
       {
-
-         char szFind[256];
-
-         memcpy(szFind, pszFind, iFindLen + 1);
-
-         make_lower(szFind);
-
-         if(iLen < 256)
+         pSrc = psz;
+         while(ch::_uni_index_len(pSrc, lenSrc) == ch::_uni_index_len(pFin, lenFin) && lenSrc == lenFin)
          {
-
-            char sz[256];
-
-            memcpy(sz, &psz[iStart], iLen + 1);
-
-            make_lower(sz);
-
-            pszFind = strstr(sz, szFind);
-
-            if(pszFind == NULL)
-               return -1;
-
-            return iStart + (pszFind - sz);
+            pSrc+=lenSrc;
+            pFin+=lenFin;
+            if(*pSrc == '\0')
+            {
+               if(*pFin == '\0')
+               {
+                  return pSrc - pszParam;
+               }
+               else
+               {
+                  return -1;
+               }
+            }
+            else if(*pFin == '\0')
+            {
+               
+               break;
+               
+            }
 
          }
-         else
-         {
-
-            string strLow(&psz[iStart], iLen); // avoid optimized read only string copy
-            strLow.make_lower();
-
-            psz = strLow;
-
-            pszFind = strstr(psz, szFind);
-
-            if(pszFind == NULL)
-               return -1;
-
-            return iStart + (pszFind - psz);
-
-         }
-
+         
+         psz+=lenSrc;
       }
-      else
-      {
 
-         string strFindLow(pszFind, iFindLen); // avoid optimized read only string copy
-         strFindLow.make_lower();
-
-         string strLow(&psz[iStart], iLen); // avoid optimized read only string copy
-         strLow.make_lower();
-
-         index iFind = strLow.find(strFindLow);
-
-         if(iFind < 0)
-            return -1;
-
-         return iStart + iFind;
-
-      }
+      return -1;
 
    }
 
+   
+   index find_ci(const char * pszFind, const char * psz, index iStart)
+   {
+      
+      index iFindLen = strlen(pszFind);
+      
+      index iLen = strlen(&psz[iStart]);
+      
+      if(iFindLen > iLen)
+         return -1;
+      
+      if(iFindLen < 256)
+      {
+         
+         char szFind[256];
+         
+         memcpy(szFind, pszFind, iFindLen + 1);
+         
+         make_lower(szFind);
+         
+         if(iLen < 256)
+         {
+            
+            char sz[256];
+            
+            memcpy(sz, &psz[iStart], iLen + 1);
+            
+            make_lower(sz);
+            
+            pszFind = strstr(sz, szFind);
+            
+            if(pszFind == NULL)
+               return -1;
+            
+            return iStart + (pszFind - sz);
+            
+         }
+         else
+         {
+            
+            string strLow(&psz[iStart], iLen); // avoid optimized read only string copy
+            strLow.make_lower();
+            
+            psz = strLow;
+            
+            pszFind = strstr(psz, szFind);
+            
+            if(pszFind == NULL)
+               return -1;
+            
+            return iStart + (pszFind - psz);
+            
+         }
+         
+      }
+      else
+      {
+         
+         string strFindLow(pszFind, iFindLen); // avoid optimized read only string copy
+         strFindLow.make_lower();
+         
+         string strLow(&psz[iStart], iLen); // avoid optimized read only string copy
+         strLow.make_lower();
+         
+         index iFind = strLow.find(strFindLow);
+         
+         if(iFind < 0)
+            return -1;
+         
+         return iStart + iFind;
+         
+      }
+      
+   }
+  
    index find_wwci(const char * pszFind, const char * psz, index iStart)
    {
 

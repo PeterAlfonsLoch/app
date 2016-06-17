@@ -241,8 +241,8 @@ namespace url
       while(*psz != '\0')
       {
 
-         if(isdigit((uchar)*psz)
-         || isalpha((uchar)*psz)
+         if(isdigit_dup(*psz)
+         || isalpha_dup(*psz)
          || *psz == '.'
          || *psz == '-'
          || *psz == '_')

@@ -153,6 +153,7 @@
 		07EDC59F1B4F435600AF8928 /* ios_interaction_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 07EDC59E1B4F435600AF8928 /* ios_interaction_impl.h */; };
 		07EDC5A11B4F611B00AF8928 /* ios_window_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 07EDC5A01B4F611B00AF8928 /* ios_window_impl.h */; };
 		07EDC5B61B4FE64F00AF8928 /* main_mm.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07EDC5B51B4FE64F00AF8928 /* main_mm.mm */; };
+		9A17F14A1D13C27A00D7C8CF /* window_buffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A17F1481D13C27A00D7C8CF /* window_buffer.h */; };
 		9A98A6081771D67E000AE16E /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07BD556C16210BD4008E31F0 /* AppKit.framework */; };
 		9A98A6091771D67E000AE16E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8897A514C24736006B4023 /* Foundation.framework */; };
 		9A98A60A1771D67E000AE16E /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE931714155F1599005F90F6 /* Carbon.framework */; };
@@ -419,6 +420,7 @@
 		07EDC59E1B4F435600AF8928 /* ios_interaction_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios_interaction_impl.h; sourceTree = "<group>"; };
 		07EDC5A01B4F611B00AF8928 /* ios_window_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios_window_impl.h; sourceTree = "<group>"; };
 		07EDC5B51B4FE64F00AF8928 /* main_mm.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = main_mm.mm; sourceTree = "<group>"; };
+		9A17F1481D13C27A00D7C8CF /* window_buffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = window_buffer.h; sourceTree = "<group>"; };
 		9A8897A514C24736006B4023 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = ../../../../System/Library/Frameworks/Foundation.framework; sourceTree = "<group>"; };
 		9A98A6151771D67E000AE16E /* libbase.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libbase.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AE24D341904CEFE001AEFFB /* libbase.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libbase.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -614,6 +616,7 @@
 		07A36E601B25D18E00E4F888 /* macos */ = {
 			isa = PBXGroup;
 			children = (
+				9A17F1481D13C27A00D7C8CF /* window_buffer.h */,
 				07D968B91B4C65FD004A3D2A /* macos_base_user_mm.mm */,
 				07D968BA1B4C65FD004A3D2A /* macos_cross_gdi.mm */,
 				07D966EE1B4C621C004A3D2A /* macos_windowing.h */,
@@ -961,6 +964,7 @@
 				07D9684B1B4C63E4004A3D2A /* user_interaction.h in Headers */,
 				07D9686C1B4C63E4004A3D2A /* user_message_queue_listener.h in Headers */,
 				07A36ED51B25D18F00E4F888 /* base_simple_app.h in Headers */,
+				9A17F14A1D13C27A00D7C8CF /* window_buffer.h in Headers */,
 				07A36F781B25D18F00E4F888 /* macos_mm.h in Headers */,
 				07A370861B25D18F00E4F888 /* macos.h in Headers */,
 				07D967DC1B4C63E3004A3D2A /* simple.h in Headers */,

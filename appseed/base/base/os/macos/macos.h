@@ -347,8 +347,12 @@ bool nsapp_activation_policy_is_regular();
 //#endif
 
 
+#if !defined(__M) && !defined(__MM)
 
 #include "base/graphics/graphics_window_graphics.h"
+
+#endif
+
 //#include "macos_window_gdi.h"
 
 

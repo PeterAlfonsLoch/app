@@ -4,8 +4,10 @@
 #include <CoreFoundation/CFDictionary.h>
 
 
-void fill_with_brush(CGContextRef pgraphics, ::draw2d::brush * pbrush)
+void fill_with_brush(draw2d_quartz2d::graphics * p, ::draw2d::brush * pbrush)
 {
+   
+   CGContextRef pgraphics = p->m_pdc;
    
 if(pbrush->m_etype == ::draw2d::brush::type_linear_gradient_point_color)
 {
@@ -29,6 +31,18 @@ if(pbrush->m_etype == ::draw2d::brush::type_linear_gradient_point_color)
    CGContextRestoreGState(pgraphics);
    
 }
+   else if(pbrush->m_etype == ::draw2d::brush::type_pattern)
+   {
+      
+      CGContextSaveGState(pgraphics);
+      
+      CGContextClip(pgraphics);
+      
+      p->BitBlt(0, 0, pbrush->m_dib->m_size.cx, pbrush->m_dib->m_size.cy, pbrush->m_dib->get_graphics(), 0,0, 0);
+      
+      CGContextRestoreGState(pgraphics);
+      
+   }
 else
 {
    
@@ -2210,7 +2224,7 @@ namespace draw2d_quartz2d
 //      lpMetrics->tmDescent             = (LONG) e.descent;
 //      lpMetrics->tmHeight              = (LONG) e.height;
 //
-//      lpMetrics->tmInternalLeading     = (LONG) lpMetrics->tmAscent + lpMetrics->tmDescent - lpMetrics->tmHeight;
+//      lpMetrics->tmfLeading     = (LONG) lpMetrics->tmAscent + lpMetrics->tmDescent - lpMetrics->tmHeight;
 //      lpMetrics->tmExternalLeading     = (LONG) (e.height * 0.25);
 //      //                                                (e.family.GetLineSpacing(((graphics * )this)->gdiplus_font()->GetStyle())
 //      //                                              - family.GetCellAscent(((graphics * )this)->gdiplus_font()->GetStyle())
@@ -5190,11 +5204,24 @@ namespace draw2d_quartz2d
 
       CGFloat ascent, descent, leading, width;
       
-      const_cast < graphics * > (this)->internal_show_text(0, 0, &lpszString[0], (int32_t) MIN(iIndex, nCount), kCGTextInvisible, false, &ascent, &descent, &leading, &width);
+      stringa stra;
+      
+      stra.add_lines(string(lpszString, 0, MIN(iIndex, nCount)));
+                     
+      size.cy = 0;
+                     
+      size.cx = 0;
+      
+      for(auto str : stra)
+      {
+      
+         const_cast < graphics * > (this)->internal_show_text(0, 0, str, str.get_length(), kCGTextInvisible, false, &ascent, &descent, &leading, &width);
 
-      size.cy = ascent + descent + leading;
+         size.cy +=ascent + descent + leading;
 
-      size.cx = width;
+         size.cx = MAX(size.cx, width);
+         
+      }
 
       return true;
 
@@ -5271,7 +5298,7 @@ namespace draw2d_quartz2d
    bool graphics::internal_show_text(double x, double y, const char * lpszString, int32_t nCount, CGTextDrawingMode emode, bool bDraw, CGFloat * pascent, CGFloat * pdescent, CGFloat * pleading, CGFloat * pwidth, ::draw2d::pen * ppen, ::draw2d::brush * pbrush, ::draw2d::font * pfont)
    {
 
-      return ::draw2d_quartz2d::internal_show_text(m_pdc, pfont == NULL ? m_spfont.m_p : pfont, pbrush == NULL ? m_spbrush.m_p : pbrush, ppen == NULL ? m_sppen.m_p : ppen, x, y, lpszString, nCount, emode, bDraw, pascent,pdescent, pleading, pwidth);
+      return ::draw2d_quartz2d::internal_show_text(this, pfont == NULL ? m_spfont.m_p : pfont, pbrush == NULL ? m_spbrush.m_p : pbrush, ppen == NULL ? m_sppen.m_p : ppen, x, y, lpszString, nCount, emode, bDraw, pascent,pdescent, pleading, pwidth);
 
    }
 
@@ -5507,7 +5534,7 @@ namespace draw2d_quartz2d
       if(pbrush == NULL || pbrush->m_etype == ::draw2d::brush::type_null)
          return true;
       
-      fill_with_brush(m_pdc, pbrush);
+      fill_with_brush(this, pbrush);
 
       return true;
 
@@ -5530,7 +5557,8 @@ namespace draw2d_quartz2d
          
          if(ppen->m_etype == ::draw2d::pen::type_brush && ppen->m_br.is_set()
             && (ppen->m_br->m_etype == ::draw2d::brush::type_linear_gradient_point_color
-                || ppen->m_br->m_etype == ::draw2d::brush::type_radial_gradient_color)
+                || ppen->m_br->m_etype == ::draw2d::brush::type_radial_gradient_color
+                || ppen->m_br->m_etype == ::draw2d::brush::type_pattern)
             )
          {
             
@@ -5749,9 +5777,10 @@ namespace draw2d_quartz2d
 
 
 
-bool internal_show_text(CGContextRef pgraphics, ::draw2d::font_sp spfont,::draw2d::brush_sp spbrush,::draw2d::pen_sp sppen, double x, double y, const char * lpszString, int32_t nCount, CGTextDrawingMode emode, bool bDraw, CGFloat * pascent, CGFloat * pdescent, CGFloat * pleading, CGFloat * pwidth)
+   bool internal_show_text(::draw2d_quartz2d::graphics * p, ::draw2d::font_sp spfont,::draw2d::brush_sp spbrush,::draw2d::pen_sp sppen, double x, double y, const char * lpszString, int32_t nCount, CGTextDrawingMode emode, bool bDraw, CGFloat * pascent, CGFloat * pdescent, CGFloat * pleading, CGFloat * pwidth)
 {
 
+   CGContextRef pgraphics = p->m_pdc;
    string str(lpszString, nCount);
 
    CFStringRef string = CFStringCreateWithCString(NULL, str, kCFStringEncodingUTF8);
@@ -5780,7 +5809,7 @@ bool internal_show_text(CGContextRef pgraphics, ::draw2d::font_sp spfont,::draw2
    else
    {
 
-      strFontName = FONT_SANS;
+      strFontName = spfont->m_strFontFamilyName;
 
    }
 
@@ -5825,7 +5854,8 @@ bool internal_show_text(CGContextRef pgraphics, ::draw2d::font_sp spfont,::draw2
       if(emode == kCGTextFill || emode == kCGTextFillStroke)
       {
          
-         if(spbrush->m_etype == ::draw2d::brush::type_linear_gradient_point_color)
+         if(spbrush->m_etype == ::draw2d::brush::type_linear_gradient_point_color
+            || spbrush->m_etype == ::draw2d::brush::type_pattern)
          {
             
             emode = kCGTextClip;
@@ -5913,10 +5943,11 @@ bool internal_show_text(CGContextRef pgraphics, ::draw2d::font_sp spfont,::draw2
 
    }
    
-   if(emode == kCGTextClip && spbrush->m_etype == ::draw2d::brush::type_linear_gradient_point_color)
+   if(emode == kCGTextClip && (spbrush->m_etype == ::draw2d::brush::type_linear_gradient_point_color
+      || spbrush->m_etype == ::draw2d::brush::type_pattern))
    {
       
-      fill_with_brush(pgraphics, spbrush);
+      fill_with_brush(p, spbrush);
       
    }
 

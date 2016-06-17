@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "base/base/os/macos/window_buffer.h"
 
 
 namespace draw2d_quartz2d
@@ -18,6 +19,7 @@ namespace draw2d_quartz2d
       System.factory().cloneable_large < region                >   (System.type_info < ::draw2d::region              > ());
       System.factory().cloneable_large < font                  >   (System.type_info < ::draw2d::font                > ());
       System.factory().creatable < path                        >   (System.type_info < ::draw2d::path                > (), 1);
+      System.factory().cloneable_large < window_buffer         >   (System.type_info < window_graphics               > ());
       
 //      ::draw2d_quartz2d::dib::s_initialize();
       

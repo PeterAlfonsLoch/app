@@ -1099,6 +1099,7 @@
 		9A16485019C4ADA100966C5E /* macos_file.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A16482719C4ADA000966C5E /* macos_file.h */; };
 		9A16485619C4ADA100966C5E /* macos_factory_exchange.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A16482D19C4ADA000966C5E /* macos_factory_exchange.h */; };
 		9A16485E19C4ADA100966C5E /* macos_application.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A16483519C4ADA000966C5E /* macos_application.h */; };
+		9A17F1731D13CCC400D7C8CF /* libmath.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A17F16C1D13CC2D00D7C8CF /* libmath.dylib */; };
 		9A1EDB6019C841D600F5CCE8 /* service_plain_service.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1EDB5D19C841D600F5CCE8 /* service_plain_service.cpp */; };
 		9A1EDB6119C841D600F5CCE8 /* service_plain_service.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDB5E19C841D600F5CCE8 /* service_plain_service.h */; };
 		9A1EDB6219C841D600F5CCE8 /* service_thread_pool.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDB5F19C841D600F5CCE8 /* service_thread_pool.h */; };
@@ -1250,6 +1251,34 @@
 			proxyType = 1;
 			remoteGlobalIDString = 9A1647A119C4A73900966C5E;
 			remoteInfo = atomiconv;
+		};
+		9A17F16B1D13CC2D00D7C8CF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A17F1651D13CC2C00D7C8CF /* ace.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9A574B9816AAB906000CC4EF;
+			remoteInfo = math;
+		};
+		9A17F16D1D13CC2D00D7C8CF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A17F1651D13CC2C00D7C8CF /* ace.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 07B65764190F3CA2002DAADE;
+			remoteInfo = math_ios;
+		};
+		9A17F16F1D13CC2D00D7C8CF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A17F1651D13CC2C00D7C8CF /* ace.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 07B65773190F3CA2002DAADE;
+			remoteInfo = math_iosTests;
+		};
+		9A17F1711D13CC5900D7C8CF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A17F1651D13CC2C00D7C8CF /* ace.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A574B9716AAB906000CC4EF;
+			remoteInfo = ace;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -1815,6 +1844,7 @@
 		9A16482719C4ADA000966C5E /* macos_file.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macos_file.h; sourceTree = "<group>"; };
 		9A16482D19C4ADA000966C5E /* macos_factory_exchange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macos_factory_exchange.h; sourceTree = "<group>"; };
 		9A16483519C4ADA000966C5E /* macos_application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macos_application.h; sourceTree = "<group>"; };
+		9A17F1651D13CC2C00D7C8CF /* ace.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ace.xcodeproj; path = /macos/nodeapp/seed/metaseed/../../../app/appseed/ace/ace.xcodeproj; sourceTree = "<absolute>"; };
 		9A1EDB5D19C841D600F5CCE8 /* service_plain_service.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = service_plain_service.cpp; sourceTree = "<group>"; };
 		9A1EDB5E19C841D600F5CCE8 /* service_plain_service.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = service_plain_service.h; sourceTree = "<group>"; };
 		9A1EDB5F19C841D600F5CCE8 /* service_thread_pool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = service_thread_pool.h; sourceTree = "<group>"; };
@@ -1955,6 +1985,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A17F1731D13CCC400D7C8CF /* libmath.dylib in Frameworks */,
 				9A98A6081771D67E000AE16E /* AppKit.framework in Frameworks */,
 				9A98A6091771D67E000AE16E /* Foundation.framework in Frameworks */,
 				9A98A60A1771D67E000AE16E /* Carbon.framework in Frameworks */,
@@ -2799,6 +2830,16 @@
 			path = aura_iosTests;
 			sourceTree = "<group>";
 		};
+		9A17F1661D13CC2C00D7C8CF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9A17F16C1D13CC2D00D7C8CF /* libmath.dylib */,
+				9A17F16E1D13CC2D00D7C8CF /* libmath_ios.dylib */,
+				9A17F1701D13CC2D00D7C8CF /* math_iosTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		9A1EDB5C19C841D600F5CCE8 /* service */ = {
 			isa = PBXGroup;
 			children = (
@@ -2988,6 +3029,7 @@
 		CEA754B914411F2B007E04DE = {
 			isa = PBXGroup;
 			children = (
+				9A17F1651D13CC2C00D7C8CF /* ace.xcodeproj */,
 				9A5DF96D1CEE2741008916A4 /* test.cpp */,
 				076D0A161A3FCCD4007432B6 /* atomiconv.xcodeproj */,
 				07108A731B4C90D000A28F80 /* UIKit.framework */,
@@ -4204,6 +4246,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				9A17F1721D13CC5900D7C8CF /* PBXTargetDependency */,
 				07E42D3E1B501C850061D0BC /* PBXTargetDependency */,
 			);
 			name = aura;
@@ -4254,6 +4297,10 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = 9A17F1661D13CC2C00D7C8CF /* Products */;
+					ProjectRef = 9A17F1651D13CC2C00D7C8CF /* ace.xcodeproj */;
+				},
+				{
 					ProductGroup = 076D0A171A3FCCD4007432B6 /* Products */;
 					ProjectRef = 076D0A161A3FCCD4007432B6 /* atomiconv.xcodeproj */;
 				},
@@ -4280,6 +4327,27 @@
 			fileType = "compiled.mach-o.dylib";
 			path = libatomiconv.dylib;
 			remoteRef = 076D0A1A1A3FCCD4007432B6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9A17F16C1D13CC2D00D7C8CF /* libmath.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libmath.dylib;
+			remoteRef = 9A17F16B1D13CC2D00D7C8CF /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9A17F16E1D13CC2D00D7C8CF /* libmath_ios.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libmath_ios.dylib;
+			remoteRef = 9A17F16D1D13CC2D00D7C8CF /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9A17F1701D13CC2D00D7C8CF /* math_iosTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = math_iosTests.xctest;
+			remoteRef = 9A17F16F1D13CC2D00D7C8CF /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -4396,6 +4464,11 @@
 			isa = PBXTargetDependency;
 			name = atomiconv;
 			targetProxy = 07E42D3D1B501C850061D0BC /* PBXContainerItemProxy */;
+		};
+		9A17F1721D13CC5900D7C8CF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ace;
+			targetProxy = 9A17F1711D13CC5900D7C8CF /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

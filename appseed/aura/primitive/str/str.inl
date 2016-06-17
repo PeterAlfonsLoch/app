@@ -268,10 +268,20 @@ inline void string_data::unlock() RELEASENOTHROW
 
 inline strsize string::replace_ci(const char * pszOld,const char * pszNew, strsize iStart)
 {
+   
    *this = ::str::replace_ci(pszOld, pszNew, *this, iStart);
+   
    return get_length();
+   
 }
 
+
+inline ::count string::utf8_replace(const char * pszOld,const char * pszNew, strsize iStart)
+{
+   
+   return ::str::utf8_replace(*this, pszOld, pszNew, iStart);
+   
+}
 
 
 inline bool string::ends_ci(const string & strSuffixCandidate) const

@@ -4,8 +4,10 @@
 
 namespace draw2d_quartz2d
 {
+   
+   class graphics;
 
-   bool internal_show_text(CGContextRef pdc, ::draw2d::font_sp spfont,::draw2d::brush_sp spbrush,::draw2d::pen_sp sppen,double x, double y, const char * lpszString, int32_t nCount, CGTextDrawingMode emode, bool bDraw = true, CGFloat * pascent = NULL, CGFloat * pdescent = NULL, CGFloat * pleading = NULL, CGFloat * pwidth = NULL);
+   bool internal_show_text(graphics * p, ::draw2d::font_sp spfont,::draw2d::brush_sp spbrush,::draw2d::pen_sp sppen,double x, double y, const char * lpszString, int32_t nCount, CGTextDrawingMode emode, bool bDraw = true, CGFloat * pascent = NULL, CGFloat * pdescent = NULL, CGFloat * pleading = NULL, CGFloat * pwidth = NULL);
    
    
    class brush;

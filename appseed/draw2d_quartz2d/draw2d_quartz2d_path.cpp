@@ -131,21 +131,17 @@ namespace draw2d_quartz2d
       
    }
 
-   bool path::internal_add_string_path(int x, int y, const string & strText, ::draw2d::font_sp spfont)
+   bool path::internal_add_string_path(int x, int y, const string & strText, ::draw2d::font_sp spfont, ::draw2d_quartz2d::graphics * p)
    {
       
-      CGSize s;
-      s.width =1000;
-      s.height=1000;
+      CGContextSaveGState(p->m_pdc);
       
-      CGContextRef pgraphics = CGContextCreate(s);
+      internal_show_text(p, spfont,NULL,NULL, x, y, strText, (int)strText.get_length(), kCGTextInvisible);
       
-      internal_show_text(pgraphics, spfont,NULL,NULL, x, y, strText, (int)strText.get_length(), kCGTextStroke);
-      
-      CGPathAddPath(m_path, NULL, CGContextCopyPath(pgraphics));
-      
-      CGContextRelease(pgraphics);
-      
+      CGPathAddPath(m_path, NULL, CGContextCopyPath(p->m_pdc));
+
+      CGContextSaveGState(p->m_pdc);
+
       return true;
       
    }
@@ -279,7 +275,8 @@ namespace draw2d_quartz2d
    bool path::set(const ::draw2d::path::string_path & stringpath)
    {
       
-      return internal_add_string_path(stringpath.m_x, stringpath.m_y, stringpath.m_strText, stringpath.m_spfont);
+      return false;
+      //return //internal_add_string_path(stringpath.m_x, stringpath.m_y, stringpath.m_strText, stringpath.m_spfont);
       
    }
    

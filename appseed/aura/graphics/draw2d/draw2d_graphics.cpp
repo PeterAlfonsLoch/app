@@ -2992,10 +2992,12 @@ namespace draw2d
 
          for(auto str : stra)
          {
+            
+            size s1 = GetTextExtent(str);
 
             TextOut(lpRect.left + dx,lpRect.top + dy + offsety,str);
 
-            offsety += s.cy;
+            offsety += s1.cy;
 
          }
 

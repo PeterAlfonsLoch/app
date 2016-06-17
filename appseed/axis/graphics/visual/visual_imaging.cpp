@@ -221,15 +221,109 @@ FIBITMAP * imaging::dib_to_FI(::draw2d::dib * pdib)
 
    }
 
+   COLORREF * pdst = pcolorref;
+   
+   COLORREF * psrc = pdib->m_pcolorref;
+   
+   int iStrideSrc = pdib->m_iScan;
+   
+#if  defined(VSNORD)
+   
+   for (index y = 0; y < pdib->m_size.cy; y++)
+   {
+      
+      byte * pbDst = ((byte *)pdst) + ((pdib->m_size.cy - y - 1) * iStrideDst);
+      
+      byte * pbSrc = (byte *)pdata + (y * iStrideSrc);
+      
+      for (index x = 0; x < pdib->m_size.cx; x++)
+      {
+         
+         pbDst[0] = pbSrc[2];
+         
+         pbDst[1] = pbSrc[1];
+         
+         pbDst[2] = pbSrc[0];
+         
+         pbDst[3] = pbSrc[3];
+         
+         pbDst += 4;
+         
+         pbSrc += 4;
+         
+      }
+      
+   }
+   
+#elif defined(APPLEOS)
+   
+   byte * pbDst = (byte *)pdst;
+   
+   byte * pbSrc = (byte *)psrc;
+   
+   ::count c = (count)pdib->area();
+   
+   while(c-- > 0)
+   {
+      
+      pbDst[0] = pbSrc[2];
+      
+      pbDst[1] = pbSrc[1];
+      
+      pbDst[2] = pbSrc[0];
+      
+      pbDst[3] = pbSrc[3];
+      
+      pbDst += 4;
+      
+      pbSrc += 4;
+      
+   }
+   
+   /*
+    
+    byte * pbDst;
+    
+    byte * pbSrc;
+    
+    for(int i = 0; i < pdib->m_size.cy; i++)
+    {
+    
+    pbDst = &((byte *) pdib->m_pcolorref)[pdib->m_iScan * (pdib->m_size.cy - i - 1)];
+    
+    pbSrc = &((byte *) pdata)[pbi->bmiHeader.biWidth * sizeof(COLORREF) * i];
+    
+    for(int j = 0; j < pdib->m_size.cx; j++)
+    {
+    
+    pbDst[0] = pbSrc[2];
+    
+    pbDst[1] = pbSrc[1];
+    
+    pbDst[2] = pbSrc[0];
+    
+    pbDst[3] = pbSrc[3];
+    
+    pbDst += 4;
+    
+    pbSrc += 4;
+    
+    }
+    
+    }*/
+   
+#else
    for(int i = 0; i < pdib->m_size.cy; i++)
    {
-
+      
       memcpy(
-         &((byte *)pcolorref)[pdib->m_iScan * (pdib->m_size.cy - i - 1)],
-         &((byte *)pdib->m_pcolorref)[pdib->m_size.cx * sizeof(COLORREF) * i],
-         pdib->m_iScan);
-
+             &((byte *)pdst)[iStrideDst * (pdib->m_size.cy - i - 1)],
+             &((byte *)psrc)[pbi->bmiHeader.biWidth * sizeof(COLORREF) * i],
+             iStrideDst);
+      
    }
+#endif
+
    //GetDIBits(hdc,(HBITMAP)hbitmap,0,FreeImage_GetHeight(fi),FreeImage_GetBits(fi),FreeImage_GetInfo(fi),DIB_RGB_COLORS);
 
    //::DeleteDC(hdc);

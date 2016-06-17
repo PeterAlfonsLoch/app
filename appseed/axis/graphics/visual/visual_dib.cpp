@@ -97,7 +97,8 @@ namespace visual
       return windows_write_dib_to_file(pfile,m_p,psaveimage,m_p->get_app());
 
 #else
-
+      
+      
       bool bOk = false;
 
       bool b8 = false;

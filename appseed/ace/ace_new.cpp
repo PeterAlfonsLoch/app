@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "ace_new.h"
 #include <stdlib.h>
+#include <new>
 
 
 void * MEMORY_DECL ace_memory_alloc(size_t s);

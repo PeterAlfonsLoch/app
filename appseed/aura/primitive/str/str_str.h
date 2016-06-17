@@ -115,6 +115,8 @@ namespace str
    void CLASS_DECL_AURA copy(string & str, const char * lpcsz, int32_t iCount);
    string CLASS_DECL_AURA replace(const char * pszFind, const char * pszReplace, const char * psz, strsize iStart = 0);
    string CLASS_DECL_AURA replace_ci(const char * pszFind, const char * pszReplace, const char * psz, strsize iStart = 0);
+   ::count CLASS_DECL_AURA utf8_replace(string & str, const char * pszFind, const char * pszReplace, strsize iStart = 0);
+   string CLASS_DECL_AURA utf8_replace(const char * pszFind, const char * pszReplace, const char * psz, strsize iStart = 0);
 
    string CLASS_DECL_AURA random_replace(::aura::application * papp, const stringa & straReplacement, const stringa & straSearch, const char * psz);
 
@@ -124,6 +126,8 @@ namespace str
    strsize CLASS_DECL_AURA find_ci(const string & strFind   , const char   * psz, strsize iStart = 0);
    strsize CLASS_DECL_AURA find_ci(const char   * pszFind   , const string & str, strsize iStart = 0);
    strsize CLASS_DECL_AURA find_ci(const char   * pszFind   , const char   * psz, strsize iStart = 0);
+   
+   strsize CLASS_DECL_AURA utf8_find(const char   * pszFind   , const char   * psz, strsize iStart = 0);
 
 
    strsize CLASS_DECL_AURA find_ci(const char   * pszFind,const string & str,strsize iStart, strsize iLast);
