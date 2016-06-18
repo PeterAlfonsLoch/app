@@ -11,11 +11,20 @@ namespace aura
    {
 
 #ifdef MACOS
+      
+      ::file::path pathHome = getenv("HOME");
+      
+      if(pathHome.is_empty())
+      {
+         
+         pathHome = "~";
+         
+      }
 
-      if(file_exists_dup("/Users/carlos/.ca2/mypath/"+m_strApp+".txt"))
+      if(file_exists_dup(pathHome / ".ca2/mypath"/m_strApp+".txt"))
       {
 
-         string strPath = file_as_string_dup("/Users/carlos/.ca2/mypath/"+m_strApp+".txt");
+         string strPath = file_as_string_dup(pathHome / ".ca2/mypath"/m_strApp+".txt");
 
          if(strPath.has_char())
          {
@@ -27,7 +36,7 @@ namespace aura
       }
       else
       {
-         file_put_contents_dup("/Users/carlos/.ca2/mypath/tst.txt", "/Users/carlos/.ca2/mypath/"+m_strApp+".txt");
+         file_put_contents_dup(pathHome / ".ca2/mypath/tst.txt", pathHome / ".ca2/mypath"+m_strApp+".txt");
       }
 
       return Sys(get_thread_app()).dir().ca2module() / "app";
