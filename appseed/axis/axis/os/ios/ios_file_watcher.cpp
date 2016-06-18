@@ -344,7 +344,7 @@ namespace file_watcher
 	}
 
 	//--------
-	id os_file_watcher::add_watch(const string & directory, file_watch_listener * watcher, bool bRecursive)
+	id os_file_watcher::add_watch(const string & directory, file_watch_listener * watcher, bool bRecursive, bool bOwn)
 	{
 /*		int fd = open(directory.c_str(), O_RDONLY);
 		if(fd == -1)

@@ -90,7 +90,11 @@ public:
 
 */
 
+#ifndef __M
+
 #include "base/graphics/graphics_window_graphics.h"
+
+#endif
 
 #ifdef __OBJC__
 

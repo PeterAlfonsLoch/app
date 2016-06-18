@@ -27,7 +27,7 @@
 #define del_throw_spec throw()
 #define MEMORY_DECL
 
-#elif defined(MACOS)
+#elif defined(__APPLE__)
 
 #define inplace_new_throw_spec throw ()
 #define new_throw_spec throw (std::bad_alloc)

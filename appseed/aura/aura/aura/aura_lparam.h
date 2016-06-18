@@ -16,27 +16,18 @@ public:
 
    LPARAM m_lparam;
 
-   lparam(LPARAM lparam = 0)
-   {
-      m_lparam = lparam;
-   }
+   lparam(LPARAM lparam = 0) { m_lparam = lparam; }
 
 
-#if !defined(ANDROID) && !defined(SOLARIS) && !defined(APPLE_IOS)
+#if OSBIT != 32
 
-   lparam(int32_t i)
-   {
-      m_lparam = (LPARAM) i;
-   }
+   lparam(int32_t i) { m_lparam = (LPARAM) i; }
 
 #endif
 
-#if !defined(LINUX) && !(defined(OS64BIT) && defined(WINDOWS)) && !defined(APPLEOS)
+#if OSBIT != 64
 
-   lparam(int64_t i)
-   {
-      m_lparam = (LPARAM) i;
-   }
+   lparam(int64_t i) { m_lparam = (LPARAM) i; }
 
 #endif
    

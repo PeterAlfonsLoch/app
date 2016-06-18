@@ -1,4 +1,8 @@
 
+
+#include "base/os/macos/window_buffer.h"
+
+
 WINBOOL PeekMessage(
                     LPMESSAGE lpMsg,
                     oswindow hWnd,
@@ -359,6 +363,10 @@ namespace ios
          
          m_oswindow = oswindow_get(new_round_window(this, rect));
          
+         m_spgraphics.alloc(allocer());
+         
+         m_spgraphics->on_create_window(this);
+         
          m_oswindow->set_user_interaction(m_pui);
          
       }
@@ -493,7 +501,13 @@ namespace ios
       rect.size.width = width(pinitialize->m_rect);
       rect.size.height = height(pinitialize->m_rect);
       
+      m_rectParentClient = pinitialize->m_rect;
+      
       m_oswindow = oswindow_get(new_round_window(this, rect));
+      
+      m_spgraphics.alloc(allocer());
+      
+      m_spgraphics->on_create_window(this);
       
       m_oswindow->set_user_interaction(m_pui);
       
@@ -616,6 +630,7 @@ namespace ios
       
    }
    
+
    void interaction_impl::_001OnDestroy(signal_details * pobj)
    {
       
@@ -624,17 +639,6 @@ namespace ios
       UNREFERENCED_PARAMETER(pobj);
       
       Default();
-      
-      ::ios::window_draw * pdraw = dynamic_cast < ::ios::window_draw * > (System.get_twf());
-      
-      if(pdraw != NULL)
-      {
-         
-         retry_single_lock sl(&pdraw->m_eventFree, millis(84), millis(84));
-         
-         pdraw->m_wndpaOut.remove(m_pui);
-         
-      }
       
    }
    
@@ -1117,7 +1121,7 @@ namespace ios
       return false;
    }
    
-   void interaction_impl::_002OnDraw(::draw2d::dib * pdib)
+   void interaction_impl::_002OnDraw(::draw2d::graphics * pgraphics)
    {
       
       //      ::CallWindowProc(*GetSuperWndProcAddr(), get_handle(), WM_PRINT, (WPARAM)((dynamic_cast<::draw2d_quartz2d::graphics * >(pgraphics))->get_handle()), (LPARAM)(PRF_CHILDREN | PRF_CLIENT));
@@ -4634,7 +4638,7 @@ namespace ios
       return g.detach();
    }
    
-   bool interaction_impl::ReleaseDC(::draw2d::dib * pdib)
+   bool interaction_impl::ReleaseDC(::draw2d::graphics * pgraphics)
    {
       
       if(pgraphics == NULL)
@@ -5860,13 +5864,17 @@ namespace ios
    void interaction_impl::_001UpdateWindow()
    {
       
-      ::user::interaction_impl::_001UpdateBuffer();
+//      ::user::interaction_impl::_001UpdateBuffer();
+//      
+//      ::user::interaction_impl::_001UpdateScreen();
       
-      ::user::interaction_impl::_001UpdateScreen();
+      ::user::interaction_impl::_001UpdateWindow();
       
       if(!m_pui->m_bMayProDevian)
       {
+         
          round_window_redraw();
+         
       }
       
    }
@@ -5894,53 +5902,52 @@ namespace ios
       try 
       {
          
+         single_lock sl(m_pui->m_pmutex, true);
+      
+         if(m_bUpdateGraphics)
          {
+         
+            update_graphics_resources();
+         
+         }
       
-      single_lock sl(m_pui->m_pmutex, true);
+         cslock slDisplay(cs_display());
+            
+         ::window_buffer * pbuffer = m_spgraphics.cast < ::window_buffer >();
+            
+         if(pbuffer == NULL)
+         {
+               
+            return;
+               
+         }
+
+         ::draw2d::dib_sp & spdib = pbuffer->m_spdibBuffer;
+
+         if(spdib.is_set() && spdib->area() > 0)
+         {
+            
+         ::draw2d::graphics_sp g(allocer());
       
-      if(m_bUpdateGraphics)
+         g->attach(cgc);
+      
+         ::rect rectClient;
+      
+         GetClientRect(rectClient);
+         
+         
+         
+      
+         g->BitBlt(0, 0, spdib->m_size.cx, spdib->m_size.cy, spdib->get_graphics(), 0, 0, SRCCOPY);
+            
+         }
+      
+      }
+      catch (...)
       {
          
-         update_graphics_resources();
-         
-         //         _001UpdateWindow();
-         
-      }
-      
-      //      single_lock sl(mutex_display(), true);
-      
-      cslock slDisplay(cs_display());
-      
-      if(m_spdib.is_null())
-         return;
-      
-      if(m_spdib->get_data() == NULL)
-         return;
-      
-         }
-      ::draw2d::graphics_sp g(allocer());
-      
-      g->attach(cgc);
-      
-      ::rect rectClient;
-      
-      GetClientRect(rectClient);
-      
-      //       g->BitBlt(0, 0, rectClient.width(), rectClient.height(), m_spdib->get_graphics(), 0, 0, SRCCOPY);
-//      m_spdib->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
-      
-  //    m_spdib->get_graphics()->FillSolidRect(300, 410, 77, 84, ARGB(128, 184, 184, 177));
-      
-      g->BitBlt(0, 0, m_spdib->m_size.cx, m_spdib->m_size.cy, m_spdib->get_graphics(), 0, 0, SRCCOPY);
-      
-      //       g->set_alpha_mode(::draw2d::alpha_mode_blend);
-      
-//      g->FillSolidRect(rectClient, ARGB(128, 23, 77, 184));
-         
-      } catch (...) {
       }
 
-      
    }
    
    

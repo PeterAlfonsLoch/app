@@ -6,28 +6,27 @@
 #if defined(OPENSSL_NO_ASM)
    #include "aes_cbc.c"
 #endif
+
 #include "aes_cfb.c"
-#if defined(__ARM_ARCH_7A__) || defined(_M_ARM)
-   #include "aes_core.c"
-#endif
+
+
 #include "aes_ctr.c"
 #include "aes_ecb.c"
 #include "aes_ige.c"
-#if defined(_M_X64) || defined(_LP64) || defined(_M_ARM)
+
+#if defined(OPENSSL_NO_ASM)
+   #if defined(_M_ARM) || defined(__arm__)
+      #include "aes_core.c"
+   #else
+      #include "aes_x86core.c"
+   #endif
+#else
    #include "aes_misc.c"
 #endif
-#if defined(__APPLE__) && !defined(_LP64)
-   #include "aes_misc.c"
-#endif
+
 #include "aes_ofb.c"
 #include "aes_wrap.c"
-// - Hi, I am Cortisol!!
-// - So let's reflect you !!
-// G: Passcrypt (No Weblang...) : on a Terminal t (.i.e. type, and press enter): clang -arch arm -dM -E - < /dev/null
-#if !defined(_M_X64) && !defined(_LP64) && !defined(__ARM_ARCH)
-   //#error "I know how to issue an error too!"
-   //#include "aes_x86core.c"
-#endif
+
 //2015-02-03  04:55                 0 _aes.c"
 //              11 arquivo(s)        136.139 bytes
 //               0 pasta(s)   29.041.606.656 bytes dispon¡veis

@@ -62,7 +62,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		07108D041B4C97EF00A28F80 /* libaxiszlib.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libaxiszlib.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		07108D041B4C97EF00A28F80 /* libios_axiszlib.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_axiszlib.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A9F2DB419A6445D007AE2C7 /* crc32.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crc32.h; sourceTree = "<group>"; };
 		9A9F2DB519A6445D007AE2C7 /* deflate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = deflate.h; sourceTree = "<group>"; };
 		9A9F2DB619A6445D007AE2C7 /* gzguts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gzguts.h; sourceTree = "<group>"; };
@@ -141,7 +141,7 @@
 				9A9F2DCD19A6445E007AE2C7 /* uncompr.c */,
 				9A9F2DCE19A6445E007AE2C7 /* zutil.c */,
 				9AA5E6D616F7C61B005C45CE /* libaxiszlib.dylib */,
-				07108D041B4C97EF00A28F80 /* libaxiszlib.dylib */,
+				07108D041B4C97EF00A28F80 /* libios_axiszlib.dylib */,
 			);
 			sourceTree = "<group>";
 		};
@@ -208,7 +208,7 @@
 			);
 			name = ios_axiszlib;
 			productName = FreeImage;
-			productReference = 07108D041B4C97EF00A28F80 /* libaxiszlib.dylib */;
+			productReference = 07108D041B4C97EF00A28F80 /* libios_axiszlib.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 		9AA5E4C216F7C61B005C45CE /* axiszlib */ = {
@@ -307,6 +307,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = NO;
 				INSTALL_PATH = "@executable_path/../Frameworks";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = NO;
@@ -318,6 +319,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = NO;
 				INSTALL_PATH = "@executable_path/../Frameworks";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = NO;
@@ -365,7 +367,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_NAME = axiszlib;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = ". .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../.. $(WorkspaceDir)/../../appseed";
@@ -405,7 +407,7 @@
 					"$(TARGET_BUILD_DIR)",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
-				PRODUCT_NAME = axiszlib;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = ". .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../.. $(WorkspaceDir)/../../appseed";

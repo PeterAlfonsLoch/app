@@ -13,14 +13,18 @@ namespace aura
       System.factory().cloneable_large < stdio_file           >   (System.type_info < ::file::text_buffer     > ());
       System.factory().cloneable_large < file                 >   (System.type_info < ::file::binary_buffer   > ());
 //      System.factory().creatable_large < file_set             >   (System.type_info < ::file::set             > ());
+      System.factory().cloneable_large < file                 >   (System.type_info < ::file::stream_buffer   > ());
+      //      System.factory().cloneable < application                >   (System.type_info < ::aura::application     > (), 1);
+      System.factory().creatable_large < ::thread               >   (System.type_info < ::thread           > ());
+
       System.factory().cloneable < file_system                >   (System.type_info < ::file::system          > (), 1);
 //    System.factory().cloneable_small < file_exception       >   (System.type_info < ::file::exception   > ());
 //    System.factory().cloneable <    WinResource             >   (System.type_info < ::ca2::resource         > (), 1);
-      System.factory().cloneable < application                >   (System.type_info < ::aura::application      > (), 1);
+      //System.factory().cloneable < application                >   (System.type_info < ::aura::application      > (), 1);
       System.factory().cloneable < dir                        >   (System.type_info < ::file::dir::system     > (), 1);
 //    System.factory().cloneable_small < folder_watch         >   (System.type_info < ::ca2::folder_watch     > ());
 //      System.factory().creatable < window_draw                >   (System.type_info < ::user::window_draw     > (), 1);
-      System.factory().creatable_large < thread               >   (System.type_info < ::thread_impl                > ());
+      //System.factory().creatable_large < thread               >   (System.type_info < ::thread_impl                > ());
 //      System.factory().creatable_large < window               >   (System.type_info < ::window          > ());
       System.factory().creatable < os                         >   (System.type_info < ::aura::os              > (), 1);
 //      System.factory().creatable < port_forward               >   (System.type_info < ::net::port_forward     > (), 1);

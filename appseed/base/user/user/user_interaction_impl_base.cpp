@@ -7,7 +7,8 @@ namespace user
 
 
    interaction_impl_base::interaction_impl_base() :
-      ::aura::timer_array(get_app())
+      ::aura::timer_array(get_app()),
+   m_rectParentClient(0,0,0,0)
    {
 
       m_pui                = NULL;

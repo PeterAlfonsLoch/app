@@ -1496,7 +1496,7 @@ namespace user
 #endif
             )
                && !is_message_only_window()
-#if !defined(LINUX) && !defined(METROWIN) && !defined(MACOS) && !defined(VSNORD)
+#if !defined(LINUX) && !defined(METROWIN) && !defined(APPLEOS) && !defined(VSNORD)
             && (::user::interaction *) System.m_psystemwindow != this
 #endif
             )

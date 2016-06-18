@@ -874,6 +874,10 @@ namespace user
    {
 
       m_pholder = NULL;
+      
+      m_rect.null();
+      m_rectClient.null();
+      m_sizeFixed = ::size(0, 0);
 
    }
 

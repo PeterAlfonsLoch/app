@@ -7,10 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		070214251C514B4B00DB16A7 /* aesni-x86.s in Sources */ = {isa = PBXBuildFile; fileRef = 9A9D335019D4C44D00DC2067 /* aesni-x86.s */; };
-		070214271C514B4B00DB16A7 /* x86-mont.s in Sources */ = {isa = PBXBuildFile; fileRef = 9A9D335419D4C44D00DC2067 /* x86-mont.s */; };
-		070214331C514B4B00DB16A7 /* wp-mmx.s in Sources */ = {isa = PBXBuildFile; fileRef = 9A9D336A19D4C44D00DC2067 /* wp-mmx.s */; };
-		070214391C514D4B00DB16A7 /* aes-586.s in Sources */ = {isa = PBXBuildFile; fileRef = 9A9D334F19D4C44D00DC2067 /* aes-586.s */; };
 		071B2B4D1B6E639F0088E158 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07502C881B247427008D207C /* libaura.dylib */; };
 		07558DA91B23DD56008C63AF /* bss_dgram.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DA71B23DD56008C63AF /* bss_dgram.c */; };
 		07558DAA1B23DD56008C63AF /* bss_sock.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DA81B23DD56008C63AF /* bss_sock.c */; };
@@ -93,17 +89,19 @@
 		07EDC4DB1B4EF94E00AF8928 /* cm_ameth.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DAD1B23DF4A008C63AF /* cm_ameth.c */; };
 		07EDC4DC1B4EF95100AF8928 /* cm_pmeth.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DAE1B23DF4A008C63AF /* cm_pmeth.c */; };
 		07EDC4DD1B4EF95500AF8928 /* cmac.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DAF1B23DF4A008C63AF /* cmac.c */; };
-		07EDC4DF1B4EF9B900AF8928 /* rc4-586.s in Sources */ = {isa = PBXBuildFile; fileRef = 9A9D336019D4C44D00DC2067 /* rc4-586.s */; };
 		07EDC4E21B4EF9F100AF8928 /* _ccgost.c in Sources */ = {isa = PBXBuildFile; fileRef = 07EDC4E01B4EF9EE00AF8928 /* _ccgost.c */; };
 		07EDC4E31B4EFAF500AF8928 /* bss_sock.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DA81B23DD56008C63AF /* bss_sock.c */; };
 		07EDC4E41B4EFAF800AF8928 /* bss_dgram.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DA71B23DD56008C63AF /* bss_dgram.c */; };
 		07EDC4E51B4EFB2E00AF8928 /* gost_ameth.c in Sources */ = {isa = PBXBuildFile; fileRef = 0778327F199FE94100206CA1 /* gost_ameth.c */; };
-		07EDC4E61B4EFB8100AF8928 /* x86cpuid.s in Sources */ = {isa = PBXBuildFile; fileRef = 9A9D336B19D4C44D00DC2067 /* x86cpuid.s */; };
 		07EDC4E71B4EFBCD00AF8928 /* pqueue.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DC31B23E102008C63AF /* pqueue.c */; };
 		07EDC4E81B4EFBE800AF8928 /* srp_lib.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DC71B23E146008C63AF /* srp_lib.c */; };
 		07EDC4E91B4EFBEB00AF8928 /* srp_vfy.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DC81B23E146008C63AF /* srp_vfy.c */; };
 		07EDC4EA1B4EFC0C00AF8928 /* _ts.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DCF1B23E188008C63AF /* _ts.c */; };
 		07EDC4EB1B4EFC1100AF8928 /* txt_db.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DD11B23E19B008C63AF /* txt_db.c */; };
+		9A6715F71D152B740069A961 /* des_old.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DB31B23DF79008C63AF /* des_old.c */; };
+		9A6715F81D152B740069A961 /* des_old2.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DB41B23DF79008C63AF /* des_old2.c */; };
+		9A6715F91D152B740069A961 /* krb5_asn.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DBD1B23E0B1008C63AF /* krb5_asn.c */; };
+		9A6715FA1D152B740069A961 /* th-lock.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DCD1B23E175008C63AF /* th-lock.c */; };
 		9A9D339919D4C44E00DC2067 /* aes-x86_64.s in Sources */ = {isa = PBXBuildFile; fileRef = 9A9D330519D4C44D00DC2067 /* aes-x86_64.s */; };
 		9A9D339A19D4C44E00DC2067 /* aesni-sha1-x86_64.s in Sources */ = {isa = PBXBuildFile; fileRef = 9A9D330619D4C44D00DC2067 /* aesni-sha1-x86_64.s */; };
 		9A9D339B19D4C44E00DC2067 /* aesni-x86_64.s in Sources */ = {isa = PBXBuildFile; fileRef = 9A9D330719D4C44D00DC2067 /* aesni-x86_64.s */; };
@@ -1375,10 +1373,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				070214391C514D4B00DB16A7 /* aes-586.s in Sources */,
-				070214251C514B4B00DB16A7 /* aesni-x86.s in Sources */,
-				070214271C514B4B00DB16A7 /* x86-mont.s in Sources */,
-				070214331C514B4B00DB16A7 /* wp-mmx.s in Sources */,
+				9A6715F71D152B740069A961 /* des_old.c in Sources */,
+				9A6715F81D152B740069A961 /* des_old2.c in Sources */,
+				9A6715F91D152B740069A961 /* krb5_asn.c in Sources */,
+				9A6715FA1D152B740069A961 /* th-lock.c in Sources */,
 				07EDC4DA1B4EF91F00AF8928 /* hmac.c in Sources */,
 				07EDC4CF1B4EF6A700AF8928 /* v3_lib.c in Sources */,
 				07EDC4C51B4EE3FA00AF8928 /* _crypto.c in Sources */,
@@ -1386,11 +1384,9 @@
 				07EDC4E21B4EF9F100AF8928 /* _ccgost.c in Sources */,
 				07EDC4E71B4EFBCD00AF8928 /* pqueue.c in Sources */,
 				07EDC4CB1B4EF66800AF8928 /* _engines.c in Sources */,
-				07EDC4E61B4EFB8100AF8928 /* x86cpuid.s in Sources */,
 				07EDC4D61B4EF8CD00AF8928 /* lhash.c in Sources */,
 				07EDC4C81B4EF61400AF8928 /* _bn.c in Sources */,
 				07EDC4E41B4EFAF800AF8928 /* bss_dgram.c in Sources */,
-				07EDC4DF1B4EF9B900AF8928 /* rc4-586.s in Sources */,
 				07EDC4EA1B4EFC0C00AF8928 /* _ts.c in Sources */,
 				07EDC4D71B4EF8F800AF8928 /* stack.c in Sources */,
 				07EDC4EB1B4EFC1100AF8928 /* txt_db.c in Sources */,
@@ -1589,6 +1585,14 @@
 		9AE24DA81904CF46001AEFFB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					USE_SOCKETS,
+					OPENSSL_NO_HW_PADLOCK,
+					OPENSSL_NO_INLINE_ASM,
+					OPENSSL_NO_ASM,
+					"DEBUG=1",
+					"$(inherited)",
+				);
 				INSTALL_PATH = "@executable_path/../Frameworks";
 				MACH_O_TYPE = mh_dylib;
 				SDKROOT = iphoneos;
@@ -1599,6 +1603,12 @@
 		9AE24DA91904CF46001AEFFB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					USE_SOCKETS,
+					OPENSSL_NO_HW_PADLOCK,
+					OPENSSL_NO_INLINE_ASM,
+					OPENSSL_NO_ASM,
+				);
 				INSTALL_PATH = "@executable_path/../Frameworks";
 				MACH_O_TYPE = mh_dylib;
 				SDKROOT = iphoneos;

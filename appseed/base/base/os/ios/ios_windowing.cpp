@@ -414,3 +414,33 @@ WINBOOL GetWindowRect(oswindow hwnd, LPRECT lprect)
 
 
 
+
+
+
+void defer_dock_application(bool bDock)
+{
+   
+//   if (bDock)
+//   {
+//      
+//      if (!nsapp_activation_policy_is_regular())
+//      {
+//         
+//         nsapp_activation_policy_regular();
+//         
+//      }
+//      
+//   }
+//   else
+//   {
+//      
+//      if (!nsapp_activation_policy_is_accessory())
+//      {
+//         
+//         nsapp_activation_policy_accessory();
+//         
+//      }
+//      
+//   }
+//   
+}

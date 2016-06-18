@@ -60,7 +60,7 @@ namespace ios
       
       virtual bool BaseOnControlEvent(::user::control_event * pevent);
       
-      void _002OnDraw(::draw2d::dib * pdib);
+      void _002OnDraw(::draw2d::graphics * pgraphics);
       
       DECL_GEN_SIGNAL(_001OnEraseBkgnd);
       DECL_GEN_SIGNAL(_001OnMove);
@@ -134,7 +134,7 @@ namespace ios
       ::user::interaction *  GetDescendantWindow(id id);
       // like get_child_by_id but recursive
       void SendMessageToDescendants(UINT message, WPARAM wParam = 0,
-                                    lparam lParam = NULL, bool bDeep = TRUE, bool bOnlyPerm = FALSE);
+                                    lparam lParam = 0, bool bDeep = TRUE, bool bOnlyPerm = FALSE);
       static_function ::user::interaction * PASCAL GetSafeOwner(::user::interaction * pParent = NULL, oswindow* pWndTop = NULL);
       
       virtual bool IsWindow() const;
@@ -200,7 +200,7 @@ namespace ios
       
       virtual ::draw2d::graphics * GetDC();
       virtual ::draw2d::graphics * GetWindowDC();
-      virtual bool ReleaseDC(::draw2d::dib * pdib);
+      virtual bool ReleaseDC(::draw2d::graphics * pgraphics);
       virtual void Print(::draw2d::graphics * pgraphics, DWORD dwFlags) const;
       virtual void PrintClient(::draw2d::graphics * pgraphics, DWORD dwFlags) const;
       
@@ -456,10 +456,10 @@ namespace ios
       void OnEnable(bool bEnable);
       void OnEndSession(bool bEnding);
       void OnEnterIdle(UINT nWhy, ::user::interaction * pWho);
-      bool OnEraseBkgnd(::draw2d::dib * pdib);
+      bool OnEraseBkgnd(::draw2d::graphics * pgraphics);
       void OnGetMinMaxInfo(MINMAXINFO* lpMMI);
       //xxx bool OnHelpInfo(HELPINFO* lpHelpInfo);
-      void OnIconEraseBkgnd(::draw2d::dib * pdib);
+      void OnIconEraseBkgnd(::draw2d::graphics * pgraphics);
       void OnKillFocus(::user::interaction * pNewWnd);
       LRESULT OnMenuChar(UINT nChar, UINT nFlags, ::user::menu* pMenu);
       void OnMenuSelect(UINT nItemID, UINT nFlags, HMENU hSysMenu);

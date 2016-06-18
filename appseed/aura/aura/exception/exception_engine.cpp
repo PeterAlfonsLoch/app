@@ -1440,7 +1440,7 @@ namespace exception
 
    }
     
-#elif defined(MACOS)
+#elif defined(APPLEOS)
 
    void engine::backtrace(void *pui, int &c)
    {
@@ -1449,7 +1449,7 @@ namespace exception
 
       UINT32 maxframes = c;
 
-      c = ::backtrace(&pui, maxframes);
+      c = ::backtrace((void **)pui, maxframes);
 
    }
 

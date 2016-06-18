@@ -27,6 +27,9 @@
 #if !defined(LINUX) && !defined(__APPLE__)
 #include "mem_clr.c"
 #endif
+#if defined(__APPLE__) && defined(OPENSSL_NO_ASM)
+#include "mem_clr.c"
+#endif
 #include "mem_dbg.c"
 
 

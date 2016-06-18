@@ -19,7 +19,7 @@ namespace user
       virtual public ::user::interaction
       #ifdef LINUX
       , public i_close_quit
-      #elif defined (__APPLE__)
+      #elif defined (MACOS)
       , public user_notify_icon_mm_bridge
       #endif
    {

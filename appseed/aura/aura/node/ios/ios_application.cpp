@@ -3,37 +3,37 @@
 
 
 
-namespace ios
+namespace aura
 {
 
 
-   application::application(::aura::application * papp) :
-      ::object(papp)
-   {
-      
-      m_pthreadimpl.alloc(allocer());
-      m_pthreadimpl->m_pthread = this;
-      
-      shell::theLinuxShell.Initialize();
-      
-   }
-
-   application::~application()
-   {
-
-   }
-
-
-   void application::_001OnFileNew()
-   {
-      //      ::ca2::smart_pointer < ::application_base > ::m_p->_001OnFileNew(NULL);
-   }
-
-   ::user::document * application::_001OpenDocumentFile(var varFile)
-   {
-      //    return ::ca2::smart_pointer < ::application_base > ::m_p->_001OpenDocumentFile(varFile);
-      return NULL;
-   }
+//   application::application(::aura::application * papp) :
+//      ::object(papp)
+//   {
+//      
+////      m_pthreadimpl.alloc(allocer());
+////      m_pthreadimpl->m_pthread = this;
+//      
+//      shell::theLinuxShell.Initialize();
+//      
+//   }
+//
+//   application::~application()
+//   {
+//
+//   }
+//
+//
+//   void application::_001OnFileNew()
+//   {
+//      //      ::ca2::smart_pointer < ::application_base > ::m_p->_001OnFileNew(NULL);
+//   }
+//
+//   ::user::document * application::_001OpenDocumentFile(var varFile)
+//   {
+//      //    return ::ca2::smart_pointer < ::application_base > ::m_p->_001OpenDocumentFile(varFile);
+//      return NULL;
+//   }
 
    void application::_001EnableShellOpen()
    {
@@ -43,19 +43,19 @@ namespace ios
       // xxx       m_atomSystemTopic    = ::GlobalAddAtomW(L"system");
    }
 
-   bool application::_001OnDDECommand(const char * lpcsz)
-   {
-      UNREFERENCED_PARAMETER(lpcsz);
-      return FALSE;
-   }
-
-
-   HINSTANCE application::GetHinstance()
-   {
-
-      return NULL;
-
-   }
+//   bool application::_001OnDDECommand(const char * lpcsz)
+//   {
+//      UNREFERENCED_PARAMETER(lpcsz);
+//      return FALSE;
+//   }
+//
+//
+//   HINSTANCE application::GetHinstance()
+//   {
+//
+//      return NULL;
+//
+//   }
 
 
    string application::get_version()
@@ -68,19 +68,19 @@ namespace ios
 
 
 
+//
+//
+//   void application::TermThread(HINSTANCE hInstTerm)
+//   {
+//
+//
+//   }
+//
+//
+//
 
 
-   void application::TermThread(HINSTANCE hInstTerm)
-   {
-
-
-   }
-
-
-
-
-
-   bool application::process_initialize()
+   bool application::impl_process_initialize()
    {
 
       return true;
@@ -88,7 +88,7 @@ namespace ios
    }
 
 
-   bool application::initialize1()
+   bool application::impl_initialize1()
    {
 
       set_run();
@@ -98,30 +98,44 @@ namespace ios
    }
 
 
-   bool application::initialize2()
+   bool application::impl_initialize2()
    {
+      
       return true;
+      
    }
 
-   bool application::initialize3()
+   
+   bool application::impl_initialize3()
    {
+      
       return true;
+      
    }
 
+   
    // thread termination
-   int32_t application::exit_instance() // default will 'delete this'
+   int32_t application::impl_exit_instance() // default will 'delete this'
    {
       
       // avoid calling CloseHandle() on our own thread handle
       // during the thread destructor
-      m_pthreadimpl->set_os_data(NULL);
+      //m_pthreadimpl->set_os_data(NULL);
+      
+      set_os_data(NULL);
       
       
-      int32_t iRet = ::aura::application::exit_instance();
+      //int32_t iRet = ::aura::application::exit_instance();
+      
+      
+      int iRet = 0;
       
       
       return iRet;
+      
+      
    }
+   
 
    /*
    // Advanced: exception handling
@@ -198,63 +212,63 @@ namespace ios
 //      return NULL;
 //   }
 
-   ::thread * application::GetThread()
-   {
-      return ::get_thread();
-   }
-
-   void application::set_thread(::thread * pthread)
-   {
-      ::set_thread(pthread);
-   }
+//   ::thread * application::GetThread()
+//   {
+//      return ::get_thread();
+//   }
+//
+//   void application::set_thread(::thread * pthread)
+//   {
+//      ::set_thread(pthread);
+//   }
 
    ///////////////////////////////////////////////////////////////////////////
    // application Initialization
 
-   void application::SetCurrentHandles()
-   {
-      //ASSERT(this == afxCurrentWinApp);
-      //if(afxCurrentAppName != NULL)
-      // return;
-      //ASSERT(afxCurrentAppName == NULL);
-
-
-      // Note: there are a number of _tcsdup (aka _strdup) calls that are
-      // made here for the exe path, help file path, etc.  In previous
-      // versions of ca2 API, this memory was never freed.  In this and future
-      // versions this memory is automatically freed during application's
-      // destructor.  If you are freeing the memory yourself, you should
-      // either remove the code or set the pointers to NULL after freeing
-      // the memory.
-
-      // get path of executable
-      /*   char szBuff[_MAX_PATH];
-      DWORD dwRet = ::GetModuleFileName(m_hInstance, szBuff, _MAX_PATH);
-      ASSERT( dwRet != 0 && dwRet != _MAX_PATH );
-      if( dwRet == 0 || dwRet == _MAX_PATH )
-      throw user_exception();*/
-
-      /*
-       LPTSTR lpszExt = ::PathFindExtension(szBuff);
-       ASSERT(lpszExt != NULL);
-       if( lpszExt == NULL )
-       throw user_exception();
-       
-       ASSERT(*lpszExt == '.');
-       *lpszExt = 0;       // no suffix
-       */
-      
-      //      string strExeName;
-      //string strTitle = System.load_string("System.title");
-      // get the exe title from the full path name [no extension]
-      //    strExeName = System.get_module_title();
-      
-      
-      
-      m_pimpl->set_os_data(::GetCurrentThread());
-
-
-   }
+//   void application::SetCurrentHandles()
+//   {
+//      //ASSERT(this == afxCurrentWinApp);
+//      //if(afxCurrentAppName != NULL)
+//      // return;
+//      //ASSERT(afxCurrentAppName == NULL);
+//
+//
+//      // Note: there are a number of _tcsdup (aka _strdup) calls that are
+//      // made here for the exe path, help file path, etc.  In previous
+//      // versions of ca2 API, this memory was never freed.  In this and future
+//      // versions this memory is automatically freed during application's
+//      // destructor.  If you are freeing the memory yourself, you should
+//      // either remove the code or set the pointers to NULL after freeing
+//      // the memory.
+//
+//      // get path of executable
+//      /*   char szBuff[_MAX_PATH];
+//      DWORD dwRet = ::GetModuleFileName(m_hInstance, szBuff, _MAX_PATH);
+//      ASSERT( dwRet != 0 && dwRet != _MAX_PATH );
+//      if( dwRet == 0 || dwRet == _MAX_PATH )
+//      throw user_exception();*/
+//
+//      /*
+//       LPTSTR lpszExt = ::PathFindExtension(szBuff);
+//       ASSERT(lpszExt != NULL);
+//       if( lpszExt == NULL )
+//       throw user_exception();
+//       
+//       ASSERT(*lpszExt == '.');
+//       *lpszExt = 0;       // no suffix
+//       */
+//      
+//      //      string strExeName;
+//      //string strTitle = System.load_string("System.title");
+//      // get the exe title from the full path name [no extension]
+//      //    strExeName = System.get_module_title();
+//      
+//      
+//      
+//      m_pimpl->set_os_data(::GetCurrentThread());
+//
+//
+//   }
 
 //   sp(::window) application::FindWindow(const char * lpszClassName, const char * lpszWindowName)
 //   {
@@ -305,35 +319,49 @@ namespace ios
    bool application::set_main_init_data(::aura::main_init_data * pdata)
    {
 
-      m_pmaininitdata = (::ios::main_init_data *) pdata;
+//      m_pmaininitdata = (::ios::main_init_data *) pdata;
+//
+//      if(m_pmaininitdata != NULL && m_pimpl->is_system())
+//      {
+//         if(!win_init(m_pmaininitdata))
+//            return false;
+//      }
 
-      if(m_pmaininitdata != NULL && m_pimpl->is_system())
+      m_pinitmaindata = pdata;
+      
+      if(m_pinitmaindata != NULL && is_system())
       {
-         if(!win_init(m_pmaininitdata))
-            return false;
+         
+         string strCmdLine          = pdata->m_vssCommandLine;
+         
+         System.m_strCmdLine = strCmdLine;
+         
+         SetCurrentHandles();
+         
+         __init_thread();
+         
       }
-
       return true;
 
    }
 
-   bool application::win_init(main_init_data * pdata)
-   {
-      ASSERT(pdata->m_hPrevInstance == NULL);
-      
-      string strCmdLine          = pdata->m_strCommandLine;
-      
-      // handle critical errors and avoid Windows message boxes
-      // xxx         SetErrorMode(SetErrorMode(0) | SEM_FAILCRITICALERRORS | SEM_NOOPENFILEERRORBOX);
-      
-      System.m_strCmdLine = strCmdLine;
-      //pApp->SetCurrentHandles();
-      SetCurrentHandles();
-      
-      __init_thread();
-      
-      return true;
-   }
+//   bool application::win_init(main_init_data * pdata)
+//   {
+//      ASSERT(pdata->m_hPrevInstance == NULL);
+//      
+//      string strCmdLine          = pdata->m_strCommandLine;
+//      
+//      // handle critical errors and avoid Windows message boxes
+//      // xxx         SetErrorMode(SetErrorMode(0) | SEM_FAILCRITICALERRORS | SEM_NOOPENFILEERRORBOX);
+//      
+//      System.m_strCmdLine = strCmdLine;
+//      //pApp->SetCurrentHandles();
+//      SetCurrentHandles();
+//      
+//      __init_thread();
+//      
+//      return true;
+//   }
 
 
 
@@ -353,14 +381,14 @@ namespace ios
 //
 //   }
 
-
-   void application::ShowWaitCursor(bool bShow)
-   {
-
-      UNREFERENCED_PARAMETER(bShow);
-
-   }
-
+//
+//   void application::ShowWaitCursor(bool bShow)
+//   {
+//
+//      UNREFERENCED_PARAMETER(bShow);
+//
+//   }
+//
 
 
     string application::draw2d_get_default_library_name()
@@ -397,7 +425,17 @@ namespace ios
 //   }
 
 
-} // namespace ios
+   
+   
+   void application::ShowWaitCursor(bool bShow)
+   {
+      
+      UNREFERENCED_PARAMETER(bShow);
+      
+   }
+   
+
+} // namespace aura
 
 
 

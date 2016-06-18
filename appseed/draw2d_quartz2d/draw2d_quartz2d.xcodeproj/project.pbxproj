@@ -45,6 +45,8 @@
 		9A17F15E1D13C9BD00D7C8CF /* libbase.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A17F1551D13C99D00D7C8CF /* libbase.dylib */; };
 		9A1B496416A494A600875A94 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B496316A494A600875A94 /* framework.h */; };
 		9A1B496716A4A10100875A94 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B496616A4A10100875A94 /* framework.cpp */; };
+		9A6716441D152E8F0069A961 /* libaxis.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A6716431D152E8F0069A961 /* libaxis.dylib */; };
+		9A6716451D152E980069A961 /* libbase.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A17F1571D13C99D00D7C8CF /* libbase.dylib */; };
 		9A6B40E417BBE291008391AD /* draw2d_quartz2d_bitmap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A6B40CC17BBE291008391AD /* draw2d_quartz2d_bitmap.cpp */; };
 		9A6B40E517BBE291008391AD /* draw2d_quartz2d_bitmap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A6B40CD17BBE291008391AD /* draw2d_quartz2d_bitmap.h */; };
 		9A6B40E617BBE291008391AD /* draw2d_quartz2d_brush.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A6B40CE17BBE291008391AD /* draw2d_quartz2d_brush.cpp */; };
@@ -139,6 +141,13 @@
 			remoteGlobalIDString = 9AE24D431904CEFE001AEFFB;
 			remoteInfo = aura_iosTests;
 		};
+		9A67163E1D152E720069A961 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A17F14D1D13C99C00D7C8CF /* base.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9AE24D331904CEFE001AEFFB;
+			remoteInfo = ios_base;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -153,6 +162,7 @@
 		9A19A19219C6EF420018DF7D /* aura.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aura.xcodeproj; path = ../../../app/appseed/aura/aura.xcodeproj; sourceTree = "<group>"; };
 		9A1B496316A494A600875A94 /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
 		9A1B496616A4A10100875A94 /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
+		9A6716431D152E8F0069A961 /* libaxis.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaxis.dylib; path = "../axis/build/Debug-iphoneos/libaxis.dylib"; sourceTree = "<group>"; };
 		9A6B40CC17BBE291008391AD /* draw2d_quartz2d_bitmap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = draw2d_quartz2d_bitmap.cpp; sourceTree = "<group>"; };
 		9A6B40CD17BBE291008391AD /* draw2d_quartz2d_bitmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = draw2d_quartz2d_bitmap.h; sourceTree = "<group>"; };
 		9A6B40CE17BBE291008391AD /* draw2d_quartz2d_brush.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = draw2d_quartz2d_brush.cpp; sourceTree = "<group>"; };
@@ -191,6 +201,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A6716451D152E980069A961 /* libbase.dylib in Frameworks */,
+				9A6716441D152E8F0069A961 /* libaxis.dylib in Frameworks */,
 				0702141E1C5146B700DB16A7 /* libaura.dylib in Frameworks */,
 				07E25F541B4FFD4000752DE1 /* UIKit.framework in Frameworks */,
 				07473E171B5045B5004688C5 /* CoreFoundation.framework in Frameworks */,
@@ -262,6 +274,7 @@
 		A1CFD76D154F5EA7007447E2 = {
 			isa = PBXGroup;
 			children = (
+				9A6716431D152E8F0069A961 /* libaxis.dylib */,
 				9A17F15C1D13C9B600D7C8CF /* libaxis.dylib */,
 				9A17F14D1D13C99C00D7C8CF /* base.xcodeproj */,
 				07473E161B5045B5004688C5 /* CoreFoundation.framework */,
@@ -381,6 +394,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				9A67163F1D152E720069A961 /* PBXTargetDependency */,
 				07E25F521B4FFCC700752DE1 /* PBXTargetDependency */,
 			);
 			name = ios_draw2d_quartz2d;
@@ -588,6 +602,11 @@
 			isa = PBXTargetDependency;
 			name = base;
 			targetProxy = 9A17F15A1D13C9AA00D7C8CF /* PBXContainerItemProxy */;
+		};
+		9A67163F1D152E720069A961 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ios_base;
+			targetProxy = 9A67163E1D152E720069A961 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

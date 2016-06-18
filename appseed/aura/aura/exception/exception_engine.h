@@ -187,7 +187,7 @@ namespace exception
       bool load_modules();
       void clear();
       bool load_module(HANDLE, HMODULE);
-#elif defined(LINUX) || defined(MACOS)
+#elif defined(LINUX) || defined(APPLEOS)
 
       void backtrace(void * pui, int &c);
       char * stack_trace(void * pui, int c, const char * pszFormat = default_format());

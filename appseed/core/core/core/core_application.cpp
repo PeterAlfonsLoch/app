@@ -1996,7 +1996,7 @@ namespace core
       }
 
 
-#if !defined(LINUX) && !defined(METROWIN) && !defined(ANDROID) && !defined(MACOS)
+#if !defined(LINUX) && !defined(METROWIN) && !defined(ANDROID) && !defined(APPLEOS)
 
       try
       {
@@ -3847,7 +3847,7 @@ namespace core
 
          }
 
-#if !defined(LINUX) && !defined(MACOS) && !defined(VSNORD)
+#if !defined(LINUX) && !defined(APPLEOS) && !defined(VSNORD)
          attach_thread_input_to_main_thread(false);
 #endif
 

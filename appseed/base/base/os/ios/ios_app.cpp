@@ -63,6 +63,7 @@ plane_system * new_system(const char * pszId)
    
 }
 
+
 plane_system::plane_system(const char * pszId)
 {
    
@@ -70,20 +71,14 @@ plane_system::plane_system(const char * pszId)
    
    m_psystem->m_posdata->m_pui = new ::user::interaction(m_psystem);
    
-   ::ios::main_init_data * pinitmaindata  = new ::ios::main_init_data;
+   ::aura::main_init_data * pinitmaindata  = new ::aura::main_init_data;
    
-   
-   
-   pinitmaindata->m_hInstance             = NULL;
-   pinitmaindata->m_hPrevInstance         = NULL;
    pinitmaindata->m_vssCommandLine        = pszId;
-   pinitmaindata->m_nCmdShow              = 0;
    
    m_psystem->init_main_data(pinitmaindata);
    
-   
-   
 }
+
 
 ui_window_ptr init_part_2ex(plane_system * psystem, CGRect rect)
 {
