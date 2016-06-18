@@ -331,7 +331,22 @@ namespace ansios
       if(Application.file().exists(path.folder() / "libaura.dylib"))
       {
          
-         strFallback = path.folder();
+         ::file::path folderNew = path.folder();
+         
+         folderNew -= 3;
+         
+         if(Application.file().exists(folderNew / "libaura.dylib"))
+         {
+            
+            strFallback = folderNew;
+            
+         }
+         else
+         {
+         
+            strFallback = path.folder();
+            
+         }
          
       }
       else
