@@ -696,6 +696,7 @@
     <ClCompile Include="base\_base_base.cpp" />
     <ClCompile Include="database\_database.cpp" />
     <ClCompile Include="framework.cpp" />
+    <ClCompile Include="graphics\graphics_window_buffer.cpp" />
     <ClCompile Include="graphics\graphics_window_graphics.cpp" />
     <ClCompile Include="user\fontopus\fontopus.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
@@ -1090,8 +1091,10 @@
     <ClInclude Include="base\os\windows\windows.h" />
     <ClInclude Include="base\os\windows\windows_internal.h" />
     <ClInclude Include="base\os\windows\windows_system_interaction_impl.h" />
-    <ClInclude Include="base\os\windows\windows_window_gdi.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="graphics\graphics.h" />
+    <ClInclude Include="graphics\graphics_window.h" />
+    <ClInclude Include="graphics\graphics_window_buffer.h" />
     <ClInclude Include="graphics\graphics_window_graphics.h" />
     <ClInclude Include="user\fontopus\fontopus.h" />
     <ClInclude Include="user\fontopus\fontopus_login.h" />

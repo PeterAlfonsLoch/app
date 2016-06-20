@@ -2,17 +2,17 @@
 //#include "fiasco_finder.h"
 
 
-#ifdef WINDOWSEX
-#include "base/os/windows/windows_window_gdi.h"
-#elif defined (LINUX)
-#include "base/os/linux/linux_window_xlib.h"
-#elif defined (VSNORD)
-#include "base/os/android/android_window_anative.h"
-#elif defined (ANDROID)
-#include "base/os/android/android_window_android.h"
-#endif
-
-
+//#ifdef WINDOWSEX
+//#include "base/os/windows/windows_window_gdi.h"
+//#elif defined (LINUX)
+//#include "base/os/linux/linux_window_xlib.h"
+//#elif defined (VSNORD)
+//#include "base/os/android/android_window_anative.h"
+//#elif defined (ANDROID)
+//#include "base/os/android/android_window_android.h"
+//#endif
+//
+//
 window_graphics::window_graphics(::aura::application * papp) :
    object(papp)
 {

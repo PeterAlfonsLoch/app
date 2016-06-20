@@ -1,6 +1,8 @@
 #include "framework.h"
 #if defined(LINUX)
 #include "base/os/linux/linux_window_xlib.h"
+#elif defined(VSNORD)
+#include "base/os/android/android_window_anative.h"
 #endif
 
 namespace draw2d_cairo
@@ -29,7 +31,11 @@ namespace draw2d_cairo
 
       #elif defined(LINUX)
 
-      System.factory().cloneable_large < window_xlib                  >  (System.type_info <window_graphics                > ());
+      System.factory().cloneable_large < window_xlib                 >  (System.type_info <window_graphics                > ());
+
+      #elif defined(ANDROID)
+
+      System.factory().cloneable_large < window_android_anative      >  (System.type_info <window_graphics                >());
 
       #endif
 

@@ -457,6 +457,9 @@
     <ClCompile Include="base\os\cross\windows\base_cross_windows_threading.cpp">
       <Filter>Source Files\base\os\cross\windows</Filter>
     </ClCompile>
+    <ClCompile Include="graphics\graphics_window_buffer.cpp">
+      <Filter>Source Files\graphics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -624,9 +627,6 @@
     <ClInclude Include="base\os\windows\windows_system_interaction_impl.h">
       <Filter>Header Files\base\os\windows</Filter>
     </ClInclude>
-    <ClInclude Include="base\os\windows\windows_window_gdi.h">
-      <Filter>Header Files\base\os\windows</Filter>
-    </ClInclude>
     <ClInclude Include="base\os\android\android_view_bitmap.h">
       <Filter>Header Files\base\os\android</Filter>
     </ClInclude>
@@ -782,6 +782,15 @@
     </ClInclude>
     <ClInclude Include="user\user\user_windowing.h">
       <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\graphics_window_buffer.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\graphics.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\graphics_window.h">
+      <Filter>Header Files\graphics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
