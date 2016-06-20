@@ -97,7 +97,7 @@
     </ClCompile>
     <Link />
     <Link>
-      <LibraryDependencies>axisfreetype;axisfreeimage;axisopenssl;axiscrypto;axisbzip2;axiszlib;axisidn;aurasqlite;aura;$(StlLibraryName);m;log;android</LibraryDependencies>
+      <LibraryDependencies>axisfreetype;axisfreeimage;axisopenssl;axiscrypto;axisbzip2;axiszlib;axisidn;aurasqlite;aura;ace;$(StlLibraryName);m;log;android</LibraryDependencies>
       <SharedLibrarySearchPath>$(VS_NdkRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\lib;%(SharedLibrarySearchPath)</SharedLibrarySearchPath>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/;$(VS_NdkRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\lib;$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
@@ -122,7 +122,7 @@
     </Link>
     <Link>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/;$(VS_NdkRoot)\platforms\$(AndroidAPILevel)\arch-arm\usr\lib;$(ToolchainPrebuiltPath)\lib\gcc\$(ToolchainName)\$(ToolchainVersion)\armv7-a;$(StlLibraryPath);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <LibraryDependencies>axisfreetype;axisfreeimage;axisopenssl;axiscrypto;axisbzip2;axiszlib;axisidn;aurasqlite;aura;$(StlLibraryName);m;log;android</LibraryDependencies>
+      <LibraryDependencies>axisfreetype;axisfreeimage;axisopenssl;axiscrypto;axisbzip2;axiszlib;axisidn;aurasqlite;aura;ace;$(StlLibraryName);m;log;android</LibraryDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">
@@ -143,7 +143,7 @@
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/;$(VS_NdkRoot)\platforms\$(AndroidAPILevel)\arch-arm\usr\lib;$(ToolchainPrebuiltPath)\lib\gcc\$(ToolchainName)\$(ToolchainVersion)\armv7-a;$(StlLibraryPath);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <LibraryDependencies>axisfreetype;axisfreeimage;axisopenssl;axiscrypto;axisbzip2;axiszlib;axisidn;aurasqlite;aura;$(StlLibraryName);m;log;android</LibraryDependencies>
+      <LibraryDependencies>axisfreetype;axisfreeimage;axisopenssl;axiscrypto;axisbzip2;axiszlib;axisidn;aurasqlite;aura;ace;$(StlLibraryName);m;log;android</LibraryDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|x86'">
@@ -163,7 +163,7 @@
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/;$(VS_NdkRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\lib;$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <LibraryDependencies>axisfreetype;axisfreeimage;axisopenssl;axiscrypto;axisbzip2;axiszlib;axisidn;aurasqlite;aura;$(StlLibraryName);m;log;android</LibraryDependencies>
+      <LibraryDependencies>axisfreetype;axisfreeimage;axisopenssl;axiscrypto;axisbzip2;axiszlib;axisidn;aurasqlite;aura;ace;$(StlLibraryName);m;log;android</LibraryDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>

@@ -9,27 +9,22 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="aqua.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="aqua_graphics_alpha.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="framework.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ace_new.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ace.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="aqua_graphics_alpha.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="framework.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="aqua.def">
+    <ClCompile Include="ace_new.cpp">
       <Filter>Source Files</Filter>
-    </None>
+    </ClCompile>
   </ItemGroup>
 </Project>

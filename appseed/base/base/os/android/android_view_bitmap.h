@@ -12,7 +12,7 @@ namespace android
    public:
 
 
-      ::draw2d::dib_sp     m_dib;
+      ::draw2d::dib_sp     m_spdibBuffer;
       mutex                m_mutex;
 
 

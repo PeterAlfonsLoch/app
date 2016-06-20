@@ -13,7 +13,8 @@ namespace android
 
    view_bitmap::view_bitmap(::aura::application * papp) :
       object(papp),
-      m_dib(allocer()),
+      window_graphics(papp),
+      m_spdibBuffer(allocer()),
       m_mutex(papp)
    {
 
@@ -33,7 +34,7 @@ namespace android
 
       synch_lock sl(&m_mutex);
 
-      m_dib->create(cxParam, cyParam);
+      m_spdibBuffer->create(cxParam, cyParam);
 
       window_graphics::create_window_graphics(interaction_impl, cxParam, cyParam, m_dib->m_iScan);
 
@@ -45,7 +46,7 @@ namespace android
    void view_bitmap::destroy_window_graphics()
    {
 
-      m_dib->destroy();
+      m_spdibBuffer->destroy();
 
       window_graphics::destroy_window_graphics();
 
@@ -61,7 +62,11 @@ namespace android
 
       synch_lock sl(&m_mutex);
 
-      ::draw2d::copy_colorref(MIN(cxParam, m_dib->m_size.cx), MIN(cyParam, m_dib->m_size.cy), m_dib->m_pcolorref, m_dib->m_iScan, pcolorref, iStride);
+      ::draw2d::copy_colorref(
+         MIN(cxParam, m_spdibBuffer->m_size.cx),
+         MIN(cyParam, m_spdibBuffer->m_size.cy), 
+         m_spdibBuffer->m_pcolorref,
+         m_spdibBuffer->m_iScan, pcolorref, iStride);
 
    }
 
@@ -83,12 +88,12 @@ void android_fill_plasma(AndroidBitmapInfo * info, void * pixels, double  t)
    synch_lock sl(&g_pandroidbitmapview->m_mutex);
 
    ::draw2d::copy_colorref(
-      MIN(g_pandroidbitmapview->m_dib->m_size.cx, info->width),
-      MIN(g_pandroidbitmapview->m_dib->m_size.cy, info->height),
+      MIN(g_pandroidbitmapview->m_spdibBuffer->m_size.cx, info->width),
+      MIN(g_pandroidbitmapview->m_spdibBuffer->m_size.cy, info->height),
       (COLORREF *) pixels, 
       info->stride, 
-      g_pandroidbitmapview->m_dib->m_pcolorref,
-      g_pandroidbitmapview->m_dib->m_iScan);
+      g_pandroidbitmapview->m_spdibBuffer->m_pcolorref,
+      g_pandroidbitmapview->m_spdibBuffer->m_iScan);
    
 
 

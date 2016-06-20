@@ -230,12 +230,7 @@ inline int32_t FUNCTION_XXDEBUGBOX(const char * pszMessage, const char * pszTitl
 
 
 
-
-#ifdef DEBUG
 void CLASS_DECL_AURA TRACELASTERROR();
-#else
-#define TRACELASTERROR() ((void)0)
-#endif
 
 
 

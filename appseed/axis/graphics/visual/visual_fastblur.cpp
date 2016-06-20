@@ -1360,7 +1360,7 @@ namespace visual
    }
 
 
-#endif VECTOR3_SSE
+#endif // VECTOR3_SSE
 
 
 

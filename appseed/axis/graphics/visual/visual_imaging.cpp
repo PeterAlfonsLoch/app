@@ -234,7 +234,7 @@ FIBITMAP * imaging::dib_to_FI(::draw2d::dib * pdib)
       
       byte * pbDst = ((byte *)pdst) + ((pdib->m_size.cy - y - 1) * iStrideDst);
       
-      byte * pbSrc = (byte *)pdata + (y * iStrideSrc);
+      byte * pbSrc = (byte *)psrc + (y * iStrideSrc);
       
       for (index x = 0; x < pdib->m_size.cx; x++)
       {

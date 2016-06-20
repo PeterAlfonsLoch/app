@@ -5495,7 +5495,7 @@ namespace android
    {
       // graphics will be already set its view port to the interaction_impl for android - cairo with xlib
 
-      pdib->SetViewportOrg(point(0, 0));
+      pgraphics->SetViewportOrg(point(0, 0));
 
       /*      rect64 rectWindow;
       GetWindowRect(rectWindow);
