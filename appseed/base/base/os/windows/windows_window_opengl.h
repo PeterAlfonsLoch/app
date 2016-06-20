@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_BASE window_opengl :
-   public window_graphics
+   virtual public window_graphics
 {
 public:
 
