@@ -32,7 +32,7 @@
 		077A00A51B4D4F9E001C85FF /* gunibreak.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A13619C6E1DC0018DF7D /* gunibreak.h */; };
 		077A00A61B4D4F9E001C85FF /* punycode.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A14419C6E1DC0018DF7D /* punycode.h */; };
 		077A00A71B4D4F9E001C85FF /* tld.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A14E19C6E1DC0018DF7D /* tld.h */; };
-		07D743791B5039B800821238 /* libatomiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 076D0A251A3FDB08007432B6 /* libatomiconv.dylib */; };
+		9A106A641D15E40E007288BA /* libatomiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 071B2B061B6E63260088E158 /* libatomiconv.dylib */; };
 		9A19A15219C6E1DC0018DF7D /* gunibreak.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A13619C6E1DC0018DF7D /* gunibreak.h */; };
 		9A19A15319C6E1DC0018DF7D /* gunicomp.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A13719C6E1DC0018DF7D /* gunicomp.h */; };
 		9A19A15419C6E1DC0018DF7D /* gunidecomp.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A13819C6E1DC0018DF7D /* gunidecomp.h */; };
@@ -128,7 +128,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07D743791B5039B800821238 /* libatomiconv.dylib in Frameworks */,
+				9A106A641D15E40E007288BA /* libatomiconv.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

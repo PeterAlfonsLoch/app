@@ -35,7 +35,6 @@
 		07B098501B8491EC002AC4F0 /* memmgr_nal_unit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CE4467518BC5EAA0017DF25 /* memmgr_nal_unit.cpp */; };
 		07B098511B8491EC002AC4F0 /* deblocking.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CE4466918BC5EAA0017DF25 /* deblocking.cpp */; };
 		07B098521B8491EC002AC4F0 /* parse_mb_syn_cavlc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CE4467718BC5EAA0017DF25 /* parse_mb_syn_cavlc.cpp */; };
-		07B098541B8491EC002AC4F0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CE4427C18B6FC360017DF25 /* Foundation.framework */; };
 		4CBC1B81194AC4E100214D9E /* intra_pred_aarch64_neon.S in Sources */ = {isa = PBXBuildFile; fileRef = 4CBC1B80194AC4E100214D9E /* intra_pred_aarch64_neon.S */; };
 		4CE4427D18B6FC360017DF25 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CE4427C18B6FC360017DF25 /* Foundation.framework */; };
 		4CE4468A18BC5EAB0017DF25 /* au_parser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CE4466718BC5EAA0017DF25 /* au_parser.cpp */; };
@@ -60,6 +59,7 @@
 		6A3E814219D79AE900C19C1F /* cabac_decoder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A3E814119D79AE900C19C1F /* cabac_decoder.cpp */; };
 		6A3E814419D7A40600C19C1F /* parse_mb_syn_cabac.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A3E814319D7A40600C19C1F /* parse_mb_syn_cabac.cpp */; };
 		6C749B6A197CC6E600A111F9 /* block_add_aarch64_neon.S in Sources */ = {isa = PBXBuildFile; fileRef = 6C749B69197CC6E600A111F9 /* block_add_aarch64_neon.S */; };
+		9A106A7A1D15E52E007288BA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A106A791D15E52E007288BA /* UIKit.framework */; };
 		9AED66561946A1DE009A3567 /* welsCodecTrace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AED66551946A1DE009A3567 /* welsCodecTrace.cpp */; };
 		9AED66591946A203009A3567 /* utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AED66581946A203009A3567 /* utils.cpp */; };
 		F0B204FC18FD23D8005DA23F /* error_concealment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0B204FB18FD23D8005DA23F /* error_concealment.cpp */; };
@@ -179,6 +179,7 @@
 		6A3E814319D7A40600C19C1F /* parse_mb_syn_cabac.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = parse_mb_syn_cabac.cpp; sourceTree = "<group>"; };
 		6A3E814519D7A40D00C19C1F /* parse_mb_syn_cabac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = parse_mb_syn_cabac.h; sourceTree = "<group>"; };
 		6C749B69197CC6E600A111F9 /* block_add_aarch64_neon.S */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; name = block_add_aarch64_neon.S; path = arm64/block_add_aarch64_neon.S; sourceTree = "<group>"; };
+		9A106A791D15E52E007288BA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		9AED66551946A1DE009A3567 /* welsCodecTrace.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = welsCodecTrace.cpp; path = ../../../common/src/welsCodecTrace.cpp; sourceTree = "<group>"; };
 		9AED66571946A1EB009A3567 /* welsCodecTrace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = welsCodecTrace.h; path = ../../../common/inc/welsCodecTrace.h; sourceTree = "<group>"; };
 		9AED66581946A203009A3567 /* utils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = utils.cpp; path = ../../../common/src/utils.cpp; sourceTree = "<group>"; };
@@ -192,8 +193,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A106A7A1D15E52E007288BA /* UIKit.framework in Frameworks */,
 				078DF88F1C52992E00E65274 /* libwelscommon.dylib in Frameworks */,
-				07B098541B8491EC002AC4F0 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,6 +250,7 @@
 		4CE4427B18B6FC360017DF25 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9A106A791D15E52E007288BA /* UIKit.framework */,
 				4CE4427C18B6FC360017DF25 /* Foundation.framework */,
 				4CE4428D18B6FC360017DF25 /* UIKit.framework */,
 			);

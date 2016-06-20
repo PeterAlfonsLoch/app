@@ -13,7 +13,10 @@
 
 /* Include files */
 #define HAVE_FCNTL_H
-//#define HAVE_UNISTD_H
+#if defined(LINUX) || defined(__APPLE__)
+#define HAVE_UNISTD_H
+#endif
+
 #define HAVE_STDINT_H
 #define HAVE_INTTYPES_H
 #define HAVE_SYS_MODEM_H

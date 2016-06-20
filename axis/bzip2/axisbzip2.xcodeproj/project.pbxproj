@@ -32,7 +32,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		07108B6E1B4C97C600A28F80 /* libaxisbzip2.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libaxisbzip2.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		07108B6E1B4C97C600A28F80 /* libios_axisbzip2.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_axisbzip2.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		0747A71B1B263C7000E85AC7 /* bsdiff_bsdiff.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = bsdiff_bsdiff.c; sourceTree = "<group>"; };
 		0747A71C1B263C7000E85AC7 /* bsdiff_bspatch.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = bsdiff_bspatch.c; sourceTree = "<group>"; };
 		0747A71F1B263C7000E85AC7 /* libbsdiff.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = libbsdiff.c; sourceTree = "<group>"; };
@@ -88,7 +88,7 @@
 				9AEEADEA19C4FBA000866C9E /* huffman.c */,
 				9AEEADEC19C4FBA000866C9E /* randtable.c */,
 				9AEEADFD19C4FBC700866C9E /* libaxisbzip2.dylib */,
-				07108B6E1B4C97C600A28F80 /* libaxisbzip2.dylib */,
+				07108B6E1B4C97C600A28F80 /* libios_axisbzip2.dylib */,
 			);
 			sourceTree = "<group>";
 		};
@@ -128,7 +128,7 @@
 			);
 			name = ios_axisbzip2;
 			productName = FreeImage;
-			productReference = 07108B6E1B4C97C600A28F80 /* libaxisbzip2.dylib */;
+			productReference = 07108B6E1B4C97C600A28F80 /* libios_axisbzip2.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 		9AA5E4C216F7C61B005C45CE /* axisbzip2 */ = {

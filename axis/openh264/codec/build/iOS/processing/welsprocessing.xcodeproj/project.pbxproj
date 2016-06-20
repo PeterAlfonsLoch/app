@@ -35,7 +35,6 @@
 		07B09A5F1B849878002AC4F0 /* downsample.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 549947C8196A3FB400BA3D87 /* downsample.cpp */; };
 		07B09A601B849878002AC4F0 /* WelsFrameWorkEx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 549947BD196A3FB400BA3D87 /* WelsFrameWorkEx.cpp */; };
 		07B09A611B849878002AC4F0 /* down_sample_neon.S in Sources */ = {isa = PBXBuildFile; fileRef = 549947AD196A3FB400BA3D87 /* down_sample_neon.S */; };
-		07B09A631B849878002AC4F0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5499477F196A3F3900BA3D87 /* Foundation.framework */; };
 		54994780196A3F3900BA3D87 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5499477F196A3F3900BA3D87 /* Foundation.framework */; };
 		549947DF196A3FB400BA3D87 /* AdaptiveQuantization.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 549947A9196A3FB400BA3D87 /* AdaptiveQuantization.cpp */; };
 		549947E4196A3FB400BA3D87 /* BackgroundDetection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 549947B1196A3FB400BA3D87 /* BackgroundDetection.cpp */; };
@@ -54,6 +53,7 @@
 		549947F2196A3FB400BA3D87 /* ScrollDetectionFuncs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 549947D5196A3FB400BA3D87 /* ScrollDetectionFuncs.cpp */; };
 		549947F3196A3FB400BA3D87 /* vaacalcfuncs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 549947D8196A3FB400BA3D87 /* vaacalcfuncs.cpp */; };
 		549947F4196A3FB400BA3D87 /* vaacalculation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 549947D9196A3FB400BA3D87 /* vaacalculation.cpp */; };
+		9A106A721D15E4D0007288BA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A106A711D15E4D0007288BA /* UIKit.framework */; };
 		F791965B19D3BF6B00F60C6B /* intra_pred_common.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F791965A19D3BF6B00F60C6B /* intra_pred_common.cpp */; };
 /* End PBXBuildFile section */
 
@@ -159,6 +159,7 @@
 		549947D9196A3FB400BA3D87 /* vaacalculation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = vaacalculation.cpp; sourceTree = "<group>"; };
 		549947DA196A3FB400BA3D87 /* vaacalculation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vaacalculation.h; sourceTree = "<group>"; };
 		6C749B77197E2A2000A111F9 /* adaptive_quantization_aarch64_neon.S */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; name = adaptive_quantization_aarch64_neon.S; path = arm64/adaptive_quantization_aarch64_neon.S; sourceTree = "<group>"; };
+		9A106A711D15E4D0007288BA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		F791965A19D3BF6B00F60C6B /* intra_pred_common.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = intra_pred_common.cpp; path = ../../../common/src/intra_pred_common.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -167,8 +168,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A106A721D15E4D0007288BA /* UIKit.framework in Frameworks */,
 				078DF8831C5298F200E65274 /* libwelscommon.dylib in Frameworks */,
-				07B09A631B849878002AC4F0 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -227,6 +228,7 @@
 		5499477E196A3F3900BA3D87 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9A106A711D15E4D0007288BA /* UIKit.framework */,
 				5499477F196A3F3900BA3D87 /* Foundation.framework */,
 				54994790196A3F3900BA3D87 /* UIKit.framework */,
 			);

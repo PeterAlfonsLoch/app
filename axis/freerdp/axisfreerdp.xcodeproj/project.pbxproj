@@ -163,7 +163,6 @@
 		078DF8DA1C5299ED00E65274 /* signal.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CB1F1B8487B8005F8295 /* signal.c */; };
 		078DF8DB1C5299ED00E65274 /* stopwatch.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CB201B8487B8005F8295 /* stopwatch.c */; };
 		079FD66B1B601D24007CB5C6 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 079FD6601B601D0B007CB5C6 /* libaura.dylib */; };
-		079FD66C1B601D2D007CB5C6 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 079FD6601B601D0B007CB5C6 /* libaura.dylib */; };
 		07B091731B608B6700B5BCA7 /* prim_YCoCg_opt.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD6BAD1B5F0C61003A1CE1 /* prim_YCoCg_opt.c */; };
 		07B091741B608C7400B5BCA7 /* prim_16to32bpp_opt.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD6B921B5F0C60003A1CE1 /* prim_16to32bpp_opt.c */; };
 		07B091751B608C7400B5BCA7 /* prim_sign_opt.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD6BA91B5F0C61003A1CE1 /* prim_sign_opt.c */; };
@@ -462,8 +461,11 @@
 		07DD6D7E1B5F0C61003A1CE1 /* primitives.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD6BB11B5F0C61003A1CE1 /* primitives.c */; };
 		07DD710F1B5F173E003A1CE1 /* libaxiswinpr.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07DD70A91B5F0FD4003A1CE1 /* libaxiswinpr.dylib */; };
 		07DD71121B5F1752003A1CE1 /* libios_axiswinpr.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07DD70AB1B5F0FD4003A1CE1 /* libios_axiswinpr.dylib */; };
-		07F61FE71C8F72B100D03984 /* libwelsdec.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07F61FCF1C8F728900D03984 /* libwelsdec.dylib */; };
-		07F61FE81C8F72B100D03984 /* libwelsenc.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07F61FD51C8F728900D03984 /* libwelsenc.dylib */; };
+		9A106A5D1D15E397007288BA /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 079FD6621B601D0B007CB5C6 /* libaura.dylib */; };
+		9A106A5F1D15E3A1007288BA /* libaxiscrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A106A5E1D15E3A1007288BA /* libaxiscrypto.dylib */; };
+		9AEFDD0B1D15EFB000F91F0B /* libaxisopenssl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEFDD0A1D15EFB000F91F0B /* libaxisopenssl.dylib */; };
+		9AEFDD2E1D15F5FB00F91F0B /* libwelsdec.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEFDCD61D15EF6E00F91F0B /* libwelsdec.dylib */; };
+		9AEFDD351D15F65E00F91F0B /* libwelsenc.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEFDD001D15EF6E00F91F0B /* libwelsenc.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -530,47 +532,47 @@
 			remoteGlobalIDString = 07DD5D521B5F0A1E003A1CE1;
 			remoteInfo = ios_axiswinpr;
 		};
-		07F61FCE1C8F728900D03984 /* PBXContainerItemProxy */ = {
+		9AEFDCD31D15EF6E00F91F0B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 07F61FC01C8F728800D03984 /* welsdec.xcodeproj */;
+			containerPortal = 9A106A4B1D15E209007288BA /* welsdec.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 4CE4427918B6FC360017DF25;
 			remoteInfo = welsdec;
 		};
-		07F61FD01C8F728900D03984 /* PBXContainerItemProxy */ = {
+		9AEFDCD51D15EF6E00F91F0B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 07F61FC01C8F728800D03984 /* welsdec.xcodeproj */;
+			containerPortal = 9A106A4B1D15E209007288BA /* welsdec.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 07B098591B8491EC002AC4F0;
 			remoteInfo = ios_welsdec;
 		};
-		07F61FD41C8F728900D03984 /* PBXContainerItemProxy */ = {
+		9AEFDCFD1D15EF6E00F91F0B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 07F61FC31C8F728800D03984 /* welsenc.xcodeproj */;
+			containerPortal = 9A106A541D15E225007288BA /* welsenc.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 4CE4431118B6FFA00017DF25;
 			remoteInfo = welsenc;
 		};
-		07F61FD61C8F728900D03984 /* PBXContainerItemProxy */ = {
+		9AEFDCFF1D15EF6E00F91F0B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 07F61FC31C8F728800D03984 /* welsenc.xcodeproj */;
+			containerPortal = 9A106A541D15E225007288BA /* welsenc.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 07B0988D1B849208002AC4F0;
 			remoteInfo = ios_welsenc;
 		};
-		07F61FE21C8F729E00D03984 /* PBXContainerItemProxy */ = {
+		9AEFDD311D15F64000F91F0B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 07F61FC01C8F728800D03984 /* welsdec.xcodeproj */;
+			containerPortal = 9A106A4B1D15E209007288BA /* welsdec.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 4CE4427818B6FC360017DF25;
-			remoteInfo = welsdec;
+			remoteGlobalIDString = 07B098371B8491EC002AC4F0;
+			remoteInfo = ios_welsdec;
 		};
-		07F61FE41C8F729E00D03984 /* PBXContainerItemProxy */ = {
+		9AEFDD331D15F65300F91F0B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 07F61FC31C8F728800D03984 /* welsenc.xcodeproj */;
+			containerPortal = 9A106A541D15E225007288BA /* welsenc.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 4CE4431018B6FFA00017DF25;
-			remoteInfo = welsenc;
+			remoteGlobalIDString = 07B0985A1B849208002AC4F0;
+			remoteInfo = ios_welsenc;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -806,9 +808,12 @@
 		07DD6BB11B5F0C61003A1CE1 /* primitives.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = primitives.c; sourceTree = "<group>"; };
 		07DD6BB21B5F0C61003A1CE1 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		07DD70A31B5F0FD4003A1CE1 /* axiswinpr.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axiswinpr.xcodeproj; path = ../winpr/axiswinpr.xcodeproj; sourceTree = "<group>"; };
-		07F61FC01C8F728800D03984 /* welsdec.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = welsdec.xcodeproj; path = /macos/nodeapp/seed/metaseed/../../../app/axis/openh264/codec/build/iOS/dec/welsdec/welsdec.xcodeproj; sourceTree = "<absolute>"; };
-		07F61FC31C8F728800D03984 /* welsenc.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = welsenc.xcodeproj; path = /macos/nodeapp/seed/metaseed/../../../app/axis/openh264/codec/build/iOS/enc/welsenc/welsenc.xcodeproj; sourceTree = "<absolute>"; };
+		9A106A4B1D15E209007288BA /* welsdec.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = welsdec.xcodeproj; path = ../openh264/codec/build/iOS/dec/welsdec/welsdec.xcodeproj; sourceTree = "<group>"; };
+		9A106A541D15E225007288BA /* welsenc.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = welsenc.xcodeproj; path = ../openh264/codec/build/iOS/enc/welsenc/welsenc.xcodeproj; sourceTree = "<group>"; };
+		9A106A5E1D15E3A1007288BA /* libaxiscrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaxiscrypto.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/all-ios-hcjyrbebieoraofrrypdpkveyzyc/Build/Products/Debug-iphonesimulator/libaxiscrypto.dylib"; sourceTree = "<group>"; };
+		9A106A601D15E3BD007288BA /* libaxisrdpclient.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaxisrdpclient.dylib; path = "../rdpclient/build/Debug-iphoneos/libaxisrdpclient.dylib"; sourceTree = "<group>"; };
 		9A1B358C16A2D7A500875A94 /* libaxisfreerdp.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libaxisfreerdp.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AEFDD0A1D15EFB000F91F0B /* libaxisopenssl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaxisopenssl.dylib; path = "../openssl/build/Debug-iphoneos/libaxisopenssl.dylib"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -816,7 +821,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				079FD66C1B601D2D007CB5C6 /* libaura.dylib in Frameworks */,
+				9AEFDD351D15F65E00F91F0B /* libwelsenc.dylib in Frameworks */,
+				9AEFDD2E1D15F5FB00F91F0B /* libwelsdec.dylib in Frameworks */,
+				9AEFDD0B1D15EFB000F91F0B /* libaxisopenssl.dylib in Frameworks */,
+				9A106A5F1D15E3A1007288BA /* libaxiscrypto.dylib in Frameworks */,
+				9A106A5D1D15E397007288BA /* libaura.dylib in Frameworks */,
 				07DD71121B5F1752003A1CE1 /* libios_axiswinpr.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -827,8 +836,6 @@
 			files = (
 				072E43401CA8961C0096952D /* libaxiscrypto.dylib in Frameworks */,
 				072E433B1CA896050096952D /* libaxisopenssl.dylib in Frameworks */,
-				07F61FE71C8F72B100D03984 /* libwelsdec.dylib in Frameworks */,
-				07F61FE81C8F72B100D03984 /* libwelsenc.dylib in Frameworks */,
 				079FD66B1B601D24007CB5C6 /* libaura.dylib in Frameworks */,
 				07DD710F1B5F173E003A1CE1 /* libaxiswinpr.dylib in Frameworks */,
 			);
@@ -1185,33 +1192,18 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		07F61FC11C8F728800D03984 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				07F61FCF1C8F728900D03984 /* libwelsdec.dylib */,
-				07F61FD11C8F728900D03984 /* libwelsdec.dylib */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		07F61FC41C8F728800D03984 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				07F61FD51C8F728900D03984 /* libwelsenc.dylib */,
-				07F61FD71C8F728900D03984 /* libwelsenc.dylib */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		9A1B358116A2D7A500875A94 = {
 			isa = PBXGroup;
 			children = (
+				9AEFDD0A1D15EFB000F91F0B /* libaxisopenssl.dylib */,
+				9A106A601D15E3BD007288BA /* libaxisrdpclient.dylib */,
+				9A106A5E1D15E3A1007288BA /* libaxiscrypto.dylib */,
 				072E433F1CA8961B0096952D /* libaxiscrypto.dylib */,
 				072E433A1CA896050096952D /* libaxisopenssl.dylib */,
 				079FD6591B601D0B007CB5C6 /* aura.xcodeproj */,
 				07DD70A31B5F0FD4003A1CE1 /* axiswinpr.xcodeproj */,
-				07F61FC01C8F728800D03984 /* welsdec.xcodeproj */,
-				07F61FC31C8F728800D03984 /* welsenc.xcodeproj */,
+				9A106A4B1D15E209007288BA /* welsdec.xcodeproj */,
+				9A106A541D15E225007288BA /* welsenc.xcodeproj */,
 				07DD6ABB1B5F0C60003A1CE1 /* freerdp */,
 				9A1B358D16A2D7A500875A94 /* Products */,
 			);
@@ -1222,6 +1214,24 @@
 			children = (
 				9A1B358C16A2D7A500875A94 /* libaxisfreerdp.dylib */,
 				07DD674C1B5F0C16003A1CE1 /* libaxisfreerdp.dylib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9AEFDCCE1D15EF6E00F91F0B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9AEFDCD41D15EF6E00F91F0B /* libwelsdec.dylib */,
+				9AEFDCD61D15EF6E00F91F0B /* libwelsdec.dylib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9AEFDCF91D15EF6E00F91F0B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9AEFDCFE1D15EF6E00F91F0B /* libwelsenc.dylib */,
+				9AEFDD001D15EF6E00F91F0B /* libwelsenc.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1408,6 +1418,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				9AEFDD341D15F65300F91F0B /* PBXTargetDependency */,
+				9AEFDD321D15F64000F91F0B /* PBXTargetDependency */,
 				079FD66A1B601D1B007CB5C6 /* PBXTargetDependency */,
 				07DD71111B5F1748003A1CE1 /* PBXTargetDependency */,
 			);
@@ -1427,8 +1439,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				07F61FE31C8F729E00D03984 /* PBXTargetDependency */,
-				07F61FE51C8F729E00D03984 /* PBXTargetDependency */,
 				079FD6681B601D15007CB5C6 /* PBXTargetDependency */,
 				07DD710E1B5F125A003A1CE1 /* PBXTargetDependency */,
 			);
@@ -1466,12 +1476,12 @@
 					ProjectRef = 07DD70A31B5F0FD4003A1CE1 /* axiswinpr.xcodeproj */;
 				},
 				{
-					ProductGroup = 07F61FC11C8F728800D03984 /* Products */;
-					ProjectRef = 07F61FC01C8F728800D03984 /* welsdec.xcodeproj */;
+					ProductGroup = 9AEFDCCE1D15EF6E00F91F0B /* Products */;
+					ProjectRef = 9A106A4B1D15E209007288BA /* welsdec.xcodeproj */;
 				},
 				{
-					ProductGroup = 07F61FC41C8F728800D03984 /* Products */;
-					ProjectRef = 07F61FC31C8F728800D03984 /* welsenc.xcodeproj */;
+					ProductGroup = 9AEFDCF91D15EF6E00F91F0B /* Products */;
+					ProjectRef = 9A106A541D15E225007288BA /* welsenc.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -1518,32 +1528,32 @@
 			remoteRef = 07DD70AA1B5F0FD4003A1CE1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		07F61FCF1C8F728900D03984 /* libwelsdec.dylib */ = {
+		9AEFDCD41D15EF6E00F91F0B /* libwelsdec.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libwelsdec.dylib;
-			remoteRef = 07F61FCE1C8F728900D03984 /* PBXContainerItemProxy */;
+			remoteRef = 9AEFDCD31D15EF6E00F91F0B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		07F61FD11C8F728900D03984 /* libwelsdec.dylib */ = {
+		9AEFDCD61D15EF6E00F91F0B /* libwelsdec.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libwelsdec.dylib;
-			remoteRef = 07F61FD01C8F728900D03984 /* PBXContainerItemProxy */;
+			remoteRef = 9AEFDCD51D15EF6E00F91F0B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		07F61FD51C8F728900D03984 /* libwelsenc.dylib */ = {
+		9AEFDCFE1D15EF6E00F91F0B /* libwelsenc.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libwelsenc.dylib;
-			remoteRef = 07F61FD41C8F728900D03984 /* PBXContainerItemProxy */;
+			remoteRef = 9AEFDCFD1D15EF6E00F91F0B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		07F61FD71C8F728900D03984 /* libwelsenc.dylib */ = {
+		9AEFDD001D15EF6E00F91F0B /* libwelsenc.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libwelsenc.dylib;
-			remoteRef = 07F61FD61C8F728900D03984 /* PBXContainerItemProxy */;
+			remoteRef = 9AEFDCFF1D15EF6E00F91F0B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -1884,15 +1894,15 @@
 			name = ios_axiswinpr;
 			targetProxy = 07DD71101B5F1748003A1CE1 /* PBXContainerItemProxy */;
 		};
-		07F61FE31C8F729E00D03984 /* PBXTargetDependency */ = {
+		9AEFDD321D15F64000F91F0B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = welsdec;
-			targetProxy = 07F61FE21C8F729E00D03984 /* PBXContainerItemProxy */;
+			name = ios_welsdec;
+			targetProxy = 9AEFDD311D15F64000F91F0B /* PBXContainerItemProxy */;
 		};
-		07F61FE51C8F729E00D03984 /* PBXTargetDependency */ = {
+		9AEFDD341D15F65300F91F0B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = welsenc;
-			targetProxy = 07F61FE41C8F729E00D03984 /* PBXContainerItemProxy */;
+			name = ios_welsenc;
+			targetProxy = 9AEFDD331D15F65300F91F0B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

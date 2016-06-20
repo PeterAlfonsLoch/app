@@ -18,7 +18,6 @@
 		074BD0C81B5F3CE800219723 /* libaxisfreerdp.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07DD70DF1B5F1030003A1CE1 /* libaxisfreerdp.dylib */; };
 		074BD0C91B5F3CF400219723 /* libaxisclientchannels.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07DD70E81B5F1039003A1CE1 /* libaxisclientchannels.dylib */; };
 		074BD0D61B5F409400219723 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 074BD0D11B5F406300219723 /* libaura.dylib */; };
-		074BD0D71B5F409E00219723 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 074BD0D11B5F406300219723 /* libaura.dylib */; };
 		07B0980E1B848AA9002AC4F0 /* client.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07B098071B848AA9002AC4F0 /* client.cpp */; };
 		07B0980F1B848AA9002AC4F0 /* cmdline.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07B098081B848AA9002AC4F0 /* cmdline.cpp */; };
 		07B098101B848AA9002AC4F0 /* compatibility.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07B098091B848AA9002AC4F0 /* compatibility.cpp */; };
@@ -43,14 +42,15 @@
 		07DD669E1B5F0BC2003A1CE1 /* config.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DD64B91B5F0BC2003A1CE1 /* config.h */; };
 		07DD66A11B5F0BC2003A1CE1 /* freerdp_rdpclient_setup.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DD64BB1B5F0BC2003A1CE1 /* freerdp_rdpclient_setup.h */; };
 		07DD66A21B5F0BC2003A1CE1 /* freerdp_rdpclient_setup.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DD64BB1B5F0BC2003A1CE1 /* freerdp_rdpclient_setup.h */; };
-		07DD712D1B5F196F003A1CE1 /* libaxisclientchannels.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07DD70EA1B5F1039003A1CE1 /* libaxisclientchannels.dylib */; };
-		07DD712E1B5F1978003A1CE1 /* libaxisfreerdp.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07DD70E11B5F1030003A1CE1 /* libaxisfreerdp.dylib */; };
-		07DD712F1B5F1980003A1CE1 /* libaxiswinpr.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07DD70BD1B5F1001003A1CE1 /* libaxiswinpr.dylib */; };
 		07E9DC941C499E1C009F99E7 /* ca2rdp_event_queue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07E9DC931C499E1C009F99E7 /* ca2rdp_event_queue.cpp */; };
 		07FACBA91B84BB660035DF9D /* cf_channels.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07FACBA51B84BB660035DF9D /* cf_channels.cpp */; };
 		07FACBAA1B84BB660035DF9D /* cf_channels.h in Headers */ = {isa = PBXBuildFile; fileRef = 07FACBA61B84BB660035DF9D /* cf_channels.h */; };
 		07FACBAB1B84BB660035DF9D /* cf_client.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07FACBA71B84BB660035DF9D /* cf_client.cpp */; };
 		07FACBAC1B84BB660035DF9D /* cf_client.h in Headers */ = {isa = PBXBuildFile; fileRef = 07FACBA81B84BB660035DF9D /* cf_client.h */; };
+		9A106A6D1D15E47D007288BA /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 074BD0D31B5F406300219723 /* libaura.dylib */; };
+		9A106A6E1D15E486007288BA /* libaxisclientchannels.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07DD70EA1B5F1039003A1CE1 /* libaxisclientchannels.dylib */; };
+		9A106A6F1D15E491007288BA /* libaxisfreerdp.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07DD70E11B5F1030003A1CE1 /* libaxisfreerdp.dylib */; };
+		9A106A701D15E49B007288BA /* libios_axiswinpr.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07DD70BD1B5F1001003A1CE1 /* libios_axiswinpr.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -195,10 +195,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				074BD0D71B5F409E00219723 /* libaura.dylib in Frameworks */,
-				07DD712F1B5F1980003A1CE1 /* libaxiswinpr.dylib in Frameworks */,
-				07DD712E1B5F1978003A1CE1 /* libaxisfreerdp.dylib in Frameworks */,
-				07DD712D1B5F196F003A1CE1 /* libaxisclientchannels.dylib in Frameworks */,
+				9A106A701D15E49B007288BA /* libios_axiswinpr.dylib in Frameworks */,
+				9A106A6F1D15E491007288BA /* libaxisfreerdp.dylib in Frameworks */,
+				9A106A6E1D15E486007288BA /* libaxisclientchannels.dylib in Frameworks */,
+				9A106A6D1D15E47D007288BA /* libaura.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,7 +281,7 @@
 			isa = PBXGroup;
 			children = (
 				07DD70BB1B5F1001003A1CE1 /* libaxiswinpr.dylib */,
-				07DD70BD1B5F1001003A1CE1 /* libaxiswinpr.dylib */,
+				07DD70BD1B5F1001003A1CE1 /* libios_axiswinpr.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -475,10 +475,10 @@
 			remoteRef = 07DD70BA1B5F1001003A1CE1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		07DD70BD1B5F1001003A1CE1 /* libaxiswinpr.dylib */ = {
+		07DD70BD1B5F1001003A1CE1 /* libios_axiswinpr.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			path = libaxiswinpr.dylib;
+			path = libios_axiswinpr.dylib;
 			remoteRef = 07DD70BC1B5F1001003A1CE1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -588,7 +588,6 @@
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				SDKROOT = iphoneos;
-				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};
 			name = Debug;
 		};
@@ -597,7 +596,6 @@
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				SDKROOT = iphoneos;
-				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};
 			name = Release;
 		};
@@ -646,7 +644,7 @@
 				PRODUCT_NAME = axisrdpclient;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../../../app/appseed/base $(WorkspaceDir)/../.. $(WorkspaceDir)/../.. $(WorkspaceDir)/../../thirdparty/include $(WorkspaceDir)/../../../app/thirdparty/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/thirdparty/appseed $(WorkspaceDir)/../../../app/thirdparty/appseed/zlib client/Mac";
+				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../../../app/appseed/base $(WorkspaceDir)/../.. $(WorkspaceDir)/../../thirdparty/include $(WorkspaceDir)/../../../app/thirdparty/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/thirdparty/appseed $(WorkspaceDir)/../../../app/thirdparty/appseed/zlib client/Mac";
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};
 			name = Debug;
@@ -688,7 +686,7 @@
 				PRODUCT_NAME = axisrdpclient;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../../../app/appseed/base $(WorkspaceDir)/../.. $(WorkspaceDir)/../.. $(WorkspaceDir)/../../thirdparty/include $(WorkspaceDir)/../../../app/thirdparty/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/thirdparty/appseed $(WorkspaceDir)/../../../app/thirdparty/appseed/zlib client/Mac";
+				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../../../app/appseed/base $(WorkspaceDir)/../.. $(WorkspaceDir)/../../thirdparty/include $(WorkspaceDir)/../../../app/thirdparty/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/thirdparty/appseed $(WorkspaceDir)/../../../app/thirdparty/appseed/zlib client/Mac";
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};
 			name = Release;

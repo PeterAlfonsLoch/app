@@ -15,7 +15,6 @@
 		071EFB561C555ED300EA68B0 /* drive_file.c in Sources */ = {isa = PBXBuildFile; fileRef = 071EFB551C555ED300EA68B0 /* drive_file.c */; };
 		071EFB571C555EE700EA68B0 /* drive_file.c in Sources */ = {isa = PBXBuildFile; fileRef = 071EFB551C555ED300EA68B0 /* drive_file.c */; };
 		071EFB591C555F0E00EA68B0 /* drive_main.c in Sources */ = {isa = PBXBuildFile; fileRef = 071EFB581C555F0E00EA68B0 /* drive_main.c */; };
-		071EFB5F1C555FCA00EA68B0 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 071EFB5E1C555FCA00EA68B0 /* libaura.dylib */; };
 		071EFB611C5560F500EA68B0 /* winpr_dirent.h in Headers */ = {isa = PBXBuildFile; fileRef = 071EFB601C5560F500EA68B0 /* winpr_dirent.h */; };
 		071EFB621C5562FA00EA68B0 /* drive_main.c in Sources */ = {isa = PBXBuildFile; fileRef = 071EFB581C555F0E00EA68B0 /* drive_main.c */; };
 		071EFB631C55730700EA68B0 /* libswresample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 071EFB341C554AED00EA68B0 /* libswresample.a */; };
@@ -163,6 +162,13 @@
 		07DD711C1B5F18E4003A1CE1 /* libaxisfreerdp.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07DD70D81B5F1025003A1CE1 /* libaxisfreerdp.dylib */; };
 		07DD711D1B5F18EE003A1CE1 /* libaxisfreerdp.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07DD70D61B5F1025003A1CE1 /* libaxisfreerdp.dylib */; };
 		07DD711E1B5F18F8003A1CE1 /* libaxiswinpr.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07DD70B21B5F0FF7003A1CE1 /* libaxiswinpr.dylib */; };
+		9A106A631D15E3F0007288BA /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A106A621D15E3F0007288BA /* libaura.dylib */; };
+		9AEFDD3A1D1602AB00F91F0B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEFDD391D1602AB00F91F0B /* UIKit.framework */; };
+		9AEFDD3C1D16044E00F91F0B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEFDD3B1D16044E00F91F0B /* Foundation.framework */; };
+		9AEFDD3E1D16047400F91F0B /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEFDD3D1D16047400F91F0B /* CoreVideo.framework */; };
+		9AEFDD401D16048C00F91F0B /* libatomiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEFDD3F1D16048C00F91F0B /* libatomiconv.dylib */; };
+		9AEFDD441D1604D300F91F0B /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEFDD431D1604D300F91F0B /* VideoToolbox.framework */; };
+		9AEFDD481D16054D00F91F0B /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEFDD471D16054D00F91F0B /* CoreMedia.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -357,7 +363,16 @@
 		07DD6F0A1B5F0CA2003A1CE1 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
 		07DD70AC1B5F0FF7003A1CE1 /* axiswinpr.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axiswinpr.xcodeproj; path = ../winpr/axiswinpr.xcodeproj; sourceTree = "<group>"; };
 		07DD70D01B5F1025003A1CE1 /* axisfreerdp.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axisfreerdp.xcodeproj; path = ../freerdp/axisfreerdp.xcodeproj; sourceTree = "<group>"; };
+		9A106A621D15E3F0007288BA /* libaura.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaura.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/all-ios-hcjyrbebieoraofrrypdpkveyzyc/Build/Products/Debug-iphonesimulator/libaura.dylib"; sourceTree = "<group>"; };
 		9A1B358C16A2D7A500875A94 /* libaxisclientchannels.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libaxisclientchannels.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AEFDD391D1602AB00F91F0B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		9AEFDD3B1D16044E00F91F0B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		9AEFDD3D1D16047400F91F0B /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/CoreVideo.framework; sourceTree = DEVELOPER_DIR; };
+		9AEFDD3F1D16048C00F91F0B /* libatomiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libatomiconv.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/all-ios-hcjyrbebieoraofrrypdpkveyzyc/Build/Products/Debug-iphonesimulator/libatomiconv.dylib"; sourceTree = "<group>"; };
+		9AEFDD411D1604AE00F91F0B /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/Accelerate.framework; sourceTree = DEVELOPER_DIR; };
+		9AEFDD431D1604D300F91F0B /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/VideoToolbox.framework; sourceTree = DEVELOPER_DIR; };
+		9AEFDD451D16050B00F91F0B /* MediaToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaToolbox.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/MediaToolbox.framework; sourceTree = DEVELOPER_DIR; };
+		9AEFDD471D16054D00F91F0B /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/CoreMedia.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -365,13 +380,19 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9AEFDD401D16048C00F91F0B /* libatomiconv.dylib in Frameworks */,
+				071EFB291C5537E100EA68B0 /* libavcodec.a in Frameworks */,
+				071EFB2B1C5537F700EA68B0 /* libavutil.a in Frameworks */,
+				071EFB2D1C55430B00EA68B0 /* libiconv.2.4.0.tbd in Frameworks */,
+				9A106A631D15E3F0007288BA /* libaura.dylib in Frameworks */,
 				071EFB631C55730700EA68B0 /* libswresample.a in Frameworks */,
-				071EFB5F1C555FCA00EA68B0 /* libaura.dylib in Frameworks */,
 				071EFB311C55432D00EA68B0 /* libz.1.2.5.tbd in Frameworks */,
 				071EFB2F1C55432200EA68B0 /* libbz2.1.0.tbd in Frameworks */,
-				071EFB2D1C55430B00EA68B0 /* libiconv.2.4.0.tbd in Frameworks */,
-				071EFB2B1C5537F700EA68B0 /* libavutil.a in Frameworks */,
-				071EFB291C5537E100EA68B0 /* libavcodec.a in Frameworks */,
+				9AEFDD481D16054D00F91F0B /* CoreMedia.framework in Frameworks */,
+				9AEFDD3E1D16047400F91F0B /* CoreVideo.framework in Frameworks */,
+				9AEFDD441D1604D300F91F0B /* VideoToolbox.framework in Frameworks */,
+				9AEFDD3A1D1602AB00F91F0B /* UIKit.framework in Frameworks */,
+				9AEFDD3C1D16044E00F91F0B /* Foundation.framework in Frameworks */,
 				07B0918B1B60905100B5BCA7 /* AudioToolbox.framework in Frameworks */,
 				07DD711C1B5F18E4003A1CE1 /* libaxisfreerdp.dylib in Frameworks */,
 				07DD711B1B5F18DC003A1CE1 /* libios_axiswinpr.dylib in Frameworks */,
@@ -883,6 +904,15 @@
 		9A1B358116A2D7A500875A94 = {
 			isa = PBXGroup;
 			children = (
+				9AEFDD471D16054D00F91F0B /* CoreMedia.framework */,
+				9AEFDD451D16050B00F91F0B /* MediaToolbox.framework */,
+				9AEFDD431D1604D300F91F0B /* VideoToolbox.framework */,
+				9AEFDD411D1604AE00F91F0B /* Accelerate.framework */,
+				9AEFDD3F1D16048C00F91F0B /* libatomiconv.dylib */,
+				9AEFDD3D1D16047400F91F0B /* CoreVideo.framework */,
+				9AEFDD3B1D16044E00F91F0B /* Foundation.framework */,
+				9AEFDD391D1602AB00F91F0B /* UIKit.framework */,
+				9A106A621D15E3F0007288BA /* libaura.dylib */,
 				071EFB5E1C555FCA00EA68B0 /* libaura.dylib */,
 				071EFB341C554AED00EA68B0 /* libswresample.a */,
 				071EFB321C554A9E00EA68B0 /* libswscale.a */,
@@ -1229,43 +1259,31 @@
 		07DD6E321B5F0C87003A1CE1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					/ffmpeg_ios/thin/i386/lib/,
-				);
-				OTHER_LDFLAGS = (
-					"-read_only_relocs",
-					suppress,
+					/ffmpeg_ios/thin/x86_64/lib/,
 				);
 				SDKROOT = iphoneos;
-				WARNING_LDFLAGS = "";
 			};
 			name = Debug;
 		};
 		07DD6E331B5F0C87003A1CE1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					/ffmpeg_ios/thin/i386/lib/,
-				);
-				OTHER_LDFLAGS = (
-					"-read_only_relocs",
-					suppress,
+					/ffmpeg_ios/thin/x86_64/lib/,
 				);
 				SDKROOT = iphoneos;
-				WARNING_LDFLAGS = "";
 			};
 			name = Release;
 		};
 		9A1B358E16A2D7A500875A94 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = YES;
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_DEADCODE_DEADSTORES = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -1295,7 +1313,10 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "";
+				HEADER_SEARCH_PATHS = (
+					"$(WorkspaceDir)/../../../app/include",
+					"$(WorkspaceDir)/../../../nodeapp/include",
+				);
 				INSTALL_PATH = "@executable_path";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path /Library/Frameworks/ca2";
 				LIBRARY_SEARCH_PATHS = (
@@ -1308,7 +1329,7 @@
 				PRODUCT_NAME = axisclientchannels;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				USER_HEADER_SEARCH_PATHS = ".. client $(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include/ . $(WorkspaceDir)/../../../ $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/axis $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../../../nodeapp/thirdparty/appseed $(WorkspaceDir)/../../ ../../appseed ../../ ../ $(WorkspaceDir)/../../../app/include/winpr $(WorkspaceDir)/../../../nodeapp/include";
+				USER_HEADER_SEARCH_PATHS = ".. client $(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include/ . $(WorkspaceDir)/../../../ $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/axis $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../../../nodeapp/thirdparty/appseed $(WorkspaceDir)/../../ ../../appseed ../../ ../";
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};
 			name = Debug;
@@ -1316,7 +1337,7 @@
 		9A1B358F16A2D7A500875A94 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = YES;
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_DEADCODE_DEADSTORES = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -1343,7 +1364,10 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "";
+				HEADER_SEARCH_PATHS = (
+					"$(WorkspaceDir)/../../../app/include",
+					"$(WorkspaceDir)/../../../nodeapp/include",
+				);
 				INSTALL_PATH = "@executable_path";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path /Library/Frameworks/ca2";
 				LIBRARY_SEARCH_PATHS = (
@@ -1355,7 +1379,7 @@
 				PRODUCT_NAME = axisclientchannels;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				USER_HEADER_SEARCH_PATHS = ".. client $(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include/ . $(WorkspaceDir)/../../../ $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/axis $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../../../nodeapp/thirdparty/appseed $(WorkspaceDir)/../../ ../../appseed ../../ ../ $(WorkspaceDir)/../../../app/include/winpr $(WorkspaceDir)/../../../nodeapp/include";
+				USER_HEADER_SEARCH_PATHS = ".. client $(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include/ . $(WorkspaceDir)/../../../ $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/axis $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../../../nodeapp/thirdparty/appseed $(WorkspaceDir)/../../ ../../appseed ../../ ../";
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};
 			name = Release;
