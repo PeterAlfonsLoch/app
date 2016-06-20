@@ -25,11 +25,11 @@ NSWindow * new_round_window(round_window * pwindow, CGRect rect)
  
 */
    
-   pwindow->m_proundwindow = [RoundWindow alloc];
+   pwindow->m_proundwindow = (__bridge_retained void *)[RoundWindow alloc];
    
-   pwindow->m_proundwindow->m_pwindow = pwindow;
+   ((__bridge RoundWindow *)pwindow->m_proundwindow)->m_pwindow = pwindow;
    
-   return [[pwindow->m_proundwindow dd_invokeOnMainThreadAndWaitUntilDone:TRUE  ]initWithContentRect : rect styleMask : 0 backing : NSBackingStoreBuffered  defer : false ];
+   return [[((__bridge RoundWindow *)pwindow->m_proundwindow) dd_invokeOnMainThreadAndWaitUntilDone:TRUE  ]initWithContentRect : rect styleMask : 0 backing : NSBackingStoreBuffered  defer : false ];
    
 }
 
@@ -90,10 +90,10 @@ void round_window::round_window_close()
    
    if(m_proundwindow == NULL)
       return;
+
+   ((__bridge RoundWindow *)m_proundwindow)->m_pwindow = NULL;
    
-   m_proundwindow->m_pwindow = NULL;
-   
-   [[m_proundwindow dd_invokeOnMainThreadAndWaitUntilDone:TRUE] close];
+   [[((__bridge RoundWindow *)m_proundwindow) dd_invokeOnMainThreadAndWaitUntilDone:TRUE] close];
    
    m_proundwindow = NULL;
    
@@ -103,7 +103,7 @@ void round_window::round_window_close()
 void round_window::round_window_show()
 {
    
-   [[m_proundwindow->m_controller dd_invokeOnMainThreadAndWaitUntilDone:TRUE] showWindow : m_proundwindow];
+   [[((__bridge RoundWindow *)m_proundwindow)->m_controller dd_invokeOnMainThreadAndWaitUntilDone:TRUE] showWindow : ((__bridge RoundWindow *)m_proundwindow)];
    
 }
 
@@ -111,14 +111,14 @@ void round_window::round_window_show()
 void round_window::round_window_hide()
 {
     
-   [[m_proundwindow dd_invokeOnMainThreadAndWaitUntilDone:TRUE] orderOut : m_proundwindow];
+   [[((__bridge RoundWindow *)m_proundwindow) dd_invokeOnMainThreadAndWaitUntilDone:TRUE] orderOut : ((__bridge RoundWindow *)m_proundwindow)];
     
 }
 
 void round_window::round_window_order_front()
 {
    
-   [[m_proundwindow dd_invokeOnMainThreadAndWaitUntilDone:TRUE] orderFront : m_proundwindow];
+   [[((__bridge RoundWindow *)m_proundwindow) dd_invokeOnMainThreadAndWaitUntilDone:TRUE] orderFront : ((__bridge RoundWindow *)m_proundwindow)];
    
 }
 
@@ -126,7 +126,7 @@ void round_window::round_window_order_front()
 void round_window::round_window_make_key_window()
 {
 
-   [[m_proundwindow dd_invokeOnMainThreadAndWaitUntilDone:TRUE] makeKeyWindow];
+   [[((__bridge RoundWindow *)m_proundwindow) dd_invokeOnMainThreadAndWaitUntilDone:TRUE] makeKeyWindow];
    
 }
 
@@ -134,7 +134,7 @@ void round_window::round_window_make_key_window()
 void round_window::round_window_make_key_window_and_order_front()
 {
    
-   [[m_proundwindow dd_invokeOnMainThreadAndWaitUntilDone:TRUE] makeKeyAndOrderFront: m_proundwindow];
+   [[((__bridge RoundWindow *)m_proundwindow) dd_invokeOnMainThreadAndWaitUntilDone:TRUE] makeKeyAndOrderFront: ((__bridge RoundWindow *)m_proundwindow)];
    
 }
 
@@ -142,7 +142,7 @@ void round_window::round_window_make_key_window_and_order_front()
 void round_window::round_window_make_main_window()
 {
    
-   [[m_proundwindow dd_invokeOnMainThreadAndWaitUntilDone:TRUE] makeMainWindow];
+   [[((__bridge RoundWindow *)m_proundwindow) dd_invokeOnMainThreadAndWaitUntilDone:TRUE] makeMainWindow];
    
 }
 
@@ -150,7 +150,7 @@ void round_window::round_window_make_main_window()
 void round_window::round_window_redraw()
 {
 
-   [[m_proundwindow dd_invokeOnMainThreadAndWaitUntilDone:FALSE] display ];
+   [[((__bridge RoundWindow *)m_proundwindow) dd_invokeOnMainThreadAndWaitUntilDone:FALSE] display ];
    
 }
 
@@ -158,7 +158,7 @@ void round_window::round_window_redraw()
 void round_window::round_window_invalidate()
 {
    
-//   [[m_proundwindow->m_controller dd_invokeOnMainThread] setViewsNeedDisplay : TRUE];
+//   [[((__bridge RoundWindow *)m_proundwindow)->m_controller dd_invokeOnMainThread] setViewsNeedDisplay : TRUE];
    
 }
 

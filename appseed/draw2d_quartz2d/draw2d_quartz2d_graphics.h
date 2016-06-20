@@ -315,6 +315,8 @@ namespace draw2d_quartz2d
       
       bool Pie(int32_t x1, int32_t y1, int32_t x2, int32_t y2, int32_t x3, int32_t y3, int32_t x4, int32_t y4);
       bool Pie(const RECT & lpRect, POINT ptStart, POINT ptEnd);
+      virtual bool set_polygon(const POINTD * lpPoints, count nCount);
+      virtual bool set_polygon(const POINT * lpPoints, count nCount);
       virtual bool fill_polygon(const POINTD * lpPoints, count nCount);
       virtual bool fill_polygon(const POINT* lpPoints, count nCount);
       bool Polygon(const POINT* lpPoints, count nCount);
@@ -546,6 +548,7 @@ namespace draw2d_quartz2d
       
       
       // platform-specific or platform-internals
+      bool clip(const ::draw2d::region * pregion);
       bool set(const ::draw2d::brush * pbrush);
       bool set(const ::draw2d::pen * ppen);
       bool set(const ::draw2d::font * pfont);

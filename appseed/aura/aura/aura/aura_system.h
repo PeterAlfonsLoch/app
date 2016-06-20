@@ -21,6 +21,9 @@ namespace aura
 
    class CLASS_DECL_AURA system:
       virtual public ::aura::application
+#ifndef WINDOWS
+      ,virtual public ::exception::translator
+#endif
    {
    public:
 

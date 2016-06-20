@@ -19,11 +19,7 @@ class user_notify_icon_mm_bridge
 public:
    
    
-#ifdef __OBJC__
-   user_notify_icon * m_pnotifyicon;
-#else
    void * m_pnotifyicon;
-#endif
    
    
    

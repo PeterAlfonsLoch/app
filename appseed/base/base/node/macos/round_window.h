@@ -23,11 +23,7 @@ public:
    unsigned long long   m_uiLastUpdateEnd;
 
    
-#ifdef __OBJC__
-   RoundWindow * m_proundwindow;
-#else
-   void * m_proundwindow;
-#endif
+   void * m_proundwindow; // cast to RoundWindow * to use it
    
    
    virtual void round_window_draw(CGContextRef cgc) = 0;

@@ -1467,7 +1467,9 @@ uint32_t __thread_entry(void * pparam)
       ASSERT(!pstartup->m_bError);
 
       ::thread * pthread = pstartup->m_pthread;
-
+//#ifndef MACOS
+//      pthread->translator::attach();
+//#endif
 //      ::thread * pthreadimpl = pstartup->m_pthreadimpl;
 
       try

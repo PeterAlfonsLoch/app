@@ -28,6 +28,7 @@ It is provided "as is" without express or implied warranty.
 #ifdef EXCEPTION_TRANSLATOR_USE_SIGNAL
 //#include <signal.h>
 #define SIG(psig) ((::exception::sig_companion *) psig)
+#define m_sig (*SIG(m_psig))
 #endif
 
 
@@ -184,34 +185,40 @@ namespace exception
          //PreventSetUnhandledExceptionFilter();
          //EnforceFilter(true);
 #else
-
-#ifdef APPLEOS
-         void InstallUncaughtExceptionHandler();
+         
+#if defined(APPLEOS)
+         ::InstallUncaughtExceptionHandler();
 #endif
 
-         memset(&SIG(m_psig)->m_saSeg,0,sizeof(SIG(m_psig)->m_saSeg));
-         sigemptyset(&SIG(m_psig)->m_saSeg.sa_mask);
-         //sigaddset(&m_saSeg.sa_mask, SIGSEGV);
-         //m_saSeg.sa_flags = SA_NODEFER | SA_SIGINFO;
-         SIG(m_psig)-> m_saSeg.sa_flags = SA_SIGINFO;
-         SIG(m_psig)->m_saSeg.sa_sigaction = &filter_sigsegv;
-         sigaction(SIGSEGV,&SIG(m_psig)->m_saSeg,&SIG(m_psig)->m_saSegOld);
+         ZERO(m_sig.m_saSeg);
+         m_sig.m_saSeg.sa_flags = SA_SIGINFO;
+         m_sig.m_saSeg.sa_sigaction = &filter_sigsegv;
+         if(sigaction(SIGSEGV,&m_sig.m_saSeg,&m_sig.m_saSegOld) < 0)
+         {
+            
+            output_debug_string("failed to install segmentation fault signal handler");
+            
+         }
 
-         memset(&SIG(m_psig)->m_saFpe,0,sizeof(SIG(m_psig)->m_saFpe));
-         sigemptyset(&SIG(m_psig)->m_saFpe.sa_mask);
-         //sigaddset(&m_saFpe.sa_mask, SIGFPE);
-         //m_saSeg.sa_flags = SA_NODEFER | SA_SIGINFO;
-         SIG(m_psig)->m_saSeg.sa_flags = SA_SIGINFO;
-         SIG(m_psig)->m_saFpe.sa_sigaction = &filter_sigfpe;
-         sigaction(SIGFPE,&SIG(m_psig)->m_saFpe,&SIG(m_psig)->m_saFpeOld);
+         ZERO(m_sig.m_saFpe);
+         m_sig.m_saSeg.sa_flags = SA_SIGINFO;
+         m_sig.m_saFpe.sa_sigaction = &filter_sigfpe;
+         if(sigaction(SIGFPE,&m_sig.m_saFpe,&m_sig.m_saFpeOld) < 0)
+         {
+            
+            output_debug_string("failed to install floating point exception signal handler");
+            
+         }
 
-         memset(&SIG(m_psig)->m_saPipe,0,sizeof(SIG(m_psig)->m_saPipe));
-         sigemptyset(&SIG(m_psig)->m_saPipe.sa_mask);
-         //sigaddset(&m_saPipe.sa_mask, SIGPIPE);
-         //m_saSeg.sa_flags = SA_NODEFER | SA_SIGINFO;
-         SIG(m_psig)->m_saSeg.sa_flags = SA_SIGINFO;
-         SIG(m_psig)->m_saPipe.sa_sigaction = &filter_sigpipe;
-         sigaction(SIGPIPE,&SIG(m_psig)->m_saPipe,&SIG(m_psig)->m_saPipeOld);
+         ZERO(m_sig.m_saPipe);
+         m_sig.m_saSeg.sa_flags = SA_SIGINFO;
+         m_sig.m_saPipe.sa_sigaction = &filter_sigpipe;
+         if(sigaction(SIGPIPE,&m_sig.m_saPipe,&m_sig.m_saPipeOld) < 0)
+         {
+            
+            output_debug_string("failed to install pipe signal handler");
+            
+         }
 
 
 #endif
@@ -230,20 +237,34 @@ namespace exception
    {
       if(m_bSet)
       {
+
 #ifdef WINDOWS
+
          _set_se_translator(m_pfn);
+         
 #else
-         sigaction(SIGSEGV,&SIG(m_psig)->m_saSegOld,NULL);
-         sigaction(SIGFPE,&SIG(m_psig)->m_saFpeOld,NULL);
+         
+         sigaction(SIGSEGV,&m_sig.m_saSegOld,NULL);
+         
+         sigaction(SIGFPE,&m_sig.m_saFpeOld,NULL);
+         
 #endif
+         
          m_bSet = false;
+         
          return true;
+         
       }
       else
       {
+         
          return false;
+         
       }
+      
    }
+   
+   
 #ifdef WINDOWS
    void translator::filter(uint32_t uiCode, EXCEPTION_POINTERS * ppointers)
    {
@@ -412,17 +433,19 @@ namespace exception
       return str;
 
    }
+   
+   
 #else
 
    void filter_sigsegv(int32_t signal, siginfo_t * psiginfo, void * pc)
    {
 
-      sigset_t set;
-      sigemptyset(&set);
-      sigaddset(&set, SIGSEGV);
-      pthread_sigmask(SIG_UNBLOCK, &set, NULL);
+//      sigset_t set;
+//      sigemptyset(&set);
+//      sigaddset(&set, SIGSEGV);
+//      pthread_sigmask(SIG_UNBLOCK, &set, NULL);
 
-      throw standard_access_violation(NULL, signal, psiginfo, pc);
+      throw standard_access_violation(::aura::system::g_p, signal, psiginfo, pc);
 
    }
 
@@ -434,7 +457,7 @@ namespace exception
       //sigaddset(&set, SIGSEGV);
       //sigprocmask(SIG_UNBLOCK, &set, NULL);
 
-      throw standard_sigfpe(NULL, signal, psiginfo, pc);
+      throw standard_sigfpe(::aura::system::g_p, signal, psiginfo, pc);
 
    }
 
@@ -442,10 +465,10 @@ namespace exception
    void filter_sigpipe(int32_t signal, siginfo_t * psiginfo, void * pc)
    {
 
-      sigset_t set;
-      sigemptyset(&set);
-      sigaddset(&set, SIGSEGV);
-      sigprocmask(SIG_UNBLOCK, &set, NULL);
+//      sigset_t set;
+//      sigemptyset(&set);
+//      sigaddset(&set, SIGSEGV);
+//      sigprocmask(SIG_UNBLOCK, &set, NULL);
 
       //throw standard_sigfpe(NULL, signal, psiginfo, pc);
 
@@ -554,6 +577,43 @@ const ucontext_t *   standard_exception::context() const
 
 #endif
 #endif
+
+
+
+
+
+
+//#if defined(APPLEOS)
+//
+//
+//void translator_signal_handler(int signal)
+//{
+//   
+//   if(signal == SIGSEGV)
+//   {
+//      
+//      throw exception::standard_access_violation(NULL, NULL, NULL, NULL);
+//      
+//   }
+//   else if(signal == SIGFPE)
+//   {
+//      
+//      throw exception::standard_sigfpe(NULL, NULL, NULL, NULL);
+//      
+//   }
+//   else
+//   {
+//      
+//      throw simple_exception(NULL);
+//      
+//   }
+//   
+//   
+//}
+//
+//
+//#endif
+
 
 
 

@@ -2840,6 +2840,8 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
 
    bool imaging::color_blend(::draw2d::graphics * pgraphics,point pt,size size,COLORREF cr,BYTE bA)
    {
+      
+      pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
       pgraphics->FillSolidRect(pt.x,pt.y,size.cx,size.cy,(cr & 0x00ffffff) | (bA << 24));
 

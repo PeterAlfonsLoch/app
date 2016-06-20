@@ -51,7 +51,29 @@ namespace geometry
       }
    }
 
-
+   void geometry::rotate(int32_t xParam, int32_t yParam, LPPOINTD lppoint, int32_t iCount, double phi)
+   {
+      double phicos = cos(phi);
+      double phisin = sin(phi);
+      rotate(xParam, yParam, lppoint, iCount, phicos, phisin);
+   }
+   
+   void geometry::rotate(
+                         int32_t xParam,
+                         int32_t yParam,
+                         LPPOINTD lppoint,
+                         int32_t iCount,
+                         double phicos,
+                         double phisin)
+   {
+      for(int32_t i = 0; i < iCount; i++)
+      {
+         double x = lppoint[i].x - xParam;
+         double y = lppoint[i].y - yParam;
+         lppoint[i].x = (LONG) (((x * phicos - y * phisin)) + xParam);
+         lppoint[i].y = (LONG) (((x * phisin + y * phicos)) + yParam);
+      }
+   }
    void geometry::RandomPoint(POINT & pt, const RECT & rect)
    {
       pt.x = (LONG)System.math().RandRange(rect.left,rect.right);

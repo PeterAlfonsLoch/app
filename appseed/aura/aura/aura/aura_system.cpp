@@ -42,6 +42,12 @@ namespace aura
       m_process(this)
    {
 
+#ifndef WINDOWS
+      
+      exception::translator::attach();
+      
+#endif
+
 #ifdef VSNORD
 
       m_pandroidinitdata = (android_init_data *) pdata;
@@ -73,6 +79,11 @@ namespace aura
 
 
       set_app(this);
+      
+//#ifdef APPLEOS
+  //    translator::attach();
+//#endif
+
       m_nSafetyPoolSize          = 512;        // default size
 
       m_pmath                    = canew(math::math(this));
@@ -241,6 +252,13 @@ namespace aura
          g_p = NULL;
 
       }
+      
+#ifndef WINDOWS
+      
+      exception::translator::detach();
+      
+#endif
+      
 
    }
 
@@ -358,6 +376,7 @@ namespace aura
 
    void system::construct(const char * pszAppId)
    {
+      
 
       ::aura::application::construct(pszAppId);
 

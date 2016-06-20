@@ -18,11 +18,26 @@
 #include <libkern/OSAtomic.h>
 #include <execinfo.h>
 
+volatile int32_t UncaughtExceptionCount = 0;
+const int32_t UncaughtExceptionMaximum = 10;
+
+//extern void translator_signal_handler(int signal);
+//void SignalHandler(int signal)
+//{
+//   int32_t exceptionCount = OSAtomicIncrement32(&UncaughtExceptionCount);
+//   if (exceptionCount > UncaughtExceptionMaximum)
+//   {
+//      return;
+//   }
+//   translator_signal_handler(signal);
+//}
+
+
 //NSString * const UncaughtExceptionHandlerSignalExceptionName = @"UncaughtExceptionHandlerSignalExceptionName";
 //NSString * const UncaughtExceptionHandlerSignalKey = @"UncaughtExceptionHandlerSignalKey";
 //NSString * const UncaughtExceptionHandlerAddressesKey = @"UncaughtExceptionHandlerAddressesKey";
 
-volatile int32_t UncaughtExceptionCount = 0;
+//volatile int32_t UncaughtExceptionCount = 0;
 //const int32_t UncaughtExceptionMaximum = 10;
 
 //const NSInteger UncaughtExceptionHandlerSkipAddressCount = 4;
@@ -51,7 +66,12 @@ void InstallUncaughtExceptionHandler()
 {
     
 	NSSetUncaughtExceptionHandler(&HandleException);
-
+//   signal(SIGABRT, SignalHandler);
+//   signal(SIGILL, SignalHandler);
+//   signal(SIGSEGV, SignalHandler);
+//   signal(SIGFPE, SignalHandler);
+//   signal(SIGBUS, SignalHandler);
+//   signal(SIGPIPE, SignalHandler);
 }
 
 

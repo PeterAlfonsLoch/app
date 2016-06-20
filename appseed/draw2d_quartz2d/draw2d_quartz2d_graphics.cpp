@@ -766,14 +766,7 @@ namespace draw2d_quartz2d
 
       CGContextBeginPath(m_pdc);
 
-      CGContextMoveToPoint(m_pdc, lpPoints[0].x, lpPoints[0].y);
-
-      for(index i = 1; i < nCount; i++)
-      {
-
-         CGContextAddLineToPoint(m_pdc, lpPoints[i].x, lpPoints[i].y);
-
-      }
+      set_polygon(lpPoints, nCount);
 
       if(!draw())
          return false;
@@ -1184,7 +1177,7 @@ namespace draw2d_quartz2d
       /*return ::Ellipse(get_handle1(), lpRect.left, lpRect.top,
        lpRect.right, lpRect.bottom); */
 
-      return FillEllipse(lpRect.left, lpRect.top, lpRect.right - lpRect.left, lpRect.bottom - lpRect.top);
+      return FillEllipse(lpRect.left, lpRect.top, lpRect.right, lpRect.bottom);
 
    }
 
@@ -1289,7 +1282,7 @@ namespace draw2d_quartz2d
       /*return ::Ellipse(get_handle1(), lpRect.left, lpRect.top,
        lpRect.right, lpRect.bottom); */
 
-      return FillEllipse(lpRect.left, lpRect.top, lpRect.right - lpRect.left, lpRect.bottom - lpRect.top);
+      return FillEllipse(lpRect.left, lpRect.top, lpRect.right, lpRect.bottom);
 
    }
 
@@ -1317,6 +1310,36 @@ namespace draw2d_quartz2d
 
    }
 
+   bool graphics::set_polygon(const POINTD * pa, count nCount)
+   {
+   
+   CGContextMoveToPoint(m_pdc, pa[0].x, pa[0].y);
+   
+   for(int32_t i = 1; i < nCount; i++)
+   {
+      
+      CGContextAddLineToPoint(m_pdc, pa[i].x, pa[i].y);
+      
+   }
+      
+   }
+   
+   
+   bool graphics::set_polygon(const POINT * pa, count nCount)
+   {
+      
+      CGContextMoveToPoint(m_pdc, pa[0].x, pa[0].y);
+      
+      for(int32_t i = 1; i < nCount; i++)
+      {
+         
+         CGContextAddLineToPoint(m_pdc, pa[i].x, pa[i].y);
+         
+      }
+      
+   }
+
+   
    bool graphics::fill_polygon(const POINTD * pa, count nCount)
    {
 
@@ -1324,15 +1347,8 @@ namespace draw2d_quartz2d
          return TRUE;
 
       CGContextBeginPath(m_pdc);
-
-      CGContextMoveToPoint(m_pdc, pa[0].x, pa[0].y);
-
-      for(int32_t i = 1; i < nCount; i++)
-      {
-
-         CGContextAddLineToPoint(m_pdc, pa[i].x, pa[i].y);
-
-      }
+      
+      set_polygon(pa, nCount);
 
       CGContextClosePath(m_pdc);
 
@@ -1350,14 +1366,7 @@ namespace draw2d_quartz2d
 
       CGContextBeginPath(m_pdc);
 
-      CGContextMoveToPoint(m_pdc, pa[0].x, pa[0].y);
-
-      for(int32_t i = 1; i < nCount; i++)
-      {
-
-         CGContextAddLineToPoint(m_pdc, pa[i].x, pa[i].y);
-
-      }
+      set_polygon(pa, nCount);
 
       CGContextClosePath(m_pdc);
 
@@ -1376,14 +1385,7 @@ namespace draw2d_quartz2d
 
       CGContextBeginPath(m_pdc);
 
-      CGContextMoveToPoint(m_pdc, pa[0].x, pa[0].y);
-
-      for(int32_t i = 1; i < nCount; i++)
-      {
-
-         CGContextAddLineToPoint(m_pdc, pa[i].x, pa[i].y);
-
-      }
+      set_polygon(pa, nCount);
 
       CGContextClosePath(m_pdc);
 
@@ -1410,14 +1412,7 @@ namespace draw2d_quartz2d
 
       CGContextBeginPath(m_pdc);
 
-      CGContextMoveToPoint(m_pdc, pa[0].x, pa[0].y);
-
-      for(int32_t i = 1; i < nCount; i++)
-      {
-
-         CGContextAddLineToPoint(m_pdc, pa[i].x, pa[i].y);
-
-      }
+      set_polygon(pa, nCount);
 
       CGContextClosePath(m_pdc);
 
@@ -1698,7 +1693,7 @@ namespace draw2d_quartz2d
 
          CGRect rectSub;
          
-         if(xSrc > SrcW)
+         if(::compare::gt(xSrc, SrcW))
          {
           
             CGImageRelease(image);
@@ -1709,7 +1704,7 @@ namespace draw2d_quartz2d
             
          }
 
-         if(ySrc > SrcH)
+         if(::compare::gt(ySrc, SrcH))
          {
             
             CGImageRelease(image);
@@ -1725,7 +1720,10 @@ namespace draw2d_quartz2d
          rectSub.size.width = SrcW;
          rectSub.size.height = SrcH;
          
-         if(xSrc == 0 && ySrc == 0 && nWidth == SrcW && nHeight == SrcH)
+         if(m_spregion.is_null())
+         {
+         
+         if(xSrc == 0 && ySrc == 0 && nWidth == SrcW && nHeight == SrcH )
          {
          
             CGContextDrawImage(m_pdc, rect, image);
@@ -1748,6 +1746,46 @@ namespace draw2d_quartz2d
             CGContextRestoreGState(m_pdc);
 
          }
+         }
+         else
+         {
+            
+            CGContextSaveGState(m_pdc);
+            
+            clip(m_spregion);
+            
+            if(xSrc == 0 && ySrc == 0 && nWidth == SrcW && nHeight == SrcH )
+            {
+               
+            }
+            else
+            {
+               CGContextClipToRect(m_pdc, rect);
+               
+               rect.origin.x -= xSrc;
+               rect.origin.y -= ySrc;
+               rect.size.width = SrcW;
+               rect.size.height =  SrcH;
+            }
+            
+            
+            if(rect.origin.x < 0)
+            {
+               rect.size.width += rect.origin.x;
+               rect.origin.x = 0;
+            }
+            if(rect.origin.y < 0)
+            {
+               rect.size.height += rect.origin.y;
+               rect.origin.y = 0;
+            }
+            
+            CGContextDrawImage(m_pdc, rect, image);
+            
+            CGContextRestoreGState(m_pdc);
+            
+         }
+            
          
          CGImageRelease(image);
          
@@ -3151,7 +3189,7 @@ namespace draw2d_quartz2d
       }
 
       CGContextSetAlpha(m_pdc, (CGFloat) dRate);
-      BitBlt(xDst, yDst, nDstWidth, nDstHeight, pgraphicsSrc, xSrc, ySrc, SRCCOPY);
+      StretchBlt(xDst, yDst, nDstWidth, nDstHeight, pgraphicsSrc, xSrc, ySrc, nSrcWidth, nSrcHeight, SRCCOPY);
       CGContextSetAlpha(m_pdc, (CGFloat) 1.f);
 
       return true;
@@ -5426,6 +5464,50 @@ namespace draw2d_quartz2d
 
    }
 
+   bool graphics::clip(const ::draw2d::region * pregion)
+   {
+      
+      CGContextBeginPath (m_pdc);
+      
+      if(pregion->m_etype == ::draw2d::region::type_rect)
+      {
+         
+         CGRect r;
+         
+         r.origin.x = pregion->m_x1;
+         r.origin.y = pregion->m_y1;
+         r.size.width = pregion->m_x2 - pregion->m_x1;
+         r.size.height = pregion->m_y2 - pregion->m_y1;
+         
+         CGContextAddRect (m_pdc, r);
+         
+      }
+      else if(pregion->m_etype == ::draw2d::region::type_polygon)
+      {
+         
+         set_polygon(pregion->m_lppoints, pregion->m_nCount);
+         
+      }
+      else if(pregion->m_etype == ::draw2d::region::type_oval)
+      {
+         
+         CGRect r;
+         
+         r.origin.x = pregion->m_x1;
+         r.origin.y = pregion->m_y1;
+         r.size.width = pregion->m_x2 - pregion->m_x1;
+         r.size.height = pregion->m_y2 - pregion->m_y1;
+
+         
+         CGContextAddEllipseInRect(m_pdc, r);
+         
+      }
+      
+      CGContextClosePath (m_pdc);
+      
+      CGContextClip (m_pdc);
+      
+   }
 
    bool graphics::set(const ::draw2d::brush * pbrush)
    {

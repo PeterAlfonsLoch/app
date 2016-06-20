@@ -24,6 +24,8 @@ namespace geometry
       double rotate_x(double x, double y, double phi);
       void rotate(int32_t x, int32_t y, LPPOINT lppoint, int32_t iCount, double phi);
       void rotate(int32_t x, int32_t y, LPPOINT lppoint, int32_t iCount, double cosphi, double sinphi);
+      void rotate(int32_t x, int32_t y, LPPOINTD lppoint, int32_t iCount, double phi);
+      void rotate(int32_t x, int32_t y, LPPOINTD lppoint, int32_t iCount, double cosphi, double sinphi);
 
 
       void RandomPoint(POINT & pt, const RECT & rect);
