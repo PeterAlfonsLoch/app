@@ -32,27 +32,6 @@
 
 #define _(c_string_to_be_translated_from_english) c_string_to_be_translated_from_english
 
-
-#if defined(ANDROID)
-#include "base/base/os/android/android.h"
-#elif defined(MACOS)
-#include "base/base/os/macos/macos.h"
-#elif defined(LINUX)
-#include "base/base/os/linux/linux.h"
-#elif defined(METROWIN)
-#include "base/base/os/metrowin/metrowin.h"
-#elif defined(WINDOWS)
-#include "base/base/os/windows/windows.h"
-#elif defined(SOLARIS)
-#include "base/base/os/solaris/solaris.h"
-#elif defined(APPLE_IOS)
-#include "base/base/os/ios/ios.h"
-#else
-#error Not Supported Operational System
-#endif
-
-
-
 CLASS_DECL_BASE int get_base_init();
 CLASS_DECL_BASE int_bool defer_base_init();
 CLASS_DECL_BASE int_bool defer_base_term();

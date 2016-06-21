@@ -1879,6 +1879,10 @@ namespace user
 
          m_pcsDisplay     = new critical_section;
 
+         m_spgraphics.alloc(allocer());
+
+         m_spgraphics->on_create_window(this);
+
       }
       
       m_puiThis = m_pui;
