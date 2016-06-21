@@ -567,12 +567,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="base\os\windows\windows_window_opengl.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="base\os\windows\_windows_os.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
@@ -612,6 +606,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     </ClCompile>
     <ClCompile Include="database\_database.cpp" />
     <ClCompile Include="graphics\graphics_window_buffer.cpp" />
+    <ClCompile Include="graphics\graphics_window_dc.cpp" />
     <ClCompile Include="graphics\graphics_window_graphics.cpp" />
     <ClCompile Include="user\fontopus\fontopus.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
@@ -1198,7 +1193,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="base\os\windows\windows_internal.h" />
     <ClInclude Include="base\os\windows\windows_system_interaction_impl.h" />
     <ClInclude Include="base\os\windows\windows_window_gdi.h" />
-    <ClInclude Include="base\os\windows\windows_window_opengl.h" />
     <ClInclude Include="database\database.h" />
     <ClInclude Include="database\database\database.h" />
     <ClInclude Include="database\simpledb\simpledb.h" />
@@ -1231,6 +1225,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="graphics\graphics.h" />
     <ClInclude Include="graphics\graphics_window.h" />
     <ClInclude Include="graphics\graphics_window_buffer.h" />
+    <ClInclude Include="graphics\graphics_window_dc.h" />
     <ClInclude Include="graphics\graphics_window_graphics.h" />
     <ClInclude Include="user\fontopus\fontopus.h" />
     <ClInclude Include="user\fontopus\fontopus_login.h" />

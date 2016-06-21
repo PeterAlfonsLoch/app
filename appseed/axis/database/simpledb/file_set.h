@@ -18,7 +18,9 @@ namespace simpledb
 
       virtual void refresh();
 
-      bool add_search(const char * pszSearchDirectory, bool bRecursive);
+      using ::file::set::add_search;
+
+      virtual bool add_search(const ::file::path & pathSearchFolder, bool bRecursive);
 
       virtual void clear_search();
 

@@ -19,7 +19,7 @@ window_android_anative::~window_android_anative()
 }
 
 
-void window_android_anative::create_window_graphics(oswindow interaction_impl,int64_t cxParam,int64_t cyParam,int iStrideParam)
+void window_android_anative::create_window_graphics(int64_t cxParam,int64_t cyParam,int iStrideParam)
 {
 
    if(interaction_impl == NULL)

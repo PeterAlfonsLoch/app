@@ -469,14 +469,14 @@ namespace windows
 
       //::simple_message_box(NULL,"h2","h2",MB_OK);
 
-      if (cs.hwndParent != HWND_MESSAGE)
-      {
+      //if (cs.hwndParent != HWND_MESSAGE)
+      //{
 
-         m_spgraphics.alloc(allocer());
+      //   m_spgraphics.alloc(allocer());
 
-         m_spgraphics->on_create_window(this);
+      //   m_spgraphics->on_create_window(this);
 
-      }
+      //}
 
       if(oswindow == NULL)
       {
@@ -523,7 +523,7 @@ namespace windows
       if(oswindow == NULL)
          return FALSE;
 
-      bool bUnicode = ::IsWindowUnicode(oswindow);
+      bool bUnicode = ::IsWindowUnicode(oswindow) != FALSE;
 
       if (bUnicode)
       {

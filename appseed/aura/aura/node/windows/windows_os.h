@@ -74,6 +74,9 @@ namespace windows
       virtual void set_file_status(const char * lpszFileName, const ::file::file_status& status);
 
 
+      virtual bool initialize_wallpaper_fileset(::file::set * pset, bool bAddSearch);
+
+
    };
 
 

@@ -76,4 +76,3 @@ namespace base
 
 
 #include "windows_window_gdi.h"
-#include "windows_window_opengl.h"

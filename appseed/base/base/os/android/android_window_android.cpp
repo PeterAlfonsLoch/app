@@ -16,7 +16,7 @@ window_android::~window_android()
 }
 
 
-void window_android::create_window_graphics(oswindow interaction_impl,int64_t cxParam,int64_t cyParam,int iStrideParam)
+void window_android::create_window_graphics(int64_t cxParam,int64_t cyParam,int iStrideParam)
 {
 
    destroy_window_graphics();

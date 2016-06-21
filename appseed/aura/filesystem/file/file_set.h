@@ -11,7 +11,7 @@ namespace file
    public:
 
 
-      stringa           m_straSearch;
+      ::file::patha     m_pathaSearch;
       bool_array        m_baRecursive;
       stringa           m_straFilter;
       ::file::listing   m_straFile;
@@ -23,7 +23,8 @@ namespace file
 
 
       // composite
-      virtual void add_search(stringa & stra, bool_array & baRecursive);
+      virtual bool add_search(const ::file::path & pathSearchFolder, bool bRecursive);
+      virtual void add_search(const ::file::patha & pathaSearchFolder, bool_array & baRecursive);
       virtual void add_filter(stringa & stra);
       virtual ::count get_file_count();
       virtual void file_at(::index i, string & str);
@@ -36,6 +37,9 @@ namespace file
       // derived
       virtual bool get_next_file(const char * lpcszCurrentFilePath, string & wstrNextFilePath);
       virtual string get_next_file(const char * psz);
+
+      
+      virtual bool initialize_os_wallpaper(bool bAddSearch);
 
 
    };

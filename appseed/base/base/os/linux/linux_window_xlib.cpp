@@ -31,7 +31,7 @@ window_xlib::~window_xlib()
 HDC GetDC(oswindow window);
 
 
-void window_xlib::create_window_graphics(oswindow window, int64_t cxParam, int64_t cyParam, int iStrideParam)
+void window_xlib::create_window_graphics(int64_t cxParam, int64_t cyParam, int iStrideParam)
 {
 
    if(cxParam <= 0 || cyParam <= 0)

@@ -913,6 +913,45 @@ namespace macos
    }
 
 
+   bool os::initialize_wallpaper_fileset(::file::set * pfileset, bool bAddSearch)
+   {
+
+      if (bAddSearch)
+      {
+
+         ::file::path pathFolder;
+
+         SHGetSpecialFolderPath(NULL, pathFolder, CSIDL_WINDOWS, FALSE);
+
+         pathFolder /= "Web/Wallpaper";
+
+         pfileset->add_search(pathFolder, true);
+
+      }
+
+      return true;
+
+   }
+   //#elif defined(LINUX)
+   //   //string strDir;
+   //   //strDir = System.dir().path(getenv("HOME"), "Pictures");
+   //   //pimagefileset->add_search(strDir);
+   //   string strDir;
+   //   strDir = "/usr/share/backgrounds";
+   //   pimagefileset->add_search(strDir, true);
+   //            }
+   //
+   //#elif defined(MACOS)
+   //   //string strDir;
+   //   //strDir = System.dir().path(getenv("HOME"), "Pictures");
+   //   //pimagefileset->add_search(strDir);
+   //   string strDir;
+   //   strDir = "/Library/Desktop Pictures";
+   //   pimagefileset->add_search(strDir, true);
+   //            }
+   //
+   //#else
+
 } // namespace macos
 
 

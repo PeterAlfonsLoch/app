@@ -200,6 +200,21 @@ namespace file
    }
 
 
+   bool set::initialize_os_wallpaper(bool bAddSearch)
+   {
+
+      if (!System.os().initialize_wallpaper_fileset(this, bAddSearch))
+      {
+
+         return false;
+
+      }
+
+      refresh();
+
+   }
+
+
 } // namespace file
 
 

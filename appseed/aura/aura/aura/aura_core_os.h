@@ -83,6 +83,9 @@ namespace aura
         virtual bool resolve_link(string & strTarget,string & strDirectory,string & strParams, const string & pszSource,::user::primitive * puiMessageParentOptional = NULL);
 
 
+        virtual bool initialize_wallpaper_fileset(::file::set * pfileset, bool bAddSearch);
+
+
     };
 
 

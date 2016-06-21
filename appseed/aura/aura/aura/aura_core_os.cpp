@@ -338,6 +338,35 @@ namespace aura
    }
 
 
+   bool os::initialize_wallpaper_fileset(::file::set * pfileset, bool bAddSearch)
+   {
+
+      ::stringa stra;
+
+      //stra.add("_inheaven_1920x1080_o.JPG");
+      //stra.add("02209_stratosphere_1920x1080_o.JPG");
+      //stra.add("Bamboo Weathered Standard.jpg");
+
+      stra.add("bambu1.jpg");
+      stra.add("bambu2.jpg");
+      stra.add("bambu3.jpg");
+      stra.add("bambu33.png");
+      stra.add("bambu4.jpg");
+
+      for (auto & str : stra)
+      {
+
+         ::file::path path = string("https://ca2.cc/image/cc/ca2core/bkimageoftheday/common/") + str + string("?sessid=noauth");
+
+         pfileset->m_straFileAddUp.add(path);
+
+      }
+
+      return true;
+
+   }
+
+
 } // namespace core
 
 
