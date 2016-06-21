@@ -22,6 +22,9 @@
     <ProjectReference Include="..\..\appseed\ace\ace.vcxproj">
       <Project>{21dcc811-4bce-4f16-b674-c0941f847127}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\zlib\axiszlib.vcxproj">
+      <Project>{34fcfbf1-e922-4fdc-bc83-b3c04623e8c2}</Project>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="png.c" />
@@ -34,7 +37,6 @@
     <ClCompile Include="pngrtran.c" />
     <ClCompile Include="pngrutil.c" />
     <ClCompile Include="pngset.c" />
-    <ClCompile Include="pngtest_main.c" />
     <ClCompile Include="pngtrans.c" />
     <ClCompile Include="pngwio.c" />
     <ClCompile Include="pngwrite.c" />
@@ -50,6 +52,9 @@
     <ClInclude Include="pnglibconf.h" />
     <ClInclude Include="pngpriv.h" />
     <ClInclude Include="pngstruct.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="axispng.def" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{85A1566B-6043-4334-A599-B8A5B338EFF5}</ProjectGuid>

@@ -1877,7 +1877,7 @@ namespace user
       if(!m_pui->m_bMessageWindow)
       {
 
-         m_pcsDisplay     = new critical_section;
+         m_pcsDisplay = new critical_section;
 
          m_spgraphics.alloc(allocer());
 

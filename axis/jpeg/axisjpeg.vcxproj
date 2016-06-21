@@ -323,6 +323,9 @@
     <ClInclude Include="jversion.h" />
     <ClInclude Include="transupp.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="axisjpeg.def" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

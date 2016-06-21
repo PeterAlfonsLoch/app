@@ -36,9 +36,9 @@ extern "C" {
 #undef FAR
 #include <setjmp.h>
 
-#include "axis/jpeg/jinclude.h"
-#include "axis/jpeg/jpeglib.h"
-#include "axis/jpeg/jerror.h"
+#include "jinclude.h"
+#include "jpeglib.h"
+#include "jerror.h"
 }
 
 //#include "Utilities.h"

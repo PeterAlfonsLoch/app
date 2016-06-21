@@ -44,7 +44,7 @@
 
 #include <stdio.h>
 #include <errno.h>
-#include "axis/image_png/Source/LibPNG/png.h"
+#include "png.h"
 
 /**
  * SECTION:cairo-png

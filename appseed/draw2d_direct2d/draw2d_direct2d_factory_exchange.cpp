@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "base/base/os/windows/windows_window_gdi.h"
 
 
 namespace draw2d_direct2d
@@ -20,6 +21,7 @@ namespace draw2d_direct2d
       System.factory().cloneable_large < font                  >  (System.type_info < ::draw2d::font              > ());
       System.factory().cloneable_large < printer               >  (System.type_info < ::aura::printer             > ());
       
+      System.factory().cloneable_large < window_gdi            >  (System.type_info < window_graphics                >());
 
       //draw2d_direct2d_initialize();
 

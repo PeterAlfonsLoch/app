@@ -1,4 +1,3 @@
-LIBRARY      "axis_image_jpeg"
+LIBRARY      "axisjpeg"
 
 EXPORTS
-FreeImage_InitPlugin_axis_image_jpeg

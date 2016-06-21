@@ -39,9 +39,6 @@
     <ClCompile Include="pngset.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="pngtest_main.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="pngtrans.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -83,5 +80,10 @@
     <ClInclude Include="pngstruct.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="axispng.def">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

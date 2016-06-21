@@ -258,6 +258,9 @@
     <ProjectReference Include="..\freeimage\axisfreeimage.vcxproj">
       <Project>{b39ed2b3-d53a-4077-b957-930979a3577d}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\jpeg\axisjpeg.vcxproj">
+      <Project>{c346cf46-71e6-42d6-9ded-c869f6306368}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
