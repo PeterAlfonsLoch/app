@@ -197,34 +197,34 @@
     <ClInclude Include="cdjpeg.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="jconfig.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="jdct.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="jerror.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="jinclude.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="jmemsys.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="jmorecfg.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="jpegint.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="jpeglib.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="jversion.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="transupp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\jconfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\jerror.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\jinclude.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\jmorecfg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\jpeglib.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -310,16 +310,16 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\include\jconfig.h" />
+    <ClInclude Include="..\..\include\jerror.h" />
+    <ClInclude Include="..\..\include\jinclude.h" />
+    <ClInclude Include="..\..\include\jmorecfg.h" />
+    <ClInclude Include="..\..\include\jpeglib.h" />
     <ClInclude Include="cderror.h" />
     <ClInclude Include="cdjpeg.h" />
-    <ClInclude Include="jconfig.h" />
     <ClInclude Include="jdct.h" />
-    <ClInclude Include="jerror.h" />
-    <ClInclude Include="jinclude.h" />
     <ClInclude Include="jmemsys.h" />
-    <ClInclude Include="jmorecfg.h" />
     <ClInclude Include="jpegint.h" />
-    <ClInclude Include="jpeglib.h" />
     <ClInclude Include="jversion.h" />
     <ClInclude Include="transupp.h" />
   </ItemGroup>

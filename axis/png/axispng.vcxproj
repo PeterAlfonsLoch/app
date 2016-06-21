@@ -44,12 +44,13 @@
     <ClCompile Include="pngwutil.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\include\ca2_strophe.h" />
+    <ClInclude Include="..\..\include\png.h" />
+    <ClInclude Include="..\..\include\pngconf.h" />
+    <ClInclude Include="..\..\include\pnglibconf.h" />
     <ClInclude Include="config.h" />
-    <ClInclude Include="png.h" />
-    <ClInclude Include="pngconf.h" />
     <ClInclude Include="pngdebug.h" />
     <ClInclude Include="pnginfo.h" />
-    <ClInclude Include="pnglibconf.h" />
     <ClInclude Include="pngpriv.h" />
     <ClInclude Include="pngstruct.h" />
   </ItemGroup>

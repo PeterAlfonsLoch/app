@@ -18,11 +18,7 @@ public:
 
    lparam(LPARAM lparam = 0) { m_lparam = lparam; }
 
-#if OSBIT != 32
-
    lparam(int i) { m_lparam = (LPARAM) i; }
-
-#endif
 
 #if OSBIT != 64
 
