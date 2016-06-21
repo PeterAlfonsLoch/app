@@ -461,6 +461,15 @@
     <ClInclude Include="base\os\windows\windows_window_gdi.h">
       <Filter>Header Files\base\os\windows</Filter>
     </ClInclude>
+    <ClInclude Include="graphics\graphics.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\graphics_window.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\graphics_window_buffer.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="base\base\base.cpp">
@@ -819,6 +828,9 @@
     </ClCompile>
     <ClCompile Include="base\os\windows\windows_window_opengl.cpp">
       <Filter>Source Files\base\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\graphics_window_buffer.cpp">
+      <Filter>Source Files\graphics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

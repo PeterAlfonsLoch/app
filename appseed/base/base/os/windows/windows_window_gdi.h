@@ -16,9 +16,6 @@ public:
    HDC                           m_hdcScreen;
    bool                          m_bOwnDC;
 
-   ::visual::dib_sp              m_spdibBuffer;
-
-
    window_gdi(::aura::application * papp);
    virtual ~window_gdi();
 
