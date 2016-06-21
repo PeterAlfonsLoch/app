@@ -1,3 +1,0 @@
-This test checks that the explicit recast operator correctly casts string
-values to floating point decimal types as would be done by libc's
-strtof() function.

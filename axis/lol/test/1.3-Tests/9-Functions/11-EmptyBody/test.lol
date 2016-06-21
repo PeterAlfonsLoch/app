@@ -1,6 +1,0 @@
-HAI 1.3
-	HOW IZ I fun
-	IF U SAY SO
-
-	I IZ fun MKAY
-KTHXBYE

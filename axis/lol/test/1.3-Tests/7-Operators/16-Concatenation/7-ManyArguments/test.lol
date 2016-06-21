@@ -1,3 +1,0 @@
-HAI 1.3
-	VISIBLE SMOOSH "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" AN "a" MKAY
-KTHXBYE

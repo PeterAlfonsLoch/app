@@ -1,4 +1,0 @@
-HAI 1.3
-	I HAS A var
-	I HAS A var
-KTHXBYE

@@ -1,3 +1,0 @@
-This test is designed to check that variables are inherited from parent arrays
-and variables defined in child arrays shadow variables defined in parent
-arrays.

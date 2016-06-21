@@ -1,2 +1,0 @@
-INCLUDE(AddLolTest)
-ADD_LOL_TEST(16-NoNewlineAfterJoinCRLF ERROR)

@@ -1,7 +1,0 @@
-HAI 1.3
-	HOW IZ I fun YR a AN YR b AN YR c
-		VISIBLE a AN b AN c
-	IF U SAY SO
-
-	I IZ fun YR 1 AN YR 2 MKAY
-KTHXBYE
