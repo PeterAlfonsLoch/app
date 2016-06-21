@@ -201,10 +201,10 @@ virtual      void load_string_table(const string & pszApp,const string & pszId);
       virtual void process_message_filter(int32_t code,signal_details * pobj) override;
 
       virtual bool on_thread_on_idle(::thread * pthread,LONG lCount) override;
-      virtual bool post_user_message(::thread * pthread,::user::primitive * pui,UINT message,WPARAM wparam = 0,lparam lparam = cnull);
+      virtual bool post_user_message(::thread * pthread,::user::primitive * pui,UINT message,WPARAM wparam = 0,lparam lparam = 0);
 
       virtual bool is_window(::user::primitive * pui);
-      virtual LRESULT send_message(::user::primitive * pui, UINT message, WPARAM wparam = 0, lparam lparam = cnull);
+      virtual LRESULT send_message(::user::primitive * pui, UINT message, WPARAM wparam = 0, lparam lparam = 0);
       virtual oswindow get_safe_handle(::user::primitive * pui);
       virtual void dispatch_user_message(::signal_details * pobj);
       virtual ::user::primitive * get_parent(::user::primitive * pui);

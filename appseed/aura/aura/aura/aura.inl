@@ -1,6 +1,13 @@
 #pragma once
 
 
+inline lparam::lparam(::object * p)
+{
+   p->add_ref();
+   m_lparam = (LPARAM)p;
+}
+
+
 template<class TYPE>
 void dump_elements(dump_context & dumpcontext, const TYPE* pElements, ::count nCount)
 {

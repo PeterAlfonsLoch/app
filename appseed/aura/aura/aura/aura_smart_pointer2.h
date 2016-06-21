@@ -108,13 +108,13 @@
    template < class T >
    inline smart_pointer < T > ::operator lparam ()
    {
-      return lparam(m_p);
+      return m_p;
    }
 
    template < class T >
    inline smart_pointer < T > ::operator lparam () const
    {
-      return lparam(m_p);
+      return m_p;
    }
 
 /*   template < class T >

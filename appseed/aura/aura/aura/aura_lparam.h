@@ -18,31 +18,22 @@ public:
 
    lparam(LPARAM lparam = 0) { m_lparam = lparam; }
 
-
 #if OSBIT != 32
 
-   lparam(int32_t i) { m_lparam = (LPARAM) i; }
+   lparam(int i) { m_lparam = (LPARAM) i; }
 
 #endif
 
 #if OSBIT != 64
 
-   lparam(int64_t i) { m_lparam = (LPARAM) i; }
+   lparam(int64_t i) { m_lparam = (LPARAM)i; }
 
 #endif
-   
-//#ifdef APPLEOS
-//#ifdef OS64BIT
-   
-//   lparam(long l)
-  // {
-    //  m_lparam = (LPARAM) l;
-   //}
-   
-//#endif
-//#endif
 
-   lparam(::object * p);
+   inline lparam(::object * pobject);
+
+   //template < class T >
+   //lparam(const smart_pointer < T > & sp);
 
    lparam(const lparam & lparam)
    {
@@ -83,3 +74,14 @@ public:
    }
 
 };
+
+
+
+//template < class T >
+//inline lparam::lparam(const smart_pointer < T > & sp)
+//{
+//   sp->add_ref();
+//   this->m_lparam = (LPARAM) sp.m_p;
+//}
+//
+//

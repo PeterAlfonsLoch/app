@@ -209,9 +209,9 @@ public:
    virtual bool set_thread_priority(int32_t epriority);
 
    virtual uint32_t ResumeThread();
-   virtual bool post_thread_message(UINT message, WPARAM wParam = 0, lparam lParam = cnull);
-   virtual bool send_thread_message(UINT message,WPARAM wParam = 0,lparam lParam = cnull, ::duration durWaitStep = millis(1));
-   virtual bool post_message(::user::primitive * pui, UINT message, WPARAM wParam = 0, lparam lParam = cnull);
+   virtual bool post_thread_message(UINT message, WPARAM wParam = 0, lparam lParam = 0);
+   virtual bool send_thread_message(UINT message,WPARAM wParam = 0,lparam lParam = 0, ::duration durWaitStep = millis(1));
+   virtual bool post_message(::user::primitive * pui, UINT message, WPARAM wParam = 0, lparam lParam = 0);
 
    template < typename PRED >
    bool post_pred(sp(object) phold, PRED pred)

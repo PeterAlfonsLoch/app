@@ -234,7 +234,7 @@ namespace aura
 
 
 
-      virtual UINT os_post_to_all_threads(UINT uiMessage,WPARAM wparam = 0 ,lparam lparam = cnull);
+      virtual UINT os_post_to_all_threads(UINT uiMessage,WPARAM wparam = 0 ,lparam lparam = 0);
 
       virtual bool process_initialize();
 
