@@ -23,8 +23,8 @@ namespace file
 
 
       // composite
-      virtual bool add_search(const ::file::path & pathSearchFolder, bool bRecursive);
-      virtual void add_search(const ::file::patha & pathaSearchFolder, bool_array & baRecursive);
+      virtual void add_search(const ::file::path & pathSearchFolder, bool bRecursive);
+      virtual void add_search(const ::file::patha & pathaSearchFolder, const bool_array & baRecursive);
       virtual void add_filter(stringa & stra);
       virtual ::count get_file_count();
       virtual void file_at(::index i, string & str);

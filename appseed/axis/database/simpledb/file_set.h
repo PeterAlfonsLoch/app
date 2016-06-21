@@ -19,8 +19,7 @@ namespace simpledb
       virtual void refresh();
 
       using ::file::set::add_search;
-
-      virtual bool add_search(const ::file::path & pathSearchFolder, bool bRecursive);
+      virtual void add_search(const ::file::path & pathSearchFolder, bool bRecursive) override;
 
       virtual void clear_search();
 

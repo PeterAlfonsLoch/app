@@ -1190,12 +1190,12 @@ namespace draw2d
    {
       if(dRate < 0)
          return;
-#ifdef __APPLE__
+//#ifdef __APPLE__
       if(echannel == visual::rgba::channel_alpha)
       {
          div_alpha();
       }
-#endif
+//#endif
       int64_t size = area();
       LPBYTE lpb = (LPBYTE) get_data();
       lpb += ((int32_t)echannel) % 4;
@@ -1208,12 +1208,12 @@ namespace draw2d
          *lpb = (byte) (iRes > 255 ? 255 : iRes);
          lpb += 4;
       }
-#ifdef __APPLE__
+//#ifdef __APPLE__
       if(echannel == visual::rgba::channel_alpha)
       {
          mult_alpha();
       }
-#endif
+//#endif
    }
 
    void dib::channel_multiply(visual::rgba::echannel echannel, ::draw2d::dib * pdib)

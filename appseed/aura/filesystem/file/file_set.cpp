@@ -19,17 +19,32 @@ namespace file
 
    }
 
-
-   void set::add_search(stringa & stra, bool_array & baRecursive)
+   void set::add_search(const ::file::path & pathSearchFolder, bool bRecursive)
    {
 
-      m_straSearch.add(stra);
+      m_pathaSearch.add(pathSearchFolder);
 
-      m_baRecursive.add(baRecursive);
-
-      //refresh();
+      m_baRecursive.add(bRecursive);
 
    }
+
+
+   void set::add_search(const ::file::patha & pathaSearchFolder, const bool_array & baRecursive)
+   {
+
+      // derived classes may perform specific actions this add_search...
+
+      for (index i = 0; i < pathaSearchFolder.get_count(); i++)
+      {
+
+         // ... or at the add_search overload below.
+
+         add_search(pathaSearchFolder[i], baRecursive[i]);
+
+      }
+
+   }
+
 
    void set::add_filter(stringa & stra)
    {
@@ -79,7 +94,7 @@ namespace file
 
       string str;
 
-      for(i = 0; i < m_straSearch.get_size(); i++)
+      for(i = 0; i < m_pathaSearch.get_size(); i++)
       {
 
          bool bRecursive = true;
@@ -103,13 +118,13 @@ namespace file
             if(bRecursive)
             {
 
-               m_straFile.rls_pattern(m_straSearch.element_at(i), strFilter);
+               m_straFile.rls_pattern(m_pathaSearch.element_at(i), strFilter);
 
             }
             else
             {
 
-               m_straFile.ls_pattern(m_straSearch.element_at(i), strFilter);
+               m_straFile.ls_pattern(m_pathaSearch.element_at(i), strFilter);
 
             }
 
@@ -133,7 +148,7 @@ namespace file
    void set::clear_search()
    {
 
-      m_straSearch.remove_all();
+      m_pathaSearch.remove_all();
 
       m_baRecursive.remove_all();
 
@@ -211,6 +226,8 @@ namespace file
       }
 
       refresh();
+
+      return true;
 
    }
 

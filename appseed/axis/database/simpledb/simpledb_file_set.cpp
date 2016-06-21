@@ -42,50 +42,46 @@ namespace simpledb
 
       ::file::set::clear_search();
 
-      stringa stra;
+      ::file::patha patha;
 
       bool_array baRecursive;
 
-      if(!data_get(::aura::system::idEmpty, stra))
+      if(!data_get(::aura::system::idEmpty, patha))
          return;
 
       data_load("recursive", baRecursive);
 
       // add_search calls Ex2FileSet refresh internally
-      ::file::set::add_search(stra, baRecursive);
+      ::file::set::add_search(patha, baRecursive);
 
       ::file::set::refresh();
-
-
 
    }
 
 
-   bool file_set::add_search(const char * pszSearchDirectory, bool bRecursive)
+   void file_set::add_search(const ::file::path & pathSearchFolder, bool bRecursive)
    {
 
-      stringa stra;
+      ::file::patha & pathaFolder = m_pathaSearch;
 
       bool_array baRecursive;
 
-      data_get(::aura::system::idEmpty, stra);
+      data_get(::aura::system::idEmpty, pathaFolder);
 
       data_load("recursive",baRecursive);
 
       index i = -1;
 
-      if((i = stra.find_first_ci(pszSearchDirectory)) < 0)
+      if((i = pathaFolder.find_first_ci(pathSearchFolder)) < 0)
       {
 
-         stra.add(pszSearchDirectory);
+         pathaFolder.add(pathSearchFolder);
 
          baRecursive.add(bRecursive);
 
-         if(!data_set(::aura::system::idEmpty,stra))
-            return false;
+         data_set(::aura::system::idEmpty, pathaFolder);
 
-         if(!data_save("recursive",baRecursive))
-            return false;
+         data_save("recursive", baRecursive);
 
       }
       else
@@ -93,14 +89,9 @@ namespace simpledb
 
          baRecursive.set_at_grow(i,bRecursive);
 
-         if(!data_save("recursive",baRecursive))
-            return false;
+         data_save("recursive", baRecursive);
 
       }
-
-      refresh();
-
-      return true;
 
    }
 
