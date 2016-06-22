@@ -258,7 +258,7 @@ namespace visual
 #endif // VECTOR3_SSE
 
 
-      size              m_size;
+      ::size            m_size;
       int32_t           m_iRadius;
       byte_array        m_uchaR;
       byte_array        m_uchaG;
@@ -276,7 +276,7 @@ namespace visual
 
 
       bool initialize(int32_t cx, int32_t cy, int32_t iRadius);
-      bool initialize(size sz, int32_t iRadius);
+      bool initialize(::size sz, int32_t iRadius);
 
 
       virtual bool blur(int cx = -1, int cy = -1);

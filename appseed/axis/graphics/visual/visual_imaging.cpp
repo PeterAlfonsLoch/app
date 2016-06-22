@@ -20,7 +20,7 @@
 
 #endif
 
-
+bool windows_load_diba_from_file(::visual::dib_sp::array * pdiba, ::file::buffer_sp, ::aura::application * papp);
 bool windows_load_dib_from_file(::draw2d::dib * pdib,::file::buffer_sp,::aura::application * papp);
 
 template <typename T>
@@ -778,6 +778,43 @@ return hBitmapSource;
 
 
 #endif // WINDOWSEX
+
+
+bool imaging::LoadImageFile(::visual::dib_sp::array * pdiba, var varFile, ::aura::application * papp)
+{
+
+   ::file::memory_buffer_sp memfile(allocer());
+
+   System.file().as_memory(varFile, *memfile->get_memory(), papp);
+
+   if (memfile->get_size() <= 0)
+      return false;
+
+#ifdef WINDOWS
+
+   return windows_load_diba_from_file(pdiba, memfile, papp);
+
+
+#else
+   FIBITMAP * pfi = LoadImageFile(memfile);
+
+   if (pfi == NULL)
+      return false;
+
+   ::draw2d::graphics_sp spgraphics(allocer());
+
+   spgraphics->CreateCompatibleDC(NULL);
+
+   if (!from(pdib, spgraphics, (FIBITMAP *)pfi, true))
+      return false;
+
+#endif
+
+   return true;
+
+
+}
+
 
 bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application * papp)
 {
@@ -7161,6 +7198,92 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
       pgraphics->TextOut(left,top,str);
    }
 
+   bool imaging::load_from_file(::visual::dib_sp::array * pdiba, var varFile, bool bCache, ::aura::application * papp)
+   {
+
+      single_lock sl(&m_mutex);
+
+      if (papp == NULL)
+         papp = get_app();
+
+      //// image cache load
+      //// cache of decompression time
+      //string strFile;
+      //if (bCache && varFile.get_type() == var::type_string)
+      //   //if(false)
+      //{
+      //   strFile = varFile;
+      //   strFile.replace(":/", "\\_");
+      //   strFile.replace(":\\", "\\_\\");
+      //   strFile.replace("/", "\\");
+      //   strFile = System.dir().time() / "cache" / strFile;
+      //   strFile += ".dib";
+      //   if (Sess(papp).file().exists(strFile))
+      //   {
+      //      try
+      //      {
+      //         ::file::buffer_sp file = Sess(papp).file().get_file(strFile, ::file::mode_read | ::file::share_deny_write | ::file::type_binary);
+      //         if (file.is_null())
+      //         {
+      //            return true;
+      //         }
+      //         ::file::byte_istream istream(file);
+      //         istream >> *pdib;
+      //         if (!istream.fail())
+      //         {
+      //            return true;
+      //         }
+      //      }
+      //      catch (...)
+      //      {
+      //      }
+      //   }
+      //}
+
+
+      try
+      {
+         
+         ::file::buffer_sp file = App(papp).file().get_file(varFile, ::file::mode_read | ::file::share_deny_write | ::file::type_binary);
+         
+         if (!read_from_file(pdiba, file, papp))
+            return false;
+
+      }
+      catch (...)
+      {
+
+         return false;
+
+      }
+
+
+      //// image cache write
+      //if (bCache && strFile.has_char())
+      //{
+      //   try
+      //   {
+
+      //      ::file::buffer_sp file = App(papp).file().get_file(strFile, ::file::mode_create | ::file::mode_write | ::file::type_binary | ::file::defer_create_directory);
+
+      //      if (file.is_set())
+      //      {
+
+      //         ::file::byte_ostream ostream(file);
+
+      //         ostream << *pdib;
+
+      //      }
+
+      //   }
+      //   catch (...)
+      //   {
+      //   }
+      //}
+
+      return true;
+
+   }
 
    bool imaging::load_from_file(::draw2d::dib * pdib,var varFile,bool bCache,::aura::application * papp)
    {
@@ -7279,6 +7402,46 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
 
       //if (!from(pdib, spgraphics, pfi, true, papp))
       if(!from(pdib,NULL,pfi,true,papp))
+         return false;
+
+      return true;
+#endif
+      return true;
+   }
+
+
+
+   bool imaging::read_from_file(::visual::dib_sp::array * pdiba, ::file::stream_buffer *  pfile, ::aura::application * papp)
+   {
+
+      if (papp == NULL)
+         papp = get_app();
+
+      if (!LoadImageFile(pdiba, pfile, papp))
+         return false;
+
+      return true;
+
+#ifdef AXIS_FREEIMAGE
+      FIBITMAP * pfi = LoadImageFile(pfile, papp);
+
+      if (pfi == NULL)
+         return false;
+
+      /*synch_lock ml(&user_mutex());
+
+      #if !defined(LINUX) && !defined(APPLEOS)
+
+      single_lock slDc(System.m_pmutexDc, true);
+
+      #endif
+
+      ::draw2d::graphics_sp spgraphics(allocer());
+
+      spgraphics->CreateCompatibleDC(NULL);*/
+
+      //if (!from(pdib, spgraphics, pfi, true, papp))
+      if (!from(pdib, NULL, pfi, true, papp))
          return false;
 
       return true;

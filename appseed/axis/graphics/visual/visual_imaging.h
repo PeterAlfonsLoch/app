@@ -303,6 +303,7 @@ public:
       HRSRC hRsrc,
       bool bMono = false);*/
 
+   virtual bool LoadImageFile(::visual::dib_sp::array * pdiba, var varFile, ::aura::application * papp);
    virtual bool LoadImageFile(::draw2d::dib * pdib, var varFile, ::aura::application * papp);
    virtual bool LoadImageSync(::draw2d::dib * pdib, const char * lpcszImageFilePath, ::aura::application * papp);
 
@@ -331,6 +332,9 @@ public:
    virtual ::draw2d::bitmap_sp LoadImageSync(const char * lpcszImageFilePath, ::aura::application * papp);
    //virtual void SaveJpeg(const char * lpcszFile, ::draw2d::bitmap_sp pbitmap);
    //virtual void SavePng(const char * lpcszFile, ::draw2d::bitmap_sp pbitmap);
+
+   bool load_from_file(::visual::dib_sp::array * pdiba, var varFile, bool bCache = true, ::aura::application * papp = NULL);
+   bool read_from_file(::visual::dib_sp::array * pdiba, ::file::stream_buffer * buffer, ::aura::application * papp = NULL);
 
    bool load_from_file(::draw2d::dib * pdib, var varFile, bool bCache = true, ::aura::application * papp = NULL);
    bool load_from_matter(::draw2d::dib * pdib, var varFile, ::aura::application * papp = NULL);

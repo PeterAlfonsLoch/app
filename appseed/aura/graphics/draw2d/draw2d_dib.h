@@ -66,6 +66,7 @@ namespace draw2d
 
       };
 
+
       BITMAPINFO        m_info;
       COLORREF *        m_pcolorref;
       class ::size      m_size;
@@ -77,6 +78,9 @@ namespace draw2d
       point             m_pt;
       double            m_dFontFactor;
       e_alpha_mode      m_ealphamode;
+      
+
+
 
       static float Cosines[360];
       static float Sines[360];

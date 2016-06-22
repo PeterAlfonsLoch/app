@@ -238,6 +238,7 @@ namespace draw2d
    bool dib::to(::draw2d::graphics * pgraphics, point pt, class size size, point ptSrc)
    {
 
+
       UNREFERENCED_PARAMETER(pgraphics);
       UNREFERENCED_PARAMETER(pt);
       UNREFERENCED_PARAMETER(size);
@@ -5007,7 +5008,6 @@ error:
       nsvgDelete(image);
 
    }
-
 
 
 } // namespace draw2d
