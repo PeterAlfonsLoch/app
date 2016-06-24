@@ -22,8 +22,7 @@ bool gif_load_frame(::draw2d::dib * pdibCompose, ::visual::dib_sp::array * pdiba
    
    }
 
-
-   //visual::fastblur f(pointer->m_dib->allocer());
+   pointer->m_bTransparent = pdiba->m_bTransparent;
 
    if (pdiba->m_bTransparent)
    {

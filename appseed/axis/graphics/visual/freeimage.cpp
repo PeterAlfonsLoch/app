@@ -288,17 +288,11 @@ bool freeimage_load_diba_frame(::draw2d::dib * pdibCompose, ::visual::dib_sp::ar
 
    RGBQUAD quad;
 
-   //if (iFrame <= 0)
-   //{
-   //   pdiba->m_iTransparentIndex = transparentIndex;
-   //}
-   //else
-   //{
-   //   transparentIndex =pdiba->m_iTransparentIndex;
-   //}
    if (FreeImage_GetBackgroundColor(pfi, &quad))
    {
+
       output_debug_string("has background color");
+
    }
 
    int iScan = FreeImage_GetPitch(pfi);
