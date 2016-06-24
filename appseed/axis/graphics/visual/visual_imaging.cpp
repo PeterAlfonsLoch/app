@@ -1,6 +1,6 @@
 //#include "framework.h"
-//#include "freeimage/Source/FreeImage.h"
-//#include "visual_FreeImageFileProc.h"
+#include "freeimage/Source/FreeImage.h"
+#include "visual_FreeImageFileProc.h"
 #ifdef WINDOWSEX
 
 #undef new
@@ -19,6 +19,8 @@
 //#include <Shcore.h>
 
 #endif
+
+bool freeimage_load_diba_from_file(::visual::dib_sp::array * pdiba, ::file::buffer_sp, ::aura::application * papp);
 
 bool windows_load_diba_from_file(::visual::dib_sp::array * pdiba, ::file::buffer_sp, ::aura::application * papp);
 bool windows_load_dib_from_file(::draw2d::dib * pdib,::file::buffer_sp,::aura::application * papp);
@@ -127,7 +129,7 @@ imaging::~imaging()
 //}
 
 
-#ifndef  WINDOWS
+//#ifndef  METROWIN
 
 
 FIBITMAP * imaging::LoadImageFile(var varFile,::aura::application * papp)
@@ -161,7 +163,7 @@ void imaging::SavePng(const char * lpcszFile,FIBITMAP *dib,bool bUnload)
 
 #else
 
-   if(FreeImage_Save(FIF_PNG,dib,lpcszFile,0)) {
+   if(FreeImage_Save(FreeImage_GetFIFFromFormat("PNG"),dib,lpcszFile,0)) {
       //
    }
    if(bUnload)
@@ -318,7 +320,7 @@ FIBITMAP * imaging::dib_to_FI(::draw2d::dib * pdib)
       
       memcpy(
              &((byte *)pdst)[iStrideDst * (pdib->m_size.cy - i - 1)],
-             &((byte *)psrc)[pbi->bmiHeader.biWidth * sizeof(COLORREF) * i],
+             &((byte *)psrc)[FreeImage_GetInfo(fi)->bmiHeader.biWidth * sizeof(COLORREF) * i],
              iStrideDst);
       
    }
@@ -435,7 +437,7 @@ FIBITMAP * imaging::dib_to_FI(::draw2d::dib * pdib)
 
 
 
-   dib.from(pgraphics,pFreeImage,false);
+   from(dib, pgraphics,pFreeImage,false);
 
 
    return dib->detach_bitmap();
@@ -777,7 +779,7 @@ return hBitmapSource;
 //*/
 
 
-#endif // WINDOWSEX
+//#endif // WINDOWSEX
 
 
 bool imaging::LoadImageFile(::visual::dib_sp::array * pdiba, var varFile, ::aura::application * papp)
@@ -790,25 +792,26 @@ bool imaging::LoadImageFile(::visual::dib_sp::array * pdiba, var varFile, ::aura
    if (memfile->get_size() <= 0)
       return false;
 
-#ifdef WINDOWS
+//#ifdef WINDOWS
+//
+//   return windows_load_diba_from_file(pdiba, memfile, papp);
+//
+//
+//#else
+   return freeimage_load_diba_from_file(pdiba, memfile, papp);
+   //FIBITMAP * pfi = LoadImageFile(memfile);
 
-   return windows_load_diba_from_file(pdiba, memfile, papp);
+   //if (pfi == NULL)
+   //   return false;
 
+   //::draw2d::graphics_sp spgraphics(allocer());
 
-#else
-   FIBITMAP * pfi = LoadImageFile(memfile);
+   //spgraphics->CreateCompatibleDC(NULL);
 
-   if (pfi == NULL)
-      return false;
+   //if (!from(pdib, spgraphics, (FIBITMAP *)pfi, true))
+   //   return false;
 
-   ::draw2d::graphics_sp spgraphics(allocer());
-
-   spgraphics->CreateCompatibleDC(NULL);
-
-   if (!from(pdib, spgraphics, (FIBITMAP *)pfi, true))
-      return false;
-
-#endif
+//#endif
 
    return true;
 

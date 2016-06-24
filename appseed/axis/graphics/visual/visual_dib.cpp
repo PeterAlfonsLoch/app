@@ -20,7 +20,7 @@ namespace visual
    dib_sp::pointer::pointer()
    {
 
-      m_dwTime = 1000;
+      m_dwTime = 0;
 
    }
 
@@ -303,7 +303,6 @@ namespace visual
 
    void dib_sp::defer_update()
    {
-
       if (m_sparray.is_set() && m_sparray->get_count() > 0 && m_sparray->m_dwTotal > 0)
       {
 
@@ -345,7 +344,7 @@ namespace visual
             for (index i = 0; i < m_sparray->get_count(); i++)
             {
 
-               dwT += m_sparray->element_at(i).m_dwTime;
+               dwT += m_sparray->element_at(i)->m_dwTime;
 
                if (dwTime < dwT)
                {
@@ -360,15 +359,35 @@ namespace visual
 
          }
 
-         for (index iFrame = m_sparray->m_iLastFrame + 1; iFrame <= iCurrentFrame; iFrame++)
+         /*    for (index iFrame = m_sparray->m_iLastFrame + 1; iFrame <= iCurrentFrame; iFrame++)
+             {
+
+                if (m_sparray->element_at(iFrame).m_dwTime <= 0)
+                {
+                   output_debug_string("0 delay frame");
+                }
+                else
+                {
+
+                   dispose_current_frame();
+                   overlay_frame(iFrame);
+                }
+
+                m_sparray->m_iLastFrame = iFrame;
+
+             }
+
+
+    */
+
+         if (m_sparray->m_iLastFrame != iCurrentFrame)
          {
 
-            dispose_current_frame();
-            overlay_frame(iFrame);
-            m_sparray->m_iLastFrame = iFrame;
+            m_sparray->m_iLastFrame = iCurrentFrame;
+
+            m_p->from(m_sparray->element_at(iCurrentFrame)->m_dib);
 
          }
-
 
       }
 
@@ -377,6 +396,8 @@ namespace visual
    bool dib_sp::pointer::to(::draw2d::graphics * pgraphics)
    {
 
+
+      pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
       if (!m_dib->to(pgraphics, m_rect.top_left(), m_rect.size()))
       {
@@ -389,26 +410,48 @@ namespace visual
 
    }
 
-
    bool dib_sp::dispose_current_frame()
    {
 
+      if (m_sparray->m_dibCompose.is_null())
+      {
+
+         m_sparray->m_dibCompose.alloc(m_p->allocer());
+
+      }
+
+      m_sparray->m_dibCompose->create(m_sparray->m_size);
+
       if (m_sparray->m_iLastFrame < 0)
+      {
+
+         // Draw background and increase loop count
+         m_sparray->m_dibCompose->Fill(m_sparray->m_crBack);
+
          return false;
+
+      }
 
       bool bOk = true;
 
-      switch (m_sparray->element_at(m_sparray->m_iLastFrame).m_edisposal)
+
+      switch (m_sparray->element_at(m_sparray->m_iLastFrame)->m_edisposal)
       {
       case dib_sp::pointer::disposal_undefined:
       case dib_sp::pointer::disposal_none:
          // We simply draw on the previous frames. Do nothing here.
          break;
       case dib_sp::pointer::disposal_background:
+      {
          // Dispose background
          // Clear the area covered by the current raw frame with background color
-         m_p->Fill(m_sparray->m_crBack);
-         break;
+         m_sparray->m_dibCompose->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
+         COLORREF crBack = m_sparray->m_crBack;
+         byte bAlpha = argb_get_a_value(crBack);
+
+         m_sparray->m_dibCompose->get_graphics()->FillSolidRect(m_sparray->element_at(m_sparray->m_iLastFrame)->m_rect, crBack);
+      }
+      break;
       case dib_sp::pointer::disposal_previous:
          // Dispose previous
          // We restore the previous composed frame first
@@ -425,21 +468,27 @@ namespace visual
    bool dib_sp::overlay_frame(int iFrame)
    {
 
-      // If starting a new animation loop
-      if (iFrame <= 0)
-      {
-         // Draw background and increase loop count
-         m_p->Fill(m_sparray->m_crBack);
+      //// If starting a new animation loop
+      //if (iFrame <= 0)
+      //{
 
-      }
+      //}
 
       // Produce the next frame
-      if (!m_sparray->element_at(iFrame).to(m_p->get_graphics()))
+      if (!m_sparray->element_at(iFrame)->to(m_sparray->m_dibCompose->get_graphics()))
       {
 
          return false;
 
       }
+
+      m_p->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
+
+      m_p->get_graphics()->BitBlt(0, 0, m_p->m_size.cx, m_p->m_size.cy,
+         m_sparray->m_dibCompose->get_graphics());
+
+
+
 
       return true;
 
@@ -639,12 +688,13 @@ HRESULT windows_GetBackgroundColor(::visual::dib_sp::array * pdiba,
    IWICImagingFactory * piFactory, IWICBitmapDecoder * piDecoder, IWICMetadataQueryReader *pMetadataQueryReader)
 {
    DWORD dwBGColor;
-   BYTE backgroundIndex = 0;
    WICColor rgColors[256];
    UINT cColorsCopied = 0;
    PROPVARIANT propVariant;
    PropVariantInit(&propVariant);
    comptr <IWICPalette> pWicPalette;
+
+   pdiba->m_backgroundIndex = 0;
 
    // If we have a global palette, get the palette and background color
    HRESULT hr = pMetadataQueryReader->GetMetadataByName(
@@ -667,7 +717,7 @@ HRESULT windows_GetBackgroundColor(::visual::dib_sp::array * pdiba,
          hr = (propVariant.vt != VT_UI1) ? E_FAIL : S_OK;
          if (SUCCEEDED(hr))
          {
-            backgroundIndex = propVariant.bVal;
+            pdiba->m_backgroundIndex = propVariant.bVal;
          }
          PropVariantClear(&propVariant);
       }
@@ -685,6 +735,7 @@ HRESULT windows_GetBackgroundColor(::visual::dib_sp::array * pdiba,
       hr = piDecoder->CopyPalette(pWicPalette);
    }
 
+
    if (SUCCEEDED(hr))
    {
       hr = pWicPalette->GetColors(
@@ -695,123 +746,237 @@ HRESULT windows_GetBackgroundColor(::visual::dib_sp::array * pdiba,
 
    if (SUCCEEDED(hr))
    {
+      pdiba->m_cra.set_size(cColorsCopied);
+      for (index i = 0; i < cColorsCopied; i++)
+      {
+         pdiba->m_cra[i] = rgColors[i];
+      }
       // Check whether background color is outside range 
-      hr = (backgroundIndex >= cColorsCopied) ? E_FAIL : S_OK;
+      hr = (pdiba->m_backgroundIndex >= cColorsCopied) ? E_FAIL : S_OK;
    }
 
    if (SUCCEEDED(hr))
    {
-      dwBGColor = rgColors[backgroundIndex];
+
+      dwBGColor = pdiba->m_cra[pdiba->m_backgroundIndex];
 
       pdiba->m_crBack = dwBGColor;
+
    }
 
    return hr;
+
 }
 
 
-HRESULT windows_GetRawFrame(::visual::dib_sp::pointer & pointer, IWICImagingFactory * piFactory, IWICBitmapDecoder * piDecoder, UINT uFrameIndex)
+#define unequal(a, b, n) ((a - n < b && b < a + n) || (b - n < a && a < b + n))
+
+
+HRESULT windows_GetRawFrame(
+   ::draw2d::dib * pdibCompose,
+   ::visual::dib_sp::array * pdiba,
+   IWICImagingFactory * piFactory,
+   IWICBitmapDecoder * piDecoder,
+   UINT uFrameIndex)
 {
 
-   comptr< IWICBitmapFrameDecode> pframe;
-   comptr<IWICMetadataQueryReader> pFrameMetadataQueryReader;
+   sp(::visual::dib_sp::pointer) pointer = pdiba->element_at(uFrameIndex);
+
+   comptr < IWICBitmapFrameDecode >    pframe;
+
+   comptr < IWICMetadataQueryReader >  pFrameMetadataQueryReader;
 
    PROPVARIANT propValue;
+
    PropVariantInit(&propValue);
 
-   if (!windows_load_dib_from_frame(pframe, pointer.m_dib, piFactory, piDecoder, uFrameIndex))
+   // Retrieve the current frame
+   HRESULT hr = piDecoder->GetFrame(uFrameIndex, &pframe.get());
+
+   comptr < IWICFormatConverter > pbitmap;
+
+   if (SUCCEEDED(hr))
+   {
+
+      hr = piFactory->CreateFormatConverter(&pbitmap.get());
+
+   }
+
+   if (SUCCEEDED(hr))
+   {
+
+      hr = pbitmap->Initialize(
+         pframe,
+         GUID_WICPixelFormat8bppIndexed,
+         WICBitmapDitherTypeNone,
+         nullptr,
+         0.f,
+         WICBitmapPaletteTypeCustom);
+
+   }
+
+   UINT width = 0;
+
+   UINT height = 0;
+
+   if (SUCCEEDED(hr))
+   {
+
+      hr = pbitmap->GetSize(&width, &height);
+
+   }
+
+   pointer->m_dib->create(width, height);
+
+   pointer->m_dib->map();
+
+   byte_array ba;
+
+   ba.allocate(pointer->m_dib->area());
+
+   hr = pbitmap->CopyPixels(NULL, pointer->m_dib->m_size.cx, ba.get_size(), (BYTE *)ba.get_data());
+
+   if (FAILED(hr))
    {
 
       return false;
 
    }
 
-   HRESULT hr;
-
-   // Get Metadata Query Reader from the frame
    hr = pframe->GetMetadataQueryReader(&pFrameMetadataQueryReader.get());
 
-   // Get the Metadata for the current frame
    if (SUCCEEDED(hr))
    {
+
       hr = pFrameMetadataQueryReader->GetMetadataByName(L"/imgdesc/Left", &propValue);
+
       if (SUCCEEDED(hr))
       {
+
          hr = (propValue.vt == VT_UI2 ? S_OK : E_FAIL);
+
          if (SUCCEEDED(hr))
          {
-            pointer.m_rect.left = static_cast<float>(propValue.uiVal);
+
+            pointer->m_rect.left = propValue.uiVal;
+
          }
+
          PropVariantClear(&propValue);
+
       }
+
    }
 
    if (SUCCEEDED(hr))
    {
+
       hr = pFrameMetadataQueryReader->GetMetadataByName(L"/imgdesc/Top", &propValue);
+
       if (SUCCEEDED(hr))
       {
+
          hr = (propValue.vt == VT_UI2 ? S_OK : E_FAIL);
+
          if (SUCCEEDED(hr))
          {
-            pointer.m_rect.top = static_cast<float>(propValue.uiVal);
+
+            pointer->m_rect.top = propValue.uiVal;
+
          }
+
          PropVariantClear(&propValue);
+
       }
+
    }
 
    if (SUCCEEDED(hr))
    {
+
       hr = pFrameMetadataQueryReader->GetMetadataByName(L"/imgdesc/Width", &propValue);
+
       if (SUCCEEDED(hr))
       {
+
          hr = (propValue.vt == VT_UI2 ? S_OK : E_FAIL);
+
          if (SUCCEEDED(hr))
          {
-            pointer.m_rect.right = static_cast<float>(propValue.uiVal)
-               + pointer.m_rect.left;
+
+            pointer->m_rect.right = propValue.uiVal + pointer->m_rect.left;
+
          }
+
          PropVariantClear(&propValue);
+
       }
+
    }
 
    if (SUCCEEDED(hr))
    {
+
       hr = pFrameMetadataQueryReader->GetMetadataByName(L"/imgdesc/Height", &propValue);
+
       if (SUCCEEDED(hr))
       {
+
          hr = (propValue.vt == VT_UI2 ? S_OK : E_FAIL);
+
          if (SUCCEEDED(hr))
          {
-            pointer.m_rect.bottom = static_cast<float>(propValue.uiVal)
-               + pointer.m_rect.top;
+
+            pointer->m_rect.bottom = propValue.uiVal + pointer->m_rect.top;
+
          }
+
          PropVariantClear(&propValue);
+
       }
+
    }
 
    if (SUCCEEDED(hr))
    {
+
       // Get delay from the optional Graphic Control Extension
       if (SUCCEEDED(pFrameMetadataQueryReader->GetMetadataByName(
          L"/grctlext/Delay",
          &propValue)))
       {
+
          hr = (propValue.vt == VT_UI2 ? S_OK : E_FAIL);
+
          if (SUCCEEDED(hr))
          {
+
             UINT ui;
+
             // Convert the delay retrieved in 10 ms units to a delay in 1 ms units
             hr = UIntMult(propValue.uiVal, 10, &ui);
-            pointer.m_dwTime = ui;
+
+            pointer->m_dwTime = ui;
+
          }
+
          PropVariantClear(&propValue);
+
       }
       else
       {
+
          // Failed to get delay from graphic control extension. Possibly a
          // single frame image (non-animated gif)
-         //m_uFrameDelay = 0;
+         pointer->m_dwTime = 0;
+
+      }
+
+      if (pointer->m_dwTime <= 0)
+      {
+
+         output_debug_string("0 delay");
+
       }
 
       if (SUCCEEDED(hr))
@@ -823,32 +988,1246 @@ HRESULT windows_GetRawFrame(::visual::dib_sp::pointer & pointer, IWICImagingFact
          // This will defeat the purpose of using zero delay intermediate frames in 
          // order to preserve compatibility. If this is removed, the zero delay 
          // intermediate frames will not be visible.
-         if (pointer.m_dwTime < 90)
+         //if (pointer.m_dwTime < 90)
          {
-            pointer.m_dwTime = 90;
+            // pointer.m_dwTime = 90;
          }
+
       }
+
    }
 
    if (SUCCEEDED(hr))
    {
+
       if (SUCCEEDED(pFrameMetadataQueryReader->GetMetadataByName(
          L"/grctlext/Disposal",
          &propValue)))
       {
+
          hr = (propValue.vt == VT_UI1) ? S_OK : E_FAIL;
+
          if (SUCCEEDED(hr))
          {
-            pointer.m_edisposal = (::visual::dib_sp::pointer::e_disposal) propValue.bVal;
+
+            pointer->m_edisposal = (::visual::dib_sp::pointer::e_disposal) propValue.bVal;
+
          }
+
       }
       else
       {
+
          // Failed to get the disposal method, use default. Possibly a 
          // non-animated gif.
-         pointer.m_edisposal = ::visual::dib_sp::pointer::disposal_undefined;
+         pointer->m_edisposal = ::visual::dib_sp::pointer::disposal_undefined;
+
       }
+
    }
+
+   BYTE transparentIndex = 0;
+
+   hr = S_OK;
+
+   if (SUCCEEDED(hr))
+   {
+
+      hr = pFrameMetadataQueryReader->GetMetadataByName(
+         L"/grctlext/TransparencyFlag",
+         &propValue);
+
+      if (SUCCEEDED(hr))
+      {
+
+         hr = (propValue.vt != VT_BOOL) ? E_FAIL : S_OK;
+
+         if (SUCCEEDED(hr))
+         {
+
+            pointer->m_bTransparent = propValue.boolVal != FALSE;
+
+         }
+
+         PropVariantClear(&propValue);
+
+      }
+
+   }
+
+   if (pointer->m_bTransparent)
+   {
+
+      if (SUCCEEDED(hr))
+      {
+
+         hr = pFrameMetadataQueryReader->GetMetadataByName(
+            L"/grctlext/TransparentColorIndex",
+            &propValue);
+
+         if (SUCCEEDED(hr))
+         {
+
+            hr = (propValue.vt != VT_UI1) ? E_FAIL : S_OK;
+
+            if (SUCCEEDED(hr))
+            {
+
+               transparentIndex = propValue.bVal;
+
+            }
+
+            PropVariantClear(&propValue);
+
+         }
+
+      }
+
+   }
+
+   if (SUCCEEDED(hr))
+   {
+
+      hr = (transparentIndex >= pdiba->m_cra.get_count()) ? E_FAIL : S_OK;
+
+   }
+
+   if (SUCCEEDED(hr))
+   {
+
+      pointer->m_crTransparent = pdiba->m_cra[transparentIndex];
+
+   }
+   else
+   {
+
+      pointer->m_crTransparent = ARGB(255, 255, 255, 255);
+
+   }
+
+   bool bTransparent;
+
+   COLORREF cr;
+
+   COLORREF crBack = 0;
+
+   if (pointer->m_rect.area() == pdiba->m_size.area())
+   {
+      
+      ::count c = 0;
+
+      int64_t iR = 0;
+      
+      int64_t iG = 0;
+      
+      int64_t iB = 0;
+
+      int iLight = 0;
+
+      int iDark = 0;
+
+      // Roughly detect colors on transparency borders...
+
+      // ... first, at horizontal orientation...
+
+      for (index y = 0; y < pointer->m_dib->m_size.cy; y++)
+      {
+
+         bTransparent = true;
+
+         cr = 0;
+
+         for (index x = 0; x < pointer->m_dib->m_size.cx; x++)
+         {
+
+            index iIndex = ba[x + y * pointer->m_dib->m_size.cx];
+
+            index iNextIndex = -1;
+
+            if (x < pointer->m_dib->m_size.cx - 1)
+            {
+
+               iNextIndex = ba[x + y * pointer->m_dib->m_size.cx + 1];
+
+            }
+
+            if (iIndex >= pdiba->m_cra.get_count())
+            {
+            
+               continue;
+
+            }
+
+            if (bTransparent)
+            {
+
+               if (iIndex == transparentIndex)
+               {
+
+                  pdiba->m_bTransparent = true;
+
+                  continue;
+
+               }
+               else
+               {
+
+                  cr = pdiba->m_cra[iIndex];
+
+                  bTransparent = false;
+
+               }
+
+            }
+            else
+            {
+
+               if (iNextIndex == transparentIndex)
+               {
+
+                  cr = pdiba->m_cra[iIndex];
+
+                  bTransparent = true;
+
+               }
+               else
+               {
+
+                  cr = pdiba->m_cra[iIndex];
+
+                  continue;
+
+               }
+
+            }
+
+            iR += argb_get_r_value(cr);
+
+            iG += argb_get_g_value(cr);
+
+            iB += argb_get_b_value(cr);
+            c++;
+
+         }
+
+      }
+
+      // ... then, at vertical orientation...
+
+      for (index x = 0; x < pointer->m_dib->m_size.cx; x++)
+      {
+      
+         bTransparent = true;
+         
+         cr = 0;
+
+         for (index y = 0; y < pointer->m_dib->m_size.cy; y++)
+         {
+
+            index iIndex = ba[x + y * pointer->m_dib->m_size.cx];
+
+            index iNextIndex = -1;
+
+            if (y < pointer->m_dib->m_size.cy - 1)
+            {
+
+               iNextIndex = ba[x + (y + 1) * pointer->m_dib->m_size.cx];
+
+            }
+
+            if (iIndex >= pdiba->m_cra.get_count())
+            {
+               
+               continue;
+
+            }
+
+            if (bTransparent)
+            {
+
+               if (iIndex == transparentIndex)
+               {
+
+                  continue;
+
+               }
+               else
+               {
+
+                  cr = pdiba->m_cra[iIndex];
+
+                  bTransparent = false;
+
+               }
+
+            }
+            else
+            {
+
+               if (iNextIndex == transparentIndex)
+               {
+
+                  cr = pdiba->m_cra[iIndex];
+
+                  bTransparent = true;
+
+               }
+               else
+               {
+
+                  cr = pdiba->m_cra[iIndex];
+
+                  continue;
+
+               }
+
+            }
+
+            iR += argb_get_r_value(cr);
+
+            iG += argb_get_g_value(cr);
+
+            iB += argb_get_b_value(cr);
+
+            c++;
+
+         }
+
+      }
+
+      // and if detected transparency, roughly calculate if average border color is dark or light.
+
+      if (c <= 0)
+      {
+
+         crBack = ARGB(255, 255, 255, 255);
+
+         if (uFrameIndex <= 0)
+         {
+
+            pdiba->m_bTransparent = false;
+
+         }
+
+      }
+      else
+      {
+
+         double dMin = MIN(MIN(iR / c, iG / c), iB / c);
+
+         double dMax = MAX(MAX(iR / c, iG / c), iB / c);
+
+         if ((dMin + dMax) / 2.0 > 127.0) // Light
+         {
+
+            crBack = ARGB(255, 255, 255, 255);
+
+         }
+         else
+         {
+
+            crBack = ARGB(255, 0, 0, 0);
+
+         }
+
+         if (uFrameIndex <= 0)
+         {
+
+            pdiba->m_bTransparent = true;
+
+         }
+
+      }
+
+      pdiba->m_crTransparent = crBack;
+
+      //pdiba->m_iTransparentIndex = transparentIndex;
+
+   }
+
+
+
+   if (pdiba->m_bTransparent)
+   {
+
+
+      if (pointer->m_bTransparent)
+      {
+
+         crBack = pointer->m_crTransparent;
+
+         pdiba->m_iTransparentIndex = transparentIndex;
+
+         pdiba->m_bTransparent = true;
+
+      }
+      else
+      {
+
+         crBack = pointer->m_crTransparent;
+
+         size s = pointer->m_dib->m_size;
+
+         int cx = s.cx;
+
+         int cy = s.cy;
+
+         if (pointer->m_rect.size() == pdiba->m_size)
+         {
+
+            if (ba[0] == ba[cx - 1]) // && pointer->m_rect.left == 0 && pointer->m_rect.top == 0 && pointer->m_rect.right == pdiba->m_size.cx)
+            {
+
+               transparentIndex = ba[0];
+
+               pdiba->m_iTransparentIndex = transparentIndex;
+
+            }
+            else if (ba[cx * cy - 1] == ba[cx * (cy - 1)])// && pointer->m_rect.left == 0 && pointer->m_rect.bottom == pdiba->m_size.cy && pointer->m_rect.right == pdiba->m_size.cx)
+            {
+
+               transparentIndex = ba[cx * cy - 1];
+
+               pdiba->m_iTransparentIndex = transparentIndex;
+
+            }
+            else
+            {
+
+               transparentIndex = pdiba->m_iTransparentIndex;
+
+            }
+
+         }
+         else
+         {
+
+            transparentIndex = pdiba->m_iTransparentIndex;
+
+         }
+
+      }
+
+      double dA1 = argb_get_a_value(crBack);
+
+      double dR1 = argb_get_r_value(crBack);
+
+      double dG1 = argb_get_g_value(crBack);
+
+      double dB1 = argb_get_b_value(crBack);
+
+      bool bUnequal = true;
+
+      double dUnequal = 127.0;
+
+      double dUnequalScaleDown = 1.00;
+
+      double dUnequalRate = 1.00;
+
+      int w = pointer->m_dib->m_iScan / sizeof(COLORREF);
+
+      int i = 0;
+
+      index x;
+
+      index y;
+
+      visual::fastblur f(pointer->m_dib->allocer());
+
+      {
+
+         f->create(pdibCompose->m_size);
+
+         f->channel_copy(::visual::rgba::channel_red, ::visual::rgba::channel_alpha, pdibCompose);
+
+      }
+
+      for (y = 0; y < pointer->m_dib->m_size.cy; y++)
+      {
+
+         bTransparent = pointer->m_rect.left == 0; // borders transparent?
+
+         for (x = 0; x < pointer->m_dib->m_size.cx; x++)
+         {
+
+            index iIndex = ba[y * pointer->m_dib->m_size.cx + x];
+
+            index iPixel = y * w + x;
+
+            if (iIndex >= pdiba->m_cra.get_count())
+            {
+
+               pointer->m_dib->m_pcolorref[iPixel] = 0;
+
+               continue;
+
+            }
+
+            cr = pdiba->m_cra[iIndex];
+
+            double dA = argb_get_a_value(cr);
+
+            if (dA == 0.0)
+            {
+               output_debug_string("zero alpha");
+            }
+            else if (dA == 255.0)
+            {
+               output_debug_string("opaque");
+            }
+            else 
+            {
+               output_debug_string("translucent!!!");
+            }
+
+            double dR = argb_get_r_value(cr);
+
+            double dG = argb_get_g_value(cr);
+
+            double dB = argb_get_b_value(cr);
+
+            if (iIndex == transparentIndex)
+            {
+
+               bTransparent = true;
+
+               pointer->m_dib->m_pcolorref[iPixel] = 0;
+
+               continue;
+
+            }
+
+            if (bUnequal && bTransparent)
+            {
+
+               if (unequal(dR, dR1, dUnequal) && unequal(dG, dG1, dUnequal) && unequal(dB, dB1, dUnequal))
+               {
+
+                  double dA2;
+                  
+                  if (dR1 < 127)
+                  {
+
+                     dA2 = MIN(dR, MIN(dG, dB)) * dUnequalRate;
+
+                  }
+                  else
+                  {
+
+                     dA2 = (255.0 - MAX(dR, MAX(dG, dB))) * dUnequalRate;
+
+                  }
+
+                  f->m_pcolorref[iPixel] = (byte)(dA * dA2 / 255.0);
+                  pointer->m_dib->m_pcolorref[iPixel] = ARGB(
+                     (byte)255,
+                     (byte)dR,
+                     (byte)dG,
+                     (byte)dB);
+
+                  continue;
+
+               }
+               else
+               {
+
+                  bTransparent = false;
+
+               }
+
+            }
+            else
+            {
+
+               bTransparent = false;
+
+            }
+
+            f->m_pcolorref[iPixel] = (byte)(dA);
+            pointer->m_dib->m_pcolorref[iPixel] = ARGB((byte)255, (byte)dR, (byte)dG, (byte)dB);
+
+         }
+
+         bTransparent = pointer->m_rect.right == pdiba->m_size.cx; // borders transparent?
+
+         x--;
+
+         for (; x >= 0; x--)
+         {
+
+            index iPixel = y * w + x;
+
+            cr = pointer->m_dib->m_pcolorref[iPixel];
+
+            double dA = argb_get_a_value(cr);
+
+            double dR = argb_get_r_value(cr);
+
+            double dG = argb_get_g_value(cr);
+
+            double dB = argb_get_b_value(cr);
+
+            if (dA == 0.0)
+            {
+
+               bTransparent = true;
+
+               continue;
+
+            }
+
+            if (bUnequal && bTransparent)
+            {
+
+               if (unequal(dR, dR1, dUnequal) && unequal(dG, dG1, dUnequal) && unequal(dB, dB1, dUnequal))
+               {
+
+                  double dA2;
+
+                  if (dR1 < 127)
+                  {
+
+                     dA2 = MIN(dR, MIN(dG, dB)) * dUnequalRate;
+
+                  }
+                  else
+                  {
+
+                     dA2 = (255.0 - MAX(dR, MAX(dG, dB))) * dUnequalRate;
+
+                  }
+
+                  f->m_pcolorref[iPixel] = (byte)(dA * dA2 / 255.0);
+                  pointer->m_dib->m_pcolorref[iPixel] = ARGB(
+                     (byte)255,
+                     (byte)dR,
+                     (byte)dG,
+                     (byte)dB);
+
+                  continue;
+
+               }
+               else
+               {
+
+                  bTransparent = false;
+
+               }
+
+            }
+            else
+            {
+
+               bTransparent = false;
+
+            }
+
+            f->m_pcolorref[iPixel] = (byte)(dA);
+            pointer->m_dib->m_pcolorref[iPixel] = ARGB((byte)255, (byte)dR, (byte)dG, (byte)dB);
+
+         }
+
+      }
+
+
+      dUnequal *= dUnequalScaleDown;
+
+
+      for (x = 0; x < pointer->m_dib->m_size.cx; x++)
+      {
+
+         bTransparent = pointer->m_rect.top == 0; // borders transparent?
+
+         for (y = 0; y < pointer->m_dib->m_size.cy; y++)
+         {
+
+            index iPixel = y * w + x;
+
+            cr = pointer->m_dib->m_pcolorref[iPixel];
+
+            double dA = argb_get_a_value(cr);
+
+            double dR = argb_get_r_value(cr);
+
+            double dG = argb_get_g_value(cr);
+
+            double dB = argb_get_b_value(cr);
+
+            if (dA == 0.0)
+            {
+
+               bTransparent = true;
+
+               continue;
+
+            }
+
+            if (bUnequal && bTransparent)
+            {
+
+               if (unequal(dR, dR1, dUnequal) && unequal(dG, dG1, dUnequal) && unequal(dB, dB1, dUnequal))
+               {
+
+                  double dA2;
+
+                  if (dR1 < 127)
+                  {
+
+                     dA2 = MIN(dR, MIN(dG, dB)) * dUnequalRate;
+
+                  }
+                  else
+                  {
+
+                     dA2 = (255.0 - MAX(dR, MAX(dG, dB))) * dUnequalRate;
+
+                  }
+
+                  f->m_pcolorref[iPixel] = (byte)(dA * dA2 / 255.0);
+                  pointer->m_dib->m_pcolorref[iPixel] = ARGB(
+                     (byte)255,
+                     (byte)dR,
+                     (byte)dG,
+                     (byte)dB);
+
+                  continue;
+
+               }
+               else
+               {
+
+                  bTransparent = false;
+
+               }
+
+            }
+            else
+            {
+
+               bTransparent = false;
+
+            }
+
+            f->m_pcolorref[iPixel] = (byte)(dA);
+            pointer->m_dib->m_pcolorref[iPixel] = ARGB((byte)255, (byte)dR, (byte)dG, (byte)dB);
+
+         }
+
+         bTransparent = pointer->m_rect.bottom == pdiba->m_size.cy; // borders transparent?
+
+         y--;
+
+         for (; y >= 0; y--)
+         {
+
+            index iPixel = y * w + x;
+
+            cr = pointer->m_dib->m_pcolorref[iPixel];
+
+            double dA = argb_get_a_value(cr);
+
+            double dR = argb_get_r_value(cr);
+
+            double dG = argb_get_g_value(cr);
+
+            double dB = argb_get_b_value(cr);
+
+            if (dA == 0.0)
+            {
+
+               bTransparent = true;
+
+               continue;
+
+            }
+
+            if (bUnequal && bTransparent)
+            {
+
+               if (unequal(dR, dR1, dUnequal) && unequal(dG, dG1, dUnequal) && unequal(dB, dB1, dUnequal))
+               {
+
+                  double dA2;
+
+                  if (dR1 < 127)
+                  {
+
+                     dA2 = MIN(dR, MIN(dG, dB)) * dUnequalRate;
+
+                  }
+                  else
+                  {
+
+                     dA2 = (255.0 - MAX(dR, MAX(dG, dB))) * dUnequalRate;
+
+                  }
+
+                  f->m_pcolorref[iPixel] = (byte)(dA * dA2 / 255.0);
+                  pointer->m_dib->m_pcolorref[iPixel] = ARGB(
+                     (byte)255,
+                     (byte)dR,
+                     (byte)dG,
+                     (byte)dB);
+
+                  continue;
+
+               }
+               else
+               {
+
+                  bTransparent = false;
+
+               }
+
+            }
+            else
+            {
+
+               bTransparent = false;
+
+            }
+
+            f->m_pcolorref[iPixel] = (byte)(dA);
+            pointer->m_dib->m_pcolorref[iPixel] = ARGB((byte)255, (byte)dR, (byte)dG, (byte)dB);
+
+         }
+
+      }
+
+
+
+      dUnequal *= dUnequalScaleDown;
+
+
+
+      for (y = 0; y < pointer->m_dib->m_size.cy; y++)
+      {
+
+         bTransparent = pointer->m_rect.left == 0; // borders transparent?
+
+         for (x = 0; x < pointer->m_dib->m_size.cx && y + x < pointer->m_dib->m_size.cy; x++)
+         {
+
+            index iPixel = (y + x) * w + x;
+
+            cr = pointer->m_dib->m_pcolorref[iPixel];
+
+            double dA = argb_get_a_value(cr);
+
+            double dR = argb_get_r_value(cr);
+
+            double dG = argb_get_g_value(cr);
+
+            double dB = argb_get_b_value(cr);
+
+            if (dA == 0.0)
+            {
+
+               bTransparent = true;
+
+               continue;
+
+            }
+
+            if (bUnequal && bTransparent)
+            {
+
+               if (unequal(dR, dR1, dUnequal) && unequal(dG, dG1, dUnequal) && unequal(dB, dB1, dUnequal))
+               {
+
+                  double dA2;
+
+                  if (dR1 < 127)
+                  {
+
+                     dA2 = MIN(dR, MIN(dG, dB)) * dUnequalRate;
+
+                  }
+                  else
+                  {
+
+                     dA2 = (255.0 - MAX(dR, MAX(dG, dB))) * dUnequalRate;
+
+                  }
+
+                  f->m_pcolorref[iPixel] = (byte)(dA * dA2 / 255.0);
+                  pointer->m_dib->m_pcolorref[iPixel] = ARGB(
+                     (byte)255,
+                     (byte)dR,
+                     (byte)dG,
+                     (byte)dB);
+
+                  continue;
+
+               }
+               else
+               {
+
+                  bTransparent = false;
+
+               }
+
+            }
+            else
+            {
+
+               bTransparent = false;
+
+            }
+
+            f->m_pcolorref[iPixel] = (byte)(dA);
+            pointer->m_dib->m_pcolorref[iPixel] = ARGB((byte)255, (byte)dR, (byte)dG, (byte)dB);
+
+         }
+
+         bTransparent = pointer->m_rect.right == pdiba->m_size.cx; // borders transparent?
+
+         x--;
+
+         for (; x >= 0; x--)
+         {
+            
+            index iPixel = (y + x) * w + x;
+
+            cr = pointer->m_dib->m_pcolorref[iPixel];
+
+            double dA = argb_get_a_value(cr);
+
+            double dR = argb_get_r_value(cr);
+
+            double dG = argb_get_g_value(cr);
+
+            double dB = argb_get_b_value(cr);
+
+            if (dA == 0.0)
+            {
+
+               bTransparent = true;
+
+               continue;
+
+            }
+
+            if (bUnequal && bTransparent)
+            {
+
+               if (unequal(dR, dR1, dUnequal) && unequal(dG, dG1, dUnequal) && unequal(dB, dB1, dUnequal))
+               {
+
+                  double dA2;
+
+                  if (dR1 < 127)
+                  {
+
+                     dA2 = MIN(dR, MIN(dG, dB)) * dUnequalRate;
+
+                  }
+                  else
+                  {
+
+                     dA2 = (255.0 - MAX(dR, MAX(dG, dB))) * dUnequalRate;
+
+                  }
+
+                  f->m_pcolorref[iPixel] = (byte)(dA * dA2 / 255.0);
+                  pointer->m_dib->m_pcolorref[iPixel] = ARGB(
+                     (byte)255,
+                     (byte)dR,
+                     (byte)dG,
+                     (byte)dB);
+
+                  continue;
+
+               }
+               else
+               {
+
+                  bTransparent = false;
+
+               }
+
+            }
+            else
+            {
+
+               bTransparent = false;
+
+            }
+
+            f->m_pcolorref[iPixel] = (byte)(dA);
+            pointer->m_dib->m_pcolorref[iPixel] = ARGB((byte)255, (byte)dR, (byte)dG, (byte)dB);
+
+         }
+
+      }
+
+
+
+      dUnequal *= dUnequalScaleDown;
+
+
+
+      for (x = 0; x < pointer->m_dib->m_size.cx; x++)
+      {
+
+         bTransparent = pointer->m_rect.top == 0; // borders transparent?
+
+         for (y = 0; y < pointer->m_dib->m_size.cy && x-y >= 0; y++)
+         {
+
+            index iPixel = y * w + x - y;
+
+            cr = pointer->m_dib->m_pcolorref[iPixel];
+
+            double dA = argb_get_a_value(cr);
+
+            double dR = argb_get_r_value(cr);
+
+            double dG = argb_get_g_value(cr);
+
+            double dB = argb_get_b_value(cr);
+
+            if (dA == 0.0)
+            {
+
+               bTransparent = true;
+
+               continue;
+
+            }
+
+            if (bUnequal && bTransparent)
+            {
+
+               if (unequal(dR, dR1, dUnequal) && unequal(dG, dG1, dUnequal) && unequal(dB, dB1, dUnequal))
+               {
+
+                  double dA2;
+
+                  if (dR1 < 127)
+                  {
+
+                     dA2 = MIN(dR, MIN(dG, dB)) * dUnequalRate;
+
+                  }
+                  else
+                  {
+
+                     dA2 = (255.0 - MAX(dR, MAX(dG, dB))) * dUnequalRate;
+
+                  }
+
+                  f->m_pcolorref[iPixel] = (byte)(dA * dA2 / 255.0);
+                  pointer->m_dib->m_pcolorref[iPixel] = ARGB(
+                     (byte)255,
+                     (byte)dR,
+                     (byte)dG,
+                     (byte)dB);
+
+                  continue;
+
+               }
+               else
+               {
+
+                  bTransparent = false;
+
+               }
+
+            }
+            else
+            {
+
+               bTransparent = false;
+
+            }
+
+            f->m_pcolorref[iPixel] = (byte)(dA);
+            pointer->m_dib->m_pcolorref[iPixel] = ARGB((byte)255, (byte)dR, (byte)dG, (byte)dB);
+
+         }
+
+         bTransparent = pointer->m_rect.bottom == pdiba->m_size.cy; // borders transparent?
+
+         y--;
+
+         for (; y >= 0; y--)
+         {
+
+            index iPixel = y * w + x - y;
+
+            cr = pointer->m_dib->m_pcolorref[iPixel];
+
+            double dA = argb_get_a_value(cr);
+
+            double dR = argb_get_r_value(cr);
+
+            double dG = argb_get_g_value(cr);
+
+            double dB = argb_get_b_value(cr);
+
+            if (dA == 0.0)
+            {
+
+               bTransparent = true;
+
+               continue;
+
+            }
+
+            if (bUnequal && bTransparent)
+            {
+
+               if (unequal(dR, dR1, dUnequal) && unequal(dG, dG1, dUnequal) && unequal(dB, dB1, dUnequal))
+               {
+
+                  double dA2;
+
+                  if (dR1 < 127)
+                  {
+
+                     dA2 = MIN(dR, MIN(dG, dB)) * dUnequalRate;
+
+                  }
+                  else
+                  {
+
+                     dA2 = (255.0 - MAX(dR, MAX(dG, dB))) * dUnequalRate;
+
+                  }
+
+                  f->m_pcolorref[iPixel] = (byte)(dA * dA2 / 255.0);
+                  pointer->m_dib->m_pcolorref[iPixel] = ARGB(
+                     (byte)255,
+                     (byte)dR,
+                     (byte)dG,
+                     (byte)dB);
+
+                  continue;
+
+               }
+               else
+               {
+
+                  bTransparent = false;
+
+               }
+
+            }
+            else
+            {
+
+               bTransparent = false;
+
+            }
+
+            f->m_pcolorref[iPixel] = (byte)(dA);
+            pointer->m_dib->m_pcolorref[iPixel] = ARGB((byte)255, (byte)dR, (byte)dG, (byte)dB);
+
+         }
+
+      }
+
+
+
+      {
+
+         if (uFrameIndex > 0 && pdiba->element_at(uFrameIndex-1)->m_edisposal == ::visual::dib_sp::pointer::disposal_background)
+         {
+
+            pdibCompose->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
+
+            COLORREF crBack = pdiba->m_crBack;
+
+            byte bAlpha = argb_get_a_value(crBack);
+
+            if (bAlpha == 0)
+            {
+
+               crBack = 0;
+
+            }
+            else
+            {
+
+               output_debug_string("non zero alpha");
+
+            }
+
+            RECT r = pdiba->element_at(uFrameIndex - 1)->m_rect;
+
+            pdibCompose->get_graphics()->FillSolidRect(r, crBack);
+
+         }
+
+         pdibCompose->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_blend);
+
+         ::point pt = pointer->m_rect.top_left();
+
+         ::size sz = pointer->m_rect.size();
+
+         pdibCompose->get_graphics()->BitBlt(pt, sz, pointer->m_dib->get_graphics());
+
+         pointer->m_dib->from(pdibCompose);
+
+      }
+
+
+
+      //f.initialize(pointer->m_dib->m_size, 1);
+
+      //f->channel_invert(::visual::rgba::channel_red);
+
+      //f.blur();
+      //f.blur();
+      //f.blur();
+      //f.blur();
+      //f.blur();
+      //f.blur();
+
+      //f->channel_invert(::visual::rgba::channel_red);
+
+      pointer->m_dib->div_alpha();
+
+      pointer->m_dib->channel_copy(::visual::rgba::channel_alpha, ::visual::rgba::channel_red, f);
+
+      pointer->m_dib->mult_alpha();
+
+
+   }
+   else
+   {
+
+      int w = pointer->m_dib->m_iScan / sizeof(COLORREF);
+
+      for (index y = 0; y < pointer->m_rect.height(); y++)
+      {
+
+         for (index x = 0; x < pointer->m_rect.width(); x++)
+         {
+
+            index iIndex = ba[x + y * pointer->m_rect.width()];
+
+            if (iIndex >= pdiba->m_cra.get_count())
+            {
+
+               pointer->m_dib->m_pcolorref[y*w + x] = 0;
+
+               continue;
+
+            }
+
+            cr = pdiba->m_cra[ba[x + y * pointer->m_rect.width()]];
+
+            pointer->m_dib->m_pcolorref[y*w + x] = cr;
+
+         }
+
+      }
+
+   }
+
+   //pointer->m_dwTime = 1000;
 
    PropVariantClear(&propValue);
 
@@ -1062,17 +2441,25 @@ bool windows_load_diba_from_file(::visual::dib_sp::array * pdiba, ::file::buffer
 
       pdiba->m_dwTotal = 0;
 
+      ::draw2d::dib_sp dibCompose(papp->allocer());
+      
+      dibCompose->create(pdiba->m_size);
+      
+      dibCompose->Fill(0);
+
       for (index i = 0; i < cFrames; i++)
       {
-         ::visual::dib_sp::pointer & p = pdiba->element_at(i);
+         
+         pdiba->element_at(i) = canew(::visual::dib_sp::pointer());
 
-         p.m_dib.alloc(papp->allocer());
+         pdiba->element_at(i)->m_dib.alloc(papp->allocer());
 
-         windows_GetRawFrame(p, piFactory, decoder, i);
+         windows_GetRawFrame(dibCompose, pdiba, piFactory, decoder, i);
 
-         pdiba->m_dwTotal += p.m_dwTime;
+         pdiba->m_dwTotal += pdiba->element_at(i)->m_dwTime;
 
       }
+
    }
    catch (...)
    {
@@ -1149,7 +2536,7 @@ bool windows_load_dib_from_file(::draw2d::dib * pdib, ::file::buffer_sp pfile, :
    //}
    return true;
 
-}
+   }
 
 
 bool windows_write_dib_to_file(::file::buffer_sp pfile, ::draw2d::dib * pdib, ::visual::save_image * psaveimage, ::aura::application * papp)

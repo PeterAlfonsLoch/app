@@ -4,10 +4,10 @@
 
 #include <math.h>
 
-#ifndef WINDOWS
+//#ifndef WINDOWS
 #include "freeimage/Source/FreeImage.h"
 #include "graphics/visual/visual_FreeImageFileProc.h"
-#endif
+//#endif
 
 
 
@@ -43,9 +43,9 @@
 #include "visual_fastblur.cpp"
 #include "visual_font.cpp"
 #include "visual_font_central.cpp"
-#ifndef WINDOWS
+//#ifndef WINDOWS
 #include "visual_FreeImageFileProc.cpp"
-#endif
+//#endif
 #include "visual_glyph.cpp"
 #include "visual_glyph_set.cpp"
 #include "visual_graphics_extension.cpp"

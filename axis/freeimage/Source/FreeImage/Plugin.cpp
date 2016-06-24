@@ -36,7 +36,7 @@
 #include  "FreeImageFramework.h"
 //#include "Utilities.h"
 //#include "FreeImageIO.h"
-//#include "Plugin.h"
+#include "Plugin.h"
 
 //#include "../Metadata/FreeImageTag.h"
 
@@ -154,9 +154,9 @@ PluginList::AddNode(FI_InitProc init_proc, void *instance, const char *format, c
    // fill-in the plugin structure
    // note we have memset to 0, so all unset pointers should be NULL)
 
-   int iFormat = -1;
+   int iFormat = Size();
 
-   init_proc(plugin,(int *)&iFormat);
+   init_proc(plugin,iFormat);
 
    FREE_IMAGE_FORMAT f = (FREE_IMAGE_FORMAT) iFormat;
 
@@ -291,9 +291,9 @@ TagLib::instance();
 			The order used to initialize internal plugins below MUST BE the same order
 			as the one used to define the FREE_IMAGE_FORMAT enum.
 			*/
-			/*s_plugins->AddNode(InitBMP);
+			s_plugins->AddNode(InitBMP);
 			s_plugins->AddNode(InitICO);
-			s_plugins->AddNode(InitJPEG);
+			//s_plugins->AddNode(InitJPEG);
 			s_plugins->AddNode(InitJNG);
 			s_plugins->AddNode(InitKOALA);
 			s_plugins->AddNode(InitIFF);
@@ -304,7 +304,7 @@ TagLib::instance();
 			s_plugins->AddNode(InitPCX);
 			s_plugins->AddNode(InitPNM, NULL, "PGM", "Portable Greymap (ASCII)", "pgm", "^P2");
 			s_plugins->AddNode(InitPNM, NULL, "PGMRAW", "Portable Greymap (RAW)", "pgm", "^P5");
-			s_plugins->AddNode(InitPNG);
+			//s_plugins->AddNode(InitPNG);
 			s_plugins->AddNode(InitPNM, NULL, "PPM", "Portable Pixelmap (ASCII)", "ppm", "^P3");
 			s_plugins->AddNode(InitPNM, NULL, "PPMRAW", "Portable Pixelmap (RAW)", "ppm", "^P6");
 			s_plugins->AddNode(InitRAS);

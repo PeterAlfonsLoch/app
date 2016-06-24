@@ -41,7 +41,8 @@ namespace visual
 
 
 
-      class pointer
+      class pointer :
+         virtual public ::object
       {
       public:
 
@@ -57,6 +58,9 @@ namespace visual
          ::draw2d::dib_sp     m_dib;
          DWORD                m_dwTime;
          e_disposal           m_edisposal;
+         COLORREF             m_crTransparent;
+         bool                 m_bTransparent;
+         bool                 m_bLocalPalette;
 
          pointer();
          virtual ~pointer();
@@ -68,20 +72,27 @@ namespace visual
 
 
       class array :
-         virtual public ::array < pointer >
+         virtual public spa(pointer)
       {
       public:
 
 
-         DWORD          m_dwStart;
-         DWORD          m_dwTotal;
-         unsigned int   m_uiLoopCount; // 0 - infinite loop
-         unsigned int   m_uiLoop;
-         COLORREF       m_crBack;
-         ::size         m_sizeLogical;
-         ::size         m_size;
-         index          m_iLastFrame;
-         bool           m_bStart;
+         DWORD                m_dwStart;
+         DWORD                m_dwTotal;
+         unsigned int         m_uiLoopCount; // 0 - infinite loop
+         unsigned int         m_uiLoop;
+         int                  m_iTransparentIndex;
+         bool                 m_bTransparent;
+         COLORREF             m_crTransparent;
+         COLORREF             m_crBack;
+         BYTE                 m_backgroundIndex;
+         ::size               m_sizeLogical;
+         ::size               m_size;
+         index                m_iLastFrame;
+         bool                 m_bStart;
+         ::draw2d::dib_sp     m_dibCompose;
+         ::array <COLORREF>   m_cra;
+
 
          array();
          virtual ~array();

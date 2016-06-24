@@ -680,7 +680,7 @@ jpeg_read_jfxx(FIBITMAP *dib, const BYTE *dataptr, unsigned int datalen) {
 		{
 			// load the thumbnail
 			FIMEMORY* hmem = FreeImage_OpenMemory(const_cast<BYTE*>(data), remaining);
-			FIBITMAP* thumbnail = FreeImage_LoadFromMemory(FIF_JPEG, hmem);
+			FIBITMAP* thumbnail = FreeImage_LoadFromMemory(FreeImage_GetFIFFromFormat("JPEG"), hmem);
 			FreeImage_CloseMemory(hmem);
 			// store the thumbnail
 			FreeImage_SetThumbnail(dib, thumbnail);
@@ -968,7 +968,7 @@ jpeg_write_jfxx(j_compress_ptr cinfo, FIBITMAP *dib) {
 	// return the memory block only if its size is within JFXX marker size limit!
 	FIMEMORY *stream = FreeImage_OpenMemory();
 
-	if(FreeImage_SaveToMemory(FIF_JPEG, thumbnail, stream, JPEG_BASELINE)) {
+	if(FreeImage_SaveToMemory(FreeImage_GetFIFFromFormat("JPEG"), thumbnail, stream, JPEG_BASELINE)) {
 		// check that the memory block size is within JFXX marker size limit
 		FreeImage_SeekMemory(stream, 0, SEEK_END);
 		const long eof = FreeImage_TellMemory(stream);
@@ -1683,8 +1683,8 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 //   Init
 // ==========================================================
 extern "C"
-void FreeImage_InitPlugin_axis_image_jpeg(Plugin *plugin,int * format_id) {
-	s_format_id = *format_id = FIF_JPEG;
+void FreeImage_InitPlugin_axis_image_jpeg(Plugin *plugin,int format_id) {
+	s_format_id = format_id;
 
 	plugin->format_proc = Format;
 	plugin->description_proc = Description;

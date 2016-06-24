@@ -1235,7 +1235,7 @@ Read16( io, handle );
 
 			case jpeg:
 			{
-				dib = FreeImage_LoadFromHandle( FIF_JPEG, io, handle );
+				dib = FreeImage_LoadFromHandle(FreeImage_GetFIFFromFormat("JPEG"), io, handle );
 				break;
 			}
 

@@ -315,7 +315,7 @@ public:
 //
 //#else
 
-#ifndef WINDOWS
+//#ifndef WINDOWS
 
    virtual ::draw2d::bitmap_sp CreateDIBitmap(::draw2d::graphics * pgraphics,FIBITMAP * pFreeImage);
    virtual ::draw2d::bitmap_sp CreateBitmap(::draw2d::graphics * pgraphics,FIBITMAP * pFreeImage);
@@ -327,7 +327,7 @@ public:
    virtual void SavePng(const char * lpcszFile,FIBITMAP * pfi,bool bUnload);
    virtual void free(FIBITMAP * pfibitmap);
 
-#endif
+//#endif
 
    virtual ::draw2d::bitmap_sp LoadImageSync(const char * lpcszImageFilePath, ::aura::application * papp);
    //virtual void SaveJpeg(const char * lpcszFile, ::draw2d::bitmap_sp pbitmap);

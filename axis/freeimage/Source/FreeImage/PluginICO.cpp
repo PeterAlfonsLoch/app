@@ -412,7 +412,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 
 				if((icon_list[page].bWidth == 0) && (icon_list[page].bHeight == 0)) {
 					// Vista icon support
-					dib = FreeImage_LoadFromHandle(FIF_PNG, io, handle, header_only ? FIF_LOAD_NOPIXELS : PNG_DEFAULT);
+					dib = FreeImage_LoadFromHandle(FreeImage_GetFIFFromFormat("PNG"), io, handle, header_only ? FIF_LOAD_NOPIXELS : PNG_DEFAULT);
 				}
 				else {
 					// standard icon support
@@ -734,7 +734,7 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 
 			if((icon_list[k].bWidth == 0) && (icon_list[k].bHeight == 0)) {
 				// Vista icon support
-				FreeImage_SaveToHandle(FIF_PNG, icon_dib, io, handle, PNG_DEFAULT);
+				FreeImage_SaveToHandle(FreeImage_GetFIFFromFormat("PNG"), icon_dib, io, handle, PNG_DEFAULT);
 			}
 			else {
 				// standard icon support

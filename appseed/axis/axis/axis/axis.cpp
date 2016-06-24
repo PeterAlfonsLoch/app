@@ -2,11 +2,11 @@
 #include "fiasco_finder.h"
 
 
-#ifndef WINDOWS
+//#ifndef WINDOWS
 
 #include "freeimage/Source/FreeImage.h"
 
-#endif
+//#endif
 
 
 int g_iAxisRefCount = 0;
@@ -109,7 +109,7 @@ bool axis_init()
    if(!__node_axis_pos_init())
       return false;*/
 
-#ifndef WINDOWS
+//#ifndef WINDOWS
 
    // todo (casey tips) : do real/explicit dynamic linking
    //throw todo(get_thread_app());
@@ -128,7 +128,7 @@ bool axis_init()
 
    }
 
-#endif
+//#endif
 
 
    return true;
@@ -138,7 +138,7 @@ bool axis_init()
 
 bool axis_term()
 {
-#ifndef WINDOWS
+//#ifndef WINDOWS
 
    // todo (casey tips) : do real/explicit dynamic linking
    //throw todo(get_thread_app());
@@ -152,7 +152,7 @@ bool axis_term()
    {
 
    }
-#endif
+//#endif
    /*__wait_threading_count(::millis((5000) * 8));
 
    __node_axis_pre_term();

@@ -1214,7 +1214,7 @@ mng_WriteJNG(int format_id, FreeImageIO *io, FIBITMAP *dib, fi_handle handle, in
 		// --- write a sequence of JDAT chunks ---
 		hJpegMemory = FreeImage_OpenMemory();
 		flags |= JPEG_BASELINE;
-		if(!FreeImage_SaveToMemory(FIF_JPEG, dib_rgb, hJpegMemory, flags)) {
+		if(!FreeImage_SaveToMemory(FreeImage_GetFIFFromFormat("JPEG"), dib_rgb, hJpegMemory, flags)) {
 			throw (const char*)NULL;
 		}
 		if(dib_rgb != dib) {
@@ -1243,7 +1243,7 @@ mng_WriteJNG(int format_id, FreeImageIO *io, FIBITMAP *dib, fi_handle handle, in
 			dib_alpha = FreeImage_GetChannel(dib, FICC_ALPHA);
 
 			hPngMemory = FreeImage_OpenMemory();
-			if(!FreeImage_SaveToMemory(FIF_PNG, dib_alpha, hPngMemory, PNG_DEFAULT)) {
+			if(!FreeImage_SaveToMemory(FreeImage_GetFIFFromFormat("PNG"), dib_alpha, hPngMemory, PNG_DEFAULT)) {
 				throw (const char*)NULL;
 			}
 			FreeImage_Unload(dib_alpha);

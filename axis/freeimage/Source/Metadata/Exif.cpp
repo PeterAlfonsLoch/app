@@ -777,7 +777,7 @@ jpeg_read_exif_dir(FIBITMAP *dib, const BYTE *tiffp, unsigned long offset, unsig
 	const BYTE *thLocation = tiffp + thOffset;
 
 	FIMEMORY* hmem = FreeImage_OpenMemory(const_cast<BYTE*>(thLocation), thSize);
-	FIBITMAP* thumbnail = FreeImage_LoadFromMemory(FIF_JPEG, hmem);
+	FIBITMAP* thumbnail = FreeImage_LoadFromMemory(FreeImage_GetFIFFromFormat("JPEG"), hmem);
 	FreeImage_CloseMemory(hmem);
 
 	// store the thumbnail

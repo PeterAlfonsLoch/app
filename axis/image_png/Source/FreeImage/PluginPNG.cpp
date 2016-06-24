@@ -940,8 +940,8 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 //   Init
 // ==========================================================
 extern "C"
-void FreeImage_InitPlugin_axis_image_png(Plugin *plugin,int *format_id) {
-	s_format_id = *format_id = FIF_PNG;
+void FreeImage_InitPlugin_axis_image_png(Plugin *plugin,int format_id) {
+	s_format_id = format_id;
 
 	plugin->format_proc = Format;
 	plugin->description_proc = Description;

@@ -489,7 +489,15 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">false</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="freeimage.cpp" />
     <ClCompile Include="graphics\dib_console.cpp" />
+    <ClCompile Include="graphics\visual\load_gif_frame2.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="graphics\visual\load_gif_frame.cpp" />
     <ClCompile Include="html_lite\html\html_html.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
@@ -2243,6 +2251,9 @@
     </ProjectReference>
     <ProjectReference Include="..\..\axis\crypto\axiscrypto.vcxproj">
       <Project>{39807406-816f-4c0d-a632-4bb8ab13887b}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\axis\freeimage\axisfreeimage.vcxproj">
+      <Project>{b39ed2b3-d53a-4077-b957-930979a3577d}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\axis\idn\axisidn.vcxproj">
       <Project>{e8ac3ef0-11c5-4e12-a944-5f7efed6e0c4}</Project>

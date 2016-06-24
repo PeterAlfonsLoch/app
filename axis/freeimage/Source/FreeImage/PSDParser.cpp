@@ -360,7 +360,7 @@ int psdThumbnail::Read(FreeImageIO *io, fi_handle handle, int iResourceSize, boo
 
 	if(_Format == 1) {
 		// kJpegRGB thumbnail image
-		_dib = FreeImage_LoadFromHandle(FIF_JPEG, io, handle);
+		_dib = FreeImage_LoadFromHandle(FreeImage_GetFIFFromFormat("JPEG"), io, handle);
 		if(isBGR) {
 			SwapRedBlue32(_dib);
 		}
