@@ -489,8 +489,8 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">false</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="freeimage.cpp" />
     <ClCompile Include="graphics\dib_console.cpp" />
+    <ClCompile Include="graphics\visual\freeimage.cpp" />
     <ClCompile Include="graphics\visual\load_gif_frame2.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>

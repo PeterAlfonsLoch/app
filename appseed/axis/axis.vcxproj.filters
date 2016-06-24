@@ -1927,13 +1927,13 @@
     <ClCompile Include="net\net_url_department.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="freeimage.cpp">
-      <Filter>Source Files\graphics\visual</Filter>
-    </ClCompile>
     <ClCompile Include="graphics\visual\load_gif_frame2.cpp">
       <Filter>Source Files\graphics\visual</Filter>
     </ClCompile>
     <ClCompile Include="graphics\visual\load_gif_frame.cpp">
+      <Filter>Source Files\graphics\visual</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\visual\freeimage.cpp">
       <Filter>Source Files\graphics\visual</Filter>
     </ClCompile>
   </ItemGroup>

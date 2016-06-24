@@ -1457,7 +1457,7 @@ bool gif_load_frame(::draw2d::dib * pdibCompose, ::visual::dib_sp::array * pdiba
 
 
 
-   skip1:;
+//   skip1:;
 
 
 
