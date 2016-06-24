@@ -142,6 +142,9 @@
     <Filter Include="Header Files\user\simple_ui">
       <UniqueIdentifier>{b9fbd78a-be3d-406e-abb6-82f3403f6802}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\graphics">
+      <UniqueIdentifier>{71468b37-4273-4440-a035-97cd2de51a31}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -317,6 +320,21 @@
     </ClInclude>
     <ClInclude Include="user\simple_ui\simple_ui_tap.h">
       <Filter>Header Files\user\simple_ui</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\graphics.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\graphics_window.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\graphics_window_buffer.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\graphics_window_dc.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\graphics_window_graphics.h">
+      <Filter>Header Files\graphics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -654,6 +672,12 @@
     </ClCompile>
     <ClCompile Include="base\os\cross\windows\base_cross_windows_threading.cpp">
       <Filter>Source Files\base\os\cross\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\graphics_window_buffer.cpp">
+      <Filter>Source Files\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\graphics_window_dc.cpp">
+      <Filter>Source Files\graphics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

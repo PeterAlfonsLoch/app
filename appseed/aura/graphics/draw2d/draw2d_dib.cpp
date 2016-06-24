@@ -875,6 +875,7 @@ namespace draw2d
 
    void dib::mult_alpha()
    {
+      map();
 
       BYTE *dst=(BYTE*)get_data();
       int64_t size = area();
@@ -932,6 +933,7 @@ namespace draw2d
 
    void dib::div_alpha()
    {
+      map();
 
       BYTE *dst=(BYTE*)get_data();
       int64_t size = area();

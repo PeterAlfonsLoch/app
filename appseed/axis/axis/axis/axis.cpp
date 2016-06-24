@@ -2,7 +2,7 @@
 #include "fiasco_finder.h"
 
 
-//#ifndef WINDOWS
+//#ifndef METROWIN
 
 #include "freeimage/Source/FreeImage.h"
 

@@ -1699,5 +1699,17 @@
     <ClCompile Include="net\sockets\bsd\basic\sockets_udp_socket.cpp">
       <Filter>Source Files\net\sockets\bsd</Filter>
     </ClCompile>
+    <ClCompile Include="graphics\visual\freeimage.cpp">
+      <Filter>Source Files\graphics\visual</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\visual\load_gif_frame.cpp">
+      <Filter>Source Files\graphics\visual</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\visual\load_gif_frame2.cpp">
+      <Filter>Source Files\graphics\visual</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\visual\detect_8bit_borders.cpp">
+      <Filter>Source Files\graphics\visual</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

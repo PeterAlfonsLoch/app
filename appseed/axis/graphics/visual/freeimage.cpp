@@ -277,6 +277,15 @@ bool freeimage_load_diba_frame(::draw2d::dib * pdibCompose, ::visual::dib_sp::ar
 
    int transparentIndex = FreeImage_GetTransparentIndex(pfi);
 
+   bool bIsTransparent = FreeImage_IsTransparent(pfi) != 0;
+
+   if (!bIsTransparent)
+   {
+
+      transparentIndex = -1;
+
+   }
+
    RGBQUAD quad;
 
    //if (iFrame <= 0)

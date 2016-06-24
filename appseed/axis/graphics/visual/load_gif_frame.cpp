@@ -4,9 +4,12 @@
 
 #define pixel(x, y) (ba[(pointer->m_rect.height() - (y) - 1) * iScan + (x)])
 
+bool detect_8bit_borders(::draw2d::dib * pdibCompose, ::visual::dib_sp::array * pdiba, ::visual::dib_sp::pointer * pointer, int uFrameIndex, byte * ba, int iScan, array < COLORREF > & cra, int transparentIndex);
+
 bool gif_load_frame(::draw2d::dib * pdibCompose, ::visual::dib_sp::array * pdiba, ::visual::dib_sp::pointer * pointer, int uFrameIndex, byte * ba, int iScan, array < COLORREF > & cra, int transparentIndex)
 {
 
+   pointer->m_dib->map();
 
    COLORREF cr;
 
@@ -15,248 +18,8 @@ bool gif_load_frame(::draw2d::dib * pdibCompose, ::visual::dib_sp::array * pdiba
    if (uFrameIndex <= 0)
    {
 
-      bool bTransparent;
-
-      ::count c = 0;
-
-      int64_t iR = 0;
-
-      int64_t iG = 0;
-
-      int64_t iB = 0;
-
-      int iLight = 0;
-
-      int iDark = 0;
-
-      // Roughly detect colors on transparency borders...
-
-      // ... first, at horizontal orientation...
-
-      for (index y = 0; y < pointer->m_dib->m_size.cy; y++)
-      {
-
-         bTransparent = true;
-
-         cr = 0;
-
-         for (index x = 0; x < pointer->m_dib->m_size.cx; x++)
-         {
-
-            index iIndex = pixel(x, y);
-
-            index iNextIndex = -1;
-
-            if (x < pointer->m_dib->m_size.cx - 1)
-            {
-
-               iNextIndex = pixel(x + 1, y);
-
-            }
-
-            if (iIndex >= cra.get_count())
-            {
-
-               continue;
-
-            }
-
-            if (bTransparent)
-            {
-
-               if (iIndex == transparentIndex)
-               {
-
-                  pdiba->m_bTransparent = true;
-
-                  continue;
-
-               }
-               else
-               {
-
-                  cr = cra[iIndex];
-
-                  bTransparent = false;
-
-               }
-
-            }
-            else
-            {
-
-               if (iNextIndex == transparentIndex)
-               {
-
-                  cr = cra[iIndex];
-
-                  bTransparent = true;
-
-               }
-               else
-               {
-
-                  cr = cra[iIndex];
-
-                  continue;
-
-               }
-
-            }
-
-            iR += argb_get_r_value(cr);
-
-            iG += argb_get_g_value(cr);
-
-            iB += argb_get_b_value(cr);
-            c++;
-
-         }
-
-      }
-
-      // ... then, at vertical orientation...
-
-      for (index x = 0; x < pointer->m_dib->m_size.cx; x++)
-      {
-
-         bTransparent = true;
-
-         cr = 0;
-
-         for (index y = 0; y < pointer->m_dib->m_size.cy; y++)
-         {
-
-            index iIndex = pixel(x, y);
-
-            index iNextIndex = -1;
-
-            if (y < pointer->m_dib->m_size.cy - 1)
-            {
-
-               iNextIndex = pixel(x, y + 1);
-
-            }
-
-            if (iIndex >= cra.get_count())
-            {
-
-               continue;
-
-            }
-
-            if (bTransparent)
-            {
-
-               if (iIndex == transparentIndex)
-               {
-
-                  continue;
-
-               }
-               else
-               {
-
-                  cr = cra[iIndex];
-
-                  bTransparent = false;
-
-               }
-
-            }
-            else
-            {
-
-               if (iNextIndex == transparentIndex)
-               {
-
-                  cr = cra[iIndex];
-
-                  bTransparent = true;
-
-               }
-               else
-               {
-
-                  cr = cra[iIndex];
-
-                  continue;
-
-               }
-
-            }
-
-            iR += argb_get_r_value(cr);
-
-            iG += argb_get_g_value(cr);
-
-            iB += argb_get_b_value(cr);
-
-            c++;
-
-         }
-
-      }
-
-      // and if detected transparency, roughly calculate if average border color is dark or light.
-
-      if (c <= 0)
-      {
-
-         crBack = ARGB(255, 255, 255, 255);
-
-         if (uFrameIndex <= 0)
-         {
-
-            pdiba->m_bTransparent = false;
-
-         }
-         pointer->m_bTransparent = false;
-      }
-      else
-      {
-
-         double dMin = MIN(MIN(iR / c, iG / c), iB / c);
-
-         double dMax = MAX(MAX(iR / c, iG / c), iB / c);
-
-         crBack = cra[transparentIndex];
-
-         if ((dMin + dMax) / 2.0 > 127.0) // Light
-         {
-
-            crBack = ARGB(255, 255, 255, 255);
-            if (uFrameIndex <= 0)
-            {
-
-               pdiba->m_bTransparent = true;
-
-            }
-
-         }
-         else
-         {
-
-            crBack = ARGB(255, 0, 0, 0);
-            if (uFrameIndex <= 0)
-            {
-
-               pdiba->m_bTransparent = false;
-
-            }
-
-         }
-
-
-         pointer->m_bTransparent = true;
-
-      }
-
-      pdiba->m_crTransparent = crBack;
-
-
-      //pdiba->m_iTransparentIndex = transparentIndex;
-
+      detect_8bit_borders(pdibCompose, pdiba, pointer, uFrameIndex, ba, iScan, cra, transparentIndex);
+   
    }
 
 
@@ -437,9 +200,9 @@ bool gif_load_frame(::draw2d::dib * pdibCompose, ::visual::dib_sp::array * pdiba
 
       double dUnequalScaleDown = 1.00;
 
-      double dUnequalRate = 4.0;
+      double dUnequalRate = 6.0;
 
-      double dUnequalAddUp = 40.00;
+      double dUnequalAddUp = 63.00;
 
       double dUnequalDarken = 0.5;
 
@@ -1553,68 +1316,44 @@ bool gif_load_frame(::draw2d::dib * pdibCompose, ::visual::dib_sp::array * pdiba
    }
    else
    {
-      pointer->m_bTransparent = false;
+
+      int w = pointer->m_dib->m_iScan / sizeof(COLORREF);
+
+      for (index y = 0; y < pointer->m_rect.height(); y++)
       {
 
-         int w = pointer->m_dib->m_iScan / sizeof(COLORREF);
-
-         for (index y = 0; y < pointer->m_rect.height(); y++)
+         for (index x = 0; x < pointer->m_rect.width(); x++)
          {
 
-            for (index x = 0; x < pointer->m_rect.width(); x++)
+            index iIndex = pixel(x, y);
+
+            if (iIndex >= cra.get_count())
             {
 
-               index iIndex = pixel(x, y);
+               pointer->m_dib->m_pcolorref[y*w + x] = 0;
 
-               if (iIndex >= cra.get_count())
-               {
-
-                  pointer->m_dib->m_pcolorref[y*w + x] = 0;
-
-                  continue;
-
-               }
-               if (iIndex == transparentIndex)
-               {
-
-                  pointer->m_bTransparent = true;
-                  pointer->m_dib->m_pcolorref[y*w + x] = 0;
-
-                  continue;
-
-               }
-
-               COLORREF cr = cra[iIndex];
-               if (pdiba->m_bTransparent)
-               {
-
-                  byte r = argb_get_r_value(cr);
-                  byte g = argb_get_g_value(cr);
-                  byte b = argb_get_b_value(cr);
-                  byte mean = (r + g + b) / 3;
-                  if (mean > 127)
-                  {
-
-                     pointer->m_dib->m_pcolorref[y*w + x] = ARGB(mean, r, g, b);
-
-                     continue;
-                  }
-
-
-
-
-               }
-
-
-               pointer->m_dib->m_pcolorref[y*w + x] = cr;
+               continue;
 
             }
+
+            if (iIndex == transparentIndex)
+            {
+
+               pointer->m_dib->m_pcolorref[y*w + x] = 0;
+
+               continue;
+
+            }
+
+            COLORREF cr = cra[iIndex];
+
+            byte bA = argb_get_a_value(cr);
+
+            pointer->m_dib->m_pcolorref[y*w + x] = cr;
 
          }
 
       }
-
-
 
       if (uFrameIndex > 0 && pdiba->element_at(uFrameIndex - 1)->m_edisposal == ::visual::dib_sp::pointer::disposal_background)
       {
@@ -1640,8 +1379,6 @@ bool gif_load_frame(::draw2d::dib * pdibCompose, ::visual::dib_sp::array * pdiba
 
          ::rect r = pdiba->element_at(uFrameIndex - 1)->m_rect;
 
-         r.offset(5, 5);
-
          pdibCompose->get_graphics()->FillSolidRect(r, crBack);
 
       }
@@ -1652,57 +1389,18 @@ bool gif_load_frame(::draw2d::dib * pdibCompose, ::visual::dib_sp::array * pdiba
 
       ::size sz = pointer->m_rect.size();
 
-      pdibCompose->get_graphics()->BitBlt(pt + point(5, 5), sz, pointer->m_dib->get_graphics());
+      if (uFrameIndex <= 0)
+      {
 
-      pointer->m_dib->create(pdiba->m_size);
+         pdibCompose->create(pdiba->m_size);
 
-      pointer->m_dib->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
+      }
 
-      pointer->m_dib->get_graphics()->BitBlt(null_point(), pdiba->m_size, pdibCompose->get_graphics(), point(5, 5));
+      pdibCompose->get_graphics()->BitBlt(pt, sz, pointer->m_dib->get_graphics());
 
-      visual::fastblur f(pointer->m_dib->allocer());
-
-      //draw2d::dib_sp d(pointer->m_dib->allocer());
-
-      //d->create(pointer->m_dib->m_size);
-
-      //Sys(pointer->m_dib->get_app()).visual().imaging().channel_spread(f->get_graphics(),
-      // null_point(), f->m_size, pdibCompose->get_graphics(), null_point(), 3, 1);
-
-
-      f.initialize(pointer->m_dib->m_size + size(10, 10), 1);
-
-      f->channel_copy(::visual::rgba::channel_red, ::visual::rgba::channel_alpha, pdibCompose);
-
-      f->channel_invert(::visual::rgba::channel_red);
-
-      f.blur();
-      f.blur();
-      f->channel_multiply(::visual::rgba::channel_red, 1.6);
-      //f.blur();
-      //      f.blur();
-
-      f->channel_invert(::visual::rgba::channel_red);
-
-      draw2d::dib_sp d(pointer->m_dib->allocer());
-
-      d->create(pdiba->m_size);
-
-      d->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
-
-      d->get_graphics()->BitBlt(null_point(), pdiba->m_size, f->get_graphics(), point(5, 5));
-
-      pointer->m_dib->div_alpha();
-
-      pointer->m_dib->channel_copy(::visual::rgba::channel_alpha, ::visual::rgba::channel_red, d);
-
-      pointer->m_dib->mult_alpha();
-
-
+      pointer->m_dib->from(pdibCompose);
 
    }
-
- 
 
    return true;
 
