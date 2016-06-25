@@ -27,11 +27,17 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\appseed\ace\w_ace.vcxproj">
+      <Project>{14871c98-8ada-467e-8d93-d2e340d21626}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\appseed\aura\w_aura.vcxproj">
       <Project>{b3e5b8e7-9e3b-44dd-9ede-e0a74d52c1c5}</Project>
     </ProjectReference>
     <ProjectReference Include="..\freeimage\w_axisfreeimage.vcxproj">
       <Project>{8785c06d-f7a7-485a-a258-027761e4a291}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\png\w_axispng.vcxproj">
+      <Project>{cfe1d55c-fb80-4ddc-b2f1-90e5b2417e7e}</Project>
     </ProjectReference>
     <ProjectReference Include="..\zlib\w_axiszlib.vcxproj">
       <Project>{b4fcfbf1-e922-4fdc-bc83-b3c04623e8c2}</Project>
@@ -39,30 +45,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\FreeImage\PluginPNG.cpp" />
-    <ClCompile Include="Source\LibPNG\png.c" />
-    <ClCompile Include="Source\LibPNG\pngerror.c" />
-    <ClCompile Include="Source\LibPNG\pngget.c" />
-    <ClCompile Include="Source\LibPNG\pngmem.c" />
-    <ClCompile Include="Source\LibPNG\pngpread.c" />
-    <ClCompile Include="Source\LibPNG\pngread.c" />
-    <ClCompile Include="Source\LibPNG\pngrio.c" />
-    <ClCompile Include="Source\LibPNG\pngrtran.c" />
-    <ClCompile Include="Source\LibPNG\pngrutil.c" />
-    <ClCompile Include="Source\LibPNG\pngset.c" />
-    <ClCompile Include="Source\LibPNG\pngtrans.c" />
-    <ClCompile Include="Source\LibPNG\pngwio.c" />
-    <ClCompile Include="Source\LibPNG\pngwrite.c" />
-    <ClCompile Include="Source\LibPNG\pngwtran.c" />
-    <ClCompile Include="Source\LibPNG\pngwutil.c" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Source\LibPNG\png.h" />
-    <ClInclude Include="Source\LibPNG\pngconf.h" />
-    <ClInclude Include="Source\LibPNG\pngdebug.h" />
-    <ClInclude Include="Source\LibPNG\pnginfo.h" />
-    <ClInclude Include="Source\LibPNG\pnglibconf.h" />
-    <ClInclude Include="Source\LibPNG\pngpriv.h" />
-    <ClInclude Include="Source\LibPNG\pngstruct.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="axis_image_png.def" />

@@ -27,50 +27,48 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\appseed\aura\w_aura.vcxproj">
-      <Project>{b3e5b8e7-9e3b-44dd-9ede-e0a74d52c1c5}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\freeimage\w_axisfreeimage.vcxproj">
-      <Project>{8785c06d-f7a7-485a-a258-027761e4a291}</Project>
+    <ProjectReference Include="..\..\appseed\ace\w_ace.vcxproj">
+      <Project>{14871c98-8ada-467e-8d93-d2e340d21626}</Project>
     </ProjectReference>
     <ProjectReference Include="..\zlib\w_axiszlib.vcxproj">
       <Project>{b4fcfbf1-e922-4fdc-bc83-b3c04623e8c2}</Project>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\FreeImage\PluginPNG.cpp" />
-    <ClCompile Include="Source\LibPNG\png.c" />
-    <ClCompile Include="Source\LibPNG\pngerror.c" />
-    <ClCompile Include="Source\LibPNG\pngget.c" />
-    <ClCompile Include="Source\LibPNG\pngmem.c" />
-    <ClCompile Include="Source\LibPNG\pngpread.c" />
-    <ClCompile Include="Source\LibPNG\pngread.c" />
-    <ClCompile Include="Source\LibPNG\pngrio.c" />
-    <ClCompile Include="Source\LibPNG\pngrtran.c" />
-    <ClCompile Include="Source\LibPNG\pngrutil.c" />
-    <ClCompile Include="Source\LibPNG\pngset.c" />
-    <ClCompile Include="Source\LibPNG\pngtrans.c" />
-    <ClCompile Include="Source\LibPNG\pngwio.c" />
-    <ClCompile Include="Source\LibPNG\pngwrite.c" />
-    <ClCompile Include="Source\LibPNG\pngwtran.c" />
-    <ClCompile Include="Source\LibPNG\pngwutil.c" />
+    <ClCompile Include="png.c" />
+    <ClCompile Include="pngerror.c" />
+    <ClCompile Include="pngget.c" />
+    <ClCompile Include="pngmem.c" />
+    <ClCompile Include="pngpread.c" />
+    <ClCompile Include="pngread.c" />
+    <ClCompile Include="pngrio.c" />
+    <ClCompile Include="pngrtran.c" />
+    <ClCompile Include="pngrutil.c" />
+    <ClCompile Include="pngset.c" />
+    <ClCompile Include="pngtrans.c" />
+    <ClCompile Include="pngwio.c" />
+    <ClCompile Include="pngwrite.c" />
+    <ClCompile Include="pngwtran.c" />
+    <ClCompile Include="pngwutil.c" />
+    <ClCompile Include="throw_error_exception.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\LibPNG\png.h" />
-    <ClInclude Include="Source\LibPNG\pngconf.h" />
-    <ClInclude Include="Source\LibPNG\pngdebug.h" />
-    <ClInclude Include="Source\LibPNG\pnginfo.h" />
-    <ClInclude Include="Source\LibPNG\pnglibconf.h" />
-    <ClInclude Include="Source\LibPNG\pngpriv.h" />
-    <ClInclude Include="Source\LibPNG\pngstruct.h" />
+    <None Include="axispng.def" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="axis_image_png.def" />
+    <ClInclude Include="..\..\include\png.h" />
+    <ClInclude Include="..\..\include\pngconf.h" />
+    <ClInclude Include="..\..\include\pnglibconf.h" />
+    <ClInclude Include="config.h" />
+    <ClInclude Include="pngdebug.h" />
+    <ClInclude Include="pnginfo.h" />
+    <ClInclude Include="pngpriv.h" />
+    <ClInclude Include="pngstruct.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{B4517714-2000-419D-A87F-4338C9DDE3FA}</ProjectGuid>
+    <ProjectGuid>{CFE1D55C-FB80-4DDC-B2F1-90E5B2417E7E}</ProjectGuid>
     <Keyword>DynamicLibrary</Keyword>
-    <ProjectName>axis_image_png</ProjectName>
+    <ProjectName>axispng</ProjectName>
     <RootNamespace>axis_image_png</RootNamespace>
     <DefaultLanguage>en-US</DefaultLanguage>
     <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>

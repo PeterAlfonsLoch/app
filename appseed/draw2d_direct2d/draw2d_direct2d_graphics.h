@@ -509,6 +509,8 @@ namespace draw2d_direct2d
 
       virtual bool draw(const ::draw2d::path::string_path & path,::draw2d::pen * ppen);
 
+      virtual bool fill(const ::draw2d::path::string_path & path, ::draw2d::brush * pbrush);
+
       virtual bool flush();
 
       virtual void debug();

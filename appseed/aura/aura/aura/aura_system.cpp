@@ -40,7 +40,11 @@ namespace aura
 
    system::system(::aura::application * papp, void * pdata) :
       m_process(this),
+#ifdef METROWIN
+      m_mutexCit(this)
+#else
       m_mutexCit(this, false, "Global\\ca2_weather_city")
+#endif
    {
 
 #ifndef WINDOWS

@@ -27,89 +27,21 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\appseed\ace\w_ace.vcxproj">
+      <Project>{14871c98-8ada-467e-8d93-d2e340d21626}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\appseed\aura\w_aura.vcxproj">
       <Project>{b3e5b8e7-9e3b-44dd-9ede-e0a74d52c1c5}</Project>
     </ProjectReference>
     <ProjectReference Include="..\freeimage\w_axisfreeimage.vcxproj">
       <Project>{8785c06d-f7a7-485a-a258-027761e4a291}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\jpeg\w_axisjpeg.vcxproj">
+      <Project>{89889ad7-7be0-49c3-beb2-f22afacbbb99}</Project>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\FreeImage\PluginJPEG.cpp" />
-    <ClCompile Include="Source\LibJPEG\cdjpeg.c" />
-    <ClCompile Include="Source\LibJPEG\jaricom.c" />
-    <ClCompile Include="Source\LibJPEG\jcapimin.c" />
-    <ClCompile Include="Source\LibJPEG\jcapistd.c" />
-    <ClCompile Include="Source\LibJPEG\jcarith.c" />
-    <ClCompile Include="Source\LibJPEG\jccoefct.c" />
-    <ClCompile Include="Source\LibJPEG\jccolor.c" />
-    <ClCompile Include="Source\LibJPEG\jcdctmgr.c" />
-    <ClCompile Include="Source\LibJPEG\jchuff.c" />
-    <ClCompile Include="Source\LibJPEG\jcinit.c" />
-    <ClCompile Include="Source\LibJPEG\jcmainct.c" />
-    <ClCompile Include="Source\LibJPEG\jcmarker.c" />
-    <ClCompile Include="Source\LibJPEG\jcmaster.c" />
-    <ClCompile Include="Source\LibJPEG\jcomapi.c" />
-    <ClCompile Include="Source\LibJPEG\jcparam.c" />
-    <ClCompile Include="Source\LibJPEG\jcprepct.c" />
-    <ClCompile Include="Source\LibJPEG\jcsample.c" />
-    <ClCompile Include="Source\LibJPEG\jctrans.c" />
-    <ClCompile Include="Source\LibJPEG\jdapimin.c" />
-    <ClCompile Include="Source\LibJPEG\jdapistd.c" />
-    <ClCompile Include="Source\LibJPEG\jdarith.c" />
-    <ClCompile Include="Source\LibJPEG\jdatadst.c" />
-    <ClCompile Include="Source\LibJPEG\jdatasrc.c" />
-    <ClCompile Include="Source\LibJPEG\jdcoefct.c" />
-    <ClCompile Include="Source\LibJPEG\jdcolor.c" />
-    <ClCompile Include="Source\LibJPEG\jddctmgr.c" />
-    <ClCompile Include="Source\LibJPEG\jdhuff.c" />
-    <ClCompile Include="Source\LibJPEG\jdinput.c" />
-    <ClCompile Include="Source\LibJPEG\jdmainct.c" />
-    <ClCompile Include="Source\LibJPEG\jdmarker.c" />
-    <ClCompile Include="Source\LibJPEG\jdmaster.c" />
-    <ClCompile Include="Source\LibJPEG\jdmerge.c" />
-    <ClCompile Include="Source\LibJPEG\jdpostct.c" />
-    <ClCompile Include="Source\LibJPEG\jdsample.c" />
-    <ClCompile Include="Source\LibJPEG\jdtrans.c" />
-    <ClCompile Include="Source\LibJPEG\jerror.c" />
-    <ClCompile Include="Source\LibJPEG\jfdctflt.c" />
-    <ClCompile Include="Source\LibJPEG\jfdctfst.c" />
-    <ClCompile Include="Source\LibJPEG\jfdctint.c" />
-    <ClCompile Include="Source\LibJPEG\jidctflt.c" />
-    <ClCompile Include="Source\LibJPEG\jidctfst.c" />
-    <ClCompile Include="Source\LibJPEG\jidctint.c" />
-    <ClCompile Include="Source\LibJPEG\jmemmgr.c" />
-    <ClCompile Include="Source\LibJPEG\jmemnobs.c" />
-    <ClCompile Include="Source\LibJPEG\jquant1.c" />
-    <ClCompile Include="Source\LibJPEG\jquant2.c" />
-    <ClCompile Include="Source\LibJPEG\jutils.c" />
-    <ClCompile Include="Source\LibJPEG\rdbmp.c" />
-    <ClCompile Include="Source\LibJPEG\rdcolmap.c" />
-    <ClCompile Include="Source\LibJPEG\rdgif.c" />
-    <ClCompile Include="Source\LibJPEG\rdppm.c" />
-    <ClCompile Include="Source\LibJPEG\rdrle.c" />
-    <ClCompile Include="Source\LibJPEG\rdswitch.c" />
-    <ClCompile Include="Source\LibJPEG\rdtarga.c" />
-    <ClCompile Include="Source\LibJPEG\transupp.c" />
-    <ClCompile Include="Source\LibJPEG\wrbmp.c" />
-    <ClCompile Include="Source\LibJPEG\wrgif.c" />
-    <ClCompile Include="Source\LibJPEG\wrppm.c" />
-    <ClCompile Include="Source\LibJPEG\wrrle.c" />
-    <ClCompile Include="Source\LibJPEG\wrtarga.c" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Source\LibJPEG\cderror.h" />
-    <ClInclude Include="Source\LibJPEG\cdjpeg.h" />
-    <ClInclude Include="Source\LibJPEG\jconfig.h" />
-    <ClInclude Include="Source\LibJPEG\jdct.h" />
-    <ClInclude Include="Source\LibJPEG\jerror.h" />
-    <ClInclude Include="Source\LibJPEG\jinclude.h" />
-    <ClInclude Include="Source\LibJPEG\jmemsys.h" />
-    <ClInclude Include="Source\LibJPEG\jmorecfg.h" />
-    <ClInclude Include="Source\LibJPEG\jpegint.h" />
-    <ClInclude Include="Source\LibJPEG\jpeglib.h" />
-    <ClInclude Include="Source\LibJPEG\jversion.h" />
-    <ClInclude Include="Source\LibJPEG\transupp.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="axis_image_jpeg.def" />
@@ -227,7 +159,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <CompileAsWinRT>false</CompileAsWinRT>
       <PreprocessorDefinitions>NO_LCMS;NO_JASPER;USE_JPIP;_DEBUG;_WINDOWS;_USRDLL;OPJ_STATIC;FREEIMAGE_EXPORTS;_CRT_SECURE_NO_DEPRECATE;LIBRAW_NODLL;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(ProjectDir)..;$(ProjectDir)../..;$(ProjectDir)../../..;$(ProjectDir)../../appseed;$(ProjectDir)../../appseed/axis;$(ProjectDir)../../appseed/aura;$(ProjectDir)../../include;$(ProjectDir)../freeimage/Source;Source\DeprecationManager;Source\LibJPEG;Source\LibRawLite;Source\OpenEXR;Source\OpenEXR\Half;Source\OpenEXR\Iex;Source\OpenEXR\IlmImf;Source\OpenEXR\Imath;Source\OpenEXR\IlmThread;Source\LibJXR\jxrgluelib;Source\LibJXR\image\sys;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(ProjectDir)..;$(ProjectDir)../..;$(ProjectDir)../../..;$(ProjectDir)../../appseed;$(ProjectDir)../../appseed/axis;$(ProjectDir)../../appseed/aura;$(ProjectDir)../../include;$(ProjectDir)../freeimage/Source;Source\DeprecationManager;Source\LibJPEG;Source\LibRawLite;Source\OpenEXR;Source\OpenEXR\Half;Source\OpenEXR\Iex;Source\OpenEXR\IlmImf;Source\OpenEXR\Imath;Source\OpenEXR\IlmThread;Source\LibJXR\jxrgluelib;Source\LibJXR\image\sys;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
@@ -265,6 +197,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <CompileAsWinRT>false</CompileAsWinRT>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(ProjectDir)..;$(ProjectDir)../..;$(ProjectDir)../../..;$(ProjectDir)../../appseed;$(ProjectDir)../../appseed/axis;$(ProjectDir)../../appseed/aura;$(ProjectDir)../../include;$(ProjectDir)../freeimage/Source;Source\DeprecationManager;Source\LibJPEG;Source\LibRawLite;Source\OpenEXR;Source\OpenEXR\Half;Source\OpenEXR\Iex;Source\OpenEXR\IlmImf;Source\OpenEXR\Imath;Source\OpenEXR\IlmThread;Source\LibJXR\jxrgluelib;Source\LibJXR\image\sys;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -278,6 +211,7 @@
       <CompileAsWinRT>false</CompileAsWinRT>
       <CompileAsManaged>false</CompileAsManaged>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(ProjectDir)..;$(ProjectDir)../..;$(ProjectDir)../../..;$(ProjectDir)../../appseed;$(ProjectDir)../../appseed/axis;$(ProjectDir)../../appseed/aura;$(ProjectDir)../../include;$(ProjectDir)../freeimage/Source;Source\DeprecationManager;Source\LibJPEG;Source\LibRawLite;Source\OpenEXR;Source\OpenEXR\Half;Source\OpenEXR\Iex;Source\OpenEXR\IlmImf;Source\OpenEXR\Imath;Source\OpenEXR\IlmThread;Source\LibJXR\jxrgluelib;Source\LibJXR\image\sys;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -290,6 +224,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <CompileAsWinRT>false</CompileAsWinRT>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(ProjectDir)..;$(ProjectDir)../..;$(ProjectDir)../../..;$(ProjectDir)../../appseed;$(ProjectDir)../../appseed/axis;$(ProjectDir)../../appseed/aura;$(ProjectDir)../../include;$(ProjectDir)../freeimage/Source;Source\DeprecationManager;Source\LibJPEG;Source\LibRawLite;Source\OpenEXR;Source\OpenEXR\Half;Source\OpenEXR\Iex;Source\OpenEXR\IlmImf;Source\OpenEXR\Imath;Source\OpenEXR\IlmThread;Source\LibJXR\jxrgluelib;Source\LibJXR\image\sys;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -303,6 +238,7 @@
       <CompileAsWinRT>false</CompileAsWinRT>
       <CompileAsManaged>false</CompileAsManaged>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(ProjectDir)..;$(ProjectDir)../..;$(ProjectDir)../../..;$(ProjectDir)../../appseed;$(ProjectDir)../../appseed/axis;$(ProjectDir)../../appseed/aura;$(ProjectDir)../../include;$(ProjectDir)../freeimage/Source;Source\DeprecationManager;Source\LibJPEG;Source\LibRawLite;Source\OpenEXR;Source\OpenEXR\Half;Source\OpenEXR\Iex;Source\OpenEXR\IlmImf;Source\OpenEXR\Imath;Source\OpenEXR\IlmThread;Source\LibJXR\jxrgluelib;Source\LibJXR\image\sys;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -315,6 +251,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <CompileAsWinRT>false</CompileAsWinRT>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(ProjectDir)..;$(ProjectDir)../..;$(ProjectDir)../../..;$(ProjectDir)../../appseed;$(ProjectDir)../../appseed/axis;$(ProjectDir)../../appseed/aura;$(ProjectDir)../../include;$(ProjectDir)../freeimage/Source;Source\DeprecationManager;Source\LibJPEG;Source\LibRawLite;Source\OpenEXR;Source\OpenEXR\Half;Source\OpenEXR\Iex;Source\OpenEXR\IlmImf;Source\OpenEXR\Imath;Source\OpenEXR\IlmThread;Source\LibJXR\jxrgluelib;Source\LibJXR\image\sys;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

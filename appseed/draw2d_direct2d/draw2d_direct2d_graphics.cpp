@@ -4976,10 +4976,14 @@ namespace draw2d_direct2d
 
       for(index i = 0; i < ppath->m_elementa.get_size(); i++)
       {
+
          if(ppath->m_elementa[i]->m_etype == ::draw2d::path::element::type_string)
          {
+
             draw(ppath->m_elementa[i]->m_stringpath, ppen);
+
          }
+
       }
 
       return true;
@@ -5006,10 +5010,25 @@ namespace draw2d_direct2d
 
       ID2D1PathGeometry * pgeometry = (ID2D1PathGeometry *)(dynamic_cast < ::draw2d_direct2d::graphics_path * > (ppath))->get_os_path(this);
       
-      if(pgeometry == NULL)
-         return false;
+      if (pgeometry != NULL)
+      {
 
-      m_prendertarget->FillGeometry(pgeometry, pbrush);
+         m_prendertarget->FillGeometry(pgeometry, pbrush);
+
+      }
+
+
+      for (index i = 0; i < ppath->m_elementa.get_size(); i++)
+      {
+         
+         if (ppath->m_elementa[i]->m_etype == ::draw2d::path::element::type_string)
+         {
+            
+            fill(ppath->m_elementa[i]->m_stringpath, m_spbrush);
+
+         }
+
+      }
 
       //HRESULT hr = m_prendertarget->Flush();
 
@@ -5037,10 +5056,25 @@ namespace draw2d_direct2d
 
       ID2D1PathGeometry * pgeometry = (ID2D1PathGeometry *)(dynamic_cast < ::draw2d_direct2d::graphics_path * > (ppath))->get_os_path(this);
 
-      if(pgeometry == NULL)
-         return false;
+      if (pgeometry != NULL)
+      {
 
-      m_prendertarget->FillGeometry(pgeometry,pbrush);
+         m_prendertarget->FillGeometry(pgeometry, pbrush);
+
+      }
+
+
+      for (index i = 0; i < ppath->m_elementa.get_size(); i++)
+      {
+
+         if (ppath->m_elementa[i]->m_etype == ::draw2d::path::element::type_string)
+         {
+
+            fill(ppath->m_elementa[i]->m_stringpath, pbrushParam);
+
+         }
+
+      }
 
       //HRESULT hr = m_prendertarget->Flush();
 
@@ -5119,6 +5153,42 @@ namespace draw2d_direct2d
       CustomTextRenderer * pr = new CustomTextRenderer(GetD2D1Factory1(),m_prendertarget.Get(),get_os_pen_brush(ppen));
 
       playout->Draw(NULL, pr, (FLOAT) path.m_x, (FLOAT) path.m_y);
+
+      delete pr;
+
+      return true;
+
+   }
+
+
+   bool graphics::fill(const ::draw2d::path::string_path & path, ::draw2d::brush * pbrush)
+   {
+
+      wstring szOutline(path.m_strText);
+
+      IDWriteTextFormat * pformat = (IDWriteTextFormat *)get_os_font(path.m_spfont);
+
+      IDWriteFactory * pfactory = TlsGetWriteFactory();
+
+      IDWriteTextLayout * playout = NULL;
+
+      HRESULT hr = pfactory->CreateTextLayout(
+         szOutline,      // The string to be laid out and formatted.
+         szOutline.length(),  // The length of the string.
+         pformat,  // The text format to apply to the string (contains font information, etc).
+         4096,         // The width of the layout box.
+         4096,        // The height of the layout box.
+         &playout  // The IDWriteTextLayout interface pointer.
+      );
+
+      if (playout == NULL)
+      {
+         return false;
+      }
+
+      CustomTextRenderer * pr = new CustomTextRenderer(GetD2D1Factory1(), m_prendertarget.Get(), NULL, get_os_brush(pbrush));
+
+      playout->Draw(NULL, pr, (FLOAT)path.m_x, (FLOAT)path.m_y);
 
       delete pr;
 

@@ -27,97 +27,93 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\appseed\aura\w_aura.vcxproj">
-      <Project>{b3e5b8e7-9e3b-44dd-9ede-e0a74d52c1c5}</Project>
+    <None Include="axisjpeg.def" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="cdjpeg.c" />
+    <ClCompile Include="jaricom.c" />
+    <ClCompile Include="jcapimin.c" />
+    <ClCompile Include="jcapistd.c" />
+    <ClCompile Include="jcarith.c" />
+    <ClCompile Include="jccoefct.c" />
+    <ClCompile Include="jccolor.c" />
+    <ClCompile Include="jcdctmgr.c" />
+    <ClCompile Include="jchuff.c" />
+    <ClCompile Include="jcinit.c" />
+    <ClCompile Include="jcmainct.c" />
+    <ClCompile Include="jcmarker.c" />
+    <ClCompile Include="jcmaster.c" />
+    <ClCompile Include="jcomapi.c" />
+    <ClCompile Include="jcparam.c" />
+    <ClCompile Include="jcprepct.c" />
+    <ClCompile Include="jcsample.c" />
+    <ClCompile Include="jctrans.c" />
+    <ClCompile Include="jdapimin.c" />
+    <ClCompile Include="jdapistd.c" />
+    <ClCompile Include="jdarith.c" />
+    <ClCompile Include="jdatadst.c" />
+    <ClCompile Include="jdatasrc.c" />
+    <ClCompile Include="jdcoefct.c" />
+    <ClCompile Include="jdcolor.c" />
+    <ClCompile Include="jddctmgr.c" />
+    <ClCompile Include="jdhuff.c" />
+    <ClCompile Include="jdinput.c" />
+    <ClCompile Include="jdmainct.c" />
+    <ClCompile Include="jdmarker.c" />
+    <ClCompile Include="jdmaster.c" />
+    <ClCompile Include="jdmerge.c" />
+    <ClCompile Include="jdpostct.c" />
+    <ClCompile Include="jdsample.c" />
+    <ClCompile Include="jdtrans.c" />
+    <ClCompile Include="jerror.c" />
+    <ClCompile Include="jfdctflt.c" />
+    <ClCompile Include="jfdctfst.c" />
+    <ClCompile Include="jfdctint.c" />
+    <ClCompile Include="jidctflt.c" />
+    <ClCompile Include="jidctfst.c" />
+    <ClCompile Include="jidctint.c" />
+    <ClCompile Include="jmemmgr.c" />
+    <ClCompile Include="jmemnobs.c" />
+    <ClCompile Include="jquant1.c" />
+    <ClCompile Include="jquant2.c" />
+    <ClCompile Include="jutils.c" />
+    <ClCompile Include="rdbmp.c" />
+    <ClCompile Include="rdcolmap.c" />
+    <ClCompile Include="rdgif.c" />
+    <ClCompile Include="rdppm.c" />
+    <ClCompile Include="rdrle.c" />
+    <ClCompile Include="rdswitch.c" />
+    <ClCompile Include="rdtarga.c" />
+    <ClCompile Include="transupp.c" />
+    <ClCompile Include="wrbmp.c" />
+    <ClCompile Include="wrgif.c" />
+    <ClCompile Include="wrppm.c" />
+    <ClCompile Include="wrrle.c" />
+    <ClCompile Include="wrtarga.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\include\jconfig.h" />
+    <ClInclude Include="..\..\include\jerror.h" />
+    <ClInclude Include="..\..\include\jinclude.h" />
+    <ClInclude Include="..\..\include\jmorecfg.h" />
+    <ClInclude Include="..\..\include\jpeglib.h" />
+    <ClInclude Include="cderror.h" />
+    <ClInclude Include="cdjpeg.h" />
+    <ClInclude Include="jdct.h" />
+    <ClInclude Include="jmemsys.h" />
+    <ClInclude Include="jpegint.h" />
+    <ClInclude Include="jversion.h" />
+    <ClInclude Include="transupp.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\appseed\ace\w_ace.vcxproj">
+      <Project>{14871c98-8ada-467e-8d93-d2e340d21626}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\freeimage\w_axisfreeimage.vcxproj">
-      <Project>{8785c06d-f7a7-485a-a258-027761e4a291}</Project>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Source\FreeImage\PluginJPEG.cpp" />
-    <ClCompile Include="Source\LibJPEG\cdjpeg.c" />
-    <ClCompile Include="Source\LibJPEG\jaricom.c" />
-    <ClCompile Include="Source\LibJPEG\jcapimin.c" />
-    <ClCompile Include="Source\LibJPEG\jcapistd.c" />
-    <ClCompile Include="Source\LibJPEG\jcarith.c" />
-    <ClCompile Include="Source\LibJPEG\jccoefct.c" />
-    <ClCompile Include="Source\LibJPEG\jccolor.c" />
-    <ClCompile Include="Source\LibJPEG\jcdctmgr.c" />
-    <ClCompile Include="Source\LibJPEG\jchuff.c" />
-    <ClCompile Include="Source\LibJPEG\jcinit.c" />
-    <ClCompile Include="Source\LibJPEG\jcmainct.c" />
-    <ClCompile Include="Source\LibJPEG\jcmarker.c" />
-    <ClCompile Include="Source\LibJPEG\jcmaster.c" />
-    <ClCompile Include="Source\LibJPEG\jcomapi.c" />
-    <ClCompile Include="Source\LibJPEG\jcparam.c" />
-    <ClCompile Include="Source\LibJPEG\jcprepct.c" />
-    <ClCompile Include="Source\LibJPEG\jcsample.c" />
-    <ClCompile Include="Source\LibJPEG\jctrans.c" />
-    <ClCompile Include="Source\LibJPEG\jdapimin.c" />
-    <ClCompile Include="Source\LibJPEG\jdapistd.c" />
-    <ClCompile Include="Source\LibJPEG\jdarith.c" />
-    <ClCompile Include="Source\LibJPEG\jdatadst.c" />
-    <ClCompile Include="Source\LibJPEG\jdatasrc.c" />
-    <ClCompile Include="Source\LibJPEG\jdcoefct.c" />
-    <ClCompile Include="Source\LibJPEG\jdcolor.c" />
-    <ClCompile Include="Source\LibJPEG\jddctmgr.c" />
-    <ClCompile Include="Source\LibJPEG\jdhuff.c" />
-    <ClCompile Include="Source\LibJPEG\jdinput.c" />
-    <ClCompile Include="Source\LibJPEG\jdmainct.c" />
-    <ClCompile Include="Source\LibJPEG\jdmarker.c" />
-    <ClCompile Include="Source\LibJPEG\jdmaster.c" />
-    <ClCompile Include="Source\LibJPEG\jdmerge.c" />
-    <ClCompile Include="Source\LibJPEG\jdpostct.c" />
-    <ClCompile Include="Source\LibJPEG\jdsample.c" />
-    <ClCompile Include="Source\LibJPEG\jdtrans.c" />
-    <ClCompile Include="Source\LibJPEG\jerror.c" />
-    <ClCompile Include="Source\LibJPEG\jfdctflt.c" />
-    <ClCompile Include="Source\LibJPEG\jfdctfst.c" />
-    <ClCompile Include="Source\LibJPEG\jfdctint.c" />
-    <ClCompile Include="Source\LibJPEG\jidctflt.c" />
-    <ClCompile Include="Source\LibJPEG\jidctfst.c" />
-    <ClCompile Include="Source\LibJPEG\jidctint.c" />
-    <ClCompile Include="Source\LibJPEG\jmemmgr.c" />
-    <ClCompile Include="Source\LibJPEG\jmemnobs.c" />
-    <ClCompile Include="Source\LibJPEG\jquant1.c" />
-    <ClCompile Include="Source\LibJPEG\jquant2.c" />
-    <ClCompile Include="Source\LibJPEG\jutils.c" />
-    <ClCompile Include="Source\LibJPEG\rdbmp.c" />
-    <ClCompile Include="Source\LibJPEG\rdcolmap.c" />
-    <ClCompile Include="Source\LibJPEG\rdgif.c" />
-    <ClCompile Include="Source\LibJPEG\rdppm.c" />
-    <ClCompile Include="Source\LibJPEG\rdrle.c" />
-    <ClCompile Include="Source\LibJPEG\rdswitch.c" />
-    <ClCompile Include="Source\LibJPEG\rdtarga.c" />
-    <ClCompile Include="Source\LibJPEG\transupp.c" />
-    <ClCompile Include="Source\LibJPEG\wrbmp.c" />
-    <ClCompile Include="Source\LibJPEG\wrgif.c" />
-    <ClCompile Include="Source\LibJPEG\wrppm.c" />
-    <ClCompile Include="Source\LibJPEG\wrrle.c" />
-    <ClCompile Include="Source\LibJPEG\wrtarga.c" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Source\LibJPEG\cderror.h" />
-    <ClInclude Include="Source\LibJPEG\cdjpeg.h" />
-    <ClInclude Include="Source\LibJPEG\jconfig.h" />
-    <ClInclude Include="Source\LibJPEG\jdct.h" />
-    <ClInclude Include="Source\LibJPEG\jerror.h" />
-    <ClInclude Include="Source\LibJPEG\jinclude.h" />
-    <ClInclude Include="Source\LibJPEG\jmemsys.h" />
-    <ClInclude Include="Source\LibJPEG\jmorecfg.h" />
-    <ClInclude Include="Source\LibJPEG\jpegint.h" />
-    <ClInclude Include="Source\LibJPEG\jpeglib.h" />
-    <ClInclude Include="Source\LibJPEG\jversion.h" />
-    <ClInclude Include="Source\LibJPEG\transupp.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="axis_image_jpeg.def" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{B4517713-2000-419D-A87F-4338C9DDE3FA}</ProjectGuid>
+    <ProjectGuid>{89889AD7-7BE0-49C3-BEB2-F22AFACBBB99}</ProjectGuid>
     <Keyword>DynamicLibrary</Keyword>
-    <ProjectName>axis_image_jpeg</ProjectName>
+    <ProjectName>axisjpeg</ProjectName>
     <RootNamespace>axis_image_jpeg</RootNamespace>
     <DefaultLanguage>en-US</DefaultLanguage>
     <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>

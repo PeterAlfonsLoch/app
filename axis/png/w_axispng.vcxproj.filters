@@ -1,96 +1,92 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source">
-      <UniqueIdentifier>{8287e29d-bdc2-48b0-9c9f-58bf61bf172b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\LibPNG">
-      <UniqueIdentifier>{fa751af3-475d-4d89-aae2-e6917d730bc1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files">
       <UniqueIdentifier>{b37d942f-4bb2-40e0-8e7c-3dae6762b41c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Plugins">
-      <UniqueIdentifier>{b431b429-3d4a-4934-9b74-ff1b01884ab1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files">
       <UniqueIdentifier>{ced609c0-dd6b-4a79-994b-b4fb0c095c79}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\LibPNG\png.c">
-      <Filter>Source\LibPNG</Filter>
+    <ClCompile Include="png.c">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\LibPNG\pngerror.c">
-      <Filter>Source\LibPNG</Filter>
+    <ClCompile Include="pngerror.c">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\LibPNG\pngget.c">
-      <Filter>Source\LibPNG</Filter>
+    <ClCompile Include="pngget.c">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\LibPNG\pngmem.c">
-      <Filter>Source\LibPNG</Filter>
+    <ClCompile Include="pngmem.c">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\LibPNG\pngpread.c">
-      <Filter>Source\LibPNG</Filter>
+    <ClCompile Include="pngpread.c">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\LibPNG\pngread.c">
-      <Filter>Source\LibPNG</Filter>
+    <ClCompile Include="pngread.c">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\LibPNG\pngrio.c">
-      <Filter>Source\LibPNG</Filter>
+    <ClCompile Include="pngrio.c">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\LibPNG\pngrtran.c">
-      <Filter>Source\LibPNG</Filter>
+    <ClCompile Include="pngrtran.c">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\LibPNG\pngrutil.c">
-      <Filter>Source\LibPNG</Filter>
+    <ClCompile Include="pngrutil.c">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\LibPNG\pngset.c">
-      <Filter>Source\LibPNG</Filter>
+    <ClCompile Include="pngset.c">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\LibPNG\pngtrans.c">
-      <Filter>Source\LibPNG</Filter>
+    <ClCompile Include="pngtrans.c">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\LibPNG\pngwio.c">
-      <Filter>Source\LibPNG</Filter>
+    <ClCompile Include="pngwio.c">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\LibPNG\pngwrite.c">
-      <Filter>Source\LibPNG</Filter>
+    <ClCompile Include="pngwrite.c">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\LibPNG\pngwtran.c">
-      <Filter>Source\LibPNG</Filter>
+    <ClCompile Include="pngwtran.c">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\LibPNG\pngwutil.c">
-      <Filter>Source\LibPNG</Filter>
+    <ClCompile Include="pngwutil.c">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\FreeImage\PluginPNG.cpp">
-      <Filter>Source Files\Plugins</Filter>
+    <ClCompile Include="throw_error_exception.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\LibPNG\png.h">
-      <Filter>Source\LibPNG</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\LibPNG\pngconf.h">
-      <Filter>Source\LibPNG</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\LibPNG\pngdebug.h">
-      <Filter>Source\LibPNG</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\LibPNG\pnginfo.h">
-      <Filter>Source\LibPNG</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\LibPNG\pnglibconf.h">
-      <Filter>Source\LibPNG</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\LibPNG\pngpriv.h">
-      <Filter>Source\LibPNG</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\LibPNG\pngstruct.h">
-      <Filter>Source\LibPNG</Filter>
-    </ClInclude>
+    <None Include="axispng.def">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="axis_image_png.def" />
+    <ClInclude Include="config.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\png.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\pngconf.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pngdebug.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pnginfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\pnglibconf.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pngpriv.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pngstruct.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
