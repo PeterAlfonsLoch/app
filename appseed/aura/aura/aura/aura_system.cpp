@@ -40,7 +40,7 @@ namespace aura
 
    system::system(::aura::application * papp, void * pdata) :
       m_process(this),
-      m_mutexCit(this, "Global\\ca2_weather_city")
+      m_mutexCit(this, false, "Global\\ca2_weather_city")
    {
 
 #ifndef WINDOWS
@@ -2380,7 +2380,7 @@ namespace aura
    {
 
       
-      single_lock sl(&m_mutexCit);
+      synch_lock sl(&m_mutexCit);
 
       if (m_straCit.get_size() == m_iaIds.get_size()
          && m_iaIds.get_size() == m_daLon.get_size()
