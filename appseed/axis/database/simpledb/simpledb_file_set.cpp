@@ -51,6 +51,11 @@ namespace simpledb
 
       data_load("recursive", baRecursive);
 
+      for (index i = baRecursive.get_size(); i < patha.get_size(); i++)
+      {
+         baRecursive.add(false);
+      }
+
       // add_search calls Ex2FileSet refresh internally
       ::file::set::add_search(patha, baRecursive);
 
