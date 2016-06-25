@@ -44,7 +44,6 @@
     <ClCompile Include="pngwutil.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\include\ca2_strophe.h" />
     <ClInclude Include="..\..\include\png.h" />
     <ClInclude Include="..\..\include\pngconf.h" />
     <ClInclude Include="..\..\include\pnglibconf.h" />

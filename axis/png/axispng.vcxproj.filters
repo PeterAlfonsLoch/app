@@ -71,9 +71,6 @@
     <ClInclude Include="pngstruct.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\ca2_strophe.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\include\png.h">
       <Filter>Header Files</Filter>
     </ClInclude>
