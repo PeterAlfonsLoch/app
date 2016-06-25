@@ -62,7 +62,7 @@ CLASS_DECL_AURA bool file_put(const char * path, ::file::serializable & s, ::aur
 
       }
 
-      ::file::buffer_sp pfile = App(papp).file().get_file(path, ::file::mode_create | ::file::mode_write | ::file::type_binary | ::file::defer_create_directory);
+      ::file::buffer_sp pfile = App(papp).file().get_file(path, ::file::mode_create | ::file::mode_write | ::file::type_binary | ::file::defer_create_directory | ::file::share_exclusive);
 
       if (pfile.is_null())
       {
@@ -109,7 +109,7 @@ CLASS_DECL_AURA bool file_as(::file::serializable & s, const char * path, ::aura
 
       }
 
-      ::file::buffer_sp pfile = App(papp).file().get_file(path, ::file::mode_read | ::file::type_binary);
+      ::file::buffer_sp pfile = App(papp).file().get_file(path, ::file::mode_read | ::file::type_binary | ::file::share_deny_write);
 
       if (pfile.is_null())
       {

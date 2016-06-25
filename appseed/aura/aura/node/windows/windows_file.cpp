@@ -176,26 +176,34 @@ namespace windows
          dwCreateFlag = OPEN_EXISTING;
 
       HANDLE hFile = INVALID_HANDLE_VALUE;
-      int iRetrySharingViolation = 0;
+      
       DWORD dwWaitSharingViolation = 84;
+      
       DWORD dwStart = ::get_tick_count();
+   
+      DWORD dwFileSharingViolationRetryTimeout = ::get_thread() != NULL ? ::get_thread()->get_file_sharing_violation_timeout_total_milliseconds() : 0;
+   
    retry:
 
       wstring wstrFileName(m_strFileName);
+      
       // attempt file creation
       //HANDLE hFile = shell::CreateFile(::str::international::utf8_to_unicode(m_strFileName), dwAccess, dwShareMode, &sa, dwCreateFlag, FILE_ATTRIBUTE_NORMAL, NULL);
+      
       hFile = ::CreateFileW(wstrFileName, dwAccess, dwShareMode, psa, dwCreateFlag, FILE_ATTRIBUTE_NORMAL, NULL);
+
       if (hFile == INVALID_HANDLE_VALUE)
       {
+      
          DWORD dwLastError = ::GetLastError();
 
-         if(::get_thread() != NULL &&
-            ::get_thread()->m_bRun && dwLastError == ERROR_SHARING_VIOLATION && (::get_tick_count() - dwStart) < ::get_thread()->get_file_sharing_violation_timeout_total_milliseconds())
+         if(dwLastError == ERROR_SHARING_VIOLATION && ::get_thread()->m_bRun &&  (::get_tick_count() - dwStart) < dwFileSharingViolationRetryTimeout)
          {
-            iRetrySharingViolation++;
+         
             Sleep(dwWaitSharingViolation);
-            dwWaitSharingViolation += 84 + 77 + 49;
+
             goto retry;
+
          }
 
          return canew(::file::exception(get_app(), file_exception::OsErrorToException(dwLastError), dwLastError, lpszFileName));
