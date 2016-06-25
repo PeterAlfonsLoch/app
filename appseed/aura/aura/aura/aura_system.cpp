@@ -2391,10 +2391,47 @@ namespace aura
 
       }
 
-      file_as(m_straCit, dir::system() / "weather-cit.bin");
-      file_as_array(m_iaIds, dir::system() / "weather-ids.bin");
-      file_as_array(m_daLon, dir::system() / "weather-lon.bin");
-      file_as_array(m_daLat, dir::system() / "weather-lat.bin");
+      bool bOk = false;
+
+      try
+      {
+
+         file_as(m_straCit, dir::system() / "weather-cit.bin");
+         file_as_array(m_iaIds, dir::system() / "weather-ids.bin");
+         file_as_array(m_daLon, dir::system() / "weather-lon.bin");
+         file_as_array(m_daLat, dir::system() / "weather-lat.bin");
+
+         bOk = true;
+
+      }
+      catch (...)
+      {
+
+      }
+
+      if (!bOk)
+      {
+
+         try
+         {
+
+            Application.file().del(dir::system() / "weather-cit.bin");
+            Application.file().del(dir::system() / "weather-ids.bin");
+            Application.file().del(dir::system() / "weather-lon.bin");
+            Application.file().del(dir::system() / "weather-lat.bin");
+
+            m_straCit.remove_all();
+            m_iaIds.remove_all();
+            m_daLon.remove_all();
+            m_daLat.remove_all();
+
+         }
+         catch (...)
+         {
+
+         }
+
+      }
 
       if (m_straCit.get_size() == m_iaIds.get_size()
        && m_iaIds.get_size() == m_daLon.get_size()

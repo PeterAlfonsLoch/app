@@ -783,15 +783,18 @@ namespace user
 
    }
 
+
    void tree::on_change_view_size()
    {
 
-
       m_sizeTotal.cx = m_iCurrentViewWidth;
+
       m_sizeTotal.cy = (LONG)(get_proper_item_count() * _001GetItemHeight());
 
+      ::user::control::on_change_view_size();
 
    }
+
 
    bool tree::_001GetItemElementRect(
       LPRECT lprect,
@@ -1055,6 +1058,8 @@ namespace user
       m_pitemFirstVisible = CalcFirstVisibleItem(m_iFirstVisibleItemLevel, m_iFirstVisibleItemProperIndex);
 
       m_iCurrentViewWidth = _001CalcCurrentViewWidth();
+
+      
 
    }
 
