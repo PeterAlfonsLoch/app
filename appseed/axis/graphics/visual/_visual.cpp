@@ -57,3 +57,12 @@
 //2015-01-04  19:44                 0 _visual.cpp"
 //              16 arquivo(s)        285.564 bytes
 //               0 pasta(s)   19.197.042.688 bytes dispon¡veis
+
+
+
+#include "antialias_8bit.cpp"
+#include "detect_8bit_borders.cpp"
+#include "freeimage.cpp"
+#include "load_gif_frame.cpp"
+
+
