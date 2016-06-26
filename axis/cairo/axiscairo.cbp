@@ -83,7 +83,7 @@
 			<Add option="-laxisfreetype" />
 			<Add option="-laxiszlib" />
 			<Add option="-laxispixman" />
-			<Add option="-laxis_image_png" />
+			<Add option="-laxispng" />
 			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../stage/x86" />
 		</Linker>

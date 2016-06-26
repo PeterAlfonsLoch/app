@@ -676,6 +676,7 @@ namespace windows
          IGUI_WIN_MSG_LINK(WM_CAPTURECHANGED,pinterface,this,&interaction_impl::_001OnCaptureChanged);
          IGUI_WIN_MSG_LINK(WM_SETCURSOR,pinterface,this,&interaction_impl::_001OnSetCursor);
          IGUI_WIN_MSG_LINK(WM_ERASEBKGND,pinterface,this,&interaction_impl::_001OnEraseBkgnd);
+         IGUI_WIN_MSG_LINK(WM_NCCALCSIZE,pinterface,this,&interaction_impl::_001OnNcCalcSize);
          IGUI_WIN_MSG_LINK(WM_SIZE,pinterface,this,&interaction_impl::_001OnSize);
          IGUI_WIN_MSG_LINK(WM_WINDOWPOSCHANGING,pinterface,this,&interaction_impl::_001OnWindowPosChanging);
          IGUI_WIN_MSG_LINK(WM_WINDOWPOSCHANGED,pinterface,this,&interaction_impl::_001OnWindowPosChanged);
@@ -686,7 +687,6 @@ namespace windows
          ::user::interaction_impl::prio_install_message_handling(pinterface);
       }
       IGUI_WIN_MSG_LINK(WM_DESTROY,pinterface,this,&interaction_impl::_001OnDestroy);
-      IGUI_WIN_MSG_LINK(WM_NCCALCSIZE,pinterface,this,&interaction_impl::_001OnNcCalcSize);
 
    }
 
@@ -767,7 +767,7 @@ namespace windows
    }
 
 
-   
+
 
    void interaction_impl::_001OnDestroy(signal_details * pobj)
    {
@@ -5289,7 +5289,7 @@ restart_mouse_hover_check:
 
    void interaction_impl::_001OnWindowPosChanging(signal_details * pobj)
    {
-  
+
       return;
 
 //      SCAST_PTR(::message::window_pos,pwindowpos,pobj);
@@ -5431,10 +5431,10 @@ restart_mouse_hover_check:
    void interaction_impl::_001OnWindowPosChanged(signal_details * pobj)
    {
 
-      
+
       return;
-      
-      
+
+
       //SCAST_PTR(::message::window_pos,pwindowpos,pobj);
 
       //if(GetExStyle() & WS_EX_LAYERED)
@@ -6115,7 +6115,7 @@ lCallNextHook:
       if (SUCCEEDED(Result))
       {
 
-            
+
          if (bShow)
          {
 

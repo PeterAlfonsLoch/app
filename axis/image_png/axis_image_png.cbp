@@ -67,7 +67,7 @@
 			<Add option="-laura" />
 			<Add option="-laxiszlib" />
 			<Add option="-laxisfreeimage" />
-			<Add option="-lpng" />
+			<Add option="-laxispng" />
 			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../stage/x86" />
 			<Add directory="/usr/lib64/mysql/" />

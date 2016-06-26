@@ -2,14 +2,14 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="axis_image_png" />
+		<Option title="axispng" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
-				<Option output="../../../stage/x86/libaxis_image_png.so" prefix_auto="0" extension_auto="0" />
+				<Option output="../../../stage/x86/libaxispng.so" prefix_auto="0" extension_auto="0" />
 				<Option working_dir="../../../stage/x86/" />
-				<Option object_output="../../../time/intermediate/app/axis_image_png" />
+				<Option object_output="../../../time/intermediate/app/axispng" />
 				<Option type="3" />
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />
@@ -71,59 +71,56 @@
 			<Add directory="../../../stage/x86" />
 			<Add directory="/usr/lib64/mysql/" />
 		</Linker>
-		<Unit filename="Source/FreeImage/PluginPNG.cpp" />
-		<Unit filename="Source/LibPNG/png.c">
+		<Unit filename="png.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="Source/LibPNG/png.h" />
-		<Unit filename="Source/LibPNG/pngconf.h" />
-		<Unit filename="Source/LibPNG/pngdebug.h" />
-		<Unit filename="Source/LibPNG/pngerror.c">
+		<Unit filename="pngdebug.h" />
+		<Unit filename="pngerror.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="Source/LibPNG/pngget.c">
+		<Unit filename="pngget.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="Source/LibPNG/pnginfo.h" />
-		<Unit filename="Source/LibPNG/pnglibconf.h" />
-		<Unit filename="Source/LibPNG/pngmem.c">
+		<Unit filename="pnginfo.h" />
+		<Unit filename="pngmem.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="Source/LibPNG/pngpread.c">
+		<Unit filename="pngpread.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="Source/LibPNG/pngpriv.h" />
-		<Unit filename="Source/LibPNG/pngread.c">
+		<Unit filename="pngpriv.h" />
+		<Unit filename="pngread.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="Source/LibPNG/pngrio.c">
+		<Unit filename="pngrio.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="Source/LibPNG/pngrtran.c">
+		<Unit filename="pngrtran.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="Source/LibPNG/pngrutil.c">
+		<Unit filename="pngrutil.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="Source/LibPNG/pngset.c">
+		<Unit filename="pngset.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="Source/LibPNG/pngstruct.h" />
-		<Unit filename="Source/LibPNG/pngtrans.c">
+		<Unit filename="pngstruct.h" />
+		<Unit filename="pngtrans.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="Source/LibPNG/pngwio.c">
+		<Unit filename="pngwio.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="Source/LibPNG/pngwrite.c">
+		<Unit filename="pngwrite.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="Source/LibPNG/pngwtran.c">
+		<Unit filename="pngwtran.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="Source/LibPNG/pngwutil.c">
+		<Unit filename="pngwutil.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="throw_error_exception.cpp" />
 		<Extensions>
 			<code_completion />
 			<debugger />
