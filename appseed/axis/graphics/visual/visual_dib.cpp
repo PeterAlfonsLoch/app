@@ -168,7 +168,7 @@ namespace visual
       switch (psaveimage->m_eformat)
       {
       case ::visual::image::format_png:
-         eformat = FIF_PNG;
+         eformat = FreeImage_GetFIFFromFormat("PNG");
          strFile = "foo.png";
          break;
       case ::visual::image::format_bmp:
@@ -182,7 +182,7 @@ namespace visual
          break;
       case ::visual::image::format_jpeg:
          b24 = true;
-         eformat = FIF_JPEG;
+         eformat = FreeImage_GetFIFFromFormat("JPEG");
          strFile = "foo.jpg";
          if (psaveimage->m_iQuality > 80)
          {
@@ -751,7 +751,7 @@ HRESULT windows_GetBackgroundColor(::visual::dib_sp::array * pdiba,
       {
          pdiba->m_cra[i] = rgColors[i];
       }
-      // Check whether background color is outside range 
+      // Check whether background color is outside range
       hr = (pdiba->m_backgroundIndex >= cColorsCopied) ? E_FAIL : S_OK;
    }
 
@@ -982,11 +982,11 @@ HRESULT windows_GetRawFrame(
       if (SUCCEEDED(hr))
       {
          // Insert an artificial delay to ensure rendering for gif with very small
-         // or 0 delay.  This delay number is picked to match with most browsers' 
+         // or 0 delay.  This delay number is picked to match with most browsers'
          // gif display speed.
          //
-         // This will defeat the purpose of using zero delay intermediate frames in 
-         // order to preserve compatibility. If this is removed, the zero delay 
+         // This will defeat the purpose of using zero delay intermediate frames in
+         // order to preserve compatibility. If this is removed, the zero delay
          // intermediate frames will not be visible.
          //if (pointer.m_dwTime < 90)
          {
@@ -1018,7 +1018,7 @@ HRESULT windows_GetRawFrame(
       else
       {
 
-         // Failed to get the disposal method, use default. Possibly a 
+         // Failed to get the disposal method, use default. Possibly a
          // non-animated gif.
          pointer->m_edisposal = ::visual::dib_sp::pointer::disposal_undefined;
 
@@ -1113,13 +1113,13 @@ HRESULT windows_GetRawFrame(
 
    if (pointer->m_rect.area() == pdiba->m_size.area())
    {
-      
+
       ::count c = 0;
 
       int64_t iR = 0;
-      
+
       int64_t iG = 0;
-      
+
       int64_t iB = 0;
 
       int iLight = 0;
@@ -1153,7 +1153,7 @@ HRESULT windows_GetRawFrame(
 
             if (iIndex >= pdiba->m_cra.get_count())
             {
-            
+
                continue;
 
             }
@@ -1216,9 +1216,9 @@ HRESULT windows_GetRawFrame(
 
       for (index x = 0; x < pointer->m_dib->m_size.cx; x++)
       {
-      
+
          bTransparent = true;
-         
+
          cr = 0;
 
          for (index y = 0; y < pointer->m_dib->m_size.cy; y++)
@@ -1237,7 +1237,7 @@ HRESULT windows_GetRawFrame(
 
             if (iIndex >= pdiba->m_cra.get_count())
             {
-               
+
                continue;
 
             }
@@ -1475,7 +1475,7 @@ HRESULT windows_GetRawFrame(
             {
                output_debug_string("opaque");
             }
-            else 
+            else
             {
                output_debug_string("translucent!!!");
             }
@@ -1504,7 +1504,7 @@ HRESULT windows_GetRawFrame(
                {
 
                   double dA2;
-                  
+
                   if (dR1 < 127)
                   {
 
@@ -1886,7 +1886,7 @@ HRESULT windows_GetRawFrame(
 
          for (; x >= 0; x--)
          {
-            
+
             index iPixel = (y + x) * w + x;
 
             cr = pointer->m_dib->m_pcolorref[iPixel];
@@ -2357,8 +2357,8 @@ bool windows_load_diba_from_file(::visual::dib_sp::array * pdiba, ::file::buffer
 
             if (uPixelAspRatio != 0)
             {
-               // Need to calculate the ratio. The value in uPixelAspRatio 
-               // allows specifying widest pixel 4:1 to the tallest pixel of 
+               // Need to calculate the ratio. The value in uPixelAspRatio
+               // allows specifying widest pixel 4:1 to the tallest pixel of
                // 1:4 in increments of 1/64th
                float pixelAspRatio = (uPixelAspRatio + 15.f) / 64.f;
 
@@ -2389,7 +2389,7 @@ bool windows_load_diba_from_file(::visual::dib_sp::array * pdiba, ::file::buffer
             // First check to see if the application block in the Application Extension
             // contains "NETSCAPE2.0" and "ANIMEXTS1.0", which indicates the gif animation
             // has looping information associated with it.
-            // 
+            //
             // If we fail to get the looping information, loop the animation infinitely.
             if (SUCCEEDED(pMetadataQueryReader->GetMetadataByName(
                L"/appext/application",
@@ -2442,14 +2442,14 @@ bool windows_load_diba_from_file(::visual::dib_sp::array * pdiba, ::file::buffer
       pdiba->m_dwTotal = 0;
 
       ::draw2d::dib_sp dibCompose(papp->allocer());
-      
+
       dibCompose->create(pdiba->m_size);
-      
+
       dibCompose->Fill(0);
 
       for (index i = 0; i < cFrames; i++)
       {
-         
+
          pdiba->element_at(i) = canew(::visual::dib_sp::pointer());
 
          pdiba->element_at(i)->m_dib.alloc(papp->allocer());

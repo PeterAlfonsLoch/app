@@ -4,9 +4,10 @@
 
 #ifdef METROWIN
 
-   CLASS_DECL_IMPORT void draw2d_factory_exchange(::aura::application * papp);
+CLASS_DECL_IMPORT void draw2d_factory_exchange(::aura::application * papp);
 
 #endif
+
 
 extern thread_pointer < memdleak_block > t_plastblock;
 

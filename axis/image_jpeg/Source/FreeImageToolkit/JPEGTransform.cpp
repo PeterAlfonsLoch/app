@@ -27,10 +27,12 @@ extern "C" {
 #undef FAR
 #include <setjmp.h>
 
-#include "../LibJPEG/jinclude.h"
-#include "../LibJPEG/jpeglib.h"
-#include "../LibJPEG/jerror.h"
-#include "../LibJPEG/transupp.h"
+#include "jinclude.h"
+#include "jpeglib.h"
+#include "jerror.h"
+#ifdef _WIN32
+#include "transupp.h"
+#endif
 }
 
 //#include "Utilities.h"
@@ -66,7 +68,7 @@ ls_jpeg_error_exit (j_common_ptr cinfo) {
 		// let the memory manager delete any temp files before we die
 		jpeg_destroy(cinfo);
 
-		throw FIF_JPEG;
+		throw FreeImage_GetFIFFromFormat("JPEG");
 	}
 }
 
@@ -81,7 +83,7 @@ ls_jpeg_output_message (j_common_ptr cinfo) {
 	// create the message
 	(*cinfo->err->format_message)(cinfo, buffer);
 	// send it to user's message proc
-	FreeImage_OutputMessageProc(FIF_JPEG, buffer);
+	FreeImage_OutputMessageProc(FreeImage_GetFIFFromFormat("JPEG"), buffer);
 }
 
 // ----------------------------------------------------------

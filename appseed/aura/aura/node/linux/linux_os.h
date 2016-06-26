@@ -59,6 +59,7 @@ namespace linux
       virtual void post_to_all_threads(UINT message, WPARAM wParam, LPARAM lParam);
 
 
+      bool initialize_wallpaper_fileset(::file::set * pfileset, bool bAddSearch);
 
    };
 

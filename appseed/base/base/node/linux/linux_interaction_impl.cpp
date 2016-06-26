@@ -350,11 +350,15 @@ namespace linux
             m_pui->m_id = id;
          }
 
+         m_pui->m_bMessageWindow = true;
+
          send_message(WM_CREATE, 0, (LPARAM) &cs);
 
       }
       else
       {
+
+         m_pui->m_bMessageWindow = false;
 
          //single_lock ml(&user_mutex());
 
@@ -508,9 +512,9 @@ namespace linux
 
          XGetWindowAttributes(m_oswindow->display(), m_oswindow->window(), &m_attr);
 
-         m_spgraphics.alloc(allocer());
-
-         m_spgraphics->on_create_window(this);
+//         m_spgraphics.alloc(allocer());
+//
+//         m_spgraphics->on_create_window(this);
 
          int event_base, error_base, major_version, minor_version;
 
@@ -556,9 +560,9 @@ d.unlock();
         // PostNcDestroy();        // cleanup if CreateWindowEx fails too soon
 
    m_pui->m_id = id;
-         send_message(WM_CREATE, 0, (LPARAM) &cs);
+         m_pui->send_message(WM_CREATE, 0, (LPARAM) &cs);
 
-         send_message(WM_SIZE);
+         m_pui->send_message(WM_SIZE);
 
       }
 
@@ -630,28 +634,45 @@ d.unlock();
    {
       //m_pbuffer->InstallMessageHandling(pinterface);
 
+      ::user::interaction_impl::last_install_message_handling(pinterface);
       ::user::interaction_impl::install_message_handling(pinterface);
 
-      IGUI_WIN_MSG_LINK(WM_DESTROY           , pinterface, this, &interaction_impl::_001OnDestroy);
-      IGUI_WIN_MSG_LINK(WM_NCDESTROY         , pinterface, this, &interaction_impl::_001OnNcDestroy);
-      IGUI_WIN_MSG_LINK(WM_PAINT             , pinterface, this, &interaction_impl::_001OnPaint);
-      IGUI_WIN_MSG_LINK(WM_PRINT             , pinterface, this, &interaction_impl::_001OnPrint);
+      IGUI_WIN_MSG_LINK(WM_NCDESTROY,pinterface,this,&interaction_impl::_001OnNcDestroy);
 
-      if(m_pui != NULL)
+      if(!m_pui->m_bMessageWindow)
       {
-
-         m_pui->install_message_handling(pinterface);
-
+         IGUI_WIN_MSG_LINK(WM_PAINT,pinterface,this,&interaction_impl::_001OnPaint);
+         IGUI_WIN_MSG_LINK(WM_PRINT,pinterface,this,&interaction_impl::_001OnPrint);
       }
 
-      IGUI_WIN_MSG_LINK(WM_CAPTURECHANGED    , pinterface, this, &interaction_impl::_001OncaptureChanged);
-      IGUI_WIN_MSG_LINK(WM_CREATE            , pinterface, this, &interaction_impl::_001OnCreate);
-      IGUI_WIN_MSG_LINK(WM_SETCURSOR         , pinterface, this, &interaction_impl::_001OnSetCursor);
-      IGUI_WIN_MSG_LINK(WM_ERASEBKGND        , pinterface, this, &interaction_impl::_001OnEraseBkgnd);
-      IGUI_WIN_MSG_LINK(WM_MOVE              , pinterface, this, &interaction_impl::_001OnMove);
+      m_pui->install_message_handling(pinterface);
+      IGUI_WIN_MSG_LINK(WM_CREATE,pinterface,this,&interaction_impl::_001OnCreate);
+
+
       IGUI_WIN_MSG_LINK(WM_SIZE              , pinterface, this, &interaction_impl::_001OnSize);
-      IGUI_WIN_MSG_LINK(WM_SHOWWINDOW        , pinterface, this, &interaction_impl::_001OnShowWindow);
-      IGUI_WIN_MSG_LINK(ca2m_PRODEVIAN_SYNCH , pinterface, this, &interaction_impl::_001OnProdevianSynch);
+
+      if(!m_pui->m_bMessageWindow)
+      {
+         IGUI_WIN_MSG_LINK(WM_CAPTURECHANGED,pinterface,this,&interaction_impl::_001OnCaptureChanged);
+         IGUI_WIN_MSG_LINK(WM_SETCURSOR,pinterface,this,&interaction_impl::_001OnSetCursor);
+         IGUI_WIN_MSG_LINK(WM_ERASEBKGND,pinterface,this,&interaction_impl::_001OnEraseBkgnd);
+         IGUI_WIN_MSG_LINK(WM_SIZE,pinterface,this,&interaction_impl::_001OnSize);
+         //IGUI_WIN_MSG_LINK(WM_NCCALCSIZE,pinterface,this,&interaction_impl::_001OnNcCalcSize);
+
+         // linux
+         IGUI_WIN_MSG_LINK(WM_MOVE              , pinterface, this, &interaction_impl::_001OnMove);
+         IGUI_WIN_MSG_LINK(WM_SHOWWINDOW        , pinterface, this, &interaction_impl::_001OnShowWindow);
+
+         //IGUI_WIN_MSG_LINK(WM_WINDOWPOSCHANGING,pinterface,this,&interaction_impl::_001OnWindowPosChanging);
+         //IGUI_WIN_MSG_LINK(WM_WINDOWPOSCHANGED,pinterface,this,&interaction_impl::_001OnWindowPosChanged);
+         //IGUI_WIN_MSG_LINK(WM_GETMINMAXINFO,pinterface,this,&interaction_impl::_001OnGetMinMaxInfo);
+         //IGUI_WIN_MSG_LINK(WM_SETFOCUS,pinterface,this,&interaction_impl::_001OnSetFocus);
+         //IGUI_WIN_MSG_LINK(WM_KILLFOCUS,pinterface,this,&interaction_impl::_001OnKillFocus);
+         IGUI_WIN_MSG_LINK(ca2m_PRODEVIAN_SYNCH,pinterface,this,&interaction_impl::_001OnProdevianSynch);
+         ::user::interaction_impl::prio_install_message_handling(pinterface);
+      }
+      IGUI_WIN_MSG_LINK(WM_DESTROY,pinterface,this,&interaction_impl::_001OnDestroy);
+
    }
 
    void interaction_impl::_001OnMove(::signal_details * pobj)
@@ -728,8 +749,6 @@ d.unlock();
       //   pdraw->m_wndpaOut.remove(m_pui);
       //}
       //m_pauraapp->remove(m_pui);
-      mq_remove_window_from_all_queues(get_handle());
-      oswindow_remove(m_oswindow->display(), m_oswindow->window());
    }
 
    void interaction_impl::_001OncaptureChanged(::signal_details * pobj)

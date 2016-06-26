@@ -927,13 +927,11 @@ return ::getpid();
       if (bAddSearch)
       {
 
-         ::file::path pathFolder;
+         string strDir;
 
-         SHGetSpecialFolderPath(NULL, pathFolder, CSIDL_WINDOWS, FALSE);
+         strDir = "/usr/share/backgrounds";
 
-         pathFolder /= "Web/Wallpaper";
-
-         pfileset->add_search(pathFolder, true);
+         pfileset->add_search(strDir, true);
 
       }
 
@@ -941,12 +939,6 @@ return ::getpid();
 
    }
    //#elif defined(LINUX)
-   //   //string strDir;
-   //   //strDir = System.dir().path(getenv("HOME"), "Pictures");
-   //   //pimagefileset->add_search(strDir);
-   //   string strDir;
-   //   strDir = "/usr/share/backgrounds";
-   //   pimagefileset->add_search(strDir, true);
    //            }
    //
    //#elif defined(MACOS)

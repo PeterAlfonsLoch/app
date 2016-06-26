@@ -224,105 +224,105 @@ FIBITMAP * imaging::dib_to_FI(::draw2d::dib * pdib)
    }
 
    COLORREF * pdst = pcolorref;
-   
+
    COLORREF * psrc = pdib->m_pcolorref;
-   
+
    int iStrideSrc = pdib->m_iScan;
-   
+
 #if  defined(VSNORD)
-   
+
    for (index y = 0; y < pdib->m_size.cy; y++)
    {
-      
+
       byte * pbDst = ((byte *)pdst) + ((pdib->m_size.cy - y - 1) * iStrideDst);
-      
+
       byte * pbSrc = (byte *)psrc + (y * iStrideSrc);
-      
+
       for (index x = 0; x < pdib->m_size.cx; x++)
       {
-         
+
          pbDst[0] = pbSrc[2];
-         
+
          pbDst[1] = pbSrc[1];
-         
+
          pbDst[2] = pbSrc[0];
-         
+
          pbDst[3] = pbSrc[3];
-         
+
          pbDst += 4;
-         
+
          pbSrc += 4;
-         
+
       }
-      
+
    }
-   
+
 #elif defined(APPLEOS)
-   
+
    byte * pbDst = (byte *)pdst;
-   
+
    byte * pbSrc = (byte *)psrc;
-   
+
    ::count c = (count)pdib->area();
-   
+
    while(c-- > 0)
    {
-      
+
       pbDst[0] = pbSrc[2];
-      
+
       pbDst[1] = pbSrc[1];
-      
+
       pbDst[2] = pbSrc[0];
-      
+
       pbDst[3] = pbSrc[3];
-      
+
       pbDst += 4;
-      
+
       pbSrc += 4;
-      
+
    }
-   
+
    /*
-    
+
     byte * pbDst;
-    
+
     byte * pbSrc;
-    
+
     for(int i = 0; i < pdib->m_size.cy; i++)
     {
-    
+
     pbDst = &((byte *) pdib->m_pcolorref)[pdib->m_iScan * (pdib->m_size.cy - i - 1)];
-    
+
     pbSrc = &((byte *) pdata)[pbi->bmiHeader.biWidth * sizeof(COLORREF) * i];
-    
+
     for(int j = 0; j < pdib->m_size.cx; j++)
     {
-    
+
     pbDst[0] = pbSrc[2];
-    
+
     pbDst[1] = pbSrc[1];
-    
+
     pbDst[2] = pbSrc[0];
-    
+
     pbDst[3] = pbSrc[3];
-    
+
     pbDst += 4;
-    
+
     pbSrc += 4;
-    
+
     }
-    
+
     }*/
-   
+
 #else
    for(int i = 0; i < pdib->m_size.cy; i++)
    {
-      
+
       memcpy(
              &((byte *)pdst)[iStrideDst * (pdib->m_size.cy - i - 1)],
              &((byte *)psrc)[FreeImage_GetInfo(fi)->bmiHeader.biWidth * sizeof(COLORREF) * i],
              iStrideDst);
-      
+
    }
 #endif
 
@@ -2880,7 +2880,7 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
 
    bool imaging::color_blend(::draw2d::graphics * pgraphics,point pt,size size,COLORREF cr,BYTE bA)
    {
-      
+
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
       pgraphics->FillSolidRect(pt.x,pt.y,size.cx,size.cy,(cr & 0x00ffffff) | (bA << 24));
@@ -7246,9 +7246,9 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
 
       try
       {
-         
+
          ::file::buffer_sp file = App(papp).file().get_file(varFile, ::file::mode_read | ::file::share_deny_write | ::file::type_binary);
-         
+
          if (!read_from_file(pdiba, file, papp))
             return false;
 
@@ -7425,31 +7425,6 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
 
       return true;
 
-#ifdef AXIS_FREEIMAGE
-      FIBITMAP * pfi = LoadImageFile(pfile, papp);
-
-      if (pfi == NULL)
-         return false;
-
-      /*synch_lock ml(&user_mutex());
-
-      #if !defined(LINUX) && !defined(APPLEOS)
-
-      single_lock slDc(System.m_pmutexDc, true);
-
-      #endif
-
-      ::draw2d::graphics_sp spgraphics(allocer());
-
-      spgraphics->CreateCompatibleDC(NULL);*/
-
-      //if (!from(pdib, spgraphics, pfi, true, papp))
-      if (!from(pdib, NULL, pfi, true, papp))
-         return false;
-
-      return true;
-#endif
-      return true;
    }
 
 

@@ -1207,6 +1207,10 @@ WINBOOL DestroyWindow(oswindow window)
 
    pui->send_message(WM_NCDESTROY, 0, 0);
 
+   mq_remove_window_from_all_queues(window);
+
+   oswindow_remove(pdisplay, win);
+
    xdisplay d(pdisplay);
 
    XUnmapWindow(pdisplay, win);

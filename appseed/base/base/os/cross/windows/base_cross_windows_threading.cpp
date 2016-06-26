@@ -76,6 +76,9 @@ CLASS_DECL_BASE int_bool mq_remove_window_from_all_queues(oswindow oswindow)
    if(pui == NULL)
       return FALSE;
 
+   if(pui->m_pauraapp == NULL)
+      return false;
+
    IDTHREAD h = pui->m_pauraapp->get_os_int();
 
    if(h == NULL)

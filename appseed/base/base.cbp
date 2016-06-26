@@ -80,21 +80,38 @@
 			<Add directory="../../../stage/x86" />
 		</Linker>
 		<Unit filename="base/_base_base.cpp" />
+		<Unit filename="base/base/_base_base_base.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
+		<Unit filename="base/base/base.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="base/base/base.h" />
+		<Unit filename="base/base/base.inl" />
 		<Unit filename="base/base/base_application.cpp">
 			<Option compile="0" />
 			<Option link="0" />
 		</Unit>
 		<Unit filename="base/base/base_application.h" />
-		<Unit filename="base/base/base_core_copydesk.h" />
 		<Unit filename="base/base/base_platform_interface.h" />
-		<Unit filename="base/base/base_print_job.h" />
+		<Unit filename="base/base/base_session.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="base/base/base_session.h" />
 		<Unit filename="base/base/base_simple_app.h" />
+		<Unit filename="base/base/base_static_start.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="base/base/base_static_start.h" />
+		<Unit filename="base/base/base_system.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="base/base/base_system.h" />
-		<Unit filename="base/base/base_system_str.h" />
-		<Unit filename="base/base/base_template.h" />
 		<Unit filename="base/base_policy/base_c.h" />
 		<Unit filename="base/base_policy/base_cpp.h" />
 		<Unit filename="base/base_policy/base_policy.h" />
@@ -373,7 +390,14 @@
 		<Unit filename="database/_database.cpp" />
 		<Unit filename="framework.cpp" />
 		<Unit filename="framework.h" />
+		<Unit filename="graphics/graphics.h" />
+		<Unit filename="graphics/graphics_window.h" />
+		<Unit filename="graphics/graphics_window_buffer.cpp" />
+		<Unit filename="graphics/graphics_window_buffer.h" />
+		<Unit filename="graphics/graphics_window_dc.cpp" />
+		<Unit filename="graphics/graphics_window_dc.h" />
 		<Unit filename="graphics/graphics_window_graphics.cpp" />
+		<Unit filename="graphics/graphics_window_graphics.h" />
 		<Unit filename="user/_user.cpp" />
 		<Unit filename="user/fontopus/fontopus.h" />
 		<Unit filename="user/fontopus/fontopus_login.h" />
