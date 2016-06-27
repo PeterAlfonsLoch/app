@@ -8,49 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		077A00D91B4D5164001C85FF /* libaxisfreeimage.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07D6A73C1B4CADC4004FEBC2 /* libaxisfreeimage.dylib */; };
-		077A00DA1B4D516E001C85FF /* libaxiszlib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07A371F11B25EC6000E4F888 /* libaxiszlib.dylib */; };
-		077C88F11B51A04E00AB2A41 /* libaxiszlib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07A371F11B25EC6000E4F888 /* libaxiszlib.dylib */; };
 		077C88F41B51A06D00AB2A41 /* libaxisfreeimage.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07A371651B25DE2A00E4F888 /* libaxisfreeimage.dylib */; };
 		07A371B11B25E34E00E4F888 /* PluginPNG.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A371891B25E34D00E4F888 /* PluginPNG.cpp */; };
-		07A371B21B25E34E00E4F888 /* png.c in Sources */ = {isa = PBXBuildFile; fileRef = 07A371981B25E34E00E4F888 /* png.c */; };
-		07A371B31B25E34E00E4F888 /* png.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A371991B25E34E00E4F888 /* png.h */; };
-		07A371B41B25E34E00E4F888 /* pngconf.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A3719A1B25E34E00E4F888 /* pngconf.h */; };
-		07A371B51B25E34E00E4F888 /* pngdebug.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A3719B1B25E34E00E4F888 /* pngdebug.h */; };
-		07A371B61B25E34E00E4F888 /* pngerror.c in Sources */ = {isa = PBXBuildFile; fileRef = 07A3719C1B25E34E00E4F888 /* pngerror.c */; };
-		07A371B71B25E34E00E4F888 /* pngget.c in Sources */ = {isa = PBXBuildFile; fileRef = 07A3719D1B25E34E00E4F888 /* pngget.c */; };
-		07A371B81B25E34E00E4F888 /* pnginfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A3719E1B25E34E00E4F888 /* pnginfo.h */; };
-		07A371B91B25E34E00E4F888 /* pnglibconf.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A3719F1B25E34E00E4F888 /* pnglibconf.h */; };
-		07A371BA1B25E34E00E4F888 /* pngmem.c in Sources */ = {isa = PBXBuildFile; fileRef = 07A371A01B25E34E00E4F888 /* pngmem.c */; };
-		07A371BB1B25E34E00E4F888 /* pngpread.c in Sources */ = {isa = PBXBuildFile; fileRef = 07A371A11B25E34E00E4F888 /* pngpread.c */; };
-		07A371BC1B25E34E00E4F888 /* pngpriv.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A371A21B25E34E00E4F888 /* pngpriv.h */; };
-		07A371BD1B25E34E00E4F888 /* pngread.c in Sources */ = {isa = PBXBuildFile; fileRef = 07A371A31B25E34E00E4F888 /* pngread.c */; };
-		07A371BE1B25E34E00E4F888 /* pngrio.c in Sources */ = {isa = PBXBuildFile; fileRef = 07A371A41B25E34E00E4F888 /* pngrio.c */; };
-		07A371BF1B25E34E00E4F888 /* pngrtran.c in Sources */ = {isa = PBXBuildFile; fileRef = 07A371A51B25E34E00E4F888 /* pngrtran.c */; };
-		07A371C01B25E34E00E4F888 /* pngrutil.c in Sources */ = {isa = PBXBuildFile; fileRef = 07A371A61B25E34E00E4F888 /* pngrutil.c */; };
-		07A371C11B25E34E00E4F888 /* pngset.c in Sources */ = {isa = PBXBuildFile; fileRef = 07A371A71B25E34E00E4F888 /* pngset.c */; };
-		07A371C21B25E34E00E4F888 /* pngstruct.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A371A81B25E34E00E4F888 /* pngstruct.h */; };
-		07A371C41B25E34E00E4F888 /* pngtrans.c in Sources */ = {isa = PBXBuildFile; fileRef = 07A371AA1B25E34E00E4F888 /* pngtrans.c */; };
-		07A371C51B25E34E00E4F888 /* pngwio.c in Sources */ = {isa = PBXBuildFile; fileRef = 07A371AB1B25E34E00E4F888 /* pngwio.c */; };
-		07A371C61B25E34E00E4F888 /* pngwrite.c in Sources */ = {isa = PBXBuildFile; fileRef = 07A371AC1B25E34E00E4F888 /* pngwrite.c */; };
-		07A371C71B25E34E00E4F888 /* pngwtran.c in Sources */ = {isa = PBXBuildFile; fileRef = 07A371AD1B25E34E00E4F888 /* pngwtran.c */; };
-		07A371C81B25E34E00E4F888 /* pngwutil.c in Sources */ = {isa = PBXBuildFile; fileRef = 07A371AE1B25E34E00E4F888 /* pngwutil.c */; };
 		07B6577B190F3CA2002DAADE /* libaxis_image_png.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B65764190F3CA2002DAADE /* libaxis_image_png.dylib */; };
-		07D6A8061B4CB876004FEBC2 /* png.c in Sources */ = {isa = PBXBuildFile; fileRef = 07A371981B25E34E00E4F888 /* png.c */; };
-		07D6A8071B4CB876004FEBC2 /* pngerror.c in Sources */ = {isa = PBXBuildFile; fileRef = 07A3719C1B25E34E00E4F888 /* pngerror.c */; };
-		07D6A8081B4CB876004FEBC2 /* pngget.c in Sources */ = {isa = PBXBuildFile; fileRef = 07A3719D1B25E34E00E4F888 /* pngget.c */; };
-		07D6A8091B4CB876004FEBC2 /* pngmem.c in Sources */ = {isa = PBXBuildFile; fileRef = 07A371A01B25E34E00E4F888 /* pngmem.c */; };
-		07D6A80A1B4CB876004FEBC2 /* pngpread.c in Sources */ = {isa = PBXBuildFile; fileRef = 07A371A11B25E34E00E4F888 /* pngpread.c */; };
-		07D6A80B1B4CB876004FEBC2 /* pngread.c in Sources */ = {isa = PBXBuildFile; fileRef = 07A371A31B25E34E00E4F888 /* pngread.c */; };
-		07D6A80C1B4CB876004FEBC2 /* pngrio.c in Sources */ = {isa = PBXBuildFile; fileRef = 07A371A41B25E34E00E4F888 /* pngrio.c */; };
-		07D6A80D1B4CB876004FEBC2 /* pngrtran.c in Sources */ = {isa = PBXBuildFile; fileRef = 07A371A51B25E34E00E4F888 /* pngrtran.c */; };
-		07D6A80E1B4CB876004FEBC2 /* pngrutil.c in Sources */ = {isa = PBXBuildFile; fileRef = 07A371A61B25E34E00E4F888 /* pngrutil.c */; };
-		07D6A80F1B4CB876004FEBC2 /* pngset.c in Sources */ = {isa = PBXBuildFile; fileRef = 07A371A71B25E34E00E4F888 /* pngset.c */; };
-		07D6A8101B4CB876004FEBC2 /* pngtrans.c in Sources */ = {isa = PBXBuildFile; fileRef = 07A371AA1B25E34E00E4F888 /* pngtrans.c */; };
-		07D6A8111B4CB876004FEBC2 /* pngwio.c in Sources */ = {isa = PBXBuildFile; fileRef = 07A371AB1B25E34E00E4F888 /* pngwio.c */; };
-		07D6A8121B4CB876004FEBC2 /* pngwrite.c in Sources */ = {isa = PBXBuildFile; fileRef = 07A371AC1B25E34E00E4F888 /* pngwrite.c */; };
-		07D6A8131B4CB876004FEBC2 /* pngwtran.c in Sources */ = {isa = PBXBuildFile; fileRef = 07A371AD1B25E34E00E4F888 /* pngwtran.c */; };
-		07D6A8141B4CB876004FEBC2 /* pngwutil.c in Sources */ = {isa = PBXBuildFile; fileRef = 07A371AE1B25E34E00E4F888 /* pngwutil.c */; };
 		07D6A8151B4CB87C004FEBC2 /* PluginPNG.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A371891B25E34D00E4F888 /* PluginPNG.cpp */; };
+		9A92CA0E1D205B370069D173 /* libaxispng.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4E876F1D1FDACA008A419B /* libaxispng.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,26 +30,12 @@
 			remoteGlobalIDString = 9AA5E4C216F7C61B005C45CE;
 			remoteInfo = axisfreeimage;
 		};
-		077C88E41B519E2500AB2A41 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 07A371EC1B25EC6000E4F888 /* axiszlib.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 9AA5E4C216F7C61B005C45CE;
-			remoteInfo = axiszlib;
-		};
 		07A371641B25DE2A00E4F888 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 07A371601B25DE2A00E4F888 /* axisfreeimage.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9AEEB48E19C5084900866C9E;
 			remoteInfo = axisfreeimage;
-		};
-		07A371F01B25EC6000E4F888 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 07A371EC1B25EC6000E4F888 /* axiszlib.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9AA5E6D616F7C61B005C45CE;
-			remoteInfo = axiszlib;
 		};
 		07B65779190F3CA2002DAADE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -103,12 +51,33 @@
 			remoteGlobalIDString = 07108BD71B4C97D500A28F80;
 			remoteInfo = axisfreeimage_ios;
 		};
-		07D6A73E1B4CADC4004FEBC2 /* PBXContainerItemProxy */ = {
+		9A4E876E1D1FDACA008A419B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 07A371EC1B25EC6000E4F888 /* axiszlib.xcodeproj */;
+			containerPortal = 9A4E87681D1FDACA008A419B /* axispng.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 07108D041B4C97EF00A28F80;
-			remoteInfo = axiszlib_ios;
+			remoteGlobalIDString = 9A574B9816AAB906000CC4EF;
+			remoteInfo = axis_image_png;
+		};
+		9A4E87701D1FDACA008A419B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A4E87681D1FDACA008A419B /* axispng.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 07B65764190F3CA2002DAADE;
+			remoteInfo = ios_axis_image_png;
+		};
+		9A4E87721D1FDACA008A419B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A4E87681D1FDACA008A419B /* axispng.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 07B65773190F3CA2002DAADE;
+			remoteInfo = axispng_iosTests;
+		};
+		9A4E87781D1FDC19008A419B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A4E87681D1FDACA008A419B /* axispng.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A574B9716AAB906000CC4EF;
+			remoteInfo = axispng;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -127,31 +96,9 @@
 /* Begin PBXFileReference section */
 		07A371601B25DE2A00E4F888 /* axisfreeimage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axisfreeimage.xcodeproj; path = ../freeimage/axisfreeimage.xcodeproj; sourceTree = "<group>"; };
 		07A371891B25E34D00E4F888 /* PluginPNG.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PluginPNG.cpp; sourceTree = "<group>"; };
-		07A371981B25E34E00E4F888 /* png.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = png.c; sourceTree = "<group>"; };
-		07A371991B25E34E00E4F888 /* png.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = png.h; sourceTree = "<group>"; };
-		07A3719A1B25E34E00E4F888 /* pngconf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pngconf.h; sourceTree = "<group>"; };
-		07A3719B1B25E34E00E4F888 /* pngdebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pngdebug.h; sourceTree = "<group>"; };
-		07A3719C1B25E34E00E4F888 /* pngerror.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pngerror.c; sourceTree = "<group>"; };
-		07A3719D1B25E34E00E4F888 /* pngget.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pngget.c; sourceTree = "<group>"; };
-		07A3719E1B25E34E00E4F888 /* pnginfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pnginfo.h; sourceTree = "<group>"; };
-		07A3719F1B25E34E00E4F888 /* pnglibconf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pnglibconf.h; sourceTree = "<group>"; };
-		07A371A01B25E34E00E4F888 /* pngmem.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pngmem.c; sourceTree = "<group>"; };
-		07A371A11B25E34E00E4F888 /* pngpread.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pngpread.c; sourceTree = "<group>"; };
-		07A371A21B25E34E00E4F888 /* pngpriv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pngpriv.h; sourceTree = "<group>"; };
-		07A371A31B25E34E00E4F888 /* pngread.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pngread.c; sourceTree = "<group>"; };
-		07A371A41B25E34E00E4F888 /* pngrio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pngrio.c; sourceTree = "<group>"; };
-		07A371A51B25E34E00E4F888 /* pngrtran.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pngrtran.c; sourceTree = "<group>"; };
-		07A371A61B25E34E00E4F888 /* pngrutil.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pngrutil.c; sourceTree = "<group>"; };
-		07A371A71B25E34E00E4F888 /* pngset.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pngset.c; sourceTree = "<group>"; };
-		07A371A81B25E34E00E4F888 /* pngstruct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pngstruct.h; sourceTree = "<group>"; };
-		07A371AA1B25E34E00E4F888 /* pngtrans.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pngtrans.c; sourceTree = "<group>"; };
-		07A371AB1B25E34E00E4F888 /* pngwio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pngwio.c; sourceTree = "<group>"; };
-		07A371AC1B25E34E00E4F888 /* pngwrite.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pngwrite.c; sourceTree = "<group>"; };
-		07A371AD1B25E34E00E4F888 /* pngwtran.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pngwtran.c; sourceTree = "<group>"; };
-		07A371AE1B25E34E00E4F888 /* pngwutil.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pngwutil.c; sourceTree = "<group>"; };
-		07A371EC1B25EC6000E4F888 /* axiszlib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axiszlib.xcodeproj; path = ../zlib/axiszlib.xcodeproj; sourceTree = "<group>"; };
 		07B65764190F3CA2002DAADE /* libaxis_image_png.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libaxis_image_png.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		07B65773190F3CA2002DAADE /* axispng_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = axispng_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A4E87681D1FDACA008A419B /* axispng.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axispng.xcodeproj; path = ../png/axispng.xcodeproj; sourceTree = "<group>"; };
 		9A574B9816AAB906000CC4EF /* libaxis_image_png.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libaxis_image_png.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -160,7 +107,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				077A00DA1B4D516E001C85FF /* libaxiszlib.dylib in Frameworks */,
 				077A00D91B4D5164001C85FF /* libaxisfreeimage.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -177,8 +123,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A92CA0E1D205B370069D173 /* libaxispng.dylib in Frameworks */,
 				077C88F41B51A06D00AB2A41 /* libaxisfreeimage.dylib in Frameworks */,
-				077C88F11B51A04E00AB2A41 /* libaxiszlib.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -198,7 +144,6 @@
 			isa = PBXGroup;
 			children = (
 				07A371881B25E34D00E4F888 /* FreeImage */,
-				07A3718A1B25E34D00E4F888 /* LibPNG */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -211,40 +156,12 @@
 			path = FreeImage;
 			sourceTree = "<group>";
 		};
-		07A3718A1B25E34D00E4F888 /* LibPNG */ = {
+		9A4E87691D1FDACA008A419B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				07A371981B25E34E00E4F888 /* png.c */,
-				07A371991B25E34E00E4F888 /* png.h */,
-				07A3719A1B25E34E00E4F888 /* pngconf.h */,
-				07A3719B1B25E34E00E4F888 /* pngdebug.h */,
-				07A3719C1B25E34E00E4F888 /* pngerror.c */,
-				07A3719D1B25E34E00E4F888 /* pngget.c */,
-				07A3719E1B25E34E00E4F888 /* pnginfo.h */,
-				07A3719F1B25E34E00E4F888 /* pnglibconf.h */,
-				07A371A01B25E34E00E4F888 /* pngmem.c */,
-				07A371A11B25E34E00E4F888 /* pngpread.c */,
-				07A371A21B25E34E00E4F888 /* pngpriv.h */,
-				07A371A31B25E34E00E4F888 /* pngread.c */,
-				07A371A41B25E34E00E4F888 /* pngrio.c */,
-				07A371A51B25E34E00E4F888 /* pngrtran.c */,
-				07A371A61B25E34E00E4F888 /* pngrutil.c */,
-				07A371A71B25E34E00E4F888 /* pngset.c */,
-				07A371A81B25E34E00E4F888 /* pngstruct.h */,
-				07A371AA1B25E34E00E4F888 /* pngtrans.c */,
-				07A371AB1B25E34E00E4F888 /* pngwio.c */,
-				07A371AC1B25E34E00E4F888 /* pngwrite.c */,
-				07A371AD1B25E34E00E4F888 /* pngwtran.c */,
-				07A371AE1B25E34E00E4F888 /* pngwutil.c */,
-			);
-			path = LibPNG;
-			sourceTree = "<group>";
-		};
-		07A371ED1B25EC6000E4F888 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				07A371F11B25EC6000E4F888 /* libaxiszlib.dylib */,
-				07D6A73F1B4CADC4004FEBC2 /* libaxiszlib.dylib */,
+				9A4E876F1D1FDACA008A419B /* libaxispng.dylib */,
+				9A4E87711D1FDACA008A419B /* libios_axispng.dylib */,
+				9A4E87731D1FDACA008A419B /* axispng_iosTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -253,7 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				07A371601B25DE2A00E4F888 /* axisfreeimage.xcodeproj */,
-				07A371EC1B25EC6000E4F888 /* axiszlib.xcodeproj */,
+				9A4E87681D1FDACA008A419B /* axispng.xcodeproj */,
 				07A371871B25E34D00E4F888 /* Source */,
 				9A574B9916AAB906000CC4EF /* Products */,
 			);
@@ -276,13 +193,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07A371B81B25E34E00E4F888 /* pnginfo.h in Headers */,
-				07A371B51B25E34E00E4F888 /* pngdebug.h in Headers */,
-				07A371B91B25E34E00E4F888 /* pnglibconf.h in Headers */,
-				07A371C21B25E34E00E4F888 /* pngstruct.h in Headers */,
-				07A371B41B25E34E00E4F888 /* pngconf.h in Headers */,
-				07A371B31B25E34E00E4F888 /* png.h in Headers */,
-				07A371BC1B25E34E00E4F888 /* pngpriv.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,7 +246,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				077C88E51B519E2500AB2A41 /* PBXTargetDependency */,
+				9A4E87791D1FDC19008A419B /* PBXTargetDependency */,
 				077C88E31B519E1C00AB2A41 /* PBXTargetDependency */,
 			);
 			name = axis_image_png;
@@ -374,8 +284,8 @@
 					ProjectRef = 07A371601B25DE2A00E4F888 /* axisfreeimage.xcodeproj */;
 				},
 				{
-					ProductGroup = 07A371ED1B25EC6000E4F888 /* Products */;
-					ProjectRef = 07A371EC1B25EC6000E4F888 /* axiszlib.xcodeproj */;
+					ProductGroup = 9A4E87691D1FDACA008A419B /* Products */;
+					ProjectRef = 9A4E87681D1FDACA008A419B /* axispng.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -395,13 +305,6 @@
 			remoteRef = 07A371641B25DE2A00E4F888 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		07A371F11B25EC6000E4F888 /* libaxiszlib.dylib */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.dylib";
-			path = libaxiszlib.dylib;
-			remoteRef = 07A371F01B25EC6000E4F888 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		07D6A73C1B4CADC4004FEBC2 /* libaxisfreeimage.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
@@ -409,11 +312,25 @@
 			remoteRef = 07D6A73B1B4CADC4004FEBC2 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		07D6A73F1B4CADC4004FEBC2 /* libaxiszlib.dylib */ = {
+		9A4E876F1D1FDACA008A419B /* libaxispng.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			path = libaxiszlib.dylib;
-			remoteRef = 07D6A73E1B4CADC4004FEBC2 /* PBXContainerItemProxy */;
+			path = libaxispng.dylib;
+			remoteRef = 9A4E876E1D1FDACA008A419B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9A4E87711D1FDACA008A419B /* libios_axispng.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libios_axispng.dylib;
+			remoteRef = 9A4E87701D1FDACA008A419B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9A4E87731D1FDACA008A419B /* axispng_iosTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = axispng_iosTests.xctest;
+			remoteRef = 9A4E87721D1FDACA008A419B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -434,21 +351,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				07D6A8151B4CB87C004FEBC2 /* PluginPNG.cpp in Sources */,
-				07D6A8061B4CB876004FEBC2 /* png.c in Sources */,
-				07D6A8071B4CB876004FEBC2 /* pngerror.c in Sources */,
-				07D6A8081B4CB876004FEBC2 /* pngget.c in Sources */,
-				07D6A8091B4CB876004FEBC2 /* pngmem.c in Sources */,
-				07D6A80A1B4CB876004FEBC2 /* pngpread.c in Sources */,
-				07D6A80B1B4CB876004FEBC2 /* pngread.c in Sources */,
-				07D6A80C1B4CB876004FEBC2 /* pngrio.c in Sources */,
-				07D6A80D1B4CB876004FEBC2 /* pngrtran.c in Sources */,
-				07D6A80E1B4CB876004FEBC2 /* pngrutil.c in Sources */,
-				07D6A80F1B4CB876004FEBC2 /* pngset.c in Sources */,
-				07D6A8101B4CB876004FEBC2 /* pngtrans.c in Sources */,
-				07D6A8111B4CB876004FEBC2 /* pngwio.c in Sources */,
-				07D6A8121B4CB876004FEBC2 /* pngwrite.c in Sources */,
-				07D6A8131B4CB876004FEBC2 /* pngwtran.c in Sources */,
-				07D6A8141B4CB876004FEBC2 /* pngwutil.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -463,22 +365,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07A371C51B25E34E00E4F888 /* pngwio.c in Sources */,
-				07A371BE1B25E34E00E4F888 /* pngrio.c in Sources */,
-				07A371C61B25E34E00E4F888 /* pngwrite.c in Sources */,
-				07A371B61B25E34E00E4F888 /* pngerror.c in Sources */,
-				07A371C11B25E34E00E4F888 /* pngset.c in Sources */,
 				07A371B11B25E34E00E4F888 /* PluginPNG.cpp in Sources */,
-				07A371B71B25E34E00E4F888 /* pngget.c in Sources */,
-				07A371BF1B25E34E00E4F888 /* pngrtran.c in Sources */,
-				07A371C81B25E34E00E4F888 /* pngwutil.c in Sources */,
-				07A371C41B25E34E00E4F888 /* pngtrans.c in Sources */,
-				07A371BA1B25E34E00E4F888 /* pngmem.c in Sources */,
-				07A371BB1B25E34E00E4F888 /* pngpread.c in Sources */,
-				07A371C71B25E34E00E4F888 /* pngwtran.c in Sources */,
-				07A371B21B25E34E00E4F888 /* png.c in Sources */,
-				07A371C01B25E34E00E4F888 /* pngrutil.c in Sources */,
-				07A371BD1B25E34E00E4F888 /* pngread.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -495,15 +382,15 @@
 			name = axisfreeimage;
 			targetProxy = 077C88E21B519E1C00AB2A41 /* PBXContainerItemProxy */;
 		};
-		077C88E51B519E2500AB2A41 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = axiszlib;
-			targetProxy = 077C88E41B519E2500AB2A41 /* PBXContainerItemProxy */;
-		};
 		07B6577A190F3CA2002DAADE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 07B65763190F3CA2002DAADE /* ios_axis_image_png */;
 			targetProxy = 07B65779190F3CA2002DAADE /* PBXContainerItemProxy */;
+		};
+		9A4E87791D1FDC19008A419B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = axispng;
+			targetProxy = 9A4E87781D1FDC19008A419B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

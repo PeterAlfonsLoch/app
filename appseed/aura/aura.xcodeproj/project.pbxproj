@@ -56,7 +56,6 @@
 		077A05CF1B4D7403001C85FF /* _multithreading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 077CEF231B23D0FF009A57EF /* _multithreading.cpp */; };
 		077A05D01B4D7403001C85FF /* os_http.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1640B019C4A4CE00966C5E /* os_http.cpp */; };
 		077A05D11B4D7403001C85FF /* os_thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1640B319C4A4CE00966C5E /* os_thread.cpp */; };
-		077A05D41B4D7403001C85FF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07108A731B4C90D000A28F80 /* UIKit.framework */; };
 		077A05DA1B4D7403001C85FF /* aura_timer.mm in Headers */ = {isa = PBXBuildFile; fileRef = 07EC4CDE1B4C350E00EB5965 /* aura_timer.mm */; };
 		077A05DB1B4D7403001C85FF /* aura_url.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A163DCD19C4A4CC00966C5E /* aura_url.h */; };
 		077A05DC1B4D7403001C85FF /* file_file_stream_base.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B4AFD919CB9D8500E56AFA /* file_file_stream_base.h */; };
@@ -1106,8 +1105,6 @@
 		9A5DF96E1CEE2741008916A4 /* test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5DF96D1CEE2741008916A4 /* test.cpp */; };
 		9A6715D11D14F65F0069A961 /* draw2d_nanosvg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07C64B7A1C9A29A400F54872 /* draw2d_nanosvg.cpp */; };
 		9A6715D41D14F7970069A961 /* test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5DF96D1CEE2741008916A4 /* test.cpp */; };
-		9A6716CC1D159CA60069A961 /* libace.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A6716CB1D159CA60069A961 /* libace.a */; };
-		9A6716D01D159CB80069A961 /* libace_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A6716CF1D159CB80069A961 /* libace_ios.a */; };
 		9A98A6081771D67E000AE16E /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07BD556C16210BD4008E31F0 /* AppKit.framework */; };
 		9A98A6091771D67E000AE16E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8897A514C24736006B4023 /* Foundation.framework */; };
 		9A98A60A1771D67E000AE16E /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE931714155F1599005F90F6 /* Carbon.framework */; };
@@ -1161,6 +1158,7 @@
 		9AC315F1198E4CB8008FB109 /* colorertake5_text_region.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC315AA198E4CB8008FB109 /* colorertake5_text_region.h */; };
 		9AC315F2198E4CB8008FB109 /* colorertake5_Writer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC315AB198E4CB8008FB109 /* colorertake5_Writer.h */; };
 		9AC315F3198E4CB8008FB109 /* colorertake5_xmldom.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC315AC198E4CB8008FB109 /* colorertake5_xmldom.h */; };
+		9ACE46FF1D1FE56000A1E0AD /* libace.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A6716741D1553BF0069A961 /* libace.a */; };
 		9AE4C7F21996D29C00E50F88 /* data_data.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE4C7E41996D29C00E50F88 /* data_data.h */; };
 		9AE4C7F41996D29C00E50F88 /* data_data_container.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE4C7E61996D29C00E50F88 /* data_data_container.h */; };
 		9AE4C7F61996D29C00E50F88 /* data_data_listener.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE4C7E81996D29C00E50F88 /* data_data_listener.h */; };
@@ -1297,7 +1295,6 @@
 		070214201C51488700DB16A7 /* aura_ipi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aura_ipi.h; sourceTree = "<group>"; };
 		0705619B1C4115F2004085DF /* exception_engine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = exception_engine.cpp; sourceTree = "<group>"; };
 		070B8F171B6E578900D26137 /* macos_main.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macos_main.h; sourceTree = "<group>"; };
-		07108A731B4C90D000A28F80 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.4.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		073EDDE1164E968100818801 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		073EDDE4164E96DA00818801 /* SecurityFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SecurityFoundation.framework; path = System/Library/Frameworks/SecurityFoundation.framework; sourceTree = SDKROOT; };
 		0747A6451B26375F00E85AC7 /* visual_cursor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = visual_cursor.cpp; sourceTree = "<group>"; };
@@ -1344,9 +1341,9 @@
 		077A05621B4D70B7001C85FF /* UncaughtExceptionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UncaughtExceptionHandler.h; sourceTree = "<group>"; };
 		077A05631B4D70B7001C85FF /* UncaughtExceptionHandler.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = UncaughtExceptionHandler.mm; sourceTree = "<group>"; };
 		077A080B1B4D7403001C85FF /* libaura.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libaura.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		077C2A18190F143F00A1F6B0 /* framework_c.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework_c.h; sourceTree = "<group>"; };
-		077C2A19190F143F00A1F6B0 /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
-		077C2A1A190F144000A1F6B0 /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
+		077C2A18190F143F00A1F6B0 /* framework_c.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = framework_c.h; path = ../framework_c.h; sourceTree = "<group>"; };
+		077C2A19190F143F00A1F6B0 /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = framework.cpp; path = ../framework.cpp; sourceTree = "<group>"; };
+		077C2A1A190F144000A1F6B0 /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = framework.h; path = ../framework.h; sourceTree = "<group>"; };
 		077CEF1A1B23CE2E009A57EF /* _colorertake5.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _colorertake5.cpp; sourceTree = "<group>"; };
 		077CEF1C1B23CE5F009A57EF /* _aura_aura.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _aura_aura.cpp; sourceTree = "<group>"; };
 		077CEF1E1B23D027009A57EF /* _filesystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _filesystem.cpp; sourceTree = "<group>"; };
@@ -1859,10 +1856,8 @@
 		9A1EDB5F19C841D600F5CCE8 /* service_thread_pool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = service_thread_pool.h; sourceTree = "<group>"; };
 		9A44E3FD19C5C10200143B94 /* math_departament.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = math_departament.h; sourceTree = "<group>"; };
 		9A5DF96C1CEE2536008916A4 /* primitive.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = primitive.inl; sourceTree = "<group>"; };
-		9A5DF96D1CEE2741008916A4 /* test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test.cpp; sourceTree = "<group>"; };
+		9A5DF96D1CEE2741008916A4 /* test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = test.cpp; path = ../test.cpp; sourceTree = "<group>"; };
 		9A67166C1D1553BF0069A961 /* ace.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ace.xcodeproj; path = ../ace/ace.xcodeproj; sourceTree = "<group>"; };
-		9A6716CB1D159CA60069A961 /* libace.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libace.a; path = ../../../../macos/app/appseed/ace/build/Debug/libace.a; sourceTree = "<group>"; };
-		9A6716CF1D159CB80069A961 /* libace_ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libace_ios.a; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/all-ios-hcjyrbebieoraofrrypdpkveyzyc/Build/Products/Debug-iphonesimulator/libace_ios.a"; sourceTree = "<group>"; };
 		9A8897A514C24736006B4023 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = ../../../../System/Library/Frameworks/Foundation.framework; sourceTree = "<group>"; };
 		9A98A6151771D67E000AE16E /* libaura.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libaura.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AC31567198E4CB8008FB109 /* colorertake5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = colorertake5.h; sourceTree = "<group>"; };
@@ -1973,9 +1968,9 @@
 		9AE722F817E83B69003E47F9 /* primitive_var.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = primitive_var.h; sourceTree = "<group>"; };
 		9AE722F917E83B69003E47F9 /* primitive_var2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = primitive_var2.h; sourceTree = "<group>"; };
 		9AE722FB17E83B69003E47F9 /* primitive_virtual_memory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = primitive_virtual_memory.h; sourceTree = "<group>"; };
-		9AE7233B17E83B69003E47F9 /* version.config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = version.config.h; sourceTree = "<group>"; };
-		9AE7233C17E83B69003E47F9 /* version.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = version.cpp; sourceTree = "<group>"; };
-		9AE7233D17E83B69003E47F9 /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = version.h; sourceTree = "<group>"; };
+		9AE7233B17E83B69003E47F9 /* version.config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = version.config.h; path = ../version.config.h; sourceTree = "<group>"; };
+		9AE7233C17E83B69003E47F9 /* version.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = version.cpp; path = ../version.cpp; sourceTree = "<group>"; };
+		9AE7233D17E83B69003E47F9 /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = version.h; path = ../version.h; sourceTree = "<group>"; };
 		9AEEADA319C4DD2E00866C9E /* file_streambuf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = file_streambuf.h; sourceTree = "<group>"; };
 		9AEEADB319C4E10900866C9E /* simple_message_box.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = simple_message_box.cpp; sourceTree = "<group>"; };
 		9AEEADB419C4E10900866C9E /* simple_message_box.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = simple_message_box.h; sourceTree = "<group>"; };
@@ -1989,8 +1984,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A106A7C1D15E7B3007288BA /* libatomiconv.dylib in Frameworks */,
-				9A6716D01D159CB80069A961 /* libace_ios.a in Frameworks */,
-				077A05D41B4D7403001C85FF /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1998,7 +1991,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A6716CC1D159CA60069A961 /* libace.a in Frameworks */,
+				9ACE46FF1D1FE56000A1E0AD /* libace.a in Frameworks */,
 				9A98A6081771D67E000AE16E /* AppKit.framework in Frameworks */,
 				9A98A6091771D67E000AE16E /* Foundation.framework in Frameworks */,
 				9A98A60A1771D67E000AE16E /* Carbon.framework in Frameworks */,
@@ -2431,6 +2424,13 @@
 				9A16410F19C4A4CE00966C5E /* process */,
 				9A16411919C4A4CE00966C5E /* veriwell_musical_studio */,
 				9A16412019C4A4CE00966C5E /* xml */,
+				9A5DF96D1CEE2741008916A4 /* test.cpp */,
+				077C2A18190F143F00A1F6B0 /* framework_c.h */,
+				077C2A19190F143F00A1F6B0 /* framework.cpp */,
+				077C2A1A190F144000A1F6B0 /* framework.h */,
+				9AE7233B17E83B69003E47F9 /* version.config.h */,
+				9AE7233D17E83B69003E47F9 /* version.h */,
+				9AE7233C17E83B69003E47F9 /* version.cpp */,
 				077CEF1C1B23CE5F009A57EF /* _aura_aura.cpp */,
 			);
 			path = aura;
@@ -2836,6 +2836,7 @@
 		9A16414919C4A4CE00966C5E /* aura_iosTests */ = {
 			isa = PBXGroup;
 			children = (
+				9AE24D431904CEFE001AEFFB /* aura_iosTests.xctest */,
 				9A16414A19C4A4CE00966C5E /* base_iosTests-Info.plist */,
 				9A16414B19C4A4CE00966C5E /* base_iosTests.m */,
 				9A16414C19C4A4CE00966C5E /* InfoPlist.strings */,
@@ -2851,6 +2852,15 @@
 				9A1EDB5F19C841D600F5CCE8 /* service_thread_pool.h */,
 			);
 			path = service;
+			sourceTree = "<group>";
+		};
+		9A4E846F1D1FD3A7008A419B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9A98A6151771D67E000AE16E /* libaura.dylib */,
+				077A080B1B4D7403001C85FF /* libaura.dylib */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		9A67166D1D1553BF0069A961 /* Products */ = {
@@ -3042,12 +3052,8 @@
 		CEA754B914411F2B007E04DE = {
 			isa = PBXGroup;
 			children = (
-				9A6716CF1D159CB80069A961 /* libace_ios.a */,
-				9A6716CB1D159CA60069A961 /* libace.a */,
 				9A67166C1D1553BF0069A961 /* ace.xcodeproj */,
-				9A5DF96D1CEE2741008916A4 /* test.cpp */,
 				076D0A161A3FCCD4007432B6 /* atomiconv.xcodeproj */,
-				07108A731B4C90D000A28F80 /* UIKit.framework */,
 				07BD556C16210BD4008E31F0 /* AppKit.framework */,
 				CE931714155F1599005F90F6 /* Carbon.framework */,
 				9A8897A514C24736006B4023 /* Foundation.framework */,
@@ -3062,15 +3068,7 @@
 				07502CA81B251B15008D207C /* net */,
 				9AE722BF17E83B69003E47F9 /* primitive */,
 				9AE7233517E83B69003E47F9 /* user */,
-				077C2A18190F143F00A1F6B0 /* framework_c.h */,
-				077C2A19190F143F00A1F6B0 /* framework.cpp */,
-				077C2A1A190F144000A1F6B0 /* framework.h */,
-				9AE7233B17E83B69003E47F9 /* version.config.h */,
-				9AE7233D17E83B69003E47F9 /* version.h */,
-				9AE7233C17E83B69003E47F9 /* version.cpp */,
-				9AE24D431904CEFE001AEFFB /* aura_iosTests.xctest */,
-				9A98A6151771D67E000AE16E /* libaura.dylib */,
-				077A080B1B4D7403001C85FF /* libaura.dylib */,
+				9A4E846F1D1FD3A7008A419B /* Products */,
 			);
 			sourceTree = "<group>";
 		};

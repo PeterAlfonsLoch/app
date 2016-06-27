@@ -1,5 +1,4 @@
 #include "framework.h"
-#include "base/base/os/macos/window_buffer.h"
 
 
 namespace draw2d_quartz2d

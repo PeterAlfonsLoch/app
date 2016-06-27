@@ -9,9 +9,6 @@
 /* Begin PBXBuildFile section */
 		071EFB291C5537E100EA68B0 /* libavcodec.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 071EFB281C5537E100EA68B0 /* libavcodec.a */; };
 		071EFB2B1C5537F700EA68B0 /* libavutil.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 071EFB2A1C5537F700EA68B0 /* libavutil.a */; };
-		071EFB2D1C55430B00EA68B0 /* libiconv.2.4.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 071EFB2C1C55430B00EA68B0 /* libiconv.2.4.0.tbd */; };
-		071EFB2F1C55432200EA68B0 /* libbz2.1.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 071EFB2E1C55432200EA68B0 /* libbz2.1.0.tbd */; };
-		071EFB311C55432D00EA68B0 /* libz.1.2.5.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 071EFB301C55432D00EA68B0 /* libz.1.2.5.tbd */; };
 		071EFB561C555ED300EA68B0 /* drive_file.c in Sources */ = {isa = PBXBuildFile; fileRef = 071EFB551C555ED300EA68B0 /* drive_file.c */; };
 		071EFB571C555EE700EA68B0 /* drive_file.c in Sources */ = {isa = PBXBuildFile; fileRef = 071EFB551C555ED300EA68B0 /* drive_file.c */; };
 		071EFB591C555F0E00EA68B0 /* drive_main.c in Sources */ = {isa = PBXBuildFile; fileRef = 071EFB581C555F0E00EA68B0 /* drive_main.c */; };
@@ -20,23 +17,18 @@
 		071EFB631C55730700EA68B0 /* libswresample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 071EFB341C554AED00EA68B0 /* libswresample.a */; };
 		074BD0C21B5F361500219723 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 074BD0C11B5F361500219723 /* AudioToolbox.framework */; };
 		074BD0C41B5F366500219723 /* tables_mac.c in Sources */ = {isa = PBXBuildFile; fileRef = 074BD0C31B5F366500219723 /* tables_mac.c */; };
-		074BD0C61B5F368F00219723 /* libcups.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 074BD0C51B5F368F00219723 /* libcups.dylib */; };
 		078DF8DD1C529B4100E65274 /* codec_aac.c in Sources */ = {isa = PBXBuildFile; fileRef = 07B098AE1B84934F002AC4F0 /* codec_aac.c */; };
 		078DF8DE1C529B4100E65274 /* TPCircularBuffer.c in Sources */ = {isa = PBXBuildFile; fileRef = 07B091811B608E5400B5BCA7 /* TPCircularBuffer.c */; };
 		07ACFDFB1C4A34E400953A75 /* libavcodec.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 07ACFDF91C4A34E400953A75 /* libavcodec.a */; };
 		07ACFDFC1C4A34E400953A75 /* libavutil.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 07ACFDFA1C4A34E400953A75 /* libavutil.a */; };
 		07B0917C1B608D8500B5BCA7 /* rdpsnd_ios.c in Sources */ = {isa = PBXBuildFile; fileRef = 07B091791B608D8500B5BCA7 /* rdpsnd_ios.c */; };
 		07B0917E1B608D8500B5BCA7 /* TPCircularBuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B0917B1B608D8500B5BCA7 /* TPCircularBuffer.h */; };
-		07B0918B1B60905100B5BCA7 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B0918A1B60905100B5BCA7 /* AudioToolbox.framework */; };
 		07B0918F1B60916500B5BCA7 /* tables_ios.c in Sources */ = {isa = PBXBuildFile; fileRef = 07B0918E1B60916500B5BCA7 /* tables_ios.c */; };
 		07B098B01B84934F002AC4F0 /* codec_aac.c in Sources */ = {isa = PBXBuildFile; fileRef = 07B098AE1B84934F002AC4F0 /* codec_aac.c */; };
 		07B098B11B84934F002AC4F0 /* codec_aac.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B098AF1B84934F002AC4F0 /* codec_aac.h */; };
 		07B098B91B8493F3002AC4F0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 074BD0BD1B5F35C100219723 /* Foundation.framework */; };
 		07B098BD1B849411002AC4F0 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B098BC1B849411002AC4F0 /* CoreVideo.framework */; };
 		07B098C11B8494DE002AC4F0 /* VideoDecodeAcceleration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B098C01B8494DE002AC4F0 /* VideoDecodeAcceleration.framework */; };
-		07B098C31B8494EC002AC4F0 /* libaxiszlib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B098C21B8494EC002AC4F0 /* libaxiszlib.dylib */; };
-		07B098C71B84950B002AC4F0 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B098C61B84950B002AC4F0 /* libaura.dylib */; };
-		07B098C91B849526002AC4F0 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B098C81B849526002AC4F0 /* libiconv.dylib */; };
 		07D0E2CB1C4D60DA0032C524 /* libfdk-aac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 07D0E2CA1C4D60DA0032C524 /* libfdk-aac.a */; };
 		07DD6F101B5F0CA2003A1CE1 /* audin_main.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD6E451B5F0CA2003A1CE1 /* audin_main.c */; };
 		07DD6F111B5F0CA2003A1CE1 /* audin_main.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DD6E461B5F0CA2003A1CE1 /* audin_main.h */; };
@@ -162,11 +154,10 @@
 		07DD711C1B5F18E4003A1CE1 /* libaxisfreerdp.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07DD70D81B5F1025003A1CE1 /* libaxisfreerdp.dylib */; };
 		07DD711D1B5F18EE003A1CE1 /* libaxisfreerdp.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07DD70D61B5F1025003A1CE1 /* libaxisfreerdp.dylib */; };
 		07DD711E1B5F18F8003A1CE1 /* libaxiswinpr.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07DD70B21B5F0FF7003A1CE1 /* libaxiswinpr.dylib */; };
-		9A106A631D15E3F0007288BA /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A106A621D15E3F0007288BA /* libaura.dylib */; };
+		9A8DBF691D20B096005AF004 /* libcups.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8DBF681D20B096005AF004 /* libcups.tbd */; };
 		9AEFDD3A1D1602AB00F91F0B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEFDD391D1602AB00F91F0B /* UIKit.framework */; };
 		9AEFDD3C1D16044E00F91F0B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEFDD3B1D16044E00F91F0B /* Foundation.framework */; };
 		9AEFDD3E1D16047400F91F0B /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEFDD3D1D16047400F91F0B /* CoreVideo.framework */; };
-		9AEFDD401D16048C00F91F0B /* libatomiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEFDD3F1D16048C00F91F0B /* libatomiconv.dylib */; };
 		9AEFDD441D1604D300F91F0B /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEFDD431D1604D300F91F0B /* VideoToolbox.framework */; };
 		9AEFDD481D16054D00F91F0B /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEFDD471D16054D00F91F0B /* CoreMedia.framework */; };
 /* End PBXBuildFile section */
@@ -233,29 +224,21 @@
 /* Begin PBXFileReference section */
 		071EFB281C5537E100EA68B0 /* libavcodec.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libavcodec.a; path = ../../../../ffmpeg_ios/thin/x86_64/lib/libavcodec.a; sourceTree = "<group>"; };
 		071EFB2A1C5537F700EA68B0 /* libavutil.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libavutil.a; path = ../../../../ffmpeg_ios/thin/x86_64/lib/libavutil.a; sourceTree = "<group>"; };
-		071EFB2C1C55430B00EA68B0 /* libiconv.2.4.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.2.4.0.tbd; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.2.sdk/usr/lib/libiconv.2.4.0.tbd; sourceTree = DEVELOPER_DIR; };
-		071EFB2E1C55432200EA68B0 /* libbz2.1.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.1.0.tbd; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.2.sdk/usr/lib/libbz2.1.0.tbd; sourceTree = DEVELOPER_DIR; };
-		071EFB301C55432D00EA68B0 /* libz.1.2.5.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.2.5.tbd; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.2.sdk/usr/lib/libz.1.2.5.tbd; sourceTree = DEVELOPER_DIR; };
 		071EFB321C554A9E00EA68B0 /* libswscale.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libswscale.a; path = ../../../../ffmpeg_ios/thin/i386/lib/libswscale.a; sourceTree = "<group>"; };
 		071EFB341C554AED00EA68B0 /* libswresample.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libswresample.a; path = ../../../../ffmpeg_ios/thin/i386/lib/libswresample.a; sourceTree = "<group>"; };
 		071EFB551C555ED300EA68B0 /* drive_file.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = drive_file.c; sourceTree = "<group>"; };
 		071EFB581C555F0E00EA68B0 /* drive_main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = drive_main.c; sourceTree = "<group>"; };
-		071EFB5E1C555FCA00EA68B0 /* libaura.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaura.dylib; path = "../../appseed/aura/build/Debug-iphoneos/libaura.dylib"; sourceTree = "<group>"; };
 		071EFB601C5560F500EA68B0 /* winpr_dirent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = winpr_dirent.h; sourceTree = "<group>"; };
 		074BD0BB1B5F359A00219723 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		074BD0BD1B5F35C100219723 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		074BD0C11B5F361500219723 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		074BD0C31B5F366500219723 /* tables_mac.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tables_mac.c; sourceTree = "<group>"; };
-		074BD0C51B5F368F00219723 /* libcups.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcups.dylib; path = usr/lib/libcups.dylib; sourceTree = SDKROOT; };
 		0763A2421B84E8B400C601B8 /* rdpsnd_opensles.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = rdpsnd_opensles.c; path = channels/rdpsnd/client/opensles/rdpsnd_opensles.c; sourceTree = SOURCE_ROOT; };
 		07ACFDF91C4A34E400953A75 /* libavcodec.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libavcodec.a; path = ../../../../../../opt/local/lib/libavcodec.a; sourceTree = "<group>"; };
 		07ACFDFA1C4A34E400953A75 /* libavutil.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libavutil.a; path = ../../../../../../opt/local/lib/libavutil.a; sourceTree = "<group>"; };
 		07B091791B608D8500B5BCA7 /* rdpsnd_ios.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rdpsnd_ios.c; sourceTree = "<group>"; };
 		07B0917B1B608D8500B5BCA7 /* TPCircularBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPCircularBuffer.h; sourceTree = "<group>"; };
-		07B0917F1B608DD200B5BCA7 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.4.sdk/System/Library/Frameworks/AVFoundation.framework; sourceTree = DEVELOPER_DIR; };
 		07B091811B608E5400B5BCA7 /* TPCircularBuffer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = TPCircularBuffer.c; sourceTree = "<group>"; };
-		07B091831B608F7300B5BCA7 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.4.sdk/System/Library/Frameworks/AudioUnit.framework; sourceTree = DEVELOPER_DIR; };
-		07B0918A1B60905100B5BCA7 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.4.sdk/System/Library/Frameworks/AudioToolbox.framework; sourceTree = DEVELOPER_DIR; };
 		07B0918E1B60916500B5BCA7 /* tables_ios.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tables_ios.c; sourceTree = "<group>"; };
 		07B098AE1B84934F002AC4F0 /* codec_aac.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = codec_aac.c; sourceTree = "<group>"; };
 		07B098AF1B84934F002AC4F0 /* codec_aac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = codec_aac.h; sourceTree = "<group>"; };
@@ -266,10 +249,6 @@
 		07B098BC1B849411002AC4F0 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		07B098BE1B84941B002AC4F0 /* DVDPlayback.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVDPlayback.framework; path = System/Library/Frameworks/DVDPlayback.framework; sourceTree = SDKROOT; };
 		07B098C01B8494DE002AC4F0 /* VideoDecodeAcceleration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoDecodeAcceleration.framework; path = System/Library/Frameworks/VideoDecodeAcceleration.framework; sourceTree = SDKROOT; };
-		07B098C21B8494EC002AC4F0 /* libaxiszlib.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaxiszlib.dylib; path = "../../../../Users/carlos/Library/Developer/Xcode/DerivedData/all-mac-exvrklrokleuokawrbpzmvyzamwr/Build/Products/Debug/libaxiszlib.dylib"; sourceTree = "<group>"; };
-		07B098C41B8494F5002AC4F0 /* libatomiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libatomiconv.dylib; path = "../../../../Users/carlos/Library/Developer/Xcode/DerivedData/all-mac-exvrklrokleuokawrbpzmvyzamwr/Build/Products/Debug/libatomiconv.dylib"; sourceTree = "<group>"; };
-		07B098C61B84950B002AC4F0 /* libaura.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaura.dylib; path = "../../../../Users/carlos/Library/Developer/Xcode/DerivedData/all-mac-exvrklrokleuokawrbpzmvyzamwr/Build/Products/Debug/libaura.dylib"; sourceTree = "<group>"; };
-		07B098C81B849526002AC4F0 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
 		07D0E2CA1C4D60DA0032C524 /* libfdk-aac.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libfdk-aac.a"; path = "../../../../../../opt/local/lib/libfdk-aac.a"; sourceTree = "<group>"; };
 		07DD6E341B5F0C87003A1CE1 /* libaxisclientchannels.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libaxisclientchannels.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		07DD6E451B5F0CA2003A1CE1 /* audin_main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = audin_main.c; sourceTree = "<group>"; };
@@ -363,12 +342,11 @@
 		07DD6F0A1B5F0CA2003A1CE1 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
 		07DD70AC1B5F0FF7003A1CE1 /* axiswinpr.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axiswinpr.xcodeproj; path = ../winpr/axiswinpr.xcodeproj; sourceTree = "<group>"; };
 		07DD70D01B5F1025003A1CE1 /* axisfreerdp.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axisfreerdp.xcodeproj; path = ../freerdp/axisfreerdp.xcodeproj; sourceTree = "<group>"; };
-		9A106A621D15E3F0007288BA /* libaura.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaura.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/all-ios-hcjyrbebieoraofrrypdpkveyzyc/Build/Products/Debug-iphonesimulator/libaura.dylib"; sourceTree = "<group>"; };
 		9A1B358C16A2D7A500875A94 /* libaxisclientchannels.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libaxisclientchannels.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A8DBF681D20B096005AF004 /* libcups.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libcups.tbd; path = usr/lib/libcups.tbd; sourceTree = SDKROOT; };
 		9AEFDD391D1602AB00F91F0B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		9AEFDD3B1D16044E00F91F0B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		9AEFDD3D1D16047400F91F0B /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/CoreVideo.framework; sourceTree = DEVELOPER_DIR; };
-		9AEFDD3F1D16048C00F91F0B /* libatomiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libatomiconv.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/all-ios-hcjyrbebieoraofrrypdpkveyzyc/Build/Products/Debug-iphonesimulator/libatomiconv.dylib"; sourceTree = "<group>"; };
 		9AEFDD411D1604AE00F91F0B /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/Accelerate.framework; sourceTree = DEVELOPER_DIR; };
 		9AEFDD431D1604D300F91F0B /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/VideoToolbox.framework; sourceTree = DEVELOPER_DIR; };
 		9AEFDD451D16050B00F91F0B /* MediaToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaToolbox.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/MediaToolbox.framework; sourceTree = DEVELOPER_DIR; };
@@ -380,20 +358,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9AEFDD401D16048C00F91F0B /* libatomiconv.dylib in Frameworks */,
 				071EFB291C5537E100EA68B0 /* libavcodec.a in Frameworks */,
 				071EFB2B1C5537F700EA68B0 /* libavutil.a in Frameworks */,
-				071EFB2D1C55430B00EA68B0 /* libiconv.2.4.0.tbd in Frameworks */,
-				9A106A631D15E3F0007288BA /* libaura.dylib in Frameworks */,
 				071EFB631C55730700EA68B0 /* libswresample.a in Frameworks */,
-				071EFB311C55432D00EA68B0 /* libz.1.2.5.tbd in Frameworks */,
-				071EFB2F1C55432200EA68B0 /* libbz2.1.0.tbd in Frameworks */,
 				9AEFDD481D16054D00F91F0B /* CoreMedia.framework in Frameworks */,
 				9AEFDD3E1D16047400F91F0B /* CoreVideo.framework in Frameworks */,
 				9AEFDD441D1604D300F91F0B /* VideoToolbox.framework in Frameworks */,
 				9AEFDD3A1D1602AB00F91F0B /* UIKit.framework in Frameworks */,
 				9AEFDD3C1D16044E00F91F0B /* Foundation.framework in Frameworks */,
-				07B0918B1B60905100B5BCA7 /* AudioToolbox.framework in Frameworks */,
 				07DD711C1B5F18E4003A1CE1 /* libaxisfreerdp.dylib in Frameworks */,
 				07DD711B1B5F18DC003A1CE1 /* libios_axiswinpr.dylib in Frameworks */,
 			);
@@ -403,19 +375,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A8DBF691D20B096005AF004 /* libcups.tbd in Frameworks */,
 				07D0E2CB1C4D60DA0032C524 /* libfdk-aac.a in Frameworks */,
 				07ACFDFB1C4A34E400953A75 /* libavcodec.a in Frameworks */,
 				07ACFDFC1C4A34E400953A75 /* libavutil.a in Frameworks */,
-				07B098C91B849526002AC4F0 /* libiconv.dylib in Frameworks */,
-				07B098C71B84950B002AC4F0 /* libaura.dylib in Frameworks */,
-				07B098C31B8494EC002AC4F0 /* libaxiszlib.dylib in Frameworks */,
 				07B098C11B8494DE002AC4F0 /* VideoDecodeAcceleration.framework in Frameworks */,
 				07B098BD1B849411002AC4F0 /* CoreVideo.framework in Frameworks */,
 				07B098B91B8493F3002AC4F0 /* Foundation.framework in Frameworks */,
 				074BD0C21B5F361500219723 /* AudioToolbox.framework in Frameworks */,
 				07DD711E1B5F18F8003A1CE1 /* libaxiswinpr.dylib in Frameworks */,
 				07DD711D1B5F18EE003A1CE1 /* libaxisfreerdp.dylib in Frameworks */,
-				074BD0C61B5F368F00219723 /* libcups.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -904,44 +873,31 @@
 		9A1B358116A2D7A500875A94 = {
 			isa = PBXGroup;
 			children = (
+				9A8DBF681D20B096005AF004 /* libcups.tbd */,
+				07DD70D01B5F1025003A1CE1 /* axisfreerdp.xcodeproj */,
+				07DD70AC1B5F0FF7003A1CE1 /* axiswinpr.xcodeproj */,
 				9AEFDD471D16054D00F91F0B /* CoreMedia.framework */,
 				9AEFDD451D16050B00F91F0B /* MediaToolbox.framework */,
 				9AEFDD431D1604D300F91F0B /* VideoToolbox.framework */,
 				9AEFDD411D1604AE00F91F0B /* Accelerate.framework */,
-				9AEFDD3F1D16048C00F91F0B /* libatomiconv.dylib */,
 				9AEFDD3D1D16047400F91F0B /* CoreVideo.framework */,
 				9AEFDD3B1D16044E00F91F0B /* Foundation.framework */,
 				9AEFDD391D1602AB00F91F0B /* UIKit.framework */,
-				9A106A621D15E3F0007288BA /* libaura.dylib */,
-				071EFB5E1C555FCA00EA68B0 /* libaura.dylib */,
 				071EFB341C554AED00EA68B0 /* libswresample.a */,
 				071EFB321C554A9E00EA68B0 /* libswscale.a */,
-				071EFB301C55432D00EA68B0 /* libz.1.2.5.tbd */,
-				071EFB2E1C55432200EA68B0 /* libbz2.1.0.tbd */,
-				071EFB2C1C55430B00EA68B0 /* libiconv.2.4.0.tbd */,
 				071EFB2A1C5537F700EA68B0 /* libavutil.a */,
 				071EFB281C5537E100EA68B0 /* libavcodec.a */,
 				07D0E2CA1C4D60DA0032C524 /* libfdk-aac.a */,
 				07ACFDF91C4A34E400953A75 /* libavcodec.a */,
 				07ACFDFA1C4A34E400953A75 /* libavutil.a */,
-				07B098C81B849526002AC4F0 /* libiconv.dylib */,
-				07B098C61B84950B002AC4F0 /* libaura.dylib */,
-				07B098C41B8494F5002AC4F0 /* libatomiconv.dylib */,
-				07B098C21B8494EC002AC4F0 /* libaxiszlib.dylib */,
 				07B098C01B8494DE002AC4F0 /* VideoDecodeAcceleration.framework */,
 				07B098BE1B84941B002AC4F0 /* DVDPlayback.framework */,
 				07B098BC1B849411002AC4F0 /* CoreVideo.framework */,
 				07B098BA1B8493FF002AC4F0 /* CoreGraphics.framework */,
 				07B098B81B8493C4002AC4F0 /* mac */,
-				07B0918A1B60905100B5BCA7 /* AudioToolbox.framework */,
-				07B091831B608F7300B5BCA7 /* AudioUnit.framework */,
-				07B0917F1B608DD200B5BCA7 /* AVFoundation.framework */,
-				074BD0C51B5F368F00219723 /* libcups.dylib */,
 				074BD0C11B5F361500219723 /* AudioToolbox.framework */,
 				074BD0BD1B5F35C100219723 /* Foundation.framework */,
 				074BD0BB1B5F359A00219723 /* CoreAudio.framework */,
-				07DD70D01B5F1025003A1CE1 /* axisfreerdp.xcodeproj */,
-				07DD70AC1B5F0FF7003A1CE1 /* axiswinpr.xcodeproj */,
 				07DD6E351B5F0CA2003A1CE1 /* clientchannels */,
 				9A1B358D16A2D7A500875A94 /* Products */,
 			);

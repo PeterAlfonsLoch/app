@@ -53,6 +53,8 @@
 		9A1EDB4419C83CD000F5CCE8 /* universal.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDB1919C83CD000F5CCE8 /* universal.h */; };
 		9A1EDB4619C83CD000F5CCE8 /* UTF8Prober.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDB1B19C83CD000F5CCE8 /* UTF8Prober.h */; };
 		9A1EDB5519C83FFB00F5CCE8 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A1EDB4E19C83FE800F5CCE8 /* libaura.dylib */; };
+		9A4E861A1D1FD74D008A419B /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4E86181D1FD74D008A419B /* framework.cpp */; };
+		9A4E861B1D1FD74D008A419B /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A4E86191D1FD74D008A419B /* framework.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -118,6 +120,8 @@
 		9A1EDB1919C83CD000F5CCE8 /* universal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = universal.h; sourceTree = "<group>"; };
 		9A1EDB1B19C83CD000F5CCE8 /* UTF8Prober.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTF8Prober.h; sourceTree = "<group>"; };
 		9A1EDB4719C83FE800F5CCE8 /* aura.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aura.xcodeproj; path = ../../appseed/aura/aura.xcodeproj; sourceTree = "<group>"; };
+		9A4E86181D1FD74D008A419B /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = SOURCE_ROOT; };
+		9A4E86191D1FD74D008A419B /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = SOURCE_ROOT; };
 		9AA539B119B763C400B9F861 /* libauracharguess.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libauracharguess.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -146,14 +150,15 @@
 			children = (
 				9A1EDB4719C83FE800F5CCE8 /* aura.xcodeproj */,
 				9A1EDAE819C83CD000F5CCE8 /* cpp */,
-				9AA539B119B763C400B9F861 /* libauracharguess.dylib */,
-				07D6A8471B4CBB45004FEBC2 /* libauracharguess.dylib */,
+				9A4E846C1D1FD377008A419B /* Products */,
 			);
 			sourceTree = "<group>";
 		};
 		9A1EDAE819C83CD000F5CCE8 /* cpp */ = {
 			isa = PBXGroup;
 			children = (
+				9A4E86181D1FD74D008A419B /* framework.cpp */,
+				9A4E86191D1FD74D008A419B /* framework.h */,
 				07502CB11B2529BA008D207C /* charDistribution.cpp */,
 				07502CAF1B2529AF008D207C /* _cpp.cpp */,
 				9A1EDAEB19C83CD000F5CCE8 /* big5Prober.h */,
@@ -186,6 +191,15 @@
 				9A1EDB4E19C83FE800F5CCE8 /* libaura.dylib */,
 				07473E0C1B503FE4004688C5 /* libaura.dylib */,
 				9A1EDB5219C83FE800F5CCE8 /* aura_iosTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9A4E846C1D1FD377008A419B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9AA539B119B763C400B9F861 /* libauracharguess.dylib */,
+				07D6A8471B4CBB45004FEBC2 /* libauracharguess.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -227,6 +241,7 @@
 				9A1EDB2219C83CD000F5CCE8 /* codingStateMachine.h in Headers */,
 				9A1EDB4419C83CD000F5CCE8 /* universal.h in Headers */,
 				9A1EDB3919C83CD000F5CCE8 /* MBCSGroupProber.h in Headers */,
+				9A4E861B1D1FD74D008A419B /* framework.h in Headers */,
 				9A1EDB3D19C83CD000F5CCE8 /* SBCharsetProber.h in Headers */,
 				9A1EDB1F19C83CD000F5CCE8 /* charDistribution.h in Headers */,
 				9A1EDB1D19C83CD000F5CCE8 /* big5Prober.h in Headers */,
@@ -359,6 +374,7 @@
 			files = (
 				07502CB01B2529AF008D207C /* _cpp.cpp in Sources */,
 				07502CB21B2529BA008D207C /* charDistribution.cpp in Sources */,
+				9A4E861A1D1FD74D008A419B /* framework.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -438,7 +454,7 @@
 				PRODUCT_NAME = auracharguess;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				USER_HEADER_SEARCH_PATHS = "framework . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../.. $(WorkspaceDir)/../../appseed cpp $(WorkspaceDir)/../../../app/include $(WorkspaceDir)/../../../app/appseed/aura";
+				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../.. $(WorkspaceDir)/../../appseed cpp $(WorkspaceDir)/../../../app/include $(WorkspaceDir)/../../../app/appseed/aura";
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};
 			name = Debug;
@@ -477,7 +493,7 @@
 				PRODUCT_NAME = auracharguess;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				USER_HEADER_SEARCH_PATHS = "framework . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../.. $(WorkspaceDir)/../../appseed cpp $(WorkspaceDir)/../../../app/include $(WorkspaceDir)/../../../app/appseed/aura";
+				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../.. $(WorkspaceDir)/../../appseed cpp $(WorkspaceDir)/../../../app/include $(WorkspaceDir)/../../../app/appseed/aura";
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};
 			name = Release;

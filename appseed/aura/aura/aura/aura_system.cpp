@@ -40,6 +40,7 @@ namespace aura
 
    system::system(::aura::application * papp, void * pdata) :
       m_process(this),
+      m_base64(this),
 #ifdef METROWIN
       m_mutexCit(this)
 #else

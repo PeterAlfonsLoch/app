@@ -293,7 +293,7 @@ CLASS_DECL_BASE bool __node_base_pos_term();
 #elif defined(MACOS)
 
 #include "base/os/ansios/ansios.h"
-//#include "base/os/macos/macos.h"
+#include "base/os/macos/macos.h"
 //#include "base/os/macos/macos_windowing.h"
 
 #elif defined(ANDROID)

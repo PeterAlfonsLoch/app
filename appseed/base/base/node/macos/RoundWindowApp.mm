@@ -9,6 +9,8 @@
 #import "macos_mm.h"
 
 
+int32_t run_system();
+
 
 @implementation RoundWindowApp
 

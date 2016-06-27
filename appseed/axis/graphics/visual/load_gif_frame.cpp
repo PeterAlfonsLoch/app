@@ -2,7 +2,16 @@
 
 #define unequal(a, b, n) ((a) > (b) - (n))
 
+#ifdef __APPLE__
+
+#define pixel(x, y) (ba[(y) * iScan + (x)])
+
+#else
+
 #define pixel(x, y) (ba[(pointer->m_rect.height() - (y) - 1) * iScan + (x)])
+
+
+#endif
 
 bool detect_8bit_borders(::draw2d::dib * pdibCompose, ::visual::dib_sp::array * pdiba, ::visual::dib_sp::pointer * pointer, int uFrameIndex, byte * ba, int iScan, array < COLORREF > & cra, int transparentIndex);
 
@@ -318,8 +327,20 @@ bool gif_draw_frame(::draw2d::dib * pdibCompose, ::visual::dib_sp::array * pdiba
          COLORREF cr = cra[iIndex];
 
          byte bA = argb_get_a_value(cr);
+         
+#ifdef __APPLE__
+         
+         byte bR = argb_get_r_value(cr);
+         byte bG = argb_get_g_value(cr);
+         byte bB = argb_get_b_value(cr);
 
+         pointer->m_dib->m_pcolorref[y*w + x] = ARGB(bA, bB, bG, bR);
+         
+#else
+         
          pointer->m_dib->m_pcolorref[y*w + x] = cr;
+         
+#endif
 
       }
 

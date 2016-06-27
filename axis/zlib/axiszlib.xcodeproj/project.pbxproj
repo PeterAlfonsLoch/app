@@ -113,9 +113,16 @@
 		9A1B2F7D16A2AF5C00875A94 = {
 			isa = PBXGroup;
 			children = (
+				9A4E83191D1FC911008A419B /* zlib */,
+				9A4E84481D1FD1FF008A419B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		9A4E83191D1FC911008A419B /* zlib */ = {
+			isa = PBXGroup;
+			children = (
 				9AEEBDBC19C5970100866C9E /* zconf.h */,
 				9AEEBDBD19C5970100866C9E /* zlib.h */,
-				9AEB768616F7BAA50085103B /* Products */,
 				9A9F2DB419A6445D007AE2C7 /* crc32.h */,
 				9A9F2DB519A6445D007AE2C7 /* deflate.h */,
 				9A9F2DB619A6445D007AE2C7 /* gzguts.h */,
@@ -140,14 +147,15 @@
 				9A9F2DCC19A6445E007AE2C7 /* trees.c */,
 				9A9F2DCD19A6445E007AE2C7 /* uncompr.c */,
 				9A9F2DCE19A6445E007AE2C7 /* zutil.c */,
-				9AA5E6D616F7C61B005C45CE /* libaxiszlib.dylib */,
-				07108D041B4C97EF00A28F80 /* libios_axiszlib.dylib */,
 			);
+			name = zlib;
 			sourceTree = "<group>";
 		};
-		9AEB768616F7BAA50085103B /* Products */ = {
+		9A4E84481D1FD1FF008A419B /* Products */ = {
 			isa = PBXGroup;
 			children = (
+				9AA5E6D616F7C61B005C45CE /* libaxiszlib.dylib */,
+				07108D041B4C97EF00A28F80 /* libios_axiszlib.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";

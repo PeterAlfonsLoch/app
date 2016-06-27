@@ -8,181 +8,33 @@
 
 /* Begin PBXBuildFile section */
 		07108B751B4C97D500A28F80 /* half.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEB0F819C5080C00866C9E /* half.cpp */; };
-		07108B761B4C97D500A28F80 /* PluginXPM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEB819C5080A00866C9E /* PluginXPM.cpp */; };
-		07108B771B4C97D500A28F80 /* TIFFLogLuv.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEBB19C5080A00866C9E /* TIFFLogLuv.cpp */; };
-		07108B781B4C97D500A28F80 /* Display.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAED519C5080A00866C9E /* Display.cpp */; };
-		07108B791B4C97D500A28F80 /* MNGHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE9419C5080A00866C9E /* MNGHelper.cpp */; };
-		07108B7A1B4C97D500A28F80 /* BSplineRotate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAED019C5080A00866C9E /* BSplineRotate.cpp */; };
-		07108B7B1B4C97D500A28F80 /* FreeImageTag.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEB0D719C5080C00866C9E /* FreeImageTag.cpp */; };
-		07108B7C1B4C97D500A28F80 /* Resize.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEDB19C5080A00866C9E /* Resize.cpp */; };
-		07108B7D1B4C97D500A28F80 /* tmoFattal02.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEBE19C5080A00866C9E /* tmoFattal02.cpp */; };
-		07108B7E1B4C97D500A28F80 /* PluginPFM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEAB19C5080A00866C9E /* PluginPFM.cpp */; };
-		07108B7F1B4C97D500A28F80 /* PixelAccess.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE9719C5080A00866C9E /* PixelAccess.cpp */; };
-		07108B801B4C97D500A28F80 /* Conversion16_555.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE7F19C5080A00866C9E /* Conversion16_555.cpp */; };
-		07108B811B4C97D500A28F80 /* tmoColorConvert.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEBC19C5080A00866C9E /* tmoColorConvert.cpp */; };
-		07108B821B4C97D500A28F80 /* ConversionUINT16.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE8919C5080A00866C9E /* ConversionUINT16.cpp */; };
-		07108B831B4C97D500A28F80 /* FreeImageIO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE8E19C5080A00866C9E /* FreeImageIO.cpp */; };
-		07108B841B4C97D500A28F80 /* Background.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAECF19C5080A00866C9E /* Background.cpp */; };
-		07108B851B4C97D500A28F80 /* Exif.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEB0D419C5080C00866C9E /* Exif.cpp */; };
-		07108B861B4C97D500A28F80 /* ConversionRGBF.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE8719C5080A00866C9E /* ConversionRGBF.cpp */; };
-		07108B871B4C97D500A28F80 /* Conversion4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE8319C5080A00866C9E /* Conversion4.cpp */; };
-		07108B881B4C97D500A28F80 /* PluginICO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEA019C5080A00866C9E /* PluginICO.cpp */; };
-		07108B891B4C97D500A28F80 /* Colors.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAED319C5080A00866C9E /* Colors.cpp */; };
-		07108B8A1B4C97D500A28F80 /* ToneMapping.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEC019C5080A00866C9E /* ToneMapping.cpp */; };
-		07108B8B1B4C97D500A28F80 /* PluginDDS.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE9B19C5080A00866C9E /* PluginDDS.cpp */; };
-		07108B8C1B4C97D500A28F80 /* Channels.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAED119C5080A00866C9E /* Channels.cpp */; };
-		07108B8D1B4C97D500A28F80 /* ConversionFloat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE8519C5080A00866C9E /* ConversionFloat.cpp */; };
-		07108B8E1B4C97D500A28F80 /* NNQuantizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE9619C5080A00866C9E /* NNQuantizer.cpp */; };
-		07108B8F1B4C97D500A28F80 /* PluginSGI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEB219C5080A00866C9E /* PluginSGI.cpp */; };
-		07108B901B4C97D500A28F80 /* tmoDrago03.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEBD19C5080A00866C9E /* tmoDrago03.cpp */; };
-		07108B911B4C97D500A28F80 /* PluginPICT.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEAC19C5080A00866C9E /* PluginPICT.cpp */; };
-		07108B921B4C97D500A28F80 /* FreeImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE8A19C5080A00866C9E /* FreeImage.cpp */; };
-		07108B931B4C97D500A28F80 /* PluginBMP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE9919C5080A00866C9E /* PluginBMP.cpp */; };
-		07108B941B4C97D500A28F80 /* ZLibInterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEC219C5080A00866C9E /* ZLibInterface.cpp */; };
-		07108B951B4C97D500A28F80 /* PluginKOALA.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEA719C5080A00866C9E /* PluginKOALA.cpp */; };
-		07108B961B4C97D500A28F80 /* Conversion8.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE8419C5080A00866C9E /* Conversion8.cpp */; };
-		07108B971B4C97D500A28F80 /* TagLib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEB0DB19C5080C00866C9E /* TagLib.cpp */; };
-		07108B981B4C97D500A28F80 /* Conversion16_565.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE8019C5080A00866C9E /* Conversion16_565.cpp */; };
-		07108B991B4C97D500A28F80 /* MultiPage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE9519C5080A00866C9E /* MultiPage.cpp */; };
-		07108B9A1B4C97D500A28F80 /* PluginTARGA.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEB319C5080A00866C9E /* PluginTARGA.cpp */; };
-		07108B9B1B4C97D500A28F80 /* Conversion32.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE8219C5080A00866C9E /* Conversion32.cpp */; };
 		07108B9C1B4C97D500A28F80 /* Deprecated.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE7719C5080A00866C9E /* Deprecated.cpp */; };
-		07108B9D1B4C97D500A28F80 /* Rescale.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEDA19C5080A00866C9E /* Rescale.cpp */; };
-		07108B9E1B4C97D500A28F80 /* PluginJNG.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEA319C5080A00866C9E /* PluginJNG.cpp */; };
-		07108B9F1B4C97D500A28F80 /* TagConversion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEB0DA19C5080C00866C9E /* TagConversion.cpp */; };
-		07108BA01B4C97D500A28F80 /* PluginGIF.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE9E19C5080A00866C9E /* PluginGIF.cpp */; };
-		07108BA11B4C97D500A28F80 /* PluginWBMP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEB519C5080A00866C9E /* PluginWBMP.cpp */; };
-		07108BA21B4C97D500A28F80 /* PluginRAS.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEB019C5080A00866C9E /* PluginRAS.cpp */; };
-		07108BA31B4C97D500A28F80 /* CopyPaste.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAED419C5080A00866C9E /* CopyPaste.cpp */; };
-		07108BA41B4C97D500A28F80 /* GetType.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE8F19C5080A00866C9E /* GetType.cpp */; };
-		07108BA51B4C97D500A28F80 /* Conversion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE7E19C5080A00866C9E /* Conversion.cpp */; };
-		07108BA61B4C97D500A28F80 /* Plugin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE9819C5080A00866C9E /* Plugin.cpp */; };
-		07108BA71B4C97D500A28F80 /* PluginPCD.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEA919C5080A00866C9E /* PluginPCD.cpp */; };
-		07108BA81B4C97D500A28F80 /* ColorLookup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE7D19C5080A00866C9E /* ColorLookup.cpp */; };
-		07108BA91B4C97D500A28F80 /* BitmapAccess.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE7B19C5080A00866C9E /* BitmapAccess.cpp */; };
-		07108BAA1B4C97D500A28F80 /* ConversionType.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE8819C5080A00866C9E /* ConversionType.cpp */; };
-		07108BAB1B4C97D500A28F80 /* ConversionRGB16.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE8619C5080A00866C9E /* ConversionRGB16.cpp */; };
-		07108BAC1B4C97D500A28F80 /* CacheFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE7C19C5080A00866C9E /* CacheFile.cpp */; };
-		07108BAD1B4C97D500A28F80 /* PluginCUT.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE9A19C5080A00866C9E /* PluginCUT.cpp */; };
-		07108BAE1B4C97D500A28F80 /* MemoryIO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE9319C5080A00866C9E /* MemoryIO.cpp */; };
-		07108BAF1B4C97D500A28F80 /* ClassicRotate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAED219C5080A00866C9E /* ClassicRotate.cpp */; };
-		07108BB01B4C97D500A28F80 /* PluginPCX.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEAA19C5080A00866C9E /* PluginPCX.cpp */; };
-		07108BB11B4C97D500A28F80 /* Conversion24.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE8119C5080A00866C9E /* Conversion24.cpp */; };
-		07108BB21B4C97D500A28F80 /* PluginXBM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEB719C5080A00866C9E /* PluginXBM.cpp */; };
-		07108BB31B4C97D500A28F80 /* Halftoning.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE9019C5080A00866C9E /* Halftoning.cpp */; };
-		07108BB41B4C97D500A28F80 /* FreeImageFramework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE8C19C5080A00866C9E /* FreeImageFramework.cpp */; };
-		07108BB51B4C97D500A28F80 /* FIRational.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEB0D519C5080C00866C9E /* FIRational.cpp */; };
-		07108BB61B4C97D500A28F80 /* PluginPNM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEAE19C5080A00866C9E /* PluginPNM.cpp */; };
-		07108BB71B4C97D500A28F80 /* WuQuantizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEC119C5080A00866C9E /* WuQuantizer.cpp */; };
-		07108BB81B4C97D500A28F80 /* tmoReinhard05.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEBF19C5080A00866C9E /* tmoReinhard05.cpp */; };
 		07108BB91B4C97D500A28F80 /* DeprecationMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE7819C5080A00866C9E /* DeprecationMgr.cpp */; };
-		07108BBA1B4C97D500A28F80 /* PluginIFF.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEA119C5080A00866C9E /* PluginIFF.cpp */; };
-		07108BBB1B4C97D500A28F80 /* IPTC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEB0D919C5080C00866C9E /* IPTC.cpp */; };
-		07108BBC1B4C97D500A28F80 /* Flip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAED719C5080A00866C9E /* Flip.cpp */; };
-		07108BBD1B4C97D500A28F80 /* PluginHDR.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE9F19C5080A00866C9E /* PluginHDR.cpp */; };
-		07108BBE1B4C97D500A28F80 /* MultigridPoissonSolver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAED919C5080A00866C9E /* MultigridPoissonSolver.cpp */; };
 		07108BC31B4C97D500A28F80 /* Plugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEB1CD19C5080D00866C9E /* Plugin.h */; };
 		07108BC41B4C97D500A28F80 /* eLut.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEB0F719C5080C00866C9E /* eLut.h */; };
 		07108BC51B4C97D500A28F80 /* toFloat.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEB0FD19C5080C00866C9E /* toFloat.h */; };
 		07108BC61B4C97D500A28F80 /* Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEB1D019C5080D00866C9E /* Utilities.h */; };
-		07108BC71B4C97D500A28F80 /* FIRational.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEB0D619C5080C00866C9E /* FIRational.h */; };
 		07108BC81B4C97D500A28F80 /* half.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEB0F919C5080C00866C9E /* half.h */; };
 		07108BC91B4C97D500A28F80 /* Filters.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAED619C5080A00866C9E /* Filters.h */; };
 		07108BCA1B4C97D500A28F80 /* ToneMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEB1CF19C5080D00866C9E /* ToneMapping.h */; };
 		07108BCB1B4C97D500A28F80 /* FreeImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAEC319C5080A00866C9E /* FreeImage.h */; };
-		07108BCC1B4C97D500A28F80 /* FreeImageTag.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEB0D819C5080C00866C9E /* FreeImageTag.h */; };
 		07108BCD1B4C97D500A28F80 /* FreeImageIO.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAEC419C5080A00866C9E /* FreeImageIO.h */; };
-		07108BCE1B4C97D500A28F80 /* FreeImageFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAE8D19C5080A00866C9E /* FreeImageFramework.h */; };
 		07108BCF1B4C97D500A28F80 /* Quantizers.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEB1CE19C5080D00866C9E /* Quantizers.h */; };
 		07108BD01B4C97D500A28F80 /* DeprecationMgr.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAE7919C5080A00866C9E /* DeprecationMgr.h */; };
-		07108BD11B4C97D500A28F80 /* PSDParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAEBA19C5080A00866C9E /* PSDParser.h */; };
 		07108BD21B4C97D500A28F80 /* Resize.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAEDC19C5080A00866C9E /* Resize.h */; };
 		07108BD31B4C97D500A28F80 /* CacheFile.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAE7519C5080A00866C9E /* CacheFile.h */; };
 		07703C381B6FDFBD009026EA /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 071B2AFD1B6E631B0088E158 /* libaura.dylib */; };
 		077A01671B4D5568001C85FF /* libaxiszlib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEEBDAF19C595E900866C9E /* libaxiszlib.dylib */; };
+		9A4E861D1D1FD793008A419B /* _FreeImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4E861C1D1FD793008A419B /* _FreeImage.cpp */; };
+		9A4E861F1D1FD7A9008A419B /* _Toolkit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4E861E1D1FD7A9008A419B /* _Toolkit.cpp */; };
 		9AEEB1D119C5080D00866C9E /* CacheFile.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAE7519C5080A00866C9E /* CacheFile.h */; };
 		9AEEB1D219C5080D00866C9E /* Deprecated.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE7719C5080A00866C9E /* Deprecated.cpp */; };
 		9AEEB1D319C5080D00866C9E /* DeprecationMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE7819C5080A00866C9E /* DeprecationMgr.cpp */; };
 		9AEEB1D419C5080D00866C9E /* DeprecationMgr.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAE7919C5080A00866C9E /* DeprecationMgr.h */; };
-		9AEEB1D519C5080D00866C9E /* BitmapAccess.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE7B19C5080A00866C9E /* BitmapAccess.cpp */; };
-		9AEEB1D619C5080D00866C9E /* CacheFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE7C19C5080A00866C9E /* CacheFile.cpp */; };
-		9AEEB1D719C5080D00866C9E /* ColorLookup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE7D19C5080A00866C9E /* ColorLookup.cpp */; };
-		9AEEB1D819C5080D00866C9E /* Conversion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE7E19C5080A00866C9E /* Conversion.cpp */; };
-		9AEEB1D919C5080D00866C9E /* Conversion16_555.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE7F19C5080A00866C9E /* Conversion16_555.cpp */; };
-		9AEEB1DA19C5080D00866C9E /* Conversion16_565.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE8019C5080A00866C9E /* Conversion16_565.cpp */; };
-		9AEEB1DB19C5080D00866C9E /* Conversion24.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE8119C5080A00866C9E /* Conversion24.cpp */; };
-		9AEEB1DC19C5080D00866C9E /* Conversion32.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE8219C5080A00866C9E /* Conversion32.cpp */; };
-		9AEEB1DD19C5080D00866C9E /* Conversion4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE8319C5080A00866C9E /* Conversion4.cpp */; };
-		9AEEB1DE19C5080D00866C9E /* Conversion8.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE8419C5080A00866C9E /* Conversion8.cpp */; };
-		9AEEB1DF19C5080D00866C9E /* ConversionFloat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE8519C5080A00866C9E /* ConversionFloat.cpp */; };
-		9AEEB1E019C5080D00866C9E /* ConversionRGB16.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE8619C5080A00866C9E /* ConversionRGB16.cpp */; };
-		9AEEB1E119C5080D00866C9E /* ConversionRGBF.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE8719C5080A00866C9E /* ConversionRGBF.cpp */; };
-		9AEEB1E219C5080D00866C9E /* ConversionType.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE8819C5080A00866C9E /* ConversionType.cpp */; };
-		9AEEB1E319C5080D00866C9E /* ConversionUINT16.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE8919C5080A00866C9E /* ConversionUINT16.cpp */; };
-		9AEEB1E419C5080D00866C9E /* FreeImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE8A19C5080A00866C9E /* FreeImage.cpp */; };
-		9AEEB1E619C5080D00866C9E /* FreeImageFramework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE8C19C5080A00866C9E /* FreeImageFramework.cpp */; };
-		9AEEB1E719C5080D00866C9E /* FreeImageFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAE8D19C5080A00866C9E /* FreeImageFramework.h */; };
-		9AEEB1E819C5080D00866C9E /* FreeImageIO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE8E19C5080A00866C9E /* FreeImageIO.cpp */; };
-		9AEEB1E919C5080D00866C9E /* GetType.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE8F19C5080A00866C9E /* GetType.cpp */; };
-		9AEEB1EA19C5080D00866C9E /* Halftoning.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE9019C5080A00866C9E /* Halftoning.cpp */; };
-		9AEEB1ED19C5080D00866C9E /* MemoryIO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE9319C5080A00866C9E /* MemoryIO.cpp */; };
-		9AEEB1EE19C5080D00866C9E /* MNGHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE9419C5080A00866C9E /* MNGHelper.cpp */; };
-		9AEEB1EF19C5080D00866C9E /* MultiPage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE9519C5080A00866C9E /* MultiPage.cpp */; };
-		9AEEB1F019C5080D00866C9E /* NNQuantizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE9619C5080A00866C9E /* NNQuantizer.cpp */; };
-		9AEEB1F119C5080D00866C9E /* PixelAccess.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE9719C5080A00866C9E /* PixelAccess.cpp */; };
-		9AEEB1F219C5080D00866C9E /* Plugin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE9819C5080A00866C9E /* Plugin.cpp */; };
-		9AEEB1F319C5080D00866C9E /* PluginBMP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE9919C5080A00866C9E /* PluginBMP.cpp */; };
-		9AEEB1F419C5080D00866C9E /* PluginCUT.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE9A19C5080A00866C9E /* PluginCUT.cpp */; };
-		9AEEB1F519C5080D00866C9E /* PluginDDS.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE9B19C5080A00866C9E /* PluginDDS.cpp */; };
-		9AEEB1F819C5080D00866C9E /* PluginGIF.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE9E19C5080A00866C9E /* PluginGIF.cpp */; };
-		9AEEB1F919C5080D00866C9E /* PluginHDR.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE9F19C5080A00866C9E /* PluginHDR.cpp */; };
-		9AEEB1FA19C5080D00866C9E /* PluginICO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEA019C5080A00866C9E /* PluginICO.cpp */; };
-		9AEEB1FB19C5080D00866C9E /* PluginIFF.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEA119C5080A00866C9E /* PluginIFF.cpp */; };
-		9AEEB1FD19C5080D00866C9E /* PluginJNG.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEA319C5080A00866C9E /* PluginJNG.cpp */; };
-		9AEEB20119C5080D00866C9E /* PluginKOALA.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEA719C5080A00866C9E /* PluginKOALA.cpp */; };
-		9AEEB20319C5080D00866C9E /* PluginPCD.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEA919C5080A00866C9E /* PluginPCD.cpp */; };
-		9AEEB20419C5080D00866C9E /* PluginPCX.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEAA19C5080A00866C9E /* PluginPCX.cpp */; };
-		9AEEB20519C5080D00866C9E /* PluginPFM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEAB19C5080A00866C9E /* PluginPFM.cpp */; };
-		9AEEB20619C5080D00866C9E /* PluginPICT.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEAC19C5080A00866C9E /* PluginPICT.cpp */; };
-		9AEEB20819C5080D00866C9E /* PluginPNM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEAE19C5080A00866C9E /* PluginPNM.cpp */; };
-		9AEEB20A19C5080D00866C9E /* PluginRAS.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEB019C5080A00866C9E /* PluginRAS.cpp */; };
-		9AEEB20C19C5080D00866C9E /* PluginSGI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEB219C5080A00866C9E /* PluginSGI.cpp */; };
-		9AEEB20D19C5080D00866C9E /* PluginTARGA.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEB319C5080A00866C9E /* PluginTARGA.cpp */; };
-		9AEEB20F19C5080D00866C9E /* PluginWBMP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEB519C5080A00866C9E /* PluginWBMP.cpp */; };
-		9AEEB21119C5080D00866C9E /* PluginXBM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEB719C5080A00866C9E /* PluginXBM.cpp */; };
-		9AEEB21219C5080D00866C9E /* PluginXPM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEB819C5080A00866C9E /* PluginXPM.cpp */; };
-		9AEEB21419C5080D00866C9E /* PSDParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAEBA19C5080A00866C9E /* PSDParser.h */; };
-		9AEEB21519C5080D00866C9E /* TIFFLogLuv.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEBB19C5080A00866C9E /* TIFFLogLuv.cpp */; };
-		9AEEB21619C5080D00866C9E /* tmoColorConvert.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEBC19C5080A00866C9E /* tmoColorConvert.cpp */; };
-		9AEEB21719C5080D00866C9E /* tmoDrago03.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEBD19C5080A00866C9E /* tmoDrago03.cpp */; };
-		9AEEB21819C5080D00866C9E /* tmoFattal02.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEBE19C5080A00866C9E /* tmoFattal02.cpp */; };
-		9AEEB21919C5080D00866C9E /* tmoReinhard05.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEBF19C5080A00866C9E /* tmoReinhard05.cpp */; };
-		9AEEB21A19C5080D00866C9E /* ToneMapping.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEC019C5080A00866C9E /* ToneMapping.cpp */; };
-		9AEEB21B19C5080D00866C9E /* WuQuantizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEC119C5080A00866C9E /* WuQuantizer.cpp */; };
-		9AEEB21C19C5080D00866C9E /* ZLibInterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEC219C5080A00866C9E /* ZLibInterface.cpp */; };
 		9AEEB21D19C5080D00866C9E /* FreeImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAEC319C5080A00866C9E /* FreeImage.h */; };
 		9AEEB21E19C5080D00866C9E /* FreeImageIO.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAEC419C5080A00866C9E /* FreeImageIO.h */; };
-		9AEEB21F19C5080D00866C9E /* Background.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAECF19C5080A00866C9E /* Background.cpp */; };
-		9AEEB22019C5080D00866C9E /* BSplineRotate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAED019C5080A00866C9E /* BSplineRotate.cpp */; };
-		9AEEB22119C5080D00866C9E /* Channels.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAED119C5080A00866C9E /* Channels.cpp */; };
-		9AEEB22219C5080D00866C9E /* ClassicRotate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAED219C5080A00866C9E /* ClassicRotate.cpp */; };
-		9AEEB22319C5080D00866C9E /* Colors.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAED319C5080A00866C9E /* Colors.cpp */; };
-		9AEEB22419C5080D00866C9E /* CopyPaste.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAED419C5080A00866C9E /* CopyPaste.cpp */; };
-		9AEEB22519C5080D00866C9E /* Display.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAED519C5080A00866C9E /* Display.cpp */; };
 		9AEEB22619C5080D00866C9E /* Filters.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAED619C5080A00866C9E /* Filters.h */; };
-		9AEEB22719C5080D00866C9E /* Flip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAED719C5080A00866C9E /* Flip.cpp */; };
-		9AEEB22919C5080D00866C9E /* MultigridPoissonSolver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAED919C5080A00866C9E /* MultigridPoissonSolver.cpp */; };
-		9AEEB22A19C5080D00866C9E /* Rescale.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEDA19C5080A00866C9E /* Rescale.cpp */; };
-		9AEEB22B19C5080D00866C9E /* Resize.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAEDB19C5080A00866C9E /* Resize.cpp */; };
 		9AEEB22C19C5080D00866C9E /* Resize.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAEDC19C5080A00866C9E /* Resize.h */; };
-		9AEEB3B319C5080D00866C9E /* Exif.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEB0D419C5080C00866C9E /* Exif.cpp */; };
-		9AEEB3B419C5080D00866C9E /* FIRational.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEB0D519C5080C00866C9E /* FIRational.cpp */; };
-		9AEEB3B519C5080D00866C9E /* FIRational.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEB0D619C5080C00866C9E /* FIRational.h */; };
-		9AEEB3B619C5080D00866C9E /* FreeImageTag.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEB0D719C5080C00866C9E /* FreeImageTag.cpp */; };
-		9AEEB3B719C5080D00866C9E /* FreeImageTag.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEB0D819C5080C00866C9E /* FreeImageTag.h */; };
-		9AEEB3B819C5080D00866C9E /* IPTC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEB0D919C5080C00866C9E /* IPTC.cpp */; };
-		9AEEB3B919C5080D00866C9E /* TagConversion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEB0DA19C5080C00866C9E /* TagConversion.cpp */; };
-		9AEEB3BA19C5080D00866C9E /* TagLib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEB0DB19C5080C00866C9E /* TagLib.cpp */; };
 		9AEEB3BD19C5080D00866C9E /* eLut.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEB0F719C5080C00866C9E /* eLut.h */; };
 		9AEEB3BE19C5080D00866C9E /* half.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEB0F819C5080C00866C9E /* half.cpp */; };
 		9AEEB3BF19C5080D00866C9E /* half.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEB0F919C5080C00866C9E /* half.h */; };
@@ -263,89 +115,16 @@
 
 /* Begin PBXFileReference section */
 		07108BD71B4C97D500A28F80 /* libaxisfreeimage.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libaxisfreeimage.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A4E861C1D1FD793008A419B /* _FreeImage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _FreeImage.cpp; sourceTree = "<group>"; };
+		9A4E861E1D1FD7A9008A419B /* _Toolkit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _Toolkit.cpp; sourceTree = "<group>"; };
 		9AEEAE7519C5080A00866C9E /* CacheFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheFile.h; sourceTree = "<group>"; };
 		9AEEAE7719C5080A00866C9E /* Deprecated.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Deprecated.cpp; sourceTree = "<group>"; };
 		9AEEAE7819C5080A00866C9E /* DeprecationMgr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DeprecationMgr.cpp; sourceTree = "<group>"; };
 		9AEEAE7919C5080A00866C9E /* DeprecationMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeprecationMgr.h; sourceTree = "<group>"; };
-		9AEEAE7B19C5080A00866C9E /* BitmapAccess.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BitmapAccess.cpp; sourceTree = "<group>"; };
-		9AEEAE7C19C5080A00866C9E /* CacheFile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CacheFile.cpp; sourceTree = "<group>"; };
-		9AEEAE7D19C5080A00866C9E /* ColorLookup.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ColorLookup.cpp; sourceTree = "<group>"; };
-		9AEEAE7E19C5080A00866C9E /* Conversion.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Conversion.cpp; sourceTree = "<group>"; };
-		9AEEAE7F19C5080A00866C9E /* Conversion16_555.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Conversion16_555.cpp; sourceTree = "<group>"; };
-		9AEEAE8019C5080A00866C9E /* Conversion16_565.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Conversion16_565.cpp; sourceTree = "<group>"; };
-		9AEEAE8119C5080A00866C9E /* Conversion24.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Conversion24.cpp; sourceTree = "<group>"; };
-		9AEEAE8219C5080A00866C9E /* Conversion32.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Conversion32.cpp; sourceTree = "<group>"; };
-		9AEEAE8319C5080A00866C9E /* Conversion4.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Conversion4.cpp; sourceTree = "<group>"; };
-		9AEEAE8419C5080A00866C9E /* Conversion8.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Conversion8.cpp; sourceTree = "<group>"; };
-		9AEEAE8519C5080A00866C9E /* ConversionFloat.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConversionFloat.cpp; sourceTree = "<group>"; };
-		9AEEAE8619C5080A00866C9E /* ConversionRGB16.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConversionRGB16.cpp; sourceTree = "<group>"; };
-		9AEEAE8719C5080A00866C9E /* ConversionRGBF.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConversionRGBF.cpp; sourceTree = "<group>"; };
-		9AEEAE8819C5080A00866C9E /* ConversionType.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConversionType.cpp; sourceTree = "<group>"; };
-		9AEEAE8919C5080A00866C9E /* ConversionUINT16.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConversionUINT16.cpp; sourceTree = "<group>"; };
-		9AEEAE8A19C5080A00866C9E /* FreeImage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FreeImage.cpp; sourceTree = "<group>"; };
-		9AEEAE8C19C5080A00866C9E /* FreeImageFramework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FreeImageFramework.cpp; sourceTree = "<group>"; };
-		9AEEAE8D19C5080A00866C9E /* FreeImageFramework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FreeImageFramework.h; sourceTree = "<group>"; };
-		9AEEAE8E19C5080A00866C9E /* FreeImageIO.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FreeImageIO.cpp; sourceTree = "<group>"; };
-		9AEEAE8F19C5080A00866C9E /* GetType.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GetType.cpp; sourceTree = "<group>"; };
-		9AEEAE9019C5080A00866C9E /* Halftoning.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Halftoning.cpp; sourceTree = "<group>"; };
-		9AEEAE9319C5080A00866C9E /* MemoryIO.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MemoryIO.cpp; sourceTree = "<group>"; };
-		9AEEAE9419C5080A00866C9E /* MNGHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MNGHelper.cpp; sourceTree = "<group>"; };
-		9AEEAE9519C5080A00866C9E /* MultiPage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MultiPage.cpp; sourceTree = "<group>"; };
-		9AEEAE9619C5080A00866C9E /* NNQuantizer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NNQuantizer.cpp; sourceTree = "<group>"; };
-		9AEEAE9719C5080A00866C9E /* PixelAccess.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PixelAccess.cpp; sourceTree = "<group>"; };
-		9AEEAE9819C5080A00866C9E /* Plugin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Plugin.cpp; sourceTree = "<group>"; };
-		9AEEAE9919C5080A00866C9E /* PluginBMP.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PluginBMP.cpp; sourceTree = "<group>"; };
-		9AEEAE9A19C5080A00866C9E /* PluginCUT.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PluginCUT.cpp; sourceTree = "<group>"; };
-		9AEEAE9B19C5080A00866C9E /* PluginDDS.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PluginDDS.cpp; sourceTree = "<group>"; };
-		9AEEAE9E19C5080A00866C9E /* PluginGIF.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PluginGIF.cpp; sourceTree = "<group>"; };
-		9AEEAE9F19C5080A00866C9E /* PluginHDR.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PluginHDR.cpp; sourceTree = "<group>"; };
-		9AEEAEA019C5080A00866C9E /* PluginICO.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PluginICO.cpp; sourceTree = "<group>"; };
-		9AEEAEA119C5080A00866C9E /* PluginIFF.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PluginIFF.cpp; sourceTree = "<group>"; };
-		9AEEAEA319C5080A00866C9E /* PluginJNG.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PluginJNG.cpp; sourceTree = "<group>"; };
-		9AEEAEA719C5080A00866C9E /* PluginKOALA.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PluginKOALA.cpp; sourceTree = "<group>"; };
-		9AEEAEA919C5080A00866C9E /* PluginPCD.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PluginPCD.cpp; sourceTree = "<group>"; };
-		9AEEAEAA19C5080A00866C9E /* PluginPCX.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PluginPCX.cpp; sourceTree = "<group>"; };
-		9AEEAEAB19C5080A00866C9E /* PluginPFM.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PluginPFM.cpp; sourceTree = "<group>"; };
-		9AEEAEAC19C5080A00866C9E /* PluginPICT.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PluginPICT.cpp; sourceTree = "<group>"; };
-		9AEEAEAE19C5080A00866C9E /* PluginPNM.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PluginPNM.cpp; sourceTree = "<group>"; };
-		9AEEAEB019C5080A00866C9E /* PluginRAS.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PluginRAS.cpp; sourceTree = "<group>"; };
-		9AEEAEB219C5080A00866C9E /* PluginSGI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PluginSGI.cpp; sourceTree = "<group>"; };
-		9AEEAEB319C5080A00866C9E /* PluginTARGA.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PluginTARGA.cpp; sourceTree = "<group>"; };
-		9AEEAEB519C5080A00866C9E /* PluginWBMP.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PluginWBMP.cpp; sourceTree = "<group>"; };
-		9AEEAEB719C5080A00866C9E /* PluginXBM.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PluginXBM.cpp; sourceTree = "<group>"; };
-		9AEEAEB819C5080A00866C9E /* PluginXPM.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PluginXPM.cpp; sourceTree = "<group>"; };
-		9AEEAEBA19C5080A00866C9E /* PSDParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSDParser.h; sourceTree = "<group>"; };
-		9AEEAEBB19C5080A00866C9E /* TIFFLogLuv.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TIFFLogLuv.cpp; sourceTree = "<group>"; };
-		9AEEAEBC19C5080A00866C9E /* tmoColorConvert.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tmoColorConvert.cpp; sourceTree = "<group>"; };
-		9AEEAEBD19C5080A00866C9E /* tmoDrago03.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tmoDrago03.cpp; sourceTree = "<group>"; };
-		9AEEAEBE19C5080A00866C9E /* tmoFattal02.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tmoFattal02.cpp; sourceTree = "<group>"; };
-		9AEEAEBF19C5080A00866C9E /* tmoReinhard05.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tmoReinhard05.cpp; sourceTree = "<group>"; };
-		9AEEAEC019C5080A00866C9E /* ToneMapping.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ToneMapping.cpp; sourceTree = "<group>"; };
-		9AEEAEC119C5080A00866C9E /* WuQuantizer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WuQuantizer.cpp; sourceTree = "<group>"; };
-		9AEEAEC219C5080A00866C9E /* ZLibInterface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ZLibInterface.cpp; sourceTree = "<group>"; };
 		9AEEAEC319C5080A00866C9E /* FreeImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FreeImage.h; sourceTree = "<group>"; };
 		9AEEAEC419C5080A00866C9E /* FreeImageIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FreeImageIO.h; sourceTree = "<group>"; };
-		9AEEAECF19C5080A00866C9E /* Background.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Background.cpp; sourceTree = "<group>"; };
-		9AEEAED019C5080A00866C9E /* BSplineRotate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BSplineRotate.cpp; sourceTree = "<group>"; };
-		9AEEAED119C5080A00866C9E /* Channels.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Channels.cpp; sourceTree = "<group>"; };
-		9AEEAED219C5080A00866C9E /* ClassicRotate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ClassicRotate.cpp; sourceTree = "<group>"; };
-		9AEEAED319C5080A00866C9E /* Colors.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Colors.cpp; sourceTree = "<group>"; };
-		9AEEAED419C5080A00866C9E /* CopyPaste.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CopyPaste.cpp; sourceTree = "<group>"; };
-		9AEEAED519C5080A00866C9E /* Display.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Display.cpp; sourceTree = "<group>"; };
 		9AEEAED619C5080A00866C9E /* Filters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Filters.h; sourceTree = "<group>"; };
-		9AEEAED719C5080A00866C9E /* Flip.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Flip.cpp; sourceTree = "<group>"; };
-		9AEEAED919C5080A00866C9E /* MultigridPoissonSolver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MultigridPoissonSolver.cpp; sourceTree = "<group>"; };
-		9AEEAEDA19C5080A00866C9E /* Rescale.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Rescale.cpp; sourceTree = "<group>"; };
-		9AEEAEDB19C5080A00866C9E /* Resize.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Resize.cpp; sourceTree = "<group>"; };
 		9AEEAEDC19C5080A00866C9E /* Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Resize.h; sourceTree = "<group>"; };
-		9AEEB0D419C5080C00866C9E /* Exif.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Exif.cpp; sourceTree = "<group>"; };
-		9AEEB0D519C5080C00866C9E /* FIRational.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FIRational.cpp; sourceTree = "<group>"; };
-		9AEEB0D619C5080C00866C9E /* FIRational.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FIRational.h; sourceTree = "<group>"; };
-		9AEEB0D719C5080C00866C9E /* FreeImageTag.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FreeImageTag.cpp; sourceTree = "<group>"; };
-		9AEEB0D819C5080C00866C9E /* FreeImageTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FreeImageTag.h; sourceTree = "<group>"; };
-		9AEEB0D919C5080C00866C9E /* IPTC.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IPTC.cpp; sourceTree = "<group>"; };
-		9AEEB0DA19C5080C00866C9E /* TagConversion.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TagConversion.cpp; sourceTree = "<group>"; };
-		9AEEB0DB19C5080C00866C9E /* TagLib.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TagLib.cpp; sourceTree = "<group>"; };
 		9AEEB0F719C5080C00866C9E /* eLut.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eLut.h; sourceTree = "<group>"; };
 		9AEEB0F819C5080C00866C9E /* half.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = half.cpp; sourceTree = "<group>"; };
 		9AEEB0F919C5080C00866C9E /* half.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = half.h; sourceTree = "<group>"; };
@@ -387,9 +166,17 @@
 				9AEEB82019C50E7500866C9E /* aura.xcodeproj */,
 				9AEEBDAA19C595E900866C9E /* axiszlib.xcodeproj */,
 				9AEEAE7419C5080A00866C9E /* Source */,
+				9A4E84571D1FD2CE008A419B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		9A4E84571D1FD2CE008A419B /* Products */ = {
+			isa = PBXGroup;
+			children = (
 				9AEEB48E19C5084900866C9E /* libaxisfreeimage.dylib */,
 				07108BD71B4C97D500A28F80 /* libaxisfreeimage.dylib */,
 			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		9AEEAE7419C5080A00866C9E /* Source */ = {
@@ -398,7 +185,6 @@
 				9AEEAE7619C5080A00866C9E /* DeprecationManager */,
 				9AEEAE7A19C5080A00866C9E /* FreeImage */,
 				9AEEAECE19C5080A00866C9E /* FreeImageToolkit */,
-				9AEEB0D319C5080C00866C9E /* Metadata */,
 				9AEEB0DD19C5080C00866C9E /* OpenEXR */,
 				9AEEAE7519C5080A00866C9E /* CacheFile.h */,
 				9AEEAEC319C5080A00866C9E /* FreeImage.h */,
@@ -424,62 +210,7 @@
 		9AEEAE7A19C5080A00866C9E /* FreeImage */ = {
 			isa = PBXGroup;
 			children = (
-				9AEEAE7B19C5080A00866C9E /* BitmapAccess.cpp */,
-				9AEEAE7C19C5080A00866C9E /* CacheFile.cpp */,
-				9AEEAE7D19C5080A00866C9E /* ColorLookup.cpp */,
-				9AEEAE7E19C5080A00866C9E /* Conversion.cpp */,
-				9AEEAE7F19C5080A00866C9E /* Conversion16_555.cpp */,
-				9AEEAE8019C5080A00866C9E /* Conversion16_565.cpp */,
-				9AEEAE8119C5080A00866C9E /* Conversion24.cpp */,
-				9AEEAE8219C5080A00866C9E /* Conversion32.cpp */,
-				9AEEAE8319C5080A00866C9E /* Conversion4.cpp */,
-				9AEEAE8419C5080A00866C9E /* Conversion8.cpp */,
-				9AEEAE8519C5080A00866C9E /* ConversionFloat.cpp */,
-				9AEEAE8619C5080A00866C9E /* ConversionRGB16.cpp */,
-				9AEEAE8719C5080A00866C9E /* ConversionRGBF.cpp */,
-				9AEEAE8819C5080A00866C9E /* ConversionType.cpp */,
-				9AEEAE8919C5080A00866C9E /* ConversionUINT16.cpp */,
-				9AEEAE8A19C5080A00866C9E /* FreeImage.cpp */,
-				9AEEAE8C19C5080A00866C9E /* FreeImageFramework.cpp */,
-				9AEEAE8D19C5080A00866C9E /* FreeImageFramework.h */,
-				9AEEAE8E19C5080A00866C9E /* FreeImageIO.cpp */,
-				9AEEAE8F19C5080A00866C9E /* GetType.cpp */,
-				9AEEAE9019C5080A00866C9E /* Halftoning.cpp */,
-				9AEEAE9319C5080A00866C9E /* MemoryIO.cpp */,
-				9AEEAE9419C5080A00866C9E /* MNGHelper.cpp */,
-				9AEEAE9519C5080A00866C9E /* MultiPage.cpp */,
-				9AEEAE9619C5080A00866C9E /* NNQuantizer.cpp */,
-				9AEEAE9719C5080A00866C9E /* PixelAccess.cpp */,
-				9AEEAE9819C5080A00866C9E /* Plugin.cpp */,
-				9AEEAE9919C5080A00866C9E /* PluginBMP.cpp */,
-				9AEEAE9A19C5080A00866C9E /* PluginCUT.cpp */,
-				9AEEAE9B19C5080A00866C9E /* PluginDDS.cpp */,
-				9AEEAE9E19C5080A00866C9E /* PluginGIF.cpp */,
-				9AEEAE9F19C5080A00866C9E /* PluginHDR.cpp */,
-				9AEEAEA019C5080A00866C9E /* PluginICO.cpp */,
-				9AEEAEA119C5080A00866C9E /* PluginIFF.cpp */,
-				9AEEAEA319C5080A00866C9E /* PluginJNG.cpp */,
-				9AEEAEA719C5080A00866C9E /* PluginKOALA.cpp */,
-				9AEEAEA919C5080A00866C9E /* PluginPCD.cpp */,
-				9AEEAEAA19C5080A00866C9E /* PluginPCX.cpp */,
-				9AEEAEAB19C5080A00866C9E /* PluginPFM.cpp */,
-				9AEEAEAC19C5080A00866C9E /* PluginPICT.cpp */,
-				9AEEAEAE19C5080A00866C9E /* PluginPNM.cpp */,
-				9AEEAEB019C5080A00866C9E /* PluginRAS.cpp */,
-				9AEEAEB219C5080A00866C9E /* PluginSGI.cpp */,
-				9AEEAEB319C5080A00866C9E /* PluginTARGA.cpp */,
-				9AEEAEB519C5080A00866C9E /* PluginWBMP.cpp */,
-				9AEEAEB719C5080A00866C9E /* PluginXBM.cpp */,
-				9AEEAEB819C5080A00866C9E /* PluginXPM.cpp */,
-				9AEEAEBA19C5080A00866C9E /* PSDParser.h */,
-				9AEEAEBB19C5080A00866C9E /* TIFFLogLuv.cpp */,
-				9AEEAEBC19C5080A00866C9E /* tmoColorConvert.cpp */,
-				9AEEAEBD19C5080A00866C9E /* tmoDrago03.cpp */,
-				9AEEAEBE19C5080A00866C9E /* tmoFattal02.cpp */,
-				9AEEAEBF19C5080A00866C9E /* tmoReinhard05.cpp */,
-				9AEEAEC019C5080A00866C9E /* ToneMapping.cpp */,
-				9AEEAEC119C5080A00866C9E /* WuQuantizer.cpp */,
-				9AEEAEC219C5080A00866C9E /* ZLibInterface.cpp */,
+				9A4E861C1D1FD793008A419B /* _FreeImage.cpp */,
 			);
 			path = FreeImage;
 			sourceTree = "<group>";
@@ -487,36 +218,11 @@
 		9AEEAECE19C5080A00866C9E /* FreeImageToolkit */ = {
 			isa = PBXGroup;
 			children = (
-				9AEEAECF19C5080A00866C9E /* Background.cpp */,
-				9AEEAED019C5080A00866C9E /* BSplineRotate.cpp */,
-				9AEEAED119C5080A00866C9E /* Channels.cpp */,
-				9AEEAED219C5080A00866C9E /* ClassicRotate.cpp */,
-				9AEEAED319C5080A00866C9E /* Colors.cpp */,
-				9AEEAED419C5080A00866C9E /* CopyPaste.cpp */,
-				9AEEAED519C5080A00866C9E /* Display.cpp */,
+				9A4E861E1D1FD7A9008A419B /* _Toolkit.cpp */,
 				9AEEAED619C5080A00866C9E /* Filters.h */,
-				9AEEAED719C5080A00866C9E /* Flip.cpp */,
-				9AEEAED919C5080A00866C9E /* MultigridPoissonSolver.cpp */,
-				9AEEAEDA19C5080A00866C9E /* Rescale.cpp */,
-				9AEEAEDB19C5080A00866C9E /* Resize.cpp */,
 				9AEEAEDC19C5080A00866C9E /* Resize.h */,
 			);
 			path = FreeImageToolkit;
-			sourceTree = "<group>";
-		};
-		9AEEB0D319C5080C00866C9E /* Metadata */ = {
-			isa = PBXGroup;
-			children = (
-				9AEEB0D419C5080C00866C9E /* Exif.cpp */,
-				9AEEB0D519C5080C00866C9E /* FIRational.cpp */,
-				9AEEB0D619C5080C00866C9E /* FIRational.h */,
-				9AEEB0D719C5080C00866C9E /* FreeImageTag.cpp */,
-				9AEEB0D819C5080C00866C9E /* FreeImageTag.h */,
-				9AEEB0D919C5080C00866C9E /* IPTC.cpp */,
-				9AEEB0DA19C5080C00866C9E /* TagConversion.cpp */,
-				9AEEB0DB19C5080C00866C9E /* TagLib.cpp */,
-			);
-			path = Metadata;
 			sourceTree = "<group>";
 		};
 		9AEEB0DD19C5080C00866C9E /* OpenEXR */ = {
@@ -552,7 +258,7 @@
 			isa = PBXGroup;
 			children = (
 				9AEEBDAF19C595E900866C9E /* libaxiszlib.dylib */,
-				07108DCD1B4C99E400A28F80 /* libaxiszlib.dylib */,
+				07108DCD1B4C99E400A28F80 /* libios_axiszlib.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -568,17 +274,13 @@
 				07108BC41B4C97D500A28F80 /* eLut.h in Headers */,
 				07108BC51B4C97D500A28F80 /* toFloat.h in Headers */,
 				07108BC61B4C97D500A28F80 /* Utilities.h in Headers */,
-				07108BC71B4C97D500A28F80 /* FIRational.h in Headers */,
 				07108BC81B4C97D500A28F80 /* half.h in Headers */,
 				07108BC91B4C97D500A28F80 /* Filters.h in Headers */,
 				07108BCA1B4C97D500A28F80 /* ToneMapping.h in Headers */,
 				07108BCB1B4C97D500A28F80 /* FreeImage.h in Headers */,
-				07108BCC1B4C97D500A28F80 /* FreeImageTag.h in Headers */,
 				07108BCD1B4C97D500A28F80 /* FreeImageIO.h in Headers */,
-				07108BCE1B4C97D500A28F80 /* FreeImageFramework.h in Headers */,
 				07108BCF1B4C97D500A28F80 /* Quantizers.h in Headers */,
 				07108BD01B4C97D500A28F80 /* DeprecationMgr.h in Headers */,
-				07108BD11B4C97D500A28F80 /* PSDParser.h in Headers */,
 				07108BD21B4C97D500A28F80 /* Resize.h in Headers */,
 				07108BD31B4C97D500A28F80 /* CacheFile.h in Headers */,
 			);
@@ -592,17 +294,13 @@
 				9AEEB3BD19C5080D00866C9E /* eLut.h in Headers */,
 				9AEEB3C319C5080D00866C9E /* toFloat.h in Headers */,
 				9AEEB48D19C5080D00866C9E /* Utilities.h in Headers */,
-				9AEEB3B519C5080D00866C9E /* FIRational.h in Headers */,
 				9AEEB3BF19C5080D00866C9E /* half.h in Headers */,
 				9AEEB22619C5080D00866C9E /* Filters.h in Headers */,
 				9AEEB48C19C5080D00866C9E /* ToneMapping.h in Headers */,
 				9AEEB21D19C5080D00866C9E /* FreeImage.h in Headers */,
-				9AEEB3B719C5080D00866C9E /* FreeImageTag.h in Headers */,
 				9AEEB21E19C5080D00866C9E /* FreeImageIO.h in Headers */,
-				9AEEB1E719C5080D00866C9E /* FreeImageFramework.h in Headers */,
 				9AEEB48B19C5080D00866C9E /* Quantizers.h in Headers */,
 				9AEEB1D419C5080D00866C9E /* DeprecationMgr.h in Headers */,
-				9AEEB21419C5080D00866C9E /* PSDParser.h in Headers */,
 				9AEEB22C19C5080D00866C9E /* Resize.h in Headers */,
 				9AEEB1D119C5080D00866C9E /* CacheFile.h in Headers */,
 			);
@@ -687,10 +385,10 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		07108DCD1B4C99E400A28F80 /* libaxiszlib.dylib */ = {
+		07108DCD1B4C99E400A28F80 /* libios_axiszlib.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			path = libaxiszlib.dylib;
+			path = libios_axiszlib.dylib;
 			remoteRef = 07108DCC1B4C99E400A28F80 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -730,79 +428,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				07108B751B4C97D500A28F80 /* half.cpp in Sources */,
-				07108B761B4C97D500A28F80 /* PluginXPM.cpp in Sources */,
-				07108B771B4C97D500A28F80 /* TIFFLogLuv.cpp in Sources */,
-				07108B781B4C97D500A28F80 /* Display.cpp in Sources */,
-				07108B791B4C97D500A28F80 /* MNGHelper.cpp in Sources */,
-				07108B7A1B4C97D500A28F80 /* BSplineRotate.cpp in Sources */,
-				07108B7B1B4C97D500A28F80 /* FreeImageTag.cpp in Sources */,
-				07108B7C1B4C97D500A28F80 /* Resize.cpp in Sources */,
-				07108B7D1B4C97D500A28F80 /* tmoFattal02.cpp in Sources */,
-				07108B7E1B4C97D500A28F80 /* PluginPFM.cpp in Sources */,
-				07108B7F1B4C97D500A28F80 /* PixelAccess.cpp in Sources */,
-				07108B801B4C97D500A28F80 /* Conversion16_555.cpp in Sources */,
-				07108B811B4C97D500A28F80 /* tmoColorConvert.cpp in Sources */,
-				07108B821B4C97D500A28F80 /* ConversionUINT16.cpp in Sources */,
-				07108B831B4C97D500A28F80 /* FreeImageIO.cpp in Sources */,
-				07108B841B4C97D500A28F80 /* Background.cpp in Sources */,
-				07108B851B4C97D500A28F80 /* Exif.cpp in Sources */,
-				07108B861B4C97D500A28F80 /* ConversionRGBF.cpp in Sources */,
-				07108B871B4C97D500A28F80 /* Conversion4.cpp in Sources */,
-				07108B881B4C97D500A28F80 /* PluginICO.cpp in Sources */,
-				07108B891B4C97D500A28F80 /* Colors.cpp in Sources */,
-				07108B8A1B4C97D500A28F80 /* ToneMapping.cpp in Sources */,
-				07108B8B1B4C97D500A28F80 /* PluginDDS.cpp in Sources */,
-				07108B8C1B4C97D500A28F80 /* Channels.cpp in Sources */,
-				07108B8D1B4C97D500A28F80 /* ConversionFloat.cpp in Sources */,
-				07108B8E1B4C97D500A28F80 /* NNQuantizer.cpp in Sources */,
-				07108B8F1B4C97D500A28F80 /* PluginSGI.cpp in Sources */,
-				07108B901B4C97D500A28F80 /* tmoDrago03.cpp in Sources */,
-				07108B911B4C97D500A28F80 /* PluginPICT.cpp in Sources */,
-				07108B921B4C97D500A28F80 /* FreeImage.cpp in Sources */,
-				07108B931B4C97D500A28F80 /* PluginBMP.cpp in Sources */,
-				07108B941B4C97D500A28F80 /* ZLibInterface.cpp in Sources */,
-				07108B951B4C97D500A28F80 /* PluginKOALA.cpp in Sources */,
-				07108B961B4C97D500A28F80 /* Conversion8.cpp in Sources */,
-				07108B971B4C97D500A28F80 /* TagLib.cpp in Sources */,
-				07108B981B4C97D500A28F80 /* Conversion16_565.cpp in Sources */,
-				07108B991B4C97D500A28F80 /* MultiPage.cpp in Sources */,
-				07108B9A1B4C97D500A28F80 /* PluginTARGA.cpp in Sources */,
-				07108B9B1B4C97D500A28F80 /* Conversion32.cpp in Sources */,
 				07108B9C1B4C97D500A28F80 /* Deprecated.cpp in Sources */,
-				07108B9D1B4C97D500A28F80 /* Rescale.cpp in Sources */,
-				07108B9E1B4C97D500A28F80 /* PluginJNG.cpp in Sources */,
-				07108B9F1B4C97D500A28F80 /* TagConversion.cpp in Sources */,
-				07108BA01B4C97D500A28F80 /* PluginGIF.cpp in Sources */,
-				07108BA11B4C97D500A28F80 /* PluginWBMP.cpp in Sources */,
-				07108BA21B4C97D500A28F80 /* PluginRAS.cpp in Sources */,
-				07108BA31B4C97D500A28F80 /* CopyPaste.cpp in Sources */,
-				07108BA41B4C97D500A28F80 /* GetType.cpp in Sources */,
-				07108BA51B4C97D500A28F80 /* Conversion.cpp in Sources */,
-				07108BA61B4C97D500A28F80 /* Plugin.cpp in Sources */,
-				07108BA71B4C97D500A28F80 /* PluginPCD.cpp in Sources */,
-				07108BA81B4C97D500A28F80 /* ColorLookup.cpp in Sources */,
-				07108BA91B4C97D500A28F80 /* BitmapAccess.cpp in Sources */,
-				07108BAA1B4C97D500A28F80 /* ConversionType.cpp in Sources */,
-				07108BAB1B4C97D500A28F80 /* ConversionRGB16.cpp in Sources */,
-				07108BAC1B4C97D500A28F80 /* CacheFile.cpp in Sources */,
-				07108BAD1B4C97D500A28F80 /* PluginCUT.cpp in Sources */,
-				07108BAE1B4C97D500A28F80 /* MemoryIO.cpp in Sources */,
-				07108BAF1B4C97D500A28F80 /* ClassicRotate.cpp in Sources */,
-				07108BB01B4C97D500A28F80 /* PluginPCX.cpp in Sources */,
-				07108BB11B4C97D500A28F80 /* Conversion24.cpp in Sources */,
-				07108BB21B4C97D500A28F80 /* PluginXBM.cpp in Sources */,
-				07108BB31B4C97D500A28F80 /* Halftoning.cpp in Sources */,
-				07108BB41B4C97D500A28F80 /* FreeImageFramework.cpp in Sources */,
-				07108BB51B4C97D500A28F80 /* FIRational.cpp in Sources */,
-				07108BB61B4C97D500A28F80 /* PluginPNM.cpp in Sources */,
-				07108BB71B4C97D500A28F80 /* WuQuantizer.cpp in Sources */,
-				07108BB81B4C97D500A28F80 /* tmoReinhard05.cpp in Sources */,
 				07108BB91B4C97D500A28F80 /* DeprecationMgr.cpp in Sources */,
-				07108BBA1B4C97D500A28F80 /* PluginIFF.cpp in Sources */,
-				07108BBB1B4C97D500A28F80 /* IPTC.cpp in Sources */,
-				07108BBC1B4C97D500A28F80 /* Flip.cpp in Sources */,
-				07108BBD1B4C97D500A28F80 /* PluginHDR.cpp in Sources */,
-				07108BBE1B4C97D500A28F80 /* MultigridPoissonSolver.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -811,79 +438,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				9AEEB3BE19C5080D00866C9E /* half.cpp in Sources */,
-				9AEEB21219C5080D00866C9E /* PluginXPM.cpp in Sources */,
-				9AEEB21519C5080D00866C9E /* TIFFLogLuv.cpp in Sources */,
-				9AEEB22519C5080D00866C9E /* Display.cpp in Sources */,
-				9AEEB1EE19C5080D00866C9E /* MNGHelper.cpp in Sources */,
-				9AEEB22019C5080D00866C9E /* BSplineRotate.cpp in Sources */,
-				9AEEB3B619C5080D00866C9E /* FreeImageTag.cpp in Sources */,
-				9AEEB22B19C5080D00866C9E /* Resize.cpp in Sources */,
-				9AEEB21819C5080D00866C9E /* tmoFattal02.cpp in Sources */,
-				9AEEB20519C5080D00866C9E /* PluginPFM.cpp in Sources */,
-				9AEEB1F119C5080D00866C9E /* PixelAccess.cpp in Sources */,
-				9AEEB1D919C5080D00866C9E /* Conversion16_555.cpp in Sources */,
-				9AEEB21619C5080D00866C9E /* tmoColorConvert.cpp in Sources */,
-				9AEEB1E319C5080D00866C9E /* ConversionUINT16.cpp in Sources */,
-				9AEEB1E819C5080D00866C9E /* FreeImageIO.cpp in Sources */,
-				9AEEB21F19C5080D00866C9E /* Background.cpp in Sources */,
-				9AEEB3B319C5080D00866C9E /* Exif.cpp in Sources */,
-				9AEEB1E119C5080D00866C9E /* ConversionRGBF.cpp in Sources */,
-				9AEEB1DD19C5080D00866C9E /* Conversion4.cpp in Sources */,
-				9AEEB1FA19C5080D00866C9E /* PluginICO.cpp in Sources */,
-				9AEEB22319C5080D00866C9E /* Colors.cpp in Sources */,
-				9AEEB21A19C5080D00866C9E /* ToneMapping.cpp in Sources */,
-				9AEEB1F519C5080D00866C9E /* PluginDDS.cpp in Sources */,
-				9AEEB22119C5080D00866C9E /* Channels.cpp in Sources */,
-				9AEEB1DF19C5080D00866C9E /* ConversionFloat.cpp in Sources */,
-				9AEEB1F019C5080D00866C9E /* NNQuantizer.cpp in Sources */,
-				9AEEB20C19C5080D00866C9E /* PluginSGI.cpp in Sources */,
-				9AEEB21719C5080D00866C9E /* tmoDrago03.cpp in Sources */,
-				9AEEB20619C5080D00866C9E /* PluginPICT.cpp in Sources */,
-				9AEEB1E419C5080D00866C9E /* FreeImage.cpp in Sources */,
-				9AEEB1F319C5080D00866C9E /* PluginBMP.cpp in Sources */,
-				9AEEB21C19C5080D00866C9E /* ZLibInterface.cpp in Sources */,
-				9AEEB20119C5080D00866C9E /* PluginKOALA.cpp in Sources */,
-				9AEEB1DE19C5080D00866C9E /* Conversion8.cpp in Sources */,
-				9AEEB3BA19C5080D00866C9E /* TagLib.cpp in Sources */,
-				9AEEB1DA19C5080D00866C9E /* Conversion16_565.cpp in Sources */,
-				9AEEB1EF19C5080D00866C9E /* MultiPage.cpp in Sources */,
-				9AEEB20D19C5080D00866C9E /* PluginTARGA.cpp in Sources */,
-				9AEEB1DC19C5080D00866C9E /* Conversion32.cpp in Sources */,
+				9A4E861D1D1FD793008A419B /* _FreeImage.cpp in Sources */,
 				9AEEB1D219C5080D00866C9E /* Deprecated.cpp in Sources */,
-				9AEEB22A19C5080D00866C9E /* Rescale.cpp in Sources */,
-				9AEEB1FD19C5080D00866C9E /* PluginJNG.cpp in Sources */,
-				9AEEB3B919C5080D00866C9E /* TagConversion.cpp in Sources */,
-				9AEEB1F819C5080D00866C9E /* PluginGIF.cpp in Sources */,
-				9AEEB20F19C5080D00866C9E /* PluginWBMP.cpp in Sources */,
-				9AEEB20A19C5080D00866C9E /* PluginRAS.cpp in Sources */,
-				9AEEB22419C5080D00866C9E /* CopyPaste.cpp in Sources */,
-				9AEEB1E919C5080D00866C9E /* GetType.cpp in Sources */,
-				9AEEB1D819C5080D00866C9E /* Conversion.cpp in Sources */,
-				9AEEB1F219C5080D00866C9E /* Plugin.cpp in Sources */,
-				9AEEB20319C5080D00866C9E /* PluginPCD.cpp in Sources */,
-				9AEEB1D719C5080D00866C9E /* ColorLookup.cpp in Sources */,
-				9AEEB1D519C5080D00866C9E /* BitmapAccess.cpp in Sources */,
-				9AEEB1E219C5080D00866C9E /* ConversionType.cpp in Sources */,
-				9AEEB1E019C5080D00866C9E /* ConversionRGB16.cpp in Sources */,
-				9AEEB1D619C5080D00866C9E /* CacheFile.cpp in Sources */,
-				9AEEB1F419C5080D00866C9E /* PluginCUT.cpp in Sources */,
-				9AEEB1ED19C5080D00866C9E /* MemoryIO.cpp in Sources */,
-				9AEEB22219C5080D00866C9E /* ClassicRotate.cpp in Sources */,
-				9AEEB20419C5080D00866C9E /* PluginPCX.cpp in Sources */,
-				9AEEB1DB19C5080D00866C9E /* Conversion24.cpp in Sources */,
-				9AEEB21119C5080D00866C9E /* PluginXBM.cpp in Sources */,
-				9AEEB1EA19C5080D00866C9E /* Halftoning.cpp in Sources */,
-				9AEEB1E619C5080D00866C9E /* FreeImageFramework.cpp in Sources */,
-				9AEEB3B419C5080D00866C9E /* FIRational.cpp in Sources */,
-				9AEEB20819C5080D00866C9E /* PluginPNM.cpp in Sources */,
-				9AEEB21B19C5080D00866C9E /* WuQuantizer.cpp in Sources */,
-				9AEEB21919C5080D00866C9E /* tmoReinhard05.cpp in Sources */,
 				9AEEB1D319C5080D00866C9E /* DeprecationMgr.cpp in Sources */,
-				9AEEB1FB19C5080D00866C9E /* PluginIFF.cpp in Sources */,
-				9AEEB3B819C5080D00866C9E /* IPTC.cpp in Sources */,
-				9AEEB22719C5080D00866C9E /* Flip.cpp in Sources */,
-				9AEEB1F919C5080D00866C9E /* PluginHDR.cpp in Sources */,
-				9AEEB22919C5080D00866C9E /* MultigridPoissonSolver.cpp in Sources */,
+				9A4E861F1D1FD7A9008A419B /* _Toolkit.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -964,10 +522,6 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VALUE = NO;
 				GCC_WARN_UNUSED_VARIABLE = NO;
-				HEADER_SEARCH_PATHS = (
-					"$(WorkspaceDir)/../../../app/thirdparty/include",
-					"$(WorkspaceDir)/../../../nodeapp/thirdparty/include",
-				);
 				INSTALL_PATH = "@executable_path";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path /Library/Frameworks/ca2";
 				LIBRARY_SEARCH_PATHS = (
@@ -979,7 +533,7 @@
 				PRODUCT_NAME = axisfreeimage;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				USER_HEADER_SEARCH_PATHS = ". .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../../thirdparty/include $(WorkspaceDir)/../../../app/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/appseed/aura Source Source/LibRawLite";
+				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../../thirdparty/include $(WorkspaceDir)/../../../app/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/appseed/aura Source Source/LibRawLite";
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};
 			name = Debug;
@@ -1012,10 +566,6 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VALUE = NO;
 				GCC_WARN_UNUSED_VARIABLE = NO;
-				HEADER_SEARCH_PATHS = (
-					"$(WorkspaceDir)/../../../app/thirdparty/include",
-					"$(WorkspaceDir)/../../../nodeapp/thirdparty/include",
-				);
 				INSTALL_PATH = "@executable_path";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path /Library/Frameworks/ca2";
 				LIBRARY_SEARCH_PATHS = (
@@ -1026,7 +576,7 @@
 				PRODUCT_NAME = axisfreeimage;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				USER_HEADER_SEARCH_PATHS = ". .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../../thirdparty/include $(WorkspaceDir)/../../../app/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/appseed/aura Source Source/LibRawLite";
+				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../../thirdparty/include $(WorkspaceDir)/../../../app/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/appseed/aura Source Source/LibRawLite";
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};
 			name = Release;

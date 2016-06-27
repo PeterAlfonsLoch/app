@@ -531,9 +531,17 @@
 			children = (
 				9A16454D19C4A60000966C5E /* lib */,
 				9A16465D19C4A60100966C5E /* libcharset */,
+				9A4E84761D1FD3E2008A419B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		9A4E84761D1FD3E2008A419B /* Products */ = {
+			isa = PBXGroup;
+			children = (
 				9A1647A219C4A73900966C5E /* libatomiconv.dylib */,
 				077A01571B4D5479001C85FF /* libatomiconv.dylib */,
 			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

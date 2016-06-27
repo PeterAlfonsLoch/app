@@ -228,8 +228,7 @@
 			children = (
 				9A1EDB4719C83FE800F5CCE8 /* aura.xcodeproj */,
 				9A1EDAE819C83CD000F5CCE8 /* pcre */,
-				9AA539B119B763C400B9F861 /* libaurapcre.dylib */,
-				07D6A8471B4CBB45004FEBC2 /* libios_aurapcre.dylib */,
+				9A4E846A1D1FD36E008A419B /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -248,6 +247,15 @@
 				9A1EDB4E19C83FE800F5CCE8 /* libaura.dylib */,
 				07473E0C1B503FE4004688C5 /* libaura.dylib */,
 				9A1EDB5219C83FE800F5CCE8 /* aura_iosTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9A4E846A1D1FD36E008A419B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9AA539B119B763C400B9F861 /* libaurapcre.dylib */,
+				07D6A8471B4CBB45004FEBC2 /* libios_aurapcre.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";

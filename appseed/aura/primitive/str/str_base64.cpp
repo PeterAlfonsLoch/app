@@ -69,7 +69,9 @@
 namespace str
 {
 
-   base64::base64()
+   
+   base64::base64(::aura::application * papp) :
+      ::object(papp)
    {
       int32_t i;
 
@@ -256,7 +258,7 @@ namespace str
 
       ::file::byte_istream istream(&buf);
 
-      ::file::plain_text_ostream_string_buffer ostream;
+      ::file::plain_text_ostream_string_buffer ostream(get_app());
 
       encode(ostream, istream);
 

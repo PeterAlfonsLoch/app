@@ -44,12 +44,28 @@
 		9A1B2F7D16A2AF5C00875A94 = {
 			isa = PBXGroup;
 			children = (
+				9A4E831B1D1FCA11008A419B /* sqlite */,
+				9A4E84691D1FD364008A419B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		9A4E831B1D1FCA11008A419B /* sqlite */ = {
+			isa = PBXGroup;
+			children = (
 				9ABDBFDE19C62BCB002A17A3 /* version.c */,
 				9A44E40019C61B9800143B94 /* sqlite3.h */,
 				9AEEAE6E19C5068400866C9E /* sqlite3.c */,
+			);
+			name = sqlite;
+			sourceTree = "<group>";
+		};
+		9A4E84691D1FD364008A419B /* Products */ = {
+			isa = PBXGroup;
+			children = (
 				9AEEAD9819C4D7A900866C9E /* libaurasqlite.dylib */,
 				07108ADF1B4C95F600A28F80 /* libaurasqlite.dylib */,
 			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -224,7 +240,7 @@
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
-				USER_HEADER_SEARCH_PATHS = ". .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../.. $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../../../app/include";
+				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../.. $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../../../app/include";
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};
 			name = Debug;
@@ -271,7 +287,7 @@
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
-				USER_HEADER_SEARCH_PATHS = ". .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../.. $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../../../app/include";
+				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../.. $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../../../app/include";
 				VALIDATE_PRODUCT = YES;
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};

@@ -18,7 +18,7 @@ namespace str
    public:
 
 
-      base64();
+      base64(::aura::application * papp);
       virtual ~base64();
 
 

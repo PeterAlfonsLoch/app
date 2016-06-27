@@ -269,12 +269,11 @@
 		077832C3199FE94100206CA1 /* hw_ubsec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hw_ubsec.h; sourceTree = "<group>"; };
 		077832C4199FE94100206CA1 /* hwcryptohook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hwcryptohook.h; sourceTree = "<group>"; };
 		077832C5199FE94100206CA1 /* sureware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sureware.h; sourceTree = "<group>"; };
-		0778A245199FEF0700206CA1 /* axiscrypto_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = axiscrypto_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0778A26E199FFC1600206CA1 /* e_os2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = e_os2.h; sourceTree = "<group>"; };
-		0778A2EE199FFC5800206CA1 /* e_os.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = e_os.h; sourceTree = "<group>"; };
-		0778A2EF199FFC5800206CA1 /* e_os2_ca2specific.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = e_os2_ca2specific.h; sourceTree = "<group>"; };
-		0778A2F0199FFC5800206CA1 /* e_os2_original.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = e_os2_original.h; sourceTree = "<group>"; };
-		0778A2F1199FFC5800206CA1 /* e_os2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = e_os2.h; sourceTree = "<group>"; };
+		0778A2EE199FFC5800206CA1 /* e_os.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = e_os.h; path = ../e_os.h; sourceTree = "<group>"; };
+		0778A2EF199FFC5800206CA1 /* e_os2_ca2specific.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = e_os2_ca2specific.h; path = ../e_os2_ca2specific.h; sourceTree = "<group>"; };
+		0778A2F0199FFC5800206CA1 /* e_os2_original.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = e_os2_original.h; path = ../e_os2_original.h; sourceTree = "<group>"; };
+		0778A2F1199FFC5800206CA1 /* e_os2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = e_os2.h; path = ../e_os2.h; sourceTree = "<group>"; };
 		077CEF181B23C505009A57EF /* _crypto.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = _crypto.c; sourceTree = "<group>"; };
 		077CEF291B23DC97009A57EF /* _x509.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = _x509.c; sourceTree = "<group>"; };
 		077CEF2B1B23DCB7009A57EF /* _x509v3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = _x509v3.c; sourceTree = "<group>"; };
@@ -314,6 +313,7 @@
 		9A9D336819D4C44D00DC2067 /* sha512-586.s */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = "sha512-586.s"; sourceTree = "<group>"; };
 		9A9D336A19D4C44D00DC2067 /* wp-mmx.s */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = "wp-mmx.s"; sourceTree = "<group>"; };
 		9A9D336B19D4C44D00DC2067 /* x86cpuid.s */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = x86cpuid.s; sourceTree = "<group>"; };
+		9AF8B7231D1FDDB50087E7A2 /* axiscrypto_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = axiscrypto_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -356,8 +356,6 @@
 		07782A6D199FE92F00206CA1 /* crypto */ = {
 			isa = PBXGroup;
 			children = (
-				07558DD51B23E34B008C63AF /* mem_aura.c */,
-				077CEF181B23C505009A57EF /* _crypto.c */,
 				07782A6E199FE92F00206CA1 /* aes */,
 				07782A91199FE92F00206CA1 /* asn1 */,
 				07782AE6199FE92F00206CA1 /* bf */,
@@ -414,6 +412,12 @@
 				07782EA0199FE93100206CA1 /* whrlpool */,
 				07782EAA199FE93100206CA1 /* x509 */,
 				07782EC6199FE93100206CA1 /* x509v3 */,
+				0778A2EE199FFC5800206CA1 /* e_os.h */,
+				0778A2EF199FFC5800206CA1 /* e_os2_ca2specific.h */,
+				0778A2F0199FFC5800206CA1 /* e_os2_original.h */,
+				0778A2F1199FFC5800206CA1 /* e_os2.h */,
+				07558DD51B23E34B008C63AF /* mem_aura.c */,
+				077CEF181B23C505009A57EF /* _crypto.c */,
 			);
 			path = crypto;
 			sourceTree = "<group>";
@@ -938,14 +942,18 @@
 				0778A257199FFC1600206CA1 /* openssl */,
 				07782A6D199FE92F00206CA1 /* crypto */,
 				07783272199FE94100206CA1 /* engines */,
-				0778A2EE199FFC5800206CA1 /* e_os.h */,
-				0778A2EF199FFC5800206CA1 /* e_os2_ca2specific.h */,
-				0778A2F0199FFC5800206CA1 /* e_os2_original.h */,
-				0778A2F1199FFC5800206CA1 /* e_os2.h */,
-				0778A245199FEF0700206CA1 /* axiscrypto_iosTests.xctest */,
+				9A4E845A1D1FD2DE008A419B /* Products */,
+				9AF8B7231D1FDDB50087E7A2 /* axiscrypto_iosTests.xctest */,
+			);
+			sourceTree = "<group>";
+		};
+		9A4E845A1D1FD2DE008A419B /* Products */ = {
+			isa = PBXGroup;
+			children = (
 				07B2729219A019AB00E822E1 /* libaxiscrypto.dylib */,
 				07B2729A19A01A4600E822E1 /* libaxiscrypto.dylib */,
 			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		9A9D32EC19D4C44D00DC2067 /* asm */ = {
@@ -1208,7 +1216,7 @@
 			);
 			name = axiscrypto_iosTests;
 			productName = basefreeimage_iosTests;
-			productReference = 0778A245199FEF0700206CA1 /* axiscrypto_iosTests.xctest */;
+			productReference = 9AF8B7231D1FDDB50087E7A2 /* axiscrypto_iosTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */

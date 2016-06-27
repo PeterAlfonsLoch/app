@@ -73,17 +73,19 @@ uint32_t __run_system_command_line(const char * pszCommandLine)
    
    ::aura::system * psystem = create_aura_system();
    
-   ::macos::main_init_data * pinitmaindata   = new ::macos::main_init_data;
+   ::aura::main_init_data * pinitmaindata   = new ::aura::main_init_data;
    
-   pinitmaindata->m_hInstance                = NULL;
+   //pinitmaindata->m_hInstance                = NULL;
    
-   pinitmaindata->m_hPrevInstance            = NULL;
+   //pinitmaindata->m_hPrevInstance            = NULL;
    
-   pinitmaindata->m_strCommandLine           = pszCommandLine;
+   //pinitmaindata->m_strCommandLine           = pszCommandLine;
    
-   pinitmaindata->m_vssCommandLine           = pinitmaindata->m_strCommandLine;
+   //pinitmaindata->m_vssCommandLine           = pinitmaindata->m_strCommandLine;
    
-   pinitmaindata->m_nCmdShow                 = SW_SHOW;
+   pinitmaindata->m_vssCommandLine           = pszCommandLine;
+   
+   //pinitmaindata->m_nCmdShow                 = SW_SHOW;
    
    
    psystem->init_main_data(pinitmaindata);

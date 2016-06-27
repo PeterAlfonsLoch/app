@@ -92,7 +92,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		076D0A1E1A3FDB02007432B6 /* libatomiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libatomiconv.dylib; path = "../../../../Users/carlos/Library/Developer/Xcode/DerivedData/all-mac-exvrklrokleuokawrbpzmvyzamwr/Build/Products/Debug/libatomiconv.dylib"; sourceTree = "<group>"; };
 		076D0A201A3FDB07007432B6 /* atomiconv.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = atomiconv.xcodeproj; path = ../../atom/iconv/atomiconv.xcodeproj; sourceTree = "<group>"; };
 		077A00AB1B4D4F9E001C85FF /* libaxisidn.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libaxisidn.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A19A13619C6E1DC0018DF7D /* gunibreak.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gunibreak.h; sourceTree = "<group>"; };
@@ -186,20 +185,27 @@
 			isa = PBXGroup;
 			children = (
 				076D0A201A3FDB07007432B6 /* atomiconv.xcodeproj */,
-				076D0A1E1A3FDB02007432B6 /* libatomiconv.dylib */,
-				9A19A16B19C6E80F0018DF7D /* config.h */,
+				9A4E844E1D1FD2A0008A419B /* idn */,
 				9A19A13219C6E1DC0018DF7D /* lib */,
-				9AEB768616F7BAA50085103B /* Products */,
-				9AA5E6D616F7C61B005C45CE /* libaxisidn.dylib */,
-				077A00AB1B4D4F9E001C85FF /* libaxisidn.dylib */,
+				9A4E844D1D1FD28E008A419B /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		9AEB768616F7BAA50085103B /* Products */ = {
+		9A4E844D1D1FD28E008A419B /* Products */ = {
 			isa = PBXGroup;
 			children = (
+				9AA5E6D616F7C61B005C45CE /* libaxisidn.dylib */,
+				077A00AB1B4D4F9E001C85FF /* libaxisidn.dylib */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		9A4E844E1D1FD2A0008A419B /* idn */ = {
+			isa = PBXGroup;
+			children = (
+				9A19A16B19C6E80F0018DF7D /* config.h */,
+			);
+			name = idn;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
