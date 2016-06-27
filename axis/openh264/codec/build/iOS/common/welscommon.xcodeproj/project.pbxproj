@@ -67,7 +67,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		07B09A261B8497A9002AC4F0 /* libwelscommon.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libwelscommon.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		07B09A261B8497A9002AC4F0 /* libios_welscommon.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libios_welscommon.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C3406B218D96EA600DFA14A /* arm_arch_common_macro.S */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = arm_arch_common_macro.S; sourceTree = "<group>"; };
 		4C3406B318D96EA600DFA14A /* deblocking_neon.S */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = deblocking_neon.S; sourceTree = "<group>"; };
 		4C3406B418D96EA600DFA14A /* expand_picture_neon.S */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = expand_picture_neon.S; sourceTree = "<group>"; };
@@ -202,7 +202,7 @@
 			isa = PBXGroup;
 			children = (
 				4CE443D518B722CD0017DF25 /* libwelscommon.dylib */,
-				07B09A261B8497A9002AC4F0 /* libwelscommon.dylib */,
+				07B09A261B8497A9002AC4F0 /* libios_welscommon.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -259,7 +259,7 @@
 			);
 			name = ios_welscommon;
 			productName = common;
-			productReference = 07B09A261B8497A9002AC4F0 /* libwelscommon.dylib */;
+			productReference = 07B09A261B8497A9002AC4F0 /* libios_welscommon.dylib */;
 			productType = "com.apple.product-type.library.static";
 		};
 		4CE443D418B722CD0017DF25 /* welscommon */ = {
@@ -364,7 +364,6 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "compiler-default";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DSTROOT = /tmp/common.dst;
 				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_OPTIMIZATION_LEVEL = 3;
 				GCC_PREPROCESSOR_DEFINITIONS = "";
@@ -388,7 +387,6 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
 			};
 			name = Debug;
 		};
@@ -398,7 +396,6 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "compiler-default";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DSTROOT = /tmp/common.dst;
 				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				"GCC_PREPROCESSOR_DEFINITIONS[sdk=iphoneos*][arch=arm64]" = (
 					APPLE_IOS,
@@ -420,7 +417,6 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
 			};
 			name = Release;
 		};
@@ -463,7 +459,6 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/core $(WorkspaceDir)/../../../app/appseed/base $(WorkspaceDir)/../../../app/appseed/axis $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../.. $(WorkspaceDir)/../../base/include $(WorkspaceDir)/../../../app/base/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/base";
 				WorkspaceDir = "$(SRCROOT)/../../../../../../../nodeapp/seed/metaseed";
 			};
@@ -500,7 +495,6 @@
 				MACH_O_TYPE = mh_dylib;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/core $(WorkspaceDir)/../../../app/appseed/base $(WorkspaceDir)/../../../app/appseed/axis $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../.. $(WorkspaceDir)/../../base/include $(WorkspaceDir)/../../../app/base/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/base";
 				VALIDATE_PRODUCT = YES;
 				WorkspaceDir = "$(SRCROOT)/../../../../../../../nodeapp/seed/metaseed";
@@ -514,7 +508,6 @@
 				CLANG_CXX_LIBRARY = "compiler-default";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				DSTROOT = /tmp/common.dst;
 				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_OPTIMIZATION_LEVEL = 3;
 				GCC_PREPROCESSOR_DEFINITIONS = "";
@@ -536,9 +529,7 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../../../api/svc",
 				);
-				INSTALL_PATH = "@executable_path";
 				OTHER_LDFLAGS = "-ObjC";
-				SKIP_INSTALL = YES;
 			};
 			name = Debug;
 		};
@@ -549,7 +540,6 @@
 				CLANG_CXX_LIBRARY = "compiler-default";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				DSTROOT = /tmp/common.dst;
 				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				"GCC_PREPROCESSOR_DEFINITIONS[sdk=iphoneos*][arch=arm64]" = (
 					APPLE_IOS,
@@ -569,9 +559,7 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../../../api/svc",
 				);
-				INSTALL_PATH = "@executable_path";
 				OTHER_LDFLAGS = "-ObjC";
-				SKIP_INSTALL = YES;
 			};
 			name = Release;
 		};

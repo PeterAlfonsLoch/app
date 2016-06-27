@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		07473E0D1B503FE4004688C5 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07473E0C1B503FE4004688C5 /* libaura.dylib */; };
+		07473E0D1B503FE4004688C5 /* libios_aura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07473E0C1B503FE4004688C5 /* libios_aura.dylib */; };
 		07502CB01B2529AF008D207C /* _cpp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07502CAF1B2529AF008D207C /* _cpp.cpp */; };
 		07502CB21B2529BA008D207C /* charDistribution.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07502CB11B2529BA008D207C /* charDistribution.cpp */; };
 		07D6A82B1B4CBB45004FEBC2 /* _cpp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07502CAF1B2529AF008D207C /* _cpp.cpp */; };
@@ -98,7 +98,7 @@
 /* Begin PBXFileReference section */
 		07502CAF1B2529AF008D207C /* _cpp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _cpp.cpp; sourceTree = "<group>"; };
 		07502CB11B2529BA008D207C /* charDistribution.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = charDistribution.cpp; sourceTree = "<group>"; };
-		07D6A8471B4CBB45004FEBC2 /* libauracharguess.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libauracharguess.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		07D6A8471B4CBB45004FEBC2 /* libios_auracharguess.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_auracharguess.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A1EDAEB19C83CD000F5CCE8 /* big5Prober.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = big5Prober.h; sourceTree = "<group>"; };
 		9A1EDAED19C83CD000F5CCE8 /* charDistribution.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = charDistribution.h; sourceTree = "<group>"; };
 		9A1EDAEF19C83CD000F5CCE8 /* charsetProber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = charsetProber.h; sourceTree = "<group>"; };
@@ -130,7 +130,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07473E0D1B503FE4004688C5 /* libaura.dylib in Frameworks */,
+				07473E0D1B503FE4004688C5 /* libios_aura.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -189,7 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				9A1EDB4E19C83FE800F5CCE8 /* libaura.dylib */,
-				07473E0C1B503FE4004688C5 /* libaura.dylib */,
+				07473E0C1B503FE4004688C5 /* libios_aura.dylib */,
 				9A1EDB5219C83FE800F5CCE8 /* aura_iosTests.xctest */,
 			);
 			name = Products;
@@ -199,7 +199,7 @@
 			isa = PBXGroup;
 			children = (
 				9AA539B119B763C400B9F861 /* libauracharguess.dylib */,
-				07D6A8471B4CBB45004FEBC2 /* libauracharguess.dylib */,
+				07D6A8471B4CBB45004FEBC2 /* libios_auracharguess.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -280,7 +280,7 @@
 			);
 			name = ios_auracharguess;
 			productName = FreeImage;
-			productReference = 07D6A8471B4CBB45004FEBC2 /* libauracharguess.dylib */;
+			productReference = 07D6A8471B4CBB45004FEBC2 /* libios_auracharguess.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 		9AA5E4C216F7C61B005C45CE /* auracharguess */ = {
@@ -335,10 +335,10 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		07473E0C1B503FE4004688C5 /* libaura.dylib */ = {
+		07473E0C1B503FE4004688C5 /* libios_aura.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			path = libaura.dylib;
+			path = libios_aura.dylib;
 			remoteRef = 07473E0B1B503FE4004688C5 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -397,18 +397,14 @@
 		07D6A8451B4CBB45004FEBC2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				INSTALL_PATH = "@executable_path/../Frameworks";
 				SDKROOT = iphoneos;
-				SKIP_INSTALL = NO;
 			};
 			name = Debug;
 		};
 		07D6A8461B4CBB45004FEBC2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				INSTALL_PATH = "@executable_path/../Frameworks";
 				SDKROOT = iphoneos;
-				SKIP_INSTALL = NO;
 			};
 			name = Release;
 		};
@@ -453,7 +449,6 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../.. $(WorkspaceDir)/../../appseed cpp $(WorkspaceDir)/../../../app/include $(WorkspaceDir)/../../../app/appseed/aura";
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};
@@ -492,7 +487,6 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../.. $(WorkspaceDir)/../../appseed cpp $(WorkspaceDir)/../../../app/include $(WorkspaceDir)/../../../app/appseed/aura";
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};
@@ -503,7 +497,6 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
-				SKIP_INSTALL = YES;
 			};
 			name = Debug;
 		};
@@ -512,7 +505,6 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
-				SKIP_INSTALL = YES;
 			};
 			name = Release;
 		};

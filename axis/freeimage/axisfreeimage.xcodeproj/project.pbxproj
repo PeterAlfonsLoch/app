@@ -21,7 +21,7 @@
 		07108BD01B4C97D500A28F80 /* DeprecationMgr.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAE7919C5080A00866C9E /* DeprecationMgr.h */; };
 		07108BD21B4C97D500A28F80 /* Resize.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAEDC19C5080A00866C9E /* Resize.h */; };
 		07108BD31B4C97D500A28F80 /* CacheFile.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAE7519C5080A00866C9E /* CacheFile.h */; };
-		07703C381B6FDFBD009026EA /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 071B2AFD1B6E631B0088E158 /* libaura.dylib */; };
+		07703C381B6FDFBD009026EA /* libios_aura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 071B2AFD1B6E631B0088E158 /* libios_aura.dylib */; };
 		9A4E861D1D1FD793008A419B /* _FreeImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4E861C1D1FD793008A419B /* _FreeImage.cpp */; };
 		9A4E861F1D1FD7A9008A419B /* _Toolkit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4E861E1D1FD7A9008A419B /* _Toolkit.cpp */; };
 		9AC62DED1D20B99600A4AC0A /* FreeImageFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC62DEC1D20B99600A4AC0A /* FreeImageFramework.h */; };
@@ -113,7 +113,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		07108BD71B4C97D500A28F80 /* libaxisfreeimage.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libaxisfreeimage.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		07108BD71B4C97D500A28F80 /* libios_axisfreeimage.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_axisfreeimage.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A4E861C1D1FD793008A419B /* _FreeImage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _FreeImage.cpp; sourceTree = "<group>"; };
 		9A4E861E1D1FD7A9008A419B /* _Toolkit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _Toolkit.cpp; sourceTree = "<group>"; };
 		9AC62DEC1D20B99600A4AC0A /* FreeImageFramework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FreeImageFramework.h; sourceTree = "<group>"; };
@@ -142,7 +142,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9AC62DEF1D20BA0500A4AC0A /* libios_axiszlib.dylib in Frameworks */,
-				07703C381B6FDFBD009026EA /* libaura.dylib in Frameworks */,
+				07703C381B6FDFBD009026EA /* libios_aura.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -172,7 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				9AEEB48E19C5084900866C9E /* libaxisfreeimage.dylib */,
-				07108BD71B4C97D500A28F80 /* libaxisfreeimage.dylib */,
+				07108BD71B4C97D500A28F80 /* libios_axisfreeimage.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -245,7 +245,7 @@
 			isa = PBXGroup;
 			children = (
 				9AEEB82719C50E7500866C9E /* libaura.dylib */,
-				071B2AFD1B6E631B0088E158 /* libaura.dylib */,
+				071B2AFD1B6E631B0088E158 /* libios_aura.dylib */,
 				9AEEB82B19C50E7500866C9E /* aura_iosTests.xctest */,
 			);
 			name = Products;
@@ -323,7 +323,7 @@
 			);
 			name = ios_axisfreeimage;
 			productName = FreeImage;
-			productReference = 07108BD71B4C97D500A28F80 /* libaxisfreeimage.dylib */;
+			productReference = 07108BD71B4C97D500A28F80 /* libios_axisfreeimage.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 		9AA5E4C216F7C61B005C45CE /* axisfreeimage */ = {
@@ -390,10 +390,10 @@
 			remoteRef = 07108DCC1B4C99E400A28F80 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		071B2AFD1B6E631B0088E158 /* libaura.dylib */ = {
+		071B2AFD1B6E631B0088E158 /* libios_aura.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			path = libaura.dylib;
+			path = libios_aura.dylib;
 			remoteRef = 071B2AFC1B6E631B0088E158 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -470,18 +470,14 @@
 		07108BD51B4C97D500A28F80 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				INSTALL_PATH = "@executable_path/../Frameworks";
 				SDKROOT = iphoneos;
-				SKIP_INSTALL = NO;
 			};
 			name = Debug;
 		};
 		07108BD61B4C97D500A28F80 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				INSTALL_PATH = "@executable_path/../Frameworks";
 				SDKROOT = iphoneos;
-				SKIP_INSTALL = NO;
 			};
 			name = Release;
 		};
@@ -528,7 +524,6 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../../thirdparty/include $(WorkspaceDir)/../../../app/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/appseed/aura Source Source/LibRawLite Source/FreeImage";
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};
@@ -571,7 +566,6 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../../thirdparty/include $(WorkspaceDir)/../../../app/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/appseed/aura Source Source/LibRawLite Source/FreeImage";
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};

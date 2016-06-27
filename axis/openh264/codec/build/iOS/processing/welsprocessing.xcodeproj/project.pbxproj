@@ -111,7 +111,7 @@
 
 /* Begin PBXFileReference section */
 		07574DC11C45B50F0020E1F1 /* welscommon.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = welscommon.xcodeproj; path = ../common/welscommon.xcodeproj; sourceTree = "<group>"; };
-		07B09A681B849878002AC4F0 /* libwelsprocessing.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libwelsprocessing.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		07B09A681B849878002AC4F0 /* libios_welsprocessing.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libios_welsprocessing.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CC6094E197E009D00BE8B8B /* down_sample_aarch64_neon.S */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; name = down_sample_aarch64_neon.S; path = arm64/down_sample_aarch64_neon.S; sourceTree = "<group>"; };
 		4CC609591980F34F00BE8B8B /* vaa_calc_aarch64_neon.S */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; name = vaa_calc_aarch64_neon.S; path = arm64/vaa_calc_aarch64_neon.S; sourceTree = "<group>"; };
 		4CD0FE35199082AD00375C9A /* pixel_sad_aarch64_neon.S */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; name = pixel_sad_aarch64_neon.S; path = arm64/pixel_sad_aarch64_neon.S; sourceTree = "<group>"; };
@@ -220,7 +220,7 @@
 			isa = PBXGroup;
 			children = (
 				5499477C196A3F3900BA3D87 /* libwelsprocessing.dylib */,
-				07B09A681B849878002AC4F0 /* libwelsprocessing.dylib */,
+				07B09A681B849878002AC4F0 /* libios_welsprocessing.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -399,7 +399,7 @@
 			);
 			name = ios_welsprocessing;
 			productName = processing;
-			productReference = 07B09A681B849878002AC4F0 /* libwelsprocessing.dylib */;
+			productReference = 07B09A681B849878002AC4F0 /* libios_welsprocessing.dylib */;
 			productType = "com.apple.product-type.library.static";
 		};
 		5499477B196A3F3900BA3D87 /* welsprocessing */ = {
@@ -464,7 +464,8 @@
 		07574DC91C45B50F0020E1F1 /* libwelscommon.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libwelscommon.dylib;
+			name = libwelscommon.dylib;
+			path = libios_welscommon.dylib;
 			remoteRef = 07574DC81C45B50F0020E1F1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -548,7 +549,6 @@
 		07B09A661B849878002AC4F0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				DSTROOT = /tmp/processing.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "";
 				"GCC_PREPROCESSOR_DEFINITIONS[sdk=iphoneos*][arch=arm64]" = (
@@ -574,14 +574,12 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
 			};
 			name = Debug;
 		};
 		07B09A671B849878002AC4F0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				DSTROOT = /tmp/processing.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "";
 				"GCC_PREPROCESSOR_DEFINITIONS[sdk=iphoneos*][arch=arm64]" = (
@@ -606,7 +604,6 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
 			};
 			name = Release;
 		};
@@ -652,7 +649,6 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/core $(WorkspaceDir)/../../../app/appseed/base $(WorkspaceDir)/../../../app/appseed/axis $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../.. $(WorkspaceDir)/../../base/include $(WorkspaceDir)/../../../app/base/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/base";
 				WorkspaceDir = "$(SRCROOT)/../../../../../../../nodeapp/seed/metaseed";
 			};
@@ -688,7 +684,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/core $(WorkspaceDir)/../../../app/appseed/base $(WorkspaceDir)/../../../app/appseed/axis $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../.. $(WorkspaceDir)/../../base/include $(WorkspaceDir)/../../../app/base/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/base";
 				VALIDATE_PRODUCT = YES;
 				WorkspaceDir = "$(SRCROOT)/../../../../../../../nodeapp/seed/metaseed";
@@ -699,7 +694,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				DSTROOT = /tmp/processing.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "";
 				"GCC_PREPROCESSOR_DEFINITIONS[sdk=iphoneos*][arch=arm64]" = (
@@ -725,7 +719,6 @@
 				);
 				MACH_O_TYPE = mh_dylib;
 				OTHER_LDFLAGS = "-ObjC";
-				SKIP_INSTALL = YES;
 			};
 			name = Debug;
 		};
@@ -733,7 +726,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				DSTROOT = /tmp/processing.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "";
 				"GCC_PREPROCESSOR_DEFINITIONS[sdk=iphoneos*][arch=arm64]" = (
@@ -758,7 +750,6 @@
 				);
 				MACH_O_TYPE = mh_dylib;
 				OTHER_LDFLAGS = "-ObjC";
-				SKIP_INSTALL = YES;
 			};
 			name = Release;
 		};

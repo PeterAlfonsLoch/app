@@ -16,7 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		07108ADF1B4C95F600A28F80 /* libaurasqlite.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libaurasqlite.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		07108ADF1B4C95F600A28F80 /* libios_aurasqlite.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_aurasqlite.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A44E40019C61B9800143B94 /* sqlite3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sqlite3.h; sourceTree = "<group>"; };
 		9ABDBFDE19C62BCB002A17A3 /* version.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = version.c; sourceTree = "<group>"; };
 		9AEEAD9819C4D7A900866C9E /* libaurasqlite.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libaurasqlite.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -63,7 +63,7 @@
 			isa = PBXGroup;
 			children = (
 				9AEEAD9819C4D7A900866C9E /* libaurasqlite.dylib */,
-				07108ADF1B4C95F600A28F80 /* libaurasqlite.dylib */,
+				07108ADF1B4C95F600A28F80 /* libios_aurasqlite.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -104,7 +104,7 @@
 			);
 			name = ios_aurasqlite;
 			productName = aurasqlite;
-			productReference = 07108ADF1B4C95F600A28F80 /* libaurasqlite.dylib */;
+			productReference = 07108ADF1B4C95F600A28F80 /* libios_aurasqlite.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 		9AEEAD9719C4D7A900866C9E /* aurasqlite */ = {
@@ -176,18 +176,14 @@
 		07108ADD1B4C95F600A28F80 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				INSTALL_PATH = "@executable_path/../Frameworks";
 				SDKROOT = iphoneos;
-				SKIP_INSTALL = NO;
 			};
 			name = Debug;
 		};
 		07108ADE1B4C95F600A28F80 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				INSTALL_PATH = "@executable_path/../Frameworks";
 				SDKROOT = iphoneos;
-				SKIP_INSTALL = NO;
 			};
 			name = Release;
 		};
@@ -238,7 +234,6 @@
 				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
 				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../.. $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../../../app/include";
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
@@ -285,7 +280,6 @@
 				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
 				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../.. $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../../../app/include";
 				VALIDATE_PRODUCT = YES;

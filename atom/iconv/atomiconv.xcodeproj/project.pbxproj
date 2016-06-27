@@ -16,7 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		077A01571B4D5479001C85FF /* libatomiconv.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libatomiconv.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		077A01571B4D5479001C85FF /* libios_atomiconv.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_atomiconv.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A16454F19C4A60000966C5E /* aliases.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aliases.h; sourceTree = "<group>"; };
 		9A16455019C4A60000966C5E /* aliases2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aliases2.h; sourceTree = "<group>"; };
 		9A16455119C4A60000966C5E /* aliases_aix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aliases_aix.h; sourceTree = "<group>"; };
@@ -539,7 +539,7 @@
 			isa = PBXGroup;
 			children = (
 				9A1647A219C4A73900966C5E /* libatomiconv.dylib */,
-				077A01571B4D5479001C85FF /* libatomiconv.dylib */,
+				077A01571B4D5479001C85FF /* libios_atomiconv.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -578,7 +578,7 @@
 			);
 			name = ios_atomiconv;
 			productName = atomiconv;
-			productReference = 077A01571B4D5479001C85FF /* libatomiconv.dylib */;
+			productReference = 077A01571B4D5479001C85FF /* libios_atomiconv.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 		9A1647A119C4A73900966C5E /* atomiconv */ = {
@@ -667,9 +667,7 @@
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
-				INSTALL_PATH = "@executable_path/../Frameworks";
 				SDKROOT = iphoneos;
-				SKIP_INSTALL = NO;
 			};
 			name = Debug;
 		};
@@ -688,9 +686,7 @@
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
-				INSTALL_PATH = "@executable_path/../Frameworks";
 				SDKROOT = iphoneos;
-				SKIP_INSTALL = NO;
 			};
 			name = Release;
 		};
@@ -785,7 +781,6 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = ". .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../.. $(WorkspaceDir)/../../thirdparty/include $(WorkspaceDir)/../../../app/thirdparty/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/atom/iconv $(WorkspaceDir)/../../../app";
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};
@@ -827,7 +822,6 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = ". .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../.. $(WorkspaceDir)/../../thirdparty/include $(WorkspaceDir)/../../../app/thirdparty/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/atom/iconv $(WorkspaceDir)/../../../app";
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};

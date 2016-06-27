@@ -32,7 +32,6 @@
 		077A00A51B4D4F9E001C85FF /* gunibreak.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A13619C6E1DC0018DF7D /* gunibreak.h */; };
 		077A00A61B4D4F9E001C85FF /* punycode.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A14419C6E1DC0018DF7D /* punycode.h */; };
 		077A00A71B4D4F9E001C85FF /* tld.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A14E19C6E1DC0018DF7D /* tld.h */; };
-		9A106A641D15E40E007288BA /* libatomiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 071B2B061B6E63260088E158 /* libatomiconv.dylib */; };
 		9A19A15219C6E1DC0018DF7D /* gunibreak.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A13619C6E1DC0018DF7D /* gunibreak.h */; };
 		9A19A15319C6E1DC0018DF7D /* gunicomp.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A13719C6E1DC0018DF7D /* gunicomp.h */; };
 		9A19A15419C6E1DC0018DF7D /* gunidecomp.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A13819C6E1DC0018DF7D /* gunidecomp.h */; };
@@ -58,6 +57,7 @@
 		9A19A16819C6E1DC0018DF7D /* tlds.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A19A14F19C6E1DC0018DF7D /* tlds.c */; };
 		9A19A16919C6E1DC0018DF7D /* toutf8.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A19A15019C6E1DC0018DF7D /* toutf8.c */; };
 		9A19A16C19C6E80F0018DF7D /* config.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A16B19C6E80F0018DF7D /* config.h */; };
+		9A5CDDB41D2100B60093150A /* libios_atomiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 071B2B061B6E63260088E158 /* libios_atomiconv.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,19 +75,19 @@
 			remoteGlobalIDString = 9A1647A219C4A73900966C5E;
 			remoteInfo = atomiconv;
 		};
-		077A00AF1B4D4FDC001C85FF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 076D0A201A3FDB07007432B6 /* atomiconv.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 077A014D1B4D5479001C85FF;
-			remoteInfo = atomiconv_ios;
-		};
 		07E42D401B501D650061D0BC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 076D0A201A3FDB07007432B6 /* atomiconv.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 9A1647A119C4A73900966C5E;
 			remoteInfo = atomiconv;
+		};
+		9A5CDDB21D21004A0093150A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 076D0A201A3FDB07007432B6 /* atomiconv.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 077A014D1B4D5479001C85FF;
+			remoteInfo = ios_atomiconv;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -127,7 +127,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A106A641D15E40E007288BA /* libatomiconv.dylib in Frameworks */,
+				9A5CDDB41D2100B60093150A /* libios_atomiconv.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -145,7 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				076D0A251A3FDB08007432B6 /* libatomiconv.dylib */,
-				071B2B061B6E63260088E158 /* libatomiconv.dylib */,
+				071B2B061B6E63260088E158 /* libios_atomiconv.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -257,7 +257,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				077A00B01B4D4FDC001C85FF /* PBXTargetDependency */,
+				9A5CDDB31D21004A0093150A /* PBXTargetDependency */,
 			);
 			name = ios_axisidn;
 			productName = FreeImage;
@@ -316,10 +316,10 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		071B2B061B6E63260088E158 /* libatomiconv.dylib */ = {
+		071B2B061B6E63260088E158 /* libios_atomiconv.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			path = libatomiconv.dylib;
+			path = libios_atomiconv.dylib;
 			remoteRef = 071B2B051B6E63260088E158 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -382,15 +382,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		077A00B01B4D4FDC001C85FF /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = atomiconv_ios;
-			targetProxy = 077A00AF1B4D4FDC001C85FF /* PBXContainerItemProxy */;
-		};
 		07E42D411B501D650061D0BC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = atomiconv;
 			targetProxy = 07E42D401B501D650061D0BC /* PBXContainerItemProxy */;
+		};
+		9A5CDDB31D21004A0093150A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ios_atomiconv;
+			targetProxy = 9A5CDDB21D21004A0093150A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -399,7 +399,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				SDKROOT = iphoneos;
-				SKIP_INSTALL = NO;
 			};
 			name = Debug;
 		};
@@ -407,7 +406,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				SDKROOT = iphoneos;
-				SKIP_INSTALL = NO;
 			};
 			name = Release;
 		};
@@ -450,7 +448,6 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/appseed/aura";
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};
@@ -487,7 +484,6 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/appseed/aura";
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};

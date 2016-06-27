@@ -12,7 +12,7 @@
 		07B657F3190F3CCC002DAADE /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B657F2190F3CCC002DAADE /* XCTest.framework */; };
 		07B657F4190F3CCC002DAADE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B657E4190F3CCB002DAADE /* Foundation.framework */; };
 		07B657F6190F3CCC002DAADE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B657F5190F3CCC002DAADE /* UIKit.framework */; };
-		07B657F9190F3CCC002DAADE /* libsphere.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B657E2190F3CCB002DAADE /* libsphere.dylib */; };
+		07B657F9190F3CCC002DAADE /* libios_sphere.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B657E2190F3CCB002DAADE /* libios_sphere.dylib */; };
 		07B657FF190F3CCC002DAADE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 07B657FD190F3CCC002DAADE /* InfoPlist.strings */; };
 		07B65801190F3CCC002DAADE /* sphere_iosTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B65800190F3CCC002DAADE /* sphere_iosTests.m */; };
 		07DA478D1B71EE85006F27E6 /* libcore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07DA47751B71ED0F006F27E6 /* libcore.dylib */; };
@@ -121,7 +121,7 @@
 
 /* Begin PBXFileReference section */
 		07AF88C11B722B5C00150CC2 /* _sphere.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _sphere.cpp; sourceTree = "<group>"; };
-		07B657E2190F3CCB002DAADE /* libsphere.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libsphere.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		07B657E2190F3CCB002DAADE /* libios_sphere.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libios_sphere.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		07B657E4190F3CCB002DAADE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		07B657F1190F3CCC002DAADE /* sphere_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = sphere_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		07B657F2190F3CCC002DAADE /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -190,7 +190,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				07B657F3190F3CCC002DAADE /* XCTest.framework in Frameworks */,
-				07B657F9190F3CCC002DAADE /* libsphere.dylib in Frameworks */,
+				07B657F9190F3CCC002DAADE /* libios_sphere.dylib in Frameworks */,
 				07B657F6190F3CCC002DAADE /* UIKit.framework in Frameworks */,
 				07B657F4190F3CCC002DAADE /* Foundation.framework in Frameworks */,
 			);
@@ -273,7 +273,7 @@
 			isa = PBXGroup;
 			children = (
 				9A574B9816AAB906000CC4EF /* libsphere.dylib */,
-				07B657E2190F3CCB002DAADE /* libsphere.dylib */,
+				07B657E2190F3CCB002DAADE /* libios_sphere.dylib */,
 				07B657F1190F3CCC002DAADE /* sphere_iosTests.xctest */,
 			);
 			name = Products;
@@ -441,7 +441,7 @@
 			);
 			name = ios_sphere;
 			productName = sphere_ios;
-			productReference = 07B657E2190F3CCB002DAADE /* libsphere.dylib */;
+			productReference = 07B657E2190F3CCB002DAADE /* libios_sphere.dylib */;
 			productType = "com.apple.product-type.library.static";
 		};
 		07B657F0190F3CCC002DAADE /* sphere_iosTests */ = {
@@ -623,7 +623,6 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				DSTROOT = /tmp/sphere_ios.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "sphere_ios/sphere_ios-Prefix.pch";
@@ -638,7 +637,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MACH_O_TYPE = mh_dylib;
 				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
 			};
 			name = Debug;
 		};
@@ -653,7 +651,6 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				DSTROOT = /tmp/sphere_ios.dst;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -665,7 +662,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MACH_O_TYPE = mh_dylib;
 				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -778,7 +774,7 @@
 					"$(WorkspaceDir)/../../../app/base/include",
 					"$(WorkspaceDir)/../../../nodeapp/thirdparty/include",
 				);
-				INSTALL_PATH = /Library/Framework/ca2;
+				INSTALL_PATH = "@executable_path";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path /Library/Frameworks/ca2";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -820,7 +816,7 @@
 					"$(WorkspaceDir)/../../../app/base/include",
 					"$(WorkspaceDir)/../../../nodeapp/thirdparty/include",
 				);
-				INSTALL_PATH = /Library/Framework/ca2;
+				INSTALL_PATH = "@executable_path";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path /Library/Frameworks/ca2";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -838,8 +834,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				INSTALL_PATH = "@executable_path";
-				SKIP_INSTALL = YES;
 			};
 			name = Debug;
 		};
@@ -847,8 +841,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				INSTALL_PATH = "@executable_path";
-				SKIP_INSTALL = YES;
 			};
 			name = Release;
 		};

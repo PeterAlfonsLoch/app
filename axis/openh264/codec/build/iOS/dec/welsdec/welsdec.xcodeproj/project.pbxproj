@@ -120,7 +120,7 @@
 /* Begin PBXFileReference section */
 		04FE0680196FD8BE0004D7CE /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = version.h; path = ../../../common/inc/version.h; sourceTree = "<group>"; };
 		07574DD61C45B58D0020E1F1 /* welscommon.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = welscommon.xcodeproj; path = ../../common/welscommon.xcodeproj; sourceTree = "<group>"; };
-		07B098591B8491EC002AC4F0 /* libwelsdec.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libwelsdec.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		07B098591B8491EC002AC4F0 /* libios_welsdec.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libios_welsdec.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CBC1B80194AC4E100214D9E /* intra_pred_aarch64_neon.S */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; name = intra_pred_aarch64_neon.S; path = arm64/intra_pred_aarch64_neon.S; sourceTree = "<group>"; };
 		4CE4427918B6FC360017DF25 /* libwelsdec.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libwelsdec.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CE4427C18B6FC360017DF25 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -242,7 +242,7 @@
 			isa = PBXGroup;
 			children = (
 				4CE4427918B6FC360017DF25 /* libwelsdec.dylib */,
-				07B098591B8491EC002AC4F0 /* libwelsdec.dylib */,
+				07B098591B8491EC002AC4F0 /* libios_welsdec.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -400,7 +400,7 @@
 			);
 			name = ios_welsdec;
 			productName = welsdec;
-			productReference = 07B098591B8491EC002AC4F0 /* libwelsdec.dylib */;
+			productReference = 07B098591B8491EC002AC4F0 /* libios_welsdec.dylib */;
 			productType = "com.apple.product-type.library.static";
 		};
 		4CE4427818B6FC360017DF25 /* welsdec */ = {
@@ -465,7 +465,8 @@
 		07574DDE1C45B58D0020E1F1 /* libwelscommon.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libwelscommon.dylib;
+			name = libwelscommon.dylib;
+			path = libios_welscommon.dylib;
 			remoteRef = 07574DDD1C45B58D0020E1F1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -663,7 +664,6 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/core $(WorkspaceDir)/../../../app/appseed/base $(WorkspaceDir)/../../../app/appseed/axis $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../.. $(WorkspaceDir)/../../base/include $(WorkspaceDir)/../../../app/base/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/base";
 				WorkspaceDir = "$(SRCROOT)/../../../../../../../../nodeapp/seed/metaseed";
 			};
@@ -700,7 +700,6 @@
 				MACH_O_TYPE = mh_dylib;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/core $(WorkspaceDir)/../../../app/appseed/base $(WorkspaceDir)/../../../app/appseed/axis $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../.. $(WorkspaceDir)/../../base/include $(WorkspaceDir)/../../../app/base/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/base";
 				VALIDATE_PRODUCT = YES;
 				WorkspaceDir = "$(SRCROOT)/../../../../../../../../nodeapp/seed/metaseed";
@@ -714,7 +713,6 @@
 				CLANG_CXX_LIBRARY = "compiler-default";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				DSTROOT = /tmp/welsdec.dst;
 				GCC_OPTIMIZATION_LEVEL = 3;
 				GCC_PREPROCESSOR_DEFINITIONS = "";
 				"GCC_PREPROCESSOR_DEFINITIONS[sdk=iphoneos*][arch=arm64]" = (
@@ -738,7 +736,6 @@
 					"$(SRCROOT)/../../../../common/arm64",
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -750,7 +747,6 @@
 				CLANG_CXX_LIBRARY = "compiler-default";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				DSTROOT = /tmp/welsdec.dst;
 				"GCC_PREPROCESSOR_DEFINITIONS[sdk=iphoneos*][arch=arm64]" = (
 					APPLE_IOS,
 					HAVE_NEON_AARCH64,
@@ -772,7 +768,6 @@
 					"$(SRCROOT)/../../../../common/arm64",
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

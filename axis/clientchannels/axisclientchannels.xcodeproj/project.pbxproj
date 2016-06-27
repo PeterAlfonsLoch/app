@@ -250,7 +250,7 @@
 		07B098BE1B84941B002AC4F0 /* DVDPlayback.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVDPlayback.framework; path = System/Library/Frameworks/DVDPlayback.framework; sourceTree = SDKROOT; };
 		07B098C01B8494DE002AC4F0 /* VideoDecodeAcceleration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoDecodeAcceleration.framework; path = System/Library/Frameworks/VideoDecodeAcceleration.framework; sourceTree = SDKROOT; };
 		07D0E2CA1C4D60DA0032C524 /* libfdk-aac.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libfdk-aac.a"; path = "../../../../../../opt/local/lib/libfdk-aac.a"; sourceTree = "<group>"; };
-		07DD6E341B5F0C87003A1CE1 /* libaxisclientchannels.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libaxisclientchannels.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		07DD6E341B5F0C87003A1CE1 /* libios_axisclientchannels.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_axisclientchannels.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		07DD6E451B5F0CA2003A1CE1 /* audin_main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = audin_main.c; sourceTree = "<group>"; };
 		07DD6E461B5F0CA2003A1CE1 /* audin_main.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = audin_main.h; sourceTree = "<group>"; };
 		07DD6E521B5F0CA2003A1CE1 /* addin.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = addin.c; sourceTree = "<group>"; };
@@ -907,7 +907,7 @@
 			isa = PBXGroup;
 			children = (
 				9A1B358C16A2D7A500875A94 /* libaxisclientchannels.dylib */,
-				07DD6E341B5F0C87003A1CE1 /* libaxisclientchannels.dylib */,
+				07DD6E341B5F0C87003A1CE1 /* libios_axisclientchannels.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -997,7 +997,7 @@
 			);
 			name = ios_axisclientchannels;
 			productName = freetype;
-			productReference = 07DD6E341B5F0C87003A1CE1 /* libaxisclientchannels.dylib */;
+			productReference = 07DD6E341B5F0C87003A1CE1 /* libios_axisclientchannels.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 		9A1B358B16A2D7A500875A94 /* axisclientchannels */ = {
@@ -1081,7 +1081,8 @@
 		07DD70D81B5F1025003A1CE1 /* libaxisfreerdp.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			path = libaxisfreerdp.dylib;
+			name = libaxisfreerdp.dylib;
+			path = libios_axisfreerdp.dylib;
 			remoteRef = 07DD70D71B5F1025003A1CE1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -1284,7 +1285,6 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = ".. client $(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include/ . $(WorkspaceDir)/../../../ $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/axis $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../../../nodeapp/thirdparty/appseed $(WorkspaceDir)/../../ ../../appseed ../../ ../";
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};
@@ -1334,7 +1334,6 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = ".. client $(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include/ . $(WorkspaceDir)/../../../ $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/axis $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../../../nodeapp/thirdparty/appseed $(WorkspaceDir)/../../ ../../appseed ../../ ../";
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};

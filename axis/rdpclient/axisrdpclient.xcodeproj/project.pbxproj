@@ -47,7 +47,7 @@
 		07FACBAA1B84BB660035DF9D /* cf_channels.h in Headers */ = {isa = PBXBuildFile; fileRef = 07FACBA61B84BB660035DF9D /* cf_channels.h */; };
 		07FACBAB1B84BB660035DF9D /* cf_client.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07FACBA71B84BB660035DF9D /* cf_client.cpp */; };
 		07FACBAC1B84BB660035DF9D /* cf_client.h in Headers */ = {isa = PBXBuildFile; fileRef = 07FACBA81B84BB660035DF9D /* cf_client.h */; };
-		9A106A6D1D15E47D007288BA /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 074BD0D31B5F406300219723 /* libaura.dylib */; };
+		9A106A6D1D15E47D007288BA /* libios_aura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 074BD0D31B5F406300219723 /* libios_aura.dylib */; };
 		9A106A6E1D15E486007288BA /* libaxisclientchannels.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07DD70EA1B5F1039003A1CE1 /* libaxisclientchannels.dylib */; };
 		9A106A6F1D15E491007288BA /* libaxisfreerdp.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07DD70E11B5F1030003A1CE1 /* libaxisfreerdp.dylib */; };
 		9A106A701D15E49B007288BA /* libios_axiswinpr.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07DD70BD1B5F1001003A1CE1 /* libios_axiswinpr.dylib */; };
@@ -169,7 +169,7 @@
 		07B0980A1B848AA9002AC4F0 /* file.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = file.cpp; sourceTree = "<group>"; };
 		07B0980B1B848AA9002AC4F0 /* graphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = graphics.h; sourceTree = "<group>"; };
 		07B0980D1B848AA9002AC4F0 /* rdpclient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rdpclient.h; sourceTree = "<group>"; };
-		07DD624A1B5F0B8D003A1CE1 /* libaxisrdpclient.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libaxisrdpclient.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		07DD624A1B5F0B8D003A1CE1 /* libios_axisrdpclient.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_axisrdpclient.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		07DD63731B5F0BC1003A1CE1 /* ca2rdp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ca2rdp.cpp; sourceTree = "<group>"; };
 		07DD63741B5F0BC1003A1CE1 /* ca2rdp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ca2rdp.h; sourceTree = "<group>"; };
 		07DD63751B5F0BC1003A1CE1 /* ca2rdp_event.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ca2rdp_event.cpp; sourceTree = "<group>"; };
@@ -198,7 +198,7 @@
 				9A106A701D15E49B007288BA /* libios_axiswinpr.dylib in Frameworks */,
 				9A106A6F1D15E491007288BA /* libaxisfreerdp.dylib in Frameworks */,
 				9A106A6E1D15E486007288BA /* libaxisclientchannels.dylib in Frameworks */,
-				9A106A6D1D15E47D007288BA /* libaura.dylib in Frameworks */,
+				9A106A6D1D15E47D007288BA /* libios_aura.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -220,7 +220,7 @@
 			isa = PBXGroup;
 			children = (
 				074BD0D11B5F406300219723 /* libaura.dylib */,
-				074BD0D31B5F406300219723 /* libaura.dylib */,
+				074BD0D31B5F406300219723 /* libios_aura.dylib */,
 				074BD0D51B5F406300219723 /* aura_iosTests.xctest */,
 			);
 			name = Products;
@@ -320,7 +320,7 @@
 			isa = PBXGroup;
 			children = (
 				9A1B358C16A2D7A500875A94 /* libaxisrdpclient.dylib */,
-				07DD624A1B5F0B8D003A1CE1 /* libaxisrdpclient.dylib */,
+				07DD624A1B5F0B8D003A1CE1 /* libios_axisrdpclient.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -378,7 +378,7 @@
 			);
 			name = ios_axisrdpclient;
 			productName = freetype;
-			productReference = 07DD624A1B5F0B8D003A1CE1 /* libaxisrdpclient.dylib */;
+			productReference = 07DD624A1B5F0B8D003A1CE1 /* libios_axisrdpclient.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 		9A1B358B16A2D7A500875A94 /* axisrdpclient */ = {
@@ -454,10 +454,10 @@
 			remoteRef = 074BD0D01B5F406300219723 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		074BD0D31B5F406300219723 /* libaura.dylib */ = {
+		074BD0D31B5F406300219723 /* libios_aura.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			path = libaura.dylib;
+			path = libios_aura.dylib;
 			remoteRef = 074BD0D21B5F406300219723 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -492,7 +492,8 @@
 		07DD70E11B5F1030003A1CE1 /* libaxisfreerdp.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			path = libaxisfreerdp.dylib;
+			name = libaxisfreerdp.dylib;
+			path = libios_axisfreerdp.dylib;
 			remoteRef = 07DD70E01B5F1030003A1CE1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -506,7 +507,8 @@
 		07DD70EA1B5F1039003A1CE1 /* libaxisclientchannels.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			path = libaxisclientchannels.dylib;
+			name = libaxisclientchannels.dylib;
+			path = libios_axisclientchannels.dylib;
 			remoteRef = 07DD70E91B5F1039003A1CE1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -643,7 +645,6 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../../../app/appseed/base $(WorkspaceDir)/../.. $(WorkspaceDir)/../../thirdparty/include $(WorkspaceDir)/../../../app/thirdparty/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/thirdparty/appseed $(WorkspaceDir)/../../../app/thirdparty/appseed/zlib client/Mac";
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};
@@ -685,7 +686,6 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../../../app/appseed/base $(WorkspaceDir)/../.. $(WorkspaceDir)/../../thirdparty/include $(WorkspaceDir)/../../../app/thirdparty/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/thirdparty/appseed $(WorkspaceDir)/../../../app/thirdparty/appseed/zlib client/Mac";
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};

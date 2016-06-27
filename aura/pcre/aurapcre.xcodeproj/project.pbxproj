@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		07473E0D1B503FE4004688C5 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07473E0C1B503FE4004688C5 /* libaura.dylib */; };
+		07473E0D1B503FE4004688C5 /* libios_aura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07473E0C1B503FE4004688C5 /* libios_aura.dylib */; };
 		077832E51B72FC99005D0C27 /* pcre2_chartables.c in Sources */ = {isa = PBXBuildFile; fileRef = 077832E41B72FC99005D0C27 /* pcre2_chartables.c */; };
 		07A4B11E1B76466800DA5C57 /* pcre2_chartables.c in Sources */ = {isa = PBXBuildFile; fileRef = 077832E41B72FC99005D0C27 /* pcre2_chartables.c */; };
 		07A4B11F1B76466800DA5C57 /* pcre2_auto_possess.c in Sources */ = {isa = PBXBuildFile; fileRef = 07EF5D2C1B72F09600863D39 /* pcre2_auto_possess.c */; };
@@ -156,7 +156,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07473E0D1B503FE4004688C5 /* libaura.dylib in Frameworks */,
+				07473E0D1B503FE4004688C5 /* libios_aura.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -245,7 +245,7 @@
 			isa = PBXGroup;
 			children = (
 				9A1EDB4E19C83FE800F5CCE8 /* libaura.dylib */,
-				07473E0C1B503FE4004688C5 /* libaura.dylib */,
+				07473E0C1B503FE4004688C5 /* libios_aura.dylib */,
 				9A1EDB5219C83FE800F5CCE8 /* aura_iosTests.xctest */,
 			);
 			name = Products;
@@ -359,10 +359,10 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		07473E0C1B503FE4004688C5 /* libaura.dylib */ = {
+		07473E0C1B503FE4004688C5 /* libios_aura.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			path = libaura.dylib;
+			path = libios_aura.dylib;
 			remoteRef = 07473E0B1B503FE4004688C5 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -466,18 +466,14 @@
 		07D6A8451B4CBB45004FEBC2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				INSTALL_PATH = "@executable_path/../Frameworks";
 				SDKROOT = iphoneos;
-				SKIP_INSTALL = NO;
 			};
 			name = Debug;
 		};
 		07D6A8461B4CBB45004FEBC2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				INSTALL_PATH = "@executable_path/../Frameworks";
 				SDKROOT = iphoneos;
-				SKIP_INSTALL = NO;
 			};
 			name = Release;
 		};
@@ -524,7 +520,6 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "framework . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../.. $(WorkspaceDir)/../../appseed cpp $(WorkspaceDir)/../../../app/include $(WorkspaceDir)/../../../app/appseed/aura";
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};
@@ -568,7 +563,6 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "framework . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../.. $(WorkspaceDir)/../../appseed cpp $(WorkspaceDir)/../../../app/include $(WorkspaceDir)/../../../app/appseed/aura";
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};

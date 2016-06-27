@@ -854,7 +854,6 @@
 		07F5B2DD184A403C0092C3E1 /* multithreading_go_thread.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F5B2D7184A403C0092C3E1 /* multithreading_go_thread.h */; };
 		07F5B2DF184A403C0092C3E1 /* multithreading_signal_thread.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F5B2D9184A403C0092C3E1 /* multithreading_signal_thread.h */; };
 		07F5B2E1184A403C0092C3E1 /* multithreading_simple_thread.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F5B2DB184A403C0092C3E1 /* multithreading_simple_thread.h */; };
-		9A106A7C1D15E7B3007288BA /* libatomiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 076C9BF21B50ACB100CEA03E /* libatomiconv.dylib */; };
 		9A16414F19C4A4CE00966C5E /* aura.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A163D3319C4A4CC00966C5E /* aura.h */; };
 		9A16415119C4A4CE00966C5E /* aura_action_context.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A163D3619C4A4CC00966C5E /* aura_action_context.h */; };
 		9A16415219C4A4CE00966C5E /* aura_action_source.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A163D3719C4A4CC00966C5E /* aura_action_source.h */; };
@@ -1105,6 +1104,8 @@
 		9A5DF96E1CEE2741008916A4 /* test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5DF96D1CEE2741008916A4 /* test.cpp */; };
 		9A6715D11D14F65F0069A961 /* draw2d_nanosvg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07C64B7A1C9A29A400F54872 /* draw2d_nanosvg.cpp */; };
 		9A6715D41D14F7970069A961 /* test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5DF96D1CEE2741008916A4 /* test.cpp */; };
+		9A74846E1D210C0600207EF6 /* libace_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A6716761D1553BF0069A961 /* libace_ios.a */; };
+		9A74846F1D210C1A00207EF6 /* libios_atomiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 076C9BF21B50ACB100CEA03E /* libios_atomiconv.dylib */; };
 		9A98A6081771D67E000AE16E /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07BD556C16210BD4008E31F0 /* AppKit.framework */; };
 		9A98A6091771D67E000AE16E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8897A514C24736006B4023 /* Foundation.framework */; };
 		9A98A60A1771D67E000AE16E /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE931714155F1599005F90F6 /* Carbon.framework */; };
@@ -1159,7 +1160,6 @@
 		9AC315F2198E4CB8008FB109 /* colorertake5_Writer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC315AB198E4CB8008FB109 /* colorertake5_Writer.h */; };
 		9AC315F3198E4CB8008FB109 /* colorertake5_xmldom.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC315AC198E4CB8008FB109 /* colorertake5_xmldom.h */; };
 		9AC62DEA1D20B82D00A4AC0A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC62DE91D20B82D00A4AC0A /* UIKit.framework */; };
-		9AC62F601D20C27300A4AC0A /* libace_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A6716761D1553BF0069A961 /* libace_ios.a */; };
 		9ACE46FF1D1FE56000A1E0AD /* libace.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A6716741D1553BF0069A961 /* libace.a */; };
 		9AE4C7F21996D29C00E50F88 /* data_data.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE4C7E41996D29C00E50F88 /* data_data.h */; };
 		9AE4C7F41996D29C00E50F88 /* data_data_container.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE4C7E61996D29C00E50F88 /* data_data_container.h */; };
@@ -1342,7 +1342,7 @@
 		077A05611B4D70B7001C85FF /* NSObject+DDExtensions.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "NSObject+DDExtensions.mm"; sourceTree = "<group>"; };
 		077A05621B4D70B7001C85FF /* UncaughtExceptionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UncaughtExceptionHandler.h; sourceTree = "<group>"; };
 		077A05631B4D70B7001C85FF /* UncaughtExceptionHandler.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = UncaughtExceptionHandler.mm; sourceTree = "<group>"; };
-		077A080B1B4D7403001C85FF /* libaura.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libaura.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		077A080B1B4D7403001C85FF /* libios_aura.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_aura.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		077C2A18190F143F00A1F6B0 /* framework_c.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = framework_c.h; path = ../framework_c.h; sourceTree = "<group>"; };
 		077C2A19190F143F00A1F6B0 /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = framework.cpp; path = ../framework.cpp; sourceTree = "<group>"; };
 		077C2A1A190F144000A1F6B0 /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = framework.h; path = ../framework.h; sourceTree = "<group>"; };
@@ -1986,9 +1986,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9AC62F601D20C27300A4AC0A /* libace_ios.a in Frameworks */,
+				9A74846F1D210C1A00207EF6 /* libios_atomiconv.dylib in Frameworks */,
+				9A74846E1D210C0600207EF6 /* libace_ios.a in Frameworks */,
 				9AC62DEA1D20B82D00A4AC0A /* UIKit.framework in Frameworks */,
-				9A106A7C1D15E7B3007288BA /* libatomiconv.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2040,7 +2040,7 @@
 			isa = PBXGroup;
 			children = (
 				076D0A1B1A3FCCD4007432B6 /* libatomiconv.dylib */,
-				076C9BF21B50ACB100CEA03E /* libatomiconv.dylib */,
+				076C9BF21B50ACB100CEA03E /* libios_atomiconv.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2863,7 +2863,7 @@
 			isa = PBXGroup;
 			children = (
 				9A98A6151771D67E000AE16E /* libaura.dylib */,
-				077A080B1B4D7403001C85FF /* libaura.dylib */,
+				077A080B1B4D7403001C85FF /* libios_aura.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -4252,7 +4252,7 @@
 			);
 			name = ios_aura;
 			productName = c;
-			productReference = 077A080B1B4D7403001C85FF /* libaura.dylib */;
+			productReference = 077A080B1B4D7403001C85FF /* libios_aura.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 		9A98A6031771D67E000AE16E /* aura */ = {
@@ -4335,10 +4335,10 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		076C9BF21B50ACB100CEA03E /* libatomiconv.dylib */ = {
+		076C9BF21B50ACB100CEA03E /* libios_atomiconv.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			path = libatomiconv.dylib;
+			path = libios_atomiconv.dylib;
 			remoteRef = 076C9BF11B50ACB100CEA03E /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -4514,18 +4514,14 @@
 		077A08091B4D7403001C85FF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				INSTALL_PATH = "@executable_path/../Frameworks";
 				SDKROOT = iphoneos;
-				SKIP_INSTALL = NO;
 			};
 			name = Debug;
 		};
 		077A080A1B4D7403001C85FF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				INSTALL_PATH = "@executable_path/../Frameworks";
 				SDKROOT = iphoneos;
-				SKIP_INSTALL = NO;
 			};
 			name = Release;
 		};
@@ -4668,7 +4664,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				RUN_CLANG_STATIC_ANALYZER = NO;
 				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
 				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app/appseed/base/base $(WorkspaceDir)/../../../app/base/include $(WorkspaceDir)/../../../app/appseed/base/base $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../../../app/base $(WorkspaceDir)/../../../app/appseed/base/framework aura/aura $(WorkspaceDir)/../../../app";
 				WARNING_CFLAGS = "";
@@ -4725,7 +4720,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				RUN_CLANG_STATIC_ANALYZER = NO;
 				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
 				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app/appseed/base/base $(WorkspaceDir)/../../../app/base/include $(WorkspaceDir)/../../../app/appseed/base/base $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../../../app/base $(WorkspaceDir)/../../../app/appseed/base/framework aura/aura $(WorkspaceDir)/../../../app";
 				VALIDATE_PRODUCT = YES;

@@ -18,7 +18,7 @@
 		077A01381B4D539E001C85FF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 077A01371B4D539E001C85FF /* UIKit.framework */; };
 		077A013A1B4D53AC001C85FF /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 077A01391B4D53AC001C85FF /* CoreText.framework */; };
 		077A013C1B4D53B4001C85FF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 077A013B1B4D53B4001C85FF /* CoreGraphics.framework */; };
-		077A013E1B4D53D8001C85FF /* libaxis.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07A371251B25D4A000E4F888 /* libaxis.dylib */; };
+		077A013E1B4D53D8001C85FF /* libios_axis.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07A371251B25D4A000E4F888 /* libios_axis.dylib */; };
 		077C2A1D190F144000A1F6B0 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 077C2A19190F143F00A1F6B0 /* framework.cpp */; };
 		077C2A1E190F144000A1F6B0 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 077C2A1A190F144000A1F6B0 /* framework.h */; };
 		0793EA111CA4052D001374D8 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0793EA101CA4052D001374D8 /* libaura.dylib */; };
@@ -473,7 +473,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A6716471D1549600069A961 /* libaura.dylib in Frameworks */,
-				077A013E1B4D53D8001C85FF /* libaxis.dylib in Frameworks */,
+				077A013E1B4D53D8001C85FF /* libios_axis.dylib in Frameworks */,
 				077A013C1B4D53B4001C85FF /* CoreGraphics.framework in Frameworks */,
 				077A013A1B4D53AC001C85FF /* CoreText.framework in Frameworks */,
 				077A01381B4D539E001C85FF /* UIKit.framework in Frameworks */,
@@ -649,7 +649,7 @@
 			isa = PBXGroup;
 			children = (
 				07A371231B25D4A000E4F888 /* libaxis.dylib */,
-				07A371251B25D4A000E4F888 /* libaxis.dylib */,
+				07A371251B25D4A000E4F888 /* libios_axis.dylib */,
 				9AF8B7FB1D1FDEBE0087E7A2 /* axis_iosTests.xctest */,
 			);
 			name = Products;
@@ -1173,10 +1173,10 @@
 			remoteRef = 07A371221B25D4A000E4F888 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		07A371251B25D4A000E4F888 /* libaxis.dylib */ = {
+		07A371251B25D4A000E4F888 /* libios_axis.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libaxis.dylib;
+			path = libios_axis.dylib;
 			remoteRef = 07A371241B25D4A000E4F888 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -1307,20 +1307,16 @@
 		9AE24D541904CEFF001AEFFB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				INSTALL_PATH = "@executable_path/../Frameworks";
 				MACH_O_TYPE = mh_dylib;
 				SDKROOT = iphoneos;
-				SKIP_INSTALL = NO;
 			};
 			name = Debug;
 		};
 		9AE24D551904CEFF001AEFFB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				INSTALL_PATH = "@executable_path/../Frameworks";
 				MACH_O_TYPE = mh_dylib;
 				SDKROOT = iphoneos;
-				SKIP_INSTALL = NO;
 			};
 			name = Release;
 		};
@@ -1454,7 +1450,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				RUN_CLANG_STATIC_ANALYZER = NO;
 				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
 				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app/appseed/base/base $(WorkspaceDir)/../../../app/base/include $(WorkspaceDir)/../../../app/appseed/base/base $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../../../app/base $(WorkspaceDir)/../../../app/appseed/base/framework $(WorkspaceDir)/../../../app/axis $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../../../app/appseed/axis $(WorkspaceDir)/../../../app";
 				WARNING_CFLAGS = (
@@ -1517,7 +1512,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				RUN_CLANG_STATIC_ANALYZER = NO;
 				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
 				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app/appseed/base/base $(WorkspaceDir)/../../../app/base/include $(WorkspaceDir)/../../../app/appseed/base/base $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../../../app/base $(WorkspaceDir)/../../../app/appseed/base/framework $(WorkspaceDir)/../../../app/axis $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../../../app/appseed/axis $(WorkspaceDir)/../../../app";
 				VALIDATE_PRODUCT = YES;

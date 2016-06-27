@@ -600,7 +600,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		07108CDC1B4C97E300A28F80 /* libaxisfreetype.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libaxisfreetype.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		07108CDC1B4C97E300A28F80 /* libios_axisfreetype.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_axisfreetype.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A19A08E19C677110018DF7D /* axisbzip2.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axisbzip2.xcodeproj; path = ../bzip2/axisbzip2.xcodeproj; sourceTree = "<group>"; };
 		9AC62E501D20BCF500A4AC0A /* libios_axiszlib.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_axiszlib.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/basic-ios-bmuegusfgbffmoeixicbxhlnbzop/Build/Products/Debug-iphonesimulator/libios_axiszlib.dylib"; sourceTree = "<group>"; };
 		9ACE46B11D1FE00D00A1E0AD /* axispng.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axispng.xcodeproj; path = ../png/axispng.xcodeproj; sourceTree = "<group>"; };
@@ -902,7 +902,7 @@
 			isa = PBXGroup;
 			children = (
 				9AEEB49119C5088600866C9E /* libaxisfreetype.dylib */,
-				07108CDC1B4C97E300A28F80 /* libaxisfreetype.dylib */,
+				07108CDC1B4C97E300A28F80 /* libios_axisfreetype.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1307,7 +1307,7 @@
 			isa = PBXGroup;
 			children = (
 				9AEEB83319C50E7D00866C9E /* libaura.dylib */,
-				07E083C61B5ABFF5005EE6C8 /* libaura.dylib */,
+				07E083C61B5ABFF5005EE6C8 /* libios_aura.dylib */,
 				9AEEB83719C50E7D00866C9E /* aura_iosTests.xctest */,
 			);
 			name = Products;
@@ -1824,7 +1824,7 @@
 			);
 			name = ios_axisfreetype;
 			productName = FreeImage;
-			productReference = 07108CDC1B4C97E300A28F80 /* libaxisfreetype.dylib */;
+			productReference = 07108CDC1B4C97E300A28F80 /* libios_axisfreetype.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 		9AA5E4C216F7C61B005C45CE /* axisfreetype */ = {
@@ -1896,10 +1896,10 @@
 			remoteRef = 07108CDE1B4C97E300A28F80 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		07E083C61B5ABFF5005EE6C8 /* libaura.dylib */ = {
+		07E083C61B5ABFF5005EE6C8 /* libios_aura.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			path = libaura.dylib;
+			path = libios_aura.dylib;
 			remoteRef = 07E083C51B5ABFF5005EE6C8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -2071,18 +2071,14 @@
 		07108CDA1B4C97E300A28F80 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				INSTALL_PATH = "@executable_path/../Frameworks";
 				SDKROOT = iphoneos;
-				SKIP_INSTALL = NO;
 			};
 			name = Debug;
 		};
 		07108CDB1B4C97E300A28F80 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				INSTALL_PATH = "@executable_path/../Frameworks";
 				SDKROOT = iphoneos;
-				SKIP_INSTALL = NO;
 			};
 			name = Release;
 		};
@@ -2125,7 +2121,6 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = ". .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../../../app/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/include/freetype";
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};
@@ -2162,7 +2157,6 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = ". .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../../../app/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/include/freetype";
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};

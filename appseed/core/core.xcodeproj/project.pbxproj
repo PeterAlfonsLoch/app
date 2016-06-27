@@ -1188,7 +1188,7 @@
 			isa = PBXGroup;
 			children = (
 				9A4E85651D1FD49A008A419B /* libauracharguess.dylib */,
-				9A4E85671D1FD49A008A419B /* libauracharguess.dylib */,
+				9A4E85671D1FD49A008A419B /* libios_auracharguess.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1529,10 +1529,10 @@
 			remoteRef = 9A4E85641D1FD49A008A419B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A4E85671D1FD49A008A419B /* libauracharguess.dylib */ = {
+		9A4E85671D1FD49A008A419B /* libios_auracharguess.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			path = libauracharguess.dylib;
+			path = libios_auracharguess.dylib;
 			remoteRef = 9A4E85661D1FD49A008A419B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -1672,10 +1672,8 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INSTALL_PATH = "@executable_path";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path /Library/Frameworks/ca2 @executable_path";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				SKIP_INSTALL = YES;
 			};
 			name = Debug;
 		};
@@ -1687,10 +1685,8 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				EXECUTABLE_PREFIX = lib;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				INSTALL_PATH = "@executable_path";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path /Library/Frameworks/ca2 @executable_path";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				SKIP_INSTALL = YES;
 			};
 			name = Release;
 		};
@@ -1746,7 +1742,6 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
 				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/core $(WorkspaceDir)/../../../app/appseed/base $(WorkspaceDir)/../../../app/appseed/axis $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../.. $(WorkspaceDir)/../../base/include $(WorkspaceDir)/../../../app/base/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/base";
 				WARNING_CFLAGS = (
@@ -1803,7 +1798,6 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
 				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/core $(WorkspaceDir)/../../../app/appseed/base $(WorkspaceDir)/../../../app/appseed/axis $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../.. $(WorkspaceDir)/../../base/include $(WorkspaceDir)/../../../app/base/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/base";
 				VALIDATE_PRODUCT = YES;
@@ -1820,7 +1814,6 @@
 			buildSettings = {
 				MACH_O_TYPE = mh_dylib;
 				SDKROOT = iphoneos;
-				SKIP_INSTALL = NO;
 			};
 			name = Debug;
 		};
@@ -1829,7 +1822,6 @@
 			buildSettings = {
 				MACH_O_TYPE = mh_dylib;
 				SDKROOT = iphoneos;
-				SKIP_INSTALL = NO;
 			};
 			name = Release;
 		};

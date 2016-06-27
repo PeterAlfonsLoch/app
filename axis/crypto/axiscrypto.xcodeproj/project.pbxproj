@@ -32,7 +32,7 @@
 		07558DD21B23E19B008C63AF /* txt_db.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DD11B23E19B008C63AF /* txt_db.c */; };
 		07558DD41B23E1C8008C63AF /* v3_lib.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DD31B23E1C8008C63AF /* v3_lib.c */; };
 		07558DD61B23E34B008C63AF /* mem_aura.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DD51B23E34B008C63AF /* mem_aura.c */; };
-		07703C361B6FDF95009026EA /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 071B2AFA1B6E63150088E158 /* libaura.dylib */; };
+		07703C361B6FDF95009026EA /* libios_aura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 071B2AFA1B6E63150088E158 /* libios_aura.dylib */; };
 		077CEF191B23C505009A57EF /* _crypto.c in Sources */ = {isa = PBXBuildFile; fileRef = 077CEF181B23C505009A57EF /* _crypto.c */; };
 		077CEF2A1B23DC97009A57EF /* _x509.c in Sources */ = {isa = PBXBuildFile; fileRef = 077CEF291B23DC97009A57EF /* _x509.c */; };
 		077CEF2C1B23DCB7009A57EF /* _x509v3.c in Sources */ = {isa = PBXBuildFile; fileRef = 077CEF2B1B23DCB7009A57EF /* _x509v3.c */; };
@@ -277,7 +277,7 @@
 		077CEF181B23C505009A57EF /* _crypto.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = _crypto.c; sourceTree = "<group>"; };
 		077CEF291B23DC97009A57EF /* _x509.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = _x509.c; sourceTree = "<group>"; };
 		077CEF2B1B23DCB7009A57EF /* _x509v3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = _x509v3.c; sourceTree = "<group>"; };
-		07B2729219A019AB00E822E1 /* libaxiscrypto.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libaxiscrypto.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		07B2729219A019AB00E822E1 /* libios_axiscrypto.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libios_axiscrypto.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		07B2729A19A01A4600E822E1 /* libaxiscrypto.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libaxiscrypto.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		07EDC4C71B4EE45900AF8928 /* _aes.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = _aes.c; sourceTree = "<group>"; };
 		07EDC4C91B4EF66100AF8928 /* _engines.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = _engines.c; sourceTree = "<group>"; };
@@ -329,7 +329,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07703C361B6FDF95009026EA /* libaura.dylib in Frameworks */,
+				07703C361B6FDF95009026EA /* libios_aura.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -347,7 +347,7 @@
 			isa = PBXGroup;
 			children = (
 				07502C881B247427008D207C /* libaura.dylib */,
-				071B2AFA1B6E63150088E158 /* libaura.dylib */,
+				071B2AFA1B6E63150088E158 /* libios_aura.dylib */,
 				07502C8C1B247427008D207C /* aura_iosTests.xctest */,
 			);
 			name = Products;
@@ -950,7 +950,7 @@
 		9A4E845A1D1FD2DE008A419B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				07B2729219A019AB00E822E1 /* libaxiscrypto.dylib */,
+				07B2729219A019AB00E822E1 /* libios_axiscrypto.dylib */,
 				07B2729A19A01A4600E822E1 /* libaxiscrypto.dylib */,
 			);
 			name = Products;
@@ -1198,7 +1198,7 @@
 			);
 			name = ios_axiscrypto;
 			productName = basefreeimage_ios;
-			productReference = 07B2729219A019AB00E822E1 /* libaxiscrypto.dylib */;
+			productReference = 07B2729219A019AB00E822E1 /* libios_axiscrypto.dylib */;
 			productType = "com.apple.product-type.library.static";
 		};
 		9AE24D961904CF46001AEFFB /* axiscrypto_iosTests */ = {
@@ -1260,10 +1260,10 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		071B2AFA1B6E63150088E158 /* libaura.dylib */ = {
+		071B2AFA1B6E63150088E158 /* libios_aura.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			path = libaura.dylib;
+			path = libios_aura.dylib;
 			remoteRef = 071B2AF91B6E63150088E158 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -1489,7 +1489,6 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_POSTPROCESSING = YES;
-				DYLIB_INSTALL_NAME_BASE = "$(INSTALL_PATH)";
 				ENABLE_TESTABILITY = YES;
 				EXECUTABLE_EXTENSION = dylib;
 				EXECUTABLE_PREFIX = lib;
@@ -1516,7 +1515,6 @@
 					"$(WorkspaceDir)/../../../nodeapp/thirdparty/include",
 				);
 				INSTALL_PATH = "@executable_path";
-				LD_DYLIB_INSTALL_NAME = "$(DYLIB_INSTALL_NAME_BASE:standardizepath)/$(EXECUTABLE_PATH)";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path /Library/Frameworks/ca2";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1552,7 +1550,6 @@
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_POSTPROCESSING = YES;
-				DYLIB_INSTALL_NAME_BASE = "$(INSTALL_PATH)";
 				EXECUTABLE_EXTENSION = dylib;
 				EXECUTABLE_PREFIX = lib;
 				GCC_C_LANGUAGE_STANDARD = c99;
@@ -1573,7 +1570,6 @@
 					"$(WorkspaceDir)/../../../nodeapp/thirdparty/include",
 				);
 				INSTALL_PATH = "@executable_path";
-				LD_DYLIB_INSTALL_NAME = "$(DYLIB_INSTALL_NAME_BASE:standardizepath)/$(EXECUTABLE_PATH)";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path /Library/Frameworks/ca2";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1599,10 +1595,8 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INSTALL_PATH = "@executable_path/../Frameworks";
 				MACH_O_TYPE = mh_dylib;
 				SDKROOT = iphoneos;
-				SKIP_INSTALL = NO;
 			};
 			name = Debug;
 		};
@@ -1615,10 +1609,8 @@
 					OPENSSL_NO_INLINE_ASM,
 					OPENSSL_NO_ASM,
 				);
-				INSTALL_PATH = "@executable_path/../Frameworks";
 				MACH_O_TYPE = mh_dylib;
 				SDKROOT = iphoneos;
-				SKIP_INSTALL = NO;
 			};
 			name = Release;
 		};
