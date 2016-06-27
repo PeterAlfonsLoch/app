@@ -96,13 +96,9 @@
 		07502CF31B25CC61008D207C /* _filesystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07502CF21B25CC61008D207C /* _filesystem.cpp */; };
 		07502CF41B25CC61008D207C /* _filesystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07502CF21B25CC61008D207C /* _filesystem.cpp */; };
 		07703C3F1B6FE06B009026EA /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 076A1FE81B6E65F800BF6C7D /* libaura.dylib */; };
-		077A02131B4D5979001C85FF /* libaxisfreeimage.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07108DC21B4C999700A28F80 /* libaxisfreeimage.dylib */; };
 		077A02141B4D5979001C85FF /* libaxisfreetype.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07108DC51B4C999700A28F80 /* libaxisfreetype.dylib */; };
 		077A02181B4D5A01001C85FF /* libaxisopenssl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A9F2D7519A64298007AE2C7 /* libaxisopenssl.dylib */; };
 		077A02191B4D5A08001C85FF /* libaxiscrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0747A63D1B26350C00E85AC7 /* libaxiscrypto.dylib */; };
-		077A021A1B4D5A1F001C85FF /* libaxisbzip2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A19A0A019C67A8D0018DF7D /* libaxisbzip2.dylib */; };
-		077A021B1B4D5A1F001C85FF /* libaxiszlib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A19A0E519C6921B0018DF7D /* libaxiszlib.dylib */; };
-		077A021C1B4D5A31001C85FF /* libaxisidn.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 077A00CA1B4D50A0001C85FF /* libaxisidn.dylib */; };
 		077A021D1B4D5A37001C85FF /* libaurasqlite.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0747A7061B26387E00E85AC7 /* libaurasqlite.dylib */; };
 		077C2A1D190F144000A1F6B0 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 077C2A19190F143F00A1F6B0 /* framework.cpp */; };
 		077C2A1E190F144000A1F6B0 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 077C2A1A190F144000A1F6B0 /* framework.h */; };
@@ -323,10 +319,8 @@
 		9A19A0C619C67B6A0018DF7D /* webserver_http_transaction.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A0BB19C67B6A0018DF7D /* webserver_http_transaction.h */; };
 		9A19A0C819C67B8E0018DF7D /* net_sockets.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A0C719C67B8E0018DF7D /* net_sockets.h */; };
 		9A19A0C919C68C220018DF7D /* libaxisopenssl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A9F2D7319A64298007AE2C7 /* libaxisopenssl.dylib */; };
-		9A19A0CC19C68CE70018DF7D /* libaxisbzip2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A19A0A019C67A8D0018DF7D /* libaxisbzip2.dylib */; };
 		9A19A0CD19C68D140018DF7D /* libaxisfreetype.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A19A0A419C67A8D0018DF7D /* libaxisfreetype.dylib */; };
 		9A19A0DC19C68DEE0018DF7D /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A19A0D519C68DDA0018DF7D /* libaura.dylib */; };
-		9A19A0E819C6923E0018DF7D /* libaxiszlib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A19A0E519C6921B0018DF7D /* libaxiszlib.dylib */; };
 		9A19A10919C692650018DF7D /* visual_api.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A0EA19C692650018DF7D /* visual_api.h */; };
 		9A19A10B19C692650018DF7D /* visual_buffered_graphics.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A0EC19C692650018DF7D /* visual_buffered_graphics.h */; };
 		9A19A10C19C692650018DF7D /* visual_dib_pal.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A0ED19C692650018DF7D /* visual_dib_pal.h */; };
@@ -346,6 +340,7 @@
 		9A19A12719C6931C0018DF7D /* libaxisfreeimage.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A19A0A219C67A8D0018DF7D /* libaxisfreeimage.dylib */; };
 		9A19A12D19C6933E0018DF7D /* sockets_ssl_server_context_map.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A12919C6933E0018DF7D /* sockets_ssl_server_context_map.h */; };
 		9A19A12F19C6933E0018DF7D /* sockets_ssl_server_context.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A12B19C6933E0018DF7D /* sockets_ssl_server_context.h */; };
+		9A8A91EF1D20CEAB00C96CA4 /* libios_axisidn.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 077A00CA1B4D50A0001C85FF /* libios_axisidn.dylib */; };
 		9A98A6081771D67E000AE16E /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07BD556C16210BD4008E31F0 /* AppKit.framework */; };
 		9A98A6091771D67E000AE16E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8897A514C24736006B4023 /* Foundation.framework */; };
 		9A98A60A1771D67E000AE16E /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE931714155F1599005F90F6 /* Carbon.framework */; };
@@ -353,8 +348,14 @@
 		9AA6A6AF1907B84D000A1F4A /* javascript.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07F5B2C6184A3FA30092C3E1 /* javascript.cpp */; };
 		9AA6A6B01907B84D000A1F4A /* javascript_functions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07F5B2C8184A3FA30092C3E1 /* javascript_functions.cpp */; };
 		9AA6A6B11907B84D000A1F4A /* javascript_tinyjs_functions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07F5B2CC184A3FA30092C3E1 /* javascript_tinyjs_functions.cpp */; };
+		9AC62E5E1D20BD8200A4AC0A /* libaxiszlib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A19A0E519C6921B0018DF7D /* libaxiszlib.dylib */; };
+		9AC62E5F1D20BD8F00A4AC0A /* libaxisbzip2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A19A0A019C67A8D0018DF7D /* libaxisbzip2.dylib */; };
+		9AC62E601D20BD9B00A4AC0A /* libios_axiszlib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07108DC81B4C999700A28F80 /* libios_axiszlib.dylib */; };
+		9AC62E611D20BDA800A4AC0A /* libios_axisbzip2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07108DBF1B4C999700A28F80 /* libios_axisbzip2.dylib */; };
+		9AC62E621D20BDCE00A4AC0A /* libaxisfreeimage.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07108DC21B4C999700A28F80 /* libaxisfreeimage.dylib */; };
+		9AC62E661D20BE4F00A4AC0A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC62E651D20BE4F00A4AC0A /* UIKit.framework */; };
 		9AE24D461904CEFF001AEFFB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24D361904CEFE001AEFFB /* Foundation.framework */; };
-		9AE24D4B1904CEFF001AEFFB /* libaxis.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24D341904CEFE001AEFFB /* libaxis.dylib */; };
+		9AE24D4B1904CEFF001AEFFB /* libios_axis.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24D341904CEFE001AEFFB /* libios_axis.dylib */; };
 		9AE7252717E83B69003E47F9 /* net.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE7229717E83B69003E47F9 /* net.h */; };
 		9AE7252A17E83B69003E47F9 /* net_net.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE7229A17E83B69003E47F9 /* net_net.h */; };
 		9AE7252C17E83B69003E47F9 /* net_url_departament.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE7229C17E83B69003E47F9 /* net_url_departament.h */; };
@@ -1017,7 +1018,8 @@
 		9A9F2D6019A64284007AE2C7 /* axisfreeimage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axisfreeimage.xcodeproj; path = ../../axis/freeimage/axisfreeimage.xcodeproj; sourceTree = "<group>"; };
 		9A9F2D6619A6428D007AE2C7 /* axisfreetype.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axisfreetype.xcodeproj; path = ../../axis/freetype/axisfreetype.xcodeproj; sourceTree = "<group>"; };
 		9A9F2D6C19A64298007AE2C7 /* axisopenssl.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axisopenssl.xcodeproj; path = ../../axis/openssl/axisopenssl.xcodeproj; sourceTree = "<group>"; };
-		9AE24D341904CEFE001AEFFB /* libaxis.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libaxis.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AC62E651D20BE4F00A4AC0A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		9AE24D341904CEFE001AEFFB /* libios_axis.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libios_axis.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AE24D361904CEFE001AEFFB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9AE7229717E83B69003E47F9 /* net.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = net.h; sourceTree = "<group>"; };
 		9AE7229A17E83B69003E47F9 /* net_net.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = net_net.h; sourceTree = "<group>"; };
@@ -1030,6 +1032,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9AC62E5F1D20BD8F00A4AC0A /* libaxisbzip2.dylib in Frameworks */,
+				9AC62E5E1D20BD8200A4AC0A /* libaxiszlib.dylib in Frameworks */,
 				07E42D521B5024610061D0BC /* libaxisidn.dylib in Frameworks */,
 				9A98A6081771D67E000AE16E /* AppKit.framework in Frameworks */,
 				9A98A6091771D67E000AE16E /* Foundation.framework in Frameworks */,
@@ -1037,12 +1041,10 @@
 				9A98A60B1771D67E000AE16E /* Security.framework in Frameworks */,
 				9A19A0DC19C68DEE0018DF7D /* libaura.dylib in Frameworks */,
 				0747A7091B2638C800E85AC7 /* libaurasqlite.dylib in Frameworks */,
-				9A19A0CC19C68CE70018DF7D /* libaxisbzip2.dylib in Frameworks */,
 				9A19A12719C6931C0018DF7D /* libaxisfreeimage.dylib in Frameworks */,
 				9A19A0CD19C68D140018DF7D /* libaxisfreetype.dylib in Frameworks */,
 				0747A6421B26353700E85AC7 /* libaxiscrypto.dylib in Frameworks */,
 				9A19A0C919C68C220018DF7D /* libaxisopenssl.dylib in Frameworks */,
-				9A19A0E819C6923E0018DF7D /* libaxiszlib.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1050,14 +1052,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A8A91EF1D20CEAB00C96CA4 /* libios_axisidn.dylib in Frameworks */,
+				9AC62E661D20BE4F00A4AC0A /* UIKit.framework in Frameworks */,
+				9AC62E621D20BDCE00A4AC0A /* libaxisfreeimage.dylib in Frameworks */,
+				9AC62E611D20BDA800A4AC0A /* libios_axisbzip2.dylib in Frameworks */,
+				9AC62E601D20BD9B00A4AC0A /* libios_axiszlib.dylib in Frameworks */,
 				07703C3F1B6FE06B009026EA /* libaura.dylib in Frameworks */,
 				077A021D1B4D5A37001C85FF /* libaurasqlite.dylib in Frameworks */,
-				077A021C1B4D5A31001C85FF /* libaxisidn.dylib in Frameworks */,
-				077A021A1B4D5A1F001C85FF /* libaxisbzip2.dylib in Frameworks */,
-				077A021B1B4D5A1F001C85FF /* libaxiszlib.dylib in Frameworks */,
 				077A02191B4D5A08001C85FF /* libaxiscrypto.dylib in Frameworks */,
 				077A02181B4D5A01001C85FF /* libaxisopenssl.dylib in Frameworks */,
-				077A02131B4D5979001C85FF /* libaxisfreeimage.dylib in Frameworks */,
 				077A02141B4D5979001C85FF /* libaxisfreetype.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1067,7 +1070,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9AE24D461904CEFF001AEFFB /* Foundation.framework in Frameworks */,
-				9AE24D4B1904CEFF001AEFFB /* libaxis.dylib in Frameworks */,
+				9AE24D4B1904CEFF001AEFFB /* libios_axis.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1817,7 +1820,7 @@
 			isa = PBXGroup;
 			children = (
 				9A163D2519C4995100966C5E /* libaxisidn.dylib */,
-				077A00CA1B4D50A0001C85FF /* libaxisidn.dylib */,
+				077A00CA1B4D50A0001C85FF /* libios_axisidn.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1857,7 +1860,7 @@
 			isa = PBXGroup;
 			children = (
 				9A98A6151771D67E000AE16E /* libaxis.dylib */,
-				9AE24D341904CEFE001AEFFB /* libaxis.dylib */,
+				9AE24D341904CEFE001AEFFB /* libios_axis.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1902,6 +1905,7 @@
 		9AE24D351904CEFE001AEFFB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9AC62E651D20BE4F00A4AC0A /* UIKit.framework */,
 				07BD556C16210BD4008E31F0 /* AppKit.framework */,
 				CE931714155F1599005F90F6 /* Carbon.framework */,
 				9A8897A514C24736006B4023 /* Foundation.framework */,
@@ -2293,7 +2297,7 @@
 			);
 			name = ios_axis;
 			productName = base_ios;
-			productReference = 9AE24D341904CEFE001AEFFB /* libaxis.dylib */;
+			productReference = 9AE24D341904CEFE001AEFFB /* libios_axis.dylib */;
 			productType = "com.apple.product-type.library.static";
 		};
 		9AE24D421904CEFE001AEFFB /* axis_iosTests */ = {
@@ -2478,10 +2482,10 @@
 			remoteRef = 076A1FE71B6E65F800BF6C7D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		077A00CA1B4D50A0001C85FF /* libaxisidn.dylib */ = {
+		077A00CA1B4D50A0001C85FF /* libios_axisidn.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			path = libaxisidn.dylib;
+			path = libios_axisidn.dylib;
 			remoteRef = 077A00C91B4D50A0001C85FF /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -2918,7 +2922,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_NAME = "$(PROJECT_NAME)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				RUN_CLANG_STATIC_ANALYZER = NO;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -2978,7 +2982,7 @@
 					"$(TARGET_BUILD_DIR)",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
-				PRODUCT_NAME = "$(PROJECT_NAME)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				RUN_CLANG_STATIC_ANALYZER = NO;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;

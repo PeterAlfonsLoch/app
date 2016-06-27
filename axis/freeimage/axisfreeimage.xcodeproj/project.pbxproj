@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		07108B751B4C97D500A28F80 /* half.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEB0F819C5080C00866C9E /* half.cpp */; };
-		07108B9C1B4C97D500A28F80 /* Deprecated.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE7719C5080A00866C9E /* Deprecated.cpp */; };
-		07108BB91B4C97D500A28F80 /* DeprecationMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE7819C5080A00866C9E /* DeprecationMgr.cpp */; };
 		07108BC31B4C97D500A28F80 /* Plugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEB1CD19C5080D00866C9E /* Plugin.h */; };
 		07108BC41B4C97D500A28F80 /* eLut.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEB0F719C5080C00866C9E /* eLut.h */; };
 		07108BC51B4C97D500A28F80 /* toFloat.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEB0FD19C5080C00866C9E /* toFloat.h */; };
@@ -24,12 +22,13 @@
 		07108BD21B4C97D500A28F80 /* Resize.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAEDC19C5080A00866C9E /* Resize.h */; };
 		07108BD31B4C97D500A28F80 /* CacheFile.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAE7519C5080A00866C9E /* CacheFile.h */; };
 		07703C381B6FDFBD009026EA /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 071B2AFD1B6E631B0088E158 /* libaura.dylib */; };
-		077A01671B4D5568001C85FF /* libaxiszlib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEEBDAF19C595E900866C9E /* libaxiszlib.dylib */; };
 		9A4E861D1D1FD793008A419B /* _FreeImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4E861C1D1FD793008A419B /* _FreeImage.cpp */; };
 		9A4E861F1D1FD7A9008A419B /* _Toolkit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4E861E1D1FD7A9008A419B /* _Toolkit.cpp */; };
+		9AC62DED1D20B99600A4AC0A /* FreeImageFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC62DEC1D20B99600A4AC0A /* FreeImageFramework.h */; };
+		9AC62DEF1D20BA0500A4AC0A /* libios_axiszlib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07108DCD1B4C99E400A28F80 /* libios_axiszlib.dylib */; };
+		9AC62E631D20BE3200A4AC0A /* _FreeImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4E861C1D1FD793008A419B /* _FreeImage.cpp */; };
+		9AC62E641D20BE3200A4AC0A /* _Toolkit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4E861E1D1FD7A9008A419B /* _Toolkit.cpp */; };
 		9AEEB1D119C5080D00866C9E /* CacheFile.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAE7519C5080A00866C9E /* CacheFile.h */; };
-		9AEEB1D219C5080D00866C9E /* Deprecated.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE7719C5080A00866C9E /* Deprecated.cpp */; };
-		9AEEB1D319C5080D00866C9E /* DeprecationMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEEAE7819C5080A00866C9E /* DeprecationMgr.cpp */; };
 		9AEEB1D419C5080D00866C9E /* DeprecationMgr.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAE7919C5080A00866C9E /* DeprecationMgr.h */; };
 		9AEEB21D19C5080D00866C9E /* FreeImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAEC319C5080A00866C9E /* FreeImage.h */; };
 		9AEEB21E19C5080D00866C9E /* FreeImageIO.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAEC419C5080A00866C9E /* FreeImageIO.h */; };
@@ -117,9 +116,8 @@
 		07108BD71B4C97D500A28F80 /* libaxisfreeimage.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libaxisfreeimage.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A4E861C1D1FD793008A419B /* _FreeImage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _FreeImage.cpp; sourceTree = "<group>"; };
 		9A4E861E1D1FD7A9008A419B /* _Toolkit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _Toolkit.cpp; sourceTree = "<group>"; };
+		9AC62DEC1D20B99600A4AC0A /* FreeImageFramework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FreeImageFramework.h; sourceTree = "<group>"; };
 		9AEEAE7519C5080A00866C9E /* CacheFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheFile.h; sourceTree = "<group>"; };
-		9AEEAE7719C5080A00866C9E /* Deprecated.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Deprecated.cpp; sourceTree = "<group>"; };
-		9AEEAE7819C5080A00866C9E /* DeprecationMgr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DeprecationMgr.cpp; sourceTree = "<group>"; };
 		9AEEAE7919C5080A00866C9E /* DeprecationMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeprecationMgr.h; sourceTree = "<group>"; };
 		9AEEAEC319C5080A00866C9E /* FreeImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FreeImage.h; sourceTree = "<group>"; };
 		9AEEAEC419C5080A00866C9E /* FreeImageIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FreeImageIO.h; sourceTree = "<group>"; };
@@ -143,8 +141,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9AC62DEF1D20BA0500A4AC0A /* libios_axiszlib.dylib in Frameworks */,
 				07703C381B6FDFBD009026EA /* libaura.dylib in Frameworks */,
-				077A01671B4D5568001C85FF /* libaxiszlib.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,8 +198,6 @@
 		9AEEAE7619C5080A00866C9E /* DeprecationManager */ = {
 			isa = PBXGroup;
 			children = (
-				9AEEAE7719C5080A00866C9E /* Deprecated.cpp */,
-				9AEEAE7819C5080A00866C9E /* DeprecationMgr.cpp */,
 				9AEEAE7919C5080A00866C9E /* DeprecationMgr.h */,
 			);
 			path = DeprecationManager;
@@ -210,6 +206,7 @@
 		9AEEAE7A19C5080A00866C9E /* FreeImage */ = {
 			isa = PBXGroup;
 			children = (
+				9AC62DEC1D20B99600A4AC0A /* FreeImageFramework.h */,
 				9A4E861C1D1FD793008A419B /* _FreeImage.cpp */,
 			);
 			path = FreeImage;
@@ -291,6 +288,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9AEEB48A19C5080D00866C9E /* Plugin.h in Headers */,
+				9AC62DED1D20B99600A4AC0A /* FreeImageFramework.h in Headers */,
 				9AEEB3BD19C5080D00866C9E /* eLut.h in Headers */,
 				9AEEB3C319C5080D00866C9E /* toFloat.h in Headers */,
 				9AEEB48D19C5080D00866C9E /* Utilities.h in Headers */,
@@ -427,9 +425,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9AC62E631D20BE3200A4AC0A /* _FreeImage.cpp in Sources */,
+				9AC62E641D20BE3200A4AC0A /* _Toolkit.cpp in Sources */,
 				07108B751B4C97D500A28F80 /* half.cpp in Sources */,
-				07108B9C1B4C97D500A28F80 /* Deprecated.cpp in Sources */,
-				07108BB91B4C97D500A28F80 /* DeprecationMgr.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -439,8 +437,6 @@
 			files = (
 				9AEEB3BE19C5080D00866C9E /* half.cpp in Sources */,
 				9A4E861D1D1FD793008A419B /* _FreeImage.cpp in Sources */,
-				9AEEB1D219C5080D00866C9E /* Deprecated.cpp in Sources */,
-				9AEEB1D319C5080D00866C9E /* DeprecationMgr.cpp in Sources */,
 				9A4E861F1D1FD7A9008A419B /* _Toolkit.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -533,7 +529,7 @@
 				PRODUCT_NAME = axisfreeimage;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../../thirdparty/include $(WorkspaceDir)/../../../app/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/appseed/aura Source Source/LibRawLite";
+				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../../thirdparty/include $(WorkspaceDir)/../../../app/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/appseed/aura Source Source/LibRawLite Source/FreeImage";
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};
 			name = Debug;
@@ -576,7 +572,7 @@
 				PRODUCT_NAME = axisfreeimage;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../../thirdparty/include $(WorkspaceDir)/../../../app/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/appseed/aura Source Source/LibRawLite";
+				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../../thirdparty/include $(WorkspaceDir)/../../../app/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/appseed/aura Source Source/LibRawLite Source/FreeImage";
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};
 			name = Release;

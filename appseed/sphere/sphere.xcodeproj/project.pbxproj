@@ -16,7 +16,6 @@
 		07B657FF190F3CCC002DAADE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 07B657FD190F3CCC002DAADE /* InfoPlist.strings */; };
 		07B65801190F3CCC002DAADE /* sphere_iosTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B65800190F3CCC002DAADE /* sphere_iosTests.m */; };
 		07DA478D1B71EE85006F27E6 /* libcore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07DA47751B71ED0F006F27E6 /* libcore.dylib */; };
-		07DA47911B71EECF006F27E6 /* libcore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07DA47751B71ED0F006F27E6 /* libcore.dylib */; };
 		07DA47E21B71F03B006F27E6 /* console.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DA47D71B71F03B006F27E6 /* console.h */; };
 		07DA47E41B71F03B006F27E6 /* console_application.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DA47D91B71F03B006F27E6 /* console_application.h */; };
 		07DA47E61B71F03B006F27E6 /* console_prompt.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DA47DB1B71F03B006F27E6 /* console_prompt.h */; };
@@ -24,6 +23,7 @@
 		07DA47EA1B71F03B006F27E6 /* console_prompt_frame.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DA47DF1B71F03B006F27E6 /* console_prompt_frame.h */; };
 		07DA47EC1B71F03B006F27E6 /* console_prompt_impact.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DA47E11B71F03B006F27E6 /* console_prompt_impact.h */; };
 		07DA480F1B71F081006F27E6 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A574D2B16AAB99E000CC4EF /* framework.cpp */; };
+		9A3BC36E1D20CD62005E3FE0 /* libcore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07DA47771B71ED0F006F27E6 /* libcore.dylib */; };
 		9A57509E16AAB9A1000CC4EF /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A574D2B16AAB99E000CC4EF /* framework.cpp */; };
 		9A57509F16AAB9A1000CC4EF /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A574D2C16AAB99E000CC4EF /* framework.h */; };
 		9ACABF2A17BD0516004C3F85 /* asphere.h in Headers */ = {isa = PBXBuildFile; fileRef = 9ACABEAE17BD0515004C3F85 /* asphere.h */; };
@@ -180,7 +180,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07DA47911B71EECF006F27E6 /* libcore.dylib in Frameworks */,
+				9A3BC36E1D20CD62005E3FE0 /* libcore.dylib in Frameworks */,
 				07B657E5190F3CCB002DAADE /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

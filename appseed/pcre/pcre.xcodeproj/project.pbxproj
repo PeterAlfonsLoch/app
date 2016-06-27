@@ -14,6 +14,7 @@
 		9A1EDB5519C83FFB00F5CCE8 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A1EDB4E19C83FE800F5CCE8 /* libaura.dylib */; };
 		9A6716BF1D155C9A0069A961 /* pcre.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 074DA70D1C8E550500748EB7 /* pcre.cpp */; };
 		9A6716C01D155CAF0069A961 /* libios_aurapcre.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 074DA9711C8E6B2200748EB7 /* libios_aurapcre.dylib */; };
+		9AC62E911D20C0D200A4AC0A /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07473E0C1B503FE4004688C5 /* libaura.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,13 @@
 			remoteGlobalIDString = 9A98A6031771D67E000AE16E;
 			remoteInfo = aura;
 		};
+		9AC62E8C1D20C07800A4AC0A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 074DA9691C8E6B2200748EB7 /* aurapcre.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 07D6A8271B4CBB45004FEBC2;
+			remoteInfo = ios_aurapcre;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -90,6 +98,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9AC62E911D20C0D200A4AC0A /* libaura.dylib in Frameworks */,
 				9A6716C01D155CAF0069A961 /* libios_aurapcre.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -188,6 +197,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				9AC62E8D1D20C07800A4AC0A /* PBXTargetDependency */,
 				07557C331B4D905B0065594B /* PBXTargetDependency */,
 			);
 			name = ios_pcre;
@@ -323,6 +333,11 @@
 			isa = PBXTargetDependency;
 			name = aura;
 			targetProxy = 9A1EDB5319C83FF200F5CCE8 /* PBXContainerItemProxy */;
+		};
+		9AC62E8D1D20C07800A4AC0A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ios_aurapcre;
+			targetProxy = 9AC62E8C1D20C07800A4AC0A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

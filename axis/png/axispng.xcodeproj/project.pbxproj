@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		077A00DA1B4D516E001C85FF /* libaxiszlib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07A371F11B25EC6000E4F888 /* libaxiszlib.dylib */; };
 		077C88F11B51A04E00AB2A41 /* libaxiszlib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07A371F11B25EC6000E4F888 /* libaxiszlib.dylib */; };
 		07B6577B190F3CA2002DAADE /* libios_axispng.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B65764190F3CA2002DAADE /* libios_axispng.dylib */; };
 		9A4E865E1D1FD941008A419B /* config.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A4E86361D1FD940008A419B /* config.h */; };
@@ -31,6 +30,22 @@
 		9A4E86711D1FD941008A419B /* pngwtran.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A4E86541D1FD941008A419B /* pngwtran.c */; };
 		9A4E86721D1FD941008A419B /* pngwutil.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A4E86551D1FD941008A419B /* pngwutil.c */; };
 		9A4E86731D1FD941008A419B /* throw_error_exception.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4E86571D1FD941008A419B /* throw_error_exception.cpp */; };
+		9AC62DFA1D20BC9A00A4AC0A /* png.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A4E86421D1FD941008A419B /* png.c */; };
+		9AC62DFC1D20BC9A00A4AC0A /* pngerror.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A4E86441D1FD941008A419B /* pngerror.c */; };
+		9AC62DFD1D20BC9A00A4AC0A /* pngget.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A4E86451D1FD941008A419B /* pngget.c */; };
+		9AC62DFF1D20BC9A00A4AC0A /* pngmem.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A4E86471D1FD941008A419B /* pngmem.c */; };
+		9AC62E001D20BC9A00A4AC0A /* pngpread.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A4E86481D1FD941008A419B /* pngpread.c */; };
+		9AC62E021D20BC9A00A4AC0A /* pngread.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A4E864A1D1FD941008A419B /* pngread.c */; };
+		9AC62E031D20BC9A00A4AC0A /* pngrio.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A4E864B1D1FD941008A419B /* pngrio.c */; };
+		9AC62E041D20BC9A00A4AC0A /* pngrtran.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A4E864C1D1FD941008A419B /* pngrtran.c */; };
+		9AC62E051D20BC9A00A4AC0A /* pngrutil.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A4E864D1D1FD941008A419B /* pngrutil.c */; };
+		9AC62E061D20BC9A00A4AC0A /* pngset.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A4E864E1D1FD941008A419B /* pngset.c */; };
+		9AC62E081D20BC9A00A4AC0A /* pngtrans.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A4E86511D1FD941008A419B /* pngtrans.c */; };
+		9AC62E091D20BC9A00A4AC0A /* pngwio.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A4E86521D1FD941008A419B /* pngwio.c */; };
+		9AC62E0A1D20BC9A00A4AC0A /* pngwrite.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A4E86531D1FD941008A419B /* pngwrite.c */; };
+		9AC62E0B1D20BC9A00A4AC0A /* pngwtran.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A4E86541D1FD941008A419B /* pngwtran.c */; };
+		9AC62E0C1D20BC9A00A4AC0A /* pngwutil.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A4E86551D1FD941008A419B /* pngwutil.c */; };
+		9AC62E4F1D20BCE100A4AC0A /* libios_axiszlib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07D6A73F1B4CADC4004FEBC2 /* libios_axiszlib.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,7 +125,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				077A00DA1B4D516E001C85FF /* libaxiszlib.dylib in Frameworks */,
+				9AC62E4F1D20BCE100A4AC0A /* libios_axiszlib.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -332,6 +347,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9AC62DFA1D20BC9A00A4AC0A /* png.c in Sources */,
+				9AC62DFC1D20BC9A00A4AC0A /* pngerror.c in Sources */,
+				9AC62DFD1D20BC9A00A4AC0A /* pngget.c in Sources */,
+				9AC62DFF1D20BC9A00A4AC0A /* pngmem.c in Sources */,
+				9AC62E001D20BC9A00A4AC0A /* pngpread.c in Sources */,
+				9AC62E021D20BC9A00A4AC0A /* pngread.c in Sources */,
+				9AC62E031D20BC9A00A4AC0A /* pngrio.c in Sources */,
+				9AC62E041D20BC9A00A4AC0A /* pngrtran.c in Sources */,
+				9AC62E051D20BC9A00A4AC0A /* pngrutil.c in Sources */,
+				9AC62E061D20BC9A00A4AC0A /* pngset.c in Sources */,
+				9AC62E081D20BC9A00A4AC0A /* pngtrans.c in Sources */,
+				9AC62E091D20BC9A00A4AC0A /* pngwio.c in Sources */,
+				9AC62E0A1D20BC9A00A4AC0A /* pngwrite.c in Sources */,
+				9AC62E0B1D20BC9A00A4AC0A /* pngwtran.c in Sources */,
+				9AC62E0C1D20BC9A00A4AC0A /* pngwutil.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -397,10 +427,8 @@
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
-				INSTALL_PATH = "@executable_path/../Frameworks";
 				MACH_O_TYPE = mh_dylib;
 				SDKROOT = iphoneos;
-				SKIP_INSTALL = NO;
 			};
 			name = Debug;
 		};
@@ -420,10 +448,8 @@
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
-				INSTALL_PATH = "@executable_path/../Frameworks";
 				MACH_O_TYPE = mh_dylib;
 				SDKROOT = iphoneos;
-				SKIP_INSTALL = NO;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -545,7 +571,6 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../.. $(WorkspaceDir)/../../appseed";
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};
@@ -588,7 +613,6 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../.. $(WorkspaceDir)/../../appseed";
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};

@@ -158,6 +158,8 @@
 		9A98A6091771D67E000AE16E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8897A514C24736006B4023 /* Foundation.framework */; };
 		9A98A60A1771D67E000AE16E /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE931714155F1599005F90F6 /* Carbon.framework */; };
 		9A98A60B1771D67E000AE16E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 073EDDE1164E968100818801 /* Security.framework */; };
+		9AC62E671D20BEFA00A4AC0A /* graphics_window_buffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ACE46C71D1FE39800A1E0AD /* graphics_window_buffer.cpp */; };
+		9AC62E681D20BEFA00A4AC0A /* graphics_window_dc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ACE46C91D1FE39800A1E0AD /* graphics_window_dc.cpp */; };
 		9ACE46CD1D1FE39800A1E0AD /* graphics_window_buffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ACE46C71D1FE39800A1E0AD /* graphics_window_buffer.cpp */; };
 		9ACE46CE1D1FE39800A1E0AD /* graphics_window_buffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9ACE46C81D1FE39800A1E0AD /* graphics_window_buffer.h */; };
 		9ACE46CF1D1FE39800A1E0AD /* graphics_window_dc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ACE46C91D1FE39800A1E0AD /* graphics_window_dc.cpp */; };
@@ -167,7 +169,7 @@
 		9AE24D451904CEFF001AEFFB /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24D441904CEFF001AEFFB /* XCTest.framework */; };
 		9AE24D461904CEFF001AEFFB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24D361904CEFE001AEFFB /* Foundation.framework */; };
 		9AE24D481904CEFF001AEFFB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24D471904CEFF001AEFFB /* UIKit.framework */; };
-		9AE24D4B1904CEFF001AEFFB /* libbase.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24D341904CEFE001AEFFB /* libbase.dylib */; };
+		9AE24D4B1904CEFF001AEFFB /* libios_base.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24D341904CEFE001AEFFB /* libios_base.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -438,7 +440,7 @@
 		9ACE46CA1D1FE39800A1E0AD /* graphics_window_dc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = graphics_window_dc.h; sourceTree = "<group>"; };
 		9ACE46CB1D1FE39800A1E0AD /* graphics_window.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = graphics_window.h; sourceTree = "<group>"; };
 		9ACE46CC1D1FE39800A1E0AD /* graphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = graphics.h; sourceTree = "<group>"; };
-		9AE24D341904CEFE001AEFFB /* libbase.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libbase.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AE24D341904CEFE001AEFFB /* libios_base.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libios_base.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AE24D361904CEFE001AEFFB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9AE24D441904CEFF001AEFFB /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		9AE24D471904CEFF001AEFFB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -485,7 +487,7 @@
 				9AE24D451904CEFF001AEFFB /* XCTest.framework in Frameworks */,
 				9AE24D481904CEFF001AEFFB /* UIKit.framework in Frameworks */,
 				9AE24D461904CEFF001AEFFB /* Foundation.framework in Frameworks */,
-				9AE24D4B1904CEFF001AEFFB /* libbase.dylib in Frameworks */,
+				9AE24D4B1904CEFF001AEFFB /* libios_base.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -866,7 +868,7 @@
 			isa = PBXGroup;
 			children = (
 				9A98A6151771D67E000AE16E /* libbase.dylib */,
-				9AE24D341904CEFE001AEFFB /* libbase.dylib */,
+				9AE24D341904CEFE001AEFFB /* libios_base.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1085,7 +1087,7 @@
 			);
 			name = ios_base;
 			productName = base_ios;
-			productReference = 9AE24D341904CEFE001AEFFB /* libbase.dylib */;
+			productReference = 9AE24D341904CEFE001AEFFB /* libios_base.dylib */;
 			productType = "com.apple.product-type.library.static";
 		};
 		9AE24D421904CEFE001AEFFB /* base_iosTests */ = {
@@ -1225,6 +1227,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9AC62E671D20BEFA00A4AC0A /* graphics_window_buffer.cpp in Sources */,
+				9AC62E681D20BEFA00A4AC0A /* graphics_window_dc.cpp in Sources */,
 				07EDC5B61B4FE64F00AF8928 /* main_mm.mm in Sources */,
 				07703C671B6FE3B5009026EA /* _database.cpp in Sources */,
 				07EDC59A1B4F234300AF8928 /* round_window.mm in Sources */,
@@ -1447,7 +1451,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_NAME = "$(PROJECT_NAME)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				RUN_CLANG_STATIC_ANALYZER = NO;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -1510,7 +1514,7 @@
 					"$(TARGET_BUILD_DIR)",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
-				PRODUCT_NAME = "$(PROJECT_NAME)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				RUN_CLANG_STATIC_ANALYZER = NO;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
