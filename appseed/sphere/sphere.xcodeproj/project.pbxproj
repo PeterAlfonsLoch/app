@@ -23,7 +23,7 @@
 		07DA47EA1B71F03B006F27E6 /* console_prompt_frame.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DA47DF1B71F03B006F27E6 /* console_prompt_frame.h */; };
 		07DA47EC1B71F03B006F27E6 /* console_prompt_impact.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DA47E11B71F03B006F27E6 /* console_prompt_impact.h */; };
 		07DA480F1B71F081006F27E6 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A574D2B16AAB99E000CC4EF /* framework.cpp */; };
-		9A3BC36E1D20CD62005E3FE0 /* libcore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07DA47771B71ED0F006F27E6 /* libcore.dylib */; };
+		9A3BC36E1D20CD62005E3FE0 /* libios_core.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07DA47771B71ED0F006F27E6 /* libios_core.dylib */; };
 		9A57509E16AAB9A1000CC4EF /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A574D2B16AAB99E000CC4EF /* framework.cpp */; };
 		9A57509F16AAB9A1000CC4EF /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A574D2C16AAB99E000CC4EF /* framework.h */; };
 		9ACABF2A17BD0516004C3F85 /* asphere.h in Headers */ = {isa = PBXBuildFile; fileRef = 9ACABEAE17BD0515004C3F85 /* asphere.h */; };
@@ -180,7 +180,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A3BC36E1D20CD62005E3FE0 /* libcore.dylib in Frameworks */,
+				9A3BC36E1D20CD62005E3FE0 /* libios_core.dylib in Frameworks */,
 				07B657E5190F3CCB002DAADE /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -239,7 +239,7 @@
 			isa = PBXGroup;
 			children = (
 				07DA47751B71ED0F006F27E6 /* libcore.dylib */,
-				07DA47771B71ED0F006F27E6 /* libcore.dylib */,
+				07DA47771B71ED0F006F27E6 /* libios_core.dylib */,
 				07DA47791B71ED0F006F27E6 /* core_iosTests.xctest */,
 			);
 			name = Products;
@@ -527,10 +527,10 @@
 			remoteRef = 07DA47741B71ED0F006F27E6 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		07DA47771B71ED0F006F27E6 /* libcore.dylib */ = {
+		07DA47771B71ED0F006F27E6 /* libios_core.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libcore.dylib;
+			path = libios_core.dylib;
 			remoteRef = 07DA47761B71ED0F006F27E6 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -786,7 +786,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_NAME = sphere;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/core $(WorkspaceDir)/../../../app/appseed/base $(WorkspaceDir)/../../../app/appseed/axis $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../../../app/base $(WorkspaceDir)/../../../app/axis $(WorkspaceDir)/../../../app/aura $(WorkspaceDir)/../../../app/atom";
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
@@ -827,7 +827,7 @@
 					"$(TARGET_BUILD_DIR)",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
-				PRODUCT_NAME = sphere;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/core $(WorkspaceDir)/../../../app/appseed/base $(WorkspaceDir)/../../../app/appseed/axis $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../../../app/base $(WorkspaceDir)/../../../app/axis $(WorkspaceDir)/../../../app/aura $(WorkspaceDir)/../../../app/atom";
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";

@@ -37,7 +37,7 @@
 		9A17F15E1D13C9BD00D7C8CF /* libbase.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A17F1551D13C99D00D7C8CF /* libbase.dylib */; };
 		9A1B496416A494A600875A94 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B496316A494A600875A94 /* framework.h */; };
 		9A1B496716A4A10100875A94 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B496616A4A10100875A94 /* framework.cpp */; };
-		9A6716451D152E980069A961 /* libbase.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A17F1571D13C99D00D7C8CF /* libbase.dylib */; };
+		9A6716451D152E980069A961 /* libios_base.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A17F1571D13C99D00D7C8CF /* libios_base.dylib */; };
 		9A6B40E417BBE291008391AD /* draw2d_quartz2d_bitmap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A6B40CC17BBE291008391AD /* draw2d_quartz2d_bitmap.cpp */; };
 		9A6B40E517BBE291008391AD /* draw2d_quartz2d_bitmap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A6B40CD17BBE291008391AD /* draw2d_quartz2d_bitmap.h */; };
 		9A6B40E617BBE291008391AD /* draw2d_quartz2d_brush.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A6B40CE17BBE291008391AD /* draw2d_quartz2d_brush.cpp */; };
@@ -168,7 +168,7 @@
 				9AC62E711D20BF7300A4AC0A /* CoreText.framework in Frameworks */,
 				9AC62E6F1D20BF5E00A4AC0A /* libaura.dylib in Frameworks */,
 				9AC62E6C1D20BF4B00A4AC0A /* CoreFoundation.framework in Frameworks */,
-				9A6716451D152E980069A961 /* libbase.dylib in Frameworks */,
+				9A6716451D152E980069A961 /* libios_base.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -198,7 +198,7 @@
 			isa = PBXGroup;
 			children = (
 				9A17F1551D13C99D00D7C8CF /* libbase.dylib */,
-				9A17F1571D13C99D00D7C8CF /* libbase.dylib */,
+				9A17F1571D13C99D00D7C8CF /* libios_base.dylib */,
 				9A17F1591D13C99D00D7C8CF /* base_iosTests.xctest */,
 			);
 			name = Products;
@@ -432,10 +432,10 @@
 			remoteRef = 9A17F1541D13C99D00D7C8CF /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A17F1571D13C99D00D7C8CF /* libbase.dylib */ = {
+		9A17F1571D13C99D00D7C8CF /* libios_base.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libbase.dylib;
+			path = libios_base.dylib;
 			remoteRef = 9A17F1561D13C99D00D7C8CF /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -667,7 +667,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_NAME = draw2d_quartz2d;
+				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/base $(WorkspaceDir)/../../../app/appseed/axis $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../.. $(WorkspaceDir)/../../base/include $(WorkspaceDir)/../../../app/base/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/base";
@@ -715,7 +715,7 @@
 					"$(TARGET_BUILD_DIR)",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
-				PRODUCT_NAME = draw2d_quartz2d;
+				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/base $(WorkspaceDir)/../../../app/appseed/axis $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../.. $(WorkspaceDir)/../../base/include $(WorkspaceDir)/../../../app/base/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/base";
@@ -729,7 +729,6 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = framework.h;
-				PRODUCT_NAME = draw2d_quartz2d;
 			};
 			name = Debug;
 		};
@@ -739,7 +738,6 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = framework.h;
-				PRODUCT_NAME = draw2d_quartz2d;
 			};
 			name = Release;
 		};

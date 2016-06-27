@@ -2028,7 +2028,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				PRODUCT_NAME = ios_axiswinpr;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -2037,7 +2036,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				PRODUCT_NAME = ios_axiswinpr;
 				SDKROOT = iphoneos;
 			};
 			name = Release;

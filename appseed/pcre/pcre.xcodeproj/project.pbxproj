@@ -346,7 +346,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INSTALL_PATH = "@executable_path/../Frameworks";
-				PRODUCT_NAME = ios_pcre;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = NO;
 			};
@@ -356,7 +355,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INSTALL_PATH = "@executable_path/../Frameworks";
-				PRODUCT_NAME = ios_pcre;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = NO;
 			};
@@ -403,7 +401,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_NAME = pcre;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../.. $(WorkspaceDir)/../../appseed cpp $(WorkspaceDir)/../../../app/include $(WorkspaceDir)/../../../app/appseed/aura";
@@ -447,7 +445,7 @@
 					"$(TARGET_BUILD_DIR)",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
-				PRODUCT_NAME = pcre;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../.. $(WorkspaceDir)/../../appseed cpp $(WorkspaceDir)/../../../app/include $(WorkspaceDir)/../../../app/appseed/aura";
