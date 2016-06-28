@@ -1104,7 +1104,7 @@
 		9A5DF96E1CEE2741008916A4 /* test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5DF96D1CEE2741008916A4 /* test.cpp */; };
 		9A6715D11D14F65F0069A961 /* draw2d_nanosvg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07C64B7A1C9A29A400F54872 /* draw2d_nanosvg.cpp */; };
 		9A6715D41D14F7970069A961 /* test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5DF96D1CEE2741008916A4 /* test.cpp */; };
-		9A74846E1D210C0600207EF6 /* libace_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A6716761D1553BF0069A961 /* libace_ios.a */; };
+		9A74846E1D210C0600207EF6 /* libios_ace.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A6716761D1553BF0069A961 /* libios_ace.a */; };
 		9A74846F1D210C1A00207EF6 /* libios_atomiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 076C9BF21B50ACB100CEA03E /* libios_atomiconv.dylib */; };
 		9A98A6081771D67E000AE16E /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07BD556C16210BD4008E31F0 /* AppKit.framework */; };
 		9A98A6091771D67E000AE16E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8897A514C24736006B4023 /* Foundation.framework */; };
@@ -1988,7 +1988,7 @@
 			files = (
 				9AC62DEA1D20B82D00A4AC0A /* UIKit.framework in Frameworks */,
 				9A74846F1D210C1A00207EF6 /* libios_atomiconv.dylib in Frameworks */,
-				9A74846E1D210C0600207EF6 /* libace_ios.a in Frameworks */,
+				9A74846E1D210C0600207EF6 /* libios_ace.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2872,7 +2872,7 @@
 			isa = PBXGroup;
 			children = (
 				9A6716741D1553BF0069A961 /* libace.a */,
-				9A6716761D1553BF0069A961 /* libace_ios.a */,
+				9A6716761D1553BF0069A961 /* libios_ace.a */,
 				9A6716781D1553BF0069A961 /* math_iosTests.xctest */,
 			);
 			name = Products;
@@ -4356,10 +4356,10 @@
 			remoteRef = 9A6716731D1553BF0069A961 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A6716761D1553BF0069A961 /* libace_ios.a */ = {
+		9A6716761D1553BF0069A961 /* libios_ace.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libace_ios.a;
+			path = libios_ace.a;
 			remoteRef = 9A6716751D1553BF0069A961 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -4664,6 +4664,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				RUN_CLANG_STATIC_ANALYZER = NO;
 				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
 				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app/appseed/base/base $(WorkspaceDir)/../../../app/base/include $(WorkspaceDir)/../../../app/appseed/base/base $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../../../app/base $(WorkspaceDir)/../../../app/appseed/base/framework aura/aura $(WorkspaceDir)/../../../app";
 				WARNING_CFLAGS = "";
@@ -4720,6 +4721,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				RUN_CLANG_STATIC_ANALYZER = NO;
 				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
 				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app/appseed/base/base $(WorkspaceDir)/../../../app/base/include $(WorkspaceDir)/../../../app/appseed/base/base $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../../../app/base $(WorkspaceDir)/../../../app/appseed/base/framework aura/aura $(WorkspaceDir)/../../../app";
 				VALIDATE_PRODUCT = YES;

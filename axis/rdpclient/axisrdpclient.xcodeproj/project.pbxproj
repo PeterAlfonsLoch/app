@@ -48,8 +48,8 @@
 		07FACBAB1B84BB660035DF9D /* cf_client.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07FACBA71B84BB660035DF9D /* cf_client.cpp */; };
 		07FACBAC1B84BB660035DF9D /* cf_client.h in Headers */ = {isa = PBXBuildFile; fileRef = 07FACBA81B84BB660035DF9D /* cf_client.h */; };
 		9A106A6D1D15E47D007288BA /* libios_aura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 074BD0D31B5F406300219723 /* libios_aura.dylib */; };
-		9A106A6E1D15E486007288BA /* libaxisclientchannels.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07DD70EA1B5F1039003A1CE1 /* libaxisclientchannels.dylib */; };
-		9A106A6F1D15E491007288BA /* libaxisfreerdp.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07DD70E11B5F1030003A1CE1 /* libaxisfreerdp.dylib */; };
+		9A106A6E1D15E486007288BA /* libios_axisclientchannels.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07DD70EA1B5F1039003A1CE1 /* libios_axisclientchannels.dylib */; };
+		9A106A6F1D15E491007288BA /* libios_axisfreerdp.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07DD70E11B5F1030003A1CE1 /* libios_axisfreerdp.dylib */; };
 		9A106A701D15E49B007288BA /* libios_axiswinpr.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07DD70BD1B5F1001003A1CE1 /* libios_axiswinpr.dylib */; };
 /* End PBXBuildFile section */
 
@@ -196,8 +196,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A106A701D15E49B007288BA /* libios_axiswinpr.dylib in Frameworks */,
-				9A106A6F1D15E491007288BA /* libaxisfreerdp.dylib in Frameworks */,
-				9A106A6E1D15E486007288BA /* libaxisclientchannels.dylib in Frameworks */,
+				9A106A6F1D15E491007288BA /* libios_axisfreerdp.dylib in Frameworks */,
+				9A106A6E1D15E486007288BA /* libios_axisclientchannels.dylib in Frameworks */,
 				9A106A6D1D15E47D007288BA /* libios_aura.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -290,7 +290,7 @@
 			isa = PBXGroup;
 			children = (
 				07DD70DF1B5F1030003A1CE1 /* libaxisfreerdp.dylib */,
-				07DD70E11B5F1030003A1CE1 /* libaxisfreerdp.dylib */,
+				07DD70E11B5F1030003A1CE1 /* libios_axisfreerdp.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -299,7 +299,7 @@
 			isa = PBXGroup;
 			children = (
 				07DD70E81B5F1039003A1CE1 /* libaxisclientchannels.dylib */,
-				07DD70EA1B5F1039003A1CE1 /* libaxisclientchannels.dylib */,
+				07DD70EA1B5F1039003A1CE1 /* libios_axisclientchannels.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -489,10 +489,9 @@
 			remoteRef = 07DD70DE1B5F1030003A1CE1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		07DD70E11B5F1030003A1CE1 /* libaxisfreerdp.dylib */ = {
+		07DD70E11B5F1030003A1CE1 /* libios_axisfreerdp.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			name = libaxisfreerdp.dylib;
 			path = libios_axisfreerdp.dylib;
 			remoteRef = 07DD70E01B5F1030003A1CE1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
@@ -504,10 +503,9 @@
 			remoteRef = 07DD70E71B5F1039003A1CE1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		07DD70EA1B5F1039003A1CE1 /* libaxisclientchannels.dylib */ = {
+		07DD70EA1B5F1039003A1CE1 /* libios_axisclientchannels.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			name = libaxisclientchannels.dylib;
 			path = libios_axisclientchannels.dylib;
 			remoteRef = 07DD70E91B5F1039003A1CE1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
@@ -645,6 +643,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../../../app/appseed/base $(WorkspaceDir)/../.. $(WorkspaceDir)/../../thirdparty/include $(WorkspaceDir)/../../../app/thirdparty/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/thirdparty/appseed $(WorkspaceDir)/../../../app/thirdparty/appseed/zlib client/Mac";
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};
@@ -686,6 +685,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../../../app/appseed/base $(WorkspaceDir)/../.. $(WorkspaceDir)/../../thirdparty/include $(WorkspaceDir)/../../../app/thirdparty/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/thirdparty/appseed $(WorkspaceDir)/../../../app/thirdparty/appseed/zlib client/Mac";
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};

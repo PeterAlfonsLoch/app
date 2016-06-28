@@ -2093,6 +2093,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "framework\nlibwinpr/utils/trio\nlibwinpr/utils\n$(WorkspaceDir)/../../../include\n$(WorkspaceDir)/../../../app/include/\n.\n$(WorkspaceDir)/../../../\n$(WorkspaceDir)/../../../app\n$(WorkspaceDir)/../../../app/appseed\n$(WorkspaceDir)/../../../app/appseed/axis\n$(WorkspaceDir)/../../../app/appseed/aura\n$(WorkspaceDir)/../../\n../../appseed\n../../\n../";
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};
@@ -2140,6 +2141,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "framework\nlibwinpr/utils/trio\nlibwinpr/utils\n$(WorkspaceDir)/../../../include\n$(WorkspaceDir)/../../../app/include/\n.\n$(WorkspaceDir)/../../../\n$(WorkspaceDir)/../../../app\n$(WorkspaceDir)/../../../app/appseed\n$(WorkspaceDir)/../../../app/appseed/axis\n$(WorkspaceDir)/../../../app/appseed/aura\n$(WorkspaceDir)/../../\n../../appseed\n../../\n../";
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};

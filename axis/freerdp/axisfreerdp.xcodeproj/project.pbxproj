@@ -464,8 +464,8 @@
 		9A8DBF651D20B04D005AF004 /* libaxiscrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8DBF641D20B04D005AF004 /* libaxiscrypto.dylib */; };
 		9A8DBF661D20B065005AF004 /* libwelsdec.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEFDCD41D15EF6E00F91F0B /* libwelsdec.dylib */; };
 		9A8DBF671D20B077005AF004 /* libwelsenc.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEFDCFE1D15EF6E00F91F0B /* libwelsenc.dylib */; };
-		9AEFDD2E1D15F5FB00F91F0B /* libwelsdec.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEFDCD61D15EF6E00F91F0B /* libwelsdec.dylib */; };
-		9AEFDD351D15F65E00F91F0B /* libwelsenc.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEFDD001D15EF6E00F91F0B /* libwelsenc.dylib */; };
+		9AEFDD2E1D15F5FB00F91F0B /* libios_welsdec.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEFDCD61D15EF6E00F91F0B /* libios_welsdec.dylib */; };
+		9AEFDD351D15F65E00F91F0B /* libios_welsenc.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEFDD001D15EF6E00F91F0B /* libios_welsenc.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -818,8 +818,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9AEFDD351D15F65E00F91F0B /* libwelsenc.dylib in Frameworks */,
-				9AEFDD2E1D15F5FB00F91F0B /* libwelsdec.dylib in Frameworks */,
+				9AEFDD351D15F65E00F91F0B /* libios_welsenc.dylib in Frameworks */,
+				9AEFDD2E1D15F5FB00F91F0B /* libios_welsdec.dylib in Frameworks */,
 				9A106A5D1D15E397007288BA /* libios_aura.dylib in Frameworks */,
 				07DD71121B5F1752003A1CE1 /* libios_axiswinpr.dylib in Frameworks */,
 			);
@@ -1216,7 +1216,7 @@
 			isa = PBXGroup;
 			children = (
 				9AEFDCD41D15EF6E00F91F0B /* libwelsdec.dylib */,
-				9AEFDCD61D15EF6E00F91F0B /* libwelsdec.dylib */,
+				9AEFDCD61D15EF6E00F91F0B /* libios_welsdec.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1225,7 +1225,7 @@
 			isa = PBXGroup;
 			children = (
 				9AEFDCFE1D15EF6E00F91F0B /* libwelsenc.dylib */,
-				9AEFDD001D15EF6E00F91F0B /* libwelsenc.dylib */,
+				9AEFDD001D15EF6E00F91F0B /* libios_welsenc.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1529,10 +1529,9 @@
 			remoteRef = 9AEFDCD31D15EF6E00F91F0B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9AEFDCD61D15EF6E00F91F0B /* libwelsdec.dylib */ = {
+		9AEFDCD61D15EF6E00F91F0B /* libios_welsdec.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			name = libwelsdec.dylib;
 			path = libios_welsdec.dylib;
 			remoteRef = 9AEFDCD51D15EF6E00F91F0B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
@@ -1544,10 +1543,9 @@
 			remoteRef = 9AEFDCFD1D15EF6E00F91F0B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9AEFDD001D15EF6E00F91F0B /* libwelsenc.dylib */ = {
+		9AEFDD001D15EF6E00F91F0B /* libios_welsenc.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			name = libwelsenc.dylib;
 			path = libios_welsenc.dylib;
 			remoteRef = 9AEFDCFF1D15EF6E00F91F0B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
@@ -1977,6 +1975,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "../../include . framework $(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../ $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../ ../../ ../";
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};
@@ -2028,6 +2027,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "../../include . framework $(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../ $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../ ../../ ../";
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};

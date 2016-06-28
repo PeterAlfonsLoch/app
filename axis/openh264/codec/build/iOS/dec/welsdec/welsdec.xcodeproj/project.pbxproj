@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		07574DEA1C45B5B70020E1F1 /* libwelscommon.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07574DDC1C45B58D0020E1F1 /* libwelscommon.dylib */; };
-		078DF88F1C52992E00E65274 /* libwelscommon.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07574DDE1C45B58D0020E1F1 /* libwelscommon.dylib */; };
+		078DF88F1C52992E00E65274 /* libios_welscommon.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07574DDE1C45B58D0020E1F1 /* libios_welscommon.dylib */; };
 		07B098391B8491EC002AC4F0 /* parse_mb_syn_cabac.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A3E814319D7A40600C19C1F /* parse_mb_syn_cabac.cpp */; };
 		07B0983A1B8491EC002AC4F0 /* pic_queue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CE4467818BC5EAA0017DF25 /* pic_queue.cpp */; };
 		07B0983B1B8491EC002AC4F0 /* welsDecoderExt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CE4468518BC5EAB0017DF25 /* welsDecoderExt.cpp */; };
@@ -194,7 +194,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A106A7A1D15E52E007288BA /* UIKit.framework in Frameworks */,
-				078DF88F1C52992E00E65274 /* libwelscommon.dylib in Frameworks */,
+				078DF88F1C52992E00E65274 /* libios_welscommon.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -214,7 +214,7 @@
 			isa = PBXGroup;
 			children = (
 				07574DDC1C45B58D0020E1F1 /* libwelscommon.dylib */,
-				07574DDE1C45B58D0020E1F1 /* libwelscommon.dylib */,
+				07574DDE1C45B58D0020E1F1 /* libios_welscommon.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -462,10 +462,9 @@
 			remoteRef = 07574DDB1C45B58D0020E1F1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		07574DDE1C45B58D0020E1F1 /* libwelscommon.dylib */ = {
+		07574DDE1C45B58D0020E1F1 /* libios_welscommon.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			name = libwelscommon.dylib;
 			path = libios_welscommon.dylib;
 			remoteRef = 07574DDD1C45B58D0020E1F1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
@@ -664,6 +663,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/core $(WorkspaceDir)/../../../app/appseed/base $(WorkspaceDir)/../../../app/appseed/axis $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../.. $(WorkspaceDir)/../../base/include $(WorkspaceDir)/../../../app/base/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/base";
 				WorkspaceDir = "$(SRCROOT)/../../../../../../../../nodeapp/seed/metaseed";
 			};
@@ -700,6 +700,7 @@
 				MACH_O_TYPE = mh_dylib;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/core $(WorkspaceDir)/../../../app/appseed/base $(WorkspaceDir)/../../../app/appseed/axis $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../.. $(WorkspaceDir)/../../base/include $(WorkspaceDir)/../../../app/base/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/base";
 				VALIDATE_PRODUCT = YES;
 				WorkspaceDir = "$(SRCROOT)/../../../../../../../../nodeapp/seed/metaseed";
