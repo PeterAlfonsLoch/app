@@ -1986,9 +1986,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9AC62DEA1D20B82D00A4AC0A /* UIKit.framework in Frameworks */,
 				9A74846F1D210C1A00207EF6 /* libios_atomiconv.dylib in Frameworks */,
 				9A74846E1D210C0600207EF6 /* libace_ios.a in Frameworks */,
-				9AC62DEA1D20B82D00A4AC0A /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,11 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		07B65767190F3CA2002DAADE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B65766190F3CA2002DAADE /* Foundation.framework */; };
 		07B65775190F3CA2002DAADE /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B65774190F3CA2002DAADE /* XCTest.framework */; };
 		07B65776190F3CA2002DAADE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B65766190F3CA2002DAADE /* Foundation.framework */; };
 		07B65778190F3CA2002DAADE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B65777190F3CA2002DAADE /* UIKit.framework */; };
-		07B6577B190F3CA2002DAADE /* libace_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B65764190F3CA2002DAADE /* libace_ios.a */; };
+		07B6577B190F3CA2002DAADE /* libios_ace.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B65764190F3CA2002DAADE /* libios_ace.a */; };
 		07B65781190F3CA2002DAADE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 07B6577F190F3CA2002DAADE /* InfoPlist.strings */; };
 		07B65783190F3CA2002DAADE /* math_iosTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B65782190F3CA2002DAADE /* math_iosTests.m */; };
 		9A17F1641D13CC1000D7C8CF /* ace_new.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A17F1631D13CC1000D7C8CF /* ace_new.cpp */; };
@@ -28,27 +27,6 @@
 			remoteGlobalIDString = 07B65763190F3CA2002DAADE;
 			remoteInfo = math_ios;
 		};
-		9A2EA37219A62C9E004DAFFC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A2EA36C19A62C9E004DAFFC /* axis.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9A98A6151771D67E000AE16E;
-			remoteInfo = base;
-		};
-		9A2EA37419A62C9E004DAFFC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A2EA36C19A62C9E004DAFFC /* axis.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9AE24D341904CEFE001AEFFB;
-			remoteInfo = base_ios;
-		};
-		9A4E847A1D1FD41D008A419B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A2EA36C19A62C9E004DAFFC /* axis.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9AE24D431904CEFE001AEFFB;
-			remoteInfo = axis_iosTests;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -64,7 +42,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		07B65764190F3CA2002DAADE /* libace_ios.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libace_ios.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		07B65764190F3CA2002DAADE /* libios_ace.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libios_ace.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		07B65766190F3CA2002DAADE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		07B65773190F3CA2002DAADE /* math_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = math_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		07B65774190F3CA2002DAADE /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -73,7 +51,6 @@
 		07B65780190F3CA2002DAADE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		07B65782190F3CA2002DAADE /* math_iosTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = math_iosTests.m; sourceTree = "<group>"; };
 		9A17F1631D13CC1000D7C8CF /* ace_new.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ace_new.cpp; sourceTree = "<group>"; };
-		9A2EA36C19A62C9E004DAFFC /* axis.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axis.xcodeproj; path = ../axis/axis.xcodeproj; sourceTree = "<group>"; };
 		9A574B9816AAB906000CC4EF /* libace.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libace.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A574D2B16AAB99E000CC4EF /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
 		9A574D2C16AAB99E000CC4EF /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
@@ -84,7 +61,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07B65767190F3CA2002DAADE /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,7 +70,7 @@
 			files = (
 				07B65775190F3CA2002DAADE /* XCTest.framework in Frameworks */,
 				07B65778190F3CA2002DAADE /* UIKit.framework in Frameworks */,
-				07B6577B190F3CA2002DAADE /* libace_ios.a in Frameworks */,
+				07B6577B190F3CA2002DAADE /* libios_ace.a in Frameworks */,
 				07B65776190F3CA2002DAADE /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -137,20 +113,9 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		9A2EA36D19A62C9E004DAFFC /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				9A2EA37319A62C9E004DAFFC /* libaxis.dylib */,
-				9A2EA37519A62C9E004DAFFC /* libios_axis.dylib */,
-				9A4E847B1D1FD41D008A419B /* axis_iosTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		9A574B8D16AAB906000CC4EF = {
 			isa = PBXGroup;
 			children = (
-				9A2EA36C19A62C9E004DAFFC /* axis.xcodeproj */,
 				9ACABEAC17BD04FF004C3F85 /* ace */,
 				07B6577C190F3CA2002DAADE /* math_iosTests */,
 				07B65765190F3CA2002DAADE /* Frameworks */,
@@ -162,7 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				9A574B9816AAB906000CC4EF /* libace.a */,
-				07B65764190F3CA2002DAADE /* libace_ios.a */,
+				07B65764190F3CA2002DAADE /* libios_ace.a */,
 				07B65773190F3CA2002DAADE /* math_iosTests.xctest */,
 			);
 			name = Products;
@@ -192,9 +157,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		07B65763190F3CA2002DAADE /* ace_ios */ = {
+		07B65763190F3CA2002DAADE /* ios_ace */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 07B65788190F3CA2002DAADE /* Build configuration list for PBXNativeTarget "ace_ios" */;
+			buildConfigurationList = 07B65788190F3CA2002DAADE /* Build configuration list for PBXNativeTarget "ios_ace" */;
 			buildPhases = (
 				07B65760190F3CA2002DAADE /* Sources */,
 				07B65761190F3CA2002DAADE /* Frameworks */,
@@ -204,9 +169,9 @@
 			);
 			dependencies = (
 			);
-			name = ace_ios;
+			name = ios_ace;
 			productName = math_ios;
-			productReference = 07B65764190F3CA2002DAADE /* libace_ios.a */;
+			productReference = 07B65764190F3CA2002DAADE /* libios_ace.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		07B65772190F3CA2002DAADE /* math_iosTests */ = {
@@ -268,44 +233,14 @@
 			mainGroup = 9A574B8D16AAB906000CC4EF;
 			productRefGroup = 9A574B9916AAB906000CC4EF /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 9A2EA36D19A62C9E004DAFFC /* Products */;
-					ProjectRef = 9A2EA36C19A62C9E004DAFFC /* axis.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				9A574B9716AAB906000CC4EF /* ace */,
-				07B65763190F3CA2002DAADE /* ace_ios */,
+				07B65763190F3CA2002DAADE /* ios_ace */,
 				07B65772190F3CA2002DAADE /* math_iosTests */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		9A2EA37319A62C9E004DAFFC /* libaxis.dylib */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.dylib";
-			path = libaxis.dylib;
-			remoteRef = 9A2EA37219A62C9E004DAFFC /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		9A2EA37519A62C9E004DAFFC /* libios_axis.dylib */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libios_axis.dylib;
-			remoteRef = 9A2EA37419A62C9E004DAFFC /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		9A4E847B1D1FD41D008A419B /* axis_iosTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = axis_iosTests.xctest;
-			remoteRef = 9A4E847A1D1FD41D008A419B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		07B65771190F3CA2002DAADE /* Resources */ = {
@@ -349,7 +284,7 @@
 /* Begin PBXTargetDependency section */
 		07B6577A190F3CA2002DAADE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 07B65763190F3CA2002DAADE /* ace_ios */;
+			target = 07B65763190F3CA2002DAADE /* ios_ace */;
 			targetProxy = 07B65779190F3CA2002DAADE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -369,50 +304,12 @@
 		07B65784190F3CA2002DAADE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
 			};
 			name = Debug;
 		};
 		07B65785190F3CA2002DAADE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				ENABLE_NS_ASSERTIONS = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
@@ -530,6 +427,7 @@
 				MACH_O_TYPE = staticlib;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/core $(WorkspaceDir)/../../../app/appseed/base $(WorkspaceDir)/../.. $(WorkspaceDir)/../../base/include $(WorkspaceDir)/../../../app/base/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/base";
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
@@ -570,6 +468,7 @@
 				);
 				MACH_O_TYPE = staticlib;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/core $(WorkspaceDir)/../../../app/appseed/base $(WorkspaceDir)/../.. $(WorkspaceDir)/../../base/include $(WorkspaceDir)/../../../app/base/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/base";
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
@@ -580,7 +479,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				PRODUCT_NAME = ace;
 			};
 			name = Debug;
 		};
@@ -588,14 +486,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				PRODUCT_NAME = ace;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		07B65788190F3CA2002DAADE /* Build configuration list for PBXNativeTarget "ace_ios" */ = {
+		07B65788190F3CA2002DAADE /* Build configuration list for PBXNativeTarget "ios_ace" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				07B65784190F3CA2002DAADE /* Debug */,

@@ -63,13 +63,13 @@
 		9A6B40FA17BBE291008391AD /* draw2d_quartz2d_region.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A6B40E217BBE291008391AD /* draw2d_quartz2d_region.h */; };
 		9A6B40FB17BBE291008391AD /* draw2d_quartz2d.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A6B40E317BBE291008391AD /* draw2d_quartz2d.h */; };
 		9A8997BD177D0E7F00C7761E /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8997BC177D0E7D00C7761E /* Carbon.framework */; };
+		9A986CED1D226640001F4C04 /* libios_axis.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A986CEC1D226640001F4C04 /* libios_axis.dylib */; };
+		9A986CEF1D226650001F4C04 /* libios_aura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A986CEE1D226650001F4C04 /* libios_aura.dylib */; };
 		9AA1007F19971AF5004F84BD /* cgcontextcreate.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AA1007E19971AF5004F84BD /* cgcontextcreate.h */; };
 		9AA1B44A176361950019E812 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AA1B449176361950019E812 /* Cocoa.framework */; };
 		9AC62E6C1D20BF4B00A4AC0A /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC62E6B1D20BF4B00A4AC0A /* CoreFoundation.framework */; };
-		9AC62E6F1D20BF5E00A4AC0A /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC62E6E1D20BF5E00A4AC0A /* libaura.dylib */; };
 		9AC62E711D20BF7300A4AC0A /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC62E701D20BF7300A4AC0A /* CoreText.framework */; };
 		9AC62E731D20BF8600A4AC0A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC62E721D20BF8600A4AC0A /* CoreGraphics.framework */; };
-		9AC62E751D20BF9B00A4AC0A /* libaxis.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC62E741D20BF9B00A4AC0A /* libaxis.dylib */; };
 		9ACE46D41D1FE40A00A1E0AD /* libaxis.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ACE46D31D1FE40A00A1E0AD /* libaxis.dylib */; };
 		9ACE46D71D1FE41100A1E0AD /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ACE46D61D1FE41100A1E0AD /* libaura.dylib */; };
 		9AE24E231904CF99001AEFFB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9AE24E211904CF99001AEFFB /* InfoPlist.strings */; };
@@ -143,6 +143,8 @@
 		9A6B40E217BBE291008391AD /* draw2d_quartz2d_region.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = draw2d_quartz2d_region.h; sourceTree = "<group>"; };
 		9A6B40E317BBE291008391AD /* draw2d_quartz2d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = draw2d_quartz2d.h; sourceTree = "<group>"; };
 		9A8997BC177D0E7D00C7761E /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
+		9A986CEC1D226640001F4C04 /* libios_axis.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_axis.dylib; path = "../axis/build/Debug-iphoneos/libios_axis.dylib"; sourceTree = "<group>"; };
+		9A986CEE1D226650001F4C04 /* libios_aura.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_aura.dylib; path = "../aura/build/Debug-iphoneos/libios_aura.dylib"; sourceTree = "<group>"; };
 		9AA1007E19971AF5004F84BD /* cgcontextcreate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cgcontextcreate.h; sourceTree = "<group>"; };
 		9AA1B449176361950019E812 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		9AC62E6B1D20BF4B00A4AC0A /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/CoreFoundation.framework; sourceTree = DEVELOPER_DIR; };
@@ -163,11 +165,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9AC62E751D20BF9B00A4AC0A /* libaxis.dylib in Frameworks */,
 				9AC62E731D20BF8600A4AC0A /* CoreGraphics.framework in Frameworks */,
 				9AC62E711D20BF7300A4AC0A /* CoreText.framework in Frameworks */,
-				9AC62E6F1D20BF5E00A4AC0A /* libaura.dylib in Frameworks */,
 				9AC62E6C1D20BF4B00A4AC0A /* CoreFoundation.framework in Frameworks */,
+				9A986CEF1D226650001F4C04 /* libios_aura.dylib in Frameworks */,
+				9A986CED1D226640001F4C04 /* libios_axis.dylib in Frameworks */,
 				9A6716451D152E980069A961 /* libios_base.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -224,16 +226,18 @@
 		A1CFD76D154F5EA7007447E2 = {
 			isa = PBXGroup;
 			children = (
-				9AC62E741D20BF9B00A4AC0A /* libaxis.dylib */,
+				9A17F14D1D13C99C00D7C8CF /* base.xcodeproj */,
 				9AC62E721D20BF8600A4AC0A /* CoreGraphics.framework */,
 				9AC62E701D20BF7300A4AC0A /* CoreText.framework */,
-				9AC62E6E1D20BF5E00A4AC0A /* libaura.dylib */,
 				9AC62E6B1D20BF4B00A4AC0A /* CoreFoundation.framework */,
-				9ACE46D61D1FE41100A1E0AD /* libaura.dylib */,
-				9ACE46D31D1FE40A00A1E0AD /* libaxis.dylib */,
-				9A17F14D1D13C99C00D7C8CF /* base.xcodeproj */,
 				9A8997BC177D0E7D00C7761E /* Carbon.framework */,
 				9AA1B449176361950019E812 /* Cocoa.framework */,
+				9A986CEE1D226650001F4C04 /* libios_aura.dylib */,
+				9A986CEC1D226640001F4C04 /* libios_axis.dylib */,
+				9AC62E741D20BF9B00A4AC0A /* libaxis.dylib */,
+				9AC62E6E1D20BF5E00A4AC0A /* libaura.dylib */,
+				9ACE46D61D1FE41100A1E0AD /* libaura.dylib */,
+				9ACE46D31D1FE40A00A1E0AD /* libaxis.dylib */,
 				A1CFD896154FB715007447E2 /* draw2d_quartz2d */,
 				9AE24E1E1904CF99001AEFFB /* draw2d_quartz2d_iosTests */,
 				A1CFD779154F5EAA007447E2 /* Products */,

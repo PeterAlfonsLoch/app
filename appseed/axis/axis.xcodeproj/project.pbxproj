@@ -99,7 +99,6 @@
 		077A02141B4D5979001C85FF /* libios_axisfreetype.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07108DC51B4C999700A28F80 /* libios_axisfreetype.dylib */; };
 		077A02181B4D5A01001C85FF /* libios_axisopenssl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A9F2D7519A64298007AE2C7 /* libios_axisopenssl.dylib */; };
 		077A02191B4D5A08001C85FF /* libios_axiscrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0747A63D1B26350C00E85AC7 /* libios_axiscrypto.dylib */; };
-		077A021D1B4D5A37001C85FF /* libaurasqlite.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0747A7061B26387E00E85AC7 /* libaurasqlite.dylib */; };
 		077C2A1D190F144000A1F6B0 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 077C2A19190F143F00A1F6B0 /* framework.cpp */; };
 		077C2A1E190F144000A1F6B0 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 077C2A1A190F144000A1F6B0 /* framework.h */; };
 		079AE0851886488800635C39 /* http_signal.h in Headers */ = {isa = PBXBuildFile; fileRef = 079AE0821886488800635C39 /* http_signal.h */; };
@@ -341,6 +340,7 @@
 		9A19A12D19C6933E0018DF7D /* sockets_ssl_server_context_map.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A12919C6933E0018DF7D /* sockets_ssl_server_context_map.h */; };
 		9A19A12F19C6933E0018DF7D /* sockets_ssl_server_context.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A12B19C6933E0018DF7D /* sockets_ssl_server_context.h */; };
 		9A8A91EF1D20CEAB00C96CA4 /* libios_axisidn.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 077A00CA1B4D50A0001C85FF /* libios_axisidn.dylib */; };
+		9A986CEA1D2265E2001F4C04 /* libios_aurasqlite.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07108DBC1B4C999700A28F80 /* libios_aurasqlite.dylib */; };
 		9A98A6081771D67E000AE16E /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07BD556C16210BD4008E31F0 /* AppKit.framework */; };
 		9A98A6091771D67E000AE16E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8897A514C24736006B4023 /* Foundation.framework */; };
 		9A98A60A1771D67E000AE16E /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE931714155F1599005F90F6 /* Carbon.framework */; };
@@ -1051,13 +1051,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A8A91EF1D20CEAB00C96CA4 /* libios_axisidn.dylib in Frameworks */,
 				9AC62E661D20BE4F00A4AC0A /* UIKit.framework in Frameworks */,
+				9A986CEA1D2265E2001F4C04 /* libios_aurasqlite.dylib in Frameworks */,
+				9A8A91EF1D20CEAB00C96CA4 /* libios_axisidn.dylib in Frameworks */,
 				9AC62E621D20BDCE00A4AC0A /* libios_axisfreeimage.dylib in Frameworks */,
 				9AC62E611D20BDA800A4AC0A /* libios_axisbzip2.dylib in Frameworks */,
 				9AC62E601D20BD9B00A4AC0A /* libios_axiszlib.dylib in Frameworks */,
 				07703C3F1B6FE06B009026EA /* libios_aura.dylib in Frameworks */,
-				077A021D1B4D5A37001C85FF /* libaurasqlite.dylib in Frameworks */,
 				077A02191B4D5A08001C85FF /* libios_axiscrypto.dylib in Frameworks */,
 				077A02181B4D5A01001C85FF /* libios_axisopenssl.dylib in Frameworks */,
 				077A02141B4D5979001C85FF /* libios_axisfreetype.dylib in Frameworks */,

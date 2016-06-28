@@ -81,10 +81,10 @@
 		4CE4472E18BC605C0017DF25 /* welsEncoderExt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CE4470618BC605C0017DF25 /* welsEncoderExt.cpp */; };
 		9A106A761D15E512007288BA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CE4431418B6FFA00017DF25 /* Foundation.framework */; };
 		9A106A781D15E51F007288BA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A106A771D15E51F007288BA /* UIKit.framework */; };
+		9A986D141D226B1E001F4C04 /* libios_welscommon.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A986D131D226B1E001F4C04 /* libios_welscommon.dylib */; };
 		9AED665019469FC1009A3567 /* welsCodecTrace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AED664C19469FC1009A3567 /* welsCodecTrace.cpp */; };
 		9AED66661946A2B3009A3567 /* utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AED66651946A2B3009A3567 /* utils.cpp */; };
-		9AEFDD361D15F68F00F91F0B /* libwelsprocessing.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07574DE71C45B59F0020E1F1 /* libwelsprocessing.dylib */; };
-		9AEFDD381D15F69800F91F0B /* libwelscommon.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEFDD371D15F69800F91F0B /* libwelscommon.dylib */; };
+		9AEFDD361D15F68F00F91F0B /* libios_welsprocessing.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07574DE71C45B59F0020E1F1 /* libios_welsprocessing.dylib */; };
 		F7E9994519EBD1E9009B1021 /* svc_set_mb_syn_cabac.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7E9994419EBD1E9009B1021 /* svc_set_mb_syn_cabac.cpp */; };
 		F7E9994919EBD1F8009B1021 /* set_mb_syn_cabac.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7E9994819EBD1F8009B1021 /* set_mb_syn_cabac.cpp */; };
 /* End PBXBuildFile section */
@@ -235,6 +235,7 @@
 		6CA38DA41991D31A003EAAE0 /* svc_motion_estimation_aarch64_neon.S */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; name = svc_motion_estimation_aarch64_neon.S; path = arm64/svc_motion_estimation_aarch64_neon.S; sourceTree = "<group>"; };
 		98FE4C1A1AB0200C0031E2B4 /* golomb_common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = golomb_common.h; path = ../../../common/inc/golomb_common.h; sourceTree = "<group>"; };
 		9A106A771D15E51F007288BA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		9A986D131D226B1E001F4C04 /* libios_welscommon.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_welscommon.dylib; path = "../../common/build/Debug-iphoneos/libios_welscommon.dylib"; sourceTree = "<group>"; };
 		9AED664819469FAF009A3567 /* welsCodecTrace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = welsCodecTrace.h; path = ../../../common/inc/welsCodecTrace.h; sourceTree = "<group>"; };
 		9AED664C19469FC1009A3567 /* welsCodecTrace.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = welsCodecTrace.cpp; path = ../../../common/src/welsCodecTrace.cpp; sourceTree = "<group>"; };
 		9AED66651946A2B3009A3567 /* utils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = utils.cpp; path = ../../../common/src/utils.cpp; sourceTree = "<group>"; };
@@ -253,8 +254,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9AEFDD381D15F69800F91F0B /* libwelscommon.dylib in Frameworks */,
-				9AEFDD361D15F68F00F91F0B /* libwelsprocessing.dylib in Frameworks */,
+				9A986D141D226B1E001F4C04 /* libios_welscommon.dylib in Frameworks */,
+				9AEFDD361D15F68F00F91F0B /* libios_welsprocessing.dylib in Frameworks */,
 				9A106A781D15E51F007288BA /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -276,7 +277,7 @@
 			isa = PBXGroup;
 			children = (
 				07574DE51C45B59F0020E1F1 /* libwelsprocessing.dylib */,
-				07574DE71C45B59F0020E1F1 /* libwelsprocessing.dylib */,
+				07574DE71C45B59F0020E1F1 /* libios_welsprocessing.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -329,6 +330,7 @@
 		4CE4431318B6FFA00017DF25 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9A986D131D226B1E001F4C04 /* libios_welscommon.dylib */,
 				9AEFDD371D15F69800F91F0B /* libwelscommon.dylib */,
 				9A106A771D15E51F007288BA /* UIKit.framework */,
 				072E43381CA895E20096952D /* libwelscommon.dylib */,
@@ -560,10 +562,9 @@
 			remoteRef = 07574DE41C45B59F0020E1F1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		07574DE71C45B59F0020E1F1 /* libwelsprocessing.dylib */ = {
+		07574DE71C45B59F0020E1F1 /* libios_welsprocessing.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			name = libwelsprocessing.dylib;
 			path = libios_welsprocessing.dylib;
 			remoteRef = 07574DE61C45B59F0020E1F1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;

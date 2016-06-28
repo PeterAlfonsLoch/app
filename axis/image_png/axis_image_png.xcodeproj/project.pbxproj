@@ -7,12 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		077A00D91B4D5164001C85FF /* libaxisfreeimage.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07D6A73C1B4CADC4004FEBC2 /* libaxisfreeimage.dylib */; };
+		077A00D91B4D5164001C85FF /* libios_axisfreeimage.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07D6A73C1B4CADC4004FEBC2 /* libios_axisfreeimage.dylib */; };
 		077C88F41B51A06D00AB2A41 /* libaxisfreeimage.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07A371651B25DE2A00E4F888 /* libaxisfreeimage.dylib */; };
 		07A371B11B25E34E00E4F888 /* PluginPNG.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A371891B25E34D00E4F888 /* PluginPNG.cpp */; };
 		07B6577B190F3CA2002DAADE /* libaxis_image_png.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B65764190F3CA2002DAADE /* libaxis_image_png.dylib */; };
 		07D6A8151B4CB87C004FEBC2 /* PluginPNG.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A371891B25E34D00E4F888 /* PluginPNG.cpp */; };
 		9A92CA0E1D205B370069D173 /* libaxispng.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4E876F1D1FDACA008A419B /* libaxispng.dylib */; };
+		9A986D021D226812001F4C04 /* libios_axispng.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A986D011D226812001F4C04 /* libios_axispng.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +101,7 @@
 		07B65773190F3CA2002DAADE /* axispng_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = axispng_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A4E87681D1FDACA008A419B /* axispng.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axispng.xcodeproj; path = ../png/axispng.xcodeproj; sourceTree = "<group>"; };
 		9A574B9816AAB906000CC4EF /* libaxis_image_png.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libaxis_image_png.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A986D011D226812001F4C04 /* libios_axispng.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_axispng.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/basic-ios-bmuegusfgbffmoeixicbxhlnbzop/Build/Products/Debug-iphonesimulator/libios_axispng.dylib"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,7 +109,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				077A00D91B4D5164001C85FF /* libaxisfreeimage.dylib in Frameworks */,
+				9A986D021D226812001F4C04 /* libios_axispng.dylib in Frameworks */,
+				077A00D91B4D5164001C85FF /* libios_axisfreeimage.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,7 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				07A371651B25DE2A00E4F888 /* libaxisfreeimage.dylib */,
-				07D6A73C1B4CADC4004FEBC2 /* libaxisfreeimage.dylib */,
+				07D6A73C1B4CADC4004FEBC2 /* libios_axisfreeimage.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -169,6 +172,7 @@
 		9A574B8D16AAB906000CC4EF = {
 			isa = PBXGroup;
 			children = (
+				9A986D011D226812001F4C04 /* libios_axispng.dylib */,
 				07A371601B25DE2A00E4F888 /* axisfreeimage.xcodeproj */,
 				9A4E87681D1FDACA008A419B /* axispng.xcodeproj */,
 				07A371871B25E34D00E4F888 /* Source */,
@@ -305,10 +309,9 @@
 			remoteRef = 07A371641B25DE2A00E4F888 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		07D6A73C1B4CADC4004FEBC2 /* libaxisfreeimage.dylib */ = {
+		07D6A73C1B4CADC4004FEBC2 /* libios_axisfreeimage.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			name = libaxisfreeimage.dylib;
 			path = libios_axisfreeimage.dylib;
 			remoteRef = 07D6A73B1B4CADC4004FEBC2 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;

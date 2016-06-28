@@ -77,6 +77,13 @@
 			remoteGlobalIDString = 07108D041B4C97EF00A28F80;
 			remoteInfo = axiszlib_ios;
 		};
+		9A986DA11D226E37001F4C04 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 07A371EC1B25EC6000E4F888 /* axiszlib.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 07108CE31B4C97EF00A28F80;
+			remoteInfo = ios_axiszlib;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -234,6 +241,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				9A986DA21D226E37001F4C04 /* PBXTargetDependency */,
 			);
 			name = ios_axispng;
 			productName = math_ios;
@@ -407,6 +415,11 @@
 			isa = PBXTargetDependency;
 			target = 07B65763190F3CA2002DAADE /* ios_axispng */;
 			targetProxy = 07B65779190F3CA2002DAADE /* PBXContainerItemProxy */;
+		};
+		9A986DA21D226E37001F4C04 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ios_axiszlib;
+			targetProxy = 9A986DA11D226E37001F4C04 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

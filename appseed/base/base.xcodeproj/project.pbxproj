@@ -153,7 +153,8 @@
 		07EDC59F1B4F435600AF8928 /* ios_interaction_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 07EDC59E1B4F435600AF8928 /* ios_interaction_impl.h */; };
 		07EDC5A11B4F611B00AF8928 /* ios_window_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 07EDC5A01B4F611B00AF8928 /* ios_window_impl.h */; };
 		07EDC5B61B4FE64F00AF8928 /* main_mm.mm in Sources */ = {isa = PBXBuildFile; fileRef = 07EDC5B51B4FE64F00AF8928 /* main_mm.mm */; };
-		9A6716471D1549600069A961 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A6716461D15495F0069A961 /* libaura.dylib */; };
+		9A986CF31D22666D001F4C04 /* libios_aura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A986CF21D22666D001F4C04 /* libios_aura.dylib */; };
+		9A986DA01D226E06001F4C04 /* libios_axiswinpr.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A986D9F1D226E06001F4C04 /* libios_axiswinpr.dylib */; };
 		9A98A6081771D67E000AE16E /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07BD556C16210BD4008E31F0 /* AppKit.framework */; };
 		9A98A6091771D67E000AE16E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8897A514C24736006B4023 /* Foundation.framework */; };
 		9A98A60A1771D67E000AE16E /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE931714155F1599005F90F6 /* Carbon.framework */; };
@@ -430,6 +431,8 @@
 		07EDC5B51B4FE64F00AF8928 /* main_mm.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = main_mm.mm; sourceTree = "<group>"; };
 		9A6716461D15495F0069A961 /* libaura.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaura.dylib; path = "../../../../macos/app/appseed/aura/build/Debug-iphoneos/libaura.dylib"; sourceTree = "<group>"; };
 		9A8897A514C24736006B4023 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = ../../../../System/Library/Frameworks/Foundation.framework; sourceTree = "<group>"; };
+		9A986CF21D22666D001F4C04 /* libios_aura.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_aura.dylib; path = "../aura/build/Debug-iphoneos/libios_aura.dylib"; sourceTree = "<group>"; };
+		9A986D9F1D226E06001F4C04 /* libios_axiswinpr.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_axiswinpr.dylib; path = "../../../../macos/app/axis/winpr/build/Debug-iphoneos/libios_axiswinpr.dylib"; sourceTree = "<group>"; };
 		9A98A6151771D67E000AE16E /* libbase.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libbase.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9ACE46C21D1FE1D700A1E0AD /* macos_c.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = macos_c.h; sourceTree = "<group>"; };
 		9ACE46C51D1FE24C00A1E0AD /* macos_windowing_c.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = macos_windowing_c.h; sourceTree = "<group>"; };
@@ -472,11 +475,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A6716471D1549600069A961 /* libaura.dylib in Frameworks */,
-				077A013E1B4D53D8001C85FF /* libios_axis.dylib in Frameworks */,
 				077A013C1B4D53B4001C85FF /* CoreGraphics.framework in Frameworks */,
 				077A013A1B4D53AC001C85FF /* CoreText.framework in Frameworks */,
 				077A01381B4D539E001C85FF /* UIKit.framework in Frameworks */,
+				9A986DA01D226E06001F4C04 /* libios_axiswinpr.dylib in Frameworks */,
+				9A986CF31D22666D001F4C04 /* libios_aura.dylib in Frameworks */,
+				077A013E1B4D53D8001C85FF /* libios_axis.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -876,6 +880,8 @@
 		9AE24D351904CEFE001AEFFB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9A986D9F1D226E06001F4C04 /* libios_axiswinpr.dylib */,
+				9A986CF21D22666D001F4C04 /* libios_aura.dylib */,
 				9A6716461D15495F0069A961 /* libaura.dylib */,
 				0793EA121CA40555001374D8 /* libaxiswinpr.dylib */,
 				0793EA101CA4052D001374D8 /* libaura.dylib */,
@@ -908,13 +914,13 @@
 		CEA754B914411F2B007E04DE = {
 			isa = PBXGroup;
 			children = (
-				071C19B51CA8A36600AD32F3 /* axiswinpr.xcodeproj */,
-				07A3711C1B25D49F00E4F888 /* axis.xcodeproj */,
 				07BD556C16210BD4008E31F0 /* AppKit.framework */,
 				CE931714155F1599005F90F6 /* Carbon.framework */,
 				9A8897A514C24736006B4023 /* Foundation.framework */,
 				073EDDE1164E968100818801 /* Security.framework */,
 				073EDDE4164E96DA00818801 /* SecurityFoundation.framework */,
+				071C19B51CA8A36600AD32F3 /* axiswinpr.xcodeproj */,
+				07A3711C1B25D49F00E4F888 /* axis.xcodeproj */,
 				07A36D231B25D18E00E4F888 /* base */,
 				9AEEAAEB19C4BD0900866C9E /* axis_iosTests */,
 				9AE24D351904CEFE001AEFFB /* Frameworks */,

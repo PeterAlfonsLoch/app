@@ -126,8 +126,10 @@
 		9A19A3B719C6F5950018DF7D /* wndfrm.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A39219C6F5940018DF7D /* wndfrm.h */; };
 		9A19A3B919C6F5960018DF7D /* wndfrm_interaction.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A39419C6F5940018DF7D /* wndfrm_interaction.h */; };
 		9A19A3BB19C6F5960018DF7D /* wndfrm_wndfrm.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A39619C6F5940018DF7D /* wndfrm_wndfrm.h */; };
-		9A5CD90D1D20D0B60093150A /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A5CD90C1D20D0B60093150A /* libaura.dylib */; };
 		9A5CD9101D20D0C70093150A /* libios_axis.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A5CD90F1D20D0C70093150A /* libios_axis.dylib */; };
+		9A986CF61D2266AC001F4C04 /* libios_aura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A986CF51D2266AC001F4C04 /* libios_aura.dylib */; };
+		9A986EA21D22718C001F4C04 /* libios_pcre.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4E85CC1D1FD49A008A419B /* libios_pcre.dylib */; };
+		9A986EA41D2271A7001F4C04 /* libios_auracharguess.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4E85671D1FD49A008A419B /* libios_auracharguess.dylib */; };
 		9AC13CCB1D20CF400026B367 /* libios_base.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4E85261D1FD49A008A419B /* libios_base.dylib */; };
 		9AC13CCC1D20CF7B0026B367 /* _core.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 078451621B264DF400C91416 /* _core.cpp */; };
 		9AC13CCD1D20CF7B0026B367 /* _plugin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 078451641B264E0F00C91416 /* _plugin.cpp */; };
@@ -250,18 +252,6 @@
 			remoteInfo = core_ios;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		9AE24DDA1904CF6E001AEFFB /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "include/$(PRODUCT_NAME)";
-			dstSubfolderSpec = 16;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0713FB06183177EF00F4AEDC /* filemanager_data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filemanager_data.h; sourceTree = "<group>"; };
@@ -578,6 +568,7 @@
 		9A5CD90C1D20D0B60093150A /* libaura.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaura.dylib; path = "../aura/build/Debug-iphoneos/libaura.dylib"; sourceTree = "<group>"; };
 		9A5CD90F1D20D0C70093150A /* libios_axis.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_axis.dylib; path = "../axis/build/Debug-iphoneos/libios_axis.dylib"; sourceTree = "<group>"; };
 		9A67165E1D1550460069A961 /* pcre.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = pcre.xcodeproj; path = ../pcre/pcre.xcodeproj; sourceTree = "<group>"; };
+		9A986CF51D2266AC001F4C04 /* libios_aura.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_aura.dylib; path = "../aura/build/Debug-iphoneos/libios_aura.dylib"; sourceTree = "<group>"; };
 		9AA1005D1997010D004F84BD /* filemanager_impact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filemanager_impact.h; sourceTree = "<group>"; };
 		9AA1005F1997010D004F84BD /* filemanager_main_view.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filemanager_main_view.h; sourceTree = "<group>"; };
 		9AA100611997010D004F84BD /* filemanager_manager_template.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filemanager_manager_template.h; sourceTree = "<group>"; };
@@ -628,8 +619,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A986EA41D2271A7001F4C04 /* libios_auracharguess.dylib in Frameworks */,
+				9A986EA21D22718C001F4C04 /* libios_pcre.dylib in Frameworks */,
+				9A986CF61D2266AC001F4C04 /* libios_aura.dylib in Frameworks */,
 				9A5CD9101D20D0C70093150A /* libios_axis.dylib in Frameworks */,
-				9A5CD90D1D20D0B60093150A /* libaura.dylib in Frameworks */,
 				9AC13CCB1D20CF400026B367 /* libios_base.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1205,6 +1198,7 @@
 		9A8897AB14C2C8DB006B4023 = {
 			isa = PBXGroup;
 			children = (
+				9A986CF51D2266AC001F4C04 /* libios_aura.dylib */,
 				9A5CD90F1D20D0C70093150A /* libios_axis.dylib */,
 				9A5CD90C1D20D0B60093150A /* libaura.dylib */,
 				9AC62E921D20C0E900A4AC0A /* libios_axisbzip2.dylib */,
@@ -1420,7 +1414,6 @@
 			buildPhases = (
 				9AE24DD81904CF6E001AEFFB /* Sources */,
 				9AE24DD91904CF6E001AEFFB /* Frameworks */,
-				9AE24DDA1904CF6E001AEFFB /* CopyFiles */,
 			);
 			buildRules = (
 			);

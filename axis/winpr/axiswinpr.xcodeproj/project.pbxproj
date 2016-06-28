@@ -451,6 +451,8 @@
 		07DD61A11B5F0B4E003A1CE1 /* makecert.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5FC61B5F0B4E003A1CE1 /* makecert.c */; };
 		07DD61A21B5F0B4E003A1CE1 /* makecert.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5FC61B5F0B4E003A1CE1 /* makecert.c */; };
 		9A4E86211D1FD812008A419B /* libaxiscrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4E86201D1FD811008A419B /* libaxiscrypto.dylib */; };
+		9A986D101D226A69001F4C04 /* libios_axisopenssl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 074BD08B1B5F27E400219723 /* libios_axisopenssl.dylib */; };
+		9A986D121D226A70001F4C04 /* libios_axiscrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A986D111D226A70001F4C04 /* libios_axiscrypto.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -718,6 +720,7 @@
 		07DD5FC61B5F0B4E003A1CE1 /* makecert.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = makecert.c; sourceTree = "<group>"; };
 		9A1B358C16A2D7A500875A94 /* libaxiswinpr.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libaxiswinpr.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A4E86201D1FD811008A419B /* libaxiscrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaxiscrypto.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/core-mac-ekqwiewkpeyhdudtxguywfqohhby/Build/Products/Debug/libaxiscrypto.dylib"; sourceTree = "<group>"; };
+		9A986D111D226A70001F4C04 /* libios_axiscrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_axiscrypto.dylib; path = "../crypto/build/Debug-iphoneos/libios_axiscrypto.dylib"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -725,6 +728,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A986D121D226A70001F4C04 /* libios_axiscrypto.dylib in Frameworks */,
+				9A986D101D226A69001F4C04 /* libios_axisopenssl.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -744,7 +749,7 @@
 			isa = PBXGroup;
 			children = (
 				074BD0891B5F27E400219723 /* libaxisopenssl.dylib */,
-				074BD08B1B5F27E400219723 /* libaxisopenssl.dylib */,
+				074BD08B1B5F27E400219723 /* libios_axisopenssl.dylib */,
 				074BD08D1B5F27E400219723 /* axisopenssl_iosTests.xctest */,
 			);
 			name = Products;
@@ -1422,6 +1427,7 @@
 		9A1B358116A2D7A500875A94 = {
 			isa = PBXGroup;
 			children = (
+				9A986D111D226A70001F4C04 /* libios_axiscrypto.dylib */,
 				9A4E86201D1FD811008A419B /* libaxiscrypto.dylib */,
 				074BD0821B5F27E400219723 /* axisopenssl.xcodeproj */,
 				07DD5DFA1B5F0B4C003A1CE1 /* winpr */,
@@ -1677,10 +1683,10 @@
 			remoteRef = 074BD0881B5F27E400219723 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		074BD08B1B5F27E400219723 /* libaxisopenssl.dylib */ = {
+		074BD08B1B5F27E400219723 /* libios_axisopenssl.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libaxisopenssl.dylib;
+			path = libios_axisopenssl.dylib;
 			remoteRef = 074BD08A1B5F27E400219723 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};

@@ -57,42 +57,9 @@
 		9A19A16819C6E1DC0018DF7D /* tlds.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A19A14F19C6E1DC0018DF7D /* tlds.c */; };
 		9A19A16919C6E1DC0018DF7D /* toutf8.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A19A15019C6E1DC0018DF7D /* toutf8.c */; };
 		9A19A16C19C6E80F0018DF7D /* config.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A16B19C6E80F0018DF7D /* config.h */; };
-		9A5CDDB41D2100B60093150A /* libios_atomiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 071B2B061B6E63260088E158 /* libios_atomiconv.dylib */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		071B2B051B6E63260088E158 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 076D0A201A3FDB07007432B6 /* atomiconv.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 077A01571B4D5479001C85FF;
-			remoteInfo = ios_atomiconv;
-		};
-		076D0A241A3FDB08007432B6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 076D0A201A3FDB07007432B6 /* atomiconv.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9A1647A219C4A73900966C5E;
-			remoteInfo = atomiconv;
-		};
-		07E42D401B501D650061D0BC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 076D0A201A3FDB07007432B6 /* atomiconv.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 9A1647A119C4A73900966C5E;
-			remoteInfo = atomiconv;
-		};
-		9A5CDDB21D21004A0093150A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 076D0A201A3FDB07007432B6 /* atomiconv.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 077A014D1B4D5479001C85FF;
-			remoteInfo = ios_atomiconv;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
-		076D0A201A3FDB07007432B6 /* atomiconv.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = atomiconv.xcodeproj; path = ../../atom/iconv/atomiconv.xcodeproj; sourceTree = "<group>"; };
 		077A00AB1B4D4F9E001C85FF /* libios_axisidn.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_axisidn.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A19A13619C6E1DC0018DF7D /* gunibreak.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gunibreak.h; sourceTree = "<group>"; };
 		9A19A13719C6E1DC0018DF7D /* gunicomp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gunicomp.h; sourceTree = "<group>"; };
@@ -127,7 +94,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A5CDDB41D2100B60093150A /* libios_atomiconv.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,15 +107,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		076D0A211A3FDB07007432B6 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				076D0A251A3FDB08007432B6 /* libatomiconv.dylib */,
-				071B2B061B6E63260088E158 /* libios_atomiconv.dylib */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		9A19A13219C6E1DC0018DF7D /* lib */ = {
 			isa = PBXGroup;
 			children = (
@@ -184,7 +141,6 @@
 		9A1B2F7D16A2AF5C00875A94 = {
 			isa = PBXGroup;
 			children = (
-				076D0A201A3FDB07007432B6 /* atomiconv.xcodeproj */,
 				9A4E844E1D1FD2A0008A419B /* idn */,
 				9A19A13219C6E1DC0018DF7D /* lib */,
 				9A4E844D1D1FD28E008A419B /* Products */,
@@ -257,7 +213,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				9A5CDDB31D21004A0093150A /* PBXTargetDependency */,
 			);
 			name = ios_axisidn;
 			productName = FreeImage;
@@ -275,7 +230,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				07E42D411B501D650061D0BC /* PBXTargetDependency */,
 			);
 			name = axisidn;
 			productName = FreeImage;
@@ -301,12 +255,6 @@
 			mainGroup = 9A1B2F7D16A2AF5C00875A94;
 			productRefGroup = 9A1B2F7D16A2AF5C00875A94;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 076D0A211A3FDB07007432B6 /* Products */;
-					ProjectRef = 076D0A201A3FDB07007432B6 /* atomiconv.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				9AA5E4C216F7C61B005C45CE /* axisidn */,
@@ -314,23 +262,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		071B2B061B6E63260088E158 /* libios_atomiconv.dylib */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.dylib";
-			path = libios_atomiconv.dylib;
-			remoteRef = 071B2B051B6E63260088E158 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		076D0A251A3FDB08007432B6 /* libatomiconv.dylib */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.dylib";
-			path = libatomiconv.dylib;
-			remoteRef = 076D0A241A3FDB08007432B6 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXSourcesBuildPhase section */
 		077A008B1B4D4F9E001C85FF /* Sources */ = {
@@ -380,19 +311,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		07E42D411B501D650061D0BC /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = atomiconv;
-			targetProxy = 07E42D401B501D650061D0BC /* PBXContainerItemProxy */;
-		};
-		9A5CDDB31D21004A0093150A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = ios_atomiconv;
-			targetProxy = 9A5CDDB21D21004A0093150A /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		077A00A91B4D4F9E001C85FF /* Debug */ = {

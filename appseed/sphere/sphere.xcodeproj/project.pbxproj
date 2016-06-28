@@ -26,6 +26,7 @@
 		9A3BC36E1D20CD62005E3FE0 /* libios_core.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07DA47771B71ED0F006F27E6 /* libios_core.dylib */; };
 		9A57509E16AAB9A1000CC4EF /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A574D2B16AAB99E000CC4EF /* framework.cpp */; };
 		9A57509F16AAB9A1000CC4EF /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A574D2C16AAB99E000CC4EF /* framework.h */; };
+		9A986D721D226C6C001F4C04 /* _sphere.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AF88C11B722B5C00150CC2 /* _sphere.cpp */; };
 		9ACABF2A17BD0516004C3F85 /* asphere.h in Headers */ = {isa = PBXBuildFile; fileRef = 9ACABEAE17BD0515004C3F85 /* asphere.h */; };
 		9ACABF2C17BD0516004C3F85 /* asphere_application.h in Headers */ = {isa = PBXBuildFile; fileRef = 9ACABEB017BD0515004C3F85 /* asphere_application.h */; };
 		9ACABF2E17BD0516004C3F85 /* calculator.h in Headers */ = {isa = PBXBuildFile; fileRef = 9ACABEB317BD0515004C3F85 /* calculator.h */; };
@@ -559,6 +560,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A986D721D226C6C001F4C04 /* _sphere.cpp in Sources */,
 				07DA480F1B71F081006F27E6 /* framework.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
