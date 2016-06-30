@@ -155,7 +155,8 @@ namespace user
 
       }
 #elif defined(MACOS)
-      string strFolder("/macos/");
+      
+      string strFolder;
       
       string str1 = hicon->m_strAppTrayIcon;
       
@@ -189,7 +190,31 @@ namespace user
       strFolder+= "/appmatter/" + str;
       
       strFolder += "/_std/_std/main/";
-      notify_icon_init(strFolder+"menubar-icon-22.png");
+                                  
+      string strFile = "menubar-icon-22.png";
+                                  
+      string strUrl = "https://server.ca2.cc/matter/" + strFolder + strFile;
+      
+      strFile = Application.dir().userappdata() / strFolder / strFile;
+      
+      int iRetry = 3;
+      
+      while(iRetry >= 0 && (!Application.file().exists(strFile) || Application.file().length(strFile) <= 0))
+      {
+         
+         ::property_set set;
+         
+         set["raw_http"] = true;
+         set["disable_common_name_cert_check"] = true;
+         
+         Application.http().download(strUrl, strFile, set);
+
+         iRetry--;
+                                     
+      }
+         
+      notify_icon_init(strFile);
+                                  
 #else
 #endif
 
