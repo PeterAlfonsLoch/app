@@ -172,7 +172,7 @@ typedef struct win_handle * HANDLE;
 typedef HANDLE * LPHANDLE, * PHANDLE;
 
 
-#ifndef NT_INCLUDED
+#if !defined(NT_INCLUDED) 
 #include "windows_nt.h"
 #endif /* NT_INCLUDED */
 

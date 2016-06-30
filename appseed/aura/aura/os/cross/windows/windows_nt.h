@@ -1571,10 +1571,10 @@ typedef struct _CONTEXT {
 	ULONG Cpsr;
 } CONTEXT;
 
-#endif /* __arm__ */
-
-
-/* Mips context definitions */
+#endif /* defined APPLE_IOS && !defined __arm__ */
+   
+   
+   /* Mips context definitions */
 #if defined(_MIPS_) || defined(__MIPS__) || defined(__mips__)
 
 #define CONTEXT_R4000   0x00010000

@@ -280,6 +280,7 @@
 					"$(inherited)",
 					"$(TARGET_BUILD_DIR)",
 				);
+				MACH_O_TYPE = mh_dylib;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -318,6 +319,7 @@
 					"$(inherited)",
 					"$(TARGET_BUILD_DIR)",
 				);
+				MACH_O_TYPE = mh_dylib;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
