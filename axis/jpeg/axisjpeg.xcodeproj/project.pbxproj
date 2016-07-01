@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		07B6577B190F3CA2002DAADE /* libios_axisjpeg.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B65764190F3CA2002DAADE /* libios_axisjpeg.dylib */; };
-		9A4E870C1D1FD9F3008A419B /* ansi2knr.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A4E86A51D1FD9F3008A419B /* ansi2knr.c */; };
 		9A4E870D1D1FD9F3008A419B /* cderror.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A4E86AC1D1FD9F3008A419B /* cderror.h */; };
 		9A4E870E1D1FD9F3008A419B /* cdjpeg.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A4E86AD1D1FD9F3008A419B /* cdjpeg.c */; };
 		9A4E870F1D1FD9F3008A419B /* cdjpeg.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A4E86AE1D1FD9F3008A419B /* cdjpeg.h */; };
@@ -75,7 +74,6 @@
 		9A4E87591D1FD9F3008A419B /* wrppm.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A4E87091D1FD9F3008A419B /* wrppm.c */; };
 		9A4E875A1D1FD9F3008A419B /* wrrle.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A4E870A1D1FD9F3008A419B /* wrrle.c */; };
 		9A4E875B1D1FD9F3008A419B /* wrtarga.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A4E870B1D1FD9F3008A419B /* wrtarga.c */; };
-		9AC62E121D20BCC200A4AC0A /* ansi2knr.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A4E86A51D1FD9F3008A419B /* ansi2knr.c */; };
 		9AC62E131D20BCC200A4AC0A /* cdjpeg.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A4E86AD1D1FD9F3008A419B /* cdjpeg.c */; };
 		9AC62E141D20BCC200A4AC0A /* jaricom.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A4E86B51D1FD9F3008A419B /* jaricom.c */; };
 		9AC62E151D20BCC200A4AC0A /* jcapimin.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A4E86B61D1FD9F3008A419B /* jcapimin.c */; };
@@ -163,7 +161,6 @@
 /* Begin PBXFileReference section */
 		07B65764190F3CA2002DAADE /* libios_axisjpeg.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libios_axisjpeg.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		07B65773190F3CA2002DAADE /* axisjpeg_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = axisjpeg_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A4E86A51D1FD9F3008A419B /* ansi2knr.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ansi2knr.c; sourceTree = "<group>"; };
 		9A4E86AC1D1FD9F3008A419B /* cderror.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cderror.h; sourceTree = "<group>"; };
 		9A4E86AD1D1FD9F3008A419B /* cdjpeg.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = cdjpeg.c; sourceTree = "<group>"; };
 		9A4E86AE1D1FD9F3008A419B /* cdjpeg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cdjpeg.h; sourceTree = "<group>"; };
@@ -262,7 +259,6 @@
 		9A4E86A41D1FD9D8008A419B /* jpeg */ = {
 			isa = PBXGroup;
 			children = (
-				9A4E86A51D1FD9F3008A419B /* ansi2knr.c */,
 				9A4E86AC1D1FD9F3008A419B /* cderror.h */,
 				9A4E86AD1D1FD9F3008A419B /* cdjpeg.c */,
 				9A4E86AE1D1FD9F3008A419B /* cdjpeg.h */,
@@ -470,7 +466,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9AC62E121D20BCC200A4AC0A /* ansi2knr.c in Sources */,
 				9AC62E131D20BCC200A4AC0A /* cdjpeg.c in Sources */,
 				9AC62E141D20BCC200A4AC0A /* jaricom.c in Sources */,
 				9AC62E151D20BCC200A4AC0A /* jcapimin.c in Sources */,
@@ -566,7 +561,6 @@
 				9A4E87141D1FD9F3008A419B /* jcapimin.c in Sources */,
 				9A4E87361D1FD9F3008A419B /* jerror.c in Sources */,
 				9A4E870E1D1FD9F3008A419B /* cdjpeg.c in Sources */,
-				9A4E870C1D1FD9F3008A419B /* ansi2knr.c in Sources */,
 				9A4E87491D1FD9F3008A419B /* jutils.c in Sources */,
 				9A4E875B1D1FD9F3008A419B /* wrtarga.c in Sources */,
 				9A4E87261D1FD9F3008A419B /* jdarith.c in Sources */,

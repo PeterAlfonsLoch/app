@@ -154,6 +154,9 @@
 		07DD711C1B5F18E4003A1CE1 /* libios_axisfreerdp.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07DD70D81B5F1025003A1CE1 /* libios_axisfreerdp.dylib */; };
 		07DD711D1B5F18EE003A1CE1 /* libaxisfreerdp.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07DD70D61B5F1025003A1CE1 /* libaxisfreerdp.dylib */; };
 		07DD711E1B5F18F8003A1CE1 /* libaxiswinpr.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07DD70B21B5F0FF7003A1CE1 /* libaxiswinpr.dylib */; };
+		9A25A0A91D2602200044727D /* libios_atomiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A25A0A81D2602200044727D /* libios_atomiconv.dylib */; };
+		9A25A0AB1D26022F0044727D /* libios_axiszlib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A25A0AA1D26022F0044727D /* libios_axiszlib.dylib */; };
+		9A25A0B11D2602930044727D /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A25A0B01D2602930044727D /* AudioToolbox.framework */; };
 		9A8DBF691D20B096005AF004 /* libcups.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8DBF681D20B096005AF004 /* libcups.tbd */; };
 		9AEFDD3A1D1602AB00F91F0B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEFDD391D1602AB00F91F0B /* UIKit.framework */; };
 		9AEFDD3C1D16044E00F91F0B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEFDD3B1D16044E00F91F0B /* Foundation.framework */; };
@@ -343,6 +346,11 @@
 		07DD70AC1B5F0FF7003A1CE1 /* axiswinpr.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axiswinpr.xcodeproj; path = ../winpr/axiswinpr.xcodeproj; sourceTree = "<group>"; };
 		07DD70D01B5F1025003A1CE1 /* axisfreerdp.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axisfreerdp.xcodeproj; path = ../freerdp/axisfreerdp.xcodeproj; sourceTree = "<group>"; };
 		9A1B358C16A2D7A500875A94 /* libaxisclientchannels.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libaxisclientchannels.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A25A0A81D2602200044727D /* libios_atomiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_atomiconv.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/basic-ios-gidstxlhclvvknehqfkxlzuwomwq/Build/Products/Debug-iphonesimulator/libios_atomiconv.dylib"; sourceTree = "<group>"; };
+		9A25A0AA1D26022F0044727D /* libios_axiszlib.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_axiszlib.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/basic-ios-gidstxlhclvvknehqfkxlzuwomwq/Build/Products/Debug-iphonesimulator/libios_axiszlib.dylib"; sourceTree = "<group>"; };
+		9A25A0AC1D2602450044727D /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/CoreAudio.framework; sourceTree = DEVELOPER_DIR; };
+		9A25A0AE1D2602670044727D /* CoreAudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudioKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/CoreAudioKit.framework; sourceTree = DEVELOPER_DIR; };
+		9A25A0B01D2602930044727D /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/AudioToolbox.framework; sourceTree = DEVELOPER_DIR; };
 		9A8DBF681D20B096005AF004 /* libcups.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libcups.tbd; path = usr/lib/libcups.tbd; sourceTree = SDKROOT; };
 		9AEFDD391D1602AB00F91F0B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		9AEFDD3B1D16044E00F91F0B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
@@ -358,6 +366,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A25A0B11D2602930044727D /* AudioToolbox.framework in Frameworks */,
+				9A25A0AB1D26022F0044727D /* libios_axiszlib.dylib in Frameworks */,
+				9A25A0A91D2602200044727D /* libios_atomiconv.dylib in Frameworks */,
 				071EFB291C5537E100EA68B0 /* libavcodec.a in Frameworks */,
 				071EFB2B1C5537F700EA68B0 /* libavutil.a in Frameworks */,
 				071EFB631C55730700EA68B0 /* libswresample.a in Frameworks */,
@@ -873,6 +884,11 @@
 		9A1B358116A2D7A500875A94 = {
 			isa = PBXGroup;
 			children = (
+				9A25A0B01D2602930044727D /* AudioToolbox.framework */,
+				9A25A0AE1D2602670044727D /* CoreAudioKit.framework */,
+				9A25A0AC1D2602450044727D /* CoreAudio.framework */,
+				9A25A0AA1D26022F0044727D /* libios_axiszlib.dylib */,
+				9A25A0A81D2602200044727D /* libios_atomiconv.dylib */,
 				9A8DBF681D20B096005AF004 /* libcups.tbd */,
 				07DD70D01B5F1025003A1CE1 /* axisfreerdp.xcodeproj */,
 				07DD70AC1B5F0FF7003A1CE1 /* axiswinpr.xcodeproj */,
