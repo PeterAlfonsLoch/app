@@ -11,9 +11,9 @@ namespace fs
    public:
 
 
-      smart_pointer < ::sockets::http_buffer >  m_httpfile;
-      ::file::memory_buffer                             m_memfile;
-      var                                          m_varFile;
+      ::file::memory_buffer            m_httpfile;
+      ::file::memory_buffer            m_memfile;
+      var                              m_varFile;
 
 
       remote_native_file(::aura::application * papp, var varFile);

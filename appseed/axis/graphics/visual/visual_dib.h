@@ -94,7 +94,7 @@ namespace visual
          ::array <COLORREF>   m_cra;
 
 
-         array();
+         array(::aura::application * papp);
          virtual ~array();
 
 

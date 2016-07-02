@@ -118,6 +118,7 @@ namespace sockets
 
       bool m_bCertCommonNameCheckEnabled;
 
+      bool                       m_bClientSessionSet;
       sp(ssl_client_context)     m_spsslclientcontext;
       string                     m_strInitSSLClientContext;
 

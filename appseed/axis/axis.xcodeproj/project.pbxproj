@@ -340,6 +340,10 @@
 		9A19A12D19C6933E0018DF7D /* sockets_ssl_server_context_map.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A12919C6933E0018DF7D /* sockets_ssl_server_context_map.h */; };
 		9A19A12F19C6933E0018DF7D /* sockets_ssl_server_context.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A12B19C6933E0018DF7D /* sockets_ssl_server_context.h */; };
 		9A8A91EF1D20CEAB00C96CA4 /* libios_axisidn.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 077A00CA1B4D50A0001C85FF /* libios_axisidn.dylib */; };
+		9A9367AD1D26C7F400ED7535 /* fs.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9367AC1D26C7F400ED7535 /* fs.h */; };
+		9A9367B61D26C84200ED7535 /* fs_ifs_file.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9367B41D26C84200ED7535 /* fs_ifs_file.h */; };
+		9A9367B71D26C84200ED7535 /* fs_remote_native_fs.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9367B51D26C84200ED7535 /* fs_remote_native_fs.h */; };
+		9A9367B91D26C87900ED7535 /* fs_remote_native_file.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9367B81D26C87900ED7535 /* fs_remote_native_file.h */; };
 		9A986CEA1D2265E2001F4C04 /* libios_aurasqlite.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07108DBC1B4C999700A28F80 /* libios_aurasqlite.dylib */; };
 		9A98A6081771D67E000AE16E /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07BD556C16210BD4008E31F0 /* AppKit.framework */; };
 		9A98A6091771D67E000AE16E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8897A514C24736006B4023 /* Foundation.framework */; };
@@ -1012,6 +1016,10 @@
 		9A19A12B19C6933E0018DF7D /* sockets_ssl_server_context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sockets_ssl_server_context.h; sourceTree = "<group>"; };
 		9A587D901D20580600B67183 /* axis_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = axis_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A8897A514C24736006B4023 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		9A9367AC1D26C7F400ED7535 /* fs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fs.h; sourceTree = "<group>"; };
+		9A9367B41D26C84200ED7535 /* fs_ifs_file.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fs_ifs_file.h; sourceTree = "<group>"; };
+		9A9367B51D26C84200ED7535 /* fs_remote_native_fs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fs_remote_native_fs.h; sourceTree = "<group>"; };
+		9A9367B81D26C87900ED7535 /* fs_remote_native_file.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fs_remote_native_file.h; sourceTree = "<group>"; };
 		9A98A6151771D67E000AE16E /* libaxis.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libaxis.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A9F2D5A19A6427D007AE2C7 /* axisbzip2.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axisbzip2.xcodeproj; path = ../../axis/bzip2/axisbzip2.xcodeproj; sourceTree = "<group>"; };
 		9A9F2D6019A64284007AE2C7 /* axisfreeimage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axisfreeimage.xcodeproj; path = ../../axis/freeimage/axisfreeimage.xcodeproj; sourceTree = "<group>"; };
@@ -1744,6 +1752,10 @@
 		07F5B189184A3B430092C3E1 /* fs */ = {
 			isa = PBXGroup;
 			children = (
+				9A9367B81D26C87900ED7535 /* fs_remote_native_file.h */,
+				9A9367B41D26C84200ED7535 /* fs_ifs_file.h */,
+				9A9367B51D26C84200ED7535 /* fs_remote_native_fs.h */,
+				9A9367AC1D26C7F400ED7535 /* fs.h */,
 			);
 			path = fs;
 			sourceTree = "<group>";
@@ -2013,6 +2025,7 @@
 				07B097A618495CBE007A0560 /* sip_event.h in Headers */,
 				07A374E51B26054100E4F888 /* install_canvas.h in Headers */,
 				0747A6EF1B2637BB00E85AC7 /* simpledb_set.h in Headers */,
+				9A9367AD1D26C7F400ED7535 /* fs.h in Headers */,
 				07F5B282184A3B6A0092C3E1 /* visual.h in Headers */,
 				9A19A11A19C692650018DF7D /* visual_glyph.h in Headers */,
 				07A374BE1B26054100E4F888 /* crypto_crypto.h in Headers */,
@@ -2056,6 +2069,7 @@
 				07A374D31B26054100E4F888 /* fontopus_validate.h in Headers */,
 				9A19A11419C692650018DF7D /* visual_font.h in Headers */,
 				0747A6D31B2637BB00E85AC7 /* db_stra_set.h in Headers */,
+				9A9367B91D26C87900ED7535 /* fs_remote_native_file.h in Headers */,
 				07A374AC1B26054100E4F888 /* memory_buffer.h in Headers */,
 				07A374F31B26054100E4F888 /* install_trace.h in Headers */,
 				0747A6C91B2637BB00E85AC7 /* database_template.h in Headers */,
@@ -2108,6 +2122,7 @@
 				07B097C218495CBE007A0560 /* EventHandler.h in Headers */,
 				9A19A10919C692650018DF7D /* visual_api.h in Headers */,
 				07A376A81B26054200E4F888 /* macos_window_impl.h in Headers */,
+				9A9367B71D26C84200ED7535 /* fs_remote_native_fs.h in Headers */,
 				07B097F718495CBE007A0560 /* sockets_http_session.h in Headers */,
 				07A375691B26054200E4F888 /* macos_copydesk.h in Headers */,
 				07B097BC18495CBE007A0560 /* sockets.h in Headers */,
@@ -2213,6 +2228,7 @@
 				07B097A418495CBE007A0560 /* sip_callback.h in Headers */,
 				07B0978D18495CBE007A0560 /* sockets_sctp_socket.h in Headers */,
 				07A376991B26054200E4F888 /* macos_graphics_mm.h in Headers */,
+				9A9367B61D26C84200ED7535 /* fs_ifs_file.h in Headers */,
 				9A19A12D19C6933E0018DF7D /* sockets_ssl_server_context_map.h in Headers */,
 				07B0979B18495CBE007A0560 /* sockets_tcp_socket.h in Headers */,
 				0747A5F81B26226300E85AC7 /* user_keyboard_layout.h in Headers */,

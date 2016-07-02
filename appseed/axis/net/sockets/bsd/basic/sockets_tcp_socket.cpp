@@ -67,7 +67,7 @@ namespace sockets
       ,m_bReconnect(false)
       ,m_bTryingReconnect(false)
    {
-
+      m_bClientSessionSet = false;
       m_memRead.allocate(TCP_BUFSIZE_READ + 1);
       m_bCertCommonNameCheckEnabled = true;
       m_pmutexSslCtx = NULL;
@@ -102,6 +102,7 @@ namespace sockets
       ,m_bReconnect(false)
       ,m_bTryingReconnect(false)
    {
+      m_bClientSessionSet = false;
       m_memRead.allocate(TCP_BUFSIZE_READ + 1);
       m_bCertCommonNameCheckEnabled = true;
       m_pmutexSslCtx = NULL;
@@ -1099,9 +1100,10 @@ namespace sockets
    {
       if(!IsSSLServer()) // client
       {
-         if(m_spsslclientcontext->m_psession != NULL)
+         if(!m_bClientSessionSet && m_spsslclientcontext->m_psession != NULL)
          {
             SSL_set_session(m_ssl,m_spsslclientcontext->m_psession);
+            m_bClientSessionSet = true;
          }
          TRACE("SSL_connect!!");
          int32_t r = SSL_connect(m_ssl);
@@ -1148,6 +1150,14 @@ namespace sockets
          }
          else if(!r)
          {
+            
+            long error = ERR_get_error();
+            const char* error_str = ERR_error_string(error, NULL);
+            printf("could not SSL_connect: %s\n", error_str);
+            
+            int iError = errno;
+            int iErrorSsl = SSL_get_error(m_ssl,r);
+
             if(m_spsslclientcontext->m_psession != NULL)
             {
 
@@ -1164,7 +1174,6 @@ namespace sockets
                   m_spsslclientcontext->m_iRetry = 0;
                }
             }
-            r = SSL_get_error(m_ssl,r);
             log("SSLNegotiate/SSL_connect",0,"Connection failed",::aura::log::level_info);
             SetSSLNegotiate(false);
             SetCloseAndDelete();
@@ -1176,6 +1185,9 @@ skip:
          {
             r = SSL_get_error(m_ssl,r);
             if(r == SSL_ERROR_WANT_READ || r == SSL_ERROR_WANT_WRITE)
+            {
+            }
+            else if(r == SSL_ERROR_WANT_CONNECT || r == SSL_ERROR_WANT_ACCEPT)
             {
             }
             else
@@ -1222,6 +1234,9 @@ skip:
             if(r == SSL_ERROR_WANT_READ || r == SSL_ERROR_WANT_WRITE)
             {
             }
+            else if(r == SSL_ERROR_WANT_CONNECT || r == SSL_ERROR_WANT_ACCEPT)
+            {
+            }
             else
             {
                log("SSLNegotiate/SSL_accept",-1,"Connection failed",::aura::log::level_info);
@@ -1254,19 +1269,19 @@ skip:
       /* create our context*/
       if(m_spsslclientcontext.is_null())
       {
-         string_map < sp(ssl_client_context) > & clientcontextmap = Session.sockets().m_clientcontextmap;
-         if(clientcontextmap.PLookup(context) == NULL)
-         {
+//         string_map < sp(ssl_client_context) > & clientcontextmap = Session.sockets().m_clientcontextmap;
+//         if(clientcontextmap.PLookup(context) == NULL)
+//         {
             m_spsslclientcontext = canew(ssl_client_context(get_app(),pmethod));
-            if(context.has_char())
-            {
-               clientcontextmap[context] = m_spsslclientcontext;
-            }
-         }
-         else
-         {
-            m_spsslclientcontext = clientcontextmap.PLookup(context)->m_element2;
-         }
+//            if(context.has_char())
+//            {
+//               clientcontextmap[context] = m_spsslclientcontext;
+//            }
+//         }
+//         else
+//         {
+//            m_spsslclientcontext = clientcontextmap.PLookup(context)->m_element2;
+//         }
       }
       if(m_spsslclientcontext.is_set())
       {

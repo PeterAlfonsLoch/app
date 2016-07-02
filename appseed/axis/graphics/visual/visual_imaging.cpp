@@ -782,76 +782,95 @@ return hBitmapSource;
 //#endif // WINDOWSEX
 
 
-bool imaging::LoadImageFile(::visual::dib_sp::array * pdiba, var varFile, ::aura::application * papp)
+bool imaging::LoadImage(::visual::dib_sp::array * pdiba, var varFile)
 {
 
-   ::file::memory_buffer_sp memfile(allocer());
+   ::file::buffer_sp file = App(pdiba->get_app()).file().get_file(varFile, ::file::type_binary | ::file::mode_read | ::file::share_deny_write);
 
-   System.file().as_memory(varFile, *memfile->get_memory(), papp);
-
-   if (memfile->get_size() <= 0)
+   if(file.is_null())
+   {
+      
       return false;
+      
+   }
 
-//#ifdef WINDOWS
-//
-//   return windows_load_diba_from_file(pdiba, memfile, papp);
-//
-//
-//#else
-   return freeimage_load_diba_from_file(pdiba, memfile, papp);
-   //FIBITMAP * pfi = LoadImageFile(memfile);
+   if(!LoadImageFromFile(pdiba, file))
+   {
+      
+      return false;
+      
+   }
+   
+   return true;
+   
+}
 
-   //if (pfi == NULL)
-   //   return false;
 
-   //::draw2d::graphics_sp spgraphics(allocer());
+bool imaging::LoadImage(::draw2d::dib * pdib,var varFile)
+{
 
-   //spgraphics->CreateCompatibleDC(NULL);
+   ::file::buffer_sp file = App(pdib->get_app()).file().get_file(varFile, ::file::type_binary | ::file::mode_read | ::file::share_deny_write);
+   
+   if(file.is_null())
+   {
+      
+      return false;
+      
+   }
 
-   //if (!from(pdib, spgraphics, (FIBITMAP *)pfi, true))
-   //   return false;
-
-//#endif
+   if(!LoadImageFromFile(pdib, file))
+   {
+      
+      return false;
+      
+   }
 
    return true;
-
 
 }
 
 
-bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application * papp)
+bool imaging::LoadImageFromFile(::visual::dib_sp::array * pdiba, ::file::stream_buffer * pfile)
 {
-
-   ::file::memory_buffer_sp memfile(allocer());
-
-   System.file().as_memory(varFile,*memfile->get_memory(),papp);
-
-   if(memfile->get_size() <= 0)
+   
+   if(!freeimage_load_diba_from_file(pdiba, pfile, get_app()))
+   {
+   
       return false;
-
-#ifdef WINDOWS
-
-   return windows_load_dib_from_file(pdib, memfile, papp);
-
-
-#else
-   FIBITMAP * pfi = LoadImageFile(memfile);
-
-   if(pfi == NULL)
-      return false;
-
-   ::draw2d::graphics_sp spgraphics(allocer());
-
-   spgraphics->CreateCompatibleDC(NULL);
-
-   if(!from(pdib,spgraphics,(FIBITMAP *)pfi,true))
-      return false;
-
-#endif
-
+         
+   }
+   
    return true;
+   
+}
 
 
+bool imaging::LoadImageFromFile(::draw2d::dib * pdib, ::file::stream_buffer * pfile)
+{
+   
+   FIBITMAP * pfi = LoadImageFile(pfile);
+   
+   if(pfi == NULL)
+   {
+      
+      return false;
+      
+   }
+   
+   ::draw2d::graphics_sp spgraphics(allocer());
+   
+   spgraphics->CreateCompatibleDC(NULL);
+   
+   if(!from(pdib,spgraphics,(FIBITMAP *)pfi,true))
+   {
+    
+      return false;
+      
+   }
+   
+   return true;
+   
+   
 }
 
 
@@ -2730,29 +2749,20 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
 
 
 
-   ::draw2d::bitmap_sp imaging::LoadImageSync(const char * lpcszImageFilePath,::aura::application * papp)
-   {
-#ifdef AXIS_FREEIMAGE
-      FIBITMAP * pfi = imaging::LoadImageFile(lpcszImageFilePath,papp);
+//   ::draw2d::bitmap_sp imaging::LoadImageSync(const char * lpcszImageFilePath,::aura::application * papp)
+//   {
+//#ifdef AXIS_FREEIMAGE
+//      FIBITMAP * pfi = imaging::LoadImageFile(lpcszImageFilePath,papp);
+//
+//      if(pfi == NULL)
+//         return NULL;
+//
+//      return FItoHBITMAP(pfi,true);
+//#endif
+//      return NULL;
+//   }
 
-      if(pfi == NULL)
-         return NULL;
 
-      return FItoHBITMAP(pfi,true);
-#endif
-      return NULL;
-   }
-
-
-   bool imaging::LoadImageSync(::draw2d::dib * pdib,const char * lpcszImageFilePath,::aura::application * papp)
-   {
-
-      if(!imaging::LoadImageFile(pdib,lpcszImageFilePath,papp))
-         return false;
-
-      return true;
-
-   }
 
 
    bool imaging::color_blend_3dRect(::draw2d::graphics *pgraphics,const RECT & rectParam,COLORREF crTopLeft,BYTE bAlphaTopLeft,COLORREF crBottomRight,BYTE bAlphaBottomRight)
@@ -7201,13 +7211,10 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
       pgraphics->TextOut(left,top,str);
    }
 
-   bool imaging::load_from_file(::visual::dib_sp::array * pdiba, var varFile, bool bCache, ::aura::application * papp)
+   bool imaging::load_from_file(::visual::dib_sp::array * pdiba, var varFile, bool bCache)
    {
 
       single_lock sl(&m_mutex);
-
-      if (papp == NULL)
-         papp = get_app();
 
       //// image cache load
       //// cache of decompression time
@@ -7247,10 +7254,12 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
       try
       {
 
-         ::file::buffer_sp file = App(papp).file().get_file(varFile, ::file::mode_read | ::file::share_deny_write | ::file::type_binary);
-
-         if (!read_from_file(pdiba, file, papp))
+         if (!LoadImage(pdiba, varFile))
+         {
+            
             return false;
+            
+         }
 
       }
       catch (...)
@@ -7288,13 +7297,11 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
 
    }
 
-   bool imaging::load_from_file(::draw2d::dib * pdib,var varFile,bool bCache,::aura::application * papp)
+
+   bool imaging::load_from_file(::draw2d::dib * pdib,var varFile,bool bCache)
    {
 
       single_lock sl(&m_mutex);
-
-      if(papp == NULL)
-         papp = get_app();
 
       // image cache load
       // cache of decompression time
@@ -7308,11 +7315,11 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
          strFile.replace("/","\\");
          strFile = System.dir().time()/"cache"/strFile;
          strFile += ".dib";
-         if(Sess(papp).file().exists(strFile))
+         if(Session.file().exists(strFile))
          {
             try
             {
-               ::file::buffer_sp file = Sess(papp).file().get_file(strFile,::file::mode_read | ::file::share_deny_write | ::file::type_binary);
+               ::file::buffer_sp file = Session.file().get_file(strFile,::file::mode_read | ::file::share_deny_write | ::file::type_binary);
                if(file.is_null())
                {
                   return true;
@@ -7333,9 +7340,14 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
 
       try
       {
-         ::file::buffer_sp file = App(papp).file().get_file(varFile,::file::mode_read | ::file::share_deny_write | ::file::type_binary);
-         if(!read_from_file(pdib,file, papp))
+         
+         
+         if(!LoadImage(pdib,varFile))
+         {
+            
             return false;
+            
+         }
 
       }
       catch(...)
@@ -7352,7 +7364,7 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
          try
          {
 
-            ::file::buffer_sp file =App(papp).file().get_file(strFile,::file::mode_create | ::file::mode_write | ::file::type_binary | ::file::defer_create_directory);
+            ::file::buffer_sp file =Application.file().get_file(strFile,::file::mode_create | ::file::mode_write | ::file::type_binary | ::file::defer_create_directory);
 
             if(file.is_set())
             {
@@ -7374,124 +7386,48 @@ bool imaging::LoadImageFile(::draw2d::dib * pdib,var varFile,::aura::application
    }
 
 
-   bool imaging::read_from_file(::draw2d::dib * pdib, ::file::stream_buffer *  pfile,::aura::application * papp)
+
+
+
+
+
+
+   bool imaging::load_from_file(::visual::cursor * pcursor,var varFile, bool bFromCache)
    {
-
-      if(papp == NULL)
-         papp = get_app();
-
-      if(!LoadImageFile(pdib, pfile, papp))
-         return false;
-
-         return true;
-
-#ifdef AXIS_FREEIMAGE
-      FIBITMAP * pfi = LoadImageFile(pfile,papp);
-
-      if(pfi == NULL)
-         return false;
-
-      /*synch_lock ml(&user_mutex());
-
-   #if !defined(LINUX) && !defined(APPLEOS)
-
-   single_lock slDc(System.m_pmutexDc, true);
-
-   #endif
-
-   ::draw2d::graphics_sp spgraphics(allocer());
-
-   spgraphics->CreateCompatibleDC(NULL);*/
-
-      //if (!from(pdib, spgraphics, pfi, true, papp))
-      if(!from(pdib,NULL,pfi,true,papp))
-         return false;
-
-      return true;
-#endif
-      return true;
-   }
-
-
-
-   bool imaging::read_from_file(::visual::dib_sp::array * pdiba, ::file::stream_buffer *  pfile, ::aura::application * papp)
-   {
-
-      if (papp == NULL)
-         papp = get_app();
-
-      if (!LoadImageFile(pdiba, pfile, papp))
-         return false;
-
-      return true;
-
-   }
-
-
-
-   bool imaging::load_from_matter(::draw2d::dib * pdib,var varFile,::aura::application * papp)
-   {
-
-      if(papp == NULL)
-         papp = get_app();
-
-
-      return load_from_file(pdib,Sess(papp).dir().matter((const string &)varFile),true,papp);
-
-   }
-
-
-   bool imaging::load_from_file(::visual::cursor * pcursor,var varFile,::aura::application * papp, bool bFromCache)
-   {
+      
       string str(varFile);
+      
       if(!::str::ends_eat_ci(str,".png"))
+      {
+         
          return false;
-      if(!load_from_file(pcursor->m_dib,varFile,bFromCache,papp))
+         
+      }
+      
+      if(!load_from_file(pcursor->m_dib,varFile,bFromCache))
+      {
+         
          return false;
-
-      if(papp == NULL)
-         papp = get_app();
+         
+      }
 
       str += ".xml";
-      string strNode = Sess(papp).file().as_string(str);
+      
+      string strNode = Session.file().as_string(str);
+      
       ::xml::document doc(get_app());
+      
       if(doc.load(strNode))
       {
+         
          pcursor->m_szHotspotOffset.cx = doc.get_root()->attr("x");
+         
          pcursor->m_szHotspotOffset.cy = doc.get_root()->attr("y");
+         
       }
+      
       return true;
+      
    }
 
-   bool imaging::load_from_matter(::visual::cursor * pcursor,var varFile,::aura::application * papp)
-   {
-      if(papp == NULL)
-         papp = get_app();
 
-      return load_from_file(pcursor,Sess(papp).dir().matter((const string &)varFile),papp);
-
-   }
-
-   ::visual::cursor_sp imaging::load_cursor_from_file(var varFile,::aura::application * papp)
-   {
-      if(papp == NULL)
-         papp = get_app();
-
-      ::visual::cursor_sp spcursor(canew(::visual::cursor(papp)));
-
-      if(!load_from_file(spcursor,varFile,papp))
-         return NULL;
-
-      return spcursor;
-
-   }
-
-   ::visual::cursor_sp imaging::load_cursor_from_matter(var varFile,::aura::application * papp)
-   {
-
-      if(papp == NULL)
-         papp = get_app();
-
-      return load_cursor_from_file(Sess(papp).dir().matter((const string &)varFile));
-
-   }

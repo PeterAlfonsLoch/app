@@ -217,13 +217,6 @@
 			remoteGlobalIDString = 9AE24D331904CEFE001AEFFB;
 			remoteInfo = ios_base;
 		};
-		9AC13CDA1D20CFA40026B367 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A67165E1D1550460069A961 /* pcre.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 07D6A8271B4CBB45004FEBC2;
-			remoteInfo = ios_pcre;
-		};
 		9ACE46D81D1FE44700A1E0AD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0793EA141CA40578001374D8 /* auracharguess.xcodeproj */;
@@ -237,13 +230,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 9A98A6031771D67E000AE16E;
 			remoteInfo = base;
-		};
-		9ACE46E31D1FE45200A1E0AD /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A67165E1D1550460069A961 /* pcre.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 9AA5E4C216F7C61B005C45CE;
-			remoteInfo = pcre;
 		};
 		9AE24DF11904CF6E001AEFFB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1403,7 +1389,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				9ACE46E41D1FE45200A1E0AD /* PBXTargetDependency */,
 				9ACE46E21D1FE44D00A1E0AD /* PBXTargetDependency */,
 				9ACE46D91D1FE44700A1E0AD /* PBXTargetDependency */,
 			);
@@ -1422,7 +1407,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				9AC13CDB1D20CFA40026B367 /* PBXTargetDependency */,
 				9AC13CD91D20CFA00026B367 /* PBXTargetDependency */,
 				9AC13CD71D20CF9C0026B367 /* PBXTargetDependency */,
 			);
@@ -1619,11 +1603,6 @@
 			name = ios_base;
 			targetProxy = 9AC13CD81D20CFA00026B367 /* PBXContainerItemProxy */;
 		};
-		9AC13CDB1D20CFA40026B367 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = ios_pcre;
-			targetProxy = 9AC13CDA1D20CFA40026B367 /* PBXContainerItemProxy */;
-		};
 		9ACE46D91D1FE44700A1E0AD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = auracharguess;
@@ -1633,11 +1612,6 @@
 			isa = PBXTargetDependency;
 			name = base;
 			targetProxy = 9ACE46E11D1FE44D00A1E0AD /* PBXContainerItemProxy */;
-		};
-		9ACE46E41D1FE45200A1E0AD /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = pcre;
-			targetProxy = 9ACE46E31D1FE45200A1E0AD /* PBXContainerItemProxy */;
 		};
 		9AE24DF21904CF6E001AEFFB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

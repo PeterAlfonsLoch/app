@@ -340,10 +340,15 @@ TagLib::instance();
 
             ::dir::ls(patha,::dir::ca2_module());
 
-#ifdef VSNORD
+#if defined(VSNORD)
 
             patha.add("libaxis_image_png.so");
             patha.add("libaxis_image_jpeg.so");
+            
+#elif defined(APPLE_IOS)
+
+            patha.add("libaxis_image_png.dylib");
+            patha.add("libaxis_image_jpeg.dylib");
 
 #endif
 

@@ -1472,11 +1472,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				CLANG_ANALYZER_DEADCODE_DEADSTORES = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = NO;
-				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_STATIC_ANALYZER_MODE_ON_ANALYZE_ACTION = shallow;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
@@ -1492,9 +1487,6 @@
 				ENABLE_TESTABILITY = YES;
 				EXECUTABLE_EXTENSION = dylib;
 				EXECUTABLE_PREFIX = lib;
-				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					USE_SOCKETS,
@@ -1503,7 +1495,6 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -1520,6 +1511,7 @@
 					"$(inherited)",
 					"$(TARGET_BUILD_DIR)",
 				);
+				MACH_O_TYPE = mh_dylib;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1534,11 +1526,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				CLANG_ANALYZER_DEADCODE_DEADSTORES = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = NO;
-				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_STATIC_ANALYZER_MODE_ON_ANALYZE_ACTION = shallow;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
@@ -1553,8 +1540,6 @@
 				DEPLOYMENT_POSTPROCESSING = YES;
 				EXECUTABLE_EXTENSION = dylib;
 				EXECUTABLE_PREFIX = lib;
-				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					USE_SOCKETS,
 					OPENSSL_NO_HW_PADLOCK,
@@ -1576,6 +1561,7 @@
 					"$(inherited)",
 					"$(TARGET_BUILD_DIR)",
 				);
+				MACH_O_TYPE = mh_dylib;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -1590,14 +1576,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					USE_SOCKETS,
-					OPENSSL_NO_HW_PADLOCK,
-					OPENSSL_NO_INLINE_ASM,
 					OPENSSL_NO_ASM,
-					"DEBUG=1",
 					"$(inherited)",
 				);
-				MACH_O_TYPE = mh_dylib;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1606,12 +1587,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					USE_SOCKETS,
-					OPENSSL_NO_HW_PADLOCK,
-					OPENSSL_NO_INLINE_ASM,
 					OPENSSL_NO_ASM,
+					"$(inherited)",
 				);
-				MACH_O_TYPE = mh_dylib;
 				SDKROOT = iphoneos;
 			};
 			name = Release;

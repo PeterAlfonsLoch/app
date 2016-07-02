@@ -184,14 +184,6 @@
 
       }
 
-      str = get_exe_path();
-
-
-      if(str.has_char())
-      {
-         str = ::file::path(str).folder();
-         goto found;
-      }
 
       str = ::dir::pathfind(getenv("DYLD_FALLBACK_LIBRARY_PATH"), "libaura.dylib", "rfs"); // readable - normal file - non zero sized
 
@@ -202,6 +194,14 @@
 
       }
 
+      str = get_exe_path();
+      
+      
+      if(str.has_char())
+      {
+         str = ::file::path(str).folder();
+         goto found;
+      }
 
 
    }

@@ -1895,11 +1895,14 @@ restart:
                   System.http().m_straDownloading.add(strPath);
 
                   sl.unlock();
+                  
+                  auto pfile = canew(::memory_file(papp));
 
-                  spfile = canew(::sockets::http_buffer(papp));
-
-                  if((cres = spfile->open(strPath,nOpenFlags)).failed())
+                  spfile = pfile;
+                  
+                  if(!Application.http().get(strPath, *pfile->get_memory(), set))
                   {
+                     
                      sl.lock();
 
                      System.http().m_straDownloading.remove(strPath);
@@ -1938,16 +1941,31 @@ restart:
             }
             else
             {
+               
+               auto pfile=canew(memory_file(papp));
 
-               spfile = canew(::sockets::http_buffer(papp));
+               spfile =pfile;
 
-               spfile->oprop("http_set") = varFile["http_set"];
+               property_set set;
+               
+               set = varFile["http_set"].propset();
 
                bool bRawHttp1 = (bool)varFile["http_set"]["raw_http"];
 
                bool bRawHttp2 = (bool)spfile->oprop("http_set")["raw_http"];
 
-               cres = spfile->open(strPath,nOpenFlags);
+               if(Application.http().get(strPath,*pfile->get_memory(),set))
+               {
+                  
+                  cres = no_exception;
+                  
+               }
+               else
+               {
+
+                  cres = failure;
+                  
+               }
 
             }
 
@@ -2009,8 +2027,10 @@ restart:
             }
             else
             {
+               
+               ::file::path pathUrl = App(papp).dir().matter(strPath);
 
-               spfile = get_file(App(papp).dir().matter(strPath),nOpenFlags,&cres, papp);
+               spfile = get_file(pathUrl, nOpenFlags,&cres, papp);
 
             }
 

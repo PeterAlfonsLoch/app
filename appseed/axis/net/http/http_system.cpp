@@ -957,26 +957,26 @@ retry:
             {
                break;
             }
-            if(set["file_out"].cast < ::file::timeout_buffer >() != NULL)
-            {
-               if(psession->m_iFinalSize != -1 && set["file_out"].cast < ::file::timeout_buffer >()->m_uiExpectedSize != psession->m_iFinalSize)
-               {
-                  set["file_out"].cast < ::file::timeout_buffer >()->m_uiExpectedSize = psession->m_iFinalSize;
-               }
-            }
+//            if(set["file_out"].cast < ::file::timeout_buffer >() != NULL)
+//            {
+//               if(psession->m_iFinalSize != -1 && set["file_out"].cast < ::file::timeout_buffer >()->m_uiExpectedSize != psession->m_iFinalSize)
+//               {
+//                  set["file_out"].cast < ::file::timeout_buffer >()->m_uiExpectedSize = psession->m_iFinalSize;
+//               }
+//            }
             dw2 = ::get_tick_count();
             TRACE("system::request time(%d) = %d, %d, %d\n", iIteration, dw1, dw2, dw2 - dw1);
             iIteration++;
          }
 
 
-         if(set["file_out"].cast < ::file::timeout_buffer >() != NULL)
-         {
-            if(psession->m_iFinalSize != -1 && set["file_out"].cast < ::file::timeout_buffer >()->m_uiExpectedSize != psession->m_iFinalSize)
-            {
-               set["file_out"].cast < ::file::timeout_buffer >()->m_uiExpectedSize = psession->m_iFinalSize;
-            }
-         }
+//         if(set["file_out"].cast < ::file::timeout_buffer >() != NULL)
+//         {
+//            if(psession->m_iFinalSize != -1 && set["file_out"].cast < ::file::timeout_buffer >()->m_uiExpectedSize != psession->m_iFinalSize)
+//            {
+//               set["file_out"].cast < ::file::timeout_buffer >()->m_uiExpectedSize = psession->m_iFinalSize;
+//            }
+//         }
 
          keeplive.keep_alive();
 
@@ -1472,18 +1472,18 @@ retry:
       if(strProtocol == "https")
       {
 #ifdef BSD_STYLE_SOCKETS
-         ::sockets::ssl_client_context * pcontext = set["ssl_client_context"].cast < ::sockets::ssl_client_context > ();
-         if(pcontext != NULL)
-         {
-            psocket->m_spsslclientcontext = pcontext;
-         }
-         else
-         {
-            if(strSessId.has_char() && strSessId != "not_auth")
-            {
-               psocket->m_strInitSSLClientContext = System.url().get_server(strUrl) + "?sessid=" + strSessId;
-            }
-         }
+//         ::sockets::ssl_client_context * pcontext = set["ssl_client_context"].cast < ::sockets::ssl_client_context > ();
+//         if(pcontext != NULL)
+//         {
+//            psocket->m_spsslclientcontext = pcontext;
+//         }
+//         else
+//         {
+//            if(strSessId.has_char() && strSessId != "not_auth")
+//            {
+//               psocket->m_strInitSSLClientContext = System.url().get_server(strUrl) + "?sessid=" + strSessId;
+//            }
+//         }
 #endif
          psocket->EnableSSL();
       }
@@ -1535,7 +1535,7 @@ retry:
 
       psocket->m_bEnablePool = false;
 
-      ::file::timeout_buffer * ptimeoutbuffer = set["file_out"].cast < ::file::timeout_buffer >();
+//      ::file::timeout_buffer * ptimeoutbuffer = set["file_out"].cast < ::file::timeout_buffer >();
 
       while(handler.get_count() > 0 && (::get_thread() == NULL || ::get_thread()->m_bRun))
       {
@@ -1546,13 +1546,13 @@ retry:
          {
             break;
          }
-         if (ptimeoutbuffer != NULL)
-         {
-            if (psocket->m_iFinalSize != -1 && ptimeoutbuffer->m_uiExpectedSize != psocket->m_iFinalSize)
-            {
-               ptimeoutbuffer->m_uiExpectedSize = psocket->m_iFinalSize;
-            }
-         }
+//         if (ptimeoutbuffer != NULL)
+//         {
+//            if (psocket->m_iFinalSize != -1 && ptimeoutbuffer->m_uiExpectedSize != psocket->m_iFinalSize)
+//            {
+//               ptimeoutbuffer->m_uiExpectedSize = psocket->m_iFinalSize;
+//            }
+//         }
          dw2 = ::get_tick_count();
          TRACE("system::get time(%d) = %d, %d, %d\n", iIteration, dw1, dw2, dw2 - dw1);
          iIteration++;
@@ -1665,6 +1665,13 @@ retry:
          }
 
       }
+      
+//      if (ptimeoutbuffer != NULL && ptimeoutbuffer->m_uiExpectedSize == (uint_ptr)-1)
+//      {
+//         
+//         ptimeoutbuffer->m_uiExpectedSize = 0;
+//         
+//      }
 
       uint32_t dwTimeProfile2 = get_tick_count();
       TRACE0("Total time ::http::system::get(\"" + strUrl.Left(MIN(255,strUrl.get_length())) + "\") " + ::str::from(dwTimeProfile2 - dwTimeProfile1));

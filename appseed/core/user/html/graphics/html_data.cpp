@@ -533,33 +533,48 @@ namespace html
       synch_lock lock(m_pmutex);
 
 restart:
+      
+         if(m_strPathName.has_char())
+         {
+      
+            if (varFile.get_type() == var::type_propset && varFile.propset()["url"].get_string().has_char())
+            {
+         
+               varFile["url"] = defer_solve_relative_name(varFile["url"], m_strPathName);
+      
+            }
+            else if (varFile.get_type() == var::type_string || varFile.get_type() == var::type_pstring)
+            {
+         
+               varFile = defer_solve_relative_name(varFile, m_strPathName);
+      
+            }
+            
+         }
 
-      if (varFile.get_type() == var::type_propset && varFile.propset()["url"].get_string().has_char())
-      {
-         varFile["url"] = defer_solve_relative_name(varFile["url"], m_strPathName);
-      }
-      else if (varFile.get_type() == var::type_string || varFile.get_type() == var::type_pstring)
-      {
-         varFile = defer_solve_relative_name(varFile, m_strPathName);
-      }
+            string strPathName;
 
-      string strPathName;
-
-
-      if(varFile.get_type() == var::type_propset && varFile.propset()["url"].get_string().has_char())
-      {
-         strPathName = varFile.propset()["url"];
-      }
-      else if(varFile.cast < ::file::binary_buffer > () != NULL)
-      {
-         strPathName = System.datetime().international().get_gmt_date_time() + ".html";
-      }
-      else
-      {
-         strPathName = varFile;
-      }
-      if(strPathName.Mid(3) == "wb:")
-         return FALSE;
+            if(varFile.get_type() == var::type_propset && varFile.propset()["url"].get_string().has_char())
+            {
+               
+               strPathName = varFile.propset()["url"];
+            
+            }
+            else if(varFile.cast < ::file::binary_buffer > () != NULL)
+            {
+         
+               strPathName = System.datetime().international().get_gmt_date_time() + ".html";
+      
+            }
+            else
+            {
+         
+               strPathName = varFile;
+      
+            }
+      
+            if(strPathName.Mid(3) == "wb:")
+               return FALSE;
 
 
 

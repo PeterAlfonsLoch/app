@@ -224,28 +224,22 @@ namespace visual
 
    cursor * visual::set_cursor_file(e_cursor ecursor,const ::file::path & psz, bool bFromCache)
    {
+      
       cursor * pcursor = get_cursor(ecursor);
-      if (System.visual().imaging().load_from_file(pcursor, psz, NULL, bFromCache))
+      
+      if (System.visual().imaging().load_from_file(pcursor, psz, bFromCache))
       {
+         
          return pcursor;
+         
       }
       else
       {
+         
          return NULL;
+         
       }
-   }
-
-   cursor * visual::set_cursor_matter(e_cursor ecursor,const ::file::path & pszMatter)
-   {
-      cursor * pcursor = get_cursor(ecursor);
-      if(System.visual().imaging().load_from_matter(pcursor, pszMatter))
-      {
-         return pcursor;
-      }
-      else
-      {
-         return NULL;
-      }
+      
    }
 
 

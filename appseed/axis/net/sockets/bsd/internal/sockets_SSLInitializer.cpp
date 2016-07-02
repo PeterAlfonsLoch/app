@@ -327,11 +327,19 @@ extern "C" void SSLInitializer_SSL_locking_function(int32_t mode, int32_t n, con
 
 extern "C" unsigned long SSLInitializer_SSL_id_function()
 {
-#ifdef WIN32
-   return ::GetCurrentThreadId();
-#else
-   return (unsigned long)(int_ptr) ::pthread_self();
-#endif
+
+//#ifdef WIN32
+   
+   return (unsigned long) ::GetCurrentThreadId();
+   
+//#else
+//   
+//   unsigned long ul = (unsigned long)(int_ptr) ::pthread_self();
+//   
+//   return ul;
+//   
+//#endif
+//   
 }
 
 extern "C" void SSLInitializer_rand_seed(const void * buf, int32_t num)

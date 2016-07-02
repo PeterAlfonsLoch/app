@@ -9,7 +9,7 @@ namespace fs
    remote_native_file::remote_native_file(::aura::application * papp, var varFile) :
       ::object(papp),
       ::sockets::http_batch_buffer(papp),
-      m_httpfile(canew(::sockets::http_buffer(papp))),
+      m_httpfile(papp),
       m_memfile(papp),
       m_varFile(varFile)
    {
@@ -26,7 +26,7 @@ namespace fs
    memory_size_t remote_native_file::read(void *lpBuf, memory_size_t nCount)
    {
 
-      return m_httpfile->read(lpBuf, nCount);
+      return m_httpfile.read(lpBuf, nCount);
 
    }
 
@@ -43,7 +43,7 @@ namespace fs
    {
       if((m_nOpenFlags & ::file::mode_read) != 0)
       {
-         return m_httpfile->get_length();
+         return m_httpfile.get_length();
       }
       else
       {
@@ -55,7 +55,7 @@ namespace fs
    {
       if((m_nOpenFlags & ::file::mode_read) != 0)
       {
-         return m_httpfile->seek(lOff, nFrom);
+         return m_httpfile.seek(lOff, nFrom);
       }
       else
       {
@@ -84,8 +84,10 @@ namespace fs
          dwAdd |= ::file::hint_unknown_length_supported;
       }
 
-      m_httpfile->open(strUrl, ::file::type_binary | ::file::mode_read | dwAdd);
+      m_httpfile.open(strUrl, ::file::type_binary | ::file::mode_read | dwAdd);
+      
    }
+   
 
    void remote_native_file::set_file_data()
    {

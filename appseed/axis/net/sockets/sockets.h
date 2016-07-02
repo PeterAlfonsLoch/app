@@ -42,7 +42,7 @@
 
 //#include "axis/filesystem/file/file_timeout_buffer.h"
 //#include "axis/filesystem/file/file_transfer_buffer.h"
-#include "sockets_http_buffer.h"
+//#include "sockets_http_buffer.h"
 #include "sockets_http_batch_buffer.h"
 
 

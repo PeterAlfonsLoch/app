@@ -5,7 +5,7 @@
 ifs_file::ifs_file(::aura::application * papp, var varFile) :
    ::object(papp),
    ::sockets::http_batch_buffer(papp),
-   m_httpfile(canew(::sockets::http_buffer(papp))),
+   m_httpfile(papp),
    m_memfile(papp),
    m_varFile(varFile)
 {
@@ -22,7 +22,7 @@ ifs_file::~ifs_file()
 memory_size_t ifs_file::read(void *lpBuf, memory_size_t nCount)
 {
 
-   return m_httpfile->read(lpBuf, nCount);
+   return m_httpfile.read(lpBuf, nCount);
 
 }
 
@@ -39,7 +39,7 @@ file_size_t ifs_file::get_length() const
 {
    if((m_nOpenFlags & ::file::mode_read) != 0)
    {
-      return m_httpfile->get_length();
+      return m_httpfile.get_length();
    }
    else
    {
@@ -51,7 +51,7 @@ file_position_t ifs_file::seek(file_offset_t lOff, ::file::e_seek nFrom)
 {
    if((m_nOpenFlags & ::file::mode_read) != 0)
    {
-      return m_httpfile->seek(lOff, nFrom);
+      return m_httpfile.seek(lOff, nFrom);
    }
    else
    {
@@ -79,7 +79,7 @@ void ifs_file::get_file_data()
       dwAdd |= ::file::hint_unknown_length_supported;
    }
 
-   m_httpfile->open(strUrl, ::file::type_binary | ::file::mode_read | dwAdd);
+   m_httpfile.open(strUrl, ::file::type_binary | ::file::mode_read | dwAdd);
 }
 
 void ifs_file::set_file_data()

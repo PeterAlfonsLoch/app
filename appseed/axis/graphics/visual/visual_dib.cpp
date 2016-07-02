@@ -31,7 +31,8 @@ namespace visual
    }
 
 
-   dib_sp::array::array()
+   dib_sp::array::array(::aura::application * papp) :
+      object(papp)
    {
 
       m_uiLoop = 0;
@@ -92,9 +93,9 @@ namespace visual
          || varFile.get_file_path().find_ci(".gif?") > 0)
       {
 
-         m_sparray = canew(array);
+         m_sparray = canew(array(m_p->m_pauraapp));
 
-         if (!Sys(m_p->m_pauraapp).visual().imaging().load_from_file(m_sparray, varFile, bCache, m_p->m_pauraapp))
+         if (!Sys(m_p->m_pauraapp).visual().imaging().load_from_file(m_sparray, varFile, bCache))
          {
 
             m_sparray.release();
@@ -116,7 +117,7 @@ namespace visual
 
       }
 
-      return Sys(m_p->m_pauraapp).visual().imaging().load_from_file(m_p, varFile, bCache, m_p->m_pauraapp);
+      return Sys(m_p->m_pauraapp).visual().imaging().load_from_file(m_p, varFile, bCache);
 
    }
 
@@ -124,7 +125,7 @@ namespace visual
    bool dib_sp::load_from_matter(const char * pszMatter, bool bCache)
    {
 
-      return Sys(m_p->m_pauraapp).visual().imaging().load_from_file(m_p, m_p->m_pauraapp->m_paxisapp->dir().matter(pszMatter), bCache, m_p->m_pauraapp);
+      return Sys(m_p->m_pauraapp).visual().imaging().load_from_file(m_p, m_p->m_pauraapp->m_paxisapp->dir().matter(pszMatter), bCache);
 
    }
 
@@ -132,7 +133,7 @@ namespace visual
    bool dib_sp::read_from_file(::file::buffer_sp spfile)
    {
 
-      return Sys(m_p->m_pauraapp).visual().imaging().read_from_file(m_p, spfile, m_p->m_pauraapp);
+      return Sys(m_p->m_pauraapp).visual().imaging().LoadImageFromFile(m_p, spfile);
 
    }
 

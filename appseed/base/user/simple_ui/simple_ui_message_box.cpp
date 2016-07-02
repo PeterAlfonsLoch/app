@@ -483,6 +483,8 @@ int32_t simple_ui_message_box(oswindow interaction_impl,const char * lpText,cons
 
       try
       {
+         
+         
          //__begin_thread(::get_thread_app(),&thread_proc_simple_ui_message_box,pmessagebox);
          thread_proc_simple_ui_message_box(pmessagebox);
          //pmessagebox->show();

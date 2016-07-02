@@ -352,13 +352,17 @@ namespace aura
       stra.add("bambu3.jpg");
       stra.add("bambu33.png");
       stra.add("bambu4.jpg");
+      
+      ::file::path pathFolder;
+      
+      pathFolder = "http://server.ca2.cc/image/cc/ca2core/bkimageoftheday/common/";
 
       for (auto & str : stra)
       {
 
-         ::file::path path = string("https://ca2.cc/image/cc/ca2core/bkimageoftheday/common/") + str + string("?sessid=noauth");
+         //::file::path path = string("https://ca2.cc/image/cc/ca2core/bkimageoftheday/common/") + str + string("?sessid=noauth");
 
-         pfileset->m_straFileAddUp.add(path);
+         pfileset->m_straFileAddUp.add(pathFolder / str);
 
       }
 

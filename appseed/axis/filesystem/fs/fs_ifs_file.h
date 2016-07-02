@@ -7,7 +7,7 @@ class CLASS_DECL_AXIS ifs_file :
 public:
 
 
-   smart_pointer < ::sockets::http_buffer >     m_httpfile;
+   ::file::memory_buffer                        m_httpfile;
    ::file::memory_buffer                        m_memfile;
    var                                          m_varFile;
 

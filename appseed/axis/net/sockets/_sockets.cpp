@@ -12,7 +12,7 @@
  //Pasta de Z:\nordroid\app\appseed\axis\net\sockets
 
 #include "sockets_http_batch_buffer.cpp"
-#include "sockets_http_buffer.cpp"
+//#include "sockets_http_buffer.cpp"
 #include "sockets_link_in_socket.cpp"
 #include "sockets_link_out_socket.cpp"
 #include "sockets_trace_logger.cpp"

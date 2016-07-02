@@ -538,11 +538,17 @@ namespace datetime
       {
          szBuffer[0] = '\0';
       }
+
       str.ReleaseBuffer();
+      
+      return str;
+      
 #elif defined(APPLEOS)
-#if __WORDSIZE != 64
-#pragma error "error: long should 8-byte on APPLEOS"
-#endif
+
+   #if __WORDSIZE != 64
+   #pragma error "error: long should 8-byte on APPLEOS"
+   #endif
+
       char * szBuffer = str.GetBufferSetLength(maxTimeBufferSize);
 
       struct tm* ptmTemp = localtime(&m_time);
@@ -553,9 +559,15 @@ namespace datetime
          szBuffer[0] = '\0';
 
       }
+      
+      str.ReleaseBuffer();
+      
+      return str;
 
 #elif _SECURE_TEMPLATE
 
+      char * szBuffer = str.GetBufferSetLength(maxTimeBufferSize);
+      
       struct tm ptmTemp;
 
       errno_t err = _localtime64_s(&ptmTemp, &m_time);
@@ -566,7 +578,12 @@ namespace datetime
          szBuffer[0] = '\0';
 
       }
-
+      
+      
+      str.ReleaseBuffer();
+      
+      return str;
+      
 //#elif defined(ANDROID) || defined(SOLARIS)
 //
 //      struct tm* ptmTemp = localtime(&m_time);
@@ -589,10 +606,11 @@ namespace datetime
       str.replace("%M",::str::zero_pad(::str::from(GetMinute()),2));
       str.replace("%S",::str::zero_pad(::str::from(GetSecond()),2));
 
+      return str;
+
 #endif
 
 
-      return str;
 
    }
 

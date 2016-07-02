@@ -556,7 +556,6 @@
 		077A07CF1B4D7403001C85FF /* exception_memory.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A163E0919C4A4CD00966C5E /* exception_memory.h */; };
 		077A07D01B4D7403001C85FF /* math_scalar.h in Headers */ = {isa = PBXBuildFile; fileRef = 079AE0641886481200635C39 /* math_scalar.h */; };
 		077A07D11B4D7403001C85FF /* collection_primitive_array.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B0941018495C2A007A0560 /* collection_primitive_array.h */; };
-		077A07D21B4D7403001C85FF /* file_timeout_buffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F5B181184A3B430092C3E1 /* file_timeout_buffer.h */; };
 		077A07D31B4D7403001C85FF /* colorertake5_styled_hrd_mapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC3159E198E4CB8008FB109 /* colorertake5_styled_hrd_mapper.h */; };
 		077A07D41B4D7403001C85FF /* x_charcategory2.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B094A318495C2A007A0560 /* x_charcategory2.h */; };
 		077A07D51B4D7403001C85FF /* windows_thread_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A163FC019C4A4CD00966C5E /* windows_thread_impl.h */; };
@@ -829,7 +828,6 @@
 		07F5B1E9184A3B430092C3E1 /* file_stream_buffer_base.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F5B179184A3B430092C3E1 /* file_stream_buffer_base.h */; };
 		07F5B1EB184A3B430092C3E1 /* file_string_buffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F5B17B184A3B430092C3E1 /* file_string_buffer.h */; };
 		07F5B1EF184A3B430092C3E1 /* file_text_buffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F5B17F184A3B430092C3E1 /* file_text_buffer.h */; };
-		07F5B1F1184A3B430092C3E1 /* file_timeout_buffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F5B181184A3B430092C3E1 /* file_timeout_buffer.h */; };
 		07F5B1F3184A3B430092C3E1 /* file_transfer_buffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F5B183184A3B430092C3E1 /* file_transfer_buffer.h */; };
 		07F5B1F5184A3B430092C3E1 /* file_writer.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F5B185184A3B430092C3E1 /* file_writer.h */; };
 		07F5B1F7184A3B430092C3E1 /* file_writer_flush.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F5B187184A3B430092C3E1 /* file_writer_flush.h */; };
@@ -1568,7 +1566,6 @@
 		07F5B179184A3B430092C3E1 /* file_stream_buffer_base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = file_stream_buffer_base.h; sourceTree = "<group>"; };
 		07F5B17B184A3B430092C3E1 /* file_string_buffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = file_string_buffer.h; sourceTree = "<group>"; };
 		07F5B17F184A3B430092C3E1 /* file_text_buffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = file_text_buffer.h; sourceTree = "<group>"; };
-		07F5B181184A3B430092C3E1 /* file_timeout_buffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = file_timeout_buffer.h; sourceTree = "<group>"; };
 		07F5B183184A3B430092C3E1 /* file_transfer_buffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = file_transfer_buffer.h; sourceTree = "<group>"; };
 		07F5B185184A3B430092C3E1 /* file_writer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = file_writer.h; sourceTree = "<group>"; };
 		07F5B187184A3B430092C3E1 /* file_writer_flush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = file_writer_flush.h; sourceTree = "<group>"; };
@@ -2363,7 +2360,6 @@
 				07F5B179184A3B430092C3E1 /* file_stream_buffer_base.h */,
 				07F5B17B184A3B430092C3E1 /* file_string_buffer.h */,
 				07F5B17F184A3B430092C3E1 /* file_text_buffer.h */,
-				07F5B181184A3B430092C3E1 /* file_timeout_buffer.h */,
 				07F5B183184A3B430092C3E1 /* file_transfer_buffer.h */,
 				07F5B185184A3B430092C3E1 /* file_writer.h */,
 				07F5B187184A3B430092C3E1 /* file_writer_flush.h */,
@@ -3586,7 +3582,6 @@
 				077A07CF1B4D7403001C85FF /* exception_memory.h in Headers */,
 				077A07D01B4D7403001C85FF /* math_scalar.h in Headers */,
 				077A07D11B4D7403001C85FF /* collection_primitive_array.h in Headers */,
-				077A07D21B4D7403001C85FF /* file_timeout_buffer.h in Headers */,
 				077A07D31B4D7403001C85FF /* colorertake5_styled_hrd_mapper.h in Headers */,
 				077A07D41B4D7403001C85FF /* x_charcategory2.h in Headers */,
 				077A07D51B4D7403001C85FF /* windows_thread_impl.h in Headers */,
@@ -4175,7 +4170,6 @@
 				07DF8DA71C5289FC0050DDEA /* ios_shell.h in Headers */,
 				079AE0671886481200635C39 /* math_scalar.h in Headers */,
 				07B094D818495C2B007A0560 /* collection_primitive_array.h in Headers */,
-				07F5B1F1184A3B430092C3E1 /* file_timeout_buffer.h in Headers */,
 				9AC315E5198E4CB8008FB109 /* colorertake5_styled_hrd_mapper.h in Headers */,
 				07B0956118495C2B007A0560 /* x_charcategory2.h in Headers */,
 				9A1643B919C4A4CF00966C5E /* windows_thread_impl.h in Headers */,
