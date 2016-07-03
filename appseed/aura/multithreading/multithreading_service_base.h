@@ -16,7 +16,7 @@ class CLASS_DECL_AURA service_base :
 {
 public:
 
-
+   DWORD                   m_dwStopTimeout;
    static service_base *   s_pservice;
 
    service_status          m_status;

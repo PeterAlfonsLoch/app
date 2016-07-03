@@ -37,6 +37,8 @@ object(papp),
 #endif
 {
 
+   m_dwStopTimeout = 30 * 1000; // 30 seconds
+
    papp->m_paurasystem->m_serviceptra.add(this);
 
 #ifdef WINDOWSEX
@@ -316,7 +318,7 @@ void WINAPI service_base::ServiceHandler(DWORD control)
 bool service_base::get_run()
 {
 
-   return !m_bStopping && ::get_thread()->is_alive();
+   return !m_bStopping;
 
 }
 
@@ -337,6 +339,26 @@ void service_base::call_server()
 
    serve();
 
+
+   while (get_run())
+   {
+
+      Sleep(100);
+
+   }
+
+   Application.post_quit();
+
+   try
+   {
+
+      Application.wait_close_dependent_threads(seconds(30));
+
+   }
+   catch (...)
+   {
+
+   }
 
    //if(posthreadNew != NULL)
    //{
