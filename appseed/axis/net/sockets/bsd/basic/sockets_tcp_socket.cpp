@@ -377,7 +377,7 @@ namespace sockets
                SetLost();
                break;
             case SSL_ERROR_SYSCALL:
-               TRACE("SSL read problem, errcode = 5 (SSL_ERROR_SYSCALL) errno = %d \n",n,errno);
+               TRACE("SSL read problem, errcode = %d (SSL_ERROR_SYSCALL) errno = %d \n",n,errno);
                OnDisconnect();
                SetCloseAndDelete(true);
                SetFlushBeforeClose(false);
