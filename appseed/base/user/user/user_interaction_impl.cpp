@@ -2558,7 +2558,7 @@ namespace user
       if (pgraphics == NULL || pgraphics->get_os_data() == NULL)
       {
 
-         output_debug_string("on_begin_draw failed");
+         //output_debug_string("on_begin_draw failed");
 
          return;
 

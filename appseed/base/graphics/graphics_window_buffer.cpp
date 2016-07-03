@@ -41,7 +41,7 @@ void window_buffer::update_window(COLORREF * pcolorref,int cxParam,int cyParam,i
    if (m_spdibBuffer.is_null())
    {
 
-      output_debug_string("window_buffer m_spdibBuffer NULL");
+      //output_debug_string("window_buffer m_spdibBuffer NULL");
 
       m_spdibBuffer.alloc(allocer());
 
@@ -50,7 +50,7 @@ void window_buffer::update_window(COLORREF * pcolorref,int cxParam,int cyParam,i
    if(!m_spdibBuffer->create(m_pimpl->m_rectParentClient.size()))
    {
 
-      output_debug_string("window_buffer create (width=" + ::str::from(width(m_pimpl->m_rectParentClient)) + ",height=" + ::str::from(height(m_pimpl->m_rectParentClient)) + ")");
+      //output_debug_string("window_buffer create (width=" + ::str::from(width(m_pimpl->m_rectParentClient)) + ",height=" + ::str::from(height(m_pimpl->m_rectParentClient)) + ")");
 
       return NULL;
 
