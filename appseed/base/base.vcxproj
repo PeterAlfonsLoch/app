@@ -1190,7 +1190,9 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClInclude Include="base\os\windows\windows_c.h" />
     <ClInclude Include="base\os\windows\windows_internal.h" />
+    <ClInclude Include="base\os\windows\windows_os.h" />
     <ClInclude Include="base\os\windows\windows_system_interaction_impl.h" />
     <ClInclude Include="base\os\windows\windows_window_gdi.h" />
     <ClInclude Include="database\database.h" />

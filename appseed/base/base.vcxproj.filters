@@ -470,6 +470,12 @@
     <ClInclude Include="graphics\graphics_window_dc.h">
       <Filter>Header Files\graphics</Filter>
     </ClInclude>
+    <ClInclude Include="base\os\windows\windows_os.h">
+      <Filter>Header Files\base\os\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="base\os\windows\windows_c.h">
+      <Filter>Header Files\base\os\windows</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="base\base\base.cpp">
