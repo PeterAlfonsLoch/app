@@ -17,12 +17,14 @@
 #if defined(OPENSSL_NO_ASM)
    #if defined(_M_ARM) || defined(__arm__)
       #include "aes_core.c"
-   #else
+      #include "aes_misc.c"
+#else
       #include "aes_x86core.c"
    #endif
 #else
-   #include "aes_misc.c"
+#include "aes_misc.c"
 #endif
+
 
 #include "aes_ofb.c"
 #include "aes_wrap.c"

@@ -190,6 +190,8 @@ namespace exception
          ::InstallUncaughtExceptionHandler();
 #endif
 
+         output_debug_string("exception standard translator");
+
          ZERO(m_sig.m_saSeg);
          m_sig.m_saSeg.sa_flags = SA_SIGINFO;
          m_sig.m_saSeg.sa_sigaction = &filter_sigsegv;

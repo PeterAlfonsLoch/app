@@ -10,7 +10,7 @@ numeric_parser_exception::numeric_parser_exception(::aura::application * papp,co
 ::exception::base(get_app()),
 simple_exception(papp,strMessage)
 {
-
+   output_debug_string("numeric_parser_exception");
 }
 
 numeric_parser_exception::~numeric_parser_exception()

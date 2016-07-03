@@ -30,6 +30,11 @@
   <ItemGroup>
     <None Include="aqua.def" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ace\nord_ace.vcxproj">
+      <Project>{e99c9d52-0709-4ed7-9f14-180b18f66c46}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{bd207bc4-c08b-4a2d-b754-f3bd46ad3098}</ProjectGuid>
     <Keyword>Android</Keyword>
@@ -109,8 +114,7 @@
     </ClCompile>
     <Link>
       <LibraryDependencies>ace;log;android;m</LibraryDependencies>
-      <SharedLibrarySearchPath>$(VS_NdkRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\lib;%(SharedLibrarySearchPath)</SharedLibrarySearchPath>
-      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/;$(VS_NdkRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\lib;$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">
@@ -125,11 +129,9 @@
       <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include/;.;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/appseed/base/base;$(SolutionDir)../../../app/base/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/core;$(SolutionDir)../../../nodeapp/thirdparty/include;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(NDKRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories);$(Sysroot)\usr\include</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>$(SolutionDir)../../../nodeapp/operational_system/solution_arm_basis.h</ForcedIncludeFiles>
     </ClCompile>
+    <Link />
     <Link>
-      <SharedLibrarySearchPath>$(OutDir);$(VS_NdkRoot)\platforms\$(AndroidAPILevel)\arch-arm\usr\lib;%(SharedLibrarySearchPath)</SharedLibrarySearchPath>
-    </Link>
-    <Link>
-      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/;$(VS_NdkRoot)\platforms\$(AndroidAPILevel)\arch-arm\usr\lib;$(ToolchainPrebuiltPath)\lib\gcc\$(ToolchainName)\$(ToolchainVersion)\armv7-a;$(StlLibraryPath);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <LibraryDependencies>ace;log;android;m</LibraryDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -150,7 +152,7 @@
       <Optimization>Disabled</Optimization>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/;$(VS_NdkRoot)\platforms\$(AndroidAPILevel)\arch-arm\usr\lib;$(ToolchainPrebuiltPath)\lib\gcc\$(ToolchainName)\$(ToolchainVersion)\armv7-a;$(StlLibraryPath);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <LibraryDependencies>ace;log;android;m</LibraryDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -170,7 +172,7 @@
       <AdditionalOptions>-Wno-attributes -Wno-sign-compare -Wno-comment -Wno-strict-overflow -Wno-unused-local-typedefs -Wno-unknown-pragmas -Wno-unused-function -Wno-unused-but-set-variable -Wno-unused-variable -Wno-unused-value -Wno-reorder </AdditionalOptions>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/;$(VS_NdkRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\lib;$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <LibraryDependencies>ace;log;android;m</LibraryDependencies>
     </Link>
   </ItemDefinitionGroup>

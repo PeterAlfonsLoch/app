@@ -437,6 +437,19 @@ namespace core
    bool application::initialize_instance()
    {
 
+      try
+      {
+
+         throw_numeric_parser_exception("little test of numeric parser exception at sys (main?) function stack?");
+
+      }
+      catch (numeric_parser_exception & exp)
+      {
+
+         output_debug_string("caught!!!! : " + exp.m_strMessage);
+
+      }
+
       if (!::base::application::initialize_instance())
          return false;
 

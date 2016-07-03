@@ -4,7 +4,10 @@
 
 
 
-window_android_anative::window_android_anative()
+window_android_anative::window_android_anative(::aura::application * papp) :
+   object(papp),
+   window_graphics(papp),
+   window_buffer(papp)
 {
 
    //m_cairoSource = NULL;
@@ -22,30 +25,23 @@ window_android_anative::~window_android_anative()
 void window_android_anative::create_window_graphics(int64_t cxParam,int64_t cyParam,int iStrideParam)
 {
 
-   if(interaction_impl == NULL)
-      return;
-
-   if(interaction_impl->m_pui == NULL)
-      return;
-
    destroy_window_graphics();
 
 
 
-   synch_lock sl(interaction_impl->m_pui->m_pmutex);
+   synch_lock sl(m_pimpl->m_pui->m_pmutex);
 
    int w;
 
    int h;
 
-   w = ANativeWindow_getWidth(interaction_impl->m_engine.app->window);
+   w = ANativeWindow_getWidth(m_pimpl->m_oswindow->m_engine.app->window);
 
-   h = ANativeWindow_getHeight(interaction_impl->m_engine.app->window);
+   h = ANativeWindow_getHeight(m_pimpl->m_oswindow->m_engine.app->window);
 
-   ANativeWindow_setBuffersGeometry(interaction_impl->m_engine.app->window, w, h, WINDOW_FORMAT_RGBA_8888);
+   ANativeWindow_setBuffersGeometry(m_pimpl->m_oswindow->m_engine.app->window, w, h, WINDOW_FORMAT_RGBA_8888);
 
-
-   ::window_graphics::create_window_graphics(interaction_impl, cxParam, cyParam, w * 4);
+   ::window_graphics::create_window_graphics(cxParam, cyParam, w * 4);
 
 }
 
@@ -76,7 +72,7 @@ void window_android_anative::update_window(oswindow interaction_impl, COLORREF *
 
    ZERO(buffer);
 
-   ANativeWindow_lock(interaction_impl->m_engine.app->window, &buffer, &r);
+   ANativeWindow_lock(m_pimpl->m_oswindow->m_engine.app->window, &buffer, &r);
 
    /**
    * Unlock the window's drawing surface after previously locking it,

@@ -96,9 +96,8 @@
     </ClCompile>
     <Link />
     <Link>
-      <LibraryDependencies>axisfreeimage;axiszlib;aura;ace;$(StlLibraryName);m</LibraryDependencies>
-      <SharedLibrarySearchPath>$(VS_NdkRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\lib;%(SharedLibrarySearchPath)</SharedLibrarySearchPath>
-      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/;$(VS_NdkRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\lib;$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <LibraryDependencies>axisfreeimage;axispng;axiszlib;aura;ace;$(StlLibraryName);m</LibraryDependencies>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">
@@ -114,12 +113,10 @@
       <CppLanguageStandard>gnu++1y</CppLanguageStandard>
       <ForcedIncludeFiles>$(SolutionDir)../../../nodeapp/operational_system/solution_arm_basis.h</ForcedIncludeFiles>
     </ClCompile>
+    <Link />
     <Link>
-      <SharedLibrarySearchPath>$(OutDir);$(VS_NdkRoot)\platforms\$(AndroidAPILevel)\arch-arm\usr\lib;%(SharedLibrarySearchPath)</SharedLibrarySearchPath>
-    </Link>
-    <Link>
-      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/;$(VS_NdkRoot)\platforms\$(AndroidAPILevel)\arch-arm\usr\lib;$(ToolchainPrebuiltPath)\lib\gcc\$(ToolchainName)\$(ToolchainVersion)\armv7-a;$(StlLibraryPath);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <LibraryDependencies>axisfreeimage;axiszlib;aura;ace;$(StlLibraryName);m</LibraryDependencies>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <LibraryDependencies>axisfreeimage;axispng;axiszlib;aura;ace;$(StlLibraryName);m</LibraryDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">
@@ -139,8 +136,8 @@
       <Optimization>Disabled</Optimization>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/;$(VS_NdkRoot)\platforms\$(AndroidAPILevel)\arch-arm\usr\lib;$(ToolchainPrebuiltPath)\lib\gcc\$(ToolchainName)\$(ToolchainVersion)\armv7-a;$(StlLibraryPath);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <LibraryDependencies>axisfreeimage;axiszlib;aura;ace;$(StlLibraryName);m</LibraryDependencies>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <LibraryDependencies>axisfreeimage;axispng;axiszlib;aura;ace;$(StlLibraryName);m</LibraryDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|x86'">
@@ -159,8 +156,8 @@
       <AdditionalOptions>-Wno-attributes -Wno-sign-compare -Wno-comment -Wno-strict-overflow -Wno-unused-local-typedefs -Wno-unknown-pragmas -Wno-unused-function -Wno-unused-but-set-variable -Wno-unused-variable -Wno-unused-value </AdditionalOptions>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/;$(VS_NdkRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\lib;$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <LibraryDependencies>axisfreeimage;axiszlib;aura;ace;$(StlLibraryName);m</LibraryDependencies>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <LibraryDependencies>axisfreeimage;axispng;axiszlib;aura;ace;$(StlLibraryName);m</LibraryDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -170,30 +167,11 @@
       <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</RuntimeTypeInfo>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x86'">-Wno-overloaded-virtual -Wno-unknown-pragmas -Wno-reorder %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
-    <ClCompile Include="Source\LibPNG\png.c" />
-    <ClCompile Include="Source\LibPNG\pngerror.c" />
-    <ClCompile Include="Source\LibPNG\pngget.c" />
-    <ClCompile Include="Source\LibPNG\pngmem.c" />
-    <ClCompile Include="Source\LibPNG\pngpread.c" />
-    <ClCompile Include="Source\LibPNG\pngread.c" />
-    <ClCompile Include="Source\LibPNG\pngrio.c" />
-    <ClCompile Include="Source\LibPNG\pngrtran.c" />
-    <ClCompile Include="Source\LibPNG\pngrutil.c" />
-    <ClCompile Include="Source\LibPNG\pngset.c" />
-    <ClCompile Include="Source\LibPNG\pngtrans.c" />
-    <ClCompile Include="Source\LibPNG\pngwio.c" />
-    <ClCompile Include="Source\LibPNG\pngwrite.c" />
-    <ClCompile Include="Source\LibPNG\pngwtran.c" />
-    <ClCompile Include="Source\LibPNG\pngwutil.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\LibPNG\png.h" />
-    <ClInclude Include="Source\LibPNG\pngconf.h" />
-    <ClInclude Include="Source\LibPNG\pngdebug.h" />
-    <ClInclude Include="Source\LibPNG\pnginfo.h" />
-    <ClInclude Include="Source\LibPNG\pnglibconf.h" />
-    <ClInclude Include="Source\LibPNG\pngpriv.h" />
-    <ClInclude Include="Source\LibPNG\pngstruct.h" />
+    <ProjectReference Include="..\png\nord_axispng.vcxproj">
+      <Project>{04238890-c8df-43c8-a90c-4d19fa21286f}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

@@ -99,9 +99,8 @@
       <AdditionalDependencies>
       </AdditionalDependencies>
       <LibraryDependencies>aqua;atomiconv;ace;$(StlLibraryName);log;m</LibraryDependencies>
-      <SharedLibrarySearchPath>$(VS_NdkRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\lib;%(SharedLibrarySearchPath)</SharedLibrarySearchPath>
       <UnresolvedSymbolReferences>true</UnresolvedSymbolReferences>
-      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/;$(VS_NdkRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\lib;$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">
@@ -116,11 +115,9 @@
       <CppLanguageStandard>gnu++1y</CppLanguageStandard>
       <ForcedIncludeFiles>$(SolutionDir)../../../nodeapp/operational_system/solution_arm_basis.h</ForcedIncludeFiles>
     </ClCompile>
+    <Link />
     <Link>
-      <SharedLibrarySearchPath>$(OutDir);$(VS_NdkRoot)\platforms\$(AndroidAPILevel)\arch-arm\usr\lib;%(SharedLibrarySearchPath)</SharedLibrarySearchPath>
-    </Link>
-    <Link>
-      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/;$(VS_NdkRoot)\platforms\$(AndroidAPILevel)\arch-arm\usr\lib;$(ToolchainPrebuiltPath)\lib\gcc\$(ToolchainName)\$(ToolchainVersion)\armv7-a;$(StlLibraryPath);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <LibraryDependencies>aqua;atomiconv;ace;$(StlLibraryName);log;m</LibraryDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -142,7 +139,7 @@
     </ClCompile>
     <Link>
       <LibraryDependencies>aqua;atomiconv;ace;$(StlLibraryName);log;m</LibraryDependencies>
-      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/;$(VS_NdkRoot)\platforms\$(AndroidAPILevel)\arch-arm\usr\lib;$(ToolchainPrebuiltPath)\lib\gcc\$(ToolchainName)\$(ToolchainVersion)\armv7-a;$(StlLibraryPath);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|x86'">
@@ -162,7 +159,7 @@
     </ClCompile>
     <Link>
       <LibraryDependencies>aqua;atomiconv;ace;$(StlLibraryName);log;m</LibraryDependencies>
-      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/;$(VS_NdkRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\lib;$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -485,12 +482,6 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="aura\aura\aura_math.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="aura\aura\aura_message_queue.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
@@ -3217,7 +3208,6 @@
     <ClInclude Include="filesystem\file\file_stream_buffer_base.h" />
     <ClInclude Include="filesystem\file\file_string_buffer.h" />
     <ClInclude Include="filesystem\file\file_text_buffer.h" />
-    <ClInclude Include="filesystem\file\file_timeout_buffer.h" />
     <ClInclude Include="filesystem\file\file_transfer_buffer.h" />
     <ClInclude Include="filesystem\file\file_writer.h" />
     <ClInclude Include="filesystem\file\file_writer_flush.h" />
@@ -3525,6 +3515,11 @@
     <None Include="primitive\primitive.inl" />
     <None Include="primitive\primitive_factory_impl.inl" />
     <None Include="primitive\str\str.inl" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ace\nord_ace.vcxproj">
+      <Project>{e99c9d52-0709-4ed7-9f14-180b18f66c46}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

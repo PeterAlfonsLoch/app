@@ -289,11 +289,15 @@ namespace android
       if (cs.hwndParent == HWND_MESSAGE)
       {
 
+         m_pui->m_bMessageWindow = true;
+
          return true;
 
       }
       else
       {
+
+         m_pui->m_bMessageWindow = false;
 
          m_oswindow = oswindow_get(m_pui);
 
@@ -367,6 +371,8 @@ namespace android
 
       }
 
+      output_debug_string("android_interaction_impl send WM_CREATE");
+
       send_message(WM_CREATE, 0, (LPARAM)&cs);
 
       send_message(WM_SIZE);
@@ -410,9 +416,19 @@ namespace android
 
       m_oswindow->set_user_interaction(m_pui);
 
-      SetWindowPos(ZORDER_TOP, pinitialize->m_rect, SWP_SHOWWINDOW);
+      m_pui->SetWindowPos(ZORDER_TOP, pinitialize->m_rect, SWP_SHOWWINDOW);
 
       //      m_pthread = dynamic_cast < ::thread * > (::get_thread());
+
+      output_debug_string("android_interaction_impl m_spgraphics alloc");
+
+      m_spgraphics.alloc(allocer());
+
+      m_spgraphics->on_create_window(this);
+
+      output_debug_string("android_interaction_impl on _create_window");
+
+      output_debug_string("android_interaction_impl initialize (width=" + ::str::from(width(pinitialize->m_rect)) + ",height=" + ::str::from(height(pinitialize->m_rect)) + ")");
 
       return true;
 
@@ -516,6 +532,7 @@ namespace android
    void interaction_impl::install_message_handling(::message::dispatch * pinterface)
    {
 
+      last_install_message_handling(pinterface);
       ::user::interaction_impl::install_message_handling(pinterface);
 
       IGUI_WIN_MSG_LINK(WM_NCDESTROY,pinterface,this,&interaction_impl::_001OnNcDestroy);
@@ -537,6 +554,7 @@ namespace android
          //IGUI_WIN_MSG_LINK(WM_GETMINMAXINFO,pinterface,this,&interaction_impl::_001OnGetMinMaxInfo);
          IGUI_WIN_MSG_LINK(WM_SHOWWINDOW,pinterface,this,&interaction_impl::_001OnShowWindow);
          IGUI_WIN_MSG_LINK(ca2m_PRODEVIAN_SYNCH,pinterface,this,&interaction_impl::_001OnProdevianSynch);
+         prio_install_message_handling(pinterface);
       }
       IGUI_WIN_MSG_LINK(WM_DESTROY,pinterface,this,&interaction_impl::_001OnDestroy);
       IGUI_WIN_MSG_LINK(WM_NCCALCSIZE,pinterface,this,&interaction_impl::_001OnNcCalcSize);
@@ -3256,6 +3274,12 @@ bool interaction_impl::SetWindowPos(int_ptr z, int32_t x, int32_t y, int32_t cx,
       /*XSetNormalHints(m_oswindow->display(), m_oswindow->window(), &hints);*/
 
    }
+
+   ::rect r;
+
+   ::GetWindowRect(get_handle(), r);
+
+   ::copy(m_rectParentClient, r);
 
    if ((nFlags & SWP_SHOWWINDOW))
    {

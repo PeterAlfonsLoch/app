@@ -95,8 +95,7 @@
     </ClCompile>
     <Link />
     <Link>
-      <SharedLibrarySearchPath>$(VS_NdkRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\lib;%(SharedLibrarySearchPath)</SharedLibrarySearchPath>
-      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/;$(VS_NdkRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\lib;$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <LibraryDependencies>ace;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -114,8 +113,7 @@
     </ClCompile>
     <Link>
       <LibraryDependencies>ace;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
-      <SharedLibrarySearchPath>$(OutDir);$(VS_NdkRoot)\platforms\$(AndroidAPILevel)\arch-arm\usr\lib;%(SharedLibrarySearchPath)</SharedLibrarySearchPath>
-      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/;$(VS_NdkRoot)\platforms\$(AndroidAPILevel)\arch-arm\usr\lib;$(ToolchainPrebuiltPath)\lib\gcc\$(ToolchainName)\$(ToolchainVersion)\armv7-a;$(StlLibraryPath);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">
@@ -135,7 +133,7 @@
       <Optimization>Disabled</Optimization>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/;$(VS_NdkRoot)\platforms\$(AndroidAPILevel)\arch-arm\usr\lib;$(ToolchainPrebuiltPath)\lib\gcc\$(ToolchainName)\$(ToolchainVersion)\armv7-a;$(StlLibraryPath);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <LibraryDependencies>ace;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -155,7 +153,7 @@
       <AdditionalOptions>-Wno-attributes -Wno-sign-compare -Wno-comment -Wno-strict-overflow -Wno-unused-local-typedefs -Wno-unknown-pragmas -Wno-unused-function -Wno-unused-but-set-variable -Wno-unused-variable -Wno-unused-value </AdditionalOptions>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/;$(VS_NdkRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\lib;$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <LibraryDependencies>ace;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -392,6 +390,11 @@
     <ClCompile Include="libcharset\lib\localcharset.c" />
     <ClCompile Include="lib\iconv.c" />
     <ClCompile Include="lib\relocatable.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\appseed\ace\nord_ace.vcxproj">
+      <Project>{e99c9d52-0709-4ed7-9f14-180b18f66c46}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

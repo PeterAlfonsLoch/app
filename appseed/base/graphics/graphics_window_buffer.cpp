@@ -41,12 +41,16 @@ void window_buffer::update_window(COLORREF * pcolorref,int cxParam,int cyParam,i
    if (m_spdibBuffer.is_null())
    {
 
+      output_debug_string("window_buffer m_spdibBuffer NULL");
+
       m_spdibBuffer.alloc(allocer());
 
    }
 
    if(!m_spdibBuffer->create(m_pimpl->m_rectParentClient.size()))
    {
+
+      output_debug_string("window_buffer create (width=" + ::str::from(width(m_pimpl->m_rectParentClient)) + ",height=" + ::str::from(height(m_pimpl->m_rectParentClient)) + ")");
 
       return NULL;
 
@@ -65,3 +69,32 @@ void window_buffer::update_window(COLORREF * pcolorref,int cxParam,int cyParam,i
 
 
 
+
+
+
+
+window_double_buffer::window_double_buffer(::aura::application * papp) :
+   object(papp),
+   window_graphics(papp),
+   window_buffer(papp),
+   m_mutex2(papp),
+   m_spdibBuffer2(allocer())
+{
+   
+}
+
+
+window_double_buffer::~window_double_buffer()
+{
+
+}
+
+
+void window_double_buffer::update_window()
+{
+
+   synch_lock sl(&m_mutex2);
+
+   m_spdibBuffer2->from(m_spdibBuffer);
+
+}

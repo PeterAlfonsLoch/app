@@ -7,7 +7,7 @@ class CLASS_DECL_BASE window_android_anative :
 public:
 
 
-   window_android_anative();
+   window_android_anative(::aura::application * papp);
    virtual ~window_android_anative();
 
 
@@ -16,6 +16,6 @@ public:
 
    virtual void update_window(oswindow interaction_impl, COLORREF * pOsBitmapData, const RECT & rect, int iStride = -1);
 
-   virtual ::draw2d::graphics * on_begin_draw();
+   //virtual ::draw2d::graphics * on_begin_draw();
 
 };

@@ -338,7 +338,7 @@ namespace android
       //System.m_posdata->m_pui->_001UpdateBuffer();
 
       //System.m_posdata->m_pui->_001UpdateScreen();
-
+      //output_debug_string("window_draw::UpdateBuffer");
       System.m_posdata->m_pui->_001UpdateWindow();
 
 

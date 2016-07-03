@@ -25,6 +25,17 @@
     <ClInclude Include="pcre.h" />
     <ClInclude Include="pcre_util.h" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\aura\pcre\nord_aurapcre.vcxproj">
+      <Project>{e3ed74cc-506f-424f-ad39-25fbedd98c7c}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\ace\nord_ace.vcxproj">
+      <Project>{e99c9d52-0709-4ed7-9f14-180b18f66c46}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\aura\nord_aura.vcxproj">
+      <Project>{02207bc4-c08b-4a2d-b754-f3bd46ad3098}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{7EE7598E-8C77-4D1A-B248-6E65BD72A8F6}</ProjectGuid>
     <Keyword>Android</Keyword>
@@ -105,8 +116,7 @@
     <Link />
     <Link>
       <LibraryDependencies>aurapcre;aura;ace;$(StlLibraryName);log;android</LibraryDependencies>
-      <SharedLibrarySearchPath>$(VS_NdkRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\lib;%(SharedLibrarySearchPath)</SharedLibrarySearchPath>
-      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/;$(VS_NdkRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\lib;$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">
@@ -123,14 +133,13 @@
     </ClCompile>
     <Link>
       <LibraryDependencies>aurapcre;aura;ace;$(StlLibraryName);log;android</LibraryDependencies>
-      <SharedLibrarySearchPath>$(OutDir);$(VS_NdkRoot)\platforms\$(AndroidAPILevel)\arch-arm\usr\lib;%(SharedLibrarySearchPath)</SharedLibrarySearchPath>
-      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/;$(VS_NdkRoot)\platforms\$(AndroidAPILevel)\arch-arm\usr\lib;$(ToolchainPrebuiltPath)\lib\gcc\$(ToolchainName)\$(ToolchainVersion)\armv7-a;$(StlLibraryPath);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">
     <Link>
       <LibraryDependencies>aurapcre;aura;ace;$(StlLibraryName);log;android</LibraryDependencies>
-      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/;$(VS_NdkRoot)\platforms\$(AndroidAPILevel)\arch-arm\usr\lib;$(ToolchainPrebuiltPath)\lib\gcc\$(ToolchainName)\$(ToolchainVersion)\armv7-a;$(StlLibraryPath);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <ClCompile>
       <DebugInformationFormat>FullDebug</DebugInformationFormat>
@@ -151,7 +160,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|x86'">
     <Link>
       <LibraryDependencies>aurapcre;aura;ace;$(StlLibraryName);log;android</LibraryDependencies>
-      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/;$(VS_NdkRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\lib;$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <ClCompile>
       <DebugInformationFormat>FullDebug</DebugInformationFormat>

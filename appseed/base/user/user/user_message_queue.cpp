@@ -91,10 +91,11 @@ namespace user
 
    }
 
+
    bool message_queue::message_queue_destroy()
    {
 
-      return DestroyWindow() != NULL;
+      return DestroyWindow() != FALSE;
 
    }
 

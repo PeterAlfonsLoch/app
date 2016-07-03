@@ -340,9 +340,6 @@
     <ClCompile Include="aura\aura\aura_math.cpp">
       <Filter>Source Files\aura\aura</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_message_queue.cpp">
-      <Filter>Source Files\aura\aura</Filter>
-    </ClCompile>
     <ClCompile Include="aura\aura\aura_microtimer.cpp">
       <Filter>Source Files\aura\aura</Filter>
     </ClCompile>
@@ -2305,9 +2302,6 @@
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\file\file_text_buffer.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_timeout_buffer.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\file\file_transfer_buffer.h">

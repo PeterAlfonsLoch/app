@@ -11,6 +11,7 @@ namespace exception
       debug_print("log:exception");
       //::MessageBox(NULL,"abc123","abc123",MB_OK);
 
+
       m_bHandled = false;
 
       m_bContinue = true;

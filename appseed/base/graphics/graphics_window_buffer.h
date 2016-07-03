@@ -22,3 +22,26 @@ public:
 
 
 };
+
+
+
+
+class CLASS_DECL_BASE window_double_buffer :
+   virtual public window_buffer
+{
+public:
+
+   mutex                         m_mutex2;
+   ::visual::dib_sp              m_spdibBuffer2;
+
+
+   window_double_buffer(::aura::application * papp);
+   virtual ~window_double_buffer();
+
+
+   virtual void update_window();
+
+
+
+
+};

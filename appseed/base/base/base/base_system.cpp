@@ -92,11 +92,11 @@ namespace base
 
       //m_psimpleui       = NULL;
 
-#if defined(METROWIN) || defined(APPLE_IOS) || defined(VSNORD)
-
-      m_posdata         = new os_data();
-
-#endif
+//#if defined(METROWIN) || defined(APPLE_IOS) || defined(VSNORD)
+//
+//      m_posdata         = new os_data();
+//
+//#endif
 
       set_app(this);
 

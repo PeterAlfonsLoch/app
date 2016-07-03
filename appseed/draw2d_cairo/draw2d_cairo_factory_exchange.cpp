@@ -35,7 +35,7 @@ namespace draw2d_cairo
 
       #elif defined(ANDROID)
 
-      System.factory().cloneable_large < window_android_anative      >  (System.type_info <window_graphics                >());
+      System.factory().cloneable_large < window_double_buffer        >  (System.type_info <window_graphics                >());
 
       #endif
 

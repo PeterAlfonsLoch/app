@@ -1,7 +1,7 @@
 #include <android/log.h>
 #include <android/bitmap.h>
 
-//// fazer o que, por enquanto global....
+// fazer o que, por enquanto global....
 //::android::view_bitmap * g_pandroidbitmapview = NULL;
 //
 ////#include "framework.h"
@@ -85,24 +85,91 @@ extern "C"
 void android_fill_plasma(AndroidBitmapInfo * info, void * pixels, double  t)
 {
 
-   if (g_pandroidbitmapview == NULL)
+   if (::aura::system::g_p == NULL)
    {
-      
+
+      output_debug_string("android_fill_plasma : aura_system is null");
+
       return;
 
    }
 
-   synch_lock sl(&g_pandroidbitmapview->m_mutex);
+   if (::aura::system::g_p->m_pbasesystem == NULL)
+   {
+      
+      output_debug_string("android_fill_plasma : base_system is null");
+
+      return;
+
+   }
+
+   if (::aura::system::g_p->m_pbasesystem->m_posdata == NULL)
+   {
+
+      output_debug_string("android_fill_plasma : os_data is null");
+
+      return;
+
+   }
+
+   if (::aura::system::g_p->m_pbasesystem->m_posdata->m_pui.is_null())
+   {
+
+      output_debug_string("android_fill_plasma : window is null");
+
+      return;
+
+   }
+
+   if (::aura::system::g_p->m_pbasesystem->m_posdata->m_pui->m_pimpl == NULL)
+   {
+
+      output_debug_string("android_fill_plasma : impl is null");
+
+      return;
+
+   }
+
+   if (::aura::system::g_p->m_pbasesystem->m_posdata->m_pui->m_pimpl->get_window_graphics() == NULL)
+   {
+
+      //   output_debug_string("android_fill_plasma : get_window_graphics returned null");
+
+      return;
+
+   }
+
+   auto pbuffer = dynamic_cast <::window_double_buffer *> (::aura::system::g_p->m_pbasesystem->m_posdata->m_pui->m_pimpl->get_window_graphics());
+
+   if(pbuffer == NULL)
+   {
+
+      output_debug_string("android_fill_plasma : double_buffer is null");
+
+      return;
+
+   }
+
+   if (pbuffer->m_spdibBuffer2.is_null())
+   {
+
+      output_debug_string("android_fill_plasma : dib is null");
+
+      return;
+
+   }
+
+   synch_lock sl(&pbuffer->m_mutex2);
 
    ::draw2d::copy_colorref(
-      MIN(g_pandroidbitmapview->m_spdibBuffer->m_size.cx, info->width),
-      MIN(g_pandroidbitmapview->m_spdibBuffer->m_size.cy, info->height),
+      MIN(pbuffer->m_spdibBuffer2->m_size.cx, info->width),
+      MIN(pbuffer->m_spdibBuffer2->m_size.cy, info->height),
       (COLORREF *) pixels, 
       info->stride, 
-      g_pandroidbitmapview->m_spdibBuffer->m_pcolorref,
-      g_pandroidbitmapview->m_spdibBuffer->m_iScan);
+      pbuffer->m_spdibBuffer2->m_pcolorref,
+      pbuffer->m_spdibBuffer2->m_iScan);
    
-
+   //output_debug_string("android_fill_plasma OK (area="+::str::from(pbuffer->m_spdibBuffer->area())+")");
 
 }
 

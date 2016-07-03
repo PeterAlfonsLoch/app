@@ -1294,9 +1294,9 @@ namespace core
 
       }
 
-      ::get_thread()->post_thread_message(NULL);
+      ::get_thread()->post_thread_message(WM_NULL);
 
-      post_thread_message(NULL);
+      post_thread_message(WM_NULL);
 
       System.post_thread_message(WM_NULL);
 

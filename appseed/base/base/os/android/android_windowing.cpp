@@ -1584,10 +1584,23 @@ void android_l_button_up(float x, float y)
 
 }
 
+void _android_key(unsigned int message, int keyCode, int iUni);
 
 
 extern "C"
 void android_key(unsigned int message, int keyCode, int iUni)
+{
+
+   ::fork(::aura::system::g_p, [=]()
+   {
+
+      _android_key(message, keyCode, iUni);
+
+   });
+
+}
+
+void _android_key(unsigned int message, int keyCode, int iUni)
 {
 
    if (::aura::system::g_p == NULL)
@@ -1623,6 +1636,8 @@ extern "C"
 void android_key_down(int keyCode, int iUni)
 {
 
+   output_debug_string("here???555");
+
    android_key(WM_KEYDOWN, keyCode, iUni);
 
 }
@@ -1632,6 +1647,7 @@ void android_key_down(int keyCode, int iUni)
 extern "C"
 void android_key_up(int keyCode, int iUni)
 {
+   output_debug_string("here???444");
 
    android_key(WM_KEYUP, keyCode, iUni);
 
@@ -1642,6 +1658,8 @@ void android_key_up(int keyCode, int iUni)
 
 int translate_android_key_message(::message::key * pkey, int keyCode, int iUni)
 {
+
+   output_debug_string("here???333");
 
    if (0x80000000 & iUni)
    {
@@ -1707,10 +1725,27 @@ int translate_android_key_message(::message::key * pkey, int keyCode, int iUni)
 
 }
 
-
+void _android_on_text(string str);
 
 extern "C"
 void android_on_text(const wchar_t * pwch, size_t len)
+{
+
+   output_debug_string("here???222");
+
+   string strText(pwch, len);
+
+   ::fork(::aura::system::g_p, [=]()
+   {
+
+      _android_on_text(strText);
+
+   });
+
+}
+
+
+void _android_on_text(string strText)
 {
 
    if(::aura::system::g_p == NULL)
@@ -1731,7 +1766,7 @@ void android_on_text(const wchar_t * pwch, size_t len)
 
    pkey->m_ekey      = ::user::key_refer_to_text_member;
 
-   pkey->m_strText   = string(pwch,len);
+   pkey->m_strText   = strText;
 
    if (pkey->m_strText == "\n" || pkey->m_strText == "\r\n" || pkey->m_strText == "\r")
    {

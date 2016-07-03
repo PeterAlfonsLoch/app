@@ -10,7 +10,7 @@ parsing_exception::parsing_exception(::aura::application * papp,const string & s
    ::exception::base(get_app()),
    simple_exception(papp, strMessage)
 {
-
+   output_debug_string("parsing_exception");
 }
 
 parsing_exception::~parsing_exception()

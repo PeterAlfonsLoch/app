@@ -72,9 +72,6 @@
     <ClInclude Include="cpp\UTF8Prober.h">
       <Filter>Header Files\cpp</Filter>
     </ClInclude>
-    <ClInclude Include="framework\framework.h">
-      <Filter>Header Files\framework</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
@@ -82,9 +79,6 @@
     </Filter>
     <Filter Include="Header Files\cpp">
       <UniqueIdentifier>{d6ceebf0-aa6b-4642-a23c-2639f669d855}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\framework">
-      <UniqueIdentifier>{8b8dc031-b316-40d6-9679-c983f5153cec}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files">
       <UniqueIdentifier>{6828871f-29f1-48b5-89e3-ea60e6446a68}</UniqueIdentifier>

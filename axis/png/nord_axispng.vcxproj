@@ -18,13 +18,38 @@
       <Platform>x86</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="png.c" />
+    <ClCompile Include="pngerror.c" />
+    <ClCompile Include="pngget.c" />
+    <ClCompile Include="pngmem.c" />
+    <ClCompile Include="pngpread.c" />
+    <ClCompile Include="pngread.c" />
+    <ClCompile Include="pngrio.c" />
+    <ClCompile Include="pngrtran.c" />
+    <ClCompile Include="pngrutil.c" />
+    <ClCompile Include="pngset.c" />
+    <ClCompile Include="pngtrans.c" />
+    <ClCompile Include="pngwio.c" />
+    <ClCompile Include="pngwrite.c" />
+    <ClCompile Include="pngwtran.c" />
+    <ClCompile Include="pngwutil.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\appseed\ace\nord_ace.vcxproj">
+      <Project>{e99c9d52-0709-4ed7-9f14-180b18f66c46}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\zlib\nord_axiszlib.vcxproj">
+      <Project>{032bd6dd-0da1-4a1f-9d36-6512b4127f7a}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{CD2A80BB-5B55-45FD-932D-404D2D76729B}</ProjectGuid>
+    <ProjectGuid>{04238890-C8DF-43C8-A90C-4D19FA21286F}</ProjectGuid>
     <Keyword>Android</Keyword>
     <ApplicationType>Android</ApplicationType>
     <ApplicationTypeRevision>1.0</ApplicationTypeRevision>
-    <ProjectName>axis_image_png</ProjectName>
-    <RootNamespace>axis_image_png</RootNamespace>
+    <ProjectName>axispng</ProjectName>
+    <RootNamespace>axispng</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x86'" Label="Configuration">
@@ -96,9 +121,8 @@
     </ClCompile>
     <Link />
     <Link>
-      <LibraryDependencies>axisfreeimage;axiszlib;aura;ace;$(StlLibraryName);m</LibraryDependencies>
-      <SharedLibrarySearchPath>$(VS_NdkRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\lib;%(SharedLibrarySearchPath)</SharedLibrarySearchPath>
-      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/;$(VS_NdkRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\lib;$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <LibraryDependencies>axiszlib;ace;$(StlLibraryName);m</LibraryDependencies>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">
@@ -114,12 +138,10 @@
       <CppLanguageStandard>gnu++1y</CppLanguageStandard>
       <ForcedIncludeFiles>$(SolutionDir)../../../nodeapp/operational_system/solution_arm_basis.h</ForcedIncludeFiles>
     </ClCompile>
+    <Link />
     <Link>
-      <SharedLibrarySearchPath>$(OutDir);$(VS_NdkRoot)\platforms\$(AndroidAPILevel)\arch-arm\usr\lib;%(SharedLibrarySearchPath)</SharedLibrarySearchPath>
-    </Link>
-    <Link>
-      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/;$(VS_NdkRoot)\platforms\$(AndroidAPILevel)\arch-arm\usr\lib;$(ToolchainPrebuiltPath)\lib\gcc\$(ToolchainName)\$(ToolchainVersion)\armv7-a;$(StlLibraryPath);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <LibraryDependencies>axisfreeimage;axiszlib;aura;ace;$(StlLibraryName);m</LibraryDependencies>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <LibraryDependencies>axiszlib;ace;$(StlLibraryName);m</LibraryDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">
@@ -139,8 +161,8 @@
       <Optimization>Disabled</Optimization>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/;$(VS_NdkRoot)\platforms\$(AndroidAPILevel)\arch-arm\usr\lib;$(ToolchainPrebuiltPath)\lib\gcc\$(ToolchainName)\$(ToolchainVersion)\armv7-a;$(StlLibraryPath);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <LibraryDependencies>axisfreeimage;axiszlib;aura;ace;$(StlLibraryName);m</LibraryDependencies>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <LibraryDependencies>axiszlib;ace;$(StlLibraryName);m</LibraryDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|x86'">
@@ -159,42 +181,10 @@
       <AdditionalOptions>-Wno-attributes -Wno-sign-compare -Wno-comment -Wno-strict-overflow -Wno-unused-local-typedefs -Wno-unknown-pragmas -Wno-unused-function -Wno-unused-but-set-variable -Wno-unused-variable -Wno-unused-value </AdditionalOptions>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/;$(VS_NdkRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\lib;$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <LibraryDependencies>axisfreeimage;axiszlib;aura;ace;$(StlLibraryName);m</LibraryDependencies>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <LibraryDependencies>axiszlib;ace;$(StlLibraryName);m</LibraryDependencies>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="Source\FreeImage\PluginPNG.cpp">
-      <ExceptionHandling Condition="'$(Configuration)|$(Platform)'=='basis|x86'">Enabled</ExceptionHandling>
-      <CppLanguageStandard Condition="'$(Configuration)|$(Platform)'=='basis|x86'">c++11</CppLanguageStandard>
-      <RuntimeTypeInfo Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</RuntimeTypeInfo>
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='basis|x86'">-Wno-overloaded-virtual -Wno-unknown-pragmas -Wno-reorder %(AdditionalOptions)</AdditionalOptions>
-    </ClCompile>
-    <ClCompile Include="Source\LibPNG\png.c" />
-    <ClCompile Include="Source\LibPNG\pngerror.c" />
-    <ClCompile Include="Source\LibPNG\pngget.c" />
-    <ClCompile Include="Source\LibPNG\pngmem.c" />
-    <ClCompile Include="Source\LibPNG\pngpread.c" />
-    <ClCompile Include="Source\LibPNG\pngread.c" />
-    <ClCompile Include="Source\LibPNG\pngrio.c" />
-    <ClCompile Include="Source\LibPNG\pngrtran.c" />
-    <ClCompile Include="Source\LibPNG\pngrutil.c" />
-    <ClCompile Include="Source\LibPNG\pngset.c" />
-    <ClCompile Include="Source\LibPNG\pngtrans.c" />
-    <ClCompile Include="Source\LibPNG\pngwio.c" />
-    <ClCompile Include="Source\LibPNG\pngwrite.c" />
-    <ClCompile Include="Source\LibPNG\pngwtran.c" />
-    <ClCompile Include="Source\LibPNG\pngwutil.c" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Source\LibPNG\png.h" />
-    <ClInclude Include="Source\LibPNG\pngconf.h" />
-    <ClInclude Include="Source\LibPNG\pngdebug.h" />
-    <ClInclude Include="Source\LibPNG\pnginfo.h" />
-    <ClInclude Include="Source\LibPNG\pnglibconf.h" />
-    <ClInclude Include="Source\LibPNG\pngpriv.h" />
-    <ClInclude Include="Source\LibPNG\pngstruct.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />
 </Project>

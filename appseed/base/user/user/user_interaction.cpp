@@ -1491,7 +1491,7 @@ namespace user
 
 
          if((GetParent() == NULL
-#ifdef METROWIN
+#if defined(METROWIN) || defined(VSNORD)
                || GetParent() == System.m_posdata->m_pui
 #endif
             )

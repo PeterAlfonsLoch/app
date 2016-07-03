@@ -1879,9 +1879,13 @@ namespace user
 
          m_pcsDisplay = new critical_section;
 
+         output_debug_string("interaction_impl m_spgraphics alloc");
+
          m_spgraphics.alloc(allocer());
 
          m_spgraphics->on_create_window(this);
+
+         output_debug_string("interaction_impl on _create_window");
 
       }
       
@@ -2541,14 +2545,20 @@ namespace user
 
       //cslock csl(cs_display());
 
+      //output_debug_string("here?!111");
+
       rect64 rectWindow;
 
       m_pui->GetWindowRect(rectWindow);
+
+      //output_debug_string("interaction_impl _001UpdateWindow (width=" + ::str::from(width(rectWindow)) + ",height=" + ::str::from(height(rectWindow)) + ")");
 
       ::draw2d::graphics * pgraphics = m_spgraphics->on_begin_draw();
 
       if (pgraphics == NULL || pgraphics->get_os_data() == NULL)
       {
+
+         output_debug_string("on_begin_draw failed");
 
          return;
 
