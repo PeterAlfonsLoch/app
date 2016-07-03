@@ -153,11 +153,6 @@ namespace calculator
                e.m_iEnd = strExp.length();
 
             }
-            catch (const simple_exception & exp)
-            {
-
-
-            }
 
             string str;
 

@@ -12,12 +12,6 @@
     <Filter Include="Source Files\cpp">
       <UniqueIdentifier>{1f9c7a20-7571-4478-8ce7-d24d3c592741}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\framework">
-      <UniqueIdentifier>{3151d847-ff5f-4305-b784-7fcb7fc81d13}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\framework">
-      <UniqueIdentifier>{8cc33fc5-25b9-4ad6-9683-714c10da2f09}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\include">
       <UniqueIdentifier>{d7888f66-c8b2-4c3f-9d17-eaf17f252184}</UniqueIdentifier>
     </Filter>
@@ -97,9 +91,6 @@
     <ClCompile Include="cpp\UTF8Prober.cpp">
       <Filter>Source Files\cpp</Filter>
     </ClCompile>
-    <ClCompile Include="framework\framework.cpp">
-      <Filter>Source Files\framework</Filter>
-    </ClCompile>
     <ClCompile Include="cpp\_cpp.cpp">
       <Filter>Source Files\cpp</Filter>
     </ClCompile>
@@ -107,9 +98,6 @@
   <ItemGroup>
     <ClInclude Include="..\..\include\charguess.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="framework\framework.h">
-      <Filter>Header Files\framework</Filter>
     </ClInclude>
     <ClInclude Include="cpp\UTF8Prober.h">
       <Filter>Header Files\include</Filter>

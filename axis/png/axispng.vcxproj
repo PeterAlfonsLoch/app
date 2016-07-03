@@ -42,6 +42,7 @@
     <ClCompile Include="pngwrite.c" />
     <ClCompile Include="pngwtran.c" />
     <ClCompile Include="pngwutil.c" />
+    <ClCompile Include="throw_error_exception.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\png.h" />

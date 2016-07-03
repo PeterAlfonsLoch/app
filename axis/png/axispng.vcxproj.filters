@@ -54,6 +54,9 @@
     <ClCompile Include="pngwutil.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="throw_error_exception.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="config.h">
