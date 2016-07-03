@@ -779,9 +779,6 @@
     <ClInclude Include="filesystem\file\file_text_buffer.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\file\file_timeout_buffer.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
     <ClInclude Include="filesystem\file\file_transfer_buffer.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
@@ -1430,12 +1427,6 @@
     <ClInclude Include="multithreading\multithreading_thread_impl.h">
       <Filter>Header Files\multithreading</Filter>
     </ClInclude>
-    <ClInclude Include="aura\node\ansios\ansios.h">
-      <Filter>Header Files\aura\node\ansios</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\node\ansios\ansios_thread_impl.h">
-      <Filter>Header Files\aura\node\ansios</Filter>
-    </ClInclude>
     <ClInclude Include="aura\aura\aura_heap_item.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
@@ -1655,29 +1646,11 @@
     <ClInclude Include="user\colorertake5\colorertake5_xmldom.h">
       <Filter>Header Files\user\colorertake5</Filter>
     </ClInclude>
-    <ClInclude Include="aura\node\ansios\ansios_process.h">
-      <Filter>Header Files\aura\node\ansios</Filter>
-    </ClInclude>
     <ClInclude Include="aura\node\windows\windows_process.h">
       <Filter>Header Files\aura\node\windows</Filter>
     </ClInclude>
-    <ClInclude Include="aura\node\ansios\ansios_pipe.h">
-      <Filter>Header Files\aura\node\ansios</Filter>
-    </ClInclude>
     <ClInclude Include="aura\node\windows\windows_pipe.h">
       <Filter>Header Files\aura\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\process\process_bidi_pipe.h">
-      <Filter>Header Files\aura\process</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\process\process_pipe.h">
-      <Filter>Header Files\aura\process</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\process\process_process.h">
-      <Filter>Header Files\aura\process</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\process\process.h">
-      <Filter>Header Files\aura\process</Filter>
     </ClInclude>
     <ClInclude Include="aura\exception\exception_cancel.h">
       <Filter>Header Files\aura\exception</Filter>
@@ -2122,6 +2095,30 @@
     </ClInclude>
     <ClInclude Include="primitive\datetime\datetime_department.h">
       <Filter>Header Files\primitive\datetime</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\node\ansios\ansios.h">
+      <Filter>Header Files\aura\node\ansios</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\node\ansios\ansios_pipe.h">
+      <Filter>Header Files\aura\node\ansios</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\node\ansios\ansios_process.h">
+      <Filter>Header Files\aura\node\ansios</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\node\ansios\ansios_thread_impl.h">
+      <Filter>Header Files\aura\node\ansios</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\process\process.h">
+      <Filter>Header Files\aura\process</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\process\process_bidi_pipe.h">
+      <Filter>Header Files\aura\process</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\process\process_pipe.h">
+      <Filter>Header Files\aura\process</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\process\process_process.h">
+      <Filter>Header Files\aura\process</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

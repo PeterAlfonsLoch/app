@@ -1192,7 +1192,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     </ClCompile>
     <ClInclude Include="base\os\windows\windows_c.h" />
     <ClInclude Include="base\os\windows\windows_internal.h" />
-    <ClInclude Include="base\os\windows\windows_os.h" />
     <ClInclude Include="base\os\windows\windows_system_interaction_impl.h" />
     <ClInclude Include="base\os\windows\windows_window_gdi.h" />
     <ClInclude Include="database\database.h" />
@@ -1310,7 +1309,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
   <ItemGroup>
     <None Include="base.def" />
     <None Include="base\base\base.inl" />
-    <None Include="base\base\base_system_xml.inl" />
     <None Include="user\user.inl" />
   </ItemGroup>
   <ItemGroup>
