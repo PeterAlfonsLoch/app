@@ -17,16 +17,17 @@
 
 #endif
 
-void string_format::construct(string_format_printer * pprinter, string_format_printer::PRINTER pfnPrinter, void * pvoidPrinter)
+string_format::string_format()
+{
+   construct();
+}
+
+void string_format::construct()
 {
 
    m_pszBuffer                   = NULL;
    m_iSize                       = 0;
    m_iLength                     = 0;
-
-   m_pprinter                    = pprinter;
-   m_pfnPrinter                  = pfnPrinter;
-   m_pvoidPrinter                = pvoidPrinter;
 
    m_estate                      = state_initial;
 
@@ -247,6 +248,20 @@ bool string_format::parse(const char * & s)
 
 }
 
+void string_format::format(const char * & s)
+{
+
+   while (*s)
+   {
+
+      if (*s == '%' && *(++s) != '%')
+         throw simple_exception(get_thread_app(), "invalid format string: missing arguments");
+
+      append(*s++);
+
+   }
+
+}
 
 
    namespace str

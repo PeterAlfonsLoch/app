@@ -1300,22 +1300,6 @@ inline void string_format::format(const char * & s,const T & value,Args... args)
 
 
 
-inline void string_format::format(const char * & s)
-{
-
-   while(*s)
-   {
-
-      if(*s == '%' && *(++s) != '%')
-         throw simple_exception(get_thread_app(),"invalid format string: missing arguments");
-
-      append(*s++);
-
-   }
-
-   (m_pprinter->*m_pfnPrinter)(m_pvoidPrinter,m_pszBuffer);
-
-}
 
 #endif
 

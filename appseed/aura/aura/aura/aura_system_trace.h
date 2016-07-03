@@ -52,39 +52,10 @@ namespace aura
 
 #if defined(VARIADIC_TEMPLATE_FORMAT2)
 
-
-
-      void trace_category_level(void * pvoid, const char * psz)
-      {
-
-         category_level * pcategorylevel = (category_level *)pvoid;
-
-         System.log().trace_str(m_pszFileName, m_nLineNo, pcategorylevel->m_dwCategory, pcategorylevel->m_nLevel, psz);
-
-      }
-
-      void trace(void *, const char * psz)
-      {
-
-         System.log().trace_str(m_pszFileName, m_nLineNo, trace::category_General, 0, psz);
-
-      }
-
-//#if defined(VARIADIC_TEMPLATE_FORMAT)
-
-
       inline void __cdecl operator()(uint32_t dwCategory, UINT nLevel, const char *pszFmt) const
       {
 
-         category_level categorylevel;
-
-         categorylevel.m_dwCategory = dwCategory;
-         categorylevel.m_nLevel = nLevel;
-
-         string_format format(this, &trace_add_file_and_line::trace_category_level, &categorylevel);
-
-         format.format(pszFmt);
-
+         System.log().trace_str(m_pszFileName, m_nLineNo, dwCategory, nLevel, pszFmt);
 
       }
 
@@ -92,41 +63,32 @@ namespace aura
       inline void __cdecl operator()(uint32_t dwCategory, UINT nLevel, const char * pszFmt, const T & value, Args... args) const
       {
 
-         category_level categorylevel;
-
-         categorylevel.m_dwCategory = dwCategory;
-         categorylevel.m_nLevel = nLevel;
-
-         string_format format(this, &trace_add_file_and_line::trace_category_level, &categorylevel);
+         string_format format;
 
          format.format(pszFmt, value, args...);
 
-      }
+         System.log().trace_str(m_pszFileName, m_nLineNo, dwCategory, nLevel, format.to_string());
 
-//#endif
+
+      }
 
       inline void __cdecl operator()(const char *psz) const
       {
-
-//         string_format format(this, &trace_add_file_and_line::trace, NULL);
-
-//         format.format(pszFmt);
 
          System.log().trace_str(m_pszFileName, m_nLineNo, trace::category_General, 0, psz);
 
 
       }
 
-//#if defined(VARIADIC_TEMPLATE_FORMAT)
-
-
       template<typename T, typename... Args>
       inline void __cdecl operator()(const char * pszFmt, const T & value, Args... args) const
       {
 
-         string_format format(this, &trace_add_file_and_line::trace, NULL);
+         string_format format;
 
          format.format(pszFmt, value, args...);
+
+         System.log().trace_str(m_pszFileName, m_nLineNo, trace::category_General, 0, format.to_string());
 
       }
 

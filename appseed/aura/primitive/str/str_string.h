@@ -654,46 +654,34 @@ public:
 
    // Format data using format string 'pszFormat'
 
+   // these overloads are not needed for the variadic template to compile
+   // they keep the function consistent with single argument (no extra variadic arguments)
+   // e.g. str.Format("Print this: Hello Format!!");
+   inline void Format(const char *s)
+   {
+      
+      assign(s);
+
+   }
+
+   inline void AppendFormat(const char *s)
+   {
+
+      append(s);
+
+   }
+
 #ifdef VARIADIC_TEMPLATE_FORMAT2
-
-   void FormatPrinter(void * , const char * s)
-   {
-
-      *this = s;
-
-   }
-
-
-   void Format(const char * s)
-   {
-
-      string_format format(this, &string::FormatPrinter, NULL);
-
-      format.format(s);
-
-   }
 
    template<typename T, typename... Args>
    void Format(const char *s, const T & value, Args... args)
    {
 
-      string_format format(this, &string::FormatPrinter, NULL);
+      ::string_format format;
 
       format.format(s, value, args...);
 
-   }
-
-   // append formatted data using format string 'pszFormat'
-   void AppendFormat(const char * s)
-   {
-
-      string str;
-
-      string_format format(&str, &string::FormatPrinter, NULL);
-
-      format.format(s);
-
-      operator += (str);
+      assign(format.m_pszBuffer, format.m_iSize);
 
    }
 
@@ -701,14 +689,13 @@ public:
    void AppendFormat(const char *s, const T & value, Args... args)
    {
 
-
       string str;
 
-      string_format format(&str, &string::FormatPrinter, NULL);
+      ::string_format format;
 
       format.format(s, value, args...);
 
-      operator += (str);
+      append(format.m_pszBuffer, format.m_iSize);
 
    }
 

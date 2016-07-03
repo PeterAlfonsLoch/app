@@ -10,7 +10,7 @@ public:
 
 
 
-   typedef void (string_format_printer:: * PRINTER)(void *, const char *);
+   typedef void (string_format_printer:: * PRINTER)(void *, const char *, strsize);
 
 
 };
@@ -101,11 +101,6 @@ public:
    strsize                          m_iLength;
 
 
-   string_format_printer *          m_pprinter;
-   string_format_printer::PRINTER   m_pfnPrinter;
-   void *                           m_pvoidPrinter;
-
-
    e_state                          m_estate;
 
 
@@ -122,19 +117,12 @@ public:
 
 
 
-   template < class T > string_format(const T * pprinter, void (T::*pfnPrinter)(void *, const char *), void * pvoidPrinter)
-   {
-      construct(
-         (string_format_printer *) (const_cast < T * > (pprinter)),
-         reinterpret_cast < string_format_printer::PRINTER > (pfnPrinter),
-         pvoidPrinter);
-
-   }
+   string_format();
    ~string_format();
 
 
 
-   void construct(string_format_printer * pprinter, string_format_printer::PRINTER pfnPrinter, void * pvoidPrinter);
+   void construct();
 
    void allocate_add_up(strsize iLenAddUp);
 
@@ -270,6 +258,9 @@ public:
 
    template<typename T, typename... Args>
    inline void format(const char * & s, const T & value, Args... args);
+
+
+   inline string to_string();
 
 };
 
