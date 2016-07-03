@@ -125,7 +125,9 @@ namespace visual
    bool dib_sp::load_from_matter(const char * pszMatter, bool bCache)
    {
 
-      return Sys(m_p->m_pauraapp).visual().imaging().load_from_file(m_p, m_p->m_pauraapp->m_paxisapp->dir().matter(pszMatter), bCache);
+      ::file::path path = m_p->m_pauraapp->m_paxisapp->dir().matter(pszMatter);
+
+      return Sys(m_p->m_pauraapp).visual().imaging().load_from_file(m_p, path, bCache);
 
    }
 

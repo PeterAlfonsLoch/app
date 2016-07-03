@@ -1095,7 +1095,7 @@ void dir::ls(::file::patha & stra,const ::file::path & psz)
 
    HANDLE hFind;
 
-   hFind = FindFirstFile(psz, &FindFileData);
+   hFind = FindFirstFile(psz / "*", &FindFileData);
 
    if (hFind == INVALID_HANDLE_VALUE)
       return;
@@ -1105,6 +1105,11 @@ void dir::ls(::file::patha & stra,const ::file::path & psz)
 
       if(!__win_file_find_is_dots(FindFileData) && (FindFileData.dwFileAttributes != INVALID_FILE_ATTRIBUTES))
          stra.add(FindFileData.cFileName);
+
+      //if (stra.has_elements() && stra.last() == "teste")
+      //{
+      //   output_debug_string("teste");
+      //}
 
       if(!FindNextFile(hFind, &FindFileData))
          break;
