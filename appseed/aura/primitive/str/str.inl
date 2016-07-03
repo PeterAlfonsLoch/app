@@ -839,6 +839,6 @@ inline string & string::operator += (const id & id)
 inline string string_format::to_string()
 {
    
-   return string(m_pszBuffer, m_iSize);
+   return string(m_pszBuffer, m_iLength);
 
 }

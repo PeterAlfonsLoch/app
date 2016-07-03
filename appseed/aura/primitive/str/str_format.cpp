@@ -26,7 +26,7 @@ void string_format::construct()
 {
 
    m_pszBuffer                   = NULL;
-   m_iSize                       = 0;
+   m_iAllocation                 = 0;
    m_iLength                     = 0;
 
    m_estate                      = state_initial;
@@ -63,7 +63,7 @@ void string_format::allocate_add_up(strsize iLenAddUp)
 
    strsize iNewSize;
 
-   if(m_iSize <= 0)
+   if(m_iAllocation <= 0)
    {
 
       iNewSize = ((iLenAddUp + 1 + 1023) & ~1023);
@@ -74,7 +74,7 @@ void string_format::allocate_add_up(strsize iLenAddUp)
 
       iNewSize = ((m_iLength + iLenAddUp + 1 + 1023) & ~1023);
 
-      if(iNewSize < m_iSize)
+      if(iNewSize < m_iAllocation)
       {
 
          return;
@@ -83,7 +83,7 @@ void string_format::allocate_add_up(strsize iLenAddUp)
 
    }
 
-   if(iNewSize != m_iSize)
+   if(iNewSize != m_iAllocation)
    {
 
       if(m_pszBuffer == NULL)
@@ -99,7 +99,7 @@ void string_format::allocate_add_up(strsize iLenAddUp)
 
       }
 
-      m_iSize = iNewSize;
+      m_iAllocation = iNewSize;
 
    }
 
@@ -107,7 +107,7 @@ void string_format::allocate_add_up(strsize iLenAddUp)
       throw memory_exception(get_thread_app());
 
 
-   memset(&m_pszBuffer[m_iLength], 0, m_iSize - m_iLength);
+   memset(&m_pszBuffer[m_iLength], 0, m_iAllocation - m_iLength);
 
 }
 

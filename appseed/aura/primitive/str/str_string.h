@@ -681,7 +681,7 @@ public:
 
       format.format(s, value, args...);
 
-      assign(format.m_pszBuffer, format.m_iSize);
+      assign(format.m_pszBuffer, format.m_iLength);
 
    }
 

@@ -97,7 +97,7 @@ public:
 
 
    char *                           m_pszBuffer;
-   strsize                          m_iSize;
+   strsize                          m_iAllocation;
    strsize                          m_iLength;
 
 
