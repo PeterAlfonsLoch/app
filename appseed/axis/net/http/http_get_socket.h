@@ -23,7 +23,6 @@ namespace http
       virtual void OnDataArrived(const char *, size_t len);
       void OnHeader(id idKey, const string & value);
 
-      virtual string MyUseragent();
 
 
    };

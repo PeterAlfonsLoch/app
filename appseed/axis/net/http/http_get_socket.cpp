@@ -76,10 +76,6 @@ namespace http
 
    }
 
-   string get_socket::MyUseragent()
-   {
-	   return "core-sockets/10.0.2";
-   }
 
 
 } // namespace core

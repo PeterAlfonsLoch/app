@@ -9,6 +9,27 @@
 #endif
 
 
+string op_sys()
+{
+
+#if defined(WINDOWSEX)
+   return "Windows";
+#elif defined(LINUX)
+   return "Linux";
+#elif defined(MACOS)
+   return "OS X";
+#elif defined(APPLE_IOS)
+   return "iOS";
+#elif defined(ANDROID)
+   return "Android";
+#elif defined(METROWIN)
+   return "Windows Store";
+#else
+   return "";
+#endif
+
+}
+
 namespace sockets
 {
 
@@ -500,6 +521,60 @@ namespace sockets
 
    }
 
+
+   string http_client_socket::MyUseragent()
+   {
+
+      string str;
+
+      string strSockets = "ca2-sockets/0.1";
+
+      string strOpSys = op_sys();
+
+      if (Application.m_strAppName.has_char())
+      {
+
+         str += Application.m_strAppName;
+
+         str += " (";
+
+         if (strOpSys.has_char())
+         {
+
+            str += strOpSys;
+
+            str += ";";
+
+         }
+
+         str += strSockets;
+
+         str += ";)";
+
+      }
+      else
+      {
+
+         str += strSockets;
+
+         str += " (";
+
+         if (strOpSys.has_char())
+         {
+
+            str += strOpSys;
+
+            str += ";";
+
+         }
+
+         str += ")";
+
+      }
+
+      return str;
+
+   }
 
 } // namespace sockets
 

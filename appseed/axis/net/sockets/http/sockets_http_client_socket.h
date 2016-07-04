@@ -115,6 +115,8 @@
          virtual void get_scalar(e_scalar escalar, int64_t & i);
          virtual void get_scalar_maximum(e_scalar escalar, int64_t & i);
 
+         virtual string MyUseragent();
+
 
       };
 
