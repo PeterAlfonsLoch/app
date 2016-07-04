@@ -143,7 +143,7 @@ bool __node_library_close(void * plibrary)
       return false;
 
    bool bOk = false;
-#ifndef MEMDLEAK
+//#ifndef MEMDLEAK
    try
    {
 
@@ -154,7 +154,7 @@ bool __node_library_close(void * plibrary)
    {
 
    }
-#endif
+//#endif
    return bOk;
 
 }

@@ -285,23 +285,24 @@ void * library::get_os_data()
                if (m_plibrary != NULL)
                {
 
-                  ::__node_library_close(m_plibrary);
-                  ::__node_library_close(m_plibrary);
-                  ::__node_library_close(m_plibrary);
-                  ::__node_library_close(m_plibrary);
-                  ::__node_library_close(m_plibrary);
-                  if (::__node_library_close(m_plibrary))
+                  //::__node_library_close(m_plibrary);
+                  //::__node_library_close(m_plibrary);
+                  //::__node_library_close(m_plibrary);
+                  //::__node_library_close(m_plibrary);
+                  //::__node_library_close(m_plibrary);
+                  //::__node_library_close(m_plibrary);
+                  bOk = ::__node_library_close(m_plibrary);
                   {
 
                      m_plibrary = NULL;
 
                   }
-                  else
-                  {
+                  //else
+                  //{
 
-                     bOk = false;
+                  //   bOk = false;
 
-                  }
+                  //}
 
                }
 

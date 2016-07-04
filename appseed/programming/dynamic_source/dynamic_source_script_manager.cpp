@@ -612,16 +612,16 @@ void script_manager::clear_include_matches_folder_watch::handle_file_action(::fi
 
    // Thank you (casey)!! For tip for ever writing down every todo
    // todo (camilo) equal file comparison, for clearing include matching only changed files
-   try
-   {
+   //try
+   //{
 
-      m_pmanager->clear_include_matches();
+   //   m_pmanager->clear_include_matches();
 
-   }
-   catch(...)
-   {
+   //}
+   //catch(...)
+   //{
 
-   }
+   //}
 
    try
    {
@@ -634,7 +634,20 @@ void script_manager::clear_include_matches_folder_watch::handle_file_action(::fi
 
       synch_lock sl(&m_pmanager->m_mutexShouldBuild);
 
-      m_pmanager->m_mapShouldBuild[::file::path(dir) / filename] = true;
+      ::file::path path;
+
+      path = dir;
+
+      path /= filename;
+
+      m_pmanager->m_mapShouldBuild[path] = true;
+
+      ::fork(get_app(), [=]()
+      {
+
+         m_pmanager->get(path);
+
+      });
    
    }
    catch (...)

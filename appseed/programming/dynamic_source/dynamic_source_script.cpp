@@ -95,7 +95,16 @@ bool ds_script::ShouldBuild()
    
    synch_lock sl(&m_mutex);
 
-   return  m_pmanager->should_build(m_strSourcePath) || m_bShouldBuild || HasDelayedTempError() || !DoesMatchVersion();
+   bool bManagerShouldBuild = m_pmanager->should_build(m_strSourcePath);
+
+   if (bManagerShouldBuild)
+   {
+
+      return true;
+
+   }
+
+   return m_bShouldBuild || HasDelayedTempError() || !DoesMatchVersion();
 
 }
 
@@ -483,19 +492,19 @@ script_instance * ds_script::create_instance()
                }*/
 
    }
-   else
-   {
+   //else
+   //{
 
-      if(!m_pmanager->should_build(m_strScriptPath))
-      {
+   //   if(!m_pmanager->should_build(m_strScriptPath))
+   //   {
 
-         m_strScriptPath = m_pmanager->get_script_path(m_strName);
+   //      m_strScriptPath = m_pmanager->get_script_path(m_strName);
 
-         Load();
+   //      Load();
 
-      }
+   //   }
 
-   }
+   //}
 
    script_instance * pinstance;
 
