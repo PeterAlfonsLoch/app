@@ -403,10 +403,19 @@ script_instance * ds_script::create_instance()
 
    synch_lock sl(&m_mutex);
 
-   if(ShouldBuild())
+   if (m_strSourcePath.find_ci("\\applications\\basic\\") > 0)
    {
 
+      TRACE("/applications/basic/");
+
+   }
+
+   check_should_build:
+
+   if(ShouldBuild())
+   {
       synch_lock slCompiler(&Application.m_semCompiler);
+      Sleep(84);
 
       try
       {
@@ -467,6 +476,8 @@ script_instance * ds_script::create_instance()
 
 
       Load();
+
+      Sleep(84);
       // retried at least 8 times, give up any rebuild attemp until file is changed
       m_bShouldBuild = false;
 
@@ -506,7 +517,7 @@ script_instance * ds_script::create_instance()
 
    //}
 
-   script_instance * pinstance;
+   script_instance * pinstance = NULL;
 
    if(m_lpfnCreateInstance == NULL)
    {
@@ -517,7 +528,20 @@ script_instance * ds_script::create_instance()
    else
    {
 
-      pinstance = m_lpfnCreateInstance(this);
+      try
+      {
+
+         pinstance = m_lpfnCreateInstance(this);
+
+      }
+      catch (...)
+      {
+
+         //m_bShouldBuild = true;
+
+         //goto check_should_build;
+
+      }
 
    }
 

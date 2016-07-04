@@ -875,7 +875,26 @@ void script_compiler::cppize1(ds_script * pscript)
    memstorage.allocate(spfile->get_length() + 1);
    memstorage.get_data()[memstorage.get_size() - 1] = '\0';
    memstorage.read(file);*/
-   string strSource = Application.file().as_string(pscript->m_strSourcePath);
+
+   string strSource;
+
+   int iTry = 0;
+   
+   while ((strSource = Application.file().as_string(pscript->m_strSourcePath)).trimmed().is_empty())
+   {
+
+      Sleep(84);
+
+      iTry++;
+
+      if (iTry > 256)
+      {
+         return;
+      }
+
+   }
+
+   
    strsize iPosId = -1;
    stringa straId;
    string strDest;
@@ -982,6 +1001,7 @@ void script_compiler::cppize1(ds_script * pscript)
       iStart = iLastEnd;
    }
    strDest += get_ds_print(strSource.Mid(iStart));
+
    strDest += "//End parsed user script\r\n";
    strDest += "}\r\n";
 
