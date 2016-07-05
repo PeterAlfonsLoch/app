@@ -148,6 +148,21 @@ namespace math
 
    }
 
+   void math::random_bytes(void * buf, uint32_t dwLen)
+   {
+
+      gen_rand(buf, dwLen);
+
+   }
+
+   void math::RandomBytes(void * buf, uint32_t dwLen)
+   {
+
+      random_bytes(buf, dwLen);
+
+   }
+
+
    void math::gen_rand(void * buf, uint32_t dwLen)
    {
 #ifdef WINDOWSEX

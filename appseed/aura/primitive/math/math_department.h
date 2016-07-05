@@ -39,6 +39,8 @@ namespace math
 
       int32_t LinearMap(int32_t iMin, int32_t iMax, int32_t iValue, int32_t iValueMin, int32_t iValueMax);
       uint64_t gen_rand();
+      void random_bytes(void * buf, uint32_t dwLen);
+      void RandomBytes(void * buf, uint32_t dwLen);
       void gen_rand(void * buf, uint32_t dwLen);
       void gen_rand_alnum(char * buf,uint32_t dwLen);
       uint32_t rnd();

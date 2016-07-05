@@ -18,11 +18,13 @@ typedef struct ssl_session_st SSL_SESSION;
       {
       public:
 
-         mutex m_mutex;
+         
+         mutex                m_mutex;
 
-         SSL_CTX *         m_pcontext;
-         SSL_SESSION *     m_psession;
-         int32_t               m_iRetry;
+         SSL_CTX *            m_pcontext;
+         SSL_SESSION *        m_psession;
+         const SSL_METHOD *   m_pmethod;
+         int32_t              m_iRetry;
 
 
          ssl_client_context(::aura::application * papp, const SSL_METHOD * pmethod = NULL);

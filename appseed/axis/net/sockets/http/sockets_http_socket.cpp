@@ -514,7 +514,7 @@ namespace sockets
       ::str::parse pa(url_in,"/");
       protocol = pa.getword(); // http
       protocol.trim(":");
-      if(!stricmp_dup(protocol,"https"))
+      if(!stricmp_dup(protocol,"https") || !stricmp_dup(protocol, "wss"))
       {
 
 #ifdef HAVE_OPENSSL

@@ -1025,6 +1025,14 @@ namespace sockets
             SetCloseAndDelete(true);
             return;
          }
+         
+         if (m_strTlsHostName.has_char())
+         {
+
+            SSL_set_tlsext_host_name(m_ssl, (char *) (const char *) m_strTlsHostName);
+
+         }
+
          SSL_set_mode(m_ssl,SSL_MODE_AUTO_RETRY);
          m_sbio = BIO_new_socket((int32_t)GetSocket(),BIO_NOCLOSE);
          if(!m_sbio)
@@ -1158,26 +1166,38 @@ namespace sockets
             int iError = errno;
             int iErrorSsl = SSL_get_error(m_ssl,r);
 
-            if(m_spsslclientcontext->m_psession != NULL)
+            if(m_spsslclientcontext.is_set() &&
+               iErrorSsl == SSL_ERROR_ZERO_RETURN
+               && (m_spsslclientcontext->m_pmethod == TLSv1_client_method()
+                  || m_spsslclientcontext->m_pmethod == SSLv3_client_method()))
             {
-
-               if(m_spsslclientcontext->m_iRetry == 0)
-               {
-                  m_spsslclientcontext->m_iRetry = 1;
-                  SSL_clear(m_ssl);
-                  SSL_SESSION_free(m_spsslclientcontext->m_psession);
-                  m_spsslclientcontext->m_psession = NULL;
-                  goto skip;
-               }
-               else
-               {
-                  m_spsslclientcontext->m_iRetry = 0;
-               }
+               TRACE("ssl_error_zero_return");
             }
-            log("SSLNegotiate/SSL_connect",0,"Connection failed",::aura::log::level_info);
-            SetSSLNegotiate(false);
-            SetCloseAndDelete();
-            OnSSLConnectFailed();
+
+            else
+            {
+               if (m_spsslclientcontext->m_psession != NULL)
+               {
+
+                  if (m_spsslclientcontext->m_iRetry == 0)
+                  {
+                     m_spsslclientcontext->m_iRetry = 1;
+                     SSL_clear(m_ssl);
+                     SSL_SESSION_free(m_spsslclientcontext->m_psession);
+                     m_spsslclientcontext->m_psession = NULL;
+                     goto skip;
+                  }
+                  else
+                  {
+                     m_spsslclientcontext->m_iRetry = 0;
+                  }
+               }
+               log("SSLNegotiate/SSL_connect", 0, "Connection failed", ::aura::log::level_info);
+               SetSSLNegotiate(false);
+               SetCloseAndDelete();
+               OnSSLConnectFailed();
+
+            }
 skip:
             ;
          }

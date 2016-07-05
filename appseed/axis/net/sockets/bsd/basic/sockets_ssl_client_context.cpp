@@ -20,6 +20,7 @@ namespace sockets
       m_psession = NULL;
       if(pmethod == NULL)
          pmethod = SSLv23_method();
+      m_pmethod = pmethod;
       InitializeContext(pmethod);
       m_iRetry = 0;
 

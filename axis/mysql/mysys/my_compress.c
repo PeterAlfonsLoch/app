@@ -19,7 +19,7 @@
 #ifdef HAVE_COMPRESS
 #include <my_sys.h>
 #include <m_string.h>
-#include "axis/zlib/zlib.h"
+#include "zlib.h"
 
 
 /*

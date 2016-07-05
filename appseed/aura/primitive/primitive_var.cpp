@@ -3945,13 +3945,13 @@ string & var::get_json(string & str) const
    else if (is_numeric())
    {
 
-      return str = get_string();
+      return str += get_string();
 
    }
    else
    {
 
-      return str = ("\"" + get_string() + "\"");
+      return str += ("\"" + get_string() + "\"");
 
    }
 

@@ -51,6 +51,7 @@ namespace sockets
    public:
       /** Output buffer struct.
       \ingroup internal */
+      string m_strTlsHostName;
       struct OUTPUT {
          OUTPUT() : _b(0), _t(0), _q(0) {}
          OUTPUT(const char *buf, int32_t len) : _b(0), _t(len), _q(len) {

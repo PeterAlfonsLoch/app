@@ -264,6 +264,25 @@ namespace primitive
 
    }
 
+   void memory_base::random_bytes(::count c)
+   {
+
+      if (c >= 0)
+      {
+
+         allocate(c);
+
+      }
+
+      if (get_size() > 0)
+      {
+
+         ::aura::system::g_p->math().random_bytes(get_data(), get_size());
+
+      }
+
+   }
+
 
    /*
    void memory_base::FullLoad(::file::binary_buffer & file)

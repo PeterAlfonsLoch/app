@@ -98,6 +98,8 @@ namespace primitive
 
       virtual void remove_offset();
 
+      virtual void random_bytes(::count c = -1);
+
       //virtual void FullLoad(::file::stream_buffer & buffer);
 
       //memory_size_t read(::file::stream_buffer & buffer);
