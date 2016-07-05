@@ -379,7 +379,7 @@ void var_array::parse_json(const char * & pszJson, const char * pszEnd)
 
 
 
-string & var_array::get_json(string & str) const
+string & var_array::get_json(string & str, bool bNewLine) const
 {
 
    str +="[";
@@ -387,20 +387,38 @@ string & var_array::get_json(string & str) const
    if(get_count() > 0)
    {
 
-      element_at(0).get_json(str);
+      element_at(0).get_json(str, bNewLine);
 
    }
 
-   for (index i = 0; i < get_count(); i++)
+   for (index i = 1; i < get_count(); i++)
    {
 
-      str += ", \r\n";
+      if (bNewLine)
+      {
 
-      element_at(i).get_json(str);
+         str += ", \r\n";
+
+      }
+      else
+      {
+
+         str += ", ";
+
+      }
+
+      element_at(i).get_json(str, bNewLine);
 
    }
 
-   str += "\r\n]";
+   if (bNewLine)
+   {
+
+      str += "\r\n";
+
+   }
+
+   str += "]";
 
    return str;
 

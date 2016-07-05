@@ -582,6 +582,11 @@ void property_set::parse_json(const char * & pszJson, const char * pszEnd)
    ::str::consume_spaces(pszJson, 0, pszEnd);
    ::str::consume(pszJson, "{", 1, pszEnd);
    ::str::consume_spaces(pszJson, 0, pszEnd);
+   if (*pszJson == '}')
+   {
+      pszJson++;
+      return;
+   }
    while(true)
    {
 
@@ -613,7 +618,7 @@ void property_set::parse_json(const char * & pszJson, const char * pszEnd)
    }
 }
 
-string & property_set::get_json(string & str) const
+string & property_set::get_json(string & str, bool bNewLine) const
 {
 
    str = "{";
@@ -623,7 +628,7 @@ string & property_set::get_json(string & str) const
    if(it != end())
    {
 
-      it->get_json(str);
+      it->get_json(str, bNewLine);
 
       it++;
 
@@ -632,12 +637,29 @@ string & property_set::get_json(string & str) const
    for(; it != end(); it++)
    {
 
-      str += ", \r\n";
+      if (bNewLine)
+      {
 
-      it->get_json(str);
+         str += ", \r\n";
+
+      }
+      else
+      {
+
+         str += ", ";
+
+      }
+
+      it->get_json(str, bNewLine);
 
    }
 
+   if (bNewLine)
+   {
+
+      str += "\r\n";
+
+   }
 
    str += "}";
 

@@ -27,6 +27,34 @@
 
 #endif
 
+#if BYTE_ORDER == BIG_ENDIAN
+
+#define HTONLL(n) (n)
+#define NTOHLL(n) (n)
+
+#else
+
+#define HTONLL(n) (((((uint64_t)(n) & 0xFFu64)) << 56) | \
+   ((((uint64_t)(n) & 0xFF00u64)) << 40) | \
+   ((((uint64_t)(n) & 0xFF0000u64)) << 24) | \
+   ((((uint64_t)(n) & 0xFF000000)) << 8) | \
+   ((((uint64_t)(n) & 0xFF00000000)) >> 8) | \
+   ((((uint64_t)(n) & 0xFF0000000000u64)) >> 24) | \
+   ((((uint64_t)(n) & 0xFF000000000000u64)) >> 40) | \
+   ((((uint64_t)(n) & 0xFF00000000000000u64)) >> 56))
+
+#define NTOHLL(n) (((((uint64_t)(n) & 0xFFu64)) << 56) | \
+   ((((uint64_t)(n) & 0xFF00u64)) << 40) | \
+   ((((uint64_t)(n) & 0xFF0000u64)) << 24) | \
+   ((((uint64_t)(n) & 0xFF000000)) << 8) | \
+   ((((uint64_t)(n) & 0xFF00000000)) >> 8) | \
+   ((((uint64_t)(n) & 0xFF0000000000u64)) >> 24) | \
+   ((((uint64_t)(n) & 0xFF000000000000u64)) >> 40) | \
+   ((((uint64_t)(n) & 0xFF00000000000000u64)) >> 56))
+
+#endif
+
+
 #if defined(METROWIN)
 
 /*uint16_t htons(uint16_t n);

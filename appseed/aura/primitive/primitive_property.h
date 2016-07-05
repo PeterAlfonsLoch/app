@@ -161,7 +161,7 @@ public:
    }
 
 
-   inline string & get_json(string & str) const
+   inline string & get_json(string & str, bool bNewLine) const
    {
 
       str += "\"";
@@ -172,7 +172,7 @@ public:
 
       str += ":";
 
-      m_element2.get_json(str);
+      m_element2.get_json(str, bNewLine);
 
       return str;
 

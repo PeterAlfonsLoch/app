@@ -629,7 +629,7 @@ public:
    void parse_json(const char * & pszJson);
    void parse_json(const char * & pszJson,const char * pszEnd);
 
-   string & get_json(string & str) const;
+   string & get_json(string & str, bool bNewLine = true) const;
 
 
    //#undef new

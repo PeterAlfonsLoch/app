@@ -271,7 +271,7 @@ public:
    ::count get_count_except_ci(const Type & str);
    ::count get_count_except_ci(const string_array & stra);
 
-   Type & get_json(Type & str) const;
+   Type & get_json(Type & str, bool bNewLine = true) const;
 
    void dump(dump_context &) const;
 
@@ -3046,7 +3046,7 @@ template < class Type, class RawType >
 
 
 template < class Type, class RawType >
-Type & string_array < Type, RawType > ::get_json(Type & str) const
+Type & string_array < Type, RawType > ::get_json(Type & str, bool bNewLine) const
 {
 
    str += "[";
@@ -3065,7 +3065,18 @@ Type & string_array < Type, RawType > ::get_json(Type & str) const
    for(index i = 1; i < get_count(); i++)
    {
 
-      str += ", \r\n";
+      if (bNewLine)
+      {
+
+         str += ", \r\n";
+
+      }
+      else
+      {
+
+         str += ", ";
+
+      }
 
       str += "\"";
 
@@ -3075,7 +3086,14 @@ Type & string_array < Type, RawType > ::get_json(Type & str) const
 
    }
 
-   str += "\r\n]";
+   if (bNewLine)
+   {
+
+      str += "\r\n";
+
+   }
+
+   str += "]";
 
    return str;
 

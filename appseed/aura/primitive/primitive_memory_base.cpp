@@ -540,7 +540,7 @@ namespace primitive
 
       }
 
-      memmove(m_pbStorage + pos,m_pbStorage + pos + len,len);
+      memmove(m_pbStorage + pos,m_pbStorage + pos + len,get_size() - (pos + len));
 
       allocate(get_size() - len);
 

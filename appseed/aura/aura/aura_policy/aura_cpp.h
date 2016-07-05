@@ -1616,7 +1616,7 @@ namespace std
 
 
 template < typename T >
-inline string & to_json(string & str, const T & value)
+inline string & to_json(string & str, const T & value, bool bNewLine)
 {
 
    return str = ::str::from(value);

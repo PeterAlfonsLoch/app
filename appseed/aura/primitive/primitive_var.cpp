@@ -3777,7 +3777,7 @@ void var::parse_json(const char * & pszJson, const char * pszEnd)
    {
       operator = (::str::consume_quoted_value_ex(pszJson, pszEnd));
    }
-   else if(isdigit(*pszJson) || *pszJson == '-'  || *pszJson == '.')
+   else if(isdigit_dup(*pszJson) || *pszJson == '-'  || *pszJson == '.')
    {
       consume_number(pszJson, pszEnd);
    }
@@ -3909,37 +3909,37 @@ var str_ends_get(const char * lpcsz, const char * lpcszSuffix)
 
 
 
-string & var::get_json(string & str) const
+string & var::get_json(string & str, bool bNewLine) const
 {
 
    if (get_type() == var::type_propset)
    {
 
-      return propset().get_json(str);
+      return propset().get_json(str, bNewLine);
 
    }
    else if (get_type() == var::type_stra)
    {
 
-      return stra().get_json(str);
+      return stra().get_json(str, bNewLine);
 
    }
    else if (get_type() == var::type_inta)
    {
 
-      return inta().get_json(str);
+      return inta().get_json(str, bNewLine);
 
    }
    else if (get_type() == var::type_int64a)
    {
 
-      return int64a().get_json(str);
+      return int64a().get_json(str, bNewLine);
 
    }
    else if (get_type() == var::type_vara)
    {
 
-      return vara().get_json(str);
+      return vara().get_json(str, bNewLine);
 
    }
    else if (is_numeric())

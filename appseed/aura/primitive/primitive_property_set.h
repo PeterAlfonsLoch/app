@@ -142,7 +142,7 @@ public:
    void _parse_url_query(const char * pszUrlQuery);
    void parse_http_headers(const char * pszHeaders);
    string & get_http_post(string & str) const;
-   string & get_json(string & str) const;
+   string & get_json(string & str, bool bNewLine = true) const;
    string get_http_post() const { string str; return get_http_post(str); }
    string get_json() const { string str; return get_json(str); }
 
