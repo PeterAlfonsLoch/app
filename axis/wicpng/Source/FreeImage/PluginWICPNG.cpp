@@ -151,7 +151,7 @@ bool wic_info(WICPixelFormatGUID * ppx, int * piColorType, int * piPixelDepth, i
 
 // ----------------------------------------------------------
 
-#include "axis/zlib/zlib.h"
+#include "zlib.h"
 //#include "../LibPNG/png.h"
 
 // ----------------------------------------------------------
