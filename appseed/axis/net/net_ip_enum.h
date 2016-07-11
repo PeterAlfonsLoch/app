@@ -10,9 +10,11 @@ Copyright (ca) 1998 by PJ Naughter.
 */
 #pragma once
 
+
 namespace net
 {
 
+	class address;
 
    class CLASS_DECL_AXIS ip_enum :
       virtual public ::object
@@ -24,7 +26,7 @@ namespace net
       virtual ~ip_enum();
 
 
-      virtual ::count enumerate(stringa & stra);
+      virtual ::count enumerate(array < ::net::address > & ipa);
 
 
    };

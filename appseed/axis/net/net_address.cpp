@@ -22,7 +22,7 @@ namespace net
 //      m_posdata = new os_data();
 //
 //#endif
-
+      m_iLen = -1;
    }
 
 
@@ -36,7 +36,7 @@ namespace net
 //      m_posdata = new os_data();
 //
 //#endif
-
+      m_iLen = -1;
       u.s.m_family = family;
       u.s.m_port = htons(port);
       sync_os_service();
@@ -44,7 +44,7 @@ namespace net
    }
 
 
-   address::address(const sockaddr & sa)
+   address::address(const sockaddr & sa, int iLen)
    {
 
 //#ifdef METROWIN
@@ -53,16 +53,26 @@ namespace net
 //
 //#endif
 
-      u.m_sa = sa;
+      zero(this, sizeof(u.m_sa));
 
-      if (u.s.m_family != AF_INET6 && u.s.m_family != AF_INET)
+      if (sa.sa_family == AF_INET6)
       {
-         u.s.m_family = AF_UNSPEC;
+         m_iLen = iLen <= 0 ? sizeof(sockaddr_in6) : iLen;
+         memcpy(&u.m_sa, &sa, m_iLen);
+         sync_os_address();
+         sync_os_service();
+      }
+      else if (sa.sa_family == AF_INET)
+      {
+         m_iLen = -1;
+         memcpy(&u.m_sa, &sa, sizeof(sockaddr_in));
+         sync_os_address();
+         sync_os_service();
       }
       else
       {
-         sync_os_address();
-         sync_os_service();
+         m_iLen = -1;
+         u.s.m_family = AF_UNSPEC;
       }
 
    }
@@ -71,14 +81,14 @@ namespace net
    address::address(const string & host, port_t port)
    {
 
-      zero(this, sizeof(u.m_sa));
+      zero(this, sizeof(address));
 
 //#ifdef METROWIN
 //
 //      m_posdata = new os_data();
 //
 //#endif
-
+      m_iLen = -1;
       set_address(host);
       u.s.m_port = htons(port);
       sync_os_service();
@@ -96,7 +106,7 @@ namespace net
 //      m_posdata = new os_data();
 //
 //#endif
-
+      m_iLen = -1;
       set_address(host);
       u.s.m_port = Sess(papp).sockets().net().service_port(strService);
       sync_os_service();
@@ -114,7 +124,7 @@ namespace net
 //      m_posdata = new os_data();
 //
 //#endif
-
+      m_iLen = -1;
       u.s.m_family = AF_INET6;
       u.s.m_port = htons(port);
       u.m_addr6.sin6_addr = a;
@@ -123,10 +133,8 @@ namespace net
 
    }
 
-   address::address(const sockaddr_in6 & sa)
+   address::address(const sockaddr_in6 & sa, int iLen)
    {
-
-      u.m_addr6 = sa;
 
 //#ifdef METROWIN
 //
@@ -134,12 +142,18 @@ namespace net
 //
 //#endif
 
-      if (u.s.m_family != AF_INET6)
+      zero(this, sizeof(u.m_sa));
+
+      if (sa.sin6_family != AF_INET6)
       {
          u.s.m_family = AF_UNSPEC;
       }
       else
       {
+         m_iLen = iLen <= 0 ? sizeof(sockaddr_in6) : iLen;
+
+         memcpy(&u.m_addr6, &sa, m_iLen);
+
          sync_os_address();
          sync_os_service();
       }
@@ -157,7 +171,7 @@ namespace net
 //      m_posdata = new os_data();
 //
 //#endif
-
+      m_iLen = -1;
       u.s.m_family = AF_INET;
       u.s.m_port = htons(port);
       u.m_addr.sin_addr = a;
@@ -169,6 +183,7 @@ namespace net
    address::address(const sockaddr_in & sa)
    {
 
+      zero(this, sizeof(u.m_sa));
       u.m_addr = sa;
 
 //#ifdef METROWIN
@@ -176,7 +191,7 @@ namespace net
 //      m_posdata = new os_data();
 //
 //#endif
-
+      m_iLen = -1;
       if (u.s.m_family != AF_INET)
       {
          u.s.m_family = AF_UNSPEC;
@@ -379,6 +394,22 @@ namespace net
    }
 
 
+   void * address::addr_data()
+   {
+      if (u.m_sa.sa_family == AF_INET)
+      {
+         return &u.m_addr.sin_addr;
+      }
+      else if (u.m_sa.sa_family == AF_INET6)
+      {
+         return &u.m_addr6.sin6_addr;
+      }
+      else
+      {
+         return NULL;
+      }
+   }
+
    bool address::set_address(const string & strAddress)
    {
 
@@ -418,6 +449,29 @@ namespace net
    return tmp;
 
    }*/
+
+
+   int32_t address::sa_len() const
+   {
+
+      int iFamilyLen = family_len(u.s.m_family);
+
+      if (m_iLen <= 0)
+         return iFamilyLen;
+      else
+         return m_iLen;
+
+   }
+
+   void address::copy(const address & address)
+   {
+
+      memcpy(this, &address, sizeof(address));
+
+      sync_os_address();
+      sync_os_service();
+
+   }
 
 
 

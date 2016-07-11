@@ -178,6 +178,37 @@ namespace sockets
       {
          return -1;
       }
+      //::net::address a = ad;
+      //if (ad.get_family() == AF_INET6)
+      //{
+      //   
+      //   ::net::ip_enum_sp e(allocer());
+
+      //   ::array < ::net::address > ipa;
+
+      //   e->enumerate(ipa);
+
+      //   for (auto & item : ipa)
+      //   {
+
+      //      if (item.get_family() == AF_INET6)
+      //      {
+
+      //         if (!memcmp(&item.u.m_addr6.sin6_addr, &ad.u.m_addr6.sin6_addr, sizeof(ad.u.m_addr6.sin6_addr)))
+      //         {
+
+      //            a = item;
+
+      //            break;
+
+      //         }
+
+      //      }
+
+      //   }
+
+      //}
+
       if (bind(s, ad.sa(), ad.sa_len()) == -1)
       {
          log("bind() failed for port " + ::str::from(ad.get_service_number()), Errno, StrError(Errno), ::aura::log::level_fatal);
@@ -211,10 +242,10 @@ namespace sockets
    /** OnRead on a listen_socket_axis receives an incoming connection. */
    void listen_socket_axis::OnRead()
    {
-
-      struct sockaddr sa;
-      socklen_t sa_len = sizeof(struct sockaddr);
-      SOCKET a_s = accept(GetSocket(), &sa, &sa_len);
+      char sz[sizeof(sockaddr_in6)];
+      struct sockaddr * psa = (sockaddr *)sz;
+      socklen_t sa_len = sizeof(sz);
+      SOCKET a_s = accept(GetSocket(), psa, &sa_len);
 
       if (a_s == INVALID_SOCKET)
       {
@@ -241,7 +272,7 @@ namespace sockets
       tmp -> set_parent(this);
       tmp -> attach(a_s);
       tmp -> SetNonblocking(true);
-      tmp->SetRemoteHostname(::net::address(sa));
+      tmp->SetRemoteHostname(::net::address(*psa));
       tmp->m_iBindPort = m_iBindPort;
       tmp -> SetConnected(true);
       tmp -> Init();

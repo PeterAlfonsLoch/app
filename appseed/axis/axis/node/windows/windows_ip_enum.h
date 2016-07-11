@@ -30,7 +30,7 @@ namespace windows
 
       
 //      virtual ::count enumerate(ip_array & ipa);
-      virtual ::count enumerate(stringa & stra);
+      virtual ::count enumerate(array < ::net::address > & ipa) override;
 
    };
 

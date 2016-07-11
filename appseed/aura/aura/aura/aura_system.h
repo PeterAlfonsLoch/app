@@ -113,7 +113,7 @@ namespace aura
       DWORD                                        m_dwAfterApplicationFirstRequest;
 
 
-      mutex                                        m_mutexCit;
+      sp(mutex)                                    m_spmutexCit;
 
       stringa                                      m_straCit;
       int64_array                                  m_iaIds;
@@ -176,7 +176,7 @@ namespace aura
       object * alloc(::aura::application * papp,const std_type_info & info);
       //   virtual sp(object) on_alloc(::aura::application * papp, sp(type) info);
 
-
+      mutex * get_city_mutex();
 
       using ::aura::application::alloc;
       virtual object * alloc(::aura::application * papp,::type * ptype);

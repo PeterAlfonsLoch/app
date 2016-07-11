@@ -43,7 +43,6 @@ namespace net
             uint16_t m_family;
             uint16_t m_port;
 
-
          } s;
 
 
@@ -54,6 +53,7 @@ namespace net
 
       } u;
 
+      int   m_iLen;
 
 //#ifdef METROWIN
 //
@@ -70,8 +70,8 @@ namespace net
       address(const in_addr & a,port_t port = 0);
       address(const in6_addr & a,port_t port = 0);
       address(const sockaddr_in & a);
-      address(const sockaddr_in6 & a);
-      address(const sockaddr & sa);
+      address(const sockaddr_in6 & a, int iLen = -1);
+      address(const sockaddr & sa, int iLen = -1);
       address(const address & address);
       ~address();
 
@@ -104,6 +104,8 @@ namespace net
 
       inline const sockaddr * sa() const;
       inline int32_t sa_len() const;
+
+      void * addr_data();
 
 
       bool set_address(const string & strAddress);
@@ -149,16 +151,6 @@ namespace net
    }
 
 
-   inline void address::copy(const address & address)
-   {
-
-      memcpy(this,&address,sizeof(u.m_sa));
-
-      sync_os_address();
-      sync_os_service();
-
-   }
-
 
    inline bool address::is_ipv4() const
    {
@@ -192,14 +184,6 @@ namespace net
    {
 
       return &u.m_sa;
-
-   }
-
-
-   inline int32_t address::sa_len() const
-   {
-
-      return family_len(u.s.m_family);
 
    }
 

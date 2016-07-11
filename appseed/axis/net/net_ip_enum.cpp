@@ -18,10 +18,10 @@ namespace net
    }
 
 
-   ::count ip_enum::enumerate(stringa & stra)
+   ::count ip_enum::enumerate(array < ::net::address > & ipa)
    {
 
-      UNREFERENCED_PARAMETER(stra);
+      UNREFERENCED_PARAMETER(ipa);
 
       ::exception::throw_interface_only(get_app());
 

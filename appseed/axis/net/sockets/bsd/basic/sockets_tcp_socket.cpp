@@ -1344,39 +1344,41 @@ skip:
    void tcp_socket::close()
    {
       
-      if (GetSocket() != INVALID_SOCKET) // this could happen
+      if (GetSocket() == INVALID_SOCKET) // this could happen
       {
 
          log("socket::close", 0, "file descriptor invalid", ::aura::log::level_warning);
 
-         int32_t n;
+         return;
 
-         SetNonblocking(true);
+      }
 
-         if (!Lost() && IsConnected() && !(GetShutdown() & SHUT_WR))
+      int32_t n;
+
+      SetNonblocking(true);
+
+      if (!Lost() && IsConnected() && !(GetShutdown() & SHUT_WR))
+      {
+
+         if (shutdown(GetSocket(), SHUT_WR) == -1)
          {
 
-            if (shutdown(GetSocket(), SHUT_WR) == -1)
-            {
-
-               // failed...
-               log("shutdown", Errno, StrError(Errno), ::aura::log::level_error);
-
-            }
+            // failed...
+            log("shutdown", Errno, StrError(Errno), ::aura::log::level_error);
 
          }
 
-         char tmp[1000];
+      }
 
-         if (!Lost() && (n = (int32_t) ::recv(GetSocket(), tmp, 1000, 0)) >= 0)
+      char tmp[1000];
+
+      if (!Lost() && (n = (int32_t) ::recv(GetSocket(), tmp, 1000, 0)) >= 0)
+      {
+
+         if (n)
          {
 
-            if (n)
-            {
-
-               log("read() after shutdown", n, "bytes read", ::aura::log::level_warning);
-
-            }
+            log("read() after shutdown", n, "bytes read", ::aura::log::level_warning);
 
          }
 

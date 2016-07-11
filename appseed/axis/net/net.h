@@ -43,7 +43,7 @@ namespace sockets
 
 
 
-
+#include "net_address.h"
 
 
 #include "net_ip_enum.h"

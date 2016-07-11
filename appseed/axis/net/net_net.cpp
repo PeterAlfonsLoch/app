@@ -346,36 +346,56 @@ CLASS_DECL_AXIS int_bool from_string(in_addr & addrParam, const string & string)
 
 }
 
-template < >
-CLASS_DECL_AXIS string & to_string(string & str, in_addr &  addrParam)
+inline string ip_to_string(byte b1, byte b2, byte b3, byte b4)
 {
 
-   c_in_addr & addr = (c_in_addr &) addrParam;
+   string str;
 
-   //c_in_addr & addr = addr;
-
-   //addr.S_un.S_addr = NTOHL(paddr->S_un.S_addr);
-
-   str.Empty();
-
-   str += itoa_dup(addr.S_un.S_un_b.s_b1);
+   str += itoa_dup(b1);
 
    str += ".";
 
-   str += itoa_dup(addr.S_un.S_un_b.s_b2);
+   str += itoa_dup(b2);
 
    str += ".";
 
-   str += itoa_dup(addr.S_un.S_un_b.s_b3);
+   str += itoa_dup(b3);
 
    str += ".";
 
-   str += itoa_dup(addr.S_un.S_un_b.s_b4);
+   str += itoa_dup(b4);
 
    return str;
 
 }
 
+
+template < >
+CLASS_DECL_AXIS string & to_string(string & str, in_addr &  addr)
+{
+
+   return str = ip_to_string(
+      addr.S_un.S_un_b.s_b1,
+      addr.S_un.S_un_b.s_b2,
+      addr.S_un.S_un_b.s_b3,
+      addr.S_un.S_un_b.s_b4);
+}
+
+template < >
+CLASS_DECL_AXIS string & to_string(string & str, sockaddr_in &  addr)
+{
+
+   return to_string(str, addr.sin_addr);
+
+}
+
+template < >
+CLASS_DECL_AXIS string & to_string(string & str, sockaddr_in6 &  addr)
+{
+
+   return to_string(str, addr.sin6_addr);
+
+}
 
 template < >
 CLASS_DECL_AXIS string & to_string(string & str, sockaddr & addr)
@@ -384,13 +404,13 @@ CLASS_DECL_AXIS string & to_string(string & str, sockaddr & addr)
    if(addr.sa_family == AF_INET)
    {
 
-      to_string(str, *(in_addr *)addr.sa_data);
+      to_string(str, *(sockaddr_in *)addr.sa_data);
 
    }
    else if(addr.sa_family == AF_INET6)
    {
 
-      to_string(str, *(in6_addr *)addr.sa_data);
+      to_string(str, *(sockaddr_in6 *)addr.sa_data);
 
    }
    else
@@ -741,7 +761,7 @@ namespace net
 
       if(family == AF_INET)
          return sizeof(sockaddr_in);
-      else if(family == AF_INET6)
+      else if (family == AF_INET6)
          return sizeof(sockaddr_in6);
       else
          return 0;

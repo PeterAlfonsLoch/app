@@ -40,12 +40,7 @@ namespace aura
 
    system::system(::aura::application * papp, void * pdata) :
       m_process(this),
-      m_base64(this),
-#ifdef METROWIN
-      m_mutexCit(this)
-#else
-      m_mutexCit(this, false, "Global\\ca2_weather_city")
-#endif
+      m_base64(this)
    {
 
 #ifndef WINDOWS
@@ -953,6 +948,27 @@ namespace aura
       return true;
    }
 
+   mutex * system::get_city_mutex()
+   {
+
+      if (m_spmutexCit.is_null())
+      {
+         
+#ifdef METROWIN
+
+         m_spmutexCit = canew(mutex(this));
+
+#else
+
+         m_spmutexCit = canew(mutex(this, false, "Global\\ca2_weather_city"));
+
+#endif
+            
+      }
+
+      return m_spmutexCit;
+
+   }
 
 
 
@@ -2385,7 +2401,7 @@ namespace aura
    {
 
       
-      synch_lock sl(&m_mutexCit);
+      synch_lock sl(get_city_mutex());
 
       if (m_straCit.get_size() == m_iaIds.get_size()
          && m_iaIds.get_size() == m_daLon.get_size()
