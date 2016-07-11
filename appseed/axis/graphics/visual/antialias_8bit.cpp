@@ -14,6 +14,8 @@
 bool antialias_8bit(::draw2d::dib * pdibCompose, ::visual::dib_sp::array * pdiba, ::visual::dib_sp::pointer * pointer, int uFrameIndex, byte * ba, int iScan, array < COLORREF > & cra, int transparentIndex)
 {
 
+   return true;
+
    COLORREF cr;
 
    COLORREF crBack = pdiba->m_crTransparent;
@@ -28,11 +30,11 @@ bool antialias_8bit(::draw2d::dib * pdibCompose, ::visual::dib_sp::array * pdiba
 
    bool bUnequal = true;
 
-   double dUnequal = 50.0;
+   double dUnequal = 10.0;
 
    double dUnequalScaleDown = 1.00;
 
-   double dUnequalRate = 5.0;
+   double dUnequalRate = 10.0;
 
    double dUnequalAddUp = 0.00;
 
