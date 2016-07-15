@@ -107,17 +107,19 @@ void XfplayerViewLine::AddChar(WCHAR wch, strsize & index)
 
    single_lock sl(m_pContainer->m_pmutex);
 
-   index++;
+   m_str += wch;
+
+   index = m_str.get_length() - 1;
+
    if (m_iaPosition.get_size() < index + 2)
    {
+
       m_iaPosition.allocate(m_iaPosition.get_size() + 10);
+
    }
 
-   m_str += wch;
-   ASSERT(m_str.get_length() - 1 == index);
-
-
 }
+
 
 void XfplayerViewLine::AddChar(WCHAR wch, strsize & index, visual::font * pFont)
 {

@@ -231,14 +231,13 @@ public:
    void           set_id(const id & id);
    void unset();
 
-   bool is_true(bool bDefault = false) const;
-
-
    bool is_set() const;
    bool is_new() const;
    bool is_null() const;
    bool is_new_or_null() const;
    bool is_empty() const;
+   bool is_false() const;
+   bool is_true(bool bDefault = false) const;
    bool has_char() const;
 
    bool has_property(const char * pszName) const;

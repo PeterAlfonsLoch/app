@@ -3987,3 +3987,20 @@ void var::null()
    return ::file::path(get_string());
 
 }
+
+
+bool var::is_false() const
+{
+
+   if (get_type() != type_bool)
+   {
+      
+      return false;
+
+   }
+
+   return m_b;
+
+}
+
+

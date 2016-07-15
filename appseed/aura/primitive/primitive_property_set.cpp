@@ -580,6 +580,10 @@ void property_set::parse_json(const char * & pszJson)
 void property_set::parse_json(const char * & pszJson, const char * pszEnd)
 {
    ::str::consume_spaces(pszJson, 0, pszEnd);
+   if (*pszJson == '\0')
+   {
+      return;
+   }
    ::str::consume(pszJson, "{", 1, pszEnd);
    ::str::consume_spaces(pszJson, 0, pszEnd);
    if (*pszJson == '}')

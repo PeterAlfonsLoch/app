@@ -110,11 +110,11 @@ namespace str
             return 5;
       }
 
-
       inline int64_t uni_index(const char * pszUtf8);
       inline int64_t _uni_index(const char * pszUtf8);
       inline int64_t _uni_index_len(const char * pszUtf8,strsize & len);
       inline int64_t uni_index_len(const char * pszUtf8, strsize & len);
+      inline int utf8_index_len(int c);
 
       // ATTENTION: it does not check validity of entire UTF8 char, you should check if the (last position + uni_len) is greater than the working string length
       //inline  char uni_len(const char * pszUtf8);
@@ -317,7 +317,21 @@ namespace str
       inline CLASS_DECL_AURA bool is_katakana(const char * pszUtf8) { return is_katakana(uni_index(pszUtf8));  }
       inline CLASS_DECL_AURA bool is_japanese(const char * pszUtf8) { return is_japanese(uni_index(pszUtf8));  }
 
-
+      inline int utf8_index_len(int wch)
+      {
+         if (wch < 0x0080)
+         {
+            return 1;
+         }
+         else if (wch < 0x0800)
+         {
+            return 2;
+         }
+         else
+         {
+            return 3;
+         }
+      }
 
    }
 
