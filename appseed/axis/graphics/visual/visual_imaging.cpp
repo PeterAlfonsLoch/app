@@ -5835,17 +5835,17 @@ bool imaging::LoadImageFromFile(::draw2d::dib * pdib, ::file::stream_buffer * pf
       int32_t iRadius2 = iRadius * iRadius;
       int32_t r2;
 
-      auto & filter = m_alpha_spread__32CC_filterMap[iRadius];
+      auto pmemory = get_thread()->oprop("m_alpha_spread__32CC_filterMap(" + ::str::from(iRadius) + ")").cast < memory >();
 
-      if (filter.is_set())
+      if (pmemory != NULL)
       {
-         pFilter = filter->get_data();
+         pFilter = pmemory->get_data();
       }
       else
       {
-         filter = canew(memory());
-         filter->allocate(iFilterArea);
-         pFilter = filter->get_data();
+         pmemory = canew(memory());
+         pmemory->allocate(iFilterArea);
+         pFilter = pmemory->get_data();
          for(y = 0; y < iFilterHalfH; y++)
          {
             for(x = 0; x < iFilterHalfW; x++)
@@ -5860,6 +5860,7 @@ bool imaging::LoadImageFromFile(::draw2d::dib * pdib, ::file::stream_buffer * pf
                pFilter[x + y * iFilterW]                                   = (byte)i;
             }
          }
+         get_thread()->oprop("m_alpha_spread__32CC_filterMap(" + ::str::from(iRadius) + ")") = pmemory;
       }
 
       int32_t cx = pdibDst->m_size.cx;
