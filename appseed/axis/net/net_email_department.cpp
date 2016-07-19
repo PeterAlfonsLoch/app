@@ -22,7 +22,7 @@ namespace net
 
       ::sockets::smtp_socket socket(handler);
 
-      if(!socket.open((const string &) Application.file().as_string("X:\\sensitive\\sensitive\\seed\\default_sendmail_host.txt"), (port_t) 25))
+      if(!socket.open((const string &) Application.file().as_string("C:\\sensitive\\sensitive\\seed\\default_sendmail_host.txt"), (port_t) 25))
          return false;
 
       socket.m_estate = ::sockets::smtp_socket::state_initial;
