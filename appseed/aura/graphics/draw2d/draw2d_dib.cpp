@@ -636,6 +636,7 @@ namespace draw2d
       pdibDst->map();
       pdibSrc->map();
 
+
       if (ptSrc.x < 0)
       {
          ptDst.x -= ptSrc.x;
@@ -688,6 +689,10 @@ namespace draw2d
 
       byte * psrc2;
 
+      pdibDst->div_alpha(ptDst, ::size(xEnd, yEnd));
+      pdibSrc->div_alpha(ptSrc, ::size(xEnd, yEnd));
+
+
       for (int y = 0; y < yEnd; y++)
       {
 
@@ -707,6 +712,8 @@ namespace draw2d
          }
 
       }
+      pdibDst->mult_alpha(ptDst, ::size(xEnd, yEnd));
+      pdibSrc->mult_alpha(ptSrc, ::size(xEnd, yEnd));
 
       return true;
 
@@ -714,7 +721,7 @@ namespace draw2d
 
    void dib::set( int32_t R, int32_t G, int32_t B )
    {
-      int64_t size = area();
+      int64_t size = scan_area();
 
       COLORREF * pcr = get_data();
 
@@ -792,7 +799,7 @@ namespace draw2d
    void dib::ToAlpha(int32_t i)
    {
       BYTE *dst=(BYTE*)get_data();
-      int64_t size = area();
+      int64_t size = scan_area();
 
       while ( size-- )
       {
@@ -801,10 +808,13 @@ namespace draw2d
       }
    }
 
+
    void dib::from_alpha()
    {
+
       BYTE *dst=(BYTE*)get_data();
-      int64_t size = area();
+
+      int64_t size = scan_area();
 
       while ( size-- )
       {
@@ -813,7 +823,9 @@ namespace draw2d
          dst[2] = dst[3];
          dst+=4;
       }
+
    }
+
 
    void dib::mult_alpha(::draw2d::dib * pdib, bool bPreserveAlpha)
    {
@@ -821,7 +833,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(bPreserveAlpha);
 
       BYTE *dst=(BYTE*)get_data();
-      int64_t size = area();
+      int64_t size = scan_area();
 
 
       // >> 8 instead of / 255 subsequent alpha_blend operations say thanks on true_blend because (255) * (1/254) + (255) * (254/255) > 255
@@ -878,7 +890,7 @@ namespace draw2d
       map();
 
       BYTE *dst=(BYTE*)get_data();
-      int64_t size = area();
+      int64_t size = scan_area();
 
 
       //  / 255 instead of / 255 subsequent alpha_blend operations say thanks on true_blend because (255) * (1/254) + (255) * (254/255) > 255
@@ -931,12 +943,81 @@ namespace draw2d
    }
 
 
+
+   void dib::mult_alpha(point ptDst, ::size size)
+   {
+
+      dib * pdibDst = this;
+
+      pdibDst->map();
+
+      if (ptDst.x < 0)
+      {
+         size.cx += ptDst.x;
+         ptDst.x = 0;
+      }
+
+      if (size.cx < 0)
+         return;
+
+      if (ptDst.y < 0)
+      {
+         size.cy += ptDst.y;
+         ptDst.y = 0;
+      }
+
+      if (size.cy < 0)
+         return;
+
+      int xEnd = MIN(size.cx, pdibDst->m_size.cx - ptDst.x);
+
+      int yEnd = MIN(size.cy, pdibDst->m_size.cy - ptDst.y);
+
+      if (xEnd < 0)
+         return;
+
+      if (yEnd < 0)
+         return;
+
+      int32_t scanDst = pdibDst->m_iScan;
+
+      byte * pdst = &((byte *)pdibDst->m_pcolorref)[scanDst * ptDst.y + ptDst.x * sizeof(COLORREF)];
+
+      byte * pdst2;
+
+      for (int y = 0; y < yEnd; y++)
+      {
+
+         pdst2 = (byte *)&pdst[scanDst * y];
+
+         for (int x = 0; x < xEnd; x++)
+         {
+
+            pdst2[0] = byte_clip(((int32_t)pdst2[0] * (int32_t)pdst2[3]) / 255);
+            pdst2[1] = byte_clip(((int32_t)pdst2[1] * (int32_t)pdst2[3]) / 255);
+            pdst2[2] = byte_clip(((int32_t)pdst2[2] * (int32_t)pdst2[3]) / 255);
+
+            pdst2 += 4;
+
+         }
+
+      }
+
+   }
+
+   int64_t dib::scan_area()
+   {
+      
+      return m_iScan * m_size.cy / sizeof(COLORREF);
+
+   }
+
    void dib::div_alpha()
    {
       map();
 
       BYTE *dst=(BYTE*)get_data();
-      int64_t size = area();
+      int64_t size = scan_area();
 
 
       // >> 8 instead of / 255 subsequent alpha_blend operations say thanks on true_blend because (255) * (1/254) + (255) * (254/255) > 255
@@ -1000,10 +1081,80 @@ namespace draw2d
 
    }
 
+   void dib::div_alpha(point ptDst, ::size size)
+   {
+
+      dib * pdibDst = this;
+
+      pdibDst->map();
+
+      if (ptDst.x < 0)
+      {
+         size.cx += ptDst.x;
+         ptDst.x = 0;
+      }
+
+      if (size.cx < 0)
+         return;
+
+      if (ptDst.y < 0)
+      {
+         size.cy += ptDst.y;
+         ptDst.y = 0;
+      }
+
+      if (size.cy < 0)
+         return;
+
+      int xEnd = MIN(size.cx, pdibDst->m_size.cx - ptDst.x);
+
+      int yEnd = MIN(size.cy, pdibDst->m_size.cy - ptDst.y);
+
+      if (xEnd < 0)
+         return;
+
+      if (yEnd < 0)
+         return;
+
+      int32_t scanDst = pdibDst->m_iScan;
+
+      byte * pdst = &((byte *)pdibDst->m_pcolorref)[scanDst * ptDst.y + ptDst.x * sizeof(COLORREF)];
+
+      byte * pdst2;
+
+      for (int y = 0; y < yEnd; y++)
+      {
+
+         pdst2 = (byte *)&pdst[scanDst * y];
+
+         for (int x = 0; x < xEnd; x++)
+         {
+
+            if (pdst2[3] == 0)
+            {
+               pdst2[0] = 0;
+               pdst2[1] = 0;
+               pdst2[2] = 0;
+            }
+            else
+            {
+               pdst2[0] = byte_clip((int32_t)pdst2[0] * 255 / (int32_t)pdst2[3]);
+               pdst2[1] = byte_clip((int32_t)pdst2[1] * 255 / (int32_t)pdst2[3]);
+               pdst2[2] = byte_clip((int32_t)pdst2[2] * 255 / (int32_t)pdst2[3]);
+            }
+
+            pdst2 += 4;
+
+         }
+
+      }
+
+   }
+
    void dib::Map(int32_t ToRgb, int32_t FromRgb)
    {
       byte * dst= (byte *) get_data();
-      int64_t size = area();
+      int64_t size = scan_area();
 
       while ( size-- )
       {
@@ -1016,7 +1167,7 @@ namespace draw2d
    void dib::ToAlphaAndFill(int32_t i, COLORREF cr)
    {
       BYTE *dst=(BYTE*)get_data();
-      int64_t size = area();
+      int64_t size = scan_area();
 
       BYTE uchB = rgba_get_b(cr);
       BYTE uchG = rgba_get_g(cr);
@@ -1035,7 +1186,7 @@ namespace draw2d
    void dib::GrayToARGB(COLORREF cr)
    {
       BYTE *dst=(BYTE*)get_data();
-      int64_t size = area();
+      int64_t size = scan_area();
 
       uint32_t dwB = rgba_get_b(cr);
       uint32_t dwG = rgba_get_g(cr);
@@ -1166,7 +1317,7 @@ namespace draw2d
 
    void dib::Invert()
    {
-      int64_t size = area();
+      int64_t size = scan_area();
       LPBYTE lpb = (LPBYTE) get_data();
       for ( int32_t i=0; i<size; i++ )
       {
@@ -1179,7 +1330,7 @@ namespace draw2d
 
    void dib::channel_invert(visual::rgba::echannel echannel)
    {
-      int64_t size=area();
+      int64_t size= scan_area();
       LPBYTE lpb = (LPBYTE) get_data();
       lpb += ((int32_t)echannel) % 4;
       for ( int32_t i=0; i<size; i++ )
@@ -1199,7 +1350,7 @@ namespace draw2d
          div_alpha();
       }
 //#endif
-      int64_t size = area();
+      int64_t size = scan_area();
       LPBYTE lpb = (LPBYTE) get_data();
       lpb += ((int32_t)echannel) % 4;
       int32_t iDiv = 256 * 256;
@@ -1257,7 +1408,7 @@ namespace draw2d
 
    void dib::channel_darken(visual::rgba::echannel echannel, ::draw2d::dib * pdib)
    {
-      int64_t size = area();
+      int64_t size = scan_area();
       LPBYTE lpb1 = (LPBYTE) get_data();
       LPBYTE lpb2 = (LPBYTE) pdib->get_data();
       lpb1 += ((int32_t)echannel) % 4;
@@ -1272,7 +1423,7 @@ namespace draw2d
 
    void dib::channel_lighten(visual::rgba::echannel echannel, ::draw2d::dib * pdib)
    {
-      int64_t size = area();
+      int64_t size = scan_area();
       LPBYTE lpb1 = (LPBYTE) get_data();
       LPBYTE lpb2 = (LPBYTE) pdib->get_data();
       lpb1 += ((int32_t)echannel) % 4;
@@ -1289,7 +1440,7 @@ namespace draw2d
    {
       map();
       pdib->map();
-      int64_t size = area();
+      int64_t size = m_iScan * m_size.cy / sizeof(COLORREF);
       int64_t size64 = size / 64;
       LPBYTE lpb1 = (LPBYTE) get_data();
       LPBYTE lpb2 = (LPBYTE) pdib->get_data();
@@ -1380,7 +1531,7 @@ namespace draw2d
    void dib::FillGlass ( int32_t R, int32_t G, int32_t B, int32_t A )
    {
       BYTE *dst=(BYTE*)get_data();
-      int64_t size = area();
+      int64_t size = scan_area();
 
       while ( size-- )
       {
@@ -1488,7 +1639,7 @@ namespace draw2d
    {
 
       BYTE *dst=(BYTE*)get_data();
-      int64_t size = area();
+      int64_t size = scan_area();
 
       uint32_t dwB = rgba_get_b(cr);
       uint32_t dwG = rgba_get_g(cr);
@@ -1543,7 +1694,7 @@ namespace draw2d
 
       BYTE *src=(BYTE*)dib->get_data();
       BYTE *dst=(BYTE*)get_data();
-      int64_t size = area();
+      int64_t size = scan_area();
 
       while ( size-- )
       {
@@ -1564,7 +1715,7 @@ namespace draw2d
       BYTE *src=(BYTE*)pDib->get_data();
       BYTE *dst=(BYTE*)get_data();
       BYTE *alf=(BYTE*)DibA->get_data();
-      int64_t size = area();
+      int64_t size = scan_area();
 
       A = 2 - A;
 
@@ -1595,7 +1746,7 @@ namespace draw2d
       BYTE *src = (BYTE*)pDib->get_data();
       BYTE *dst = (BYTE*)get_data();
       BYTE *alf = ((BYTE*)DibA->get_data()) + 3;
-      int64_t size = area();
+      int64_t size = scan_area();
 
       while (size--)
       {
@@ -1621,7 +1772,7 @@ namespace draw2d
       BYTE *src=(BYTE*)pdib->get_data();
       BYTE *dst=(BYTE*)get_data();
       BYTE *alf=(BYTE*)pdibRate->get_data();
-      int64_t size = area();
+      int64_t size = scan_area();
 
       while(size >= 2)
       {
@@ -1660,7 +1811,7 @@ namespace draw2d
 
       BYTE *src=(BYTE*)dib->get_data();
       BYTE *dst=(BYTE*)get_data();
-      int64_t size = area();
+      int64_t size = scan_area();
 
       while ( size-- )
       {
@@ -1679,7 +1830,7 @@ namespace draw2d
 
       BYTE *src=(BYTE*)dib->get_data();
       BYTE *dst=(BYTE*)get_data();
-      int64_t size = area();
+      int64_t size = scan_area();
 
       while ( size-- )
       {
@@ -1702,7 +1853,7 @@ namespace draw2d
 
       BYTE *src=(BYTE*)dib->get_data();
       BYTE *dst=(BYTE*)get_data();
-      int64_t size = area();
+      int64_t size = scan_area();
 
       while ( size-- )
       {
@@ -1721,7 +1872,7 @@ namespace draw2d
 
       BYTE *src=(BYTE*)dib->get_data();
       BYTE *dst=(BYTE*)get_data();
-      int64_t size = area();
+      int64_t size = scan_area();
 
       while ( size-- )
       {
@@ -1740,7 +1891,7 @@ namespace draw2d
 
       BYTE *src=(BYTE*)dib->get_data();
       BYTE *dst=(BYTE*)get_data();
-      int64_t size = area();
+      int64_t size = scan_area();
 
       while ( size-- )
       {
@@ -2318,7 +2469,7 @@ namespace draw2d
       COLORREF crSet = RGB(rgba_get_b(crInMask), rgba_get_g(crInMask), rgba_get_r(crInMask));
       COLORREF crUnset  = RGB(rgba_get_b(crOutMask), rgba_get_g(crOutMask), rgba_get_r(crOutMask));
 
-      int64_t size = area();
+      int64_t size = scan_area();
 
       for ( int32_t i=0; i<size; i++ )
          if(get_data()[i]== crFind)
@@ -2331,7 +2482,7 @@ namespace draw2d
    void dib::transparent_color(color color)
    {
       COLORREF crFind = color.get_rgb();
-      int64_t iSize = area();
+      int64_t iSize = scan_area();
 
       for (int32_t i=0; i<iSize; i++ )
          if((get_data()[i] & 0x00ffffff) == crFind)
@@ -2617,38 +2768,38 @@ namespace draw2d
       else if(version == 1)*/
       {
 
-         memory mem;
+//         memory mem;
+//
+//         mem.allocate((iRadius * iRadius) + 4);
+//
+//         LPBYTE lpbAlloc = mem.get_data();
+//
+//         LPBYTE lpb = lpbAlloc;
+//
+//
+//         int32_t x, y;
+//         int32_t b;
+//
+////         int32_t r2 = iRadius * iRadius;
+//
+//         for(y = 0; y < iRadius; y++)
+//         {
+//            for(x = y; x < iRadius; x++)
+//            {
+//
+//               b = (int32_t) (sqrt((double) (x * x) + (y * y)) * 255 / iRadius);
+//
+//               if(b > 255)
+//                  b = 255;
+//
+//
+//               lpb[x + y * iRadius] = (byte) b;
+//               lpb[y + x * iRadius] = (byte) b;
+//            }
+//         }
 
-         mem.allocate((iRadius * iRadius) + 4);
 
-         LPBYTE lpbAlloc = mem.get_data();
-
-         LPBYTE lpb = lpbAlloc;
-
-
-         int32_t x, y;
-         int32_t b;
-
-//         int32_t r2 = iRadius * iRadius;
-
-         for(y = 0; y < iRadius; y++)
-         {
-            for(x = y; x < iRadius; x++)
-            {
-               b = (int32_t) (sqrt((double) (x * x) + (y * y)) * 255 / iRadius);
-               if(b > 255)
-                  b = 0;
-               else
-                  b = ~b;
-
-
-               lpb[x + y * iRadius] = (byte) b;
-               lpb[y + x * iRadius] = (byte) b;
-            }
-         }
-
-
-         int32_t iR = iRadius - 1;
+         int32_t iR = iRadius;
 
          int32_t xL = xCenter - iR;
          int32_t xU = xCenter + iR;
@@ -2657,33 +2808,46 @@ namespace draw2d
 
 
          if(xL < 0) xL = 0;
-         if(xU >= m_size.cx) xU = m_size.cx - 1;
+         if(xU > m_size.cx) xU = m_size.cx;
          if(yL < 0) yL = 0;
-         if(yU >= m_size.cy) yU = m_size.cy - 1;
+         if(yU > m_size.cy) yU = m_size.cy;
 
 
          BYTE *dst = ((BYTE*)(get_data() + xL + yL * (m_iScan / sizeof(COLORREF))));
-         uint32_t dwAdd = ((m_size.cx - 1 - xU) + xL) * 4;
+         uint32_t dwAdd = (((m_iScan / sizeof(COLORREF)) - xU) + xL) * 4;
 //         int64_t size = area();
 
-         int32_t dx, dy;
+         double dx, dy;
+
+         double dRadius = 255.0 / (double) iRadius;
 
          BYTE bComp;
 
+         int b;
+
          // Top Left
 
-         for(y = yL; y <= yU; y++)
+         int y;
+         int x;
+
+         for(y = yL; y < yU; y++)
          {
-            for(x = xL; x <= xU; x++)
+            for(x = xL; x < xU; x++)
             {
                dx = abs(x - xCenter);
                dy = abs(y - yCenter);
-               b = lpb[dx + dy * iRadius];
-               bComp = (byte) ~b;
-               dst[0] = byte(((blue1  * b) + (blue2  * bComp)) / 255);
-               dst[1] = byte(((green1 * b) + (green2 * bComp)) / 255);
-               dst[2] = byte(((red1   * b) + (red2   * bComp)) / 255);
-               dst[3] = byte(((alpha1 * b) + (alpha2 * bComp)) / 255);
+               b = (int) (sqrt((dx * dx) + (dy * dy)) * dRadius);
+
+               if (b > 255)
+               {
+                  b = 255;
+               }
+
+               bComp = 255 - b;
+               dst[0] = byte(((blue1  * bComp) + (blue2  * b)) / 255);
+               dst[1] = byte(((green1 * bComp) + (green2 * b)) / 255);
+               dst[2] = byte(((red1   * bComp) + (red2   * b)) / 255);
+               dst[3] = byte(((alpha1 * bComp) + (alpha2 * b)) / 255);
                dst += 4;
             }
             dst += dwAdd;
@@ -3088,7 +3252,7 @@ namespace draw2d
    void dib::Fill(COLORREF cr)
    {
 
-      int64_t size = area();
+      int64_t size = scan_area();
 
       COLORREF * pcr = m_pcolorref;
 
@@ -3583,7 +3747,7 @@ namespace draw2d
    {
       map();
       int32_t offset = ((int32_t)echannel) % 4;
-      int64_t size=area();
+      int64_t size= scan_area();
 
       COLORREF * pcr = (COLORREF *) &((byte *)m_pcolorref)[offset];
 
@@ -3638,7 +3802,7 @@ namespace draw2d
    {
       map();
       int32_t offset = ((int32_t)echannel) % 4;
-      int64_t size=area();
+      int64_t size= scan_area();
 
       COLORREF * pcr = (COLORREF *) &((byte *)m_pcolorref)[offset];
 
@@ -3841,7 +4005,7 @@ namespace draw2d
       map();
 
       BYTE *dst = (BYTE*)m_pcolorref;
-      int64_t size = area();
+      int64_t size = scan_area();
 
       BYTE uchB = (byte)R;
       BYTE uchG = (byte)G;
@@ -3937,7 +4101,7 @@ namespace draw2d
       map();
 
       BYTE *dst = (BYTE*)m_pcolorref;
-      int64_t size = area();
+      int64_t size = scan_area();
 
       BYTE uchB = (byte)R;
       BYTE uchG = (byte)G;
@@ -4051,7 +4215,7 @@ namespace draw2d
       map();
 
       BYTE *dst=(BYTE*)m_pcolorref;
-      int64_t size = area();
+      int64_t size = scan_area();
 
       BYTE uchB = (byte) R;
       BYTE uchG = (byte) G;
@@ -4129,7 +4293,7 @@ namespace draw2d
       {
          byte * puchSrc = (byte *) get_data();
          byte * puchDst = (byte *) pdib->get_data();
-         int64_t iArea = pdib->area();
+         int64_t iArea = pdib->scan_area();
          while(iArea > 0)
          {
             *puchDst++ = *puchSrc++;
@@ -4441,7 +4605,7 @@ namespace draw2d
       try
       {
          byte * puch = (byte *)get_data();
-         int64_t iArea = area();
+         int64_t iArea = scan_area();
          while(iArea > 0)
          {
             puch[0] = MAX(0,MIN(255,puch[0] * iMul / iDiv));

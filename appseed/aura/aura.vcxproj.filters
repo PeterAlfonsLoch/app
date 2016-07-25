@@ -2120,6 +2120,12 @@
     <ClInclude Include="aura\process\process_process.h">
       <Filter>Header Files\aura\process</Filter>
     </ClInclude>
+    <ClInclude Include="draw2d_dibmap.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="draw2d_dibmap_ex1.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="multithreading\multithreading_condition.cpp">

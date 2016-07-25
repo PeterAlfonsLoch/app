@@ -710,6 +710,8 @@
     <ClInclude Include="aura\xml\xml_tree_schema.h" />
     <ClInclude Include="aura\xml\xml_var_exchange.h" />
     <ClInclude Include="aura\xml\xml_xmlite.h" />
+    <ClInclude Include="draw2d_dibmap.h" />
+    <ClInclude Include="draw2d_dibmap_ex1.h" />
     <ClInclude Include="filesystem\filesystem.h" />
     <ClInclude Include="filesystem\filesystem\filesystem_application.h" />
     <ClInclude Include="filesystem\filesystem\filesystem_dir_application.h" />

@@ -929,14 +929,20 @@ void thread::unregister_from_required_threads()
 void thread::do_events(const duration & duration)
 {
 
-   DWORD dwEnd = (DWORD) (::get_tick_count() + duration.get_total_milliseconds());
+	DWORD dwStart = ::get_tick_count();
+
+   int64_t dwSpan = duration.get_total_milliseconds();
+
+   DWORD dwSleep = (DWORD) MIN(884, dwSpan / 20);
 
    do
    {
 
       do_events();
 
-   } while(::get_tick_count() < dwEnd);
+      Sleep(dwSleep);
+
+   } while(::get_tick_count() - dwStart < dwSpan);
 
 }
 

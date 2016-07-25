@@ -34,6 +34,8 @@ void draw2d_factory_exchange(::aura::application * papp);
 #include "draw2d_pen.h"
 #include "draw2d_bitmap.h"
 #include "draw2d_dib.h"
+#include "draw2d_dibmap.h"
+#include "draw2d_dibmap_ex1.h"
 #include "draw2d_brush.h"
 #include "draw2d_font.h"
 #include "draw2d_palette.h"
