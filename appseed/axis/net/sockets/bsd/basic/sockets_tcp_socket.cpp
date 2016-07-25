@@ -152,6 +152,7 @@ namespace sockets
 
    bool tcp_socket::open(const ::net::address & ad,const ::net::address & bind_ad,bool skip_socks)
    {
+      output_debug_string("tcp_socket::open address = " + ad.get_display_number() + " : " + ::str::from(ad.get_service_number()));
       if(!ad.is_valid())
       {
          log("open",0,"Invalid ::net::address",::aura::log::level_fatal);
