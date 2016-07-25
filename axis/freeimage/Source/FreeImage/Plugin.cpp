@@ -355,7 +355,7 @@ TagLib::instance();
             for(auto & path : patha)
             {
 
-#ifdef WINDOWSEX
+#ifdef WINDOWS
                if(::str::ends_ci(path,".dll") && ::str::begins_ci(path.name(), "axis_image_"))
 #elif defined(APPLEOS)
                if(::str::ends_ci(path,".dylib") && ::str::begins_ci(path.name(), "libaxis_image_"))
@@ -366,7 +366,11 @@ TagLib::instance();
 
                   ::aura::library l(get_thread_app());
 
+#ifdef METROWIN
+                  l.open(path.name(), false);
+#else
                   l.open(path, false);
+#endif
 
                   if(l.is_opened())
                   {

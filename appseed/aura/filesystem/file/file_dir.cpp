@@ -29,75 +29,33 @@
 
 #elif defined(METROWIN)
 
-   //   unichar lpszModuleFolder[MAX_PATH * 8];
+   hwstring lpszModuleFolder(MAX_PATH * 8);
+
+   hwstring lpszModuleFilePath(MAX_PATH * 8);
 
 
-   return "";
+   if (!GetModuleFileNameW(NULL, lpszModuleFilePath, (DWORD)lpszModuleFilePath.count()))
+      return "";
 
-   /*   char lpszModuleFilePath[MAX_PATH * 8];
+   LPWSTR lpszModuleFileName;
 
-      HMODULE hmodule = ::LoadPackagedLibrary(L"ca.dll", 0);
+   if (!GetFullPathNameW(lpszModuleFilePath, (DWORD)lpszModuleFilePath.count(), lpszModuleFolder, &lpszModuleFileName))
+      return "";
 
-      if(hmodule == NULL)
-         hmodule = ::LoadPackagedLibrary(L"spalib.dll", 0);
+   lpszModuleFolder[lpszModuleFileName - lpszModuleFolder] = '\0';
 
-      if(hmodule == NULL)
+   if (wcslen(lpszModuleFolder) > 0)
+   {
+
+      if (lpszModuleFolder[wcslen(lpszModuleFolder) - 1] == '\\' || lpszModuleFolder[wcslen(lpszModuleFolder) - 1] == '/')
       {
 
-         string buf;
+         lpszModuleFolder[wcslen(lpszModuleFolder) - 1] = '\0';
 
-         throw metrowin_todo();
-         //HRESULT hr = SHGetKnownFolderPath(FOLDERID_ProgramFiles, KF_FLAG_NO_ALIAS, NULL, wtostring(buf, 4096));
-         //if(FAILED(hr))
-         // throw "dir::ca2_module_dup : SHGetKnownFolderPath failed";
+      }
 
-         /*strcpy(lpszModuleFilePath, buf.c_str());
-
-         if(lpszModuleFilePath[strlen_dup(lpszModuleFilePath) - 1] == '\\'
-            || lpszModuleFilePath[strlen_dup(lpszModuleFilePath) - 1] == '/')
-         {
-            lpszModuleFilePath[strlen_dup(lpszModuleFilePath) - 1] = '\0';
-         }
-         strcat_dup(lpszModuleFilePath, "\\core\\");
-#ifdef X86
-         strcat_dup(lpszModuleFilePath, "stage\\x86\\");
-#else
-         strcat_dup(lpszModuleFilePath, "stage\\x64\\");
-#endif
-
-         wcscpy_dup(lpszModuleFolder, lpszModuleFilePath);*/
-
-   /*    return true;
-
-    }
-
-    throw metrowin_todo();
-    //GetModuleFileName(hmodule, lpszModuleFilePath, sizeof(lpszModuleFilePath));
-
-    // xxx   LPTSTR lpszModuleFileName;
-
-    throw metrowin_todo();
-    //GetFullPathName(lpszModuleFilePath, sizeof(lpszModuleFilePath), lpszModuleFolder, &lpszModuleFileName);
-
-    throw metrowin_todo();
-    //lpszModuleFolder[lpszModuleFileName - lpszModuleFolder] = '\0';
-
-    throw metrowin_todo();
-    /*
-    if(strlen_dup(lpszModuleFolder) > 0)
-    {
-
-    if(lpszModuleFolder[strlen_dup(lpszModuleFolder) - 1] == '\\' || lpszModuleFolder[strlen_dup(lpszModuleFolder) - 1] == '/')
-    {
-
-    lpszModuleFolder[strlen_dup(lpszModuleFolder) - 1] = '\0';
-
-    }
-
-    }
-    */
-
-   return "";
+   }
+   return string(lpszModuleFolder);
 
 #elif defined(WINDOWS)
 

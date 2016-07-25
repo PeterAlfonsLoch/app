@@ -1754,11 +1754,11 @@ namespace file
 
                if (bDir)
                {
-                  strUrl = "http://" + get_api_cc() + "/api/matter/query_dir?candidate=" + System.url().url_encode(patha.implode("|"));
+                  strUrl = "http://ca2.cc/api/matter/query_dir?candidate=" + System.url().url_encode(patha.implode("|"));
                }
                else
                {
-                  strUrl = "http://" + get_api_cc() + "/api/matter/query_file?candidate=" + System.url().url_encode(patha.implode("|"));
+                  strUrl = "http://ca2.cc/api/matter/query_file?candidate=" + System.url().url_encode(patha.implode("|"));
                }
 
                property_set set(papp);
