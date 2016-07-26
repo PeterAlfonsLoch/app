@@ -369,7 +369,7 @@ namespace metrowin
    }
 
 //   bool interaction_impl::create_message_queue(const char * pszName,::user::message_queue_listener* pcallback)
-   bool interaction_impl::create_message_queue(const char * pszName)
+   bool interaction_impl::create_message_queue(::user::interaction * pui, const char * pszName)
    {
 
 #ifdef METROWIN
@@ -391,6 +391,7 @@ namespace metrowin
          {
             return false;
          }
+         m_pui = pui;
       }
       return true;
    }

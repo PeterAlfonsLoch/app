@@ -1,6 +1,6 @@
 #pragma once
 
-
+#include <agile.h>
 
 using namespace Windows::Foundation;
 using namespace Windows::Foundation::Collections;

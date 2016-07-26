@@ -6,8 +6,6 @@
 #include <d2d1_1.h>
 #include <dwrite_1.h>
 #include <wincodec.h>
-//#include <memory>
-//#include <agile.h>
 
 namespace metrowin
 {

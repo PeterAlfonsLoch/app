@@ -41,7 +41,7 @@ namespace metrowin
 
       //bool create_message_queue(const char * pszName, ::user::message_queue_listener* pcallback = NULL);
 
-      bool create_message_queue(const char * pszName);
+      bool create_message_queue(::user::interaction * pui, const char * pszName);
 
       virtual bool initialize(::user::native_window_initialize * pinitialize) override;
 

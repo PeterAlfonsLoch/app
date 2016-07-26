@@ -36,12 +36,6 @@
     <ClInclude Include="trees.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="zconf.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="zlib.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="zutil.h">
       <Filter>Header Files</Filter>
     </ClInclude>

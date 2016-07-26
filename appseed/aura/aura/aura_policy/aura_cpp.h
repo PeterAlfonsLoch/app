@@ -1459,6 +1459,17 @@ namespace math
 
 } // namespace math
 
+namespace _std
+{
+
+
+   template <class T> void swap(T& a, T& b)
+   {
+      T c(a); a = b; b = c;
+   }
+
+
+}
 
 namespace std
 {
@@ -1603,14 +1614,17 @@ namespace std
       ::lemon::sort_heap(first,last,comp);
    }
 
-#ifndef __APPLE__
 
-   template <class T> void swap(T& a,T& b)
+
+#if !defined(__APPLE__)
+
+   template <class T> void swap(T& a, T& b)
    {
-      T c(a); a=b; b=c;
+      _std::swap(a, b);
    }
 
 #endif
+
 
 }
 
