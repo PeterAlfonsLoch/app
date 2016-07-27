@@ -122,6 +122,12 @@ namespace metrowin
          strPrefix = "winmetro-Music:\\\\";
 
       }
+      else if (str::begins_eat_ci(strPath, "winmetro-Videos:\\\\"))
+      {
+
+         strPrefix = "winmetro-Videos:\\\\";
+
+      }
       else
       {
          return failure;

@@ -84,6 +84,8 @@ namespace metrowin
       virtual bool initialize();
 
 
+      virtual bool update_module_path() override;
+
    };
 
 

@@ -92,6 +92,8 @@ namespace metrowin
 
       str::begins_eat_ci(strPath, "winmetro-Music:\\\\");
 
+      str::begins_eat_ci(strPath, "winmetro-Videos:\\\\");
+
 
       ::file::path lpszFileName(strPath);
       if(nOpenFlags & ::file::defer_create_directory)

@@ -735,7 +735,7 @@ bool dir::mk(const ::file::path & lpcsz)
 ::file::path dir::module()
 {
 
-#ifdef WINDOWSEX
+#ifdef WINDOWS
 
    unichar path[MAX_PATH * 4];
 
@@ -751,12 +751,6 @@ bool dir::mk(const ::file::path & lpcsz)
       return name(string(path));
 
    }
-
-#elif defined(METROWIN)
-
-   throw metrowin_todo();
-
-   return "";
 
 #else
 
@@ -797,6 +791,13 @@ bool dir::is(const ::file::path & path1)
    {
 
       strPrefix = "winmetro-Music:\\\\";
+
+   }
+
+   if (::str::begins_eat_ci(str, "winmetro-Videos:\\\\"))
+   {
+
+      strPrefix = "winmetro-Videos:\\\\";
 
    }
 
@@ -997,6 +998,25 @@ void dir::ls(::file::patha & stra,const ::file::path & psz)
          }
 
       }
+      else if (string(psz).CompareNoCase("winmetro-Videos:") == 0)
+      {
+
+         strPrefix = "winmetro-Videos://";
+
+         try
+         {
+
+            folder = ::Windows::Storage::KnownFolders::VideosLibrary;
+
+         }
+         catch (...)
+         {
+
+            folder = nullptr;
+
+         }
+
+      }
       else
       {
 
@@ -1011,6 +1031,13 @@ void dir::ls(::file::patha & stra,const ::file::path & psz)
          {
 
             strPrefix = "winmetro-Music:\\\\";
+
+         }
+
+         if (::str::begins_eat_ci(str, "winmetro-Videos:\\\\"))
+         {
+
+            strPrefix = "winmetro-Videos:\\\\";
 
          }
 

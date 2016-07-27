@@ -27,6 +27,7 @@ namespace metrowin
 
       listing.add("winmetro-Pictures://");
       listing.add("winmetro-Music://");
+      listing.add("winmetro-Videos://");
 
       listing.last().m_iDir = 1;
 
@@ -182,6 +183,8 @@ namespace metrowin
       if(lpcszPath.CompareNoCase("winmetro-Pictures:") == 0)
          return true;
       if (lpcszPath.CompareNoCase("winmetro-Music:") == 0)
+         return true;
+      if (lpcszPath.CompareNoCase("winmetro-Videos:") == 0)
          return true;
 
       bool bIsDir;
@@ -704,6 +707,17 @@ try1:
    {
 
       return ::Windows::Storage::ApplicationData::Current->LocalFolder->Path / "commonappdata";
+
+   }
+
+   bool dir::update_module_path()
+   {
+
+      m_pathModule = ::path::module();
+
+      m_pathCa2Module = ::dir::ca2_module();
+
+      return true;
 
    }
 
