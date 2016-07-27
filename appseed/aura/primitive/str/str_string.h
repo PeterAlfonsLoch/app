@@ -422,7 +422,7 @@ public:
    strsize replace(const char * pszOld,const char * pszNew, strsize iStart = 0);
 
    strsize replace_ci(const char * pszOld,const char * pszNew, strsize iStart = 0);
-   
+
    ::count utf8_replace(const char * pszOld,const char * pszNew, strsize iStart = 0);
 
    string & replace(strsize iStart, strsize nCount, const char * psz);
@@ -659,7 +659,7 @@ public:
    // e.g. str.Format("Print this: Hello Format!!");
    inline void Format(const char *s)
    {
-      
+
       assign(s);
 
    }
@@ -695,7 +695,7 @@ public:
 
       format.format(s, value, args...);
 
-      append(format.m_pszBuffer, format.m_iSize);
+      append(format.m_pszBuffer, format.m_iLength);
 
    }
 

@@ -103,7 +103,7 @@ namespace net
 
 
       inline const sockaddr * sa() const;
-      inline int32_t sa_len() const;
+      int32_t sa_len() const;
 
       void * addr_data();
 

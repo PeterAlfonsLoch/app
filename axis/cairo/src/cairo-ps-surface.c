@@ -81,7 +81,7 @@
 #include <stdio.h>
 #include <ctype.h>
 #include <time.h>
-#include "axis/zlib/zlib.h"
+#include "include/zlib.h"
 #include <errno.h>
 
 #define DEBUG_PS 0

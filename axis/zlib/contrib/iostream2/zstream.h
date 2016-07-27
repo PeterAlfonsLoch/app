@@ -27,7 +27,7 @@
 #include <strstream.h>
 #include <string.h>
 #include <stdio.h>
-#include "zlib.h"
+#include "include/zlib.h"
 
 #if defined(_WIN32)
 #   include <fcntl.h>

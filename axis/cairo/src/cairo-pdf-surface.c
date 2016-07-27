@@ -64,7 +64,7 @@
 #include "cairo-type3-glyph-surface-private.h"
 
 #include <time.h>
-#include "axis/zlib/zlib.h"
+#include "include/zlib.h"
 
 /* Issues:
  *

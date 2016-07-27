@@ -63,7 +63,7 @@ POSSIBILITY OF SUCH DAMAGE.
 #endif
 
 #ifdef SUPPORT_LIBZ
-#include <zlib.h>
+#include "include/zlib.h"
 #endif
 
 #ifdef SUPPORT_LIBBZ2

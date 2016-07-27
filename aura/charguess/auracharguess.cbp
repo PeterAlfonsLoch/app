@@ -63,6 +63,7 @@
 			<Add directory="../../appseed/axis" />
 			<Add directory="../../appseed/aura" />
 			<Add directory="cpp" />
+			<Add directory="../../../app" />
 		</Compiler>
 		<Linker>
 			<Add option="-Wl,-R\\$$$ORIGIN" />
@@ -93,7 +94,6 @@
 		<Unit filename="cpp/pkgInt.h" />
 		<Unit filename="cpp/types.h" />
 		<Unit filename="cpp/universal.h" />
-		<Unit filename="framework/framework.cpp" />
 		<Unit filename="framework/framework.h" />
 		<Extensions>
 			<code_completion />

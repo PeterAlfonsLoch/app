@@ -15,7 +15,7 @@
 
 #include <apr_strings.h>
 
-#include "zlib/zlib.h"
+#include "include/zlib.h"
 
 /* This conditional isn't defined anywhere yet. */
 #ifdef HAVE_ZUTIL_H
