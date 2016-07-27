@@ -34,24 +34,46 @@
 
 #else
 
+#ifdef WINDOWS
 #define HTONLL(n) (((((uint64_t)(n) & 0xFFu64)) << 56) | \
    ((((uint64_t)(n) & 0xFF00u64)) << 40) | \
    ((((uint64_t)(n) & 0xFF0000u64)) << 24) | \
-   ((((uint64_t)(n) & 0xFF000000)) << 8) | \
-   ((((uint64_t)(n) & 0xFF00000000)) >> 8) | \
+   ((((uint64_t)(n) & 0xFF000000u64)) << 8) | \
+   ((((uint64_t)(n) & 0xFF00000000u64)) >> 8) | \
    ((((uint64_t)(n) & 0xFF0000000000u64)) >> 24) | \
    ((((uint64_t)(n) & 0xFF000000000000u64)) >> 40) | \
    ((((uint64_t)(n) & 0xFF00000000000000u64)) >> 56))
 
+   #else
+#define HTONLL(n) (((((uint64_t)(n) & 0xFFuLL)) << 56) | \
+   ((((uint64_t)(n) & 0xFF00uLL)) << 40) | \
+   ((((uint64_t)(n) & 0xFF0000uLL)) << 24) | \
+   ((((uint64_t)(n) & 0xFF000000uLL)) << 8) | \
+   ((((uint64_t)(n) & 0xFF00000000uLL)) >> 8) | \
+   ((((uint64_t)(n) & 0xFF0000000000uLL)) >> 24) | \
+   ((((uint64_t)(n) & 0xFF000000000000uLL)) >> 40) | \
+   ((((uint64_t)(n) & 0xFF00000000000000uLL)) >> 56))
+   #endif
+
+#ifdef WINDOWS
 #define NTOHLL(n) (((((uint64_t)(n) & 0xFFu64)) << 56) | \
    ((((uint64_t)(n) & 0xFF00u64)) << 40) | \
    ((((uint64_t)(n) & 0xFF0000u64)) << 24) | \
-   ((((uint64_t)(n) & 0xFF000000)) << 8) | \
-   ((((uint64_t)(n) & 0xFF00000000)) >> 8) | \
+   ((((uint64_t)(n) & 0xFF000000u64)) << 8) | \
+   ((((uint64_t)(n) & 0xFF00000000u64)) >> 8) | \
    ((((uint64_t)(n) & 0xFF0000000000u64)) >> 24) | \
    ((((uint64_t)(n) & 0xFF000000000000u64)) >> 40) | \
    ((((uint64_t)(n) & 0xFF00000000000000u64)) >> 56))
-
+#else
+#define NTOHLL(n) (((((uint64_t)(n) & 0xFFuLL)) << 56) | \
+   ((((uint64_t)(n) & 0xFF00uLL)) << 40) | \
+   ((((uint64_t)(n) & 0xFF0000uLL)) << 24) | \
+   ((((uint64_t)(n) & 0xFF000000uLL)) << 8) | \
+   ((((uint64_t)(n) & 0xFF00000000uLL)) >> 8) | \
+   ((((uint64_t)(n) & 0xFF0000000000uLL)) >> 24) | \
+   ((((uint64_t)(n) & 0xFF000000000000uLL)) >> 40) | \
+   ((((uint64_t)(n) & 0xFF00000000000000uLL)) >> 56))
+#endif
 #endif
 
 
