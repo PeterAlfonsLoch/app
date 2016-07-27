@@ -270,6 +270,39 @@ namespace html
 
    }
 
+   string html::resolve_entities(const string& strParam)
+   {
+
+      string str(strParam);
+
+      string strChar;
+
+      strsize iCurPos = -1;
+
+      strsize iParseLen;
+
+      do
+      {
+
+         if ((iCurPos = str.find('&', ++iCurPos)) == -1)
+            break;
+
+         iParseLen = resolve_entity(str.Mid(iCurPos), strChar);
+
+         if (iParseLen)
+         {
+
+            str.replace(str.Mid(iCurPos, iParseLen), strChar);
+
+         }
+
+      }
+      while (true);
+
+      return str;
+
+   }
+
 
    bool html::initialize()
    {

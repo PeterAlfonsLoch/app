@@ -35,6 +35,7 @@ namespace html
       string special_chars(const char * psz);
       string entities(const char * psz);
       int32_t resolve_entity(const char * lpszEntity,string & strChar);
+      string resolve_entities(const string & str);
 
 
       e_tag tag_name_to_id(id idTag);

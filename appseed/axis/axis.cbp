@@ -411,14 +411,42 @@
 		<Unit filename="graphics/visual/visual_visual.h" />
 		<Unit filename="graphics/visual/visual_water_routine.h" />
 		<Unit filename="html_lite/_html_lite_html_lite.cpp" />
+		<Unit filename="html_lite/framework2.cpp" />
+		<Unit filename="html_lite/framework2.h" />
 		<Unit filename="html_lite/html/_html.cpp">
 			<Option compile="0" />
 			<Option link="0" />
 		</Unit>
+		<Unit filename="html_lite/html/html.h" />
+		<Unit filename="html_lite/html/html_enum.h" />
+		<Unit filename="html_lite/html/html_html.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
+		<Unit filename="html_lite/html/html_html.h" />
 		<Unit filename="html_lite/html_lite/_html_lite.cpp">
 			<Option compile="0" />
 			<Option link="0" />
 		</Unit>
+		<Unit filename="html_lite/html_lite/html_lite.h" />
+		<Unit filename="html_lite/html_lite/html_lite_application.h" />
+		<Unit filename="html_lite/html_lite/html_lite_html_attributes.h" />
+		<Unit filename="html_lite/html_lite/html_lite_html_common.h" />
+		<Unit filename="html_lite/html_lite/html_lite_html_entity_resolver.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
+		<Unit filename="html_lite/html_lite/html_lite_html_entity_resolver.h" />
+		<Unit filename="html_lite/html_lite/html_lite_html_reader.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
+		<Unit filename="html_lite/html_lite/html_lite_html_reader.h" />
+		<Unit filename="html_lite/html_lite/html_lite_html_tag.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
+		<Unit filename="html_lite/html_lite/html_lite_html_tag.h" />
 		<Unit filename="net/_net.cpp" />
 		<Unit filename="net/http/http_application.h" />
 		<Unit filename="net/http/http_get_socket.h" />
