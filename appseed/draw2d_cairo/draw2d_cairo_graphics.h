@@ -18,6 +18,7 @@ namespace draw2d_cairo
    public:
 
 
+   int                        m_iSaveDC;
       cairo_t *               m_pdc; // cairo drawing context
       int32_t                     m_iType;
       //bool                    m_bForeColor;

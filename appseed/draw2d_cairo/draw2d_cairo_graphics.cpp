@@ -37,7 +37,7 @@ namespace draw2d_cairo
       ::draw2d::graphics(papp)
    {
 
-
+   m_iSaveDC = 0;
 
       m_psurfaceAttach = NULL;
       m_hdcAttach = NULL;
@@ -3350,8 +3350,11 @@ VOID Example_EnumerateMetafile9(HDC hdc)
    int32_t graphics::SaveDC()
    {
 
+      m_iSaveDC++;
+
+      cairo_save(m_pdc);
       //::exception::throw_not_implemented(get_app());
-      return 0;
+      return m_iSaveDC;
 
 /*
       int32_t nRetVal = 0;
@@ -3367,8 +3370,21 @@ VOID Example_EnumerateMetafile9(HDC hdc)
    bool graphics::RestoreDC(int32_t nSavedDC)
    {
 
+      bool bRestored = false;
+
+      while(m_iSaveDC >= nSavedDC)
+      {
+
+         cairo_restore(m_pdc);
+
+         m_iSaveDC--;
+
+         bRestored = true;
+
+      }
+
       //::exception::throw_not_implemented(get_app());
-      return false;
+      return bRestored;
 
 /*
       bool bRetVal = TRUE;
