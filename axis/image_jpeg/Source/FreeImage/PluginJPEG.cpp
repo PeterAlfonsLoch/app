@@ -1679,6 +1679,9 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 	return FALSE;
 }
 
+extern "C"
+{
+
 // ==========================================================
 //   Init
 // ==========================================================
@@ -1701,4 +1704,7 @@ void DLL_CALLCONV FreeImage_InitPlugin_axis_image_jpeg(Plugin *plugin,int format
 	plugin->supports_export_type_proc = SupportsExportType;
 	plugin->supports_icc_profiles_proc = SupportsICCProfiles;
 	plugin->supports_no_pixels_proc = SupportsNoPixels;
+}
+
+
 }
