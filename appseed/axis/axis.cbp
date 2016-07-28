@@ -54,6 +54,7 @@
 			<Add option="-fPIC" />
 			<Add option="-DLINUX" />
 			<Add option="-DBASE_FREEIMAGE" />
+			<Add option="-DSIXTY_FOUR_BIT_LONG" />
 			<Add directory="../axis" />
 			<Add directory="../../../include" />
 			<Add directory="../../include" />
@@ -368,6 +369,10 @@
 		<Unit filename="filesystem/_filesystem.cpp" />
 		<Unit filename="filesystem/filesystem.h" />
 		<Unit filename="filesystem/filesystem/filesystem_axis_application.h" />
+		<Unit filename="filesystem/filesystem/filesystem_axis_system.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="filesystem/filesystem/filesystem_axis_system.h" />
 		<Unit filename="filesystem/filesystem/filesystem_dir_axis_application.h" />
 		<Unit filename="filesystem/filesystem/filesystem_dir_axis_system.h" />
@@ -463,6 +468,10 @@
 		<Unit filename="net/http/webserver/webserver_http_transaction.h" />
 		<Unit filename="net/mail/mail.h" />
 		<Unit filename="net/mail/mail_pop3.h" />
+		<Unit filename="net/mail/mail_pop3_socket.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="net/mail/pop3_socket.h" />
 		<Unit filename="net/mail/simple_pop3.h" />
 		<Unit filename="net/net.h" />

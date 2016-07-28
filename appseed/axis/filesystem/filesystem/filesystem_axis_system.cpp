@@ -1,5 +1,7 @@
 #include "framework.h"
 
+
+
 #ifndef METROWIN
    #include <openssl/ssl.h>
 #endif
@@ -1895,14 +1897,14 @@ restart:
                   System.http().m_straDownloading.add(strPath);
 
                   sl.unlock();
-                  
+
                   auto pfile = canew(::memory_file(papp));
 
                   spfile = pfile;
-                  
+
                   if(!Application.http().get(strPath, *pfile->get_memory(), set))
                   {
-                     
+
                      sl.lock();
 
                      System.http().m_straDownloading.remove(strPath);
@@ -1941,13 +1943,13 @@ restart:
             }
             else
             {
-               
+
                auto pfile=canew(memory_file(papp));
 
                spfile =pfile;
 
                property_set set;
-               
+
                set = varFile["http_set"].propset();
 
                bool bRawHttp1 = (bool)varFile["http_set"]["raw_http"];
@@ -1956,15 +1958,15 @@ restart:
 
                if(Application.http().get(strPath,*pfile->get_memory(),set))
                {
-                  
+
                   cres = no_exception;
-                  
+
                }
                else
                {
 
                   cres = failure;
-                  
+
                }
 
             }
@@ -2027,7 +2029,7 @@ restart:
             }
             else
             {
-               
+
                ::file::path pathUrl = App(papp).dir().matter(strPath);
 
                spfile = get_file(pathUrl, nOpenFlags,&cres, papp);

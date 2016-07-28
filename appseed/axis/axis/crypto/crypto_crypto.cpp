@@ -2,10 +2,7 @@
 #include "fiasco_finder.h"
 
 
-
-
 #include <openssl/whrlpool.h>
-
 
 #if defined(OPENSSL_CRYPTO) || defined(METROWIN)
 
@@ -733,7 +730,7 @@ namespace crypto
 
    }
 
-   
+
 
 
    bool crypto::file_set(var varFile, const char * pszData, const char * pszSalt, ::aura::application * papp)
@@ -1021,7 +1018,7 @@ namespace crypto
          ::Windows::Security::Cryptography::Core::AsymmetricKeyAlgorithmProvider::OpenAlgorithm(
          ::Windows::Security::Cryptography::Core::AsymmetricAlgorithmNames::RsaPkcs1);
 
-      
+
       return canew(::crypto::rsa(get_app(), provider->CreateKeyPair(1024)));
 
    }
@@ -1259,7 +1256,7 @@ namespace crypto
 #endif
 
    }
-   
+
    int rsa::public_encrypt(memory & out, const memory & in, string & strError)
    {
 #ifdef MACOS_DEPRECATED
@@ -1384,7 +1381,7 @@ out.set_os_crypt_buffer(::Windows::Security::Cryptography::Core::CryptographicEn
 #else
 
       single_lock sl(&m_mutex, true);
-      
+
       int32_t iRsaSize = 8192;
 
       out.allocate(iRsaSize);
@@ -1395,7 +1392,7 @@ out.set_os_crypt_buffer(::Windows::Security::Cryptography::Core::CryptographicEn
 
       if (i < 0 || i >(1024 * 1024))
       {
-         
+
          strError = ERR_error_string(ERR_get_error(), NULL);
 
          return (int)i;
@@ -1560,7 +1557,7 @@ out.set_os_crypt_buffer(::Windows::Security::Cryptography::Core::CryptographicEn
 
    }
 
-   
+
    string crypto::spa_login_crypt(const char * psz, const string & strRsa)
    {
 
@@ -1661,7 +1658,7 @@ out.set_os_crypt_buffer(::Windows::Security::Cryptography::Core::CryptographicEn
       memIn.from_hex(psz);
 
       memory.allocate(2048);
-      
+
       memory.set(0);
 
       string strError;
@@ -1708,7 +1705,7 @@ out.set_os_crypt_buffer(::Windows::Security::Cryptography::Core::CryptographicEn
 
    }
 
-   
+
    void crypto::np_make_zigbert_rsa(const string & strDir, const string & strSignerPath, const string & strKeyPath, const string & strOthersPath, const string & strSignature)
    {
 
@@ -1892,7 +1889,7 @@ stunCalculateIntegrity_shortterm(char* hmac, const char* input, int32_t length, 
 void hmac_evp_sha1_1234(unsigned char * hmac, unsigned int * hmacSize, const unsigned char * buf, size_t bufLen)
 {
 #if !defined(METROWIN) || defined(OPENSSL_CRYPTO)
-   
+
    HMAC(EVP_sha1(),
       "1234", 4,
       (const uchar*)buf, bufLen - 20 - 4,

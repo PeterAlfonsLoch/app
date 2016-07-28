@@ -7,7 +7,7 @@ extern "C"
 #include <bzlib.h>
 }
 
-#include "include/zlib.h"
+#include "zlib.h"
 
 #include "axis/zlib/zutil.h"
 
