@@ -453,7 +453,7 @@ void * unaligned_memory_alloc_dbg(size_t size, int32_t nBlockUse, const char * s
 BEGIN_EXTERN_C
 
 
-#if !defined(MCHECK) 
+#if !defined(MCHECK)
 
 #undef memory_alloc
 
@@ -596,9 +596,9 @@ void * memory_realloc_dbg(void * pmemory, size_t size, int32_t nBlockUse, const 
       g_ee->backtrace(pblock->m_puiStack, pblock->m_iStack);
       pblock->m_pszFileName = NULL;
    }
-   
+
    ::lemon::set_maximum(pblock->m_uiLine);
-   
+
    pblock->m_size = nAllocSize;
 
    pblock->m_pprevious = NULL;
@@ -723,7 +723,7 @@ void memory_free_dbg(void * pmemory, int32_t iBlockType)
 {
 
 #if defined(__VLD) || defined(MCHECK) || defined(__MCRTDBG)
-   
+
    memory_free(pmemory);
 
 #elif MEMDLEAK

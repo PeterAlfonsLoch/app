@@ -71,6 +71,7 @@
 			<Add option="-DHAVE_CONFIG_H" />
 			<Add option="-DBYEWINDOWS_UNICODE" />
 			<Add option="-DWITH_OPENH264" />
+			<Add option="-DSIXTY_FOUR_BIT_LONG" />
 			<Add directory="../../../../include" />
 			<Add directory="../../../include" />
 			<Add directory="../../include" />
@@ -88,10 +89,10 @@
 			<Add option="-lX11" />
 			<Add option="-lxkbfile" />
 			<Add option="-laura" />
-			<Add option="-laxiscrypto" />
+			<Add option="-lcrypto" />
 			<Add option="-laxiswinpr" />
 			<Add option="-laxisfreeimage" />
-			<Add option="-laxisopenssl" />
+			<Add option="-lssl" />
 			<Add option="-lWelsDecoder" />
 			<Add option="-lWelsEncoder" />
 			<Add option="-Wl,-z,defs" />

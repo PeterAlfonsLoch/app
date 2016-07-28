@@ -70,6 +70,7 @@
 			<Add option="-DLINUX" />
 			<Add option="-DHAVE_CONFIG_H" />
 			<Add option="-DBYEWINDOWS_UNICODE" />
+			<Add option="-DSIXTY_FOUR_BIT_LONG" />
 			<Add directory="../../../../include" />
 			<Add directory="../../../include" />
 			<Add directory="../../include" />
@@ -88,8 +89,8 @@
 			<Add option="-lrt" />
 			<Add option="-ldl" />
 			<Add option="-lpthread" />
-			<Add option="-laxiscrypto" />
-			<Add option="-laxisopenssl" />
+			<Add option="-lcrypto" />
+			<Add option="-lssl" />
 			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../../stage/x86" />
 		</Linker>
