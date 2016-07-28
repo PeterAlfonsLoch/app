@@ -452,6 +452,10 @@
 		<Unit filename="programming/javascript/javascript_tinyjs_functions.h" />
 		<Unit filename="this_build_number.h" />
 		<Unit filename="user/_user.cpp" />
+		<Unit filename="user/fontopus/fontopus_view.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="user/html/graphics/_graphics.cpp" />
 		<Unit filename="user/html/graphics/elemental/_html_elemental.cpp" />
 		<Unit filename="user/html/graphics/impl/_html_impl.cpp" />

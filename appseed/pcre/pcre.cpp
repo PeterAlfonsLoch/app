@@ -82,8 +82,8 @@ public:
 
 
    }
-   
-   
+
+
    virtual ~pcre_context_impl()
    {
 
@@ -119,7 +119,7 @@ public:
 
    }
 
-   
+
 };
 
 
@@ -131,7 +131,7 @@ public:
 
 
    pcre2_code *            m_pc;
- 
+
 
    pcre_code_impl(pcre_context_impl * pcreContext) :
       object(pcreContext->get_app()),
@@ -239,7 +239,7 @@ public:
 
       size_t s=MAX(256, str.get_length() + strPrefix.get_length() * 3);
 
-      int err; 
+      int err;
 
       while(true)
       {
@@ -293,7 +293,7 @@ public:
       pcre_code(pcreContext->get_app()),
       pcre_code_impl(pcreContext)
    {
-      
+
       m_pcre = pcreContext;
 
    }
@@ -308,16 +308,16 @@ public:
    bool compile(pcre_context_impl * pcreContext,const string &str)
    {
 
-      
+
       if(!pcre_code_impl::compile(pcreContext,str))
          return false;
 
 
       if(m_pcre->m_pmd != NULL)
       {
-         
+
          pcre2_match_data_free(m_pcre->m_pmd);
-         
+
          m_pcre->m_pmd = NULL;
 
       }

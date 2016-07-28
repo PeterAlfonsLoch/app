@@ -419,12 +419,40 @@
 		<Unit filename="user/simple/simple.h" />
 		<Unit filename="user/simple/simple_scroll_bar.h" />
 		<Unit filename="user/simple_ui/simple_ui.h" />
+		<Unit filename="user/simple_ui/simple_ui_edit_box.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="user/simple_ui/simple_ui_edit_box.h" />
+		<Unit filename="user/simple_ui/simple_ui_interaction.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="user/simple_ui/simple_ui_interaction.h" />
+		<Unit filename="user/simple_ui/simple_ui_label.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="user/simple_ui/simple_ui_label.h" />
+		<Unit filename="user/simple_ui/simple_ui_message_box.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="user/simple_ui/simple_ui_message_box.h" />
+		<Unit filename="user/simple_ui/simple_ui_password.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="user/simple_ui/simple_ui_password.h" />
+		<Unit filename="user/simple_ui/simple_ui_style.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="user/simple_ui/simple_ui_style.h" />
+		<Unit filename="user/simple_ui/simple_ui_tap.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="user/simple_ui/simple_ui_tap.h" />
 		<Unit filename="user/user.h" />
 		<Unit filename="user/user/aaa_want_to_remove_user_buffer.h" />

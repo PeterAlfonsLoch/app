@@ -159,7 +159,7 @@ namespace simple_ui
    void tap::simple_ui_draw_simple(::draw2d::graphics * pgraphics)
    {
 
-      
+
 
       {
 
@@ -193,7 +193,7 @@ namespace simple_ui
 
       {
 
-         
+
 
          pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
@@ -327,7 +327,7 @@ namespace simple_ui
 
       GetClientRect(rectClient);
 
-      
+
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
@@ -416,96 +416,21 @@ namespace simple_ui
    void tap::_000OnDraw(::draw2d::graphics * pgraphics)
    {
 
-      //simple_ui::interaction::_000OnDraw(pgraphics);
-
-      //
-
-      if(!m_bVisible)
-         return;
-
-      _001DrawThis(pgraphics);
-
-      return;
-
-      try
-      {
-
-         _001DrawChildren(pgraphics);
-
-      }
-      catch(...)
-      {
-
-         throw simple_exception(::get_thread_app(),"no more a window");
-
-      }
+      simple_ui::interaction::_000OnDraw(pgraphics);
 
    }
 
    void tap::_001DrawThis(::draw2d::graphics * pgraphics)
    {
 
-      /*point ptOrg =  pgraphics->GetViewportOrg();*/
-
-      try
-      {
-
-         if(!is_custom_draw())
-         {
-
-            set_viewport_org(pgraphics);
-
-         }
-
-         pgraphics->m_dFontFactor = 1.0;
-
-         try
-         {
-
-            pgraphics->SelectClipRgn(NULL);
-
-         }
-         catch(...)
-         {
-
-            throw simple_exception(::get_thread_app(),"no more a window");
-
-         }
-
-         {
-
-            synch_lock sl(m_pmutex);
-
-            _001OnNcDraw(pgraphics);
-
-         }
-
-         _001OnClip(pgraphics);
-
-         _001CallOnDraw(pgraphics);
-
-
-      }
-      catch(...)
-      {
-
-         //         pgraphics->SetViewportOrg(ptOrg);
-
-         throw simple_exception(::get_thread_app(),"no more a window");
-
-      }
-
-      //pgraphics->SetViewportOrg(ptOrg);
+      simple_ui::interaction::_001DrawThis(pgraphics);
 
    }
 
    void tap::_001CallOnDraw(::draw2d::graphics * pgraphics)
    {
 
-      on_viewport_offset(pgraphics);
-
-      synch_lock sl(m_pmutex);
-      _001OnDraw(pgraphics);
+      simple_ui::interaction::_001CallOnDraw(pgraphics);
 
    }
 

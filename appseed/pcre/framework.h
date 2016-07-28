@@ -5,6 +5,7 @@
 
 
 #define index bsd_index
-#include "app/aura/pcre/src/pcre2.h"
+#define PCRE2_CODE_UNIT_WIDTH 8
+#include <pcre2.h>
 #undef index
 #include "pcre.h"
