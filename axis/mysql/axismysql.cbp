@@ -41,7 +41,7 @@
 			</Target>
 		</Build>
 		<Compiler>
-			<Add option="-std=c++0x" />
+			<Add option="-std=c99" />
 			<Add option="-fexceptions" />
 			<Add option="-fnon-call-exceptions" />
 			<Add option="-fno-pie" />
@@ -67,7 +67,7 @@
 			<Add option="-Wl,-z,origin" />
 			<Add option="-ldl" />
 			<Add option="-lpthread" />
-			<Add option="-laxiszlib" />
+			<Add option="-lz" />
 			<Add option="-laxiscrypto" />
 			<Add option="-laxisopenssl" />
 			<Add option="-Wl,-z,defs" />

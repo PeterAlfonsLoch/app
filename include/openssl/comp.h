@@ -1,1 +1,0 @@
-#include "app/axis/crypto/crypto/comp/comp.h"

@@ -73,9 +73,9 @@
 			<Add option="-latomiconv" />
 			<Add option="-laura" />
 			<Add option="-lauracharguess" />
-			<Add option="-laurasqlite" />
-			<Add option="-laxisbzip2" />
-			<Add option="-laxiszlib" />
+			<Add option="-lsqlite3" />
+			<Add option="-lbz2" />
+			<Add option="-lz" />
 			<Add option="-laxis" />
 			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../stage/x86" />

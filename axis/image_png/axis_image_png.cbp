@@ -67,7 +67,7 @@
 			<Add option="-Wl,-R\\$$$ORIGIN" />
 			<Add option="-Wl,-z,origin" />
 			<Add option="-laura" />
-			<Add option="-laxiszlib" />
+			<Add option="-lz" />
 			<Add option="-laxisfreeimage" />
 			<Add option="-lpng" />
 			<Add option="-Wl,-z,defs" />

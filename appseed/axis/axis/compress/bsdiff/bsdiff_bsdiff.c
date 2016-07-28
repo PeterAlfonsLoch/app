@@ -2,7 +2,10 @@
 //#include"libbsdiff.h"
 //#include"axis/bzip2/bzlib.h"
 
-#include "../bzlib_private.h"
+//#include <bzlib_private.h>
+
+#include <bzlib.h>
+
 
 int err(int i,const char* str,...);
 

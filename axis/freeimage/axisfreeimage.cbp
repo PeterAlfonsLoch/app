@@ -85,7 +85,7 @@
 			<Add option="-ldl" />
 			<Add option="-lpthread" />
 			<Add option="-laura" />
-			<Add option="-laxiszlib" />
+			<Add option="-lz" />
 			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../stage/x86" />
 		</Linker>

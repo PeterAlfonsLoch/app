@@ -88,11 +88,10 @@
 			<Add option="-lX11" />
 			<Add option="-laura" />
 			<Add option="-lauracharguess" />
-			<Add option="-laurasqlite" />
+			<Add option="-lsqlite3" />
 			<Add option="-laxisfreeimage" />
 			<Add option="-lfreetype" />
-			<Add option="-laxismysql" />
-			<Add option="-laxisbzip2" />
+			<Add option="-lbz2" />
 			<Add option="-laxis" />
 			<Add option="-lbase" />
 			<Add option="-Wl,-z,defs" />

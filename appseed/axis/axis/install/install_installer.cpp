@@ -1490,11 +1490,11 @@ install_begin:;
             }
             if(bOk)
             {
-               int32_t iResult = 0;
+               int32_t iResult = -1;
                if(iLength != -1)
                {
                   dir::mk(dir::name(inplace));
-                  iResult = bspatch(inplace, (dir3 + file2), strBsPatch);
+//                  iResult = bspatch(inplace, (dir3 + file2), strBsPatch);
                   if(iResult != 0)
                   {
                      //   System.install().trace().rich_trace("");
@@ -1893,7 +1893,7 @@ install_begin:;
    {
 
       ::file::path file = ::file::path(lpcszUrl).name();
-     
+
       if(pszMd5 != NULL)
       {
 

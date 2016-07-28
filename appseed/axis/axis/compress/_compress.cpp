@@ -10,10 +10,13 @@
 #include "zip/zipImpl.h"
 
 
+
 //O volume na unidade C n∆o tem nome.
  //O N£mero de SÇrie do Volume Ç 72AC-5E14
 
  //Pasta de C:\nordroid\app\appseed\axis\axis\compress
+
+
 
 #include "bzip_stream.cpp"
 #include "compress_compress.cpp"
