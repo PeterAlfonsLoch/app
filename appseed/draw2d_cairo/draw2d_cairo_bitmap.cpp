@@ -27,8 +27,11 @@ namespace draw2d_cairo
 
    bool bitmap::CreateBitmap(::draw2d::graphics * pgraphics, int32_t cx, int32_t cy, UINT nPlanes, UINT nBitcount, const void * pdata, int32_t iStrideParam)
    {
-synch_lock ml(&cairo_mutex());
+
+      synch_lock ml(&cairo_mutex());
+
       cy = abs(cy);
+
       cx = abs(cx);
 
       if(nPlanes != 1 || nBitcount != 32)
@@ -49,26 +52,38 @@ synch_lock ml(&cairo_mutex());
 
       m_mem.allocate(iStride * cy);
 
-      if(iStrideParam != iStride)
+      if(pdata == NULL || iStrideParam <= 0)
       {
 
-         int32_t iW = cx * 4;
-
-         for(int32_t i = 0; i < cy; i++)
-         {
-
-            memcpy(&((byte *) m_mem.get_data())[iStride * i], &((byte *) pdata)[iStrideParam * i], iW);
-
-         }
+         memset(m_mem.get_data(), 0, m_mem.get_size());
 
       }
       else
       {
-         memcpy(m_mem.get_data(), pdata, iStride * cy);
+
+         if(iStrideParam != iStride)
+         {
+
+            int32_t iW = cx * 4;
+
+            for(int32_t i = 0; i < cy; i++)
+            {
+
+               memcpy(&m_mem.get_data()[iStride * i], &((byte *) pdata)[iStrideParam * i], iW);
+
+            }
+
+         }
+         else
+         {
+
+            memcpy(m_mem.get_data(), pdata, iStride * cy);
+
+         }
+
       }
 
-
-      m_psurface = cairo_image_surface_create_for_data((unsigned char *) m_mem.get_data(), CAIRO_FORMAT_ARGB32, cx, cy, iStride);
+      m_psurface = cairo_image_surface_create_for_data(m_mem.get_data(), CAIRO_FORMAT_ARGB32, cx, cy, iStride);
 
       if(m_psurface == NULL)
       {
@@ -77,24 +92,30 @@ synch_lock ml(&cairo_mutex());
 
       }
 
-
       m_size.cx = cx;
+
       m_size.cy = cy;
 
       return true;
 
    }
 
+
    bool bitmap::CreateBitmapIndirect(::draw2d::graphics * pgraphics, LPBITMAP lpBitmap)
    {
-      return FALSE;
+
+      return false;
+
    }
 
 
    bool bitmap::CreateDIBSection(::draw2d::graphics * pgraphics, const BITMAPINFO * lpbmi, UINT usage, void ** ppdata, int * pstride, HANDLE hSection, uint32_t offset)
    {
-synch_lock ml(&cairo_mutex());
+
+      synch_lock ml(&cairo_mutex());
+
       int cy = abs(lpbmi->bmiHeader.biHeight);
+
       int cx = abs(lpbmi->bmiHeader.biWidth);
 
       if(lpbmi->bmiHeader.biPlanes != 1 || lpbmi->bmiHeader.biBitCount != 32)
@@ -130,20 +151,22 @@ synch_lock ml(&cairo_mutex());
             for(int32_t i = 0; i < cy; i++)
             {
 
-               memcpy(&((byte *) m_mem.get_data())[iStride * i], &((byte *) *ppdata)[iW * i], iW);
+               memcpy(&m_mem.get_data()[iStride * i], &((byte *) *ppdata)[iW * i], iW);
 
             }
 
          }
          else
          {
+
             memcpy(m_mem.get_data(), *ppdata, iStride * cy);
+
          }
 
       }
 
 
-      m_psurface = cairo_image_surface_create_for_data((unsigned char *) m_mem.get_data(), CAIRO_FORMAT_ARGB32, cx, cy, iStride);
+      m_psurface = cairo_image_surface_create_for_data(m_mem.get_data(), CAIRO_FORMAT_ARGB32, cx, cy, iStride);
 
       if(m_psurface == NULL)
       {
@@ -236,44 +259,23 @@ synch_lock ml(&cairo_mutex());
       //return Attach(::LoadBitmap(NULL, MAKEINTRESOURCE(nIDBitmap)));
       return FALSE;
    }
+
+
    bool bitmap::CreateCompatibleBitmap(::draw2d::graphics * pgraphics, int32_t cx, int32_t cy)
    {
 
-      m_mem.allocate(cx * cy * 4);
-
-      memset(m_mem.get_data(), 0, m_mem.get_size());
-
-      if(!CreateBitmap(pgraphics, cx, cy, 1, 32, (COLORREF *) m_mem.get_data(), cx * sizeof(COLORREF)))
+      if(!CreateBitmap(pgraphics, cx, cy, 1, 32, NULL, cx * sizeof(COLORREF)))
       {
-
-         m_mem.allocate(0);
 
          return false;
 
       }
 
-
       return true;
 
-/*
-      if(m_pdata != NULL)
-      {
-         memory_free(m_pdata);
-         m_pdata = NULL;
-      }
-
-      if(m_pbitmap != NULL)
-      {
-         delete m_pbitmap;
-         m_pbitmap = NULL;
-      }
-
-      m_pbitmap = new ::Gdiplus::Bitmap(nWidth, nHeight, Gdiplus::PixelOffsetModeHighQuality);
-*/
-
-//      return TRUE;
-
    }
+
+
    bool bitmap::CreateDiscardableBitmap(::draw2d::graphics * pgraphics, int32_t nWidth, int32_t nHeight)
    {
 

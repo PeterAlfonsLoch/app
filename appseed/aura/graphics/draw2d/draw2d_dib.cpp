@@ -9,10 +9,11 @@
 #include "nanosvg.h"
 #include "nanosvgrast.h"
 
+/*
 byte byte_clip(double d);
 
 
-byte byte_clip(double d)
+inline byte byte_clip(double d)
 {
    if(d >= 255.0)
       return 255;
@@ -20,6 +21,14 @@ byte byte_clip(double d)
       return 0;
    return (byte) d;
 }
+
+inline byte byte_clip(int i)
+{
+   return MIN(255, MAX(0, i));
+}
+*/
+
+#define byte_clip(i)  ((byte) (((i) < 0) ? 0 : (((i)> 255) ? 255 : i)))
 
 namespace draw2d
 {
@@ -1007,7 +1016,7 @@ namespace draw2d
 
    int64_t dib::scan_area()
    {
-      
+
       return m_iScan * m_size.cy / sizeof(COLORREF);
 
    }
@@ -3293,47 +3302,68 @@ namespace draw2d
 
    }
 
+
    COLORREF dib::GetAverageColor()
    {
+
       map();
-      double dR = 0.0;
-      double dG = 0.0;
-      double dB = 0.0;
-      int32_t iRLine;
-      int32_t iGLine;
-      int32_t iBLine;
-      double dDiv = m_size.cx * m_size.cy;
-      if(dDiv > 0)
+
+      int64_t iRLine;
+
+      int64_t iGLine;
+
+      int64_t iBLine;
+
+      int64_t iDiv = m_size.cx * m_size.cy;
+
+      if(iDiv > 0)
       {
+
+         iRLine = 0;
+
+         iGLine = 0;
+
+         iBLine = 0;
 
          for (int32_t y = 0; y < m_size.cy; y++)
          {
-            iRLine = 0;
-            iGLine = 0;
-            iBLine = 0;
+
             LPBYTE lpb = ((LPBYTE)get_data()) + m_iScan * y;
+
             for (int32_t x = 0; x < m_size.cx; x++)
             {
+
                iRLine += lpb[2];
+
                iGLine += lpb[1];
+
                iBLine += lpb[0];
+
                lpb += 4;
+
             }
-            dR += iRLine / dDiv;
-            dG += iGLine / dDiv;
-            dB += iBLine / dDiv;
+
          }
-         int32_t iR = (int32_t) dR;
-         int32_t iG = (int32_t) dG;
-         int32_t iB = (int32_t) dB;
+
+         int32_t iR = (int32_t) iRLine / iDiv;
+
+         int32_t iG = (int32_t) iGLine / iDiv;
+
+         int32_t iB = (int32_t) iBLine / iDiv;
+
          return RGB(iR, iG, iB);
+
       }
       else
       {
+
          return 0;
+
       }
 
    }
+
+
    COLORREF dib::GetAverageOpaqueColor()
    {
       map();

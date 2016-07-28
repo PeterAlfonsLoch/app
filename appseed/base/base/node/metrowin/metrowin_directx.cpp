@@ -809,25 +809,21 @@ namespace metrowin
 
       sl.unlock();
 
-      //dc->FillSolidRect(100,100,100,100,ARGB(255,128,137,208));
-
-      //::os::simple_ui * psimpleui = System.m_psimpleui;
-
-      //if (psimpleui != NULL && psimpleui->m_bVisible)
-      //{
-      //   System.m_psimpleui->draw(dc);
-      //}
-      //else
-      //{
       if (m_dib.is_null())
       {
+
          m_dib.alloc(m_pauraapp->allocer());
+
       }
+
       m_dib->create(1920, 1080);
+
       m_dib->Fill(0, 0, 0, 0);
+
       System.m_posdata->m_pui->_000OnDraw(m_dib->get_graphics());
-      //}
+
       dc->from(m_dib->get_size(), m_dib->get_graphics(), SRCCOPY);
+
       sl.lock();
 
       dc->detach();

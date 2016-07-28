@@ -155,17 +155,36 @@ void window_xlib::update_window(COLORREF * pOsBitmapData, int cxParam, int cyPar
 
    byte * pdata = (byte *) m_mem.get_data();
 
-   int size = m_iScan * m_size.cy / sizeof(COLORREF);
-   while(size > 0)
+   int size = m_iScan * m_size.cy;
+   byte * pb = pdata + size - 4;
+   int sizeB = (size / 16) * 16;
+   byte * pbB = pdata + (size - sizeB);
+   while(pb >= pbB)
    {
       //if(pdata[3] != 0)
-      {
-         pdata[0] = pdata[0] * pdata[3] / 255;
-         pdata[1] = pdata[1] * pdata[3] / 255;
-         pdata[2] = pdata[2] * pdata[3] / 255;
-      }
-      pdata += 4;
-      size--;
+      pb[0] = (byte) ((pb[0] * pb[3]) >> 8);
+      pb[1] = (byte) ((pb[1] * pb[3]) >> 8);
+      pb[2] = (byte) ((pb[2] * pb[3]) >> 8);
+      pb[4] = (byte) ((pb[4] * pb[7]) >> 8);
+      pb[5] = (byte) ((pb[5] * pb[7]) >> 8);
+      pb[6] = (byte) ((pb[6] * pb[7]) >> 8);
+      pb[8] = (byte) ((pb[8] * pb[11]) >> 8);
+      pb[9] = (byte) ((pb[9] * pb[11]) >> 8);
+      pb[10] = (byte) ((pb[10] * pb[11]) >> 8);
+      pb[12] = (byte) ((pb[12] * pb[15]) >> 8);
+      pb[13] = (byte) ((pb[13] * pb[15]) >> 8);
+      pb[14] = (byte) ((pb[14] * pb[15]) >> 8);
+      pb -= 16;
+
+   }
+   while(pb >= pdata)
+   {
+      //if(pdata[3] != 0)
+      pb[0] = (byte) ((pb[0] * pb[3]) >> 8);
+      pb[1] = (byte) ((pb[1] * pb[3]) >> 8);
+      pb[2] = (byte) ((pb[2] * pb[3]) >> 8);
+      pb -= 4;
+
    }
 
 

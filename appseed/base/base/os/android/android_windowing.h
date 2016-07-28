@@ -79,7 +79,7 @@ struct CLASS_DECL_BASE oswindow_data
    int_map < LONG > *            m_plongmap;
    bool                          m_bDestroying;
    bool                          m_bIconic;
-   bool                          m_bVisible;
+   //bool                          m_bVisibl;
 
 
    static oswindow_dataptra * s_pdataptra;

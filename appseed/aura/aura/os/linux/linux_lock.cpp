@@ -93,7 +93,7 @@ string _ca_get_file_name(const char * pszName, bool bCreate, int32_t * pfd)
 
    if(bCreate)
    {
-      int32_t fd = open(str, O_CREAT | O_RDWR);
+      int32_t fd = open(str, O_CREAT | O_RDWR, 0777);
       if(fd == -1)
          return "";
       if(pfd != NULL)

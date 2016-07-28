@@ -24,6 +24,25 @@
 					<Add directory="../../../stage/x86" />
 				</Linker>
 			</Target>
+			<Target title="Release">
+				<Option output="../../../stage/x86/libaura.so" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="../../../stage/x86/" />
+				<Option object_output="../../../time/intermediate/app/aura" />
+				<Option type="3" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="-O" />
+					<Add option="-pg" />
+					<Add option="-g" />
+					<Add option="-D_DEBUG" />
+				</Compiler>
+				<Linker>
+					<Add option="-pg" />
+					<Add directory="../../../stage/x86" />
+				</Linker>
+			</Target>
 			<Target title="memdleak">
 				<Option output="../../../stage/x86/libaura.so" prefix_auto="0" extension_auto="0" />
 				<Option working_dir="../../../stage/x86/" />
@@ -48,6 +67,7 @@
 			<Add option="-fnon-call-exceptions" />
 			<Add option="-fno-pie" />
 			<Add option="-fno-stack-protector" />
+			<Add option="-fno-omit-frame-pointer" />
 			<Add option="-Wno-pointer-arith" />
 			<Add option="-Wno-attributes" />
 			<Add option="-Winvalid-pch" />
@@ -398,6 +418,10 @@
 		<Unit filename="aura/os/linux/linux_graphics.h" />
 		<Unit filename="aura/os/linux/linux_internal.h" />
 		<Unit filename="aura/os/linux/linux_linux.h" />
+		<Unit filename="aura/os/linux/linux_lock.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="aura/os/linux/linux_multithreading.cpp">
 			<Option compile="0" />
 			<Option link="0" />

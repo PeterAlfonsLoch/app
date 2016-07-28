@@ -500,26 +500,7 @@ namespace fontopus
    void simple_ui::_000OnDraw(::draw2d::graphics * pgraphics)
    {
 
-      //simple_ui::interaction::_000OnDraw(pgraphics);
-
-
-      if(!m_bVisible)
-         return;
-
-      _001DrawThis(pgraphics);
-
-      try
-      {
-
-         _001DrawChildren(pgraphics);
-
-      }
-      catch(...)
-      {
-
-         throw simple_exception(::get_thread_app(),"no more a window");
-
-      }
+      ::simple_ui::interaction::_000OnDraw(pgraphics);
 
    }
 
@@ -527,35 +508,7 @@ namespace fontopus
    void simple_ui::_001DrawChildren(::draw2d::graphics * pgraphics)
    {
 
-      //single_lock sl(m_pmutex, true);
-
-      //int i = 1;
-
-      sp(interaction) pui;
-
-      //while((pui = get_child(pui)).is_set() && i > 0)
-      while((pui = get_child(pui)).is_set())
-      {
-
-         //i--;
-
-         try
-         {
-
-            if(pui->m_bVisible && !pui->is_custom_draw())
-            {
-
-               pui->_000OnDraw(pgraphics);
-
-            }
-
-         }
-         catch(...)
-         {
-
-         }
-
-      }
+      ::simple_ui::interaction::_001DrawChildren(pgraphics);
 
    }
 

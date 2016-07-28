@@ -180,6 +180,10 @@
 		<Unit filename="base/node/linux/linux_internal.h" />
 		<Unit filename="base/node/linux/linux_message_queue.h" />
 		<Unit filename="base/node/linux/linux_root_tools.h" />
+		<Unit filename="base/node/linux/linux_window_draw.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="base/node/linux/linux_window_draw.h" />
 		<Unit filename="base/node/macos/RoundWindow.h" />
 		<Unit filename="base/node/macos/RoundWindowApp.h" />
@@ -443,9 +447,21 @@
 		<Unit filename="user/user/user_impact_system.h" />
 		<Unit filename="user/user/user_impact_update_hint.h" />
 		<Unit filename="user/user/user_inline.h" />
+		<Unit filename="user/user/user_interaction.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="user/user/user_interaction.h" />
 		<Unit filename="user/user/user_interaction_base.h" />
+		<Unit filename="user/user/user_interaction_child.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="user/user/user_interaction_child.h" />
+		<Unit filename="user/user/user_interaction_impl.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="user/user/user_interaction_impl.h" />
 		<Unit filename="user/user/user_interaction_impl_base.h" />
 		<Unit filename="user/user/user_menu_base.h" />
@@ -469,6 +485,10 @@
 		<Unit filename="user/user/user_view_creator.h" />
 		<Unit filename="user/user/user_view_creator_data.h" />
 		<Unit filename="user/user/user_wait_cursor.h" />
+		<Unit filename="user/user/user_window_draw.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="user/user/user_window_draw.h" />
 		<Unit filename="user/user/user_window_map.h" />
 		<Unit filename="user/user/user_window_util.h" />

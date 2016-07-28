@@ -318,10 +318,10 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 
 			png_set_read_fn(png_ptr, &fio, _ReadProc);
 
-            if (setjmp(png_jmpbuf(png_ptr))) {
-				png_destroy_read_struct(&png_ptr, &info_ptr, NULL);
-				return NULL;
-			}
+//            if (setjmp(png_jmpbuf(png_ptr))) {
+	//			png_destroy_read_struct(&png_ptr, &info_ptr, NULL);
+		//		return NULL;
+			//}
 
 			// because we have already read the signature...
 
@@ -563,7 +563,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 				png_uint_32 profile_length = 0;
 				int  compression_type;
 
-				png_get_iCCP(png_ptr, info_ptr, &profile_name, &compression_type, &profile_data, &profile_length);
+				png_get_iCCP(png_ptr, info_ptr, &profile_name, &compression_type, (png_charpp)&profile_data, &profile_length);
 
 				// copy ICC profile data (must be done after FreeImage_AllocateHeader)
 
@@ -599,7 +599,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 				row_pointers[height - 1 - k] = FreeImage_GetScanLine(dib, k);
 			}
 
-			png_set_benign_errors(png_ptr, 1);
+//			png_set_benign_errors(png_ptr, 1);
 			png_read_image(png_ptr, row_pointers);
 
 			// check if the bitmap contains transparency, if so enable it in the header
@@ -692,13 +692,13 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 			// Set error handling.  REQUIRED if you aren't supplying your own
 			// error handling functions in the png_create_write_struct() call.
 
-			if (setjmp(png_jmpbuf(png_ptr)))  {
-				// if we get here, we had a problem reading the file
-
-				png_destroy_write_struct(&png_ptr, &info_ptr);
-
-				return FALSE;
-			}
+//			if (setjmp(png_jmpbuf(png_ptr)))  {
+//				// if we get here, we had a problem reading the file
+//
+//				png_destroy_write_struct(&png_ptr, &info_ptr);
+//
+//				return FALSE;
+//			}
 
 			// init the IO
 
@@ -843,7 +843,7 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 
 			FIICCPROFILE *iccProfile = FreeImage_GetICCProfile(dib);
 			if (iccProfile->size && iccProfile->data) {
-				png_set_iCCP(png_ptr, info_ptr, "Embedded Profile", 0, (png_const_bytep)iccProfile->data, iccProfile->size);
+				png_set_iCCP(png_ptr, info_ptr, "Embedded Profile", 0, (png_charp)iccProfile->data, iccProfile->size);
 			}
 
 			// write metadata

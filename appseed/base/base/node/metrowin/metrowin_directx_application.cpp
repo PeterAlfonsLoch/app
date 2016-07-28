@@ -494,7 +494,7 @@ namespace metrowin
 
       if (!m_psystem->begin_synch())
       {
-         
+
          throw 0;
 
       }
@@ -550,7 +550,7 @@ namespace metrowin
 
    void directx_application::Initialize(CoreApplicationView ^ applicationView)
    {
-      
+
       applicationView->Activated += ref new TypedEventHandler<CoreApplicationView^, IActivatedEventArgs^>(this, &directx_application::OnActivated);
 
       CoreApplication::Suspending += ref new EventHandler<SuspendingEventArgs^>(this, &directx_application::OnSuspending);
@@ -564,7 +564,7 @@ namespace metrowin
    {
 
       CoreWindow ^ window = m_window.Get();
-      
+
       window->PointerCursor = ref new CoreCursor(CoreCursorType::Arrow, 0);
 
       window->SizeChanged += ref new TypedEventHandler<CoreWindow^, WindowSizeChangedEventArgs^>(this, &directx_application::OnWindowSizeChanged);
@@ -654,15 +654,15 @@ namespace metrowin
       m_rectLastWindowRect = m_window->Bounds;
 
       m_directx->SetDpi(sender->LogicalDpi);
-   
+
       /*
-      
+
       SetDpi(DisplayProperties::LogicalDpi);
 
       Render();
 
       Present();
-      
+
       */
 
    }
@@ -674,15 +674,15 @@ namespace metrowin
       // Ensure the D3D Device is available for rendering.
 
       m_directx->ValidateDevice();
-      
+
       /*
-      
+
       ValidateDevice();
 
       Render();
-      
+
       Present();
-      
+
       */
 
    }
@@ -709,8 +709,8 @@ namespace metrowin
 
 
    void directx_application::OnCharacterReceived(Windows::UI::Core::CoreWindow ^ , Windows::UI::Core::CharacterReceivedEventArgs ^ args)
-   { 
-      
+   {
+
       if(m_psystem == NULL)
          return;
 
@@ -738,7 +738,7 @@ namespace metrowin
 
 
    void directx_application::OnKeyDown(Windows::UI::Core::CoreWindow ^ , Windows::UI::Core::KeyEventArgs ^ args)
-   { 
+   {
       if (args->VirtualKey == ::Windows::System::VirtualKey::Shift)
       {
          m_bFontopusShift = true;
@@ -774,8 +774,8 @@ namespace metrowin
    }
 
    void directx_application::OnKeyUp(Windows::UI::Core::CoreWindow ^ , Windows::UI::Core::KeyEventArgs ^ args)
-   { 
-      
+   {
+
       if(m_psystem == NULL)
          return;
 
@@ -837,13 +837,13 @@ namespace metrowin
          m_psystem->m_posdata->m_pui->m_pimpl->message_handler(spbase);
       //}
 
-      
+
 
    }
 
 
    void directx_application::OnPointerMoved(Windows::UI::Core::CoreWindow ^ , Windows::UI::Core::PointerEventArgs ^ args)
-   { 
+   {
 
       if(m_psystem == NULL)
          return;
@@ -869,23 +869,16 @@ namespace metrowin
       pmouse->m_uiMessage  = WM_MOUSEMOVE;
       pmouse->m_pwnd       = m_psystem->m_posdata->m_pui;
 
-//      if (m_psystem->m_psimpleui != NULL && m_psystem->m_psimpleui->m_bVisible)
-//      {
-////         m_psystem->m_psimpleui->m_ptCursor = pmouse->m_pt;
-//  //       m_psystem->m_psimpleui->on_mouse_move(pmouse->m_pt.x - m_psystem->m_psimpleui->m_pt.x, pmouse->m_pt.y - m_psystem->m_psimpleui->m_pt.y);
-//
-//      }
-
-
       m_ptLastCursor = pointerPoint->RawPosition;
 
       m_psystem->m_posdata->m_pui->m_pimpl->message_handler(spbase);
 
    }
 
+
    void directx_application::OnPointerPressed(Windows::UI::Core::CoreWindow ^ , Windows::UI::Core::PointerEventArgs ^ args)
-   { 
-      
+   {
+
       if(m_psystem == NULL)
          return;
 
@@ -906,29 +899,24 @@ namespace metrowin
       spbase = pmouse;
 
       pmouse->m_pt.x = (LONG) pointerPoint->RawPosition.X;
-      
+
       pmouse->m_pt.y = (LONG) pointerPoint->RawPosition.Y;
 
       if(args->CurrentPoint->Properties->IsLeftButtonPressed && !m_bLeftButton)
       {
-         
+
          pmouse->m_uiMessage     = WM_LBUTTONDOWN;
-         
+
          m_bLeftButton           = true;
          m_bMiddleButton         = false;
          m_bRightButton          = false;
-         //if (m_psystem->m_psimpleui != NULL && m_psystem->m_psimpleui->m_bVisible)
-         //{
-         //   m_psystem->m_psimpleui->m_ptCursor = pmouse->m_pt;
-         //   m_psystem->m_psimpleui->on_lbutton_down(pmouse->m_pt.x - m_psystem->m_psimpleui->m_pt.x, pmouse->m_pt.y - m_psystem->m_psimpleui->m_pt.y);
-         //}
 
       }
       else if(args->CurrentPoint->Properties->IsRightButtonPressed && !m_bRightButton)
       {
-         
+
          pmouse->m_uiMessage     = WM_RBUTTONDOWN;
-         
+
          m_bLeftButton           = false;
          m_bMiddleButton         = false;
          m_bRightButton          = true;
@@ -936,9 +924,9 @@ namespace metrowin
       }
       else if(args->CurrentPoint->Properties->IsMiddleButtonPressed && !m_bMiddleButton)
       {
-         
+
          pmouse->m_uiMessage     = WM_MBUTTONDOWN;
-         
+
          m_bLeftButton           = false;
          m_bMiddleButton         = true;
          m_bRightButton          = false;
@@ -954,8 +942,8 @@ namespace metrowin
    }
 
    void directx_application::OnPointerReleased(Windows::UI::Core::CoreWindow ^ , Windows::UI::Core::PointerEventArgs ^ args)
-   { 
-      
+   {
+
       if(m_psystem == NULL)
          return;
 
@@ -980,31 +968,24 @@ namespace metrowin
          pmouse->m_uiMessage     = WM_LBUTTONUP;
          m_bLeftButton           = false;
 
-         //if (m_psystem->m_psimpleui != NULL && m_psystem->m_psimpleui->m_bVisible)
-         //{
-         //   m_psystem->m_psimpleui->m_ptCursor = pmouse->m_pt;
-         //   m_psystem->m_psimpleui->on_lbutton_up(pmouse->m_pt.x - m_psystem->m_psimpleui->m_pt.x, pmouse->m_pt.y - m_psystem->m_psimpleui->m_pt.y);
-         //}
-         
-
       }
       else if(m_bRightButton && !args->CurrentPoint->Properties->IsRightButtonPressed)
       {
-         
+
          pmouse->m_uiMessage     = WM_RBUTTONUP;
          m_bRightButton          = false;
 
       }
       else if(m_bMiddleButton && !args->CurrentPoint->Properties->IsMiddleButtonPressed)
       {
-         
+
          pmouse->m_uiMessage     = WM_MBUTTONUP;
          m_bMiddleButton         = false;
 
       }
 
 
-      
+
 
 
       if (m_psystem->m_posdata->m_pui == NULL)
@@ -1031,7 +1012,7 @@ namespace metrowin
 
    }
 
-   
+
    Windows::ApplicationModel::Core::IFrameworkView^ directx_application_source::CreateView()
    {
 

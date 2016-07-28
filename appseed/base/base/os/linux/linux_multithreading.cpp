@@ -81,52 +81,153 @@ UINT __axis_x11_thread(void * p)
 void process_message(Display * display)
 {
 
-   xdisplay d(display);
-   //if(!XPending(display))
-   //return false;
-
-
    XEvent e;
 
    MESSAGE msg;
 
    ZERO(msg);
 
-   XNextEvent(display, &e);
-         //xdisplay d(display);
+   {
+
+      xdisplay d(display);
+
+      XNextEvent(display, &e);
+
+   }
 
    bool bRet = false;
 
    if(e.type == Expose)
    {
 
-      msg.message       = WM_PAINT;
-      msg.hwnd          = oswindow_get(display, e.xbutton.window);
+      if(e.xexpose.count == 0)
+      {
+
+         msg.message       = WM_PAINT;
+         msg.hwnd          = oswindow_get(display, e.xexpose.window);
+         msg.lParam        = 0;
+         msg.wParam        = 0;
+
+         send_message(msg);
+
+      }
+
+   }
+   else if(e.type == MapNotify || e.type == UnmapNotify)
+   {
+
+      msg.message       = WM_SHOWWINDOW;
+      msg.hwnd          = oswindow_get(display, e.xmap.window);
+      msg.wParam        = e.type == MapNotify;
       msg.lParam        = 0;
-      msg.wParam        = 0;
 
       send_message(msg);
 
    }
-   else if(e.type == MapNotify)
-   {
-//      xdisplay d(display());
-
-  // if(d.m_pdata->m_pdisplay == NULL)
-    //return false;
-//      oswindow window = oswindow_get(display, e.xbutton.window);
-//
-//   XWindowAttributes attr;
-//   if(XGetWindowAttributes(display, e.xbutton.window, &attr))
-//   {
-//   window->get_user_interaction()->m_bVisible = attr.map_state == IsViewable;
-//
-//   }
-//   window->get_user_interaction()->m_pimpl->m_bVisible = attr.map_state == IsViewable;
-
-   }
    else if(e.type == ConfigureNotify)
    {
+
+      msg.hwnd = oswindow_get(display, e.xconfigure.window);
+
+      if(msg.hwnd != NULL)
+      {
+
+         ::user::interaction * pui = msg.hwnd->m_pui;
+
+         if(pui != NULL)
+         {
+
+            ::user::interaction_impl * pimpl = dynamic_cast < ::user::interaction_impl * > (pui->m_pimpl.m_p);
+
+            if(pimpl != NULL)
+            {
+
+               bool bMove;
+
+               bool bSize;
+
+               rect64 rectWindow;
+
+               rectWindow.left = e.xconfigure.x;
+
+               rectWindow.top = e.xconfigure.y;
+
+               rectWindow.right = rectWindow.left + e.xconfigure.width;
+
+               rectWindow.bottom = rectWindow.top + e.xconfigure.height;
+
+               if(rectWindow.top_left() == pimpl->m_rectParentClient.top_left())
+               {
+
+                  bMove = false;
+
+                  if(rectWindow.size() == pimpl->m_rectParentClient.size())
+                  {
+
+                     bSize = false;
+
+                  }
+                  else
+                  {
+
+                     pimpl->m_rectParentClient.right  = rectWindow.right;
+
+                     pimpl->m_rectParentClient.bottom  = rectWindow.bottom;
+
+                     bSize = true;
+
+                  }
+
+               }
+               else
+               {
+
+                  bMove = true;
+
+                  if(rectWindow.size() == pimpl->m_rectParentClient.size())
+                  {
+
+                     pimpl->m_rectParentClient = rectWindow;;
+
+                     bSize = false;
+
+                  }
+                  else
+                  {
+
+                     pimpl->m_rectParentClient = rectWindow;;
+
+                     bSize = true;
+                  }
+
+               }
+
+               if(bSize || bMove)
+               {
+
+                  if(bSize)
+                  {
+
+                     //pimpl->m_bUpdateGraphics = true;
+
+                     pui->send_message(WM_SIZE, 0, rectWindow.size().lparam());
+
+                  }
+
+                  if(bMove)
+                  {
+
+                     pui->send_message(WM_MOVE, 0, rectWindow.top_left().lparam());
+
+                  }
+
+               }
+
+            }
+
+         }
+
+      }
 
       if(e.xconfigure.window == g_oswindowDesktop->window())
       {
@@ -138,35 +239,7 @@ void process_message(Display * display)
 
          }
 
-
       }
-
-//      oswindow window = oswindow_get(display, e.xbutton.window);
-//
-//      XWindowAttributes attrs;
-
-      /* Fill attribute structure with information about root window */
-
-//      if(XGetWindowAttributes(window->display(), window->window(), &attrs))
-//      {
-//
-//      int x;
-//      int y;
-//      Window child;
-//
-//      if(XTranslateCoordinates(window->display(), window->window(), DefaultRootWindow(window->display()), 0, 0, &x, &y, &child))
-//      {
-//
-//
-//      window->m_rect.left      = x;
-//      window->m_rect.top       = y;
-//      window->m_rect.right     = x    + attrs.width;
-//      window->m_rect.bottom    = y    + attrs.height;
-//
-//
-//      }
-//
-//      }
 
    }
    else if(e.type == ButtonPress || e.type == ButtonRelease)

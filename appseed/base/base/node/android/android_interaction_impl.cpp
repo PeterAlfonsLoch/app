@@ -37,8 +37,8 @@ namespace android
       ZERO(m_size);
       ZERO(m_pt);
 
-      
-      
+
+
    }
 
 
@@ -545,19 +545,30 @@ namespace android
       IGUI_WIN_MSG_LINK(WM_CREATE,pinterface,this,&interaction_impl::_001OnCreate);
       if(!m_pui->m_bMessageWindow)
       {
+
          IGUI_WIN_MSG_LINK(WM_CAPTURECHANGED,pinterface,this,&interaction_impl::_001OnCaptureChanged);
          IGUI_WIN_MSG_LINK(WM_SETCURSOR,pinterface,this,&interaction_impl::_001OnSetCursor);
+
          //IGUI_WIN_MSG_LINK(WM_ERASEBKGND,pinterface,this,&interaction_impl::_001OnEraseBkgnd);
+
          IGUI_WIN_MSG_LINK(WM_SIZE,pinterface,this,&interaction_impl::_001OnSize);
+
          //IGUI_WIN_MSG_LINK(WM_WINDOWPOSCHANGING,pinterface,this,&interaction_impl::_001OnWindowPosChanging);
          //IGUI_WIN_MSG_LINK(WM_WINDOWPOSCHANGED,pinterface,this,&interaction_impl::_001OnWindowPosChanged);
          //IGUI_WIN_MSG_LINK(WM_GETMINMAXINFO,pinterface,this,&interaction_impl::_001OnGetMinMaxInfo);
+
          IGUI_WIN_MSG_LINK(WM_SHOWWINDOW,pinterface,this,&interaction_impl::_001OnShowWindow);
+
          IGUI_WIN_MSG_LINK(ca2m_PRODEVIAN_SYNCH,pinterface,this,&interaction_impl::_001OnProdevianSynch);
+
          prio_install_message_handling(pinterface);
+
       }
+
       IGUI_WIN_MSG_LINK(WM_DESTROY,pinterface,this,&interaction_impl::_001OnDestroy);
+
       IGUI_WIN_MSG_LINK(WM_NCCALCSIZE,pinterface,this,&interaction_impl::_001OnNcCalcSize);
+
    }
 
    void interaction_impl::win_update_graphics()
@@ -636,27 +647,6 @@ namespace android
 
    }
 
-
-   void interaction_impl::_001OnShowWindow(signal_details * pobj)
-   {
-
-      SCAST_PTR(::message::show_window,pshowwindow,pobj);
-
-      if(pshowwindow->m_bShow != FALSE)
-      {
-
-         m_pui->m_bVisible = true;
-
-      }
-      else
-      {
-
-         m_pui->m_bVisible = false;
-
-      }
-
-
-   }
 
    void interaction_impl::_001OnDestroy(signal_details * pobj)
    {
@@ -743,7 +733,7 @@ namespace android
       // call special post-cleanup routine
       PostNcDestroy();
       m_pui->PostNcDestroy();
-      
+
    }
 
    void interaction_impl::PostNcDestroy()
@@ -1235,7 +1225,7 @@ namespace android
 
       //if(pbase->m_uiMessage == WM_MOUSEMOVE)
       //{
-      //   
+      //
       //   pbase->m_bRet = true;
       //   //pbase->set_lresult(1);
       //   // addictive human (camilo, you are classifying yourself human, you're kind respecting yourself, its a good sign...) profiling with PROFILE_MOVE_MANAGER at app_core_miau.vcxproj...
@@ -1377,7 +1367,7 @@ namespace android
          //{
 
          //   pmouse->m_ptDesired = pmouse->m_pt;
-         //   
+         //
          //   pmouse->m_pt = Session.m_ptCursor;
 
          //   SetCursorPos(Session.m_ptCursor.x,Session.m_ptCursor.y);
@@ -1484,7 +1474,7 @@ namespace android
 
          for(int32_t i = m_pui->m_uiptraChild.get_upper_bound(); i >= 0; i--)
          {
-            
+
             sp(::user::interaction) pui = m_pui->m_uiptraChild[i];
 
             if(pui != NULL)
@@ -3166,7 +3156,7 @@ bool interaction_impl::IsWindow() const
 
 oswindow interaction_impl::get_handle() const
 {
-   
+
    return m_oswindow;
 
 }
@@ -3362,7 +3352,7 @@ bool interaction_impl::ClientToScreen(LPRECT lprect)
 {
 
    class rect64 rectWindow;
-   
+
    if(!GetWindowRect(rectWindow))
    {
 
@@ -3384,7 +3374,7 @@ bool interaction_impl::ClientToScreen(LPPOINT lppoint)
 {
 
    class rect64 rectWindow;
-   
+
    if(!GetWindowRect(rectWindow))
    {
 
@@ -3402,9 +3392,9 @@ bool interaction_impl::ClientToScreen(LPPOINT lppoint)
 
 bool interaction_impl::ClientToScreen(RECT64 * lprect)
 {
-   
+
    class rect rectWindow;
-   
+
    if(!GetWindowRect(rectWindow))
    {
 
@@ -3444,9 +3434,9 @@ bool interaction_impl::ClientToScreen(POINT64 * lppoint)
 
 bool interaction_impl::ScreenToClient(LPRECT lprect)
 {
-   
+
    class rect64 rectWindow;
-   
+
    if(!GetWindowRect(rectWindow))
    {
 
@@ -3466,9 +3456,9 @@ bool interaction_impl::ScreenToClient(LPRECT lprect)
 
 bool interaction_impl::ScreenToClient(LPPOINT lppoint)
 {
-   
+
    class rect64 rectWindow;
-   
+
    if(!GetWindowRect(rectWindow))
    {
 
@@ -3486,9 +3476,9 @@ bool interaction_impl::ScreenToClient(LPPOINT lppoint)
 
 bool interaction_impl::ScreenToClient(RECT64 * lprect)
 {
-   
+
    class rect64 rectWindow;
-   
+
    if(!GetWindowRect(rectWindow))
    {
 
@@ -3508,9 +3498,9 @@ bool interaction_impl::ScreenToClient(RECT64 * lprect)
 
 bool interaction_impl::ScreenToClient(POINT64 * lppoint)
 {
-   
+
    class rect64 rectWindow;
-   
+
    if(!GetWindowRect(rectWindow))
    {
 
@@ -3540,7 +3530,7 @@ bool interaction_impl::GetWindowRect(RECT64 * lprect)
    //if(m_pui == NULL || m_pui == this)
    {
       rect rect32;
-      
+
       if(!::GetWindowRect((oswindow)get_handle(),rect32))
       {
 
@@ -3554,7 +3544,7 @@ bool interaction_impl::GetWindowRect(RECT64 * lprect)
    {
       //  interaction::GetWindowRect(lprect);
    }
-   
+
    return true;
 
 }
@@ -3634,66 +3624,33 @@ void interaction_impl::_001WindowRestore()
 
 bool interaction_impl::ShowWindow(int32_t nCmdShow)
 {
+
    if (!::IsWindow((oswindow)get_handle()))
       return false;
 
-   /*
-   if(GetExStyle() & WS_EX_LAYERED)
-   {
-   if(nCmdShow == SW_HIDE)
-   {
-   ModifyStyle(get_handle(), WS_VISIBLE, 0, 0);
-   }
-   else
-   {
-   ModifyStyle(get_handle(), 0, WS_VISIBLE, 0);
-   }
-   if(nCmdShow == SW_MAXIMIZE)
-   {
-   _001WindowMaximize();
-   }
-   else if(nCmdShow == SW_RESTORE)
-   {
-   _001WindowRestore();
-   }
-   else
-   {
-   if(nCmdShow == SW_MINIMIZE)
-   {
-   m_pui->m_eappearance = appearance_iconic;
-   m_eappearance = appearance_iconic;
-   }
-   ::ShowWindow(get_handle(), nCmdShow);
-   }
-   //         m_bVisible = ::IsWindowVisible(get_handle()) != FALSE;
-   if(m_pui!= NULL && m_pui != this)
-   //            m_pui->m_bVisible = m_bVisible;
-   if(!m_bVisible || IsIconic())
-   {
-   ::UpdateLayeredWindow(get_handle(), NULL, NULL, NULL, NULL, NULL, 0, NULL, 0);
-   }
-   return m_bVisible;
-   }
-   else*/
-   {
-      ::ShowWindow((oswindow)get_handle(), nCmdShow);
-      m_pui->m_bVisible = ::IsWindowVisible((oswindow)get_handle()) != FALSE;
-      return m_pui->m_bVisible;
-   }
+   ::ShowWindow((oswindow)get_handle(), nCmdShow);
+
+   return m_pui->IsWindowVisible();
+
 }
 
 
 bool interaction_impl::WfiIsIconic()
 {
-   ASSERT(::IsWindow((oswindow)get_handle()));
+
    if (GetExStyle() & WS_EX_LAYERED)
    {
+
       return m_pui->m_eappearance == ::user::AppearanceIconic;
+
    }
    else
    {
+
       return ::IsIconic((oswindow)get_handle()) != FALSE;
+
    }
+
 }
 
 bool interaction_impl::WfiIsZoomed()
@@ -4205,16 +4162,22 @@ void interaction_impl::ValidateRgn(::draw2d::region* pRgn)
 bool interaction_impl::IsWindowVisible()
 {
 
-   //      single_lock sl(&user_mutex(), true);
-
    if (!::IsWindow((oswindow)get_handle()))
+   {
+
       return false;
+
+   }
 
    if (m_pui != NULL)
    {
 
       if (!m_pui->m_bVisible)
+      {
+
          return false;
+
+      }
 
       if (m_pui->GetParent() != NULL && !m_pui->GetParent()->IsWindowVisible())
          return false;

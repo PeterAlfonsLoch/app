@@ -236,7 +236,7 @@ namespace os
 
       ml.unlock();
 
-      m_bVisible = true;
+      //m_bVisible = true;
 
       return true;
 

@@ -107,7 +107,7 @@ namespace user
       m_iModal                   = 0;
       m_iModalCount              = 0;
       m_bRectOk                  = false;
-      m_bVisible                 = true;
+      m_bVisible                 = false;
       m_bLayoutEnable            = true;
       //m_psession                 = NULL;
       m_bMessageWindow           = false;
@@ -249,17 +249,26 @@ namespace user
             pimplNew->m_pui = this;
 
             m_pimpl = pimplNew;
+
             string strName;
+
             GetWindowText(strName);
+
             int32_t iStyle = get_window_long(GWL_STYLE);
+
             iStyle &= ~WS_CHILD;
+
             if(m_bVisible)
             {
+
                iStyle |= WS_VISIBLE;
+
             }
             else
             {
+
                iStyle &= ~WS_VISIBLE;
+
             }
 
             rect rectWindow;
@@ -268,59 +277,94 @@ namespace user
 
             if(!pimplNew->create_window_ex(0,NULL,strName,iStyle,rectWindow,NULL,GetDlgCtrlId()))
             {
+
                pimplNew.release();
+
                pimplNew = NULL;
+
                m_pimpl = pimplOld;
+
             }
             else
             {
+
                if(pimplOld != NULL)
                {
+
                   try
                   {
+
                      pimplOld->filter_target(pimplOld);
+
                      pimplOld->m_pui = NULL;
+
                      pimplOld->DestroyWindow();
+
                      pimplOld.release();
+
                   }
                   catch(...)
                   {
+
                   }
+
                }
+
                on_set_parent(puiParent);
+
             }
+
          }
          else
          {
+
             on_set_parent(puiParent);
+
          }
+
       }
       else
       {
+
          if(puiParent != NULL)
          {
 
             sp(::user::interaction_child) pimplNew = canew(::user::interaction_child(get_app()));
 
             pimplNew->m_pui = this;
+
             System.remove_frame(this); // no more a top level frame if it were one
+
             m_pimpl = pimplNew;
+
             string strName;
+
             int32_t iStyle = get_window_long(GWL_STYLE);
+
             iStyle |= WS_CHILD;
+
             if(m_bVisible)
             {
+
                iStyle |= WS_VISIBLE;
+
             }
             else
             {
+
                iStyle &= ~WS_VISIBLE;
+
             }
+
             rect rectWindow;
+
             GetWindowRect(rectWindow);
+
             puiParent->ScreenToClient(rectWindow);
+
             if(!pimplNew->create_window(this, NULL,strName,iStyle,rectWindow,puiParent,GetDlgCtrlId()))
             {
+
                m_pimpl = pimplOld;
 
                System.add_frame(this);
@@ -330,30 +374,45 @@ namespace user
             }
             else
             {
+
                if(pimplOld != NULL)
                {
+
                   try
                   {
+
                      pimplOld->filter_target(pimplOld);
+
                      pimplOld->filter_target(this);
+
                      pimplOld->m_pui = NULL;
+
                      pimplOld->DestroyWindow();
+
                      pimplOld.release();
+
                   }
                   catch(...)
                   {
+
                   }
+
                }
-               //if(m_pimpl == NULL || m_pimpl->set_parent(puiParent) == NULL)
-               // return NULL;
+
                on_set_parent(puiParent);
+
             }
+
          }
          else
          {
+
          }
+
       }
+
       return pparentOld;
+
    }
 
 
@@ -568,6 +627,7 @@ namespace user
       }
       else
       {
+
          IGUI_WIN_MSG_LINK(WM_CLOSE,pinterface,this,&interaction::_001OnClose);
          IGUI_WIN_MSG_LINK(WM_DESTROY,pinterface,this,&interaction::_001OnDestroy);
          IGUI_WIN_MSG_LINK(WM_SIZE,pinterface,this,&interaction::_001OnSize);
@@ -576,7 +636,9 @@ namespace user
          IGUI_WIN_MSG_LINK(WM_NCCALCSIZE,pinterface,this,&interaction::_001OnNcCalcSize);
          IGUI_WIN_MSG_LINK(WM_SHOWWINDOW,pinterface,this,&interaction::_001OnShowWindow);
          IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN,pinterface,this,&interaction::_001OnLButtonDown);
+
       }
+
       IGUI_WIN_MSG_LINK(WM_COMMAND,pinterface,this,&interaction::_001OnCommand);
       IGUI_WIN_MSG_LINK(message_simple_command,pinterface,this,&interaction::_001OnSimpleCommand);
       //      IGUI_WIN_MSG_LINK(message_set_schema,pinterface,this,&interaction::_001OnSetSchema);
@@ -1049,7 +1111,7 @@ namespace user
 
       //return;
 
-      
+
 
       try
       {
@@ -1134,7 +1196,7 @@ namespace user
    void interaction::_001DrawThis(::draw2d::graphics * pgraphics)
    {
 
-      
+
 
       point ptOrg = pgraphics->GetViewportOrg();
 
@@ -1218,7 +1280,7 @@ namespace user
    void interaction::on_viewport_offset(::draw2d::graphics * pgraphics)
    {
 
-      
+
 
       point ptViewportOffset = get_viewport_offset();
 
@@ -1226,10 +1288,9 @@ namespace user
 
    }
 
+
    void interaction::_001DrawChildren(::draw2d::graphics * pgraphics)
    {
-
-      //single_lock sl(m_pmutex, true);
 
       interaction * pui = NULL;
 
@@ -1256,10 +1317,11 @@ namespace user
 
    }
 
+
    void interaction::_001Print(::draw2d::graphics * pgraphics)
    {
 
-      
+
 
       point ptViewport(0,0);
 
@@ -1379,7 +1441,7 @@ namespace user
    void interaction::draw_control_background(::draw2d::graphics * pgraphics)
    {
 
-      
+
 
       ::aura::draw_context * pdrawcontext = pgraphics->::core::simple_chain < ::aura::draw_context >::get_last();
 
@@ -1644,20 +1706,32 @@ namespace user
 
    void interaction::_000OnMouse(::message::mouse * pmouse)
    {
+
       try
       {
-         //if(!IsWindowVisible())
-         //   return;
+
          if(!m_bVisible) // assume parent visibility already checked
+         {
+
             return;
+
+         }
+
          if(!_001IsPointInside(pmouse->m_pt)
                && !(System.get_capture_uie() == this ||
                     is_descendant(System.get_capture_uie())))
+         {
+
             return;
+
+         }
+
       }
       catch(...)
       {
+
          return;
+
       }
       // these try catchs are needed for multi threading : multi threaded windows: the hell
       // Now I understand why Microsoft (TM) Windows (R) windows are single threaded.
@@ -1789,37 +1863,67 @@ namespace user
       pobj->m_bRet = false;
    }
 
+
    ::user::interaction * interaction::_001FromPoint(point64 pt,bool bTestedIfParentVisible)
    {
+
       if(bTestedIfParentVisible)
       {
-         if(!m_bVisible
-               || !_001IsPointInside(pt)) // inline version - do not need pointer to the function
+
+         if(!m_bVisible || !_001IsPointInside(pt)) // inline version - do not need pointer to the function
+         {
+
             return NULL;
+
+         }
+
       }
       else
       {
-         if(!IsWindowVisible()
-               || !_001IsPointInside(pt)) // inline version - do not need pointer to the function
+
+         if(!IsWindowVisible() || !_001IsPointInside(pt)) // inline version - do not need pointer to the function
+         {
+
             return NULL;
+
+         }
+
       }
+
       sp(interaction) pui = top_child();
+
       while(pui != NULL)
       {
+
          sp(interaction) puie = pui->_001FromPoint(pt,true);
+
          if(puie != NULL)
+         {
+
             return puie;
+
+         }
+
          pui = pui->under_sibling();
+
       }
+
       return this;
+
    }
+
 
    bool interaction::_001IsPointInside(point64 pt)
    {
+
       rect64 rect;
+
       GetWindowRect(rect);
+
       return rect.contains(pt);
+
    }
+
 
    void interaction::_001OnKeyDown(signal_details * pobj)
    {
@@ -2008,7 +2112,11 @@ namespace user
          {
 
             if(pui->m_bDestroying)
+            {
+
                return FALSE;
+
+            }
 
             pui = pui->GetParent();
 
@@ -2016,12 +2124,17 @@ namespace user
 
       }
 
-
       if(m_pimpl == NULL)
+      {
+
          return FALSE;
-      else
-         return m_pimpl->send_message(uiMessage,wparam,lparam);
+
+      }
+
+      return m_pimpl->send_message(uiMessage,wparam,lparam);
+
    }
+
 
 #ifdef LINUX
 
@@ -2039,36 +2152,34 @@ namespace user
    bool interaction::IsWindowVisible()
    {
 
+      if(m_pimpl.m_p == NULL)
+      {
+
+         return false;
+
+      }
+
       if(m_bHideOnTransparentFrame)
       {
-         try
-         {
-            ::user::interaction * puiTopLevel = GetTopLevel();
 
-            if(puiTopLevel != NULL)
+         ::user::interaction * puiTopLevel = GetTopLevel();
+
+         if(puiTopLevel != NULL)
+         {
+
+            if(puiTopLevel->frame_is_transparent())
             {
 
-               if(puiTopLevel->frame_is_transparent())
-               {
-
-                  return false;
-
-               }
+               return false;
 
             }
 
-
-         }
-         catch(...)
-         {
          }
 
       }
 
-      if(m_pimpl == NULL)
-         return FALSE;
-      else
-         return m_pimpl->IsWindowVisible();
+      return m_pimpl.m_p->IsWindowVisible();
+
    }
 
 
@@ -2093,7 +2204,7 @@ namespace user
 
       }
 
-      return m_bVisible;
+      return IsWindowVisible();
 
    }
 
@@ -2334,38 +2445,29 @@ namespace user
 
    bool interaction::create_window(const RECT & rect, ::user::interaction *pparent,id id)
    {
+
       if(IsWindow())
       {
+
          DestroyWindow();
+
       }
+
       m_signalptra.remove_all();
+
       m_pimpl = canew(::user::interaction_child(get_app()));
-      m_pimpl->m_pui = this;
-
-      ::thread * pthread = ::get_thread();
-
-      //if(pthread != NULL)
-      //{
-
-      //   m_threadptra.add(pthread);
-
-      //}
-
-      //if(m_threadptra.get_count() <= 0)
-      //{
-
-      //   m_threadptra.add(get_app());
-
-      //}
 
       if(!m_pimpl->create_window(this, rect, pparent,id))
       {
-         //m_threadptra.remove_all();
+
          m_pimpl.release();
+
          return false;
+
       }
-      //install_message_handling(this);
+
       return true;
+
    }
 
 
@@ -2381,25 +2483,7 @@ namespace user
 
       m_signalptra.remove_all();
 
-      sp(interaction_impl_base) pimplOld = m_pimpl;
-
-      sp(interaction_impl_base) pimplNew = NULL;
-
-      ::thread * pthread = ::get_thread();
-
-      //if(pthread != NULL)
-      //{
-
-      //   m_threadptra.add(pthread);
-
-      //}
-
-      //if(m_threadptra.get_count() <= 0)
-      //{
-
-      //   m_threadptra.add(get_app());
-
-      //}
+      sp(interaction_impl_base) pimplNew;
 
       ::rect rect(rectParam);
 
@@ -2436,23 +2520,22 @@ namespace user
 
 #endif
 
+
 #if defined(WINDOWSEX) || defined(LINUX)
+
       if(pParentWnd == NULL || pParentWnd->get_safe_handle() == (oswindow)HWND_MESSAGE)
+
 #else
+
       if(pParentWnd == NULL)
+
 #endif
       {
-
-
 
          if(Application.defer_initialize_twf())
             return false;
 
          pimplNew = (Application.alloc(System.type_info < interaction_impl >()));
-
-         pimplNew->m_pui = this;
-
-         m_pimpl = pimplNew;
 
          if(!pimplNew->create_window(this, lpszClassName,lpszWindowName,dwStyle,rect,pParentWnd,id,pContext))
          {
@@ -2469,8 +2552,6 @@ namespace user
 
          pimplNew = canew(::user::interaction_child(get_app()));
 
-         pimplNew->m_pui = this;
-
          if(!pimplNew->create_window(this, lpszClassName,lpszWindowName,dwStyle,rect,pParentWnd,id,pContext))
          {
 
@@ -2480,51 +2561,14 @@ namespace user
 
       }
 
-      if(pimplNew != NULL)
+      if(m_pimpl.is_null())
       {
-
-         if(pimplOld != NULL)
-         {
-
-            pimplOld->m_pui = NULL;
-
-            pimplOld->_001ClearMessageHandling();
-
-            ::window_sp pwindowOld = (pimplOld.m_p);
-
-            if(pwindowOld != NULL)
-            {
-
-               pwindowOld->install_message_handling(pimplOld);
-
-            }
-
-            single_lock sl(m_pmutex,TRUE);
-
-            sl.unlock();
-
-            if(pParentWnd != NULL)
-            {
-
-               on_set_parent(pParentWnd);
-
-            }
-
-            pimplOld->release();
-
-         }
-
-         return true;
-
-      }
-      else
-      {
-
-         //m_threadptra.remove_all();
 
          return false;
 
       }
+
+      return true;
 
    }
 
@@ -2671,13 +2715,21 @@ namespace user
 
    }
 
+
    bool interaction::IsWindow() const
    {
+
       if(m_pimpl == NULL)
-         return FALSE;
-      else
-         return m_pimpl->IsWindow();
+      {
+
+         return false;
+
+      }
+
+      return m_pimpl->IsWindow();
+
    }
+
 
    LONG interaction::get_window_long(int32_t nIndex) const
    {

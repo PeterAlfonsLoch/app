@@ -90,7 +90,7 @@
 			<Add option="-lauracharguess" />
 			<Add option="-laurasqlite" />
 			<Add option="-laxisfreeimage" />
-			<Add option="-laxisfreetype" />
+			<Add option="-lfreetype" />
 			<Add option="-laxismysql" />
 			<Add option="-laxisbzip2" />
 			<Add option="-laxis" />

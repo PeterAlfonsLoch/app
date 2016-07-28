@@ -44,6 +44,8 @@
 			<Add option="-Wno-attributes" />
 			<Add option="-Winvalid-pch" />
 			<Add option="-fPIC" />
+			<Add option="-DPNG_TEXT_SUPPORTED" />
+			<Add option="-DPNG_iTXt_SUPPORTED" />
 			<Add directory="../../../include" />
 			<Add directory="../../include" />
 			<Add directory="." />
@@ -67,7 +69,7 @@
 			<Add option="-laura" />
 			<Add option="-laxiszlib" />
 			<Add option="-laxisfreeimage" />
-			<Add option="-laxispng" />
+			<Add option="-lpng" />
 			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../stage/x86" />
 			<Add directory="/usr/lib64/mysql/" />

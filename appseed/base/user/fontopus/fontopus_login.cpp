@@ -1,13 +1,7 @@
-//#include "framework.h"
-//#include "base/user/user.h"
 
 
 namespace fontopus
 {
-
-
-   //UINT c_cdecl thread_proc_pre_login(void * p);
-//   UINT c_cdecl thread_proc_defer_translate_login(void * p);
 
 
    login::login(::aura::application * papp, int left, int top, const string & strRequestUrl) :
@@ -417,60 +411,13 @@ namespace fontopus
 
       m_peditUser->keyboard_set_focus();
 
-
-      //m_pploginDeferTranslate = new login *;
-
-      //*m_pploginDeferTranslate = this;
-
-      //add_ref();
-
-      //__begin_thread(get_app(),thread_proc_pre_login,get_app());
-
    }
-
-
-
-   //UINT c_cdecl thread_proc_pre_login(void * p)
-   //{
-
-   //   ::aura::application * papp = (::aura::application *) p;
-
-   //   return 0;
-
-   //   login_thread thread(papp);
-   //   thread.m_strRequestingServer = "account.ca2.cc";
-   //   thread.m_strUsername = "";
-   //   thread.m_strPassword = "";
-   //   thread.run();
-
-   //   return 0;
-
-   //}
 
 
    void login::_000OnDraw(::draw2d::graphics * pgraphics)
    {
 
-      //simple_ui::interaction::_000OnDraw(pgraphics);
-
-
-      if(!m_bVisible)
-         return;
-
-      _001DrawThis(pgraphics);
-
-      try
-      {
-
-         _001DrawChildren(pgraphics);
-
-      }
-      catch(...)
-      {
-
-         throw simple_exception(::get_thread_app(),"no more a window");
-
-      }
+      return simple_ui::interaction::_000OnDraw(pgraphics);
 
    }
 
@@ -478,35 +425,7 @@ namespace fontopus
    void login::_001DrawChildren(::draw2d::graphics * pgraphics)
    {
 
-      //single_lock sl(m_pmutex, true);
-
-      //int i = 5;
-
-      sp(interaction) pui;
-
-      //while((pui = get_child(pui)).is_set() && i > 0)
-      while((pui = get_child(pui)).is_set())
-      {
-
-         //i--;
-
-         try
-         {
-
-            if(pui->m_bVisible && !pui->is_custom_draw())
-            {
-
-               pui->_000OnDraw(pgraphics);
-
-            }
-
-         }
-         catch(...)
-         {
-
-         }
-
-      }
+      return simple_ui::interaction::_001DrawChildren(pgraphics);
 
    }
 

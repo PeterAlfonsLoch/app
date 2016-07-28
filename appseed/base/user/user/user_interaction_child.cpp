@@ -188,7 +188,7 @@ namespace user
    }
 
 
-   bool interaction_child::create_window(::user::interaction * pui, const RECT & rect, ::user::interaction * pparent,id id)
+   bool interaction_child::create_window(::user::interaction * pui, const RECT & rect, ::user::interaction * pparent, id id)
    {
 
       if(m_bCreate)
@@ -200,7 +200,7 @@ namespace user
 
       m_bCreate         = true;
 
-      m_pui = pui;
+      m_pui             = pui;
 
       m_pui->m_pimpl    = this;
 
@@ -215,15 +215,14 @@ namespace user
 
       ::user::create_struct cs;
 
-      cs=rect;
-
-      cs.style = WS_CHILD | WS_VISIBLE;
-      cs.dwExStyle = 0;
-      cs.lpszClass = NULL;
-      cs.lpszName = NULL;
-      cs.hwndParent = pparent->get_handle();
-      cs.hMenu = NULL;
-      cs.hInstance = System.m_hinstance;
+      cs                =  rect;
+      cs.style          = WS_CHILD | WS_VISIBLE;
+      cs.dwExStyle      = 0;
+      cs.lpszClass      = NULL;
+      cs.lpszName       = NULL;
+      cs.hwndParent     = pparent->get_handle();
+      cs.hMenu          = NULL;
+      cs.hInstance      = System.m_hinstance;
       cs.lpCreateParams = (LPVOID)NULL;
 
       m_pui->pre_create_window(cs);
@@ -259,10 +258,15 @@ namespace user
 
    void interaction_child::install_message_handling(::message::dispatch * pinterface)
    {
+
       last_install_message_handling(pinterface);
+
       IGUI_WIN_MSG_LINK(WM_DESTROY,pinterface,this,&interaction_child::_001OnDestroy);
+
       IGUI_WIN_MSG_LINK(WM_NCDESTROY,pinterface,this,&interaction_child::_001OnNcDestroy);
+
       m_pui->install_message_handling(pinterface);
+
       prio_install_message_handling(pinterface);
 
    }
@@ -409,11 +413,20 @@ namespace user
 
    uint32_t interaction_child::GetStyle() const
    {
+
       uint32_t dwStyle = 0;
+
       if(m_pui->m_bVisible)
+      {
+
          dwStyle |= WS_VISIBLE;
+
+      }
+
       return dwStyle;
+
    }
+
 
    uint32_t interaction_child::GetExStyle() const
    {
@@ -527,16 +540,12 @@ namespace user
    }
 
 
-
    bool interaction_child::IsWindow() const
    {
 
-      return m_bCreate && m_pui != NULL && m_pui->m_pauraapp != NULL;
+      return m_bCreate && m_pui != NULL;
 
    }
-
-
-
 
 
    bool interaction_child::ShowWindow(int32_t nCmdShow)
@@ -667,6 +676,7 @@ namespace user
 
       if(!m_pui->m_bVisible)
       {
+
          return false;
 
       }

@@ -201,10 +201,6 @@ namespace metrowin
          DestroyWindow();
       }
 
-      m_pui->m_bVisible = (dwStyle & WS_VISIBLE) != 0;
-
-
-
       cs.dwExStyle   = dwExStyle;
       cs.style       = dwStyle;
       cs.x           = rect.left;
@@ -239,6 +235,9 @@ namespace metrowin
             return FALSE;
          }
       }
+
+
+      m_bVisible = dwStyle & WS_VISIBLE;
 
       //m_pui->install_message_handling(dynamic_cast < ::message::dispatch * > (this));
 
@@ -478,17 +477,6 @@ namespace metrowin
       //m_pui->layout();
 
 
-
-   }
-
-
-   void interaction_impl::_001OnShowWindow(signal_details * pobj)
-   {
-
-      SCAST_PTR(::message::show_window,pshowwindow,pobj);
-
-      if(m_pui != NULL)
-         m_pui->m_bVisible = pshowwindow->m_bShow != FALSE;
 
    }
 
@@ -4480,71 +4468,11 @@ ExitModal:
             ::ShowWindow(get_handle(), SW_RESTORE);*/
    }
 
+
    bool interaction_impl::ShowWindow(int nCmdShow)
    {
 
-      //throw todo(get_app());
-
-      //if(!::IsWindow(get_handle()))
-      //   return false;
-      //if(GetExStyle() & WS_EX_LAYERED)
-      //{
-      //   if(nCmdShow == SW_HIDE)
-      //   {
-      //      ModifyStyle(get_handle(), WS_VISIBLE, 0, 0);
-      //   }
-      //   else
-      //   {
-      //      ModifyStyle(get_handle(), 0, WS_VISIBLE, 0);
-      //   }
-      //   if(nCmdShow == SW_MAXIMIZE)
-      //   {
-      //      _001WindowMaximize();
-      //   }
-      //   else if(nCmdShow == SW_RESTORE)
-      //   {
-      //      _001WindowRestore();
-      //   }
-      //   else
-      //   {
-      //      if(nCmdShow == SW_MINIMIZE)
-      //      {
-      //         m_pui->m_eappearance = appearance_iconic;
-      //         m_eappearance = appearance_iconic;
-      //      }
-      //      ::ShowWindow(get_handle(), nCmdShow);
-      //   }
-      //   m_bVisible = ::IsWindowVisible(get_handle()) != FALSE;
-      //   if(m_pui!= NULL)
-      //      m_pui->m_bVisible = m_bVisible;
-      //   if(!m_bVisible || IsIconic())
-      //   {
-      //      ::UpdateLayeredWindow(get_handle(), NULL, NULL, NULL, NULL, NULL, 0, NULL, 0);
-      //   }
-      //   return m_bVisible;
-      //}
-      //else
-      //{
-      //   ::ShowWindow(get_handle(), nCmdShow);
-      //   m_bVisible = ::IsWindowVisible(get_handle()) != FALSE;
-      //   if(m_pui!= NULL)
-      //      m_pui->m_bVisible = m_bVisible;
-      //   return m_bVisible;
-      //}
-
-      try
-      {
-
-         return m_pui->m_bVisible;
-
-      }
-      catch(...)
-      {
-
-      }
-
-
-      return false;
+      return m_pui->IsWindowVisible();
 
    }
 

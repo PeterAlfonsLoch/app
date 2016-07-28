@@ -422,7 +422,7 @@ void oswindow_data::set_user_interaction(::user::interaction * pui)
 ::user::interaction * oswindow_data::get_user_interaction_base()
 {
 
-   single_lock slOsWindow(s_pmutex, true);
+   //single_lock slOsWindow(s_pmutex, true);
 
    //xdisplay d(x11_get_display());
 
@@ -717,8 +717,6 @@ bool oswindow_data::is_iconic()
 
 bool oswindow_data::is_window_visible()
 {
-
-   // single_lock sl(s_pmutex, true);
 
    xdisplay d(display());
 
@@ -1245,8 +1243,44 @@ bool oswindow_data::is_destroying()
 
 bool IsWindow(oswindow oswindow)
 {
-   return (oswindow->get_user_interaction() == NULL && oswindow->display() != NULL && oswindow->window() != None)
-   || (oswindow->get_user_interaction() != NULL && !oswindow->is_destroying());
+
+   if(oswindow == NULL)
+   {
+
+      return false;
+
+   }
+
+   if(oswindow->display() == NULL)
+   {
+
+      return false;
+
+   }
+
+   if(oswindow->window() == None)
+   {
+
+      return false;
+
+   }
+
+   if(oswindow->m_pui == NULL)
+   {
+
+      return true;
+
+   }
+
+   if(oswindow->m_pui->m_bDestroying)
+   {
+
+      return false;
+
+   }
+
+   return true;
+
 }
 
 

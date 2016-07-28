@@ -81,7 +81,7 @@
 			<Add option="-laxiscrypto" />
 			<Add option="-laxisopenssl" />
 			<Add option="-laxisfreeimage" />
-			<Add option="-laxisfreetype" />
+			<Add option="-lfreetype" />
 			<Add option="-laxisidn" />
 			<Add option="-Wl,-z,defs" />
 			<Add option="-fopenmp" />

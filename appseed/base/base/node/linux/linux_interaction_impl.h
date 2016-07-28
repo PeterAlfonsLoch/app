@@ -26,7 +26,6 @@ namespace linux
       int32_t                       m_iDepth;
       int32_t                       m_iScreen;
       XVisualInfo                   m_visualinfo;
-      //rect64                        m_rectParentClient;
       bool                          m_bEnabled;
 
 

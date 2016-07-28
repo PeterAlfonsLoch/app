@@ -377,7 +377,7 @@ namespace macos
 
       copy(rect, rectParam);
 
-      
+
 
       if(hWndParent == MESSAGE_WINDOW_PARENT)
       {
@@ -389,13 +389,13 @@ namespace macos
       {
 
          m_oswindow = oswindow_get(new_round_window(this, rect));
-         
+
          m_spgraphics.alloc(allocer());
-            
+
          m_spgraphics->on_create_window(this);
-            
+
          m_oswindow->set_user_interaction(m_pui);
-         
+
          oswindow_assign(m_oswindow, m_pui);
 
       }
@@ -570,17 +570,17 @@ namespace macos
        m_pui->m_rectParentClient = rectWindow;
        m_rectParentClient = rectWindow;
        }*/
-      
+
       rect rect32;
-      
+
       if(::GetWindowRect(get_handle(), rect32))
       {
-         
+
          ::copy(m_rectParentClient, rect32);
-         
+
       }
-      
-      
+
+
    }
 
    void interaction_impl::_001OnSize(signal_details * pobj)
@@ -610,14 +610,14 @@ namespace macos
        {
        m_spdib->create(m_rectParentClient.size());
        }*/
-      
+
       rect rect32;
-      
+
       if(::GetWindowRect(get_handle(), rect32))
       {
-       
+
          ::copy(m_rectParentClient, rect32);
-         
+
       }
 
       m_pui->layout();
@@ -626,30 +626,6 @@ namespace macos
 
    }
 
-   void interaction_impl::_001OnShowWindow(signal_details * pobj)
-   {
-
-      SCAST_PTR(::message::show_window, pshowwindow, pobj);
-
-      m_pui->m_bVisible = pshowwindow->m_bShow != FALSE;
-
-//      if(m_pui != NULL && m_pui != this)
-  //       m_pui->m_bVisible = m_bVisible;
-
-      if(m_pui->m_bVisible)
-      {
-
-         round_window_show();
-
-      }
-      else
-      {
-
-         round_window_hide();
-
-      }
-
-   }
 
    void interaction_impl::_001OnDestroy(signal_details * pobj)
    {
@@ -853,11 +829,11 @@ namespace macos
 
       if(get_handle() == NULL)
          return false;
-      
+
 //      round_window_close();
 
       bool bResult = ::user::interaction_impl::DestroyWindow();
-      
+
       return bResult;
 
    }
@@ -1389,19 +1365,19 @@ namespace macos
          for(int32_t i = 0; i < hwnda.get_size(); i++)
          {*/
 //            ::user::interaction * pguie = wnda.find_first(hwnda[i]);
-         
+
          ::user::interaction * pguie = NULL;
-         
+
          while(System.get_frame(pguie))
          {
-            
+
             pguie->_000OnMouse(pmouse);
-         
+
             if(pmouse->m_bRet)
                return;
-            
+
          }
-         
+
          //}
          pbase->set_lresult(DefWindowProc(pbase->m_uiMessage, pbase->m_wparam, pbase->m_lparam));
          return;
@@ -2984,16 +2960,16 @@ namespace macos
 
    void interaction_impl::_001RedrawWindow()
    {
-      
+
       unsigned long long uiNow = get_nanos();
-      
+
       if(m_uiLastUpdateEnd < m_uiLastUpdateBeg && uiNow - m_uiLastUpdateBeg < 200 * 1000 * 1000)
       {
-      
+
          return;
-         
+
       }
-      
+
       RedrawWindow();
 
    }
@@ -3782,19 +3758,19 @@ namespace macos
 
       if(!::IsWindow(get_handle()))
          return false;
-      
+
       if(!(nFlags & SWP_NOZORDER))
       {
-         
+
          synch_lock sl(&System.m_mutexFrame);
-         
+
          if(System.m_uiptraFrame.remove(m_pui)>= 0)
          {
-            
+
             System.m_uiptraFrame.insert_at(0, m_pui);
-            
+
          }
-         
+
       }
 
       /*
@@ -3878,7 +3854,7 @@ namespace macos
          }
 
       }
-      
+
 //      if(!(nFlags & ))
 
 
@@ -3962,196 +3938,196 @@ namespace macos
    {
 
       class rect64 rectWindow;
-      
+
       if(!m_pui->GetWindowRect(rectWindow))
       {
-         
+
          return false;
-         
+
       }
 
       lprect->left   += (LONG) rectWindow.left;
       lprect->right  += (LONG) rectWindow.left;
       lprect->top    += (LONG) rectWindow.top;
       lprect->bottom += (LONG) rectWindow.top;
-      
+
       return true;
-      
+
    }
 
-   
+
    bool interaction_impl::ClientToScreen(LPPOINT lppoint)
    {
-      
+
       class rect64 rectWindow;
-      
+
       if(!m_pui->GetWindowRect(rectWindow))
       {
-         
+
          return false;
-         
+
       }
-      
+
       lppoint->x     += (LONG) rectWindow.left;
       lppoint->y     += (LONG) rectWindow.top;
-      
+
       return true;
-      
+
    }
 
 
    bool interaction_impl::ClientToScreen(RECT64 * lprect)
    {
-      
+
       class rect rectWindow;
-      
+
       if(!m_pui->GetWindowRect(rectWindow))
       {
-         
+
          return false;
-         
+
       }
 
       lprect->left   += rectWindow.left;
       lprect->right  += rectWindow.left;
       lprect->top    += rectWindow.top;
       lprect->bottom += rectWindow.top;
-      
+
       return true;
-      
+
    }
 
 
    bool interaction_impl::ClientToScreen(POINT64 * lppoint)
    {
-      
+
       class rect64 rectWindow;
-      
+
       if(!m_pui->GetWindowRect(rectWindow))
       {
-         
+
          return false;
-         
+
       }
 
       lppoint->x     += rectWindow.left;
       lppoint->y     += rectWindow.top;
-      
+
       return true;
-      
+
    }
 
 
    bool interaction_impl::ScreenToClient(LPRECT lprect)
    {
-      
+
       class rect64 rectWindow;
-      
+
       if(!m_pui->GetWindowRect(rectWindow))
       {
-         
+
          return false;
-         
+
       }
 
       lprect->left   -= (LONG) rectWindow.left;
       lprect->right  -= (LONG) rectWindow.left;
       lprect->top    -= (LONG) rectWindow.top;
       lprect->bottom -= (LONG) rectWindow.top;
-      
+
       return true;
-      
+
    }
 
 
    bool interaction_impl::ScreenToClient(LPPOINT lppoint)
    {
-      
+
       class rect64 rectWindow;
-      
+
       if(!m_pui->GetWindowRect(rectWindow))
       {
-         
+
          return false;
-         
+
       }
 
       lppoint->x     -= (LONG) rectWindow.left;
       lppoint->y     -= (LONG) rectWindow.top;
-      
+
       return true;
-      
+
    }
 
 
    bool interaction_impl::ScreenToClient(RECT64 * lprect)
    {
-      
+
       class rect64 rectWindow;
-      
+
       if(!m_pui->GetWindowRect(rectWindow))
       {
-         
+
          return false;
-         
+
       }
 
       lprect->left   -= rectWindow.left;
       lprect->right  -= rectWindow.left;
       lprect->top    -= rectWindow.top;
       lprect->bottom -= rectWindow.top;
-      
+
       return true;
-      
+
    }
 
 
    bool interaction_impl::ScreenToClient(POINT64 * lppoint)
    {
-      
+
       class rect64 rectWindow;
-      
+
       if(!m_pui->GetWindowRect(rectWindow))
       {
-         
+
          return false;
-         
+
       }
 
       lppoint->x     -= rectWindow.left;
       lppoint->y     -= rectWindow.top;
-      
+
       return true;
-      
+
    }
 
 
    bool interaction_impl::GetWindowRect(RECT64 * lprect)
    {
-      
+
       return ::user::interaction_impl::GetWindowRect(lprect);
-      
+
 //      if(!::IsWindow(get_handle()))
   //       throw simple_exception(get_app(), "no more a user::interaction");
       if(!::IsWindow(get_handle()))
       {
-       
+
          return false;
-         
+
       }
     // if it is temporary user::interaction - probably not ca2 wrapped user::interaction
       rect rect32;
-      
+
       if(!::GetWindowRect(get_handle(), rect32))
       {
-         
+
          return false;
-         
+
       }
       ::copy(lprect, rect32);
-      
+
       return true;
-      
+
    }
 
 
@@ -4160,24 +4136,24 @@ namespace macos
 
       if(!::IsWindow(get_handle()))
       {
-         
+
          return false;
-         
+
       }
 
       rect rect32;
-      
+
       if(!::GetClientRect(get_handle(), rect32))
       {
-         
+
          return false;
-         
+
       }
-      
+
       ::copy(lprect, rect32);
-      
+
       return true;
-      
+
    }
 
 
@@ -4229,58 +4205,20 @@ namespace macos
 
    bool interaction_impl::ShowWindow(int32_t nCmdShow)
    {
+
       if(!::IsWindow(get_handle()))
+      {
+
          return false;
 
-      /*
-       if(GetExStyle() & WS_EX_LAYERED)
-       {
-       if(nCmdShow == SW_HIDE)
-       {
-       ModifyStyle(get_handle(), WS_VISIBLE, 0, 0);
-       }
-       else
-       {
-       ModifyStyle(get_handle(), 0, WS_VISIBLE, 0);
-       }
-       if(nCmdShow == SW_MAXIMIZE)
-       {
-       _001WindowMaximize();
-       }
-       else if(nCmdShow == SW_RESTORE)
-       {
-       _001WindowRestore();
-       }
-       else
-       {
-       if(nCmdShow == SW_MINIMIZE)
-       {
-       m_pui->m_eappearance = appearance_iconic;
-       m_eappearance = appearance_iconic;
-       }
-       ::ShowWindow(get_handle(), nCmdShow);
-       }
-       m_bVisible = ::IsWindowVisible(get_handle()) != FALSE;
-       if(m_pui!= NULL && m_pui != this)
-       m_pui->m_bVisible = m_bVisible;
-       if(!m_bVisible || IsIconic())
-       {
-       ::UpdateLayeredWindow(get_handle(), NULL, NULL, NULL, NULL, NULL, 0, NULL, 0);
-       }
-       return m_bVisible;
-       }
-       else*/
-      {
-         
-         ::ShowWindow(get_handle(), nCmdShow);
-         
-         m_pui->send_message(WM_SHOWWINDOW, ::IsWindowVisible(get_handle()));
-         
-//         m_pui->m_bVisible = ::IsWindowVisible(get_handle()) != FALSE;
-  //       return m_pui->m_bVisible;
-         
-         return IsWindowVisible();
       }
+
+      ::ShowWindow(get_handle(), nCmdShow);
+
+      m_pui->send_message(WM_SHOWWINDOW, ::IsWindowVisible(get_handle()));
+
+      return m_pui->IsWindowVisible();
+
    }
 
 
@@ -5886,38 +5824,38 @@ namespace macos
 
    void interaction_impl::round_window_draw(CGContextRef cgc)
    {
-      
+
       single_lock sl(m_pui->m_pmutex, true);
-      
+
       m_uiLastUpdateBeg = get_nanos();
-      
+
       if(m_bUpdateGraphics)
       {
 
          update_graphics_resources();
 
       }
-      
+
       _001UpdateWindow();
-      
+
       cslock slDisplay(cs_display());
-      
+
       window_buffer * pbuffer = m_spgraphics.cast < window_buffer >();
-      
+
       ::draw2d::dib_sp & spdibBuffer = pbuffer->m_spdibBuffer;
-      
+
       if(spdibBuffer.is_null())
       {
-         
+
          return;
-         
+
       }
 
       if(spdibBuffer->get_data() == NULL)
       {
-         
+
          return;
-         
+
       }
 
       ::draw2d::graphics_sp g(allocer());
@@ -5929,33 +5867,33 @@ namespace macos
       GetClientRect(rectClient);
 
       g->BitBlt(0, 0, spdibBuffer->m_size.cx, spdibBuffer->m_size.cy, spdibBuffer->get_graphics(), 0, 0, SRCCOPY);
-      
+
       m_uiLastUpdateEnd = get_nanos();
 
 
    }
-   
-   
+
+
    bool interaction_impl::round_window_key_down(unsigned int uiKeyCode)
    {
-      
+
       sp(::message::base) spbase;
-      
+
       ::message::key * pkey = canew(::message::key(get_app()));
-      
+
       pkey->m_uiMessage = WM_KEYDOWN;
 
       pkey->m_nChar = uiKeyCode;
-      
-      
+
+
       spbase = pkey;
-      
+
       send(spbase);
-      
+
       return spbase->m_bRet;
-      
+
    }
-   
+
 
    bool interaction_impl::round_window_key_up(unsigned int uiKeyCode)
    {
@@ -5965,7 +5903,7 @@ namespace macos
       ::message::key * pkey = canew(::message::key(get_app()));
 
       pkey->m_uiMessage = WM_KEYUP;
-  
+
       pkey->m_nChar = uiKeyCode;
 
       spbase = pkey;
@@ -5978,21 +5916,21 @@ namespace macos
 
    bool interaction_impl::round_window_key_down(unsigned int vk, unsigned int scan)
    {
-      
+
       sp(::message::base) spbase;
-      
+
       ::message::key * pkey = canew(::message::key(get_app()));
-      
+
       LRESULT l = 0;
-      
+
       pkey->set(m_pui, WM_KEYDOWN, vk, (LPARAM) (scan << 16), l);
-      
+
       spbase = pkey;
-      
+
       send(spbase);
-      
+
       return spbase->m_bRet;
-      
+
    }
 
    bool interaction_impl::round_window_key_up(unsigned int vk, unsigned int scan)
@@ -6003,7 +5941,7 @@ namespace macos
       ::message::key * pkey = canew(::message::key(get_app()));
 
       LRESULT l = 0;
-      
+
       pkey->set(m_pui, WM_KEYUP, vk, (LPARAM) (scan << 16), l);
 
       spbase = pkey;
@@ -6372,17 +6310,17 @@ namespace macos
 
 //      if(!m_pui->m_bMayProDevian)
 //      {
-//         
+//
 //         round_window_redraw();
-//         
+//
 //      }
 
    }
-   
+
 
    void interaction_impl::offset_viewport_org(LPRECT lprectScreen)
    {
-      
+
    }
 
 

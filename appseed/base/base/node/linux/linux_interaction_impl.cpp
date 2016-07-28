@@ -649,19 +649,19 @@ d.unlock();
       IGUI_WIN_MSG_LINK(WM_CREATE,pinterface,this,&interaction_impl::_001OnCreate);
 
 
-      IGUI_WIN_MSG_LINK(WM_SIZE              , pinterface, this, &interaction_impl::_001OnSize);
+      //IGUI_WIN_MSG_LINK(WM_SIZE              , pinterface, this, &interaction_impl::_001OnSize);
 
       if(!m_pui->m_bMessageWindow)
       {
          IGUI_WIN_MSG_LINK(WM_CAPTURECHANGED,pinterface,this,&interaction_impl::_001OnCaptureChanged);
          IGUI_WIN_MSG_LINK(WM_SETCURSOR,pinterface,this,&interaction_impl::_001OnSetCursor);
-         IGUI_WIN_MSG_LINK(WM_ERASEBKGND,pinterface,this,&interaction_impl::_001OnEraseBkgnd);
-         IGUI_WIN_MSG_LINK(WM_SIZE,pinterface,this,&interaction_impl::_001OnSize);
+         //IGUI_WIN_MSG_LINK(WM_ERASEBKGND,pinterface,this,&interaction_impl::_001OnEraseBkgnd);
+         //IGUI_WIN_MSG_LINK(WM_SIZE,pinterface,this,&interaction_impl::_001OnSize);
          //IGUI_WIN_MSG_LINK(WM_NCCALCSIZE,pinterface,this,&interaction_impl::_001OnNcCalcSize);
 
          // linux
-         IGUI_WIN_MSG_LINK(WM_MOVE              , pinterface, this, &interaction_impl::_001OnMove);
-         IGUI_WIN_MSG_LINK(WM_SHOWWINDOW        , pinterface, this, &interaction_impl::_001OnShowWindow);
+         //IGUI_WIN_MSG_LINK(WM_MOVE              , pinterface, this, &interaction_impl::_001OnMove);
+         //IGUI_WIN_MSG_LINK(WM_SHOWWINDOW        , pinterface, this, &interaction_impl::_001OnShowWindow);
 
          //IGUI_WIN_MSG_LINK(WM_WINDOWPOSCHANGING,pinterface,this,&interaction_impl::_001OnWindowPosChanging);
          //IGUI_WIN_MSG_LINK(WM_WINDOWPOSCHANGED,pinterface,this,&interaction_impl::_001OnWindowPosChanged);
@@ -672,68 +672,6 @@ d.unlock();
          ::user::interaction_impl::prio_install_message_handling(pinterface);
       }
       IGUI_WIN_MSG_LINK(WM_DESTROY,pinterface,this,&interaction_impl::_001OnDestroy);
-
-   }
-
-   void interaction_impl::_001OnMove(::signal_details * pobj)
-   {
-      UNREFERENCED_PARAMETER(pobj);
-
-      //_001GetWindowRect(m_rectParentClient);
-/*      if(!m_bRectOk && !(GetExStyle() & WS_EX_LAYERED))
-      {
-         class rect rectWindow;
-         ::GetWindowRect(get_handle(), rectWindow);
-         m_pui->m_rectParentClient = rectWindow;
-         m_rectParentClient = rectWindow;
-      }*/
-   }
-
-   void interaction_impl::_001OnSize(::signal_details * pobj)
-   {
-
-
-      //_001GetWindowRect(m_rectParentClient);
-
-      UNREFERENCED_PARAMETER(pobj);
-
-
-/*      if(!m_bRectOk && !(GetExStyle() & WS_EX_LAYERED))
-      {
-         class rect rectWindow;
-         ::GetWindowRect(get_handle(), rectWindow);
-         m_pui->m_rectParentClient = rectWindow;
-         m_rectParentClient = rectWindow;
-      }*/
-
-      /*      if(m_spdibMultAlphaWork.is_null())
-      {
-      m_spdibMultAlphaWork.create(get_app());
-      }
-
-      if(m_spdib.is_null())
-      {
-      m_spdib.create(get_app());
-      }
-
-      if(m_spdib.is_set() && m_rectParentClient.area() > 0)
-      {
-      m_spdib->create(m_rectParentClient.size());
-      }*/
-
-      //m_pui->layout();
-
-
-
-   }
-
-
-   void interaction_impl::_001OnShowWindow(::signal_details * pobj)
-   {
-
-      SCAST_PTR(::message::show_window, pshowwindow, pobj);
-
-      m_pui->m_bVisible = pshowwindow->m_bShow != FALSE;
 
    }
 
@@ -1445,7 +1383,6 @@ DWORD dwLastPaint;
             {
                class rect rectWindow32;
                ::GetWindowRect((oswindow) get_handle(), &rectWindow32);
-               //rectWindow32 = m_pui->m_rectParentClient;
                ::copy(rectWindow, rectWindow32);
             }
             else
@@ -3295,155 +3232,20 @@ throw not_implemented(get_app());
   //    System.get_event(System.get_twf())->wait(millis(8400));
    }
 
+
    void interaction_impl::_001OnPaint(::signal_details * pobj)
    {
 
-      _001Expose();
+      _001UpdateWindow();
 
-      //lock lock(m_pui, 1984);
-
-//throw not_implemented(get_app());
-
-//      SCAST_PTR(::message::base, pbase, pobj);
-//
-//      PAINTSTRUCT paint;
-//      memset(&paint, 0, sizeof(paint));
-//      HDC hdc = ::BeginPaint(get_handle(), &paint);
-//      ::SelectClipRgn(hdc, NULL);
-//
-//      try
-//      {
-//
-//         ::draw2d::dib_sp dib(get_app());
-//
-//         rect rectWindow;
-//         GetWindowRect(rectWindow);
-//
-//         if(!dib->create(rectWindow.bottom_right()))
-//            return;
-//
-//         ::draw2d::graphics * pgraphics = dib->get_graphics();
-//
-//         if((dynamic_cast<::linux::graphics * >(pgraphics))->get_handle() == NULL
-//            || (dynamic_cast<::linux::graphics * >(pgraphics))->get_os_data2() == NULL)
-//            return;
-//
-//         rect rectPaint;
-//         rect rectUpdate;
-//         rectPaint = paint.rcPaint;
-//         if(rectPaint.is_null() || (GetExStyle() & WS_EX_LAYERED))
-//         {
-//            rectUpdate = rectWindow;
-//            rectPaint = rectWindow;
-//            ScreenToClient(rectPaint);
-//         }
-//         else
-//         {
-//            rectUpdate = rectPaint;
-//            ClientToScreen(rectUpdate);
-//         }
-//         (dynamic_cast<::linux::graphics * >(pgraphics))->SelectClipRgn(NULL);
-//         if(m_pui != NULL && m_pui != this)
-//         {
-//            m_pui->_001OnDeferPaintLayeredWindowBackground(pgraphics);
-//         }
-//         else
-//         {
-//            _001OnDeferPaintLayeredWindowBackground(pgraphics);
-//         }
-//         (dynamic_cast<::linux::graphics * >(pgraphics))->SelectClipRgn(NULL);
-//         (dynamic_cast<::linux::graphics * >(pgraphics))->SetViewportOrg(point(0, 0));
-//         _000OnDraw(pgraphics);
-//         (dynamic_cast<::linux::graphics * >(pgraphics))->SetViewportOrg(point(0, 0));
-//         //(dynamic_cast<::linux::graphics * >(pgraphics))->FillSolidRect(rectUpdate.left, rectUpdate.top, 100, 100, 255);
-//         (dynamic_cast<::linux::graphics * >(pgraphics))->SelectClipRgn(NULL);
-//         (dynamic_cast<::linux::graphics * >(pgraphics))->SetViewportOrg(point(0, 0));
-//         BitBlt(hdc, rectPaint.left, rectPaint.top,
-//            rectPaint.width(), rectPaint.height(),
-//            (HDC) pgraphics->get_handle(), rectUpdate.left, rectUpdate.top,
-//            SRCCOPY);
-//
-//      }
-//      catch(...)
-//      {
-//      }
-//
-//      ::EndPaint(get_handle(), &paint);
-//      pobj->m_bRet = true;
-//      pbase->set_lresult(0);
    }
 
 
    void interaction_impl::_001OnPrint(::signal_details * pobj)
    {
-throw not_implemented(get_app());
-//      SCAST_PTR(::message::base, pbase, pobj);
-//
-//      if(pbase->m_wparam == NULL)
-//         return;
-//
-//      ::draw2d::graphics_sp graphics(get_app());
-//      WIN_DC(graphics.m_p)->Attach((HDC) pbase->m_wparam);
-//      rect rectx;
-//      ::draw2d::bitmap * pbitmap = &graphics->GetCurrentBitmap();
-//      ::GetCurrentObject((HDC) pbase->m_wparam, OBJ_BITMAP);
-//      //      DWORD dw = ::GetLastError();
-//      class size size = pbitmap->get_size();
-//      rectx.left = 0;
-//      rectx.top = 0;
-//      rectx.right = size.cx;
-//      rectx.bottom = size.cy;
-//      try
-//      {
-//         rect rectWindow;
-//         GetWindowRect(rectWindow);
-//
-//         ::draw2d::dib_sp dib(get_app());
-//         if(!dib->create(rectWindow.bottom_right()))
-//            return;
-//
-//         ::draw2d::graphics * pgraphics = dib->get_graphics();
-//
-//         if(pgraphics->get_handle() == NULL)
-//            return;
-//
-//         rect rectPaint;
-//         rect rectUpdate;
-//         rectUpdate = rectWindow;
-//         rectPaint = rectWindow;
-//         rectPaint.offset(-rectPaint.top_left());
-//         (dynamic_cast<::linux::graphics * >(pgraphics))->SelectClipRgn(NULL);
-//         if(m_pui != NULL && m_pui != this)
-//         {
-//            m_pui->_001OnDeferPaintLayeredWindowBackground(pgraphics);
-//         }
-//         else
-//         {
-//            _001OnDeferPaintLayeredWindowBackground(pgraphics);
-//         }
-//         (dynamic_cast<::linux::graphics * >(pgraphics))->SelectClipRgn(NULL);
-//         (dynamic_cast<::linux::graphics * >(pgraphics))->SetViewportOrg(point(0, 0));
-//         _000OnDraw(pgraphics);
-//         (dynamic_cast<::linux::graphics * >(pgraphics))->SetViewportOrg(point(0, 0));
-//         //(dynamic_cast<::linux::graphics * >(pgraphics))->FillSolidRect(rectUpdate.left, rectUpdate.top, 100, 100, 255);
-//         (dynamic_cast<::linux::graphics * >(pgraphics))->SelectClipRgn(NULL);
-//         (dynamic_cast<::linux::graphics * >(pgraphics))->SetViewportOrg(point(0, 0));
-//
-//         graphics->SelectClipRgn( NULL);
-//         graphics->BitBlt(rectPaint.left, rectPaint.top,
-//            rectPaint.width(), rectPaint.height(),
-//            pgraphics, rectUpdate.left, rectUpdate.top,
-//            SRCCOPY);
-//
-//         graphics->TextOut(0, 0, "Te Amo Carlinhos!!", 11);
-//      }
-//      catch(...)
-//      {
-//      }
-//      graphics->FillSolidRect(rectx, RGB(255, 255, 255));
-//      WIN_DC(graphics.m_p)->Detach();
-//      pobj->m_bRet = true;
-//      pbase->set_lresult(0);
+
+      _001UpdateWindow();
+
    }
 
 
@@ -3922,14 +3724,20 @@ throw not_implemented(get_app());
       }
    }
 
+
    bool interaction_impl::IsWindow() const
    {
-      return ::IsWindow((oswindow) get_handle()) != FALSE;
+
+      return ::IsWindow(m_oswindow) != FALSE;
+
    }
+
 
    oswindow interaction_impl::get_handle() const
    {
-      return (oswindow) get_os_data();
+
+      return m_oswindow;
+
    }
 
 
@@ -3938,64 +3746,82 @@ throw not_implemented(get_app());
    bool interaction_impl::SetWindowPos(int_ptr z, int32_t x, int32_t y, int32_t cx, int32_t cy, UINT nFlags)
    {
 
-
-//      single_lock sl(&user_mutex(), true);
-
       xdisplay d(m_oswindow->display());
-
-
-      /*bool b;
-      bool * pb = &b;
-      if(m_papp->s_ptwf != NULL)
-      pb = &m_papp->s_ptwf->m_bProDevianMode;
-      keeper < bool > keepOnDemandDraw(pb, false, *pb, true);
-      */
-      ASSERT(::IsWindow((oswindow) get_handle()));
-      /*   return ::SetWindowPos(get_handle(), pWndInsertAfter->get_handle(),
-      x, y, cx, cy, nFlags) != FALSE; */
 
       wm_state_above((oswindow)get_handle(), nFlags & ZORDER_TOPMOST);
 
-      //throw not_implemented(get_app());
-
       XSizeHints hints;
-
 
       if(nFlags & SWP_NOMOVE)
       {
+
          if(nFlags & SWP_NOSIZE)
          {
+
             hints.flags = 0;
+
          }
          else
          {
+
             hints.flags = PSize;
+
             hints.width = cx;
+
             hints.height = cy;
-            XResizeWindow(m_oswindow->display(), m_oswindow->window(), cx, cy);
-//            XClearWindow(m_oswindow->display(), m_oswindow->interaction_impl());
+
+            //if(IsWindowVisible())
+            {
+
+               XResizeWindow(m_oswindow->display(), m_oswindow->window(), cx, cy);
+
+            }
+
          }
+
       }
       else
       {
+
          if(nFlags & SWP_NOSIZE)
          {
-            XMoveWindow(m_oswindow->display(), m_oswindow->window(), x, y);
-  //          XClearWindow(m_oswindow->display(), m_oswindow->interaction_impl());
+
+            //if(IsWindowVisible())
+            {
+
+               XMoveWindow(m_oswindow->display(), m_oswindow->window(), x, y);
+
+            }
+
             hints.flags = PPosition;
+
             hints.x = x;
+
             hints.y = y;
+
          }
          else
          {
-            XMoveResizeWindow(m_oswindow->display(), m_oswindow->window(), x, y, cx, cy);
-    //        XClearWindow(m_oswindow->display(), m_oswindow->interaction_impl());
+
+            //if(IsWindowVisible())
+            {
+
+               XMoveResizeWindow(m_oswindow->display(), m_oswindow->window(), x, y, cx, cy);
+
+            }
+
             hints.flags = PPosition | PSize;
+
             hints.x = x;
+
             hints.y = y;
+
             hints.width = cx;
+
             hints.height = cy;
+
          }
+
       }
 
       if(!IsWindowVisible())
@@ -4017,66 +3843,14 @@ throw not_implemented(get_app());
 
       }
 
-
-/*
-      if(GetExStyle() & WS_EX_LAYERED)
-      {
-         if(rectWindowOld.top_left() != m_rectParentClient.top_left())
-         {
-            send_message(WM_MOVE, 0, 0);
-         }
-         if(rectWindowOld.size() != m_rectParentClient.size())
-         {
-            send_message(WM_SIZE, 0, 0);
-         }
-
-      }
-      if(GetExStyle() & WS_EX_LAYERED)
-      {
-         nFlags |= SWP_NOCOPYBITS;
-         nFlags |= SWP_NOREDRAW;
-         nFlags |= SWP_NOMOVE;
-         nFlags |= SWP_NOSIZE;
-         //nFlags |= SWP_NOZORDER;
-         //nFlags |= SWP_FRAMECHANGED;
-         if(nFlags & SWP_SHOWWINDOW)
-         {
-            ::SetWindowPos(get_handle(), (oswindow) z, x, y, cx, cy, nFlags);
-            ShowWindow(SW_SHOW);
-         }
-         else
-         {
-            ::SetWindowPos(get_handle(), (oswindow) z, x, y, cx, cy, nFlags);
-         }
-         /*if(m_pui != NULL)
-         {
-         m_pui->oprop("pending_layout") = true;
-         m_pui->oprop("pending_zorder") = z;
-         }*/
-         /*if(&System != NULL && System.get_twf() != NULL)
-         {
-         System.get_twf()->synch_redraw();
-         }*/
-  /*    }
-      else
-      {
-         if(z == -3)
-         {
-            ::SetWindowPos(get_handle(), (oswindow) 0, x, y, cx, cy, nFlags);
-         }
-         else
-         {
-            ::SetWindowPos(get_handle(), (oswindow) z, x, y, cx, cy, nFlags);
-         }
-      }
-      return true;*/
-
    }
+
 
    void interaction_impl::MoveWindow(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, bool bRepaint)
    {
-      ASSERT(::IsWindow((oswindow) get_handle()));
+
       SetWindowPos(0, x, y, nWidth, nHeight, bRepaint ? SWP_SHOWWINDOW : 0);
+
    }
 
 
@@ -4373,79 +4147,67 @@ throw not_implemented(get_app());
 
    void interaction_impl::_001WindowRestore()
    {
-  if(m_pui != NULL)
+
+      if(m_pui != NULL)
+      {
+
          m_pui->m_eappearance = ::user::AppearanceNormal;
-      ::ShowWindow((oswindow) get_handle(), SW_RESTORE);
+
+      }
+
+      ::ShowWindow(m_oswindow, SW_RESTORE);
+
    }
+
 
    bool interaction_impl::ShowWindow(int32_t nCmdShow)
    {
-      if(!::IsWindow((oswindow) get_handle()))
-         return false;
 
-/*
-      if(GetExStyle() & WS_EX_LAYERED)
-      {
-         if(nCmdShow == SW_HIDE)
-         {
-            ModifyStyle(get_handle(), WS_VISIBLE, 0, 0);
-         }
-         else
-         {
-            ModifyStyle(get_handle(), 0, WS_VISIBLE, 0);
-         }
-         if(nCmdShow == SW_MAXIMIZE)
-         {
-            _001WindowMaximize();
-         }
-         else if(nCmdShow == SW_RESTORE)
-         {
-            _001WindowRestore();
-         }
-         else
-         {
-            if(nCmdShow == SW_MINIMIZE)
-            {
-               m_pui->m_eappearance = appearance_iconic;
-               m_eappearance = appearance_iconic;
-            }
-            ::ShowWindow(get_handle(), nCmdShow);
-         }
-//         m_bVisible = ::IsWindowVisible(get_handle()) != FALSE;
-         if(m_pui!= NULL && m_pui != this)
-//            m_pui->m_bVisible = m_bVisible;
-         if(!m_bVisible || IsIconic())
-         {
-            ::UpdateLayeredWindow(get_handle(), NULL, NULL, NULL, NULL, NULL, 0, NULL, 0);
-         }
-         return m_bVisible;
-      }
-      else*/
-      {
-         ::ShowWindow((oswindow) get_handle(), nCmdShow);
-         m_pui->m_bVisible = ::IsWindowVisible((oswindow) get_handle()) != FALSE;
-         return m_pui->m_bVisible;
-      }
+      ::ShowWindow(m_oswindow, nCmdShow);
+
+      return m_pui->IsWindowVisible();
+
    }
 
 
    bool interaction_impl::WfiIsIconic()
    {
-      ASSERT(::IsWindow((oswindow) get_handle()));
+
+      if(!::IsWindow(m_oswindow))
+      {
+
+         return false;
+
+      }
+
       if(GetExStyle() & WS_EX_LAYERED)
       {
+
          return m_pui->m_eappearance == ::user::AppearanceIconic;
+
       }
       else
       {
+
          return ::IsIconic((oswindow) get_handle()) != FALSE;
+
       }
+
    }
+
 
    bool interaction_impl::WfiIsZoomed()
    {
-      ASSERT(::IsWindow((oswindow) get_handle()));
+
+      if(!::IsWindow(m_oswindow))
+      {
+
+         return false;
+
+      }
+
       return m_pui->m_eappearance == ::user::AppearanceZoomed;
+
    }
 
 
@@ -4890,27 +4652,28 @@ if(psurface == g_cairosurface)
       //::ValidateRgn(get_handle(), (HRGN)pRgn->get_handle());
    }
 
+
    bool interaction_impl::IsWindowVisible()
    {
 
-//      single_lock sl(&user_mutex(), true);
-
-      if(!::IsWindow((oswindow) get_handle()))
-         return false;
-
-      if(m_pui != NULL)
+      if(!m_pui->m_bVisible)
       {
 
-         if(!m_pui->m_bVisible)
-            return false;
-
-         if(m_pui->GetParent() != NULL && !m_pui->GetParent()->IsWindowVisible())
-            return false;
+         return false;
 
       }
 
-      if(!::IsWindowVisible(get_handle()))
-         return false;
+      if(m_pui->m_pparent != NULL)
+      {
+
+         if(!m_pui->m_pparent->IsWindowVisible())
+         {
+
+            return false;
+
+         }
+
+      }
 
       return true;
 
@@ -5038,6 +4801,7 @@ if(psurface == g_cairosurface)
 
    }
 
+
    bool interaction_impl::DrawCaption(::draw2d::graphics * pgraphics, LPCRECT lprc, UINT uFlags)
    {
 
@@ -5046,6 +4810,7 @@ if(psurface == g_cairosurface)
       //return ::DrawCaption(get_handle(), (HDC)(dynamic_cast<::linux::graphics * >(pgraphics))->get_handle(), lprc, uFlags) != FALSE;
 
    }
+
 
    bool interaction_impl::SetTimer(uint_ptr nIDEvent, UINT nElapse, PFN_TIMER pfnTimer)
    {
@@ -5069,7 +4834,7 @@ if(psurface == g_cairosurface)
    bool interaction_impl::KillTimer(uint_ptr nIDEvent)
    {
 
-   return ::user::interaction_impl::KillTimer(nIDEvent);
+      return ::user::interaction_impl::KillTimer(nIDEvent);
 
 //       m_pui->m_pauraapp->unset_timer(m_pui, nIDEvent);
 
@@ -5081,6 +4846,7 @@ if(psurface == g_cairosurface)
       //return ::KillTimer(get_handle(), nIDEvent)  != FALSE;
 
    }
+
 
    bool interaction_impl::IsWindowEnabled()
    {
@@ -5115,8 +4881,6 @@ if(psurface == g_cairosurface)
    ::user::interaction * interaction_impl::SetCapture(::user::interaction * pinterface)
    {
 
-      ASSERT(::IsWindow((oswindow) get_handle()));
-
       oswindow w = ::SetCapture(get_handle());
 
       if(GetCapture() != NULL)
@@ -5127,7 +4891,7 @@ if(psurface == g_cairosurface)
 
       }
 
-      return w->get_user_interaction();
+      return w->m_pui;
 
    }
 
@@ -5136,24 +4900,22 @@ if(psurface == g_cairosurface)
 
       oswindow w = ::GetFocus();
 
-      if(!::IsWindow(w))
+      if(w == NULL)
          return NULL;
 
-      return w->get_user_interaction();
+      return w->m_pui;
 
    }
 
    ::user::interaction * interaction_impl::SetFocus()
    {
 
-      ASSERT(::IsWindow((oswindow) get_handle()));
-
       oswindow w = ::SetFocus(get_handle());
 
-      if(!::IsWindow(w))
+      if(w  == NULL)
          return NULL;
 
-      return w->get_user_interaction();
+      return w->m_pui;
 
    }
 
@@ -5994,16 +5756,19 @@ if(psurface == g_cairosurface)
 
 
 
-   void interaction_impl::_001OnEraseBkgnd(::signal_details * pobj)
-   {
-      SCAST_PTR(::message::erase_bkgnd, perasebkgnd, pobj);
-      perasebkgnd->m_bRet = true;
-      perasebkgnd->set_result(TRUE);
-   }
+//   void interaction_impl::_001OnEraseBkgnd(::signal_details * pobj)
+//   {
+//      SCAST_PTR(::message::erase_bkgnd, perasebkgnd, pobj);
+//      perasebkgnd->m_bRet = true;
+//      perasebkgnd->set_result(TRUE);
+//   }
+
 
    void interaction_impl::_001BaseWndInterfaceMap()
    {
+
       Session.user()->window_map().set((int_ptr)get_handle(), this);
+
    }
 
 
@@ -6075,126 +5840,22 @@ void wm_state_above(oswindow w, bool bSet);
 namespace linux
 {
 
-   /*   void interaction_impl::_001DeferPaintLayeredWindowBackground(::draw2d::dib * pdib)
-   {
 
-
-   }*/
    void interaction_impl::_001Expose()
    {
 
-      single_lock sl(m_pui->m_pmutex, true);
+      ::user::interaction_impl::_001UpdateWindow();
 
-      if(m_bExposing)
-         return;
-
-      keep < bool > keepExposing(&m_bExposing, true, false, true);
-
-      bool bMove;
-
-      bool bSize;
-
-      rect64 rectWindow;
-
-      GetWindowRect(rectWindow);
-
-      if(rectWindow.top_left() == m_rectParentClient.top_left())
-      {
-
-         bMove = false;
-
-         if(rectWindow.size() == m_rectParentClient.size())
-         {
-
-            bSize = false;
-
-         }
-         else
-         {
-
-            m_rectParentClient.right  = rectWindow.right;
-
-            m_rectParentClient.bottom     = rectWindow.bottom;
-
-            bSize = true;
-
-         }
-      }
-      else
-      {
-
-         bMove = true;
-
-         if(rectWindow.size() == m_rectParentClient.size())
-         {
-
-            m_rectParentClient = rectWindow;;
-
-            bSize = false;
-
-         }
-         else
-         {
-
-            m_rectParentClient = rectWindow;;
-
-            bSize = true;
-         }
-
-      }
-
-      if(m_pui != NULL && !m_pui->m_bVisible)
-            {
-
-         m_pui->m_bVisible = true;
-
-         send_message(WM_SHOWWINDOW, TRUE);
-
-      }
-
-
-      if(bSize || bMove)
-      {
-
-
-         if(bSize)
-         {
-
-            m_bUpdateGraphics = true;
-
-            send_message(WM_SIZE, 0, rectWindow.size().lparam());
-
-         }
-
-         if(bMove)
-         {
-
-            send_message(WM_MOVE, 0, rectWindow.top_left().lparam());
-
-         }
-
-
-      }
-
-     ::user::interaction_impl::_001UpdateWindow();
-
-//      ::user::interaction_impl::_001UpdateScreen();
-
-}
-
+   }
 
 
    void interaction_impl::_001UpdateWindow()
    {
 
-     //single_lock sl(&user_mutex(), false);
-
-     //if(!sl.lock(millis(84)))
-       // return;
-
-      _001Expose();
+      ::user::interaction_impl::_001UpdateWindow();
 
    }
+
 
    void interaction_impl::set_viewport_org(::draw2d::graphics * pgraphics)
    {

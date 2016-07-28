@@ -79,10 +79,10 @@ public:
 
 
    oswindow_data();
-   oswindow_data(::user::interaction * puibaseMessageOnlyWindow);
-   oswindow_data(const void * p);
-   oswindow_data(const LPARAM & lparam);
-   oswindow_data(const WPARAM & wparam);
+   //oswindow_data(::user::interaction * puibaseMessageOnlyWindow);
+   //oswindow_data(const void * p);
+   //oswindow_data(const LPARAM & lparam);
+   //oswindow_data(const WPARAM & wparam);
 
 
    ~oswindow_data();

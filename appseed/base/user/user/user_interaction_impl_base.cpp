@@ -1412,8 +1412,8 @@ namespace user
 
    bool interaction_impl_base::ShowWindow(int32_t nCmdShow)
    {
-    
-      send_message(WM_SHOWWINDOW, nCmdShow != SW_HIDE ? 1 : 0);
+
+      m_pui->send_message(WM_SHOWWINDOW, nCmdShow != SW_HIDE ? 1 : 0);
 
       return true;
 
@@ -1425,19 +1425,7 @@ namespace user
 
       SCAST_PTR(::message::show_window, pshowwindow, pobj);
 
-      if (pshowwindow->m_bShow)
-      {
-
-         m_pui->m_bVisible = true;
-
-      }
-      else
-      {
-
-         m_pui->m_bVisible = false;
-
-      }
-
+      m_pui->m_bVisible = pshowwindow->m_bShow;
 
    }
 
@@ -1464,7 +1452,7 @@ namespace user
 
    }
 
-   
+
 } // namespace user
 
 

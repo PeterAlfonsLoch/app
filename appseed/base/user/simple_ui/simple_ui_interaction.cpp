@@ -39,9 +39,9 @@ namespace simple_ui
 
    void interaction::_001OnChar(signal_details * pobj)
    {
-         
+
       UNREFERENCED_PARAMETER(pobj);
-   
+
    }
 
 
@@ -91,120 +91,10 @@ namespace simple_ui
 
    bool interaction::keyboard_focus_is_focusable()
    {
+
       return false;
+
    }
-
-
-
-   //void interaction::focus_next()
-   //{
-
-   //   if (m_uiptra.get_count() > 0)
-   //   {
-
-   //      set_focus(m_uiptra[0]);
-
-   //      return;
-
-   //   }
-
-   //   if (m_puiParent != NULL)
-   //   {
-
-   //      ::count iFind = m_puiParent->m_uiptra.get_count() - 1;
-
-   //      for (int32_t i = 0; i < m_puiParent->m_uiptra.get_count(); i++)
-   //      {
-
-   //         if (m_puiParent->m_uiptra[i] == this)
-   //         {
-
-   //            iFind = i;
-
-   //            break;
-
-   //         }
-
-   //      }
-
-   //      for (::index i = iFind + 1; i < m_puiParent->m_uiptra.get_count(); i++)
-   //      {
-
-   //         if(m_puiParent->m_uiptra[i]->keyboard_focus_is_focusable())
-   //         {
-
-   //            m_puiParent->set_focus(m_puiParent->m_uiptra[i]);
-
-   //            return;
-
-   //         }
-
-   //      }
-
-   //      for (int32_t i = 0; i <= iFind; i++)
-   //      {
-
-   //         if(m_puiParent->m_uiptra[i]->keyboard_focus_is_focusable())
-   //         {
-
-   //            m_puiParent->set_focus(m_puiParent->m_uiptra[i]);
-
-   //            return;
-
-   //         }
-
-   //      }
-
-   //   }
-
-   //}
-
-
-   //void interaction::set_focus(interaction * pui)
-   //{
-
-   //   if (m_puiParent == NULL)
-   //   {
-
-   //      m_puiFocus = pui;
-
-   //   }
-   //   else
-   //   {
-
-   //      m_puiParent->set_focus(pui);
-
-   //   }
-
-   //}
-
-
-   //interaction * interaction::get_focus()
-   //{
-
-   //   if (m_puiParent == NULL)
-   //   {
-
-   //      return m_puiFocus;
-
-   //   }
-   //   else
-   //   {
-
-   //      return m_puiParent->get_focus();
-
-   //   }
-
-
-   //}
-
-
-   //bool interaction::is_visible()
-   //{
-
-   //   return m_bVisible && (m_puiParent == NULL || m_puiParent->is_visible());
-
-   //}
 
 
    style * interaction::get_style()
@@ -291,7 +181,7 @@ namespace simple_ui
 
    void interaction::_001OnNcDraw(::draw2d::graphics * pgraphics)
    {
-      
+
       if(keyboard_focus_is_focusable())
       {
 
@@ -323,10 +213,10 @@ namespace simple_ui
       return false;
 
    }
-   
+
    COLORREF interaction::get_action_hover_border_color()
    {
-      
+
       return ARGB(135,123,184,255);
 
    }
@@ -341,7 +231,7 @@ namespace simple_ui
 
    void interaction::simple_ui_draw_frame_window_rect(::draw2d::graphics * pgraphics)
    {
-      
+
       rect rectClient;
 
       GetClientRect(rectClient);
@@ -702,7 +592,7 @@ namespace simple_ui
    //   return true;
 
    //}
-   
+
 
    //LRESULT interaction::message_handler(UINT message, WPARAM wparam, LPARAM lparam)
    //{

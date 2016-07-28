@@ -3863,9 +3863,7 @@ restart_mouse_hover_check:
 
          ::ShowWindow(get_handle(),nCmdShow);
 
-         m_pui->m_bVisible = ::IsWindowVisible(get_handle()) != FALSE;
-
-         return m_pui->m_bVisible;
+         return m_pui->IsWindowVisible();
 
       }
 
