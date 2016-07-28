@@ -18,6 +18,7 @@ osdisplay_data::osdisplay_data()
    m_atomLongStyle      = None;
    m_atomLongStyleEx    = 0;
    m_countReference     = 1;
+   m_pmutexMouse        = new mutex();
 
 }
 
@@ -45,6 +46,7 @@ int32_t osdisplay_find(Display * pdisplay)
 
 }
 UINT __axis_x11_thread(void * pparam);
+UINT __axis_x11mouse_thread(void * pparam);
 osdisplay_data * osdisplay_get(Display * pdisplay)
 {
 
@@ -65,6 +67,8 @@ osdisplay_data * osdisplay_get(Display * pdisplay)
    ::osdisplay_data::s_pdataptra->add(pdata);
 
    __begin_thread(::aura::system::g_p,&__axis_x11_thread,pdata,::multithreading::priority_normal,0,0,NULL);
+
+   __begin_thread(::aura::system::g_p,&__axis_x11mouse_thread,pdata,::multithreading::priority_normal,0,0,NULL);
 
    return pdata;
 

@@ -1,8 +1,13 @@
 #include "framework.h"
 
 
-void process_message(Display * pdisplay);
+void process_message(osdisplay_data * pdata, Display * pdisplay);
 void send_message(MESSAGE & msg);
+
+
+bool g_bSkipMouseMessageInXcess = true;
+DWORD g_dwLastMotion = 0;
+DWORD g_dwMotionSkipTimeout = 23;
 
 UINT __axis_x11_thread(void * p)
 {
@@ -65,7 +70,7 @@ UINT __axis_x11_thread(void * p)
          while(XPending(display))
          {
 
-            process_message(display);
+            process_message(pdata, display);
 
          }
 
@@ -78,7 +83,7 @@ UINT __axis_x11_thread(void * p)
 }
 
 
-void process_message(Display * display)
+void process_message(osdisplay_data * pdata, Display * display)
 {
 
    XEvent e;
@@ -365,12 +370,15 @@ void process_message(Display * display)
    else if(e.type == MotionNotify)
    {
 
+
       msg.hwnd          = oswindow_get(display, e.xbutton.window);
       msg.message       = WM_MOUSEMOVE;
       msg.wParam        = 0;
       msg.lParam        = MAKELONG(e.xmotion.x_root, e.xmotion.y_root);
 
-      send_message(msg);
+      synch_lock sl(pdata->m_pmutexMouse);
+
+      pdata->m_messsageaMouse.add(msg);
 
    }
    else if(e.type == DestroyNotify)
@@ -431,7 +439,7 @@ void send_message(MESSAGE & msg)
          if(pui != NULL)
          {
 
-            pui->post_message(msg.message, msg.wParam, msg.lParam);
+            pui->send_message(msg.message, msg.wParam, msg.lParam);
 
          }
 
@@ -442,5 +450,69 @@ void send_message(MESSAGE & msg)
    {
 
    }
+
+}
+
+
+
+
+UINT __axis_x11mouse_thread(void * p)
+{
+
+   osdisplay_data * pdata = (osdisplay_data *) p;
+
+   synch_lock sl(pdata->m_pmutexMouse);
+
+   MESSAGE msg;
+
+   bool bOk;
+
+   while(::aura::system::g_p != NULL && ::aura::system::g_p->m_bRun)
+   {
+
+      bOk = false;
+
+      {
+
+         sl.lock();
+
+         if(pdata->m_messsageaMouse.get_count() > 0)
+         {
+
+            msg = pdata->m_messsageaMouse.last();
+
+            pdata->m_messsageaMouse.remove_all();
+
+            bOk = true;
+
+         }
+
+         sl.unlock();
+
+      }
+
+      if(bOk)
+      {
+
+         ::user::interaction * pui = msg.hwnd->get_user_interaction();
+
+         if(pui != NULL)
+         {
+
+            pui->send_message(msg.message, msg.wParam, msg.lParam);
+
+         }
+
+      }
+      else
+      {
+
+         Sleep(23);
+
+      }
+
+   }
+
+   return 0;
 
 }

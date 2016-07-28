@@ -4891,6 +4891,13 @@ if(psurface == g_cairosurface)
 
       }
 
+      if(w == NULL)
+      {
+
+         return NULL;
+
+      }
+
       return w->m_pui;
 
    }
