@@ -676,7 +676,16 @@ void aura_timer_handler(sigval sigval)
 
    ::aura::Timer * ptimer = (::aura::Timer *)sigval.sival_ptr;
 
-   ptimer->m_ptimer->call_on_timer();
+   try
+   {
+
+      ptimer->m_ptimer->call_on_timer();
+
+   }
+   catch(...)
+   {
+
+   }
 
 }
 
