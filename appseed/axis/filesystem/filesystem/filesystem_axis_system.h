@@ -137,11 +137,12 @@ namespace file
 
 
          // 'n' (natural) terminated ascii number, example: 245765487n
-         virtual void write_n_number(stream_buffer *  pfile,MD5_CTX * pctx,int64_t iNumber);
-         virtual void read_n_number(stream_buffer *  pfile,MD5_CTX * pctx,int64_t & iNumber);
+         // pmd5ctx = openssl/md5.h's MD5_CTX
+         virtual void write_n_number(stream_buffer *  pfile,void * pmd5ctx,int64_t iNumber);
+         virtual void read_n_number(stream_buffer *  pfile,void * pmd5ctx,int64_t & iNumber);
 
-         virtual void write_gen_string(stream_buffer *  pfile,MD5_CTX * pctx,string & str);
-         virtual void read_gen_string(stream_buffer *  pfile,MD5_CTX * pctx,string & str);
+         virtual void write_gen_string(stream_buffer *  pfile,void * pmd5ctx,string & str);
+         virtual void read_gen_string(stream_buffer *  pfile,void * pmd5ctx,string & str);
 
          
          virtual ::file::buffer_sp get_file(var varFile,UINT nOpenFlags,cres * pfesp,::aura::application * papp);

@@ -389,6 +389,8 @@ namespace macos
       {
 
          m_oswindow = oswindow_get(new_round_window(this, rect));
+         
+         ::copy(&m_rectParentClient, &rectParam);
 
          m_spgraphics.alloc(allocer());
 
@@ -5894,7 +5896,6 @@ namespace macos
 
    }
 
-
    bool interaction_impl::round_window_key_up(unsigned int uiKeyCode)
    {
 
@@ -6088,6 +6089,44 @@ namespace macos
    }
 
 
+   void interaction_impl::round_window_resized(CGSize size)
+   {
+      
+      ::size sz;
+      
+      {
+         
+         synch_lock sl(m_pui->m_pmutex);
+         
+         m_rectParentClient.size(size.width, size.height);
+         
+         sz = m_rectParentClient.size();
+
+      }
+
+      send_message(WM_SIZE, 0, sz.lparam());
+      
+   }
+   
+   
+   void interaction_impl::round_window_moved(CGPoint point)
+   {
+      
+      ::point pt;
+      
+      {
+         
+         synch_lock sl(m_pui->m_pmutex);
+         
+         m_rectParentClient.offset(point.x, point.y);
+         
+         pt = m_rectParentClient.top_left();
+         
+      }
+      
+      send_message(WM_SIZE, 0, pt.lparam());
+      
+   }
 
 
 } // namespace macos

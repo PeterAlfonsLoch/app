@@ -73,6 +73,8 @@ uint32_t __run_system_command_line(const char * pszCommandLine)
    
    ::aura::system * psystem = create_aura_system();
    
+   ::set_thread(psystem);
+   
    ::aura::main_init_data * pinitmaindata   = new ::aura::main_init_data;
    
    //pinitmaindata->m_hInstance                = NULL;

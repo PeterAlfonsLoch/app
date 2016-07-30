@@ -65,7 +65,6 @@ namespace macos
         DECL_GEN_SIGNAL(_001OnEraseBkgnd);
         DECL_GEN_SIGNAL(_001OnMove);
         DECL_GEN_SIGNAL(_001OnSize);
-        DECL_GEN_SIGNAL(_001OnShowWindow);
         DECL_GEN_SIGNAL(_001OnProdevianSynch);
 
 
@@ -229,7 +228,9 @@ namespace macos
         virtual bool round_window_key_down(unsigned int uiKeyCode);
         virtual bool round_window_key_up(unsigned int uiKeyCode);
 
-
+       virtual void round_window_resized(CGSize size);
+       virtual void round_window_moved(CGPoint point);
+       
         void set_viewport_org(::draw2d::graphics * pgraphics);
         void offset_viewport_org(LPRECT lprectScreen);
 

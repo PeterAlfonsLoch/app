@@ -12,7 +12,7 @@
 		07A371B11B25E34E00E4F888 /* PluginPNG.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A371891B25E34D00E4F888 /* PluginPNG.cpp */; };
 		07B6577B190F3CA2002DAADE /* libaxis_image_png.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B65764190F3CA2002DAADE /* libaxis_image_png.dylib */; };
 		07D6A8151B4CB87C004FEBC2 /* PluginPNG.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A371891B25E34D00E4F888 /* PluginPNG.cpp */; };
-		9A92CA0E1D205B370069D173 /* libaxispng.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4E876F1D1FDACA008A419B /* libaxispng.dylib */; };
+		9A331C4B1D4BC84C00255105 /* libaxispng.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A331C4A1D4BC84C00255105 /* libaxispng.dylib */; };
 		9A986D021D226812001F4C04 /* libios_axispng.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A986D011D226812001F4C04 /* libios_axispng.dylib */; };
 /* End PBXBuildFile section */
 
@@ -52,34 +52,6 @@
 			remoteGlobalIDString = 07108BD71B4C97D500A28F80;
 			remoteInfo = axisfreeimage_ios;
 		};
-		9A4E876E1D1FDACA008A419B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A4E87681D1FDACA008A419B /* axispng.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9A574B9816AAB906000CC4EF;
-			remoteInfo = axis_image_png;
-		};
-		9A4E87701D1FDACA008A419B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A4E87681D1FDACA008A419B /* axispng.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 07B65764190F3CA2002DAADE;
-			remoteInfo = ios_axis_image_png;
-		};
-		9A4E87721D1FDACA008A419B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A4E87681D1FDACA008A419B /* axispng.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 07B65773190F3CA2002DAADE;
-			remoteInfo = axispng_iosTests;
-		};
-		9A4E87781D1FDC19008A419B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A4E87681D1FDACA008A419B /* axispng.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 9A574B9716AAB906000CC4EF;
-			remoteInfo = axispng;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -99,7 +71,7 @@
 		07A371891B25E34D00E4F888 /* PluginPNG.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PluginPNG.cpp; sourceTree = "<group>"; };
 		07B65764190F3CA2002DAADE /* libaxis_image_png.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libaxis_image_png.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		07B65773190F3CA2002DAADE /* axispng_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = axispng_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A4E87681D1FDACA008A419B /* axispng.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axispng.xcodeproj; path = ../png/axispng.xcodeproj; sourceTree = "<group>"; };
+		9A331C4A1D4BC84C00255105 /* libaxispng.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaxispng.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/core-osx-dyhrstllhpqabhamryoxyuxzxxbr/Build/Products/Debug/libaxispng.dylib"; sourceTree = "<group>"; };
 		9A574B9816AAB906000CC4EF /* libaxis_image_png.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libaxis_image_png.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A986D011D226812001F4C04 /* libios_axispng.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_axispng.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/basic-ios-bmuegusfgbffmoeixicbxhlnbzop/Build/Products/Debug-iphonesimulator/libios_axispng.dylib"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -126,7 +98,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A92CA0E1D205B370069D173 /* libaxispng.dylib in Frameworks */,
+				9A331C4B1D4BC84C00255105 /* libaxispng.dylib in Frameworks */,
 				077C88F41B51A06D00AB2A41 /* libaxisfreeimage.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -159,22 +131,12 @@
 			path = FreeImage;
 			sourceTree = "<group>";
 		};
-		9A4E87691D1FDACA008A419B /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				9A4E876F1D1FDACA008A419B /* libaxispng.dylib */,
-				9A4E87711D1FDACA008A419B /* libios_axispng.dylib */,
-				9A4E87731D1FDACA008A419B /* axispng_iosTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		9A574B8D16AAB906000CC4EF = {
 			isa = PBXGroup;
 			children = (
+				9A331C4A1D4BC84C00255105 /* libaxispng.dylib */,
 				9A986D011D226812001F4C04 /* libios_axispng.dylib */,
 				07A371601B25DE2A00E4F888 /* axisfreeimage.xcodeproj */,
-				9A4E87681D1FDACA008A419B /* axispng.xcodeproj */,
 				07A371871B25E34D00E4F888 /* Source */,
 				9A574B9916AAB906000CC4EF /* Products */,
 			);
@@ -250,7 +212,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				9A4E87791D1FDC19008A419B /* PBXTargetDependency */,
 				077C88E31B519E1C00AB2A41 /* PBXTargetDependency */,
 			);
 			name = axis_image_png;
@@ -287,10 +248,6 @@
 					ProductGroup = 07A371611B25DE2A00E4F888 /* Products */;
 					ProjectRef = 07A371601B25DE2A00E4F888 /* axisfreeimage.xcodeproj */;
 				},
-				{
-					ProductGroup = 9A4E87691D1FDACA008A419B /* Products */;
-					ProjectRef = 9A4E87681D1FDACA008A419B /* axispng.xcodeproj */;
-				},
 			);
 			projectRoot = "";
 			targets = (
@@ -314,27 +271,6 @@
 			fileType = "compiled.mach-o.dylib";
 			path = libios_axisfreeimage.dylib;
 			remoteRef = 07D6A73B1B4CADC4004FEBC2 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		9A4E876F1D1FDACA008A419B /* libaxispng.dylib */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.dylib";
-			path = libaxispng.dylib;
-			remoteRef = 9A4E876E1D1FDACA008A419B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		9A4E87711D1FDACA008A419B /* libios_axispng.dylib */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libios_axispng.dylib;
-			remoteRef = 9A4E87701D1FDACA008A419B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		9A4E87731D1FDACA008A419B /* axispng_iosTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = axispng_iosTests.xctest;
-			remoteRef = 9A4E87721D1FDACA008A419B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -390,11 +326,6 @@
 			isa = PBXTargetDependency;
 			target = 07B65763190F3CA2002DAADE /* ios_axis_image_png */;
 			targetProxy = 07B65779190F3CA2002DAADE /* PBXContainerItemProxy */;
-		};
-		9A4E87791D1FDC19008A419B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = axispng;
-			targetProxy = 9A4E87781D1FDC19008A419B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -560,7 +491,7 @@
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../.. $(WorkspaceDir)/../../appseed";
+				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../nodeapp/include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../.. $(WorkspaceDir)/../../appseed";
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};
 			name = Debug;
@@ -603,7 +534,7 @@
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../.. $(WorkspaceDir)/../../appseed";
+				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../nodeapp/include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../.. $(WorkspaceDir)/../../appseed";
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};
 			name = Release;

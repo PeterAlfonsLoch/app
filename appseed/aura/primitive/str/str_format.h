@@ -254,7 +254,7 @@ public:
 
    }
 
-   inline void format(const char * & s);
+   void format(const char * & s);
 
    template<typename T, typename... Args>
    inline void format(const char * & s, const T & value, Args... args);

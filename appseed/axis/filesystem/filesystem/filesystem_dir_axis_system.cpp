@@ -907,11 +907,21 @@ namespace file
             {
 
                ::file::patha stra;
+               
+               ::file::path pathLocator;
+               
+               ::file::path path;
+               
+               ::file::path pathAdd =papp->m_paxissession->get_locale_schema_dir(strLocale, strSchema);
 
-               for (index i = 0; i < papp->m_straMatterLocator.get_count(); i++)
+               for (index i = 0; i < papp->m_straMatterLocator.get_size(); i++)
                {
-
-                  stra.add_unique(papp->m_straMatterLocator[i] / papp->m_paxissession->get_locale_schema_dir(strLocale, strSchema));
+                  
+                  pathLocator = papp->m_straMatterLocator[i];
+                  
+                  path = pathLocator / pathAdd;
+                  
+                  stra.add_unique(path);
 
                }
 
@@ -1751,19 +1761,25 @@ namespace file
                }
 
                string strUrl;
+               
+               string strParam = patha.implode("|");
 
                if (bDir)
                {
-                  strUrl = "http://ca2.cc/api/matter/query_dir?candidate=" + System.url().url_encode(patha.implode("|"));
+                  strUrl = "http://ca2.cc/api/matter/query_dir?candidate=" + System.url().url_encode(strParam);
                }
                else
                {
-                  strUrl = "http://ca2.cc/api/matter/query_file?candidate=" + System.url().url_encode(patha.implode("|"));
+                  strUrl = "http://ca2.cc/api/matter/query_file?candidate=" + System.url().url_encode(strParam);
                }
 
                property_set set(papp);
 
                set["raw_http"] = true;
+               
+               output_debug_string("\n");
+               output_debug_string(strUrl);
+               output_debug_string("\n");
 
                strPath = App(papp).http().get(strUrl, set);
 
@@ -2272,22 +2288,29 @@ namespace file
          ::file::path system::appmatter_locator(const string & strAppName)
          {
 
-            ::file::path strRoot;
-            ::file::path strDomain;
+            ::file::path pathRoot;
+            
+            ::file::path pathDomain;
+            
+            string strLibrary = System.m_mapAppLibrary[strAppName];
 
-            appmatter_locators(strRoot, strDomain, System.m_mapAppLibrary[strAppName], strAppName);
+            appmatter_locators(pathRoot, pathDomain, strLibrary, strAppName);
 
-#if defined(CUBE) || defined(VSNORD) || defined(METROWIN)
+            if(Session.m_bMatterFromHttpCache)
+            {
 
-            return ::file::path(strRoot) / "appmatter" / strDomain;
-
-#else
-
-            return element() / strRoot / "appmatter" / strDomain;
-
-#endif
+               return pathRoot / "appmatter" / pathDomain;
+               
+            }
+            else
+            {
+            
+               return element() / pathRoot / "appmatter" / pathDomain;
+               
+            }
 
          }
+         
 
          ::file::path system::base_appmatter_locator(const ::file::path & strBase, const string & strLibraryName, const string & strAppName)
          {

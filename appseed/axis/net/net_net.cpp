@@ -3,6 +3,10 @@
 #include "net_net.h"
 
 
+#ifndef WINDOWS
+#include <arpa/inet.h>
+#endif
+
 uint32_t c_inet_to_ui(const char * src)
 {
 
@@ -369,22 +373,20 @@ inline string ip_to_string(byte b1, byte b2, byte b3, byte b4)
 
 }
 
-#ifdef LINUX
-#include <arpa/inet.h>
-#endif
+
 
 template < >
 CLASS_DECL_AXIS string & to_string(string & str, in_addr &  addr)
 {
-#ifdef LINUX
+#if defined(WINDOWS)
+   return str = ip_to_string(
+                             addr.S_un.S_un_b.s_b1,
+                             addr.S_un.S_un_b.s_b2,
+                             addr.S_un.S_un_b.s_b3,
+                             addr.S_un.S_un_b.s_b4);
+#else
    char sz[32];
    return str = inet_ntop(AF_INET, &addr, sz, sizeof(sz));
-#else
-   return str = ip_to_string(
-      addr.S_un.S_un_b.s_b1,
-      addr.S_un.S_un_b.s_b2,
-      addr.S_un.S_un_b.s_b3,
-      addr.S_un.S_un_b.s_b4);
 #endif
 }
 

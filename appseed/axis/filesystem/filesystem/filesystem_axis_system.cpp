@@ -1551,7 +1551,7 @@ restart:
          }
       }
 
-      void system::write_n_number(::file::stream_buffer *  pfile, MD5_CTX * pctx, int64_t iNumber)
+      void system::write_n_number(::file::stream_buffer *  pfile, void * pctx, int64_t iNumber)
       {
 
          string str;
@@ -1563,13 +1563,13 @@ restart:
          if (pctx != NULL)
          {
 
-            MD5_Update(pctx, (const char *)str, (int32_t)str.get_length());
+            MD5_Update((MD5_CTX *)pctx, (const char *)str, (int32_t)str.get_length());
 
          }
 
       }
 
-      void system::read_n_number(::file::stream_buffer *  pfile, MD5_CTX * pctx, int64_t & iNumber)
+      void system::read_n_number(::file::stream_buffer *  pfile, void * pctx, int64_t & iNumber)
       {
 
          uint64_t uiRead;
@@ -1588,7 +1588,7 @@ restart:
 
             if (pctx != NULL)
             {
-               MD5_Update(pctx, &ch, 1);
+               MD5_Update((MD5_CTX *)pctx, &ch, 1);
             }
 
          }
@@ -1598,25 +1598,25 @@ restart:
 
          if (pctx != NULL)
          {
-            MD5_Update(pctx, &ch, 1);
+            MD5_Update((MD5_CTX *)pctx, &ch, 1);
          }
 
          iNumber = ::str::to_int64(str);
 
       }
 
-      void system::write_gen_string(::file::stream_buffer *  pfile, MD5_CTX * pctx, string & str)
+      void system::write_gen_string(::file::stream_buffer *  pfile, void * pctx, string & str)
       {
          ::count iLen = str.get_length();
          write_n_number(pfile, pctx, iLen);
          pfile->write((const char *)str, str.get_length());
          if (pctx != NULL)
          {
-            MD5_Update(pctx, (const char *)str, (int32_t)str.get_length());
+            MD5_Update((MD5_CTX *)pctx, (const char *)str, (int32_t)str.get_length());
          }
       }
 
-      void system::read_gen_string(::file::stream_buffer * pfile, MD5_CTX * pctx, string & str)
+      void system::read_gen_string(::file::stream_buffer * pfile, void * pctx, string & str)
       {
          int64_t iLen;
          read_n_number(pfile, pctx, iLen);
@@ -1628,7 +1628,7 @@ restart:
             while (iLen - iProcessed > 0)
             {
                int32_t iProcess = (int32_t)MIN(1024 * 1024, iLen - iProcessed);
-               MD5_Update(pctx, &lpsz[iProcessed], iProcess);
+               MD5_Update((MD5_CTX *)pctx, &lpsz[iProcessed], iProcess);
                iProcessed += iProcess;
             }
          }

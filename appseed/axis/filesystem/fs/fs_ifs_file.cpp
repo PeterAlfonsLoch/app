@@ -2,6 +2,23 @@
 //#include "axis/net/net_sockets.h"
 
 
+
+#include "openssl/md5.h"
+
+template < >
+string & to_string(string & str, MD5_CTX & ctx)
+{
+   
+   unsigned char digest[MD5_DIGEST_LENGTH];
+   
+   MD5_Final(digest,&ctx);
+   
+   str = ::hex::lower_from(digest,MD5_DIGEST_LENGTH);
+   
+   return str;
+   
+}
+
 ifs_file::ifs_file(::aura::application * papp, var varFile) :
    ::object(papp),
    ::sockets::http_batch_buffer(papp),

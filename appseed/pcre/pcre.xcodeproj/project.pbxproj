@@ -10,10 +10,11 @@
 		074DA70F1C8E550500748EB7 /* pcre_util.h in Headers */ = {isa = PBXBuildFile; fileRef = 074DA70C1C8E550500748EB7 /* pcre_util.h */; };
 		074DA7101C8E550500748EB7 /* pcre.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 074DA70D1C8E550500748EB7 /* pcre.cpp */; };
 		074DA7111C8E550500748EB7 /* pcre.h in Headers */ = {isa = PBXBuildFile; fileRef = 074DA70E1C8E550500748EB7 /* pcre.h */; };
-		074DA9741C8E6B7600748EB7 /* libaurapcre.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 074DA96F1C8E6B2200748EB7 /* libaurapcre.dylib */; };
 		9A1EDB5519C83FFB00F5CCE8 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A1EDB4E19C83FE800F5CCE8 /* libaura.dylib */; };
+		9A331BD01D4BC30200255105 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A331BCF1D4BC30200255105 /* framework.h */; };
+		9A331C291D4BC53100255105 /* libaurapcre.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A331C261D4BC51A00255105 /* libaurapcre.dylib */; };
+		9A331C2A1D4BC53D00255105 /* libios_aurapcre.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A331C281D4BC51A00255105 /* libios_aurapcre.dylib */; };
 		9A6716BF1D155C9A0069A961 /* pcre.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 074DA70D1C8E550500748EB7 /* pcre.cpp */; };
-		9A6716C01D155CAF0069A961 /* libios_aurapcre.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 074DA9711C8E6B2200748EB7 /* libios_aurapcre.dylib */; };
 		9AC62E911D20C0D200A4AC0A /* libios_aura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07473E0C1B503FE4004688C5 /* libios_aura.dylib */; };
 /* End PBXBuildFile section */
 
@@ -24,27 +25,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = 077A080B1B4D7403001C85FF;
 			remoteInfo = ios_aura;
-		};
-		074DA96E1C8E6B2200748EB7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 074DA9691C8E6B2200748EB7 /* aurapcre.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9AA539B119B763C400B9F861;
-			remoteInfo = aurapcre;
-		};
-		074DA9701C8E6B2200748EB7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 074DA9691C8E6B2200748EB7 /* aurapcre.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 07D6A8471B4CBB45004FEBC2;
-			remoteInfo = ios_aurapcre;
-		};
-		074DA9721C8E6B6700748EB7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 074DA9691C8E6B2200748EB7 /* aurapcre.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 9AA5E4C216F7C61B005C45CE;
-			remoteInfo = aurapcre;
 		};
 		07557C321B4D905B0065594B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -74,9 +54,30 @@
 			remoteGlobalIDString = 9A98A6031771D67E000AE16E;
 			remoteInfo = aura;
 		};
-		9AC62E8C1D20C07800A4AC0A /* PBXContainerItemProxy */ = {
+		9A331C251D4BC51A00255105 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 074DA9691C8E6B2200748EB7 /* aurapcre.xcodeproj */;
+			containerPortal = 9A331C201D4BC51900255105 /* aurapcre.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9AA539B119B763C400B9F861;
+			remoteInfo = aurapcre;
+		};
+		9A331C271D4BC51A00255105 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A331C201D4BC51900255105 /* aurapcre.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 07D6A8471B4CBB45004FEBC2;
+			remoteInfo = ios_aurapcre;
+		};
+		9A331E641D4BDBF000255105 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A331C201D4BC51900255105 /* aurapcre.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9AA5E4C216F7C61B005C45CE;
+			remoteInfo = aurapcre;
+		};
+		9A331E691D4BDBF900255105 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A331C201D4BC51900255105 /* aurapcre.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 07D6A8271B4CBB45004FEBC2;
 			remoteInfo = ios_aurapcre;
@@ -87,9 +88,10 @@
 		074DA70C1C8E550500748EB7 /* pcre_util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pcre_util.h; sourceTree = SOURCE_ROOT; };
 		074DA70D1C8E550500748EB7 /* pcre.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pcre.cpp; sourceTree = SOURCE_ROOT; };
 		074DA70E1C8E550500748EB7 /* pcre.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pcre.h; sourceTree = SOURCE_ROOT; };
-		074DA9691C8E6B2200748EB7 /* aurapcre.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aurapcre.xcodeproj; path = ../../aura/pcre/aurapcre.xcodeproj; sourceTree = "<group>"; };
 		07D6A8471B4CBB45004FEBC2 /* libios_pcre.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_pcre.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A1EDB4719C83FE800F5CCE8 /* aura.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aura.xcodeproj; path = ../../appseed/aura/aura.xcodeproj; sourceTree = "<group>"; };
+		9A331BCF1D4BC30200255105 /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = SOURCE_ROOT; };
+		9A331C201D4BC51900255105 /* aurapcre.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aurapcre.xcodeproj; path = ../../aura/pcre/aurapcre.xcodeproj; sourceTree = "<group>"; };
 		9AA539B119B763C400B9F861 /* libpcre.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libpcre.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -98,8 +100,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A331C2A1D4BC53D00255105 /* libios_aurapcre.dylib in Frameworks */,
 				9AC62E911D20C0D200A4AC0A /* libios_aura.dylib in Frameworks */,
-				9A6716C01D155CAF0069A961 /* libios_aurapcre.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -107,7 +109,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				074DA9741C8E6B7600748EB7 /* libaurapcre.dylib in Frameworks */,
+				9A331C291D4BC53100255105 /* libaurapcre.dylib in Frameworks */,
 				9A1EDB5519C83FFB00F5CCE8 /* libaura.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -115,20 +117,11 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		074DA96A1C8E6B2200748EB7 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				074DA96F1C8E6B2200748EB7 /* libaurapcre.dylib */,
-				074DA9711C8E6B2200748EB7 /* libios_aurapcre.dylib */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		9A1B2F7D16A2AF5C00875A94 = {
 			isa = PBXGroup;
 			children = (
+				9A331C201D4BC51900255105 /* aurapcre.xcodeproj */,
 				9A1EDB4719C83FE800F5CCE8 /* aura.xcodeproj */,
-				074DA9691C8E6B2200748EB7 /* aurapcre.xcodeproj */,
 				9A1EDAE819C83CD000F5CCE8 /* pcre */,
 				9A4E84451D1FD172008A419B /* Products */,
 			);
@@ -137,6 +130,7 @@
 		9A1EDAE819C83CD000F5CCE8 /* pcre */ = {
 			isa = PBXGroup;
 			children = (
+				9A331BCF1D4BC30200255105 /* framework.h */,
 				074DA70C1C8E550500748EB7 /* pcre_util.h */,
 				074DA70D1C8E550500748EB7 /* pcre.cpp */,
 				074DA70E1C8E550500748EB7 /* pcre.h */,
@@ -151,6 +145,15 @@
 				9A1EDB4E19C83FE800F5CCE8 /* libaura.dylib */,
 				07473E0C1B503FE4004688C5 /* libios_aura.dylib */,
 				9A1EDB5219C83FE800F5CCE8 /* aura_iosTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9A331C211D4BC51900255105 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9A331C261D4BC51A00255105 /* libaurapcre.dylib */,
+				9A331C281D4BC51A00255105 /* libios_aurapcre.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -178,6 +181,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A331BD01D4BC30200255105 /* framework.h in Headers */,
 				074DA7111C8E550500748EB7 /* pcre.h in Headers */,
 				074DA70F1C8E550500748EB7 /* pcre_util.h in Headers */,
 			);
@@ -197,7 +201,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				9AC62E8D1D20C07800A4AC0A /* PBXTargetDependency */,
+				9A331E6A1D4BDBF900255105 /* PBXTargetDependency */,
 				07557C331B4D905B0065594B /* PBXTargetDependency */,
 			);
 			name = ios_pcre;
@@ -216,7 +220,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				074DA9731C8E6B6700748EB7 /* PBXTargetDependency */,
+				9A331E651D4BDBF000255105 /* PBXTargetDependency */,
 				9A1EDB5419C83FF200F5CCE8 /* PBXTargetDependency */,
 			);
 			name = pcre;
@@ -249,8 +253,8 @@
 					ProjectRef = 9A1EDB4719C83FE800F5CCE8 /* aura.xcodeproj */;
 				},
 				{
-					ProductGroup = 074DA96A1C8E6B2200748EB7 /* Products */;
-					ProjectRef = 074DA9691C8E6B2200748EB7 /* aurapcre.xcodeproj */;
+					ProductGroup = 9A331C211D4BC51900255105 /* Products */;
+					ProjectRef = 9A331C201D4BC51900255105 /* aurapcre.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -269,20 +273,6 @@
 			remoteRef = 07473E0B1B503FE4004688C5 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		074DA96F1C8E6B2200748EB7 /* libaurapcre.dylib */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.dylib";
-			path = libaurapcre.dylib;
-			remoteRef = 074DA96E1C8E6B2200748EB7 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		074DA9711C8E6B2200748EB7 /* libios_aurapcre.dylib */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.dylib";
-			path = libios_aurapcre.dylib;
-			remoteRef = 074DA9701C8E6B2200748EB7 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		9A1EDB4E19C83FE800F5CCE8 /* libaura.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
@@ -295,6 +285,20 @@
 			fileType = wrapper.cfbundle;
 			path = aura_iosTests.xctest;
 			remoteRef = 9A1EDB5119C83FE800F5CCE8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9A331C261D4BC51A00255105 /* libaurapcre.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libaurapcre.dylib;
+			remoteRef = 9A331C251D4BC51A00255105 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9A331C281D4BC51A00255105 /* libios_aurapcre.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libios_aurapcre.dylib;
+			remoteRef = 9A331C271D4BC51A00255105 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -319,11 +323,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		074DA9731C8E6B6700748EB7 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = aurapcre;
-			targetProxy = 074DA9721C8E6B6700748EB7 /* PBXContainerItemProxy */;
-		};
 		07557C331B4D905B0065594B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = aura_ios;
@@ -334,10 +333,15 @@
 			name = aura;
 			targetProxy = 9A1EDB5319C83FF200F5CCE8 /* PBXContainerItemProxy */;
 		};
-		9AC62E8D1D20C07800A4AC0A /* PBXTargetDependency */ = {
+		9A331E651D4BDBF000255105 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = aurapcre;
+			targetProxy = 9A331E641D4BDBF000255105 /* PBXContainerItemProxy */;
+		};
+		9A331E6A1D4BDBF900255105 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = ios_aurapcre;
-			targetProxy = 9AC62E8C1D20C07800A4AC0A /* PBXContainerItemProxy */;
+			targetProxy = 9A331E691D4BDBF900255105 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -400,7 +404,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../.. $(WorkspaceDir)/../../appseed cpp $(WorkspaceDir)/../../../app/include $(WorkspaceDir)/../../../app/appseed/aura";
+				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../nodeapp/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../.. $(WorkspaceDir)/../../appseed cpp $(WorkspaceDir)/../../../app/include $(WorkspaceDir)/../../../app/appseed/aura";
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};
 			name = Debug;
@@ -444,7 +448,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../.. $(WorkspaceDir)/../../appseed cpp $(WorkspaceDir)/../../../app/include $(WorkspaceDir)/../../../app/appseed/aura";
+				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../nodeapp/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../.. $(WorkspaceDir)/../../appseed cpp $(WorkspaceDir)/../../../app/include $(WorkspaceDir)/../../../app/appseed/aura";
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};
 			name = Release;

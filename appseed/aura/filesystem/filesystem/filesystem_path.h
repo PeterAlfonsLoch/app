@@ -32,12 +32,30 @@ namespace file
       int               m_iDir = -1; // if negative, not set/calculated/retrieved whether is a directory/folder/(file/folder/(...) container)
       strsize           m_iName = -1; // if negative, not set/calculated/retrieved where name starts
       strsize           m_iRelative = -1; // if negative, not set/calculated/retrieved where relative starts - this information is very, very relative :-) much more than all own other ::file::path cached information (relative to which folders... not stored this information...)
-
+      
+      path_meta()
+      {
+         
+         m_epath     = path_none;
+         m_iSize     = -1;
+         m_iDir      = -1;
+         m_iName     = -1;
+         m_iRelative = -1;
+         
+      }
+      
+      
    };
+   
 
+   CLASS_DECL_AURA string normalize_path(string strPath, e_path epath = path_none);
+   
+   inline char path_sep(e_path epath);
+   
+   inline char path_osep(e_path epath);
 
    // not rigorous at all file::path ... more "ryg"orous with performance and like you should know what are you doing
-   class CLASS_DECL_AURA path:
+   class CLASS_DECL_AURA path :
       public string,
       public path_meta
    {
@@ -45,191 +63,77 @@ namespace file
 
       //typedef ::string_array < ::file::path,string > patha;
 
-      static const char * s_pszDirSep;
-      static const char * s_pszOtherDirSep;
-
-      path(e_context_switcher_null) { m_epath = path_file; }
-      path(e_path epath = path_file) { m_epath = epath; }
-      path(const string & str,e_path epath = path_none): string(str) { m_epath = get_path_type(str, epath); normalize(); }
-      path(const id & id,e_path epath = path_none): string(id) { m_epath = get_path_type(*this,epath); normalize(); }
-      path(const var & var, e_path epath = path_none) : string(var) { m_epath = get_path_type(*this, epath); normalize(); }
-      path(const path & path) { operator = (path); }
-      path(path && path): string(::move(path)) { *((path_meta *)this) = (const path_meta &) path; }
-      path(const char * psz,e_path epath = path_none): path((const string &)psz, epath){};
-      path(const unichar * psz,e_path epath = path_none): path((const string &)psz,epath){};
-      path(const wstring & wstr,e_path epath = path_none): path((const string &)wstr,epath){};
+      path(e_context_switcher_null);
+      path(e_path epath = path_file);
+      path(const string & str,e_path epath = path_none);
+      path(const id & id,e_path epath = path_none);
+      path(const var & var, e_path epath = path_none);
+      path(const path & path);
+      path(path && path);
+      path(const char * psz,e_path epath = path_none);
+      path(const unichar * psz,e_path epath = path_none);
+      path(const wstring & wstr,e_path epath = path_none);
       //path(const var & var,e_path epath = path_file);
       path(const property & property,e_path epath = path_none);
 
       ~path() throw();
 
 
-      void set_type(e_path epath)
-      {
-         if(epath != m_epath)
-         {
-            m_epath = epath;
-            normalize();
-         }
-      }
-
-
+      void set_type(e_path epath);
+      
+      
       inline char sep() const
       {
-         return s_pszDirSep[(int)m_epath];
+         
+         return path_sep(m_epath);
+         
       }
 
       inline char osep() const
       {
-         return s_pszOtherDirSep[(int)m_epath];
-      }
-
-      void normalize()
-      {
-
-         string str = defer_solve_relative_compresions(*this);
-
-         string::operator=(str);
-
-         if(has_char())
-         {
-
-            trim_right("\\/");
-
-            if(is_empty())
-            {
-
-               string::operator = (sep());
-
-            }
-
-         }
-         else
-         {
-
-            trim_right("\\/");
-
-         }
-
-         replace(osep(),sep());
-
          
-
+         return path_osep(m_epath);
+         
       }
 
+      path & operator = (const ::file::path & path);
 
-      path & operator = (const ::file::path & path)
-      {
+      path & operator = (const string & str);
 
-         if(&path != this)
-         {
+      bool operator == (const path & path) const;
 
-            string::operator  = ((const string &) path);
-            *((path_meta *)this) = (const path_meta &)path;
-
-         }
-
-         return *this;
-
-
-      }
-
-      path & operator = (const string & str)
-      {
-
-         *((path_meta*)this) = path_meta();
-         string::operator  = (str);
-         m_epath = is_url_dup(str) ? path_url : path_file;
-         normalize();
-
-         return *this;
-
-      
-      
-      }
-
-      bool operator == (const path & path) const
-      {
-         return is_equal(path);
-      }
-
-      bool operator == (const string & str) const { return operator == (path(str));  }
-      bool operator == (const char * psz) const { return operator == (string(psz)); }
+      bool operator == (const string & str) const;
+      bool operator == (const char * psz) const;
       bool operator == (const var & var) const;
 
-      bool operator != (const path & path) const
-      {
-         return !is_equal(path);
-      }
+      bool operator != (const path & path) const;
 
-      bool operator != (const string & str) const { return operator != (path(str)); }
-      bool operator != (const char * psz) const { return operator != (string(psz)); }
+      bool operator != (const string & str) const;
+      bool operator != (const char * psz) const;
       bool operator != (const var & var) const;
 
-      path operator + (const path & path) const
-      {
-
-         return ::file::path((const string &)*this  + string((const string &)path), m_epath);
-
-      }
+      path operator + (const path & path) const;
 
 
-      path operator + (const string & str) const
-      {
+      path operator + (const string & str) const;
 
-         return ::file::path((const string &)*this + string((const string &)str),m_epath);
-
-
-      }
-
-      path operator + (const char * psz) const { return operator + (string(psz));   }
+      path operator + (const char * psz) const;
       path operator + (const var & var) const;
       path operator + (const property & property) const;
       path operator + (const id & id) const;
 
-      path & operator += (const path & path)
-      {
-
-         string::operator += (string((const string &)path).trim_left("\\/"));
-
-         return *this;
-
-      }
-
-      path & operator += (const string & str)
-      {
-
-         string::operator += ( + string(str).trim_left("\\/"));
-
-         normalize();
-
-         return *this;
-
-      }
-
-      path operator / (const path & path) const
-      {
-
-         return ::file::path((const string &)*this + sep() + string((const string &)path).trim_left("\\/"),m_epath);
-
-      }
-      path operator / (const string & str) const { return operator /(::file::path(str)); }
-      path operator / (const char * psz) const { return operator /(::file::path(psz)); }
+      path & operator += (const path & path);
+      path & operator += (const string & str);
+      path operator / (const path & path) const;
+      path operator / (const string & str) const;
+      path operator / (const char * psz) const;
       path operator / (const property & property) const;
+      
+      path & operator /= (const path & path);
+      path & operator /= (const string & str);
+      path & operator /= (const char * psz);
 
-      path & operator /= (const path & path)
-      {
 
-         string::operator += (string(sep()) + string((const string &)path).trim_left("\\/"));
-
-         normalize();
-
-         return *this;
-
-      }
-
-      path & operator /= (const string & str) { return operator /=(::file::path(str)); }
-      path & operator /= (const char * psz) { return operator /=(::file::path(psz)); }
 
       //::file::path & file_cat(const string & str) { return *this + str; }
 
@@ -239,17 +143,17 @@ namespace file
 
       //string operator << (const string & str) const { return arg(str); }
 
-      path & operator = (const char * psz) { return operator = (string(psz)); }
-      path & operator += (const char * psz) { return operator += (string(psz)); }
+      path & operator = (const char * psz);
+      path & operator += (const char * psz);
 
       path & operator = (const var & var);
       path & operator += (const var & var);
 
-      path & operator = (const wstring & wstr) { return operator = (string(wstr)); }
-      path & operator += (const wstring & wstr) { return operator += (string(wstr)); }
+      path & operator = (const wstring & wstr);
+      path & operator += (const wstring & wstr);
 
-      path & operator = (const unichar * psz) { return operator = (wstring(psz)); }
-      path & operator += (const unichar * psz) { return operator += (wstring(psz)); }
+      path & operator = (const unichar * psz);
+      path & operator += (const unichar * psz);
 
       //path operator * () const;
 
@@ -257,69 +161,35 @@ namespace file
       //path operator -- (int) const { return operator --(); }
 
 
-      string & to_string(string & str) const
-      {
-         return str = (const string &)*this;
-      }
+      string & to_string(string & str) const;
 
       path sibling(const path & path) const;
       path sibling(const string & str) const;
       path sibling(const char * psz) const;
 
-      path operator * (const path & path) const
-      {
+      path operator * (const path & path) const;
 
-         return sibling(path);
-
-      }
-
-      path operator * (const string & str) const { return operator * (::file::path(str)); }
-      path operator * (const char * psz) const { return operator * (::file::path(psz)); }
+      path operator * (const string & str) const;
+      path operator * (const char * psz) const;
       path operator * (const property & property) const;
 
-      path & operator *= (const path & path)
-      {
+      path & operator *= (const path & path);
 
-         if(this != &path)
-         {
-
-            *this = sibling(path);
-
-         }
-
-         return *this;
-
-      }
-
-      path & operator *= (const string & str) { return operator *= (::file::path(str)); }
-      path & operator *= (const char * psz) { return operator *= (::file::path(psz)); }
+      path & operator *= (const string & str);
+      path & operator *= (const char * psz);
       path & operator *= (const property & property);
 
-      ::file::path title() const
-      {
-         return ::file_title_dup(operator const char*());
-      }
+      ::file::path title() const;
 
-      ::file::path name() const
-      {
-         if(m_iName < 0)
-            ((path *) this)->m_iName = find_file_name();
-         return Mid(m_iName);
-      }
+      ::file::path name() const;
 
-      index find_file_name() const
-      {
-         return MAX(0, reverse_find(sep()) + 1);
-      }
+      index find_file_name() const;
 
       bool is_equal(const ::file::path & path2) const;
 
       string extension() const;
 
-      string ext() const
-      {
-         return extension();
-      }
+      string ext() const;
 
       string final_extension() const;
 
@@ -341,56 +211,67 @@ namespace file
       //};
 
       void split(patha & patha) const;
-      bool is_relative()
-      {
-         return file_path_is_relative_dup(*this) != FALSE;
-      }
+      bool is_relative();
 
       patha & ascendants_path(patha & patha) const;
       patha & ascendants_name(patha & namea) const;
       patha ascendants_path() const;
       patha ascendants_name() const;
 
-      path relative() const { return Mid(MAX(0,m_iRelative)); }
+      path relative() const;
 
 
       path folder() const;
       path folder(int i) const;
-      inline path up() const { return folder(); }
-      inline path up(int i) const { return folder(i); }
-      inline path & go_up();
+      path up() const;
+      path up(int i) const;
+      path & go_up();
       path & go_up(int i);
-      inline path & operator -= (int i) { return go_up(i); }
+      path & operator -= (int i);
 
 
 
    };
 
 
-   inline e_path get_path_type(const string & str, e_path epathForce)
+   CLASS_DECL_AURA e_path get_path_type(const string & str, e_path epathForce);
+
+
+   inline char path_sep(e_path epath)
    {
-
-      if(epathForce != path_none)
+      
+#ifdef WINDOWS
+      
+      if(epath == path_file)
       {
-
-         return epathForce;
-
+         
+         return '\\';
+         
       }
-      else if(is_url_dup(str))
-      {
-
-         return path_url;
-
-      }
-      else
-      {
-
-         return path_file;
-
-      }
-
+      
+#endif
+      
+      return '/';
+      
    }
-
+   
+   inline char path_osep(e_path epath)
+   {
+      
+#ifdef WINDOWS
+      
+      if(epath == path_file)
+      {
+         
+         return '/';
+         
+      }
+      
+#endif
+      
+      return '\\';
+      
+   }
 
 } // namespace file
 

@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		077C88F11B51A04E00AB2A41 /* libaxiszlib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07A371F11B25EC6000E4F888 /* libaxiszlib.dylib */; };
 		07B6577B190F3CA2002DAADE /* libios_axispng.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B65764190F3CA2002DAADE /* libios_axispng.dylib */; };
+		9A331C2C1D4BC55400255105 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A331C2B1D4BC55400255105 /* libz.tbd */; };
+		9A331C2E1D4BC55C00255105 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A331C2D1D4BC55C00255105 /* libz.tbd */; };
 		9A4E865E1D1FD941008A419B /* config.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A4E86361D1FD940008A419B /* config.h */; };
 		9A4E865F1D1FD941008A419B /* png.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A4E86421D1FD941008A419B /* png.c */; };
 		9A4E86601D1FD941008A419B /* pngdebug.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A4E86431D1FD941008A419B /* pngdebug.h */; };
@@ -45,44 +46,15 @@
 		9AC62E0A1D20BC9A00A4AC0A /* pngwrite.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A4E86531D1FD941008A419B /* pngwrite.c */; };
 		9AC62E0B1D20BC9A00A4AC0A /* pngwtran.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A4E86541D1FD941008A419B /* pngwtran.c */; };
 		9AC62E0C1D20BC9A00A4AC0A /* pngwutil.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A4E86551D1FD941008A419B /* pngwutil.c */; };
-		9AC62E4F1D20BCE100A4AC0A /* libios_axiszlib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07D6A73F1B4CADC4004FEBC2 /* libios_axiszlib.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		077C88E41B519E2500AB2A41 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 07A371EC1B25EC6000E4F888 /* axiszlib.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 9AA5E4C216F7C61B005C45CE;
-			remoteInfo = axiszlib;
-		};
-		07A371F01B25EC6000E4F888 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 07A371EC1B25EC6000E4F888 /* axiszlib.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9AA5E6D616F7C61B005C45CE;
-			remoteInfo = axiszlib;
-		};
 		07B65779190F3CA2002DAADE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9A574B8F16AAB906000CC4EF /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 07B65763190F3CA2002DAADE;
 			remoteInfo = math_ios;
-		};
-		07D6A73E1B4CADC4004FEBC2 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 07A371EC1B25EC6000E4F888 /* axiszlib.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 07108D041B4C97EF00A28F80;
-			remoteInfo = axiszlib_ios;
-		};
-		9A986DA11D226E37001F4C04 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 07A371EC1B25EC6000E4F888 /* axiszlib.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 07108CE31B4C97EF00A28F80;
-			remoteInfo = ios_axiszlib;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -99,9 +71,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		07A371EC1B25EC6000E4F888 /* axiszlib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axiszlib.xcodeproj; path = ../zlib/axiszlib.xcodeproj; sourceTree = "<group>"; };
 		07B65764190F3CA2002DAADE /* libios_axispng.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libios_axispng.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		07B65773190F3CA2002DAADE /* axispng_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = axispng_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A331C2B1D4BC55400255105 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/usr/lib/libz.tbd; sourceTree = DEVELOPER_DIR; };
+		9A331C2D1D4BC55C00255105 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		9A4E86361D1FD940008A419B /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
 		9A4E86421D1FD941008A419B /* png.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = png.c; sourceTree = "<group>"; };
 		9A4E86431D1FD941008A419B /* pngdebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pngdebug.h; sourceTree = "<group>"; };
@@ -132,7 +105,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9AC62E4F1D20BCE100A4AC0A /* libios_axiszlib.dylib in Frameworks */,
+				9A331C2C1D4BC55400255105 /* libz.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -148,22 +121,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				077C88F11B51A04E00AB2A41 /* libaxiszlib.dylib in Frameworks */,
+				9A331C2E1D4BC55C00255105 /* libz.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		07A371ED1B25EC6000E4F888 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				07A371F11B25EC6000E4F888 /* libaxiszlib.dylib */,
-				07D6A73F1B4CADC4004FEBC2 /* libios_axiszlib.dylib */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		9A4E86741D1FD950008A419B /* png */ = {
 			isa = PBXGroup;
 			children = (
@@ -196,7 +160,8 @@
 		9A574B8D16AAB906000CC4EF = {
 			isa = PBXGroup;
 			children = (
-				07A371EC1B25EC6000E4F888 /* axiszlib.xcodeproj */,
+				9A331C2D1D4BC55C00255105 /* libz.tbd */,
+				9A331C2B1D4BC55400255105 /* libz.tbd */,
 				9A4E86741D1FD950008A419B /* png */,
 				9A574B9916AAB906000CC4EF /* Products */,
 			);
@@ -241,7 +206,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				9A986DA21D226E37001F4C04 /* PBXTargetDependency */,
 			);
 			name = ios_axispng;
 			productName = math_ios;
@@ -277,7 +241,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				077C88E51B519E2500AB2A41 /* PBXTargetDependency */,
 			);
 			name = axispng;
 			productName = ca2;
@@ -308,12 +271,6 @@
 			mainGroup = 9A574B8D16AAB906000CC4EF;
 			productRefGroup = 9A574B9916AAB906000CC4EF /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 07A371ED1B25EC6000E4F888 /* Products */;
-					ProjectRef = 07A371EC1B25EC6000E4F888 /* axiszlib.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				9A574B9716AAB906000CC4EF /* axispng */,
@@ -322,23 +279,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		07A371F11B25EC6000E4F888 /* libaxiszlib.dylib */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.dylib";
-			path = libaxiszlib.dylib;
-			remoteRef = 07A371F01B25EC6000E4F888 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		07D6A73F1B4CADC4004FEBC2 /* libios_axiszlib.dylib */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.dylib";
-			path = libios_axiszlib.dylib;
-			remoteRef = 07D6A73E1B4CADC4004FEBC2 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		07B65771190F3CA2002DAADE /* Resources */ = {
@@ -406,20 +346,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		077C88E51B519E2500AB2A41 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = axiszlib;
-			targetProxy = 077C88E41B519E2500AB2A41 /* PBXContainerItemProxy */;
-		};
 		07B6577A190F3CA2002DAADE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 07B65763190F3CA2002DAADE /* ios_axispng */;
 			targetProxy = 07B65779190F3CA2002DAADE /* PBXContainerItemProxy */;
-		};
-		9A986DA21D226E37001F4C04 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = ios_axiszlib;
-			targetProxy = 9A986DA11D226E37001F4C04 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -585,7 +515,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../.. $(WorkspaceDir)/../../appseed";
+				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../nodeapp/include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../.. $(WorkspaceDir)/../../appseed";
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};
 			name = Debug;
@@ -628,7 +558,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../.. $(WorkspaceDir)/../../appseed";
+				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../nodeapp/include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../.. $(WorkspaceDir)/../../appseed";
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};
 			name = Release;

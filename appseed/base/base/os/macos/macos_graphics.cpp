@@ -177,8 +177,11 @@ WINBOOL GetWindowRect(oswindow hwnd, LPRECT lprect)
    lprect->top       = attrs.y;
    lprect->right     = lprect->left    + attrs.width;
    lprect->bottom    = lprect->top     + attrs.height;*/
-    
-   return get_nswindow_rect(hwnd, lprect) ? 1 : 0;
+   
+   ::copy(lprect, hwnd->m_pui->m_pimpl->m_rectParentClient);
+   
+   return true;
+   
     
     
 }

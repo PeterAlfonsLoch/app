@@ -130,7 +130,6 @@
 		9A986CF61D2266AC001F4C04 /* libios_aura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A986CF51D2266AC001F4C04 /* libios_aura.dylib */; };
 		9A986EA21D22718C001F4C04 /* libios_pcre.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4E85CC1D1FD49A008A419B /* libios_pcre.dylib */; };
 		9A986EA41D2271A7001F4C04 /* libios_auracharguess.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4E85671D1FD49A008A419B /* libios_auracharguess.dylib */; };
-		9A9F0F571D25D25F0082A834 /* libios_axisbzip2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A9F0F561D25D25F0082A834 /* libios_axisbzip2.dylib */; };
 		9AC13CCB1D20CF400026B367 /* libios_base.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4E85261D1FD49A008A419B /* libios_base.dylib */; };
 		9AC13CCC1D20CF7B0026B367 /* _core.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 078451621B264DF400C91416 /* _core.cpp */; };
 		9AC13CCD1D20CF7B0026B367 /* _plugin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 078451641B264E0F00C91416 /* _plugin.cpp */; };
@@ -147,13 +146,26 @@
 		9ACE46E71D1FE46D00A1E0AD /* libbase.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4E85241D1FD49A008A419B /* libbase.dylib */; };
 		9ACE46E91D1FE47700A1E0AD /* libaxis.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ACE46E81D1FE47700A1E0AD /* libaxis.dylib */; };
 		9ACE46EB1D1FE47D00A1E0AD /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ACE46EA1D1FE47D00A1E0AD /* libaura.dylib */; };
-		9ACE46EF1D1FE4C300A1E0AD /* libaxisbzip2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ACE46EE1D1FE4C300A1E0AD /* libaxisbzip2.dylib */; };
 		9AE24DF31904CF6E001AEFFB /* libios_core.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24DDC1904CF6E001AEFFB /* libios_core.dylib */; };
 		9AE24DF91904CF6F001AEFFB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9AE24DF71904CF6F001AEFFB /* InfoPlist.strings */; };
 		9AE24DFB1904CF6F001AEFFB /* core_iosTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AE24DFA1904CF6F001AEFFB /* core_iosTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		9A331E341D4BDA0700255105 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A67165E1D1550460069A961 /* pcre.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9AA5E4C216F7C61B005C45CE;
+			remoteInfo = pcre;
+		};
+		9A331E391D4BDA0D00255105 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A67165E1D1550460069A961 /* pcre.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 07D6A8271B4CBB45004FEBC2;
+			remoteInfo = ios_pcre;
+		};
 		9A4E85231D1FD49A008A419B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9AA6A3871907ACBE000A1F4A /* base.xcodeproj */;
@@ -556,7 +568,6 @@
 		9A5CD90F1D20D0C70093150A /* libios_axis.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_axis.dylib; path = "../axis/build/Debug-iphoneos/libios_axis.dylib"; sourceTree = "<group>"; };
 		9A67165E1D1550460069A961 /* pcre.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = pcre.xcodeproj; path = ../pcre/pcre.xcodeproj; sourceTree = "<group>"; };
 		9A986CF51D2266AC001F4C04 /* libios_aura.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_aura.dylib; path = "../aura/build/Debug-iphoneos/libios_aura.dylib"; sourceTree = "<group>"; };
-		9A9F0F561D25D25F0082A834 /* libios_axisbzip2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_axisbzip2.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/basic-ios-gidstxlhclvvknehqfkxlzuwomwq/Build/Products/Debug-iphonesimulator/libios_axisbzip2.dylib"; sourceTree = "<group>"; };
 		9AA1005D1997010D004F84BD /* filemanager_impact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filemanager_impact.h; sourceTree = "<group>"; };
 		9AA1005F1997010D004F84BD /* filemanager_main_view.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filemanager_main_view.h; sourceTree = "<group>"; };
 		9AA100611997010D004F84BD /* filemanager_manager_template.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filemanager_manager_template.h; sourceTree = "<group>"; };
@@ -567,10 +578,8 @@
 		9AA6A3871907ACBE000A1F4A /* base.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = base.xcodeproj; path = ../base/base.xcodeproj; sourceTree = "<group>"; };
 		9AC62E861D20C04600A4AC0A /* libaura.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaura.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/basic-ios-bmuegusfgbffmoeixicbxhlnbzop/Build/Products/Debug-iphonesimulator/libaura.dylib"; sourceTree = "<group>"; };
 		9AC62E881D20C04F00A4AC0A /* libaxis.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaxis.dylib; path = "../axis/build/Debug-iphoneos/libaxis.dylib"; sourceTree = "<group>"; };
-		9AC62E921D20C0E900A4AC0A /* libios_axisbzip2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_axisbzip2.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/basic-ios-bmuegusfgbffmoeixicbxhlnbzop/Build/Products/Debug-iphonesimulator/libios_axisbzip2.dylib"; sourceTree = "<group>"; };
 		9ACE46E81D1FE47700A1E0AD /* libaxis.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaxis.dylib; path = ../axis/build/Debug/libaxis.dylib; sourceTree = "<group>"; };
 		9ACE46EA1D1FE47D00A1E0AD /* libaura.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaura.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/core-mac-ekqwiewkpeyhdudtxguywfqohhby/Build/Products/Debug/libaura.dylib"; sourceTree = "<group>"; };
-		9ACE46EE1D1FE4C300A1E0AD /* libaxisbzip2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaxisbzip2.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/core-mac-ekqwiewkpeyhdudtxguywfqohhby/Build/Products/Debug/libaxisbzip2.dylib"; sourceTree = "<group>"; };
 		9AE24DDC1904CF6E001AEFFB /* libios_core.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libios_core.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AE24DEB1904CF6E001AEFFB /* core_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = core_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AE24DF61904CF6F001AEFFB /* core_iosTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "core_iosTests-Info.plist"; sourceTree = "<group>"; };
@@ -592,7 +601,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9ACE46EF1D1FE4C300A1E0AD /* libaxisbzip2.dylib in Frameworks */,
 				9ACE46EB1D1FE47D00A1E0AD /* libaura.dylib in Frameworks */,
 				9ACE46E91D1FE47700A1E0AD /* libaxis.dylib in Frameworks */,
 				9ACE46E71D1FE46D00A1E0AD /* libbase.dylib in Frameworks */,
@@ -607,7 +615,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A9F0F571D25D25F0082A834 /* libios_axisbzip2.dylib in Frameworks */,
 				9A986EA41D2271A7001F4C04 /* libios_auracharguess.dylib in Frameworks */,
 				9A986EA21D22718C001F4C04 /* libios_pcre.dylib in Frameworks */,
 				9A986CF61D2266AC001F4C04 /* libios_aura.dylib in Frameworks */,
@@ -1187,14 +1194,11 @@
 		9A8897AB14C2C8DB006B4023 = {
 			isa = PBXGroup;
 			children = (
-				9A9F0F561D25D25F0082A834 /* libios_axisbzip2.dylib */,
 				9A986CF51D2266AC001F4C04 /* libios_aura.dylib */,
 				9A5CD90F1D20D0C70093150A /* libios_axis.dylib */,
 				9A5CD90C1D20D0B60093150A /* libaura.dylib */,
-				9AC62E921D20C0E900A4AC0A /* libios_axisbzip2.dylib */,
 				9AC62E881D20C04F00A4AC0A /* libaxis.dylib */,
 				9AC62E861D20C04600A4AC0A /* libaura.dylib */,
-				9ACE46EE1D1FE4C300A1E0AD /* libaxisbzip2.dylib */,
 				9ACE46EA1D1FE47D00A1E0AD /* libaura.dylib */,
 				9ACE46E81D1FE47700A1E0AD /* libaxis.dylib */,
 				0793EA141CA40578001374D8 /* auracharguess.xcodeproj */,
@@ -1389,6 +1393,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				9A331E351D4BDA0700255105 /* PBXTargetDependency */,
 				9ACE46E21D1FE44D00A1E0AD /* PBXTargetDependency */,
 				9ACE46D91D1FE44700A1E0AD /* PBXTargetDependency */,
 			);
@@ -1407,6 +1412,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				9A331E3A1D4BDA0D00255105 /* PBXTargetDependency */,
 				9AC13CD91D20CFA00026B367 /* PBXTargetDependency */,
 				9AC13CD71D20CF9C0026B367 /* PBXTargetDependency */,
 			);
@@ -1593,6 +1599,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		9A331E351D4BDA0700255105 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = pcre;
+			targetProxy = 9A331E341D4BDA0700255105 /* PBXContainerItemProxy */;
+		};
+		9A331E3A1D4BDA0D00255105 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ios_pcre;
+			targetProxy = 9A331E391D4BDA0D00255105 /* PBXContainerItemProxy */;
+		};
 		9AC13CD71D20CF9C0026B367 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = ios_auracharguess;
@@ -1715,7 +1731,7 @@
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
-				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/core $(WorkspaceDir)/../../../app/appseed/base $(WorkspaceDir)/../../../app/appseed/axis $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../.. $(WorkspaceDir)/../../base/include $(WorkspaceDir)/../../../app/base/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/base";
+				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../nodeapp/include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/core $(WorkspaceDir)/../../../app/appseed/base $(WorkspaceDir)/../../../app/appseed/axis $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../.. $(WorkspaceDir)/../../base/include $(WorkspaceDir)/../../../app/base/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/base";
 				WARNING_CFLAGS = (
 					"-Wno-comment",
 					"-Wno-unused-value",
@@ -1772,7 +1788,7 @@
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
-				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/core $(WorkspaceDir)/../../../app/appseed/base $(WorkspaceDir)/../../../app/appseed/axis $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../.. $(WorkspaceDir)/../../base/include $(WorkspaceDir)/../../../app/base/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/base";
+				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../nodeapp/include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/core $(WorkspaceDir)/../../../app/appseed/base $(WorkspaceDir)/../../../app/appseed/axis $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../.. $(WorkspaceDir)/../../base/include $(WorkspaceDir)/../../../app/base/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/base";
 				VALIDATE_PRODUCT = YES;
 				WARNING_CFLAGS = (
 					"-Wno-comment",

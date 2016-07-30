@@ -79,7 +79,8 @@ static int allow_customize_debug = 1;/* exchanging memory-related functions at
 static void *(*malloc_func)(size_t)         = memory_alloc;
 static void *default_malloc_ex(size_t num,const char *file,int line)
 {
-   return malloc_func(num);
+   //return malloc_func(num);
+   return memory_alloc(num);
 }
 static void *(*malloc_ex_func)(size_t,const char *file,int line)
 = default_malloc_ex;
@@ -88,7 +89,8 @@ static void *(*realloc_func)(void *,size_t)= memory_realloc;
 static void *default_realloc_ex(void *str,size_t num,
    const char *file,int line)
 {
-   return realloc_func(str,num);
+   //return realloc_func(str,num);
+   return memory_realloc(str,num);
 }
 static void *(*realloc_ex_func)(void *,size_t,const char *file,int line)
 = default_realloc_ex;
@@ -104,7 +106,8 @@ static void(*free_func)(void *)            = crypto_memory_free_func;
 static void *(*malloc_locked_func)(size_t)  = memory_alloc;
 static void *default_malloc_locked_ex(size_t num,const char *file,int line)
 {
-   return malloc_locked_func(num);
+   //return malloc_locked_func(num);
+   return memory_alloc(num);
 }
 static void *(*malloc_locked_ex_func)(size_t,const char *file,int line)
 = default_malloc_locked_ex;

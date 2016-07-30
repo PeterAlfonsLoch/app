@@ -238,8 +238,6 @@ CLASS_DECL_AXIS bool __node_axis_pos_term();
 
 #include "axis_session.h"
 
-#include "openssl/md5.h"
-
 #include "axis/filesystem/filesystem/filesystem_axis_application.h"
 
 #include "axis/filesystem/filesystem/filesystem_dir_axis_application.h"

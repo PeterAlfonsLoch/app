@@ -12,7 +12,7 @@ NSWindow * new_round_window(round_window * pwindow, CGRect rect)
 {
    
    //rect.origin.x     = 0;
-   //rect.origin.y     = (int) [[NSScreen mainScreen]frame].size.height - rect.origin.y;
+   rect.origin.y     = (int) [[NSScreen mainScreen]frame].size.height - (rect.origin.y + rect.size.height);
    //rect.size.width   = 0;
    //rect.size.height  = 0;
    

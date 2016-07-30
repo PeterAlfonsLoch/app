@@ -22,7 +22,7 @@ namespace draw2d_quartz2d
       // // DECLARE_DYNCREATE(::draw2d::graphics_sp)
    public:
       
-      
+      int m_iSaveDC;
 //#ifdef __MM
   //    NSGraphicsContext *     m_nsgc;
 //#else

@@ -54,6 +54,12 @@
   //    (void)setIgnoresMouseEvents:(BOOL)ignoreMouseEvents
 
    [self setIgnoresMouseEvents : NO];
+   
+   
+   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidResize:) name:NSWindowDidResizeNotification object:self];
+   
+   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidMove:) name:NSWindowDidResizeNotification object:self];
+   
       
    m_controller = [[NSWindowController alloc] initWithWindow:self];
  
@@ -70,8 +76,12 @@
 //
 - (void)dealloc
 {
+   
+//   id observation = [[NSNotificationCenter defaultCenter] addObserverForName:NSWindowDidResizeNotification object:self usingBlock:^(NSNotification *){
+//      NSLog(@"test");
+//   }];
    m_pwindow = NULL;
-//	[[NSNotificationCenter defaultCenter] removeObserver:self];
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
    
 //	[super dealloc];
    
@@ -163,7 +173,7 @@
 
 }
 
-
+//-
 
 //- (BOOL) acceptsFirstResponder
 //{
@@ -239,5 +249,43 @@
 	return NSInsetRect(windowContentRect, -WINDOW_FRAME_PADDING, -WINDOW_FRAME_PADDING);
 }
 
+
+- (void)windowDidResize:(NSNotification *)notification
+{
+
+   //NSLog(@"test");
+   
+   m_pwindow->round_window_resized([self frame].size);
+   
+}
+
+
+- (void)windowDidMove:(NSNotification *)notification
+{
+
+   //NSLog(@"test");
+   
+   try
+   {
+      
+      NSRect rect = [self frame];
+   
+      CGPoint pt;
+
+      pt.x        = rect.origin.x;
+   
+      pt.y        = [[NSScreen mainScreen] frame ].size.height - (rect.origin.y + rect.size.height);
+   
+      m_pwindow->round_window_moved(pt);
+   
+   }
+   catch (...)
+   {
+      
+      
+      
+   }
+
+}
 
 @end

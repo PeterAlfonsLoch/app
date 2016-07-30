@@ -63,6 +63,8 @@ namespace draw2d_quartz2d
       ::object(papp),
       ::draw2d::graphics(papp)
    {
+      
+      m_iSaveDC = 0;
 
       m_pmutex                = new mutex(papp);
 
@@ -3828,9 +3830,14 @@ namespace draw2d_quartz2d
 
    int32_t graphics::SaveDC()
    {
+      
+      
+      CGContextSaveGState(m_pdc);
+      
+      m_iSaveDC++;
+      
 
-      throw not_implemented(get_app());
-      return 0;
+      return m_iSaveDC;
 
       /*
        int32_t nRetVal = 0;
@@ -3845,9 +3852,23 @@ namespace draw2d_quartz2d
 
    bool graphics::RestoreDC(int32_t nSavedDC)
    {
+      
+      bool bRestored = false;
+      
+      while(m_iSaveDC >= MAX(1, nSavedDC))
+      {
+         
+         CGContextRestoreGState(m_pdc);
+         
+         m_iSaveDC--;
+         
+         bRestored = true;
+         
+      }
+      
+      
 
-      throw not_implemented(get_app());
-      return false;
+      return bRestored;
 
       /*
        bool bRetVal = TRUE;

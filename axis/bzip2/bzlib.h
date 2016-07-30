@@ -294,7 +294,7 @@ BZ_EXTERN const char * BZ_API(BZ2_bzerror) (
 /*-------------------------------------------------------------*/
 
 
-#include "bsdiff/libbsdiff.h"
+//#include "bsdiff/libbsdiff.h"
 
 
 

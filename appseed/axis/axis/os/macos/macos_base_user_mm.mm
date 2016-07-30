@@ -28,27 +28,41 @@ namespace macos
 
 } // namespace macos
 
+CGRect g_rectWorkspace = [[NSScreen mainScreen] frame];
+
+CGRect osx_get_workspace_rect()
+{
+   
+   return g_rectWorkspace;
+   
+}
 
 
-
-
- void window_copy(NSRect & rect, LPCRECT lpcrect)
+ bool window_copy(NSRect & rect, LPCRECT lpcrect)
  {
- 
+    
+    CGRect rectWorkspace = osx_get_workspace_rect();
+    
     rect.origin.x       = lpcrect->left;
-    rect.origin.y       = [[NSScreen mainScreen] frame].size.height - lpcrect->bottom;
+    rect.origin.y       = rectWorkspace.size.height - lpcrect->bottom;
     rect.size.width     = lpcrect->right - lpcrect->left;
     rect.size.height    = lpcrect->bottom - lpcrect->top;
+    
+    return true;
  
  }
  
- void window_copy(LPRECT lprect, const NSRect & rectSrc)
+ bool window_copy(LPRECT lprect, const NSRect & rectSrc)
  {
- 
+    
+    CGRect rectWorkspace = osx_get_workspace_rect();
+    
     lprect->left        = rectSrc.origin.x;
-    lprect->bottom      = [[NSScreen mainScreen] frame].size.height - rectSrc.origin.y;
+    lprect->bottom      = rectWorkspace.size.height - rectSrc.origin.y;
     lprect->right       = lprect->left + rectSrc.size.width;
     lprect->top         = lprect->bottom - rectSrc.size.height;
+    
+    return true;
  
  }
 
@@ -65,7 +79,34 @@ int GetMainScreenRect(LPRECT lprect)
 int GetScreenRect(LPRECT lprect, int iMonitor)
 {
    
-   window_copy(lprect, [[[NSScreen screens] objectAtIndex:iMonitor ] frame]);
+   if([NSScreen screens] == nil)
+   {
+      
+      return -1;
+      
+   }
+   
+   if(iMonitor >= [NSScreen screens].count)
+   {
+      
+      return -1;
+      
+   }
+   
+   try
+   {
+      
+      window_copy(lprect, [[[NSScreen screens] objectAtIndex:iMonitor ] frame]);
+      
+   }
+   catch (...)
+   {
+      
+      return -1;
+      
+   }
+                   
+   
    
    return iMonitor;
    
