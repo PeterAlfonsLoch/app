@@ -681,13 +681,31 @@ namespace file
    {
    
       strPath = defer_solve_relative_compresions(strPath);
-   
+      
+#ifdef WINDOWS
+      if(epath == path_file && (strPath == "\\\\" || strPath == "\\")
+      {
+         
+      }
+      else
+#endif
       if(strPath.has_char())
       {
       
          strPath.trim_right("\\/");
+         
+         if(strPath.has_char())
+         {
       
-         strPath.replace(path_osep(epath),path_sep(epath));
+            strPath.replace(path_osep(epath),path_sep(epath));
+            
+         }
+         else
+         {
+      
+            strPath = path_sep(epath);
+            
+         }
          
       }
    

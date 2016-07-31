@@ -925,7 +925,7 @@ void dir::ls(::file::patha & stra,const ::file::path & psz)
 {
 
 #if defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
-
+   
    DIR * dirp = opendir(psz);
 
    if(dirp == NULL)
