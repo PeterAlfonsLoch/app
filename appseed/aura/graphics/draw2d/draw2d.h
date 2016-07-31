@@ -8,6 +8,7 @@
 namespace draw2d
 {
 
+   CLASS_DECL_AURA void vertical_swap_copy_colorref(int cx,int cy,COLORREF * pcolorrefDst,int iStrideDst,COLORREF * pcolorrefSrc,int iStrideSrc);
    CLASS_DECL_AURA void copy_colorref(int cx,int cy,COLORREF * pcolorrefDst,int iStrideDst,COLORREF * pcolorrefSrc,int iStrideSrc);
    CLASS_DECL_AURA void copy_colorref(int x, int y, int cx,int cy,COLORREF * pcolorrefDst,int iStrideDst,COLORREF * pcolorrefSrc,int iStrideSrc);
 

@@ -183,6 +183,38 @@ namespace draw2d
 
    }
 
+   
+   void vertical_swap_copy_colorref(int cxParam,int cyParam,COLORREF * pcolorrefDst,int iStrideDst,COLORREF * pcolorrefSrc,int iStrideSrc)
+   {
+      
+      if(iStrideSrc <= 0)
+      {
+         
+         iStrideSrc = cxParam * sizeof(COLORREF);
+         
+      }
+      
+
+     int wsrc = iStrideSrc / sizeof(COLORREF);
+     int wdst = iStrideDst / sizeof(COLORREF);
+     int cw = cxParam * sizeof(COLORREF);
+         
+         
+     COLORREF * psrc = pcolorrefSrc;
+     COLORREF * pdst = (COLORREF * )((byte *) (pcolorrefDst) + iStrideDst * (cyParam - 1));
+         
+     for(int i = 0; i < cyParam; i++)
+     {
+            
+        memcpy(pdst,psrc,cw);
+            
+        pdst -= wdst;
+            
+        psrc += wsrc;
+            
+     }
+         
+   }
 
    void copy_colorref(int cxParam,int cyParam,COLORREF * pcolorrefDst,int iStrideDst,COLORREF * pcolorrefSrc,int iStrideSrc)
    {
