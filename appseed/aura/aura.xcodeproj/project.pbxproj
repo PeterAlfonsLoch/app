@@ -3056,15 +3056,15 @@
 		CEA754B914411F2B007E04DE = {
 			isa = PBXGroup;
 			children = (
-				9AC62DE91D20B82D00A4AC0A /* UIKit.framework */,
 				9A67166C1D1553BF0069A961 /* ace.xcodeproj */,
 				076D0A161A3FCCD4007432B6 /* atomiconv.xcodeproj */,
+				9AC62DE91D20B82D00A4AC0A /* UIKit.framework */,
 				07BD556C16210BD4008E31F0 /* AppKit.framework */,
+				077A02701B4D60B7001C85FF /* Foundation.framework */,
 				CE931714155F1599005F90F6 /* Carbon.framework */,
 				9A8897A514C24736006B4023 /* Foundation.framework */,
 				073EDDE1164E968100818801 /* Security.framework */,
 				073EDDE4164E96DA00818801 /* SecurityFoundation.framework */,
-				077A02701B4D60B7001C85FF /* Foundation.framework */,
 				9A163D3019C4A4CC00966C5E /* aura */,
 				9A16414919C4A4CE00966C5E /* aura_iosTests */,
 				07F5B12D184A3B420092C3E1 /* filesystem */,

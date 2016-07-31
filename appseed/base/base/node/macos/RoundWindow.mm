@@ -58,7 +58,7 @@
    
    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidResize:) name:NSWindowDidResizeNotification object:self];
    
-   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidMove:) name:NSWindowDidResizeNotification object:self];
+   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidMove:) name:NSWindowDidMoveNotification object:self];
    
       
    m_controller = [[NSWindowController alloc] initWithWindow:self];
@@ -255,7 +255,21 @@
 
    //NSLog(@"test");
    
-   m_pwindow->round_window_resized([self frame].size);
+   try
+   {
+      
+      NSRect rect = [self frame];
+      
+      rect.origin.y        = [[NSScreen mainScreen] frame ].size.height - (rect.origin.y + rect.size.height);
+      
+      m_pwindow->round_window_resized(rect);
+      
+   }
+   catch (...)
+   {
+      
+   }
+
    
 }
 
@@ -281,8 +295,6 @@
    }
    catch (...)
    {
-      
-      
       
    }
 

@@ -914,9 +914,9 @@
 		CEA754B914411F2B007E04DE = {
 			isa = PBXGroup;
 			children = (
-				07BD556C16210BD4008E31F0 /* AppKit.framework */,
 				CE931714155F1599005F90F6 /* Carbon.framework */,
 				9A8897A514C24736006B4023 /* Foundation.framework */,
+				07BD556C16210BD4008E31F0 /* AppKit.framework */,
 				073EDDE1164E968100818801 /* Security.framework */,
 				073EDDE4164E96DA00818801 /* SecurityFoundation.framework */,
 				071C19B51CA8A36600AD32F3 /* axiswinpr.xcodeproj */,

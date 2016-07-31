@@ -167,7 +167,15 @@ namespace user
 
             if(pmouse->m_uiMessage == WM_LBUTTONUP || pmouse->m_uiMessage == WM_NCLBUTTONUP)
             {
+               
+               m_bMoving = false;
+               
+               GetEventWindow()->m_bMoving = false;
 
+               System.release_capture_uie();
+               
+
+               
                sp(WorkSetClientInterface) pinterface = m_pworkset->GetEventWindow();
 
                if(pinterface == NULL)
@@ -176,8 +184,6 @@ namespace user
                   pinterface = m_pworkset->get_draw_window();
 
                }
-
-               pinterface->WfiOnMove(false);
 
                ::rect rectWindow;
 
@@ -205,18 +211,14 @@ namespace user
 
                }
 
-               System.release_capture_uie();
-
 #ifdef WINDOWSEX
 
                //UnhookWindowsHookEx(g_hhook);
 
 #endif
-
-               m_bMoving = false;
-
-               GetEventWindow()->m_bMoving = false;
-
+               
+               pinterface->WfiOnMove(false);
+               
             }
             else
             {

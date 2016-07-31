@@ -1328,36 +1328,33 @@ namespace macos
          {
             m_pui->_001OnTriggerMouseInside();
          }
-         if(m_puiCapture != NULL)
+
+         if(::GetCapture() != NULL)
          {
-            if(m_puiCapture->m_pimpl != NULL)
+            if(::GetCapture()->m_pui != NULL
+            && ::GetCapture()->m_pui->m_pimpl.cast < ::user::interaction_impl >() != NULL
+            && ::GetCapture()->m_pui->m_pimpl.cast < ::user::interaction_impl >()->m_puiCapture != NULL
+            && ::GetCapture()->m_pui->m_pimpl.cast < ::user::interaction_impl >()->m_puiCapture->m_pimpl != NULL)
+         {
+            
+            auto pimpl = ::GetCapture()->m_pui->m_pimpl.cast < ::user::interaction_impl >()->m_puiCapture->m_pimpl.m_p;
+            
+            try
             {
-               //m_puiCapture->m_pimpl->SendMessage(pbase);
-               try
-               {
-                  (m_puiCapture->m_pimpl->*m_puiCapture->m_pimpl->m_pfnDispatchWindowProc)(dynamic_cast < signal_details * > (pmouse));
+            
+               (pimpl->*pimpl->m_pfnDispatchWindowProc)(dynamic_cast < signal_details * > (pmouse));
                   if(pmouse->get_lresult() != 0)
                      return;
-               }
-               catch(...)
-               {
-               }
-               return;
+            
             }
-            else
+            catch(...)
             {
-               //m_puiCapture->SendMessage(pbase);
-               try
-               {
-                  (m_puiCapture->*m_puiCapture->m_pfnDispatchWindowProc)(dynamic_cast < signal_details * > (pmouse));
-                  if(pmouse->get_lresult() != 0)
-                     return;
-               }
-               catch(...)
-               {
-               }
-               return;
+            
             }
+            
+            return;
+         }
+            
          }
 /*         user::oswindow_array hwnda;
          user::interaction_ptra wnda;
@@ -3782,7 +3779,9 @@ namespace macos
 
       ::rect rectBefore;
 
-      ::GetWindowRect(m_oswindow, rectBefore);
+      //::GetWindowRect(m_oswindow, rectBefore);
+      
+      ::copy(rectBefore, m_rectParentClient);
 
       ::rect rectNew = rectBefore;
 
@@ -3829,19 +3828,19 @@ namespace macos
 
       }
 
-      if(rectBefore.top_left() != rectNew.top_left())
-      {
-
-         send_message(WM_MOVE);
-
-      }
-
-      if(rectBefore.size() != rectNew.size())
-      {
-
-         send_message(WM_SIZE);
-
-      }
+//      if(rectBefore.top_left() != rectNew.top_left())
+//      {
+//
+//         send_message(WM_MOVE);
+//
+//      }
+//
+//      if(rectBefore.size() != rectNew.size())
+//      {
+//
+//         send_message(WM_SIZE);
+//
+//      }
 
 
       if(nFlags & SWP_SHOWWINDOW)
@@ -6089,22 +6088,42 @@ namespace macos
    }
 
 
-   void interaction_impl::round_window_resized(CGSize size)
+   void interaction_impl::round_window_resized(CGRect rect)
    {
       
       ::size sz;
+      
+      point64 pt(rect.origin.x, rect.origin.y);
+      
+      bool bMove = false;
       
       {
          
          synch_lock sl(m_pui->m_pmutex);
          
-         m_rectParentClient.size(size.width, size.height);
+         if(pt != m_rectParentClient.top_left())
+         {
+            
+            bMove = true;
+            
+         }
+         
+         m_rectParentClient.move_to(pt);
+         
+         m_rectParentClient.size(rect.size.width, rect.size.height);
          
          sz = m_rectParentClient.size();
 
       }
-
-      send_message(WM_SIZE, 0, sz.lparam());
+      
+      m_pui->send_message(WM_SIZE, 0, sz.lparam());
+      
+      if(bMove)
+      {
+         
+         m_pui->send_message(WM_MOVE, 0, pt.lparam());
+         
+      }
       
    }
    
@@ -6118,13 +6137,13 @@ namespace macos
          
          synch_lock sl(m_pui->m_pmutex);
          
-         m_rectParentClient.offset(point.x, point.y);
+         m_rectParentClient.move_to(point.x, point.y);
          
          pt = m_rectParentClient.top_left();
          
       }
       
-      send_message(WM_SIZE, 0, pt.lparam());
+      m_pui->send_message(WM_MOVE, 0, pt.lparam());
       
    }
 

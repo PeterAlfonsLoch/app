@@ -36,7 +36,7 @@ public:
    virtual bool round_window_key_down(unsigned int uiKeyCode) = 0;
    virtual bool round_window_key_up(unsigned int uiKeyCode) = 0;
    
-   virtual void round_window_resized(CGSize size) = 0;
+   virtual void round_window_resized(CGRect rect) = 0;
    virtual void round_window_moved(CGPoint point) = 0;
    
    

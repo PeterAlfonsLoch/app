@@ -296,12 +296,10 @@ DWORD fixKeyCode(DWORD keyCode, unichar keyChar, enum APPLE_KEYBOARD_TYPE type)
    
 }
 
+
 - (void)mouseUp:(NSEvent *)event
 {
 
-   //printf("\nmouseUp");
-
-   
    round_window * p = m_roundwindow->m_pwindow;
    
    if(p == NULL)
@@ -321,17 +319,9 @@ DWORD fixKeyCode(DWORD keyCode, unichar keyChar, enum APPLE_KEYBOARD_TYPE type)
    
    int y = H - point.y;
    
-   int iButton = 0;
+   // Left Button
    
-   if(event.type == NSLeftMouseDown)
-   {
-      iButton = 0;
-   }
-   else if(event.type == NSRightMouseDown)
-   {
-      iButton = 1;
-   }
- 
+   int iButton = 0;
    
    p->round_window_mouse_up(iButton, x, y);
    
@@ -343,9 +333,6 @@ DWORD fixKeyCode(DWORD keyCode, unichar keyChar, enum APPLE_KEYBOARD_TYPE type)
 - (void)mouseMoved:(NSEvent *)event
 {
 
-   //printf("\nmouseMoved");
-
-   
    round_window * p = m_roundwindow->m_pwindow;
    
    if(p == NULL)
@@ -375,18 +362,14 @@ DWORD fixKeyCode(DWORD keyCode, unichar keyChar, enum APPLE_KEYBOARD_TYPE type)
 - (void)mouseDragged:(NSEvent *)event
 {
 
-   //printf("\nmouseDragged");
-   
-
-   
    round_window * p = m_roundwindow->m_pwindow;
    
    if(p == NULL)
       return;
    
-    NSRect e = [m_roundwindow frame];
+   NSRect e = [m_roundwindow frame];
     
-    NSPoint point = [event locationInWindow];
+   NSPoint point = [event locationInWindow];
     
    point.x = point.x + e.origin.x;
    
@@ -400,9 +383,6 @@ DWORD fixKeyCode(DWORD keyCode, unichar keyChar, enum APPLE_KEYBOARD_TYPE type)
    
    p->round_window_mouse_dragged(x, y);
    
-   return;
-   
-   
 }
 
 
@@ -413,19 +393,22 @@ DWORD fixKeyCode(DWORD keyCode, unichar keyChar, enum APPLE_KEYBOARD_TYPE type)
 //	- click in the resize box should resize the window
 //	- click anywhere else will drag the window.
 //
+
+///////////////////////////////
+//
+//   Left click only
+//
 - (void)mouseDown:(NSEvent *)event
 {
    
-   //printf("\nmouseDown");
-
    round_window * p = m_roundwindow->m_pwindow;
    
    if(p == NULL)
       return;
    
-    NSRect e = [m_roundwindow frame];
+   NSRect e = [m_roundwindow frame];
     
-    NSPoint point = [event locationInWindow];
+   NSPoint point = [event locationInWindow];
     
    point.x = point.x + e.origin.x;
    
@@ -437,111 +420,19 @@ DWORD fixKeyCode(DWORD keyCode, unichar keyChar, enum APPLE_KEYBOARD_TYPE type)
    
    int y = H - point.y;
    
-   int iButton = 0;
+   // Left Button
    
-   if(event.type == NSLeftMouseDown)
-   {
-      iButton = 0;
-   }
-   else if(event.type == NSRightMouseDown)
-   {
-      iButton = 1;
-   }
+   int iButton = 0;
    
    p->round_window_mouse_down(iButton, x, y);
    
    return;
    
-   /*
-   
-	NSPoint pointInView = [self convertPoint:[event locationInWindow] fromView:nil];
-	
-	BOOL resize = NO;
-	if (NSPointInRect(pointInView, [self resizeRect]))
-	{
-		resize = YES;
-	}
-	
-	NSWindow *window = [self window];
-	NSPoint originalMouseLocation = [window convertBaseToScreen:[event locationInWindow]];
-	NSRect originalFrame = [window frame];
-	
-    while (YES)
-	{
-		//
-		// Lock focus and take all the dragged and mouse up events until we
-		// receive a mouse up.
-		//
-        NSEvent *newEvent = [window
-			nextEventMatchingMask:(NSLeftMouseDraggedMask | NSLeftMouseUpMask)];
-		
-        if ([newEvent type] == NSLeftMouseUp)
-		{
-			break;
-		}
-		
-		//
-		// Work out how much the mouse has moved
-		//
-		NSPoint newMouseLocation = [window convertBaseToScreen:[newEvent locationInWindow]];
-		NSPoint delta = NSMakePoint(
-			newMouseLocation.x - originalMouseLocation.x,
-			newMouseLocation.y - originalMouseLocation.y);
-		
-		NSRect newFrame = originalFrame;
-		
-		if (!resize)
-		{
-			//
-			// Alter the frame for a drag
-			//
-			newFrame.origin.x += delta.x;
-			newFrame.origin.y += delta.y;
-		}
-		else
-		{
-			//
-			// Alter the frame for a resize
-			//
-			newFrame.size.width += delta.x;
-			newFrame.size.height -= delta.y;
-			newFrame.origin.y += delta.y;
-			
-			//
-			// Constrain to the window's min and max size
-			//
-			NSRect newContentRect = [window contentRectForFrameRect:newFrame];
-			NSSize maxSize = [window maxSize];
-			NSSize minSize = [window minSize];
-			if (newContentRect.size.width > maxSize.width)
-			{
-				newFrame.size.width -= newContentRect.size.width - maxSize.width;
-			}
-			else if (newContentRect.size.width < minSize.width)
-			{
-				newFrame.size.width += minSize.width - newContentRect.size.width;
-			}
-			if (newContentRect.size.height > maxSize.height)
-			{
-				newFrame.size.height -= newContentRect.size.height - maxSize.height;
-				newFrame.origin.y += newContentRect.size.height - maxSize.height;
-			}
-			else if (newContentRect.size.height < minSize.height)
-			{
-				newFrame.size.height += minSize.height - newContentRect.size.height;
-				newFrame.origin.y -= minSize.height - newContentRect.size.height;
-			}
-		}
-		
-		[window setFrame:newFrame display:YES animate:NO];
-	}
-   
-   */
 }
+
+
 - (void)rightMouseUp:(NSEvent *)event
 {
-   
-   //printf("\nmouseDown");
    
    round_window * p = m_roundwindow->m_pwindow;
    
@@ -562,16 +453,19 @@ DWORD fixKeyCode(DWORD keyCode, unichar keyChar, enum APPLE_KEYBOARD_TYPE type)
    
    int y = H - point.y;
    
-   p->round_window_mouse_up(1, x, y);
+   // Right Button
+   
+   int iButton = 1;
+   
+   p->round_window_mouse_up(iButton, x, y);
    
    return;
    
 }
 
+
 - (void)rightMouseDown:(NSEvent *)event
 {
-   
-   //printf("\nmouseDown");
    
    round_window * p = m_roundwindow->m_pwindow;
    
@@ -592,16 +486,22 @@ DWORD fixKeyCode(DWORD keyCode, unichar keyChar, enum APPLE_KEYBOARD_TYPE type)
    
    int y = H - point.y;
   
-   p->round_window_mouse_down(1, x, y);
+   // Right Button
+   
+   int iButton = 1;
+   
+   p->round_window_mouse_down(iButton, x, y);
    
    return;
 
 }
 
+
 - (BOOL) isFlipped
 {
+   
    return YES;
-//   return NO;
+   
 }
 
 

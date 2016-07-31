@@ -276,6 +276,19 @@ WINBOOL SetWindowPos(oswindow hwnd, oswindow hwndInsertAfter, int x, int y, int 
    else if(bMove) // bMove only
    {
       
+//      RECT rect;
+//      
+//      GetWindowRect(hwnd, &rect);
+//      
+//      cx = rect.right - rect.left;
+//      cy = rect.bottom - rect.top;
+//      
+//      rect.left      = x;
+//      rect.top       = y;
+//      rect.right     = rect.left + cx;
+//      rect.bottom    = rect.top + cy;
+//      
+//      set_nswindow_frame(hwnd, &rect, (uFlags & SWP_SHOWWINDOW) != 0);
       move_nswindow(hwnd, x, y);
       
    }

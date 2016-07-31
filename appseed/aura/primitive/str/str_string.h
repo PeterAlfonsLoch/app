@@ -6,6 +6,10 @@ CLASS_DECL_AURA int64_t strtoi(const char * psz);
 CLASS_DECL_AURA int64_t strtoi(const unichar * psz);
 
 
+#if defined(__APPLE)
+#define noexcept 
+#endif
+
 template <typename T>
 inline T FormatArgument(T value) noexcept
 {
