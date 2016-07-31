@@ -258,13 +258,13 @@ namespace ios
    /////////////////////////////////////////////////////////////////////////////
    // user::interaction creation
 
-   bool interaction_impl::create_window_ex(DWORD dwExStyle, const char * lpszClassName,
+   bool interaction_impl::create_window_ex(::user::interaction * pui,DWORD dwExStyle, const char * lpszClassName,
                                            const char * lpszWindowName, DWORD dwStyle,
                                            const RECT& rect, ::user::interaction *  pParentWnd, id id,
                                            LPVOID lpParam /* = NULL */)
    {
 
-      if(!native_create_window_ex(dwExStyle, lpszClassName, lpszWindowName, dwStyle,
+      if(!native_create_window_ex(pui, dwExStyle, lpszClassName, lpszWindowName, dwStyle,
                                   rect,
                                   pParentWnd == NULL ? NULL : pParentWnd->get_safe_handle(), id, lpParam))
       {
@@ -277,7 +277,7 @@ namespace ios
    }
 
 
-   bool interaction_impl::native_create_window_ex(DWORD dwExStyle, const char * lpszClassName,
+   bool interaction_impl::native_create_window_ex(::user::interaction * pui,DWORD dwExStyle, const char * lpszClassName,
                                                   const char * lpszWindowName, DWORD dwStyle,
                                                   const RECT& rectParam,
                                                   oswindow hWndParent, id id, LPVOID lpParam)
@@ -290,6 +290,7 @@ namespace ios
 
       }
 
+      m_pui = pui;
 
       //      ASSERT(lpszClassName == NULL || __is_valid_string(lpszClassName) ||
       //       __is_valid_atom(lpszClassName));
@@ -360,6 +361,8 @@ namespace ios
       {
 
          m_oswindow = oswindow_get(new_round_window(this, rect));
+         
+         ::copy(&m_rectParentClient, &rectParam);
 
          m_spgraphics.alloc(allocer());
 
@@ -471,7 +474,7 @@ namespace ios
       return true;
    }
 
-   bool interaction_impl::create_window(const char * lpszClassName,
+   bool interaction_impl::create_window(::user::interaction * pui,const char * lpszClassName,
                                         const char * lpszWindowName, DWORD dwStyle,
                                         const RECT& rect,
                                         ::user::interaction *  pParentWnd, id id,
@@ -481,7 +484,7 @@ namespace ios
       ASSERT(pParentWnd != NULL);
       ASSERT((dwStyle & WS_POPUP) == 0);
 
-      return create_window_ex(0, lpszClassName, lpszWindowName,
+      return create_window_ex(pui, 0, lpszClassName, lpszWindowName,
                               dwStyle | WS_CHILD,
                               rect,
                               pParentWnd, id, (LPVOID)pContext);
@@ -509,6 +512,7 @@ namespace ios
 
       m_oswindow->set_user_interaction(m_pui);
 
+      m_pui->m_bVisible = true;
 //      m_pthread = dynamic_cast < ::thread * > (::get_thread());
 
       return true;
@@ -516,7 +520,7 @@ namespace ios
    }
 
 
-   bool interaction_impl::create_message_queue(const char * pszName)
+   bool interaction_impl::create_message_queue(::user::interaction * pui,const char * pszName)
    {
       if(IsWindow())
       {
@@ -524,7 +528,7 @@ namespace ios
       }
       else
       {
-         if(!native_create_window_ex(0, NULL, pszName, WS_CHILD, null_rect(), HWND_MESSAGE))
+         if(!native_create_window_ex(pui, 0, NULL, pszName, WS_CHILD, null_rect(), HWND_MESSAGE))
          {
             return false;
          }
@@ -558,7 +562,7 @@ namespace ios
       IGUI_WIN_MSG_LINK(WM_ERASEBKGND        , pinterface, this, &interaction_impl::_001OnEraseBkgnd);
       IGUI_WIN_MSG_LINK(WM_MOVE              , pinterface, this, &interaction_impl::_001OnMove);
       IGUI_WIN_MSG_LINK(WM_SIZE              , pinterface, this, &interaction_impl::_001OnSize);
-      IGUI_WIN_MSG_LINK(WM_SHOWWINDOW        , pinterface, this, &interaction_impl::_001OnShowWindow);
+//      IGUI_WIN_MSG_LINK(WM_SHOWWINDOW        , pinterface, this, &interaction_impl::_001OnShowWindow);
       IGUI_WIN_MSG_LINK(ca2m_PRODEVIAN_SYNCH , pinterface, this, &interaction_impl::_001OnProdevianSynch);
       //      //IGUI_WIN_MSG_LINK(WM_TIMER             , pinterface, this, &interaction_impl::_001OnTimer);
 
@@ -613,27 +617,27 @@ namespace ios
 
    }
 
-   void interaction_impl::_001OnShowWindow(signal_details * pobj)
-   {
-
-      SCAST_PTR(::message::show_window, pshowwindow, pobj);
-
-
-
-      if(m_pui->)
-      {
-
-         //round_window_show();
-
-      }
-      else
-      {
-
-         //round_window_hide();
-
-      }
-
-   }
+//   void interaction_impl::_001OnShowWindow(signal_details * pobj)
+//   {
+//
+//      SCAST_PTR(::message::show_window, pshowwindow, pobj);
+//
+//
+//
+//      if(m_pui->)
+//      {
+//
+//         //round_window_show();
+//
+//      }
+//      else
+//      {
+//
+//         //round_window_hide();
+//
+//      }
+//
+//   }
 
 
    void interaction_impl::_001OnDestroy(signal_details * pobj)

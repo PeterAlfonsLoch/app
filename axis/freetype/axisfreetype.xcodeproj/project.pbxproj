@@ -254,7 +254,6 @@
 		9A331BE61D4BC42F00255105 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A331BE51D4BC42F00255105 /* libbz2.tbd */; };
 		9A331C301D4BC57600255105 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A331C2F1D4BC57600255105 /* libz.tbd */; };
 		9A331C321D4BC57D00255105 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A331C311D4BC57D00255105 /* libz.tbd */; };
-		9AC62E511D20BCF500A4AC0A /* libios_axiszlib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC62E501D20BCF500A4AC0A /* libios_axiszlib.dylib */; };
 		9AEEB67119C5089700866C9E /* afangles.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEB49519C5089500866C9E /* afangles.h */; };
 		9AEEB67319C5089700866C9E /* afblue.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEB49919C5089500866C9E /* afblue.h */; };
 		9AEEB67519C5089700866C9E /* afcjk.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEB49C19C5089500866C9E /* afcjk.h */; };
@@ -579,7 +578,6 @@
 		9A331BE51D4BC42F00255105 /* libbz2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.tbd; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/usr/lib/libbz2.tbd; sourceTree = DEVELOPER_DIR; };
 		9A331C2F1D4BC57600255105 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/usr/lib/libz.tbd; sourceTree = DEVELOPER_DIR; };
 		9A331C311D4BC57D00255105 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
-		9AC62E501D20BCF500A4AC0A /* libios_axiszlib.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_axiszlib.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/basic-ios-bmuegusfgbffmoeixicbxhlnbzop/Build/Products/Debug-iphonesimulator/libios_axiszlib.dylib"; sourceTree = "<group>"; };
 		9AEEB49119C5088600866C9E /* libaxisfreetype.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libaxisfreetype.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AEEB49519C5089500866C9E /* afangles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = afangles.h; sourceTree = "<group>"; };
 		9AEEB49919C5089500866C9E /* afblue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = afblue.h; sourceTree = "<group>"; };
@@ -833,7 +831,6 @@
 				9A331C301D4BC57600255105 /* libz.tbd in Frameworks */,
 				9A331BE61D4BC42F00255105 /* libbz2.tbd in Frameworks */,
 				9A331BE31D4BC42000255105 /* libios_axispng.dylib in Frameworks */,
-				9AC62E511D20BCF500A4AC0A /* libios_axiszlib.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -858,7 +855,6 @@
 				9A331C2F1D4BC57600255105 /* libz.tbd */,
 				9A331BE51D4BC42F00255105 /* libbz2.tbd */,
 				9A331BD11D4BC3D600255105 /* libbz2.tbd */,
-				9AC62E501D20BCF500A4AC0A /* libios_axiszlib.dylib */,
 				9AEEB82C19C50E7D00866C9E /* aura.xcodeproj */,
 				9A331BD31D4BC3FF00255105 /* axispng.xcodeproj */,
 				9AEEB84719C5802F00866C9E /* include */,
