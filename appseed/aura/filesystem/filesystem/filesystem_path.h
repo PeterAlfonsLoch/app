@@ -21,7 +21,7 @@ namespace file
       path_url
    };
 
-   inline e_path get_path_type(const string & str, e_path epathForce = path_none);
+   CLASS_DECL_AURA e_path get_path_type(const string & str, e_path epathForce = path_none);
 
    struct CLASS_DECL_AURA path_meta
    {

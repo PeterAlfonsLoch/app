@@ -24,7 +24,7 @@ namespace file
       
       m_epath = get_path_type(str, epath);
       
-      ::string::operator = (normalize_path(str, m_epath));
+      ::stdstring < simple_string >::operator = (normalize_path(str, m_epath));
    
    }
    
@@ -261,7 +261,7 @@ namespace file
       
       string strThis = *this;
       
-      string::operator = (normalize_path(strThis + str, m_epath));
+      stdstring < simple_string >::operator = (normalize_path(strThis + str, m_epath));
       
       return *this;
       
@@ -341,7 +341,7 @@ namespace file
          
          m_epath = epath;
          
-         ::string::operator = (normalize_path(*this, m_epath));
+         ::stdstring < simple_string >::operator = (normalize_path(*this, m_epath));
                                ;
       }
                                
@@ -375,7 +375,7 @@ namespace file
       
       m_epath = is_url_dup(str) ? path_url : path_file;
 
-      string::operator  = (normalize_path(str, m_epath));
+      stdstring < simple_string >::operator  = (normalize_path(str, m_epath));
       
       return *this;
       
@@ -683,7 +683,7 @@ namespace file
       strPath = defer_solve_relative_compresions(strPath);
       
 #ifdef WINDOWS
-      if(epath == path_file && (strPath == "\\\\" || strPath == "\\")
+      if(epath == path_file && (strPath == "\\\\" || strPath == "\\"))
       {
          
       }

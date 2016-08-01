@@ -20,7 +20,7 @@ void plain_service::Stop(uint32_t ui)
 {
    System.m_bDoNotExitIfNoApplications = false;
    m_bStopping = true;
-   m_stopped.wait(millis(m_dwStopTimeout));
+   m_stopped.wait(millis((uint32_t) m_dwStopTimeout));
 }
 
 void plain_service::CallServiceThread()

@@ -241,7 +241,34 @@ int audio_decode_example2(AAC_CONTEXT* h264,void ** pout,const void * inbuf,int 
    int i;
 
 
-   sys->len = avcodec_decode_audio4(sys->c,sys->decoded_frame,&sys->got_frame,&sys->avpkt);
+//   sys->len = avcodec_decode_audio4(sys->c,sys->decoded_frame,&sys->got_frame,&sys->avpkt);
+
+   int iRet1 = avcodec_send_packet(sys->c, &sys->avpkt);
+
+   // sys->len = avcodec_decode_audio4(sys->c, sys->decoded_frame, &sys->got_frame, &sys->avpkt);
+
+   sys->len = 0;
+
+   sys->got_frame = 0;
+
+   int iRet2 = -1;
+   
+   if (iRet1 >= 0)
+   {
+
+      avcodec_receive_frame(sys->c, sys->decoded_frame);
+
+      sys->len = sys->decoded_frame->linesize;
+
+      if (sys->len > 0)
+      {
+
+         sys->got_frame = 1;
+
+      }
+
+   }
+
    av_free(mem);
    if(sys->len < 0)
    {

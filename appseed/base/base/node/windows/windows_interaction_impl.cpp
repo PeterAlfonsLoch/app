@@ -660,7 +660,7 @@ namespace windows
    void interaction_impl::install_message_handling(::message::dispatch * pinterface)
    {
 
-      ::user::interaction_impl::last_install_message_handling(pinterface);
+      last_install_message_handling(pinterface);
       ::user::interaction_impl::install_message_handling(pinterface);
 
       IGUI_WIN_MSG_LINK(WM_NCDESTROY,pinterface,this,&interaction_impl::_001OnNcDestroy);
@@ -684,7 +684,7 @@ namespace windows
          IGUI_WIN_MSG_LINK(WM_SETFOCUS,pinterface,this,&interaction_impl::_001OnSetFocus);
          IGUI_WIN_MSG_LINK(WM_KILLFOCUS,pinterface,this,&interaction_impl::_001OnKillFocus);
          IGUI_WIN_MSG_LINK(ca2m_PRODEVIAN_SYNCH,pinterface,this,&interaction_impl::_001OnProdevianSynch);
-         ::user::interaction_impl::prio_install_message_handling(pinterface);
+         prio_install_message_handling(pinterface);
       }
       IGUI_WIN_MSG_LINK(WM_DESTROY,pinterface,this,&interaction_impl::_001OnDestroy);
 
@@ -3457,6 +3457,13 @@ restart_mouse_hover_check:
 
       }
 
+      if (nFlags & SWP_SHOWWINDOW)
+      {
+
+         m_pui->m_bVisible = true;
+
+      }
+
       if (!(nFlags & SWP_NOREDRAW))
       {
 
@@ -6174,6 +6181,17 @@ LRESULT CALLBACK __window_procedure(oswindow oswindow,UINT message,WPARAM wparam
       return ::DefWindowProc(oswindow,message,wparam,lparam);
 
    }
+
+   if(message == WM_SHOWWINDOW)
+   {
+
+      output_debug_string("WM_SHOWWINDOW");
+      //return 0;
+
+      //
+
+   }
+
 
    if(pui->m_bMoving || pui->m_bMoveWindow)
    {

@@ -143,7 +143,7 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <OpenMPSupport>false</OpenMPSupport>
-      <AdditionalIncludeDirectories>../../include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../nodeapp/include;../../include</AdditionalIncludeDirectories>
       <SmallerTypeCheck>false</SmallerTypeCheck>
       <UseFullPaths>true</UseFullPaths>
       <DisableSpecificWarnings>4244</DisableSpecificWarnings>
@@ -200,7 +200,7 @@
       <OmitFramePointers>false</OmitFramePointers>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <OpenMPSupport>false</OpenMPSupport>
-      <AdditionalIncludeDirectories>../../include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../nodeapp/include;../../include</AdditionalIncludeDirectories>
       <SmallerTypeCheck>false</SmallerTypeCheck>
       <UseFullPaths>true</UseFullPaths>
       <DisableSpecificWarnings>4244</DisableSpecificWarnings>
@@ -249,7 +249,7 @@
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <CreateHotpatchableImage>false</CreateHotpatchableImage>
       <BufferSecurityCheck />
-      <AdditionalIncludeDirectories>../../include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../nodeapp/include;../../include</AdditionalIncludeDirectories>
       <UseFullPaths>true</UseFullPaths>
     </ClCompile>
     <Midl>
@@ -295,7 +295,7 @@
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <CreateHotpatchableImage>false</CreateHotpatchableImage>
       <BufferSecurityCheck />
-      <AdditionalIncludeDirectories>../../include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../nodeapp/include;../../include</AdditionalIncludeDirectories>
       <UseFullPaths>true</UseFullPaths>
     </ClCompile>
     <Midl>

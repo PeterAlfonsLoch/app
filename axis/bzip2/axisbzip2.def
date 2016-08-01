@@ -26,8 +26,8 @@ EXPORTS
 	BZ2_bzerror
 
 
-	libbsdiff_diff
-	libbsdiff_size_of_patched
+;	libbsdiff_diff
+;	libbsdiff_size_of_patched
 ;	libbsdiff_patch
-	bsdiff
-	bspatch
+;	bsdiff
+;	bspatch

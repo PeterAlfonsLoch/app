@@ -417,7 +417,7 @@ namespace fontopus
    void login::_000OnDraw(::draw2d::graphics * pgraphics)
    {
 
-      return simple_ui::interaction::_000OnDraw(pgraphics);
+      return ::simple_ui::interaction::_000OnDraw(pgraphics);
 
    }
 
@@ -425,7 +425,7 @@ namespace fontopus
    void login::_001DrawChildren(::draw2d::graphics * pgraphics)
    {
 
-      return simple_ui::interaction::_001DrawChildren(pgraphics);
+      return ::simple_ui::interaction::_001DrawChildren(pgraphics);
 
    }
 

@@ -2110,21 +2110,21 @@ namespace core
 
 
 
-#ifndef VARIADIC_TEMPLATE
-
-   int32_t application::simple_message_box(::user::primitive * pwndOwner, UINT fuStyle, const char * pszFormat, ...)
-   {
-      va_list va;
-      va_start(va, pszFormat);
-      string str;
-      str.FormatV(pszFormat, va);
-      va_end(va);
-      return simple_message_box(pwndOwner, str, fuStyle);
-   }
-
-#endif
-
-
+//#ifndef VARIADIC_TEMPLATE
+//
+//   int32_t application::simple_message_box(::user::primitive * pwndOwner, UINT fuStyle, const char * pszFormat, ...)
+//   {
+//      va_list va;
+//      va_start(va, pszFormat);
+//      string str;
+//      str.FormatV(pszFormat, va);
+//      va_end(va);
+//      return simple_message_box(pwndOwner, str, fuStyle);
+//   }
+//
+//#endif
+//
+//
    // Helper for message boxes; can work when no application can be found
    int32_t application::ShowAppMessageBox(sp(application)pApp, const char * lpszPrompt, UINT nType, UINT nIDPrompt)
    {
