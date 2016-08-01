@@ -3,6 +3,10 @@
 #if defined(LINUX)
 #include <netdb.h>
 #define in_addr6 in6_addr
+#elif defined(VSNORD)
+#include <netdb.h>
+#include <netinet/in.h>
+#define in_addr6 in6_addr
 #endif
 
 

@@ -22,9 +22,10 @@
     <ProjectGuid>{3F63B8BA-14B8-4147-A78A-0894B7207E37}</ProjectGuid>
     <Keyword>Android</Keyword>
     <ApplicationType>Android</ApplicationType>
-    <ApplicationTypeRevision>1.0</ApplicationTypeRevision>
+    <ApplicationTypeRevision>2.0</ApplicationTypeRevision>
     <ProjectName>axisfreeimage</ProjectName>
     <RootNamespace>axisfreeimage</RootNamespace>
+    <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x86'" Label="Configuration">
@@ -97,7 +98,7 @@
     </ClCompile>
     <Link />
     <Link>
-      <LibraryDependencies>axiszlib;aura;ace;$(StlLibraryName);%(LibraryDependencies);m</LibraryDependencies>
+      <LibraryDependencies>z;aura;ace;$(StlLibraryName);%(LibraryDependencies);m</LibraryDependencies>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>

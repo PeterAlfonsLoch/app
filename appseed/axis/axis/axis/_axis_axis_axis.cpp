@@ -10,6 +10,10 @@
 
 #endif
 
+#include "zlib.h"
+#include "axis/zlib/zutil.h"
+
+
 #include "axis.cpp"
 #include "axis_application.cpp"
 #include "axis_session.cpp"

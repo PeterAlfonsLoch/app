@@ -1,5 +1,8 @@
 //#include "framework.h"
-//#include "axis/bzip2/bzlib.h"
+#include "bzlib.h"
+#include "axis/compress/bzip_stream.h"
+
+
 
 const int32_t g_iGzUncompressLen = 1024 * 1024;
 char * g_pchGzUncompressBuffer = NULL;

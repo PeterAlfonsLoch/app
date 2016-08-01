@@ -493,15 +493,13 @@ bool oswindow_data::ShowWindow(int32_t nCmdShow)
 	if(nCmdShow == SW_HIDE)
 	{
 
-      m_pui->m_bVisibl = false;
-      m_bVisibl = false;
+      m_pui->m_bVisible = false;
 
 	}
 	else
 	{
 
-      m_pui->m_bVisibl = true;
-      m_bVisibl = true;
+      m_pui->m_bVisible = true;
 
 	}
 
@@ -648,7 +646,14 @@ bool oswindow_data::is_window_visible()
 
 	synch_lock sl(m_pui == NULL ? NULL : m_pui->m_pmutex);
 
-	return m_bVisibl;
+   if (m_pui == NULL)
+   {
+
+      return false;
+
+   }
+
+	return m_pui->m_bVisible;
 
 }
 

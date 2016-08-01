@@ -4,11 +4,11 @@
 #include "base/base/base.h" // System.ftlibrary()
 #include "aura/graphics/graphics.h"
 
-#include "app/axis/cairo/src/cairo-features.h"
-#include "app/axis/cairo/src/cairo.h"
-#include "app/axis/cairo/src/cairo-ft.h"
+#include "cairo-features.h"
+#include "cairo.h"
+#include "cairo-ft.h"
 #ifdef WINDOWSEX
-#include "app/axis/cairo/src/cairo-win32.h"
+#include "cairo-win32.h"
 #endif
 
 

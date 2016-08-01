@@ -1,5 +1,7 @@
 #include "framework.h"
 #include "fiasco_finder.h"
+#include "zlib.h"
+#include "axis/zlib/zutil.h"
 
 
 #include <openssl/whrlpool.h>

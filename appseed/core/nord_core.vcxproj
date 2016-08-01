@@ -22,9 +22,10 @@
     <ProjectGuid>{16AB3478-F401-43C0-8BF1-A19F28802711}</ProjectGuid>
     <Keyword>Android</Keyword>
     <ApplicationType>Android</ApplicationType>
-    <ApplicationTypeRevision>1.0</ApplicationTypeRevision>
+    <ApplicationTypeRevision>2.0</ApplicationTypeRevision>
     <ProjectName>core</ProjectName>
     <RootNamespace>core</RootNamespace>
+    <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x86'" Label="Configuration">
@@ -97,7 +98,7 @@
     </ClCompile>
     <Link />
     <Link>
-      <LibraryDependencies>base;axis;axisbzip2;auracharguess;aura;ace;$(StlLibraryName);m</LibraryDependencies>
+      <LibraryDependencies>pcre;base;axis;axisbzip2;auracharguess;aura;ace;$(StlLibraryName);m</LibraryDependencies>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
@@ -115,7 +116,7 @@
       <ForcedIncludeFiles>$(SolutionDir)../../../nodeapp/operational_system/solution_arm_basis.h</ForcedIncludeFiles>
     </ClCompile>
     <Link>
-      <LibraryDependencies>base;axis;axisbzip2;auracharguess;aura;ace;$(StlLibraryName);m</LibraryDependencies>
+      <LibraryDependencies>pcre;base;axis;axisbzip2;auracharguess;aura;ace;$(StlLibraryName);m</LibraryDependencies>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
@@ -141,7 +142,7 @@
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <LibraryDependencies>base;axis;axisbzip2;auracharguess;aura;ace;$(StlLibraryName);m</LibraryDependencies>
+      <LibraryDependencies>pcre;base;axis;axisbzip2;auracharguess;aura;ace;$(StlLibraryName);m</LibraryDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|x86'">
@@ -165,7 +166,7 @@
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <LibraryDependencies>base;axis;axisbzip2;auracharguess;aura;ace;$(StlLibraryName);m</LibraryDependencies>
+      <LibraryDependencies>pcre;base;axis;axisbzip2;auracharguess;aura;ace;$(StlLibraryName);m</LibraryDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>

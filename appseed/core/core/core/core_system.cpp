@@ -607,7 +607,11 @@ OutputDebugString("gtk_main exited");
 
       UNREFERENCED_PARAMETER(papp);
 
-      App(papp).simple_message_box(NULL,MB_ICONINFORMATION,"Implement \"%s\" allocation\n",ptype->friendly_name());
+      string strMessage;
+
+      strMessage.Format("Implement \"%s\" allocation\n", ptype->friendly_name());
+
+      App(papp).simple_message_box(NULL,strMessage, MB_ICONINFORMATION);
 
    }
 

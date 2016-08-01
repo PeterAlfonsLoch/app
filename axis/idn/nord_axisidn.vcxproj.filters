@@ -72,9 +72,6 @@
     <ClInclude Include="lib\tld.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\idna.h">
-      <Filter>Header Files\include</Filter>
-    </ClInclude>
     <ClInclude Include="config.h">
       <Filter>Header Files\project-dir</Filter>
     </ClInclude>
@@ -82,9 +79,6 @@
   <ItemGroup>
     <Filter Include="Header Files">
       <UniqueIdentifier>{5f1800a2-0b92-49b3-bb8b-222b59acc700}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\include">
-      <UniqueIdentifier>{c3924020-c2a0-44ba-a0c0-712dc66b82a2}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\project-dir">
       <UniqueIdentifier>{e4e9fbdc-75da-4e55-80ed-2d9ef4993c2f}</UniqueIdentifier>

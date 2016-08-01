@@ -106,9 +106,10 @@
     <ProjectGuid>{BD2B9602-AC0C-4366-AA09-B83FCD2F1F2D}</ProjectGuid>
     <Keyword>Android</Keyword>
     <ApplicationType>Android</ApplicationType>
-    <ApplicationTypeRevision>1.0</ApplicationTypeRevision>
+    <ApplicationTypeRevision>2.0</ApplicationTypeRevision>
     <ProjectName>axisclientchannels</ProjectName>
     <RootNamespace>axisclientchannels</RootNamespace>
+    <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x86'" Label="Configuration">
@@ -163,7 +164,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|x86'">
     <ClCompile>
-      <AdditionalIncludeDirectories>..;client;$(SolutionDir)../../../include;$(SolutionDir)../../../app/include/;.;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/axis;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..;client;$(SolutionDir)../../../include;$(SolutionDir)../../../nodeapp/include;$(SolutionDir)../../../app/include/;.;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/axis;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>ANDROID;_X86_;_UNICODE;WINPR_EXPORTS;FREERDP_EXPORTS;_DEBUG;HAVE_CONFIG_H;CMAKE_INTDIR="Debug";%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Enabled</ExceptionHandling>
       <RuntimeTypeInfo>
@@ -177,23 +178,27 @@
     </ClCompile>
     <Link />
     <Link>
-      <LibraryDependencies>axisfreerdp;axiswinpr;axiszlib;aura;$(StlLibraryName);OpenSLES;m</LibraryDependencies>
+      <LibraryDependencies>axisfreerdp;axiswinpr;z;aura;$(StlLibraryName);OpenSLES;m</LibraryDependencies>
       <SharedLibrarySearchPath>$(OutDir);$(SolutionDir)../../thirdparty/library/x86/;$(NDKRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\lib;%(SharedLibrarySearchPath)</SharedLibrarySearchPath>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../thirdparty/library/x86/;$(NDKRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\lib;$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\4.8;$(StlLibraryPath);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>$(SolutionDir)../../thirdparty/library/x86/libavcodec.a;$(SolutionDir)../../thirdparty/library/x86/libavutil.a;$(SolutionDir)../../thirdparty/library/x86/libswresample.a</AdditionalDependencies>
+      <AdditionalDependencies>$(SolutionDir)../../thirdparty/library/x86/libavcodec-57.so;$(SolutionDir)../../thirdparty/library/x86/libavformat-57.so;$(SolutionDir)../../thirdparty/library/x86/libavutil-55.so;$(SolutionDir)../../thirdparty/library/x86/libswresample-2.so</AdditionalDependencies>
       <ForceSymbolReferences>
       </ForceSymbolReferences>
     </Link>
     <CustomBuildStep>
-      <Command>mkdir $(SolutionDir)..\..\..\time\x86\Debug\nord_app_core_rdpclient\Package\libs\x86\
-copy $(SolutionDir)..\..\thirdparty\library\x86\libavcodec.a  $(SolutionDir)..\..\..\time\x86\Debug\nord_app_core_rdpclient\Package\libs\x86\libavcodec.a
-copy $(SolutionDir)..\..\thirdparty\library\x86\libavutil.a  $(SolutionDir)..\..\..\time\x86\Debug\nord_app_core_rdpclient\Package\libs\x86\libavutil.a
-copy $(SolutionDir)..\..\thirdparty\library\x86\libswresample.a  $(SolutionDir)..\..\..\time\x86\Debug\nord_app_core_rdpclient\Package\libs\x86\libswresample.a
-mkdir $(SolutionDir)..\..\..\time\x86\Debug\Package\libs\x86
-copy $(SolutionDir)..\..\thirdparty\library\x86\libavcodec.a  $(SolutionDir)..\..\..\time\x86\Debug\Package\libs\x86\libavcodec.a
-copy $(SolutionDir)..\..\thirdparty\library\x86\libavutil.a  $(SolutionDir)..\..\..\time\x86\Debug\Package\libs\x86\libavutil.a
-copy $(SolutionDir)..\..\thirdparty\library\x86\libswresample.a  $(SolutionDir)..\..\..\time\x86\Debug\Package\libs\x86\libswresample.a</Command>
-      <Outputs>$(SolutionDir)..\..\..\time\x86\Debug\nord_app_core_rdpclient\Package\libs\x86\libffmpeg.so</Outputs>
+      <Command>mkdir $(SolutionDir)..\..\..\time\x86\basis\nord_app_core_rdpclient\Package\libs\x86\
+copy $(SolutionDir)..\..\thirdparty\library\x86\libavcodec-57.so  $(SolutionDir)..\..\..\time\x86\basis\nord_app_core_rdpclient\Package\libs\x86\libavcodec-57.so
+copy $(SolutionDir)..\..\thirdparty\library\x86\libavformat-57.so  $(SolutionDir)..\..\..\time\x86\basis\nord_app_core_rdpclient\Package\libs\x86\libavformat-57.so
+copy $(SolutionDir)..\..\thirdparty\library\x86\libavutil-55.so  $(SolutionDir)..\..\..\time\x86\basis\nord_app_core_rdpclient\Package\libs\x86\libavutil-55.so
+copy $(SolutionDir)..\..\thirdparty\library\x86\libswresample-2.so  $(SolutionDir)..\..\..\time\x86\basis\nord_app_core_rdpclient\Package\libs\x86\libswresample-2.so
+copy $(SolutionDir)..\..\thirdparty\library\x86\librtmp-1.so  $(SolutionDir)..\..\..\time\x86\basis\nord_app_core_rdpclient\Package\libs\x86\librtmp-1.so
+mkdir $(SolutionDir)..\..\..\time\x86\basis\Package\libs\x86
+copy $(SolutionDir)..\..\thirdparty\library\x86\libavcodec-57.so  $(SolutionDir)..\..\..\time\x86\basis\Package\libs\x86\libavcodec-57.so
+copy $(SolutionDir)..\..\thirdparty\library\x86\libavformat-57.so  $(SolutionDir)..\..\..\time\x86\basis\Package\libs\x86\libavformat-57.so
+copy $(SolutionDir)..\..\thirdparty\library\x86\libavutil-55.so  $(SolutionDir)..\..\..\time\x86\basis\Package\libs\x86\libavutil-55.so
+copy $(SolutionDir)..\..\thirdparty\library\x86\libswresample-2.so  $(SolutionDir)..\..\..\time\x86\basis\Package\libs\x86\libswresample-2.so
+copy $(SolutionDir)..\..\thirdparty\library\x86\librtmp-1.so  $(SolutionDir)..\..\..\time\x86\basis\Package\libs\x86\librtmp-1.so</Command>
+      <Outputs>$(SolutionDir)..\..\..\time\x86\basis\nord_app_core_rdpclient\Package\libs\x86\libavcodec-57.so;$(SolutionDir)..\..\..\time\x86\basis\nord_app_core_rdpclient\Package\libs\x86\libavformat-57.so;$(SolutionDir)..\..\..\time\x86\basis\nord_app_core_rdpclient\Package\libs\x86\libavutil-55.so;$(SolutionDir)..\..\..\time\x86\basis\nord_app_core_rdpclient\Package\libs\x86\libswresample-2.so;$(SolutionDir)..\..\..\time\x86\basis\nord_app_core_rdpclient\Package\libs\x86\librtmp-1.so</Outputs>
     </CustomBuildStep>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">

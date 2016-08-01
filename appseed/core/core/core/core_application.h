@@ -206,28 +206,28 @@ namespace core
       virtual int32_t simple_message_box(::user::primitive * puiOwner,const char * pszMessage,UINT fuStyle = MB_OK);
 
 
-#ifdef VARIADIC_TEMPLATE
-
-      template<typename T, typename... Args>
-      int32_t simple_message_box(::user::primitive * puiOwner, UINT fuStyle, const char * pszFormat, const T & value, Args... args)
-      {
-
-         string str;
-
-         string_format format(&str, &::string::FormatPrinter, NULL);
-
-         format.format(pszFormat, value, args...);
-
-         return simple_message_box(puiOwner, str, fuStyle);
-
-      }
-
-
-#else
-
-      virtual int32_t simple_message_box(::user::primitive * puiOwner,UINT fuStyle,const char * pszFormat,...);
-
-#endif
+//#ifdef VARIADIC_TEMPLATE
+//
+//      template<typename T, typename... Args>
+//      int32_t simple_message_box(::user::primitive * puiOwner, UINT fuStyle, const char * pszFormat, const T & value, Args... args)
+//      {
+//
+//         string str;
+//
+//         string_format format(&str, &::string::FormatPrinter, NULL);
+//
+//         format.format(pszFormat, value, args...);
+//
+//         return simple_message_box(puiOwner, str, fuStyle);
+//
+//      }
+//
+//
+//#else
+//
+//      virtual int32_t simple_message_box(::user::primitive * puiOwner,UINT fuStyle,const char * pszFormat,...);
+//
+//#endif
 
 
       virtual bool on_run_exception(::exception::exception &);

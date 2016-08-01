@@ -1,5 +1,8 @@
 #include "framework.h"
-
+#include "zlib.h"
+#include "axis/zlib/zutil.h"
+#include "axis/compress/zip/zip.h"
+#include "axis/compress/gzip_stream.h"
 
 
 #include "user/user.h"

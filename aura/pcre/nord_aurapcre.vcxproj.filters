@@ -18,9 +18,6 @@
     <ClInclude Include="src\config.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\pcre2.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\pcre2posix.h">
       <Filter>Header Files</Filter>
     </ClInclude>

@@ -100,8 +100,8 @@ int mf_aac_init(AAC_CONTEXT* h264,int rate,int channels,AUDIO_FORMAT * in)
    /* find the mpeg audio decoder */
 #if defined(__APPLE__)
    sys->codec = avcodec_find_decoder(AV_CODEC_ID_AAC);
-#elif defined(ANDROID)
-   sys->codec = &ff_aac_decoder;
+//#elif defined(ANDROID)
+  // sys->codec = &ff_aac_decoder;
 #else
    sys->codec = avcodec_find_decoder(AV_CODEC_ID_AAC);
 #endif

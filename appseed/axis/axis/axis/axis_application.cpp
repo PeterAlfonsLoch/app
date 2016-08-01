@@ -1,5 +1,7 @@
 #include "framework.h"
 #include "fiasco_finder.h"
+#include "axis/compress/zip/zip.h"
+
 
 
 namespace axis

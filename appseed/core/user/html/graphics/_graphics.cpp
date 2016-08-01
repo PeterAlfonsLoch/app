@@ -1,4 +1,9 @@
 #include "framework.h"
+#include "zlib.h"
+#include "axis/zlib/zutil.h"
+#include "axis/compress/zip/zip.h"
+#include "axis/compress/gzip_stream.h"
+
 #include "core/user/html/html/html.h"
 //O volume na unidade Z ‚ eco
  //O N£mero de S‚rie do Volume ‚ 4A91-94E4

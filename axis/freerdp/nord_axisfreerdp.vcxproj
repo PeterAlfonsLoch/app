@@ -273,9 +273,10 @@
     <ProjectGuid>{949CC34A-39EE-4A2A-BDE7-2ACE8C2FC97A}</ProjectGuid>
     <Keyword>Android</Keyword>
     <ApplicationType>Android</ApplicationType>
-    <ApplicationTypeRevision>1.0</ApplicationTypeRevision>
+    <ApplicationTypeRevision>2.0</ApplicationTypeRevision>
     <ProjectName>axisfreerdp</ProjectName>
     <RootNamespace>axisfreerdp</RootNamespace>
+    <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x86'" Label="Configuration">
@@ -330,7 +331,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|x86'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)../../include;.;framework;$(SolutionDir)../../../include;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../;$(ProjectDir)../../;$(ProjectDir)../;$(SolutionDir)../../../include/app/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)../../include;.;framework;$(SolutionDir)../../../nodeapp/include;$(SolutionDir)../../../include;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../;$(ProjectDir)../../;$(ProjectDir)../;$(SolutionDir)../../../include/app/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WITH_LIBAVCODEC;ANDROID;ANDROID_NDK;_X86_;_UNICODE;WINPR_EXPORTS;FREERDP_EXPORTS;_DEBUG;HAVE_CONFIG_H;CMAKE_INTDIR="Debug";winpr_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Enabled</ExceptionHandling>
       <RuntimeTypeInfo>
@@ -344,10 +345,10 @@
     </ClCompile>
     <Link />
     <Link>
-      <LibraryDependencies>axisopenssl;axiscrypto;axiswinpr;axiszlib;aura;$(StlLibraryName);m</LibraryDependencies>
+      <LibraryDependencies>axisopenssl;axiscrypto;axiswinpr;z;aura;$(StlLibraryName);m</LibraryDependencies>
       <SharedLibrarySearchPath>$(OutDir);$(NDKRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\lib;%(SharedLibrarySearchPath)</SharedLibrarySearchPath>
       <AdditionalLibraryDirectories>$(OutDir);$(NDKRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\lib;$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\4.8;$(StlLibraryPath);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>$(SolutionDir)../../thirdparty/library/x86/libavcodec.a;$(SolutionDir)../../thirdparty/library/x86/libavutil.a;$(SolutionDir)../../thirdparty/library/x86/libswresample.a</AdditionalDependencies>
+      <AdditionalDependencies>$(SolutionDir)../../thirdparty/library/x86/libavcodec-57.so;$(SolutionDir)../../thirdparty/library/x86/libavutil-55.so;$(SolutionDir)../../thirdparty/library/x86/libswresample-2.so</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">

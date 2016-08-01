@@ -1290,7 +1290,7 @@ static BOOL libavcodec_init(H264_CONTEXT* h264)
 
 	avcodec_register_all();
 
-	sys->codec = avcodec_find_decoder(CODEC_ID_H264);
+	sys->codec = avcodec_find_decoder(AV_CODEC_ID_H264);
 
 	if (!sys->codec)
 	{
@@ -1317,7 +1317,7 @@ static BOOL libavcodec_init(H264_CONTEXT* h264)
 		goto EXCEPTION;
 	}
 
-	sys->codecParser = av_parser_init(CODEC_ID_H264);
+	sys->codecParser = av_parser_init(AV_CODEC_ID_H264);
 
 	if (!sys->codecParser)
 	{
