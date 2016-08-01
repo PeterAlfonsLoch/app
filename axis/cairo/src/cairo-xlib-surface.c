@@ -74,9 +74,6 @@
 
 #define XLIB_COORD_MAX 32767
 
-#ifdef DEBUG
-#undef DEBUG
-#endif
 #define DEBUG 0
 
 #if DEBUG
@@ -1395,7 +1392,7 @@ _cairo_xlib_surface_acquire_source_image (void                    *abstract_surf
     *image_extra = NULL;
     *image_out = (cairo_image_surface_t *)
 	_cairo_xlib_surface_get_shm (abstract_surface, FALSE);
-    if (*image_out)
+    if (*image_out) 
 	    return (*image_out)->base.status;
 
     extents.x = extents.y = 0;

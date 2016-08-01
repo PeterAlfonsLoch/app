@@ -1,8 +1,5 @@
 #pragma once
 
-#include "aura/aura/aura.h"
-#include "aura/aura/os/os.h"
-
 
 #ifdef _WIN32
 #define _CRT_SECURE_NO_WARNINGS

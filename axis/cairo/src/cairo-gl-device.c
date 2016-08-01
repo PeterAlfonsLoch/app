@@ -46,16 +46,7 @@
 #include "cairo-gl-private.h"
 
 #define MAX_MSAA_SAMPLES 4
-#ifdef _WIN32
-typedef void APIENTRY FN_glActiveTexture(GLenum texture);
-typedef FN_glActiveTexture * PFNGLACTIVETEXTUREPROC;
-extern PFNGLACTIVETEXTUREPROC glActiveTexture2;
-#define glActiveTexture glActiveTexture2
-typedef void APIENTRY FN_glBlendFuncSeparate(GLenum sfactorRGB, GLenum dfactorRGB, GLenum sfactorAlpha, GLenum dfactorAlpha);
-typedef FN_glBlendFuncSeparate * PFNGLBLENDFUNCSEPARATE;
-extern PFNGLBLENDFUNCSEPARATE glBlendFuncSeparate2;
-#define glBlendFuncSeparate glBlendFuncSeparate2
-#endif
+
 static void
 _gl_lock (void *device)
 {
@@ -306,7 +297,9 @@ _cairo_gl_context_init (cairo_gl_context_t *ctx)
     if (unlikely (status))
         return status;
 
-    ctx->vb = malloc (CAIRO_GL_VBO_SIZE);
+    ctx->vbo_size = _cairo_gl_get_vbo_size();
+
+    ctx->vb = malloc (ctx->vbo_size);
     if (unlikely (ctx->vb == NULL)) {
 	    _cairo_cache_fini (&ctx->gradients);
 	    return _cairo_error (CAIRO_STATUS_NO_MEMORY);
@@ -327,11 +320,6 @@ _cairo_gl_context_init (cairo_gl_context_t *ctx)
 
     for (n = 0; n < ARRAY_LENGTH (ctx->glyph_cache); n++)
 	_cairo_gl_glyph_cache_init (&ctx->glyph_cache[n]);
-
-#ifdef _WIN32
-    glActiveTexture2 = (PFNGLACTIVETEXTUREPROC)wglGetProcAddress("glActiveTexture");
-    glBlendFuncSeparate2 = (PFNGLBLENDFUNCSEPARATE)wglGetProcAddress("glBlendFuncSeparate");
-#endif
 
     return CAIRO_STATUS_SUCCESS;
 }

@@ -54,8 +54,6 @@
 
 #include <wchar.h>
 #include <windows.h>
-#include "aura/aura/aura.h"
-#include "aura/aura/os/os.h"
 
 static cairo_device_t *__cairo_win32_device;
 
@@ -103,17 +101,14 @@ hr = m_pD2DFactory->CreateDCRenderTarget(&props, &device->d2d);
 
 static cairo_bool_t is_win98 (void)
 {
-/*    OSVERSIONINFO os;
+    OSVERSIONINFO os;
 
     os.dwOSVersionInfoSize = sizeof (os);
     GetVersionEx (&os);
 
     return (VER_PLATFORM_WIN32_WINDOWS == os.dwPlatformId &&
 	    os.dwMajorVersion == 4 &&
-	    os.dwMinorVersion == 10);*/
-
-   return is_windows_98_or_lesser();
-
+	    os.dwMinorVersion == 10);
 }
 
 static void *

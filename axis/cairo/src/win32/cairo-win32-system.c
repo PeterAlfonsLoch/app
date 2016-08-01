@@ -60,20 +60,12 @@
 #endif
 
 #include <windows.h>
-#include <gl/gl.h>
-#include <gl/glext.h>
 
 /* declare to avoid "no previous prototype for 'DllMain'" warning */
 BOOL WINAPI
 DllMain (HINSTANCE hinstDLL,
          DWORD     fdwReason,
          LPVOID    lpvReserved);
-typedef void APIENTRY FN_glActiveTexture(GLenum texture);
-typedef FN_glActiveTexture * PFNGLACTIVETEXTUREPROC;
-PFNGLACTIVETEXTUREPROC glActiveTexture2 = NULL;
-typedef void APIENTRY FN_glBlendFuncSeparate(GLenum sfactorRGB, GLenum dfactorRGB, GLenum sfactorAlpha, GLenum dfactorAlpha);
-typedef FN_glBlendFuncSeparate * PFNGLBLENDFUNCSEPARATE;
-PFNGLBLENDFUNCSEPARATE glBlendFuncSeparate2 = NULL;
 
 BOOL WINAPI
 DllMain (HINSTANCE hinstDLL,
@@ -92,7 +84,6 @@ DllMain (HINSTANCE hinstDLL,
 
     return TRUE;
 }
-
 
 #endif
 #endif

@@ -45,12 +45,7 @@
 #include "cairo-error-private.h"
 #include "cairo-image-surface-private.h"
 #include "cairo-rtree-private.h"
-#ifdef _WIN32
-typedef void APIENTRY FN_glActiveTexture(GLenum texture);
-typedef FN_glActiveTexture * PFNGLACTIVETEXTUREPROC;
-extern PFNGLACTIVETEXTUREPROC glActiveTexture2;
-#define glActiveTexture glActiveTexture2
-#endif
+
 #define GLYPH_CACHE_WIDTH 1024
 #define GLYPH_CACHE_HEIGHT 1024
 #define GLYPH_CACHE_MIN_SIZE 4
