@@ -24,13 +24,13 @@
  */
 
 #ifdef HAVE_CONFIG_H
-//#include<config.h>
+#include <config.h>
 #endif
-//#include<string.h>
-//#include<stdlib.h>
-//#include"pixman-private.h"
-//#include"pixman-combine32.h"
-//#include"pixman-inlines.h"
+#include <string.h>
+#include <stdlib.h>
+#include "pixman-private.h"
+#include "pixman-combine32.h"
+#include "pixman-inlines.h"
 
 static force_inline uint32_t
 fetch_24 (uint8_t *a)
@@ -2342,6 +2342,8 @@ fast_fetch_bilinear_cover (pixman_iter_t *iter, const uint32_t *mask)
     int y0, y1;
     int32_t dist_y;
     int i;
+
+    COMPILE_TIME_ASSERT (BILINEAR_INTERPOLATION_BITS < 8);
 
     fx = info->x;
     ux = iter->image->common.transform->matrix[0][0];

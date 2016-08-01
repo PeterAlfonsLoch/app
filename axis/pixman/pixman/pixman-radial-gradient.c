@@ -28,11 +28,11 @@
  */
 
 #ifdef HAVE_CONFIG_H
-//#include<config.h>
+#include <config.h>
 #endif
-//#include<stdlib.h>
-//#include<math.h>
-//#include"pixman-private.h"
+#include <stdlib.h>
+#include <math.h>
+#include "pixman-private.h"
 
 static inline pixman_fixed_32_32_t
 dot (pixman_fixed_48_16_t x1,

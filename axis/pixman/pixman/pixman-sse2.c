@@ -27,17 +27,17 @@
  * Based on work by Owen Taylor and Søren Sandmann
  */
 #ifdef HAVE_CONFIG_H
-#include<config.h>
+#include <config.h>
 #endif
 
 /* PSHUFD is slow on a lot of old processors, and new processors have SSSE3 */
 #define PSHUFD_IS_FAST 0
 
-#include<xmmintrin.h> /* for _mm_shuffle_pi16 and _MM_SHUFFLE */
-#include<emmintrin.h> /* for SSE2 intrinsics */
-#include"pixman-private.h"
-#include"pixman-combine32.h"
-#include"pixman-inlines.h"
+#include <xmmintrin.h> /* for _mm_shuffle_pi16 and _MM_SHUFFLE */
+#include <emmintrin.h> /* for SSE2 intrinsics */
+#include "pixman-private.h"
+#include "pixman-combine32.h"
+#include "pixman-inlines.h"
 
 static __m128i mask_0080;
 static __m128i mask_00ff;
@@ -6274,31 +6274,15 @@ static const pixman_fast_path_t sse2_fast_paths[] =
     PIXMAN_STD_FAST_PATH (IN, solid, a8, a8, sse2_composite_in_n_8_8),
     PIXMAN_STD_FAST_PATH (IN, solid, null, a8, sse2_composite_in_n_8),
 
-    SIMPLE_NEAREST_FAST_PATH_COVER (OVER, a8r8g8b8, x8r8g8b8, sse2_8888_8888),
-    SIMPLE_NEAREST_FAST_PATH_COVER (OVER, a8b8g8r8, x8b8g8r8, sse2_8888_8888),
-    SIMPLE_NEAREST_FAST_PATH_COVER (OVER, a8r8g8b8, a8r8g8b8, sse2_8888_8888),
-    SIMPLE_NEAREST_FAST_PATH_COVER (OVER, a8b8g8r8, a8b8g8r8, sse2_8888_8888),
-    SIMPLE_NEAREST_FAST_PATH_NONE (OVER, a8r8g8b8, x8r8g8b8, sse2_8888_8888),
-    SIMPLE_NEAREST_FAST_PATH_NONE (OVER, a8b8g8r8, x8b8g8r8, sse2_8888_8888),
-    SIMPLE_NEAREST_FAST_PATH_NONE (OVER, a8r8g8b8, a8r8g8b8, sse2_8888_8888),
-    SIMPLE_NEAREST_FAST_PATH_NONE (OVER, a8b8g8r8, a8b8g8r8, sse2_8888_8888),
-    SIMPLE_NEAREST_FAST_PATH_PAD (OVER, a8r8g8b8, x8r8g8b8, sse2_8888_8888),
-    SIMPLE_NEAREST_FAST_PATH_PAD (OVER, a8b8g8r8, x8b8g8r8, sse2_8888_8888),
-    SIMPLE_NEAREST_FAST_PATH_PAD (OVER, a8r8g8b8, a8r8g8b8, sse2_8888_8888),
-    SIMPLE_NEAREST_FAST_PATH_PAD (OVER, a8b8g8r8, a8b8g8r8, sse2_8888_8888),
-    SIMPLE_NEAREST_FAST_PATH_NORMAL (OVER, a8r8g8b8, x8r8g8b8, sse2_8888_8888),
-    SIMPLE_NEAREST_FAST_PATH_NORMAL (OVER, a8b8g8r8, x8b8g8r8, sse2_8888_8888),
-    SIMPLE_NEAREST_FAST_PATH_NORMAL (OVER, a8r8g8b8, a8r8g8b8, sse2_8888_8888),
-    SIMPLE_NEAREST_FAST_PATH_NORMAL (OVER, a8b8g8r8, a8b8g8r8, sse2_8888_8888),
+    SIMPLE_NEAREST_FAST_PATH (OVER, a8r8g8b8, x8r8g8b8, sse2_8888_8888),
+    SIMPLE_NEAREST_FAST_PATH (OVER, a8b8g8r8, x8b8g8r8, sse2_8888_8888),
+    SIMPLE_NEAREST_FAST_PATH (OVER, a8r8g8b8, a8r8g8b8, sse2_8888_8888),
+    SIMPLE_NEAREST_FAST_PATH (OVER, a8b8g8r8, a8b8g8r8, sse2_8888_8888),
 
     SIMPLE_NEAREST_SOLID_MASK_FAST_PATH (OVER, a8r8g8b8, a8r8g8b8, sse2_8888_n_8888),
     SIMPLE_NEAREST_SOLID_MASK_FAST_PATH (OVER, a8b8g8r8, a8b8g8r8, sse2_8888_n_8888),
     SIMPLE_NEAREST_SOLID_MASK_FAST_PATH (OVER, a8r8g8b8, x8r8g8b8, sse2_8888_n_8888),
     SIMPLE_NEAREST_SOLID_MASK_FAST_PATH (OVER, a8b8g8r8, x8b8g8r8, sse2_8888_n_8888),
-    SIMPLE_NEAREST_SOLID_MASK_FAST_PATH_NORMAL (OVER, a8r8g8b8, a8r8g8b8, sse2_8888_n_8888),
-    SIMPLE_NEAREST_SOLID_MASK_FAST_PATH_NORMAL (OVER, a8b8g8r8, a8b8g8r8, sse2_8888_n_8888),
-    SIMPLE_NEAREST_SOLID_MASK_FAST_PATH_NORMAL (OVER, a8r8g8b8, x8r8g8b8, sse2_8888_n_8888),
-    SIMPLE_NEAREST_SOLID_MASK_FAST_PATH_NORMAL (OVER, a8b8g8r8, x8b8g8r8, sse2_8888_n_8888),
 
     SIMPLE_BILINEAR_FAST_PATH (SRC, a8r8g8b8, a8r8g8b8, sse2_8888_8888),
     SIMPLE_BILINEAR_FAST_PATH (SRC, a8r8g8b8, x8r8g8b8, sse2_8888_8888),

@@ -20,10 +20,10 @@
  * CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 #ifdef HAVE_CONFIG_H
-//#include<config.h>
+#include <config.h>
 #endif
 
-//#include"pixman-private.h"
+#include "pixman-private.h"
 
 #ifdef USE_VMX
 
@@ -32,7 +32,7 @@
  * across function calls causing SIGILL on cpus without Altivec/vmx.
  */
 #ifdef __APPLE__
-//#include<sys/sysctl.h>
+#include <sys/sysctl.h>
 
 static pixman_bool_t
 pixman_have_vmx (void)
@@ -49,9 +49,9 @@ pixman_have_vmx (void)
 }
 
 #elif defined (__OpenBSD__)
-//#include<sys/param.h>
-//#include<sys/sysctl.h>
-//#include<machine/cpu.h>
+#include <sys/param.h>
+#include <sys/sysctl.h>
+#include <machine/cpu.h>
 
 static pixman_bool_t
 pixman_have_vmx (void)
@@ -70,13 +70,13 @@ pixman_have_vmx (void)
 
 #elif defined (__linux__)
 
-//#include<sys/types.h>
-//#include<sys/stat.h>
-//#include<fcntl.h>
-//#include<unistd.h>
-//#include<stdio.h>
-//#include<linux/auxvec.h>
-//#include<asm/cputable.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <stdio.h>
+#include <linux/auxvec.h>
+#include <asm/cputable.h>
 
 static pixman_bool_t
 pixman_have_vmx (void)
@@ -108,8 +108,8 @@ pixman_have_vmx (void)
 }
 
 #else /* !__APPLE__ && !__OpenBSD__ && !__linux__ */
-//#include<signal.h>
-//#include<setjmp.h>
+#include <signal.h>
+#include <setjmp.h>
 
 static jmp_buf jump_env;
 

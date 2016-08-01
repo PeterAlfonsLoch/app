@@ -23,12 +23,12 @@
  */
 
 #ifdef HAVE_CONFIG_H
-//#include<config.h>
+#include <config.h>
 #endif
-//#include<stdio.h>
-//#include<stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
 
-//#include"pixman-private.h"
+#include "pixman-private.h"
 
 pixman_bool_t
 _pixman_multiply_overflows_size (size_t a, size_t b)

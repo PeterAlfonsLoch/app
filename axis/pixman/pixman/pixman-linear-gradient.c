@@ -26,10 +26,10 @@
  */
 
 #ifdef HAVE_CONFIG_H
-//#include<config.h>
+#include <config.h>
 #endif
-//#include<stdlib.h>
-//#include"pixman-private.h"
+#include <stdlib.h>
+#include "pixman-private.h"
 
 static pixman_bool_t
 linear_gradient_is_horizontal (pixman_image_t *image,

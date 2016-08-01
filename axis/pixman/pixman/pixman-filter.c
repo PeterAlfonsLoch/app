@@ -23,15 +23,15 @@
  *
  * Author: Soren Sandmann <soren.sandmann@gmail.com>
  */
-//#include<string.h>
-//#include<stdlib.h>
-//#include<stdio.h>
-//#include<math.h>
-//#include<assert.h>
+#include <string.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <math.h>
+#include <assert.h>
 #ifdef HAVE_CONFIG_H
-//#include<config.h>
+#include <config.h>
 #endif
-//#include"pixman-private.h"
+#include "pixman-private.h"
 
 typedef double (* kernel_func_t) (double x);
 

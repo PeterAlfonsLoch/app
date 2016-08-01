@@ -54,7 +54,7 @@
 //#include "pixman-region.c"
 //#include "pixman-region16.c"
 //#include "pixman-region32.c"
-#include "pixman-solid-fill.c"
+//#include "pixman-solid-fill.c"
 //#include "pixman-sse2.c"
 //#include "pixman-ssse3.c"
 #include "pixman-timer.c"

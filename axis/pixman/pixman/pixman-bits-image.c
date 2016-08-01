@@ -27,14 +27,14 @@
  */
 
 #ifdef HAVE_CONFIG_H
-//#include<config.h>
+#include <config.h>
 #endif
-//#include<stdio.h>
-//#include<stdlib.h>
-//#include<string.h>
-//#include"pixman-private.h"
-//#include"pixman-combine32.h"
-//#include"pixman-inlines.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "pixman-private.h"
+#include "pixman-combine32.h"
+#include "pixman-inlines.h"
 
 static uint32_t *
 _pixman_image_get_scanline_generic_float (pixman_iter_t * iter,

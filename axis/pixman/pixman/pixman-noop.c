@@ -22,13 +22,13 @@
  * DEALINGS IN THE SOFTWARE.
  */
 #ifdef HAVE_CONFIG_H
-//#include<config.h>
+#include <config.h>
 #endif
-//#include<string.h>
-//#include<stdlib.h>
-//#include"pixman-private.h"
-//#include"pixman-combine32.h"
-//#include"pixman-inlines.h"
+#include <string.h>
+#include <stdlib.h>
+#include "pixman-private.h"
+#include "pixman-combine32.h"
+#include "pixman-inlines.h"
 
 static void
 noop_composite (pixman_implementation_t *imp,
