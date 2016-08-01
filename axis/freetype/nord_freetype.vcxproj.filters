@@ -22,9 +22,6 @@
     <ClCompile Include="src\base\ftwinfnt.c">
       <Filter>Source Files\FT_MODULES</Filter>
     </ClCompile>
-    <ClCompile Include="src\base\ftxf86.c">
-      <Filter>Source Files\FT_MODULES</Filter>
-    </ClCompile>
     <ClCompile Include="src\base\ftlcdfil.c">
       <Filter>Source Files\FT_MODULES</Filter>
     </ClCompile>
@@ -121,26 +118,6 @@
     <ClCompile Include="src\smooth\smooth.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\include\config\ftconfig.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\config\ftheader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\config\ftmodule.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\config\ftoption.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\config\ftstdlib.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\ft2build.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
