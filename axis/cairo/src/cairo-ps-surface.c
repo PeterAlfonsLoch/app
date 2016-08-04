@@ -1736,7 +1736,7 @@ _cairo_ps_surface_acquire_source_surface_from_pattern (cairo_ps_surface_t       
 						       void                        **image_extra)
 {
     cairo_status_t          status;
-    cairo_image_surface_t  *image;
+    cairo_image_surface_t  *image = NULL;
 
     *x_offset = *y_offset = 0;
     switch (pattern->type) {

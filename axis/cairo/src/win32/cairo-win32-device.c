@@ -101,14 +101,15 @@ hr = m_pD2DFactory->CreateDCRenderTarget(&props, &device->d2d);
 
 static cairo_bool_t is_win98 (void)
 {
-    OSVERSIONINFO os;
+    //OSVERSIONINFO os;
 
-    os.dwOSVersionInfoSize = sizeof (os);
-    GetVersionEx (&os);
+    //os.dwOSVersionInfoSize = sizeof (os);
+    //GetVersionEx (&os);
 
-    return (VER_PLATFORM_WIN32_WINDOWS == os.dwPlatformId &&
-	    os.dwMajorVersion == 4 &&
-	    os.dwMinorVersion == 10);
+    //return (VER_PLATFORM_WIN32_WINDOWS == os.dwPlatformId &&
+	   // os.dwMajorVersion == 4 &&
+	   // os.dwMinorVersion == 10);
+   return 0;
 }
 
 static void *

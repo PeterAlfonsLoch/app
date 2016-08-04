@@ -1374,8 +1374,8 @@ _cairo_pdf_surface_add_source_surface (cairo_pdf_surface_t	    *surface,
     cairo_bool_t interpolate;
     unsigned char *unique_id = NULL;
     unsigned long unique_id_length = 0;
-    cairo_image_surface_t *image;
-    void *image_extra;
+    cairo_image_surface_t *image = NULL;
+    void *image_extra = NULL;
 
     switch (filter) {
     default:
