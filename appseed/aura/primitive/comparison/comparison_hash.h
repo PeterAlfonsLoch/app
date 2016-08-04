@@ -76,9 +76,21 @@ inline UINT HashKey<wstring>(wstring key)
 template<>
 inline UINT HashKey<const string &>(const string &  key)
 {
-
-   return HashKey<const char * >(key.c_str());
-
+   uint64_t * puiKey = (uint64_t *)key.m_pszData;
+   size_t counter = key.get_length();
+   uint64_t nHash = 0;
+   while (counter > sizeof(*puiKey))
+   {
+      nHash = (nHash << 5) + nHash + *puiKey++;
+      counter -= sizeof(*puiKey);
+   }
+   const char * pszKey = (const char *)puiKey;
+   while (counter > 0)
+   {
+      nHash = (nHash << 5) + nHash + *pszKey++;
+      counter--;
+   }
+   return (UINT)nHash;
 }
 
 

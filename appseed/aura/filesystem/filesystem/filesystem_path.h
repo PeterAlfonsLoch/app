@@ -291,6 +291,6 @@ template<>
 inline UINT HashKey<const ::file::path &>(const ::file::path &  key)
 {
 
-   return HashKey<const char * >(key.c_str());
+   return HashKey<const string & >(key);
 
 }

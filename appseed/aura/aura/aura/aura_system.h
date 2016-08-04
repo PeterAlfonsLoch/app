@@ -120,6 +120,8 @@ namespace aura
       double_array                                 m_daLon;
       double_array                                 m_daLat;
 
+      string_map < sp(::aura::library) >           m_mapLibrary;
+
 
 
       system(::aura::application * papp, void * pdata);

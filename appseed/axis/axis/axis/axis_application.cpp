@@ -4338,9 +4338,9 @@ namespace axis
 
 #else
 
-      ::aura::library & library = System.m_libraryDraw2d;
+      sp(::aura::library) & library = System.m_mapLibrary["draw2d"];
 
-      if (library.is_opened())
+      if (library->is_opened())
          return;
 
       string strLibrary;
@@ -4368,9 +4368,9 @@ namespace axis
       if (strLibrary.has_char())
       {
 
-         library.open(strLibrary);
+         library->open(strLibrary);
 
-         if (library.is_opened())
+         if (library->is_opened())
             goto finalize;
 
       }
@@ -4384,9 +4384,9 @@ namespace axis
          strLibrary = "draw2d_cairo";
 #endif
 
-      library.open(strLibrary);
+      library->open(strLibrary);
 
-      if (library.is_opened())
+      if (library->is_opened())
          goto finalize;
 
 #ifdef WINDOWSEX
@@ -4394,9 +4394,9 @@ namespace axis
       if (strLibrary != "draw2d_gdiplus")
       {
 
-         library.open("draw2d_gdiplus");
+         library->open("draw2d_gdiplus");
 
-         if (library.is_opened())
+         if (library->is_opened())
             goto finalize;
 
       }
@@ -4408,9 +4408,9 @@ namespace axis
       {
 
 
-         library.open("draw2d_cairo");
+         library->open("draw2d_cairo");
 
-         if (library.is_opened())
+         if (library->is_opened())
             goto finalize;
 
       }
@@ -4419,7 +4419,7 @@ namespace axis
 
 finalize:
 
-      PFN_ca2_factory_exchange pfn_ca2_factory_exchange = library.get < PFN_ca2_factory_exchange >("ca2_factory_exchange");
+      PFN_ca2_factory_exchange pfn_ca2_factory_exchange = library->get < PFN_ca2_factory_exchange >("ca2_factory_exchange");
 
       pfn_ca2_factory_exchange(this);
 

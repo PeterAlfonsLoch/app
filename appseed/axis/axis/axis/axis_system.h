@@ -41,9 +41,6 @@ namespace axis
 
 
 
-      ::aura::library                              m_libraryDraw2d;
-
-
       bool                                         m_bSystemSynchronizedCursor;
       bool                                         m_bSystemSynchronizedScreen;
 

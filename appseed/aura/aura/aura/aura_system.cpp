@@ -253,7 +253,7 @@ namespace aura
          g_p = NULL;
 
       }
-      
+
 #ifndef WINDOWS
       
       exception::translator::detach();

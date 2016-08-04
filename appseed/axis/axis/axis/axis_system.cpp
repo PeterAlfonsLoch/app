@@ -17,9 +17,11 @@ namespace axis
       aura::system(this, NULL),
       m_httpsystem(this),
       m_visual(this),
-      m_emaildepartment(this),
-      m_libraryDraw2d(this)
+      m_emaildepartment(this)
    {
+
+      m_mapLibrary["draw2d"] = canew(::aura::library(this));
+
       g_pszCooperativeLevel = "axis";
 
       m_pDraw2dFactoryExchange = NULL;
@@ -532,7 +534,7 @@ namespace axis
       try
       {
 
-         if(m_libraryDraw2d.is_opened())
+         if(m_mapLibrary["draw2d"]->is_opened())
          {
 
             if(m_pDraw2dFactoryExchange != NULL)
@@ -544,8 +546,6 @@ namespace axis
 
             }
 
-            m_libraryDraw2d.close();
-
          }
 
       }
@@ -553,6 +553,18 @@ namespace axis
       {
 
       }
+
+      //try
+      //{
+
+      //   m_libraryDraw2d.close();
+
+      //}
+      //catch (...)
+      //{
+
+
+      //}
 
       return iRet;
 
