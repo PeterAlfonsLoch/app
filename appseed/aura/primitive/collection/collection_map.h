@@ -1176,7 +1176,7 @@ typename map < KEY, ARG_KEY, VALUE, ARG_VALUE, PAIR >::assoc *
    for(passoc = m_hashtable.m_ppassocHash[nHashBucket]; passoc != NULL; passoc = passoc->m_pnextHash)
    {
 
-      if(EqualElements(passoc->m_element1, key))
+      if(EqualElements<ARG_KEY>(passoc->m_element1, key))
          return passoc;
 
    }

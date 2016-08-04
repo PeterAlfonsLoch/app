@@ -139,7 +139,7 @@
       <SmallerTypeCheck>false</SmallerTypeCheck>
       <EnableParallelCodeGeneration>false</EnableParallelCodeGeneration>
       <CreateHotpatchableImage>false</CreateHotpatchableImage>
-      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
       <DisableSpecificWarnings>4172;4311</DisableSpecificWarnings>
@@ -294,7 +294,7 @@ ml /safeseh /coff /Zi /Fo"$(IntDir)rc4.o" /c /Fl"$(IntDir)rc4.lst" "$(ProjectDir
       <OpenMPSupport>false</OpenMPSupport>
       <EnableParallelCodeGeneration>false</EnableParallelCodeGeneration>
       <CreateHotpatchableImage>false</CreateHotpatchableImage>
-      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>

@@ -141,7 +141,7 @@
       <SmallerTypeCheck>false</SmallerTypeCheck>
       <EnableParallelCodeGeneration>false</EnableParallelCodeGeneration>
       <CreateHotpatchableImage>false</CreateHotpatchableImage>
-      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
       <DisableSpecificWarnings>4311</DisableSpecificWarnings>
@@ -307,7 +307,7 @@
       <OpenMPSupport>false</OpenMPSupport>
       <EnableParallelCodeGeneration>false</EnableParallelCodeGeneration>
       <CreateHotpatchableImage>false</CreateHotpatchableImage>
-      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>

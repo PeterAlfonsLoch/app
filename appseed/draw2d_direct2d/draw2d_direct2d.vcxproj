@@ -132,7 +132,7 @@
       <BufferSecurityCheck>true</BufferSecurityCheck>
       <EnableParallelCodeGeneration>false</EnableParallelCodeGeneration>
       <CreateHotpatchableImage>false</CreateHotpatchableImage>
-      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <UseFullPaths>true</UseFullPaths>
     </ClCompile>
@@ -230,7 +230,7 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <CompileAsManaged>false</CompileAsManaged>
       <Optimization>Disabled</Optimization>
-      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <OmitFramePointers>false</OmitFramePointers>
       <StringPooling>false</StringPooling>
       <ExceptionHandling>Async</ExceptionHandling>
