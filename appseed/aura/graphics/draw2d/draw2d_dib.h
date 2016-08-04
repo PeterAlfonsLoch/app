@@ -323,7 +323,7 @@ namespace draw2d
 
 
 template < >
-inline UINT HashKey<::draw2d::dib::descriptor >(::draw2d::dib::descriptor key)
+inline UINT HashKey<const ::draw2d::dib::descriptor &>(const ::draw2d::dib::descriptor  & key)
 {
    UINT ui = (UINT) key.m_etype;
    if(key.m_etype == ::draw2d::dib::type_plain_color)

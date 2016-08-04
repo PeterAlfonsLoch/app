@@ -18,15 +18,19 @@ template<>
 inline UINT HashKey<const char *> (const char * key)
 {
    uint64_t * puiKey = (uint64_t *) key;
-   strsize counter = strlen(key);
+   size_t counter = strlen(key);
    uint64_t nHash = 0;
-   while(compare::ge(counter, sizeof(*puiKey)))
+   while(counter > sizeof(*puiKey))
    {
       nHash = (nHash<<5) + nHash + *puiKey++;
       counter -= sizeof(*puiKey);
    }
    const char * pszKey = (const char *) puiKey;
-   while(counter-- >= 0) nHash = (nHash<<5) + nHash + *pszKey++;
+   while (counter > 0)
+   {
+      nHash = (nHash << 5) + nHash + *pszKey++;
+      counter--;
+   }
    return (UINT) nHash;
 }
 
@@ -70,12 +74,13 @@ inline UINT HashKey<wstring>(wstring key)
 
 
 template<>
-inline UINT HashKey<string>(string key)
+inline UINT HashKey<const string &>(const string &  key)
 {
 
-   return HashKey<const char * >(key);
+   return HashKey<const char * >(key.c_str());
 
 }
+
 
 
 

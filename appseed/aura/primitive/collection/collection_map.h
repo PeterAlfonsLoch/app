@@ -1163,7 +1163,7 @@ typename map < KEY, ARG_KEY, VALUE, ARG_VALUE, PAIR >::assoc *
    // find association (or return NULL)
 {
 
-   nHashValue = HashKey((ARG_KEY) key);
+   nHashValue = HashKey<ARG_KEY>(key);
 
    nHashBucket = nHashValue % m_hashtable.GetHashTableSize();
 
@@ -1303,7 +1303,7 @@ bool map < KEY, ARG_KEY, VALUE, ARG_VALUE, PAIR >::remove_key(ARG_KEY key)
       return false;  // nothing in the table
 
    UINT nHashValue;
-   nHashValue = HashKey((ARG_KEY) key);
+   nHashValue = HashKey<ARG_KEY>(key);
    assoc * passoc = m_hashtable.m_ppassocHash[nHashValue%m_hashtable.GetHashTableSize()];
    for(; passoc != NULL; passoc = passoc->m_pnextHash)
    {
