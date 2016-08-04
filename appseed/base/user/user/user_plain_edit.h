@@ -42,6 +42,8 @@ namespace user
 
       bool                          m_bKeyPressed;
       bool                          m_bColorerTake5;
+      int32_t                       m_iLineStart;
+      int32_t                       m_iLineEnd;
       int32_t                       m_iLineCount;
       //visual::dib_sp                m_dibBk;
       bool                          m_bCustomFrameBefore;

@@ -1567,7 +1567,7 @@ r_only:
 
       }
 
-      iPos = iFindA + 1;
+      iPos = iFindB + 1;
 
 
    } while(true);

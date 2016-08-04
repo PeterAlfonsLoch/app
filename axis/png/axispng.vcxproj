@@ -45,9 +45,6 @@
     <ClCompile Include="throw_error_exception.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\include\png.h" />
-    <ClInclude Include="..\..\include\pngconf.h" />
-    <ClInclude Include="..\..\include\pnglibconf.h" />
     <ClInclude Include="config.h" />
     <ClInclude Include="pngdebug.h" />
     <ClInclude Include="pnginfo.h" />

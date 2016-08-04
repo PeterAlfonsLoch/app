@@ -51,9 +51,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\include\idna.h">
-      <Filter>Header Files\include</Filter>
-    </ClInclude>
     <ClInclude Include="config.h">
       <Filter>Header Files\project-dir</Filter>
     </ClInclude>

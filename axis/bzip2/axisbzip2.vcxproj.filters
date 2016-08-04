@@ -24,14 +24,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="bzlib.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="bzlib_private.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
     <Filter Include="Header Files">
       <UniqueIdentifier>{7d4119ac-0145-4cb4-9333-0431b3668a8b}</UniqueIdentifier>
     </Filter>

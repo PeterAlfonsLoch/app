@@ -19,7 +19,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\include\idna.h" />
     <ClInclude Include="config.h" />
     <ClInclude Include="lib\gunibreak.h" />
     <ClInclude Include="lib\gunicomp.h" />

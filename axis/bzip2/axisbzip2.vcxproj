@@ -28,10 +28,6 @@
     <ClCompile Include="randtable.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="bzlib.h" />
-    <ClInclude Include="bzlib_private.h" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="axisbzip2.def" />
   </ItemGroup>
   <ItemGroup>

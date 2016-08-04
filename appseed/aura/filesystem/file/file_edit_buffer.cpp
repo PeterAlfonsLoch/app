@@ -1,5 +1,6 @@
 #include "framework.h"
 
+#define MAX_STOP (::numeric_info < file_position_t >::get_maximum_value())
 
 namespace file
 {
@@ -11,17 +12,17 @@ namespace file
    }
 
 
-   UINT edit_buffer::Item::read_ch(::file::edit_buffer * pfile)
+   bool edit_buffer::Item::read_byte(byte * pbyte, ::file::edit_buffer * pfile)
    {
 
       UNREFERENCED_PARAMETER(pfile);
+      UNREFERENCED_PARAMETER(pbyte);
 
       throw not_implemented(pfile->get_app());
 
-      return 0;
+      return false;
 
    }
-
 
    file_position_t edit_buffer::Item::get_position(bool bForward) { UNREFERENCED_PARAMETER(bForward); return m_dwPosition; };
 
@@ -68,54 +69,95 @@ namespace file
 
    memory_size_t edit_buffer::DeleteItem::reverse_get_extent()
    {
+
       return m_memstorage.get_size();
+
    }
+
 
    memory_size_t edit_buffer::DeleteItem::reverse_get_file_extent()
    {
+
       return 0;
+
    }
+
 
    BYTE * edit_buffer::DeleteItem::reverse_get_data()
    {
+
       return m_memstorage.get_data();
+
    }
+
 
    memory_offset_t edit_buffer::DeleteItem::get_delta_length()
    {
+
       return - (memory_offset_t) m_memstorage.get_size();
+
    }
 
-   UINT edit_buffer::DeleteItem::read_ch(::file::edit_buffer * pfile)
+
+   bool edit_buffer::DeleteItem::read_byte(byte * pbyte, ::file::edit_buffer * pfile)
    {
+
       if(pfile->m_bRootDirection)
       {
-         if(pfile->m_dwReadPosition >= m_dwPosition)
+
+         if(pfile->m_dwIterationPosition >= m_dwPosition)
          {
-            pfile->m_dwReadPosition += m_memstorage.get_size();
+
+            pfile->m_dwIterationPosition += m_memstorage.get_size();
+
+            if (pfile->m_dwStopPosition != MAX_STOP && m_dwPosition < pfile->m_dwStopPosition)
+            {
+
+               pfile->m_dwStopPosition += m_memstorage.get_size();
+
+            }
+
          }
+         else if (pfile->m_dwStopPosition > m_dwPosition)
+         {
+
+            pfile->m_dwStopPosition = m_dwPosition;
+
+         }
+
       }
       else
       {
-         if(pfile->m_dwReadPosition >= m_dwPosition)
+         if(pfile->m_dwPosition + pfile->m_iOffset >= m_dwPosition)
          {
-            if(pfile->m_dwReadPosition < (m_dwPosition + m_memstorage.get_size()))
+
+            if(pfile->m_dwPosition + pfile->m_iOffset < (m_dwPosition + m_memstorage.get_size()))
             {
-               return ((byte *)m_memstorage.get_data())[pfile->m_dwReadPosition - m_dwPosition];
+
+               if (pbyte != NULL)
+               {
+
+                  *pbyte = m_memstorage.get_data()[pfile->m_dwPosition - m_dwPosition];
+
+               }
+
+               return true;
+
             }
             else
             {
-               pfile->m_dwReadPosition -= m_memstorage.get_size();
+
+               pfile->m_dwPosition -= m_memstorage.get_size();
+
             }
+
          }
+
       }
-      return 0xffffffff;
+
+      return false;
+
    }
-
-
-
-
-
 
 
 
@@ -167,35 +209,80 @@ namespace file
 
 
 
-   UINT edit_buffer::InsertItem::read_ch(::file::edit_buffer * pfile)
+   bool edit_buffer::InsertItem::read_byte(byte * pbyte, ::file::edit_buffer * pfile)
    {
+
       if(pfile->m_bRootDirection)
       {
-         if(pfile->m_dwReadPosition >= m_dwPosition)
+
+         if(m_dwPosition <= pfile->m_dwIterationPosition)
          {
-            if(pfile->m_dwReadPosition < (m_dwPosition + m_memstorage.get_size()))
+
+            if(pfile->m_dwIterationPosition < (m_dwPosition + m_memstorage.get_size()))
             {
-               return ((byte *)m_memstorage.get_data())[pfile->m_dwReadPosition - m_dwPosition];
+
+               if (pbyte != NULL)
+               {
+
+                  *pbyte = m_memstorage.get_data()[pfile->m_dwIterationPosition - m_dwPosition];
+
+               }
+
+               pfile->m_dwPosition++;
+
+               return true;
+
             }
             else
             {
-               pfile->m_dwReadPosition -= m_memstorage.get_size();
+
+                pfile->m_dwIterationPosition -= m_memstorage.get_size();
+
+                if (pfile->m_dwStopPosition != MAX_STOP && m_dwPosition  < pfile->m_dwStopPosition)
+                {
+
+                   if (m_dwPosition + m_memstorage.get_size() < pfile->m_dwStopPosition)
+                   {
+
+                      pfile->m_dwStopPosition -= m_memstorage.get_size();
+
+                   }
+
+                }
+
             }
+
          }
+         else
+         {
+          
+            if (pfile->m_dwStopPosition > m_dwPosition)
+            {
+
+               pfile->m_dwStopPosition = m_dwPosition;
+
+            }
+
+         }
+
       }
       else
       {
-         if(pfile->m_dwReadPosition >= m_dwPosition)
+
+         if(pfile->m_dwPosition + pfile->m_iOffset >= m_dwPosition)
          {
-            pfile->m_dwReadPosition += m_memstorage.get_size();
+
+            pfile->m_iOffset -= m_memstorage.get_size();
+
+            pfile->m_dwLength -= m_memstorage.get_size();
+
          }
+
       }
-      return 0xffffffff;
+
+      return false;
+
    }
-
-
-
-
 
 
 
@@ -308,27 +395,44 @@ namespace file
       return iLen;
    }
 
-   UINT edit_buffer::GroupItem::read_ch(::file::edit_buffer * pfile)
+
+   bool edit_buffer::GroupItem::read_byte(byte * pbyte, ::file::edit_buffer * pfile)
    {
+
       if(pfile->m_bRootDirection)
       {
+
          for(index i = get_upper_bound(); i >= 0; i--)
          {
-            UINT uiReadItem = this->element_at(i)->read_ch(pfile);
-            if(uiReadItem <= 255)
-               return uiReadItem;
+            
+            if (this->element_at(i)->read_byte(pbyte, pfile))
+            {
+
+               return true;
+
+            }
+               
          }
+
       }
       else
       {
          for(index i = 0; i < this->get_count(); i++)
          {
-            UINT uiReadItem = this->element_at(i)->read_ch(pfile);
-            if(uiReadItem <= 255)
-               return uiReadItem;
+
+            if (this->element_at(i)->read_byte(pbyte, pfile))
+            {
+
+               return true;
+
+            }
+
          }
+
       }
-      return 0xffffffff;
+
+      return false;
+
    }
 
 
@@ -409,65 +513,114 @@ namespace file
 
       UINT uiReadItem = 0xffffffff;
 
+      uint64_t uiStopSize;
+
+      m_iOffset = 0;
+
+      m_ptreeitemBeg = m_ptreeitemFlush->get_next();
+
+      byte b;
+
+
+      m_dwLength = m_dwFileLength;
+
+      file_position_t dwStartPosition;
+
       do
       {
 
       l1:
 
+         //ptreeitem = m_ptreeitemBeg;
+
+         m_dwStopPosition = MAX_STOP;
+
+         //m_itemptraStop.remove_all();
+
+         // m_iOffset is the position offset valid only for the following while loop
+
+         m_iStartOffset = m_iOffset;
+
          ptreeitem = m_ptreeitem;
 
-         m_dwReadPosition = m_dwPosition;
+         m_dwIterationPosition = m_dwPosition;
 
-         while(nCount > 0 && ptreeitem != NULL && ptreeitem != m_ptreeitemFlush && m_dwPosition < m_dwFileLength)
+         while (nCount > 0 && ptreeitem != NULL && ptreeitem != m_ptreeitemFlush && m_dwPosition < m_dwLength)
          {
 
             sp(Item) pitem = (sp(Item))ptreeitem->m_pitem;
 
-            uiReadItem = pitem->read_ch(this);
-
-            if(uiReadItem <= 255)
+            //if (!m_itemptraHit.contains(pitem))
             {
 
-               buf[uiRead] = (byte)uiReadItem;
 
-               nCount--;
 
-               uiRead++;
+               if (pitem->read_byte(&b, this))
+               {
 
-               m_dwPosition++;
+                  buf[uiRead] = b;
 
-               goto l1;
+                  nCount--;
+
+                  uiRead++;
+
+                  //m_dwPosition++;
+
+                  goto l1;
+
+               }
 
             }
 
-            if(nCount <= 0)
+
+            if (nCount <= 0)
                break;
 
             ptreeitem = m_bRootDirection ? ptreeitem->get_previous() : ptreeitem->get_next();
+
+            //ptreeitem = ptreeitem->get_next();
+
+            //if (ptreeitem == m_ptreeitemEnd)
+            //{
+
+            //   break;
+
+            //}
 
          }
 
          uiReadCount = 0;
 
-         while(nCount > 0 && m_dwPosition < m_dwFileLength)
+         uiStopSize = m_pfile->get_length();
+
+         if (m_dwStopPosition < uiStopSize && m_dwIterationPosition <= m_dwStopPosition)
          {
 
-            m_pfile->seek((file_offset_t)m_dwPosition,::file::seek_begin);
+            uiStopSize = m_dwStopPosition;
 
-            uiReadCount = m_pfile->read(&buf[uiRead],(memory_size_t) MAX(0, MIN(m_dwFileLength - m_dwPosition, nCount)));
+         }
+
+         while(nCount > 0 && m_dwIterationPosition < uiStopSize  && m_dwPosition < m_dwLength)
+         {
+
+            m_pfile->seek((file_offset_t)m_dwIterationPosition,::file::seek_begin);
+
+            uiReadCount = m_pfile->read(&buf[uiRead],(memory_size_t) MAX(0, MIN(uiStopSize - m_dwIterationPosition, nCount)));
 
             if(uiReadCount <= 0)
                break;
 
-            nCount-=uiReadCount;
+            nCount -= uiReadCount;
 
-            uiRead+=uiReadCount;
+            uiRead += uiReadCount;
 
-            m_dwPosition+=uiReadCount;
+            m_dwPosition += uiReadCount;
+
+            m_dwIterationPosition += uiReadCount;
 
          }
 
-      } while(nCount > 0 && m_dwPosition < m_dwFileLength && uiReadCount > 0);
+      } while(nCount > 0 && m_dwPosition < m_dwLength);
 
       return uiRead;
 
@@ -587,9 +740,129 @@ namespace file
          return (file_position_t)-1;
       }
 
+      m_dwPosition = 0;
+
+      memory_size_t uiRead = 0;
+
+      memory_size_t uiReadCount = 0;
+
+      if (m_dwPosition >= m_dwFileLength)
+      {
+
+         return uiRead;
+
+      }
+
+      //      uint32_t dwPosition = m_dwPosition;
+      //      uint32_t dwFilePosition = m_dwPosition;
+      //      uint32_t dwMaxCount = m_dwFileLength;
+      //      uint32_t dwUpperLimit = m_dwFileLength;
+      //      int32_t iOffset =0;
+
+//      sp(::data::tree_item) ptreeitem;
+//
+//      //      GroupItem * pitemgroup = NULL;
+//
+//      int_array ia;
+//
+//      m_bRootDirection = calc_root_direction();
+//
+//      UINT uiReadItem = 0xffffffff;
+//
+//      uint64_t uiStopSize;
+//
+//      m_iStartOffset = 0;
+//
+//      m_iOffset = 0;
+//
+//      DWORD dwNewParam = dwNew;
+//
+//      m_itemptraHit.remove_all();
+//
+//      do
+//      {
+//
+//      l1:
+//
+//         ptreeitem = m_ptreeitem;
+//
+//         m_dwLength = dwNew;
+//
+////         m_itemptraStop.remove_all();
+//
+//         m_dwStopPosition = ::numeric_info < file_position_t > ::get_maximum_value();
+//
+//         // m_iOffset is the position offset valid only for the following while loop
+//
+//         // m_iOffset = m_iStartOffset;
+//
+//         while (dwNew > 0 && ptreeitem != NULL && ptreeitem != m_ptreeitemFlush && m_dwPosition < m_dwLength)
+//         {
+//
+//            sp(Item) pitem = (sp(Item))ptreeitem->m_pitem;
+//
+////            if (!m_itemptraHit.contains(pitem))
+//            {
+//
+//               if (pitem->read_byte(NULL, this))
+//               {
+//
+//                  m_itemptraHit.add(pitem);
+//
+//                  dwNew--;
+//
+//                  uiRead++;
+//
+//                  m_dwPosition++;
+//
+//                  goto l1;
+//
+//               }
+//
+//            }
+//
+//            if (dwNew <= 0)
+//               break;
+//
+//            ptreeitem = m_bRootDirection ? ptreeitem->get_previous() : ptreeitem->get_next();
+//
+//         }
+//
+//         uiReadCount = 0;
+//
+//         uiStopSize = m_pfile->get_length();
+//
+//         if (m_dwStopPosition < uiStopSize && m_dwPosition <= m_dwStopPosition)
+//         {
+//
+//            uiStopSize = m_dwStopPosition;
+//
+//         }
+//
+//         while (dwNew > 0 && m_dwPosition < uiStopSize)
+//         {
+//
+//            m_pfile->seek((file_offset_t)m_dwPosition, ::file::seek_begin);
+//
+//            uiReadCount = MIN(uiStopSize - m_dwPosition, dwNew);
+//
+//            if (uiReadCount <= 0)
+//               break;
+//
+//            dwNew -= uiReadCount;
+//
+//            uiRead += uiReadCount;
+//
+//            m_dwPosition += uiReadCount;
+//
+//         }
+//
+//      } while (dwNew > 0 && m_dwPosition < m_dwLength && uiReadCount > 0);
+
       m_dwPosition = dwNew;
 
       return dwNew;
+
    }
 
 

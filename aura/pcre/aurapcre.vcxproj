@@ -399,7 +399,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\config.h" />
-    <ClInclude Include="src\pcre2.h" />
     <ClInclude Include="src\pcre2posix.h" />
     <ClInclude Include="src\pcre2_internal.h" />
     <ClInclude Include="src\pcre2_intmodedep.h" />

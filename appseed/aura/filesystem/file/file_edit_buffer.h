@@ -31,7 +31,7 @@ namespace file
 
          Item();
 
-         virtual UINT read_ch(::file::edit_buffer * pfile);
+         virtual bool read_byte(byte  * pbyte, ::file::edit_buffer * pfile);
 
          virtual file_position_t get_position(bool bForward);
 
@@ -64,7 +64,7 @@ namespace file
          memory m_memstorage;
 
 
-         virtual UINT read_ch(::file::edit_buffer * pfile);
+         virtual bool read_byte(byte * pbyte, ::file::edit_buffer * pfile) override;
 
          virtual EItemType get_type();
          virtual memory_size_t get_extent() ;
@@ -86,7 +86,7 @@ namespace file
          memory m_memstorage;
 
 
-         virtual UINT read_ch(::file::edit_buffer * pfile);
+         virtual bool read_byte(byte * pbyte, ::file::edit_buffer * pfile) override;
 
          virtual EItemType get_type() ;
          virtual memory_size_t get_extent() ;
@@ -144,7 +144,7 @@ namespace file
          virtual BYTE * reverse_get_data() ;
          virtual memory_offset_t get_delta_length();
 
-         virtual UINT read_ch(::file::edit_buffer * pfile);
+         virtual bool read_byte(byte * pbyte, ::file::edit_buffer * pfile) override;
 
 #undef new
          DECLARE_AND_IMPLEMENT_DEFAULT_ALLOCATION
@@ -152,19 +152,28 @@ namespace file
 
       };
 
-      file_position_t           m_dwPosition;
-      file_size_t               m_dwInternalFilePosition;
-      file_size_t               m_dwFileLength;
-      file_position_t           m_dwReadPosition;
-      file_offset_t             m_iCurItem;
+      file_position_t                     m_dwPosition;
+      file_position_t                     m_dwLength;
+      file_position_t                     m_dwIterationPosition;
+      file_size_t                         m_dwInternalFilePosition;
+      file_size_t                         m_dwFileLength;
+      file_position_t                     m_dwStopPosition;
+      file_offset_t                       m_iCurItem;
+      file_offset_t                       m_iOffset;
+      file_offset_t                       m_iStartOffset;
+
+      ::comparable_array < Item * >       m_itemptraHit;
+      ::comparable_array < Item * >       m_itemptraRead;
 
 
-      sp(::data::tree_item)   m_ptreeitem;
-      sp(::data::tree_item)   m_ptreeitemFlush;
-      memory_offset_t              m_iBranch;
-      ::file::buffer_sp           m_pfile;
-      sp(GroupItem)          m_pgroupitem;
-      bool                 m_bRootDirection;
+      sp(::data::tree_item)               m_ptreeitem;
+      sp(::data::tree_item)               m_ptreeitemFlush;
+      sp(::data::tree_item)               m_ptreeitemBeg;
+      sp(::data::tree_item)               m_ptreeitemEnd;
+      memory_offset_t                     m_iBranch;
+      ::file::buffer_sp                   m_pfile;
+      sp(GroupItem)                       m_pgroupitem;
+      bool                                m_bRootDirection;
 
       edit_buffer(::aura::application * papp);
       virtual ~edit_buffer();
