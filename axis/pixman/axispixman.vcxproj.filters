@@ -58,45 +58,6 @@
     <ClInclude Include="pixman\loongson-mmintrin.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="pixman\pixman.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="pixman\pixman-accessor.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="pixman\pixman-arm-common.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="pixman\pixman-arm-neon-asm.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="pixman\pixman-arm-simd-asm.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="pixman\pixman-combine32.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="pixman\pixman-compiler.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="pixman\pixman-edge-imp.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="pixman\pixman-inlines.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="pixman\pixman-mips-dspr2.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="pixman\pixman-mips-dspr2-asm.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="pixman\pixman-private.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="pixman\pixman-version.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="config.h">
       <Filter>Header Files</Filter>
     </ClInclude>

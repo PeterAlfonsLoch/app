@@ -391,19 +391,6 @@
   <ItemGroup>
     <ClInclude Include="config.h" />
     <ClInclude Include="pixman\loongson-mmintrin.h" />
-    <ClInclude Include="pixman\pixman-accessor.h" />
-    <ClInclude Include="pixman\pixman-arm-common.h" />
-    <ClInclude Include="pixman\pixman-arm-neon-asm.h" />
-    <ClInclude Include="pixman\pixman-arm-simd-asm.h" />
-    <ClInclude Include="pixman\pixman-combine32.h" />
-    <ClInclude Include="pixman\pixman-compiler.h" />
-    <ClInclude Include="pixman\pixman-edge-imp.h" />
-    <ClInclude Include="pixman\pixman-inlines.h" />
-    <ClInclude Include="pixman\pixman-mips-dspr2-asm.h" />
-    <ClInclude Include="pixman\pixman-mips-dspr2.h" />
-    <ClInclude Include="pixman\pixman-private.h" />
-    <ClInclude Include="pixman\pixman-version.h" />
-    <ClInclude Include="pixman\pixman.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\appseed\ace\ace.vcxproj">
