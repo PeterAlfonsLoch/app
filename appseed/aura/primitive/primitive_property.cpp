@@ -314,10 +314,28 @@ void property::parse_json(const char * & pszJson,const char * pszEnd)
 
 void property::parse_json_id(id & id, const char * & pszJson, const char * pszEnd)
 {
+   
    ::str::consume_spaces(pszJson, 0, pszEnd);
-   string str = ::str::consume_quoted_value(pszJson, pszEnd);
-   str.make_lower();
-   id = str;
+   
+   char sz[1024];
+   
+   char * psz = sz;
+   
+   int iBuffer = sizeof(sz);
+   
+   ::str::consume_quoted_value_ex2(pszJson, pszEnd, &psz, iBuffer);
+   
+   ::strlwr(psz);
+   
+   id = psz;
+
+   if (iBuffer > sizeof(sz))
+   {
+
+      ::memory_free(psz);
+
+   }
+
 }
 
 void property::parse_json_value(var & var, const char * & pszJson,const char * pszEnd)

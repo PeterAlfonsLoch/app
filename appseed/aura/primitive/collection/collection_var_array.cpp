@@ -8,30 +8,25 @@
 var_array::var_array(::aura::application * papp) :
    object(papp)
 {
-   set_size(0, 64);
 }
 
 var_array::var_array(const stringa & stra)
 {
-   set_size(0, ROUND16(stra.get_size() + 16));
    operator = (stra);
 }
 
 var_array::var_array(const int_array & ia)
 {
-   set_size(0, ROUND16(ia.get_size() + 16));
    operator = (ia);
 }
 
 var_array::var_array(const property_set & propset)
 {
-   set_size(0, ROUND16(propset.get_count() + 16));
    operator = (propset);
 }
 
 var_array::var_array(const var_array & vara)
 {
-   set_size(ROUND16(vara.get_size() + 16));
    operator = (vara);
 }
 

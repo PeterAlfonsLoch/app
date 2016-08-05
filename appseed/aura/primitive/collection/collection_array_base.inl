@@ -611,7 +611,7 @@ template < class TYPE,class ALLOCATOR >
       {
          // heuristically determine growth when nGrowBy == 0
          //  (this avoids heap fragmentation in many situations)
-         nGrowBy = m_nSize / 8;
+         nGrowBy = m_nSize;
          nGrowBy = (nGrowBy < 4) ? 4 : ((nGrowBy > 1024) ? 1024 : nGrowBy);
       }
       ::count nNewMax;

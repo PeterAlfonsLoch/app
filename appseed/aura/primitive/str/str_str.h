@@ -278,6 +278,7 @@ namespace str
    CLASS_DECL_AURA void consume_spaces(const char * & pszXml, ::count iMinimumCount, const char * pszEnd);
    CLASS_DECL_AURA string consume_nc_name(const char * & pszXml);
    CLASS_DECL_AURA string consume_quoted_value(const char * & pszXml);
+   CLASS_DECL_AURA void consume_quoted_value_ex2(const char * & pszXml, const char * pszEnd, char ** ppsz, int & iBufferSize);
    CLASS_DECL_AURA string consume_quoted_value(const char * & pszXml, const char * pszEnd);
    CLASS_DECL_AURA string consume_quoted_value_ex(const char * & pszXml,const char * pszEnd);
    CLASS_DECL_AURA string consume_spaced_value(string & str);
@@ -410,6 +411,49 @@ namespace str
       return -1;
    }
 
+
+   inline char lower_char(int32_t ch)
+   {
+      if (ch >= 'A' && ch <= 'Z')
+      {
+         ch = ch - 'A' + 'a';
+      }
+      return ch;
+   }
+
+
+
+   inline char upper_char(int32_t ch)
+   {
+      if (ch >= 'a' && ch <= 'z')
+      {
+         ch = ch - 'a' + 'A';
+      }
+      return ch;
+   }
+
+   inline void          make_lower(char * psz)
+   {
+
+      while (*psz)
+      {
+         *psz = lower_char(*psz);
+         psz++;
+      }
+
+   }
+
+
+   inline void          make_upper(char * psz)
+   {
+
+      while (*psz)
+      {
+         *psz = upper_char(*psz);
+         psz++;
+      }
+
+   }
 
 } // namespace str
 

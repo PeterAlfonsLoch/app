@@ -136,6 +136,7 @@ public:
 
    string gen_eval(const char * psz);
 
+   void parse_json(const string & strJson);
    void parse_json(const char * & pszJson);
    void parse_json(const char * & pszJson, const char * pszEnd);
    void parse_url_query(const char * pszUrl);

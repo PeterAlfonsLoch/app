@@ -23,7 +23,28 @@ namespace str
       2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2, 3,3,3,3,3,3,3,3,4,4,4,4,5,5,5,5
    };
 
-  
+   //void          make_lower(char * psz)
+   //{
+
+   //   while (*psz)
+   //   {
+   //      *psz = tolower(*psz);
+   //      psz++;
+   //   }
+
+   //}
+
+
+   //void          make_upper(char * psz)
+   //{
+
+   //   while (*psz)
+   //   {
+   //      *psz = toupper(*psz);
+   //      psz++;
+   //   }
+
+   //}
 
 
    int32_t  compare(const char * psz1, const char * psz2)
@@ -2432,47 +2453,224 @@ end:
 
    string consume_quoted_value(const char * & pszXml, const char * pszEnd)
    {
+      
       const char * psz = pszXml;
-      string qc; // quote character
-      if(!get_utf8_char(qc,psz,pszEnd))
+
+      if(*psz != '\"' && *psz != '\\')
       {
-         throw_parsing_exception("Quote character is required here, premature end");
-         return "";
-      }
-      if(qc != "\"" && qc != "\\")
-      {
+
          throw_parsing_exception("Quote character is required here");
+
          return "";
+
       }
+
+      char qc = *psz;
+      
+      psz++;
+
       const char * pszValueStart = psz;
-      const char * pszValueEnd = psz;
-      const char * pszNext = psz;
-      const char * pszQc = qc;
-      string qc2;
-      char qclen = (char) qc.get_length();
+
       char i;
-      while(true)
+
+      while(*psz != qc)
       {
-         pszNext = __utf8_inc(psz);
-         if(pszNext > pszEnd)
+         
+         psz = __utf8_inc(psz);
+         
+         if(psz > pszEnd)
          {
+
             throw_parsing_exception("Quote character is required here, premature end");
+
             return "";
+
          }
-         for(i = 0; i < qclen && psz < pszNext; i++)
-         {
-            if(*psz != pszQc[i])
-               break;
-            psz++;
-         }
-         if(i == qclen)
-            break;
-         psz = pszNext;
-         pszValueEnd = psz;
+
       }
+
+      psz++;
+
       pszXml = psz;
-      return string(pszValueStart, pszValueEnd - pszValueStart);
+
+      return string(pszValueStart, psz - pszValueStart);
+
    }
+
+
+   void consume_quoted_value_ex2(const char * & pszXml, const char * pszEnd, char ** ppsz, int & iBufferSize)
+   {
+
+      const char * psz = pszXml;
+
+      if (*psz != '\"' && *psz != '\\')
+      {
+
+         throw_parsing_exception("Quote character is required here");
+
+         return;
+
+      }
+
+      char qc = *psz;
+
+      psz++;
+
+      const char * pszValueStart = psz;
+
+      char i;
+
+      while (*psz != qc)
+      {
+
+         psz = __utf8_inc(psz);
+
+         if (psz > pszEnd)
+         {
+
+            throw_parsing_exception("Quote character is required here, premature end");
+
+            return;
+
+         }
+
+      }
+
+      int iNewBufferSize = psz - pszValueStart;
+
+
+      if (iNewBufferSize > iBufferSize)
+      {
+
+         *ppsz = (char *) memory_alloc(iNewBufferSize+1);
+
+      }
+
+      strncpy(*ppsz, pszValueStart, iNewBufferSize);
+
+      (*ppsz)[iNewBufferSize] = '\0';
+
+      iBufferSize = iNewBufferSize;
+
+      psz++;
+
+      pszXml = psz;
+
+   }
+
+
+   template < const int m_iSize = 1024 >
+   class mini_str_buffer
+   {
+   public:
+
+      
+      int         m_iPos;
+      char        m_sz[m_iSize];
+      string      m_str;
+
+
+      mini_str_buffer()
+      {
+         
+         m_iPos = 0;
+
+      }
+
+      void append(char ch)
+      {
+         
+         if (m_iPos + 1 > m_iSize)
+         {
+
+            m_str.append(m_sz, m_iPos);
+
+            m_iPos = 0;
+
+         }
+
+         m_sz[m_iPos] = ch;
+
+         m_iPos ++;
+
+
+      }
+
+      void append_uni(int64_t w)
+      {
+
+         if (m_iPos + 3 > m_iSize)
+         {
+
+            m_str.append(m_sz, m_iPos);
+
+            m_iPos = 0;
+
+         }
+
+         if (w < 0x0080)
+         {
+
+            m_sz[m_iPos] = char(w);
+            m_iPos++;
+
+         }
+         else if (w < 0x0800)
+         {
+            m_sz[m_iPos] = (char)(0xc0 | ((w) >> 6));
+            m_iPos++;
+            m_sz[m_iPos] = (char)(0x80 | ((w) & 0x3f));
+            m_iPos++;
+         }
+         else
+         {
+            m_sz[m_iPos] = (char)(0xe0 | ((w) >> 12));
+            m_iPos++;
+            m_sz[m_iPos] = (char)(0x80 | (((w) >> 6) & 0x3f));
+            m_iPos++;
+            m_sz[m_iPos] = (char)(0x80 | ((w) & 0x3f));
+            m_iPos++;
+         }
+      }
+      
+      void append(const char * psz, int iSize)
+      {
+
+         if (m_iPos + iSize > m_iSize)
+         {
+
+            m_str.append(m_sz, m_iPos);
+
+            m_iPos = 0;
+
+            if (iSize > m_iSize)
+            {
+
+               m_str.append(m_sz, iSize);
+
+               return;
+
+            }
+
+         }
+
+         strncpy(&m_sz[m_iPos], psz, iSize);
+
+         m_iPos += iSize;
+
+      }
+
+
+      void update()
+      {
+
+         m_str.append(m_sz, m_iPos);
+
+         m_iPos = 0;
+
+      }
+
+   };
 
    string consume_quoted_value_ex(const char * & pszXml,const char * pszEnd)
    {
@@ -2493,7 +2691,7 @@ end:
       const char * pszNext = psz;
       const char * pszQc = qc;
       string qc2;
-      string str;
+      mini_str_buffer < > str;
       while(true)
       {
          pszNext = __utf8_inc(psz);
@@ -2523,15 +2721,15 @@ end:
             }
             if(*psz == 'n')
             {
-               str += "\n";
+               str.append('\n');
             }
             else if(*psz == 't')
             {
-               str += "\t";
+               str.append('\t');
             }
             else if(*psz == 'r')
             {
-               str += "\r";
+               str.append('\r');
             }
             else if(*psz == 'u')
             {
@@ -2556,26 +2754,34 @@ end:
                   }
 
                }
-               str += (unichar)::hex::to_uint(strUni);
+               str.append_uni((unichar)::hex::to_uint(strUni));
             }
             else if(*psz == '\"')
             {
-               str += "\"";
+               str.append('\"');;
             }
             else
             {
-               str += string(psz,pszNext - psz);
+               str.append(psz,pszNext - psz);
             }
          }
          else
          {
-            str += string(psz,pszNext - psz);
+            str.append(psz, pszNext - psz);
          }
+         
          psz = pszNext;
+         
          //pszValueEnd = psz;
+
       }
+      
       pszXml = psz;
-      return str;
+      
+      str.update();
+
+      return str.m_str;
+
    }
 
    string consume_spaced_value(string & str)

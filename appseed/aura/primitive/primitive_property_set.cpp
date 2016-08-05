@@ -572,10 +572,24 @@ void property_set::_008Parse(bool bApp, const char * pszCmdLine, var & varFile, 
 
 }
 
+
+void property_set::parse_json(const string & strJson)
+{
+
+   const char * pszJson = strJson;
+
+   parse_json(pszJson, pszJson + strJson.get_length() - 1);
+
+}
+
+
 void property_set::parse_json(const char * & pszJson)
 {
+   
    parse_json(pszJson, pszJson + strlen(pszJson) - 1);
+
 }
+
 
 void property_set::parse_json(const char * & pszJson, const char * pszEnd)
 {
