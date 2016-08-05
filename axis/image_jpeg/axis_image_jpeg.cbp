@@ -49,10 +49,10 @@
 			<Add directory="../../../include" />
 			<Add directory="../../appseed" />
 			<Add directory="../freeimage/Source/FreeImage" />
-			<Add directory="../../../../ca2" />
 			<Add directory="../../appseed/aura" />
 			<Add directory="../freeimage/Source" />
 			<Add directory="../../include" />
+			<Add directory="../../.." />
 		</Compiler>
 		<Linker>
 			<Add option="-Wl,-R\\$$$ORIGIN" />

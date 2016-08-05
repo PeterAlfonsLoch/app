@@ -562,11 +562,11 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 				png_bytep profile_data = NULL;
 				png_uint_32 profile_length = 0;
 				int  compression_type;
-#if defined(__APPLE__) || defined(VSNORD) || defined(WINDOWS)
+#if defined(__APPLE__) || defined(VSNORD) || defined(WINDOWS) || defined(LINUX)
             png_get_iCCP(png_ptr, info_ptr, &profile_name, &compression_type, (unsigned char **)&profile_data, &profile_length);
 #else
             png_get_iCCP(png_ptr, info_ptr, &profile_name, &compression_type, (png_charpp)&profile_data, &profile_length);
-            
+
 #endif
 
 
@@ -848,11 +848,11 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 
 			FIICCPROFILE *iccProfile = FreeImage_GetICCProfile(dib);
 			if (iccProfile->size && iccProfile->data) {
-#if defined(__APPLE__) || defined(VSNORD) || defined(WINDOWS)
+#if defined(__APPLE__) || defined(VSNORD) || defined(WINDOWS) || defined(LINUX)
             png_set_iCCP(png_ptr, info_ptr, "Embedded Profile", 0, (unsigned char *)iccProfile->data, iccProfile->size);
 #else
             png_set_iCCP(png_ptr, info_ptr, "Embedded Profile", 0, (png_charp)iccProfile->data, iccProfile->size);
-            
+
 #endif
 			}
 

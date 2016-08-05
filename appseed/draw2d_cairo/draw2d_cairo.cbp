@@ -60,6 +60,7 @@
 			<Add option="-Winvalid-pch" />
 			<Add option="-Wno-conversion-null" />
 			<Add option="-fPIC" />
+			<Add option="` pkg-config --cflags cairo`" />
 			<Add directory="../../../include" />
 			<Add directory="../../include" />
 			<Add directory="." />

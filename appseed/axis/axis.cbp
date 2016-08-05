@@ -52,6 +52,7 @@
 			<Add option="-Wno-attributes" />
 			<Add option="-Winvalid-pch" />
 			<Add option="-fPIC" />
+			<Add option="`pkg-config --cflags freetype2`" />
 			<Add option="-DLINUX" />
 			<Add option="-DBASE_FREEIMAGE" />
 			<Add option="-DSIXTY_FOUR_BIT_LONG" />

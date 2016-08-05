@@ -130,7 +130,7 @@ typedef struct
     int32_t encrypted;
 #    ifndef NOUNCRYPT
     uint32_t keys[3];     /* keys defining the pseudo-random sequence */
-#ifdef WINDOWS
+#if defined(WINDOWS) || defined(LINUX)
     const z_crc_t * pcrc_32_tab;
 #else
     const uLongf * pcrc_32_tab;

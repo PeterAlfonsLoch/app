@@ -3,7 +3,7 @@
 #include "fiasco_finder.h"
 
 #ifndef WINDOWS
-#include "ft2build.h"
+#include "freetype2/ft2build.h"
 #include FT_FREETYPE_H
 #endif
 
@@ -258,9 +258,9 @@ namespace axis
 
    bool system::verb() // ambigous inheritance from ::aura::system/::axis::application
    {
-      
+
       return ::aura::system::verb();
-      
+
    }
 
    bool system::initialize_instance()

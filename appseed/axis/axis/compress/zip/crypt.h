@@ -37,7 +37,7 @@
  * Return the next byte in the pseudo-random sequence
  */
 static_function int32_t decrypt_byte(uint32_t  * pkeys,
-#ifdef WINDOWS
+#if defined(WINDOWS) || defined(LINUX)
    const z_crc_t * pcrc_32_tab
 #else
    const uLongf * pcrc_32_tab
@@ -56,7 +56,7 @@ static_function int32_t decrypt_byte(uint32_t  * pkeys,
 /***********************************************************************
  * Update the encryption keys with the next byte of plain text
  */
-#ifdef WINDOWS
+#if defined(WINDOWS) || defined(LINUX)
 static_function int32_t update_keys(uint32_t * pkeys,const z_crc_t * pcrc_32_tab,int32_t ca)
 #else
 static_function int32_t update_keys(uint32_t * pkeys, const uLongf * pcrc_32_tab, int32_t ca)
@@ -77,7 +77,7 @@ static_function int32_t update_keys(uint32_t * pkeys, const uLongf * pcrc_32_tab
  * Initialize the encryption keys and the random header according to
  * the given password.
  */
-#ifdef WINDOWS
+#if defined(WINDOWS) || defined(LINUX)
 static_function void init_keys(const char* passwd, uint32_t * pkeys,const z_crc_t * pcrc_32_tab)
 #else
 static_function void init_keys(const char* passwd, uint32_t * pkeys, const uLongf * pcrc_32_tab)
@@ -111,7 +111,7 @@ static_function int32_t crypthead(
     uchar *buf,         /* where to write header */
     int32_t bufSize,
     uint32_t * pkeys,
-#ifdef WINDOWS
+#if defined(WINDOWS) || defined(LINUX)
     const z_crc_t * pcrc_32_tab,
 #else
     const uLongf * pcrc_32_tab,
