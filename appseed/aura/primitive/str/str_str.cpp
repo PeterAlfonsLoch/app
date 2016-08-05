@@ -23,28 +23,7 @@ namespace str
       2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2, 3,3,3,3,3,3,3,3,4,4,4,4,5,5,5,5
    };
 
-   void          make_lower(char * psz)
-   {
-
-      while (*psz)
-      {
-         *psz = tolower(*psz);
-         psz++;
-      }
-
-   }
-
-
-   void          make_upper(char * psz)
-   {
-
-      while (*psz)
-      {
-         *psz = toupper(*psz);
-         psz++;
-      }
-
-   }
+  
 
 
    int32_t  compare(const char * psz1, const char * psz2)
