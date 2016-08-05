@@ -3283,6 +3283,8 @@ namespace draw2d
    void dib::Fill (int32_t a, int32_t r, int32_t g, int32_t b)
    {
 
+      //ASSERT(r <= a && g <= a && b <= a);
+
       map();
 
       if(a == r && a == g && a == b)

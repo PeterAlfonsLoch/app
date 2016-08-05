@@ -3,7 +3,7 @@
    //#include <dde.h>
 #endif
 
-#define TEST 0
+#define TEST 1
 
 extern CLASS_DECL_CORE thread_int_ptr < DWORD_PTR > t_time1;
 

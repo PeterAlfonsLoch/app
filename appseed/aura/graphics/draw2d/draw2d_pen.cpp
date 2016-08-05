@@ -136,7 +136,7 @@ namespace draw2d
    {
 
       m_elinejoin = elinejoin;
-
+      m_bUpdated = false;
       return true;
 
    }

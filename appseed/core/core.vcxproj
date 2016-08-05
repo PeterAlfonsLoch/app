@@ -2205,9 +2205,6 @@
     <ProjectReference Include="..\..\aura\charguess\auracharguess.vcxproj">
       <Project>{ac6a52b4-c049-439c-88ff-5a262d968c8f}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\axis\bzip2\axisbzip2.vcxproj">
-      <Project>{a5a649e1-d516-4f29-a627-da6884dd421c}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\ace\ace.vcxproj">
       <Project>{21dcc811-4bce-4f16-b674-c0941f847127}</Project>
     </ProjectReference>

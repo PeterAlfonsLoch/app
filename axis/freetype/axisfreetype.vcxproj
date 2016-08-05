@@ -1219,9 +1219,6 @@
     <ProjectReference Include="..\..\appseed\aura\aura.vcxproj">
       <Project>{03e5b8e7-9e3b-44dd-9ede-e0a74d52c1c5}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\bzip2\axisbzip2.vcxproj">
-      <Project>{a5a649e1-d516-4f29-a627-da6884dd421c}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\crypto\axiscrypto.vcxproj">
       <Project>{39807406-816f-4c0d-a632-4bb8ab13887b}</Project>
     </ProjectReference>
