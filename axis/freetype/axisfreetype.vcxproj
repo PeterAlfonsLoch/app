@@ -1222,9 +1222,6 @@
     <ProjectReference Include="..\crypto\axiscrypto.vcxproj">
       <Project>{39807406-816f-4c0d-a632-4bb8ab13887b}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\png\axispng.vcxproj">
-      <Project>{85a1566b-6043-4334-a599-b8a5b338eff5}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\zlib\axiszlib.vcxproj">
       <Project>{34fcfbf1-e922-4fdc-bc83-b3c04623e8c2}</Project>
     </ProjectReference>

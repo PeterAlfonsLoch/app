@@ -1955,9 +1955,6 @@
     <ProjectReference Include="..\freetype\axisfreetype.vcxproj">
       <Project>{78b079bd-9fc7-4b9e-b4a6-96da0f00248b}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\image_png\axis_image_png.vcxproj">
-      <Project>{84517714-2000-419D-A87F-C338C9DDE3FA}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\pixman\axispixman.vcxproj">
       <Project>{0a298e22-839b-4d11-b5a7-456ead013c11}</Project>
     </ProjectReference>
