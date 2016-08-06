@@ -61,7 +61,7 @@ namespace estamira
    void character::_001OnDraw(::draw2d::graphics * pgraphics)
    {
 
-      int w = pdib->m_size.cx;
+      int w = pgraphics->m_pdib->m_size.cx;
 
       stringa stra;
 
@@ -102,8 +102,8 @@ namespace estamira
          iUp = iUpMax * sin(3.1415 * double(get_tick_count() - m_dwLastUp) / double(m_dwUpTime));
       }
       m_ptNow.y = m_ptStart.y + m_pt.y - iUp;
-      pdib->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_blend);
-      m_ts.draw(pdib, stra[((get_tick_count() - m_dwLastChangeXDir) / iDelay) % stra.get_size()], m_ptNow.x, m_ptNow.y);
+      pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+      m_ts.draw(pgraphics, stra[((get_tick_count() - m_dwLastChangeXDir) / iDelay) % stra.get_size()], m_ptNow.x, m_ptNow.y);
 
    }
 

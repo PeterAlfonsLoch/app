@@ -180,7 +180,7 @@ namespace estamira
             if (!dib->create(m_il.m_size))
                continue;
 
-            draw(dib, straSplit[2], 0, 0);
+            draw(dib->get_graphics(), straSplit[2], 0, 0);
 
             if (!dib->op("horz-swap"))
                continue;
@@ -193,7 +193,7 @@ namespace estamira
 
    }
 
-   bool tileset::draw(::draw2d::dib * pdib, const char * psz, int x, int y)
+   bool tileset::draw(::draw2d::graphics * pgraphics, const char * psz, int x, int y)
    {
 
       int i = -1;
@@ -201,7 +201,7 @@ namespace estamira
       if (!m_map.Lookup(psz, i))
          return false;
 
-      if (!m_il.draw(pdib->get_graphics(), i, point(x, y), 0))
+      if (!m_il.draw(pgraphics, i, point(x, y), 0))
       {
 
          return false;

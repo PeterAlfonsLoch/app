@@ -62,15 +62,15 @@ namespace estamira
       for (auto & p : m_charactera)
       {
 
-         p->_001OnDraw(m_dib);
+         p->_001OnDraw(m_dib->get_graphics());
 
       }
 
 
 
-      pdib->get_graphics()->SetStretchBltMode(0);
-      pdib->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_blend);
-      pdib->get_graphics()->StretchBlt(0, 0, rectClient.width(), rectClient.height(), m_dib->get_graphics(), 0, 0, m_dib->m_size.cx, m_dib->m_size.cy, SRCCOPY);
+      pgraphics->SetStretchBltMode(0);
+      pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+      pgraphics->StretchBlt(0, 0, rectClient.width(), rectClient.height(), m_dib->get_graphics(), 0, 0, m_dib->m_size.cx, m_dib->m_size.cy, SRCCOPY);
 
 
    }
