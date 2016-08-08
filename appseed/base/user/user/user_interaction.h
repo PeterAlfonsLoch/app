@@ -19,8 +19,7 @@ namespace user
 
 
    class CLASS_DECL_BASE interaction:
-      virtual public interaction_base,
-      virtual public ::user::schema
+      virtual public interaction_base
    {
    public:
 
@@ -730,8 +729,8 @@ namespace user
       virtual bool is_up_down_target();
 
 
-      void user_interaction_on_destroy();
-      void user_interaction_on_hide();
+      virtual void user_interaction_on_destroy();
+      virtual void user_interaction_on_hide();
 
 
       virtual string calc_data_id();

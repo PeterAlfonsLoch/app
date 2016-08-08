@@ -19,7 +19,7 @@ class mq;
 
 typedef HTHREAD idthread;
 
-CLASS_DECL_AURA mq * __get_mq(HTHREAD h);
+CLASS_DECL_AURA mq * __get_mq(HTHREAD h, bool bCreate);
 
 CLASS_DECL_AURA int_bool WINAPI GetMessageW(LPMESSAGE lpMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax);
 

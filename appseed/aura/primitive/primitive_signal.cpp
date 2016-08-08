@@ -148,47 +148,74 @@ void signalizable::unregister_signal(class signal * psignal)
 
 void signalizable::unregister_target(signalizable* psignalizable)
 {
+
    for(int32_t i = 0; i < m_signalptra.get_size();)
    {
+
       m_signalptra[i]->disconnect(psignalizable);
+
       if(m_signalptra[i]->m_delegateptra.get_count() <= 0)
       {
+
          m_signalptra.remove_at(i);
+
       }
       else
       {
+
          i++;
+
       }
+
    }
+
 }
+
 
 void signalizable::filter_target(signalizable* psignalizable)
 {
+
    for(int32_t i = 0; i < m_signalptra.get_size(); i++)
    {
+
       m_signalptra[i]->leave_only(psignalizable);
+
    }
+
    for (int32_t i = 0; i < m_signalptra.get_size();)
    {
+
       if (m_signalptra[i]->m_delegateptra.get_count() <= 0)
       {
+
          m_signalptra.remove_at(i);
+
       }
       else
       {
+
          i++;
+
       }
+
    }
+
 }
+
 
 void signal::signal_delegate::emit(signal_details * pobj)
 {
+
    UNREFERENCED_PARAMETER(pobj);
+
 }
+
 
 signal::signal()
 {
+
 }
+
 
 signal::~signal()
 {
@@ -199,6 +226,9 @@ signal::~signal()
       m_delegateptra[i]->get_signalizable()->unregister_signal(this);
 
    }
+
+   m_delegateptra.remove_all();
+
 }
 
 
@@ -384,6 +414,9 @@ dispatch::dispatch()
 
 dispatch::~dispatch()
 {
+
+   string strId = typeid(*this).name();
+
 }
 
 

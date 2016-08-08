@@ -50,12 +50,23 @@ UINT __axis_x11mouse_thread(void * pparam);
 osdisplay_data * osdisplay_get(Display * pdisplay)
 {
 
+   if(pdisplay == NULL)
+   {
+
+      return NULL;
+
+   }
+
    single_lock slOsWindow(::osdisplay_data::s_pmutex, true);
 
    int_ptr iFind = osdisplay_find(pdisplay);
 
    if(iFind >= 0)
+   {
+
       return osdisplay_data::s_pdataptra->element_at(iFind);
+
+   }
 
    osdisplay_data * pdata     = new osdisplay_data;
 

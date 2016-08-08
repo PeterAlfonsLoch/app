@@ -16,7 +16,11 @@ namespace user
 
 
    class CLASS_DECL_CORE notify_icon :
+   #ifdef WINDOWSEX
       virtual public ::user::interaction
+      #else
+      virtual public ::object
+      #endif
       #ifdef LINUX
       , public i_close_quit
       #elif defined (MACOS)
@@ -53,7 +57,9 @@ namespace user
 
       bool ModifyIcon(sp(::visual::icon)  picon);
 
+      #ifdef WINDOWSEX
       using ::user::interaction::create;
+      #endif
       bool create(UINT id, notify_icon_listener * plistener, sp(::visual::icon) picon);
 
       DECL_GEN_SIGNAL(_001OnNotifyIconMessage);

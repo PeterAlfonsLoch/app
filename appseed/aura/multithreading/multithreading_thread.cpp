@@ -441,7 +441,19 @@ int32_t thread::run()
 
    }
 
-   ::output_debug_string("::thread::run Exiting " + string(demangle(typeid(*this).name())) + " m_bRun = "+::str::from((int)m_bRun)+" m_iReturnCode = "+::str::from(m_iReturnCode)+"\n\n");
+   string strThread = string(demangle(typeid(*this).name()));
+
+   string strRun = ::str::from((int)m_bRun);
+
+   string strRet = ::str::from(m_iReturnCode);
+
+   ::output_debug_string("\n\n::thread::run Exiting " + strThread + " m_bRun = "+strRun+" m_iReturnCode = "+strRet+"\n\n");
+
+   const char * pszThread = strThread;
+
+   const char * pszRun = strRun;
+
+   const char * pszRet = strRet;
 
    return m_iReturnCode;
 
@@ -722,6 +734,9 @@ void thread::on_register_dependent_thread(::thread * pthreadDependent)
    if(pthreadDependent == this)
       return;
 
+   if(pthreadDependent == NULL)
+      return;
+
    {
 
       synch_lock slThread(pthreadDependent->m_pmutex);
@@ -744,6 +759,10 @@ void thread::on_register_dependent_thread(::thread * pthreadDependent)
 
 void thread::on_unregister_dependent_thread(::thread * pthreadDependent)
 {
+
+   string strThread = string(demangle(typeid(*this).name()));
+
+   string strDependentThread = string(demangle(typeid(*pthreadDependent).name()));
 
    {
 
@@ -770,31 +789,20 @@ void thread::on_unregister_dependent_thread(::thread * pthreadDependent)
 void thread::signal_close_dependent_threads()
 {
 
-   synch_lock sl(m_pmutex);
+   ref_array < thread > threadptraDependent;
 
-   thread * pthread;
-
-   for(index i = m_threadptraDependent.get_upper_bound(); i >= 0;)
    {
 
-      pthread = NULL;
+      synch_lock sl(m_pmutex);
 
-      try
-      {
+      threadptraDependent = (m_threadptraDependent);
 
-         pthread = m_threadptraDependent[i];
+   }
 
-      }
-      catch (...)
-      {
+   for(index i = 0; i < threadptraDependent.get_count(); i++)
+   {
 
-         m_threadptraDependent.remove_at(i);
-
-         continue;
-
-      }
-
-      sl.unlock();
+      thread * pthread = threadptraDependent[i];
 
       try
       {
@@ -803,15 +811,11 @@ void thread::signal_close_dependent_threads()
 
          pthread->set_end_thread();
 
-         i--;
-
       }
       catch(...)
       {
 
       }
-
-      sl.lock();
 
    }
 
@@ -833,15 +837,19 @@ void thread::wait_close_dependent_threads(const duration & duration)
          if(m_threadptraDependent.get_count() <= 0)
             break;
 
+         output_debug_string(string("-------------------------\n"));
+
          for(index i = 0; i < m_threadptraDependent.get_count(); i++)
          {
 
             ::thread * pthread = m_threadptraDependent[i];
             output_debug_string(string("---"));
             output_debug_string(string("supporter : ") + typeid(*this).name() + string(" (") + ::str::from((int_ptr) this) + ")");
-            output_debug_string(string("dependent : ") + typeid(*m_threadptraDependent[i]).name() + string(" (") + ::str::from((int_ptr) m_threadptraDependent[i]) + ")");
+            output_debug_string(string("dependent : ") + typeid(*m_threadptraDependent[i]).name() + string(" (") + ::str::from((int_ptr) m_threadptraDependent[i]) + ")\n");
 
          }
+
+         output_debug_string(string("-------------------------\n\n"));
 
       }
 
@@ -1349,6 +1357,8 @@ bool thread::begin_thread(bool bSynch,int32_t * piStartupError,int32_t epriority
 
    pstartup->m_dwCreateFlags = dwCreateFlags;
 
+   pstartup->m_iPriority = epriority;
+
    pstartup->m_event2.ResetEvent();
 
    m_hthread = (HTHREAD)(uint_ptr) ::create_thread(lpSecurityAttrs,nStackSize,&__thread_entry,pstartup.m_p,dwCreateFlags,&m_uiThread);
@@ -1387,8 +1397,6 @@ bool thread::begin_thread(bool bSynch,int32_t * piStartupError,int32_t epriority
    }
 
    pstartup->m_event2.SetEvent();
-
-   set_thread_priority(epriority);
 
    return true;
 
@@ -1477,6 +1485,38 @@ uint32_t __thread_entry(void * pparam)
 //      pthread->translator::attach();
 //#endif
 //      ::thread * pthreadimpl = pstartup->m_pthreadimpl;
+
+      try
+      {
+
+#ifdef WINDOWSEX
+
+         int32_t nPriority = (int)get_os_thread_priority(pstartup->m_iPriority);
+
+#else
+
+         int32_t nPriority = (int)pstartup->m_iPriority;
+
+#endif
+
+         ::SetThreadPriority(::GetCurrentThread(), nPriority) != FALSE;
+
+
+      }
+      catch(...)
+      {
+
+         pstartup->m_event2.wait();
+
+         pstartup->m_event2.ResetEvent();
+
+         pstartup->m_bError = TRUE;
+
+         pstartup->m_event.set_event();
+
+         return ::multithreading::__on_thread_finally(pthread);
+
+      }
 
       try
       {
@@ -1661,9 +1701,9 @@ uint32_t __thread_entry(void * pparam)
       catch(::exit_exception &)
       {
 
-         Sys(pthread->m_pauraapp).post_quit();
+         //Sys(pthread->m_pauraapp).post_quit();
 
-         return ::multithreading::__on_thread_finally(pthread);
+         //return ::multithreading::__on_thread_finally(pthread);
 
       }
 
@@ -2048,6 +2088,13 @@ int32_t thread::main()
       }
       catch(::exit_exception & e)
       {
+         try
+         {
+            exit();
+         }
+         catch(...)
+         {
+         }
 
          throw e;
 

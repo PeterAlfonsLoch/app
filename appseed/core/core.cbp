@@ -457,6 +457,7 @@
 		</Unit>
 		<Unit filename="user/html/graphics/_graphics.cpp" />
 		<Unit filename="user/html/graphics/elemental/_html_elemental.cpp" />
+		<Unit filename="user/html/graphics/html_data.h" />
 		<Unit filename="user/html/graphics/impl/_html_impl.cpp" />
 		<Unit filename="user/html/hi5/hi5_twitter_authorization.cpp" />
 		<Unit filename="user/html/html_application.h" />

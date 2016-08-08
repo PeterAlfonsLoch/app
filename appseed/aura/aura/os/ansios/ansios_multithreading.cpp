@@ -75,10 +75,10 @@ DWORD MsgWaitForMultipleObjectsEx(DWORD dwSize, sync_object * * pobjectptra, DWO
    if(dwWakeMask > 0)
    {
 
-      pmq = __get_mq(pthread_self());
+      pmq = __get_mq(pthread_self(), false);
 
-      if(pmq == NULL)
-         return 0;
+      //if(pmq == NULL)
+        // return 0;
 
    }
 
@@ -1149,7 +1149,7 @@ CLASS_DECL_AURA int_bool WINAPI PostThreadMessageW(IDTHREAD iThreadId,UINT Msg,W
    //   return FALSE;
 
 
-   mq * pmq = __get_mq((HTHREAD) iThreadId);
+   mq * pmq = __get_mq((HTHREAD) iThreadId, Msg != WM_QUIT);
 
    if(pmq == NULL)
       return FALSE;

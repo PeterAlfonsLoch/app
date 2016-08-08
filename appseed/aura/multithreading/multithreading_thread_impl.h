@@ -47,6 +47,7 @@ public:
    bool                    m_bError;
    int32_t                 m_iError;
    bool                    m_bSynch;
+   int32_t                 m_iPriority;
 
 
    thread_startup(::aura::application * papp);

@@ -31,6 +31,7 @@
 #include "app/axis/freeimage/Source/Utilities.h"
 
 #include "app/axis/freeimage/Source/Metadata/FreeImageTag.h"
+#include "os_hint.h"
 
 // ----------------------------------------------------------
 
@@ -558,16 +559,21 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 			// get possible ICC profile
 
 			if (png_get_valid(png_ptr, info_ptr, PNG_INFO_iCCP)) {
-				png_charp profile_name = NULL;
-				png_bytep profile_data = NULL;
-				png_uint_32 profile_length = 0;
-				int  compression_type;
-#if defined(__APPLE__) || defined(VSNORD) || defined(WINDOWS) || defined(LINUX)
-            png_get_iCCP(png_ptr, info_ptr, &profile_name, &compression_type, (unsigned char **)&profile_data, &profile_length);
-#else
-            png_get_iCCP(png_ptr, info_ptr, &profile_name, &compression_type, (png_charpp)&profile_data, &profile_length);
 
-#endif
+				png_charp profile_name = NULL;
+
+				#ifdef UBUNTU
+				png_charp profile_data = NULL;
+				#else
+				png_bytep profile_data = NULL;
+				#endif
+
+				png_uint_32 profile_length = 0;
+
+				int  compression_type;
+
+            png_get_iCCP(png_ptr, info_ptr, &profile_name, &compression_type, &profile_data, &profile_length);
+
 
 
 				// copy ICC profile data (must be done after FreeImage_AllocateHeader)
@@ -848,12 +854,16 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 
 			FIICCPROFILE *iccProfile = FreeImage_GetICCProfile(dib);
 			if (iccProfile->size && iccProfile->data) {
-#if defined(__APPLE__) || defined(VSNORD) || defined(WINDOWS) || defined(LINUX)
-            png_set_iCCP(png_ptr, info_ptr, "Embedded Profile", 0, (unsigned char *)iccProfile->data, iccProfile->size);
-#else
+#if defined(UBUNTU)
+
             png_set_iCCP(png_ptr, info_ptr, "Embedded Profile", 0, (png_charp)iccProfile->data, iccProfile->size);
 
+#else
+
+            png_set_iCCP(png_ptr, info_ptr, "Embedded Profile", 0, (unsigned char *)iccProfile->data, iccProfile->size);
+
 #endif
+
 			}
 
 			// write metadata

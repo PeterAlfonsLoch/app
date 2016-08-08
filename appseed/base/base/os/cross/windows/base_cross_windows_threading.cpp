@@ -27,7 +27,7 @@ CLASS_DECL_BASE int_bool PostMessageW(oswindow oswindow,UINT Msg,WPARAM wParam,L
    if(h == NULL)
       return FALSE;
 
-   mq * pmq = __get_mq(h);
+   mq * pmq = __get_mq(h, oswindow != NULL || Msg != WM_QUIT);
 
    if(pmq == NULL)
       return FALSE;
@@ -85,7 +85,7 @@ CLASS_DECL_BASE int_bool mq_remove_window_from_all_queues(oswindow oswindow)
       return FALSE;
 
 
-   mq * pmq = __get_mq(h);
+   mq * pmq = __get_mq(h, false);
 
    if(pmq == NULL)
       return FALSE;

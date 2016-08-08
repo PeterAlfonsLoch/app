@@ -127,23 +127,23 @@ public:
    void remove_all()
    {
 
-      index i;
-
-      while((i = this->get_upper_bound()) >= 0)
+      for(index i = 0; i < this->get_size(); i++)
       {
 
          try
          {
 
-            this->remove_at(i);
+            delete this->element_at(i);
 
          }
-         catch (...)
+         catch(...)
          {
 
          }
 
       }
+
+      ARRAY_TYPE::remove_all();
 
    }
 

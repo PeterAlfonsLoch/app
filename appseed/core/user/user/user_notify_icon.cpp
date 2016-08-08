@@ -52,7 +52,9 @@ namespace user
 
    void notify_icon::install_message_handling(::message::dispatch * pinterface)
    {
+   #ifdef WINDOWSEX
       IGUI_WIN_MSG_LINK(MessageNotifyIcon, pinterface, this, &notify_icon::_001OnNotifyIconMessage);
+      #endif
    }
 
    bool notify_icon::create(UINT uiId, notify_icon_listener * plistener, sp(::visual::icon) hicon)
@@ -65,8 +67,10 @@ namespace user
 
       m_strId = "ca2-" + hicon->m_strAppTrayIcon + "-" + m_strId;
 
+      #ifdef WINDOWSEX
       if(!create_message_queue(m_strId))
          return false;
+         #endif
 
       m_uiId                     = uiId;
 #ifdef WINDOWSEX
@@ -149,72 +153,72 @@ namespace user
 
          m_plistener = NULL;
 
-         DestroyWindow();
+         //DestroyWindow();
 
          return false;
 
       }
 #elif defined(MACOS)
-      
+
       string strFolder;
-      
+
       string str1 = hicon->m_strAppTrayIcon;
-      
+
       str1.replace("-", "_");
-      
+
       str1.replace("/", "_");
-      
+
       str1.replace("\\", "_");
-      
+
       string str(str1);
-      
+
       if(::str::begins_eat_ci(str, "app_veriwell_"))
       {
-         
+
          strFolder+="app-veriwell";
-         
+
       }
       else if(::str::begins_eat_ci(str, "app_core_"))
       {
-         
+
          strFolder+="app-core";
-         
+
       }
       else
       {
-         
+
          strFolder+="app";
-         
+
       }
-      
+
       strFolder+= "/appmatter/" + str;
-      
+
       strFolder += "/_std/_std/main/";
-                                  
+
       string strFile = "menubar-icon-22.png";
-                                  
+
       string strUrl = "https://server.ca2.cc/matter/" + strFolder + strFile;
-      
+
       strFile = Application.dir().userappdata() / strFolder / strFile;
-      
+
       int iRetry = 3;
-      
+
       while(iRetry >= 0 && (!Application.file().exists(strFile) || Application.file().length(strFile) <= 0))
       {
-         
+
          ::property_set set;
-         
+
          set["raw_http"] = true;
          set["disable_common_name_cert_check"] = true;
-         
+
          Application.http().download(strUrl, strFile, set);
 
          iRetry--;
-                                     
+
       }
-         
+
       notify_icon_init(strFile);
-                                  
+
 #else
 #endif
 
@@ -275,7 +279,7 @@ namespace user
 
       m_bCreated = false;
 
-      DestroyWindow();
+      //DestroyWindow();
 
       return true;
 
@@ -293,7 +297,7 @@ namespace user
 void notify_icon::notify_icon_play(const char * action)
    {
       string strAction(action);
-      
+
       if(strAction == "close")
       {
          __close();
@@ -313,8 +317,8 @@ void notify_icon::notify_icon_play(const char * action)
 
    void notify_icon::__quit()
    {
-      
-      
+
+
 
       m_plistener->OnNotifyIconMessage(m_uiId, WM_QUIT);
 
@@ -329,12 +333,12 @@ void notify_icon::notify_icon_play(const char * action)
 
    }
 
-   
+
    bool notify_icon::notify_icon_frame_is_opened()
    {
-      
+
       return m_plistener->notify_icon_frame_is_opened();
-      
+
    }
 
 

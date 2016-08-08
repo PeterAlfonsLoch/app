@@ -1318,6 +1318,53 @@ Restart:
       try
       {
 
+         m_dispatchUpdateCmdUi.m_signala.remove_all();
+
+      }
+      catch(...)
+      {
+
+      }
+
+
+      try
+      {
+
+         m_dispatchCommand.m_signala.remove_all();
+
+      }
+      catch(...)
+      {
+
+      }
+
+
+
+      try
+      {
+
+         m_signalidaCommand.remove_all();
+
+      }
+      catch(...)
+      {
+
+      }
+
+      try
+      {
+
+         ::signalizable::m_signalptra.remove_all();
+
+      }
+      catch(...)
+      {
+
+      }
+
+      try
+      {
+
          m_pauraapp = NULL;
 
       }

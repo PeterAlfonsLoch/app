@@ -557,6 +557,13 @@ bool oswindow_data::show_window(int32_t nCmdShow)
 
    xdisplay d(display());
 
+   if(d.is_null())
+   {
+
+      return false;
+
+   }
+
    if(nCmdShow == SW_HIDE)
    {
 

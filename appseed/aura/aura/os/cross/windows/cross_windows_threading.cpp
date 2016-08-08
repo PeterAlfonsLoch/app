@@ -66,7 +66,7 @@ CLASS_DECL_AURA int_bool WINAPI GetMessageW(LPMESSAGE lpMsg,oswindow oswindow,UI
 
    bool bFirst = true;
 
-   mq * pmq = __get_mq(GetCurrentThreadId());
+   mq * pmq = __get_mq(GetCurrentThreadId(), true);
 
    if(pmq == NULL)
       return FALSE;
@@ -91,9 +91,9 @@ restart:
       if(msg.message == WM_QUIT)
       {
          *lpMsg = msg;
-         //pmq->ma.remove_at(i);
+         pmq->ma.remove_at(i);
 
-         pmq->ma.remove_all();
+         //pmq->ma.remove_all();
 
          //         __clear_mq();
 
@@ -173,7 +173,7 @@ restart:
 CLASS_DECL_AURA int_bool WINAPI PeekMessageW(LPMESSAGE lpMsg,oswindow oswindow,UINT wMsgFilterMin,UINT wMsgFilterMax,UINT wRemoveMsg)
 {
 
-   mq * pmq = __get_mq(GetCurrentThreadId());
+   mq * pmq = __get_mq(GetCurrentThreadId(), true);
 
    if(pmq == NULL)
       return FALSE;
@@ -750,7 +750,7 @@ void * __thread_get_data(IDTHREAD hthread,uint32_t dwIndex)
 
 
 
-mq * __get_mq(IDTHREAD  h);
+mq * __get_mq(IDTHREAD  h, bool bCreate);
 
 
 mq * __get_mq()
@@ -775,7 +775,7 @@ mq * __get_mq()
 
 
 
-mq * __get_mq(IDTHREAD idthread)
+mq * __get_mq(IDTHREAD idthread, bool bCreate)
 {
 
    synch_lock sl(g_pmutexMq);
@@ -784,6 +784,9 @@ mq * __get_mq(IDTHREAD idthread)
 
    if(pmq != NULL)
       return pmq;
+
+   if(!bCreate)
+      return NULL;
 
    pmq   = new mq();
 

@@ -28,20 +28,22 @@ public:
    xdisplay(Display * pdisplay, bool bInitialLock = true);
    ~ xdisplay();
 
+
    bool open(char * display_name, bool bInitialLock = true);
 
    void lock();
    void unlock();
 
-
    bool close();
 
    inline operator Display *();
-
+   inline bool is_null();
+   inline bool is_set();
 
    Window default_root_window();
 
    int default_screen();
+
 
 };
 
@@ -169,6 +171,21 @@ inline xdisplay::operator Display *()
 {
 
    return m_pdata->m_pdisplay;
+
+}
+
+inline bool xdisplay::is_null()
+{
+
+   return m_pdata == NULL;
+
+}
+
+
+inline bool xdisplay::is_set()
+{
+
+   return m_pdata != NULL;
 
 }
 

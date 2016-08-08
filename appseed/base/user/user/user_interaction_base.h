@@ -8,7 +8,6 @@ namespace user
    class CLASS_DECL_BASE interaction_base :
       virtual public ::user::primitive,
       virtual public ::user::elemental,
-      virtual public ::aura::draw_interface,
       virtual public ::user::schema
    {
    public:

@@ -484,7 +484,7 @@ bool timer::call_on_timer()
 
       m_bDeal = false;
 
-      if (m_bKill)
+      if (m_bKill || !m_bRun)
       {
 
 //#ifndef METROWIN

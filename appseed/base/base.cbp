@@ -462,6 +462,7 @@
 		<Unit filename="user/user/aaa_want_to_remove_user_window_draw.h" />
 		<Unit filename="user/user/user.h" />
 		<Unit filename="user/user/user_application_as_proxy_document.h" />
+		<Unit filename="user/user/user_box.h" />
 		<Unit filename="user/user/user_control.h" />
 		<Unit filename="user/user/user_control_bar.h" />
 		<Unit filename="user/user/user_control_event.h" />
@@ -480,6 +481,10 @@
 			<Option link="0" />
 		</Unit>
 		<Unit filename="user/user/user_interaction.h" />
+		<Unit filename="user/user/user_interaction_base.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="user/user/user_interaction_base.h" />
 		<Unit filename="user/user/user_interaction_child.cpp">
 			<Option compile="0" />
@@ -491,6 +496,10 @@
 			<Option link="0" />
 		</Unit>
 		<Unit filename="user/user/user_interaction_impl.h" />
+		<Unit filename="user/user/user_interaction_impl_base.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="user/user/user_interaction_impl_base.h" />
 		<Unit filename="user/user/user_menu_base.h" />
 		<Unit filename="user/user/user_menu_base_item.h" />
