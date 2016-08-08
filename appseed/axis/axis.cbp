@@ -376,6 +376,10 @@
 		</Unit>
 		<Unit filename="filesystem/filesystem/filesystem_axis_system.h" />
 		<Unit filename="filesystem/filesystem/filesystem_dir_axis_application.h" />
+		<Unit filename="filesystem/filesystem/filesystem_dir_axis_system.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="filesystem/filesystem/filesystem_dir_axis_system.h" />
 		<Unit filename="filesystem/fs/fs.h" />
 		<Unit filename="filesystem/fs/fs_data.h" />

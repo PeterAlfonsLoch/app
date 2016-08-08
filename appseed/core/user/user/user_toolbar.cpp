@@ -78,14 +78,18 @@ namespace user
       //m_nCount = 0;
    }
 
+
    void toolbar::install_message_handling(::message::dispatch * pinterface)
    {
+
+      ::user::control_bar::install_message_handling(pinterface);
+
       IGUI_WIN_MSG_LINK(WM_NCHITTEST         , pinterface, this, &toolbar::_001OnNcHitTest);
       //IGUI_WIN_MSG_LINK(WM_NCPAINT         , pinterface, this, &toolbar::_001On);
       //IGUI_WIN_MSG_LINK(WM_PAINT           , pinterface, this, &toolbar::_001On);
       //IGUI_WIN_MSG_LINK(WM_ERASEBKGND      , pinterface, this, &toolbar::_001On);
       IGUI_WIN_MSG_LINK(WM_NCCALCSIZE        , pinterface, this, &toolbar::_001OnNcCalcSize);
-      IGUI_WIN_MSG_LINK(WM_WINDOWPOSCHANGING , pinterface, this, &toolbar::_001OnWindowPosChanging);
+      //IGUI_WIN_MSG_LINK(WM_WINDOWPOSCHANGING , pinterface, this, &toolbar::_001OnWindowPosChanging);
       IGUI_WIN_MSG_LINK(WM_NCCREATE          , pinterface, this, &toolbar::_001OnNcCreate);
 #ifdef WINDOWSEX
       IGUI_WIN_MSG_LINK(TB_SETBITMAPSIZE     , pinterface, this, &toolbar::_001OnSetBitmapSize);
@@ -94,7 +98,9 @@ namespace user
       IGUI_WIN_MSG_LINK(WM_SETTINGCHANGE     , pinterface, this, &toolbar::_001OnPreserveZeroBorderHelper);
       IGUI_WIN_MSG_LINK(WM_SETFONT           , pinterface, this, &toolbar::_001OnPreserveZeroBorderHelper);
       IGUI_WIN_MSG_LINK(WM_SYSCOLORCHANGE    , pinterface, this, &toolbar::_001OnSysColorChange);
+
    }
+
 
    bool toolbar::create_window(sp(::user::interaction) pParentWnd,uint32_t dwStyle,UINT nID)
    {
@@ -1231,9 +1237,9 @@ throw todo(get_app());
 
    void toolbar::_001OnDraw(::draw2d::graphics * pgraphics)
    {
-      
+
       UNREFERENCED_PARAMETER(pgraphics);
-      
+
       if (m_bDelayedButtonLayout)
       {
 

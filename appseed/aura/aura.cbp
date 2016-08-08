@@ -589,6 +589,10 @@
 		<Unit filename="multithreading/multithreading_set_event_on_exit.h" />
 		<Unit filename="multithreading/multithreading_signal_thread.h" />
 		<Unit filename="multithreading/multithreading_simple_thread.h" />
+		<Unit filename="multithreading/multithreading_single_lock.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="multithreading/multithreading_single_lock.h" />
 		<Unit filename="multithreading/multithreading_socket_event.h" />
 		<Unit filename="multithreading/multithreading_sync_object.cpp">
@@ -598,6 +602,10 @@
 		<Unit filename="multithreading/multithreading_sync_object.h" />
 		<Unit filename="multithreading/multithreading_synch_index_iterator.h" />
 		<Unit filename="multithreading/multithreading_synch_index_ptr_array.h" />
+		<Unit filename="multithreading/multithreading_synch_lock.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="multithreading/multithreading_synch_lock.h" />
 		<Unit filename="multithreading/multithreading_synch_ptr_array.h" />
 		<Unit filename="multithreading/multithreading_thread.cpp">

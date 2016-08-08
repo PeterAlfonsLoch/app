@@ -4305,11 +4305,14 @@ throw not_implemented(get_app());
       return (DWORD)::GetWindowLong((oswindow) get_handle(), GWL_STYLE);
    }
 
+
    DWORD interaction_impl::GetExStyle() const
    {
-      ASSERT(::IsWindow((oswindow) get_handle()));
+
       return (DWORD)::GetWindowLong((oswindow) get_handle(), GWL_EXSTYLE);
+
    }
+
 
    bool interaction_impl::ModifyStyle(DWORD dwRemove, DWORD dwAdd, UINT nFlags)
    {

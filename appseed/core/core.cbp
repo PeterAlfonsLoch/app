@@ -495,6 +495,10 @@
 		<Unit filename="user/simple/simple_tab_control.h" />
 		<Unit filename="user/simple/simple_tab_view.h" />
 		<Unit filename="user/simple/simple_tool_bar.h" />
+		<Unit filename="user/simple/simple_toolbar.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="user/simple/simple_tree_view.h" />
 		<Unit filename="user/user/interaction.inl" />
 		<Unit filename="user/user/user.h" />
@@ -559,6 +563,10 @@
 		<Unit filename="user/user/user_tool_cmd_ui.h" />
 		<Unit filename="user/user/user_tool_tip_tool.h" />
 		<Unit filename="user/user/user_tool_tip_window.h" />
+		<Unit filename="user/user/user_toolbar.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="user/user/user_toolbar.h" />
 		<Unit filename="user/user/user_toolbar_control.h" />
 		<Unit filename="user/user/user_tree.h" />

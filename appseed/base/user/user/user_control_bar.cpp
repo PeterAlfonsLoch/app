@@ -6,10 +6,10 @@
 
 namespace user
 {
-   
-   
+
+
    void DrawGripperElement001(::draw2d::graphics * pgraphics, int32_t ix, int32_t iy);
-   
+
 
    control_bar::control_bar()
    {
@@ -161,11 +161,9 @@ namespace user
 
    control_bar::~control_bar()
    {
+
       ASSERT_VALID(this);
 
-      DestroyWindow();    // avoid PostNcDestroy problems
-
-      // also done in OnDestroy, but done here just in case
       if (m_pDockSite != NULL)
          m_pDockSite->RemoveControlBar(this);
 
@@ -429,12 +427,12 @@ namespace user
 
    }
 
-   
+
    void control_bar::_001OnInitialUpdateMessage(signal_details * pobj)
    {
-      
+
       UNREFERENCED_PARAMETER(pobj);
-      
+
       _001OnInitialUpdate();
 
    }
@@ -506,7 +504,7 @@ namespace user
    void control_bar::EraseNonClient(::draw2d::graphics * pgraphics)
    {
 
-      
+
 
       // get interaction_impl DC that is clipped to the non-client area
       rect rectClient;
@@ -635,7 +633,7 @@ namespace user
       pbase->set_lresult(0L);
    }
 
-   
+
    void control_bar::_001OnInitialUpdate()
    {
 
@@ -751,7 +749,7 @@ namespace user
          rect.bottom = rect.top + size.cy;
 
          // only resize the interaction_impl if doing layout and not just rect query
-         if (lpLayout->hDWP != NULL)
+         //if (lpLayout->hDWP != NULL)
             __reposition_window(lpLayout, this, &rect);
       }
       pbase->set_lresult(0);
@@ -781,10 +779,10 @@ namespace user
       return FALSE;
    }
 
-   
+
    void control_bar::DoPaint(::draw2d::graphics * pgraphics)
    {
-      
+
       ASSERT_VALID(this);
       //ASSERT_VALID(pgraphics);
 
@@ -821,7 +819,7 @@ namespace user
       COLORREF clr;
       clr = RGB(128, 128, 123);
 
-      
+
 
 #ifdef WINDOWSEX
       // draw dark line one pixel back/up
@@ -958,7 +956,7 @@ namespace user
    void control_bar::DrawGripper(::draw2d::graphics * pgraphics, const rect& rect)
    {
 
-      
+
 
       // only draw the gripper if not floating and gripper is specified
       if ((m_dwStyle & (CBRS_GRIPPER|CBRS_FLOATING)) == CBRS_GRIPPER)
@@ -1098,24 +1096,24 @@ namespace user
 
    uint32_t control_bar::GetBarStyle()
    {
-      
+
       return m_dwStyle;
 
    }
 
-   
+
    void control_bar::SetBorders(const RECT & rect)
-   { 
+   {
 
       SetBorders(rect.left, rect.top, rect.right, rect.bottom);
-   
+
    }
 
 
    rect control_bar::GetBorders()
    {
-   
-      return rect(m_cxLeftBorder, m_cyTopBorder, m_cxRightBorder, m_cyBottomBorder); 
+
+      return rect(m_cxLeftBorder, m_cyTopBorder, m_cxRightBorder, m_cyBottomBorder);
 
    }
 

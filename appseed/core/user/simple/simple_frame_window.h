@@ -73,7 +73,7 @@ public:
    rect                                m_FullScreenWindowRect;
    visual::fastblur                    m_fastblur;
 
-   mapsp(id, id, ::user::toolbar)      m_toolbarmap;
+   map < ::id, const ::id &, ::user::toolbar * > m_toolbarmap;
 
    bool                                m_bTransparentFrame;
 
@@ -276,13 +276,13 @@ public:
    virtual bool notify_icon_frame_is_opened();
 
 
-   
+
    virtual void OnInitialFrameUpdate(bool bMakeVisible);
 
    virtual void OnUpdateToolWindow(bool bVisible);
-   
+
    virtual void show_task(bool bShow);
-   
+
 };
 
 

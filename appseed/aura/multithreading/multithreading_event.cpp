@@ -511,53 +511,88 @@ wait_result event::wait (const duration & durationTimeout)
    if(m_bManualEvent)
    {
 
-      timespec abstime;
-
-      ((duration & ) durationTimeout).normalize();
-
-      pthread_mutex_lock((pthread_mutex_t *) m_pmutex);
-
-      int iSignal = m_iSignalId;
-
-      //clock_gettime(CLOCK_REALTIME, &abstime);
-
-      clock_getrealtime(&abstime);
-
-      abstime.tv_sec += durationTimeout.m_iSeconds;
-
-      abstime.tv_nsec += durationTimeout.m_iNanoseconds;
-
-      while(abstime.tv_nsec > 1000 * 1000 * 1000)
+      if(durationTimeout.is_pos_infinity())
       {
 
-         abstime.tv_nsec -= 1000 * 1000 * 1000;
+         pthread_mutex_lock((pthread_mutex_t *) m_pmutex);
 
-         abstime.tv_sec++;
+         int iSignal = m_iSignalId;
 
-      }
+         //clock_gettime(CLOCK_REALTIME, &abstime);
 
-      while(!m_bSignaled && iSignal == m_iSignalId)
-      {
-
-         int32_t error = pthread_cond_timedwait((pthread_cond_t *) m_pcond, (pthread_mutex_t *) m_pmutex, &abstime);
-
-         if(error == EBUSY || error == ETIMEDOUT)
+         while(!m_bSignaled && iSignal == m_iSignalId)
          {
 
-            pthread_mutex_unlock((pthread_mutex_t *) m_pmutex);
+            int32_t error = pthread_cond_wait((pthread_cond_t *) m_pcond, (pthread_mutex_t *) m_pmutex);
 
-            return wait_result(wait_result::Timeout);
+            if(error != 0)
+            {
+
+               break;
+
+            }
 
          }
 
+         pthread_mutex_unlock((pthread_mutex_t *) m_pmutex);
+
+         if(m_bSignaled)
+            return wait_result(wait_result::Event0);
+         else
+            return wait_result(wait_result::Failure);
+
       }
-
-      pthread_mutex_unlock((pthread_mutex_t *) m_pmutex);
-
-      if(m_bSignaled)
-         return wait_result(wait_result::Event0);
       else
-         return wait_result(wait_result::Failure);
+      {
+         timespec abstime;
+
+         ((duration & ) durationTimeout).normalize();
+
+         pthread_mutex_lock((pthread_mutex_t *) m_pmutex);
+
+         int iSignal = m_iSignalId;
+
+         //clock_gettime(CLOCK_REALTIME, &abstime);
+
+         clock_getrealtime(&abstime);
+
+         abstime.tv_sec += durationTimeout.m_iSeconds;
+
+         abstime.tv_nsec += durationTimeout.m_iNanoseconds;
+
+         while(abstime.tv_nsec > 1000 * 1000 * 1000)
+         {
+
+            abstime.tv_nsec -= 1000 * 1000 * 1000;
+
+            abstime.tv_sec++;
+
+         }
+
+         while(!m_bSignaled && iSignal == m_iSignalId)
+         {
+
+            int32_t error = pthread_cond_timedwait((pthread_cond_t *) m_pcond, (pthread_mutex_t *) m_pmutex, &abstime);
+
+            if(error == EBUSY || error == ETIMEDOUT)
+            {
+
+               pthread_mutex_unlock((pthread_mutex_t *) m_pmutex);
+
+               return wait_result(wait_result::Timeout);
+
+            }
+
+         }
+
+         pthread_mutex_unlock((pthread_mutex_t *) m_pmutex);
+
+         if(m_bSignaled)
+            return wait_result(wait_result::Event0);
+         else
+            return wait_result(wait_result::Failure);
+
+      }
 
    }
    else
@@ -704,6 +739,8 @@ bool event::is_signaled() const
 
 bool event::lock(const duration & durationTimeout)
 {
+
+   return wait(durationTimeout).succeeded();
 
 #ifdef WINDOWS
 

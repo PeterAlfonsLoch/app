@@ -38,6 +38,7 @@ bool single_lock::lock(const duration & durationTimeOut /* = INFINITE */)
    //ASSERT(m_pobjectSync != NULL);
    //ASSERT(!m_bAcquired);
 
+
    if(m_bAcquired)
       return true;
 
@@ -45,8 +46,15 @@ bool single_lock::lock(const duration & durationTimeOut /* = INFINITE */)
       return FALSE;
    try
    {
-
-      m_bAcquired = m_pobjectSync->lock(durationTimeOut);
+      if(durationTimeOut.is_pos_infinity())
+      {
+         m_pobjectSync->lock();
+         m_bAcquired = true;
+      }
+      else
+      {
+         m_bAcquired = m_pobjectSync->lock(durationTimeOut);
+      }
    }
    catch(...)
    {

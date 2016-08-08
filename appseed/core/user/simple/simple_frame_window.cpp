@@ -3,7 +3,7 @@
    //#include <dde.h>
 #endif
 
-#define TEST 1
+#define TEST 0
 
 extern CLASS_DECL_CORE thread_int_ptr < DWORD_PTR > t_time1;
 
@@ -610,42 +610,52 @@ void simple_frame_window::_001OnGetMinMaxInfo(signal_details * pobj)
 #endif
 }
 
+
 void simple_frame_window::ShowControlBars(bool bShow, bool bLeaveFullScreenBarsOnHide)
 {
+
    UINT nShow;
+
    if (bShow)
    {
+
       nShow = SW_SHOW;
+
    }
    else
    {
+
       nShow = SW_HIDE;
+
    }
-
-   /*   m_toolbar.ShowWindow(nShow);
-      m_toolbarView.ShowWindow(nShow);
-      //   m_statusbar.ShowWindow(nShow);
-      m_menubar.ShowWindow(nShow);
-      m_dialogbar.ShowWindow(nShow);*/
-
 
    POSITION pos = m_toolbarmap.get_start_position();
 
    id idKey;
-   sp(::user::toolbar) pbar;
+
+   ::user::toolbar * pbar;
+
    while (pos != NULL)
    {
+
       m_toolbarmap.get_next_assoc(pos, idKey, pbar);
+
       try
       {
+
          if(pbar != NULL && (bShow || (!pbar->m_bFullScreenBar || !bLeaveFullScreenBarsOnHide)))
          {
+
             pbar->ShowWindow(nShow);
+
          }
+
       }
       catch (...)
       {
+
       }
+
    }
 
    layout();
@@ -1279,12 +1289,12 @@ void simple_frame_window::InitialFramePosition(bool bForceRestore)
 void simple_frame_window::_001OnDeferPaintLayeredWindowBackground(::draw2d::graphics * pgraphics)
 {
 
-   
+
 
    if (Session.savings().is_trying_to_save(::aura::resource_processing)
          || Session.savings().is_trying_to_save(::aura::resource_translucent_background))
    {
-      
+
       rect rectClient;
 
       GetClientRect(rectClient);
@@ -1425,18 +1435,18 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics * pgraphicsParam)
 
 void simple_frame_window::_001OnDraw(::draw2d::graphics * pgraphics)
 {
-   
+
    single_lock sl(m_pmutex, true);
 
    if(m_bblur_Background)
    {
-      
+
       class imaging & imaging = System.visual().imaging();
-      
+
       rect rectClient;
-      
+
       GetClientRect(rectClient);
-      
+
       //rectClient.offset(rectClient.top_left());
 
       if(Session.savings().is_trying_to_save(::aura::resource_translucent_background))
@@ -1466,7 +1476,7 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics * pgraphics)
          }
          if(m_fastblur.is_set() && m_fastblur->area() > 0)
          {
-            
+
             m_fastblur->get_graphics()->BitBlt(0,0,rectClient.width(),rectClient.height(),pgraphics,0,0,SRCCOPY);
             m_fastblur.blur();
             imaging.bitmap_blend(

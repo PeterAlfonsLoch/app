@@ -40,57 +40,53 @@ public: // re-implementations only
 
 
 simple_toolbar::simple_toolbar(::aura::application * papp) :
-object(papp),
+   object(papp),
    m_dibDraft(allocer())
 {
+
    m_iHover = 0x80000000;
 
-
-
    m_iButtonPressItem      = -1;
-   //m_pimagelist            = NULL;
-   //m_pimagelistHue         = NULL;
-   //m_pimagelistBlend       = NULL;
-   //m_pimagelistHueLight    = NULL;
-   //   m_bInternalImageList    = true;
 
    m_bTransparentBackground = true;
-   // default image sizes
+
    m_sizeImage.cx = 16;
    m_sizeImage.cy = 15;
 
-   // default button sizes
    m_sizeButton.cx = 23;
    m_sizeButton.cy = 22;
 
    m_bDelayedButtonLayout = true;
+
 }
+
 
 simple_toolbar::~simple_toolbar()
 {
 
 }
 
+
 void simple_toolbar::install_message_handling(::message::dispatch * pdispatch)
 {
-   ::user::control_bar::install_message_handling(pdispatch);
-   //IGUI_WIN_MSG_LINK(WM_ERASEBKGND()
+
+   ::user::toolbar::install_message_handling(pdispatch);
+
    IGUI_WIN_MSG_LINK(WM_CREATE         , pdispatch, this, &simple_toolbar::_001OnCreate);
    IGUI_WIN_MSG_LINK(WM_MOUSEMOVE      , pdispatch, this, &simple_toolbar::_001OnMouseMove);
    IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN    , pdispatch, this, &simple_toolbar::_001OnLButtonDown);
-//   //IGUI_WIN_MSG_LINK(WM_TIMER          , pdispatch, this, &simple_toolbar::_001OnTimer);
    IGUI_WIN_MSG_LINK(WM_LBUTTONUP      , pdispatch, this, &simple_toolbar::_001OnLButtonUp);
-   IGUI_WIN_MSG_LINK(WM_NCCALCSIZE     , pdispatch, this, &simple_toolbar::_001OnNcCalcSize);
    IGUI_WIN_MSG_LINK(WM_NCHITTEST      , pdispatch, this, &simple_toolbar::_001OnNcHitTest);
    IGUI_WIN_MSG_LINK(WM_MOUSELEAVE     , pdispatch, this, &simple_toolbar::_001OnMouseLeave);
-}
 
-// IMPLEMENT_DYNAMIC(simple_toolbar, ::user::control_bar)
+}
 
 
 bool simple_toolbar::create(sp(::user::interaction) pParentWnd, uint32_t dwStyle, id nID)
 {
+
    return create_window_ex(pParentWnd, 0, dwStyle, rect(m_cxLeftBorder, m_cyTopBorder, m_cxRightBorder, m_cyBottomBorder), nID);
+
 }
 
 
@@ -112,14 +108,14 @@ bool simple_toolbar::create_window_ex(sp(::user::interaction) pParentWnd,uint32_
    dwStyle |= dwCtrlStyle & 0xffff;
    m_dwCtrlStyle = dwCtrlStyle & (0xffff0000 | TBSTYLE_FLAT);
 
-
    if (!::user::interaction::create_window(NULL, NULL, dwStyle,null_rect(), pParentWnd, nID))
+   {
+
       return FALSE;
 
-   // sync up the sizes
-   SetSizes(m_sizeButton, m_sizeImage);
+   }
 
-   // Note: Parent must resize itself for control bar to be resized
+   SetSizes(m_sizeButton, m_sizeImage);
 
    return true;
 
@@ -128,74 +124,66 @@ bool simple_toolbar::create_window_ex(sp(::user::interaction) pParentWnd,uint32_
 
 size simple_toolbar::CalcFixedLayout(bool bStretch, bool bHorz)
 {
+
    uint32_t dwMode = bStretch ? LM_STRETCH : 0;
+
    dwMode |= bHorz ? LM_HORZ : 0;
 
    return CalcLayout(dwMode);
 
-   /*   size size;
-   if(m_bSimpleLayout)
-   {
-   CalcSize(size, bHorz != 0);
-   return size;
-   }
-   else
-   {
-   return ::user::control_bar::CalcFixedLayout(bStretch, bHorz);
-   }*/
 }
-
 
 
 size simple_toolbar::CalcSimpleLayout()
 {
+
    ASSERT_VALID(this);
+
    ASSERT(IsWindow());
 
-
    ::count nCount;
+
    size sizeResult(0,0);
 
-   //BLOCK: Load Buttons
    nCount = m_itema.get_count();
+
    if (nCount > 0)
    {
-      /*      int32_t i;
-      for (i = 0; i < nCount; i++)
-      {
-      m_itema[i]->fsState &= ~TBSTATE_WRAP;
-      }
-      for (i = 0; i < nCount; i++)
-      {
-      _SetButton(i, &m_itema[i]);
-      }
-      for (i = 0; i < nCount; i++)
-      _GetButton(i, &m_itema[i]);
-      for (i = 0; i < nCount; i++)
-      {
-      if(m_itema[i]->fsState & TBSTATE_WRAP)
-      ASSERT(FALSE);
-      }*/
+
       rect rectItem;
+
       rect rectSize(0, 0, 0, 0);
+
       for (int32_t i = 0; i < nCount; i++)
       {
+
          _001GetItemRect(i, rectItem);
+
          rectSize.unite(rectSize, rectItem);
+
       }
+
       sizeResult = rectSize.size();
 
-      //delete[] m_itema;
    }
+
 #ifdef WINDOWSEX
+
    if(GetStyle() & TBSTYLE_FLAT)
    {
+
       sizeResult.cy += 2;
+
    }
+
 #else
+
    throw todo(get_app());
+
 #endif
+
    return sizeResult;
+
 }
 
 
@@ -207,17 +195,12 @@ void simple_toolbar::_001OnDraw(::draw2d::graphics * pgraphics)
    if (ptab.is_set())
    {
 
-      //if (!ptab->m_bShowTabs)
-      //   return;
-
    }
 
    if(m_bDelayedButtonLayout)
       layout();
 
    ::user::interaction::_001OnDraw(pgraphics);
-
-   
 
    pgraphics->SelectObject(System.visual().font_central().GetMenuFont());
 
@@ -246,23 +229,18 @@ void simple_toolbar::_001OnDraw(::draw2d::graphics * pgraphics)
 }
 
 
-/*
-bool simple_toolbar::OnEraseBkgnd(::draw2d::graphics * pgraphics)
-{
-return true;
-}
-*/
-
-
 void simple_toolbar::SetTransparentBackground(bool bSet)
 {
+
    m_bTransparentBackground = bSet;
+
 }
+
 
 void simple_toolbar::TransparentEraseNonClient(::draw2d::graphics * pgraphics)
 {
 
-   
+
 
    m_dibDraft->get_graphics()->BitBlt(0, 0, 7, 7, pgraphics, 0, 0, SRCCOPY);
 
