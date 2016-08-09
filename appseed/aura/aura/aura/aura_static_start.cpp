@@ -166,6 +166,8 @@ namespace aura
 
          new(g_ee) ::exception::engine(NULL);
 
+         ace_set_alloc(&memory_alloc, &memory_realloc, &memory_free, &memory_size);
+
          /*
 
           if(g_pfnca2_alloc == NULL)

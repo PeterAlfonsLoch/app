@@ -1,3 +1,8 @@
-LIBRARY      "aqua"
+LIBRARY      "ace"
 
 EXPORTS
+ace_memory_alloc
+ace_memory_realloc
+ace_memory_free
+ace_memory_size
+ace_set_alloc
