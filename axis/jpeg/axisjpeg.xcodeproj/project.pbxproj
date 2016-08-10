@@ -144,6 +144,27 @@
 			remoteGlobalIDString = 07B65763190F3CA2002DAADE;
 			remoteInfo = math_ios;
 		};
+		9A342F471D5B7E8E00D00D4A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A342F411D5B7E8E00D00D4A /* axispng.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9A574B9816AAB906000CC4EF;
+			remoteInfo = axispng;
+		};
+		9A342F491D5B7E8E00D00D4A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A342F411D5B7E8E00D00D4A /* axispng.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 07B65764190F3CA2002DAADE;
+			remoteInfo = ios_axispng;
+		};
+		9A342F4B1D5B7E8E00D00D4A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A342F411D5B7E8E00D00D4A /* axispng.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 07B65773190F3CA2002DAADE;
+			remoteInfo = axispng_iosTests;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -161,6 +182,7 @@
 /* Begin PBXFileReference section */
 		07B65764190F3CA2002DAADE /* libios_axisjpeg.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libios_axisjpeg.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		07B65773190F3CA2002DAADE /* axisjpeg_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = axisjpeg_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A342F411D5B7E8E00D00D4A /* axispng.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axispng.xcodeproj; path = ../png/axispng.xcodeproj; sourceTree = "<group>"; };
 		9A4E86AC1D1FD9F3008A419B /* cderror.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cderror.h; sourceTree = "<group>"; };
 		9A4E86AD1D1FD9F3008A419B /* cdjpeg.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = cdjpeg.c; sourceTree = "<group>"; };
 		9A4E86AE1D1FD9F3008A419B /* cdjpeg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cdjpeg.h; sourceTree = "<group>"; };
@@ -256,6 +278,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9A342F421D5B7E8E00D00D4A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9A342F481D5B7E8E00D00D4A /* libaxispng.dylib */,
+				9A342F4A1D5B7E8E00D00D4A /* libios_axispng.dylib */,
+				9A342F4C1D5B7E8E00D00D4A /* axispng_iosTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		9A4E86A41D1FD9D8008A419B /* jpeg */ = {
 			isa = PBXGroup;
 			children = (
@@ -332,6 +364,7 @@
 		9A574B8D16AAB906000CC4EF = {
 			isa = PBXGroup;
 			children = (
+				9A342F411D5B7E8E00D00D4A /* axispng.xcodeproj */,
 				9A4E86A41D1FD9D8008A419B /* jpeg */,
 				9A574B9916AAB906000CC4EF /* Products */,
 			);
@@ -442,6 +475,12 @@
 			mainGroup = 9A574B8D16AAB906000CC4EF;
 			productRefGroup = 9A574B9916AAB906000CC4EF /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 9A342F421D5B7E8E00D00D4A /* Products */;
+					ProjectRef = 9A342F411D5B7E8E00D00D4A /* axispng.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				9A574B9716AAB906000CC4EF /* axisjpeg */,
@@ -450,6 +489,30 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		9A342F481D5B7E8E00D00D4A /* libaxispng.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libaxispng.dylib;
+			remoteRef = 9A342F471D5B7E8E00D00D4A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9A342F4A1D5B7E8E00D00D4A /* libios_axispng.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libios_axispng.dylib;
+			remoteRef = 9A342F491D5B7E8E00D00D4A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9A342F4C1D5B7E8E00D00D4A /* axispng_iosTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = axispng_iosTests.xctest;
+			remoteRef = 9A342F4B1D5B7E8E00D00D4A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		07B65771190F3CA2002DAADE /* Resources */ = {

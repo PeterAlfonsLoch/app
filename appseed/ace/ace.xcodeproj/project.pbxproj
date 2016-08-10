@@ -12,6 +12,8 @@
 		07B65778190F3CA2002DAADE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B65777190F3CA2002DAADE /* UIKit.framework */; };
 		07B6577B190F3CA2002DAADE /* libios_ace.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B65764190F3CA2002DAADE /* libios_ace.dylib */; };
 		07B65781190F3CA2002DAADE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 07B6577F190F3CA2002DAADE /* InfoPlist.strings */; };
+		9A342FEE1D5B808500D00D4A /* _ace_new.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AD4828C1D5A7BC000354801 /* _ace_new.cpp */; };
+		9A342FEF1D5B808500D00D4A /* ace_alloc.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A9699151D5A696200D5169C /* ace_alloc.c */; };
 		9A9699181D5A696200D5169C /* ace_alloc.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A9699151D5A696200D5169C /* ace_alloc.c */; };
 		9A9699191D5A696200D5169C /* ace_alloc.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9699161D5A696200D5169C /* ace_alloc.h */; };
 		9A96991A1D5A696200D5169C /* ace.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9699171D5A696200D5169C /* ace.h */; };
@@ -267,6 +269,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A342FEE1D5B808500D00D4A /* _ace_new.cpp in Sources */,
+				9A342FEF1D5B808500D00D4A /* ace_alloc.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
