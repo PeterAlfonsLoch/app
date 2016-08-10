@@ -967,7 +967,7 @@ namespace file
                
                set["raw_http"] = true;
                
-               ::file::path strFile = System.dir().commonappdata() / "cache" / strDir / "list_dir.list_dir";
+               ::file::path strFile = System.dir().commonappdata() / "cache" / strMatter / "list_dir.list_dir";
                
                iFind = strFile.find(DIR_SEPARATOR);
                
@@ -993,7 +993,7 @@ namespace file
                {
                   
                   // todo: keep cache timeout information;
-                  strLs = Sess(papp).http().get("https://"+get_api_cc()+"/api/matter/list_dir?dir=" + System.url().url_encode(strMatter), set);
+                  strLs = Sess(papp).http().get("http://"+get_api_cc()+"/api/matter/list_dir?dir=" + System.url().url_encode(strMatter), set);
                   
                   Application.file().put_contents(strFile, strLs);
                   

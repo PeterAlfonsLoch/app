@@ -96,6 +96,8 @@
 		07EDC4E91B4EFBEB00AF8928 /* srp_vfy.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DC81B23E146008C63AF /* srp_vfy.c */; };
 		07EDC4EA1B4EFC0C00AF8928 /* _ts.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DCF1B23E188008C63AF /* _ts.c */; };
 		07EDC4EB1B4EFC1100AF8928 /* txt_db.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DD11B23E19B008C63AF /* txt_db.c */; };
+		9A342FF01D5B949700D00D4A /* mem_ace.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AD480B41D5A75D100354801 /* mem_ace.c */; };
+		9A342FF51D5B94E100D00D4A /* libios_ace.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A342FF41D5B94E100D00D4A /* libios_ace.dylib */; };
 		9A6715F71D152B740069A961 /* des_old.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DB31B23DF79008C63AF /* des_old.c */; };
 		9A6715F81D152B740069A961 /* des_old2.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DB41B23DF79008C63AF /* des_old2.c */; };
 		9A6715F91D152B740069A961 /* krb5_asn.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DBD1B23E0B1008C63AF /* krb5_asn.c */; };
@@ -281,6 +283,8 @@
 		07EDC4C71B4EE45900AF8928 /* _aes.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = _aes.c; sourceTree = "<group>"; };
 		07EDC4C91B4EF66100AF8928 /* _engines.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = _engines.c; sourceTree = "<group>"; };
 		07EDC4E01B4EF9EE00AF8928 /* _ccgost.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = _ccgost.c; sourceTree = "<group>"; };
+		9A342FF21D5B94AD00D00D4A /* libace.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libace.dylib; path = ../../appseed/ace/build/Debug/libace.dylib; sourceTree = "<group>"; };
+		9A342FF41D5B94E100D00D4A /* libios_ace.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_ace.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/arcade-ios-biflflzsuoocrodvdsvmkqeosgky/Build/Products/Debug-iphonesimulator/libios_ace.dylib"; sourceTree = "<group>"; };
 		9A9D330519D4C44D00DC2067 /* aes-x86_64.s */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = "aes-x86_64.s"; sourceTree = "<group>"; };
 		9A9D330619D4C44D00DC2067 /* aesni-sha1-x86_64.s */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = "aesni-sha1-x86_64.s"; sourceTree = "<group>"; };
 		9A9D330719D4C44D00DC2067 /* aesni-x86_64.s */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = "aesni-x86_64.s"; sourceTree = "<group>"; };
@@ -331,6 +335,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A342FF51D5B94E100D00D4A /* libios_ace.dylib in Frameworks */,
 				07703C361B6FDF95009026EA /* libios_aura.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -939,6 +944,8 @@
 		9A1B2F7D16A2AF5C00875A94 = {
 			isa = PBXGroup;
 			children = (
+				9A342FF41D5B94E100D00D4A /* libios_ace.dylib */,
+				9A342FF21D5B94AD00D00D4A /* libace.dylib */,
 				9AD480B61D5A768D00354801 /* libace.dylib */,
 				07502C811B247427008D207C /* aura.xcodeproj */,
 				9A9D32EC19D4C44D00DC2067 /* asm */,
@@ -1384,6 +1391,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A342FF01D5B949700D00D4A /* mem_ace.c in Sources */,
 				9A6715F71D152B740069A961 /* des_old.c in Sources */,
 				9A6715F81D152B740069A961 /* des_old2.c in Sources */,
 				9A6715F91D152B740069A961 /* krb5_asn.c in Sources */,

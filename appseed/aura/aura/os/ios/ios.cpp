@@ -67,7 +67,8 @@ void output_debug_string(const char * psz)
 CLASS_DECL_AURA bool __node_aura_pre_init()
 {
    
-   
+//   ace_set_alloc(ace_memory_alloc, &ace_memory_realloc, &ace, <#size_t s#>, <#PFN_MEMORY_REALLOC prealloc#>, <#PFN_MEMORY_FREE pfree#>, <#PFN_MEMORY_SIZE psize#>)
+//   
    return true;
    
 }
@@ -228,5 +229,18 @@ string get_exe_path()
 
 
 
-
-
+//class ios_aura_init
+//{
+//public:
+//   ios_aura_init()
+//   {
+//  
+//      ace_set_alloc(&memory_alloc, &memory_realloc, &memory_free, &memory_size);
+//      
+//   }
+//   
+//   
+//};
+//
+//ios_aura_init g_ios_aura_init;
+//

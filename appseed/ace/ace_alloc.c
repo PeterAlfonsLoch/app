@@ -2,9 +2,9 @@
 
 
 
-PFN_MEMORY_ALLOC g_pfnAceAlloc = NULL;
-PFN_MEMORY_REALLOC g_pfnAceRealloc = NULL;
-PFN_MEMORY_FREE g_pfnAceFree = NULL;
+PFN_MEMORY_ALLOC g_pfnAceAlloc = &malloc;
+PFN_MEMORY_REALLOC g_pfnAceRealloc = &realloc;
+PFN_MEMORY_FREE g_pfnAceFree = &free;
 PFN_MEMORY_SIZE g_pfnAceSize = NULL;
 
 void * MEMORY_DECL ace_memory_alloc(size_t s)
