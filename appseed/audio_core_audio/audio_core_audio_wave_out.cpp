@@ -631,7 +631,9 @@ namespace multimedia
          
          if(m_mmr == ::multimedia::result_success)
          {
+            
             m_estate = state_playing;
+            
          }
          
          return m_mmr;
