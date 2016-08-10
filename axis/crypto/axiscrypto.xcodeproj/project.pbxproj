@@ -31,7 +31,6 @@
 		07558DD01B23E188008C63AF /* _ts.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DCF1B23E188008C63AF /* _ts.c */; };
 		07558DD21B23E19B008C63AF /* txt_db.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DD11B23E19B008C63AF /* txt_db.c */; };
 		07558DD41B23E1C8008C63AF /* v3_lib.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DD31B23E1C8008C63AF /* v3_lib.c */; };
-		07558DD61B23E34B008C63AF /* mem_aura.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DD51B23E34B008C63AF /* mem_aura.c */; };
 		07703C361B6FDF95009026EA /* libios_aura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 071B2AFA1B6E63150088E158 /* libios_aura.dylib */; };
 		077CEF191B23C505009A57EF /* _crypto.c in Sources */ = {isa = PBXBuildFile; fileRef = 077CEF181B23C505009A57EF /* _crypto.c */; };
 		077CEF2A1B23DC97009A57EF /* _x509.c in Sources */ = {isa = PBXBuildFile; fileRef = 077CEF291B23DC97009A57EF /* _x509.c */; };
@@ -78,7 +77,6 @@
 		07EDC4CD1B4EF69C00AF8928 /* _x509.c in Sources */ = {isa = PBXBuildFile; fileRef = 077CEF291B23DC97009A57EF /* _x509.c */; };
 		07EDC4CE1B4EF6A200AF8928 /* _x509v3.c in Sources */ = {isa = PBXBuildFile; fileRef = 077CEF2B1B23DCB7009A57EF /* _x509v3.c */; };
 		07EDC4CF1B4EF6A700AF8928 /* v3_lib.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DD31B23E1C8008C63AF /* v3_lib.c */; };
-		07EDC4D01B4EF77E00AF8928 /* mem_aura.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DD51B23E34B008C63AF /* mem_aura.c */; };
 		07EDC4D11B4EF7AA00AF8928 /* rc4_utl.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DC51B23E123008C63AF /* rc4_utl.c */; };
 		07EDC4D51B4EF8C900AF8928 /* lh_stats.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DBF1B23E0CD008C63AF /* lh_stats.c */; };
 		07EDC4D61B4EF8CD00AF8928 /* lhash.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DC01B23E0CD008C63AF /* lhash.c */; };
@@ -115,6 +113,8 @@
 		9A9D33A319D4C44E00DC2067 /* sha512-x86_64.s in Sources */ = {isa = PBXBuildFile; fileRef = 9A9D331419D4C44D00DC2067 /* sha512-x86_64.s */; };
 		9A9D33A419D4C44E00DC2067 /* wp-x86_64.s in Sources */ = {isa = PBXBuildFile; fileRef = 9A9D331619D4C44D00DC2067 /* wp-x86_64.s */; };
 		9A9D33A519D4C44E00DC2067 /* x86_64cpuid.s in Sources */ = {isa = PBXBuildFile; fileRef = 9A9D331719D4C44D00DC2067 /* x86_64cpuid.s */; };
+		9AD480B51D5A75D100354801 /* mem_ace.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AD480B41D5A75D100354801 /* mem_ace.c */; };
+		9AD480B71D5A768D00354801 /* libace.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AD480B61D5A768D00354801 /* libace.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -208,7 +208,6 @@
 		07558DCF1B23E188008C63AF /* _ts.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = _ts.c; sourceTree = "<group>"; };
 		07558DD11B23E19B008C63AF /* txt_db.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = txt_db.c; sourceTree = "<group>"; };
 		07558DD31B23E1C8008C63AF /* v3_lib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = v3_lib.c; sourceTree = "<group>"; };
-		07558DD51B23E34B008C63AF /* mem_aura.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mem_aura.c; sourceTree = "<group>"; };
 		07783275199FE94100206CA1 /* e_gost_err.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = e_gost_err.c; sourceTree = "<group>"; };
 		07783276199FE94100206CA1 /* e_gost_err.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = e_gost_err.h; sourceTree = "<group>"; };
 		07783279199FE94100206CA1 /* gost2001.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = gost2001.c; sourceTree = "<group>"; };
@@ -313,6 +312,8 @@
 		9A9D336819D4C44D00DC2067 /* sha512-586.s */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = "sha512-586.s"; sourceTree = "<group>"; };
 		9A9D336A19D4C44D00DC2067 /* wp-mmx.s */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = "wp-mmx.s"; sourceTree = "<group>"; };
 		9A9D336B19D4C44D00DC2067 /* x86cpuid.s */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = x86cpuid.s; sourceTree = "<group>"; };
+		9AD480B41D5A75D100354801 /* mem_ace.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mem_ace.c; sourceTree = "<group>"; };
+		9AD480B61D5A768D00354801 /* libace.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libace.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/core-osx-dyhrstllhpqabhamryoxyuxzxxbr/Build/Products/Debug/libace.dylib"; sourceTree = "<group>"; };
 		9AF8B7231D1FDDB50087E7A2 /* axiscrypto_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = axiscrypto_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -321,6 +322,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9AD480B71D5A768D00354801 /* libace.dylib in Frameworks */,
 				071B2B4D1B6E639F0088E158 /* libaura.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -416,7 +418,7 @@
 				0778A2EF199FFC5800206CA1 /* e_os2_ca2specific.h */,
 				0778A2F0199FFC5800206CA1 /* e_os2_original.h */,
 				0778A2F1199FFC5800206CA1 /* e_os2.h */,
-				07558DD51B23E34B008C63AF /* mem_aura.c */,
+				9AD480B41D5A75D100354801 /* mem_ace.c */,
 				077CEF181B23C505009A57EF /* _crypto.c */,
 			);
 			path = crypto;
@@ -937,6 +939,7 @@
 		9A1B2F7D16A2AF5C00875A94 = {
 			isa = PBXGroup;
 			children = (
+				9AD480B61D5A768D00354801 /* libace.dylib */,
 				07502C811B247427008D207C /* aura.xcodeproj */,
 				9A9D32EC19D4C44D00DC2067 /* asm */,
 				0778A257199FFC1600206CA1 /* openssl */,
@@ -1299,6 +1302,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A9D339D19D4C44E00DC2067 /* x86_64-mont.s in Sources */,
+				9AD480B51D5A75D100354801 /* mem_ace.c in Sources */,
 				9A9D33A419D4C44E00DC2067 /* wp-x86_64.s in Sources */,
 				07558DBA1B23E099008C63AF /* hm_ameth.c in Sources */,
 				07558DA91B23DD56008C63AF /* bss_dgram.c in Sources */,
@@ -1368,7 +1372,6 @@
 				07B2752919A02D1200E822E1 /* e_nuron_err.c in Sources */,
 				07558DB11B23DF4A008C63AF /* cm_pmeth.c in Sources */,
 				07B2752A19A02D1200E822E1 /* e_sureware.c in Sources */,
-				07558DD61B23E34B008C63AF /* mem_aura.c in Sources */,
 				07B2752B19A02D1200E822E1 /* e_sureware_err.c in Sources */,
 				07B2752C19A02D1200E822E1 /* e_ubsec.c in Sources */,
 				07B2752D19A02D1200E822E1 /* e_ubsec_err.c in Sources */,
@@ -1401,7 +1404,6 @@
 				07EDC4E81B4EFBE800AF8928 /* srp_lib.c in Sources */,
 				07EDC4D91B4EF91C00AF8928 /* hm_pmeth.c in Sources */,
 				07EDC4DB1B4EF94E00AF8928 /* cm_ameth.c in Sources */,
-				07EDC4D01B4EF77E00AF8928 /* mem_aura.c in Sources */,
 				07EDC4D81B4EF91900AF8928 /* hm_ameth.c in Sources */,
 				07EDC4E91B4EFBEB00AF8928 /* srp_vfy.c in Sources */,
 				07EDC4DD1B4EF95500AF8928 /* cmac.c in Sources */,

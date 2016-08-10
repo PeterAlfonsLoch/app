@@ -5957,8 +5957,9 @@ namespace draw2d_quartz2d
       if(emode == kCGTextFill || emode == kCGTextFillStroke)
       {
          
-         if(spbrush->m_etype == ::draw2d::brush::type_linear_gradient_point_color
-            || spbrush->m_etype == ::draw2d::brush::type_pattern)
+         if(spbrush.is_set() &&
+            (spbrush->m_etype == ::draw2d::brush::type_linear_gradient_point_color
+            || spbrush->m_etype == ::draw2d::brush::type_pattern))
          {
             
             emode = kCGTextClip;

@@ -49,11 +49,16 @@
 	<item code="2033" value="key_rcommand" />
 	<item code="51" value="key_back" />
 	<item code="117" value="key_delete" />
-	<item code="1003" value="key_up" />
-	<item code="1005" value="key_down" />
-	<item code="1002" value="key_left" />
-	<item code="1004" value="key_right" />
-	<item code="48" value="key_tab" />
+   <item scan="75" ext="1" value="key_left" />
+   <item scan="77" ext="1" value="key_right" />
+   <item scan="72" ext="1" value="key_up" />
+   <item scan="83" ext="1" value="key_delete" />
+   <item scan="80" ext="1" value="key_down" />
+   <item scan="71" ext="1" value="key_home" />
+   <item scan="79" ext="1" value="key_end" />
+   <item scan="73" ext="1" value="key_prior" />
+   <item scan="81" ext="1" value="key_next" />
+   <item code="48" value="key_tab" />
 	<item code="66" value="key_capslock" />
 	<item code="115" value="key_home" />
 	<item code="119" value="key_end" />

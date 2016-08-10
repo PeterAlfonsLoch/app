@@ -1103,7 +1103,7 @@
 		9A5DF96E1CEE2741008916A4 /* test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5DF96D1CEE2741008916A4 /* test.cpp */; };
 		9A6715D11D14F65F0069A961 /* draw2d_nanosvg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07C64B7A1C9A29A400F54872 /* draw2d_nanosvg.cpp */; };
 		9A6715D41D14F7970069A961 /* test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5DF96D1CEE2741008916A4 /* test.cpp */; };
-		9A74846E1D210C0600207EF6 /* libios_ace.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A6716761D1553BF0069A961 /* libios_ace.a */; };
+		9A74846E1D210C0600207EF6 /* libios_ace.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A6716761D1553BF0069A961 /* libios_ace.dylib */; };
 		9A74846F1D210C1A00207EF6 /* libios_atomiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 076C9BF21B50ACB100CEA03E /* libios_atomiconv.dylib */; };
 		9A98A6081771D67E000AE16E /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07BD556C16210BD4008E31F0 /* AppKit.framework */; };
 		9A98A6091771D67E000AE16E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8897A514C24736006B4023 /* Foundation.framework */; };
@@ -1159,7 +1159,7 @@
 		9AC315F2198E4CB8008FB109 /* colorertake5_Writer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC315AB198E4CB8008FB109 /* colorertake5_Writer.h */; };
 		9AC315F3198E4CB8008FB109 /* colorertake5_xmldom.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC315AC198E4CB8008FB109 /* colorertake5_xmldom.h */; };
 		9AC62DEA1D20B82D00A4AC0A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC62DE91D20B82D00A4AC0A /* UIKit.framework */; };
-		9ACE46FF1D1FE56000A1E0AD /* libace.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A6716741D1553BF0069A961 /* libace.a */; };
+		9ACE46FF1D1FE56000A1E0AD /* libace.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A6716741D1553BF0069A961 /* libace.dylib */; };
 		9AE4C7F21996D29C00E50F88 /* data_data.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE4C7E41996D29C00E50F88 /* data_data.h */; };
 		9AE4C7F41996D29C00E50F88 /* data_data_container.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE4C7E61996D29C00E50F88 /* data_data_container.h */; };
 		9AE4C7F61996D29C00E50F88 /* data_data_listener.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE4C7E81996D29C00E50F88 /* data_data_listener.h */; };
@@ -1912,6 +1912,7 @@
 		9AC315AC198E4CB8008FB109 /* colorertake5_xmldom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = colorertake5_xmldom.h; sourceTree = "<group>"; };
 		9AC62DE91D20B82D00A4AC0A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		9AC945281829225F00AA7325 /* primitive_factory_impl.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = primitive_factory_impl.inl; sourceTree = "<group>"; };
+		9AD480B81D5A78B200354801 /* lib_ace.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = lib_ace.a; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/core-osx-dyhrstllhpqabhamryoxyuxzxxbr/Build/Products/Debug/lib_ace.a"; sourceTree = "<group>"; };
 		9AE24D431904CEFE001AEFFB /* aura_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = aura_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AE4C7E41996D29C00E50F88 /* data_data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = data_data.h; sourceTree = "<group>"; };
 		9AE4C7E61996D29C00E50F88 /* data_data_container.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = data_data_container.h; sourceTree = "<group>"; };
@@ -1987,7 +1988,7 @@
 			files = (
 				9AC62DEA1D20B82D00A4AC0A /* UIKit.framework in Frameworks */,
 				9A74846F1D210C1A00207EF6 /* libios_atomiconv.dylib in Frameworks */,
-				9A74846E1D210C0600207EF6 /* libios_ace.a in Frameworks */,
+				9A74846E1D210C0600207EF6 /* libios_ace.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1995,7 +1996,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9ACE46FF1D1FE56000A1E0AD /* libace.a in Frameworks */,
+				9ACE46FF1D1FE56000A1E0AD /* libace.dylib in Frameworks */,
 				9A98A6081771D67E000AE16E /* AppKit.framework in Frameworks */,
 				9A98A6091771D67E000AE16E /* Foundation.framework in Frameworks */,
 				9A98A60A1771D67E000AE16E /* Carbon.framework in Frameworks */,
@@ -2870,9 +2871,9 @@
 		9A67166D1D1553BF0069A961 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9A6716741D1553BF0069A961 /* libace.a */,
-				9A6716761D1553BF0069A961 /* libios_ace.a */,
-				9A6716781D1553BF0069A961 /* math_iosTests.xctest */,
+				9A6716741D1553BF0069A961 /* libace.dylib */,
+				9A6716761D1553BF0069A961 /* libios_ace.dylib */,
+				9A6716781D1553BF0069A961 /* ace_iosTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -3056,6 +3057,7 @@
 		CEA754B914411F2B007E04DE = {
 			isa = PBXGroup;
 			children = (
+				9AD480B81D5A78B200354801 /* lib_ace.a */,
 				9A67166C1D1553BF0069A961 /* ace.xcodeproj */,
 				076D0A161A3FCCD4007432B6 /* atomiconv.xcodeproj */,
 				9AC62DE91D20B82D00A4AC0A /* UIKit.framework */,
@@ -4347,24 +4349,24 @@
 			remoteRef = 076D0A1A1A3FCCD4007432B6 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A6716741D1553BF0069A961 /* libace.a */ = {
+		9A6716741D1553BF0069A961 /* libace.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			path = libace.a;
+			path = libace.dylib;
 			remoteRef = 9A6716731D1553BF0069A961 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A6716761D1553BF0069A961 /* libios_ace.a */ = {
+		9A6716761D1553BF0069A961 /* libios_ace.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libios_ace.a;
+			path = libios_ace.dylib;
 			remoteRef = 9A6716751D1553BF0069A961 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A6716781D1553BF0069A961 /* math_iosTests.xctest */ = {
+		9A6716781D1553BF0069A961 /* ace_iosTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = math_iosTests.xctest;
+			path = ace_iosTests.xctest;
 			remoteRef = 9A6716771D1553BF0069A961 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};

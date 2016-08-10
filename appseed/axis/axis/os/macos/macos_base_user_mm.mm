@@ -28,7 +28,17 @@ namespace macos
 
 } // namespace macos
 
-CGRect g_rectWorkspace = [[NSScreen mainScreen] frame];
+
+CGRect g_rectWorkspace;
+
+
+void osx_init_workspace_rect()
+{
+   
+   g_rectWorkspace = [[NSScreen mainScreen] frame];
+   
+}
+
 
 CGRect osx_get_workspace_rect()
 {

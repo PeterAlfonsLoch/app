@@ -737,7 +737,7 @@ m_f = true; \
 - (void)keyDown:(NSEvent *)event
 {
 
-//   unsigned int uiKeyCode = event_key_code(event);
+   unsigned int uiKeyCode = event_key_code(event);
 //   
 //   
 //   round_window * p = m_roundwindow->m_pwindow;
@@ -787,7 +787,18 @@ m_f = true; \
       keyCode = fixKeyCode(keyCode, keyChar, appleKeyboardType);
    }
    
-   vkcode = GetVirtualKeyCodeFromKeycode(keyCode + 8, KEYCODE_TYPE_APPLE);
+//   if(uiKeyCode != 0)
+//   {
+//   
+//      vkcode = uiKeyCode;
+//      
+//   }
+//   else
+//   {
+   
+      vkcode = GetVirtualKeyCodeFromKeycode(keyCode + 8, KEYCODE_TYPE_APPLE);
+      
+//   }
    scancode = GetVirtualScanCodeFromVirtualKeyCode(vkcode, 4);
    keyFlags |= (scancode & KBDEXT) ? KBDEXT : 0;
    scancode &= 0xFF;
@@ -813,7 +824,7 @@ m_f = true; \
 - (void)keyUp:(NSEvent *)event
 {
    
-//   unsigned int uiKeyCode = event_key_code(event);
+   unsigned int uiKeyCode = event_key_code(event);
 //   
 //   round_window * p = m_roundwindow->m_pwindow;
 //   
@@ -863,7 +874,18 @@ m_f = true; \
       keyCode = fixKeyCode(keyCode, keyChar, appleKeyboardType);
    }
    
-   vkcode = GetVirtualKeyCodeFromKeycode(keyCode + 8, KEYCODE_TYPE_APPLE);
+//   if(uiKeyCode != 0)
+//   {
+//      
+//      vkcode = uiKeyCode;
+//      
+//   }
+//   else
+//   {
+   
+      vkcode = GetVirtualKeyCodeFromKeycode(keyCode + 8, KEYCODE_TYPE_APPLE);
+      
+//   }
    scancode = GetVirtualScanCodeFromVirtualKeyCode(vkcode, 4);
    keyFlags |= (scancode & KBDEXT) ? KBDEXT : 0;
    scancode &= 0xFF;
@@ -1049,31 +1071,33 @@ unsigned int event_num_pad_key_code(NSEvent * event)
       if(key == NSLeftArrowFunctionKey)
       {
          
-         return 1002; //::user::key_left;
+         return VK_LEFT; //::user::key_left;
          
       }
       else if(key == NSRightArrowFunctionKey)
       {
          
-         return 1004; //::user::key_right;
+         return VK_RIGHT; //::user::key_right;
          
       }
       else if(key == NSUpArrowFunctionKey)
       {
          
-         return 1003; // ::user::key_up;
+         return VK_UP; // ::user::key_up;
          
       }
       else if(key == NSDownArrowFunctionKey)
       {
          
-         return 1005; // ::user::key_down;
+         return VK_DOWN; // ::user::key_down;
          
       }
       else if(key >= L'0' && key <= L'9')
       {
          
-         return 3000 + key - L'0';
+         //return 3000 + key - L'0';
+         
+         return 0;
          
       }
       

@@ -53,7 +53,7 @@ namespace draw2d_quartz2d
       
    }
    
-   bool path::internal_add_arc(const RECT & rect, int iStart, int iAngle)
+   bool path::internal_add_arc(const RECT & rect, double dBeg, double dEnd)
    {
       
       CGFloat d1 = rect.right - rect.left;
@@ -69,10 +69,10 @@ namespace draw2d_quartz2d
       CGAffineTransform t = CGAffineTransformMakeScale(1.0, d2 / d1);
       CGFloat x = (rect.right + rect.left) / 2.0;
       CGFloat y = (rect.bottom + rect.top) / 2.0;
-      CGFloat x1 = x + d1 * sin(iStart * MATH_PI / 180.0f);
-      CGFloat y1 = y + d1 * cos(iStart * MATH_PI / 180.0f);
-      CGFloat x2 = x + d1 * sin((iStart + iAngle) * MATH_PI / 180.0f);
-      CGFloat y2 = y + d1 * cos((iStart + iAngle) * MATH_PI / 180.0f);
+      CGFloat x1 = x + d1 * sin(dBeg * MATH_PI / 180.0f);
+      CGFloat y1 = y + d1 * cos(dBeg * MATH_PI / 180.0f);
+      CGFloat x2 = x + d1 * sin(dEnd * MATH_PI / 180.0f);
+      CGFloat y2 = y + d1 * cos(dEnd * MATH_PI / 180.0f);
       
       if(CGPathIsEmpty(m_path))
       {
@@ -81,7 +81,7 @@ namespace draw2d_quartz2d
          
       }
       
-      CGPathAddArcToPoint(m_path, &t, x1, y1, x2, y2, d1);
+      CGPathAddArc(m_path, &t, x, y, d1/2.0, dBeg, dEnd, 0);
       
       return true;
       

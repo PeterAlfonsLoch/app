@@ -3,7 +3,7 @@
 #include "fiasco_finder.h"
 
 #ifndef WINDOWS
-#include "freetype2/ft2build.h"
+#include "ft2build.h"
 #include FT_FREETYPE_H
 #endif
 

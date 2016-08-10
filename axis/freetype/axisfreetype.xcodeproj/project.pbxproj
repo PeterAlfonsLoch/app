@@ -2057,7 +2057,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../nodeapp/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../../../app/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/include/freetype";
+				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../nodeapp/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../../../app/include $(WorkspaceDir)/../../appseed";
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};
 			name = Debug;
@@ -2094,7 +2094,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../nodeapp/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../../../app/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/include/freetype";
+				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../nodeapp/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../../../app/include $(WorkspaceDir)/../../appseed";
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};
 			name = Release;

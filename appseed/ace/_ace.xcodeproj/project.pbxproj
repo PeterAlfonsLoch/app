@@ -10,14 +10,10 @@
 		07B65775190F3CA2002DAADE /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B65774190F3CA2002DAADE /* XCTest.framework */; };
 		07B65776190F3CA2002DAADE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B65766190F3CA2002DAADE /* Foundation.framework */; };
 		07B65778190F3CA2002DAADE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B65777190F3CA2002DAADE /* UIKit.framework */; };
-		07B6577B190F3CA2002DAADE /* libios_ace.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B65764190F3CA2002DAADE /* libios_ace.dylib */; };
-		07B65781190F3CA2002DAADE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 07B6577F190F3CA2002DAADE /* InfoPlist.strings */; };
-		9A9699181D5A696200D5169C /* ace_alloc.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A9699151D5A696200D5169C /* ace_alloc.c */; };
-		9A9699191D5A696200D5169C /* ace_alloc.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9699161D5A696200D5169C /* ace_alloc.h */; };
-		9A96991A1D5A696200D5169C /* ace.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9699171D5A696200D5169C /* ace.h */; };
-		9AD4828F1D5A7BC000354801 /* _ace_new.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AD4828C1D5A7BC000354801 /* _ace_new.cpp */; };
-		9AD482901D5A7BC000354801 /* _ace_new.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD4828D1D5A7BC000354801 /* _ace_new.h */; };
-		9AD482911D5A7BC000354801 /* _ace.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD4828E1D5A7BC000354801 /* _ace.h */; };
+		07B6577B190F3CA2002DAADE /* lib_ios_ace.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B65764190F3CA2002DAADE /* lib_ios_ace.a */; };
+		9A95CE011D5A6C9A0084CF1D /* _ace_new.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A95CDFF1D5A6C9A0084CF1D /* _ace_new.h */; };
+		9A95CE021D5A6C9A0084CF1D /* _ace.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A95CE001D5A6C9A0084CF1D /* _ace.h */; };
+		9AD480AF1D5A6FB500354801 /* _ace_new.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AD480AE1D5A6FB500354801 /* _ace_new.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,20 +39,18 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		07B65764190F3CA2002DAADE /* libios_ace.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libios_ace.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		07B65764190F3CA2002DAADE /* lib_ios_ace.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = lib_ios_ace.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		07B65766190F3CA2002DAADE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		07B65773190F3CA2002DAADE /* ace_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ace_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		07B65773190F3CA2002DAADE /* _ace_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = _ace_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		07B65774190F3CA2002DAADE /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		07B65777190F3CA2002DAADE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		07B65780190F3CA2002DAADE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		9A574B9816AAB906000CC4EF /* libace.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libace.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A9699151D5A696200D5169C /* ace_alloc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ace_alloc.c; sourceTree = "<group>"; };
-		9A9699161D5A696200D5169C /* ace_alloc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ace_alloc.h; sourceTree = "<group>"; };
-		9A9699171D5A696200D5169C /* ace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ace.h; sourceTree = "<group>"; };
-		9AD47F621D5A6D9100354801 /* ace_iosTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ace_iosTests.m; path = ace_iosTests/ace_iosTests.m; sourceTree = SOURCE_ROOT; };
-		9AD4828C1D5A7BC000354801 /* _ace_new.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _ace_new.cpp; sourceTree = "<group>"; };
-		9AD4828D1D5A7BC000354801 /* _ace_new.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _ace_new.h; sourceTree = "<group>"; };
-		9AD4828E1D5A7BC000354801 /* _ace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _ace.h; sourceTree = "<group>"; };
+		9A574B9816AAB906000CC4EF /* lib_ace.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = lib_ace.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A95CDFA1D5A6C630084CF1D /* _ace_iosTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "_ace_iosTests-Info.plist"; sourceTree = "<group>"; };
+		9A95CDFB1D5A6C630084CF1D /* _ace_iosTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _ace_iosTests.m; sourceTree = "<group>"; };
+		9A95CDFD1D5A6C630084CF1D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		9A95CDFF1D5A6C9A0084CF1D /* _ace_new.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _ace_new.h; sourceTree = "<group>"; };
+		9A95CE001D5A6C9A0084CF1D /* _ace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _ace.h; sourceTree = "<group>"; };
+		9AD480AE1D5A6FB500354801 /* _ace_new.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _ace_new.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,7 +67,7 @@
 			files = (
 				07B65775190F3CA2002DAADE /* XCTest.framework in Frameworks */,
 				07B65778190F3CA2002DAADE /* UIKit.framework in Frameworks */,
-				07B6577B190F3CA2002DAADE /* libios_ace.dylib in Frameworks */,
+				07B6577B190F3CA2002DAADE /* lib_ios_ace.a in Frameworks */,
 				07B65776190F3CA2002DAADE /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -98,29 +92,11 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		07B6577C190F3CA2002DAADE /* ace_iosTests */ = {
-			isa = PBXGroup;
-			children = (
-				07B6577D190F3CA2002DAADE /* Supporting Files */,
-			);
-			name = ace_iosTests;
-			path = math_iosTests;
-			sourceTree = "<group>";
-		};
-		07B6577D190F3CA2002DAADE /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				9AD47F621D5A6D9100354801 /* ace_iosTests.m */,
-				07B6577F190F3CA2002DAADE /* InfoPlist.strings */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		9A574B8D16AAB906000CC4EF = {
 			isa = PBXGroup;
 			children = (
-				9ACABEAC17BD04FF004C3F85 /* ace */,
-				07B6577C190F3CA2002DAADE /* ace_iosTests */,
+				9ACABEAC17BD04FF004C3F85 /* _ace */,
+				9A95CDF91D5A6C630084CF1D /* _ace_iosTests */,
 				07B65765190F3CA2002DAADE /* Frameworks */,
 				9A574B9916AAB906000CC4EF /* Products */,
 			);
@@ -129,24 +105,31 @@
 		9A574B9916AAB906000CC4EF /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9A574B9816AAB906000CC4EF /* libace.dylib */,
-				07B65764190F3CA2002DAADE /* libios_ace.dylib */,
-				07B65773190F3CA2002DAADE /* ace_iosTests.xctest */,
+				9A574B9816AAB906000CC4EF /* lib_ace.a */,
+				07B65764190F3CA2002DAADE /* lib_ios_ace.a */,
+				07B65773190F3CA2002DAADE /* _ace_iosTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		9ACABEAC17BD04FF004C3F85 /* ace */ = {
+		9A95CDF91D5A6C630084CF1D /* _ace_iosTests */ = {
 			isa = PBXGroup;
 			children = (
-				9AD4828C1D5A7BC000354801 /* _ace_new.cpp */,
-				9AD4828D1D5A7BC000354801 /* _ace_new.h */,
-				9AD4828E1D5A7BC000354801 /* _ace.h */,
-				9A9699151D5A696200D5169C /* ace_alloc.c */,
-				9A9699161D5A696200D5169C /* ace_alloc.h */,
-				9A9699171D5A696200D5169C /* ace.h */,
+				9A95CDFA1D5A6C630084CF1D /* _ace_iosTests-Info.plist */,
+				9A95CDFB1D5A6C630084CF1D /* _ace_iosTests.m */,
+				9A95CDFC1D5A6C630084CF1D /* InfoPlist.strings */,
 			);
-			name = ace;
+			path = _ace_iosTests;
+			sourceTree = "<group>";
+		};
+		9ACABEAC17BD04FF004C3F85 /* _ace */ = {
+			isa = PBXGroup;
+			children = (
+				9AD480AE1D5A6FB500354801 /* _ace_new.cpp */,
+				9A95CDFF1D5A6C9A0084CF1D /* _ace_new.h */,
+				9A95CE001D5A6C9A0084CF1D /* _ace.h */,
+			);
+			name = _ace;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -156,19 +139,17 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9AD482911D5A7BC000354801 /* _ace.h in Headers */,
-				9AD482901D5A7BC000354801 /* _ace_new.h in Headers */,
-				9A96991A1D5A696200D5169C /* ace.h in Headers */,
-				9A9699191D5A696200D5169C /* ace_alloc.h in Headers */,
+				9A95CE021D5A6C9A0084CF1D /* _ace.h in Headers */,
+				9A95CE011D5A6C9A0084CF1D /* _ace_new.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		07B65763190F3CA2002DAADE /* ios_ace */ = {
+		07B65763190F3CA2002DAADE /* _ios_ace */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 07B65788190F3CA2002DAADE /* Build configuration list for PBXNativeTarget "ios_ace" */;
+			buildConfigurationList = 07B65788190F3CA2002DAADE /* Build configuration list for PBXNativeTarget "_ios_ace" */;
 			buildPhases = (
 				07B65760190F3CA2002DAADE /* Sources */,
 				07B65761190F3CA2002DAADE /* Frameworks */,
@@ -178,14 +159,14 @@
 			);
 			dependencies = (
 			);
-			name = ios_ace;
+			name = _ios_ace;
 			productName = math_ios;
-			productReference = 07B65764190F3CA2002DAADE /* libios_ace.dylib */;
+			productReference = 07B65764190F3CA2002DAADE /* lib_ios_ace.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		07B65772190F3CA2002DAADE /* ace_iosTests */ = {
+		07B65772190F3CA2002DAADE /* _ace_iosTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 07B65789190F3CA2002DAADE /* Build configuration list for PBXNativeTarget "ace_iosTests" */;
+			buildConfigurationList = 07B65789190F3CA2002DAADE /* Build configuration list for PBXNativeTarget "_ace_iosTests" */;
 			buildPhases = (
 				07B6576F190F3CA2002DAADE /* Sources */,
 				07B65770190F3CA2002DAADE /* Frameworks */,
@@ -196,14 +177,14 @@
 			dependencies = (
 				07B6577A190F3CA2002DAADE /* PBXTargetDependency */,
 			);
-			name = ace_iosTests;
+			name = _ace_iosTests;
 			productName = math_iosTests;
-			productReference = 07B65773190F3CA2002DAADE /* ace_iosTests.xctest */;
+			productReference = 07B65773190F3CA2002DAADE /* _ace_iosTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		9A574B9716AAB906000CC4EF /* ace */ = {
+		9A574B9716AAB906000CC4EF /* _ace */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9A574B9C16AAB906000CC4EF /* Build configuration list for PBXNativeTarget "ace" */;
+			buildConfigurationList = 9A574B9C16AAB906000CC4EF /* Build configuration list for PBXNativeTarget "_ace" */;
 			buildPhases = (
 				9A574B9416AAB906000CC4EF /* Sources */,
 				9A574B9516AAB906000CC4EF /* Frameworks */,
@@ -213,9 +194,9 @@
 			);
 			dependencies = (
 			);
-			name = ace;
+			name = _ace;
 			productName = ca2;
-			productReference = 9A574B9816AAB906000CC4EF /* libace.dylib */;
+			productReference = 9A574B9816AAB906000CC4EF /* lib_ace.a */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 /* End PBXNativeTarget section */
@@ -232,7 +213,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 9A574B9216AAB906000CC4EF /* Build configuration list for PBXProject "ace" */;
+			buildConfigurationList = 9A574B9216AAB906000CC4EF /* Build configuration list for PBXProject "_ace" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -244,9 +225,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				9A574B9716AAB906000CC4EF /* ace */,
-				07B65763190F3CA2002DAADE /* ios_ace */,
-				07B65772190F3CA2002DAADE /* ace_iosTests */,
+				9A574B9716AAB906000CC4EF /* _ace */,
+				07B65763190F3CA2002DAADE /* _ios_ace */,
+				07B65772190F3CA2002DAADE /* _ace_iosTests */,
 			);
 		};
 /* End PBXProject section */
@@ -256,7 +237,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07B65781190F3CA2002DAADE /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,8 +261,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9AD4828F1D5A7BC000354801 /* _ace_new.cpp in Sources */,
-				9A9699181D5A696200D5169C /* ace_alloc.c in Sources */,
+				9AD480AF1D5A6FB500354801 /* _ace_new.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,16 +270,16 @@
 /* Begin PBXTargetDependency section */
 		07B6577A190F3CA2002DAADE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 07B65763190F3CA2002DAADE /* ios_ace */;
+			target = 07B65763190F3CA2002DAADE /* _ios_ace */;
 			targetProxy = 07B65779190F3CA2002DAADE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		07B6577F190F3CA2002DAADE /* InfoPlist.strings */ = {
+		9A95CDFC1D5A6C630084CF1D /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				07B65780190F3CA2002DAADE /* en */,
+				9A95CDFD1D5A6C630084CF1D /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -407,7 +386,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				ENABLE_TESTABILITY = YES;
-				EXECUTABLE_EXTENSION = dylib;
+				EXECUTABLE_EXTENSION = a;
 				EXECUTABLE_PREFIX = lib;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -431,7 +410,7 @@
 					"$(inherited)",
 					"\"$(TARGET_BUILD_DIR)\"",
 				);
-				MACH_O_TYPE = mh_dylib;
+				MACH_O_TYPE = staticlib;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -455,7 +434,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				EXECUTABLE_EXTENSION = dylib;
+				EXECUTABLE_EXTENSION = a;
 				EXECUTABLE_PREFIX = lib;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -472,7 +451,7 @@
 					"$(inherited)",
 					"\"$(TARGET_BUILD_DIR)\"",
 				);
-				MACH_O_TYPE = mh_dylib;
+				MACH_O_TYPE = staticlib;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -499,7 +478,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		07B65788190F3CA2002DAADE /* Build configuration list for PBXNativeTarget "ios_ace" */ = {
+		07B65788190F3CA2002DAADE /* Build configuration list for PBXNativeTarget "_ios_ace" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				07B65784190F3CA2002DAADE /* Debug */,
@@ -508,7 +487,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		07B65789190F3CA2002DAADE /* Build configuration list for PBXNativeTarget "ace_iosTests" */ = {
+		07B65789190F3CA2002DAADE /* Build configuration list for PBXNativeTarget "_ace_iosTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				07B65786190F3CA2002DAADE /* Debug */,
@@ -517,7 +496,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9A574B9216AAB906000CC4EF /* Build configuration list for PBXProject "ace" */ = {
+		9A574B9216AAB906000CC4EF /* Build configuration list for PBXProject "_ace" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9A574B9A16AAB906000CC4EF /* Debug */,
@@ -526,7 +505,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9A574B9C16AAB906000CC4EF /* Build configuration list for PBXNativeTarget "ace" */ = {
+		9A574B9C16AAB906000CC4EF /* Build configuration list for PBXNativeTarget "_ace" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9A574B9D16AAB906000CC4EF /* Debug */,
