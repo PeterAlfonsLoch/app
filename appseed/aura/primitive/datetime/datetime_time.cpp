@@ -314,11 +314,14 @@ namespace datetime
 
          ptmTemp = gmtime(&m_time);
 
+         // gmtime can return NULL
          if(ptmTemp == NULL)
             return NULL;
 
-         if(errno != 0)
-            return NULL;
+         // but don't throw exception or generate error...
+         // (reason for commenting out below, fat to be removed...)
+//         if(errno != 0)
+         //          return NULL;
 
          *ptm = *ptmTemp;
 
