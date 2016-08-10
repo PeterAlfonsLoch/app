@@ -942,21 +942,124 @@ namespace file
 
          void system::matter_ls(::aura::application * papp, const ::file::path & str, ::file::patha & stra)
          {
-
+            
             ::file::path strDir = matter(papp, str, true);
-
-            stra = ::file::listing(papp).ls(strDir);
+            
+            if (Sess(papp).m_bMatterFromHttpCache)
+            {
+               
+               string strMatter = strDir;
+               
+               strsize iFind1 = strMatter.find_ci("/matter/");
+               
+               strsize iFind2 = strMatter.find_ci("\\matter\\");
+               
+               strsize iFind = min_non_neg(iFind1, iFind2);
+               
+               if(iFind > 0)
+               {
+                  
+                  strMatter = strMatter.Mid(iFind);
+                  
+               }
+               
+               property_set set(get_app());
+               
+               set["raw_http"] = true;
+               
+               ::file::path strFile = System.dir().commonappdata() / "cache" / strDir / "list_dir.list_dir";
+               
+               iFind = strFile.find(DIR_SEPARATOR);
+               
+               if (iFind > 0)
+               {
+                  
+                  strFile.replace(":", "_", iFind + 1);
+                  
+               }
+               
+               strFile.replace("////", "//");
+               strFile.replace("\\\\", "\\", 1);
+               
+               ::file::path strLs;
+               
+               if (Application.file().exists(strFile))
+               {
+                  
+                  strLs = Application.file().as_string(strFile);
+                  
+               }
+               else
+               {
+                  
+                  // todo: keep cache timeout information;
+                  strLs = Sess(papp).http().get("https://"+get_api_cc()+"/api/matter/list_dir?dir=" + System.url().url_encode(strMatter), set);
+                  
+                  Application.file().put_contents(strFile, strLs);
+                  
+               }
+               
+               
+               
+               stringa straLs;
+               
+               stringa straSep;
+               
+               straSep.add("\r");
+               straSep.add("\n");
+               straSep.add("\r\n");
+               
+               straLs.add_smallest_tokens(strLs, straSep, false);
+               
+               for (index i = 0; i < straLs.get_count(); i++)
+               {
+                  
+                  ::file::path strPath = strDir / straLs[i];
+                  
+                  if (::str::ends(straLs[i], "/"))
+                  {
+                     
+                     strPath.m_iDir = 1;
+                     
+                  }
+                  
+                  stra.add(strPath);
+                  
+               }
+               
+            }
+            else
+            {
+               
+               stra = listing(papp).ls_file(strDir);
+               
+            }
 
          }
 
 
          void system::matter_ls_file(::aura::application * papp, const ::file::path & str, ::file::patha & stra)
          {
-
+            
             ::file::path strDir = matter(papp, str, true);
-
+            
             if (Sess(papp).m_bMatterFromHttpCache)
             {
+               
+               string strMatter = strDir;
+               
+               strsize iFind1 = strMatter.find_ci("/matter/");
+               
+               strsize iFind2 = strMatter.find_ci("\\matter\\");
+               
+               strsize iFind = min_non_neg(iFind1, iFind2);
+                                         
+               if(iFind > 0)
+               {
+
+                  strMatter = strMatter.Mid(iFind);
+                  
+               }
 
                property_set set(get_app());
 
@@ -964,7 +1067,7 @@ namespace file
 
                ::file::path strFile = System.dir().commonappdata() / "cache" / strDir / "list_dir.list_dir";
 
-               strsize iFind = strFile.find(DIR_SEPARATOR);
+               iFind = strFile.find(DIR_SEPARATOR);
 
                if (iFind > 0)
                {
@@ -988,7 +1091,7 @@ namespace file
                {
 
                   // todo: keep cache timeout information;
-                  strLs = Sess(papp).http().get("http://" + get_api_cc() + "/api/matter/list_dir?dir=" + System.url().url_encode(strDir), set);
+                  strLs = Sess(papp).http().get("http://" + get_api_cc() + "/api/matter/list_dir?dir=" + System.url().url_encode(strMatter), set);
 
                   Application.file().put_contents(strFile, strLs);
 

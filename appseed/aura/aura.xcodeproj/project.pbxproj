@@ -1855,6 +1855,7 @@
 		9A1EDB5E19C841D600F5CCE8 /* service_plain_service.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = service_plain_service.h; sourceTree = "<group>"; };
 		9A1EDB5F19C841D600F5CCE8 /* service_thread_pool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = service_thread_pool.h; sourceTree = "<group>"; };
 		9A33276A1D4C50EB00255105 /* file_path.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = file_path.h; sourceTree = "<group>"; };
+		9A4421861D5B231E00199308 /* aura_application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = aura_application.cpp; sourceTree = "<group>"; };
 		9A44E3FD19C5C10200143B94 /* math_departament.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = math_departament.h; sourceTree = "<group>"; };
 		9A5DF96C1CEE2536008916A4 /* primitive.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = primitive.inl; sourceTree = "<group>"; };
 		9A5DF96D1CEE2741008916A4 /* test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = test.cpp; path = ../test.cpp; sourceTree = "<group>"; };
@@ -2444,6 +2445,7 @@
 		9A163D3119C4A4CC00966C5E /* aura */ = {
 			isa = PBXGroup;
 			children = (
+				9A4421861D5B231E00199308 /* aura_application.cpp */,
 				07EC4CD61B4C34CD00EB5965 /* aura_timer_array.h */,
 				07EC4CD71B4C34CD00EB5965 /* aura_timer_callback.h */,
 				07EC4CD81B4C34CD00EB5965 /* aura_timer_event.h */,
