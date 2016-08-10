@@ -801,8 +801,8 @@ m_f = true; \
 //   }
    scancode = GetVirtualScanCodeFromVirtualKeyCode(vkcode, 4);
    keyFlags |= (scancode & KBDEXT) ? KBDEXT : 0;
-   scancode &= 0xFF;
-   vkcode &= 0xFF;
+   ///scancode &= 0xFF;
+   ///vkcode &= 0xFF;
    
 #if 0
    WLog_ERR(TAG,  "keyDown: keyCode: 0x%04X scancode: 0x%04X vkcode: 0x%04X keyFlags: %d name: %s",
@@ -888,8 +888,8 @@ m_f = true; \
 //   }
    scancode = GetVirtualScanCodeFromVirtualKeyCode(vkcode, 4);
    keyFlags |= (scancode & KBDEXT) ? KBDEXT : 0;
-   scancode &= 0xFF;
-   vkcode &= 0xFF;
+   //scancode &= 0xFF;
+   //vkcode &= 0xFF;
    
 #if 0
    WLog_ERR(TAG,  "keyDown: keyCode: 0x%04X scancode: 0x%04X vkcode: 0x%04X keyFlags: %d name: %s",
