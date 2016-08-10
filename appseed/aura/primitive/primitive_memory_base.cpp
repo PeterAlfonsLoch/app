@@ -113,6 +113,7 @@ namespace primitive
 
       if((m_iOffset + dwNewLength) <= 0)
       {
+         m_pbComputed   = m_pbStorage + m_iOffset;
          m_iOffset = 0;
          m_cbStorage = 0;
          return true;
