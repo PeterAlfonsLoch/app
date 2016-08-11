@@ -64,7 +64,7 @@ CLASS_DECL_AURA void WINAPI TlsShutdown();
 class mq;
 
 CLASS_DECL_AURA mq * __get_mq();
-CLASS_DECL_AURA mq * __get_mq(IDTHREAD iThreadId);
+CLASS_DECL_AURA mq * __get_mq(IDTHREAD iThreadId, bool bCreate);
 
 
 #endif
@@ -79,4 +79,4 @@ CLASS_DECL_AURA int WINAPI GetThreadPriority(_In_ HTHREAD hThread);
 
 
 
-DWORD MsgWaitForMultipleObjects(DWORD dwSize,const HANDLE * lphandles,DWORD dwTimeout,DWORD dwWakeMask,DWORD dwFlags);
+DWORD WinMsgWaitForMultipleObjects(DWORD dwSize,const HANDLE * lphandles,DWORD dwTimeout,DWORD dwWakeMask,DWORD dwFlags);

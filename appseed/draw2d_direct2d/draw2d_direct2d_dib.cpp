@@ -157,6 +157,8 @@ namespace draw2d_direct2d
 
       m_hrEndDraw = S_OK;
 
+      m_spgraphics->m_pdib = this;
+
       return true;
 
    }
@@ -2428,6 +2430,10 @@ namespace draw2d_direct2d
 
    void dib::stretch_dib(::draw2d::dib * pdib)
    {
+
+      pdib->unmap();
+
+      unmap();
 
       D2D1_RECT_F rectDest = D2D1::RectF(0, 0, (FLOAT)m_size.cx, (FLOAT)m_size.cy);
 

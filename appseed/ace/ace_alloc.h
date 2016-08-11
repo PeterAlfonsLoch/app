@@ -1,8 +1,7 @@
 #pragma once
 
-#include <stdlib.h>
 
-#ifdef __cplusplus
+#if defined(__cplusplus)
 extern "C" {
 #endif
 
@@ -34,22 +33,22 @@ typedef MEMORY_SIZE * PFN_MEMORY_SIZE;
 
 
 
-void *  MEMORY_DECL ace_memory_alloc(size_t s);
-void *  MEMORY_DECL ace_memory_realloc(void * p, size_t s);
-void    MEMORY_DECL ace_memory_free(void * p);
-size_t  MEMORY_DECL ace_memory_size(void * p);
+CLASS_DECL_ACE void *  MEMORY_DECL ace_memory_alloc(size_t s);
+CLASS_DECL_ACE void *  MEMORY_DECL ace_memory_realloc(void * p, size_t s);
+CLASS_DECL_ACE void    MEMORY_DECL ace_memory_free(void * p);
+CLASS_DECL_ACE size_t  MEMORY_DECL ace_memory_size(void * p);
 
 
 
-void  ace_set_alloc(PFN_MEMORY_ALLOC palloc, PFN_MEMORY_REALLOC prealloc, PFN_MEMORY_FREE pfree, PFN_MEMORY_SIZE psize);
-
-
-
-
+CLASS_DECL_ACE void  MEMORY_DECL ace_set_alloc(PFN_MEMORY_ALLOC palloc, PFN_MEMORY_REALLOC prealloc, PFN_MEMORY_FREE pfree, PFN_MEMORY_SIZE psize);
 
 
 
 
-#ifdef __cplusplus
+
+
+
+
+#if defined(__cplusplus)
 } // extern "C"
 #endif

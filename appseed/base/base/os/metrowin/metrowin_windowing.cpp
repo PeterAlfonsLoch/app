@@ -104,14 +104,14 @@ Agile < Windows::UI::Core::CoreWindow > get_os_window(oswindow window)
 static oswindow g_oswindowFocus;
 
 
-oswindow WINAPI GetFocus()
+oswindow WINAPI WinGetFocus()
 {
 
    return g_oswindowFocus;
 
 }
 
-oswindow WINAPI SetFocus(oswindow __oswindow)
+oswindow WINAPI WinSetFocus(oswindow __oswindow)
 {
    
    ::oswindow oswindowOldFocus = g_oswindowFocus;
@@ -131,14 +131,14 @@ oswindow WINAPI SetFocus(oswindow __oswindow)
 static oswindow g_oswindowCapture;
 
 
-oswindow WINAPI GetCapture()
+oswindow WINAPI WinGetCapture()
 {
 
    return g_oswindowCapture;
 
 }
 
-oswindow WINAPI SetCapture(oswindow __oswindow)
+oswindow WINAPI WinSetCapture(oswindow __oswindow)
 {
    
    ::oswindow oswindowOldCapture = g_oswindowCapture;
@@ -154,7 +154,7 @@ oswindow WINAPI SetCapture(oswindow __oswindow)
 }
 
 
-oswindow WINAPI ReleaseCapture()
+oswindow WINAPI WinReleaseCapture()
 {
    
    ::oswindow oswindowOldCapture = g_oswindowCapture;
@@ -173,14 +173,14 @@ oswindow WINAPI ReleaseCapture()
 static oswindow g_oswindowActive;
 
 
-oswindow WINAPI GetActiveWindow()
+oswindow WINAPI WinGetActiveWindow()
 {
 
    return g_oswindowActive;
 
 }
 
-oswindow WINAPI SetActiveWindow(oswindow __oswindow)
+oswindow WINAPI WinSetActiveWindow(oswindow __oswindow)
 {
 
    ::oswindow oswindowOldActive = g_oswindowActive;
@@ -203,7 +203,7 @@ oswindow_data * WINAPI GetParent(oswindow_data * pdata)
    if(pdata == NULL)
       return NULL;
 
-   if(!IsWindow(pdata))
+   if(!::WinIsWindow(pdata))
       return NULL;
 
    return (oswindow_data *) pdata->m_pui->GetParent()->get_os_data();
@@ -213,7 +213,7 @@ oswindow_data * WINAPI GetParent(oswindow_data * pdata)
 
 
 
-WINBOOL IsWindow(oswindow oswindow)
+WINBOOL WinIsWindow(oswindow oswindow)
 {
 
    if(((void *)oswindow) == NULL)

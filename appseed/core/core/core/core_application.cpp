@@ -3590,6 +3590,8 @@ namespace core
    int32_t application::simple_message_box(::user::primitive * puiOwner, const char * pszMessage, UINT fuStyle)
    {
 
+      ::output_debug_string("\n\napp_simple_message_box: " + string(pszMessage) + "\n\n");
+
       if (&Session == NULL || Session.userex() == NULL)
          return ::base::application::simple_message_box(puiOwner, pszMessage, fuStyle);
 

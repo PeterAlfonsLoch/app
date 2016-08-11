@@ -58,20 +58,20 @@
 
 
 
-
-
-
-void * MEMORY_DECL ace_memory_alloc(size_t s)
-{
-
-   return memory_alloc(s);
-
-}
-
-
-void MEMORY_DECL ace_memory_free(void * p)
-{
-
-   memory_free(p);
-
-}
+//
+//
+//
+//void * MEMORY_DECL ace_memory_alloc(size_t s)
+//{
+//
+//   return memory_alloc(s);
+//
+//}
+//
+//
+//void MEMORY_DECL ace_memory_free(void * p)
+//{
+//
+//   memory_free(p);
+//
+//}

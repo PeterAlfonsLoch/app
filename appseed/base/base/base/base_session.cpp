@@ -1927,17 +1927,21 @@ namespace base
 
    ::user::primitive * session::get_focus_ui()
    {
-
+#ifdef METROWIN
+      return System.ui_from_handle(::WinGetFocus());
+#else
       return System.ui_from_handle(::GetFocus());
-
+#endif
    }
 
 
    ::user::primitive * session::get_active_ui()
    {
-
+#ifdef METROWIN
+      return System.ui_from_handle(::WinGetActiveWindow());
+#else
       return System.ui_from_handle(::GetActiveWindow());
-
+#endif
    }
 
 

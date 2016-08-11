@@ -67,19 +67,10 @@
     <ClInclude Include="config.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\png.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\pngconf.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="pngdebug.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="pnginfo.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\pnglibconf.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="pngpriv.h">

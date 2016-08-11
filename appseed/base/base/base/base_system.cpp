@@ -933,9 +933,22 @@ namespace base
    void system::set_active_guie(::user::interaction * pui)
    {
 
-//#if defined(WINDOWSEX) || defined(LINUX) //  || defined(APPLEOS)
+#if defined(METROWIN)
 
       if(pui == NULL)
+      {
+
+         ::WinSetActiveWindow(NULL);
+
+      }
+      else
+      {
+
+         ::WinSetActiveWindow(pui->get_wnd()->get_safe_handle());
+
+      }
+#else
+      if (pui == NULL)
       {
 
          ::SetActiveWindow(NULL);
@@ -947,7 +960,7 @@ namespace base
          ::SetActiveWindow(pui->get_wnd()->get_safe_handle());
 
       }
-
+#endif
       return;
 
 //#else
@@ -975,15 +988,25 @@ namespace base
 
       if(pui == NULL)
       {
+
+#ifdef METROWIN
          
+         ::WinSetFocus(NULL);
+#else
          ::SetFocus(NULL);
+#endif
          
          return;
 
       }
 
 
+#ifdef METROWIN
+
+      ::WinSetFocus(pui->get_safe_handle());
+#else
       ::SetFocus(pui->get_safe_handle());
+#endif
       if(pui->get_wnd() != NULL)
       {
          pui->SetFocus();

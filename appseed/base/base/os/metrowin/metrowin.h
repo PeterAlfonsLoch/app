@@ -30,19 +30,19 @@
 //CLASS_DECL_BASE bool __cdecl __is_idle_message(MESSAGE * pMsg);
 
 
-CLASS_DECL_BASE oswindow WINAPI GetFocus();
-CLASS_DECL_BASE oswindow WINAPI SetFocus(oswindow oswindow);
+CLASS_DECL_BASE oswindow WINAPI WinGetFocus();
+CLASS_DECL_BASE oswindow WINAPI WinSetFocus(oswindow oswindow);
 
-CLASS_DECL_BASE oswindow WINAPI GetCapture();
-CLASS_DECL_BASE oswindow WINAPI SetCapture(oswindow oswindow);
-CLASS_DECL_BASE oswindow WINAPI ReleaseCapture();
+CLASS_DECL_BASE oswindow WINAPI WinGetCapture();
+CLASS_DECL_BASE oswindow WINAPI WinSetCapture(oswindow oswindow);
+CLASS_DECL_BASE oswindow WINAPI WinReleaseCapture();
 
-CLASS_DECL_BASE oswindow WINAPI GetActiveWindow();
-CLASS_DECL_BASE oswindow WINAPI SetActiveWindow(oswindow oswindow);
+CLASS_DECL_BASE oswindow WINAPI WinGetActiveWindow();
+CLASS_DECL_BASE oswindow WINAPI WinSetActiveWindow(oswindow oswindow);
 
 
 
-CLASS_DECL_BASE int_bool IsWindow(oswindow oswindow);
+CLASS_DECL_BASE int_bool WinIsWindow(oswindow oswindow);
 
 
 //CLASS_DECL_BASE int WINAPI GetSystemMetrics(int i);

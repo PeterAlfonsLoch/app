@@ -1813,7 +1813,7 @@ void ensure_file_size(HANDLE h,int64_t iSize)
 
 }
 
-DWORD SetFilePointer(HANDLE h,LONG lMove,PLONG plHi,DWORD dwMeth)
+DWORD WinSetFilePointer(HANDLE h,LONG lMove,PLONG plHi,DWORD dwMeth)
 {
 
    LARGE_INTEGER liMove;
@@ -1872,7 +1872,7 @@ DWORD GetFileSize(HANDLE h,LPDWORD lpdwHi)
 }
 
 
-DWORD GetFileAttributes(const unichar * psz)
+DWORD WinGetFileAttributes(const unichar * psz)
 {
 
    WIN32_FILE_ATTRIBUTE_DATA data;
@@ -1893,14 +1893,14 @@ DWORD GetFileAttributes(const unichar * psz)
 
 BEGIN_EXTERN_C
 
-HANDLE FindFirstFileW(const unichar * pwsz,WIN32_FIND_DATAW * pdata)
+HANDLE WinFindFirstFileW(const unichar * pwsz,WIN32_FIND_DATAW * pdata)
 {
 
    return FindFirstFileExW(pwsz,FindExInfoStandard,pdata,FindExSearchNameMatch,NULL,0);
 
 }
 
-HANDLE FindFirstFileA(const char * pwsz,WIN32_FIND_DATAA * pdata)
+HANDLE WinFindFirstFileA(const char * pwsz,WIN32_FIND_DATAA * pdata)
 {
 
    return FindFirstFileExA(pwsz,FindExInfoStandard,pdata,FindExSearchNameMatch,NULL,0);

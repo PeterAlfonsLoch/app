@@ -2004,7 +2004,18 @@ namespace aura
    ::aura::ipi * application::create_ipi()
    {
 
-      return canew(::aura::ipi(this, m_strAppName));
+      try
+      {
+
+         return canew(::aura::ipi(this, m_strAppName));
+
+      }
+      catch (...)
+      {
+
+         return NULL;
+
+      }
 
    }
 

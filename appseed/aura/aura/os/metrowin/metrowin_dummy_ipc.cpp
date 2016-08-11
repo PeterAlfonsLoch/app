@@ -179,7 +179,18 @@ namespace aura
 
          m_pp = new rx_private;
 
-         m_pp->folder = ::Windows::Storage::KnownFolders::DocumentsLibrary;
+         try
+         {
+
+            m_pp->folder = ::Windows::Storage::KnownFolders::DocumentsLibrary;
+
+         }
+         catch (...)
+         {
+
+            return false;
+
+         }
 
          m_pp->folderTopic = ::wait(m_pp->folder->CreateFolderAsync(wstring(m_strBaseChannel),::Windows::Storage::CreationCollisionOption::OpenIfExists));
 

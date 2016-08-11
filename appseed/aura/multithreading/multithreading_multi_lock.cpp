@@ -99,7 +99,16 @@ wait_result multi_lock::lock(const duration & duration, bool bWaitForAll, uint32
    else
    {
 
-      iResult = ::MsgWaitForMultipleObjects((uint32_t) M_OBJECTA.get_count(), M_OBJECTA.get_data(), bWaitForAll, duration.lock_duration(), dwWakeMask);
+#ifdef METROWIN
+
+      iResult = ::WinMsgWaitForMultipleObjects((uint32_t) M_OBJECTA.get_count(), M_OBJECTA.get_data(), bWaitForAll, duration.lock_duration(), dwWakeMask);
+
+#else
+
+
+      iResult = ::MsgWaitForMultipleObjects((uint32_t)M_OBJECTA.get_count(), M_OBJECTA.get_data(), bWaitForAll, duration.lock_duration(), dwWakeMask);
+
+#endif
 
    }
 

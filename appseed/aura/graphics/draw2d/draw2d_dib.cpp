@@ -3261,6 +3261,8 @@ namespace draw2d
    void dib::Fill(COLORREF cr)
    {
 
+      map();
+
       int64_t size = scan_area();
 
       COLORREF * pcr = m_pcolorref;

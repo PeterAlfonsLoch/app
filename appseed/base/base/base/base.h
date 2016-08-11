@@ -22,6 +22,9 @@
 
 #define new AURA_NEW
 
+
+
+
 #endif // CA2_APP_BASE_BASE_BASE_BASE_H
 
 

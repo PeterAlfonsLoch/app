@@ -927,7 +927,7 @@ BOOL WINAPI PostThreadMessageW(IDTHREAD iThreadId,UINT message,WPARAM wparam,LPA
      // return FALSE;
 
 
-   mq * pmq = __get_mq(iThreadId);
+   mq * pmq = __get_mq(iThreadId, message != WM_QUIT);
 
    if(pmq == NULL)
       return FALSE;
@@ -1161,7 +1161,7 @@ bool __os_term_thread()
 
 
 
-DWORD MsgWaitForMultipleObjects(DWORD dwSize,const HANDLE * lphandles,DWORD dwTimeout,DWORD dwWakeMask,DWORD dwFlags)
+DWORD WinMsgWaitForMultipleObjects(DWORD dwSize,const HANDLE * lphandles,DWORD dwTimeout,DWORD dwWakeMask,DWORD dwFlags)
 {
 
    HANDLE * ph = new HANDLE[dwSize + 1];

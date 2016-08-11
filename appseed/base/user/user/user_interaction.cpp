@@ -805,11 +805,11 @@ namespace user
       if(m_pauraapp != NULL && &System != NULL && System.get_active_ui() == this)
       {
 
-         //#ifdef WINDOWS
-         ::SetActiveWindow(NULL);
-         //#else
-         //System.set_active_ui(NULL);
-         //#endif
+         #ifdef METROWIN
+         ::WinSetActiveWindow(NULL);
+         #else
+         SetActiveWindow(NULL);
+         #endif
 
       }
 

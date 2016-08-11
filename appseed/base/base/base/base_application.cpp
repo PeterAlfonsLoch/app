@@ -99,8 +99,11 @@ namespace base
    sp(::user::interaction) application::release_capture_uie()
    {
 
-
+#ifdef METROWIN
+      oswindow oswindowCapture = ::WinGetCapture();
+#else
       oswindow oswindowCapture = ::GetCapture();
+#endif
 
       if(oswindowCapture == NULL)
          return NULL;
@@ -119,8 +122,11 @@ namespace base
    sp(::user::interaction) application::get_capture_uie()
    {
 
-
+#ifdef METROWIN
+      oswindow oswindowCapture = ::WinGetCapture();
+#else
       oswindow oswindowCapture = ::GetCapture();
+#endif
 
       if(oswindowCapture == NULL)
          return NULL;

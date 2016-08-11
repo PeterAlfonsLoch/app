@@ -39,9 +39,6 @@
     <ClInclude Include="config.h">
       <Filter>Header Files\project-dir</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\idna.h">
-      <Filter>Header Files\include</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="lib\idn-free.c">
