@@ -29,9 +29,10 @@
     <ProjectGuid>{7EE7598E-8C77-4D1A-B248-6E65BD72A8F6}</ProjectGuid>
     <Keyword>Android</Keyword>
     <ApplicationType>Android</ApplicationType>
-    <ApplicationTypeRevision>1.0</ApplicationTypeRevision>
+    <ApplicationTypeRevision>2.0</ApplicationTypeRevision>
     <ProjectName>pcre</ProjectName>
     <RootNamespace>pcre</RootNamespace>
+    <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x86'" Label="Configuration">

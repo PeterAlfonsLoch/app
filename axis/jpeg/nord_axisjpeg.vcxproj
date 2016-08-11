@@ -22,9 +22,10 @@
     <ProjectGuid>{C07D1D57-669A-4302-B835-EA52557F15C8}</ProjectGuid>
     <Keyword>Android</Keyword>
     <ApplicationType>Android</ApplicationType>
-    <ApplicationTypeRevision>1.0</ApplicationTypeRevision>
+    <ApplicationTypeRevision>2.0</ApplicationTypeRevision>
     <ProjectName>axisjpeg</ProjectName>
     <RootNamespace>axisjpeg</RootNamespace>
+    <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x86'" Label="Configuration">

@@ -19,21 +19,23 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ace.h" />
-    <ClInclude Include="ace_new.h" />
-    <ClInclude Include="framework.h" />
+    <ClCompile Include="ace_alloc.c" />
+    <ClCompile Include="_ace_new.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ace_new.cpp" />
-    <ClCompile Include="framework.cpp" />
+    <ClInclude Include="ace.h" />
+    <ClInclude Include="ace_alloc.h" />
+    <ClInclude Include="_ace.h" />
+    <ClInclude Include="_ace_new.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{E99C9D52-0709-4ED7-9F14-180B18F66C46}</ProjectGuid>
     <Keyword>Android</Keyword>
     <ApplicationType>Android</ApplicationType>
-    <ApplicationTypeRevision>1.0</ApplicationTypeRevision>
+    <ApplicationTypeRevision>2.0</ApplicationTypeRevision>
     <ProjectName>ace</ProjectName>
     <RootNamespace>ace</RootNamespace>
+    <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x86'" Label="Configuration">
@@ -93,8 +95,8 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|x86'">
     <ClCompile>
       <PreprocessorDefinitions>_APP_AQUA_LIBRARY</PreprocessorDefinitions>
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile>
+      </PrecompiledHeaderFile>
       <AdditionalOptions>-Wno-attributes -Wno-sign-compare -Wno-comment -Wno-strict-overflow -Wno-unused-local-typedefs -Wno-unknown-pragmas -Wno-unused-function -Wno-unused-but-set-variable -Wno-unused-variable -Wno-unused-value -Wno-reorder -Wno-unknown-pragmas -Wno-unused-function -Wno-unused-variable</AdditionalOptions>
       <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>
       <ExceptionHandling>Enabled</ExceptionHandling>

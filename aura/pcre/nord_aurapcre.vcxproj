@@ -60,9 +60,10 @@
     <ProjectGuid>{E3ED74CC-506F-424F-AD39-25FBEDD98C7C}</ProjectGuid>
     <Keyword>Android</Keyword>
     <ApplicationType>Android</ApplicationType>
-    <ApplicationTypeRevision>1.0</ApplicationTypeRevision>
+    <ApplicationTypeRevision>2.0</ApplicationTypeRevision>
     <ProjectName>aurapcre</ProjectName>
     <RootNamespace>aurapcre</RootNamespace>
+    <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x86'" Label="Configuration">
