@@ -1,6 +1,7 @@
 #include "framework.h"
 
 
+
 COLORREF dib_console::console_COLORREF(int iColor)
 {
    switch(iColor)

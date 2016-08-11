@@ -58,12 +58,21 @@ CLASS_DECL_AURA int throw_assert_exception(const char * lpszFileName,int iLineNu
 #define low_byte(w)              ((BYTE)((w) & 0xff))
 
 #ifdef VSNORD
+#ifdef __arm__
 #define argb_get_b_value(rgb)    (low_byte(rgb))
 #define argb_get_g_value(rgb)    (low_byte((rgb)>>8))
 #define argb_get_r_value(rgb)    (low_byte((rgb)>>16))
 #define argb_get_a_value(rgb)    (low_byte((rgb)>>24))
 #define RGBA(r, g, b, a)         ((COLORREF)((low_byte(b)|((WORD)(low_byte(g))<<8))|(((uint32_t)low_byte(r))<<16)|(((uint32_t)low_byte(a))<<24)))
 #define ARGB(a, r, g, b)         RGBA(r, g, b, a)
+#else
+#define argb_get_b_value(rgb)    (low_byte(rgb))
+#define argb_get_g_value(rgb)    (low_byte((rgb)>>8))
+#define argb_get_r_value(rgb)    (low_byte((rgb)>>16))
+#define argb_get_a_value(rgb)    (low_byte((rgb)>>24))
+#define RGBA(r, g, b, a)         ((COLORREF)((low_byte(r)|((WORD)(low_byte(g))<<8))|(((uint32_t)low_byte(b))<<16)|(((uint32_t)low_byte(a))<<24)))
+#define ARGB(a, r, g, b)         RGBA(r, g, b, a)
+#endif
 #else
 #define argb_get_r_value(rgb)    (low_byte(rgb))
 #define argb_get_g_value(rgb)    (low_byte((rgb)>>8))

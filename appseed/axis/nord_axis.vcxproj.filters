@@ -754,6 +754,9 @@
     <ClCompile Include="net\net_url_department.cpp">
       <Filter>Source Files\net</Filter>
     </ClCompile>
+    <ClCompile Include="graphics\dib_console.cpp">
+      <Filter>Source Files\graphics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -1840,6 +1843,9 @@
     </Filter>
     <Filter Include="Header Files\html_lite\html_lite">
       <UniqueIdentifier>{14f57fb5-9997-418a-a5a2-0f84a9c81aa6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics\NewFilter1">
+      <UniqueIdentifier>{12094991-f038-4c11-b448-0bd5705c84b1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

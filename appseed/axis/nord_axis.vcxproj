@@ -715,6 +715,7 @@
     </ClCompile>
     <ClCompile Include="filesystem\_filesystem.cpp" />
     <ClCompile Include="framework.cpp" />
+    <ClCompile Include="graphics\dib_console.cpp" />
     <ClCompile Include="graphics\visual\visual_api.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
