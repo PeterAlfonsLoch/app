@@ -301,6 +301,10 @@ namespace android
 
          m_oswindow = oswindow_get(m_pui);
 
+         m_pui->m_bVisible = (cs.style & WS_VISIBLE) != FALSE;
+
+         m_pui->m_bVisible = true;
+
          //m_oswindow->set_user_interaction(m_pui);
 
       }
@@ -417,6 +421,8 @@ namespace android
       m_oswindow->set_user_interaction(m_pui);
 
       m_pui->SetWindowPos(ZORDER_TOP, pinitialize->m_rect, SWP_SHOWWINDOW);
+
+      m_pui->m_bVisible = true;
 
       //      m_pthread = dynamic_cast < ::thread * > (::get_thread());
 

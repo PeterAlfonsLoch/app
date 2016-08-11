@@ -35,11 +35,6 @@
     <ClCompile Include="pngwtran.c" />
     <ClCompile Include="pngwutil.c" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\appseed\ace\nord_ace.vcxproj">
-      <Project>{e99c9d52-0709-4ed7-9f14-180b18f66c46}</Project>
-    </ProjectReference>
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{04238890-C8DF-43C8-A90C-4D19FA21286F}</ProjectGuid>
     <Keyword>Android</Keyword>
