@@ -28,6 +28,15 @@
 		9A57509E16AAB9A1000CC4EF /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A574D2B16AAB99E000CC4EF /* framework.cpp */; };
 		9A57509F16AAB9A1000CC4EF /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A574D2C16AAB99E000CC4EF /* framework.h */; };
 		9A8CCAE617EA060200F87A02 /* libbase.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8CCAE317EA060200F87A02 /* libbase.dylib */; };
+		9AF2A8971D5C015700E6D5ED /* estamira_character.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A342C311D5B6DFB00D00D4A /* estamira_character.cpp */; };
+		9AF2A8981D5C015700E6D5ED /* estamira_game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A342C331D5B6DFB00D00D4A /* estamira_game.cpp */; };
+		9AF2A8991D5C015700E6D5ED /* estamira_tileset.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A342C3A1D5B6DFB00D00D4A /* estamira_tileset.cpp */; };
+		9AF2A89A1D5C015700E6D5ED /* estamira.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A342C3D1D5B6DFB00D00D4A /* estamira.cpp */; };
+		9AF2A89B1D5C015700E6D5ED /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A574D2B16AAB99E000CC4EF /* framework.cpp */; };
+		9AF2A89E1D5C016900E6D5ED /* libios_core.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A342C2A1D5B6DDE00D00D4A /* libios_core.dylib */; };
+		9AF2A8A21D5C016900E6D5ED /* libios_aura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AF2A89F1D5C016900E6D5ED /* libios_aura.dylib */; };
+		9AF2A8A31D5C016900E6D5ED /* libios_axis.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AF2A8A01D5C016900E6D5ED /* libios_axis.dylib */; };
+		9AF2A8A41D5C016900E6D5ED /* libios_base.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AF2A8A11D5C016900E6D5ED /* libios_base.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +74,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 9A19A1A419C6F50B0018DF7D;
 			remoteInfo = core;
+		};
+		9AF2A8A51D5C016F00E6D5ED /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A342C211D5B6DDE00D00D4A /* core.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9AE24DDB1904CF6E001AEFFB;
+			remoteInfo = ios_core;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -105,6 +121,9 @@
 		9A574D2B16AAB99E000CC4EF /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
 		9A574D2C16AAB99E000CC4EF /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
 		9A8CCAE317EA060200F87A02 /* libbase.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbase.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug/libbase.dylib"; sourceTree = "<group>"; };
+		9AF2A89F1D5C016900E6D5ED /* libios_aura.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_aura.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/core_games-ios-fvkesstseiuvxaailshqhsemyyrk/Build/Products/Debug-iphonesimulator/libios_aura.dylib"; sourceTree = "<group>"; };
+		9AF2A8A01D5C016900E6D5ED /* libios_axis.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_axis.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/core_games-ios-fvkesstseiuvxaailshqhsemyyrk/Build/Products/Debug-iphonesimulator/libios_axis.dylib"; sourceTree = "<group>"; };
+		9AF2A8A11D5C016900E6D5ED /* libios_base.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_base.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/core_games-ios-fvkesstseiuvxaailshqhsemyyrk/Build/Products/Debug-iphonesimulator/libios_base.dylib"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +131,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9AF2A8A21D5C016900E6D5ED /* libios_aura.dylib in Frameworks */,
+				9AF2A8A31D5C016900E6D5ED /* libios_axis.dylib in Frameworks */,
+				9AF2A8A41D5C016900E6D5ED /* libios_base.dylib in Frameworks */,
+				9AF2A89E1D5C016900E6D5ED /* libios_core.dylib in Frameworks */,
 				07B65767190F3CA2002DAADE /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -144,6 +167,9 @@
 		07B65765190F3CA2002DAADE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9AF2A89F1D5C016900E6D5ED /* libios_aura.dylib */,
+				9AF2A8A01D5C016900E6D5ED /* libios_axis.dylib */,
+				9AF2A8A11D5C016900E6D5ED /* libios_base.dylib */,
 				9A342C4D1D5B6E3900D00D4A /* libaxis.dylib */,
 				9A342C4B1D5B6E3300D00D4A /* libaura.dylib */,
 				07B65766190F3CA2002DAADE /* Foundation.framework */,
@@ -258,6 +284,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				9AF2A8A61D5C016F00E6D5ED /* PBXTargetDependency */,
 			);
 			name = ios_estamira;
 			productName = math_ios;
@@ -306,7 +333,7 @@
 		9A574B8F16AAB906000CC4EF /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = "Camilo Sasuke Tsumanuma";
 				TargetAttributes = {
 					07B65772190F3CA2002DAADE = {
@@ -379,6 +406,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9AF2A8971D5C015700E6D5ED /* estamira_character.cpp in Sources */,
+				9AF2A8981D5C015700E6D5ED /* estamira_game.cpp in Sources */,
+				9AF2A8991D5C015700E6D5ED /* estamira_tileset.cpp in Sources */,
+				9AF2A89A1D5C015700E6D5ED /* estamira.cpp in Sources */,
+				9AF2A89B1D5C015700E6D5ED /* framework.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -415,6 +447,11 @@
 			name = core;
 			targetProxy = 9A342C491D5B6E2C00D00D4A /* PBXContainerItemProxy */;
 		};
+		9AF2A8A61D5C016F00E6D5ED /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ios_core;
+			targetProxy = 9AF2A8A51D5C016F00E6D5ED /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -442,8 +479,6 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				DSTROOT = /tmp/math_ios.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "math_ios/math_ios-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -452,7 +487,7 @@
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MACH_O_TYPE = mh_dylib;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -473,13 +508,11 @@
 				DSTROOT = /tmp/math_ios.dst;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "math_ios/math_ios-Prefix.pch";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MACH_O_TYPE = mh_dylib;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -571,6 +604,7 @@
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				EXECUTABLE_EXTENSION = dylib;
 				EXECUTABLE_PREFIX = lib;
 				GCC_C_LANGUAGE_STANDARD = c99;
