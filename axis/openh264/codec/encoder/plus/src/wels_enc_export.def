@@ -1,6 +1,0 @@
-LIBRARY "basewelsencplus"
-EXPORTS
-    WelsCreateSVCEncoder
-    WelsDestroySVCEncoder
-    WelsGetCodecVersion
-    WelsGetCodecVersionEx

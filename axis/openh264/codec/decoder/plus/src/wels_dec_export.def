@@ -1,5 +1,0 @@
-LIBRARY "basewelsdecplus"
-EXPORTS
-    WelsGetDecoderCapability
-    WelsCreateDecoder
-    WelsDestroyDecoder
