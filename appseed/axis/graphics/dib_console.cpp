@@ -593,7 +593,7 @@ void dib_console::draw_write(char ch, int x, int y, int iColor)
 
          ::str::international::multibyte_to_utf8(437,str,string(ch));
          
-         str = ch;
+         //str = ch;
 
          m_dib->get_graphics()->set_text_color(console_COLORREF(iColor));
 

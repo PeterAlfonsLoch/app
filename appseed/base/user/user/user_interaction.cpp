@@ -381,15 +381,21 @@ namespace user
                   try
                   {
 
-                     pimplOld->filter_target(pimplOld);
-
-                     pimplOld->filter_target(this);
+                     oswindow_remove(this);
 
                      pimplOld->m_pui = NULL;
 
-                     pimplOld->DestroyWindow();
+                     oswindow wnd = pimplOld->get_handle();
 
                      pimplOld.release();
+
+                     if (wnd != NULL)
+                     {
+
+                        ::DestroyWindow(wnd);
+
+                     }
+
 
                   }
                   catch(...)

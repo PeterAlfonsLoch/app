@@ -4324,6 +4324,26 @@ namespace draw2d
          DrawEllipse(rect2);
 
       }
+      else if (eicon == stock_icon_notify)
+      {
+
+         rect.deflate(rect.height() / 2, rect.height() / 2);
+
+         DrawEllipse(rect);
+
+         ::rect rect1(rect);
+
+         rect1.deflate((int32_t)(m_sppen->m_dWidth / 2.0), (int32_t)(m_sppen->m_dWidth / 2.0));
+
+         DrawEllipse(rect1);
+
+         ::rect rect2(rect);
+
+         rect2.deflate((int32_t)(m_sppen->m_dWidth), (int32_t)(m_sppen->m_dWidth));
+
+         DrawEllipse(rect2);
+
+      }
       else
       {
 
