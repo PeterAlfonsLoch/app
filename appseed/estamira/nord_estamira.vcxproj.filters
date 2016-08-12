@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{ad299fac-daeb-4cf2-bf42-87333e7a831b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{7a20f2a7-938e-4b7f-98ce-b3b45cfe1347}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="estamira.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="estamira_character.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="estamira_game.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="estamira_tileset.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="estamira_character.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="estamira_game.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="estamira_tileset.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
