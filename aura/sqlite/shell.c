@@ -381,12 +381,12 @@ static char *local_getline(char *zLine, FILE *in){
   while( 1 ){
     if( n+100>nLine ){
       nLine = nLine*2 + 100;
-      zLine = memory_realloc(zLine, nLine);
+      zLine = ace_memory_realloc(zLine, nLine);
       if( zLine==0 ) return 0;
     }
     if( fgets(&zLine[n], nLine - n, in)==0 ){
       if( n==0 ){
-        memory_free(zLine);
+        ace_memory_free(zLine);
         return 0;
       }
       zLine[n] = 0;
@@ -425,7 +425,7 @@ static char *one_input_line(FILE *in, char *zPrior, int isContinuation){
   }else{
     zPrompt = isContinuation ? continuePrompt : mainPrompt;
 #if defined(HAVE_READLINE)
-    memory_free(zPrior);
+    ace_memory_free(zPrior);
     zResult = readline(zPrompt);
     if( zResult && *zResult ) add_history(zResult);
 #else
@@ -938,7 +938,7 @@ static void set_table_name(struct callback_data *p, const char *zName){
   char *z;
 
   if( p->zDestTable ){
-    memory_free(p->zDestTable);
+    ace_memory_free(p->zDestTable);
     p->zDestTable = 0;
   }
   if( zName==0 ) return;
@@ -950,7 +950,7 @@ static void set_table_name(struct callback_data *p, const char *zName){
     }
   }
   if( needQuote ) n += 2;
-  z = p->zDestTable = memory_alloc( n+1 );
+  z = p->zDestTable = ace_memory_alloc( n+1 );
   if( z==0 ){
     fprintf(stderr,"Error: out of memory\n");
     exit(1);
@@ -987,7 +987,7 @@ static char *appendText(char *zIn, char const *zAppend, char quote){
     }
   }
 
-  zIn = (char *)memory_realloc(zIn, len);
+  zIn = (char *)ace_memory_realloc(zIn, len);
   if( !zIn ){
     return 0;
   }
@@ -1501,7 +1501,7 @@ static int dump_callback(void *pArg, int nArg, char **azArg, char **azCol){
     zTableInfo = appendText(zTableInfo, ");", 0);
 
     rc = sqlite3_prepare_v2(p->db, zTableInfo, -1, &pTableInfo, 0);
-    memory_free(zTableInfo);
+    ace_memory_free(zTableInfo);
     if( rc!=SQLITE_OK || !pTableInfo ){
       return 1;
     }
@@ -1512,7 +1512,7 @@ static int dump_callback(void *pArg, int nArg, char **azArg, char **azCol){
     zTmp = appendText(zTmp, zTable, '"');
     if( zTmp ){
       zSelect = appendText(zSelect, zTmp, '\'');
-      memory_free(zTmp);
+      ace_memory_free(zTmp);
     }
     zSelect = appendText(zSelect, " || ' VALUES(' || ", 0);
     rc = sqlite3_step(pTableInfo);
@@ -1530,7 +1530,7 @@ static int dump_callback(void *pArg, int nArg, char **azArg, char **azCol){
     }
     rc = sqlite3_finalize(pTableInfo);
     if( rc!=SQLITE_OK || nRow==0 ){
-      memory_free(zSelect);
+      ace_memory_free(zSelect);
       return 1;
     }
     zSelect = appendText(zSelect, "|| ')' FROM  ", 0);
@@ -1541,7 +1541,7 @@ static int dump_callback(void *pArg, int nArg, char **azArg, char **azCol){
       zSelect = appendText(zSelect, " ORDER BY rowid DESC", 0);
       run_table_dump_query(p, zSelect, 0);
     }
-    memory_free(zSelect);
+    ace_memory_free(zSelect);
   }
   return 0;
 }
@@ -1569,7 +1569,7 @@ static int run_schema_dump_query(
       sqlite3_free(zErr);
       zErr = 0;
     }
-    zQ2 = memory_alloc( len+100 );
+    zQ2 = ace_memory_alloc( len+100 );
     if( zQ2==0 ) return rc;
     sqlite3_snprintf(len+100, zQ2, "%s ORDER BY rowid DESC", zQuery);
     rc = sqlite3_exec(p->db, zQ2, dump_callback, p, &zErr);
@@ -1579,7 +1579,7 @@ static int run_schema_dump_query(
       rc = SQLITE_CORRUPT;
     }
     sqlite3_free(zErr);
-    memory_free(zQ2);
+    ace_memory_free(zQ2);
   }
   return rc;
 }
@@ -3591,7 +3591,7 @@ static int process_input(struct callback_data *p, FILE *in){
     nLine = strlen30(zLine);
     if( nSql+nLine+2>=nAlloc ){
       nAlloc = nSql+nLine+100;
-      zSql = memory_realloc(zSql, nAlloc);
+      zSql = ace_memory_realloc(zSql, nAlloc);
       if( zSql==0 ){
         fprintf(stderr, "Error: out of memory\n");
         exit(1);
@@ -3648,9 +3648,9 @@ static int process_input(struct callback_data *p, FILE *in){
     if( !_all_whitespace(zSql) ){
       fprintf(stderr, "Error: incomplete SQL: %s\n", zSql);
     }
-    memory_free(zSql);
+    ace_memory_free(zSql);
   }
-  memory_free(zLine);
+  ace_memory_free(zLine);
   return errCnt>0;
 }
 
@@ -3696,7 +3696,7 @@ static char *find_home_dir(void){
     zPath = getenv("HOMEPATH");
     if( zDrive && zPath ){
       n = strlen30(zDrive) + strlen30(zPath) + 1;
-      home_dir = memory_alloc( n );
+      home_dir = ace_memory_alloc( n );
       if( home_dir==0 ) return 0;
       sqlite3_snprintf(n, home_dir, "%s%s", zDrive, zPath);
       return home_dir;
@@ -3709,7 +3709,7 @@ static char *find_home_dir(void){
 
   if( home_dir ){
     int n = strlen30(home_dir) + 1;
-    char *z = memory_alloc( n );
+    char *z = ace_memory_alloc( n );
     if( z ) memcpy(z, home_dir, n);
     home_dir = z;
   }
@@ -3924,7 +3924,7 @@ int main(int argc, char **argv){
       zSize = cmdline_option_value(argc, argv, ++i);
       szHeap = integerValue(zSize);
       if( szHeap>0x7fff0000 ) szHeap = 0x7fff0000;
-      sqlite3_config(SQLITE_CONFIG_HEAP, memory_alloc((int)szHeap), (int)szHeap, 64);
+      sqlite3_config(SQLITE_CONFIG_HEAP, ace_memory_alloc((int)szHeap), (int)szHeap, 64);
 #endif
 #ifdef SQLITE_ENABLE_VFSTRACE
     }else if( strcmp(z,"-vfstrace")==0 ){
@@ -4117,7 +4117,7 @@ int main(int argc, char **argv){
       zHome = find_home_dir();
       if( zHome ){
         nHistory = strlen30(zHome) + 20;
-        if( (zHistory = memory_alloc(nHistory))!=0 ){
+        if( (zHistory = ace_memory_alloc(nHistory))!=0 ){
           sqlite3_snprintf(nHistory, zHistory,"%s/.sqlite_history", zHome);
         }
       }
@@ -4128,7 +4128,7 @@ int main(int argc, char **argv){
       if( zHistory ){
         stifle_history(100);
         write_history(zHistory);
-        memory_free(zHistory);
+        ace_memory_free(zHistory);
       }
     }else{
       rc = process_input(&data, stdin);

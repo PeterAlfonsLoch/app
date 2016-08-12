@@ -35,7 +35,7 @@
     <ApplicationType>Android</ApplicationType>
     <ApplicationTypeRevision>2.0</ApplicationTypeRevision>
     <ProjectName>estamira</ProjectName>
-    <RootNamespace>aura</RootNamespace>
+    <RootNamespace>estamira</RootNamespace>
     <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
