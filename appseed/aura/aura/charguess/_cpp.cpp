@@ -1,4 +1,6 @@
 #include "framework.h"
+#include "charguess_private.h"
+
 
 /*O volume na unidade Z ‚ eco
  O N£mero de S‚rie do Volume ‚ 4A91-94E4

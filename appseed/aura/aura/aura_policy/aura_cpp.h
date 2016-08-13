@@ -1689,6 +1689,8 @@ CLASS_DECL_AURA ::aura::application * get_aura(void * p);
 #include "aura/pcre/pcre.h"
 
 
+#include "aura/charguess/charguess.h"
+
 
 namespace user
 {

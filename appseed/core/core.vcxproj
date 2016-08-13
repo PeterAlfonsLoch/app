@@ -2217,9 +2217,6 @@
     <ProjectReference Include="..\base\base.vcxproj">
       <Project>{4d7d3626-ada6-4ca2-9566-ed7b131e3d51}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\charguess\auracharguess.vcxproj">
-      <Project>{ac6a52b4-c049-439c-88ff-5a262d968c8f}</Project>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

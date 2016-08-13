@@ -255,6 +255,12 @@
     <Filter Include="Source Files\aura\pcre">
       <UniqueIdentifier>{dfc18c82-d1e9-45cc-8c1f-d49ca75daee1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\aura\charguess">
+      <UniqueIdentifier>{d335eba7-97b4-472f-8223-1ee18daefa25}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\aura\charguess">
+      <UniqueIdentifier>{a931ab49-5e35-43a7-8eb2-812357a8895b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="primitive\primitive_id.h">
@@ -2135,6 +2141,75 @@
     <ClInclude Include="aura\pcre\pcre.h">
       <Filter>Header Files\aura\pcre</Filter>
     </ClInclude>
+    <ClInclude Include="aura\charguess\big5Prober.h">
+      <Filter>Header Files\aura\charguess</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\charguess\charDistribution.h">
+      <Filter>Header Files\aura\charguess</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\charguess\charsetProber.h">
+      <Filter>Header Files\aura\charguess</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\charguess\codingStateMachine.h">
+      <Filter>Header Files\aura\charguess</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\charguess\config.h">
+      <Filter>Header Files\aura\charguess</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\charguess\EscCharsetProber.h">
+      <Filter>Header Files\aura\charguess</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\charguess\EUCJPProber.h">
+      <Filter>Header Files\aura\charguess</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\charguess\EUCKRProber.h">
+      <Filter>Header Files\aura\charguess</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\charguess\EUCTWProber.h">
+      <Filter>Header Files\aura\charguess</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\charguess\GB2312Prober.h">
+      <Filter>Header Files\aura\charguess</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\charguess\jpCntx.h">
+      <Filter>Header Files\aura\charguess</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\charguess\Latin1Prober.h">
+      <Filter>Header Files\aura\charguess</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\charguess\MBCSGroupProber.h">
+      <Filter>Header Files\aura\charguess</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\charguess\pkgInt.h">
+      <Filter>Header Files\aura\charguess</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\charguess\SBCharsetProber.h">
+      <Filter>Header Files\aura\charguess</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\charguess\SBCSGroupProber.h">
+      <Filter>Header Files\aura\charguess</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\charguess\SJISProber.h">
+      <Filter>Header Files\aura\charguess</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\charguess\types.h">
+      <Filter>Header Files\aura\charguess</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\charguess\universal.h">
+      <Filter>Header Files\aura\charguess</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\charguess\UTF8Prober.h">
+      <Filter>Header Files\aura\charguess</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\charguess\charguess.h">
+      <Filter>Header Files\aura\charguess</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\charguess\charguess_c.h">
+      <Filter>Header Files\aura\charguess</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\charguess\charguess_private.h">
+      <Filter>Header Files\aura\charguess</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="multithreading\multithreading_condition.cpp">
@@ -3609,6 +3684,78 @@
     </ClCompile>
     <ClCompile Include="aura\pcre\pcre.cpp">
       <Filter>Source Files\aura\pcre</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\charguess\UTF8Prober.cpp">
+      <Filter>Source Files\aura\charguess</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\charguess\universal.cpp">
+      <Filter>Source Files\aura\charguess</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\charguess\SJISProber.cpp">
+      <Filter>Source Files\aura\charguess</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\charguess\SBCSGroupProber.cpp">
+      <Filter>Source Files\aura\charguess</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\charguess\SBCharsetProber.cpp">
+      <Filter>Source Files\aura\charguess</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\charguess\MBCSSM.cpp">
+      <Filter>Source Files\aura\charguess</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\charguess\MBCSGroupProber.cpp">
+      <Filter>Source Files\aura\charguess</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\charguess\Latin1Prober.cpp">
+      <Filter>Source Files\aura\charguess</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\charguess\LangThaiModel.cpp">
+      <Filter>Source Files\aura\charguess</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\charguess\LangHungarianModel.cpp">
+      <Filter>Source Files\aura\charguess</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\charguess\LangGreekModel.cpp">
+      <Filter>Source Files\aura\charguess</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\charguess\LangCyrillicModel.cpp">
+      <Filter>Source Files\aura\charguess</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\charguess\LangBulgarianModel.cpp">
+      <Filter>Source Files\aura\charguess</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\charguess\jpCntx.cpp">
+      <Filter>Source Files\aura\charguess</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\charguess\GB2312Prober.cpp">
+      <Filter>Source Files\aura\charguess</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\charguess\EUCTWProber.cpp">
+      <Filter>Source Files\aura\charguess</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\charguess\EUCKRProber.cpp">
+      <Filter>Source Files\aura\charguess</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\charguess\EUCJPProber.cpp">
+      <Filter>Source Files\aura\charguess</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\charguess\EscSM.cpp">
+      <Filter>Source Files\aura\charguess</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\charguess\EscCharsetProber.cpp">
+      <Filter>Source Files\aura\charguess</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\charguess\charguess.cpp">
+      <Filter>Source Files\aura\charguess</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\charguess\charDistribution.cpp">
+      <Filter>Source Files\aura\charguess</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\charguess\big5Prober.cpp">
+      <Filter>Source Files\aura\charguess</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\charguess\_cpp.cpp">
+      <Filter>Source Files\aura\charguess</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

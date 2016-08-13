@@ -19,6 +19,8 @@
 */
 
 #include "framework.h"
+#include "charguess_private.h"
+
 
 #include "JISFreq.tab"
 #include "Big5Freq.tab"
