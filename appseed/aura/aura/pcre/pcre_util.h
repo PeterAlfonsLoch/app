@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_APP_PCRE pcre_context :
+class CLASS_DECL_AURA pcre_context :
    virtual public object
 {
 public:
@@ -23,7 +23,7 @@ protected:
 };
 
 
-class CLASS_DECL_APP_PCRE pcre_util :
+class CLASS_DECL_AURA pcre_util :
    virtual public object
 {
 public:
@@ -51,7 +51,7 @@ protected:
 };
 
 
-class CLASS_DECL_APP_PCRE pcre_code :
+class CLASS_DECL_AURA pcre_code :
    virtual public pcre_util
 {
 public:

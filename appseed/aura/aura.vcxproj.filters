@@ -249,6 +249,12 @@
     <Filter Include="Source Files\graphics\draw3d">
       <UniqueIdentifier>{38a2d500-9811-43ea-8c10-36a5795a80af}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\aura\pcre">
+      <UniqueIdentifier>{942b4488-8373-417b-9c05-c4a6466254f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\aura\pcre">
+      <UniqueIdentifier>{dfc18c82-d1e9-45cc-8c1f-d49ca75daee1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="primitive\primitive_id.h">
@@ -2126,6 +2132,9 @@
     <ClInclude Include="draw2d_dibmap_ex1.h">
       <Filter>Header Files\graphics\draw2d</Filter>
     </ClInclude>
+    <ClInclude Include="aura\pcre\pcre.h">
+      <Filter>Header Files\aura\pcre</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="multithreading\multithreading_condition.cpp">
@@ -3597,6 +3606,9 @@
     </ClCompile>
     <ClCompile Include="test.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\pcre\pcre.cpp">
+      <Filter>Source Files\aura\pcre</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

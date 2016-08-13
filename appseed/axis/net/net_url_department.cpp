@@ -1460,6 +1460,25 @@ namespace url
    string department::to_punycode(const char * psz)
    {
 
+#ifdef WINDOWS
+
+      wstring wstr(psz);
+
+      int iSize = IdnToAscii(IDN_RAW_PUNYCODE, wstr, (int) wstr.get_length(), NULL, 0);
+
+      WCHAR * pwsz = new WCHAR[iSize + 1];
+
+      IdnToAscii(IDN_RAW_PUNYCODE, wstr, wstr.get_length(), pwsz, iSize + 1);
+
+      string str = pwsz;
+
+      delete pwsz;
+
+      return str;
+
+#else
+
+      AsciiToIdn
       char * p = NULL;
 
       Idna_rc rc = (Idna_rc) idna_to_ascii_8z(psz, &p, IDNA_ALLOW_UNASSIGNED);
@@ -1475,10 +1494,31 @@ namespace url
 
       return str;
 
+#endif
+
    }
 
    string department::from_punycode(const char * psz)
    {
+
+#ifdef WINDOWS
+
+      wstring wstr(psz);
+
+      int iSize = IdnToUnicode(IDN_RAW_PUNYCODE, wstr, (int)wstr.get_length(), NULL, 0);
+
+      WCHAR * pwsz = new WCHAR[iSize + 1];
+
+      IdnToUnicode(IDN_RAW_PUNYCODE, wstr, wstr.get_length(), pwsz, iSize + 1);
+
+      string str = pwsz;
+
+      delete pwsz;
+
+      return str;
+
+#else
+
 
       if(psz == NULL || *psz == '\0')
          return "";
@@ -1508,6 +1548,8 @@ namespace url
       free(p);
 
       return str;
+
+#endif
 
    }
 

@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "pcre2.h"
 
 
 #define PC() (*((pcre_context_impl *)pcreContext->m_pthis))
