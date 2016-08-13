@@ -27,10 +27,10 @@
 #endif
 
 //#include  "app/axis/freeimage/Source/FreeImage/FreeImageFramework.h"
-#include "app/axis/freeimage/Source/FreeImage.h"
-#include "app/axis/freeimage/Source/Utilities.h"
+#include "freeimage/Source/FreeImage.h"
+#include "freeimage/Source/Utilities.h"
 
-#include "app/axis/freeimage/Source/Metadata/FreeImageTag.h"
+#include "freeimage/Source/Metadata/FreeImageTag.h"
 #include "os_hint.h"
 
 // ----------------------------------------------------------
@@ -962,7 +962,7 @@ extern "C"
 // ==========================================================
 //   Init
 // ==========================================================
-void DLL_CALLCONV FreeImage_InitPlugin_axis_image_png(Plugin *plugin,int format_id) {
+void DLL_CALLCONV FreeImage_InitPlugin_image_decode_png(Plugin *plugin,int format_id) {
 	s_format_id = format_id;
 
 	plugin->format_proc = Format;

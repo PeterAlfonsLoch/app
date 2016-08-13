@@ -342,13 +342,13 @@ TagLib::instance();
 
 #if defined(VSNORD)
 
-            patha.add("libaxis_image_png.so");
-            patha.add("libaxis_image_jpeg.so");
+            patha.add("libimage_decode_png.so");
+            patha.add("libimage_decode_jpeg.so");
             
 #elif defined(APPLE_IOS)
 
-            patha.add("libaxis_image_png.dylib");
-            patha.add("libaxis_image_jpeg.dylib");
+            patha.add("libimage_decode_png.dylib");
+            patha.add("libimage_decode_jpeg.dylib");
 
 #endif
 
@@ -356,11 +356,11 @@ TagLib::instance();
             {
 
 #ifdef WINDOWS
-               if(::str::ends_ci(path,".dll") && ::str::begins_ci(path.name(), "axis_image_"))
+               if(::str::ends_ci(path,".dll") && ::str::begins_ci(path.name(), "image_decode_"))
 #elif defined(APPLEOS)
-               if(::str::ends_ci(path,".dylib") && ::str::begins_ci(path.name(), "libaxis_image_"))
+               if(::str::ends_ci(path,".dylib") && ::str::begins_ci(path.name(), "libimage_decode_"))
 #else
-               if(::str::ends_ci(path,".so") && ::str::begins_ci(path.name(), "libaxis_image_"))
+               if(::str::ends_ci(path,".so") && ::str::begins_ci(path.name(), "libimage_decode_"))
 #endif
                {
 

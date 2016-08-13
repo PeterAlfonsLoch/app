@@ -25,7 +25,7 @@
 //
 // Use at your own risk!
 // ==========================================================
-#include  "app/axis/freeimage/Source/FreeImage/FreeImageFramework.h"
+#include  "freeimage/Source/FreeImage/FreeImageFramework.h"
 
 #ifdef _MSC_VER
 #pragma warning (disable : 4786) // identifier was truncated to 'number' characters
@@ -1685,7 +1685,7 @@ extern "C"
 // ==========================================================
 //   Init
 // ==========================================================
-void DLL_CALLCONV FreeImage_InitPlugin_axis_image_jpeg(Plugin *plugin,int format_id) {
+void DLL_CALLCONV FreeImage_InitPlugin_image_decode_jpeg(Plugin *plugin,int format_id) {
 	s_format_id = format_id;
 
 	plugin->format_proc = Format;

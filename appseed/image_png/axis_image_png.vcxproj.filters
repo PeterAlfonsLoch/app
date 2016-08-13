@@ -17,7 +17,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="axis_image_png.def">
+    <None Include="image_decode_png.def">
       <Filter>Source Files</Filter>
     </None>
   </ItemGroup>
