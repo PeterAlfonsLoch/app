@@ -42,7 +42,7 @@
 
 typedef struct wf_context wfContext;
 
-#include "axis/rdpclient/client/common/graphics.h"
+#include "rdpclient/client/common/graphics.h"
 
 /*#include "wf_channels.h"
 #include "wf_floatbar.h"

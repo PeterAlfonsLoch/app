@@ -1,5 +1,5 @@
 #include "aura/aura/aura.h"
-#include "axis/rdpclient/client/common/rdpclient.h"
+#include "rdpclient/client/common/rdpclient.h"
 
 struct CLASS_DECL_AXIS_RDPCLIENT rdp_event_item
 {

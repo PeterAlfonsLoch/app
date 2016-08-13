@@ -1,4 +1,4 @@
-LIBRARY "auracharguess"
+LIBRARY "charguess"
 
 EXPORTS
 
