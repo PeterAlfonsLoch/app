@@ -22,7 +22,7 @@
     <ProjectName>axisfreeimage</ProjectName>
     <ProjectGuid>{B39ED2B3-D53A-4077-B957-930979A3577D}</ProjectGuid>
     <RootNamespace>axisfreeimage</RootNamespace>
-    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'" Label="Configuration">
