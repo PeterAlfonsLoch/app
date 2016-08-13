@@ -158,8 +158,7 @@
       <ShowProgress>NotSet</ShowProgress>
     </Link>
     <PreBuildEvent>
-      <Command>
-      </Command>
+      <Command>copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configuration)\*.dll $(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\</Command>
     </PreBuildEvent>
     <Manifest>
       <AdditionalManifestFiles>
@@ -243,8 +242,7 @@
       </MergeSections>
     </Link>
     <PreBuildEvent>
-      <Command>
-      </Command>
+      <Command>copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configuration)\*.dll $(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\</Command>
     </PreBuildEvent>
     <Manifest>
       <AdditionalManifestFiles>
@@ -317,8 +315,7 @@
       <MapFileName>$(TargetDir)$(TargetName).map</MapFileName>
     </Link>
     <PreBuildEvent>
-      <Command>
-      </Command>
+      <Command>copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configuration)\*.dll $(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\</Command>
     </PreBuildEvent>
     <CustomBuildStep>
       <Command>
@@ -397,8 +394,7 @@
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
     </Link>
     <PreBuildEvent>
-      <Command>
-      </Command>
+      <Command>copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configuration)\*.dll $(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\</Command>
     </PreBuildEvent>
     <CustomBuildStep>
       <Command>

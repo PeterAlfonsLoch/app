@@ -3,7 +3,7 @@
 #include "bzlib.h"
 #include "axis/compress/bzip_stream.h"
 #include "zlib.h"
-#include "axis/zlib/zutil.h"
+#include "zutil.h"
 #include "zip/zip.h"
 #include "gzip_stream.h"
 

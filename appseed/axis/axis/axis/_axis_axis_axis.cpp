@@ -11,7 +11,7 @@
 #endif
 
 #include "zlib.h"
-#include "axis/zlib/zutil.h"
+#include "zutil.h"
 
 
 #include "axis.cpp"
