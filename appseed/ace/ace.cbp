@@ -66,14 +66,14 @@
 			<Add directory="../../../stage/x86" />
 			<Add directory="/usr/lib64/mysql/" />
 		</Linker>
+		<Unit filename="_ace.h" />
+		<Unit filename="_ace_new.cpp" />
+		<Unit filename="_ace_new.h" />
 		<Unit filename="ace.h" />
-		<Unit filename="ace_new.cpp" />
-		<Unit filename="ace_new.h" />
-		<Unit filename="framework.cpp" />
-		<Unit filename="framework.h">
-			<Option compile="1" />
-			<Option weight="0" />
+		<Unit filename="ace_alloc.c">
+			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="ace_alloc.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />

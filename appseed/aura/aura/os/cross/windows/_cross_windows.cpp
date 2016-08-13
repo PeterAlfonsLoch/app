@@ -11,7 +11,7 @@
 #include <sys/mman.h>
 #include <unistd.h>
 
-#include "atom/iconv/include/iconv.h"
+#include "iconv.h"
 
 #endif
 

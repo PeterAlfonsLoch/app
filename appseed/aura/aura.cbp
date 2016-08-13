@@ -82,6 +82,7 @@
 			<Add directory="../../.." />
 			<Add directory="../aura" />
 			<Add directory="../../include" />
+			<Add directory="../../../nodeapp/include" />
 		</Compiler>
 		<Linker>
 			<Add option="-Wl,-R\\$$$ORIGIN" />
