@@ -92,12 +92,17 @@
 			<Add option="-lrt" />
 			<Add option="-lbfd" />
 			<Add option="-lX11" />
+			<Add option="-lpcre" />
 			<Add option="-lpthread" />
 			<Add option="-lncurses" />
 			<Add option="-latomiconv" />
+			<Add option="-lpcre2-8" />
 			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../stage/x86" />
 		</Linker>
+		<ExtraCommands>
+			<Add before="cp ../../../nodeapp/thirdparty/library/x64/* ../../../stage/x86/" />
+		</ExtraCommands>
 		<Unit filename="aura/_aura_aura.cpp" />
 		<Unit filename="aura/aura/aura.h" />
 		<Unit filename="aura/aura/aura.inl" />
@@ -274,6 +279,8 @@
 		<Unit filename="aura/aura_policy/aura_policy_objc.h" />
 		<Unit filename="aura/aura_policy/aura_policy_objcpp.h" />
 		<Unit filename="aura/aura_policy/aura_policy_winrt.h" />
+		<Unit filename="aura/charguess/_.cpp" />
+		<Unit filename="aura/charguess/charDistribution.cpp" />
 		<Unit filename="aura/exception/_exception.txt" />
 		<Unit filename="aura/exception/exception.h" />
 		<Unit filename="aura/exception/exception2.h" />
@@ -439,6 +446,9 @@
 		<Unit filename="aura/os/os.h" />
 		<Unit filename="aura/os/os_binreloc.h" />
 		<Unit filename="aura/os/os_process.h" />
+		<Unit filename="aura/pcre/pcre.cpp" />
+		<Unit filename="aura/pcre/pcre.h" />
+		<Unit filename="aura/pcre/pcre_util.h" />
 		<Unit filename="aura/process/process.h" />
 		<Unit filename="aura/process/process_bidi_pipe.h" />
 		<Unit filename="aura/process/process_departament.h" />

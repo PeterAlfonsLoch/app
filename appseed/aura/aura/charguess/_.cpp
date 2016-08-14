@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "charguess_private.h"
 
 //O volume na unidade C n∆o tem nome.
  //O N£mero de SÇrie do Volume Ç 72AC-5E14

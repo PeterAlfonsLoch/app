@@ -2,14 +2,14 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="axis_image_png" />
+		<Option title="image_decode_png" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
-				<Option output="../../../stage/x86/libaxis_image_png.so" prefix_auto="0" extension_auto="0" />
+				<Option output="../../../stage/x86/libimage_decode_png.so" prefix_auto="0" extension_auto="0" />
 				<Option working_dir="../../../stage/x86/" />
-				<Option object_output="../../../time/intermediate/app/axis_image_png" />
+				<Option object_output="../../../time/intermediate/app/image_decode_png" />
 				<Option type="3" />
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />

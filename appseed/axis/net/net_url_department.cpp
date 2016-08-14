@@ -1478,7 +1478,6 @@ namespace url
 
 #else
 
-      AsciiToIdn
       char * p = NULL;
 
       Idna_rc rc = (Idna_rc) idna_to_ascii_8z(psz, &p, IDNA_ALLOW_UNASSIGNED);

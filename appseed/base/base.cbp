@@ -72,7 +72,6 @@
 			<Add option="-lXmu" />
 			<Add option="-latomiconv" />
 			<Add option="-laura" />
-			<Add option="-lauracharguess" />
 			<Add option="-lsqlite3" />
 			<Add option="-lbz2" />
 			<Add option="-lz" />
