@@ -1,6 +1,6 @@
 #include "framework.h"
 #ifndef METROWIN
-#include "mysql.h"
+#include <mysql/mysql.h>
 
 
 namespace mysql

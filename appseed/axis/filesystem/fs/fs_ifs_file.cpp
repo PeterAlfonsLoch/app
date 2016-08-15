@@ -5,8 +5,8 @@
 
 #include "openssl/md5.h"
 
-template < >
-string & to_string(string & str, MD5_CTX & ctx)
+template < > 
+CLASS_DECL_AXIS string &  to_string(string & str, MD5_CTX & ctx)
 {
    
    unsigned char digest[MD5_DIGEST_LENGTH];
