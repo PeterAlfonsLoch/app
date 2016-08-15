@@ -15,8 +15,16 @@
 #endif
 
 
+#if !defined(_ACID_LIBRARY)
+
+
+#pragma comment(lib, "_ace.lib")
+
 
 #include "ace_alloc.h"
+
+
+#endif
 
 
 

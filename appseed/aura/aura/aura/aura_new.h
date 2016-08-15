@@ -1,9 +1,5 @@
 
 
-#include "ace/ace.h"
-
-
-
 void * __cdecl operator new(size_t nSize, void * p) inplace_new_throw_spec;
 void __cdecl operator delete(void * p, void * palloc) del_throw_spec;
 

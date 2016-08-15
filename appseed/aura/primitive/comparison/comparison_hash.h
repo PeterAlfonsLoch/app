@@ -56,7 +56,7 @@ inline UINT HashKey<const wchar_t *>(const wchar_t * key);
 
 
 template<>
-inline UINT HashKey<wstring>(wstring key)
+inline UINT HashKey<const wstring &>(const wstring & key)
 {
 #if defined(LINUX) || defined(__APPLE__) || defined(VSNORD)
    return HashKey(key.c_str());

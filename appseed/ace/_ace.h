@@ -41,6 +41,6 @@
 #endif
 
 
-#ifdef __cplusplus
+#if defined(__cplusplus) && !defined(_ACID_LIBRARY)
 #include "_ace_new.h"
 #endif
