@@ -21,6 +21,7 @@ stringa install_get_plugin_base_library_list(const string & strVersion)
    //straFile.add("axisfreetype.dll");
    //straFile.add("idn.dll");
    straFile.add("openssl.dll");
+   straFile.add("pcre.dll");
    straFile.add("zlib.dll");
    //straFile.add("axis.dll");
    straFile.add("base.dll");
