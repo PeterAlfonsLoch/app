@@ -55,9 +55,6 @@ namespace user
       virtual void Undo(plain_text_tree * pedit);
       virtual void Redo(plain_text_tree * pedit);
 
-#undef new
-      DECLARE_AND_IMPLEMENT_DEFAULT_ALLOCATION
-#define new AURA_NEW
 
    };
 
@@ -95,10 +92,6 @@ namespace user
       virtual e_plain_text_command get_command() { return plain_text_command_group; };
       virtual void Undo(plain_text_tree * pedit);
       virtual void Redo(plain_text_tree * pedit);
-
-#undef new
-      DECLARE_AND_IMPLEMENT_DEFAULT_ALLOCATION
-#define new AURA_NEW
 
    };
 
