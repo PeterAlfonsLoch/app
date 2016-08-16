@@ -10,15 +10,16 @@ stringa install_get_plugin_base_library_list(const string & strVersion)
    stringa straFile;
 
    straFile.add("app.install.exe");
+   straFile.add("ace.dll");
    straFile.add("aqua.dll");
    straFile.add("aura.dll");
    straFile.add("sqlite.dll");
    straFile.add("axis.dll");
    straFile.add("bzip2.dll");
    straFile.add("crypto.dll");
-   //straFile.add("axisfreeimage.dll");
+   straFile.add("axisfreeimage.dll");
    //straFile.add("axisfreetype.dll");
-   straFile.add("idn.dll");
+   //straFile.add("idn.dll");
    straFile.add("openssl.dll");
    straFile.add("zlib.dll");
    //straFile.add("axis.dll");
