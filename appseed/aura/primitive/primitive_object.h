@@ -205,7 +205,7 @@ public:
    inline sp(::command_thread) command_thread();
 
 
-   DECLARE_AND_IMPLEMENT_DEFAULT_ALLOCATION
+   //DECLARE_AND_IMPLEMENT_DEFAULT_ALLOCATION
    // OBJECT :: object :> is an aura::live_object
 //{
 //

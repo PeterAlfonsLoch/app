@@ -152,9 +152,9 @@ public:
 
 //   using BASE_ARRAY::quick_sort;
 
-   using BASE_ARRAY::operator new;
+//   using BASE_ARRAY::operator new;
 
-   using BASE_ARRAY::operator delete;
+  // using BASE_ARRAY::operator delete;
 
    using BASE_ARRAY::set_app;
 

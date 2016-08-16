@@ -1,4 +1,4 @@
-#include "framework.h"
+//#include "framework.h"
 #include "fiasco_finder.h"
 
 
@@ -12,16 +12,16 @@ stringa install_get_plugin_base_library_list(const string & strVersion)
    straFile.add("app.install.exe");
    straFile.add("aqua.dll");
    straFile.add("aura.dll");
-   straFile.add("aurasqlite.dll");
+   straFile.add("sqlite.dll");
    straFile.add("axis.dll");
-   straFile.add("axisbzip2.dll");
-   straFile.add("axiscrypto.dll");
+   straFile.add("bzip2.dll");
+   straFile.add("crypto.dll");
    //straFile.add("axisfreeimage.dll");
    //straFile.add("axisfreetype.dll");
-   straFile.add("axisidn.dll");
-   straFile.add("axisopenssl.dll");
-   straFile.add("axiszlib.dll");
-   straFile.add("axis.dll");
+   straFile.add("idn.dll");
+   straFile.add("openssl.dll");
+   straFile.add("zlib.dll");
+   //straFile.add("axis.dll");
    straFile.add("base.dll");
    straFile.add("draw2d_gdiplus.dll");
 

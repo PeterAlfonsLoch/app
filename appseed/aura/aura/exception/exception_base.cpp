@@ -113,15 +113,15 @@ namespace exception
 
 
 
-   void base::operator delete(void * pbData)
-   {
-      object::operator delete(pbData);
-   }
+   //void base::operator delete(void * pbData)
+   //{
+   //   object::operator delete(pbData);
+   //}
 
-   void base::operator delete(void * pbData,   const char * /* lpszFileName */, int32_t /* nLine */)
-   {
-      operator delete(pbData);
-   }
+   //void base::operator delete(void * pbData,   const char * /* lpszFileName */, int32_t /* nLine */)
+   //{
+   //   operator delete(pbData);
+   //}
 
    
    void base::defer_dump_back_trace()

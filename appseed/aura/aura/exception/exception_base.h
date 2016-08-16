@@ -35,8 +35,8 @@ namespace exception
       virtual int32_t ReportError(UINT nType = MB_OK, const char * pszMessageID = NULL);
 
 
-      void operator delete(void * pbData);
-      void operator delete(void * pbData, const char * lpszFileName, int32_t nLine);
+      //void operator delete(void * pbData);
+      //void operator delete(void * pbData, const char * lpszFileName, int32_t nLine);
 
       virtual const char * getMessage() const throw();
 

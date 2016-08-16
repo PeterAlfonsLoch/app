@@ -49,9 +49,9 @@ namespace file
          virtual BYTE * get_data(bool bForward);
          virtual memory_offset_t get_delta_length() ;
 
-#undef new
-         DECLARE_AND_IMPLEMENT_DEFAULT_ALLOCATION
-#define new AURA_NEW
+//#undef new
+//         DECLARE_AND_IMPLEMENT_DEFAULT_ALLOCATION
+//#define new AURA_NEW
 
 
       };
@@ -146,9 +146,9 @@ namespace file
 
          virtual bool read_byte(byte * pbyte, ::file::edit_buffer * pfile) override;
 
-#undef new
-         DECLARE_AND_IMPLEMENT_DEFAULT_ALLOCATION
-#define new AURA_NEW
+//#undef new
+//         DECLARE_AND_IMPLEMENT_DEFAULT_ALLOCATION
+//#define new AURA_NEW
 
       };
 

@@ -141,6 +141,9 @@
     <Filter Include="Source Files\aura\exception">
       <UniqueIdentifier>{0de7baac-641f-4c37-8a79-0a88ffce5142}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\ace">
+      <UniqueIdentifier>{89869236-176b-4a14-898f-a4010cebf230}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="primitive\primitive_id.h">
@@ -1776,6 +1779,12 @@
     </ClCompile>
     <ClCompile Include="filesystem\filesystem\filesystem_listing.cpp">
       <Filter>Source Files\filesystem\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ace\_ace_new.cpp">
+      <Filter>Source Files\ace</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ace\ace_alloc.c">
+      <Filter>Source Files\ace</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

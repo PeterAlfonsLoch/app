@@ -5,7 +5,9 @@
 
 
 #ifdef _WIN32
-#ifdef _APP_ACE_SHARED
+#ifdef _ACID_LIBRARY
+#define CLASS_DECL_ACE
+#elif defined(_APP_ACE_SHARED)
 #define CLASS_DECL_ACE __declspec(dllexport)
 #else
 #define CLASS_DECL_ACE __declspec(dllimport)
@@ -21,10 +23,13 @@
 #pragma comment(lib, "_ace.lib")
 
 
+#endif
+
+
+
 #include "ace_alloc.h"
 
 
-#endif
 
 
 

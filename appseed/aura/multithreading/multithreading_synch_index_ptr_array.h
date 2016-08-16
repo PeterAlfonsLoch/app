@@ -41,9 +41,9 @@ public:
       synch_lock sl(m_pmutex);
       remove(pi);
    }
-#undef new
-   DECLARE_AND_IMPLEMENT_DEFAULT_ALLOCATION
-#define new AURA_NEW
+//#undef new
+//   DECLARE_AND_IMPLEMENT_DEFAULT_ALLOCATION
+//#define new AURA_NEW
 
 };
 
