@@ -268,7 +268,7 @@ namespace install
       if (!txchannel.open(::aura::ipc::app_install(m_strPlatform), bLaunch ? &launcher : NULL))
          return false;
 
-      txchannel.send(psz, false);
+      txchannel.send(psz, INFINITE);
 
 #endif
 

@@ -109,7 +109,7 @@ class spaadmin_mutex:
 {
 public:
 
-   spaadmin_mutex();
+   spaadmin_mutex(string strSuffix = "");
 
 };
 

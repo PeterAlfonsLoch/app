@@ -924,13 +924,13 @@ null_dacl_security_attributes::null_dacl_security_attributes()
 #endif
 
 
-spaadmin_mutex::spaadmin_mutex() :
+spaadmin_mutex::spaadmin_mutex(string strSuffix) :
 #ifdef WINDOWSEX
-mutex(NULL,false,"Global\\::ca2::fontopus::ccvotagus::" + process_platform_dir_name() + "::198411151951042219770204-11dd-ae16-0800200c7784",&m_securityattributes)
-, sync_object("Global\\::ca2::fontopus::ccvotagus::" + process_platform_dir_name() + "::198411151951042219770204-11dd-ae16-0800200c7784")
+mutex(NULL,false,"Global\\::ca2::fontopus::ccvotagus::" + process_platform_dir_name() + "::198411151951042219770204-11dd-ae16-0800200c7784" + strSuffix,&m_securityattributes)
+, sync_object("Global\\::ca2::fontopus::ccvotagus::" + process_platform_dir_name() + "::198411151951042219770204-11dd-ae16-0800200c7784" + strSuffix)
 #else
-mutex(NULL,false,"Global\\::ca2::fontopus::ccvotagus::" + process_platform_dir_name() + "::198411151951042219770204-11dd-ae16-0800200c7784")
-, sync_object("Global\\::ca2::fontopus::ccvotagus::" + process_platform_dir_name() + "::198411151951042219770204-11dd-ae16-0800200c7784")
+mutex(NULL,false,"Global\\::ca2::fontopus::ccvotagus::" + process_platform_dir_name() + "::198411151951042219770204-11dd-ae16-0800200c7784" + strSuffix)
+, sync_object("Global\\::ca2::fontopus::ccvotagus::" + process_platform_dir_name() + "::198411151951042219770204-11dd-ae16-0800200c7784" + strSuffix)
 #endif
 
 {
