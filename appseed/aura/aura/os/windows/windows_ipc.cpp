@@ -301,9 +301,9 @@ namespace aura
 
          string strMessage(pszMessage);
 
-         ::fork(get_app(), [=]()
+         if (::str::begins_ci(strMessage, "synch_"))
          {
-          
+
             if (m_preceiver != NULL)
             {
 
@@ -311,7 +311,23 @@ namespace aura
 
             }
 
-         });
+         }
+         else
+         {
+
+            ::fork(get_app(), [=]()
+            {
+
+               if (m_preceiver != NULL)
+               {
+
+                  m_preceiver->on_receive(prx, strMessage);
+
+               }
+
+            });
+
+         }
 
          // ODOW - on date of writing : return ignored by this windows implementation
 
