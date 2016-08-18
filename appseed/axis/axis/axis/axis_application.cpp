@@ -4708,6 +4708,21 @@ finalize:
    int32_t application::hotplugin_host_starter_start_sync(const char * pszCommandLine,::aura::application * papp,hotplugin::host * phost,hotplugin::plugin * pplugin)
    {
 
+      {
+
+         spa_mutex mutex;
+
+         if (mutex.already_exists())
+         {
+
+            simple_message_box("Could not launch spa installer. It is already running.", MB_OK);
+
+            return -35;
+
+         }
+
+      }
+
       string strValue;
 
       if(get_command_line_param(strValue,pszCommandLine,"enable_desktop_launch"))

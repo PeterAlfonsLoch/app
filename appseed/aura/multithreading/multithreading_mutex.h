@@ -101,7 +101,7 @@ public:
 
 #endif
 
-class spaadmin_mutex:
+class CLASS_DECL_AURA spaadmin_mutex :
 #ifdef WINDOWSEX
    public null_dacl_security_attributes,
 #endif
@@ -110,6 +110,19 @@ class spaadmin_mutex:
 public:
 
    spaadmin_mutex(string strSuffix = "");
+
+};
+
+
+class CLASS_DECL_AURA spa_mutex:
+#ifdef WINDOWSEX
+   public null_dacl_security_attributes,
+#endif
+   public mutex
+{
+public:
+
+   spa_mutex(string strSuffix = "");
 
 };
 
