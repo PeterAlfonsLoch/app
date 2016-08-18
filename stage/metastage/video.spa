@@ -1,7 +1,7 @@
-stage\basis\avcodec-56.dll
-stage\basis\avformat-56.dll
-stage\basis\avutil-54.dll
-stage\basis\swscale-3.dll
+stage\basis\avcodec-57.dll
+stage\basis\avformat-57.dll
+stage\basis\avutil-55.dll
+stage\basis\swscale-4.dll
 stage\basis\video_decode_ffmpeg.dll
 stage\basis\video_decode_ogg.dll
 stage\basis\xiph_ogg.dll

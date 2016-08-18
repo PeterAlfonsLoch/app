@@ -14,7 +14,9 @@ stage\basis\bzip2.dll
 stage\basis\crypto.dll
 stage\basis\image_decode_jpeg.dll
 stage\basis\image_decode_png.dll
+stage\basis\jpeg.dll
 stage\basis\openssl.dll
+stage\basis\png.dll
 stage\basis\zlib.dll
 stage\basis\base.dll
 stage\basis\core.dll
