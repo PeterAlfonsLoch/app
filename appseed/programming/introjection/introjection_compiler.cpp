@@ -328,8 +328,12 @@ namespace introjection
 
       ::process::process_sp process(allocer());
 
+      
+      ::file::path pathEnvTxt;
 
-      file_put_contents_dup(::dir::system() / "env1.bat",::dir::system() / "env.bat > C:\\ca2\\env.txt");
+      pathEnvTxt = dir::system() / "env.txt";
+
+      file_put_contents_dup(::dir::system() / "env1.bat",::dir::system() / "env.bat > \"" + pathEnvTxt + "\"");
       file_put_contents_dup(::dir::system() / "env.bat","@call " + strBuildCmd + "\r\n@set");
 
       //      set_thread_priority(::multithreading::priority_highest);
