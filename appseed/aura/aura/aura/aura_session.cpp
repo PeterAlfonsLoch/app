@@ -773,20 +773,9 @@ namespace aura
       if(!library.open(strLibrary,false))
       {
 
-#ifdef METROWIN
+         ::MessageBox(NULL, "ca2", "Library could not be loaded : \"" + strLibrary + "\"", MB_ICONERROR);
 
-         simple_message_box(NULL,"where's the application DLL?", MB_OK);
-
-#else
-
-         if(System.directrix()->m_varTopicQuery.has_property("uninstall") &&
-            System.directrix()->m_varTopicQuery["app"] == strApplicationId)
-            return NULL;
-
-         ::output_debug_string("\n\nSystem.find_applications_to_cache Failed(3) " + string(pszAppId) + "\n\n");
-
-         throw not_installed(get_app(),System.install_get_version(),strBuildNumber,pszType,strApplicationId,Session.m_strLocale,Session.m_strSchema);
-#endif
+         return NULL;
 
       }
 
