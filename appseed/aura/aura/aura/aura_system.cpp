@@ -1805,7 +1805,7 @@ namespace aura
 
 #endif
 
-      if(string(pszVersion).is_empty())
+      if(pszVersion == NULL || *pszVersion == '\0')
       {
 
          if(install_get_version() == "basis")

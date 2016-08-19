@@ -4715,7 +4715,7 @@ finalize:
          if (mutex.already_exists())
          {
 
-            simple_message_box("Could not launch spa installer. It is already running.", MB_OK);
+//            simple_message_box("Could not launch spa installer. It is already running.", MB_OK);
 
             return -35;
 
