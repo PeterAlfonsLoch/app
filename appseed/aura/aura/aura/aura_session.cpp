@@ -773,7 +773,7 @@ namespace aura
       if(!library.open(strLibrary,false))
       {
 
-         ::MessageBox(NULL, "ca2", "Library could not be loaded : \"" + strLibrary + "\"", MB_ICONERROR);
+         ::MessageBox(NULL, "Application \"" + strApplicationId + "\" cannot be created.\n\nThe library \"" + strLibrary + "\" could not be loaded.", "ca2", MB_ICONERROR);
 
          return NULL;
 
