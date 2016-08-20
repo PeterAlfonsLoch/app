@@ -4033,8 +4033,8 @@ namespace user
                      m_iSubItemSel = iSubItemSel;
                      item_range itemrange;
                      itemrange.set(
-                        m_iItemSel,
-                        m_iItemSel,
+                        DisplayToStrict(m_iItemSel),
+                        DisplayToStrict(m_iItemSel),
                         m_iSubItemSel,
                         m_iSubItemSel,
                         -1,
