@@ -340,5 +340,15 @@ inline size64::operator SIZE() throw()
 
 }
 
+inline size size::operator /(int i) { return size(cx / i, cy / i); }
+inline size size::operator /(double d) { return size(cx / d, cy / d); }
 
+inline size size::operator *(int i) { return size(cx * i, cy * i); }
+inline size size::operator *(double d) { return size(cx * d, cy * d); }
+
+inline size size::operator +(int i) { return size(cx + i, cy + i); }
+inline size size::operator +(double d) { return size(cx + d, cy + d); }
+
+inline size size::operator -(int i) { return size(cx - i, cy - i); }
+inline size size::operator -(double d) { return size(cx - d, cy - d); }
 

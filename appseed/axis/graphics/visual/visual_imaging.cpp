@@ -649,9 +649,9 @@ bool imaging::from(::draw2d::dib * pdib,::draw2d::graphics * pgraphics,FIBITMAP 
    }
 #endif
 
-#if defined(LINUX) || defined(VSNORD) || defined(METROWIN)
+//#if defined(LINUX) || defined(VSNORD) || defined(METROWIN)
    pdib->mult_alpha();
-#endif
+//#endif
 
    //   RGBQUAD bkcolor;
    FreeImage_Unload(pimage32);

@@ -53,6 +53,18 @@ public:
    rect operator+(LPCRECT lpRect) const throw();
    rect operator-(LPCRECT lpRect) const throw();
 
+   size operator /(int i);
+   size operator /(double d);
+
+   size operator *(int i);
+   size operator *(double d);
+
+   size operator +(int i);
+   size operator +(double d);
+
+   size operator -(int i);
+   size operator -(double d);
+
    int64_t area() const throw();
    inline bool is_empty() const throw();
 

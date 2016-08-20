@@ -6014,51 +6014,74 @@ namespace user
          if(m_plist->m_eview == list::view_icon && m_plist->m_bEmboss)
          {
 
-            ::rect rectText = m_rectText;
-            rectText.left -= 2;
-            rectText.top -= 2;
-            rectText.right += 6;
-            rectText.bottom += 6;
-            class size size = rectText.size();
+            if (m_strText.has_char())
+            {
+
+               ::draw2d::dib_sp & dib2 = m_plist->m_mapBlur[m_iItem];
+
+               ::rect rectText = m_rectText;
+               rectText.left -= 2;
+               rectText.top -= 2;
+               rectText.right += 6;
+               rectText.bottom += 6;
+
+               if (dib2.is_null() || dib2->area() <= 0 || m_strText != m_plist->m_mapText[m_iItem])
+               {
+
+                  m_plist->m_mapText[m_iItem] = m_strText;
+
+                  if (dib2.is_null())
+                  {
+
+                     dib2.alloc(allocer());
+
+                  }
+
+                  class size size = rectText.size();
 
 
-            ::draw2d::dib_sp dib(m_plist->allocer());
-            dib->create(size.cx, size.cy);
-            dib->Fill(0, 0, 0, 0);
-            ::draw2d::brush_sp brushText(allocer());
-            brushText->create_solid(ARGB(255, 255, 255, 255));
-            dib->get_graphics()->SelectObject(brushText);
-            ::draw2d::dib_sp dib2(m_plist->allocer());
-            dib2->create(size.cx, size.cy);
-            dib2->Fill(0, 0, 0, 0);
+                  ::draw2d::dib_sp dib(m_plist->allocer());
+                  dib->create(size.cx, size.cy);
+                  dib->Fill(0, 0, 0, 0);
+                  ::draw2d::brush_sp brushText(allocer());
+                  brushText->create_solid(ARGB(255, 255, 255, 255));
+                  dib->get_graphics()->SelectObject(brushText);
+                  ::draw2d::dib_sp dib2(m_plist->allocer());
+                  dib2->create(size.cx, size.cy);
+                  dib2->Fill(0, 0, 0, 0);
 
-            class rect rectCache;
-            rectCache.left = 1;
-            rectCache.top = 1;
-            rectCache.right = rectCache.left + (int32_t)m_rectText.width();
-            rectCache.bottom = rectCache.top + (int32_t)m_rectText.height();
-            dib->get_graphics()->SelectObject(m_pfont);
-            dib->get_graphics()->_DrawText(m_strText, rectCache, m_iDrawTextFlags);
+                  class rect rectCache;
+                  rectCache.left = 1;
+                  rectCache.top = 1;
+                  rectCache.right = rectCache.left + (int32_t)m_rectText.width();
+                  rectCache.bottom = rectCache.top + (int32_t)m_rectText.height();
+                  dib->get_graphics()->SelectObject(m_pfont);
+                  dib->get_graphics()->_DrawText(m_strText, rectCache, m_iDrawTextFlags);
 
-            Sys(m_plist->get_app()).visual().imaging().channel_spread_set_color(dib2->get_graphics(), null_point(), size, dib->get_graphics(), null_point(), 0, 5, ARGB(255, 255, 255, 255));
-            dib->Fill(0, 0, 0, 0);
-            Sys(m_plist->get_app()).visual().imaging().channel_alpha_gray_blur(dib->get_graphics(), null_point(), size, dib2->get_graphics(), null_point(), 0, 2);
-            dib2->Fill(0, 0, 0, 0);
-            Sys(m_plist->get_app()).visual().imaging().channel_alpha_gray_blur(dib2->get_graphics(), null_point(), size, dib->get_graphics(), null_point(), 0, 2);
-            dib2->set(
-               argb_get_r_value(m_crBack), 
-               argb_get_g_value(m_crBack), 
-               argb_get_b_value(m_crBack));
+                  Sys(m_plist->get_app()).visual().imaging().channel_spread_set_color(dib2->get_graphics(), null_point(), size, dib->get_graphics(), null_point(), 0, 5, ARGB(255, 255, 255, 255));
+                  dib->Fill(0, 0, 0, 0);
+                  Sys(m_plist->get_app()).visual().imaging().channel_alpha_gray_blur(dib->get_graphics(), null_point(), size, dib2->get_graphics(), null_point(), 0, 2);
+                  dib2->Fill(0, 0, 0, 0);
+                  Sys(m_plist->get_app()).visual().imaging().channel_alpha_gray_blur(dib2->get_graphics(), null_point(), size, dib->get_graphics(), null_point(), 0, 2);
+                  dib2->set(
+                     argb_get_r_value(m_crBack),
+                     argb_get_g_value(m_crBack),
+                     argb_get_b_value(m_crBack));
 
-            dib2->mult_alpha();
+                  dib2->mult_alpha();
 
-            Sys(m_plist->get_app()).visual().imaging().color_blend(m_pgraphics, rectText, dib2->get_graphics(), point(1, 1), 0.84);
+               }
 
+               Sys(m_plist->get_app()).visual().imaging().color_blend(m_pgraphics, rectText, dib2->get_graphics(), point(1, 1), 0.84);
 
-            brushText->create_solid(m_cr);
-            m_pgraphics->SelectObject(brushText);
-            m_pgraphics->SelectObject(m_pfont);
-            m_pgraphics->_DrawText(m_strText, m_rectText, m_iDrawTextFlags);
+               ::draw2d::brush_sp brushText(allocer());
+               brushText->create_solid(m_cr);
+               m_pgraphics->SelectObject(brushText);
+               m_pgraphics->SelectObject(m_pfont);
+               m_pgraphics->_DrawText(m_strText, m_rectText, m_iDrawTextFlags);
+
+            }
+
          }
          else
          {

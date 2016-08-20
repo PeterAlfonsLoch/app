@@ -62,6 +62,9 @@ namespace user
       ::database::id                   m_datakey;
 
 
+
+
+
       list_column();
       list_column(const list_column & pcolumn);
       virtual ~list_column();
@@ -203,7 +206,9 @@ namespace user
       sp(simple_list_data)             m_psimplelistdata;
 
       
-      
+      int_ptr_map < ::draw2d::dib_sp > m_mapBlur;
+      int_ptr_map < string >           m_mapText;
+
 
 
 

@@ -2519,7 +2519,15 @@ namespace draw2d
    uint32_t dib::GetPixel(int32_t x, int32_t y)
    {
       uint32_t dw = *(get_data() + x + (m_size.cy - y - 1) * (m_iScan / sizeof(COLORREF)));
-      return RGB(rgba_get_b(dw), rgba_get_g(dw), rgba_get_r(dw));
+      int iA = rgba_get_a(dw);
+      if (iA == 0)
+      {
+         return RGB(rgba_get_b(dw), rgba_get_g(dw), rgba_get_r(dw));
+      }
+      else
+      {
+         return ARGB(iA, rgba_get_b(dw) * 255 / iA, rgba_get_g(dw) * 255 / iA, rgba_get_r(dw) * 255 / iA);
+      }
    }
 
    // too slow for animation on AMD XP gen_hon.
