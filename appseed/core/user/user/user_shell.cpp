@@ -466,15 +466,15 @@ namespace filemanager
          string strIcon;
          if (p.title().CompareNoCase("dark") == 0)
          {
-            strIcon = "matter://visual_studio/dark_solution.ico";
+            strIcon = Application.dir().matter("visual_studio/dark_solution.ico");
          }
          else if (p.title().CompareNoCase("blue") == 0)
          {
-            strIcon = "matter://visual_studio/blue_solution.ico";
+            strIcon = Application.dir().matter("visual_studio/blue_solution.ico");
          }
          else
          {
-            strIcon = "matter://visual_studio/lite_solution.ico";
+            strIcon = Application.dir().matter("visual_studio/lite_solution.ico");
          }
          int iImage = m_pil16->add_icon_os_data((HICON)LoadImage(NULL, strIcon, IMAGE_ICON, 16, 16, LR_LOADFROMFILE));
          m_pil48->add_icon_os_data((HICON)LoadImage(NULL, strIcon, IMAGE_ICON, 48, 48, LR_LOADFROMFILE));

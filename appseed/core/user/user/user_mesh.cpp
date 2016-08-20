@@ -5370,6 +5370,20 @@ namespace user
 
    void mesh::_001GetItemColor(::user::mesh_item * pitem)
    {
+
+      if (m_pmeshdata != NULL)
+      {
+
+         m_pmeshdata->_001GetItemColor(pitem);
+
+         if (pitem->m_bOk)
+         {
+
+            return;
+
+         }
+
+      }
       pitem->m_bOk = false;
    }
 
@@ -5750,6 +5764,7 @@ namespace user
       m_iSubItem        = -1;
       m_iListItem       = -1;
       m_cr              = (COLORREF)-1;
+      m_crBack          = ARGB(255, 0, 0, 0);
       m_iState          = -1;
       m_iImage          = -1;
       m_bOk             = false;

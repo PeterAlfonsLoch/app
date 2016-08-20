@@ -39,6 +39,11 @@ namespace user
       pitem->m_bOk = false;
    }
 
+   void mesh_data::_001GetItemColor(::user::mesh_item * pitem)
+   {
+      pitem->m_bOk = false;
+   }
+
    void mesh_data::_001GetGroupText(::user::mesh_item * pitem)
    {
       pitem->m_bOk = false;

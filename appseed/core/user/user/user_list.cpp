@@ -5969,6 +5969,7 @@ namespace user
 
    void draw_list_item::update_item_color()
    {
+
       m_plist->_001GetItemColor(this);
 
       if(!m_bOk)
@@ -6013,9 +6014,13 @@ namespace user
          if(m_plist->m_eview == list::view_icon && m_plist->m_bEmboss)
          {
 
-            class size size = m_rectText.size();
-            size.cx += 4;
-            size.cy += 4;
+            ::rect rectText = m_rectText;
+            rectText.left -= 2;
+            rectText.top -= 2;
+            rectText.right += 6;
+            rectText.bottom += 6;
+            class size size = rectText.size();
+
 
             ::draw2d::dib_sp dib(m_plist->allocer());
             dib->create(size.cx, size.cy);
@@ -6028,25 +6033,27 @@ namespace user
             dib2->Fill(0, 0, 0, 0);
 
             class rect rectCache;
-            rectCache.left = 2;
-            rectCache.top = 2;
+            rectCache.left = 1;
+            rectCache.top = 1;
             rectCache.right = rectCache.left + (int32_t)m_rectText.width();
             rectCache.bottom = rectCache.top + (int32_t)m_rectText.height();
             dib->get_graphics()->SelectObject(m_pfont);
             dib->get_graphics()->_DrawText(m_strText, rectCache, m_iDrawTextFlags);
 
-            Sys(m_plist->get_app()).visual().imaging().channel_spread_set_color(dib2->get_graphics(), null_point(), size, dib->get_graphics(), null_point(), 0, 2, ARGB(184, 184, 184, 184));
+            Sys(m_plist->get_app()).visual().imaging().channel_spread_set_color(dib2->get_graphics(), null_point(), size, dib->get_graphics(), null_point(), 0, 5, ARGB(255, 255, 255, 255));
             dib->Fill(0, 0, 0, 0);
-            Sys(m_plist->get_app()).visual().imaging().channel_alpha_gray_blur(dib->get_graphics(), null_point(), size, dib2->get_graphics(), null_point(), 0, 1);
+            Sys(m_plist->get_app()).visual().imaging().channel_alpha_gray_blur(dib->get_graphics(), null_point(), size, dib2->get_graphics(), null_point(), 0, 2);
             dib2->Fill(0, 0, 0, 0);
-            Sys(m_plist->get_app()).visual().imaging().channel_alpha_gray_blur(dib2->get_graphics(), null_point(), size, dib->get_graphics(), null_point(), 0, 1);
-            dib2->set(0, 0, 0);
+            Sys(m_plist->get_app()).visual().imaging().channel_alpha_gray_blur(dib2->get_graphics(), null_point(), size, dib->get_graphics(), null_point(), 0, 2);
+            dib2->set(
+               argb_get_r_value(m_crBack), 
+               argb_get_g_value(m_crBack), 
+               argb_get_b_value(m_crBack));
+
+            Sys(m_plist->get_app()).visual().imaging().color_blend(m_pgraphics, rectText, dib2->get_graphics(), point(1, 1), 0.84);
 
 
-            Sys(m_plist->get_app()).visual().imaging().color_blend(m_pgraphics, m_rectText, dib2->get_graphics(), point(1, 1), 0.50);
-
-
-            brushText->create_solid(ARGB(255, 255, 255, 255));
+            brushText->create_solid(m_cr);
             m_pgraphics->SelectObject(brushText);
             m_pgraphics->SelectObject(m_pfont);
             m_pgraphics->_DrawText(m_strText, m_rectText, m_iDrawTextFlags);

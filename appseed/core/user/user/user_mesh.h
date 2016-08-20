@@ -42,6 +42,7 @@ namespace user
       index          m_iListItem;
       string         m_strText;
       COLORREF       m_cr;
+      COLORREF       m_crBack;
       int32_t        m_iState;
       index          m_iImage;
       bool           m_bOk;

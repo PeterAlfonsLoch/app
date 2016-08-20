@@ -1031,7 +1031,7 @@ namespace file
             else
             {
                
-               stra = listing(papp).ls_file(strDir);
+               stra = listing(papp).ls(strDir);
                
             }
 

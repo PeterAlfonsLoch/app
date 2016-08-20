@@ -22,6 +22,8 @@ namespace user
 
       virtual void _001GetItemImage(mesh_item * pitem);
 
+      virtual void _001GetItemColor(mesh_item * pitem);
+
       virtual void _001GetGroupText(mesh_item * pitem);
 
       virtual void _001GetGroupImage(mesh_item * pitem);
