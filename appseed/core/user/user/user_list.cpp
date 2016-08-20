@@ -6050,6 +6050,8 @@ namespace user
                argb_get_g_value(m_crBack), 
                argb_get_b_value(m_crBack));
 
+            dib2->mult_alpha();
+
             Sys(m_plist->get_app()).visual().imaging().color_blend(m_pgraphics, rectText, dib2->get_graphics(), point(1, 1), 0.84);
 
 
