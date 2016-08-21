@@ -627,7 +627,7 @@ namespace fontopus
       m_mapFontopusSession.set_at(strFontopusServer,psession);
       
 
-      if(!m_mapFontopusSessId.Lookup(strFontopusServer,strSessId))
+      if(m_mapFontopusSessId[strFontopusServer].is_empty())
       {
 
          m_mapFontopusSessId.set_at(strFontopusServer,strSessId);

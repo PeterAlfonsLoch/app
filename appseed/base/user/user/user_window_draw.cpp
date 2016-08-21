@@ -57,37 +57,12 @@ namespace user
          try
          {
 
-  //          synch_lock sl(pui->m_pmutex);
-
-            //if (pui->oprop("session").is_new())
-            //{
-
-            //   if (file_exists_dup("/ca2/debug_window_draw.txt"))
-            //   {
-            //      TRACE("debug window draw");
-            //   }
-
-               if (pui->m_bMayProDevian)
-               {
-
-                  pui->defer_check_layout();
-
-                  pui->_001UpdateWindow();
-
-               }
-
-//            }
-
-         }
-         catch (simple_exception & se)
-         {
-
-            if (se.m_strMessage == "no more a window")
+            if (pui->m_bMayProDevian)
             {
 
-               TRACE("No more a window explicitly");
+                pui->defer_check_layout();
 
-               System.remove_frame(pui);
+                pui->_001UpdateWindow();
 
             }
 
@@ -95,9 +70,7 @@ namespace user
          catch (...)
          {
 
-            TRACE("No more a window implicitly");
-
-            System.remove_frame(pui);
+            TRACE("\n\nFailed to draw window!!\n\n");
 
          }
 

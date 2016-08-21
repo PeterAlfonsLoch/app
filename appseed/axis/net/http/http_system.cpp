@@ -1261,6 +1261,10 @@ retry:
 
       string strSessId;
 
+      int iRetrySession = 0;
+
+retry_session:
+
       {
          property_set setQuery(get_app());
 
@@ -1304,6 +1308,14 @@ retry:
                   (strSessId = set["user"].cast < ::fontopus::user >()->get_sessid(strUrl, !set["interactive_user"].is_new() && (bool)set["interactive_user"])).has_char() &&
                   if_then(set.has_property("optional_ca2_login"), !(bool)set["optional_ca2_login"]))
                {
+               
+                  if (0)
+                  {
+
+                     strSessId += "a";
+
+                  }
+
                   System.url().string_set(strUrl, "sessid", strSessId);
                   string strHost;
                   string strFontopus = Session.fontopus()->get_server(pszUrl, 8);
@@ -1624,6 +1636,51 @@ retry:
                return get(handler,strLocation,set);
             }
          }
+      }
+      else if (iStatusCode == 401)
+      {
+
+         if (strSessId.has_char() && set["user"].cast < ::fontopus::user >() != NULL && iRetrySession < 3)
+         {
+
+            Session.fontopus()->m_mapFontopusSessId[Session.fontopus()->m_strFirstFontopusServer].Empty();
+
+            Session.fontopus()->m_authmap.remove_key(set["user"].cast < ::fontopus::user >()->m_strLogin);
+               
+            set["user"].cast < ::fontopus::user >()->m_sessionidmap[System.url().get_server(pszUrl)].Empty();
+
+            set["user"].cast < ::fontopus::user >()->m_sessionidmap[System.url().get_server(strUrl)].Empty();
+
+            Session.fontopus()->m_mapFontopusServer.remove_key(System.url().get_server(pszUrl));
+
+            Session.fontopus()->m_mapFontopusServer.remove_key(System.url().get_server(strUrl));
+
+            Session.fontopus()->m_strFirstAccountServer.Empty();
+
+            string strFontopusServer = Session.fontopus()->get_server("account.ca2.cc", 8);
+
+            url_domain domainFontopus;
+
+            domainFontopus.create(strFontopusServer);
+
+            if (domainFontopus.m_strRadix == "ca2")
+            {
+
+               ::aura::del(Session.fontopus()->m_puser);
+             
+               set["user"] = Session.fontopus()->get_user();
+
+            }
+
+
+            iRetrySession++;
+
+            goto retry_session;
+
+         }
+
+         estatus = status_fail;
+
       }
       else
       {

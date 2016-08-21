@@ -6046,7 +6046,6 @@ namespace user
                   ::draw2d::brush_sp brushText(allocer());
                   brushText->create_solid(ARGB(255, 255, 255, 255));
                   dib->get_graphics()->SelectObject(brushText);
-                  ::draw2d::dib_sp dib2(m_plist->allocer());
                   dib2->create(size.cx, size.cy);
                   dib2->Fill(0, 0, 0, 0);
 
@@ -6072,12 +6071,15 @@ namespace user
 
                }
 
-               Sys(m_plist->get_app()).visual().imaging().color_blend(m_pgraphics, rectText, dib2->get_graphics(), point(1, 1), 0.84);
+               rectText.right--;
+               rectText.bottom--;
+
+               m_pgraphics->BitBlt(rectText, dib2->get_graphics(), point(1, 1));
 
                ::draw2d::brush_sp brushText(allocer());
                brushText->create_solid(m_cr);
                m_pgraphics->SelectObject(brushText);
-               m_pgraphics->SelectObject(m_pfont);
+               //m_pgraphics->SelectObject(m_pfont);
                m_pgraphics->_DrawText(m_strText, m_rectText, m_iDrawTextFlags);
 
             }

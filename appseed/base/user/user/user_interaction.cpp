@@ -1313,6 +1313,8 @@ namespace user
          catch(...)
          {
 
+            TRACE("\n\nException thrown while drawing user::interaction\n\n");
+
          }
 
       }
