@@ -48,7 +48,7 @@ void window_gdi::create_window_graphics(int64_t cxParam, int64_t cyParam, int iS
 
    }
 
-  
+   m_hwnd = hwnd;
 
    ZERO(m_bitmapinfo);
 
@@ -113,6 +113,8 @@ void window_gdi::create_window_graphics(int64_t cxParam, int64_t cyParam, int iS
          }
 
       }
+
+      ReleaseMutex(m_hmutex);
 
    }
 
@@ -265,12 +267,14 @@ void window_gdi::update_window(COLORREF * pcolorref,int cxParam,int cyParam,int 
 
    if (m_pBuf != NULL)
    {
-      try
+
+      if (::WaitForSingleObject(m_hmutex, INFINITE) == WAIT_OBJECT_0)
       {
 
-
-         if (::WaitForSingleObject(m_hmutex, INFINITE) != WAIT_OBJECT_0)
+         try
          {
+
+
 
             int64_t * p = (int64_t *)m_pBuf;
 
@@ -283,10 +287,10 @@ void window_gdi::update_window(COLORREF * pcolorref,int cxParam,int cyParam,int 
             //memset(p, 0, sizeof(COLORREF) * cxParam *cyParam / 2);
 
          }
+         catch (...)
+         {
 
-      }
-      catch (...)
-      {
+         }
 
          ReleaseMutex(m_hmutex);
 
