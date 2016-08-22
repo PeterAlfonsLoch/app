@@ -68,9 +68,9 @@ void window_gdi::create_window_graphics(int64_t cxParam, int64_t cyParam, int iS
 
    sprintf(szNameMutex2, szNameMutex, (INT_PTR)hwnd);
 
-   m_pmutex = new mutex(get_app(), szNameMutex2, NULL);
+   m_hmutex = ::CreateMutex(NULL, TRUE, szNameMutex2);
 
-   if (m_pmutex != NULL)
+   if (m_hmutex != NULL)
    {
 
       char szName2[2048];
@@ -88,7 +88,9 @@ void window_gdi::create_window_graphics(int64_t cxParam, int64_t cyParam, int iS
       if (m_hMapFile == NULL)
       {
 
-         ::aura::del(m_pmutex);
+         ::ReleaseMutex(m_hmutex);
+
+         ::CloseHandle(m_hmutex);
 
       }
       else
@@ -104,9 +106,12 @@ void window_gdi::create_window_graphics(int64_t cxParam, int64_t cyParam, int iS
 
             CloseHandle(m_hMapFile);
 
-            ::aura::del(m_pmutex);
+            ::ReleaseMutex(m_hmutex);
+
+            ::CloseHandle(m_hmutex);
 
          }
+
       }
 
    }
@@ -183,9 +188,8 @@ void window_gdi::destroy_window_graphics()
    }
 
    
+   if (WaitForSingleObject(m_hmutex, INFINITE) == WAIT_OBJECT_0)
    {
-
-      synch_lock sl(m_pmutex);
 
       try
       {
@@ -200,7 +204,7 @@ void window_gdi::destroy_window_graphics()
          }
 
       }
-      catch(...)
+      catch (...)
       {
 
       }
@@ -210,7 +214,7 @@ void window_gdi::destroy_window_graphics()
 
          if (m_hMapFile != NULL)
          {
-   
+
             CloseHandle(m_hMapFile);
 
             m_hMapFile = NULL;
@@ -223,9 +227,11 @@ void window_gdi::destroy_window_graphics()
 
       }
 
+      ::ReleaseMutex(m_hmutex);
+
    }
 
-   ::aura::del(m_pmutex);
+   ::CloseHandle(m_hmutex);
 
    window_graphics::destroy_window_graphics();
 
@@ -262,21 +268,27 @@ void window_gdi::update_window(COLORREF * pcolorref,int cxParam,int cyParam,int 
       try
       {
 
-         synch_lock sl(m_pmutex);
 
-         int64_t * p = (int64_t *) m_pBuf;
+         if (::WaitForSingleObject(m_hmutex, INFINITE) != WAIT_OBJECT_0)
+         {
 
-         *p++ = cxParam;
-         *p++ = cyParam;
-         *p++ = m_iScan;
+            int64_t * p = (int64_t *)m_pBuf;
 
-         ::draw2d::copy_colorref(cxParam, cyParam, (COLORREF *) p, sizeof(COLORREF) * cxParam, m_pcolorref, m_iScan);
+            *p++ = cxParam;
+            *p++ = cyParam;
+            *p++ = m_iScan;
 
-         //memset(p, 0, sizeof(COLORREF) * cxParam *cyParam / 2);
+            ::draw2d::copy_colorref(cxParam, cyParam, (COLORREF *)p, sizeof(COLORREF) * cxParam, m_pcolorref, m_iScan);
+
+            //memset(p, 0, sizeof(COLORREF) * cxParam *cyParam / 2);
+
+         }
 
       }
       catch (...)
       {
+
+         ReleaseMutex(m_hmutex);
 
       }
 
