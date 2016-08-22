@@ -89,6 +89,8 @@ namespace user
    bool place_holder::unhold(::user::interaction * pui)
    {
 
+
+
       return System.place_hold(pui) != NULL;
 
    }
@@ -117,19 +119,12 @@ namespace user
       if(rectWindow != rectClient)
       {
 
-         puiHold->SetWindowPos(ZORDER_TOP, rectClient, (puiHold->IsWindowVisible() ? SWP_NOZORDER : SWP_SHOWWINDOW));
+         puiHold->SetWindowPos(ZORDER_TOP, rectClient, 0);
 
       }
       else
       {
          
-         if(!puiHold->IsWindowVisible())
-         {
-
-            puiHold->ShowWindow(SW_SHOW);
-
-         }
-
          puiHold->layout();
 
       }

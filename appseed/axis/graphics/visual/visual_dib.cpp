@@ -52,14 +52,14 @@ namespace visual
 
    dib_sp::dib_sp()
    {
-
+      m_eload = load_none;
    }
 
 
    dib_sp::dib_sp(const ::aura::allocatorsp & allocer) :
       ::draw2d::dib_sp(allocer)
    {
-
+      m_eload = load_none;
    }
 
 
@@ -75,6 +75,8 @@ namespace visual
       if (varFile.is_empty())
       {
 
+         m_eload = load_fail;
+
          return false;
 
       }
@@ -84,6 +86,8 @@ namespace visual
       {
 
          m_p->create_nanosvg(App(m_p->m_pauraapp).file().as_string(varFile));
+
+         m_eload = load_ok;
 
          return true;
 
@@ -100,6 +104,8 @@ namespace visual
 
             m_sparray.release();
 
+            m_eload = load_fail;
+
             return false;
 
          }
@@ -109,15 +115,30 @@ namespace visual
 
             m_sparray.release();
 
+            m_eload = load_fail;
+
             return false;
 
          }
+
+         m_eload = load_ok;
 
          return true;
 
       }
 
-      return Sys(m_p->m_pauraapp).visual().imaging().load_from_file(m_p, varFile, bCache);
+      if (!Sys(m_p->m_pauraapp).visual().imaging().load_from_file(m_p, varFile, bCache))
+      {
+
+         m_eload = load_fail;
+
+         return false;
+
+      }
+
+      m_eload = load_ok;
+
+      return true;
 
    }
 
@@ -127,7 +148,18 @@ namespace visual
 
       ::file::path path = m_p->m_pauraapp->m_paxisapp->dir().matter(pszMatter);
 
-      return Sys(m_p->m_pauraapp).visual().imaging().load_from_file(m_p, path, bCache);
+      if (!Sys(m_p->m_pauraapp).visual().imaging().load_from_file(m_p, path, bCache))
+      {
+
+         m_eload = load_fail;
+
+         return false;
+
+      }
+
+      m_eload = load_ok;
+
+      return true;
 
    }
 
@@ -135,7 +167,18 @@ namespace visual
    bool dib_sp::read_from_file(::file::buffer_sp spfile)
    {
 
-      return Sys(m_p->m_pauraapp).visual().imaging().LoadImageFromFile(m_p, spfile);
+      if (!Sys(m_p->m_pauraapp).visual().imaging().LoadImageFromFile(m_p, spfile))
+      {
+
+         m_eload = load_fail;
+
+         return false;
+
+      }
+
+      m_eload = load_ok;
+
+      return true;
 
    }
 

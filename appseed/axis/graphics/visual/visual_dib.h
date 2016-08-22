@@ -38,7 +38,14 @@ namespace visual
    {
    public:
 
+      enum e_load
+      {
 
+         load_none,
+         load_fail,
+         load_ok,
+
+      };
 
 
       class pointer :
@@ -101,6 +108,7 @@ namespace visual
       };
 
       sp(array)          m_sparray;
+      e_load             m_eload;
 
 
       dib_sp();

@@ -59,6 +59,7 @@ namespace user
 
       virtual void _001OnShowTab(::user::tab * ptab);
       virtual void on_show_view();
+      virtual void on_stage_view();
       virtual void install_message_handling(::message::dispatch * pinterface);
 
       void _001OnTabClick(int32_t iTab);

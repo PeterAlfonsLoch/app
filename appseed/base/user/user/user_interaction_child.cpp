@@ -107,7 +107,7 @@ namespace user
          m_pui->SetWindowPos(0,rectChild,(dwStyle & WS_VISIBLE) ? SWP_SHOWWINDOW : 0);
 
       }
-      else
+      else if(dwStyle & WS_VISIBLE)
       {
 
          ShowWindow(SW_SHOW);
@@ -176,7 +176,7 @@ namespace user
          m_pui->SetWindowPos(0,rectChild,(dwStyle & WS_VISIBLE) ? SWP_SHOWWINDOW : 0);
 
       }
-      else
+      else if(dwStyle & WS_VISIBLE)
       {
 
          ShowWindow(SW_SHOW);

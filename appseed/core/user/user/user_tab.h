@@ -161,6 +161,7 @@ namespace user
 
 
       virtual void on_show_view();
+      virtual void on_stage_view();
 
       virtual void  _001SetVertical(bool bSet = true);
       virtual void _001SelectTab(::index iTab);

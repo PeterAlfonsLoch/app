@@ -280,6 +280,7 @@ namespace user
       if(ptab == this)
       {
          on_show_view();
+         on_stage_view();
       }
    }
 
@@ -357,29 +358,166 @@ namespace user
             }
          }
       }
+      //rect rectClient;
+      //GetClientRect(rectClient);
+      //if(!rectClient.is_null())
+      //{
+      //   //layout();
+      //}
+      //if(m_pviewdata != NULL)
+      //{
+      //   if(m_pviewdata->m_pwnd != NULL)
+      //   {
+      //      m_pviewdata->m_pwnd->ShowWindow(SW_SHOW);
+      //   }
+      //}
+
+      //if(m_pviewcreator != NULL && m_pviewcreator != dynamic_cast < ::user::view_creator * > (this))
+      //{
+      //   m_pviewcreator->on_show_view();
+      //}
+
+      //if(m_pviewdata->m_pwnd == NULL && m_pviewdata->m_pholder != NULL)
+      //{
+
+      //   if(m_pviewdata->m_pholder->m_uiptraChild.get_count() > 0)
+      //   {
+
+      //      m_pviewdata->m_pwnd = m_pviewdata->m_pholder->m_uiptraChild[0];
+
+      //   }
+
+      //}
+
+      //if(m_pviewdata != NULL && m_pviewdata->m_pholder != NULL)
+      //{
+      //   rect rectClient;
+      //   m_pviewdata->m_pholder->GetClientRect(rectClient);
+      //   rect rectTabClient = get_data()->m_rectTabClient;
+      //   if(rectTabClient.area() > 0)
+      //   {
+
+      //      rectTabClient -= rectTabClient.top_left();
+      //      if(rectClient != rectTabClient)
+      //      {
+      //      m_pviewdata->m_pholder->SetWindowPos(ZORDER_TOP,get_data()->m_rectTabClient,SWP_SHOWWINDOW);
+      //      }
+      //      else
+      //      {
+      //      m_pviewdata->m_pholder->SetWindowPos(ZORDER_TOP,get_data()->m_rectTabClient,SWP_SHOWWINDOW | SWP_NOSIZE | SWP_NOMOVE);
+      //      }
+
+      //   }
+      //   if(m_pviewdata->m_pwnd != NULL)
+      //   {
+      //      m_pviewdata->m_pwnd->UpdateWindow();
+      //      m_pviewdata->m_pwnd->SetFocus();
+      //   }
+      //}
+
+      //((GetParentFrame()))->RedrawWindow();
+
+      //GetParentFrame()->SetActiveView(this);
+
+      //Application.on_show_view(this);
+
+   }
+
+   void tab_view::on_stage_view()
+   {
+
+      //id id = get_id_by_tab(_001GetSel(), false);
+      //class id idSplit;
+      //::user::view_creator_data * pcreatordata = ensure_impact(id, get_data()->m_rectTabClient);
+
+      //if (pcreatordata == NULL)
+      //{
+
+      //   return;
+
+      //}
+
+      //index iTab = ::user::tab::get_tab_by_id(id);
+
+      //if (iTab >= 0)
+      //{
+      //   if (pcreatordata->m_pholder != NULL)
+      //   {
+      //      get_data()->m_panea[iTab]->m_pholder = pcreatordata->m_pholder;
+      //   }
+      //   else if (pcreatordata->m_pwnd != NULL)
+      //   {
+      //      if (get_tab_holder(iTab) == NULL)
+      //      {
+      //         get_data()->m_panea[iTab]->m_pholder = place(pcreatordata->m_pwnd, get_data()->m_rectTabClient);
+      //      }
+      //      else
+      //      {
+      //         get_data()->m_panea[iTab]->m_pholder->m_uiptraChild.remove_all();
+      //         get_data()->m_panea[iTab]->m_pholder->hold(pcreatordata->m_pwnd);
+      //      }
+      //   }
+      //   else
+      //   {
+      //      get_data()->m_panea[iTab]->m_pholder = get_new_place_holder(get_data()->m_rectTabClient);
+      //   }
+      //}
+      //if (pcreatordata->m_strTitle.has_char())
+      //{
+      //   get_data()->m_panea[_001GetSel()]->m_istrTitleEx = pcreatordata->m_strTitle;
+      //}
+
+      //idSplit = pcreatordata->m_idSplit;
+
+      //if (pcreatordata != m_pviewdata)
+      //{
+      //   m_pviewdataOld = m_pviewdata;
+      //   m_pviewdata = pcreatordata;
+      //   if (m_pviewdata->m_eflag.is_signalized(::user::view_creator_data::flag_hide_all_others_on_show))
+      //   {
+      //      ::user::view_creator::view_map::pair * ppair = m_pviewcreator->m_viewmap.PGetFirstAssoc();
+      //      while (ppair != NULL)
+      //      {
+      //         try
+      //         {
+      //            if (ppair->m_element2 != m_pviewdata)
+      //            {
+      //               if (ppair->m_element2->m_pholder != NULL)
+      //               {
+      //                  ppair->m_element2->m_pholder->ShowWindow(SW_HIDE);
+      //               }
+      //            }
+      //         }
+      //         catch (...)
+      //         {
+      //         }
+      //         ppair = m_pviewcreator->m_viewmap.PGetNextAssoc(ppair);
+      //      }
+      //   }
+      //}
       rect rectClient;
       GetClientRect(rectClient);
-      if(!rectClient.is_null())
+      if (!rectClient.is_null())
       {
          //layout();
       }
-      if(m_pviewdata != NULL)
+      if (m_pviewdata != NULL)
       {
-         if(m_pviewdata->m_pwnd != NULL)
+         if (m_pviewdata->m_pwnd != NULL)
          {
             m_pviewdata->m_pwnd->ShowWindow(SW_SHOW);
          }
       }
 
-      if(m_pviewcreator != NULL && m_pviewcreator != dynamic_cast < ::user::view_creator * > (this))
+      if (m_pviewcreator != NULL && m_pviewcreator != dynamic_cast < ::user::view_creator * > (this))
       {
          m_pviewcreator->on_show_view();
       }
 
-      if(m_pviewdata->m_pwnd == NULL && m_pviewdata->m_pholder != NULL)
+      if (m_pviewdata->m_pwnd == NULL && m_pviewdata->m_pholder != NULL)
       {
 
-         if(m_pviewdata->m_pholder->m_uiptraChild.get_count() > 0)
+         if (m_pviewdata->m_pholder->m_uiptraChild.get_count() > 0)
          {
 
             m_pviewdata->m_pwnd = m_pviewdata->m_pholder->m_uiptraChild[0];
@@ -388,26 +526,32 @@ namespace user
 
       }
 
-      if(m_pviewdata != NULL && m_pviewdata->m_pholder != NULL)
+      if (m_pviewdata != NULL && m_pviewdata->m_pholder != NULL)
       {
          rect rectClient;
          m_pviewdata->m_pholder->GetClientRect(rectClient);
          rect rectTabClient = get_data()->m_rectTabClient;
-         if(rectTabClient.area() > 0)
+         if (rectTabClient.area() > 0)
          {
 
             rectTabClient -= rectTabClient.top_left();
-            if(rectClient != rectTabClient)
+            if (rectClient != rectTabClient)
             {
-            m_pviewdata->m_pholder->SetWindowPos(ZORDER_TOP,get_data()->m_rectTabClient,SWP_SHOWWINDOW);
+
+               m_pviewdata->m_pholder->SetWindowPos(ZORDER_TOP, get_data()->m_rectTabClient, 0);
+
+               m_pviewdata->m_pholder->ShowWindow(SW_SHOW);
+
             }
             else
             {
-            m_pviewdata->m_pholder->SetWindowPos(ZORDER_TOP,get_data()->m_rectTabClient,SWP_SHOWWINDOW | SWP_NOSIZE | SWP_NOMOVE);
+
+               m_pviewdata->m_pholder->SetWindowPos(ZORDER_TOP, get_data()->m_rectTabClient, SWP_SHOWWINDOW | SWP_NOSIZE | SWP_NOMOVE);
+
             }
 
          }
-         if(m_pviewdata->m_pwnd != NULL)
+         if (m_pviewdata->m_pwnd != NULL)
          {
             m_pviewdata->m_pwnd->UpdateWindow();
             m_pviewdata->m_pwnd->SetFocus();
@@ -421,7 +565,6 @@ namespace user
       Application.on_show_view(this);
 
    }
-
 
    void tab_view::ensure_tab_by_id(id id)
    {

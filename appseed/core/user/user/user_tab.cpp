@@ -979,8 +979,7 @@ namespace user
 
          ScreenToClient(rectWindow);
 
-         pholder->SetWindowPos(ZORDER_TOP, rectChild.left, rectChild.top, rectChild.width(), rectChild.height(),
-            _001GetSel() == iPane ? (pholder->IsWindowVisible() ? 0 : SWP_SHOWWINDOW) : 0);
+         pholder->SetWindowPos(ZORDER_TOP, rectChild.left, rectChild.top, rectChild.width(), rectChild.height(), 0);
 
          //pholder->layout();
 
@@ -1413,7 +1412,7 @@ namespace user
       on_change_pane_count();
 
       on_show_view();
-
+      on_stage_view();
    }
 
 
@@ -1707,6 +1706,13 @@ namespace user
          get_data()->m_pcallback->_001OnShowTab(this);
       }
       Application.on_show_view(this);
+   }
+
+
+   void tab::on_stage_view()
+   {
+
+
    }
 
    void tab:: _001SetVertical(bool bVertical)
