@@ -21,7 +21,9 @@ window_gdi::~window_gdi()
 
 }
 
-
+HANDLE hMapFile = NULL;
+LPCTSTR pBuf = NULL;
+CHAR szName[] = "Local\\ca2screen-%d";
 void window_gdi::create_window_graphics(int64_t cxParam, int64_t cyParam, int iStrideParam)
 {
 
@@ -56,6 +58,50 @@ void window_gdi::create_window_graphics(int64_t cxParam, int64_t cyParam, int iS
    m_bitmapinfo.bmiHeader.biSizeImage     = (LONG) (iStrideParam * cyParam);
 
    m_hbitmap = CreateDIBSection(NULL, &m_bitmapinfo, DIB_RGB_COLORS, (void **) &m_pcolorref, NULL, 0);
+
+   if (pBuf != NULL)
+   {
+
+      UnmapViewOfFile(pBuf);
+
+
+   }
+
+   if (hMapFile != NULL)
+   {
+      CloseHandle(hMapFile);
+
+   }
+
+   char szName2[2048];
+
+   sprintf(szName2, szName, (INT_PTR) hwnd);
+
+   hMapFile = CreateFileMapping(
+      INVALID_HANDLE_VALUE,    // use paging file
+      NULL,                    // default security
+      PAGE_READWRITE,          // read/write access
+      0,                       // maximum object size (high-order DWORD)
+      10240 * 10240 * 4 ,                // maximum object size (low-order DWORD)
+      szName2);                 // name of mapping object
+
+   if (hMapFile != NULL)
+   {
+      pBuf = (LPTSTR)MapViewOfFile(hMapFile,   // handle to map object
+         FILE_MAP_ALL_ACCESS, // read/write permission
+         0,
+         0,
+         10240 * 10240 * 4);
+
+      if (pBuf == NULL)
+      {
+
+         CloseHandle(hMapFile);
+
+      }
+   }
+
+
 
    m_hdc = ::CreateCompatibleDC(NULL);
 
@@ -155,6 +201,32 @@ void window_gdi::update_window(COLORREF * pcolorref,int cxParam,int cyParam,int 
    {
 
    }
+
+   if (pBuf != NULL)
+   {
+      try
+      {
+
+
+         int64_t * p = (int64_t *) pBuf;
+
+         *p++ = cxParam;
+         *p++ = cyParam;
+         *p++ = m_iScan;
+
+         ::draw2d::copy_colorref(cxParam, cyParam, (COLORREF *) p, sizeof(COLORREF) * cxParam, m_pcolorref, m_iScan);
+
+         //memset(p, 0, sizeof(COLORREF) * cxParam *cyParam / 2);
+
+      }
+      catch (...)
+      {
+
+      }
+
+   }
+
+   ::SetWindowLongPtr(m_pimpl->m_oswindow, GWLP_USERDATA, (LONG) m_hdc);
 
    if(bLayered)
    {
