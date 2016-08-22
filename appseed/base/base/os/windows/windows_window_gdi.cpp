@@ -12,6 +12,9 @@ window_gdi::window_gdi(::aura::application * papp) :
    m_hbitmap         = NULL;
    m_pcolorref       = NULL;
    m_hdc             = NULL;
+   m_hwnd            = NULL;
+   m_pMap
+
 
 }
 
@@ -21,8 +24,6 @@ window_gdi::~window_gdi()
 
 }
 
-HANDLE hMapFile = NULL;
-LPCTSTR pBuf = NULL;
 CHAR szName[] = "Local\\ca2screen-%d";
 void window_gdi::create_window_graphics(int64_t cxParam, int64_t cyParam, int iStrideParam)
 {

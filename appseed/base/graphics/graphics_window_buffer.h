@@ -8,6 +8,9 @@ public:
 
 
    ::visual::dib_sp              m_spdibBuffer;
+   HANDLE                        m_hMapFile;
+   LPCTSTR                       m_pBuf;
+   HWND                          m_hwnd;
 
 
    window_buffer(::aura::application * papp);
