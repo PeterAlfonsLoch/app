@@ -13,7 +13,8 @@ window_gdi::window_gdi(::aura::application * papp) :
    m_pcolorref       = NULL;
    m_hdc             = NULL;
    m_hwnd            = NULL;
-   m_pMap
+   m_hMapFile        = NULL;
+   m_pBuf            = NULL;
 
 
 }
@@ -25,6 +26,7 @@ window_gdi::~window_gdi()
 }
 
 CHAR szName[] = "Local\\ca2screen-%d";
+CHAR szNameMutex[] = "Local\\ca2screenmutex-%d";
 void window_gdi::create_window_graphics(int64_t cxParam, int64_t cyParam, int iStrideParam)
 {
 
@@ -46,6 +48,8 @@ void window_gdi::create_window_graphics(int64_t cxParam, int64_t cyParam, int iS
 
    }
 
+  
+
    ZERO(m_bitmapinfo);
 
    int iStride = iStrideParam;
@@ -60,46 +64,51 @@ void window_gdi::create_window_graphics(int64_t cxParam, int64_t cyParam, int iS
 
    m_hbitmap = CreateDIBSection(NULL, &m_bitmapinfo, DIB_RGB_COLORS, (void **) &m_pcolorref, NULL, 0);
 
-   if (pBuf != NULL)
+   char szNameMutex2[2048];
+
+   sprintf(szNameMutex2, szNameMutex, (INT_PTR)hwnd);
+
+   m_pmutex = new mutex(get_app(), szNameMutex2, NULL);
+
+   if (m_pmutex != NULL)
    {
 
-      UnmapViewOfFile(pBuf);
+      char szName2[2048];
 
+      sprintf(szName2, szName, (INT_PTR)hwnd);
 
-   }
+      m_hMapFile = CreateFileMapping(
+         INVALID_HANDLE_VALUE,    // use paging file
+         NULL,                    // default security
+         PAGE_READWRITE,          // read/write access
+         0,                       // maximum object size (high-order DWORD)
+         10240 * 10240 * 4,                // maximum object size (low-order DWORD)
+         szName2);                 // name of mapping object
 
-   if (hMapFile != NULL)
-   {
-      CloseHandle(hMapFile);
-
-   }
-
-   char szName2[2048];
-
-   sprintf(szName2, szName, (INT_PTR) hwnd);
-
-   hMapFile = CreateFileMapping(
-      INVALID_HANDLE_VALUE,    // use paging file
-      NULL,                    // default security
-      PAGE_READWRITE,          // read/write access
-      0,                       // maximum object size (high-order DWORD)
-      10240 * 10240 * 4 ,                // maximum object size (low-order DWORD)
-      szName2);                 // name of mapping object
-
-   if (hMapFile != NULL)
-   {
-      pBuf = (LPTSTR)MapViewOfFile(hMapFile,   // handle to map object
-         FILE_MAP_ALL_ACCESS, // read/write permission
-         0,
-         0,
-         10240 * 10240 * 4);
-
-      if (pBuf == NULL)
+      if (m_hMapFile == NULL)
       {
 
-         CloseHandle(hMapFile);
+         ::aura::del(m_pmutex);
 
       }
+      else
+      {
+         m_pBuf = (LPTSTR)MapViewOfFile(m_hMapFile,   // handle to map object
+            FILE_MAP_ALL_ACCESS, // read/write permission
+            0,
+            0,
+            10240 * 10240 * 4);
+
+         if (m_pBuf == NULL)
+         {
+
+            CloseHandle(m_hMapFile);
+
+            ::aura::del(m_pmutex);
+
+         }
+      }
+
    }
 
 
@@ -173,6 +182,51 @@ void window_gdi::destroy_window_graphics()
 
    }
 
+   
+   {
+
+      synch_lock sl(m_pmutex);
+
+      try
+      {
+
+         if (m_pBuf != NULL)
+         {
+
+            UnmapViewOfFile(m_pBuf);
+
+            m_pBuf = NULL;
+
+         }
+
+      }
+      catch(...)
+      {
+
+      }
+
+      try
+      {
+
+         if (m_hMapFile != NULL)
+         {
+   
+            CloseHandle(m_hMapFile);
+
+            m_hMapFile = NULL;
+
+         }
+
+      }
+      catch (...)
+      {
+
+      }
+
+   }
+
+   ::aura::del(m_pmutex);
+
    window_graphics::destroy_window_graphics();
 
 }
@@ -203,13 +257,14 @@ void window_gdi::update_window(COLORREF * pcolorref,int cxParam,int cyParam,int 
 
    }
 
-   if (pBuf != NULL)
+   if (m_pBuf != NULL)
    {
       try
       {
 
+         synch_lock sl(m_pmutex);
 
-         int64_t * p = (int64_t *) pBuf;
+         int64_t * p = (int64_t *) m_pBuf;
 
          *p++ = cxParam;
          *p++ = cyParam;
@@ -227,7 +282,6 @@ void window_gdi::update_window(COLORREF * pcolorref,int cxParam,int cyParam,int 
 
    }
 
-   ::SetWindowLongPtr(m_pimpl->m_oswindow, GWLP_USERDATA, (LONG) m_hdc);
 
    if(bLayered)
    {
