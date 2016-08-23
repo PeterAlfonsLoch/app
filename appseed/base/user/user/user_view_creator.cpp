@@ -71,31 +71,53 @@ namespace user
       return m_viewmap.get_count();
    }
 
-   view_creator_data * view_creator::ensure_impact(id id, LPCRECT lpcrectCreate)
+
+   view_creator_data * view_creator::get_impact(id id, LPCRECT lpcrectCreate)
    {
+
       view_creator_data * pcreatordata = get(id);
-      if(pcreatordata != NULL)
+
+      if (pcreatordata != NULL)
+      {
+
          return pcreatordata;
+
+      }
+
       return create_impact(id,lpcrectCreate);
+
    }
+
 
    view_creator_data * view_creator::allocate(id id)
    {
+
       view_creator_data * pcreatordata = new ::user::view_creator_data;
+
       pcreatordata->m_id = id;
+
       m_viewmap.set_at(id, pcreatordata);
+
       return pcreatordata;
+
    }
+
 
    view_creator_data * view_creator::create_impact(id id,LPCRECT lpcrectCreate)
    {
+
       view_creator_data * pcreatordata = allocate(id);
+
       pcreatordata->m_rectCreate = *lpcrectCreate;
+
       if(m_pviewcontainer != NULL)
       {
+
          try
          {
+
             m_pviewcontainer->on_new_view_creator_data(pcreatordata);
+
          }
          catch(::exit_exception & e)
          {
@@ -112,13 +134,19 @@ namespace user
          }
          catch(...)
          {
+
          }
+
       }
+
       if(m_pviewcontainer != this)
       {
+
          try
          {
+
             on_new_view_creator_data(pcreatordata);
+
          }
          catch(::exit_exception & e)
          {
@@ -284,10 +312,12 @@ namespace user
 
    //}
 
-   void view_creator::on_new_view_creator_data(::user::view_creator_data * pcreatordata)
+   bool view_creator::on_new_view_creator_data(::user::view_creator_data * pcreatordata)
    {
 
       UNREFERENCED_PARAMETER(pcreatordata);
+
+      return false;
 
    }
 

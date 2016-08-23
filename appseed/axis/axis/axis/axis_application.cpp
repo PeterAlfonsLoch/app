@@ -3023,13 +3023,15 @@ namespace axis
    //   return dir().is_inside_time(pszPath);
    //}
 
+
    bool application::file_is_read_only(const char * pszPath)
    {
-//      return file().is_read_only(pszPath);
-      throw not_implemented(this);
+
       return false;
+      //return file().is_read_only(pszPath);
 
    }
+
 
 //   string application::file_as_string(var varFile)
 //   {

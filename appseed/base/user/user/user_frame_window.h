@@ -53,8 +53,8 @@
 #define CBRS_ORIENT_VERT    (CBRS_ALIGN_LEFT|CBRS_ALIGN_RIGHT)
 #define CBRS_ORIENT_ANY     (CBRS_ORIENT_HORZ|CBRS_ORIENT_VERT)
 
-//#define CBRS_ALL            0x0040FFFFL
-#define CBRS_ALL            0x1140FFFFL
+#define CBRS_ALL            0x0040FFFFL
+//#define CBRS_ALL            0x1140FFFFL
 
 // the CBRS_ style is made up of an alignment style and a draw border style
 //  the alignment styles are mutually exclusive

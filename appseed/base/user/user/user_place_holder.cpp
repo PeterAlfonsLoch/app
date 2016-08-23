@@ -18,10 +18,42 @@ namespace user
    {
    }
 
+   
    void place_holder::install_message_handling(::message::dispatch * pdispatch)
    {
+      
       ::user::interaction::install_message_handling(pdispatch);
+
+      IGUI_WIN_MSG_LINK(WM_SHOWWINDOW, pdispatch, this, &place_holder::_001OnShowWindow);
+
    }
+
+
+   void place_holder::_001OnShowWindow(::signal_details * pobj)
+   {
+
+      SCAST_PTR(::message::show_window, pshowwindow, pobj);
+
+      if (m_uiptraChild.get_size() > 0 && m_uiptraChild[0] != NULL)
+      {
+
+         if (pshowwindow->m_bShow)
+         {
+
+            m_uiptraChild[0]->ShowWindow(SW_SHOW);
+
+         }
+         else
+         {
+
+            m_uiptraChild[0]->ShowWindow(SW_HIDE);
+
+         }
+
+      }
+
+   }
+
 
    bool place_holder::can_merge(::user::interaction * pui)
    {
@@ -129,6 +161,13 @@ namespace user
 
       }
 
+      if (m_bVisible)
+      {
+
+         puiHold->ShowWindow(SW_SHOW);
+
+      }
+
    }
 
 
@@ -155,7 +194,7 @@ namespace user
 
       GetWindowRect(r);
 
-      if(!pholder->::user::interaction::create_window(NULL,NULL,WS_CHILD /*__WS_DEFAULT_VIEW*/,r,GetParent(),m_id))
+      if(!pholder->::user::interaction::create_window(NULL,NULL,WS_VISIBLE | WS_CHILD /*__WS_DEFAULT_VIEW*/,r,GetParent(),m_id))
       {
 
          return NULL;

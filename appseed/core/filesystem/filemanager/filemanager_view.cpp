@@ -141,7 +141,7 @@ namespace filemanager
 
                      dynamic_cast <::filemanager::save_as_view *>(get_pane_window(0).m_p)->_001GetText(strTitle);
 
-                     if (strTitle.folder().has_char() && get_filemanager_manager()->get_fs_data()->is_dir(strTitle.name()))
+                     if (strTitle.folder().has_char() && get_filemanager_manager()->get_fs_data()->is_dir(strTitle.folder()))
                      {
 
                         strPath = strTitle;

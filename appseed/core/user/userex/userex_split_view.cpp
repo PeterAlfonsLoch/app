@@ -20,13 +20,17 @@ namespace userex
    }
 
 
-   void split_view::on_new_view_creator_data(::user::view_creator_data * pcreatordata)
+   bool split_view::on_new_view_creator_data(::user::view_creator_data * pcreatordata)
    {
 
       ::index iPane = get_pane_by_id(pcreatordata->m_id);
 
-      if(iPane < 0)
-         return;
+      if (iPane < 0)
+      {
+
+         return false;
+
+      }
 
       Pane * ppane = (Pane *) m_panea.element_at(iPane);
 
@@ -34,10 +38,16 @@ namespace userex
 
       ppane->m_pholder = pcreatordata->m_pholder;
 
-      if(ppane->m_pholder == NULL)
-         return;
+      if (ppane->m_pholder == NULL)
+      {
+
+         return false;
+
+      }
 
       pcreatordata->m_pviewdata = (void *) ppane;
+
+      return true;
 
    }
 

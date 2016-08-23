@@ -2834,7 +2834,7 @@ namespace user
       //   return;     // nothing to do
 
       // try to use DeferWindowPos for speed, otherwise use SetWindowPos
-      oswindow->SetWindowPos(0,lpRect->left,lpRect->top,lpRect->right - lpRect->left,lpRect->bottom - lpRect->top,SWP_NOACTIVATE | SWP_NOZORDER | SWP_NOREDRAW);
+      oswindow->SetWindowPos(0,lpRect->left,lpRect->top,lpRect->right - lpRect->left,lpRect->bottom - lpRect->top,SWP_SHOWWINDOW | SWP_NOACTIVATE | SWP_NOZORDER | SWP_NOREDRAW);
    }
 
 

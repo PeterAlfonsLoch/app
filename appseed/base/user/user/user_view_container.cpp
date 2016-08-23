@@ -42,9 +42,18 @@ namespace user
    }
 
 
-   void view_container::on_new_view_creator_data(view_creator_data * pcreatordata)
+   bool view_container::on_new_view_creator_data(view_creator_data * pcreatordata)
    {
+      
       UNREFERENCED_PARAMETER(pcreatordata);
+
+      return false;
+
    }
 
+
 } // namespace user
+
+
+
+

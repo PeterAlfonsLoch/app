@@ -44,7 +44,7 @@ namespace user
 
       virtual ::count get_view_count();
 
-      virtual void on_new_view_creator_data(::user::view_creator_data * pcreatordata);
+      virtual bool on_new_view_creator_data(::user::view_creator_data * pcreatordata);
       virtual void on_create_view(::user::view_creator_data * pcreatordata);
       virtual void on_show_view();
 
@@ -61,7 +61,7 @@ namespace user
       using ::object::create;
       virtual ::user::view_creator_data * create_impact(id id,LPCRECT lpcrectCreate);
 
-      virtual ::user::view_creator_data * ensure_impact(id id, LPCRECT lpcrectCreate);
+      virtual ::user::view_creator_data * get_impact(id id, LPCRECT lpcrectCreate);
 
       virtual void hide_all_except(const id_array & id);
 

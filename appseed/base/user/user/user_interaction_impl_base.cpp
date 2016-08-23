@@ -249,11 +249,11 @@ namespace user
 
       if(::IsRectEmpty(layout.rect))
          return;
-#ifdef WINDOWSEX
-      if((nFlags & ~reposNoPosLeftOver) != reposQuery)
-         layout.hDWP = ::BeginDeferWindowPos(8); // reasonable guess
-      else
-#endif
+//#ifdef WINDOWSEX
+//      if((nFlags & ~reposNoPosLeftOver) != reposQuery)
+//         layout.hDWP = ::BeginDeferWindowPos(8); // reasonable guess
+//      else
+//#endif
          layout.hDWP = NULL; // not actually doing layout
 
       if(m_pui != NULL)
@@ -336,7 +336,7 @@ namespace user
          {
             pLeftOver->CalcWindowRect(&layout.rect);
             //__reposition_window(&layout,pLeftOver,&layout.rect);
-            pLeftOver->SetPlacement(layout.rect);
+            pLeftOver->SetPlacement(layout.rect, SWP_SHOWWINDOW);
          }
       }
 

@@ -102,27 +102,52 @@ namespace userex
 
    }
 
-   void pane_tab_view::on_new_view_creator_data(::user::view_creator_data * pcreatordata)
+   
+   bool pane_tab_view::on_new_view_creator_data(::user::view_creator_data * pcreatordata)
    {
 
-      ::index iTab = get_tab_by_id(pcreatordata->m_id);
+      ::index iTab = get_tab_by_id(pcreatordata->m_id, false);
 
-      if(iTab < 0)
-         return;
+      if (iTab < 0)
+      {
+
+         if (!add_tab("", pcreatordata->m_id))
+         {
+
+            return false;
+
+         }
+
+         iTab = get_tab_by_id(pcreatordata->m_id, false);
+
+         if (iTab < 0)
+         {
+
+            return false;
+
+         }
+
+      }
 
       ::user::tab_pane * ppane = (::user::tab_pane *)get_data()->m_panea.element_at(iTab);
 
       if(ppane == NULL)
-         return;
+         return false;
 
       pcreatordata->m_pholder = get_new_place_holder(get_data()->m_rectTabClient);
 
       ppane->m_pholder = pcreatordata->m_pholder;
 
-      if(ppane->m_pholder == NULL)
-         return;
+      if (ppane->m_pholder == NULL)
+      {
+
+         return false;
+
+      }
 
       pcreatordata->m_pviewdata = (void *)ppane;
+
+      return true;
 
    }
 
@@ -136,7 +161,7 @@ namespace userex
       {
          if(panea[iTab]->m_pholder == pholder)
          {
-            ::user::view_creator_data * pcreatordata = ensure_impact(panea[iTab]->m_id,get_data()->m_rectTabClient);
+            ::user::view_creator_data * pcreatordata = create_impact(panea[iTab]->m_id,get_data()->m_rectTabClient);
             if(pcreatordata != NULL)
             {
                if(pcreatordata->m_pwnd == NULL)
@@ -151,10 +176,26 @@ namespace userex
    }
 
 
-   void pane_tab_view::ensure_tab_by_id(id id)
+   ::index pane_tab_view::create_tab_by_id(id id)
    {
 
-      ensure_impact(id,get_data()->m_rectTabClient);
+      if(create_impact(id,get_data()->m_rectTabClient) == NULL)
+      { 
+
+         return -1;
+      
+      }
+
+      index iPane = get_tab_by_id(id);
+
+      if (iPane < 0)
+      {
+
+         return -1;
+
+      }
+
+      return iPane;
 
    }
 

@@ -645,7 +645,7 @@ namespace filemanager
          else
          {
 
-            ptabview->ensure_tab_by_id("filemanager::operation");
+            ptabview->create_tab_by_id("filemanager::operation");
 
          }
 

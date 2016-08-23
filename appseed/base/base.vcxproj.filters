@@ -802,9 +802,6 @@
     <ClCompile Include="base\os\windows\windows_gdi.cpp">
       <Filter>Source Files\base\os\windows</Filter>
     </ClCompile>
-    <ClCompile Include="base\os\windows\windows_window_gdi.cpp">
-      <Filter>Source Files\base\os\windows</Filter>
-    </ClCompile>
     <ClCompile Include="database\_database.cpp">
       <Filter>Source Files\database</Filter>
     </ClCompile>
@@ -834,6 +831,9 @@
     </ClCompile>
     <ClCompile Include="graphics\graphics_window_dc.cpp">
       <Filter>Source Files\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="base\os\windows\windows_window_gdi.cpp">
+      <Filter>Source Files\base\os</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

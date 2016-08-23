@@ -37,6 +37,7 @@ namespace user
       virtual void _001OnDraw(::draw2d::graphics * pgraphics);
       virtual void _001OnNcDraw(::draw2d::graphics * pgraphics);
 
+      DECL_GEN_SIGNAL(_001OnShowWindow);
 
       virtual void layout();
 

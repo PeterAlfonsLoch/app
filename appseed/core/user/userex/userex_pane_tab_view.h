@@ -28,13 +28,13 @@ namespace userex
 
       virtual void on_show_view();
 
-      virtual void on_new_view_creator_data(::user::view_creator_data * pcreatordata);
+      virtual bool on_new_view_creator_data(::user::view_creator_data * pcreatordata);
 
       virtual void GetTabClientRect(LPRECT lprect);
 
       virtual bool on_hold(::user::interaction * pui, ::user::place_holder * pholder);
 
-      virtual void ensure_tab_by_id(id id);
+      virtual ::index create_tab_by_id(id id);
 
       virtual void on_create_view(::user::view_creator_data * pcreatordata);
 

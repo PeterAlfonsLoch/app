@@ -20,7 +20,7 @@ namespace user
       istring                             m_istrTitleEx;
       ::visual::dib_sp                    m_dib;
       sp(place_holder)                    m_pholder;
-      bool                                m_bVisible;
+      bool                                m_bTabPaneVisible;
       bool                                m_bPermanent;
       size                                m_size;
       stringa                             m_straTitle;
@@ -80,30 +80,30 @@ namespace user
       {
       public:
 
-         size                                m_sizeSep;
-         int32_t                             m_iHeightAddUp;
-         ::draw2d::pen_sp                    m_pen;
-         ::draw2d::font_sp                   m_font;
-         ::draw2d::font_sp                   m_fontUnderline;
-         ::draw2d::font_sp                   m_fontBigBold;
-         ::draw2d::font_sp                   m_fontBold;
-         ::draw2d::brush_sp                  m_brushTextHover;
-         ::draw2d::brush_sp                  m_brushTextSel;
-         ::draw2d::brush_sp                  m_brushText;
-         ::draw2d::brush_sp                  m_brushCloseHover;
-         ::draw2d::brush_sp                  m_brushCloseSel;
-         ::draw2d::brush_sp                  m_brushClose;
-         ::draw2d::pen_sp                    m_penBorder;
-         ::draw2d::pen_sp                    m_penBorderSel;
-         ::draw2d::pen_sp                    m_penBorderHover;
-         bool                                m_bCreated;
-         int32_t                              m_iTabHeight;
-         int32_t                              m_iTabWidth;
-         tab_pane_array                       m_panea;
+         size                             m_sizeSep;
+         int32_t                          m_iHeightAddUp;
+         ::draw2d::pen_sp                 m_pen;
+         ::draw2d::font_sp                m_font;
+         ::draw2d::font_sp                m_fontUnderline;
+         ::draw2d::font_sp                m_fontBigBold;
+         ::draw2d::font_sp                m_fontBold;
+         ::draw2d::brush_sp               m_brushTextHover;
+         ::draw2d::brush_sp               m_brushTextSel;
+         ::draw2d::brush_sp               m_brushText;
+         ::draw2d::brush_sp               m_brushCloseHover;
+         ::draw2d::brush_sp               m_brushCloseSel;
+         ::draw2d::brush_sp               m_brushClose;
+         ::draw2d::pen_sp                 m_penBorder;
+         ::draw2d::pen_sp                 m_penBorderSel;
+         ::draw2d::pen_sp                 m_penBorderHover;
+         bool                             m_bCreated;
+         int32_t                          m_iTabHeight;
+         int32_t                          m_iTabWidth;
+         tab_pane_array                   m_panea;
          rect                             m_rectTab;
          rect                             m_rectTabClient;
          visual::graphics_extension       m_dcextension;
-         index_array                      m_iaSel;
+         id_array                         m_idaSel;
          rect                             m_rectBorder;
          rect                             m_rectMargin;
          rect                             m_rectTextMargin;
@@ -113,7 +113,7 @@ namespace user
          ::index                          m_iDragTab;
          bool                             m_bDrag;
          bool                             m_bVertical;
-         ::core::match::any                m_matchanyRestore;
+         ::core::match::any               m_matchanyRestore;
          bool                             m_bEnableCloseAll;
 
 
@@ -182,7 +182,6 @@ namespace user
       virtual id get_cur_tab_id();
       virtual id get_current_id();
 
-      virtual void _001AddSel(::index iSel);
       virtual ::index _001GetSel();
       virtual void _001SetSel(::index iSel);
 
@@ -200,7 +199,7 @@ namespace user
       virtual void get_title(int iPane,stringa & stra);
 
       virtual void layout();
-      virtual void layout_pane(index iPane);
+      virtual void layout_pane(index iPane, bool bDisplay = false);
 
       virtual void GetTabClientRect(LPRECT lprect);
       virtual void GetTabClientRect(RECT64 * lprect);
@@ -218,11 +217,11 @@ namespace user
       virtual bool set_title(::index iTab, const char * psz);
       virtual bool SetTitleById(id id, const char * psz);
 
-      virtual ::index get_tab_by_id(id id);
+      virtual ::index get_tab_by_id(id id, bool bVisible = true);
       virtual id get_id_by_tab(::index iTab, bool bVisible = true);
       virtual tab_pane * get_pane_by_id(id id);
-      virtual tab_pane * ensure_pane_by_id(id id);
-      virtual void ensure_tab_by_id(id id);
+      virtual tab_pane * create_pane_by_id(id id);
+      virtual ::index create_tab_by_id(id id);
 
       virtual void on_change_pane_count();
 

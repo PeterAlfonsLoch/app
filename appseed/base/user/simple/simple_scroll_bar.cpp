@@ -429,7 +429,7 @@ int32_t simple_scroll_bar::SetTrackingPos(point point)
 
       dRate = MIN(1.0, dRate);
 
-      nPos = dRate * (m_scrollinfo.nMax - m_scrollinfo.nMin - m_scrollinfo.nPage);
+      nPos = (int32_t) (dRate * (m_scrollinfo.nMax - m_scrollinfo.nMin - m_scrollinfo.nPage));
 
       nPos += m_scrollinfo.nMin;
 
