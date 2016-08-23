@@ -24,12 +24,12 @@ namespace user
       id                               m_id;
       ::user::interaction *            m_pwnd;
       ::user::place_holder *           m_pholder;
-      ::user::document *     m_pdoc;
+      ::user::document *               m_pdoc;
       id                               m_idSplit;
       bool                             m_bTabSplitSwap;
-      int32_t                              m_iExtendOnParent;
+      int32_t                          m_iExtendOnParent;
       flags < eflag >                  m_eflag;
-      string                           m_strTitle;
+      string                           m_strCreatorDataTitle;
       void *                           m_pviewdata;
       rect                             m_rectCreate;
       bool                             m_bOk;

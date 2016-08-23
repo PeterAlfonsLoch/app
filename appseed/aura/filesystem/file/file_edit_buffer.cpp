@@ -517,7 +517,17 @@ namespace file
 
       m_iOffset = 0;
 
-      m_ptreeitemBeg = m_ptreeitemFlush->get_next();
+      if (m_bRootDirection)
+      {
+
+         m_ptreeitemBeg = m_ptreeitemFlush->get_next();
+
+      }
+      else
+      {
+
+         m_ptreeitemBeg = m_ptreeitemFlush;
+      }
 
       byte b;
 
@@ -910,6 +920,7 @@ namespace file
          ostream.write(buf,uiRead);
       }
       ostream.flush();
+      m_ptreeitemFlush = m_ptreeitem;
       //file.close();
       return true;
    }

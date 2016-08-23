@@ -533,7 +533,7 @@ namespace user
       try
       {
 
-         spfile = Application.file().get_file(varFile, ::file::defer_create_directory | ::file::mode_create | ::file::mode_write | ::file::share_exclusive);
+         spfile = Application.file().get_file(varFile, ::file::defer_create_directory | ::file::mode_create | ::file::mode_read | ::file::mode_write | ::file::share_exclusive);
 
       }
       catch (::exception::base & e)
@@ -573,7 +573,7 @@ namespace user
 
          }
 
-         spfile->close();
+         //spfile->close();
 
       }
       catch (::exception::base & e)

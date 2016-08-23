@@ -166,9 +166,13 @@ namespace user
       virtual void  _001SetVertical(bool bSet = true);
       virtual void _001SelectTab(::index iTab);
       virtual void _001CloseTab(::index iTab);
-      virtual tab_pane * get_pane(::index iTab, bool bVisible = true);
-      virtual ::user::interaction * get_tab_window(::index iTab, bool bVisible = true);
-      virtual ::user::place_holder * get_tab_holder(::index iTab, bool bVisible = true);
+
+
+      virtual ::user::interaction * tab_window(::index iTab);
+      virtual ::user::place_holder * tab_holder(::index iTab);
+
+      virtual ::user::interaction * pane_window(::index iTab);
+      virtual ::user::place_holder * pane_holder(::index iTab);
 
       void _000OnMouse(::message::mouse * pmouse);
 
@@ -193,7 +197,6 @@ namespace user
       virtual index hit_test(point pt, e_element & eelement);
       virtual e_position DragHitTest(point pt);
       virtual void GetDragRect(LPRECT lprect, e_position eposition);
-      virtual int_ptr GetTabCount();
       virtual bool get_element_rect(::index iTab, LPRECT lprect, e_element eelement);
 
       virtual void get_title(int iPane,stringa & stra);
@@ -211,16 +214,32 @@ namespace user
       virtual bool remove_tab_by_id(id idTab = id());
       virtual void remove_tab(::index iTab, bool bVisible = true);
       virtual bool show_tab_by_id(id idTab = id(), bool bShow = true);
-      virtual bool show_tab(::index iTab, bool bShow = true);
+      virtual bool show_pane(::index iPane, bool bShow = true);
+      virtual bool hide_tab(::index iTab);
 
 
       virtual bool set_title(::index iTab, const char * psz);
       virtual bool SetTitleById(id id, const char * psz);
 
-      virtual ::index get_tab_by_id(id id, bool bVisible = true);
-      virtual id get_id_by_tab(::index iTab, bool bVisible = true);
-      virtual tab_pane * get_pane_by_id(id id);
-      virtual tab_pane * create_pane_by_id(id id);
+      virtual ::count get_tab_count();
+      virtual ::count get_pane_count();
+
+
+      virtual ::index id_tab(id id);
+      virtual id tab_id(::index iTab);
+      virtual ::index id_pane(id id);
+      virtual id pane_id(::index iPane);
+
+      virtual ::index tab_pane(index iTab);
+      virtual ::index pane_tab(index iPane);
+
+
+      virtual ::user::tab_pane * get_pane(::index iPane);
+      virtual ::user::tab_pane * get_tab(::index iTab);
+
+
+      virtual ::user::tab_pane * get_pane_by_id(id id);
+      virtual ::user::tab_pane * create_pane_by_id(id id);
       virtual ::index create_tab_by_id(id id);
 
       virtual void on_change_pane_count();

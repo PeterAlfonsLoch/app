@@ -128,18 +128,18 @@ namespace user
    }
 
 
-   void tab_view::_001OnDropTab(index iPane, e_position eposition)
+   void tab_view::_001OnDropTab(index iTab, e_position eposition)
    {
 
-      id id1 = ::user::tab::get_id_by_tab(::user::tab::_001GetSel());
+      id id1 = ::user::tab::tab_id(::user::tab::_001GetSel());
 
-      id id2 = ::user::tab::get_id_by_tab(iPane);
+      id id2 = ::user::tab::tab_id(iTab);
 
       id id3 = var(id1).get_string() + "->:<-" + var(id2).get_string();
 
-      tab_pane * ppane1 = get_pane_by_id(id1);
+      ::user::tab_pane * ppane1 = get_pane_by_id(id1);
 
-      tab_pane * ppane2 = get_pane_by_id(id2);
+      ::user::tab_pane * ppane2 = get_pane_by_id(id2);
 
       string strName1 = ppane1->m_istrTitleEx;
 
@@ -153,9 +153,9 @@ namespace user
 
       pcreatordata->m_pholder = pholder;
 
-      int iTabNew = (int) get_tab_by_id(id3);
+      int iPaneNew = (int) id_pane(id3);
 
-      get_data()->m_panea[iTabNew]->m_pholder = pholder;
+      get_data()->m_panea[iPaneNew]->m_pholder = pholder;
 
       sp(::user::split_view) psplitview = impact::create_view < ::user::split_view >(null_rect(),pholder,id3);
 
@@ -191,9 +191,9 @@ namespace user
       if(eposition == position_top || eposition == position_left)
       {
 
-         pwnd1 = get_impact(::user::tab::get_id_by_tab(::user::tab::_001GetSel()), rect1)->m_pwnd;
+         pwnd1 = get_impact(::user::tab::tab_id(::user::tab::_001GetSel()), rect1)->m_pwnd;
 
-         pwnd2 = get_impact(::user::tab::get_id_by_tab(iPane),rect0)->m_pwnd;
+         pwnd2 = get_impact(::user::tab::tab_id(iTab),rect0)->m_pwnd;
 
          psplitview->SetPane(0,pwnd2,false);
 
@@ -203,9 +203,9 @@ namespace user
       else
       {
 
-         pwnd1 = get_impact(::user::tab::get_id_by_tab(::user::tab::_001GetSel()),rect0)->m_pwnd;
+         pwnd1 = get_impact(::user::tab::tab_id(::user::tab::_001GetSel()),rect0)->m_pwnd;
 
-         pwnd2 = get_impact(::user::tab::get_id_by_tab(iPane),rect1)->m_pwnd;
+         pwnd2 = get_impact(::user::tab::tab_id(iTab),rect1)->m_pwnd;
 
          psplitview->SetPane(0,pwnd1,false);
 
@@ -225,26 +225,38 @@ namespace user
 
    }
 
+
    ::user::interaction * tab_view::_001GetTabWnd(int32_t iTab)
    {
-      if(m_pviewcreator == NULL)
-         return NULL;
-      if(m_pviewcreator->get(::user::tab::get_id_by_tab(iTab)) != NULL)
+      
+      if (m_pviewcreator == NULL)
       {
-         return m_pviewcreator->get(::user::tab::get_id_by_tab(iTab))->m_pwnd;
+
+         return NULL;
+
+      }
+
+      if(m_pviewcreator->get(::user::tab::tab_id(iTab)) != NULL)
+      {
+
+         return m_pviewcreator->get(::user::tab::tab_id(iTab))->m_pwnd;
+
       }
       else
       {
+
          return NULL;
+
       }
+
    }
-
-
 
 
    void tab_view::_001DropTargetWindowInitialize(::user::tab * pinterface)
    {
-      create_tab_by_id(::user::tab::get_id_by_tab(pinterface->get_data()->m_iDragTab));
+      
+      create_tab_by_id(::user::tab::tab_id(pinterface->get_data()->m_iDragTab));
+
       m_pdroptargetwindow = new tab_drop_target_window(this, (int32_t) pinterface->get_data()->m_iDragTab);
       rect rect;
       rect = pinterface->get_data()->m_rectTabClient;
@@ -274,24 +286,29 @@ namespace user
    }
 
 
-
    void tab_view::_001OnShowTab(tab * ptab)
    {
+      
       if(ptab == this)
       {
+         
          on_show_view();
+         
          on_stage_view();
-      }
-   }
 
+      }
+
+   }
 
 
    void tab_view::on_show_view()
    {
 
-      id id = get_id_by_tab(_001GetSel(), false);
+      id id = tab_id(_001GetSel());
+      
       class id idSplit;
-      ::user::view_creator_data * pcreatordata = create_impact(id,get_data()->m_rectTabClient);
+
+      ::user::view_creator_data * pcreatordata = get_impact(id,get_data()->m_rectTabClient);
 
       if (pcreatordata == NULL)
       {
@@ -300,207 +317,110 @@ namespace user
 
       }
 
-      index iTab = ::user::tab::get_tab_by_id(id);
+      index iPane = ::user::tab::id_pane(id);
 
-      if(iTab >= 0)
+      if(iPane >= 0)
       {
+
          if(pcreatordata->m_pholder != NULL)
          {
-            get_data()->m_panea[iTab]->m_pholder = pcreatordata->m_pholder;
+
+            get_data()->m_panea[iPane]->m_pholder = pcreatordata->m_pholder;
+
          }
          else if(pcreatordata->m_pwnd != NULL)
          {
-            if(get_tab_holder(iTab) == NULL)
+
+            if(pane_holder(iPane) == NULL)
             {
-               get_data()->m_panea[iTab]->m_pholder = place(pcreatordata->m_pwnd,get_data()->m_rectTabClient);
+
+               get_data()->m_panea[iPane]->m_pholder = place(pcreatordata->m_pwnd,get_data()->m_rectTabClient);
+
             }
             else
             {
-               get_data()->m_panea[iTab]->m_pholder->m_uiptraChild.remove_all();
-               get_data()->m_panea[iTab]->m_pholder->hold(pcreatordata->m_pwnd);
+
+               get_data()->m_panea[iPane]->m_pholder->m_uiptraChild.remove_all();
+
+               get_data()->m_panea[iPane]->m_pholder->hold(pcreatordata->m_pwnd);
+
             }
+
          }
          else
          {
-            get_data()->m_panea[iTab]->m_pholder = get_new_place_holder(get_data()->m_rectTabClient);
+
+            get_data()->m_panea[iPane]->m_pholder = get_new_place_holder(get_data()->m_rectTabClient);
+
          }
+
       }
-      if(pcreatordata->m_strTitle.has_char())
+
+      if(pcreatordata->m_strCreatorDataTitle.has_char())
       {
-         get_data()->m_panea[_001GetSel()]->m_istrTitleEx = pcreatordata->m_strTitle;
+
+         index iPane = tab_pane(_001GetSel());
+
+         if (iPane >= 0 && get_data()->m_panea[iPane]->m_id == pcreatordata->m_id)
+         {
+
+            get_data()->m_panea[iPane]->m_istrTitleEx = pcreatordata->m_strCreatorDataTitle;
+
+         }
+
       }
 
       idSplit = pcreatordata->m_idSplit;
 
       if(pcreatordata != m_pviewdata)
       {
+
          m_pviewdataOld = m_pviewdata;
+
          m_pviewdata = pcreatordata;
+
          if(m_pviewdata->m_eflag.is_signalized(::user::view_creator_data::flag_hide_all_others_on_show))
          {
+
             ::user::view_creator::view_map::pair * ppair = m_pviewcreator->m_viewmap.PGetFirstAssoc();
+
             while(ppair != NULL)
             {
+
                try
                {
+
                   if(ppair->m_element2 != m_pviewdata)
                   {
+
                      if(ppair->m_element2->m_pholder != NULL)
                      {
+
                         ppair->m_element2->m_pholder->ShowWindow(SW_HIDE);
+
                      }
+
                   }
+
                }
                catch(...)
                {
+
                }
+
                ppair = m_pviewcreator->m_viewmap.PGetNextAssoc(ppair);
+
             }
+
          }
+
       }
-      //rect rectClient;
-      //GetClientRect(rectClient);
-      //if(!rectClient.is_null())
-      //{
-      //   //layout();
-      //}
-      //if(m_pviewdata != NULL)
-      //{
-      //   if(m_pviewdata->m_pwnd != NULL)
-      //   {
-      //      m_pviewdata->m_pwnd->ShowWindow(SW_SHOW);
-      //   }
-      //}
-
-      //if(m_pviewcreator != NULL && m_pviewcreator != dynamic_cast < ::user::view_creator * > (this))
-      //{
-      //   m_pviewcreator->on_show_view();
-      //}
-
-      //if(m_pviewdata->m_pwnd == NULL && m_pviewdata->m_pholder != NULL)
-      //{
-
-      //   if(m_pviewdata->m_pholder->m_uiptraChild.get_count() > 0)
-      //   {
-
-      //      m_pviewdata->m_pwnd = m_pviewdata->m_pholder->m_uiptraChild[0];
-
-      //   }
-
-      //}
-
-      //if(m_pviewdata != NULL && m_pviewdata->m_pholder != NULL)
-      //{
-      //   rect rectClient;
-      //   m_pviewdata->m_pholder->GetClientRect(rectClient);
-      //   rect rectTabClient = get_data()->m_rectTabClient;
-      //   if(rectTabClient.area() > 0)
-      //   {
-
-      //      rectTabClient -= rectTabClient.top_left();
-      //      if(rectClient != rectTabClient)
-      //      {
-      //      m_pviewdata->m_pholder->SetWindowPos(ZORDER_TOP,get_data()->m_rectTabClient,SWP_SHOWWINDOW);
-      //      }
-      //      else
-      //      {
-      //      m_pviewdata->m_pholder->SetWindowPos(ZORDER_TOP,get_data()->m_rectTabClient,SWP_SHOWWINDOW | SWP_NOSIZE | SWP_NOMOVE);
-      //      }
-
-      //   }
-      //   if(m_pviewdata->m_pwnd != NULL)
-      //   {
-      //      m_pviewdata->m_pwnd->UpdateWindow();
-      //      m_pviewdata->m_pwnd->SetFocus();
-      //   }
-      //}
-
-      //((GetParentFrame()))->RedrawWindow();
-
-      //GetParentFrame()->SetActiveView(this);
-
-      //Application.on_show_view(this);
 
    }
 
+
    void tab_view::on_stage_view()
    {
-
-      //id id = get_id_by_tab(_001GetSel(), false);
-      //class id idSplit;
-      //::user::view_creator_data * pcreatordata = create_impact(id, get_data()->m_rectTabClient);
-
-      //if (pcreatordata == NULL)
-      //{
-
-      //   return;
-
-      //}
-
-      //index iTab = ::user::tab::get_tab_by_id(id);
-
-      //if (iTab >= 0)
-      //{
-      //   if (pcreatordata->m_pholder != NULL)
-      //   {
-      //      get_data()->m_panea[iTab]->m_pholder = pcreatordata->m_pholder;
-      //   }
-      //   else if (pcreatordata->m_pwnd != NULL)
-      //   {
-      //      if (get_tab_holder(iTab) == NULL)
-      //      {
-      //         get_data()->m_panea[iTab]->m_pholder = place(pcreatordata->m_pwnd, get_data()->m_rectTabClient);
-      //      }
-      //      else
-      //      {
-      //         get_data()->m_panea[iTab]->m_pholder->m_uiptraChild.remove_all();
-      //         get_data()->m_panea[iTab]->m_pholder->hold(pcreatordata->m_pwnd);
-      //      }
-      //   }
-      //   else
-      //   {
-      //      get_data()->m_panea[iTab]->m_pholder = get_new_place_holder(get_data()->m_rectTabClient);
-      //   }
-      //}
-      //if (pcreatordata->m_strTitle.has_char())
-      //{
-      //   get_data()->m_panea[_001GetSel()]->m_istrTitleEx = pcreatordata->m_strTitle;
-      //}
-
-      //idSplit = pcreatordata->m_idSplit;
-
-      //if (pcreatordata != m_pviewdata)
-      //{
-      //   m_pviewdataOld = m_pviewdata;
-      //   m_pviewdata = pcreatordata;
-      //   if (m_pviewdata->m_eflag.is_signalized(::user::view_creator_data::flag_hide_all_others_on_show))
-      //   {
-      //      ::user::view_creator::view_map::pair * ppair = m_pviewcreator->m_viewmap.PGetFirstAssoc();
-      //      while (ppair != NULL)
-      //      {
-      //         try
-      //         {
-      //            if (ppair->m_element2 != m_pviewdata)
-      //            {
-      //               if (ppair->m_element2->m_pholder != NULL)
-      //               {
-      //                  ppair->m_element2->m_pholder->ShowWindow(SW_HIDE);
-      //               }
-      //            }
-      //         }
-      //         catch (...)
-      //         {
-      //         }
-      //         ppair = m_pviewcreator->m_viewmap.PGetNextAssoc(ppair);
-      //      }
-      //   }
-      //}
-      rect rectClient;
-      GetClientRect(rectClient);
-      if (!rectClient.is_null())
-      {
-         //layout();
-      }
 
       if (m_pviewdata->m_pwnd == NULL && m_pviewdata->m_pholder != NULL)
       {
@@ -514,32 +434,44 @@ namespace user
 
       }
 
-
       if (m_pviewdata != NULL)
       {
+
          if (m_pviewdata->m_pwnd != NULL)
          {
+
             if (IsWindowVisible())
             {
+
                m_pviewdata->m_pwnd->ShowWindow(SW_SHOW);
+
             }
+
          }
+
       }
 
       if (m_pviewcreator != NULL && m_pviewcreator != dynamic_cast < ::user::view_creator * > (this))
       {
+
          m_pviewcreator->on_show_view();
+
       }
 
       if (m_pviewdata != NULL && m_pviewdata->m_pholder != NULL)
       {
+
          rect rectClient;
+
          m_pviewdata->m_pholder->GetClientRect(rectClient);
+
          rect rectTabClient = get_data()->m_rectTabClient;
+
          if (rectTabClient.area() > 0)
          {
 
             rectTabClient -= rectTabClient.top_left();
+
             if (rectClient != rectTabClient)
             {
 
@@ -556,11 +488,16 @@ namespace user
             }
 
          }
+
          if (m_pviewdata->m_pwnd != NULL)
          {
+
             m_pviewdata->m_pwnd->UpdateWindow();
+
             m_pviewdata->m_pwnd->SetFocus();
+
          }
+
       }
 
       ((GetParentFrame()))->RedrawWindow();
@@ -571,26 +508,77 @@ namespace user
 
    }
 
+
    ::index tab_view::create_tab_by_id(id id)
    {
 
-      if (create_impact(id, get_data()->m_rectTabClient) == NULL)
+      if (get_impact(id, get_data()->m_rectTabClient) == NULL)
       {
 
          return -1;
 
       }
 
-      index iPane = get_tab_by_id(id);
+      index iTab = id_tab(id);
 
-      if (iPane < 0)
+      if (iTab < 0)
       {
 
          return -1;
 
       }
 
-      return iPane;
+      return iTab;
+
+   }
+
+   ::user::view_creator_data * tab_view::get_impact(id id)
+   {
+
+      ::user::view_creator_data * pdata = get(id);
+
+      if (pdata != NULL)
+      {
+
+         return pdata;
+
+      }
+
+      pdata = create_impact(id);
+
+      if (pdata == NULL)
+      {
+
+         return NULL;
+
+      }
+
+      return pdata;
+
+   }
+
+   ::user::view_creator_data * tab_view::get_impact(id id, LPCRECT lpcrectCreate)
+   {
+
+      ::user::view_creator_data * pdata = get(id);
+
+      if (pdata != NULL)
+      {
+
+         return pdata;
+
+      }
+
+      pdata = create_impact(id, lpcrectCreate);
+
+      if (pdata == NULL)
+      {
+
+         return NULL;
+
+      }
+
+      return pdata;
 
    }
 
@@ -603,62 +591,105 @@ namespace user
    }
 
 
-   ::user::view_creator_data * tab_view::create_impact(id id,LPCRECT lpcrectCreate)
+   ::user::view_creator_data * tab_view::create_impact(id id, LPCRECT lpcrectCreate)
    {
+      
       if(m_pviewcreator == NULL)
          return NULL;
+
       ::user::view_creator_data * pcreatordata = m_pviewcreator->::user::view_creator::create_impact(id,lpcrectCreate);
+
       if(pcreatordata != NULL)
       {
-         if (get_tab_by_id(id) == -1)
+
+         if (id_pane(id) == -1)
          {
+
             ::user::tab::add_tab("", id);
+
          }
 
-         /*if(pcreatordata->m_pwnd != NULL)
-         {
-            pcreatordata->m_pwnd->SetParent(this);
-            pcreatordata->m_pwnd->ModifyStyle(0, WS_CHILD, NULL);
-         }*/
-         tab_pane * ppane = get_pane_by_id(id);
+         ::user::tab_pane * ppane = get_pane_by_id(id);
+
          if(ppane != NULL)
          {
-            if(pcreatordata->m_strTitle.has_char())
+
+            if(pcreatordata->m_strCreatorDataTitle.has_char() && ppane->m_id == pcreatordata->m_id)
             {
-               ppane->m_istrTitleEx = pcreatordata->m_strTitle;
+
+               ppane->m_istrTitleEx = pcreatordata->m_strCreatorDataTitle;
+
             }
+
             if(ppane != NULL)
             {
+
                ppane->m_pholder = pcreatordata->m_pholder;
+
             }
+
          }
+
          on_change_pane_count();
+
       }
+
       return pcreatordata;
+
    }
+
 
    id tab_view::get_view_id()
    {
-      if(m_pviewdata == NULL)
+
+      if (m_pviewdata == NULL)
+      {
+
          return ::aura::system::idEmpty;
+
+      }
+
       return m_pviewdata->m_id;
+
    }
+
 
    ::user::view_creator_data * tab_view::get_view_creator_data()
    {
+
       return m_pviewdata;
+
    }
+
 
    ::user::interaction * tab_view::get_view_uie()
    {
+
       ::user::view_creator_data * pcreatordata = get_view_creator_data();
-      if(pcreatordata == NULL)
+
+      if (pcreatordata == NULL)
+      {
+
          return NULL;
-      if(pcreatordata->m_pwnd != NULL)
+
+      }
+
+      if (pcreatordata->m_pwnd != NULL)
+      {
+
          return pcreatordata->m_pwnd;
-      if(pcreatordata->m_pholder != NULL && pcreatordata->m_pholder->m_uiptraChild.get_count() == 1)
+
+      }
+
+      if (pcreatordata->m_pholder != NULL && pcreatordata->m_pholder->m_uiptraChild.get_count() == 1)
+      {
+
          return pcreatordata->m_pholder->m_uiptraChild[0];
+
+      }
+
       return NULL;
+
    }
 
    ::user::document * tab_view::get_view_document()

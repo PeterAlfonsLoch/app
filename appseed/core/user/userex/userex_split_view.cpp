@@ -68,7 +68,16 @@ namespace userex
 
       pane.m_pholder->GetClientRect(rectClient);
 
-      return ::user::view_creator::create_impact(id, rectClient) != FALSE;
+      ::user::view_creator_data * pdata = ::user::view_creator::create_impact(id, rectClient);
+
+      if (pdata == NULL)
+      {
+
+         return false;
+
+      }
+
+      return true;
 
    }
 

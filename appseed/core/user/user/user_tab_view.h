@@ -53,6 +53,8 @@ namespace user
 
       virtual void rotate();
 
+      virtual ::user::view_creator_data * get_impact(id id);
+      virtual ::user::view_creator_data * get_impact(id id, LPCRECT lpcrectCreate);
       virtual ::user::view_creator_data * create_impact(id id);
       virtual ::user::view_creator_data * create_impact(id id, LPCRECT lpcrectCreate);
       virtual ::index create_tab_by_id(id id);

@@ -106,9 +106,9 @@ namespace userex
    bool pane_tab_view::on_new_view_creator_data(::user::view_creator_data * pcreatordata)
    {
 
-      ::index iTab = get_tab_by_id(pcreatordata->m_id, false);
+      ::index iPane = id_pane(pcreatordata->m_id);
 
-      if (iTab < 0)
+      if (iPane < 0)
       {
 
          if (!add_tab("", pcreatordata->m_id))
@@ -118,9 +118,9 @@ namespace userex
 
          }
 
-         iTab = get_tab_by_id(pcreatordata->m_id, false);
+         iPane = id_pane(pcreatordata->m_id);
 
-         if (iTab < 0)
+         if (iPane < 0)
          {
 
             return false;
@@ -129,7 +129,7 @@ namespace userex
 
       }
 
-      ::user::tab_pane * ppane = (::user::tab_pane *)get_data()->m_panea.element_at(iTab);
+      ::user::tab_pane * ppane = (::user::tab_pane *)get_data()->m_panea.element_at(iPane);
 
       if(ppane == NULL)
          return false;
@@ -154,48 +154,67 @@ namespace userex
 
    bool pane_tab_view::on_hold(::user::interaction * pui,::user::place_holder * pholder)
    {
-      if(!::user::place_holder_container::on_hold(pui,pholder))
+      
+      if (!::user::place_holder_container::on_hold(pui, pholder))
+      {
+       
          return false;
+
+      }
+
       ::user::tab_pane_array & panea = get_data()->m_panea;
+
       for(int32_t iTab = 0; iTab < panea.get_count(); iTab++)
       {
+
          if(panea[iTab]->m_pholder == pholder)
          {
-            ::user::view_creator_data * pcreatordata = create_impact(panea[iTab]->m_id,get_data()->m_rectTabClient);
+
+            ::user::view_creator_data * pcreatordata = get_impact(panea[iTab]->m_id,get_data()->m_rectTabClient);
+
             if(pcreatordata != NULL)
             {
+
                if(pcreatordata->m_pwnd == NULL)
                {
+
                   pcreatordata->m_pwnd = pui;
+
                }
+
             }
+
             break;
+
          }
+
       }
+
       return true;
+
    }
 
 
    ::index pane_tab_view::create_tab_by_id(id id)
    {
 
-      if(create_impact(id,get_data()->m_rectTabClient) == NULL)
+      if(get_impact(id,get_data()->m_rectTabClient) == NULL)
       { 
 
          return -1;
       
       }
 
-      index iPane = get_tab_by_id(id);
+      index iTab = id_tab(id);
 
-      if (iPane < 0)
+      if (iTab < 0)
       {
 
          return -1;
 
       }
 
-      return iPane;
+      return iTab;
 
    }
 
