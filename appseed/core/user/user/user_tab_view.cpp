@@ -422,7 +422,14 @@ namespace user
    void tab_view::on_stage_view()
    {
 
-      if (m_pviewdata->m_pwnd == NULL && m_pviewdata->m_pholder != NULL)
+      if (m_pviewdata == NULL || m_pviewdata->m_pholder == NULL)
+      {
+
+         return;
+
+      }
+
+      if (m_pviewdata->m_pwnd == NULL)
       {
 
          if (m_pviewdata->m_pholder->m_uiptraChild.get_count() > 0)
@@ -434,75 +441,59 @@ namespace user
 
       }
 
-      if (m_pviewdata != NULL)
+      rect rectClient;
+
+      m_pviewdata->m_pholder->GetClientRect(rectClient);
+
+      rect rectTabClient = get_data()->m_rectTabClient;
+
+      if (rectTabClient.area() > 0)
       {
 
-         if (m_pviewdata->m_pwnd != NULL)
+         rectTabClient -= rectTabClient.top_left();
+
+         if (rectClient != rectTabClient)
          {
 
-            if (IsWindowVisible())
-            {
+            m_pviewdata->m_pholder->SetWindowPos(ZORDER_TOP, get_data()->m_rectTabClient, 0);
 
-               m_pviewdata->m_pwnd->ShowWindow(SW_SHOW);
+         }
+         else
+         {
 
-            }
+            m_pviewdata->m_pholder->SetWindowPos(ZORDER_TOP, get_data()->m_rectTabClient, SWP_NOSIZE | SWP_NOMOVE);
 
          }
 
       }
 
-      if (m_pviewcreator != NULL && m_pviewcreator != dynamic_cast < ::user::view_creator * > (this))
+      m_pviewdata->m_pholder->ShowWindow(SW_SHOW);
+
+
+      if (m_pviewcreator != dynamic_cast < ::user::view_creator * > (this))
       {
 
          m_pviewcreator->on_show_view();
 
       }
 
-      if (m_pviewdata != NULL && m_pviewdata->m_pholder != NULL)
+      ::user::impact * pview = NULL;
+
+      if (m_pviewdata->m_pwnd != NULL)
       {
 
-         rect rectClient;
-
-         m_pviewdata->m_pholder->GetClientRect(rectClient);
-
-         rect rectTabClient = get_data()->m_rectTabClient;
-
-         if (rectTabClient.area() > 0)
-         {
-
-            rectTabClient -= rectTabClient.top_left();
-
-            if (rectClient != rectTabClient)
-            {
-
-               m_pviewdata->m_pholder->SetWindowPos(ZORDER_TOP, get_data()->m_rectTabClient, 0);
-
-               m_pviewdata->m_pholder->ShowWindow(SW_SHOW);
-
-            }
-            else
-            {
-
-               m_pviewdata->m_pholder->SetWindowPos(ZORDER_TOP, get_data()->m_rectTabClient, SWP_SHOWWINDOW | SWP_NOSIZE | SWP_NOMOVE);
-
-            }
-
-         }
-
-         if (m_pviewdata->m_pwnd != NULL)
-         {
-
-            m_pviewdata->m_pwnd->UpdateWindow();
-
-            m_pviewdata->m_pwnd->SetFocus();
-
-         }
+         pview = dynamic_cast <::user::impact *> (m_pviewdata->m_pwnd);
 
       }
 
-      ((GetParentFrame()))->RedrawWindow();
+      if (pview == NULL)
+      {
 
-      GetParentFrame()->SetActiveView(this);
+         pview = this;
+
+      }
+
+      GetParentFrame()->SetActiveView(pview);
 
       Application.on_show_view(this);
 

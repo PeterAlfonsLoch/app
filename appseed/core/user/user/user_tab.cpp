@@ -1467,17 +1467,24 @@ namespace user
 
    }
 
+
    void tab::install_message_handling(::message::dispatch *pinterface)
    {
+
       ::user::control::install_message_handling(pinterface);
+
       IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN , pinterface, this, &tab::_001OnLButtonDown);
       IGUI_WIN_MSG_LINK(WM_LBUTTONUP   , pinterface, this, &tab::_001OnLButtonUp);
       IGUI_WIN_MSG_LINK(WM_MOUSEMOVE   , pinterface, this, &tab::_001OnMouseMove);
       IGUI_WIN_MSG_LINK(WM_MOUSELEAVE  , pinterface, this, &tab::_001OnMouseLeave);
       IGUI_WIN_MSG_LINK(WM_CREATE      , pinterface, this, &tab::_001OnCreate);
+      IGUI_WIN_MSG_LINK(WM_SHOWWINDOW  , pinterface, this, &tab::_001OnShowWindow);
       IGUI_WIN_MSG_LINK(::base::application::APPM_LANGUAGE, pinterface, this, &tab::_001OnAppLanguage);
       IGUI_WIN_MSG_LINK(message_start_tab_drag,pinterface,this,&tab::_001OnStartTabDrag);
+
+
       ////IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &tab::_001OnTimer);
+
    }
 
 
@@ -1895,16 +1902,24 @@ namespace user
       //{
         // get_tab_holder(_001GetSel())->ShowWindow(SW_SHOW);
      // }
+
       layout();
+
    }
+
 
    void tab::on_show_view()
    {
+      
       if(get_data()->m_pcallback != NULL && dynamic_cast < ::user::tab * > (get_data()->m_pcallback) != this)
       {
+
          get_data()->m_pcallback->_001OnShowTab(this);
+
       }
+
       Application.on_show_view(this);
+
    }
 
 
@@ -1913,6 +1928,7 @@ namespace user
 
 
    }
+
 
    void tab:: _001SetVertical(bool bVertical)
    {
@@ -2614,6 +2630,29 @@ namespace user
    {
 
       remove_tab_by_id(tab_id(iTab));
+
+   }
+
+
+   void tab::_001OnShowWindow(signal_details * pobj)
+   {
+
+      SCAST_PTR(::message::show_window, pshowwindow, pobj);
+
+      ::user::place_holder * pholder = tab_holder(_001GetSel());
+
+      if (pshowwindow->m_bShow)
+      {
+
+         pholder->ShowWindow(SW_SHOW);
+
+      }
+      else
+      {
+
+         pholder->ShowWindow(SW_HIDE);
+
+      }
 
    }
 

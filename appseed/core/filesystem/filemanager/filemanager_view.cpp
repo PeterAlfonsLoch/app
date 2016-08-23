@@ -238,7 +238,7 @@ namespace filemanager
 
          initialize_split_layout();
 
-         path_view * ppathview = create_view < path_view >();
+         path_view * ppathview = create_pane_view < path_view >(0);
 
          if (ppathview == NULL)
          {
@@ -246,8 +246,6 @@ namespace filemanager
             System.simple_message_box(NULL, "Could not create filemanager path view");
 
          }
-
-         SetPane(0, ppathview, false);
 
       }
       else
@@ -258,7 +256,7 @@ namespace filemanager
       }
 
 
-      main_view * pmainview = create_view < main_view >();
+      main_view * pmainview = create_pane_view < main_view >(bPathView ? 1 : 0);
 
       if (pmainview == NULL)
       {
@@ -267,9 +265,9 @@ namespace filemanager
 
       }
 
-      SetPane(bPathView ? 1 : 0, pmainview, false);
+      //SetPane(, pmainview, false);
 
-      pmainview->create_views();
+      //pmainview->create_views();
 
    }
 

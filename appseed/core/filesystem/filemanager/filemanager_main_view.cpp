@@ -114,7 +114,7 @@ namespace filemanager
 
       initialize_split_layout();
 
-      left_view * pleftview = create_view < left_view >();
+      left_view * pleftview = create_pane_view < left_view >(0);
 
       if(pleftview == NULL)
       {
@@ -123,11 +123,9 @@ namespace filemanager
 
       }
 
-      SetPane(0,pleftview,false);
-
       //pleftview->create_views();
 
-      m_pfilelist = create_view < file_list >();
+      m_pfilelist = create_pane_view < file_list >(1);
 
       if(m_pfilelist == NULL)
       {
@@ -135,8 +133,6 @@ namespace filemanager
          System.simple_message_box(NULL,"Could not create file list ::user::impact");
 
       }
-
-      SetPane(1,m_pfilelist,false);
 
       m_ppreview = create_view < preview >();
 

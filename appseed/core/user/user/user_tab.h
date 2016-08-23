@@ -277,11 +277,13 @@ namespace user
       DECL_GEN_SIGNAL(_001OnMouseMove);
       DECL_GEN_SIGNAL(_001OnMouseLeave);
       DECL_GEN_SIGNAL(_001OnCreate);
-      DECL_GEN_SIGNAL(_001OnStartTabDrag);
-      
-      DECL_GEN_SIGNAL(_001OnAppLanguage);
+      DECL_GEN_SIGNAL(_001OnShowWindow);
       DECL_GEN_SIGNAL(_001OnSize);
+
       void _001OnTimer(::timer * ptimer);
+
+      DECL_GEN_SIGNAL(_001OnStartTabDrag);
+      DECL_GEN_SIGNAL(_001OnAppLanguage);
 
 
       virtual bool defer_handle_full_screen_show_tabs(bool bLayout = true);

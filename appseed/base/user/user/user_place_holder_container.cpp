@@ -36,7 +36,7 @@ namespace user
       if(m_holdera.last_sp().is_null())
          return NULL;
 
-      if(!m_holdera.last_sp()->::user::interaction::create_window(NULL,NULL, WS_CHILD /*__WS_DEFAULT_VIEW*/,rectCreate,(sp(::user::place_holder_container))this,m_holdera.get_upper_bound()))
+      if(!m_holdera.last_sp()->::user::interaction::create_window(NULL,NULL, WS_VISIBLE | WS_CHILD /*__WS_DEFAULT_VIEW*/,rectCreate,(sp(::user::place_holder_container))this,m_holdera.get_upper_bound()))
       {
 
          m_holdera.remove_last();

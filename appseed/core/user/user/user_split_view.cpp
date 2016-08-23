@@ -24,6 +24,7 @@ namespace user
    void split_view::install_message_handling(::message::dispatch * pinterface)
    {
       
+      split_layout::install_message_handling(pinterface);
       impact::install_message_handling(pinterface);
       
       USER_MESSAGE_LINK(message_create, pinterface, this, &split_view::_001OnCreate);
@@ -85,7 +86,7 @@ namespace user
 
       }
 
-      //layout();
+      layout();
 
       return bOk;
 

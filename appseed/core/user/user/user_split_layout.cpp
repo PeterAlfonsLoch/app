@@ -11,6 +11,7 @@ namespace user
    split_layout::split_layout():
       split_layout(get_app())
    {
+
    }
 
 
@@ -34,6 +35,92 @@ namespace user
    {
 
    }
+
+
+   void split_layout::install_message_handling(::message::dispatch * pinterface)
+   {
+
+      place_holder_container::install_message_handling(pinterface);
+
+      IGUI_WIN_MSG_LINK(WM_SHOWWINDOW, pinterface, this, &split_layout::_001OnShowWindow);
+
+   }
+
+
+   void split_layout::_001OnShowWindow(signal_details * pobj)
+   {
+
+      SCAST_PTR(::message::show_window, pshowwindow, pobj);
+
+      bool bIsWindowVisible = pshowwindow->m_bShow;
+
+      int32_t iSplitBarCount = get_split_count();
+
+      split_layout::Pane * pcomponent;
+
+      sp(::user::interaction) pwnd;
+
+      int32_t i;
+
+      for (i = 0; i < iSplitBarCount; i++)
+      {
+
+         pwnd = m_splitbara.element_at(i);
+
+         if (!bIsWindowVisible)
+         {
+
+            pwnd->ShowWindow(SW_HIDE);
+
+         }
+         else
+         {
+
+            pwnd->ShowWindow(SW_SHOW);
+
+         }
+
+      }
+
+      rect rectClient;
+
+      for (i = 0; i < get_pane_count(); i++)
+      {
+
+         rect & rectPane = m_panea[i]->m_rect;
+
+         pcomponent = m_panea.element_at(i);
+
+         pwnd = pcomponent->m_pholder;
+
+         if (pwnd == NULL)
+         {
+
+            continue;
+
+         }
+
+         rectClient = rectPane;
+
+         rectClient.deflate(m_cxBorder, m_cyBorder);
+
+         if (rectPane.area() <= 0 || !bIsWindowVisible)
+         {
+
+            pwnd->ShowWindow(SW_HIDE);
+
+         }
+         else
+         {
+
+            pwnd->ShowWindow(SW_SHOW);
+
+         }
+
+      }
+
+   }
+
 
    bool split_layout::SetPaneCount(int32_t iPaneCount)
    {
@@ -71,6 +158,7 @@ namespace user
 
    }
 
+
    bool split_layout::initialize_split_layout()
    {
 
@@ -80,18 +168,21 @@ namespace user
 
       ASSERT(iPaneCount > 0);
 
-      //layout();
+      layout();
 
       rect rectPane;
 
       for(::index i = 0; i < m_panea.get_count(); i++)
       {
+
          if(m_panea[i]->m_pholder.is_null())
          {
-            m_panea[i]->m_pholder = get_new_place_holder(m_panea[i]->m_rectClient);
-         }
-      }
 
+            m_panea[i]->m_pholder = get_new_place_holder(m_panea[i]->m_rectClient);
+
+         }
+
+      }
 
       m_bInitialized = true;
 
@@ -102,11 +193,15 @@ namespace user
 
    void split_layout::SetSplitOrientation(e_orientation eorientationSplit)
    {
+
       m_eorientationSplit = eorientationSplit;
+
    }
+
 
    void split_layout::RelayChildEvent(int32_t iIndex, const MESSAGE * lpMsg)
    {
+
       if(!m_bInitialized)
          return;
 
@@ -193,141 +288,189 @@ namespace user
 
    }
 
+
    int32_t split_layout::GetPos(int32_t xPos, int32_t yPos)
    {
-      if(m_eorientationSplit == orientation_horizontal)
+
+      if (m_eorientationSplit == orientation_horizontal)
+      {
+
          return yPos;
+
+      }
       else
+      {
+
          return xPos;
+
+      }
+
    }
+
 
    int32_t split_layout::GetMinPos()
    {
+
       rect rectClient;
+
       GetClientRect(rectClient);
-      if(m_eorientationSplit == orientation_horizontal)
+
+      if (m_eorientationSplit == orientation_horizontal)
+      {
+
          return rectClient.top;
+
+      }
       else
+      {
+
          return rectClient.left;
+
+      }
+
    }
+
 
    int32_t split_layout::GetMaxPos()
    {
+   
       rect rectClient;
+
       GetClientRect(rectClient);
-      if(m_eorientationSplit == orientation_horizontal)
+
+      if (m_eorientationSplit == orientation_horizontal)
+      {
+
          return rectClient.bottom;
+
+      }
       else
+      {
+
          return rectClient.right;
+
+      }
+
    }
+
 
    void split_layout::layout()
    {
 
       bool bIsWindowVisible = IsWindowVisible();
 
+      rect rectClient;
+
+      GetClientRect(rectClient);
+
+      if (rectClient.area() <= 0)
       {
 
-//         DWORD dwTime2 = ::get_tick_count();
-
-         //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
-         //TRACE("usersplitlayout call time1= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+         return;
 
       }
-      //TRACE0("split_layout::layout");
-      rect rectClient;
-      GetClientRect(rectClient);
+
       int32_t iDimension = get_normal_dimension();
+
       uint32_t dwPosition;
+
       double dRate;
+
       if(iDimension > 0)
       {
+
          for(int32_t i = 0 ; i < m_splitbara.get_count(); i++)
          {
 
             if (m_splitbara[i]->m_dRate >= 0.0)
             {
+
                if ((m_splitbara[i]->m_dRate < m_splitbara[i]->m_dMinimumRate
                   || m_splitbara[i]->m_dRate > m_splitbara[i]->m_dMaximumRate)
                   && m_splitbara[i]->m_dwPosition > 0)
                {
-                  dwPosition = m_splitbara[i]->m_dwPosition;
-                  dRate = (double)dwPosition / (double)iDimension;
-                  m_splitbara[i]->m_dRate = dRate;
-               }
 
+                  dwPosition = m_splitbara[i]->m_dwPosition;
+
+                  dRate = (double)dwPosition / (double)iDimension;
+
+                  m_splitbara[i]->m_dRate = dRate;
+
+               }
 
                if (m_splitbara[i]->m_dRate < m_splitbara[i]->m_dMinimumRate)
                {
+
                   m_splitbara[i]->m_dRate = m_splitbara[i]->m_dMinimumRate;
+
                }
                else if (m_splitbara[i]->m_dRate > m_splitbara[i]->m_dMaximumRate)
                {
+
                   m_splitbara[i]->m_dRate = m_splitbara[i]->m_dMaximumRate;
+
                }
 
-
                m_splitbara[i]->m_dwPosition = MIN(m_splitbara[i]->m_dwMaxPosition, (uint32_t)(m_splitbara[i]->m_dRate * iDimension));
+
             }
             else
             {
+
                m_splitbara[i]->m_dwPosition = MIN(m_splitbara[i]->m_dwMaxPosition, (uint32_t)(m_splitbara[i]->m_dwPosition));
+
             }
 
          }
+
       }
 
-      rect rectA;
-      rect rectB;
-      int32_t i;
-      int32_t iSplitBarCount = get_split_count();
-      split_layout::Pane * pcomponent;
-      sp(::user::interaction) pwnd;
-      UINT uiBaseFlags = SWP_NOZORDER;
-      UINT uiFlags = uiBaseFlags;
+      rect rectBar;
 
+      int32_t i;
+
+      int32_t iSplitBarCount = get_split_count();
+
+      split_layout::Pane * pcomponent;
+
+      sp(::user::interaction) pwnd;
+
+      UINT uiBaseFlags = SWP_NOZORDER;
+
+      UINT uiFlags = uiBaseFlags;
 
       for(i = 0; i < iSplitBarCount; i++)
       {
 
-         CalcSplitBarRect(i, &rectA);
+         CalcSplitBarRect(i, &rectBar);
+
          pwnd = m_splitbara.element_at(i);
+
          uiFlags = uiBaseFlags;
-         if(bIsWindowVisible)
+
+         if(!bIsWindowVisible)
          {
-            if(!pwnd->m_bVisible)
-            {
-               uiFlags = uiBaseFlags | SWP_SHOWWINDOW;
-            }
-         }
-         else
-         {
-            if(pwnd->m_bVisible)
-            {
-               uiFlags = uiBaseFlags | SWP_HIDEWINDOW;
-            }
+
+            pwnd->ShowWindow(SW_HIDE);
+
          }
 
          pwnd->SetWindowPos(
             ZORDER_TOP,
-            rectA.left,
-            rectA.top,
-            rectA.width(),
-            rectA.height(),
+            rectBar.left,
+            rectBar.top,
+            rectBar.width(),
+            rectBar.height(),
             uiFlags);
-      }
+         
+         if (bIsWindowVisible)
+         {
 
+            pwnd->ShowWindow(SW_SHOW);
 
-      {
-
-//         DWORD dwTime2 = ::get_tick_count();
-
-         //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
-         //TRACE("usersplitlayout call time5= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+         }
 
       }
-
-      bool bVisible;
 
       for(i = 0; i < get_pane_count(); i++)
       {
@@ -339,15 +482,13 @@ namespace user
          CalcPaneRect(i,&rectPane);
 
          pcomponent = m_panea.element_at(i);
+
          pwnd = pcomponent->m_pholder;
 
-         if(pwnd != NULL)
+         if (pwnd == NULL)
          {
 
-//            DWORD dwTime2 = ::get_tick_count();
-
-            //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
-            //TRACE("usersplitlayout call time6= %d ms (%s)",dwTime2 - t_time1.operator DWORD_PTR(),typeid(*pwnd.m_p->m_uiptraChild[0]).name());
+            continue;
 
          }
 
@@ -355,105 +496,26 @@ namespace user
 
          rectClient.deflate(m_cxBorder,m_cyBorder);
 
-         if(rectPane.height() <= 0 ||
-            rectPane.width() <= 0)
-            bVisible = false;
-         else
-            bVisible = true;
-         bool bHSVisible;
-         bool bVSVisible;
-         if(m_panea[i]->m_bFixedSize)
-         {
-#ifdef WINDOWSEX
-            int32_t iCYHSCROLL = GetSystemMetrics(SM_CYHSCROLL);
-            int32_t iCXVSCROLL = GetSystemMetrics(SM_CXVSCROLL);
-#else
-            int32_t iCYHSCROLL = 16;
-            int32_t iCXVSCROLL = 16;
-#endif
-            if(rectPane.width() < m_panea[i]->m_sizeFixed.cx)
-            {
-               bHSVisible = true;
-               if(rectPane.height() < m_panea[i]->m_sizeFixed.cy - iCYHSCROLL)
-               {
-                  bVSVisible = true;
-               }
-               else
-               {
-                  bVSVisible = false;
-               }
-            }
-            else
-            {
-               bHSVisible = false;
-               if(rectPane.height() < m_panea[i]->m_sizeFixed.cy)
-               {
-                  bVSVisible = true;
-                  if(rectPane.width() < m_panea[i]->m_sizeFixed.cx - iCXVSCROLL)
-                  {
-                     bHSVisible = true;
-                  }
-                  else
-                  {
-                     bHSVisible = false;
-                  }
-               }
-               else
-               {
-                  bVSVisible = false;
-               }
-            }
-         }
-         if(pwnd != NULL)
+         if (rectPane.area() <= 0 || !bIsWindowVisible)
          {
 
-//            DWORD dwTime2 = ::get_tick_count();
-
-            //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
-            //TRACE("usersplitlayout call time7= %d ms (%s)",dwTime2 - t_time1.operator DWORD_PTR(),typeid(*pwnd.m_p->m_uiptraChild[0]).name());
+            pwnd->ShowWindow(SW_HIDE);
 
          }
 
-         if(pwnd != NULL)
+         pwnd->SetWindowPos(ZORDER_TOP, rectClient, uiFlags);
+
+         if (rectPane.area() > 0 && bIsWindowVisible)
          {
-            uiFlags = uiBaseFlags;
-            if(bIsWindowVisible)
-            {
-               if(!pwnd->m_bVisible)
-               {
-                  uiFlags = uiBaseFlags | SWP_SHOWWINDOW;
-               }
-            }
-            else
-            {
-               if(pwnd->m_bVisible)
-               {
-                  uiFlags = uiBaseFlags | SWP_HIDEWINDOW;
-               }
-            }
-            pwnd->SetWindowPos(ZORDER_TOP, rectClient, uiFlags);
-            {
 
-//               DWORD dwTime2 = ::get_tick_count();
-
-               //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
-               //TRACE("usersplitlayout call time8= %d ms (%s)",dwTime2 - t_time1.operator DWORD_PTR(), typeid(*pwnd.m_p->m_uiptraChild[0]).name());
-
-            }
+            pwnd->ShowWindow(SW_SHOW);
 
          }
+
       }
 
-
-      {
-
-//         DWORD dwTime2 = ::get_tick_count();
-
-         //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
-         //TRACE("usersplitlayout call time9= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
-
-      }
    }
+
 
    void split_layout::set_position(int32_t iIndex, int32_t nPos)
    {
@@ -828,6 +890,15 @@ namespace user
       }
    }
 
+   rect & split_layout::get_pane_rect(int32_t iPane)
+   {
+      ASSERT(iPane >= 0);
+      ASSERT(iPane < get_pane_count());
+      if (iPane < 0 || iPane >= get_pane_count())
+         return *((rect*)NULL);
+      return m_panea[iPane]->m_rectClient;
+   }
+
    sp(::user::place_holder) split_layout::get_pane_holder(int32_t iPane)
    {
       ASSERT(iPane >= 0);
@@ -867,6 +938,8 @@ namespace user
       return -1;
 
    }
+
+   
 
 
    split_layout::Pane::Pane(::aura::application * papp) :

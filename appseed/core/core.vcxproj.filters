@@ -1842,14 +1842,14 @@
     <None Include="core.def">
       <Filter>Source Files</Filter>
     </None>
-    <None Include="user\user\interaction.inl">
-      <Filter>Header Files\user\user</Filter>
-    </None>
     <None Include="user\user\user_interaction.inl">
       <Filter>Header Files\user\user</Filter>
     </None>
     <None Include="core\core\core.inl">
       <Filter>Header Files\core\core</Filter>
+    </None>
+    <None Include="user\user\user.inl">
+      <Filter>Header Files\user\user</Filter>
     </None>
   </ItemGroup>
 </Project>

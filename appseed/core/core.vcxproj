@@ -2198,7 +2198,7 @@
   <ItemGroup>
     <None Include="core.def" />
     <None Include="core\core\core.inl" />
-    <None Include="user\user\interaction.inl" />
+    <None Include="user\user\user.inl" />
     <None Include="user\user\user_interaction.inl" />
   </ItemGroup>
   <ItemGroup>

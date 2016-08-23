@@ -2107,31 +2107,31 @@ namespace user
    LRESULT interaction::send_message(UINT uiMessage,WPARAM wparam,lparam lparam)
    {
 
-      if(uiMessage != WM_DESTROY && uiMessage != WM_NCDESTROY)
-      {
+      //if(uiMessage != WM_DESTROY && uiMessage != WM_NCDESTROY)
+      //{
 
-         ::user::interaction * pui = this;
+      //   ::user::interaction * pui = this;
 
-         while(pui != NULL)
-         {
+      //   while(pui != NULL)
+      //   {
 
-            if(pui->m_bDestroying)
-            {
+      //      if(pui->m_bDestroying)
+      //      {
 
-               return FALSE;
+      //         return FALSE;
 
-            }
+      //      }
 
-            pui = pui->GetParent();
+      //      pui = pui->GetParent();
 
-         }
+      //   }
 
-      }
+      //}
 
       if(m_pimpl == NULL)
       {
 
-         return FALSE;
+         return 0;
 
       }
 

@@ -14,17 +14,13 @@ namespace user
    public:
 
 
-      friend class split_bar;
-
-
-
-
       enum
       {
+
          stateInitial = 1,
          stateDragging = 2
-      };
 
+      };
 
       class CLASS_DECL_CORE Pane :
          virtual public object
@@ -64,6 +60,8 @@ namespace user
       virtual ~split_layout();
 
 
+      virtual void install_message_handling(::message::dispatch * pinterface);
+
       virtual int32_t get_normal_dimension();
       virtual int32_t get_ortogonal_dimension();
 
@@ -81,6 +79,7 @@ namespace user
 
       virtual sp(::user::interaction) get_pane_window(int32_t iPane);
       virtual sp(::user::place_holder) get_pane_holder(int32_t iPane);
+      virtual rect & get_pane_rect(int32_t iPane);
       virtual id get_pane_id(int32_t iPane);
       virtual int32_t get_pane_by_id(::id id);
 
@@ -102,6 +101,8 @@ namespace user
       bool SetPaneCount(int32_t iPaneCount);
 
       virtual bool initialize_split_layout();
+
+      DECL_GEN_SIGNAL(_001OnShowWindow);
 
    };
 

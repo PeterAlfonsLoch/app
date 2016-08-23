@@ -176,10 +176,17 @@ namespace user
          m_pui->SetWindowPos(0,rectChild,(dwStyle & WS_VISIBLE) ? SWP_SHOWWINDOW : 0);
 
       }
-      else if(dwStyle & WS_VISIBLE)
+      else
       {
 
-         ShowWindow(SW_SHOW);
+         m_pui->send_message(WM_SIZE);
+
+         if ((dwStyle & WS_VISIBLE) != 0)
+         {
+
+            ShowWindow(SW_SHOW);
+
+         }
 
       }
 

@@ -97,7 +97,7 @@ namespace filemanager
 
       */
 
-      m_pusertree = create_view < ::user::show < ::user::tree > > ();
+      m_pusertree = create_pane_view < ::user::show < ::user::tree > > (0);
 
       if(m_pusertree == NULL)
       {
@@ -110,7 +110,7 @@ namespace filemanager
 
       //SetPane(1, pusertree, false);
 
-      SetPane(0,m_pusertree,false);
+      //SetPane(0,m_pusertree,false);
 
 
    }

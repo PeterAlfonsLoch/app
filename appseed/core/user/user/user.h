@@ -385,3 +385,4 @@ namespace user
 //#include "core/core/core/core_timer.h"
 
 
+#include "core/user/user/user.inl"
