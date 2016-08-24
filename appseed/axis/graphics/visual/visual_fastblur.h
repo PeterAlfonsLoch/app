@@ -270,7 +270,7 @@ namespace visual
       int64_array       m_iaVmax;
 
 
-
+      fastblur();
       fastblur(const ::aura::allocatorsp & allocer);
       ~fastblur();
 

@@ -15,6 +15,10 @@ namespace user
    m_columna(get_app())
    {
 
+      m_iIconBlur = 0;
+
+      m_iIconBlurRadius = 0;
+
       m_plist = this;
 
       m_eview = view_report;
@@ -5944,6 +5948,92 @@ namespace user
       else
       {
          synch_lock sl(get_image_list()->m_pmutex);
+
+         if (m_plist->m_iIconBlur > 0 && m_plist->m_iIconBlurRadius > 0)
+         {
+
+            auto & dib = m_plist->m_mapIconBlur[m_iImage];
+
+            if (dib.is_null())
+            {
+
+               dib.alloc(allocer());
+
+            }
+
+            int iRate = 3;
+
+            if (dib->area() <= 0)
+            {
+
+               dib.initialize(m_rectImage.size() + size(m_plist->m_iIconBlurRadius * iRate * 2, m_plist->m_iIconBlurRadius * iRate * 2), m_plist->m_iIconBlurRadius);
+
+               dib->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
+
+               dib->get_graphics()->FillSolidRect(0, 0, dib->m_size.cx, dib->m_size.cy, 0);
+
+               get_image_list()->draw(dib->get_graphics(), (int32_t)m_iImage, 
+                  point(m_plist->m_iIconBlurRadius*iRate, m_plist->m_iIconBlurRadius *iRate), m_rectImage.size(), point(0, 0), 0);
+
+               for (index i = 0; i < m_plist->m_iIconBlur; i++)
+               {
+
+                  dib.blur();
+
+               }
+
+            }
+
+            m_pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+
+            rect rDib(m_rectImage.top_left() - size(m_plist->m_iIconBlurRadius *iRate, m_plist->m_iIconBlurRadius * iRate),
+               m_rectImage.size() + size(m_plist->m_iIconBlurRadius *iRate * 2, m_plist->m_iIconBlurRadius * iRate * 2));
+
+            m_pgraphics->BitBlt(rDib, dib->get_graphics());
+
+            rect rI;
+
+            if (m_plist->m_dibSpot.is_set() && m_plist->m_dibSpot->area() > 0 && rI.intersect(m_rectImage, m_plist->m_rectSpot))
+            {
+
+               if (m_plist->m_dibTime.is_null())
+               {
+
+                  m_plist->m_dibTime.alloc(allocer());
+
+               }
+
+               m_plist->m_dibTime->create(m_plist->m_dibSpot->size());
+
+               rect r = rI;
+
+               r.offset(-m_rectImage.top_left());
+
+               //m_plist->m_dibTime->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
+
+               //m_plist->m_dibTime->get_graphics()->FillSolidRect(r, 0);
+
+               rect r2 = rI;
+
+               r2.offset(-m_plist->m_rectSpot.top_left());
+
+               m_plist->m_dibTime->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
+
+               get_image_list()->draw(m_plist->m_dibTime->get_graphics(), (int32_t)m_iImage,
+                  r2.top_left(),
+                  r.size(), r.top_left(), 0);
+
+               m_plist->m_dibTime->channel_multiply(visual::rgba::channel_alpha, m_plist->m_dibSpot, r2);
+
+               m_plist->m_dibTime->mult_alpha(r2.top_left(), r2.size());
+
+               m_pgraphics->BitBlt(rI, m_plist->m_dibTime->get_graphics(), r2.top_left());
+
+            }
+
+            return true;
+
+         }
          //if(m_plist->m_bMorePlain)
          //{
 
@@ -5951,7 +6041,7 @@ namespace user
          //   return m_pgraphics->BitBlt(m_rectImage.left, m_rectImage.top, m_rectImage.width(), m_rectImage.height(),get_image_list()->m_spdib->get_graphics(), m_iImage * m_rectImage.width());
 
          //}
-         //else
+         else
          {
             m_pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
             return get_image_list()->draw(m_pgraphics,(int32_t)m_iImage,m_rectImage.top_left(),m_rectImage.size(),point(0,0),0);

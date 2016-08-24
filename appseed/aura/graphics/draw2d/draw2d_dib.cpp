@@ -1537,6 +1537,140 @@ namespace draw2d
    }
 
 
+   void dib::channel_from(visual::rgba::echannel echannel, ::draw2d::dib * pdib, LPCRECT lpcrect)
+   {
+
+      map();
+
+      pdib->map();
+
+      rect r1(null_point(), m_size);
+
+      rect r;
+
+      if (!r.intersect(r1, lpcrect))
+      {
+
+         return;
+
+      }
+
+      rect r2(null_point(), pdib->m_size);
+
+      if (!r.intersect(r2, lpcrect))
+      {
+
+         return;
+
+      }
+
+      LPBYTE lpb1 = ((LPBYTE)get_data()) + (r.left * sizeof(COLORREF) + r.top * m_iScan);
+
+      LPBYTE lpb2 = ((LPBYTE)pdib->get_data()) + (r.left * sizeof(COLORREF) + r.top * pdib->m_iScan);
+
+      lpb1 += ((int32_t)echannel) % 4;
+
+      lpb2 += ((int32_t)echannel) % 4;
+
+      int h = r.height();
+
+      int w = r.width();
+
+      for (int i = 0; i < h; i++)
+      {
+
+         LPBYTE lpb1_2 = lpb1;
+
+         LPBYTE lpb2_2 = lpb2;
+
+         for (int j = 0; j < w; j++)
+         {
+
+            *lpb1_2 = *lpb2_2;
+
+            lpb1_2 += 4;
+
+            lpb2_2 += 4;
+
+         }
+
+         lpb1 += m_iScan;
+
+         lpb2 += pdib->m_iScan;
+
+      }
+
+   }
+
+
+
+   void dib::channel_multiply(visual::rgba::echannel echannel, ::draw2d::dib * pdib, LPCRECT lpcrect)
+   {
+
+      map();
+
+      pdib->map();
+
+      rect r1(null_point(), m_size);
+
+      rect r;
+
+      if (!r.intersect(r1, lpcrect))
+      {
+
+         return;
+
+      }
+
+      rect r2(null_point(), pdib->m_size);
+
+      if (!r.intersect(r2, lpcrect))
+      {
+
+         return;
+
+      }
+
+      LPBYTE lpb1 = ((LPBYTE)get_data()) + (r.left * sizeof(COLORREF) + r.top * m_iScan);
+
+      LPBYTE lpb2 = ((LPBYTE)pdib->get_data()) + (r.left * sizeof(COLORREF) + r.top * pdib->m_iScan);
+
+      lpb1 += ((int32_t)echannel) % 4;
+
+      lpb2 += ((int32_t)echannel) % 4;
+
+      int h = r.height();
+
+      int w = r.width();
+
+      for (int i = 0; i < h; i++)
+      {
+
+         LPBYTE lpb1_2 = lpb1;
+
+         LPBYTE lpb2_2 = lpb2;
+
+         for (int j = 0; j < w; j++)
+         {
+
+            *lpb1_2 = *lpb2_2 * *lpb1_2 / 255;
+
+            lpb1_2 += 4;
+
+            lpb2_2 += 4;
+
+         }
+
+         lpb1 += m_iScan;
+
+         lpb2 += pdib->m_iScan;
+
+      }
+
+   }
+
+
+
    void dib::FillGlass ( int32_t R, int32_t G, int32_t B, int32_t A )
    {
       BYTE *dst=(BYTE*)get_data();

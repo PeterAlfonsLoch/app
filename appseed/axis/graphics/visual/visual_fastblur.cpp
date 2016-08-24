@@ -126,9 +126,7 @@ inline void storeFloatAsRGBA8(float32x4_t data,uint32_t* destination)
 namespace visual
 {
 
-
-   fastblur::fastblur(const ::aura::allocatorsp & allocer) :
-      dib_sp(allocer)
+   fastblur::fastblur()
    {
 
       m_iRadius = 0;
@@ -145,6 +143,14 @@ namespace visual
       timage = NULL;
 
 #endif // VECTOR3_SSE
+
+   }
+
+   fastblur::fastblur(const ::aura::allocatorsp & allocer) :
+      fastblur()
+   {
+
+      alloc(allocer);
 
    }
 

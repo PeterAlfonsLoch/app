@@ -208,6 +208,12 @@ namespace user
       
       int_ptr_map < ::draw2d::dib_sp > m_mapBlur;
       int_ptr_map < string >           m_mapText;
+      int_ptr_map < ::visual::fastblur > m_mapIconBlur;
+      int                              m_iIconBlur;
+      int                              m_iIconBlurRadius;
+      rect                             m_rectSpot;
+      ::draw2d::dib_sp                 m_dibSpot;
+      ::draw2d::dib_sp                 m_dibTime;
 
 
 

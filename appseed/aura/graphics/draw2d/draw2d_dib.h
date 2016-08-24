@@ -239,6 +239,8 @@ namespace draw2d
       virtual void channel_lighten(visual::rgba::echannel echannel, ::draw2d::dib * pdib);
       virtual void channel_darken(visual::rgba::echannel echannel, ::draw2d::dib * pdib);
       virtual void channel_from(visual::rgba::echannel echannel, ::draw2d::dib * pdib);
+      virtual void channel_multiply(visual::rgba::echannel echannel, ::draw2d::dib * pdib, LPCRECT lpcrect);
+      virtual void channel_from(visual::rgba::echannel echannel, ::draw2d::dib * pdib, LPCRECT lpcrect);
       virtual void channel_copy(visual::rgba::echannel echannelDst, visual::rgba::echannel echannelSrc);
       virtual void channel_copy(visual::rgba::echannel echannelDst, visual::rgba::echannel echannelSrc, ::draw2d::dib * pdib);
 
