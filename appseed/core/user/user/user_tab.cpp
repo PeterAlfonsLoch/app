@@ -2641,16 +2641,21 @@ namespace user
 
       ::user::place_holder * pholder = tab_holder(_001GetSel());
 
-      if (pshowwindow->m_bShow)
+      if (pholder != NULL)
       {
 
-         pholder->ShowWindow(SW_SHOW);
+         if (pshowwindow->m_bShow)
+         {
 
-      }
-      else
-      {
+            pholder->ShowWindow(SW_SHOW);
 
-         pholder->ShowWindow(SW_HIDE);
+         }
+         else
+         {
+
+            pholder->ShowWindow(SW_HIDE);
+
+         }
 
       }
 
