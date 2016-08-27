@@ -530,18 +530,29 @@ namespace user
 
       ::file::buffer_sp spfile;
 
-      try
+      if (m_file.is_set() && varFile.get_file_path() == m_file->GetFilePath())
       {
 
-         spfile = Application.file().get_file(varFile, ::file::defer_create_directory | ::file::mode_create | ::file::mode_read | ::file::mode_write | ::file::share_exclusive);
+         spfile = m_file;
 
       }
-      catch (::exception::base & e)
+      else
       {
 
-         report_save_load_exception(varFile, &e, TRUE, "__IDP_INVALID_FILENAME");
+         try
+         {
 
-         return false;
+            spfile = Application.file().get_file(varFile, ::file::defer_create_directory | ::file::mode_create | ::file::mode_read | ::file::mode_write | ::file::share_exclusive);
+
+         }
+         catch (::exception::base & e)
+         {
+
+            report_save_load_exception(varFile, &e, TRUE, "__IDP_INVALID_FILENAME");
+
+            return false;
+
+         }
 
       }
 
