@@ -4,14 +4,15 @@
 namespace estamira
 {
 
-   character::character(::aura::application * papp) :
+   character::character(::aura::application * papp, index iIndex) :
       object(papp),
       m_ts(papp)
    {
-      m_dwUpTime = 1000;
-      m_bLeft = false;
-      m_bRight = false;
 
+      m_iIndex = iIndex;
+
+      m_dwUpTime = 1000;
+      
       m_ekeyLeft = ::user::key_left;
       m_ekeyUp = ::user::key_up;
       m_ekeyRight = ::user::key_right;
@@ -27,16 +28,19 @@ namespace estamira
    {
       IGUI_WIN_MSG_LINK(WM_KEYDOWN, pdispatch, this, &character::_001OnKeyDown);
       IGUI_WIN_MSG_LINK(WM_KEYUP, pdispatch, this, &character::_001OnKeyUp);
+      //IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN, pdispatch, this, &character::_001OnLButtonDown);
+      //IGUI_WIN_MSG_LINK(WM_LBUTTONUP, pdispatch, this, &character::_001OnLButtonUp);
+      //IGUI_WIN_MSG_LINK(WM_MOUSEMOVE, pdispatch, this, &character::_001OnMouseMove);
 
    }
 
 
-   bool character::init(string strTileMap, ::user::interaction * pui)
+   bool character::init(string strTileMap, game * pgame)
    {
 
-      m_pui = pui;
+      m_pgame = pgame;
 
-      install_message_handling(pui->m_pimpl);
+      install_message_handling(pgame->m_pui->m_pimpl);
 
       m_pt.x = 0;
       m_pt.y = 0;
@@ -61,8 +65,6 @@ namespace estamira
    void character::_001OnDraw(::draw2d::graphics * pgraphics)
    {
 
-      int w = pgraphics->m_pdib->m_size.cx;
-
       stringa stra;
 
       if (m_iMoveX > 0)
@@ -84,17 +86,6 @@ namespace estamira
 
       int iDelay = 84;
 
-      int iDistance = m_iMoveX * 5 * ((get_tick_count() - m_dwLastChangeXDir) / iDelay);
-
-      while (m_ptStart.x + m_pt.x + iDistance < 0)
-      {
-         iDistance += w;
-      }
-      while (m_ptStart.x + m_pt.x + iDistance > w)
-      {
-         iDistance -= w;
-      }
-      m_ptNow.x = m_ptStart.x + m_pt.x + iDistance;
       int iUp = 0;
       int iUpMax = 48;
       if (get_tick_count() - m_dwLastUp < m_dwUpTime)
@@ -110,73 +101,391 @@ namespace estamira
 
    void character::_001OnKeyDown(signal_details * pobj)
    {
+      
       SCAST_PTR(::message::key, pkey, pobj);
+
       if (pkey->m_ekey == m_ekeyUp)
       {
+
          if (get_tick_count() - m_dwLastUp > m_dwUpTime)
          {
+
             m_dwLastUp = get_tick_count();
+
          }
+
       }
       else if (pkey->m_ekey == m_ekeyLeft)
       {
-         m_bLeft = true;
-         update_movex();
+
+         if (m_pgame->m_bKeyPulse)
+         {
+
+            moveLeft();
+
+         }
+         else
+         {
+
+            m_bLeft = true;
+
+            m_bRight = false;
+
+         }
+
       }
       else if (pkey->m_ekey == m_ekeyRight)
       {
-         m_bRight = true;
-         update_movex();
+
+         if (m_pgame->m_bKeyPulse)
+         {
+
+            moveRight();
+
+         }
+         else
+         {
+
+            m_bLeft = false;
+
+            m_bRight = true;
+
+         }
+
       }
 
    }
 
    void character::_001OnKeyUp(signal_details * pobj)
    {
+      
       SCAST_PTR(::message::key, pkey, pobj);
     
       if (pkey->m_ekey == m_ekeyLeft)
       {
-         m_bLeft = false;
-         update_movex();
+
+         if (m_pgame->m_bKeyPulse)
+         {
+
+            moveX(0);
+
+         }
+         else
+         {
+
+            m_bLeft = false;
+
+            m_bRight = false;
+
+         }
+            
       }
       else if (pkey->m_ekey == m_ekeyRight)
       {
-         m_bRight = false;
-         update_movex();
+
+         if (m_pgame->m_bKeyPulse)
+         {
+
+            moveX(0);
+
+         }
+         else
+         {
+
+            m_bLeft = false;
+
+            m_bRight = false;
+
+         }
+
       }
 
    }
 
-   void character::update_movex()
+   void character::moveX(int iMoveX)
    {
-      int iMoveX;
-      if (m_bLeft)
+
+      if (iMoveX < 0 && canMoveLeft())
       {
-         if (m_bRight)
-         {
-            iMoveX = 0;
-         }
-         else
-         {
-            iMoveX = -1;
-         }
+
+         iMoveX = -1;
+
       }
-      else if (m_bRight)
+      else if (iMoveX > 0 && canMoveRight())
       {
+
          iMoveX = 1;
 
       }
       else
       {
+
          iMoveX = 0;
+
       }
+
       if (m_iMoveX != iMoveX)
       {
-         m_iMoveX = iMoveX;
-         m_ptStart = m_ptNow;
+
          m_dwLastChangeXDir = ::get_tick_count();
+
+         m_ptStart.x = m_ptNow.x;
+
+         m_iMoveX = iMoveX;
+
       }
+
+      if (iMoveX != 0)
+      {
+
+         int w = m_pgame->m_sizePage.cx;
+
+         int iDelay = 84;
+
+         int iDistance = m_iMoveX * 5 * ((get_tick_count() - m_dwLastChangeXDir) / iDelay);
+
+         m_ptNow.x = m_ptStart.x + iDistance;
+
+         while (m_ptNow.x < 0)
+         {
+
+            m_ptNow.x += w;
+
+         }
+
+         while (m_ptNow.x > w)
+         {
+
+            m_ptNow.x -= w;
+
+         }
+
+
+      }
+
+   }
+
+
+
+   void character::_001OnLButtonDown(signal_details * pobj)
+   {
+      SCAST_PTR(::message::mouse, pmouse, pobj);
+
+
+   }
+
+   void character::_001OnLButtonUp(signal_details * pobj)
+   {
+      SCAST_PTR(::message::mouse, pmouse, pobj);
+
+   }
+
+   void character::_001OnMouseMove(signal_details * pobj)
+   {
+      SCAST_PTR(::message::mouse, pmouse, pobj);
+      point pt = pmouse->m_pt;
+   }
+    
+   void character::on_key_move_tick()
+   {
+
+      if (m_bLeft)
+      {
+
+         if (m_bRight)
+         {
+
+            moveX(0);
+
+            return;
+
+         }
+         else
+         {
+
+            moveLeft();
+
+            return;
+
+         }
+
+      }
+      else if (m_bRight)
+      {
+
+         moveRight();
+
+         return;
+
+      }
+      else
+      {
+
+         moveX(0);
+
+      }
+
+   }
+
+   void character::on_move_tick(bool bEnd)
+   {
+
+
+      if (bEnd)
+      {
+         
+         moveX(0);
+
+         return;
+
+      }
+
+      point pt;
+
+      Session.get_cursor_pos(pt);
+
+      m_pgame->ScreenToClient(pt);
+
+      rect r(m_ptNow, m_ts.m_il.m_size);
+
+      if (pt.x > r.right)
+      {
+
+         moveRight();
+
+      }
+      else if (pt.x < r.left)
+      {
+
+         moveLeft();
+
+      }
+      else
+      {
+
+         moveX(0);
+
+      }
+      
+   }
+
+   bool character::get_rect(LPRECT lprect)
+   {
+
+      lprect->left = m_ptNow.x;
+      lprect->top = m_ptNow.y;
+      lprect->left = m_ptNow.x + m_ts.m_il.m_size.cx;
+      lprect->top = m_ptNow.y + m_ts.m_il.m_size.cy;
+      
+      return true;
+
+   }
+
+   
+
+   int character::hit_test(point pt)
+   {
+
+      rect r(m_ptNow, m_ts.m_il.m_size);
+
+      if (r.contains(pt))
+         return 0;
+      else
+         return -1;
+
+   }
+
+
+   bool character::canMoveLeft(bool bPlatformCall)
+   {
+
+      if (!bPlatformCall)
+      {
+
+         return m_pgame->canMoveLeft(m_iIndex, true);
+
+      }
+      else
+      {
+
+         return true;
+
+      }
+
+   }
+
+
+   bool character::canMoveRight(bool bPlatformCall)
+   {
+
+      if (!bPlatformCall)
+      {
+
+         return m_pgame->canMoveRight(m_iIndex, true);
+
+      }
+      else
+      {
+
+         return true;
+
+      }
+
+
+   }
+
+
+   bool character::canMoveUp(bool bPlatformCall)
+   {
+
+      if (!bPlatformCall)
+      {
+
+         return m_pgame->canMoveUp(m_iIndex, true);
+
+      }
+      else
+      {
+
+         return true;
+
+      }
+
+
+   }
+
+   bool character::canMoveDown(bool bPlatformCall)
+   {
+
+      if (!bPlatformCall)
+      {
+
+         return m_pgame->canMoveDown(m_iIndex, true);
+
+      }
+      else
+      {
+
+         return true;
+
+      }
+
+
+   }
+
+   void character::moveLeft()
+   {
+
+      moveX(-1);
+
+   }
+
+
+   void character::moveRight()
+   {
+
+      moveX(1);
+
    }
 
 

@@ -6,11 +6,24 @@ namespace estamira
 
    game::game(::aura::application * papp) :
       object(papp),
-      m_dib(allocer())
+      m_dibPage(allocer()),
+      m_timer(papp,23)
    {
 
-      m_iMult = 4;
+      m_uiCursorDelay = 100;
 
+      m_bKeyPulse = false;
+      m_bBeamMode = false;
+
+      m_ptOffset = null_point();
+
+      m_pmutex = new mutex(papp);
+      m_iMult = 4;
+      m_iCurChar = -1;
+
+      m_timer.m_pcallback = this;
+      m_timer.m_nIDEvent = 23;
+      m_timer.m_pmutex = m_pmutex;
    }
 
    game::~game()
@@ -22,6 +35,9 @@ namespace estamira
    {
       IGUI_WIN_MSG_LINK(WM_KEYDOWN, pdispatch, this, &game::_001OnKeyDown);
       IGUI_WIN_MSG_LINK(WM_KEYUP, pdispatch, this, &game::_001OnKeyUp);
+      IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN, pdispatch, this, &game::_001OnLButtonDown);
+      IGUI_WIN_MSG_LINK(WM_LBUTTONUP, pdispatch, this, &game::_001OnLButtonUp);
+      IGUI_WIN_MSG_LINK(WM_MOUSEMOVE, pdispatch, this, &game::_001OnMouseMove);
 
    }
 
@@ -32,6 +48,8 @@ namespace estamira
       m_pui = pui;
 
       install_message_handling(pui->m_pimpl);
+
+      m_timer.start(23, true);
 
       return true;
 
@@ -47,22 +65,24 @@ namespace estamira
       if (rectClient.area() <= 0)
          return;
 
-      int w = m_dib->m_size.cx;
+      sp(::draw2d::dib) pdib = m_dibPage;
+
+      int w = pdib->m_size.cx;
 
       if (w <= 0)
          return;
 
-      int h = m_dib->m_size.cy;
+      int h = pdib->m_size.cy;
 
       if (h <= 0)
          return;
 
-      m_dib->Fill(0);
+      pdib->Fill(0);
 
       for (auto & p : m_charactera)
       {
 
-         p->_001OnDraw(m_dib->get_graphics());
+         p->_001OnDraw(pdib->get_graphics());
 
       }
 
@@ -70,7 +90,7 @@ namespace estamira
 
       pgraphics->SetStretchBltMode(0);
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
-      pgraphics->StretchBlt(0, 0, rectClient.width(), rectClient.height(), m_dib->get_graphics(), 0, 0, m_dib->m_size.cx, m_dib->m_size.cy, SRCCOPY);
+      pgraphics->StretchBlt(0, 0, rectClient.width(), rectClient.height(), pdib->get_graphics(), 0, 0, pdib->m_size.cx, pdib->m_size.cy, SRCCOPY);
 
 
    }
@@ -87,9 +107,9 @@ namespace estamira
    ::estamira::character * game::add_new_character(string strTileMap)
    {
 
-      sp(::estamira::character) pcharacter = canew(::estamira::character(get_app()));
+      sp(::estamira::character) pcharacter = canew(::estamira::character(get_app(), m_charactera.get_count()));
 
-      pcharacter->init(strTileMap, m_pui);
+      pcharacter->init(strTileMap, this);
 
       m_charactera.add(pcharacter);
 
@@ -106,8 +126,12 @@ namespace estamira
 
       if (rectClient.area() <= 0)
          return;
+      
+      m_sizePage.cx = rectClient.width() / MAX(1, m_iMult);
+      m_sizePage.cy = rectClient.height() / MAX(1, m_iMult);
+      
+      m_dibPage->create(m_sizePage);
 
-      m_dib->create(rectClient.width() / MAX(1, m_iMult), rectClient.height() / MAX(1, m_iMult));
 
    }
 
@@ -124,6 +148,305 @@ namespace estamira
 
 
    }
+
+
+
+   void game::_001OnLButtonDown(signal_details * pobj)
+   {
+      SCAST_PTR(::message::mouse, pmouse, pobj);
+      point pt = pmouse->m_pt;
+
+      
+
+      ScreenToClient(pt);
+
+      if (m_charactera.get_count() <= 0)
+      {
+         m_iCurChar = 0;
+      }
+      else
+      {
+         m_iCurChar = hit_test(pt);
+      }
+      if (m_iCurChar >= 0)
+      {
+         on_move_tick();
+         m_pui->SetCapture();
+      }
+
+      pmouse->m_bRet = true;
+
+   }
+
+   void game::_001OnLButtonUp(signal_details * pobj)
+   {
+      SCAST_PTR(::message::mouse, pmouse, pobj);
+      m_iCurChar = -1;
+      m_pui->ReleaseCapture();
+      if (m_iCurChar >= 0 && m_iCurChar < m_charactera.get_count())
+      {
+
+         m_charactera[m_iCurChar]->on_move_tick(true);
+
+      }
+
+      pmouse->m_bRet = true;
+   }
+
+   void game::_001OnMouseMove(signal_details * pobj)
+   {
+      SCAST_PTR(::message::mouse, pmouse, pobj);
+
+      if (m_iCurChar >= 0 && m_iCurChar < m_charactera.get_count())
+      {
+
+         //m_charactera[m_iCurChar]->_001OnMouseMove(pobj);
+
+      }
+
+      pmouse->m_bRet = true;
+   }
+
+   int game::hit_test(point pt)
+   {
+
+      int i = 0;
+
+      for (auto & c : m_charactera)
+      {
+
+
+         if (c->hit_test(pt) >= 0)
+         {
+
+            if (0)
+            {
+               string str;
+
+
+               str = "Clicked in character " + string((char)( 'a' + i));
+
+               Application.simple_message_box(NULL, str);
+
+            }
+            return i;
+         }
+
+         i++;
+
+      }
+
+
+      return -1;
+
+   }
+
+   void game::ScreenToClient(LPPOINT lppoint)
+   {
+
+      lppoint->x -= m_ptOffset.x;
+      lppoint->y -= m_ptOffset.y;
+
+      m_pui->ScreenToClient(lppoint);
+
+      rect rectClient;
+
+      m_pui->GetClientRect(rectClient);
+
+      if (rectClient.area() <= 0)
+         return;
+
+      ::draw2d::dib_sp pdib = m_dibPage;
+
+      if (pdib->area() <= 0)
+         return;
+      
+      lppoint->x = lppoint->x * pdib->m_size.cx / rectClient.width();
+      lppoint->y = lppoint->y * pdib->m_size.cy / rectClient.height();
+
+
+   }
+
+   bool game::on_timer(timer * ptimer)
+   {
+
+      if (ptimer->m_nIDEvent == 23)
+      {
+         on_move_tick();
+      }
+      return true;
+   }
+   
+   
+   void game::on_move_tick()
+   {
+
+      if (get_tick_count() - m_dwLastCursor < m_uiCursorDelay)
+      {
+
+         return;
+
+      }
+
+      m_dwLastCursor = get_tick_count();
+
+      if (m_iCurChar >= 0)
+      {
+
+         if (m_iCurChar < m_charactera.get_count())
+         {
+
+            m_charactera[m_iCurChar]->on_move_tick();
+
+         }
+         else
+         {
+
+            point pt;
+
+            Session.get_cursor_pos(pt);
+
+            ScreenToClient(pt);
+
+            rect r;
+
+            get_char_rect(r, m_iCurChar);
+
+            if (pt.x > r.right)
+            {
+
+               moveRight(0);
+
+            }
+            else if (pt.x < r.left)
+            {
+
+               moveLeft(0);
+
+            }
+
+         }
+
+      }
+      else
+      {
+
+         for (auto & c : m_charactera)
+         {
+
+            c->on_key_move_tick();
+
+         }
+
+      }
+
+   }
+
+
+   bool game::canMoveUp(int iChar, bool bPlatformCall)
+   {
+
+      if (!bPlatformCall)
+      {
+
+         return m_charactera[iChar]->canMoveUp(true);
+
+      }
+      else
+      {
+
+         return true;
+
+      }
+
+   }
+
+
+   bool game::canMoveDown(int iChar, bool bPlatformCall)
+   {
+
+      if (!bPlatformCall)
+      {
+
+         return m_charactera[iChar]->canMoveDown(true);
+
+      }
+      else
+      {
+
+         return true;
+
+      }
+
+   }
+
+
+   bool game::canMoveLeft(int iChar, bool bPlatformCall)
+   {
+
+      if (!bPlatformCall)
+      {
+
+         return m_charactera[iChar]->canMoveLeft(true);
+
+      }
+      else
+      {
+
+         return true;
+
+      }
+
+   }
+
+
+   bool game::canMoveRight(int iChar, bool bPlatformCall)
+   {
+
+      if (!bPlatformCall)
+      {
+
+         return m_charactera[iChar]->canMoveRight(true);
+
+      }
+      else
+      {
+
+         return true;
+
+      }
+
+   }
+
+   void game::moveLeft(index iChar)
+   {
+
+   }
+
+   void game::moveRight(index iChar)
+   {
+
+   }
+
+
+   bool game::get_char_rect(LPRECT lprect, index iChar, bool bPlatformCall)
+   {
+
+      if (!bPlatformCall)
+      {
+
+         return m_charactera[iChar]->get_rect(lprect);
+
+      }
+      else
+      {
+
+         return false;
+
+      }
+
+   }
+
 
 } // namespace estamira
 

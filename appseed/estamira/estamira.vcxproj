@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{2A6E9644-E659-4F8B-B8A4-DB77461DC071}</ProjectGuid>
+    <ProjectGuid>{A33B9D31-3BFE-496C-A4F5-DC3086D5B27F}</ProjectGuid>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <Keyword>ManagedCProj</Keyword>
     <RootNamespace>math</RootNamespace>
@@ -371,6 +371,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="estamira.h" />
+    <ClInclude Include="estamira_application.h" />
     <ClInclude Include="estamira_character.h" />
     <ClInclude Include="estamira_game.h" />
     <ClInclude Include="estamira_tileset.h" />
@@ -378,6 +379,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="estamira.cpp" />
+    <ClCompile Include="estamira_application.cpp" />
     <ClCompile Include="estamira_character.cpp" />
     <ClCompile Include="estamira_game.cpp" />
     <ClCompile Include="framework.cpp">
@@ -388,8 +390,11 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\axis\mysql\axismysql.vcxproj">
-      <Project>{2652c96f-6e86-4ed1-b3b6-ac977dfb0593}</Project>
+    <ProjectReference Include="..\..\..\app-core\appseed\hellomultiverse\hellomultiverse.vcxproj">
+      <Project>{c7afcefa-3079-4b23-8f97-4543bb980265}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\app-core\appseed\multimedia\multimedia.vcxproj">
+      <Project>{20fd0446-aa14-4013-84e0-b5cb63fa354f}</Project>
     </ProjectReference>
     <ProjectReference Include="..\ace\ace.vcxproj">
       <Project>{21dcc811-4bce-4f16-b674-c0941f847127}</Project>
@@ -402,6 +407,12 @@
     </ProjectReference>
     <ProjectReference Include="..\axis\axis.vcxproj">
       <Project>{73a245f9-c92f-4487-aef7-cb0531f665bd}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\base\base.vcxproj">
+      <Project>{4d7d3626-ada6-4ca2-9566-ed7b131e3d51}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\core\core.vcxproj">
+      <Project>{e000ffaf-392f-4e32-bf51-fd7ed638991f}</Project>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
