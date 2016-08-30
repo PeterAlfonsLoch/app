@@ -420,7 +420,7 @@ namespace userex
 
       property_set propertyset;
       propertyset["message"] = pszMessage;
-      propertyset["simple_message_box_timeout_ms"] = durationTimeout.get_total_milliseconds();
+      box.m_dwDelay = durationTimeout.get_total_milliseconds();
 
       string strMatter;
       if(fuStyle & MB_YESNOCANCEL)

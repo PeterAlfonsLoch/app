@@ -16,7 +16,7 @@ class CLASS_DECL_CORE dialog :
 public:
 
 
-   sp(::user::document)          m_pdocument;
+   sp(::html_document)           m_pdocument;
    sp(simple_frame_window)       m_pframe;
    string                        m_strMatter;
 
@@ -53,6 +53,7 @@ public:
    virtual void form_to_user();
    //virtual bool OnInitDialog();
    // substituir, replace _001Initialize
+
 
 };
 

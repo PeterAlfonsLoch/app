@@ -42,14 +42,17 @@ bool dialog::show(const char * pszMatter, property_set  * ppropertyset)
 
    if(pszMatter != NULL && *pszMatter != '\0')
    {
+
       m_strMatter = pszMatter;
+
    }
 
    property_set set(get_app());
 
    set["hold"] = false;
 
-  m_pdocument = Session.userex()->create_form(this, NULL, Session.get_view(), set);
+   m_pdocument = Session.userex()->create_form(this, NULL, Session.get_view(), set);
+
    if(m_pdocument == NULL)
    {
       string str;
@@ -65,7 +68,9 @@ bool dialog::show(const char * pszMatter, property_set  * ppropertyset)
 
    }
 
-   m_pdocument->on_open_document(Application.dir().matter(m_strMatter));
+   ::file::path path = Application.dir().matter(m_strMatter);
+
+   m_pdocument->on_open_document(path);
 
    m_pframe =  (m_pdocument->get_view()->GetParentFrame());
    m_pframe->m_bWindowFrame         = true;
@@ -93,9 +98,9 @@ void dialog::on_show(const char * pszMatter, property_set  * ppropertyset)
 void dialog::EndModalLoop(id nResult)
 {
 
-   m_pframe->EndModalLoop(nResult);
-
    m_pframe->ShowWindow(SW_HIDE);
+
+   m_pframe->EndModalLoop(nResult);
 
 }
 
@@ -109,6 +114,8 @@ void dialog::on_position_parent_frame()
 {
    
    rect rectOpen;
+
+   layout();
    
    best_monitor(rectOpen);
 
