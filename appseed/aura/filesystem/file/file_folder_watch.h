@@ -18,6 +18,7 @@ namespace file
          action_removed,
          action_renamed_old_name,
          action_renamed_new_name,
+         action_modified,
          action_unexpected
             
       };

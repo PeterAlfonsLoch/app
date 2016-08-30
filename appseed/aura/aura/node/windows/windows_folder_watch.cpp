@@ -89,6 +89,9 @@ namespace windows
       case FILE_ACTION_ADDED: 
          // The file was added to the directory. 
          return action_added;
+      case FILE_ACTION_MODIFIED:
+         // The file was changed at the directory. 
+         return action_modified;
       case FILE_ACTION_REMOVED: 
          // The file was removed from the directory. 
          return action_removed;
