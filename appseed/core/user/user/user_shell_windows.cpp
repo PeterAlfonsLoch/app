@@ -979,9 +979,56 @@ namespace filemanager
                }
                else
                {
+                  
                   imagekey.m_strPath    = expand_env(szPath);
+
+
+                  if (::str::ends_ci(string(szFilePath), ".lnk"))
+                  {
+                     string strTarget;
+
+                     string strFolder;
+
+                     string strParams;
+
+                     //if(System.file().resolve_link(strTarget, strFilePath, System.ui_from_handle))
+                     if (System.file().resolve_link(strTarget, strFolder, strParams, strFilePath, NULL))
+                     {
+
+                        if (oprop("sln")["app_theme_suffix"].stra().get_count() > 0)
+                        {
+
+                           index i = oprop("sln")["app_theme_suffix"].stra().pred_find_first(
+                              [=](auto & str)
+                           {
+                              return imagekey.m_strPath.ends_ci(str);
+                           }
+                           );
+
+                           if (i >= 0)
+                           {
+                            
+                              string str = oprop("sln")["app_theme_suffix"].stra()[i];
+
+                              if (imagekey.m_strPath.ends_ci(str))
+                              {
+
+                                 imagekey.m_strPath.replace_ci(str, oprop("sln")["app_theme"].get_string() + "-" + str);
+
+                              }
+
+                           }
+         
+                        }
+
+                     }
+
+                  }
+
                   imagekey.m_iIcon      = iIcon;
+
                   imagekey.m_strExtension.Empty();
+
                }
             }
          }
@@ -1129,6 +1176,47 @@ namespace filemanager
 
                if (imagekey.m_strPath.has_char())
                {
+
+                  ::file::path p = imagekey.m_strPath;
+
+                  string strExtension = p.extension();
+
+                  if (oprop(strExtension).get_value().get_type() == var::type_propset && oprop(strExtension)["app_theme"].get_string().has_char())
+                  {
+                     ImageKey imagekey;
+
+                     string strPath = oprop(strExtension)["app_theme"] + "." + strExtension;
+
+                     imagekey.m_strPath = strPath;
+                     imagekey.m_iIcon = 0;
+                     imagekey.m_strExtension.Empty();
+
+                     if (m_imagemap.Lookup(imagekey, iImage))
+                        return iImage;
+
+                     ::file::path p = ::file::path(strPath);
+                     string strIcon;
+                     //if (p.title().CompareNoCase("dark") == 0)
+                     //{
+
+                     strIcon = Application.dir().matter("app_theme/" + strExtension + "_" + oprop(strExtension)["app_theme"] + ".ico");
+
+                     //}
+                     //else if (p.title().CompareNoCase("blue") == 0)
+                     //{
+                     // strIcon = Application.dir().matter("visual_studio/blue_solution.ico");
+                     //}
+                     //else
+                     //{
+                     // strIcon = Application.dir().matter("visual_studio/lite_solution.ico");
+                     //}
+                     int iImage = m_pil16->add_icon_os_data((HICON)LoadImage(NULL, strIcon, IMAGE_ICON, 16, 16, LR_LOADFROMFILE));
+                     m_pil48->add_icon_os_data((HICON)LoadImage(NULL, strIcon, IMAGE_ICON, 48, 48, LR_LOADFROMFILE));
+                     m_pil48Hover->add_icon_os_data((HICON)LoadImage(NULL, strIcon, IMAGE_ICON, 48, 48, LR_LOADFROMFILE));
+                     m_imagemap.set_at(imagekey, iImage);
+                     return iImage;
+                  }
+
                   try
                   {
 
@@ -1470,11 +1558,10 @@ namespace filemanager
             lpiextracticon->Release();
          }
 
-
-
-
          return iImage;
+
       }
+
 
       int32_t ImageSet::GetFooImage(oswindow oswindow,EIcon eicon,bool bFolder,const string & strExtension, COLORREF crBk)
       {
@@ -1499,6 +1586,8 @@ namespace filemanager
          {
             imagekey.m_strExtension  = strExtension;
          }
+
+
 
          imagekey.m_strPath.Empty();
 

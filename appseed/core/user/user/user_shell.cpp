@@ -177,7 +177,7 @@ namespace filemanager
 
       string str(lpcsz);
 
-      imagekey.m_strPath.Format(":%s:%d:%d", lpcsz, eattribute, eicon);
+      imagekey.m_strPath.Format(":%s:%d:%d:%s", lpcsz, eattribute, eicon, oprop("app_theme").get_string().c_str());
 
       imagekey.m_strExtension = str.Mid(str.reverse_find('.'));
 
@@ -451,36 +451,11 @@ namespace filemanager
 
 #ifdef WINDOWSEX
 
+      string strExtension;
+
       if (::str::ends_ci(string(strPath), ".sln"))
       {
-         ImageKey imagekey;
-
-         imagekey.m_strPath = strPath;
-         imagekey.m_iIcon = 0;
-         imagekey.m_strExtension.Empty();
-
-         if (m_imagemap.Lookup(imagekey, iImage))
-            return iImage;
-
-         ::file::path p = ::file::path(strPath);
-         string strIcon;
-         if (p.title().CompareNoCase("dark") == 0)
-         {
-            strIcon = Application.dir().matter("visual_studio/dark_solution.ico");
-         }
-         else if (p.title().CompareNoCase("blue") == 0)
-         {
-            strIcon = Application.dir().matter("visual_studio/blue_solution.ico");
-         }
-         else
-         {
-            strIcon = Application.dir().matter("visual_studio/lite_solution.ico");
-         }
-         int iImage = m_pil16->add_icon_os_data((HICON)LoadImage(NULL, strIcon, IMAGE_ICON, 16, 16, LR_LOADFROMFILE));
-         m_pil48->add_icon_os_data((HICON)LoadImage(NULL, strIcon, IMAGE_ICON, 48, 48, LR_LOADFROMFILE));
-         m_pil48Hover->add_icon_os_data((HICON)LoadImage(NULL, strIcon, IMAGE_ICON, 48, 48, LR_LOADFROMFILE));
-         m_imagemap.set_at(imagekey, iImage);
-         return iImage;
+         output_debug_string("test");
       }
 
 
