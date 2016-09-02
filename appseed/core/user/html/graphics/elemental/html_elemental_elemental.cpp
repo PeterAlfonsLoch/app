@@ -350,7 +350,7 @@ namespace html
          if (m_elementalptra.is_empty())
          {
 
-            if (m_style.m_edisplay == display_block)
+            if (m_style.m_edisplay == display_block || m_pimpl == NULL)
             {
 
                pdata->m_bHasChar = false;
