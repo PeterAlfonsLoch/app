@@ -2083,31 +2083,19 @@
     <ClCompile Include="user\_user.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\aura\charguess\w_auracharguess.vcxproj">
-      <Project>{bc6a52b4-c049-439c-88ff-5a262d968c8f}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\aura\pcre\w_aurapcre.vcxproj">
-      <Project>{b9aa8bb5-51fa-46e7-b346-2a89828f3000}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\aura\sqlite\w_aurasqlite.vcxproj">
-      <Project>{b24f72d6-053a-41c5-be03-3b0bd535f1eb}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\axis\bzip2\w_axisbzip2.vcxproj">
+    <ProjectReference Include="..\..\..\third\appseed\bzip2\w_axisbzip2.vcxproj">
       <Project>{b5a649e1-d516-4f29-a627-da6884dd421c}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\axis\crypto\w_axiscrypto.vcxproj">
+    <ProjectReference Include="..\..\..\third\appseed\crypto\w_axiscrypto.vcxproj">
       <Project>{39807406-816f-4c0d-a632-4bb8ab13887b}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\axis\freeimage\w_axisfreeimage.vcxproj">
-      <Project>{8785c06d-f7a7-485a-a258-027761e4a291}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\axis\idn\w_axisidn.vcxproj">
-      <Project>{b8ac3ef0-11c5-4e12-a944-5f7efed6e0c4}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\axis\openssl\w_axisopenssl.vcxproj">
+    <ProjectReference Include="..\..\..\third\appseed\openssl\w_axisopenssl.vcxproj">
       <Project>{0edd2695-2bc3-43f5-9910-8f93aef84cd1}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\axis\zlib\w_axiszlib.vcxproj">
+    <ProjectReference Include="..\..\..\third\appseed\sqlite\w_aurasqlite.vcxproj">
+      <Project>{b24f72d6-053a-41c5-be03-3b0bd535f1eb}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\third\appseed\zlib\w_axiszlib.vcxproj">
       <Project>{b4fcfbf1-e922-4fdc-bc83-b3c04623e8c2}</Project>
     </ProjectReference>
     <ProjectReference Include="..\ace\w_ace.vcxproj">
@@ -2118,6 +2106,9 @@
     </ProjectReference>
     <ProjectReference Include="..\aura\w_aura.vcxproj">
       <Project>{b3e5b8e7-9e3b-44dd-9ede-e0a74d52c1c5}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\freeimage\w_axisfreeimage.vcxproj">
+      <Project>{8785c06d-f7a7-485a-a258-027761e4a291}</Project>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Label="Globals">

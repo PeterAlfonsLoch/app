@@ -244,6 +244,12 @@
     <Filter Include="Source Files\aura\node\windows">
       <UniqueIdentifier>{4280469b-7403-46cd-a9a5-6b6c1cd213f1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\aura\charguess">
+      <UniqueIdentifier>{01ea0f06-b472-4bc3-8758-599a8f2944b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\aura\pcre">
+      <UniqueIdentifier>{edeb2e5a-9e9b-4ead-beee-bd998748bee0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="primitive\primitive_application_bias.h">
@@ -3495,6 +3501,15 @@
     </ClCompile>
     <ClCompile Include="aura\node\windows\_windows_node.cpp">
       <Filter>Source Files\aura\node\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\charguess\_.cpp">
+      <Filter>Source Files\aura\charguess</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\charguess\charDistribution.cpp">
+      <Filter>Source Files\aura\charguess</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\pcre\pcre.cpp">
+      <Filter>Source Files\aura\pcre</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

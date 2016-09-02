@@ -389,6 +389,8 @@ namespace user
 
                      pimplOld.release();
 
+#ifndef METROWIN
+
                      if (wnd != NULL)
                      {
 
@@ -396,6 +398,7 @@ namespace user
 
                      }
 
+#endif
 
                   }
                   catch(...)

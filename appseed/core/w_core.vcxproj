@@ -1964,12 +1964,6 @@
     <ClInclude Include="user\wndfrm\wndfrm_wndfrm.h" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\aura\charguess\w_auracharguess.vcxproj">
-      <Project>{bc6a52b4-c049-439c-88ff-5a262d968c8f}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\axis\bzip2\w_axisbzip2.vcxproj">
-      <Project>{b5a649e1-d516-4f29-a627-da6884dd421c}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\ace\w_ace.vcxproj">
       <Project>{14871c98-8ada-467e-8d93-d2e340d21626}</Project>
     </ProjectReference>

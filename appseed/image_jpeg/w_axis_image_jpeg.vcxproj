@@ -27,17 +27,20 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\third\appseed\jpeg\w_axisjpeg.vcxproj">
+      <Project>{89889ad7-7be0-49c3-beb2-f22afacbbb99}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\appseed\ace\w_ace.vcxproj">
       <Project>{14871c98-8ada-467e-8d93-d2e340d21626}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\appseed\aura\w_aura.vcxproj">
       <Project>{b3e5b8e7-9e3b-44dd-9ede-e0a74d52c1c5}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\ace\_w_ace.vcxproj">
+      <Project>{f9116331-25d4-4634-8eea-078aedb82161}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\freeimage\w_axisfreeimage.vcxproj">
       <Project>{8785c06d-f7a7-485a-a258-027761e4a291}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\jpeg\w_axisjpeg.vcxproj">
-      <Project>{89889ad7-7be0-49c3-beb2-f22afacbbb99}</Project>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -49,14 +52,14 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{B4517713-2000-419D-A87F-4338C9DDE3FA}</ProjectGuid>
     <Keyword>DynamicLibrary</Keyword>
-    <ProjectName>axis_image_jpeg</ProjectName>
+    <ProjectName>image_decode_jpeg</ProjectName>
     <RootNamespace>axis_image_jpeg</RootNamespace>
     <DefaultLanguage>en-US</DefaultLanguage>
     <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
     <AppContainerApplication>true</AppContainerApplication>
     <ApplicationType>Windows Store</ApplicationType>
-    <WindowsTargetPlatformVersion>10.0.10586.0</WindowsTargetPlatformVersion>
-    <WindowsTargetPlatformMinVersion>10.0.10586.0</WindowsTargetPlatformMinVersion>
+    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformMinVersion>10.0.14393.0</WindowsTargetPlatformMinVersion>
     <ApplicationTypeRevision>10.0</ApplicationTypeRevision>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
