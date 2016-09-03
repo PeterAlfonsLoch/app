@@ -1246,6 +1246,13 @@ namespace user
       else if(eelement == element_close_tab_button)
       {
 
+         if (iPane < 0)
+         {
+
+            return false;
+
+         }
+
          if (get_data()->m_panea[iPane]->m_bPermanent)
          {
           
