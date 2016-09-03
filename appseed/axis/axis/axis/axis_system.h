@@ -194,6 +194,11 @@ namespace axis
 
       //virtual void on_request(sp(::create) pcreate);
 
+
+
+
+	  virtual string url_encode(const string & str) override;
+
    };
 
 

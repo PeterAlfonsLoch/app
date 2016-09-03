@@ -1611,7 +1611,16 @@ namespace user
 
       try
       {
-         if(GetParent() != NULL)
+         if ((GetParent() != NULL
+#if defined(METROWIN) || defined(VSNORD)
+            && GetParent() != System.m_posdata->m_pui
+#endif
+            )
+            && !is_message_only_window()
+#if !defined(LINUX) && !defined(METROWIN) && !defined(APPLEOS) && !defined(VSNORD)
+            && (::user::interaction *) System.m_psystemwindow != this
+#endif
+            )
          {
 
             sp(place_holder) pholder = GetParent();
@@ -4680,7 +4689,6 @@ restart:
             }
             catch(...)
             {
-               m_uiptraChild.remove_at(i);
                goto restart;
             }
          }
@@ -4792,7 +4800,6 @@ restart:
          }
          catch(...)
          {
-            m_uiptraChild.remove_at(i);
             goto restart;
          }
       }

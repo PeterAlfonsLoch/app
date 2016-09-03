@@ -23,7 +23,7 @@
 #include <winpr/sspi.h>
 #include <winpr/crypto.h>
 
-#if defined(_WIN32) && !defined(METROWIN)
+#if defined(_WIN32) && !defined(_UWP)
 
 #include <schannel.h>
 

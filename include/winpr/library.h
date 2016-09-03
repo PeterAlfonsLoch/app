@@ -23,7 +23,7 @@
 #include <winpr/winpr.h>
 #include <winpr/wtypes.h>
 
-#if !defined(_WIN32) || defined(METROWIN)
+#if !defined(_WIN32) || defined(_UWP)
 
 typedef HANDLE DLL_DIRECTORY_COOKIE;
 
@@ -46,30 +46,46 @@ WINPR_API HMODULE LoadLibraryW(LPCWSTR lpLibFileName);
 WINPR_API HMODULE LoadLibraryExA(LPCSTR lpLibFileName, HANDLE hFile, DWORD dwFlags);
 WINPR_API HMODULE LoadLibraryExW(LPCWSTR lpLibFileName, HANDLE hFile, DWORD dwFlags);
 
-WINPR_API HMODULE GetModuleHandleA(LPCSTR lpModuleName);
-WINPR_API HMODULE GetModuleHandleW(LPCWSTR lpModuleName);
-#ifndef METROWIN
-WINPR_API DWORD GetModuleFileNameA(HMODULE hModule, LPSTR lpFilename, DWORD nSize);
-WINPR_API DWORD GetModuleFileNameW(HMODULE hModule, LPWSTR lpFilename, DWORD nSize);
+#ifdef __cplusplus
+}
 #endif
+
 #ifdef UNICODE
 #define LoadLibrary		LoadLibraryW
 #define LoadLibraryEx		LoadLibraryExW
-#define GetModuleHandle		GetModuleHandleW
-#define GetModuleFileName	GetModuleFileNameW
 #else
 #define LoadLibrary		LoadLibraryA
 #define LoadLibraryEx		LoadLibraryExA
-#define GetModuleHandle		GetModuleHandleA
-#define GetModuleFileName	GetModuleFileNameA
 #endif
-#ifndef METROWIN
+
+#endif
+
+#ifndef _WIN32
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+WINPR_API HMODULE GetModuleHandleA(LPCSTR lpModuleName);
+WINPR_API HMODULE GetModuleHandleW(LPCWSTR lpModuleName);
+
+WINPR_API DWORD GetModuleFileNameA(HMODULE hModule, LPSTR lpFilename, DWORD nSize);
+WINPR_API DWORD GetModuleFileNameW(HMODULE hModule, LPWSTR lpFilename, DWORD nSize);
+
 WINPR_API FARPROC GetProcAddress(HMODULE hModule, LPCSTR lpProcName);
 
 WINPR_API BOOL FreeLibrary(HMODULE hLibModule);
-#endif
+
 #ifdef __cplusplus
 }
+#endif
+
+#ifdef UNICODE
+#define GetModuleHandle		GetModuleHandleW
+#define GetModuleFileName	GetModuleFileNameW
+#else
+#define GetModuleHandle		GetModuleHandleA
+#define GetModuleFileName	GetModuleFileNameA
 #endif
 
 #endif

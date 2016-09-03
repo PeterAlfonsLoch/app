@@ -171,7 +171,7 @@ namespace aura
 
       ::datetime::department                      & datetime();
 
-
+	  virtual string url_encode(const string & str);
 
       virtual void on_allocation_error(::aura::application * papp, ::type * ptype);
       //   sp(object) alloc(::aura::application * papp, sp(type) info);

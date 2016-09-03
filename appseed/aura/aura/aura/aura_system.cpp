@@ -2821,6 +2821,12 @@ namespace aura
    }
 
 
+   string system::url_encode(const string & str)
+   {
+
+	   throw interface_only_exception(this);
+
+   }
 
 
 } // namespace aura

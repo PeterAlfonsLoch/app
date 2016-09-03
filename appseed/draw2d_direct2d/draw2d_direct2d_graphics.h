@@ -10,6 +10,14 @@ namespace draw2d_direct2d
    {
    public:
 
+      class state
+      {
+      public:
+
+         D2D1::Matrix3x2F m_m;
+
+      };
+
 
       Microsoft::WRL::ComPtr<ID2D1Device>                m_pdevice;
       Microsoft::WRL::ComPtr<ID2D1RenderTarget>          m_prendertarget;
@@ -21,6 +29,8 @@ namespace draw2d_direct2d
       Microsoft::WRL::ComPtr<IDXGIFactory2>              m_pfactory2;
       Microsoft::WRL::ComPtr<ID2D1Layer>                 m_player;
       Microsoft::WRL::ComPtr<ID2D1PathGeometry>          m_ppathgeometryClip;
+
+      array < state >                                    m_statea;
 
       spa(::draw2d::region) m_sparegionClip;
 

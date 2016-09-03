@@ -599,6 +599,12 @@ extern const SCARD_IO_REQUEST g_rgSCardRawPci;
 #define SCARD_PCI_T1	(&g_rgSCardT1Pci)
 #define SCARD_PCI_RAW	(&g_rgSCardRawPci)
 
+
+#ifdef _UWP
+#undef WINSCARDAPI
+#define WINSCARDAPI __declspec(dllexport)
+#endif
+
 WINSCARDAPI LONG WINAPI SCardEstablishContext(DWORD dwScope,
 		LPCVOID pvReserved1, LPCVOID pvReserved2, LPSCARDCONTEXT phContext);
 

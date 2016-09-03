@@ -693,6 +693,91 @@ namespace metrowin
 
       m_window->Activate();
 
+      if (args != nullptr)
+      {
+
+         if (args->Kind == ActivationKind::Protocol)
+         {
+
+            ProtocolActivatedEventArgs ^ eventArgs = (ProtocolActivatedEventArgs ^)args;
+
+            string str = eventArgs->Uri->AbsoluteUri;
+
+            ::aura::application * papp = m_psystem->m_posdata->m_pui->m_pimpl->get_app();
+
+            if (papp->m_pipi == NULL)
+            {
+               
+               ::user::interaction * pui = NULL;
+
+               m_psystem->get_frame(pui);
+
+               if (pui == NULL)
+               {
+
+                  return;
+
+               }
+
+               papp = pui->get_app();
+
+               if (papp == NULL)
+               {
+
+                  return;
+
+               }
+
+               if (papp->m_pipi == NULL)
+               {
+
+                  return;
+
+               }
+
+            }
+
+            if (::str::begins_eat_ci(str, papp->m_pipi->m_rx.m_strBaseChannel))
+            {
+
+               if (::str::begins_eat_ci(str, ":///"))
+               {
+
+                  if (::str::begins_eat_ci(str, "send?message="))
+                  {
+
+                     papp->m_pipi->on_receive(&papp->m_pipi->m_rx, m_psystem->url().url_decode(str));
+
+                  }
+                  else if (::str::begins_eat_ci(str, "send?messagebin="))
+                  {
+
+                     strsize iFind = str.find(',');
+
+                     if (iFind >= 0)
+                     {
+
+                        int message = atoi(str.Left(iFind));
+
+                        memory m;
+
+                        Sys(get_app()).base64().decode(m, m_psystem->url().url_decode(str.Mid(iFind + 1)));
+
+                        papp->m_pipi->on_receive(&papp->m_pipi->m_rx, message, m.get_data(), m.get_size());
+
+                     }
+
+                  }
+
+               }
+
+            }
+
+         }
+
+      }
+
+
    }
 
 

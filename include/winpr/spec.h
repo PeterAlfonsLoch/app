@@ -17,7 +17,7 @@
  * limitations under the License.
  */
 
-#if !defined(WINPR_SPEC_H) && !defined(CROSS_WINDOWS_NT_H)
+#ifndef WINPR_SPEC_H
 #define WINPR_SPEC_H
 
 #include <winpr/platform.h>

@@ -20,7 +20,7 @@
 #ifndef WINPR_DSPARSE_H
 #define WINPR_DSPARSE_H
 
-#if defined(_WIN32) && !defined(METROWIN) 
+#if defined(_WIN32) && !defined(_UWP)
 
 #include <winpr/windows.h>
 #include <winpr/rpc.h>

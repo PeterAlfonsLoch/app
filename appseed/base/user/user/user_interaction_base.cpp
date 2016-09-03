@@ -1119,7 +1119,7 @@ Restart:
    interaction * interaction_base::SetActiveWindow()
    {
 
-      ::exception::throw_interface_only(get_app());
+      //::exception::throw_interface_only(get_app());
 
       return NULL;
 

@@ -1370,6 +1370,15 @@ return false;
    }
 
 
+
+   string system::url_encode(const string & str)
+   {
+
+	   return m_purldepartment->url_encode(str);
+
+   }
+
+
 } // namespace base
 
 

@@ -92,6 +92,7 @@ namespace aura
 
       virtual void on_call(const string & strObject,const string & strMember,var_array & va);
 
+      using ::aura::ipc::rx::receiver::on_receive;
       virtual void on_receive(::aura::ipc::rx * prx,const char * pszMessage);
 
       virtual bool start(const string & strApp);

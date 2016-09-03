@@ -1,11 +1,15 @@
 //#include "framework.h"
 //#include "metrowin.h"
-#ifndef METROWIN
+//#ifndef METROWIN
+
+// loop question http://stackoverflow.com/users/2101860/loop
+// http://stackoverflow.com/questions/23709329/launch-one-metro-app-from-other-metro-app-windows-8
+// souvickcse http://stackoverflow.com/users/2246798/souvickcse
 
 namespace aura
 {
 
-   
+
    namespace ipc
    {
 
@@ -15,106 +19,74 @@ namespace aura
          _In_ DWORD dwFlag);
 
 
-      base::base()
+      base::base(::aura::application * papp) :
+         object(papp)
       {
-         m_hwnd = NULL;
+
       }
 
       base::~base()
       {
       }
 
-      bool tx::open(const char * pszChannel,launcher * plauncher)
+      tx::tx(::aura::application * papp) :
+         object(papp),
+         base(papp)
       {
 
-         if(m_hwnd != NULL)
+      }
+
+      tx::~tx()
+      {
+      }
+
+      bool tx::open(const char * pszChannel, launcher * plauncher)
+      {
+
+         UNREFERENCED_PARAMETER(plauncher);
+
+         if (m_strBaseChannel.has_char())
             close();
 
+         // LaunchUri protocol is m_strBaseChannel
 
-         int jCount = 23;
-         int iCount;
-
-         if(plauncher != NULL)
-            iCount = 11;
-         else
-            iCount = 2;
-
-         m_hwnd = NULL;
-
-         for(int i = 0; i < iCount; i++)
-         {
-            for(int j = 0; j < jCount; j++)
-            {
-               m_hwnd = ::FindWindow(NULL,pszChannel);
-               if(m_hwnd != NULL)
-                  break;
-               if(i <= 0)
-               {
-                  break;
-               }
-               Sleep(884);
-            }
-            if(m_hwnd != NULL)
-               break;
-            if(plauncher != NULL)
-            {
-               plauncher->start();
-            }
-         }
          m_strBaseChannel = pszChannel;
+
+         m_strBaseChannel.replace("_", "-");
+         m_strBaseChannel.replace("/", "-");
+
          return true;
 
       }
+
 
       bool tx::close()
       {
 
-         if(m_hwnd == NULL)
+         if (m_strBaseChannel.is_empty())
             return true;
 
-         m_hwnd = NULL;
-
-         m_strBaseChannel = "";
+         m_strBaseChannel.Empty();
 
          return true;
 
       }
 
 
-      bool tx::send(const char * pszMessage,DWORD dwTimeout)
+      bool tx::send(const char * pszMessage, unsigned int dwTimeout)
       {
 
-         if(!is_tx_ok())
+         if (!is_tx_ok())
             return false;
 
-         COPYDATASTRUCT cds;
+         string anotherappURI = m_strBaseChannel + ":///send?message=" + ::aura::system::g_p->url_encode(pszMessage);
 
-         cds.dwData = 0x80000000;
-         cds.cbData = (DWORD)strlen_dup(pszMessage);
-         cds.lpData = (void *)pszMessage;
+         Uri ^uri = ref new Uri(anotherappURI);
 
-         if(dwTimeout == INFINITE)
-         {
-
-            SendMessage(m_hwnd,WM_COPYDATA,(WPARAM)NULL,(LPARAM)&cds);
-
-         }
-         else
-         {
-
-            DWORD_PTR dwptr;
-
-            if(!::SendMessageTimeout(m_hwnd,WM_COPYDATA,(WPARAM)NULL,(LPARAM)&cds,SMTO_BLOCK,dwTimeout,&dwptr))
-               return false;
-
-            DWORD dwError = ::GetLastError();
-
-            if(dwError == ERROR_TIMEOUT)
-               return false;
-
-         }
+         ::wait(Launcher::LaunchUriAsync(uri), dwTimeout);
 
          return true;
+
       }
 
 
@@ -129,51 +101,33 @@ namespace aura
       }
 
 
-      bool tx::send(int message,void * pdata,int len,DWORD dwTimeout)
+      bool tx::send(int message, void * pdata, int len, unsigned int dwTimeout)
       {
 
-         if(message == 0x80000000)
+         if (!is_tx_ok())
             return false;
 
-         if(!is_tx_ok())
-            return false;
+         memory m;
 
-         COPYDATASTRUCT cds;
+         
 
-         cds.dwData = (DWORD)message;
-         cds.cbData = (DWORD)max(0,len);
-         cds.lpData = (void *)pdata;
+         string anotherappURI = m_strBaseChannel + "://send?messagebin=" + ::str::from(message)+ "," + ::aura::system::g_p->url_encode(::aura::system::g_p->base64().encode((byte *)pdata, len));
 
-         if(dwTimeout == INFINITE)
-         {
+         Uri ^uri = ref new Uri(anotherappURI);
 
-            SendMessage(m_hwnd,WM_COPYDATA,(WPARAM)NULL,(LPARAM)&cds);
-
-         }
-         else
-         {
-
-            DWORD_PTR dwptr;
-
-            if(!::SendMessageTimeout(m_hwnd,WM_COPYDATA,(WPARAM)NULL,(LPARAM)&cds,SMTO_BLOCK,dwTimeout,&dwptr))
-               return false;
-
-            DWORD dwError = ::GetLastError();
-
-            if(dwError == ERROR_TIMEOUT)
-               return false;
-
-         }
+         ::wait(Launcher::LaunchUriAsync(uri), dwTimeout);
 
          return true;
 
       }
 
 
-      rx::rx()
+      rx::rx(::aura::application * papp) :
+         object(papp),
+         base(papp)
       {
 
-         m_preceiver    = NULL;
+         m_preceiver = NULL;
 
       }
 
@@ -184,70 +138,63 @@ namespace aura
       }
 
 
-      bool rx::create(const char * pszChannel,const char * pszWindowProcModule)
+      bool rx::create(const char * pszChannel)
       {
 
+         if (m_strBaseChannel.has_char())
+            destroy();
 
-         if(g_pfnChangeWindowMessageFilter != NULL)
-         {
-            g_pfnChangeWindowMessageFilter(WM_COPYDATA,MSGFLT_ADD);
-         }
+         m_strBaseChannel = pszChannel;
 
-         HINSTANCE hinstance = ::GetModuleHandleA(pszWindowProcModule);
-
-         ATOM atom = register_class(hinstance);
-
-         m_hwnd = ::CreateWindowExA(0,"small_ipc_rx_channel_message_queue_class",pszChannel,0,0,0,0,0,HWND_MESSAGE,NULL,hinstance,NULL);
-
-         if(m_hwnd == NULL)
-         {
-            DWORD dwLastError = ::GetLastError();
-            return false;
-         }
-
-         SetTimer(m_hwnd,198477,84,NULL);
-
-         SetWindowLongPtr(m_hwnd,GWLP_USERDATA,(long_ptr) this);
-
-         m_strWindowProcModule = pszWindowProcModule;
-
+         m_strBaseChannel.replace("_", "-");
+         m_strBaseChannel.replace("/", "-");
 
 
          return true;
+
       }
 
 
       bool rx::destroy()
       {
 
-         if(m_hwnd != NULL)
+         if (m_strBaseChannel.is_empty())
          {
-            ::DestroyWindow(m_hwnd);
-            m_hwnd = NULL;
+
+            return true;
+
          }
+
+
+         m_strBaseChannel.Empty();
 
          return true;
 
       }
 
-      void rx::receiver::on_receive(rx * prx,const char * pszMessage)
+      void rx::receiver::on_receive(rx * prx, const char * pszMessage)
       {
+
       }
 
-      void rx::receiver::on_receive(rx * prx,int message,void * pdata,memory_size_t len)
+      void rx::receiver::on_receive(rx * prx, int message, void * pdata, memory_size_t len)
       {
+
       }
 
-      void rx::receiver::on_post(rx * prx,int a,int b)
+
+      void rx::receiver::on_post(rx * prx, long long int a, long long int b)
       {
+
       }
 
-      void * rx::on_receive(rx * prx,const char * pszMessage)
+
+      void * rx::on_receive(rx * prx, const char * pszMessage)
       {
 
-         if(m_preceiver != NULL)
+         if (m_preceiver != NULL)
          {
-            m_preceiver->on_receive(prx,pszMessage);
+            m_preceiver->on_receive(prx, pszMessage);
          }
 
          // ODOW - on date of writing : return ignored by this windows implementation
@@ -256,27 +203,12 @@ namespace aura
 
       }
 
-      void * rx::on_receive(rx * prx,int message,void * pdata,memory_size_t len)
+      void * rx::on_receive(rx * prx, int message, void * pdata, memory_size_t len)
       {
 
-         if(m_preceiver != NULL)
+         if (m_preceiver != NULL)
          {
-            m_preceiver->on_receive(prx,message,pdata,len);
-         }
-
-         // ODOW - on date of writing : return ignored by this windows implementation
-
-         return NULL;
-
-      }
-
-
-      void * rx::on_post(rx * prx,int a,int b)
-      {
-
-         if(m_preceiver != NULL)
-         {
-            m_preceiver->on_post(prx,a,b);
+            m_preceiver->on_receive(prx, message, pdata, len);
          }
 
          // ODOW - on date of writing : return ignored by this windows implementation
@@ -286,90 +218,17 @@ namespace aura
       }
 
 
-      LRESULT CALLBACK rx::s_message_queue_proc(HWND hwnd,UINT message,WPARAM wparam,LPARAM lparam)
+      void * rx::on_post(rx * prx, long long int a, long long int b)
       {
 
-         int iRet = 0;
-
-         rx * pchannel = (rx *)GetWindowLongPtr(hwnd,GWLP_USERDATA);
-
-         if(pchannel == NULL)
+         if (m_preceiver != NULL)
          {
-
-            return ::DefWindowProcA(hwnd,message,wparam,lparam);
-
-         }
-         else
-         {
-
-            return pchannel->message_queue_proc(message,wparam,lparam);
-
+            m_preceiver->on_post(prx, a, b);
          }
 
-      }
+         // ODOW - on date of writing : return ignored by this windows implementation
 
-
-
-      ATOM rx::register_class(HINSTANCE hInstance)
-      {
-         WNDCLASSEX wcex;
-
-         wcex.cbSize = sizeof(WNDCLASSEX);
-
-         wcex.style			   = 0;
-         wcex.lpfnWndProc	   = &rx::s_message_queue_proc;
-         wcex.cbClsExtra	   = 0;
-         wcex.cbWndExtra	   = 0;
-         wcex.hInstance		   = hInstance;
-         wcex.hIcon			   = NULL;
-         wcex.hCursor		   = LoadCursor(NULL,IDC_ARROW);
-         wcex.hbrBackground	= (HBRUSH)(COLOR_WINDOW + 1);
-         wcex.lpszMenuName	   = NULL;
-         wcex.lpszClassName	= "small_ipc_rx_channel_message_queue_class";
-         wcex.hIconSm		   = NULL;
-
-         return RegisterClassEx(&wcex);
-      }
-
-
-      LRESULT rx::message_queue_proc(UINT message,WPARAM wparam,LPARAM lparam)
-      {
-
-         if(message == WM_USER + 100)
-         {
-
-            on_post(this,wparam,lparam);
-
-         }
-         else if(message == WM_COPYDATA)
-         {
-
-            COPYDATASTRUCT * pcds = (COPYDATASTRUCT *)lparam;
-
-            if(pcds->dwData == 0x80000000)
-            {
-
-               string strMessage((const char *)pcds->lpData,pcds->cbData);
-
-               on_receive(this,strMessage);
-
-            }
-            else
-            {
-
-               on_receive(this,(int)pcds->dwData,pcds->lpData,pcds->cbData);
-
-            }
-
-         }
-         else
-         {
-
-            return ::DefWindowProcA(m_hwnd,message,wparam,lparam);
-
-         }
-
-         return 0;
+         return NULL;
 
       }
 
@@ -385,57 +244,82 @@ namespace aura
       bool rx::is_rx_ok()
       {
 
-         return ::IsWindow(m_hwnd) != FALSE;
+         return m_strBaseChannel.has_char();
+
+      }
+
+      
+      ipc::ipc(::aura::application * papp) :
+         object(papp),
+         base(papp),
+         tx(papp),
+         m_rx(papp)
+      {
+
 
       }
 
 
+      ipc::~ipc()
+      {
 
 
-      bool ipc::open_ab(const char * pszChannel,const char * pszModule,launcher * plauncher)
+      }
+
+
+      bool ipc::open_ab(const char * pszChannel, const char * pszModule, launcher * plauncher)
       {
 
          m_strChannel = pszChannel;
 
          m_rx.m_preceiver = this;
 
-         string strChannelRx = m_strChannel + "-a";
-         string strChannelTx = m_strChannel + "-b";
+         string strChannelRx = m_strChannel;
 
+         string strChannelTx = m_strChannel;
 
-         if(!m_rx.create(strChannelRx,pszModule))
+         if (!m_rx.create(strChannelRx))
          {
+
             return false;
+
          }
 
-         if(!tx::open(strChannelTx,plauncher))
+         if (!tx::open(strChannelTx, plauncher))
          {
+
             return false;
+
          }
 
          return true;
 
       }
 
-      bool ipc::open_ba(const char * pszChannel,const char * pszModule,launcher * plauncher)
+
+      bool ipc::open_ba(const char * pszChannel, const char * pszModule, launcher * plauncher)
       {
 
          m_strChannel = pszChannel;
 
          m_rx.m_preceiver = this;
 
-         string strChannelRx = m_strChannel + "-b";
-         string strChannelTx = m_strChannel + "-a";
+         string strChannelRx = m_strChannel;
 
+         string strChannelTx = m_strChannel;
 
-         if(!m_rx.create(strChannelRx,pszModule))
+         if (!m_rx.create(strChannelRx))
          {
+
             return false;
+
          }
 
-         if(!tx::open(strChannelTx,plauncher))
+         if (!tx::open(strChannelTx, plauncher))
          {
+
             return false;
+
          }
 
          return true;
@@ -458,4 +342,4 @@ namespace aura
 
 
 
-#endif
+//#endif

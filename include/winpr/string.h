@@ -29,7 +29,7 @@
 extern "C" {
 #endif
 
-#if !defined(_WIN32) || defined(METROWIN)
+#ifndef _WIN32
 
 #define CSTR_LESS_THAN			1
 #define CSTR_EQUAL			2
@@ -47,7 +47,7 @@ extern "C" {
 #define MB_COMPOSITE			0x00000002
 #define MB_USEGLYPHCHARS		0x00000004
 #define MB_ERR_INVALID_CHARS		0x00000008
-//#ifndef METROWIN
+
 WINPR_API char* _strdup(const char* strSource);
 WINPR_API WCHAR* _wcsdup(const WCHAR* strSource);
 
@@ -61,7 +61,17 @@ WINPR_API WCHAR* _wcschr(const WCHAR* str, WCHAR c);
 
 WINPR_API char* strtok_s(char* strToken, const char* strDelimit, char** context);
 WINPR_API WCHAR* wcstok_s(WCHAR* strToken, const WCHAR* strDelimit, WCHAR** context);
-//#endif
+
+#else
+
+#define _wcscmp		wcscmp
+#define _wcslen		wcslen
+#define _wcschr		wcschr
+
+#endif
+
+#if !defined(_WIN32) || defined(_UWP)
+
 WINPR_API LPSTR CharUpperA(LPSTR lpsz);
 WINPR_API LPWSTR CharUpperW(LPWSTR lpsz);
 
@@ -152,25 +162,24 @@ WINPR_API int lstrcmpW(LPCWSTR lpString1, LPCWSTR lpString2);
 #define lstrcmp		lstrcmpA
 #endif
 
+#endif
+
+#ifndef _WIN32
+
 #define	 sprintf_s	snprintf
+#define	 _snprintf	snprintf
 #define _scprintf(_fmt, ...) snprintf(NULL, 0, _fmt, ## __VA_ARGS__)
 
 #define _scprintf(_fmt, ...)	snprintf(NULL, 0, _fmt, ## __VA_ARGS__)
 
 /* Unicode Conversion */
-#ifndef METROWIN
+
 WINPR_API int MultiByteToWideChar(UINT CodePage, DWORD dwFlags, LPCSTR lpMultiByteStr,
 		int cbMultiByte, LPWSTR lpWideCharStr, int cchWideChar);
 
 WINPR_API int WideCharToMultiByte(UINT CodePage, DWORD dwFlags, LPCWSTR lpWideCharStr, int cchWideChar,
 		LPSTR lpMultiByteStr, int cbMultiByte, LPCSTR lpDefaultChar, LPBOOL lpUsedDefaultChar);
-#endif
-#else
-#ifndef METROWIN
-#define _wcscmp		wcscmp
-#define _wcslen		wcslen
-#define _wcschr		wcschr
-#endif
+
 #endif
 
 /* Extended API */
@@ -187,6 +196,8 @@ WINPR_API int ConvertLineEndingToLF(char* str, int size);
 WINPR_API char* ConvertLineEndingToCRLF(const char* str, int* size);
 
 WINPR_API char* StrSep(char** stringp, const char* delim);
+
+WINPR_API INT64 GetLine(char** lineptr, size_t* size, FILE* stream);
 
 #ifdef __cplusplus
 }

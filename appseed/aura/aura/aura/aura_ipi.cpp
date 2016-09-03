@@ -327,13 +327,13 @@ namespace aura
 
       string strAppId(strApp);
 
-      strAppId.replace("\\","_");
+      strAppId.replace("\\","-");
 
-      strAppId.replace("/","_");
+      strAppId.replace("/","-");
 
-      strAppId.replace("-","_");
+      strAppId.replace("-","-");
 
-      strKey = "core_" + strAppId;
+      strKey = "core-" + strAppId;
 
 #else
 

@@ -17,7 +17,7 @@
  * limitations under the License.
  */
 
-#if !defined(WINPR_NT_H)  && !defined(CROSS_WINDOWS_NT_H)
+#ifndef WINPR_NT_H
 #define WINPR_NT_H
 
 #include <winpr/winpr.h>
@@ -28,7 +28,7 @@
 
 /* Defined in winnt.h, do not redefine */
 
-#define STATUS_WAIT_0				((NTSTATUS)0x00000000L)
+#define STATUS_WAIT_0				((NTSTATUS)0x00000000L) 
 #define STATUS_ABANDONED_WAIT_0			((NTSTATUS)0x00000080L)
 #define STATUS_USER_APC				((NTSTATUS)0x000000C0L)
 #define STATUS_TIMEOUT				((NTSTATUS)0x00000102L)
@@ -78,9 +78,9 @@
 #define STATUS_DLL_INIT_FAILED			((NTSTATUS)0xC0000142L)
 #define STATUS_FLOAT_MULTIPLE_FAULTS		((NTSTATUS)0xC00002B4L)
 #define STATUS_FLOAT_MULTIPLE_TRAPS		((NTSTATUS)0xC00002B5L)
-#define STATUS_REG_NAT_CONSUMPTION		((NTSTATUS)0xC00002C9L)
-#define STATUS_STACK_BUFFER_OVERRUN		((NTSTATUS)0xC0000409L)
-#define STATUS_INVALID_CRUNTIME_PARAMETER	((NTSTATUS)0xC0000417L)
+#define STATUS_REG_NAT_CONSUMPTION		((NTSTATUS)0xC00002C9L)    
+#define STATUS_STACK_BUFFER_OVERRUN		((NTSTATUS)0xC0000409L)    
+#define STATUS_INVALID_CRUNTIME_PARAMETER	((NTSTATUS)0xC0000417L)    
 #define STATUS_ASSERTION_FAILURE		((NTSTATUS)0xC0000420L)
 #define STATUS_SXS_EARLY_DEACTIVATION		((NTSTATUS)0xC015000FL)
 #define STATUS_SXS_INVALID_DEACTIVATION		((NTSTATUS)0xC0150010L)
@@ -89,7 +89,7 @@
 
 /* Defined in wincred.h, do not redefine */
 
-#if defined(_WIN32) && !defined(METROWIN)
+#if defined(_WIN32) && !defined(_UWP)
 
 #include <wincred.h>
 
@@ -121,21 +121,6 @@
 #define FACILITY_CLUSTER_ERROR_CODE					0x13
 #define FACILITY_ACPI_ERROR_CODE					0x14
 #define FACILITY_SXS_ERROR_CODE						0x15
-
-//#define DBG_EXCEPTION_HANDLED						((NTSTATUS)0x00010001)
-//#define DBG_CONTINUE							((NTSTATUS)0x00010002)
-#define DBG_REPLY_LATER							((NTSTATUS)0x40010001)
-#define DBG_UNABLE_TO_PROVIDE_HANDLE					((NTSTATUS)0x40010002)
-//#define DBG_TERMINATE_THREAD						((NTSTATUS)0x40010003)
-//#define DBG_TERMINATE_PROCESS						((NTSTATUS)0x40010004)
-//#define DBG_CONTROL_C							((NTSTATUS)0x40010005)
-//#define DBG_PRINTEXCEPTION_C						((NTSTATUS)0x40010006)
-//#define DBG_RIPEXCEPTION						((NTSTATUS)0x40010007)
-//#define DBG_CONTROL_BREAK						((NTSTATUS)0x40010008)
-//#define DBG_COMMAND_EXCEPTION						((NTSTATUS)0x40010009)
-//#define DBG_EXCEPTION_NOT_HANDLED					((NTSTATUS)0x80010001)
-#define DBG_NO_STATE_CHANGE						((NTSTATUS)0xC0010001)
-#define DBG_APP_NOT_IDLE						((NTSTATUS)0xC0010002)
 
 /**
  * NTSTATUS codes
@@ -977,6 +962,7 @@
 #define STATUS_WAIT_FOR_OPLOCK						((NTSTATUS)0x00000367)
 #define STATUS_MOUNT_POINT_NOT_RESOLVED					((NTSTATUS)0xC0000368)
 #define STATUS_INVALID_DEVICE_OBJECT_PARAMETER				((NTSTATUS)0xC0000369)
+/* The following is not a typo. It's the same spelling as in the Microsoft headers */
 #define STATUS_MCA_OCCURED						((NTSTATUS)0xC000036A)
 #define STATUS_DRIVER_BLOCKED_CRITICAL					((NTSTATUS)0xC000036B)
 #define STATUS_DRIVER_BLOCKED						((NTSTATUS)0xC000036C)
@@ -1269,13 +1255,21 @@
 
 /* Defined in winternl.h, always define since we do not include this header */
 
+/* defined in ntstatus.h */
+#if !defined(NTSTATUS_FROM_WIN32) && !defined(INLINE_NTSTATUS_FROM_WIN32)
+static INLINE NTSTATUS NTSTATUS_FROM_WIN32(long x)
+{
+	return x <= 0 ? (NTSTATUS)x : (NTSTATUS) (((x) & 0x0000FFFF) | (0x7 << 16) | 0xC0000000);
+}
+#endif
+
 #ifdef _WIN32
 
 /**
  * winternl.h contains an incomplete definition of enum FILE_INFORMATION_CLASS
  * avoid conflict by prefixing the winternl.h definition by _WINTERNL_ and then
  * make a complete definition of enum FILE_INFORMATION_CLASS ourselves.
- *
+ * 
  * For more information, refer to [MS-FSCC]: File System Control Codes:
  * http://msdn.microsoft.com/en-us/library/cc231987.aspx
  */
@@ -1336,7 +1330,7 @@ typedef enum _FILE_INFORMATION_CLASS
 	FileShortNameInformation
 } FILE_INFORMATION_CLASS;
 
-#if !defined(_WIN32) || defined(METROWIN)
+#if !defined(_WIN32) || defined(_UWP)
 
 #define FILE_SUPERSEDE				0x00000000
 #define FILE_OPEN				0x00000001
@@ -1435,13 +1429,21 @@ typedef struct _IO_STATUS_BLOCK
 {
 	union
 	{
+#ifdef _WIN32
 		NTSTATUS Status;
+#else
+		NTSTATUS status;
+#endif
 		PVOID Pointer;
 	};
 	ULONG_PTR Information;
 } IO_STATUS_BLOCK, *PIO_STATUS_BLOCK;
 
 typedef VOID (*PIO_APC_ROUTINE)(PVOID ApcContext, PIO_STATUS_BLOCK IoStatusBlock, ULONG Reserved);
+
+#endif
+
+#if !defined(_WIN32)
 
 typedef struct _PEB PEB;
 typedef struct _PEB* PPEB;
@@ -1528,9 +1530,9 @@ typedef ACCESS_MASK* PACCESS_MASK;
 #ifdef __cplusplus
 extern "C" {
 #endif
-#ifndef METROWIN
+
 WINPR_API PTEB NtCurrentTeb(void);
-#endif
+
 #ifdef __cplusplus
 }
 #endif
@@ -1541,8 +1543,6 @@ WINPR_API PTEB NtCurrentTeb(void);
 extern "C" {
 #endif
 
-#ifndef METROWIN
-
 WINPR_API VOID _RtlInitAnsiString(PANSI_STRING DestinationString, PCSZ SourceString);
 
 WINPR_API VOID _RtlInitUnicodeString(PUNICODE_STRING DestinationString, PCWSTR SourceString);
@@ -1552,11 +1552,7 @@ WINPR_API NTSTATUS _RtlAnsiStringToUnicodeString(PUNICODE_STRING DestinationStri
 
 WINPR_API VOID _RtlFreeUnicodeString(PUNICODE_STRING UnicodeString);
 
-#endif
-
 WINPR_API ULONG _RtlNtStatusToDosError(NTSTATUS status);
-
-#ifndef METROWIN
 
 WINPR_API VOID _InitializeObjectAttributes(POBJECT_ATTRIBUTES InitializedAttributes,
 		PUNICODE_STRING ObjectName, ULONG Attributes, HANDLE RootDirectory,
@@ -1585,8 +1581,6 @@ WINPR_API NTSTATUS _NtDeviceIoControlFile(HANDLE FileHandle, HANDLE Event,
 WINPR_API NTSTATUS _NtClose(HANDLE Handle);
 
 WINPR_API NTSTATUS _NtWaitForSingleObject(HANDLE Handle, BOOLEAN Alertable, PLARGE_INTEGER Timeout);
-
-#endif
 
 #ifdef __cplusplus
 }

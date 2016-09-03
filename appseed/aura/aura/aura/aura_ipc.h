@@ -26,7 +26,7 @@ namespace aura
 
 #ifdef METROWIN
 
-         int32_t              m_iSerial;
+         //int32_t              m_iSerial;
 
 #elif defined(WINDOWSEX)
 

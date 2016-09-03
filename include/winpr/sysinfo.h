@@ -30,7 +30,7 @@
 extern "C" {
 #endif
 
-#if !defined(_WIN32) || defined(METROWIN)
+#ifndef _WIN32
 
 #define PROCESSOR_ARCHITECTURE_INTEL			0
 #define PROCESSOR_ARCHITECTURE_MIPS			1
@@ -69,7 +69,7 @@ extern "C" {
 #define PROCESSOR_ARM920				2336
 #define PROCESSOR_ARM_7TDMI				70001
 #define PROCESSOR_OPTIL					0x494F
-#ifndef METROWIN
+
 typedef struct _SYSTEM_INFO
 {
 	union
@@ -93,34 +93,10 @@ typedef struct _SYSTEM_INFO
 	WORD wProcessorLevel;
 	WORD wProcessorRevision;
 } SYSTEM_INFO, *LPSYSTEM_INFO;
-#endif
-#define MAX_COMPUTERNAME_LENGTH 31
-#ifndef METROWIN
+
 WINPR_API void GetSystemInfo(LPSYSTEM_INFO lpSystemInfo);
 WINPR_API void GetNativeSystemInfo(LPSYSTEM_INFO lpSystemInfo);
-#endif
-typedef enum _COMPUTER_NAME_FORMAT
-{
-	ComputerNameNetBIOS,
-	ComputerNameDnsHostname,
-	ComputerNameDnsDomain,
-	ComputerNameDnsFullyQualified,
-	ComputerNamePhysicalNetBIOS,
-	ComputerNamePhysicalDnsHostname,
-	ComputerNamePhysicalDnsDomain,
-	ComputerNamePhysicalDnsFullyQualified,
-	ComputerNameMax
-} COMPUTER_NAME_FORMAT;
 
-WINPR_API BOOL GetComputerNameExA(COMPUTER_NAME_FORMAT NameType, LPSTR lpBuffer, LPDWORD lpnSize);
-WINPR_API BOOL GetComputerNameExW(COMPUTER_NAME_FORMAT NameType, LPWSTR lpBuffer, LPDWORD lpnSize);
-
-#ifdef UNICODE
-#define GetComputerNameEx	GetComputerNameExW
-#else
-#define GetComputerNameEx	GetComputerNameExA
-#endif
-#ifndef METROWIN
 typedef struct _OSVERSIONINFOA
 {
 	DWORD dwOSVersionInfoSize;
@@ -207,15 +183,6 @@ typedef struct _OSVERSIONINFOEXW
 #define VER_NT_SERVER				0x0000003
 #define VER_NT_WORKSTATION			0x0000001
 
-WINPR_API BOOL GetVersionExA(LPOSVERSIONINFOA lpVersionInformation);
-WINPR_API BOOL GetVersionExW(LPOSVERSIONINFOW lpVersionInformation);
-
-#ifdef UNICODE
-#define GetVersionEx	GetVersionExW
-#else
-#define GetVersionEx	GetVersionExA
-#endif
-
 WINPR_API void GetSystemTime(LPSYSTEMTIME lpSystemTime);
 WINPR_API BOOL SetSystemTime(CONST SYSTEMTIME* lpSystemTime);
 WINPR_API VOID GetLocalTime(LPSYSTEMTIME lpSystemTime);
@@ -224,12 +191,8 @@ WINPR_API BOOL SetLocalTime(CONST SYSTEMTIME* lpSystemTime);
 WINPR_API VOID GetSystemTimeAsFileTime(LPFILETIME lpSystemTimeAsFileTime);
 WINPR_API BOOL GetSystemTimeAdjustment(PDWORD lpTimeAdjustment, PDWORD lpTimeIncrement, PBOOL lpTimeAdjustmentDisabled);
 
-#endif
-
-WINPR_API DWORD GetTickCount(void);
-#ifndef METROWIN
 WINPR_API BOOL IsProcessorFeaturePresent(DWORD ProcessorFeature);
-#endif
+
 #define PF_FLOATING_POINT_PRECISION_ERRATA		0
 #define PF_FLOATING_POINT_EMULATED			1
 #define PF_COMPARE_EXCHANGE_DOUBLE			2
@@ -293,9 +256,53 @@ WINPR_API BOOL IsProcessorFeaturePresent(DWORD ProcessorFeature);
 
 #endif
 
+#if !defined(_WIN32) || defined(_UWP)
+
+WINPR_API BOOL GetVersionExA(LPOSVERSIONINFOA lpVersionInformation);
+WINPR_API BOOL GetVersionExW(LPOSVERSIONINFOW lpVersionInformation);
+
+#ifdef UNICODE
+#define GetVersionEx	GetVersionExW
+#else
+#define GetVersionEx	GetVersionExA
+#endif
+
+#endif
+
+#if !defined(_WIN32) || defined(_UWP)
+
+WINPR_API DWORD GetTickCount(void);
+
+typedef enum _COMPUTER_NAME_FORMAT
+{
+	ComputerNameNetBIOS,
+	ComputerNameDnsHostname,
+	ComputerNameDnsDomain,
+	ComputerNameDnsFullyQualified,
+	ComputerNamePhysicalNetBIOS,
+	ComputerNamePhysicalDnsHostname,
+	ComputerNamePhysicalDnsDomain,
+	ComputerNamePhysicalDnsFullyQualified,
+	ComputerNameMax
+} COMPUTER_NAME_FORMAT;
+
+#define MAX_COMPUTERNAME_LENGTH 31
+
+WINPR_API BOOL GetComputerNameExA(COMPUTER_NAME_FORMAT NameType, LPSTR lpBuffer, LPDWORD lpnSize);
+WINPR_API BOOL GetComputerNameExW(COMPUTER_NAME_FORMAT NameType, LPWSTR lpBuffer, LPDWORD lpnSize);
+
+#ifdef UNICODE
+#define GetComputerNameEx	GetComputerNameExW
+#else
+#define GetComputerNameEx	GetComputerNameExA
+#endif
+
+#endif
+
 #if (!defined(_WIN32)) || (defined(_WIN32) && (_WIN32_WINNT < 0x0600))
 
-WINPR_API ULONGLONG GetTickCount64(void);
+WINPR_API ULONGLONG winpr_GetTickCount64(void);
+#define GetTickCount64 winpr_GetTickCount64
 
 #endif
 

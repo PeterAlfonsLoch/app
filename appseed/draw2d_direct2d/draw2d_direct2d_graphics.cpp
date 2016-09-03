@@ -3145,7 +3145,16 @@ namespace draw2d_direct2d
 
    int graphics::SaveDC()
    {
-      return 0;
+
+      state s;
+
+      m_prendertarget->GetTransform(&s.m_m);
+
+      int iSaveDC = m_statea.get_size();
+
+      m_statea.add(s);
+
+      return iSaveDC;
       //throw todo(get_app());
 
       //int nRetVal = 0;
@@ -3158,7 +3167,26 @@ namespace draw2d_direct2d
 
    bool graphics::RestoreDC(int nSavedDC)
    {
-      return 0;
+
+      if (nSavedDC < 0)
+      {
+
+         return false;
+
+      }
+
+      if (nSavedDC >= m_statea.get_count())
+      {
+
+         return false;
+
+      }
+
+      m_prendertarget->SetTransform(&m_statea[nSavedDC].m_m);
+
+      m_statea.set_size(nSavedDC);
+
+      return true;
       //throw todo(get_app());
 
    //   bool bRetVal = TRUE;

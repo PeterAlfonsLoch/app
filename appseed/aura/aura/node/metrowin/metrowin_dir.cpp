@@ -26,12 +26,16 @@ namespace metrowin
    {
 
       listing.add("winmetro-Pictures://");
+      listing.last().m_iDir = 1;
       listing.add("winmetro-Music://");
+      listing.last().m_iDir = 1;
       listing.add("winmetro-Videos://");
 
       listing.last().m_iDir = 1;
 
       listing.m_straTitle.add("Picture");
+      listing.m_straTitle.add("Music");
+      listing.m_straTitle.add("Video");
 
       return listing;
 

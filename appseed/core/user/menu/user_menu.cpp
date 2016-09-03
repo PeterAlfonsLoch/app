@@ -348,7 +348,7 @@ namespace user
 
             ev.m_id = pitem->m_id;
 
-            m_oswindowParent->BaseOnControlEvent(&ev);
+            return m_oswindowParent->BaseOnControlEvent(&ev);
 
          }
 
@@ -391,6 +391,7 @@ namespace user
                }
             }
          }
+         return true;
       }
       else if(pevent->m_eevent == ::user::event_mouse_enter)
       {
@@ -443,6 +444,7 @@ namespace user
                }
             }
          }
+         return true;
       }
       else if(pevent->m_eevent == ::user::event_mouse_leave)
       {
@@ -451,8 +453,11 @@ namespace user
             KillTimer(BaseWndMenuTimer);
             m_idTimerMenu.is_empty();
          }
+         return true;
       }
-      return true;
+
+      return false;
+
    }
 
 
