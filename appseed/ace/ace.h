@@ -12,8 +12,15 @@
 #define CLASS_DECL_ACE CLASS_DECL_IMPORT
 #endif
 
+#include "nodeapp/operational_system/system.h"
+
 
 #include "ace_alloc.h"
+
+
+#include "version.h"
+
+
 
 
 

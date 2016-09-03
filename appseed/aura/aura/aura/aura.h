@@ -25,24 +25,6 @@
 #define CLASS_DECL_AURA  CLASS_DECL_IMPORT
 #endif
 
-#include "app/appseed/aura/version.h"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#include "nodeapp/operational_system/system.h"
 
 #include "aura_types.h"
 

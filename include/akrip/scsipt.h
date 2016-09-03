@@ -6,6 +6,7 @@
 #define _SCSIPT_H_INC
 
 #include <windows.h>
+#include <winioctl.h>
 
 typedef struct {
   USHORT Length;

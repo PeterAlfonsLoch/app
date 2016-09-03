@@ -1307,12 +1307,6 @@
     <ClInclude Include="aura\aura\aura_action_source.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
-    <ClInclude Include="version.config.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="version.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\primitive_relation_set.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
@@ -2346,9 +2340,6 @@
     </ClCompile>
     <ClCompile Include="primitive\primitive_bit.cpp">
       <Filter>Source Files\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="version.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="primitive\primitive_job.cpp">
       <Filter>Source Files\primitive</Filter>

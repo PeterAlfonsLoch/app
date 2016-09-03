@@ -10,6 +10,25 @@
 #include "nodeapp/operational_system/config.h"
 
 
+#if defined(__cplusplus)
+
+
+#define DECL_EXTERN_C	   extern "C"
+#define BEGIN_EXTERN_C		extern "C" {
+#define END_EXTERN_C		   }
+
+
+#else
+
+
+#define DECL_EXTERN_C
+#define BEGIN_EXTERN_C
+#define END_EXTERN_C
+
+
+#endif
+
+
 #if defined(WINDOWS)
 
 #define inplace_new_throw_spec
