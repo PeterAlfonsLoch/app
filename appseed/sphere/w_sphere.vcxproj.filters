@@ -1,34 +1,289 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="aqua_graphics_alpha.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="framework.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{661a378d-f8e2-46ec-92aa-8f34fabf7b10}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\calculator">
+      <UniqueIdentifier>{0483c278-92b9-46c6-9303-cb493c388fce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\command">
+      <UniqueIdentifier>{60f28b42-18a1-4886-85b4-ee009f0ec29a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\filehandler">
+      <UniqueIdentifier>{0ceed817-de0a-40ec-89ef-04b909282cc2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\userstack">
+      <UniqueIdentifier>{8e18dd88-5cd5-4bbf-b18a-4fe77bec1ac4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\asphere">
+      <UniqueIdentifier>{90f44042-a1cd-4384-8ef6-fd9889ed187b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\sphere">
+      <UniqueIdentifier>{955567bb-dca3-44b3-bf94-9181a3795379}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\console">
+      <UniqueIdentifier>{843221c5-f4e8-49c0-8785-c1407370e0f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{641d0607-2b77-428e-9728-667fd729f52e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\calculator">
+      <UniqueIdentifier>{949caef2-b6a3-4981-9a95-2ac3af2762b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\filehandler">
+      <UniqueIdentifier>{ff8e6d0d-2fa9-4527-b365-c236dcda908b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\command">
+      <UniqueIdentifier>{1922fe84-dd99-4ec1-83d0-4b731158040a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\userstack">
+      <UniqueIdentifier>{d6b86bbf-fb10-4ab6-8329-080bdde83460}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\sphere">
+      <UniqueIdentifier>{1c934252-c6d8-4cd7-9ac7-5ba3769ef5c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\asphere">
+      <UniqueIdentifier>{d6e2262f-a9fe-4b32-b769-7a75ecb49646}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\console">
+      <UniqueIdentifier>{c0e573dd-c95d-4415-945f-33c45c213f0b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="aqua_graphics_alpha.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="framework.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="aqua.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="calculator\calculator.h">
+      <Filter>Header Files\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="calculator\calculator_application.h">
+      <Filter>Header Files\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="calculator\calculator_document.h">
+      <Filter>Header Files\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="calculator\calculator_frame.h">
+      <Filter>Header Files\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="calculator\calculator_view.h">
+      <Filter>Header Files\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="command\command.h">
+      <Filter>Header Files\command</Filter>
+    </ClInclude>
+    <ClInclude Include="command\command_application.h">
+      <Filter>Header Files\command</Filter>
+    </ClInclude>
+    <ClInclude Include="command\command_document.h">
+      <Filter>Header Files\command</Filter>
+    </ClInclude>
+    <ClInclude Include="command\command_form_callback.h">
+      <Filter>Header Files\command</Filter>
+    </ClInclude>
+    <ClInclude Include="command\command_frame.h">
+      <Filter>Header Files\command</Filter>
+    </ClInclude>
+    <ClInclude Include="command\command_pane_view.h">
+      <Filter>Header Files\command</Filter>
+    </ClInclude>
+    <ClInclude Include="command\command_pane_view_update_hint.h">
+      <Filter>Header Files\command</Filter>
+    </ClInclude>
+    <ClInclude Include="command\command_primary_view.h">
+      <Filter>Header Files\command</Filter>
+    </ClInclude>
+    <ClInclude Include="command\command_view.h">
+      <Filter>Header Files\command</Filter>
+    </ClInclude>
+    <ClInclude Include="filehandler\filehandler.h">
+      <Filter>Header Files\filehandler</Filter>
+    </ClInclude>
+    <ClInclude Include="filehandler\filehandler_application.h">
+      <Filter>Header Files\filehandler</Filter>
+    </ClInclude>
+    <ClInclude Include="filehandler\filehandler_document.h">
+      <Filter>Header Files\filehandler</Filter>
+    </ClInclude>
+    <ClInclude Include="filehandler\filehandler_frame.h">
+      <Filter>Header Files\filehandler</Filter>
+    </ClInclude>
+    <ClInclude Include="filehandler\filehandler_pane_view.h">
+      <Filter>Header Files\filehandler</Filter>
+    </ClInclude>
+    <ClInclude Include="filehandler\filehandler_pane_view_update_hint.h">
+      <Filter>Header Files\filehandler</Filter>
+    </ClInclude>
+    <ClInclude Include="filehandler\filehandler_view.h">
+      <Filter>Header Files\filehandler</Filter>
+    </ClInclude>
+    <ClInclude Include="userstack\userstack.h">
+      <Filter>Header Files\userstack</Filter>
+    </ClInclude>
+    <ClInclude Include="userstack\userstack_document.h">
+      <Filter>Header Files\userstack</Filter>
+    </ClInclude>
+    <ClInclude Include="userstack\userstack_form_callback.h">
+      <Filter>Header Files\userstack</Filter>
+    </ClInclude>
+    <ClInclude Include="userstack\userstack_frame.h">
+      <Filter>Header Files\userstack</Filter>
+    </ClInclude>
+    <ClInclude Include="userstack\userstack_pane_view.h">
+      <Filter>Header Files\userstack</Filter>
+    </ClInclude>
+    <ClInclude Include="userstack\userstack_pane_view_update_hint.h">
+      <Filter>Header Files\userstack</Filter>
+    </ClInclude>
+    <ClInclude Include="userstack\userstack_application.h">
+      <Filter>Header Files\userstack</Filter>
+    </ClInclude>
+    <ClInclude Include="userstack\userstack_view.h">
+      <Filter>Header Files\userstack</Filter>
+    </ClInclude>
+    <ClInclude Include="asphere\asphere.h">
+      <Filter>Header Files\asphere</Filter>
+    </ClInclude>
+    <ClInclude Include="asphere\asphere_application.h">
+      <Filter>Header Files\asphere</Filter>
+    </ClInclude>
+    <ClInclude Include="sphere\sphere.h">
+      <Filter>Header Files\sphere</Filter>
+    </ClInclude>
+    <ClInclude Include="sphere\sphere_application.h">
+      <Filter>Header Files\sphere</Filter>
+    </ClInclude>
+    <ClInclude Include="sphere\sphere_library.h">
+      <Filter>Header Files\sphere</Filter>
+    </ClInclude>
+    <ClInclude Include="console\console_prompt_document.h">
+      <Filter>Header Files\console</Filter>
+    </ClInclude>
+    <ClInclude Include="console\console_prompt_frame.h">
+      <Filter>Header Files\console</Filter>
+    </ClInclude>
+    <ClInclude Include="console\console.h">
+      <Filter>Header Files\console</Filter>
+    </ClInclude>
+    <ClInclude Include="console\console_application.h">
+      <Filter>Header Files\console</Filter>
+    </ClInclude>
+    <ClInclude Include="console\console_prompt.h">
+      <Filter>Header Files\console</Filter>
+    </ClInclude>
+    <ClInclude Include="console\console_prompt_impact.h">
+      <Filter>Header Files\console</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{60be4fb9-d467-4f8a-8a19-c4e8186b807b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{31df3c90-b662-4cfc-baad-cc850436fd79}</UniqueIdentifier>
-    </Filter>
+    <ClCompile Include="_sphere.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="calculator\calculator_application.cpp">
+      <Filter>Source Files\calculator</Filter>
+    </ClCompile>
+    <ClCompile Include="calculator\calculator_document.cpp">
+      <Filter>Source Files\calculator</Filter>
+    </ClCompile>
+    <ClCompile Include="calculator\calculator_frame.cpp">
+      <Filter>Source Files\calculator</Filter>
+    </ClCompile>
+    <ClCompile Include="calculator\calculator_view.cpp">
+      <Filter>Source Files\calculator</Filter>
+    </ClCompile>
+    <ClCompile Include="filehandler\filehandler_application.cpp">
+      <Filter>Source Files\filehandler</Filter>
+    </ClCompile>
+    <ClCompile Include="filehandler\filehandler_document.cpp">
+      <Filter>Source Files\filehandler</Filter>
+    </ClCompile>
+    <ClCompile Include="filehandler\filehandler_frame.cpp">
+      <Filter>Source Files\filehandler</Filter>
+    </ClCompile>
+    <ClCompile Include="filehandler\filehandler_pane_view.cpp">
+      <Filter>Source Files\filehandler</Filter>
+    </ClCompile>
+    <ClCompile Include="filehandler\filehandler_pane_view_update_hint.cpp">
+      <Filter>Source Files\filehandler</Filter>
+    </ClCompile>
+    <ClCompile Include="filehandler\filehandler_view.cpp">
+      <Filter>Source Files\filehandler</Filter>
+    </ClCompile>
+    <ClCompile Include="command\command_application.cpp">
+      <Filter>Source Files\command</Filter>
+    </ClCompile>
+    <ClCompile Include="command\command_document.cpp">
+      <Filter>Source Files\command</Filter>
+    </ClCompile>
+    <ClCompile Include="command\command_form_callback.cpp">
+      <Filter>Source Files\command</Filter>
+    </ClCompile>
+    <ClCompile Include="command\command_frame.cpp">
+      <Filter>Source Files\command</Filter>
+    </ClCompile>
+    <ClCompile Include="command\command_pane_view.cpp">
+      <Filter>Source Files\command</Filter>
+    </ClCompile>
+    <ClCompile Include="command\command_pane_view_update_hint.cpp">
+      <Filter>Source Files\command</Filter>
+    </ClCompile>
+    <ClCompile Include="command\command_primary_view.cpp">
+      <Filter>Source Files\command</Filter>
+    </ClCompile>
+    <ClCompile Include="command\command_view.cpp">
+      <Filter>Source Files\command</Filter>
+    </ClCompile>
+    <ClCompile Include="userstack\userstack_document.cpp">
+      <Filter>Source Files\userstack</Filter>
+    </ClCompile>
+    <ClCompile Include="userstack\userstack_form_callback.cpp">
+      <Filter>Source Files\userstack</Filter>
+    </ClCompile>
+    <ClCompile Include="userstack\userstack_frame.cpp">
+      <Filter>Source Files\userstack</Filter>
+    </ClCompile>
+    <ClCompile Include="userstack\userstack_pane_view.cpp">
+      <Filter>Source Files\userstack</Filter>
+    </ClCompile>
+    <ClCompile Include="userstack\userstack_pane_view_update_hint.cpp">
+      <Filter>Source Files\userstack</Filter>
+    </ClCompile>
+    <ClCompile Include="userstack\userstack_application.cpp">
+      <Filter>Source Files\userstack</Filter>
+    </ClCompile>
+    <ClCompile Include="userstack\userstack_view.cpp">
+      <Filter>Source Files\userstack</Filter>
+    </ClCompile>
+    <ClCompile Include="sphere\sphere_application.cpp">
+      <Filter>Source Files\sphere</Filter>
+    </ClCompile>
+    <ClCompile Include="sphere\sphere_library.cpp">
+      <Filter>Source Files\sphere</Filter>
+    </ClCompile>
+    <ClCompile Include="asphere\asphere_application.cpp">
+      <Filter>Source Files\asphere</Filter>
+    </ClCompile>
+    <ClCompile Include="asphere\asphere_asphere.cpp">
+      <Filter>Source Files\asphere</Filter>
+    </ClCompile>
+    <ClCompile Include="console\console_prompt_document.cpp">
+      <Filter>Source Files\console</Filter>
+    </ClCompile>
+    <ClCompile Include="console\console_prompt_frame.cpp">
+      <Filter>Source Files\console</Filter>
+    </ClCompile>
+    <ClCompile Include="console\console_application.cpp">
+      <Filter>Source Files\console</Filter>
+    </ClCompile>
+    <ClCompile Include="console\console_prompt.cpp">
+      <Filter>Source Files\console</Filter>
+    </ClCompile>
+    <ClCompile Include="console\console_prompt_impact.cpp">
+      <Filter>Source Files\console</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="aqua.def">
+    <None Include="sphere.def">
       <Filter>Source Files</Filter>
     </None>
   </ItemGroup>

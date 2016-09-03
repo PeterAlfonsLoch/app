@@ -2471,8 +2471,6 @@ end:
 
       const char * pszValueStart = psz;
 
-      char i;
-
       while(*psz != qc)
       {
          
@@ -2517,8 +2515,6 @@ end:
       psz++;
 
       const char * pszValueStart = psz;
-
-      char i;
 
       while (*psz != qc)
       {
