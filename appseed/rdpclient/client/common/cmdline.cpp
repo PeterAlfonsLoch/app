@@ -173,13 +173,13 @@ COMMAND_LINE_ARGUMENT_A args[] =
 	{ NULL, 0, NULL, NULL, NULL, -1, NULL, NULL }
 };
 
-int freerdp_client_print_version()
+BOOL freerdp_client_print_version()
 {
 	printf("This is FreeRDP version %s (git %s)\n", FREERDP_VERSION_FULL, GIT_REVISION);
 	return 1;
 }
 
-int freerdp_client_print_command_line_help(int argc, char** argv)
+BOOL freerdp_client_print_command_line_help(int argc, char** argv)
 {
 	char* str;
 	int length;
@@ -323,7 +323,7 @@ int freerdp_client_command_line_pre_filter(void* context, int index, int argc, L
 	return 0;
 }
 
-int freerdp_client_add_device_channel(rdpSettings* settings, int count, char** params)
+BOOL freerdp_client_add_device_channel(rdpSettings* settings, int count, char** params)
 {
 	if (strcmp(params[0], "drive") == 0)
 	{
@@ -590,7 +590,7 @@ int freerdp_client_add_device_channel(rdpSettings* settings, int count, char** p
 	return 0;
 }
 
-int freerdp_client_add_static_channel(rdpSettings* settings, int count, char** params)
+BOOL freerdp_client_add_static_channel(rdpSettings* settings, int count, char** params)
 {
 	int index;
 	ADDIN_ARGV* args;
@@ -631,7 +631,7 @@ error_argv:
 	return -1;
 }
 
-int freerdp_client_add_dynamic_channel(rdpSettings* settings, int count, char** params)
+BOOL freerdp_client_add_dynamic_channel(rdpSettings* settings, int count, char** params)
 {
 	int index;
 	ADDIN_ARGV* args;
@@ -966,7 +966,7 @@ int freerdp_client_command_line_post_filter(void* context, COMMAND_LINE_ARGUMENT
 	return status;
 }
 
-int freerdp_parse_username(char* username, char** user, char** domain)
+BOOL freerdp_parse_username(char* username, char** user, char** domain)
 {
 	char* p;
 	int length = 0;
@@ -1019,7 +1019,7 @@ int freerdp_parse_username(char* username, char** user, char** domain)
 	return 0;
 }
 
-int freerdp_parse_hostname(char* hostname, char** host, int* port)
+BOOL freerdp_parse_hostname(char* hostname, char** host, int* port)
 {
 	char* p;
 	int length;
@@ -1051,7 +1051,7 @@ int freerdp_parse_hostname(char* hostname, char** host, int* port)
 	return 0;
 }
 
-int freerdp_set_connection_type(rdpSettings* settings, int type)
+BOOL freerdp_set_connection_type(rdpSettings* settings, int type)
 {
 	settings->ConnectionType = type;
 
@@ -2339,7 +2339,7 @@ int freerdp_client_load_static_channel_addin(rdpChannels* channels, rdpSettings*
 	return -1;
 }
 
-int freerdp_client_load_addins(rdpChannels* channels, rdpSettings* settings)
+BOOL freerdp_client_load_addins(rdpChannels* channels, rdpSettings* settings)
 {
 	UINT32 index;
 	ADDIN_ARGV* args;
