@@ -12,19 +12,7 @@
 
 #include "aura_aura.h"
 
-
 #include "ace/ace.h"
-
-
-#if defined(_ACID_LIBRARY)
-#define CLASS_DECL_AURA
-#elif defined(_AURA_LIBRARY)
-#define CLASS_DECL_AURA  CLASS_DECL_EXPORT
-#define LIBIDN_BUILDING
-#else
-#define CLASS_DECL_AURA  CLASS_DECL_IMPORT
-#endif
-
 
 #include "aura_types.h"
 
