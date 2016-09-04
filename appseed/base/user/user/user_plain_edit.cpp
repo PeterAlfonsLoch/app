@@ -206,7 +206,7 @@ namespace user
 
       }
 
-      
+      //return;
 
       pgraphics->set_text_rendering(::draw2d::text_rendering_anti_alias);
 

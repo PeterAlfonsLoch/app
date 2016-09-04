@@ -3481,9 +3481,6 @@
     <ClCompile Include="aura\process\process_department.cpp">
       <Filter>Source Files\aura\process</Filter>
     </ClCompile>
-    <ClCompile Include="version.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="framework.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
