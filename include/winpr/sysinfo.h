@@ -97,15 +97,15 @@ typedef struct _SYSTEM_INFO
 WINPR_API void GetSystemInfo(LPSYSTEM_INFO lpSystemInfo);
 WINPR_API void GetNativeSystemInfo(LPSYSTEM_INFO lpSystemInfo);
 
-typedef struct _OSVERSIONINFOA
-{
-	DWORD dwOSVersionInfoSize;
-	DWORD dwMajorVersion;
-	DWORD dwMinorVersion;
-	DWORD dwBuildNumber;
-	DWORD dwPlatformId;
-	CHAR szCSDVersion[128];
-} OSVERSIONINFOA, *POSVERSIONINFOA, *LPOSVERSIONINFOA;
+//typedef struct _OSVERSIONINFOA
+//{
+//	DWORD dwOSVersionInfoSize;
+//	DWORD dwMajorVersion;
+//	DWORD dwMinorVersion;
+//	DWORD dwBuildNumber;
+//	DWORD dwPlatformId;
+//	CHAR szCSDVersion[128];
+//} OSVERSIONINFOA, *POSVERSIONINFOA, *LPOSVERSIONINFOA;
 
 typedef struct _OSVERSIONINFOW
 {
@@ -117,20 +117,20 @@ typedef struct _OSVERSIONINFOW
 	WCHAR szCSDVersion[128];
 } OSVERSIONINFOW, *POSVERSIONINFOW, *LPOSVERSIONINFOW;
 
-typedef struct _OSVERSIONINFOEXA
-{
-	DWORD dwOSVersionInfoSize;
-	DWORD dwMajorVersion;
-	DWORD dwMinorVersion;
-	DWORD dwBuildNumber;
-	DWORD dwPlatformId;
-	CHAR szCSDVersion[128];
-	WORD wServicePackMajor;
-	WORD wServicePackMinor;
-	WORD wSuiteMask;
-	BYTE wProductType;
-	BYTE wReserved;
-} OSVERSIONINFOEXA, *POSVERSIONINFOEXA, *LPOSVERSIONINFOEXA;
+//typedef struct _OSVERSIONINFOEXA
+//{
+//	DWORD dwOSVersionInfoSize;
+//	DWORD dwMajorVersion;
+//	DWORD dwMinorVersion;
+//	DWORD dwBuildNumber;
+//	DWORD dwPlatformId;
+//	CHAR szCSDVersion[128];
+//	WORD wServicePackMajor;
+//	WORD wServicePackMinor;
+//	WORD wSuiteMask;
+//	BYTE wProductType;
+//	BYTE wReserved;
+//} OSVERSIONINFOEXA, *POSVERSIONINFOEXA, *LPOSVERSIONINFOEXA;
 
 typedef struct _OSVERSIONINFOEXW
 {
@@ -258,8 +258,8 @@ WINPR_API BOOL IsProcessorFeaturePresent(DWORD ProcessorFeature);
 
 #if !defined(_WIN32) || defined(_UWP)
 
-WINPR_API BOOL GetVersionExA(LPOSVERSIONINFOA lpVersionInformation);
-WINPR_API BOOL GetVersionExW(LPOSVERSIONINFOW lpVersionInformation);
+//WINPR_API BOOL GetVersionExA(LPOSVERSIONINFOA lpVersionInformation);
+//WINPR_API BOOL GetVersionExW(LPOSVERSIONINFOW lpVersionInformation);
 
 #ifdef UNICODE
 #define GetVersionEx	GetVersionExW
