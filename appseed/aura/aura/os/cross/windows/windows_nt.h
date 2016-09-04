@@ -1572,8 +1572,8 @@ typedef struct _CONTEXT {
 } CONTEXT;
 
 #endif /* defined APPLE_IOS && !defined __arm__ */
-   
-   
+
+
    /* Mips context definitions */
 #if defined(_MIPS_) || defined(__MIPS__) || defined(__mips__)
 
@@ -5374,14 +5374,14 @@ typedef struct _IO_COUNTERS {
 } IO_COUNTERS, *PIO_COUNTERS;
 #include "windows_poppack.h"
 
-typedef struct {
-	DWORD dwOSVersionInfoSize;
-	DWORD dwMajorVersion;
-	DWORD dwMinorVersion;
-	DWORD dwBuildNumber;
-	DWORD dwPlatformId;
-	CHAR szCSDVersion[128];
-} OSVERSIONINFOA, *POSVERSIONINFOA, *LPOSVERSIONINFOA;
+//typedef struct {
+//	DWORD dwOSVersionInfoSize;
+//	DWORD dwMajorVersion;
+//	DWORD dwMinorVersion;
+//	DWORD dwBuildNumber;
+//	DWORD dwPlatformId;
+//	CHAR szCSDVersion[128];
+//} OSVERSIONINFOA, *POSVERSIONINFOA, *LPOSVERSIONINFOA;
 
 typedef struct {
 	DWORD dwOSVersionInfoSize;
@@ -5396,19 +5396,7 @@ DECL_WINELIB_TYPE_AW(OSVERSIONINFO)
 DECL_WINELIB_TYPE_AW(POSVERSIONINFO)
 DECL_WINELIB_TYPE_AW(LPOSVERSIONINFO)
 
-typedef struct {
-	DWORD dwOSVersionInfoSize;
-	DWORD dwMajorVersion;
-	DWORD dwMinorVersion;
-	DWORD dwBuildNumber;
-	DWORD dwPlatformId;
-	CHAR szCSDVersion[128];
-	WORD wServicePackMajor;
-	WORD wServicePackMinor;
-	WORD wSuiteMask;
-	BYTE wProductType;
-	BYTE wReserved;
-} OSVERSIONINFOEXA, *POSVERSIONINFOEXA, *LPOSVERSIONINFOEXA;
+
 
 typedef struct {
 	DWORD dwOSVersionInfoSize;
@@ -5432,9 +5420,6 @@ NTSYSAPI ULONGLONG WINAPI VerSetConditionMask(ULONGLONG,DWORD,BYTE);
 
 #define VER_SET_CONDITION(_m_,_t_,_c_) ((_m_)=VerSetConditionMask((_m_),(_t_),(_c_)))
 
-#define VER_PLATFORM_WIN32s                     0
-#define VER_PLATFORM_WIN32_WINDOWS              1
-#define VER_PLATFORM_WIN32_NT                   2
 
 #define	VER_MINORVERSION			0x00000001
 #define	VER_MAJORVERSION			0x00000002
@@ -5445,9 +5430,6 @@ NTSYSAPI ULONGLONG WINAPI VerSetConditionMask(ULONGLONG,DWORD,BYTE);
 #define	VER_SUITENAME				0x00000040
 #define	VER_PRODUCT_TYPE			0x00000080
 
-#define	VER_NT_WORKSTATION			1
-#define	VER_NT_DOMAIN_CONTROLLER		2
-#define	VER_NT_SERVER				3
 
 #define	VER_SUITE_SMALLBUSINESS			0x00000001
 #define	VER_SUITE_ENTERPRISE			0x00000002

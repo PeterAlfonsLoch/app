@@ -915,7 +915,6 @@
 		<Unit filename="user/user/user_timer_array.h" />
 		<Unit filename="user/user/user_timer_item.h" />
 		<Unit filename="version.config.h" />
-		<Unit filename="version.cpp" />
 		<Unit filename="version.h" />
 		<Extensions>
 			<code_completion />

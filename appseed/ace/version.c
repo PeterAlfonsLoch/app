@@ -20,7 +20,7 @@ CLASS_DECL_ACE int _ca_is_stage()
 }
 
 
-BOOL get_version_ex_a(LPOSVERSIONINFOA lpVersionInformation)
+WINBOOL get_version_ex_a(LPOSVERSIONINFOA lpVersionInformation)
 {
 
 #if defined(_WIN32) || defined(_UWP)
@@ -58,7 +58,7 @@ BOOL get_version_ex_a(LPOSVERSIONINFOA lpVersionInformation)
       lpVersionInformation->dwMinorVersion = 1;
       lpVersionInformation->dwBuildNumber = 7601;
       lpVersionInformation->dwPlatformId = VER_PLATFORM_WIN32_NT;
-      ZeroMemory(lpVersionInformation->szCSDVersion, sizeof(lpVersionInformation->szCSDVersion));
+      memset(lpVersionInformation->szCSDVersion, 0, sizeof(lpVersionInformation->szCSDVersion));
 
       if (lpVersionInformation->dwOSVersionInfoSize == sizeof(OSVERSIONINFOEXA))
       {

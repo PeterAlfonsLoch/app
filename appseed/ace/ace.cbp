@@ -74,6 +74,9 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="ace_alloc.h" />
+		<Unit filename="version.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Extensions>
 			<code_completion />
 			<debugger />

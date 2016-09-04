@@ -10,7 +10,7 @@ public:
    ::visual::dib_sp              m_spdibBuffer;
    HANDLE                        m_hMapFile;
    LPCTSTR                       m_pBuf;
-   HWND                          m_hwnd;
+   oswindow                      m_hwnd;
 
 
    window_buffer(::aura::application * papp);
@@ -20,7 +20,7 @@ public:
    virtual void update_window();
    virtual void update_window(COLORREF * pcolorref,int cxParam,int cyParam,int iStride = -1);
 
-   
+
    ::draw2d::graphics * on_begin_draw();
 
 
