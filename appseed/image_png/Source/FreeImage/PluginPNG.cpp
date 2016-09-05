@@ -107,7 +107,43 @@ ReadMetadata(png_structp png_ptr, png_infop info_ptr, FIBITMAP *dib) {
 			tag = FreeImage_CreateTag();
 			if(!tag) return FALSE;
 
-			DWORD tag_length = (DWORD) MAX(text_ptr[i].text_length, text_ptr[i].itxt_length);
+			DWORD tag_length;
+
+			if(text_ptr[i].text_length & 0x80000000)
+         {
+         #if PNG_iTXt_SUPPORTED
+            if(text_ptr[i].itxt_length & 0x80000000)
+            {
+               continue;
+            }
+            else
+            {
+               tag_length = text_ptr[i].itxt_length;
+            }
+         #else
+            continue;
+         #endif
+         }
+         #if PNG_iTXt_SUPPORTED
+         else if(text_ptr[i].itxt_length & 0x80000000)
+         {
+            tag_length = text_ptr[i].text_length;
+         }
+         #endif
+         else
+         {
+         #if PNG_iTXt_SUPPORTED
+            tag_length = (DWORD) MAX(text_ptr[i].text_length, text_ptr[i].itxt_length);
+         #else
+            tag_length = text_ptr[i].text_length;
+         #endif
+         }
+
+         if(text_ptr[i].key == NULL)
+         {
+            continue;
+         }
+
 
 			FreeImage_SetTagLength(tag, tag_length);
 			FreeImage_SetTagCount(tag, tag_length);
@@ -154,9 +190,11 @@ WriteMetadata(png_structp png_ptr, png_infop info_ptr, FIBITMAP *dib) {
 			text_metadata.key = (char*)FreeImage_GetTagKey(tag);	// keyword, 1-79 character description of "text"
 			text_metadata.text = (char*)FreeImage_GetTagValue(tag);	// comment, may be an empty string (ie "")
 			text_metadata.text_length = FreeImage_GetTagLength(tag);// length of the text string
+#ifdef PNG_iTXt_SUPPORTED
 			text_metadata.itxt_length = FreeImage_GetTagLength(tag);// length of the itxt string
 			text_metadata.lang = 0;		 // language code, 0-79 characters or a NULL pointer
 			text_metadata.lang_key = 0;	 // keyword translated UTF-8 string, 0 or more chars or a NULL pointer
+#endif
 
 			// set the tag
 			png_set_text(png_ptr, info_ptr, &text_metadata, 1);
@@ -176,10 +214,11 @@ WriteMetadata(png_structp png_ptr, png_infop info_ptr, FIBITMAP *dib) {
 		text_metadata.key = (char*)g_png_xmp_keyword;					// keyword, 1-79 character description of "text"
 		text_metadata.text = (char*)FreeImage_GetTagValue(tag);	// comment, may be an empty string (ie "")
 		text_metadata.text_length = FreeImage_GetTagLength(tag);// length of the text string
+#ifdef PNG_iTXt_SUPPORTED
 		text_metadata.itxt_length = FreeImage_GetTagLength(tag);// length of the itxt string
 		text_metadata.lang = 0;		 // language code, 0-79 characters or a NULL pointer
 		text_metadata.lang_key = 0;	 // keyword translated UTF-8 string, 0 or more chars or a NULL pointer
-
+#endif
 		// set the tag
 		png_set_text(png_ptr, info_ptr, &text_metadata, 1);
 		bResult &= TRUE;

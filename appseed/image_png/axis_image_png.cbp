@@ -44,8 +44,6 @@
 			<Add option="-Wno-attributes" />
 			<Add option="-Winvalid-pch" />
 			<Add option="-fPIC" />
-			<Add option="-DPNG_TEXT_SUPPORTED" />
-			<Add option="-DPNG_iTXt_SUPPORTED" />
 			<Add directory="../../../os/include" />
 			<Add directory="../../../include" />
 			<Add directory="../../include" />
