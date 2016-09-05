@@ -381,7 +381,7 @@ synch_lock ml(&cairo_mutex());
 
       if(m_psurface == cairo_keep::g_cairosurface)
       {
-         printf("123");
+//         printf("123");
       }
 
       cairo_surface_destroy(m_psurface);

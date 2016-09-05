@@ -103,7 +103,7 @@ namespace draw2d_cairo
       {
 	if(m_pdc ==  cairo_keep::g_cairo)
 	{
-         printf("123");
+//         printf("123");
 
 	}
          cairo_destroy(m_pdc);
@@ -159,7 +159,7 @@ namespace draw2d_cairo
       {
 	if(m_pdc ==  cairo_keep::g_cairo)
 	{
-         printf("123");
+//         printf("123");
 
 	}
 
@@ -181,7 +181,7 @@ namespace draw2d_cairo
 
 if(psurface == cairo_keep::g_cairosurface)
 {
-   printf("123");
+//   printf("123");
 }         cairo_surface_destroy(psurface);
 
          return m_pdc != NULL;
@@ -201,7 +201,7 @@ if(psurface == cairo_keep::g_cairosurface)
             return false;
 if(psurfaceNew == cairo_keep::g_cairosurface)
 {
-   printf("123");
+//   printf("123");
 }
          m_pdc = cairo_create(psurfaceNew);
 
@@ -307,7 +307,7 @@ synch_lock ml(m_pmutex);
       {
 	if(m_pdc ==  cairo_keep::g_cairo)
 	{
-         printf("123");
+//         printf("123");
 
 	}
          cairo_destroy(m_pdc);
@@ -3277,7 +3277,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
 
 	if(m_pdc ==  cairo_keep::g_cairo)
 	{
-         printf("123");
+//         printf("123");
 
 	}
 
@@ -3612,7 +3612,7 @@ synch_lock ml(m_pmutex);
       if(abs(x) > 900 || abs(y) > 800)
       {
 
-         printf("123");
+//         printf("123");
 
       }
 
@@ -3651,7 +3651,7 @@ synch_lock ml(m_pmutex);
       if(abs(nWidth) > 800|| abs(nHeight) >800)
       {
 
-         printf("123");
+//         printf("123");
 
       }
 
@@ -3660,7 +3660,7 @@ synch_lock ml(m_pmutex);
       if(abs(point.x + nWidth) > 800 || abs(point.y + nHeight) > 800)
       {
 
-         printf("123");
+////         printf("123");
 
       }
 
@@ -5008,7 +5008,7 @@ synch_lock ml(m_pmutex);
       {
 	if(m_pdc ==  cairo_keep::g_cairo)
 	{
-         printf("123");
+//         printf("123");
 
 	}
 

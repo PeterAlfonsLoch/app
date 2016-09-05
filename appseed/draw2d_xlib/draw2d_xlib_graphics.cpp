@@ -196,7 +196,7 @@ namespace draw2d_xlib
             return false;
 if(psurfaceNew == xlib_keep::g_xlibsurface)
 {
-   printf("123");
+//   printf("123");
 }
          m_pdc = xlib_create(psurfaceNew);
 
@@ -5109,7 +5109,7 @@ return 1;
       {
 /*	if(m_pdc ==  xlib_keep::g_xlib)
 	{
-         printf("123");
+//         printf("123");
 
 	}
 
