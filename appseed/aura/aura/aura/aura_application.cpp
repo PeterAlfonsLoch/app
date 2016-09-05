@@ -1865,7 +1865,7 @@ namespace aura
 
          try
          {
-          
+
             m_pipi = create_ipi();
 
          }
@@ -4604,12 +4604,7 @@ namespace aura
 
 #elif defined(LINUX)
 
-      ::fork(this, [=]()
-      {
-
-          system("gedit \"" + strFile + "\"");
-
-      });
+      call_async("gedit", "\"" + strFile + "\"", "", SW_SHOW, false);
 
 #else
 
@@ -4624,7 +4619,7 @@ namespace aura
 #endif
 
 
-      
+
 
    }
 
