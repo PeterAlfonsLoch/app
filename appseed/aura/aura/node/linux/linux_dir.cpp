@@ -1243,7 +1243,7 @@ namespace linux
 
       m_strCa2 = strca2Module;
 
-      m_strCa2.go_up(2);
+      m_strCa2.go_up(3);
 
       xml::document doc(get_app());
 

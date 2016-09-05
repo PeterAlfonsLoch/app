@@ -405,7 +405,7 @@ dispatch::signal_item::signal_item()
 
 dispatch::signal_item::~signal_item()
 {
-   ::aura::del(m_psignal);
+   //::aura::del(m_psignal);
 }
 
 dispatch::dispatch()

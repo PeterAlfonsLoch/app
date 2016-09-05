@@ -1120,7 +1120,7 @@ namespace base
    //
    //      if(m_pcopydesk != NULL)
    //         return true;
-   //      
+   //
    //      alloc(m_pcopydesk);
    //
    //      if(!m_pcopydesk->initialize())
@@ -1559,7 +1559,7 @@ namespace base
    //            }
    //            catch(exit_exception & e)
    //            {
-   //               
+   //
    //               throw e;
    //
    //            }
@@ -1578,7 +1578,7 @@ namespace base
    //      }
    //      catch(...)
    //      {
-   //         
+   //
    //         pobj->m_bRet = true;
    //
    //      }
@@ -2105,20 +2105,27 @@ namespace base
 
       string strId(pszUinteractionLibrary);
 
+      string strLibrary;
+
+      ::aura::library library(get_app(),0,NULL);
+
       if(strId.is_empty())
       {
 
-         strId = "wndfrm_" + Application.file().as_string(::dir::system() / "config\\system\\wndfrm.txt");
+         string strWndFrm = Application.file().as_string(::dir::system() / "config\\system\\wndfrm.txt");
+
+         if(strWndFrm.is_empty())
+            goto defer_check_wndfrm_core;
+
+         strId = "wndfrm_" + strWndFrm;
 
       }
 
-      string strLibrary(strId);
+      strLibrary = strId;
 
       strLibrary.replace("-","_");
 
       strLibrary.replace("/","_");
-
-      ::aura::library library(get_app(),0,NULL);
 
 restart:
 

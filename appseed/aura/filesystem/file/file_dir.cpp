@@ -153,8 +153,8 @@
       }
 
       str = get_exe_path();
-      
-      
+
+
       if(str.has_char())
       {
          str = ::file::path(str).folder();
@@ -639,7 +639,7 @@ found:
 
    string strRelative = ca2_module_folder_dup();
 
-   eat_end_level_dup(strRelative, 2, "/");
+   eat_end_level_dup(strRelative, 3, "/");
 
    string str = ::file::path(getenv("HOME")) / ".core/appdata";
 
@@ -925,7 +925,7 @@ void dir::ls(::file::patha & stra,const ::file::path & psz)
 {
 
 #if defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
-   
+
    DIR * dirp = opendir(psz);
 
    if(dirp == NULL)

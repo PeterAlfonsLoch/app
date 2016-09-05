@@ -33,6 +33,17 @@ CLASS_DECL_AURA void * __node_library_open(const char * pszPath)
 
       // pubs.opengroup.org contribution
 
+      int iError = errno;
+
+      const char * psz = strerror(iError);
+
+      if(psz != NULL)
+      {
+
+         fprintf(stderr, "%s\n", psz);
+
+      }
+
       char *errstr;
 
       errstr = dlerror();
@@ -46,25 +57,14 @@ CLASS_DECL_AURA void * __node_library_open(const char * pszPath)
 
    }
 
-   int iError = errno;
-
-   const char * psz = strerror(iError);
-
-   if(psz != NULL)
-   {
-
-      fprintf(stderr, "%s\n", psz);
-
-   }
-
-   const char * psz2 = dlerror();
-
-   if(psz2 != NULL)
-   {
-
-      fprintf(stderr, "%s\n", psz2);
-
-   }
+//   const char * psz2 = dlerror();
+//
+//   if(psz2 != NULL)
+//   {
+//
+//      fprintf(stderr, "%s\n", psz2);
+//
+//   }
 
    return plibrary;
 
