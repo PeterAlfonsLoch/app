@@ -21,7 +21,7 @@
 				</Compiler>
 				<Linker>
 					<Add option="-pg" />
-					<Add directory="../../../stage/x86" />
+					<Add directory="../../../time/x64/basis" />
 				</Linker>
 			</Target>
 			<Target title="Release">
@@ -40,7 +40,7 @@
 				</Compiler>
 				<Linker>
 					<Add option="-pg" />
-					<Add directory="../../../stage/x86" />
+					<Add directory="../../../time/x64/basis" />
 				</Linker>
 			</Target>
 			<Target title="memdleak">
@@ -57,7 +57,7 @@
 					<Add option="-DMEMDLEAK" />
 				</Compiler>
 				<Linker>
-					<Add directory="../../../stage/x86" />
+					<Add directory="../../../time/x64/basis" />
 				</Linker>
 			</Target>
 		</Build>
@@ -98,10 +98,10 @@
 			<Add option="-latomiconv" />
 			<Add option="-lpcre2-8" />
 			<Add option="-Wl,-z,defs" />
-			<Add directory="../../../stage/x86" />
+			<Add directory="../../../time/x64/basis" />
 		</Linker>
 		<ExtraCommands>
-			<Add before="cp ../../../nodeapp/thirdparty/library/x64/* ../../../stage/x86/" />
+			<Add before="cp ../../../nodeapp/thirdparty/library/x64/* ../../../time/x64/basis/" />
 		</ExtraCommands>
 		<Unit filename="aura/_aura_aura.cpp" />
 		<Unit filename="aura/aura/aura.h" />

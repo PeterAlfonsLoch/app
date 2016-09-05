@@ -19,7 +19,7 @@
 					<Add option="-D_DEBUG" />
 				</Compiler>
 			</Target>
-			<Target title="Release">
+			<Target title="stage">
 				<Option output="../../../time/x64/basis/libdraw2d_cairo.so" prefix_auto="0" extension_auto="0" />
 				<Option working_dir="../../../time/x64/basis/" />
 				<Option object_output="../../../time/intermediate/app/draw2d_cairo" />
@@ -92,7 +92,7 @@
 			<Add option="-lbase" />
 			<Add option="-lcore" />
 			<Add option="-Wl,-z,defs" />
-			<Add directory="../../../stage/x86" />
+			<Add directory="../../../time/x64/basis" />
 		</Linker>
 		<Unit filename="draw2d_cairo.cpp" />
 		<Unit filename="draw2d_cairo.h" />

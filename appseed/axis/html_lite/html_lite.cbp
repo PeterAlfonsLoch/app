@@ -68,7 +68,7 @@
 			<Add option="-Wl,-z,origin" />
 			<Add option="-laura" />
 			<Add option="-Wl,-z,defs" />
-			<Add directory="../../../stage/x86" />
+			<Add directory="../../../time/x64/basis" />
 			<Add directory="/usr/lib64/mysql/" />
 		</Linker>
 		<Unit filename="framework.cpp" />

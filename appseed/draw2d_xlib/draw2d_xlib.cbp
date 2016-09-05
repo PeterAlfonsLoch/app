@@ -74,7 +74,7 @@
 			<Add option="-laxis" />
 			<Add option="-lbase" />
 			<Add option="-Wl,-z,defs" />
-			<Add directory="../../../stage/x86" />
+			<Add directory="../../../time/x64/basis" />
 		</Linker>
 		<Unit filename="draw2d_xlib.cpp" />
 		<Unit filename="draw2d_xlib.h" />

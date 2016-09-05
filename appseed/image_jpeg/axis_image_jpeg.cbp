@@ -61,7 +61,7 @@
 			<Add option="-laxisfreeimage" />
 			<Add option="-ljpeg" />
 			<Add option="-Wl,-z,defs" />
-			<Add directory="../../../stage/x86" />
+			<Add directory="../../../time/x64/basis" />
 			<Add directory="/usr/lib64/mysql/" />
 		</Linker>
 		<Unit filename="Source/FreeImage/PluginJPEG.cpp" />

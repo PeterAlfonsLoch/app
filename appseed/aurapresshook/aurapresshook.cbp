@@ -65,7 +65,7 @@
 			<Add option="-lappindicator" />
 			<Add option="`pkg-config --cflags --libs gtk+-2.0`" />
 			<Add option="-Wl,-z,defs" />
-			<Add directory="../../../stage/x86" />
+			<Add directory="../../../time/x64/basis" />
 			<Add directory="/usr/lib64/mysql/" />
 		</Linker>
 		<Unit filename="aurapresshook.cpp" />

@@ -20,7 +20,7 @@
 					<Add option="-D_DEBUG" />
 				</Compiler>
 				<Linker>
-					<Add directory="../../../stage/x86" />
+					<Add directory="../../../time/x64/basis" />
 				</Linker>
 			</Target>
 			<Target title="memdleak">
@@ -45,7 +45,7 @@
 					<Add directory="../../../.." />
 				</Compiler>
 				<Linker>
-					<Add directory="../../../stage/x86" />
+					<Add directory="../../../time/x64/basis" />
 				</Linker>
 			</Target>
 		</Build>
@@ -83,7 +83,7 @@
 			<Add option="-laxisfreerdp" />
 			<Add option="-laxisclientchannels" />
 			<Add option="-Wl,-z,defs" />
-			<Add directory="../../../../stage/x86" />
+			<Add directory="../../../../time/x64/basis" />
 		</Linker>
 		<Unit filename="client/ca2/ca2rdp.cpp" />
 		<Unit filename="client/ca2/ca2rdp.h" />

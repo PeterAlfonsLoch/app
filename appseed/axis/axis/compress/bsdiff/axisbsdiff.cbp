@@ -20,7 +20,7 @@
 					<Add directory="../../appseed" />
 				</Compiler>
 				<Linker>
-					<Add directory="../../../stage/x86" />
+					<Add directory="../../../time/x64/basis" />
 				</Linker>
 			</Target>
 			<Target title="memdleak">
@@ -37,7 +37,7 @@
 					<Add option="-DMEMDLEAK" />
 				</Compiler>
 				<Linker>
-					<Add directory="../../../stage/x86" />
+					<Add directory="../../../time/x64/basis" />
 				</Linker>
 			</Target>
 		</Build>
@@ -69,7 +69,7 @@
 			<Add option="-laura" />
 			<Add option="-laxisbzip2" />
 			<Add option="-Wl,-z,defs" />
-			<Add directory="../../../stage/x86" />
+			<Add directory="../../../time/x64/basis" />
 		</Linker>
 		<Unit filename="bsdiff_bsdiff.cpp" />
 		<Unit filename="bsdiff_bspatch.cpp" />

@@ -21,7 +21,7 @@
 				</Compiler>
 				<Linker>
 					<Add option="-pg" />
-					<Add directory="../../../stage/x86" />
+					<Add directory="../../../time/x64/basis" />
 				</Linker>
 			</Target>
 			<Target title="memdleak">
@@ -38,7 +38,7 @@
 					<Add option="-DMEMDLEAK" />
 				</Compiler>
 				<Linker>
-					<Add directory="../../../stage/x86" />
+					<Add directory="../../../time/x64/basis" />
 				</Linker>
 			</Target>
 		</Build>
@@ -77,7 +77,7 @@
 			<Add option="-lz" />
 			<Add option="-laxis" />
 			<Add option="-Wl,-z,defs" />
-			<Add directory="../../../stage/x86" />
+			<Add directory="../../../time/x64/basis" />
 		</Linker>
 		<Unit filename="base/_base_base.cpp" />
 		<Unit filename="base/base/_base_base_base.cpp">
