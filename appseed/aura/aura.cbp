@@ -7,7 +7,7 @@
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
-				<Option output="../../../stage/x86/libaura.so" prefix_auto="0" extension_auto="0" />
+				<Option output="../../../time/x64/basis/libaura.so" prefix_auto="0" extension_auto="0" />
 				<Option working_dir="../../../stage/x86/" />
 				<Option object_output="../../../time/intermediate/app/aura" />
 				<Option type="3" />
@@ -25,7 +25,7 @@
 				</Linker>
 			</Target>
 			<Target title="Release">
-				<Option output="../../../stage/x86/libaura.so" prefix_auto="0" extension_auto="0" />
+				<Option output="../../../time/x64/basis/libaura.so" prefix_auto="0" extension_auto="0" />
 				<Option working_dir="../../../stage/x86/" />
 				<Option object_output="../../../time/intermediate/app/aura" />
 				<Option type="3" />
@@ -44,7 +44,7 @@
 				</Linker>
 			</Target>
 			<Target title="memdleak">
-				<Option output="../../../stage/x86/libaura.so" prefix_auto="0" extension_auto="0" />
+				<Option output="../../../time/x64/basis/libaura.so" prefix_auto="0" extension_auto="0" />
 				<Option working_dir="../../../stage/x86/" />
 				<Option object_output="../../../time/intermediate/app/aura" />
 				<Option type="3" />
