@@ -127,8 +127,8 @@ namespace simple_ui
       if(!create_window_ex(0,NULL,NULL,0,rectFontopus,puiParent,"fontopus"))
          throw simple_exception(get_app(),"not excepted! Failing Message box!!");
 
-      TRACE("Just after create_window_ex for simple_message_box (m_pimpl.m_p) : %d",m_pimpl.m_p);
-      TRACE("Just after create_window_ex for simple_message_box (m_pimpl->m_pui) : %d",m_pimpl->m_pui);
+      TRACE("(1) Just after create_window_ex for simple_message_box (m_pimpl.m_p) : %d",m_pimpl.m_p);
+      TRACE("(2) Just after create_window_ex for simple_message_box (m_pimpl->m_pui) : %d",m_pimpl->m_pui);
 
       uint32_t uiType = m_uiFlags & MB_TYPEMASK;
 
@@ -166,8 +166,8 @@ namespace simple_ui
          break;
       }
 
-      TRACE("Just after create_window_ex for simple_message_box (m_pimpl.m_p) : %d",m_pimpl.m_p);
-      TRACE("Just after create_window_ex for simple_message_box (m_pimpl->m_pui) : %d",m_pimpl->m_pui);
+      TRACE("(3) Just after create_window_ex for simple_message_box (m_pimpl.m_p) : %d",m_pimpl.m_p);
+      TRACE("(4) Just after create_window_ex for simple_message_box (m_pimpl->m_pui) : %d",m_pimpl->m_pui);
 
 
       layout();
@@ -190,7 +190,7 @@ namespace simple_ui
    void message_box::_001OnDraw(::draw2d::graphics * pgraphics)
    {
 
-      
+
 
       rect rectClient;
 
@@ -483,8 +483,8 @@ int32_t simple_ui_message_box(oswindow interaction_impl,const char * lpText,cons
 
       try
       {
-         
-         
+
+
          //__begin_thread(::get_thread_app(),&thread_proc_simple_ui_message_box,pmessagebox);
          thread_proc_simple_ui_message_box(pmessagebox);
          //pmessagebox->show();
