@@ -77,6 +77,7 @@
 		<Linker>
 			<Add option="-Wl,-R\\$$$ORIGIN" />
 			<Add option="-Wl,-z,origin" />
+			<Add option="-lace" />
 			<Add option="-laura" />
 			<Add option="-laxiswinpr" />
 			<Add option="-laxisfreerdp" />
