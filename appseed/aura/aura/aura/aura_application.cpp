@@ -4566,6 +4566,69 @@ namespace aura
 
    }
 
+   void application::post_critical_error_message(const char * pszMessage, bool bShowLog)
+   {
+
+      string strMessage;
+
+      strMessage = System.datetime().international().get_gmt_date_time();
+      strMessage += " ";
+      strMessage += pszMessage;
+      strMessage += "\n";
+
+      {
+
+         synch_lock sl(m_pmutex);
+
+         file().add_contents(dir().userappdata() / "log_error.txt", strMessage);
+
+      }
+
+      if (bShowLog)
+      {
+
+         show_critical_error_log();
+
+      }
+
+   }
+
+   void application::show_critical_error_log()
+   {
+
+      string strFile = dir().userappdata() / "log_error.txt";
+
+#ifdef WINDOWS
+
+      call_async("C:\\Program Files (x86)\\Notepad++\\Notepad++.exe", "\"" + strFile + "\"", "", SW_SHOW, false);
+
+#elif defined(LINUX)
+
+      ::fork(this, [=]()
+      {
+
+          system("gedit \"" + strFile + "\"");
+
+      });
+
+#else
+
+      ::fork(this, [=]()
+      {
+
+         system("open \"" + strFile + "\"");
+
+      });
+
+
+#endif
+
+
+      
+
+   }
+
+
 
 } // namespace aura
 

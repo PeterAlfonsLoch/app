@@ -511,6 +511,10 @@ virtual      void load_string_table(const string & pszApp,const string & pszId);
 
       virtual void play_audio(var varFile, bool bSynch = false);
 
+      virtual void post_critical_error_message(const char * pszMessage, bool bShowLog = true);
+
+      virtual void show_critical_error_log();
+
    };
 
 

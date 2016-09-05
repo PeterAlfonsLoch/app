@@ -95,19 +95,27 @@ object * base_factory::create(::aura::application * papp, ::type * ptype)
 
    }
 
-   synch_lock slInfo(ptype->m_pmutex);
+   id idType;
 
-   if(ptype->m_pfactoryitem != NULL)
    {
 
-      if(m_bSimpleFactoryRequest)
-         return ptype->m_pfactoryitem->create(papp);
+      synch_lock slInfo(ptype->m_pmutex);
+
+      if (ptype->m_pfactoryitem != NULL)
+      {
+
+         if (m_bSimpleFactoryRequest)
+            return ptype->m_pfactoryitem->create(papp);
+
+      }
+
+      idType = ptype->m_id;
 
    }
 
    single_lock sl(m_pmutex, TRUE);
 
-   sp(factory_item_base) & pitem = m_mapItem[ptype->m_id];
+   sp(factory_item_base) & pitem = m_mapItem[idType];
 
    if(pitem.is_null())
    {

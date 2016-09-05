@@ -611,7 +611,7 @@ OutputDebugString("gtk_main exited");
 
       strMessage.Format("Implement \"%s\" allocation\n", ptype->friendly_name());
 
-      App(papp).simple_message_box(NULL,strMessage, MB_ICONINFORMATION);
+      App(papp).post_critical_error_message(strMessage);
 
    }
 
