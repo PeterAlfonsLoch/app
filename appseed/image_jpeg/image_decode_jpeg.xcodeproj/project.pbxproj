@@ -12,8 +12,7 @@
 		0763351A1B5903BD0079C405 /* PluginJPEG.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 076334B11B5903BC0079C405 /* PluginJPEG.cpp */; };
 		076336251B590A310079C405 /* libios_axisfreeimage.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 076333ED1B5902FC0079C405 /* libios_axisfreeimage.dylib */; };
 		07B6577B190F3CA2002DAADE /* libimage_decode_jpeg.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B65764190F3CA2002DAADE /* libimage_decode_jpeg.dylib */; };
-		9A331C441D4BC6D400255105 /* libaxisjpeg.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A331C3F1D4BC6C900255105 /* libaxisjpeg.dylib */; };
-		9A331C491D4BC6E600255105 /* libios_axisjpeg.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A331C411D4BC6C900255105 /* libios_axisjpeg.dylib */; };
+		9A9F0A7C1D7F356C00ED6D8A /* libaxisjpeg.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A9F0A501D7F345500ED6D8A /* libaxisjpeg.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,40 +51,33 @@
 			remoteGlobalIDString = 07B65763190F3CA2002DAADE;
 			remoteInfo = math_ios;
 		};
-		9A331C3E1D4BC6C900255105 /* PBXContainerItemProxy */ = {
+		9A9F0A4F1D7F345500ED6D8A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A331C381D4BC6C900255105 /* axisjpeg.xcodeproj */;
+			containerPortal = 9A9F0A491D7F345500ED6D8A /* axisjpeg.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9A574B9816AAB906000CC4EF;
 			remoteInfo = axisjpeg;
 		};
-		9A331C401D4BC6C900255105 /* PBXContainerItemProxy */ = {
+		9A9F0A511D7F345500ED6D8A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A331C381D4BC6C900255105 /* axisjpeg.xcodeproj */;
+			containerPortal = 9A9F0A491D7F345500ED6D8A /* axisjpeg.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 07B65764190F3CA2002DAADE;
 			remoteInfo = ios_axisjpeg;
 		};
-		9A331C421D4BC6C900255105 /* PBXContainerItemProxy */ = {
+		9A9F0A531D7F345500ED6D8A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A331C381D4BC6C900255105 /* axisjpeg.xcodeproj */;
+			containerPortal = 9A9F0A491D7F345500ED6D8A /* axisjpeg.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 07B65773190F3CA2002DAADE;
 			remoteInfo = axisjpeg_iosTests;
 		};
-		9A331C451D4BC6DA00255105 /* PBXContainerItemProxy */ = {
+		9A9F0A7A1D7F356400ED6D8A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A331C381D4BC6C900255105 /* axisjpeg.xcodeproj */;
+			containerPortal = 9A9F0A491D7F345500ED6D8A /* axisjpeg.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 9A574B9716AAB906000CC4EF;
 			remoteInfo = axisjpeg;
-		};
-		9A331C471D4BC6E000255105 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A331C381D4BC6C900255105 /* axisjpeg.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 07B65763190F3CA2002DAADE;
-			remoteInfo = ios_axisjpeg;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -106,8 +98,8 @@
 		076334B11B5903BC0079C405 /* PluginJPEG.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PluginJPEG.cpp; sourceTree = "<group>"; };
 		07B65764190F3CA2002DAADE /* libimage_decode_jpeg.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libimage_decode_jpeg.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		07B65773190F3CA2002DAADE /* axisjpeg_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = axisjpeg_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A331C381D4BC6C900255105 /* axisjpeg.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axisjpeg.xcodeproj; path = ../jpeg/axisjpeg.xcodeproj; sourceTree = "<group>"; };
 		9A574B9816AAB906000CC4EF /* libimage_decode_jpeg.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libimage_decode_jpeg.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A9F0A491D7F345500ED6D8A /* axisjpeg.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axisjpeg.xcodeproj; path = ../../../third/appseed/jpeg/axisjpeg.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,7 +107,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A331C491D4BC6E600255105 /* libios_axisjpeg.dylib in Frameworks */,
 				076336251B590A310079C405 /* libios_axisfreeimage.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -132,7 +123,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A331C441D4BC6D400255105 /* libaxisjpeg.dylib in Frameworks */,
+				9A9F0A7C1D7F356C00ED6D8A /* libaxisjpeg.dylib in Frameworks */,
 				071B6B291B5AE07B002C55E2 /* libaxisfreeimage.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -173,21 +164,11 @@
 			path = FreeImageToolkit;
 			sourceTree = "<group>";
 		};
-		9A331C391D4BC6C900255105 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				9A331C3F1D4BC6C900255105 /* libaxisjpeg.dylib */,
-				9A331C411D4BC6C900255105 /* libios_axisjpeg.dylib */,
-				9A331C431D4BC6C900255105 /* axisjpeg_iosTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		9A574B8D16AAB906000CC4EF = {
 			isa = PBXGroup;
 			children = (
 				076333E51B5902FB0079C405 /* axisfreeimage.xcodeproj */,
-				9A331C381D4BC6C900255105 /* axisjpeg.xcodeproj */,
+				9A9F0A491D7F345500ED6D8A /* axisjpeg.xcodeproj */,
 				076334AF1B5903BC0079C405 /* Source */,
 				9A574B9916AAB906000CC4EF /* Products */,
 			);
@@ -199,6 +180,16 @@
 				9A574B9816AAB906000CC4EF /* libimage_decode_jpeg.dylib */,
 				07B65764190F3CA2002DAADE /* libimage_decode_jpeg.dylib */,
 				07B65773190F3CA2002DAADE /* axisjpeg_iosTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9A9F0A4A1D7F345500ED6D8A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9A9F0A501D7F345500ED6D8A /* libaxisjpeg.dylib */,
+				9A9F0A521D7F345500ED6D8A /* libios_axisjpeg.dylib */,
+				9A9F0A541D7F345500ED6D8A /* axisjpeg_iosTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -227,7 +218,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				9A331C481D4BC6E000255105 /* PBXTargetDependency */,
 				076336231B590A1A0079C405 /* PBXTargetDependency */,
 			);
 			name = ios_image_decode_jpeg;
@@ -264,7 +254,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				9A331C461D4BC6DA00255105 /* PBXTargetDependency */,
+				9A9F0A7B1D7F356400ED6D8A /* PBXTargetDependency */,
 				071B6B271B5AE067002C55E2 /* PBXTargetDependency */,
 			);
 			name = image_decode_jpeg;
@@ -302,8 +292,8 @@
 					ProjectRef = 076333E51B5902FB0079C405 /* axisfreeimage.xcodeproj */;
 				},
 				{
-					ProductGroup = 9A331C391D4BC6C900255105 /* Products */;
-					ProjectRef = 9A331C381D4BC6C900255105 /* axisjpeg.xcodeproj */;
+					ProductGroup = 9A9F0A4A1D7F345500ED6D8A /* Products */;
+					ProjectRef = 9A9F0A491D7F345500ED6D8A /* axisjpeg.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -330,25 +320,25 @@
 			remoteRef = 076333EC1B5902FC0079C405 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A331C3F1D4BC6C900255105 /* libaxisjpeg.dylib */ = {
+		9A9F0A501D7F345500ED6D8A /* libaxisjpeg.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
 			path = libaxisjpeg.dylib;
-			remoteRef = 9A331C3E1D4BC6C900255105 /* PBXContainerItemProxy */;
+			remoteRef = 9A9F0A4F1D7F345500ED6D8A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A331C411D4BC6C900255105 /* libios_axisjpeg.dylib */ = {
+		9A9F0A521D7F345500ED6D8A /* libios_axisjpeg.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libios_axisjpeg.dylib;
-			remoteRef = 9A331C401D4BC6C900255105 /* PBXContainerItemProxy */;
+			remoteRef = 9A9F0A511D7F345500ED6D8A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A331C431D4BC6C900255105 /* axisjpeg_iosTests.xctest */ = {
+		9A9F0A541D7F345500ED6D8A /* axisjpeg_iosTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = axisjpeg_iosTests.xctest;
-			remoteRef = 9A331C421D4BC6C900255105 /* PBXContainerItemProxy */;
+			remoteRef = 9A9F0A531D7F345500ED6D8A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -405,15 +395,10 @@
 			target = 07B65763190F3CA2002DAADE /* ios_image_decode_jpeg */;
 			targetProxy = 07B65779190F3CA2002DAADE /* PBXContainerItemProxy */;
 		};
-		9A331C461D4BC6DA00255105 /* PBXTargetDependency */ = {
+		9A9F0A7B1D7F356400ED6D8A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = axisjpeg;
-			targetProxy = 9A331C451D4BC6DA00255105 /* PBXContainerItemProxy */;
-		};
-		9A331C481D4BC6E000255105 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = ios_axisjpeg;
-			targetProxy = 9A331C471D4BC6E000255105 /* PBXContainerItemProxy */;
+			targetProxy = 9A9F0A7A1D7F356400ED6D8A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -583,7 +568,7 @@
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../nodeapp/include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../.. $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/axis/FreeImage/Source $(WorkspaceDir)/../../../app/axis/FreeImage/Source/FreeImage";
+				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../nodeapp/include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../.. $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/appseed/freeImage/Source $(WorkspaceDir)/../../../app/appseed/freeimage/Source/FreeImage";
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};
 			name = Debug;
@@ -625,7 +610,7 @@
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../nodeapp/include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../.. $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/axis/FreeImage/Source $(WorkspaceDir)/../../../app/axis/FreeImage/Source/FreeImage";
+				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../nodeapp/include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../.. $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/appseed/freeImage/Source $(WorkspaceDir)/../../../app/appseed/freeimage/Source/FreeImage";
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};
 			name = Release;

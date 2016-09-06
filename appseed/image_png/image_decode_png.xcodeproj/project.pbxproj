@@ -52,6 +52,34 @@
 			remoteGlobalIDString = 07108BD71B4C97D500A28F80;
 			remoteInfo = axisfreeimage_ios;
 		};
+		9A9F0A5B1D7F346600ED6D8A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A9F0A551D7F346600ED6D8A /* axispng.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9A574B9816AAB906000CC4EF;
+			remoteInfo = axispng;
+		};
+		9A9F0A5D1D7F346600ED6D8A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A9F0A551D7F346600ED6D8A /* axispng.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 07B65764190F3CA2002DAADE;
+			remoteInfo = ios_axispng;
+		};
+		9A9F0A5F1D7F346600ED6D8A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A9F0A551D7F346600ED6D8A /* axispng.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 07B65773190F3CA2002DAADE;
+			remoteInfo = axispng_iosTests;
+		};
+		9A9F0A7D1D7F357700ED6D8A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A9F0A551D7F346600ED6D8A /* axispng.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A574B9716AAB906000CC4EF;
+			remoteInfo = axispng;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -74,6 +102,7 @@
 		9A331C4A1D4BC84C00255105 /* libaxispng.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaxispng.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/core-osx-dyhrstllhpqabhamryoxyuxzxxbr/Build/Products/Debug/libaxispng.dylib"; sourceTree = "<group>"; };
 		9A574B9816AAB906000CC4EF /* libimage_decode_png.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libimage_decode_png.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A986D011D226812001F4C04 /* libios_axispng.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_axispng.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/basic-ios-bmuegusfgbffmoeixicbxhlnbzop/Build/Products/Debug-iphonesimulator/libios_axispng.dylib"; sourceTree = "<group>"; };
+		9A9F0A551D7F346600ED6D8A /* axispng.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axispng.xcodeproj; path = ../../../third/appseed/png/axispng.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +166,7 @@
 				9A331C4A1D4BC84C00255105 /* libaxispng.dylib */,
 				9A986D011D226812001F4C04 /* libios_axispng.dylib */,
 				07A371601B25DE2A00E4F888 /* axisfreeimage.xcodeproj */,
+				9A9F0A551D7F346600ED6D8A /* axispng.xcodeproj */,
 				07A371871B25E34D00E4F888 /* Source */,
 				9A574B9916AAB906000CC4EF /* Products */,
 			);
@@ -148,6 +178,16 @@
 				9A574B9816AAB906000CC4EF /* libimage_decode_png.dylib */,
 				07B65764190F3CA2002DAADE /* libimage_decode_png.dylib */,
 				07B65773190F3CA2002DAADE /* axispng_iosTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9A9F0A561D7F346600ED6D8A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9A9F0A5C1D7F346600ED6D8A /* libaxispng.dylib */,
+				9A9F0A5E1D7F346600ED6D8A /* libios_axispng.dylib */,
+				9A9F0A601D7F346600ED6D8A /* axispng_iosTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -212,6 +252,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				9A9F0A7E1D7F357700ED6D8A /* PBXTargetDependency */,
 				077C88E31B519E1C00AB2A41 /* PBXTargetDependency */,
 			);
 			name = image_decode_png;
@@ -248,6 +289,10 @@
 					ProductGroup = 07A371611B25DE2A00E4F888 /* Products */;
 					ProjectRef = 07A371601B25DE2A00E4F888 /* axisfreeimage.xcodeproj */;
 				},
+				{
+					ProductGroup = 9A9F0A561D7F346600ED6D8A /* Products */;
+					ProjectRef = 9A9F0A551D7F346600ED6D8A /* axispng.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -271,6 +316,27 @@
 			fileType = "compiled.mach-o.dylib";
 			path = libios_axisfreeimage.dylib;
 			remoteRef = 07D6A73B1B4CADC4004FEBC2 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9A9F0A5C1D7F346600ED6D8A /* libaxispng.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libaxispng.dylib;
+			remoteRef = 9A9F0A5B1D7F346600ED6D8A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9A9F0A5E1D7F346600ED6D8A /* libios_axispng.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libios_axispng.dylib;
+			remoteRef = 9A9F0A5D1D7F346600ED6D8A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9A9F0A601D7F346600ED6D8A /* axispng_iosTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = axispng_iosTests.xctest;
+			remoteRef = 9A9F0A5F1D7F346600ED6D8A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -326,6 +392,11 @@
 			isa = PBXTargetDependency;
 			target = 07B65763190F3CA2002DAADE /* ios_image_decode_png */;
 			targetProxy = 07B65779190F3CA2002DAADE /* PBXContainerItemProxy */;
+		};
+		9A9F0A7E1D7F357700ED6D8A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = axispng;
+			targetProxy = 9A9F0A7D1D7F357700ED6D8A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -493,7 +564,7 @@
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../nodeapp/include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../.. $(WorkspaceDir)/../../appseed";
+				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../nodeapp/include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../.. $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/appseed/freeImage/Source $(WorkspaceDir)/../../../app/appseed/freeimage/Source/FreeImage";
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};
 			name = Debug;
@@ -536,7 +607,7 @@
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../nodeapp/include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../.. $(WorkspaceDir)/../../appseed";
+				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../nodeapp/include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../.. $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/appseed/freeImage/Source $(WorkspaceDir)/../../../app/appseed/freeimage/Source/FreeImage";
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};
 			name = Release;

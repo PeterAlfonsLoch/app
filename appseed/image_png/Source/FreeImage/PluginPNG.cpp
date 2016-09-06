@@ -111,7 +111,7 @@ ReadMetadata(png_structp png_ptr, png_infop info_ptr, FIBITMAP *dib) {
 
 			if(text_ptr[i].text_length & 0x80000000)
          {
-         #if PNG_iTXt_SUPPORTED
+         #ifdef PNG_iTXt_SUPPORTED
             if(text_ptr[i].itxt_length & 0x80000000)
             {
                continue;
@@ -124,7 +124,7 @@ ReadMetadata(png_structp png_ptr, png_infop info_ptr, FIBITMAP *dib) {
             continue;
          #endif
          }
-         #if PNG_iTXt_SUPPORTED
+         #ifdef PNG_iTXt_SUPPORTED
          else if(text_ptr[i].itxt_length & 0x80000000)
          {
             tag_length = text_ptr[i].text_length;
@@ -132,7 +132,7 @@ ReadMetadata(png_structp png_ptr, png_infop info_ptr, FIBITMAP *dib) {
          #endif
          else
          {
-         #if PNG_iTXt_SUPPORTED
+         #ifdef PNG_iTXt_SUPPORTED
             tag_length = (DWORD) MAX(text_ptr[i].text_length, text_ptr[i].itxt_length);
          #else
             tag_length = text_ptr[i].text_length;

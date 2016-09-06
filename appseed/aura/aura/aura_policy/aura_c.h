@@ -82,8 +82,6 @@ CLASS_DECL_AURA int throw_assert_exception(const char * lpszFileName,int iLineNu
 #define ARGB(a, r, g, b)         RGBA(r, g, b, a)
 #endif
 
-#define _(c_string_to_be_translated_from_english) c_string_to_be_translated_from_english
-
 // risky
 #ifdef __cpluplus
 inline int void_ptr_is_null(const void * p)

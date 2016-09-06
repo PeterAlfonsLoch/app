@@ -29,6 +29,12 @@
 
 #include "version.h"
 
+#define _(c_string_to_be_translated_from_english) c_string_to_be_translated_from_english
+
+
+
+
+
 
 
 

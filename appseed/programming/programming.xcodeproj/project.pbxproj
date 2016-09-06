@@ -436,7 +436,7 @@
 		078DD9831CA1F02D00290384 /* libcore.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libcore.dylib;
+			path = libios_core.dylib;
 			remoteRef = 078DD9821CA1F02D00290384 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
