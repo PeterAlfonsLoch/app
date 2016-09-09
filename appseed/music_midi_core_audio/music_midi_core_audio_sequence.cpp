@@ -903,19 +903,19 @@ namespace music
          
          OSStatus result;
          
-         m_cl = NULL;
-         
-         
-         result = CAClockNew(0, &m_cl);
-         
-         
-         if(result != noErr)
-         {
-            
-            return translate_os_status(result);
-            
-         }
-         // Create a client
+//         m_cl = NULL;
+//         
+//         
+//         result = CAClockNew(0, &m_cl);
+//         
+//         
+//         if(result != noErr)
+//         {
+//            
+//            return translate_os_status(result);
+//            
+//         }
+//         // Create a client
          //MIDIClientRef virtualMidi;
          result = MIDIClientCreate(CFSTR("Virtual Client"),
                                    MyMIDINotifyProc,

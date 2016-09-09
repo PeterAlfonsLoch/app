@@ -86,8 +86,8 @@ OutputBase::OutputBase()
    OSStatus returnval = MIDIClientCreate(CFSTR("AriaOutput"), NULL, NULL, &m_client);
    if (returnval != 0)
    {
-      fprintf(stderr, "MIDIClientCreate failed with error code %i (%s, %s)\n", (int)returnval,
-              GetMacOSStatusErrorString(returnval), GetMacOSStatusCommentString(returnval));
+      //fprintf(stderr, "MIDIClientCreate failed with error code %i (%s, %s)\n", (int)returnval,
+        //      GetMacOSStatusErrorString(returnval), GetMacOSStatusCommentString(returnval));
    }
    
    stopNoteTimer = new StopNoteTimer(this);

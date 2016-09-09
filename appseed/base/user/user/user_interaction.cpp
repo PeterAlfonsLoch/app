@@ -389,7 +389,7 @@ namespace user
 
                      pimplOld.release();
 
-#if !defined(METROWIN) && !defined(MACOS)
+#if !defined(METROWIN) && !defined(APPLEOS)
 
                      if (wnd != NULL)
                      {

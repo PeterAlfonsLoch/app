@@ -5,7 +5,11 @@
 
 #include <CoreFoundation/CoreFoundation.h>
 #include <CoreFoundation/CFByteOrder.h>
+#ifdef MACOS
 #include <CoreServices/CoreServices.h>
+#else
+//#include <UIServices/UIServices.h>
+#endif
 #include <AudioToolbox/AudioToolbox.h>
 #include <AudioToolbox/MusicPlayer.h>
 #include <AudioUnit/AudioUnit.h>

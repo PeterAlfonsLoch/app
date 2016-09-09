@@ -22,6 +22,8 @@
 		07108BD21B4C97D500A28F80 /* Resize.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAEDC19C5080A00866C9E /* Resize.h */; };
 		07108BD31B4C97D500A28F80 /* CacheFile.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEAE7519C5080A00866C9E /* CacheFile.h */; };
 		07703C381B6FDFBD009026EA /* libios_aura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 071B2AFD1B6E631B0088E158 /* libios_aura.dylib */; };
+		9A2117441D832FA8000C4336 /* libace.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2117431D832FA8000C4336 /* libace.dylib */; };
+		9A2117471D832FB7000C4336 /* libios_ace.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2117461D832FB7000C4336 /* libios_ace.dylib */; };
 		9A331C341D4BC5C000255105 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A331C331D4BC5C000255105 /* libz.tbd */; };
 		9A331C361D4BC5C600255105 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A331C351D4BC5C600255105 /* libz.tbd */; };
 		9A4E861D1D1FD793008A419B /* _FreeImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4E861C1D1FD793008A419B /* _FreeImage.cpp */; };
@@ -86,6 +88,8 @@
 
 /* Begin PBXFileReference section */
 		07108BD71B4C97D500A28F80 /* libios_axisfreeimage.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_axisfreeimage.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A2117431D832FA8000C4336 /* libace.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libace.dylib; path = ../ace/build/Debug/libace.dylib; sourceTree = "<group>"; };
+		9A2117461D832FB7000C4336 /* libios_ace.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_ace.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/ios-basic-apgdmhfgxzjpfmdhucodqlzuwxoe/Build/Products/Debug-iphonesimulator/libios_ace.dylib"; sourceTree = "<group>"; };
 		9A331C331D4BC5C000255105 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		9A331C351D4BC5C600255105 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/usr/lib/libz.tbd; sourceTree = DEVELOPER_DIR; };
 		9A4E861C1D1FD793008A419B /* _FreeImage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _FreeImage.cpp; sourceTree = "<group>"; };
@@ -114,6 +118,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A2117471D832FB7000C4336 /* libios_ace.dylib in Frameworks */,
 				9A331C361D4BC5C600255105 /* libz.tbd in Frameworks */,
 				07703C381B6FDFBD009026EA /* libios_aura.dylib in Frameworks */,
 			);
@@ -123,6 +128,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A2117441D832FA8000C4336 /* libace.dylib in Frameworks */,
 				9A331C341D4BC5C000255105 /* libz.tbd in Frameworks */,
 				9AEEB83A19C50EAD00866C9E /* libaura.dylib in Frameworks */,
 			);
@@ -134,6 +140,8 @@
 		9A1B2F7D16A2AF5C00875A94 = {
 			isa = PBXGroup;
 			children = (
+				9A2117461D832FB7000C4336 /* libios_ace.dylib */,
+				9A2117431D832FA8000C4336 /* libace.dylib */,
 				9A331C351D4BC5C600255105 /* libz.tbd */,
 				9A331C331D4BC5C000255105 /* libz.tbd */,
 				9AEEB82019C50E7500866C9E /* aura.xcodeproj */,

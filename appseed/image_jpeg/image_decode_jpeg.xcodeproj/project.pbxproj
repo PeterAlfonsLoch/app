@@ -12,6 +12,7 @@
 		0763351A1B5903BD0079C405 /* PluginJPEG.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 076334B11B5903BC0079C405 /* PluginJPEG.cpp */; };
 		076336251B590A310079C405 /* libios_axisfreeimage.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 076333ED1B5902FC0079C405 /* libios_axisfreeimage.dylib */; };
 		07B6577B190F3CA2002DAADE /* libimage_decode_jpeg.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B65764190F3CA2002DAADE /* libimage_decode_jpeg.dylib */; };
+		9A2117421D832C22000C4336 /* libios_axisjpeg.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A9F0A521D7F345500ED6D8A /* libios_axisjpeg.dylib */; };
 		9A9F0A7C1D7F356C00ED6D8A /* libaxisjpeg.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A9F0A501D7F345500ED6D8A /* libaxisjpeg.dylib */; };
 /* End PBXBuildFile section */
 
@@ -50,6 +51,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 07B65763190F3CA2002DAADE;
 			remoteInfo = math_ios;
+		};
+		9A21173E1D832C1C000C4336 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A9F0A491D7F345500ED6D8A /* axisjpeg.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 07B65763190F3CA2002DAADE;
+			remoteInfo = ios_axisjpeg;
 		};
 		9A9F0A4F1D7F345500ED6D8A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -107,6 +115,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A2117421D832C22000C4336 /* libios_axisjpeg.dylib in Frameworks */,
 				076336251B590A310079C405 /* libios_axisfreeimage.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -218,6 +227,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				9A21173F1D832C1C000C4336 /* PBXTargetDependency */,
 				076336231B590A1A0079C405 /* PBXTargetDependency */,
 			);
 			name = ios_image_decode_jpeg;
@@ -394,6 +404,11 @@
 			isa = PBXTargetDependency;
 			target = 07B65763190F3CA2002DAADE /* ios_image_decode_jpeg */;
 			targetProxy = 07B65779190F3CA2002DAADE /* PBXContainerItemProxy */;
+		};
+		9A21173F1D832C1C000C4336 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ios_axisjpeg;
+			targetProxy = 9A21173E1D832C1C000C4336 /* PBXContainerItemProxy */;
 		};
 		9A9F0A7B1D7F356400ED6D8A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

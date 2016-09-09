@@ -183,7 +183,7 @@ namespace music
          MusicSequence     m_sequence;
          MusicPlayer       m_player;
          
-         CAClockRef m_cl;
+//         CAClockRef m_cl;
          
          // Create a client
          MIDIClientRef m_virtualMidi;

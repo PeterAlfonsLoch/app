@@ -179,11 +179,11 @@ bool WriteOutputFile (const char*       outputFilePath,
       result = AUGraphGetIndNode(inGraph, i, &node);
       CHECK_RETURN_CODE("AUGraphGetNodeCount");
       
-#if MAC_OS_X_VERSION_MIN_REQUIRED >= MAC_OS_X_VERSION_10_6
+//#if MAC_OS_X_VERSION_MIN_REQUIRED >= MAC_OS_X_VERSION_10_6
       AudioComponentDescription desc;
-#else
-      ComponentDescription desc;
-#endif
+//#else
+  //    ComponentDescription desc;
+//#endif
       result = AUGraphNodeInfo(inGraph, node, &desc, NULL);
       CHECK_RETURN_CODE("AUGraphNodeInfo");
       
@@ -294,11 +294,11 @@ OSStatus SetUpGraph (AUGraph &inGraph, UInt32 numFrames, Float64 &sampleRate, bo
       }
       
       
-#if MAC_OS_X_VERSION_MIN_REQUIRED >= MAC_OS_X_VERSION_10_6
+//#if MAC_OS_X_VERSION_MIN_REQUIRED >= MAC_OS_X_VERSION_10_6
       AudioComponentDescription desc;
-#else
-      ComponentDescription desc;
-#endif
+//#else
+//      ComponentDescription desc;
+//#endif
       AudioUnit unit;
       result = AUGraphNodeInfo(inGraph, node, &desc, &unit);
       if (result != 0)
@@ -315,11 +315,12 @@ OSStatus SetUpGraph (AUGraph &inGraph, UInt32 numFrames, Float64 &sampleRate, bo
             
             if (!isOffline) {
                // these two properties are only applicable if its a device we're playing too
+#ifdef MACOS
                require_noerr (result = AudioUnitSetProperty (outputUnit,
                                                              kAudioDevicePropertyBufferFrameSize,
                                                              kAudioUnitScope_Output, 0,
                                                              &numFrames, sizeof(numFrames)), home);
-               
+#endif   
                /*
                 require_noerr (result = AudioUnitAddPropertyListener (outputUnit,
                 kAudioDeviceProcessorOverload,
@@ -417,11 +418,11 @@ OSStatus GetSynthFromGraph (AUGraph& inGraph, AudioUnit& outSynth)
       AUNode node;
       require_noerr (result = AUGraphGetIndNode(inGraph, i, &node), fail);
       
-#if MAC_OS_X_VERSION_MIN_REQUIRED >= MAC_OS_X_VERSION_10_6
+//#if MAC_OS_X_VERSION_MIN_REQUIRED >= MAC_OS_X_VERSION_10_6
       AudioComponentDescription desc;
-#else
-      ComponentDescription desc;
-#endif
+//#else
+//      ComponentDescription desc;
+//#endif
       require_noerr (result = AUGraphNodeInfo(inGraph, node, &desc, 0), fail);
       
       if (desc.componentType == kAudioUnitType_MusicDevice)
@@ -469,6 +470,7 @@ bool AudioUnitOutput::outputToDisk(const char* outputFilePath,
    CHECK_RETURN_CODE("AudioUnitSetProperty");
    
    // if the user supplies a sound bank, we'll set that before we initialize and start playing
+#ifdef MACOS
    if (m_custom_sound_font != NULL)
    {
       printf("setting soundfont <%s>\n", m_custom_sound_font);
@@ -482,7 +484,7 @@ bool AudioUnitOutput::outputToDisk(const char* outputFilePath,
                                      &fsRef, sizeof(fsRef));
       CHECK_RETURN_CODE("AudioUnitSetProperty[kMusicDeviceProperty_SoundBankFSRef]");
    }
-   
+#endif
    // need to tell synth that is going to render a file.
    UInt32 value = 1;
    result = AudioUnitSetProperty(theSynth,
@@ -610,11 +612,11 @@ OSStatus CreateAUGraph (AUGraph &outGraph, AudioUnit &outSynth)
    //create the nodes of the graph
    AUNode synthNode, limiterNode, outNode;
    
-#if MAC_OS_X_VERSION_MIN_REQUIRED >= MAC_OS_X_VERSION_10_6
+//#if MAC_OS_X_VERSION_MIN_REQUIRED >= MAC_OS_X_VERSION_10_6
    AudioComponentDescription cd;
-#else
-   ComponentDescription cd;
-#endif
+//#else
+//   ComponentDescription cd;
+//#endif
    
    cd.componentManufacturer = kAudioUnitManufacturer_Apple;
    cd.componentFlags = 0;
@@ -627,6 +629,7 @@ OSStatus CreateAUGraph (AUGraph &outGraph, AudioUnit &outSynth)
       return result;
    }
    
+#ifdef MACOS
    cd.componentType = kAudioUnitType_MusicDevice;
    cd.componentSubType = kAudioUnitSubType_DLSSynth;
    
@@ -636,7 +639,8 @@ OSStatus CreateAUGraph (AUGraph &outGraph, AudioUnit &outSynth)
       fprintf(stderr, "[PlatformMIDIManager] ERROR: AUGraphAddNode failed\n");
       return result;
    }
-   
+#endif
+#ifdef MACOS
    cd.componentType = kAudioUnitType_Effect;
    cd.componentSubType = kAudioUnitSubType_PeakLimiter;
    
@@ -646,7 +650,8 @@ OSStatus CreateAUGraph (AUGraph &outGraph, AudioUnit &outSynth)
       fprintf(stderr, "[PlatformMIDIManager] ERROR: AUGraphAddNode (limiterNode) failed\n");
       return result;
    }
-   
+#endif
+#ifdef MACOS
    cd.componentType = kAudioUnitType_Output;
    cd.componentSubType = kAudioUnitSubType_DefaultOutput;
    result = AUGraphAddNode (outGraph, &cd, &outNode);
@@ -655,12 +660,12 @@ OSStatus CreateAUGraph (AUGraph &outGraph, AudioUnit &outSynth)
       fprintf(stderr, "[PlatformMIDIManager] ERROR: AUGraphAddNode (outNode) failed\n");
       return result;
    }
-   
+#endif
    result = AUGraphOpen(outGraph);
    if (result != 0)
    {
-      fprintf(stderr, "[PlatformMIDIManager] ERROR: AUGraphOpen failed with error code %i (%s - %s)\n",
-              (int)result, GetMacOSStatusErrorString(result), GetMacOSStatusCommentString(result));
+//      fprintf(stderr, "[PlatformMIDIManager] ERROR: AUGraphOpen failed with error code %i (%s - %s)\n",
+//              (int)result, GetMacOSStatusErrorString(result), GetMacOSStatusCommentString(result));
       return result;
    }
    
@@ -688,6 +693,8 @@ OSStatus CreateAUGraph (AUGraph &outGraph, AudioUnit &outSynth)
    return result;
 }
 
+#ifdef MACOS
+
 OSStatus PathToFSSpec(const char *filename, FSSpec &outSpec)
 {
    FSRef fsRef;
@@ -708,7 +715,7 @@ OSStatus PathToFSSpec(const char *filename, FSSpec &outSpec)
    
    return result;
 }
-
+#endif
 
 // some MIDI constants:
 enum
@@ -738,10 +745,10 @@ void AudioUnitOutput::programChange(uint8_t progChangeNum, uint8_t midiChannelIn
                                                 0 /*sample offset*/), home_programChange);
    return;
    
-home_programChange:
+home_programChange:;
    
-   fprintf(stderr, "Error in MidiPlayer::programChange : %i (%s - %s)\n",
-           (int)result, GetMacOSStatusErrorString(result), GetMacOSStatusCommentString(result));
+//   fprintf(stderr, "Error in MidiPlayer::programChange : %i (%s - %s)\n",
+//           (int)result, GetMacOSStatusErrorString(result), GetMacOSStatusCommentString(result));
 }
 
 // ------------------------------------------------------------------------------------------------------
@@ -755,10 +762,10 @@ void AudioUnitOutput::setBank(uint8_t midiChannelInUse)
                                                 0 /*sample offset*/), home_setBank);
    return;
    
-home_setBank:
+home_setBank:;
    
-   fprintf(stderr, "Error in MidiPlayer::setBank : %i (%s - %s)\n",
-           (int)result, GetMacOSStatusErrorString(result), GetMacOSStatusCommentString(result));
+//   fprintf(stderr, "Error in MidiPlayer::setBank : %i (%s - %s)\n",
+//           (int)result, GetMacOSStatusErrorString(result), GetMacOSStatusCommentString(result));
 }
 
 // ------------------------------------------------------------------------------------------------------
@@ -782,6 +789,7 @@ AudioUnitOutput::AudioUnitOutput(const char* custom_sound_font)
    }
    
    // if the user supplies a sound bank, we'll set that before we initialize and start playing
+#ifdef MACOS
    if (custom_sound_font != NULL)
    {
       FSRef fsRef;
@@ -804,7 +812,7 @@ AudioUnitOutput::AudioUnitOutput(const char* custom_sound_font)
          }
       }
    }
-   
+#endif
    // initialize and start the graph
    result = AUGraphInitialize(m_graph);
    if (result != 0)

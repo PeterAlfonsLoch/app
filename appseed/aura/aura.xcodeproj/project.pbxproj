@@ -1096,6 +1096,11 @@
 		9A1EDB6019C841D600F5CCE8 /* service_plain_service.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1EDB5D19C841D600F5CCE8 /* service_plain_service.cpp */; };
 		9A1EDB6119C841D600F5CCE8 /* service_plain_service.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDB5E19C841D600F5CCE8 /* service_plain_service.h */; };
 		9A1EDB6219C841D600F5CCE8 /* service_thread_pool.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1EDB5F19C841D600F5CCE8 /* service_thread_pool.h */; };
+		9A2116CE1D8329C4000C4336 /* libios_atomiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A26A6F21D7F0155001F47A8 /* libios_atomiconv.dylib */; };
+		9A2116ED1D832B5C000C4336 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A26A62E1D7F0018001F47A8 /* _.cpp */; };
+		9A2116EE1D832B5C000C4336 /* charDistribution.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A26A6331D7F0018001F47A8 /* charDistribution.cpp */; };
+		9A2116EF1D832B5C000C4336 /* pcre.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A26A69A1D7F0019001F47A8 /* pcre.cpp */; };
+		9A2116F01D832B72000C4336 /* libios_aurapcre.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A26A6FB1D7F0166001F47A8 /* libios_aurapcre.dylib */; };
 		9A26A6A71D7F0019001F47A8 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A26A62E1D7F0018001F47A8 /* _.cpp */; };
 		9A26A6AA1D7F0019001F47A8 /* big5Prober.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A26A6321D7F0018001F47A8 /* big5Prober.h */; };
 		9A26A6AB1D7F0019001F47A8 /* charDistribution.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A26A6331D7F0018001F47A8 /* charDistribution.cpp */; };
@@ -1188,7 +1193,7 @@
 		9AC315F2198E4CB8008FB109 /* colorertake5_Writer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC315AB198E4CB8008FB109 /* colorertake5_Writer.h */; };
 		9AC315F3198E4CB8008FB109 /* colorertake5_xmldom.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC315AC198E4CB8008FB109 /* colorertake5_xmldom.h */; };
 		9AC62DEA1D20B82D00A4AC0A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC62DE91D20B82D00A4AC0A /* UIKit.framework */; };
-		9ACE46FF1D1FE56000A1E0AD /* libace.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A6716741D1553BF0069A961 /* libace.a */; };
+		9ACE46FF1D1FE56000A1E0AD /* libace.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A6716741D1553BF0069A961 /* libace.dylib */; };
 		9AE4C7F21996D29C00E50F88 /* data_data.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE4C7E41996D29C00E50F88 /* data_data.h */; };
 		9AE4C7F41996D29C00E50F88 /* data_data_container.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE4C7E61996D29C00E50F88 /* data_data_container.h */; };
 		9AE4C7F61996D29C00E50F88 /* data_data_listener.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE4C7E81996D29C00E50F88 /* data_data_listener.h */; };
@@ -1254,6 +1259,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		9A2116D11D8329CA000C4336 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A26A6EA1D7F0155001F47A8 /* atomiconv.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 077A014D1B4D5479001C85FF;
+			remoteInfo = ios_atomiconv;
+		};
+		9A2116D31D8329D2000C4336 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A26A6F31D7F0166001F47A8 /* aurapcre.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 07D6A8271B4CBB45004FEBC2;
+			remoteInfo = ios_aurapcre;
+		};
 		9A26A6EF1D7F0155001F47A8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9A26A6EA1D7F0155001F47A8 /* atomiconv.xcodeproj */;
@@ -2076,6 +2095,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A2116F01D832B72000C4336 /* libios_aurapcre.dylib in Frameworks */,
+				9A2116CE1D8329C4000C4336 /* libios_atomiconv.dylib in Frameworks */,
 				9AC62DEA1D20B82D00A4AC0A /* UIKit.framework in Frameworks */,
 				9A74846E1D210C0600207EF6 /* libios_ace.dylib in Frameworks */,
 			);
@@ -2087,7 +2108,7 @@
 			files = (
 				9A26A7011D7F042D001F47A8 /* libatomiconv.dylib in Frameworks */,
 				9A26A6FC1D7F01A5001F47A8 /* libaurapcre.dylib in Frameworks */,
-				9ACE46FF1D1FE56000A1E0AD /* libace.a in Frameworks */,
+				9ACE46FF1D1FE56000A1E0AD /* libace.dylib in Frameworks */,
 				9A98A6081771D67E000AE16E /* AppKit.framework in Frameworks */,
 				9A98A6091771D67E000AE16E /* Foundation.framework in Frameworks */,
 				9A98A60A1771D67E000AE16E /* Carbon.framework in Frameworks */,
@@ -3033,7 +3054,7 @@
 		9A67166D1D1553BF0069A961 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9A6716741D1553BF0069A961 /* libace.a */,
+				9A6716741D1553BF0069A961 /* libace.dylib */,
 				9A6716761D1553BF0069A961 /* libios_ace.dylib */,
 				9A6716781D1553BF0069A961 /* ace_iosTests.xctest */,
 			);
@@ -4436,6 +4457,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				9A2116D41D8329D2000C4336 /* PBXTargetDependency */,
+				9A2116D21D8329CA000C4336 /* PBXTargetDependency */,
 				9A6716CE1D159CAF0069A961 /* PBXTargetDependency */,
 			);
 			name = ios_aura;
@@ -4556,10 +4579,9 @@
 			remoteRef = 9A26A6FA1D7F0166001F47A8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A6716741D1553BF0069A961 /* libace.a */ = {
+		9A6716741D1553BF0069A961 /* libace.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			name = libace.a;
 			path = libace.dylib;
 			remoteRef = 9A6716731D1553BF0069A961 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
@@ -4597,6 +4619,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A2116ED1D832B5C000C4336 /* _.cpp in Sources */,
+				9A2116EE1D832B5C000C4336 /* charDistribution.cpp in Sources */,
+				9A2116EF1D832B5C000C4336 /* pcre.cpp in Sources */,
 				9A6715D41D14F7970069A961 /* test.cpp in Sources */,
 				9A6715D11D14F65F0069A961 /* draw2d_nanosvg.cpp in Sources */,
 				070214231C514A9A00DB16A7 /* exception_engine.cpp in Sources */,
@@ -4687,6 +4712,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		9A2116D21D8329CA000C4336 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ios_atomiconv;
+			targetProxy = 9A2116D11D8329CA000C4336 /* PBXContainerItemProxy */;
+		};
+		9A2116D41D8329D2000C4336 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ios_aurapcre;
+			targetProxy = 9A2116D31D8329D2000C4336 /* PBXContainerItemProxy */;
+		};
 		9A26A6FE1D7F01B6001F47A8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = aurapcre;

@@ -108,7 +108,12 @@ CFStringRef ConnectedEndpointName(MIDIEndpointRef endpoint)
       if (nConnected) {
          const SInt32 *pid = (SInt32*) CFDataGetBytePtr(connections);
          for (i = 0; i < nConnected; ++i, ++pid) {
+#ifdef MACOS
             MIDIUniqueID id = EndianS32_BtoN(*pid);
+#else
+            
+      MIDIUniqueID id = *pid;
+#endif
             MIDIObjectRef connObject;
             MIDIObjectType connObjectType;
             err = MIDIObjectFindByUniqueID(id, &connObject, &connObjectType);
@@ -176,8 +181,8 @@ CoreMidiOutput::CoreMidiOutput(string driver) : OutputBase()
    OSStatus result = MIDIOutputPortCreate(m_client,
                                           CFSTR("ariaport"),
                                           &m_port);
-   if (result != 0) fprintf(stderr, "MIDIOutputPortCreate failed with code %i (%s, %s)\n", (int)result,
-                            GetMacOSStatusErrorString(result), GetMacOSStatusCommentString(result));
+   //if (result != 0) fprintf(stderr, "MIDIOutputPortCreate failed with code /%i (%s, %s)\n", (int)result,
+                            //GetMacOSStatusErrorString(result), GetMacOSStatusCommentString(result));
    
    bool found = false;
    getDestinations();
