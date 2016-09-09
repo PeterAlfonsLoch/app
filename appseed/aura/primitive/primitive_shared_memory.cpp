@@ -136,7 +136,7 @@ namespace primitive
 
       m_pbComputed = m_pbStorage;
 
-      m_dwAllocation = m_cbStorage = (ULONG)::GlobalSize(m_hGlobalMemory);
+      m_dwAllocation = m_cbStorage = (WINULONG)::GlobalSize(m_hGlobalMemory);
 
       // xxx m_bAllowGrow = bAllowGrow;
 

@@ -135,6 +135,10 @@ string defer_solve_relative_name(const char * pszRelative,const char * pszAbsolu
       return defer_solve_relative_compresions(strRelative);
    if(str::begins_ci(strRelative,"ext://"))
       return defer_solve_relative_compresions(strRelative);
+   if(str::begins(strRelative,"/"))
+      return defer_solve_relative_compresions(strRelative);
+   if(str::begins(strRelative,"\\\\"))
+      return defer_solve_relative_compresions(strRelative);
 
    index iFind = strRelative.find(":\\");
 

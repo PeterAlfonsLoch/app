@@ -53,7 +53,7 @@ class thread_pool
 public:
 
    template <typename T>
-   static void QueueUserWorkItem(T * pobject, void (T::*pmethod)(), ULONG flags =
+   static void QueueUserWorkItem(T * pobject, void (T::*pmethod)(), WINULONG flags =
 #ifdef WINDOWSEX
    WT_EXECUTELONGFUNCTION
 #else

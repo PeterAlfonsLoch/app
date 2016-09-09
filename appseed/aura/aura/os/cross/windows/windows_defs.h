@@ -35,13 +35,13 @@ extern "C" {
 
 #ifndef AXISTYPES
 #define AXISTYPES
-typedef unsigned long ULONG;
-typedef ULONG *PULONG;
-typedef unsigned short USHORT;
-typedef USHORT *PUSHORT;
+typedef unsigned long WINULONG;
+typedef WINULONG *PWINULONG;
+typedef unsigned short WINUSHORT;
+typedef WINUSHORT *PWINUSHORT;
 typedef char *PSZ;
-typedef unsigned char UCHAR;
-typedef UCHAR *PUCHAR;
+typedef unsigned char WINUCHAR;
+typedef WINUCHAR *PWINUCHAR;
 #endif  /* !AXISTYPES */
 
 #define MAX_PATH          260
@@ -578,13 +578,13 @@ MY_EXTERN_C DWORD SetLastError(DWORD dw);
 
 /*
 typedef char CHAR;
-typedef uchar UCHAR;
+typedef uchar WINUCHAR;
 
 #undef BYTE
 typedef uchar BYTE;
 
 typedef int16_t SHORT;
-typedef uint16_t USHORT;
+typedef uint16_t WINUSHORT;
 
 #undef WORD
 typedef uint16_t WORD;*/
@@ -595,9 +595,9 @@ typedef int32_t INT32;
 typedef uint32_t UINT;
 typedef uint32_t UINT32;
 #ifndef METROWIN
-typedef INT32 LONG;   // LONG, ULONG and uint32_t must be 32-bit
+typedef INT32 LONG;   // LONG, WINULONG and uint32_t must be 32-bit
 #endif
-//typedef UINT32 ULONG;
+//typedef UINT32 WINULONG;
 
 #ifndef METROWIN
 #undef uint32_t
@@ -627,7 +627,7 @@ typedef OLECHAR *LPOLESTR;
 
 //#define HRESULT LONG
 //#define FAILED(Status) ((HRESULT)(Status)<0)
-typedef ULONG PROPID;
+typedef WINULONG PROPID;
 typedef LONG SCODE;
 
 /*#define S_OK    ((HRESULT)0x00000000L)
@@ -653,24 +653,24 @@ typedef LONG SCODE;
 
 #ifdef __cplusplus
 
-#ifndef METROWIN
-
-DEFINE_GUID(IID_IUnknown,
-0x00000000, 0x0000, 0x0000, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x46);
-struct IUnknown
-{
-  STDMETHOD(QueryInterface) (REFIID iid, void **outObject) PURE;
-  STDMETHOD_(ULONG, AddRef)() PURE;
-  STDMETHOD_(ULONG, Release)() PURE;
-  #ifndef _WIN32
-  virtual ~IUnknown() {}
-  #endif
-};
-
-typedef IUnknown *LPUNKNOWN;
-
-#endif
-
+//#ifndef METROWIN
+//
+//DEFINE_GUID(IID_IUnknown,
+//0x00000000, 0x0000, 0x0000, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x46);
+//struct IUnknown
+//{
+//  STDMETHOD(QueryInterface) (REFIID iid, void **outObject) PURE;
+//  STDMETHOD_(WINULONG, AddRef)() PURE;
+//  STDMETHOD_(WINULONG, Release)() PURE;
+//  #ifndef _WIN32
+//  virtual ~IUnknown() {}
+//  #endif
+//};
+//
+//typedef IUnknown *LPUNKNOWN;
+//
+//#endif
+//
 #endif
 
 #define VARIANT_TRUE ((VARIANT_BOOL)-1)
@@ -726,11 +726,11 @@ typedef struct tagPROPVARIANT
   union
   {
     CHAR cVal;
-    UCHAR bVal;
+    WINUCHAR bVal;
     SHORT iVal;
-    USHORT uiVal;
+    WINUSHORT uiVal;
     LONG lVal;
-    ULONG ulVal;
+    WINULONG ulVal;
     INT intVal;
     UINT uintVal;
     LARGE_INTEGER hVal;

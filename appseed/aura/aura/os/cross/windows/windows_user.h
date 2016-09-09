@@ -164,7 +164,7 @@ typedef int32_t(CALLBACK* EDITWORDBREAKPROCW)(LPWSTR lpch,int32_t ichCurrent,int
 typedef struct {
    GUID PowerSetting;
    DWORD DataLength;
-   UCHAR Data[1];
+   WINUCHAR Data[1];
 } POWERBROADcaST_SETTING,*PPOWERBROADcaST_SETTING;
 
 
@@ -1869,7 +1869,7 @@ typedef struct tagMDINEXTMENU
 typedef struct {
     GUID PowerSetting;
     DWORD DataLength;
-    UCHAR Data[1];
+    WINUCHAR Data[1];
 } POWERBROADCAST_SETTING, *PPOWERBROADCAST_SETTING;
 
 

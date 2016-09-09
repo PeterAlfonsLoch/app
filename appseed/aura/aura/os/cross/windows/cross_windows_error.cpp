@@ -78,7 +78,7 @@ struct error_table
  *  The mapped Win32 error code, or ERROR_MR_MID_NOT_FOUND if there is no
  *  mapping defined.
  */
-ULONG WINAPI RtlNtStatusToDosError( NTSTATUS status )
+WINULONG WINAPI RtlNtStatusToDosError( NTSTATUS status )
 {
     NtCurrentTeb()->LastStatusValue = status;
     return RtlNtStatusToDosErrorNoTeb( status );
@@ -113,7 +113,7 @@ DWORD WINAPI RtlGetLastWin32Error(void)
 /**********************************************************************
  *      NtRaiseHardError (NTDLL.@)
  */
-NTSTATUS WINAPI NtRaiseHardError( NTSTATUS ErrorStatus, ULONG NumberOfParameters,
+NTSTATUS WINAPI NtRaiseHardError( NTSTATUS ErrorStatus, WINULONG NumberOfParameters,
                                   PUNICODE_STRING UnicodeStringParameterMask, PVOID *Parameters,
                                   HARDERROR_RESPONSE_OPTION ResponseOption, PHARDERROR_RESPONSE Response )
 {
@@ -1513,7 +1513,7 @@ static const struct error_table error_table[] =
  *  The mapped Win32 error code, or ERROR_MR_MID_NOT_FOUND if there is no
  *  mapping defined.
  */
-ULONG WINAPI RtlNtStatusToDosErrorNoTeb( NTSTATUS status )
+WINULONG WINAPI RtlNtStatusToDosErrorNoTeb( NTSTATUS status )
 {
    const struct error_table *table = error_table;
 

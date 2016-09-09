@@ -1032,8 +1032,8 @@ typedef struct _UNWIND_HISTORY_TABLE_ENTRY
 
 typedef struct _UNWIND_HISTORY_TABLE
 {
-    ULONG Count;
-    UCHAR Search;
+    WINULONG Count;
+    WINUCHAR Search;
     ULONG64 LowAddress;
     ULONG64 HighAddress;
     UNWIND_HISTORY_TABLE_ENTRY Entry[UNWIND_HISTORY_TABLE_SIZE];
@@ -1093,7 +1093,7 @@ typedef struct _KNONVOLATILE_CONTEXT_POINTERS
 WINBOOLEAN CDECL            RtlAddFunctionTable(RUNTIME_FUNCTION*,DWORD,DWORD64);
 WINBOOLEAN CDECL            RtlDeleteFunctionTable(RUNTIME_FUNCTION*);
 PRUNTIME_FUNCTION WINAPI RtlLookupFunctionEntry(DWORD64,DWORD64*,UNWIND_HISTORY_TABLE*);
-PVOID WINAPI             RtlVirtualUnwind(ULONG,ULONG64,ULONG64,RUNTIME_FUNCTION*,CONTEXT*,PVOID*,ULONG64*,KNONVOLATILE_CONTEXT_POINTERS*);
+PVOID WINAPI             RtlVirtualUnwind(WINULONG,ULONG64,ULONG64,RUNTIME_FUNCTION*,CONTEXT*,PVOID*,ULONG64*,KNONVOLATILE_CONTEXT_POINTERS*);
 
 #define UNW_FLAG_NHANDLER  0
 #define UNW_FLAG_EHANDLER  1
@@ -1335,9 +1335,9 @@ typedef struct _CONTEXT
 
 typedef struct _RUNTIME_FUNCTION
 {
-    ULONG BeginAddress;
-    ULONG EndAddress;
-    ULONG UnwindInfoAddress;
+    WINULONG BeginAddress;
+    WINULONG EndAddress;
+    WINULONG UnwindInfoAddress;
 } RUNTIME_FUNCTION, *PRUNTIME_FUNCTION;
 
 typedef struct _FRAME_POINTERS {
@@ -1354,8 +1354,8 @@ typedef struct _UNWIND_HISTORY_TABLE_ENTRY {
 } UNWIND_HISTORY_TABLE_ENTRY, *PUNWIND_HISTORY_TABLE_ENTRY;
 
 typedef struct _UNWIND_HISTORY_TABLE {
-  ULONG Count;
-  UCHAR Search;
+  WINULONG Count;
+  WINUCHAR Search;
   ULONG64 LowAddress;
   ULONG64 HighAddress;
   UNWIND_HISTORY_TABLE_ENTRY Entry[UNWIND_HISTORY_TABLE_SIZE];
@@ -1546,29 +1546,29 @@ typedef struct _CONTEXT {
 
 	   The context record is never used as an OUT only parameter. */
 
-	ULONG ContextFlags;
+	WINULONG ContextFlags;
 
 	/* This section is specified/returned if the ContextFlags word contains
 	   the flag CONTEXT_INTEGER. */
-	ULONG R0;
-	ULONG R1;
-	ULONG R2;
-	ULONG R3;
-	ULONG R4;
-	ULONG R5;
-	ULONG R6;
-	ULONG R7;
-	ULONG R8;
-	ULONG R9;
-	ULONG R10;
-	ULONG Fp;
-	ULONG Ip;
+	WINULONG R0;
+	WINULONG R1;
+	WINULONG R2;
+	WINULONG R3;
+	WINULONG R4;
+	WINULONG R5;
+	WINULONG R6;
+	WINULONG R7;
+	WINULONG R8;
+	WINULONG R9;
+	WINULONG R10;
+	WINULONG Fp;
+	WINULONG Ip;
 
 	/* These are selected by CONTEXT_CONTROL */
-	ULONG Sp;
-	ULONG Lr;
-	ULONG Pc;
-	ULONG Cpsr;
+	WINULONG Sp;
+	WINULONG Lr;
+	WINULONG Pc;
+	WINULONG Cpsr;
 } CONTEXT;
 
 #endif /* defined APPLE_IOS && !defined __arm__ */
@@ -4896,45 +4896,45 @@ typedef enum _POWER_INFORMATION_LEVEL {
 typedef struct _ADMINISTRATOR_POWER_POLICY {
 	SYSTEM_POWER_STATE MinSleep;
 	SYSTEM_POWER_STATE MaxSleep;
-	ULONG MinVideoTimeout;
-	ULONG MaxVideoTimeout;
-	ULONG MinSpindownTimeout;
-	ULONG MaxSpindownTimeout;
+	WINULONG MinVideoTimeout;
+	WINULONG MaxVideoTimeout;
+	WINULONG MinSpindownTimeout;
+	WINULONG MaxSpindownTimeout;
 } ADMINISTRATOR_POWER_POLICY, *PADMINISTRATOR_POWER_POLICY;
 
 typedef struct {
-	ULONG Granularity;
-	ULONG Capacity;
+	WINULONG Granularity;
+	WINULONG Capacity;
 } BATTERY_REPORTING_SCALE,
 *PBATTERY_REPORTING_SCALE;
 
 typedef struct {
 	POWER_ACTION Action;
-	ULONG Flags;
-	ULONG EventCode;
+	WINULONG Flags;
+	WINULONG EventCode;
 } POWER_ACTION_POLICY,
 *PPOWER_ACTION_POLICY;
 
 typedef struct _PROCESSOR_POWER_INFORMATION {
-	ULONG Number;
-	ULONG MaxMhz;
-	ULONG CurrentMhz;
-	ULONG MhzLimit;
-	ULONG MaxIdleState;
-	ULONG CurrentIdleState;
+	WINULONG Number;
+	WINULONG MaxMhz;
+	WINULONG CurrentMhz;
+	WINULONG MhzLimit;
+	WINULONG MaxIdleState;
+	WINULONG CurrentIdleState;
 } PROCESSOR_POWER_INFORMATION,
 *PPROCESSOR_POWER_INFORMATION;
 
 typedef struct _PROCESSOR_POWER_POLICY_INFO {
-	ULONG TimeCheck;
-	ULONG DemoteLimit;
-	ULONG PromoteLimit;
-	UCHAR DemotePercent;
-	UCHAR PromotePercent;
-	UCHAR Spare[2];
-	ULONG AllowDemotion:1;
-	ULONG AllowPromotion:1;
-	ULONG Reserved:30;
+	WINULONG TimeCheck;
+	WINULONG DemoteLimit;
+	WINULONG PromoteLimit;
+	WINUCHAR DemotePercent;
+	WINUCHAR PromotePercent;
+	WINUCHAR Spare[2];
+	WINULONG AllowDemotion:1;
+	WINULONG AllowPromotion:1;
+	WINULONG Reserved:30;
 } PROCESSOR_POWER_POLICY_INFO,
 *PPROCESSOR_POWER_POLICY_INFO;
 
@@ -4955,12 +4955,12 @@ typedef struct {
 	WINBOOLEAN Charging;
 	WINBOOLEAN Discharging;
 	WINBOOLEAN Spare1[4];
-	ULONG MaxCapacity;
-	ULONG RemainingCapacity;
-	ULONG Rate;
-	ULONG EstimatedTime;
-	ULONG DefaultAlert1;
-	ULONG DefaultAlert2;
+	WINULONG MaxCapacity;
+	WINULONG RemainingCapacity;
+	WINULONG Rate;
+	WINULONG EstimatedTime;
+	WINULONG DefaultAlert1;
+	WINULONG DefaultAlert2;
 } SYSTEM_BATTERY_STATE,
 *PSYSTEM_BATTERY_STATE;
 
@@ -4980,11 +4980,11 @@ typedef struct {
 	WINBOOLEAN UpsPresent;
 	WINBOOLEAN ThermalControl;
 	WINBOOLEAN ProcessorThrottle;
-	UCHAR ProcessorMinThrottle;
-	UCHAR ProcessorMaxThrottle;
-	UCHAR spare2[4];
+	WINUCHAR ProcessorMinThrottle;
+	WINUCHAR ProcessorMaxThrottle;
+	WINUCHAR spare2[4];
 	WINBOOLEAN DiskSpinDown;
-	UCHAR spare3[8];
+	WINUCHAR spare3[8];
 	WINBOOLEAN SystemBatteriesPresent;
 	WINBOOLEAN BatteriesAreShortTerm;
 	BATTERY_REPORTING_SCALE BatteryScale[3];
@@ -4997,50 +4997,50 @@ typedef struct {
 *PSYSTEM_POWER_CAPABILITIES;
 
 typedef struct _SYSTEM_POWER_INFORMATION {
-	ULONG MaxIdlenessAllowed;
-	ULONG Idleness;
-	ULONG TimeRemaining;
-	UCHAR CoolingMode;
+	WINULONG MaxIdlenessAllowed;
+	WINULONG Idleness;
+	WINULONG TimeRemaining;
+	WINUCHAR CoolingMode;
 } SYSTEM_POWER_INFORMATION,
 *PSYSTEM_POWER_INFORMATION;
 
 typedef struct _SYSTEM_POWER_LEVEL {
 	WINBOOLEAN Enable;
-	UCHAR Spare[3];
-	ULONG BatteryLevel;
+	WINUCHAR Spare[3];
+	WINULONG BatteryLevel;
 	POWER_ACTION_POLICY PowerPolicy;
 	SYSTEM_POWER_STATE MinSystemState;
 } SYSTEM_POWER_LEVEL,
 *PSYSTEM_POWER_LEVEL;
 
 typedef struct _SYSTEM_POWER_POLICY {
-	ULONG Revision;
+	WINULONG Revision;
 	POWER_ACTION_POLICY PowerButton;
 	POWER_ACTION_POLICY SleepButton;
 	POWER_ACTION_POLICY LidClose;
 	SYSTEM_POWER_STATE LidOpenWake;
-	ULONG Reserved;
+	WINULONG Reserved;
 	POWER_ACTION_POLICY Idle;
-	ULONG IdleTimeout;
-	UCHAR IdleSensitivity;
-	UCHAR DynamicThrottle;
-	UCHAR Spare2[2];
+	WINULONG IdleTimeout;
+	WINUCHAR IdleSensitivity;
+	WINUCHAR DynamicThrottle;
+	WINUCHAR Spare2[2];
 	SYSTEM_POWER_STATE MinSleep;
 	SYSTEM_POWER_STATE MaxSleep;
 	SYSTEM_POWER_STATE ReducedLatencySleep;
-	ULONG WinLogonFlags;
-	ULONG Spare3;
-	ULONG DozeS4Timeout;
-	ULONG BroadcastCapacityResolution;
+	WINULONG WinLogonFlags;
+	WINULONG Spare3;
+	WINULONG DozeS4Timeout;
+	WINULONG BroadcastCapacityResolution;
 	SYSTEM_POWER_LEVEL DischargePolicy[NUM_DISCHARGE_POLICIES];
-	ULONG VideoTimeout;
+	WINULONG VideoTimeout;
 	WINBOOLEAN VideoDimDisplay;
-	ULONG VideoReserved[3];
-	ULONG SpindownTimeout;
+	WINULONG VideoReserved[3];
+	WINULONG SpindownTimeout;
 	WINBOOLEAN OptimizeForPower;
-	UCHAR FanThrottleTolerance;
-	UCHAR ForcedThrottle;
-	UCHAR MinThrottle;
+	WINUCHAR FanThrottleTolerance;
+	WINUCHAR ForcedThrottle;
+	WINUCHAR MinThrottle;
 	POWER_ACTION_POLICY OverThrottled;
 } SYSTEM_POWER_POLICY,
 *PSYSTEM_POWER_POLICY;
@@ -5106,11 +5106,11 @@ typedef struct _TAPE_SET_DRIVE_PARAMETERS {
     WINBOOLEAN Compression;
     WINBOOLEAN DataPadding;
     WINBOOLEAN ReportSetmarks;
-    ULONG EOTWarningZoneSize;
+    WINULONG EOTWarningZoneSize;
 } TAPE_SET_DRIVE_PARAMETERS, *PTAPE_SET_DRIVE_PARAMETERS;
 
 typedef struct _TAPE_SET_MEDIA_PARAMETERS {
-    ULONG BlockSize;
+    WINULONG BlockSize;
 } TAPE_SET_MEDIA_PARAMETERS, *PTAPE_SET_MEDIA_PARAMETERS;
 
 typedef struct _TAPE_WRITE_MARKS {
@@ -5120,15 +5120,15 @@ typedef struct _TAPE_WRITE_MARKS {
 } TAPE_WRITE_MARKS, *PTAPE_WRITE_MARKS;
 
 typedef struct _TAPE_GET_POSITION {
-    ULONG Type;
-    ULONG Partition;
-    ULONG OffsetLow;
-    ULONG OffsetHigh;
+    WINULONG Type;
+    WINULONG Partition;
+    WINULONG OffsetLow;
+    WINULONG OffsetHigh;
 } TAPE_GET_POSITION, *PTAPE_GET_POSITION;
 
 typedef struct _TAPE_SET_POSITION {
-    ULONG Method;
-    ULONG Partition;
+    WINULONG Method;
+    WINULONG Partition;
     LARGE_INTEGER Offset;
     WINBOOLEAN Immediate;
 } TAPE_SET_POSITION, *PTAPE_SET_POSITION;

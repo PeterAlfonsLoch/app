@@ -1304,18 +1304,18 @@ CLASS_DECL_AURA void vfxGetModuleShortFileName(HINSTANCE hInst, string& strShort
     }*/
 }
 
-
-
-
-CLASS_DECL_AURA string vfxStringFromCLSID(REFCLSID rclsid)
-{
-   CHAR szCLSID[256];
-   sprintf(szCLSID, "{%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X}",
-           rclsid.Data1, rclsid.Data2, rclsid.Data3,
-           rclsid.Data4[0], rclsid.Data4[1], rclsid.Data4[2], rclsid.Data4[3],
-           rclsid.Data4[4], rclsid.Data4[5], rclsid.Data4[6], rclsid.Data4[7]);
-   return szCLSID;
-}
+//
+//
+//
+//CLASS_DECL_AURA string vfxStringFromCLSID(REFCLSID rclsid)
+//{
+//   CHAR szCLSID[256];
+//   sprintf(szCLSID, "{%08X-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X}",
+//           rclsid.Data1, rclsid.Data2, rclsid.Data3,
+//           rclsid.Data4[0], rclsid.Data4[1], rclsid.Data4[2], rclsid.Data4[3],
+//           rclsid.Data4[4], rclsid.Data4[5], rclsid.Data4[6], rclsid.Data4[7]);
+//   return szCLSID;
+//}
 
 /*
  bool CLASS_DECL_AURA vfxGetInProcServer(const char * lpszCLSID, string & str)

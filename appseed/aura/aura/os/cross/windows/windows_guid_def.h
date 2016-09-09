@@ -87,17 +87,17 @@ typedef GUID FMTID,*LPFMTID;
 
 #endif /* ndef __IID_DEFINED__ */
 
-#if defined(__cplusplus) && !defined(CINTERFACE)
-#define REFGUID             const GUID &
-#define REFCLSID            const CLSID &
-#define REFIID              const IID &
-#define REFFMTID            const FMTID &
-#else /* !defined(__cplusplus) && !defined(CINTERFACE) */
-#define REFGUID             const GUID* __MIDL_CONST
-#define REFCLSID            const CLSID* __MIDL_CONST
-#define REFIID              const IID* __MIDL_CONST
-#define REFFMTID            const FMTID* __MIDL_CONST
-#endif /* !defined(__cplusplus) && !defined(CINTERFACE) */
+//#if defined(__cplusplus) && !defined(CINTERFACE)
+//#define REFGUID             const GUID &
+//#define REFCLSID            const CLSID &
+//#define REFIID              const IID &
+//#define REFFMTID            const FMTID &
+//#else /* !defined(__cplusplus) && !defined(CINTERFACE) */
+//#define REFGUID             const GUID* __MIDL_CONST
+//#define REFCLSID            const CLSID* __MIDL_CONST
+//#define REFIID              const IID* __MIDL_CONST
+//#define REFFMTID            const FMTID* __MIDL_CONST
+//#endif /* !defined(__cplusplus) && !defined(CINTERFACE) */
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
 #define IsEqualGUID(rguid1, rguid2) (!memcmp(&(rguid1), &(rguid2), sizeof(GUID)))
@@ -125,12 +125,12 @@ extern const IID GUID_NULL;
 
 #ifndef REFGUID
 
-typedef struct {
-  uint32_t Data1;
-  uint16_t Data2;
-  uint16_t Data3;
-  unsigned char Data4[8];
-} GUID;
+//typedef struct {
+//  uint32_t Data1;
+//  uint16_t Data2;
+//  uint16_t Data3;
+//  unsigned char Data4[8];
+//} GUID;
 
 #ifdef __cplusplus
 #define REFGUID const GUID &

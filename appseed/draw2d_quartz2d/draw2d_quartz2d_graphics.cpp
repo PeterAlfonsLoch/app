@@ -3296,7 +3296,7 @@ namespace draw2d_quartz2d
 
    }
 
-   bool graphics::GradientFill(TRIVERTEX* pVertices, ULONG nVertices, void * pMesh, ULONG nMeshElements, DWORD dwMode)
+   bool graphics::GradientFill(TRIVERTEX* pVertices, WINULONG nVertices, void * pMesh, WINULONG nMeshElements, DWORD dwMode)
    {
 
       throw not_implemented(get_app());

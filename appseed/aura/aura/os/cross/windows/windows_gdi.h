@@ -395,7 +395,7 @@ typedef struct tagLOGBRUSH32
 {
    UINT        lbStyle;
    COLORREF    lbColor;
-   ULONG       lbHatch;
+   WINULONG       lbHatch;
 } LOGBRUSH32,*PLOGBRUSH32,NEAR *NPLOGBRUSH32,FAR *LPLOGBRUSH32;
 
 
@@ -647,7 +647,7 @@ typedef LPBITMAPINFO HBITMAP;
 // image blt
 //
 
-typedef USHORT COLOR16;
+typedef WINUSHORT COLOR16;
 
 typedef struct _TRIVERTEX
 {
@@ -661,15 +661,15 @@ typedef struct _TRIVERTEX
 
 typedef struct _GRADIENT_TRIANGLE
 {
-   ULONG Vertex1;
-   ULONG Vertex2;
-   ULONG Vertex3;
+   WINULONG Vertex1;
+   WINULONG Vertex2;
+   WINULONG Vertex3;
 } GRADIENT_TRIANGLE,*PGRADIENT_TRIANGLE,*LPGRADIENT_TRIANGLE;
 
 typedef struct _GRADIENT_RECT
 {
-   ULONG UpperLeft;
-   ULONG LowerRight;
+   WINULONG UpperLeft;
+   WINULONG LowerRight;
 }GRADIENT_RECT,*PGRADIENT_RECT,*LPGRADIENT_RECT;
 
 

@@ -2174,7 +2174,7 @@ namespace draw2d
       return false;
    }
 
-   bool graphics::GradientFill(TRIVERTEX* pVertices, ULONG nVertices, void * pMesh, ULONG nMeshElements, uint32_t dwMode)
+   bool graphics::GradientFill(TRIVERTEX* pVertices, WINULONG nVertices, void * pMesh, WINULONG nMeshElements, uint32_t dwMode)
    {
       UNREFERENCED_PARAMETER(pVertices);
       UNREFERENCED_PARAMETER(nVertices);

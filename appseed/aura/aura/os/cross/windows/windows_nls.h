@@ -2001,9 +2001,9 @@ WINBOOL
 WINAPI
 GetProcessPreferredUILanguages(
     DWORD dwFlags,
-    PULONG pulNumLanguages,
+    PWINULONG pulNumLanguages,
     __out_ecount_opt(*pcchLanguagesBuffer) PZZWSTR pwszLanguagesBuffer,
-    PULONG pcchLanguagesBuffer
+    PWINULONG pcchLanguagesBuffer
 );
 
 
@@ -2013,7 +2013,7 @@ WINAPI
 SetProcessPreferredUILanguages(
            DWORD dwFlags,
        PCZZWSTR pwszLanguagesBuffer,
-    PULONG pulNumLanguages
+    PWINULONG pulNumLanguages
 );
 
 
@@ -2022,9 +2022,9 @@ WINBOOL
 WINAPI
 GetUserPreferredUILanguages (
     DWORD dwFlags,
-    PULONG pulNumLanguages,
+    PWINULONG pulNumLanguages,
     __out_ecount_opt(*pcchLanguagesBuffer) PZZWSTR pwszLanguagesBuffer,
-    PULONG pcchLanguagesBuffer
+    PWINULONG pcchLanguagesBuffer
 );
 
 
@@ -2033,9 +2033,9 @@ WINBOOL
 WINAPI
 GetSystemPreferredUILanguages (
     DWORD dwFlags,
-    PULONG pulNumLanguages,
+    PWINULONG pulNumLanguages,
     __out_ecount_opt(*pcchLanguagesBuffer) PZZWSTR pwszLanguagesBuffer,
-    PULONG pcchLanguagesBuffer
+    PWINULONG pcchLanguagesBuffer
 );
 
 
@@ -2044,9 +2044,9 @@ WINBOOL
 WINAPI
 GetThreadPreferredUILanguages(
     DWORD dwFlags,
-    PULONG pulNumLanguages,
+    PWINULONG pulNumLanguages,
     __out_ecount_opt(*pcchLanguagesBuffer) PZZWSTR pwszLanguagesBuffer,
-    PULONG pcchLanguagesBuffer
+    PWINULONG pcchLanguagesBuffer
 );
 
 
@@ -2056,7 +2056,7 @@ WINAPI
 SetThreadPreferredUILanguages(
            DWORD dwFlags,
        PCZZWSTR pwszLanguagesBuffer,
-    PULONG pulNumLanguages
+    PWINULONG pulNumLanguages
 );
 
 WINAXISAPI
@@ -2076,9 +2076,9 @@ GetFileMUIPath(
     DWORD      dwFlags,
     PCWSTR     pcwszFilePath ,
     __inout_ecount_opt    (*pcchLanguage)   PWSTR pwszLanguage,
-    PULONG  pcchLanguage,
+    PWINULONG  pcchLanguage,
     __out_ecount_opt    (*pcchFileMUIPath) PWSTR pwszFileMUIPath,
-            PULONG pcchFileMUIPath,
+            PWINULONG pcchFileMUIPath,
             PULONGLONG pululEnumerator
 );
 

@@ -412,8 +412,8 @@ namespace draw2d
                           int32_t nWidth, int32_t nHeight, ::draw2d::bitmap& maskBitmap, int32_t xMask, int32_t yMask);
       virtual bool SetPixelV(int32_t x, int32_t y, COLORREF crColor);
       virtual bool SetPixelV(POINT point, COLORREF crColor);
-      virtual bool GradientFill(TRIVERTEX* pVertices, ULONG nVertices,
-                                void * pMesh, ULONG nMeshElements, uint32_t dwMode);
+      virtual bool GradientFill(TRIVERTEX* pVertices, WINULONG nVertices,
+                                void * pMesh, WINULONG nMeshElements, uint32_t dwMode);
       virtual bool TransparentBlt(int32_t xDest, int32_t yDest, int32_t nDestWidth, int32_t nDestHeight,
                                   ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight,
                                   UINT clrTransparent);

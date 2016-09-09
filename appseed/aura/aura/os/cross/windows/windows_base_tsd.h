@@ -260,20 +260,20 @@ inline void *ULongToPtr(ULONG32 ul)
 
    */
 
-#define HandleToULong(h)        ((ULONG)(ULONG_PTR)(h))
+#define HandleToULong(h)        ((WINULONG)(ULONG_PTR)(h))
 #define HandleToLong(h)         ((LONG)(LONG_PTR)(h))
 #define ULongToHandle(ul)       ((HANDLE)(ULONG_PTR)(ul))
 #define LongToHandle(l)         ((HANDLE)(LONG_PTR)(l))
-#define PtrToUlong(p)           ((ULONG)(ULONG_PTR)(p))
+#define PtrToUlong(p)           ((WINULONG)(ULONG_PTR)(p))
 #define PtrToLong(p)            ((LONG)(LONG_PTR)(p))
 #define PtrToUint(p)            ((UINT)(UINT_PTR)(p))
 #define PtrToInt(p)             ((INT)(INT_PTR)(p))
-#define PtrToUshort(p)          ((USHORT)(ULONG_PTR)(p))
+#define PtrToUshort(p)          ((WINUSHORT)(ULONG_PTR)(p))
 #define PtrToShort(p)           ((SHORT)(LONG_PTR)(p))
 #define IntToPtr(i)             ((void *)(INT_PTR)((INT)i))
 #define UIntToPtr(ui)           ((void *)(UINT_PTR)((UINT)ui))
 #define LongToPtr(l)            ((void *)(LONG_PTR)((LONG)l))
-#define ULongToPtr(ul)          ((void *)(ULONG_PTR)((ULONG)ul))
+#define ULongToPtr(ul)          ((void *)(ULONG_PTR)((WINULONG)ul))
 
 #else /* FIXME: defined(_WIN32) */
 
@@ -295,20 +295,20 @@ typedef unsigned short UHALF_PTR, *PUHALF_PTR;
 #endif
 
 #ifndef METROWIN
-#define HandleToULong(h)        ((ULONG)(ULONG_PTR)(h))
+#define HandleToULong(h)        ((WINULONG)(ULONG_PTR)(h))
 #define HandleToLong(h)         ((LONG)(LONG_PTR)(h))
 #define ULongToHandle(ul)       ((HANDLE)(ULONG_PTR)(ul))
 #define LongToHandle(l)         ((HANDLE)(LONG_PTR)(l))
-#define PtrToUlong(p)           ((ULONG)(ULONG_PTR)(p))
+#define PtrToUlong(p)           ((WINULONG)(ULONG_PTR)(p))
 #define PtrToLong(p)            ((LONG)(LONG_PTR)(p))
 #define PtrToUint(p)            ((UINT)(UINT_PTR)(p))
 #define PtrToInt(p)             ((INT)(INT_PTR)(p))
-#define PtrToUshort(p)          ((USHORT)(ULONG_PTR)(p))
+#define PtrToUshort(p)          ((WINUSHORT)(ULONG_PTR)(p))
 #define PtrToShort(p)           ((SHORT)(LONG_PTR)(p))
 #define IntToPtr(i)             ((void *)(INT_PTR)((INT)i))
 #define UIntToPtr(ui)           ((void *)(UINT_PTR)((UINT)ui))
 #define LongToPtr(l)            ((void *)(LONG_PTR)((LONG)l))
-#define ULongToPtr(ul)          ((void *)(ULONG_PTR)((ULONG)ul))
+#define ULongToPtr(ul)          ((void *)(ULONG_PTR)((WINULONG)ul))
 #endif
 
 #endif /* defined(OS64BIT) || defined(_WIN32) */

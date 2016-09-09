@@ -598,7 +598,7 @@ NTSTATUS WINAPI NtQueryPerformanceCounter( PLARGE_INTEGER Counter, PLARGE_INTEGE
  * NtGetTickCount   (NTDLL.@)
  * ZwGetTickCount   (NTDLL.@)
  */
-ULONG WINAPI NtGetTickCount(void)
+WINULONG WINAPI NtGetTickCount(void)
 {
     LARGE_INTEGER now;
 
@@ -715,7 +715,7 @@ static void find_reg_tz_info(RTL_TIME_ZONE_INFORMATION *tzi)
         'C','u','r','r','e','n','t','V','e','r','s','i','o','n','\\',
         'T','i','m','e',' ','Z','o','n','e','s',0 };
     HANDLE hkey;
-    ULONG idx;
+    WINULONG idx;
     OBJECT_ATTRIBUTES attr;
     UNICODE_STRING nameW;
     WCHAR buf[128];

@@ -89,9 +89,9 @@
 //#pragma region Desktop Family
 //#if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
 //
-//WINOLEAUTAPI_(INT) DosDateTimeToVariantTime(_In_ USHORT wDosDate, _In_ USHORT wDosTime, _Out_ DOUBLE * pvtime);
+//WINOLEAUTAPI_(INT) DosDateTimeToVariantTime(_In_ WINUSHORT wDosDate, _In_ WINUSHORT wDosTime, _Out_ DOUBLE * pvtime);
 //
-//WINOLEAUTAPI_(INT) VariantTimeToDosDateTime(_In_ DOUBLE vtime, _Out_ USHORT * pwDosDate, _Out_ USHORT * pwDosTime);
+//WINOLEAUTAPI_(INT) VariantTimeToDosDateTime(_In_ DOUBLE vtime, _Out_ WINUSHORT * pwDosDate, _Out_ WINUSHORT * pwDosTime);
 //
 //#endif // WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP) 
 //#pragma endregion
@@ -147,8 +147,8 @@
 //WINOLEAUTAPI SafeArraySetIID(_In_ SAFEARRAY * psa, _In_ REFGUID guid);
 //WINOLEAUTAPI SafeArrayGetIID(_In_ SAFEARRAY * psa, _Out_ GUID * pguid);
 //WINOLEAUTAPI SafeArrayGetVartype(_In_ SAFEARRAY * psa, _Out_ VARTYPE * pvt);
-//WINOLEAUTAPI_(SAFEARRAY *) SafeArrayCreateVector(_In_ VARTYPE vt, _In_ LONG lLbound, _In_ ULONG cElements);
-//WINOLEAUTAPI_(SAFEARRAY *) SafeArrayCreateVectorEx(_In_ VARTYPE vt, _In_ LONG lLbound, _In_ ULONG cElements, _In_ PVOID pvExtra);
+//WINOLEAUTAPI_(SAFEARRAY *) SafeArrayCreateVector(_In_ VARTYPE vt, _In_ LONG lLbound, _In_ WINULONG cElements);
+//WINOLEAUTAPI_(SAFEARRAY *) SafeArrayCreateVectorEx(_In_ VARTYPE vt, _In_ LONG lLbound, _In_ WINULONG cElements, _In_ PVOID pvExtra);
 //
 //#endif // WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP) 
 //#pragma endregion
@@ -169,10 +169,10 @@
 //WINOLEAUTAPI VariantCopyInd(_Inout_ VARIANT * pvarDest, _In_ const VARIANTARG * pvargSrc);
 //_Check_return_
 //WINOLEAUTAPI VariantChangeType(_Inout_ VARIANTARG * pvargDest,
-//               _In_ const VARIANTARG * pvarSrc, _In_ USHORT wFlags, _In_ VARTYPE vt);
+//               _In_ const VARIANTARG * pvarSrc, _In_ WINUSHORT wFlags, _In_ VARTYPE vt);
 //_Check_return_
 //WINOLEAUTAPI VariantChangeTypeEx(_Inout_ VARIANTARG * pvargDest,
-//               _In_ const VARIANTARG * pvarSrc, _In_ LCID lcid, _In_ USHORT wFlags, _In_ VARTYPE vt);
+//               _In_ const VARIANTARG * pvarSrc, _In_ LCID lcid, _In_ WINUSHORT wFlags, _In_ VARTYPE vt);
 //
 //#endif // WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP) 
 //#pragma endregion
@@ -288,12 +288,12 @@
 //WINOLEAUTAPI VarUI1FromR8(DOUBLE dblIn, _Out_ BYTE * pbOut);
 //WINOLEAUTAPI VarUI1FromCy(CY cyIn, _Out_ BYTE * pbOut);
 //WINOLEAUTAPI VarUI1FromDate(DATE dateIn, _Out_ BYTE * pbOut);
-//WINOLEAUTAPI VarUI1FromStr(_In_ LPCOLESTR strIn, LCID lcid, ULONG dwFlags, _Out_ BYTE * pbOut);
+//WINOLEAUTAPI VarUI1FromStr(_In_ LPCOLESTR strIn, LCID lcid, WINULONG dwFlags, _Out_ BYTE * pbOut);
 //WINOLEAUTAPI VarUI1FromDisp(IDispatch * pdispIn, LCID lcid, _Out_ BYTE * pbOut);
 //WINOLEAUTAPI VarUI1FromBool(VARIANT_BOOL boolIn, _Out_ BYTE * pbOut);
 //WINOLEAUTAPI VarUI1FromI1(CHAR cIn, _Out_ BYTE *pbOut);
-//WINOLEAUTAPI VarUI1FromUI2(USHORT uiIn, _Out_ BYTE *pbOut);
-//WINOLEAUTAPI VarUI1FromUI4(ULONG ulIn, _Out_ BYTE *pbOut);
+//WINOLEAUTAPI VarUI1FromUI2(WINUSHORT uiIn, _Out_ BYTE *pbOut);
+//WINOLEAUTAPI VarUI1FromUI4(WINULONG ulIn, _Out_ BYTE *pbOut);
 //WINOLEAUTAPI VarUI1FromUI8(ULONG64 ui64In, _Out_ BYTE FAR* pbOut);
 //WINOLEAUTAPI VarUI1FromDec(_In_ const DECIMAL *pdecIn, _Out_ BYTE *pbOut);
 //
@@ -304,12 +304,12 @@
 //WINOLEAUTAPI VarI2FromR8(DOUBLE dblIn, _Out_ SHORT * psOut);
 //WINOLEAUTAPI VarI2FromCy(CY cyIn, SHORT * psOut);
 //WINOLEAUTAPI VarI2FromDate(DATE dateIn, _Out_ SHORT * psOut);
-//WINOLEAUTAPI VarI2FromStr(_In_ LPCOLESTR strIn, LCID lcid, ULONG dwFlags, _Out_ SHORT * psOut);
+//WINOLEAUTAPI VarI2FromStr(_In_ LPCOLESTR strIn, LCID lcid, WINULONG dwFlags, _Out_ SHORT * psOut);
 //WINOLEAUTAPI VarI2FromDisp(IDispatch * pdispIn, LCID lcid, _Out_ SHORT * psOut);
 //WINOLEAUTAPI VarI2FromBool(VARIANT_BOOL boolIn, _Out_ SHORT * psOut);
 //WINOLEAUTAPI VarI2FromI1(CHAR cIn, _Out_ SHORT *psOut);
-//WINOLEAUTAPI VarI2FromUI2(USHORT uiIn, _Out_ SHORT *psOut);
-//WINOLEAUTAPI VarI2FromUI4(ULONG ulIn, _Out_ SHORT *psOut);
+//WINOLEAUTAPI VarI2FromUI2(WINUSHORT uiIn, _Out_ SHORT *psOut);
+//WINOLEAUTAPI VarI2FromUI4(WINULONG ulIn, _Out_ SHORT *psOut);
 //WINOLEAUTAPI VarI2FromUI8(ULONG64 ui64In, _Out_ SHORT FAR* psOut);
 //WINOLEAUTAPI VarI2FromDec(_In_ const DECIMAL *pdecIn, _Out_ SHORT *psOut);
 //
@@ -320,12 +320,12 @@
 //WINOLEAUTAPI VarI4FromR8(DOUBLE dblIn, _Out_ LONG * plOut);
 //WINOLEAUTAPI VarI4FromCy(CY cyIn, _Out_ LONG * plOut);
 //WINOLEAUTAPI VarI4FromDate(DATE dateIn, _Out_ LONG * plOut);
-//WINOLEAUTAPI VarI4FromStr(_In_ LPCOLESTR strIn, LCID lcid, ULONG dwFlags, _Out_ LONG * plOut);
+//WINOLEAUTAPI VarI4FromStr(_In_ LPCOLESTR strIn, LCID lcid, WINULONG dwFlags, _Out_ LONG * plOut);
 //WINOLEAUTAPI VarI4FromDisp(IDispatch * pdispIn, _In_ LCID lcid, _Out_ LONG * plOut);
 //WINOLEAUTAPI VarI4FromBool(VARIANT_BOOL boolIn, _Out_ LONG * plOut);
 //WINOLEAUTAPI VarI4FromI1(CHAR cIn, _Out_ LONG *plOut);
-//WINOLEAUTAPI VarI4FromUI2(USHORT uiIn, _Out_ LONG *plOut);
-//WINOLEAUTAPI VarI4FromUI4(ULONG ulIn, _Out_ LONG *plOut);
+//WINOLEAUTAPI VarI4FromUI2(WINUSHORT uiIn, _Out_ LONG *plOut);
+//WINOLEAUTAPI VarI4FromUI4(WINULONG ulIn, _Out_ LONG *plOut);
 //WINOLEAUTAPI VarI4FromUI8(ULONG64 ui64In, _Out_ LONG FAR* plOut);
 //WINOLEAUTAPI VarI4FromDec(_In_ const DECIMAL *pdecIn, _Out_ LONG *plOut);
 //
@@ -341,8 +341,8 @@
 //WINOLEAUTAPI VarI8FromDisp(IDispatch FAR* pdispIn, _In_ LCID lcid, _Out_ LONG64 FAR* pi64Out);
 //WINOLEAUTAPI VarI8FromBool(VARIANT_BOOL boolIn, _Out_ LONG64 FAR* pi64Out);
 //WINOLEAUTAPI VarI8FromI1(CHAR cIn, _Out_ LONG64 FAR* pi64Out);
-//WINOLEAUTAPI VarI8FromUI2(USHORT uiIn, _Out_ LONG64 FAR* pi64Out);
-//WINOLEAUTAPI VarI8FromUI4(ULONG ulIn, _Out_ LONG64 FAR* pi64Out);
+//WINOLEAUTAPI VarI8FromUI2(WINUSHORT uiIn, _Out_ LONG64 FAR* pi64Out);
+//WINOLEAUTAPI VarI8FromUI4(WINULONG ulIn, _Out_ LONG64 FAR* pi64Out);
 //WINOLEAUTAPI VarI8FromUI8(ULONG64 ui64In, _Out_ LONG64 FAR* pi64Out);
 //WINOLEAUTAPI VarI8FromDec(_In_ const DECIMAL *pdecIn, _Out_ LONG64 FAR* pi64Out);
 //
@@ -357,12 +357,12 @@
 //WINOLEAUTAPI VarR4FromR8(DOUBLE dblIn, _Out_ FLOAT * pfltOut);
 //WINOLEAUTAPI VarR4FromCy(CY cyIn, FLOAT * pfltOut);
 //WINOLEAUTAPI VarR4FromDate(DATE dateIn, _Out_ FLOAT * pfltOut);
-//WINOLEAUTAPI VarR4FromStr(_In_ LPCOLESTR strIn, LCID lcid, ULONG dwFlags, _Out_ FLOAT *pfltOut);
+//WINOLEAUTAPI VarR4FromStr(_In_ LPCOLESTR strIn, LCID lcid, WINULONG dwFlags, _Out_ FLOAT *pfltOut);
 //WINOLEAUTAPI VarR4FromDisp(IDispatch * pdispIn, LCID lcid, _Out_ FLOAT * pfltOut);
 //WINOLEAUTAPI VarR4FromBool(VARIANT_BOOL boolIn, _Out_ FLOAT * pfltOut);
 //WINOLEAUTAPI VarR4FromI1(CHAR cIn, _Out_ FLOAT *pfltOut);
-//WINOLEAUTAPI VarR4FromUI2(USHORT uiIn, _Out_ FLOAT *pfltOut);
-//WINOLEAUTAPI VarR4FromUI4(ULONG ulIn, _Out_ FLOAT *pfltOut);
+//WINOLEAUTAPI VarR4FromUI2(WINUSHORT uiIn, _Out_ FLOAT *pfltOut);
+//WINOLEAUTAPI VarR4FromUI4(WINULONG ulIn, _Out_ FLOAT *pfltOut);
 //WINOLEAUTAPI VarR4FromUI8(ULONG64 ui64In, _Out_ FLOAT FAR* pfltOut);
 //WINOLEAUTAPI VarR4FromDec(_In_ const DECIMAL *pdecIn, _Out_ FLOAT *pfltOut);
 //
@@ -373,12 +373,12 @@
 //WINOLEAUTAPI VarR8FromR4(FLOAT fltIn, _Out_ DOUBLE * pdblOut);
 //WINOLEAUTAPI VarR8FromCy(CY cyIn, DOUBLE * pdblOut);
 //WINOLEAUTAPI VarR8FromDate(DATE dateIn, _Out_ DOUBLE * pdblOut);
-//WINOLEAUTAPI VarR8FromStr(_In_ LPCOLESTR strIn, LCID lcid, ULONG dwFlags, _Out_ DOUBLE *pdblOut);
+//WINOLEAUTAPI VarR8FromStr(_In_ LPCOLESTR strIn, LCID lcid, WINULONG dwFlags, _Out_ DOUBLE *pdblOut);
 //WINOLEAUTAPI VarR8FromDisp(IDispatch * pdispIn, LCID lcid, _Out_ DOUBLE * pdblOut);
 //WINOLEAUTAPI VarR8FromBool(VARIANT_BOOL boolIn, _Out_ DOUBLE * pdblOut);
 //WINOLEAUTAPI VarR8FromI1(CHAR cIn, DOUBLE *pdblOut);
-//WINOLEAUTAPI VarR8FromUI2(USHORT uiIn, _Out_ DOUBLE *pdblOut);
-//WINOLEAUTAPI VarR8FromUI4(ULONG ulIn, _Out_ DOUBLE *pdblOut);
+//WINOLEAUTAPI VarR8FromUI2(WINUSHORT uiIn, _Out_ DOUBLE *pdblOut);
+//WINOLEAUTAPI VarR8FromUI4(WINULONG ulIn, _Out_ DOUBLE *pdblOut);
 //WINOLEAUTAPI VarR8FromUI8(ULONG64 ui64In, _Out_ DOUBLE FAR* pdblOut);
 //WINOLEAUTAPI VarR8FromDec(_In_ const DECIMAL *pdecIn, _Out_ DOUBLE *pdblOut);
 //
@@ -389,12 +389,12 @@
 //WINOLEAUTAPI VarDateFromR4(FLOAT fltIn, _Out_ DATE * pdateOut);
 //WINOLEAUTAPI VarDateFromR8(DOUBLE dblIn, _Out_ DATE * pdateOut);
 //WINOLEAUTAPI VarDateFromCy(CY cyIn, _Out_ DATE * pdateOut);
-//WINOLEAUTAPI VarDateFromStr(_In_ LPCOLESTR strIn, _In_ LCID lcid, _In_ ULONG dwFlags, _Out_ DATE *pdateOut);
+//WINOLEAUTAPI VarDateFromStr(_In_ LPCOLESTR strIn, _In_ LCID lcid, _In_ WINULONG dwFlags, _Out_ DATE *pdateOut);
 //WINOLEAUTAPI VarDateFromDisp(IDispatch * pdispIn, LCID lcid, _Out_ DATE * pdateOut);
 //WINOLEAUTAPI VarDateFromBool(VARIANT_BOOL boolIn, _Out_ DATE * pdateOut);
 //WINOLEAUTAPI VarDateFromI1(CHAR cIn, _Out_ DATE *pdateOut);
-//WINOLEAUTAPI VarDateFromUI2(USHORT uiIn, _Out_ DATE *pdateOut);
-//WINOLEAUTAPI VarDateFromUI4(ULONG ulIn, _Out_ DATE *pdateOut);
+//WINOLEAUTAPI VarDateFromUI2(WINUSHORT uiIn, _Out_ DATE *pdateOut);
+//WINOLEAUTAPI VarDateFromUI4(WINULONG ulIn, _Out_ DATE *pdateOut);
 //WINOLEAUTAPI VarDateFromUI8(ULONG64 ui64In, _Out_ DATE FAR* pdateOut);
 //WINOLEAUTAPI VarDateFromDec(_In_ const DECIMAL *pdecIn, _Out_ DATE *pdateOut);
 //
@@ -405,30 +405,30 @@
 //WINOLEAUTAPI VarCyFromR4(FLOAT fltIn, _Out_ CY * pcyOut);
 //WINOLEAUTAPI VarCyFromR8(DOUBLE dblIn, _Out_ CY * pcyOut);
 //WINOLEAUTAPI VarCyFromDate(DATE dateIn, _Out_ CY * pcyOut);
-//WINOLEAUTAPI VarCyFromStr(_In_ LPCOLESTR strIn, _In_ LCID lcid, _In_ ULONG dwFlags, _Out_ CY * pcyOut);
+//WINOLEAUTAPI VarCyFromStr(_In_ LPCOLESTR strIn, _In_ LCID lcid, _In_ WINULONG dwFlags, _Out_ CY * pcyOut);
 //WINOLEAUTAPI VarCyFromDisp(_In_ IDispatch * pdispIn, LCID lcid, _Out_ CY * pcyOut);
 //WINOLEAUTAPI VarCyFromBool(VARIANT_BOOL boolIn, _Out_ CY * pcyOut);
 //WINOLEAUTAPI VarCyFromI1(CHAR cIn, _Out_ CY *pcyOut);
-//WINOLEAUTAPI VarCyFromUI2(USHORT uiIn, _Out_ CY *pcyOut);
-//WINOLEAUTAPI VarCyFromUI4(ULONG ulIn, _Out_ CY *pcyOut);
+//WINOLEAUTAPI VarCyFromUI2(WINUSHORT uiIn, _Out_ CY *pcyOut);
+//WINOLEAUTAPI VarCyFromUI4(WINULONG ulIn, _Out_ CY *pcyOut);
 //WINOLEAUTAPI VarCyFromUI8(ULONG64 ui64In, _Out_ CY FAR* pcyOut);
 //WINOLEAUTAPI VarCyFromDec(_In_ const DECIMAL *pdecIn, _Out_ CY *pcyOut);
 //
-//WINOLEAUTAPI VarBstrFromUI1(BYTE bVal, LCID lcid, ULONG dwFlags, _Out_ BSTR * pbstrOut);
-//WINOLEAUTAPI VarBstrFromI2(SHORT iVal, LCID lcid, ULONG dwFlags, BSTR * pbstrOut);
-//WINOLEAUTAPI VarBstrFromI4(LONG lIn, LCID lcid, ULONG dwFlags, _Out_ BSTR * pbstrOut);
+//WINOLEAUTAPI VarBstrFromUI1(BYTE bVal, LCID lcid, WINULONG dwFlags, _Out_ BSTR * pbstrOut);
+//WINOLEAUTAPI VarBstrFromI2(SHORT iVal, LCID lcid, WINULONG dwFlags, BSTR * pbstrOut);
+//WINOLEAUTAPI VarBstrFromI4(LONG lIn, LCID lcid, WINULONG dwFlags, _Out_ BSTR * pbstrOut);
 //WINOLEAUTAPI VarBstrFromI8(LONG64 i64In, LCID lcid, unsigned long dwFlags, _Out_ BSTR FAR* pbstrOut);
-//WINOLEAUTAPI VarBstrFromR4(FLOAT fltIn, LCID lcid, ULONG dwFlags, _Out_ BSTR * pbstrOut);
-//WINOLEAUTAPI VarBstrFromR8(DOUBLE dblIn, LCID lcid, ULONG dwFlags, _Out_ BSTR * pbstrOut);
-//WINOLEAUTAPI VarBstrFromCy(CY cyIn, LCID lcid, ULONG dwFlags, _Out_ BSTR * pbstrOut);
-//WINOLEAUTAPI VarBstrFromDate(_In_ DATE dateIn, _In_ LCID lcid, _In_ ULONG dwFlags, _Out_ BSTR * pbstrOut);
-//WINOLEAUTAPI VarBstrFromDisp(IDispatch * pdispIn, LCID lcid, ULONG dwFlags, _Out_ BSTR * pbstrOut);
-//WINOLEAUTAPI VarBstrFromBool(VARIANT_BOOL boolIn, LCID lcid, ULONG dwFlags, _Out_ BSTR * pbstrOut);
-//WINOLEAUTAPI VarBstrFromI1(CHAR cIn, LCID lcid, ULONG dwFlags, _Out_ BSTR *pbstrOut);
-//WINOLEAUTAPI VarBstrFromUI2(USHORT uiIn, LCID lcid, ULONG dwFlags, _Out_ BSTR *pbstrOut);
-//WINOLEAUTAPI VarBstrFromUI4(ULONG ulIn, LCID lcid, ULONG dwFlags, _Out_ BSTR *pbstrOut);
+//WINOLEAUTAPI VarBstrFromR4(FLOAT fltIn, LCID lcid, WINULONG dwFlags, _Out_ BSTR * pbstrOut);
+//WINOLEAUTAPI VarBstrFromR8(DOUBLE dblIn, LCID lcid, WINULONG dwFlags, _Out_ BSTR * pbstrOut);
+//WINOLEAUTAPI VarBstrFromCy(CY cyIn, LCID lcid, WINULONG dwFlags, _Out_ BSTR * pbstrOut);
+//WINOLEAUTAPI VarBstrFromDate(_In_ DATE dateIn, _In_ LCID lcid, _In_ WINULONG dwFlags, _Out_ BSTR * pbstrOut);
+//WINOLEAUTAPI VarBstrFromDisp(IDispatch * pdispIn, LCID lcid, WINULONG dwFlags, _Out_ BSTR * pbstrOut);
+//WINOLEAUTAPI VarBstrFromBool(VARIANT_BOOL boolIn, LCID lcid, WINULONG dwFlags, _Out_ BSTR * pbstrOut);
+//WINOLEAUTAPI VarBstrFromI1(CHAR cIn, LCID lcid, WINULONG dwFlags, _Out_ BSTR *pbstrOut);
+//WINOLEAUTAPI VarBstrFromUI2(WINUSHORT uiIn, LCID lcid, WINULONG dwFlags, _Out_ BSTR *pbstrOut);
+//WINOLEAUTAPI VarBstrFromUI4(WINULONG ulIn, LCID lcid, WINULONG dwFlags, _Out_ BSTR *pbstrOut);
 //WINOLEAUTAPI VarBstrFromUI8(ULONG64 ui64In, LCID lcid, unsigned long dwFlags, _Out_ BSTR FAR* pbstrOut);
-//WINOLEAUTAPI VarBstrFromDec(_In_ const DECIMAL *pdecIn, _In_ LCID lcid, _In_ ULONG dwFlags, _Out_ BSTR *pbstrOut);
+//WINOLEAUTAPI VarBstrFromDec(_In_ const DECIMAL *pdecIn, _In_ LCID lcid, _In_ WINULONG dwFlags, _Out_ BSTR *pbstrOut);
 //
 //WINOLEAUTAPI VarBoolFromUI1(BYTE bIn, _Out_ VARIANT_BOOL * pboolOut);
 //_Check_return_ WINOLEAUTAPI VarBoolFromI2(_In_ SHORT sIn, _Out_ VARIANT_BOOL * pboolOut);
@@ -438,11 +438,11 @@
 //WINOLEAUTAPI VarBoolFromR8(DOUBLE dblIn, _Out_ VARIANT_BOOL * pboolOut);
 //WINOLEAUTAPI VarBoolFromDate(DATE dateIn, _Out_ VARIANT_BOOL * pboolOut);
 //WINOLEAUTAPI VarBoolFromCy(CY cyIn, _Out_ VARIANT_BOOL * pboolOut);
-//WINOLEAUTAPI VarBoolFromStr(_In_ LPCOLESTR strIn, LCID lcid, ULONG dwFlags, _Out_ VARIANT_BOOL * pboolOut);
+//WINOLEAUTAPI VarBoolFromStr(_In_ LPCOLESTR strIn, LCID lcid, WINULONG dwFlags, _Out_ VARIANT_BOOL * pboolOut);
 //WINOLEAUTAPI VarBoolFromDisp(IDispatch * pdispIn, LCID lcid, _Out_ VARIANT_BOOL * pboolOut);
 //WINOLEAUTAPI VarBoolFromI1(CHAR cIn, _Out_ VARIANT_BOOL *pboolOut);
-//WINOLEAUTAPI VarBoolFromUI2(USHORT uiIn, _Out_ VARIANT_BOOL *pboolOut);
-//WINOLEAUTAPI VarBoolFromUI4(ULONG ulIn, _Out_ VARIANT_BOOL *pboolOut);
+//WINOLEAUTAPI VarBoolFromUI2(WINUSHORT uiIn, _Out_ VARIANT_BOOL *pboolOut);
+//WINOLEAUTAPI VarBoolFromUI4(WINULONG ulIn, _Out_ VARIANT_BOOL *pboolOut);
 //WINOLEAUTAPI VarBoolFromUI8(ULONG64 i64In, _Out_ VARIANT_BOOL FAR* pboolOut);
 //WINOLEAUTAPI VarBoolFromDec(_In_ const DECIMAL *pdecIn, _Out_ VARIANT_BOOL *pboolOut);
 //
@@ -498,7 +498,7 @@
 //VarI1FromStr(
 //    _In_ LPCOLESTR strIn,
 //    _In_ LCID lcid,
-//    _In_ ULONG dwFlags,
+//    _In_ WINULONG dwFlags,
 //    _Out_ CHAR *pcOut
 //    );
 //
@@ -517,13 +517,13 @@
 //
 //WINOLEAUTAPI
 //VarI1FromUI2(
-//    _In_ USHORT uiIn,
+//    _In_ WINUSHORT uiIn,
 //    _Out_ CHAR *pcOut
 //    );
 //
 //WINOLEAUTAPI
 //VarI1FromUI4(
-//    _In_ ULONG ulIn,
+//    _In_ WINULONG ulIn,
 //    _Out_ CHAR *pcOut
 //    );
 //
@@ -539,37 +539,37 @@
 //    _Out_ CHAR *pcOut
 //    );
 //
-//WINOLEAUTAPI VarUI2FromUI1(BYTE bIn, _Out_ USHORT *puiOut);
-//WINOLEAUTAPI VarUI2FromI2(SHORT uiIn, _Out_ USHORT *puiOut);
-//WINOLEAUTAPI VarUI2FromI4(LONG lIn, _Out_ USHORT *puiOut);
-//WINOLEAUTAPI VarUI2FromI8(LONG64 i64In, _Out_ USHORT *puiOut);
-//WINOLEAUTAPI VarUI2FromR4(FLOAT fltIn, _Out_ USHORT *puiOut);
-//WINOLEAUTAPI VarUI2FromR8(DOUBLE dblIn, USHORT *puiOut);
-//WINOLEAUTAPI VarUI2FromDate(DATE dateIn, _Out_ USHORT *puiOut);
-//WINOLEAUTAPI VarUI2FromCy(CY cyIn, _Out_ USHORT *puiOut);
-//WINOLEAUTAPI VarUI2FromStr(_In_ LPCOLESTR strIn, _In_ LCID lcid, _In_ ULONG dwFlags, _Out_ USHORT *puiOut);
-//WINOLEAUTAPI VarUI2FromDisp(_In_ IDispatch *pdispIn, LCID lcid, _Out_ USHORT *puiOut);
-//WINOLEAUTAPI VarUI2FromBool(VARIANT_BOOL boolIn, _Out_ USHORT *puiOut);
-//WINOLEAUTAPI VarUI2FromI1(CHAR cIn, _Out_ USHORT *puiOut);
-//WINOLEAUTAPI VarUI2FromUI4(ULONG ulIn, _Out_ USHORT *puiOut);
-//WINOLEAUTAPI VarUI2FromUI8(ULONG64 i64In, _Out_ USHORT *puiOut);
-//WINOLEAUTAPI VarUI2FromDec(_In_ const DECIMAL *pdecIn, _Out_ USHORT *puiOut);
+//WINOLEAUTAPI VarUI2FromUI1(BYTE bIn, _Out_ WINUSHORT *puiOut);
+//WINOLEAUTAPI VarUI2FromI2(SHORT uiIn, _Out_ WINUSHORT *puiOut);
+//WINOLEAUTAPI VarUI2FromI4(LONG lIn, _Out_ WINUSHORT *puiOut);
+//WINOLEAUTAPI VarUI2FromI8(LONG64 i64In, _Out_ WINUSHORT *puiOut);
+//WINOLEAUTAPI VarUI2FromR4(FLOAT fltIn, _Out_ WINUSHORT *puiOut);
+//WINOLEAUTAPI VarUI2FromR8(DOUBLE dblIn, WINUSHORT *puiOut);
+//WINOLEAUTAPI VarUI2FromDate(DATE dateIn, _Out_ WINUSHORT *puiOut);
+//WINOLEAUTAPI VarUI2FromCy(CY cyIn, _Out_ WINUSHORT *puiOut);
+//WINOLEAUTAPI VarUI2FromStr(_In_ LPCOLESTR strIn, _In_ LCID lcid, _In_ WINULONG dwFlags, _Out_ WINUSHORT *puiOut);
+//WINOLEAUTAPI VarUI2FromDisp(_In_ IDispatch *pdispIn, LCID lcid, _Out_ WINUSHORT *puiOut);
+//WINOLEAUTAPI VarUI2FromBool(VARIANT_BOOL boolIn, _Out_ WINUSHORT *puiOut);
+//WINOLEAUTAPI VarUI2FromI1(CHAR cIn, _Out_ WINUSHORT *puiOut);
+//WINOLEAUTAPI VarUI2FromUI4(WINULONG ulIn, _Out_ WINUSHORT *puiOut);
+//WINOLEAUTAPI VarUI2FromUI8(ULONG64 i64In, _Out_ WINUSHORT *puiOut);
+//WINOLEAUTAPI VarUI2FromDec(_In_ const DECIMAL *pdecIn, _Out_ WINUSHORT *puiOut);
 //
-//WINOLEAUTAPI VarUI4FromUI1(BYTE bIn, _Out_ ULONG *pulOut);
-//WINOLEAUTAPI VarUI4FromI2(_In_ SHORT uiIn, _Out_ ULONG *pulOut);
-//WINOLEAUTAPI VarUI4FromI4(LONG lIn, _Out_ ULONG *pulOut);
-//WINOLEAUTAPI VarUI4FromI8(LONG64 i64In, _Out_ ULONG *plOut);
-//WINOLEAUTAPI VarUI4FromR4(FLOAT fltIn, _Out_ ULONG *pulOut);
-//WINOLEAUTAPI VarUI4FromR8(DOUBLE dblIn, _Out_ ULONG *pulOut);
-//WINOLEAUTAPI VarUI4FromDate(DATE dateIn, _Out_ ULONG *pulOut);
-//WINOLEAUTAPI VarUI4FromCy(CY cyIn, _Out_ ULONG *pulOut);
-//WINOLEAUTAPI VarUI4FromStr(_In_ LPCOLESTR strIn, _In_ LCID lcid, _In_ ULONG dwFlags, _Out_ ULONG *pulOut);
-//WINOLEAUTAPI VarUI4FromDisp(_In_ IDispatch *pdispIn, LCID lcid, _Out_ ULONG *pulOut);
-//WINOLEAUTAPI VarUI4FromBool(VARIANT_BOOL boolIn, _Out_ ULONG *pulOut);
-//WINOLEAUTAPI VarUI4FromI1(CHAR cIn, _Out_ ULONG *pulOut);
-//WINOLEAUTAPI VarUI4FromUI2(USHORT uiIn, _Out_ ULONG *pulOut);
-//WINOLEAUTAPI VarUI4FromUI8(ULONG64 ui64In, _Out_ ULONG *plOut);
-//WINOLEAUTAPI VarUI4FromDec(_In_ const DECIMAL *pdecIn, _Out_ ULONG *pulOut);
+//WINOLEAUTAPI VarUI4FromUI1(BYTE bIn, _Out_ WINULONG *pulOut);
+//WINOLEAUTAPI VarUI4FromI2(_In_ SHORT uiIn, _Out_ WINULONG *pulOut);
+//WINOLEAUTAPI VarUI4FromI4(LONG lIn, _Out_ WINULONG *pulOut);
+//WINOLEAUTAPI VarUI4FromI8(LONG64 i64In, _Out_ WINULONG *plOut);
+//WINOLEAUTAPI VarUI4FromR4(FLOAT fltIn, _Out_ WINULONG *pulOut);
+//WINOLEAUTAPI VarUI4FromR8(DOUBLE dblIn, _Out_ WINULONG *pulOut);
+//WINOLEAUTAPI VarUI4FromDate(DATE dateIn, _Out_ WINULONG *pulOut);
+//WINOLEAUTAPI VarUI4FromCy(CY cyIn, _Out_ WINULONG *pulOut);
+//WINOLEAUTAPI VarUI4FromStr(_In_ LPCOLESTR strIn, _In_ LCID lcid, _In_ WINULONG dwFlags, _Out_ WINULONG *pulOut);
+//WINOLEAUTAPI VarUI4FromDisp(_In_ IDispatch *pdispIn, LCID lcid, _Out_ WINULONG *pulOut);
+//WINOLEAUTAPI VarUI4FromBool(VARIANT_BOOL boolIn, _Out_ WINULONG *pulOut);
+//WINOLEAUTAPI VarUI4FromI1(CHAR cIn, _Out_ WINULONG *pulOut);
+//WINOLEAUTAPI VarUI4FromUI2(WINUSHORT uiIn, _Out_ WINULONG *pulOut);
+//WINOLEAUTAPI VarUI4FromUI8(ULONG64 ui64In, _Out_ WINULONG *plOut);
+//WINOLEAUTAPI VarUI4FromDec(_In_ const DECIMAL *pdecIn, _Out_ WINULONG *pulOut);
 //
 //
 //
@@ -599,8 +599,8 @@
 //WINOLEAUTAPI VarUI8FromDisp(_In_ IDispatch FAR* pdispIn, LCID lcid, _Out_ ULONG64 FAR* pi64Out);
 //WINOLEAUTAPI VarUI8FromBool(VARIANT_BOOL boolIn, _Out_ ULONG64 FAR* pi64Out);
 //WINOLEAUTAPI VarUI8FromI1(CHAR cIn, _Out_ ULONG64 FAR* pi64Out);
-//WINOLEAUTAPI VarUI8FromUI2(USHORT uiIn, _Out_ ULONG64 FAR* pi64Out);
-//WINOLEAUTAPI VarUI8FromUI4(ULONG ulIn, _Out_ ULONG64 FAR* pi64Out);
+//WINOLEAUTAPI VarUI8FromUI2(WINUSHORT uiIn, _Out_ ULONG64 FAR* pi64Out);
+//WINOLEAUTAPI VarUI8FromUI4(WINULONG ulIn, _Out_ ULONG64 FAR* pi64Out);
 //WINOLEAUTAPI VarUI8FromDec(_In_ const DECIMAL *pdecIn, _Out_ ULONG64 FAR* pi64Out);
 //
 //
@@ -616,12 +616,12 @@
 //WINOLEAUTAPI VarDecFromR8(_In_ DOUBLE dblIn, _Out_ DECIMAL *pdecOut);
 //WINOLEAUTAPI VarDecFromDate(_In_ DATE dateIn, _Out_ DECIMAL *pdecOut);
 //WINOLEAUTAPI VarDecFromCy(_In_ CY cyIn, _Out_ DECIMAL *pdecOut);
-//WINOLEAUTAPI VarDecFromStr(_In_ LPCOLESTR strIn, _In_ LCID lcid, _In_ ULONG dwFlags, _Out_ DECIMAL *pdecOut);
+//WINOLEAUTAPI VarDecFromStr(_In_ LPCOLESTR strIn, _In_ LCID lcid, _In_ WINULONG dwFlags, _Out_ DECIMAL *pdecOut);
 //WINOLEAUTAPI VarDecFromDisp(_In_ IDispatch *pdispIn, _In_ LCID lcid, _Out_ DECIMAL *pdecOut);
 //WINOLEAUTAPI VarDecFromBool(_In_ VARIANT_BOOL boolIn, _Out_ DECIMAL *pdecOut);
 //WINOLEAUTAPI VarDecFromI1(_In_ CHAR cIn, _Out_ DECIMAL *pdecOut);
-//WINOLEAUTAPI VarDecFromUI2(_In_ USHORT uiIn, _Out_ DECIMAL *pdecOut);
-//WINOLEAUTAPI VarDecFromUI4(_In_ ULONG ulIn, _Out_ DECIMAL *pdecOut);
+//WINOLEAUTAPI VarDecFromUI2(_In_ WINUSHORT uiIn, _Out_ DECIMAL *pdecOut);
+//WINOLEAUTAPI VarDecFromUI4(_In_ WINULONG ulIn, _Out_ DECIMAL *pdecOut);
 //WINOLEAUTAPI VarDecFromUI8(ULONG64 ui64In, _Out_ DECIMAL *pdecOut);
 //
 //#endif // WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP) 
@@ -727,8 +727,8 @@
 //
 //typedef struct {
 //    INT   cDig;
-//    ULONG dwInFlags;
-//    ULONG dwOutFlags;
+//    WINULONG dwInFlags;
+//    WINULONG dwOutFlags;
 //    INT   cchUsed;
 //    INT   nBaseShift;
 //    INT   nPwr10;
@@ -776,12 +776,12 @@
 //#if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP)
 //
 //_Check_return_
-//WINOLEAUTAPI VarParseNumFromStr(_In_ LPCOLESTR strIn, _In_ LCID lcid, _In_ ULONG dwFlags,
+//WINOLEAUTAPI VarParseNumFromStr(_In_ LPCOLESTR strIn, _In_ LCID lcid, _In_ WINULONG dwFlags,
 //            _Out_ NUMPARSE * pnumprs, _Out_ BYTE * rgbDig);
 //
 //_Check_return_
 //WINOLEAUTAPI VarNumFromParseNum(_In_ NUMPARSE * pnumprs, _In_ BYTE * rgbDig,
-//            _In_ ULONG dwVtBits, _Out_ VARIANT * pvar);
+//            _In_ WINULONG dwVtBits, _Out_ VARIANT * pvar);
 //
 //#endif // WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP) 
 //#pragma endregion
@@ -815,7 +815,7 @@
 //STDAPI VarRound(_In_ LPVARIANT pvarIn, _In_ int32_t cDecimals, _Out_ LPVARIANT pvarResult);
 //
 // dwFlags passed to CompareString if a string compare
-//STDAPI VarCmp(_In_ LPVARIANT pvarLeft, _In_ LPVARIANT pvarRight, _In_ LCID lcid, _In_ ULONG dwFlags);
+//STDAPI VarCmp(_In_ LPVARIANT pvarLeft, _In_ LPVARIANT pvarRight, _In_ LCID lcid, _In_ WINULONG dwFlags);
 //
 //#endif // WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP) 
 //#pragma endregion
@@ -887,7 +887,7 @@
 // Misc support functions
 //
 //STDAPI VarBstrCat(_In_ BSTR bstrLeft, _In_ BSTR bstrRight, _Out_ LPBSTR pbstrResult);
-//STDAPI VarBstrCmp(_In_ BSTR bstrLeft, _In_ BSTR bstrRight, _In_ LCID lcid, _In_ ULONG dwFlags); // dwFlags passed to CompareString
+//STDAPI VarBstrCmp(_In_ BSTR bstrLeft, _In_ BSTR bstrRight, _In_ LCID lcid, _In_ WINULONG dwFlags); // dwFlags passed to CompareString
 //STDAPI VarR8Pow(_In_ double dblLeft, _In_ double dblRight, _Out_ double *pdblResult);
 //STDAPI VarR4CmpR8(_In_ float fltLeft, _In_ double dblRight);
 //STDAPI VarR8Round(_In_ double dblIn, _In_ int32_t cDecimals, _Out_ double *pdblResult);
@@ -921,7 +921,7 @@
 // 
 //typedef struct {
 //    SYSTEMTIME st;
-//    USHORT  wDayOfYear;
+//    WINUSHORT  wDayOfYear;
 //} UDATE;
 //
 // APIs to "pack" and "unpack" dates.
@@ -933,10 +933,10 @@
 //#if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP)
 //
 //_Check_return_
-//WINOLEAUTAPI VarDateFromUdate(_In_ UDATE *pudateIn, _In_ ULONG dwFlags, _Out_ DATE *pdateOut);
-//WINOLEAUTAPI VarDateFromUdateEx(_In_ UDATE *pudateIn, _In_ LCID lcid, _In_ ULONG dwFlags, _Out_ DATE *pdateOut);
+//WINOLEAUTAPI VarDateFromUdate(_In_ UDATE *pudateIn, _In_ WINULONG dwFlags, _Out_ DATE *pdateOut);
+//WINOLEAUTAPI VarDateFromUdateEx(_In_ UDATE *pudateIn, _In_ LCID lcid, _In_ WINULONG dwFlags, _Out_ DATE *pdateOut);
 //_Check_return_
-//WINOLEAUTAPI VarUdateFromDate(_In_ DATE dateIn, _In_ ULONG dwFlags, _Out_ UDATE *pudateOut);
+//WINOLEAUTAPI VarUdateFromDate(_In_ DATE dateIn, _In_ WINULONG dwFlags, _Out_ UDATE *pudateOut);
 //
 //#endif // WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP) 
 //#pragma endregion
@@ -964,14 +964,14 @@
 //	_In_opt_ LPOLESTR pstrFormat,
 //	int32_t iFirstDay,
 //	int32_t iFirstWeek,
-//	ULONG dwFlags,
+//	WINULONG dwFlags,
 //	_Out_ BSTR *pbstrOut
 //	);
 //
 //WINOLEAUTAPI VarFormatDateTime(
 //	_In_ LPVARIANT pvarIn,
 //	int32_t iNamedFormat,
-//	ULONG dwFlags,
+//	WINULONG dwFlags,
 //	_Out_ BSTR *pbstrOut
 //	);
 //
@@ -981,7 +981,7 @@
 //	int32_t iIncLead,
 //	int32_t iUseParens,
 //	int32_t iGroup,
-//	ULONG dwFlags,
+//	WINULONG dwFlags,
 //	_Out_ BSTR *pbstrOut
 //	);
 //
@@ -991,7 +991,7 @@
 //	int32_t iIncLead,
 //	int32_t iUseParens,
 //	int32_t iGroup,
-//	ULONG dwFlags,
+//	WINULONG dwFlags,
 //	_Out_ BSTR *pbstrOut
 //	);
 //
@@ -1001,7 +1001,7 @@
 //	int32_t iIncLead,
 //	int32_t iUseParens,
 //	int32_t iGroup,
-//	ULONG dwFlags,
+//	WINULONG dwFlags,
 //	_Out_ BSTR *pbstrOut
 //	);
 //
@@ -1009,14 +1009,14 @@
 //	int32_t iWeekday,
 //	int32_t fAbbrev,
 //	int32_t iFirstDay,
-//	ULONG dwFlags,
+//	WINULONG dwFlags,
 //	_Out_ BSTR *pbstrOut
 //	);
 //
 //WINOLEAUTAPI VarMonthName(
 //	int32_t iMonth,
 //	int32_t fAbbrev,
-//	ULONG dwFlags,
+//	WINULONG dwFlags,
 //	_Out_ BSTR *pbstrOut
 //	);
 //
@@ -1024,7 +1024,7 @@
 //	_In_ LPVARIANT pvarIn,
 //	_In_opt_ LPOLESTR pstrFormat,
 //	_In_reads_(_Inexpressible_("from VarTokenizeFormatString")) LPBYTE pbTokCur,
-//	ULONG dwFlags,
+//	WINULONG dwFlags,
 //	_Out_ BSTR *pbstrOut,
 //	LCID lcid
 //	);
@@ -1104,19 +1104,19 @@
 // compute a 16bit hash value for the given name
 // #if (defined (_WIN32) || defined (_WIN64))
 //_Check_return_
-//WINOLEAUTAPI_(ULONG) LHashValOfNameSysA(SYSKIND syskind, LCID lcid,
+//WINOLEAUTAPI_(WINULONG) LHashValOfNameSysA(SYSKIND syskind, LCID lcid,
 //            LPCSTR szName);
 //#endif
 //
 //_Check_return_
-//WINOLEAUTAPI_(ULONG)
+//WINOLEAUTAPI_(WINULONG)
 //LHashValOfNameSys(SYSKIND syskind, LCID lcid, const OLECHAR * szName);
 //
 //#define LHashValOfName(lcid, szName) \
 //            LHashValOfNameSys(SYS_WIN32, lcid, szName)
 //
 //#define WHashValOfLHashVal(lhashval) \
-//            ((USHORT) (0x0000ffff & (lhashval)))
+//            ((WINUSHORT) (0x0000ffff & (lhashval)))
 //
 //#define IsHashValCompatible(lhashval1, lhashval2) \
 //            ((BOOL) ((0x00ff0000 & (lhashval1)) == (0x00ff0000 & (lhashval2))))
@@ -1153,7 +1153,7 @@
 //
 // get path to registered typelib
 // 
-//WINOLEAUTAPI QueryPathOfRegTypeLib(REFGUID guid, USHORT wMaj, USHORT wMin,
+//WINOLEAUTAPI QueryPathOfRegTypeLib(REFGUID guid, WINUSHORT wMaj, WINUSHORT wMin,
 //            LCID lcid, _Out_ LPBSTR lpbstrPathName);
 //
 // add typelib to registry
@@ -1294,9 +1294,9 @@
 //---------------------------------------------------------------------
 //                           ErrorInfo API                             //////---------------------------------------------------------------------
 //
-//WINOLEAUTAPI SetErrorInfo(_In_ ULONG dwReserved, _In_opt_ IErrorInfo * perrinfo);
+//WINOLEAUTAPI SetErrorInfo(_In_ WINULONG dwReserved, _In_opt_ IErrorInfo * perrinfo);
 //_Check_return_
-//WINOLEAUTAPI GetErrorInfo(_In_ ULONG dwReserved, _Outptr_ IErrorInfo ** pperrinfo);
+//WINOLEAUTAPI GetErrorInfo(_In_ WINULONG dwReserved, _Outptr_ IErrorInfo ** pperrinfo);
 //_Check_return_
 //WINOLEAUTAPI CreateErrorInfo(_Outptr_ ICreateErrorInfo ** pperrinfo);
 //
@@ -1307,14 +1307,14 @@
 //            IRecordInfo ** ppRecInfo);
 //
 //WINOLEAUTAPI GetRecordInfoFromGuids(REFGUID rGuidTypeLib,
-//            ULONG uVerMajor, ULONG uVerMinor, LCID lcid,
+//            WINULONG uVerMajor, WINULONG uVerMinor, LCID lcid,
 //            REFGUID rGuidTypeInfo, IRecordInfo ** ppRecInfo);
 //
 //---------------------------------------------------------------------
 //                           MISC API                                  
 //---------------------------------------------------------------------
 //
-//WINOLEAUTAPI_(ULONG) OaBuildVersion(void);
+//WINOLEAUTAPI_(WINULONG) OaBuildVersion(void);
 //
 //WINOLEAUTAPI_(void) ClearCustData(LPCUSTDATA pCustData);
 //

@@ -93,6 +93,5 @@
 
 
 
-#ifdef LINUX
-#define _strdup strdup
-#endif
+
+

@@ -46,8 +46,8 @@ extern "C" {
 #define __STRING_DEFINED__
 
 typedef struct _STRING {
-        USHORT Length;
-        USHORT MaximumLength;
+        WINUSHORT Length;
+        WINUSHORT MaximumLength;
         PCHAR Buffer;
     } STRING, *PSTRING;
 #endif
@@ -64,8 +64,8 @@ typedef struct _STRING {
 #define __UNICODE_STRING_DEFINED__
 
 typedef struct _UNICODE_STRING {
-        USHORT Length; /* bytes */
-        USHORT MaximumLength; /* bytes */
+        WINUSHORT Length; /* bytes */
+        WINUSHORT MaximumLength; /* bytes */
         PWSTR Buffer;
     } UNICODE_STRING, *PUNICODE_STRING;
 #endif
@@ -127,33 +127,33 @@ typedef struct _UNICODE_STRING {
     } CURDIR, *PCURDIR;
 
     typedef struct RTL_DRIVE_LETTER_CURDIR {
-        USHORT Flags;
-        USHORT Length;
-        ULONG TimeStamp;
+        WINUSHORT Flags;
+        WINUSHORT Length;
+        WINULONG TimeStamp;
         UNICODE_STRING DosPath;
     } RTL_DRIVE_LETTER_CURDIR, *PRTL_DRIVE_LETTER_CURDIR;
 
     typedef struct tagRTL_BITMAP {
-        ULONG SizeOfBitMap; /* Number of bits in the bitmap */
-        PULONG Buffer; /* Bitmap data, assumed sized to a DWORD boundary */
+        WINULONG SizeOfBitMap; /* Number of bits in the bitmap */
+        PWINULONG Buffer; /* Bitmap data, assumed sized to a DWORD boundary */
     } RTL_BITMAP, *PRTL_BITMAP;
 
     typedef const RTL_BITMAP *PCRTL_BITMAP;
 
     typedef struct tagRTL_BITMAP_RUN {
-        ULONG StartingIndex; /* Bit position at which run starts */
-        ULONG NumberOfBits; /* Size of the run in bits */
+        WINULONG StartingIndex; /* Bit position at which run starts */
+        WINULONG NumberOfBits; /* Size of the run in bits */
     } RTL_BITMAP_RUN, *PRTL_BITMAP_RUN;
 
     typedef const RTL_BITMAP_RUN *PCRTL_BITMAP_RUN;
 
     typedef struct _RTL_USER_PROCESS_PARAMETERS {
-        ULONG AllocationSize;
-        ULONG Size;
-        ULONG Flags;
-        ULONG DebugFlags;
+        WINULONG AllocationSize;
+        WINULONG Size;
+        WINULONG Flags;
+        WINULONG DebugFlags;
         HANDLE ConsoleHandle;
-        ULONG ConsoleFlags;
+        WINULONG ConsoleFlags;
         HANDLE hStdInput;
         HANDLE hStdOutput;
         HANDLE hStdError;
@@ -162,15 +162,15 @@ typedef struct _UNICODE_STRING {
         UNICODE_STRING ImagePathName;
         UNICODE_STRING CommandLine;
         PWSTR Environment;
-        ULONG dwX;
-        ULONG dwY;
-        ULONG dwXSize;
-        ULONG dwYSize;
-        ULONG dwXCountChars;
-        ULONG dwYCountChars;
-        ULONG dwFillAttribute;
-        ULONG dwFlags;
-        ULONG wShowWindow;
+        WINULONG dwX;
+        WINULONG dwY;
+        WINULONG dwXSize;
+        WINULONG dwYSize;
+        WINULONG dwXCountChars;
+        WINULONG dwYCountChars;
+        WINULONG dwFillAttribute;
+        WINULONG dwFlags;
+        WINULONG wShowWindow;
         UNICODE_STRING WindowTitle;
         UNICODE_STRING Desktop;
         UNICODE_STRING ShellInfo;
@@ -182,7 +182,7 @@ typedef struct _UNICODE_STRING {
 #define PROCESS_PARAMS_FLAG_NORMALIZED 1
 
     typedef struct _PEB_LDR_DATA {
-        ULONG Length;
+        WINULONG Length;
         int_bool Initialized;
         PVOID SsHandle;
         LIST_ENTRY InLoadOrderModuleList;
@@ -191,20 +191,20 @@ typedef struct _UNICODE_STRING {
     } PEB_LDR_DATA, *PPEB_LDR_DATA;
 
     typedef struct _GDI_TEB_BATCH {
-        ULONG Offset;
+        WINULONG Offset;
         HANDLE HDC;
-        ULONG Buffer[0x136];
+        WINULONG Buffer[0x136];
     } GDI_TEB_BATCH;
 
     typedef struct _RTL_ACTIVATION_CONTEXT_STACK_FRAME {
         struct _RTL_ACTIVATION_CONTEXT_STACK_FRAME *Previous;
         struct _ACTIVATION_CONTEXT *ActivationContext;
-        ULONG Flags;
+        WINULONG Flags;
     } RTL_ACTIVATION_CONTEXT_STACK_FRAME, *PRTL_ACTIVATION_CONTEXT_STACK_FRAME;
 
     typedef struct _ACTIVATION_CONTEXT_STACK {
-        ULONG Flags;
-        ULONG NextCookieSequenceNumber;
+        WINULONG Flags;
+        WINULONG NextCookieSequenceNumber;
         RTL_ACTIVATION_CONTEXT_STACK_FRAME *ActiveFrame;
         LIST_ENTRY FrameListCache;
     } ACTIVATION_CONTEXT_STACK, *PACTIVATION_CONTEXT_STACK;
@@ -226,47 +226,47 @@ typedef struct _UNICODE_STRING {
         PRTL_CRITICAL_SECTION FastPebLock; /* 01c/038 */
         PVOID /*PPEBLOCKROUTINE*/ FastPebLockRoutine; /* 020/040 */
         PVOID /*PPEBLOCKROUTINE*/ FastPebUnlockRoutine; /* 024/048 */
-        ULONG EnvironmentUpdateCount; /* 028/050 */
+        WINULONG EnvironmentUpdateCount; /* 028/050 */
         PVOID KernelCallbackTable; /* 02c/058 */
-        ULONG Reserved[2]; /* 030/060 */
+        WINULONG Reserved[2]; /* 030/060 */
         PVOID /*PPEB_FREE_BLOCK*/ FreeList; /* 038/068 */
-        ULONG TlsExpansionCounter; /* 03c/070 */
+        WINULONG TlsExpansionCounter; /* 03c/070 */
         PRTL_BITMAP TlsBitmap; /* 040/078 */
-        ULONG TlsBitmapBits[2]; /* 044/080 */
+        WINULONG TlsBitmapBits[2]; /* 044/080 */
         PVOID ReadOnlySharedMemoryBase; /* 04c/088 */
         PVOID ReadOnlySharedMemoryHeap; /* 050/090 */
         PVOID *ReadOnlyStaticServerData; /* 054/098 */
         PVOID AnsiCodePageData; /* 058/0a0 */
         PVOID OemCodePageData; /* 05c/0a8 */
         PVOID UnicodeCaseTableData; /* 060/0b0 */
-        ULONG NumberOfProcessors; /* 064/0b8 */
-        ULONG NtGlobalFlag; /* 068/0bc */
+        WINULONG NumberOfProcessors; /* 064/0b8 */
+        WINULONG NtGlobalFlag; /* 068/0bc */
         LARGE_INTEGER CriticalSectionTimeout; /* 070/0c0 */
         SIZE_T HeapSegmentReserve; /* 078/0c8 */
         SIZE_T HeapSegmentCommit; /* 07c/0d0 */
         SIZE_T HeapDeCommitTotalFreeThreshold; /* 080/0d8 */
         SIZE_T HeapDeCommitFreeBlockThreshold; /* 084/0e0 */
-        ULONG NumberOfHeaps; /* 088/0e8 */
-        ULONG MaximumNumberOfHeaps; /* 08c/0ec */
+        WINULONG NumberOfHeaps; /* 088/0e8 */
+        WINULONG MaximumNumberOfHeaps; /* 08c/0ec */
         PVOID *ProcessHeaps; /* 090/0f0 */
         PVOID GdiSharedHandleTable; /* 094/0f8 */
         PVOID ProcessStarterHelper; /* 098/100 */
         PVOID GdiDCAttributeList; /* 09c/108 */
         PVOID LoaderLock; /* 0a0/110 */
-        ULONG OSMajorVersion; /* 0a4/118 */
-        ULONG OSMinorVersion; /* 0a8/11c */
-        ULONG OSBuildNumber; /* 0ac/120 */
-        ULONG OSPlatformId; /* 0b0/124 */
-        ULONG ImageSubSystem; /* 0b4/128 */
-        ULONG ImageSubSystemMajorVersion; /* 0b8/12c */
-        ULONG ImageSubSystemMinorVersion; /* 0bc/130 */
-        ULONG ImageProcessAffinityMask; /* 0c0/134 */
+        WINULONG OSMajorVersion; /* 0a4/118 */
+        WINULONG OSMinorVersion; /* 0a8/11c */
+        WINULONG OSBuildNumber; /* 0ac/120 */
+        WINULONG OSPlatformId; /* 0b0/124 */
+        WINULONG ImageSubSystem; /* 0b4/128 */
+        WINULONG ImageSubSystemMajorVersion; /* 0b8/12c */
+        WINULONG ImageSubSystemMinorVersion; /* 0bc/130 */
+        WINULONG ImageProcessAffinityMask; /* 0c0/134 */
         HANDLE GdiHandleBuffer[28]; /* 0c4/138 */
-        ULONG unknown[6]; /* 134/218 */
+        WINULONG unknown[6]; /* 134/218 */
         PVOID PostProcessInitRoutine; /* 14c/230 */
         PRTL_BITMAP TlsExpansionBitmap; /* 150/238 */
-        ULONG TlsExpansionBitmapBits[32]; /* 154/240 */
-        ULONG SessionId; /* 1d4/2c0 */
+        WINULONG TlsExpansionBitmapBits[32]; /* 154/240 */
+        WINULONG SessionId; /* 1d4/2c0 */
         ULARGE_INTEGER AppCompatFlags; /* 1d8/2c8 */
         ULARGE_INTEGER AppCompatFlagsUser; /* 1e0/2d0 */
         PVOID ShimData; /* 1e8/2d8 */
@@ -280,7 +280,7 @@ typedef struct _UNICODE_STRING {
         PVOID *FlsCallback; /* 20c/320 */
         LIST_ENTRY FlsListHead; /* 210/328 */
         PRTL_BITMAP FlsBitmap; /* 218/338 */
-        ULONG FlsBitmapBits[4]; /* 21c/340 */
+        WINULONG FlsBitmapBits[4]; /* 21c/340 */
     } PEB, *PPEB;
 
     /***********************************************************************
@@ -293,14 +293,14 @@ typedef struct _UNICODE_STRING {
         PVOID ActiveRpcHandle; /* 028/0050 */
         PVOID ThreadLocalStoragePointer; /* 02c/0058 */
         PPEB Peb; /* 030/0060 */
-        ULONG LastErrorValue; /* 034/0068 */
-        ULONG CountOfOwnedCriticalSections; /* 038/006c */
+        WINULONG LastErrorValue; /* 034/0068 */
+        WINULONG CountOfOwnedCriticalSections; /* 038/006c */
         PVOID CsrClientThread; /* 03c/0070 */
         PVOID Win32ThreadInfo; /* 040/0078 */
-        ULONG Win32ClientInfo[31]; /* 044/0080 used for user32 private data in Wine */
+        WINULONG Win32ClientInfo[31]; /* 044/0080 used for user32 private data in Wine */
         PVOID WOW32Reserved; /* 0c0/0100 */
-        ULONG CurrentLocale; /* 0c4/0108 */
-        ULONG FpSoftwareStatusRegister; /* 0c8/010c */
+        WINULONG CurrentLocale; /* 0c4/0108 */
+        WINULONG FpSoftwareStatusRegister; /* 0c8/010c */
         PVOID SystemReserved1[54]; /* 0cc/0110 used for kernel32 private data in Wine */
         LONG ExceptionCode; /* 1a4/02c0 */
         ACTIVATION_CONTEXT_STACK ActivationContextStack; /* 1a8/02c8 */
@@ -312,10 +312,10 @@ typedef struct _UNICODE_STRING {
         HANDLE gdiBrush; /* 6e4/0848 */
         CLIENT_ID RealClientId; /* 6e8/0850 */
         HANDLE GdiCachedProcessHandle; /* 6f0/0860 */
-        ULONG GdiClientPID; /* 6f4/0868 */
-        ULONG GdiClientTID; /* 6f8/086c */
+        WINULONG GdiClientPID; /* 6f4/0868 */
+        WINULONG GdiClientTID; /* 6f8/086c */
         PVOID GdiThreadLocaleInfo; /* 6fc/0870 */
-        ULONG UserReserved[5]; /* 700/0878 */
+        WINULONG UserReserved[5]; /* 700/0878 */
         PVOID glDispachTable[280]; /* 714/0890 */
         PVOID glReserved1[26]; /* b74/1150 */
         PVOID glReserved2; /* bdc/1220 */
@@ -324,7 +324,7 @@ typedef struct _UNICODE_STRING {
         PVOID glTable; /* be8/1238 */
         PVOID glCurrentRC; /* bec/1240 */
         PVOID glContext; /* bf0/1248 */
-        ULONG LastStatusValue; /* bf4/1250 */
+        WINULONG LastStatusValue; /* bf4/1250 */
         UNICODE_STRING StaticUnicodeString; /* bf8/1258 used by advapi32 */
         WCHAR StaticUnicodeBuffer[261]; /* c00/1268 used by advapi32 */
         PVOID DeallocationStack; /* e0c/1478 */
@@ -333,22 +333,22 @@ typedef struct _UNICODE_STRING {
         PVOID Vdm; /* f18/1690 */
         PVOID ReservedForNtRpc; /* f1c/1698 */
         PVOID DbgSsReserved[2]; /* f20/16a0 */
-        ULONG HardErrorDisabled; /* f28/16b0 */
+        WINULONG HardErrorDisabled; /* f28/16b0 */
         PVOID Instrumentation[16]; /* f2c/16b8 */
         PVOID WinSockData; /* f6c/1738 */
-        ULONG GdiBatchCount; /* f70/1740 */
-        ULONG Spare2; /* f74/1744 */
+        WINULONG GdiBatchCount; /* f70/1740 */
+        WINULONG Spare2; /* f74/1744 */
         PVOID Spare3; /* f78/1748 */
         PVOID Spare4; /* f7c/1750 */
         PVOID ReservedForOle; /* f80/1758 */
-        ULONG WaitingOnLoaderLock; /* f84/1760 */
+        WINULONG WaitingOnLoaderLock; /* f84/1760 */
         PVOID Reserved5[3]; /* f88/1768 */
         PVOID *TlsExpansionSlots; /* f94/1780 */
-        ULONG ImpersonationLocale; /* f98/1788 */
-        ULONG IsImpersonating; /* f9c/178c */
+        WINULONG ImpersonationLocale; /* f98/1788 */
+        WINULONG IsImpersonating; /* f9c/178c */
         PVOID NlsCache; /* fa0/1790 */
         PVOID ShimData; /* fa4/1798 */
-        ULONG HeapVirtualAffinity; /* fa8/17a0 */
+        WINULONG HeapVirtualAffinity; /* fa8/17a0 */
         PVOID CurrentTransactionHandle; /* fac/17a8 */
         PVOID ActiveFrame; /* fb0/17b0 */
 #ifdef _WIN64
@@ -416,63 +416,63 @@ typedef struct _UNICODE_STRING {
     } FILE_INFORMATION_CLASS, *PFILE_INFORMATION_CLASS;
 
     typedef struct _FILE_DIRECTORY_INFORMATION {
-        ULONG NextEntryOffset;
-        ULONG FileIndex;
+        WINULONG NextEntryOffset;
+        WINULONG FileIndex;
         LARGE_INTEGER CreationTime;
         LARGE_INTEGER LastAccessTime;
         LARGE_INTEGER LastWriteTime;
         LARGE_INTEGER ChangeTime;
         LARGE_INTEGER EndOfFile;
         LARGE_INTEGER AllocationSize;
-        ULONG FileAttributes;
-        ULONG FileNameLength;
+        WINULONG FileAttributes;
+        WINULONG FileNameLength;
         WCHAR FileName[ANYSIZE_ARRAY];
     } FILE_DIRECTORY_INFORMATION, *PFILE_DIRECTORY_INFORMATION;
 
     typedef struct _FILE_FULL_DIRECTORY_INFORMATION {
-        ULONG NextEntryOffset;
-        ULONG FileIndex;
+        WINULONG NextEntryOffset;
+        WINULONG FileIndex;
         LARGE_INTEGER CreationTime;
         LARGE_INTEGER LastAccessTime;
         LARGE_INTEGER LastWriteTime;
         LARGE_INTEGER ChangeTime;
         LARGE_INTEGER EndOfFile;
         LARGE_INTEGER AllocationSize;
-        ULONG FileAttributes;
-        ULONG FileNameLength;
-        ULONG EaSize;
+        WINULONG FileAttributes;
+        WINULONG FileNameLength;
+        WINULONG EaSize;
         WCHAR FileName[ANYSIZE_ARRAY];
     } FILE_FULL_DIRECTORY_INFORMATION, *PFILE_FULL_DIRECTORY_INFORMATION,
     FILE_FULL_DIR_INFORMATION, *PFILE_FULL_DIR_INFORMATION;
 
     typedef struct _FILE_ID_FULL_DIRECTORY_INFORMATION {
-        ULONG NextEntryOffset;
-        ULONG FileIndex;
+        WINULONG NextEntryOffset;
+        WINULONG FileIndex;
         LARGE_INTEGER CreationTime;
         LARGE_INTEGER LastAccessTime;
         LARGE_INTEGER LastWriteTime;
         LARGE_INTEGER ChangeTime;
         LARGE_INTEGER EndOfFile;
         LARGE_INTEGER AllocationSize;
-        ULONG FileAttributes;
-        ULONG FileNameLength;
-        ULONG EaSize;
+        WINULONG FileAttributes;
+        WINULONG FileNameLength;
+        WINULONG EaSize;
         LARGE_INTEGER FileId;
         WCHAR FileName[ANYSIZE_ARRAY];
     } FILE_ID_FULL_DIRECTORY_INFORMATION, *PFILE_ID_FULL_DIRECTORY_INFORMATION;
 
     typedef struct _FILE_BOTH_DIRECTORY_INFORMATION {
-        ULONG NextEntryOffset;
-        ULONG FileIndex;
+        WINULONG NextEntryOffset;
+        WINULONG FileIndex;
         LARGE_INTEGER CreationTime;
         LARGE_INTEGER LastAccessTime;
         LARGE_INTEGER LastWriteTime;
         LARGE_INTEGER ChangeTime;
         LARGE_INTEGER EndOfFile;
         LARGE_INTEGER AllocationSize;
-        ULONG FileAttributes;
-        ULONG FileNameLength;
-        ULONG EaSize;
+        WINULONG FileAttributes;
+        WINULONG FileNameLength;
+        WINULONG EaSize;
         CHAR ShortNameLength;
         WCHAR ShortName[12];
         WCHAR FileName[ANYSIZE_ARRAY];
@@ -480,17 +480,17 @@ typedef struct _UNICODE_STRING {
     FILE_BOTH_DIR_INFORMATION, *PFILE_BOTH_DIR_INFORMATION;
 
     typedef struct _FILE_ID_BOTH_DIRECTORY_INFORMATION {
-        ULONG NextEntryOffset;
-        ULONG FileIndex;
+        WINULONG NextEntryOffset;
+        WINULONG FileIndex;
         LARGE_INTEGER CreationTime;
         LARGE_INTEGER LastAccessTime;
         LARGE_INTEGER LastWriteTime;
         LARGE_INTEGER ChangeTime;
         LARGE_INTEGER EndOfFile;
         LARGE_INTEGER AllocationSize;
-        ULONG FileAttributes;
-        ULONG FileNameLength;
-        ULONG EaSize;
+        WINULONG FileAttributes;
+        WINULONG FileNameLength;
+        WINULONG EaSize;
         CHAR ShortNameLength;
         WCHAR ShortName[12];
         LARGE_INTEGER FileId;
@@ -502,13 +502,13 @@ typedef struct _UNICODE_STRING {
         LARGE_INTEGER LastAccessTime;
         LARGE_INTEGER LastWriteTime;
         LARGE_INTEGER ChangeTime;
-        ULONG FileAttributes;
+        WINULONG FileAttributes;
     } FILE_BASIC_INFORMATION, *PFILE_BASIC_INFORMATION;
 
     typedef struct _FILE_STANDARD_INFORMATION {
         LARGE_INTEGER AllocationSize;
         LARGE_INTEGER EndOfFile;
-        ULONG NumberOfLinks;
+        WINULONG NumberOfLinks;
         int_bool DeletePending;
         int_bool Directory;
     } FILE_STANDARD_INFORMATION, *PFILE_STANDARD_INFORMATION;
@@ -518,7 +518,7 @@ typedef struct _UNICODE_STRING {
     } FILE_INTERNAL_INFORMATION, *PFILE_INTERNAL_INFORMATION;
 
     typedef struct _FILE_EA_INFORMATION {
-        ULONG EaSize;
+        WINULONG EaSize;
     } FILE_EA_INFORMATION, *PFILE_EA_INFORMATION;
 
     typedef struct _FILE_ACCESS_INFORMATION {
@@ -526,21 +526,21 @@ typedef struct _UNICODE_STRING {
     } FILE_ACCESS_INFORMATION, *PFILE_ACCESS_INFORMATION;
 
     typedef struct _FILE_NAME_INFORMATION {
-        ULONG FileNameLength;
+        WINULONG FileNameLength;
         WCHAR FileName[1];
     } FILE_NAME_INFORMATION, *PFILE_NAME_INFORMATION;
 
     typedef struct _FILE_RENAME_INFORMATION {
         int_bool Replace;
         HANDLE RootDir;
-        ULONG FileNameLength;
+        WINULONG FileNameLength;
         WCHAR FileName[1];
     } FILE_RENAME_INFORMATION, *PFILE_RENAME_INFORMATION;
 
     typedef struct _FILE_NAMES_INFORMATION {
-        ULONG NextEntryOffset;
-        ULONG FileIndex;
-        ULONG FileNameLength;
+        WINULONG NextEntryOffset;
+        WINULONG FileIndex;
+        WINULONG FileNameLength;
         WCHAR FileName[1];
     } FILE_NAMES_INFORMATION, *PFILE_NAMES_INFORMATION;
 
@@ -553,7 +553,7 @@ typedef struct _UNICODE_STRING {
     } FILE_POSITION_INFORMATION, *PFILE_POSITION_INFORMATION;
 
     typedef struct _FILE_ALIGNMENT_INFORMATION {
-        ULONG AlignmentRequirement;
+        WINULONG AlignmentRequirement;
     } FILE_ALIGNMENT_INFORMATION, *PFILE_ALIGNMENT_INFORMATION;
 
     typedef struct _FILE_ALLOCATION_INFORMATION {
@@ -571,39 +571,39 @@ typedef struct _UNICODE_STRING {
         LARGE_INTEGER ChangeTime;
         LARGE_INTEGER AllocationSize;
         LARGE_INTEGER EndOfFile;
-        ULONG FileAttributes;
+        WINULONG FileAttributes;
     } FILE_NETWORK_OPEN_INFORMATION, *PFILE_NETWORK_OPEN_INFORMATION;
 
     typedef struct _FILE_FULL_EA_INFORMATION {
-        ULONG NextEntryOffset;
-        UCHAR Flags;
-        UCHAR EaNameLength;
-        USHORT EaValueLength;
+        WINULONG NextEntryOffset;
+        WINUCHAR Flags;
+        WINUCHAR EaNameLength;
+        WINUSHORT EaValueLength;
         CHAR EaName[1];
     } FILE_FULL_EA_INFORMATION, *PFILE_FULL_EA_INFORMATION;
 
     typedef struct _FILE_MODE_INFORMATION {
-        ULONG Mode;
+        WINULONG Mode;
     } FILE_MODE_INFORMATION, *PFILE_MODE_INFORMATION;
 
     typedef struct _FILE_STREAM_INFORMATION {
-        ULONG NextEntryOffset;
-        ULONG StreamNameLength;
+        WINULONG NextEntryOffset;
+        WINULONG StreamNameLength;
         LARGE_INTEGER StreamSize;
         LARGE_INTEGER StreamAllocationSize;
         WCHAR StreamName[1];
     } FILE_STREAM_INFORMATION, *PFILE_STREAM_INFORMATION;
 
     typedef struct _FILE_ATTRIBUTE_TAG_INFORMATION {
-        ULONG FileAttributes;
-        ULONG ReparseTag;
+        WINULONG FileAttributes;
+        WINULONG ReparseTag;
     } FILE_ATTRIBUTE_TAG_INFORMATION, *PFILE_ATTRIBUTE_TAG_INFORMATION;
 
     typedef struct _FILE_MAILSLOT_QUERY_INFORMATION {
-        ULONG MaximumMessageSize;
-        ULONG MailslotQuota;
-        ULONG NextMessageSize;
-        ULONG MessagesAvailable;
+        WINULONG MaximumMessageSize;
+        WINULONG MailslotQuota;
+        WINULONG NextMessageSize;
+        WINULONG MessagesAvailable;
         LARGE_INTEGER ReadTimeout;
     } FILE_MAILSLOT_QUERY_INFORMATION, *PFILE_MAILSLOT_QUERY_INFORMATION;
 
@@ -612,16 +612,16 @@ typedef struct _UNICODE_STRING {
     } FILE_MAILSLOT_SET_INFORMATION, *PFILE_MAILSLOT_SET_INFORMATION;
 
     typedef struct _FILE_PIPE_LOCAL_INFORMATION {
-        ULONG NamedPipeType;
-        ULONG NamedPipeConfiguration;
-        ULONG MaximumInstances;
-        ULONG CurrentInstances;
-        ULONG InboundQuota;
-        ULONG ReadDataAvailable;
-        ULONG OutboundQuota;
-        ULONG WriteQuotaAvailable;
-        ULONG NamedPipeState;
-        ULONG NamedPipeEnd;
+        WINULONG NamedPipeType;
+        WINULONG NamedPipeConfiguration;
+        WINULONG MaximumInstances;
+        WINULONG CurrentInstances;
+        WINULONG InboundQuota;
+        WINULONG ReadDataAvailable;
+        WINULONG OutboundQuota;
+        WINULONG WriteQuotaAvailable;
+        WINULONG NamedPipeState;
+        WINULONG NamedPipeEnd;
     } FILE_PIPE_LOCAL_INFORMATION, *PFILE_PIPE_LOCAL_INFORMATION;
 
     typedef struct _FILE_ALL_INFORMATION {
@@ -923,82 +923,82 @@ typedef struct _UNICODE_STRING {
         ULONG_PTR Information;
     } IO_STATUS_BLOCK, *PIO_STATUS_BLOCK;
 
-    typedef void (WINAPI * PIO_APC_ROUTINE)(PVOID, PIO_STATUS_BLOCK, ULONG);
+    typedef void (WINAPI * PIO_APC_ROUTINE)(PVOID, PIO_STATUS_BLOCK, WINULONG);
 
     typedef struct _KEY_BASIC_INFORMATION {
         LARGE_INTEGER LastWriteTime;
-        ULONG TitleIndex;
-        ULONG NameLength;
+        WINULONG TitleIndex;
+        WINULONG NameLength;
         WCHAR Name[1];
     } KEY_BASIC_INFORMATION, *PKEY_BASIC_INFORMATION;
 
     typedef struct _KEY_NODE_INFORMATION {
         LARGE_INTEGER LastWriteTime;
-        ULONG TitleIndex;
-        ULONG ClassOffset;
-        ULONG ClassLength;
-        ULONG NameLength;
+        WINULONG TitleIndex;
+        WINULONG ClassOffset;
+        WINULONG ClassLength;
+        WINULONG NameLength;
         WCHAR Name[1];
         /* Class[1]; */
     } KEY_NODE_INFORMATION, *PKEY_NODE_INFORMATION;
 
     typedef struct _KEY_FULL_INFORMATION {
         LARGE_INTEGER LastWriteTime;
-        ULONG TitleIndex;
-        ULONG ClassOffset;
-        ULONG ClassLength;
-        ULONG SubKeys;
-        ULONG MaxNameLen;
-        ULONG MaxClassLen;
-        ULONG Values;
-        ULONG MaxValueNameLen;
-        ULONG MaxValueDataLen;
+        WINULONG TitleIndex;
+        WINULONG ClassOffset;
+        WINULONG ClassLength;
+        WINULONG SubKeys;
+        WINULONG MaxNameLen;
+        WINULONG MaxClassLen;
+        WINULONG Values;
+        WINULONG MaxValueNameLen;
+        WINULONG MaxValueDataLen;
         WCHAR Class[1];
     } KEY_FULL_INFORMATION, *PKEY_FULL_INFORMATION;
 
     typedef struct _KEY_NAME_INFORMATION {
-        ULONG NameLength;
+        WINULONG NameLength;
         WCHAR Name[1];
     } KEY_NAME_INFORMATION, *PKEY_NAME_INFORMATION;
 
     typedef struct _KEY_VALUE_ENTRY {
         PUNICODE_STRING ValueName;
-        ULONG DataLength;
-        ULONG DataOffset;
-        ULONG Type;
+        WINULONG DataLength;
+        WINULONG DataOffset;
+        WINULONG Type;
     } KEY_VALUE_ENTRY, *PKEY_VALUE_ENTRY;
 
     typedef struct _KEY_VALUE_BASIC_INFORMATION {
-        ULONG TitleIndex;
-        ULONG Type;
-        ULONG NameLength;
+        WINULONG TitleIndex;
+        WINULONG Type;
+        WINULONG NameLength;
         WCHAR Name[1];
     } KEY_VALUE_BASIC_INFORMATION, *PKEY_VALUE_BASIC_INFORMATION;
 
     typedef struct _KEY_VALUE_FULL_INFORMATION {
-        ULONG TitleIndex;
-        ULONG Type;
-        ULONG DataOffset;
-        ULONG DataLength;
-        ULONG NameLength;
+        WINULONG TitleIndex;
+        WINULONG Type;
+        WINULONG DataOffset;
+        WINULONG DataLength;
+        WINULONG NameLength;
         WCHAR Name[1];
     } KEY_VALUE_FULL_INFORMATION, *PKEY_VALUE_FULL_INFORMATION;
 
     typedef struct _KEY_VALUE_PARTIAL_INFORMATION {
-        ULONG TitleIndex;
-        ULONG Type;
-        ULONG DataLength;
-        UCHAR Data[1];
+        WINULONG TitleIndex;
+        WINULONG Type;
+        WINULONG DataLength;
+        WINUCHAR Data[1];
     } KEY_VALUE_PARTIAL_INFORMATION, *PKEY_VALUE_PARTIAL_INFORMATION;
 
 #ifndef __OBJECT_ATTRIBUTES_DEFINED__
 #define __OBJECT_ATTRIBUTES_DEFINED__
 
 typedef struct _OBJECT_ATTRIBUTES {
-        ULONG Length;
+        WINULONG Length;
         HANDLE RootDirectory;
         PUNICODE_STRING ObjectName;
-        ULONG Attributes;
+        WINULONG Attributes;
         PVOID SecurityDescriptor; /* type SECURITY_DESCRIPTOR */
         PVOID SecurityQualityOfService; /* type SECURITY_QUALITY_OF_SERVICE */
     } OBJECT_ATTRIBUTES, *POBJECT_ATTRIBUTES;
@@ -1010,16 +1010,16 @@ typedef struct _OBJECT_ATTRIBUTES {
     } OBJECT_DATA_INFORMATION, *POBJECT_DATA_INFORMATION;
 
     typedef struct _OBJECT_BASIC_INFORMATION {
-        ULONG Attributes;
+        WINULONG Attributes;
         ACCESS_MASK GrantedAccess;
-        ULONG HandleCount;
-        ULONG PointerCount;
-        ULONG PagedPoolUsage;
-        ULONG NonPagedPoolUsage;
-        ULONG Reserved[3];
-        ULONG NameInformationLength;
-        ULONG TypeInformationLength;
-        ULONG SecurityDescriptorLength;
+        WINULONG HandleCount;
+        WINULONG PointerCount;
+        WINULONG PagedPoolUsage;
+        WINULONG NonPagedPoolUsage;
+        WINULONG Reserved[3];
+        WINULONG NameInformationLength;
+        WINULONG TypeInformationLength;
+        WINULONG SecurityDescriptorLength;
         LARGE_INTEGER CreateTime;
     } OBJECT_BASIC_INFORMATION, *POBJECT_BASIC_INFORMATION;
 
@@ -1053,13 +1053,13 @@ typedef struct _OBJECT_ATTRIBUTES {
 
     typedef struct _PROCESS_PRIORITY_CLASS {
         int_bool Foreground;
-        UCHAR PriorityClass;
+        WINUCHAR PriorityClass;
     } PROCESS_PRIORITY_CLASS, *PPROCESS_PRIORITY_CLASS;
 
     typedef struct _RTL_HEAP_DEFINITION {
-        ULONG Length; /* = sizeof(RTL_HEAP_DEFINITION) */
+        WINULONG Length; /* = sizeof(RTL_HEAP_DEFINITION) */
 
-        ULONG Unknown[11];
+        WINULONG Unknown[11];
     } RTL_HEAP_DEFINITION, *PRTL_HEAP_DEFINITION;
 
     typedef struct _RTL_RWLOCK {
@@ -1082,11 +1082,11 @@ typedef struct _OBJECT_ATTRIBUTES {
     typedef struct _SYSTEM_BASIC_INFORMATION {
 #ifdef __WINESRC__
         DWORD unknown;
-        ULONG KeMaximumIncrement;
-        ULONG PageSize;
-        ULONG MmNumberOfPhysicalPages;
-        ULONG MmLowestPhysicalPage;
-        ULONG MmHighestPhysicalPage;
+        WINULONG KeMaximumIncrement;
+        WINULONG PageSize;
+        WINULONG MmNumberOfPhysicalPages;
+        WINULONG MmLowestPhysicalPage;
+        WINULONG MmHighestPhysicalPage;
         ULONG_PTR AllocationGranularity;
         PVOID LowestUserAddress;
         PVOID HighestUserAddress;
@@ -1137,75 +1137,75 @@ typedef struct _OBJECT_ATTRIBUTES {
         LARGE_INTEGER ReadTransferCount;
         LARGE_INTEGER WriteTransferCount;
         LARGE_INTEGER OtherTransferCount;
-        ULONG ReadOperationCount;
-        ULONG WriteOperationCount;
-        ULONG OtherOperationCount;
-        ULONG AvailablePages;
-        ULONG TotalCommittedPages;
-        ULONG TotalCommitLimit;
-        ULONG PeakCommitment;
-        ULONG PageFaults;
-        ULONG WriteCopyFaults;
-        ULONG TransitionFaults;
-        ULONG Reserved1;
-        ULONG DemandZeroFaults;
-        ULONG PagesRead;
-        ULONG PageReadIos;
-        ULONG Reserved2[2];
-        ULONG PagefilePagesWritten;
-        ULONG PagefilePageWriteIos;
-        ULONG MappedFilePagesWritten;
-        ULONG MappedFilePageWriteIos;
-        ULONG PagedPoolUsage;
-        ULONG NonPagedPoolUsage;
-        ULONG PagedPoolAllocs;
-        ULONG PagedPoolFrees;
-        ULONG NonPagedPoolAllocs;
-        ULONG NonPagedPoolFrees;
-        ULONG TotalFreeSystemPtes;
-        ULONG SystemCodePage;
-        ULONG TotalSystemDriverPages;
-        ULONG TotalSystemCodePages;
-        ULONG SmallNonPagedLookasideListAllocateHits;
-        ULONG SmallPagedLookasideListAllocateHits;
-        ULONG Reserved3;
-        ULONG MmSystemCachePage;
-        ULONG PagedPoolPage;
-        ULONG SystemDriverPage;
-        ULONG FastReadNoWait;
-        ULONG FastReadWait;
-        ULONG FastReadResourceMiss;
-        ULONG FastReadNotPossible;
-        ULONG FastMdlReadNoWait;
-        ULONG FastMdlReadWait;
-        ULONG FastMdlReadResourceMiss;
-        ULONG FastMdlReadNotPossible;
-        ULONG MapDataNoWait;
-        ULONG MapDataWait;
-        ULONG MapDataNoWaitMiss;
-        ULONG MapDataWaitMiss;
-        ULONG PinMappedDataCount;
-        ULONG PinReadNoWait;
-        ULONG PinReadWait;
-        ULONG PinReadNoWaitMiss;
-        ULONG PinReadWaitMiss;
-        ULONG CopyReadNoWait;
-        ULONG CopyReadWait;
-        ULONG CopyReadNoWaitMiss;
-        ULONG CopyReadWaitMiss;
-        ULONG MdlReadNoWait;
-        ULONG MdlReadWait;
-        ULONG MdlReadNoWaitMiss;
-        ULONG MdlReadWaitMiss;
-        ULONG ReadAheadIos;
-        ULONG LazyWriteIos;
-        ULONG LazyWritePages;
-        ULONG DataFlushes;
-        ULONG DataPages;
-        ULONG ContextSwitches;
-        ULONG FirstLevelTbFills;
-        ULONG SecondLevelTbFills;
-        ULONG SystemCalls;
+        WINULONG ReadOperationCount;
+        WINULONG WriteOperationCount;
+        WINULONG OtherOperationCount;
+        WINULONG AvailablePages;
+        WINULONG TotalCommittedPages;
+        WINULONG TotalCommitLimit;
+        WINULONG PeakCommitment;
+        WINULONG PageFaults;
+        WINULONG WriteCopyFaults;
+        WINULONG TransitionFaults;
+        WINULONG Reserved1;
+        WINULONG DemandZeroFaults;
+        WINULONG PagesRead;
+        WINULONG PageReadIos;
+        WINULONG Reserved2[2];
+        WINULONG PagefilePagesWritten;
+        WINULONG PagefilePageWriteIos;
+        WINULONG MappedFilePagesWritten;
+        WINULONG MappedFilePageWriteIos;
+        WINULONG PagedPoolUsage;
+        WINULONG NonPagedPoolUsage;
+        WINULONG PagedPoolAllocs;
+        WINULONG PagedPoolFrees;
+        WINULONG NonPagedPoolAllocs;
+        WINULONG NonPagedPoolFrees;
+        WINULONG TotalFreeSystemPtes;
+        WINULONG SystemCodePage;
+        WINULONG TotalSystemDriverPages;
+        WINULONG TotalSystemCodePages;
+        WINULONG SmallNonPagedLookasideListAllocateHits;
+        WINULONG SmallPagedLookasideListAllocateHits;
+        WINULONG Reserved3;
+        WINULONG MmSystemCachePage;
+        WINULONG PagedPoolPage;
+        WINULONG SystemDriverPage;
+        WINULONG FastReadNoWait;
+        WINULONG FastReadWait;
+        WINULONG FastReadResourceMiss;
+        WINULONG FastReadNotPossible;
+        WINULONG FastMdlReadNoWait;
+        WINULONG FastMdlReadWait;
+        WINULONG FastMdlReadResourceMiss;
+        WINULONG FastMdlReadNotPossible;
+        WINULONG MapDataNoWait;
+        WINULONG MapDataWait;
+        WINULONG MapDataNoWaitMiss;
+        WINULONG MapDataWaitMiss;
+        WINULONG PinMappedDataCount;
+        WINULONG PinReadNoWait;
+        WINULONG PinReadWait;
+        WINULONG PinReadNoWaitMiss;
+        WINULONG PinReadWaitMiss;
+        WINULONG CopyReadNoWait;
+        WINULONG CopyReadWait;
+        WINULONG CopyReadNoWaitMiss;
+        WINULONG CopyReadWaitMiss;
+        WINULONG MdlReadNoWait;
+        WINULONG MdlReadWait;
+        WINULONG MdlReadNoWaitMiss;
+        WINULONG MdlReadWaitMiss;
+        WINULONG ReadAheadIos;
+        WINULONG LazyWriteIos;
+        WINULONG LazyWritePages;
+        WINULONG DataFlushes;
+        WINULONG DataPages;
+        WINULONG ContextSwitches;
+        WINULONG FirstLevelTbFills;
+        WINULONG SecondLevelTbFills;
+        WINULONG SystemCalls;
     } SYSTEM_PERFORMANCE_INFORMATION, *PSYSTEM_PERFORMANCE_INFORMATION;
 
     /* System Information Class 0x03 */
@@ -1215,7 +1215,7 @@ typedef struct _OBJECT_ATTRIBUTES {
         LARGE_INTEGER liKeBootTime;
         LARGE_INTEGER liKeSystemTime;
         LARGE_INTEGER liExpTimeZoneBias;
-        ULONG uCurrentTimeZoneId;
+        WINULONG uCurrentTimeZoneId;
         DWORD dwUnknown1[5];
 #else
         BYTE Reserved1[48];
@@ -1229,7 +1229,7 @@ typedef struct _OBJECT_ATTRIBUTES {
         LARGE_INTEGER KernelTime;
         LARGE_INTEGER UserTime;
         LARGE_INTEGER Reserved1[2];
-        ULONG Reserved2;
+        WINULONG Reserved2;
     } SYSTEM_PROCESSOR_PERFORMANCE_INFORMATION, *PSYSTEM_PROCESSOR_PERFORMANCE_INFORMATION;
 
     /* System Information Class 0x0b */
@@ -1246,29 +1246,29 @@ typedef struct _OBJECT_ATTRIBUTES {
     /* System Information Class 0x10 */
 
     typedef struct _SYSTEM_HANDLE_ENTRY {
-        ULONG OwnerPid;
+        WINULONG OwnerPid;
         BYTE ObjectType;
         BYTE HandleFlags;
-        USHORT HandleValue;
+        WINUSHORT HandleValue;
         PVOID ObjectPointer;
-        ULONG AccessMask;
+        WINULONG AccessMask;
     } SYSTEM_HANDLE_ENTRY, *PSYSTEM_HANDLE_ENTRY;
 
     typedef struct _SYSTEM_HANDLE_INFORMATION {
-        ULONG Count;
+        WINULONG Count;
         SYSTEM_HANDLE_ENTRY Handle[1];
     } SYSTEM_HANDLE_INFORMATION, *PSYSTEM_HANDLE_INFORMATION;
 
     /* System Information Class 0x15 */
 
     typedef struct _SYSTEM_CACHE_INFORMATION {
-        ULONG CurrentSize;
-        ULONG PeakSize;
-        ULONG PageFaultCount;
+        WINULONG CurrentSize;
+        WINULONG PeakSize;
+        WINULONG PageFaultCount;
 #ifndef _WIN64
-        ULONG MinimumWorkingSet;
-        ULONG MaximumWorkingSet;
-        ULONG unused[4];
+        WINULONG MinimumWorkingSet;
+        WINULONG MaximumWorkingSet;
+        WINULONG unused[4];
 #endif
     } SYSTEM_CACHE_INFORMATION, *PSYSTEM_CACHE_INFORMATION;
 
@@ -1281,20 +1281,20 @@ typedef struct _OBJECT_ATTRIBUTES {
     typedef struct _SYSTEM_CONFIGURATION_INFO {
 
         union {
-            ULONG OemId;
+            WINULONG OemId;
 
             struct {
                 WORD ProcessorArchitecture;
                 WORD Reserved;
             } tag1;
         } tag2;
-        ULONG PageSize;
+        WINULONG PageSize;
         PVOID MinimumApplicationAddress;
         PVOID MaximumApplicationAddress;
-        ULONG ActiveProcessorMask;
-        ULONG NumberOfProcessors;
-        ULONG ProcessorType;
-        ULONG AllocationGranularity;
+        WINULONG ActiveProcessorMask;
+        WINULONG NumberOfProcessors;
+        WINULONG ProcessorType;
+        WINULONG AllocationGranularity;
         WORD ProcessorLevel;
         WORD ProcessorRevision;
     } SYSTEM_CONFIGURATION_INFO, *PSYSTEM_CONFIGURATION_INFO;
@@ -1317,7 +1317,7 @@ typedef struct _OBJECT_ATTRIBUTES {
     typedef struct _VM_COUNTERS_ {
         SIZE_T PeakVirtualSize;
         SIZE_T VirtualSize;
-        ULONG PageFaultCount;
+        WINULONG PageFaultCount;
         SIZE_T PeakWorkingSetSize;
         SIZE_T WorkingSetSize;
         SIZE_T QuotaPeakPagedPoolUsage;
@@ -1331,7 +1331,7 @@ typedef struct _OBJECT_ATTRIBUTES {
 
     typedef struct _SYSTEM_PROCESS_INFORMATION {
 #ifdef __WINESRC__                  /* win32/win64 */
-        ULONG NextEntryOffset; /* 00/00 */
+        WINULONG NextEntryOffset; /* 00/00 */
         DWORD dwThreadCount; /* 04/04 */
         DWORD dwUnknown1[6]; /* 08/08 */
         LARGE_INTEGER CreationTime; /* 20/20 */
@@ -1341,19 +1341,19 @@ typedef struct _OBJECT_ATTRIBUTES {
         DWORD dwBasePriority; /* 40/48 */
         HANDLE UniqueProcessId; /* 44/50 */
         HANDLE ParentProcessId; /* 48/58 */
-        ULONG HandleCount; /* 4c/60 */
+        WINULONG HandleCount; /* 4c/60 */
         DWORD dwUnknown3; /* 50/64 */
         DWORD dwUnknown4; /* 54/68 */
         VM_COUNTERS vmCounters; /* 58/70 */
         IO_COUNTERS ioCounters; /* 88/d0 */
         SYSTEM_THREAD_INFORMATION ti[1]; /* b8/100 */
 #else
-        ULONG NextEntryOffset; /* 00/00 */
+        WINULONG NextEntryOffset; /* 00/00 */
         BYTE Reserved1[52]; /* 04/04 */
         PVOID Reserved2[3]; /* 38/38 */
         HANDLE UniqueProcessId; /* 44/50 */
         PVOID Reserved3; /* 48/58 */
-        ULONG HandleCount; /* 4c/60 */
+        WINULONG HandleCount; /* 4c/60 */
         BYTE Reserved4[4]; /* 50/64 */
         PVOID Reserved5[11]; /* 54/68 */
         SIZE_T PeakPagefileUsage; /* 80/c0 */
@@ -1363,13 +1363,13 @@ typedef struct _OBJECT_ATTRIBUTES {
     } SYSTEM_PROCESS_INFORMATION, *PSYSTEM_PROCESS_INFORMATION;
 
     typedef struct _SYSTEM_REGISTRY_QUOTA_INFORMATION {
-        ULONG RegistryQuotaAllowed;
-        ULONG RegistryQuotaUsed;
+        WINULONG RegistryQuotaAllowed;
+        WINULONG RegistryQuotaUsed;
         PVOID Reserved1;
     } SYSTEM_REGISTRY_QUOTA_INFORMATION, *PSYSTEM_REGISTRY_QUOTA_INFORMATION;
 
     typedef struct _SYSTEM_TIME_ADJUSTMENT {
-        ULONG TimeAdjustment;
+        WINULONG TimeAdjustment;
         int_bool TimeAdjustmentDisabled;
     } SYSTEM_TIME_ADJUSTMENT, *PSYSTEM_TIME_ADJUSTMENT;
 
@@ -1386,16 +1386,16 @@ typedef struct _OBJECT_ATTRIBUTES {
 
     typedef struct _WINSTATIONINFORMATIONW {
         BYTE Reserved2[70];
-        ULONG LogonId;
+        WINULONG LogonId;
         BYTE Reserved3[1140];
     } WINSTATIONINFORMATIONW, *PWINSTATIONINFORMATIONW;
 
-    typedef int_bool(WINAPI * PWINSTATIONQUERYINFORMATIONW)(HANDLE, ULONG, WINSTATIONINFOCLASS, PVOID, ULONG, PULONG);
+    typedef int_bool(WINAPI * PWINSTATIONQUERYINFORMATIONW)(HANDLE, WINULONG, WINSTATIONINFOCLASS, PVOID, WINULONG, PWINULONG);
 
     typedef struct _LDR_RESOURCE_INFO {
         ULONG_PTR Type;
         ULONG_PTR Name;
-        ULONG Language;
+        WINULONG Language;
     } LDR_RESOURCE_INFO, *PLDR_RESOURCE_INFO;
 
     /* debug buffer definitions */
@@ -1404,14 +1404,14 @@ typedef struct _OBJECT_ATTRIBUTES {
         HANDLE SectionHandle;
         PVOID SectionBase;
         PVOID RemoteSectionBase;
-        ULONG SectionBaseDelta;
+        WINULONG SectionBaseDelta;
         HANDLE EventPairHandle;
-        ULONG Unknown[2];
+        WINULONG Unknown[2];
         HANDLE RemoteThreadHandle;
-        ULONG InfoClassMask;
-        ULONG SizeOfInfo;
-        ULONG AllocatedSize;
-        ULONG SectionSize;
+        WINULONG InfoClassMask;
+        WINULONG SizeOfInfo;
+        WINULONG AllocatedSize;
+        WINULONG SectionSize;
         PVOID ModuleInformation;
         PVOID BackTraceInformation;
         PVOID HeapInformation;
@@ -1427,52 +1427,52 @@ typedef struct _OBJECT_ATTRIBUTES {
 #define PDI_LOCKS                         0x20
 
     typedef struct _DEBUG_MODULE_INFORMATION {
-        ULONG Reserved[2];
-        ULONG Base;
-        ULONG Size;
-        ULONG Flags;
-        USHORT Index;
-        USHORT Unknown;
-        USHORT LoadCount;
-        USHORT ModuleNameOffset;
+        WINULONG Reserved[2];
+        WINULONG Base;
+        WINULONG Size;
+        WINULONG Flags;
+        WINUSHORT Index;
+        WINUSHORT Unknown;
+        WINUSHORT LoadCount;
+        WINUSHORT ModuleNameOffset;
         CHAR ImageName[256];
     } DEBUG_MODULE_INFORMATION, *PDEBUG_MODULE_INFORMATION;
 
     typedef struct _DEBUG_HEAP_INFORMATION {
-        ULONG Base;
-        ULONG Flags;
-        USHORT Granularity;
-        USHORT Unknown;
-        ULONG Allocated;
-        ULONG Committed;
-        ULONG TagCount;
-        ULONG BlockCount;
-        ULONG Reserved[7];
+        WINULONG Base;
+        WINULONG Flags;
+        WINUSHORT Granularity;
+        WINUSHORT Unknown;
+        WINULONG Allocated;
+        WINULONG Committed;
+        WINULONG TagCount;
+        WINULONG BlockCount;
+        WINULONG Reserved[7];
         PVOID Tags;
         PVOID Blocks;
     } DEBUG_HEAP_INFORMATION, *PDEBUG_HEAP_INFORMATION;
 
     typedef struct _DEBUG_LOCK_INFORMATION {
         PVOID Address;
-        USHORT Type;
-        USHORT CreatorBackTraceIndex;
-        ULONG OwnerThreadId;
-        ULONG ActiveCount;
-        ULONG ContentionCount;
-        ULONG EntryCount;
-        ULONG RecursionCount;
-        ULONG NumberOfSharedWaiters;
-        ULONG NumberOfExclusiveWaiters;
+        WINUSHORT Type;
+        WINUSHORT CreatorBackTraceIndex;
+        WINULONG OwnerThreadId;
+        WINULONG ActiveCount;
+        WINULONG ContentionCount;
+        WINULONG EntryCount;
+        WINULONG RecursionCount;
+        WINULONG NumberOfSharedWaiters;
+        WINULONG NumberOfExclusiveWaiters;
     } DEBUG_LOCK_INFORMATION, *PDEBUG_LOCK_INFORMATION;
 
     typedef struct _PORT_MESSAGE_HEADER {
-        USHORT DataSize;
-        USHORT MessageSize;
-        USHORT MessageType;
-        USHORT VirtualRangesOffset;
+        WINUSHORT DataSize;
+        WINUSHORT MessageSize;
+        WINUSHORT MessageType;
+        WINUSHORT VirtualRangesOffset;
         CLIENT_ID ClientId;
-        ULONG MessageId;
-        ULONG SectionSize;
+        WINULONG MessageId;
+        WINULONG SectionSize;
     } PORT_MESSAGE_HEADER, *PPORT_MESSAGE_HEADER, PORT_MESSAGE, *PPORT_MESSAGE;
 
     typedef unsigned short RTL_ATOM, *PRTL_ATOM;
@@ -1489,9 +1489,9 @@ typedef struct _OBJECT_ATTRIBUTES {
     } ATOM_INFORMATION_CLASS;
 
     typedef struct _ATOM_BASIC_INFORMATION {
-        USHORT ReferenceCount;
-        USHORT Pinned;
-        USHORT NameLength;
+        WINUSHORT ReferenceCount;
+        WINUSHORT Pinned;
+        WINUSHORT NameLength;
         WCHAR Name[1];
     } ATOM_BASIC_INFORMATION, *PATOM_BASIC_INFORMATION;
 
@@ -1502,9 +1502,9 @@ typedef struct _OBJECT_ATTRIBUTES {
 
     /* FIXME: names probably not correct */
     typedef struct _RTL_HANDLE_TABLE {
-        ULONG MaxHandleCount; /* 0x00 */
-        ULONG HandleSize; /* 0x04 */
-        ULONG Unused[2]; /* 0x08-0x0c */
+        WINULONG MaxHandleCount; /* 0x00 */
+        WINULONG HandleSize; /* 0x04 */
+        WINULONG Unused[2]; /* 0x08-0x0c */
         PVOID NextFree; /* 0x10 */
         PVOID FirstHandle; /* 0x14 */
         PVOID ReservedMemory; /* 0x18 */
@@ -1580,9 +1580,9 @@ typedef struct _OBJECT_ATTRIBUTES {
 #define FILE_PIPE_SERVER_END            0x00000001
 #define FILE_PIPE_CLIENT_END            0x00000000
 
-#define INTERNAL_TS_ACTIVE_CONSOLE_ID ( *((volatile ULONG*)(0x7ffe02d8)) )
+#define INTERNAL_TS_ACTIVE_CONSOLE_ID ( *((volatile WINULONG*)(0x7ffe02d8)) )
 
-#define LOGONID_CURRENT    ((ULONG)-1)
+#define LOGONID_CURRENT    ((WINULONG)-1)
 
 #define OBJ_INHERIT          0x00000002L
 #define OBJ_PERMANENT        0x00000010L
@@ -1695,32 +1695,32 @@ typedef struct _OBJECT_ATTRIBUTES {
 #define RTL_QUERY_REGISTRY_DELETE         0x00000040
 
     typedef NTSTATUS(WINAPI *PRTL_QUERY_REGISTRY_ROUTINE)(PCWSTR ValueName,
-            ULONG ValueType,
+            WINULONG ValueType,
             PVOID ValueData,
-            ULONG ValueLength,
+            WINULONG ValueLength,
             PVOID Context,
             PVOID EntryContext);
 
     typedef struct _RTL_QUERY_REGISTRY_TABLE {
         PRTL_QUERY_REGISTRY_ROUTINE QueryRoutine;
-        ULONG Flags;
+        WINULONG Flags;
         PWSTR Name;
         PVOID EntryContext;
-        ULONG DefaultType;
+        WINULONG DefaultType;
         PVOID DefaultData;
-        ULONG DefaultLength;
+        WINULONG DefaultLength;
     } RTL_QUERY_REGISTRY_TABLE, *PRTL_QUERY_REGISTRY_TABLE;
 
     typedef struct _KEY_MULTIPLE_VALUE_INFORMATION {
         PUNICODE_STRING ValueName;
-        ULONG DataLength;
-        ULONG DataOffset;
-        ULONG Type;
+        WINULONG DataLength;
+        WINULONG DataOffset;
+        WINULONG Type;
     } KEY_MULTIPLE_VALUE_INFORMATION, *PKEY_MULTIPLE_VALUE_INFORMATION;
 
     typedef VOID(CALLBACK *PRTL_OVERLAPPED_COMPLETION_ROUTINE)(DWORD, DWORD, LPVOID);
 
-    typedef VOID(CALLBACK *PTIMER_APC_ROUTINE) (PVOID, ULONG, LONG);
+    typedef VOID(CALLBACK *PTIMER_APC_ROUTINE) (PVOID, WINULONG, LONG);
 
     typedef enum _EVENT_TYPE {
         NotificationEvent,
@@ -1741,8 +1741,8 @@ typedef struct _OBJECT_ATTRIBUTES {
     } SEMAPHORE_INFORMATION_CLASS, *PSEMAPHORE_INFORMATION_CLASS;
 
     typedef struct _SEMAPHORE_BASIC_INFORMATION {
-        ULONG CurrentCount;
-        ULONG MaximumCount;
+        WINULONG CurrentCount;
+        WINULONG MaximumCount;
     } SEMAPHORE_BASIC_INFORMATION, *PSEMAPHORE_BASIC_INFORMATION;
 
     typedef enum _SECTION_INFORMATION_CLASS {
@@ -1751,49 +1751,49 @@ typedef struct _OBJECT_ATTRIBUTES {
     } SECTION_INFORMATION_CLASS;
 
     typedef struct _SECTION_BASIC_INFORMATION {
-        ULONG BaseAddress;
-        ULONG Attributes;
+        WINULONG BaseAddress;
+        WINULONG Attributes;
         LARGE_INTEGER Size;
     } SECTION_BASIC_INFORMATION, *PSECTION_BASIC_INFORMATION;
 
     typedef struct _SECTION_IMAGE_INFORMATION {
         PVOID EntryPoint;
-        ULONG StackZeroBits;
-        ULONG StackReserved;
-        ULONG StackCommit;
-        ULONG ImageSubsystem;
+        WINULONG StackZeroBits;
+        WINULONG StackReserved;
+        WINULONG StackCommit;
+        WINULONG ImageSubsystem;
         WORD SubsystemVersionLow;
         WORD SubsystemVersionHigh;
-        ULONG Unknown1;
-        ULONG ImageCharacteristics;
-        ULONG ImageMachineType;
-        ULONG Unknown2[3];
+        WINULONG Unknown1;
+        WINULONG ImageCharacteristics;
+        WINULONG ImageMachineType;
+        WINULONG Unknown2[3];
     } SECTION_IMAGE_INFORMATION, *PSECTION_IMAGE_INFORMATION;
 
     typedef struct _LPC_SECTION_WRITE {
-        ULONG Length;
+        WINULONG Length;
         HANDLE SectionHandle;
-        ULONG SectionOffset;
-        ULONG ViewSize;
+        WINULONG SectionOffset;
+        WINULONG ViewSize;
         PVOID ViewBase;
         PVOID TargetViewBase;
     } LPC_SECTION_WRITE, *PLPC_SECTION_WRITE;
 
     typedef struct _LPC_SECTION_READ {
-        ULONG Length;
-        ULONG ViewSize;
+        WINULONG Length;
+        WINULONG ViewSize;
         PVOID ViewBase;
     } LPC_SECTION_READ, *PLPC_SECTION_READ;
 
     typedef struct _LPC_MESSAGE {
-        USHORT DataSize;
-        USHORT MessageSize;
-        USHORT MessageType;
-        USHORT VirtualRangesOffset;
+        WINUSHORT DataSize;
+        WINUSHORT MessageSize;
+        WINUSHORT MessageType;
+        WINUSHORT VirtualRangesOffset;
         CLIENT_ID ClientId;
         ULONG_PTR MessageId;
         ULONG_PTR SectionSize;
-        UCHAR Data[ANYSIZE_ARRAY];
+        WINUCHAR Data[ANYSIZE_ARRAY];
     } LPC_MESSAGE, *PLPC_MESSAGE;
 
     typedef enum _SHUTDOWN_ACTION {
@@ -1916,15 +1916,15 @@ typedef struct _OBJECT_ATTRIBUTES {
         LIST_ENTRY InInitializationOrderModuleList;
         void* BaseAddress;
         void* EntryPoint;
-        ULONG SizeOfImage;
+        WINULONG SizeOfImage;
         UNICODE_STRING FullDllName;
         UNICODE_STRING BaseDllName;
-        ULONG Flags;
+        WINULONG Flags;
         SHORT LoadCount;
         SHORT TlsIndex;
         HANDLE SectionHandle;
-        ULONG CheckSum;
-        ULONG TimeDateStamp;
+        WINULONG CheckSum;
+        WINULONG TimeDateStamp;
         HANDLE ActivationContext;
     } LDR_MODULE, *PLDR_MODULE;
 
@@ -1947,8 +1947,8 @@ typedef struct _OBJECT_ATTRIBUTES {
         PVOID Reserved1; /* 00/00 */
         PVOID Reserved2; /* 04/08 */
         PVOID ImageBaseAddress; /* 08/10 */
-        ULONG ImageSize; /* 0c/18 */
-        ULONG Flags; /* 10/1c */
+        WINULONG ImageSize; /* 0c/18 */
+        WINULONG Flags; /* 10/1c */
         WORD Id; /* 14/20 */
         WORD Rank; /* 16/22 */
         WORD Unknown; /* 18/24 */
@@ -1957,7 +1957,7 @@ typedef struct _OBJECT_ATTRIBUTES {
     } SYSTEM_MODULE, *PSYSTEM_MODULE;
 
     typedef struct _SYSTEM_MODULE_INFORMATION {
-        ULONG ModulesCount;
+        WINULONG ModulesCount;
         SYSTEM_MODULE Modules[1]; /* FIXME: should be Modules[0] */
     } SYSTEM_MODULE_INFORMATION, *PSYSTEM_MODULE_INFORMATION;
 
@@ -1979,39 +1979,39 @@ static inline void WINAPI DbgBreakPoint(void) {
     CLASS_DECL_AURA void WINAPI DbgUserBreakPoint(void);
 #endif  /* __i386__ && __GNUC__ */
     CLASS_DECL_AURA NTSTATUS WINAPIV DbgPrint(LPCSTR fmt, ...);
-    CLASS_DECL_AURA NTSTATUS WINAPIV DbgPrintEx(ULONG iComponentId, ULONG Level, LPCSTR fmt, ...);
-    CLASS_DECL_AURA NTSTATUS WINAPI LdrAccessResource(HMODULE, const IMAGE_RESOURCE_DATA_ENTRY*, void**, PULONG);
-    CLASS_DECL_AURA NTSTATUS WINAPI LdrAddRefDll(ULONG, HMODULE);
-    CLASS_DECL_AURA NTSTATUS WINAPI LdrFindResourceDirectory_U(HMODULE, const LDR_RESOURCE_INFO*, ULONG, const IMAGE_RESOURCE_DIRECTORY**);
-    CLASS_DECL_AURA NTSTATUS WINAPI LdrFindResource_U(HMODULE, const LDR_RESOURCE_INFO*, ULONG, const IMAGE_RESOURCE_DATA_ENTRY**);
+    CLASS_DECL_AURA NTSTATUS WINAPIV DbgPrintEx(WINULONG iComponentId, WINULONG Level, LPCSTR fmt, ...);
+    CLASS_DECL_AURA NTSTATUS WINAPI LdrAccessResource(HMODULE, const IMAGE_RESOURCE_DATA_ENTRY*, void**, PWINULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI LdrAddRefDll(WINULONG, HMODULE);
+    CLASS_DECL_AURA NTSTATUS WINAPI LdrFindResourceDirectory_U(HMODULE, const LDR_RESOURCE_INFO*, WINULONG, const IMAGE_RESOURCE_DIRECTORY**);
+    CLASS_DECL_AURA NTSTATUS WINAPI LdrFindResource_U(HMODULE, const LDR_RESOURCE_INFO*, WINULONG, const IMAGE_RESOURCE_DATA_ENTRY**);
     CLASS_DECL_AURA NTSTATUS WINAPI LdrDisableThreadCalloutsForDll(HMODULE);
     CLASS_DECL_AURA NTSTATUS WINAPI LdrFindEntryForAddress(const void*, PLDR_MODULE*);
-    CLASS_DECL_AURA NTSTATUS WINAPI LdrGetDllHandle(LPCWSTR, ULONG, const UNICODE_STRING*, HMODULE*);
-    CLASS_DECL_AURA NTSTATUS WINAPI LdrGetProcedureAddress(HMODULE, const ANSI_STRING*, ULONG, void**);
+    CLASS_DECL_AURA NTSTATUS WINAPI LdrGetDllHandle(LPCWSTR, WINULONG, const UNICODE_STRING*, HMODULE*);
+    CLASS_DECL_AURA NTSTATUS WINAPI LdrGetProcedureAddress(HMODULE, const ANSI_STRING*, WINULONG, void**);
     CLASS_DECL_AURA void WINAPI LdrInitializeThunk(void*, ULONG_PTR, ULONG_PTR, ULONG_PTR);
     CLASS_DECL_AURA NTSTATUS WINAPI LdrLoadDll(LPCWSTR, DWORD, const UNICODE_STRING*, HMODULE*);
-    CLASS_DECL_AURA NTSTATUS WINAPI LdrLockLoaderLock(ULONG, ULONG*, ULONG*);
-    IMAGE_BASE_RELOCATION * WINAPI LdrProcessRelocationBlock(void*, UINT, USHORT*, INT_PTR);
-    CLASS_DECL_AURA NTSTATUS WINAPI LdrQueryImageFileExecutionOptions(const UNICODE_STRING*, LPCWSTR, ULONG, void*, ULONG, ULONG*);
-    CLASS_DECL_AURA NTSTATUS WINAPI LdrQueryProcessModuleInformation(SYSTEM_MODULE_INFORMATION*, ULONG, ULONG*);
+    CLASS_DECL_AURA NTSTATUS WINAPI LdrLockLoaderLock(WINULONG, WINULONG*, WINULONG*);
+    IMAGE_BASE_RELOCATION * WINAPI LdrProcessRelocationBlock(void*, UINT, WINUSHORT*, INT_PTR);
+    CLASS_DECL_AURA NTSTATUS WINAPI LdrQueryImageFileExecutionOptions(const UNICODE_STRING*, LPCWSTR, WINULONG, void*, WINULONG, WINULONG*);
+    CLASS_DECL_AURA NTSTATUS WINAPI LdrQueryProcessModuleInformation(SYSTEM_MODULE_INFORMATION*, WINULONG, WINULONG*);
     CLASS_DECL_AURA void WINAPI LdrShutdownProcess(void);
     CLASS_DECL_AURA void WINAPI LdrShutdownThread(void);
     CLASS_DECL_AURA NTSTATUS WINAPI LdrUnloadDll(HMODULE);
-    CLASS_DECL_AURA NTSTATUS WINAPI LdrUnlockLoaderLock(ULONG, ULONG);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtAcceptConnectPort(PHANDLE, ULONG, PLPC_MESSAGE, int_bool, PLPC_SECTION_WRITE, PLPC_SECTION_READ);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtAccessCheck(PSECURITY_DESCRIPTOR, HANDLE, ACCESS_MASK, PGENERIC_MAPPING, PPRIVILEGE_SET, PULONG, PULONG, NTSTATUS*);
+    CLASS_DECL_AURA NTSTATUS WINAPI LdrUnlockLoaderLock(WINULONG, WINULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtAcceptConnectPort(PHANDLE, WINULONG, PLPC_MESSAGE, int_bool, PLPC_SECTION_WRITE, PLPC_SECTION_READ);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtAccessCheck(PSECURITY_DESCRIPTOR, HANDLE, ACCESS_MASK, PGENERIC_MAPPING, PPRIVILEGE_SET, PWINULONG, PWINULONG, NTSTATUS*);
     CLASS_DECL_AURA NTSTATUS WINAPI NtAccessCheckAndAuditAlarm(PUNICODE_STRING, HANDLE, PUNICODE_STRING, PUNICODE_STRING, PSECURITY_DESCRIPTOR, ACCESS_MASK, PGENERIC_MAPPING, int_bool, PACCESS_MASK, PBOOLEAN, PBOOLEAN);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtAddAtom(const WCHAR*, ULONG, RTL_ATOM*);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtAdjustGroupsToken(HANDLE, int_bool, PTOKEN_GROUPS, ULONG, PTOKEN_GROUPS, PULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtAddAtom(const WCHAR*, WINULONG, RTL_ATOM*);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtAdjustGroupsToken(HANDLE, int_bool, PTOKEN_GROUPS, WINULONG, PTOKEN_GROUPS, PWINULONG);
     CLASS_DECL_AURA NTSTATUS WINAPI NtAdjustPrivilegesToken(HANDLE, int_bool, PTOKEN_PRIVILEGES, DWORD, PTOKEN_PRIVILEGES, PDWORD);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtAlertResumeThread(HANDLE, PULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtAlertResumeThread(HANDLE, PWINULONG);
     CLASS_DECL_AURA NTSTATUS WINAPI NtAlertThread(HANDLE ThreadHandle);
     CLASS_DECL_AURA NTSTATUS WINAPI NtAllocateLocallyUniqueId(PLUID lpLuid);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtAllocateUuids(PULARGE_INTEGER, PULONG, PULONG);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtAllocateVirtualMemory(HANDLE, PVOID*, ULONG, SIZE_T*, ULONG, ULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtAllocateUuids(PULARGE_INTEGER, PWINULONG, PWINULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtAllocateVirtualMemory(HANDLE, PVOID*, WINULONG, SIZE_T*, WINULONG, WINULONG);
     CLASS_DECL_AURA NTSTATUS WINAPI NtAreMappedFilesTheSame(PVOID, PVOID);
     CLASS_DECL_AURA NTSTATUS WINAPI NtAssignProcessToJobObject(HANDLE, HANDLE);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtCallbackReturn(PVOID, ULONG, NTSTATUS);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtCallbackReturn(PVOID, WINULONG, NTSTATUS);
     CLASS_DECL_AURA NTSTATUS WINAPI NtCancelIoFile(HANDLE, PIO_STATUS_BLOCK);
     CLASS_DECL_AURA NTSTATUS WINAPI NtCancelIoFileEx(HANDLE, PIO_STATUS_BLOCK, PIO_STATUS_BLOCK);
     CLASS_DECL_AURA NTSTATUS WINAPI NtCancelTimer(HANDLE, int_bool*);
@@ -2019,23 +2019,23 @@ static inline void WINAPI DbgBreakPoint(void) {
     CLASS_DECL_AURA NTSTATUS WINAPI NtClose(HANDLE);
     CLASS_DECL_AURA NTSTATUS WINAPI NtCloseObjectAuditAlarm(PUNICODE_STRING, HANDLE, int_bool);
     CLASS_DECL_AURA NTSTATUS WINAPI NtCompleteConnectPort(HANDLE);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtConnectPort(PHANDLE, PUNICODE_STRING, PSECURITY_QUALITY_OF_SERVICE, PLPC_SECTION_WRITE, PLPC_SECTION_READ, PULONG, PVOID, PULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtConnectPort(PHANDLE, PUNICODE_STRING, PSECURITY_QUALITY_OF_SERVICE, PLPC_SECTION_WRITE, PLPC_SECTION_READ, PWINULONG, PVOID, PWINULONG);
     CLASS_DECL_AURA NTSTATUS WINAPI NtContinue(PCONTEXT, int_bool);
     CLASS_DECL_AURA NTSTATUS WINAPI NtCreateDirectoryObject(PHANDLE, ACCESS_MASK, POBJECT_ATTRIBUTES);
     CLASS_DECL_AURA NTSTATUS WINAPI NtCreateEvent(PHANDLE, ACCESS_MASK, const OBJECT_ATTRIBUTES *, EVENT_TYPE, int_bool);
     CLASS_DECL_AURA NTSTATUS WINAPI NtCreateEventPair(PHANDLE, ACCESS_MASK, POBJECT_ATTRIBUTES);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtCreateFile(PHANDLE, ACCESS_MASK, POBJECT_ATTRIBUTES, PIO_STATUS_BLOCK, PLARGE_INTEGER, ULONG, ULONG, ULONG, ULONG, PVOID, ULONG);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtCreateIoCompletion(PHANDLE, ACCESS_MASK, POBJECT_ATTRIBUTES, ULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtCreateFile(PHANDLE, ACCESS_MASK, POBJECT_ATTRIBUTES, PIO_STATUS_BLOCK, PLARGE_INTEGER, WINULONG, WINULONG, WINULONG, WINULONG, PVOID, WINULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtCreateIoCompletion(PHANDLE, ACCESS_MASK, POBJECT_ATTRIBUTES, WINULONG);
     CLASS_DECL_AURA NTSTATUS WINAPI NtCreateJobObject(PHANDLE, ACCESS_MASK, const OBJECT_ATTRIBUTES*);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtCreateKey(PHANDLE, ACCESS_MASK, const OBJECT_ATTRIBUTES*, ULONG, const UNICODE_STRING*, ULONG, PULONG);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtCreateMailslotFile(PHANDLE, ACCESS_MASK, POBJECT_ATTRIBUTES, PIO_STATUS_BLOCK, ULONG, ULONG, ULONG, PLARGE_INTEGER);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtCreateKey(PHANDLE, ACCESS_MASK, const OBJECT_ATTRIBUTES*, WINULONG, const UNICODE_STRING*, WINULONG, PWINULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtCreateMailslotFile(PHANDLE, ACCESS_MASK, POBJECT_ATTRIBUTES, PIO_STATUS_BLOCK, WINULONG, WINULONG, WINULONG, PLARGE_INTEGER);
     CLASS_DECL_AURA NTSTATUS WINAPI NtCreateMutant(HANDLE*, ACCESS_MASK, const OBJECT_ATTRIBUTES*, int_bool);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtCreateNamedPipeFile(PHANDLE, ULONG, POBJECT_ATTRIBUTES, PIO_STATUS_BLOCK, ULONG, ULONG, ULONG, ULONG, ULONG, ULONG, ULONG, ULONG, ULONG, PLARGE_INTEGER);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtCreateNamedPipeFile(PHANDLE, WINULONG, POBJECT_ATTRIBUTES, PIO_STATUS_BLOCK, WINULONG, WINULONG, WINULONG, WINULONG, WINULONG, WINULONG, WINULONG, WINULONG, WINULONG, PLARGE_INTEGER);
     CLASS_DECL_AURA NTSTATUS WINAPI NtCreatePagingFile(PUNICODE_STRING, PLARGE_INTEGER, PLARGE_INTEGER, PLARGE_INTEGER);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtCreatePort(PHANDLE, POBJECT_ATTRIBUTES, ULONG, ULONG, PULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtCreatePort(PHANDLE, POBJECT_ATTRIBUTES, WINULONG, WINULONG, PWINULONG);
     CLASS_DECL_AURA NTSTATUS WINAPI NtCreateProcess(PHANDLE, ACCESS_MASK, POBJECT_ATTRIBUTES, HANDLE, int_bool, HANDLE, HANDLE, HANDLE);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtCreateProfile(PHANDLE, HANDLE, PVOID, ULONG, ULONG, PVOID, ULONG, KPROFILE_SOURCE, KAFFINITY);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtCreateSection(HANDLE*, ACCESS_MASK, const OBJECT_ATTRIBUTES*, const LARGE_INTEGER*, ULONG, ULONG, HANDLE);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtCreateProfile(PHANDLE, HANDLE, PVOID, WINULONG, WINULONG, PVOID, WINULONG, KPROFILE_SOURCE, KAFFINITY);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtCreateSection(HANDLE*, ACCESS_MASK, const OBJECT_ATTRIBUTES*, const LARGE_INTEGER*, WINULONG, WINULONG, HANDLE);
     CLASS_DECL_AURA NTSTATUS WINAPI NtCreateSemaphore(PHANDLE, ACCESS_MASK, const OBJECT_ATTRIBUTES*, LONG, LONG);
     CLASS_DECL_AURA NTSTATUS WINAPI NtCreateSymbolicLinkObject(PHANDLE, ACCESS_MASK, POBJECT_ATTRIBUTES, PUNICODE_STRING);
     CLASS_DECL_AURA NTSTATUS WINAPI NtCreateThread(PHANDLE, ACCESS_MASK, POBJECT_ATTRIBUTES, HANDLE, PCLIENT_ID, PCONTEXT, PINITIAL_TEB, int_bool);
@@ -2046,44 +2046,44 @@ static inline void WINAPI DbgBreakPoint(void) {
     CLASS_DECL_AURA NTSTATUS WINAPI NtDeleteFile(POBJECT_ATTRIBUTES);
     CLASS_DECL_AURA NTSTATUS WINAPI NtDeleteKey(HANDLE);
     CLASS_DECL_AURA NTSTATUS WINAPI NtDeleteValueKey(HANDLE, const UNICODE_STRING *);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtDeviceIoControlFile(HANDLE, HANDLE, PIO_APC_ROUTINE, PVOID, PIO_STATUS_BLOCK, ULONG, PVOID, ULONG, PVOID, ULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtDeviceIoControlFile(HANDLE, HANDLE, PIO_APC_ROUTINE, PVOID, PIO_STATUS_BLOCK, WINULONG, PVOID, WINULONG, PVOID, WINULONG);
     CLASS_DECL_AURA NTSTATUS WINAPI NtDisplayString(PUNICODE_STRING);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtDuplicateObject(HANDLE, HANDLE, HANDLE, PHANDLE, ACCESS_MASK, ULONG, ULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtDuplicateObject(HANDLE, HANDLE, HANDLE, PHANDLE, ACCESS_MASK, WINULONG, WINULONG);
     CLASS_DECL_AURA NTSTATUS WINAPI NtDuplicateToken(HANDLE, ACCESS_MASK, POBJECT_ATTRIBUTES, SECURITY_IMPERSONATION_LEVEL, TOKEN_TYPE, PHANDLE);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtEnumerateKey(HANDLE, ULONG, KEY_INFORMATION_CLASS, void *, DWORD, DWORD *);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtEnumerateValueKey(HANDLE, ULONG, KEY_VALUE_INFORMATION_CLASS, PVOID, ULONG, PULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtEnumerateKey(HANDLE, WINULONG, KEY_INFORMATION_CLASS, void *, DWORD, DWORD *);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtEnumerateValueKey(HANDLE, WINULONG, KEY_VALUE_INFORMATION_CLASS, PVOID, WINULONG, PWINULONG);
     CLASS_DECL_AURA NTSTATUS WINAPI NtExtendSection(HANDLE, PLARGE_INTEGER);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtFindAtom(const WCHAR*, ULONG, RTL_ATOM*);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtFindAtom(const WCHAR*, WINULONG, RTL_ATOM*);
     CLASS_DECL_AURA NTSTATUS WINAPI NtFlushBuffersFile(HANDLE, IO_STATUS_BLOCK*);
     CLASS_DECL_AURA NTSTATUS WINAPI NtFlushInstructionCache(HANDLE, LPCVOID, SIZE_T);
     CLASS_DECL_AURA NTSTATUS WINAPI NtFlushKey(HANDLE);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtFlushVirtualMemory(HANDLE, LPCVOID*, SIZE_T*, ULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtFlushVirtualMemory(HANDLE, LPCVOID*, SIZE_T*, WINULONG);
     CLASS_DECL_AURA NTSTATUS WINAPI NtFlushWriteBuffer(VOID);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtFreeVirtualMemory(HANDLE, PVOID*, SIZE_T*, ULONG);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtFsControlFile(HANDLE, HANDLE, PIO_APC_ROUTINE, PVOID, PIO_STATUS_BLOCK, ULONG, PVOID, ULONG, PVOID, ULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtFreeVirtualMemory(HANDLE, PVOID*, SIZE_T*, WINULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtFsControlFile(HANDLE, HANDLE, PIO_APC_ROUTINE, PVOID, PIO_STATUS_BLOCK, WINULONG, PVOID, WINULONG, PVOID, WINULONG);
     CLASS_DECL_AURA NTSTATUS WINAPI NtGetContextThread(HANDLE, CONTEXT*);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtGetPlugPlayEvent(ULONG, ULONG, PVOID, ULONG);
-    CLASS_DECL_AURA ULONG WINAPI NtGetTickCount(VOID);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtGetWriteWatch(HANDLE, ULONG, PVOID, SIZE_T, PVOID*, ULONG_PTR*, ULONG*);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtGetPlugPlayEvent(WINULONG, WINULONG, PVOID, WINULONG);
+    CLASS_DECL_AURA WINULONG WINAPI NtGetTickCount(VOID);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtGetWriteWatch(HANDLE, WINULONG, PVOID, SIZE_T, PVOID*, ULONG_PTR*, WINULONG*);
     CLASS_DECL_AURA NTSTATUS WINAPI NtImpersonateAnonymousToken(HANDLE);
     CLASS_DECL_AURA NTSTATUS WINAPI NtImpersonateClientOfPort(HANDLE, PPORT_MESSAGE);
     CLASS_DECL_AURA NTSTATUS WINAPI NtImpersonateThread(HANDLE, HANDLE, PSECURITY_QUALITY_OF_SERVICE);
     CLASS_DECL_AURA NTSTATUS WINAPI NtInitializeRegistry(int_bool);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtInitiatePowerAction(POWER_ACTION, SYSTEM_POWER_STATE, ULONG, int_bool);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtInitiatePowerAction(POWER_ACTION, SYSTEM_POWER_STATE, WINULONG, int_bool);
     CLASS_DECL_AURA NTSTATUS WINAPI NtIsProcessInJob(HANDLE, HANDLE);
     CLASS_DECL_AURA NTSTATUS WINAPI NtListenPort(HANDLE, PLPC_MESSAGE);
     CLASS_DECL_AURA NTSTATUS WINAPI NtLoadDriver(const UNICODE_STRING *);
     CLASS_DECL_AURA NTSTATUS WINAPI NtLoadKey(const OBJECT_ATTRIBUTES *, OBJECT_ATTRIBUTES *);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtLockFile(HANDLE, HANDLE, PIO_APC_ROUTINE, void*, PIO_STATUS_BLOCK, PLARGE_INTEGER, PLARGE_INTEGER, ULONG*, int_bool, int_bool);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtLockVirtualMemory(HANDLE, PVOID*, SIZE_T*, ULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtLockFile(HANDLE, HANDLE, PIO_APC_ROUTINE, void*, PIO_STATUS_BLOCK, PLARGE_INTEGER, PLARGE_INTEGER, WINULONG*, int_bool, int_bool);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtLockVirtualMemory(HANDLE, PVOID*, SIZE_T*, WINULONG);
     CLASS_DECL_AURA NTSTATUS WINAPI NtMakeTemporaryObject(HANDLE);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtMapViewOfSection(HANDLE, HANDLE, PVOID*, ULONG, SIZE_T, const LARGE_INTEGER*, SIZE_T*, SECTION_INHERIT, ULONG, ULONG);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtNotifyChangeDirectoryFile(HANDLE, HANDLE, PIO_APC_ROUTINE, PVOID, PIO_STATUS_BLOCK, PVOID, ULONG, ULONG, int_bool);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtNotifyChangeKey(HANDLE, HANDLE, PIO_APC_ROUTINE, PVOID, PIO_STATUS_BLOCK, ULONG, int_bool, PVOID, ULONG, int_bool);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtMapViewOfSection(HANDLE, HANDLE, PVOID*, WINULONG, SIZE_T, const LARGE_INTEGER*, SIZE_T*, SECTION_INHERIT, WINULONG, WINULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtNotifyChangeDirectoryFile(HANDLE, HANDLE, PIO_APC_ROUTINE, PVOID, PIO_STATUS_BLOCK, PVOID, WINULONG, WINULONG, int_bool);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtNotifyChangeKey(HANDLE, HANDLE, PIO_APC_ROUTINE, PVOID, PIO_STATUS_BLOCK, WINULONG, int_bool, PVOID, WINULONG, int_bool);
     CLASS_DECL_AURA NTSTATUS WINAPI NtOpenDirectoryObject(PHANDLE, ACCESS_MASK, POBJECT_ATTRIBUTES);
     CLASS_DECL_AURA NTSTATUS WINAPI NtOpenEvent(PHANDLE, ACCESS_MASK, const OBJECT_ATTRIBUTES *);
     CLASS_DECL_AURA NTSTATUS WINAPI NtOpenEventPair(PHANDLE, ACCESS_MASK, POBJECT_ATTRIBUTES);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtOpenFile(PHANDLE, ACCESS_MASK, POBJECT_ATTRIBUTES, PIO_STATUS_BLOCK, ULONG, ULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtOpenFile(PHANDLE, ACCESS_MASK, POBJECT_ATTRIBUTES, PIO_STATUS_BLOCK, WINULONG, WINULONG);
     CLASS_DECL_AURA NTSTATUS WINAPI NtOpenIoCompletion(PHANDLE, ACCESS_MASK, POBJECT_ATTRIBUTES);
     CLASS_DECL_AURA NTSTATUS WINAPI NtOpenJobObject(PHANDLE, ACCESS_MASK, const OBJECT_ATTRIBUTES*);
     CLASS_DECL_AURA NTSTATUS WINAPI NtOpenKey(PHANDLE, ACCESS_MASK, const OBJECT_ATTRIBUTES *);
@@ -2099,109 +2099,109 @@ static inline void WINAPI DbgBreakPoint(void) {
     CLASS_DECL_AURA NTSTATUS WINAPI NtOpenThreadToken(HANDLE, DWORD, int_bool, HANDLE *);
     CLASS_DECL_AURA NTSTATUS WINAPI NtOpenThreadTokenEx(HANDLE, DWORD, int_bool, DWORD, HANDLE *);
     CLASS_DECL_AURA NTSTATUS WINAPI NtOpenTimer(HANDLE*, ACCESS_MASK, const OBJECT_ATTRIBUTES*);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtPowerInformation(POWER_INFORMATION_LEVEL, PVOID, ULONG, PVOID, ULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtPowerInformation(POWER_INFORMATION_LEVEL, PVOID, WINULONG, PVOID, WINULONG);
     CLASS_DECL_AURA NTSTATUS WINAPI NtPrivilegeCheck(HANDLE, PPRIVILEGE_SET, PBOOLEAN);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtPrivilegeObjectAuditAlarm(PUNICODE_STRING, HANDLE, HANDLE, ULONG, PPRIVILEGE_SET, int_bool);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtPrivilegeObjectAuditAlarm(PUNICODE_STRING, HANDLE, HANDLE, WINULONG, PPRIVILEGE_SET, int_bool);
     CLASS_DECL_AURA NTSTATUS WINAPI NtPrivilegedServiceAuditAlarm(PUNICODE_STRING, PUNICODE_STRING, HANDLE, PPRIVILEGE_SET, int_bool);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtProtectVirtualMemory(HANDLE, PVOID*, SIZE_T*, ULONG, ULONG*);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtPulseEvent(HANDLE, PULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtProtectVirtualMemory(HANDLE, PVOID*, SIZE_T*, WINULONG, WINULONG*);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtPulseEvent(HANDLE, PWINULONG);
     CLASS_DECL_AURA NTSTATUS WINAPI NtQueueApcThread(HANDLE, PNTAPCFUNC, ULONG_PTR, ULONG_PTR, ULONG_PTR);
     CLASS_DECL_AURA NTSTATUS WINAPI NtQueryAttributesFile(const OBJECT_ATTRIBUTES*, FILE_BASIC_INFORMATION*);
     CLASS_DECL_AURA NTSTATUS WINAPI NtQueryDefaultLocale(int_bool, LCID*);
     CLASS_DECL_AURA NTSTATUS WINAPI NtQueryDefaultUILanguage(LANGID*);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtQueryDirectoryFile(HANDLE, HANDLE, PIO_APC_ROUTINE, PVOID, PIO_STATUS_BLOCK, PVOID, ULONG, FILE_INFORMATION_CLASS, int_bool, PUNICODE_STRING, int_bool);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtQueryDirectoryObject(HANDLE, PDIRECTORY_BASIC_INFORMATION, ULONG, int_bool, int_bool, PULONG, PULONG);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtQueryEaFile(HANDLE, PIO_STATUS_BLOCK, PVOID, ULONG, int_bool, PVOID, ULONG, PULONG, int_bool);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtQueryEvent(HANDLE, EVENT_INFORMATION_CLASS, PVOID, ULONG, PULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtQueryDirectoryFile(HANDLE, HANDLE, PIO_APC_ROUTINE, PVOID, PIO_STATUS_BLOCK, PVOID, WINULONG, FILE_INFORMATION_CLASS, int_bool, PUNICODE_STRING, int_bool);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtQueryDirectoryObject(HANDLE, PDIRECTORY_BASIC_INFORMATION, WINULONG, int_bool, int_bool, PWINULONG, PWINULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtQueryEaFile(HANDLE, PIO_STATUS_BLOCK, PVOID, WINULONG, int_bool, PVOID, WINULONG, PWINULONG, int_bool);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtQueryEvent(HANDLE, EVENT_INFORMATION_CLASS, PVOID, WINULONG, PWINULONG);
     CLASS_DECL_AURA NTSTATUS WINAPI NtQueryFullAttributesFile(const OBJECT_ATTRIBUTES*, FILE_NETWORK_OPEN_INFORMATION*);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtQueryInformationAtom(RTL_ATOM, ATOM_INFORMATION_CLASS, PVOID, ULONG, ULONG*);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtQueryInformationAtom(RTL_ATOM, ATOM_INFORMATION_CLASS, PVOID, WINULONG, WINULONG*);
     CLASS_DECL_AURA NTSTATUS WINAPI NtQueryInformationFile(HANDLE, PIO_STATUS_BLOCK, PVOID, LONG, FILE_INFORMATION_CLASS);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtQueryInformationJobObject(HANDLE, JOBOBJECTINFOCLASS, PVOID, ULONG, PULONG);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtQueryInformationPort(HANDLE, PORT_INFORMATION_CLASS, PVOID, ULONG, PULONG);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtQueryInformationProcess(HANDLE, PROCESSINFOCLASS, PVOID, ULONG, PULONG);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtQueryInformationThread(HANDLE, THREADINFOCLASS, PVOID, ULONG, PULONG);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtQueryInformationToken(HANDLE, TOKEN_INFORMATION_CLASS, PVOID, ULONG, PULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtQueryInformationJobObject(HANDLE, JOBOBJECTINFOCLASS, PVOID, WINULONG, PWINULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtQueryInformationPort(HANDLE, PORT_INFORMATION_CLASS, PVOID, WINULONG, PWINULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtQueryInformationProcess(HANDLE, PROCESSINFOCLASS, PVOID, WINULONG, PWINULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtQueryInformationThread(HANDLE, THREADINFOCLASS, PVOID, WINULONG, PWINULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtQueryInformationToken(HANDLE, TOKEN_INFORMATION_CLASS, PVOID, WINULONG, PWINULONG);
     CLASS_DECL_AURA NTSTATUS WINAPI NtQueryInstallUILanguage(LANGID*);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtQueryIntervalProfile(KPROFILE_SOURCE, PULONG);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtQueryIoCompletion(HANDLE, IO_COMPLETION_INFORMATION_CLASS, PVOID, ULONG, PULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtQueryIntervalProfile(KPROFILE_SOURCE, PWINULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtQueryIoCompletion(HANDLE, IO_COMPLETION_INFORMATION_CLASS, PVOID, WINULONG, PWINULONG);
     CLASS_DECL_AURA NTSTATUS WINAPI NtQueryKey(HANDLE, KEY_INFORMATION_CLASS, void *, DWORD, DWORD *);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtQueryMultipleValueKey(HANDLE, PKEY_MULTIPLE_VALUE_INFORMATION, ULONG, PVOID, ULONG, PULONG);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtQueryMutant(HANDLE, MUTANT_INFORMATION_CLASS, PVOID, ULONG, PULONG);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtQueryObject(HANDLE, OBJECT_INFORMATION_CLASS, PVOID, ULONG, PULONG);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtQueryOpenSubKeys(POBJECT_ATTRIBUTES, PULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtQueryMultipleValueKey(HANDLE, PKEY_MULTIPLE_VALUE_INFORMATION, WINULONG, PVOID, WINULONG, PWINULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtQueryMutant(HANDLE, MUTANT_INFORMATION_CLASS, PVOID, WINULONG, PWINULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtQueryObject(HANDLE, OBJECT_INFORMATION_CLASS, PVOID, WINULONG, PWINULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtQueryOpenSubKeys(POBJECT_ATTRIBUTES, PWINULONG);
     CLASS_DECL_AURA NTSTATUS WINAPI NtQueryPerformanceCounter(PLARGE_INTEGER, PLARGE_INTEGER);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtQuerySecurityObject(HANDLE, SECURITY_INFORMATION, PSECURITY_DESCRIPTOR, ULONG, PULONG);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtQuerySection(HANDLE, SECTION_INFORMATION_CLASS, PVOID, ULONG, PULONG);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtQuerySemaphore(HANDLE, SEMAPHORE_INFORMATION_CLASS, PVOID, ULONG, PULONG);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtQuerySymbolicLinkObject(HANDLE, PUNICODE_STRING, PULONG);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtQuerySystemEnvironmentValue(PUNICODE_STRING, PWCHAR, ULONG, PULONG);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtQuerySystemInformation(SYSTEM_INFORMATION_CLASS, PVOID, ULONG, PULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtQuerySecurityObject(HANDLE, SECURITY_INFORMATION, PSECURITY_DESCRIPTOR, WINULONG, PWINULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtQuerySection(HANDLE, SECTION_INFORMATION_CLASS, PVOID, WINULONG, PWINULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtQuerySemaphore(HANDLE, SEMAPHORE_INFORMATION_CLASS, PVOID, WINULONG, PWINULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtQuerySymbolicLinkObject(HANDLE, PUNICODE_STRING, PWINULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtQuerySystemEnvironmentValue(PUNICODE_STRING, PWCHAR, WINULONG, PWINULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtQuerySystemInformation(SYSTEM_INFORMATION_CLASS, PVOID, WINULONG, PWINULONG);
     CLASS_DECL_AURA NTSTATUS WINAPI NtQuerySystemTime(PLARGE_INTEGER);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtQueryTimer(HANDLE, TIMER_INFORMATION_CLASS, PVOID, ULONG, PULONG);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtQueryTimerResolution(PULONG, PULONG, PULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtQueryTimer(HANDLE, TIMER_INFORMATION_CLASS, PVOID, WINULONG, PWINULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtQueryTimerResolution(PWINULONG, PWINULONG, PWINULONG);
     CLASS_DECL_AURA NTSTATUS WINAPI NtQueryValueKey(HANDLE, const UNICODE_STRING *, KEY_VALUE_INFORMATION_CLASS, void *, DWORD, DWORD *);
     CLASS_DECL_AURA NTSTATUS WINAPI NtQueryVirtualMemory(HANDLE, LPCVOID, MEMORY_INFORMATION_CLASS, PVOID, SIZE_T, SIZE_T*);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtQueryVolumeInformationFile(HANDLE, PIO_STATUS_BLOCK, PVOID, ULONG, FS_INFORMATION_CLASS);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtQueryVolumeInformationFile(HANDLE, PIO_STATUS_BLOCK, PVOID, WINULONG, FS_INFORMATION_CLASS);
     CLASS_DECL_AURA NTSTATUS WINAPI NtRaiseException(PEXCEPTION_RECORD, PCONTEXT, int_bool);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtRaiseHardError(NTSTATUS, ULONG, PUNICODE_STRING, PVOID*, HARDERROR_RESPONSE_OPTION, PHARDERROR_RESPONSE);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtReadFile(HANDLE, HANDLE, PIO_APC_ROUTINE, PVOID, PIO_STATUS_BLOCK, PVOID, ULONG, PLARGE_INTEGER, PULONG);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtReadFileScatter(HANDLE, HANDLE, PIO_APC_ROUTINE, PVOID, PIO_STATUS_BLOCK, FILE_SEGMENT_ELEMENT*, ULONG, PLARGE_INTEGER, PULONG);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtReadRequestData(HANDLE, PLPC_MESSAGE, ULONG, PVOID, ULONG, PULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtRaiseHardError(NTSTATUS, WINULONG, PUNICODE_STRING, PVOID*, HARDERROR_RESPONSE_OPTION, PHARDERROR_RESPONSE);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtReadFile(HANDLE, HANDLE, PIO_APC_ROUTINE, PVOID, PIO_STATUS_BLOCK, PVOID, WINULONG, PLARGE_INTEGER, PWINULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtReadFileScatter(HANDLE, HANDLE, PIO_APC_ROUTINE, PVOID, PIO_STATUS_BLOCK, FILE_SEGMENT_ELEMENT*, WINULONG, PLARGE_INTEGER, PWINULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtReadRequestData(HANDLE, PLPC_MESSAGE, WINULONG, PVOID, WINULONG, PWINULONG);
     CLASS_DECL_AURA NTSTATUS WINAPI NtReadVirtualMemory(HANDLE, const void*, void*, SIZE_T, SIZE_T*);
     CLASS_DECL_AURA NTSTATUS WINAPI NtRegisterThreadTerminatePort(HANDLE);
     CLASS_DECL_AURA NTSTATUS WINAPI NtReleaseMutant(HANDLE, PLONG);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtReleaseSemaphore(HANDLE, ULONG, PULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtReleaseSemaphore(HANDLE, WINULONG, PWINULONG);
     CLASS_DECL_AURA NTSTATUS WINAPI NtRemoveIoCompletion(HANDLE, PULONG_PTR, PULONG_PTR, PIO_STATUS_BLOCK, PLARGE_INTEGER);
     CLASS_DECL_AURA NTSTATUS WINAPI NtReplaceKey(POBJECT_ATTRIBUTES, HANDLE, POBJECT_ATTRIBUTES);
     CLASS_DECL_AURA NTSTATUS WINAPI NtReplyPort(HANDLE, PLPC_MESSAGE);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtReplyWaitReceivePort(HANDLE, PULONG, PLPC_MESSAGE, PLPC_MESSAGE);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtReplyWaitReceivePort(HANDLE, PWINULONG, PLPC_MESSAGE, PLPC_MESSAGE);
     CLASS_DECL_AURA NTSTATUS WINAPI NtReplyWaitReceivePortEx(HANDLE, PVOID*, PPORT_MESSAGE, PPORT_MESSAGE, PLARGE_INTEGER);
     CLASS_DECL_AURA NTSTATUS WINAPI NtReplyWaitReplyPort(HANDLE, PLPC_MESSAGE);
     CLASS_DECL_AURA NTSTATUS WINAPI NtRequestPort(HANDLE, PLPC_MESSAGE);
     CLASS_DECL_AURA NTSTATUS WINAPI NtRequestWaitReplyPort(HANDLE, PLPC_MESSAGE, PLPC_MESSAGE);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtResetEvent(HANDLE, PULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtResetEvent(HANDLE, PWINULONG);
     CLASS_DECL_AURA NTSTATUS WINAPI NtResetWriteWatch(HANDLE, PVOID, SIZE_T);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtRestoreKey(HANDLE, HANDLE, ULONG);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtResumeThread(HANDLE, PULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtRestoreKey(HANDLE, HANDLE, WINULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtResumeThread(HANDLE, PWINULONG);
     CLASS_DECL_AURA NTSTATUS WINAPI NtSaveKey(HANDLE, HANDLE);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtSecureConnectPort(PHANDLE, PUNICODE_STRING, PSECURITY_QUALITY_OF_SERVICE, PLPC_SECTION_WRITE, PSID, PLPC_SECTION_READ, PULONG, PVOID, PULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtSecureConnectPort(PHANDLE, PUNICODE_STRING, PSECURITY_QUALITY_OF_SERVICE, PLPC_SECTION_WRITE, PSID, PLPC_SECTION_READ, PWINULONG, PVOID, PWINULONG);
     CLASS_DECL_AURA NTSTATUS WINAPI NtSetContextThread(HANDLE, const CONTEXT*);
     CLASS_DECL_AURA NTSTATUS WINAPI NtSetDefaultHardErrorPort(HANDLE);
     CLASS_DECL_AURA NTSTATUS WINAPI NtSetDefaultLocale(int_bool, LCID);
     CLASS_DECL_AURA NTSTATUS WINAPI NtSetDefaultUILanguage(LANGID);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtSetEaFile(HANDLE, PIO_STATUS_BLOCK, PVOID, ULONG);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtSetEvent(HANDLE, PULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtSetEaFile(HANDLE, PIO_STATUS_BLOCK, PVOID, WINULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtSetEvent(HANDLE, PWINULONG);
     CLASS_DECL_AURA NTSTATUS WINAPI NtSetHighEventPair(HANDLE);
     CLASS_DECL_AURA NTSTATUS WINAPI NtSetHighWaitLowEventPair(HANDLE);
     CLASS_DECL_AURA NTSTATUS WINAPI NtSetHighWaitLowThread(VOID);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtSetInformationFile(HANDLE, PIO_STATUS_BLOCK, PVOID, ULONG, FILE_INFORMATION_CLASS);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtSetInformationJobObject(HANDLE, JOBOBJECTINFOCLASS, PVOID, ULONG);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtSetInformationKey(HANDLE, const int32_t, PVOID, ULONG);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtSetInformationObject(HANDLE, OBJECT_INFORMATION_CLASS, PVOID, ULONG);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtSetInformationProcess(HANDLE, PROCESS_INFORMATION_CLASS, PVOID, ULONG);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtSetInformationThread(HANDLE, THREADINFOCLASS, LPCVOID, ULONG);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtSetInformationToken(HANDLE, TOKEN_INFORMATION_CLASS, PVOID, ULONG);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtSetIntervalProfile(ULONG, KPROFILE_SOURCE);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtSetIoCompletion(HANDLE, ULONG_PTR, ULONG_PTR, NTSTATUS, ULONG);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtSetLdtEntries(ULONG, LDT_ENTRY, ULONG, LDT_ENTRY);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtSetInformationFile(HANDLE, PIO_STATUS_BLOCK, PVOID, WINULONG, FILE_INFORMATION_CLASS);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtSetInformationJobObject(HANDLE, JOBOBJECTINFOCLASS, PVOID, WINULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtSetInformationKey(HANDLE, const int32_t, PVOID, WINULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtSetInformationObject(HANDLE, OBJECT_INFORMATION_CLASS, PVOID, WINULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtSetInformationProcess(HANDLE, PROCESS_INFORMATION_CLASS, PVOID, WINULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtSetInformationThread(HANDLE, THREADINFOCLASS, LPCVOID, WINULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtSetInformationToken(HANDLE, TOKEN_INFORMATION_CLASS, PVOID, WINULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtSetIntervalProfile(WINULONG, KPROFILE_SOURCE);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtSetIoCompletion(HANDLE, ULONG_PTR, ULONG_PTR, NTSTATUS, WINULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtSetLdtEntries(WINULONG, LDT_ENTRY, WINULONG, LDT_ENTRY);
     CLASS_DECL_AURA NTSTATUS WINAPI NtSetLowEventPair(HANDLE);
     CLASS_DECL_AURA NTSTATUS WINAPI NtSetLowWaitHighEventPair(HANDLE);
     CLASS_DECL_AURA NTSTATUS WINAPI NtSetLowWaitHighThread(VOID);
     CLASS_DECL_AURA NTSTATUS WINAPI NtSetSecurityObject(HANDLE, SECURITY_INFORMATION, PSECURITY_DESCRIPTOR);
     CLASS_DECL_AURA NTSTATUS WINAPI NtSetSystemEnvironmentValue(PUNICODE_STRING, PUNICODE_STRING);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtSetSystemInformation(SYSTEM_INFORMATION_CLASS, PVOID, ULONG);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtSetSystemPowerState(POWER_ACTION, SYSTEM_POWER_STATE, ULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtSetSystemInformation(SYSTEM_INFORMATION_CLASS, PVOID, WINULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtSetSystemPowerState(POWER_ACTION, SYSTEM_POWER_STATE, WINULONG);
     CLASS_DECL_AURA NTSTATUS WINAPI NtSetSystemTime(const LARGE_INTEGER*, LARGE_INTEGER*);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtSetTimer(HANDLE, const LARGE_INTEGER*, PTIMER_APC_ROUTINE, PVOID, int_bool, ULONG, int_bool*);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtSetTimerResolution(ULONG, int_bool, PULONG);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtSetValueKey(HANDLE, const UNICODE_STRING *, ULONG, ULONG, const void *, ULONG);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtSetVolumeInformationFile(HANDLE, PIO_STATUS_BLOCK, PVOID, ULONG, FS_INFORMATION_CLASS);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtSetTimer(HANDLE, const LARGE_INTEGER*, PTIMER_APC_ROUTINE, PVOID, int_bool, WINULONG, int_bool*);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtSetTimerResolution(WINULONG, int_bool, PWINULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtSetValueKey(HANDLE, const UNICODE_STRING *, WINULONG, WINULONG, const void *, WINULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtSetVolumeInformationFile(HANDLE, PIO_STATUS_BLOCK, PVOID, WINULONG, FS_INFORMATION_CLASS);
     CLASS_DECL_AURA NTSTATUS WINAPI NtSignalAndWaitForSingleObject(HANDLE, HANDLE, int_bool, const LARGE_INTEGER*);
     CLASS_DECL_AURA NTSTATUS WINAPI NtShutdownSystem(SHUTDOWN_ACTION);
     CLASS_DECL_AURA NTSTATUS WINAPI NtStartProfile(HANDLE);
     CLASS_DECL_AURA NTSTATUS WINAPI NtStopProfile(HANDLE);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtSuspendThread(HANDLE, PULONG);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtSystemDebugControl(SYSDBG_COMMAND, PVOID, ULONG, PVOID, ULONG, PULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtSuspendThread(HANDLE, PWINULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtSystemDebugControl(SYSDBG_COMMAND, PVOID, WINULONG, PVOID, WINULONG, PWINULONG);
     CLASS_DECL_AURA NTSTATUS WINAPI NtTerminateJobObject(HANDLE, NTSTATUS);
     CLASS_DECL_AURA NTSTATUS WINAPI NtTerminateProcess(HANDLE, LONG);
     CLASS_DECL_AURA NTSTATUS WINAPI NtTerminateThread(HANDLE, LONG);
@@ -2209,17 +2209,17 @@ static inline void WINAPI DbgBreakPoint(void) {
     CLASS_DECL_AURA NTSTATUS WINAPI NtUnloadDriver(const UNICODE_STRING *);
     CLASS_DECL_AURA NTSTATUS WINAPI NtUnloadKey(POBJECT_ATTRIBUTES);
     CLASS_DECL_AURA NTSTATUS WINAPI NtUnloadKeyEx(POBJECT_ATTRIBUTES, HANDLE);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtUnlockFile(HANDLE, PIO_STATUS_BLOCK, PLARGE_INTEGER, PLARGE_INTEGER, PULONG);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtUnlockVirtualMemory(HANDLE, PVOID*, SIZE_T*, ULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtUnlockFile(HANDLE, PIO_STATUS_BLOCK, PLARGE_INTEGER, PLARGE_INTEGER, PWINULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtUnlockVirtualMemory(HANDLE, PVOID*, SIZE_T*, WINULONG);
     CLASS_DECL_AURA NTSTATUS WINAPI NtUnmapViewOfSection(HANDLE, PVOID);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtVdmControl(ULONG, PVOID);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtVdmControl(WINULONG, PVOID);
     CLASS_DECL_AURA NTSTATUS WINAPI NtWaitForSingleObject(HANDLE, int_bool, const LARGE_INTEGER*);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtWaitForMultipleObjects(ULONG, const HANDLE*, int_bool, int_bool, const LARGE_INTEGER*);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtWaitForMultipleObjects(WINULONG, const HANDLE*, int_bool, int_bool, const LARGE_INTEGER*);
     CLASS_DECL_AURA NTSTATUS WINAPI NtWaitHighEventPair(HANDLE);
     CLASS_DECL_AURA NTSTATUS WINAPI NtWaitLowEventPair(HANDLE);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtWriteFile(HANDLE, HANDLE, PIO_APC_ROUTINE, PVOID, PIO_STATUS_BLOCK, const void*, ULONG, PLARGE_INTEGER, PULONG);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtWriteFileGather(HANDLE, HANDLE, PIO_APC_ROUTINE, PVOID, PIO_STATUS_BLOCK, FILE_SEGMENT_ELEMENT*, ULONG, PLARGE_INTEGER, PULONG);
-    CLASS_DECL_AURA NTSTATUS WINAPI NtWriteRequestData(HANDLE, PLPC_MESSAGE, ULONG, PVOID, ULONG, PULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtWriteFile(HANDLE, HANDLE, PIO_APC_ROUTINE, PVOID, PIO_STATUS_BLOCK, const void*, WINULONG, PLARGE_INTEGER, PWINULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtWriteFileGather(HANDLE, HANDLE, PIO_APC_ROUTINE, PVOID, PIO_STATUS_BLOCK, FILE_SEGMENT_ELEMENT*, WINULONG, PLARGE_INTEGER, PWINULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI NtWriteRequestData(HANDLE, PLPC_MESSAGE, WINULONG, PVOID, WINULONG, PWINULONG);
     CLASS_DECL_AURA NTSTATUS WINAPI NtWriteVirtualMemory(HANDLE, void*, const void*, SIZE_T, SIZE_T*);
     CLASS_DECL_AURA NTSTATUS WINAPI NtYieldExecution(void);
 
@@ -2236,12 +2236,12 @@ static inline void WINAPI DbgBreakPoint(void) {
     CLASS_DECL_AURA NTSTATUS WINAPI RtlAddAuditAccessAce(PACL, DWORD, DWORD, PSID, int_bool, int_bool);
     CLASS_DECL_AURA NTSTATUS WINAPI RtlAddAuditAccessAceEx(PACL, DWORD, DWORD, DWORD, PSID, int_bool, int_bool);
     CLASS_DECL_AURA void WINAPI RtlAddRefActivationContext(HANDLE);
-    CLASS_DECL_AURA PVOID WINAPI RtlAddVectoredExceptionHandler(ULONG, PVECTORED_EXCEPTION_HANDLER);
-    CLASS_DECL_AURA NTSTATUS WINAPI RtlAdjustPrivilege(ULONG, int_bool, int_bool, PBOOLEAN);
+    CLASS_DECL_AURA PVOID WINAPI RtlAddVectoredExceptionHandler(WINULONG, PVECTORED_EXCEPTION_HANDLER);
+    CLASS_DECL_AURA NTSTATUS WINAPI RtlAdjustPrivilege(WINULONG, int_bool, int_bool, PBOOLEAN);
     CLASS_DECL_AURA NTSTATUS WINAPI RtlAllocateAndInitializeSid(PSID_IDENTIFIER_AUTHORITY, BYTE, DWORD, DWORD, DWORD, DWORD, DWORD, DWORD, DWORD, DWORD, PSID *);
-    CLASS_DECL_AURA RTL_HANDLE * WINAPI RtlAllocateHandle(RTL_HANDLE_TABLE *, ULONG *);
+    CLASS_DECL_AURA RTL_HANDLE * WINAPI RtlAllocateHandle(RTL_HANDLE_TABLE *, WINULONG *);
 #ifndef METROWIN
-    CLASS_DECL_AURA PVOID WINAPI RtlAllocateHeap(HANDLE, ULONG, SIZE_T) __WINE_ALLOC_SIZE(3);
+    CLASS_DECL_AURA PVOID WINAPI RtlAllocateHeap(HANDLE, WINULONG, SIZE_T) __WINE_ALLOC_SIZE(3);
 #endif
     CLASS_DECL_AURA WCHAR WINAPI RtlAnsiCharToUnicodeChar(LPSTR *);
     CLASS_DECL_AURA DWORD WINAPI RtlAnsiStringToUnicodeSize(const STRING *);
@@ -2252,43 +2252,43 @@ static inline void WINAPI DbgBreakPoint(void) {
     CLASS_DECL_AURA NTSTATUS WINAPI RtlAppendUnicodeToString(UNICODE_STRING *, LPCWSTR);
     CLASS_DECL_AURA int_bool WINAPI RtlAreAllAccessesGranted(ACCESS_MASK, ACCESS_MASK);
     CLASS_DECL_AURA int_bool WINAPI RtlAreAnyAccessesGranted(ACCESS_MASK, ACCESS_MASK);
-    CLASS_DECL_AURA int_bool WINAPI RtlAreBitsSet(PCRTL_BITMAP, ULONG, ULONG);
-    CLASS_DECL_AURA int_bool WINAPI RtlAreBitsClear(PCRTL_BITMAP, ULONG, ULONG);
-    CLASS_DECL_AURA NTSTATUS WINAPI RtlCharToInteger(PCSZ, ULONG, PULONG);
-    CLASS_DECL_AURA NTSTATUS WINAPI RtlCheckRegistryKey(ULONG, PWSTR);
+    CLASS_DECL_AURA int_bool WINAPI RtlAreBitsSet(PCRTL_BITMAP, WINULONG, WINULONG);
+    CLASS_DECL_AURA int_bool WINAPI RtlAreBitsClear(PCRTL_BITMAP, WINULONG, WINULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI RtlCharToInteger(PCSZ, WINULONG, PWINULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI RtlCheckRegistryKey(WINULONG, PWSTR);
     CLASS_DECL_AURA void WINAPI RtlClearAllBits(PRTL_BITMAP);
-    CLASS_DECL_AURA void WINAPI RtlClearBits(PRTL_BITMAP, ULONG, ULONG);
+    CLASS_DECL_AURA void WINAPI RtlClearBits(PRTL_BITMAP, WINULONG, WINULONG);
     CLASS_DECL_AURA NTSTATUS WINAPI RtlCreateActivationContext(HANDLE*, const void*);
-    CLASS_DECL_AURA PDEBUG_BUFFER WINAPI RtlCreateQueryDebugBuffer(ULONG, int_bool);
-    CLASS_DECL_AURA ULONG WINAPI RtlCompactHeap(HANDLE, ULONG);
+    CLASS_DECL_AURA PDEBUG_BUFFER WINAPI RtlCreateQueryDebugBuffer(WINULONG, int_bool);
+    CLASS_DECL_AURA WINULONG WINAPI RtlCompactHeap(HANDLE, WINULONG);
     CLASS_DECL_AURA LONG WINAPI RtlCompareString(const STRING*, const STRING*, int_bool);
     CLASS_DECL_AURA LONG WINAPI RtlCompareUnicodeString(const UNICODE_STRING*, const UNICODE_STRING*, int_bool);
-    CLASS_DECL_AURA NTSTATUS WINAPI RtlCompressBuffer(USHORT, PUCHAR, ULONG, PUCHAR, ULONG, ULONG, PULONG, PVOID);
+    CLASS_DECL_AURA NTSTATUS WINAPI RtlCompressBuffer(WINUSHORT, PWINUCHAR, WINULONG, PWINUCHAR, WINULONG, WINULONG, PWINULONG, PVOID);
     CLASS_DECL_AURA DWORD WINAPI RtlComputeCrc32(DWORD, const BYTE*, INT);
     CLASS_DECL_AURA NTSTATUS WINAPI RtlConvertSidToUnicodeString(PUNICODE_STRING, PSID, int_bool);
     CLASS_DECL_AURA void WINAPI RtlCopyLuid(PLUID, const LUID*);
-    CLASS_DECL_AURA void WINAPI RtlCopyLuidAndAttributesArray(ULONG, const LUID_AND_ATTRIBUTES*, PLUID_AND_ATTRIBUTES);
+    CLASS_DECL_AURA void WINAPI RtlCopyLuidAndAttributesArray(WINULONG, const LUID_AND_ATTRIBUTES*, PLUID_AND_ATTRIBUTES);
     CLASS_DECL_AURA int_bool WINAPI RtlCopySid(DWORD, PSID, PSID);
     CLASS_DECL_AURA NTSTATUS WINAPI RtlCopySecurityDescriptor(PSECURITY_DESCRIPTOR, PSECURITY_DESCRIPTOR);
     CLASS_DECL_AURA void WINAPI RtlCopyString(STRING*, const STRING*);
     CLASS_DECL_AURA void WINAPI RtlCopyUnicodeString(UNICODE_STRING*, const UNICODE_STRING*);
     CLASS_DECL_AURA NTSTATUS WINAPI RtlCreateAcl(PACL, DWORD, DWORD);
-    CLASS_DECL_AURA NTSTATUS WINAPI RtlCreateAtomTable(ULONG, RTL_ATOM_TABLE*);
+    CLASS_DECL_AURA NTSTATUS WINAPI RtlCreateAtomTable(WINULONG, RTL_ATOM_TABLE*);
     CLASS_DECL_AURA NTSTATUS WINAPI RtlCreateEnvironment(int_bool, PWSTR*);
-    CLASS_DECL_AURA HANDLE WINAPI RtlCreateHeap(ULONG, PVOID, SIZE_T, SIZE_T, PVOID, PRTL_HEAP_DEFINITION);
+    CLASS_DECL_AURA HANDLE WINAPI RtlCreateHeap(WINULONG, PVOID, SIZE_T, SIZE_T, PVOID, PRTL_HEAP_DEFINITION);
     CLASS_DECL_AURA NTSTATUS WINAPI RtlCreateProcessParameters(RTL_USER_PROCESS_PARAMETERS**, const UNICODE_STRING*, const UNICODE_STRING*, const UNICODE_STRING*, const UNICODE_STRING*, PWSTR, const UNICODE_STRING*, const UNICODE_STRING*, const UNICODE_STRING*, const UNICODE_STRING*);
     CLASS_DECL_AURA NTSTATUS WINAPI RtlCreateSecurityDescriptor(PSECURITY_DESCRIPTOR, DWORD);
     CLASS_DECL_AURA NTSTATUS WINAPI RtlCreateTimerQueue(PHANDLE);
-    CLASS_DECL_AURA NTSTATUS WINAPI RtlCreateTimer(PHANDLE, HANDLE, RTL_WAITORTIMERCALLBACKFUNC, PVOID, DWORD, DWORD, ULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI RtlCreateTimer(PHANDLE, HANDLE, RTL_WAITORTIMERCALLBACKFUNC, PVOID, DWORD, DWORD, WINULONG);
     CLASS_DECL_AURA int_bool WINAPI RtlCreateUnicodeString(PUNICODE_STRING, LPCWSTR);
     CLASS_DECL_AURA int_bool WINAPI RtlCreateUnicodeStringFromAsciiz(PUNICODE_STRING, LPCSTR);
     CLASS_DECL_AURA NTSTATUS WINAPI RtlCreateUserThread(HANDLE, const SECURITY_DESCRIPTOR*, int_bool, PVOID, SIZE_T, SIZE_T, PRTL_THREAD_START_ROUTINE, void*, HANDLE*, CLIENT_ID*);
     CLASS_DECL_AURA void WINAPI RtlDeactivateActivationContext(DWORD, ULONG_PTR);
-    CLASS_DECL_AURA NTSTATUS WINAPI RtlDecompressBuffer(USHORT, PUCHAR, ULONG, PUCHAR, ULONG, PULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI RtlDecompressBuffer(WINUSHORT, PWINUCHAR, WINULONG, PWINUCHAR, WINULONG, PWINULONG);
     CLASS_DECL_AURA NTSTATUS WINAPI RtlDeleteAce(PACL, DWORD);
     CLASS_DECL_AURA NTSTATUS WINAPI RtlDeleteAtomFromAtomTable(RTL_ATOM_TABLE, RTL_ATOM);
     CLASS_DECL_AURA NTSTATUS WINAPI RtlDeleteCriticalSection(RTL_CRITICAL_SECTION *);
-    CLASS_DECL_AURA NTSTATUS WINAPI RtlDeleteRegistryValue(ULONG, PCWSTR, PCWSTR);
+    CLASS_DECL_AURA NTSTATUS WINAPI RtlDeleteRegistryValue(WINULONG, PCWSTR, PCWSTR);
     CLASS_DECL_AURA void WINAPI RtlDeleteResource(LPRTL_RWLOCK);
     CLASS_DECL_AURA NTSTATUS WINAPI RtlDeleteSecurityObject(PSECURITY_DESCRIPTOR*);
     CLASS_DECL_AURA NTSTATUS WINAPI RtlDeleteTimer(HANDLE, HANDLE, HANDLE);
@@ -2306,7 +2306,7 @@ static inline void WINAPI DbgBreakPoint(void) {
     CLASS_DECL_AURA int_bool WINAPI RtlDllShutdownInProgress(void);
     CLASS_DECL_AURA int_bool WINAPI RtlDoesFileExists_U(LPCWSTR);
     CLASS_DECL_AURA int_bool WINAPI RtlDosPathNameToNtPathName_U(PCWSTR, PUNICODE_STRING, PWSTR*, CURDIR*);
-    CLASS_DECL_AURA ULONG WINAPI RtlDosSearchPath_U(LPCWSTR, LPCWSTR, LPCWSTR, ULONG, LPWSTR, LPWSTR*);
+    CLASS_DECL_AURA WINULONG WINAPI RtlDosSearchPath_U(LPCWSTR, LPCWSTR, LPCWSTR, WINULONG, LPWSTR, LPWSTR*);
     CLASS_DECL_AURA WCHAR WINAPI RtlDowncaseUnicodeChar(WCHAR);
     CLASS_DECL_AURA NTSTATUS WINAPI RtlDowncaseUnicodeString(UNICODE_STRING*, const UNICODE_STRING*, int_bool);
     CLASS_DECL_AURA void WINAPI RtlDumpResource(LPRTL_RWLOCK);
@@ -2321,57 +2321,57 @@ static inline void WINAPI DbgBreakPoint(void) {
     CLASS_DECL_AURA int_bool WINAPI RtlEqualSid(PSID, PSID);
     CLASS_DECL_AURA int_bool WINAPI RtlEqualString(const STRING*, const STRING*, int_bool);
     CLASS_DECL_AURA int_bool WINAPI RtlEqualUnicodeString(const UNICODE_STRING*, const UNICODE_STRING*, int_bool);
-    CLASS_DECL_AURA void DECLSPEC_NORETURN WINAPI RtlExitUserThread(ULONG);
-    CLASS_DECL_AURA NTSTATUS WINAPI RtlExpandEnvironmentStrings_U(PCWSTR, const UNICODE_STRING*, UNICODE_STRING*, ULONG*);
-    CLASS_DECL_AURA NTSTATUS WINAPI RtlFindActivationContextSectionString(ULONG, const GUID*, ULONG, const UNICODE_STRING*, PVOID);
-    CLASS_DECL_AURA NTSTATUS WINAPI RtlFindCharInUnicodeString(int32_t, const UNICODE_STRING*, const UNICODE_STRING*, USHORT*);
-    CLASS_DECL_AURA ULONG WINAPI RtlFindClearBits(PCRTL_BITMAP, ULONG, ULONG);
-    CLASS_DECL_AURA ULONG WINAPI RtlFindClearBitsAndSet(PRTL_BITMAP, ULONG, ULONG);
-    CLASS_DECL_AURA ULONG WINAPI RtlFindClearRuns(PCRTL_BITMAP, PRTL_BITMAP_RUN, ULONG, int_bool);
-    CLASS_DECL_AURA ULONG WINAPI RtlFindLastBackwardRunSet(PCRTL_BITMAP, ULONG, PULONG);
-    CLASS_DECL_AURA ULONG WINAPI RtlFindLastBackwardRunClear(PCRTL_BITMAP, ULONG, PULONG);
+    CLASS_DECL_AURA void DECLSPEC_NORETURN WINAPI RtlExitUserThread(WINULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI RtlExpandEnvironmentStrings_U(PCWSTR, const UNICODE_STRING*, UNICODE_STRING*, WINULONG*);
+    CLASS_DECL_AURA NTSTATUS WINAPI RtlFindActivationContextSectionString(WINULONG, const GUID*, WINULONG, const UNICODE_STRING*, PVOID);
+    CLASS_DECL_AURA NTSTATUS WINAPI RtlFindCharInUnicodeString(int32_t, const UNICODE_STRING*, const UNICODE_STRING*, WINUSHORT*);
+    CLASS_DECL_AURA WINULONG WINAPI RtlFindClearBits(PCRTL_BITMAP, WINULONG, WINULONG);
+    CLASS_DECL_AURA WINULONG WINAPI RtlFindClearBitsAndSet(PRTL_BITMAP, WINULONG, WINULONG);
+    CLASS_DECL_AURA WINULONG WINAPI RtlFindClearRuns(PCRTL_BITMAP, PRTL_BITMAP_RUN, WINULONG, int_bool);
+    CLASS_DECL_AURA WINULONG WINAPI RtlFindLastBackwardRunSet(PCRTL_BITMAP, WINULONG, PWINULONG);
+    CLASS_DECL_AURA WINULONG WINAPI RtlFindLastBackwardRunClear(PCRTL_BITMAP, WINULONG, PWINULONG);
     CLASS_DECL_AURA CCHAR WINAPI RtlFindLeastSignificantBit(ULONGLONG);
-    CLASS_DECL_AURA ULONG WINAPI RtlFindLongestRunSet(PCRTL_BITMAP, PULONG);
-    CLASS_DECL_AURA ULONG WINAPI RtlFindLongestRunClear(PCRTL_BITMAP, PULONG);
-    CLASS_DECL_AURA NTSTATUS WINAPI RtlFindMessage(HMODULE, ULONG, ULONG, ULONG, const MESSAGE_RESOURCE_ENTRY**);
+    CLASS_DECL_AURA WINULONG WINAPI RtlFindLongestRunSet(PCRTL_BITMAP, PWINULONG);
+    CLASS_DECL_AURA WINULONG WINAPI RtlFindLongestRunClear(PCRTL_BITMAP, PWINULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI RtlFindMessage(HMODULE, WINULONG, WINULONG, WINULONG, const MESSAGE_RESOURCE_ENTRY**);
     CLASS_DECL_AURA CCHAR WINAPI RtlFindMostSignificantBit(ULONGLONG);
-    CLASS_DECL_AURA ULONG WINAPI RtlFindNextForwardRunSet(PCRTL_BITMAP, ULONG, PULONG);
-    CLASS_DECL_AURA ULONG WINAPI RtlFindNextForwardRunClear(PCRTL_BITMAP, ULONG, PULONG);
-    CLASS_DECL_AURA ULONG WINAPI RtlFindSetBits(PCRTL_BITMAP, ULONG, ULONG);
-    CLASS_DECL_AURA ULONG WINAPI RtlFindSetBitsAndClear(PRTL_BITMAP, ULONG, ULONG);
-    CLASS_DECL_AURA ULONG WINAPI RtlFindSetRuns(PCRTL_BITMAP, PRTL_BITMAP_RUN, ULONG, int_bool);
+    CLASS_DECL_AURA WINULONG WINAPI RtlFindNextForwardRunSet(PCRTL_BITMAP, WINULONG, PWINULONG);
+    CLASS_DECL_AURA WINULONG WINAPI RtlFindNextForwardRunClear(PCRTL_BITMAP, WINULONG, PWINULONG);
+    CLASS_DECL_AURA WINULONG WINAPI RtlFindSetBits(PCRTL_BITMAP, WINULONG, WINULONG);
+    CLASS_DECL_AURA WINULONG WINAPI RtlFindSetBitsAndClear(PRTL_BITMAP, WINULONG, WINULONG);
+    CLASS_DECL_AURA WINULONG WINAPI RtlFindSetRuns(PCRTL_BITMAP, PRTL_BITMAP_RUN, WINULONG, int_bool);
     CLASS_DECL_AURA int_bool WINAPI RtlFirstFreeAce(PACL, PACE_HEADER *);
     CLASS_DECL_AURA NTSTATUS WINAPI RtlFormatCurrentUserKeyPath(PUNICODE_STRING);
-    //CLASS_DECL_AURA  NTSTATUS  WINAPI RtlFormatMessage(LPWSTR,UCHAR,int_bool,int_bool,int_bool,__ms_va_list *,LPWSTR,ULONG);
+    //CLASS_DECL_AURA  NTSTATUS  WINAPI RtlFormatMessage(LPWSTR,WINUCHAR,int_bool,int_bool,int_bool,__ms_va_list *,LPWSTR,WINULONG);
     CLASS_DECL_AURA void WINAPI RtlFreeAnsiString(PANSI_STRING);
     CLASS_DECL_AURA int_bool WINAPI RtlFreeHandle(RTL_HANDLE_TABLE *, RTL_HANDLE *);
-    CLASS_DECL_AURA int_bool WINAPI RtlFreeHeap(HANDLE, ULONG, PVOID);
+    CLASS_DECL_AURA int_bool WINAPI RtlFreeHeap(HANDLE, WINULONG, PVOID);
     CLASS_DECL_AURA void WINAPI RtlFreeOemString(POEM_STRING);
     CLASS_DECL_AURA DWORD WINAPI RtlFreeSid(PSID);
     CLASS_DECL_AURA void WINAPI RtlFreeThreadActivationContextStack(void);
     CLASS_DECL_AURA void WINAPI RtlFreeUnicodeString(PUNICODE_STRING);
     CLASS_DECL_AURA NTSTATUS WINAPI RtlGetAce(PACL, DWORD, LPVOID *);
     CLASS_DECL_AURA NTSTATUS WINAPI RtlGetActiveActivationContext(HANDLE*);
-    CLASS_DECL_AURA NTSTATUS WINAPI RtlGetCompressionWorkSpaceSize(USHORT, PULONG, PULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI RtlGetCompressionWorkSpaceSize(WINUSHORT, PWINULONG, PWINULONG);
     CLASS_DECL_AURA NTSTATUS WINAPI RtlGetControlSecurityDescriptor(PSECURITY_DESCRIPTOR, PSECURITY_DESCRIPTOR_CONTROL, LPDWORD);
-    CLASS_DECL_AURA NTSTATUS WINAPI RtlGetCurrentDirectory_U(ULONG, LPWSTR);
+    CLASS_DECL_AURA NTSTATUS WINAPI RtlGetCurrentDirectory_U(WINULONG, LPWSTR);
     CLASS_DECL_AURA PEB * WINAPI RtlGetCurrentPeb(void);
     CLASS_DECL_AURA NTSTATUS WINAPI RtlGetDaclSecurityDescriptor(PSECURITY_DESCRIPTOR, PBOOLEAN, PACL *, PBOOLEAN);
-    CLASS_DECL_AURA ULONG WINAPI RtlGetFullPathName_U(PCWSTR, ULONG, PWSTR, PWSTR*);
+    CLASS_DECL_AURA WINULONG WINAPI RtlGetFullPathName_U(PCWSTR, WINULONG, PWSTR, PWSTR*);
     CLASS_DECL_AURA NTSTATUS WINAPI RtlGetGroupSecurityDescriptor(PSECURITY_DESCRIPTOR, PSID *, PBOOLEAN);
     CLASS_DECL_AURA NTSTATUS WINAPI RtlGetLastNtStatus(void);
     CLASS_DECL_AURA DWORD WINAPI RtlGetLastWin32Error(void);
     CLASS_DECL_AURA DWORD WINAPI RtlGetLongestNtPathLength(void);
-    CLASS_DECL_AURA ULONG WINAPI RtlGetNtGlobalFlags(void);
+    CLASS_DECL_AURA WINULONG WINAPI RtlGetNtGlobalFlags(void);
     CLASS_DECL_AURA int_bool WINAPI RtlGetNtProductType(LPDWORD);
     CLASS_DECL_AURA NTSTATUS WINAPI RtlGetOwnerSecurityDescriptor(PSECURITY_DESCRIPTOR, PSID *, PBOOLEAN);
-    CLASS_DECL_AURA ULONG WINAPI RtlGetProcessHeaps(ULONG, HANDLE*);
+    CLASS_DECL_AURA WINULONG WINAPI RtlGetProcessHeaps(WINULONG, HANDLE*);
     CLASS_DECL_AURA DWORD WINAPI RtlGetThreadErrorMode(void);
     CLASS_DECL_AURA NTSTATUS WINAPI RtlGetSaclSecurityDescriptor(PSECURITY_DESCRIPTOR, PBOOLEAN, PACL *, PBOOLEAN);
     CLASS_DECL_AURA NTSTATUS WINAPI RtlGetVersion(RTL_OSVERSIONINFOEXW*);
     CLASS_DECL_AURA NTSTATUS WINAPI RtlGUIDFromString(PUNICODE_STRING, GUID*);
     CLASS_DECL_AURA PSID_IDENTIFIER_AUTHORITY WINAPI RtlIdentifierAuthoritySid(PSID);
-    CLASS_DECL_AURA PVOID WINAPI RtlImageDirectoryEntryToData(HMODULE, int_bool, WORD, ULONG *);
+    CLASS_DECL_AURA PVOID WINAPI RtlImageDirectoryEntryToData(HMODULE, int_bool, WORD, WINULONG *);
     CLASS_DECL_AURA PIMAGE_NT_HEADERS WINAPI RtlImageNtHeader(HMODULE);
     CLASS_DECL_AURA PIMAGE_SECTION_HEADER WINAPI RtlImageRvaToSection(const IMAGE_NT_HEADERS *, HMODULE, DWORD);
     CLASS_DECL_AURA PVOID WINAPI RtlImageRvaToVa(const IMAGE_NT_HEADERS *, HMODULE, DWORD, IMAGE_SECTION_HEADER **);
@@ -2382,24 +2382,24 @@ static inline void WINAPI DbgBreakPoint(void) {
     CLASS_DECL_AURA void WINAPI RtlInitUnicodeString(PUNICODE_STRING, PCWSTR);
     CLASS_DECL_AURA NTSTATUS WINAPI RtlInitUnicodeStringEx(PUNICODE_STRING, PCWSTR);
     CLASS_DECL_AURA NTSTATUS WINAPI RtlInitializeCriticalSection(RTL_CRITICAL_SECTION *);
-    CLASS_DECL_AURA NTSTATUS WINAPI RtlInitializeCriticalSectionAndSpinCount(RTL_CRITICAL_SECTION *, ULONG);
-    CLASS_DECL_AURA NTSTATUS WINAPI RtlInitializeCriticalSectionEx(RTL_CRITICAL_SECTION *, ULONG, ULONG);
-    CLASS_DECL_AURA void WINAPI RtlInitializeBitMap(PRTL_BITMAP, PULONG, ULONG);
-    CLASS_DECL_AURA void WINAPI RtlInitializeHandleTable(ULONG, ULONG, RTL_HANDLE_TABLE *);
+    CLASS_DECL_AURA NTSTATUS WINAPI RtlInitializeCriticalSectionAndSpinCount(RTL_CRITICAL_SECTION *, WINULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI RtlInitializeCriticalSectionEx(RTL_CRITICAL_SECTION *, WINULONG, WINULONG);
+    CLASS_DECL_AURA void WINAPI RtlInitializeBitMap(PRTL_BITMAP, PWINULONG, WINULONG);
+    CLASS_DECL_AURA void WINAPI RtlInitializeHandleTable(WINULONG, WINULONG, RTL_HANDLE_TABLE *);
     CLASS_DECL_AURA void WINAPI RtlInitializeResource(LPRTL_RWLOCK);
     CLASS_DECL_AURA int_bool WINAPI RtlInitializeSid(PSID, PSID_IDENTIFIER_AUTHORITY, BYTE);
-    CLASS_DECL_AURA NTSTATUS WINAPI RtlInt64ToUnicodeString(ULONGLONG, ULONG, UNICODE_STRING *);
-    CLASS_DECL_AURA NTSTATUS WINAPI RtlIntegerToChar(ULONG, ULONG, ULONG, PCHAR);
-    CLASS_DECL_AURA NTSTATUS WINAPI RtlIntegerToUnicodeString(ULONG, ULONG, UNICODE_STRING *);
+    CLASS_DECL_AURA NTSTATUS WINAPI RtlInt64ToUnicodeString(ULONGLONG, WINULONG, UNICODE_STRING *);
+    CLASS_DECL_AURA NTSTATUS WINAPI RtlIntegerToChar(WINULONG, WINULONG, WINULONG, PCHAR);
+    CLASS_DECL_AURA NTSTATUS WINAPI RtlIntegerToUnicodeString(WINULONG, WINULONG, UNICODE_STRING *);
     CLASS_DECL_AURA int_bool WINAPI RtlIsActivationContextActive(HANDLE);
-    CLASS_DECL_AURA ULONG WINAPI RtlIsDosDeviceName_U(PCWSTR);
+    CLASS_DECL_AURA WINULONG WINAPI RtlIsDosDeviceName_U(PCWSTR);
     CLASS_DECL_AURA int_bool WINAPI RtlIsNameLegalDOS8Dot3(const UNICODE_STRING*, POEM_STRING, PBOOLEAN);
     CLASS_DECL_AURA int_bool WINAPI RtlIsTextUnicode(LPCVOID, INT, INT *);
     CLASS_DECL_AURA int_bool WINAPI RtlIsValidHandle(const RTL_HANDLE_TABLE *, const RTL_HANDLE *);
-    CLASS_DECL_AURA int_bool WINAPI RtlIsValidIndexHandle(const RTL_HANDLE_TABLE *, ULONG Index, RTL_HANDLE **);
+    CLASS_DECL_AURA int_bool WINAPI RtlIsValidIndexHandle(const RTL_HANDLE_TABLE *, WINULONG Index, RTL_HANDLE **);
     CLASS_DECL_AURA NTSTATUS WINAPI RtlLeaveCriticalSection(RTL_CRITICAL_SECTION *);
     CLASS_DECL_AURA DWORD WINAPI RtlLengthRequiredSid(DWORD);
-    CLASS_DECL_AURA ULONG WINAPI RtlLengthSecurityDescriptor(PSECURITY_DESCRIPTOR);
+    CLASS_DECL_AURA WINULONG WINAPI RtlLengthSecurityDescriptor(PSECURITY_DESCRIPTOR);
     CLASS_DECL_AURA DWORD WINAPI RtlLengthSid(PSID);
     CLASS_DECL_AURA NTSTATUS WINAPI RtlLocalTimeToSystemTime(const LARGE_INTEGER*, PLARGE_INTEGER);
     CLASS_DECL_AURA int_bool WINAPI RtlLockHeap(HANDLE);
@@ -2410,10 +2410,10 @@ static inline void WINAPI DbgBreakPoint(void) {
     CLASS_DECL_AURA NTSTATUS WINAPI RtlMultiByteToUnicodeSize(DWORD*, LPCSTR, UINT);
     CLASS_DECL_AURA NTSTATUS WINAPI RtlNewSecurityObject(PSECURITY_DESCRIPTOR, PSECURITY_DESCRIPTOR, PSECURITY_DESCRIPTOR*, int_bool, HANDLE, PGENERIC_MAPPING);
     CLASS_DECL_AURA PRTL_USER_PROCESS_PARAMETERS WINAPI RtlNormalizeProcessParams(RTL_USER_PROCESS_PARAMETERS*);
-    CLASS_DECL_AURA ULONG WINAPI RtlNtStatusToDosError(NTSTATUS);
-    CLASS_DECL_AURA ULONG WINAPI RtlNtStatusToDosErrorNoTeb(NTSTATUS);
-    CLASS_DECL_AURA ULONG WINAPI RtlNumberOfSetBits(PCRTL_BITMAP);
-    CLASS_DECL_AURA ULONG WINAPI RtlNumberOfClearBits(PCRTL_BITMAP);
+    CLASS_DECL_AURA WINULONG WINAPI RtlNtStatusToDosError(NTSTATUS);
+    CLASS_DECL_AURA WINULONG WINAPI RtlNtStatusToDosErrorNoTeb(NTSTATUS);
+    CLASS_DECL_AURA WINULONG WINAPI RtlNumberOfSetBits(PCRTL_BITMAP);
+    CLASS_DECL_AURA WINULONG WINAPI RtlNumberOfClearBits(PCRTL_BITMAP);
     CLASS_DECL_AURA UINT WINAPI RtlOemStringToUnicodeSize(const STRING*);
     CLASS_DECL_AURA NTSTATUS WINAPI RtlOemStringToUnicodeString(UNICODE_STRING*, const STRING*, int_bool);
     CLASS_DECL_AURA NTSTATUS WINAPI RtlOemToUnicodeN(LPWSTR, DWORD, LPDWORD, LPCSTR, DWORD);
@@ -2424,31 +2424,31 @@ static inline void WINAPI DbgBreakPoint(void) {
     CLASS_DECL_AURA NTSTATUS WINAPI RtlPinAtomInAtomTable(RTL_ATOM_TABLE, RTL_ATOM);
     CLASS_DECL_AURA int_bool WINAPI RtlPrefixString(const STRING*, const STRING*, int_bool);
     CLASS_DECL_AURA int_bool WINAPI RtlPrefixUnicodeString(const UNICODE_STRING*, const UNICODE_STRING*, int_bool);
-    CLASS_DECL_AURA NTSTATUS WINAPI RtlQueryAtomInAtomTable(RTL_ATOM_TABLE, RTL_ATOM, ULONG*, ULONG*, WCHAR*, ULONG*);
+    CLASS_DECL_AURA NTSTATUS WINAPI RtlQueryAtomInAtomTable(RTL_ATOM_TABLE, RTL_ATOM, WINULONG*, WINULONG*, WCHAR*, WINULONG*);
     CLASS_DECL_AURA NTSTATUS WINAPI RtlQueryEnvironmentVariable_U(PWSTR, PUNICODE_STRING, PUNICODE_STRING);
     CLASS_DECL_AURA NTSTATUS WINAPI RtlQueryHeapInformation(HANDLE, HEAP_INFORMATION_CLASS, PVOID, SIZE_T, PSIZE_T);
     CLASS_DECL_AURA NTSTATUS WINAPI RtlQueryInformationAcl(PACL, LPVOID, DWORD, ACL_INFORMATION_CLASS);
-    CLASS_DECL_AURA NTSTATUS WINAPI RtlQueryInformationActivationContext(ULONG, HANDLE, PVOID, ULONG, PVOID, SIZE_T, SIZE_T*);
-    CLASS_DECL_AURA NTSTATUS WINAPI RtlQueryProcessDebugInformation(ULONG, ULONG, PDEBUG_BUFFER);
-    CLASS_DECL_AURA NTSTATUS WINAPI RtlQueryRegistryValues(ULONG, PCWSTR, PRTL_QUERY_REGISTRY_TABLE, PVOID, PVOID);
+    CLASS_DECL_AURA NTSTATUS WINAPI RtlQueryInformationActivationContext(WINULONG, HANDLE, PVOID, WINULONG, PVOID, SIZE_T, SIZE_T*);
+    CLASS_DECL_AURA NTSTATUS WINAPI RtlQueryProcessDebugInformation(WINULONG, WINULONG, PDEBUG_BUFFER);
+    CLASS_DECL_AURA NTSTATUS WINAPI RtlQueryRegistryValues(WINULONG, PCWSTR, PRTL_QUERY_REGISTRY_TABLE, PVOID, PVOID);
     CLASS_DECL_AURA NTSTATUS WINAPI RtlQueryTimeZoneInformation(RTL_TIME_ZONE_INFORMATION*);
-    CLASS_DECL_AURA NTSTATUS WINAPI RtlQueueWorkItem(PRTL_WORK_ITEM_ROUTINE, PVOID, ULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI RtlQueueWorkItem(PRTL_WORK_ITEM_ROUTINE, PVOID, WINULONG);
     CLASS_DECL_AURA void WINAPI RtlRaiseException(PEXCEPTION_RECORD);
     CLASS_DECL_AURA void WINAPI RtlRaiseStatus(NTSTATUS);
-    CLASS_DECL_AURA ULONG WINAPI RtlRandom(PULONG);
-    CLASS_DECL_AURA PVOID WINAPI RtlReAllocateHeap(HANDLE, ULONG, PVOID, SIZE_T);
-    CLASS_DECL_AURA NTSTATUS WINAPI RtlRegisterWait(PHANDLE, HANDLE, RTL_WAITORTIMERCALLBACKFUNC, PVOID, ULONG, ULONG);
+    CLASS_DECL_AURA WINULONG WINAPI RtlRandom(PWINULONG);
+    CLASS_DECL_AURA PVOID WINAPI RtlReAllocateHeap(HANDLE, WINULONG, PVOID, SIZE_T);
+    CLASS_DECL_AURA NTSTATUS WINAPI RtlRegisterWait(PHANDLE, HANDLE, RTL_WAITORTIMERCALLBACKFUNC, PVOID, WINULONG, WINULONG);
     CLASS_DECL_AURA void WINAPI RtlReleaseActivationContext(HANDLE);
     CLASS_DECL_AURA void WINAPI RtlReleasePebLock(void);
     CLASS_DECL_AURA void WINAPI RtlReleaseResource(LPRTL_RWLOCK);
-    CLASS_DECL_AURA ULONG WINAPI RtlRemoveVectoredExceptionHandler(PVOID);
+    CLASS_DECL_AURA WINULONG WINAPI RtlRemoveVectoredExceptionHandler(PVOID);
     CLASS_DECL_AURA void WINAPI RtlRestoreLastWin32Error(DWORD);
     CLASS_DECL_AURA void WINAPI RtlSecondsSince1970ToTime(DWORD, LARGE_INTEGER *);
     CLASS_DECL_AURA void WINAPI RtlSecondsSince1980ToTime(DWORD, LARGE_INTEGER *);
     CLASS_DECL_AURA NTSTATUS WINAPI RtlSelfRelativeToAbsoluteSD(PSECURITY_DESCRIPTOR, PSECURITY_DESCRIPTOR, PDWORD, PACL, PDWORD, PACL, PDWORD, PSID, PDWORD, PSID, PDWORD);
     CLASS_DECL_AURA void WINAPI RtlSetAllBits(PRTL_BITMAP);
-    CLASS_DECL_AURA void WINAPI RtlSetBits(PRTL_BITMAP, ULONG, ULONG);
-    CLASS_DECL_AURA ULONG WINAPI RtlSetCriticalSectionSpinCount(RTL_CRITICAL_SECTION*, ULONG);
+    CLASS_DECL_AURA void WINAPI RtlSetBits(PRTL_BITMAP, WINULONG, WINULONG);
+    CLASS_DECL_AURA WINULONG WINAPI RtlSetCriticalSectionSpinCount(RTL_CRITICAL_SECTION*, WINULONG);
     CLASS_DECL_AURA NTSTATUS WINAPI RtlSetControlSecurityDescriptor(PSECURITY_DESCRIPTOR, SECURITY_DESCRIPTOR_CONTROL, SECURITY_DESCRIPTOR_CONTROL);
     CLASS_DECL_AURA NTSTATUS WINAPI RtlSetCurrentDirectory_U(const UNICODE_STRING*);
     CLASS_DECL_AURA void WINAPI RtlSetCurrentEnvironment(PWSTR, PWSTR*);
@@ -2456,13 +2456,13 @@ static inline void WINAPI DbgBreakPoint(void) {
     CLASS_DECL_AURA NTSTATUS WINAPI RtlSetEnvironmentVariable(PWSTR*, PUNICODE_STRING, PUNICODE_STRING);
     CLASS_DECL_AURA NTSTATUS WINAPI RtlSetOwnerSecurityDescriptor(PSECURITY_DESCRIPTOR, PSID, int_bool);
     CLASS_DECL_AURA NTSTATUS WINAPI RtlSetGroupSecurityDescriptor(PSECURITY_DESCRIPTOR, PSID, int_bool);
-    CLASS_DECL_AURA NTSTATUS WINAPI RtlSetIoCompletionCallback(HANDLE, PRTL_OVERLAPPED_COMPLETION_ROUTINE, ULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI RtlSetIoCompletionCallback(HANDLE, PRTL_OVERLAPPED_COMPLETION_ROUTINE, WINULONG);
     CLASS_DECL_AURA void WINAPI RtlSetLastWin32Error(DWORD);
     CLASS_DECL_AURA void WINAPI RtlSetLastWin32ErrorAndNtStatusFromNtStatus(NTSTATUS);
     CLASS_DECL_AURA NTSTATUS WINAPI RtlSetSaclSecurityDescriptor(PSECURITY_DESCRIPTOR, int_bool, PACL, int_bool);
     CLASS_DECL_AURA NTSTATUS WINAPI RtlSetThreadErrorMode(DWORD, LPDWORD);
     CLASS_DECL_AURA NTSTATUS WINAPI RtlSetTimeZoneInformation(const RTL_TIME_ZONE_INFORMATION*);
-    CLASS_DECL_AURA SIZE_T WINAPI RtlSizeHeap(HANDLE, ULONG, const void*);
+    CLASS_DECL_AURA SIZE_T WINAPI RtlSizeHeap(HANDLE, WINULONG, const void*);
     CLASS_DECL_AURA NTSTATUS WINAPI RtlStringFromGUID(REFGUID, PUNICODE_STRING);
     CLASS_DECL_AURA LPDWORD WINAPI RtlSubAuthoritySid(PSID, DWORD);
     CLASS_DECL_AURA LPBYTE WINAPI RtlSubAuthorityCountSid(PSID);
@@ -2476,13 +2476,13 @@ static inline void WINAPI DbgBreakPoint(void) {
     CLASS_DECL_AURA ULONGLONG __cdecl RtlUlonglongByteSwap(ULONGLONG);
     CLASS_DECL_AURA DWORD WINAPI RtlUnicodeStringToAnsiSize(const UNICODE_STRING*);
     CLASS_DECL_AURA NTSTATUS WINAPI RtlUnicodeStringToAnsiString(PANSI_STRING, PCUNICODE_STRING, int_bool);
-    CLASS_DECL_AURA NTSTATUS WINAPI RtlUnicodeStringToInteger(const UNICODE_STRING *, ULONG, ULONG *);
+    CLASS_DECL_AURA NTSTATUS WINAPI RtlUnicodeStringToInteger(const UNICODE_STRING *, WINULONG, WINULONG *);
     CLASS_DECL_AURA DWORD WINAPI RtlUnicodeStringToOemSize(const UNICODE_STRING*);
     CLASS_DECL_AURA NTSTATUS WINAPI RtlUnicodeStringToOemString(POEM_STRING, PCUNICODE_STRING, int_bool);
     CLASS_DECL_AURA NTSTATUS WINAPI RtlUnicodeToMultiByteN(LPSTR, DWORD, LPDWORD, LPCWSTR, DWORD);
-    CLASS_DECL_AURA NTSTATUS WINAPI RtlUnicodeToMultiByteSize(PULONG, PCWSTR, ULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI RtlUnicodeToMultiByteSize(PWINULONG, PCWSTR, WINULONG);
     CLASS_DECL_AURA NTSTATUS WINAPI RtlUnicodeToOemN(LPSTR, DWORD, LPDWORD, LPCWSTR, DWORD);
-    CLASS_DECL_AURA ULONG WINAPI RtlUniform(PULONG);
+    CLASS_DECL_AURA WINULONG WINAPI RtlUniform(PWINULONG);
     CLASS_DECL_AURA int_bool WINAPI RtlUnlockHeap(HANDLE);
     NTSYSAPI void WINAPI RtlUnwind(PVOID, PVOID, PEXCEPTION_RECORD, PVOID);
 #ifdef __x86_64__
@@ -2504,24 +2504,24 @@ static inline void WINAPI DbgBreakPoint(void) {
     CLASS_DECL_AURA NTSTATUS WINAPI RtlValidSecurityDescriptor(PSECURITY_DESCRIPTOR);
     CLASS_DECL_AURA int_bool WINAPI RtlValidAcl(PACL);
     CLASS_DECL_AURA int_bool WINAPI RtlValidSid(PSID);
-    CLASS_DECL_AURA int_bool WINAPI RtlValidateHeap(HANDLE, ULONG, LPCVOID);
+    CLASS_DECL_AURA int_bool WINAPI RtlValidateHeap(HANDLE, WINULONG, LPCVOID);
     CLASS_DECL_AURA NTSTATUS WINAPI RtlVerifyVersionInfo(const RTL_OSVERSIONINFOEXW*, DWORD, DWORDLONG);
     CLASS_DECL_AURA NTSTATUS WINAPI RtlWalkHeap(HANDLE, PVOID);
     CLASS_DECL_AURA NTSTATUS WINAPI RtlWow64EnableFsRedirection(int_bool);
-    CLASS_DECL_AURA NTSTATUS WINAPI RtlWow64EnableFsRedirectionEx(ULONG, ULONG*);
-    CLASS_DECL_AURA NTSTATUS WINAPI RtlWriteRegistryValue(ULONG, PCWSTR, PCWSTR, ULONG, PVOID, ULONG);
-    CLASS_DECL_AURA NTSTATUS WINAPI RtlpNtCreateKey(PHANDLE, ACCESS_MASK, const OBJECT_ATTRIBUTES*, ULONG, const UNICODE_STRING*, ULONG, PULONG);
-    CLASS_DECL_AURA NTSTATUS WINAPI RtlpNtEnumerateSubKey(HANDLE, UNICODE_STRING *, ULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI RtlWow64EnableFsRedirectionEx(WINULONG, WINULONG*);
+    CLASS_DECL_AURA NTSTATUS WINAPI RtlWriteRegistryValue(WINULONG, PCWSTR, PCWSTR, WINULONG, PVOID, WINULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI RtlpNtCreateKey(PHANDLE, ACCESS_MASK, const OBJECT_ATTRIBUTES*, WINULONG, const UNICODE_STRING*, WINULONG, PWINULONG);
+    CLASS_DECL_AURA NTSTATUS WINAPI RtlpNtEnumerateSubKey(HANDLE, UNICODE_STRING *, WINULONG);
     CLASS_DECL_AURA NTSTATUS WINAPI RtlpWaitForCriticalSection(RTL_CRITICAL_SECTION *);
     CLASS_DECL_AURA NTSTATUS WINAPI RtlpUnWaitCriticalSection(RTL_CRITICAL_SECTION *);
-    //CLASS_DECL_AURA  NTSTATUS  WINAPI vDbgPrintEx(ULONG,ULONG,LPCSTR,__ms_va_list);
-    //CLASS_DECL_AURA  NTSTATUS  WINAPI vDbgPrintExWithPrefix(LPCSTR,ULONG,ULONG,LPCSTR,__ms_va_list);
+    //CLASS_DECL_AURA  NTSTATUS  WINAPI vDbgPrintEx(WINULONG,WINULONG,LPCSTR,__ms_va_list);
+    //CLASS_DECL_AURA  NTSTATUS  WINAPI vDbgPrintExWithPrefix(LPCSTR,WINULONG,WINULONG,LPCSTR,__ms_va_list);
 
     /* 32-bit only functions */
 
 #ifndef _WIN64
     CLASS_DECL_AURA LONGLONG WINAPI RtlConvertLongToLargeInteger(LONG);
-    CLASS_DECL_AURA ULONGLONG WINAPI RtlConvertUlongToLargeInteger(ULONG);
+    CLASS_DECL_AURA ULONGLONG WINAPI RtlConvertUlongToLargeInteger(WINULONG);
     CLASS_DECL_AURA LONGLONG WINAPI RtlEnlargedIntegerMultiply(INT, INT);
     CLASS_DECL_AURA ULONGLONG WINAPI RtlEnlargedUnsignedMultiply(UINT, UINT);
     CLASS_DECL_AURA UINT WINAPI RtlEnlargedUnsignedDivide(ULONGLONG, UINT, UINT *);
@@ -2535,7 +2535,7 @@ static inline void WINAPI DbgBreakPoint(void) {
     CLASS_DECL_AURA LONGLONG WINAPI RtlLargeIntegerShiftLeft(LONGLONG, INT);
     CLASS_DECL_AURA LONGLONG WINAPI RtlLargeIntegerShiftRight(LONGLONG, INT);
     CLASS_DECL_AURA LONGLONG WINAPI RtlLargeIntegerSubtract(LONGLONG, LONGLONG);
-    CLASS_DECL_AURA NTSTATUS WINAPI RtlLargeIntegerToChar(const ULONGLONG *, ULONG, ULONG, PCHAR);
+    CLASS_DECL_AURA NTSTATUS WINAPI RtlLargeIntegerToChar(const ULONGLONG *, WINULONG, WINULONG, PCHAR);
 #endif
 
     /* Wine internal functions */
@@ -2563,15 +2563,15 @@ static inline void WINAPI DbgBreakPoint(void) {
 
 #define RtlFillMemory(Destination,Length,Fill) memset((Destination),(Fill),(Length))
 #define RtlMoveMemory(Destination,Source,Length) memmove((Destination),(Source),(Length))
-#define RtlStoreUlong(p,v)  do { ULONG _v = (v); memcpy((p), &_v, sizeof(_v)); } while (0)
+#define RtlStoreUlong(p,v)  do { WINULONG _v = (v); memcpy((p), &_v, sizeof(_v)); } while (0)
 #define RtlStoreUlonglong(p,v) do { ULONGLONG _v = (v); memcpy((p), &_v, sizeof(_v)); } while (0)
-#define RtlRetrieveUlong(p,s) memcpy((p), (s), sizeof(ULONG))
+#define RtlRetrieveUlong(p,s) memcpy((p), (s), sizeof(WINULONG))
 #define RtlRetrieveUlonglong(p,s) memcpy((p), (s), sizeof(ULONGLONG))
 #define RtlZeroMemory(Destination,Length) memset((Destination),0,(Length))
 
 #ifndef METROWIN
 
-    static inline int_bool RtlCheckBit(PCRTL_BITMAP lpBits, ULONG ulBit) {
+    static inline int_bool RtlCheckBit(PCRTL_BITMAP lpBits, WINULONG ulBit) {
         if (lpBits && ulBit < lpBits->SizeOfBitMap &&
                 lpBits->Buffer[ulBit >> 5] & (1 << (ulBit & 31)))
             return TRUE;
@@ -2579,17 +2579,17 @@ static inline void WINAPI DbgBreakPoint(void) {
     }
 
     /* These are implemented as __fastcall, so we can't let Winelib apps link with them */
-    static inline USHORT RtlUshortByteSwap(USHORT s) {
+    static inline WINUSHORT RtlUshortByteSwap(WINUSHORT s) {
         return (s >> 8) | (s << 8);
     }
 
-    static inline ULONG RtlUlongByteSwap(ULONG i) {
+    static inline WINULONG RtlUlongByteSwap(WINULONG i) {
 #if defined(__i386__) && defined(__GNUC__)
-        ULONG ret;
+        WINULONG ret;
         __asm__("bswap %0" : "=r" (ret) : "0" (i));
         return ret;
 #else
-        return ((ULONG) RtlUshortByteSwap((USHORT) i) << 16) | RtlUshortByteSwap((USHORT) (i >> 16));
+        return ((WINULONG) RtlUshortByteSwap((WINUSHORT) i) << 16) | RtlUshortByteSwap((WINUSHORT) (i >> 16));
 #endif
     }
 
