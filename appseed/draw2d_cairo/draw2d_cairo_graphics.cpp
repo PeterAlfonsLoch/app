@@ -2830,7 +2830,7 @@ VOID Example_EnumerateMetafile9(HDC hdc)
 
    }
 
-   bool graphics::GradientFill(TRIVERTEX* pVertices, ULONG nVertices, void * pMesh, ULONG nMeshElements, uint32_t dwMode)
+   bool graphics::GradientFill(TRIVERTEX* pVertices, WINULONG nVertices, void * pMesh, WINULONG nMeshElements, uint32_t dwMode)
    {
 
       ::exception::throw_not_implemented(get_app());

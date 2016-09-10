@@ -4,9 +4,6 @@
     <ClCompile Include="framework.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="version.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\str\str_ch.cpp">
       <Filter>Source Files\primitive\str</Filter>
     </ClCompile>
@@ -1420,18 +1417,21 @@
     <ClCompile Include="graphics\draw2d\draw2d_nanosvg.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
+    <ClCompile Include="aura\charguess\charDistribution.cpp">
+      <Filter>Source Files\aura\auracharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\charguess\_.cpp">
+      <Filter>Source Files\aura\auracharguess</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\pcre\pcre.cpp">
+      <Filter>Source Files\aura\pcre</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="framework_c.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="version.config.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="version.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive_application_bias.h">
@@ -3454,6 +3454,12 @@
     </Filter>
     <Filter Include="Header Files\filesystem\filesystem">
       <UniqueIdentifier>{cf33ca26-3a3f-4822-bfd4-2e6fb4fff10f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\aura\auracharguess">
+      <UniqueIdentifier>{857dc3cb-71f7-46d0-8487-a56a9f44f700}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\aura\pcre">
+      <UniqueIdentifier>{6aacc9e4-f716-4ec1-beb6-cd669b3dfac3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

@@ -99,9 +99,9 @@
     <Link>
       <AdditionalDependencies>
       </AdditionalDependencies>
-      <LibraryDependencies>aqua;atomiconv;ace;$(StlLibraryName);log;m</LibraryDependencies>
+      <LibraryDependencies>aurapcre;aqua;atomiconv;ace;$(StlLibraryName);log;m</LibraryDependencies>
       <UnresolvedSymbolReferences>true</UnresolvedSymbolReferences>
-      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\nodeapp\thirdparty\library\$(Platform)\$(Configuration)\;$(VS_NdkRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\lib;$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">
@@ -118,8 +118,8 @@
     </ClCompile>
     <Link />
     <Link>
-      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <LibraryDependencies>aqua;atomiconv;ace;$(StlLibraryName);log;m</LibraryDependencies>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\nodeapp\thirdparty\library\$(Platform)\$(Configuration)\;$(VS_NdkRoot)\platforms\$(AndroidAPILevel)\arch-arm\usr\lib;$(ToolchainPrebuiltPath)\lib\gcc\$(ToolchainName)\$(ToolchainVersion)\armv7-a;$(StlLibraryPath);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <LibraryDependencies>aurapcre;aqua;atomiconv;ace;$(StlLibraryName);log;m</LibraryDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">
@@ -139,8 +139,8 @@
       <Optimization>Disabled</Optimization>
     </ClCompile>
     <Link>
-      <LibraryDependencies>aqua;atomiconv;ace;$(StlLibraryName);log;m</LibraryDependencies>
-      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <LibraryDependencies>aurapcre;aqua;atomiconv;ace;$(StlLibraryName);log;m</LibraryDependencies>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\nodeapp\thirdparty\library\$(Platform)\$(Configuration)\;$(VS_NdkRoot)\platforms\$(AndroidAPILevel)\arch-arm\usr\lib;$(ToolchainPrebuiltPath)\lib\gcc\$(ToolchainName)\$(ToolchainVersion)\armv7-a;$(StlLibraryPath);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|x86'">
@@ -159,8 +159,8 @@
       <AdditionalOptions>-Wno-attributes -Wno-sign-compare -Wno-comment -Wno-strict-overflow -Wno-unused-local-typedefs -Wno-unknown-pragmas -Wno-unused-function -Wno-unused-but-set-variable -Wno-unused-variable -Wno-unused-value -Wno-reorder </AdditionalOptions>
     </ClCompile>
     <Link>
-      <LibraryDependencies>aqua;atomiconv;ace;$(StlLibraryName);log;m</LibraryDependencies>
-      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <LibraryDependencies>aurapcre;aqua;atomiconv;ace;$(StlLibraryName);log;m</LibraryDependencies>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\nodeapp\thirdparty\library\$(Platform)\$(Configuration)\;$(VS_NdkRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\lib;$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -650,6 +650,8 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="aura\charguess\charDistribution.cpp" />
+    <ClCompile Include="aura\charguess\_.cpp" />
     <ClCompile Include="aura\exception\exception.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
@@ -1305,6 +1307,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x86'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="aura\pcre\pcre.cpp" />
     <ClCompile Include="aura\process\process_bidi_pipe.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
@@ -2896,7 +2899,6 @@
     <ClCompile Include="user\simple\simple_message_box.cpp" />
     <ClCompile Include="user\user\user_frame.cpp" />
     <ClCompile Include="user\user\user_primitive.cpp" />
-    <ClCompile Include="version.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="aura\aura\aura.h" />
@@ -3494,8 +3496,6 @@
     <ClInclude Include="user\user.h" />
     <ClInclude Include="user\user\user_frame.h" />
     <ClInclude Include="user\user\user_primitive.h" />
-    <ClInclude Include="version.config.h" />
-    <ClInclude Include="version.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="aura\aura\aura_gudo_application.inl" />

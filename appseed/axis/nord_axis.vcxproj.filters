@@ -640,6 +640,9 @@
     <ClCompile Include="graphics\dib_console.cpp">
       <Filter>Source Files\graphics</Filter>
     </ClCompile>
+    <ClCompile Include="axis\_axis_axis.cpp">
+      <Filter>Source Files\axis</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">

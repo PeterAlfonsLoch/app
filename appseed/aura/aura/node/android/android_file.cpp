@@ -1366,7 +1366,7 @@ CLASS_DECL_AURA void vfxGetModuleShortFileName(HINSTANCE hInst, string& strShort
 
 
 
-
+/*
 CLASS_DECL_AURA string vfxStringFromCLSID(REFCLSID rclsid)
 {
    CHAR szCLSID[256];
@@ -1376,6 +1376,8 @@ CLASS_DECL_AURA string vfxStringFromCLSID(REFCLSID rclsid)
       rclsid.Data4[4], rclsid.Data4[5], rclsid.Data4[6], rclsid.Data4[7]);
    return szCLSID;
 }
+
+*/
 
 /*
 bool CLASS_DECL_AURA vfxGetInProcServer(const char * lpszCLSID, string & str)
