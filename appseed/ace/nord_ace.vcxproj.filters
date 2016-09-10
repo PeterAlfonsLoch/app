@@ -15,6 +15,9 @@
     <ClCompile Include="ace_alloc.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="version.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="_ace.h">
