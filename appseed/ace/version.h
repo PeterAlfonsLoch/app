@@ -23,13 +23,7 @@ CLASS_DECL_ACE int _ca_is_stage();
 
 #ifndef WINDOWS
 
-#define VER_PLATFORM_WIN32s                     0
-#define VER_PLATFORM_WIN32_WINDOWS              1
-#define VER_PLATFORM_WIN32_NT                   2
 
-#define	VER_NT_WORKSTATION			1
-#define	VER_NT_DOMAIN_CONTROLLER		2
-#define	VER_NT_SERVER				3
 
 
 
