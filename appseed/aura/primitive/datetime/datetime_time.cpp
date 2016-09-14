@@ -623,7 +623,7 @@ namespace datetime
 
       char szBuffer[maxTimeBufferSize];
 
-#if defined(LINUX) || defined(APPLEOS)
+#if defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
 
       struct tm* ptmTemp = gmtime(&m_time);
 
@@ -649,7 +649,7 @@ namespace datetime
 
 #else
 
-      struct tm* ptmTemp = _gmtime64(&m_time);
+      struct tm* ptmTemp =_gmtime64(&m_time);
 
       if (ptmTemp == NULL || !strftime(szBuffer, maxTimeBufferSize, strFormat, ptmTemp))
       {

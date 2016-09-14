@@ -178,8 +178,15 @@ namespace sockets
 
    void http_socket::OnLine(const string & line)
    {
+      
       if (m_bFirst)
       {
+
+#if 1
+
+         output_debug_string("http_socket::OnLine : " + line);
+
+#endif
 
          m_iFirstTime = get_nanos() / 1000;
 

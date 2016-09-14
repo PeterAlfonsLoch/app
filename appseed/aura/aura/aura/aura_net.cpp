@@ -458,6 +458,10 @@ bool open_url::open()
 
 BEGIN_EXTERN_C
 
+#ifdef WINDOWS
+#define strdup _strdup
+#endif
+
 CLASS_DECL_AURA int_bool freerdp_authenticate(void * instance, char** username,char** password,char** domain, const char * pszServerName, int bInteractive)
 {
 
@@ -515,28 +519,27 @@ CLASS_DECL_AURA int_bool freerdp_authenticate(void * instance, char** username,c
    if(username != NULL)
    {
 
-      *username = _strdup(strUser);
+      *username = strdup(strUser);
 
    }
 
    if(domain != NULL && strDomain.has_char())
    {
 
-      *domain = _strdup(strDomain);
+      *domain = strdup(strDomain);
 
    }
 
    if(password != NULL)
    {
 
-      *password = _strdup(strPassword);
+      *password = strdup(strPassword);
 
    }
 
    return TRUE;
 
 }
-
 
 END_EXTERN_C
 

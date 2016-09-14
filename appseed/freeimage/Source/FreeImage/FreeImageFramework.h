@@ -28,15 +28,15 @@
 //#endif
 
 
-#include  "FreeImageIO.h"
-#include  "Utilities.h"
+#include  "freeimage/Source/FreeImageIO.h"
+#include  "freeimage/Source/Utilities.h"
 
-#include  "../Metadata/FreeImageTag.h"
-#include  "Quantizers.h"
+#include  "freeimage/Source/Metadata/FreeImageTag.h"
+#include  "freeimage/Source/Quantizers.h"
 
-#include  "CacheFile.h"
+#include  "freeimage/Source/CacheFile.h"
 
-#include  "Plugin.h"
+#include  "freeimage/Source/Plugin.h"
 
-#include  "FreeImageToolkit/Resize.h"
+#include  "freeimage/Source/FreeImageToolkit/Resize.h"
 

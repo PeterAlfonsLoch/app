@@ -26,7 +26,6 @@
  
 
  //Pasta de Z:\nordroid\app\appseed\axis\net\sockets\http
-
 #include "http/sockets_http_client_socket.cpp"
 #include "http/sockets_http_debug_socket.cpp"
 #include "http/sockets_http_get_socket.cpp"

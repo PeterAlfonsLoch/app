@@ -36,9 +36,6 @@
     <ClInclude Include="config.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="freerdp_rdpclient_setup.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="client\common\compatibility.h">
       <Filter>Header Files\client\common</Filter>
     </ClInclude>

@@ -468,6 +468,7 @@ restart:
                {
 
                   varQuery["raw_http"] = true;
+                  
 
                   //if (!strFilePath.find_ci("sessid=noauth"))
                   //{
@@ -1883,6 +1884,7 @@ restart:
                property_set set(papp);
 
                set["raw_http"] = true;
+               set["disable_common_name_cert_check"] = true;
 
                //            bool bOk = true;
 

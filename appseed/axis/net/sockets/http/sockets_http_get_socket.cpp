@@ -83,7 +83,8 @@ namespace sockets
          //inheader("Accept-Charset") = "ISO-8859-1,utf-8;q=0.7,*;q=0.7";
          inheader(__id(user_agent)) = MyUseragent();
       }
-      inheader("Content-Length") = 0;
+      //inheader("Content-Length") = 0;
+      //inheader("Cache-Controlngth") = 0;
 
 /*      if (GetUrlPort() != 80 && GetUrlPort() != 443)
          inheader(__id(host)) = GetUrlHost() + ":" + ::str::from(GetUrlPort());
