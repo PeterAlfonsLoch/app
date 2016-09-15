@@ -51,5 +51,16 @@ CLASS_DECL_ACE void MEMORY_DECL ace_set_alloc(PFN_MEMORY_ALLOC palloc, PFN_MEMOR
 
 }
 
+const char * g_pszCacheDir;
 
+CLASS_DECL_EXPORT void android_set_cache_dir(const char * pszDir)
+{
 
+   g_pszCacheDir = pszDir;
+
+}
+
+CLASS_DECL_EXPORT const char * android_get_cache_dir()
+{
+   return g_pszCacheDir;
+}

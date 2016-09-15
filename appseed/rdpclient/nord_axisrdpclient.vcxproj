@@ -124,7 +124,7 @@
     </ClCompile>
     <Link />
     <Link>
-      <LibraryDependencies>axisclientchannels;axisfreerdp;axiswinpr;z;aura;$(StlLibraryName);m</LibraryDependencies>
+      <LibraryDependencies>axisclientchannels;axisfreerdp;axiswinpr;z;aura;ace;$(StlLibraryName);m</LibraryDependencies>
       <SharedLibrarySearchPath>%(SharedLibrarySearchPath);$(Sysroot)\usr\lib</SharedLibrarySearchPath>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\nodeapp\thirdparty\library\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath)</AdditionalLibraryDirectories>
     </Link>

@@ -941,9 +941,10 @@ void dir::ls(::file::patha & stra,const ::file::path & psz)
       else if(strcmp(dp->d_name, ".") == 0)
          continue;
       path = psz / dp->d_name;
-      path.m_iDir = is(path);
+      path.m_iDir = is(path) ? 1 : 0;
       stra.add(path);
-
+      
+      //output_debug_string("flood for you: dir::ls ----> " + path);
 
    }
 
