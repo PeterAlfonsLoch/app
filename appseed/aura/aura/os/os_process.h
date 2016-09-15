@@ -9,7 +9,7 @@ typedef int32_t CALLSYNCONRETRY(int32_t iTry,uint_ptr dwParam);
 
 typedef CALLSYNCONRETRY * PFNCALLSYNCONRETRY;
 
-CLASS_DECL_AURA uint32_t call_sync(const char * pszPath, const char * pszParam, const char * pszDir, int32_t iShow, int32_t iRetry, int32_t iSleep,PFNCALLSYNCONRETRY pfnOnRetry, uint_ptr dwParam);
+CLASS_DECL_AURA uint32_t call_sync(const char * pszPath, const char * pszParam, const char * pszDir, int32_t iShow, int32_t iRetry, int32_t iSleep = 1000,PFNCALLSYNCONRETRY pfnOnRetry = NULL, uint_ptr dwParam = 0, unsigned int * puiPid = NULL);
 
 #endif
 

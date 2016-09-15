@@ -34,7 +34,7 @@ int32_t call_async(const char * pszPath, const char * pszParam, const char * psz
 }
 
 
-uint32_t call_sync(const char * pszPath, const char * pszParam, const char * pszDir, int32_t iShow, int32_t iRetry, int32_t iSleep, PFNCALLSYNCONRETRY pfnOnRetry, uint_ptr dwParam)
+uint32_t call_sync(const char * pszPath, const char * pszParam, const char * pszDir, int32_t iShow, int32_t iRetry, int32_t iSleep, PFNCALLSYNCONRETRY pfnOnRetry, uint_ptr dwParam, unsigned int * puiPid)
 {
 
    SHELLEXECUTEINFOA infoa;
@@ -49,8 +49,14 @@ uint32_t call_sync(const char * pszPath, const char * pszParam, const char * psz
 
    infoa.fMask |= SEE_MASK_NOCLOSEPROCESS | SEE_MASK_NOASYNC | SEE_MASK_FLAG_NO_UI;
 
-
    ::ShellExecuteExA(&infoa);
+
+   if (puiPid != NULL)
+   {
+
+      *puiPid = ::GetProcessId(infoa.hProcess);
+
+   }
 
    DWORD dwExitCode;
    
@@ -58,24 +64,30 @@ uint32_t call_sync(const char * pszPath, const char * pszParam, const char * psz
 
    while(iRetry < 0 || iTry <= iRetry)
    {
+      
       if(!GetExitCodeProcess(infoa.hProcess, &dwExitCode))
          break;
+      
       if(dwExitCode != STILL_ACTIVE)
          break;
-      Sleep(100);
+      
+      Sleep(iSleep);
+
       if(pfnOnRetry != NULL)
       {
+
          if(!pfnOnRetry(iTry, dwParam))
             break;
+
       }
+
       iTry++;
+
    }
 
    return dwExitCode;
 
 }
-
-
 
 
 int32_t get_current_processor_index()

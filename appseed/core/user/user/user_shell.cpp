@@ -177,7 +177,7 @@ namespace filemanager
 
       string str(lpcsz);
 
-      imagekey.m_strPath.Format(":%s:%d:%d:%s", lpcsz, eattribute, eicon, oprop("app_theme").get_string().c_str());
+      imagekey.m_strPath.Format(":%s:%d:%d:%s", lpcsz, eattribute, eicon, m_strShellThemePrefix);
 
       imagekey.m_strExtension = str.Mid(str.reverse_find('.'));
 

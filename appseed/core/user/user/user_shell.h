@@ -75,7 +75,7 @@ namespace filemanager
       class CLASS_DECL_CORE ImageSet :
          virtual public ::object
       {
-      protected:
+      public:
 
          mutex                                                    m_mutex;
          sp(image_list)                                           m_pil16;
@@ -83,8 +83,11 @@ namespace filemanager
          sp(image_list)                                           m_pil48Hover;
          map < ImageKey, const ImageKey &, int32_t, int32_t >     m_imagemap;
 
+         string                                                   m_strShellThemePrefix;
+         stringa                                                  m_straThemeableIconName;
 
-      public:
+
+      
 
 #ifdef WINDOWSEX
 

@@ -19,24 +19,37 @@ namespace file
    
    }
    
-   path::path(const string & str, e_path epath)
+   path::path(const string & str, e_path epath, int iDir)
    {
       
       m_epath = get_path_type(str, epath);
       
       ::stdstring < simple_string >::operator = (normalize_path(str, m_epath));
+
+      if (str.ends_ci("\\") || str.ends_ci("/"))
+      {
+
+         m_iDir = 1;
+
+      }
+      else
+      {
+
+         m_iDir = iDir;
+
+      }
    
    }
    
    
-   path::path(const id & id,e_path epath) :
-      path(string(id), epath)
+   path::path(const id & id,e_path epath, int iDir) :
+      path(string(id), epath, iDir)
    {
       
    }
    
-   path::path(const var & var, e_path epath) :
-      path(var.get_string(), epath)
+   path::path(const var & var, e_path epath, int iDir) :
+      path(var.get_string(), epath, iDir)
    {
       
    
@@ -58,21 +71,21 @@ namespace file
    }
    
    
-   path::path(const char * psz,e_path epath ):
-      path(string(psz), epath)
+   path::path(const char * psz, e_path epath, int iDir):
+      path(string(psz), epath, iDir)
    {
       
    }
    
-   path::path(const unichar * psz,e_path epath ) :
-      path(string(psz),epath)
+   path::path(const unichar * psz, e_path epath, int iDir) :
+      path(string(psz), epath, iDir)
    {
       
    }
         
         
-   path::path(const wstring & wstr,e_path epath):
-        path(string(wstr),epath)
+   path::path(const wstring & wstr, e_path epath, int iDir):
+        path(string(wstr), epath, iDir)
    {
    
    }
@@ -281,7 +294,7 @@ namespace file
       
       str.trim_left("\\/");
       
-      return ::file::path(strPath + str, m_epath);
+      return ::file::path(strPath + str, m_epath, path.m_iDir);
       
    }
    
@@ -445,7 +458,7 @@ namespace file
    path path::operator + (const string & str) const
    {
       
-      return ::file::path((const string &)*this + string((const string &)str),m_epath);
+      return ::file::path((const string &)*this + (m_iDir > 0 ? string(sep()) : "" ) + string((const string &)str),m_epath);
       
    }
 

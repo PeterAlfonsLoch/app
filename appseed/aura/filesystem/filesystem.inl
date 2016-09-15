@@ -5,7 +5,7 @@ namespace file
 {
 
 //   inline path::path(const var & var,e_path epath): path(var.get_file_path(),epath){}
-   inline path::path(const property & property,e_path epath): path(property.get_value().get_file_path(),epath){}
+   inline path::path(const property & property,e_path epath, int iDir): path(property.get_value().get_file_path(),epath, iDir){}
    inline path & path::operator = (const var & var) { return operator = (var.get_string()); }
    inline path & path::operator += (const var & var) { return operator += (var.get_string()); }
    inline path path::operator + (const var & var) const { return operator + (var.get_string()); }

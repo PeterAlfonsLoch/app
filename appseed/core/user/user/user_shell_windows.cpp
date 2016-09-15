@@ -995,10 +995,10 @@ namespace filemanager
                      if (System.file().resolve_link(strTarget, strFolder, strParams, strFilePath, NULL))
                      {
 
-                        if (oprop("sln")["app_theme_suffix"].stra().get_count() > 0)
+                        if (m_straThemeableIconName.get_count() > 0)
                         {
 
-                           index i = oprop("sln")["app_theme_suffix"].stra().pred_find_first(
+                           index i = m_straThemeableIconName.pred_find_first(
                               [=](auto & str)
                            {
                               return imagekey.m_strPath.ends_ci(str);
@@ -1008,12 +1008,12 @@ namespace filemanager
                            if (i >= 0)
                            {
                             
-                              string str = oprop("sln")["app_theme_suffix"].stra()[i];
+                              string str = m_straThemeableIconName[i];
 
                               if (imagekey.m_strPath.ends_ci(str))
                               {
 
-                                 imagekey.m_strPath.replace_ci(str, oprop("sln")["app_theme"].get_string() + "-" + str);
+                                 imagekey.m_strPath.replace_ci(str, m_strShellThemePrefix + str);
 
                               }
 
@@ -1181,25 +1181,28 @@ namespace filemanager
 
                   string strExtension = p.extension();
 
-                  if (oprop(strExtension).get_value().get_type() == var::type_propset && oprop(strExtension)["app_theme"].get_string().has_char())
+                  if (m_strShellThemePrefix.has_char())
                   {
+
                      ImageKey imagekey;
 
-                     string strPath = oprop(strExtension)["app_theme"] + "." + strExtension;
+                     string strFooPath = m_strShellThemePrefix + "foo." + strExtension;
 
-                     imagekey.m_strPath = strPath;
+                     imagekey.m_strPath = strFooPath;
                      imagekey.m_iIcon = 0;
                      imagekey.m_strExtension.Empty();
 
                      if (m_imagemap.Lookup(imagekey, iImage))
                         return iImage;
 
-                     ::file::path p = ::file::path(strPath);
+                     ::file::path p = ::file::path(strFooPath);
+
                      string strIcon;
+
                      //if (p.title().CompareNoCase("dark") == 0)
                      //{
 
-                     strIcon = Application.dir().matter("app_theme/" + strExtension + "_" + oprop(strExtension)["app_theme"] + ".ico");
+                     strIcon = ::dir::system() / "config/shell/app_theme" / m_strShellThemePrefix + strExtension + ".ico";
 
                      //}
                      //else if (p.title().CompareNoCase("blue") == 0)

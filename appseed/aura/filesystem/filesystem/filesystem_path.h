@@ -65,16 +65,16 @@ namespace file
 
       path(e_context_switcher_null);
       path(e_path epath = path_file);
-      path(const string & str,e_path epath = path_none);
-      path(const id & id,e_path epath = path_none);
-      path(const var & var, e_path epath = path_none);
+      path(const string & str,e_path epath = path_none, int iDir = -1);
+      path(const id & id,e_path epath = path_none, int iDir = -1);
+      path(const var & var, e_path epath = path_none, int iDir = -1);
       path(const path & path);
       path(path && path);
-      path(const char * psz,e_path epath = path_none);
-      path(const unichar * psz,e_path epath = path_none);
-      path(const wstring & wstr,e_path epath = path_none);
+      path(const char * psz,e_path epath = path_none, int iDir = -1);
+      path(const unichar * psz,e_path epath = path_none, int iDir = -1);
+      path(const wstring & wstr,e_path epath = path_none, int iDir = -1);
       //path(const var & var,e_path epath = path_file);
-      path(const property & property,e_path epath = path_none);
+      path(const property & property,e_path epath = path_none, int iDir = -1);
 
       ~path() throw();
 
