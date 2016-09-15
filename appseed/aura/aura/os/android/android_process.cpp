@@ -96,7 +96,8 @@ CLASS_DECL_AURA DWORD call_sync(
                              int32_t iRetry,
                              int32_t iSleep,
                              int32_t (* pfnOnRetry)(int32_t iTry, dword_ptr dwParam),
-                             dword_ptr dwParam)
+                             dword_ptr dwParam,
+                             unsigned int * puiId)
 {
     string strCmdLine;
 
@@ -112,6 +113,12 @@ CLASS_DECL_AURA DWORD call_sync(
     if(!create_process(strCmdLine, &processId))
         return -1;
 
+    if (puiId != NULL)
+    {
+
+       *puiId = processId;
+
+    }
 
     while(true)
     {
