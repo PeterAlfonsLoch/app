@@ -73,17 +73,17 @@ BOOL ca2rdp_end_paint(rdpContext* context)
 	if (gdi->primary->hdc->hwnd->invalid->null)
 		return 1;
 
-#ifdef WINDOWSEX
-	ca2rdpi->update_rect.left = gdi->primary->hdc->hwnd->invalid->x;
-	ca2rdpi->update_rect.top = gdi->primary->hdc->hwnd->invalid->y;
-   ca2rdpi->update_rect.right = gdi->primary->hdc->hwnd->invalid->x+gdi->primary->hdc->hwnd->invalid->w;
-   ca2rdpi->update_rect.bottom = gdi->primary->hdc->hwnd->invalid->y +gdi->primary->hdc->hwnd->invalid->h;
-#else
+//#ifdef WINDOWSEX
+//	ca2rdpi->update_rect.left = gdi->primary->hdc->hwnd->invalid->x;
+//	ca2rdpi->update_rect.top = gdi->primary->hdc->hwnd->invalid->y;
+//   ca2rdpi->update_rect.right = gdi->primary->hdc->hwnd->invalid->x+gdi->primary->hdc->hwnd->invalid->w;
+//   ca2rdpi->update_rect.bottom = gdi->primary->hdc->hwnd->invalid->y +gdi->primary->hdc->hwnd->invalid->h;
+//#else
 	ca2rdpi->x = 0;
 	ca2rdpi->y = 0;
 	ca2rdpi->w = gdi->width;
 	ca2rdpi->h = gdi->height;
-#endif
+//#endif
    ::draw2d::dib_copy(ca2rdpi->surface,ca2rdpi->primary);
 #endif
 

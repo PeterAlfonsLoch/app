@@ -39,7 +39,7 @@ typedef struct wf_clipboard wfClipboard;
 
 struct _CliprdrStream
 {
-	IStream iStream;
+	IStream * iStream;
 
 	LONG m_lRefCount;
 	LONG m_lIndex;
@@ -54,7 +54,7 @@ void CliprdrStream_Delete(CliprdrStream* instance);
 
 struct _CliprdrDataObject
 {
-	IDataObject iDataObject;
+	IDataObject * iDataObject;
 
 	LONG m_lRefCount;
 	FORMATETC* m_pFormatEtc;
@@ -71,7 +71,7 @@ void CliprdrDataObject_Delete(CliprdrDataObject* instance);
 
 struct _CliprdrEnumFORMATETC
 {
-	IEnumFORMATETC iEnumFORMATETC;
+	IEnumFORMATETC * iEnumFORMATETC;
 
 	LONG m_lRefCount;
 	LONG m_nIndex;
