@@ -1,6 +1,6 @@
 #pragma once
 
-#include "ace/ace.h"
+#include "ace/_ace.h"
 
 #if defined(CUBE) || !defined(_WIN32)
 #define CLASS_DECL_EXPORT
