@@ -25,10 +25,10 @@ namespace user
       class error
       {
       public:
-         int m_iStart;
-         int m_iEnd;
-         DWORD m_dwTime;
-         string m_strMessage;
+         strsize     m_iStart;
+         strsize     m_iEnd;
+         DWORD       m_dwTime;
+         string      m_strMessage;
       };
 
       array <error> m_errora;

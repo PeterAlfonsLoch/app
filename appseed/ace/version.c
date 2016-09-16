@@ -4,9 +4,13 @@
 #define VER_PLATFORM_WIN32_WINDOWS              1
 #define VER_PLATFORM_WIN32_NT                   2
 
+#ifndef WINDOWS
+
 #define	VER_NT_WORKSTATION			1
 #define	VER_NT_DOMAIN_CONTROLLER		2
 #define	VER_NT_SERVER				3
+
+#endif
 
 CLASS_DECL_ACE int _ca_is_basis()
 {
