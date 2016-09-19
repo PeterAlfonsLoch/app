@@ -349,30 +349,30 @@ namespace datetime
 
 #ifdef WINDOWS
 
-         SYSTEMTIME st;
+         //SYSTEMTIME st;
 
-         ::GetLocalTime(&st);
+         //::GetLocalTime(&st);
 
-         ptm->tm_hour = st.wHour;
-         ptm->tm_isdst = -1;
-         ptm->tm_mday = st.wDay;
-         ptm->tm_min = st.wMinute;
-         ptm->tm_mon = st.wMonth;
-         ptm->tm_sec = st.wSecond;
-         ptm->tm_wday = st.wDayOfWeek;
-         ptm->tm_yday = -1;
-         ptm->tm_year = st.wYear;
+         //ptm->tm_hour = st.wHour;
+         //ptm->tm_isdst = -1;
+         //ptm->tm_mday = st.wDay;
+         //ptm->tm_min = st.wMinute;
+         //ptm->tm_mon = st.wMonth;
+         //ptm->tm_sec = st.wSecond;
+         //ptm->tm_wday = st.wDayOfWeek;
+         //ptm->tm_yday = -1;
+         //ptm->tm_year = st.wYear;
 
-         //struct tm tmTemp;
+         struct tm tmTemp;
 
-         //errno_t err = _localtime64_s(&tmTemp, &m_time);
+         errno_t err = _localtime64_s(&tmTemp, &m_time);
 
-         //if (err != 0)
-         //{
-         //   return NULL;    // indicates that m_time was not initialized!
-         //}
+         if (err != 0)
+         {
+            return NULL;    // indicates that m_time was not initialized!
+         }
 
-         //*ptm = tmTemp;
+         *ptm = tmTemp;
 
          return ptm;
 
