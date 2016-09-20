@@ -615,17 +615,101 @@ namespace aura
 
    }
 
+
    bool application::app_map_lookup(const char * psz,void * & p)
    {
+
       return m_appmap.Lookup(psz,p) != FALSE;
+
    }
+
 
    void application::app_map_set(const char * psz,void * p)
    {
+
       m_appmap.set_at(psz,p);
+
    }
 
 
+   void application::open_profile_link(string strUrl, string strProfile)
+   {
+
+      ::fork(this, [=]()
+      {
+
+         sync_open_profile_link(strUrl, strProfile);
+
+      });
+
+   }
+
+
+   void application::sync_open_profile_link(string strUrl, string strApp)
+   {
+
+#if defined(VSNORD)
+
+      Sys(papp).open_link(strUrl);
+
+#elif defined(MACOS)
+
+      if (strApp == "chrome")
+      {
+
+         system("open -a /Applications/Safari.app \"" + strUrl + "\"");
+
+      }
+      else
+      {
+
+         system("open -a /Applications/Firefox.app \"" + strUrl + "\"");
+
+      }
+
+#elif defined(WINDOWS)
+
+      if (strApp == "native")
+      {
+
+         ::ShellExecuteW(NULL, L"open", wstring("microsoft-edge:" + strUrl), NULL, L"C:\\Windows", SW_SHOWDEFAULT);
+
+      }
+      else if (strApp == "chrome")
+      {
+
+         call_async("C:\\Program Files (x86)\\Google\\Chrome\\Application\\Chrome.exe", "\"" + strUrl + "\"", "C:\\Program Files (x86)\\Google\\Chrome\\Application\\", SW_SHOWDEFAULT, false);
+
+      }
+      else
+      {
+
+         string strFirefox = file().as_string(::dir::system() / "firefox.txt");
+         string strFirefoxPath = file().as_string(::dir::system() / "firefox_path.txt");
+         string strFirefoxDir = file().as_string(::dir::system() / "firefox_dir.txt");
+
+         call_async(strFirefoxPath, "\"" + strUrl + "\"", strFirefoxDir, SW_SHOWDEFAULT, false);
+
+      }
+
+#else
+
+      if (strApp == "chrome")
+      {
+
+         system("google-chrome \"" + strUrl + "\"");
+
+      }
+      else
+      {
+
+         system("firefox \"" + strUrl + "\"");
+
+      }
+
+#endif
+
+   }
 
 
    bool application::open_link(const string & strLink,const string & pszTarget)
@@ -633,11 +717,28 @@ namespace aura
 
       if(is_system())
       {
+
+         string strFirefox = file().as_string(::dir::system() / "firefox.txt");
+         string strFirefoxPath = file().as_string(::dir::system() / "firefox_path.txt");
+         string strFirefoxDir = file().as_string(::dir::system() / "firefox_dir.txt");
+         
+         if (strFirefox.has_char()
+            && file().exists(strFirefoxPath)
+            && dir().is(strFirefoxDir))
+         {
+
+            open_profile_link(strLink, pszTarget.has_char() ? pszTarget : string("firefox"));
+
+         }
+
          return open_url::start(this, strLink, pszTarget);
+
       }
       else
       {
+
          return System.open_link(strLink,pszTarget);
+
       }
 
       return false;

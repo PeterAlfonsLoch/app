@@ -395,19 +395,29 @@ uint32_t c_cdecl open_url::thread_proc(void * p)
    return 0;
 }
 
+
 bool open_url::open()
 {
+
    string strLink = m_strLink;
+
    string pszTarget = m_strTarget;
+
 #ifdef WINDOWSEX
+
    string strUrl = strLink;
-   if(!::str::begins_ci(strUrl,"http://")
-      && !::str::begins_ci(strUrl,"https://"))
+
+   if(!::str::begins_ci(strUrl,"http://") && !::str::begins_ci(strUrl,"https://"))
    {
+
       strUrl = "http://" + strUrl;
+
    }
+
    ::ShellExecuteA(NULL,"open",strUrl,NULL,NULL,SW_SHOW);
+
    return true;
+
 #elif defined METROWIN
 
    ::Windows::Foundation::Uri ^ uri = ref new ::Windows::Foundation::Uri(strLink);
