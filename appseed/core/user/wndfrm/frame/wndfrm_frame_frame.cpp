@@ -978,6 +978,14 @@ namespace user
                iLeftDeflate = 0;
 
             }
+            else if (m_pworkset->GetWndDraw()->frame_is_transparent())
+            {
+
+               iTopDeflate = 0;
+
+               iLeftDeflate = 0;
+
+            }
             else if(get_appearance()->GetAppearance() == ::user::AppearanceMinimal)
             {
 

@@ -729,9 +729,15 @@ namespace aura
 
             open_profile_link(strLink, pszTarget.has_char() ? pszTarget : string("firefox"));
 
-         }
+            return true;
 
-         return open_url::start(this, strLink, pszTarget);
+         }
+         else
+         {
+
+            return open_url::start(this, strLink, pszTarget);
+
+         }
 
       }
       else

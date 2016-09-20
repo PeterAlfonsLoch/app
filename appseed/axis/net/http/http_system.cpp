@@ -1699,7 +1699,13 @@ retry_session:
       if (set.has_property("get_response"))
       {
 
-         set["get_response"] = string((const char *) psocket->GetDataPtr(), psocket->GetContentLength());
+         const char * pszData = (const char *)psocket->GetDataPtr();
+
+         strsize iSize = psocket->GetContentLength();
+
+         string strResponse(pszData, iSize);
+
+         set["get_response"] = strResponse;
 
       }
 

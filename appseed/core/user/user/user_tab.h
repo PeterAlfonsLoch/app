@@ -286,7 +286,7 @@ namespace user
       DECL_GEN_SIGNAL(_001OnAppLanguage);
 
 
-      virtual bool defer_handle_full_screen_show_tabs(bool bLayout = true);
+      virtual bool defer_handle_auto_hide_tabs(bool bLayout = true);
 
 
       virtual void restore_tabs();

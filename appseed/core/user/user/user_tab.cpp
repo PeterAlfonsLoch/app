@@ -13,8 +13,10 @@ extern CLASS_DECL_CORE thread_int_ptr < DWORD_PTR > t_time1;
 #define MAGIC_PALACE_TAB_SIZE "-/-"
 #define MAGIC_PALACE_TAB_TEXT "/"
 
+
 namespace user
 {
+
 
    tab::data::data(::aura::application * papp) :
       object(papp),
@@ -329,7 +331,7 @@ namespace user
    }
 
 
-   bool tab::defer_handle_full_screen_show_tabs(bool bLayout)
+   bool tab::defer_handle_auto_hide_tabs(bool bLayout)
    {
 
       //sp(::user::wndfrm::frame::WorkSetClientInterface) pinterface = GetTopLevelFrame();
@@ -340,6 +342,36 @@ namespace user
       //}
 
       bool bNeedLayout = false;
+
+      ::user::interaction * puiTopLevel = GetTopLevel();
+
+      if (puiTopLevel != NULL)
+      {
+
+         if (puiTopLevel->frame_is_transparent())
+         {
+
+            if (m_bShowTabs)
+            {
+
+               m_bShowTabs = false;
+
+               if (bLayout)
+               {
+
+                  layout();
+
+               }
+
+               bNeedLayout = true;
+
+            }
+
+            return bNeedLayout;
+
+         }
+
+      }
 
       if(m_bNoTabs)
       {
@@ -490,7 +522,7 @@ namespace user
 
       //
 
-      defer_handle_full_screen_show_tabs();
+      defer_handle_auto_hide_tabs();
 
       if(m_bNoTabs || !m_bShowTabs)
          return;
@@ -769,7 +801,7 @@ namespace user
       if(!get_data()->m_bCreated)
          return;
 
-      defer_handle_full_screen_show_tabs(false);
+      defer_handle_auto_hide_tabs(false);
 
       ::draw2d::memory_graphics pgraphics(allocer());
       pgraphics->SelectObject(get_data()->m_fontBold);

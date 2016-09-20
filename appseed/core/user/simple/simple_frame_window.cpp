@@ -679,6 +679,8 @@ bool simple_frame_window::WfiToggleTransparentFrame()
 
    data_set("transparent_frame",m_bTransparentFrame);
 
+   layout();
+
    return true;
 
 }
@@ -1582,7 +1584,7 @@ void simple_frame_window::on_set_parent(sp(::user::interaction) puiParent)
 bool simple_frame_window::GetClientRect(LPRECT lprect)
 {
 
-   if (m_bWindowFrame && m_pframeschema != NULL && !WfiIsFullScreen())
+   if (m_bWindowFrame && m_pframeschema != NULL && !WfiIsFullScreen() && !frame_is_transparent())
    {
 
       return m_pframeschema->get_window_client_rect(lprect);

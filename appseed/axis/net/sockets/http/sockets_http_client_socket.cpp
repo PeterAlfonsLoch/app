@@ -200,6 +200,7 @@ namespace sockets
 
       if (outheader(__id(content_encoding)).compare_value_ci("gzip") == 0)
       {
+         m_memoryfile.seek_to_begin();
          System.compress().ungz(m_memoryfile);
       }
 

@@ -78,7 +78,10 @@ namespace sockets
          //inheader("Accept-Language") = "en-us,en;q=0.5";
          if (m_pfile == NULL) // by the time, inline gzip decompression not yet implemented
          {
-            inheader(__id(accept_encoding)) = "gzip,deflate";
+            if (inheader(__id(accept_encoding)).is_new())
+            {
+               inheader(__id(accept_encoding)) = "gzip,deflate";
+            }
          }
          //inheader("Accept-Charset") = "ISO-8859-1,utf-8;q=0.7,*;q=0.7";
          inheader(__id(user_agent)) = MyUseragent();
