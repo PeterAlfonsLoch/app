@@ -351,6 +351,7 @@ namespace user
       //iLineEnd = MIN(iLineEnd,straLines.get_upper_bound());
       //index iLine = m_iLineStart;
       index i = 0;
+      pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
       for(index iLine = m_iLineStart; iLine <= m_iLineEnd; i++, iLine++)
       {
          straLineFeed.remove_all();
