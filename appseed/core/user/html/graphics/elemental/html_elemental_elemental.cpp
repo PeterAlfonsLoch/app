@@ -607,7 +607,7 @@ namespace html
 
       }
 
-      ::html::impl::cell * pcell = dynamic_cast < ::html::impl::cell * > (m_pimpl);
+      sp(::html::impl::cell) pcell = m_pimpl;
 
       if (m_elementalptra.has_elements() && m_etag != tag_select)
       {
@@ -685,7 +685,7 @@ namespace html
             if (m_style.m_edisplay == display_table_row)
             {
 
-               ::html::impl::table_row * prow = dynamic_cast < ::html::impl::table_row * > (m_pimpl);
+               sp(::html::impl::table_row) prow = m_pimpl;
 
                if (prow->m_iRow == prow->get_table()->m_rowptra.get_upper_bound())
                {

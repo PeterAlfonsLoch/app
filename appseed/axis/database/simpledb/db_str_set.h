@@ -6,8 +6,7 @@ class CLASS_DECL_AXIS db_str_set :
 {
 public:
 
-   mutex                         m_mutex;
-   class db_str_set_core *       m_pcore;
+   sp(::db_set)           m_pcore;
 
    db_str_set(db_server * pserver);
    virtual ~db_str_set();

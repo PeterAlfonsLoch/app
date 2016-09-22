@@ -46,7 +46,7 @@ namespace html
             if(pelemental == NULL)
                return NULL;
 
-            table * ptable = dynamic_cast < table * > (pelemental->m_pimpl);
+            sp(table) ptable = pelemental->m_pimpl;
 
             if(ptable != NULL)
                return ptable;
@@ -69,7 +69,7 @@ namespace html
             if(pelemental == NULL)
                return NULL;
 
-            table_row * prow = dynamic_cast < table_row * > (pelemental->m_pimpl);
+            sp(table_row) prow = pelemental->m_pimpl;
 
             if(prow != NULL)
                return prow;
@@ -553,7 +553,7 @@ namespace html
                if(pelemental == m_pelemental)
                   break;
 
-               cell * pcell = dynamic_cast < cell * > (pelemental->m_pimpl);
+               sp(cell) pcell = pelemental->m_pimpl;
 
                if(pcell != NULL)
                {

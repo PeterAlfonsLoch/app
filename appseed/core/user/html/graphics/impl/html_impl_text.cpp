@@ -897,7 +897,7 @@ namespace html
          if(m_pelemental->m_pdata->m_bEdit)
          {
             if(m_pelemental->m_elementalptra.get_size() == 1)
-               m_pelemental->m_elementalptra.first()->m_pimpl->OnLButtonDown(pobj);
+               m_pelemental->m_elementalptra.first().m_pimpl->OnLButtonDown(pobj);
             else
                _002OnLButtonDown(phtml->m_psignal);
          }
@@ -913,7 +913,7 @@ namespace html
          if(m_pelemental->m_pdata->m_bEdit)
          {
             if(m_pelemental->m_elementalptra.get_size() == 1)
-               m_pelemental->m_elementalptra.first()->m_pimpl->OnLButtonUp(pobj);
+               m_pelemental->m_elementalptra.first().m_pimpl->OnLButtonUp(pobj);
             else
                _002OnLButtonUp(phtml->m_psignal);
          }

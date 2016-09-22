@@ -28,9 +28,24 @@ namespace userfs
 
       if(pitem->m_iSubItem == m_iNameSubItemText)
       {
-         pitem->m_strText = m_itema.get_item(pitem->m_iItem).m_strName;
+         
          pitem->m_bOk = true;
+
+         try
+         {
+
+            pitem->m_strText = m_itema.get_item(pitem->m_iItem).m_strName;
+
+         }
+         catch (...)
+         {
+
+            pitem->m_bOk = false;
+
+         }
+
          return;
+
       }
       else if(pitem->m_iSubItem == m_iSizeSubItem)
       {
@@ -81,15 +96,24 @@ namespace userfs
       //return;
       if(pitem->m_iSubItem == m_iNameSubItemText)
       {
-         if (pitem->m_iItem < 0 || pitem->m_iItem >= m_itema.get_size())
+
+         pitem->m_bOk = true;
+
+         try
          {
-            pitem->m_bOk = false;
-            return;
+
+            pitem->m_iImage = m_itema.get_item(pitem->m_iItem).m_iImage;
 
          }
-         pitem->m_iImage = m_itema.get_item(pitem->m_iItem).m_iImage;
-         pitem->m_bOk = true;
+         catch (...)
+         {
+
+            pitem->m_bOk = false;
+
+         }
+         
          return;
+
       }
       else
       {

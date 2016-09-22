@@ -49,7 +49,7 @@ namespace database
          try
          {
 
-            m_pdataserver->RemoveClient(this);
+            m_pdataserver->remove_client(this);
 
          }
          catch(...)
@@ -335,19 +335,28 @@ namespace database
       }
    }
 
-   ::count client_array::GetClientCount()
+
+   ::count client_array::get_client_count()
    {
+
       return this->get_size();
+
    }
 
-   client * client_array::ClientAt(index iClient)
+
+   client * client_array::client_at(index iClient)
    {
+
       return this->element_at(iClient);
+
    }
 
-   void client_array::RemoveClient(client *pclient)
+
+   void client_array::remove_client(client *pclient)
    {
+      
       remove(pclient);
+
    }
 
    string client::calc_data_key(::database::id & id)

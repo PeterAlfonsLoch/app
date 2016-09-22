@@ -1096,14 +1096,16 @@ void string_array < Type, RawType >::add(const id & id)
 template < typename Type, typename RawType >
 Type string_array < Type, RawType >::get_at(index nIndex) const
 {
-   ASSERT(nIndex >= 0 && nIndex < this->m_nSize);
+   if (nIndex < 0 || nIndex >= this->m_nSize)
+      throw index_out_of_bounds(get_app());
    return get_data()[nIndex];
 }
 
 template < typename Type, typename RawType >
 void string_array < Type, RawType >::set_at(index nIndex,const char * newElement)
 {
-   ASSERT(nIndex >= 0 && nIndex < this->m_nSize);
+   if (nIndex < 0 || nIndex >= this->m_nSize)
+      throw index_out_of_bounds(get_app());
    get_data()[nIndex] = newElement;
 }
 
@@ -1111,7 +1113,8 @@ void string_array < Type, RawType >::set_at(index nIndex,const char * newElement
 template < typename Type, typename RawType >
 void string_array < Type, RawType >::set_at(index nIndex,const Type & newElement)
 {
-   ASSERT(nIndex >= 0 && nIndex < this->m_nSize);
+   if (nIndex < 0 || nIndex >= this->m_nSize)
+      throw index_out_of_bounds(get_app());
    get_data()[nIndex] = newElement;
 }
 
@@ -1119,7 +1122,8 @@ void string_array < Type, RawType >::set_at(index nIndex,const Type & newElement
 template < typename Type, typename RawType >
 Type & string_array < Type, RawType >::element_at(index nIndex)
 {
-   ASSERT(nIndex >= 0 && nIndex < this->m_nSize);
+   if (nIndex < 0 || nIndex >= this->m_nSize)
+      throw index_out_of_bounds(get_app());
    return get_data()[nIndex];
 }
 
@@ -1127,7 +1131,8 @@ Type & string_array < Type, RawType >::element_at(index nIndex)
 template < typename Type, typename RawType >
 const Type & string_array < Type, RawType >::element_at(index nIndex) const
 {
-   ASSERT(nIndex >= 0 && nIndex < this->m_nSize);
+   if (nIndex < 0 || nIndex >= this->m_nSize)
+     throw index_out_of_bounds(get_app());
    return get_data()[nIndex];
 }
 
@@ -1148,16 +1153,16 @@ Type* string_array < Type, RawType >::get_data()
 
 
 template < typename Type, typename RawType >
-Type string_array < Type, RawType >::operator[](index nIndex) const
+inline Type string_array < Type, RawType >::operator[](index nIndex) const
 {
-   return get_at(nIndex);
+   return get_data()[nIndex];
 }
 
 
 template < typename Type, typename RawType >
-Type & string_array < Type, RawType >::operator[](index nIndex)
+inline Type & string_array < Type, RawType >::operator[](index nIndex)
 {
-   return this->element_at(nIndex);
+   return get_data()[nIndex];
 }
 
 
@@ -2184,11 +2189,10 @@ void string_array < Type, RawType > ::read(::file::istream & istream)
 
    this->remove_all();
 
+   this->set_size(iSize);
+
    for(int32_t i = 0; i < iSize; i++)
    {
-
-      if(i >= this->get_size())
-         this->set_size(MIN(i + 1024,iSize));
 
       istream >> this->element_at(i);
 

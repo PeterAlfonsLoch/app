@@ -29,8 +29,8 @@ public:
 
    ::simpledb::base *         m_pbase;
 
-   db_long_set *              m_plongset;
-   db_str_set *               m_pstrset;
+   sp(db_long_set)            m_plongset;
+   sp(db_str_set)             m_pstrset;
    bool                       m_bWorking;
    string                     m_strDatabase;
    

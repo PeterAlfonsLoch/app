@@ -27,6 +27,21 @@ namespace aura
    {
    public:
 
+      class CLASS_DECL_AURA city
+      {
+      public:
+
+         index    m_iIndex;
+         string   m_strCit;
+         int64_t  m_iId;
+         double   m_dLat;
+         double   m_dLon;
+
+      };
+
+
+      
+
       ::aura::session::map                         m_aurabergedgemap;
 
       ::object *                                   m_pDraw2dFactoryExchange;
@@ -115,12 +130,15 @@ namespace aura
 
       sp(mutex)                                    m_spmutexCit;
 
-      stringa                                      m_straCit;
+      stringa                                      m_straCityLo;
+      stringa                                      m_straCity;
       int64_array                                  m_iaIds;
       double_array                                 m_daLon;
       double_array                                 m_daLat;
 
       string_map < sp(::aura::library) >           m_mapLibrary;
+
+      string_map < auto_pointer < city > >         m_mapCity;
 
 
 
@@ -424,7 +442,8 @@ namespace aura
 
       virtual void defer_check_city_list();
 
-      virtual index find_city(string strQuery, string & strCit, int64_t & iId, double & dLat, double & dLon);
+      virtual city * find_city(string strQuery);
+      virtual index find_city2(string strQuery, string & strCit, int64_t & iId, double & dLat, double & dLon);
 
    };
 

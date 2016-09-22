@@ -27,7 +27,7 @@ namespace message
          UINT                    m_uiCode;
          UINT                    m_uiIdStart;
          UINT                    m_uiIdEnd;
-         class ::signal *        m_psignal;
+         sp(class ::signal)      m_psignal;
 
          //HandlerItemArray        m_handlera;
 
@@ -39,14 +39,14 @@ namespace message
 
 
       class CLASS_DECL_AURA SignalPtrArray:
-         public ref_array < Signal >
+         virtual public spa(Signal)
       {
 
 
       };
 
       class CLASS_DECL_AURA SignalArray:
-         public ptr_array < Signal >
+         virtual public spa(Signal)
       {
       public:
 
@@ -116,13 +116,13 @@ namespace message
       // If not found a existing Signal, create one
       if(psignal == NULL)
       {
-         psignal = new Signal;
+         psignal = canew(Signal);
          psignal->m_uiMessage = message;
          psignal->m_uiCode = uiCode;
          psignal->m_uiIdStart = uiIdStart;
          psignal->m_uiIdEnd = uiIdEnd;
          psignal->m_eprototype = GetMessagePrototype(message,0);
-         psignal->m_psignal = new class ::signal();
+         psignal->m_psignal = canew(class ::signal());
          m_signala.add(psignal);
       }
       else

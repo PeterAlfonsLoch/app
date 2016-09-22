@@ -15,6 +15,7 @@ window_gdi::window_gdi(::aura::application * papp) :
    m_hwnd            = NULL;
    m_hMapFile        = NULL;
    m_pBuf            = NULL;
+   m_hmutex          = NULL;
 
 }
 

@@ -179,7 +179,7 @@ namespace database
    };
 
    class CLASS_DECL_AXIS client_array :
-      public ref_array < client >
+      public spa(client)
    {
    public:
 
@@ -189,9 +189,9 @@ namespace database
 
 
       virtual void add_client(client * pclient);
-      virtual void RemoveClient(client * pclient);
-      client * ClientAt(index iClient);
-      ::count GetClientCount();
+      virtual void remove_client(client * pclient);
+      client * client_at(index iClient);
+      ::count get_client_count();
 
 
    };

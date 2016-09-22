@@ -36,28 +36,9 @@ namespace filemanager
          step_end,
       };
 
-      class polishing :
-         virtual public ::thread
-      {
-      public:
 
-         ::filemanager::tree *      m_ptree;
-         ::user::tree *             m_pusertree;
-         bool                       m_bLowLatency;
-         ::data::tree_item *        m_pdataitem;
-         e_step                     m_estep;
-
-         polishing(::aura::application * papp,::filemanager::tree * ptree,::user::tree * pusertree, bool bLowLatency);
-
-         int32_t run();
-         bool step(::single_lock & sl);
-
-      };
 
       context_menu            m_contextmenu;
-      mutex                   m_mutexData;
-      polishing *             m_pthreadPolishing;
-      polishing *             m_pthreadPolishingLowLatency;
       
 
 #ifdef WINDOWSEX
@@ -73,7 +54,7 @@ namespace filemanager
       virtual void dump(dump_context & dumpcontext) const;
 
       virtual void _001InsertColumns();
-      virtual void _polishing_step(::single_lock & sl, ::data::tree_item * pitem, bool bLowLatency, e_step estep);
+      virtual void _polishing_step(::data::tree_item * pitem, bool bLowLatency, e_step estep);
 
       void _001OnTimer(::timer * ptimer);
 
@@ -82,7 +63,7 @@ namespace filemanager
 
       // tree_polishing
       void _polishing_start(::user::tree * pusertree);
-      UINT _polishing_run(::user::tree * pusertree, bool bLowLatency);
+      void _polishing_run(::data::tree_item * pitem, ::user::tree * pusertree, bool bLowLatency);
       bool _polishing_step(::data::tree_item * pitem, bool bLowLatency);
 
       // user::tree

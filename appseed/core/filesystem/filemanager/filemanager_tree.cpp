@@ -10,16 +10,13 @@ namespace filemanager
       ::data::data(papp),
       ::data::tree(papp),
       ::user::tree_data(papp),
-      ::userfs::tree(papp),
-      m_mutexData(papp)
+      ::userfs::tree(papp)
    {
 
       m_iAnimate = 0;
 
       m_pimagelist = Session.userex()->shellimageset().GetImageList16();
 
-      m_pthreadPolishing = NULL;
-      m_pthreadPolishingLowLatency = NULL;
 
    }
 
@@ -90,8 +87,6 @@ namespace filemanager
 
       }
 
-      single_lock sl(&m_mutexData,true);
-
       filemanager_tree_insert(strDir,listing,actioncontext, bOnlyParent);
 
       ::data::tree_item * pitem = find_item(strDir);
@@ -128,13 +123,7 @@ namespace filemanager
    void tree::filemanager_tree_insert(const ::file::path & strPath,::file::listing & listing,::action::context actioncontext,bool bOnlyParent)
    {
 
-      single_lock sl(&m_mutexData,true);
-
       ::file::listing & straRootPath = get_document()->m_straRootPath;
-
-//      stringa & straRootTitle = get_document()->m_straRootTitle;
-
-      //    bool bTreeShowSubdir = get_document()->get_fs_data()->tree_show_subdir(strPath);
 
       ::data::tree_item_ptr_array ptraRemove;
 
@@ -347,11 +336,7 @@ namespace filemanager
    void tree::browse_sync(::action::context actioncontext)
    {
 
-      single_lock sl(&m_mutexData,true);
-
       ::file::listing & straRootPath = get_document()->m_straRootPath;
-
-//      stringa & straRootTitle = get_document()->m_straRootTitle;
 
       ::file::path strPath = get_filemanager_path();
 
@@ -724,146 +709,68 @@ namespace filemanager
    }
 
 
-   tree::polishing::polishing(::aura::application * papp, ::filemanager::tree * ptree,::user::tree * pusertree, bool bLowLatency) :
-      object(papp),
-      thread(papp)
-   {
-
-      m_ptree        = ptree;
-      m_pusertree    = pusertree;
-      m_bLowLatency  = bLowLatency;
-      m_pdataitem    = NULL;
-
-
-
-   }
-
-
-   int32_t tree::polishing::run()
-   {
-#ifdef WINDOWS
-      HRESULT result = ::CoInitializeEx(NULL, COINIT_MULTITHREADED);
-      if (!SUCCEEDED(result))
-      {
-         goto finish;
-      }
-#endif
-      try
-      {
-
-         single_lock sl(&m_ptree->m_mutexData, true);
-
-         int iBatchSize = 5;
-
-         m_pdataitem = (::data::tree_item *) m_ptree->get_base_item()->first_child();
-
-         m_estep = (e_step)(((int)step_start) + 1);
-
-         while (m_bRun)
-         {
-
-            for (index i = 0; i < iBatchSize; i++)
-            {
-               if (!m_bRun || !step(sl))
-                  goto finish;
-            }
-
-            sl.unlock();
-
-            sl.lock();
-
-
-         }
-      }
-      catch (...)
-      {
-
-      }
-finish:
-      ;
-
-      try
-      {
-         if (m_ptree->m_pthreadPolishing == this)
-         {
-            m_ptree->m_pthreadPolishing = NULL;
-         }
-         if (m_ptree->m_pthreadPolishingLowLatency == this)
-         {
-            m_ptree->m_pthreadPolishingLowLatency = NULL;
-         }
-      }
-      catch (...)
-      {
-      }
-
-      return 0;
-
-   }
 
 
    void tree::_polishing_start(::user::tree * pusertree)
    {
 
-      if (m_pthreadPolishing != NULL)
+      ::data::tree_item * pitem = get_base_item()->first_child();
+
+      ::fork(get_app(), [=]()
       {
 
-         m_pthreadPolishing->post_quit();
 
-      }
+         _polishing_run(pitem, pusertree, false);
 
-      m_pthreadPolishing = new polishing(get_app(),this,pusertree, false);
 
-      m_pthreadPolishing->begin();
+      });
 
-      if (m_pthreadPolishingLowLatency != NULL)
+      ::fork(get_app(), [=]()
       {
 
-         m_pthreadPolishingLowLatency->post_quit();
 
-      }
+         _polishing_run(pitem, pusertree, true);
 
-      m_pthreadPolishingLowLatency = new polishing(get_app(),this,pusertree,true);
 
-      m_pthreadPolishingLowLatency->begin();
+      });
 
    }
 
 
-   bool tree::polishing::step(single_lock & sl)
+   void tree::_polishing_run(::data::tree_item * pitemStart, ::user::tree * pusertree, bool bLowLatency)
    {
 
-      if(m_pdataitem == NULL)
+      e_step estep = step_start;
+
+      while(estep < step_end)
       {
 
-         m_estep = (e_step)(((int)m_estep) + 1);
+         ::data::tree_item * pitem = pitemStart;
 
-         if(m_estep >= step_end)
+         while (pitem != NULL)
          {
 
-            return false;
+            _polishing_step(pitem, bLowLatency, estep);
+
+            pitem = pitem->get_item(::data::TreeNavigationExpandedForward);
+
+            if (pitem->m_pparent == pitemStart->m_pparent)
+            {
+               
+               break;
+
+            }
 
          }
 
-         m_pdataitem = m_ptree->get_base_item()->first_child();
-
-
-         if(m_pdataitem == NULL)
-            return false;
-
+         estep = (e_step)(((int)estep) + 1);
 
       }
-
-      m_ptree->_polishing_step(sl, m_pdataitem, m_bLowLatency, m_estep);
-
-      m_pdataitem = m_pdataitem->get_item(::data::TreeNavigationExpandedForward);
-
-      return true;
 
    }
 
 
-   void tree::_polishing_step(single_lock & sl, ::data::tree_item * pitem, bool bLowLatency, e_step estep)
+   void tree::_polishing_step(::data::tree_item * pitem, bool bLowLatency, e_step estep)
    {
 
       if(pitem == NULL)

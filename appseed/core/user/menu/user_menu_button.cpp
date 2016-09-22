@@ -4,10 +4,9 @@ namespace user
 {
 
    menu_button::menu_button(::aura::application * papp):
+      object(papp),
       ::user::interaction(papp),
-
-      ::user::button(papp),
-      object(papp)
+      ::user::button(papp)
    {
       m_pitem = NULL;
    }

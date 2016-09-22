@@ -162,14 +162,14 @@ inline void array < TYPE, ARG_TYPE, ALLOCATOR > ::set_at(index nIndex, ARG_TYPE 
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 inline const TYPE& array < TYPE, ARG_TYPE, ALLOCATOR > ::element_at(index nIndex) const
 {
-   if (nIndex < 0 && nIndex >= this->m_nSize)
+   if (nIndex < 0 || nIndex >= this->m_nSize)
       throw index_out_of_bounds(this->get_app());
    return get_data()[nIndex];
 }
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 inline TYPE& array < TYPE, ARG_TYPE, ALLOCATOR > ::element_at(index nIndex)
 {
-   if (nIndex < 0 && nIndex >= this->m_nSize)
+   if (nIndex < 0 || nIndex >= this->m_nSize)
       throw index_out_of_bounds(this->get_app());
    return get_data()[nIndex];
 }
@@ -236,13 +236,17 @@ inline index array < TYPE, ARG_TYPE, ALLOCATOR > ::add(const array & src)
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 inline const TYPE& array < TYPE, ARG_TYPE, ALLOCATOR > ::operator[](index nIndex) const
 {
-   return element_at(nIndex);
+
+   return get_data()[nIndex];
+
 }
 
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 inline TYPE& array < TYPE, ARG_TYPE, ALLOCATOR > ::operator[](index nIndex)
 {
-   return this->element_at(nIndex);
+
+   return get_data()[nIndex];
+
 }
 
 

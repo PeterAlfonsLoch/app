@@ -37,7 +37,7 @@ namespace html
             if(pelemental == NULL)
                return NULL;
 
-            table * ptable = dynamic_cast < table * > (pelemental->m_pimpl);
+            sp(table) ptable = pelemental->m_pimpl;
 
             if(ptable != NULL)
                return ptable;

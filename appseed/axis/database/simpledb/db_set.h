@@ -8,6 +8,7 @@ class CLASS_DECL_AXIS db_set :
 public:
 
 
+   void *               m_ptopthis;
    sp(sqlite::set)      m_pdataset;
    string               m_strTable;
 

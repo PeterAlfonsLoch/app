@@ -52,7 +52,6 @@ class CLASS_DECL_AXIS db_str_set_core:
 public:
 
 
-   mutex                                        m_mutex;
    sockets::socket_handler                      m_handler;
    sockets::http_session *                      m_phttpsession;
    string_map < db_str_set_item >               m_map;
@@ -69,14 +68,15 @@ public:
       ::object(pserver->get_app()),
       db_set(pserver,"stringtable"),
       m_handler(get_app()),
-      m_mutex(get_app()),
       m_phttpsession(NULL),
       m_pqueue(NULL),
       m_psimpledbUser(pserver->m_psimpledbUser),
       m_strUser(pserver->m_strUser)
    {
 
-
+      m_ptopthis = this;
+      m_pmutex = new mutex(pserver->get_app());
+   
    }
 
    ~db_str_set_core()
@@ -217,7 +217,7 @@ repeat:;
    catch(...)
    {
    }
-   m_pset->m_pcore->m_pqueue = NULL;
+   ((db_long_set_core *)(m_pset->m_pcore->m_ptopthis))->m_pqueue = NULL;
    return 0;
 }
 
@@ -238,19 +238,17 @@ void db_str_sync_queue::queue(const char * pszKey,const char * psz)
 
 
 db_str_set::db_str_set(db_server * pserver):
-::object(pserver->get_app()),
-m_mutex(pserver->get_app())
+::object(pserver->get_app())
 {
 
-   m_pcore = new db_str_set_core(pserver);
+   m_pmutex = new mutex(pserver->get_app());
+   m_pcore = canew(db_str_set_core(pserver));
 
 }
 
 db_str_set::~db_str_set()
 {
    
-   ::aura::del(m_pcore);
-
 }
 
 
@@ -266,6 +264,8 @@ bool db_str_set::remove(const char * lpKey)
 bool db_str_set::load(const char * lpKey, string & strValue)
 {
 
+   db_str_set_core * pcore = (db_str_set_core *)m_pcore->m_ptopthis;
+
    if(m_pcore->m_pdataserver == NULL)
       return false;
 
@@ -274,18 +274,18 @@ bool db_str_set::load(const char * lpKey, string & strValue)
 
       Application.assert_user_logged_in();
 
-      synch_lock sl(&m_mutex);
+      synch_lock sl(m_pmutex);
 
-      if(m_pcore->m_phttpsession == NULL)
+      if(pcore->m_phttpsession == NULL)
       {
 
-         m_pcore->m_phttpsession = Session.fontopus()->m_mapFontopusSession[Session.fontopus()->m_strFirstFontopusServer];
+         pcore->m_phttpsession = Session.fontopus()->m_mapFontopusSession[Session.fontopus()->m_strFirstFontopusServer];
 
       }
 
       db_str_set_item stritem;
 
-      if(m_pcore->m_map.Lookup(lpKey,stritem) && stritem.m_dwTimeout > get_tick_count())
+      if(pcore->m_map.Lookup(lpKey,stritem) && stritem.m_dwTimeout > get_tick_count())
       {
          strValue = stritem.m_str;
          return true;
@@ -307,9 +307,9 @@ bool db_str_set::load(const char * lpKey, string & strValue)
 
       set["get_response"] = "";
 
-      m_pcore->m_phttpsession = System.http().request(m_pcore->m_phttpsession,strUrl,set);
+      pcore->m_phttpsession = System.http().request(pcore->m_phttpsession,strUrl,set);
 
-      if(m_pcore->m_phttpsession == NULL || ::http::status_failed(set["get_status"]))
+      if(pcore->m_phttpsession == NULL || ::http::status_failed(set["get_status"]))
       {
          return false;
       }
@@ -319,18 +319,18 @@ bool db_str_set::load(const char * lpKey, string & strValue)
       stritem.m_dwTimeout = get_tick_count() + 23 * (5000);
       stritem.m_str = strValue;
 
-      m_pcore->m_map.set_at(lpKey,stritem);
+      pcore->m_map.set_at(lpKey,stritem);
 
 
    }
 #ifndef METROWIN
-   else if(m_pcore->m_psimpledbUser != NULL)
+   else if(pcore->m_psimpledbUser != NULL)
    {
 
       try
       {
 
-         strValue = m_pcore->m_psimpledbUser->query_item("SELECT `value` FROM fun_user_str_set WHERE user = '" + m_pcore->m_strUser + "' AND `key` = '" + m_pcore->m_psimpledbUser->real_escape_string(lpKey) + "'");
+         strValue = pcore->m_psimpledbUser->query_item("SELECT `value` FROM fun_user_str_set WHERE user = '" + pcore->m_strUser + "' AND `key` = '" + pcore->m_psimpledbUser->real_escape_string(lpKey) + "'");
 
          return true;
 
@@ -387,6 +387,8 @@ bool db_str_set::load(const char * lpKey, string & strValue)
 bool db_str_set::save(const char * lpKey, const char * lpcsz)
 {
 
+   db_str_set_core * pcore = (db_str_set_core *)m_pcore->m_ptopthis;
+
    if(m_pcore->m_pdataserver == NULL)
       return false;
 
@@ -441,14 +443,14 @@ bool db_str_set::save(const char * lpKey, const char * lpcsz)
       return true;
    }
 #ifdef HAVE_MYSQL
-   else if(m_pcore->m_psimpledbUser != NULL)
+   else if(pcore->m_psimpledbUser != NULL)
    {
 
-      string strSql = "REPLACE INTO fun_user_str_set VALUE('" + m_pcore->m_strUser + "', '" + m_pcore->m_psimpledbUser->real_escape_string(lpKey) + "', '" + m_pcore->m_psimpledbUser->real_escape_string(lpcsz) + "')";
+      string strSql = "REPLACE INTO fun_user_str_set VALUE('" + pcore->m_strUser + "', '" + pcore->m_psimpledbUser->real_escape_string(lpKey) + "', '" + pcore->m_psimpledbUser->real_escape_string(lpcsz) + "')";
 
       TRACE(strSql);
 
-      return m_pcore->m_psimpledbUser->query(strSql) != NULL;
+      return pcore->m_psimpledbUser->query(strSql) != NULL;
 
    }
 #endif
@@ -456,24 +458,24 @@ bool db_str_set::save(const char * lpKey, const char * lpcsz)
    {
 
 
-      if(m_pcore->m_pqueue == NULL)
+      if(pcore->m_pqueue == NULL)
       {
 
-         m_pcore->m_pqueue = canew(db_str_sync_queue(get_app()));
-         m_pcore->m_pqueue->m_pset = this;
-         m_pcore->m_pqueue->begin();
+         pcore->m_pqueue = canew(db_str_sync_queue(get_app()));
+         pcore->m_pqueue->m_pset = this;
+         pcore->m_pqueue->begin();
 
       }
 
 
-      m_pcore->m_pqueue->queue(lpKey,lpcsz);
+      pcore->m_pqueue->queue(lpKey,lpcsz);
 
       db_str_set_item stritem;
 
       stritem.m_dwTimeout = get_tick_count() + 23 * (5000);
       stritem.m_str = lpcsz;
 
-      m_pcore->m_map.set_at(lpKey,stritem);
+      pcore->m_map.set_at(lpKey,stritem);
 
 
       return true;

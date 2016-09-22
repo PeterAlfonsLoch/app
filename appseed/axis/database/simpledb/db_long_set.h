@@ -8,11 +8,11 @@ class CLASS_DECL_AXIS db_long_set :
 public:
 
 
-   class db_long_set_core *            m_pcore;
+   sp(::db_set)            m_pcore;
 
 
    db_long_set(db_server * pdatacentral);
-   ~db_long_set();
+   virtual ~db_long_set();
 
 
 

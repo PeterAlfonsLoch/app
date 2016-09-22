@@ -53,7 +53,7 @@ class CLASS_DECL_AURA signalizable :
 public:
 
 
-   ref_array < class signal > m_signalptra;
+   spa(class signal) m_signalptra;
 
 
    signalizable();
@@ -75,25 +75,26 @@ public:
 };
 
 class CLASS_DECL_AURA base_signalizable_array :
-   virtual protected ref_array < signalizable >
+   virtual protected spa(signalizable)
 {
 public:
 
-   inline index add(signalizable * psignalizable)
+   inline void add(signalizable * psignalizable)
    {
       install_handlers(psignalizable);
-      return ::ref_array < signalizable >::add(psignalizable);
-   }
-   inline index remove(signalizable * psignalizable)
-   {
-      return ::ref_array < signalizable >::remove(psignalizable);
+      spa(signalizable)::add(psignalizable);
    }
 
-   inline signalizable * element_at(index i) { return ::ref_array < signalizable >::element_at(i); }
-   inline ::count get_size() { return ::ref_array < signalizable >::get_size(); }
-   inline ::count get_count() { return ::ref_array < signalizable >::get_count(); }
-   inline ::count size() { return ::ref_array < signalizable >::size(); }
-   inline ::count count() { return ::ref_array < signalizable >::count(); }
+   inline void remove(signalizable * psignalizable)
+   {
+      spa(signalizable)::remove(psignalizable);
+   }
+
+   inline signalizable * element_at(index i) { return spa(signalizable)::element_at(i); }
+   inline ::count get_size() { return spa(signalizable)::get_size(); }
+   inline ::count get_count() { return spa(signalizable)::get_count(); }
+   inline ::count size() { return spa(signalizable)::size(); }
+   inline ::count count() { return spa(signalizable)::count(); }
 
    virtual void install_handlers(signalizable *) {}
 
@@ -106,14 +107,14 @@ class signalizable_array :
 {
 public:
 
-   inline index add(SIGNALIZABLE * psignalizable)
+   inline void add(SIGNALIZABLE * psignalizable)
    {
-      return base_signalizable_array::add(psignalizable);
+      base_signalizable_array::add(psignalizable);
    }
 
-   inline index remove(SIGNALIZABLE * psignalizable)
+   inline void remove(SIGNALIZABLE * psignalizable)
    {
-      return base_signalizable_array::remove(psignalizable);
+      base_signalizable_array::remove(psignalizable);
    }
 
    SIGNALIZABLE * element_at(index i) { return dynamic_cast < SIGNALIZABLE * > (base_signalizable_array::element_at(i)); }
@@ -159,7 +160,7 @@ public:
    };
 
 
-   ptr_array < signal_delegate > m_delegateptra;
+   spa(signal_delegate) m_delegateptra;
 
 
    signal();
@@ -242,7 +243,8 @@ bool signal::signal_delegate_instance<T>::operator == (const signal_delegate_ins
 }
 
 
-class CLASS_DECL_AURA signalid
+class CLASS_DECL_AURA signalid :
+   virtual public object
 {
 public:
 
@@ -276,7 +278,8 @@ class CLASS_DECL_AURA dispatch :
 public:
 
 
-   class CLASS_DECL_AURA handler_item_base
+   class CLASS_DECL_AURA handler_item_base :
+      virtual public object
    {
    public:
 
@@ -302,7 +305,7 @@ public:
 
 
    class CLASS_DECL_AURA handler_item_array :
-      public ptr_array < handler_item_base >
+      public spa(handler_item_base)
    {
    public:
       virtual ~handler_item_array();
@@ -316,8 +319,8 @@ public:
    public:
 
 
-      signalid *           m_pid;
-      class ::signal *     m_psignal;
+      sp(signalid)         m_pid;
+      sp(class ::signal)   m_psignal;
 
       handler_item_array   m_handlera;
 
@@ -329,7 +332,7 @@ public:
 
 
    class CLASS_DECL_AURA signal_item_ptr_array :
-      public ref_array < signal_item >
+      public spa(signal_item)
    {
    public:
 

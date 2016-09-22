@@ -4,6 +4,7 @@
 
 int32_t g_idbchange;
 
+#define new AURA_NEW
 
 db_server::db_server(::aura::application * papp) :
       ::object(papp),
@@ -61,8 +62,8 @@ bool db_server::initialize_user(::simpledb::database * pmysqldbUser, const char 
    m_psimpledbUser    = pmysqldbUser;
    m_strUser         = pszUser;
 
-   m_plongset        = new db_long_set(this);
-   m_pstrset         = new db_str_set(this);
+   m_plongset        = canew(db_long_set(this));
+   m_pstrset         = canew(db_str_set(this));
 
    if(!create_message_queue())
       return false;
@@ -105,9 +106,9 @@ bool db_server::initialize()
 
    m_pdb->create_string_set("stringtable");
 
-   m_plongset     = new db_long_set(this);
+   m_plongset     = canew(db_long_set(this));
 
-   m_pstrset      = new db_str_set(this);
+   m_pstrset      = canew(db_str_set(this));
 
    int32_t iBufferSize = 128 * 1024;
 
@@ -148,29 +149,23 @@ bool db_server::finalize()
    //}
 
 
-   if(m_pstrset != NULL)
-   {
-      delete m_pstrset;
-      m_pstrset = NULL;
-   }
+   m_pstrset.release();
 
-
-   if(m_plongset != NULL)
-   {
-      delete m_plongset;
-      m_plongset = NULL;
-   }
-
+   m_plongset.release();
 
    if(m_pdb != NULL)
    {
+
       m_pdb->disconnect();
+
       m_pdb.release();
+
    }
 
    return true;
 
 }
+
 
 bool db_server::create_message_queue()
 {
@@ -219,17 +214,9 @@ void db_server::_001OnTimer(::timer * ptimer)
 void db_server::close()
 {
 
-   if(m_pstrset != NULL)
-   {
-      delete m_pstrset;
-      m_pstrset = NULL;
-   }
+   m_pstrset.release();
 
-   if(m_plongset != NULL)
-   {
-      delete m_plongset;
-      m_plongset = NULL;
-   }
+   m_plongset.release();
 
    m_bWorking = false;
 

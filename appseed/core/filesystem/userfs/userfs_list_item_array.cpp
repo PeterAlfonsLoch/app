@@ -27,9 +27,12 @@ namespace userfs
    {
    }
 
-   list_item & list_item_array::get_item(index i)
+   
+   list_item & list_item_array::get_item(index iItem)
    {
-      return m_itema.get_item(i, m_pfnCompare);
+
+      return m_itema.get_item(iItem, m_pfnCompare);
+
    }
 
    ::count list_item_array::get_count()

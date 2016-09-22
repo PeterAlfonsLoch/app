@@ -41,7 +41,6 @@ public:
    inline POINTER* get_data() { return (POINTER*)ARRAY_TYPE::get_data(); }
    inline POINTER* get_data() const { return (POINTER*)ARRAY_TYPE::get_data(); }
 
-
 };
 
 
@@ -244,4 +243,6 @@ public:
 
 
 };
+
+
 

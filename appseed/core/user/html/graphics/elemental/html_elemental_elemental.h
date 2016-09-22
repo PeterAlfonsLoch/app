@@ -14,13 +14,13 @@ namespace html
 
       // always present property?! "text"
       property_set               m_propertyset;
-      impl::elemental *          m_pimpl;
+      sp(impl::elemental)        m_pimpl;
       elemental *                m_pparent;
       base *                     m_pbase;
       data *                     m_pdata;
 
       style                      m_style;
-      ref_array < elemental >    m_elementalptra;
+      spa(elemental)             m_elementalptra;
 
       e_tag                      m_etag;
       string                     m_strBody;

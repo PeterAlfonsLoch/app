@@ -242,7 +242,7 @@ namespace filemanager
    // manager commands
 
 
-   void manager::start_full_browse(const string & strPath, ::action::context actioncontext)
+   void manager::start_full_browse(string strPath, ::action::context actioncontext)
    {
 
       if(!get_fs_data()->is_zero_latency(strPath))
@@ -256,29 +256,25 @@ namespace filemanager
 
       }
 
-      ::filemanager::full_browse * pbrowse = new ::filemanager::full_browse(get_app());
+      ::fork(get_app(), [=]()
+      {
 
-      pbrowse->m_pmanager = this;
+         full_browse(strPath, actioncontext);
 
-      pbrowse->m_strPath = strPath;
-
-      pbrowse->m_actioncontext = actioncontext;
-
-      pbrowse->begin();
-
+      });
 
    }
 
 
-   void manager::full_browse(::filemanager::full_browse * pbrowse)
+   void manager::full_browse(string strPath, ::action::context actioncontext)
    {
 
-      browse(pbrowse->m_strPath,pbrowse->m_actioncontext);
+      browse(strPath, actioncontext);
 
       update_hint uh;
       uh.set_type(update_hint::TypeSynchronizePath);
-      uh.m_actioncontext = ::action::source::sync(pbrowse->m_actioncontext);
-      uh.m_strPath = pbrowse->m_strPath;
+      uh.m_actioncontext = ::action::source::sync(actioncontext);
+      uh.m_strPath = strPath;
       update_all_views(NULL,0,&uh);
 
    }
@@ -734,28 +730,6 @@ namespace filemanager
       }
 
       return true;
-
-   }
-
-   full_browse::full_browse(::aura::application * papp):
-      object(papp),
-      thread(papp)
-   {
-
-   }
-
-
-   full_browse::~full_browse()
-   {
-
-   }
-
-   int32_t full_browse::run()
-   {
-
-      m_pmanager->full_browse(this);
-
-      return 0;
 
    }
 

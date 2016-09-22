@@ -2403,10 +2403,11 @@ namespace aura
       
       synch_lock sl(get_city_mutex());
 
-      if (m_straCit.get_size() == m_iaIds.get_size()
+      if (m_straCityLo.get_size() == m_straCity.get_size()
+         && m_straCity.get_size() == m_iaIds.get_size()
          && m_iaIds.get_size() == m_daLon.get_size()
          && m_daLon.get_size() == m_daLat.get_size()
-         && m_straCit.get_size() > 1)
+         && m_straCity.get_size() > 1)
       {
          
          return;
@@ -2418,12 +2419,19 @@ namespace aura
       try
       {
 
-         file_as(m_straCit, dir::system() / "weather-cit.bin");
+         file_as(m_straCity, dir::system() / "weather-cit.bin");
+         file_as(m_straCityLo, dir::system() / "weather-cil.bin");
          file_as_array(m_iaIds, dir::system() / "weather-ids.bin");
          file_as_array(m_daLon, dir::system() / "weather-lon.bin");
          file_as_array(m_daLat, dir::system() / "weather-lat.bin");
 
-         bOk = true;
+
+         bOk = m_straCityLo.get_size() == m_straCity.get_size()
+            && m_straCity.get_size() == m_iaIds.get_size()
+            && m_iaIds.get_size() == m_daLon.get_size()
+            && m_daLon.get_size() == m_daLat.get_size()
+            && m_straCity.get_size() > 1;
+
 
       }
       catch (...)
@@ -2438,11 +2446,13 @@ namespace aura
          {
 
             Application.file().del(dir::system() / "weather-cit.bin");
+            Application.file().del(dir::system() / "weather-cil.bin");
             Application.file().del(dir::system() / "weather-ids.bin");
             Application.file().del(dir::system() / "weather-lon.bin");
             Application.file().del(dir::system() / "weather-lat.bin");
 
-            m_straCit.remove_all();
+            m_straCityLo.remove_all();
+            m_straCity.remove_all();
             m_iaIds.remove_all();
             m_daLon.remove_all();
             m_daLat.remove_all();
@@ -2455,10 +2465,11 @@ namespace aura
 
       }
 
-      if (m_straCit.get_size() == m_iaIds.get_size()
+      if (m_straCityLo.get_size() == m_straCity.get_size()
+       && m_straCity.get_size() == m_iaIds.get_size()
        && m_iaIds.get_size() == m_daLon.get_size()
        && m_daLon.get_size() == m_daLat.get_size()
-       && m_straCit.get_size() > 1)
+       && m_straCity.get_size() > 1)
       {
       }
       else
@@ -2489,7 +2500,9 @@ namespace aura
 
                string strLine = v["name"] + ", " + v["country"];
 
-               m_straCit.add(strLine);
+               m_straCity.add(strLine);
+
+               m_straCityLo.add(strLine.lowered());
 
                int64_t iId = v["_id"];
 
@@ -2505,7 +2518,8 @@ namespace aura
 
             }
 
-            file_put(dir::system() / "weather-cit.bin", m_straCit);
+            file_put(dir::system() / "weather-cit.bin", m_straCity);
+            file_put(dir::system() / "weather-cil.bin", m_straCityLo);
             file_put_array(dir::system() / "weather-ids.bin", m_iaIds);
             file_put_array(dir::system() / "weather-lon.bin", m_daLon);
             file_put_array(dir::system() / "weather-lat.bin", m_daLat);
@@ -2516,9 +2530,39 @@ namespace aura
 
    }
 
-   
-   index system::find_city(string strQuery, string & strCit, int64_t & iId, double & dLat, double & dLon)
+
+   ::aura::system::city * system::find_city(string strQuery)
    {
+
+      auto & city_auto_pointer = m_mapCity[strQuery];
+
+      if (city_auto_pointer.m_p == NULL)
+      {
+
+         city_auto_pointer.m_p = new city;
+
+         city_auto_pointer->m_iIndex = find_city2(
+            strQuery,
+            city_auto_pointer->m_strCit,
+            city_auto_pointer->m_iId,
+            city_auto_pointer->m_dLat,
+            city_auto_pointer->m_dLon);
+
+      }
+
+      return city_auto_pointer;
+
+   }
+
+   
+   index system::find_city2(string strQuery, string & strCit, int64_t & iId, double & dLat, double & dLon)
+   {
+
+      string strQueryLo;
+
+      strQueryLo = strQuery;
+
+      strQueryLo.make_lower();
 
       string strTry;
 
@@ -2541,7 +2585,7 @@ namespace aura
 
       }
 
-      iFind = m_straCit.find_first_begins_ci(strQuery);
+      iFind = m_straCityLo.find_first_begins(strQueryLo);
 
       if (iFind >= 0)
       {
@@ -2550,7 +2594,7 @@ namespace aura
 
       }
 
-      strTry = strQuery;
+      strTry = strQueryLo;
 
       stra.explode(",", strTry);
 
@@ -2565,7 +2609,7 @@ namespace aura
 
          strTry += stra.last();
 
-         iFind = m_straCit.find_first_begins_ci(strTry);
+         iFind = m_straCityLo.find_first_begins(strTry);
 
          if (iFind >= 0)
          {
@@ -2580,7 +2624,7 @@ namespace aura
 
          strTry += stra[1];
 
-         iFind = m_straCit.find_first_begins_ci(strTry);
+         iFind = m_straCityLo.find_first_begins(strTry);
 
          if (iFind >= 0)
          {
@@ -2598,7 +2642,7 @@ namespace aura
 
          strTry += ", ";
 
-         iFind = m_straCit.find_first_begins_ci(strTry);
+         iFind = m_straCityLo.find_first_begins(strTry);
 
          if (iFind >= 0)
          {
@@ -2609,11 +2653,11 @@ namespace aura
 
       }
 
-      strTry = strQuery;
+      strTry = strQueryLo;
 
       strTry.replace("'", "");
 
-      iFind = m_straCit.find_first_begins_ci(strTry);
+      iFind = m_straCity.find_first_begins(strTry);
 
       if (iFind >= 0)
       {
@@ -2622,7 +2666,7 @@ namespace aura
 
       }
 
-      strTry = strQuery;
+      strTry = strQueryLo;
 
       strTry.replace("'", "");
 
@@ -2639,7 +2683,7 @@ namespace aura
 
          strTry += stra.last();
 
-         iFind = m_straCit.find_first_begins_ci(strTry);
+         iFind = m_straCityLo.find_first_begins(strTry);
 
          if (iFind >= 0)
          {
@@ -2654,7 +2698,7 @@ namespace aura
 
          strTry += stra[1];
 
-         iFind = m_straCit.find_first_begins_ci(strTry);
+         iFind = m_straCity.find_first_begins(strTry);
 
          if (iFind >= 0)
          {
@@ -2673,7 +2717,7 @@ namespace aura
 
          strTry += ", ";
 
-         iFind = m_straCit.find_first_begins_ci(strTry);
+         iFind = m_straCityLo.find_first_begins(strTry);
 
          if (iFind >= 0)
          {
@@ -2720,12 +2764,12 @@ namespace aura
 
 
 
-      strTry = strQuery;
+      strTry = strQueryLo;
 
-      strTry.replace("St.", "Saint");
-      strTry.replace(unitext("São"), "Sao");
+      strTry.replace("st.", "saint");
+      strTry.replace("são", "sao");
 
-      iFind = m_straCit.find_first_begins_ci(strTry);
+      iFind = m_straCityLo.find_first_begins(strTry);
 
       if (iFind >= 0)
       {
@@ -2734,10 +2778,10 @@ namespace aura
 
       }
 
-      strTry = strQuery;
+      strTry = strQueryLo;
 
-      strTry.replace("St.", "Saint");
-      strTry.replace(unitext("São"), "Sao");
+      strTry.replace("st.", "saint");
+      strTry.replace("são", "sao");
 
       stra.explode(",", strTry);
 
@@ -2752,7 +2796,7 @@ namespace aura
 
          strTry += stra.last();
 
-         iFind = m_straCit.find_first_begins_ci(strTry);
+         iFind = m_straCityLo.find_first_begins(strTry);
 
          if (iFind >= 0)
          {
@@ -2767,7 +2811,7 @@ namespace aura
 
          strTry += stra[1];
 
-         iFind = m_straCit.find_first_begins_ci(strTry);
+         iFind = m_straCityLo.find_first_begins(strTry);
 
          if (iFind >= 0)
          {
@@ -2786,7 +2830,7 @@ namespace aura
 
          strTry += ", ";
 
-         iFind = m_straCit.find_first_begins_ci(strTry);
+         iFind = m_straCity.find_first_begins(strTry);
 
          if (iFind >= 0)
          {
@@ -2808,7 +2852,7 @@ namespace aura
 
    found:
 
-      strCit   = m_straCit[iFind];
+      strCit   = m_straCity[iFind];
 
       iId      = m_iaIds[iFind];
 

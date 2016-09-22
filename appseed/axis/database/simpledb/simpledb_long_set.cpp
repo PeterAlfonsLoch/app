@@ -42,12 +42,11 @@ public:
 
 
 class CLASS_DECL_AXIS db_long_set_core:
-   public db_set
+   virtual public db_set
 {
 public:
 
 
-   mutex                                     m_mutex;
    sockets::socket_handler                   m_handler;
    sockets::http_session *                   m_phttpsession;
 
@@ -64,14 +63,14 @@ public:
       ::object(pserver->get_app()),
       db_set(pserver,"integertable"),
       m_handler(get_app()),
-      m_mutex(get_app()),
       m_phttpsession(NULL),
       m_pqueue(NULL),
       m_psimpledbUser(pserver->m_psimpledbUser),
       m_strUser(pserver->m_strUser)
    {
    
-
+      m_ptopthis = this;
+      m_pmutex = new mutex(pserver->get_app());
 
    }
 
@@ -194,14 +193,13 @@ db_long_set::db_long_set(db_server * pserver):
 ::object(pserver->get_app())
 {
 
-   m_pcore = new db_long_set_core(pserver);
+   m_pcore = canew(db_long_set_core(pserver));
 
 }
 
 db_long_set::~db_long_set()
 {
 
-   ::aura::del(m_pcore);
 
 }
 
@@ -209,15 +207,20 @@ db_long_set::~db_long_set()
 bool db_long_set::load(const char * lpKey, int64_t * plValue)
 {
 
+   db_long_set_core * pcore = (db_long_set_core *)m_pcore->m_ptopthis;
+
    if(m_pcore->m_pdataserver->m_bRemote)
    {
 
       db_long_set_item longitem;
 
-      if(m_pcore->m_map.Lookup(lpKey,longitem) && longitem.m_dwTimeout > get_tick_count())
+      if(pcore->m_map.Lookup(lpKey,longitem) && longitem.m_dwTimeout > get_tick_count())
       {
+
          *plValue = longitem.m_l;
+
          return true;
+
       }
 
 
@@ -233,30 +236,30 @@ bool db_long_set::load(const char * lpKey, int64_t * plValue)
       strUrl += System.url().url_encode(lpKey);
 
       //m_phttpsession = System.http().request(m_handler, m_phttpsession, strUrl, post, headers, set, NULL, &ApplicationUser, NULL, &estatus);
-      m_pcore-> m_phttpsession = System.http().request(m_pcore->m_phttpsession,strUrl,set);
+      pcore-> m_phttpsession = System.http().request(pcore->m_phttpsession,strUrl,set);
 
-      if(m_pcore->m_phttpsession == NULL || ::http::status_failed(set["get_status"]))
+      if(pcore->m_phttpsession == NULL || ::http::status_failed(set["get_status"]))
       {
          return false;
       }
 
-      *plValue = ::str::to_int64(string((const char *)m_pcore->m_phttpsession->m_memoryfile.get_memory()->get_data(),m_pcore->m_phttpsession->m_memoryfile.get_memory()->get_size()));
+      *plValue = ::str::to_int64(string((const char *)pcore->m_phttpsession->m_memoryfile.get_memory()->get_data(), pcore->m_phttpsession->m_memoryfile.get_memory()->get_size()));
 
       longitem.m_dwTimeout = get_tick_count() + 23 * (5000);
       longitem.m_l = *plValue;
 
-      m_pcore->m_map.set_at(lpKey,longitem);
+      pcore->m_map.set_at(lpKey,longitem);
       return true;
 
    }
 #ifndef METROWIN
-   else if(m_pcore->m_psimpledbUser != NULL)
+   else if(pcore->m_psimpledbUser != NULL)
    {
 
       try
       {
 
-         *plValue = m_pcore->m_psimpledbUser->query_item("SELECT `value` FROM fun_user_str_set WHERE user = '" + m_pcore->m_strUser + "' AND `key` = '" + m_pcore->m_psimpledbUser->real_escape_string(lpKey) + "'").int32();
+         *plValue = pcore->m_psimpledbUser->query_item("SELECT `value` FROM fun_user_str_set WHERE user = '" + pcore->m_strUser + "' AND `key` = '" + pcore->m_psimpledbUser->real_escape_string(lpKey) + "'").int32();
 
          return true;
 
@@ -310,39 +313,41 @@ bool db_long_set::load(const char * lpKey, int64_t * plValue)
 bool db_long_set::save(const char * lpKey, int64_t lValue)
 {
 
+   db_long_set_core * pcore = (db_long_set_core *)m_pcore->m_ptopthis;
+
    if(m_pcore->m_pdataserver->m_bRemote)
    {
 
-      if(m_pcore->m_pqueue == NULL)
+      if(pcore->m_pqueue == NULL)
       {
 
-         m_pcore->m_pqueue = canew(db_long_sync_queue(get_app()));
-         m_pcore->m_pqueue->m_pset = this;
-         m_pcore->m_pqueue->begin();
+         pcore->m_pqueue = canew(db_long_sync_queue(get_app()));
+         pcore->m_pqueue->m_pset = this;
+         pcore->m_pqueue->begin();
 
       }
 
-      m_pcore->m_pqueue->queue(lpKey,lValue);
+      pcore->m_pqueue->queue(lpKey,lValue);
 
       db_long_set_item longitem;
 
       longitem.m_dwTimeout = get_tick_count() + 23 * (5000);
       longitem.m_l = lValue;
 
-      m_pcore->m_map.set_at(lpKey,longitem);
+      pcore->m_map.set_at(lpKey,longitem);
 
       return true;
 
    }
 #ifndef METROWIN
-   else if(m_pcore->m_psimpledbUser != NULL)
+   else if(pcore->m_psimpledbUser != NULL)
    {
 
-      string strSql = "REPLACE INTO fun_user_long_set VALUE('" + m_pcore->m_strUser + "', '" + m_pcore->m_psimpledbUser->real_escape_string(lpKey) + "', " + ::str::from(lValue) + ")";
+      string strSql = "REPLACE INTO fun_user_long_set VALUE('" + pcore->m_strUser + "', '" + pcore->m_psimpledbUser->real_escape_string(lpKey) + "', " + ::str::from(lValue) + ")";
 
       TRACE(strSql);
 
-      return m_pcore->m_psimpledbUser->query(strSql) != NULL;
+      return pcore->m_psimpledbUser->query(strSql) != NULL;
 
    }
 #endif
