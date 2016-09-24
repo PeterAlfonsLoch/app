@@ -168,18 +168,7 @@ void simple_frame_window::install_message_handling(::message::dispatch * pinterf
    connect_update_cmd_ui("view_full_screen", &simple_frame_window::_001OnUpdateViewFullScreen);
    connect_command("view_full_screen", &simple_frame_window::_001OnViewFullScreen);
 
-   if(m_bDefaultNotifyIcon)
-   {
-
-      connect_command("app_exit", &simple_frame_window::_001OnAppExit);
-
-   }
-   else
-   {
-
-      connect_command("app_exit", &simple_frame_window::_001OnClose);
-
-   }
+   connect_command("app_exit", &simple_frame_window::_001OnAppExit);
 
    IGUI_WIN_MSG_LINK(WM_APPEXIT, pinterface, this, &simple_frame_window::_001OnAppExit);
 
@@ -446,7 +435,7 @@ void simple_frame_window::_001OnCreate(signal_details * pobj)
          if (hicon != NULL)
          {
 
-            ::visual::icon * picon = new ::visual::icon(hicon);
+            ::visual::icon * picon = canew(::visual::icon(hicon));
 
             if (picon != NULL)
             {
@@ -847,6 +836,24 @@ bool simple_frame_window::GetCustomFrame()
 
 void simple_frame_window::_001OnAppExit(signal_details * pobj)
 {
+
+   if (get_parent() != NULL)
+   {
+
+      pobj->m_bRet = false;
+
+      return;
+
+   }
+
+   if (!m_bDefaultNotifyIcon)
+   {
+
+      _001OnClose(pobj);
+
+      return;
+
+   }
 
    if(pobj != NULL)
    {

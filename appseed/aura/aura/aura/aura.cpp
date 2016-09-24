@@ -192,6 +192,15 @@ bool aura_term()
 
    __node_aura_pre_term();
 
+   if (g_axisontermthread)
+   {
+
+      g_axisontermthread();
+
+   }
+
+   on_term_thread();
+
    ::multithreading::term_multithreading();
 
    __term_threading_count();

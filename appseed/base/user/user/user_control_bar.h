@@ -144,7 +144,7 @@ namespace user
 
       
       
-      control_bar();
+      control_bar(::aura::application * papp);
       virtual ~control_bar();
 
       // for styles specific to ::user::control_bar

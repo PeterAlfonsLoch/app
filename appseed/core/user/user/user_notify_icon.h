@@ -51,6 +51,25 @@ namespace user
       virtual ~notify_icon();
 
 
+
+      virtual int64_t add_ref()
+      {
+
+         return ::object::add_ref();
+
+      }
+
+
+      virtual int64_t dec_ref()
+      {
+
+         return ::object::dec_ref();
+
+      }
+
+
+
+
       bool Destroy();
 
 

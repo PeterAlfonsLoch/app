@@ -14,7 +14,7 @@ namespace aura
 
       string                                 m_strApp;
       string_map < sp(::aura::ipc::tx) >     m_txmap;
-      string_map < mutex * >                 m_mapAppMutex;
+      string_map < sp(mutex) >                 m_mapAppMutex;
       //string_map < sp(::aura::ipc::tx) >     m_txmodules;
       ::aura::ipc::rx                        m_rx;
       stringa                                m_straModule;

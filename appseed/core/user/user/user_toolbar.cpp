@@ -44,7 +44,10 @@ struct __COLORMAP
 namespace user
 {
 
-   toolbar::toolbar()
+   toolbar::toolbar(::aura::application * papp) :
+      object(papp),
+      ::user::interaction(papp),
+      ::user::control_bar(papp)
    {
           m_bSimpleLayout = true;
 

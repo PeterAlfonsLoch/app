@@ -11,6 +11,9 @@
 
 simple_menu_bar::simple_menu_bar(::aura::application * papp) :
    object(papp),
+   ::user::interaction(papp),
+   ::user::control_bar(papp),
+   ::user::toolbar(papp),
    simple_toolbar(papp)
 {
 

@@ -1043,6 +1043,26 @@ namespace user
    bool control::BaseOnControlEvent(::user::control_event * pevent)
    {
 
+      if (m_pauraapp != NULL)
+      {
+
+         Application.BaseOnControlEvent(pevent);
+
+      }
+
+      if (pevent->m_bProcessed)
+         return true;
+
+      if (GetParent() != NULL)
+      {
+
+         GetParent()->send_message(::message::message_event, 0, (LPARAM)pevent);
+
+      }
+
+      if (pevent->m_bProcessed)
+         return true;
+
       if(get_form() != NULL)
       {
 
@@ -1053,25 +1073,6 @@ namespace user
       if(pevent->m_bProcessed)
          return true;
 
-      if(GetParent() != NULL)
-      {
-      
-         GetParent()->send_message(::message::message_event,0,(LPARAM)pevent);
-
-      }
-
-      if(pevent->m_bProcessed)
-         return true;
-
-      if (m_pauraapp != NULL)
-      {
-
-         Application.BaseOnControlEvent(pevent);
-
-      }
-
-      if(pevent->m_bProcessed)
-         return true;
 
       return false;
 

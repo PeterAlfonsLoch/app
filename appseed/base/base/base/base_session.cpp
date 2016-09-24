@@ -1951,7 +1951,7 @@ namespace base
       try
       {
 
-         ::user::interaction * pui = NULL;
+         sp(::user::interaction) pui;
 
          while(get_frame(pui))
          {

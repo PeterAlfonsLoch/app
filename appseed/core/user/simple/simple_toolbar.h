@@ -14,7 +14,7 @@ class image_list;
 
 
 class CLASS_DECL_CORE simple_toolbar :
-   public ::user::toolbar
+   virtual public ::user::toolbar
 {
 
 public:

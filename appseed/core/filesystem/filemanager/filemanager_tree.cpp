@@ -740,7 +740,7 @@ namespace filemanager
    void tree::_polishing_run(::data::tree_item * pitemStart, ::user::tree * pusertree, bool bLowLatency)
    {
 
-      e_step estep = step_start;
+      e_step estep = (e_step)(((int)step_start) + 1);
 
       while(estep < step_end)
       {
@@ -750,16 +750,16 @@ namespace filemanager
          while (pitem != NULL)
          {
 
-            _polishing_step(pitem, bLowLatency, estep);
-
-            pitem = pitem->get_item(::data::TreeNavigationExpandedForward);
-
             if (pitem->m_pparent == pitemStart->m_pparent)
             {
-               
+
                break;
 
             }
+
+            _polishing_step(pitem, bLowLatency, estep);
+
+            pitem = pitem->get_item(::data::TreeNavigationExpandedForward);
 
          }
 

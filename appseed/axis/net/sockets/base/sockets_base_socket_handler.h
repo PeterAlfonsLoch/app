@@ -63,22 +63,11 @@ namespace sockets
       {
       public:
 
-         pool_socket(base_socket_handler& h, base_socket * src) :
-            base_socket(h),
-            socket(h)
-         {
-            CopyConnection( src );
-            SetIsClient();
-         }
+         pool_socket(base_socket_handler& h, base_socket * src);
+         virtual ~pool_socket();
 
-         void OnRead()
-         {
-            log("OnRead", 0, "data on hibernating socket", ::aura::log::level_fatal);
-            SetCloseAndDelete();
-            SetLost();
-         }
-
-         void OnOptions(int,int,int,SOCKET) {}
+         void OnRead();
+         void OnOptions(int, int, int, SOCKET);
 
       };
 

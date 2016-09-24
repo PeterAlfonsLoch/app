@@ -49,6 +49,13 @@ namespace user
       interaction_spa();
       interaction_spa(::aura::application * papp);
       interaction_spa(const ref_array < ::user::interaction > & a);
+      interaction_spa(const spa(::user::interaction) & a)
+      {
+
+         copy(a);
+
+      }
+
       interaction_spa(const ::user::interaction_spa & a)
       {
 
@@ -76,11 +83,12 @@ namespace user
       void send_message(UINT uiMessage, WPARAM wparam = 0, LPARAM lparam = 0);
       void send_message_to_descendants(UINT uiMessage, WPARAM wparam = 0, LPARAM lparam = 0, bool bRecursive = true);
 
+      interaction_spa & operator = (const spa(::user::interaction) & a);
       interaction_spa & operator = (const interaction_spa & a);
 
       virtual ::user::interaction * get_child(::user::interaction * pui);
 
-      };
+   };
 
 
    class CLASS_DECL_BASE oswindow_tree :

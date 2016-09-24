@@ -10,6 +10,7 @@ namespace html
 
       m_pelementalLButtonDown = NULL;
       m_pelementalHover = NULL;
+      m_sphtmldata = NULL;
 
    }
 

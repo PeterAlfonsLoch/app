@@ -12,7 +12,10 @@ namespace user
    }
 
 
-   status_bar::status_bar()
+   status_bar::status_bar(::aura::application * papp) :
+      object(papp),
+      ::user::interaction(papp),
+      ::user::control_bar(papp)
    {
       // setup default border/margin depending on type of system
       m_cyTopBorder = 2;

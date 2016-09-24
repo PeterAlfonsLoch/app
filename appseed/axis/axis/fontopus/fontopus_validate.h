@@ -62,7 +62,7 @@ namespace fontopus
    {
    public:
 
-      user *                     m_puser;
+      sp(user)                   m_puser;
 
       string                     m_strFontopusServerAuthUrl;
       string                     m_strLoginUrl;
@@ -156,7 +156,7 @@ namespace fontopus
       virtual void on_login_response(e_result iAuth,const char * pszResponse);
 
 
-      virtual ::fontopus::user * get_user(const char * pszHost = NULL,const char * pszSessid = NULL);
+      virtual sp(::fontopus::user) get_user(const char * pszHost = NULL,const char * pszSessid = NULL);
       virtual auth * get_auth();
       virtual bool get_license(const char * pszId);
 

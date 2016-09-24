@@ -104,7 +104,7 @@ namespace user
       int32_t                                    m_nMinHeight;
 
 
-      status_bar();
+      status_bar(::aura::application * papp);
       virtual ~status_bar();
 
       using ::user::control_bar::create_window;

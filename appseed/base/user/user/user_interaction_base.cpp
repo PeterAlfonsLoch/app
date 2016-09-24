@@ -1362,16 +1362,16 @@ Restart:
 
       }
 
-      try
-      {
+      //try
+      //{
 
-         m_pauraapp = NULL;
+      //   m_pauraapp = NULL;
 
-      }
-      catch (...)
-      {
+      //}
+      //catch (...)
+      //{
 
-      }
+      //}
 
    }
 

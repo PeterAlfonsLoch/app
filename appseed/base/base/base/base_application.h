@@ -12,6 +12,11 @@ namespace base
    public:
 
 
+      mutex                                           m_mutexFrame;
+      spa(::user::interaction)                        m_uiptraFrame;
+
+
+
       bool                                            m_bBaseProcessInitialize;
       bool                                            m_bBaseProcessInitializeResult;
 
@@ -251,7 +256,7 @@ namespace base
       virtual void on_create_view(::user::view_creator_data * pcreatordata);
       void process_message_filter(int32_t code,signal_details * pobj);
 
-      virtual bool get_frame(::user::interaction * & pui);
+      virtual bool get_frame(sp(::user::interaction) & pui);
       virtual void add_frame(::user::interaction * pwnd);
       virtual void remove_frame(::user::interaction * pwnd);
 

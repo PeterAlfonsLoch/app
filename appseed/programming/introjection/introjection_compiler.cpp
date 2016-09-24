@@ -1032,7 +1032,7 @@ namespace introjection
       
 
 
-      while(true)
+      while(::get_thread()->m_bRun)
       {
 
          strLog += process->read();

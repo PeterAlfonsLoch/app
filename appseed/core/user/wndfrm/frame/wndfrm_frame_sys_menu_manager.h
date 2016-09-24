@@ -13,7 +13,8 @@ namespace user
       {
 
 
-         class CLASS_DECL_CORE SysMenuManager
+         class CLASS_DECL_CORE SysMenuManager :
+            virtual public object
          {
          public:
 

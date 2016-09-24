@@ -395,6 +395,13 @@
 typedef uint32_t THREAD_FUNCTION(void *);
 typedef THREAD_FUNCTION * PFN_THREAD_FUNCTION;
 
+
+
+CLASS_DECL_AURA PPROC_SIMPLE g_axisoninitthread = NULL;
+CLASS_DECL_AURA PPROC_SIMPLE g_axisontermthread = NULL;
+
+
+
 struct create_thread_data
 {
    PFN_THREAD_FUNCTION     m_pfn;
@@ -423,6 +430,12 @@ struct create_thread_data
    {
       create_thread_data * pdata = (create_thread_data *)p;
 
+      if (g_axisoninitthread)
+      {
+         g_axisoninitthread();
+
+      }
+
       if(!on_init_thread())
       {
 
@@ -434,6 +447,11 @@ struct create_thread_data
 
       try
       {
+         if (g_axisontermthread)
+         {
+            g_axisontermthread();
+
+         }
 
          on_term_thread();
 

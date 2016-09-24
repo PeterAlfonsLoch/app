@@ -49,7 +49,7 @@ namespace user
 
       ::user::oswindow_array wndaApp;
 
-      ::user::interaction * pui = NULL;
+      sp(::user::interaction) pui;
 
       while (System.get_frame(pui))
       {

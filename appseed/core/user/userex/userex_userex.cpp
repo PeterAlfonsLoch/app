@@ -532,28 +532,27 @@ namespace userex
 
    }
 
+
    void userex::SendMessageToWindows(UINT message,WPARAM wparam,LPARAM lparam)
    {
 
-      ::user::interaction * pwnd = NULL;
+      sp(::user::interaction) pwnd;
 
       while(Application.get_frame(pwnd))
       {
+
          if(pwnd != NULL && pwnd->IsWindow())
          {
+
             pwnd->send_message(message,wparam,lparam);
+
             pwnd->SendMessageToDescendants(message,wparam,lparam);
+
          }
 
       }
 
    }
-
-
-
-
-
-
 
 
    void  userex::AddToRecentFileList(const char * lpszPathName)

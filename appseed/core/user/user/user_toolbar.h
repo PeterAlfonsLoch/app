@@ -34,7 +34,7 @@ namespace user
 
 
    class CLASS_DECL_CORE toolbar :
-      public ::user::control_bar
+      virtual public ::user::control_bar
    {
    public:
       enum e_element
@@ -60,7 +60,7 @@ namespace user
       string_to_ptr *      m_pStringMap;  // used as CMapStringToUInt
 
 
-      toolbar();
+      toolbar(::aura::application * papp);
       virtual ~toolbar();
 
 

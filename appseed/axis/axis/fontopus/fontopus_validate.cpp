@@ -34,8 +34,10 @@ string chunk_split(const string & body,int32_t chunklen,const string & end)
 
 typedef string(*SALT)(sp(::aura::application),const char *,stringa &);
 
+
 namespace fontopus
 {
+
 
    validate::validate(::aura::application * papp,const char * pszForm,bool bAuth,bool bInteractive):
       ::object(papp),
@@ -43,25 +45,35 @@ namespace fontopus
    {
 
       m_bInteractive          = bInteractive;
+
       if(bInteractive)
       {
+
          oprop("defer_registration") = "defer_registration";
+
       }
 
-      m_bAuth          = bAuth;
+      m_bAuth                 = bAuth;
       m_strForm               = pszForm;
       m_bDeferRegistration    = false;
       sp(::aura::application) pgenapp = (papp);
+
       if(pgenapp != NULL)
       {
+
          try
          {
+
             pgenapp->keep_alive();
+
          }
          catch(...)
          {
+
          }
+
       }
+
       m_pauth           = NULL;
       m_pvOldWindow     = NULL;
       m_bInteractive    = bInteractive;
@@ -69,23 +81,23 @@ namespace fontopus
       m_strForm         = pszForm;
       m_puser           = NULL;
       m_pauth           = NULL;
+
    }
+
 
    validate::~validate()
    {
-      //m_loginthread.wait();
-#if defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
-      //((HTHREAD) m_loginthread.get_os_data())->wait();
-#else
-      ::WaitForSingleObjectEx((HANDLE)m_loginthread.get_os_data(),INFINITE,FALSE);
-#endif
+      
    }
 
-   ::fontopus::user * validate::get_user(const char * pszRequestingParty,const char * pszSessId)
+
+   sp(::fontopus::user) validate::get_user(const char * pszRequestingParty,const char * pszSessId)
    {
+
       m_loginthread.m_strSalt.Empty();
 
       string strApp = command_thread()->property("app");
+
       if(strApp == "simpledbcfg"
          || (strApp == "app-core/netnodelite" && command_thread()->property("root_handler") == "webserver")
          || (strApp == "app-core/netnodelite")
@@ -125,6 +137,7 @@ namespace fontopus
          m_puser->m_strLogin = system_user_2;
          return m_puser;
       }
+
       string strDir;
       string strUsername;
       string strPasshash;
@@ -144,6 +157,7 @@ namespace fontopus
       {
 
          straRequestingServer.add("account.ca2.cc");
+
       }
 
       //straRequestingServer.add("eu-account.ca2.cc");
@@ -399,9 +413,7 @@ namespace fontopus
 
       set["get_response"] = "";
 
-      psession = System.http().request(psession,strAuthUrl,set);
-
-      if(psession.is_set())
+      if(System.http().request(*Session.fontopus()->m_phandler, psession, strAuthUrl, set) && psession.is_set())
       {
 
          Session.fontopus()->m_mapFontopusSession.set_at(strHost,psession);
@@ -918,7 +930,7 @@ namespace fontopus
       if(strRsaModulus.is_empty())
          return "";
 
-      sp(::sockets::http_session) psession =Session.fontopus()->m_mapFontopusSession[m_strFontopusServer];
+      sp(::sockets::http_session) psession = Session.fontopus()->m_mapFontopusSession[m_strFontopusServer];
 
       DWORD dwGetLoginEnd = ::get_tick_count();
 
@@ -997,9 +1009,19 @@ namespace fontopus
          
          uint32_t dwTimeProfile1 = get_tick_count();
 
-         psession = System.http().request(psession,strAuthUrl,set);
+         if(System.http().request(*Session.fontopus()->m_phandler, psession,strAuthUrl,set))
+         { 
 
-         strAuth = set["get_response"];
+            strAuth = set["get_response"];
+         
+         }
+         else
+         {
+
+            strAuth.Empty();
+
+         }
+         
 
          *pestatus = (::http::e_status) set["get_status"].int64();
          uint32_t dwTimeProfile2 = get_tick_count();

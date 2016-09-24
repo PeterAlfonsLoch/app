@@ -36,7 +36,7 @@ namespace html
             psz++;
          }
          
-         sp(class style) pstyle(new class style(get_app()));
+         sp(class style) pstyle(canew(class style(get_app())));
 
          string strStyle = str.Left(psz - pszStart);
 

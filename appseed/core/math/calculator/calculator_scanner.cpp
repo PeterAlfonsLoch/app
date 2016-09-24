@@ -27,7 +27,6 @@ namespace calculator
    scanner::scanner(::aura::application * papp) :
       ::object(papp)
    {
-      m_ptoken    = NULL;
       input       = NULL;
    }
 
@@ -49,7 +48,7 @@ namespace calculator
       if(input != next_input && next_input != NULL)
          return;
       beginning = input;
-      m_ptoken = look_ahead();
+      look_ahead();
       next_input = input;
       input = beginning;
    }
@@ -61,100 +60,137 @@ namespace calculator
 
    token * scanner::look_ahead()
    {
-      token * token;
-      token = new class token;
-      if(token == NULL)
+      
+      m_ptoken = canew(class token);
+
+      if (m_ptoken.is_null())
+      {
+
          throw memory_exception(get_app());
-      while(::str::ch::is_space_char(input))
+
+      }
+
+      while (::str::ch::is_space_char(input))
+      {
+      
          input = ::str::utf8_inc(input);
+
+      }
+
       if(*input == '\0')
       {
-         token->m_etype = token::type_end;
-         return token;
+         
+         m_ptoken->m_etype = token::type_end;
+
+         return m_ptoken;
+
       }
+      
       const char * nextinput = ::str::utf8_inc(input);
 
-      if((*input == 'j' || *input == 'i') &&
-         ::str::ch::is_digit(nextinput))
+      if((*input == 'j' || *input == 'i') && ::str::ch::is_digit(nextinput))
       {
-         token->m_etype = token::type_imaginary;
+         
+         m_ptoken->m_etype = token::type_imaginary;
+
          char * endptr;
+
          strtod(nextinput, &endptr);
-         token->m_str = string(nextinput, endptr - nextinput);
+
+         m_ptoken->m_str = string(nextinput, endptr - nextinput);
+
          input = endptr;
-         return token;
+
+         return m_ptoken;
+
       }
       else if(::str::ch::is_digit(input))
       {
-         token->m_etype = token::type_number;
+         
+         m_ptoken->m_etype = token::type_number;
+
          char * endptr;
+
          strtod(input, &endptr);
-         token->m_str = string(input, endptr - input);
-         if((*endptr == 'i' || *endptr == 'j')
-            && !(isdigit_dup(*(endptr + 1)) || isalpha_dup(*(endptr + 1))))
+
+         m_ptoken->m_str = string(input, endptr - input);
+
+         if((*endptr == 'i' || *endptr == 'j') && !(isdigit_dup(*(endptr + 1)) || isalpha_dup(*(endptr + 1))))
          {
-            token->m_etype = token::type_imaginary;
+            
+            m_ptoken->m_etype = token::type_imaginary;
+
             endptr++;
+
          }
+
          input = endptr;
-         return token;
+
+         return m_ptoken;
+
       }
       else if(*input == '+')
       {
-         token->m_etype = token::type_addition;
+         m_ptoken->m_etype = token::type_addition;
          input++;
-         return token;
+         return m_ptoken;
       }
       else if(*input == '-')
       {
-         token->m_etype = token::type_subtraction;
+         m_ptoken->m_etype = token::type_subtraction;
          input++;
-         return token;
+         return m_ptoken;
       }
       else if(*input == '*')
       {
-         token->m_etype = token::type_multiplication;
+         m_ptoken->m_etype = token::type_multiplication;
          input++;
-         return token;
+         return m_ptoken;
       }
       else if(*input == '/')
       {
-         token->m_etype = token::type_division;
+         m_ptoken->m_etype = token::type_division;
          input++;
-         return token;
+         return m_ptoken;
       }
       else if(*input == '(')
       {
-         token->m_etype = token::type_open_paren;
+         m_ptoken->m_etype = token::type_open_paren;
          input++;
-         return token;
+         return m_ptoken;
       }
       else if(*input == ',')
       {
-         token->m_etype = token::type_virgula;
+         m_ptoken->m_etype = token::type_virgula;
          input++;
-         return token;
+         return m_ptoken;
       }
       else if(*input == ')')
       {
-         token->m_etype = token::type_close_paren;
+         m_ptoken->m_etype = token::type_close_paren;
          input++;
-         return token;
+         return m_ptoken;
       }
       else
       {
-         token->m_str = ::str::consume_nc_name(input);
-         while(::str::ch::is_space_char(input))
+         
+         m_ptoken->m_str = ::str::consume_nc_name(input);
+         
+         while (::str::ch::is_space_char(input))
+         {
+          
             input = ::str::utf8_inc(input);
+
+         }
          if(*input == '(')
          {
-            token->m_etype = token::type_function;
+            m_ptoken->m_etype = token::type_function;
          }
          else
          {
-            token->m_etype = token::type_identifier;
+            m_ptoken->m_etype = token::type_identifier;
          }
-         return token;
+         return m_ptoken;
       }
    }
 

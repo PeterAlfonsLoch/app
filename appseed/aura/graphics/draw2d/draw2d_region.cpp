@@ -14,12 +14,14 @@ namespace draw2d
 
       m_etype        = type_none;
       m_bUpdated     = false;
+      m_lppoints = NULL;
 
    }
 
    region::region(const region & region)
    {
 
+      m_lppoints = NULL;
       m_etype        = type_none;
       m_bUpdated     = false;
       operator = (region);
@@ -29,6 +31,9 @@ namespace draw2d
 
    region::~region()
    {
+      
+      destroy();
+
    }
 
    bool region::destroy()
@@ -47,11 +52,11 @@ namespace draw2d
       case type_oval:
          return true;
       case type_polygon:
-         delete m_lppoints;
+         ::aura::adel(m_lppoints);
          return true;
       case type_poly_polygon:
-         delete m_lppoints;
-         delete m_lppolycounts;
+         ::aura::adel(m_lppoints);
+         ::aura::adel(m_lppolycounts);
          return true;
       case type_round_rect:
          return true;

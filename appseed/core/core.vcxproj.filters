@@ -159,6 +159,9 @@
     <Filter Include="Header Files\math">
       <UniqueIdentifier>{704b186d-c7f1-4675-bcf2-ad3e6bb50900}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\math\calculator">
+      <UniqueIdentifier>{4e9bab7d-c9a0-4a02-a29d-db138f904fd6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="user\simple\simple_child_frame.h">
@@ -1036,6 +1039,33 @@
     </ClInclude>
     <ClInclude Include="user\userhtml\userhtml_view_update_hint.h">
       <Filter>Header Files\user\userhtml</Filter>
+    </ClInclude>
+    <ClInclude Include="math\calculator\calculator.h">
+      <Filter>Header Files\math\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="math\calculator\calculator_calculator.h">
+      <Filter>Header Files\math\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="math\calculator\calculator_element.h">
+      <Filter>Header Files\math\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="math\calculator\calculator_parser.h">
+      <Filter>Header Files\math\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="math\calculator\calculator_parser_exception.h">
+      <Filter>Header Files\math\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="math\calculator\calculator_plain_edit_view.h">
+      <Filter>Header Files\math\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="math\calculator\calculator_scanner.h">
+      <Filter>Header Files\math\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="math\calculator\calculator_token.h">
+      <Filter>Header Files\math\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="math\calculator\calculator_value.h">
+      <Filter>Header Files\math\calculator</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

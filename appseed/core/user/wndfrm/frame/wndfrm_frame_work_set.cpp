@@ -25,12 +25,6 @@ namespace user
             m_bFullScreenEnable = false;
             m_bNotifyIconEnable = false;
 
-            m_pappearance        = NULL;
-            m_pdockmanager       = NULL;
-            m_pmovemanager       = NULL;
-            m_psizemanager       = NULL;
-            m_psystemmenumanager = NULL;
-
             m_pwndRegion = NULL;
             m_pwndDraw = NULL;
             m_pwndEvent = NULL;
@@ -52,11 +46,6 @@ namespace user
          WorkSet::~WorkSet()
          {
 
-            ::aura::del(m_psizemanager);
-            ::aura::del(m_pmovemanager);
-            ::aura::del(m_pdockmanager);
-            ::aura::del(m_pappearance);
-            ::aura::del(m_psystemmenumanager);
 
          }
 
@@ -159,14 +148,27 @@ namespace user
          {
             if(bEnable)
             {
-               if(m_pappearance == NULL)
-                  m_pappearance = new appearance(this);
+               
+               if (m_pappearance.is_null())
+               {
+
+                  m_pappearance = canew(appearance(this));
+
+               }
+
                m_pappearance->Enable(true);
+
             }
             else
             {
-               if(m_pappearance != NULL)
+               
+               if (m_pappearance.is_set())
+               {
+
                   m_pappearance->Enable(false);
+
+               }
+
             }
          }
 
@@ -291,27 +293,27 @@ namespace user
 
             if(m_pappearance == NULL)
             {
-               m_pappearance = new appearance(this);
+               m_pappearance = canew(appearance(this));
             }
 
             if(m_pdockmanager == NULL)
             {
-               m_pdockmanager = new DockManager(this);
+               m_pdockmanager = canew(DockManager(this));
             }
 
             if(m_pmovemanager == NULL)
             {
-               m_pmovemanager = new MoveManager(this);
+               m_pmovemanager = canew(MoveManager(this));
             }
 
             if(m_psizemanager == NULL)
             {
-               m_psizemanager = new SizeManager(this);
+               m_psizemanager = canew(SizeManager(this));
             }
 
             if(m_psystemmenumanager == NULL)
             {
-               m_psystemmenumanager = new SysMenuManager(this);
+               m_psystemmenumanager = canew(SysMenuManager(this));
             }
 
 
@@ -869,14 +871,21 @@ namespace user
 
          }
 
+         
          SizeManager * WorkSet::GetSizingManager()
          {
+            
             if(m_psizemanager == NULL)
             {
-               m_psizemanager = new SizeManager(this);
+
+               m_psizemanager = canew(SizeManager(this));
+
             }
+
             return m_psizemanager;
+
          }
+
 
          void WorkSet::SetDockMask(EDock emask)
          {

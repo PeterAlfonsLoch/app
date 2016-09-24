@@ -13,9 +13,13 @@ namespace fontopus
       m_mutex(papp)
    {
 
+      m_phandler = NULL;
+
       m_puser                       = NULL;
 
       m_pthreadCreatingUser      = NULL;
+
+      connect_to_application_signal();
 
    }
 
@@ -23,28 +27,35 @@ namespace fontopus
    fontopus::~fontopus()
    {
 
+      cleanup_fontopus();
+
    }
 
 
-   bool fontopus::initialize_instance()
+   void fontopus::cleanup_networking()
    {
 
-      return true;
+      if (m_phandler != NULL)
+      {
+
+         m_phandler->cleanup_handler();
+
+      }
+
+      ::aura::del(m_phandler);
 
    }
 
 
-   int32_t fontopus::exit_instance()
+   void fontopus::cleanup_fontopus()
    {
 
-      int32_t iExitCode = 0;
-
-      return iExitCode;
+      cleanup_networking();
 
    }
 
 
-   user * fontopus::create_current_user(const char * pszRequestUrl)
+   bool fontopus::create_current_user(const char * pszRequestUrl)
    {
 
       property_set set(get_app());
@@ -60,12 +71,17 @@ namespace fontopus
          }
 
          int32_t iRetry = 3;
-         ::fontopus::user * puser = NULL;
+
+         sp(::fontopus::user) puser;
+
          while(iRetry > 0 && (::get_thread() == NULL || ::get_thread()->m_bRun))
          {
+
             try
             {
+
                puser = login(set);
+
             }
             catch(const cancel_exception &)
             {
@@ -73,8 +89,14 @@ namespace fontopus
                return NULL;
 
             }
-            if(puser != NULL)
+
+            if (puser.is_set())
+            {
+
                break;
+
+            }
+
             //bool bOk = false;
             //string strSection;
             //strSection.Format("license_auth");
@@ -84,19 +106,30 @@ namespace fontopus
             //::DeleteFile(strDir / "00002"));
             iRetry--;
          }
-         if(puser == NULL)
+
+         if(puser.is_null())
          {
+
             //System.simple_message_box(NULL, "<h1>You have not logged in!</h1><h2>Exiting</h2>");
             TRACE("<error>You have not logged in! Exiting!</error>");
             //throw string("You have not logged in! Exiting!");
             //debug_box("You have not logged in!","Debug Message",MB_OK);
-            return NULL;
+            return false;
+
          }
-         m_puser = create_user(puser);
+         
+         if (!initialize_user(puser))
+         {
+
+            return false;
+
+         }
+
+         m_puser = puser;
+
          System.userset().add(m_puser);
 
-
-         if(m_puser != NULL
+         if(m_puser.is_set()
             && !::str::begins(m_puser->m_strLogin, astr.strSystem)
             && m_pauraapp->m_strAppId != "app-core/deepfish"
             && !::str::begins(m_pauraapp->m_strAppName, astr.strAppCoreDeepfish)
@@ -107,16 +140,16 @@ namespace fontopus
 
          }
 
-
-
       }
-      return m_puser;
+
+      return true;
+
    }
 
-   user * fontopus::login(property_set & set)
+   sp(user) fontopus::login(property_set & set)
    {
 
-      user * puser = NULL;
+      sp(user) puser;
 
       class validate authuser(get_app(), "system\\user\\authenticate.xhtml", true);
 
@@ -140,6 +173,7 @@ namespace fontopus
       return puser;
 
    }
+
 
    bool fontopus::get_auth(const char * psz, string & strUsername, string & strPassword)
    {
@@ -204,54 +238,64 @@ namespace fontopus
       }
 
       m_puser = NULL;
+
    }
 
 
-
-   user * fontopus::allocate_user()
+   sp(user) fontopus::allocate_user()
    {
-      return new class user(m_pauraapp);
+      
+      return canew(class user(m_pauraapp));
+
    }
 
-   user * fontopus::create_user(::fontopus::user * puser)
+
+   bool fontopus::initialize_user(::fontopus::user * puser)
    {
+
       if(puser->m_strPathPrefix.is_empty())
       {
+
          puser->m_strPathPrefix = Application.dir().default_os_user_path_prefix();
+
       }
+
       puser->m_strPath = Application.dir().default_userfolder(puser->m_strPathPrefix, puser->m_strLogin);
-      Sess(m_pauraapp).dir().mk(puser->m_strPath);
+
+      Application.dir().mk(puser->m_strPath);
+
       puser->m_strDataPath = Application.dir().default_userdata(puser->m_strPathPrefix, puser->m_strLogin);
-      Sess(m_pauraapp).dir().mk(puser->m_strDataPath);
+      
+      Application.dir().mk(puser->m_strDataPath);
+
       puser->m_strAppDataPath = Application.dir().default_userappdata(puser->m_strPathPrefix, puser->m_strLogin);
-      Sess(m_pauraapp).dir().mk(puser->m_strAppDataPath);
+      
+      Application.dir().mk(puser->m_strAppDataPath);
+
       puser->create_ifs();
-      return puser;
+
+      return true;
+
    }
 
 
-   user * fontopus::create_system_user(const string & strSystemUserName)
+   bool fontopus::create_system_user(const string & strSystemUserName)
    {
 
       m_puser                 = new ::fontopus::user(get_app());
 
       m_puser->m_strLogin     = strSystemUserName;
 
-      user * puserNew = create_user(m_puser);
-
-      if(puserNew == NULL)
+      if (!initialize_user(m_puser))
       {
 
-         delete m_puser;
-
-         m_puser = NULL;
+         return false;
 
       }
 
-      return m_puser;
+      return true;
 
    }
-
 
 
    user * fontopus::get_user(bool bSynch, const char * pszRequestUrl)
@@ -502,6 +546,12 @@ namespace fontopus
 
       string strNode;
 
+      if (m_phandler == NULL)
+      {
+
+         m_phandler = new sockets::socket_handler(get_app());
+
+      }
 
       try
       {
@@ -514,9 +564,18 @@ namespace fontopus
 
          set["get_response"] = "";
 
-         psession = System.http().request(psession,strGetFontopus,set);
+         if (System.http().request(*m_phandler, psession, strGetFontopus, set))
+         {
 
-         strNode = set["get_response"];
+            strNode = set["get_response"];
+
+         }
+         else
+         {
+
+            strNode.Empty();
+
+         }
 
          DWORD dwEnd = ::get_tick_count();
 
@@ -716,31 +775,15 @@ namespace fontopus
 
 #endif
 
-      ::fontopus::user * puser = Session.fontopus()->create_current_user(m_strRequestUrl);
-
-      if(puser != NULL)
+      if(Session.fontopus()->create_current_user(m_strRequestUrl))
       {
 
-         if(!puser->initialize())
+         if(!Session.fontopus()->m_puser->initialize())
          {
-
-            delete puser;
 
             Session.fontopus()->m_puser = NULL;
 
          }
-         else
-         {
-
-            Session.fontopus()->m_puser = puser;
-
-         }
-
-      }
-      else
-      {
-
-         Session.fontopus()->m_puser = NULL;
 
       }
 

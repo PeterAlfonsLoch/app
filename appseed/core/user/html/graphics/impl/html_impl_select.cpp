@@ -62,7 +62,6 @@ namespace html
 
          if(pelemental->m_pbase->get_type() == ::html::base::type_tag && !m_pcombo->IsWindow())
          {
-            m_pcombo->oprop("parent_lock_data") = (::data::data *) pdata;
             m_pcombo->create_window(null_rect(),pdata->m_pui,100);
             pdata->on_create_interaction(m_pcombo);
             m_pcombo->m_bPassword = pelemental->m_propertyset["type"].compare_value_ci("password") == 0;

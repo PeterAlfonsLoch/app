@@ -1,12 +1,90 @@
 #pragma once
 
 
+//class CLASS_DECL_AURA ::object :
+class CLASS_DECL_AURA mini_object
+   // virtual public element
+   //class CLASS_DECL_AURA waitable :
+   //class CLASS_DECL_AURA object
+   //   virtual public ::object
+{
+public:
+
+
+   int64_t m_countReference;
+
+   mini_object()
+   {
+      m_countReference = 1;
+   }
+   virtual ~mini_object()
+   {
+
+   }
+
+   virtual int64_t add_ref()
+   {
+
+#ifdef WINDOWS
+
+      return InterlockedIncrement64(&m_countReference);
+
+#else
+
+      return __sync_add_and_fetch(&m_countReference, 1);
+
+#endif
+
+   }
+
+
+   int64_t dec_ref()
+   {
+
+#ifdef WINDOWS
+
+      return InterlockedDecrement64(&m_countReference);
+
+#else
+
+      return  __sync_sub_and_fetch(&m_countReference, 1);
+
+#endif
+
+   }
+
+
+   int64_t release()
+   {
+
+      int64_t i = dec_ref();
+
+      if (i == 0)
+      {
+
+         delete this;
+
+      }
+
+      return i;
+
+   }
+
+   inline void set_heap_alloc()
+   {
+
+   }
+
+
+};
+
 class var;
 class application_bias;
 class create;
 class command_line;
 #include "aura/multithreading/multithreading_wait_result.h"
 // Duplicated root here... element is essentially like root (Rute, Inha, Lenir) for templates, but not for polymorphism
+
 
 
 
@@ -104,7 +182,12 @@ public:
    //   object & operator = (const object & o);
 
 
+   inline void set_heap_alloc()
+   {
 
+      m_ulFlags |= (uint64_t) ::object::flag_heap_alloc;
+
+   }
 
 
    inline int64_t get_ref_count()
@@ -314,7 +397,7 @@ namespace aura
 
 
 template < class T >
-T * dereference_no_delete(T * p) { p->m_ulFlags |= (uint64_t) ::object::flag_heap_alloc; p->m_countReference--; return p; }
+T * dereference_no_delete(T * p) { p->set_heap_alloc(); p->m_countReference--; return p; }
 
 
 
@@ -384,6 +467,9 @@ inline void delptr(t *& p)
 
 
 #define canew(x) dereference_no_delete(new x)
+
+
+
 
 
 

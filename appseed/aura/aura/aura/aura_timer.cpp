@@ -103,7 +103,7 @@ namespace aura
       ~Timer()
       {
 
-#if defined(WINDOWSEX)
+         stop(false);
 
          if(m_hTimerQueue != NULL && m_hTimerQueue != INVALID_HANDLE_VALUE)
          {
@@ -111,8 +111,6 @@ namespace aura
             DeleteTimerQueue(m_hTimerQueue);
 
          }
-
-#endif
 
       }
 
@@ -621,7 +619,7 @@ bool timer::on_timer()
 VOID CALLBACK aura_timer_TimerRoutine(PVOID lpParam, BOOLEAN TimerOrWaitFired)
 {
 
-   if(!g_bAura)
+   if (!g_bAura)
    {
       output_debug_string("there is timer on (aura_timer_TimerRoutine) and aura is going away (!g_bAura)\n");
       return;
@@ -629,12 +627,30 @@ VOID CALLBACK aura_timer_TimerRoutine(PVOID lpParam, BOOLEAN TimerOrWaitFired)
 
    ::aura::Timer * ptimer = (::aura::Timer *)lpParam;
 
+   if (g_axisoninitthread)
+   {
+      g_axisoninitthread();
+
+   }
+
+   on_init_thread();
+
+   //if (!on_init_thread())
+   //{
+   //   ::aura::del(ptimer);
+   //   //return -34;
+   //   return;
+
+   //}
+
+   bool bOk = false;
+
    try
    {
 
       ptimer->m_ptimer->call_on_timer();
 
-      return;
+      bOk = true;
 
    }
    catch (::exception::base &)
@@ -646,9 +662,32 @@ VOID CALLBACK aura_timer_TimerRoutine(PVOID lpParam, BOOLEAN TimerOrWaitFired)
 
    }
 
-   ::aura::del(ptimer);
+   try
+   {
+
+      if (g_axisontermthread)
+      {
+         g_axisontermthread();
+
+      }
+
+      on_term_thread();
+
+   }
+   catch (...)
+   {
+
+   }
+
+   if (!bOk)
+   {
+
+      ::aura::del(ptimer);
+
+   }
 
 }
+
 #elif defined(__APPLE__)
 
 void aura_timer(void * p)

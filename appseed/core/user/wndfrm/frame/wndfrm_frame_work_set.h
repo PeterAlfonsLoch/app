@@ -46,10 +46,10 @@ namespace user
 
             WorkSetListenerArray          m_wfla;
 
-            MoveManager *                 m_pmovemanager;
-            SizeManager *                 m_psizemanager;
-            SysMenuManager *              m_psystemmenumanager;
-            DockManager *                 m_pdockmanager;
+            sp(MoveManager)               m_pmovemanager;
+            sp(SizeManager)               m_psizemanager;
+            sp(SysMenuManager)            m_psystemmenumanager;
+            sp(DockManager)               m_pdockmanager;
 
             bool                          m_bDockingEnabled;
             bool                          m_bMovingEnabled;
@@ -59,7 +59,7 @@ namespace user
             bool                          m_bFullScreenEnable;
 
 
-            appearance *                  m_pappearance;
+            sp(appearance)                m_pappearance;
 
 
             WorkSet();

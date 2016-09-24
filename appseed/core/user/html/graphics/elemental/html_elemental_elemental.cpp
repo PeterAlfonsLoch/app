@@ -179,19 +179,19 @@ namespace html
             if (m_etag == tag_head || m_etag == tag_html)
             {
 
-               m_pimpl = new ::html::impl::elemental();
+               m_pimpl = canew(::html::impl::elemental());
 
             }
             else if (m_etag == tag_body)
             {
 
-               m_pimpl = new ::html::impl::text(pdata->get_app());
+               m_pimpl = canew(::html::impl::text(pdata->get_app()));
 
             }
             else
             {
 
-               m_pimpl = new ::html::impl::elemental();
+               m_pimpl = canew(::html::impl::elemental());
 
             }
 
@@ -204,13 +204,13 @@ namespace html
 
                pdata->m_strTitle = m_pbase->get_value()->get_value();
 
-               m_pimpl = new ::html::impl::elemental();
+               m_pimpl = canew(::html::impl::elemental());
 
             }
             else
             {
 
-               m_pimpl = new ::html::impl::elemental();
+               m_pimpl = canew(::html::impl::elemental());
 
             }
 
@@ -232,37 +232,37 @@ namespace html
             if (strType == "text")
             {
 
-               m_pimpl = new ::html::impl::input_text(pdata);
+               m_pimpl = canew(::html::impl::input_text(pdata));
 
             }
             else if(strType == "calculator")
             {
 
-               m_pimpl = new ::html::impl::input_text(pdata, "calculator", m_propertyset["unit"]);
+               m_pimpl = canew(::html::impl::input_text(pdata, "calculator", m_propertyset["unit"]));
 
             }
             else if (strType == "password")
             {
 
-               m_pimpl = new ::html::impl::input_text(pdata);
+               m_pimpl = canew(::html::impl::input_text(pdata));
 
             }
             else if (strType == "button")
             {
 
-               m_pimpl = new ::html::impl::input_button(pdata);
+               m_pimpl = canew(::html::impl::input_button(pdata));
 
             }
             else if (strType == "checkbox")
             {
 
-               m_pimpl = new ::html::impl::input_checkbox(pdata);
+               m_pimpl = canew(::html::impl::input_checkbox(pdata));
 
             }
             else
             {
 
-               m_pimpl = new ::html::impl::text(pdata->get_app());
+               m_pimpl = canew(::html::impl::text(pdata->get_app()));
 
             }
 
@@ -270,7 +270,7 @@ namespace html
          else if (m_etag == tag_select)
          {
 
-            m_pimpl = new ::html::impl::select(pdata);
+            m_pimpl = canew(::html::impl::select(pdata));
 
          }
          else if (m_etag == tag_option)
@@ -282,31 +282,31 @@ namespace html
          else if (m_etag == tag_img)
          {
 
-            m_pimpl = new ::html::impl::image();
+            m_pimpl = canew(::html::impl::image());
 
          }
          else if (m_etag == tag_table && m_elementalptra.has_elements())
          {
 
-            m_pimpl = new ::html::impl::table();
+            m_pimpl = canew(::html::impl::table());
 
          }
          else if (m_etag == tag_tr && m_elementalptra.has_elements())
          {
 
-            m_pimpl = new ::html::impl::table_row();
+            m_pimpl = canew(::html::impl::table_row());
 
          }
          else if (m_etag == tag_td && m_elementalptra.has_elements())
          {
 
-            m_pimpl = new ::html::impl::cell(pdata->get_app());
+            m_pimpl = canew(::html::impl::cell(pdata->get_app()));
 
          }
          else
          {
 
-            m_pimpl = new ::html::impl::text(pdata->get_app());
+            m_pimpl = canew(::html::impl::text(pdata->get_app()));
 
          }
 
@@ -827,7 +827,7 @@ namespace html
          if (m_idTagName == __id(html_link) && get_tag()->get_attr_value("rel").CompareNoCase("stylesheet") == 0)
          {
             
-            sp(style_sheet) pstylesheet(new style_sheet(m_pauraapp));
+            sp(style_sheet) pstylesheet(canew(style_sheet(m_pauraapp)));
 
             string strUrl(get_tag()->get_attr_value("href"));
             
@@ -854,7 +854,7 @@ namespace html
          }
          for (int32_t i = 0; i < ptag->baseptra().get_size(); i++)
          {
-            elemental * pelemental = new elemental(pdata, this);
+            elemental * pelemental = canew(elemental(pdata, this));
             pelemental->load(pdata, ptag->baseptra()[i]);
             m_elementalptra.add(pelemental);
          }
@@ -870,14 +870,14 @@ namespace html
          m_strBody = pvalue->get_value();
          if (m_idTagName == __id(html_style))
          {
-            sp(style_sheet) pstylesheet(new style_sheet(m_pauraapp));
+            sp(style_sheet) pstylesheet(canew(style_sheet(m_pauraapp)));
             pstylesheet->parse(pdata, pvalue->get_value());
             pdata->m_stylesheeta.add(pstylesheet);
          }
          else if (m_idTagName == __id(html_link)
             && m_pparent->get_tag()->get_attr_value("rel").CompareNoCase("stylesheet") == 0)
          {
-            sp(style_sheet) pstylesheet(new style_sheet(m_pauraapp));
+            sp(style_sheet) pstylesheet(canew(style_sheet(m_pauraapp)));
             pstylesheet->parse(pdata, App(pdata->get_app()).file().as_string(m_pparent->get_tag()->get_attr_value("href")));
             pdata->m_stylesheeta.add(pstylesheet);
          }
@@ -959,7 +959,7 @@ namespace html
       while (true)
       {
 
-         elemental * pelemental = new elemental(pdata, this);
+         sp(elemental) pelemental = canew(elemental(pdata, this));
 
          if (!pelemental->parse(pdata, psz))
          {
@@ -1325,12 +1325,7 @@ namespace html
             try
             {
 
-               if(m_elementalptra[i] != NULL)
-               {
-
-                  delete m_elementalptra[i];
-
-               }
+               m_elementalptra[i].release();
 
             }
             catch(...)
@@ -1349,21 +1344,28 @@ namespace html
 
       if(m_pimpl != NULL)
       {
+
          try
          {
+
             m_pimpl->delete_implementation(pdoc);
+
          }
          catch(...)
          {
+
          }
-         try
+
+         m_pimpl.release();
+
+  /*       try
          {
             delete m_pimpl;
          }
          catch(...)
          {
          }
-         m_pimpl = NULL;
+         m_pimpl = NULL;*/
 
       }
 

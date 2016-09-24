@@ -6,11 +6,11 @@ html_form::html_form(::aura::application * papp) :
    ::user::interaction(papp)
 {
 
-   m_phtmlform = new html::form();
+   m_phtmlform = canew(html::form());
 
-   m_phtmlform->m_sphtmldata = new html::data(papp);
+   //m_phtmlform->m_sphtmldata = canew(html::data(papp));
 
-   m_phtmlform->m_sphtmldata->m_pui = this;
+   //m_phtmlform->m_sphtmldata->m_pui = this;
 
    m_phtmlform->m_pelementalHover = NULL;
 
@@ -18,8 +18,6 @@ html_form::html_form(::aura::application * papp) :
 
 html_form::~html_form()
 {
-
-   ::aura::del(m_phtmlform);
 
 }
 
@@ -31,7 +29,7 @@ void html_form::_001OnDraw(::draw2d::graphics * pgraphics)
 //   ::user::interaction::_001OnDraw(pgraphics);
 
 
-   sp(::html::data) sphtmldata;
+   ::html::data * sphtmldata = NULL;
 
    try
    {
@@ -44,7 +42,7 @@ void html_form::_001OnDraw(::draw2d::graphics * pgraphics)
    }
 
 
-   if(sphtmldata.is_set())
+   if(sphtmldata != NULL)
    {
 
       sphtmldata->_001OnDraw(pgraphics);
@@ -138,6 +136,9 @@ void html_form::install_message_handling(::message::dispatch * pinterface)
    IGUI_WIN_MSG_LINK(WM_LBUTTONUP, pinterface, this, &html_form::_001OnLButtonUp);
 
    IGUI_WIN_MSG_LINK(html::message_on_image_loaded, pinterface, this, &html_form::_001OnImageLoaded);
+
+   IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &html_form::_001OnDestroy);
+
 }
 
 /*
@@ -333,6 +334,38 @@ void html_form::_001OnLButtonUp(signal_details * pobj)
 }
 
 
+void html_form::_001OnDestroy(signal_details * pobj)
+{
+ 
+   if (get_document() != NULL)
+   {
+
+      ::html::data * pdata = get_document()->m_spadata.get < ::html::data >();
+      
+      if (pdata != NULL)
+      {
+
+         if (pdata->m_pform == this)
+         {
+
+            pdata->m_pform = NULL;
+
+         }
+
+         if (pdata->m_pui == this)
+         {
+
+            pdata->m_pui = NULL;
+
+         }
+
+      }
+
+   }
+
+}
+
+
 string html_form::get_path()
 {
    return m_strPath;
@@ -373,7 +406,7 @@ bool html_form::open_document(var varFile)
 void html_form::_001GetText(string & str) const
 {
 
-   ((html_form *) this)->get_html_data()->m_elemental.get_html(const_cast < ::html::data * > (get_html_data()), str);
+   ((html_form *) this)->get_html_data()->m_elemental.get_html((const_cast < html_form * > (this)->get_html_data()), str);
 
 }
 
@@ -406,15 +439,30 @@ void html_form::_001SetText(const string & str, ::action::context actioncontext)
 }
 
 
-::html::data * html_form::get_html_data()
+html_document * html_form::get_document()
 {
-   return m_phtmlform->m_sphtmldata;
+
+   return dynamic_cast < html_document *> (::user::impact::get_document());
+
 }
 
-const ::html::data * html_form::get_html_data() const
+
+::html::data * html_form::get_html_data()
 {
+
+   if (m_phtmlform->m_sphtmldata == NULL)
+   {
+
+      m_phtmlform->m_sphtmldata = get_document()->get_html_data();
+
+      m_phtmlform->m_sphtmldata->m_pui = this;
+
+   }
+
    return m_phtmlform->m_sphtmldata;
+
 }
+
 
 void html_form::_001OnKeyDown(signal_details * pobj)
 {

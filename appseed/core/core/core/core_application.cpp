@@ -1972,37 +1972,19 @@ namespace core
 
       }
 
-      if (eend == end_app)
-      {
-
-         post_quit();
-
-         return;
-
-      }
-
       if (m_pcoresession->m_pdocmanager != NULL)
       {
 
-         m_pcoresession->document_manager().close_all_documents(false);
+         m_pcoresession->document_manager().close_all_documents(true);
 
          m_pcoresession->m_pdocmanager.release();
-
-      }
-
-      if (eend == end_session)
-      {
-
-         Session.post_quit();
-
-         return;
 
       }
 
       if (m_pcoresystem->m_pdocmanager != NULL)
       {
 
-         m_pcoresystem->document_manager().close_all_documents(false);
+         m_pcoresystem->document_manager().close_all_documents(true);
 
          m_pcoresystem->m_pdocmanager.release();
 
@@ -2024,6 +2006,24 @@ namespace core
       {
 
          m_iReturnCode = -2;
+
+      }
+
+      if (eend == end_app)
+      {
+
+         post_quit();
+
+         return;
+
+      }
+
+      if (eend == end_session)
+      {
+
+         Session.post_quit();
+
+         return;
 
       }
 

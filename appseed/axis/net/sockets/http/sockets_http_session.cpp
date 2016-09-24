@@ -11,22 +11,21 @@ namespace sockets
 {
 
 
-   http_session::http_session(sp(::sockets::base_socket_handler) phandler,const string & protocol,const string & host) :
-      ::object(phandler->get_app()),
-      base_socket(*phandler),
-      socket(*phandler),
-      stream_socket(*phandler),
-      tcp_socket(*phandler),
-      http_socket(*phandler),
-      http_tunnel(*phandler),
-      http_client_socket(*phandler),
-      http_get_socket(*phandler),
-      http_post_socket(*phandler),
-      http_put_socket(*phandler)
+   http_session::http_session(::sockets::base_socket_handler & handler,const string & protocol,const string & host) :
+      ::object(handler.get_app()),
+      base_socket(handler),
+      socket(handler),
+      stream_socket(handler),
+      tcp_socket(handler),
+      http_socket(handler),
+      http_tunnel(handler),
+      http_client_socket(handler),
+      http_get_socket(handler),
+      http_post_socket(handler),
+      http_put_socket(handler)
    {
 
-      m_phandler                    = phandler;
-
+      m_bEnablePool = false;
       m_strProtocol                 = protocol,
       m_host                        = host;
 

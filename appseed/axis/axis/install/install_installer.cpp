@@ -127,6 +127,8 @@ namespace install
       m_xmldocStringTable(papp),
       m_mutexOmp(papp)
    {
+      
+      m_psockethandler = new ::sockets::socket_handler(papp);
 
       m_daProgress.add(0.0);
       m_iaProgress.add(0);
@@ -168,6 +170,9 @@ namespace install
 
    installer::~installer()
    {
+
+      ::aura::del(m_psockethandler);
+
    }
 
    void installer::new_progress_end(double dMilestone)
@@ -1270,14 +1275,12 @@ install_begin:;
       single_lock sl(&m_mutexOmp);
 
       sl.lock();
-      ::sockets::http_session * & psession = m_httpsessionptra.element_at_grow(omp_get_thread_num() + 1);
+      sp(::sockets::http_session) & psession = m_httpsessionptra.element_at_grow(omp_get_thread_num() + 1);
       sl.unlock();
 
       System.install().trace().trace_add("\ndownloading " + strUrl + "\n");
 
-      psession = Application.http().download(psession,strUrl,(dir + file),set);
-
-      return psession != NULL;
+      return Application.http().download(*m_psockethandler, psession,strUrl,(dir + file),set);
 
    }
 
@@ -1467,12 +1470,12 @@ install_begin:;
             set["raw_http"] = true;
 
             sl.lock();
-            ::sockets::http_session * & psession = m_httpsessionptra.element_at_grow(omp_get_thread_num()+1);
+            sp(::sockets::http_session) & psession = m_httpsessionptra.element_at_grow(omp_get_thread_num()+1);
             sl.unlock();
 
             System.install().trace().trace_add("\ndownloading " + strUrl + "\n");
 
-            bOk = (psession = Application.http().download(psession,strUrl,strBsPatch,set)) != NULL;
+            bOk = Application.http().download(*m_psockethandler, psession,strUrl,strBsPatch,set);
 
 //            if(iStatus == 404)
   //             break;
@@ -1606,7 +1609,7 @@ install_begin:;
       }
       // then finally try to download the entire file
       sl.lock();
-      ::sockets::http_session * & psession = m_httpsessionptra.element_at_grow(omp_get_thread_num() + 1);
+      sp(::sockets::http_session) & psession = m_httpsessionptra.element_at_grow(omp_get_thread_num() + 1);
       sl.unlock();
       if(!bOk)
       {
@@ -1633,7 +1636,7 @@ install_begin:;
 
             System.install().trace().trace_add("\ndownloading " + (::file::path(url_in + "." + pszMd5)) + "\n");
 
-            bOk = (psession = Application.http().download(psession,::file::path(url_in + "." + pszMd5),::file::path(dir + file + "." + pszMd5),set)) != NULL;
+            bOk = Application.http().download(*m_psockethandler, psession,::file::path(url_in + "." + pszMd5),::file::path(dir + file + "." + pszMd5),set);
             //bOk = Application.http().download((url_in + "." + pszMd5), (dir + file + "." + pszMd5), set);
 //            if(iStatus == 404)
   //             break;
@@ -3241,12 +3244,16 @@ RetryBuildNumber:
          single_lock sl(&m_mutexOmp);
 
          sl.lock();
-         ::sockets::http_session * & psession = m_httpsessionptra.element_at_grow(omp_get_thread_num() + 1);
+         sp(::sockets::http_session) & psession = m_httpsessionptra.element_at_grow(omp_get_thread_num() + 1);
          sl.unlock();
 
          System.install().trace().trace_add("\ndownloading " +  strUrl + "\n");
 
-         psession = Application.http().download(psession,strUrl, &file,set);
+         if (!Application.http().download(*m_psockethandler, psession, strUrl, &file, set))
+         {
+            Sleep(184);
+            goto RetryBuildNumber;
+         }
 
          file.seek_to_begin();
 //         strEtc = http_get(strUrl, true);
@@ -4433,15 +4440,17 @@ RetryBuildNumber:
 
       set["raw_http"] = true;
 
-      m_phttpsession = System.http().request(m_phttpsession,strUrl,set);
+      if(!System.http().request(*m_psockethandler, m_phttpsession,strUrl,set))
+      {
 
-      if(m_phttpsession == NULL)
          return "";
 
+      }
 
       return str;
 
    }
+
 
 } // namespace install
 

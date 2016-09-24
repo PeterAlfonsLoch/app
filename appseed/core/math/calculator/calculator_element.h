@@ -11,15 +11,16 @@ namespace calculator
    public:
 
 
+      element *      m_pparent;
+
+      sp(token)      m_ptoken;
+      element *      m_pelement1;
+      element *      m_pelement2;
+      element *      m_pelement3;
+
+
       element();
-      ~element();
-
-
-      token *     m_ptoken;
-      element *   m_pparent;
-      element *   m_pelement1;
-      element *   m_pelement2;
-      element *   m_pelement3;
+      virtual ~element();
 
 
       value get_value();

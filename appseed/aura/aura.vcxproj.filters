@@ -3748,6 +3748,9 @@
     <ClCompile Include="aura\charguess\_cpp.cpp">
       <Filter>Source Files\aura\charguess</Filter>
     </ClCompile>
+    <ClCompile Include="multithreading\multithreading_thread_os.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">

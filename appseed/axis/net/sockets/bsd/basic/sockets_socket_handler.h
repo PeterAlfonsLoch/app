@@ -56,7 +56,10 @@ namespace sockets
 
       socket_handler(::aura::application * papp, logger * plogger = NULL);
       //socket_handler(::aura::application * papp, mutex & mutex, logger * plogger = NULL);
-      ~socket_handler();
+      virtual ~socket_handler();
+
+
+      void cleanup_handler();
 
 
       mutex & GetMutex() const;

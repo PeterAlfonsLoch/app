@@ -68,9 +68,9 @@ namespace user
             bool                                m_bEnabled;
             ::user::EAppearance                 m_emode;
             EAppearanceTransparency             m_nTransparency;
-            CTool001 *                    m_ptool001;
+            CTool001 *                          m_ptool001;
 
-            ::visual::icon *              m_picon;
+            sp(::visual::icon)                  m_picon;
 
             bool IsNotifyIconEnabled();
             sp(::user::interaction) get_window();

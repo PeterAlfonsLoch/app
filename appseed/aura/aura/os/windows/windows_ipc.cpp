@@ -85,7 +85,16 @@ namespace aura
                {
                   break;
                }
-               Sleep(1000);
+               int k = 40;
+               while (k > 0)
+               {
+                  if (!get_thread()->m_bRun)
+                  {
+                     return false;
+                  }
+                  Sleep(25);
+                  k--;
+               }
             }
             if(m_oswindow != NULL)
                break;

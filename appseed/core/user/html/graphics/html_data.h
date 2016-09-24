@@ -7,7 +7,7 @@ namespace html
 
    class CLASS_DECL_CORE data :
       virtual public signalizable,
-      public ::data::data
+      virtual public ::data::data
    {
    public:
 
@@ -112,7 +112,7 @@ namespace html
       };
 
       ::user::form_callback *       m_pcallback;
-      sp(::user::interaction)       m_pui;
+      ::user::interaction *         m_pui;
       ::draw2d::graphics *          m_pgraphics;
       box                           m_box;
       string                        m_strTitle;
@@ -130,7 +130,7 @@ namespace html
 
       style_sheet_array             m_stylesheeta;
       ::file::path                  m_strPathName;
-      user::interaction_spa         m_uiptra;
+      ::user::interaction_ptra      m_uiptra;
       tag *                         m_ptag;
       elemental                     m_elemental;
       bool                          m_bImplemented;
@@ -150,7 +150,7 @@ namespace html
       property_set                  m_propset;
       string                        m_strSource;
 
-      sp(::html_form)               m_pform;
+      ::html_form *                 m_pform;
       bool                          m_bEdit;
       elemental *                   m_pElementalSelStart;
       elemental *                   m_pElementalSelEnd;
@@ -163,6 +163,11 @@ namespace html
 
       data(::aura::application * papp);
       virtual ~data();
+
+
+      virtual int64_t add_ref();
+      virtual int64_t dec_ref();
+
 
       virtual bool open_document(var varFile);
       virtual bool open_link(const char * pszPath);
@@ -217,9 +222,9 @@ namespace html
 
       data(const data & ) :
          ::data::data(NULL),
-         m_elemental(NULL),
-         m_uiptra(NULL)
+         m_elemental(NULL)
       {
+
       }
 
 

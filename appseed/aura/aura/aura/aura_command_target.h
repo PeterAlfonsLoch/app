@@ -7,87 +7,122 @@ class CLASS_DECL_AURA command_target_interface:
 {
 public:
 
-   class CLASS_DECL_AURA command_signalid: public signalid
+
+   class CLASS_DECL_AURA command_signalid :
+      public signalid
    {
    public:
-
-      command_signalid()
-      {
-      };
-      virtual ~command_signalid();
 
 
       id m_id;
 
+
+      command_signalid() { }
+      virtual ~command_signalid();
+
+
       virtual bool is_equal(signalid * pidParam)
       {
+
          command_signalid * pid = dynamic_cast < command_signalid * > (pidParam);
+
          if(pid == NULL)
             return false;
+
          return pid->m_id == m_id;
+
       };
+
+
 
       virtual bool matches(signalid * pidParam)
       {
+         
          command_signalid * pid = dynamic_cast < command_signalid * > (pidParam);
+         
          if(pid == NULL)
             return false;
-         return pid->m_id == m_id;
-      };
 
+         return pid->m_id == m_id;
+
+      }
+
+      
       virtual signalid * copy()
       {
-         command_signalid * pid = new command_signalid();
+         
+         command_signalid * pid = canew(command_signalid());
+         
          pid->m_id = m_id;
+
          return pid;
+
       }
+
    };
+
 
    class CLASS_DECL_AURA command_signalrange: public signalid
    {
    public:
 
-      command_signalrange()
-      {
-      };
-      virtual ~command_signalrange();
-
 
       index m_iStart;
       index m_iEnd;
 
+
+      command_signalrange() { }
+      virtual ~command_signalrange();
+
+
       virtual bool is_equal(signalid * pidParam)
       {
+         
          command_signalrange * prange = dynamic_cast < command_signalrange * > (pidParam);
+         
          if(prange == NULL)
             return false;
+
          return prange->m_iStart == m_iStart && prange->m_iEnd == m_iEnd;
-      };
+
+      }
+
 
       virtual bool matches(signalid * pidParam)
       {
+
          command_signalid * pid = dynamic_cast < command_signalid * > (pidParam);
+
          if(pid == NULL)
             return false;
-         return
-            pid->m_id >= m_iStart
-            && pid->m_id <= m_iEnd;
-      };
+         return pid->m_id >= m_iStart && pid->m_id <= m_iEnd;
+
+      }
+
 
       virtual signalid * copy()
       {
-         command_signalrange * pid = new command_signalrange();
+      
+         command_signalrange * pid = canew(command_signalrange());
+         
          pid->m_iStart = m_iStart;
+
          pid->m_iEnd = m_iEnd;
+
          return pid;
+
       }
+
    };
+
 
    ::signalid_array m_signalidaCommand;
 
+   
    ::dispatch  m_dispatchUpdateCmdUi;
    ::dispatch  m_dispatchCommand;
 
+   
    command_target_interface();
    command_target_interface(::aura::application * papp);
 
@@ -95,26 +130,45 @@ public:
    template < class T >
    bool connect_update_cmd_ui(const char * pszId,void (T::*pfn)(signal_details *))
    {
+
       return connect_update_cmd_ui(id(pszId),pfn);
+
    }
+
+
    template < class T >
    bool connect_command(const char * pszId,void (T::*pfn)(signal_details *))
    {
+
       return connect_command(id(pszId),pfn);
+
    }
+
+
    template < class T >
    bool connect_update_cmd_ui(id id,void (T::*pfn)(signal_details *))
    {
+
       command_signalid signalid;
+
       ::signalid * pid;
+
       signalid.m_id = id;
+
       pid = m_signalidaCommand.get(&signalid);
+
       if (!m_dispatchUpdateCmdUi.AddMessageHandler(pid, dynamic_cast <T *> (this), pfn, true))
       {
+
          return false;
+
       }
+
       return true;
+
    }
+
+
    template < class T >
    bool connect_command(id id,void (T::*pfn)(signal_details *))
    {
@@ -141,6 +195,8 @@ public:
       }
       return true;
    }
+   
+   
    template < class T >
    bool connect_command(id id,T * psignalizable,void (T::*pfn)(signal_details *))
    {
@@ -154,6 +210,8 @@ public:
       }
       return true;
    }
+   
+   
    template < class T >
    bool connect_update_cmd_range_ui(int32_t iStart,int32_t iEnd,void (T::*pfn)(signal_details *))
    {
@@ -168,6 +226,8 @@ public:
       }
       return true;
    }
+   
+   
    template < class T >
    bool connect_command_range(int32_t iStart,int32_t iEnd,void (T::*pfn)(signal_details *))
    {
@@ -183,6 +243,7 @@ public:
       return true;
    }
 
+   
    virtual bool _001SendCommand(id id);
    virtual bool _001SendUpdateCmdUi(cmd_ui * pcmdUI);
 

@@ -313,10 +313,10 @@ namespace windows
 
    interaction_impl::~interaction_impl()
    {
-      if (m_pui != NULL)
-      {
-         m_pui->release();
-      }
+      //if (m_pui != NULL)
+      //{
+      //   m_pui->release();
+      //}
       m_guieptraMouseHover.m_pmutex = NULL;
       m_pmutex = NULL;
 
@@ -542,8 +542,8 @@ namespace windows
       if(wstrClassName.get_length() > 0 && GetClassInfoW(System.m_hinstance, wstrClassName,&wndcls) &&
             wndcls.hIcon != NULL)
       {
-         Application.set_icon(m_pui,new ::visual::icon(wndcls.hIcon),false);
-         Application.set_icon(m_pui,new ::visual::icon(wndcls.hIcon),true);
+         Application.set_icon(m_pui,canew(::visual::icon(wndcls.hIcon)),false);
+         Application.set_icon(m_pui,canew(::visual::icon(wndcls.hIcon)),true);
       }
       //::simple_message_box(NULL,"h4","h4",MB_OK);
       //      oswindow oswindowHandle = get_handle();
@@ -557,7 +557,7 @@ namespace windows
       //::simple_message_box(NULL,"h4.ok","h4.ok",MB_OK);
 
       m_pui = pui;
-      pui->add_ref();
+      //pui->add_ref();
       return TRUE;
    }
 
@@ -1671,7 +1671,7 @@ restart_mouse_hover_check:
 
 
          user::oswindow_array oswindowa;
-         user::interaction_ptra wnda;
+         user::interaction_spa wnda;
          wnda = System.m_uiptraFrame;
          oswindowa = wnda.get_hwnda();
          user::window_util::SortByZOrder(oswindowa);

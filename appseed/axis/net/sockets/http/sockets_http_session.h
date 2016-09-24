@@ -14,15 +14,32 @@
       public:
 
 
-         sp(::sockets::base_socket_handler)  m_phandler;
          string                              m_strProtocol;
          bool                                m_bRequestComplete;
          
          
 
 
-         http_session(sp(::sockets::base_socket_handler) phandler, const string & protocol, const string & host);
+         http_session(::sockets::base_socket_handler & phandler, const string & protocol, const string & host);
          ~http_session();
+
+
+
+         virtual int64_t add_ref()
+         {
+
+            return ::object::add_ref();
+
+         }
+
+
+         virtual int64_t dec_ref()
+         {
+
+            return ::object::dec_ref();
+
+         }
+
 
 
          using http_client_socket::request;

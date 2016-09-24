@@ -94,6 +94,22 @@ namespace hotplugin
    }
 
 
+   void plugin::install_message_handling(::message::dispatch * pdispatch)
+   {
+
+      ::simple_ui::interaction::install_message_handling(pdispatch);
+      ::axis::session::install_message_handling(pdispatch);
+
+   }
+
+   void plugin::delete_this()
+   {
+
+      ::simple_ui::interaction::delete_this();
+
+   }
+
+
    bool plugin::open_link(const string & strLink,const string & strTarget)
    {
 
@@ -1119,13 +1135,7 @@ namespace hotplugin
    }
 
 
-   void plugin::install_message_handling(::message::dispatch * pdispatch)
-   {
 
-      ::simple_ui::interaction::install_message_handling(pdispatch);
-      ::axis::session::install_message_handling(pdispatch);
-
-   }
 
 } // namespace hotplugin
 

@@ -122,8 +122,14 @@ memory::memory(const void * pdata, memory_size_t iCount)
    m_iOffset      = 0;
    m_bAligned = false;
    allocate(iCount);
-   ASSERT(__is_valid_address(pdata, iCount, FALSE));
-   memcpy(m_pbStorage, pdata, iCount);
+
+   if (pdata != NULL && iCount > 0)
+   {
+    
+      memcpy(m_pbStorage, pdata, iCount);
+
+   }
+
 }
 
 memory::memory(const memory_base & s)

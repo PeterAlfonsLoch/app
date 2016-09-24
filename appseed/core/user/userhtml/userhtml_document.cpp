@@ -162,19 +162,27 @@ void html_document::soft_reload()
 
 ::html::data * html_document::get_html_data()
 {
-   
-   sp(::user::document) pdoc = (this);
 
-   if(pdoc->get_data(this) == NULL)
+   ::html::data * pdata = m_spadata.get < ::html::data >();
+   
+   if (pdata != NULL)
    {
 
-      set_data(this, get_typed_view < html_form > ()->get_html_data());
-      get_html_data()->m_pcallback = this;
-      get_html_data()->m_propset["bReplaceEx1"] = true;
+      return pdata;
 
    }
 
-   return pdoc->m_spadata.get < ::html::data >();
+   pdata = canew(html::data(get_app()));
+
+   set_data(this, pdata);
+      
+   pdata->m_pui = get_typed_view < html_form >();
+   
+   pdata->m_pcallback = this;
+   
+   pdata->m_propset["bReplaceEx1"] = true;
+
+   return pdata;
 
 }
 
@@ -247,7 +255,7 @@ sp(::user::interaction) html_document::get_frame()
 void html_document::form_document_set_view(::user::form * pview)
 {
 
-   get_html_data()->m_pform = pview;
+   get_html_data()->m_pform = dynamic_cast < html_form * > (pview);
 
 }
 

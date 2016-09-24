@@ -48,7 +48,7 @@ public:
 
 
    sockets::socket_handler                   m_handler;
-   sockets::http_session *                   m_phttpsession;
+   sp(sockets::http_session)                 m_phttpsession;
 
 
    string_map < db_long_set_item >           m_map;
@@ -88,7 +88,7 @@ public:
    mutex                                                    m_mutex;
    db_long_set *                                            m_pset;
    sockets::socket_handler                                  m_handler;
-   sockets::http_session *                                  m_phttpsession;
+   sp(sockets::http_session)                                m_phttpsession;
 
    smart_pointer_array < db_long_set_queue_item >           m_itema;
 
@@ -158,9 +158,7 @@ repeat:;
 
           set["user"] = &ApplicationUser;
 
-          m_phttpsession = System.http().request( m_phttpsession, strUrl, set);
-
-          if(m_phttpsession == NULL || ::http::status_failed(set["get_status"]))
+          if(!System.http().request(m_handler, m_phttpsession, strUrl, set) || ::http::status_failed(set["get_status"]))
           {
              Sleep(1984);
              goto repeat;
@@ -236,7 +234,7 @@ bool db_long_set::load(const char * lpKey, int64_t * plValue)
       strUrl += System.url().url_encode(lpKey);
 
       //m_phttpsession = System.http().request(m_handler, m_phttpsession, strUrl, post, headers, set, NULL, &ApplicationUser, NULL, &estatus);
-      pcore-> m_phttpsession = System.http().request(pcore->m_phttpsession,strUrl,set);
+      pcore-> m_phttpsession = System.http().request(pcore->m_handler, pcore->m_phttpsession,strUrl,set);
 
       if(pcore->m_phttpsession == NULL || ::http::status_failed(set["get_status"]))
       {

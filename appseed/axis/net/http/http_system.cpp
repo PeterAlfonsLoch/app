@@ -522,7 +522,7 @@ namespace http
 
 
 
-   ::sockets::http_session * system::open(const char * pszHost, const char * pszProtocol, property_set & set, ::fontopus::user * puser, const char * pszVersion)
+   bool system::open(::sockets::socket_handler & handler, sp(::sockets::http_session) & psession, const char * pszHost, const char * pszProtocol, property_set & set, ::fontopus::user * puser, const char * pszVersion)
    {
 
       uint32_t dwTimeProfile1 = get_tick_count();
@@ -564,9 +564,7 @@ namespace http
 
       string strSessId;
 
-      ::sockets::http_session * psession;
-
-      psession = new ::sockets::http_session(canew(::sockets::socket_handler(get_app())), strProtocol, pszHost);
+      psession = canew(::sockets::http_session(handler, strProtocol, pszHost));
 
       if(!(bool)set["disable_ca2_sessid"] && !setQuery.has_property("authnone"))
       {
@@ -675,7 +673,7 @@ namespace http
       uint32_t dw2 = ::get_tick_count();
       TRACE("system::get open time %d\n", dw2 - dw1);
 
-      return psession;
+      return true;
 
 
    }
@@ -722,7 +720,7 @@ namespace http
 
 
 
-   ::sockets::http_session * system::request(::sockets::http_session * psession, const char * pszRequest, property_set & set)
+   bool system::request(::sockets::socket_handler & handler, sp(::sockets::http_session) & psession, const char * pszRequest, property_set & set)
    {
 
       TRACE("http system request : %s",pszRequest);
@@ -742,8 +740,16 @@ retry:
       try
       {
 
-         if(psession == NULL || !psession->is_valid())
+         if (psession == NULL)
          {
+            
+            bSeemsOk = false;
+
+         }
+         else if(!psession->is_valid())
+         {
+
+            handler.remove(psession);
 
             bSeemsOk = false;
 
@@ -764,10 +770,12 @@ retry:
 
             DWORD dwBeg = ::get_tick_count();
 
-            psession = open(System.url().get_server(pszRequest), System.url().get_protocol(pszRequest), set, set["user"].cast < ::fontopus::user > (), set["http_protocol_version"]);
+            if (!open(handler, psession, System.url().get_server(pszRequest), System.url().get_protocol(pszRequest), set, set["user"].cast < ::fontopus::user >(), set["http_protocol_version"]))
+            {
 
-            if(psession == NULL)
-               return NULL;
+               return false;
+
+            }
 
             DWORD dwEnd = ::get_tick_count();
 
@@ -906,14 +914,14 @@ retry:
          {
             bPost = false;
             bPut = true;
-            dynamic_cast < ::sockets::http_put_socket * > (psession)->m_file = set["put"].cast < ::file::binary_buffer >();
+            psession.cast < ::sockets::http_put_socket>()->m_file = set["put"].cast < ::file::binary_buffer >();
             psession->request("PUT",strRequest);
          }
          else if (set["post"].propset().get_count() > 0 || set.lookup(__id(http_method)) == "POST")
          {
             bPost = true;
             bPut = false;
-            dynamic_cast < ::sockets::http_post_socket * > (psession)->m_fields = set["post"].propset();
+            psession.cast < ::sockets::http_post_socket>()->m_fields = set["post"].propset();
             psession->request("POST",strRequest);
          }
          else
@@ -924,7 +932,7 @@ retry:
          }
 
 
-         psession->m_phandler->add(psession);
+         handler.add(psession);
 
          int32_t iIteration = 0;
          ::aura::live_signal keeplive;
@@ -947,11 +955,11 @@ retry:
 
          TRACE("Higher Level Diagnosis : iNTERTIMe system::request time(%d) = %d, %d, %d\n", iIteration, dw1, dw2, dw2 - dw1);
 
-         while(psession->m_phandler->get_count() > 0 && !psession->m_bRequestComplete && (::get_thread() == NULL || ::get_thread()->m_bRun))
+         while((handler.get_count() > 0 && !psession->m_bRequestComplete) && (::get_thread() == NULL || ::get_thread()->m_bRun))
             //while(psession->m_phandler->get_count() > 0 && !psession->m_bRequestComplete) // should only exit in case of process exit signal
          {
             dw1 = ::get_tick_count();
-            psession->m_phandler->select(240, 0);
+            handler.select(240, 0);
             keeplive.keep_alive();
             if(psession->m_estatus == ::sockets::socket::status_connection_timed_out)
             {
@@ -1101,7 +1109,7 @@ retry:
       }
 
 
-      return psession;
+      return true;
 
    }
 
@@ -1213,7 +1221,7 @@ retry:
 
 
 
-   sp(::sockets::http_client_socket) system::get(::sockets::socket_handler & handler, const char * pszUrl, property_set & set)
+   bool system::get(::sockets::socket_handler & handler, sp(::sockets::http_client_socket) & psocket, const char * pszUrl, property_set & set)
    {
 
       TRACE("http system get : %s", pszUrl);
@@ -1394,8 +1402,6 @@ retry_session:
 
       //setQuery.parse_url_query(System.url().get_query(strUrl));
 
-      sp(::sockets::http_client_socket) psocket;
-
       bool bPost;
       bool bPut;
       if (set["put"].cast < ::file::stream_buffer >() != NULL || set.lookup(__id(http_method)) == "PUT")
@@ -1536,7 +1542,7 @@ retry_session:
       ::aura::live_signal keeplive;
 
       if((bool)set["noloop"])
-         return psocket;
+         return true;
 
       if(papp != NULL)
       {
@@ -1628,12 +1634,12 @@ retry_session:
             if(strLocation.find_ci("http://") == 0
                   || strLocation.find_ci("https://") == 0)
             {
-               return get(handler,strLocation,set);
+               return get(handler,psocket, strLocation,set);
             }
             else
             {
                strLocation = System.url().get_protocol(pszUrl) + System.url().get_server(pszUrl) + System.url().get_object(strLocation);
-               return get(handler,strLocation,set);
+               return get(handler,psocket,strLocation,set);
             }
          }
       }
@@ -1666,8 +1672,6 @@ retry_session:
             if (domainFontopus.m_strRadix == "ca2")
             {
 
-               ::aura::del(Session.fontopus()->m_puser);
-             
                set["user"] = Session.fontopus()->get_user();
 
             }
@@ -1739,7 +1743,7 @@ retry_session:
       uint32_t dwTimeProfile2 = get_tick_count();
       TRACE0("Total time ::http::system::get(\"" + strUrl.Left(MIN(255,strUrl.get_length())) + "\") " + ::str::from(dwTimeProfile2 - dwTimeProfile1));
 
-      return psocket;
+      return true;
 
    }
 
@@ -1814,19 +1818,21 @@ retry_session:
 
       }
 
+      sp(::sockets::http_client_socket) psocket;
 
-      sp(::sockets::http_client_socket) psocket = get(handler, psignal->m_strUrl, set);
-
-      psignal->m_estatusRet = (::http::e_status) set["get_status"].int64();
-
-      if(psocket == NULL)
+      if(!get(handler, psocket, psignal->m_strUrl, set))
       {
+
+         psignal->m_estatusRet = (::http::e_status) set["get_status"].int64();
 
          psignal->m_bRet = false;
 
          return;
 
       }
+
+      psignal->m_estatusRet = (::http::e_status) set["get_status"].int64();
+
 
       if(psocket->GetDataPtr() != NULL && psocket->GetContentLength() > 0)
       {
@@ -1851,7 +1857,7 @@ retry_session:
 
    }
 
-   ::sockets::http_session * system::download(::sockets::http_session * psession,const char * pszRequest,var varFile,property_set & set)
+   bool system::download(sockets::socket_handler & handler, sp(::sockets::http_session) & psession,const char * pszRequest,var varFile,property_set & set)
    {
 
       ::file::buffer_sp spfile = set.cast < ::aura::application >("app",get_app())->m_paxissession->file().get_file(varFile,
@@ -1859,11 +1865,11 @@ retry_session:
 
       set["file"] = spfile;
 
-      psession = request(psession, pszRequest,set);
+      bool bOk = request(handler, psession, pszRequest,set);
 
       set["file"].null();
 
-      return psession;
+      return bOk;
 
    }
 
@@ -1878,11 +1884,13 @@ retry_session:
 
       set["file"] = spfile;
 
-      sp(::sockets::http_client_socket) psocket = get(handler, pszUrl, set);
+      sp(::sockets::http_client_socket) psocket;
+      
+      bool bOk = get(handler, psocket, pszUrl, set);
 
       set["file"].null();
 
-      if(psocket == NULL)
+      if(!bOk)
          return false;
 
 
@@ -1929,9 +1937,9 @@ retry_session:
 
       }
 
-      sp(::sockets::http_client_socket) psocket = get(handler, pszUrl, set);
-
-      if (psocket == NULL)
+      sp(::sockets::http_client_socket) psocket;
+      
+      if (!get(handler, psocket, pszUrl, set))
       {
          sl.lock();
          m_straExists.remove(pszUrl);
@@ -1966,9 +1974,9 @@ retry_session:
 
       }
 
-      sp(::sockets::http_client_socket) psocket = get(handler, pszUrl, set);
+      sp(::sockets::http_client_socket) psocket;
 
-      if (psocket == NULL)
+      if (get(handler, psocket, pszUrl, set))
          return false;
 
       int32_t iStatusCode = psocket->outattr("http_status_code");
@@ -2096,7 +2104,14 @@ retry_session:
 
       sockets::socket_handler h(set.cast < ::aura::application >("app", get_app()));
 
-      sp(::sockets::http_client_socket) psocket = System.http().get(h, pszUrl, set);
+      sp(::sockets::http_client_socket) psocket;
+      
+      if (!System.http().get(h, psocket, pszUrl, set))
+      {
+
+         return false;
+
+      }
 
       return status_succeeded(set["get_status"]);
 

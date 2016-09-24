@@ -433,10 +433,31 @@ void string_format::format(const char * & s)
 #endif
 
 
-      void format(string_format * pformat, uint64_t const & i)
+      void format(string_format * pformat, uint64_t const & ui)
       {
          // TODO: use specs
-         pformat->append(::str::from(i));
+         // TODO: use specs
+         string str;
+         if (pformat->m_chLength == 'x')
+         {
+            str = ::hex::lower_from(ui);
+         }
+         else if (pformat->m_chLength == 'X')
+         {
+            str = ::hex::upper_from(ui);
+         }
+         else
+         {
+            str = ::str::from(ui);
+         }
+         if (pformat->m_bZeroPadding)
+         {
+            while (str.get_length() < pformat->m_iWidth)
+            {
+               str = "0" + str;
+            }
+         }
+         pformat->append(str);
 
       }
 
@@ -580,7 +601,30 @@ void string_format::format(const char * & s)
       void format(string_format * pformat, void * const & p)
       {
          // TODO: use specs
-         pformat->append(::str::from((uint_ptr)p));
+
+         string str;
+
+         if(pformat->m_chLength == 'x')
+         {
+            str = ::hex::lower_from((uint_ptr)p);
+         }
+         else if (pformat->m_chLength == 'x')
+         {
+            str = ::hex::upper_from((uint_ptr)p);
+         }
+         else 
+         {
+            str = ::str::from((uint_ptr)p);
+         }
+
+         if (pformat->m_bZeroPadding)
+         {
+          
+            ::zero_pad(str, pformat->m_iWidth);
+
+         }
+
+         pformat->append(str);
 
       }
 

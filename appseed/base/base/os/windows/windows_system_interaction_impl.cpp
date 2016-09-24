@@ -42,7 +42,7 @@ namespace base
 
             System.enum_display_monitors();
 
-            ::user::interaction * pui = NULL;
+            sp(::user::interaction) pui;
 
             while(System.get_frame(pui))
             {

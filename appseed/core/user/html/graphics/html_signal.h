@@ -17,9 +17,9 @@ namespace html
    public:
 
 
-      ::html::data * m_pdata;
-      signal_details * m_psignal;
-      sp(::user::interaction) m_pui;
+      ::html::data *             m_pdata;
+      signal_details *           m_psignal;
+      sp(::user::interaction)    m_pui;
 
 
       signal(class ::signal * psignal);
@@ -27,4 +27,11 @@ namespace html
 
    };
 
+
 } // namespace html
+
+
+
+
+
+

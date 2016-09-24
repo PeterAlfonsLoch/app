@@ -30,9 +30,8 @@ namespace axis
 
       ::simpledb::simpledb                            m_simpledb;
 
+      string                                          m_strDataIdAddUp;
 
-      mutex                                           m_mutexFrame;
-      ref_array < ::user::interaction >               m_uiptraFrame;
 
       bool                                            m_bUpdateMatterOnInstall;
 
@@ -191,8 +190,8 @@ virtual      bool load_cached_string(string & str,id id,bool bLoadStringTable);
 
 
 
-      virtual bool update_appmatter(::sockets::http_session * & psession,const ::file::path & pszRoot,const string & pszRelative);
-      virtual bool update_appmatter(::sockets::http_session * & psession,const ::file::path & pszRoot,const string & pszRelative,const string & strLocale,const string & strStyle);
+      virtual bool update_appmatter(::sockets::socket_handler & handler, sp(::sockets::http_session) & psession,const ::file::path & pszRoot,const string & pszRelative);
+      virtual bool update_appmatter(::sockets::socket_handler & handler, sp(::sockets::http_session) & psession,const ::file::path & pszRoot,const string & pszRelative,const string & strLocale,const string & strStyle);
 
 
       virtual void SetCurrentHandles();

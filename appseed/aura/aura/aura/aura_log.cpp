@@ -229,7 +229,36 @@ namespace aura
       time = time.get_current_time();
       time.Format(strPre, "%Y-%m-%d %H:%M:%S");
       string strTick;
-      strTick.Format(" %011d ", ::get_tick_count() - ::get_first_tick());
+      uint64_t uiTotalMillis = ::get_tick_count() - ::get_first_tick();
+      uint64_t uiMillis = uiTotalMillis % 1000;
+      uint64_t uiTotalSeconds = uiTotalMillis / 1000;
+      uint64_t uiSeconds = uiTotalSeconds % 60;
+      uint64_t uiTotalMinutes = uiTotalSeconds / 60;
+      uint64_t uiMinutes = uiTotalMinutes % 60;
+      uint64_t uiTotalHours = uiTotalMinutes / 60;
+      uint64_t uiHours = uiTotalHours % 24;
+      uint64_t uiTotalDays = uiTotalHours / 24;
+      // sipman LCTV learning to format hours, minutes and seconds.... (me (re) learning too)...
+      if (uiTotalDays > 0)
+      {
+         strTick.Format(" %d:%d:%d:%d.%03d ", uiTotalDays, uiHours, uiMinutes, uiSeconds, uiMillis);
+      }
+      else if(uiTotalHours > 0)
+      {
+         strTick.Format(" %d:%d:%d.%03d ", uiHours, uiMinutes, uiSeconds, uiMillis);
+      }
+      else if (uiTotalMinutes > 0)
+      {
+         strTick.Format(" %d:%d.%03d ", uiMinutes, uiSeconds, uiMillis);
+      }
+      else if (uiTotalSeconds > 0)
+      {
+         strTick.Format(" %d.%03ds ", uiSeconds, uiMillis);
+      }
+      else 
+      {
+         strTick.Format(" %3dms ", uiMillis);
+      }
 
       //sl.lock();
       if(plog->m_pfile == NULL

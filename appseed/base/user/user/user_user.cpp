@@ -439,7 +439,7 @@ namespace user
 
       synch_lock sl(&Application.m_mutexFrame);
 
-      ::user::interaction * pui = NULL;
+      sp(::user::interaction) pui;
 
       while(Application.get_frame(pui))
       {

@@ -1190,6 +1190,19 @@ namespace axis
 
       try
       {
+         
+         m_pfontopus.release();
+
+      }
+      catch (...)
+      {
+
+         bOk = false;
+      }
+
+
+      try
+      {
          ::aura::del(m_psockets);
       }
       catch (...)

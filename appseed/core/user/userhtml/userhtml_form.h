@@ -12,7 +12,7 @@ public:
    string                        m_strOpenOnCreate;
    rect                          m_rectOpen;
 
-   ::html::form *                m_phtmlform;
+   sp(::html::form)              m_phtmlform;
 
 
 
@@ -33,7 +33,8 @@ public:
 
 
    ::html::data * get_html_data();
-   const ::html::data * get_html_data() const;
+
+   html_document * get_document();
 
 
    DECL_GEN_SIGNAL(_001OnCreate);
@@ -43,6 +44,7 @@ public:
    DECL_GEN_SIGNAL(_001OnLButtonUp);
    DECL_GEN_SIGNAL(_001OnImageLoaded);
    DECL_GEN_SIGNAL(_001OnKeyDown);
+   DECL_GEN_SIGNAL(_001OnDestroy);
 
 
 

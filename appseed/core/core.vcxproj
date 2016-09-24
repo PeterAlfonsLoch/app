@@ -1078,6 +1078,15 @@
       <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='basis|x64'">$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClInclude Include="framework.h" />
+    <ClInclude Include="math\calculator\calculator.h" />
+    <ClInclude Include="math\calculator\calculator_calculator.h" />
+    <ClInclude Include="math\calculator\calculator_element.h" />
+    <ClInclude Include="math\calculator\calculator_parser.h" />
+    <ClInclude Include="math\calculator\calculator_parser_exception.h" />
+    <ClInclude Include="math\calculator\calculator_plain_edit_view.h" />
+    <ClInclude Include="math\calculator\calculator_scanner.h" />
+    <ClInclude Include="math\calculator\calculator_token.h" />
+    <ClInclude Include="math\calculator\calculator_value.h" />
     <ClInclude Include="user\databaseuser\databaseuser.h" />
     <ClInclude Include="user\databaseuser\databaseuser_key_mesh_data.h" />
     <ClInclude Include="user\databaseuser\databaseuser_mesh_data.h" />

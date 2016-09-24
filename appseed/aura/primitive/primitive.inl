@@ -80,7 +80,7 @@ inline bool dispatch::AddMessageHandler(
 
    // connect to the signal.
    psignal->m_psignal->connect(psignalizable, pfn);
-   handler_item <T> * pitem = new handler_item<T>;
+   handler_item <T> * pitem = canew(handler_item<T>);
    pitem->m_psignalizable = psignalizable;
    psignal->m_handlera.add(pitem);
    m_iHandling++;

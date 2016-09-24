@@ -1,5 +1,7 @@
 //#include "framework.h"
 
+#include <mmsystem.h>
+#pragma comment(lib, "winmm.lib")
 
 #undef new
 
@@ -966,7 +968,9 @@ void memdleak_dump()
 
 
    memdleak_block * pblock = s_pmemdleakList;
-
+   int iTickCount = 100;
+   OutputDebugString("\n");
+   OutputDebugString("***\n");
    char sz[24];
    int i = 0;
    while (pblock != NULL)
@@ -984,6 +988,10 @@ void memdleak_dump()
          OutputDebugString(sz);
          OutputDebugString("\n");
          OutputDebugString(g_ee->stack_trace(pblock->m_puiStack, pblock->m_iStack));
+         if (i % iTickCount == iTickCount - 1)
+         {
+            ::PlaySoundA("C:\\bergedge\\hi5\\audio\\tick.wav", NULL, SND_FILENAME);
+         }
       }
       pblock = pblock->m_pnext;
    }
@@ -993,6 +1001,20 @@ void memdleak_dump()
    OutputDebugString("\nFound ");
    OutputDebugString(sz);
    OutputDebugString(" memory leaks.");
+   OutputDebugString("\n\n\n");
+
+   if (i == 0)
+   {
+
+      ::PlaySoundA("C:\\bergedge\\hi5\\audio\\tada.wav", NULL, SND_FILENAME);
+
+   }
+   else
+   {
+
+      ::PlaySoundA("C:\\bergedge\\hi5\\audio\\leak.wav", NULL, SND_FILENAME);
+
+   }
 
    //file_put_contents_dup(::dir::system() / "m.html", get_mem_info_report1());
 }

@@ -640,48 +640,6 @@ void object::on_request(sp(::create) pcreatecontext)
 
 
 
-//object::object()
-//{
-//
-//   m_ulFlags            = (uint32_t)flag_auto_clean;
-//   m_pfactoryitembase   = NULL;
-//
-//   // root like (Rute like, Thank you Rute and Inha and Lizir!!)
-//   m_countReference  = 1;
-//   m_bHeap           = false;
-//   m_pauraapp        = NULL;
-//
-//}
-
-//
-//object::object(const object & o)
-//{
-//
-//   m_pauraapp = o.m_pauraapp;
-//   m_ulFlags = o.m_ulFlags;
-//   m_pfactoryitembase   = o.m_pfactoryitembase;
-//
-//   // root like (Rute like, Thank you Rute and Inha and Lizir!!)
-//   m_bHeap = false;
-//   m_countReference  = 1;
-//
-//}
-
-
-
-//
-//object::~object()
-//{
-//
-//}
-//
-
-/*sp(::aura::application) object::get_app() const
-{
-
-return m_pauraapp;
-
-}*/
 
 
 void object::set_app(::aura::application * papp)
@@ -700,21 +658,6 @@ void object::system(const char * pszProjectName)
 }
 
 
-//object & object::operator = (const object & o)
-//{
-//
-//   if(this != &o)
-//   {
-//
-//      m_ulFlags   = o.m_ulFlags;
-//      m_pauraapp      = o.m_pauraapp;
-//
-//   }
-//
-//   return *this;
-//
-//}
-//
 
 void object::delete_this()
 {

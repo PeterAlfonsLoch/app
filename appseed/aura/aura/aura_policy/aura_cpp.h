@@ -1477,8 +1477,8 @@ namespace std
    using string = ::string;
    using wstring = ::wstring;
 
-   template < class KEY,class VALUE,class COMPARE = ::comparison::less < KEY >,bool bMultiKey = false >
-   using map = ::sort_map < KEY,const KEY &,VALUE,const VALUE &,COMPARE,bMultiKey >;
+   template < class KEY,class VALUE >
+   using map = ::map < KEY,const KEY &,VALUE,const VALUE & >;
 
    template < class TYPE >
    using list = ::list< TYPE >;

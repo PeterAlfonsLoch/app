@@ -37,6 +37,7 @@ typedef struct ssl_session_st SSL_SESSION;
 
          void InitializeContext(const SSL_METHOD *meth_in);
 
+         void free_ssl_client_context();
 
       };
 

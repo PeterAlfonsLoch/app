@@ -1156,6 +1156,16 @@ namespace user
    }
 
 
+   interaction_spa & interaction_spa::operator = (const spa(::user::interaction) & a)
+   {
+
+      copy(a);
+
+      return *this;
+
+   }
+
+
    interaction_spa & interaction_spa::operator = (const interaction_spa & a)
    {
 

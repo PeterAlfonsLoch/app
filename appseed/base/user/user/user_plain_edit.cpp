@@ -352,7 +352,7 @@ namespace user
       //index iLine = m_iLineStart;
       index i = 0;
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
-      for(index iLine = m_iLineStart; iLine <= m_iLineEnd; i++, iLine++)
+      for(index iLine = m_iLineStart; iLine < m_iLineEnd; i++, iLine++)
       {
          straLineFeed.remove_all();
          straLineFeed.add_lines(straLines[i],false);
@@ -539,16 +539,7 @@ namespace user
 
       }
 
-      /*
 
-      ::data::data * pdataParentLock = oprop("parent_lock_data").cast < ::data::data > ();
-
-      if(pdataParentLock != NULL)
-      {
-      m_ptree->m_spdataParentLock = pdataParentLock;
-      }
-
-      */
 
       //m_pitem          = get_base_item();
 
@@ -1354,7 +1345,7 @@ namespace user
 
       iLine = m_iLineStart;
 
-      for(; iLine <= m_iLineEnd; i++,iLine++)
+      for(; iLine < m_iLineEnd; i++,iLine++)
       {
 
          m_iViewSize += m_iaLineLen[iLine];
@@ -1385,7 +1376,7 @@ namespace user
 
       iLine = m_iLineStart;
 
-      for(; iLine <= m_iLineEnd; i++,iLine++)
+      for(; iLine < m_iLineEnd; i++,iLine++)
       {
 
          iLen = m_iaLineLen[iLine];

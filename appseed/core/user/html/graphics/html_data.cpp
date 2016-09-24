@@ -24,7 +24,6 @@ namespace html
       ::object(papp),
       ::data::data(papp),
       m_imagea(papp),
-      m_uiptra(papp),
       m_elemental(this)
    {
       m_elemental.m_pdata        = this;
@@ -48,6 +47,23 @@ namespace html
          m_ptag = NULL;
       }
    }
+
+
+   int64_t data::add_ref()
+   {
+
+      return ::object::add_ref();
+
+   }
+   
+   
+   int64_t data::dec_ref()
+   {
+
+      return ::object::dec_ref();
+
+   }
+
 
    font * data::get_font(elemental * pelemental)
    {
@@ -135,7 +151,7 @@ namespace html
          if(m_fonta(i) == font)
             return i;
       }
-      class font * pfont = new class font(font);
+      class font * pfont = canew(class font(font));
       pfont->create(get_app());
       m_fonta.add(pfont);
       pfont->m_iIndex = (int32_t) m_fonta.get_upper_bound();

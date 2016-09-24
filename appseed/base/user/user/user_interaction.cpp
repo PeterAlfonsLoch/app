@@ -32,8 +32,20 @@ namespace user
    }
 
 
+   void interaction::delete_this()
+   {
+
+      TRACE("::user::interaction::delete_this interaction=0x%016x %s", this, typeid(*this).name());
+
+      interaction_base::delete_this();
+
+   }
+
+
    bool interaction::defer_check_layout()
    {
+
+      synch_lock sl(m_pmutex);
 
       if(!check_need_layout() || !m_bLayoutEnable)
          return false;
@@ -139,6 +151,8 @@ namespace user
 
    interaction::~interaction()
    {
+
+      TRACE("::user::interaction::~interaction interaction=0x%016x %s", this, typeid(*this).name());
 
       m_uiptraChild.m_pmutex  = NULL;
 
@@ -724,12 +738,27 @@ namespace user
 
       }
 
-      if(Session.get_capture_uie() == this)
+      try
       {
 
-         ReleaseCapture();
+         if (m_pauraapp != NULL && m_pauraapp->m_pbasesession != NULL)
+         {
+
+            if (Session.get_capture_uie() == this)
+            {
+
+               ReleaseCapture();
+
+            }
+
+         }
 
       }
+      catch (...)
+      {
+
+      }
+
 
       try
       {
@@ -3359,16 +3388,16 @@ namespace user
       }
 
 
-      try
-      {
+      //try
+      //{
 
-         m_pauraapp = NULL;
+      //   m_pauraapp = NULL;
 
-      }
-      catch (...)
-      {
+      //}
+      //catch (...)
+      //{
 
-      }
+      //}
 
 
       {

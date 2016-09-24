@@ -1977,6 +1977,8 @@ namespace axis
 
       }
 
+      m_dataid += m_strDataIdAddUp;
+
       m_bAxisInitializeInstanceResult = true;
 
       return true;
@@ -2695,7 +2697,7 @@ namespace axis
    }
 
 
-   bool application::update_appmatter(::sockets::http_session * & psession,const ::file::path & pszRoot,const string & pszRelative)
+   bool application::update_appmatter(::sockets::socket_handler & handler, sp(::sockets::http_session) & psession,const ::file::path & pszRoot,const string & pszRelative)
    {
 
       ::str::international::locale_schema localeschema(this);
@@ -2710,10 +2712,14 @@ namespace axis
 
       for(index i = 0; i < iCount; i++)
       {
+         
          if(localeschema.m_idaLocale[i] == __id(std) && localeschema.m_idaSchema[i] == __id(std) && bIgnoreStdStd)
             continue;
-         update_appmatter(psession,pszRoot,pszRelative,localeschema.m_idaLocale[i].to_string(),localeschema.m_idaSchema[i].to_string());
+
+         update_appmatter(handler, psession,pszRoot,pszRelative,localeschema.m_idaLocale[i].to_string(),localeschema.m_idaSchema[i].to_string());
+
          System.install().m_progressApp()++;
+
       }
 
 
@@ -2721,7 +2727,7 @@ namespace axis
 
    }
 
-   bool application::update_appmatter(::sockets::http_session * & psession,const ::file::path & pszRoot,const string & pszRelative,const string & pszLocale,const string & pszStyle)
+   bool application::update_appmatter(::sockets::socket_handler & handler, sp(::sockets::http_session) & psession,const ::file::path & pszRoot,const string & pszRelative,const string & pszLocale,const string & pszStyle)
    {
 
       string strLocale;
@@ -2750,10 +2756,12 @@ namespace axis
 
             property_set setEmpty(get_app());
 
-            psession = System.http().open(System.url().get_server(strUrl),System.url().get_protocol(strUrl),setEmpty,NULL,NULL);
+            if (System.http().open(handler, psession, System.url().get_server(strUrl), System.url().get_protocol(strUrl), setEmpty, NULL, NULL))
+            {
 
-            if(psession != NULL)
                break;
+
+            }
 
             Sleep(184);
 
@@ -2765,7 +2773,12 @@ namespace axis
 
       set["get_memory"] = "";
 
-      psession = System.http().request(psession,strUrl,set);
+      if (!System.http().request(handler, psession, strUrl, set))
+      {
+
+         return false;
+
+      }
 
       ::file::memory_buffer file(get_app(),set["get_memory"].cast < memory >());
 

@@ -44,178 +44,182 @@ bool freeimage_load_diba_from_file(::visual::dib_sp::array * pdiba, ::file::buff
 
       if (true)
       {
+
          m = FreeImage_OpenMultiBitmapFromHandle(format, &io, (::file::stream_buffer *)pfile.m_p, 0);
-         int c = FreeImage_GetPageCount(m);
 
-         for (index i = 0; i < c; i++)
+         try
          {
+            int c = FreeImage_GetPageCount(m);
 
-            ::visual::dib_sp::pointer * p = canew(::visual::dib_sp::pointer);
-
-            pdiba->add(p);
-
-            p->m_dib.alloc(papp->allocer());
-
-
-            FIBITMAP * pfi = FreeImage_LockPage(m, i);
-
-
-
-            if (pfi != NULL)
+            for (index i = 0; i < c; i++)
             {
 
-               int w = FreeImage_GetWidth(pfi);
+               ::visual::dib_sp::pointer * p = canew(::visual::dib_sp::pointer);
 
-               int h = FreeImage_GetHeight(pfi);
+               pdiba->add(p);
 
-               FITAG * ptag;
+               p->m_dib.alloc(papp->allocer());
 
-               if (i == 0)
+
+               FIBITMAP * pfi = FreeImage_LockPage(m, i);
+
+
+
+               if (pfi != NULL)
                {
 
-                  if (FreeImage_GetMetadata(FIMD_ANIMATION, pfi, "LogicalWidth", &ptag))
+                  int w = FreeImage_GetWidth(pfi);
+
+                  int h = FreeImage_GetHeight(pfi);
+
+                  FITAG * ptag;
+
+                  if (i == 0)
+                  {
+
+                     if (FreeImage_GetMetadata(FIMD_ANIMATION, pfi, "LogicalWidth", &ptag))
+                     {
+
+                        if (FreeImage_GetTagType(ptag) == FIDT_SHORT)
+                        {
+
+                           pdiba->m_size.cx = *((short *)FreeImage_GetTagValue(ptag));
+
+                        }
+
+                     }
+
+                     if (FreeImage_GetMetadata(FIMD_ANIMATION, pfi, "LogicalHeight", &ptag))
+                     {
+
+                        if (FreeImage_GetTagType(ptag) == FIDT_SHORT)
+                        {
+
+                           pdiba->m_size.cy = *((short *)FreeImage_GetTagValue(ptag));
+
+                        }
+
+                     }
+                     if (FreeImage_GetMetadata(FIMD_ANIMATION, pfi, "GlobalPalette", &ptag))
+                     {
+
+                        if (FreeImage_GetTagType(ptag) == FIDT_PALETTE)
+                        {
+
+                           cra_from_quada(pdiba->m_cra, (RGBQUAD *)FreeImage_GetTagValue(ptag), FreeImage_GetTagCount(ptag));
+
+                        }
+
+                     }
+
+                     if (FreeImage_GetMetadata(FIMD_ANIMATION, pfi, "Loop", &ptag))
+                     {
+
+                        if (FreeImage_GetTagType(ptag) == FIDT_LONG)
+                        {
+
+                           pdiba->m_uiLoopCount = *((long *)FreeImage_GetTagValue(ptag));
+
+                        }
+
+                     }
+
+                     dibCompose->create(pdiba->m_size + size(10, 10));
+
+
+                     dibCompose->Fill(0);
+
+
+                  }
+                  p->m_rect.left = 0;
+                  if (FreeImage_GetMetadata(FIMD_ANIMATION, pfi, "FrameLeft", &ptag))
                   {
 
                      if (FreeImage_GetTagType(ptag) == FIDT_SHORT)
                      {
-                        
-                        pdiba->m_size.cx = *((short *)FreeImage_GetTagValue(ptag));
+
+                        p->m_rect.left = *((short *)FreeImage_GetTagValue(ptag));
 
                      }
 
                   }
-
-                  if (FreeImage_GetMetadata(FIMD_ANIMATION, pfi, "LogicalHeight", &ptag))
+                  p->m_rect.right = p->m_rect.left + w;
+                  p->m_rect.top = 0;
+                  if (FreeImage_GetMetadata(FIMD_ANIMATION, pfi, "FrameTop", &ptag))
                   {
 
                      if (FreeImage_GetTagType(ptag) == FIDT_SHORT)
                      {
 
-                        pdiba->m_size.cy = *((short *)FreeImage_GetTagValue(ptag));
+                        p->m_rect.top = *((short *)FreeImage_GetTagValue(ptag));
 
                      }
 
                   }
-                  if (FreeImage_GetMetadata(FIMD_ANIMATION, pfi, "GlobalPalette", &ptag))
+                  p->m_rect.bottom = p->m_rect.top + h;
+                  if (FreeImage_GetMetadata(FIMD_ANIMATION, pfi, "NoLocalPalette", &ptag))
                   {
 
-                     if (FreeImage_GetTagType(ptag) == FIDT_PALETTE)
+                     if (FreeImage_GetTagType(ptag) == FIDT_BYTE)
                      {
 
-                        cra_from_quada(pdiba->m_cra, (RGBQUAD *)FreeImage_GetTagValue(ptag), FreeImage_GetTagCount(ptag));
+                        p->m_bLocalPalette = *((byte *)FreeImage_GetTagValue(ptag)) == 0;
+
+                     }
+
+                  }
+                  p->m_edisposal = ::visual::dib_sp::pointer::disposal_undefined;
+                  if (FreeImage_GetMetadata(FIMD_ANIMATION, pfi, "DisposalMethod", &ptag))
+                  {
+
+                     if (FreeImage_GetTagType(ptag) == FIDT_BYTE)
+                     {
+                        switch (*((byte *)FreeImage_GetTagValue(ptag)))
+                        {
+                        case 0:
+                           p->m_edisposal = ::visual::dib_sp::pointer::disposal_undefined;
+                           break;
+                        case 1:
+                           p->m_edisposal = ::visual::dib_sp::pointer::disposal_none;
+                           break;
+                        case 2:
+                           p->m_edisposal = ::visual::dib_sp::pointer::disposal_background;
+                           break;
+                        case 3:
+                           p->m_edisposal = ::visual::dib_sp::pointer::disposal_previous;
+                           break;
+                        default:
+                           p->m_edisposal = ::visual::dib_sp::pointer::disposal_undefined;
+                           break;
+                        }
+
 
                      }
 
                   }
 
-                  if (FreeImage_GetMetadata(FIMD_ANIMATION, pfi, "Loop", &ptag))
+                  if (FreeImage_GetMetadata(FIMD_ANIMATION, pfi, "FrameTime", &ptag))
                   {
 
                      if (FreeImage_GetTagType(ptag) == FIDT_LONG)
                      {
 
-                        pdiba->m_uiLoopCount = *((long *)FreeImage_GetTagValue(ptag));
+                        p->m_dwTime = *((long *)FreeImage_GetTagValue(ptag));
 
                      }
 
                   }
 
-                  dibCompose->create(pdiba->m_size + size(10, 10));
+                  //::draw2d::graphics_sp spgraphics(papp->allocer());
 
+                  //spgraphics->CreateCompatibleDC(NULL);
 
-                  dibCompose->Fill(0);
-
-
-               }
-               p->m_rect.left = 0;
-               if (FreeImage_GetMetadata(FIMD_ANIMATION, pfi, "FrameLeft", &ptag))
-               {
-
-                  if (FreeImage_GetTagType(ptag) == FIDT_SHORT)
+                  if (!freeimage_load_diba_frame(dibCompose, pdiba, i, pfi, papp))
                   {
-
-                     p->m_rect.left = *((short *)FreeImage_GetTagValue(ptag));
-
+                     output_debug_string("failed to load page image");
                   }
 
-               }
-               p->m_rect.right = p->m_rect.left + w;
-               p->m_rect.top = 0;
-               if (FreeImage_GetMetadata(FIMD_ANIMATION, pfi, "FrameTop", &ptag))
-               {
-
-                  if (FreeImage_GetTagType(ptag) == FIDT_SHORT)
-                  {
-
-                     p->m_rect.top = *((short *)FreeImage_GetTagValue(ptag));
-
-                  }
-
-               }
-               p->m_rect.bottom = p->m_rect.top + h;
-               if (FreeImage_GetMetadata(FIMD_ANIMATION, pfi, "NoLocalPalette", &ptag))
-               {
-
-                  if (FreeImage_GetTagType(ptag) == FIDT_BYTE)
-                  {
-
-                     p->m_bLocalPalette = *((byte *)FreeImage_GetTagValue(ptag)) == 0;
-
-                  }
-
-               }
-               p->m_edisposal = ::visual::dib_sp::pointer::disposal_undefined;
-               if (FreeImage_GetMetadata(FIMD_ANIMATION, pfi, "DisposalMethod", &ptag))
-               {
-
-                  if (FreeImage_GetTagType(ptag) == FIDT_BYTE)
-                  {
-                     switch (*((byte *)FreeImage_GetTagValue(ptag)))
-                     {
-                     case 0:
-                        p->m_edisposal = ::visual::dib_sp::pointer::disposal_undefined;
-                        break;
-                     case 1:
-                        p->m_edisposal = ::visual::dib_sp::pointer::disposal_none;
-                        break;
-                     case 2:
-                        p->m_edisposal = ::visual::dib_sp::pointer::disposal_background;
-                        break;
-                     case 3:
-                        p->m_edisposal = ::visual::dib_sp::pointer::disposal_previous;
-                        break;
-                     default:
-                        p->m_edisposal = ::visual::dib_sp::pointer::disposal_undefined;
-                        break;
-                     }
-                     
- 
-                  }
-
-               }
-
-               if (FreeImage_GetMetadata(FIMD_ANIMATION, pfi, "FrameTime", &ptag))
-               {
-
-                  if (FreeImage_GetTagType(ptag) == FIDT_LONG)
-                  {
-
-                     p->m_dwTime = *((long *)FreeImage_GetTagValue(ptag));
-
-                  }
-
-               }
-
-               //::draw2d::graphics_sp spgraphics(papp->allocer());
-
-               //spgraphics->CreateCompatibleDC(NULL);
-
-               if(!freeimage_load_diba_frame(dibCompose, pdiba, i, pfi, papp))
-               {
-                  output_debug_string("failed to load page image");
-               }
-
-               pdiba->m_dwTotal += p->m_dwTime;
+                  pdiba->m_dwTotal += p->m_dwTime;
 
 
                   //try
@@ -229,16 +233,26 @@ bool freeimage_load_diba_from_file(::visual::dib_sp::array * pdiba, ::file::buff
 
                   //}
 
+               }
+
+
+
+
+
+
+
             }
+      }
+      catch (...)
+      {
 
 
-            
+      }
 
-
-
+      FreeImage_CloseMultiBitmap(m);
 
          }
-      }
+
    }
    catch (...)
    {

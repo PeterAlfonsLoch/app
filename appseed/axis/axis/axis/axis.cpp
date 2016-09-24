@@ -1,5 +1,8 @@
 #include "framework.h"
 #include "fiasco_finder.h"
+#ifdef BSD_STYLE_SOCKETS
+#include "openssl/err.h"
+#endif
 
 
 //#ifndef METROWIN
@@ -8,6 +11,9 @@
 
 //#endif
 
+
+void axis_on_init_thread();
+void axis_on_term_thread();
 
 int g_iAxisRefCount = 0;
 
@@ -84,6 +90,8 @@ CLASS_DECL_AXIS int_bool defer_axis_term()
 bool axis_init()
 {
 
+   g_axisoninitthread = &axis_on_init_thread;
+   g_axisontermthread = &axis_on_term_thread;
    //if(!defer_axis_init())
      // return false;
 
@@ -138,7 +146,14 @@ bool axis_init()
 
 bool axis_term()
 {
+
 //#ifndef WINDOWS
+
+#ifdef BSD_STYLE_SOCKETS
+   
+   ERR_remove_state(::GetCurrentProcessId());
+
+#endif
 
    // todo (casey tips) : do real/explicit dynamic linking
    //throw todo(get_thread_app());
@@ -172,4 +187,26 @@ bool axis_term()
    return true;
 
 }
+
+void axis_on_init_thread()
+{
+
+}
+
+
+void axis_on_term_thread()
+{
+
+#ifdef BSD_STYLE_SOCKETS
+
+   ERR_free_strings();
+   CRYPTO_THREADID tid;
+   CRYPTO_THREADID_current(&tid);
+   ERR_remove_thread_state(&tid);
+
+#endif
+
+}
+
+
 

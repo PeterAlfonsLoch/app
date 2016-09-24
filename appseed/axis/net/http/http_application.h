@@ -17,7 +17,7 @@ namespace http
       virtual ~application();
 
 
-      sp(::sockets::http_client_socket) get(::sockets::socket_handler & handler,const char * pszUrl,property_set & set);
+      bool get(::sockets::socket_handler & handler, sp(::sockets::http_client_socket) & psocket, const char * pszUrl,property_set & set);
 
 
       DECL_GEN_SIGNAL(get);
@@ -43,7 +43,7 @@ namespace http
 
       bool request(const char * pszRequest, const char * pszUrl, property_set & set);
 
-      ::sockets::http_session * download(::sockets::http_session * psession,const char * pszUrl, var varFile,property_set & set);
+      bool download(::sockets::socket_handler & handler, sp(::sockets::http_session) & psession,const char * pszUrl, var varFile,property_set & set);
       bool download(const char * pszUrl, var varFile, property_set & set);
 
 

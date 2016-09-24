@@ -62,10 +62,10 @@ namespace http
    }
 
 
-   sp(::sockets::http_client_socket) application::get(::sockets::socket_handler & handler,const char * pszUrl,property_set & set)
+   bool application::get(::sockets::socket_handler & handler, sp(::sockets::http_client_socket) & psession, const char * pszUrl,property_set & set)
    {
 
-      return System.http().get(handler, pszUrl, process_set(set, pszUrl));
+      return System.http().get(handler, psession, pszUrl, process_set(set, pszUrl));
 
    }
 
@@ -271,12 +271,17 @@ namespace http
 
    bool application::request(const char * pszRequest, const char * pszUrl, property_set & set)
    {
+      
       return System.http().request(pszRequest, pszUrl, process_set(set, pszUrl));
+
    }
 
-   ::sockets::http_session * application::download(::sockets::http_session * psession,const char * pszUrl,var varFile,property_set & set)
+
+   bool application::download(::sockets::socket_handler & handler, sp(::sockets::http_session) & psession,const char * pszUrl,var varFile,property_set & set)
    {
-      return System.http().download(psession, pszUrl,varFile,process_set(set,pszUrl));
+
+      return System.http().download(handler, psession, pszUrl,varFile,process_set(set,pszUrl));
+
    }
 
 
@@ -365,9 +370,7 @@ namespace http
 
             set["get_response"] = "";
 
-            psession = System.http().request(psession,strUrl,set);
-
-            if(psession.is_set())
+            if(System.http().request(*Session.fontopus()->m_phandler, psession, strUrl, set) && psession.is_set())
             {
 
                Session.fontopus()->m_mapFontopusSession.set_at(strFontopusServer,psession);

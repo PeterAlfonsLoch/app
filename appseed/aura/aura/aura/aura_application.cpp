@@ -1315,7 +1315,12 @@ namespace aura
       return m_iReturnCode;
    }
 
+   bool application::start_instance()
+   {
 
+      return true;
+
+   }
 
 
    int32_t application::application_pre_run()
@@ -1397,6 +1402,34 @@ namespace aura
                }
                goto InitFailure;
             }
+
+            if (!is_installing() && !is_uninstalling())
+            {
+
+               if (!start_instance())
+               {
+
+                  dappy(string(typeid(*this).name()) + " : initialize_instance failure : " + ::str::from(m_iReturnCode));
+
+                  if (System.directrix()->m_varTopicQuery["app"] == m_strAppName)
+                  {
+
+                     System.post_quit();
+
+                  }
+                  try
+                  {
+                     exit();
+                  }
+                  catch (...)
+                  {
+                  }
+                  goto InitFailure;
+
+               }
+
+            }
+
          }
          catch(::exit_exception & e)
          {

@@ -26,14 +26,44 @@ namespace sockets
    sockets::~sockets()
    {
 
-      if(m_psslinit != NULL)
+#if defined(BSD_STYLE_SOCKETS)
+      try
+      {
+         m_clientcontextmap.remove_all();
+      }
+      catch (...)
       {
 
-         delete m_psslinit;
-
-         m_psslinit = NULL;
+      }
+      try
+      {
+         m_servercontextmap.remove_all();
+      }
+      catch (...)
+      {
 
       }
+#endif
+
+      try
+      {
+         m_spnet.release();
+      }
+      catch (...)
+      {
+
+      }
+      try
+      {
+         m_spportforward.release();
+      }
+      catch (...)
+      {
+
+      }
+
+      ::aura::del(m_psslinit);
+      ::aura::del(m_pajpaxissocketinit);
 
 
    }

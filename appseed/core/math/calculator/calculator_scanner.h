@@ -29,7 +29,7 @@ numbers:
 
       const char * input;
       const char * next_input;
-      class token * m_ptoken;
+      sp(class token) m_ptoken;
 
 
       scanner(::aura::application * papp);

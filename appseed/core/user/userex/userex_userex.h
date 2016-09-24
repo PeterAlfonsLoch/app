@@ -15,9 +15,9 @@ namespace userex
 
 
 
-      sp(::user::multiple_document_template)    m_ptemplateForm;
-      sp(::user::multiple_document_template)    m_ptemplateChildForm;
-      sp(::user::multiple_document_template)    m_ptemplatePlaceHolder;
+      ::user::impact_system *                   m_ptemplateForm;
+      ::user::impact_system *                   m_ptemplateChildForm;
+      ::user::impact_system *                   m_ptemplatePlaceHolder;
 
 
       sp(filemanager::_shell::ImageSet)         m_pshellimageset;

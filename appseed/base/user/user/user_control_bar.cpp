@@ -11,7 +11,9 @@ namespace user
    void DrawGripperElement001(::draw2d::graphics * pgraphics, int32_t ix, int32_t iy);
 
 
-   control_bar::control_bar()
+   control_bar::control_bar(::aura::application * papp) :
+      object(papp),
+      ::user::interaction(papp)
    {
 
       m_bFullScreenBar = false;

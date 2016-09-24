@@ -261,12 +261,14 @@ namespace user
 
 
 #ifdef WINDOWSEX
+
       m_nid.uFlags = 0;
 
       if(!Shell_NotifyIcon(NIM_DELETE, &m_nid))
       {
          return false;
       }
+      DestroyWindow();
 #elif defined(LINUX)
       {
          BASECORE_APP_INDICATOR_TERM * f =  (BASECORE_APP_INDICATOR_TERM *) dlsym(g_pbasecore, "basecore_app_indicator_term");
@@ -279,7 +281,8 @@ namespace user
 
       m_bCreated = false;
 
-      //DestroyWindow();
+
+
 
       return true;
 

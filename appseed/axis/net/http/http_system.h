@@ -68,15 +68,15 @@ namespace http
       virtual void set_proxy_auth(::fontopus::user * puser, ::sockets::http_client_socket * pfile);
       virtual void clean_proxy_auth(::fontopus::user * puser);
 
-      ::sockets::http_session * open(const char * pszHost,const char * pszProtocol, property_set & set,::fontopus::user * puser,const char * pszVersion);
+      bool open(::sockets::socket_handler & handler, sp(::sockets::http_session) & psession, const char * pszHost,const char * pszProtocol, property_set & set,::fontopus::user * puser,const char * pszVersion);
 
-      ::sockets::http_session * request(::sockets::http_session * spsession,const char * pszUrl,property_set & set);
-
-
+      bool request(::sockets::socket_handler & handler, sp(::sockets::http_session) & spsession,const char * pszUrl,property_set & set);
 
 
 
-      sp(::sockets::http_client_socket) get(::sockets::socket_handler & handler,const char * pszUrl,property_set & set);
+
+
+      bool get(::sockets::socket_handler & handler, sp(::sockets::http_client_socket) & psocket, const char * pszUrl,property_set & set);
 
 
 
@@ -91,7 +91,7 @@ namespace http
 
       bool request(const char * pszMethod, const char * pszUrl, property_set & set);
 
-      ::sockets::http_session * download(::sockets::http_session * psession,const char * pszRequest, var varFile,property_set & set);
+      bool download(::sockets::socket_handler & handler, sp(::sockets::http_session) & psession,const char * pszRequest, var varFile,property_set & set);
       bool download(const char * pszUrl, var varFile, property_set & set);
 
 

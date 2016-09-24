@@ -2,7 +2,8 @@
 
 
 simple_status_bar::simple_status_bar(::aura::application * papp) :
-   object(papp)
+   object(papp),
+   ::user::status_bar(papp)
 {
 
 }

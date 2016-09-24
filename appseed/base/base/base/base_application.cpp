@@ -1994,7 +1994,7 @@ namespace base
 
 
 
-   bool application::get_frame(::user::interaction * & pui)
+   bool application::get_frame(sp(::user::interaction) & pui)
    {
 
 #ifdef VSNORD
@@ -2091,6 +2091,10 @@ namespace base
       if(m_uiptraFrame.add_unique(pwnd))
       {
 
+
+
+         TRACE("::base::application::add_frame ::user::interaction = %0x016x (%s) app=%s", pwnd, typeid(*pwnd).name(), typeid(*this).name());
+
          System.defer_create_system_frame_window();
 
          Session.on_create_frame_window();
@@ -2128,7 +2132,12 @@ namespace base
 
       }
 
-      m_uiptraFrame.remove(pwnd);
+      if (m_uiptraFrame.remove(pwnd) > 0)
+      {
+
+         TRACE("::base::application::remove_frame ::user::interaction = %0x016x (%s) app=%s", pwnd, typeid(*pwnd).name(), typeid(*this).name());
+
+      }
 
 
    }
@@ -2211,11 +2220,11 @@ namespace base
 
       //single_lock sl(&pimpl->m_mutexUiPtra,TRUE);
 
-      ::user::interaction * pui = NULL;
-
-
       if(lCount <= 0)
       {
+
+         sp(::user::interaction) pui;
+
          while(get_frame(pui))
          {
             //::user::interaction * pui = (::user::interaction *) pimpl->m_spuiptra->element_at(i)->m_pvoidUserInteraction;

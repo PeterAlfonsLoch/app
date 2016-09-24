@@ -6,6 +6,34 @@ namespace sockets
 {
 
 
+   base_socket_handler::pool_socket::pool_socket(base_socket_handler& h, base_socket * src) :
+      object(h.get_app()),
+      base_socket(h),
+      socket(h)
+   {
+      CopyConnection(src);
+      SetIsClient();
+   }
+
+   base_socket_handler::pool_socket::~pool_socket()
+   {
+
+   }
+
+
+   void base_socket_handler::pool_socket::OnRead()
+   {
+      log("OnRead", 0, "data on hibernating socket", ::aura::log::level_fatal);
+      SetCloseAndDelete();
+      SetLost();
+   }
+
+   void base_socket_handler::pool_socket::OnOptions(int, int, int, SOCKET)
+   {
+   
+   }
+
+
    base_socket_handler::base_socket_handler(::aura::application * papp, logger * plogger) :
       ::object(papp),
       m_splogger(plogger)

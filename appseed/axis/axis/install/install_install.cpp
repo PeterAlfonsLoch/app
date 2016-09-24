@@ -27,58 +27,62 @@ namespace install
       m_trace(papp)
    {
 
-         m_bAdmin = false;
-         m_dwLatestBuildNumberLastFetch = 0;
-         m_hmutexBoot = NULL;
+      m_psockethandler = NULL;
 
-         m_bCa2Installed = false;
-         m_bCa2Updated = false;
-         m_bSpaInstalled = false;
-         m_bSpaUpdated = false;
-         m_bUpdated = false;
-         //m_strCa2Build = NULL;
+      m_bAdmin = false;
+      m_dwLatestBuildNumberLastFetch = 0;
+      m_hmutexBoot = NULL;
+
+      m_bCa2Installed = false;
+      m_bCa2Updated = false;
+      m_bSpaInstalled = false;
+      m_bSpaUpdated = false;
+      m_bUpdated = false;
+      //m_strCa2Build = NULL;
 
 
-         m_iProgressAppInstallStart = 0;
-         m_iProgressAppInstallStep = 0;
-         m_iProgressAppInstallEnd = 0;
+      m_iProgressAppInstallStart = 0;
+      m_iProgressAppInstallStep = 0;
+      m_iProgressAppInstallEnd = 0;
 
 #if CA2_PLATFORM_VERSION == CA2_BASIS
 
-         m_strVersion = "basis";
+      m_strVersion = "basis";
 
 #else
 
-         m_strVersion = "stage";
+      m_strVersion = "stage";
 
 #endif
 
 #ifdef X86
 
-         m_strPlatform = "x86";
+      m_strPlatform = "x86";
 
 #else
 
-         m_strPlatform = "x64";
+      m_strPlatform = "x64";
 
 #endif
 
 
-      }
+   }
 
    install::~install()
    {
 
+      ::aura::del(m_psockethandler);
+
    }
 
-   bool install::is_file_ok(const ::file::path & path1,const char * pszTemplate,const char * pszFormatBuild)
+   bool install::is_file_ok(const ::file::path & path1, const char * pszTemplate, const char * pszFormatBuild)
    {
 
       string strFormatBuild(pszFormatBuild);
 
       string strUrl;
 
-      strUrl = "http://"+m_strVersion+"-server.ca2.cc/api/spaignition/md5?authnone&version="+m_strVersion+"&stage=";
+      strUrl = "http://" + m_strVersion + "-server.ca2.cc/api/spaignition/md5?authnone&version=" + m_strVersion + "&stage=";
       //strUrl = "http://" + m_strVersion + "-server.ca2.cc/api/spaignition/md5?authnone&version=" + m_strVersion + "&stage=";
       strUrl += pszTemplate;
       strUrl += "&build=";
@@ -92,21 +96,21 @@ namespace install
 
    }
 
-   bool install::is_file_ok(const ::file::patha & patha,const ::file::patha & straTemplate,stringa & straMd5,int_array & iaLen, const string & strFormatBuild,int iMd5Retry)
+   bool install::is_file_ok(const ::file::patha & patha, const ::file::patha & straTemplate, stringa & straMd5, int_array & iaLen, const string & strFormatBuild, int iMd5Retry)
    {
 
       bool bOk = true;
 
-      if(patha.get_count() != straTemplate.get_count())
+      if (patha.get_count() != straTemplate.get_count())
          return false;
 
-      if(bOk)
+      if (bOk)
       {
 
-         for(index i = 0; i < patha.get_count(); i++)
+         for (index i = 0; i < patha.get_count(); i++)
          {
 
-            if(!file_exists_dup(patha[i]))
+            if (!file_exists_dup(patha[i]))
             {
 
                bOk = false;
@@ -119,7 +123,7 @@ namespace install
 
       }
 
-      if(iMd5Retry > 0 || straMd5.get_count() != patha.get_count())
+      if (iMd5Retry > 0 || straMd5.get_count() != patha.get_count())
       {
 
          string strUrl;
@@ -133,13 +137,13 @@ namespace install
 
          set["raw_http"] = true;
 
-         string strMd5List = Application.http().get(strUrl,set);
+         string strMd5List = Application.http().get(strUrl, set);
 
          straMd5.remove_all();
 
-         straMd5.add_tokens(strMd5List,",",false);
+         straMd5.add_tokens(strMd5List, ",", false);
 
-         if(straMd5.get_count() != patha.get_count())
+         if (straMd5.get_count() != patha.get_count())
          {
             straMd5.remove_all();
             return false;
@@ -147,12 +151,12 @@ namespace install
 
          iaLen.set_size(straMd5.get_size());
 
-         for(index i = 0; i < straMd5.get_size(); i++)
+         for (index i = 0; i < straMd5.get_size(); i++)
          {
 
             string strMd5AndLen = straMd5[i];
-            int iFind =strMd5AndLen.find('|');
-            if(iFind < 0)
+            int iFind = strMd5AndLen.find('|');
+            if (iFind < 0)
             {
                iaLen.remove_all();
                straMd5.remove_all();
@@ -161,7 +165,7 @@ namespace install
             string strMd5 = strMd5AndLen.Left(iFind);
             straMd5[i] = strMd5;
             straMd5[i].trim();
-            if(straMd5[i].get_length() != 32)
+            if (straMd5[i].get_length() != 32)
             {
                iaLen.remove_all();
                straMd5.remove_all();
@@ -171,15 +175,15 @@ namespace install
          }
 
 
-         if(!bOk)
+         if (!bOk)
             return false;
 
       }
 
-      for(index i = 0; i < straMd5.get_count(); i++)
+      for (index i = 0; i < straMd5.get_count(); i++)
       {
 
-         if(System.file().md5(patha[i]).CompareNoCase(straMd5[i]) != 0)
+         if (System.file().md5(patha[i]).CompareNoCase(straMd5[i]) != 0)
             return false;
 
       }
@@ -397,7 +401,7 @@ namespace install
 
       string strVersion(pszVersion);
 
-      if(file_as_string_dup(::dir::system() / "config\\system\\ignition_server.txt").has_char())
+      if (file_as_string_dup(::dir::system() / "config\\system\\ignition_server.txt").has_char())
       {
 
          strSpaIgnitionBaseUrl = "https://" + file_as_string_dup(::dir::system() / "config\\system\\ignition_server.txt") + "/api/spaignition";
@@ -553,7 +557,7 @@ namespace install
 
    const char * install::get_version()
    {
-      return file_as_string_dup(dir::element() / "appdata" /  get_platform() / "build.txt");
+      return file_as_string_dup(dir::element() / "appdata" / get_platform() / "build.txt");
    }
 
    const char * install::get_ca2_version()
@@ -695,16 +699,16 @@ namespace install
 
       property_set set(get_app());
 
-      if(m_strVersion == "basis")
+      if (m_strVersion == "basis")
       {
 
-         m_strCa2Build = Application.http().get("http://basis-server.ca2.cc/api/spaignition/ca2_get_build?authnone",set);
+         m_strCa2Build = Application.http().get("http://basis-server.ca2.cc/api/spaignition/ca2_get_build?authnone", set);
 
       }
       else
       {
 
-         m_strCa2Build = Application.http().get("http://stage-server.ca2.cc/api/spaignition/ca2_get_build?authnone",set);
+         m_strCa2Build = Application.http().get("http://stage-server.ca2.cc/api/spaignition/ca2_get_build?authnone", set);
 
       }
 
@@ -728,7 +732,7 @@ namespace install
    void install::set_updated(const char * pszBuild)
    {
       Application.dir().mk(System.dir().element() / "appdata" / get_platform());
-      Application.file().put_contents(System.dir().element() / "appdata" / get_platform() / "build.txt",pszBuild);
+      Application.file().put_contents(System.dir().element() / "appdata" / get_platform() / "build.txt", pszBuild);
    }
 
 
@@ -781,7 +785,7 @@ namespace install
 
       ::file::path strPath;
 
-      strPath = System.dir().appdata()/"spa_start.xml";
+      strPath = System.dir().appdata() / "spa_start.xml";
 
       string strContents;
 
@@ -823,38 +827,38 @@ namespace install
 
       ::file::path path;
 
-      path = System.install_meta_dir(m_strVersion,pszBuild,pszType,pszId,pszLocale,pszSchema) / "installed.txt";
-      
+      path = System.install_meta_dir(m_strVersion, pszBuild, pszType, pszId, pszLocale, pszSchema) / "installed.txt";
+
       ::output_debug_string(path);
       ::output_debug_string("\n");
 
-      Application.file().put_contents(path,"");
+      Application.file().put_contents(path, "");
 
       string strBuildPath;
 
       strBuildPath = System.dir().commonappdata() / "spa_build_" + get_platform() + ".txt";
-      
+
       string strNewBuildNumber;
-      
-      if(Application.file().exists(strBuildPath))
+
+      if (Application.file().exists(strBuildPath))
       {
-         
+
          strNewBuildNumber = Application.file().as_string(strBuildPath);
-         
+
       }
 
       string strBuild(pszBuild);
 
-      if(strBuild.has_char() && isdigit_dup(strBuild[0]))
+      if (strBuild.has_char() && isdigit_dup(strBuild[0]))
       {
 
          Application.file().put_contents(strBuildPath, strBuild);
 
       }
-      else if(strBuild.CompareNoCase("latest") == 0 && m_strmapLatestBuildNumber[m_strVersion].has_char() && isdigit_dup(m_strmapLatestBuildNumber[m_strVersion][0]))
+      else if (strBuild.CompareNoCase("latest") == 0 && m_strmapLatestBuildNumber[m_strVersion].has_char() && isdigit_dup(m_strmapLatestBuildNumber[m_strVersion][0]))
       {
 
-         Application.file().put_contents(strBuildPath,m_strmapLatestBuildNumber[m_strVersion]);
+         Application.file().put_contents(strBuildPath, m_strmapLatestBuildNumber[m_strVersion]);
 
       }
 
@@ -866,7 +870,7 @@ namespace install
    bool install::is(const char * pszVersion, const char * pszBuild, const char * pszType, const char * pszId, const char * pszLocale, const char * pszSchema)
    {
 
-      return System.install_is(pszVersion,pszBuild,pszType,pszId,pszLocale,pszSchema);
+      return System.install_is(pszVersion, pszBuild, pszType, pszId, pszLocale, pszSchema);
 
    }
 
@@ -897,7 +901,7 @@ namespace install
    }
 
 
-   void install::on_set_scalar(e_scalar escalar,int64_t iValue,int iFlags)
+   void install::on_set_scalar(e_scalar escalar, int64_t iValue, int iFlags)
    {
 
       if (escalar == scalar_app_install_progress)
@@ -921,7 +925,7 @@ namespace install
       else
       {
 
-         return ::int_scalar_source::on_set_scalar(escalar,iValue,iFlags);
+         return ::int_scalar_source::on_set_scalar(escalar, iValue, iFlags);
 
       }
 
@@ -1024,7 +1028,7 @@ namespace install
    {
       wstring wstrPath;
       DWORD dwSize = 1;
-      while(natural(wstrPath.get_length() + 1) == dwSize)
+      while (natural(wstrPath.get_length() + 1) == dwSize)
       {
          dwSize = ::GetModuleFileNameW(
             hmodule,
@@ -1037,7 +1041,7 @@ namespace install
 
 #endif
 
-   string install::app_install_get_extern_executable_path(const char * pszVersion,const char * pszBuild,stringa * pstraMd5,int_array * piaLen,::install::installer * pinstaller,string_to_string * pmapMd5,string_to_intptr * pmapLen)
+   string install::app_install_get_extern_executable_path(const char * pszVersion, const char * pszBuild, stringa * pstraMd5, int_array * piaLen, ::install::installer * pinstaller, string_to_string * pmapMd5, string_to_intptr * pmapLen)
    {
 
       string strVersion(pszVersion);
@@ -1109,7 +1113,7 @@ namespace install
 
          ::lemon::array::copy(straFile, ::install_get_plugin_base_library_list(pszVersion));
 
-         if(!::dir::is(strPath.folder()))
+         if (!::dir::is(strPath.folder()))
          {
 
             ::dir::mk(strPath.folder());
@@ -1118,7 +1122,7 @@ namespace install
 
          ::file::patha straDownload;
 
-         for(index iFile = 0; iFile < straFile.get_size(); iFile++)
+         for (index iFile = 0; iFile < straFile.get_size(); iFile++)
          {
 
             ::file::path strFile = straFile[iFile];
@@ -1133,14 +1137,14 @@ namespace install
 
          int_array iaLen;
 
-         if(pstraMd5 != NULL)
+         if (pstraMd5 != NULL)
          {
 
             straMd5 = *pstraMd5;
 
          }
 
-         if(piaLen != NULL)
+         if (piaLen != NULL)
          {
 
             iaLen = *piaLen;
@@ -1149,18 +1153,18 @@ namespace install
 
          int iMd5Retry = 0;
 
-         md5retry:
+      md5retry:
 
-         if(!System.install().is_file_ok(straDownload,straFile,straMd5,iaLen, strFormatBuild, iMd5Retry))
+         if (!System.install().is_file_ok(straDownload, straFile, straMd5, iaLen, strFormatBuild, iMd5Retry))
          {
 
 
-            if(straMd5.get_count() != straFile.get_count())
+            if (straMd5.get_count() != straFile.get_count())
             {
 
                iMd5Retry++;
 
-               if(iMd5Retry < 8)
+               if (iMd5Retry < 8)
                   goto md5retry;
 
                return "";
@@ -1173,22 +1177,22 @@ namespace install
 
             HMODULE hmodule = ::GetModuleHandle("aura.dll");
 
-            if(hmodule != NULL)
+            if (hmodule != NULL)
             {
 
                ::file::path str = get_module_path(hmodule);
 
-               if(str.has_char())
+               if (str.has_char())
                {
 
                   ::file::path strAuraDir = str.folder();
 
-                  for(index iFile = 0; iFile < straFile.get_size(); iFile++)
+                  for (index iFile = 0; iFile < straFile.get_size(); iFile++)
                   {
 
                      ::file::path strFile = strAuraDir / straFile[iFile];
 
-                     if(!file_exists_dup(straDownload[iFile]) && file_exists_dup(strFile) && System.file().md5(strFile) == straMd5[iFile])
+                     if (!file_exists_dup(straDownload[iFile]) && file_exists_dup(strFile) && System.file().md5(strFile) == straMd5[iFile])
                      {
 
                         ::file_copy_dup(straDownload[iFile], strFile, false);
@@ -1210,7 +1214,7 @@ namespace install
 
             {
 
-               if(pinstaller != NULL)
+               if (pinstaller != NULL)
                {
 
                   pinstaller->m_daProgress.remove_all();
@@ -1222,21 +1226,21 @@ namespace install
             }
 
 #pragma omp parallel for
-            for(index iFile = 0; iFile < straFile.get_size(); iFile++)
+            for (index iFile = 0; iFile < straFile.get_size(); iFile++)
             {
 
                ::file::path strFile = straFile[iFile];
 
                ::file::path strDownload = strPath.sibling(strFile);
 
-               if(pinstaller != NULL)
+               if (pinstaller != NULL)
                {
                   sl.lock();
-                  pinstaller->m_daProgress.element_at_grow(omp_get_thread_num() + 1)  = 0.0;
+                  pinstaller->m_daProgress.element_at_grow(omp_get_thread_num() + 1) = 0.0;
                   sl.unlock();
                }
 
-               if(!file_exists_dup(strDownload) || System.file().md5(strDownload).CompareNoCase(straMd5[iFile]) != 0)
+               if (!file_exists_dup(strDownload) || System.file().md5(strDownload).CompareNoCase(straMd5[iFile]) != 0)
                {
 
                   trace().rich_trace("***Downloading installer");
@@ -1251,7 +1255,7 @@ namespace install
 
                   set["raw_http"] = true;
 
-                  if(pinstaller != NULL)
+                  if (pinstaller != NULL)
                   {
 
                      set["int_scalar_source_listener"] = pinstaller;
@@ -1270,25 +1274,29 @@ namespace install
 
 
                   sl.lock();
-                  ::sockets::http_session * & psession = m_httpsessionptra.element_at_grow(omp_get_thread_num() + 1);
+                  sp(::sockets::http_session) & psession = m_httpsessionptra.element_at_grow(omp_get_thread_num() + 1);
                   sl.unlock();
 
-
-                  while(iRetry < 8 && !bFileNice)
+                  if (m_psockethandler == NULL)
                   {
 
+                     m_psockethandler = new sockets::socket_handler(get_app());
+
+                  }
 
 
+                  while (iRetry < 8 && !bFileNice)
+                  {
 
-                     if((psession = Application.http().download(psession,strUrl,strDownload + ".bz",set)) != NULL)
+                     if (Application.http().download(*m_psockethandler, psession, strUrl, strDownload + ".bz", set))
                      {
 
-                        System.compress().unbz(get_app(),strDownload,strDownload + ".bz");
+                        System.compress().unbz(get_app(), strDownload, strDownload + ".bz");
 
-                        if(file_exists_dup(strDownload) && System.file().md5(strDownload).CompareNoCase(straMd5[iFile]) == 0)
+                        if (file_exists_dup(strDownload) && System.file().md5(strDownload).CompareNoCase(straMd5[iFile]) == 0)
                         {
 
-                              bFileNice = true;
+                           bFileNice = true;
 
                         }
 
@@ -1299,7 +1307,7 @@ namespace install
 
                   }
 
-                  if(!bFileNice)
+                  if (!bFileNice)
                   {
 
                      // failed by too much retry in any number of the files already downloaded :
@@ -1309,10 +1317,10 @@ namespace install
                   }
                   else
                   {
-                     if(pinstaller != NULL)
+                     if (pinstaller != NULL)
                      {
                         sl.lock();
-                        pinstaller->m_daProgress.element_at_grow(omp_get_thread_num() + 1)  = 0.0;
+                        pinstaller->m_daProgress.element_at_grow(omp_get_thread_num() + 1) = 0.0;
                         pinstaller->m_dAppInstallProgressBase += 1.0;
                         sl.unlock();
                      }
@@ -1323,10 +1331,10 @@ namespace install
                }
                else
                {
-                  if(pinstaller != NULL)
+                  if (pinstaller != NULL)
                   {
                      sl.lock();
-                     pinstaller->m_daProgress.element_at_grow(omp_get_thread_num() + 1)  = 0.0;
+                     pinstaller->m_daProgress.element_at_grow(omp_get_thread_num() + 1) = 0.0;
                      pinstaller->m_dAppInstallProgressBase += 1.0;
                      sl.unlock();
                   }
@@ -1344,27 +1352,27 @@ namespace install
 
          //}
 
-         if(pmapMd5 != NULL || pmapLen != NULL)
+         if (pmapMd5 != NULL || pmapLen != NULL)
          {
 
-            for(index iFile = 0; iFile < straFile.get_count(); iFile++)
+            for (index iFile = 0; iFile < straFile.get_count(); iFile++)
             {
 
                ::file::path strFile = straFile[iFile];
 
                string strMap = "stage\\" + System.install().get_platform() + "\\" + strFile;
 
-               if(pmapMd5 != NULL)
+               if (pmapMd5 != NULL)
                {
 
-                  pmapMd5->set_at(strMap,straMd5[iFile]);
+                  pmapMd5->set_at(strMap, straMd5[iFile]);
 
                }
 
-               if(pmapLen != NULL)
+               if (pmapLen != NULL)
                {
 
-                  pmapLen->set_at(strMap,iaLen[iFile]);
+                  pmapLen->set_at(strMap, iaLen[iFile]);
 
                }
 
@@ -1410,7 +1418,7 @@ namespace install
    }
 
 
-   bool install::reference_is_file_ok(const ::file::path & path1,const char * pszTemplate,const char * pszVersion,const char * pszFormatBuild)
+   bool install::reference_is_file_ok(const ::file::path & path1, const char * pszTemplate, const char * pszVersion, const char * pszFormatBuild)
    {
 
       string strVersion(pszVersion);
@@ -1425,7 +1433,7 @@ namespace install
       strUrl += strFormatBuild;
       strUrl += "&platform=";
       strUrl += get_platform();
-        
+
 
       property_set set(get_app());
 

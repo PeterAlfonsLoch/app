@@ -356,15 +356,23 @@ signalid_array::~signalid_array()
 
 signalid * signalid_array::get(signalid * pid)
 {
+   
    for(int32_t i = 0; i < this->get_size(); i++)
    {
+      
       if(this->element_at(i)->is_equal(pid))
       {
+         
          return this->element_at(i);
+
       }
+
    }
+
    add(pid->copy());
+
    return this->element_at(get_upper_bound());
+
 }
 
 
@@ -403,10 +411,14 @@ dispatch::signal_item::signal_item()
    m_pid          = NULL;
 }
 
+
 dispatch::signal_item::~signal_item()
 {
-   //::aura::del(m_psignal);
+   
+   ::aura::del(m_psignal);
+
 }
+
 
 dispatch::dispatch()
 {

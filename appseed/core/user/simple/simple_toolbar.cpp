@@ -41,6 +41,8 @@ public: // re-implementations only
 
 simple_toolbar::simple_toolbar(::aura::application * papp) :
    object(papp),
+   ::user::control_bar(papp),
+   ::user::toolbar(papp),
    m_dibDraft(allocer())
 {
 

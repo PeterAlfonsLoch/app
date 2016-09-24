@@ -89,46 +89,68 @@ namespace sockets
    socket_handler::~socket_handler()
    {
 
-      if(m_resolver)
+      cleanup_handler();
+
+   }
+
+
+   void socket_handler::cleanup_handler()
+   {
+      
+      if (m_resolver)
       {
 
-         m_resolver -> Quit();
+         m_resolver->Quit();
 
       }
 
       {
+
          auto p = m_sockets.PGetFirstAssoc();
-         while(p != NULL)
+
+         while (p != NULL)
          {
-            if(p->m_element2.is_set())
+
+            if (p->m_element2.is_set())
             {
+
                try
                {
+
                   p->m_element2->close();
+
                }
-               catch(...)
+               catch (...)
                {
+
                }
-               if(m_slave)
+
+               if (m_slave)
                {
+
                   p->m_element2.release();
+
                }
+
             }
+
             p = m_sockets.PGetNextAssoc(p);
+
          }
+
       }
+
       m_sockets.remove_all();
-      if(m_resolver)
+      
+      ::aura::del(m_resolver);
+
+      if (m_b_use_mutex)
       {
-         delete m_resolver;
-      }
-      if(m_b_use_mutex)
-      {
+
          m_pmutex->unlock();
+
       }
-      //delete (fd_set *)m_prfds;
-      //delete (fd_set *)m_pwfds;
-      //delete (fd_set *)m_pefds;
+
    }
 
 
@@ -294,14 +316,14 @@ namespace sockets
          }
          if(!p -> CloseAndDelete())
          {
-            sp(stream_socket)scp = (p);
+            stream_socket * scp = p.cast < stream_socket >();
             if(scp && scp -> Connecting()) // 'open' called before adding socket
             {
                set(s,false,true);
             }
             else
             {
-               sp(tcp_socket)tcp = (p);
+               tcp_socket * tcp = p.cast < tcp_socket >();
                bool bWrite = tcp ? tcp -> GetOutputLength() != 0 : false;
                if(p -> IsDisableRead())
                {
@@ -596,7 +618,7 @@ namespace sockets
             }
             if(psocket != NULL)
             {
-               sp(tcp_socket)tcp = (psocket);
+               tcp_socket * tcp = psocket.cast < tcp_socket >();
                if(tcp != NULL)
                {
                   if(tcp -> CallOnConnect() && psocket -> Ready())
@@ -830,11 +852,16 @@ namespace sockets
                         }
                         if(p -> Retain() && !p -> Lost())
                         {
-                           pool_socket *p2 = new pool_socket(*this,p);
+                           sp(pool_socket) p2 = canew(pool_socket(*this,p));
                            p2 -> SetDeleteByHandler();
                            add(p2);
                            //
                            p -> SetCloseAndDelete(false); // added - remove from m_fds_close
+                        }
+                        else if (p.cast < http_session >() != NULL && !p->Lost())
+                        {
+                           p->SetCloseAndDelete(false);
+                           continue;
                         }
                         else
                         {
@@ -872,11 +899,26 @@ namespace sockets
          if(m_sockets.Lookup(socket, psocket))
          {
 
-            m_sockets.remove_key(socket);
+            if (psocket.cast < pool_socket >() == NULL)
+            {
 
-            m_delete.remove(psocket);
+               m_sockets.remove_key(socket);
+            }
+            else
+            {
 
-            m_add.remove_key(socket);
+               m_delete.remove(psocket);
+
+            }
+
+            if (m_add[socket].cast < pool_socket >() == NULL)
+            {
+
+               m_add.remove_key(socket);
+
+            }
+            
+
 
          }
 

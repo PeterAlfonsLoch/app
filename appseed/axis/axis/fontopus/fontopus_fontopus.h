@@ -13,7 +13,7 @@ namespace fontopus
 
       mutex                                        m_mutex;
       class create_user_thread *                   m_pthreadCreatingUser;
-      user *                                       m_puser;
+      sp(user)                                     m_puser;
       string_to_string                             m_mapFontopusServer;
       string                                       m_strFirstFontopusServer;
       string                                       m_strFirstAccountServer;
@@ -27,18 +27,18 @@ namespace fontopus
       string_to_string                             m_mapLabelUser;
       string_to_string                             m_mapLabelPass;
       string_to_string                             m_mapLabelOpen;
-
+      ::sockets::socket_handler *                  m_phandler;
 
 
       fontopus(::aura::application * papp);
       virtual ~fontopus();
 
 
-      virtual user * create_user(::fontopus::user * puser);
-      virtual user * create_system_user(const string & strSystemUserName);
-      virtual user * allocate_user();
-      virtual user * create_current_user(const char * psz = NULL);
-      virtual user * login(property_set & set);
+      virtual bool initialize_user(::fontopus::user * puser);
+      virtual bool create_system_user(const string & strSystemUserName);
+      virtual bool create_current_user(const char * psz = NULL);
+      virtual sp(user) allocate_user();
+      virtual sp(user) login(property_set & set);
 
       virtual void logout();
 
@@ -48,9 +48,6 @@ namespace fontopus
 
 
       virtual bool get_auth(const char * psz, string & strUsername, string & strPassword);
-
-      virtual bool initialize_instance();
-      virtual int32_t exit_instance();
 
       virtual bool check_license(const char * pszId, bool bInteractive);
 
@@ -62,6 +59,9 @@ namespace fontopus
       virtual string get_server(const char * pszSourceUrl, int32_t iRetry = 8);
 
       virtual string get_fontopus_server(const char * pszRequestingServerOrUrl,int iRetry = 8);
+
+      void cleanup_fontopus();
+      void cleanup_networking();
 
    };
 

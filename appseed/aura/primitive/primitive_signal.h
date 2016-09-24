@@ -4,9 +4,12 @@
 namespace message
 {
 
+   
    class dispatch;
 
+
 } // namespace message
+
 
 class signal;
 class request_signal;
@@ -25,7 +28,7 @@ public:
    property_set *             m_pset;
    index                      m_iParam;
    bool                       m_bRet;
-   class signal *             m_psignal;
+   sp(signal)                 m_psignal;
 
 
 
@@ -41,8 +44,8 @@ public:
 
    bool previous(); // returns bRet
 
-
    property_set & operator()();
+
 
 };
 
@@ -174,7 +177,7 @@ public:
    template < class T >
    void connect(T * psignalizable, void (T::*pfn)(signal_details *))
    {
-      signal_delegate_instance < T > * pdelegate = new signal_delegate_instance < T >(psignalizable);
+      signal_delegate_instance < T > * pdelegate = canew(signal_delegate_instance < T >(psignalizable));
       pdelegate->m_pfn = pfn;
       m_delegateptra.add(pdelegate);
       psignalizable->register_signal(this);
@@ -258,16 +261,17 @@ public:
 };
 
 class CLASS_DECL_AURA signalid_array :
-   virtual public ptr_array < signalid >
+   virtual public spa(signalid)
 {
 public:
 
+
    signalid_array();
    virtual ~signalid_array();
+
+
    signalid * get(signalid * pid);
 
-   using ref_array < signalid >::get_size;
-   using ref_array < signalid >::operator[];
 
 };
 
@@ -292,7 +296,8 @@ public:
 
 
    template < class T >
-   class handler_item : public handler_item_base
+   class handler_item : 
+      public handler_item_base
    {
    public:
       T *                     m_psignalizable;
@@ -320,13 +325,14 @@ public:
 
 
       sp(signalid)         m_pid;
-      sp(class ::signal)   m_psignal;
+      class ::signal *     m_psignal;
 
       handler_item_array   m_handlera;
 
 
       signal_item();
       virtual ~signal_item();
+
 
    };
 
@@ -342,12 +348,14 @@ public:
 
 
    class CLASS_DECL_AURA signal_item_array :
-      public ptr_array < signal_item >
+      public spa(signal_item)
    {
    public:
 
+
       void GetSignalsById(signal_item_ptr_array & signalptra, signalid * pid);
       signal_item * GetSignalById(signalid * pid);
+
 
    };
 
@@ -371,20 +379,36 @@ public:
    dispatch();
    virtual ~dispatch();
 
+
 };
 
 
 inline void dispatch::signal_item_array::GetSignalsById(dispatch::signal_item_ptr_array & signalptra, signalid * pid)
 {
+
    for(int32_t i = 0; i < this->get_size(); i++)
    {
+
       signal_item & signal = *this->element_at(i);
+
+      if (signal.m_pid.is_null())
+      {
+
+         continue;
+
+      }
+
       if(signal.m_pid->matches(pid))
       {
+
          signalptra.add(&signal);
+
       }
+
    }
+
 }
+
 
 inline dispatch::signal_item * dispatch::signal_item_array::GetSignalById(signalid * pid)
 {

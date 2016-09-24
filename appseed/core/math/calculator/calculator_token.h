@@ -1,11 +1,15 @@
 #pragma once
 
 
+
+
+
 namespace calculator
 {
 
 
-   class CLASS_DECL_CORE token
+   class CLASS_DECL_CORE token :
+      virtual public mini_object
    {
    public:
 
@@ -34,7 +38,7 @@ namespace calculator
 
 
       token();
-      ~token();
+      virtual ~token();
       /* Tokens */
       e_type         m_etype;
       string         m_str;

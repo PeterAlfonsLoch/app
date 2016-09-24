@@ -269,6 +269,8 @@ virtual      void load_string_table(const string & pszApp,const string & pszId);
       virtual bool initialize_instance() override;
       virtual int32_t exit_instance() override;
 
+      virtual bool start_instance();
+
       virtual bool initialize();
       virtual bool finalize() override;
 
