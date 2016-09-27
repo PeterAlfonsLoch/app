@@ -49,6 +49,20 @@ namespace visual
 
       static uint32_t c_cdecl thread_proc_parallel_initialize(void * pparamThis);
 
+      virtual bool embossed_text_out(
+         ::draw2d::graphics * pgraphics, 
+         LPCRECT lpcrect, 
+         string strText, 
+         ::visual::fastblur & dib2,
+         ::draw2d::font * pfont, 
+         int iDrawTextFlags,
+         COLORREF crText,
+         COLORREF crGlow, 
+         int iSpreadRadius,
+         int iBlurRadius,
+         int iBlur, 
+         bool bUpdate);
+
 
    };
 

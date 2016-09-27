@@ -626,10 +626,21 @@ public:
    void consume_identifier(const char * & psz);
    void consume_identifier(const char * & psz,const char * pszEnd);
    void parse_json(const char * & pszJson);
-   void parse_json(const char * & pszJson,const char * pszEnd);
+   void parse_json(const char * & pszJson, const char * pszEnd);
+   ::var::e_type find_json_child(const char * & pszJson, const var & var);
+   ::var::e_type find_json_child(const char * & pszJson, const char * pszEnd, const var & var);
+   ::var::e_type find_json_id(const char * & pszJson, const char * pszEnd, const var & var);
+   bool parse_json_step(const char * & pszJson);
+   bool parse_json_step(const char * & pszJson, const char * pszEnd);
 
    string & get_json(string & str, bool bNewLine = true) const;
 
+   static void skip_number(const char * & psz);
+   static void skip_number(const char * & psz, const char * pszEnd);
+   static void skip_identifier(const char * & psz);
+   static void skip_identifier(const char * & psz, const char * pszEnd);
+   static void skip_json(const char * & pszJson);
+   static void skip_json(const char * & pszJson, const char * pszEnd);
 
    //#undef new
    // DECLARE_AXIS_FIXED_ALLOC(var)

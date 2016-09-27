@@ -10,7 +10,6 @@ class CLASS_DECL_PROGRAMMING library:
 {
 public:
 
-
    ::aura::library                           m_library;
    ::file::path                              m_pathScript;
    file::plain_text_stream_memory_buffer     m_memfileError;
@@ -31,6 +30,7 @@ class CLASS_DECL_PROGRAMMING compiler:
 {
 public:
 
+   ::file::path                              m_pathProjectDir;
    string                                    m_strDynamicSourceConfiguration;
    ::file::path                              m_strDynamicSourceStage;
    ::file::path                              m_strDynamicSourceStageFolder;

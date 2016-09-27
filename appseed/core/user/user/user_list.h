@@ -206,11 +206,15 @@ namespace user
       sp(simple_list_data)             m_psimplelistdata;
 
       
-      int_ptr_map < ::draw2d::dib_sp > m_mapBlur;
+      int_ptr_map < ::visual::fastblur > m_mapBlur;
       int_ptr_map < string >           m_mapText;
+      int_ptr_map < COLORREF >           m_mapBackColor;
       int_ptr_map < ::visual::fastblur > m_mapIconBlur;
       int                              m_iIconBlur;
       int                              m_iIconBlurRadius;
+      int                              m_iTextSpreadRadius;
+      int                              m_iTextBlurRadius;
+      int                              m_iTextBlur;
       rect                             m_rectSpot;
       ::draw2d::dib_sp                 m_dibSpot;
       ::draw2d::dib_sp                 m_dibTime;

@@ -71,6 +71,10 @@ public:
    void parse_json(const char * & pszJson);
    void parse_json(const char * & pszJson, const char * pszEnd);
 
+   void find_json_child(const char * & pszJson, const char * pszEnd, const var & var);
+
+   static void skip_json(const char * & pszJson);
+   static void skip_json(const char * & pszJson, const char * pszEnd);
 
    string & get_json(string & str, bool bNewLine = true) const;
 

@@ -571,6 +571,56 @@ void property_set::_008Parse(bool bApp, const char * pszCmdLine, var & varFile, 
    }
 
 }
+void property_set::skip_json(const char * & pszJson)
+{
+
+   skip_json(pszJson, pszJson + strlen(pszJson) - 1);
+
+}
+
+
+void property_set::skip_json(const char * & pszJson, const char * pszEnd)
+{
+   ::str::consume_spaces(pszJson, 0, pszEnd);
+   if (*pszJson == '\0')
+   {
+      return;
+   }
+   ::str::consume(pszJson, "{", 1, pszEnd);
+   ::str::consume_spaces(pszJson, 0, pszEnd);
+   if (*pszJson == '}')
+   {
+      pszJson++;
+      return;
+   }
+   while (true)
+   {
+
+      ::id id;
+
+      property::skip_json_id(pszJson, pszEnd);
+
+      property::skip_json_value(pszJson, pszEnd);
+
+      ::str::consume_spaces(pszJson, 0, pszEnd);
+      if (*pszJson == ',')
+      {
+         pszJson++;
+         continue;
+      }
+      else if (*pszJson == '}')
+      {
+         pszJson++;
+         return;
+      }
+      else
+      {
+         string str = "not expected character : ";
+         str += pszJson;
+         throw str;
+      }
+   }
+}
 
 
 void property_set::parse_json(const string & strJson)

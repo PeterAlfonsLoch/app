@@ -702,6 +702,8 @@ public:
    void parse_json(const char * & pszJson,const char * pszEnd);
    static void parse_json_id(id & id, const char * & pszJson, const char * pszEnd);
    static void parse_json_value(var & var,const char * & pszJson,const char * pszEnd);
+   static void skip_json_id(const char * & pszJson, const char * pszEnd);
+   static void skip_json_value(const char * & pszJson, const char * pszEnd);
 
 
    var explode(const char * pszSeparator, bool bAddEmpty = true) const;

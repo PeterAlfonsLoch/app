@@ -158,7 +158,8 @@
       <ShowProgress>NotSet</ShowProgress>
     </Link>
     <PreBuildEvent>
-      <Command>copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configuration)\*.dll $(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\</Command>
+      <Command>copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configuration)\*.dll $(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\
+copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configuration)\*.exe $(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\</Command>
     </PreBuildEvent>
     <Manifest>
       <AdditionalManifestFiles>
@@ -242,7 +243,8 @@
       </MergeSections>
     </Link>
     <PreBuildEvent>
-      <Command>copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configuration)\*.dll $(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\</Command>
+      <Command>copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configuration)\*.dll $(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\
+copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configuration)\*.exe $(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\</Command>
     </PreBuildEvent>
     <Manifest>
       <AdditionalManifestFiles>
@@ -315,7 +317,8 @@
       <MapFileName>$(TargetDir)$(TargetName).map</MapFileName>
     </Link>
     <PreBuildEvent>
-      <Command>copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configuration)\*.dll $(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\</Command>
+      <Command>copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configuration)\*.dll $(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\
+copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configuration)\*.exe $(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\</Command>
     </PreBuildEvent>
     <CustomBuildStep>
       <Command>
@@ -394,7 +397,8 @@
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
     </Link>
     <PreBuildEvent>
-      <Command>copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configuration)\*.dll $(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\</Command>
+      <Command>copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configuration)\*.dll $(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\
+copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configuration)\*.exe $(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\</Command>
     </PreBuildEvent>
     <CustomBuildStep>
       <Command>
@@ -1919,6 +1923,12 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="aura\_aura_aura.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="aura_memdleak.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>

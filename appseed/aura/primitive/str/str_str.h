@@ -279,8 +279,10 @@ namespace str
    CLASS_DECL_AURA string consume_nc_name(const char * & pszXml);
    CLASS_DECL_AURA string consume_quoted_value(const char * & pszXml);
    CLASS_DECL_AURA void consume_quoted_value_ex2(const char * & pszXml, const char * pszEnd, char ** ppsz, int & iBufferSize);
+   CLASS_DECL_AURA void skip_quoted_value_ex2(const char * & pszXml, const char * pszEnd);
    CLASS_DECL_AURA string consume_quoted_value(const char * & pszXml, const char * pszEnd);
    CLASS_DECL_AURA string consume_quoted_value_ex(const char * & pszXml,const char * pszEnd);
+   CLASS_DECL_AURA void skip_quoted_value_ex(const char * & pszXml, const char * pszEnd);
    CLASS_DECL_AURA string consume_spaced_value(string & str);
    CLASS_DECL_AURA string consume_spaced_value(const char * & pszXml);
    CLASS_DECL_AURA string consume_spaced_value(const char * & pszXml, const char * pszEnd);

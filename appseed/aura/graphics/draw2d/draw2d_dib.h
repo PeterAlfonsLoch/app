@@ -159,6 +159,7 @@ namespace draw2d
       virtual void Rotate034(dib * pdib, double dAngle, double dScale);
 
 
+      virtual void set_rgb(COLORREF cr);
       virtual void set_rgb(int32_t R, int32_t G, int32_t B);
       virtual void set_rgb_pre_alpha(int32_t R, int32_t G, int32_t B);
       virtual void set_rgb_pre_alpha(int32_t R, int32_t G, int32_t B, int32_t A);

@@ -5506,6 +5506,7 @@ bool imaging::LoadImageFromFile(::draw2d::dib * pdib, ::file::stream_buffer * pf
 
    bool imaging::channel_spread__32CC(::draw2d::dib * pdibDst,::draw2d::dib * pdibSrc,int32_t iChannel,int32_t iRadius,COLORREF crSpreadSetColor)
    {
+      synch_lock sl(&m_mutex);
       int32_t iFilterW      = iRadius * 2 + 1;
       int32_t iFilterH      = iRadius * 2 + 1;
       int32_t iFilterHalfW  = iRadius;
@@ -5527,8 +5528,8 @@ bool imaging::LoadImageFromFile(::draw2d::dib * pdib, ::file::stream_buffer * pf
       int32_t x2;
       int32_t y2;
 
-      int32_t iRadius2 = iRadius * iRadius;
-      int32_t r2;
+      int32_t iRadiusSquare = iRadius * iRadius;
+      int32_t rSquare;
 
       auto & filter = m_alpha_spread__32CC_filterMap[iRadius];
 
@@ -5541,18 +5542,18 @@ bool imaging::LoadImageFromFile(::draw2d::dib * pdib, ::file::stream_buffer * pf
          filter = canew(memory());
          filter->allocate(iFilterArea);
          pFilter = filter->get_data();
-         for(y = 0; y < iFilterHalfH; y++)
+         for(y = 0; y < iFilterH; y++)
          {
-            for(x = 0; x < iFilterHalfW; x++)
+            for(x = 0; x < iFilterW; x++)
             {
                x1 = iFilterHalfW - x;
                y1 = iFilterHalfH - y;
-               r2 = x1 * x1 + y1 * y1;
-               if(r2 <= iRadius2)
+               rSquare = x1 * x1 + y1 * y1;
+               if(rSquare <= iRadiusSquare)
                   i = 1;
                else
                   i = 0;
-               pFilter[x + y * iFilterW]                                   = (byte)i;
+               pFilter[x + y * iFilterW] = (byte)i;
             }
          }
       }

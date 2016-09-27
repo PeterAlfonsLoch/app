@@ -147,6 +147,10 @@ public:
    string get_http_post() const { string str; return get_http_post(str); }
    string get_json() const { string str; return get_json(str); }
 
+   static void skip_json(const char * & pszJson);
+   static void skip_json(const char * & pszJson, const char * pszEnd);
+
+
    virtual void write(::file::ostream & ostream) const;
    virtual void read(::file::istream & ostream);
 

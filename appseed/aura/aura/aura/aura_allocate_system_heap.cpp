@@ -27,8 +27,7 @@ extern CLASS_DECL_AURA ::exception::engine * g_ee;
 
 critical_section * g_pmutexSystemHeap = NULL;
 
-#if !MEMDLEAK && !defined(__MCRTDBG)
-void * system_heap_alloc(size_t size)
+void * system_heap_alloc_normal(size_t size)
 {
 
    if(size > 16 * 1024)
@@ -75,16 +74,23 @@ void * system_heap_alloc(size_t size)
 
 }
 
-#else
 
 void * system_heap_alloc_dbg(size_t size, int nBlockUse, const char * pszFileName, int iLine)
 {
+
+   if (!global_memdleak_enabled())
+   {
+
+      return system_heap_alloc_normal(size);
+
+   }
 
    void * p;
 
    size_t nAllocSize = size + sizeof(size_t) + sizeof(memdleak_block);
 
    memdleak_block * pblock;
+
 
 #if defined(WINDOWSEX) && !PREFER_MALLOC
 
@@ -163,11 +169,9 @@ p = pblock;
 
 }
 
-#endif
 
-#if !MEMDLEAK && !defined(__MCRTDBG)
 
-void * system_heap_realloc(void * p, size_t size)
+void * system_heap_realloc_normal(void * p, size_t size)
 {
 
 #if defined(__VLD) || defined(__MCRTDBG)
@@ -188,11 +192,17 @@ void * system_heap_realloc(void * p, size_t size)
 
 }
 
-#else
+#ifdef MEMDLEAK
 
 void * system_heap_realloc_dbg(void * p,  size_t size, int32_t nBlockUse, const char * pszFileName, int32_t iLine)
 {
 
+   if (!global_memdleak_enabled())
+   {
+
+      return system_heap_realloc_normal(p, size);
+
+   }
 
    //size_t nAllocSize = size + sizeof(size_t) + sizeof(memdleak_block);
 
@@ -238,6 +248,7 @@ void * system_heap_realloc_dbg(void * p,  size_t size, int32_t nBlockUse, const 
 
 #endif
 
+//   p->m_iEnabled = memdleak_enabled();
 
    //psizeNew = (size_t *) &pblock[1];
 
@@ -281,6 +292,7 @@ void * system_heap_realloc_dbg(void * p,  size_t size, int32_t nBlockUse, const 
    //return &psize[1];
 
 }
+
 #endif
 
 
@@ -294,81 +306,87 @@ void system_heap_free(void * p)
 
 #else
 
-#if !MEMDLEAK
+#if MEMDLEAK
+   if (!global_memdleak_enabled())
+#endif
+   {
 
 #if defined(WINDOWSEX) && !PREFER_MALLOC
 
-   cslock lock(g_pmutexSystemHeap);
+      cslock lock(g_pmutexSystemHeap);
 
-   if(!::HeapFree(g_system_heap(), 0, p))
-   {
+      if (!::HeapFree(g_system_heap(), 0, p))
+      {
 
-      uint32_t dw = ::GetLastError();
+         uint32_t dw = ::GetLastError();
 
-      ::OutputDebugString("system_heap_free : Failed to free memory");
+         ::OutputDebugString("system_heap_free : Failed to free memory");
 
-   }
+      }
 
 #else
 
-   try
-   {
+      try
+      {
 
-      ::free(p);
+         ::free(p);
 
-   }
-   catch(...)
-   {
+      }
+      catch (...)
+      {
 
-      ::output_debug_string("system_heap_free : Failed to free memory");
+         ::output_debug_string("system_heap_free : Failed to free memory");
 
-   }
+      }
 
 #endif
-
-#else
-/*
-   size_t * psize = &((size_t *)p)[-1];
-
-   memdleak_block * pblock = &((memdleak_block *)psize)[-1];
-
-   if(s_pmemdleakList != NULL)
+#if MEMDLEAK
+   }
+   else
    {
+      /*
+         size_t * psize = &((size_t *)p)[-1];
 
-      synch_lock lock(g_pmutgen);
+         memdleak_block * pblock = &((memdleak_block *)psize)[-1];
 
-      if(s_pmemdleakList == pblock)
-      {
-         s_pmemdleakList = pblock->m_pnext;
-         s_pmemdleakList->m_pprevious = NULL;
-      }
-      else
-      {
-         pblock->m_pprevious->m_pnext = pblock->m_pnext;
-         if(pblock->m_pnext != NULL)
+         if(s_pmemdleakList != NULL)
          {
-            pblock->m_pnext->m_pprevious = pblock->m_pprevious;
+
+            synch_lock lock(g_pmutgen);
+
+            if(s_pmemdleakList == pblock)
+            {
+               s_pmemdleakList = pblock->m_pnext;
+               s_pmemdleakList->m_pprevious = NULL;
+            }
+            else
+            {
+               pblock->m_pprevious->m_pnext = pblock->m_pnext;
+               if(pblock->m_pnext != NULL)
+               {
+                  pblock->m_pnext->m_pprevious = pblock->m_pprevious;
+               }
+            }
+            if(pblock->m_pszCallStack)
+            ::free((void *)pblock->m_pszCallStack);
+            if(pblock->m_pszFileName)
+            ::free((void *) pblock->m_pszFileName);
+
          }
-      }
-      if(pblock->m_pszCallStack)
-      ::free((void *)pblock->m_pszCallStack);
-      if(pblock->m_pszFileName)
-      ::free((void *) pblock->m_pszFileName);
-
-   }
-*/
+      */
 #if defined(WINDOWSEX) && !PREFER_MALLOC
-   {
-      cslock csl(g_pmutexSystemHeap);
+      {
+         cslock csl(g_pmutexSystemHeap);
 
-      // ::HeapFree(g_system_heap(), 0, pblock);
-      ::HeapFree(g_system_heap(), 0, p);
+         // ::HeapFree(g_system_heap(), 0, pblock);
+         ::HeapFree(g_system_heap(), 0, p);
 
-   }
+      }
 
 #else
-   ::free(p);
+      ::free(p);
 #endif
+   }
 
 #endif
 

@@ -39,9 +39,9 @@ namespace visual
       ::aura::department(papp)
    {
 
-      m_pimaging        = NULL;
-      m_pfontcentral    = NULL;
-      m_pvisualapi      = new ::visual::api(papp);
+      m_pimaging = NULL;
+      m_pfontcentral = NULL;
+      m_pvisualapi = new ::visual::api(papp);
 
    }
 
@@ -61,7 +61,7 @@ namespace visual
 
       ::aura::department::construct(papp);
 
-      
+
 
    }
 
@@ -83,7 +83,7 @@ namespace visual
    bool visual::initialize1()
    {
 
-      if(!::aura::department::initialize1())
+      if (!::aura::department::initialize1())
          return false;
 
       if (m_pfontcentral == NULL)
@@ -117,10 +117,10 @@ namespace visual
    bool visual::process_initialize()
    {
 
-      if(!::aura::department::process_initialize())
+      if (!::aura::department::process_initialize())
          return false;
 
-      if(!m_pvisualapi->open())
+      if (!m_pvisualapi->open())
          return false;
 
       return true;
@@ -131,14 +131,14 @@ namespace visual
    bool visual::initialize()
    {
 
-      if(!::aura::department::initialize())
+      if (!::aura::department::initialize())
          return false;
-      
+
       //if(Application.dir().is(System.dir().commonappdata("")))
       {
 
          __begin_thread(get_app(), &visual::thread_proc_parallel_initialize, this, ::multithreading::priority_highest);
-         
+
       }
 
       return true;
@@ -148,7 +148,7 @@ namespace visual
    uint32_t c_cdecl visual::thread_proc_parallel_initialize(void * pparamThis)
    {
 
-      visual * pvisual = (visual *) pparamThis;
+      visual * pvisual = (visual *)pparamThis;
 
       pvisual->set_cursor_set_from_matter("cursor/antialiased-classic");
 
@@ -164,7 +164,7 @@ namespace visual
 
       try
       {
-         
+
          if (m_pvisualapi != NULL)
          {
 
@@ -173,7 +173,7 @@ namespace visual
          }
 
       }
-      catch(...)
+      catch (...)
       {
 
          bOk = false;
@@ -222,24 +222,24 @@ namespace visual
       return *m_pfontcentral;
    }
 
-   cursor * visual::set_cursor_file(e_cursor ecursor,const ::file::path & psz, bool bFromCache)
+   cursor * visual::set_cursor_file(e_cursor ecursor, const ::file::path & psz, bool bFromCache)
    {
-      
+
       cursor * pcursor = get_cursor(ecursor);
-      
+
       if (System.visual().imaging().load_from_file(pcursor, psz, bFromCache))
       {
-         
+
          return pcursor;
-         
+
       }
       else
       {
-         
+
          return NULL;
-         
+
       }
-      
+
    }
 
 
@@ -248,7 +248,7 @@ namespace visual
 
       cursor * pcursor = NULL;
 
-      if(m_cursormap.Lookup(ecursor, pcursor))
+      if (m_cursormap.Lookup(ecursor, pcursor))
       {
 
          return pcursor;
@@ -284,7 +284,7 @@ namespace visual
    ::count visual::set_cursor_set_from_dir(const ::file::path & pszDir, bool bFromCache)
    {
       ::count count = 0;
-      if(set_cursor_file(::visual::cursor_arrow, pszDir/ "arrow.png", bFromCache))
+      if (set_cursor_file(::visual::cursor_arrow, pszDir / "arrow.png", bFromCache))
       {
          count++;
       }
@@ -292,101 +292,101 @@ namespace visual
       {
          return 0;
       }
-      if(set_cursor_file(::visual::cursor_hand,pszDir / "hand.png",bFromCache))
+      if (set_cursor_file(::visual::cursor_hand, pszDir / "hand.png", bFromCache))
       {
          count++;
       }
       else
       {
-         set_cursor_file(::visual::cursor_hand,pszDir / "arrow.png",bFromCache);
+         set_cursor_file(::visual::cursor_hand, pszDir / "arrow.png", bFromCache);
       }
-      if(set_cursor_file(::visual::cursor_text_select,pszDir / "text_select.png",bFromCache))
+      if (set_cursor_file(::visual::cursor_text_select, pszDir / "text_select.png", bFromCache))
       {
          count++;
       }
       else
       {
-         set_cursor_file(::visual::cursor_text_select,pszDir / "arrow.png",bFromCache);
+         set_cursor_file(::visual::cursor_text_select, pszDir / "arrow.png", bFromCache);
       }
-      if(set_cursor_file(::visual::cursor_size_top_left,pszDir / "size_top_left.png",bFromCache))
+      if (set_cursor_file(::visual::cursor_size_top_left, pszDir / "size_top_left.png", bFromCache))
       {
          count++;
       }
       else
       {
-         set_cursor_file(::visual::cursor_size_top_left,pszDir / "arrow.png",bFromCache);
+         set_cursor_file(::visual::cursor_size_top_left, pszDir / "arrow.png", bFromCache);
       }
-      if(set_cursor_file(::visual::cursor_size_top,pszDir / "size_top.png",bFromCache))
+      if (set_cursor_file(::visual::cursor_size_top, pszDir / "size_top.png", bFromCache))
       {
          count++;
       }
       else
       {
-         set_cursor_file(::visual::cursor_size_top,pszDir / "arrow.png",bFromCache);
+         set_cursor_file(::visual::cursor_size_top, pszDir / "arrow.png", bFromCache);
       }
-      if(set_cursor_file(::visual::cursor_size_top_right,pszDir / "size_top_right.png",bFromCache))
+      if (set_cursor_file(::visual::cursor_size_top_right, pszDir / "size_top_right.png", bFromCache))
       {
          count++;
       }
       else
       {
-         set_cursor_file(::visual::cursor_size_top_right,pszDir / "arrow.png",bFromCache);
+         set_cursor_file(::visual::cursor_size_top_right, pszDir / "arrow.png", bFromCache);
       }
-      if(set_cursor_file(::visual::cursor_size_right,pszDir / "size_right.png",bFromCache))
+      if (set_cursor_file(::visual::cursor_size_right, pszDir / "size_right.png", bFromCache))
       {
          count++;
       }
       else
       {
-         set_cursor_file(::visual::cursor_size_right,pszDir / "arrow.png",bFromCache);
+         set_cursor_file(::visual::cursor_size_right, pszDir / "arrow.png", bFromCache);
       }
-      if(set_cursor_file(::visual::cursor_size_bottom_right,pszDir / "size_bottom_right.png",bFromCache))
+      if (set_cursor_file(::visual::cursor_size_bottom_right, pszDir / "size_bottom_right.png", bFromCache))
       {
          count++;
       }
       else
       {
-         set_cursor_file(::visual::cursor_size_bottom_right,pszDir / "arrow.png",bFromCache);
+         set_cursor_file(::visual::cursor_size_bottom_right, pszDir / "arrow.png", bFromCache);
       }
-      if(set_cursor_file(::visual::cursor_size_bottom,pszDir / "size_bottom.png",bFromCache))
+      if (set_cursor_file(::visual::cursor_size_bottom, pszDir / "size_bottom.png", bFromCache))
       {
          count++;
       }
       else
       {
-         set_cursor_file(::visual::cursor_size_bottom,pszDir / "arrow.png",bFromCache);
+         set_cursor_file(::visual::cursor_size_bottom, pszDir / "arrow.png", bFromCache);
       }
-      if(set_cursor_file(::visual::cursor_size_bottom_left,pszDir / "size_bottom_left.png",bFromCache))
+      if (set_cursor_file(::visual::cursor_size_bottom_left, pszDir / "size_bottom_left.png", bFromCache))
       {
          count++;
       }
       else
       {
-         set_cursor_file(::visual::cursor_size_bottom_left,pszDir / "arrow.png",bFromCache);
+         set_cursor_file(::visual::cursor_size_bottom_left, pszDir / "arrow.png", bFromCache);
       }
-      if(set_cursor_file(::visual::cursor_size_left,pszDir / "size_left.png",bFromCache))
+      if (set_cursor_file(::visual::cursor_size_left, pszDir / "size_left.png", bFromCache))
       {
          count++;
       }
       else
       {
-         set_cursor_file(::visual::cursor_size_left,pszDir / "arrow.png",bFromCache);
+         set_cursor_file(::visual::cursor_size_left, pszDir / "arrow.png", bFromCache);
       }
-      if(set_cursor_file(::visual::cursor_size_vertical,pszDir / "size_vertical.png",bFromCache))
+      if (set_cursor_file(::visual::cursor_size_vertical, pszDir / "size_vertical.png", bFromCache))
       {
          count++;
       }
       else
       {
-         set_cursor_file(::visual::cursor_size_vertical,pszDir / "arrow.png",bFromCache);
+         set_cursor_file(::visual::cursor_size_vertical, pszDir / "arrow.png", bFromCache);
       }
-      if(set_cursor_file(::visual::cursor_size_horizontal,pszDir / "size_horizontal.png",bFromCache))
+      if (set_cursor_file(::visual::cursor_size_horizontal, pszDir / "size_horizontal.png", bFromCache))
       {
          count++;
       }
       else
       {
-         set_cursor_file(::visual::cursor_size_horizontal,pszDir / "arrow.png",bFromCache);
+         set_cursor_file(::visual::cursor_size_horizontal, pszDir / "arrow.png", bFromCache);
       }
 
       return count;
@@ -404,15 +404,116 @@ namespace visual
          iExitCode = ::aura::department::exit_instance();
 
       }
-      catch(...)
+      catch (...)
       {
 
-         ::simple_message_box(NULL,"except","except",MB_OK);
+         ::simple_message_box(NULL, "except", "except", MB_OK);
          iExitCode = -1;
 
       }
 
       return iExitCode;
+
+   }
+
+   bool visual::embossed_text_out(
+      ::draw2d::graphics * pgraphics,
+      LPCRECT lpcrect,
+      string strText,
+      ::visual::fastblur & dib2,
+      ::draw2d::font * pfont,
+      int iDrawTextFlags,
+      COLORREF crText,
+      COLORREF crGlow,
+      int iSpreadRadius,
+      int iBlurRadius,
+      int iBlur,
+      bool bUpdate)
+
+   {
+
+      if (strText.is_empty())
+      {
+
+         return false;
+
+      }
+
+
+      int iR = MAX(iSpreadRadius, iBlurRadius, iBlur);
+
+      ::rect rectText = *lpcrect;
+
+      rectText.left -= iR;
+      rectText.top -= iR;
+      rectText.right += iR;
+      rectText.bottom += iR;
+
+      if (bUpdate || dib2.is_null() || dib2->area() <= 0)
+      {
+
+         int iEffectiveSpreadRadius = iSpreadRadius;
+
+         int iEffectiveBlurRadius = iBlurRadius;
+
+         if (dib2.is_null())
+         {
+
+            dib2.alloc(allocer());
+
+         }
+
+         class size size = rectText.size();
+
+         dib2.initialize(size, iEffectiveBlurRadius);
+
+         dib2->Fill(0, 0, 0, 0);
+
+         class rect rectCache;
+
+         rectCache.left = iR + (iR >= 2 ? 1 : 0);
+         rectCache.top = iR + 1;
+         rectCache.right = rectCache.left + (int32_t)width(lpcrect);
+         rectCache.bottom = rectCache.top + (int32_t)height(lpcrect);
+
+         ::draw2d::dib_sp dib(allocer());
+
+         dib->create(size.cx, size.cy);
+         dib->Fill(0, 0, 0, 0);
+
+         ::draw2d::brush_sp brushText(allocer());
+
+         brushText->create_solid(ARGB(255, 255, 255, 255));
+         dib->get_graphics()->SelectObject(brushText);
+
+         dib->get_graphics()->SelectObject(pfont);
+         dib->get_graphics()->_DrawText(strText, rectCache, iDrawTextFlags);
+
+         System.visual().imaging().channel_spread_set_color(dib2->get_graphics(), null_point(), size, dib->get_graphics(), null_point(), ::visual::rgba::channel_alpha, iEffectiveSpreadRadius, ARGB(255, 255, 255, 255));
+         
+         for (index i = 0; i < iBlur; i++)
+         {
+
+            dib2.blur();
+
+         }
+
+         dib2->set_rgb(crGlow);
+
+         dib2->mult_alpha();
+
+      }
+
+      pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+      pgraphics->BitBlt(rectText, dib2->get_graphics(), point(1, 1));
+
+      ::draw2d::brush_sp brushText(allocer());
+      brushText->create_solid(crText);
+      pgraphics->SelectObject(brushText);
+      pgraphics->SelectObject(pfont);
+      pgraphics->_DrawText(strText, *lpcrect, iDrawTextFlags);
+
+      return true;
 
    }
 

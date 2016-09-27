@@ -823,9 +823,16 @@ typedef spa(memblock) memblocka;
 string get_mem_info_report1()
 {
 
-		string str;
+   if (!global_memdleak_enabled())
+   {
 
-      	int * piUse = NULL;
+      return "";
+
+   }
+
+   string str;
+
+   int * piUse = NULL;
 	const char ** pszFile = NULL;
    const char ** pszCallStack = NULL;
 	uint32_t * puiLine = NULL;
@@ -966,6 +973,12 @@ string get_mem_info_report1()
 void memdleak_dump()
 {
 
+   if (!global_memdleak_enabled())
+   {
+
+      return;
+
+   }
 
    memdleak_block * pblock = s_pmemdleakList;
    int iTickCount = 100;
@@ -975,22 +988,25 @@ void memdleak_dump()
    int i = 0;
    while (pblock != NULL)
    {
-      if (pblock->m_iStack > 0)
+      if (pblock->m_iEnabled)
       {
-         OutputDebugString("\n");
-         OutputDebugString("--------------------------------------------------------\n");
-         ultoa_dup(sz, ++i, 10);
-         OutputDebugString("Index : ");
-         OutputDebugString(sz);
-         OutputDebugString("\n");
-         ultoa_dup(sz, pblock->m_size, 10);
-         OutputDebugString("Size : ");
-         OutputDebugString(sz);
-         OutputDebugString("\n");
-         OutputDebugString(g_ee->stack_trace(pblock->m_puiStack, pblock->m_iStack));
-         if (i % iTickCount == iTickCount - 1)
+         if (pblock->m_iStack > 0)
          {
-            ::PlaySoundA("C:\\bergedge\\hi5\\audio\\tick.wav", NULL, SND_FILENAME);
+            OutputDebugString("\n");
+            OutputDebugString("--------------------------------------------------------\n");
+            ultoa_dup(sz, ++i, 10);
+            OutputDebugString("Index : ");
+            OutputDebugString(sz);
+            OutputDebugString("\n");
+            ultoa_dup(sz, pblock->m_size, 10);
+            OutputDebugString("Size : ");
+            OutputDebugString(sz);
+            OutputDebugString("\n");
+            OutputDebugString(g_ee->stack_trace(pblock->m_puiStack, pblock->m_iStack));
+            if (i % iTickCount == iTickCount - 1)
+            {
+               ::PlaySoundA("C:\\bergedge\\hi5\\audio\\tick.wav", NULL, SND_FILENAME);
+            }
          }
       }
       pblock = pblock->m_pnext;
@@ -1018,6 +1034,8 @@ void memdleak_dump()
 
    //file_put_contents_dup(::dir::system() / "m.html", get_mem_info_report1());
 }
+
+
 
 #undef print
 

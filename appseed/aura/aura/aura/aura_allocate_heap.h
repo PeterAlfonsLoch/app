@@ -40,22 +40,33 @@ BEGIN_EXTERN_C
    CLASS_DECL_AURA void   CDECL memory_free(void * pvoid);
 #endif
 
+#if MEMDLEAK
+   CLASS_DECL_AURA int  memdleak_enabled();
+   CLASS_DECL_AURA void memdleak_enable(int enable);
+   CLASS_DECL_AURA int  global_memdleak_enabled();
+#endif
 
    END_EXTERN_C
 
 #if MEMDLEAK
-      CLASS_DECL_AURA void set_last_block_file_name(const char * psz);
+   CLASS_DECL_AURA void set_last_block_file_name(const char * psz);
    CLASS_DECL_AURA void memdleak_dump();
 #endif
 
 #if MEMDLEAK  || defined(__MCRTDBG)
 CLASS_DECL_AURA void * system_heap_alloc_dbg(size_t size, int nBlockUse, const char * pszFile, int iLine);
-#define system_heap_alloc(s) system_heap_alloc_dbg(s, 49, __FILE__, __LINE__)
 CLASS_DECL_AURA void * system_heap_realloc_dbg(void * p, size_t size, int nBlockUse, const char * pszFile, int iLine);
+#endif
+
+CLASS_DECL_AURA void * system_heap_alloc_normal(size_t size);
+CLASS_DECL_AURA void * system_heap_realloc_normal(void * pvoidOld, size_t size);
+
+#if MEMDLEAK  || defined(__MCRTDBG)
 #define system_heap_realloc(p, s) system_heap_realloc_dbg(p, s, 49, __FILE__, __LINE__)
+#define system_heap_alloc(s) system_heap_alloc_dbg(s, 49, __FILE__, __LINE__)
 #else
-CLASS_DECL_AURA void * system_heap_alloc(size_t size);
-CLASS_DECL_AURA void * system_heap_realloc(void * pvoidOld, size_t size);
+#define system_heap_realloc(p, s) system_heap_realloc_normal(p, s, 49, __FILE__, __LINE__)
+#define system_heap_alloc(s) system_heap_alloc_normal(s, 49, __FILE__, __LINE__)
 #endif
 CLASS_DECL_AURA void   system_heap_free(void * pvoid);
 
@@ -65,6 +76,7 @@ struct memdleak_block
 
 
    int32_t                       m_iBlockUse;
+   int32_t                       m_iEnabled;
    const char *                  m_pszFileName;
 #if OSBIT == 32
    DWORD                         m_puiStack[64];

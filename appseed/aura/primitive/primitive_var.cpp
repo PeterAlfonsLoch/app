@@ -3663,6 +3663,41 @@ void var::consume_identifier(const char * & psz, const char * pszEnd)
    psz = pszParse;
 }
 
+void var::skip_identifier(const char * & psz)
+{
+   skip_number(psz, psz + strlen(psz) - 1);
+}
+
+void var::skip_identifier(const char * & psz, const char * pszEnd)
+{
+   const char * pszParse = psz;
+   ::str::consume_spaces(pszParse, 0, pszEnd);
+   const char * pszStart = pszParse;
+   while (isalpha_dup(*pszParse) && pszParse <= pszEnd)
+      pszParse++;
+   int iLen = pszParse - pszStart;
+   if (iLen == 5 && strnicmp(pszStart, "false", 5) == 0)
+   {
+   }
+   else if (iLen == 4)
+   {
+      if (strnicmp(pszStart, "true", 4) == 0)
+      {
+      }
+      else if (strnicmp(pszStart, "NULL", 4) == 0)
+      {
+      }
+      else
+      {
+         throw "not expected identifier";
+      }
+   }
+   else
+   {
+      throw "not expected identifier";
+   }
+   psz = pszParse;
+}
 
 
 void var::consume_number(const char * & psz)
@@ -3756,6 +3791,79 @@ end:
    psz = pszParse;
 }
 
+
+void var::skip_number(const char * & psz)
+{
+   skip_number(psz, psz + strlen(psz) - 1);
+}
+
+void var::skip_number(const char * & psz, const char * pszEnd)
+{
+   const char * pszParse = psz;
+   ::str::consume_spaces(pszParse, 0, pszEnd);
+   const char * pszStart = pszParse;
+   if (*pszParse == '-')
+   {
+      pszParse++;
+   }
+   if (*pszParse == '.')
+   {
+      pszParse++;
+   }
+   while (*pszParse != '\0' && *pszParse >= '0' && *pszParse <= '9')
+   {
+      pszParse++;
+   }
+   if (*pszParse == 'e' || *pszParse == 'E')
+   {
+      pszParse++;
+      if (*pszParse == '-')
+      {
+         pszParse++;
+      }
+      if (*pszParse == '.')
+      {
+         pszParse++;
+      }
+      while (*pszParse != '\0' && *pszParse >= '0' && *pszParse <= '9')
+      {
+         pszParse++;
+      }
+      goto end;
+   }
+   if (*pszParse == '.')
+   {
+      pszParse++;
+   }
+   while (*pszParse != '\0' && *pszParse >= '0' && *pszParse <= '9')
+   {
+      pszParse++;
+   }
+   if (*pszParse == 'e' || *pszParse == 'E')
+   {
+      pszParse++;
+      if (*pszParse == '-')
+      {
+         pszParse++;
+      }
+      if (*pszParse == '.')
+      {
+         pszParse++;
+      }
+      while (*pszParse != '\0' && *pszParse >= '0' && *pszParse <= '9')
+      {
+         pszParse++;
+      }
+      goto end;
+   }
+end:
+   if (pszParse == pszStart)
+   {
+      throw "empty string : not a number";
+   }
+   psz = pszParse;
+}
+
 void var::parse_json(const char * & pszJson)
 {
    parse_json(pszJson, pszJson + strlen(pszJson) - 1);
@@ -3765,6 +3873,49 @@ namespace str
 {
    string consume_quoted_value_ex(const char * & pszXml,const char * pszEnd);
 }
+
+
+void var::skip_json(const char * & pszJson, const char * pszEnd)
+{
+   ::str::consume_spaces(pszJson, 0, pszEnd);
+   if (*pszJson == '{')
+   {
+      property_set::skip_json(pszJson, pszEnd);
+   }
+   else if (*pszJson == '\"')
+   {
+      ::str::skip_quoted_value_ex(pszJson, pszEnd);
+   }
+   else if (isdigit_dup(*pszJson) || *pszJson == '-' || *pszJson == '.')
+   {
+      ::var::skip_number(pszJson, pszEnd);
+   }
+   else if (*pszJson == '[')
+   {
+      ::var_array::skip_json(pszJson, pszEnd);
+   }
+   else if (*pszJson == ']')
+   {
+      ::output_debug_string("");
+
+      //pszJson++;
+
+   }
+   else if (*pszJson == '\0')
+   {
+      ::output_debug_string("");
+   }
+   else
+   {
+      ::var::skip_identifier(pszJson, pszEnd);
+   }
+}
+
+void var::skip_json(const char * & pszJson)
+{
+   skip_json(pszJson, pszJson + strlen(pszJson) - 1);
+}
+
 
 void var::parse_json(const char * & pszJson, const char * pszEnd)
 {
@@ -3802,6 +3953,214 @@ void var::parse_json(const char * & pszJson, const char * pszEnd)
    }
 }
 
+::var::e_type var::find_json_child(const char * & pszJson, const char * pszEnd, const var & varChild)
+{
+
+   ::str::consume_spaces(pszJson, 0, pszEnd);
+
+   if (*pszJson == '{')
+   {
+
+      ::str::consume_spaces(pszJson, 0, pszEnd);
+      
+      if (*pszJson == '\0')
+      {
+
+         return ::var::type_new;
+
+      }
+
+      ::str::consume(pszJson, "{", 1, pszEnd);
+
+      ::str::consume_spaces(pszJson, 0, pszEnd);
+
+      if (*pszJson == '}')
+      {
+
+         pszJson++;
+
+         return ::var::type_new;
+
+      }
+
+      ::id id;
+
+      while (true)
+      {
+
+         property::parse_json_id(id, pszJson, pszEnd);
+
+         if (varChild.get_string().CompareNoCase(id) == 0)
+         {
+            
+            ::str::consume_spaces(pszJson, 0, pszEnd);
+            ::str::consume(pszJson, ":", 1, pszEnd);
+
+
+            return var::type_propset;
+
+         }
+
+         property::skip_json_value(pszJson, pszEnd);
+
+         ::str::consume_spaces(pszJson, 0, pszEnd);
+
+         if (*pszJson == ',')
+         {
+            pszJson++;
+            continue;
+         }
+         else if (*pszJson == '}')
+         {
+            pszJson++;
+            return var::type_new;
+         }
+         else
+         {
+            string str = "not expected character : ";
+            str += pszJson;
+            throw str;
+         }
+      }
+
+   }
+   else if (*pszJson == '\"')
+   {
+      operator=(::str::consume_quoted_value_ex(pszJson, pszEnd));
+      if (operator == (varChild))
+      {
+         return var::type_string;
+      }
+      else
+      {
+         return var::type_new;
+      }
+   }
+   else if (isdigit_dup(*pszJson) || *pszJson == '-' || *pszJson == '.')
+   {
+      consume_number(pszJson, pszEnd);
+      if(operator == (varChild))
+      {
+         return get_type();
+      }
+      else
+      {
+         return var::type_new;
+      }
+   }
+   else if (*pszJson == '[')
+   {
+      ::str::consume_spaces(pszJson, 0, pszEnd);
+      ::str::consume(pszJson, "[", 1, pszEnd);
+      ::var::e_type etype = find_json_id(pszJson, pszEnd, varChild);
+      if(etype == ::var::type_new)
+      {
+
+         return ::var::type_new;
+
+      }
+
+      ::str::consume_spaces(pszJson, 0, pszEnd);
+
+      if (*pszJson == ']')
+      {
+         pszJson++;
+         
+         return etype;
+
+      }
+
+      return ::var::type_new;
+
+   }
+   else if (*pszJson == ']')
+   {
+      ::output_debug_string("");
+      return ::var::type_new;
+   }
+   else if (*pszJson == '\0')
+   {
+      ::output_debug_string("");
+      return ::var::type_new;
+   }
+   else
+   {
+      consume_identifier(pszJson, pszEnd);
+      if (operator==(varChild))
+      {
+         return get_type();
+      }
+      else
+      {
+         return ::var::type_new;
+      }
+   }
+
+}
+
+::var::e_type var::find_json_id(const char * & pszJson, const char * pszEnd, const var & varChild)
+{
+
+   ::str::consume_spaces(pszJson, 0, pszEnd);
+
+   if (*pszJson == '{')
+   {
+
+      return ::var::type_new;
+
+
+   }
+   else if (*pszJson == '\"')
+   {
+      operator=(::str::consume_quoted_value_ex(pszJson, pszEnd));
+      if (operator == (varChild))
+      {
+         return var::type_string;
+      }
+      else
+      {
+         return var::type_new;
+      }
+   }
+   else if (isdigit_dup(*pszJson) || *pszJson == '-' || *pszJson == '.')
+   {
+      consume_number(pszJson, pszEnd);
+      if (operator == (varChild))
+      {
+         return get_type();
+      }
+      else
+      {
+         return var::type_new;
+      }
+   }
+   else if (*pszJson == '[')
+   {
+      
+      return var::type_new;
+
+   }
+   else if (*pszJson == ']')
+   {
+      return var::type_new;
+   }
+   else if (*pszJson == '\0')
+   {
+      return var::type_new;
+   }
+   else
+   {
+      consume_identifier(pszJson, pszEnd);
+      if (operator==(varChild))
+      {
+         return get_type();
+      }
+      else
+      {
+         return ::var::type_new;
+      }
+   }
+}
 
 
 bool var::is_numeric() const

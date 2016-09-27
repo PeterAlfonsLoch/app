@@ -22,6 +22,8 @@ namespace introjection
       m_memfileError(papp)
    {
 
+    
+
       ZERO(m_filetime);
 
    }
@@ -43,6 +45,12 @@ namespace introjection
 
 
    {
+
+      ::file::path path;
+
+      path = THIS_FILE;
+
+      m_pathProjectDir = path.folder();
 
 
 #if MEMDLEAK
@@ -184,7 +192,7 @@ namespace introjection
 
 #elif defined(LINUX)
 #else
-      var var = System.process().get_output("\"" + m_strEnv + "\" " + m_strPlat2);
+      var var = System.process().get_output("\"" + m_strEnv + "\" " + m_strPlat2 + " 10.0.14393.0");
       TRACE0(var.get_string());
 
 #endif
@@ -324,7 +332,7 @@ namespace introjection
 
       string strBuildCmd = m_strEnv;
 
-      strBuildCmd = "\"" + strBuildCmd + "\" " + m_strPlat2;
+      strBuildCmd = "\"" + strBuildCmd + "\" " + m_strPlat2 + " 10.0.14393.0";
 
       ::process::process_sp process(allocer());
 
@@ -475,6 +483,7 @@ namespace introjection
       if(!::str::ends(strV,"/") && !::str::ends(strV,"\\"))
          strV += "/";
       str.replace("%CA2_ROOT%",strV);
+      str.replace("%PROJECT_DIR%", m_pathProjectDir);
       //str.replace("%NETNODE_ROOT%",strN);
       str.replace("%SDK1%",m_strSdk1);
       string strDest = m_strDynamicSourceStage / "front" / lpcszDest;
@@ -947,6 +956,7 @@ namespace introjection
       str.replace("%HMH_LCTVWILD_PDB_PATH%",strHmhLctvWildPdbPath);
 
       str.replace("%CA2_ROOT%",strElem);
+      str.replace("%PROJECT_DIR%", m_pathProjectDir);
       str.replace("%CONFIGURATION_NAME%",m_strDynamicSourceConfiguration);
       str.replace("%CONFIGURATION%",m_strDynamicSourceConfiguration);
       str.replace("%PLATFORM%",m_strPlatform);
@@ -989,7 +999,7 @@ namespace introjection
 
       #else
 
-      process->create_child_process(str,true,NULL,::multithreading::priority_highest);
+      process->create_child_process(str,true,m_pathProjectDir,::multithreading::priority_highest);
 
       #endif
       
@@ -1122,6 +1132,7 @@ namespace introjection
          str.replace("%HMH_LCTVWILD_PDB_PATH%",strHmhLctvWildPdbPath);
 
          str.replace("%CA2_ROOT%",strElem);
+         str.replace("%PROJECT_DIR%", m_pathProjectDir);
          str.replace("%CONFIGURATION_NAME%",m_strDynamicSourceConfiguration);
          str.replace("%CONFIGURATION%",m_strDynamicSourceConfiguration);
          str.replace("%PLATFORM%",m_strPlatform);

@@ -2554,6 +2554,63 @@ end:
 
    }
 
+   void skip_quoted_value_ex2(const char * & pszXml, const char * pszEnd)
+   {
+
+      const char * psz = pszXml;
+
+      if (*psz != '\"' && *psz != '\\')
+      {
+
+         throw_parsing_exception("Quote character is required here");
+
+         return;
+
+      }
+
+      char qc = *psz;
+
+      psz++;
+
+      const char * pszValueStart = psz;
+
+      while (*psz != qc)
+      {
+
+         psz = __utf8_inc(psz);
+
+         if (psz > pszEnd)
+         {
+
+            throw_parsing_exception("Quote character is required here, premature end");
+
+            return;
+
+         }
+
+      }
+
+      int iNewBufferSize = psz - pszValueStart;
+
+
+      //if (iNewBufferSize > iBufferSize)
+      //{
+
+      //   *ppsz = (char *)memory_alloc(iNewBufferSize + 1);
+
+      //}
+
+      //strncpy(*ppsz, pszValueStart, iNewBufferSize);
+
+      //(*ppsz)[iNewBufferSize] = '\0';
+
+      //iBufferSize = iNewBufferSize;
+
+      psz++;
+
+      pszXml = psz;
+
+   }
 
    template < const int m_iSize = 1024 >
    class mini_str_buffer
@@ -2671,22 +2728,16 @@ end:
    string consume_quoted_value_ex(const char * & pszXml,const char * pszEnd)
    {
       const char * psz = pszXml;
-      string qc; // quote character
-      if(!get_utf8_char(qc,psz,pszEnd))
+      char qc = *psz; // quote character
+      if(qc != '\"' && qc != '\'')
       {
          throw_parsing_exception("Quote character is required here, premature end");
          return "";
       }
-      if(qc != "\"" && qc != "\\")
-      {
-         throw_parsing_exception("Quote character is required here");
-         return "";
-      }
+      psz++;
       const char * pszValueStart = psz;
       //const char * pszValueEnd = psz;
       const char * pszNext = psz;
-      const char * pszQc = qc;
-      string qc2;
       mini_str_buffer < > str;
       while(true)
       {
@@ -2701,7 +2752,7 @@ end:
             throw_parsing_exception("Quote character is required here, premature end");
             return "";
          }
-         else if(*psz == '\"')
+         else if(*psz == qc)
          {
             psz++;
             break;
@@ -2777,6 +2828,99 @@ end:
       str.update();
 
       return str.m_str;
+
+   }
+
+   void skip_quoted_value_ex(const char * & pszXml, const char * pszEnd)
+   {
+      const char * psz = pszXml;
+      char qc = *pszXml; // quote character
+      if (qc != '\"' && qc != '\'')
+      {
+         throw_parsing_exception("Quote character is required here, premature end");
+         return;
+      }
+      psz++;
+      const char * pszValueStart = psz;
+      //const char * pszValueEnd = psz;
+      const char * pszNext = psz;
+      while (true)
+      {
+         pszNext = __utf8_inc(psz);
+         if (pszNext > pszEnd)
+         {
+            throw_parsing_exception("Quote character is required here, premature end");
+            return;
+         }
+         if (*psz == '\0')
+         {
+            throw_parsing_exception("Quote character is required here, premature end");
+            return;
+         }
+         else if (*psz == '\"')
+         {
+            psz++;
+            break;
+         }
+         else if (*psz == '\\')
+         {
+            psz = pszNext;
+            pszNext = __utf8_inc(psz);
+            if (pszNext > pszEnd)
+            {
+               throw_parsing_exception("Quote character is required here, premature end");
+               return;
+            }
+            if (*psz == 'n')
+            {
+            }
+            else if (*psz == 't')
+            {
+            }
+            else if (*psz == 'r')
+            {
+            }
+            else if (*psz == 'u')
+            {
+               string strUni;
+               for (index i = 0; i < 4; i++)
+               {
+                  psz = pszNext;
+                  pszNext = __utf8_inc(psz);
+                  if (pszNext > pszEnd)
+                  {
+                     throw_parsing_exception("Quote character is required here, premature end");
+                     return;
+                  }
+                  if ((pszNext - psz == 1) && ((*psz >= '0' && *psz <= '9') || (*psz >= 'A' && *psz <= 'F') || (*psz >= 'a' && *psz <= 'f')))
+                  {
+                  }
+                  else
+                  {
+                     throw_parsing_exception("16 bit unicode expect here");
+                     return;
+                  }
+
+               }
+            }
+            else if (*psz == '\"')
+            {
+            }
+            else
+            {
+            }
+         }
+         else
+         {
+         }
+
+         psz = pszNext;
+
+         //pszValueEnd = psz;
+
+      }
+
+      pszXml = psz;
 
    }
 
