@@ -140,8 +140,8 @@ namespace primitive
       inline void from_string(const char * psz);
       inline void from_string(const string & str);
       inline void from_string(const var & var);
-      inline void to_string(string & str) const;
-      inline string to_string() const;
+      inline void to_string(string & str, memory_position_t iStart = 0, memory_size_t uiSize = -1) const;
+      inline string to_string(memory_position_t iStart = 0, memory_size_t uiSize = -1) const;
 
       void delete_begin(memory_size_t iSize);
       inline void eat_begin(void * pdata, memory_size_t iSize);
@@ -595,25 +595,37 @@ namespace primitive
 
    }
 
-   inline void memory_base::to_string(string & str) const
+   inline void memory_base::to_string(string & str, memory_position_t iStart, memory_size_t iCount) const
    {
 
-      LPSTR lpsz = str.GetBufferSetLength(this->get_size() + 1);
+      if ((memory_offset_t)iStart < 0)
+         *((memory_offset_t*)iStart) += this->get_size();
 
-      memcpy(lpsz, get_data(), this->get_size());
+      if (iStart > this->get_size())
+         return;
 
-      lpsz[this->get_size()] = '\0';
+      if (iStart + iCount > this->get_size())
+         iCount = this->get_size() - iStart - iCount;
+
+      if (iCount <= 0)
+         return;
+
+      LPSTR lpsz = str.GetBufferSetLength( iCount + 1);
+
+      memcpy(lpsz, &get_data()[iStart], iCount);
+
+      lpsz[iCount] = '\0';
 
       str.ReleaseBuffer();
 
    }
 
-   inline string memory_base::to_string() const
+   inline string memory_base::to_string(memory_position_t iStart, memory_size_t iCount) const
    {
 
       string str;
 
-      to_string(str);
+      to_string(str, iStart, iCount);
 
       return str;
 

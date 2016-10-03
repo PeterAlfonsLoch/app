@@ -1056,17 +1056,17 @@ namespace user
       if (GetParent() != NULL)
       {
 
-         GetParent()->send_message(::message::message_event, 0, (LPARAM)pevent);
+         pevent->m_bProcessed = GetParent()->BaseOnControlEvent(pevent);
 
       }
 
       if (pevent->m_bProcessed)
          return true;
 
-      if(get_form() != NULL)
+      if(get_form() != NULL && !IsAscendant(get_form()))
       {
 
-         get_form()->send_message(::message::message_event,0,(LPARAM)pevent);
+         pevent->m_bProcessed = get_form()->BaseOnControlEvent(pevent);
 
       }
 

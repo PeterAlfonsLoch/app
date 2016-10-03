@@ -4090,14 +4090,22 @@ ExitModal:
 
    bool interaction::BaseOnControlEvent(control_event * pevent)
    {
-      if(GetParent() != NULL)
+
+      ::user::interaction * puiParent = GetParent();
+      
+      if(puiParent != NULL)
       {
-         return GetParent()->BaseOnControlEvent(pevent);
+
+         return puiParent->BaseOnControlEvent(pevent);
+
       }
       else
       {
+
          return false;
+
       }
+
    }
 
 

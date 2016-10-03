@@ -2204,6 +2204,9 @@
     <ClInclude Include="aura\charguess\charguess_private.h">
       <Filter>Header Files\aura\charguess</Filter>
     </ClInclude>
+    <ClInclude Include="aura\aura\aura_error.h">
+      <Filter>Header Files\aura\aura</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="multithreading\multithreading_condition.cpp">

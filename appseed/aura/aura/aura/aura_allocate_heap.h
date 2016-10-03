@@ -65,8 +65,8 @@ CLASS_DECL_AURA void * system_heap_realloc_normal(void * pvoidOld, size_t size);
 #define system_heap_realloc(p, s) system_heap_realloc_dbg(p, s, 49, __FILE__, __LINE__)
 #define system_heap_alloc(s) system_heap_alloc_dbg(s, 49, __FILE__, __LINE__)
 #else
-#define system_heap_realloc(p, s) system_heap_realloc_normal(p, s, 49, __FILE__, __LINE__)
-#define system_heap_alloc(s) system_heap_alloc_normal(s, 49, __FILE__, __LINE__)
+#define system_heap_realloc(p, s) system_heap_realloc_normal(p, s)
+#define system_heap_alloc(s) system_heap_alloc_normal(s)
 #endif
 CLASS_DECL_AURA void   system_heap_free(void * pvoid);
 

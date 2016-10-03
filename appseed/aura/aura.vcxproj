@@ -460,6 +460,7 @@ copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configur
     <ClInclude Include="aura\aura\aura_draw_interface.h" />
     <ClInclude Include="aura\aura\aura_element.h" />
     <ClInclude Include="aura\aura\aura_enum.h" />
+    <ClInclude Include="aura\aura\aura_error.h" />
     <ClInclude Include="aura\aura\aura_file_watcher.h" />
     <ClInclude Include="aura\aura\aura_file_watcher_impl.h" />
     <ClInclude Include="aura\aura\aura_file_watcher_listener_thread.h" />

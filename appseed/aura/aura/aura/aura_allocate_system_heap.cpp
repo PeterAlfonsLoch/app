@@ -78,12 +78,17 @@ void * system_heap_alloc_normal(size_t size)
 void * system_heap_alloc_dbg(size_t size, int nBlockUse, const char * pszFileName, int iLine)
 {
 
+#if MEMDLEAK
+
    if (!global_memdleak_enabled())
    {
 
       return system_heap_alloc_normal(size);
 
    }
+
+#endif
+
 
    void * p;
 
@@ -197,12 +202,16 @@ void * system_heap_realloc_normal(void * p, size_t size)
 void * system_heap_realloc_dbg(void * p,  size_t size, int32_t nBlockUse, const char * pszFileName, int32_t iLine)
 {
 
+#if MEMDLEAK
+
    if (!global_memdleak_enabled())
    {
 
       return system_heap_realloc_normal(p, size);
 
    }
+
+#endif
 
    //size_t nAllocSize = size + sizeof(size_t) + sizeof(memdleak_block);
 
@@ -340,8 +349,9 @@ void system_heap_free(void * p)
       }
 
 #endif
-#if MEMDLEAK
    }
+
+#if MEMDLEAK
    else
    {
       /*
