@@ -11,13 +11,13 @@ namespace userfs
    public:
 
 
-      string                                    m_strFolder;
+      ::file::path                              m_pathFolder;
 
       sp(::fs::set)                             m_fsset;
 
-      ::file::listing                           m_straRootPath;
+      ::file::listing                           m_listingRoot;
 
-      ::file::listing                           m_straPath;
+      ::file::listing                           m_listing;
 
 
       document(::aura::application * papp);

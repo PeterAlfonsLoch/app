@@ -123,7 +123,7 @@ namespace filemanager
    void tree::filemanager_tree_insert(const ::file::path & strPath,::file::listing & listing,::action::context actioncontext,bool bOnlyParent)
    {
 
-      ::file::listing & straRootPath = get_document()->m_straRootPath;
+      ::file::listing & straRootPath = get_document()->m_listingRoot;
 
       ::data::tree_item_ptr_array ptraRemove;
 
@@ -336,127 +336,135 @@ namespace filemanager
    void tree::browse_sync(::action::context actioncontext)
    {
 
-      ::file::listing & straRootPath = get_document()->m_straRootPath;
+      ::file::path filepath = get_filemanager_path();
 
-      ::file::path strPath = get_filemanager_path();
-
-      if(actioncontext &::action::source_system)
       {
 
-         knowledge("",actioncontext,true);
+         ::file::listing & listing = get_document()->m_listingRoot;
 
-         if(strPath.has_char())
+         if (actioncontext &::action::source_system)
          {
 
-            ::file::patha stra;
+            knowledge("", actioncontext, true);
 
-            strPath.ascendants_path(stra);
-
-            for(index i = 0; i < stra.get_size(); i++)
+            if (filepath.has_char())
             {
 
-               string str = stra[i];
+               ::file::patha filepatha;
 
-               knowledge(str,actioncontext,true);
+               filepath.ascendants_path(filepatha);
+
+               for (index i = 0; i < filepatha.get_size(); i++)
+               {
+
+                  ::file::path path = filepatha[i];
+
+                  knowledge(path, actioncontext, true);
+
+               }
 
             }
 
          }
 
-      }
 
 
+         ::userfs::item * pitemChild;
 
-      ::userfs::item * pitemChild;
+         ::file::path pathParent = get_filemanager_path().folder();
 
-      ::file::path strDirParent = get_filemanager_path().folder();
+         ::data::tree_item * pitemParent = find_item(pathParent);
 
-      ::data::tree_item * pitemParent = find_item(strDirParent);
-
-      if(pitemParent == NULL)
-      {
-
-         pitemParent = get_base_item();
-
-      }
-
-      ::data::tree_item * pitem = find_item(strPath);
-
-      if(strPath.has_char())
-      {
-
-         if(pitem == NULL)
+         if (pitemParent == NULL)
          {
 
-            pitemParent =  get_base_item();
+            pitemParent = get_base_item();
 
-            pitemChild = canew(::userfs::item(this));
+         }
 
-            pitemChild->m_filepath = strPath;
+         ::data::tree_item * pitem = find_item(filepath);
 
-            pitemChild->m_strName = strPath.name();
+         if (filepath.has_char())
+         {
 
-            pitemChild->m_flags.signalize(::fs::FlagFolder);
-
-            pitemChild->m_iImageSelected = m_iDefaultImageSelected;
-
-            pitem = insert_item(pitemChild,::data::RelativeLastChild,pitemParent);
-
-            if(pitemChild->m_flags.is_signalized(::fs::FlagHasSubFolder))
+            if (pitem == NULL)
             {
 
-               pitem->m_dwState |= ::data::tree_item_state_expandable;
+               pitemParent = get_base_item();
+
+               pitemChild = canew(::userfs::item(this));
+
+               pitemChild->m_filepath = filepath;
+
+               pitemChild->m_strName = filepath.name();
+
+               pitemChild->m_flags.signalize(::fs::FlagFolder);
+
+               pitemChild->m_iImageSelected = m_iDefaultImageSelected;
+
+               pitem = insert_item(pitemChild, ::data::RelativeLastChild, pitemParent);
+
+               if (pitemChild->m_flags.is_signalized(::fs::FlagHasSubFolder))
+               {
+
+                  pitem->m_dwState |= ::data::tree_item_state_expandable;
+
+               }
+
+            }
+            else
+            {
+
+               if (pitem->m_pparent != pitemParent && !listing.contains_ci(pitem->m_pitem.cast < ::fs::item >()->m_filepath))
+               {
+
+                  pitem->SetParent(pitemParent);
+
+               }
 
             }
 
          }
-         else
+
+         pitemParent = pitem;
+
+         if (get_filemanager_template() != NULL && get_filemanager_data()->m_ptreeFileTreeMerge != NULL
+            && !(dynamic_cast <::user::tree *> (get_filemanager_data()->m_ptreeFileTreeMerge))->m_treeptra.contains(this))
          {
 
-            if(pitem->m_pparent != pitemParent && !straRootPath.contains_ci(pitem->m_pitem.cast < ::fs::item >()->m_filepath))
-            {
-
-               pitem->SetParent(pitemParent);
-
-            }
+            get_filemanager_data()->m_ptreeFileTreeMerge->merge(this, true);
 
          }
 
       }
 
-      pitemParent = pitem;
-
-      if(get_filemanager_template() != NULL && get_filemanager_data()->m_ptreeFileTreeMerge != NULL
-            && !(dynamic_cast < ::user::tree * > (get_filemanager_data()->m_ptreeFileTreeMerge))->m_treeptra.contains(this))
       {
 
-         get_filemanager_data()->m_ptreeFileTreeMerge->merge(this, true);
+         stringa straChildItem;
 
-      }
+         string str;
 
-      stringa straChildItem;
+         ::file::listing & listing = get_document()->m_listing;
 
-      string str;
+         if (!actioncontext.is(::action::source_system))
+         {
 
-      ::file::listing & listing = get_document()->m_straPath;
+            filemanager_tree_insert(filepath, listing, actioncontext);
 
-      if(!actioncontext.is(::action::source_system))
-      {
+            _017EnsureVisible(filepath, actioncontext);
 
-         filemanager_tree_insert(strPath,listing,actioncontext);
+            _001SelectItem(find_item(filepath));
 
-         _017EnsureVisible(strPath,actioncontext);
+         }
 
-         _001SelectItem(find_item(strPath));
+         arrange(::fs::arrange_by_name);
 
-      }
+         if (m_treeptra.has_elements())
+         {
 
-      arrange(::fs::arrange_by_name);
+            _polishing_start(m_treeptra[0]);
 
-      if(m_treeptra.has_elements())
-      {
-
-         _polishing_start(m_treeptra[0]);
+         }
 
       }
 

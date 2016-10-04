@@ -1079,32 +1079,41 @@ namespace filemanager
 
       get_fs_mesh_data()->m_itema.m_itema.remove_all();
 
-      m_straStrictOrder.remove_all();
+      m_pathaStrictOrder.remove_all();
 
       _001OnUpdateItemCount();
 
 
-      ::file::listing & patha = get_document()->m_straPath;
-      //stringa & straTitle = get_document()->m_straTitle;
-//      int64_array & iaSize = get_document()->m_iaSize;
-      //bool_array & baDir = get_document()->m_baDir;
+      ::file::listing & listing = get_document()->m_listing;
 
-
-      for(int32_t i = 0; i < patha.get_size(); i++)
+      for(int32_t i = 0; i < listing.get_size(); i++)
       {
+
          item.m_flags.unsignalize_all();
-         ::file::path strPath = patha[i];
-         if(patha[i].m_iDir == 1)
+
+         ::file::path & path = listing[i];
+
+         if (path.m_iDir < 0)
          {
+
+            path.m_iDir = get_document()->get_fs_data()->is_dir(path) ? 1 : 0;
+
+         }
+
+         if(path.m_iDir == 1)
+         {
+
             item.m_flags.signalize(::fs::FlagFolder);
+
          }
-         else
-         {
-         }
+
          item.m_iImage = -1;
-         item.m_filepath = strPath;
-         item.m_strName = strPath.name();
-         m_straStrictOrder.add(strPath);
+         
+         item.m_filepath = path;
+
+         item.m_strName = path.name();
+
+         m_pathaStrictOrder.add(path);
 
          get_fs_mesh_data()->m_itema.add_item(item);
 
@@ -1126,7 +1135,7 @@ namespace filemanager
          for(index strictOld = 0; strictOld < straStrictOrder.get_count(); strictOld++)
          {
          string str = straStrictOrder[strictOld];
-         index find = m_straStrictOrder.find_first(str);
+         index find = m_pathaStrictOrder.find_first(str);
          if(find < 0)
          {
          iaDisplayToStrictNew.remove_b(strictOld);
@@ -1135,9 +1144,9 @@ namespace filemanager
          // segundo, reordena conforme a
          // ordem que a listagem de arquivos fornecida pelo
          // sistema operacional pode ser fornecida.
-         for(index strictNew = 0; strictNew < m_straStrictOrder.get_count(); strictNew++)
+         for(index strictNew = 0; strictNew < m_pathaStrictOrder.get_count(); strictNew++)
          {
-            string str = m_straStrictOrder[strictNew];
+            string str = m_pathaStrictOrder[strictNew];
             index strictOld = straStrictOrder.find_first(str);
             if(strictOld >= 0)
             {
@@ -1147,9 +1156,9 @@ namespace filemanager
          }
          // terceiro, adiciona System novos arquivos nos primeiros espaços
          // vazios
-         for(index strictNew = 0; strictNew < m_straStrictOrder.get_count(); strictNew++)
+         for(index strictNew = 0; strictNew < m_pathaStrictOrder.get_count(); strictNew++)
          {
-            string str = m_straStrictOrder[strictNew];
+            string str = m_pathaStrictOrder[strictNew];
             index strictOld = straStrictOrder.find_first(str);
             if(strictOld < 0)
             {
@@ -1174,7 +1183,7 @@ namespace filemanager
       }*/
       if(m_eview == view_icon)
       {
-         data_set(     data_get_current_sort_id() + "."+data_get_current_list_layout_id() + ".straStrictOrder",          m_straStrictOrder);
+         data_set(     data_get_current_sort_id() + "."+data_get_current_list_layout_id() + ".straStrictOrder",          m_pathaStrictOrder);
          m_iconlayout.m_iaDisplayToStrict = iaDisplayToStrictNew;
          data_set_DisplayToStrict();
       }

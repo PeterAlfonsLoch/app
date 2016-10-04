@@ -83,14 +83,14 @@ namespace filemanager
       if (m_iCurFile < 0)
       {
       }
-      else if (m_iCurFile == 0 && get_filemanager_manager()->m_straPath.get_size() == 0)
+      else if (m_iCurFile == 0 && get_filemanager_manager()->m_listing.get_size() == 0)
       {
          pgraphics->TextOut(10, 10, "No files in this directory");
       }
-      else if(m_iCurFile < get_filemanager_manager()->m_straPath.get_size())
+      else if(m_iCurFile < get_filemanager_manager()->m_listing.get_size())
       {
 
-         pgraphics->TextOut(10,10,get_filemanager_manager()->m_straPath.title(m_iCurFile));
+         pgraphics->TextOut(10,10,get_filemanager_manager()->m_listing.title(m_iCurFile));
 
       }
 

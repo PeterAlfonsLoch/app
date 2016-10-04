@@ -15,8 +15,8 @@ namespace userfs
       typedef ::user::show <  ::user::margin < ::user::form_list >  > BASE;
 
 
-      stringa      m_straFileSize;
-      stringa      m_straStrictOrder;
+      stringa              m_straFileSize;
+      ::file::patha        m_pathaStrictOrder;
 
 
 
