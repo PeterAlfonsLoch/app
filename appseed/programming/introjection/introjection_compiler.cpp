@@ -460,10 +460,12 @@ namespace introjection
       string strSource = "nodeapp/time/dynamic_source/";
       strSource += lpcszSource;
 
-      //      string strN = m_pmanager->m_strNetnodePath;
-      //    strN.replace("\\","/");
-      //  if(!::str::ends(strN,"/") && !::str::ends(strN,"\\"))
-      //   strN += "/";
+      ::file::path pathN = m_pathProjectDir;
+      pathN -= 3;
+      string strN = pathN;
+      strN.replace("\\", "/");
+      strN += "/";
+
 
       //#ifdef DEBUG
       strTemplate = strFolder / strSource;
@@ -484,7 +486,7 @@ namespace introjection
          strV += "/";
       str.replace("%CA2_ROOT%",strV);
       str.replace("%PROJECT_DIR%", m_pathProjectDir);
-      //str.replace("%NETNODE_ROOT%",strN);
+      str.replace("%NETNODE_ROOT%",strN);
       str.replace("%SDK1%",m_strSdk1);
       string strDest = m_strDynamicSourceStage / "front" / lpcszDest;
       ::file::path strCmd;
@@ -919,10 +921,11 @@ namespace introjection
       //if(!::str::ends(strV,"/") && !::str::ends(strV,"\\"))
       //   strV += "/";
 
-      //string strN = m_pmanager->m_strNetnodePath;
-      //strN.replace("\\","/");
-      //if(!::str::ends(strN,"/") && !::str::ends(strN,"\\"))
-      //   strN += "/";
+      ::file::path pathN = m_pathProjectDir;
+      pathN -= 3;
+      string strN = pathN;
+      strN.replace("\\", "/");
+      strN += "/";
 
       string strBuildCmd;
 
