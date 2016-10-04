@@ -440,14 +440,14 @@ namespace visual
       }
 
 
-      int iR = MAX(iSpreadRadius, iBlurRadius, iBlur);
+      int iR = MAX(iSpreadRadius, iBlurRadius, iBlur) + 1;
 
       ::rect rectText = *lpcrect;
 
       rectText.left -= iR;
       rectText.top -= iR;
-      rectText.right += iR;
-      rectText.bottom += iR;
+      rectText.right += iR * 3;
+      rectText.bottom += iR * 3;
 
       if (bUpdate || dib2.is_null() || dib2->area() <= 0)
       {
@@ -473,8 +473,8 @@ namespace visual
 
          rectCache.left = iR + (iR >= 2 ? 1 : 0);
          rectCache.top = iR + 1;
-         rectCache.right = rectCache.left + (int32_t)width(lpcrect);
-         rectCache.bottom = rectCache.top + (int32_t)height(lpcrect);
+         rectCache.right = rectCache.left + (int32_t)rectText.width() - iR;
+         rectCache.bottom = rectCache.top + (int32_t)rectText.height() - iR;
 
          ::draw2d::dib_sp dib(allocer());
 
@@ -505,7 +505,7 @@ namespace visual
       }
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
-      pgraphics->BitBlt(rectText, dib2->get_graphics(), point(1, 1));
+      pgraphics->BitBlt(rectText, dib2->get_graphics());
 
       ::draw2d::brush_sp brushText(allocer());
       brushText->create_solid(crText);

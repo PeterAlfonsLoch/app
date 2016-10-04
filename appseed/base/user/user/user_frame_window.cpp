@@ -1134,10 +1134,9 @@ namespace user
          // always notify the ::user::impact of frame activations
          pActiveView->OnActivateFrame(pactivate->m_nState, this);
       }
-      if (pactivate->m_nState == WA_ACTIVE)
-      {
-         RedrawWindow();
-      }
+
+      RedrawWindow();
+
    }
 
    void frame_window::_001OnNcActivate(signal_details * pobj)
@@ -1742,7 +1741,7 @@ namespace user
          BringToTop(nCmdShow);
       }
 
-
+      _001UpdateWindow();
 
    }
 

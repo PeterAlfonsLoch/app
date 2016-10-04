@@ -151,6 +151,8 @@ namespace user
                pui->m_dwLastSizeMove = ::get_tick_count();
                pui->m_bSizeMove = true;
 
+               pui->_001UpdateWindow();
+
             }
             else
             {

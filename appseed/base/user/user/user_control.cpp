@@ -946,7 +946,7 @@ namespace user
       index iHover = hit_test(ptCursor, eelement);
       if(iHover != -1)
       {
-         if(m_iHover == -1 || System.get_capture_uie() != pwnd)
+         if(m_iHover != iHover || System.get_capture_uie() != pwnd)
          {
             m_iHover = iHover;
             pwnd->RedrawWindow(0, 0, RDW_INVALIDATE | RDW_UPDATENOW | RDW_ERASE | RDW_FRAME);
@@ -980,6 +980,8 @@ namespace user
          {
             track_mouse_leave();
          }
+
+         _001RedrawWindow();
 
       }
 

@@ -4235,8 +4235,8 @@ ExitModal:
       //if(!(nFlags & RDW_UPDATENOW))
       {
 
-         if(m_bMayProDevian && GetParent() == NULL)
-            return;
+         //if(m_bMayProDevian && GetParent() == NULL)
+           // return;
 
       }
 

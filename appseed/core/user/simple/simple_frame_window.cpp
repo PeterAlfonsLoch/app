@@ -670,6 +670,8 @@ bool simple_frame_window::WfiToggleTransparentFrame()
 
    layout();
 
+   _001UpdateWindow();
+
    return true;
 
 }

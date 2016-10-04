@@ -3814,7 +3814,7 @@ namespace draw2d
       }
       else
       {
-         sz = pgraphics->GetTextExtent(str, (int32_t)iLen);
+         sz = pgraphics->GetTextExtent(str);
          /*::GetTextExtentPoint32U(
          (HDC) pgraphics->get_os_data(),
          str,

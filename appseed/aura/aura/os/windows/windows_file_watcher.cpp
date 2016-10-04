@@ -40,6 +40,36 @@ namespace file_watcher
       string m_strDirName;
       id m_id;
       bool m_bRecursive;
+
+
+      watch_struct()
+      {
+
+         m_overlapped.hEvent = INVALID_HANDLE_VALUE;
+         m_hDirectory = INVALID_HANDLE_VALUE;
+
+      }
+
+      ~watch_struct()
+      {
+
+         if (!HasOverlappedIoCompleted(&m_overlapped))
+         {
+            SleepEx(5, TRUE);
+         }
+
+         if (m_overlapped.hEvent != INVALID_HANDLE_VALUE)
+         {
+            CloseHandle(m_overlapped.hEvent);
+            m_overlapped.hEvent = INVALID_HANDLE_VALUE;
+         }
+         if (m_hDirectory != INVALID_HANDLE_VALUE)
+         {
+            CloseHandle(m_hDirectory);
+            m_hDirectory = INVALID_HANDLE_VALUE;
+         }
+
+      }
    };
 
 #pragma region Internal Functions
@@ -107,29 +137,30 @@ namespace file_watcher
    /// Stops monitoring a directory.
    void DestroyWatch(watch_struct* pWatch)
    {
-      if(pWatch)
+
+      if (pWatch == NULL)
       {
-         pWatch->m_bStop = TRUE;
 
-         CancelIo(pWatch->m_hDirectory);
+         return;
 
-         RefreshWatch(pWatch,true);
-
-         if(!HasOverlappedIoCompleted(&pWatch->m_overlapped))
-         {
-            SleepEx(5,TRUE);
-         }
-
-         CloseHandle(pWatch->m_overlapped.hEvent);
-         CloseHandle(pWatch->m_hDirectory);
-         delete pWatch;
       }
+
+      pWatch->m_bStop = TRUE;
+
+      CancelIo(pWatch->m_hDirectory);
+
+      RefreshWatch(pWatch, true);
+
+      delete pWatch;
+
    }
 
    /// Starts monitoring a directory.
    watch_struct* CreateWatch(LPCTSTR szDirectory,uint32_t m_dwNotify,bool bRecursive)
    {
-      watch_struct* pWatch;
+      
+      watch_struct * pWatch;
+
       pWatch = new watch_struct();
 
       pWatch->m_hDirectory = CreateFileW(wstring(szDirectory),FILE_LIST_DIRECTORY,
@@ -138,25 +169,25 @@ namespace file_watcher
 
       if(pWatch->m_hDirectory != INVALID_HANDLE_VALUE)
       {
+
          pWatch->m_overlapped.hEvent   = CreateEvent(NULL,TRUE,FALSE,NULL);
          pWatch->m_dwNotify            = m_dwNotify;
          pWatch->m_bRecursive          = bRecursive;
          pWatch->m_bStop               = false;
 
-
          if(RefreshWatch(pWatch))
          {
+
             return pWatch;
+
          }
-         else
-         {
-            CloseHandle(pWatch->m_overlapped.hEvent);
-            CloseHandle(pWatch->m_hDirectory);
-         }
+
       }
 
       delete pWatch;
+
       return NULL;
+
    }
 
 #pragma endregion
@@ -170,7 +201,7 @@ namespace file_watcher
    os_file_watcher::~os_file_watcher()
    {
       watch_map::pair * ppair = m_watchmap.PGetFirstAssoc();
-      for(; ppair != NULL; m_watchmap.PGetNextAssoc(ppair))
+      for(; ppair != NULL; ppair = m_watchmap.PGetNextAssoc(ppair))
       {
          DestroyWatch(ppair->m_element2);
       }

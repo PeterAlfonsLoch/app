@@ -1097,6 +1097,8 @@ namespace user
 
             }
 
+            GetWndDraw()->_001UpdateWindow();
+
          }
 
          void WorkSet::_001OnNcActivate(signal_details * pobj)

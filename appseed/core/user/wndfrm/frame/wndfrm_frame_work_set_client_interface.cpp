@@ -160,6 +160,8 @@ namespace user
 
             WfiOnAfterDock(eappearance);
 
+            _001UpdateWindow();
+
             return false;
 
          }
@@ -174,6 +176,8 @@ namespace user
             WfiOnClose();
 
             WfiOnAfterClose();
+
+            _001UpdateWindow();
 
             return true;
 
@@ -240,6 +244,8 @@ namespace user
 
             WfiOnAfterRestore();
 
+            _001UpdateWindow();
+
             return true;
 
          }
@@ -263,6 +269,8 @@ namespace user
             WfiOnMaximize();
 
             WfiOnAfterMaximize();
+
+            _001UpdateWindow();
 
             return true;
 
@@ -295,6 +303,8 @@ namespace user
 
             WfiOnAfterFullScreen();
 
+            _001UpdateWindow();
+
             return true;
 
          }
@@ -322,6 +332,8 @@ namespace user
 
             WfiOnAfterNotifyIcon();
 
+            _001UpdateWindow();
+
             return true;
 
          }
@@ -341,6 +353,8 @@ namespace user
 
             WfiOnAfterMinimize();
 
+            _001UpdateWindow();
+
             return true;
 
          }
@@ -358,6 +372,8 @@ namespace user
 
             WfiOnAfterDown();
 
+            _001UpdateWindow();
+
             return true;
 
          }
@@ -374,6 +390,8 @@ namespace user
             WfiOnUp();
 
             WfiOnAfterUp();
+
+            _001UpdateWindow();
 
             return true;
 
