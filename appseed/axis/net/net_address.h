@@ -106,6 +106,7 @@ namespace net
       inline int32_t get_family() const;
 
 
+      inline sockaddr * sa();
       inline const sockaddr * sa() const;
       int32_t sa_len() const;
 
@@ -184,12 +185,21 @@ namespace net
    }
 
 
+   inline sockaddr * address::sa()
+   {
+
+      return &u.m_sa;
+
+   }
+
+
    inline const sockaddr * address::sa() const
    {
 
       return &u.m_sa;
 
    }
+
 
    inline void address::SetFlowinfo(uint32_t x)
    {

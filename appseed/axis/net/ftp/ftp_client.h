@@ -50,6 +50,9 @@ namespace ftp
       virtual public ::object
    {
    public:
+
+
+      ::sockets::socket_handler m_sockethandler;
       
       class notification;
       
@@ -62,7 +65,7 @@ namespace ftp
       
          
 
-      client(::aura::application * papp, ::sockets2::iblocking_socket * apSocket = NULL,
+      client(::aura::application * papp, ::sockets::blocking_socket * apSocket = NULL,
          unsigned int uiTimeout = 10, unsigned int uiBufferSize = 2048,
          unsigned int uiResponseWait = 0, const string& strRemoteDirectorySeparator = _T("/"));
       virtual ~client();
@@ -147,11 +150,11 @@ namespace ftp
    private:
       client& operator=(const client&); // no implementation for assignment operator
       int _RepresentationType(const representation& repType, DWORD dwSize = 0);
-      bool TransferData(const command& crDatachannelCmd, itransfer_notification& Observer, ::sockets2::iblocking_socket& sckDataConnection);
-      bool OpenActiveDataConnection(::sockets2::iblocking_socket& sckDataConnection, const command& crDatachannelCmd, const string& strPath, DWORD dwByteOffset);
-      bool OpenPassiveDataConnection(::sockets2::iblocking_socket& sckDataConnection, const command& crDatachannelCmd, const string& strPath, DWORD dwByteOffset);
-      bool SendData(itransfer_notification& Observer, ::sockets2::iblocking_socket& sckDataConnection);
-      bool ReceiveData(itransfer_notification& Observer, ::sockets2::iblocking_socket& sckDataConnection);
+      bool TransferData(const command& crDatachannelCmd, itransfer_notification& Observer, ::sockets::blocking_socket& sckDataConnection);
+      bool OpenActiveDataConnection(::sockets::socket & sckDataConnection, const command& crDatachannelCmd, const string& strPath, DWORD dwByteOffset);
+      bool OpenPassiveDataConnection(::sockets::socket & sckDataConnection, const command& crDatachannelCmd, const string& strPath, DWORD dwByteOffset);
+      bool SendData(itransfer_notification& Observer, ::sockets::blocking_socket& sckDataConnection);
+      bool ReceiveData(itransfer_notification& Observer, ::sockets::blocking_socket& sckDataConnection);
 
       int  SimpleErrorCheck(const reply& Reply);
 
@@ -177,7 +180,7 @@ namespace ftp
       string_list        m_qResponseBuffer;          ///< buffer for server-responses
       sp(representation) m_apCurrentRepresentation;  ///< representation currently set
 
-      sp(::sockets2::iblocking_socket)         m_apSckControlConnection;   ///< socket for connection to FTP server
+      sp(::sockets::blocking_socket)         m_apSckControlConnection;   ///< socket for connection to FTP server
       sp(ifile_list_parser)         m_apFileListParser;         ///< object which is used for parsing the result of the LIST command
       bool                           m_fTransferInProgress;      ///< if true, a file transfer is in progress
       bool                           m_fAbortTransfer;           ///< indicates that a running filetransfer should be canceled

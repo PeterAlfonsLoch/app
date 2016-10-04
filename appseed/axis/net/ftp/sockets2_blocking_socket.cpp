@@ -10,7 +10,7 @@
 #include "framework.h"
 
 
-namespace sockets2
+namespace sockets
 {
 
 
@@ -25,8 +25,13 @@ namespace sockets2
       m_nError(WSAGetLastError()),
       m_strMessage(pchMessage)
    {
+
       ASSERT(pchMessage != NULL);
+
+      m_pmutex = new mutex(papp);
+
    }
+
 
    bool blocking_socket_exception::GetErrorMessage(string & strError, PUINT /*pnHelpContext = NULL*/)
    {
@@ -52,171 +57,178 @@ namespace sockets2
    //******************************** Class blocking_socket ****************************//
    ///////////////////////////////////////////////////////////////////////////////////////
 
-   iblocking_socket* blocking_socket::create_instance() const
+   
+   blocking_socket* blocking_socket::create_instance()
    {
-      return canew(blocking_socket(get_app()));
+      
+      return canew(blocking_socket(m_handler));
+
    }
 
-   blocking_socket::blocking_socket(::aura::application * papp) :
-      ::object(papp),
-      m_hSocket(INVALID_SOCKET)
+   listen_socket < blocking_socket > * blocking_socket::create_listening_instance()
    {
-#ifdef WIN32
-      // Initialize the Winsock dll version 2.0
-      WSADATA  wsaData = { 0 };
-      VERIFY(WSAStartup(MAKEWORD(2, 0), &wsaData) == 0);
-      VERIFY(LOBYTE(wsaData.wVersion) == 2 && HIBYTE(wsaData.wVersion) == 0);
-#endif
+
+      return canew(listen_socket < blocking_socket > (m_handler));
+
+   }
+
+
+   blocking_socket::blocking_socket(::sockets::base_socket_handler & handler) :
+      ::object(handler.get_app()),
+      base_socket(handler),
+      socket(handler),
+      stream_socket(handler),
+      tcp_socket(handler),
+      m_file(handler.get_app())
+   {
+//#ifdef WIN32
+//      // Initialize the Winsock dll version 2.0
+//      WSADATA  wsaData = { 0 };
+//      VERIFY(WSAStartup(MAKEWORD(2, 0), &wsaData) == 0);
+//      VERIFY(LOBYTE(wsaData.wVersion) == 2 && HIBYTE(wsaData.wVersion) == 0);
+//#endif
    }
 
    blocking_socket::~blocking_socket()
    {
-      cleanup();
-#ifdef WIN32
-      WSACleanup();
-#endif
+//      cleanup();
+//#ifdef WIN32
+//      WSACleanup();
+//#endif
    }
 
-   void blocking_socket::cleanup()
+   //void blocking_socket::cleanup()
+   //{
+   //   // doesn't throw an exception because it's called in a catch block
+   //   if (m_hSocket == INVALID_SOCKET)
+   //      return;
+
+   //   VERIFY(closesocket(m_hSocket) != SOCKET_ERROR);
+
+   //   m_hSocket = INVALID_SOCKET;
+   //}
+
+   //void blocking_socket::create(int nType /* = SOCK_STREAM */)
+   //{
+   //   ASSERT(m_hSocket == INVALID_SOCKET);
+   //   if ((m_hSocket = socket(AF_INET, nType, 0)) == INVALID_SOCKET)
+   //   {
+   //      throw blocking_socket_exception(get_app(), _T("Create"));
+   //   }
+   //}
+
+   //void blocking_socket::bind(LPCSOCKADDR psa) // const
+   //{
+   //   ASSERT(psa != NULL);
+   //   ASSERT(m_hSocket != INVALID_SOCKET);
+   //   if (::bind(m_hSocket, psa, sizeof(SOCKADDR)) == SOCKET_ERROR)
+   //   {
+   //      throw blocking_socket_exception(get_app(), _T("Bind"));
+   //   }
+   //}
+
+   //void blocking_socket::listen() // const
+   //{
+   //   ASSERT(m_hSocket != INVALID_SOCKET);
+   //   if (::listen(m_hSocket, 5) == SOCKET_ERROR)
+   //   {
+   //      throw blocking_socket_exception(get_app(), _T("Listen"));
+   //   }
+   //}
+
+   //bool blocking_socket::accept(iblocking_socket& sConnect, LPSOCKADDR psa) // const
+   //{
+   //   ASSERT(psa != NULL);
+   //   ASSERT(m_hSocket != INVALID_SOCKET);
+   //   ASSERT(sConnect.operator SOCKET() == INVALID_SOCKET);
+
+   //   // ATTENTION: dynamic_cast would be better (and then checking against NULL)
+   //   //            RTTI must be enabled to use dynamic_cast //+#
+   //   blocking_socket* pConnect = dynamic_cast<blocking_socket*>(&sConnect);
+
+   //   socklen_t nLengthAddr = sizeof(SOCKADDR);
+   //   pConnect->m_hSocket = ::accept(m_hSocket, psa, &nLengthAddr);
+
+   //   if (pConnect->operator SOCKET() == INVALID_SOCKET)
+   //   {
+   //      // no exception if the listen was canceled
+   //      if (WSAGetLastError() != WSAEINTR)
+   //      {
+   //         throw blocking_socket_exception(get_app(), _T("Accept"));
+   //      }
+   //      return false;
+   //   }
+   //   return true;
+   //}
+
+   //void blocking_socket::close()
+   //{
+   //   if (m_hSocket != INVALID_SOCKET && closesocket(m_hSocket) == SOCKET_ERROR)
+   //   {
+   //      // should be OK to close if closed already
+   //      throw blocking_socket_exception(get_app(), _T("Close"));
+   //   }
+   //   m_hSocket = INVALID_SOCKET;
+   //}
+
+   //void blocking_socket::connect(LPCSOCKADDR psa) // const
+   //{
+   //   ASSERT(psa != NULL);
+   //   ASSERT(m_hSocket != INVALID_SOCKET);
+   //   // should timeout by itself
+   //   if (::connect(m_hSocket, psa, sizeof(SOCKADDR)) == SOCKET_ERROR)
+   //   {
+   //      throw blocking_socket_exception(get_app(), _T("Connect"));
+   //   }
+   //}
+
+   int blocking_socket::write(const void* pch, int nSize, int nSecs) // const
    {
-      // doesn't throw an exception because it's called in a catch block
-      if (m_hSocket == INVALID_SOCKET)
-         return;
+      
+      ::sockets::tcp_socket::write(pch, nSize);
 
-      VERIFY(closesocket(m_hSocket) != SOCKET_ERROR);
+      return nSize;
 
-      m_hSocket = INVALID_SOCKET;
    }
 
-   void blocking_socket::create(int nType /* = SOCK_STREAM */)
+   //int blocking_socket::send(const char * pch, int nSize, int nSecs) // const
+   //{
+   //   //ASSERT(pch != NULL);
+   //   //ASSERT(m_hSocket != INVALID_SOCKET);
+
+   //   // returned value will be less than nSize if client cancels the reading
+   //   /*fd_set fd;
+   //   FD_ZERO(&fd);
+   //   FD_SET(m_hSocket, &fd);
+   //   TIMEVAL tv = { nSecs, 0 };*/
+
+   //   m_handler.select();
+   //   //if (_select(m_hSocket + 1, NULL, &fd, NULL, &tv) == 0)
+   //   //{
+   //   //   throw blocking_socket_exception(get_app(), _T("Send timeout"));
+   //   //}
+
+   //   const int nBytesSent = send(pch, nSize);
+   //   if (nBytesSent == SOCKET_ERROR)
+   //   {
+   //      throw blocking_socket_exception(get_app(), _T("Send"));
+   //   }
+
+   //   return nBytesSent;
+   //}
+
+   bool blocking_socket::check_readability(int nSecsPatience) // const
    {
-      ASSERT(m_hSocket == INVALID_SOCKET);
-      if ((m_hSocket = socket(AF_INET, nType, 0)) == INVALID_SOCKET)
-      {
-         throw blocking_socket_exception(get_app(), _T("Create"));
-      }
-   }
-
-   void blocking_socket::bind(LPCSOCKADDR psa) const
-   {
-      ASSERT(psa != NULL);
-      ASSERT(m_hSocket != INVALID_SOCKET);
-      if (::bind(m_hSocket, psa, sizeof(SOCKADDR)) == SOCKET_ERROR)
-      {
-         throw blocking_socket_exception(get_app(), _T("Bind"));
-      }
-   }
-
-   void blocking_socket::listen() const
-   {
-      ASSERT(m_hSocket != INVALID_SOCKET);
-      if (::listen(m_hSocket, 5) == SOCKET_ERROR)
-      {
-         throw blocking_socket_exception(get_app(), _T("Listen"));
-      }
-   }
-
-   bool blocking_socket::accept(iblocking_socket& sConnect, LPSOCKADDR psa) const
-   {
-      ASSERT(psa != NULL);
-      ASSERT(m_hSocket != INVALID_SOCKET);
-      ASSERT(sConnect.operator SOCKET() == INVALID_SOCKET);
-
-      // ATTENTION: dynamic_cast would be better (and then checking against NULL)
-      //            RTTI must be enabled to use dynamic_cast //+#
-      blocking_socket* pConnect = dynamic_cast<blocking_socket*>(&sConnect);
-
-      socklen_t nLengthAddr = sizeof(SOCKADDR);
-      pConnect->m_hSocket = ::accept(m_hSocket, psa, &nLengthAddr);
-
-      if (pConnect->operator SOCKET() == INVALID_SOCKET)
-      {
-         // no exception if the listen was canceled
-         if (WSAGetLastError() != WSAEINTR)
-         {
-            throw blocking_socket_exception(get_app(), _T("Accept"));
-         }
-         return false;
-      }
-      return true;
-   }
-
-   void blocking_socket::close()
-   {
-      if (m_hSocket != INVALID_SOCKET && closesocket(m_hSocket) == SOCKET_ERROR)
-      {
-         // should be OK to close if closed already
-         throw blocking_socket_exception(get_app(), _T("Close"));
-      }
-      m_hSocket = INVALID_SOCKET;
-   }
-
-   void blocking_socket::connect(LPCSOCKADDR psa) const
-   {
-      ASSERT(psa != NULL);
-      ASSERT(m_hSocket != INVALID_SOCKET);
-      // should timeout by itself
-      if (::connect(m_hSocket, psa, sizeof(SOCKADDR)) == SOCKET_ERROR)
-      {
-         throw blocking_socket_exception(get_app(), _T("Connect"));
-      }
-   }
-
-   int blocking_socket::write(const void* pch, int nSize, int nSecs) const
-   {
-      ASSERT(pch != NULL);
-      int         nBytesSent = 0;
-      int         nBytesThisTime = 0;
-      const char* pch1 = (const char *) pch;
-
-      do
-      {
-         nBytesThisTime = send(pch1, nSize - nBytesSent, nSecs);
-         nBytesSent += nBytesThisTime;
-         pch1 += nBytesThisTime;
-      } while (nBytesSent < nSize);
-
-      return nBytesSent;
-   }
-
-   int blocking_socket::send(const char * pch, int nSize, int nSecs) const
-   {
-      ASSERT(pch != NULL);
-      ASSERT(m_hSocket != INVALID_SOCKET);
-
-      // returned value will be less than nSize if client cancels the reading
-      fd_set fd;
-      FD_ZERO(&fd);
-      FD_SET(m_hSocket, &fd);
-      TIMEVAL tv = { nSecs, 0 };
-
-      if (_select(m_hSocket + 1, NULL, &fd, NULL, &tv) == 0)
-      {
-         throw blocking_socket_exception(get_app(), _T("Send timeout"));
-      }
-
-      const int nBytesSent = ::send(m_hSocket, pch, nSize, 0);
-      if (nBytesSent == SOCKET_ERROR)
-      {
-         throw blocking_socket_exception(get_app(), _T("Send"));
-      }
-
-      return nBytesSent;
-   }
-
-   bool blocking_socket::check_readability() const
-   {
-      ASSERT(m_hSocket != INVALID_SOCKET);
 
       fd_set fd;
       FD_ZERO(&fd);
-      FD_SET(m_hSocket, &fd);
-      TIMEVAL tv = { 0, 0 };
+      FD_SET(GetSocket(), &fd);
+      TIMEVAL tv = { nSecsPatience, 0 };
 
       // static_cast is necessary to avoid compiler warning under WIN32;
       // This is no problem because the first parameter is included only
       // for compatibility with Berkeley sockets.
-      const int iRet = _select(m_hSocket + 1, &fd, NULL, NULL, &tv);
+      const int iRet = ::select(GetSocket() + 1, &fd, NULL, NULL, &tv);
 
       if (iRet == SOCKET_ERROR)
       {
@@ -226,55 +238,105 @@ namespace sockets2
       return iRet == 1;
    }
 
-   int blocking_socket::receive(void * pch, int nSize, int nSecs) const
+   bool blocking_socket::check_writability(int nSecsPatience) // const
    {
-      ASSERT(pch != NULL);
-      ASSERT(m_hSocket != INVALID_SOCKET);
 
       fd_set fd;
       FD_ZERO(&fd);
-      FD_SET(m_hSocket, &fd);
-      TIMEVAL tv = { nSecs, 0 };
+      FD_SET(GetSocket(), &fd);
+      TIMEVAL tv = { nSecsPatience, 0 };
 
       // static_cast is necessary to avoid compiler warning under WIN32;
       // This is no problem because the first parameter is included only
       // for compatibility with Berkeley sockets.
-      if (_select(m_hSocket + 1, &fd, NULL, NULL, &tv) == 0)
+      const int iRet = ::select(GetSocket() + 1, NULL, &fd, NULL, &tv);
+
+      if (iRet == SOCKET_ERROR)
       {
-         throw blocking_socket_exception(get_app(), _T("Receive timeout"));
+         throw blocking_socket_exception(get_app(), _T("Socket Error"));
       }
 
-      const int nBytesReceived = ::recv(m_hSocket, (char *) pch, nSize, 0);
-      if (nBytesReceived == SOCKET_ERROR)
+      return iRet == 1;
+   }
+
+
+   void blocking_socket::on_read(const void * pdata, int_ptr n)
+   {
+
+      synch_lock sl(m_pmutex);
+
+      m_file.write(pdata, n);
+
+   }
+
+
+   int blocking_socket::receive(void * pch, int nSize, int nSecs) // const
+   {
+
+      byte * p = (byte *) pch;
+
+      int nBytesReceived = 0;
+
+      DWORD dwStart = ::get_tick_count();
+
+      int iRead = 0;
+
+      while (nSize - nBytesReceived > 0)
       {
-         throw blocking_socket_exception(get_app(), _T("Receive"));
+
+         if (get_tick_count() - dwStart > nSecs * 1000)
+         {
+
+            break;
+
+         }
+
+         {
+
+            synch_lock sl(m_pmutex);
+
+            iRead = m_file.remove_begin(&p[nBytesReceived], nSize - nBytesReceived);
+
+         }
+
+         nBytesReceived += iRead;
+
+         if (nBytesReceived > 0)
+         {
+
+            break;
+
+         }
+
+         if (!m_handler.contains(this))
+         {
+
+            break;
+
+         }
+
+         m_handler.select(1, 0);
+
       }
 
       return nBytesReceived;
+
    }
 
-   int blocking_socket::receive_datagram(char* pch, int nSize, LPSOCKADDR psa, int nSecs) const
+
+   int blocking_socket::receive_datagram(char* pch, int nSize, LPSOCKADDR psa, int nSecs) // const
    {
-      ASSERT(pch != NULL);
-      ASSERT(psa != NULL);
-      ASSERT(m_hSocket != INVALID_SOCKET);
-
-      fd_set fd;
-      FD_ZERO(&fd);
-      FD_SET(m_hSocket, &fd);
-      TIMEVAL tv = { nSecs, 0 };
-
-      // static_cast is necessary to avoid compiler warning under WIN32;
-      // This is no problem because the first parameter is included only
-      // for compatibility with Berkeley sockets.
-      if (_select(m_hSocket + 1, &fd, NULL, NULL, &tv) == 0)
+      
+      if (!check_readability(nSecs))
       {
+
          throw blocking_socket_exception(get_app(), _T("Receive timeout"));
+
       }
 
       // input buffer should be big enough for the entire datagram
       socklen_t nFromSize = sizeof(SOCKADDR);
-      const int nBytesReceived = recvfrom(m_hSocket, pch, nSize, 0, psa, &nFromSize);
+      const int nBytesReceived = ::recvfrom(GetSocket(), pch, nSize, 0, psa, &nFromSize);
 
       if (nBytesReceived == SOCKET_ERROR)
       {
@@ -284,26 +346,16 @@ namespace sockets2
       return nBytesReceived;
    }
 
-   int blocking_socket::send_datagram(const char* pch, int nSize, LPCSOCKADDR psa, int nSecs) const
+   int blocking_socket::send_datagram(const char* pch, int nSize, LPCSOCKADDR psa, int nSecs) // const
    {
-      ASSERT(pch != NULL);
-      ASSERT(psa != NULL);
-      ASSERT(m_hSocket != INVALID_SOCKET);
-
-      fd_set fd;
-      FD_ZERO(&fd);
-      FD_SET(m_hSocket, &fd);
-      TIMEVAL tv = { nSecs, 0 };
-
-      // static_cast is necessary to avoid compiler warning under WIN32;
-      // This is no problem because the first parameter is included only
-      // for compatibility with Berkeley sockets.
-      if (_select(m_hSocket + 1, NULL, &fd, NULL, &tv) == 0)
+      
+      if (!check_writability(nSecs))
       {
+
          throw blocking_socket_exception(get_app(), _T("Send timeout"));
       }
 
-      const int nBytesSent = sendto(m_hSocket, pch, nSize, 0, psa, sizeof(SOCKADDR));
+      const int nBytesSent = ::sendto(GetSocket(), pch, nSize, 0, psa, sizeof(SOCKADDR));
       if (nBytesSent == SOCKET_ERROR)
       {
          throw blocking_socket_exception(get_app(), _T("SendDatagram"));
@@ -312,71 +364,33 @@ namespace sockets2
       return nBytesSent;
    }
 
-   void blocking_socket::get_peer_address(LPSOCKADDR psa) const
-   {
-      ASSERT(psa != NULL);
-      ASSERT(m_hSocket != INVALID_SOCKET);
 
-      // gets the address of the socket at the other end
-      socklen_t nLengthAddr = sizeof(SOCKADDR);
-      if (getpeername(m_hSocket, psa, &nLengthAddr) == SOCKET_ERROR)
-      {
-         throw blocking_socket_exception(get_app(), _T("GetPeerName"));
-      }
+   ::net::address blocking_socket::get_host_by_name(const char* pchName, USHORT ushPort /* = 0 */)
+   {
+      
+      return ::net::address(pchName);
+
    }
 
-   void blocking_socket::get_socket_address(LPSOCKADDR psa) const
+
+   string blocking_socket::get_host_by_address(::net::address psa)
    {
-      ASSERT(psa != NULL);
-      ASSERT(m_hSocket != INVALID_SOCKET);
+      
+      return psa.get_display_number();
 
-      // gets the address of the socket at this end
-      socklen_t nLengthAddr = sizeof(SOCKADDR);
-      if (getsockname(m_hSocket, psa, &nLengthAddr) == SOCKET_ERROR)
-      {
-         throw blocking_socket_exception(get_app(), _T("GetSockName"));
-      }
-   }
-
-   address blocking_socket::get_host_by_name(const char* pchName, USHORT ushPort /* = 0 */)
-   {
-      ASSERT(pchName != NULL);
-      hostent* pHostEnt = gethostbyname(pchName);
-
-      if (pHostEnt == NULL)
-      {
-         throw blocking_socket_exception(get_app(), _T("GetHostByName"));
-      }
-
-      ULONG* pulAddr = (ULONG*)pHostEnt->h_addr_list[0];
-      SOCKADDR_IN sockTemp;
-      sockTemp.sin_family = AF_INET;
-      sockTemp.sin_port = htons(ushPort);
-      sockTemp.sin_addr.s_addr = *pulAddr; // address is already in network byte order
-      return sockTemp;
-   }
-
-   const char* blocking_socket::get_host_by_address(LPCSOCKADDR psa)
-   {
-      ASSERT(psa != NULL);
-      hostent* pHostEnt = gethostbyaddr((char*) &((LPSOCKADDR_IN)psa)
-         ->sin_addr.s_addr, 4, PF_INET);
-
-      if (pHostEnt == NULL)
-      {
-         throw blocking_socket_exception(get_app(), _T("GetHostByAddr"));
-      }
-
-      return pHostEnt->h_name; // caller shouldn't delete this memory
    }
 
    ///////////////////////////////////////////////////////////////////////////////////////
    //**************************** Class http_blocking_socket ****************************//
    ///////////////////////////////////////////////////////////////////////////////////////
 
-   http_blocking_socket::http_blocking_socket(::aura::application * papp) :
-      ::object(papp),
-      blocking_socket(papp)
+   http_blocking_socket::http_blocking_socket(base_socket_handler & handler) :
+      ::object(handler.get_app()),
+      base_socket(handler),
+      socket(handler),
+      stream_socket(handler),
+      tcp_socket(handler),
+      blocking_socket(handler)
    {
       m_pReadBuf = new char[nSizeRecv];
       m_nReadBuf = 0;
@@ -451,13 +465,17 @@ namespace sockets2
       return nBytesRead;
    }
 
-   sp(iblocking_socket) create_default_blocking_socket(::aura::application * papp)
+   
+   sp(blocking_socket) create_default_blocking_socket(base_socket_handler & handler)
    {
-      return canew(blocking_socket(papp));
+
+      return canew(blocking_socket(handler));
+
    }
 
 
 } // namespace sockets2
+
 
 
 

@@ -4,7 +4,7 @@
 // Most of the documentation are taken from this RFC.
 // This is an implementation of an simple FTP client. I have tried to implement
 // platform independent. For the communication i used the classes blocking_socket,
-// ::sockets2::address, ... from David J. Kruglinski (Inside Visual C++). These classes are
+// ::net::address, ... from David J. Kruglinski (Inside Visual C++). These classes are
 // only small wrappers for the sockets-API.
 // Further I used a smart pointer-implementation from Scott Meyers (Effective C++,
 // More Effective C++, Effective STL).
@@ -40,7 +40,7 @@
 //      - ExecuteDatachannelCommand now accepts an itransfer_notification object.
 //        Through this concept there is no need to write the received files to a file.
 //        For example the bytes can be written only in memory or an other tcp stream.
-//      - Added an interface for the blocking socket (::sockets2::iblocking_socket).
+//      - Added an interface for the blocking socket (::sockets::blocking_socket).
 //        Therefore it is possible to exchange the socket implementation, e.g. for
 //        writing unit tests (by simulating an specific scenario of a FTP communication).
 //      - Replaced the magic numbers concerning the reply codes by a class.
@@ -79,10 +79,11 @@ namespace ftp
    /// @param[in] uiResponseWait Sleep time between receive calls to socket when getting
    ///                           the response. Sometimes the socket hangs if no wait time
    ///                           is set. Normally not wait time is necessary.
-   client::client(::aura::application * papp, ::sockets2::iblocking_socket * apSocket, unsigned int uiTimeout/*=10*/,
+   client::client(::aura::application * papp, ::sockets::blocking_socket * apSocket, unsigned int uiTimeout/*=10*/,
       unsigned int uiBufferSize/*=2048*/, unsigned int uiResponseWait/*=0*/,
       const string& strRemoteDirectorySeparator/*=_T("/")*/) :
       ::object(papp),
+      m_sockethandler(papp),
       mc_uiTimeout(uiTimeout),
       mc_uiResponseWait(uiResponseWait),
       mc_strEolCharacterSequence(_T("\r\n")),
@@ -98,7 +99,7 @@ namespace ftp
       if (m_apSckControlConnection.is_null())
       {
 
-         m_apSckControlConnection = ::sockets2::create_default_blocking_socket(papp);
+         m_apSckControlConnection = ::sockets::create_default_blocking_socket(m_sockethandler);
 
       }
 
@@ -163,7 +164,7 @@ namespace ftp
    }
 
    /// Opens the control channel to the FTP server.
-   /// @param[in] strServerHost IP-::sockets2::address or name of the server
+   /// @param[in] strServerHost IP-::net::address or name of the server
    /// @param[in] iServerPort Port for channel. Usually this is port 21.
    bool client::OpenControlChannel(const string& strServerHost, USHORT ushServerPort/*=DEFAULT_FTP_PORT*/)
    {
@@ -171,16 +172,23 @@ namespace ftp
 
       try
       {
-         m_apSckControlConnection->create(SOCK_STREAM);
-         ::sockets2::address adr = m_apSckControlConnection->get_host_by_name(strServerHost, ushServerPort);
-         m_apSckControlConnection->connect(adr);
+         
+         if (!m_apSckControlConnection->open(strServerHost, ushServerPort))
+         {
+            
+            return false;
+
+         }
+
       }
-      catch (::sockets2::blocking_socket_exception& blockingException)
+      catch (::sockets::blocking_socket_exception& blockingException)
       {
          ReportError(blockingException.GetErrorMessage(), __FILE__, __LINE__);
-         m_apSckControlConnection->cleanup();
+         m_apSckControlConnection->close();
          return false;
       }
+
+      m_sockethandler.add(m_apSckControlConnection);
 
       return true;
    }
@@ -188,7 +196,7 @@ namespace ftp
    /// Returns the connection state of the client.
    bool client::IsConnected()
    {
-      return m_apSckControlConnection->operator SOCKET() != INVALID_SOCKET;
+      return m_apSckControlConnection->GetSocket() != INVALID_SOCKET;
    }
 
    /// Returns true if a download/upload is running, otherwise false.
@@ -205,10 +213,10 @@ namespace ftp
          m_apSckControlConnection->close();
          m_apCurrentRepresentation.release();
       }
-      catch (::sockets2::blocking_socket_exception& blockingException)
+      catch (::sockets::blocking_socket_exception& blockingException)
       {
          blockingException.GetErrorMessage();
-         m_apSckControlConnection->cleanup();
+         m_apSckControlConnection->close();
       }
    }
 
@@ -619,19 +627,19 @@ namespace ftp
       client& ActiveServer = fSourcePasv ? TargetFtpServer : SourceFtpServer;
 
       // set one FTP server in passive mode
-      // the FTP server opens a port and tell us the socket (ip ::sockets2::address + port)
+      // the FTP server opens a port and tell us the socket (ip ::net::address + port)
       // this socket is used for opening the data connection
       ULONG  ulIP = 0;
       USHORT ushSock = 0;
       if (PassiveServer.Passive(ulIP, ushSock) != FTP_OK)
          return false;
 
-      ::sockets2::address csaPassiveServer(ulIP, ushSock);
+      ::net::address csaPassiveServer(ulIP, ushSock);
 
-      // transmit the socket (ip ::sockets2::address + port) of the first FTP server to the
+      // transmit the socket (ip ::net::address + port) of the first FTP server to the
       // second server
       // the second FTP server establishes then the data connection to the first
-      if (ActiveServer.DataPort(csaPassiveServer.DottedDecimal(), ushSock) != FTP_OK)
+      if (ActiveServer.DataPort(csaPassiveServer.get_display_number(), ushSock) != FTP_OK)
          return false;
 
       if (!SourceFtpServer.SendCommand(command::RETR(), strSourceFile))
@@ -680,22 +688,36 @@ namespace ftp
       if (RepresentationType(representation) != FTP_OK)
          return false;
 
-      sp(::sockets2::iblocking_socket) apSckDataConnection(m_apSckControlConnection->create_instance());
+      bool fTransferOK = false;
 
       if (fPasv)
       {
+         sp(::sockets::blocking_socket) apSckDataConnection;
+         apSckDataConnection = m_apSckControlConnection->create_instance();
          if (!OpenPassiveDataConnection(*apSckDataConnection, crDatachannelCmd, strPath, dwByteOffset))
             return false;
+         fTransferOK = TransferData(crDatachannelCmd, Observer, *apSckDataConnection);
+
+         apSckDataConnection->close();
       }
       else
       {
+         
+         sp(::sockets::listen_socket < ::sockets::blocking_socket > ) apSckDataConnection;
+         
+         apSckDataConnection = m_apSckControlConnection->create_listening_instance();
+         
          if (!OpenActiveDataConnection(*apSckDataConnection, crDatachannelCmd, strPath, dwByteOffset))
             return false;
+
+         sp(::sockets::blocking_socket) psocket = apSckDataConnection->m_psocket;
+
+         fTransferOK = TransferData(crDatachannelCmd, Observer, *psocket);
+
+         apSckDataConnection->close();
+
       }
 
-      const bool fTransferOK = TransferData(crDatachannelCmd, Observer, *apSckDataConnection);
-
-      apSckDataConnection->close();
 
       // get response from FTP server
       reply Reply;
@@ -709,7 +731,7 @@ namespace ftp
    /// @param[in] crDatachannelCmd Command to be executeted.
    /// @param[in] Observer Object for observing the execution of the command.
    /// @param[in] sckDataConnection Socket which is used for sending/receiving data.
-   bool client::TransferData(const command& crDatachannelCmd, itransfer_notification& Observer, ::sockets2::iblocking_socket& sckDataConnection)
+   bool client::TransferData(const command& crDatachannelCmd, itransfer_notification& Observer, ::sockets::blocking_socket& sckDataConnection)
    {
       if (crDatachannelCmd.IsDatachannelWriteCommand())
       {
@@ -734,7 +756,7 @@ namespace ftp
    /// @param[in] crDatachannelCmd Command to be executeted.
    /// @param[in] strPath Parameter for the command usually a path.
    /// @param[in] dwByteOffset Server marker at which file transfer is to be restarted.
-   bool client::OpenActiveDataConnection(::sockets2::iblocking_socket& sckDataConnection, const command& crDatachannelCmd, const string& strPath, DWORD dwByteOffset)
+   bool client::OpenActiveDataConnection(::sockets::socket & sckDataConnectionParam, const command& crDatachannelCmd, const string& strPath, DWORD dwByteOffset)
    {
       if (!crDatachannelCmd.IsDatachannelCommand())
       {
@@ -742,34 +764,65 @@ namespace ftp
          return false;
       }
 
-      sp(::sockets2::iblocking_socket) apSckServer(m_apSckControlConnection->create_instance());
+
+      ::sockets::listen_socket < ::sockets::blocking_socket > & sckDataConnection 
+         = *(dynamic_cast < ::sockets::listen_socket < ::sockets::blocking_socket > * >(&sckDataConnectionParam));
+
+      //ll.m_strCat = m_strCat;
+      //ll.m_strCipherList = m_strCipherList;
+
+      sckDataConnection.m_bDetach = true;
+      //m_strIp = "127.0.0.1";
+      //if (m_iPort == 443)
+      //{
+      //   ll.EnableSSL();
+      //}
+      // INADDR_ANY = ip ::net::address of localhost
+      // second parameter "0" means that the WINSOCKAPI ask for a port
+      string strIp = "127.0.0.1";
+      int iPort = 0;
+      if (sckDataConnection.Bind(0, "tcp", 1))
+      {
+         string strMessage;
+         strMessage.Format("could not bind to address %s %d", strIp, iPort);
+         TRACE(strMessage);
+         //System.simple_message_box(NULL, strMessage);
+         return false;
+      }
+      m_sockethandler.add(&sckDataConnection);
+
 
       USHORT ushLocalSock = 0;
       try
       {
-         // INADDR_ANY = ip ::sockets2::address of localhost
+         // INADDR_ANY = ip ::net::address of localhost
          // second parameter "0" means that the WINSOCKAPI ask for a port
-         ::sockets2::address csaAddressTemp(INADDR_ANY, 0);
-         apSckServer->create(SOCK_STREAM);
-         apSckServer->bind(csaAddressTemp);
-         apSckServer->get_socket_address(csaAddressTemp);
-         ushLocalSock = csaAddressTemp.Port();
-         apSckServer->listen();
+         //::net::address csaAddressTemp(INADDR_ANY, 0);
+         //apSckServer->create(SOCK_STREAM);
+         //apSckServer->bind(csaAddressTemp);
+         //apSckServer->get_socket_address(csaAddressTemp);
+         //ushLocalSock = csaAddressTemp.Port();
+         //apSckServer->listen();
       }
-      catch (::sockets2::blocking_socket_exception& blockingException)
+      catch (::sockets::blocking_socket_exception& blockingException)
       {
          ReportError(blockingException.GetErrorMessage(), __FILE__, __LINE__);
-         apSckServer->cleanup();
+         sckDataConnection.close();
          return false;
       }
+      
+      ::net::address csaAddressTemp(INADDR_ANY, 0);
+      csaAddressTemp = sckDataConnection.get_socket_address();
+      ushLocalSock = csaAddressTemp.get_service_number();
 
-      // get own ip ::sockets2::address
-      ::sockets2::address csaLocalAddress;
-      m_apSckControlConnection->get_socket_address(csaLocalAddress);
 
-      // transmit the socket (ip ::sockets2::address + port) to the server
+      // get own ip ::net::address
+      ::net::address csaLocalAddress;
+      csaLocalAddress = m_apSckControlConnection->get_socket_address();
+
+      // transmit the socket (ip ::net::address + port) to the server
       // the FTP server establishes then the data connection
-      if (DataPort(csaLocalAddress.DottedDecimal(), ushLocalSock) != FTP_OK)
+      if (DataPort(csaLocalAddress.get_display_number(), ushLocalSock) != FTP_OK)
          return false;
 
       // if resuming is activated then set offset
@@ -784,12 +837,15 @@ namespace ftp
          !Reply.Code().IsPositivePreliminaryReply())
          return false;
 
-      // accept the data connection
-      ::sockets2::address sockAddrTemp;
-      if (!apSckServer->accept(sckDataConnection, sockAddrTemp))
-         return false;
+      //while (!sckDataConnection.HasCreator())
+      //{
+
+      //   m_sockethandler.select(8, 0);
+
+      //}
 
       return true;
+
    }
 
    /// Opens a passive data connection.
@@ -797,35 +853,39 @@ namespace ftp
    /// @param[in] crDatachannelCmd Command to be executeted.
    /// @param[in] strPath Parameter for the command usually a path.
    /// @param[in] dwByteOffset Server marker at which file transfer is to be restarted.
-   bool client::OpenPassiveDataConnection(::sockets2::iblocking_socket& sckDataConnection, const command& crDatachannelCmd, const string& strPath, DWORD dwByteOffset)
+   bool client::OpenPassiveDataConnection(::sockets::socket & sckDataConnectionParam, const command& crDatachannelCmd, const string& strPath, DWORD dwByteOffset)
    {
       if (!crDatachannelCmd.IsDatachannelCommand())
       {
          ASSERT(false);
          return false;
       }
+      ::sockets::blocking_socket & sckDataConnection
+         = *(dynamic_cast < ::sockets::blocking_socket * >(&sckDataConnectionParam));
 
       ULONG   ulRemoteHostIP = 0;
       USHORT  ushServerSock = 0;
 
       // set passive mode
-      // the FTP server opens a port and tell us the socket (ip ::sockets2::address + port)
+      // the FTP server opens a port and tell us the socket (ip ::net::address + port)
       // this socket is used for opening the data connection
       if (Passive(ulRemoteHostIP, ushServerSock) != FTP_OK)
          return false;
 
       // establish connection
-      ::sockets2::address sockAddrTemp;
+      ::net::address sockAddrTemp;
       try
       {
-         sckDataConnection.create(SOCK_STREAM);
-         ::sockets2::address csaAddress(ulRemoteHostIP, ushServerSock);
-         sckDataConnection.connect(csaAddress);
+         if (!sckDataConnection.open(ulRemoteHostIP, ushServerSock))
+         {
+            return false;
+         }
+         
       }
-      catch (::sockets2::blocking_socket_exception& blockingException)
+      catch (::sockets::blocking_socket_exception& blockingException)
       {
          ReportError(blockingException.GetErrorMessage(), __FILE__, __LINE__);
-         sckDataConnection.cleanup();
+         sckDataConnection.close();
          return false;
       }
 
@@ -847,7 +907,7 @@ namespace ftp
    /// Sends data over a socket to the server.
    /// @param[in] Observer Object for observing the execution of the command.
    /// @param[in] sckDataConnection Socket which is used for the send action.
-   bool client::SendData(itransfer_notification& Observer, ::sockets2::iblocking_socket& sckDataConnection)
+   bool client::SendData(itransfer_notification& Observer, ::sockets::blocking_socket& sckDataConnection)
    {
       try
       {
@@ -876,11 +936,11 @@ namespace ftp
             return false;
          }
       }
-      catch (::sockets2::blocking_socket_exception& blockingException)
+      catch (::sockets::blocking_socket_exception& blockingException)
       {
          ((client *) this)->m_fTransferInProgress = false;
          ReportError(blockingException.GetErrorMessage(), __FILE__, __LINE__);
-         sckDataConnection.cleanup();
+         sckDataConnection.close();
          return false;
       }
 
@@ -890,7 +950,7 @@ namespace ftp
    /// Receives data over a socket from the server.
    /// @param[in] Observer Object for observing the execution of the command.
    /// @param[in] sckDataConnection Socket which is used for receiving the data.
-   bool client::ReceiveData(itransfer_notification& Observer, ::sockets2::iblocking_socket& sckDataConnection)
+   bool client::ReceiveData(itransfer_notification& Observer, ::sockets::blocking_socket& sckDataConnection)
    {
       try
       {
@@ -922,11 +982,11 @@ namespace ftp
             return false;
          }
       }
-      catch (::sockets2::blocking_socket_exception& blockingException)
+      catch (::sockets::blocking_socket_exception& blockingException)
       {
          ((client *) this)->m_fTransferInProgress = false;
          ReportError(blockingException.GetErrorMessage(), __FILE__, __LINE__);
-         sckDataConnection.cleanup();
+         sckDataConnection.close();
          return false;
       }
 
@@ -940,6 +1000,13 @@ namespace ftp
       if (!IsConnected())
          return false;
 
+      while (m_apSckControlConnection->check_readability())
+      {
+
+         m_sockethandler.select();
+
+      }
+
       try
       {
          for (auto * p : (observer_array &)m_setObserver)
@@ -947,10 +1014,10 @@ namespace ftp
          const std::string strCommand = Command.AsString(Arguments) + "\r\n";
          m_apSckControlConnection->write(strCommand, static_cast<int>(strCommand.length()), mc_uiTimeout);
       }
-      catch (::sockets2::blocking_socket_exception& blockingException)
+      catch (::sockets::blocking_socket_exception& blockingException)
       {
          ReportError(blockingException.GetErrorMessage(), __FILE__, __LINE__);
-         const_cast<client*>(this)->m_apSckControlConnection->cleanup();
+         const_cast<client*>(this)->m_apSckControlConnection->close();
          return false;
       }
 
@@ -1053,10 +1120,10 @@ namespace ftp
          if (strResponse.length() > 1 && strResponse.substr(strResponse.length() - 2) == _T("\r\n"))
             strResponse.erase(strResponse.length() - 2, 2);
       }
-      catch (::sockets2::blocking_socket_exception& blockingException)
+      catch (::sockets::blocking_socket_exception& blockingException)
       {
          ReportError(blockingException.GetErrorMessage(), __FILE__, __LINE__);
-         const_cast<client*>(this)->m_apSckControlConnection->cleanup();
+         const_cast<client*>(this)->m_apSckControlConnection->close();
          return false;
       }
 
@@ -1103,9 +1170,9 @@ namespace ftp
    /// This command requests the server-DTP (data transfer process) on a data to
    /// "listen"  port (which is not its default data port) and to wait for a
    /// connection rather than initiate one upon receipt of a transfer command.
-   /// The response to this command includes the host and port ::sockets2::address this
+   /// The response to this command includes the host and port ::net::address this
    /// server is listening on.
-   /// @param[out] ulIpAddress IP ::sockets2::address the server is listening on.
+   /// @param[out] ulIpAddress IP ::net::address the server is listening on.
    /// @param[out] ushPort Port the server is listening on.
    /// @return see return values of client::SimpleErrorCheck
    int client::Passive(ULONG& ulIpAddress, USHORT& ushPort)
@@ -1123,16 +1190,16 @@ namespace ftp
       return SimpleErrorCheck(Reply);
    }
 
-   /// Parses a response string and extracts the ip ::sockets2::address and port information.
+   /// Parses a response string and extracts the ip ::net::address and port information.
    /// @param[in]  strResponse The response string of a FTP server which holds
-   ///                         the ip ::sockets2::address and port information.
-   /// @param[out] ulIpAddress Buffer for the ip ::sockets2::address.
+   ///                         the ip ::net::address and port information.
+   /// @param[out] ulIpAddress Buffer for the ip ::net::address.
    /// @param[out] ushPort     Buffer for the port information.
    /// @retval true  Everything went ok.
    /// @retval false An error occurred (invalid format).
    bool client::GetIpAddressFromResponse(const string& strResponse, ULONG& ulIpAddress, USHORT& ushPort)
    {
-      // parsing of ip-::sockets2::address and port implemented with a finite state machine
+      // parsing of ip-::net::address and port implemented with a finite state machine
       // ...(192,168,1,1,3,44)...
       enum T_enState { state0, state1, state2, state3, state4 } enState = state0;
 
@@ -1288,9 +1355,9 @@ namespace ftp
    /// connection. There are defaults for both the user and server data ports, and
    /// under normal circumstances this command and its reply are not needed.  If
    /// this command is used, the argument is the concatenation of a 32-bit internet
-   /// host ::sockets2::address and a 16-bit TCP port ::sockets2::address.
-   /// @param[in] strHostIP IP-::sockets2::address like xxx.xxx.xxx.xxx
-   /// @param[in] uiPort 16-bit TCP port ::sockets2::address.
+   /// host ::net::address and a 16-bit TCP port ::net::address.
+   /// @param[in] strHostIP IP-::net::address like xxx.xxx.xxx.xxx
+   /// @param[in] uiPort 16-bit TCP port ::net::address.
    /// @return see return values of client::SimpleErrorCheck
    int client::DataPort(const string& strHostIP, USHORT ushPort)
    {

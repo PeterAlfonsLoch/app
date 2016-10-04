@@ -71,6 +71,11 @@ namespace sockets
       bool SetNonblocking(bool bNb, SOCKET s);
 
 
+      virtual ::net::address get_peer_address();
+      virtual ::net::address get_socket_address();
+
+
+
    };
 
 

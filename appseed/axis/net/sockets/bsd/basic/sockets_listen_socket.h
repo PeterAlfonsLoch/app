@@ -13,7 +13,7 @@ namespace sockets
 
    /** Binds incoming port number to new socket class X.
    \ingroup basic */
-   class CLASS_DECL_AXIS listen_socket_axis :
+   class CLASS_DECL_AXIS listen_socket_base :
       virtual public socket
    {
    public:
@@ -22,16 +22,15 @@ namespace sockets
       int32_t m_depth;
       bool m_bDetach;
 
-
       /** Constructor.
       \param h base_socket_handler reference
       \param use_creator Optional use of creator (default true) */
-      listen_socket_axis(base_socket_handler& h);
+      listen_socket_base(base_socket_handler& h);
 
 
 
 
-      virtual ~listen_socket_axis();
+      virtual ~listen_socket_base();
 
 
       virtual sp(socket) create_listen_socket();
@@ -126,14 +125,14 @@ namespace sockets
    \ingroup basic */
    template < class LISTENER >
    class listen_socket :
-      virtual public listen_socket_axis
+      virtual public listen_socket_base
    {
    public:
 
 
-      LISTENER * m_creator;
-      bool m_bHasCreate;
-
+      LISTENER *     m_creator;
+      bool           m_bHasCreate;
+      LISTENER *     m_psocket;
 
 
       /** Constructor.
@@ -143,7 +142,7 @@ namespace sockets
          object(h.get_app()),
          base_socket(h),
          socket(h),
-         listen_socket_axis(h),
+         listen_socket_base(h),
          m_bHasCreate(false),
          m_creator(NULL)
       {
@@ -186,17 +185,29 @@ namespace sockets
          if(HasCreator())
          {
 
-            return m_creator -> create();
+            ::sockets::base_socket * psocket = m_creator->create();
+
+            m_psocket = dynamic_cast <LISTENER *> (psocket);
+
+            if (m_psocket == NULL)
+            {
+
+               psocket->release();
+
+            }
+
+            return m_psocket;
 
          }
          else
          {
 
-            return canew(LISTENER(Handler()));
+            return m_psocket = canew(LISTENER(Handler()));
 
          }
 
       }
+
 
       bool HasCreator()
       {

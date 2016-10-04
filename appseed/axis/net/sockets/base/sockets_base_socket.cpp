@@ -64,7 +64,7 @@ namespace sockets
       ,m_bIpv6(false)
       ,m_bSocks4(false)
       ,m_b_chunked(false)
-
+      ,m_socket(INVALID_SOCKET)
       ,m_socks4_host(h.GetSocks4Host())
       ,m_socks4_port(h.GetSocks4Port())
       ,m_socks4_userid(h.GetSocks4Userid())

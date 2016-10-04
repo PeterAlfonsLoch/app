@@ -207,6 +207,35 @@ namespace sockets
    }
 
 
+   ::net::address socket::get_peer_address() // const
+   {
+      //ASSERT(psa != NULL);
+      //ASSERT(m_hSocket != INVALID_SOCKET);
+
+      // gets the address of the socket at the other end
+      ::net::address psa;
+      socklen_t nLengthAddr = sizeof(SOCKADDR);
+      if (getpeername(GetSocket(), psa.sa(), &nLengthAddr) == SOCKET_ERROR)
+      {
+         throw blocking_socket_exception(get_app(), _T("GetPeerName"));
+      }
+      return psa;
+   }
+
+   ::net::address socket::get_socket_address() // const
+   {
+      //ASSERT(psa != NULL);
+      //ASSERT(m_hSocket != INVALID_SOCKET);
+
+      // gets the address of the socket at this end
+      ::net::address psa;
+      socklen_t nLengthAddr = sizeof(SOCKADDR);
+      if (getsockname(GetSocket(), psa.sa(), &nLengthAddr) == SOCKET_ERROR)
+      {
+         throw blocking_socket_exception(get_app(), _T("GetSockName"));
+      }
+      return psa;
+   }
 
 } // namespace sockets
 

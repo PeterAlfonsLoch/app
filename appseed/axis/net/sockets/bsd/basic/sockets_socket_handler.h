@@ -66,7 +66,9 @@ namespace sockets
 
 
       /** add base_socket instance to base_socket map. Removal is always automatic. */
-      void add(base_socket *);
+      virtual void add(base_socket *) override;
+
+      virtual bool contains(base_socket *) override;
 
       /** get status of read/write/exception file descriptor set for a base_socket. */
       void get(SOCKET s,bool& r,bool& w,bool& e);

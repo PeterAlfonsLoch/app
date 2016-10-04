@@ -480,8 +480,34 @@ public:
 
    PAIR & element_at(::index iIndex) { return elements().element_at(iIndex); }
 
+   
 
 };
+
+template <class KEY, class ARG_KEY, class VALUE, class ARG_VALUE = const VALUE &, class PAIR = pair < KEY, VALUE > >
+bool contains_value(const map < KEY, ARG_KEY, VALUE, ARG_VALUE, PAIR > * pmap, ARG_VALUE value)
+{
+
+
+   auto p = pmap->PGetFirstAssoc();
+
+   while (p != NULL)
+   {
+
+      if (p->m_element2 == value)
+      {
+
+         return true;
+
+      }
+
+      p = pmap->PGetNextAssoc(p);
+
+   }
+
+   return false;
+
+}
 
 
 //
@@ -1369,6 +1395,7 @@ void map < KEY, ARG_KEY, VALUE, ARG_VALUE, PAIR >::erase(iterator it)
    remove_key(it->m_element1);
 
 }
+
 
 template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class PAIR >
 void map < KEY, ARG_KEY, VALUE, ARG_VALUE, PAIR >::get_next_assoc(POSITION& rNextPosition,

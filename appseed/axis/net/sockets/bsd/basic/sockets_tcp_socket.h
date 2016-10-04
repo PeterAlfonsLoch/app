@@ -279,6 +279,8 @@ namespace sockets
       void buffer(const void * buf, memory_size_t len);
 
 
+
+
    };
 
    extern "C"

@@ -282,6 +282,37 @@ namespace sockets
    }
 
 
+   bool socket_handler::contains(base_socket * pbasesocket)
+   {
+
+      sp(base_socket) psocket = pbasesocket;
+      
+      if (::contains_value(&m_sockets, psocket))
+      {
+         
+         return true;
+
+      }
+
+      if (::contains_value(&m_add, psocket))
+      {
+
+         return true;
+
+      }
+
+      if (m_delete.contains(psocket))
+      {
+
+         return true;
+
+      }
+
+      return false;
+
+   }
+
+
    int32_t socket_handler::select(struct timeval *tsel)
    {
 

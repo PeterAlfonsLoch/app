@@ -97,6 +97,8 @@ namespace sockets
       virtual void remove(base_socket *) = 0;
    public:
 
+      virtual bool contains(base_socket *) = 0;
+
       /** get status of read/write/exception file descriptor set for a socket. */
       virtual void get(SOCKET s,bool& r,bool& w,bool& e) = 0;
       /** Set read/write/exception file descriptor sets (fd_set). */
