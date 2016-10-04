@@ -35,11 +35,14 @@ namespace userfs
    {
 
       {
+         
          synch_lock sl(get_fs_data()->m_pmutex);
-         m_strFolder = pszFolder;
+         
+         m_pathFolder = pszFolder;
+
       }
 
-      if(m_straRootPath.is_empty())
+      if(m_listingRoot.is_empty())
       {
 
          ::file::listing listing;
@@ -50,7 +53,7 @@ namespace userfs
 
             synch_lock sl(get_fs_data()->m_pmutex);
 
-            m_straRootPath = listing;
+            m_listingRoot = listing;
 
          }
 
@@ -61,7 +64,7 @@ namespace userfs
 
          synch_lock sl(get_fs_data()->m_pmutex);
 
-         m_straPath = m_straRootPath;
+         m_listing = m_listingRoot;
 
       }
       else
@@ -75,7 +78,7 @@ namespace userfs
 
             synch_lock sl(get_fs_data()->m_pmutex);
 
-            m_straPath = listing;
+            m_listing = listing;
 
          }
 
