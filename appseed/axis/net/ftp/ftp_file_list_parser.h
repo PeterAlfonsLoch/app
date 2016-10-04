@@ -36,7 +36,7 @@ namespace ftp
 
    class file_status;
 
-   class ifile_list_parser : 
+   class CLASS_DECL_AXIS ifile_list_parser :
       virtual public iinterface
    {
    public:
@@ -47,7 +47,7 @@ namespace ftp
 
 
    /// Implements the parsing of the string returned by the LIST command.
-   class file_list_parser : 
+   class CLASS_DECL_AXIS file_list_parser :
       virtual public ifile_list_parser
    {
    public:

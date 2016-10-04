@@ -5,7 +5,7 @@ namespace ftp
 {
 
 
-   class iinterface :
+   class CLASS_DECL_AXIS iinterface :
       virtual public object
    {
    protected:

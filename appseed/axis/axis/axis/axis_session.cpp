@@ -925,6 +925,13 @@ namespace axis
 
       }
 
+      if (m_pftpfs.is_null())
+      {
+
+         m_pftpfs = canew(ftpfs(this, ""));
+
+      }
+
       if (m_spfsdata.is_null())
       {
 
@@ -1114,11 +1121,19 @@ namespace axis
          {
             pset->m_spafsdata.add_unique(m_pifs);
             pset->m_spafsdata.add_unique(m_prfs);
+            
          }
 
          ::file::listing patha;
 
          m_spfsdata->root_ones(patha);
+
+      }
+
+      ::fs::set * pset = dynamic_cast < ::fs::set * > ((class ::fs::data *) m_spfsdata);
+      if (pset != NULL)
+      {
+         pset->m_spafsdata.add_unique(m_pftpfs);
 
       }
 

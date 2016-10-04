@@ -61,3 +61,5 @@
      //Total de Arquivos na Lista:
      //        120 arquivo(s)        880.019 bytes
      //          0 pasta(s)   36.921.749.504 bytes dispon¡veis
+
+#include "ftp/_ftp.cpp"

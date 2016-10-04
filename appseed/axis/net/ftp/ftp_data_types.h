@@ -32,7 +32,7 @@ namespace ftp
       FTP_NOTOK  =  1, };
 
    /// Data Structure
-   class structure
+   class CLASS_DECL_AXIS structure
    {
    public:
       enum e_type { type_file, type_record, type_page };
@@ -60,7 +60,7 @@ namespace ftp
    };
 
    /// Transmission Modes
-   class transfer_mode
+   class CLASS_DECL_AXIS transfer_mode
    {
    public:
       enum e_transfer_mode { transfer_mode_stream, transfer_mode_block, transfer_mode_compressed };
@@ -90,7 +90,7 @@ namespace ftp
    typedef array<firewall_type> TFirewallTypeVector;
 
    /// Firewall Type
-   class firewall_type
+   class CLASS_DECL_AXIS firewall_type
    {
    public:
       // don't change order of enumeration
@@ -131,7 +131,7 @@ namespace ftp
    };
 
    /// @brief Representation Type - 1st param (see representation)
-   class type
+   class CLASS_DECL_AXIS type
    {
    public:
       enum e_type { tyASCII, tyEBCDIC, tyImage, tyLocalByte };
@@ -159,7 +159,7 @@ namespace ftp
    };
 
    /// @brief Representation Type - 2nd param (see representation)
-   class format
+   class CLASS_DECL_AXIS format
    {
    public:
       enum e_format { format_invalid, format_non_print, format_telnet, format_carriage_control };
@@ -188,7 +188,7 @@ namespace ftp
    };
 
    /// Representation Type (see also type and format)
-   class representation :
+   class CLASS_DECL_AXIS representation :
       virtual public ::object
    {
    public:
@@ -220,7 +220,7 @@ namespace ftp
    //   args(const string& strFirstArgument, const string& strSecondArgument, const string& strThirdArgument) { push_back(strFirstArgument); push_back(strSecondArgument); push_back(strThirdArgument); }
    //};
 
-   class command
+   class CLASS_DECL_AXIS command
    {
    public:
       enum e_command { cmdABOR, cmdACCT, cmdALLO, cmdAPPE, cmdCDUP, cmdCWD, cmdDELE, cmdHELP, cmdLIST, cmdMDTM, cmdMKD, cmdMODE, cmdNLST, cmdNOOP, cmdOPEN, cmdPASS, cmdPASV, cmdPORT, cmdPWD, cmdQUIT, cmdREIN, cmdREST, cmdRETR, cmdRMD, cmdRNFR, cmdRNTO, cmdSITE, cmdSIZE, cmdSMNT, cmdSTAT, cmdSTOR, cmdSTOU, cmdSTRU, cmdSYST, cmdTYPE, cmdUSER, };
@@ -310,7 +310,7 @@ namespace ftp
    ///
    /// Holds all necessary parameters for logging on a ftp-server.
    /// Includes also the parameters which are needed for firewall logon.
-   class logon
+   class CLASS_DECL_AXIS logon
    {
    public:
       logon();
@@ -353,7 +353,7 @@ namespace ftp
    };
 
    /// Holds a response of a ftp-server.
-   class reply
+   class CLASS_DECL_AXIS reply
    {
       string m_strResponse;
 

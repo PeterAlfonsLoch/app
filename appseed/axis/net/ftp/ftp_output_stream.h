@@ -5,7 +5,7 @@ namespace ftp
 {
 
 
-   class output_stream :
+   class CLASS_DECL_AXIS output_stream :
       virtual public itransfer_notification
    {
    public:
@@ -34,7 +34,7 @@ namespace ftp
 
 
 
-   class output_stream::implementation:
+   class CLASS_DECL_AXIS output_stream::implementation:
       virtual public ::object
    {
    public:

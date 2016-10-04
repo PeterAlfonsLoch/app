@@ -21,7 +21,7 @@ namespace ftp
 
 
    /// Holds status information about a file on the ftp server.
-   class file_status :
+   class CLASS_DECL_AXIS file_status :
       virtual public ::object
    {
    public:
@@ -94,7 +94,7 @@ namespace ftp
    };
 
    /// Function object for sorting the filelists
-   class file_status_sort
+   class CLASS_DECL_AXIS file_status_sort
    {
       /// Baseclass for functionobjects
       class criteria

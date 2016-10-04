@@ -41,14 +41,14 @@ namespace data
    void tree_item::SetParent(tree_item * pparent)
    {
 
-      if(pparent == this || is_descendant(pparent) || is_ascendant(pparent))
+      if(m_pparent == pparent || pparent == this || is_descendant(pparent) || is_ascendant(pparent))
          return;
+
+      pparent->m_children.add(this);
 
       m_pparent->m_children.remove(this);
 
       m_pparent = pparent;
-
-      m_pparent->m_children.add(this);
 
    }
 

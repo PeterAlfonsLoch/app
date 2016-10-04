@@ -27,3 +27,9 @@
 //2015-01-04  19:42                 0 _fs.cpp"
 //              12 arquivo(s)         46.778 bytes
 //               0 pasta(s)   19.198.816.256 bytes dispon¡veis
+
+
+#include "fs_ftp.cpp"
+#include "fs_ftp_file.cpp"
+
+

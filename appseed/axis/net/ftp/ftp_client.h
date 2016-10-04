@@ -46,7 +46,7 @@ namespace ftp
    /// - File eXchange Protocol (FXP) - uses FTP to transfer data directly from one remote server to another.
    /// - ...
    ///
-   class client :
+   class CLASS_DECL_AXIS client :
       virtual public ::object
    {
    public:

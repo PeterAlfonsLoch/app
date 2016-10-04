@@ -56,6 +56,7 @@ namespace axis
 
 
       ::userpresence::userpresence *                           m_puserpresence;
+      sp(::ftpfs)                                              m_pftpfs;
       sp(::ifs)                                                m_pifs;
       sp(::fs::remote_native)                                  m_prfs;
       sp(::fs::fs)                                             m_spfs;

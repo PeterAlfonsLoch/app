@@ -64,7 +64,7 @@ namespace sockets2
    ///////////////////////////////////////////////////////////////////////////////////////
    //***************************** blocking_socket_exception  ***************************//
    ///////////////////////////////////////////////////////////////////////////////////////
-   class blocking_socket_exception :
+   class CLASS_DECL_AXIS blocking_socket_exception :
       virtual public ::exception::base
    {
    public:
@@ -83,7 +83,7 @@ namespace sockets2
    ///////////////////////////////////////////////////////////////////////////////////////
    //*********************************** address  ************************************//
    ///////////////////////////////////////////////////////////////////////////////////////
-   class address : public sockaddr_in
+   class CLASS_DECL_AXIS address : public sockaddr_in
    {
    public:
       // constructors
@@ -168,7 +168,7 @@ namespace sockets2
    //********************************* blocking_socket  ********************************//
    ///////////////////////////////////////////////////////////////////////////////////////
 
-   class iblocking_socket :
+   class CLASS_DECL_AXIS iblocking_socket :
       virtual public object
    {
    public:
@@ -193,7 +193,7 @@ namespace sockets2
 
    // member functions truly block and must not be used in UI threads
    // use this class as an alternative to the MFC CSocket class
-   class blocking_socket : 
+   class CLASS_DECL_AXIS blocking_socket :
       virtual public iblocking_socket
    {
    public:
@@ -236,7 +236,7 @@ namespace sockets2
    ///////////////////////////////////////////////////////////////////////////////////////
    //******************************** http_blocking_socket ******************************//
    ///////////////////////////////////////////////////////////////////////////////////////
-   class http_blocking_socket : 
+   class CLASS_DECL_AXIS http_blocking_socket :
       virtual public blocking_socket
    {
    public:

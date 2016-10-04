@@ -5,7 +5,7 @@ namespace ftp
 {
 
 
-   class itransfer_notification :
+   class CLASS_DECL_AXIS itransfer_notification :
       virtual public iinterface
    {
    public:

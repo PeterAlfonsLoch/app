@@ -3,7 +3,7 @@
 namespace ftp
 {
 
-   class file :
+   class CLASS_DECL_AXIS file :
       virtual public itransfer_notification
    {
    public:
