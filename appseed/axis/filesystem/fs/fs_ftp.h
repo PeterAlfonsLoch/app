@@ -14,6 +14,8 @@ public:
    string         m_strServer;
 
    stringa        m_straServer;
+
+   string_map < sp(::ftp::output) > m_mapOutput;
    string_map < sp(::ftp::client) > m_mapClient;
 
 

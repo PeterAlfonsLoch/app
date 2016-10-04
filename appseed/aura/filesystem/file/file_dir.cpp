@@ -873,6 +873,34 @@ string dir::name(string path)
 
    }
 
+
+   strsize iFirstColon = path.find(':');
+
+   strsize iFirstSlash = -1;
+
+   strsize iSecondSlash = -1;
+
+   if (iFirstColon > 0)
+   {
+
+      iFirstSlash = path.find('/');
+
+      if (iFirstSlash == iFirstColon + 1)
+      {
+
+         iSecondSlash = path.find('/', iFirstSlash + 1);
+
+         if (iSecondSlash == iFirstSlash + 1 && path.get_length() == iSecondSlash + 1)
+         {
+
+            return "";
+
+         }
+
+      }
+
+   }
+
    strsize iEnd = -1;
 
    if(path.last_char() == '/' || path.last_char() == '\\')
@@ -882,11 +910,24 @@ string dir::name(string path)
 
    }
 
-   index iPos1 = path.reverse_find('/',iEnd);
+   strsize iPos1 = path.reverse_find('/',iEnd);
 
-   index iPos2 = path.reverse_find('\\',iEnd);
+   strsize iPos2 = path.reverse_find('\\',iEnd);
 
-   path.Truncate(MAX(MAX(iPos1,iPos2),0));
+   strsize iPos = MAX(MAX(iPos1, iPos2), 0);
+
+   if (iPos == iSecondSlash)
+   {
+
+      path.Truncate(iPos + 1);
+
+   }
+   else
+   {
+
+      path.Truncate(iPos);
+
+   }
 
    return path;
 

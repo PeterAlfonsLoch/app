@@ -600,6 +600,12 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="net\ftp\ftp_output.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="net\ftp\ftp_output_stream.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
@@ -1208,6 +1214,7 @@
     <ClInclude Include="net\ftp\ftp_file_list_parser.h" />
     <ClInclude Include="net\ftp\ftp_file_status.h" />
     <ClInclude Include="net\ftp\ftp_interface.h" />
+    <ClInclude Include="net\ftp\ftp_output.h" />
     <ClInclude Include="net\ftp\ftp_output_stream.h" />
     <ClInclude Include="net\ftp\ftp_transfer_notification.h" />
     <ClInclude Include="net\http\http_application.h" />

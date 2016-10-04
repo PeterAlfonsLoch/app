@@ -72,7 +72,7 @@ namespace ftp
       
       };
       
-         
+      
 
       client(::aura::application * papp, ::sockets::blocking_socket * apSocket = NULL,
          unsigned int uiTimeout = 10, unsigned int uiBufferSize = 2048,

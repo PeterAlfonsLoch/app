@@ -1178,6 +1178,9 @@
     <ClInclude Include="net\sockets\sockets_blocking_socket.h">
       <Filter>Header Files\net\sockets</Filter>
     </ClInclude>
+    <ClInclude Include="net\ftp\ftp_output.h">
+      <Filter>Header Files\net\ftp</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="net\net_net.cpp">
@@ -2016,6 +2019,9 @@
     </ClCompile>
     <ClCompile Include="net\sockets\sockets_blocking_socket.cpp">
       <Filter>Source Files\net\sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="net\ftp\ftp_output.cpp">
+      <Filter>Source Files\net\ftp</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

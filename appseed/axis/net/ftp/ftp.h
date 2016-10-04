@@ -71,3 +71,4 @@ namespace ftp
 #include "ftp_transfer_notification.h"
 #include "ftp_file.h"
 #include "ftp_output_stream.h"
+#include "ftp_output.h"

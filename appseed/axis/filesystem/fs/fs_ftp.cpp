@@ -411,6 +411,12 @@ void ftpfs::defer_initialize(::ftp::client ** ppclient, string strPath)
 
       client = canew(::ftp::client(get_app()));
 
+      sp(::ftp::output) & output = m_mapOutput[strToken];
+
+      output = canew(::ftp::output(get_app()));
+
+      client->AttachObserver(output);
+
    }
 
    *ppclient = client.m_p;
