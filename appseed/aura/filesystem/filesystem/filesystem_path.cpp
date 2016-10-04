@@ -145,11 +145,11 @@ namespace file
 
    void path::split(patha & patha) const
    {
-      stringa straSeparator;
-      straSeparator.add("\\");
-      straSeparator.add("/");
-      patha.add_smallest_tokens(*this,straSeparator,FALSE);
+      
+      ascendants_name(patha);
+
    }
+
 
    patha & path::ascendants_path(patha & straParam) const
    {
@@ -180,28 +180,30 @@ namespace file
    patha & path::ascendants_name(patha & straParam) const
    {
 
+      strsize iFirstColon = find(':');
+      strsize iFirstSlash = find('/');
+      strsize iSecondSlash = find('/', iFirstSlash + 1);
+
+      string strPath = *this;
+
+      if (iFirstColon > 0 && iFirstSlash == iFirstColon + 1 && iSecondSlash == iFirstSlash + 1)
+      {
+
+         ::file::path path = Left(iSecondSlash + 1);
+
+         straParam.add(path);
+
+         strPath = Mid(iSecondSlash + 1);
+
+      }
+
       stringa straSeparator;
 
       straSeparator.add("/");
+
       straSeparator.add("\\");
 
-      straParam.add_smallest_tokens(*this,straSeparator,FALSE);
-      if(straParam.get_count() > 0)
-      {
-         if(sep() == '/' && operator[](0) == '/')
-         {
-            straParam[0] = "/" + straParam[0];
-         }
-         strsize iFind = straParam[0].find(':');
-         //if(iFind >= 2)
-         //{
-         //   straParam[0] += "//";
-         //}
-         //else if(iFind == 1)
-         //{
-         //   straParam[0] += "\\";
-         //}
-      }
+      straParam.add_smallest_tokens(strPath,straSeparator,FALSE);
 
       return straParam;
 
@@ -287,8 +289,13 @@ namespace file
       string strPath;
       
       strPath = string(*this);
-      
-      strPath += sep();
+
+      if (strPath.Right(3) != "://")
+      {
+
+         strPath += sep();
+
+      }
       
       string str = path;
       
@@ -322,7 +329,12 @@ namespace file
       
       strPath = string(*this);
       
-      strPath += sep();
+      if (strPath.Right(3) != "://")
+      {
+
+         strPath += sep();
+
+      }
       
       string str = path;
       
@@ -702,24 +714,36 @@ namespace file
       }
       else
 #endif
-      if(strPath.has_char())
       {
-      
-         strPath.trim_right("\\/");
-         
-         if(strPath.has_char())
+
+         strsize iFirstColon = strPath.find(':');
+         strsize iFirstSlash = strPath.find('/');
+         strsize iSecondSlash = strPath.find('/', iFirstSlash + 1);
+
+         if (iFirstColon > 0 && iFirstSlash == iFirstColon + 1 && iSecondSlash == iFirstSlash + 1 && strPath.get_length() == iSecondSlash + 1)
          {
-      
-            strPath.replace(path_osep(epath),path_sep(epath));
-            
+
          }
-         else
+         else if (strPath.has_char())
          {
-      
-            strPath = path_sep(epath);
-            
+
+            strPath.trim_right("\\/");
+
+            if (strPath.has_char())
+            {
+
+               strPath.replace(path_osep(epath), path_sep(epath));
+
+            }
+            else
+            {
+
+               strPath = path_sep(epath);
+
+            }
+
          }
-         
+
       }
    
       return strPath;

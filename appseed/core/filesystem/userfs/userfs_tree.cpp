@@ -273,7 +273,7 @@ namespace userfs
    void tree::_017OpenFolder(::fs::item * item, ::action::context actioncontext)
    {
 
-      get_document()->browse(item->m_strPath, actioncontext);
+      get_document()->browse(item->m_filepath, actioncontext);
 
    }
 
@@ -353,7 +353,7 @@ namespace userfs
       for (int32_t i = 0; i < itemptraSelected.get_size(); i++)
       {
 
-         stra.add(itemptraSelected[0]->m_pitem.cast < ::userfs::item >()->m_strPath);
+         stra.add(itemptraSelected[0]->m_pitem.cast < ::userfs::item >()->m_filepath);
 
       }
 
@@ -487,7 +487,7 @@ namespace userfs
          if (pitem->m_pitem != NULL && typeid(*pitem->m_pitem) == System.type_info < ::userfs::item >())
          {
 
-            ::file::path & strTreeItem = pitem->m_pitem.cast < ::userfs::item >()->m_strPath;
+            ::file::path & strTreeItem = pitem->m_pitem.cast < ::userfs::item >()->m_filepath;
 
             if(strTreeItem == strPath)
             {

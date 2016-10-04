@@ -38,7 +38,7 @@ namespace filemanager
             get_document()->update_all_views(NULL,0,&uh);
             sp(::user::interaction) pui = get_child_by_name("lfs");
             sp(::user::elemental) ptext =  (pui.m_p);
-            ptext->_001SetText(get_filemanager_item().m_strPath,::action::source_user);
+            ptext->_001SetText(get_filemanager_item().m_filepath,::action::source_user);
          }
          else if(pevent->m_puie->m_id == "ftp")
          {

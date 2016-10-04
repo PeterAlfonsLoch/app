@@ -51,6 +51,8 @@ public:
    virtual bool is_dir(const ::file::path & pszPath);
    virtual ::file::listing & root_ones(::file::listing & listing);
 
+   virtual void defer_initialize(::ftp::client ** client, string strPath);
+
    //virtual string file_name(const char * pszPath);
    //virtual string dir_path(const char * psz1, const char * psz2);
 
@@ -60,8 +62,6 @@ public:
 
    virtual bool file_exists(const ::file::path & pszPath);
    virtual var file_length(const ::file::path & pszPath);
-
-   virtual void defer_initialize();
 
    virtual bool is_zero_latency(const ::file::path & psz);
 

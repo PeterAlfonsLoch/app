@@ -81,14 +81,14 @@ namespace userfs
          var varQuery;
          if(iUItem == iLItem)
          {
-            varFile = get_fs_mesh_data()->m_itema.get_item(iLItem).m_strPath;
+            varFile = get_fs_mesh_data()->m_itema.get_item(iLItem).m_filepath;
          }
          else
          {
             stringa stra;
             for(index iItem = iLItem; iItem < iLItem; iItem++)
             {
-               stra.add(pdata->m_itema.get_item(iItem).m_strPath);
+               stra.add(pdata->m_itema.get_item(iItem).m_filepath);
             }
             varFile = stra;
          }
@@ -196,7 +196,7 @@ namespace userfs
             list_item & item = pdata->m_itema.get_item(iStrict);
             if (!item.IsFolder())
             {
-               array.add(item.m_strPath);
+               array.add(item.m_filepath);
             }
          }
       }
@@ -465,7 +465,7 @@ namespace userfs
       
       list_item item(get_app());
       
-      item.m_strPath = pszPath;
+      item.m_filepath = pszPath;
       
       item.m_strName = pszTitle;
       
@@ -610,11 +610,11 @@ namespace userfs
       if (strict >= 0 && pdata->m_itema.get_item(strict).IsFolder())
       {
 
-         ::file::path strPath = pdata->m_itema.get_item(strictDrag).m_strPath;
+         ::file::path strPath = pdata->m_itema.get_item(strictDrag).m_filepath;
 
          string strName = strPath.name();
 
-         get_document()->get_fs_data()->file_move(pdata->m_itema.get_item(strict).m_strPath, strPath);
+         get_document()->get_fs_data()->file_move(pdata->m_itema.get_item(strict).m_filepath, strPath);
 
 //         _017Synchronize(::action::source::add(::action::source_paste, ::action::source_user));
 

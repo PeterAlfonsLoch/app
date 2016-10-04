@@ -71,24 +71,9 @@ bool ftpfs::has_subdir(const ::file::path & path)
 ::file::listing & ftpfs::root_ones(::file::listing & listing)
 {
 
-   for (auto strServer : m_straServer)
-   {
+   ::file::path & path = listing[listing.add("ftp://")];
 
-      string strUrl;
-
-      strUrl = "ftp://" + strServer;
-
-      ::file::path pathUrl;
-
-      pathUrl = strUrl;
-
-      ::file::path & path = listing.add(pathUrl);
-
-      path.m_iDir = 1;
-
-      listing.m_straTitle.add(strUrl);
-
-   }
+   listing.m_straTitle.add("FTP sites");
 
    return listing;
 
@@ -99,6 +84,32 @@ bool ftpfs::has_subdir(const ::file::path & path)
 {
 
    synch_lock sl(m_pmutex);
+
+   if (listing.m_path == "ftp://")
+   {
+
+      for (auto strServer : m_straServer)
+      {
+
+         string strUrl;
+
+         strUrl = "ftp://" + strServer;
+
+         ::file::path pathUrl;
+
+         pathUrl = strUrl;
+
+         ::file::path & path = listing.add(pathUrl);
+
+         path.m_iDir = 1;
+
+         listing.m_straTitle.add(strUrl);
+
+      }
+
+      return listing;
+
+   }
 
    //   uint32_t dwTimeout;
 
@@ -153,49 +164,51 @@ bool ftpfs::has_subdir(const ::file::path & path)
 
    ::ftp::file_status_ptra ptra;
 
-   ::ftp::logon logon;
+   ::ftp::client * pclient = NULL;
 
-   logon.Hostname() = System.url().get_server(listing.m_path);
-   //logon.Username() = System.url().get_username(listing.m_path);
+   int iTry = 0;
 
-   string strUrl = "ftp://" + logon.Hostname() + "/";
+retry:
 
-   string strToken = strUrl;
+   defer_initialize(&pclient, listing.m_path);
 
-   strToken.replace(":", "-");
-   strToken.replace("/", "_");
-   
-   Application.get_cred(strUrl, ::null_rect(), logon.Username(), logon.Password(), strToken, strUrl, true);
-
-   sp(::ftp::client) & client = m_mapClient[strToken];
-
-   if (client.is_null())
+   if (pclient->m_estate != ::ftp::client::state_logged)
    {
 
-      client = canew(::ftp::client(get_app()));
-
-      if (!client->Login(logon))
+      if (iTry > 3)
       {
-
-         Application.set_cred_ok(strToken, false);
 
          return listing = failure;
 
       }
 
-      Application.set_cred(strToken, logon.Username(), logon.Password());
-      Application.set_cred_ok(strToken, true);
+      iTry++;
 
+      goto retry;
 
    }
-
-
 
    string strPath;
 
    strPath = System.url().get_object(listing.m_path);
 
-   client->List(strPath, ptra);
+   if (!pclient->List(strPath, ptra))
+   {
+
+      if (iTry > 3)
+      {
+
+         return listing = failure;
+
+      }
+
+      pclient->m_estate = ::ftp::client::state_initial;
+
+      iTry++;
+
+      goto retry;
+
+   }
 
    for (auto pchild : ptra)
    {
@@ -227,45 +240,6 @@ bool ftpfs::has_subdir(const ::file::path & path)
 
    listing = dir;
 
-   //   if(m_mapdirFolder[strDir].is_null())
-   //   m_mapdirFolder[strDir] = canew(stringa);
-   //if(m_mapdirFolderName[strDir].is_null())
-   //   m_mapdirFolderName[strDir] = canew(stringa);
-   //if(m_mapdirFile[strDir].is_null())
-   //   m_mapdirFile[strDir] = canew(stringa);
-   //if(m_mapdirFileName[strDir].is_null())
-   //   m_mapdirFileName[strDir] = canew(stringa);
-   //if (m_mapdirFileSize[strDir].is_null())
-   //   m_mapdirFileSize[strDir] = canew(int64_array);
-   //if (m_mapdirFolderSize[strDir].is_null())
-   //   m_mapdirFolderSize[strDir] = canew(int64_array);
-   //if(m_mapdirFileDir[strDir].is_null())
-   //   m_mapdirFileDir[strDir] = canew(bool_array);
-   //if(m_mapdirFolderDir[strDir].is_null())
-   //   m_mapdirFolderDir[strDir] = canew(bool_array);
-
-
-   //::file::patha  & straThisDir         = m_mapdirFolder[strDir];
-   //::file::patha  & straThisDirName     = m_mapdirFolderName[strDir];
-   //::file::patha  & straThisFile        = m_mapdirFile[strDir];
-   //::file::patha  & straThisFileName    = m_mapdirFileName[strDir];
-   //int64_array    & iaThisFileSize      = *m_mapdirFileSize[strDir];
-   //int64_array    & iaThisFolderSize    = *m_mapdirFolderSize[strDir];
-   //bool_array     & baThisFileDir       = *m_mapdirFileDir[strDir];
-   //bool_array     & baThisFolderDir     = *m_mapdirFolderDir[strDir];
-
-
-   //straThisDir          = straDir;
-   //straThisDirName      = straDirName;
-   //straThisFile         = straFile;
-   //straThisFileName     = straFileName;
-   //iaThisFileSize       = iaFileSize;
-   //iaThisFolderSize     = iaFolderSize;
-   //baThisFileDir        = baFileDir;
-   //baThisFolderDir      = baFolderDir;
-
-
-
    dir.m_uiLsTimeout = get_tick_count() + ((1000) * 30);
 
    return listing;
@@ -275,35 +249,51 @@ bool ftpfs::has_subdir(const ::file::path & path)
 
 bool ftpfs::is_dir(const ::file::path & path)
 {
+   
    //xml::node node(get_app());
 
    if (path.is_empty())
    {
+
       return true;
+
    }
 
    if (stricmp_dup(path, "ftp://") == 0)
    {
+
       return true;
+
    }
+
    if (stricmp_dup(path, "ftp:/") == 0)
    {
+
       return true;
+
    }
+
    if (stricmp_dup(path, "ftp:") == 0)
    {
+
       return true;
+
    }
    
    string strPath = path;
 
    if (::str::begins_eat_ci(strPath, "ftp://"))
    {
+
       ::str::ends_eat(strPath, "/");
+
       if(m_straServer.contains_ci(strPath))
       {
+
          return true;
+
       }
+
    }
 
 
@@ -397,16 +387,74 @@ var ftpfs::file_length(const ::file::path & pszPath)
 }
 
 
-void ftpfs::defer_initialize()
+void ftpfs::defer_initialize(::ftp::client ** ppclient, string strPath)
 {
 
-   if (!m_bInitialized)
+   ::ftp::logon logon;
+
+   logon.Hostname() = System.url().get_server(strPath);
+   //logon.Username() = System.url().get_username(listing.m_path);
+
+   string strUrl = "ftp://" + logon.Hostname() + "/";
+
+   string strToken = strUrl;
+
+   strToken.replace(":", "-");
+   strToken.replace("/", "_");
+
+   sp(::ftp::client) & client = m_mapClient[strToken];
+
+   int iTry = 0;
+
+   if (client.is_null())
    {
 
-
-      m_bInitialized = true;
+      client = canew(::ftp::client(get_app()));
 
    }
+
+   *ppclient = client.m_p;
+
+   if (client->m_estate == ::ftp::client::state_initial)
+   {
+
+   retry:
+
+      Application.get_cred(strUrl, ::null_rect(), logon.Username(), logon.Password(), strToken, strUrl, true);
+
+      if (!client->Login(logon))
+      {
+
+         Application.set_cred_ok(strToken, false);
+
+         if (iTry > 3)
+         {
+
+            client->m_estate = ::ftp::client::state_initial;
+
+            return;
+
+         }
+
+         iTry++;
+
+         goto retry;
+
+      }
+
+      Application.set_cred(strToken, logon.Username(), logon.Password());
+
+      Application.set_cred_ok(strToken, true);
+
+   }
+
+   client->m_estate = ::ftp::client::state_logged;
+
+   //  \
+   //   \
+   //    }=====> Elegant code.
+   //   /
+   //  /
 
 }
 

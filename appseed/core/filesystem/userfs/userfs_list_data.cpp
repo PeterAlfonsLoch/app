@@ -29,6 +29,15 @@ namespace userfs
       if(pitem->m_iSubItem == m_iNameSubItemText)
       {
          
+         if (pitem->m_iItem < 0 || pitem->m_iItem >= m_itema.get_size())
+         {
+
+            pitem->m_bOk = false;
+
+            return;
+
+         }
+
          pitem->m_bOk = true;
 
          try

@@ -93,6 +93,8 @@ namespace ftp
       m_fAbortTransfer(false),
       m_fResumeIfPossible(true)
    {
+
+      m_estate = state_initial;
       
       m_apSckControlConnection = apSocket;
 

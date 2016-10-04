@@ -17,7 +17,7 @@ namespace fs
       else if (this->get_count() == 1)
       {
 
-         return this->element_at(0)->m_strPath;
+         return this->element_at(0)->m_filepath;
 
       }
       else
@@ -28,7 +28,7 @@ namespace fs
          for(index i = 0; i < this->get_count(); i++)
          {
 
-            var.stra().add(this->element_at(i)->m_strPath);
+            var.stra().add(this->element_at(i)->m_filepath);
 
          }
 

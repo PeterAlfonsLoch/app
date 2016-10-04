@@ -13,51 +13,51 @@
 #pragma once
 
 
-#ifdef WIN32
-#ifdef _WINSOCKAPI_
-#ifndef _WINSOCK2API_
-// NOTICE: In Microsoft Visual Studio you can add the header 'winsock2.h" to 
-//         "Configuration --> Properties --> C/C++ --> Advanced --> Forced Include File"
-#pragma message("\nIt is recommended to include 'winsock2.h' instead of 'winsock.h'\n")
-#endif
-#else
-#include <winsock2.h>
-#endif
-#elif defined(unix)
-#include <sys/socket.h>
-#include <arpa/inet.h>   // needed for inet_ntoa and inet_addr
-#include <netdb.h>       // needed for gethostbyname and gethostbyaddr
-#include <errno.h>
-#endif
+//#ifdef WIN32
+//#ifdef _WINSOCKAPI_
+//#ifndef _WINSOCK2API_
+//// NOTICE: In Microsoft Visual Studio you can add the header 'winsock2.h" to 
+////         "Configuration --> Properties --> C/C++ --> Advanced --> Forced Include File"
+//#pragma message("\nIt is recommended to include 'winsock2.h' instead of 'winsock.h'\n")
+//#endif
+//#else
+//#include <winsock2.h>
+//#endif
+//#elif defined(unix)
+//#include <sys/socket.h>
+//#include <arpa/inet.h>   // needed for inet_ntoa and inet_addr
+//#include <netdb.h>       // needed for gethostbyname and gethostbyaddr
+//#include <errno.h>
+//#endif
 
 namespace sockets
 {
 
-//#ifdef WIN32
-//   typedef int socklen_t;
-//   inline int _select(UINT_PTR /*nfds*/, fd_set* readfds, fd_set* writefds, fd_set* exceptfds, const struct timeval* timeout)
-//   {
-//      // The nfds parameter is ignored in windows (included only for 
-//      // compatibility with Berkeley sockets).
-//      return select(0, readfds, writefds, exceptfds, timeout);
-//   }
-//#elif defined(unix)
-//   typedef unsigned int SOCKET;
-//   typedef sockaddr SOCKADDR;
-//   typedef sockaddr* LPSOCKADDR;
-//   typedef sockaddr_in SOCKADDR_IN;
-//   typedef sockaddr_in* LPSOCKADDR_IN;
-//   typedef timeval TIMEVAL;
-//#define SOCKET_ERROR   (-1) 
-//#define INVALID_SOCKET (SOCKET)(~0)
-//#define closesocket close 
-//#define WSAGetLastError() errno
-//#define WSAEINTR EINTR
-//   inline int _select(int nfds, fd_set* readfds, fd_set* writefds, fd_set* exceptfds, struct timeval *__restrict timeout)
-//   {
-//      return select(nfds, readfds, writefds, exceptfds, timeout);
-//   }
-//#endif   
+   //#ifdef WIN32
+   //   typedef int socklen_t;
+   //   inline int _select(UINT_PTR /*nfds*/, fd_set* readfds, fd_set* writefds, fd_set* exceptfds, const struct timeval* timeout)
+   //   {
+   //      // The nfds parameter is ignored in windows (included only for 
+   //      // compatibility with Berkeley sockets).
+   //      return select(0, readfds, writefds, exceptfds, timeout);
+   //   }
+   //#elif defined(unix)
+   //   typedef unsigned int SOCKET;
+   //   typedef sockaddr SOCKADDR;
+   //   typedef sockaddr* LPSOCKADDR;
+   //   typedef sockaddr_in SOCKADDR_IN;
+   //   typedef sockaddr_in* LPSOCKADDR_IN;
+   //   typedef timeval TIMEVAL;
+   //#define SOCKET_ERROR   (-1) 
+   //#define INVALID_SOCKET (SOCKET)(~0)
+   //#define closesocket close 
+   //#define WSAGetLastError() errno
+   //#define WSAEINTR EINTR
+   //   inline int _select(int nfds, fd_set* readfds, fd_set* writefds, fd_set* exceptfds, struct timeval *__restrict timeout)
+   //   {
+   //      return select(nfds, readfds, writefds, exceptfds, timeout);
+   //   }
+   //#endif   
 
    typedef const struct sockaddr* LPCSOCKADDR;
 
@@ -198,7 +198,7 @@ namespace sockets
    {
    public:
 
-      
+
       memory_file                   m_file;
 
 
@@ -235,7 +235,7 @@ namespace sockets
       virtual public blocking_socket
    {
    public:
-      
+
       enum { nSizeRecv = 1000 }; // max receive buffer size (> hdr line length)
 
 
@@ -249,7 +249,7 @@ namespace sockets
       int read_http_header_line(char* pch, int nSize, int nSecs);
       int read_http_response(char* pch, int nSize, int nSecs);
 
-   
+
    };
 
 

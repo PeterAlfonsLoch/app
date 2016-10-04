@@ -63,7 +63,7 @@ namespace filemanager
       
       sp(::user::elemental) ptext =  (pui.m_p);
       
-      ptext->_001SetText(m_itema[0]->m_strPath.name(), ::action::source_none);
+      ptext->_001SetText(m_itema[0]->m_filepath.name(), ::action::source_none);
 
    }
 

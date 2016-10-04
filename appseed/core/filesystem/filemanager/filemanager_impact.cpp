@@ -142,7 +142,7 @@ namespace filemanager
    ::file::path impact::get_filemanager_path()
    {
 
-      return get_filemanager_item().m_strPath;
+      return get_filemanager_item().m_filepath;
    }
 
    manager * impact::get_filemanager_manager()
@@ -196,13 +196,13 @@ namespace filemanager
             }
             else if(puh->is_type_of(update_hint::TypeSynchronizePath))
             {
-               if(puh->m_strPath == get_filemanager_item().m_strPath)
+               if(puh->m_filepath == get_filemanager_item().m_filepath)
                {
                   browse_sync(puh->m_actioncontext + ::action::source_sync);
                }
                else
                {
-                  knowledge(puh->m_strPath, puh->m_actioncontext + ::action::source_sync);
+                  knowledge(puh->m_filepath, puh->m_actioncontext + ::action::source_sync);
                }
             }
 
@@ -257,6 +257,7 @@ namespace filemanager
 
    void impact::_001OnEditPaste(signal_details * pobj)
    {
+      
       UNREFERENCED_PARAMETER(pobj);
 
       ::file::listing stra;
@@ -264,7 +265,8 @@ namespace filemanager
       Session.copydesk().get_filea(stra);
 
       string strDir;
-      strDir = get_filemanager_item().m_strPath;
+
+      strDir = get_filemanager_item().m_filepath;
 
       ::user::impact * pview  = get_this_view();
 

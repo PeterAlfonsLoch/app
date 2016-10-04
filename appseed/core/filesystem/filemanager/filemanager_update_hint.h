@@ -36,7 +36,7 @@ namespace filemanager
       ::filemanager::manager *      m_pmanagerMain;
       ::user::impact *              m_pview;
       UINT                          m_uiId;
-      string                        m_strPath;
+      ::file::path                  m_filepath;
 
       e_type                        m_etype;
 

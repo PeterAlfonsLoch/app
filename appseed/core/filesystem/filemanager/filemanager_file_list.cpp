@@ -84,23 +84,23 @@ namespace filemanager
       if(m_bStatic && lHint == hint_add_location)
       {
 
-         stringa stra;
+         ::file::patha filepatha;
 
-         get_filemanager_manager()->data_get(get_filemanager_template()->m_dataidStatic, stra);
+         get_filemanager_manager()->data_get(get_filemanager_template()->m_dataidStatic, filepatha);
 
-         string strPath = get_filemanager_item().m_strPath;
+         ::file::path filepath = get_filemanager_item().m_filepath;
 
-         strPath.trim();
+         filepath.trim();
 
-         if(strPath.has_char() && get_filemanager_manager()->get_fs_data()->is_dir(strPath))
+         if(filepath.has_char() && get_filemanager_manager()->get_fs_data()->is_dir(filepath))
          {
 
-            if(stra.add_unique(strPath) >= 0)
+            if(filepatha.add_unique(filepath) >= 0)
             {
 
-               get_filemanager_manager()->data_set(get_filemanager_template()->m_dataidStatic, stra);
+               get_filemanager_manager()->data_set(get_filemanager_template()->m_dataidStatic, filepatha);
 
-               add_item(get_filemanager_item().m_strPath, get_filemanager_item().m_strPath.name());
+               add_item(get_filemanager_item().m_filepath, get_filemanager_item().m_filepath.name());
 
                _001OnUpdateItemCount();
 
@@ -147,8 +147,10 @@ namespace filemanager
             }
             else if(!m_bStatic && puh->is_type_of(update_hint::TypeSynchronizePath))
             {
-               if(puh->m_strPath != get_filemanager_item().m_strPath)
+               
+               if(puh->m_filepath != get_filemanager_item().m_filepath)
                   return;
+
                if(get_filemanager_data()->m_pholderFileList != NULL)
                {
                   if(get_filemanager_data()->m_pholderFileList->m_uiptraChild.get_size() > 0)
@@ -268,13 +270,11 @@ namespace filemanager
    void file_list::RenameFile(int32_t iLine, string &wstrNameNew, ::action::context actioncontext)
    {
 
-      string str = get_fs_mesh_data()->m_itema.get_item(iLine).m_strPath;
+      ::file::path filepath = get_fs_mesh_data()->m_itema.get_item(iLine).m_filepath;
 
-      strsize iFind = str.reverse_find(L'\\');
+      ::file::path filepathNew = filepath.folder() / wstrNameNew;
 
-      string wstrNew = str.Left(iFind + 1) + wstrNameNew;
-
-      System.file().rename(wstrNew, str, get_app());
+      System.file().rename(filepathNew, filepath, get_app());
 
       browse_sync(actioncontext);
 
@@ -383,13 +383,18 @@ namespace filemanager
             if(i >= get_fs_mesh_data()->m_itema.get_count())
                i = 0;
             bPendingSize = false;
+            
             try
             {
-               pset->get_fs_size(i64Size, get_fs_mesh_data()->m_itema.get_item(i).m_strPath, bPendingSize);
+
+               pset->get_fs_size(i64Size, get_fs_mesh_data()->m_itema.get_item(i).m_filepath, bPendingSize);
+
             }
             catch(...)
             {
+
             }
+
             lock.unlock();
             i++;
             Sleep(23);
@@ -619,8 +624,11 @@ namespace filemanager
 
       for(int32_t i = 0; i < itema.get_size(); i++)
       {
-         stra.add(itema[i]->m_strPath);
+         
+         stra.add(itema[i]->m_filepath);
+
       }
+
       /*
       string str;
       if(itema.get_size() > 0)
@@ -663,7 +671,7 @@ namespace filemanager
       for(int32_t i = 0; i < itema.get_size(); i++)
       {
 
-         stra.add(itema[i]->m_strPath);
+         stra.add(itema[i]->m_filepath);
 
       }
 
@@ -694,7 +702,7 @@ namespace filemanager
             ::fs::item_array itema;
             GetSelected(itema);
 
-            ::file::path strPath = itema[0]->m_strPath;
+            ::file::path strPath = itema[0]->m_filepath;
 
             string strExt = strPath.extension();
 
@@ -774,11 +782,11 @@ namespace filemanager
 
          GetSelected(itema);
 
-         ::file::path strPath = itema[0]->m_strPath;
+         ::file::path filepath = itema[0]->m_filepath;
 
 #ifdef WINDOWSEX
 
-         ::aura::shell_launcher launcher(NULL, "open", m_straOpenWith[iPos], strPath, strPath.name(), SW_SHOW);
+         ::aura::shell_launcher launcher(NULL, "open", m_straOpenWith[iPos], filepath, filepath.name(), SW_SHOW);
 
          launcher.execute();
 
@@ -819,10 +827,11 @@ namespace filemanager
       string strFileCheck;
       for(int32_t i = 0; i < itema.get_size(); i++)
       {
-         if(Application.dir().is(itema[i]->m_strPath) && itema[i]->m_strPath.name() != ".svn")
+
+         if(Application.dir().is(itema[i]->m_filepath) && itema[i]->m_filepath.name() != ".svn")
          {
 
-            straSub.rls(itema[i]->m_strPath);
+            straSub.rls(itema[i]->m_filepath);
 
             for(int32_t j = 0; j < straSub.get_size(); j++)
             {
@@ -837,10 +846,10 @@ namespace filemanager
          }
          else
          {
-            strFileList += itema[i]->m_strPath + "\n";
-            strFileCheck += itema[i]->m_strPath + ",";
-            strFileCheck += Application.file().length(itema[i]->m_strPath).get_string() + ",";
-            strFileCheck += System.file().md5(itema[i]->m_strPath) +"\n";
+            strFileList += itema[i]->m_filepath + "\n";
+            strFileCheck += itema[i]->m_filepath + ",";
+            strFileCheck += Application.file().length(itema[i]->m_filepath).get_string() + ",";
+            strFileCheck += System.file().md5(itema[i]->m_filepath) +"\n";
          }
       }
 
@@ -855,7 +864,7 @@ namespace filemanager
          time.GetHour(),
          time.GetMinute());
 
-      string strBase = get_filemanager_item().m_strPath / "spafy_";
+      string strBase = get_filemanager_item().m_filepath / "spafy_";
 
       string strList = strBase + "list_" + strTime + ".txt";
       string strCheck = strBase + "check_" + strTime + ".txt";
@@ -884,10 +893,10 @@ namespace filemanager
       string strFileCheck;
       for(int32_t i = 0; i < pdata->m_itema.get_count(); i++)
       {
-         if(::userfs::list::get_document()->get_fs_data()->is_dir(pdata->m_itema.get_item(i).m_strPath)
-            && pdata->m_itema.get_item(i).m_strPath.name() != ".svn")
+         if(::userfs::list::get_document()->get_fs_data()->is_dir(pdata->m_itema.get_item(i).m_filepath)
+            && pdata->m_itema.get_item(i).m_filepath.name() != ".svn")
          {
-            straSub.rls(pdata->m_itema.get_item(i).m_strPath);
+            straSub.rls(pdata->m_itema.get_item(i).m_filepath);
             for(int32_t j = 0; j < straSub.get_size(); j++)
             {
              string strExtension = straSub[j].extension();
@@ -905,15 +914,15 @@ namespace filemanager
          }
          else
          {
-             string strExtension = pdata->m_itema.get_item(i).m_strPath.extension();
+             string strExtension = pdata->m_itema.get_item(i).m_filepath.extension();
          if(strExtension == "exe" || strExtension == "dll" || strExtension == "dll.manifest"
              || strExtension == "exe.manifest")
          {
 
-            strFileList += pdata->m_itema.get_item(i).m_strPath + "\n";
-            strFileCheck += pdata->m_itema.get_item(i).m_strPath + ",";
-            strFileCheck += Application.file().length(pdata->m_itema.get_item(i).m_strPath).get_string() + ",";
-            strFileCheck += System.file().md5(pdata->m_itema.get_item(i).m_strPath) +"\n";
+            strFileList += pdata->m_itema.get_item(i).m_filepath + "\n";
+            strFileCheck += pdata->m_itema.get_item(i).m_filepath + ",";
+            strFileCheck += Application.file().length(pdata->m_itema.get_item(i).m_filepath).get_string() + ",";
+            strFileCheck += System.file().md5(pdata->m_itema.get_item(i).m_filepath) +"\n";
          }
          }
       }
@@ -927,7 +936,7 @@ namespace filemanager
          time.GetDay(),
          time.GetHour(),
          time.GetMinute());
-      string strBase = get_filemanager_item().m_strPath /  "spafy_";
+      string strBase = get_filemanager_item().m_filepath /  "spafy_";
       string strList = strBase + "list_" + strTime + ".txt";
       string strCheck = strBase + "check_" + strTime + ".txt";
 
@@ -990,7 +999,7 @@ namespace filemanager
 
    id file_list::data_get_current_list_layout_id()
    {
-      return get_filemanager_item().m_strPath;
+      return get_filemanager_item().m_filepath;
    }
 
 
@@ -1029,7 +1038,7 @@ namespace filemanager
 
             item.m_iImage = -1;
 
-            item.m_strPath = strPath;
+            item.m_filepath = strPath;
 
             item.m_strName = strName;
 
@@ -1060,7 +1069,7 @@ namespace filemanager
 
       ::userfs::list_item item(get_app());
 
-      string strParent = get_filemanager_item().m_strPath;
+      string strParent = get_filemanager_item().m_filepath;
 
       int32_t iMaxSize;
       iMaxSize = 1000;
@@ -1093,7 +1102,7 @@ namespace filemanager
          {
          }
          item.m_iImage = -1;
-         item.m_strPath = strPath;
+         item.m_filepath = strPath;
          item.m_strName = strPath.name();
          m_straStrictOrder.add(strPath);
 
@@ -1262,8 +1271,8 @@ namespace filemanager
          ///IShellFolder * lpsf = m_pshellfolder;
          item.m_iImage = Session.userex()->shellimageset().GetImage(
             get_handle(),
-            item.m_strPath,
-            get_document()->get_fs_data()->is_dir(item.m_strPath) ? _shell::FileAttributeDirectory : _shell::FileAttributeNormal,
+            item.m_filepath,
+            get_document()->get_fs_data()->is_dir(item.m_filepath) ? _shell::FileAttributeDirectory : _shell::FileAttributeNormal,
             _shell::IconNormal);
 
          m_iCreateImageListStep++;
@@ -1509,7 +1518,7 @@ namespace filemanager
             ::userfs::list_item & item = get_fs_mesh_data()->m_itema.get_item(iStrict);
             if (!item.IsFolder())
             {
-               array.add(item.m_strPath);
+               array.add(item.m_filepath);
             }
          }
       }
@@ -1768,7 +1777,7 @@ namespace filemanager
 
                sp(::fs::item) spitem(canew(::fs::item));
 
-               spitem->m_strPath = get_fs_mesh_data()->m_itema.get_item(iStrict).m_strPath;
+               spitem->m_filepath = get_fs_mesh_data()->m_itema.get_item(iStrict).m_filepath;
 
                spitem->m_flags = get_fs_mesh_data()->m_itema.get_item(iStrict).m_flags;
 
@@ -1803,7 +1812,7 @@ namespace filemanager
 
       ::userfs::list_item item(get_app());
 
-      item.m_strPath = pszPath;
+      item.m_filepath = pszPath;
 
       item.m_strName = pszTitle;
 
@@ -1913,11 +1922,11 @@ namespace filemanager
       if (strict >= 0 && get_fs_mesh_data()->m_itema.get_item(strict).IsFolder())
       {
 
-         ::file::path strPath = get_fs_mesh_data()->m_itema.get_item(strictDrag).m_strPath;
+         ::file::path strPath = get_fs_mesh_data()->m_itema.get_item(strictDrag).m_filepath;
 
          string strName = strPath.name();
 
-         Application.file().move(get_fs_mesh_data()->m_itema.get_item(strict).m_strPath / strName, strPath);
+         Application.file().move(get_fs_mesh_data()->m_itema.get_item(strict).m_filepath / strName, strPath);
 
       }
       else

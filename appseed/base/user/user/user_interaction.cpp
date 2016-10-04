@@ -6983,6 +6983,8 @@ restart:
 
       }
 
+      RedrawWindow();
+
    }
 
 

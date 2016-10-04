@@ -92,7 +92,7 @@ namespace userfs
          return *this;
 
       m_pauraapp  = item.m_pauraapp;
-      m_strPath   = item.m_strPath;
+      m_filepath = item.m_filepath;
       m_strName   = item.m_strName;
       m_iImage    = item.m_iImage;
       m_iIndex    = item.m_iIndex;
@@ -112,7 +112,7 @@ template <>
 ::fs::item cast < ::fs::item > (::userfs::list_item & item)
 {
    ::fs::item itemT;
-   itemT.m_strPath = item.m_strPath;
+   itemT.m_filepath = item.m_filepath;
    itemT.m_flags = item.m_flags;
    return itemT;
 }

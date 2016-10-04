@@ -97,7 +97,7 @@ namespace filemanager
             if(Application.dir().is(strName))
             {
 
-               if(get_filemanager_item().m_strPath != strName)
+               if(get_filemanager_item().m_filepath != strName)
                {
 
                   get_filemanager_manager()->FileManagerBrowse(strName,::action::source::sync(actioncontext));

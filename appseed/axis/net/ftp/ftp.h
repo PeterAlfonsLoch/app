@@ -1,9 +1,6 @@
 #pragma once
 
 
-#include "sockets2_blocking_socket.h"
-
-
 /// Base class for implementing the notification stuff.
 /// @remarks Inherit public (instead of private) because it wouldn't compile under Dev-C++
 template < typename T, typename T2 > class observer :

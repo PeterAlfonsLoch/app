@@ -149,7 +149,7 @@ namespace filemanager
 
    void folder_list::browse_sync(::action::context actioncontext)
    {
-      string strParent = get_filemanager_item().m_strPath;
+      string strParent = get_filemanager_item().m_filepath;
 
       m_foldera.clear();
 

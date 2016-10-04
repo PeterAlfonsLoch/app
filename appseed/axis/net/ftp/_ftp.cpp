@@ -9,7 +9,6 @@
 #include "ftp_file_list_parser.cpp"
 #include "ftp_file_status.cpp"
 #include "ftp_output_stream.cpp"
-#include "sockets2_blocking_socket.cpp"
 //#include "_ftp.cpp
   //             8 File(s)        128,991 bytes
     //           0 Dir(s)  602,287,271,936 bytes free

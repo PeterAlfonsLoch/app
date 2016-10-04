@@ -103,7 +103,7 @@ namespace filemanager
                      ::file::path path = get_filemanager_data()->m_pdocumentSave->get_file_path();
                      string strName = path.title() + " - " + System.datetime().international().get_gmt_date_time() + "." + path.ext();
                      strName.replace(":", "-");
-                     strName = get_filemanager_item().m_strPath / strName;
+                     strName = get_filemanager_item().m_filepath / strName;
                      ptopview->_001SetText(strName, puh->m_actioncontext);
                      get_filemanager_data()->m_pmanager->m_strTopic = strName;
                      set_position(0, 49);
@@ -133,7 +133,7 @@ namespace filemanager
                {
                   ASSERT(get_filemanager_data()->m_pdocumentSave != NULL);
 
-                  string strPath = puh->m_strPath;
+                  string strPath = puh->m_filepath;
                   if (strPath.is_empty())
                   {
                      
@@ -147,22 +147,22 @@ namespace filemanager
                         strPath = strTitle;
 
                      }
-                     else if (get_filemanager_manager()->get_fs_data()->is_dir(get_filemanager_item().m_strPath))
+                     else if (get_filemanager_manager()->get_fs_data()->is_dir(get_filemanager_item().m_filepath))
                      {
 
-                        strPath = get_filemanager_item().m_strPath / strTitle;
+                        strPath = get_filemanager_item().m_filepath / strTitle;
 
                      }
                      else if (strTitle.has_char())
                      {
 
-                        strPath = get_filemanager_item().m_strPath / strTitle;
+                        strPath = get_filemanager_item().m_filepath / strTitle;
 
                      }
                      else
                      {
 
-                        strPath = get_filemanager_item().m_strPath;
+                        strPath = get_filemanager_item().m_filepath;
 
                      }
 
@@ -185,7 +185,7 @@ namespace filemanager
                      if (get_filemanager_data()->m_pdocumentSave->do_save(strPath))
                      {
                         uh.set_type(update_hint::TypeSaveAsSaved);
-                        uh.m_strPath = strPath;
+                        uh.m_filepath = strPath;
                      }
                      else
                      {

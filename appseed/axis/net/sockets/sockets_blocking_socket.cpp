@@ -57,10 +57,10 @@ namespace sockets
    //******************************** Class blocking_socket ****************************//
    ///////////////////////////////////////////////////////////////////////////////////////
 
-   
+
    blocking_socket* blocking_socket::create_instance()
    {
-      
+
       return canew(blocking_socket(m_handler));
 
    }
@@ -68,7 +68,7 @@ namespace sockets
    listen_socket < blocking_socket > * blocking_socket::create_listening_instance()
    {
 
-      return canew(listen_socket < blocking_socket > (m_handler));
+      return canew(listen_socket < blocking_socket >(m_handler));
 
    }
 
@@ -81,20 +81,20 @@ namespace sockets
       tcp_socket(handler),
       m_file(handler.get_app())
    {
-//#ifdef WIN32
-//      // Initialize the Winsock dll version 2.0
-//      WSADATA  wsaData = { 0 };
-//      VERIFY(WSAStartup(MAKEWORD(2, 0), &wsaData) == 0);
-//      VERIFY(LOBYTE(wsaData.wVersion) == 2 && HIBYTE(wsaData.wVersion) == 0);
-//#endif
+      //#ifdef WIN32
+      //      // Initialize the Winsock dll version 2.0
+      //      WSADATA  wsaData = { 0 };
+      //      VERIFY(WSAStartup(MAKEWORD(2, 0), &wsaData) == 0);
+      //      VERIFY(LOBYTE(wsaData.wVersion) == 2 && HIBYTE(wsaData.wVersion) == 0);
+      //#endif
    }
 
    blocking_socket::~blocking_socket()
    {
-//      cleanup();
-//#ifdef WIN32
-//      WSACleanup();
-//#endif
+      //      cleanup();
+      //#ifdef WIN32
+      //      WSACleanup();
+      //#endif
    }
 
    //void blocking_socket::cleanup()
@@ -184,7 +184,7 @@ namespace sockets
 
    int blocking_socket::write(const void* pch, int nSize, int nSecs) // const
    {
-      
+
       ::sockets::tcp_socket::write(pch, nSize);
 
       return nSize;
@@ -273,7 +273,7 @@ namespace sockets
    int blocking_socket::receive(void * pch, int nSize, int nSecs) // const
    {
 
-      byte * p = (byte *) pch;
+      byte * p = (byte *)pch;
 
       int nBytesReceived = 0;
 
@@ -326,7 +326,7 @@ namespace sockets
 
    int blocking_socket::receive_datagram(char* pch, int nSize, LPSOCKADDR psa, int nSecs) // const
    {
-      
+
       if (!check_readability(nSecs))
       {
 
@@ -348,7 +348,7 @@ namespace sockets
 
    int blocking_socket::send_datagram(const char* pch, int nSize, LPCSOCKADDR psa, int nSecs) // const
    {
-      
+
       if (!check_writability(nSecs))
       {
 
@@ -367,7 +367,7 @@ namespace sockets
 
    ::net::address blocking_socket::get_host_by_name(const char* pchName, USHORT ushPort /* = 0 */)
    {
-      
+
       return ::net::address(pchName);
 
    }
@@ -375,7 +375,7 @@ namespace sockets
 
    string blocking_socket::get_host_by_address(::net::address psa)
    {
-      
+
       return psa.get_display_number();
 
    }
@@ -465,7 +465,7 @@ namespace sockets
       return nBytesRead;
    }
 
-   
+
    sp(blocking_socket) create_default_blocking_socket(base_socket_handler & handler)
    {
 

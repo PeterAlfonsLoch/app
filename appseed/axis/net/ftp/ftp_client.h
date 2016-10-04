@@ -51,8 +51,17 @@ namespace ftp
    {
    public:
 
+      enum e_state
+      {
 
-      ::sockets::socket_handler m_sockethandler;
+         state_initial,
+         state_logged
+
+      };
+      
+      e_state                       m_estate;
+
+      ::sockets::socket_handler     m_sockethandler;
       
       class notification;
       

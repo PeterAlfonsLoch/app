@@ -1,8 +1,6 @@
 #pragma once
 
 
-
-
 namespace fs
 {
 
@@ -13,14 +11,14 @@ namespace fs
    public:
 
 
-      ::file::path               m_strPath;
+      ::file::path               m_filepath;
       cflag < e_flag >           m_flags;
 
 
       item();
       item(const item & item);
-      item(const string & strPath);
-      item(const string & strPath, const cflag < e_flag > & flags);
+      item(const ::file::path & filepath);
+      item(const ::file::path & filepath, const cflag < e_flag > & flags);
       virtual ~item();
 
 

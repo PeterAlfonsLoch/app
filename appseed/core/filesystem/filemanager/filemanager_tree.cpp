@@ -154,7 +154,7 @@ namespace filemanager
             while(pitem != NULL)
             {
 
-               string strPathOld =  pitem->m_pitem.cast < ::userfs::item >()->m_strPath;
+               string strPathOld =  pitem->m_pitem.cast < ::userfs::item >()->m_filepath;
 
                strPathOld.trim_right("/\\");
 
@@ -208,7 +208,7 @@ namespace filemanager
             if(pitem->m_pitem.is_set())
             {
 
-               strCheck = pitem->m_pitem.cast < ::fs::item >()->m_strPath;
+               strCheck = pitem->m_pitem.cast < ::fs::item >()->m_filepath;
 
                strCheck.trim_right(":\\/");
 
@@ -236,7 +236,7 @@ namespace filemanager
 
          iChildCount++;
 
-         pitemChild->m_strPath = strItem;
+         pitemChild->m_filepath = strItem;
 
          pitemChild->m_strName = listing.title(i);
 
@@ -295,7 +295,7 @@ namespace filemanager
 
          pitemChild->m_flags.signalize(::fs::FlagFolder);
 
-         pitem = find_item(pitemChild->m_strPath, pitemParent);
+         pitem = find_item(pitemChild->m_filepath, pitemParent);
 
          if(pitem != NULL)
          {
@@ -392,7 +392,7 @@ namespace filemanager
 
             pitemChild = canew(::userfs::item(this));
 
-            pitemChild->m_strPath = strPath;
+            pitemChild->m_filepath = strPath;
 
             pitemChild->m_strName = strPath.name();
 
@@ -413,7 +413,7 @@ namespace filemanager
          else
          {
 
-            if(pitem->m_pparent != pitemParent && !straRootPath.contains_ci(pitem->m_pitem.cast < ::fs::item >()->m_strPath))
+            if(pitem->m_pparent != pitemParent && !straRootPath.contains_ci(pitem->m_pitem.cast < ::fs::item >()->m_filepath))
             {
 
                pitem->SetParent(pitemParent);
@@ -498,7 +498,9 @@ namespace filemanager
 
       for(int32_t i = 0; i < itemptraSelected.get_size(); i++)
       {
-         stra.add(( (itemptraSelected[0]->m_pitem.cast < ::userfs::item > ()))->m_strPath);
+         
+         stra.add(( (itemptraSelected[0]->m_pitem.cast < ::userfs::item > ()))->m_filepath);
+
       }
 
    }
@@ -630,7 +632,7 @@ namespace filemanager
       if(typeid(*pitem->m_pitem) == System.type_info < ::userfs::item > ())
       {
 
-         if(get_document()->get_fs_data()->is_link(pitem->m_pitem.cast < ::userfs::item >()->m_strPath))
+         if(get_document()->get_fs_data()->is_link(pitem->m_pitem.cast < ::userfs::item >()->m_filepath))
          {
 
             string strTarget;
@@ -639,7 +641,7 @@ namespace filemanager
 
             string strParams;
 
-            System.file().resolve_link(strTarget, strFolder, strParams, pitem->m_pitem.cast < ::userfs::item >()->m_strPath);
+            System.file().resolve_link(strTarget, strFolder, strParams, pitem->m_pitem.cast < ::userfs::item >()->m_filepath);
 
             pitem = find_item(strTarget);
 
@@ -649,7 +651,7 @@ namespace filemanager
          else
          {
 
-            knowledge(pitem->m_pitem.cast < ::userfs::item >()->m_strPath,actioncontext);
+            knowledge(pitem->m_pitem.cast < ::userfs::item >()->m_filepath,actioncontext);
 
          }
 
@@ -685,7 +687,7 @@ namespace filemanager
    void tree::_017OpenFolder(sp(::fs::item)  item, ::action::context actioncontext)
    {
 
-      if(get_document()->get_fs_data()->is_link(item->m_strPath))
+      if(get_document()->get_fs_data()->is_link(item->m_filepath))
       {
 
          string strTarget;
@@ -694,7 +696,7 @@ namespace filemanager
 
          string strParams;
 
-         System.file().resolve_link(strTarget, strFolder, strParams, item->m_strPath);
+         System.file().resolve_link(strTarget, strFolder, strParams, item->m_filepath);
 
          get_filemanager_manager()->FileManagerBrowse(strTarget,actioncontext);
 
@@ -781,12 +783,12 @@ namespace filemanager
 
       if(bLowLatency)
       {
-         if(get_document()->get_fs_data()->is_zero_latency(item->m_strPath))
+         if(get_document()->get_fs_data()->is_zero_latency(item->m_filepath))
             return;
       }
       else
       {
-         if(!get_document()->get_fs_data()->is_zero_latency(item->m_strPath))
+         if(!get_document()->get_fs_data()->is_zero_latency(item->m_filepath))
             return;
       }
 
@@ -797,7 +799,7 @@ namespace filemanager
          {
             if(!(pitem->m_dwState & ::data::tree_item_state_expandable))
             {
-               string strPath = item->m_strPath;
+               string strPath = item->m_filepath;
                if(bLowLatency)
                {
                   //sl.unlock();
@@ -838,8 +840,8 @@ namespace filemanager
             m_pimagelist = Session.userex()->shellimageset().GetImageList16();
             try
             {
-               item->m_iImage = Session.userex()->shellimageset().GetImage(m_treeptra[0]->get_handle(),item->m_strPath,_shell::FileAttributeDirectory,_shell::IconNormal);
-               item->m_iImageSelected = Session.userex()->shellimageset().GetImage(m_treeptra[0]->get_handle(),item->m_strPath,_shell::FileAttributeDirectory,_shell::IconOpen);
+               item->m_iImage = Session.userex()->shellimageset().GetImage(m_treeptra[0]->get_handle(),item->m_filepath,_shell::FileAttributeDirectory,_shell::IconNormal);
+               item->m_iImageSelected = Session.userex()->shellimageset().GetImage(m_treeptra[0]->get_handle(),item->m_filepath,_shell::FileAttributeDirectory,_shell::IconOpen);
             }
             catch(...)
             {

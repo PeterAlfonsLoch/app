@@ -45,7 +45,7 @@ namespace filemanager
       if (m_item.is_set())
       {
          
-         strOldPath = m_item->m_strPath;
+         strOldPath = m_item->m_filepath;
 
       }
 
@@ -54,19 +54,18 @@ namespace filemanager
 
          m_item = canew(::fs::item(*item));
 
-         if(get_fs_data()->is_link(m_item->m_strPath))
+         if(get_fs_data()->is_link(m_item->m_filepath))
          {
 
             string strFolder;
 
             string strParams;
             
-            System.file().resolve_link(m_item->m_strPath, strFolder, strParams, m_item->m_strPath);
+            System.file().resolve_link(m_item->m_filepath, strFolder, strParams, m_item->m_filepath);
 
          }
 
          OnFileManagerBrowse(::action::source::sync(actioncontext));
-
 
       }
       catch (string & str)
@@ -105,10 +104,10 @@ namespace filemanager
    void manager::FileManagerOneLevelUp(::action::context actioncontext)
    {
 
-      if (get_filemanager_item().m_strPath.is_empty())
+      if (get_filemanager_item().m_filepath.is_empty())
          return;
 
-      string strParent = get_filemanager_item().m_strPath.up();
+      string strParent = get_filemanager_item().m_filepath.up();
 
       FileManagerBrowse(strParent, ::action::source::sync(actioncontext));
 
@@ -251,7 +250,7 @@ namespace filemanager
          update_hint uh;
          uh.set_type(update_hint::TypeSynchronizePath);
          uh.m_actioncontext = ::action::source::system(::action::source::sync(actioncontext));
-         uh.m_strPath = strPath;
+         uh.m_filepath = strPath;
          update_all_views(NULL,0,&uh);
 
       }
@@ -274,7 +273,7 @@ namespace filemanager
       update_hint uh;
       uh.set_type(update_hint::TypeSynchronizePath);
       uh.m_actioncontext = ::action::source::sync(actioncontext);
-      uh.m_strPath = strPath;
+      uh.m_filepath = strPath;
       update_all_views(NULL,0,&uh);
 
    }
@@ -282,7 +281,7 @@ namespace filemanager
    void manager::OnFileManagerBrowse(::action::context actioncontext)
    {
 
-      string strPath = m_item->m_strPath;
+      string strPath = m_item->m_filepath;
 
       start_full_browse(strPath, actioncontext);
 
@@ -386,21 +385,29 @@ namespace filemanager
    }
    */
 
+
    void manager::_001OnUpdateLevelUp(signal_details * pobj)
    {
       
       SCAST_PTR(::aura::cmd_ui,pcmdui,pobj);
 
-      if(m_item.is_null() || m_item->m_strPath.is_empty())
+      if(m_item.is_null() || m_item->m_filepath.is_empty())
       {
+
          pcmdui->m_pcmdui->Enable(FALSE);
+
       }
       else
       {
+
          pcmdui->m_pcmdui->Enable(TRUE);
+
       }
+
       pobj->m_bRet = true;
+
    }
+
 
    void manager::_001OnLevelUp(signal_details * pobj)
    {

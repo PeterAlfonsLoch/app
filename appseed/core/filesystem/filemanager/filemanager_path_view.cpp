@@ -79,12 +79,15 @@ namespace filemanager
 
       _001GetText(strOld);
 
-      if (strOld == get_filemanager_item().m_strPath)
+      string strPath = get_filemanager_item().m_filepath;
+
+      if (strOld == strPath)
          return;
 
-      _001SetText(get_filemanager_item().m_strPath, actioncontext);
+      _001SetText(get_filemanager_item().m_filepath, actioncontext);
 
    }
+
 
    void path_view::_001OnAfterChangeText(::action::context actioncontext)
    {
@@ -105,7 +108,7 @@ namespace filemanager
       if (pfsdata->is_dir(str))
       {
 
-         ::file::path strPreviousPath = get_filemanager_manager()->m_item->m_strPath;
+         ::file::path strPreviousPath = get_filemanager_manager()->m_item->m_filepath;
          ::file::path strPath = str;
          if (strPreviousPath != strPath)
          {
@@ -127,7 +130,7 @@ namespace filemanager
 
             if (get_filemanager_manager()->get_fs_data()->is_dir(strName))
             {
-               if (!get_filemanager_item().m_strPath == strName)
+               if (!get_filemanager_item().m_filepath == strName)
                {
                   keep < bool > keepVoidSync(&m_bVoidSync, true, false, true);
                   get_filemanager_manager()->FileManagerBrowse(strName, ::action::source::sync(actioncontext));
