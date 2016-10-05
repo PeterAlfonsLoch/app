@@ -186,7 +186,7 @@ namespace ftp
       catch (::sockets::blocking_socket_exception& blockingException)
       {
          ReportError(blockingException.GetErrorMessage(), __FILE__, __LINE__);
-         m_apSckControlConnection->close();
+         m_apSckControlConnection->SetCloseAndDelete();
          return false;
       }
 
@@ -212,13 +212,13 @@ namespace ftp
    {
       try
       {
-         m_apSckControlConnection->close();
+         m_apSckControlConnection->SetCloseAndDelete();
          m_apCurrentRepresentation.release();
       }
       catch (::sockets::blocking_socket_exception& blockingException)
       {
          blockingException.GetErrorMessage();
-         m_apSckControlConnection->close();
+         m_apSckControlConnection->SetCloseAndDelete();
       }
    }
 
@@ -700,7 +700,7 @@ namespace ftp
             return false;
          fTransferOK = TransferData(crDatachannelCmd, Observer, *apSckDataConnection);
 
-         apSckDataConnection->close();
+         apSckDataConnection->SetCloseAndDelete();
       }
       else
       {
@@ -716,7 +716,7 @@ namespace ftp
 
          fTransferOK = TransferData(crDatachannelCmd, Observer, *psocket);
 
-         apSckDataConnection->close();
+         apSckDataConnection->SetCloseAndDelete();
 
       }
 
@@ -809,7 +809,7 @@ namespace ftp
       catch (::sockets::blocking_socket_exception& blockingException)
       {
          ReportError(blockingException.GetErrorMessage(), __FILE__, __LINE__);
-         sckDataConnection.close();
+         sckDataConnection.SetCloseAndDelete();
          return false;
       }
       
@@ -839,14 +839,14 @@ namespace ftp
          !Reply.Code().IsPositivePreliminaryReply())
          return false;
 
-      //while (!sckDataConnection.HasCreator())
-      //{
+      while (sckDataConnection.m_psocket == NULL)
+      {
 
-      //   m_sockethandler.select(8, 0);
+         m_sockethandler.select(1, 0);
 
-      //}
+      }
 
-      return true;
+      return sckDataConnection.m_psocket != NULL;
 
    }
 
@@ -887,7 +887,7 @@ namespace ftp
       catch (::sockets::blocking_socket_exception& blockingException)
       {
          ReportError(blockingException.GetErrorMessage(), __FILE__, __LINE__);
-         sckDataConnection.close();
+         sckDataConnection.SetCloseAndDelete();
          return false;
       }
 
@@ -942,7 +942,7 @@ namespace ftp
       {
          ((client *) this)->m_fTransferInProgress = false;
          ReportError(blockingException.GetErrorMessage(), __FILE__, __LINE__);
-         sckDataConnection.close();
+         sckDataConnection.SetCloseAndDelete();
          return false;
       }
 
@@ -988,24 +988,31 @@ namespace ftp
       {
          ((client *) this)->m_fTransferInProgress = false;
          ReportError(blockingException.GetErrorMessage(), __FILE__, __LINE__);
-         sckDataConnection.close();
+         sckDataConnection.SetCloseAndDelete();
          return false;
       }
 
       return true;
+
    }
+
 
    /// Sends a command to the server.
    /// @param[in] Command Command to send.
    bool client::SendCommand(const command& Command, const stringa & Arguments)
    {
+      
       if (!IsConnected())
+      {
+
          return false;
+
+      }
 
       while (m_apSckControlConnection->check_readability())
       {
 
-         m_sockethandler.select();
+         m_sockethandler.select(1, 0);
 
       }
 
@@ -1019,7 +1026,7 @@ namespace ftp
       catch (::sockets::blocking_socket_exception& blockingException)
       {
          ReportError(blockingException.GetErrorMessage(), __FILE__, __LINE__);
-         const_cast<client*>(this)->m_apSckControlConnection->close();
+         const_cast<client*>(this)->m_apSckControlConnection->SetCloseAndDelete();
          return false;
       }
 
@@ -1125,7 +1132,7 @@ namespace ftp
       catch (::sockets::blocking_socket_exception& blockingException)
       {
          ReportError(blockingException.GetErrorMessage(), __FILE__, __LINE__);
-         const_cast<client*>(this)->m_apSckControlConnection->close();
+         const_cast<client*>(this)->m_apSckControlConnection->SetCloseAndDelete();
          return false;
       }
 

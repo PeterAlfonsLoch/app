@@ -269,6 +269,7 @@ namespace sockets
 
    bool tcp_socket::open(const string &host,port_t port)
    {
+      SetCloseAndDelete(false);
       if(IsIpv6())
       {
          if(!Handler().ResolverEnabled() || Session.sockets().net().isipv6(host))

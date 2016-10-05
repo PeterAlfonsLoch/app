@@ -223,7 +223,7 @@ namespace sockets
 
    void base_socket::SetCloseAndDelete(bool x)
    {
-      if (x != m_bClose)
+      if (x ^ m_bClose)
       {
          Handler().AddList(m_socket, LIST_CLOSE, x);
          m_bClose = x;

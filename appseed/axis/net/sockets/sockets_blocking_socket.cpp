@@ -61,14 +61,14 @@ namespace sockets
    blocking_socket* blocking_socket::create_instance()
    {
 
-      return canew(blocking_socket(m_handler));
+      return new blocking_socket(m_handler);
 
    }
 
    listen_socket < blocking_socket > * blocking_socket::create_listening_instance()
    {
 
-      return canew(listen_socket < blocking_socket >(m_handler));
+      return new listen_socket < blocking_socket >(m_handler);
 
    }
 

@@ -318,70 +318,101 @@ namespace sockets
 
       uint32_t dw1,dw2;
 
-      size_t ignore = 0;
+      start_processing_adding:
 
-      while(natural(m_add.get_size()) > ignore)
+      auto ppair = m_add.PGetFirstAssoc();
+
+      if(ppair != NULL)
       {
 
          if(m_sockets.get_size() >= FD_SETSIZE)
          {
+
             log(NULL,"Select",(int32_t)m_sockets.get_size(),"FD_SETSIZE reached",::aura::log::level_warning);
-            break;
+
+            goto end_processing_adding;
+
          }
 
-         POSITION pos = m_add.get_start_position();
-         SOCKET s;
-         sp(base_socket) p;
-         m_add.get_next_assoc(pos,s,p);
-         //TRACE("Trying to add fd %d,  m_add.size() %d,  ignore %d\n", (int32_t)s, (int32_t)m_add.get_size(), (int32_t)ignore);
-         //
+         SOCKET s = ppair->m_element1;
+
+         sp(base_socket) & p = ppair->m_element2;
+         
          sp(base_socket) plookup;
+
          if(m_sockets.Lookup(p -> GetSocket(),plookup))
          {
+
             log(p,"add",(int32_t)p -> GetSocket(),"Attempt to add socket already in controlled queue",::aura::log::level_fatal);
-            // %! it's a dup, don't add to delete queue, just ignore it
-            //m_delete.add_tail(p);
+
             m_add.remove_key(s);
-            ignore++;
-            continue;
+
+            goto start_processing_adding;
+
          }
+         
          if(!p -> CloseAndDelete())
          {
+         
             stream_socket * scp = p.cast < stream_socket >();
+
             if(scp && scp -> Connecting()) // 'open' called before adding socket
             {
+
                set(s,false,true);
+
             }
             else
             {
+
                tcp_socket * tcp = p.cast < tcp_socket >();
+
                bool bWrite = tcp ? tcp -> GetOutputLength() != 0 : false;
+
                if(p -> IsDisableRead())
                {
+
                   set(s,false,bWrite);
+
                }
                else
                {
+
                   set(s,true,bWrite);
+
                }
+
             }
-            m_maxsock = (s > m_maxsock) ? s : m_maxsock;
+
+            m_maxsock = (s + 1 > m_maxsock) ? s + 1 : m_maxsock;
+
          }
          else
          {
+
             log(p,"add",(int32_t)p -> GetSocket(),"Trying to add socket with SetCloseAndDelete() true",::aura::log::level_warning);
+
          }
+
          // only add to m_fds (process fd_set events) if
          //  slave handler and detached/detaching socket
          //  master handler and non-detached socket
          if(!(m_slave ^ p -> IsDetach()))
          {
+
             m_fds.add_tail(s);
+
          }
+
          m_sockets[s] = p;
-         //
+         
          m_add.remove_key(s);
+
+         goto start_processing_adding;
+
       }
+
+      end_processing_adding:
 
       fd_set rfds;
       fd_set wfds;
@@ -396,13 +427,13 @@ namespace sockets
       if(m_b_use_mutex)
       {
          m_pmutex->unlock();
-         n = ::select((int32_t)(m_maxsock + 1),&rfds,&wfds,&efds,tsel);
+         n = ::select(m_maxsock,&rfds,&wfds,&efds,tsel);
          m_iSelectErrno = Errno;
          m_pmutex->lock();
       }
       else
       {
-         n = ::select((int32_t)(m_maxsock + 1),&rfds,&wfds,&efds,tsel);
+         n = ::select(m_maxsock,&rfds,&wfds,&efds,tsel);
          m_iSelectErrno = Errno;
       }
       dw2 = ::get_tick_count();
@@ -415,7 +446,7 @@ namespace sockets
             EINVAL n is negative. Or struct timeval contains bad time values (<0).
             ENOMEM select was unable to allocate memory for internal tables.
          */
-         if(Errno != m_preverror || m_errcnt++ % 10000 == 0)
+         if(m_maxsock > 0 && (Errno != m_preverror || m_errcnt++ % 10000 == 0))
          {
             log(NULL,"select",Errno,StrError(Errno));
             int32_t iError = Errno;
@@ -432,7 +463,7 @@ namespace sockets
             }
 
             // test bad fd
-            for(SOCKET i = 0; i <= m_maxsock; i++)
+            for(SOCKET i = 0; i < m_maxsock; i++)
             {
                bool t = false;
                FD_ZERO(&rfds);
@@ -459,7 +490,8 @@ namespace sockets
                   TRACE("Bad fd in fd_set: %d\n",i);
                   TRACE("Deleting and removing socket: %d\n",i);
 
-                  m_sockets.remove_key(i);
+                  psocket->SetCloseAndDelete();
+                  //m_sockets.remove_key(i);
 
                }
             }
@@ -961,7 +993,7 @@ namespace sockets
       if(check_max_fd)
       {
 
-         m_maxsock = m_fds.maximum(0);
+         m_maxsock = m_fds.maximum(0) + 1;
 
       }
 

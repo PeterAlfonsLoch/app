@@ -11,8 +11,24 @@ public:
 
    virtual ~observer()
    {
-      for (auto p : * this)
-         p->detach_observer(dynamic_cast < T2 * >(this));
+
+      for (auto p : *this)
+      {
+
+         try
+         {
+
+            p->detach_observer(dynamic_cast <T2 *>(this));
+
+         }
+         catch (...)
+         {
+
+
+         }
+
+      }
+
    }
 
    bool attach_observer(T * p)

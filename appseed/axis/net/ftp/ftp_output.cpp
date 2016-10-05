@@ -38,7 +38,7 @@ namespace ftp
       else
       {
 
-         WriteLine("> " + strCommand + " " + strImplode, "S");
+         WriteLine("> " + command.AsString() + " " + strImplode, "S");
 
       }
 
