@@ -436,12 +436,21 @@ namespace sockets
          }
          else if(!n)
          {
-            OnDisconnect();
-            SetCloseAndDelete(true);
-            SetFlushBeforeClose(false);
-            SetLost();
-            SetShutdown(SHUT_WR);
-            //TRACE("tcp_socket::recv (B2) recv disconnect");
+            int32_t iError = ::WSAGetLastError();
+            if (iError == WSAEWOULDBLOCK)
+            {
+               TRACE("tcp_socket::recv 0 No Error or WOULD BLOCK");
+            }
+            else
+            {
+               TRACE("tcp_socket::recv (B2) recv disconnect");
+               OnDisconnect();
+               SetCloseAndDelete(true);
+               SetFlushBeforeClose(false);
+               SetLost();
+               SetShutdown(SHUT_WR);
+            }
+            
          }
          else if(n > 0 && n <= nBufSize)
          {

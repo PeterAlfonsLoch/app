@@ -46,10 +46,18 @@ namespace ftp
    /// - File eXchange Protocol (FXP) - uses FTP to transfer data directly from one remote server to another.
    /// - ...
    ///
-   class CLASS_DECL_AXIS client :
-      virtual public ::object
+   class CLASS_DECL_AXIS client_socket :
+      virtual public ::sockets::tcp_socket
    {
    public:
+      class notification;
+
+      class observer_array :
+         virtual public ::observer < notification, observer_array>
+      {
+      public:
+
+      };
 
       enum e_state
       {
@@ -58,32 +66,40 @@ namespace ftp
          state_logged
 
       };
-      
-      e_state                       m_estate;
+      // data members
+      const unsigned int                     mc_uiTimeout;               ///< timeout for socket-functions
+      const unsigned int                     mc_uiResponseWait;          ///< sleep time between receive calls to socket when getting the response
+      const string                          mc_strEolCharacterSequence; ///< end-of-line sequence of current operating system
+      const string                          mc_strRemoteDirectorySeparator; ///< directory separator character which is used on the FTP server
 
-      ::sockets::socket_handler     m_sockethandler;
-      
-      class notification;
-      
-      class observer_array : 
-         virtual public ::observer < notification, observer_array>
-      {
-      public:
-      
-      };
+      memory                     m_vBuffer;                  ///< buffer for sending and receiving
+      string_list                m_qResponseBuffer;          ///< buffer for server-responses
+      sp(representation)         m_apCurrentRepresentation;  ///< representation currently set
+
+      //this class is now a tcp_socket and it is this control connection socket
+      //sp(::sockets::blocking_socket)         m_apSckControlConnection;   ///< socket for connection to FTP server
+      sp(ifile_list_parser)      m_apFileListParser;         ///< object which is used for parsing the result of the LIST command
+      bool                       m_fTransferInProgress;      ///< if true, a file transfer is in progress
+      bool                       m_fAbortTransfer;           ///< indicates that a running filetransfer should be canceled
+      bool                       m_fResumeIfPossible;        ///< try to resume download/upload if possible
+      observer_array             m_setObserver;              ///< list of observers, which are notified about particular actions
+      logon                      m_LastLogonInfo;            ///< logon-info, which was used at the last call of login
+
+      e_state                    m_estate;
+
       
       
 
-      client(::aura::application * papp, ::sockets::blocking_socket * apSocket = NULL,
+      client_socket(::sockets::base_socket_handler & handler,
          unsigned int uiTimeout = 10, unsigned int uiBufferSize = 2048,
          unsigned int uiResponseWait = 0, const string& strRemoteDirectorySeparator = _T("/"));
-      virtual ~client();
+      virtual ~client_socket();
 
       void AttachObserver(notification* pObserver);
       void DetachObserver(notification* pObserver);
       void SetFileListParser(sp(ifile_list_parser) apFileListParser);
 
-      bool IsConnected();
+      bool _is_connected();
       bool IsTransferringData();
       bool IsResumeModeEnabled();
       void SetResumeMode(bool fEnable = true);
@@ -106,7 +122,7 @@ namespace ftp
          const representation& repType = representation(type::Image()), bool fPasv = false);
       bool DownloadFile(const string& strRemoteFile, const string& strLocalFile,
          const representation& repType = representation(type::Image()), bool fPasv = false);
-      bool DownloadFile(const string& strSourceFile, client& TargetFtpServer,
+      bool DownloadFile(const string& strSourceFile, client_socket& TargetFtpServer,
          const string& strTargetFile, const representation& repType = representation(type::Image()),
          bool fPasv = true);
 
@@ -114,12 +130,12 @@ namespace ftp
          const representation& repType = representation(type::Image()), bool fPasv = false);
       bool UploadFile(const string& strLocalFile, const string& strRemoteFile, bool fStoreUnique = false,
          const representation& repType = representation(type::Image()), bool fPasv = false);
-      bool UploadFile(client& SourceFtpServer, const string& strSourceFile,
+      bool UploadFile(client_socket& SourceFtpServer, const string& strSourceFile,
          const string& strTargetFile, const representation& repType = representation(type::Image()),
          bool fPasv = true);
 
-      static bool TransferFile(client& SourceFtpServer, const string& strSourceFile,
-         client& TargetFtpServer, const string& strTargetFile,
+      static bool TransferFile(client_socket& SourceFtpServer, const string& strSourceFile,
+         client_socket& TargetFtpServer, const string& strTargetFile,
          const representation& repType = representation(type::Image()), bool fSourcePasv = false);
 
       int RemoveDirectory(const string& strDirectory);
@@ -131,7 +147,7 @@ namespace ftp
 
       int Passive(ULONG& ulIpAddress, USHORT& ushPort);
       int DataPort(const string& strHostIP, USHORT ushPort);
-      int Abort();
+      int _abort();
       int system();
       int Noop();
       int RepresentationType(const representation& repType, DWORD dwSize = 0);
@@ -150,20 +166,17 @@ namespace ftp
       int FileModificationTime(const string& strPath, tm& tmModificationTime);
       int FileModificationTime(const string& strPath, string& strModificationTime);
 
-   protected:
       bool ExecuteDatachannelCommand(const command& crDatachannelCmd, const string& strPath, const representation& representation,
          bool fPasv, DWORD dwByteOffset, itransfer_notification& Observer);
 
       observer_array& GetObservers();
 
-   private:
-      client& operator=(const client&); // no implementation for assignment operator
       int _RepresentationType(const representation& repType, DWORD dwSize = 0);
-      bool TransferData(const command& crDatachannelCmd, itransfer_notification& Observer, ::sockets::blocking_socket& sckDataConnection);
+      bool TransferData(const command& crDatachannelCmd, itransfer_notification& Observer, ::sockets::transfer_socket & sckDataConnection);
       bool OpenActiveDataConnection(::sockets::socket & sckDataConnection, const command& crDatachannelCmd, const string& strPath, DWORD dwByteOffset);
       bool OpenPassiveDataConnection(::sockets::socket & sckDataConnection, const command& crDatachannelCmd, const string& strPath, DWORD dwByteOffset);
-      bool SendData(itransfer_notification& Observer, ::sockets::blocking_socket& sckDataConnection);
-      bool ReceiveData(itransfer_notification& Observer, ::sockets::blocking_socket& sckDataConnection);
+      bool SendData(itransfer_notification& Observer, ::sockets::transfer_socket& sckDataConnection);
+      bool ReceiveData(itransfer_notification& Observer, ::sockets::transfer_socket& sckDataConnection);
 
       int  SimpleErrorCheck(const reply& Reply);
 
@@ -171,6 +184,7 @@ namespace ftp
       bool SendCommand(const command& Command, const stringa & Arguments, reply& Reply);
       bool GetResponse(reply& Reply);
       bool GetSingleResponseLine(string& strResponse);
+      void OnLine(const string & strLine);
 
       bool OpenControlChannel(const string& strServerHost, USHORT ushServerPort = DEFAULT_FTP_PORT);
       void CloseControlChannel();
@@ -178,32 +192,14 @@ namespace ftp
       void ReportError(const string& strErrorMsg, const string& strFile, DWORD dwLineNr);
       bool GetIpAddressFromResponse(const string& strResponse, ULONG& ulIpAddress, USHORT& ushPort);
 
-      // data members
-   private:
-      const unsigned int                     mc_uiTimeout;               ///< timeout for socket-functions
-      const unsigned int                     mc_uiResponseWait;          ///< sleep time between receive calls to socket when getting the response
-      const string                          mc_strEolCharacterSequence; ///< end-of-line sequence of current operating system
-      const string                          mc_strRemoteDirectorySeparator; ///< directory separator character which is used on the FTP server
-
-      memory                    m_vBuffer;                  ///< buffer for sending and receiving
-      string_list        m_qResponseBuffer;          ///< buffer for server-responses
-      sp(representation) m_apCurrentRepresentation;  ///< representation currently set
-
-      sp(::sockets::blocking_socket)         m_apSckControlConnection;   ///< socket for connection to FTP server
-      sp(ifile_list_parser)         m_apFileListParser;         ///< object which is used for parsing the result of the LIST command
-      bool                           m_fTransferInProgress;      ///< if true, a file transfer is in progress
-      bool                           m_fAbortTransfer;           ///< indicates that a running filetransfer should be canceled
-      bool                                   m_fResumeIfPossible;        ///< try to resume download/upload if possible
-      observer_array                           m_setObserver;              ///< list of observers, which are notified about particular actions
-      logon                             m_LastLogonInfo;            ///< logon-info, which was used at the last call of login
    };
 
    /// @brief interface for notification
    ///
    /// Derive your class from this base-class and register this class on client.
    /// For example you can use this for logging the sended and received commands.
-   class client::notification : 
-      virtual public ::observer<client::observer_array, client::notification>
+   class client_socket::notification : 
+      virtual public ::observer < client_socket::observer_array, client_socket::notification>
    {
    public:
       virtual ~notification() {}

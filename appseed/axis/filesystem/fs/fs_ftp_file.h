@@ -2,31 +2,34 @@
 
 
 class CLASS_DECL_AXIS ftpfs_file :
-   virtual public ::sockets::http_batch_buffer
+   virtual public ::file::stream_buffer
 {
 public:
 
 
-   ::file::memory_buffer                        m_httpfile;
-   ::file::memory_buffer                        m_memfile;
-   var                                          m_varFile;
+   ftpfs *                       m_pftp;
+   ::file::buffer_sp             m_file;
+   var                           m_varFile;
+   ::file::path                  m_filepath;
+   ::ftp::client_socket *               m_pclient;
 
 
-   ftpfs_file(::aura::application * papp, var varFile);
+   // Download false
+   // Create temp file and upload file on destruction
+   ftpfs_file(::ftpfs * pftp, ::ftp::client_socket * pclient);
    virtual ~ftpfs_file();
 
-   using ::sockets::http_batch_buffer::read;
+
+   virtual cres open(const ::file::path & lpszFileName, UINT nOpenFlags);
+
    virtual memory_size_t read(void *lpBuf, memory_size_t nCount);
-   using ::sockets::http_batch_buffer::write;
    virtual void write(const void * lpBuf, memory_size_t nCount);
 
    file_position_t seek(file_offset_t lOff, ::file::e_seek  nFrom);
 
    virtual file_size_t get_length() const;
 
-   virtual void get_file_data();
-   virtual void set_file_data();
-
+   virtual void close() override;
 
 };
 

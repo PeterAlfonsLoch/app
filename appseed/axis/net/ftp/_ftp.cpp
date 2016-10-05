@@ -3,7 +3,7 @@
 
  //Directory of C:\ca2\app\appseed\axis\net\ftp
 
-#include "ftp_client.cpp"
+#include "ftp_client_socket.cpp"
 #include "ftp_data_types.cpp"
 #include "ftp_file.cpp"
 #include "ftp_file_list_parser.cpp"

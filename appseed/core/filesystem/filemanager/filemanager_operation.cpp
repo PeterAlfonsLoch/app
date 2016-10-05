@@ -292,6 +292,8 @@ namespace filemanager
                                                if(bOk)
                                                {
 
+                                                  bool bStatusOk = true;
+
                                                   try
                                                   {
 
@@ -301,11 +303,11 @@ namespace filemanager
                                                   catch(...)
                                                   {
 
-                                                     bOk = false;
+                                                     bStatusOk = false;
 
                                                   }
 
-                                                  if(!bOk)
+                                                  if(!bStatusOk)
                                                   {
 
                                                      TRACE("Failed to set status of destination file '%s' using file status of '%s' file",strDestPath,m_fileSrc->GetFilePath());

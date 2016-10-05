@@ -1203,6 +1203,80 @@ namespace axis
          bOk = false;
       }
 
+      
+      try
+      {
+
+         m_spfsdata.release();
+
+      }
+      catch (...)
+      {
+
+         bOk = false;
+
+      }
+
+
+      try
+      {
+
+         m_pifs.release();
+
+      }
+      catch (...)
+      {
+
+         bOk = false;
+
+      }
+
+      try
+      {
+
+         m_prfs.release();
+
+      }
+      catch (...)
+      {
+
+         bOk = false;
+
+      }
+
+
+      try
+      {
+
+         m_pftpfs.release();
+
+      }
+      catch (...)
+      {
+
+         bOk = false;
+
+      }
+
+      if(::ftp::command::info2::g_pTheOneAndOnly != NULL)
+      {
+         
+         try
+         {
+
+            delete ::ftp::command::info2::g_pTheOneAndOnly;
+
+         }
+         catch (...)
+         {
+
+            bOk = false;
+
+         }
+
+      }
+
+
       try
       {
          

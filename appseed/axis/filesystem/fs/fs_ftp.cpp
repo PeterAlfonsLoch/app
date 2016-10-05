@@ -5,7 +5,8 @@
 ftpfs::ftpfs(::aura::application * papp, const char * pszRoot) :
    ::object(papp),
    ::data::data(papp),
-   ::fs::data(papp)
+   ::fs::data(papp),
+   m_sockethandler(papp)
 {
 
    m_strRoot = pszRoot;
@@ -164,7 +165,7 @@ bool ftpfs::has_subdir(const ::file::path & path)
 
    ::ftp::file_status_ptra ptra;
 
-   ::ftp::client * pclient = NULL;
+   ::ftp::client_socket * pclient = NULL;
 
    int iTry = 0;
 
@@ -172,7 +173,7 @@ retry:
 
    defer_initialize(&pclient, listing.m_path);
 
-   if (pclient->m_estate != ::ftp::client::state_logged)
+   if (pclient->m_estate != ::ftp::client_socket::state_logged)
    {
 
       if (iTry > 3)
@@ -202,7 +203,7 @@ retry:
 
       }
 
-      pclient->m_estate = ::ftp::client::state_initial;
+      pclient->m_estate = ::ftp::client_socket::state_initial;
 
       iTry++;
 
@@ -341,32 +342,86 @@ bool ftpfs::file_move(const ::file::path & pszDst, const ::file::path & pszSrc)
 
    if (pfesp != NULL)
    {
+
       ::release(pfesp->m_p);
+
    }
 
-   ::cres cres;
-
-   ::file::buffer_sp spfile;
-
-   spfile = canew(ftpfs_file(get_app(), path));
-
-   cres = spfile->open(path, nOpenFlags);
-
-   if (cres.failed())
+   if (nOpenFlags & ::file::mode_read && !(nOpenFlags & ::file::mode_write))
    {
 
-      spfile.release();
+      ::ftp::client_socket * pclient = NULL;
+
+      int iTry = 0;
+
+   retry:
+
+      defer_initialize(&pclient, path);
+
+      if (pclient->m_estate != ::ftp::client_socket::state_logged)
+      {
+
+         if (iTry > 3)
+         {
+
+            return NULL;
+
+         }
+
+         iTry++;
+
+         goto retry;
+
+      }
+
+      ::file::path pathTemp = Application.file().time(System.dir().time());
+
+      string strRemoteFile = System.url().get_object(path);
+
+      if (!pclient->DownloadFile(strRemoteFile, pathTemp))
+      {
+
+         if (iTry > 3)
+         {
+
+            return NULL;
+
+         }
+
+         pclient->m_estate = ::ftp::client_socket::state_initial;
+
+         iTry++;
+
+         goto retry;
+
+      }
+
+      return Application.file().get_file(pathTemp, nOpenFlags, pfesp);
+
+   }
+   else
+   {
+
+      ::ftp::client_socket * pclient = NULL;
+
+      defer_initialize(&pclient, path);
+
+      ::file::buffer_sp spfile;
+
+      spfile = canew(ftpfs_file(this, pclient));
+
+      cres res = spfile->open(path, nOpenFlags);
 
       if (pfesp != NULL)
       {
 
-         *pfesp = cres;
+         *pfesp = res;
 
       }
 
-   }
+      return spfile;
 
-   return spfile;
+   }
 
 }
 
@@ -387,7 +442,7 @@ var ftpfs::file_length(const ::file::path & pszPath)
 }
 
 
-void ftpfs::defer_initialize(::ftp::client ** ppclient, string strPath)
+void ftpfs::defer_initialize(::ftp::client_socket ** ppclient, string strPath)
 {
 
    ::ftp::logon logon;
@@ -402,14 +457,14 @@ void ftpfs::defer_initialize(::ftp::client ** ppclient, string strPath)
    strToken.replace(":", "-");
    strToken.replace("/", "_");
 
-   sp(::ftp::client) & client = m_mapClient[strToken];
+   sp(::ftp::client_socket) & client = m_mapClient[strToken];
 
    int iTry = 0;
 
    if (client.is_null())
    {
 
-      client = canew(::ftp::client(get_app()));
+      client = canew(::ftp::client_socket(m_sockethandler));
 
       sp(::ftp::output) & output = m_mapOutput[strToken];
 
@@ -421,7 +476,7 @@ void ftpfs::defer_initialize(::ftp::client ** ppclient, string strPath)
 
    *ppclient = client.m_p;
 
-   if (client->m_estate == ::ftp::client::state_initial)
+   if (client->m_estate == ::ftp::client_socket::state_initial || !client->IsConnected())
    {
 
    retry:
@@ -436,7 +491,7 @@ void ftpfs::defer_initialize(::ftp::client ** ppclient, string strPath)
          if (iTry > 3)
          {
 
-            client->m_estate = ::ftp::client::state_initial;
+            client->m_estate = ::ftp::client_socket::state_initial;
 
             return;
 
@@ -454,7 +509,7 @@ void ftpfs::defer_initialize(::ftp::client ** ppclient, string strPath)
 
    }
 
-   client->m_estate = ::ftp::client::state_logged;
+   client->m_estate = ::ftp::client_socket::state_logged;
 
    //  \
    //   \

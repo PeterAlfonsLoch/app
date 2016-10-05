@@ -286,6 +286,22 @@ namespace fs
 
    }
 
+   ::file::buffer_sp set::get_file(const ::file::path & path, UINT nOpenFlags, cres * pfesp)
+   {
+
+      ::fs::data * pdata = path_data(path);
+
+      if (pdata != NULL)
+      {
+
+         return pdata->get_file(path, nOpenFlags, pfesp);
+
+      }
+
+      return NULL;
+
+   }
+
    //void set::get_ascendants_path(const ::file::path & psz,::file::patha & stra)
    //{
 

@@ -306,6 +306,67 @@ namespace ftp
       e_command m_enCommand;
    };
 
+
+   class command::extended_info : public command::iextended_info
+   {
+      typedef command::TSpecificationEnum TSpecificationEnum;
+      typedef command::e_type e_type;
+   public:
+      extended_info(const string& strServerString, const string& strCompleteServerStringSyntax, UINT uiNumberOfParameters,
+         UINT uiNumberOfOptionalParameters, TSpecificationEnum enSpecification, e_type enType) :
+         m_strServerString(strServerString),
+         m_strCompleteServerStringSyntax(strCompleteServerStringSyntax),
+         m_uiNumberOfParameters(uiNumberOfParameters),
+         m_uiNumberOfOptionalParameters(uiNumberOfOptionalParameters),
+         m_enSpecification(enSpecification),
+         m_etype(enType)
+      {}
+
+      extended_info(const extended_info& src) :
+         m_strServerString(src.m_strServerString),
+         m_strCompleteServerStringSyntax(src.m_strCompleteServerStringSyntax),
+         m_uiNumberOfParameters(src.m_uiNumberOfParameters),
+         m_uiNumberOfOptionalParameters(src.m_uiNumberOfOptionalParameters),
+         m_enSpecification(src.m_enSpecification),
+         m_etype(src.m_etype)
+      {
+      }
+
+      virtual const string& GetServerString() const override { return m_strServerString; }
+      virtual const string& GetCompleteServerStringSyntax() const override { return m_strCompleteServerStringSyntax; }
+      virtual UINT GetNumberOfParameters() const override { return m_uiNumberOfParameters; }
+      virtual UINT GetNumberOfOptionalParameters() const override { return m_uiNumberOfOptionalParameters; }
+      virtual TSpecificationEnum GetSpecification() const override { return m_enSpecification; }
+      virtual e_type GetType() const override { return m_etype; }
+
+      const string            m_strServerString;
+      const string            m_strCompleteServerStringSyntax;
+      const UINT               m_uiNumberOfParameters;
+      const UINT               m_uiNumberOfOptionalParameters;
+      const TSpecificationEnum m_enSpecification;
+      const e_type          m_etype;
+
+   };
+
+
+   class command::info2 : private map<e_command, e_command, sp(extended_info), extended_info * >
+   {
+   public:
+
+      static info2 * g_pTheOneAndOnly;
+
+      info2();
+
+      void insert(e_command enCommand, const string& strServerString, const string& strCompleteServerStringSyntax, UINT uiNumberOfParameters,
+         UINT uiNumberOfOptionalParameters, TSpecificationEnum enSpecification, e_type enType);
+
+      static info2& GetInstance() { if (g_pTheOneAndOnly == NULL) g_pTheOneAndOnly = new info2(); return *g_pTheOneAndOnly; }
+
+      static const iextended_info& Get(e_command enCommand);
+
+   };
+
+
    /// @brief Structure for logon information.
    ///
    /// Holds all necessary parameters for logging on a ftp-server.

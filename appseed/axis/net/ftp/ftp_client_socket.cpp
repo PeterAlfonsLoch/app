@@ -2,8 +2,8 @@
 //
 // The official specification of the File Transfer Protocol (FTP) is the RFC 959.
 // Most of the documentation are taken from this RFC.
-// This is an implementation of an simple FTP client. I have tried to implement
-// platform independent. For the communication i used the classes blocking_socket,
+// This is an implementation of an simple FTP client_socket. I have tried to implement
+// platform independent. For the communication i used the classes transfer_socket,
 // ::net::address, ... from David J. Kruglinski (Inside Visual C++). These classes are
 // only small wrappers for the sockets-API.
 // Further I used a smart pointer-implementation from Scott Meyers (Effective C++,
@@ -40,7 +40,7 @@
 //      - ExecuteDatachannelCommand now accepts an itransfer_notification object.
 //        Through this concept there is no need to write the received files to a file.
 //        For example the bytes can be written only in memory or an other tcp stream.
-//      - Added an interface for the blocking socket (::sockets::blocking_socket).
+//      - Added an interface for the blocking socket (::sockets::transfer_socket).
 //        Therefore it is possible to exchange the socket implementation, e.g. for
 //        writing unit tests (by simulating an specific scenario of a FTP communication).
 //      - Replaced the magic numbers concerning the reply codes by a class.
@@ -64,9 +64,9 @@ namespace ftp
    /// constructor
    /// @param[in] apSocket Instance of socket class which will be used for
    ///                     communication with the FTP server.
-   ///                     client class takes ownership of this instance.
+   ///                     client_socket class takes ownership of this instance.
    ///                     It will be deleted on destruction of this object.
-   ///                     If this pointer is NULL, the blocking_socket implementation
+   ///                     If this pointer is NULL, the transfer_socket implementation
    ///                     will be used.
    ///                     This gives the ability to set an other socket class.
    ///                     For example a socket class can be implemented which simulates
@@ -79,11 +79,15 @@ namespace ftp
    /// @param[in] uiResponseWait Sleep time between receive calls to socket when getting
    ///                           the response. Sometimes the socket hangs if no wait time
    ///                           is set. Normally not wait time is necessary.
-   client::client(::aura::application * papp, ::sockets::blocking_socket * apSocket, unsigned int uiTimeout/*=10*/,
+   client_socket::client_socket(::sockets::base_socket_handler & handler, 
+      unsigned int uiTimeout/*=10*/,
       unsigned int uiBufferSize/*=2048*/, unsigned int uiResponseWait/*=0*/,
       const string& strRemoteDirectorySeparator/*=_T("/")*/) :
-      ::object(papp),
-      m_sockethandler(papp),
+      ::object(handler.get_app()),
+      ::sockets::base_socket(handler),
+      ::sockets::socket(handler),
+      ::sockets::stream_socket(handler),
+      ::sockets::tcp_socket(handler),
       mc_uiTimeout(uiTimeout),
       mc_uiResponseWait(uiResponseWait),
       mc_strEolCharacterSequence(_T("\r\n")),
@@ -94,46 +98,37 @@ namespace ftp
       m_fResumeIfPossible(true)
    {
 
+      m_pmutex = new mutex(get_app());
+
       m_estate = state_initial;
       
-      m_apSckControlConnection = apSocket;
-
-      if (m_apSckControlConnection.is_null())
-      {
-
-         m_apSckControlConnection = ::sockets::create_default_blocking_socket(m_sockethandler);
-
-      }
-
-      ASSERT(m_apSckControlConnection.is_set());
-
       m_vBuffer.allocate(uiBufferSize);
 
    }
 
 
    /// destructor
-   client::~client()
+   client_socket::~client_socket()
    {
       if (IsTransferringData())
-         Abort();
+         _abort();
 
-      if (IsConnected())
+      if (_is_connected())
          Logout();
    }
 
-   /// Attach an observer to the client. You can attach as many observers as you want.
-   /// The client send notifications (more precisely the virtual functions are called)
+   /// Attach an observer to the client_socket. You can attach as many observers as you want.
+   /// The client_socket send notifications (more precisely the virtual functions are called)
    /// to the observers.
-   void client::AttachObserver(client::notification* pObserver)
+   void client_socket::AttachObserver(client_socket::notification* pObserver)
    {
       ASSERT(pObserver);
       if (pObserver)
          m_setObserver.attach_observer(pObserver);
    }
 
-   /// Detach an observer from the client.
-   void client::DetachObserver(client::notification* pObserver)
+   /// Detach an observer from the client_socket.
+   void client_socket::DetachObserver(client_socket::notification* pObserver)
    {
       ASSERT(pObserver);
       if (pObserver)
@@ -141,26 +136,26 @@ namespace ftp
    }
 
    /// Sets the file list parser which is used for parsing the results of the LIST command.
-   void client::SetFileListParser(sp(ifile_list_parser) apFileListParser)
+   void client_socket::SetFileListParser(sp(ifile_list_parser) apFileListParser)
    {
       m_apFileListParser = apFileListParser;
    }
 
-   /// Returns a set of all observers currently attached to the client.
-   client::observer_array& client::GetObservers()
+   /// Returns a set of all observers currently attached to the client_socket.
+   client_socket::observer_array& client_socket::GetObservers()
    {
       return m_setObserver;
    }
 
    /// Enables or disables resuming for file transfer operations.
    /// @param[in] fEnable True enables resuming, false disables it.
-   void client::SetResumeMode(bool fEnable/*=true*/)
+   void client_socket::SetResumeMode(bool fEnable/*=true*/)
    {
       m_fResumeIfPossible = fEnable;
    }
 
    /// Indicates if the resume mode is set.
-   bool client::IsResumeModeEnabled()
+   bool client_socket::IsResumeModeEnabled()
    {
       return m_fResumeIfPossible;
    }
@@ -168,14 +163,22 @@ namespace ftp
    /// Opens the control channel to the FTP server.
    /// @param[in] strServerHost IP-::net::address or name of the server
    /// @param[in] iServerPort Port for channel. Usually this is port 21.
-   bool client::OpenControlChannel(const string& strServerHost, USHORT ushServerPort/*=DEFAULT_FTP_PORT*/)
+   bool client_socket::OpenControlChannel(const string& strServerHost, USHORT ushServerPort/*=DEFAULT_FTP_PORT*/)
    {
-      CloseControlChannel();
+      
+      if (IsConnected() || _is_connected())
+      {
+
+         CloseControlChannel();
+
+      }
+
+      SetLineProtocol();
 
       try
       {
          
-         if (!m_apSckControlConnection->open(strServerHost, ushServerPort))
+         if (!open(strServerHost, ushServerPort))
          {
             
             return false;
@@ -183,42 +186,42 @@ namespace ftp
          }
 
       }
-      catch (::sockets::blocking_socket_exception& blockingException)
+      catch (::sockets::transfer_socket_exception& blockingException)
       {
          ReportError(blockingException.GetErrorMessage(), __FILE__, __LINE__);
-         m_apSckControlConnection->SetCloseAndDelete();
+         SetCloseAndDelete();
          return false;
       }
 
-      m_sockethandler.add(m_apSckControlConnection);
+      m_handler.add(this);
 
       return true;
    }
 
-   /// Returns the connection state of the client.
-   bool client::IsConnected()
+   /// Returns the connection state of the client_socket.
+   bool client_socket::_is_connected()
    {
-      return m_apSckControlConnection->GetSocket() != INVALID_SOCKET;
+      return GetSocket() != INVALID_SOCKET;
    }
 
    /// Returns true if a download/upload is running, otherwise false.
-   bool client::IsTransferringData()
+   bool client_socket::IsTransferringData()
    {
       return m_fTransferInProgress;
    }
 
    /// Closes the control channel to the FTP server.
-   void client::CloseControlChannel()
+   void client_socket::CloseControlChannel()
    {
       try
       {
-         m_apSckControlConnection->SetCloseAndDelete();
+         SetCloseAndDelete();
          m_apCurrentRepresentation.release();
       }
-      catch (::sockets::blocking_socket_exception& blockingException)
+      catch (::sockets::transfer_socket_exception& blockingException)
       {
          blockingException.GetErrorMessage();
-         m_apSckControlConnection->SetCloseAndDelete();
+         SetCloseAndDelete();
       }
    }
 
@@ -227,7 +230,7 @@ namespace ftp
    /// @retval FTP_OK    All runs perfect.
    /// @retval FTP_ERROR Something went wrong. An other response was expected.
    /// @retval NOT_OK    The command was not accepted.
-   int client::SimpleErrorCheck(const reply& Reply)
+   int client_socket::SimpleErrorCheck(const reply& Reply)
    {
       if (Reply.Code().IsNegativeReply())
          return FTP_NOTOK;
@@ -241,7 +244,7 @@ namespace ftp
 
    /// Logs on to a FTP server.
    /// @param[in] logonInfo Structure with logon information.
-   bool client::Login(logon& logonInfo)
+   bool client_socket::Login(logon& logonInfo)
    {
       m_LastLogonInfo = logonInfo;
 
@@ -288,7 +291,7 @@ namespace ftp
       if (logonInfo.Hostport() != DEFAULT_FTP_PORT)
          strHostnamePort = logonInfo.Hostname() + ":" + ::str::from(logonInfo.Hostport()); // add port to hostname (only if port is not 21)
 
-      if (IsConnected())
+      if (_is_connected())
          Logout();
 
       if (!OpenControlChannel(strTemp, ushPort))
@@ -348,8 +351,8 @@ namespace ftp
    /// @remarks Can be used for moving the file to another directory.
    /// @param[in] strOldName Name of the file to rename.
    /// @param[in] strNewName The new name for the file.
-   /// @return see return values of client::SimpleErrorCheck
-   int client::Rename(const string& strOldName, const string& strNewName)
+   /// @return see return values of client_socket::SimpleErrorCheck
+   int client_socket::Rename(const string& strOldName, const string& strNewName)
    {
       reply Reply;
       if (!SendCommand(command::RNFR(), strOldName, Reply))
@@ -372,8 +375,8 @@ namespace ftp
    /// Moves a file within the FTP server.
    /// @param[in] strFullSourceFilePath Name of the file which should be moved.
    /// @param[in] strFullTargetFilePath The destination where the file should be moved to (file name must be also given).
-   /// @return see return values of client::SimpleErrorCheck
-   int client::Move(const string& strFullSourceFilePath, const string& strFullTargetFilePath)
+   /// @return see return values of client_socket::SimpleErrorCheck
+   int client_socket::Move(const string& strFullSourceFilePath, const string& strFullTargetFilePath)
    {
       return Rename(strFullSourceFilePath, strFullTargetFilePath);
    }
@@ -382,8 +385,8 @@ namespace ftp
    /// the FTP server.
    /// @param[in] strPath Starting path for the list command.
    /// @param[out] vstrFileList Returns a simple list of the files and folders of the specified directory.
-   /// @param[in] fPasv see documentation of client::Passive
-   bool client::List(const string& strPath, stringa& vstrFileList, bool fPasv)
+   /// @param[in] fPasv see documentation of client_socket::Passive
+   bool client_socket::List(const string& strPath, stringa& vstrFileList, bool fPasv)
    {
       output_stream outputStream(mc_strEolCharacterSequence, command::LIST().AsString());
       if (!ExecuteDatachannelCommand(command::LIST(), strPath, representation(type::ASCII()), fPasv, 0, outputStream))
@@ -402,8 +405,8 @@ namespace ftp
    /// the FTP server.
    /// @param[in] strPath Starting path for the list command.
    /// @param[out] vstrFileList Returns a simple list of the files and folders of the specified the directory.
-   /// @param[in] fPasv see documentation of client::Passive
-   bool client::NameList(const string& strPath, stringa& vstrFileList, bool fPasv)
+   /// @param[in] fPasv see documentation of client_socket::Passive
+   bool client_socket::NameList(const string& strPath, stringa& vstrFileList, bool fPasv)
    {
       output_stream outputStream(mc_strEolCharacterSequence, command::NLST().AsString());
       if (!ExecuteDatachannelCommand(command::NLST(), strPath, representation(type::ASCII()), fPasv, 0, outputStream))
@@ -424,8 +427,8 @@ namespace ftp
    /// @param[out] vFileList Returns a detailed list of the files and folders of the specified directory.
    ///                       vFileList contains file_status-Objects. These Objects provide a lot of
    ///                       information about the file/folder.
-   /// @param[in] fPasv see documentation of client::Passive
-   bool client::List(const string& strPath, file_status_ptra& vFileList, bool fPasv)
+   /// @param[in] fPasv see documentation of client_socket::Passive
+   bool client_socket::List(const string& strPath, file_status_ptra& vFileList, bool fPasv)
    {
       ASSERT(m_apFileListParser.is_set());
 
@@ -456,8 +459,8 @@ namespace ftp
    ///                       vFileList contains file_status-Objects. Normally these Objects provide
    ///                       a lot of information about the file/folder. But the NLST-command provide
    ///                       only a simple list of the directory content (no specific information).
-   /// @param[in] fPasv see documentation of client::Passive
-   bool client::NameList(const string& strPath, file_status_ptra& vFileList, bool fPasv)
+   /// @param[in] fPasv see documentation of client_socket::Passive
+   bool client_socket::NameList(const string& strPath, file_status_ptra& vFileList, bool fPasv)
    {
       output_stream outputStream(mc_strEolCharacterSequence, command::NLST().AsString());
       if (!ExecuteDatachannelCommand(command::NLST(), strPath, representation(type::ASCII()), fPasv, 0, outputStream))
@@ -482,8 +485,8 @@ namespace ftp
    /// @param[in] strRemoteFile Filename of the sourcefile on the FTP server.
    /// @param[in] strLocalFile Filename of the target file on the local computer.
    /// @param[in] repType Representation Type (see documentation of representation)
-   /// @param[in] fPasv see documentation of client::Passive
-   bool client::DownloadFile(const string& strRemoteFile, const string& strLocalFile, const representation& repType, bool fPasv)
+   /// @param[in] fPasv see documentation of client_socket::Passive
+   bool client_socket::DownloadFile(const string& strRemoteFile, const string& strLocalFile, const representation& repType, bool fPasv)
    {
       file file(get_app());
       if (!file.Open(strLocalFile, (m_fResumeIfPossible ? ::file::mode_no_truncate : ::file::mode_create) | ::file::mode_write
@@ -502,8 +505,8 @@ namespace ftp
    /// @param[in] strRemoteFile Filename of the sourcefile on the FTP server.
    /// @param[in] Observer Object which receives the transfer notifications.
    /// @param[in] repType Representation Type (see documentation of representation)
-   /// @param[in] fPasv see documentation of client::Passive
-   bool client::DownloadFile(const string& strRemoteFile, itransfer_notification& Observer, const representation& repType, bool fPasv)
+   /// @param[in] fPasv see documentation of client_socket::Passive
+   bool client_socket::DownloadFile(const string& strRemoteFile, itransfer_notification& Observer, const representation& repType, bool fPasv)
    {
       long lRemoteFileSize = 0;
       FileSize(strRemoteFile, lRemoteFileSize);
@@ -527,8 +530,8 @@ namespace ftp
    /// @param[in] TargetFtpServer The FTP server where the downloaded file will be stored.
    /// @param[in] strTargetFile Filename of the target file on the target FTP server.
    /// @param[in] repType Representation Type (see documentation of representation)
-   /// @param[in] fPasv see documentation of client::Passive
-   bool client::DownloadFile(const string& strSourceFile, client& TargetFtpServer,
+   /// @param[in] fPasv see documentation of client_socket::Passive
+   bool client_socket::DownloadFile(const string& strSourceFile, client_socket& TargetFtpServer,
       const string& strTargetFile, const representation& repType/*=representation(type::Image())*/,
       bool fPasv/*=true*/)
    {
@@ -542,8 +545,8 @@ namespace ftp
    /// @param[in] fStoreUnique if true, the FTP command STOU is used for saving
    ///                         else the FTP command STOR is used.
    /// @param[in] repType Representation Type (see documentation of representation)
-   /// @param[in] fPasv see documentation of client::Passive
-   bool client::UploadFile(const string& strLocalFile, const string& strRemoteFile, bool fStoreUnique, const representation& repType, bool fPasv)
+   /// @param[in] fPasv see documentation of client_socket::Passive
+   bool client_socket::UploadFile(const string& strLocalFile, const string& strRemoteFile, bool fStoreUnique, const representation& repType, bool fPasv)
    {
       file file(get_app());
       if (!file.Open(strLocalFile, ::file::mode_read | ::file::type_binary))
@@ -562,8 +565,8 @@ namespace ftp
    /// @param[in] fStoreUnique if true, the FTP command STOU is used for saving
    ///                         else the FTP command STOR is used.
    /// @param[in] repType Representation Type (see documentation of representation)
-   /// @param[in] fPasv see documentation of client::Passive
-   bool client::UploadFile(itransfer_notification& Observer, const string& strRemoteFile, bool fStoreUnique, const representation& repType, bool fPasv)
+   /// @param[in] fPasv see documentation of client_socket::Passive
+   bool client_socket::UploadFile(itransfer_notification& Observer, const string& strRemoteFile, bool fStoreUnique, const representation& repType, bool fPasv)
    {
       long lRemoteFileSize = 0;
       if (m_fResumeIfPossible)
@@ -596,8 +599,8 @@ namespace ftp
    /// @param[in] strSourceFile File which is on the source FTP server.
    /// @param[in] strTargetFile Filename of the target file on the FTP server.
    /// @param[in] repType Representation Type (see documentation of representation)
-   /// @param[in] fPasv see documentation of client::Passive
-   bool client::UploadFile(client& SourceFtpServer, const string& strSourceFile,
+   /// @param[in] fPasv see documentation of client_socket::Passive
+   bool client_socket::UploadFile(client_socket& SourceFtpServer, const string& strSourceFile,
       const string& strTargetFile, const representation& repType/*=representation(type::Image())*/,
       bool fPasv/*=true*/)
    {
@@ -612,9 +615,9 @@ namespace ftp
    /// @param[in] TargetFtpServer A FTP server to which the file is copied.
    /// @param[in] strTargetFile Name of the file on the target FTP server.
    /// @param[in] repType Representation Type (see documentation of representation)
-   /// @param[in] fPasv see documentation of client::Passive
-   /*static*/ bool client::TransferFile(client& SourceFtpServer, const string& strSourceFile,
-      client& TargetFtpServer, const string& strTargetFile,
+   /// @param[in] fPasv see documentation of client_socket::Passive
+   /*static*/ bool client_socket::TransferFile(client_socket& SourceFtpServer, const string& strSourceFile,
+      client_socket& TargetFtpServer, const string& strTargetFile,
       const representation& repType/*=representation(type::Image())*/,
       bool fSourcePasv/*=false*/)
    {
@@ -625,8 +628,8 @@ namespace ftp
       if (TargetFtpServer.RepresentationType(repType) != FTP_OK)
          return false;
 
-      client& PassiveServer = fSourcePasv ? SourceFtpServer : TargetFtpServer;
-      client& ActiveServer = fSourcePasv ? TargetFtpServer : SourceFtpServer;
+      client_socket& PassiveServer = fSourcePasv ? SourceFtpServer : TargetFtpServer;
+      client_socket& ActiveServer = fSourcePasv ? TargetFtpServer : SourceFtpServer;
 
       // set one FTP server in passive mode
       // the FTP server opens a port and tell us the socket (ip ::net::address + port)
@@ -667,11 +670,11 @@ namespace ftp
    /// Executes a commando that result in a communication over the data port.
    /// @param[in] crDatachannelCmd Command to be executeted.
    /// @param[in] strPath Parameter for the command usually a path.
-   /// @param[in] representation see documentation of client::representation
-   /// @param[in] fPasv see documentation of client::Passive
+   /// @param[in] representation see documentation of client_socket::representation
+   /// @param[in] fPasv see documentation of client_socket::Passive
    /// @param[in] dwByteOffset Server marker at which file transfer is to be restarted.
    /// @param[in] Observer Object for observing the execution of the command.
-   bool client::ExecuteDatachannelCommand(const command& crDatachannelCmd, const string& strPath, const representation& representation,
+   bool client_socket::ExecuteDatachannelCommand(const command& crDatachannelCmd, const string& strPath, const representation& representation,
       bool fPasv, DWORD dwByteOffset, itransfer_notification& Observer)
    {
       if (!crDatachannelCmd.IsDatachannelCommand())
@@ -683,7 +686,7 @@ namespace ftp
       if (m_fTransferInProgress)
          return false;
 
-      if (!IsConnected())
+      if (!_is_connected())
          return false;
 
       // transmit representation to server
@@ -692,34 +695,133 @@ namespace ftp
 
       bool fTransferOK = false;
 
+      sp(::sockets::base_socket) pbasesocket;
+
+      sp(::sockets::base_socket) pbasesocket2;
+
       if (fPasv)
       {
-         sp(::sockets::blocking_socket) apSckDataConnection;
-         apSckDataConnection = m_apSckControlConnection->create_instance();
+
+         sp(::sockets::transfer_socket) apSckDataConnection;
+
+         if (crDatachannelCmd.IsDatachannelWriteCommand())
+         {
+
+            apSckDataConnection = new ::sockets::write_socket(m_handler);
+
+         }
+         else if (crDatachannelCmd.IsDatachannelReadCommand())
+         {
+
+            apSckDataConnection = new ::sockets::read_socket(m_handler);
+
+         }
+         else
+         {
+
+            return false;
+
+         }
+
+         pbasesocket = apSckDataConnection;
+
          if (!OpenPassiveDataConnection(*apSckDataConnection, crDatachannelCmd, strPath, dwByteOffset))
             return false;
+
          fTransferOK = TransferData(crDatachannelCmd, Observer, *apSckDataConnection);
 
          apSckDataConnection->SetCloseAndDelete();
+
       }
       else
       {
          
-         sp(::sockets::listen_socket < ::sockets::blocking_socket > ) apSckDataConnection;
+         sp(::sockets::listen_socket_base) apSckDataConnection;
          
-         apSckDataConnection = m_apSckControlConnection->create_listening_instance();
-         
+         if (crDatachannelCmd.IsDatachannelWriteCommand())
+         {
+
+            apSckDataConnection = new ::sockets::listen_socket < ::sockets::write_socket >(m_handler);
+
+         }
+         else if (crDatachannelCmd.IsDatachannelReadCommand())
+         {
+
+            apSckDataConnection = new ::sockets::listen_socket < ::sockets::read_socket >(m_handler);
+
+         }
+         else
+         {
+
+            return false;
+
+         }
+
+         pbasesocket2 = apSckDataConnection;
+
          if (!OpenActiveDataConnection(*apSckDataConnection, crDatachannelCmd, strPath, dwByteOffset))
             return false;
 
-         sp(::sockets::blocking_socket) psocket = apSckDataConnection->m_psocket;
+         sp(::sockets::transfer_socket) psocket = apSckDataConnection->m_pbasesocket;
+
+         pbasesocket = psocket;
 
          fTransferOK = TransferData(crDatachannelCmd, Observer, *psocket);
 
-         apSckDataConnection->SetCloseAndDelete();
+         if (psocket->GetSocket() != INVALID_SOCKET)
+         {
+
+            psocket->close();
+
+         }
 
       }
 
+      //DWORD dwStart = get_tick_count();
+
+      //UINT nSeconds = 10;
+
+      //if (pbasesocket.is_set() && !pbasesocket->IsDetached())
+      //{
+
+      //   try
+      //   {
+
+      //      while (pbasesocket->Handler().contains(pbasesocket) && get_tick_count() - dwStart < nSeconds * 1000)
+      //      {
+
+      //         pbasesocket->Handler().select(0, 100 * 1000);
+
+      //      }
+
+      //   }
+      //   catch (...)
+      //   {
+
+      //   }
+
+      //}
+
+      //if (pbasesocket2.is_set() && !pbasesocket2->IsDetached())
+      //{
+
+      //   try
+      //   {
+
+      //      while (pbasesocket2->Handler().contains(pbasesocket2) && get_tick_count() - dwStart < nSeconds * 1000)
+      //      {
+
+      //         pbasesocket2->Handler().select(0, 100 * 1000);
+
+      //      }
+
+      //   }
+      //   catch (...)
+      //   {
+
+      //   }
+
+      //}
 
       // get response from FTP server
       reply Reply;
@@ -727,14 +829,17 @@ namespace ftp
          return false;
 
       return true;
+
    }
+
 
    /// Executes a commando that result in a communication over the data port.
    /// @param[in] crDatachannelCmd Command to be executeted.
    /// @param[in] Observer Object for observing the execution of the command.
    /// @param[in] sckDataConnection Socket which is used for sending/receiving data.
-   bool client::TransferData(const command& crDatachannelCmd, itransfer_notification& Observer, ::sockets::blocking_socket& sckDataConnection)
+   bool client_socket::TransferData(const command& crDatachannelCmd, itransfer_notification& Observer, ::sockets::transfer_socket & sckDataConnection)
    {
+
       if (crDatachannelCmd.IsDatachannelWriteCommand())
       {
          if (!SendData(Observer, sckDataConnection))
@@ -758,7 +863,7 @@ namespace ftp
    /// @param[in] crDatachannelCmd Command to be executeted.
    /// @param[in] strPath Parameter for the command usually a path.
    /// @param[in] dwByteOffset Server marker at which file transfer is to be restarted.
-   bool client::OpenActiveDataConnection(::sockets::socket & sckDataConnectionParam, const command& crDatachannelCmd, const string& strPath, DWORD dwByteOffset)
+   bool client_socket::OpenActiveDataConnection(::sockets::socket & sckDataConnectionParam, const command& crDatachannelCmd, const string& strPath, DWORD dwByteOffset)
    {
       if (!crDatachannelCmd.IsDatachannelCommand())
       {
@@ -767,8 +872,8 @@ namespace ftp
       }
 
 
-      ::sockets::listen_socket < ::sockets::blocking_socket > & sckDataConnection 
-         = *(dynamic_cast < ::sockets::listen_socket < ::sockets::blocking_socket > * >(&sckDataConnectionParam));
+      ::sockets::listen_socket_base & sckDataConnection 
+         = *(dynamic_cast < ::sockets::listen_socket_base * >(&sckDataConnectionParam));
 
       //ll.m_strCat = m_strCat;
       //ll.m_strCipherList = m_strCipherList;
@@ -791,7 +896,7 @@ namespace ftp
          //System.simple_message_box(NULL, strMessage);
          return false;
       }
-      m_sockethandler.add(&sckDataConnection);
+      m_handler.add(&sckDataConnection);
 
 
       USHORT ushLocalSock = 0;
@@ -806,7 +911,7 @@ namespace ftp
          //ushLocalSock = csaAddressTemp.Port();
          //apSckServer->listen();
       }
-      catch (::sockets::blocking_socket_exception& blockingException)
+      catch (::sockets::transfer_socket_exception& blockingException)
       {
          ReportError(blockingException.GetErrorMessage(), __FILE__, __LINE__);
          sckDataConnection.SetCloseAndDelete();
@@ -820,7 +925,7 @@ namespace ftp
 
       // get own ip ::net::address
       ::net::address csaLocalAddress;
-      csaLocalAddress = m_apSckControlConnection->get_socket_address();
+      csaLocalAddress = get_socket_address();
 
       // transmit the socket (ip ::net::address + port) to the server
       // the FTP server establishes then the data connection
@@ -839,14 +944,14 @@ namespace ftp
          !Reply.Code().IsPositivePreliminaryReply())
          return false;
 
-      while (sckDataConnection.m_psocket == NULL)
+      while (sckDataConnection.m_pbasesocket == NULL)
       {
 
-         m_sockethandler.select(1, 0);
+         m_handler.select(1, 0);
 
       }
 
-      return sckDataConnection.m_psocket != NULL;
+      return sckDataConnection.m_pbasesocket != NULL;
 
    }
 
@@ -855,15 +960,15 @@ namespace ftp
    /// @param[in] crDatachannelCmd Command to be executeted.
    /// @param[in] strPath Parameter for the command usually a path.
    /// @param[in] dwByteOffset Server marker at which file transfer is to be restarted.
-   bool client::OpenPassiveDataConnection(::sockets::socket & sckDataConnectionParam, const command& crDatachannelCmd, const string& strPath, DWORD dwByteOffset)
+   bool client_socket::OpenPassiveDataConnection(::sockets::socket & sckDataConnectionParam, const command& crDatachannelCmd, const string& strPath, DWORD dwByteOffset)
    {
       if (!crDatachannelCmd.IsDatachannelCommand())
       {
          ASSERT(false);
          return false;
       }
-      ::sockets::blocking_socket & sckDataConnection
-         = *(dynamic_cast < ::sockets::blocking_socket * >(&sckDataConnectionParam));
+      ::sockets::transfer_socket & sckDataConnection
+         = *(dynamic_cast < ::sockets::transfer_socket * >(&sckDataConnectionParam));
 
       ULONG   ulRemoteHostIP = 0;
       USHORT  ushServerSock = 0;
@@ -884,7 +989,7 @@ namespace ftp
          }
          
       }
-      catch (::sockets::blocking_socket_exception& blockingException)
+      catch (::sockets::transfer_socket_exception& blockingException)
       {
          ReportError(blockingException.GetErrorMessage(), __FILE__, __LINE__);
          sckDataConnection.SetCloseAndDelete();
@@ -909,87 +1014,202 @@ namespace ftp
    /// Sends data over a socket to the server.
    /// @param[in] Observer Object for observing the execution of the command.
    /// @param[in] sckDataConnection Socket which is used for the send action.
-   bool client::SendData(itransfer_notification& Observer, ::sockets::blocking_socket& sckDataConnection)
+   bool client_socket::SendData(itransfer_notification& Observer, ::sockets::transfer_socket & sckDataConnection)
    {
       try
       {
-         ((client *) this)->m_fTransferInProgress = true;
+         
+         ((client_socket *) this)->m_fTransferInProgress = true;
 
          int iNumWrite = 0;
+
          size_t bytesRead = 0;
 
          Observer.OnPreBytesSend(m_vBuffer.get_data(), m_vBuffer.size(), bytesRead);
 
-         while (!m_fAbortTransfer && bytesRead != 0)
+         DWORD dwStart = ::get_tick_count();
+
+         while (true)
          {
-            iNumWrite = sckDataConnection.write(m_vBuffer.get_data(), static_cast<int>(bytesRead), mc_uiTimeout);
-            ASSERT(iNumWrite == static_cast<int>(bytesRead));
+
+            if (bytesRead <= 0)
+            {
+
+               break;
+
+            }
+
+            if (::get_tick_count() - dwStart > mc_uiTimeout * 1000)
+            {
+
+               break;
+
+            }
+
+            {
+
+               synch_lock sl(sckDataConnection.m_pmutex);
+
+               sckDataConnection.write(m_vBuffer.get_data(), static_cast<int>(m_vBuffer.size()));
+
+            }
+
 
             for (auto * p : (observer_array &)m_setObserver)
+            {
+
                p->OnBytesSent(m_vBuffer, iNumWrite);
 
+            }
+
             Observer.OnPreBytesSend(m_vBuffer.get_data(), m_vBuffer.size(), bytesRead);
+
+            dwStart = ::get_tick_count();
+
          }
 
-         ((client *) this)->m_fTransferInProgress = false;
+         ((client_socket *) this)->m_fTransferInProgress = false;
+
          if (m_fAbortTransfer)
          {
-            Abort();
+
+            _abort();
+
             return false;
+
          }
+
       }
-      catch (::sockets::blocking_socket_exception& blockingException)
+      catch (::sockets::transfer_socket_exception& blockingException)
       {
-         ((client *) this)->m_fTransferInProgress = false;
+
+         ((client_socket *) this)->m_fTransferInProgress = false;
+
          ReportError(blockingException.GetErrorMessage(), __FILE__, __LINE__);
+
          sckDataConnection.SetCloseAndDelete();
+
          return false;
+
       }
 
       return true;
+
    }
+
 
    /// Receives data over a socket from the server.
    /// @param[in] Observer Object for observing the execution of the command.
    /// @param[in] sckDataConnection Socket which is used for receiving the data.
-   bool client::ReceiveData(itransfer_notification& Observer, ::sockets::blocking_socket& sckDataConnection)
+   bool client_socket::ReceiveData(itransfer_notification& Observer, ::sockets::transfer_socket& sckDataConnection)
    {
+
       try
       {
-         ((client *) this)->m_fTransferInProgress = true;
+      
+         ((client_socket *) this)->m_fTransferInProgress = true;
 
          for (auto * p : (observer_array &)m_setObserver)
+         {
+
             p->OnBeginReceivingData();
 
-         int iNumRead = sckDataConnection.receive(m_vBuffer.get_data(), static_cast<int>(m_vBuffer.size()), mc_uiTimeout);
-         long lTotalBytes = iNumRead;
-         while (!m_fAbortTransfer && iNumRead != 0)
+         }
+
+         int iNumRead;
+
+         long lTotalBytes = 0;
+
+         DWORD dwStart = ::get_tick_count();
+
+         while (true)
          {
-            for (auto * p : (observer_array &)m_setObserver)
-               p->OnBytesReceived(m_vBuffer, iNumRead);
 
-            Observer.OnBytesReceived(m_vBuffer, iNumRead);
+            if (m_fAbortTransfer)
+            {
 
-            iNumRead = sckDataConnection.receive(m_vBuffer.get_data(), static_cast<int>(m_vBuffer.size()), mc_uiTimeout);
-            lTotalBytes += iNumRead;
+               break;
+
+            }
+
+            if (::get_tick_count() - dwStart > mc_uiTimeout * 1000)
+            {
+
+               break;
+
+            }
+            
+            {
+
+               synch_lock sl(m_pmutex);
+
+               iNumRead = sckDataConnection.m_file.remove_begin(m_vBuffer.get_data(), static_cast<int>(m_vBuffer.size()));
+
+               if (sckDataConnection.GetSocket() == INVALID_SOCKET && iNumRead <= 0)
+               {
+
+                  break;
+
+               }
+
+            }
+
+            if (iNumRead > 0)
+            {
+
+               lTotalBytes += iNumRead;
+
+               for (auto * p : (observer_array &)m_setObserver)
+               {
+
+                  p->OnBytesReceived(m_vBuffer, iNumRead);
+
+               }
+
+               Observer.OnBytesReceived(m_vBuffer, iNumRead);
+
+            }
+            else
+            {
+
+               Sleep(100);
+
+            }
+
+            dwStart = ::get_tick_count();
+
          }
 
          for (auto * p : (observer_array &)m_setObserver)
+         {
+
             p->OnEndReceivingData(lTotalBytes);
 
-         ((client *) this)->m_fTransferInProgress = false;
+         }
+
+         ((client_socket *) this)->m_fTransferInProgress = false;
+
          if (m_fAbortTransfer)
          {
-            Abort();
+
+            _abort();
+
             return false;
+
          }
+
       }
-      catch (::sockets::blocking_socket_exception& blockingException)
+      catch (::sockets::transfer_socket_exception& blockingException)
       {
-         ((client *) this)->m_fTransferInProgress = false;
+
+         ((client_socket *) this)->m_fTransferInProgress = false;
+
          ReportError(blockingException.GetErrorMessage(), __FILE__, __LINE__);
+
          sckDataConnection.SetCloseAndDelete();
+
          return false;
+
       }
 
       return true;
@@ -999,20 +1219,13 @@ namespace ftp
 
    /// Sends a command to the server.
    /// @param[in] Command Command to send.
-   bool client::SendCommand(const command& Command, const stringa & Arguments)
+   bool client_socket::SendCommand(const command& Command, const stringa & Arguments)
    {
       
-      if (!IsConnected())
+      if (!_is_connected())
       {
 
          return false;
-
-      }
-
-      while (m_apSckControlConnection->check_readability())
-      {
-
-         m_sockethandler.select(1, 0);
 
       }
 
@@ -1021,12 +1234,13 @@ namespace ftp
          for (auto * p : (observer_array &)m_setObserver)
             p->OnSendCommand(Command, Arguments);
          const std::string strCommand = Command.AsString(Arguments) + "\r\n";
-         m_apSckControlConnection->write(strCommand, static_cast<int>(strCommand.length()), mc_uiTimeout);
+         //write(strCommand, static_cast<int>(strCommand.length()), mc_uiTimeout);
+         write(strCommand, static_cast<int>(strCommand.length()));
       }
-      catch (::sockets::blocking_socket_exception& blockingException)
+      catch (::sockets::transfer_socket_exception& blockingException)
       {
          ReportError(blockingException.GetErrorMessage(), __FILE__, __LINE__);
-         const_cast<client*>(this)->m_apSckControlConnection->SetCloseAndDelete();
+         const_cast<client_socket*>(this)->SetCloseAndDelete();
          return false;
       }
 
@@ -1036,7 +1250,7 @@ namespace ftp
    /// Sends a command to the server.
    /// @param[in]  Command Command to send.
    /// @param[out] Reply The Reply of the server to the sent command.
-   bool client::SendCommand(const command& Command, const stringa & Arguments, reply& Reply)
+   bool client_socket::SendCommand(const command& Command, const stringa & Arguments, reply& Reply)
    {
       if (!SendCommand(Command, Arguments) || !GetResponse(Reply))
          return false;
@@ -1047,7 +1261,7 @@ namespace ftp
    /// A server response can exists of more than one line. This function
    /// returns the full response (multiline).
    /// @param[out] Reply Reply of the server to a command.
-   bool client::GetResponse(reply& Reply)
+   bool client_socket::GetResponse(reply& Reply)
    {
       string strResponse;
       if (!GetSingleResponseLine(strResponse))
@@ -1076,63 +1290,118 @@ namespace ftp
       return fRet;
    }
 
+   void client_socket::OnLine(const string & strLine)
+   {
+
+      single_lock sl(m_pmutex);
+
+      m_qResponseBuffer.add_tail(strLine);
+
+   }
+
+
    /// Reads a single response line from the server control channel.
    /// @param[out] strResponse Response of the server as string.
-   bool client::GetSingleResponseLine(string& strResponse)
+   bool client_socket::GetSingleResponseLine(string& strResponse)
    {
-      if (!IsConnected())
+      
+      if (!_is_connected())
          return false;
 
       try
       {
-         if (m_qResponseBuffer.is_empty())
+
+         DWORD dwStart = get_tick_count();
+
+         
+         while (get_tick_count() - dwStart < 10 * 1000)
          {
-            // internal buffer is empty ==> get response from FTP server
-            int iNum = 0;
-            std::string strTemp;
 
-            do
             {
-               iNum = m_apSckControlConnection->receive(m_vBuffer.get_data(), static_cast<int>(m_vBuffer.size()) - 1, mc_uiTimeout);
-               if (mc_uiResponseWait != 0)
-                  Sleep(mc_uiResponseWait);
-               ((memory &)m_vBuffer)[iNum] = '\0';
-               strTemp += m_vBuffer.to_string();
-            } while (iNum == static_cast<int>(m_vBuffer.size()) - 1 && m_apSckControlConnection->check_readability());
 
-            // each line in response is a separate entry in the internal buffer
-            while (strTemp.length())
-            {
-               size_t iCRLF = strTemp.find('\n');
-               if (iCRLF != std::string::npos)
+               single_lock sl(m_pmutex);
+
+               if (m_qResponseBuffer.has_elements())
                {
-                  m_qResponseBuffer.add_tail(strTemp.substr(0, iCRLF + 1));
-                  strTemp.erase(0, iCRLF + 1);
+
+                  break;
+
                }
-               else
-               {
-                  // this is not rfc standard; normally each command must end with CRLF
-                  // in this case it doesn't
-                  m_qResponseBuffer.add_tail(strTemp);
-                  strTemp.clear();
-               }
+
             }
 
-            if (m_qResponseBuffer.is_empty())
-               return false;
+            if (IsDetached())
+            {
+
+               Sleep(100);
+
+            }
+            else
+            {
+
+               m_handler.select(0, 100 * 1000);
+
+            }
+
+            //// internal buffer is empty ==> get response from FTP server
+            //int iNum = 0;
+            //std::string strTemp;
+
+            //do
+            //{
+            //   iNum = receive(m_vBuffer.get_data(), static_cast<int>(m_vBuffer.size()) - 1, mc_uiTimeout);
+            //   if (mc_uiResponseWait != 0)
+            //      Sleep(mc_uiResponseWait);
+            //   ((memory &)m_vBuffer)[iNum] = '\0';
+            //   strTemp += m_vBuffer.to_string();
+            //} while (iNum == static_cast<int>(m_vBuffer.size()) - 1);
+
+            //// each line in response is a separate entry in the internal buffer
+            //while (strTemp.length())
+            //{
+            //   size_t iCRLF = strTemp.find('\n');
+            //   if (iCRLF != std::string::npos)
+            //   {
+            //      m_qResponseBuffer.add_tail(strTemp.substr(0, iCRLF + 1));
+            //      strTemp.erase(0, iCRLF + 1);
+            //   }
+            //   else
+            //   {
+            //      // this is not rfc standard; normally each command must end with CRLF
+            //      // in this case it doesn't
+            //      m_qResponseBuffer.add_tail(strTemp);
+            //      strTemp.clear();
+            //   }
+            //}
+
+            //if (m_qResponseBuffer.is_empty())
+            //   return false;
+         }
+
+         if (m_qResponseBuffer.is_empty())
+         {
+
+            return false;
+
          }
 
          // get first response-line from buffer
-         strResponse = m_qResponseBuffer.remove_head();
+         {
+
+            single_lock sl(m_pmutex);
+
+            strResponse = m_qResponseBuffer.remove_head();
+
+         }
 
          // remove CrLf if exists (don't use mc_strEolCharacterSequence here)
          if (strResponse.length() > 1 && strResponse.substr(strResponse.length() - 2) == _T("\r\n"))
             strResponse.erase(strResponse.length() - 2, 2);
       }
-      catch (::sockets::blocking_socket_exception& blockingException)
+      catch (::sockets::transfer_socket_exception& blockingException)
       {
          ReportError(blockingException.GetErrorMessage(), __FILE__, __LINE__);
-         const_cast<client*>(this)->m_apSckControlConnection->SetCloseAndDelete();
+         const_cast<client_socket*>(this)->SetCloseAndDelete();
          return false;
       }
 
@@ -1140,12 +1409,12 @@ namespace ftp
    }
 
    /// Executes the FTP command CDUP (change to parent directory).
-   /// This command is a special case of client::ChangeWorkingDirectory
+   /// This command is a special case of client_socket::ChangeWorkingDirectory
    /// (CWD), and is  included to simplify the implementation of programs for
    /// transferring directory trees between operating systems having different
    /// syntaxes for naming the parent directory.
-   /// @return see return values of client::SimpleErrorCheck
-   int client::ChangeToParentDirectory()
+   /// @return see return values of client_socket::SimpleErrorCheck
+   int client_socket::ChangeToParentDirectory()
    {
       reply Reply;
       if (!SendCommand(command::CDUP(), {}, Reply))
@@ -1163,8 +1432,8 @@ namespace ftp
    /// should be used instead of QUIT.
    /// An unexpected close on the control connection will cause the server to take
    /// the effective action of an abort (ABOR) and a logout.
-   /// @return see return values of client::SimpleErrorCheck
-   int client::Logout()
+   /// @return see return values of client_socket::SimpleErrorCheck
+   int client_socket::Logout()
    {
       reply Reply;
       if (!SendCommand(command::QUIT(), {}, Reply))
@@ -1183,8 +1452,8 @@ namespace ftp
    /// server is listening on.
    /// @param[out] ulIpAddress IP ::net::address the server is listening on.
    /// @param[out] ushPort Port the server is listening on.
-   /// @return see return values of client::SimpleErrorCheck
-   int client::Passive(ULONG& ulIpAddress, USHORT& ushPort)
+   /// @return see return values of client_socket::SimpleErrorCheck
+   int client_socket::Passive(ULONG& ulIpAddress, USHORT& ushPort)
    {
       reply Reply;
       if (!SendCommand(command::PASV(), {}, Reply))
@@ -1206,7 +1475,7 @@ namespace ftp
    /// @param[out] ushPort     Buffer for the port information.
    /// @retval true  Everything went ok.
    /// @retval false An error occurred (invalid format).
-   bool client::GetIpAddressFromResponse(const string& strResponse, ULONG& ulIpAddress, USHORT& ushPort)
+   bool client_socket::GetIpAddressFromResponse(const string& strResponse, ULONG& ulIpAddress, USHORT& ushPort)
    {
       // parsing of ip-::net::address and port implemented with a finite state machine
       // ...(192,168,1,1,3,44)...
@@ -1306,8 +1575,8 @@ namespace ftp
    /// closes the data connection, returning a 426 reply to indicate that the
    /// service request terminated abnormally. The server then sends a 226 reply,
    /// indicating that the abort command was successfully processed.
-   /// @return see return values of client::SimpleErrorCheck
-   int client::Abort()
+   /// @return see return values of client_socket::SimpleErrorCheck
+   int client_socket::_abort()
    {
       if (m_fTransferInProgress)
       {
@@ -1325,7 +1594,7 @@ namespace ftp
    /// Executes the FTP command PWD (PRINT WORKING DIRECTORY)
    /// This command causes the name of the current working directory
    /// to be returned in the reply.
-   int client::PrintWorkingDirectory()
+   int client_socket::PrintWorkingDirectory()
    {
       reply Reply;
       if (!SendCommand(command::PWD(), {}, Reply))
@@ -1338,8 +1607,8 @@ namespace ftp
    /// The reply shall have as its first word one of the system names listed in the
    /// current version of the Assigned Numbers document [Reynolds, Joyce, and
    /// Jon Postel, "Assigned Numbers", RFC 943, ISI, April 1985.].
-   /// @return see return values of client::SimpleErrorCheck
-   int client::system()
+   /// @return see return values of client_socket::SimpleErrorCheck
+   int client_socket::system()
    {
       reply Reply;
       if (!SendCommand(command::SYST(), {}, Reply))
@@ -1350,8 +1619,8 @@ namespace ftp
    /// Executes the FTP command NOOP
    /// This command does not affect any parameters or previously entered commands.
    /// It specifies no action other than that the server send an FTP_OK reply.
-   /// @return see return values of client::SimpleErrorCheck
-   int client::Noop()
+   /// @return see return values of client_socket::SimpleErrorCheck
+   int client_socket::Noop()
    {
       reply Reply;
       if (!SendCommand(command::NOOP(), {}, Reply))
@@ -1367,8 +1636,8 @@ namespace ftp
    /// host ::net::address and a 16-bit TCP port ::net::address.
    /// @param[in] strHostIP IP-::net::address like xxx.xxx.xxx.xxx
    /// @param[in] uiPort 16-bit TCP port ::net::address.
-   /// @return see return values of client::SimpleErrorCheck
-   int client::DataPort(const string& strHostIP, USHORT ushPort)
+   /// @return see return values of client_socket::SimpleErrorCheck
+   int client_socket::DataPort(const string& strHostIP, USHORT ushPort)
    {
       string strPortArguments;
       // convert the port number to 2 bytes + add to the local IP
@@ -1387,8 +1656,8 @@ namespace ftp
    /// see Documentation of nsFTP::representation
    /// @param[in] representation see Documentation of nsFTP::representation
    /// @param[in] iSize Indicates Bytesize for type LocalByte.
-   /// @return see return values of client::SimpleErrorCheck
-   int client::RepresentationType(const representation& representation, DWORD dwSize)
+   /// @return see return values of client_socket::SimpleErrorCheck
+   int client_socket::RepresentationType(const representation& representation, DWORD dwSize)
    {
       // check representation
       if (m_apCurrentRepresentation.is_set() && representation == *m_apCurrentRepresentation)
@@ -1413,8 +1682,8 @@ namespace ftp
    /// see Documentation of nsFTP::representation
    /// @param[in] representation see Documentation of nsFTP::representation
    /// @param[in] dwSize Indicates Bytesize for type LocalByte.
-   /// @return see return values of client::SimpleErrorCheck
-   int client::_RepresentationType(const representation& representation, DWORD dwSize)
+   /// @return see return values of client_socket::SimpleErrorCheck
+   int client_socket::_RepresentationType(const representation& representation, DWORD dwSize)
    {
       stringa Arguments(representation.Type().AsString());
 
@@ -1442,8 +1711,8 @@ namespace ftp
    /// information. Transfer parameters are similarly unchanged.
    /// @param[in] strDirectory Pathname specifying a directory or other system
    ///                         dependent file group designator.
-   /// @return see return values of client::SimpleErrorCheck
-   int client::ChangeWorkingDirectory(const string& strDirectory)
+   /// @return see return values of client_socket::SimpleErrorCheck
+   int client_socket::ChangeWorkingDirectory(const string& strDirectory)
    {
       ASSERT(!strDirectory.empty());
       reply Reply;
@@ -1457,8 +1726,8 @@ namespace ftp
    /// as a directory (if the pathname is absolute) or as a subdirectory of the
    /// current working directory (if the pathname is relative).
    /// @pararm[in] strDirectory Pathname specifying a directory to be created.
-   /// @return see return values of client::SimpleErrorCheck
-   int client::MakeDirectory(const string& strDirectory)
+   /// @return see return values of client_socket::SimpleErrorCheck
+   int client_socket::MakeDirectory(const string& strDirectory)
    {
       ASSERT(!strDirectory.empty());
       reply Reply;
@@ -1474,8 +1743,8 @@ namespace ftp
    /// and the specification of their syntax can be stated in a reply to the HELP
    /// SITE command.
    /// @param[in] strCmd Command to be executed.
-   /// @return see return values of client::SimpleErrorCheck
-   int client::SiteParameters(const string& strCmd)
+   /// @return see return values of client_socket::SimpleErrorCheck
+   int client_socket::SiteParameters(const string& strCmd)
    {
       ASSERT(!strCmd.empty());
       reply Reply;
@@ -1493,8 +1762,8 @@ namespace ftp
    /// server may use this reply to specify site-dependent parameters, e.g., in
    /// response to HELP SITE.
    /// @param[in] strTopic Topic of the requested help.
-   /// @return see return values of client::SimpleErrorCheck
-   int client::Help(const string& strTopic)
+   /// @return see return values of client_socket::SimpleErrorCheck
+   int client_socket::Help(const string& strTopic)
    {
       reply Reply;
       if (!SendCommand(command::HELP(), strTopic, Reply))
@@ -1507,8 +1776,8 @@ namespace ftp
    /// server site.  If an extra level of protection is desired (such as the query,
    /// "Do you really wish to delete?"), it should be provided by the user-FTP process.
    /// @param[in] strFile Pathname of the file to delete.
-   /// @return see return values of client::SimpleErrorCheck
-   int client::Delete(const string& strFile)
+   /// @return see return values of client_socket::SimpleErrorCheck
+   int client_socket::Delete(const string& strFile)
    {
       ASSERT(!strFile.empty());
       reply Reply;
@@ -1522,8 +1791,8 @@ namespace ftp
    /// as a directory (if the pathname is absolute) or as a subdirectory of the
    /// current working directory (if the pathname is relative).
    /// @param[in] strDirectory Pathname of the directory to delete.
-   /// @return see return values of client::SimpleErrorCheck
-   int client::RemoveDirectory(const string& strDirectory)
+   /// @return see return values of client_socket::SimpleErrorCheck
+   int client_socket::RemoveDirectory(const string& strDirectory)
    {
       ASSERT(!strDirectory.empty());
       reply Reply;
@@ -1536,8 +1805,8 @@ namespace ftp
    /// see documentation of nsFTP::structure
    /// The default structure is File.
    /// @param[in] crStructure see Documentation of nsFTP::structure
-   /// @return see return values of client::SimpleErrorCheck
-   int client::FileStructure(const structure& crStructure)
+   /// @return see return values of client_socket::SimpleErrorCheck
+   int client_socket::FileStructure(const structure& crStructure)
    {
       reply Reply;
       if (!SendCommand(command::STRU(), crStructure.AsString(), Reply))
@@ -1549,8 +1818,8 @@ namespace ftp
    /// see documentation of nsFTP::transfer_mode
    /// The default transfer mode is Stream.
    /// @param[in] crTransferMode see Documentation of nsFTP::transfer_mode
-   /// @return see return values of client::SimpleErrorCheck
-   int client::TransferMode(const transfer_mode& crTransferMode)
+   /// @return see return values of client_socket::SimpleErrorCheck
+   int client_socket::TransferMode(const transfer_mode& crTransferMode)
    {
       reply Reply;
       if (!SendCommand(command::MODE(), crTransferMode.AsString(), Reply))
@@ -1573,8 +1842,8 @@ namespace ftp
    ///                    is given, the server should return general status information
    ///                    about the server FTP process. This should include current
    ///                    values of all transfer parameters and the status of connections.
-   /// @return see return values of client::SimpleErrorCheck
-   int client::Status(const string& strPath)
+   /// @return see return values of client_socket::SimpleErrorCheck
+   int client_socket::Status(const string& strPath)
    {
       reply Reply;
       if (!SendCommand(command::STAT(), strPath, Reply))
@@ -1599,8 +1868,8 @@ namespace ftp
    ///                          size of the file be declared beforehand, and those servers
    ///                          interested in only the maximum record or page size should
    ///                          accept a dummy value in the first argument and ignore it.
-   /// @return see return values of client::SimpleErrorCheck
-   int client::Allocate(int iReserveBytes, const int* piMaxPageOrRecordSize/*=NULL*/)
+   /// @return see return values of client_socket::SimpleErrorCheck
+   int client_socket::Allocate(int iReserveBytes, const int* piMaxPageOrRecordSize/*=NULL*/)
    {
       stringa Arguments(::str::from(iReserveBytes));
       if (piMaxPageOrRecordSize != NULL)
@@ -1616,8 +1885,8 @@ namespace ftp
    }
 
    /// Executes the FTP command SMNT ()
-   /// @return see return values of client::SimpleErrorCheck
-   int client::StructureMount(const string& strPath)
+   /// @return see return values of client_socket::SimpleErrorCheck
+   int client_socket::StructureMount(const string& strPath)
    {
       reply Reply;
       if (!SendCommand(command::SMNT(), strPath, Reply))
@@ -1630,8 +1899,8 @@ namespace ftp
    /// without altering his login or accounting information. Transfer parameters
    /// are similarly unchanged.  The argument is a pathname specifying a directory
    /// or other system dependent file group designator.
-   /// @return see return values of client::SimpleErrorCheck
-   int client::Reinitialize()
+   /// @return see return values of client_socket::SimpleErrorCheck
+   int client_socket::Reinitialize()
    {
       reply Reply;
       if (!SendCommand(command::REIN(), {}, Reply))
@@ -1658,8 +1927,8 @@ namespace ftp
    /// to resume.
    /// @param[in] dwPosition Represents the server marker at which file transfer
    ///                       is to be restarted.
-   /// @return see return values of client::SimpleErrorCheck
-   int client::Restart(DWORD dwPosition)
+   /// @return see return values of client_socket::SimpleErrorCheck
+   int client_socket::Restart(DWORD dwPosition)
    {
       reply Reply;
       if (!SendCommand(command::REST(), stringa(::str::from((uint32_t) dwPosition)), Reply))
@@ -1680,8 +1949,8 @@ namespace ftp
    /// SIZE is not specified in RFC 959.
    /// @param[in] Pathname of a file.
    /// @param[out] Size of the file specified in pathname.
-   /// @return see return values of client::SimpleErrorCheck
-   int client::FileSize(const string& strPath, long& lSize)
+   /// @return see return values of client_socket::SimpleErrorCheck
+   int client_socket::FileSize(const string& strPath, long& lSize)
    {
       reply Reply;
       if (!SendCommand(command::SIZE(), strPath, Reply))
@@ -1695,8 +1964,8 @@ namespace ftp
    /// MDTM is not specified in RFC 959.
    /// @param[in] strPath Pathname of a file.
    /// @param[out] strModificationTime Modification time of the file specified in pathname.
-   /// @return see return values of client::SimpleErrorCheck
-   int client::FileModificationTime(const string& strPath, string& strModificationTime)
+   /// @return see return values of client_socket::SimpleErrorCheck
+   int client_socket::FileModificationTime(const string& strPath, string& strModificationTime)
    {
       strModificationTime.erase();
 
@@ -1723,8 +1992,8 @@ namespace ftp
    /// Show last modification time of file.
    /// @param[in] strPath Pathname of a file.
    /// @param[out] tmModificationTime Modification time of the file specified in pathname.
-   /// @return see return values of client::SimpleErrorCheck
-   int client::FileModificationTime(const string& strPath, tm& tmModificationTime)
+   /// @return see return values of client_socket::SimpleErrorCheck
+   int client_socket::FileModificationTime(const string& strPath, tm& tmModificationTime)
    {
       string strTemp;
       const int iRet = FileModificationTime(strPath, strTemp);
@@ -1746,7 +2015,7 @@ namespace ftp
    /// @param[in] strErrorMsg Error message which is reported to all observers.
    /// @param[in] Name of the sourcecode file where the error occurred.
    /// @param[in] Line number in th sourcecode file where the error occurred.
-   void client::ReportError(const string& strErrorMsg, const string& strFile, DWORD dwLineNr)
+   void client_socket::ReportError(const string& strErrorMsg, const string& strFile, DWORD dwLineNr)
    {
       for (auto * p : (observer_array &)m_setObserver)
          p->OnInternalError(strErrorMsg, strFile, dwLineNr);

@@ -19,8 +19,10 @@ namespace sockets
    public:
 
 
-      int32_t m_depth;
-      bool m_bDetach;
+      int32_t              m_depth;
+      bool                 m_bDetach;
+      base_socket *        m_pbasesocket;
+
 
       /** Constructor.
       \param h base_socket_handler reference
@@ -182,29 +184,48 @@ namespace sockets
       virtual sp(socket) create_listen_socket()
       {
 
-         if(HasCreator())
+         ::sockets::base_socket * pbasesocket;
+
+         if (HasCreator())
          {
 
-            ::sockets::base_socket * psocket = m_creator->create();
+            pbasesocket = m_creator->create();
 
-            m_psocket = dynamic_cast <LISTENER *> (psocket);
+            m_psocket = dynamic_cast <LISTENER *> (pbasesocket);
 
             if (m_psocket == NULL)
             {
 
-               psocket->release();
+               pbasesocket->release();
+
+               pbasesocket = NULL;
 
             }
 
-            return m_psocket;
+            m_pbasesocket = pbasesocket;
 
          }
          else
          {
 
-            return m_psocket = new LISTENER(Handler());
+            m_psocket = new LISTENER(Handler());
+
+            pbasesocket = dynamic_cast < base_socket *> (m_psocket);
+
+            if (pbasesocket == NULL)
+            {
+
+               m_psocket->release();
+
+               m_psocket = NULL;
+
+            }
+
+            m_pbasesocket = pbasesocket;
 
          }
+
+         return pbasesocket;
 
       }
 

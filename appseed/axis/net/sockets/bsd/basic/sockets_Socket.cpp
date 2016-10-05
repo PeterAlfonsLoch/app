@@ -217,7 +217,7 @@ namespace sockets
       socklen_t nLengthAddr = sizeof(SOCKADDR);
       if (getpeername(GetSocket(), psa.sa(), &nLengthAddr) == SOCKET_ERROR)
       {
-         throw blocking_socket_exception(get_app(), _T("GetPeerName"));
+         throw transfer_socket_exception(get_app(), _T("GetPeerName"));
       }
       return psa;
    }
@@ -232,7 +232,7 @@ namespace sockets
       socklen_t nLengthAddr = sizeof(SOCKADDR);
       if (getsockname(GetSocket(), psa.sa(), &nLengthAddr) == SOCKET_ERROR)
       {
-         throw blocking_socket_exception(get_app(), _T("GetSockName"));
+         throw transfer_socket_exception(get_app(), _T("GetSockName"));
       }
       return psa;
    }

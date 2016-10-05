@@ -6,19 +6,103 @@
 #include "openssl/md5.h"
 
 
-ftpfs_file::ftpfs_file(::aura::application * papp, var varFile) :
-   ::object(papp),
-   ::sockets::http_batch_buffer(papp),
-   m_httpfile(papp),
-   m_memfile(papp),
-   m_varFile(varFile)
+ftpfs_file::ftpfs_file(::ftpfs * pftp, ::ftp::client_socket * pclient) :
+   ::object(pclient->get_app()),
+   m_file(allocer())
 {
+
+   m_pftp = pftp;
+
+   m_pclient = pclient;
+
+   m_varFile = Application.file().time(System.dir().time());
 
 }
 
 
+void ftpfs_file::close()
+{
+
+   try
+   {
+
+      m_file->close();
+
+   }
+   catch(...)
+   {
+
+
+   }
+
+   m_file.release();
+
+   ::ftp::client_socket * pclient = m_pclient;
+
+   int iTry = 0;
+
+retry:
+
+   if (iTry > 0)
+   {
+
+      m_pftp->defer_initialize(&pclient, m_filepath);
+
+   }
+
+
+   if (pclient->m_estate != ::ftp::client_socket::state_logged)
+   {
+
+      if (iTry > 3)
+      {
+
+         return;
+
+      }
+
+      iTry++;
+
+      goto retry;
+
+   }
+
+   string strRemoteFile = System.url().get_object(m_filepath);
+
+   if (!pclient->UploadFile(m_varFile, strRemoteFile))
+   {
+
+      if (iTry > 3)
+      {
+
+         return;
+
+      }
+
+      pclient->m_estate = ::ftp::client_socket::state_initial;
+
+      iTry++;
+
+      goto retry;
+
+   }
+
+
+} 
+
 ftpfs_file::~ftpfs_file()
 {
+
+
+}
+
+
+cres ftpfs_file::open(const ::file::path & filepath, UINT nOpenFlags)
+{
+
+   m_filepath = filepath;
+
+   return m_file->open(m_varFile, ::file::mode_create | ::file::type_binary | ::file::mode_read_write | ::file::defer_create_directory);
 
 }
 
@@ -26,7 +110,7 @@ ftpfs_file::~ftpfs_file()
 memory_size_t ftpfs_file::read(void *lpBuf, memory_size_t nCount)
 {
 
-   return m_httpfile.read(lpBuf, nCount);
+   return m_file->read(lpBuf, nCount);
 
 }
 
@@ -34,114 +118,24 @@ memory_size_t ftpfs_file::read(void *lpBuf, memory_size_t nCount)
 void ftpfs_file::write(const void * lpBuf, memory_size_t nCount)
 {
 
-   m_memfile.write(lpBuf, nCount);
+   m_file->write(lpBuf, nCount);
 
 }
 
 
 file_size_t ftpfs_file::get_length() const
 {
-   if ((m_nOpenFlags & ::file::mode_read) != 0)
-   {
-      return m_httpfile.get_length();
-   }
-   else
-   {
-      return m_memfile.get_length();
-   }
+
+   return m_file->get_length();
+
 }
+
 
 file_position_t ftpfs_file::seek(file_offset_t lOff, ::file::e_seek nFrom)
 {
-   if ((m_nOpenFlags & ::file::mode_read) != 0)
-   {
-      return m_httpfile.seek(lOff, nFrom);
-   }
-   else
-   {
-      return m_memfile.seek(lOff, nFrom);
-   }
-}
 
-
-void ftpfs_file::get_file_data()
-{
-   /*if(m_nOpenFlags & ::file::mode_write)
-   {
-   throw "Cannot open ftpfs_file for reading and writing simultaneously due the characteristic of possibility of extreme delayed streaming. The way it is implemented would also not work.\n It is build with this premisse.";
-   return;
-   }*/
-
-   string strUrl;
-
-   strUrl = "http://file.ca2.cc/ifs/get?path=" + System.url().url_encode(m_strPath);
-
-   uint32_t dwAdd = 0;
-
-   if (m_nOpenFlags & ::file::hint_unknown_length_supported)
-   {
-      dwAdd |= ::file::hint_unknown_length_supported;
-   }
-
-   m_httpfile.open(strUrl, ::file::type_binary | ::file::mode_read | dwAdd);
-}
-
-void ftpfs_file::set_file_data()
-{
-   string strUrl;
-
-
-   if (m_varFile["xmledit"].cast < ::file::memory_buffer >() != NULL)
-   {
-
-      strUrl = "http://file.ca2.cc/ifs/xmledit?path=" + System.url().url_encode(m_varFile["url"]);
-
-      property_set setRequest;
-
-      setRequest["get_response"] = "";  // touch/create property to get_response
-
-      Application.http().put(strUrl, m_varFile["xmledit"].cast < ::file::memory_buffer >(), setRequest);
-
-      string strResponse(setRequest["get_response"]);
-
-      property_set set(get_app());
-
-      set.parse_url_query(strResponse);
-
-      string strMd5Here;
-
-      {
-
-         MD5_CTX ctx;
-
-         MD5_Init(&ctx);
-
-         MD5_Update(&ctx, m_varFile["xml"].cast < ::file::memory_buffer >()->get_primitive_memory()->get_data(), m_varFile["xml"].cast < ::file::memory_buffer >()->get_primitive_memory()->get_size());
-
-         to_string(strMd5Here, ctx);
-
-      }
-
-      string strMd5There = set["md5"];
-
-      if (strMd5Here == strMd5There)
-         return;
-
-      strUrl = "http://file.ca2.cc/ifs/set?path=" + System.url().url_encode(m_varFile["url"]);
-
-      property_set setPut(get_app());
-
-      Application.http().put(strUrl, m_varFile["xml"].cast < ::file::memory_buffer >(), setPut);
-
-      return;
-
-   }
-
-   strUrl = "http://file.ca2.cc/ifs/set?path=" + System.url().url_encode(m_strPath);
-
-   property_set setPut(get_app());
-
-   Application.http().put(strUrl, &m_memfile, setPut);
-
+   return m_file->seek(lOff, nFrom);
 
 }
+
+

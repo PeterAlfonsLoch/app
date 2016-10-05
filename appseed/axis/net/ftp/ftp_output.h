@@ -6,7 +6,7 @@ namespace ftp
 
 
    class output : 
-      virtual public client::notification
+      virtual public client_socket::notification
    {
    public:
 

@@ -16,7 +16,7 @@ public:
    stringa        m_straServer;
 
    string_map < sp(::ftp::output) > m_mapOutput;
-   string_map < sp(::ftp::client) > m_mapClient;
+   string_map < sp(::ftp::client_socket) > m_mapClient;
 
 
    class CLASS_DECL_AXIS dir_listing :
@@ -30,6 +30,8 @@ public:
    };
 
    filepathmap(dir_listing)     m_map;
+
+   ::sockets::socket_handler     m_sockethandler;
 
    //file_path_map < uint32_t >    m_mapdirTimeout;
    //file_path_map < uint32_t >    m_mapfileTimeout;
@@ -53,7 +55,7 @@ public:
    virtual bool is_dir(const ::file::path & pszPath);
    virtual ::file::listing & root_ones(::file::listing & listing);
 
-   virtual void defer_initialize(::ftp::client ** client, string strPath);
+   virtual void defer_initialize(::ftp::client_socket ** client, string strPath);
 
    //virtual string file_name(const char * pszPath);
    //virtual string dir_path(const char * psz1, const char * psz2);

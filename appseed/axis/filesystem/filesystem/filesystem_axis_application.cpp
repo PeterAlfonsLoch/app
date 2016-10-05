@@ -243,7 +243,23 @@ namespace file
       ::file::buffer_sp application::get_file(var varFile, UINT nOpenFlags, cres * pfesp)
       {
 
-         return m_pauraapp->m_paxissystem->m_spfile->get_file(varFile,nOpenFlags,pfesp,m_pauraapp);
+         ::file::buffer_sp pfile = m_pauraapp->m_paxissystem->m_spfile->get_file(varFile,nOpenFlags,pfesp,m_pauraapp);
+
+         if (pfile.is_set())
+         {
+
+            return pfile;
+
+         }
+
+         if (m_pauraapp->m_paxissession != NULL && Sess(m_pauraapp).m_spfsdata.is_set())
+         {
+
+            pfile = Sess(m_pauraapp).m_spfsdata->get_file(varFile, nOpenFlags, pfesp);
+
+         }
+
+         return pfile;
 
       }
 

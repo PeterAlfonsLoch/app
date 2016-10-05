@@ -28,6 +28,8 @@ namespace ftp
 
    bool file::close()
    {
+
+      m_file->close();
       m_file.release();
       
       return true;

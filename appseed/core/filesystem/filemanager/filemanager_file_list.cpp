@@ -644,6 +644,7 @@ namespace filemanager
 
 
       Session.copydesk().set_filea(stra);
+      pobj->m_bRet = true;
 
    }
 
