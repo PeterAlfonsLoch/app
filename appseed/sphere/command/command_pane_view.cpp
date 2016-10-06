@@ -327,9 +327,9 @@ namespace command
          i = (int_ptr) ::ShellExecuteW(
             GetTopLevel()->get_handle(),
             NULL,
-            ::str::international::utf8_to_unicode("\"" + itema[0]->m_strPath + "\""),
+            ::str::international::utf8_to_unicode("\"" + itema[0]->m_filepath + "\""),
             NULL,
-            ::str::international::utf8_to_unicode("\"" +  itema[0]->m_strPath.folder() + "\""),
+            ::str::international::utf8_to_unicode("\"" +  itema[0]->m_filepath.folder() + "\""),
             SW_SHOWNORMAL);
 
 #else
