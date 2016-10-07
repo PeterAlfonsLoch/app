@@ -1434,6 +1434,11 @@ retry_session:
          psocket->enable_cert_common_name_check(false);
       }
 
+      if (strProtocol == "https")
+      {
+         psocket->m_strTlsHostName = System.url().get_server(strUrl);
+      }
+
       if (set["http_listener"].cast < ::http::listener >() != NULL)
       {
          psocket->::sockets::http_socket::m_plistener = set["http_listener"].cast < ::http::listener >();

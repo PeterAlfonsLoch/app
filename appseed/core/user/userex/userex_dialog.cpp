@@ -98,6 +98,13 @@ void dialog::on_show(const char * pszMatter, property_set  * ppropertyset)
 void dialog::EndModalLoop(id nResult)
 {
 
+   if (m_pframe == NULL)
+   {
+
+      return;
+
+   }
+
    m_pframe->ShowWindow(SW_HIDE);
 
    m_pframe->EndModalLoop(nResult);

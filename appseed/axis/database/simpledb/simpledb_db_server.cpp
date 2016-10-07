@@ -226,7 +226,7 @@ void db_server::close()
 bool db_server::data_server_load(::database::client * pclient, ::database::id id, ::file::ostream & writable, ::database::update_hint * phint)
 {
 
-   synch_lock sl(m_pmutex);
+   //synch_lock sl(m_pmutex);
 
    UNREFERENCED_PARAMETER(phint);
 
@@ -267,8 +267,6 @@ bool db_server::load(const char * lpcszKey, string & str)
 
 bool db_server::load(const char * lpKey, ::file::ostream & ostream)
 {
-
-   synch_lock sl(m_pmutex);
 
    string str;
 
