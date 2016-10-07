@@ -100,8 +100,8 @@ namespace user
    void interaction::user_interaction_common_construct()
    {
 
-
-      m_pparent = NULL;
+      m_bRedrawing               = false;
+      m_pparent                  = NULL;
       m_bWorkspaceFullScreen     = false;
       m_bHideOnTransparentFrame  = false;
       m_pvoidUserInteraction     = this;
@@ -4231,6 +4231,15 @@ ExitModal:
 
    void interaction::_001RedrawWindow(UINT nFlags)
    {
+
+      if (m_bRedrawing)
+      {
+
+         return;
+
+      }
+
+      keep < bool > keepRedrawing(&m_bRedrawing, true, false, true);
 
       //if(!(nFlags & RDW_UPDATENOW))
       {

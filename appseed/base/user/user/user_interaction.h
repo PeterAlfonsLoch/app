@@ -40,6 +40,7 @@ namespace user
       bool                                m_bMayProDevian;
       bool                                m_bVisible;
       bool                                m_bVoidPaint;
+      bool                                m_bRedrawing;
       bool                                m_bLockWindowUpdate;
       bool                                m_bEnableSaveWindowRect;
       bool                                m_bLayoutEnable;
