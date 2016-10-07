@@ -648,9 +648,9 @@ namespace aura
    void application::sync_open_profile_link(string strUrl, string strApp)
    {
 
-#if defined(VSNORD)
+#if defined(VSNORD) || defined(METROWIN)
 
-      Sys(papp).open_link(strUrl);
+      Sys(this).open_link(strUrl);
 
 #elif defined(MACOS)
 
@@ -4738,7 +4738,11 @@ namespace aura
 
       string strFile = dir().userappdata() / "log_error.txt";
 
-#ifdef WINDOWS
+#ifdef METROWIN
+
+      output_debug_string(strFile);
+
+#elif defined(WINDOWS)
 
       call_async("C:\\Program Files (x86)\\Notepad++\\Notepad++.exe", "\"" + strFile + "\"", "", SW_SHOW, false);
 

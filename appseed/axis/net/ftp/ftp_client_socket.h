@@ -145,8 +145,8 @@ namespace ftp
       int ChangeToParentDirectory();
       int ChangeWorkingDirectory(const string& strDirectory);
 
-      int Passive(ULONG& ulIpAddress, USHORT& ushPort);
-      int DataPort(const string& strHostIP, USHORT ushPort);
+      int Passive(WINULONG& ulIpAddress, WINUSHORT& ushPort);
+      int DataPort(const string& strHostIP, WINUSHORT ushPort);
       int _abort();
       int system();
       int Noop();
@@ -186,11 +186,11 @@ namespace ftp
       bool GetSingleResponseLine(string& strResponse);
       void OnLine(const string & strLine);
 
-      bool OpenControlChannel(const string& strServerHost, USHORT ushServerPort = DEFAULT_FTP_PORT);
+      bool OpenControlChannel(const string& strServerHost, WINUSHORT ushServerPort = DEFAULT_FTP_PORT);
       void CloseControlChannel();
 
       void ReportError(const string& strErrorMsg, const string& strFile, DWORD dwLineNr);
-      bool GetIpAddressFromResponse(const string& strResponse, ULONG& ulIpAddress, USHORT& ushPort);
+      bool GetIpAddressFromResponse(const string& strResponse, WINULONG& ulIpAddress, WINUSHORT& ushPort);
 
    };
 

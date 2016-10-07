@@ -131,7 +131,7 @@ namespace ftp
    {
    }
 
-   logon::logon(const string& strHostname, USHORT ushHostport, const string& strUsername,
+   logon::logon(const string& strHostname, WINUSHORT ushHostport, const string& strUsername,
       const string& strPassword, const string& strAccount) :
       m_strHostname(strHostname),
       m_ushHostport(ushHostport),
@@ -143,9 +143,9 @@ namespace ftp
    {
    }
 
-   logon::logon(const string& strHostname, USHORT ushHostport, const string& strUsername, const string& strPassword,
+   logon::logon(const string& strHostname, WINUSHORT ushHostport, const string& strUsername, const string& strPassword,
       const string& strAccount, const string& strFwHostname, const string& strFwUsername,
-      const string& strFwPassword, USHORT ushFwPort, const firewall_type& crFwType) :
+      const string& strFwPassword, WINUSHORT ushFwPort, const firewall_type& crFwType) :
       m_strHostname(strHostname),
       m_ushHostport(ushHostport),
       m_strUsername(strUsername),
@@ -159,7 +159,7 @@ namespace ftp
    {
    }
 
-   void logon::SetHost(const string& strHostname, USHORT ushHostport, const string& strUsername,
+   void logon::SetHost(const string& strHostname, WINUSHORT ushHostport, const string& strUsername,
       const string& strPassword, const string& strAccount)
    {
       m_strHostname = strHostname;
@@ -170,7 +170,7 @@ namespace ftp
    }
 
    void logon::SetFirewall(const string& strFwHostname, const string& strFwUsername, const string& strFwPassword,
-      USHORT ushFwPort, const firewall_type& crFwType)
+      WINUSHORT ushFwPort, const firewall_type& crFwType)
    {
       m_strFwHostname = strFwHostname;
       m_strFwUsername = strFwUsername;
@@ -262,18 +262,18 @@ namespace ftp
    /// @param[in] strArgument Parameter which have to be added to the command.
    string command::AsString(const stringa & Arguments) const
    {
+
       if (Arguments.empty())
+      {
+
          return AsString();
 
-      string strArgument;
-      for (auto & itArg : Arguments)
-      {
-         if (itArg.has_char())
-            strArgument += _T(" ") + itArg;
       }
 
-      return AsString() + strArgument;
+      return AsString() + " " + Arguments.implode(" ");
+
    }
+
 
    const command::iextended_info& command::GetExtendedInfo() const
    {

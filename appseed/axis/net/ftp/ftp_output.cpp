@@ -64,7 +64,7 @@ namespace ftp
 
       string strMessage;
       
-      strMessage.Format(_T("%s ==> File \"%s\" (%d)"), strErrorMsg.c_str(), strFileName.c_str(), dwLineNr);
+      strMessage.Format(("%s ==> File \"%s\" (%d)"), strErrorMsg.c_str(), strFileName.c_str(), dwLineNr);
       
       WriteLine(strMessage, "E");
 

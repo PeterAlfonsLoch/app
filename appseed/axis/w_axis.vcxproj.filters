@@ -256,6 +256,12 @@
     <Filter Include="Source Files\html_lite">
       <UniqueIdentifier>{a9038dfe-315f-458a-af3c-309be677195a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\net\ftp">
+      <UniqueIdentifier>{5b6aba35-997b-4061-892c-74f987e86c13}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\net\ftp">
+      <UniqueIdentifier>{021fea38-7fd7-4652-9d3f-6bb3cfd42bf4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -987,6 +993,36 @@
     <ClInclude Include="net\sockets\bsd\internal\SSLInitializer.h">
       <Filter>Source Files\net\sockets\bsd</Filter>
     </ClInclude>
+    <ClInclude Include="net\ftp\ftp.h">
+      <Filter>Header Files\net\ftp</Filter>
+    </ClInclude>
+    <ClInclude Include="net\ftp\ftp_client_socket.h">
+      <Filter>Header Files\net\ftp</Filter>
+    </ClInclude>
+    <ClInclude Include="net\ftp\ftp_data_types.h">
+      <Filter>Header Files\net\ftp</Filter>
+    </ClInclude>
+    <ClInclude Include="net\ftp\ftp_file.h">
+      <Filter>Header Files\net\ftp</Filter>
+    </ClInclude>
+    <ClInclude Include="net\ftp\ftp_file_list_parser.h">
+      <Filter>Header Files\net\ftp</Filter>
+    </ClInclude>
+    <ClInclude Include="net\ftp\ftp_file_status.h">
+      <Filter>Header Files\net\ftp</Filter>
+    </ClInclude>
+    <ClInclude Include="net\ftp\ftp_interface.h">
+      <Filter>Header Files\net\ftp</Filter>
+    </ClInclude>
+    <ClInclude Include="net\ftp\ftp_output.h">
+      <Filter>Header Files\net\ftp</Filter>
+    </ClInclude>
+    <ClInclude Include="net\ftp\ftp_output_stream.h">
+      <Filter>Header Files\net\ftp</Filter>
+    </ClInclude>
+    <ClInclude Include="net\ftp\ftp_transfer_notification.h">
+      <Filter>Header Files\net\ftp</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="axis\axis\axis.inl">
@@ -1710,6 +1746,30 @@
     </ClCompile>
     <ClCompile Include="graphics\visual\detect_8bit_borders.cpp">
       <Filter>Source Files\graphics\visual</Filter>
+    </ClCompile>
+    <ClCompile Include="net\ftp\_ftp.cpp">
+      <Filter>Source Files\net\ftp</Filter>
+    </ClCompile>
+    <ClCompile Include="net\ftp\ftp_client_socket.cpp">
+      <Filter>Source Files\net\ftp</Filter>
+    </ClCompile>
+    <ClCompile Include="net\ftp\ftp_data_types.cpp">
+      <Filter>Source Files\net\ftp</Filter>
+    </ClCompile>
+    <ClCompile Include="net\ftp\ftp_file.cpp">
+      <Filter>Source Files\net\ftp</Filter>
+    </ClCompile>
+    <ClCompile Include="net\ftp\ftp_file_list_parser.cpp">
+      <Filter>Source Files\net\ftp</Filter>
+    </ClCompile>
+    <ClCompile Include="net\ftp\ftp_file_status.cpp">
+      <Filter>Source Files\net\ftp</Filter>
+    </ClCompile>
+    <ClCompile Include="net\ftp\ftp_output.cpp">
+      <Filter>Source Files\net\ftp</Filter>
+    </ClCompile>
+    <ClCompile Include="net\ftp\ftp_output_stream.cpp">
+      <Filter>Source Files\net\ftp</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

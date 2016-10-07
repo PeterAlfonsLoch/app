@@ -421,13 +421,13 @@ namespace ftp
       /// Holds the reply code.
       class code
       {
-         TCHAR m_szCode[4];
+         char m_szCode[4];
       public:
          code()
          {
             ZERO(m_szCode);
          }
-         LPCTSTR Value() const { return m_szCode; }
+         const char * Value() const { return m_szCode; }
          bool Set(const string& strCode)
          {
             if( strCode.length()!=3 ||

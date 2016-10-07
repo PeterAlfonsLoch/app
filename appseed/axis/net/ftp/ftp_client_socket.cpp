@@ -163,7 +163,7 @@ namespace ftp
    /// Opens the control channel to the FTP server.
    /// @param[in] strServerHost IP-::net::address or name of the server
    /// @param[in] iServerPort Port for channel. Usually this is port 21.
-   bool client_socket::OpenControlChannel(const string& strServerHost, USHORT ushServerPort/*=DEFAULT_FTP_PORT*/)
+   bool client_socket::OpenControlChannel(const string& strServerHost, WINUSHORT ushServerPort/*=DEFAULT_FTP_PORT*/)
    {
       
       if (IsConnected() || _is_connected())
@@ -274,7 +274,7 @@ namespace ftp
 
       // are we connecting directly to the host (logon type 0) or via a firewall? (logon type>0)
       string   strTemp;
-      USHORT    ushPort = 0;
+      WINUSHORT    ushPort = 0;
 
       if (logonInfo.FwType() == firewall_type::None())
       {
@@ -318,12 +318,12 @@ namespace ftp
          case 3:  if (SendCommand(command::USER(), {logonInfo.FwUsername() }, Reply)) break; else return false;
          case 4:  if (SendCommand(command::PASS(), {logonInfo.FwPassword() }, Reply)) break; else return false;
          case 5:  if (SendCommand(command::SITE(), {strHostnamePort }, Reply)) break; else return false;
-         case 6:  if (SendCommand(command::USER(), {logonInfo.Username() + _T("@") + strHostnamePort }, Reply)) break; else return false;
+         case 6:  if (SendCommand(command::USER(), {logonInfo.Username() + "@" + strHostnamePort }, Reply)) break; else return false;
          case 7:  if (SendCommand(command::OPEN(), {strHostnamePort }, Reply)) break; else return false;
-         case 8:  if (SendCommand(command::USER(), {logonInfo.FwUsername() + _T("@") + strHostnamePort }, Reply)) break; else return false;
-         case 9:  if (SendCommand(command::USER(), {logonInfo.Username() + _T("@") + strHostnamePort + _T(" ") + logonInfo.FwUsername() }, Reply)) break; else return false;
-         case 10: if (SendCommand(command::USER(), { logonInfo.Username() + _T("@") + logonInfo.FwUsername() + _T("@") + strHostnamePort }, Reply)) break; else return false;
-         case 11: if (SendCommand(command::PASS(), { logonInfo.Password() + _T("@") + logonInfo.FwPassword() }, Reply)) break; else return false;
+         case 8:  if (SendCommand(command::USER(), {logonInfo.FwUsername() + "@" + strHostnamePort }, Reply)) break; else return false;
+         case 9:  if (SendCommand(command::USER(), {logonInfo.Username() + "@" + strHostnamePort + " " + logonInfo.FwUsername() }, Reply)) break; else return false;
+         case 10: if (SendCommand(command::USER(), { logonInfo.Username() + "@" + logonInfo.FwUsername() + "@" + strHostnamePort }, Reply)) break; else return false;
+         case 11: if (SendCommand(command::PASS(), { logonInfo.Password() + "@" + logonInfo.FwPassword() }, Reply)) break; else return false;
          }
 
          if (!Reply.Code().IsPositiveCompletionReply() && !Reply.Code().IsPositiveIntermediateReply())
@@ -634,8 +634,8 @@ namespace ftp
       // set one FTP server in passive mode
       // the FTP server opens a port and tell us the socket (ip ::net::address + port)
       // this socket is used for opening the data connection
-      ULONG  ulIP = 0;
-      USHORT ushSock = 0;
+      WINULONG  ulIP = 0;
+      WINUSHORT ushSock = 0;
       if (PassiveServer.Passive(ulIP, ushSock) != FTP_OK)
          return false;
 
@@ -899,7 +899,7 @@ namespace ftp
       m_handler.add(&sckDataConnection);
 
 
-      USHORT ushLocalSock = 0;
+      WINUSHORT ushLocalSock = 0;
       try
       {
          // INADDR_ANY = ip ::net::address of localhost
@@ -970,8 +970,8 @@ namespace ftp
       ::sockets::transfer_socket & sckDataConnection
          = *(dynamic_cast < ::sockets::transfer_socket * >(&sckDataConnectionParam));
 
-      ULONG   ulRemoteHostIP = 0;
-      USHORT  ushServerSock = 0;
+      WINULONG   ulRemoteHostIP = 0;
+      WINUSHORT  ushServerSock = 0;
 
       // set passive mode
       // the FTP server opens a port and tell us the socket (ip ::net::address + port)
@@ -980,10 +980,10 @@ namespace ftp
          return false;
 
       // establish connection
-      ::net::address sockAddrTemp;
+      ::net::address sockAddrTemp(ulRemoteHostIP, ushServerSock);
       try
       {
-         if (!sckDataConnection.open(ulRemoteHostIP, ushServerSock))
+         if (!sckDataConnection.open(sockAddrTemp))
          {
             return false;
          }
@@ -1453,7 +1453,7 @@ namespace ftp
    /// @param[out] ulIpAddress IP ::net::address the server is listening on.
    /// @param[out] ushPort Port the server is listening on.
    /// @return see return values of client_socket::SimpleErrorCheck
-   int client_socket::Passive(ULONG& ulIpAddress, USHORT& ushPort)
+   int client_socket::Passive(WINULONG& ulIpAddress, WINUSHORT& ushPort)
    {
       reply Reply;
       if (!SendCommand(command::PASV(), {}, Reply))
@@ -1475,15 +1475,15 @@ namespace ftp
    /// @param[out] ushPort     Buffer for the port information.
    /// @retval true  Everything went ok.
    /// @retval false An error occurred (invalid format).
-   bool client_socket::GetIpAddressFromResponse(const string& strResponse, ULONG& ulIpAddress, USHORT& ushPort)
+   bool client_socket::GetIpAddressFromResponse(const string& strResponse, WINULONG& ulIpAddress, WINUSHORT& ushPort)
    {
       // parsing of ip-::net::address and port implemented with a finite state machine
       // ...(192,168,1,1,3,44)...
       enum T_enState { state0, state1, state2, state3, state4 } enState = state0;
 
       string strIpAddress, strPort;
-      USHORT ushTempPort = 0;
-      ULONG  ulTempIpAddress = 0;
+      WINUSHORT ushTempPort = 0;
+      WINULONG  ulTempIpAddress = 0;
       int iCommaCnt = 4;
       for (strsize i = 0; i < strResponse.get_length(); i++)
       {
@@ -1518,7 +1518,7 @@ namespace ftp
          case state2:
             if (it == _T(','))
             {
-               ushTempPort = static_cast<USHORT>(atoi(strPort) << 8);
+               ushTempPort = static_cast<WINUSHORT>(atoi(strPort) << 8);
                strPort.clear();
                enState = state3;
             }
@@ -1533,7 +1533,7 @@ namespace ftp
             if (it == _T(')'))
             {
                // compiler warning if using +=operator
-               ushTempPort = ushTempPort + static_cast<USHORT>(atoi(strPort));
+               ushTempPort = ushTempPort + static_cast<WINUSHORT>(atoi(strPort));
                enState = state4;
             }
             else
@@ -1637,7 +1637,7 @@ namespace ftp
    /// @param[in] strHostIP IP-::net::address like xxx.xxx.xxx.xxx
    /// @param[in] uiPort 16-bit TCP port ::net::address.
    /// @return see return values of client_socket::SimpleErrorCheck
-   int client_socket::DataPort(const string& strHostIP, USHORT ushPort)
+   int client_socket::DataPort(const string& strHostIP, WINUSHORT ushPort)
    {
       string strPortArguments;
       // convert the port number to 2 bytes + add to the local IP

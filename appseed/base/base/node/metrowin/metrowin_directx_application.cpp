@@ -708,7 +708,7 @@ namespace metrowin
             if (papp->m_pipi == NULL)
             {
                
-               ::user::interaction * pui = NULL;
+               sp(::user::interaction) pui;
 
                m_psystem->get_frame(pui);
 

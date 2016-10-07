@@ -262,6 +262,8 @@ bool db_str_set::remove(const char * lpKey)
 bool db_str_set::load(const char * lpKey, string & strValue)
 {
 
+   synch_lock sl(m_pmutex);
+
    db_str_set_core * pcore = (db_str_set_core *)m_pcore->m_ptopthis;
 
    if(m_pcore->m_pdataserver == NULL)
@@ -274,7 +276,7 @@ bool db_str_set::load(const char * lpKey, string & strValue)
 
       Application.assert_user_logged_in();
 
-      synch_lock sl(m_pmutex);
+      sl.lock();
 
       if(pcore->m_phttpsession == NULL)
       {
