@@ -57,6 +57,8 @@ public:
    inline class tick_duration tick_duration() const;
    inline operator class tick_duration() const;
 
+   inline operator bool() const;
+
 
    inline __time64_t GetTimeSpan() const;
 
@@ -431,6 +433,15 @@ inline int64_t duration::total_seconds() const
 {
    return (total_milliseconds() + 500) / 1000;
 }
+
+
+inline duration::operator bool() const
+{
+
+   return m_iSeconds != 0 || m_iNanoseconds != 0;
+
+}
+
 
 
 CLASS_DECL_AURA void Sleep(const duration & duration);

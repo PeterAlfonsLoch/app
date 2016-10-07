@@ -425,8 +425,12 @@ void property_set::_008Add(const char * pszKey, const char * pszValue)
 
    straKey.explode(".", pszKey);
 
-   if(straKey.get_count() <= 0)
+   if (straKey.get_count() <= 0)
+   {
+
       return;
+
+   }
 
    property_set * pset = this;
 
@@ -434,20 +438,34 @@ void property_set::_008Add(const char * pszKey, const char * pszValue)
 
    while(i  < straKey.get_upper_bound())
    {
+      
       pset = &(*pset)[straKey[i]].propset();
+      
       i++;
+
    }
 
-   if(pset->has_property(straKey[i]) && pset->operator[](straKey[i]) != pszValue)
+   if(pszValue != NULL && pset->has_property(straKey[i]) && pset->operator[](straKey[i]) != pszValue)
    {
+      
       pset->operator[](straKey[i]).stra().add(pszValue);
+
+   }
+   else if (pszValue == NULL)
+   {
+      
+      pset->add(straKey[i], var::type_key_exists);
+
    }
    else
    {
+      
       pset->add(straKey[i], var(pszValue));
+
    }
 
 }
+
 
 void property_set::_008Parse(bool bApp, const char * pszCmdLine, var & varFile, string & strApp)
 {
@@ -550,7 +568,7 @@ void property_set::_008Parse(bool bApp, const char * pszCmdLine, var & varFile, 
             }
             else
             {
-               _008Add(strKey, "");
+               _008Add(strKey, NULL);
                strKey = str;
                state = state_equal;
             }

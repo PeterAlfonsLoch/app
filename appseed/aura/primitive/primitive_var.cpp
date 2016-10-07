@@ -5,6 +5,7 @@
 //IMPLEMENT_AXIS_FIXED_ALLOC_STATIC(var);
 
 
+
 var::var(const char * psz)
 {
    m_etype = type_new;
@@ -875,6 +876,8 @@ void var::read(::file::istream & is)
    set_type(e_type(i), false);
    switch(get_type())
    {
+   case type_pstring:
+      set_type(type_string, false);
    case type_string:
       {
          strsize size;
@@ -978,6 +981,13 @@ void var::write(::file::ostream & ostream) const
          ostream.write((const char *) m_str, m_str.get_length() + 1);
       }
       break;
+   case type_pstring:
+   {
+      strsize len = m_pstr->get_length();
+      ostream << len;
+      ostream.write((const char *)*m_pstr, m_pstr->get_length() + 1);
+   }
+   break;
    case type_int32:
       ostream << m_i32;
       break;
@@ -3590,6 +3600,182 @@ bool var::is_natural() const
          return false;
       }
    }
+}
+
+var::operator bool() const
+{
+
+   if (m_etype == type_new
+      || m_etype == type_null
+      || m_etype == type_empty
+      || m_etype == type_empty_argument)
+   {
+
+      return false;
+
+   }
+   else if (m_etype == type_key_exists
+    || m_etype == type_filetime
+    || m_etype == type_time)
+   {
+      
+      return true;
+
+   }
+   else if (m_etype == type_bool)
+   {
+
+      return m_b;
+
+   }
+   else if (m_etype == type_pbool)
+   {
+
+      return m_pb != NULL && *m_pb;
+
+   }
+   else if(m_etype == type_int32 || m_etype == type_uint32)
+   {
+
+      return m_i32 != 0;
+
+   }
+   else if (m_etype == type_int64 || m_etype == type_uint64)
+   {
+
+      return m_i64 != 0;
+
+   }
+   else if (m_etype == type_pint32 || m_etype == type_puint32)
+   {
+
+      return m_pi32 != NULL && *m_pi32 != 0;
+
+   }
+   else if (m_etype == type_pint64 || m_etype == type_puint64)
+   {
+
+      return m_pi64 != NULL && *m_pi64 != 0;
+
+   }
+   else if(m_etype == type_string)
+   {
+      
+      return m_str.CompareNoCase("true") == 0;
+
+   }
+   else if (m_etype == type_pstring)
+   {
+
+      return m_pstr != NULL && m_pstr->CompareNoCase("true") == 0;
+
+   }
+   else if (m_etype == type_id)
+   {
+
+      return (m_id.is_text() && m_id.m_psz != NULL && stricmp(m_id.m_psz, "true"))
+         || (m_id.is_integer() && m_id.m_i != 0);
+
+   }
+   else if (m_etype == type_pid)
+   {
+
+      return m_pid != NULL && (m_pid->is_text() && m_pid->m_psz != NULL && stricmp(m_pid->m_psz, "true"))
+         || (m_pid->is_integer() && m_pid->m_i != 0);
+
+   }
+   else if (m_etype == type_inta)
+   {
+
+      return m_pia != NULL && m_pia->has_elements() && !m_pia->contains(0);
+
+   }
+   else if (m_etype == type_int64a)
+   {
+
+      return m_pia64 != NULL && m_pia64->has_elements() && !m_pia64->contains(0);
+
+   }
+   else if (m_etype == type_stra)
+   {
+
+      return m_pstra != NULL && m_pstra->has_elements() && ::lemon::array::every::ci_is(*m_pstra, "true");
+
+   }
+   else if (m_etype == type_float)
+   {
+
+      return m_f != 0.0f;
+
+   }
+   else if (m_etype == type_double)
+   {
+
+      return m_d != 0.0;
+
+   }
+   else if (m_etype == type_pvar)
+   {
+
+      if (this == m_pvar)
+      {
+
+         return true;
+
+      }
+
+      return m_pvar->operator bool();
+
+   }
+   else if (m_etype == type_vara)
+   {
+
+      return m_pvara != NULL && ::lemon::array::every::is_true(*m_pvara);
+
+   }
+   else if (m_etype == type_propset)
+   {
+
+      return m_pvara != NULL && ::lemon::array::every::is_true(*m_pset);
+
+   }
+   else if (m_etype == type_duration)
+   {
+
+      return m_duration.operator bool();
+
+   }
+   else if (m_etype == type_pduration)
+   {
+
+      return m_pduration != NULL && m_pduration->operator bool();
+
+   }
+   else if (m_etype == type_char)
+   {
+
+      return m_ch != '\0';
+
+   }
+   else if (m_etype == type_byte)
+   {
+
+      return m_uch != 0;
+
+   }
+   //else if (m_etype == type_pchar)
+   //{
+
+   //   return m_pch != NULL && *m_pch != '\0';
+
+   //}
+   else
+   {
+
+      return m_p != NULL;
+
+   }
+
 }
 
 bool var::has_property(const char * pszName) const

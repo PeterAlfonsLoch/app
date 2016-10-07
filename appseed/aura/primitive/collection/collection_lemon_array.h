@@ -192,6 +192,50 @@ namespace lemon
       }
 
 
+      namespace every
+      {
+
+         template < typename A >
+         bool ci_is(const A & a, const typename A::BASE_TYPE & t)
+         {
+
+            for (auto & i : a)
+            {
+
+               if (::stricmp(i, t))
+               {
+
+                  return false;
+
+               }
+
+            }
+
+            return true;
+
+         }
+
+         template < typename A >
+         bool is_true(const A & a)
+         {
+
+            for (auto & i : a)
+            {
+
+               if (!(bool) i)
+               {
+
+                  return false;
+
+               }
+
+            }
+
+            return true;
+
+         }
+
+      }
 
 
    } // namespace array

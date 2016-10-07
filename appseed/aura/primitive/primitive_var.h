@@ -26,6 +26,7 @@ public:
       type_parareturn,
       type_new,
       type_null,
+      type_key_exists,
       type_empty,
       type_empty_argument,
       type_string,
@@ -244,10 +245,7 @@ public:
 
    var & operator ++(int32_t);
 
-   operator bool() const
-   {
-      return m_etype == type_bool && m_b;
-   }
+   operator bool() const;
 
    operator int32_t() const;
 #ifdef WINDOWS
