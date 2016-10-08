@@ -42,9 +42,17 @@ namespace user
 CLASS_DECL_BASE ::user::interaction * oswindow_get(oswindow oswindow)
 {
 
-   cslock slOsWindow(::user::g_pcsUi);
+   if (oswindow == NULL)
+   {
 
-   return ::user::g_pmapUi->operator[](oswindow);
+      return NULL;
+
+   }
+
+   return oswindow->m_pui;
+   //cslock slOsWindow(::user::g_pcsUi);
+
+   //return ::user::g_pmapUi->operator[](oswindow);
 
 }
 

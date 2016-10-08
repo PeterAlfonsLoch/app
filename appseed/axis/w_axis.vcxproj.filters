@@ -1771,5 +1771,8 @@
     <ClCompile Include="net\ftp\ftp_output_stream.cpp">
       <Filter>Source Files\net\ftp</Filter>
     </ClCompile>
+    <ClCompile Include="filesystem\fs\fs_ftp.cpp">
+      <Filter>Source Files\filesystem\fs</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

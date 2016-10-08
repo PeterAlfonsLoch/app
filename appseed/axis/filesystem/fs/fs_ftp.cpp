@@ -340,6 +340,13 @@ bool ftpfs::file_move(const ::file::path & pszDst, const ::file::path & pszSrc)
 ::file::buffer_sp ftpfs::get_file(const ::file::path & path, UINT nOpenFlags, cres * pfesp)
 {
 
+   if (is_dir(path))
+   {
+
+      return NULL;
+
+   }
+
    if (pfesp != NULL)
    {
 

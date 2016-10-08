@@ -109,23 +109,31 @@ namespace metrowin
 
       string strPrefix;
 
+      ::Windows::Storage::StorageFolder ^ folder = nullptr;
 
-      if(str::begins_eat_ci(strPath,"winmetro-Pictures:\\\\"))
+
+      if(str::begins_eat_ci(strPath,"winmetro-Pictures://"))
       {
 
-         strPrefix = "winmetro-Pictures:\\\\";
+         strPrefix = "winmetro-Pictures://";
+
+         folder = ::Windows::Storage::KnownFolders::PicturesLibrary;
 
       }
-      else if (str::begins_eat_ci(strPath, "winmetro-Music:\\\\"))
+      else if (str::begins_eat_ci(strPath, "winmetro-Music://"))
       {
 
-         strPrefix = "winmetro-Music:\\\\";
+         strPrefix = "winmetro-Music://";
+
+         folder = ::Windows::Storage::KnownFolders::MusicLibrary;
 
       }
-      else if (str::begins_eat_ci(strPath, "winmetro-Videos:\\\\"))
+      else if (str::begins_eat_ci(strPath, "winmetro-Videos://"))
       {
 
-         strPrefix = "winmetro-Videos:\\\\";
+         strPrefix = "winmetro-Videos://";
+
+         folder = ::Windows::Storage::KnownFolders::VideosLibrary;
 
       }
       else
@@ -135,9 +143,15 @@ namespace metrowin
 
       ::file::path pathFolder = strPath;
 
+      string strName = pathFolder.name();
+
       pathFolder -= 1;
 
-      m_folder = wait(::Windows::Storage::StorageFolder::GetFolderFromPathAsync(pathFolder));
+      string strRelative = pathFolder;
+
+      ::str::begins_eat_ci(strRelative, strPrefix);
+
+      m_folder = wait(folder->GetFolderAsync(strRelative));
 
       if (m_folder == nullptr)
       {
@@ -227,19 +241,10 @@ namespace metrowin
       // attempt native_buffer creation
       //HANDLE hnative_buffer = shell::Createnative_buffer(::str::international::utf8_to_unicode(m_strFileName), dwAccess, dwShareMode, &sa, dwCreateFlag, native_buffer_ATTRIBUTE_NORMAL, NULL);
 
-      ::Windows::Storage::StorageFolder ^ folder = m_folder;
+      folder = m_folder;
 
-      ::Windows::Foundation::Collections::IVectorView < ::Windows::Storage::StorageFile ^ > ^ a = ::wait(folder->GetFilesAsync());
+      m_file = ::wait(folder->GetFileAsync(strName));
 
-      for(uint32_t ui = 0; ui < a->Size; ui++)
-      {
-         string strPath = string(begin(a->GetAt(ui)->Path));
-         if(strPath == m_strFileName)
-         {
-            m_file = a->GetAt(ui);
-            break;
-         }
-      }
 
       if(m_file == nullptr)
       {

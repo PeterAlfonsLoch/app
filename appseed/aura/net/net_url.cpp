@@ -7,7 +7,7 @@ namespace url
    bool is_url(const char * pszCandidate,const char ** ppszRequest)
    {
       const char * psz = pszCandidate;
-      while(*psz != '\0' && (*psz == '.' || *psz == '_' || isalnum_dup(*psz)))
+      while(*psz != '\0' && (*psz == '.' || *psz == '_' || *psz == '-' || isalnum_dup(*psz)))
       {
          psz++;
       }

@@ -1002,7 +1002,7 @@ void dir::ls(::file::patha & stra,const ::file::path & psz)
    try
    {
 
-      if(string(psz).CompareNoCase("winmetro-Pictures:") == 0)
+      if(string(psz).CompareNoCase("winmetro-Pictures://") == 0)
       {
 
          strPrefix = "winmetro-Pictures://";
@@ -1021,7 +1021,7 @@ void dir::ls(::file::patha & stra,const ::file::path & psz)
          }
 
       }
-      else if (string(psz).CompareNoCase("winmetro-Music:") == 0)
+      else if (string(psz).CompareNoCase("winmetro-Music://") == 0)
       {
 
          strPrefix = "winmetro-Music://";
@@ -1040,7 +1040,7 @@ void dir::ls(::file::patha & stra,const ::file::path & psz)
          }
 
       }
-      else if (string(psz).CompareNoCase("winmetro-Videos:") == 0)
+      else if (string(psz).CompareNoCase("winmetro-Videos://") == 0)
       {
 
          strPrefix = "winmetro-Videos://";
@@ -1062,28 +1062,97 @@ void dir::ls(::file::patha & stra,const ::file::path & psz)
       else
       {
 
-         if (::str::begins_eat_ci(str, "winmetro-Pictures:\\\\"))
+         if (::str::begins_eat_ci(str, "winmetro-Pictures://"))
          {
 
-            strPrefix = "winmetro-Pictures:\\\\";
+            strPrefix = "winmetro-Pictures://";
+
+            try
+            {
+
+               folder = ::Windows::Storage::KnownFolders::PicturesLibrary;
+
+            }
+            catch (...)
+            {
+
+               folder = nullptr;
+
+            }
 
          }
 
-         if(::str::begins_eat_ci(str, "winmetro-Music:\\\\"))
+         if(::str::begins_eat_ci(str, "winmetro-Music://"))
          {
 
-            strPrefix = "winmetro-Music:\\\\";
+            strPrefix = "winmetro-Music://";
+
+            try
+            {
+
+               folder = ::Windows::Storage::KnownFolders::MusicLibrary;
+
+            }
+            catch (...)
+            {
+
+               folder = nullptr;
+
+            }
 
          }
 
-         if (::str::begins_eat_ci(str, "winmetro-Videos:\\\\"))
+         if (::str::begins_eat_ci(str, "winmetro-Videos://"))
          {
 
-            strPrefix = "winmetro-Videos:\\\\";
+            strPrefix = "winmetro-Videos://";
+
+            try
+            {
+
+               folder = ::Windows::Storage::KnownFolders::VideosLibrary;
+
+            }
+            catch (...)
+            {
+
+               folder = nullptr;
+
+            }
 
          }
 
-         folder = wait(::Windows::Storage::StorageFolder::GetFolderFromPathAsync(str));
+         if (strPrefix.has_char())
+         {
+
+            stringa stra;
+
+            stra.explode("/", str);
+
+            string str;
+
+            while (stra.get_count() > 0)
+            {
+
+               str = stra[0];
+
+               folder = wait(folder->GetFolderAsync(str));
+
+               strPrefix += str + "/";
+
+               stra.remove_at(0);
+
+            }
+
+         }
+         else
+         {
+
+            folder = wait(Windows::Storage::StorageFolder::GetFolderFromPathAsync(str));
+
+            strPrefix = str + "/";
+
+         }
 
       }
 
@@ -1103,7 +1172,7 @@ void dir::ls(::file::patha & stra,const ::file::path & psz)
    for(uint32_t ui = 0; ui < a->Size; ui++)
    {
 
-      string strPath = strPrefix + string(begin(a->GetAt(ui)->Path));
+      string strPath = strPrefix + string(begin(a->GetAt(ui)->Name));
 
       ::file::path path(strPath);
 
