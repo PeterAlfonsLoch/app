@@ -102,6 +102,7 @@
 		</Linker>
 		<ExtraCommands>
 			<Add before="cp ../../../nodeapp/thirdparty/library/x64/* ../../../time/x64/basis/" />
+			<Add before="cp ../../../nodeapp/thirdparty/binary/x64/* ../../../time/x64/basis/" />
 		</ExtraCommands>
 		<Unit filename="aura/_aura_aura.cpp" />
 		<Unit filename="aura/aura/aura.h" />
@@ -810,6 +811,10 @@
 		<Unit filename="primitive/primitive_request_interface.h" />
 		<Unit filename="primitive/primitive_request_signal.h" />
 		<Unit filename="primitive/primitive_shared_memory.h" />
+		<Unit filename="primitive/primitive_signal.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="primitive/primitive_signal.h" />
 		<Unit filename="primitive/primitive_type.h" />
 		<Unit filename="primitive/primitive_var.cpp">

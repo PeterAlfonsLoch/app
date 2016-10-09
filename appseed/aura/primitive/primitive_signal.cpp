@@ -1,27 +1,33 @@
 //#include "framework.h"
 //#include "signal.h"
 
+mutex * g_pmutexSignal = NULL;
 
 signal_details::signal_details(::aura::application * papp) :
    object(papp)
 {
+
    m_iParam    = 0;
    m_psignal   = NULL;
    m_bRet      = false;
    m_iIndex    = 0;
    m_pset      = NULL;
+
 }
 
 
 signal_details::signal_details(class signal * psignal) :
    object(psignal->get_app())
 {
+
    m_iParam    = 0;
    m_psignal   = psignal;
    m_bRet      = false;
    m_iIndex    = 0;
    m_pset      = NULL;
+
 }
+
 
 signal_details::signal_details(::aura::application * papp,class signal * psignal):
    object(papp)
@@ -39,43 +45,69 @@ signal_details::signal_details(::aura::application * papp,class signal * psignal
    m_bRet      = false;
    m_iIndex    = 0;
    m_pset      = NULL;
+
 }
+
 
 signal_details::~signal_details()
 {
+
+   synch_lock sl(g_pmutexSignal);
+
    if(m_pset != NULL)
    {
+
       delete m_pset;
+
    }
+
 }
 
 
 property_set & signal_details::operator()()
 {
+
    if(m_pset == NULL)
    {
+
       m_pset = new property_set(get_app());
+
    }
+
    return *m_pset;
+
 }
+
 
 bool signal_details::all_previous() // returns bRet;
 {
+
    m_psignal->emit_all_previous(this);
+
    return m_bRet;
+
 }
+
 
 bool signal_details::previous() // returns bRet;
 {
+
    m_psignal->emit_previous(this);
+
    return m_bRet;
+
 }
+
 
 bool signal_details::emit()
 {
+
    m_psignal->emit(this);
+
    return m_bRet;
+
 }
+
 
 signalizable::signalizable()
 {
@@ -94,10 +126,18 @@ signalizable::~signalizable()
 void signalizable::signalizable_disconnect_all()
 {
 
-   for(int32_t i = 0; i < m_signalptra.get_size(); i++)
+   synch_lock sl(g_pmutexSignal);
+
+   index i = m_signalptra.get_upper_bound();
+
+   while(i >= 0)
    {
 
-      m_signalptra[i]->disconnect(this);
+      class signal * psignal = m_signalptra[i];
+
+      psignal->disconnect(this);
+
+      i = MIN(i - 1, m_signalptra.get_upper_bound());
 
    }
 
@@ -117,6 +157,8 @@ void signalizable::install_message_handling(::message::dispatch * pdispatch)
 void signalizable::register_signal(class signal * psignal)
 {
 
+   synch_lock sl(g_pmutexSignal);
+
    m_signalptra.add_unique(psignal);
 
 }
@@ -125,21 +167,32 @@ void signalizable::register_signal(class signal * psignal)
 void signalizable::unregister_signal(class signal * psignal)
 {
 
-   for(int32_t i = 0; i < m_signalptra.get_size();)
+   synch_lock sl(g_pmutexSignal);
+
+   index i = m_signalptra.get_upper_bound();
+
+   while(i >= 0)
    {
 
       if(m_signalptra[i] == psignal)
       {
 
+         class signal * p = psignal;
+
+         ::count c = p->m_countReference;
+
          m_signalptra.remove_at(i);
 
-      }
-      else
-      {
+         if(c > 1)
+         {
 
-         i++;
+            p->disconnect(this);
+
+         }
 
       }
+
+      i = MIN(i - 1, m_signalptra.get_upper_bound());
 
    }
 
@@ -148,6 +201,8 @@ void signalizable::unregister_signal(class signal * psignal)
 
 void signalizable::unregister_target(signalizable* psignalizable)
 {
+
+   synch_lock sl(g_pmutexSignal);
 
    for(int32_t i = 0; i < m_signalptra.get_size();)
    {
@@ -174,6 +229,8 @@ void signalizable::unregister_target(signalizable* psignalizable)
 
 void signalizable::filter_target(signalizable* psignalizable)
 {
+
+   synch_lock sl(g_pmutexSignal);
 
    for(int32_t i = 0; i < m_signalptra.get_size(); i++)
    {
@@ -220,10 +277,24 @@ signal::signal()
 signal::~signal()
 {
 
-   for (index i = 0; i < m_delegateptra.get_count(); i++)
+   disconnect_all();
+
+}
+
+
+void signal::disconnect_all()
+{
+
+   synch_lock sl(g_pmutexSignal);
+
+   index i = m_delegateptra.get_upper_bound();
+
+   while(i >= 0)
    {
 
       m_delegateptra[i]->get_signalizable()->unregister_signal(this);
+
+      i = MIN(i - 1, m_delegateptra.get_upper_bound());
 
    }
 
@@ -234,47 +305,87 @@ signal::~signal()
 
 void signal::emit(signal_details * pobj)
 {
+
+   synch_lock sl(g_pmutexSignal);
+
    if(pobj == NULL)
    {
+
       for(index i = m_delegateptra.get_size() - 1; i >= 0 ; i++)
       {
+
+         sl.unlock();
+
          m_delegateptra[i]->emit(NULL);
+
+         sl.lock();
+
       }
+
    }
    else
    {
+
       for(pobj->m_iIndex = m_delegateptra.get_upper_bound(); pobj->m_iIndex >= 0 ; pobj->m_iIndex = MIN(pobj->m_iIndex - 1, m_delegateptra.get_upper_bound()))
       {
+
          signal_delegate * pdelegate = m_delegateptra.element_at(pobj->m_iIndex);
+
+         sl.unlock();
+
          pdelegate->emit(pobj);
+
+         sl.lock();
+
          if(pobj->m_bRet)
             return;
+
       }
+
    }
+
 }
+
 
 void signal::emit_previous(signal_details * pobj)
 {
+
+   synch_lock sl(g_pmutexSignal);
+
    if(pobj->m_iIndex <= 0)
       return;
+
    pobj->m_iIndex--;
+
    signal_delegate * pdelegate = m_delegateptra.element_at(pobj->m_iIndex);
+
+   sl.unlock();
+
    pdelegate->emit(pobj);
+
 }
+
 
 void signal::emit_all_previous(signal_details * pobj)
 {
+
    while(pobj->m_iIndex > 0)
    {
+
       emit_previous(pobj);
+
       if(pobj->m_bRet)
          return;
+
    }
+
 }
 
 
 bool signal::has_handler()
 {
+
+   synch_lock sl(g_pmutexSignal);
 
    return m_delegateptra.get_size() > 0;
 
@@ -284,7 +395,11 @@ bool signal::has_handler()
 void signal::disconnect(signalizable * psignalizable)
 {
 
-   for(int32_t i = 0; i < m_delegateptra.get_size();)
+   synch_lock sl(g_pmutexSignal);
+
+   index i = m_delegateptra.get_upper_bound();
+
+   while(i >= 0)
    {
 
       if(m_delegateptra[i]->get_signalizable() == psignalizable)
@@ -293,7 +408,18 @@ void signal::disconnect(signalizable * psignalizable)
          try
          {
 
+            signalizable * p = psignalizable;
+
+            ::count c = p->m_countReference;
+
             m_delegateptra.remove_at(i);
+
+            if(c > 1)
+            {
+
+               psignalizable->unregister_signal(this);
+
+            }
 
          }
          catch(...)
@@ -302,12 +428,8 @@ void signal::disconnect(signalizable * psignalizable)
          }
 
       }
-      else
-      {
 
-         i++;
-
-      }
+      i = MIN(i - 1, m_delegateptra.get_upper_bound());
 
    }
 
@@ -317,7 +439,11 @@ void signal::disconnect(signalizable * psignalizable)
 void signal::leave_only(signalizable * psignalizable)
 {
 
-   for(int32_t i = 0; i < m_delegateptra.get_size();)
+   synch_lock sl(g_pmutexSignal);
+
+   index i = m_delegateptra.get_upper_bound();
+
+   while(i >= 0)
    {
 
       if(m_delegateptra[i]->get_signalizable() != psignalizable)
@@ -328,12 +454,8 @@ void signal::leave_only(signalizable * psignalizable)
          m_delegateptra.remove_at(i);
 
       }
-      else
-      {
 
-         i++;
-
-      }
+      i = MIN(i - 1, m_delegateptra.get_upper_bound());
 
    }
 
@@ -356,13 +478,15 @@ signalid_array::~signalid_array()
 
 signalid * signalid_array::get(signalid * pid)
 {
-   
+
+   synch_lock sl(g_pmutexSignal);
+
    for(int32_t i = 0; i < this->get_size(); i++)
    {
-      
+
       if(this->element_at(i)->is_equal(pid))
       {
-         
+
          return this->element_at(i);
 
       }
@@ -379,7 +503,9 @@ signalid * signalid_array::get(signalid * pid)
 
 void signalizable::on_request_signal(request_signal * prequestsignal)
 {
+
    request_file_query(prequestsignal->m_varFile, prequestsignal->m_varQuery);
+
 }
 
 
@@ -396,25 +522,39 @@ dispatch::handler_item_array::~handler_item_array()
 
 bool dispatch::handler_item_array::HasSignalizable(signalizable* psignalizable)
 {
+
+   synch_lock sl(g_pmutexSignal);
+
    for (int32_t i = 0; i < this->get_size(); i++)
    {
+
       if (this->element_at(i)->get_signalizable() == psignalizable)
+      {
+
          return true;
+
+      }
+
    }
+
    return false;
+
 }
 
 
 dispatch::signal_item::signal_item()
 {
+
    m_psignal      = NULL;
+
    m_pid          = NULL;
+
 }
 
 
 dispatch::signal_item::~signal_item()
 {
-   
+
    ::aura::del(m_psignal);
 
 }
@@ -422,7 +562,9 @@ dispatch::signal_item::~signal_item()
 
 dispatch::dispatch()
 {
+
 }
+
 
 dispatch::~dispatch()
 {

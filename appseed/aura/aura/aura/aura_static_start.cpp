@@ -7,6 +7,7 @@
 
 //#include "framework.h"
 
+extern mutex * g_pmutexSignal;
 
 void init_draw2d_direct2_mutex();
 void term_draw2d_direct2_mutex();
@@ -221,7 +222,7 @@ namespace aura
 
 #endif
 
-
+         g_pmutexSignal = new mutex();
 
          //g_pstrLastStatus = new string();
 
@@ -466,6 +467,8 @@ namespace aura
          ::aura::del(g_pmutgen);
 
          ::aura::del(g_pmutexSystemHeap);
+
+         ::aura::del(g_pmutexSignal);
 
          // delete g_pstrLastGlsStatus;
 

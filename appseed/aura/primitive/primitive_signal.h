@@ -56,7 +56,7 @@ class CLASS_DECL_AURA signalizable :
 public:
 
 
-   spa(class signal) m_signalptra;
+   ref_array < class signal > m_signalptra;
 
 
    signalizable();
@@ -174,6 +174,8 @@ public:
    void emit_previous(signal_details * pobject);
    void emit_all_previous(signal_details * pobject);
 
+
+
    template < class T >
    void connect(T * psignalizable, void (T::*pfn)(signal_details *))
    {
@@ -214,6 +216,8 @@ public:
 
    void disconnect(signalizable * psignalizable);
    void leave_only(signalizable * psignalizable);
+
+   void disconnect_all();
 
 
 };
