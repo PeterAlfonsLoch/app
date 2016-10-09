@@ -299,8 +299,6 @@ void system_heap_free(void * p)
 
 #endif
 
-#endif
-
 }
 
 
