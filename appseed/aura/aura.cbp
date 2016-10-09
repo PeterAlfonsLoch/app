@@ -215,6 +215,7 @@
 		<Unit filename="aura/aura/aura_new.h" />
 		<Unit filename="aura/aura/aura_number.h" />
 		<Unit filename="aura/aura/aura_os.h" />
+		<Unit filename="aura/aura/aura_os_alloc.h" />
 		<Unit filename="aura/aura/aura_plex.h" />
 		<Unit filename="aura/aura/aura_plex_heap.cpp">
 			<Option compile="0" />
@@ -449,6 +450,7 @@
 			<Option link="0" />
 		</Unit>
 		<Unit filename="aura/os/os.h" />
+		<Unit filename="aura/os/os_alloc.cpp" />
 		<Unit filename="aura/os/os_binreloc.h" />
 		<Unit filename="aura/os/os_process.h" />
 		<Unit filename="aura/pcre/pcre.cpp" />
