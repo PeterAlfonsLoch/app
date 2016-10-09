@@ -7,18 +7,6 @@
 
 BEGIN_EXTERN_C
 
-#ifdef __VLD
-#define unaligned_memory_alloc malloc
-#define unaligned_memory_alloc_dbg _malloc_dbg
-#define aligned_memory_alloc malloc
-#define aligned_memory_alloc_dbg _malloc_dbg
-#define memory_alloc_no_track malloc
-#define memory_calloc calloc
-#define memory_alloc_dbg _malloc_dbg
-#define memory_realloc_dbg _realloc_dbg
-#define memory_free_dbg _free_dbg
-
-#else
    CLASS_DECL_AURA void * unaligned_memory_alloc(size_t size);
    CLASS_DECL_AURA void * unaligned_memory_alloc_dbg(size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine);
 
@@ -29,7 +17,7 @@ BEGIN_EXTERN_C
    CLASS_DECL_AURA void * memory_alloc_dbg(size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine);
    CLASS_DECL_AURA void * memory_realloc_dbg(void * pvoid, size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine);
    CLASS_DECL_AURA void   memory_free_dbg(void * pvoid, int32_t iBlockType);
-#endif
+
    CLASS_DECL_AURA size_t memory_size(void * p);
    CLASS_DECL_AURA size_t memory_size_dbg(void * p, int32_t iBlockType);
 

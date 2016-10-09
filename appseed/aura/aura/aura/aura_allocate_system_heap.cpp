@@ -6,26 +6,8 @@ memdleak_block * s_pmemdleakList;
 extern mutex * g_pmutgen;
 extern thread_pointer < memdleak_block > t_plastblock;
 
-#define PREFER_MALLOC 0
+#include "aura_os_alloc.h"
 
-// uint32_t aligned allocation
-
-#if defined(WINDOWSEX) && !defined(__VLD) && !defined(__MCRTDBG)
-
-HANDLE g_system_heap()
-{
-
-   static HANDLE s_hSystemHeap = HeapCreate(0, 0, 0);
-
-   return s_hSystemHeap;
-
-}
-
-#endif
-
-extern CLASS_DECL_AURA ::exception::engine * g_ee;
-
-critical_section * g_pmutexSystemHeap = NULL;
 
 void * system_heap_alloc_normal(size_t size)
 {
@@ -43,23 +25,7 @@ void * system_heap_alloc_normal(size_t size)
   // byte * p = (byte *) ::HeapAlloc(g_hSystemHeap, HEAP_ZERO_MEMORY, ((size + 4 + 3) & ~3));
 //#else  // let constructors and algorithms initialize... "random initialization" of not initialized :-> C-:!!
 
-   void * p;
-#if defined(__VLD) || defined(__MCRTDBG)
-
-   p = malloc(size);
-
-#elif defined(WINDOWSEX) && !PREFER_MALLOC
-
-   cslock csl(g_pmutexSystemHeap);
-
-   p = ::HeapAlloc(g_system_heap(), 0, size);
-
-#else
-
-   p = ::malloc(size);
-
-#endif
-//#endif
+   void * p = ::os_alloc(size);
 
    if(p == NULL)
    {
@@ -96,24 +62,9 @@ void * system_heap_alloc_dbg(size_t size, int nBlockUse, const char * pszFileNam
 
    memdleak_block * pblock;
 
+   pblock = (memdleak_block *) ::os_alloc(nAllocSize);
 
-#if defined(WINDOWSEX) && !PREFER_MALLOC
-
-   {
-      cslock csl(g_pmutexSystemHeap);
-
-      pblock = (memdleak_block *) ::HeapAlloc(g_system_heap(), 0, nAllocSize);
-
-   }
-
-#else
-
-   pblock = (memdleak_block *) malloc(nAllocSize);
-
-#endif
-
-p = pblock;
-
+   p = pblock;
 
    //pblock->m_iBlockUse     = nBlockUse;
    //if (g_ee == NULL)
@@ -179,21 +130,7 @@ p = pblock;
 void * system_heap_realloc_normal(void * p, size_t size)
 {
 
-#if defined(__VLD) || defined(__MCRTDBG)
-
-   return realloc(p, size);
-
-#elif defined(WINDOWSEX) && !PREFER_MALLOC
-
-   cslock lock(g_pmutexSystemHeap);
-
-   return ::HeapReAlloc(g_system_heap(), 0, p, size);
-
-#else
-
-   return ::realloc(p, size);
-
-#endif
+   return ::os_realloc(p, size);
 
 }
 
@@ -242,20 +179,8 @@ void * system_heap_realloc_dbg(void * p,  size_t size, int32_t nBlockUse, const 
 
    //size_t * psizeNew = NULL;
 
-#if defined(WINDOWSEX) && !PREFER_MALLOC
-   {
-      cslock csl(g_pmutexSystemHeap);
+      p = (memdleak_block *) ::os_realloc(p, size);
 
-//      pblock = (memdleak_block *) ::HeapReAlloc(g_system_heap(), 0, pblock, size + sizeof(memdleak_block));
-      p = (memdleak_block *) ::HeapReAlloc(g_system_heap(), 0, p, size);
-
-   }
-
-#else
-
-   p = (memdleak_block *) ::realloc(p, size + sizeof(memdleak_block));
-
-#endif
 
 //   p->m_iEnabled = memdleak_enabled();
 
@@ -320,25 +245,10 @@ void system_heap_free(void * p)
 #endif
    {
 
-#if defined(WINDOWSEX) && !PREFER_MALLOC
-
-      cslock lock(g_pmutexSystemHeap);
-
-      if (!::HeapFree(g_system_heap(), 0, p))
-      {
-
-         uint32_t dw = ::GetLastError();
-
-         ::OutputDebugString("system_heap_free : Failed to free memory");
-
-      }
-
-#else
-
       try
       {
 
-         ::free(p);
+         ::os_free(p);
 
       }
       catch (...)
@@ -384,18 +294,7 @@ void system_heap_free(void * p)
 
          }
       */
-#if defined(WINDOWSEX) && !PREFER_MALLOC
-      {
-         cslock csl(g_pmutexSystemHeap);
-
-         // ::HeapFree(g_system_heap(), 0, pblock);
-         ::HeapFree(g_system_heap(), 0, p);
-
-      }
-
-#else
-      ::free(p);
-#endif
+      ::os_free(p);
    }
 
 #endif

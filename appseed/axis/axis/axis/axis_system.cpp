@@ -726,223 +726,6 @@ namespace axis
 {
 
 
-   //system::system(::aura::application * papp):
-   //   ::aura::system(this),
-   //   ::axis::system(this),
-   //   m_libraryDraw2d(this)
-   //{
-
-   //}
-
-
-   //void system::construct(const char * pszAppId)
-   //{
-
-   //   ::base::application::construct(pszAppId);
-
-   //}
-
-
-   //system::~system()
-   //{
-
-   //}
-
-
-
-   //bool system::process_initialize()
-   //{
-
-
-
-
-   //   enum_display_monitors();
-
-
-
-   //   if(!::base::application::process_initialize())
-   //      return false;
-
-
-   //   if(!::axis::system::process_initialize())
-   //      return false;
-
-
-   //   //if(!m_pbasesession->begin_synch(&m_iReturnCode))
-   //   //{
-   //   //   return false;
-   //   //}
-
-   //   //dappy(string(typeid(*this).name()) + " : ::axis::session OK " + ::str::from(m_iReturnCode));
-
-
-
-
-   //   return true;
-
-   //}
-
-
-
-   //bool system::initialize1()
-   //{
-
-   //   if(!::axis::system::initialize1())
-   //      return false;
-
-   //   if(!::base::application::initialize1())
-   //      return false;
-
-
-   //   return true;
-
-   //}
-
-   //bool system::initialize2()
-   //{
-
-   //   if(!::axis::system::initialize2())
-   //      return false;
-
-   //   if(!::base::application::initialize2())
-   //      return false;
-
-
-   //   return true;
-
-   //}
-
-
-   //bool system::initialize_instance()
-   //{
-
-   //   if(!::axis::system::initialize_instance())
-   //      return false;
-
-   //   if(!::base::application::initialize_instance())
-   //      return false;
-
-   //   return true;
-
-   //}
-
-
-   //bool system::finalize()
-   //{
-
-   //   __wait_threading_count_except(this,::millis((5000) * 77));
-
-
-
-   //   bool bOk = false;
-
-
-   //   try
-   //   {
-
-   //      bOk = ::base::application::finalize();
-
-   //   }
-   //   catch(...)
-   //   {
-
-   //      bOk = false;
-
-   //   }
-
-   //   try
-   //   {
-
-   //      bOk = ::axis::system::finalize();
-
-   //   }
-   //   catch(...)
-   //   {
-
-   //      bOk = false;
-
-   //   }
-
-
-   //   return bOk;
-
-   //}
-
-
-//   int32_t system::exit_instance()
-//   {
-//
-//      __wait_threading_count(::millis((5000) * 8));
-//
-//      int32_t iRet = 0;
-//
-//
-//
-//      try
-//      {
-//
-//         iRet = ::base::application::exit_instance();
-//
-//      }
-//      catch(...)
-//      {
-//
-//      }
-//
-//
-//
-//#ifdef METROWIN
-//      //      m_pdevicecontext = nullptr;
-//
-//      //      m_pmutexDc.release();
-//#endif
-//
-
-//
-//      try
-//      {
-//
-//         iRet = ::axis::system::exit_instance();
-//
-//      }
-//      catch(...)
-//      {
-//
-//      }
-//
-//
-//
-//      return iRet;
-//
-//   }
-
-
-   //mutex * system::wait_twf()
-   //{
-
-   //   return &get_twf()->m_mutex;
-
-   //}
-
-
-   //bool system::verb()
-   //{
-
-   //   return ::axis::system::verb();
-
-   //}
-
-
-
-   //bool system::is_system()
-   //{
-
-   //   return true;
-
-   //}
-
-
-
 
 
 
@@ -1207,104 +990,6 @@ return false;
 
 
 
-   /*
-
-   string system::get_ca2_module_folder()
-   {
-
-   single_lock sl(m_pmutex,true);
-
-   return m_strCa2ModuleFolder;
-
-   }
-
-
-
-   string system::get_module_folder()
-   {
-
-   return m_strModuleFolder;
-
-   }
-
-
-   string system::get_module_file_path()
-   {
-
-   #ifdef WINDOWSEX
-
-   unichar lpszModuleFilePath[MAX_PATH + 1];
-
-   GetModuleFileNameW(NULL,lpszModuleFilePath,MAX_PATH + 1);
-
-   string strModuleFileName(lpszModuleFilePath);
-
-   return strModuleFileName;
-
-   #elif defined(METROWIN)
-
-   return "m_app.exe";
-
-   #else
-
-   char * lpszModuleFilePath = br_find_exe_dir("app");
-
-   if(lpszModuleFilePath == NULL)
-   return "";
-
-   string strModuleFileName(lpszModuleFilePath);
-
-   free(lpszModuleFilePath);
-
-   return strModuleFileName;
-
-   #endif
-
-   }
-
-
-   string system::get_module_title()
-   {
-
-   return file_title(get_module_file_path());
-
-   }
-
-
-   string system::get_module_name()
-   {
-
-   return file_name(get_module_file_path());
-
-   }
-
-
-   */
-
-   //string system::dir_appmatter_locator(::aura::application * papp)
-   //{
-
-   //   ::exception::throw_not_implemented(get_app());
-
-   //   return "";
-   //}
-
-
-   //uint32_t _thread_proc_start_system(void * p)
-   //{
-
-   //   ::axis::system * psystem = (::axis::system *)p;
-
-   //   return psystem->main();
-
-   //}
-
-   //CLASS_DECL_AXIS void __start_system(::axis::system * psystem)
-   //{
-
-   //   ::create_thread(NULL,0,&_thread_proc_start_system,(LPVOID)psystem,0,0);
-
-   //}
 
 
 #ifdef METROWIN
@@ -1378,6 +1063,67 @@ return false;
 
    }
 
+
+   void system::enum_display_monitors()
+   {
+
+#ifdef WINDOWSEX
+
+      m_monitorinfoa.remove_all();
+
+      ::EnumDisplayMonitors(NULL,NULL,&system::monitor_enum_proc,(LPARAM)(dynamic_cast < ::axis::system * > (this)));
+
+#else
+
+      // todo
+      //      m_monitorinfoa.remove_all();
+
+
+#endif
+
+   }
+
+
+
+#ifdef WINDOWSEX
+   BOOL CALLBACK system::monitor_enum_proc(HMONITOR hmonitor,HDC hdcMonitor,LPRECT lprcMonitor,LPARAM dwData)
+   {
+
+      ::axis::system * psystem = (::axis::system *) dwData;
+
+      psystem->monitor_enum(hmonitor,hdcMonitor,lprcMonitor);
+
+      return TRUE; // to enumerate all
+
+   }
+
+   void system::monitor_enum(HMONITOR hmonitor,HDC hdcMonitor,LPRECT lprcMonitor)
+   {
+
+      UNREFERENCED_PARAMETER(hdcMonitor);
+      UNREFERENCED_PARAMETER(lprcMonitor);
+
+      m_monitorinfoa.allocate(m_monitorinfoa.get_size() + 1);
+
+      ZERO(m_monitorinfoa.last());
+
+      m_hmonitora.add(hmonitor);
+
+      m_monitorinfoa.last().cbSize = sizeof(MONITORINFO);
+
+      ::GetMonitorInfo(hmonitor,&m_monitorinfoa.last());
+
+      MONITORINFO mi = m_monitorinfoa.last();
+
+      TRACE0("session::monitor_enum\n");
+      TRACE("upper_bound %d\n",m_monitorinfoa.get_upper_bound());
+      TRACE("rcMonitor(left, top, right, bottom) %d, %d, %d, %d\n",mi.rcMonitor.left,mi.rcMonitor.top,mi.rcMonitor.right,mi.rcMonitor.bottom);
+      TRACE("rcWork(left, top, right, bottom) %d, %d, %d, %d\n",mi.rcWork.left,mi.rcWork.top,mi.rcWork.right,mi.rcWork.bottom);
+
+   }
+
+
+#endif
 
 } // namespace base
 
