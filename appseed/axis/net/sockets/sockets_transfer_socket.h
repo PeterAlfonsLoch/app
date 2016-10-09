@@ -16,7 +16,7 @@
 //#ifdef WIN32
 //#ifdef _WINSOCKAPI_
 //#ifndef _WINSOCK2API_
-//// NOTICE: In Microsoft Visual Studio you can add the header 'winsock2.h" to 
+//// NOTICE: In Microsoft Visual Studio you can add the header 'winsock2.h" to
 ////         "Configuration --> Properties --> C/C++ --> Advanced --> Forced Include File"
 //#pragma message("\nIt is recommended to include 'winsock2.h' instead of 'winsock.h'\n")
 //#endif
@@ -29,6 +29,14 @@
 //#include <netdb.h>       // needed for gethostbyname and gethostbyaddr
 //#include <errno.h>
 //#endif
+
+
+#ifdef LINUX
+
+#define SOCKADDR sockaddr
+
+#endif
+
 
 namespace sockets
 {

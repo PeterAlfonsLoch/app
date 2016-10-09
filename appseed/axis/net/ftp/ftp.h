@@ -7,9 +7,9 @@ template < typename T, typename T2 > class observer :
    virtual public ref_array < T >
 {
 public:
-   
-   
-   typedef typename ref_array < T > base_type;
+
+
+   typedef ref_array < T > base_type;
 
    T2 *   m_pt2This;
 
@@ -37,18 +37,18 @@ public:
 
    bool attach_observer(T * p)
    {
-      if (contains(p))
+      if (this->contains(p))
          return false;
-      add(p);
+      this->add(p);
       m_pt2This = dynamic_cast <T2 *>(this);
       p->attach_observer(m_pt2This);
       return true;
    }
    bool detach_observer(T * p)
    {
-      if (!contains(p))
+      if (!this->contains(p))
          return false;
-      remove(p);
+      this->remove(p);
       p->detach_observer(m_pt2This);
       return true;
    }

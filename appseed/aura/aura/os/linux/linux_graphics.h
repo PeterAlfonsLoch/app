@@ -1,18 +1,13 @@
 #pragma once
 
 
-// Ubuntu apt-get install libx11-dev
-// CentOS yum install libX11-devel
-#include <X11/Xlib.h>
-#include <X11/Xutil.h>
-// Ubuntu apt-get install libcairo2-dev
+class CLASS_DECL_AURA device_context;
 
-#include "linux_cross_win_gdi.h"
+//#include "linux_cross_win_gdi.h"
 
 //#include "graphics/draw2d_xlib/draw2d_xlib.h"
 
 
-void set_xcolor(XColor & color, COLORREF cr);
 
 
 

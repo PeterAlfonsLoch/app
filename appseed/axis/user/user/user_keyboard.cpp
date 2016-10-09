@@ -4,6 +4,7 @@
 
 #if defined(LINUX) || defined(SOLARIS)
 //#include "base/base/os/x11/x11_keyboard.h"
+string x11_keyboard_get_current_group_symbol();
 #elif defined(MACOS)
 string keyboard_input_source();
 #endif
@@ -197,7 +198,7 @@ namespace user
             Application.simple_message_box(NULL,"keyboard default.xml doesn't exist?!?!?!?!");
 
          }
-       
+
          return false;
 
       }
@@ -228,7 +229,7 @@ namespace user
       output_debug_string(pszPath);
 
       output_debug_string(str);
-   
+
       if(str.is_empty())
       {
          TRACE0("unable to load os keyboard layout");
@@ -636,12 +637,12 @@ namespace user
          return;
 
 #endif
-      
+
       if(pkey->m_ekey == ::user::key_none)
       {
 
          pkey->m_ekey = m_mapKey[(int32_t) pkey->m_nChar];
-         
+
       }
 
    }

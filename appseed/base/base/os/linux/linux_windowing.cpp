@@ -3,6 +3,18 @@
 
 Display * x11_get_display();
 
+
+struct MWMHints
+{
+   unsigned long flags;
+   unsigned long functions;
+   unsigned long decorations;
+   long input_mode;
+   unsigned long status;
+};
+
+#define MWM_HINTS_DECORATIONS   (1L << 1)
+
 /* MWM decorations values */
 #define MWM_DECOR_NONE          0
 #define MWM_DECOR_ALL           (1L << 0)
@@ -1440,69 +1452,71 @@ void message_box_paint(::draw2d::graphics * pgraphics, stringa & stra, bool_arra
 #define _NET_WM_STATE_ADD           1    // add/set property
 #define _NET_WM_STATE_TOGGLE        2    // toggle property
 
-void wm_state_above(oswindow w, bool bSet)
+void wm_add_remove_state(oswindow w, const char * pszState, bool bSet)
 {
-   int set;
-
-
-//   single_lock sl(&user_mutex(),true);
 
    xdisplay d(w->display());
+
    Display * display = w->display();
+
    Window window = w->window();
 
    int scr=DefaultScreen(display);
+
    Window rootw=RootWindow(display,scr);
 
-   Atom wmStateAbove = XInternAtom( display, "_NET_WM_STATE_ABOVE", 1 );
-if( wmStateAbove != None ) {
-    printf( "_NET_WM_STATE_ABOVE has atom of %ld\n", (long)wmStateAbove );
-} else {
-    printf( "ERROR: cannot find atom for _NET_WM_STATE_ABOVE !\n" );
+   Atom wmStateAbove = XInternAtom(display, pszState, 1);
+
+   if( wmStateAbove == None )
+   {
+
+      output_debug_string("ERROR: cannot find atom for " + string(pszState) + "!\n");
+
+      return;
+
+   }
+
+   Atom wmNetWmState = XInternAtom(display, "_NET_WM_STATE", 1);
+
+   if( wmNetWmState == None )
+   {
+
+      output_debug_string("ERROR: cannot find atom for _NET_WM_STATE !\n");
+
+   }
+
+   XClientMessageEvent xclient;
+
+   ZERO(xclient);
+
+   xclient.type            = ClientMessage;
+   xclient.window          = window;
+   xclient.message_type    = wmNetWmState;
+   xclient.format          = 32;
+   xclient.data.l[0]       = bSet ? _NET_WM_STATE_ADD : _NET_WM_STATE_REMOVE;
+   xclient.data.l[1]       = wmStateAbove;
+   xclient.data.l[2]       = 0;
+   xclient.data.l[3]       = 0;
+   xclient.data.l[4]       = 0;
+
+   XSendEvent(display, rootw, False, SubstructureRedirectMask | SubstructureNotifyMask, (XEvent *)&xclient );
+
 }
 
-Atom wmNetWmState = XInternAtom( display, "_NET_WM_STATE", 1 );
-if( wmNetWmState != None ) {
-    printf( "_NET_WM_STATE has atom of %ld\n", (long)wmNetWmState );
-} else {
-    printf( "ERROR: cannot find atom for _NET_WM_STATE !\n" );
+
+void wm_state_above(oswindow w, bool bSet)
+{
+
+   wm_add_remove_state(w, "_NET_WM_STATE_ABOVE", bSet);
+
 }
-// set window always on top hint
-if( wmStateAbove != None ) {
-    XClientMessageEvent xclient;
-    memset( &xclient, 0, sizeof (xclient) );
-    //
-    //window  = the respective client window
-    //message_type = _NET_WM_STATE
-    //format = 32
-    //data.l[0] = the action, as listed below
-    //data.l[1] = first property to alter
-    //data.l[2] = second property to alter
-    //data.l[3] = source indication (0-unk,1-normal app,2-pager)
-    //other data.l[] elements = 0
-    //
-    xclient.type = ClientMessage;
-    xclient.window = window; // GDK_WINDOW_XID(window);
-    xclient.message_type = wmNetWmState; //gdk_x11_get_xatom_by_name_for_display( display, "_NET_WM_STATE" );
-    xclient.format = 32;
-    xclient.data.l[0] = bSet ? _NET_WM_STATE_ADD : _NET_WM_STATE_REMOVE; // add ? _NET_WM_STATE_ADD : _NET_WM_STATE_REMOVE;
-    xclient.data.l[1] = wmStateAbove; //gdk_x11_atom_to_xatom_for_display (display, state1);
-    xclient.data.l[2] = 0; //gdk_x11_atom_to_xatom_for_display (display, state2);
-    xclient.data.l[3] = 0;
-    xclient.data.l[4] = 0;
-    //gdk_wmspec_change_state( FALSE, window,
-    //  gdk_atom_intern_static_string ("_NET_WM_STATE_BELOW"),
-    //  GDK_NONE );
-    XSendEvent( display,
-      //mywin - wrong, not app window, send to root window!
-      rootw, // !! DefaultRootWindow( display ) !!!
-      False,
-      SubstructureRedirectMask | SubstructureNotifyMask,
-      (XEvent *)&xclient );
-  }
 
-  }
+void wm_state_below(oswindow w, bool bSet)
+{
 
+   wm_add_remove_state(w, "_NET_WM_STATE_BELOW", bSet);
+
+}
 
 
 
@@ -1535,105 +1549,45 @@ void wm_toolwindow(oswindow w,bool bSet)
    }
 
 
-   int set;
-
-
-//   single_lock sl(&user_mutex(),true);
-
-//   xdisplay d(w->display());
-//   Display * display = w->display();
-//   Window window = w->window();
-//
-//   int scr=DefaultScreen(display);
-//   Window rootw=RootWindow(display,scr);
-
-   Atom wmStateAbove = XInternAtom( display, "_NET_WM_STATE_SKIP_TASKBAR", 1 );
-if( wmStateAbove != None ) {
-    printf( "_NET_WM_STATE_ABOVE has atom of %ld\n", (long)wmStateAbove );
-} else {
-    printf( "ERROR: cannot find atom for _NET_WM_STATE_ABOVE !\n" );
-}
-
-Atom wmNetWmState = XInternAtom( display, "_NET_WM_STATE", 1 );
-if( wmNetWmState != None ) {
-    printf( "_NET_WM_STATE has atom of %ld\n", (long)wmNetWmState );
-} else {
-    printf( "ERROR: cannot find atom for _NET_WM_STATE !\n" );
-}
-// set window always on top hint
-if( wmStateAbove != None ) {
-    XClientMessageEvent xclient;
-    memset( &xclient, 0, sizeof (xclient) );
-    //
-    //window  = the respective client window
-    //message_type = _NET_WM_STATE
-    //format = 32
-    //data.l[0] = the action, as listed below
-    //data.l[1] = first property to alter
-    //data.l[2] = second property to alter
-    //data.l[3] = source indication (0-unk,1-normal app,2-pager)
-    //other data.l[] elements = 0
-    //
-    xclient.type = ClientMessage;
-    xclient.window = window; // GDK_WINDOW_XID(window);
-    xclient.message_type = wmNetWmState; //gdk_x11_get_xatom_by_name_for_display( display, "_NET_WM_STATE" );
-    xclient.format = 32;
-    xclient.data.l[0] = bSet ? _NET_WM_STATE_ADD : _NET_WM_STATE_REMOVE; // add ? _NET_WM_STATE_ADD : _NET_WM_STATE_REMOVE;
-    xclient.data.l[1] = wmStateAbove; //gdk_x11_atom_to_xatom_for_display (display, state1);
-    xclient.data.l[2] = 0; //gdk_x11_atom_to_xatom_for_display (display, state2);
-    xclient.data.l[3] = 0;
-    xclient.data.l[4] = 0;
-    //gdk_wmspec_change_state( FALSE, window,
-    //  gdk_atom_intern_static_string ("_NET_WM_STATE_BELOW"),
-    //  GDK_NONE );
-    XSendEvent( display,
-      //mywin - wrong, not app window, send to root window!
-      rootw, // !! DefaultRootWindow( display ) !!!
-      False,
-      SubstructureRedirectMask | SubstructureNotifyMask,
-      (XEvent *)&xclient );
-  }
+   wm_add_remove_state(w, "_NET_WM_STATE_SKIP_TASKBAR", bSet);
 
 }
 
 
-void wm_nodecorations(oswindow w,int map)
+void wm_nodecorations(oswindow w, int map)
 {
-   Atom WM_HINTS;
-   int set;
-//return;
 
-//   single_lock sl(&user_mutex(),true);
+   int set;
 
    xdisplay d(w->display());
+
    Display * dpy = w->display();
+
    Window window = w->window();
 
    int scr=DefaultScreen(dpy);
+
    Window rootw=RootWindow(dpy,scr);
 
-   WM_HINTS = XInternAtom(dpy,"_MOTIF_WM_HINTS",True);
-   if(WM_HINTS != None) {
-#define MWM_HINTS_DECORATIONS   (1L << 1)
-      struct {
-         unsigned long flags;
-         unsigned long functions;
-         unsigned long decorations;
-         long input_mode;
-         unsigned long status;
-      } MWMHints ={MWM_HINTS_DECORATIONS,0,
-         MWM_DECOR_NONE,0,0};
-      XChangeProperty(dpy,window,WM_HINTS,WM_HINTS,32,
-         PropModeReplace,(unsigned char *)&MWMHints,
-         sizeof(MWMHints) / 4);
+   Atom atomMotifHints = XInternAtom(dpy,"_MOTIF_WM_HINTS",True);
+
+   if(atomMotifHints != None)
+   {
+
+      MWMHints hints = {MWM_HINTS_DECORATIONS,0, MWM_DECOR_NONE,0,0};
+
+      XChangeProperty(dpy,window,atomMotifHints,atomMotifHints,32, PropModeReplace,(unsigned char *)&hints, sizeof(MWMHints) / 4);
+
    }
+
 //   WM_HINTS = XInternAtom(dpy,"KWM_WIN_DECORATION",True);
-  // if(WM_HINTS != None) {
-    //  long KWMHints = KDE_tinyDecoration;
-      //XChangeProperty(dpy,window,WM_HINTS,WM_HINTS,32,
-        // PropModeReplace,(unsigned char *)&KWMHints,
-        // sizeof(KWMHints) / 4);
-   //}
+//   if(WM_HINTS != None)
+//   {
+//      long KWMHints = KDE_tinyDecoration;
+//      XChangeProperty(dpy,window,WM_HINTS,WM_HINTS,32,
+//         PropModeReplace,(unsigned char *)&KWMHints,
+//         sizeof(KWMHints) / 4);
+//   }
 
 //   WM_HINTS = XInternAtom(dpy,"_WIN_HINTS",True);
 //   if(WM_HINTS != None) {

@@ -4,7 +4,7 @@
 namespace message
 {
 
-   
+
    class dispatch;
 
 
@@ -28,7 +28,7 @@ public:
    property_set *             m_pset;
    index                      m_iParam;
    bool                       m_bRet;
-   sp(signal)                 m_psignal;
+   sp(class signal)           m_psignal;
 
 
 
@@ -296,7 +296,7 @@ public:
 
 
    template < class T >
-   class handler_item : 
+   class handler_item :
       public handler_item_base
    {
    public:

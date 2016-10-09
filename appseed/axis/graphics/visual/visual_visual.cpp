@@ -440,7 +440,7 @@ namespace visual
       }
 
 
-      int iR = MAX(iSpreadRadius, iBlurRadius, iBlur) + 1;
+      int iR = MAX(MAX(iSpreadRadius, iBlurRadius), iBlur) + 1;
 
       ::rect rectText = *lpcrect;
 
@@ -490,7 +490,7 @@ namespace visual
          dib->get_graphics()->_DrawText(strText, rectCache, iDrawTextFlags);
 
          System.visual().imaging().channel_spread_set_color(dib2->get_graphics(), null_point(), size, dib->get_graphics(), null_point(), ::visual::rgba::channel_alpha, iEffectiveSpreadRadius, ARGB(255, 255, 255, 255));
-         
+
          for (index i = 0; i < iBlur; i++)
          {
 

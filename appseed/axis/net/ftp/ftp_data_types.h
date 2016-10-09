@@ -1,5 +1,5 @@
 ////////////////////////////////////////////////////////////////////////////////
-// 
+//
 // Copyright (c) 2004-2012 Thomas Oswald
 //
 // Permission to copy, use, sell and distribute this software is granted
@@ -19,8 +19,8 @@
 
 namespace ftp
 {
-   
-  
+
+
 
 
    // constants
@@ -96,10 +96,15 @@ namespace ftp
       // don't change order of enumeration
       enum e_type {
          type_none, type_host_name, type_user_after_logon, type_proxy_open, type_transparent,
-         type_user_with_no_logon, type_user_fire_id_at_remote_host, type_user_remote_id_at_remote_host_fire_id, 
+         type_user_with_no_logon, type_user_fire_id_at_remote_host, type_user_remote_id_at_remote_host_fire_id,
          type_user_remote_id_at_fire_id_at_remote_host };
 
+
+      e_type m_etype;
+
+
       firewall_type() : m_etype(type_none) {}
+      firewall_type(e_type enFirewallType) : m_etype(enFirewallType) {}
       firewall_type(const firewall_type& firewallType) :
          m_etype(firewallType.AsEnum()) {}
 
@@ -126,8 +131,6 @@ namespace ftp
       static const firewall_type UserRemoteIDatRemoteHostFireID()   { return type_user_remote_id_at_remote_host_fire_id;   }
       static const firewall_type UserRemoteIDatFireIDatRemoteHost() { return type_user_remote_id_at_fire_id_at_remote_host; }
 
-      firewall_type(e_type enFirewallType) : m_etype(enFirewallType) {}
-      e_type m_etype;
    };
 
    /// @brief Representation Type - 1st param (see representation)
@@ -198,7 +201,7 @@ namespace ftp
       bool operator==(const representation& rhs) const { return rhs.m_Type == m_Type && rhs.m_Format == m_Format; }
       bool operator!=(const representation& rhs) const { return !operator==(rhs); }
       representation& operator=(const representation& rhs)
-      { 
+      {
          m_Type = rhs.m_Type;
          m_Format = rhs.m_Format;
          return *this;
@@ -375,41 +378,41 @@ namespace ftp
    {
    public:
       logon();
-      logon(const string& strHostname, USHORT ushHostport=DEFAULT_FTP_PORT, const string& strUsername=ANONYMOUS_USER,
+      logon(const string& strHostname, WINUSHORT ushHostport=DEFAULT_FTP_PORT, const string& strUsername=ANONYMOUS_USER,
                  const string& strPassword=_T("anonymous@user.com"), const string& strAccount=_T(""));
-      logon(const string& strHostname, USHORT ushHostport, const string& strUsername, const string& strPassword,
+      logon(const string& strHostname, WINUSHORT ushHostport, const string& strUsername, const string& strPassword,
                  const string& strAccount, const string& strFwHostname, const string& strFwUsername, const string& strFwPassword,
-                 USHORT ushFwPort, const firewall_type& crFwType);
+                 WINUSHORT ushFwPort, const firewall_type& crFwType);
 
-      void SetHost(const string& strHostname, USHORT ushHostport=DEFAULT_FTP_PORT, const string& strUsername=ANONYMOUS_USER, 
+      void SetHost(const string& strHostname, WINUSHORT ushHostport=DEFAULT_FTP_PORT, const string& strUsername=ANONYMOUS_USER,
                    const string& strPassword=_T("anonymous@user.com"), const string& strAccount=_T(""));
 
       void SetFirewall(const string& strFwHostname, const string& strFwUsername, const string& strFwPassword,
-                       USHORT ushFwPort, const firewall_type& crFwType);
+                       WINUSHORT ushFwPort, const firewall_type& crFwType);
 
       void DisableFirewall() { m_FwType = firewall_type::None(); }
 
       string&       Hostname()    { return m_strHostname;    }
-      USHORT               Hostport()   const  { return m_ushHostport;    }
+      WINUSHORT               Hostport()   const  { return m_ushHostport;    }
       string&       Username()    { return m_strUsername;    }
       string&       Password()    { return m_strPassword;    }
       const string&       Account()    const  { return m_strAccount;     }
       const string&       FwHost()     const  { return m_strFwHostname;  }
       const string&       FwUsername() const  { return m_strFwUsername;  }
       const string&       FwPassword() const  { return m_strFwPassword;  }
-      USHORT               FwPort()     const  { return m_ushFwPort;      }
+      WINUSHORT               FwPort()     const  { return m_ushFwPort;      }
       const firewall_type& FwType()     const  { return m_FwType;         }
-   
+
    private:
       string        m_strHostname;   ///< name or ip-address of the ftp-server
-      USHORT         m_ushHostport;   ///< port of the ftp-server
+      WINUSHORT         m_ushHostport;   ///< port of the ftp-server
       string        m_strUsername;   ///< username for ftp-server
       string        m_strPassword;   ///< password for ftp-server
       string        m_strAccount;    ///< account mostly needed on ftp-servers running on unix/linux
       string        m_strFwHostname; ///< name or ip-address of the firewall
       string        m_strFwUsername; ///< username for firewall
       string        m_strFwPassword; ///< password for firewall
-      USHORT         m_ushFwPort;     ///< port of the firewall
+      WINUSHORT         m_ushFwPort;     ///< port of the firewall
       firewall_type  m_FwType;        ///< type of firewall
    };
 

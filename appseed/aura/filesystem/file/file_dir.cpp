@@ -848,15 +848,7 @@ bool dir::is(const ::file::path & path1)
 
    // dedicaverse stat -> Sir And Arthur - Cesar Serenato
 
-   struct stat st;
-
-   if(stat(path1, &st))
-      return false;
-
-   if(!(st.st_mode & S_IFDIR))
-      return false;
-
-   return true;
+   return is_dir(path1);
 
 #endif
 
@@ -949,14 +941,23 @@ void dir::rls(::file::patha & stra, const file::path & psz)
 
 }
 
+
 void dir::rls_dir(::file::patha & stra,const ::file::path & psz)
 {
+
    ::count start = stra.get_count();
+
    ls_dir(stra, psz);
+
    ::count end = stra.get_count();
+
    for(::index i = start; i < end; i++)
    {
-      rls_dir(stra, stra[i]);
+
+      ::file::path path = stra[i];
+
+      rls_dir(stra, path);
+
    }
 
 }
@@ -984,7 +985,7 @@ void dir::ls(::file::patha & stra,const ::file::path & psz)
       path = psz / dp->d_name;
       path.m_iDir = is(path) ? 1 : 0;
       stra.add(path);
-      
+
       //output_debug_string("flood for you: dir::ls ----> " + path);
 
    }
@@ -1243,7 +1244,7 @@ void dir::ls_dir(::file::patha & stra,const ::file::path & psz)
                continue;
          }
       }
-      ::file::path strPath = ::file::path(psz) /  dp->d_name;
+      ::file::path strPath = psz /  dp->d_name;
       if(is(strPath))
       {
          stra.add(strPath);

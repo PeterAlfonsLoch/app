@@ -1,6 +1,9 @@
 //#include "framework.h"
 
+#ifdef WINDOWSEX
 #include <mmsystem.h>
+#endif // WINDOWSEX
+
 #pragma comment(lib, "winmm.lib")
 
 #undef new

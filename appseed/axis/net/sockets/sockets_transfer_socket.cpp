@@ -9,9 +9,30 @@
 
 #include "framework.h"
 
+#ifdef LINUX
+
+#define TIMEVAL timeval
+
+#endif
 
 namespace sockets
 {
+
+
+    int get_error()
+    {
+
+#ifdef WINDOWS
+
+        return WSAGetLastError();
+
+#else
+
+        return errno;
+
+#endif
+
+    }
 
 
    ///////////////////////////////////////////////////////////////////////////////////////
@@ -22,7 +43,7 @@ namespace sockets
       ::object(papp),
       ::call_stack(papp),
       ::exception::base(papp),
-      m_nError(WSAGetLastError()),
+      m_nError(get_error()),
       m_strMessage(pchMessage)
    {
       ASSERT(pchMessage != NULL);

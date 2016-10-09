@@ -65,12 +65,15 @@
 			<Add option="-Wl,-z,origin" />
 			<Add option="-lappindicator" />
 			<Add option="`pkg-config --libs gtk+-2.0`" />
+			<Add option="-laura" />
 			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../time/x64/basis" />
 			<Add directory="/usr/lib64/mysql/" />
 		</Linker>
 		<Unit filename="basecore.cpp" />
 		<Unit filename="basecore.h" />
+		<Unit filename="basecore_internal_glue.h" />
+		<Unit filename="basecore_shared.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />

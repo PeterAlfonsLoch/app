@@ -1094,48 +1094,6 @@ void string_array < Type, RawType >::add(const id & id)
 //}
 
 
-template < typename Type, typename RawType >
-Type string_array < Type, RawType >::get_at(index nIndex) const
-{
-   if (nIndex < 0 || nIndex >= this->m_nSize)
-      throw index_out_of_bounds(get_app());
-   return get_data()[nIndex];
-}
-
-template < typename Type, typename RawType >
-void string_array < Type, RawType >::set_at(index nIndex,const char * newElement)
-{
-   if (nIndex < 0 || nIndex >= this->m_nSize)
-      throw index_out_of_bounds(get_app());
-   get_data()[nIndex] = newElement;
-}
-
-
-template < typename Type, typename RawType >
-void string_array < Type, RawType >::set_at(index nIndex,const Type & newElement)
-{
-   if (nIndex < 0 || nIndex >= this->m_nSize)
-      throw index_out_of_bounds(get_app());
-   get_data()[nIndex] = newElement;
-}
-
-
-template < typename Type, typename RawType >
-Type & string_array < Type, RawType >::element_at(index nIndex)
-{
-   if (nIndex < 0 || nIndex >= this->m_nSize)
-      throw index_out_of_bounds(get_app());
-   return get_data()[nIndex];
-}
-
-
-template < typename Type, typename RawType >
-const Type & string_array < Type, RawType >::element_at(index nIndex) const
-{
-   if (nIndex < 0 || nIndex >= this->m_nSize)
-     throw index_out_of_bounds(get_app());
-   return get_data()[nIndex];
-}
 
 
 template < typename Type, typename RawType >
@@ -1815,7 +1773,7 @@ index string_array < Type, RawType > ::find_first_begins_ci(const char * lpcsz,i
 template < class Type,class RawType >
 index string_array < Type,RawType > ::find_first_begins_eat_ci(string & str,const char * lpcsz, index find,index last) const
 {
-   
+
    find  = find_first_begins_ci(lpcsz,find,last);
 
    if(find < 0)

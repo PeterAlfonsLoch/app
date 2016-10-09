@@ -51,7 +51,7 @@
 			</Target>
 		</Build>
 		<Compiler>
-			<Add option="-std=c++0x" />
+			<Add option="-std=c++14" />
 			<Add option="-fexceptions" />
 			<Add option="-fnon-call-exceptions" />
 			<Add option="-fno-pie" />
@@ -93,6 +93,7 @@
 			<Add option="-lbz2" />
 			<Add option="-laxis" />
 			<Add option="-lbase" />
+			<Add option="-lbasecore" />
 			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../time/x64/basis" />
 			<Add directory="/usr/lib64/mysql/" />
@@ -500,6 +501,10 @@
 		</Unit>
 		<Unit filename="user/simple/simple_tree_view.h" />
 		<Unit filename="user/user/interaction.inl" />
+		<Unit filename="user/user/user.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="user/user/user.h" />
 		<Unit filename="user/user/user_00.h" />
 		<Unit filename="user/user/user_button.h" />

@@ -379,6 +379,10 @@
 			<Option compile="0" />
 			<Option link="0" />
 		</Unit>
+		<Unit filename="aura/os/cross/windows/cross_windows_windows.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="aura/os/cross/windows/e.h" />
 		<Unit filename="aura/os/cross/windows/windows.h" />
 		<Unit filename="aura/os/cross/windows/windows_base.h" />

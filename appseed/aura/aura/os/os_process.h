@@ -3,7 +3,7 @@
 
 #if !defined(METROWIN)
 
-CLASS_DECL_AURA int32_t call_async(const char * pszPath, const char * pszParam, const char * pszDir, int32_t iShow, bool bPrivileged);
+CLASS_DECL_AURA int32_t call_async(const char * pszPath, const char * pszParam, const char * pszDir, int32_t iShow, bool bPrivileged, unsigned int * puiPid = NULL);
 
 typedef int32_t CALLSYNCONRETRY(int32_t iTry,uint_ptr dwParam);
 

@@ -33,20 +33,22 @@
 namespace file_watcher
 {
 
-	struct watch_struct_item
+	//struct watch_struct_item
+	//{
+		//id m_id;
+		//string m_strDirName;
+	//};
+
+
+	struct watch_struct
+	//: public watch_struct_item
 	{
 		id m_id;
 		string m_strDirName;
-	};
-
-
-	struct watch_struct :
-      public watch_struct_item
-	{
 	   bool m_bRecursive;
 	   bool m_bOwn;
 		file_watch_listener* m_plistener;
-	   ::array < watch_struct_item > m_itema;
+//	   ::array < watch_struct_item > m_itema;
 	};
 
 
@@ -106,7 +108,7 @@ namespace file_watcher
 		   for(index index = 0; index < stra.get_count(); index++)
 		   {
 
-		   string strDirPath = stra[index];
+            string strDirPath = stra[index];
 
 		      int32_t inaw = inotify_add_watch (mFD, strDirPath, IN_CLOSE_WRITE | IN_MOVED_TO | IN_CREATE | IN_MOVED_FROM | IN_DELETE);
 
@@ -118,13 +120,17 @@ namespace file_watcher
                   throw exception(strerror(errno));
             }
 
-            watch_struct_item item;
+            watch_struct* pWatch = new watch_struct();
 
-            item.m_strDirName = stra[index];
+            pWatch->m_plistener = pwatcher;
 
-            item.m_id = inaw;
+            pWatch->m_id = inaw;
 
-            pWatch->m_itema.add(item);
+            pWatch->m_strDirName = stra[index];
+
+            pWatch->m_bOwn = bOwn;
+
+            m_watchmap.set_at(inaw, pWatch);
 
 		   }
 
@@ -203,7 +209,7 @@ namespace file_watcher
 			{
 				struct inotify_event *pevent = (struct inotify_event *)&buff[i];
 
-				a.watch = m_watchmap[(id &)pevent->wd];
+				a.watch = m_watchmap[(id)pevent->wd];
 				a.filename = pevent->name;
 				a.ulOsAction = pevent->mask;
 				handle_action(&a);
@@ -214,29 +220,50 @@ namespace file_watcher
 
 	}
 
-	//--------
+
 	void os_file_watcher::handle_action(action * paction)
 	{
 
-	    if(!paction->watch)
-	    return;
+      if(!paction->watch)
+      {
+
+         return;
+
+      }
 
 		if(!paction->watch->m_plistener)
+		{
+
 			return;
+
+      }
 
 		if(IN_CLOSE_WRITE & paction->ulOsAction)
 		{
+
 			paction->watch->m_plistener->handle_file_action(paction->watch->m_id, paction->watch->m_strDirName, paction->filename, action_modify);
+
 		}
 
 		if(IN_MOVED_TO & paction->ulOsAction || IN_CREATE & paction->ulOsAction)
 		{
+
 			paction->watch->m_plistener->handle_file_action(paction->watch->m_id, paction->watch->m_strDirName, paction->filename, action_add);
+
 		}
 
 		if(IN_MOVED_FROM & paction->ulOsAction || IN_DELETE & paction->ulOsAction)
 		{
+
 			paction->watch->m_plistener->handle_file_action(paction->watch->m_id, paction->watch->m_strDirName, paction->filename, action_delete);
+
+		}
+
+		if(IN_CLOSE_WRITE & paction->ulOsAction || IN_MODIFY & paction->ulOsAction)
+		{
+
+			paction->watch->m_plistener->handle_file_action(paction->watch->m_id, paction->watch->m_strDirName, paction->filename, action_modify);
+
 		}
 
 	}

@@ -9,6 +9,16 @@
 #include "user/user/user_window_draw.h"
 //
 
+
+#ifdef LINUX
+
+
+#include "basecore/basecore_shared.h"
+
+
+#endif
+
+
 namespace html
 {
 
@@ -28,6 +38,10 @@ namespace user
    class menu_item_ptra;
    class front_end;
    class menu_item;
+
+
+   CLASS_DECL_CORE bool set_wallpaper(string strLocalImagePath);
+
 
 
 } // namespace user

@@ -26,8 +26,8 @@ namespace linux
 
 
 
-      USHORT               m_atomApp;
-      USHORT               m_atomSystemTopic;
+      WINUSHORT               m_atomApp;
+      WINUSHORT               m_atomSystemTopic;
 
       main_init_data *     m_pmaininitdata;
 

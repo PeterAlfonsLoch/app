@@ -1513,7 +1513,7 @@ restart_mouse_hover_check:
                if(pmouse->m_bRet)
                   return;
 
-         ::user::interaction * pui = NULL;
+         sp(::user::interaction) pui;
 
          while(System.get_frame(pui))
          {
@@ -3748,7 +3748,7 @@ throw not_implemented(get_app());
 
       xdisplay d(m_oswindow->display());
 
-      wm_state_above((oswindow)get_handle(), nFlags & ZORDER_TOPMOST);
+      wm_state_above((oswindow)get_handle(), nFlags == ZORDER_TOPMOST);
 
       XSizeHints hints;
 

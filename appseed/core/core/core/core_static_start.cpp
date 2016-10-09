@@ -17,6 +17,15 @@ namespace core
       {
 
 
+         #ifdef LINUX
+
+
+            ::user::initialize_edesktop();
+
+
+         #endif
+
+
       }
 
 

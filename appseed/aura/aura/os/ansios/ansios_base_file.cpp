@@ -192,7 +192,7 @@ memory_size_t file_get_memory_dup(const char * path, void * p, memory_size_t s)
       return 0;
 
    memory_size_t sRead = 0;
-   
+
    try
    {
 
@@ -580,6 +580,20 @@ void ansi_unlink(const char * psz)
 }
 
 
+int_bool is_dir(const char * path1)
+{
+
+   struct stat st;
+
+   if(stat(path1, &st))
+      return false;
+
+   if(!(st.st_mode & S_IFDIR))
+      return false;
+
+   return true;
+
+}
 
 END_EXTERN_C
 

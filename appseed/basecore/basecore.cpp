@@ -1,4 +1,6 @@
 #include "basecore.h"
+#include "basecore_shared.h"
+#include "basecore_internal_glue.h"
 
 #include <gtk/gtk.h>
 
@@ -9,6 +11,17 @@
 #include <time.h>
 
 #include <new>
+
+#include <gio/gio.h>
+
+#include <string.h>
+
+//#include <dirent.h>
+#include <sys/stat.h>
+//#include <unistd.h>
+//#endif
+
+#include <stdlib.h>
 
 struct indicator;
 
@@ -490,3 +503,217 @@ gboolean basecore_data::run()
    return m_bLoop;
 
 }
+
+
+
+namespace user
+{
+
+
+   bool gsettings_set(const char * pszSchema, const char * pszKey, const char * pszValue)
+   {
+
+      if(pszSchema == NULL)
+      {
+
+         return false;
+
+      }
+
+      if(pszKey == NULL)
+      {
+
+         return false;
+
+      }
+
+      if(pszValue == NULL)
+      {
+
+         return false;
+
+      }
+
+      GSettings *settings = g_settings_new(pszSchema);
+
+      if(settings == NULL)
+      {
+
+         return false;
+
+      }
+
+      gboolean bOk = g_settings_set_string(settings, pszKey, pszValue);
+
+      g_settings_sync ();
+
+      if (settings != NULL)
+      {
+
+         g_object_unref (settings);
+
+      }
+
+      return bOk;
+
+   }
+
+
+   int gsettings_get(char * pszValue, int iSize, const char * pszSchema, const char * pszKey)
+   {
+
+      if(pszSchema == NULL)
+      {
+
+         return false;
+
+      }
+
+      if(pszKey == NULL)
+      {
+
+         return false;
+
+      }
+
+      if(pszValue == NULL)
+      {
+
+         return false;
+
+      }
+
+      GSettings *settings = g_settings_new(pszSchema);
+
+      if(settings == NULL)
+      {
+
+         return -1;
+
+      }
+
+      gchar * pgchar = g_settings_get_string (settings, pszKey);
+
+      if(pgchar == NULL)
+      {
+
+         g_free (pgchar);
+
+         g_object_unref (settings);
+
+         return -1;
+
+      }
+
+      int iLen = strlen(pgchar);
+
+      if(pszValue == NULL)
+      {
+
+         g_object_unref (settings);
+
+         return iLen;
+
+      }
+
+      if(iLen > iSize)
+      {
+
+         strncpy(pszValue, pgchar, MIN(iSize, iLen));
+
+      }
+      else
+      {
+
+         strcpy(pszValue, pgchar);
+
+      }
+
+      g_free (pgchar);
+
+      if (settings != NULL)
+      {
+
+         g_object_unref (settings);
+
+      }
+
+      return iLen;
+
+   }
+
+
+   e_desktop g_edesktop = desktop_gnome;
+
+
+   e_desktop get_edesktop()
+   {
+
+      return g_edesktop;
+
+   }
+
+
+   void initialize_edesktop()
+   {
+
+      g_edesktop = calc_edesktop();
+
+   }
+
+
+   e_desktop calc_edesktop()
+   {
+
+      const char * pszDesktop = getenv("XDG_CURRENT_DESKTOP");
+
+      if(pszDesktop != NULL)
+      {
+
+         if(strcasecmp(pszDesktop, "Unity") == 0)
+         {
+
+            return desktop_unity_gnome;
+
+         }
+
+      }
+
+      if(is_dir("/etc/xdg/lubuntu"))
+      {
+
+         return desktop_lxde;
+
+      }
+      else if(file_exists_dup("/usr/bin/xfconf-query"))
+      {
+
+         return desktop_xfce;
+
+      }
+      else if(file_exists_dup("/usr/bin/mate-about"))
+      {
+
+         return desktop_mate;
+
+      }
+      else if(file_exists_dup("/usr/bin/unity"))
+      {
+
+         return desktop_unity_gnome;
+
+      }
+
+      return desktop_gnome;
+
+   }
+
+
+} // namespace user
+
+
+
+
+
+
+

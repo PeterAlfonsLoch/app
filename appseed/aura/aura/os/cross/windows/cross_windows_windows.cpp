@@ -172,7 +172,12 @@ CLASS_DECL_AURA int_bool is_windows_nt_lesser_than_2000()
 
 
 
+DWORD GetCurrentProcessId()
+{
 
+    return getpid();
+
+}
 
 
 

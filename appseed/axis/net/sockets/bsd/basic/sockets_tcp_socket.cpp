@@ -438,12 +438,15 @@ namespace sockets
          }
          else if(!n)
          {
-            int32_t iError = ::WSAGetLastError();
-            if (iError == WSAEWOULDBLOCK)
-            {
-               TRACE("tcp_socket::recv 0 No Error or WOULD BLOCK");
-            }
-            else
+//            int32_t iError = get_error();
+//            #ifdef WINDOWS
+//            if (iError == WSAEWOULDBLOCK)
+//            #else
+//            #endif
+//            {
+//               TRACE("tcp_socket::recv 0 No Error or WOULD BLOCK");
+//            }
+//            else
             {
                TRACE("tcp_socket::recv (B2) recv disconnect");
                OnDisconnect();
@@ -452,7 +455,7 @@ namespace sockets
                SetLost();
                SetShutdown(SHUT_WR);
             }
-            
+
          }
          else if(n > 0 && n <= nBufSize)
          {
@@ -1038,7 +1041,7 @@ namespace sockets
             SetCloseAndDelete(true);
             return;
          }
-         
+
          if (m_strTlsHostName.has_char())
          {
 
@@ -1171,11 +1174,11 @@ namespace sockets
          }
          else if(!r)
          {
-            
+
             long error = ERR_get_error();
             const char* error_str = ERR_error_string(error, NULL);
             printf("could not SSL_connect: %s\n", error_str);
-            
+
             int iError = errno;
             int iErrorSsl = SSL_get_error(m_ssl,r);
 
@@ -1356,7 +1359,7 @@ skip:
 
    void tcp_socket::close()
    {
-      
+
       if (GetSocket() == INVALID_SOCKET) // this could happen
       {
 

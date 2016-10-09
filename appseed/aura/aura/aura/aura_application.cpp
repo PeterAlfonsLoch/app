@@ -694,7 +694,13 @@ namespace aura
 
 #else
 
-      if (strApp == "chrome")
+      if (strApp == "native")
+      {
+
+         system("epiphany \"" + strUrl + "\"");
+
+      }
+      else if (strApp == "chrome")
       {
 
          system("google-chrome \"" + strUrl + "\"");
@@ -721,7 +727,7 @@ namespace aura
          string strFirefox = file().as_string(::dir::system() / "firefox.txt");
          string strFirefoxPath = file().as_string(::dir::system() / "firefox_path.txt");
          string strFirefoxDir = file().as_string(::dir::system() / "firefox_dir.txt");
-         
+
          if (strFirefox.has_char()
             && file().exists(strFirefoxPath)
             && dir().is(strFirefoxDir))

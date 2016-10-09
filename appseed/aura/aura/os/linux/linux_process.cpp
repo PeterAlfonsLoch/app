@@ -211,7 +211,8 @@ CLASS_DECL_AURA int32_t call_async(
                             const char * pszParam,
                             const char * pszDir,
                             int32_t iShow,
-		            bool bPrivileged)
+		            bool bPrivileged,
+		            unsigned int * puiPid = NULL)
 {
     string strCmdLine;
 
@@ -225,13 +226,31 @@ CLASS_DECL_AURA int32_t call_async(
     int32_t processId;
 
     if(!create_process(strCmdLine, &processId))
+    {
+
+        if(puiPid != NULL)
+        {
+
+            *puiPid = -1;
+
+        }
+
         return -1;
+
+    }
+
+    if(puiPid != NULL)
+    {
+
+        *puiPid = processId;
+
+    }
 
     return 0;
 
 }
 
-CLASS_DECL_AURA DWORD call_sync(const char * pszPath, const char * pszParam, const char * pszDir, int32_t iShow, int32_t iRetry, int32_t iSleep, PFNCALLSYNCONRETRY pfnOnRetry, uint_ptr dwParam)
+CLASS_DECL_AURA DWORD call_sync(const char * pszPath, const char * pszParam, const char * pszDir, int32_t iShow, int32_t iRetry, int32_t iSleep, PFNCALLSYNCONRETRY pfnOnRetry, uint_ptr dwParam, unsigned int * puiPid)
 {
 
     string strCmdLine;
@@ -246,7 +265,18 @@ CLASS_DECL_AURA DWORD call_sync(const char * pszPath, const char * pszParam, con
     int32_t processId;
 
     if(!create_process(strCmdLine, &processId))
+    {
+
+        if(puiPid != NULL)
+        {
+
+            *puiPid = -1;
+
+        }
+
         return -1;
+
+    }
 
 
     while(true)
@@ -257,7 +287,15 @@ CLASS_DECL_AURA DWORD call_sync(const char * pszPath, const char * pszParam, con
         sleep(1);
     }
 
+    if(puiPid != NULL)
+    {
+
+        *puiPid = processId;
+
+    }
+
     return 0;
+
 }
 
 

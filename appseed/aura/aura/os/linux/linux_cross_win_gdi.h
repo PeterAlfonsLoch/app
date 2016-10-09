@@ -1,6 +1,13 @@
 #pragma once
 
 
+// Ubuntu apt-get install libx11-dev
+// CentOS yum install libX11-devel
+#include <X11/Xlib.h>
+#include <X11/Xutil.h>
+// Ubuntu apt-get install libcairo2-dev
+
+
 class CLASS_DECL_AURA device_context
 {
 public:
@@ -53,3 +60,11 @@ WINBOOL GetTextExtentPoint(HDC hdc, const char * pszText, int32_t iSize, SIZE * 
     __in UINT crTransparent);
 
 */
+
+
+void set_xcolor(XColor & color, COLORREF cr);
+
+
+#include "linux_cross_win_gdi_internal.h"
+
+

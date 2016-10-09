@@ -6,11 +6,11 @@
 
 #include "linux_graphics.h"
 #include "linux_process.h"
-#include "linux_cross_win_gdi.h"
+//#include "linux_cross_win_gdi.h"
 #include "linux_cross_win_file.h"
 #include "linux_file.h"
 #include "linux_file_watcher.h"
-#include "linux_cross_win_gdi_internal.h"
+
 
 
 #define ENABLE_BINRELOC

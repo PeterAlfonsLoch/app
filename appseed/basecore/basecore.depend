@@ -1,13 +1,19 @@
 # depslib dependency file v1.0
-1471125401 source:/xcore/app/appseed/basecore/basecore.cpp
+1475971294 source:/xcore/app/appseed/basecore/basecore.cpp
 	"basecore.h"
+	"basecore_shared.h"
+	"basecore_internal_glue.h"
 	<gtk/gtk.h>
 	<libappindicator-0.1/libappindicator/app-indicator.h>
 	<malloc.h>
 	<time.h>
 	<new>
+	<gio/gio.h>
+	<string.h>
+	<sys/stat.h>
+	<stdlib.h>
 
-1471125401 /xcore/app/appseed/basecore/basecore.h
+1475024011 /xcore/app/appseed/basecore/basecore.h
 
 1457361942 /usr/include/gtk-2.0/gtk/gtk.h
 	<gdk/gdk.h>
@@ -1481,7 +1487,7 @@
 1457361934 /usr/include/gtk-2.0/gdk/gdkrgb.h
 	<gdk/gdktypes.h>
 
-1448386170 /usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf.h
+1474404099 /usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf.h
 	<glib.h>
 	<gdk-pixbuf/gdk-pixbuf-features.h>
 	<glib-object.h>
@@ -1494,43 +1500,43 @@
 	<gdk-pixbuf/gdk-pixbuf-enum-types.h>
 	<gdk-pixbuf/gdk-pixbuf-autocleanups.h>
 
-1448386170 /usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-features.h
+1474404099 /usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-features.h
 	<glib.h>
 
-1448386170 /usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-core.h
+1474404099 /usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-core.h
 	<glib.h>
 	<glib-object.h>
 	<gio/gio.h>
 
-1448386170 /usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-transform.h
+1474404099 /usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-transform.h
 	<glib.h>
 	<gdk-pixbuf/gdk-pixbuf-core.h>
 
-1448386170 /usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-animation.h
+1474404099 /usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-animation.h
 	<glib-object.h>
 	<gdk-pixbuf/gdk-pixbuf-core.h>
 
-1448386170 /usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-simple-anim.h
+1474404099 /usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-simple-anim.h
 	<gdk-pixbuf/gdk-pixbuf-animation.h>
 
-1448386170 /usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-io.h
+1474404099 /usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-io.h
 	<stdio.h>
 	<glib.h>
 	<gmodule.h>
 	<gdk-pixbuf/gdk-pixbuf-core.h>
 	<gdk-pixbuf/gdk-pixbuf-animation.h>
 
-1448386170 /usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-loader.h
+1474404099 /usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-loader.h
 	<glib.h>
 	<glib-object.h>
 	<gdk-pixbuf/gdk-pixbuf-core.h>
 	<gdk-pixbuf/gdk-pixbuf-animation.h>
 	<gdk-pixbuf/gdk-pixbuf-io.h>
 
-1448386170 /usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-enum-types.h
+1474404099 /usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-enum-types.h
 	<glib-object.h>
 
-1448386170 /usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-autocleanups.h
+1474404099 /usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-autocleanups.h
 
 1445636048 /usr/include/pango-1.0/pango/pangocairo.h
 	<pango/pango.h>
@@ -2538,4 +2544,19 @@
 	<new>
 
 1463362582 /ca2/app/appseed/basecore/basecore.h
+
+1475024012 /xcore/app/include/cairo.h
+	"cairo-version.h"
+	"cairo-features.h"
+	"cairo-deprecated.h"
+
+1475024012 /xcore/app/include/cairo-version.h
+
+1475024012 /xcore/app/include/cairo-features.h
+
+1475024012 /xcore/app/include/cairo-deprecated.h
+
+1475970015 /xcore/app/appseed/basecore/basecore_shared.h
+
+1475971329 /xcore/app/appseed/basecore/basecore_internal_glue.h
 

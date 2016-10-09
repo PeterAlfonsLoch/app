@@ -1,5 +1,7 @@
 #include "framework.h"
 
+#include <X11/Xlib.h>
+
 
 CLASS_DECL_AXIS int32_t ca2_main();
 
