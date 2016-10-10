@@ -2,11 +2,20 @@
 
 //#include <crtdbg.h>
 
-memdleak_block * s_pmemdleakList;
-extern mutex * g_pmutgen;
-extern thread_pointer < memdleak_block > t_plastblock;
 
 #include "aura_os_alloc.h"
+
+
+#if MEMDLEAK
+
+
+extern mutex * g_pmutgen;
+memdleak_block * s_pmemdleakList;
+extern CLASS_DECL_AURA::exception::engine * g_ee;
+extern thread_pointer < memdleak_block > t_plastblock;
+
+
+#endif
 
 
 void * system_heap_alloc_normal(size_t size)
@@ -300,12 +309,6 @@ void system_heap_free(void * p)
 #endif
 
 }
-
-
-
-
-
-
 
 
 ::count get_mem_info(int32_t ** ppiUse, const char *** ppszFile, const char *** ppszCallStack, uint32_t ** ppuiLine, size_t ** ppsize)

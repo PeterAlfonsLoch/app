@@ -19,8 +19,6 @@ HANDLE g_system_heap()
 
 #endif
 
-extern CLASS_DECL_AURA ::exception::engine * g_ee;
-
 critical_section * g_pmutexSystemHeap = NULL;
 
 

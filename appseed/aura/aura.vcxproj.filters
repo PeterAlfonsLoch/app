@@ -3757,6 +3757,9 @@
     <ClCompile Include="aura_memdleak.cpp">
       <Filter>Source Files\aura\aura</Filter>
     </ClCompile>
+    <ClCompile Include="aura\os\os_alloc.cpp">
+      <Filter>Source Files\aura\os</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">

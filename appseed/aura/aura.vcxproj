@@ -1682,6 +1682,12 @@ copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configur
     <ClInclude Include="primitive\str\x\x_defines.h" />
     <ClInclude Include="primitive\str\x\x_encodings.h" />
     <ClInclude Include="primitive\str\x\x_tables.h" />
+    <ClCompile Include="aura\os\os_alloc.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="aura\os\windows\windows_ansi_file.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
