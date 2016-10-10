@@ -35,7 +35,7 @@ namespace user
    CLASS_DECL_CORE bool set_wallpaper(string strLocalImagePath)
    {
 
-      return SystemParametersInfoW(SPI_SETDESKWALLPAPER, 0, wstring(pszImage), SPIF_UPDATEINIFILE) != FALSE;
+      return SystemParametersInfoW(SPI_SETDESKWALLPAPER, 0, wstring(strLocalImagePath), SPIF_UPDATEINIFILE) != FALSE;
 
    }
 

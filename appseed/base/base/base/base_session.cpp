@@ -609,6 +609,35 @@ defer_check_wndfrm_core:
    }
 
 
+   void session::get_cursor_pos(LPPOINT lppoint)
+   {
+
+      if (m_bSystemSynchronizedCursor)
+      {
+
+#ifdef METROWIN
+
+         Windows::Foundation::Point p;
+
+         p = System.m_posdata->m_pwindow->get_cursor_pos();
+
+         m_ptCursor.x = (LONG)p.X;
+
+         m_ptCursor.y = (LONG)p.Y;
+
+#else
+
+         ::GetCursorPos(&m_ptCursor);
+
+#endif
+
+      }
+
+      ::axis::session::get_cursor_pos(lppoint);
+
+   }
+
+
 } // namespace base
 
 

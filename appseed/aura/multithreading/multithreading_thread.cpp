@@ -1499,7 +1499,7 @@ uint32_t __thread_entry(void * pparam)
 
 #endif
 
-         ::SetThreadPriority(::GetCurrentThread(), nPriority) != FALSE;
+         ::SetThreadPriority(::GetCurrentThread(), nPriority);
 
 
       }

@@ -3,7 +3,7 @@
 //#include <string.h>
 
 
-int32_t call_async(const char * pszPath, const char * pszParam, const char * pszDir, int32_t iShow, bool bPrivileged)
+int32_t call_async(const char * pszPath, const char * pszParam, const char * pszDir, int32_t iShow, bool bPrivileged, unsigned int *puiPid)
 {
 
    SHELLEXECUTEINFOW info ={};
@@ -25,8 +25,25 @@ int32_t call_async(const char * pszPath, const char * pszParam, const char * psz
 
    }
 
+   if (puiPid != NULL)
+   {
+
+      info.fMask |= SEE_MASK_NOCLOSEPROCESS;
+
+   }
+
+
    int iOk = ::ShellExecuteExW(&info);
+
+   if (puiPid != NULL)
+   {
+
+      *puiPid = ::GetProcessId(info.hProcess);
+
+      ::CloseHandle(info.hProcess);
    
+   }
+
    DWORD dwGetLastError = GetLastError();
 
    return iOk;
@@ -84,6 +101,8 @@ uint32_t call_sync(const char * pszPath, const char * pszParam, const char * psz
       iTry++;
 
    }
+
+   ::CloseHandle(infoa.hProcess);
 
    return dwExitCode;
 

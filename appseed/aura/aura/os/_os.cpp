@@ -52,3 +52,8 @@
 #ifndef METROWIN
 #include "os_binreloc.cpp"
 #endif
+
+
+#include "os_alloc.cpp"
+
+
