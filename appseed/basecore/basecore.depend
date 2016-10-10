@@ -2535,15 +2535,21 @@
 1457361942 /usr/include/gtk-2.0/gtk/gtktipsquery.h
 	<gtk/gtk.h>
 
-1463362584 source:/ca2/app/appseed/basecore/basecore.cpp
+1476092550 source:/ca2/app/appseed/basecore/basecore.cpp
 	"basecore.h"
+	"basecore_shared.h"
+	"basecore_internal_glue.h"
 	<gtk/gtk.h>
 	<libappindicator-0.1/libappindicator/app-indicator.h>
 	<malloc.h>
 	<time.h>
 	<new>
+	<gio/gio.h>
+	<string.h>
+	<sys/stat.h>
+	<stdlib.h>
 
-1463362582 /ca2/app/appseed/basecore/basecore.h
+1475021930 /ca2/app/appseed/basecore/basecore.h
 
 1475024012 /xcore/app/include/cairo.h
 	"cairo-version.h"
@@ -2559,4 +2565,8 @@
 1475970015 /xcore/app/appseed/basecore/basecore_shared.h
 
 1475971329 /xcore/app/appseed/basecore/basecore_internal_glue.h
+
+1476092552 /ca2/app/appseed/basecore/basecore_shared.h
+
+1476092552 /ca2/app/appseed/basecore/basecore_internal_glue.h
 

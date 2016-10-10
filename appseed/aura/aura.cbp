@@ -178,8 +178,33 @@
 			<Option compile="0" />
 			<Option link="0" />
 		</Unit>
+		<Unit filename="aura/aura/aura_heap_bare.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="aura/aura/aura_heap_item.h" />
 		<Unit filename="aura/aura/aura_heap_item_array.h" />
+		<Unit filename="aura/aura/aura_heap_mcheck.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
+		<Unit filename="aura/aura/aura_heap_mcrtdbg.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
+		<Unit filename="aura/aura/aura_heap_memdleak.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
+		<Unit filename="aura/aura/aura_heap_memory.h" />
+		<Unit filename="aura/aura/aura_heap_std.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
+		<Unit filename="aura/aura/aura_heap_vld.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="aura/aura/aura_id_pool.h" />
 		<Unit filename="aura/aura/aura_international.h" />
 		<Unit filename="aura/aura/aura_ipc.h" />
@@ -488,6 +513,7 @@
 		<Unit filename="aura/xml/xml_tree_schema.h" />
 		<Unit filename="aura/xml/xml_var_exchange.h" />
 		<Unit filename="aura/xml/xml_xmlite.h" />
+		<Unit filename="aura_heap_memory.h" />
 		<Unit filename="filesystem/_filesystem.cpp" />
 		<Unit filename="filesystem/file/file.h" />
 		<Unit filename="filesystem/file/file_binary_buffer.h" />
