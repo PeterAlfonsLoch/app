@@ -5,6 +5,15 @@ class CLASS_DECL_AURA duration
 {
 public:
 
+   enum e_duration
+   {
+
+      duration_infinite,
+      duration_dirac,
+      duration_finite
+
+   };
+
    enum e_unit
    {
 
@@ -19,8 +28,14 @@ public:
    };
 
 
-   int64_t     m_iNanoseconds;
-   int64_t     m_iSeconds;
+   e_duration     m_eduration;
+   int64_t        m_iNanoseconds;
+   int64_t        m_iSeconds;
+
+
+   duration() {}
+   duration(int64_t iSeconds, int64_t iNanoSeconds);
+   duration(e_duration eduration);
 
 
    inline void raw_set(int64_t iSeconds, int64_t iNanoseconds);
@@ -202,14 +217,14 @@ inline int64_t duration::total_milliseconds() const
 inline bool duration::is_pos_infinity() const
 {
 
-   return m_iSeconds == 0x7fffffffffffffffLL && m_iNanoseconds == 999999999;
+   return m_eduration == duration_infinite;
 
 }
 
 inline duration duration::infinite()
 {
 
-   return pos_infinity();
+   return duration_infinite;
 
 }
 

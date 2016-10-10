@@ -118,6 +118,10 @@
 			<Option link="0" />
 		</Unit>
 		<Unit filename="aura/aura/aura_app_core.h" />
+		<Unit filename="aura/aura/aura_app_launcher.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="aura/aura/aura_app_launcher.h" />
 		<Unit filename="aura/aura/aura_application.cpp">
 			<Option compile="0" />
@@ -456,6 +460,10 @@
 		<Unit filename="aura/os/linux/linux_file_watcher.h" />
 		<Unit filename="aura/os/linux/linux_graphics.h" />
 		<Unit filename="aura/os/linux/linux_internal.h" />
+		<Unit filename="aura/os/linux/linux_launcher.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="aura/os/linux/linux_linux.h" />
 		<Unit filename="aura/os/linux/linux_lock.cpp">
 			<Option compile="0" />
@@ -627,6 +635,10 @@
 		</Unit>
 		<Unit filename="multithreading/multithreading_manual_reset_event.h" />
 		<Unit filename="multithreading/multithreading_multi_lock.h" />
+		<Unit filename="multithreading/multithreading_mutex.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="multithreading/multithreading_mutex.h" />
 		<Unit filename="multithreading/multithreading_retry_multi_lock.h" />
 		<Unit filename="multithreading/multithreading_retry_single_lock.h" />

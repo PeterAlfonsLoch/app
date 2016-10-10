@@ -315,6 +315,10 @@
 		</Unit>
 		<Unit filename="base/os/linux/linux_cross_win_gdi.h" />
 		<Unit filename="base/os/linux/linux_cross_win_gdi_internal.h" />
+		<Unit filename="base/os/linux/linux_display.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="base/os/linux/linux_graphics.h" />
 		<Unit filename="base/os/linux/linux_internal.h" />
 		<Unit filename="base/os/linux/linux_linux.h" />

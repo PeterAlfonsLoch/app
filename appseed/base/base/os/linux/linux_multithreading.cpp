@@ -378,6 +378,13 @@ void process_message(osdisplay_data * pdata, Display * display)
 
       synch_lock sl(pdata->m_pmutexMouse);
 
+      if(pdata->m_messsageaMouse.get_size() > 1000)
+      {
+
+         pdata->m_messsageaMouse.remove_at(0, 499);
+
+      }
+
       pdata->m_messsageaMouse.add(msg);
 
    }
@@ -461,7 +468,9 @@ UINT __axis_x11mouse_thread(void * p)
 
    osdisplay_data * pdata = (osdisplay_data *) p;
 
-   synch_lock sl(pdata->m_pmutexMouse);
+   __begin_thread(::aura::system::g_p,&__axis_x11_thread,pdata,::multithreading::priority_normal,0,0,NULL);
+
+   single_lock sl(pdata->m_pmutexMouse);
 
    MESSAGE msg;
 

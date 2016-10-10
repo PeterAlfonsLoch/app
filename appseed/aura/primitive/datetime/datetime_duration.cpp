@@ -21,6 +21,23 @@ millis::millis(double d)
 
 
 
+duration::duration(int64_t iSeconds, int64_t iNanoSeconds)
+{
+
+   m_eduration = duration_finite;
+
+   m_iSeconds = iSeconds;
+
+   m_iNanoseconds = iNanoSeconds;
+
+}
+
+duration::duration(e_duration eduration)
+{
+
+   m_eduration = eduration;
+
+}
 
 
 

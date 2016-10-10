@@ -26,6 +26,8 @@ bool launcher::start()
 
     execlp(strPath, strPath, (char *) 0);
 
+
+
    return true;
 
 }

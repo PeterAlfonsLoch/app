@@ -77,8 +77,6 @@ osdisplay_data * osdisplay_get(Display * pdisplay)
 
    ::osdisplay_data::s_pdataptra->add(pdata);
 
-   __begin_thread(::aura::system::g_p,&__axis_x11_thread,pdata,::multithreading::priority_normal,0,0,NULL);
-
    __begin_thread(::aura::system::g_p,&__axis_x11mouse_thread,pdata,::multithreading::priority_normal,0,0,NULL);
 
    return pdata;

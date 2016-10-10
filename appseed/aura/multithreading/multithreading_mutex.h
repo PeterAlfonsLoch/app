@@ -53,11 +53,11 @@ public:
 
 #ifndef WINDOWS
 
-   using sync_object::lock;
+   virtual bool lock();
 
    virtual bool lock(const duration & durationTimeout);
 
-   using sync_object::wait;
+   virtual wait_result wait();
 
    virtual wait_result wait(const duration & durationTimeout);
 

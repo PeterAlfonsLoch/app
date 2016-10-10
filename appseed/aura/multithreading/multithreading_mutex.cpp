@@ -138,64 +138,64 @@ mutex::mutex(::aura::application * papp, bool bInitiallyOwn, const char * pstrNa
       pthread_mutex_init(&m_mutex, &attr);
 
    }
-   
+
 #elif defined(APPLEOS)
 
    if(pstrName != NULL && *pstrName != '\0')
    {
-      
+
       m_pmutex = NULL;
-      
+
       SetLastError(0);
-      
+
       m_pszName = strdup(string("/") + str_md5_dup(pstrName).Left(24-1));
-      
+
       if ((m_psem = sem_open(m_pszName, O_CREAT|O_EXCL, 0644, 1)) != SEM_FAILED)
       {
-      
+
          m_bOwner = true;
-      
+
       }
       else
       {
-      
+
          int err = errno;
-      
+
          if (err != EEXIST)
             throw resource_exception(get_app());
-      
-         
+
+
          SetLastError(ERROR_ALREADY_EXISTS);
-         
+
          m_bOwner = false;
 
          // We're not first.  Try again
-      
+
          m_psem = sem_open(m_pszName, 0);
-      
+
          if (m_psem == SEM_FAILED)
             throw resource_exception(get_app());;
-      
+
       }
-      
+
    }
    else
    {
-      
+
       m_psem = SEM_FAILED;
-      
+
       pthread_mutexattr_t attr;
-      
+
       pthread_mutexattr_init(&attr);
-      
+
       pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_RECURSIVE);
-      
+
       pthread_mutex_init(&m_mutex, &attr);
-      
+
    }
-   
+
 #else
-   
+
    if(pstrName != NULL && *pstrName != '\0')
    {
 
@@ -224,7 +224,7 @@ mutex::mutex(::aura::application * papp, bool bInitiallyOwn, const char * pstrNa
       bool bAlreadyExists;
 
       get_existing:
-      
+
       SetLastError(0);
 
       m_semid = semget(
@@ -387,12 +387,12 @@ mutex::~mutex()
 
    if(m_psem != SEM_FAILED)
    {
-      
+
       //if(m_bOwner)
       {
          sem_close(m_psem);
          sem_unlink(m_pszName);
-         
+
       }
 
    }
@@ -408,8 +408,8 @@ mutex::~mutex()
 
    }
 
-#elif defined(LINUX) 
-   
+#elif defined(LINUX)
+
    if(m_semid >= 0)
    {
 
@@ -574,6 +574,13 @@ bool mutex::lock(const duration & duration)
 wait_result mutex::wait(const duration & duration)
 {
 
+   if(duration.is_pos_infinity())
+   {
+
+      return wait();
+
+   }
+
    uint32_t dwTimeout = duration.lock_duration();
 
    timespec delay;
@@ -587,21 +594,16 @@ wait_result mutex::wait(const duration & duration)
 
    uint32_t start = ::get_tick_count();
 
-   if(dwTimeout == (uint32_t) INFINITE)
-   {
-      //dwTimeout = 30000 + 1977;
-      //((::duration&)  duration) = millis(dwTimeout);
-   }
 
 #if !defined(ANDROID) && !defined(APPLEOS)
+
    if(m_semid >= 0)
    {
-      //Wait for Zero
 
       struct sembuf operation[1] ;
 
 
-      while((dwTimeout == (uint32_t) INFINITE || ::get_tick_count() - start < dwTimeout) || bFirst)
+      while((::get_tick_count() - start < dwTimeout) || bFirst)
       {
 
          bFirst = false;
@@ -639,23 +641,6 @@ wait_result mutex::wait(const duration & duration)
 #endif
    {
 
-       if(duration.is_pos_infinity())
-       {
-
-          irc = pthread_mutex_lock(&m_mutex);
-          if (!irc)
-          {
-               return wait_result(wait_result::Event0);
-          }
-          else
-          {
-               return wait_result(wait_result::Failure);
-
-          }
-
-       }
-        else
-    {
       while((::get_tick_count() - start < dwTimeout) || bFirst)
       {
 
@@ -668,30 +653,43 @@ wait_result mutex::wait(const duration & duration)
          // if it does not acquire the mutex within 2 secs delay,
          // then it is considered to be failed
 
-          irc = pthread_mutex_trylock(&m_mutex);
-          if (!irc)
-          {
-               return wait_result(wait_result::Event0);
-          }
+         irc = pthread_mutex_trylock(&m_mutex);
+         if (!irc)
+         {
+
+            return wait_result(wait_result::Event0);
+
+         }
           else
           {
+
             // check whether somebody else has the mutex
+
             if(irc == EPERM ) // owned by own thread !! OK !!
             {
+
                return wait_result(wait_result::Failure);
+
             }
             else if (irc == EBUSY)
             {
+
                // Yes, Resource already in use so sleep
+
                nanosleep(&delay, NULL);
+
             }
             else
             {
+
                return wait_result(wait_result::Failure);
+
             }
-          }
-       }
-     }
+
+         }
+
+      }
+
    }
 
    if(dwTimeout == 30000 + 1977 && g_iMutex == 0)
@@ -701,6 +699,21 @@ wait_result mutex::wait(const duration & duration)
    }
 
    return wait_result(wait_result::Timeout);
+
+}
+
+
+wait_result mutex::wait()
+{
+
+   if(!lock())
+   {
+
+      return wait_result(wait_result::Failure);
+
+   }
+
+   return wait_result(wait_result::Event0);
 
 }
 
@@ -716,6 +729,52 @@ bool mutex::lock(const duration & duration)
     return true;
 
 }
+
+
+bool mutex::lock()
+{
+
+#if !defined(ANDROID) && !defined(APPLEOS)
+
+   if(m_semid >= 0)
+   {
+
+      struct sembuf operation[1] ;
+
+
+      operation[0].sem_op = -1; // Wait
+      operation[0].sem_num = 0;
+      operation[0].sem_flg = 0;
+
+      int32_t ret = semop(m_semid, operation, 1);
+
+      if(ret < 0)
+      {
+
+         return false;
+
+      }
+
+   }
+   else
+#endif
+   {
+
+      int irc = pthread_mutex_lock(&m_mutex);
+
+      if (irc)
+      {
+
+         return false;
+
+      }
+
+   }
+
+   return true;
+
+}
+
 
 #endif
 
@@ -775,7 +834,7 @@ bool mutex::unlock()
    else
    {
 
-      return pthread_mutex_unlock(&m_mutex) != 0;
+      return pthread_mutex_unlock(&m_mutex) == 0;
 
    }
 

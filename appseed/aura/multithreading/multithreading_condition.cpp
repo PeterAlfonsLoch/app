@@ -207,7 +207,7 @@ bool condition::pulse()
 
 
 
-void condition::wait ()
+wait_result condition::wait ()
 {
 
 #ifdef WINDOWS

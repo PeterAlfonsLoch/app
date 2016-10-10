@@ -291,10 +291,10 @@ bool object::is_alive()
 //}
 
 ///  \brief		abstract function to initialize a waiting action without a timeout
-void sync_object::wait()
+wait_result sync_object::wait()
 {
 
-   wait(duration::infinite());
+   return wait(duration::infinite());
 
 }
 
@@ -375,11 +375,10 @@ CLASS_DECL_AURA void sleep(const duration & duration)
 //
 //}
 
-void sync_object::lock()
+bool sync_object::lock()
 {
 
-   if(!lock(duration::infinite()))
-         throw "failure to lock waitable";
+   return lock(duration::infinite());
 
 }
 

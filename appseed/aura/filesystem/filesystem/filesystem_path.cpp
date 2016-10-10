@@ -180,11 +180,20 @@ namespace file
    patha & path::ascendants_name(patha & straParam) const
    {
 
+      string strPath = *this;
+
+      if(strPath == "/")
+      {
+
+         straParam.add("/");
+
+         return straParam;
+
+      }
+
       strsize iFirstColon = find(':');
       strsize iFirstSlash = find('/');
       strsize iSecondSlash = find('/', iFirstSlash + 1);
-
-      string strPath = *this;
 
       if (iFirstColon > 0 && iFirstSlash == iFirstColon + 1 && iSecondSlash == iFirstSlash + 1)
       {

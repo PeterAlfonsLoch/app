@@ -28,10 +28,10 @@ public:
 
    operator HANDLE() const;
 
-   virtual void lock();
+   virtual bool lock();
    virtual bool lock(const duration & durationTimeout);
 
-   virtual void wait();
+   virtual wait_result wait();
    virtual wait_result wait(const duration & durationTimeout);
 
    virtual bool is_locked() const;

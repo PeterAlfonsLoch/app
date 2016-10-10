@@ -45,7 +45,7 @@ public:
 */
 
 	///  \brief		waits for an event forever
-	virtual void wait ();
+	virtual wait_result wait ();
 
 	///  \brief		waits for an event for a specified time
 	///  \param		duration time period to wait for an event

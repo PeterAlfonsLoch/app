@@ -380,7 +380,7 @@ bool event::ResetEvent()
 }
 
 
-void event::wait ()
+wait_result event::wait ()
 {
 
 #ifdef WINDOWS

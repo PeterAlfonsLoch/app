@@ -13,7 +13,8 @@ public:
    explicit single_lock(sync_object * pobject, bool bInitialLock = false);
    ~single_lock();
 
-   bool lock(const duration & duration = duration::infinite());
+   bool lock();
+   bool lock(const duration & duration);
    bool unlock();
    bool unlock(LONG lCount, LPLONG lPrevCount = NULL);
    bool IsLocked();

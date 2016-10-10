@@ -20,7 +20,6 @@ CLASS_DECL_AURA void dll_processes(uint_array & dwa, stringa & straProcesses, co
 
 //extern thread_pointer < hthread > t_hthread;
 
-
 int32_t create_process(const char * _cmd_line, int32_t * pprocessId)
 {
 
@@ -30,7 +29,7 @@ int32_t create_process(const char * _cmd_line, int32_t * pprocessId)
 
    char *	cmd_line2;
 
-   cmd_line = (char *) memory_alloc(strlen(_cmd_line ) + 1 );
+   cmd_line = strdup(_cmd_line);
 
    if(cmd_line == NULL)
    {
@@ -39,10 +38,196 @@ int32_t create_process(const char * _cmd_line, int32_t * pprocessId)
 
    }
 
-   cmd_line2 = (char *) memory_alloc(strlen(_cmd_line ) + 1 );
+   char *      pArg;
+
+   char *      pPtr = NULL;
+
+   char *      argv[1024 + 1];
+
+   int32_t		argc = 0;
+
+   char * p;
+
+   char * psz = cmd_line;
+
+   enum e_state
+   {
+
+      state_initial,
+
+      state_quote,
+
+      state_non_space,
+
+   };
+
+   e_state e = state_initial;
+
+   char quote;
+
+   while(psz != NULL && *psz != '\0')
+   {
+
+      if(e == state_initial)
+      {
+
+         if(*psz == ' ')
+         {
+
+            psz = ::str::utf8_inc(psz);
+
+         }
+         else if(*psz == '\"')
+         {
+
+            quote = '\"';
+
+            psz = ::str::utf8_inc(psz);
+
+            argv[argc++] = psz;
+
+            e = state_quote;
+
+         }
+         else if(*psz == '\'')
+         {
+
+            quote = '\'';
+
+            psz = ::str::utf8_inc(psz);
+
+            argv[argc++] = psz;
+
+            e = state_quote;
+
+         }
+         else
+         {
+
+            argv[argc++] = psz;
+
+            psz = ::str::utf8_inc(psz);
+
+            e = state_non_space;
+
+         }
+
+      }
+      else if(e == state_quote)
+      {
+
+         if(*psz == quote)
+         {
+
+            p = ::str::utf8_inc(psz);
+
+            *psz = '\0';
+
+            psz = p;
+
+            e = state_initial;
+
+         }
+         else
+         {
+
+            psz = ::str::utf8_inc(psz);
+
+         }
+
+      }
+      else
+      {
+
+         if(*psz == ' ')
+         {
+
+            p = ::str::utf8_inc(psz);
+
+            *psz = '\0';
+
+            psz = p;
+
+            e = state_initial;
+
+         }
+         else
+         {
+
+            psz = ::str::utf8_inc(psz);
+
+         }
+
+      }
+
+   }
+
+   argv[argc] = NULL;
+
+
+   pid_t pid;
+
+//   char *argv[] = {"ls", (char *) 0};
+
+   int status;
+
+   //puts("Testing posix_spawn");
+
+   //fflush(NULL);
+
+   status = posix_spawn(&pid, argv[0], NULL, NULL, argv, environ);
+
+   free(cmd_line);
+
+   if (status == 0)
+   {
+
+      return 1;
+
+//    printf("Child id: %i\n", pid);
+//    fflush(NULL);
+//    if (waitpid(pid, &status, 0) != -1) {
+//      printf("Child exited with status %i\n", status);
+//    } else {
+//      perror("waitpid");
+//    }
+   }
+   else
+   {
+
+      return 0;
+
+      //printf("posix_spawn: %s\n", strerror(status));
+
+   }
+
+}
+
+
+int32_t create_process2(const char * _cmd_line, int32_t * pprocessId)
+{
+
+   char *   exec_path_name;
+
+   char *	cmd_line;
+
+   char *	cmd_line2;
+
+   cmd_line = strdup(_cmd_line);
+
+   if(cmd_line == NULL)
+   {
+
+      return 0;
+
+   }
+
+   cmd_line2 = strdup(_cmd_line);
 
    if(cmd_line2 == NULL)
    {
+
+      free(cmd_line);
 
       return 0;
 
@@ -73,9 +258,13 @@ int32_t create_process(const char * _cmd_line, int32_t * pprocessId)
 
       enum e_state
       {
+
          state_initial,
+
          state_quote,
+
          state_non_space,
+
       };
 
       e_state e = state_initial;
@@ -187,23 +376,31 @@ int32_t create_process(const char * _cmd_line, int32_t * pprocessId)
 
       wait(&status);
 
+      free(cmd_line);
+
+      free(cmd_line2);
+
       exit(status);
-
-      memory_free(cmd_line);
-
-      memory_free(cmd_line2);
 
    }
    else if(*pprocessId == -1)
    {
+
       // in parent, but error
+
       *pprocessId = 0;
-      memory_free(cmd_line);
-      memory_free(cmd_line2);
+
+      free(cmd_line);
+
+      free(cmd_line2);
+
       return 0;
+
    }
+
    // in parent, success
    return 1;
+
 }
 
 CLASS_DECL_AURA int32_t call_async(

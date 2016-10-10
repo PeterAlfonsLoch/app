@@ -31,7 +31,7 @@ extern CLASS_DECL_AURA const char trailingBytesForUTF8[256];
 #undef err_none
 #endif
 
-/// 
+///
 /// \author Camilo Sasuke Tsumanuma
 ///
 namespace str
@@ -126,7 +126,7 @@ namespace str
    strsize CLASS_DECL_AURA find_ci(const string & strFind   , const char   * psz, strsize iStart = 0);
    strsize CLASS_DECL_AURA find_ci(const char   * pszFind   , const string & str, strsize iStart = 0);
    strsize CLASS_DECL_AURA find_ci(const char   * pszFind   , const char   * psz, strsize iStart = 0);
-   
+
    strsize CLASS_DECL_AURA utf8_find(const char   * pszFind   , const char   * psz, strsize iStart = 0);
 
 
@@ -320,7 +320,7 @@ namespace str
    CLASS_DECL_AURA void format(string_format * pformat,int64_t const & i);
 
 #ifdef ANDROID
-   
+
    CLASS_DECL_AURA void format(string_format * pformat, long int const & i);
 
 #endif
@@ -342,17 +342,17 @@ namespace str
    CLASS_DECL_AURA void format(string_format * pformat,const string & str);
 
    CLASS_DECL_AURA void format(string_format * pformat,const lparam & lparam);
-
-#ifdef LINUX
-
-   inline CLASS_DECL_AURA void format(string_format * pformat,const pthread & p)
-   {
-
-      ::str::format(pformat, p.m_thread);
-
-   }
-
-#endif
+//
+//#ifdef LINUX
+//
+//   inline CLASS_DECL_AURA void format(string_format * pformat,const pthread & p)
+//   {
+//
+//      ::str::format(pformat, (uint64_t) p);
+//
+//   }
+//
+//#endif
 
    template < class TYPE >
    void format_type(string_format * pformat,const TYPE & t)

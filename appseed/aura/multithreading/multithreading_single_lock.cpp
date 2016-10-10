@@ -1,38 +1,61 @@
 #include "framework.h"
 
-/////////////////////////////////////////////////////////////////////////////
-// single_lock
 
 single_lock::single_lock(sync_object * psyncobject, bool bInitialLock)
 {
 
-   /*
-   if(psyncobject != NULL && psyncobject == (object *)&user_mutex())
-   {
-      if(::get_thread() != NULL)
-      {
-         if(::get_thread()->m_pslUser == NULL)
-         {
-            ::get_thread()->m_pslUser = this;
-         }
-      }
-   }*/
-
-   //ASSERT(pObject != NULL);
-   //ASSERT(base_class < object >::bases(pObject));
-
-   //if(pObject == NULL)
-      //throw invalid_argument_exception(get_app());
-
    m_pobjectSync = psyncobject;
-   //m_hObject = pObject->m_hObject;
+
    m_bAcquired = FALSE;
 
    if (bInitialLock)
+   {
+
       lock();
+
+   }
+
 }
 
-bool single_lock::lock(const duration & durationTimeOut /* = INFINITE */)
+
+bool single_lock::lock()
+{
+
+   if(m_bAcquired)
+   {
+
+      return true;
+
+   }
+
+   if(m_pobjectSync == NULL)
+   {
+
+      return false;
+
+   }
+
+   try
+   {
+
+      m_pobjectSync->lock();
+
+      m_bAcquired = true;
+
+   }
+   catch(...)
+   {
+
+      m_bAcquired = false;
+
+   }
+
+   return m_bAcquired;
+
+}
+
+
+bool single_lock::lock(const duration & durationTimeOut)
 {
    //ASSERT(m_pobjectSync != NULL || m_hObject != NULL);
    //ASSERT(m_pobjectSync != NULL);
