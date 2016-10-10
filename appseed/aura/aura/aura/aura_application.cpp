@@ -645,6 +645,38 @@ namespace aura
    }
 
 
+   ::file::path command_find_path(const char * pszCommand)
+   {
+
+      string strPath = getenv("PATH");
+
+      stringa straPath;
+
+      straPath.explode(":", strPath);
+
+      for(auto & str : straPath)
+      {
+
+         ::file::path path;
+
+         path = str;
+
+         path /= pszCommand;
+
+         if(file_exists_dup(path))
+         {
+
+            return path;
+
+         }
+
+      }
+
+      return pszCommand;
+
+   }
+
+
    void application::sync_open_profile_link(string strUrl, string strApp)
    {
 
@@ -694,24 +726,31 @@ namespace aura
 
 #else
 
+      string strCommand;
+
       if (strApp == "native")
       {
 
-         system("epiphany \"" + strUrl + "\"");
+         strCommand = "epiphany";
 
       }
       else if (strApp == "chrome")
       {
 
-         system("google-chrome \"" + strUrl + "\"");
+         strCommand = "google-chrome";
 
       }
       else
       {
 
-         system("firefox \"" + strUrl + "\"");
+         strCommand = "firefox";
 
       }
+
+      ::file::path path = command_find_path(strCommand);
+
+      call_async(path, "\"" + strUrl + "\"", "", SW_SHOWDEFAULT, false);
+
 
 #endif
 

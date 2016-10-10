@@ -450,7 +450,10 @@
 			<Option link="0" />
 		</Unit>
 		<Unit filename="aura/os/os.h" />
-		<Unit filename="aura/os/os_alloc.cpp" />
+		<Unit filename="aura/os/os_alloc.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="aura/os/os_binreloc.h" />
 		<Unit filename="aura/os/os_process.h" />
 		<Unit filename="aura/pcre/pcre.cpp" />

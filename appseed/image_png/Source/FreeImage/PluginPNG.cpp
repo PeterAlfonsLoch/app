@@ -601,7 +601,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data) {
 
 				png_charp profile_name = NULL;
 
-				#ifdef UBUNTU
+				#ifdef PNG_1_2_X
 				png_charp profile_data = NULL;
 				#else
 				png_bytep profile_data = NULL;
@@ -893,7 +893,7 @@ Save(FreeImageIO *io, FIBITMAP *dib, fi_handle handle, int page, int flags, void
 
 			FIICCPROFILE *iccProfile = FreeImage_GetICCProfile(dib);
 			if (iccProfile->size && iccProfile->data) {
-#if defined(UBUNTU)
+#if defined(PNG_1_2_X)
 
             png_set_iCCP(png_ptr, info_ptr, "Embedded Profile", 0, (png_charp)iccProfile->data, iccProfile->size);
 

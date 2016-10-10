@@ -37,8 +37,8 @@ extern "C" {
 #include <setjmp.h>
 
 //#include "jinclude.h"
-#include "jpeglib.h"
-#include "jerror.h"
+#include <jpeglib.h>
+#include <jerror.h>
 }
 
 //#include "Utilities.h"
