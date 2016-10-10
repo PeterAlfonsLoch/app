@@ -485,7 +485,7 @@ UINT __axis_x11mouse_thread(void * p)
 
          sl.lock();
 
-         if(pdata->m_messsageaMouse.get_count() > 0)
+         if(pdata->m_messsageaMouse.has_elements())
          {
 
             msg = pdata->m_messsageaMouse.last();
