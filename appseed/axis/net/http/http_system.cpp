@@ -1052,7 +1052,7 @@ retry:
                   uint32_t dwTimeProfile2 = get_tick_count();
                   TRACE0("Not Licensed Result Total time ::http::system::get(\"" + strUrl.Left(MIN(255,strUrl.get_length())) + "\") " + ::str::from(dwTimeProfile2 - dwTimeProfile1));
                   string strLocation = psession->outheader("Location");
-                  delete psession;
+                  psession.release();
                   throw not_licensed(get_app(),strCa2Realm,strLocation);
                   return NULL;
                }

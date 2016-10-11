@@ -300,7 +300,7 @@ namespace macos
 
       m_wndpaOut.remove_all();
 
-      ::user::interaction * pui = NULL;
+      sp(::user::interaction) pui;
 
       while(System.get_frame(pui))
       {

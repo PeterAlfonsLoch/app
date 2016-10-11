@@ -31,7 +31,7 @@
 //#endif
 
 
-#ifdef LINUX
+#if defined(LINUX) || defined(__APPLE__)
 
 #define SOCKADDR sockaddr
 

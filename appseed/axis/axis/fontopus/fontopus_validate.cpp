@@ -727,8 +727,11 @@ namespace fontopus
          }
          else if(doc.get_root()->attr("id") == "registration_deferred")
          {
-            delete m_puser;
+            
+            m_puser.release();
+            
             iAuth = result_registration_deferred;
+            
          }
          else if(doc.get_root()->attr("id") == "not_auth")
          {
@@ -764,20 +767,23 @@ namespace fontopus
 
             }
 
-            delete m_puser;
+            m_puser.release();
 
          }
          else
          {
-            delete m_puser;
+            
+            m_puser.release();
+            
             iAuth = result_fail;
+            
          }
 
       }
       else
       {
 
-         delete m_puser;
+         m_puser.release();
 
          if(estatus == ::http::status_connection_timed_out)
          {

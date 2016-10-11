@@ -346,5 +346,45 @@ WINBOOL SetWindowPos(oswindow hwnd, oswindow hwndInsertAfter, int x, int y, int 
 
 
 
+bool macos_set_user_wallpaper(const char * psz)
+{
 
+   NSArray<NSScreen *> * screenArray = [NSScreen screens];
+   
+   int screenCount = [screenArray count];
 
+   unsigned index  = 0;
+   
+   NSString * str = [NSString stringWithUTF8String: psz];
+   
+   NSString * path = [NSString stringWithFormat:@"file://localhost%@", str];
+   
+   NSURL * url = [NSURL URLWithString: path];
+   
+   NSDictionary * options = [NSDictionary dictionaryWithObjectsAndKeys:NSWorkspaceDesktopImageFillColorKey, [NSNumber numberWithBool:NO], NSWorkspaceDesktopImageAllowClippingKey, [NSNumber numberWithInteger:NSImageScaleProportionallyUpOrDown], NSWorkspaceDesktopImageScalingKey, nil];
+   
+   NSError * error;
+   
+   bool bOk = true;
+   
+   for (int i = 0; i < screenCount; i++)
+   {
+
+      NSScreen * screen = [screenArray objectAtIndex: index];
+      
+      error = NULL;
+      
+      [[[NSWorkspace sharedWorkspace] dd_invokeOnMainThreadAndWaitUntilDone:TRUE ] setDesktopImageURL:url forScreen: screen options:options error:&error];
+      
+      if(error != NULL)
+      {
+         
+         bOk = false;
+         
+      }
+   
+   }
+
+   return bOk;
+   
+}

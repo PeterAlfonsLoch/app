@@ -233,7 +233,7 @@ namespace fontopus
 
          }
 
-         delete m_puser;
+         m_puser.release();
 
       }
 

@@ -3854,6 +3854,11 @@ void var::skip_identifier(const char * & psz)
    skip_number(psz, psz + strlen(psz) - 1);
 }
 
+
+#ifdef __APPLE__
+#define strnicmp strncasecmp
+#endif
+
 void var::skip_identifier(const char * & psz, const char * pszEnd)
 {
    const char * pszParse = psz;

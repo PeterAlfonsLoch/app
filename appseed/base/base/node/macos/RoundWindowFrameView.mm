@@ -640,7 +640,7 @@ DWORD fixKeyCode(DWORD keyCode, unichar keyChar, enum APPLE_KEYBOARD_TYPE type)
    if(![NSApp isActive])
    {
       
-      [NSApp activate];
+      //[NSApp ];
       
    }
    

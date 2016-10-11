@@ -340,7 +340,7 @@ void memory_free(void * pmemory)
 void memory_free_dbg(void * pmemory, int32_t iBlockType)
 {
 
-   if(pmemory < 1024)
+   if((int_ptr) pmemory < 1024)
    {
 
       return;

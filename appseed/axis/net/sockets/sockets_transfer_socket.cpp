@@ -9,7 +9,7 @@
 
 #include "framework.h"
 
-#ifdef LINUX
+#if defined(LINUX) || defined(__APPLE__)
 
 #define TIMEVAL timeval
 

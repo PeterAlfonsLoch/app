@@ -37,8 +37,13 @@ extern "C" {
 #include <setjmp.h>
 
 //#include "jinclude.h"
+#ifdef __APPLE__
+#include "jpeglib.h"
+#include "jerror.h"
+#else
 #include <jpeglib.h>
 #include <jerror.h>
+#endif
 }
 
 //#include "Utilities.h"

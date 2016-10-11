@@ -1132,13 +1132,13 @@
 		9A26A6DC1D7F0019001F47A8 /* pcre.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A26A69C1D7F0019001F47A8 /* pcre.h */; };
 		9A26A6DD1D7F0019001F47A8 /* pcre_util.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A26A6A41D7F0019001F47A8 /* pcre_util.h */; };
 		9A26A6FC1D7F01A5001F47A8 /* libaurapcre.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A26A6F91D7F0166001F47A8 /* libaurapcre.dylib */; };
-		9A26A7011D7F042D001F47A8 /* libatomiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A26A6F01D7F0155001F47A8 /* libatomiconv.dylib */; };
 		9A33276B1D4C50EB00255105 /* file_path.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A33276A1D4C50EB00255105 /* file_path.h */; };
 		9A44E3FF19C5C10200143B94 /* math_departament.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A44E3FD19C5C10200143B94 /* math_departament.h */; };
 		9A5DF96E1CEE2741008916A4 /* test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5DF96D1CEE2741008916A4 /* test.cpp */; };
 		9A6715D11D14F65F0069A961 /* draw2d_nanosvg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07C64B7A1C9A29A400F54872 /* draw2d_nanosvg.cpp */; };
 		9A6715D41D14F7970069A961 /* test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5DF96D1CEE2741008916A4 /* test.cpp */; };
 		9A74846E1D210C0600207EF6 /* libios_ace.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A6716761D1553BF0069A961 /* libios_ace.dylib */; };
+		9A9799151DAC3C2B001CD6D9 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A9799141DAC3C2B001CD6D9 /* libiconv.tbd */; };
 		9A98A6081771D67E000AE16E /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07BD556C16210BD4008E31F0 /* AppKit.framework */; };
 		9A98A6091771D67E000AE16E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8897A514C24736006B4023 /* Foundation.framework */; };
 		9A98A60A1771D67E000AE16E /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE931714155F1599005F90F6 /* Carbon.framework */; };
@@ -1307,13 +1307,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 9AA5E4C216F7C61B005C45CE;
 			remoteInfo = aurapcre;
-		};
-		9A26A6FF1D7F01B6001F47A8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A26A6EA1D7F0155001F47A8 /* atomiconv.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 9A1647A119C4A73900966C5E;
-			remoteInfo = atomiconv;
 		};
 		9A6716731D1553BF0069A961 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1970,6 +1963,7 @@
 		9A5DF96D1CEE2741008916A4 /* test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = test.cpp; path = ../test.cpp; sourceTree = "<group>"; };
 		9A67166C1D1553BF0069A961 /* ace.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ace.xcodeproj; path = ../ace/ace.xcodeproj; sourceTree = "<group>"; };
 		9A8897A514C24736006B4023 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = ../../../../System/Library/Frameworks/Foundation.framework; sourceTree = "<group>"; };
+		9A9799141DAC3C2B001CD6D9 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		9A98A6151771D67E000AE16E /* libaura.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libaura.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AC31567198E4CB8008FB109 /* colorertake5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = colorertake5.h; sourceTree = "<group>"; };
 		9AC31569198E4CB8008FB109 /* colorertake5_base_editor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = colorertake5_base_editor.h; sourceTree = "<group>"; };
@@ -2106,7 +2100,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A26A7011D7F042D001F47A8 /* libatomiconv.dylib in Frameworks */,
+				9A9799151DAC3C2B001CD6D9 /* libiconv.tbd in Frameworks */,
 				9A26A6FC1D7F01A5001F47A8 /* libaurapcre.dylib in Frameworks */,
 				9ACE46FF1D1FE56000A1E0AD /* libace.dylib in Frameworks */,
 				9A98A6081771D67E000AE16E /* AppKit.framework in Frameworks */,
@@ -3061,6 +3055,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		9A9799131DAC3C2B001CD6D9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9A9799141DAC3C2B001CD6D9 /* libiconv.tbd */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		9AC31566198E4CB8008FB109 /* colorertake5 */ = {
 			isa = PBXGroup;
 			children = (
@@ -3260,6 +3262,7 @@
 				9AE722BF17E83B69003E47F9 /* primitive */,
 				9AE7233517E83B69003E47F9 /* user */,
 				9A4E846F1D1FD3A7008A419B /* Products */,
+				9A9799131DAC3C2B001CD6D9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -4478,7 +4481,6 @@
 			);
 			dependencies = (
 				9A26A6FE1D7F01B6001F47A8 /* PBXTargetDependency */,
-				9A26A7001D7F01B6001F47A8 /* PBXTargetDependency */,
 				9A6716CA1D159C9B0069A961 /* PBXTargetDependency */,
 			);
 			name = aura;
@@ -4509,7 +4511,7 @@
 		CEA754BB14411F2B007E04DE /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0800;
 				TargetAttributes = {
 					9AE24D421904CEFE001AEFFB = {
 						TestTargetID = 9A98A6031771D67E000AE16E;
@@ -4727,11 +4729,6 @@
 			name = aurapcre;
 			targetProxy = 9A26A6FD1D7F01B6001F47A8 /* PBXContainerItemProxy */;
 		};
-		9A26A7001D7F01B6001F47A8 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = atomiconv;
-			targetProxy = 9A26A6FF1D7F01B6001F47A8 /* PBXContainerItemProxy */;
-		};
 		9A6716CA1D159C9B0069A961 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = ace;
@@ -4813,7 +4810,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = "base_iosTests/base_iosTests-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				TEST_HOST = "$(BUNDLE_LOADER)";
@@ -4846,7 +4843,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = "base_iosTests/base_iosTests-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				TEST_HOST = "$(BUNDLE_LOADER)";
@@ -4861,6 +4858,7 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_ANALYZER_DEADCODE_DEADSTORES = YES;
 				CLANG_ANALYZER_GCD = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_MEMORY_MANAGEMENT = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -4871,19 +4869,24 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
 				CLANG_WARN_EMPTY_BODY = NO;
 				CLANG_WARN_ENUM_CONVERSION = NO;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = NO;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = NO;
 				CODE_SIGN_IDENTITY = "";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_POSTPROCESSING = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				EXECUTABLE_EXTENSION = dylib;
 				EXECUTABLE_PREFIX = lib;
 				FRAMEWORK_SEARCH_PATHS = "$(SDKROOT)$(SYSTEM_LIBRARY_DIR)/Frameworks";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = framework.h;
@@ -4923,6 +4926,7 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_ANALYZER_DEADCODE_DEADSTORES = YES;
 				CLANG_ANALYZER_GCD = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_MEMORY_MANAGEMENT = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -4933,17 +4937,22 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
 				CLANG_WARN_EMPTY_BODY = NO;
 				CLANG_WARN_ENUM_CONVERSION = NO;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = NO;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = NO;
 				CODE_SIGN_IDENTITY = "";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_POSTPROCESSING = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				EXECUTABLE_EXTENSION = dylib;
 				EXECUTABLE_PREFIX = lib;
 				FRAMEWORK_SEARCH_PATHS = "$(SDKROOT)$(SYSTEM_LIBRARY_DIR)/Frameworks";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = framework.h;
 				GCC_PREPROCESSOR_DEFINITIONS = "";

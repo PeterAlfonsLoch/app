@@ -1365,7 +1365,7 @@ namespace macos
          {*/
 //            ::user::interaction * pguie = wnda.find_first(hwnda[i]);
 
-         ::user::interaction * pguie = NULL;
+         sp(::user::interaction) pguie;
 
          while(System.get_frame(pguie))
          {

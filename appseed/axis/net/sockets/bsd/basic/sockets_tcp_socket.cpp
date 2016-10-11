@@ -1141,7 +1141,7 @@ namespace sockets
                   && x509_err != X509_V_ERR_SELF_SIGNED_CERT_IN_CHAIN
                   && x509_err != X509_V_ERR_UNABLE_TO_GET_ISSUER_CERT_LOCALLY)
             {
-               log("SSLNegotiate/cert_common_name_check",0,"cert_common_name_check failed (error="+::str::from(x509_err)+",url=" + m_strUrl + ")",::aura::log::level_info);
+               log("SSLNegotiate/cert_common_name_check",0,"cert_common_name_check failed (error="+::str::from((int)x509_err)+",url=" + m_strUrl + ")",::aura::log::level_info);
                SetSSLNegotiate(false);
                SetCloseAndDelete();
                OnSSLConnectFailed();

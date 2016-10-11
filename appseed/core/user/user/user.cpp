@@ -39,7 +39,7 @@ namespace user
 
    }
 
-#else
+#elif defined(LINUX)
 
    CLASS_DECL_CORE bool set_wallpaper(string strLocalImagePath)
    {
