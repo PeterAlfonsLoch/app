@@ -87,6 +87,14 @@ namespace user
 
    }
 
+#else
+   
+   CLASS_DECL_CORE bool set_wallpaper(string strLocalImagePath)
+   {
+      
+      return macos_set_user_wallpaper(strLocalImagePath);
+      
+   }
 
 #endif
 

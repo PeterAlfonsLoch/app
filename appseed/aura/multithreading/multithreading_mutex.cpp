@@ -807,7 +807,7 @@ bool mutex::unlock()
    else
    {
 
-      return pthread_mutex_unlock(&m_mutex) != 0;
+      return pthread_mutex_unlock(&m_mutex) == 0;
 
    }
 

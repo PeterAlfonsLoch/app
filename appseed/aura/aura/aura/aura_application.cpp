@@ -689,13 +689,13 @@ namespace aura
       if (strApp == "chrome")
       {
 
-         system("open -a /Applications/Safari.app \"" + strUrl + "\"");
+         ::system("open -a /Applications/Safari.app \"" + strUrl + "\"");
 
       }
       else
       {
 
-         system("open -a /Applications/Firefox.app \"" + strUrl + "\"");
+         ::system("open -a /Applications/Firefox.app \"" + strUrl + "\"");
 
       }
 

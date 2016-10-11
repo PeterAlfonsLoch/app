@@ -38,9 +38,7 @@ bool single_lock::lock()
    try
    {
 
-      m_pobjectSync->lock();
-
-      m_bAcquired = true;
+      m_bAcquired = m_pobjectSync->lock();
 
    }
    catch(...)
@@ -57,56 +55,73 @@ bool single_lock::lock()
 
 bool single_lock::lock(const duration & durationTimeOut)
 {
-   //ASSERT(m_pobjectSync != NULL || m_hObject != NULL);
-   //ASSERT(m_pobjectSync != NULL);
-   //ASSERT(!m_bAcquired);
-
 
    if(m_bAcquired)
+   {
+      
       return true;
-
+      
+   }
+   
    if(m_pobjectSync == NULL)
-      return FALSE;
+   {
+      
+      return false;
+      
+   }
+   
    try
    {
-      if(durationTimeOut.is_pos_infinity())
-      {
-         m_pobjectSync->lock();
-         m_bAcquired = true;
-      }
-      else
-      {
-         m_bAcquired = m_pobjectSync->lock(durationTimeOut);
-      }
+
+      m_bAcquired = m_pobjectSync->lock(durationTimeOut);
+      
    }
    catch(...)
    {
-      m_bAcquired = false;
+      
    }
+   
    return m_bAcquired;
+   
 }
+
 
 bool single_lock::unlock()
 {
 
    if(m_pobjectSync == NULL)
-      return FALSE;
+   {
+      
+      return false;
+      
+   }
 
    if (m_bAcquired)
    {
+      
       try
       {
-         m_bAcquired = !m_pobjectSync->unlock();
+         
+         if(m_pobjectSync->unlock())
+         {
+            
+            m_bAcquired = false;
+            
+         }
+         
       }
       catch(...)
       {
-         m_bAcquired = true;
+         
       }
+      
    }
 
    // successfully unlocking means it isn't acquired
    return !m_bAcquired;
+   
 }
+
 
 bool single_lock::unlock(LONG lCount, LPLONG lpPrevCount /* = NULL */)
 {
@@ -118,8 +133,10 @@ bool single_lock::unlock(LONG lCount, LPLONG lpPrevCount /* = NULL */)
    return !m_bAcquired;
 }
 
+
 single_lock::~single_lock()
 {
+
    unlock();
 
    /*if(::get_thread() != NULL)
@@ -134,7 +151,12 @@ single_lock::~single_lock()
 
 }
 
+
 bool single_lock::IsLocked()
 {
+   
    return m_bAcquired;
+   
 }
+
+

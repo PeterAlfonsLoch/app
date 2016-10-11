@@ -2957,21 +2957,6 @@ namespace macos
    }
 
 
-   void interaction_impl::_001RedrawWindow()
-   {
-
-      unsigned long long uiNow = get_nanos();
-
-      if(m_uiLastUpdateEnd < m_uiLastUpdateBeg && uiNow - m_uiLastUpdateBeg < 200 * 1000 * 1000)
-      {
-
-         return;
-
-      }
-
-      RedrawWindow();
-
-   }
 /*
 
 
@@ -4812,6 +4797,16 @@ namespace macos
    bool interaction_impl::RedrawWindow(LPCRECT lpRectUpdate, ::draw2d::region* prgnUpdate, UINT flags)
    {
 
+      
+      unsigned long long uiNow = get_nanos();
+      
+      if(m_uiLastUpdateEnd < m_uiLastUpdateBeg && uiNow - m_uiLastUpdateBeg < 200 * 1000 * 1000)
+      {
+         
+         return true;
+         
+      }
+      
       round_window_redraw();
 
       return true;
@@ -6360,6 +6355,22 @@ __activation_window_procedure(oswindow hWnd, UINT nMsg, WPARAM wparam, LPARAM lp
 
 namespace macos
 {
+   
+   
+   void interaction_impl::_001RedrawWindow(UINT nFlags)
+   {
+      
+      if(!IsWindow())
+      {
+         
+         return;
+         
+      }
+      
+      RedrawWindow();
+
+   }
+   
 
    void interaction_impl::_001UpdateWindow()
    {

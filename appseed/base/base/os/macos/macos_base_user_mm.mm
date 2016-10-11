@@ -353,15 +353,13 @@ bool macos_set_user_wallpaper(const char * psz)
    
    int screenCount = [screenArray count];
 
-   unsigned index  = 0;
-   
    NSString * str = [NSString stringWithUTF8String: psz];
    
    NSString * path = [NSString stringWithFormat:@"file://localhost%@", str];
    
    NSURL * url = [NSURL URLWithString: path];
    
-   NSDictionary * options = [NSDictionary dictionaryWithObjectsAndKeys:NSWorkspaceDesktopImageFillColorKey, [NSNumber numberWithBool:NO], NSWorkspaceDesktopImageAllowClippingKey, [NSNumber numberWithInteger:NSImageScaleProportionallyUpOrDown], NSWorkspaceDesktopImageScalingKey, nil];
+   NSDictionary * options = [NSDictionary dictionaryWithObjectsAndKeys:nil, NSWorkspaceDesktopImageFillColorKey, [NSNumber numberWithBool:NO], NSWorkspaceDesktopImageAllowClippingKey, [NSNumber numberWithInteger:NSImageScaleProportionallyUpOrDown], NSWorkspaceDesktopImageScalingKey, nil];
    
    NSError * error;
    
@@ -370,11 +368,11 @@ bool macos_set_user_wallpaper(const char * psz)
    for (int i = 0; i < screenCount; i++)
    {
 
-      NSScreen * screen = [screenArray objectAtIndex: index];
+      NSScreen * screen = [screenArray objectAtIndex: i];
       
       error = NULL;
       
-      [[[NSWorkspace sharedWorkspace] dd_invokeOnMainThreadAndWaitUntilDone:TRUE ] setDesktopImageURL:url forScreen: screen options:options error:&error];
+      [[[NSWorkspace sharedWorkspace] dd_invokeOnMainThreadAndWaitUntilDone:FALSE ] setDesktopImageURL:url forScreen: screen options:options error:&error];
       
       if(error != NULL)
       {

@@ -4232,14 +4232,14 @@ ExitModal:
    void interaction::_001RedrawWindow(UINT nFlags)
    {
 
-      if (m_bRedrawing)
-      {
-
-         return;
-
-      }
-
-      keep < bool > keepRedrawing(&m_bRedrawing, true, false, true);
+//      if (m_bRedrawing)
+//      {
+//
+//         return;
+//
+//      }
+//
+//      keep < bool > keepRedrawing(&m_bRedrawing, true, false, true);
 
       //if(!(nFlags & RDW_UPDATENOW))
       {
@@ -4248,8 +4248,22 @@ ExitModal:
            // return;
 
       }
+      
+      if(m_pimpl.is_null())
+      {
+         
+         ::user::interaction_base::_001RedrawWindow(nFlags);
+         
+         return;
+         
+      }
+      
+      //::fork(get_app(), [=]()
+      //{
 
-      ::user::interaction_base::_001RedrawWindow(nFlags);
+      m_pimpl->_001RedrawWindow(nFlags);
+         
+      //});
 
 
    }
@@ -4280,6 +4294,9 @@ ExitModal:
       m_pimpl->_001UpdateWindow();
 
    }
+   
+   
+
 
 //   void interaction::_001UpdateBuffer()
 //   {

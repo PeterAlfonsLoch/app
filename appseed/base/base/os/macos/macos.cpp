@@ -116,6 +116,13 @@ int32_t base_main_command_line(const char * pszParams, int argc, char *argv[])
    
    strCommandLine = argv[0];
    
+   if(strCommandLine.find(' ') >= 0)
+   {
+      
+      strCommandLine = "\"" + strCommandLine + "\"";
+      
+   }
+   
    string strP = pszParams;
 
    strsize iFind = strP.find(':');
@@ -220,7 +227,18 @@ int32_t base_main_command_line(const char * pszParams, int argc, char *argv[])
          if(!bColon)
          {
             
-            strA += string(" ") + argv[i];
+            if(strstr(argv[i], " ") != 0)
+            {
+               
+               strA += " \"" + string(argv[i]) + "\"";
+               
+            }
+            else
+            {
+            
+               strA += string(" ") + argv[i];
+               
+            }
             
          }
          else
