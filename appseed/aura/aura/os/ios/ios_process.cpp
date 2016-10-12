@@ -93,7 +93,8 @@ CLASS_DECL_AURA int call_async(
                                const char * pszParam, 
                                const char * pszDir,
                                int iShow,
-                               bool bPrivileged)
+                               bool bPrivileged,
+                               unsigned int * puiPid)
 {
    
    string strCmdLine;
@@ -109,6 +110,14 @@ CLASS_DECL_AURA int call_async(
    
    if(!create_process(strCmdLine, &processId))
       return -1;
+   
+   if(puiPid != NULL)
+   {
+      
+      *puiPid = processId;
+      
+      
+   }
    
    return 0;
    
@@ -122,7 +131,8 @@ CLASS_DECL_AURA DWORD call_sync(
                              int iRetry, 
                              int iSleep, 
                              int (* pfnOnRetry)(int iTry, uint_ptr dwParam),
-                             uint_ptr dwParam)
+                             uint_ptr dwParam,
+                                unsigned int * puiPid)
 {
 
    string strCmdLine;
@@ -140,7 +150,14 @@ CLASS_DECL_AURA DWORD call_sync(
     
    if(!create_process(strCmdLine, &processId))
       return -1;
-    
+   
+   if(puiPid != NULL)
+   {
+      
+      *puiPid = processId;
+      
+      
+   }
     
    while(true)
    {

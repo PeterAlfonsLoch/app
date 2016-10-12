@@ -321,6 +321,7 @@
 		07B65784190F3CA2002DAADE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -328,6 +329,7 @@
 		07B65785190F3CA2002DAADE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
 				SDKROOT = iphoneos;
 			};
 			name = Release;
