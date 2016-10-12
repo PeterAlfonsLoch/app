@@ -2005,6 +2005,8 @@ void interaction_impl::CalcWindowRect(LPRECT lpClientRect, UINT nAdjustType)
 
 bool interaction_impl::HandleFloatingSysCommand(UINT nID, LPARAM lparam)
 {
+
+   return false;
    /*      sp(::user::interaction) pParent = GetTopLevelParent();
    switch (nID & 0xfff0)
    {
@@ -3342,8 +3344,8 @@ bool interaction_impl::SetWindowPos(int_ptr z, int32_t x, int32_t y, int32_t cx,
    {
    ::SetWindowPos(get_handle(), (oswindow) z, x, y, cx, cy, nFlags);
    }
-   }
-   return true;*/
+   }*/
+   return true;
 
 }
 
@@ -3811,6 +3813,14 @@ bool interaction_impl::DragDetect(POINT pt) const
 }
 
 
+void interaction_impl::_001RedrawWindow(UINT nFlags)
+{
+
+   _001UpdateWindow();
+
+}
+
+
 //void interaction_impl::SetWindowText(const char * lpszString)
 //{
 //
@@ -3981,6 +3991,8 @@ int32_t interaction_impl::SetWindowRgn(HRGN hRgn, bool bRedraw)
 
    //      ASSERT(::IsWindow((oswindow) get_handle())); return ::SetWindowRgn(get_handle(), hRgn, bRedraw);
 
+   return 0;
+
 }
 
 
@@ -3990,6 +4002,7 @@ int32_t interaction_impl::GetWindowRgn(HRGN hRgn)
    throw not_implemented(get_app());
 
    //      ASSERT(::IsWindow((oswindow) get_handle()) && hRgn != NULL); return ::GetWindowRgn(get_handle(), hRgn);
+   return 0;
 
 }
 
@@ -4829,6 +4842,8 @@ bool interaction_impl::SetForegroundWindow()
 
    //    throw not_implemented(get_app());
    //      return ::SetForegroundWindow(get_handle()) != FALSE;
+
+   return false;
 
 }
 

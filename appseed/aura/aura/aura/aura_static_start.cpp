@@ -8,6 +8,7 @@
 //#include "framework.h"
 
 extern mutex * g_pmutexSignal;
+CLASS_DECL_AURA exception::engine * g_ee = NULL;
 
 void init_draw2d_direct2_mutex();
 void term_draw2d_direct2_mutex();
@@ -52,7 +53,6 @@ extern uint64_t g_firstNano;
 
 //extern mutex * g_pmutexTrace;
 
-extern mutex * g_pmutgen;
 
 plex_heap_alloc_array * g_pplexheapallocarray = NULL;
 
@@ -230,7 +230,11 @@ namespace aura
 
          g_pmutexSystemHeap = new critical_section();
 
-         g_pmutgen = new mutex();
+#if MEMDLEAK
+
+         memdleak_init();
+
+#endif
 
          g_pmapAura =new ::map < void *,void *,::aura::application *,::aura::application * >;
 
@@ -464,7 +468,11 @@ namespace aura
 
          ::aura::del(g_pmapAura);
 
-         ::aura::del(g_pmutgen);
+#if MEMDLEAK
+
+         memdleak_term();
+
+#endif
 
          ::aura::del(g_pmutexSystemHeap);
 

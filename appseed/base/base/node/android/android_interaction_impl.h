@@ -145,15 +145,15 @@ namespace android
 
 #endif   // WINVER >= 0x0500
 
-      LRESULT send_message(UINT message,WPARAM wParam = 0,lparam lParam = NULL);
-      bool post_message(UINT message,WPARAM wParam = 0,lparam lParam = NULL);
+      LRESULT send_message(UINT message,WPARAM wParam = 0,lparam lParam = 0);
+      bool post_message(UINT message,WPARAM wParam = 0,lparam lParam = 0);
 
       bool SendNotifyMessage(UINT message,WPARAM wParam,lparam lParam);
       //bool SendChildNotifyLastMsg(LRESULT* pResult = NULL);
 
       bool DragDetect(POINT pt) const;
 
-
+      virtual void _001RedrawWindow(UINT nFlags = 0) override;
 
       // Window Text Functions
       void SetWindowText(const char * lpszString);

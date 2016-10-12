@@ -1,4 +1,4 @@
-#if defined(MCHECK) || defined(_VLD) || defined(__MCRTDBG) || defined(MEMDLEAK)
+#if defined(MCHECK) || defined(_VLD) || defined(__MCRTDBG) || MEMDLEAK
 
 #error "Either MCHECK, _VLD, __MCRTDBG or MEMDLEAK were defined"
 

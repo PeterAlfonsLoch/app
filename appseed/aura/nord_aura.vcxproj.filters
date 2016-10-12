@@ -1429,6 +1429,21 @@
     <ClCompile Include="aura\os\os_binreloc.cpp">
       <Filter>Source Files\aura\os</Filter>
     </ClCompile>
+    <ClCompile Include="aura\aura\aura_heap_bare.cpp">
+      <Filter>Source Files\aura\aura</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\aura\aura_heap_mcheck.cpp">
+      <Filter>Source Files\aura\aura</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\aura\aura_heap_mcrtdbg.cpp">
+      <Filter>Source Files\aura\aura</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\aura\aura_heap_memdleak.cpp">
+      <Filter>Source Files\aura\aura</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\aura\aura_heap_std.cpp">
+      <Filter>Source Files\aura\aura</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -3168,9 +3183,6 @@
     <ClInclude Include="aura\aura\aura_allocate_processor_cache_oriented.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_allocate_heap.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
     <ClInclude Include="aura\os\android\android_init_data.h">
       <Filter>Header Files\aura\os\android</Filter>
     </ClInclude>
@@ -3212,6 +3224,15 @@
     </ClInclude>
     <ClInclude Include="filesystem\filesystem\filesystem_system.h">
       <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\aura\aura_os_alloc.h">
+      <Filter>Header Files\aura\aura</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\aura\aura_heap_memory.h">
+      <Filter>Header Files\aura\aura</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\aura\aura_heap.h">
+      <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -20,7 +20,7 @@
 
 #include "aura/primitive/math/math_math.h"
 
-#include "aura_allocate_heap.h"
+#include "aura_heap.h"
 
 #include "aura_allocate_processor_cache_oriented.h"
 

@@ -30,7 +30,7 @@ oswindow_data::oswindow_data()
 
 	m_plongmap = new int_map < LONG >();
 
-	m_hthread = NULL;
+	m_hthread = (HTHREAD) NULL;
 
 	m_pui = NULL;
 
@@ -724,9 +724,11 @@ oswindow GetCapture()
 oswindow SetCapture(oswindow interaction_impl)
 {
 
+   oswindow oswindowCapturePrevious = interaction_impl;
 
    g_oswindowCapture = interaction_impl;
 
+   return oswindowCapturePrevious;
 
 }
 
@@ -735,6 +737,8 @@ int_bool ReleaseCapture()
 {
 
    g_oswindowCapture = NULL;
+
+   return true;
 
 }
 

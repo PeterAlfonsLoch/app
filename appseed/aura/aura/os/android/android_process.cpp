@@ -68,7 +68,8 @@ CLASS_DECL_AURA int32_t call_async(
                             const char * pszParam,
                             const char * pszDir,
                             int32_t iShow,
-							bool bPrivileged)
+							bool bPrivileged,
+   unsigned int * puiPid)
 {
     string strCmdLine;
 
@@ -83,6 +84,13 @@ CLASS_DECL_AURA int32_t call_async(
 
     if(!create_process(strCmdLine, &processId))
         return -1;
+
+    if (puiPid != NULL)
+    {
+
+       *puiPid = processId;
+
+    }
 
     return 0;
 

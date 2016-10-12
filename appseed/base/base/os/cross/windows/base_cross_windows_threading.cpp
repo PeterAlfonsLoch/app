@@ -24,7 +24,7 @@ CLASS_DECL_BASE int_bool PostMessageW(oswindow oswindow,UINT Msg,WPARAM wParam,L
 
    IDTHREAD h = pui->m_pauraapp->get_os_int();
 
-   if(h == NULL)
+   if(h == 0)
       return FALSE;
 
    mq * pmq = __get_mq(h, oswindow != NULL || Msg != WM_QUIT);
@@ -81,7 +81,7 @@ CLASS_DECL_BASE int_bool mq_remove_window_from_all_queues(oswindow oswindow)
 
    IDTHREAD h = pui->m_pauraapp->get_os_int();
 
-   if(h == NULL)
+   if(h == 0)
       return FALSE;
 
 

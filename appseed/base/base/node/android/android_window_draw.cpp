@@ -355,7 +355,7 @@ namespace android
 
       rect rectWindow;
 
-      ::user::interaction * pui = NULL;
+      sp(::user::interaction) pui;
 
       while (System.get_frame(pui))
       {

@@ -32,6 +32,8 @@ BEGIN_EXTERN_C
    CLASS_DECL_AURA int  memdleak_enabled();
    CLASS_DECL_AURA void memdleak_enable(int enable);
    CLASS_DECL_AURA int  global_memdleak_enabled();
+   CLASS_DECL_AURA void memdleak_init();
+   CLASS_DECL_AURA void memdleak_term();
 #endif
 
    END_EXTERN_C

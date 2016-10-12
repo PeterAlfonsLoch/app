@@ -45,30 +45,30 @@ void __cdecl __crt_dump_client(void * pvData, size_t nBytes)
       {
 // xxx            C_RUNTIME_ERRORCHECK_SPRINTF(_snprintf_s(sz, _countof(sz), _countof(sz) - 1, "unknown object at $%p, %u bytes long\n", pvData, nBytes));
       }
-      else if(g_dumpcontext.GetDepth() > 0)
+      else if(::aura::system::g_p->m_pdumpcontext->GetDepth() > 0)
       {
          // long form
-         pobject->dump(g_dumpcontext);
-         g_dumpcontext << "\n";
+         pobject->dump(*::aura::system::g_p->m_pdumpcontext);
+         *::aura::system::g_p->m_pdumpcontext << "\n";
       }
       if(false) // else
       {
          //::object & obj = *pobject;
          // short form
 // xxx         C_RUNTIME_ERRORCHECK_SPRINTF(_snprintf_s(sz, _countof(sz), _countof(sz) - 1, "a %hs object at $%p, %u bytes long\n", typeid(obj).name(), pvData, nBytes));
-         g_dumpcontext << sz;
+         *::aura::system::g_p->m_pdumpcontext << sz;
       }
    }
 /* xxx   catch(std::__non_rtti_object & e)
    {
-      g_dumpcontext << "_::ca2::CrtdumpClient __non_rtti_object ";
-      g_dumpcontext << e.what();
+      *::aura::system::g_p->m_pdumpcontext << "_::ca2::CrtdumpClient __non_rtti_object ";
+      ::aura::system::g_p->m_pdumpcontext << e.what();
    } */
    catch(...)
    {
       // short form for trashed objects
 // xxx      sprintf_s(sz, _countof(sz), "faulted while dumping object at $%p, %u bytes long\n", pvData, nBytes);
-      g_dumpcontext << sz;
+      *::aura::system::g_p->m_pdumpcontext << sz;
    }
    //if (pfnOldCrtDumpClient != NULL)
    //   (*pfnOldCrtDumpClient)(pvData, nBytes);
@@ -77,7 +77,7 @@ void __cdecl __crt_dump_client(void * pvData, size_t nBytes)
 int32_t __cdecl __crt_report_hook(int32_t nRptType, char *szMsg, int32_t* pResult)
 {
    // no hook on asserts or when m_pFile is NULL
-   if (nRptType == _CRT_ASSERT || g_dumpcontext.m_pfile == NULL)
+   if (nRptType == _CRT_ASSERT || ::aura::system::g_p->m_pdumpcontext->m_pfile == NULL)
       return FALSE;
 
    ASSERT( pResult != NULL );
@@ -88,9 +88,9 @@ int32_t __cdecl __crt_report_hook(int32_t nRptType, char *szMsg, int32_t* pResul
    if( szMsg == NULL )
       throw invalid_argument_exception(::get_thread_app());
 
-   // non-NULL m_pFile, so go through g_dumpcontext for the message
+   // non-NULL m_pFile, so go through ::aura::system::g_p->m_pdumpcontext for the message
    *pResult = FALSE;
-   g_dumpcontext << szMsg;
+   *::aura::system::g_p->m_pdumpcontext << szMsg;
    //Allow other report hooks to be called.
    return FALSE;
 }

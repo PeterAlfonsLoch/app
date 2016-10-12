@@ -552,7 +552,7 @@ bool imaging::from(::draw2d::dib * pdib,::draw2d::graphics * pgraphics,FIBITMAP 
 
    int stride = pbi->bmiHeader.biWidth * sizeof(COLORREF);
 
-#if  defined(VSNORD)
+#if defined(VSNORD) && defined(__arm__)
 
    for (index y = 0; y < pdib->m_size.cy; y++)
    {

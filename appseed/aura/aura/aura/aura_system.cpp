@@ -2876,6 +2876,18 @@ namespace aura
 
    }
 
+#ifdef VSNORD
+
+   bool system::android_set_user_wallpaper(string strUrl)
+   {
+
+      m_pandroidinitdata->m_pszUserWallpaper = strdup(strUrl);
+
+      return true;
+
+   }
+
+#endif
 
 } // namespace aura
 

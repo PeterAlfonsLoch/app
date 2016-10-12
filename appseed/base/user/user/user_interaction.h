@@ -769,7 +769,7 @@ namespace user
       virtual double get_alpha();
 
 
-      virtual void delete_this();
+      //virtual void delete_this();
 
 
    };

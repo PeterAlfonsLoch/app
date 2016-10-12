@@ -248,6 +248,8 @@ wait_result condition::wait ()
 
 #endif
 
+   return wait_result(wait_result::Event0);
+
 }
 
 ///  \brief		waits for an condition for a specified time

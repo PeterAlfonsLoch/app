@@ -99,7 +99,16 @@ namespace user
       return false;
       
    }
-   
+
+#elif defined(ANDROID)
+
+   CLASS_DECL_CORE bool set_wallpaper(string strLocalImagePath)
+   {
+
+      return ::aura::system::g_p->android_set_user_wallpaper(strLocalImagePath);
+
+   }
+
 #else
    
    CLASS_DECL_CORE bool set_wallpaper(string strLocalImagePath)

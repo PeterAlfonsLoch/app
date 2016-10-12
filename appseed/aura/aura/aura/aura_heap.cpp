@@ -61,7 +61,7 @@ plex_heap_alloc_array * g_pheap = NULL;
 #include "aura_heap_mcrtdbg.cpp"
 
 
-#elif defined(MEMDLEAK)
+#elif MEMDLEAK
 
 
 #include "aura_heap_memdleak.cpp"

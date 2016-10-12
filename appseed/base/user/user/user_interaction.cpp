@@ -32,14 +32,14 @@ namespace user
    }
 
 
-   void interaction::delete_this()
-   {
+   //void interaction::delete_this()
+   //{
 
-      TRACE("::user::interaction::delete_this interaction=0x%016x %s", this, typeid(*this).name());
+   //   TRACE("::user::interaction::delete_this interaction=0x%016x %s", this, typeid(*this).name());
 
-      interaction_base::delete_this();
+   //   interaction_base::delete_this();
 
-   }
+   //}
 
 
    bool interaction::defer_check_layout()

@@ -445,6 +445,12 @@ namespace aura
       virtual city * find_city(string strQuery);
       virtual index find_city2(string strQuery, string & strCit, int64_t & iId, double & dLat, double & dLon);
 
+#ifdef VSNORD
+
+      virtual bool android_set_user_wallpaper(string strUrl);
+
+#endif
+
    };
 
 

@@ -4,11 +4,29 @@
 
 #endif
 
+#ifdef WINDOWSEX
+#include <mmsystem.h>
+#endif // WINDOWSEX
+
+#pragma comment(lib, "winmm.lib")
+
+
 #define MEMDLEAK_DEFAULT 0
 
 int g_iGlobalMemdleakEnabled;
 
 thread_int_ptr < int_ptr > t_iMemdleak;
+
+extern CLASS_DECL_AURA exception::engine * g_ee;
+
+mutex * g_pmutgen = NULL;
+
+extern memdleak_block * s_pmemdleakList;
+
+thread_pointer < memdleak_block > t_plastblock;
+
+void memdleak_init();
+void memdleak_term();
 
 
 BEGIN_EXTERN_C
@@ -432,3 +450,17 @@ END_EXTERN_C
 
 
 
+void memdleak_init()
+{
+
+   g_pmutgen = new mutex();
+
+}
+
+
+void memdleak_term()
+{
+
+   ::aura::del(g_pmutgen);
+
+}

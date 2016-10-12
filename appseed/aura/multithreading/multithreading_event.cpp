@@ -450,6 +450,8 @@ wait_result event::wait ()
 
 #endif
 
+   return wait_result(wait_result::Event0);
+
 }
 
 ///  \brief		waits for an event for a specified time

@@ -14,6 +14,7 @@ public:
    bool           m_bShowKeyboard;
    bool           m_bHideKeyboard;
    const char *   m_pszOpenUrl;
+   const char *   m_pszUserWallpaper;
 
 };
 

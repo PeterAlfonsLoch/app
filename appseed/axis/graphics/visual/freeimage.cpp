@@ -352,18 +352,18 @@ bool freeimage_load_diba_frame(::draw2d::dib * pdibCompose, ::visual::dib_sp::ar
 
 //   pdib->map();
 //
-//   int stride = pbi->bmiHeader.biWidth * sizeof(COLORREF);
-//
+//   int stride = p->m_dib->m_iScan;
+////
 //#if  defined(VSNORD)
 //
-//   for (index y = 0; y < pdib->m_size.cy; y++)
+//   for (index y = 0; y < h; y++)
 //   {
 //
-//      byte * pbDst = ((byte *)pdib->m_pcolorref) + ((pdib->m_size.cy - y - 1) * pdib->m_iScan);
+//      byte * pbDst = ((byte *)p->m_dib->m_pcolorref) + ((h - y - 1) * stride);
 //
 //      byte * pbSrc = (byte *)pdata + (y * stride);
 //
-//      for (index x = 0; x < pdib->m_size.cx; x++)
+//      for (index x = 0; x < w; x++)
 //      {
 //
 //         pbDst[0] = pbSrc[2];
@@ -382,7 +382,7 @@ bool freeimage_load_diba_frame(::draw2d::dib * pdibCompose, ::visual::dib_sp::ar
 //
 //   }
 //
-//#elif defined(APPLEOS)
+//#endif
 //
 //   byte * pbDst = (byte *)pdib->m_pcolorref;
 //
@@ -471,7 +471,11 @@ void cra_from_quada(array < COLORREF > & cra, RGBQUAD * pquad, int iCount)
    for (index i = 0; i < iCount; i++)
    {
 
+#if defined(ANDROID) && defined(__arm__)
+      cra[i] = ARGB(255, pquad[i].rgbRed, pquad[i].rgbGreen, pquad[i].rgbBlue);
+#else
       cra[i] = ARGB(255, pquad[i].rgbBlue, pquad[i].rgbGreen, pquad[i].rgbRed);
+#endif
 
       if (cra[i] == ARGB(255, 255, 255, 255))
       {

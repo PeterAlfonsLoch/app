@@ -328,7 +328,7 @@ bool gif_draw_frame(::draw2d::dib * pdibCompose, ::visual::dib_sp::array * pdiba
 
          byte bA = argb_get_a_value(cr);
          
-#ifdef __APPLE__
+#if defined(__APPLE__) || (defined(ANDROID) && defined(__arm__))
          
          byte bR = argb_get_r_value(cr);
          byte bG = argb_get_g_value(cr);

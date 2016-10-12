@@ -450,15 +450,52 @@ bool mutex::already_exists()
 
 #ifdef ANDROID
 
+bool mutex::lock()
+{
+
+   if(m_psem != SEM_FAILED)
+   {
+
+      int32_t ret = sem_wait(m_psem);
+
+      if(ret < 0)
+      {
+
+         return false;
+         
+      }
+
+   }
+   else
+   {
+
+      int irc = pthread_mutex_lock(&m_mutex);
+      
+      if (irc)
+      {
+
+         return false;
+
+      }
+         
+   }
+
+   return true;
+
+}
+
+
 wait_result mutex::wait(const duration & duration)
 {
 
+   if (duration.is_pos_infinity())
+   {
+
+      return wait();
+
+   }
+
    uint32_t dwTimeout = duration.lock_duration();
-
-   timespec delay;
-
-   delay.tv_sec = 0;
-   delay.tv_nsec = 1000000;  // 1 milli sec delay
 
    int32_t irc;
 
@@ -466,105 +503,60 @@ wait_result mutex::wait(const duration & duration)
 
    uint32_t start = ::get_tick_count();
 
-   if(m_psem != SEM_FAILED)
+   if (m_psem != SEM_FAILED)
    {
-      //Wait for Zero
 
-      while((dwTimeout == (uint32_t) INFINITE || ::get_tick_count() - start < dwTimeout) || bFirst)
+      timespec delay;
+
+      delay.tv_sec = duration.m_iSeconds;
+
+      delay.tv_nsec = duration.m_iNanoseconds;
+
+      bFirst = false;
+
+      int32_t ret = sem_timedwait(m_psem, &delay);
+
+      if(!ret)
       {
 
-         bFirst = false;
+         return wait_result(wait_result::Event0);
 
-         int32_t ret = sem_timedwait(m_psem, &delay);
+      }
+      else
+      {
 
-         if(ret < 0)
+         /* check whether somebody else has the mutex */
+         if (errno != ETIMEDOUT)
          {
-            /* check whether somebody else has the mutex */
-            if (errno == ETIMEDOUT)
-            {
-               /* sleep for delay time */
-               //nanosleep(&delay, NULL);
-            }
-            else
-            {
-               return wait_result(wait_result::Failure);
-            }
+
+            return wait_result(wait_result::Failure);
+
          }
-         else
-         {
-            return wait_result(wait_result::Event0);
-         }
+
       }
 
    }
    else
    {
 
-      if(duration.is_pos_infinity())
+      int irc = pthread_mutex_lock_timeout_np(&m_mutex, duration.get_total_milliseconds());
+      
+      if (!irc)
       {
 
-         irc = pthread_mutex_lock(&m_mutex);
-         if (!irc)
-         {
-            return wait_result(wait_result::Event0);
-         }
-         else
-         {
-            return wait_result(wait_result::Failure);
-
-         }
+         return wait_result(wait_result::Event0);
 
       }
-      else
+      else if (irc != EBUSY)
       {
-         while((::get_tick_count() - start < dwTimeout) || bFirst)
-         {
 
-            bFirst = false;
+         return wait_result(wait_result::Failure);
 
-            // Tries to acquire the mutex and access the shared resource,
-            // if success, access the shared resource,
-            // if the shared reosurce already in use, it tries every 1 milli sec
-            // to acquire the resource
-            // if it does not acquire the mutex within 2 secs delay,
-            // then it is considered to be failed
-
-            irc = pthread_mutex_trylock(&m_mutex);
-            if (!irc)
-            {
-               return wait_result(wait_result::Event0);
-            }
-            else
-            {
-               // check whether somebody else has the mutex
-               if (irc == EPERM )
-               {
-                  // Yes, Resource already in use so sleep
-                  nanosleep(&delay, NULL);
-               }
-               else
-               {
-                  return wait_result(wait_result::Failure);
-               }
-            }
-         }
       }
+
    }
 
    return wait_result(wait_result::Timeout);
-
-}
-
-
-bool mutex::lock(const duration & duration)
-{
-
-   wait_result result = wait(duration);
-
-   if(!result.signaled())
-      return false;
-
-   return true;
 
 }
 
@@ -703,32 +695,9 @@ wait_result mutex::wait(const duration & duration)
 }
 
 
-wait_result mutex::wait()
-{
-
-   if(!lock())
-   {
-
-      return wait_result(wait_result::Failure);
-
-   }
-
-   return wait_result(wait_result::Event0);
-
-}
 
 
-bool mutex::lock(const duration & duration)
-{
 
-    wait_result result = wait(duration);
-
-    if(!result.signaled())
-        return false;
-
-    return true;
-
-}
 
 
 bool mutex::lock()
@@ -782,11 +751,33 @@ bool mutex::lock()
 
 
 
+bool mutex::lock(const duration & duration)
+{
+
+   wait_result result = wait(duration);
+
+   if (!result.signaled())
+      return false;
+
+   return true;
+
+}
 
 
 
+wait_result mutex::wait()
+{
 
+   if (!lock())
+   {
 
+      return wait_result(wait_result::Failure);
+
+   }
+
+   return wait_result(wait_result::Event0);
+
+}
 
 bool mutex::unlock()
 {

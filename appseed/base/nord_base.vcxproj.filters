@@ -950,6 +950,9 @@
     <Filter Include="Header Files\base\node\linux">
       <UniqueIdentifier>{5b0a040f-93a1-418b-bfbb-d55c674541cc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\graphics\NewFilter1">
+      <UniqueIdentifier>{0bfa70ce-e4ff-4689-9aab-7bfd3e4857f9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="base\base\base.inl">
