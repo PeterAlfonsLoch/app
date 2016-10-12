@@ -175,12 +175,11 @@ void __dump_stack(uint32_t dwFlags = __stack_dump_TARGET_DEFAULT);
 #include "exception_dump_context.h"
 
 #ifdef DEBUG
-extern CLASS_DECL_AURA dump_context g_dumpcontext;
 extern CLASS_DECL_AURA bool g_bTraceEnabled;
 #endif
 
 #ifdef DEBUG
-#define _DUMP( exp ) (void)(g_dumpcontext<<exp)
+#define _DUMP( exp ) (void)(*::aura::system::g_p->m_pdumpcontext<<exp)
 #else
 #define _DUMP( exp )
 #endif

@@ -311,7 +311,7 @@ namespace primitive
    {
    throw "smfOpenFile: read error on image!";
    #ifdef DEBUG
-   e.dump(g_dumpcontext);
+   e.dump(*::aura::system::g_p->m_pdumpcontext);
    #endif
    }
    if (cbStorage != dwTemp)
