@@ -42,6 +42,8 @@ namespace aura
       m_process(this),
       m_base64(this)
    {
+      
+      m_pdumpcontext = new dump_context();
 
 #ifndef WINDOWS
       
@@ -259,6 +261,8 @@ namespace aura
       exception::translator::detach();
       
 #endif
+      
+      ::aura::del(m_pdumpcontext);
       
 
    }

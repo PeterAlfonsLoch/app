@@ -29,7 +29,7 @@ class round_window;
    
     round_window           * m_pwindow;
    
-    RoundViewController    * m_controller;
+    RoundViewController    * m_pcontroller;
     UIButton               * closeButton;
    
    

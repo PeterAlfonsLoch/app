@@ -680,6 +680,8 @@ namespace user
       UNREFERENCED_PARAMETER(pobj);
 
       user_interaction_on_destroy();
+      
+      pobj->previous();
 
 
    }

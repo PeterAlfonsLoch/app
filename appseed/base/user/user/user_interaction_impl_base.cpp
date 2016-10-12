@@ -1264,11 +1264,11 @@ namespace user
       if(m_pui == NULL)
          return;
 
-      if (m_pauraapp == NULL)
-         return;
-
-      if (!m_pauraapp->m_bRun)
-         return;
+//      if (m_pauraapp == NULL)
+//         return;
+//
+//      if (!m_pauraapp->m_bRun)
+//         return;
 
       m_pui->_001OnTimer(ptimer);
 

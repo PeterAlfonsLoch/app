@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 ca2 Desenvolvimento de Sofware Ltda. All rights reserved.
 //
 #import "macos_mm.h"
+#import "RoundWindow.h"
 
 
 NSWindow * new_round_window(round_window * pwindow, CGRect rect)
@@ -91,11 +92,15 @@ void round_window::round_window_close()
    if(m_proundwindow == NULL)
       return;
 
-   ((__bridge RoundWindow *)m_proundwindow)->m_pwindow = NULL;
-   
-   [[((__bridge RoundWindow *)m_proundwindow) dd_invokeOnMainThreadAndWaitUntilDone:TRUE] close];
-   
+   void * proundwindow = m_proundwindow;
+
+//   ((RoundWindowFrameView *)((__bridge RoundWindow *)proundwindow)->childContentView)->m_roundwindow = NULL;
+
    m_proundwindow = NULL;
+
+   ((__bridge RoundWindow *)proundwindow)->m_pwindow = NULL;
+   
+   [[((__bridge RoundWindow *)proundwindow) dd_invokeOnMainThreadAndWaitUntilDone:TRUE] close];
    
 }
 

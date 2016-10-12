@@ -601,6 +601,8 @@ namespace user
       UNREFERENCED_PARAMETER(pobj);
 
       m_bCreate = false;
+      
+      pobj->previous();
 
    }
 

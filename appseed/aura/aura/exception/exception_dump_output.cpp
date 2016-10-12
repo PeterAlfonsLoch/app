@@ -10,7 +10,7 @@
 
 void __dump(const object* pOb)
 {
-   g_dumpcontext << pOb;
+   *::aura::system::g_p->m_pdumpcontext << pOb;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -33,7 +33,7 @@ void c_cdecl __trace(const char * lpszFormat, ...)
    // was there an error? was the expanded string too long?
    ASSERT(nBuf >= 0);
 
-   g_dumpcontext << szBuffer;
+   *::aura::system::g_p->m_pdumpcontext << szBuffer;
 
    va_end(args);
 }

@@ -498,8 +498,6 @@ bool timer::call_on_timer()
 
             sl.unlock();
 
-            delete this;
-
          }
 
          return false;

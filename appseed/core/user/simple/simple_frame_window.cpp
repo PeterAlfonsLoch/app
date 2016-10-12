@@ -195,7 +195,9 @@ sp(::user::interaction) simple_frame_window::WindowDataGetWnd()
 
 void simple_frame_window::_001OnDestroy(signal_details * pobj)
 {
-
+   
+   pobj->previous();
+   
    try
    {
 
@@ -245,8 +247,6 @@ void simple_frame_window::_001OnDestroy(signal_details * pobj)
    catch (...)
    {
    }
-
-   pobj->previous();
 
 }
 
@@ -1300,6 +1300,14 @@ void simple_frame_window::InitialFramePosition(bool bForceRestore)
 void simple_frame_window::_001OnDeferPaintLayeredWindowBackground(::draw2d::graphics * pgraphics)
 {
 
+   if(m_pauraapp == NULL
+   || m_pauraapp->m_pcoresession == NULL
+   || m_pauraapp->m_pcoresession->m_psavings == NULL)
+   {
+      
+      return;
+      
+   }
 
 
    if (Session.savings().is_trying_to_save(::aura::resource_processing)

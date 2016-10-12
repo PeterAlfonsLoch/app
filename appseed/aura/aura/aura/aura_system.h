@@ -40,7 +40,7 @@ namespace aura
       };
 
 
-      
+      ::dump_context *                          m_pdumpcontext;
 
       ::aura::session::map                         m_aurabergedgemap;
 

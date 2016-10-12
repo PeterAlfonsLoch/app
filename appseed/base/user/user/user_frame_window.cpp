@@ -1013,7 +1013,10 @@ namespace user
 
    void frame_window::_001OnDestroy(signal_details * pobj)
    {
-      UNREFERENCED_PARAMETER(pobj);
+      
+      pobj->previous();
+      
+    //  UNREFERENCED_PARAMETER(pobj);
       // reset menu to default before final shutdown
       /* trans   if (m_hMenuDefault != NULL && ::GetMenu(get_handle()) != m_hMenuDefault)
       {
