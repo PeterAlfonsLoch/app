@@ -654,14 +654,14 @@ namespace core
       else
       {
       #ifdef DEBUG
-      g_dumpcontext << "File could not be opened \n";
+      *::aura::system::g_p->m_pdumpcontext << "File could not be opened \n";
       #endif
       }
       }
       catch(::core::file_exception_sp * pe)
       {
       #ifdef DEBUG
-      //         g_dumpcontext << "File could not be opened " << pe->m_cause << "\n";
+      //         *::aura::system::g_p->m_pdumpcontext << "File could not be opened " << pe->m_cause << "\n";
       #endif
       }
 
@@ -847,7 +847,7 @@ namespace core
       catch(::core::file_exception_sp * pe)
       {
       #ifdef DEBUG
-      //            g_dumpcontext << "File could not be opened " << pe->m_cause << "\n";
+      //            *::aura::system::g_p->m_pdumpcontext << "File could not be opened " << pe->m_cause << "\n";
       #endif
       }
 
