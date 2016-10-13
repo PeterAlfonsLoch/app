@@ -630,7 +630,7 @@ void __cdecl __crt_dump_client(void * pvData,size_t nBytes)
       else if(::aura::system::g_p->m_pdumpcontext->GetDepth() > 0)
       {
          // long form
-         pobject->dump(*::aura::system::g_p->m_pdumpcontext->);
+         pobject->dump(*::aura::system::g_p->m_pdumpcontext);
          *::aura::system::g_p->m_pdumpcontext << "\n";
       }
       if(false) // else

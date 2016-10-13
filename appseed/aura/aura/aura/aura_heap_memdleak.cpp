@@ -406,7 +406,7 @@ CLASS_DECL_AURA int  global_memdleak_enabled()
 
       uint32_t dwFileAttributes = GetFileAttributesW(L"C:\\archive\\ca2\\config\\system\\memdleak.txt");
       
-      bMemdleak = dwFileAttributes != INVALID_FILE_ATTRIBUTES && (dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) == 0
+      bMemdleak = dwFileAttributes != INVALID_FILE_ATTRIBUTES && (dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) == 0;
       
 #else
       
@@ -447,6 +447,212 @@ CLASS_DECL_AURA int  global_memdleak_enabled()
 
 END_EXTERN_C
 
+
+
+#if MEMDLEAK
+
+#define print str+=
+
+class memblock :
+   virtual public ::object
+{
+public:
+
+   int 	m_iUse;
+   string 	m_strFile;
+   int		m_iLine;
+
+   int		m_iCount;
+   int64_t     m_iSize;
+
+};
+
+
+typedef spa(memblock) memblocka;
+
+
+string get_mem_info_report1()
+{
+
+   string str;
+
+   int * piUse = NULL;
+   const char ** pszFile = NULL;
+   const char ** pszCallStack = NULL;
+   uint32_t * puiLine = NULL;
+   size_t * psize = NULL;
+
+   try
+   {
+
+      ::count c = get_mem_info(&piUse, &pszFile, &pszCallStack, &puiLine, &psize);
+
+      memblocka bla;
+
+      int j;
+
+
+      for (int i = 0; i < c; i++)
+      {
+         for (j = 0; j < bla.get_size(); j++)
+         {
+            memblock * pbl = bla.ptr_at(j);
+            if (pbl->m_iUse == piUse[i] && pbl->m_strFile == pszFile[i] && pbl->m_iLine == puiLine[i])
+            {
+               pbl->m_iCount++;
+               pbl->m_iSize += psize[i];
+               break;
+            }
+         }
+         if (j == bla.get_size())
+         {
+            bla.add(canew(memblock));
+            auto & pbl = bla[bla.get_upper_bound()];
+            pbl->m_iUse = piUse[i];
+            pbl->m_strFile = pszFile[i];
+            pbl->m_iLine = puiLine[i];
+            pbl->m_iCount = 1;
+            pbl->m_iSize = psize[i];
+         }
+         //			free((void *) pszFile[i]);
+      }
+
+
+      int_array ia;
+
+      ia.set_size(bla.get_count());
+
+      for (int i = 0; i < bla.get_count(); i++)
+      {
+         ia[i] = i;
+      }
+
+      int s;
+
+      for (int i = 0; i < bla.get_count(); i++)
+      {
+         for (j = i + 1; j < bla.get_count(); j++)
+         {
+            if (bla[ia[i]]->m_iSize < bla[ia[j]]->m_iSize)
+            {
+               s = ia[i];
+               ia[i] = ia[j];
+               ia[j] = s;
+            }
+         }
+      }
+
+      print("<table>");
+      print("<tbody>");
+      print("<tr>");
+      print("<td>");
+      print("Block Use");
+      print("</td>");
+      print("<td>");
+      print("File Name");
+      print("</td>");
+      print("<td>");
+      print("Line");
+      print("</td>");
+      print("<td>");
+      print("Count");
+      print("</td>");
+      print("<td>");
+      print("Size");
+      print("</td>");
+      print("</tr>");
+
+
+      for (int i = 0; i < bla.get_count(); i++)
+      {
+         if ((i % 2) == 0)
+         {
+            print("<tr style=\"background-color:#c0efb7;\">");
+         }
+         else
+         {
+            print("<tr style=\"background-color:#e0ffd7;\">");
+         }
+         print("<td>");
+         print(var(bla[ia[i]]->m_iUse));
+         print("</td>");
+         print("<td>");
+         print(bla[ia[i]]->m_strFile);
+         print("</td>");
+         print("<td>");
+         print(var(bla[ia[i]]->m_iLine));
+         print("</td>");
+         print("<td>");
+         print(var(bla[ia[i]]->m_iCount));
+         print("</td>");
+         print("<td>");
+         print(var(bla[ia[i]]->m_iSize));
+         print("</td>");
+         print("</tr>");;
+      }
+      print("</tbody>");
+      print("</table>");
+   }
+   catch (...)
+   {
+
+   }
+
+   if (piUse)
+      ::free(piUse);
+   if (pszFile)
+      ::free(pszFile);
+   if (puiLine)
+      ::free(puiLine);
+   if (psize)
+      ::free(psize);
+
+
+   return str;
+
+}
+
+#undef print
+
+void memdleak_dump()
+{
+
+
+   memdleak_block * pblock = s_pmemdleakList;
+
+   char sz[24];
+   int i = 0;
+   while (pblock != NULL)
+   {
+      if (pblock->m_iStack > 0)
+      {
+         OutputDebugString("\n");
+         OutputDebugString("--------------------------------------------------------\n");
+         ultoa_dup(sz, ++i, 10);
+         OutputDebugString("Index : ");
+         OutputDebugString(sz);
+         OutputDebugString("\n");
+         ultoa_dup(sz, pblock->m_size, 10);
+         OutputDebugString("Size : ");
+         OutputDebugString(sz);
+         OutputDebugString("\n");
+         OutputDebugString(g_ee->stack_trace(pblock->m_puiStack, pblock->m_iStack));
+      }
+      pblock = pblock->m_pnext;
+   }
+   OutputDebugString("\n");
+   OutputDebugString("--------------------------------------------------------\n");
+   ultoa_dup(sz, i, 10);
+   OutputDebugString("\nFound ");
+   OutputDebugString(sz);
+   OutputDebugString(" memory leaks.");
+
+   //file_put_contents_dup(::dir::system() / "m.html", get_mem_info_report1());
+}
+
+#undef print
+
+#endif
 
 
 

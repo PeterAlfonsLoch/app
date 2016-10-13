@@ -1868,9 +1868,6 @@
     <ClInclude Include="net\net_url.h">
       <Filter>Header Files\net</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_allocate_heap.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
     <ClInclude Include="aura\aura\aura_allocate_processor_cache_oriented.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
@@ -2205,6 +2202,12 @@
       <Filter>Header Files\aura\charguess</Filter>
     </ClInclude>
     <ClInclude Include="aura\aura\aura_error.h">
+      <Filter>Header Files\aura\aura</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\aura\aura_heap_memory.h">
+      <Filter>Header Files\aura\aura</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\aura\aura_heap.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
   </ItemGroup>
@@ -3759,6 +3762,21 @@
     </ClCompile>
     <ClCompile Include="aura\os\os_alloc.cpp">
       <Filter>Source Files\aura\os</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\aura\aura_heap_mcheck.cpp">
+      <Filter>Source Files\aura\aura</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\aura\aura_heap_mcrtdbg.cpp">
+      <Filter>Source Files\aura\aura</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\aura\aura_heap_memdleak.cpp">
+      <Filter>Source Files\aura\aura</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\aura\aura_heap_std.cpp">
+      <Filter>Source Files\aura\aura</Filter>
+    </ClCompile>
+    <ClCompile Include="aura\aura\aura_heap_vld.cpp">
+      <Filter>Source Files\aura\aura</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

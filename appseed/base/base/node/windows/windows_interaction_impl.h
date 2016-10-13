@@ -681,6 +681,10 @@ namespace windows
       virtual void register_drop_target();
 
       virtual void show_task(bool bShow);
+
+
+      virtual void _001RedrawWindow(UINT nFlags = 0) override;
+
       
    };
 

@@ -39,19 +39,31 @@ bool file_change_event::unlock()
 }
 
 ///  \brief		waits for an file notification forever
-void file_change_event::wait ()
+wait_result file_change_event::wait ()
 {
-	if ( ::WaitForSingleObject((HANDLE) item(), INFINITE) != WAIT_OBJECT_0 )
-		throw runtime_error(get_app(), "::core::pal::file_change_event::wait: failure");
+
+   if (::WaitForSingleObject((HANDLE)item(), INFINITE) != WAIT_OBJECT_0)
+   {
+
+      return wait_result(wait_result::Failure);
+
+   }
+
+   return wait_result(wait_result::Event0);
+
 }
+
 
 ///  \brief		waits for an file notification for a specified time
 ///  \param		duration time period to wait for an file notification
 ///  \return	waiting action result as wait_result
 wait_result file_change_event::wait (const duration & duration)
 {
+
    return wait_result((uint32_t) ::WaitForSingleObject((HANDLE)item(),duration.lock_duration()));
+
 }
+
 
 ///  \brief		requests that the operating system signal a change
 ///				notification handle the next time it detects an appropriate

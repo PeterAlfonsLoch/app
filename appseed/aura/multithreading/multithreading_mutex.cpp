@@ -749,7 +749,7 @@ bool mutex::lock()
 
 
 
-
+#ifndef WINDOWS
 
 bool mutex::lock(const duration & duration)
 {
@@ -778,6 +778,9 @@ wait_result mutex::wait()
    return wait_result(wait_result::Event0);
 
 }
+
+#endif
+
 
 bool mutex::unlock()
 {

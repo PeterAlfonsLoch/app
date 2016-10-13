@@ -4490,6 +4490,15 @@ restart_mouse_hover_check:
 
    }
 
+
+   void interaction_impl::_001RedrawWindow(UINT nFlags)
+   {
+
+      RedrawWindow(NULL, NULL, nFlags);
+
+   }
+
+
    bool interaction_impl::RedrawWindow(LPCRECT lpRectUpdate,::draw2d::region* prgnUpdate,UINT flags)
    {
 

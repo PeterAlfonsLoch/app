@@ -41,7 +41,7 @@ public:
 
 
 	///  \brief		waits for an file notification forever
-	virtual void wait ();
+	virtual wait_result wait ();
 
 	///  \brief		waits for an file notification for a specified time
 	///  \param		duration time period to wait for an file notification
