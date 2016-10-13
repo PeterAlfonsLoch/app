@@ -771,6 +771,7 @@ namespace user
 
       //virtual void delete_this();
 
+      virtual void defer_notify_mouse_move(point & ptLast);
 
    };
 

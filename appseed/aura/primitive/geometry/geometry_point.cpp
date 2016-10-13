@@ -76,17 +76,17 @@ rect point::operator+(LPCRECT lpRect) const throw()
 rect point::operator-(LPCRECT lpRect) const throw()
    { return rect(lpRect) - *this; }
 
-uint32_t point::ui32() const throw()
+uint32_t point::uint32() const throw()
 {
    return MAKELONG(x, y);
 }
 
-uint64_t point::ui64() const throw()
+uint64_t point::uint64() const throw()
 {
    return MAKELONG64(x, y);
 }
 
-LPARAM point::lparam() const throw()
+::lparam point::lparam() const throw()
 {
    return MAKELPARAM(x, y);
 }

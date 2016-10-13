@@ -67,9 +67,11 @@ public:
    rect operator+(LPCRECT lpRect) const throw();
    rect operator-(LPCRECT lpRect) const throw();
 
-   uint32_t ui32() const throw();
-   uint64_t ui64() const throw();
-   LPARAM   lparam() const throw();
+   uint32_t uint32() const throw();
+   uint64_t uint64() const throw();
+   ::lparam lparam() const throw();
+
+   operator ::lparam() const { return lparam(); }
 
    inline LONG get_dimension(e_orientation eorientation) const throw();
    inline LONG get_orthogonal_dimension(e_orientation eorientation) const throw();

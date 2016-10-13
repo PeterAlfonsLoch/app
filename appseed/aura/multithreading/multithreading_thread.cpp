@@ -415,7 +415,7 @@ int32_t thread::run()
    ::output_debug_string("::thread::run " + string(demangle(typeid(*this).name())) + " m_bRun = "+::str::from((int)m_bRun)+"\n\n");
 
 
-   while(true)
+   while(m_bRun)
    {
 
       //if(m_spuiptra.is_set() && m_spuiptra->get_count() > 0)

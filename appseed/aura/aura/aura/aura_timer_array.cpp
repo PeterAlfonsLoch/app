@@ -72,45 +72,45 @@ namespace aura
 
       MAP::pair * ppair = m_map.PLookup(nIDEvent);
 
-      if(ppair == NULL)
+      if (ppair == NULL)
+      {
+
          return true;
+
+      }
 
       timer * ptimer = ppair->m_element2;
 
       m_map.remove_key(nIDEvent);
-      
-      ptimer->stop(true);
-      
-      delete ptimer;
 
-//      if(ptimer->m_bDeal)
-//      {
-//
-//         ptimer->m_bKill = true;
-//
-//      }
-//      else
-//      {
-//
-//         if(ptimer->m_bDestroying)
-//         {
-//
-//
-//            sl.unlock();
-//
-//         }
-//         else
-//         {
-//
-//            ptimer->m_bDestroying = true;
-//
-//            sl.unlock();
-//
-//            delete ptimer;
-//
-//         }
-//
-//      }
+      if(ptimer->m_bDeal)
+      {
+
+         ptimer->m_bKill = true;
+
+      }
+      else
+      {
+
+         if(ptimer->m_bDestroying)
+         {
+
+
+            sl.unlock();
+
+         }
+         else
+         {
+
+            ptimer->m_bDestroying = true;
+
+            sl.unlock();
+
+            delete ptimer;
+
+         }
+
+      }
 
       return true;
 

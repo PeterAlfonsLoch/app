@@ -25,8 +25,6 @@ namespace html
    elemental::~elemental()
    {
 
-      destroy(m_pdata);
-
    }
 
 
@@ -964,8 +962,6 @@ namespace html
          if (!pelemental->parse(pdata, psz))
          {
 
-            delete pelemental;
-
             pszParam = psz;
 
             break;
@@ -1235,25 +1231,20 @@ namespace html
 
          try
          {
-            m_pimpl->delete_implementation(pdoc);
-         }
-         catch(...)
-         {
-         }
-         try
-         {
-            delete m_pimpl;
-         }
-         catch(...)
-         {
-         }
-         m_pimpl = NULL;
 
+            m_pimpl->delete_implementation(pdoc);
+
+         }
+         catch(...)
+         {
+
+         }
+
+         m_pimpl = NULL;
 
       }
 
    }
-
 
    void elemental::destroy(data * pdoc)
    {
@@ -1281,31 +1272,12 @@ namespace html
 
       }
 
-
-
-      if(m_pparent != NULL)
-      {
-
-         try
-         {
-
-            m_pparent->m_elementalptra.remove(this);
-
-         }
-         catch(...)
-         {
-
-         }
-
-      }
-
       try
       {
 
          for(int32_t i = 0; i < m_elementalptra.get_size(); i++)
          {
 
-       
             try
             {
 
@@ -1356,20 +1328,27 @@ namespace html
 
          }
 
-         m_pimpl.release();
-
-  /*       try
-         {
-            delete m_pimpl;
-         }
-         catch(...)
-         {
-         }
-         m_pimpl = NULL;*/
+         m_pimpl = NULL;
 
       }
 
       m_elementalptra.remove_all();
+
+      if (m_pparent != NULL)
+      {
+
+         try
+         {
+
+            m_pparent->m_elementalptra.remove(this);
+
+         }
+         catch (...)
+         {
+
+         }
+
+      }
 
    }
 

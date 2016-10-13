@@ -7660,6 +7660,28 @@ restart:
 
    }
 
+   void interaction::defer_notify_mouse_move(point & ptLast)
+   {
+
+      point ptCurrent;
+
+      Session.get_cursor_pos(ptCurrent);
+
+      if (ptCurrent != ptLast)
+      {
+
+         ptLast = ptCurrent;
+
+         send_message(WM_MOUSEMOVE, 0, ptCurrent);
+
+
+
+      }
+
+
+   }
+
+
 
    double alpha_source::get_alpha(::user::interaction * puiTarget)
    {

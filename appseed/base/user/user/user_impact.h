@@ -236,6 +236,7 @@ namespace user
 
          virtual string calc_data_id();
 
+
    };
 
 
