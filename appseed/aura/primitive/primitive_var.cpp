@@ -3866,7 +3866,7 @@ void var::skip_identifier(const char * & psz, const char * pszEnd)
    const char * pszStart = pszParse;
    while (isalpha_dup(*pszParse) && pszParse <= pszEnd)
       pszParse++;
-   int iLen = pszParse - pszStart;
+   strsize iLen = pszParse - pszStart;
    if (iLen == 5 && strnicmp(pszStart, "false", 5) == 0)
    {
    }

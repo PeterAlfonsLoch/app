@@ -45,7 +45,7 @@ namespace user
       spa(split_bar)                               m_splitbara;
       spa(Pane)                                    m_panea;
       e_orientation                                m_eorientationSplit;
-      int32_t                                      m_iIndex;
+      index                                        m_iIndex;
       int32_t                                      m_iState;
       bool                                         m_bInitialized;
       ::critical_section                           m_mutex;
@@ -53,7 +53,7 @@ namespace user
       int32_t                                      m_cxBorder;
       int32_t                                      m_cyBorder;
 
-      int                                          m_iPaneCount;
+      ::count                                      m_iPaneCount;
 
       split_layout();
       split_layout(::aura::application * papp);
@@ -65,40 +65,40 @@ namespace user
       virtual int32_t get_normal_dimension();
       virtual int32_t get_ortogonal_dimension();
 
-      void RelayEventSplitBar(int32_t iSplitBar, UINT message, WPARAM wParam, LPARAM lParam);
+      void RelayEventSplitBar(index iSplitBar, UINT message, WPARAM wParam, LPARAM lParam);
       e_orientation GetSplitOrientation();
-      int32_t GetMaxPos(int32_t iPane);
-      int32_t GetMinPos(int32_t iPane);
-      bool InsertPaneAt(int32_t iIndex, sp(::user::interaction)pwindow, bool bFixedSize, id idPane = id());
-      bool SetPane(int32_t iIndex, sp(::user::interaction)pwindow, bool bFixedSize, id idPane = id());
-      bool RemovePaneAt(int32_t iIndex);
-      void SetPaneFixedSize(int32_t iIndex, SIZE * pSize);
-      void CalcSplitBarRect(int32_t iIndex, LPRECT lpRect);
+      int32_t GetMaxPos(index iPane);
+      int32_t GetMinPos(index iPane);
+      bool InsertPaneAt(index iIndex, sp(::user::interaction)pwindow, bool bFixedSize, id idPane = id());
+      bool SetPane(index iIndex, sp(::user::interaction)pwindow, bool bFixedSize, id idPane = id());
+      bool RemovePaneAt(index iIndex);
+      void SetPaneFixedSize(index iIndex, SIZE * pSize);
+      void CalcSplitBarRect(index iIndex, LPRECT lpRect);
       void CalcPaneRect(int32_t nMinPos, int32_t nMaxPos, LPRECT lpRect);
-      void CalcPaneRect(int32_t iIndex, LPRECT lpRect);
+      void CalcPaneRect(index iIndex, LPRECT lpRect);
 
-      virtual sp(::user::interaction) get_pane_window(int32_t iPane);
-      virtual sp(::user::place_holder) get_pane_holder(int32_t iPane);
-      virtual rect & get_pane_rect(int32_t iPane);
-      virtual id get_pane_id(int32_t iPane);
-      virtual int32_t get_pane_by_id(::id id);
+      virtual sp(::user::interaction) get_pane_window(index iPane);
+      virtual sp(::user::place_holder) get_pane_holder(index iPane);
+      virtual rect & get_pane_rect(index iPane);
+      virtual id get_pane_id(index iPane);
+      virtual index get_pane_by_id(::id id);
 
 
-      int32_t get_pane_count();
+      ::count get_pane_count();
 
-      int32_t get_split_count();
-      int32_t get_position(int32_t iIndex);
-      void set_position(int32_t iIndex, int32_t nPos);
-      void set_position_rate(int32_t iIndex, double dRate, double dMinimumRate = 0.1, double dMaximumRate = 0.9);
+      ::count get_split_count();
+      int32_t get_position(index iIndex);
+      void set_position(index iIndex, int32_t nPos);
+      void set_position_rate(index iIndex, double dRate, double dMinimumRate = 0.1, double dMaximumRate = 0.9);
       void layout();
       int32_t GetMaxPos();
       int32_t GetMinPos();
       int32_t GetPos(int32_t xPos, int32_t yPos);
-      void RelayChildEvent(int32_t iIndex, const MESSAGE *  lpMsg);
+      void RelayChildEvent(index iIndex, const MESSAGE *  lpMsg);
 
       void SetSplitOrientation(e_orientation eorientation);
 
-      bool SetPaneCount(int32_t iPaneCount);
+      bool SetPaneCount(::count iPaneCount);
 
       virtual bool initialize_split_layout();
 

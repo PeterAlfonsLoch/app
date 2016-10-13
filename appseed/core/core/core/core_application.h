@@ -206,29 +206,6 @@ namespace core
       virtual int32_t simple_message_box(::user::primitive * puiOwner,const char * pszMessage,UINT fuStyle = MB_OK);
 
 
-//#ifdef VARIADIC_TEMPLATE
-//
-//      template<typename T, typename... Args>
-//      int32_t simple_message_box(::user::primitive * puiOwner, UINT fuStyle, const char * pszFormat, const T & value, Args... args)
-//      {
-//
-//         string str;
-//
-//         string_format format(&str, &::string::FormatPrinter, NULL);
-//
-//         format.format(pszFormat, value, args...);
-//
-//         return simple_message_box(puiOwner, str, fuStyle);
-//
-//      }
-//
-//
-//#else
-//
-//      virtual int32_t simple_message_box(::user::primitive * puiOwner,UINT fuStyle,const char * pszFormat,...);
-//
-//#endif
-
 
       virtual bool on_run_exception(::exception::exception &);
 
@@ -244,42 +221,6 @@ namespace core
       // call after all doc templates are registered
       void UnregisterShellFileTypes();
 
-      /*
-      // Retrieve an integer value from INI file or registry.
-      UINT GetProfileInt(const char * lpszSection, const char * lpszEntry, int32_t nDefault);
-
-      // Sets an integer value to INI file or registry.
-      bool WriteProfileInt(const char * lpszSection, const char * lpszEntry, int32_t nValue);
-
-      // Retrieve a string value from INI file or registry.
-      string GetProfileString(const char * lpszSection, const char * lpszEntry,
-      const char * lpszDefault = NULL);
-
-      // Sets a string value to INI file or registry.
-      bool WriteProfileString(const char * lpszSection, const char * lpszEntry,
-      const char * lpszValue);
-
-      // Retrieve an arbitrary binary value from INI file or registry.
-      bool GetProfileBinary(const char * lpszSection, const char * lpszEntry,
-      LPBYTE* ppData, UINT* pBytes);
-
-      // Sets an arbitrary binary value to INI file or registry.
-      bool WriteProfileBinary(const char * lpszSection, const char * lpszEntry,
-      LPBYTE pData, UINT nBytes);
-
-      // Override in derived class.
-      virtual void InitLibId();
-
-      // Register
-      virtual bool Register();
-
-      // Unregisters everything this cast was known to register.
-      virtual bool Unregister();*/
-
-#ifdef WINDOWS
-      // Delete a registry key entry (and all its subkeys, too).
-      //LONG DelRegTree(HKEY hParentKey, const string & strKeyName);
-#endif
 
 
       // Printer DC Setup routine, 'struct tagPD' is a PRINTDLG structure.
@@ -554,11 +495,7 @@ namespace core
 
       virtual void data_on_after_change(signal_details * pobj);
 
-      //   virtual int32_t simple_message_box(sp(::user::interaction) puiOwner, const char * pszMessage, UINT fuStyle = MB_OK);
-      //   virtual int32_t simple_message_box_timeout(sp(::user::interaction) pwndOwner, const char * pszMessage, ::duration durationTimeOut, UINT fuStyle = MB_OK);
-
       virtual void add_document_template(::user::impact_system * ptemplate);
-      //virtual void close_all_documents(bool bEndSession,::user::interaction * pwndExcept = NULL);
 
       virtual ::user::document * open_document_file(const char * lpszFileName);
 

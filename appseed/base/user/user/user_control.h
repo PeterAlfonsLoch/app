@@ -74,22 +74,22 @@ namespace user
             Ex1FormInterfaceComboBox   * m_pcombobox;
          } m_data;
 
-         form_window *           m_pform;
-         int_map < sp(control) > m_controlmap;
-         id                      m_id;
-         id                      m_uiText;
-         sp(type)                m_typeinfo;
-         index                   m_iSubItem;
-         id                      m_idPrivateDataSection;
-         bool                    m_bTransparent;
-         e_control_type          m_etype;
-         bool                    m_bCreated;
-         bool                    m_bSubclassed;
-         eddx                    m_eddx;
-         ::database::id          m_dataid;
-         flags < efunction >     m_flagsfunction;
-         edatatype               m_edatatype;
-         rect                    m_rect;
+         form_window *                 m_pform;
+         index_map < sp(control) >     m_controlmap;
+         id                            m_id;
+         id                            m_uiText;
+         sp(type)                      m_typeinfo;
+         index                         m_iSubItem;
+         id                            m_idPrivateDataSection;
+         bool                          m_bTransparent;
+         e_control_type                m_etype;
+         bool                          m_bCreated;
+         bool                          m_bSubclassed;
+         eddx                          m_eddx;
+         ::database::id                m_dataid;
+         flags < efunction >           m_flagsfunction;
+         edatatype                     m_edatatype;
+         rect                          m_rect;
 
 
          descriptor();

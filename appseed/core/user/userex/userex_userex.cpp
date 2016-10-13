@@ -420,16 +420,17 @@ namespace userex
 
       property_set propertyset;
       propertyset["message"] = pszMessage;
-      box.m_dwDelay = durationTimeout.get_total_milliseconds();
+      
+      box.m_dwDelay = (DWORD) durationTimeout.get_total_milliseconds();
 
       string strMatter;
       if(fuStyle & MB_YESNOCANCEL)
       {
-         strMatter = "system\\user\\simple_message_box\\yesnocancel.xhtml";
+         strMatter = "system\\user\\simple_message_box_timeout\\yesnocancel.xhtml";
       }
       else
       {
-         strMatter = "system\\user\\simple_message_box\\ok.xhtml";
+         strMatter = "system\\user\\simple_message_box_timeout\\ok.xhtml";
       }
 
       box.show(strMatter,&propertyset);

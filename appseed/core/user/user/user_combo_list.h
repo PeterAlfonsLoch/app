@@ -24,7 +24,7 @@ namespace user
       bool                                m_bComboList;
       combo_box *                         m_pcombo;
       int32_t                             m_iItemHeight;
-      int                                 m_iHover;
+      index                               m_iHover;
       int                                 m_iBorder;
 
       ::user::interaction *               m_puiDeactivateTogether;

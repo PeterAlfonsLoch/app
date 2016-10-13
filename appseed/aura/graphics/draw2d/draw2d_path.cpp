@@ -503,7 +503,7 @@ namespace draw2d
    }
 
 
-   bool path::add_lines(const POINT * lppoint, int32_t nCount)
+   bool path::add_lines(const POINT * lppoint, ::count nCount)
    {
 
       bool bOk = true;
@@ -520,7 +520,7 @@ namespace draw2d
    }
 
 
-   bool path::add_lines(const POINTD * lppoint,int32_t nCount)
+   bool path::add_lines(const POINTD * lppoint, ::count nCount)
    {
 
       bool bOk = true;

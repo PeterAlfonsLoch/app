@@ -534,7 +534,7 @@ namespace file
 
       m_dwLength = m_dwFileLength;
 
-      file_position_t dwStartPosition;
+//      file_position_t dwStartPosition;
 
       do
       {

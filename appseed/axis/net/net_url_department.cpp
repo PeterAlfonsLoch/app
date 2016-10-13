@@ -1468,7 +1468,7 @@ namespace url
 
       WCHAR * pwsz = new WCHAR[iSize + 1];
 
-      IdnToAscii(IDN_RAW_PUNYCODE, wstr, wstr.get_length(), pwsz, iSize + 1);
+      IdnToAscii(IDN_RAW_PUNYCODE, wstr, (int) wstr.get_length(), pwsz, iSize + 1);
 
       string str = pwsz;
 
@@ -1508,7 +1508,7 @@ namespace url
 
       WCHAR * pwsz = new WCHAR[iSize + 1];
 
-      IdnToUnicode(IDN_RAW_PUNYCODE, wstr, wstr.get_length(), pwsz, iSize + 1);
+      IdnToUnicode(IDN_RAW_PUNYCODE, wstr, (int) wstr.get_length(), pwsz, iSize + 1);
 
       string str = pwsz;
 

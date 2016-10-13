@@ -291,8 +291,8 @@ namespace html
                m_cxMin += ptable->m_iCellSpacing * (m_iColEnd - m_iColBeg); // mid
                m_cxMax += ptable->m_iCellSpacing / 2; //half right;
                m_cxMin += ptable->m_iCellSpacing / 2; //half right;
-               m_cxMax += fmod(ptable->m_iCellSpacing, 2.f); //odd right;
-               m_cxMin += fmod(ptable->m_iCellSpacing, 2.f); //odd right;
+               m_cxMax += fmodf(ptable->m_iCellSpacing, 2.f); //odd right;
+               m_cxMin += fmodf(ptable->m_iCellSpacing, 2.f); //odd right;
 
             }
             else if (m_iColEnd == ptable->m_columna.get_upper_bound())

@@ -299,7 +299,7 @@ namespace user
       ::user::list *                   m_plist; // should be set to this ::user::list if this is a list
 
       int                              m_iDefaultColumnWidth;
-      int_to_int                       m_mapColumnWidth;
+      index_map < int >                m_mapColumnWidth;
 
       CSortInfo                        m_sortinfo;
 
@@ -335,7 +335,7 @@ namespace user
 
       bool                             m_bLockViewUpdate;
       int32_t                          m_iItemHeight;
-      int32_t                          m_iItemWidth;
+      int64_t                          m_iItemWidth;
 
       index                            m_iItemHover;
       index                            m_iSubItemHover;

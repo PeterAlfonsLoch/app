@@ -427,13 +427,13 @@ namespace sockets
       if(m_b_use_mutex)
       {
          m_pmutex->unlock();
-         n = ::select(m_maxsock,&rfds,&wfds,&efds,tsel);
+         n = ::select((int) m_maxsock,&rfds,&wfds,&efds,tsel);
          m_iSelectErrno = Errno;
          m_pmutex->lock();
       }
       else
       {
-         n = ::select(m_maxsock,&rfds,&wfds,&efds,tsel);
+         n = ::select((int)m_maxsock,&rfds,&wfds,&efds,tsel);
          m_iSelectErrno = Errno;
       }
       dw2 = ::get_tick_count();
@@ -1078,11 +1078,11 @@ namespace sockets
       debug_print(" m_delete  : %d\n", m_delete.size());
       */
 
-      int iSockets = m_sockets.get_size();
+      ::count iSockets = m_sockets.get_size();
 
-      int iAdd = m_add.get_size();
+      ::count iAdd = m_add.get_size();
 
-      int iDelete = m_delete.get_size();
+      ::count iDelete = m_delete.get_size();
 
       return iSockets + iAdd + iDelete;
 

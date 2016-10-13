@@ -154,7 +154,7 @@ namespace user
             else
             {
 
-               UINT uiFrameMillis = 1000 / m_iFramesPerSecond;
+               DWORD uiFrameMillis = (DWORD) (1000 / m_iFramesPerSecond);
 
                uint64_t micros = (endTime - startTime) / 1000;
 
@@ -163,7 +163,7 @@ namespace user
                if (uiFrameMillis > millis + 2)
                {
 
-                  Sleep(uiFrameMillis - millis - 2);
+                  Sleep((DWORD) (uiFrameMillis - millis - 2));
 
                }
 

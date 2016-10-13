@@ -161,7 +161,7 @@ namespace hotplugin
 
       SolidBrush b(Color(184,255,255,255));
 
-      pgraphics->DrawString(wstr, wstr.get_length(), &f, PointF(rectBar.left,rectBar.top), &b);
+      pgraphics->DrawString(wstr, (INT) wstr.get_length(), &f, PointF((REAL) rectBar.left, (REAL) rectBar.top), &b);
 
 #endif
 

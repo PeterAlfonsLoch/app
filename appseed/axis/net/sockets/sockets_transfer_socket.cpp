@@ -236,7 +236,7 @@ namespace sockets
       // static_cast is necessary to avoid compiler warning under WIN32;
       // This is no problem because the first parameter is included only
       // for compatibility with Berkeley sockets.
-      const int iRet = ::select(GetSocket() + 1, &fd, NULL, NULL, &tv);
+      const int iRet = ::select((int) (GetSocket() + 1), &fd, NULL, NULL, &tv);
 
       if (iRet == SOCKET_ERROR)
       {
@@ -257,7 +257,7 @@ namespace sockets
       // static_cast is necessary to avoid compiler warning under WIN32;
       // This is no problem because the first parameter is included only
       // for compatibility with Berkeley sockets.
-      const int iRet = ::select(GetSocket() + 1, NULL, &fd, NULL, &tv);
+      const int iRet = ::select((int) (GetSocket() + 1), NULL, &fd, NULL, &tv);
 
       if (iRet == SOCKET_ERROR)
       {

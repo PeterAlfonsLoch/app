@@ -149,9 +149,14 @@ namespace userex // ca8 + cube
 
       }
 
-      m_pdocument->oprop("wait_message_dialog_timeout") = (int32_t) ((m_dwDelay - dwTimeout) / 1000);
-      
-      m_pdocument->soft_reload();
+      if (m_pdocument != NULL)
+      {
+
+         m_pdocument->oprop("wait_message_dialog_timeout") = (int32_t)((m_dwDelay - dwTimeout) / 1000);
+
+         //m_pdocument->soft_reload();
+
+      }
 
    }
 

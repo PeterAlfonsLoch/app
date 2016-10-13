@@ -4648,20 +4648,6 @@ finalize:
    }
 
 
-   //int32_t application::simple_message_box_timeout(sp(::user::interaction) pwndOwner,const char * pszMessage,::duration durationTimeOut,UINT fuStyle)
-   //{
-   //   UNREFERENCED_PARAMETER(durationTimeOut);
-   //   return simple_message_box(pwndOwner,pszMessage,fuStyle);
-   //}
-
-
-   //::user::user * application::create_user()
-   //{
-
-   //   return canew(::user::user(this));
-
-   //}
-
    bool application::set_keyboard_layout(const char * pszPath,::action::context actioncontext)
    {
 

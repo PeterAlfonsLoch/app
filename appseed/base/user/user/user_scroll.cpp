@@ -1032,14 +1032,14 @@ namespace user
 
       m_iWheelDelta -= (int16_t)(WHEEL_DELTA * iDelta);
 
-      int nPos = m_pscrollbarVert->m_scrollinfo.nPos - iDelta * get_wheel_scroll_delta();
+      index nPos = m_pscrollbarVert->m_scrollinfo.nPos - iDelta * get_wheel_scroll_delta();
 
       if (nPos < m_pscrollbarVert->m_scrollinfo.nMin)
          nPos = m_pscrollbarVert->m_scrollinfo.nMin;
       else if (nPos > m_pscrollbarVert->m_scrollinfo.nMax - m_pscrollbarVert->m_scrollinfo.nPage)
          nPos = m_pscrollbarVert->m_scrollinfo.nMax - m_pscrollbarVert->m_scrollinfo.nPage;
 
-      m_pscrollbarVert->m_scrollinfo.nPos = nPos;
+      m_pscrollbarVert->m_scrollinfo.nPos =  (int32_t) nPos;
 
       m_pscrollbarVert->send_scroll_message(SB_THUMBPOSITION);
          

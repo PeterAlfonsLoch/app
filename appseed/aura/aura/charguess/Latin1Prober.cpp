@@ -129,7 +129,7 @@ PRBool nsLatin1Prober::FilterWithEnglishLetters(const char* aBuf, PRUint32 aLen,
     }
   }
 
-  newLen = newptr - *newBuf;
+  newLen = (PRUint32) (newptr - *newBuf);
 
   return PR_TRUE;
 }

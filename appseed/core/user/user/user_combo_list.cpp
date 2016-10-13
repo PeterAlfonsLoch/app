@@ -345,7 +345,7 @@ namespace user
 
       //pgraphics->SelectObject(br);
 
-      int iHover = m_iHover;
+      index iHover = m_iHover;
 
       if(iHover < 0 || iHover >= ca)
       {
@@ -445,7 +445,7 @@ namespace user
 
       //pgraphics->SelectObject(br);
 
-      int iHover = m_iHover;
+      index iHover = m_iHover;
 
       if(iHover < 0 || iHover >= ca)
       {

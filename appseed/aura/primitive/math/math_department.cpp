@@ -148,14 +148,14 @@ namespace math
 
    }
 
-   void math::random_bytes(void * buf, uint32_t dwLen)
+   void math::random_bytes(void * buf, memory_size_t dwLen)
    {
 
       gen_rand(buf, dwLen);
 
    }
 
-   void math::RandomBytes(void * buf, uint32_t dwLen)
+   void math::RandomBytes(void * buf, memory_size_t dwLen)
    {
 
       random_bytes(buf, dwLen);
@@ -163,10 +163,10 @@ namespace math
    }
 
 
-   void math::gen_rand(void * buf, uint32_t dwLen)
+   void math::gen_rand(void * buf, memory_size_t dwLen)
    {
 #ifdef WINDOWSEX
-      CryptGenRandom(hCryptProv, dwLen, (BYTE *)buf);
+      CryptGenRandom(hCryptProv, (DWORD) dwLen, (BYTE *)buf);
 #elif defined(METROWIN)
       Windows::Storage::Streams::IBuffer ^ buffer = Windows::Security::Cryptography::CryptographicBuffer::GenerateRandom(dwLen);
       memory mem;
@@ -185,7 +185,7 @@ namespace math
    }
 
 
-   void math::gen_rand_alnum(char * buf,uint32_t dwLen)
+   void math::gen_rand_alnum(char * buf, memory_size_t dwLen)
    {
 
       static unsigned int uiMemory = 0;

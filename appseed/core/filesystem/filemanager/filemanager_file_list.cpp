@@ -578,7 +578,7 @@ namespace filemanager
       if (range.get_item_count() == 1 && range.ItemAt(0).get_lower_bound() == range.ItemAt(0).get_upper_bound())
       {
 
-         int iEditItem = range.ItemAt(0).get_lower_bound();
+         index iEditItem = range.ItemAt(0).get_lower_bound();
 
          sp(::user::control) pcontrol = _001GetControl(iEditItem, m_iNameSubItem);
 

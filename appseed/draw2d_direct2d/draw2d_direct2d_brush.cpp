@@ -1,8 +1,11 @@
 #include "framework.h"
 
 
+
+
 namespace draw2d_direct2d
 {
+
 
 
    brush::brush(::aura::application * papp) :
@@ -251,17 +254,19 @@ namespace draw2d_direct2d
             // The gradient origin offset was set to zero(0, 0) or center in this case.
             if(SUCCEEDED(hr))
             {
-               float centerx = m_size.cx - m_pt.x;
-               float centery = m_size.cy - m_pt.y;
-               float originx = m_size.cx / 2 -m_pt.x;
-               float originy = m_size.cy / 2 -m_pt.y;
-               float radiusx = m_size.cx / 2;
-               float radiusy = m_size.cy / 2;
+               
+               double centerx = m_size.cx - m_pt.x;
+               double centery = m_size.cy - m_pt.y;
+               double originx = m_size.cx / 2 -m_pt.x;
+               double originy = m_size.cy / 2 -m_pt.y;
+               double radiusx = m_size.cx / 2;
+               double radiusy = m_size.cy / 2;
+
                hr = pgraphics->m_prendertarget->CreateRadialGradientBrush(
                   D2D1::RadialGradientBrushProperties(
                   D2D1::Point2F(centerx,centery),
                   D2D1::Point2F(originx, originy),
-                  radiusx, radiusy),
+                  (float) radiusx, (float) radiusy),
                   pgradientstops,
                   & ((brush *) this)->m_pradialgradientbrush
                   );

@@ -442,12 +442,12 @@ namespace visual
 
       int iR = MAX(MAX(iSpreadRadius, iBlurRadius), iBlur) + 1;
 
-      ::rect rectText = *lpcrect;
+      ::rect rectEmboss = *lpcrect;
 
-      rectText.left -= iR;
-      rectText.top -= iR;
-      rectText.right += iR * 3;
-      rectText.bottom += iR * 3;
+      rectEmboss.left -= iR;
+      rectEmboss.top -= iR;
+      rectEmboss.right += iR * 3;
+      rectEmboss.bottom += iR * 3;
 
       if (bUpdate || dib2.is_null() || dib2->area() <= 0)
       {
@@ -463,7 +463,7 @@ namespace visual
 
          }
 
-         class size size = rectText.size();
+         class size size = rectEmboss.size();
 
          dib2.initialize(size, iEffectiveBlurRadius);
 
@@ -473,8 +473,8 @@ namespace visual
 
          rectCache.left = iR + (iR >= 2 ? 1 : 0);
          rectCache.top = iR + 1;
-         rectCache.right = rectCache.left + (int32_t)rectText.width() - iR;
-         rectCache.bottom = rectCache.top + (int32_t)rectText.height() - iR;
+         rectCache.right = rectCache.left + ::width(lpcrect);
+         rectCache.bottom = rectCache.top + ::height(lpcrect);
 
          ::draw2d::dib_sp dib(allocer());
 
@@ -505,7 +505,7 @@ namespace visual
       }
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
-      pgraphics->BitBlt(rectText, dib2->get_graphics());
+      pgraphics->BitBlt(rectEmboss, dib2->get_graphics());
 
       ::draw2d::brush_sp brushText(allocer());
       brushText->create_solid(crText);

@@ -1120,7 +1120,7 @@ namespace user
 
       KillTimer(5432187);
 
-      int iDragTab = get_data()->m_iDragTab;
+      index iDragTab = get_data()->m_iDragTab;
 
       if(iPane >= 0 && iDragTab == iPane && m_eelement == eelement)
       {
@@ -1330,7 +1330,7 @@ namespace user
          rect.bottom = rect.top;
 
          lprect->left   = rect.left;
-         lprect->top    = rect.top + iTab * get_data()->m_iTabHeight;
+         lprect->top    = (LONG) (rect.top + iTab * get_data()->m_iTabHeight);
          lprect->right  = rect.right;
          lprect->bottom = lprect->top + get_data()->m_iTabHeight;
 

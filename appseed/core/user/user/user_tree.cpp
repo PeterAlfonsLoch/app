@@ -876,10 +876,13 @@ namespace user
 
             if(iObscured > 0)
             {
+               
                index iNewScroll = (int32_t) (ptOffset.y + iObscured * _001GetItemHeight());
+               
                if(iNewScroll > (iParentIndex * _001GetItemHeight()))
                   iNewScroll = (iParentIndex * _001GetItemHeight());
-               set_viewport_offset_y(MAX(iNewScroll, 0));
+
+               set_viewport_offset_y((int) MAX(iNewScroll, 0));
                //            _001SetYScroll(MAX(iNewScroll, 0), false);
                //m_pscrollbarVert->_001SetScrollPos(ptOffset.y);
             }
@@ -1563,11 +1566,15 @@ namespace user
 
       if (iIndex < iMinVisibleIndex || iIndex > iMaxVisibleIndex)
       {
+         
          index iNewScrollIndex = iIndex;
-         set_viewport_offset_y(MAX(iNewScrollIndex,0) * m_iItemHeight);
+
+         set_viewport_offset_y((int) MAX(iNewScrollIndex,0) * m_iItemHeight);
+
       }
 
       layout();
+
       RedrawWindow();
 
    }

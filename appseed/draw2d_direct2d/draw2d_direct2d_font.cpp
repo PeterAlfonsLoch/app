@@ -61,17 +61,17 @@ namespace draw2d_direct2d
          if(m_eunitFontSize == ::draw2d::unit_point)
          {
             
-            fFontSize = point_dpi(m_dFontSize);
+            fFontSize =point_dpi((float)m_dFontSize);
 
          }
          else
          {
 
-            fFontSize = dpiy(m_dFontSize);
+            fFontSize = dpiy((float)m_dFontSize);
 
          }
 
-         fFontSize *= pgraphics->m_dFontFactor;
+         fFontSize *= (float) pgraphics->m_dFontFactor;
 
          if (fFontSize <= 0.000001)
          {

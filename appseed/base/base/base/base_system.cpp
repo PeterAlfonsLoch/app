@@ -210,7 +210,7 @@ namespace base
    index system::get_ui_wkspace(::user::interaction * pui)
    {
 
-      int iMainWkspace = 0;
+      index iMainWkspace = 0;
 
 #ifdef WINDOWSEX
 

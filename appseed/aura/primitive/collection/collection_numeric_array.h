@@ -919,6 +919,8 @@ typedef CLASS_DECL_AURA numeric_array < uint16_t  > uint16_array;
 typedef CLASS_DECL_AURA numeric_array < uint32_t  > uint32_array;
 typedef CLASS_DECL_AURA numeric_array < uint64_t  > uint64_array;
 
+typedef CLASS_DECL_AURA numeric_array < strsize  > strsize_array;
+
 typedef CLASS_DECL_AURA int32_array int_array;
 typedef CLASS_DECL_AURA uint32_array uint_array;
 

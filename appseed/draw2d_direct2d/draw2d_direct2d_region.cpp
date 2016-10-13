@@ -238,10 +238,10 @@ namespace draw2d_direct2d
       
       D2D1_ELLIPSE ellipse;
       
-      ellipse.point.x = (m_x2 + m_x1) / 2.f;
-      ellipse.point.y = (m_y2 + m_y1) / 2.f;
-      ellipse.radiusX = (m_x2 - m_x1) / 2.f;
-      ellipse.radiusY = (m_y2 - m_y1) / 2.f;
+      ellipse.point.x = (float)(m_x2 + m_x1) / 2.f;
+      ellipse.point.y = (float)(m_y2 + m_y1) / 2.f;
+      ellipse.radiusX = (float)(m_x2 - m_x1) / 2.f;
+      ellipse.radiusY = (float)(m_y2 - m_y1) / 2.f;
 
       ID2D1EllipseGeometry * pgeometry = NULL;
 

@@ -28,6 +28,23 @@
 #endif
 
 
+namespace D2D1
+{
+
+
+   inline D2D1_POINT_2F Point2F(double x = 0.0, double y = 0.0)
+   {
+
+      return Point2F((float)x, (float)y);
+
+   }
+
+
+} // namespace D2D1
+
+
+
+
 namespace draw2d_direct2d
 {
 

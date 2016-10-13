@@ -955,8 +955,8 @@ namespace user
       if(m_eview == view_grid)
       {
 
-         sizeTotal.cy = m_nColumnCount;
-         sizeTotal.cx = m_nItemCount;
+         sizeTotal.cy = (LONG) m_nColumnCount;
+         sizeTotal.cx = (LONG) m_nItemCount;
 
       }
       else if(m_eview == view_list)
@@ -1754,8 +1754,8 @@ namespace user
                if(pdrawitem->m_iItemRectItem < 0)
                {
 
-                  pdrawitem->m_rectItem.left    = m_iLateralGroupWidth;
-                  pdrawitem->m_rectItem.right   = pdrawitem->m_rectItem.left + m_iItemWidth;
+                  pdrawitem->m_rectItem.left    = (LONG) m_iLateralGroupWidth;
+                  pdrawitem->m_rectItem.right   = (LONG)(pdrawitem->m_rectItem.left + m_iItemWidth);
                   pdrawitem->m_iItemRectItem = 0;
                   pdrawitem->m_rectItem.top  = 0;
                   //if(m_bHeaderCtrl)
@@ -1827,7 +1827,7 @@ namespace user
 
             pdrawitem->m_rectItem.left    = m_iLeftMargin;
 
-            pdrawitem->m_rectItem.right   = m_iLeftMargin + m_iItemWidth;
+            pdrawitem->m_rectItem.right   = (LONG)(m_iLeftMargin + m_iItemWidth);
 
             pdrawitem->m_rectItem.top = 0;
             //if(m_bHeaderCtrl)
@@ -1856,8 +1856,8 @@ namespace user
                if(pdrawitem->m_iItemRectItem < 0)
                {
 
-                  pdrawitem->m_rectItem.left    = m_iLateralGroupWidth;
-                  pdrawitem->m_rectItem.right   = pdrawitem->m_rectItem.left + m_iItemWidth;
+                  pdrawitem->m_rectItem.left    = (LONG)m_iLateralGroupWidth;
+                  pdrawitem->m_rectItem.right   = (LONG)(pdrawitem->m_rectItem.left + m_iItemWidth);
                   pdrawitem->m_iItemRectItem = 0;
                   pdrawitem->m_rectItem.top  = 0;
                   //if(m_bHeaderCtrl)
@@ -1927,7 +1927,7 @@ namespace user
          else
          {
             pdrawitem->m_rectItem.left    = 0;
-            pdrawitem->m_rectItem.right   = m_iItemWidth;
+            pdrawitem->m_rectItem.right   = (LONG)m_iItemWidth;
 
             pdrawitem->m_rectItem.top = 0;
             //if(m_bHeaderCtrl)
@@ -1972,8 +1972,8 @@ namespace user
          //{
          //   pdrawitem->m_rectItem.top += m_iItemHeight;
          //}
-         pdrawitem->m_rectItem.bottom = pdrawitem->m_rectItem.top + m_iItemHeight;
-         pdrawitem->m_rectItem.right = pdrawitem->m_rectItem.left + m_iItemWidth;
+         pdrawitem->m_rectItem.bottom = (LONG)(pdrawitem->m_rectItem.top + m_iItemHeight);
+         pdrawitem->m_rectItem.right = (LONG)(pdrawitem->m_rectItem.left + m_iItemWidth);
          pdrawitem->m_rectItem.offset(-ptScroll.x,-ptScroll.y);
       }
       else if(m_eview == view_icon)
@@ -4435,7 +4435,7 @@ namespace user
       if(iItem < ptScroll.y || (m_iItemHeight > 0 && iItem >= ptScroll.y / m_iItemHeight + m_nDisplayCount))
       {
 
-         set_viewport_offset_y(iItem * m_iItemHeight);
+         set_viewport_offset_y((int) (iItem * m_iItemHeight));
 
          if(bRedraw)
          {
@@ -4457,7 +4457,7 @@ namespace user
       if(iItem < m_nItemCount)
       {
 
-         set_viewport_offset_y(iItem * m_iItemHeight);
+         set_viewport_offset_y((int)(iItem * m_iItemHeight));
 
          if(bRedraw)
          {
@@ -4488,7 +4488,7 @@ namespace user
       if(ptScroll.y / MAX(1,m_iItemHeight) != iyScroll)
       {
          item_range item;
-         set_viewport_offset_y(iyScroll * m_iItemHeight);
+         set_viewport_offset_y((int)(iyScroll * m_iItemHeight));
          on_change_viewport_offset();
          item.set_lower_bound(iyScroll);
          item.set_upper_bound(MIN(iyScroll + m_nDisplayCount - 1,m_nItemCount - 1));
@@ -5882,8 +5882,10 @@ namespace user
 
    void draw_mesh_item::draw_text()
    {
+
       if(m_bOk)
       {
+
          if(m_pmesh->m_eview == mesh::view_icon && m_pmesh->m_bEmboss)
          {
 

@@ -167,8 +167,8 @@ namespace draw2d
       virtual bool add_line(double x1,double y1,double x2,double y2);
       virtual bool add_line(point p1, point p2);
 
-      virtual bool add_lines(const POINT * lppoint, int32_t nCount);
-      virtual bool add_lines(const POINTD * lppoint,int32_t nCount);
+      virtual bool add_lines(const POINT * lppoint, ::count nCount);
+      virtual bool add_lines(const POINTD * lppoint, ::count nCount);
 
       virtual bool add_line(int32_t x, int32_t y);
       virtual bool add_line(double x,double y);

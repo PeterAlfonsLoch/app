@@ -1291,7 +1291,7 @@ namespace user
          iItemHeight = MAX(size.cy + 2, iItemHeight);
       }
 
-      m_iItemHeight = (int32_t)_001CalcItemHeight(iItemHeight);
+      m_iItemHeight = _001CalcItemHeight((int)iItemHeight);
 
       m_iItemWidth = (int32_t) iItemWidth;
 
@@ -1906,7 +1906,7 @@ namespace user
                if(pdrawitem->m_iItemRectItem < 0)
                {
                   pdrawitem->m_rectItem.left    = m_iLateralGroupWidth;
-                  pdrawitem->m_rectItem.right   = pdrawitem->m_rectItem.left + m_iItemWidth;
+                  pdrawitem->m_rectItem.right   =(LONG) (pdrawitem->m_rectItem.left + m_iItemWidth);
                   pdrawitem->m_iItemRectItem = 0;
                   pdrawitem->m_rectItem.top  = 0;
                   if(m_bHeaderCtrl)
@@ -1976,7 +1976,7 @@ namespace user
          else
          {
             pdrawitem->m_rectItem.left    = 0;
-            pdrawitem->m_rectItem.right   = m_iItemWidth;
+            pdrawitem->m_rectItem.right   = (LONG) m_iItemWidth;
 
             pdrawitem->m_rectItem.top = 0;
             if(m_bHeaderCtrl)
@@ -2024,7 +2024,7 @@ namespace user
             pdrawitem->m_rectItem.top += m_iItemHeight;
          }
          pdrawitem->m_rectItem.bottom = pdrawitem->m_rectItem.top + m_iItemHeight;
-         pdrawitem->m_rectItem.right = pdrawitem->m_rectItem.left + m_iItemWidth;
+         pdrawitem->m_rectItem.right = (LONG) (pdrawitem->m_rectItem.left + m_iItemWidth);
          pdrawitem->m_rectItem.offset(-ptOffset.x,-ptOffset.y);
       }
       else if(m_eview == view_icon)
@@ -2515,7 +2515,7 @@ namespace user
 
          GetClientRect(&rectClient);
 
-         m_plistheader->SetWindowPos(ZORDER_TOP, 0, 0, MAX(m_iItemWidth + 10, rectClient.width()), m_iItemHeight, SWP_SHOWWINDOW);
+         m_plistheader->SetWindowPos(ZORDER_TOP, 0, 0, (int)  MAX(m_iItemWidth + 10, rectClient.width()), (int) m_iItemHeight, SWP_SHOWWINDOW);
 
       }
       else
@@ -2796,7 +2796,7 @@ namespace user
 
                            index iItemSize = iIconSize * 2;
 
-                           int iItemColumnCount = MAX(1, rectClient.width() / iItemSize);
+                           int iItemColumnCount = (int) MAX(1, rectClient.width() / iItemSize);
 
                            index iCol1 = m_iItemDrag % iItemColumnCount;
 
@@ -5361,7 +5361,7 @@ namespace user
                GetClientRect(&rectClient);
                index iIconSize = MAX(32, m_columna[0]->m_sizeIcon.cy);
                index iItemSize = iIconSize * 2;
-               int iItemColumnCount = MAX(1, rectClient.width() / iItemSize);
+               ::count iItemColumnCount = MAX(1, rectClient.width() / iItemSize);
                m_ptLButtonUp = pt;
                index iItemStart;
                index iItemEnd;
@@ -5370,13 +5370,13 @@ namespace user
                   if (_001DisplayHitTest(pt, iItemEnd))
                   {
 
-                     int iCol1 = iItemStart % iItemColumnCount;
-                     int iCol2 = iItemEnd % iItemColumnCount;
+                     index iCol1 = iItemStart % iItemColumnCount;
+                     index iCol2 = iItemEnd % iItemColumnCount;
 
                      ::sort::sort(iCol1, iCol2);
 
-                     int iRow1 = iItemStart / iItemColumnCount;
-                     int iRow2 = iItemEnd / iItemColumnCount;
+                     index iRow1 = iItemStart / iItemColumnCount;
+                     index iRow2 = iItemEnd / iItemColumnCount;
 
                      ::sort::sort(iRow1, iRow2);
 

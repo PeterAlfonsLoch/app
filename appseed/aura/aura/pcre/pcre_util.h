@@ -37,9 +37,9 @@ public:
 
    virtual int matches(const char * psz, strsize len, pcre_context * pcreContext = NULL) = 0;
 
-   virtual void matches(int_array & ia, const string & str, pcre_context * pcreContext = NULL) = 0;
+   virtual void matches(strsize_array & ia, const string & str, pcre_context * pcreContext = NULL) = 0;
 
-   virtual void matches(int_array & ia, const char * psz, strsize len, pcre_context * pcreContext = NULL) = 0;
+   virtual void matches(strsize_array & ia, const char * psz, strsize len, pcre_context * pcreContext = NULL) = 0;
 
    virtual bool replace(string & str, const string & strPrefix, string & strRet, pcre_context * pcreContext = NULL) = 0;
 

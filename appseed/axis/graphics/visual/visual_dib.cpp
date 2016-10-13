@@ -378,7 +378,7 @@ namespace visual
 
          }
 
-         int iCurrentFrame = 0;
+         index iCurrentFrame = 0;
 
          if (m_sparray->m_uiLoopCount == 0 || m_sparray->m_uiLoop < m_sparray->m_uiLoopCount)
          {
@@ -880,7 +880,7 @@ HRESULT windows_GetRawFrame(
 
    ba.allocate(pointer->m_dib->area());
 
-   hr = pbitmap->CopyPixels(NULL, pointer->m_dib->m_size.cx, ba.get_size(), (BYTE *)ba.get_data());
+   hr = pbitmap->CopyPixels(NULL, pointer->m_dib->m_size.cx, (UINT) ba.get_size(), (BYTE *)ba.get_data());
 
    if (FAILED(hr))
    {
@@ -1359,9 +1359,9 @@ HRESULT windows_GetRawFrame(
       else
       {
 
-         double dMin = MIN(MIN(iR / c, iG / c), iB / c);
+         double dMin = (double) MIN(MIN(iR / c, iG / c), iB / c);
 
-         double dMax = MAX(MAX(iR / c, iG / c), iB / c);
+         double dMax = (double)MAX(MAX(iR / c, iG / c), iB / c);
 
          if ((dMin + dMax) / 2.0 > 127.0) // Light
          {
@@ -2288,7 +2288,7 @@ bool windows_load_diba_from_file(::visual::dib_sp::array * pdiba, ::file::buffer
    if (!defer_co_initialize_ex())
       return false;
 
-   int iSize = pfile->get_length();
+   file_size_t iSize = pfile->get_length();
 
    memory mem(papp);
 
@@ -2500,7 +2500,7 @@ bool windows_load_diba_from_file(::visual::dib_sp::array * pdiba, ::file::buffer
 
          pdiba->element_at(i)->m_dib.alloc(papp->allocer());
 
-         windows_GetRawFrame(dibCompose, pdiba, piFactory, decoder, i);
+         windows_GetRawFrame(dibCompose, pdiba, piFactory, decoder, (UINT) i);
 
          pdiba->m_dwTotal += pdiba->element_at(i)->m_dwTime;
 
@@ -2525,7 +2525,7 @@ bool windows_load_dib_from_file(::draw2d::dib * pdib, ::file::buffer_sp pfile, :
    if (!defer_co_initialize_ex())
       return false;
 
-   int iSize = pfile->get_length();
+   file_size_t iSize = pfile->get_length();
 
    memory mem(papp);
 
@@ -2856,7 +2856,7 @@ bool windows_write_dib_to_file(::file::buffer_sp pfile, ::draw2d::dib * pdib, ::
 
    ULONG ulPos = 0;
    ULONG ulRead;
-   ULONG ul;
+   ULONGLONG ul;
    do
    {
 
@@ -2864,7 +2864,7 @@ bool windows_write_dib_to_file(::file::buffer_sp pfile, ::draw2d::dib * pdib, ::
 
       ul = stg.cbSize.QuadPart - ulPos;
 
-      pstream->Read(mem.get_data(), MIN(ul, mem.get_size()), &ulRead);
+      pstream->Read(mem.get_data(), (ULONG) MIN(ul, mem.get_size()), &ulRead);
 
       if (ulRead > 0)
       {

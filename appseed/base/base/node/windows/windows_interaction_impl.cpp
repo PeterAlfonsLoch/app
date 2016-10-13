@@ -260,12 +260,12 @@ namespace windows
 
    ULONG STDMETHODCALLTYPE interaction_impl::AddRef(void)
    {
-      return m_countReference;
+      return (ULONG) add_ref();
    }
 
    ULONG STDMETHODCALLTYPE interaction_impl::Release(void)
    {
-      return m_countReference;
+      return (ULONG) release();
    }
 
 

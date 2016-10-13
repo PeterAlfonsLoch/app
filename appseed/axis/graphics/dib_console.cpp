@@ -140,14 +140,18 @@ void dib_console::update_dib()
    COLORREF crScreen = console_COLORREF(m_iScreenColor);
    m_dib->Fill(crScreen);
 
-   for(index y = 0; y < m_stra.get_count(); y++)
+   for(int y = 0; y < m_stra.get_count(); y++)
    {
+      
       string & str = m_stra[y];
 
-      for(index x = 0; x < str.get_length(); x++)
+      for(int x = 0; x < str.get_length(); x++)
       {
+
          draw_write(str[x],x,y,m_i2aColor[y][x]);
+
       }
+
    }
 
 }

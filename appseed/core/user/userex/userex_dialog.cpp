@@ -124,7 +124,7 @@ void dialog::on_position_parent_frame()
 
    layout();
    
-   best_monitor(rectOpen);
+   GetTopLevelFrame()->best_monitor(rectOpen);
 
    int32_t iWidth = rectOpen.width();
 

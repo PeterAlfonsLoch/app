@@ -759,16 +759,26 @@ namespace html
          }
          for (int32_t i = 0; i < m_elementalptra.get_size(); )
          {
+            
+            elemental * pelemental = m_elementalptra[i];
+
             try
             {
-               m_elementalptra[i]->_001OnDraw(pdata);
+
+               pelemental->_001OnDraw(pdata);
+
                i++;
+
             }
             catch(...)
             {
+
                m_elementalptra.remove_at(i);
+
             }
+
          }
+
       }
 
    }

@@ -193,7 +193,7 @@ public:
    }
 
 
-   virtual void matches(int_array & ia, const string & str, pcre_context * pcreContext)
+   virtual void matches(strsize_array & ia, const string & str, pcre_context * pcreContext)
    {
 
       int c = matches(str, pcreContext);
@@ -214,7 +214,7 @@ public:
 
    }
 
-   virtual void matches(int_array & ia,const char * psz, strsize len,pcre_context * pcreContext)
+   virtual void matches(strsize_array & ia,const char * psz, strsize len,pcre_context * pcreContext)
    {
 
       int c = matches(psz, len,pcreContext);
@@ -348,14 +348,14 @@ public:
 
    }
 
-   virtual void matches(int_array & ia,const string & str,pcre_context * pcreContext)
+   virtual void matches(strsize_array & ia,const string & str,pcre_context * pcreContext)
    {
 
       return pcre_code_impl::matches(ia, str,m_pcre);
 
    }
 
-   virtual void matches(int_array & ia,const char * psz,strsize len,pcre_context * pcreContext)
+   virtual void matches(strsize_array & ia,const char * psz,strsize len,pcre_context * pcreContext)
    {
 
       return pcre_code_impl::matches(ia,psz, len,m_pcre);

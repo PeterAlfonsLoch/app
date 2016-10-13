@@ -182,14 +182,14 @@ namespace html
                if (pcell->get_cy() > m_cyMax)
                {
 
-                  m_cyMax = pcell->get_cy();
+                  m_cyMax = (int32_t) pcell->get_cy();
 
                }
 
                if (pcell->get_cy() < m_cyMin || m_cyMin < 0)
                {
 
-                  m_cyMin = pcell->get_cy();
+                  m_cyMin = (int32_t)pcell->get_cy();
 
                }
 
@@ -205,19 +205,19 @@ namespace html
             if (pcell != NULL)
             {
 
-               pcell->m_box.set_cy(m_cyMax);
+               pcell->m_box.set_cy((float) m_cyMax);
 
             }
 
          }
 
-         m_box.set_cy(m_cyMax);
+         m_box.set_cy((float)m_cyMax);
 
-         m_bound.set_cy(m_cyMax);
+         m_bound.set_cy((float)m_cyMax);
 
-         pdata->m_layoutstate1.m_cy = m_cyMax;
+         pdata->m_layoutstate1.m_cy = (float)m_cyMax;
 
-         pdata->m_layoutstate1.m_cya.last() = m_cyMax;
+         pdata->m_layoutstate1.m_cya.last() = (float)m_cyMax;
 
       }
 

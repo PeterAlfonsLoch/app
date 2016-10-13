@@ -61,7 +61,7 @@ bool freeimage_load_diba_from_file(::visual::dib_sp::array * pdiba, ::file::buff
                p->m_dib.alloc(papp->allocer());
 
 
-               FIBITMAP * pfi = FreeImage_LockPage(m, i);
+               FIBITMAP * pfi = FreeImage_LockPage(m, (int) i);
 
 
 
@@ -214,7 +214,7 @@ bool freeimage_load_diba_from_file(::visual::dib_sp::array * pdiba, ::file::buff
 
                   //spgraphics->CreateCompatibleDC(NULL);
 
-                  if (!freeimage_load_diba_frame(dibCompose, pdiba, i, pfi, papp))
+                  if (!freeimage_load_diba_frame(dibCompose, pdiba, (int) i, pfi, papp))
                   {
                      output_debug_string("failed to load page image");
                   }

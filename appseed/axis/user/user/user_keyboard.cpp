@@ -153,7 +153,7 @@ namespace user
             {
                string str(wstring(wsz,4)); // first four digits
 
-               w = ::hex::to_int64(str);
+               w = (WORD) ::hex::to_int64(str);
 
             }
 

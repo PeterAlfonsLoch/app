@@ -1097,7 +1097,7 @@ namespace user
 
             }
 
-            GetWndDraw()->_001UpdateWindow();
+            GetWndDraw()->RedrawWindow();
 
          }
 
@@ -1313,7 +1313,7 @@ namespace user
             if(m_pframeschema != NULL)
             {
              
-               ptimer->m_bRet = m_pframeschema->_000OnTimer(ptimer->m_nIDEvent);
+               ptimer->m_bRet = m_pframeschema->_000OnTimer((UINT) ptimer->m_nIDEvent);
 
             }
 

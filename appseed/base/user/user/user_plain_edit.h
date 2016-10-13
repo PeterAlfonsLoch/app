@@ -42,9 +42,9 @@ namespace user
 
       bool                          m_bKeyPressed;
       bool                          m_bColorerTake5;
-      int32_t                       m_iLineStart;
-      int32_t                       m_iLineEnd;
-      int32_t                       m_iLineCount;
+      index                         m_iLineStart;
+      index                         m_iLineEnd;
+      count                         m_iLineCount;
       //visual::dib_sp                m_dibBk;
       bool                          m_bCustomFrameBefore;
       rect                          m_FullScreenWindowRect;
@@ -160,7 +160,7 @@ namespace user
 
       void set_plain_root(plain_text_tree * proot, bool bOwnData);
 
-      void _001OnKeyboardFocusTimer(int32_t iTimer);
+      void _001OnKeyboardFocusTimer(uint64_t iTimer);
 
       virtual void _001OnAfterChangeText(::action::context actioncontext);
 

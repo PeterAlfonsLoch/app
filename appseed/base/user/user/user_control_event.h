@@ -42,7 +42,7 @@ namespace user
       ::user::interaction *         m_puie;
       ::user::tab *                 m_ptab;
       id                            m_id;
-      uint32_t                      m_uiEvent;
+      uint64_t                      m_uiEvent;
       ::action::context             m_actioncontext;
       uint32_t                      m_uiVKey;
       uint32_t                      m_uiFlags;

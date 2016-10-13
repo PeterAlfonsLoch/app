@@ -1513,8 +1513,13 @@ void XfplayerViewLine::EmbossedTextOut(::draw2d::graphics * pgraphics, ::draw2d:
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-      System.visual().imaging().color_blend(pgraphics,
-                                            point(iLeft - 1-(m_font->m_dFontSize > 8 ? 32/m_font->m_dFontSize : 0) , iTop - 1 - (m_font->m_dFontSize > 8 ?  32 / m_font->m_dFontSize : 0)), ::size(m_dibMain->m_size.cx, m_dibMain->m_size.cy), m_dibMain->get_graphics(), point(iLeft, 0), dBlend);
+      point pt;
+
+      pt.x = (LONG) (iLeft - 1 - (m_font->m_dFontSize > 8 ? 32 / m_font->m_dFontSize : 0));
+
+      pt.y = (LONG) (iTop - 1 - (m_font->m_dFontSize > 8 ? 32 / m_font->m_dFontSize : 0));
+
+      System.visual().imaging().color_blend(pgraphics, pt, m_dibMain->m_size, m_dibMain->get_graphics(), point(iLeft, 0), dBlend);
 
       if (m_bColonPrefix)
       {
@@ -1540,7 +1545,7 @@ void XfplayerViewLine::EmbossedTextOut(::draw2d::graphics * pgraphics, ::draw2d:
          else
          {
 
-            iOffset = size.cx + size.cx / m_strPrefix.get_length();
+            iOffset = (int) (size.cx + size.cx / m_strPrefix.get_length());
 
          }
 
@@ -1631,7 +1636,12 @@ void XfplayerViewLine::CacheEmboss(::draw2d::graphics * pgraphics, const char * 
       ::size size = pdcCache->GetTextExtent(m_strPrefix);
       m_dcextension.TextOut(pdcCache, (int32_t)(int32_t)((MAX(2.0, m_floatRateX * 4.0)) / 2), (int32_t)1 * (int32_t)((MAX(2.0, m_floatRateX * 4.0)) / 2) + m_rect.height() - size.cy, m_strPrefix, m_strPrefix.get_length(), s);
       pdcCache->select_font(m_font);
-      m_dcextension.TextOut(pdcCache, s.cx + (s.cx / m_strPrefix.get_length()) + (int32_t)(int32_t)((MAX(2.0, m_floatRateX * 8.0)) / 2), (int32_t)1 * (int32_t)((MAX(2.0, m_floatRateX * 8.0)) / 2), m_strRoot, m_strRoot.get_length(), s);
+
+      int x = (int32_t) (s.cx + (s.cx / m_strPrefix.get_length()) + (int32_t)(int32_t)((MAX(2.0, m_floatRateX * 8.0)) / 2));
+
+      int y = (int32_t) (1 * (int32_t)((MAX(2.0, m_floatRateX * 8.0)) / 2));
+      
+      m_dcextension.TextOut(pdcCache, x, y, m_strRoot, m_strRoot.get_length(), s);
 
    }
    else

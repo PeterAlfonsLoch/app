@@ -12,13 +12,13 @@ namespace user
    public:
 
 
-      int32_t                           m_iIndex;
+      index                         m_iIndex;
       split_layout *                m_pparent;
-      uint32_t                         m_dwPosition;
+      uint32_t                      m_dwPosition;
       double                        m_dRate;
       double                        m_dMinimumRate;
       double                        m_dMaximumRate;
-      uint32_t                         m_dwMaxPosition;
+      uint32_t                      m_dwMaxPosition;
 
 
 

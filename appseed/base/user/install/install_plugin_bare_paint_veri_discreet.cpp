@@ -84,7 +84,7 @@ namespace hotplugin
 
       ::rect rectProgress(rectBar);
 
-      rectProgress.right = rectProgress.left + rectBar.width() * MIN(1.0, MAX(0.0, dRate));
+      rectProgress.right = (LONG) (rectProgress.left + rectBar.width() * MIN(1.0, MAX(0.0, dRate)));
 
       ::rect rectProgressComplement(rectBar);
 

@@ -7,7 +7,7 @@ class simple_mesh_data:
 public:
 
 
-   int_map < int_map < string > >          m_map;
+   index_map < index_map < string > >          m_map;
 
 
    simple_mesh_data(::aura::application * papp);

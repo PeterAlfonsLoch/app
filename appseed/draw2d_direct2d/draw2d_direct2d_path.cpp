@@ -122,7 +122,7 @@ namespace draw2d_direct2d
       Microsoft::WRL::ComPtr<IDWriteTextLayout>                       textLayout;
 
 
-      pfactory->CreateTextLayout(szOutline,szOutline.length(),(IDWriteTextFormat *)spfont.cast <font>()->get_os_font(pgraphics),1024 * 1024,1024 * 1024,&textLayout);
+      pfactory->CreateTextLayout(szOutline, (UINT32) szOutline.length(),(IDWriteTextFormat *)spfont.cast <font>()->get_os_font(pgraphics),1024 * 1024,1024 * 1024,&textLayout);
 
 
       Microsoft::WRL::ComPtr<IDWriteTextRenderer>                       textRenderer;
@@ -224,17 +224,17 @@ namespace draw2d_direct2d
 
       D2D1_POINT_2F ptCenter;
 
-      ptCenter.x = arc.m_xCenter;
-      ptCenter.y = arc.m_yCenter;
+      ptCenter.x = (float) arc.m_xCenter;
+      ptCenter.y = (float) arc.m_yCenter;
 
       double rx = arc.m_dRadiusX;
       double ry = arc.m_dRadiusY;
 
-      pt.x = arc.m_ptStart.x;
-      pt.y = arc.m_ptStart.y;
+      pt.x = (float) arc.m_ptStart.x;
+      pt.y = (float) arc.m_ptStart.y;
 
-      arcseg.point.x = arc.m_ptEnd.x;
-      arcseg.point.y = arc.m_ptEnd.y;
+      arcseg.point.x = (float) arc.m_ptEnd.x;
+      arcseg.point.y = (float) arc.m_ptEnd.y;
 
       if(arc.m_dAngle > 0.0)
       {
@@ -254,11 +254,11 @@ namespace draw2d_direct2d
          arcseg.arcSize = D2D1_ARC_SIZE_LARGE;
       }
 
-      arcseg.rotationAngle = fabs(arc.m_dAngle * 180.0 / g_dPi);
+      arcseg.rotationAngle = fabsf((float) (arc.m_dAngle * 180.0 / g_dPi));
 
-      arcseg.size.width    = rx;
+      arcseg.size.width    = (float) rx;
 
-      arcseg.size.height   = ry;
+      arcseg.size.height   = (float) ry;
 
       return true;
 

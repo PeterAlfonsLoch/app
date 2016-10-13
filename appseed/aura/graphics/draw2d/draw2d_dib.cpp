@@ -3495,11 +3495,11 @@ namespace draw2d
 
          }
 
-         int32_t iR = (int32_t) iRLine / iDiv;
+         int32_t iR = (int32_t) (iRLine / iDiv);
 
-         int32_t iG = (int32_t) iGLine / iDiv;
+         int32_t iG = (int32_t) (iGLine / iDiv);
 
-         int32_t iB = (int32_t) iBLine / iDiv;
+         int32_t iB = (int32_t) (iBLine / iDiv);
 
          return RGB(iR, iG, iB);
 

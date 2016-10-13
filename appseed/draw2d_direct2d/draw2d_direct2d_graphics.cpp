@@ -1047,10 +1047,10 @@ namespace draw2d_direct2d
 
       D2D1_ELLIPSE ellipse;
 
-      ellipse.point.x = (r.right + r.left) / 2.0;
-      ellipse.point.y = (r.bottom + r.top) / 2.0;
-      ellipse.radiusX = (r.right - r.left) / 2.0;
-      ellipse.radiusY = (r.bottom - r.top) / 2.0;
+      ellipse.point.x = (float)(r.right + r.left) / 2.f;
+      ellipse.point.y = (float)(r.bottom + r.top) / 2.f;
+      ellipse.radiusX = (float)(r.right - r.left) / 2.f;
+      ellipse.radiusY = (float)(r.bottom - r.top) / 2.f;
 
 
       m_pdevicecontext->FillEllipse(&ellipse,(dynamic_cast < ::draw2d_direct2d::brush * > (m_spbrush.m_p))->get_os_brush((graphics *) this));
@@ -1076,10 +1076,10 @@ namespace draw2d_direct2d
 
       D2D1_ELLIPSE ellipse;
 
-      ellipse.point.x = (r.right + r.left) / 2.0;
-      ellipse.point.y = (r.bottom + r.top) / 2.0;
-      ellipse.radiusX = (r.right - r.left) / 2.0;
-      ellipse.radiusY = (r.bottom - r.top) / 2.0;
+      ellipse.point.x = (float)(r.right + r.left) / 2.f;
+      ellipse.point.y = (float)(r.bottom + r.top) / 2.f;
+      ellipse.radiusX = (float)(r.right - r.left) / 2.f;
+      ellipse.radiusY = (float)(r.bottom - r.top) / 2.f;
 
 
       m_pdevicecontext->DrawEllipse(&ellipse,(dynamic_cast < ::draw2d_direct2d::brush * > (m_spbrush.m_p))->get_os_brush((graphics *) this));
@@ -3150,11 +3150,11 @@ namespace draw2d_direct2d
 
       m_prendertarget->GetTransform(&s.m_m);
 
-      int iSaveDC = m_statea.get_size();
+      ::count iSaveDC = m_statea.get_size();
 
       m_statea.add(s);
 
-      return iSaveDC;
+      return (int) iSaveDC;
       //throw todo(get_app());
 
       //int nRetVal = 0;
@@ -4586,7 +4586,7 @@ namespace draw2d_direct2d
 
       LPCWSTR lpcwsz = wstr;
 
-      UINT32 uiLen = wstr.get_length();
+      strsize uiLen = wstr.get_length();
 
       IDWriteTextFormat * pfont = get_os_font(m_spfont);
 
@@ -4595,7 +4595,7 @@ namespace draw2d_direct2d
       if(lpcwsz != NULL && uiLen > 0)
       {
 
-         m_prendertarget->DrawText(lpcwsz,uiLen,pfont,&rectf,pbrush);
+         m_prendertarget->DrawText(lpcwsz,(int) uiLen,pfont,&rectf,pbrush);
 
       }
 
@@ -5166,7 +5166,7 @@ namespace draw2d_direct2d
 
       HRESULT hr = pfactory->CreateTextLayout(
          szOutline,      // The string to be laid out and formatted.
-         szOutline.length(),  // The length of the string.
+         (UINT32) szOutline.length(),  // The length of the string.
          pformat,  // The text format to apply to the string (contains font information, etc).
          4096,         // The width of the layout box.
          4096,        // The height of the layout box.
@@ -5202,7 +5202,7 @@ namespace draw2d_direct2d
 
       HRESULT hr = pfactory->CreateTextLayout(
          szOutline,      // The string to be laid out and formatted.
-         szOutline.length(),  // The length of the string.
+         (UINT32) szOutline.length(),  // The length of the string.
          pformat,  // The text format to apply to the string (contains font information, etc).
          4096,         // The width of the layout box.
          4096,        // The height of the layout box.

@@ -599,7 +599,7 @@ namespace filemanager
       string strValue = ::str::from(iValue);
       string strResult = strName;
       string strMask = get_number_mask(strName);
-      int j = strValue.get_length() - 1;
+      strsize j = strValue.get_length() - 1;
       index i;
       for(i= strMask.get_length()-1; i >= 0 ; i--)
       {

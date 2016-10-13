@@ -10,7 +10,7 @@ string expand_env(string str)
 
    hwstring hwstr( 16384);
 
-   ExpandEnvironmentStringsW(wstring(str),  hwstr, hwstr.count());
+   ExpandEnvironmentStringsW(wstring(str),  hwstr, (DWORD) hwstr.count());
 
    return hwstr;
 

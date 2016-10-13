@@ -411,9 +411,9 @@ namespace user
          }
          else
          {
-            int iErrorBeg = -1;
-            int iErrorEnd = -1;
-            int iErrorA = 0;
+            strsize iErrorBeg = -1;
+            strsize iErrorEnd = -1;
+            strsize iErrorA = 0;
             if(m_errora.get_size() > 0)
             {
                DWORD dwTimeout = 1284;
@@ -475,11 +475,11 @@ namespace user
                pgraphics->GetTextExtent(sizeA,strLine,(int32_t)strLine.length(),(int32_t)iErrorBeg);
                sized sizeB(0.0,0.0);
                pgraphics->GetTextExtent(sizeB,strLine,(int32_t)strLine.length(),(int32_t)iErrorEnd);
-               int y = MAX(sizeA.cy,sizeB.cy);
+               int y = (int) MAX(sizeA.cy,sizeB.cy);
                ::draw2d::pen_sp p(allocer());
                p->create_solid(1.0,ARGB(iErrorA,255,0,0));
                pgraphics->SelectObject(p);
-               pgraphics->DrawErrorLine(sizeA.cx,y, sizeB.cx, 1);
+               pgraphics->DrawErrorLine((int) sizeA.cx,y, (int) sizeB.cx, 1);
             }
             sized sizeb(0.0,0.0);
             pgraphics->GetTextExtent(sizeb,strLine,iEnd);
@@ -623,7 +623,9 @@ namespace user
       {
          if(this == Session.get_keyboard_focus())
          {
+
             _001OnKeyboardFocusTimer(ptimer->m_nIDEvent - 100);
+
          }
       }
       else if(ptimer->m_nIDEvent == 500 || ptimer->m_nIDEvent == 501)
@@ -1091,22 +1093,22 @@ namespace user
       
       int iCurrentPageOffsetEnd = get_viewport_offset().y + rectClient.height();
 
-      int iValidPageStartOffset = (MIN(MAX(0, iLine - m_iLineCount + 5), m_iaLineLen.get_upper_bound()) - 1) * m_iLineHeight;
+      index iValidPageStartOffset = (MIN(MAX(0, iLine - m_iLineCount + 5), m_iaLineLen.get_upper_bound()) - 1) * m_iLineHeight;
 
-      int iValidPageEndOffset = (MIN(MAX(0, iLine + m_iLineCount - 5), m_iaLineLen.get_upper_bound()) - 1) * m_iLineHeight;
+      index iValidPageEndOffset = (MIN(MAX(0, iLine + m_iLineCount - 5), m_iaLineLen.get_upper_bound()) - 1) * m_iLineHeight;
 
-      int iCandidateCursorOffset = (MIN(MAX(0, iLine), m_iaLineLen.get_upper_bound())) * m_iLineHeight;
+      index iCandidateCursorOffset = (MIN(MAX(0, iLine), m_iaLineLen.get_upper_bound())) * m_iLineHeight;
 
       if (iCandidateCursorOffset < iCurrentPageOffsetStart)
       {
 
-         set_viewport_offset_y(iCandidateCursorOffset);
+         set_viewport_offset_y((int) iCandidateCursorOffset);
 
       }
       else if (iCandidateCursorOffset > iCurrentPageOffsetEnd)
       {
 
-         set_viewport_offset_y(iCandidateCursorOffset - iCurrentPageOffsetEnd  + iCurrentPageOffsetStart);
+         set_viewport_offset_y((int)(iCandidateCursorOffset - iCurrentPageOffsetEnd  + iCurrentPageOffsetStart));
 
       }
 
@@ -1311,7 +1313,7 @@ namespace user
 
       pgraphics->GetTextExtent(sizeUniText,unitext("gqYALﾍWMÍÎÄÃÄÅ"));
 
-      m_iLineHeight = sizeUniText.cy;
+      m_iLineHeight = (int) sizeUniText.cy;
 
       if(m_iLineHeight <= 0)
       {
@@ -1364,7 +1366,7 @@ namespace user
 
       mem.get_data()[m_iViewSize] = 0;
 
-      int iPos = 0;
+      strsize iPos = 0;
 
       strsize iLen;
 
@@ -2626,7 +2628,7 @@ namespace user
    }
 
 
-   void plain_edit::_001OnKeyboardFocusTimer(int32_t iTimer)
+   void plain_edit::_001OnKeyboardFocusTimer(uint64_t iTimer)
    {
       //if(iTimer == 0)
       //{

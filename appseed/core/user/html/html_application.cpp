@@ -40,21 +40,21 @@ namespace html
 
             new ::user::multiple_document_template(
                get_app(),
-               "system/form",
+               "form",
                System.type_info < html_document >(),
                System.get_simple_frame_window_type_info(),
                System.type_info < html_view >()),
 
             new ::user::multiple_document_template(
                get_app(),
-               "system/form",
+               "child_form",
                System.type_info < html_document >(),
                System.get_simple_child_frame_type_info(),
                System.type_info < html_view >()),
 
             new ::user::multiple_document_template(
                get_app(),
-               "system/form",
+               "place_form",
                System.type_info < ::user::document >(),
                System.get_simple_frame_window_type_info(),
                System.type_info < ::user::place_holder >())

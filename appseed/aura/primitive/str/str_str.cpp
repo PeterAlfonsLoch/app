@@ -2496,7 +2496,7 @@ end:
    }
 
 
-   void consume_quoted_value_ex2(const char * & pszXml, const char * pszEnd, char ** ppsz, int & iBufferSize)
+   void consume_quoted_value_ex2(const char * & pszXml, const char * pszEnd, char ** ppsz, strsize & iBufferSize)
    {
 
       const char * psz = pszXml;
@@ -2532,7 +2532,7 @@ end:
 
       }
 
-      int iNewBufferSize = psz - pszValueStart;
+      strsize iNewBufferSize = psz - pszValueStart;
 
 
       if (iNewBufferSize > iBufferSize)
@@ -2590,7 +2590,7 @@ end:
 
       }
 
-      int iNewBufferSize = psz - pszValueStart;
+      memory_size_t iNewBufferSize = psz - pszValueStart;
 
 
       //if (iNewBufferSize > iBufferSize)
@@ -2612,13 +2612,13 @@ end:
 
    }
 
-   template < const int m_iSize = 1024 >
+   template < const strsize m_iSize = 1024 >
    class mini_str_buffer
    {
    public:
 
       
-      int         m_iPos;
+      strsize     m_iPos;
       char        m_sz[m_iSize];
       string      m_str;
 
@@ -2686,7 +2686,7 @@ end:
          }
       }
       
-      void append(const char * psz, int iSize)
+      void append(const char * psz, strsize iSize)
       {
 
          if (m_iPos + iSize > m_iSize)
