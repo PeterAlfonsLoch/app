@@ -124,7 +124,11 @@ namespace visual
             brushText->create_solid(ARGB(255, 255, 255, 255));
             dib->get_graphics()->SelectObject(brushText);
 
-            pred(rectCache, dib->get_graphics());
+            dib->get_graphics()->OffsetViewportOrg(rectCache.left - lpcrect->left, rectCache.top - lpcrect->top);
+
+            pred(dib->get_graphics());
+
+            dib->get_graphics()->OffsetViewportOrg(-rectCache.left + lpcrect->left, -rectCache.top + lpcrect->top);
 
             System.visual().imaging().channel_spread_set_color(dib2->get_graphics(), null_point(), size, dib->get_graphics(), null_point(), ::visual::rgba::channel_alpha, iEffectiveSpreadRadius, ARGB(255, 255, 255, 255));
 

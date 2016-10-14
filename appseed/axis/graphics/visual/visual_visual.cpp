@@ -439,11 +439,11 @@ namespace visual
 
       }
 
-      auto pred = [&](rect rectCache, ::draw2d::graphics * pgraphics)
+      auto pred = [&](::draw2d::graphics * pgraphics)
       {
 
          pgraphics->SelectObject(pfont);
-         pgraphics->_DrawText(strText, rectCache, iDrawTextFlags);
+         pgraphics->_DrawText(strText, *lpcrect, iDrawTextFlags);
 
       };
 
