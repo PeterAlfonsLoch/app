@@ -309,11 +309,12 @@ bool db_str_set::load(const char * lpKey, string & strValue)
 
       set["get_response"] = "";
 
-      pcore->m_phttpsession = System.http().request(pcore->m_handler, pcore->m_phttpsession,strUrl,set);
-
-      if(pcore->m_phttpsession == NULL || ::http::status_failed(set["get_status"]))
+      if(!System.http().request(pcore->m_handler, pcore->m_phttpsession, strUrl, set)
+      || pcore->m_phttpsession == NULL || ::http::status_failed(set["get_status"]))
       {
+
          return false;
+
       }
 
       strValue = set["get_response"];

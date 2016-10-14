@@ -523,7 +523,14 @@ namespace user
 
    }
 
-   ::user::view_creator_data * tab_view::get_impact(id id)
+   ::user::view_creator_data * tab_view::get_impact(id id, bool bCallOnCreateView)
+   {
+
+      return get_impact(id, get_data()->m_rectTabClient, bCallOnCreateView);
+
+   }
+
+   ::user::view_creator_data * tab_view::get_impact(id id, LPCRECT lpcrectCreate, bool bCallOnCreateView)
    {
 
       ::user::view_creator_data * pdata = get(id);
@@ -535,26 +542,10 @@ namespace user
 
       }
 
-      pdata = create_impact(id);
-
-      if (pdata == NULL)
+      if (!bCallOnCreateView)
       {
 
-         return NULL;
-
-      }
-
-      return pdata;
-
-   }
-
-   ::user::view_creator_data * tab_view::get_impact(id id, LPCRECT lpcrectCreate)
-   {
-
-      ::user::view_creator_data * pdata = get(id);
-
-      if (pdata != NULL)
-      {
+         pdata = create(id, lpcrectCreate);
 
          return pdata;
 
@@ -629,6 +620,59 @@ namespace user
 
    }
 
+   ::user::view_creator_data * tab_view::create_impact(id id, ::user::frame_window * pframewindow)
+   {
+
+      return create_impact(id, get_data()->m_rectTabClient, pframewindow);
+
+   }
+
+   ::user::view_creator_data * tab_view::create_impact(id id, LPCRECT lpcrectCreate, ::user::frame_window * pframewindow)
+   {
+
+      if (m_pviewcreator == NULL)
+         return NULL;
+
+      ::user::view_creator_data * pcreatordata = m_pviewcreator->::user::view_creator::create_impact(id, lpcrectCreate);
+
+      if (pcreatordata != NULL)
+      {
+
+         if (id_pane(id) == -1)
+         {
+
+            ::user::tab::add_tab("", id);
+
+         }
+
+         ::user::tab_pane * ppane = get_pane_by_id(id);
+
+         if (ppane != NULL)
+         {
+
+            if (pcreatordata->m_strCreatorDataTitle.has_char() && ppane->m_id == pcreatordata->m_id)
+            {
+
+               ppane->m_istrTitleEx = pcreatordata->m_strCreatorDataTitle;
+
+            }
+
+            if (ppane != NULL)
+            {
+
+               ppane->m_pholder = pcreatordata->m_pholder;
+
+            }
+
+         }
+
+         on_change_pane_count();
+
+      }
+
+      return pcreatordata;
+
+   }
 
    id tab_view::get_view_id()
    {

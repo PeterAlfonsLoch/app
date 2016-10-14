@@ -59,9 +59,14 @@ namespace user
       virtual ::user::view_creator_data * allocate(id id);
 
       using ::object::create;
-      virtual ::user::view_creator_data * create_impact(id id,LPCRECT lpcrectCreate);
+      virtual ::user::view_creator_data * create(id id, LPCRECT lpcrectCreate);
+
+      virtual ::user::view_creator_data * create_impact(id id, LPCRECT lpcrectCreate, ::user::frame_window * pframewindow);
+      virtual ::user::view_creator_data * create_impact(id id, LPCRECT lpcrectCreate);
 
       virtual ::user::view_creator_data * get_impact(id id, LPCRECT lpcrectCreate);
+
+      virtual ::user::view_creator_data * on_after_create_impact(::user::view_creator_data * pcreatordata);
 
       virtual void hide_all_except(const id_array & id);
 

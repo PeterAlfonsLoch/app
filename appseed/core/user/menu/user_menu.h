@@ -64,6 +64,8 @@ namespace user
 
       }
 
+      virtual ::user::interaction * get_target_window();
+
       ::user::menu_item * GetSubMenu(int32_t i);
 
       void layout_menu(point pt);

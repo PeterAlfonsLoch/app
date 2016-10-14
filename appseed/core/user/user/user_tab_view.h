@@ -53,10 +53,12 @@ namespace user
 
       virtual void rotate();
 
-      virtual ::user::view_creator_data * get_impact(id id);
-      virtual ::user::view_creator_data * get_impact(id id, LPCRECT lpcrectCreate);
+      virtual ::user::view_creator_data * get_impact(id id, bool bCallOnCreateView = true);
+      virtual ::user::view_creator_data * get_impact(id id, LPCRECT lpcrectCreate, bool bCallOnCreateView = true);
       virtual ::user::view_creator_data * create_impact(id id);
       virtual ::user::view_creator_data * create_impact(id id, LPCRECT lpcrectCreate);
+      virtual ::user::view_creator_data * create_impact(id id, ::user::frame_window * pframewindow);
+      virtual ::user::view_creator_data * create_impact(id id, LPCRECT lpcrectCreate, ::user::frame_window * pframewindow);
       virtual ::index create_tab_by_id(id id);
 
       virtual void _001OnShowTab(::user::tab * ptab);

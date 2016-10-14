@@ -348,7 +348,16 @@ namespace user
 
             ev.m_id = pitem->m_id;
 
-            return m_oswindowParent->BaseOnControlEvent(&ev);
+            ::user::interaction * puiTarget = get_target_window();
+
+            if (puiTarget == NULL)
+            {
+
+               return false;
+
+            }
+
+            return puiTarget->BaseOnControlEvent(&ev);
 
          }
 
@@ -361,7 +370,14 @@ namespace user
 
             ev.m_eevent = ::user::event_context_menu_close;
 
-            m_oswindowParent->BaseOnControlEvent(&ev);
+            ::user::interaction * puiTarget = get_target_window();
+
+            if (puiTarget != NULL)
+            {
+
+               m_oswindowParent->BaseOnControlEvent(&ev);
+
+            }
 
             post_message(WM_CLOSE);
          }
@@ -376,18 +392,40 @@ namespace user
 
             if(pitem != NULL && !pitem->m_bPopup)
             {
+
                if(::str::begins((const char *) pevent->m_puie->m_id, astr.stringSysCommand))
                {
-                  m_oswindowParent->_001SendCommand(pevent->m_puie->m_id);
+
+                  ::user::interaction * puiTarget = get_target_window();
+
+                  if (puiTarget != NULL)
+                  {
+
+                     puiTarget->_001SendCommand(pevent->m_puie->m_id);
+
+                  }
+
                }
                else
                {
-                  sp(::user::interaction) pwndParent = m_oswindowParent;
+                  
+                  ::user::interaction * puiTarget = get_target_window();
+
                   id id = pevent->m_puie->m_id;
+                  
                   send_message(WM_CLOSE);
+
                   // this may be destroyed by WM_CLOSE above
-                  pwndParent->_001SendCommand(id);
+
+                  if (puiTarget != NULL)
+                  {
+
+                     puiTarget->_001SendCommand(id);
+
+                  }
+
                   pevent->m_bProcessed = true;
+
                }
             }
          }
@@ -503,15 +541,16 @@ namespace user
                cmdui.m_id        = spitema->element_at(i)->m_id;
                cmdui.m_pOther    = (sp(::user::interaction)) &spitema->element_at(i)->m_button;
 
-               sp(::user::interaction) pwndParent = m_oswindowParent;
-               if(pwndParent != NULL)
+               sp(::user::interaction) puiTarget = get_target_window();
+               
+               if(puiTarget != NULL)
                {
                  /* xxx if(pwndParent->on_simple_action(0,
                      MAKELONG((int32_t)CN_UPDATE_COMMAND_UI, WM_COMMAND+WM_REFLECT_BASE),
                      &cmdui, NULL))
                      continue;*/
 
-                  if(pwndParent->_001SendUpdateCmdUi(&cmdui))
+                  if(puiTarget->_001SendUpdateCmdUi(&cmdui))
                      continue;
                }
             }
@@ -710,6 +749,29 @@ namespace user
       return true;
    }
 
+
+   ::user::interaction * menu::get_target_window()
+   {
+
+      ::user::interaction * puiTarget = m_oswindowParent;
+
+      if (puiTarget == NULL)
+      {
+
+         return NULL;
+
+      }
+
+      if (dynamic_cast < ::user::impact * > (puiTarget) != NULL)
+      {
+
+         puiTarget = puiTarget->GetParentFrame();
+
+      }
+
+      return puiTarget;
+
+   }
 
 
 } // namespace user

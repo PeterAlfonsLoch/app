@@ -103,14 +103,14 @@ namespace user
    }
 
 
-   view_creator_data * view_creator::create_impact(id id,LPCRECT lpcrectCreate)
+   view_creator_data * view_creator::create(id id, LPCRECT lpcrectCreate)
    {
 
       view_creator_data * pcreatordata = allocate(id);
 
       pcreatordata->m_rectCreate = *lpcrectCreate;
 
-      if(m_pviewcontainer != NULL)
+      if (m_pviewcontainer != NULL)
       {
 
          try
@@ -119,27 +119,31 @@ namespace user
             m_pviewcontainer->on_new_view_creator_data(pcreatordata);
 
          }
-         catch(::exit_exception & e)
+         catch (::exit_exception & e)
          {
 
             throw e;
 
          }
-         catch(::exception::exception & e)
+         catch (::exception::exception & e)
          {
 
-            if(!Application.on_run_exception(e))
+            if (!Application.on_run_exception(e))
+            {
+
                throw exit_exception(get_app());
 
+            }
+
          }
-         catch(...)
+         catch (...)
          {
 
          }
 
       }
 
-      if(m_pviewcontainer != this)
+      if (m_pviewcontainer != this)
       {
 
          try
@@ -148,93 +152,171 @@ namespace user
             on_new_view_creator_data(pcreatordata);
 
          }
-         catch(::exit_exception & e)
+         catch (::exit_exception & e)
          {
 
             throw e;
 
          }
-         catch(::exception::exception & e)
+         catch (::exception::exception & e)
          {
 
-            if(!Application.on_run_exception(e))
+            if (!Application.on_run_exception(e))
+            {
+
                throw exit_exception(get_app());
 
+            }
+
          }
-         catch(...)
+         catch (...)
          {
+
          }
-      }
-      try
-      {
-         on_create_view(pcreatordata);
-      }
-      catch(create_exception & e)
-      {
-         if(e.m_id == id)
-         {
-            delete pcreatordata;
-            return NULL;
-         }
-         throw e;
-      }
-      catch(::exit_exception & e)
-      {
-
-         throw e;
 
       }
-      catch(::exception::exception & e)
-      {
 
-         if(!Application.on_run_exception(e))
-            throw exit_exception(get_app());
-
-      }
-      catch(...)
-      {
-      }
-      if (!pcreatordata->m_bOk)
-      {
-         return NULL;
-      }
-      if(pcreatordata->m_pholder->m_uiptraChild.get_count() > 0)
-      {
-         return pcreatordata;
-      }
-      try
-      {
-         Application.on_create_view(pcreatordata);
-      }
-      catch(create_exception & e)
-      {
-         if(e.m_id == id)
-         {
-            delete pcreatordata;
-            return NULL;
-         }
-         throw e;
-      }
-      catch(::exit_exception & e)
-      {
-
-         throw e;
-
-      }
-      catch(::exception::exception & e)
-      {
-
-         if(!Application.on_run_exception(e))
-            throw exit_exception(get_app());
-
-      }
-      catch(...)
-      {
-      }
       return pcreatordata;
+
    }
 
-   
+
+   view_creator_data * view_creator::create_impact(id id,LPCRECT lpcrectCreate)
+   {
+
+      view_creator_data * pcreatordata = create(id, lpcrectCreate);
+
+      try
+      {
+
+         on_create_view(pcreatordata);
+
+      }
+      catch(create_exception & e)
+      {
+
+         if(e.m_id == id)
+         {
+
+            delete pcreatordata;
+
+            return NULL;
+
+         }
+
+         throw e;
+
+      }
+      catch(::exit_exception & e)
+      {
+
+         throw e;
+
+      }
+      catch(::exception::exception & e)
+      {
+
+         if (!Application.on_run_exception(e))
+         {
+         
+            throw exit_exception(get_app());
+
+         }
+
+      }
+      catch(...)
+      {
+
+      }
+      
+      if (!pcreatordata->m_bOk)
+      {
+
+         delete pcreatordata;
+
+         return NULL;
+
+      }
+
+      return on_after_create_impact(pcreatordata);
+
+   }
+
+
+   view_creator_data * view_creator::on_after_create_impact(view_creator_data * pcreatordata)
+   {
+
+      if (pcreatordata->m_pholder->m_uiptraChild.get_count() > 0)
+      {
+
+         return pcreatordata;
+
+      }
+
+      try
+      {
+
+         Application.on_create_view(pcreatordata);
+
+      }
+      catch (create_exception & e)
+      {
+
+         if (e.m_id == pcreatordata->m_id)
+         {
+
+            delete pcreatordata;
+
+            return NULL;
+
+         }
+
+         throw e;
+
+      }
+      catch (::exit_exception & e)
+      {
+
+         throw e;
+
+      }
+      catch (::exception::exception & e)
+      {
+
+         if (!Application.on_run_exception(e))
+         {
+
+            throw exit_exception(get_app());
+
+         }
+
+      }
+      catch (...)
+      {
+
+      }
+
+      return pcreatordata;
+
+   }
+
+
+   view_creator_data * view_creator::create_impact(id id, LPCRECT lpcrectCreate, ::user::frame_window * pframewindow)
+   {
+
+      view_creator_data * pcreatordata = create(id, lpcrectCreate);
+
+      pcreatordata->m_pwnd = pframewindow;
+
+      pcreatordata->m_pdoc = pframewindow->GetActiveDocument();
+
+      pcreatordata->m_bOk = true;
+
+      return on_after_create_impact(pcreatordata);
+
+   }
+
+
    void view_creator::on_create_view(::user::view_creator_data * pcreatordata)
    {
       

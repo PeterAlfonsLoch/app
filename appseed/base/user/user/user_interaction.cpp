@@ -5387,7 +5387,7 @@ restart:
 
       point pt = pmouse->m_pt;
 
-      ScreenToClient(&pt);
+      //ScreenToClient(&pt);
 
       return track_popup_xml_matter_menu(pszMatter,iFlags,pt);
 

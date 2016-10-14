@@ -219,16 +219,24 @@ namespace user
 
       // first pump through pane
       if (::user::interaction::_001OnCmdMsg(pcmdmsg))
-         return TRUE;
-      sp(::user::interaction) pwndex;
-      if (base_class < ::user::impact > ::bases(GetParent()))
       {
-         pwndex = GetParent();
-         if (pwndex != NULL)
+
+         return true;
+
+      }
+      
+      sp(::user::interaction) puiParent = GetParent();
+      
+      if (puiParent.cast < ::user::impact > () != NULL)
+      {
+         
+         if (puiParent->_001OnCmdMsg(pcmdmsg))
          {
-            if (pwndex->_001OnCmdMsg(pcmdmsg))
-               return TRUE;
+
+            return true;
+
          }
+
       }
 
       // then pump through document
@@ -238,20 +246,22 @@ namespace user
             return TRUE;
          sp(::user::impact) pview = ::user::impact::get_document()->get_view(0);
          ASSERT_VALID(pview);
-         if (pview != this && pview != GetParent())
+         if (pview != NULL && pview != this && pview != GetParent())
          {
-            pwndex = (pview);
-            if (pwndex != NULL)
+            
+            if (pview->::user::interaction::_001OnCmdMsg(pcmdmsg))
             {
-               if (pwndex->::user::interaction::_001OnCmdMsg(pcmdmsg))
-                  return TRUE;
+
+               return true;
+
             }
+
          }
 
       }
 
+      return false;
 
-      return FALSE;
    }
 
    /////////////////////////////////////////////////////////////////////////////

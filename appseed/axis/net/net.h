@@ -70,5 +70,6 @@ namespace sockets
 
 
 
-
+CLASS_DECL_AXIS void thread_touch_sockets();
+CLASS_DECL_AXIS int thread_has_sockets();
 

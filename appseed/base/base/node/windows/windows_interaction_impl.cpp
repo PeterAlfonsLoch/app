@@ -1398,7 +1398,12 @@ namespace windows
 
 
       bool bDestroying = m_pui->m_bDestroying;
+      if (pbase->m_uiMessage == WM_ENABLE)
+      {
 
+         TRACE("WM_ENABLE enable = " + string(pbase->m_wparam ? "true" : "false"));
+
+      }
       if(pbase->m_uiMessage == WM_SIZE || pbase->m_uiMessage == WM_MOVE)
       {
 

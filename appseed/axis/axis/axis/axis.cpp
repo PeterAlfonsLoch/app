@@ -193,16 +193,37 @@ void axis_on_init_thread()
 
 }
 
+thread_int_ptr < bool > t_bSockets;
+
+CLASS_DECL_AXIS void thread_touch_sockets()
+{
+
+   t_bSockets = true;
+
+}
+
+
+CLASS_DECL_AXIS int thread_has_sockets()
+{
+
+   return t_bSockets;
+
+}
 
 void axis_on_term_thread()
 {
 
 #ifdef BSD_STYLE_SOCKETS
+   
+   if (thread_has_sockets())
+   {
+    
+      ERR_free_strings();
+      CRYPTO_THREADID tid;
+      CRYPTO_THREADID_current(&tid);
+      ERR_remove_thread_state(&tid);
 
-   ERR_free_strings();
-   CRYPTO_THREADID tid;
-   CRYPTO_THREADID_current(&tid);
-   ERR_remove_thread_state(&tid);
+   }
 
 #endif
 
