@@ -16,7 +16,7 @@ namespace console
 
       uint32_t             m_dwCaretPeriod;
 
-      int                  m_iCursor;
+      strsize              m_iCursor;
 
       size                 m_sizeChar;
 
@@ -24,7 +24,7 @@ namespace console
 
       event                m_evNewChar;
 
-      int                  m_iNewChar;
+      strsize              m_iNewChar;
 
       DWORD                m_dwLastError;
 

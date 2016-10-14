@@ -264,6 +264,33 @@ sp(::user::wndfrm::frame::frame) simple_frame_window::create_frame_schema()
 
 }
 
+HICON load_icon(::aura::application * papp, stringa & straMatter, string strIcon, int cx, int cy)
+{
+
+   HICON hicon = NULL;
+
+   ::file::path path;
+
+   for (auto & strMatter : straMatter)
+   {
+
+      path = App(papp).dir().matter(strMatter / strIcon);
+
+      hicon = (HICON)LoadImage(NULL, path, IMAGE_ICON, cx, cy, LR_LOADFROMFILE);
+
+      if (hicon != NULL)
+      {
+
+         break;
+
+      }
+
+   }
+
+   return hicon;
+
+}
+
 
 void simple_frame_window::_001OnCreate(signal_details * pobj)
 {
@@ -394,8 +421,16 @@ void simple_frame_window::_001OnCreate(signal_details * pobj)
 
 #endif
 
+   }
+
+   
+   if (GetWindowText().is_empty())
+   {
+
+      SetWindowText(Application.get_app_user_friendly_task_bar_name());
 
    }
+
 
    //if (GetParent() == NULL)
    {
@@ -414,23 +449,48 @@ void simple_frame_window::_001OnCreate(signal_details * pobj)
       //http://www.cplusplus.com/forum/general/28470/
       //blackcoder41 (1426)  Sep 12, 2010 at 2:43pm
       //hIconSm = (HICON)LoadImage(NULL, "menu_two.ico", IMAGE_ICON, 16, 16, LR_LOADFROMFILE);
-      HICON hicon;
-      ::file::path path = Application.dir().matter(strMatter / "icon.ico");
-      hicon = (HICON)LoadImage(NULL, path, IMAGE_ICON, 16, 16, LR_LOADFROMFILE);
+
+      stringa straMatter;
+
+      if (strMatter.name(0).is_equal("system"))
+      {
+
+         straMatter.add("main");
+
+         straMatter.add(strMatter);
+
+      }
+      else
+      {
+
+         straMatter.add(strMatter);
+
+         straMatter.add("main");
+
+      }
+
+      HICON hicon = load_icon(get_app(), straMatter, "icon.ico", 16, 16);
+      
       if (hicon != NULL)
       {
+
          SendMessage(get_handle(), (UINT)WM_SETICON, ICON_SMALL, (LPARAM)hicon);
+
       }
-      path = Application.dir().matter(strMatter / "icon.ico");
-      hicon = (HICON)LoadImage(NULL, path, IMAGE_ICON, 48, 48, LR_LOADFROMFILE);
+
+      hicon = load_icon(get_app(), straMatter, "icon.ico", 16, 16);
+
       if (hicon != NULL)
       {
+
          SendMessage(get_handle(), (UINT)WM_SETICON, ICON_BIG, (LPARAM)hicon);
+
       }
+
       if (m_bWindowFrame)
       {
-         path = Application.dir().matter(strMatter / "icon.ico");
-         hicon = (HICON)LoadImage(NULL, path, IMAGE_ICON, 24, 24, LR_LOADFROMFILE);
+         
+         hicon = load_icon(get_app(), straMatter, "icon.ico", 24, 24);
 
          if (hicon != NULL)
          {

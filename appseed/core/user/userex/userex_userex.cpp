@@ -407,16 +407,20 @@ namespace userex
       }
       else
       {
+
          return 0;
+
       }
+
    }
 
-   int32_t userex::simple_message_box_timeout(::user::primitive * puiOwner,const char * pszMessage,::duration durationTimeout,UINT fuStyle)
+
+   int32_t userex::simple_message_box_timeout(::user::primitive * puiOwner,const char * pszMessage,::duration durationTimeout,UINT fuStyle, ::aura::application * papp)
    {
 
       UNREFERENCED_PARAMETER(puiOwner);
 
-      class ::userex::message_box box(get_app());
+      class ::userex::message_box box(papp == NULL ? get_app() : papp);
 
       property_set propertyset;
       propertyset["message"] = pszMessage;
@@ -646,6 +650,43 @@ namespace userex
 
 
    }
+
+
+   sp(::user::document) userex::create_form(::aura::application * papp, sp(::user::form) pview, ::user::form_callback * pcallback, sp(::user::interaction) pwndParent, var var)
+   {
+
+      if (m_ptemplateForm == NULL)
+         return NULL;
+
+      sp(::create) createcontext(papp->allocer());
+      createcontext->m_bMakeVisible = false;
+      createcontext->m_puiParent = pwndParent;
+      createcontext->m_puiAlloc = pview;
+
+      if (var.get_type() == var::type_propset && var.has_property("hold") && !(bool)var["hold"])
+      {
+         createcontext->m_bHold = false;
+      }
+
+      sp(::user::document) pdoc = m_ptemplateForm->open_document_file(createcontext);
+
+      if (pdoc.is_null())
+         return NULL;
+
+      sp(::user::form_window) pform = pdoc->get_typed_view < ::user::form_window >();
+
+      if (pform.is_set())
+      {
+
+         pform->m_pcallback = pcallback;
+
+      }
+
+      return pdoc;
+
+
+   }
+
 
    sp(::user::document) userex::create_form(::user::form_callback * pcallback,sp(::user::interaction) pwndParent,var var)
    {

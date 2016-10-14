@@ -47,7 +47,7 @@ namespace userex
 
 
       string message_box(const char * pszMatter, property_set & propertyset);
-      virtual int32_t simple_message_box_timeout(::user::primitive * puiOwner,const char * pszMessage,::duration durationTimeout,UINT fuStyle = MB_OK);
+      virtual int32_t simple_message_box_timeout(::user::primitive * puiOwner,const char * pszMessage,::duration durationTimeout,UINT fuStyle = MB_OK, ::aura::application * papp = NULL);
       virtual int32_t simple_message_box(::user::primitive * puiOwner,const char * pszMessage,UINT fuStyle = MB_OK);
       virtual int32_t track_popup_menu(const char * pszMatter, point pt, sp(::user::interaction) puie);
 
@@ -99,6 +99,8 @@ namespace userex
       ::count get_template_count() const;
       sp(impact_system) get_template(index index) const;
 
+      
+      sp(::user::document)   create_form(::aura::application * papp, sp(::user::form) pview, ::user::form_callback * pcallback, sp(::user::interaction) pwndParent, var var = ::var(::var::type_empty_argument));
 
 
       sp(::user::document)   create_form(::user::form_callback * pcallback, sp(::user::interaction) pwndParent, var var = ::var(::var::type_empty_argument));

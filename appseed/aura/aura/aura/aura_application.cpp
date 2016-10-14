@@ -4778,6 +4778,18 @@ namespace aura
 
    }
 
+
+   string application::get_app_user_friendly_task_bar_name()
+   {
+
+      ::file::path path = m_strAppName;
+
+      string strTitle = path.title();
+
+      return strTitle;
+
+   }
+
    void application::show_critical_error_log()
    {
 

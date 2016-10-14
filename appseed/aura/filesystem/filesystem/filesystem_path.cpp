@@ -106,6 +106,13 @@ namespace file
       if(((const string &)*this).operator == ((const string &)path)) // undoubtely eaqual...
          return true;
 
+#ifdef WINDOWS
+
+      if (((const string &)*this).CompareNoCase((const string &)path) == 0) // undoubtely eaqual...
+         return true;
+
+#endif
+
       // find extend equalitys..
 
       ::file::patha patha1;
@@ -173,6 +180,40 @@ namespace file
       }
 
       return straParam;
+
+   }
+
+   
+   path path::name(index i) const
+   {
+
+      patha patha;
+
+      ascendants_name(patha);
+
+      if (i < 0)
+      {
+
+         i += patha.get_size();
+
+      }
+
+
+      if (i < 0)
+      {
+
+         return "";
+
+      }
+
+      if (i >= patha.get_size())
+      {
+
+         return "";
+
+      }
+
+      return patha[i];
 
    }
 

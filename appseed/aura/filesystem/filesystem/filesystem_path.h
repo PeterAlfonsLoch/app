@@ -183,6 +183,8 @@ namespace file
 
       ::file::path name() const;
 
+      ::file::path name(index i /* = -1 */) const;
+
       index find_file_name() const;
 
       bool is_equal(const ::file::path & path2) const;
