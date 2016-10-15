@@ -483,6 +483,13 @@ namespace file
 
    memory_size_t edit_buffer::read(void *lpBuf,memory_size_t nCount)
    {
+
+      if (m_ptreeitem == m_ptreeitemFlush)
+      {
+
+         return m_pfile->read(lpBuf, nCount);
+
+      }
       
       byte * buf = (byte *)lpBuf;
 
@@ -622,7 +629,7 @@ namespace file
 
             nCount -= uiReadCount;
 
-            uiRead += uiReadCount;
+            uiRead += uiReadCount;           
 
             m_dwPosition += uiReadCount;
 
@@ -719,6 +726,14 @@ namespace file
 
    file_position_t edit_buffer::seek(file_offset_t lOff,::file::e_seek nFrom)
    {
+
+      if (m_ptreeitem == m_ptreeitemFlush)
+      {
+
+         return m_pfile->seek(lOff, nFrom);
+
+      }
+
       ASSERT(IsValid());
       ASSERT(nFrom == ::file::seek_begin || nFrom == ::file::seek_end || nFrom == ::file::seek_current);
       ASSERT(::file::seek_begin == FILE_BEGIN && ::file::seek_end == FILE_END && ::file::seek_current == FILE_CURRENT);
@@ -898,16 +913,26 @@ namespace file
       Save(*spfile);
 
       char buf[4096];
+
       memory_size_t uiRead;
+
       m_pfile->set_length(0);
+
       spfile->seek(0,::file::seek_begin);
+
       while((uiRead = spfile->read(buf,sizeof(buf))) > 0)
       {
+
          m_pfile->write(buf,uiRead);
+
       }
+
       m_pfile->flush();
+      
       m_dwFileLength = m_pfile->get_length();
+      
       m_ptreeitemFlush = m_ptreeitem;
+
    }
 
    bool edit_buffer::SaveTo(::file::ostream & ostream)
