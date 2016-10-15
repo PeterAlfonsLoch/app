@@ -1547,6 +1547,30 @@ namespace windows
 //
 //#else
 
+   bool os::file_open(string str)
+   {
+
+      manual_reset_event ev(get_app());
+
+      int iRet = -1;
+
+      ::fork(get_app(), [&]()
+      {
+
+         ::CoInitializeEx(NULL, COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
+
+         iRet = (int) ::ShellExecute(NULL, "open", str, NULL, NULL, SW_RESTORE);
+
+         ev.set_event();
+
+      });
+
+      ev.wait();
+
+      return iRet >= 32;
+
+   }
+
 } // namespace windows
 
 

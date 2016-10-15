@@ -7660,6 +7660,29 @@ restart:
 
    }
 
+   void interaction::transparent_mouse_events()
+   {
+    
+      ::fork(get_app(), [=]()
+      {
+
+         point pt;
+
+         while (get_thread()->m_bRun)
+         {
+
+            defer_notify_mouse_move(pt);
+
+            Sleep(5);
+
+         }
+
+
+      });
+
+   }
+
+
    void interaction::defer_notify_mouse_move(point & ptLast)
    {
 

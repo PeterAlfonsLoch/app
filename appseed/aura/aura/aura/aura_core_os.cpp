@@ -370,6 +370,13 @@ namespace aura
 
    }
 
+   bool os::file_open(string str)
+   {
+
+      return false;
+
+   }
+
 
 } // namespace core
 

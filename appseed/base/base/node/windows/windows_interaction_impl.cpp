@@ -4519,8 +4519,19 @@ restart_mouse_hover_check:
          if(System.get_twf()->m_bProDevianMode)
             return true;
 
-         if(GetExStyle() & WS_EX_LAYERED)
-            return false;
+         if (GetExStyle() & WS_EX_LAYERED)
+         {
+
+            ::fork(get_app(), [&]()
+            {
+
+               _001UpdateWindow();
+
+            });
+
+            return true;
+
+         }
 
       }
 

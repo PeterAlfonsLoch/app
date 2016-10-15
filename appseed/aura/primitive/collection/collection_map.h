@@ -480,7 +480,29 @@ public:
 
    PAIR & element_at(::index iIndex) { return elements().element_at(iIndex); }
 
-   
+   template < typename PRED >
+   typename map < KEY, ARG_KEY, VALUE, ARG_VALUE, PAIR >::assoc * pred_find(PRED pred)
+   {
+
+      auto p = this->PGetFirstAssoc();
+
+      while (p != NULL)
+      {
+
+         if (pred(p))
+         {
+
+            return p;
+
+         }
+
+         p = this->PGetNextAssoc(p);
+
+      }
+
+      return NULL;
+
+   }
 
 };
 

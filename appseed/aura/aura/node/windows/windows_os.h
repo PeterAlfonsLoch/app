@@ -49,6 +49,9 @@ namespace windows
 
       virtual bool open_in_ie(const char * lpcsz);
 
+      virtual bool file_open(string str);
+
+
 
       virtual bool create_service(::aura::application * papp);
       virtual bool remove_service(::aura::application * papp);

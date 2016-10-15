@@ -85,6 +85,7 @@ namespace aura
 
         virtual bool initialize_wallpaper_fileset(::file::set * pfileset, bool bAddSearch);
 
+        virtual bool file_open(string str);
 
     };
 

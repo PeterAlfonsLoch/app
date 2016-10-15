@@ -773,6 +773,8 @@ namespace user
 
       virtual void defer_notify_mouse_move(point & ptLast);
 
+      virtual void transparent_mouse_events();
+
    };
 
 
