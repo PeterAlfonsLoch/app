@@ -161,7 +161,7 @@ namespace user
       ::user::interaction_ptra   m_uiptraDisable;       // windows disabled because of BeginModalState
       HMENU                      m_hMenuAlt;           // menu to update to (NULL means default)
       string                     m_strTitle;         // default title (original)
-      bool                       m_bInRecalcLayout;     // avoid recursion in layout
+      bool                       m_bInRecalcLayout;     // avoid recursion in on_layout
       sp(type)                   m_pFloatingFrameClass;
 
       UINT                       m_nIdleFlags;          // set of bit flags for idle processing
@@ -247,7 +247,7 @@ namespace user
       bool IsTracking() const;
 
       // Operations
-      virtual void layout();
+      virtual void on_layout();
       virtual void ActivateFrame(int32_t nCmdShow = -1);
       virtual void InitialUpdateFrame(::user::document * pDoc, bool bMakeVisible);
       virtual void InitialFramePosition(bool bForceRestore = false);

@@ -232,7 +232,7 @@ namespace user
 
       if(str.is_empty())
       {
-         TRACE0("unable to load os keyboard layout");
+         TRACE0("unable to load os keyboard on_layout");
          if(is_debugger_attached())
          {
 
@@ -246,7 +246,7 @@ namespace user
 
       if(!doc.load(str))
       {
-         TRACE0("unable to load os keyboard layout");
+         TRACE0("unable to load os keyboard on_layout");
          if(is_debugger_attached())
          {
 
@@ -326,7 +326,7 @@ namespace user
    }
 
 
-   class keyboard_layout & keyboard::layout()
+   class keyboard_layout & keyboard::on_layout()
    {
       return *m_playout;
    }
@@ -350,23 +350,23 @@ namespace user
       }
       if(initialize(playout, strPath))
       {
-         TRACE("setting keyboard layout to %s (path=%s)", playout->m_strName.c_str(), playout->m_strPath.c_str());
+         TRACE("setting keyboard on_layout to %s (path=%s)", playout->m_strName.c_str(), playout->m_strPath.c_str());
          if(playout->load(playout->m_strPath))
          {
             m_playout = playout;
 // xxx            System.simpledb().on_set_keyboard_layout(playout->m_strPath, actioncontext);
-            TRACE("successfully set keyboard layout to %s (path=%s)", playout->m_strName.c_str(), playout->m_strPath.c_str());
+            TRACE("successfully set keyboard on_layout to %s (path=%s)", playout->m_strName.c_str(), playout->m_strPath.c_str());
             return true;
          }
          else
          {
             playout->release();
-            TRACE("failed to load keyboard layout : %s (path=%s)", playout->m_strName.c_str(), playout->m_strPath.c_str());
+            TRACE("failed to load keyboard on_layout : %s (path=%s)", playout->m_strName.c_str(), playout->m_strPath.c_str());
          }
       }
       else
       {
-         TRACE("failed to set keyboard layout path=%s", pszPath);
+         TRACE("failed to set keyboard on_layout path=%s", pszPath);
       }
       return false;
    }
@@ -465,7 +465,7 @@ namespace user
 
          string strTest;
 
-         string strPath = Application.dir().matter("keyboard layout/" + strOverride + ".xml");
+         string strPath = Application.dir().matter("keyboard on_layout/" + strOverride + ".xml");
 
          strTest = file_as_string_dup(strPath);
 
@@ -528,7 +528,7 @@ namespace user
 
       {
 
-         string strPath = Application.dir().matter("keyboard layout/br_abnt2.xml");
+         string strPath = Application.dir().matter("keyboard on_layout/br_abnt2.xml");
 
          if(Application.file().exists(strPath))
          {
@@ -543,7 +543,7 @@ namespace user
 
 #endif
 
-      string strPath = Application.dir().matter("keyboard layout/en_us_international.xml");
+      string strPath = Application.dir().matter("keyboard on_layout/en_us_international.xml");
 
       if(Application.file().exists(strPath))
       {

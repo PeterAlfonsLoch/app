@@ -201,7 +201,7 @@ namespace user
 
       virtual void get_title(int iPane,stringa & stra);
 
-      virtual void layout();
+      virtual void on_layout();
       virtual void layout_pane(index iPane, bool bDisplay = false);
 
       virtual void GetTabClientRect(LPRECT lprect);

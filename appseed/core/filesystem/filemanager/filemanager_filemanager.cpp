@@ -157,7 +157,7 @@ namespace filemanager
          ppanetabview = pdocument->get_view()->GetTypedParent < ::userex::pane_tab_view > ();
          ppanetabview->set_cur_tab_by_id("file_manager");
          ppanetabview->get_pane_by_id("file_manager")->m_bPermanent = false;
-         ppanetabview->layout();
+         ppanetabview->on_layout();
          ppanetabview->filemanager_manager().FileManagerSaveAs(pdocument);
          if(ppanetabview->GetParentFrame()->RunModalLoop() != "yes")
             return FALSE;

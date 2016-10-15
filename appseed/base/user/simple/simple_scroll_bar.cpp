@@ -474,7 +474,7 @@ int32_t simple_scroll_bar::_001GetScrollPos()
 
 
 
-void simple_scroll_bar::layout()
+void simple_scroll_bar::on_layout()
 {
 
    rect rectClient;

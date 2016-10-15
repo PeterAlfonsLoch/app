@@ -4353,8 +4353,8 @@ namespace draw2d_direct2d
          wstr,                // The string to be laid out and formatted.
          (UINT32) wstr.get_length(),   // The length of the string.
          get_os_font(m_spfont),    // The text format to apply to the string (contains font information, etc).
-         1024.f * 1024.f,               // The width of the layout box.
-         1024.f * 1024.f,        // The height of the layout box.
+         1024.f * 1024.f,               // The width of the on_layout box.
+         1024.f * 1024.f,        // The height of the on_layout box.
          &playout  // The IDWriteTextLayout interface pointer.
          );
 
@@ -5168,8 +5168,8 @@ namespace draw2d_direct2d
          szOutline,      // The string to be laid out and formatted.
          (UINT32) szOutline.length(),  // The length of the string.
          pformat,  // The text format to apply to the string (contains font information, etc).
-         4096,         // The width of the layout box.
-         4096,        // The height of the layout box.
+         4096,         // The width of the on_layout box.
+         4096,        // The height of the on_layout box.
          &playout  // The IDWriteTextLayout interface pointer.
          );
 
@@ -5204,8 +5204,8 @@ namespace draw2d_direct2d
          szOutline,      // The string to be laid out and formatted.
          (UINT32) szOutline.length(),  // The length of the string.
          pformat,  // The text format to apply to the string (contains font information, etc).
-         4096,         // The width of the layout box.
-         4096,        // The height of the layout box.
+         4096,         // The width of the on_layout box.
+         4096,        // The height of the on_layout box.
          &playout  // The IDWriteTextLayout interface pointer.
       );
 

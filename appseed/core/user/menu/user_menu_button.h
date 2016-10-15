@@ -40,7 +40,7 @@ namespace user
 
       virtual void install_message_handling(::message::dispatch * pinterface);
 
-      virtual void layout();
+      virtual void on_layout();
 
       virtual void _001DrawCheck(::draw2d::graphics * pgraphics);
 

@@ -12,6 +12,7 @@ namespace user
    {
    public:
 
+
       enum RepositionFlags
       {
 
@@ -65,9 +66,22 @@ namespace user
 
       };
 
+      enum EOptimize
+      {
+
+         OptimizeNone,
+         OptimizeThis
+
+      };
+
+
+
       bool                                m_bRedraw;
       DWORD                               m_dwLastRedraw;
+      bool                                m_bCursorRedraw;
+      point                               m_ptCursor;
 
+      ref_array < object >                m_ptraRedraw;
 
 
 
@@ -141,19 +155,6 @@ namespace user
 
 
 
-
-      virtual void _001RedrawWindow(UINT nFlags = 0);
-
-
-
-
-      enum EOptimize
-      {
-
-         OptimizeNone,
-         OptimizeThis
-
-      };
 
 
       void Optimize008(
@@ -267,7 +268,7 @@ namespace user
 
 
 
-      virtual void layout();
+      virtual void on_layout();
 
       virtual void BringToTop(int32_t nCmdShow);
       virtual bool BringWindowToTop();
@@ -301,7 +302,7 @@ namespace user
 
 #ifdef WINDOWS
 
-      virtual bool RedrawWindow(LPCRECT lpRectUpdate = NULL, ::draw2d::region* prgnUpdate = NULL, UINT flags = RDW_INVALIDATE | RDW_UPDATENOW | RDW_ERASE);
+      virtual bool RedrawWindow(LPCRECT lpRectUpdate = NULL, ::draw2d::region* prgnUpdate = NULL, UINT flags = RDW_INVALIDATE | RDW_ERASE);
 
 #else
 
@@ -578,6 +579,8 @@ namespace user
 
       //virtual PFN_DISPATCH_MESSAGE_HANDLER _calc_user_message_handler();
 
+      virtual bool has_pending_graphical_update();
+      virtual void on_after_graphical_update();
 
    };
 

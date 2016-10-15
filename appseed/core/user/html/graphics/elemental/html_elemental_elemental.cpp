@@ -376,7 +376,7 @@ namespace html
    }
 
 
-   void elemental::layout(data * pdata)
+   void elemental::on_layout(data * pdata)
    {
 
       pdata->m_bHasChar = false;

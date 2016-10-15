@@ -67,7 +67,7 @@ namespace user
    }
 
 
-   void menu_button::layout()
+   void menu_button::on_layout()
    {
       rect rect;
       class rect rectClient;

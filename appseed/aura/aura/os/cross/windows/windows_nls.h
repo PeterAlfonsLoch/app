@@ -657,7 +657,7 @@ extern "C" {
 //#endif //(WINVER >= 0x0600)
 
 //#if (WINVER >= _WIN32_WINNT_WIN7)
-#define LOCALE_IREADINGLAYOUT         0x00000070   // Returns one of the following 4 reading layout values:
+#define LOCALE_IREADINGLAYOUT         0x00000070   // Returns one of the following 4 reading on_layout values:
                                                    // 0 - Left to right (eg en-US)
                                                    // 1 - Right to left (eg arabic locales)
                                                    // 2 - Vertical top to bottom with columns to the left and also left to right (ja-JP locales)
@@ -693,12 +693,12 @@ extern "C" {
 
 #if(WINVER >= 0x0500)
 #define DATE_YEARMONTH            0x00000008  // use year month picture
-#define DATE_LTRREADING           0x00000010  // add marks for left to right reading order layout
-#define DATE_RTLREADING           0x00000020  // add marks for right to left reading order layout
+#define DATE_LTRREADING           0x00000010  // add marks for left to right reading order on_layout
+#define DATE_RTLREADING           0x00000020  // add marks for right to left reading order on_layout
 #endif /* WINVER >= 0x0500 */
 
 #if (WINVER >= _WIN32_WINNT_WIN7)
-#define DATE_AUTOLAYOUT             0x00000040  // add appropriate marks for left-to-right or right-to-left reading order layout
+#define DATE_AUTOLAYOUT             0x00000040  // add appropriate marks for left-to-right or right-to-left reading order on_layout
 #endif //(WINVER >= _WIN32_WINNT_WIN7)
 
 //

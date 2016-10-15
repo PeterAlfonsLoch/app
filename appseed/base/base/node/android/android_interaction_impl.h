@@ -153,7 +153,7 @@ namespace android
 
       bool DragDetect(POINT pt) const;
 
-      virtual void _001RedrawWindow(UINT nFlags = 0) override;
+      virtual void RedrawWindow(UINT nFlags = 0) override;
 
       // Window Text Functions
       void SetWindowText(const char * lpszString);
@@ -221,7 +221,7 @@ namespace android
       virtual void UnlockWindowUpdate();
       virtual bool RedrawWindow(LPCRECT lpRectUpdate = NULL,
          ::draw2d::region* prgnUpdate = NULL,
-         UINT flags = RDW_INVALIDATE | RDW_UPDATENOW | RDW_ERASE);
+         UINT flags = RDW_INVALIDATE | RDW_ERASE);
       //virtual bool EnableScrollBar(int32_t nSBFlags,UINT nArrowFlags = 0);
 
       virtual bool DrawAnimatedRects(int32_t idAni,CONST RECT *lprcFrom,CONST RECT *lprcTo);

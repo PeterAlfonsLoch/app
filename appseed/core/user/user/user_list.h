@@ -366,7 +366,7 @@ namespace user
       virtual ::user::list_header * create_list_header();
       virtual ::user::mesh_data * create_mesh_data();
 
-      void layout();
+      void on_layout();
 
       virtual bool _001OnUpdateItemCount(uint32_t dwFlags = 0);
 

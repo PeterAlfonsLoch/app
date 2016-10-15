@@ -77,9 +77,9 @@ FI_STRUCT (FREEIMAGEHEADER) {
 // ----------------------------------------------------------
 
 FI_STRUCT (FREEIMAGERGBMASKS) {
-	unsigned red_mask;			// bit layout of the red components
-	unsigned green_mask;		// bit layout of the green components
-	unsigned blue_mask;			// bit layout of the blue components
+	unsigned red_mask;			// bit on_layout of the red components
+	unsigned green_mask;		// bit on_layout of the green components
+	unsigned blue_mask;			// bit on_layout of the blue components
 };
 
 // ----------------------------------------------------------

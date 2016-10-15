@@ -48,7 +48,7 @@ COMMAND_LINE_ARGUMENT_A old_args[] =
 	{ "f", COMMAND_LINE_VALUE_FLAG, NULL, NULL, NULL, -1, NULL, "fullscreen mode" },
 	{ "g", COMMAND_LINE_VALUE_REQUIRED, NULL, NULL, NULL, -1, NULL, "set geometry, using format WxH or X%% or 'workarea', default is 1024x768" },
 	{ "h", COMMAND_LINE_VALUE_FLAG | COMMAND_LINE_PRINT_HELP, NULL, NULL, NULL, -1, "help", "print this help" },
-	{ "k", COMMAND_LINE_VALUE_REQUIRED, NULL, NULL, NULL, -1, NULL, "set keyboard layout ID" },
+	{ "k", COMMAND_LINE_VALUE_REQUIRED, NULL, NULL, NULL, -1, NULL, "set keyboard on_layout ID" },
 	{ "K", COMMAND_LINE_VALUE_FLAG, NULL, NULL, NULL, -1, NULL, "do not interfere with window manager bindings" },
 	{ "n", COMMAND_LINE_VALUE_REQUIRED, NULL, NULL, NULL, -1, NULL, "hostname" },
 	{ "o", COMMAND_LINE_VALUE_FLAG, NULL, NULL, NULL, -1, NULL, "console audio" },

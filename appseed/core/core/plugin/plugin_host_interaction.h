@@ -36,7 +36,7 @@ namespace plugin
       virtual void _000OnDraw(::draw2d::graphics * pgraphics);
 
       virtual bool defer_check(e_check echeck);
-      virtual void layout();
+      virtual void on_layout();
 
       
       using ::user::box::GetWindowRect;

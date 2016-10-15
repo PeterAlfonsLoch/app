@@ -4643,14 +4643,14 @@ finalize:
          if(pszPath == NULL)
          {
 
-            if(&Session.keyboard().layout() != NULL)
+            if(&Session.keyboard().on_layout() != NULL)
             {
 
                //            if(Session.fontopus()->m_puser != NULL
                //             && Session.fontopus()->m_puser->m_strFontopusServerSessId.has_char())
                //        {
 
-               // xxx data_set("keyboard_layout", keyboard().layout().m_strPath);
+               // xxx data_set("keyboard_layout", keyboard().on_layout().m_strPath);
 
                //      }
 
@@ -4669,7 +4669,7 @@ finalize:
             //          && Session.fontopus()->m_puser->m_strFontopusServerSessId.has_char())
             //     {
 
-            // xxx            data_set("keyboard_layout", keyboard().layout().m_strPath);
+            // xxx            data_set("keyboard_layout", keyboard().on_layout().m_strPath);
 
             //   }
 

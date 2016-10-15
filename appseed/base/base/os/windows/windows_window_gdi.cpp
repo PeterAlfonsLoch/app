@@ -17,6 +17,7 @@ window_gdi::window_gdi(::aura::application * papp) :
    m_pBuf            = NULL;
    m_hmutex          = NULL;
 
+
 }
 
 
@@ -62,6 +63,8 @@ CHAR szName[] = "Local\\ca2screen-%d";
 CHAR szNameMutex[] = "Local\\ca2screenmutex-%d";
 void window_gdi::create_window_graphics(int64_t cxParam, int64_t cyParam, int iStrideParam)
 {
+
+   synch_lock sl(m_pmutex);
 
    destroy_window_graphics();
 
@@ -228,6 +231,8 @@ void window_gdi::create_window_graphics(int64_t cxParam, int64_t cyParam, int iS
 void window_gdi::destroy_window_graphics()
 {
 
+   synch_lock sl(m_pmutex);
+
    if(m_hdcScreen != NULL)
    {
 
@@ -264,9 +269,12 @@ void window_gdi::destroy_window_graphics()
 
 }
 
+// ::SetWindowPos(get_handle(), (oswindow)z, x, y, cx, cy, nFlags | SWP_NOREDRAW);
 
 void window_gdi::update_window(COLORREF * pcolorref,int cxParam,int cyParam,int iStride)
 {
+
+   synch_lock sl(m_pmutex);
 
    if (cxParam <= 0 || cyParam <= 0)
    {
@@ -275,20 +283,29 @@ void window_gdi::update_window(COLORREF * pcolorref,int cxParam,int cyParam,int 
 
    }
 
+   int cx = MIN(cxParam, m_cx);
+
+   int cy = MIN(cyParam, m_cy);
+
    rect rectWindow = m_pimpl->m_rectParentClient;
+
+   rectWindow.right = rectWindow.left + cx;
+   rectWindow.bottom = rectWindow.top + cy;
 
    bool bLayered = (::GetWindowLong(m_pimpl->m_oswindow,GWL_EXSTYLE) & WS_EX_LAYERED) != 0;
 
    try
    {
 
-      ::draw2d::copy_colorref(cxParam,cyParam,m_pcolorref,m_iScan,pcolorref,iStride);
+      ::draw2d::copy_colorref(cx,cy,m_pcolorref,m_iScan,pcolorref,iStride);
 
    }
    catch(...)
    {
 
    }
+
+   //::GdiFlush();
 
    if (m_pBuf != NULL)
    {
@@ -303,11 +320,11 @@ void window_gdi::update_window(COLORREF * pcolorref,int cxParam,int cyParam,int 
 
             int64_t * p = (int64_t *)m_pBuf;
 
-            *p++ = cxParam;
-            *p++ = cyParam;
+            *p++ = cx;
+            *p++ = cy;
             *p++ = m_iScan;
 
-            ::draw2d::copy_colorref(cxParam, cyParam, (COLORREF *)p, sizeof(COLORREF) * cxParam, m_pcolorref, m_iScan);
+            ::draw2d::copy_colorref(cx, cy, (COLORREF *)p, sizeof(COLORREF) * cx, m_pcolorref, m_iScan);
 
             //memset(p, 0, sizeof(COLORREF) * cxParam *cyParam / 2);
 
@@ -343,7 +360,33 @@ void window_gdi::update_window(COLORREF * pcolorref,int cxParam,int cyParam,int 
 
       BLENDFUNCTION blendPixelFunction = { AC_SRC_OVER, 0, 255, AC_SRC_ALPHA };
 
+
       bool bOk = ::UpdateLayeredWindow(m_pimpl->m_oswindow, m_hdcScreen, &pt, &sz, m_hdc, &ptSrc, RGB(0, 0, 0), &blendPixelFunction, ULW_ALPHA) != FALSE;
+
+      {
+
+         RECT r2;
+
+         GetWindowRect(m_pimpl->m_oswindow, &r2);
+
+         RECT64 r64;
+
+         ::copy(&r64, &r2);
+
+         if (!::is_equal(&r64, &m_pimpl->m_rectParentClient))
+         {
+
+            ::SetWindowPos(m_pimpl->m_oswindow, NULL,
+               m_pimpl->m_rectParentClient.left,
+               m_pimpl->m_rectParentClient.top,
+               m_pimpl->m_rectParentClient.width(),
+               m_pimpl->m_rectParentClient.height(), SWP_NOZORDER | SWP_NOREDRAW);
+
+         }
+
+      }
+
+//      GdiFlush();
 
    }
    else

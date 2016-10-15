@@ -11,6 +11,8 @@ namespace user
 
       m_bRedraw = false;
 
+      m_bCursorRedraw = false;
+
    }
 
 
@@ -52,65 +54,6 @@ namespace user
       oswindowa = wndpa.get_hwnda();
 
    }
-
-
-   void interaction_base::_001RedrawWindow(UINT nFlags)
-   {
-
-      if(!IsWindow())
-      {
-
-         return;
-
-      }
-
-      sp(::user::interaction) pui = get_wnd();
-
-      //TRACE("interaction_base::_001RedrawWindow Is Window set?");
-
-      if(pui.is_set())
-      {
-
-         if (pui != this)
-         {
-
-            pui->_001RedrawWindow(nFlags);
-
-         }
-         else
-         {
-
-
-            //if(m_bRedraw && get_tick_count() - m_dwLastRedraw < 1000)
-            //{
-            //   return;
-            //}
-
-            //m_dwLastRedraw = ::get_tick_count();
-
-            //keep < bool > keepRedraw(&m_bRedraw,true,false,true);
-
-            //synch_lock sl(m_pmutex);
-
-            //_001UpdateBuffer();
-
-            //_001UpdateScreen();
-
-            _001UpdateWindow();
-            
-         }
-
-      }
-      else
-      {
-
-         TRACE("interaction_base::_001RedrawWindow window is not set.");
-
-      }
-
-   }
-
-
 
 
    void interaction_base::RedrawOptimize(rect_array &array)
@@ -1732,7 +1675,7 @@ Restart:
    }
 
 
-   void interaction_base::layout()
+   void interaction_base::on_layout()
    {
 
       ::exception::throw_interface_only(get_app());
@@ -2755,6 +2698,24 @@ Restart:
    {
 
 
+
+   }
+
+
+   bool interaction_base::has_pending_graphical_update()
+   {
+
+      return false;
+
+   }
+
+
+   void interaction_base::on_after_graphical_update()
+   {
+
+      m_bRedraw = false;
+
+      Session.get_cursor_pos(m_ptCursor);
 
    }
 

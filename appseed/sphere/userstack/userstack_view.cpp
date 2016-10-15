@@ -352,7 +352,7 @@ namespace userstack
       UNREFERENCED_PARAMETER(iShow);
    }
 
-   /*void view::layout()
+   /*void view::on_layout()
    {
       rect rectClient;
       GetClientRect(rectClient);
@@ -368,8 +368,8 @@ namespace userstack
             pui->SetWindowPos(ZORDER_TOP, rectClient.top, rectClient.left, rectClient.width(), rectClient.height(), SWP_SHOWWINDOW);
          }
       }
-      ::user::show < ::user::control >::layout();
-      gcom::backview::user::interaction::layout();
+      ::user::show < ::user::control >::on_layout();
+      gcom::backview::user::interaction::on_layout();
    }*/
 
    void view::_000OnMouse(::message::mouse * pmouse)

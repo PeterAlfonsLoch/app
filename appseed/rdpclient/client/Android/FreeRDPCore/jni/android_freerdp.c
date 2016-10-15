@@ -889,7 +889,7 @@ JNIEXPORT jboolean JNICALL jni_freerdp_set_connection_info(JNIEnv *env, jclass c
 			break;
 	}
 
-	// set US keyboard layout
+	// set US keyboard on_layout
 	settings->KeyboardLayout = 0x0409;
 
 	(*env)->ReleaseStringUTFChars(env, jhostname, hostname);

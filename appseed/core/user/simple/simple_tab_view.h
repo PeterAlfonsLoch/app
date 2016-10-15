@@ -22,7 +22,7 @@ public:
 #endif
 
    DECL_GEN_SIGNAL(_001OnSize);
-   void layout();
+   void on_layout();
 
    void _001OnCreate(signal_details * pobj);
 

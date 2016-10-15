@@ -58,7 +58,7 @@ namespace user
 
             m_pscrollbarHorz->SetWindowPos(ZORDER_TOP, 0, rectClient.bottom, rectClient.width(), m_scrolldataHorz.m_iWidth, ifswp);
 
-            m_pscrollbarHorz->layout();
+            m_pscrollbarHorz->on_layout();
 
          }
          else
@@ -431,7 +431,7 @@ namespace user
    //      {
    //         if(pbase->m_lparam == 0)
    //         {
-   //            _001RedrawWindow();
+   //            RedrawWindow();
    //         }
    //      }
    //   }
@@ -841,10 +841,10 @@ namespace user
    //   //}
    //   //
    //
-   //   void scroll::layout()
+   //   void scroll::on_layout()
    //   {
    //
-   //      ::user::control::layout();
+   //      ::user::control::on_layout();
    //
    //      on_change_view_size();
    //
@@ -903,7 +903,7 @@ namespace user
 
             m_pscrollbarVert->SetWindowPos(ZORDER_TOP, rectClient.right, rectClient.top, m_scrolldataVert.m_iWidth, rectClient.height() - rectClient.top, ifswp);
 
-            m_pscrollbarVert->layout();
+            m_pscrollbarVert->on_layout();
 
          }
          else
@@ -1173,10 +1173,10 @@ namespace user
    }
 
    //
-   //void scroll_y::layout()
+   //void scroll_y::on_layout()
    //{
 
-   //   BASE::layout();
+   //   BASE::on_layout();
 
    //   on_change_view_size();
 

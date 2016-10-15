@@ -601,7 +601,7 @@ namespace draw2d_direct2d
          )
          );
 
-      // Enumerate a stylistic set 6 font feature for application to our text layout
+      // Enumerate a stylistic set 6 font feature for application to our text on_layout
       DWRITE_FONT_FEATURE fontFeature = {DWRITE_FONT_FEATURE_TAG_STYLISTIC_SET_6, 1};
 
       // Apply the previously enumerated font feature to our Text Typography object

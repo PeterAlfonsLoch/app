@@ -729,7 +729,7 @@ namespace os
 
       m_xlib.create(m_window, cx, cy);
 
-      layout();
+      on_layout();
 
       return true;
 

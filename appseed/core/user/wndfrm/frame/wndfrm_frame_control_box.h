@@ -75,7 +75,7 @@ namespace user
             DECL_GEN_SIGNAL(_001OnMove);
             DECL_GEN_SIGNAL(_001OnSize);
 
-            virtual void layout();
+            virtual void on_layout();
 
             virtual size get_button_size(e_button ebutton);
 

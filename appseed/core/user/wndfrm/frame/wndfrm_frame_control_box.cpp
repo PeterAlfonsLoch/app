@@ -340,7 +340,7 @@ namespace user
          }
 
 
-         void control_box::layout()
+         void control_box::on_layout()
          {
 
             reset_layout();

@@ -124,7 +124,7 @@ namespace user
          if (!bRestore)
          {
 
-            layout(); // did not changed size, but appearance may have change (e.g., Full Screen to Normal)
+            on_layout(); // did not changed size, but appearance may have change (e.g., Full Screen to Normal)
 
             ShowWindow(SW_SHOW);
 

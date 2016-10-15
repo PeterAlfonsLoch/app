@@ -147,7 +147,7 @@ FT_BEGIN_HEADER
   /*                        be set to get vertical advance heights.  The   */
   /*                        `advances' buffer is caller-allocated.         */
   /*                        The idea of this function is to be able to     */
-  /*                        perform device-independent text layout without */
+  /*                        perform device-independent text on_layout without */
   /*                        loading a single glyph image.                  */
   /*                                                                       */
   /*    request_size     :: A handle to a function used to request the new */

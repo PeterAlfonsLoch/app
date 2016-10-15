@@ -31,9 +31,9 @@ void simple_tab_view::dump(dump_context & dumpcontext) const
 #endif
 #endif //DEBUG
 
-void simple_tab_view::layout()
+void simple_tab_view::on_layout()
 {
-   ::user::tab::layout();
+   ::user::tab::on_layout();
 }
 
 

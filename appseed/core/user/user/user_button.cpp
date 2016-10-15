@@ -529,7 +529,7 @@ namespace user
 
    }
 
-   void button::layout()
+   void button::on_layout()
    {
 
       rect rectClient;

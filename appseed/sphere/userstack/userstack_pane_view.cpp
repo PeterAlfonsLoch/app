@@ -262,7 +262,7 @@ namespace userstack
          {
             ppane->m_istrTitleEx = pcreatordata->m_id;
          }
-         layout();
+         on_layout();
       }
       ::userex::pane_tab_view::on_create_view(pcreatordata);
    }
@@ -483,7 +483,7 @@ namespace userstack
          m_dibBk.From((HDC)pgraphics->get_os_data(), pfi, true);
 
          */
-         //_001RedrawWindow();
+         //RedrawWindow();
       }
 
       //m_dibBk.to(pgraphics, 0, 0, rectClient.right, rectClient.bottom);

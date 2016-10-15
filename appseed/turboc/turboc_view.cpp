@@ -149,13 +149,13 @@ namespace turboc
       if(m_bHelloLayoutOn001Layout)
       {
 
-         ::turboc::view::layout();
+         ::turboc::view::on_layout();
 
       }
       else
       {
 
-         layout();
+         on_layout();
 
       }
 
@@ -744,7 +744,7 @@ namespace turboc
    }
 
 
-   void view::layout()
+   void view::on_layout()
    {
 
       rect rectClient;

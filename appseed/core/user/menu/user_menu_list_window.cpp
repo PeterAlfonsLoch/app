@@ -114,7 +114,7 @@ namespace user
 
       //user::AppGet()->AddFrame(this);
 
-      layout();
+      on_layout();
 
       rect rectClient;
 
@@ -166,7 +166,7 @@ namespace user
 
       //user::AppGet()->AddFrame(this);
 
-      layout();
+      on_layout();
 
       rect rectClient;
 
@@ -244,7 +244,7 @@ namespace user
    }
 
 
-   void menu_list_window::layout()
+   void menu_list_window::on_layout()
    {
       if(GetParent() == NULL)
          return;

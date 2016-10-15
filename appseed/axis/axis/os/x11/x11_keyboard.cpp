@@ -1,5 +1,5 @@
 // xkeyboard.cpp
-// Implementation of a class to get keyboard layout information and change layouts
+// Implementation of a class to get keyboard on_layout information and change layouts
 // Copyright (C) 2008 by Jay Bromley <jbromley@gmail.com>
 //
 // This program is free software; you can redistribute it and/or modify it
@@ -126,7 +126,7 @@ Bool XKeyboard::initializeXkb()
         }
     }
 
-    // Get the symbol name and parse it for layout symbols.
+    // Get the symbol name and parse it for on_layout symbols.
     Atom symNameAtom = kbdDescPtr->names->symbols;
     string symName;
     if (symNameAtom != None) {

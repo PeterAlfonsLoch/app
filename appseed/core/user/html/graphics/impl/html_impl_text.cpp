@@ -1026,7 +1026,7 @@ namespace html
 
          m_pelemental->_001SetText(strText, actioncontext);
 
-         m_pelemental->m_pdata->m_pform->layout();
+         m_pelemental->m_pdata->m_pform->on_layout();
 
       }
 

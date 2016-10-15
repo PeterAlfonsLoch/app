@@ -29,7 +29,7 @@ namespace simple_ui
 
       DRAWDD();
 
-      virtual void layout();
+      virtual void on_layout();
 
       bool on_action(const char * pszId);
 

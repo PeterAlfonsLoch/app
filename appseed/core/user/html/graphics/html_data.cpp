@@ -275,7 +275,7 @@ namespace html
    }
 
 
-   void data::layout(::draw2d::graphics * pgraphics)
+   void data::on_layout(::draw2d::graphics * pgraphics)
    {
 
       synch_lock sl(m_pmutex);
@@ -307,7 +307,7 @@ namespace html
 
       m_layoutstate3.reset();
 
-      m_elemental.layout(this);
+      m_elemental.on_layout(this);
 
    }
 
@@ -743,7 +743,7 @@ restart:
       if(m_box.area() <= 0.f)
          return;
 
-      layout(pdib->get_graphics());
+      on_layout(pdib->get_graphics());
 
    }
 

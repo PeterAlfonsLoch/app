@@ -52,7 +52,7 @@ namespace user
 
       spa(toolbar_item)    m_itema;
 
-      bool                 m_bDelayedButtonLayout; // used to manage when button layout should be done
+      bool                 m_bDelayedButtonLayout; // used to manage when button on_layout should be done
 
       size                 m_sizeImage;  // current image size
       size                 m_sizeButton; // current button size
@@ -135,7 +135,7 @@ namespace user
       int32_t WrapToolBar(TBBUTTON* pData, int32_t nCount, int32_t nWidth);
       void SizeToolBar(TBBUTTON* pData, int32_t nCount, int32_t nLength, bool bVert = FALSE);
 #endif
-      void layout(); // called for for delayed button layout
+      void on_layout(); // called for for delayed button on_layout
 
       virtual void _001OnDraw(::draw2d::graphics * pgraphics);
 

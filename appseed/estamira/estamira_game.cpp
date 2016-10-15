@@ -117,7 +117,7 @@ namespace estamira
 
    }
 
-   void game::layout()
+   void game::on_layout()
    {
     
       rect rectClient;

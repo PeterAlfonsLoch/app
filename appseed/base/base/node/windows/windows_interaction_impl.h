@@ -242,13 +242,10 @@ namespace windows
       virtual bool LockWindowUpdate();
       virtual void UnlockWindowUpdate();
 
-      virtual bool _RedrawWindow(LPCRECT lpRectUpdate = NULL,
-         ::draw2d::region* prgnUpdate = NULL,
-         UINT flags = RDW_INVALIDATE | RDW_UPDATENOW | RDW_ERASE);
-
       virtual bool RedrawWindow(LPCRECT lpRectUpdate = NULL,
          ::draw2d::region* prgnUpdate = NULL,
-         UINT flags = RDW_INVALIDATE | RDW_UPDATENOW | RDW_ERASE);
+         UINT flags = RDW_INVALIDATE | RDW_ERASE);
+
       virtual bool EnableScrollBar(int32_t nSBFlags,UINT nArrowFlags = ESB_ENABLE_BOTH);
 
       virtual bool DrawAnimatedRects(int32_t idAni,CONST RECT *lprcFrom,CONST RECT *lprcTo);
@@ -687,9 +684,6 @@ namespace windows
       virtual void show_task(bool bShow);
 
 
-      virtual void _001RedrawWindow(UINT nFlags = 0) override;
-
-      
    };
 
 

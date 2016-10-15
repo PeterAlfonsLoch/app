@@ -18,7 +18,7 @@ namespace user
 
       keyboard(::aura::application * papp);
 
-      virtual class keyboard_layout & layout();
+      virtual class keyboard_layout & on_layout();
 
       virtual bool initialize();
 

@@ -852,13 +852,13 @@ namespace user
 
    }
 
-   void combo_box::layout()
+   void combo_box::on_layout()
    {
 
       if(m_bEdit)
       {
 
-         ::user::plain_edit::layout();
+         ::user::plain_edit::on_layout();
 
       }
 

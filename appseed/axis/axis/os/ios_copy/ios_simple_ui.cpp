@@ -376,7 +376,7 @@ namespace os
 
       m_gdi.create(m_window, cx, cy);
 
-      layout();
+      on_layout();
 
       return true;
 

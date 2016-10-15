@@ -33,7 +33,7 @@ namespace draw2d
 #define WM_HELPHITTEST      0x0366  // lResult = dwContext,
 // lParam = MAKELONG(x,y)
 #define WM_EXITHELPMODE     0x0367  // (params unused)
-#define WM_RECALCPARENT     0x0368  // force layout on frame interaction_impl
+#define WM_RECALCPARENT     0x0368  // force on_layout on frame interaction_impl
 //  (only for inplace frame windows)
 #define WM_SIZECHILD        0x0369  // special notify from COleResizeBar
 // wParam = ID of child interaction_impl

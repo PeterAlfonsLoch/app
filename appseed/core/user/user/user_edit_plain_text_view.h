@@ -22,7 +22,7 @@ namespace user
    //   virtual void _001OnSetText(::action::context actioncontext);
    //   virtual void _001OnUpdate(::action::context actioncontext);
 
-   //   virtual void layout();
+   //   virtual void on_layout();
 
    //   virtual void walk_pre_translate_tree(signal_details * pobj,sp(::user::interaction) puiStop);
 

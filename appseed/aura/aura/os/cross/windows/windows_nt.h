@@ -1820,7 +1820,7 @@ typedef struct _STACK_FRAME_HEADER
  * Note that this structure contains only the 'top-level' registers;
  * the rest of the register window chain is not visible.
  *
- * The layout follows the Solaris 'prgregset_t' structure.
+ * The on_layout follows the Solaris 'prgregset_t' structure.
  *
  */
 

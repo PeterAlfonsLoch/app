@@ -72,7 +72,7 @@ public:
    void draw_mac_thumb_dots(::draw2d::graphics * pgraphics,LPCRECT lpcrectDraw,LPCRECT lpcrectClip,byte uchAlpha);
 
 
-   virtual void layout();
+   virtual void on_layout();
 
    virtual index hit_test(point point,e_element & eelement);
 

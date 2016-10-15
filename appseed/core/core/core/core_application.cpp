@@ -3704,7 +3704,7 @@ namespace core
 
       string str;
 
-      // keyboard layout
+      // keyboard on_layout
       //if(data_get("keyboard_layout",str) && str.has_char())
       {
          // Session.set_keyboard_layout(str,::action::source::database());

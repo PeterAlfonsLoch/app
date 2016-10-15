@@ -19,11 +19,6 @@ namespace user
       virtual ~elemental();
 
 
-      // elemental
-
-      virtual void _001RedrawWindow(UINT nFlags = 0);
-
-
       virtual void pre_translate_message(signal_details * pobj);
 
 

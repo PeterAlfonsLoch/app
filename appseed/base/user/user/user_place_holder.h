@@ -39,7 +39,7 @@ namespace user
 
       DECL_GEN_SIGNAL(_001OnShowWindow);
 
-      virtual void layout();
+      virtual void on_layout();
 
       ::user::interaction * get_hold();
 

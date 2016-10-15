@@ -534,7 +534,7 @@ namespace filemanager
             {
                m_cache._001Invalidate(this);
                _001OnUpdateItemCount();
-               layout();
+               on_layout();
                RedrawWindow();
                //FillTask * ptask = (FillTask *) lparam;
 

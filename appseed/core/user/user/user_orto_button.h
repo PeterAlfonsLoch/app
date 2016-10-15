@@ -46,7 +46,7 @@ public:
    //     COLORREF crDisabled);
 
 
-   virtual void layout();
+   virtual void on_layout();
 
 
    DECL_GEN_SIGNAL(_001OnShowWindow);

@@ -750,17 +750,17 @@ namespace user
    {
    window::OnSize(nType, cx, cy);
 
-   layout();
+   on_layout();
    }*/
 
    void mesh::_001OnSize(signal_details * pobj)
    {
       SCAST_PTR(::message::size,psize,pobj);
-      //layout();
+      //on_layout();
       //psize->m_bRet = false;
    }
 
-   void mesh::layout()
+   void mesh::on_layout()
    {
 
       synch_lock sl(m_pmutex);
@@ -852,7 +852,7 @@ namespace user
 
       }
 
-      layout();
+      on_layout();
 
       return true;
 
@@ -936,7 +936,7 @@ namespace user
       }
 
       CacheHint();
-      layout();
+      on_layout();
 
       TRACE("mesh::_001OnUpdateItemCount ItemCount %d\n",m_nItemCount);
       if(m_bGroup)
@@ -3640,8 +3640,8 @@ namespace user
    //   keepLockViewUpdate.KeepAway();
    //   DIDDXHeaderLayout(false);
    //   _001OnColumnChange();
-   //   layout();
-   //   RedrawWindow(NULL,NULL,RDW_INVALIDATE | RDW_UPDATENOW | RDW_ERASE | RDW_ALLCHILDREN);
+   //   on_layout();
+   //   RedrawWindow(NULL,NULL,RDW_INVALIDATE | RDW_ERASE | RDW_ALLCHILDREN);
    //}
 
    //void mesh::_001InsertColumns()
@@ -3747,7 +3747,7 @@ namespace user
 
       rect.null();
 
-      //layout();
+      //on_layout();
 
       pcreate->set_lresult(0);
 
@@ -4278,7 +4278,7 @@ namespace user
 
    //   //_001InsertColumn(column);
 
-   //   layout();
+   //   on_layout();
 
 
 
@@ -4694,7 +4694,7 @@ namespace user
 
       on_change_view_size();
 
-      layout();
+      on_layout();
 
       RedrawWindow();
 
@@ -4732,7 +4732,7 @@ namespace user
 
       on_change_view_size();
 
-      layout();
+      on_layout();
 
       RedrawWindow();
 
@@ -4842,7 +4842,7 @@ namespace user
 
       on_change_view_size();
 
-      layout();
+      on_layout();
 
       RedrawWindow();
 
@@ -5286,7 +5286,7 @@ namespace user
       if (bLayout)
       {
 
-         layout();
+         on_layout();
 
       }
 
@@ -5632,7 +5632,7 @@ namespace user
          {
             m_iconlayout.m_iaDisplayToStrict.set(iStrict,iStrict);
          }
-         layout();
+         on_layout();
       }
    }
 

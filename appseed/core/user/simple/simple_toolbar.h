@@ -83,7 +83,7 @@ public:
    void _001Hover(bool bRedraw = true);
 
 
-   void layout();
+   void on_layout();
 
 
    void _001DrawItem(::draw2d::graphics * pgraphics, int32_t iItem);

@@ -182,7 +182,7 @@ namespace html
 
       void load(const char *);
       void implement(::draw2d::graphics * pgraphics);
-      void layout(::draw2d::graphics * pgraphics);
+      void on_layout(::draw2d::graphics * pgraphics);
       void _001OnDraw(::draw2d::graphics * pgraphics);
 
       void implement_and_layout(html_form * pform);

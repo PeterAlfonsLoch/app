@@ -3225,7 +3225,7 @@ namespace user
    }
 
 
-   void plain_edit::layout()
+   void plain_edit::on_layout()
    {
 
       m_bNeedCalcLayout = true;

@@ -152,7 +152,8 @@ namespace user
          }
 
 
-         void frame::layout()
+
+         void frame::on_layout()
          {
 
             reset_layout();
@@ -162,6 +163,8 @@ namespace user
             rect rectClient;
 
             sp(::user::interaction) pwndDraw = get_draw_window();
+
+            synch_lock sl(pwndDraw->m_pmutex);
 
             sp(::user::wndfrm::frame::WorkSetClientInterface) pinterface = pwndDraw;
 
@@ -218,13 +221,13 @@ namespace user
 
 /*            if (pwnd->IsWindowVisible())
             {
-               pwnd->RedrawWindow(NULL, NULL, RDW_INVALIDATE | RDW_UPDATENOW);
+               pwnd->RedrawWindow(NULL, NULL, RDW_INVALIDATE);
 
 #if !defined(METROWIN) && !defined(LINUX) && !defined(APPLEOS)
                RedrawWindow(NULL,
                   m_pworkset->m_rectPending,
                   NULL,
-                  RDW_INVALIDATE | RDW_UPDATENOW | RDW_ALLCHILDREN);
+                  RDW_INVALIDATE | RDW_ALLCHILDREN);
 #endif
 
                m_pworkset->m_rectPending.set(0, 0, 0, 0);
@@ -477,7 +480,7 @@ namespace user
             if(pwnd == NULL || pwnd->m_pimpl->m_bIgnoreSizeEvent)
                return false;
 
-            layout();
+            on_layout();
 
             return false;
 
@@ -743,7 +746,7 @@ namespace user
                if(get_control_box()->m_eappearance != pappearance->GetAppearance())
                {
 
-                  get_control_box()->layout();
+                  get_control_box()->on_layout();
 
                   get_control_box()->m_eappearance = pappearance->GetAppearance();
 

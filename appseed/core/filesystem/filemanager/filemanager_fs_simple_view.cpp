@@ -78,7 +78,7 @@ namespace filemanager
 
             SetPane(1, m_plist, false);
 
-            layout();
+            on_layout();
 
          }
 
@@ -122,7 +122,7 @@ namespace filemanager
 
             m_plist->parse(strResponse);
 
-            layout();
+            on_layout();
 
          }
 

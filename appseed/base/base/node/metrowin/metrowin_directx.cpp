@@ -409,7 +409,7 @@ namespace metrowin
                   {
                      System.m_posdata->m_pui->m_uiptraChild[i]->SetWindowPos(ZORDER_TOP,0,0,m_size.cx,m_size.cy,SWP_SHOWWINDOW);
 
-                     //System.m_posdata->m_pui->m_uiptraChild[i]->layout();
+                     //System.m_posdata->m_pui->m_uiptraChild[i]->on_layout();
                   }
                }
             }
@@ -623,7 +623,7 @@ namespace metrowin
          )
       );
 
-      // Enumerate a stylistic set 6 font feature for application to our text layout
+      // Enumerate a stylistic set 6 font feature for application to our text on_layout
       DWRITE_FONT_FEATURE fontFeature = {DWRITE_FONT_FEATURE_TAG_STYLISTIC_SET_6,1};
 
       // Apply the previously enumerated font feature to our Text Typography object

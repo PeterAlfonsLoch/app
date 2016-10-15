@@ -51,7 +51,7 @@ namespace userfs
       pwnd = create_view(System.type_info < list >(),get_document(),null_rect(),get_pane_holder(1),101);
 //      list * plist = dynamic_cast < list * > (pwnd);
       SetPane(1, pwnd, false);
-      layout();
+      on_layout();
 
 
    }

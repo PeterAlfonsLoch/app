@@ -104,12 +104,12 @@ namespace html
          virtual void layout_phase0(data * pdata); // cx MIN/MAX calculation
          virtual void layout_phase1(data * pdata); // cx calculation or cxy calculation at final nodes
          virtual void layout_phase2(data * pdata); // adjust
-         virtual void layout_phase3(data * pdata); // final layout
+         virtual void layout_phase3(data * pdata); // final on_layout
 
 
          virtual void layout_phase0_end(data * pdata); // cxMax calculation for containers
          virtual void layout_phase1_end(data * pdata); // cy calculation
-         virtual void layout_phase3_end(data * pdata); // final layout
+         virtual void layout_phase3_end(data * pdata); // final on_layout
 
          virtual void set_xy(data * pdoc);
 

@@ -45,7 +45,7 @@ namespace fontopus
       void _001OnTimer(::timer * ptimer);
       
 
-      virtual void layout();
+      virtual void on_layout();
 
 
       virtual void _000OnDraw(::draw2d::graphics * pgraphics);

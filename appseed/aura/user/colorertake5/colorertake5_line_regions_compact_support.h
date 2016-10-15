@@ -8,7 +8,7 @@ namespace colorertake5
    /** Compact region store implementation based on LineRegionsSupport class.
    This class guarantees non-interlaced creation of LineRegion structures in line.
    Client application can use this class, if it depends on
-   compact style of regions layout.
+   compact style of regions on_layout.
    All regions are compacted, except those, marked with special field.
    @ingroup colorer_handlers
    */

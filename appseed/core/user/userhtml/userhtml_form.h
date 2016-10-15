@@ -22,8 +22,8 @@ public:
    virtual void _001OnDraw(::draw2d::graphics * pgraphics);
    virtual void _001DrawChildren(::draw2d::graphics * pgraphics);
 
-   //virtual void layout(::html::data * phtmldata);
-   virtual void layout();
+   //virtual void on_layout(::html::data * phtmldata);
+   virtual void on_layout();
 
    virtual void install_message_handling(::message::dispatch * pinterface);
 

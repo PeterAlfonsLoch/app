@@ -476,7 +476,7 @@ FT_BEGIN_HEADER
   /*                                                                       */
   /* <Description>                                                         */
   /*    A structure used to describe the text line metrics of a given      */
-  /*    bitmap strike, for either a horizontal or vertical layout.         */
+  /*    bitmap strike, for either a horizontal or vertical on_layout.         */
   /*                                                                       */
   /* <Fields>                                                              */
   /*    ascender                :: The ascender in pixels.                 */

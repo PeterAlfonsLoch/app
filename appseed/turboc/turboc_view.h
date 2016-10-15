@@ -103,7 +103,7 @@ namespace turboc
 
       static UINT thread_proc_render(void * pparam);
 
-      virtual void layout();
+      virtual void on_layout();
 
       DECL_GEN_SIGNAL(_001OnLayout);
       DECL_GEN_SIGNAL(_001OnCreate);

@@ -158,7 +158,7 @@ namespace filemanager
                      get_filemanager_data()->m_pholderFileList->m_uiptraChild[0]->ShowWindow(SW_HIDE);
                   }
                   get_filemanager_data()->m_pholderFileList->hold(this);
-                  get_filemanager_data()->m_pholderFileList->layout();
+                  get_filemanager_data()->m_pholderFileList->on_layout();
                }
 
                data_get_DisplayToStrict();
@@ -729,7 +729,7 @@ namespace filemanager
             pcmdui->m_pcmdui->m_iCount = iIndex;
 
 
-            pbase->layout();
+            pbase->on_layout();
 
          }
       pobj->m_bRet = true;

@@ -141,7 +141,7 @@ typedef struct svn_fs_t svn_fs_t;
 #define SVN_FS_CONFIG_FSFS_BLOCK_READ           "fsfs-block-read"
 
 /** String with a decimal representation of the FSFS format shard size.
- * Zero ("0") means that a repository with linear layout should be created.
+ * Zero ("0") means that a repository with linear on_layout should be created.
  *
  * This option will only be used during the creation of new repositories
  * and is otherwise ignored.

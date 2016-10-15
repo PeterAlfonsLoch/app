@@ -757,7 +757,7 @@ namespace core
          //      pframe->ShowWindow(SW_SHOW);
          //      if(pframe->GetTypedParent < ::plugin::host_interaction > () != NULL)
          //      {
-         //         pframe->GetTypedParent < ::plugin::host_interaction > ()->layout();
+         //         pframe->GetTypedParent < ::plugin::host_interaction > ()->on_layout();
          //      }
          //      else
          //      {
@@ -1148,7 +1148,7 @@ namespace core
 
          //      ppane->m_istrTitleEx = pszTitle;
 
-         //      ppaneview->layout();
+         //      ppaneview->on_layout();
 
          //   }
 

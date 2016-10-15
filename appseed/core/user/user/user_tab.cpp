@@ -359,7 +359,7 @@ namespace user
                if (bLayout)
                {
 
-                  layout();
+                  on_layout();
 
                }
 
@@ -384,7 +384,7 @@ namespace user
             if (bLayout)
             {
 
-               layout();
+               on_layout();
 
             }
 
@@ -431,7 +431,7 @@ namespace user
                   if (bLayout)
                   {
 
-                     layout();
+                     on_layout();
 
                   }
 
@@ -463,7 +463,7 @@ namespace user
             if (bLayout)
             {
 
-               layout();
+               on_layout();
 
             }
 
@@ -500,7 +500,7 @@ namespace user
                if (bLayout)
                {
 
-                  layout();
+                  on_layout();
 
                }
 
@@ -778,7 +778,7 @@ namespace user
    }
 
 
-   void tab::layout()
+   void tab::on_layout()
    {
 
 
@@ -796,7 +796,7 @@ namespace user
 //         DWORD dwTime2 = ::get_tick_count();
 
          //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
-         //TRACE("usertab::layout call time1= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+         //TRACE("usertab::on_layout call time1= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
       }
       if(!get_data()->m_bCreated)
          return;
@@ -1024,7 +1024,7 @@ namespace user
 //               DWORD dwTime2 = ::get_tick_count();
 
                //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
-               //TRACE("usertab::layout call time2= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+               //TRACE("usertab::on_layout call time2= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
       }
 
 
@@ -1433,7 +1433,7 @@ namespace user
          uiId))
          return false;
       m_bCreated = true;
-      layout();
+      on_layout();
       return true;
    }
    */
@@ -1665,7 +1665,7 @@ namespace user
    void tab::_001OnAppLanguage(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      layout();
+      on_layout();
    }
 
 
@@ -1771,7 +1771,7 @@ namespace user
 
       ppane->m_bTabPaneVisible = bShow;
 
-      layout();
+      on_layout();
 
       return true;
 
@@ -1792,7 +1792,7 @@ namespace user
 
       ppane->m_bTabPaneVisible = bShow;
 
-      layout();
+      on_layout();
 
       return true;
 
@@ -1942,7 +1942,7 @@ namespace user
         // get_tab_holder(_001GetSel())->ShowWindow(SW_SHOW);
      // }
 
-      layout();
+      on_layout();
 
    }
 
@@ -2250,7 +2250,7 @@ namespace user
 
       m_spcreatecontext = (sp(::create)) NULL;
 
-      layout();
+      on_layout();
 
       return true;
 
@@ -2492,7 +2492,7 @@ namespace user
          get_restore_tab(vara);
          data_save("restore_tab", vara);
       }
-      layout();
+      on_layout();
    }
 
    void tab::get_text_id(stringa & stra)

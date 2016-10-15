@@ -19,6 +19,8 @@ window_buffer::~window_buffer()
 void window_buffer::update_window()
 {
 
+   synch_lock sl(m_pmutex);
+
    update_window(m_spdibBuffer->get_data(), m_spdibBuffer->m_size.cx, m_spdibBuffer->m_size.cy, m_spdibBuffer->m_iScan);
 
 }
@@ -37,6 +39,8 @@ void window_buffer::update_window(COLORREF * pcolorref,int cxParam,int cyParam,i
 
 ::draw2d::graphics * window_buffer::on_begin_draw()
 {
+
+   synch_lock sl(m_pmutex);
 
    if (m_spdibBuffer.is_null())
    {
@@ -92,6 +96,8 @@ window_double_buffer::~window_double_buffer()
 
 void window_double_buffer::update_window()
 {
+
+   synch_lock sl1(m_pmutex);
 
    synch_lock sl(&m_mutex2);
 

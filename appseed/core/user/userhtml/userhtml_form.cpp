@@ -108,7 +108,7 @@ void html_form::_001OnImageLoaded(signal_details * pobj)
 
          get_html_data()->delete_implementation();
 
-         get_html_data()->layout(pdib->get_graphics());
+         get_html_data()->on_layout(pdib->get_graphics());
 
          RedrawWindow();
 
@@ -155,7 +155,7 @@ bool html_form::open_document(const char * lpszPathName)
    m_strPathName = lpszPathName;
    get_html_data()->m_strPathName = m_strPathName;
    get_html_data()->load(str);
-   layout();
+   on_layout();
    return TRUE;
 
 }
@@ -173,7 +173,7 @@ void html_form::GetClientBox(::html::box & box)
 }
 
 
-void html_form::layout()
+void html_form::on_layout()
 {
 
    synch_lock sl(m_pmutex);
@@ -519,7 +519,7 @@ void html_form::defer_layout()
 
    get_html_data()->m_pform = this;
 
-   get_html_data()->layout(pdib->get_graphics());
+   get_html_data()->on_layout(pdib->get_graphics());
 
    RedrawWindow();
 

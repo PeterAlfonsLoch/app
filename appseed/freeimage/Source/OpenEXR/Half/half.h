@@ -362,7 +362,7 @@ HALF_EXPORT void			printBits   (char  c[35], float f);
 //
 // Representation of a half:
 //
-//	Here is the bit-layout for a half number, h:
+//	Here is the bit-on_layout for a half number, h:
 //
 //	    15 (msb)
 //	    |

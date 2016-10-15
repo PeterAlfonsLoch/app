@@ -50,7 +50,7 @@ namespace userex // ca8 + cube
 
       ::file::listing patha(get_app());
 
-      patha.ls(System.dir().element()/ "app/appmatter/main/_std/_std/keyboard layout");
+      patha.ls(System.dir().element()/ "app/appmatter/main/_std/_std/keyboard on_layout");
 
       for(int32_t i = 0; i < patha.get_count(); i++)
       {
@@ -62,12 +62,12 @@ namespace userex // ca8 + cube
       }
 
       ::sort::quick_sort(m_layoutida,true);
-      if(&Session.keyboard().layout() != NULL)
+      if(&Session.keyboard().on_layout() != NULL)
       {
          int32_t iFind = -1;
          for(int32_t i = 0; i < m_layoutida.get_count(); i++)
          {
-            if(m_layoutida[i].m_strPath.CompareNoCase(Session.keyboard().layout().m_strPath) == 0)
+            if(m_layoutida[i].m_strPath.CompareNoCase(Session.keyboard().on_layout().m_strPath) == 0)
             {
                iFind = i;
                break;
@@ -98,7 +98,7 @@ namespace userex // ca8 + cube
 
       SetPane(1, m_pview, false);
 
-      layout();
+      on_layout();
 
 
       return true;
@@ -106,7 +106,7 @@ namespace userex // ca8 + cube
 
    void keyboard_layout::on_show()
    {
-      if(!m_pdoc->on_open_document(Application.dir().matter("keyboard layout configuration/form.html")))
+      if(!m_pdoc->on_open_document(Application.dir().matter("keyboard on_layout configuration/form.html")))
       {
          return;
       }

@@ -51,7 +51,7 @@ COMMAND_LINE_ARGUMENT_A args[] =
 	{ "size", COMMAND_LINE_VALUE_REQUIRED, "<width>x<height> or <percent>%", "1024x768", NULL, -1, NULL, "Screen size" },
 	{ "f", COMMAND_LINE_VALUE_FLAG, NULL, NULL, NULL, -1, NULL, "Fullscreen mode" },
 	{ "bpp", COMMAND_LINE_VALUE_REQUIRED, "<depth>", "16", NULL, -1, NULL, "Session bpp (color depth)" },
-	{ "kbd", COMMAND_LINE_VALUE_REQUIRED, "0x<layout id> or <layout name>", NULL, NULL, -1, NULL, "Keyboard layout" },
+	{ "kbd", COMMAND_LINE_VALUE_REQUIRED, "0x<on_layout id> or <on_layout name>", NULL, NULL, -1, NULL, "Keyboard on_layout" },
 	{ "kbd-list", COMMAND_LINE_VALUE_FLAG | COMMAND_LINE_PRINT, NULL, NULL, NULL, -1, NULL, "List keyboard layouts" },
 	{ "kbd-type", COMMAND_LINE_VALUE_REQUIRED, "<type id>", NULL, NULL, -1, NULL, "Keyboard type" },
 	{ "kbd-subtype", COMMAND_LINE_VALUE_REQUIRED, "<subtype id>", NULL, NULL, -1, NULL, "Keyboard subtype" },
@@ -1661,10 +1661,10 @@ int freerdp_client_settings_parse_command_line_arguments(rdpSettings* settings,
 			{
 				id = (unsigned long int) freerdp_map_keyboard_layout_name_to_id(arg->Value);
 				if (id == -1)
-					WLog_ERR(TAG, "A problem occured while mapping the layout name to id");
+					WLog_ERR(TAG, "A problem occured while mapping the on_layout name to id");
 				else if (id == 0)
 				{
-					WLog_ERR(TAG, "Could not identify keyboard layout: %s", arg->Value);
+					WLog_ERR(TAG, "Could not identify keyboard on_layout: %s", arg->Value);
 					WLog_ERR(TAG, "Use /kbd-list to list available layouts");
 				}
 				if (id <= 0)

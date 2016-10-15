@@ -90,7 +90,7 @@ namespace user
       int32_t get_position(index iIndex);
       void set_position(index iIndex, int32_t nPos);
       void set_position_rate(index iIndex, double dRate, double dMinimumRate = 0.1, double dMaximumRate = 0.9);
-      void layout();
+      void on_layout();
       int32_t GetMaxPos();
       int32_t GetMinPos();
       int32_t GetPos(int32_t xPos, int32_t yPos);

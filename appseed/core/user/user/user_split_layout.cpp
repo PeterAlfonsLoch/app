@@ -168,7 +168,7 @@ namespace user
 
       ASSERT(iPaneCount > 0);
 
-      layout();
+      on_layout();
 
       rect rectPane;
 
@@ -286,7 +286,7 @@ namespace user
 
                   m_splitbara[m_iIndex]->m_dwPosition = nPos;
                   m_splitbara[m_iIndex]->m_dRate = 0.0;
-                  layout();
+                  on_layout();
                }
                m_mutex.unlock();
             }
@@ -365,7 +365,7 @@ namespace user
    }
 
 
-   void split_layout::layout()
+   void split_layout::on_layout()
    {
 
       bool bIsWindowVisible = IsWindowVisible();
@@ -566,7 +566,7 @@ namespace user
       m_splitbara[iIndex]->m_dRate         = dRate;
       m_splitbara[iIndex]->m_dMinimumRate  = dMinimumRate;
       m_splitbara[iIndex]->m_dMaximumRate  = dMaximumRate;
-      m_splitbara[iIndex]->m_dwPosition    = (uint32_t) -1; // disable position evaluation at first on layout
+      m_splitbara[iIndex]->m_dwPosition    = (uint32_t) -1; // disable position evaluation at first on on_layout
 
    }
 
@@ -1044,7 +1044,7 @@ namespace user
 
                   m_splitbara[m_iIndex]->m_dwPosition = nPos;
                   m_splitbara[m_iIndex]->m_dRate = 0.0;
-                  layout();
+                  on_layout();
                }
                m_mutex.unlock();
             }

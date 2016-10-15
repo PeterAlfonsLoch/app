@@ -83,7 +83,6 @@ namespace user
 
       string                              m_strWindowText;
 
-
       comparable_eq_array < IDTHREAD >    m_iaModalThread;
 
       id                                  m_idModalResult; // for return values from interaction_impl::RunModalLoop
@@ -93,6 +92,8 @@ namespace user
       int32_t                             m_nModalResult; // for return values from ::interaction_impl::RunModalLoop
 
       sp(tooltip)                         m_ptooltip;
+
+      bool                                m_bTransparentMouseEvents;
 
 
 
@@ -110,6 +111,7 @@ namespace user
       virtual bool check_need_layout();
       virtual void clear_need_layout();
       virtual void set_need_layout();
+      virtual void layout();
 
 
       virtual bool create_message_queue(const char * pszName) override;
@@ -201,10 +203,6 @@ namespace user
       virtual bool on_keyboard_focus(::user::elemental * pfocus) override;
 
 
-      virtual void _001RedrawWindow(UINT nFlags = 0) override;
-      //virtual void _001UpdateScreen(bool bUpdateBuffer = true) override;
-      //virtual void _001UpdateBuffer() override;
-
       virtual void _001UpdateWindow() override;
 
 
@@ -242,7 +240,7 @@ namespace user
       //virtual int32_t SetWindowRgn(HRGN hRgn,bool bRedraw) override;
       //virtual int32_t GetWindowRgn(HRGN hRgn) override;
 
-      virtual void layout() override;
+      virtual void on_layout() override;
 
       virtual void BringToTop(int32_t nCmdShow) override;
       virtual bool BringWindowToTop() override;
@@ -277,7 +275,7 @@ namespace user
 #ifdef WINDOWS
       virtual bool RedrawWindow(LPCRECT lpRectUpdate = NULL,
          ::draw2d::region* prgnUpdate = NULL,
-         UINT flags = RDW_INVALIDATE | RDW_UPDATENOW | RDW_ERASE);
+         UINT flags = RDW_INVALIDATE | RDW_ERASE);
 #else
       virtual bool RedrawWindow(LPCRECT lpRectUpdate = NULL,
          ::draw2d::region* prgnUpdate = NULL,
@@ -773,7 +771,38 @@ namespace user
 
       virtual void defer_notify_mouse_move(point & ptLast);
 
+      virtual bool has_pending_graphical_update();
+
       virtual void transparent_mouse_events();
+
+      template < typename T >
+      void redraw_add(T * p)
+      {
+
+         synch_lock sl(m_pmutex);
+         
+         m_ptraRedraw.add(dynamic_cast <object *> (p));
+
+      }
+
+      template < typename T >
+      void redraw_remove(T * p)
+      {
+
+         synch_lock sl(m_pmutex);
+
+         m_ptraRedraw.remove(dynamic_cast <object *> (p));
+
+      }
+
+      bool has_redraw()
+      {
+
+         synch_lock sl(m_pmutex);
+         
+         return m_ptraRedraw.has_elements();
+
+      }
 
    };
 

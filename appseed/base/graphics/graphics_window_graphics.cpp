@@ -8,11 +8,14 @@ window_graphics::window_graphics(::aura::application * papp) :
    m_cx = 0;
    m_cy = 0;
 
+
 }
 
 
 window_graphics::~window_graphics()
 {
+
+   m_pmutex = NULL;
 
    destroy_window_graphics();
 
@@ -23,6 +26,8 @@ void window_graphics::on_create_window(::user::interaction_impl * pimpl)
 {
    
    m_pimpl = pimpl;
+
+   m_pmutex = pimpl->m_pui->m_pmutex;
 
 }
 

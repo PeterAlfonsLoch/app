@@ -32,12 +32,12 @@
 
 struct _RDP_KEYBOARD_LAYOUT
 {
-	DWORD code; /* Keyboard layout code */
-	char* name; /* Keyboard layout name */
+	DWORD code; /* Keyboard on_layout code */
+	char* name; /* Keyboard on_layout name */
 };
 typedef struct _RDP_KEYBOARD_LAYOUT RDP_KEYBOARD_LAYOUT;
 
-/* Keyboard layout IDs */
+/* Keyboard on_layout IDs */
 
 #define KBD_ARABIC_101				0x00000401
 #define KBD_BULGARIAN				0x00000402
@@ -125,7 +125,7 @@ typedef struct _RDP_KEYBOARD_LAYOUT RDP_KEYBOARD_LAYOUT;
 #define KBD_IRISH				0x00001809
 #define KBD_BOSNIAN_CYRILLIC			0x0000201A
 
-/* Keyboard layout variant IDs */
+/* Keyboard on_layout variant IDs */
 
 #define KBD_ARABIC_102					0x00010401
 #define KBD_BULGARIAN_LATIN				0x00010402

@@ -804,28 +804,16 @@ namespace user
    bool interaction_child::RedrawWindow(LPCRECT lpRectUpdate,::draw2d::region* prgnUpdate,UINT flags)
    {
 
-      if (m_pauraapp == NULL)
+      ::user::interaction * pui = get_wnd();
+
+      if (pui == NULL)
       {
 
-         string str;
-
-         str.Format("uichild::Redraw m_pauraapp == NULL");
-
-         output_debug_string(str);
-
-      }
-      else if (m_pauraapp != NULL)
-      {
-
-//         string str;
-
-//         str.Format("uichild::Redraw System => %d", m_pauraapp->m_pbasesystem);
-
-  //       OutputDebugString(str);
+         return false;
 
       }
 
-      _001RedrawWindow(flags);
+      pui->RedrawWindow(lpRectUpdate, prgnUpdate, flags);
 
       return true;
 

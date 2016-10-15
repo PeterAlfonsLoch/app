@@ -225,7 +225,7 @@ namespace plugin
 
 ///      System.m_puiInitialPlaceHolderContainer = m_puiHost;
       System.add_frame(m_puiHost);
-      m_puiHost->layout();
+      m_puiHost->on_layout();
 
 //      if(m_pbReady == NULL)
   //       m_pbReady = (bool *) memory_alloc(sizeof(bool));
@@ -788,7 +788,7 @@ namespace plugin
                }
                else
                {
-                  m_puiHost->layout();
+                  m_puiHost->on_layout();
                   if(!m_bApp)
                   {
                      while(!m_evReady.lock(millis(284)) && m_bApp)
@@ -1237,7 +1237,7 @@ namespace plugin
 
          m_puiHost->send_message(WM_MOVE);
 
-         m_puiHost->layout();
+         m_puiHost->on_layout();
 
       }
 

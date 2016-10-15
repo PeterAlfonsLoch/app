@@ -237,7 +237,7 @@ namespace metrowin
       virtual void UnlockWindowUpdate();
       virtual bool RedrawWindow(LPCRECT lpRectUpdate = NULL,
                                 ::draw2d::region* prgnUpdate = NULL,
-                                UINT flags = RDW_INVALIDATE | RDW_UPDATENOW | RDW_ERASE);
+                                UINT flags = RDW_INVALIDATE | RDW_ERASE);
       //      virtual bool EnableScrollBar(int nSBFlags, UINT nArrowFlags = ESB_ENABLE_BOTH);
 
       virtual bool DrawAnimatedRects(int idAni, CONST RECT *lprcFrom, CONST RECT *lprcTo);
@@ -430,7 +430,7 @@ namespace metrowin
       //virtual void HtmlHelp(dword_ptr dwData, UINT nCmd = 0x000F);
       //    virtual void WinHelpInternal(dword_ptr dwData, UINT nCmd = HELP_CONTEXT);
 
-      // layout and other functions
+      // on_layout and other functions
       /*   void RepositionBars(const char * pszPrefix, const char * pszIdLeftOver,
       UINT nFlag = reposDefault, LPRECT lpRectParam = NULL,
       LPCRECT lpRectClient = NULL, bool bStretch = TRUE);*/

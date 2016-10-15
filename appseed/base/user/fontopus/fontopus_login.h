@@ -46,7 +46,7 @@ namespace fontopus
 
       void defer_translate(const string & strUser, const string & strPass, const string & strOpen);
 
-      virtual void layout();
+      virtual void on_layout();
 
       DECL_GEN_SIGNAL(_001OnCreate);
 

@@ -601,7 +601,7 @@ bool simple_frame_window::pre_create_window(::user::create_struct& cs)
    return TRUE;
 }
 
-void simple_frame_window::layout()
+void simple_frame_window::on_layout()
 {
 
    //{
@@ -615,11 +615,11 @@ void simple_frame_window::layout()
 
    if (m_bWindowFrame && m_workset.IsAppearanceEnabled())
    {
-      m_workset.layout();
+      m_workset.on_layout();
    }
    else
    {
-      ::user::frame_window::layout();
+      ::user::frame_window::on_layout();
    }
    //{
 
@@ -707,7 +707,7 @@ void simple_frame_window::ShowControlBars(bool bShow, bool bLeaveFullScreenBarsO
 
    }
 
-   layout();
+   on_layout();
 
 }
 
@@ -728,7 +728,7 @@ bool simple_frame_window::WfiToggleTransparentFrame()
 
    data_set("transparent_frame",m_bTransparentFrame);
 
-   layout();
+   on_layout();
 
    _001UpdateWindow();
 
@@ -885,7 +885,7 @@ void simple_frame_window::SetCustomFrame(bool bCustom)
 {
    m_bWindowFrame = bCustom;
    m_workset.Enable(bCustom);
-   layout();
+   on_layout();
    RedrawWindow();
 
 }
@@ -1342,7 +1342,7 @@ void simple_frame_window::InitialFramePosition(bool bForceRestore)
 
    m_bLayoutEnable = true;
 
-   layout();
+   on_layout();
 
    if (m_palphasource != NULL)
    {
@@ -1635,7 +1635,7 @@ void simple_frame_window::on_set_parent(sp(::user::interaction) puiParent)
       if (!m_workset.IsEnabled())
       {
          m_workset.Enable(true);
-         layout();
+         on_layout();
       }
    }
    else
@@ -1645,13 +1645,13 @@ void simple_frame_window::on_set_parent(sp(::user::interaction) puiParent)
          m_bCustomFrameBefore = m_bWindowFrame;
          m_bWindowFrame = false;
          m_workset.Enable(false);
-         layout();
+         on_layout();
       }
       else
       {
          m_bWindowFrame = m_bCustomFrameBefore;
          m_workset.Enable(m_bWindowFrame);
-         layout();
+         on_layout();
       }
    }
 
@@ -1727,7 +1727,7 @@ bool simple_frame_window::LoadToolBar(sp(::type) sptype, id idToolBar, const cha
 
    AddControlBar(ptoolbar);
 
-   layout();
+   on_layout();
 
    return true;
 

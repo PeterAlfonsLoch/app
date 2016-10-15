@@ -122,7 +122,7 @@ void dialog::on_position_parent_frame()
    
    rect rectOpen;
 
-   layout();
+   on_layout();
    
    GetTopLevelFrame()->best_monitor(rectOpen);
 

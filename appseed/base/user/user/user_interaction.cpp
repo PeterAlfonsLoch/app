@@ -100,6 +100,8 @@ namespace user
    void interaction::user_interaction_common_construct()
    {
 
+      m_bTransparentMouseEvents  = false;
+
       m_bRedrawing               = false;
       m_pparent                  = NULL;
       m_bWorkspaceFullScreen     = false;
@@ -1096,16 +1098,35 @@ namespace user
       else
       {
 
-         if (m_bLayoutEnable)
-         {
-
-            layout();
-
-         }
+         layout();
 
       }
 
    }
+
+   void interaction::layout()
+   {
+      
+      if (!m_bLayoutEnable)
+      {
+
+         return;
+
+      }
+
+      synch_lock sl(m_pmutex);
+
+      on_layout();
+
+      //if (GetParent() == NULL)
+      //{
+
+      //   _001UpdateWindow();
+
+      //}
+
+   }
+
 
    void interaction::_001OnMove(signal_details * pobj)
    {
@@ -2010,7 +2031,7 @@ namespace user
 
             //TRACE("Redraw !m_bMayProDevian");
 
-            _001RedrawWindow(RDW_UPDATENOW);
+            RedrawWindow();
 
          }
 
@@ -2798,27 +2819,19 @@ namespace user
          return m_pimpl->set_window_long_ptr(nIndex,lValue);
    }
 
+   
    bool interaction::RedrawWindow(LPCRECT lpRectUpdate, ::draw2d::region* prgnUpdate, UINT flags)
    {
 
-      ::user::interaction * pui = this;
-
-      while(pui != NULL)
+      if (m_pimpl == NULL)
       {
 
-         if(pui->m_bDestroying)
-            return FALSE;
-
-         pui = pui->GetParent();
+         return false;
 
       }
 
+      return m_pimpl->RedrawWindow(lpRectUpdate,prgnUpdate,flags);
 
-
-      if(m_pimpl == NULL)
-         return FALSE;
-      else
-         return m_pimpl->RedrawWindow(lpRectUpdate,prgnUpdate,flags);
    }
 
 
@@ -3755,7 +3768,7 @@ namespace user
    }
 
 
-   void interaction::layout()
+   void interaction::on_layout()
    {
 
       on_change_view_size();
@@ -4219,58 +4232,7 @@ ExitModal:
    }
 
 
-   void interaction::_001RedrawWindow(UINT nFlags)
-   {
 
-//      if (m_bRedrawing)
-//      {
-//
-//         return;
-//
-//      }
-//
-//      keep < bool > keepRedrawing(&m_bRedrawing, true, false, true);
-
-      //if(!(nFlags & RDW_UPDATENOW))
-      {
-
-         //if(m_bMayProDevian && GetParent() == NULL)
-           // return;
-
-      }
-      
-      if(m_pimpl.is_null())
-      {
-         
-         ::user::interaction_base::_001RedrawWindow(nFlags);
-         
-         return;
-         
-      }
-      
-      //::fork(get_app(), [=]()
-      //{
-
-      m_pimpl->_001RedrawWindow(nFlags);
-         
-      //});
-
-
-   }
-
-
-   //void interaction::_001UpdateScreen(bool bUpdateBuffer)
-   //{
-
-   //   if(m_bLockWindowUpdate)
-   //      return;
-
-   //   if(m_pimpl == NULL)
-   //      return;
-
-   //   m_pimpl->_001UpdateScreen(bUpdateBuffer);
-
-   //}
 
    void interaction::_001UpdateWindow()
    {
@@ -4287,24 +4249,6 @@ ExitModal:
    
    
 
-
-//   void interaction::_001UpdateBuffer()
-//   {
-//
-//      //single_lock sl(m_pmutex, true);
-//
-//      if(m_bLockWindowUpdate)
-//      {
-//
-////         TRACE("_001UpdateBuffer m_bLockWindowUpdate");
-//
-//         return;
-//
-//      }
-//
-//      m_pimpl->_001UpdateBuffer();
-//
-//   }
 
 
    void interaction::_001WindowMinimize()
@@ -5262,7 +5206,7 @@ restart:
       {
       case simple_command_layout:
          {
-            layout();
+            on_layout();
          }
          return true;
       default:
@@ -6439,7 +6383,7 @@ restart:
 
       bool bOk = false;
 
-      if(!(nFlags & SWP_NOZORDER))
+      if(!(nFlags & SWP_NOZORDER) && z != 0)
       {
 
          if(GetParent() != NULL)
@@ -7648,8 +7592,55 @@ restart:
 
    }
 
+
+   bool interaction::has_pending_graphical_update()
+   {
+   
+      if (m_bRedraw)
+      {
+
+         return true;
+
+      }
+
+      if (m_bCursorRedraw || m_bTransparentMouseEvents)
+      {
+
+         point ptCursor;
+
+         Session.get_cursor_pos(ptCursor);
+
+         if (m_ptCursor != ptCursor)
+         {
+
+            return true;
+
+         }
+
+      }
+
+      {
+
+         synch_lock sl(m_pmutex);
+
+         if (m_ptraRedraw.has_elements())
+         {
+
+            return true;
+
+         }
+
+      }
+
+      return false;
+
+   }
+
+
    void interaction::transparent_mouse_events()
    {
+
+      m_bTransparentMouseEvents = true;
     
       ::fork(get_app(), [=]()
       {
@@ -7683,7 +7674,9 @@ restart:
 
          ptLast = ptCurrent;
 
-         send_message(WM_MOUSEMOVE, 0, ptCurrent);
+         get_wnd()->ScreenToClient(ptCurrent);
+
+         get_wnd()->send_message(WM_MOUSEMOVE, 0, ptCurrent);
 
 
 

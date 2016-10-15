@@ -104,7 +104,7 @@ namespace fontopus
    }
 
 
-   void login::layout()
+   void login::on_layout()
    {
 
 

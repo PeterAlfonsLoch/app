@@ -149,7 +149,7 @@ public:
    virtual void InitialFramePosition(bool bForceRestore = false);
 
    sp(::user::interaction) WindowDataGetWnd();
-   virtual void layout();
+   virtual void on_layout();
    virtual void ActivateFrame(int32_t nCmdShow = -1);
    virtual bool on_create_client(::user::create_struct * lpcs, sp(::create) pContext);
    virtual bool pre_create_window(::user::create_struct& cs);

@@ -760,18 +760,18 @@ namespace user
          }
 
 
-         void WorkSet::layout()
+         void WorkSet::on_layout()
          {
 
             if(m_pframeschema != NULL)
             {
-               m_pframeschema->layout();
+               m_pframeschema->on_layout();
             }
 
             /*
             if (m_pappearance != NULL)
             {
-            m_pdockmanager->layout();
+            m_pdockmanager->on_layout();
             }
             */
 
@@ -1367,7 +1367,7 @@ namespace user
             if (m_pappearance != NULL)
             {
 
-            m_pdockmanager->layout();
+            m_pdockmanager->on_layout();
 
             }
             */

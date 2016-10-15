@@ -47,7 +47,7 @@ namespace filehandler
 
          void parse(handler * phandler, const char * pszTopic);
 
-         void layout(LPCRECT lpcrect);
+         void on_layout(LPCRECT lpcrect);
          void draw(sp(view) pview, ::draw2d::graphics * pgraphics);
 
       };
@@ -74,7 +74,7 @@ namespace filehandler
       void _001OnTimer(::timer * ptimer);
       DECL_GEN_SIGNAL(_001OnLButtonUp);
 
-      virtual void layout();
+      virtual void on_layout();
 
 
       index hit_test(point pt, e_element & eelement);

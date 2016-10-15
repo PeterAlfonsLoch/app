@@ -108,7 +108,7 @@ namespace filemanager
                      get_filemanager_data()->m_pmanager->m_strTopic = strName;
                      set_position(0, 49);
                      set_position(1, 49 + 49);
-                     layout();
+                     on_layout();
                   }
                   sp(simple_frame_window) pframe = (GetParentFrame());
 
@@ -126,7 +126,7 @@ namespace filemanager
                   {
                      RemovePaneAt(0);
                      set_position(0, 49);
-                     layout();
+                     on_layout();
                   }
                }
                else if (puh->is_type_of(update_hint::TypeSaveAsOK))
@@ -204,7 +204,7 @@ namespace filemanager
                   {
                      RemovePaneAt(0);
                      set_position(0, 49);
-                     layout();
+                     on_layout();
                   }
                }
             }

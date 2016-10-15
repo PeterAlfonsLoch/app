@@ -557,7 +557,7 @@ namespace user
 //      virtual ::user::mesh_header * create_mesh_header();
       virtual ::user::mesh_data * create_mesh_data();
 
-      void layout();
+      void on_layout();
 
       virtual bool _001OnUpdateColumnCount(uint32_t dwFlags = 0);
       virtual bool _001OnUpdateItemCount(uint32_t dwFlags = 0);

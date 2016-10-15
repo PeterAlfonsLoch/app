@@ -90,7 +90,7 @@ namespace user
       virtual void _001OnDraw(::draw2d::graphics * pgraphics);
       virtual void _001DrawItem(tree_draw_item & data);
 
-      void layout();
+      void on_layout();
 
       virtual sp(::data::tree) find_tree(::data::tree_item * pitem) const;
       virtual sp(::data::tree_item) find(::data::item * pitem, index * piIndex = NULL);

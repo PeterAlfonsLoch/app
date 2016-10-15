@@ -20,14 +20,6 @@ namespace user
    }
 
 
-   // elemental
-
-   void elemental::_001RedrawWindow(UINT nFlags)
-   {
-
-   }
-
-
    void elemental::pre_translate_message(signal_details * pobj)
    {
 

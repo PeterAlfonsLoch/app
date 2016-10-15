@@ -206,7 +206,7 @@ WINPR_API BOOL WLog_CloseAppender(wLog* log);
 WINPR_API BOOL WLog_ConfigureAppender(wLogAppender *appender, const char *setting, void *value);
 
 WINPR_API wLogLayout* WLog_GetLogLayout(wLog* log);
-WINPR_API BOOL WLog_Layout_SetPrefixFormat(wLog* log, wLogLayout* layout, const char* format);
+WINPR_API BOOL WLog_Layout_SetPrefixFormat(wLog* log, wLogLayout* on_layout, const char* format);
 
 WINPR_API wLog* WLog_GetRoot(void);
 WINPR_API wLog* WLog_Get(LPCSTR name);

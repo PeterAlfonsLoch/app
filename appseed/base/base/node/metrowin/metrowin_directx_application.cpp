@@ -609,7 +609,7 @@ namespace metrowin
 
       m_rectLastWindowRect = m_window->Bounds;
 
-      //m_psystem->m_posdata->m_pui->layout();
+      //m_psystem->m_posdata->m_pui->on_layout();
 
 //      m_directx->UpdateForWindowSizeChange();
 

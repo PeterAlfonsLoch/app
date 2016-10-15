@@ -30,7 +30,7 @@ namespace user
       menu_list_window(::aura::application * papp, sp(menu_item) pitem);
       virtual ~menu_list_window();
 
-      void layout();
+      void on_layout();
 
       virtual void install_message_handling(::message::dispatch * pinterface);
 

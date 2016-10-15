@@ -151,7 +151,7 @@ namespace plugin
    }
 
 
-   void host_interaction::layout()
+   void host_interaction::on_layout()
    {
       if(m_pframe != NULL)
       {
@@ -176,7 +176,7 @@ namespace plugin
             //else
             //{
               // pui->ShowWindow(SW_SHOW);
-               //pui->layout();
+               //pui->on_layout();
             //}
          }
       }

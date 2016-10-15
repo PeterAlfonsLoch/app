@@ -51,7 +51,7 @@ namespace user
    }
 
 
-   void split_bar::layout()
+   void split_bar::on_layout()
    {
 
    }
@@ -192,7 +192,7 @@ namespace user
 
             m_pparent->m_splitbara[m_iIndex]->m_dwPosition = nPos;
             m_pparent->m_splitbara[m_iIndex]->m_dRate = dRate;
-            m_pparent->layout();
+            m_pparent->on_layout();
          }
       }
       pmouse->m_bRet = true;

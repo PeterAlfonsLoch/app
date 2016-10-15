@@ -133,7 +133,7 @@ namespace user
             virtual void OnActivate();
             virtual void OnNcCalcSize(LPRECT lprect);
             virtual void _000OnBeforeSize(const RECT & lpcrectWindow);
-            virtual void layout();
+            virtual void on_layout();
 
 
             virtual EHitTest _000HitTest(point pt);

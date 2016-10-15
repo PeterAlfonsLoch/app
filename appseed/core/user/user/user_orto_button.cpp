@@ -159,7 +159,7 @@ LRESULT OrtoButton::OnAppForwardSyncMessage(WPARAM wParam,LPARAM lParam)
    return 0;
 }
 
-void OrtoButton::layout()
+void OrtoButton::on_layout()
 {
 
    UpdateWndRgn();

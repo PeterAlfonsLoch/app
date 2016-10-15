@@ -24,7 +24,7 @@
 //#include <specstrings.h>
 
 //
-//  Note: There is a slightly modified layout for HRESULT values below,
+//  Note: There is a slightly modified on_layout for HRESULT values below,
 //        after the heading "COM Error Codes".
 //
 //  Values are 32 bit values laid out as follows:
@@ -7914,7 +7914,7 @@
 //
 // MessageText:
 //
-// Invalid keyboard layout handle.
+// Invalid keyboard on_layout handle.
 //
 #define ERROR_INVALID_KEYBOARD_HANDLE    1457L
 
@@ -42332,7 +42332,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The specified disk has an invalid disk layout.
+// The specified disk has an invalid disk on_layout.
 //
 #define ERROR_VOLMGR_DISK_LAYOUT_INVALID _NDIS_ERROR_TYPEDEF_(0xC038000BL)
 
@@ -42341,7 +42341,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The disk layout contains non-basic partitions which appear after basic paritions. This is an invalid disk layout.
+// The disk on_layout contains non-basic partitions which appear after basic paritions. This is an invalid disk on_layout.
 //
 #define ERROR_VOLMGR_DISK_LAYOUT_NON_BASIC_BETWEEN_BASIC_PARTITIONS _NDIS_ERROR_TYPEDEF_(0xC038000CL)
 
@@ -42350,7 +42350,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The disk layout contains partitions which are not cylinder aligned.
+// The disk on_layout contains partitions which are not cylinder aligned.
 //
 #define ERROR_VOLMGR_DISK_LAYOUT_NOT_CYLINDER_ALIGNED _NDIS_ERROR_TYPEDEF_(0xC038000DL)
 
@@ -42359,7 +42359,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The disk layout contains partitions which are samller than the minimum size.
+// The disk on_layout contains partitions which are samller than the minimum size.
 //
 #define ERROR_VOLMGR_DISK_LAYOUT_PARTITIONS_TOO_SMALL _NDIS_ERROR_TYPEDEF_(0xC038000EL)
 
@@ -42368,7 +42368,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The disk layout contains primary partitions in between logiCAl drives. This is an invalid disk layout.
+// The disk on_layout contains primary partitions in between logiCAl drives. This is an invalid disk on_layout.
 //
 #define ERROR_VOLMGR_DISK_LAYOUT_PRIMARY_BETWEEN_LOGICAL_PARTITIONS _NDIS_ERROR_TYPEDEF_(0xC038000FL)
 
@@ -42377,7 +42377,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The disk layout contains more than the maximum number of supported partitions.
+// The disk on_layout contains more than the maximum number of supported partitions.
 //
 #define ERROR_VOLMGR_DISK_LAYOUT_TOO_MANY_PARTITIONS _NDIS_ERROR_TYPEDEF_(0xC0380010L)
 
@@ -42440,7 +42440,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// A disk in the volume layout provides extents to more than one member of a plex.
+// A disk in the volume on_layout provides extents to more than one member of a plex.
 //
 #define ERROR_VOLMGR_DISK_USED_BY_MULTIPLE_MEMBERS _NDIS_ERROR_TYPEDEF_(0xC0380017L)
 
@@ -42449,7 +42449,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// A disk in the volume layout provides extents to more than one plex.
+// A disk in the volume on_layout provides extents to more than one plex.
 //
 #define ERROR_VOLMGR_DISK_USED_BY_MULTIPLE_PLEXES _NDIS_ERROR_TYPEDEF_(0xC0380018L)
 
@@ -42728,7 +42728,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// Failed to update the disk's partition layout.
+// Failed to update the disk's partition on_layout.
 //
 #define ERROR_VOLMGR_PARTITION_UPDATE_FAILED _NDIS_ERROR_TYPEDEF_(0xC0380037L)
 
@@ -42845,7 +42845,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// An unexpected layout change occurred outside of the volume manager.
+// An unexpected on_layout change occurred outside of the volume manager.
 //
 #define ERROR_VOLMGR_UNEXPECTED_DISK_LAYOUT_CHANGE _NDIS_ERROR_TYPEDEF_(0xC0380044L)
 

@@ -111,7 +111,7 @@ namespace user
 
       pui->SetParent(this);
 
-      layout();
+      on_layout();
       
       return true;
 
@@ -127,7 +127,7 @@ namespace user
 
    }
 
-   void place_holder::layout()
+   void place_holder::on_layout()
    {
       
       if(m_uiptraChild.get_count() <= 0)
@@ -157,7 +157,7 @@ namespace user
       else
       {
          
-         puiHold->layout();
+         puiHold->on_layout();
 
       }
 

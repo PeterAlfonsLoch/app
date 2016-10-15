@@ -233,28 +233,28 @@ namespace user
       // remaining size goes to the 'nIDLeftOver' pane
       // NOTE: nIDFirst->nIDLast are usually 0->0xffff
 
-      __SIZEPARENTPARAMS layout;
+      __SIZEPARENTPARAMS on_layout;
       sp(::user::interaction) oswindow_LeftOver = NULL;
 
-      layout.bStretch = bStretch;
-      layout.sizeTotal.cx = layout.sizeTotal.cy = 0;
+      on_layout.bStretch = bStretch;
+      on_layout.sizeTotal.cx = on_layout.sizeTotal.cy = 0;
       if(lpRectClient != NULL)
       {
-         layout.rect = *lpRectClient;    // starting rect comes from parameter
+         on_layout.rect = *lpRectClient;    // starting rect comes from parameter
       }
       else
       {
-         m_pui->GetClientRect(&layout.rect);    // starting rect comes from client rect
+         m_pui->GetClientRect(&on_layout.rect);    // starting rect comes from client rect
       }
 
-      if(::IsRectEmpty(layout.rect))
+      if(::IsRectEmpty(on_layout.rect))
          return;
 //#ifdef WINDOWSEX
 //      if((nFlags & ~reposNoPosLeftOver) != reposQuery)
-//         layout.hDWP = ::BeginDeferWindowPos(8); // reasonable guess
+//         on_layout.hDWP = ::BeginDeferWindowPos(8); // reasonable guess
 //      else
 //#endif
-         layout.hDWP = NULL; // not actually doing layout
+         on_layout.hDWP = NULL; // not actually doing on_layout
 
       if(m_pui != NULL)
       {
@@ -266,7 +266,7 @@ namespace user
             if(id == (int32_t)nIdLeftOver)
                oswindow_LeftOver = oswindow_Child;
             else if(pwindow != NULL)
-               oswindow_Child->send_message(WM_SIZEPARENT,0,(LPARAM)&layout);
+               oswindow_Child->send_message(WM_SIZEPARENT,0,(LPARAM)&on_layout);
          }*/
          for(sp(::user::interaction) oswindow_Child = m_pui->top_child(); oswindow_Child != NULL;
             oswindow_Child = oswindow_Child->under_sibling())
@@ -276,7 +276,7 @@ namespace user
             if(id == nIdLeftOver)
                oswindow_LeftOver = oswindow_Child;
             else if(pwindow != NULL)
-               oswindow_Child->send_message(WM_SIZEPARENT,0,(LPARAM)&layout);
+               oswindow_Child->send_message(WM_SIZEPARENT,0,(LPARAM)&on_layout);
          }
       }
       else
@@ -289,7 +289,7 @@ namespace user
             if(id == nIdLeftOver)
                oswindow_LeftOver = oswindow_Child;
             else if(pwindow != NULL)
-               oswindow_Child->send_message(WM_SIZEPARENT,0,(LPARAM)&layout);
+               oswindow_Child->send_message(WM_SIZEPARENT,0,(LPARAM)&on_layout);
          }*/
          for(sp(::user::interaction) oswindow_Child = m_pui->top_child(); oswindow_Child != NULL;
             oswindow_Child = oswindow_Child->under_sibling())
@@ -299,7 +299,7 @@ namespace user
             if(id == nIdLeftOver)
                oswindow_LeftOver = oswindow_Child;
             else if(pwindow != NULL)
-               oswindow_Child->send_message(WM_SIZEPARENT,0,(LPARAM)&layout);
+               oswindow_Child->send_message(WM_SIZEPARENT,0,(LPARAM)&on_layout);
          }
       }
 
@@ -308,12 +308,12 @@ namespace user
       {
          ASSERT(lpRectParam != NULL);
          if(bStretch)
-            ::CopyRect(lpRectParam,&layout.rect);
+            ::CopyRect(lpRectParam,&on_layout.rect);
          else
          {
             lpRectParam->left = lpRectParam->top = 0;
-            lpRectParam->right = layout.sizeTotal.cx;
-            lpRectParam->bottom = layout.sizeTotal.cy;
+            lpRectParam->right = on_layout.sizeTotal.cx;
+            lpRectParam->bottom = on_layout.sizeTotal.cy;
          }
          return;
       }
@@ -326,23 +326,23 @@ namespace user
          if((nFlags & ~reposNoPosLeftOver) == reposExtra)
          {
             ASSERT(lpRectParam != NULL);
-            layout.rect.left += lpRectParam->left;
-            layout.rect.top += lpRectParam->top;
-            layout.rect.right -= lpRectParam->right;
-            layout.rect.bottom -= lpRectParam->bottom;
+            on_layout.rect.left += lpRectParam->left;
+            on_layout.rect.top += lpRectParam->top;
+            on_layout.rect.right -= lpRectParam->right;
+            on_layout.rect.bottom -= lpRectParam->bottom;
          }
          // reposition the interaction_impl
          if((nFlags & reposNoPosLeftOver) != reposNoPosLeftOver)
          {
-            pLeftOver->CalcWindowRect(&layout.rect);
-            //__reposition_window(&layout,pLeftOver,&layout.rect);
-            pLeftOver->SetPlacement(layout.rect, SWP_SHOWWINDOW);
+            pLeftOver->CalcWindowRect(&on_layout.rect);
+            //__reposition_window(&on_layout,pLeftOver,&on_layout.rect);
+            pLeftOver->SetPlacement(on_layout.rect, SWP_SHOWWINDOW);
          }
       }
 
 #ifdef WINDOWSEX
       // move and resize all the windows at once!
-      if(layout.hDWP == NULL || !::EndDeferWindowPos(layout.hDWP))
+      if(on_layout.hDWP == NULL || !::EndDeferWindowPos(on_layout.hDWP))
          TRACE(::aura::trace::category_AppMsg,0,"Warning: DeferWindowPos failed - low system resources.\n");
 #endif
    }

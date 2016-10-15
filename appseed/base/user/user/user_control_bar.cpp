@@ -678,7 +678,7 @@ namespace user
             dwStyle ^= WS_VISIBLE;
             // clear delay flags
             m_nStateFlags &= ~(delayShow|delayHide);
-            // hide/show the interaction_impl if actually doing layout
+            // hide/show the interaction_impl if actually doing on_layout
             SetWindowPos(0, 0, 0, 0, 0, swpFlags | SWP_NOMOVE|SWP_NOSIZE|SWP_NOZORDER|SWP_NOACTIVATE|SWP_NOREDRAW);
          }
          else
@@ -750,7 +750,7 @@ namespace user
          rect.right = rect.left + size.cx;
          rect.bottom = rect.top + size.cy;
 
-         // only resize the interaction_impl if doing layout and not just rect query
+         // only resize the interaction_impl if doing on_layout and not just rect query
          //if (lpLayout->hDWP != NULL)
             __reposition_window(lpLayout, this, &rect);
       }

@@ -784,7 +784,7 @@ namespace user
       // trans   PostMessage(WM_SETMESSAGESTRING, __IDS_IDLEMESSAGE);
 
       // make sure the child windows have been properly sized
-      //   layout();
+      //   on_layout();
 
       return 0;   // create ok
    }
@@ -920,7 +920,7 @@ namespace user
          || !oprop("should_not_be_automatically_holded_on_initial_update_frame")))
       {
          GetParent()->place(this);
-         GetParent()->layout();
+         GetParent()->on_layout();
       }
 
 
@@ -1547,7 +1547,7 @@ namespace user
          __set_dialog_control_id_(oswindow, "pane_first");
          }*/
 
-/*         layout();
+/*         on_layout();
 
 
          // show any modeless dialogs, popup windows, float tools, etc
@@ -1569,13 +1569,13 @@ namespace user
       return this;
    }
 
-   void frame_window::layout()
+   void frame_window::on_layout()
    {
       if (m_bInRecalcLayout)
          return;
 
       keep < bool > keepInRecalcLayout(&m_bInRecalcLayout, true, false, true);
-      // clear idle flags for recalc layout if called elsewhere
+      // clear idle flags for recalc on_layout if called elsewhere
       //   if (m_nIdleFlags & idleNotify)
       //   bNotify = TRUE;
       m_nIdleFlags &= ~(idleLayout | idleNotify);
@@ -2015,10 +2015,10 @@ namespace user
    //   if(m_nIdleFlags & idleTitle)
    //      on_update_frame_title(TRUE);
 
-   //   // recalc layout if necessary
+   //   // recalc on_layout if necessary
    //   if(m_nIdleFlags & idleLayout)
    //   {
-   //      layout();
+   //      on_layout();
    //      UpdateWindow();
    //   }
 
@@ -2048,10 +2048,10 @@ namespace user
       if (m_nIdleFlags & idleTitle)
          on_update_frame_title(TRUE);
 
-      // recalc layout if necessary
+      // recalc on_layout if necessary
       if (m_nIdleFlags & idleLayout)
       {
-         layout();
+         on_layout();
          UpdateWindow();
       }
 

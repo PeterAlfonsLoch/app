@@ -123,7 +123,7 @@ namespace user
       virtual void pre_translate_message(signal_details * pobj);
 
 
-      virtual void layout();
+      virtual void on_layout();
 
 
       virtual void set_stock_icon(e_stock_icon eicon);

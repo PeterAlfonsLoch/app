@@ -240,11 +240,11 @@ namespace fontopus
 
       SetWindowPos(ZORDER_TOP,rectFontopus,SWP_SHOWWINDOW);
 
-      layout();
+      on_layout();
 
       m_login.m_peditUser->SetFocus();
 
-      //m_login.layout();
+      //m_login.on_layout();
 
       m_login.ShowWindow(SW_NORMAL);
 
@@ -311,7 +311,7 @@ namespace fontopus
    }
 
 
-   void simple_ui::layout()
+   void simple_ui::on_layout()
    {
 
       /*
@@ -412,7 +412,7 @@ namespace fontopus
 
       m_login.SetPlacement(rectClient);
 
-      m_login.layout();
+      m_login.on_layout();
 
    }
 

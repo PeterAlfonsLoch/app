@@ -86,7 +86,7 @@ namespace user
 
       }
 
-      layout();
+      on_layout();
 
       return bOk;
 
@@ -123,7 +123,7 @@ namespace user
    {
       SCAST_PTR(::message::size, psize, pobj);
       psize->previous();
-      //layout();
+      //on_layout();
    }
 
    bool split_view::pre_create_window(::user::create_struct& cs)
@@ -203,7 +203,7 @@ namespace user
    {
       SCAST_PTR(::message::show_window, pshowwindow, pobj);
       pshowwindow->previous();
-      //layout();
+      //on_layout();
    }
 
 

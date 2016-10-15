@@ -334,7 +334,7 @@ namespace userstack
 
                ppane->m_istrTitleEx = pszTitle;
 
-               ppaneview->layout();
+               ppaneview->on_layout();
 
             }
 

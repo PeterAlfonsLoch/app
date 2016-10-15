@@ -108,7 +108,7 @@ namespace fontopus
    }
 
 
-   void view::layout()
+   void view::on_layout()
    {
 
 

@@ -50,7 +50,7 @@ namespace user
 
    //}
 
-   //void edit_plain_text_view::layout()
+   //void edit_plain_text_view::on_layout()
    //{
 
 

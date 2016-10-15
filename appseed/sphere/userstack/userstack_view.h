@@ -78,7 +78,7 @@ namespace userstack
 
       virtual void _001OnInitialUpdate();
 
-      //virtual void layout();
+      //virtual void on_layout();
 
       DECL_GEN_SIGNAL(_001OnDestroy);
       DECL_GEN_SIGNAL(_001OnPaint);

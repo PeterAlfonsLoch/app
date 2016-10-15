@@ -243,7 +243,7 @@ namespace linux
       virtual void UnlockWindowUpdate();
       virtual bool RedrawWindow(LPCRECT lpRectUpdate = NULL,
          ::draw2d::region* prgnUpdate = NULL,
-         UINT flags = RDW_INVALIDATE | RDW_UPDATENOW | RDW_ERASE);
+         UINT flags = RDW_INVALIDATE | RDW_ERASE);
 // xxx      virtual bool EnableScrollBar(int32_t nSBFlags, UINT nArrowFlags = ESB_ENABLE_BOTH);
 
       virtual void set_viewport_org(::draw2d::graphics * pgraphics);

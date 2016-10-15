@@ -900,7 +900,7 @@ namespace user
          }
       }
 
-      layout();
+      on_layout();
       if(bRedraw)
       {
          RedrawWindow();
@@ -1046,10 +1046,10 @@ namespace user
 
    }*/
 
-   void tree::layout()
+   void tree::on_layout()
    {
 
-      ::user::control::layout();
+      ::user::control::on_layout();
 
       ::rect rectClient;
 
@@ -1222,7 +1222,7 @@ namespace user
 
    void tree::_001OnTreeDataChange()
    {
-      layout();
+      on_layout();
    }
 
    sp(image_list) tree::get_image_list()
@@ -1573,7 +1573,7 @@ namespace user
 
       }
 
-      layout();
+      on_layout();
 
       RedrawWindow();
 

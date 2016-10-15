@@ -104,7 +104,7 @@ namespace user
 
 
 
-      virtual void layout();
+      virtual void on_layout();
 
       virtual void _001OnAfterChangeText(::action::context actioncontext);
 

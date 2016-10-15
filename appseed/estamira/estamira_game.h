@@ -48,7 +48,7 @@ namespace estamira
       virtual void _001OnDraw(::draw2d::graphics * pgraphics);
 
       virtual bool start(::user::interaction * pui);
-      virtual void layout();
+      virtual void on_layout();
 
       DECL_GEN_SIGNAL(_001OnKeyDown);
       DECL_GEN_SIGNAL(_001OnKeyUp);

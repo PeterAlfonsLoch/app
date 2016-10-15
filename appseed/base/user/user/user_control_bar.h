@@ -54,7 +54,7 @@ class BaseDockState;
 
 
 
-// layout Modes for CalcDynamicLayout
+// on_layout Modes for CalcDynamicLayout
 #define LM_STRETCH  0x01    // same meaning as bStretch in CalcFixedLayout.  If set, ignores nLength
 // and returns dimensions based on LM_HORZ state, otherwise LM_HORZ is used
 // to determine if nLength is the desired horizontal or vertical length
@@ -135,7 +135,7 @@ namespace user
       UINT m_nStateFlags;
 
       // support for docking
-      uint32_t m_dwStyle;    // creation style (used for layout)
+      uint32_t m_dwStyle;    // creation style (used for on_layout)
       uint32_t m_dwDockStyle;// indicates how bar can be docked
       sp(::user::frame_window) m_pDockSite; // current dock site, if dockable
       BaseDockBar* m_pDockBar;   // current dock bar, if dockable

@@ -153,7 +153,7 @@ namespace filemanager
       if(puie == NULL)
          return;
       SetPane(1,puie,false);
-      layout();
+      on_layout();
    }
 
    bool main_view::on_simple_action(id id)
@@ -164,13 +164,13 @@ namespace filemanager
          if(m_ppreview->IsWindowVisible())
          {
             SetPane(1,m_pfilelist,false);
-            layout();
+            on_layout();
             m_ppreview->ShowWindow(SW_HIDE);
          }
          else
          {
             SetPane(1,m_ppreview,false);
-            layout();
+            on_layout();
             m_pfilelist->ShowWindow(SW_HIDE);
          }
          return true;

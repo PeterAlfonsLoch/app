@@ -396,7 +396,7 @@ namespace simple_ui
    }
 
 
-   void tap::layout()
+   void tap::on_layout()
    {
 
       rect rectClient;

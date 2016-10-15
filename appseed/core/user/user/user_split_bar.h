@@ -39,7 +39,7 @@ namespace user
       DECL_GEN_SIGNAL(_001OnLButtonUp);
       DECL_GEN_SIGNAL(_001OnMouseMove);
 
-      virtual void layout();
+      virtual void on_layout();
 
    };
 

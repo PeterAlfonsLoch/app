@@ -477,7 +477,7 @@ namespace fontopus
          return FALSE;
       }
 
-      m_login.layout();
+      m_login.on_layout();
       
 //      SetTimer(m_oswindow, 123, 23, NULL);
 

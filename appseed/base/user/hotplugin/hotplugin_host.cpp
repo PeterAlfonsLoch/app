@@ -708,7 +708,7 @@ namespace hotplugin
       for(index i = 0; i < m_uiptraChild.get_count(); i++)
       {
 
-         m_uiptraChild[i]->layout();
+         m_uiptraChild[i]->on_layout();
 
       }
 

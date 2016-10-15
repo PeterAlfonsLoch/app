@@ -605,14 +605,14 @@ public:
 	WINBOOL colorQuantize(FREE_IMAGE_QUANTIZE algorithm);
 
 	/**
-	Converts the bitmap to 16 bits. The resulting bitmap has a layout of 5 bits red, 5 bits green, 5 bits blue and 1 unused bit.
+	Converts the bitmap to 16 bits. The resulting bitmap has a on_layout of 5 bits red, 5 bits green, 5 bits blue and 1 unused bit.
 	@return Returns TRUE if successfull, FALSE otherwise.
 	@see FreeImage_ConvertTo16Bits555
 	*/
 	WINBOOL convertTo16Bits555();
 
 	/**
-	Converts the bitmap to 16 bits. The resulting bitmap has a layout of 5 bits red, 6 bits green and 5 bits blue.
+	Converts the bitmap to 16 bits. The resulting bitmap has a on_layout of 5 bits red, 6 bits green and 5 bits blue.
 	@return Returns TRUE if successfull, FALSE otherwise.
 	@see FreeImage_ConvertTo16Bits565
 	*/

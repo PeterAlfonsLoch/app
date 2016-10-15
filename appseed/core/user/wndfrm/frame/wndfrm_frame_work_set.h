@@ -124,7 +124,7 @@ namespace user
             void SetDockMask(EDock emask);
 
             virtual void OnDock();
-            void layout();
+            void on_layout();
             bool Hover(bool bHoverActive);
             void hover_relay_event(signal_details * pobj);
             void ChildWnd(::user::interaction * pwnd, ::user::interaction * pwndParent);

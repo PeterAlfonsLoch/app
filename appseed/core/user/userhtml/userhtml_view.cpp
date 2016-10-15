@@ -99,7 +99,7 @@ void html_view::on_update(::user::impact * pSender, LPARAM lHint, object* phint)
          if(puh->m_etype == html_view_update_hint::type_document_complete)
          {
 
-            layout();
+            on_layout();
 
             RedrawWindow();
 

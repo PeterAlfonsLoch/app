@@ -127,7 +127,7 @@ namespace turboc
             m_pview->m_bLite = !m_pview->m_bLite;
 
 
-            m_pview->layout();
+            m_pview->on_layout();
 
          }
 

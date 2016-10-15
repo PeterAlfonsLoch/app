@@ -308,7 +308,7 @@ namespace user
          try
          {
 
-            m_treeptra[i]->layout();
+            m_treeptra[i]->on_layout();
 
          }
          catch(...)

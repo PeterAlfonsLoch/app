@@ -32,9 +32,9 @@ namespace user
       keyboard_layout_id & operator = (const keyboard_layout_id & id);
 
 
-      bool operator < (const keyboard_layout_id & layout) const;
-      bool operator <= (const keyboard_layout_id & layout) const;
-      bool operator == (const keyboard_layout_id & layout) const;
+      bool operator < (const keyboard_layout_id & on_layout) const;
+      bool operator <= (const keyboard_layout_id & on_layout) const;
+      bool operator == (const keyboard_layout_id & on_layout) const;
 
 
    };

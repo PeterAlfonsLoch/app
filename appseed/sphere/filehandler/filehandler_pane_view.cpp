@@ -156,7 +156,7 @@ namespace filehandler
          pcreatordata->m_pdoc = get_document();
 
          pview->m_strName = strFile;
-         //pview->layout();
+         //pview->on_layout();
 
       }
 

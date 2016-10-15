@@ -346,7 +346,7 @@ namespace user
          // if the pane is changing SBPS_STRETCH, then...
          if ((pSBP->nStyle ^ nStyle) & SBPS_STRETCH)
          {
-            // ... we need to re-layout the panes
+            // ... we need to re-on_layout the panes
             pSBP->nStyle = nStyle;
             UpdateAllPanes(TRUE, FALSE);
          }

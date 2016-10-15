@@ -8833,11 +8833,11 @@ GLAPI void APIENTRY glApplyFramebufferAttachmentCMAAINTEL (void);
 #define GL_LAYOUT_LINEAR_CPU_CACHED_INTEL 2
 typedef void (APIENTRYP PFNGLSYNCTEXTUREINTELPROC) (GLuint texture);
 typedef void (APIENTRYP PFNGLUNMAPTEXTURE2DINTELPROC) (GLuint texture, GLint level);
-typedef void *(APIENTRYP PFNGLMAPTEXTURE2DINTELPROC) (GLuint texture, GLint level, GLbitfield access, GLint *stride, GLenum *layout);
+typedef void *(APIENTRYP PFNGLMAPTEXTURE2DINTELPROC) (GLuint texture, GLint level, GLbitfield access, GLint *stride, GLenum *on_layout);
 #ifdef GL_GLEXT_PROTOTYPES
 GLAPI void APIENTRY glSyncTextureINTEL (GLuint texture);
 GLAPI void APIENTRY glUnmapTexture2DINTEL (GLuint texture, GLint level);
-GLAPI void *APIENTRY glMapTexture2DINTEL (GLuint texture, GLint level, GLbitfield access, GLint *stride, GLenum *layout);
+GLAPI void *APIENTRY glMapTexture2DINTEL (GLuint texture, GLint level, GLbitfield access, GLint *stride, GLenum *on_layout);
 #endif
 #endif /* GL_INTEL_map_texture */
 

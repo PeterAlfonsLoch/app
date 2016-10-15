@@ -207,7 +207,7 @@ namespace filemanager
             //         get_filemanager_data()->m_pholderFileList->m_uiptraHold[0]->ShowWindow(SW_HIDE);
             //      }
             //      get_filemanager_data()->m_pholderFileList->hold(this);
-            //      get_filemanager_data()->m_pholderFileList->layout();
+            //      get_filemanager_data()->m_pholderFileList->on_layout();
             //   }
 
             //   data_get_DisplayToStrict();

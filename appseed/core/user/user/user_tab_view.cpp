@@ -217,7 +217,7 @@ namespace user
 
       remove_tab_by_id(id2);
 
-      ::user::tab::layout();
+      ::user::tab::on_layout();
 
       get_data()->m_iDragTab = -1;
 

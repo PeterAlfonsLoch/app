@@ -200,7 +200,7 @@ void simple_toolbar::_001OnDraw(::draw2d::graphics * pgraphics)
    }
 
    if(m_bDelayedButtonLayout)
-      layout();
+      on_layout();
 
    ::user::interaction::_001OnDraw(pgraphics);
 
@@ -822,9 +822,9 @@ return bResult;
 
 bool simple_toolbar::_001GetElementRect(int32_t iItem, LPRECT lprect)
 {
-   // handle any delayed layout
+   // handle any delayed on_layout
    if (m_bDelayedButtonLayout)
-      layout();
+      on_layout();
 
    if(iItem >= 0
       && iItem < m_itema.get_size())
@@ -1102,7 +1102,7 @@ return TRUE;
 }
 */
 
-void simple_toolbar::layout()
+void simple_toolbar::on_layout()
 {
    //ASSERT(m_bDelayedButtonLayout);
 

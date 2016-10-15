@@ -210,7 +210,7 @@ operator >> (std::istream &is,half &h)
 
 
 //---------------------------------------
-// Functions to print the bit-layout of
+// Functions to print the bit-on_layout of
 // floats and halfs, mostly for debugging
 //---------------------------------------
 

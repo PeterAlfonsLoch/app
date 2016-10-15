@@ -39,7 +39,7 @@ namespace simple_ui
       virtual bool keyboard_focus_is_focusable();
       virtual bool is_hover();
 
-      virtual void layout();
+      virtual void on_layout();
 
 
       virtual void _000OnDraw(::draw2d::graphics * pgraphics);

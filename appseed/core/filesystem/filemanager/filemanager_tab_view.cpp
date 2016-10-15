@@ -232,7 +232,7 @@ namespace filemanager
          pcreatordata->m_pdoc = pmanager;
          if (pwndTopLevel != NULL)
          {
-            pwndTopLevel->layout();
+            pwndTopLevel->on_layout();
          }
       }
    }

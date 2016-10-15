@@ -511,9 +511,9 @@ namespace user
       ASSERT_VALID(this);
       ASSERT(IsWindow());
 
-      // handle any delayed layout
+      // handle any delayed on_layout
       if (m_bDelayedButtonLayout)
-         ((toolbar*)this)->layout();
+         ((toolbar*)this)->on_layout();
 
       // now it is safe to get the item rectangle
 #ifdef WINDOWSEX
@@ -525,7 +525,7 @@ namespace user
 #endif
    }
 
-   void toolbar::layout()
+   void toolbar::on_layout()
    {
       ASSERT(m_bDelayedButtonLayout);
 
@@ -1231,7 +1231,7 @@ throw todo(get_app());
    void toolbar::OnPaint()
    {
       if (m_bDelayedButtonLayout)
-         layout();
+         on_layout();
 
       Default();
    }
@@ -1246,7 +1246,7 @@ throw todo(get_app());
       if (m_bDelayedButtonLayout)
       {
 
-         layout();
+         on_layout();
 
       }
 
@@ -1525,9 +1525,9 @@ throw todo(get_app());
    bool toolbar::_001GetItemRect(int32_t iItem,LPRECT lprect)
    {
 
-      // handle any delayed layout
+      // handle any delayed on_layout
       if(m_bDelayedButtonLayout)
-         layout();
+         on_layout();
 
       if(iItem >= 0 && iItem < m_itema.get_size())
       {

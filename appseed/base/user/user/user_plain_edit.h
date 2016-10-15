@@ -239,7 +239,7 @@ namespace user
 
       void set_root(plain_text_tree * pdata, bool bOwnData);
 
-      virtual void layout();
+      virtual void on_layout();
 
       virtual bool ShowWindow(int32_t nCmdShow);
 

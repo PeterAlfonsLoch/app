@@ -40,7 +40,7 @@ namespace filehandler
 
       m_plistWorking = NULL;
 
-      layout();
+      on_layout();
 
    }
 
@@ -154,7 +154,7 @@ namespace filehandler
       m_iItemHeight = 30;
    }
 
-   void view::list::layout(LPCRECT lpcrect)
+   void view::list::on_layout(LPCRECT lpcrect)
    {
       int32_t top = lpcrect->top;
       for(int32_t i = 0; i < get_count(); i++)
@@ -184,7 +184,7 @@ namespace filehandler
    }
 
 
-   void view::layout()
+   void view::on_layout()
    {
 
       if (m_plist.is_null())
@@ -204,7 +204,7 @@ namespace filehandler
 
       GetClientRect(rectClient);
 
-      plist->layout(rectClient);
+      plist->on_layout(rectClient);
 
    }
 

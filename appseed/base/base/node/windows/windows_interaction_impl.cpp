@@ -293,6 +293,7 @@ namespace windows
       ::aura::timer_array(papp)
    {
 
+      m_pthreadDraw = NULL;
       //    m_guieptraMouseHover = canew(ref_array < ::user::interaction >);
       //      m_bRectParentClient  = false;
       m_pfnSuper           = NULL;
@@ -1527,23 +1528,38 @@ namespace windows
       if(pbase->m_uiMessage == WM_MOUSELEAVE)
       {
 
-         m_bMouseHover = false;
-
-         sp(::user::interaction) pui;
-
-         while((pui = m_guieptraMouseHover.get_child(pui)).is_set())
+         if (!m_pui->m_bTransparentMouseEvents)
          {
 
-            if(pui != m_pui)
+            m_bMouseHover = false;
+
+            sp(::user::interaction) pui;
+
+            rect rectUi;
+
+            point ptCursor;
+
+            Session.get_cursor_pos(ptCursor);
+
+            ref_array < ::user::interaction > uiptra;
+
+            while ((pui = m_guieptraMouseHover.get_child(pui)).is_set())
             {
 
-               pui->send_message(WM_MOUSELEAVE);
+               pui->GetWindowRect(rectUi);
+
+               if (pui != m_pui)
+               {
+
+                   pui->send_message(WM_MOUSELEAVE);
+
+               }
 
             }
 
-         }
+            m_guieptraMouseHover.remove_all();
 
-         m_guieptraMouseHover.remove_all();
+         }
 
       }
 
@@ -1627,16 +1643,31 @@ namespace windows
          }
 restart_mouse_hover_check:
          {
-            ::user::interaction * pui = NULL;
-            while((pui = m_guieptraMouseHover.get_child(pui)) != NULL)
+
+            if (m_pui->m_bTransparentMouseEvents)
             {
-               if(!pui->_001IsPointInside(pmouse->m_pt))
+               
+               ::user::interaction * pui = NULL;
+
+               while ((pui = m_guieptraMouseHover.get_child(pui)) != NULL)
                {
-                  pui->send_message(WM_MOUSELEAVE);
-                  m_guieptraMouseHover.remove(pui);
-                  goto restart_mouse_hover_check;
+
+                  if (!pui->_001IsPointInside(pmouse->m_pt))
+                  {
+
+                     pui->send_message(WM_MOUSELEAVE);
+
+                     m_guieptraMouseHover.remove(pui);
+
+                     goto restart_mouse_hover_check;
+
+                  }
+
                }
+
             }
+
+
          }
          if(::GetCapture() == m_oswindow && m_puiCapture != NULL)
          {
@@ -2043,7 +2074,7 @@ restart_mouse_hover_check:
    }
 
    /////////////////////////////////////////////////////////////////////////////
-   // minimal layout support
+   // minimal on_layout support
 
    /*
    void interaction_impl::RepositionBars(const char * pszPrefix, const char * pszIdLeftOver,
@@ -2057,25 +2088,25 @@ restart_mouse_hover_check:
    // remaining size goes to the 'nIDLeftOver' pane
    // NOTE: nIDFirst->nIDLast are usually 0->0xffff
 
-   __SIZEPARENTPARAMS layout;
+   __SIZEPARENTPARAMS on_layout;
    sp(::user::interaction) oswindow_LeftOver = NULL;
 
-   layout.bStretch = bStretch;
-   layout.sizeTotal.cx = layout.sizeTotal.cy = 0;
+   on_layout.bStretch = bStretch;
+   on_layout.sizeTotal.cx = on_layout.sizeTotal.cy = 0;
    if (lpRectClient != NULL)
-   layout.rect = *lpRectClient;    // starting rect comes from parameter
+   on_layout.rect = *lpRectClient;    // starting rect comes from parameter
    else
    {
    if(m_pui != this)
-   m_pui->GetClientRect(&layout.rect);    // starting rect comes from client rect
+   m_pui->GetClientRect(&on_layout.rect);    // starting rect comes from client rect
    else
-   GetClientRect(&layout.rect);    // starting rect comes from client rect
+   GetClientRect(&on_layout.rect);    // starting rect comes from client rect
    }
 
    if ((nFlags & ~reposNoPosLeftOver) != reposQuery)
-   layout.hDWP = ::BeginDeferWindowPos(8); // reasonable guess
+   on_layout.hDWP = ::BeginDeferWindowPos(8); // reasonable guess
    else
-   layout.hDWP = NULL; // not actually doing layout
+   on_layout.hDWP = NULL; // not actually doing on_layout
 
    if(m_pui != this && m_pui != NULL)
    {
@@ -2087,7 +2118,7 @@ restart_mouse_hover_check:
    if (strIdc == pszIdLeftOver)
    oswindow_LeftOver = oswindow_Child;
    else if (::str::begins(strIdc, pszPrefix) && pwindow != NULL)
-   oswindow_Child->SendMessage(WM_SIZEPARENT, 0, (LPARAM)&layout);
+   oswindow_Child->SendMessage(WM_SIZEPARENT, 0, (LPARAM)&on_layout);
    }
    for (int32_t i = 0; i < m_pui->m_uiptra.get_count();   i++)
    {
@@ -2097,7 +2128,7 @@ restart_mouse_hover_check:
    if (strIdc == pszIdLeftOver)
    oswindow_LeftOver = oswindow_Child;
    else if (::str::begins(strIdc, pszPrefix) && pwindow != NULL)
-   oswindow_Child->SendMessage(WM_SIZEPARENT, 0, (LPARAM)&layout);
+   oswindow_Child->SendMessage(WM_SIZEPARENT, 0, (LPARAM)&on_layout);
    }
    }
    else
@@ -2110,7 +2141,7 @@ restart_mouse_hover_check:
    if (strIdc == pszIdLeftOver)
    oswindow_LeftOver = oswindow_Child;
    else if (::str::begins(strIdc, pszPrefix) && pwindow != NULL)
-   oswindow_Child->SendMessage(WM_SIZEPARENT, 0, (LPARAM)&layout);
+   oswindow_Child->SendMessage(WM_SIZEPARENT, 0, (LPARAM)&on_layout);
    }
    for (int32_t i = 0; i < m_uiptra.get_count();   i++)
    {
@@ -2120,7 +2151,7 @@ restart_mouse_hover_check:
    if (strIdc == pszIdLeftOver)
    oswindow_LeftOver = oswindow_Child;
    else if (::str::begins(strIdc, pszPrefix) && pwindow != NULL)
-   oswindow_Child->SendMessage(WM_SIZEPARENT, 0, (LPARAM)&layout);
+   oswindow_Child->SendMessage(WM_SIZEPARENT, 0, (LPARAM)&on_layout);
    }
    }
 
@@ -2129,12 +2160,12 @@ restart_mouse_hover_check:
    {
    ASSERT(lpRectParam != NULL);
    if (bStretch)
-   ::copy(lpRectParam, &layout.rect);
+   ::copy(lpRectParam, &on_layout.rect);
    else
    {
    lpRectParam->left = lpRectParam->top = 0;
-   lpRectParam->right = layout.sizeTotal.cx;
-   lpRectParam->bottom = layout.sizeTotal.cy;
+   lpRectParam->right = on_layout.sizeTotal.cx;
+   lpRectParam->bottom = on_layout.sizeTotal.cy;
    }
    return;
    }
@@ -2147,21 +2178,21 @@ restart_mouse_hover_check:
    if ((nFlags & ~reposNoPosLeftOver) == reposExtra)
    {
    ASSERT(lpRectParam != NULL);
-   layout.rect.left += lpRectParam->left;
-   layout.rect.top += lpRectParam->top;
-   layout.rect.right -= lpRectParam->right;
-   layout.rect.bottom -= lpRectParam->bottom;
+   on_layout.rect.left += lpRectParam->left;
+   on_layout.rect.top += lpRectParam->top;
+   on_layout.rect.right -= lpRectParam->right;
+   on_layout.rect.bottom -= lpRectParam->bottom;
    }
    // reposition the interaction_impl
    if ((nFlags & reposNoPosLeftOver) != reposNoPosLeftOver)
    {
-   pLeftOver->CalcWindowRect(&layout.rect);
-   __reposition_window(&layout, pLeftOver, &layout.rect);
+   pLeftOver->CalcWindowRect(&on_layout.rect);
+   __reposition_window(&on_layout, pLeftOver, &on_layout.rect);
    }
    }
 
    // move and resize all the windows at once!
-   if (layout.hDWP == NULL || !::EndDeferWindowPos(layout.hDWP))
+   if (on_layout.hDWP == NULL || !::EndDeferWindowPos(on_layout.hDWP))
    TRACE(::aura::trace::category_AppMsg, 0, "Warning: DeferWindowPos failed - low system resources.\n");
    }
 
@@ -2445,26 +2476,46 @@ restart_mouse_hover_check:
       m_pmutex = m_pui->m_pmutex;
       m_guieptraMouseHover.m_pmutex = m_pui->m_pmutex;
 
-      m_pthreadDraw = ::fork(get_app(), [&]()
+      if(m_pui->is_message_only_window())
+      { 
+
+         TRACE("good : opt out!");
+      
+      }
+      else
       {
 
-         while (::get_thread()->m_bRun)
+         m_pthreadDraw = ::fork(get_app(), [&]()
          {
 
-            if(m_bRedraw)
+            DWORD dwStart;
+
+            while (::get_thread()->m_bRun)
             {
 
-               _RedrawWindow();
+               dwStart = ::get_tick_count();
 
-               m_bRedraw = false;
+               if (m_pui->has_pending_graphical_update())
+               {
+
+                  RedrawWindow(NULL, NULL, RDW_INVALIDATE | RDW_UPDATENOW | RDW_NOERASE);
+
+                  m_pui->on_after_graphical_update();
+
+               }
+
+               if (::get_tick_count() - dwStart < 5)
+               {
+
+                  Sleep(5);
+
+               }
 
             }
 
-            Sleep(5);
+         });
 
-         }
-
-      });
+      }
 
    }
 
@@ -3473,7 +3524,7 @@ restart_mouse_hover_check:
 
          }
 
-         ::SetWindowPos(get_handle(),(oswindow)z,x,y,cx,cy,nFlags | SWP_NOREDRAW);
+//         ::SetWindowPos(get_handle(),(oswindow)z,x,y,cx,cy,nFlags | SWP_NOREDRAW);
 
          if(nFlags & SWP_SHOWWINDOW)
          {
@@ -3485,7 +3536,7 @@ restart_mouse_hover_check:
          if (!(nFlags & SWP_NOREDRAW))
          {
 
-            m_pui->RedrawWindow();
+            m_pui->RedrawWindow(NULL, NULL, RDW_UPDATENOW);
 
          }
 
@@ -4539,42 +4590,37 @@ restart_mouse_hover_check:
    }
 
 
-   void interaction_impl::_001RedrawWindow(UINT nFlags)
-   {
-
-      RedrawWindow();
-
-   }
-
    bool interaction_impl::RedrawWindow(LPCRECT lpRectUpdate, ::draw2d::region* prgnUpdate, UINT flags)
    {
 
-      m_bRedraw = true;
+      if (flags & RDW_UPDATENOW)
+      {
+
+         _001UpdateWindow();
+
+         if (GetExStyle() & WS_EX_LAYERED)
+         {
+
+            return true;
+
+         }
+
+         return ::RedrawWindow(get_handle(), lpRectUpdate, prgnUpdate == NULL ? NULL : (HRGN)prgnUpdate->get_os_data(), flags) != FALSE;
+
+      }
+      else
+      {
+
+         m_pui->m_bRedraw = true;
+
+      }
 
       return true;
 
    }
 
 
-   bool interaction_impl::_RedrawWindow(LPCRECT lpRectUpdate,::draw2d::region* prgnUpdate,UINT flags)
-   {
 
-      if (GetExStyle() & WS_EX_LAYERED)
-      {
-
-         _001UpdateWindow();
-
-         return true;
-
-      }
-      else
-      {
-
-         return ::RedrawWindow(get_handle(), lpRectUpdate, prgnUpdate == NULL ? NULL : (HRGN)prgnUpdate->get_os_data(), flags) != FALSE;
-
-      }
-
-   }
 
 
    bool interaction_impl::EnableScrollBar(int32_t nSBFlags,UINT nArrowFlags)

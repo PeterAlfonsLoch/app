@@ -57,7 +57,7 @@ namespace html
 
 
       virtual void implement(data * pdoc);
-      virtual void layout(data * pdoc);
+      virtual void on_layout(data * pdoc);
 
       virtual void _001OnDraw(data * pdoc);
       virtual void load(data * pdoc, base * pbase);
@@ -77,7 +77,7 @@ namespace html
       virtual void layout_phase0(data * pdata); // cx MIN/MAX
       virtual void layout_phase1(data * pdata); // cxy
       virtual void layout_phase2(data * pdata); // adjust
-      virtual void layout_phase3(data * pdata); // final layout
+      virtual void layout_phase3(data * pdata); // final on_layout
 
       virtual void get_html(data * pdata, string & str);
 
