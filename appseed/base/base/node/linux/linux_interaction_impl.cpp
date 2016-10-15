@@ -680,13 +680,6 @@ d.unlock();
    {
       UNREFERENCED_PARAMETER(pobj);
       Default();
-      //sp(::linux::window_draw) pdraw =  (System.get_twf());
-      //if(pdraw != NULL)
-      //{
-      //   retry_single_lock sl(&pdraw->m_eventFree, millis(84), millis(84));
-      //   pdraw->m_wndpaOut.remove(m_pui);
-      //}
-      //m_pauraapp->remove(m_pui);
    }
 
    void interaction_impl::_001OncaptureChanged(::signal_details * pobj)
@@ -3228,8 +3221,6 @@ throw not_implemented(get_app());
    void interaction_impl::_001OnProdevianSynch(::signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-//      System.get_event(m_pthread->m_pthread)->SetEvent();
-  //    System.get_event(System.get_twf())->wait(millis(8400));
    }
 
 
@@ -4770,17 +4761,9 @@ if(psurface == g_cairosurface)
    bool interaction_impl::RedrawWindow(LPCRECT lpRectUpdate, ::draw2d::region * prgnUpdate, UINT flags)
    {
 
-      if(System.get_twf() == NULL)
-         return false;
-
-      if(System.get_twf()->m_bProDevianMode)
-         return true;
-
       ASSERT(::IsWindow((oswindow) get_handle()));
 
       throw todo(get_app());
-
-      //return ::RedrawWindow(get_handle(), lpRectUpdate, prgnUpdate == NULL ? NULL : (HRGN)prgnUpdate->get_handle(), flags) != FALSE;
 
    }
 

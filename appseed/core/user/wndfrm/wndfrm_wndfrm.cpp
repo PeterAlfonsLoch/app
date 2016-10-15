@@ -108,14 +108,6 @@ namespace user
       sp(::user::wndfrm::interaction) wndfrm::get_wndfrm(const char * pszUinteraction)
       {
 
-         if(System.get_twf() == NULL)
-         {
-
-            if(!System.defer_initialize_twf())
-               return NULL;
-
-         }
-
          sp(::user::wndfrm::interaction) pinteraction = Session.m_mapUinteraction[pszUinteraction];
 
          if(Session.m_mapUinteraction[pszUinteraction] == NULL)

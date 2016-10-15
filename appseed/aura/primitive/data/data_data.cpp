@@ -10,13 +10,6 @@ namespace data
       
       m_spdata = pdata;
       
-      //if(pdata != NULL)
-      //{
-      //   if(pdata->m_lockedlong == 1)
-      //   {
-      //      Sys(pdata->m_pauraapp).wait_twf();
-      //   }
-      //}
    }
 
    simple_lock::~simple_lock()
@@ -59,13 +52,6 @@ namespace data
 //   lock::lock(::data::data * pdata) :
 //      interlocked_long_pulse(pdata != NULL ? &pdata->m_lockedlong : NULL, 1)
 //   {
-//      //if (pdata != NULL)
-//      //{
-//      //   if (pdata->m_lockedlong == 1 && (pdata->m_spdataParentLock.is_null() || !pdata->m_spdataParentLock->is_locked()))
-//      //   {
-//      //      Sys(pdata->m_pauraapp).wait_twf();
-//      //   }
-//      //}
 //   }
 //
 //   lock::~lock()

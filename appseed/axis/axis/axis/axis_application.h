@@ -47,10 +47,7 @@ namespace axis
       static UINT                                     APPM_LANGUAGE;
       static WPARAM                                   WPARAM_LANGUAGE_UPDATE;
 
-      bool                                            m_bShouldInitializeGTwf;
-      bool                                            m_bEnableOnDemandDrawing;
       ::user::interaction *                           m_pwndMain;
-      bool                                            m_bInitializeProDevianMode;
 
 
 

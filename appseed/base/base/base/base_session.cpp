@@ -21,10 +21,6 @@ namespace base
 
       m_bSystemSynchronizedScreen   = m_pbasesystem->m_bSystemSynchronizedScreen;
 
-      m_bShouldInitializeGTwf       = m_pbasesystem->m_bShouldInitializeGTwf;
-
-      m_bEnableOnDemandDrawing      = m_pbasesystem->m_bEnableOnDemandDrawing;
-
       m_iMainMonitor                = -1;
 
 #ifdef WINDOWS

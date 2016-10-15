@@ -82,7 +82,6 @@
 #include "user/user_view_creator.cpp"
 #include "user/user_wait_cursor.cpp"
 #include "user/user_windowing.cpp"
-#include "user/user_window_draw.cpp"
 #include "user/user_window_map.cpp"
 #include "user/user_window_util.cpp"
 //47 arquivo(s)        656.222 bytes

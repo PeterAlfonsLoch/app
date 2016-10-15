@@ -2929,7 +2929,6 @@ namespace ios
 
       Default();
 
-      //      if(!System.get_twf()->m_bProDevianMode)
       {
          SetTimer(2049, 184, NULL);
       }
@@ -3244,8 +3243,6 @@ namespace ios
    void interaction_impl::_001OnProdevianSynch(signal_details * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      //      System.get_event(m_pauraapp->m_pauraapp)->SetEvent();
-      //    System.get_event(System.get_twf())->wait(millis(8400));
    }
 
    void interaction_impl::_001OnPaint(signal_details * pobj)
@@ -3758,14 +3755,6 @@ namespace ios
    bool interaction_impl::SetWindowPos(int_ptr z, int32_t x, int32_t y, int32_t cx, int32_t cy, UINT nFlags)
    {
 
-      /*
-       bool b;
-       bool * pb = &b;
-       if(m_pauraapp->m_pplaneapp->s_ptwf != NULL)
-       pb = &m_pauraapp->m_pplaneapp->s_ptwf->m_bProDevianMode;
-       keeper < bool > keepOnDemandDraw(pb, false, *pb, true);
-       */
-
       if(!::IsWindow(get_handle()))
          return false;
 
@@ -3887,10 +3876,6 @@ namespace ios
        {
        m_pui->oprop("pending_layout") = true;
        m_pui->oprop("pending_zorder") = z;
-       }*/
-      /*if(&System != NULL && System.get_twf() != NULL)
-       {
-       System.get_twf()->synch_redraw();
        }*/
       /*    }
        else

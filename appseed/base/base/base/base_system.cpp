@@ -38,15 +38,6 @@ namespace base
 #endif
 
 
-      m_ptwf            = NULL;
-
-      //m_psimpleui       = NULL;
-
-//#if defined(METROWIN) || defined(APPLE_IOS) || defined(VSNORD)
-//
-//      m_posdata         = new os_data();
-//
-//#endif
 
       set_app(this);
 
@@ -179,32 +170,6 @@ namespace base
    }
 
 
-
-   ::user::window_draw * system::get_twf()
-   {
-
-      return m_ptwf;
-
-   }
-
-   bool system::initialize_twf()
-   {
-
-      if(m_ptwf != NULL)
-         return true;
-
-      sp(::user::window_draw) pwindowdraw = alloc(System.type_info < ::user::window_draw >());
-
-      m_ptwf = pwindowdraw;
-
-      m_ptwf->add_ref();
-
-      if(m_ptwf->twf_start())
-         return false;
-
-      return true;
-
-   }
 
 
    index system::get_ui_wkspace(::user::interaction * pui)

@@ -262,9 +262,6 @@ namespace aura
 
       virtual bool initialize2();
 
-//      virtual mutex * wait_twf();
-
-
 
       //virtual bool verb();
       //virtual bool common_verb();

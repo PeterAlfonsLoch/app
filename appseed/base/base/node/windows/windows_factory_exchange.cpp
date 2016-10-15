@@ -15,9 +15,7 @@ namespace base
          object(papp)
       {
 
-         System.factory().creatable          < ::windows::window_draw        >(System.type_info < ::user::window_draw         >(),1);
          System.factory().creatable_large    < ::windows::interaction_impl   >(System.type_info < ::user::interaction_impl    >());
-
 
       }
 

@@ -596,7 +596,6 @@ namespace ios
       IGUI_WIN_MSG_LINK(WM_MOVE              , pinterface, this, &window::_001OnMove);
       IGUI_WIN_MSG_LINK(WM_SIZE              , pinterface, this, &window::_001OnSize);
       IGUI_WIN_MSG_LINK(WM_SHOWWINDOW        , pinterface, this, &window::_001OnShowWindow);
-      IGUI_WIN_MSG_LINK(ca2m_PRODEVIAN_SYNCH , pinterface, this, &window::_001OnProdevianSynch);
       //IGUI_WIN_MSG_LINK(WM_TIMER             , pinterface, this, &window::_001OnTimer);
    }
 
@@ -669,13 +668,6 @@ namespace ios
    {
       UNREFERENCED_PARAMETER(pobj);
       Default();
-      ::ios::window_draw * pdraw = dynamic_cast < ::ios::window_draw * > (System.get_twf().m_p);
-      if(pdraw != NULL)
-      {
-         retry_single_lock sl(&pdraw->m_eventFree, millis(84), millis(84));
-         pdraw->m_wndpaOut.remove(this);
-         pdraw->m_wndpaOut.remove(m_pui);
-      }
    }
 
    void window::_001OnCaptureChanged(signal_details * pobj)
@@ -3064,7 +3056,6 @@ namespace ios
 
       Default();
 
-//      if(!System.get_twf()->m_bProDevianMode)
       {
          SetTimer(2049, 184, NULL);
       }
@@ -3351,12 +3342,6 @@ namespace ios
       //      ::DeleteObject(rgnUpdate);
    }
 
-   void window::_001OnProdevianSynch(signal_details * pobj)
-   {
-      UNREFERENCED_PARAMETER(pobj);
-      //      System.get_event(m_pthread->m_pthread)->SetEvent();
-      //    System.get_event(System.get_twf())->wait(millis(8400));
-   }
 
    void window::_001OnPaint(signal_details * pobj)
    {
@@ -4191,14 +4176,6 @@ namespace ios
    bool window::SetWindowPos(int_ptr z, int32_t x, int32_t y, int32_t cx, int32_t cy, UINT nFlags)
    {
 
-      /*
-         bool b;
-         bool * pb = &b;
-         if(m_pbaseapp->m_pplaneapp->s_ptwf != NULL)
-         pb = &m_pbaseapp->m_pplaneapp->s_ptwf->m_bProDevianMode;
-         keeper < bool > keepOnDemandDraw(pb, false, *pb, true);
-      */
-
       if(!::IsWindow(get_handle()))
          return false;
 
@@ -4314,10 +4291,6 @@ namespace ios
        {
        m_pui->oprop("pending_layout") = true;
        m_pui->oprop("pending_zorder") = z;
-       }*/
-      /*if(&System != NULL && System.get_twf() != NULL)
-       {
-       System.get_twf()->synch_redraw();
        }*/
       /*    }
        else

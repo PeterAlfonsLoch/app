@@ -83,19 +83,9 @@ namespace axis
 
       m_pdataserver = NULL;
 
-
-
-
-      // initialize wait cursor state
       m_iWaitCursorCount         = 0;
 
-      m_bShouldInitializeGTwf = true;
-      m_bEnableOnDemandDrawing = true;
-      m_bInitializeProDevianMode = true;
-
       m_pinitmaindata = NULL;
-
-      Sleep(1);
 
    }
 
@@ -1408,10 +1398,7 @@ namespace axis
          //           - if can only detect that the document cannot be opened or damaged, should creatively workarounds as it comes, as could it be
          //              done, for example search in the web for a proper solution?
          //           - ::ikaraoke::karaoke file does not open? can open next? do it... may animate with a temporary icon...
-         //           - import a little as pepper for the meal, prodevian technology into estamira, so gaming experience relativity can open ligh
          //               speed into cartesian dimensions of
-         //               core, estamira and prodevian. Take care not to flood prodevian brand black ink over the floor of the estamira office...
-         //               black letters, or colorful and pink are accepted and sometimes desired, for example, hello kity prodevian, pirarucu games,
          //               I think no one likes to be boring, but a entire background in black... I don't know... only for your personal office, may be...
          //           - could an online colaborator investigate crashes promptly in a funny way, and make news and jokes? Like terra and UOL for the real world?
          //               - new crash, two documents lost, weathers fault, too hot, can't think, my mother was angry with me, lead to buggy code;
@@ -3808,9 +3795,7 @@ namespace axis
    //      //           - if can only detect that the document cannot be opened or damaged, should creatively workarounds as it comes, as could it be
    //      //              done, for example search in the web for a proper solution?
    //      //           - ::ikaraoke::karaoke file does not open? can open next? do it... may animate with a temporary icon...
-   //      //           - import a little as pepper for the meal, prodevian technology into estamira, so gaming experience relativity can open ligh
    //      //               speed into cartesian dimensions of
-   //      //               core, estamira and prodevian. Take care not to flood prodevian brand black ink over the floor of the estamira office...
    //      //               black letters, or colorful and pink are accepted and sometimes desired, for example, hello kity prodevian, pirarucu games,
    //      //               I think no one likes to be boring, but a entire background in black... I don't know... only for your personal office, may be...
    //      //           - could an online colaborator investigate crashes promptly in a funny way, and make news and jokes? Like terra and UOL for the real world?

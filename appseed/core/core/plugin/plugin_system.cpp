@@ -14,30 +14,6 @@ namespace plugin
       ::core::system(papp)
    {
 
-      //   if (papp != NULL)
-      //   {
-      //      m_pauraapp = papp;
-      //   }
-      //   
-      //   if(m_paxissession == NULL)
-      //   {
-
-      //      m_paxissession = m_pauraapp->m_paxissession;
-
-      //   }
-
-      //if (m_pbasesession == NULL)
-      //{
-      //   
-      //      m_pbasesession = m_pauraapp->m_pbasesession;
-
-      //}
-
-      m_bShouldInitializeGTwf    = false;
-
-      m_bEnableOnDemandDrawing   = false;
-
-      //m_bRun = true;
 
    }
 

@@ -590,11 +590,6 @@ namespace axis
 
 
 
-   //void system::wait_twf()
-   //{
-
-   //}
-
    bool system::is_system()
    {
 

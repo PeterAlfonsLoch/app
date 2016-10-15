@@ -143,8 +143,6 @@ namespace axis
 
       //virtual bool initialize2();
 
-      //virtual mutex * wait_twf();
-
       //virtual bool is_system();
 
 

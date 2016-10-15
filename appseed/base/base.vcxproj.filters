@@ -395,9 +395,6 @@
     <ClInclude Include="user\user\user_wait_cursor.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\user_window_draw.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
     <ClInclude Include="user\user\user_window_map.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
@@ -411,9 +408,6 @@
       <Filter>Header Files\user</Filter>
     </ClInclude>
     <ClInclude Include="base\node\windows\windows_interaction_impl.h">
-      <Filter>Header Files\base\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="base\node\windows\windows_window_draw.h">
       <Filter>Header Files\base\node\windows</Filter>
     </ClInclude>
     <ClInclude Include="base\os\windows\windows_system_interaction_impl.h">
@@ -760,9 +754,6 @@
     <ClCompile Include="user\user\user_wait_cursor.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\user_window_draw.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\user\user_window_map.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
@@ -785,9 +776,6 @@
       <Filter>Source Files\base\os\windows</Filter>
     </ClCompile>
     <ClCompile Include="base\node\windows\windows_interaction_impl.cpp">
-      <Filter>Source Files\base\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="base\node\windows\windows_window_draw.cpp">
       <Filter>Source Files\base\node\windows</Filter>
     </ClCompile>
     <ClCompile Include="database\database\database_user_interaction.cpp">

@@ -683,12 +683,15 @@ namespace windows
          IGUI_WIN_MSG_LINK(WM_GETMINMAXINFO,pinterface,this,&interaction_impl::_001OnGetMinMaxInfo);
          IGUI_WIN_MSG_LINK(WM_SETFOCUS,pinterface,this,&interaction_impl::_001OnSetFocus);
          IGUI_WIN_MSG_LINK(WM_KILLFOCUS,pinterface,this,&interaction_impl::_001OnKillFocus);
-         IGUI_WIN_MSG_LINK(ca2m_PRODEVIAN_SYNCH,pinterface,this,&interaction_impl::_001OnProdevianSynch);
+
          prio_install_message_handling(pinterface);
+
       }
+
       IGUI_WIN_MSG_LINK(WM_DESTROY,pinterface,this,&interaction_impl::_001OnDestroy);
 
    }
+
 
    void interaction_impl::win_update_graphics()
    {
@@ -773,6 +776,23 @@ namespace windows
    {
 
       UNREFERENCED_PARAMETER(pobj);
+
+      try
+      {
+
+         if (m_pthreadDraw != NULL)
+         {
+
+            m_pthreadDraw->m_bRun = false;
+
+         }
+
+      }
+      catch (...)
+      {
+
+
+      }
 
       Default();
 
@@ -2425,6 +2445,27 @@ restart_mouse_hover_check:
       m_pmutex = m_pui->m_pmutex;
       m_guieptraMouseHover.m_pmutex = m_pui->m_pmutex;
 
+      m_pthreadDraw = ::fork(get_app(), [&]()
+      {
+
+         while (::get_thread()->m_bRun)
+         {
+
+            if(m_bRedraw)
+            {
+
+               _RedrawWindow();
+
+               m_bRedraw = false;
+
+            }
+
+            Sleep(5);
+
+         }
+
+      });
+
    }
 
    /*   void interaction_impl::OnHScroll(UINT, UINT, CScrollBar* pScrollBar)
@@ -3432,7 +3473,7 @@ restart_mouse_hover_check:
 
          }
 
-         ::SetWindowPos(get_handle(),(oswindow)z,x,y,cx,cy,nFlags);
+         ::SetWindowPos(get_handle(),(oswindow)z,x,y,cx,cy,nFlags | SWP_NOREDRAW);
 
          if(nFlags & SWP_SHOWWINDOW)
          {
@@ -3440,6 +3481,15 @@ restart_mouse_hover_check:
             ShowWindow(SW_SHOW);
 
          }
+
+         if (!(nFlags & SWP_NOREDRAW))
+         {
+
+            m_pui->RedrawWindow();
+
+         }
+
+
 
       }
       else
@@ -3466,13 +3516,6 @@ restart_mouse_hover_check:
       {
 
          m_pui->m_bVisible = true;
-
-      }
-
-      if (!(nFlags & SWP_NOREDRAW))
-      {
-
-         m_pui->_001UpdateWindow();
 
       }
 
@@ -4499,54 +4542,40 @@ restart_mouse_hover_check:
    void interaction_impl::_001RedrawWindow(UINT nFlags)
    {
 
-      RedrawWindow(NULL, NULL, nFlags);
+      RedrawWindow();
+
+   }
+
+   bool interaction_impl::RedrawWindow(LPCRECT lpRectUpdate, ::draw2d::region* prgnUpdate, UINT flags)
+   {
+
+      m_bRedraw = true;
+
+      return true;
 
    }
 
 
-   bool interaction_impl::RedrawWindow(LPCRECT lpRectUpdate,::draw2d::region* prgnUpdate,UINT flags)
+   bool interaction_impl::_RedrawWindow(LPCRECT lpRectUpdate,::draw2d::region* prgnUpdate,UINT flags)
    {
 
-      if(!Session.m_bEnableOnDemandDrawing)
-         return true;
-
-      if(m_pui->m_bMayProDevian)
+      if (GetExStyle() & WS_EX_LAYERED)
       {
 
-         if(System.get_twf() == NULL)
-            return false;
+         _001UpdateWindow();
 
-         if(System.get_twf()->m_bProDevianMode)
-            return true;
+         return true;
 
-         if (GetExStyle() & WS_EX_LAYERED)
-         {
+      }
+      else
+      {
 
-            if (get_tick_count() - m_uiLastRedrawRequest > 5)
-            {
-
-               m_uiLastRedrawRequest = get_tick_count();
-
-               ::fork(get_app(), [&]()
-               {
-
-                  _001UpdateWindow();
-
-               });
-
-            }
-
-            return true;
-
-         }
+         return ::RedrawWindow(get_handle(), lpRectUpdate, prgnUpdate == NULL ? NULL : (HRGN)prgnUpdate->get_os_data(), flags) != FALSE;
 
       }
 
-      ASSERT(::IsWindow(get_handle()));
-
-      return ::RedrawWindow(get_handle(),lpRectUpdate,prgnUpdate == NULL ? NULL : (HRGN)prgnUpdate->get_os_data(),flags) != FALSE;
-
    }
+
 
    bool interaction_impl::EnableScrollBar(int32_t nSBFlags,UINT nArrowFlags)
    {

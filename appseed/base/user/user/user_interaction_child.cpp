@@ -825,17 +825,6 @@ namespace user
 
       }
 
-      //if(!(flags & RDW_UPDATENOW))
-      {
-
-         if(System.get_twf() != NULL && System.get_twf()->m_bProDevianMode && get_wnd()->m_bMayProDevian)
-            return true;
-
-         if(!Session.m_bEnableOnDemandDrawing)
-            return true;
-
-      }
-
       _001RedrawWindow(flags);
 
       return true;

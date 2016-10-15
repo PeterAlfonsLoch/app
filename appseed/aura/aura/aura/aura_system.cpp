@@ -525,21 +525,6 @@ namespace aura
       output_debug_string("Common App Data (matter) : " + System.dir().commonappdata() + "\n");
       output_debug_string("common app data (matter) : " + System.dir().commonappdata() + "\n");
 
-      //#ifdef WINDOWSEX
-      //
-      //      dappy(string(typeid(*this).name()) + " : Going to ::aura::system::m_spwindow->create_window_ex : " + ::str::from(m_iReturnCode));
-      //
-      //      if(!m_spwindow->create_window_ex(0,NULL,NULL,0,null_rect(),NULL,"::aura::system::interaction_impl::no_twf"))
-      //      {
-      //
-      //         dappy(string(typeid(*this).name()) + " : ::aura::system::m_spwindow->create_window_ex failure : " + ::str::from(m_iReturnCode));
-      //
-      //         return false;
-      //
-      //      }
-      //
-      //#endif
-
       dappy(string(typeid(*this).name()) + " : Going to ::axis::session " + ::str::from(m_iReturnCode));
 
 
@@ -828,13 +813,6 @@ namespace aura
    }
 
 
-
-   //mutex * system::wait_twf()
-   //{
-
-   //   return NULL;
-
-   //}
 
    bool system::is_system()
    {

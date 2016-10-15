@@ -53,18 +53,18 @@ public:
 
 
 template < typename PRED >
-void fork(::aura::application * papp, sp(object) pholdref, PRED pred)
+::thread * fork(::aura::application * papp, sp(object) pholdref, PRED pred)
 {
 
-   new forking_thread < PRED >(papp, pholdref, pred);
+   return new forking_thread < PRED >(papp, pholdref, pred);
 
 }
 
 template < typename PRED >
-void fork(::aura::application * papp,PRED pred)
+::thread * fork(::aura::application * papp,PRED pred)
 {
 
-   new forking_thread < PRED >(papp,pred);
+   return new forking_thread < PRED >(papp,pred);
 
 }
 

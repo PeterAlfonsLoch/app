@@ -2521,9 +2521,9 @@ void interaction_impl::_001DeferPaintLayeredWindowBackground(HDC hdc)
 
 void interaction_impl::_001OnProdevianSynch(::signal_details * pobj)
 {
+   
    UNREFERENCED_PARAMETER(pobj);
-   //      System.get_event(m_pthread->m_pthread)->SetEvent();
-   //    System.get_event(System.get_twf())->wait(millis(8400));
+
 }
 
 void interaction_impl::_001OnPaint(::signal_details * pobj)
@@ -3214,12 +3214,6 @@ bool interaction_impl::SetWindowPos(int_ptr z, int32_t x, int32_t y, int32_t cx,
       cy = iPalaceGuard;
 
 
-   /*bool b;
-   bool * pb = &b;
-   if(m_papp->s_ptwf != NULL)
-   pb = &m_papp->s_ptwf->m_bProDevianMode;
-   keeper < bool > keepOnDemandDraw(pb, false, *pb, true);
-   */
    ASSERT(::IsWindow((oswindow)get_handle()));
    /*   return ::SetWindowPos(get_handle(), pWndInsertAfter->get_handle(),
    x, y, cx, cy, nFlags) != FALSE; */
@@ -3328,10 +3322,6 @@ bool interaction_impl::SetWindowPos(int_ptr z, int32_t x, int32_t y, int32_t cx,
    {
    m_pui->oprop("pending_layout") = true;
    m_pui->oprop("pending_zorder") = z;
-   }*/
-   /*if(&System != NULL && System.get_twf() != NULL)
-   {
-   System.get_twf()->synch_redraw();
    }*/
    /*    }
    else
@@ -4298,11 +4288,6 @@ void interaction_impl::UnlockWindowUpdate()
 bool interaction_impl::RedrawWindow(LPCRECT lpRectUpdate, ::draw2d::region * prgnUpdate, UINT flags)
 {
 
-   if (System.get_twf() == NULL)
-      return false;
-
-   if (System.get_twf()->m_bProDevianMode)
-      return true;
 
    ASSERT(::IsWindow((oswindow)get_handle()));
 

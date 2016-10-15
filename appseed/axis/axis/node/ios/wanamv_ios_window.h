@@ -71,7 +71,6 @@ namespace ios
        DECL_GEN_SIGNAL(_001OnMove);
        DECL_GEN_SIGNAL(_001OnSize);
        DECL_GEN_SIGNAL(_001OnShowWindow);
-       DECL_GEN_SIGNAL(_001OnProdevianSynch);
 
 
 #if(WINVER >= 0x0500)

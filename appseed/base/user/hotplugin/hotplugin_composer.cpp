@@ -453,10 +453,6 @@ namespace hotplugin
 
          paxissystem->m_bSystemSynchronizedCursor = false;
 
-         paxissystem->m_bShouldInitializeGTwf = false;
-
-         paxissystem->m_bEnableOnDemandDrawing = false;
-
          paxissystem->construct(NULL);
 
 #ifdef WINDOWS

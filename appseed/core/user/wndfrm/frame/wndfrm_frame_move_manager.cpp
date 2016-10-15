@@ -141,20 +141,20 @@ namespace user
 
 #ifdef WINDOWSEX
 
-            if(GetMoveWindow()->GetExStyle() & WS_EX_LAYERED)
-            {
+            //if(GetMoveWindow()->GetExStyle() & WS_EX_LAYERED)
+            //{
 
-               cslock sl(pui->m_pimpl->cs_display());
-               pui->m_pimpl->m_rectParentClient.move_to(point64(ptMove));
-               pui->send_message(WM_MOVE);
-               //pui->m_pimpl->_001UpdateWindow();
-               pui->m_dwLastSizeMove = ::get_tick_count();
-               pui->m_bSizeMove = true;
+            //   cslock sl(pui->m_pimpl->cs_display());
+            //   pui->m_pimpl->m_rectParentClient.move_to(point64(ptMove));
+            //   pui->send_message(WM_MOVE);
+            //   //pui->m_pimpl->_001UpdateWindow();
+            //   pui->m_dwLastSizeMove = ::get_tick_count();
+            //   pui->m_bSizeMove = true;
 
-               pui->_001UpdateWindow();
+            //   pui->_001UpdateWindow();
 
-            }
-            else
+            //}
+            //else
             {
 
                pui->MoveWindow(ptMove);

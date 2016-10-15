@@ -2579,9 +2579,6 @@ namespace user
 #endif
       {
 
-         if(Application.defer_initialize_twf())
-            return false;
-
          pimplNew = (Application.alloc(System.type_info < interaction_impl >()));
 
          if(!pimplNew->create_window(this, lpszClassName,lpszWindowName,dwStyle,rect,pParentWnd,id,pContext))
@@ -2670,15 +2667,6 @@ namespace user
 #if !defined(METROWIN)
       if(pParentWnd == NULL)
       {
-
-         if(!Application.defer_initialize_twf())
-         {
-
-            //m_threadptra.remove_all();
-
-            return false;
-
-         }
 
          m_pimpl = Application.alloc(System.type_info < interaction_impl >());
          //oswindow window = m_pimpl->m_pui->get_handle();

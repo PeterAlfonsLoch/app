@@ -16,34 +16,31 @@ namespace windows
    public:
 
       ::user::interaction_ptra                  m_guieptraMouseHover;
+
       bool                                      m_bUpdateGraphics;
 
       size                                      m_size;
+
       point                                     m_pt;
 
       ::user::interaction_base *                m_pbasewnd;
 
       uint32_t                                  m_uiLastRedrawRequest;
 
-      IDropTargetHelper* m_piDropHelper;
-      bool               m_bUseDnDHelper;
+      IDropTargetHelper *                       m_piDropHelper;
 
-    //UINT                                      m_nFlags;            // see WF_ flags above
+      bool                                      m_bUseDnDHelper;
 
       WNDPROC                                   m_pfnSuper;          // for subclassing of controls
-      //static const UINT                         m_nMsgDragList;
-      //int32_t                                   m_nModalResult;      // for return values from interaction_impl::RunModalLoop
 
       ::user::EAppearance                       m_eapperanceLayout;
       
+      ::thread *                                m_pthreadDraw;
 
 
       interaction_impl();
       interaction_impl(::aura::application * papp);
       virtual ~interaction_impl();
-
-
-      
 
 
       virtual HRESULT STDMETHODCALLTYPE QueryInterface(REFIID riid,void **ppvObject);
@@ -244,6 +241,11 @@ namespace windows
       virtual ::draw2d::graphics * GetDCEx(::draw2d::region* prgnClip,uint32_t flags);
       virtual bool LockWindowUpdate();
       virtual void UnlockWindowUpdate();
+
+      virtual bool _RedrawWindow(LPCRECT lpRectUpdate = NULL,
+         ::draw2d::region* prgnUpdate = NULL,
+         UINT flags = RDW_INVALIDATE | RDW_UPDATENOW | RDW_ERASE);
+
       virtual bool RedrawWindow(LPCRECT lpRectUpdate = NULL,
          ::draw2d::region* prgnUpdate = NULL,
          UINT flags = RDW_INVALIDATE | RDW_UPDATENOW | RDW_ERASE);
