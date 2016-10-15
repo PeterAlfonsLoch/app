@@ -4522,12 +4522,19 @@ restart_mouse_hover_check:
          if (GetExStyle() & WS_EX_LAYERED)
          {
 
-            ::fork(get_app(), [&]()
+            if (get_tick_count() - m_uiLastRedrawRequest > 5)
             {
 
-               _001UpdateWindow();
+               m_uiLastRedrawRequest = get_tick_count();
 
-            });
+               ::fork(get_app(), [&]()
+               {
+
+                  _001UpdateWindow();
+
+               });
+
+            }
 
             return true;
 

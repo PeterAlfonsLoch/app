@@ -23,6 +23,8 @@ namespace windows
 
       ::user::interaction_base *                m_pbasewnd;
 
+      uint32_t                                  m_uiLastRedrawRequest;
+
       IDropTargetHelper* m_piDropHelper;
       bool               m_bUseDnDHelper;
 
