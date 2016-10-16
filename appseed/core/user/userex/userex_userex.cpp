@@ -616,40 +616,6 @@ namespace userex
    }
 
 
-   sp(::user::document) userex::create_form(sp(::user::form) pview,::user::form_callback * pcallback,sp(::user::interaction) pwndParent,var var)
-   {
-
-      if(m_ptemplateForm == NULL)
-         return NULL;
-
-      sp(::create) createcontext(allocer());
-      createcontext->m_bMakeVisible                   = false;
-      createcontext->m_puiParent                      = pwndParent;
-      createcontext->m_puiAlloc                       = pview;
-
-      if(var.get_type() == var::type_propset && var.has_property("hold") && !(bool)var["hold"])
-      {
-         createcontext->m_bHold                       = false;
-      }
-
-      sp(::user::document) pdoc = m_ptemplateForm->open_document_file(createcontext);
-
-      if(pdoc.is_null())
-         return NULL;
-
-      sp(::user::form_window) pform = pdoc->get_typed_view < ::user::form_window >();
-
-      if(pform.is_set())
-      {
-
-         pform->m_pcallback = pcallback;
-
-      }
-
-      return pdoc;
-
-
-   }
 
 
    sp(::user::document) userex::create_form(::aura::application * papp, sp(::user::form) pview, ::user::form_callback * pcallback, sp(::user::interaction) pwndParent, var var)
@@ -688,30 +654,35 @@ namespace userex
    }
 
 
-   sp(::user::document) userex::create_form(::user::form_callback * pcallback,sp(::user::interaction) pwndParent,var var)
+   sp(::user::document) userex::create_form(::aura::application * pauraapp, ::user::form_callback * pcallback,sp(::user::interaction) pwndParent,var var)
    {
 
       if(m_ptemplateForm == NULL)
          return NULL;
 
-      ::aura::application * papp;
+      ::aura::application * papp = pauraapp;
 
-      if(pwndParent.is_set())
+      if (papp == NULL)
       {
 
-         papp = pwndParent->get_app();
+         if (pwndParent.is_set())
+         {
 
-      }
-      else if(pcallback != NULL)
-      {
+            papp = pwndParent->get_app();
 
-         papp = pcallback->get_app();
+         }
+         else if (pcallback != NULL)
+         {
 
-      }
-      else
-      {
+            papp = pcallback->get_app();
 
-         papp = get_app();
+         }
+         else
+         {
+
+            papp = get_app();
+
+         }
 
       }
 
@@ -743,13 +714,40 @@ namespace userex
    }
 
 
-   sp(::user::document) userex::create_child_form(sp(::user::form) pview,::user::form_callback * pcallback,sp(::user::interaction) pwndParent,var var)
+   sp(::user::document) userex::create_child_form(::aura::application * pauraapp, sp(::user::form) pview,::user::form_callback * pcallback,sp(::user::interaction) pwndParent,var var)
    {
 
       if(m_ptemplateChildForm == NULL)
          return NULL;
 
-      sp(::create) createcontext(allocer());
+      ::aura::application * papp = pauraapp;
+
+      if (papp == NULL)
+      {
+
+         if (pwndParent.is_set())
+         {
+
+            papp = pwndParent->get_app();
+
+         }
+         else if (pcallback != NULL)
+         {
+
+            papp = pcallback->get_app();
+
+         }
+         else
+         {
+
+            papp = get_app();
+
+         }
+
+      }
+
+
+      sp(::create) createcontext(papp->allocer());
       createcontext->m_bMakeVisible                   = false;
       createcontext->m_puiParent                      = pwndParent;
       createcontext->m_puiAlloc                       = pview;
@@ -779,13 +777,39 @@ namespace userex
    }
 
 
-   sp(::user::document) userex::create_child_form(::user::form_callback * pcallback,sp(::user::interaction) pwndParent,var var)
+   sp(::user::document) userex::create_child_form(::aura::application * pauraapp, ::user::form_callback * pcallback,sp(::user::interaction) pwndParent,var var)
    {
 
       if(m_ptemplateChildForm == NULL)
          return NULL;
 
-      sp(::create) createcontext(pwndParent->allocer());
+      ::aura::application * papp = pauraapp;
+
+      if (papp == NULL)
+      {
+
+         if (pwndParent.is_set())
+         {
+
+            papp = pwndParent->get_app();
+
+         }
+         else if (pcallback != NULL)
+         {
+
+            papp = pcallback->get_app();
+
+         }
+         else
+         {
+
+            papp = get_app();
+
+         }
+
+      }
+
+      sp(::create) createcontext(papp->allocer());
 
       createcontext->m_bMakeVisible                   = false;
 

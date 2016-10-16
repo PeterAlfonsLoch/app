@@ -3739,7 +3739,7 @@ namespace core
    sp(::user::document)   application::create_form(::user::form_callback * pcallback, sp(::user::interaction) pwndParent, var var)
    {
 
-      return Sess(this).userex()->create_form(pcallback, pwndParent, var);
+      return Sess(this).userex()->create_form(this, pcallback, pwndParent, var);
 
    }
 
@@ -3747,7 +3747,7 @@ namespace core
    sp(::user::document)   application::create_form(sp(::user::form) pview, ::user::form_callback * pcallback, sp(::user::interaction) pwndParent, var var)
    {
 
-      return Sess(this).userex()->create_form(pview, pcallback, pwndParent, var);
+      return Sess(this).userex()->create_form(this, pview, pcallback, pwndParent, var);
 
    }
 
@@ -3755,7 +3755,7 @@ namespace core
    sp(::user::document)   application::create_child_form(::user::form_callback * pcallback, sp(::user::interaction) pwndParent, var var)
    {
 
-      return Sess(this).userex()->create_child_form(pcallback, pwndParent, var);
+      return Sess(this).userex()->create_child_form(this, pcallback, pwndParent, var);
 
 
    }
@@ -3764,7 +3764,7 @@ namespace core
    sp(::user::document)   application::create_child_form(sp(::user::form) pview, ::user::form_callback * pcallback, sp(::user::interaction) pwndParent, var var)
    {
 
-      return Sess(this).userex()->create_child_form(pview, pcallback, pwndParent, var);
+      return Sess(this).userex()->create_child_form(this, pview, pcallback, pwndParent, var);
 
    }
 

@@ -227,6 +227,12 @@ namespace file
    void buffered_buffer::set_length(file_size_t dwNewLen)
    {
       m_pfile->set_length(dwNewLen);
+      m_uiPosition = 0;
+      m_uiBufLPos = 0;
+      m_uiBufUPos = 0xffffffff;
+      m_uiWriteLPos = 0xffffffff;
+      m_uiWriteUPos = 0xffffffff;
+      m_bDirty = false;
    }
 
 

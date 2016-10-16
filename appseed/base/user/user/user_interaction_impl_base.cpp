@@ -1421,6 +1421,8 @@ namespace user
 
       m_pui->send_message(WM_SHOWWINDOW, nCmdShow != SW_HIDE ? 1 : 0);
 
+      RedrawWindow();
+
       return true;
 
    }

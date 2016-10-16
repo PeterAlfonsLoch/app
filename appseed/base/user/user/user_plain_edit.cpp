@@ -2,6 +2,8 @@
 //#include "base/user/user.h"
 //#include "aura/user/colorertake5/colorertake5.h"
 
+
+
 //#define SEARCH_SCROLLING_PROFILING
 //#define PROFILE_CALC_LAYOUT
 CLASS_DECL_BASE void str_fill(string & str,char ch);
@@ -131,8 +133,10 @@ namespace user
 
       _001OnUpdate(::action::source_system);
 
-      m_bNeedCalcLayout = true;
+      //m_bNeedCalcLayout = true;
       m_bCalcLayoutHintNoTextChange = false;
+
+      _001OnCalcLayout();
 
 //      ThreadProcScrollSize((LPVOID) this);
 
@@ -151,9 +155,9 @@ namespace user
 
       _001OnUpdate(::action::source_system);
 
-      m_bNeedCalcLayout = true;
+      //m_bNeedCalcLayout = true;
       m_bCalcLayoutHintNoTextChange = true;
-
+      _001OnCalcLayout();
 
 
       /*   pobj->previous();
@@ -194,18 +198,17 @@ namespace user
    {
 
       //return;
-#ifdef PROFILE_CALC_LAYOUT
-      for(index i = 0; i < 1000; i++)
-#else
-      if(m_bNeedCalcLayout)
-
-#endif
-      {
-
-         _001OnCalcLayout();
-
-      }
-
+//#ifdef PROFILE_CALC_LAYOUT
+//      for(index i = 0; i < 1000; i++)
+//#else
+//      if(m_bNeedCalcLayout)
+//
+//#endif
+//      {
+//
+//
+//      }
+//
       //return;
 
       pgraphics->set_text_rendering(::draw2d::text_rendering_anti_alias);
@@ -1113,8 +1116,10 @@ namespace user
       }
 
 
-      m_bNeedCalcLayout = true;
       m_bCalcLayoutHintNoTextChange = true;
+
+      _001OnCalcLayout();
+
 
 #ifndef SEARCH_SCROLLING_PROFILING
 
@@ -1130,7 +1135,7 @@ namespace user
 
       ::user::control::on_change_viewport_offset();
 
-      m_bNeedCalcLayout = true;
+      _001OnCalcLayout();
 
    }
 
@@ -1385,7 +1390,9 @@ namespace user
 
          iStrLen = MAX(0,iLen - (m_iaLineEnd[iLine] & 255));
 
-         m_plines->lines.add(string((const char *) &mem.get_data()[iPos],iStrLen));
+         string strLine = string((const char *)&mem.get_data()[iPos], iStrLen);
+
+         m_plines->lines.add(strLine);
 
          iPos += iLen;
 
@@ -1453,9 +1460,13 @@ namespace user
 
       on_change_view_size();
 
-      m_bNeedCalcLayout = false;
+      // m_bNeedCalcLayout = false;
 
       m_bCalcLayoutHintNoTextChange = false;
+
+      //_001OnCalcLayout();
+
+      //_001OnCalcLayout();
 
    }
 
@@ -2563,10 +2574,12 @@ namespace user
                   //_001OnAfterChangeText(::action::source_user);
                }
             }
-            if(pkey->m_ekey != ::user::key_up
-               && pkey->m_ekey != ::user::key_down)
+
+            if(pkey->m_ekey != ::user::key_up && pkey->m_ekey != ::user::key_down)
             {
+
                m_iColumn = SelToColumn(m_ptree->m_iSelEnd);
+
             }
 
          }
@@ -2796,6 +2809,8 @@ namespace user
 
       }
 
+      RedrawWindow();
+
    }
 
 
@@ -2851,7 +2866,7 @@ namespace user
 
       _001OnUpdate(::action::source_user);
 
-      _001OnAfterChangeText(::action::source_user);
+      //_001OnAfterChangeText(::action::source_user);
 
       return true;
 
@@ -2886,7 +2901,7 @@ namespace user
       m_bGetTextNeedUpdate = true;
 
       _001OnUpdate(::action::source_user);
-      _001OnAfterChangeText(::action::source_user);
+      //_001OnAfterChangeText(::action::source_user);
 
       return true;
    }
@@ -2926,7 +2941,7 @@ namespace user
 
       _001OnSetText(actioncontext);
       _001OnUpdate(actioncontext);
-      RedrawWindow();
+
    }
 
 
@@ -2992,7 +3007,7 @@ namespace user
       MacroEnd();
 
       _001OnUpdate(::action::source::user());
-      _001OnAfterChangeText(::action::source::user());
+      //_001OnAfterChangeText(::action::source::user());
 
    }
 
@@ -3000,8 +3015,9 @@ namespace user
    void plain_edit::_001OnVScroll(signal_details * pobj)
    {
 
-      m_bCalcLayoutHintNoTextChange = true;
+      //m_bCalcLayoutHintNoTextChange = true;
       m_bNeedCalcLayout = true;
+      _001OnCalcLayout();
       //RedrawWindow();
       //pobj->m_bRet = true;
    }
@@ -3015,8 +3031,9 @@ namespace user
       if(should_load_full_file())
       {
 
-         m_bNeedScrollUpdate = true;
+         //m_bNeedScrollUpdate = true;
          m_bCalcLayoutHintNoTextChange = true;
+         _001OnCalcLayout();
 
       }
       else
@@ -3032,9 +3049,9 @@ namespace user
    void plain_edit::_001OnSetText(::action::context actioncontext)
    {
 
-      m_bNeedCalcLayout = true;
+      //m_bNeedCalcLayout = true;
       m_bCalcLayoutHintNoTextChange = false;
-
+      _001OnCalcLayout();
 
    }
 
@@ -3228,8 +3245,9 @@ namespace user
    void plain_edit::on_layout()
    {
 
-      m_bNeedCalcLayout = true;
+      //m_bNeedCalcLayout = true;
       m_bCalcLayoutHintNoTextChange = true;
+      _001OnCalcLayout();
 
    }
 

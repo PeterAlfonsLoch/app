@@ -245,7 +245,7 @@ namespace command
          break;
       case PaneViewConfiguration:
       {
-         sp(::user::document) pdoc = Session.userex()->create_form(this, this);
+         sp(::user::document) pdoc = Application.create_form(this, this);
          if(pdoc == NULL)
             return;
          ::user::view_creator_data * pcreatordata = new ::user::view_creator_data;

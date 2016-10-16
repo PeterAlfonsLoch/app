@@ -51,7 +51,7 @@ bool dialog::show(const char * pszMatter, property_set  * ppropertyset)
 
    set["hold"] = false;
 
-   m_pdocument = Session.userex()->create_form(get_app(), this, NULL, Session.get_view(), set);
+   m_pdocument = Application.create_form(this, NULL, Session.get_view(), set);
 
    if(m_pdocument == NULL)
    {

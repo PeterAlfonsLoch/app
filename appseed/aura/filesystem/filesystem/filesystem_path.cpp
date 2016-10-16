@@ -349,6 +349,13 @@ namespace file
 
       strPath = c_str();
 
+      if (strPath.is_empty())
+      {
+
+         return path;
+
+      }
+
       if (strPath.Right(3) != "://")
       {
 

@@ -140,7 +140,10 @@ namespace user
          ASSERT(FALSE);
          return NULL;
       }
-      sp(::user::document) pdocument = Application.alloc(m_typeinfoDocument);
+      
+      ::aura::application * papp = pcreatecontext->get_app() != NULL ? pcreatecontext->get_app() : get_app();
+
+      sp(::user::document) pdocument = App(papp).alloc(m_typeinfoDocument);
       if (pdocument == NULL)
       {
          TRACE(::aura::trace::category_AppMsg, 0, "Warning: Dynamic create of ::user::document type %hs failed.\n",
@@ -181,7 +184,8 @@ namespace user
          ASSERT(FALSE);
          return NULL;
       }
-      sp(::user::frame_window) pFrame = App(pcreatecontext->get_app()).alloc(m_typeinfoFrame);
+      ::aura::application * papp = pcreatecontext->get_app() != NULL ? pcreatecontext->get_app() : get_app();
+      sp(::user::frame_window) pFrame = App(papp).alloc(m_typeinfoFrame);
       if (pFrame == NULL)
       {
          TRACE(::aura::trace::category_AppMsg, 0, "Warning: Dynamic create of frame %hs failed.\n",

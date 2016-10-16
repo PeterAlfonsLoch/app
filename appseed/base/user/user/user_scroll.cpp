@@ -1286,7 +1286,7 @@ namespace user
 
       layout_scroll_bar();
 
-      on_change_viewport_offset();
+      //on_change_viewport_offset();
 
    }
 

@@ -2250,7 +2250,9 @@ namespace user
 
       m_spcreatecontext = (sp(::create)) NULL;
 
-      on_layout();
+      layout();
+
+      RedrawWindow();
 
       return true;
 
