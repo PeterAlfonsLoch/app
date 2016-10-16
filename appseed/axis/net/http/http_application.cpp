@@ -359,8 +359,6 @@ namespace http
 
          strFontopusServer = Session.fontopus()->get_fontopus_server(pszUrl);
 
-         psession = Session.fontopus()->m_mapFontopusSession[strFontopusServer];
-
       }
 
       while(::get_thread() == NULL || get_thread()->m_bRun)
@@ -370,14 +368,7 @@ namespace http
 
             set["get_response"] = "";
 
-            if(System.http().request(*Session.fontopus()->m_phandler, psession, strUrl, set) && psession.is_set())
-            {
-
-               Session.fontopus()->m_mapFontopusSession.set_at(strFontopusServer,psession);
-
-            }
-
-            str = set["get_response"];
+            str = Application.http().get(strUrl, set);
 
             if(str.has_char())
                return str;

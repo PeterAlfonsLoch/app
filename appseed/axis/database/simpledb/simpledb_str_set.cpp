@@ -278,13 +278,6 @@ bool db_str_set::load(const char * lpKey, string & strValue)
 
       sl.lock();
 
-      if(pcore->m_phttpsession == NULL)
-      {
-
-         pcore->m_phttpsession = Session.fontopus()->m_mapFontopusSession[Session.fontopus()->m_strFirstFontopusServer];
-
-      }
-
       db_str_set_item stritem;
 
       if(pcore->m_map.Lookup(lpKey,stritem) && stritem.m_dwTimeout > get_tick_count())
