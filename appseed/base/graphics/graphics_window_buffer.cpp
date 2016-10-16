@@ -19,20 +19,15 @@ window_buffer::~window_buffer()
 void window_buffer::update_window()
 {
 
-   synch_lock sl(m_pmutex);
-
-   update_window(m_spdibBuffer->get_data(), m_spdibBuffer->m_size.cx, m_spdibBuffer->m_size.cy, m_spdibBuffer->m_iScan);
+   update_window(m_spdibBuffer);
 
 }
 
 
-void window_buffer::update_window(COLORREF * pcolorref,int cxParam,int cyParam,int iStride)
+void window_buffer::update_window(::draw2d::dib * pdib)
 {
 
-   UNREFERENCED_PARAMETER(pcolorref);
-   UNREFERENCED_PARAMETER(cxParam);
-   UNREFERENCED_PARAMETER(cyParam);
-   UNREFERENCED_PARAMETER(iStride);
+   UNREFERENCED_PARAMETER(pdib);
 
 }
 

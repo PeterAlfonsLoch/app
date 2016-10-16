@@ -80,6 +80,7 @@ namespace user
       DWORD                               m_dwLastRedraw;
       bool                                m_bCursorRedraw;
       point                               m_ptCursor;
+      bool                                m_bLockWindowUpdate;
 
       ref_array < object >                m_ptraRedraw;
 

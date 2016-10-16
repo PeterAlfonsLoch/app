@@ -100,6 +100,8 @@ namespace user
    void interaction::user_interaction_common_construct()
    {
 
+      m_bLockWindowUpdate        = false;
+
       m_bTransparentMouseEvents  = false;
 
       m_bRedrawing               = false;
@@ -7656,7 +7658,6 @@ restart:
 
          }
 
-
       });
 
    }
@@ -7678,10 +7679,7 @@ restart:
 
          get_wnd()->send_message(WM_MOUSEMOVE, 0, ptCurrent);
 
-
-
       }
-
 
    }
 

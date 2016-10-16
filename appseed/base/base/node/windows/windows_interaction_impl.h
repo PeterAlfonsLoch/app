@@ -36,6 +36,9 @@ namespace windows
       ::user::EAppearance                       m_eapperanceLayout;
       
       ::thread *                                m_pthreadDraw;
+      
+      rect64                                    m_rectLastPos;
+      DWORD                                     m_dwLastPos;
 
 
       interaction_impl();

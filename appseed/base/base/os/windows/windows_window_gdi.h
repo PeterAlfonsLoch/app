@@ -25,7 +25,7 @@ public:
    virtual void destroy_window_graphics();
 
 
-   virtual void update_window(COLORREF * pcolorref,int cxParam,int cyParam,int iStride = -1);
+   virtual void update_window(::draw2d::dib * pdib) override;
 
 
 };

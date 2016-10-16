@@ -19,7 +19,7 @@ public:
 
 
    virtual void update_window();
-   virtual void update_window(COLORREF * pcolorref,int cxParam,int cyParam,int iStride = -1);
+   virtual void update_window(::draw2d::dib * pdib);
 
 
    ::draw2d::graphics * on_begin_draw();

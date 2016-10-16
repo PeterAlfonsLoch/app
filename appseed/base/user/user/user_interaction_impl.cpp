@@ -2606,6 +2606,10 @@ namespace user
       m_size.cy = 0;
    
 #endif
+
+      sl.unlock();
+
+      sl1.unlock();
    
       m_spgraphics->update_window();
    

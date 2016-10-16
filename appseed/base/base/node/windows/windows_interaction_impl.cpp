@@ -2495,12 +2495,58 @@ restart_mouse_hover_check:
 
                dwStart = ::get_tick_count();
 
-               if (m_pui->has_pending_graphical_update())
+               if (!m_pui->m_bLockWindowUpdate)
                {
 
-                  RedrawWindow(NULL, NULL, RDW_INVALIDATE | RDW_UPDATENOW | RDW_NOERASE);
+                  if(m_pui->GetExStyle() & WS_EX_LAYERED)
+                  {
 
-                  m_pui->on_after_graphical_update();
+
+                     if (m_rectLastPos != m_rectParentClient)
+                     {
+
+                        m_dwLastPos = ::get_tick_count();
+
+                        m_rectLastPos = m_rectParentClient;
+
+                     }
+                     else
+                     {
+
+                        rect64 r2;
+
+                        GetWindowRect(r2);
+                        
+                        if (r2 != m_rectParentClient && ::get_tick_count() - m_dwLastPos > 400)
+                        {
+
+                           ::SetWindowPos(m_oswindow, NULL,
+                              m_rectParentClient.left,
+                              m_rectParentClient.top,
+                              m_rectParentClient.width(),
+                              m_rectParentClient.height(),
+                              SWP_NOZORDER
+                              | SWP_NOREDRAW
+                              | SWP_NOCOPYBITS
+                              | SWP_NOACTIVATE
+                              | SWP_NOOWNERZORDER
+                              | SWP_NOSENDCHANGING
+                              | SWP_DEFERERASE);
+
+                        }
+
+                     }
+
+                  }
+
+                  if (m_pui->has_pending_graphical_update())
+                  {
+
+                     RedrawWindow(NULL, NULL, RDW_INVALIDATE | RDW_UPDATENOW | RDW_NOERASE);
+
+                     m_pui->on_after_graphical_update();
+
+                  }
 
                }
 
@@ -3441,6 +3487,9 @@ restart_mouse_hover_check:
       if(GetExStyle() & WS_EX_LAYERED)
       {
 
+         keep < bool > keepLockWindowUpdate(&m_pui->m_bLockWindowUpdate, true, false, true);
+
+
          ::rect rectBefore = m_rectParentClient;
 
          ::rect rect = m_rectParentClient;
@@ -3462,8 +3511,6 @@ restart_mouse_hover_check:
          if(rectBefore.size() != rect.size() || m_pui->get_appearance() != m_eapperanceLayout)
          {
 
-            //keep < bool > keepLockWindowUpdate(&m_pui->m_bLockWindowUpdate,true,false,true);
-
             m_rectParentClient = rect;
 
             m_eapperanceLayout = m_pui->get_appearance();
@@ -3482,6 +3529,12 @@ restart_mouse_hover_check:
             }
 
 
+            //::SetWindowPos(get_handle(), (oswindow)z,
+            //   x,
+            //   y,
+            //   cx,
+            //   cy,
+            //   nFlags | SWP_NOREDRAW | SWP_NOSENDCHANGING | SWP_NOREPOSITION | SWP_NOCOPYBITS | SWP_DEFERERASE);
 
             //m_pui->_001UpdateBuffer();
             //m_pui->_001UpdateWindow();
@@ -3525,6 +3578,39 @@ restart_mouse_hover_check:
          }
 
 //         ::SetWindowPos(get_handle(),(oswindow)z,x,y,cx,cy,nFlags | SWP_NOREDRAW);
+
+         //{
+
+         //   RECT r2;
+
+         //   GetWindowRect(m_pimpl->m_oswindow, &r2);
+
+         //   RECT64 r64;
+
+         //   ::copy(&r64, &r2);
+
+         //   if (!::is_equal(&r64, &m_pimpl->m_rectParentClient))
+         //   {
+
+               //::SetWindowPos(m_pimpl->m_oswindow, NULL,
+               //   m_pimpl->m_rectParentClient.left,
+               //   m_pimpl->m_rectParentClient.top,
+               //   m_pimpl->m_rectParentClient.width(),
+               //   m_pimpl->m_rectParentClient.height(),
+               //   SWP_NOZORDER
+               //   | SWP_NOREDRAW
+               //   | SWP_NOCOPYBITS
+               //   | SWP_NOACTIVATE
+               //   | SWP_NOOWNERZORDER
+               //   | SWP_NOSENDCHANGING
+               //   | SWP_DEFERERASE);
+
+//            }
+
+         //}
+
+
+
 
          if(nFlags & SWP_SHOWWINDOW)
          {
