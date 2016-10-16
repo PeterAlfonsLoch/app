@@ -383,12 +383,12 @@ namespace metrowin
 
          synch_lock sl(&draw2d_direct2_mutex());
 
-         ::Windows::Graphics::Display::DisplayInformation ^ displayinformation = ::Windows::Graphics::Display::DisplayInformation::GetForCurrentView();
+         //::Windows::Graphics::Display::DisplayInformation ^ displayinformation = ::Windows::Graphics::Display::DisplayInformation::GetForCurrentView();
 
-         if(m_dpi != displayinformation->LogicalDpi)
-         {
-            return;
-         }
+         //if(m_dpi != displayinformation->LogicalDpi)
+         //{
+         //   return;
+         //}
 
          if(m_size.cx != m_windowBounds.Width ||
                m_size.cy != m_windowBounds.Height)

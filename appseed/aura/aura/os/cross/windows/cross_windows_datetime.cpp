@@ -1050,7 +1050,6 @@ NTSTATUS WINAPI NtSetSystemTime(const LARGE_INTEGER *NewTime, LARGE_INTEGER *Old
     return STATUS_NOT_IMPLEMENTED;
 #endif
 }
-#endif
 
 /*********************************************************************
  *      LocalFileTimeToFileTime                         (KERNEL32.@)
@@ -1102,8 +1101,6 @@ CLASS_DECL_AURA WINBOOL WINAPI FileTimeToLocalFileTime( const FILETIME *utcft, L
     return !status;
 }
 
-
-#ifndef METROWIN
 
 
 

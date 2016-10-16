@@ -498,12 +498,12 @@ namespace draw2d_direct2d
       virtual HDC get_handle1() const;
       virtual HDC get_handle2() const;
 
-      virtual bool attach(void * pdata);
-      virtual void * detach();
+      virtual bool attach(void * pdata) override;
+      virtual void * detach() override;
 
 #ifdef WINDOWSEX
-      virtual bool Attach(HDC hdc);
-      virtual HDC Detach();
+      virtual bool Attach(HDC hdc) override;
+      virtual HDC Detach() override;
 #endif
 
 //      virtual Gdiplus::FillMode direct2d_get_fill_mode();
@@ -517,18 +517,18 @@ namespace draw2d_direct2d
       ID2D1Brush * get_os_brush(::draw2d::brush * pbrush) const;
       ID2D1Brush * get_os_pen_brush(::draw2d::pen * ppen) const;
 
-      virtual bool draw(const ::draw2d::path::string_path & path,::draw2d::pen * ppen);
+      virtual bool draw(const ::draw2d::path::string_path & path, ::draw2d::pen * ppen);
 
       virtual bool fill(const ::draw2d::path::string_path & path, ::draw2d::brush * pbrush);
 
-      virtual bool flush();
+      virtual bool flush() override;
 
-      virtual void debug();
+      virtual void debug() override;
    //protected:
       // used for implementation of non-virtual SelectObject calls
       //static ::draw2d::object* SelectGdiObject(application * papp, HDC hDC, HGDIOBJ h);
 
-      virtual void enum_fonts(stringa & stra);
+      virtual void enum_fonts(stringa & straFile, stringa & stra) override;
 
 
    };

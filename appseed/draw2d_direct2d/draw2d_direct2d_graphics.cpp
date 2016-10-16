@@ -5308,7 +5308,7 @@ namespace draw2d_direct2d
    }
 
 
-   void graphics::enum_fonts(stringa & stra)
+   void graphics::enum_fonts(stringa & straFile, stringa & stra)
    {
 
       ::windows::comptr<IDWriteFontCollection> pFontCollection;
@@ -5393,13 +5393,20 @@ namespace draw2d_direct2d
          // Add the family name to the String Array. 
          if(SUCCEEDED(hr))
          {
-            stra.add(string((LPCWSTR)(name)));
+            
+            string strName = string((LPCWSTR)(name));
+
+            straFile.add(strName);
+
+            stra.add(strName);
+
          }
 
 
       }
 
    }
+
 
 
 } // namespace draw2d_direct2d

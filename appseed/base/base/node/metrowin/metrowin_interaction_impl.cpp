@@ -4067,31 +4067,31 @@ ExitModal:
       ///*   return ::SetWindowPos(get_handle(), pWndInsertAfter->get_handle(),
       //x, y, cx, cy, nFlags) != FALSE; */
       //rect64 rectWindowOld = m_rectParentClient;
-      //if(nFlags & SWP_NOMOVE)
-      //{
-      //   if(nFlags & SWP_NOSIZE)
-      //   {
-      //   }
-      //   else
-      //   {
-      //      m_rectParentClient.right   = m_rectParentClient.left + cx;
-      //      m_rectParentClient.bottom  = m_rectParentClient.top + cy;
-      //   }
-      //}
-      //else
-      //{
-      //   if(nFlags & SWP_NOSIZE)
-      //   {
-      //      m_rectParentClient.offset(x - m_rectParentClient.left,y - m_rectParentClient.top);
-      //   }
-      //   else
-      //   {
-      //      m_rectParentClient.left    = x;
-      //      m_rectParentClient.top     = y;
-      //      m_rectParentClient.right   = m_rectParentClient.left + cx;
-      //      m_rectParentClient.bottom  = m_rectParentClient.top + cy;
-      //   }
-      //}
+      if(nFlags & SWP_NOMOVE)
+      {
+         if(nFlags & SWP_NOSIZE)
+         {
+         }
+         else
+         {
+            m_rectParentClient.right   = m_rectParentClient.left + cx;
+            m_rectParentClient.bottom  = m_rectParentClient.top + cy;
+         }
+      }
+      else
+      {
+         if(nFlags & SWP_NOSIZE)
+         {
+            m_rectParentClient.offset(x - m_rectParentClient.left,y - m_rectParentClient.top);
+         }
+         else
+         {
+            m_rectParentClient.left    = x;
+            m_rectParentClient.top     = y;
+            m_rectParentClient.right   = m_rectParentClient.left + cx;
+            m_rectParentClient.bottom  = m_rectParentClient.top + cy;
+         }
+      }
       //if(m_pui != this
       //   && m_pui != NULL)
       //{
