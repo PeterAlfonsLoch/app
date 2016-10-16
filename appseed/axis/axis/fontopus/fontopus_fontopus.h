@@ -20,14 +20,14 @@ namespace fontopus
       string                                       m_strBestFontopusServerIp;
       string                                       m_strBestApiServer;
       authentication_map                           m_authmap;
-      string_map < ::sockets::http_session * >     m_mapFontopusSession;
+      //string_map < ::sockets::http_session * >     m_mapFontopusSession;
       string_map < stringa >                       m_mapSomeBrothersAndSisters;
       string_to_string                             m_mapFontopusRsa;
       string_to_string                             m_mapFontopusSessId;
       string_to_string                             m_mapLabelUser;
       string_to_string                             m_mapLabelPass;
       string_to_string                             m_mapLabelOpen;
-      ::sockets::socket_handler *                  m_phandler;
+      //::sockets::socket_handler *                  m_phandler;
 
 
       fontopus(::aura::application * papp);

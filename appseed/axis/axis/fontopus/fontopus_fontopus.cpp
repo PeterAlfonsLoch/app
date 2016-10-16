@@ -13,7 +13,7 @@ namespace fontopus
       m_mutex(papp)
    {
 
-      m_phandler = NULL;
+//      m_phandler = NULL;
 
       m_puser                       = NULL;
 
@@ -35,14 +35,14 @@ namespace fontopus
    void fontopus::cleanup_networking()
    {
 
-      if (m_phandler != NULL)
-      {
+      //if (m_phandler != NULL)
+      //{
 
-         m_phandler->cleanup_handler();
+      //   m_phandler->cleanup_handler();
 
-      }
+      //}
 
-      ::aura::del(m_phandler);
+      //::aura::del(m_phandler);
 
    }
 
@@ -546,12 +546,12 @@ namespace fontopus
 
       string strNode;
 
-      if (m_phandler == NULL)
-      {
+      //if (m_phandler == NULL)
+      //{
 
-         m_phandler = new sockets::socket_handler(get_app());
+      //   m_phandler = new sockets::socket_handler(get_app());
 
-      }
+      //}
 
       try
       {
@@ -562,20 +562,7 @@ namespace fontopus
 
          set["raw_http"] = true;
 
-         set["get_response"] = "";
-
-         if (System.http().request(*m_phandler, psession, strGetFontopus, set))
-         {
-
-            strNode = set["get_response"];
-
-         }
-         else
-         {
-
-            strNode.Empty();
-
-         }
+         strNode = Application.http().get(strGetFontopus, set);
 
          DWORD dwEnd = ::get_tick_count();
 
@@ -683,7 +670,7 @@ namespace fontopus
 
       }
 
-      m_mapFontopusSession.set_at(strFontopusServer,psession);
+//      m_mapFontopusSession.set_at(strFontopusServer,psession);
       
 
       if(m_mapFontopusSessId[strFontopusServer].is_empty())

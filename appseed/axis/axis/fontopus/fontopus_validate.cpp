@@ -409,20 +409,7 @@ namespace fontopus
 
       set["post"]["entered_license"] = m_strLicense;
 
-      sp(::sockets::http_session) psession = Session.fontopus()->m_mapFontopusSession[strHost];
-
-      set["get_response"] = "";
-
-      if(System.http().request(*Session.fontopus()->m_phandler, psession, strAuthUrl, set) && psession.is_set())
-      {
-
-         Session.fontopus()->m_mapFontopusSession.set_at(strHost,psession);
-
-
-      }
-
-      string strAuth(set["get_response"]);
-
+      string strAuth = Application.http().get(strAuthUrl, set);
 
       m_loginthread.m_strFontopusServer = strHost;
 
@@ -936,8 +923,6 @@ namespace fontopus
       if(strRsaModulus.is_empty())
          return "";
 
-      sp(::sockets::http_session) psession = Session.fontopus()->m_mapFontopusSession[m_strFontopusServer];
-
       DWORD dwGetLoginEnd = ::get_tick_count();
 
       TRACE("NetLogin: Get Login Millis = %d",dwGetLoginEnd - dwGetLoginBeg);
@@ -1011,22 +996,9 @@ namespace fontopus
 
          }
          
-         set["get_response"] = "";
-         
          uint32_t dwTimeProfile1 = get_tick_count();
 
-         if(System.http().request(*Session.fontopus()->m_phandler, psession,strAuthUrl,set))
-         { 
-
-            strAuth = set["get_response"];
-         
-         }
-         else
-         {
-
-            strAuth.Empty();
-
-         }
+         strAuth = Application.http().get(strAuthUrl, set);
          
 
          *pestatus = (::http::e_status) set["get_status"].int64();
