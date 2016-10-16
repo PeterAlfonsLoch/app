@@ -648,6 +648,12 @@ namespace aura
    ::file::path command_find_path(const char * pszCommand)
    {
 
+#ifdef METROWIN
+
+      return "";
+
+#else
+
       string strPath = getenv("PATH");
 
       stringa straPath;
@@ -673,6 +679,8 @@ namespace aura
       }
 
       return pszCommand;
+
+#endif
 
    }
 

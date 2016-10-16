@@ -1,6 +1,9 @@
 #pragma once
 
 
+#ifndef METROWIN
+
+
 BEGIN_EXTERN_C
 
 DWORD GetCurrentProcessId(void);
@@ -8,7 +11,6 @@ DWORD GetCurrentProcessId(void);
 END_EXTERN_C
 
 
-#ifndef METROWIN
 #include "windows_guid_def.h"
 #include "windows_winnt.h"
 #include "windows_error.h"
