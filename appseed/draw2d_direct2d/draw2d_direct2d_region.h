@@ -17,8 +17,8 @@ namespace draw2d_direct2d
       region(::aura::application * papp);
       virtual ~region();
 
-            
       void defer_update();
+
 
 
       /*bool CreateRectRgn(int x1, int y1, int x2, int y2);

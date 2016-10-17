@@ -3390,6 +3390,8 @@ namespace draw2d
    void dib::FillByte(uchar uch)
    {
 
+      map();
+
       if(area() <= 0 || get_data() == NULL)
          return;
 

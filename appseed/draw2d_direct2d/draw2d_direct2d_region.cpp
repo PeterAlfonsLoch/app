@@ -227,7 +227,7 @@ namespace draw2d_direct2d
 
       ID2D1RectangleGeometry * pgeometry = NULL;
 
-      GetD2D1Factory1()->CreateRectangleGeometry(D2D1::RectF((FLOAT) m_x1, (FLOAT) m_x2, (FLOAT) (m_x2 - m_x1), (FLOAT) (m_y2 - m_y1)), &pgeometry);
+      GetD2D1Factory1()->CreateRectangleGeometry(D2D1::RectF((FLOAT)m_x1, (FLOAT)m_y1, (FLOAT)m_x2, (FLOAT)m_y2), &pgeometry);
 
       return pgeometry;
          

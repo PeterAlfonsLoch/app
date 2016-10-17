@@ -3629,7 +3629,7 @@ namespace draw2d_direct2d
 
          m_sparegionClip.add(pregion);
 
-         ID2D1Geometry * pgeometry = (ID2D1Geometry *) pregion->get_os_data();
+         ID2D1Geometry * pgeometry = (ID2D1Geometry *) (dynamic_cast < region * > (pregion))->get_os_data();
 
          m_prendertarget->PushLayer(D2D1::LayerParameters(D2D1::InfiniteRect(),pgeometry),NULL);
 
@@ -4367,28 +4367,81 @@ namespace draw2d_direct2d
    bool graphics::GetTextExtent(sized & size, const char * lpszString, strsize nCount, strsize iIndex) const
    {
 
-      if(nCount < 0)
+      string str;
+
+      if (nCount < 0)
+      {
+       
          nCount = strlen(lpszString);
 
+      }
+
       if (iIndex < 0)
+      {
+
          iIndex = nCount;
+
+      }
 
       if (iIndex > nCount)
+      {
+
          iIndex = nCount;
 
+      }
+
+      if (iIndex < nCount)
+      {
+
+         str = string(lpszString, iIndex + ::str::get_utf8_char_length(&lpszString[iIndex]));
+
+      }
+      else
+      {
+
+         str = string(lpszString, nCount);
+
+      }
+
       if (m_spfont.is_null())
+      {
+
          return false;
+
+      }
 
       if (get_os_font(m_spfont) == NULL)
+      {
+
          return false;
 
-      string str(lpszString, iIndex);
+      }
 
       wstring wstr(str);
 
+      IDWriteTextLayout * playout1 = NULL;
+
+      HRESULT hr;
+
+      if (iIndex < nCount)
+      {
+         
+         wstring wstrChar = str.Mid(iIndex, ::str::get_utf8_char_length(&lpszString[iIndex]));
+         
+         hr = TlsGetWriteFactory()->CreateTextLayout(
+            wstrChar,                // The string to be laid out and formatted.
+            (UINT32)1,   // The length of the string.
+            get_os_font(m_spfont),    // The text format to apply to the string (contains font information, etc).
+            1024.f * 1024.f,               // The width of the on_layout box.
+            1024.f * 1024.f,        // The height of the on_layout box.
+            &playout1  // The IDWriteTextLayout interface pointer.
+         );
+
+      }
+
       IDWriteTextLayout * playout = NULL;
 
-      HRESULT hr = TlsGetWriteFactory()->CreateTextLayout(
+      hr = TlsGetWriteFactory()->CreateTextLayout(
          wstr,                // The string to be laid out and formatted.
          (UINT32) wstr.get_length(),   // The length of the string.
          get_os_font(m_spfont),    // The text format to apply to the string (contains font information, etc).
@@ -4406,6 +4459,21 @@ namespace draw2d_direct2d
          return false;
 
       }
+      else if (playout1 != NULL)
+      {
+         DWRITE_TEXT_METRICS m;
+
+         playout->GetMetrics(&m);
+
+         DWRITE_TEXT_METRICS m1;
+
+         playout1->GetMetrics(&m1);
+
+         size.cx = (LONG)((m.width - m1.width)  * m_spfont->m_dFontWidth);
+
+         size.cy = (LONG)m.height;
+
+      }
       else
       {
       
@@ -4413,7 +4481,7 @@ namespace draw2d_direct2d
       
          playout->GetMetrics(&m);
 
-         size.cx = (LONG) (m.width * m_spfont->m_dFontWidth);
+         size.cx = (LONG) (m.width  * m_spfont->m_dFontWidth);
 
          size.cy = (LONG) m.height;
 
@@ -4596,9 +4664,15 @@ namespace draw2d_direct2d
 
       D2D1::Matrix3x2F mOriginal(m);
 
-      size sd = GetTextExtent(string(lpszString,nCount));
+      //size sd = GetTextExtent(string(lpszString,nCount));
 
-      D2D1_RECT_F rectf = D2D1::RectF((FLOAT) x, (FLOAT)y, (FLOAT)(x + sd.cx + 1) , (FLOAT)y+ sd.cy + 1);
+      //string strTest1 = string(lpszString, nCount);
+
+      //strTest1.trim_left();
+
+      //size sd1 = GetTextExtent(strTest1);
+
+      D2D1_RECT_F rectf = D2D1::RectF((FLOAT) 0, (FLOAT)0, (FLOAT)(0 + 1024 * 1024) , (FLOAT)(0 + 1024 * 1024));
 
       HRESULT  hr = get_os_font(m_spfont)->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_LEADING);
 
@@ -4614,12 +4688,31 @@ namespace draw2d_direct2d
          trace_hr("TextOut, SetTextAlignment",hr);
       }
 
+      DWRITE_TRIMMING trim;
+
+      ZERO(trim);
+
+      trim.granularity = DWRITE_TRIMMING_GRANULARITY_NONE;
+
+      hr = get_os_font(m_spfont)->SetTrimming(&trim, NULL);
+
+      if (FAILED(hr))
+      {
+         trace_hr("TextOut, SetTextAlignment", hr);
+      }
+
+      hr = get_os_font(m_spfont)->SetWordWrapping(DWRITE_WORD_WRAPPING_NO_WRAP);
+      
 
       string str(lpszString, nCount);
 
       wstring wstr(str);
 
+      
+
       m._11 *= (FLOAT) m_spfont->m_dFontWidth;
+      m._31 += x;
+      m._32 += y;
 
       m_prendertarget->SetTransform(&m);
 
