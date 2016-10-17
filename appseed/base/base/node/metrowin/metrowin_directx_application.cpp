@@ -249,6 +249,8 @@ uint_ptr virtualkey_to_char(::Windows::System::VirtualKey e)
       return ::user::key_end;
    case ::Windows::System::VirtualKey::Escape:
       return ::user::key_escape;
+   case 186:
+      return ::user::key_semicolon;
    case 187:
       return ::user::key_equal;
    case 188:
@@ -473,16 +475,16 @@ namespace metrowin
    }
 
 
-   ::user::window_draw * directx_application::create_twf_2ex()
-   {
-
-      ::metrowin::window_draw * pwindowdraw = new ::metrowin::window_draw(m_psystem);
-
-      pwindowdraw->m_xapp = this;
-
-      return pwindowdraw;
-
-   }
+//   ::user::window_draw * directx_application::create_twf_2ex()
+//   {
+//
+////      ::metrowin::window_draw * pwindowdraw = new ::metrowin::window_draw(m_psystem);
+//
+//  //    pwindowdraw->m_xapp = this;
+//
+//      return pwindowdraw;
+//
+//   }
 
 
    void directx_application::init_part_2ex()
@@ -509,9 +511,11 @@ namespace metrowin
 
       m_psystem->m_posdata->m_pui->initialize(&initialize);
 
-      m_psystem->m_ptwf = create_twf_2ex();
+      m_psystem->m_posdata->m_pui->m_pimpl.cast < ::metrowin::interaction_impl >()->m_xapp = this;
 
-      m_psystem->m_ptwf->twf_start();
+      //m_psystem->m_ptwf = create_twf_2ex();
+
+      //m_psystem->m_ptwf->twf_start();
 
       stringa straLibrary = m_psystem->command()->m_varTopicQuery["app"].stra();
 

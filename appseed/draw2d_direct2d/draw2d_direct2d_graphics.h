@@ -242,7 +242,9 @@ namespace draw2d_direct2d
   //    point MoveTo(POINT point);
       bool LineTo(double x, double y);
     //  bool LineTo(POINT point);
+      bool Arc(double x1, double y1, double w, double h, double start, double extends);
       bool Arc(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4);
+      bool Arc(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4);
       bool Arc(const RECT & lpRect, POINT ptStart, POINT ptEnd);
       bool Polyline(const POINT* lpPoints,count nCount);
 

@@ -44,7 +44,7 @@ namespace metrowin
 
       void init_part_2ex();
       void install_message_handling_2ex();
-      ::user::window_draw * create_twf_2ex();
+      //::user::window_draw * create_twf_2ex();
 
       // DirectXBase Methods
       //virtual void CreateDeviceIndependentResources() override;

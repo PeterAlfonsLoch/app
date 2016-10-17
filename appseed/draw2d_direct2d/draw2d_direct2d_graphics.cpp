@@ -630,6 +630,45 @@ namespace draw2d_direct2d
 
    }
 
+   bool graphics::Arc(double x1, double y1, double w, double h, double start, double extends)
+   {
+
+      ::draw2d::path_sp path(allocer());
+
+      rect rect(x1, y1, x1 + w, y1 + h);
+
+      path->begin_figure(false, ::draw2d::fill_mode_winding);
+      path->add_arc(rect, start, extends);
+      path->end_figure(false);
+
+      return this->path(path);
+
+   }
+
+
+   bool graphics::Arc(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4)
+   {
+
+      ::draw2d::path_sp path(allocer());
+
+      double pi = 3.1415927f;
+
+      rect rect(x1, y1, x2, y2);
+
+      double centerx = (x2 + x1) / 2.0;
+      double centery = (y2 + y1) / 2.0;
+
+      double start = atan2(y3 - centery, x3 - centerx) * 180.0 / pi;
+      double end = atan2(y4 - centery, x4 - centerx) * 180.0 / pi;
+
+      path->begin_figure(false, ::draw2d::fill_mode_winding);
+      path->add_arc(rect, start, end - start);
+      path->end_figure(false);
+
+      return this->path(path);
+
+   }
+
    bool graphics::Arc(const RECT & lpRect, POINT ptStart, POINT ptEnd)
    {
 

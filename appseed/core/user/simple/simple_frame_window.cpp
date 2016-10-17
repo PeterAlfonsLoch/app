@@ -264,6 +264,8 @@ sp(::user::wndfrm::frame::frame) simple_frame_window::create_frame_schema()
 
 }
 
+#ifdef WINDOWSEX
+
 HICON load_icon(::aura::application * papp, stringa & straMatter, string strIcon, int cx, int cy)
 {
 
@@ -290,6 +292,8 @@ HICON load_icon(::aura::application * papp, stringa & straMatter, string strIcon
    return hicon;
 
 }
+
+#endif
 
 
 void simple_frame_window::_001OnCreate(signal_details * pobj)

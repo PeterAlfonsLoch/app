@@ -2,6 +2,11 @@
 //#include "base/user/user.h"
 #include "metrowin.h"
 
+using namespace Windows::UI::Core;
+using namespace Windows::Foundation;
+using namespace Microsoft::WRL;
+using namespace Windows::Graphics::Display;
+using namespace D2D1;
 
 static_function void __pre_init_dialog(::user::interaction * pWnd,LPRECT lpRectOld,uint32_t* pdwStyleOld);
 static_function void __post_init_dialog(::user::interaction * pWnd,const RECT& rectOld,uint32_t dwStyleOld);
@@ -362,6 +367,57 @@ namespace metrowin
 
       m_pui->m_bVisible = true;
 
+      m_pthreadDraw = ::fork(get_app(), [&]()
+      {
+
+         DWORD dwLastRedraw;
+
+         while (::get_thread()->m_bRun)
+         {
+
+            dwLastRedraw = ::get_tick_count();
+
+            if (has_pending_graphical_update())
+            {
+
+               if (m_xapp != nullptr)
+               {
+
+                  ::wait(
+                     m_window->Dispatcher->RunAsync(
+                        CoreDispatcherPriority::Normal, 
+                        ref new Windows::UI::Core::DispatchedHandler([this]()
+                  {
+
+                     HRESULT hr = m_xapp->m_directx->Render();
+
+                     if (SUCCEEDED(hr))
+                     {
+
+                        m_xapp->m_directx->Present();
+
+                     }
+                  })));
+
+                  on_after_graphical_update();
+
+               }
+
+            }
+
+            if (::get_tick_count() - dwLastRedraw < 5)
+            {
+
+               Sleep(5);
+
+            }
+
+         }
+
+
+      });
+
+
 //      m_pthread = dynamic_cast <::thread *> (::get_thread());
 
 
@@ -429,7 +485,7 @@ namespace metrowin
       IGUI_WIN_MSG_LINK(WM_MOVE,pinterface,this,&interaction_impl::_001OnMove);
       IGUI_WIN_MSG_LINK(WM_SIZE,pinterface,this,&interaction_impl::_001OnSize);
       IGUI_WIN_MSG_LINK(WM_SHOWWINDOW,pinterface,this,&interaction_impl::_001OnShowWindow);
-      IGUI_WIN_MSG_LINK(ca2m_PRODEVIAN_SYNCH,pinterface,this,&interaction_impl::_001OnProdevianSynch);
+//      IGUI_WIN_MSG_LINK(ca2m_PRODEVIAN_SYNCH,pinterface,this,&interaction_impl::_001OnProdevianSynch);
    }
 
    void interaction_impl::_001OnMove(signal_details * pobj)
@@ -487,13 +543,13 @@ namespace metrowin
    {
       UNREFERENCED_PARAMETER(pobj);
       Default();
-      ::metrowin::window_draw * pdraw = dynamic_cast <::metrowin::window_draw *> (System.get_twf());
-      if(pdraw != NULL)
-      {
-         retry_single_lock sl(&pdraw->m_eventFree,millis(84),millis(84));
-         //pdraw->m_wndpaOut.remove(this);
-         pdraw->m_wndpaOut.remove(m_pui);
-      }
+      //::metrowin::window_draw * pdraw = dynamic_cast <::metrowin::window_draw *> (System.get_twf());
+      //if(pdraw != NULL)
+      //{
+      //   retry_single_lock sl(&pdraw->m_eventFree,millis(84),millis(84));
+      //   //pdraw->m_wndpaOut.remove(this);
+      //   pdraw->m_wndpaOut.remove(m_pui);
+      //}
    }
 
    void interaction_impl::_001OnCaptureChanged(signal_details * pobj)
@@ -2933,6 +2989,8 @@ return TRUE;
    {
       UNREFERENCED_PARAMETER(pobj);
       Default();
+
+
    }
 
    //void interaction_impl::OnHScroll(UINT,UINT,CScrollBar* pScrollBar)
@@ -5089,6 +5147,8 @@ ExitModal:
 
    bool interaction_impl::RedrawWindow(LPCRECT lpRectUpdate,::draw2d::region* prgnUpdate,UINT flags)
    {
+
+      m_pui->m_bRedraw = true;
 
       //throw todo(get_app());
 
@@ -7371,6 +7431,53 @@ namespace metrowin
 
    void interaction_impl::offset_view_port_org(LPRECT lprectScreen)
    {
+   }
+
+
+   bool interaction_impl::has_pending_graphical_update()
+   {
+
+      if (m_pui->has_pending_graphical_update())
+      {
+
+         return true;
+
+      }
+
+      synch_lock sl(m_pui->m_pmutex);
+
+      for (auto p : m_pui->m_uiptraChild)
+      {
+
+         if (p->has_pending_graphical_update())
+         {
+
+            return true;
+
+         }
+
+      }
+
+
+      return false;
+
+   }
+
+
+   void interaction_impl::on_after_graphical_update()
+   {
+
+      m_pui->on_after_graphical_update();
+
+      synch_lock sl(m_pui->m_pmutex);
+
+      for (auto p : m_pui->m_uiptraChild)
+      {
+
+         p->on_after_graphical_update();
+
+      }
+
    }
 
 

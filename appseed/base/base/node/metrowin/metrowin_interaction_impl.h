@@ -10,13 +10,14 @@ namespace metrowin
    CLASS_DECL_BASE LRESULT CALLBACK __cbt_filter_hook(int, WPARAM, LPARAM);
    CLASS_DECL_BASE LRESULT __call_window_procedure(::user::interaction * pWnd, oswindow hWnd, UINT nMsg, WPARAM wParam, LPARAM lParam);
 
+   ref class directx_application;
 
    class CLASS_DECL_BASE interaction_impl :
       virtual public ::user::interaction_impl
    {
    public:
 
-
+      directx_application ^                  m_xapp;
       spa(::user::interaction)      m_guieptraMouseHover;
       ::user::message_queue_listener *   m_plistener;
       string                        m_strWindowText;
@@ -24,11 +25,14 @@ namespace metrowin
       //visual::dib_sp              m_spdibMultAlphaWork;
 
       Agile < Windows::UI::Core::CoreWindow >  m_window;
-
+      ::thread *                    m_pthreadDraw;
 
       interaction_impl();
       interaction_impl(::aura::application * papp);
       virtual void construct(oswindow hwnd);
+
+      virtual bool has_pending_graphical_update();
+      virtual void on_after_graphical_update();
 
       //virtual void on_delete(element * poc);
 

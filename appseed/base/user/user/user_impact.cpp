@@ -244,18 +244,20 @@ namespace user
       {
          if (::user::impact::get_document()->_001OnCmdMsg(pcmdmsg))
             return TRUE;
-         sp(::user::impact) pview = ::user::impact::get_document()->get_view(0);
-         ASSERT_VALID(pview);
-         if (pview != NULL && pview != this && pview != GetParent())
+         for (auto pview : ::user::impact::get_document()->m_viewptra)
          {
-            
-            if (pview->::user::interaction::_001OnCmdMsg(pcmdmsg))
+            ASSERT_VALID(pview);
+            if (pview != NULL && pview != this && !IsAscendant(pview))
             {
 
-               return true;
+               if (pview->::user::interaction::_001OnCmdMsg(pcmdmsg))
+               {
+
+                  return true;
+
+               }
 
             }
-
          }
 
       }

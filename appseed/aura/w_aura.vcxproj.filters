@@ -145,9 +145,6 @@
     <Filter Include="Source Files\primitive\str">
       <UniqueIdentifier>{272bfff2-28fe-4a32-82fb-fa717d53bdd9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\primitive\str\iconv">
-      <UniqueIdentifier>{5d5dea61-11f4-48da-a206-7a1f94a175e9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\primitive\data">
       <UniqueIdentifier>{3fdc7334-51b2-47eb-be59-a058b05c31f9}</UniqueIdentifier>
     </Filter>
@@ -1017,9 +1014,6 @@
     <ClInclude Include="user\user\user_frame.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\user_primitive.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
     <ClInclude Include="filesystem\filesystem.h">
       <Filter>Header Files\filesystem</Filter>
     </ClInclude>
@@ -1459,9 +1453,6 @@
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
     <ClInclude Include="aura\aura\aura_allocate.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\aura_allocate_heap.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
     <ClInclude Include="aura\aura\aura_application.h">
@@ -2028,12 +2019,6 @@
     <ClInclude Include="framework_c.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="version.config.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="version.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="aura\process\process_department.h">
       <Filter>Header Files\aura\process</Filter>
     </ClInclude>
@@ -2042,6 +2027,63 @@
     </ClInclude>
     <ClInclude Include="aura\node\metrowin\metrowin_tts_speaker.h">
       <Filter>Header Files\aura\node\metrowin</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\aura\aura__c.h">
+      <Filter>Header Files\aura\aura</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\aura\aura_allocate_processor_cache_oriented.h">
+      <Filter>Header Files\aura\aura</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\aura\aura_app_core.h">
+      <Filter>Header Files\aura\aura</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\aura\aura_app_launcher.h">
+      <Filter>Header Files\aura\aura</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\aura\aura_auto.h">
+      <Filter>Header Files\aura\aura</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\aura\aura_console_window.h">
+      <Filter>Header Files\aura\aura</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\aura\aura_error.h">
+      <Filter>Header Files\aura\aura</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\aura\aura_heap.h">
+      <Filter>Header Files\aura\aura</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\aura\aura_heap_memory.h">
+      <Filter>Header Files\aura\aura</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\aura\aura_md5.h">
+      <Filter>Header Files\aura\aura</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\aura\aura_os_alloc.h">
+      <Filter>Header Files\aura\aura</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\aura\aura_profiler.h">
+      <Filter>Header Files\aura\aura</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\aura\aura_restore.h">
+      <Filter>Header Files\aura\aura</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\aura\aura_shell_launcher.h">
+      <Filter>Header Files\aura\aura</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\aura\aura_speaker.h">
+      <Filter>Header Files\aura\aura</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\aura\aura_timer.h">
+      <Filter>Header Files\aura\aura</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\aura\aura_timer_callback.h">
+      <Filter>Header Files\aura\aura</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\aura\aura_timer_event.h">
+      <Filter>Header Files\aura\aura</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user_primitive.h">
+      <Filter>Header Files\user\user</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -2176,9 +2218,6 @@
     <ClCompile Include="primitive\_primitive.cpp">
       <Filter>Source Files\primitive</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\comparison\comparison_md5.cpp">
-      <Filter>Source Files\primitive\comparison</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\comparison\comparison_var_strict.cpp">
       <Filter>Source Files\primitive\comparison</Filter>
     </ClCompile>
@@ -2237,9 +2276,6 @@
       <Filter>Source Files\primitive\collection</Filter>
     </ClCompile>
     <ClCompile Include="primitive\collection\collection_array.cpp">
-      <Filter>Source Files\primitive\collection</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\collection\collection_array_base.cpp">
       <Filter>Source Files\primitive\collection</Filter>
     </ClCompile>
     <ClCompile Include="primitive\collection\collection_bit_array.cpp">
@@ -2370,96 +2406,6 @@
     </ClCompile>
     <ClCompile Include="primitive\str\str_wtostring.cpp">
       <Filter>Source Files\primitive\str</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\allocator.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\areadlink.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\c-ctype.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\canonicalize-lgpl.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\careadlinkat.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\error.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\genaliases.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\genaliases2.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\genflags.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\gentranslit.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\iconv.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\lstat.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\malloca.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\memmove.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\progname.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\progreloc.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\read.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\readlink.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\relocatable.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\relocwrapper.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\safe-read.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\setenv.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\sigprocmask.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\stat.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\stdio-write.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\strerror-override.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\strerror.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\xmalloc.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\xreadlink.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\str\iconv\xstrdup.c">
-      <Filter>Source Files\primitive\str\iconv</Filter>
     </ClCompile>
     <ClCompile Include="primitive\data\data_data.cpp">
       <Filter>Source Files\primitive\data</Filter>
@@ -2683,18 +2629,6 @@
     <ClCompile Include="filesystem\file\file_buffered_buffer.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\file\file_byte_input_stream.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_byte_input_stream_binary_buffer.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_byte_output_stream.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_byte_output_stream_binary_buffer.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\file\file_byte_stream.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
@@ -2719,12 +2653,6 @@
     <ClCompile Include="filesystem\file\file_exception.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\file\file_file_input_stream.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_file_output_stream.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\file\file_file_stream.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
@@ -2734,22 +2662,7 @@
     <ClCompile Include="filesystem\file\file_folder_watch.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\file\file_input_stream.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\file\file_memory_buffer.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_output_stream.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_plain_text_input_stream.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_plain_text_output_stream.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\file_plain_text_output_stream_string_buffer.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\file_plain_text_stream.cpp">
@@ -3163,9 +3076,6 @@
     <ClCompile Include="aura\aura\aura_application.cpp">
       <Filter>Source Files\aura\aura</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_application_interface.cpp">
-      <Filter>Source Files\aura\aura</Filter>
-    </ClCompile>
     <ClCompile Include="aura\aura\aura_argcargv.cpp">
       <Filter>Source Files\aura\aura</Filter>
     </ClCompile>
@@ -3244,9 +3154,6 @@
     <ClCompile Include="aura\aura\aura_flags.cpp">
       <Filter>Source Files\aura\aura</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_frame_window.cpp">
-      <Filter>Source Files\aura\aura</Filter>
-    </ClCompile>
     <ClCompile Include="aura\aura\aura_gudo.cpp">
       <Filter>Source Files\aura\aura</Filter>
     </ClCompile>
@@ -3254,9 +3161,6 @@
       <Filter>Source Files\aura\aura</Filter>
     </ClCompile>
     <ClCompile Include="aura\aura\aura_id_pool.cpp">
-      <Filter>Source Files\aura\aura</Filter>
-    </ClCompile>
-    <ClCompile Include="aura\aura\aura_interaction.cpp">
       <Filter>Source Files\aura\aura</Filter>
     </ClCompile>
     <ClCompile Include="aura\aura\aura_international.cpp">
@@ -3295,9 +3199,6 @@
     <ClCompile Include="aura\aura\aura_math.cpp">
       <Filter>Source Files\aura\aura</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_message_queue.cpp">
-      <Filter>Source Files\aura\aura</Filter>
-    </ClCompile>
     <ClCompile Include="aura\aura\aura_microtimer.cpp">
       <Filter>Source Files\aura\aura</Filter>
     </ClCompile>
@@ -3308,9 +3209,6 @@
       <Filter>Source Files\aura\aura</Filter>
     </ClCompile>
     <ClCompile Include="aura\aura\aura_net.cpp">
-      <Filter>Source Files\aura\aura</Filter>
-    </ClCompile>
-    <ClCompile Include="aura\aura\aura_platform_interface.cpp">
       <Filter>Source Files\aura\aura</Filter>
     </ClCompile>
     <ClCompile Include="aura\aura\aura_plex.cpp">
@@ -3328,19 +3226,10 @@
     <ClCompile Include="aura\aura\aura_progress.cpp">
       <Filter>Source Files\aura\aura</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\aura_root.cpp">
-      <Filter>Source Files\aura\aura</Filter>
-    </ClCompile>
     <ClCompile Include="aura\aura\aura_savings.cpp">
       <Filter>Source Files\aura\aura</Filter>
     </ClCompile>
     <ClCompile Include="aura\aura\aura_session.cpp">
-      <Filter>Source Files\aura\aura</Filter>
-    </ClCompile>
-    <ClCompile Include="aura\aura\aura_session_interface.cpp">
-      <Filter>Source Files\aura\aura</Filter>
-    </ClCompile>
-    <ClCompile Include="aura\aura\aura_simple_shell_launcher.cpp">
       <Filter>Source Files\aura\aura</Filter>
     </ClCompile>
     <ClCompile Include="aura\aura\aura_sprintf.cpp">

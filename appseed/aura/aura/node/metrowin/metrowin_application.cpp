@@ -535,7 +535,7 @@ namespace aura
    string application::veriwell_multimedia_music_midi_get_default_library_name()
    {
 
-      return "";
+      return "music_midi_winrt";
    }
 
 

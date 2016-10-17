@@ -8,7 +8,7 @@
 /*#include "metrowin_copydesk.cpp"*/
 #include "metrowin_factory_exchange.cpp"
 #include "metrowin_interaction_impl.cpp"
-#include "metrowin_window_draw.cpp"
+//#include "metrowin_window_draw.cpp"
 #include "metrowin_directx.cpp"
 #include "metrowin_directx_application.cpp"
 //2015-01-06  20:34                 0 _metrowin_node.cpp"

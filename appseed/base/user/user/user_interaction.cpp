@@ -2577,14 +2577,14 @@ namespace user
 
          pParentWnd = System.m_posdata->m_pui;
 
-         if(!Application.defer_initialize_twf())
-         {
+         //if(!Application.defer_initialize_twf())
+         //{
 
-            //m_threadptra.remove_all();
+         //   //m_threadptra.remove_all();
 
-            return false;
+         //   return false;
 
-         }
+         //}
 
       }
 
@@ -2668,14 +2668,14 @@ namespace user
 
          pParentWnd = System.m_posdata->m_pui;
 
-         if(!Application.defer_initialize_twf())
-         {
-
-//            m_threadptra.remove_all();
-
-            return false;
-
-         }
+//         if(!Application.defer_initialize_twf())
+//         {
+//
+////            m_threadptra.remove_all();
+//
+//            return false;
+//
+//         }
 
       }
 

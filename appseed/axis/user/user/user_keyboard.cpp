@@ -465,7 +465,7 @@ namespace user
 
          string strTest;
 
-         string strPath = Application.dir().matter("keyboard on_layout/" + strOverride + ".xml");
+         string strPath = Application.dir().matter("keyboard layout/" + strOverride + ".xml");
 
          strTest = file_as_string_dup(strPath);
 
@@ -528,7 +528,7 @@ namespace user
 
       {
 
-         string strPath = Application.dir().matter("keyboard on_layout/br_abnt2.xml");
+         string strPath = Application.dir().matter("keyboard layout/br_abnt2.xml");
 
          if(Application.file().exists(strPath))
          {
@@ -543,7 +543,7 @@ namespace user
 
 #endif
 
-      string strPath = Application.dir().matter("keyboard on_layout/en_us_international.xml");
+      string strPath = Application.dir().matter("keyboard layout/en_us_international.xml");
 
       if(Application.file().exists(strPath))
       {

@@ -30,7 +30,7 @@ namespace user
    }
 
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
    CLASS_DECL_CORE bool set_wallpaper(string strLocalImagePath)
    {
@@ -106,6 +106,19 @@ namespace user
    {
 
       return ::aura::system::g_p->android_set_user_wallpaper(strLocalImagePath);
+
+   }
+
+#elif defined(METROWIN)
+
+   CLASS_DECL_CORE bool set_wallpaper(string strLocalImagePath)
+   {
+
+      // Someday we will be together...
+      // What do you mean...
+      // Cold Water...
+
+      return false;
 
    }
 
