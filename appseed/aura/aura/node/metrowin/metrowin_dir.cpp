@@ -373,6 +373,15 @@ namespace metrowin
 
    }
 
+   ::file::path dir::time_square(::aura::application * papp, const string & strPrefix, const string & strSuffix)
+   {
+
+      UNREFERENCED_PARAMETER(papp);
+      UNREFERENCED_PARAMETER(strPrefix);
+      UNREFERENCED_PARAMETER(strSuffix);
+      return time() / "time";
+
+   }
 
    ::file::path dir::time_square()
    {

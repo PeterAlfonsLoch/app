@@ -61,6 +61,7 @@ namespace metrowin
       virtual ::file::path time_square();
       virtual ::file::path time_log();
 
+      ::file::path time_square(::aura::application * papp, const string & strPrefix, const string & strSuffix);
 
       virtual ::file::path trash_that_is_not_trash(const ::file::path & path);
 
