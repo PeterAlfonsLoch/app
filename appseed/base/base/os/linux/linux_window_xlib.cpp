@@ -121,10 +121,26 @@ void window_xlib::destroy_window_graphics()
 }
 
 
-void window_xlib::update_window(COLORREF * pOsBitmapData, int cxParam, int cyParam, int iStride)
+void window_xlib::update_window(::draw2d::dib * pdib)
 {
 
    //single_lock sl(&user_mutex());
+
+   if(pdib == NULL)
+   {
+
+      return;
+
+   }
+
+   synch_lock sl(m_pmutex);
+
+   if(pdib->m_pcolorref == NULL)
+   {
+
+      return;
+
+   }
 
    if(m_pdc == NULL)
       return;
@@ -138,18 +154,19 @@ void window_xlib::update_window(COLORREF * pOsBitmapData, int cxParam, int cyPar
    if(m_pimage == NULL)
       return;
 
-   if(pOsBitmapData == NULL)
-      return;
 
    if(m_size.area() <= 0)
       return;
 
    xdisplay d(m_pimpl->m_oswindow->display());
 
+   int cx = MIN(pdib->m_size.cx, m_cx);
+   int cy = MIN(pdib->m_size.cy, m_cy);
+
 //   if(bTransferBuffer)
    {
 
-      ::draw2d::copy_colorref(cxParam, cyParam, (COLORREF *) m_mem.get_data(), m_iScan, pOsBitmapData, iStride);
+      ::draw2d::copy_colorref(cx, cy, (COLORREF *) m_mem.get_data(), m_iScan, pdib->m_pcolorref, pdib->m_iScan);
 
    }
 

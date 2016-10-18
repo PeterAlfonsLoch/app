@@ -457,6 +457,10 @@
 		<Unit filename="aura/os/linux/linux_cross_win_gdi_internal.h" />
 		<Unit filename="aura/os/linux/linux_debug.h" />
 		<Unit filename="aura/os/linux/linux_file.h" />
+		<Unit filename="aura/os/linux/linux_file_watcher.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="aura/os/linux/linux_file_watcher.h" />
 		<Unit filename="aura/os/linux/linux_graphics.h" />
 		<Unit filename="aura/os/linux/linux_internal.h" />

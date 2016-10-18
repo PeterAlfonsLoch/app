@@ -9,7 +9,7 @@
 #include "linux_copydesk.h"
 
 
-#include "linux_window_draw.h"
+//#include "linux_window_draw.h"
 
 
 #include "linux_interaction_impl.h"

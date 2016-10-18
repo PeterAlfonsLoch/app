@@ -28,7 +28,7 @@ public:
 
 
 
-   virtual void update_window(COLORREF * pOsBitmapData, int cxParam, int cyParam, int iStride = -1);
+   virtual void update_window(::draw2d::dib * pdib) override;
 
 
     //void update_window();

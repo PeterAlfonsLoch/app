@@ -179,10 +179,6 @@
 		<Unit filename="base/node/linux/linux_internal.h" />
 		<Unit filename="base/node/linux/linux_message_queue.h" />
 		<Unit filename="base/node/linux/linux_root_tools.h" />
-		<Unit filename="base/node/linux/linux_window_draw.cpp">
-			<Option compile="0" />
-			<Option link="0" />
-		</Unit>
 		<Unit filename="base/node/linux/linux_window_draw.h" />
 		<Unit filename="base/node/macos/RoundWindow.h" />
 		<Unit filename="base/node/macos/RoundWindowApp.h" />

@@ -28,6 +28,10 @@ namespace linux
       XVisualInfo                   m_visualinfo;
       bool                          m_bEnabled;
 
+      ::thread *                    m_pthreadDraw;
+      ::rect64                      m_rectLastPos;
+      uint32_t                      m_dwLastPos;
+
 
       interaction_impl();
       interaction_impl(sp(::aura::application) papp);

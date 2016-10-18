@@ -684,7 +684,7 @@ namespace user
       UNREFERENCED_PARAMETER(pobj);
 
       user_interaction_on_destroy();
-      
+
       pobj->previous();
 
 
@@ -1108,7 +1108,7 @@ namespace user
 
    void interaction::layout()
    {
-      
+
       if (!m_bLayoutEnable)
       {
 
@@ -2821,7 +2821,7 @@ namespace user
          return m_pimpl->set_window_long_ptr(nIndex,lValue);
    }
 
-   
+
    bool interaction::RedrawWindow(LPCRECT lpRectUpdate, ::draw2d::region* prgnUpdate, UINT flags)
    {
 
@@ -4097,7 +4097,7 @@ ExitModal:
    {
 
       ::user::interaction * puiParent = GetParent();
-      
+
       if(puiParent != NULL)
       {
 
@@ -4248,8 +4248,8 @@ ExitModal:
       m_pimpl->_001UpdateWindow();
 
    }
-   
-   
+
+
 
 
 
@@ -7597,7 +7597,7 @@ restart:
 
    bool interaction::has_pending_graphical_update()
    {
-   
+
       if (m_bRedraw)
       {
 
@@ -7643,7 +7643,9 @@ restart:
    {
 
       m_bTransparentMouseEvents = true;
-    
+
+#if !defined(LINUX)
+
       ::fork(get_app(), [=]()
       {
 
@@ -7659,6 +7661,8 @@ restart:
          }
 
       });
+
+#endif
 
    }
 

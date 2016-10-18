@@ -291,63 +291,77 @@ namespace linux
       const RECT& rect,
       oswindow hWndParent,
       id id,
-      LPVOID lpParam /* = NULL */)
+      LPVOID lpParam)
    {
-
 
       m_pui = pui;
 
       UNREFERENCED_PARAMETER(id);
-//      ASSERT(lpszClassName == NULL || __is_valid_string(lpszClassName) ||
-  //       __is_valid_atom(lpszClassName));
+
       ENSURE_ARG(lpszWindowName == NULL || __is_valid_string(lpszWindowName));
 
       // allow modification of several common create parameters
+
       ::user::create_struct cs;
-      cs.dwExStyle = dwExStyle;
-      cs.lpszClass = lpszClassName;
-      cs.lpszName = lpszWindowName;
-      cs.style = dwStyle;
-      cs = rect;
-      cs.hwndParent = hWndParent;
-      //   cs.hMenu = hWndParent == NULL ? NULL : nIDorHMenu;
-      cs.hMenu = NULL;
-//      cs.hInstance = System.m_hInstance;
+
+      cs.dwExStyle      = dwExStyle;
+      cs.lpszClass      = lpszClassName;
+      cs.lpszName       = lpszWindowName;
+      cs.style          = dwStyle;
+      cs                = rect;
+      cs.hwndParent     = hWndParent;
+      //cs.hMenu        = hWndParent == NULL ? NULL : nIDorHMenu;
+      cs.hMenu          = NULL;
+      //cs.hInstance    = System.m_hInstance;
       cs.lpCreateParams = lpParam;
 
 
       if(m_pui != NULL)
       {
+
          if(!m_pui->pre_create_window(cs))
          {
+
             PostNcDestroy();
-            return FALSE;
+
+            return false;
+
          }
+
       }
       else
       {
+
          if (!pre_create_window(cs))
          {
+
             PostNcDestroy();
-            return FALSE;
+
+            return false;
+
          }
+
       }
 
       if(cs.hwndParent == NULL)
       {
+
          cs.style &= ~WS_CHILD;
+
       }
 
-//      hook_window_create(this);
-
+      //hook_window_create(this);
 
       if(cs.hwndParent == (oswindow) HWND_MESSAGE)
       {
+
          m_oswindow = oswindow_get_message_only_window(m_pui);
 
          if(m_oswindow != NULL)
          {
+
             m_pui->m_id = id;
+
          }
 
          m_pui->m_bMessageWindow = true;
@@ -360,80 +374,59 @@ namespace linux
 
          m_pui->m_bMessageWindow = false;
 
-         //single_lock ml(&user_mutex());
+         Display * display    = x11_get_display();
 
-         Display *display;
-         Window rootwin;
+         if(display == NULL)
+         {
+
+            fprintf(stderr, "ERROR: Could not open display\n");
+
+            return false;
+
+         }
+
+         xdisplay d(display);
+
+         m_iScreen            =  DefaultScreen(display);
+
+         Window rootwin       =  RootWindow(display, m_iScreen);
 
          XEvent e;
-   //      cairo_surface_t *cs;
-
-
-
-
-
-         //single_lock sl(user_mutex(), true);
-
-
-         if(!(display=x11_get_display()))
-         {
-            fprintf(stderr, "ERROR: Could not open display\n");
-//            exit(1);
-            return false;
-         }
-
-        xdisplay d(display);
-
-         m_iScreen      =  DefaultScreen(display);
-         rootwin        =  RootWindow(display, m_iScreen);
 
          if(cs.cx <= 256)
-            cs.cx = 256;
-         if(cs.cy <= 256)
-            cs.cy = 256;
-
-   //      Window interaction_impl = XCreateSimpleWindow(dpy, rootwin, 256, 256, cs.cx, cs.cy, 0, BlackPixel(dpy, scr), BlackPixel(dpy, scr));
-
-         const char * xserver = getenv( "DISPLAY" ) ;
-
-
-
-         if (display == 0)
-
          {
 
-         printf("Could not establish a connection to X-server '%s'\n", xserver ) ;
-
-         return false;
+            cs.cx = 256;
 
          }
 
+         if(cs.cy <= 256)
+         {
 
+            cs.cy = 256;
+
+         }
 
          // query Visual for "TrueColor" and 32 bits depth (RGBA)
+
          Visual * vis = DefaultVisual(display, DefaultScreen(display));
 
          m_iDepth = 0;
 
+         if(XMatchVisualInfo(display, DefaultScreen(display), 32, TrueColor, &m_visualinfo))
          {
 
+            vis = m_visualinfo.visual;
 
+         }
+         else
+         {
 
-            if(XMatchVisualInfo(display, DefaultScreen(display), 32, TrueColor, &m_visualinfo))
-            {
-                vis = m_visualinfo.visual;
-            }
-            else
-            {
-               memset(&m_visualinfo, 0, sizeof(m_visualinfo));
-            }
-
+            ZERO(m_visualinfo);
 
          }
 
          m_iDepth = m_visualinfo.depth;
-
-         // create interaction_impl
 
          XSetWindowAttributes attr;
 
@@ -443,64 +436,73 @@ namespace linux
 
          attr.event_mask = ExposureMask | ButtonPressMask | ButtonReleaseMask | KeyPressMask | KeyReleaseMask | PointerMotionMask | StructureNotifyMask | FocusChangeMask;
 
-         attr.background_pixmap = None ;
+         attr.background_pixmap = None;
 
          attr.border_pixmap = None;
 
-         attr.border_pixel = 0 ;
+         attr.border_pixel = 0;
 
          attr.override_redirect = False;
 
-         Window window = XCreateWindow( display, DefaultRootWindow(display), cs.x, cs.cy, cs.cx, cs.cy, 0, m_iDepth, InputOutput, vis, CWColormap|CWEventMask|CWBackPixmap|CWBorderPixel, &attr);
+         Window window = XCreateWindow(display, DefaultRootWindow(display), cs.x, cs.cy, cs.cx, cs.cy, 0, m_iDepth, InputOutput, vis, CWColormap|CWEventMask|CWBackPixmap|CWBorderPixel, &attr);
 
-         //Window window = None;
-
-
-
-         /*oswindow hWnd = ::CreateWindowEx(cs.dwExStyle, cs.lpszClass,
-            cs.lpszName, cs.style, cs.x, cs.y, cs.cx, cs.cy,
-            cs.hwndParent, cs.hMenu, cs.hInstance, cs.lpCreateParams);*/
-
-   #ifdef DEBUG
          if (window == 0)
          {
+
             DWORD dwLastError = GetLastError();
+
             string strLastError = FormatMessageFromSystem(dwLastError);
+
             string strMessage;
+
             strMessage.Format("%s\n\nSystem Error Code: %d", strLastError, dwLastError);
 
             TRACE(::aura::trace::category_AppMsg, 0, "Warning: oswindow creation failed: GetLastError returned:\n");
+
             TRACE(::aura::trace::category_AppMsg, 0, "%s\n", strMessage);
+
             try
             {
+
                if(dwLastError == 0x0000057e)
                {
+
                   System.simple_message_box(NULL, "cannot create a top-level child interaction_impl.");
+
                }
                else
                {
+
                   System.simple_message_box(NULL, strMessage);
+
                }
+
             }
             catch(...)
             {
+
             }
+
             return false;
+
          }
-   #endif
 
          m_oswindow = oswindow_get(display, window, vis, m_iDepth, m_iScreen, attr.colormap);
 
-                  Window root = 0;
-   Window * pchildren = NULL;
-   uint32_t ncount = 0;
+         Window root = 0;
 
-//   xdisplay l(pdisplay);
+         Window * pchildren = NULL;
 
-   XQueryTree(display, window, &root, &m_oswindow->m_parent, &pchildren, &ncount);
+         uint32_t ncount = 0;
 
-   if(pchildren != NULL)
-      XFree(pchildren);
+         XQueryTree(display, window, &root, &m_oswindow->m_parent, &pchildren, &ncount);
+
+         if(pchildren != NULL)
+         {
+
+            XFree(pchildren);
+
+         }
 
          m_oswindow->set_user_interaction(m_pui);
 
@@ -512,25 +514,16 @@ namespace linux
 
          XGetWindowAttributes(m_oswindow->display(), m_oswindow->window(), &m_attr);
 
-//         m_spgraphics.alloc(allocer());
-//
-//         m_spgraphics->on_create_window(this);
-
          int event_base, error_base, major_version, minor_version;
-
-         //m_bComposite = XCompositeQueryExtension(m_oswindow->display(), &event_base, &error_base) != False
-         //            && XCompositeQueryVersion(m_oswindow->display(), &major_version, &minor_version) != 0
-         //            && (major_version > 0 || minor_version >= 3);
 
          m_bComposite = XGetSelectionOwner(m_oswindow->display(), XInternAtom(m_oswindow->display(), "_NET_WM_CM_S0", True));
 
-
          if(lpszWindowName != NULL && strlen(lpszWindowName) > 0)
          {
+
             XStoreName(m_oswindow->display(), m_oswindow->window(), lpszWindowName);
+
          }
-
-
 
          if(cs.dwExStyle & WS_EX_TOOLWINDOW)
          {
@@ -541,25 +534,17 @@ namespace linux
 
          wm_nodecorations(m_oswindow, 0);
 
-
-
-
-         //XSelectInput(m_oswindow->display(), m_oswindow->interaction_impl(), ExposureMask | ButtonPressMask | ButtonReleaseMask | PointerMotionMask | KeyPressMask);
-
          if(cs.style & WS_VISIBLE)
          {
+
             XMapWindow(m_oswindow->display(), m_oswindow->window());
+
          }
 
-         //m_pmutexGraphics = new mutex(get_app());
+         d.unlock();
 
-d.unlock();
-///         ml.unlock();
+         m_pui->m_id = id;
 
-      //if (!unhook_window_create())
-        // PostNcDestroy();        // cleanup if CreateWindowEx fails too soon
-
-   m_pui->m_id = id;
          m_pui->send_message(WM_CREATE, 0, (LPARAM) &cs);
 
          m_pui->send_message(WM_SIZE);
@@ -668,7 +653,7 @@ d.unlock();
          //IGUI_WIN_MSG_LINK(WM_GETMINMAXINFO,pinterface,this,&interaction_impl::_001OnGetMinMaxInfo);
          //IGUI_WIN_MSG_LINK(WM_SETFOCUS,pinterface,this,&interaction_impl::_001OnSetFocus);
          //IGUI_WIN_MSG_LINK(WM_KILLFOCUS,pinterface,this,&interaction_impl::_001OnKillFocus);
-         IGUI_WIN_MSG_LINK(ca2m_PRODEVIAN_SYNCH,pinterface,this,&interaction_impl::_001OnProdevianSynch);
+//         IGUI_WIN_MSG_LINK(ca2m_PRODEVIAN_SYNCH,pinterface,this,&interaction_impl::_001OnProdevianSynch);
          ::user::interaction_impl::prio_install_message_handling(pinterface);
       }
       IGUI_WIN_MSG_LINK(WM_DESTROY,pinterface,this,&interaction_impl::_001OnDestroy);
@@ -2969,8 +2954,98 @@ return 0;
 
    void interaction_impl::_001OnCreate(::signal_details * pobj)
    {
+
       UNREFERENCED_PARAMETER(pobj);
+
       Default();
+
+      if(m_pui->is_message_only_window())
+      {
+
+         TRACE("good : opt out!");
+
+      }
+      else
+      {
+
+         m_pthreadDraw = ::fork(get_app(), [&]()
+         {
+
+            DWORD dwStart;
+
+            while (::get_thread()->m_bRun)
+            {
+
+               dwStart = ::get_tick_count();
+
+               if (!m_pui->m_bLockWindowUpdate)
+               {
+
+//                  if(m_pui->GetExStyle() & WS_EX_LAYERED)
+//                  {
+//
+//
+//                     if (m_rectLastPos != m_rectParentClient)
+//                     {
+//
+//                        m_dwLastPos = ::get_tick_count();
+//
+//                        m_rectLastPos = m_rectParentClient;
+//
+//                     }
+//                     else
+//                     {
+//
+//                        rect64 r2;
+//
+//                        GetWindowRect(r2);
+//
+//                        if (r2 != m_rectParentClient && ::get_tick_count() - m_dwLastPos > 400)
+//                        {
+//
+//                           ::SetWindowPos(m_oswindow, NULL,
+//                              m_rectParentClient.left,
+//                              m_rectParentClient.top,
+//                              m_rectParentClient.width(),
+//                              m_rectParentClient.height(),
+//                              SWP_NOZORDER
+//                              | SWP_NOREDRAW
+//                              | SWP_NOCOPYBITS
+//                              | SWP_NOACTIVATE
+//                              | SWP_NOOWNERZORDER
+//                              | SWP_NOSENDCHANGING
+//                              | SWP_DEFERERASE);
+//
+//                        }
+//
+//                     }
+//
+//                  }
+
+                  if (m_pui->has_pending_graphical_update())
+                  {
+
+                     RedrawWindow(NULL, NULL, RDW_INVALIDATE | RDW_UPDATENOW | RDW_NOERASE);
+
+                     m_pui->on_after_graphical_update();
+
+                  }
+
+               }
+
+               if (::get_tick_count() - dwStart < 5)
+               {
+
+                  Sleep(5);
+
+               }
+
+            }
+
+         });
+
+      }
+
    }
 
 
@@ -4761,9 +4836,20 @@ if(psurface == g_cairosurface)
    bool interaction_impl::RedrawWindow(LPCRECT lpRectUpdate, ::draw2d::region * prgnUpdate, UINT flags)
    {
 
-      ASSERT(::IsWindow((oswindow) get_handle()));
+//      ASSERT(::IsWindow((oswindow) get_handle()));
 
-      throw todo(get_app());
+      if(flags & RDW_UPDATENOW)
+      {
+
+         _001UpdateWindow();
+
+      }
+      else
+      {
+
+         m_pui->m_bRedraw = true;
+
+      }
 
    }
 

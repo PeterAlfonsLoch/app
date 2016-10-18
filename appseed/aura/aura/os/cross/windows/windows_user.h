@@ -435,10 +435,10 @@ LPCWSTR lpString);
 #define SWP_DRAWFRAME       SWP_FRAMECHANGED
 #define SWP_NOREPOSITION    SWP_NOOWNERZORDER
 
-#if(WINVER >= 0x0400)
+//#if(WINVER >= 0x0400)
 #define SWP_DEFERERASE      0x2000
 #define SWP_ASYNCWINDOWPOS  0x4000
-#endif /* WINVER >= 0x0400 */
+//#endif /* WINVER >= 0x0400 */
 
 
 
@@ -637,7 +637,7 @@ SetParent(
 oswindow hWndChild,
 oswindow hWndNewParent);
 
-//#ifndef 
+//#ifndef
 //
 //WINBOOL
 //WINAPI

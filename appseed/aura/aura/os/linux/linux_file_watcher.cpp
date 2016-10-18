@@ -59,7 +59,7 @@ namespace file_watcher
 		if (mFD < 0)
 			fprintf (stderr, "Error: %s\n", strerror(errno));
 
-		mTimeOut.tv_sec = 0;
+		mTimeOut.tv_sec = 1;
 		mTimeOut.tv_usec = 0;
 
 		FD_ZERO(&mDescriptorSet);
@@ -186,13 +186,30 @@ namespace file_watcher
 	void os_file_watcher::update()
 	{
 
+	   FD_ZERO(&mDescriptorSet);
+
 		FD_SET(mFD, &mDescriptorSet);
 
-		int32_t ret = select(mFD + 1, &mDescriptorSet, NULL, NULL, &mTimeOut);
+		timeval timeOut = mTimeOut;
+
+		int32_t ret = select(mFD + 1, &mDescriptorSet, NULL, NULL, &timeOut);
 
 		if(ret < 0)
 		{
-			perror("select");
+
+		   if(errno == EINTR)
+         {
+
+            Sleep(200);
+
+         }
+         else
+         {
+
+            perror("select");
+
+         }
+
 		}
 		else if(FD_ISSET(mFD, &mDescriptorSet))
 		{

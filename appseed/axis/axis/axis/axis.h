@@ -99,6 +99,7 @@ END_EXTERN_C
 #define new AURA_NEW
 
 
+#include "axis/graphics/visual/visual.inl"
 
 #endif // CA2_APP_AXIS_AXIS_AXIS_AXIS_H
 
