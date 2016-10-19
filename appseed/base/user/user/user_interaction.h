@@ -769,6 +769,8 @@ namespace user
 
       //virtual void delete_this();
 
+      virtual void defer_notify_mouse_move();
+
       virtual void defer_notify_mouse_move(point & ptLast);
 
       virtual bool has_pending_graphical_update();
@@ -780,7 +782,7 @@ namespace user
       {
 
          synch_lock sl(m_pmutex);
-         
+
          m_ptraRedraw.add(dynamic_cast <object *> (p));
 
       }
@@ -799,7 +801,7 @@ namespace user
       {
 
          synch_lock sl(m_pmutex);
-         
+
          return m_ptraRedraw.has_elements();
 
       }

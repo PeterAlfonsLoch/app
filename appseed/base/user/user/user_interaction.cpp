@@ -7644,8 +7644,6 @@ restart:
 
       m_bTransparentMouseEvents = true;
 
-#if !defined(LINUX)
-
       ::fork(get_app(), [=]()
       {
 
@@ -7662,8 +7660,6 @@ restart:
 
       });
 
-#endif
-
    }
 
 
@@ -7679,7 +7675,11 @@ restart:
 
          ptLast = ptCurrent;
 
+#if !defined(LINUX)
+
          get_wnd()->ScreenToClient(ptCurrent);
+
+#endif
 
          get_wnd()->send_message(WM_MOUSEMOVE, 0, ptCurrent);
 
@@ -7687,6 +7687,23 @@ restart:
 
    }
 
+
+   void interaction::defer_notify_mouse_move()
+   {
+
+      point ptCurrent;
+
+      Session.get_cursor_pos(ptCurrent);
+
+#if !defined(LINUX)
+
+      get_wnd()->ScreenToClient(ptCurrent);
+
+#endif
+
+      get_wnd()->send_message(WM_MOUSEMOVE, 0, ptCurrent);
+
+   }
 
 
    double alpha_source::get_alpha(::user::interaction * puiTarget)
