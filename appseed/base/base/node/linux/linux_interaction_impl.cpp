@@ -665,6 +665,14 @@ namespace linux
    {
       UNREFERENCED_PARAMETER(pobj);
       Default();
+
+      if(m_pthreadDraw != NULL)
+      {
+
+         m_pthreadDraw->m_bRun = false;
+
+      }
+
    }
 
    void interaction_impl::_001OncaptureChanged(::signal_details * pobj)

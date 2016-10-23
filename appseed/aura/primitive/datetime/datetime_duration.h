@@ -252,6 +252,32 @@ inline bool duration::operator == (const duration & duration) const
       && m_iNanoseconds == duration.m_iNanoseconds;
 }
 
+class CLASS_DECL_AURA nanos :
+   public duration
+{
+public:
+
+
+   inline nanos(int64_t iNanos = 0);
+   inline nanos(int32_t iNanos);
+   inline nanos(uint32_t dwNanos);
+   nanos(double dNanos);
+
+};
+
+class CLASS_DECL_AURA micros :
+   public duration
+{
+public:
+
+
+   inline micros(int64_t iMicros = 0);
+   inline micros(int32_t iMicros);
+   inline micros(uint32_t dwMicros);
+   micros(double dMicros);
+
+};
+
 
 class CLASS_DECL_AURA millis :
    public duration
@@ -327,6 +353,53 @@ public:
 };
 
 
+
+nanos::nanos(int64_t i)
+{
+
+   raw_set(i / (1000 * 1000 * 1000), (i % (1000 * 1000 * 1000)));
+
+}
+
+
+nanos::nanos(int32_t i)
+{
+
+   raw_set(i / (1000 * 1000 * 1000), (i % (1000 * 1000 * 1000)));
+
+}
+
+
+nanos::nanos(uint32_t dw)
+{
+
+   raw_set(dw / (1000 * 1000 * 1000), (dw % (1000 * 1000 * 1000)));
+
+}
+
+
+micros::micros(int64_t i)
+{
+
+   raw_set(i / (1000 * 1000), (i % (1000 * 1000)) * 1000);
+
+}
+
+
+micros::micros(int32_t i)
+{
+
+   raw_set(i / (1000 * 1000), (i % (1000 * 1000)) * 1000);
+
+}
+
+
+micros::micros(uint32_t dw)
+{
+
+   raw_set(dw / (1000 * 1000), (dw % (1000 * 1000)) * 1000);
+
+}
 
 
 millis::millis(int64_t i)

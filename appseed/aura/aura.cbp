@@ -406,6 +406,10 @@
 		<Unit filename="aura/os/ansios/ansios_thread.h" />
 		<Unit filename="aura/os/cross.h" />
 		<Unit filename="aura/os/cross/cross.h" />
+		<Unit filename="aura/os/cross/windows/cross_windows_datetime.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="aura/os/cross/windows/cross_windows_threading.cpp">
 			<Option compile="0" />
 			<Option link="0" />
@@ -483,6 +487,10 @@
 		</Unit>
 		<Unit filename="aura/os/linux/linux_process.h" />
 		<Unit filename="aura/os/linux/linux_small_ipca_channel.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
+		<Unit filename="aura/os/linux/linux_time.cpp">
 			<Option compile="0" />
 			<Option link="0" />
 		</Unit>
@@ -785,7 +793,15 @@
 		<Unit filename="primitive/data/data_data_container.h" />
 		<Unit filename="primitive/data/data_data_listener.h" />
 		<Unit filename="primitive/data/data_item.h" />
+		<Unit filename="primitive/datetime/datetime.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="primitive/datetime/datetime_c.h" />
+		<Unit filename="primitive/datetime/datetime_duration.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
 		<Unit filename="primitive/datetime/datetime_duration.h" />
 		<Unit filename="primitive/datetime/datetime_mktime.h" />
 		<Unit filename="primitive/datetime/datetime_time.h" />

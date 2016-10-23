@@ -15,7 +15,8 @@ inline uint64_t get_nanos()
 
    struct timespec ts;
 
-   if (clock_gettime(CLOCK_MONOTONIC, &ts) != 0)
+   //if (clock_gettime(CLOCK_MONOTONIC, &ts) != 0)
+   if (clock_gettime(CLOCK_REALTIME, &ts) != 0)
    {
       //error
       return 0;

@@ -5,9 +5,25 @@
 void duration::normalize()
 {
 
-   m_iSeconds     += m_iNanoseconds / 1000000000;
+   m_iSeconds     += m_iNanoseconds / (1000 * 1000 * 1000);
 
-   m_iNanoseconds %= 10000000000;
+   m_iNanoseconds %= 1000 * 1000 * 1000;
+
+}
+
+
+nanos::nanos(double d)
+{
+
+   raw_set((int64_t)(d / (1000.0 * 1000.0 * 1000.0)), (int64_t)fmod(d, 1000.0 * 1000.0 * 1000.0));
+
+}
+
+
+micros::micros(double d)
+{
+
+   raw_set((int64_t)(d / (1000.0 * 1000.0)), (int64_t)fmod(d * 1000.0, 1000.0 * 1000.0 * 1000.0));
 
 }
 
@@ -15,7 +31,7 @@ void duration::normalize()
 millis::millis(double d)
 {
 
-   raw_set((int64_t)(d / 1000.0), (int64_t)fmod(d * 1000000.0, 1000000000.0));
+   raw_set((int64_t)(d / 1000.0), (int64_t)fmod(d * 1000 * 1000.0, 1000.0 * 1000.0 * 1000.0));
 
 }
 
@@ -47,13 +63,13 @@ void duration::set(int64_t i, e_unit eunit)
    switch (eunit)
    {
    case unit_nanos:
-      raw_set(i / 1000000000, i % 1000000000);
+      raw_set(i / (1000 * 1000 * 1000), i % (1000 * 1000 * 1000));
       break;
    case unit_micros:
-      raw_set(i / 1000000, (i / 1000) % 1000000000);
+      raw_set(i / (1000 * 1000), (i / 1000) % (1000 * 1000 * 1000));
       break;
    case unit_millis:
-      raw_set(i / 1000, (i / (1000 * 1000)) % 1000000000);
+      raw_set(i / 1000, (i / (1000 * 1000)) % (1000 * 1000 * 1000));
       break;
    case unit_seconds:
       raw_set(i, 0);

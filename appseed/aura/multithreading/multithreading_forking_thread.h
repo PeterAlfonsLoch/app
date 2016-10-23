@@ -1,7 +1,9 @@
 #pragma once
 
 
+#undef new
 
+#define new AURA_NEW
 
 template < typename PRED >
 class forking_thread:
@@ -37,7 +39,7 @@ public:
 
    virtual ~forking_thread()
    {
-   
+
    }
 
    int32_t run()
