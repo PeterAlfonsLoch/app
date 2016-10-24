@@ -301,7 +301,12 @@ timer::~timer()
 bool timer::start(int millis, bool bPeriodic)
 {
 
-   stop(true);
+   if(m_bSet)
+   {
+
+      stop(true);
+
+   }
 
    m_bPeriodic = bPeriodic;
 
@@ -336,9 +341,20 @@ bool timer::start(int millis, bool bPeriodic)
 
    //}
 //   else
+
+   m_bSet = true;
+
+
    {
 
       m_ptimer->m_timer = ThreadPoolTimer::CreateTimer(ref new TimerElapsedHandler(pred), span);
+
+      if(m_ptimer->m_timer == nullptr)
+      {
+
+         m_bSet = false;
+
+      }
 
    }
 
@@ -346,8 +362,12 @@ bool timer::start(int millis, bool bPeriodic)
 
 #elif defined(WINDOWS)
 
+   m_bSet = true;
+
    if(!CreateTimerQueueTimer(&m_ptimer->m_hTimer,m_ptimer->m_hTimerQueue,(WAITORTIMERCALLBACK)aura_timer_TimerRoutine,m_ptimer,m_dwMillis,0,WT_EXECUTEONLYONCE | WT_EXECUTELONGFUNCTION))
    {
+
+      m_bSet = false;
 
       return false;
 
@@ -362,10 +382,18 @@ bool timer::start(int millis, bool bPeriodic)
 
    m_ptimer->m_bFirst = true;
 
+   m_bSet = true;
+
    m_ptimer->m_timer = CreateDispatchTimer(millis, MAX(1, millis / 20), m_ptimer->m_queue, aura_timer, m_ptimer);
 
    if (m_ptimer->m_timer == NULL)
+   {
+
+      m_bSet = false;
+
       return false;
+
+   }
 
 #else
    /* Start the timer */
@@ -397,8 +425,16 @@ bool timer::start(int millis, bool bPeriodic)
 
    }
 
+   m_bSet = true;
+
    if (timer_settime(m_ptimer->m_timerid, 0, &its, NULL) == -1)
+   {
+
+      m_bSet = false;
+
       return false;
+
+   }
 
 #endif
 

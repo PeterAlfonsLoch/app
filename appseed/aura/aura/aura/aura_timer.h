@@ -21,6 +21,7 @@ public:
    uint_ptr             m_nIDEvent;
    PFN_TIMER            m_pfnTimer;
    timer_callback *     m_pcallback;
+   bool                 m_bSet;
    bool                 m_bPeriodic;
    void *               m_pvoidData;
    bool                 m_bRet;
@@ -32,7 +33,7 @@ public:
 
    ::aura::Timer *      m_ptimer;
 
-   
+
    timer(::aura::application * papp,uint_ptr uiTimer = 0,PFN_TIMER pfnTimer = NULL,void * pvoidData = NULL, mutex * pmutex = NULL);
    virtual ~timer();
 

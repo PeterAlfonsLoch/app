@@ -101,8 +101,8 @@
 			<Add directory="../../../time/x64/basis" />
 		</Linker>
 		<ExtraCommands>
-			<Add before="cp ../../../nodeapp/thirdparty/library/x64/* ../../../time/x64/basis/" />
-			<Add before="cp ../../../nodeapp/thirdparty/binary/x64/* ../../../time/x64/basis/" />
+			<Add before="cp -Rf ../../../nodeapp/thirdparty/library/x64/* ../../../time/x64/basis/" />
+			<Add before="cp -Rf ../../../nodeapp/thirdparty/binary/x64/* ../../../time/x64/basis/" />
 		</ExtraCommands>
 		<Unit filename="aura/_aura_aura.cpp" />
 		<Unit filename="aura/aura/aura.h" />

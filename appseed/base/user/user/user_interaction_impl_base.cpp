@@ -593,13 +593,13 @@ namespace user
    bool interaction_impl_base::GetWindowRect(RECT64 * lprect)
    {
 
-      if(!IsWindow())
-      {
-
-         return false;
-
-      }
-
+//      if(!IsWindow())
+//      {
+//
+//         return false;
+//
+//      }
+//
       *lprect = m_rectParentClient;
 
       return true;

@@ -10,7 +10,7 @@ namespace tts
    {
    public:
 
-      
+
       speaker(::aura::application * papp);
 
       virtual ~speaker();

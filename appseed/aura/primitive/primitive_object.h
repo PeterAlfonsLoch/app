@@ -142,7 +142,7 @@ public:
 
 
    template < typename PRED >
-   inline void fork(PRED pred);
+   inline ::thread * fork(PRED pred);
 
 
    virtual void delete_this();

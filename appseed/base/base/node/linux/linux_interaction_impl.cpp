@@ -4099,6 +4099,10 @@ throw not_implemented(get_app());
    bool interaction_impl::_001GetWindowRect(RECT64 * lprect)
    {
 
+      return ::user::interaction_impl::GetWindowRect(lprect);
+
+
+
       if(!::IsWindow((oswindow) get_handle()))
       {
 
@@ -4437,6 +4441,10 @@ m_pui->SetOwner((pOwnerWnd));
    {
 
       m_strWindowText = lpszString;
+
+      xdisplay d(m_oswindow->display());
+
+      XStoreName(m_oswindow->display(), m_oswindow->window(), m_strWindowText);
 
    }
 

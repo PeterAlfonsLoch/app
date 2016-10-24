@@ -750,7 +750,9 @@ namespace user
          if (m_pauraapp != NULL && m_pauraapp->m_pbasesession != NULL)
          {
 
-            if (Session.get_capture_uie() == this)
+            ::user::interaction * puiCapture = m_pauraapp->m_pbasesession->get_capture_uie();
+
+            if (puiCapture != NULL && (puiCapture == this || puiCapture->IsDescendant(this)))
             {
 
                ReleaseCapture();

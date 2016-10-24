@@ -31,6 +31,8 @@ UINT __axis_x11_thread(void * p)
 
    struct timeval tv;
 
+   bool bPending;
+
    while(::aura::system::g_p != NULL && ::aura::system::g_p->m_bRun)
    {
 
@@ -65,14 +67,24 @@ UINT __axis_x11_thread(void * p)
 //
 //      }
 
+      bPending = false;
+
       {
 
-         while(XPending(display))
-         {
+         xdisplay d(display);
 
-            process_message(pdata, display);
+         bPending = XPending(display);
 
-         }
+      }
+
+      if(bPending)
+      {
+
+         process_message(pdata, display);
+
+      }
+      else
+      {
 
          Sleep(1);
 

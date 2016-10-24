@@ -22,8 +22,6 @@ public:
       m_pred(pred)
    {
 
-      begin();
-
    }
 
    forking_thread(::aura::application * papp,PRED pred) :
@@ -31,8 +29,6 @@ public:
       thread(papp),
       m_pred(pred)
    {
-
-      begin();
 
    }
 
@@ -58,22 +54,39 @@ template < typename PRED >
 ::thread * fork(::aura::application * papp, sp(object) pholdref, PRED pred)
 {
 
-   return new forking_thread < PRED >(papp, pholdref, pred);
+   auto pforkingthread = new forking_thread < PRED >(papp, pholdref, pred);
+
+   ::thread * pthread = dynamic_cast < ::thread * > (pforkingthread);
+
+   pthread->begin();
+
+   return pthread;
 
 }
+
 
 template < typename PRED >
-::thread * fork(::aura::application * papp,PRED pred)
+::thread * fork(::aura::application * papp, PRED pred)
 {
 
-   return new forking_thread < PRED >(papp,pred);
+   auto pforkingthread = new forking_thread < PRED >(papp, pred);
+
+   ::thread * pthread = dynamic_cast < ::thread * > (pforkingthread);
+
+   pthread->begin();
+
+   return pthread;
 
 }
+
 
 template < typename PRED >
-inline void object::fork(PRED pred)
+inline ::thread * object::fork(PRED pred)
 {
 
-   ::fork(get_app(),pred);
+   return ::fork(get_app(),pred);
 
 }
+
+
+

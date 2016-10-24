@@ -1888,9 +1888,9 @@ namespace user
          output_debug_string("interaction_impl on _create_window");
 
       }
-      
+
       m_puiThis = m_pui;
-      
+
 
    }
 
@@ -2533,13 +2533,13 @@ namespace user
 
    void interaction_impl::_001UpdateWindow()
    {
-   
+
       synch_lock sl1(m_pui->m_pmutex);
-   
+
       update_graphics_resources();
-   
+
       synch_lock sl(m_spmutexBuffer);
-   
+
       if(m_spgraphics.is_null())
          return;
 
@@ -2563,17 +2563,17 @@ namespace user
          return;
 
       }
-   
+
       if (m_pui->m_bMayProDevian)
       {
-       
+
          if (!pgraphics->is_valid_update_window_thread())
             return;
 
       }
 
       rect r;
-      
+
       r = rectWindow;
 
       r.offset(-r.top_left());
@@ -2593,26 +2593,26 @@ namespace user
 
       }
 
-      
+
       _001Print(pgraphics);
 
 #if HARD_DEBUG
-   
+
       ::draw2d::graphics_sp g(allocer());
-   
+
       g->debug();
-   
+
       m_size.cx = 0;
       m_size.cy = 0;
-   
+
 #endif
 
       sl.unlock();
 
       sl1.unlock();
-   
+
       m_spgraphics->update_window();
-   
+
    }
 
 
@@ -2623,7 +2623,7 @@ namespace user
 //
 //      cslock sl(cs_display());
 //
-//      
+//
 //
 //      if(m_spdibBuffer.is_set() && m_spdibBuffer->get_graphics() != NULL)
 //      {
@@ -2790,7 +2790,7 @@ namespace user
 //      m_spgraphics.alloc(allocer());
 
   //    m_spgraphics->on_create_window(this);
-      
+
 
    }
 
