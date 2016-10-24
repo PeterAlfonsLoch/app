@@ -938,10 +938,10 @@ namespace axis
 
       return get_monitor_rect(iWkspace,lprect);
 
-#elif defined(LINUX)
-
-return false;
-
+//#elif defined(LINUX)
+//
+//return false;
+//
 #elif defined(APPLEOS)
 
       if(iWkspace < 0 || iWkspace >= get_wkspace_count())

@@ -79,7 +79,9 @@ namespace base
       virtual void set_focus_guie(::user::interaction * pui);
 
 
-      bool get_monitor_rect(index iMonitor,LPRECT lprect);
+
+      bool get_monitor_rect(index iMonitor,LPRECT lprect) override;
+      ::count get_monitor_count() override;
 
       bool get_wkspace_rect(index iWkspace,LPRECT lprect);
 

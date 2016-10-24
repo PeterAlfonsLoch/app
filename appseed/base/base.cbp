@@ -70,6 +70,8 @@
 			<Add option="-lpthread" />
 			<Add option="-lX11" />
 			<Add option="-lXmu" />
+			<Add option="-lXrandr" />
+			<Add option="-lXinerama" />
 			<Add option="-latomiconv" />
 			<Add option="-laura" />
 			<Add option="-lsqlite3" />
