@@ -541,7 +541,36 @@ namespace linux
 
          }
 
+
          d.unlock();
+
+                        //if(pshowwindow->m_bShow)
+      {
+
+         //::rect rect32;
+
+         //(::GetWindowRect((oswindow) get_handle(), rect32))
+         {
+
+
+            if(m_pauraapp != NULL && m_pauraapp->m_pbasesession != NULL)
+            {
+
+            point pt;
+            m_pauraapp->m_pbasesession->get_cursor_pos(pt);
+
+            m_rectParentClient.left = pt.x;
+            m_rectParentClient.top = pt.y;
+            m_rectParentClient.right = pt.x;
+            m_rectParentClient.bottom = pt.y;
+
+            }
+
+         }
+
+      }
+
+
 
          m_pui->m_id = id;
 
@@ -646,7 +675,7 @@ namespace linux
 
          // linux
          //IGUI_WIN_MSG_LINK(WM_MOVE              , pinterface, this, &interaction_impl::_001OnMove);
-         //IGUI_WIN_MSG_LINK(WM_SHOWWINDOW        , pinterface, this, &interaction_impl::_001OnShowWindow);
+         IGUI_WIN_MSG_LINK(WM_SHOWWINDOW        , pinterface, this, &interaction_impl::_001OnShowWindow);
 
          //IGUI_WIN_MSG_LINK(WM_WINDOWPOSCHANGING,pinterface,this,&interaction_impl::_001OnWindowPosChanging);
          //IGUI_WIN_MSG_LINK(WM_WINDOWPOSCHANGED,pinterface,this,&interaction_impl::_001OnWindowPosChanged);
@@ -659,6 +688,13 @@ namespace linux
       IGUI_WIN_MSG_LINK(WM_DESTROY,pinterface,this,&interaction_impl::_001OnDestroy);
 
    }
+
+   void interaction_impl::_001OnShowWindow(::signal_details * pobj)
+   {
+
+      SCAST_PTR(::message::show_window, pshowwindow, pobj);
+
+    }
 
 
    void interaction_impl::_001OnDestroy(::signal_details * pobj)
@@ -674,6 +710,7 @@ namespace linux
       }
 
    }
+
 
    void interaction_impl::_001OncaptureChanged(::signal_details * pobj)
    {

@@ -109,7 +109,9 @@ namespace user
 
          BASECORE_APP_INDICATOR_NEW* f = (BASECORE_APP_INDICATOR_NEW *) dlsym(g_pbasecore, "basecore_app_indicator_new");
 
-         string strFolder("/ca2/");
+         string strFolder(System.dir().element());
+
+         strFolder += "/";
 
          string str1 = hicon->m_strAppTrayIcon;
 

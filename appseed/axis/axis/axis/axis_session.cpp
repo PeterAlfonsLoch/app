@@ -1501,6 +1501,14 @@ namespace axis
                }
 
             }
+            else if(rectMonitor.contains(rectParam))
+            {
+
+               iMatchingMonitor = iMonitor;
+
+               rectMatch = rectMonitor;
+
+            }
 
          }
 
