@@ -752,7 +752,7 @@ namespace user
 
             ::user::interaction * puiCapture = m_pauraapp->m_pbasesession->get_capture_uie();
 
-            if (puiCapture != NULL && (puiCapture == this || puiCapture->IsDescendant(this)))
+            if (puiCapture != NULL && puiCapture == this)
             {
 
                ReleaseCapture();
@@ -7668,6 +7668,13 @@ restart:
    void interaction::defer_notify_mouse_move(point & ptLast)
    {
 
+      if(::GetCapture() != NULL)
+      {
+
+         return;
+
+      }
+
       point ptCurrent;
 
       Session.get_cursor_pos(ptCurrent);
@@ -7692,6 +7699,13 @@ restart:
 
    void interaction::defer_notify_mouse_move()
    {
+
+      if(::GetCapture() != NULL)
+      {
+
+         return;
+
+      }
 
       point ptCurrent;
 

@@ -222,6 +222,8 @@ namespace draw2d_cairo
       bool LineTo(double x, double y);
     //  bool LineTo(POINT point);
       bool Arc(int32_t x1, int32_t y1, int32_t x2, int32_t y2, int32_t x3, int32_t y3, int32_t x4, int32_t y4);
+      bool Arc(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4);
+      bool Arc(double x,double y,double w,double h,double start,double extends);
       bool Arc(const RECT & lpRect, POINT ptStart, POINT ptEnd);
       bool Polyline(const POINT* lpPoints,count nCount);
 

@@ -16,7 +16,9 @@ namespace draw2d_cairo
 
 
 
+
       region(::aura::application * papp);
+      region(const region & region);
       virtual ~region();
 
 
@@ -50,6 +52,7 @@ namespace draw2d_cairo
 // xxx      int32_t GetRegionData(LPRGNDATA lpRgnData, int32_t nCount) const;
 
       bool mask(cairo_t * pdc);
+      bool _mask(cairo_t * pdc);
       bool mask_rect(cairo_t * pdc);
       bool mask_oval(cairo_t * pdc);
       bool mask_polygon(cairo_t * pdc);

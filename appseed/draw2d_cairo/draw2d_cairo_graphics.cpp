@@ -585,9 +585,12 @@ synch_lock ml(m_pmutex);
 
    }
 
+
    bool graphics::Arc(int32_t x1, int32_t y1, int32_t x2, int32_t y2, int32_t x3, int32_t y3, int32_t x4, int32_t y4)
    {
-synch_lock ml(m_pmutex);
+
+      synch_lock ml(m_pmutex);
+
       double centerx    = (x2 + x1) / 2.0;
       double centery    = (y2 + y1) / 2.0;
 
@@ -609,9 +612,72 @@ synch_lock ml(m_pmutex);
 
       cairo_arc(m_pdc, 0.0, 0.0, 1.0, start, end);
 
-      return true;
+      return draw();
 
    }
+
+
+   bool graphics::Arc(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4)
+   {
+
+      synch_lock ml(m_pmutex);
+
+      double centerx    = (x2 + x1) / 2.0;
+      double centery    = (y2 + y1) / 2.0;
+
+      double radiusx    = abs(x2 - x1) / 2.0;
+      double radiusy    = abs(y2 - y1) / 2.0;
+
+      if(radiusx == 0.0 || radiusy == 0.0)
+         return false;
+
+      double start      = atan2(y3 - centery, x3 - centerx);
+      double end        = atan2(y4 - centery, x4 - centerx);
+
+
+      cairo_keep keep(m_pdc);
+
+      cairo_translate(m_pdc, centerx, centery);
+
+      cairo_scale(m_pdc, radiusx, radiusy);
+
+      cairo_arc(m_pdc, 0.0, 0.0, 1.0, start, end);
+
+      return draw();
+
+   }
+
+
+   bool graphics::Arc(double x,double y,double w,double h,double start,double extends)
+   {
+
+      double end        = start + extends;
+
+      cairo_keep keep(m_pdc);
+
+      cairo_translate(m_pdc, x + w / 2.0, y + h /2.0);
+
+      cairo_scale(m_pdc, w / 2.0, h / 2.0);
+
+      if(extends < 0)
+      {
+
+         cairo_arc(m_pdc, 0.0, 0.0, 1.0, start * 3.1415 / 180.0, end * 3.1415 / 180.0);
+
+      }
+      else
+      {
+
+         cairo_arc_negative(m_pdc, 0.0, 0.0, 1.0, start * 3.1415 / 180.0, end * 3.1415 / 180.0);
+
+      }
+
+      keep.restore();
+
+      return draw();
+
+   }
+
 
    bool graphics::Arc(const RECT & lpRect, POINT ptStart, POINT ptEnd)
    {
@@ -1088,12 +1154,9 @@ synch_lock ml(m_pmutex);
 
       cairo_arc(m_pdc, 0.0, 0.0, 1.0, 0.0, 2.0 * 3.1415);
 
-      keep.restore();
+      //keep.restore();
 
-      fill();
-
-
-      return true;
+      return fill();
 
    }
 
@@ -1332,14 +1395,18 @@ synch_lock ml(m_pmutex);
 
    }
 
+
    bool graphics::FillRectangle(int32_t x1, int32_t y1, int32_t x2, int32_t y2)
    {
-synch_lock ml(m_pmutex);
+
+      synch_lock ml(m_pmutex);
+
       cairo_rectangle(m_pdc, x1, y1, x2 - x1, y2 - y1);
 
       return fill();
 
    }
+
 
    bool graphics::FillRectangle(const RECT & lpRect)
    {
@@ -3783,9 +3850,15 @@ synch_lock ml(m_pmutex);
       if(pregion == NULL)
       {
 
+         if(m_spregion.is_set() && m_spregion.cast < region > ()->is_simple_positive_region())
+         {
+
+            cairo_reset_clip(m_pdc);
+
+         }
+
          m_spregion.release();
 
-         cairo_reset_clip(m_pdc);
 
       }
       else
@@ -3794,7 +3867,7 @@ synch_lock ml(m_pmutex);
          if(m_spregion.is_null())
             m_spregion.alloc(allocer());
 
-         *m_spregion.m_p = *pregion;
+         m_spregion.m_p = pregion;
 
          if(m_spregion.cast < region > ()->is_simple_positive_region())
          {
@@ -5176,8 +5249,24 @@ void cairo_image_surface_blur( cairo_surface_t* surface, double radius )
 
    bool graphics::set(const ::draw2d::brush * pbrush)
    {
-synch_lock ml(m_pmutex);
-      if(pbrush->m_etype == ::draw2d::brush::type_linear_gradient_point_color)
+
+      synch_lock ml(m_pmutex);
+
+      if(pbrush->m_etype == ::draw2d::brush::type_radial_gradient_color)
+      {
+
+         cairo_pattern_t * ppattern = cairo_pattern_create_radial(pbrush->m_pt.x, pbrush->m_pt.y, 0, pbrush->m_pt2.x, pbrush->m_pt2.y, MAX(pbrush->m_size.cx, pbrush->m_size.cy));
+
+         cairo_pattern_add_color_stop_rgba(ppattern, 0., argb_get_r_value(pbrush->m_cr1) / 255.0, argb_get_g_value(pbrush->m_cr1) / 255.0, argb_get_b_value(pbrush->m_cr1) / 255.0, argb_get_a_value(pbrush->m_cr1) / 255.0);
+
+         cairo_pattern_add_color_stop_rgba(ppattern, 1., argb_get_r_value(pbrush->m_cr2) / 255.0, argb_get_g_value(pbrush->m_cr2) / 255.0, argb_get_b_value(pbrush->m_cr2) / 255.0, argb_get_a_value(pbrush->m_cr2) / 255.0);
+
+         cairo_set_source(m_pdc, ppattern);
+
+         cairo_pattern_destroy(ppattern);
+
+      }
+      else if(pbrush->m_etype == ::draw2d::brush::type_linear_gradient_point_color)
       {
 
          cairo_pattern_t * ppattern = cairo_pattern_create_linear(pbrush->m_pt1.x, pbrush->m_pt1.y, pbrush->m_pt2.x, pbrush->m_pt2.y);
@@ -5426,15 +5515,42 @@ if(ppen->m_etype == ::draw2d::pen::type_brush)
 
    bool graphics::fill(::draw2d::brush * pbrush)
    {
-synch_lock ml(m_pmutex);
+
+      synch_lock ml(m_pmutex);
+
       if(pbrush == NULL || pbrush->m_etype == ::draw2d::brush::type_null)
+      {
+
          return true;
+
+      }
 
       cairo_keep keep(m_pdc);
 
-      set(pbrush);
+      if(m_spregion.is_set() && !m_spregion.cast < region >()->is_simple_positive_region())
+      {
 
-      cairo_fill(m_pdc);
+         cairo_set_antialias(m_pdc, CAIRO_ANTIALIAS_BEST);
+
+         cairo_push_group(m_pdc);
+
+         set(pbrush);
+
+         cairo_fill(m_pdc);
+
+         cairo_pop_group_to_source(m_pdc);
+
+         m_spregion.cast < region >()->mask(m_pdc);
+
+      }
+      else
+      {
+
+         set(pbrush);
+
+         cairo_fill(m_pdc);
+
+      }
 
       return true;
 

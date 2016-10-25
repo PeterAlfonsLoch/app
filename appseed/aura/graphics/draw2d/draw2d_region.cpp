@@ -18,12 +18,14 @@ namespace draw2d
 
    }
 
+
    region::region(const region & region)
    {
 
-      m_lppoints = NULL;
+      m_lppoints     = NULL;
       m_etype        = type_none;
       m_bUpdated     = false;
+
       operator = (region);
 
    }
@@ -31,7 +33,7 @@ namespace draw2d
 
    region::~region()
    {
-      
+
       destroy();
 
    }
@@ -432,9 +434,9 @@ namespace draw2d
 
       for(index i = 0; i < m_nCount; i++)
       {
-         
+
          m_lppoints[i].x = (double) lppoints[i].x;
-         
+
          m_lppoints[i].y = (double) lppoints[i].y;
 
       }
@@ -472,7 +474,7 @@ namespace draw2d
          iTotalCount += m_lppolycounts[i];
 
       }
-      
+
       m_lppoints = new POINTD[iTotalCount];
 
       memcpy(m_lppoints, lppoints, sizeof(POINTD) * iTotalCount);
@@ -510,7 +512,7 @@ namespace draw2d
          iTotalCount += m_lppolycounts[i];
 
       }
-      
+
       m_lppoints = new POINTD[iTotalCount];
 
       for(int32_t i = 0; i < iTotalCount; i++)
@@ -537,10 +539,10 @@ namespace draw2d
    bool region::combine(const ::draw2d::region * prgn1, const ::draw2d::region * prgn2, e_combine ecombine)
    {
 
-      sp(::draw2d::region) pregion1 = ((::draw2d::region *)prgn1)->clone();
-      
-      sp(::draw2d::region) pregion2 = ((::draw2d::region *)prgn2)->clone();
-      
+      sp(::draw2d::region) pregion1 = prgn1;
+
+      sp(::draw2d::region) pregion2 = prgn2;
+
       if(m_etype != type_none)
       {
 
