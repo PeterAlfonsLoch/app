@@ -564,7 +564,7 @@ namespace macos
 //         IGUI_WIN_MSG_LINK(WM_GETMINMAXINFO,pinterface,this,&interaction_impl::_001OnGetMinMaxInfo);
 //         IGUI_WIN_MSG_LINK(WM_SETFOCUS,pinterface,this,&interaction_impl::_001OnSetFocus);
 //         IGUI_WIN_MSG_LINK(WM_KILLFOCUS,pinterface,this,&interaction_impl::_001OnKillFocus);
-         IGUI_WIN_MSG_LINK(ca2m_PRODEVIAN_SYNCH,pinterface,this,&interaction_impl::_001OnProdevianSynch);
+         //IGUI_WIN_MSG_LINK(ca2m_PRODEVIAN_SYNCH,pinterface,this,&interaction_impl::_001OnProdevianSynch);
          prio_install_message_handling(pinterface);
       }
       IGUI_WIN_MSG_LINK(WM_DESTROY,pinterface,this,&interaction_impl::_001OnDestroy);
@@ -5865,6 +5865,8 @@ namespace macos
       cslock slDisplay(cs_display());
 
       window_buffer * pbuffer = m_spgraphics.cast < window_buffer >();
+      
+      synch_lock sl1(pbuffer->m_pmutex);
 
       ::draw2d::dib_sp & spdibBuffer = pbuffer->m_spdibBuffer;
 

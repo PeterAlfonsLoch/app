@@ -539,9 +539,9 @@ namespace draw2d
    bool region::combine(const ::draw2d::region * prgn1, const ::draw2d::region * prgn2, e_combine ecombine)
    {
 
-      sp(::draw2d::region) pregion1 = prgn1;
+      sp(::draw2d::region) pregion1 = (::draw2d::region *) prgn1;
 
-      sp(::draw2d::region) pregion2 = prgn2;
+      sp(::draw2d::region) pregion2 = (::draw2d::region *) prgn2;
 
       if(m_etype != type_none)
       {

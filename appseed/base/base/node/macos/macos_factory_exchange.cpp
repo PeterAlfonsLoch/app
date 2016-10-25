@@ -14,7 +14,7 @@ namespace macos
          ::object(papp)
       {
           
-          System.factory().creatable < window_draw                 >   (System.type_info < ::user::window_draw        > (), 1);
+          //System.factory().creatable < window_draw                 >   (System.type_info < ::user::window_draw        > (), 1);
           System.factory().creatable_large < interaction_impl      >   (System.type_info < ::user::interaction_impl   > ());
 
 

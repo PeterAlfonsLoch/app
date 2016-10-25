@@ -685,8 +685,6 @@ namespace macos
 
       void _001OnTimer(::timer * ptimer);
 
-      void RedrawWindow(UINT nFlags = 0);
-
    };
 
 

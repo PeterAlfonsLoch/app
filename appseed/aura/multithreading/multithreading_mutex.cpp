@@ -275,6 +275,16 @@ mutex::mutex(::aura::application * papp, bool bInitiallyOwn, const char * pstrNa
       pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_RECURSIVE);
 
       pthread_mutex_init(&m_mutex, &attr);
+      
+#ifdef APPLEOS
+      
+      pthread_cond_init(&m_cond, NULL);
+      
+      m_count = 0;
+      
+      m_thread = 0;
+      
+#endif
 
    }
 
@@ -402,6 +412,12 @@ mutex::~mutex()
    {
 
       pthread_mutex_destroy(&m_mutex);
+      
+#ifdef APPLEOS
+      
+      pthread_cond_destroy(&m_cond);
+      
+#endif
 
    }
 
@@ -436,6 +452,7 @@ bool mutex::already_exists()
 
 
 
+
 #if !defined(WINDOWS)
 
 wait_result mutex::wait(const duration & duration)
@@ -448,8 +465,59 @@ wait_result mutex::wait(const duration & duration)
 
    }
 
+#if defined(APPLEOS)
+   
+   if(m_psem != SEM_FAILED)
+   {
+      
+      uint32_t uiTimeout = duration.get_total_milliseconds();
+      
+      uint32_t uiStart = get_tick_count();
+   
+      while(true)
+      {
+         
+         int rc = sem_trywait(m_psem);
+         
+         if(!rc)
+         {
+            
+            return wait_result(wait_result::Event0);
+            
+         }
+         else
+         {
+            
+            int iError = errno;
+            
+            if(iError != EAGAIN)
+            {
+               
+               return wait_result(wait_result::Failure);
+               
+            }
+            
+         }
+         
+         uint32_t uiElapsed = get_tick_count() - uiStart;
+         
+         if(uiElapsed >= uiTimeout)
+         {
+            
+            return wait_result(wait_result::Timeout);
+            
+         }
+         
+         Sleep(MAX(1, MIN(1000, (uiTimeout - uiElapsed) / 50)));
+         
+      }
+      
+      return wait_result(wait_result::Failure);
+      
+   }
+   else
 
-#if defined(ANDROID) || defined(APPLEOS)
+#elif defined(ANDROID)
 
    if (m_psem != SEM_FAILED)
    {
@@ -459,8 +527,6 @@ wait_result mutex::wait(const duration & duration)
       delay.tv_sec = duration.m_iSeconds;
 
       delay.tv_nsec = duration.m_iNanoseconds;
-
-      bFirst = false;
 
       int32_t ret = sem_timedwait(m_psem, &delay);
 
@@ -487,11 +553,6 @@ wait_result mutex::wait(const duration & duration)
 
    }
    else
-   {
-
-   }
-
-   return wait_result(wait_result::Timeout);
 
 #else
 
@@ -536,6 +597,74 @@ wait_result mutex::wait(const duration & duration)
    else
 
 #endif
+      
+#ifdef APPLEOS
+   {
+   
+      pthread_mutex_lock(&m_mutex);
+      
+      bool bFirst = true;
+      
+      while((m_thread != 0) && !pthread_equal(m_thread, pthread_self()))
+      {
+      
+         timespec abs_time;
+         
+         if (bFirst)
+         {
+         
+            clock_gettime(CLOCK_REALTIME, &abs_time);
+            
+            ::duration d;
+            
+            d.m_iSeconds = abs_time.tv_sec + duration.m_iSeconds;
+            
+            d.m_iNanoseconds = abs_time.tv_nsec + duration.m_iNanoseconds;
+            
+            d.normalize();
+            
+            abs_time.tv_sec = d.m_iSeconds;
+            
+            abs_time.tv_nsec = d.m_iNanoseconds;
+            
+            bFirst = false;
+            
+         }
+         
+         int rc = pthread_cond_timedwait(&m_cond, &m_mutex, &abs_time);
+         
+         if(rc == ETIMEDOUT)
+         {
+            
+            pthread_mutex_unlock(&m_mutex);
+            
+            return wait_result(wait_result::Timeout);
+            
+         }
+         else if(rc != 0)
+         {
+            
+            return wait_result(wait_result::Failure);
+            
+         }
+
+      }
+      
+      if (m_count++ == 0)
+      {
+      
+         m_thread = pthread_self();
+         
+      }
+      
+      pthread_mutex_unlock(&m_mutex);
+      
+      return wait_result(wait_result::Event0);
+      
+   }
+   
+#else
+   
    {
 
       timespec abs_time;
@@ -549,7 +678,7 @@ wait_result mutex::wait(const duration & duration)
       d.m_iNanoseconds = abs_time.tv_nsec + duration.m_iNanoseconds;
 
       d.normalize();
-
+      
       abs_time.tv_sec = d.m_iSeconds;
 
       abs_time.tv_nsec = d.m_iNanoseconds;
@@ -577,6 +706,7 @@ wait_result mutex::wait(const duration & duration)
 
    }
 
+#endif
 
 }
 
@@ -623,6 +753,33 @@ bool mutex::lock()
    }
 
 #endif
+   
+#ifdef APPLEOS
+   
+   else
+   {
+   
+      pthread_mutex_lock(&m_mutex);
+   
+      while ((m_thread != 0) && !pthread_equal(m_thread, pthread_self()))
+      {
+         
+         pthread_cond_wait(&m_cond, &m_mutex);
+         
+      }
+      
+      if(m_count++==0)
+      {
+         
+         m_thread = pthread_self();
+         
+      }
+      
+      pthread_mutex_unlock(&m_mutex);
+      
+   }
+   
+#else
 
    else
    {
@@ -638,6 +795,8 @@ bool mutex::lock()
 
    }
 
+#endif
+   
    return true;
 
 }
@@ -707,6 +866,34 @@ bool mutex::unlock()
    }
 
 #endif
+   
+#ifdef APPLEOS
+   
+   else
+   {
+      
+      pthread_mutex_lock(&m_mutex);
+      
+#ifdef _DEBUG
+      
+      ASSERT(pthread_equal(m_thread, pthread_self()));
+      
+#endif
+      
+      if (--m_count == 0)
+      {
+         
+         m_thread = 0;
+         
+         pthread_cond_signal(&m_cond);
+         
+      }
+      
+      pthread_mutex_unlock(&m_mutex);
+      
+   }
+   
+#else
 
    else
    {
@@ -714,6 +901,8 @@ bool mutex::unlock()
       return pthread_mutex_unlock(&m_mutex) == 0;
 
    }
+   
+#endif
 
 #endif // _WIN32
 

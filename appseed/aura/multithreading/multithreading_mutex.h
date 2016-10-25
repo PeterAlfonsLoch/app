@@ -16,7 +16,14 @@ public:
 
 
    pthread_mutex_t         m_mutex;
-   //string                  m_strName;
+   
+#ifdef APPLEOS
+   
+   pthread_t               m_thread;
+   pthread_cond_t          m_cond;
+   int                     m_count;
+   
+#endif
 
 #if defined(ANDROID) || defined(APPLEOS)
 

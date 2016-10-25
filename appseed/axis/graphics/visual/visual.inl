@@ -1,5 +1,6 @@
 #pragma once
 
+
 namespace visual
 {
 template < typename PRED >
