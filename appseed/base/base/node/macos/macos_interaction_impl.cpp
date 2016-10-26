@@ -1,29 +1,7 @@
 #include "framework.h"
 #include "macos.h"
-//#include "base/os/macos/window_buffer.h"
-//#include <cairo/cairo-xlib.h>
 
-//#define COMPILE_MULTIMON_STUBS
-//#include <multimon.h>
 
-//#include "sal.h"
-
-CLASS_DECL_BASE void hook_window_create(::user::interaction * pWnd);
-CLASS_DECL_BASE bool unhook_window_create();
-void CLASS_DECL_BASE __pre_init_dialog(
-                                      ::user::interaction * pWnd, LPRECT lpRectOld, DWORD* pdwStyleOld);
-void CLASS_DECL_BASE __post_init_dialog(
-                                       ::user::interaction * pWnd, const RECT& rectOld, DWORD dwStyleOld);
-LRESULT CALLBACK
-__activation_window_procedure(oswindow hWnd, UINT nMsg, WPARAM wparam, LPARAM lparam);
-
-//const char gen_OldWndProc[] = "::ca2::OldWndProc423";
-
-/*const char gen_WndControlBar[] = __WNDCONTROLBAR;
- const char gen_WndMDIFrame[] = __WNDMDIFRAME;
- const char gen_WndFrameOrView[] = __WNDFRAMEORVIEW;
- const char gen_WndOleControl[] = __WNDOLECONTROL;
- */
 struct __CTLCOLOR
 {
    oswindow hWnd;
@@ -51,17 +29,7 @@ WINBOOL GetMessage(
 namespace macos
 {
 
-   void interaction_impl::mouse_hover_add(::user::interaction *  pinterface)
-   {
-      m_guieptraMouseHover.add_unique(pinterface);
-   }
-
-   void interaction_impl::mouse_hover_remove(::user::interaction *  pinterface)
-   {
-      m_guieptraMouseHover.remove(pinterface);
-   }
-
-
+   
    interaction_impl::interaction_impl() :
    ::aura::timer_array(get_app())
    {
@@ -112,6 +80,11 @@ namespace macos
    }
 
 
+   CLASS_DECL_BASE void hook_window_create(::user::interaction * pWnd);
+   CLASS_DECL_BASE bool unhook_window_create();
+   void CLASS_DECL_BASE __pre_init_dialog(::user::interaction * pWnd, LPRECT lpRectOld, DWORD* pdwStyleOld);
+   void CLASS_DECL_BASE __post_init_dialog(::user::interaction * pWnd, const RECT& rectOld, DWORD dwStyleOld);
+   LRESULT CALLBACK __activation_window_procedure(oswindow hWnd, UINT nMsg, WPARAM wparam, LPARAM lparam);
 
 
     ::user::interaction *  interaction_impl::from_os_data(void * pdata)
@@ -660,11 +633,30 @@ namespace macos
    void interaction_impl::_001OnDestroy(signal_details * pobj)
    {
 
+      try
+      {
+         
+         if (m_pthreadDraw != NULL)
+         {
+            
+            m_pthreadDraw->m_bRun = false;
+            
+         }
+         
+      }
+      catch (...)
+      {
+         
+         
+      }
+      
       round_window_close();
 
       UNREFERENCED_PARAMETER(pobj);
 
       Default();
+      
+
 
 //      ::macos::window_draw * pdraw = dynamic_cast < ::macos::window_draw * > (System.get_twf());
 //
@@ -1243,19 +1235,6 @@ namespace macos
        }*/
       pbase->set_lresult(0);
 
-      /*      if(pbase->m_uiMessage == WM_MOUSELEAVE)
-       {
-       m_bMouseHover = false;
-       for(int32_t i = 0; i < m_guieptraMouseHover.get_size(); i++)
-       {
-       if(m_guieptraMouseHover[i] == this
-       || m_guieptraMouseHover[i]->m_pimpl == this
-       || m_guieptraMouseHover[i]->m_pui == this)
-       continue;
-       m_guieptraMouseHover[i]->send_message(WM_MOUSELEAVE);
-       }
-       m_guieptraMouseHover.remove_all();
-       }*/
 
       if(pbase->m_uiMessage == WM_LBUTTONDOWN ||
          pbase->m_uiMessage == WM_LBUTTONUP ||
@@ -1340,18 +1319,35 @@ namespace macos
             // what forces, at the end of message processing, setting the bergedge cursor to the default cursor, if no other
             // handler has set it to another one.
             pmouse->m_ecursor = visual::cursor_default;
+            
          }
+         
       restart_mouse_hover_check:
-         for(int32_t i = 0; i < m_guieptraMouseHover.get_size(); i++)
+         
          {
-            if(!m_guieptraMouseHover[i]->_001IsPointInside(pmouse->m_pt))
+            
+            synch_lock sl(m_pmutex);
+         
+            for(int32_t i = 0; i < m_guieptraMouseHover.get_size(); i++)
             {
+            
                ::user::interaction * pui = m_guieptraMouseHover[i];
-               //               pui->send_message(WM_MOUSELEAVE);
-               m_guieptraMouseHover.remove(pui);
-               goto restart_mouse_hover_check;
+               
+               sl.unlock();
+               
+               if(pui == NULL || !pui->_001IsPointInside(pmouse->m_pt))
+               {
+               
+                  m_guieptraMouseHover.remove(pui);
+                  
+                  goto restart_mouse_hover_check;
+                  
+               }
+               
             }
+            
          }
+         
          if(!m_bMouseHover)
          {
             m_pui->_001OnTriggerMouseInside();
@@ -2962,10 +2958,93 @@ namespace macos
 
       Default();
 
-//      if(!System.get_twf()->m_bProDevianMode)
+      if(m_pui->is_message_only_window())
       {
-         SetTimer(2049, 84, NULL);
+         
+         TRACE("good : opt out!");
+         
       }
+      else
+      {
+         
+         m_pthreadDraw = ::fork(get_app(), [&]()
+                                {
+                                   
+                                   DWORD dwStart;
+                                   
+                                   while (::get_thread()->m_bRun)
+                                   {
+                                      
+                                      dwStart = ::get_tick_count();
+                                      
+                                      if (!m_pui->m_bLockWindowUpdate)
+                                      {
+                                         
+                                         if(m_pui->GetExStyle() & WS_EX_LAYERED)
+                                         {
+                                            
+                                            
+                                            if (m_rectLastPos != m_rectParentClient)
+                                            {
+                                               
+                                               m_dwLastPos = ::get_tick_count();
+                                               
+                                               m_rectLastPos = m_rectParentClient;
+                                               
+                                            }
+                                            else
+                                            {
+                                               
+                                               rect64 r2;
+                                               
+                                               GetWindowRect(r2);
+                                               
+                                               if (r2 != m_rectParentClient && ::get_tick_count() - m_dwLastPos > 400)
+                                               {
+                                                  
+                                                  ::SetWindowPos(m_oswindow, NULL,
+                                                                 m_rectParentClient.left,
+                                                                 m_rectParentClient.top,
+                                                                 m_rectParentClient.width(),
+                                                                 m_rectParentClient.height(),
+                                                                 SWP_NOZORDER
+                                                                 | SWP_NOREDRAW
+                                                                 | SWP_NOCOPYBITS
+                                                                 | SWP_NOACTIVATE
+                                                                 | SWP_NOOWNERZORDER
+                                                                 | SWP_NOSENDCHANGING
+                                                                 | SWP_DEFERERASE);
+                                                  
+                                               }
+                                               
+                                            }
+                                            
+                                         }
+                                         
+                                         if (m_pui->has_pending_graphical_update())
+                                         {
+                                            
+                                            RedrawWindow(NULL, NULL, RDW_INVALIDATE | RDW_UPDATENOW | RDW_NOERASE);
+                                            
+                                            m_pui->on_after_graphical_update();
+                                            
+                                         }
+                                         
+                                      }
+                                      
+                                      if (::get_tick_count() - dwStart < 5)
+                                      {
+                                         
+                                         Sleep(5);
+                                         
+                                      }
+                                      
+                                   }
+                                   
+                                });
+         
+      }
+      
 
    }
 
@@ -3792,8 +3871,6 @@ namespace macos
 
       ::rect rectBefore;
 
-      //::GetWindowRect(m_oswindow, rectBefore);
-      
       ::copy(rectBefore, m_rectParentClient);
 
       ::rect rectNew = rectBefore;
@@ -3926,12 +4003,12 @@ namespace macos
        }
        }*/
 
-      //      if(nFlags & SWP_REDRAWWINDOW)
-      //{
+      if(!(nFlags & SWP_NOREDRAW))
+      {
 
-        // RedrawWindow();
+         RedrawWindow();
 
-      //}
+      }
 
       return true;
 
@@ -4826,16 +4903,40 @@ namespace macos
    {
 
       
-      unsigned long long uiNow = get_nanos();
-      
-      if(m_uiLastUpdateEnd < m_uiLastUpdateBeg && uiNow - m_uiLastUpdateBeg < 200 * 1000 * 1000)
+      if(flags & RDW_UPDATENOW)
       {
          
-         return true;
+         unsigned long long uiNow = get_nanos();
+         
+         if(m_uiLastUpdateEnd < m_uiLastUpdateBeg || uiNow - m_uiLastUpdateEnd < ((12 * 1000 * 1000) + (500 * 1000)))
+         {
+         
+            return true;
+         
+         }
+         
+         m_uiLastUpdateBeg = uiNow;
+         
+         if(IsWindowVisible())
+         {
+         
+            round_window_redraw();
+            
+         }
+         else
+         {
+            
+            _001UpdateWindow();
+         
+         }
          
       }
-      
-      round_window_redraw();
+      else
+      {
+       
+         m_pui->m_bRedraw = true;
+         
+      }
 
       return true;
 
@@ -5868,7 +5969,7 @@ namespace macos
       
       synch_lock sl1(pbuffer->m_pmutex);
 
-      ::draw2d::dib_sp & spdibBuffer = pbuffer->m_spdibBuffer;
+      ::draw2d::dib_sp & spdibBuffer = pbuffer->get_buffer();
 
       if(spdibBuffer.is_null())
       {
@@ -6173,9 +6274,6 @@ namespace macos
    }
 
 
-} // namespace macos
-
-
 
 __STATIC void CLASS_DECL_BASE __pre_init_dialog(
                                                ::user::interaction * pWnd, LPRECT lpRectOld, DWORD* pdwStyleOld)
@@ -6383,36 +6481,11 @@ __activation_window_procedure(oswindow hWnd, UINT nMsg, WPARAM wparam, LPARAM lp
 
 
 
-namespace macos
-{
-   
-   
-   void interaction_impl::RedrawWindow(UINT nFlags)
-   {
-      
-      if(!IsWindow())
-      {
-         
-         return;
-         
-      }
-      
-      RedrawWindow();
-
-   }
-   
 
    void interaction_impl::_001UpdateWindow()
    {
 
       ::user::interaction_impl::_001UpdateWindow();
-
-//      if(!m_pui->m_bMayProDevian)
-//      {
-//
-//         round_window_redraw();
-//
-//      }
 
    }
 
@@ -6433,7 +6506,45 @@ namespace macos
    }
 
 
-}
+   void interaction_impl::mouse_hover_add(::user::interaction *  pinterface)
+   {
+      
+      if(m_pui->m_bTransparentMouseEvents)
+      {
+         
+         return;
+         
+      }
+      
+      if(pinterface == NULL)
+      {
+         
+         return;
+         
+      }
+      
+      synch_lock sl(m_pui->m_pmutex);
+      
+      m_guieptraMouseHover.add_unique(pinterface);
+      
+   }
+   
+   
+   void interaction_impl::mouse_hover_remove(::user::interaction *  pinterface)
+   {
+      
+      synch_lock sl(m_pui->m_pmutex);
+      
+      m_guieptraMouseHover.remove(pinterface);
+      
+   }
+   
+
+} // namespace macos
+
+
+
+
 
 
 

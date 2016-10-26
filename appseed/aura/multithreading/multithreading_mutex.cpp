@@ -13,6 +13,57 @@
 #endif
 
 
+//static bool lock_file(const char *lfpath)
+//{
+//   unsigned attempt = 0;
+//   while (attempt < 3) {
+//      char lckcontents[12];
+//      int fd = open(lfpath, O_RDWR | O_CREAT | O_EXCL, S_IRWXU);
+//      if (fd==-1) {
+//         if (errno != EEXIST)
+//            break;
+//         fd = open(lfpath, O_RDONLY);
+//         if (fd==-1)
+//            break;
+//         bool ok = read_data(fd, lckcontents, sizeof(lckcontents)-1);
+//         close(fd);
+//         if (ok) {
+//            lckcontents[sizeof(lckcontents)-1] = 0;
+//            int pid = atoi(lckcontents);
+//            if (pid==getpid())
+//               return true;
+//            if (kill(pid, 0) == -1) {
+//               if (errno != ESRCH)
+//                  return false;
+//               unlink(lfpath);
+//               continue;
+//            }
+//         }
+//         Sleep(1000);
+//         attempt++;
+//      }
+//      else {
+//         sprintf(lckcontents,"%10d\n",(int)getpid());
+//         bool ok = write_data(fd, lckcontents, sizeof(lckcontents)-1);
+//         close(fd);
+//         if (!ok)
+//            break;
+//      }
+//   }
+//   return false;
+//}
+//
+//static void unlock_file(const char *lfpath)
+//{
+//   for (unsigned attempt=0;attempt<10;attempt++) {
+//      if (unlink(lfpath)>=0)
+//         return;
+//      attempt++;
+//      Sleep(500);
+//   }
+//   ERRLOG("NamedMutex cannot unlock file (%d)",errno);
+//}
+
 static int g_iMutex = 0;
 
 string str_md5_dup(const char * psz);
@@ -59,6 +110,7 @@ mutex::mutex(::aura::application * papp, bool bInitiallyOwn, const char * pstrNa
    }
 
 #else
+   
 
 #if defined(ANDROID)
 
@@ -130,48 +182,125 @@ mutex::mutex(::aura::application * papp, bool bInitiallyOwn, const char * pstrNa
     }
 
 #elif defined(APPLEOS)
+   
+   //      if ((m_psem = sem_open(m_pszName, O_CREAT|O_EXCL, 0644, 1)) != SEM_FAILED)
+   //      {
+   //
+   //         m_bOwner = true;
+   //
+   //      }
+   //      else
+   //      {
+   //
+   //         int err = errno;
+   //
+   //         if (err != EEXIST)
+   //            throw resource_exception(get_app());
+   //
+   //
+   //         SetLastError(ERROR_ALREADY_EXISTS);
+   //
+   //         m_bOwner = false;
+   //
+   //         // We're not first.  Try again
+   //
+   //         m_psem = sem_open(m_pszName, 0);
+   //
+   //         if (m_psem == SEM_FAILED)
+   //            throw resource_exception(get_app());;
+   //         
+   //      }
+   
 
-   m_psem = SEM_FAILED;
-
+//   m_psem = SEM_FAILED;
+//
+//   if(pstrName != NULL && *pstrName != '\0')
+//   {
+//
+//      m_pmutex = NULL;
+//
+//      SetLastError(0);
+//
+//      m_pszName = strdup(string("/") + str_md5_dup(pstrName).Left(24-1));
+//
+//      if ((m_psem = sem_open(m_pszName, O_CREAT|O_EXCL, 0644, 1)) != SEM_FAILED)
+//      {
+//
+//         m_bOwner = true;
+//
+//      }
+//      else
+//      {
+//
+//         int err = errno;
+//
+//         if (err != EEXIST)
+//            throw resource_exception(get_app());
+//
+//
+//         SetLastError(ERROR_ALREADY_EXISTS);
+//
+//         m_bOwner = false;
+//
+//         // We're not first.  Try again
+//
+//         m_psem = sem_open(m_pszName, 0);
+//
+//         if (m_psem == SEM_FAILED)
+//            throw resource_exception(get_app());;
+//
+//      }
+//
+//   }
+//
+//   m_psem = SEM_FAILED;
+   
+   m_count = 0;
+   
    if(pstrName != NULL && *pstrName != '\0')
    {
-
+      
       m_pmutex = NULL;
-
+      
       SetLastError(0);
+      
+      ::file::path path;
+      
+#ifdef APPLEOS
+      
+      path = "/var/tmp/ca2/lock/mutex/named";
+      
+#else
+      
+      path = "/var/lock/ca2/mutex/named";
+      
+#endif
 
-      m_pszName = strdup(string("/") + str_md5_dup(pstrName).Left(24-1));
+      path /= pstrName;
 
-      if ((m_psem = sem_open(m_pszName, O_CREAT|O_EXCL, 0644, 1)) != SEM_FAILED)
+      dir::mk(path.folder());
+      
+      m_iFd = open(path, O_RDWR | O_CREAT, S_IRWXU);
+      
+      if(m_iFd < 0)
       {
-
-         m_bOwner = true;
-
+         
+         throw resource_exception(get_app());
+         
       }
-      else
-      {
-
-         int err = errno;
-
-         if (err != EEXIST)
-            throw resource_exception(get_app());
-
-
-         SetLastError(ERROR_ALREADY_EXISTS);
-
-         m_bOwner = false;
-
-         // We're not first.  Try again
-
-         m_psem = sem_open(m_pszName, 0);
-
-         if (m_psem == SEM_FAILED)
-            throw resource_exception(get_app());;
-
-      }
-
+      
+      m_pszName = strdup(path);
+      
+      pthread_mutexattr_t attr;
+      
+      pthread_mutexattr_init(&attr);
+      
+      pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_RECURSIVE);
+      
+      pthread_mutex_init(&m_mutex, &attr);
+      
    }
-
+   
 #else
 
    m_key = 0;
@@ -324,7 +453,7 @@ mutex::mutex(::aura::application * papp, const char * pstrName, sem_t * psem, bo
 
    m_bOwner       = bOwner;
    m_pszName      = strdup(pstrName);
-   m_psem         = psem;
+   //m_psem         = psem;
 
 }
 
@@ -334,7 +463,7 @@ mutex::mutex(const mutex & m):
 {
 
    m_bOwner       = false;
-   m_psem         = m.m_psem;
+   //m_psem         = m.m_psem;
    m_mutex        = m.m_mutex;
 
 }
@@ -378,15 +507,24 @@ mutex::~mutex()
 
 #if defined(ANDROID) || defined(APPLEOS)
 
-   if(m_psem != SEM_FAILED)
+   if(m_pszName != NULL)
    {
+      
+      if(m_iFd >= 0)
+      {
+         
+         close(m_iFd);
+         
+      }
+      
+      pthread_mutex_destroy(&m_mutex);
 
       //if(m_bOwner)
-      {
-         sem_close(m_psem);
-         sem_unlink(m_pszName);
-
-      }
+//      {
+//         sem_close(m_psem);
+//         sem_unlink(m_pszName);
+//
+//      }
 
    }
 
@@ -422,6 +560,8 @@ mutex::~mutex()
    }
 
 #endif
+   
+
 
 }
 
@@ -467,55 +607,139 @@ wait_result mutex::wait(const duration & duration)
 
 #if defined(APPLEOS)
    
-   if(m_psem != SEM_FAILED)
-   {
-      
-      uint32_t uiTimeout = duration.get_total_milliseconds();
-      
-      uint32_t uiStart = get_tick_count();
-   
-      while(true)
+//   if(m_psem != SEM_FAILED)
+//   {
+//      
+//      uint32_t uiTimeout = duration.get_total_milliseconds();
+//      
+//      uint32_t uiStart = get_tick_count();
+//   
+//      while(true)
+//      {
+//         
+//         int rc = sem_trywait(m_psem);
+//         
+//         if(!rc)
+//         {
+//            
+//            return wait_result(wait_result::Event0);
+//            
+//         }
+//         else
+//         {
+//            
+//            int iError = errno;
+//            
+//            if(iError != EAGAIN)
+//            {
+//               
+//               return wait_result(wait_result::Failure);
+//               
+//            }
+//            
+//         }
+//         
+//         uint32_t uiElapsed = get_tick_count() - uiStart;
+//         
+//         if(uiElapsed >= uiTimeout)
+//         {
+//            
+//            return wait_result(wait_result::Timeout);
+//            
+//         }
+//         
+//         Sleep(MAX(1, MIN(1000, (uiTimeout - uiElapsed) / 50)));
+//         
+//      }
+//      
+//      return wait_result(wait_result::Failure);
+//      
+//   }
+//   else
+      if(m_pszName != NULL)
       {
          
-         int rc = sem_trywait(m_psem);
+         pthread_mutex_lock(&m_mutex);
          
-         if(!rc)
+         uint32_t uiTimeout = duration.get_total_milliseconds();
+         
+         uint32_t uiStart = get_tick_count();
+
+         if(m_count > 0 && pthread_equal(m_thread, pthread_self()))
          {
+            
+            m_count++;
+            
+            pthread_mutex_unlock(&m_mutex);
             
             return wait_result(wait_result::Event0);
             
          }
-         else
+
+         while(true)
          {
             
-            int iError = errno;
-            
-            if(iError != EAGAIN)
+            if(m_count > 0 && !pthread_equal(m_thread, pthread_self()))
             {
+             
+            }
+            else
+            {
+            
+               int rc = lockf(m_iFd, F_LOCK, 0);
+            
+               if(!rc)
+               {
+                  
+                  m_count++;
+                  
+                  m_thread = pthread_self();
+                  
+                  pthread_mutex_unlock(&m_mutex);
                
-               return wait_result(wait_result::Failure);
+                  return wait_result(wait_result::Event0);
+               
+               }
+               else
+               {
+               
+                  int iError = errno;
+               
+                  if(iError != EAGAIN && iError != EACCES)
+                  {
+                  
+                     pthread_mutex_unlock(&m_mutex);
+
+                     return wait_result(wait_result::Failure);
+                  
+                  }
+               
+               }
                
             }
             
+            uint32_t uiElapsed = get_tick_count() - uiStart;
+            
+            if(uiElapsed >= uiTimeout)
+            {
+               
+               pthread_mutex_unlock(&m_mutex);
+               
+               return wait_result(wait_result::Timeout);
+               
+            }
+            
+            Sleep(MAX(1, MIN(1000, (uiTimeout - uiElapsed) / 50)));
+            
          }
          
-         uint32_t uiElapsed = get_tick_count() - uiStart;
-         
-         if(uiElapsed >= uiTimeout)
-         {
-            
-            return wait_result(wait_result::Timeout);
-            
-         }
-         
-         Sleep(MAX(1, MIN(1000, (uiTimeout - uiElapsed) / 50)));
+         pthread_mutex_unlock(&m_mutex);
+
+         return wait_result(wait_result::Failure);
          
       }
-      
-      return wait_result(wait_result::Failure);
-      
-   }
-   else
+      else
+         
 
 #elif defined(ANDROID)
 
@@ -716,17 +940,82 @@ bool mutex::lock()
 
 #if defined(ANDROID) || defined(APPLEOS)
 
-   if(m_psem != SEM_FAILED)
+   //int32_t ret = sem_wait(m_psem);
+   
+   //if(ret < 0)
+   //{
+   
+   // return false;
+   
+   //}
+   
+   if(m_pszName != NULL)
    {
 
-      int32_t ret = sem_wait(m_psem);
-
-      if(ret < 0)
+      pthread_mutex_lock(&m_mutex);
+      
+      if(m_count > 0 && pthread_equal(m_thread, pthread_self()))
       {
-
-         return false;
-
+         
+         m_count++;
+     
+         pthread_mutex_unlock(&m_mutex);
+         
+         return true;
+         
       }
+      
+      while(true)
+      {
+         
+         if(m_count > 0 && !pthread_equal(m_thread, pthread_self()))
+         {
+            
+         }
+         else
+         {
+            
+            int rc = lockf(m_iFd, F_LOCK, 0);
+            
+            if(!rc)
+            {
+               
+               m_count++;
+               
+               m_thread = pthread_self();
+               
+               pthread_mutex_unlock(&m_mutex);
+
+               return true;
+               
+            }
+            else
+            {
+               
+               int iError = errno;
+               
+               if(iError != EAGAIN && iError != EACCES)
+               {
+                  
+                  pthread_mutex_unlock(&m_mutex);
+                  
+                  return false;
+                  
+               }
+               
+            }
+            
+         }
+         
+         Sleep(100);
+         
+      }
+      
+      pthread_mutex_unlock(&m_mutex);
+      
+      return false;
+      
+
 
    }
 
@@ -843,11 +1132,43 @@ bool mutex::unlock()
 
 #if defined(ANDROID) || defined(APPLEOS)
 
-   if(m_psem != SEM_FAILED)
+   //if(m_psem != SEM_FAILED)
+   if(m_pszName != NULL)
    {
+      
+      pthread_mutex_lock(&m_mutex);
+      
+      if(!pthread_equal(m_thread, pthread_self()))
+      {
+         
+         
+#ifdef _DEBUG
+         
+         ASSERT(FALSE);
+         
+#endif
+         
+         pthread_mutex_unlock(&m_mutex);
+         
+         return false;
+         
+      }
 
-      return sem_post(m_psem) == 0;
+      m_count--;
+      
+      int rc = 0;
 
+      if(m_count == 0)
+      {
+      
+         rc = lockf(m_iFd, F_ULOCK, 0);
+         
+      }
+      
+      pthread_mutex_unlock(&m_mutex);
+      
+      return rc == 0;
+      
    }
 
 #else
@@ -874,11 +1195,19 @@ bool mutex::unlock()
       
       pthread_mutex_lock(&m_mutex);
       
+      if(!pthread_equal(m_thread, pthread_self()))
+      {
+         
+         
 #ifdef _DEBUG
       
-      ASSERT(pthread_equal(m_thread, pthread_self()));
+      ASSERT(FALSE);
       
 #endif
+         
+         return false;
+         
+      }
       
       if (--m_count == 0)
       {
@@ -890,6 +1219,8 @@ bool mutex::unlock()
       }
       
       pthread_mutex_unlock(&m_mutex);
+      
+      return true;
       
    }
    

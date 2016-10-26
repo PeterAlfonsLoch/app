@@ -31,6 +31,13 @@ void window_buffer::update_window(::draw2d::dib * pdib)
 
 }
 
+::draw2d::dib_sp & window_buffer::get_buffer()
+{
+   
+   return m_spdibBuffer;
+   
+}
+
 
 ::draw2d::graphics * window_buffer::on_begin_draw()
 {

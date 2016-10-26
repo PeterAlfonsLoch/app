@@ -240,7 +240,7 @@ namespace fontopus
 
       SetWindowPos(ZORDER_TOP,rectFontopus,SWP_SHOWWINDOW);
 
-      on_layout();
+      layout();
 
       m_login.m_peditUser->SetFocus();
 
@@ -512,6 +512,13 @@ namespace fontopus
 
    }
 
+   
+   bool simple_ui::has_pending_graphical_update()
+   {
+      
+      return IsWindowVisible();
+      
+   }
 
 
 } // namespace fontopus

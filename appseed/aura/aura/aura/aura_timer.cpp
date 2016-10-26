@@ -481,9 +481,7 @@ bool timer::call_on_timer()
 
       }
 
-      mutex m(*m_pmutex);
-
-      synch_lock sl(&m);
+      synch_lock sl(m_pmutex);
 
       if (m_bKill || m_bDestroying || m_bDeal)
          return true;

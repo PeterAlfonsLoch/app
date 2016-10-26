@@ -5,8 +5,8 @@ class CLASS_DECL_BASE window_buffer :
    virtual public window_graphics
 {
 protected:
+   ::visual::dib_sp              m_spdibBuffer;
 public:
-   ::visual::dib_sp              m_spdibBuffer2;
 
 
    HANDLE                        m_hMapFile;
@@ -23,8 +23,9 @@ public:
 
 
    ::draw2d::graphics * on_begin_draw();
-
-
+   
+   ::draw2d::dib_sp & get_buffer();
+   
 };
 
 

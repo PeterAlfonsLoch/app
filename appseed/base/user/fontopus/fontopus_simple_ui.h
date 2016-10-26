@@ -51,6 +51,8 @@ namespace fontopus
       virtual void _000OnDraw(::draw2d::graphics * pgraphics);
 
       virtual void _001DrawChildren(::draw2d::graphics * pgraphics);
+      
+      virtual bool has_pending_graphical_update() override;
 
    };
 

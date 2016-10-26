@@ -1128,6 +1128,8 @@ namespace user
       //   _001UpdateWindow();
 
       //}
+      
+      RedrawWindow();
 
    }
 

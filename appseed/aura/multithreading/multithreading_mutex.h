@@ -27,7 +27,8 @@ public:
 
 #if defined(ANDROID) || defined(APPLEOS)
 
-   sem_t *                 m_psem;
+   //sem_t *               m_psem;
+   int                     m_iFd;
 
 #else
 

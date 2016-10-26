@@ -54,7 +54,7 @@ void round_window::round_window_redraw()
 void round_window::round_window_invalidate()
 {
    
-   [[m_proundwindow dd_invokeOnMainThread] display];
+   [[m_proundwindow dd_invokeOnMainThread] setViewsNeedDisplay];
    
 }
 

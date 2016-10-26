@@ -13,6 +13,7 @@ namespace database
       login = "";
       passwd = "";
       sequence_table = "db_sequence";
+      m_pmutex = new mutex(::get_thread_app());
    }
 
    base::~base() 

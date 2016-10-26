@@ -1475,6 +1475,15 @@ namespace axis
       index iMatchingMonitor = -1;
       int64_t iBestArea = -1;
       rect rectMatch;
+      rect r(rectParam);
+      
+      if(r.is_null())
+      {
+         
+         get_cursor_pos((POINT *)&r.left);
+         *((POINT*)&r.right) = *((POINT*)&r.left);
+         
+      }
 
       for(index iMonitor = 0; iMonitor < get_monitor_count(); iMonitor++)
       {
@@ -1486,7 +1495,7 @@ namespace axis
          if(get_monitor_rect(iMonitor,rectMonitor))
          {
 
-            if(rectIntersect.top_left_null_intersect(&rectParam,rectMonitor))
+            if(rectIntersect.top_left_null_intersect(&r,rectMonitor))
             {
 
                if(rectIntersect.area() > iBestArea)
@@ -1501,7 +1510,7 @@ namespace axis
                }
 
             }
-            else if(rectMonitor.contains(rectParam))
+            else if(rectMonitor.contains(r))
             {
 
                iMatchingMonitor = iMonitor;

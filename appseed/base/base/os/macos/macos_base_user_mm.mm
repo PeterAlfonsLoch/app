@@ -59,7 +59,7 @@ bool oswindow_data::show_window(int32_t nCmdShow)
       
       nsapp_activate_ignoring_other_apps(1);
       
-//      [[m_nswindow dd_invokeOnMainThreadAndWaitUntilDone:FALSE ]showWindow: nil];
+      //[[m_nswindow dd_invokeOnMainThreadAndWaitUntilDone:FALSE ]showWindow: nil];
 
       [[m_nswindow dd_invokeOnMainThreadAndWaitUntilDone:TRUE] makeKeyAndOrderFront : nil];
       
@@ -116,7 +116,7 @@ WINBOOL set_nswindow_frame(oswindow hwnd, LPCRECT lpcrect, int iDisplay)
 
    
    
-   [[hwnd->window() dd_invokeOnMainThreadAndWaitUntilDone:TRUE] setFrame : rect display : iDisplay];
+   [[hwnd->window() dd_invokeOnMainThreadAndWaitUntilDone:FALSE] setFrame : rect display : iDisplay];
    
    //move_nswindow(hwnd, lpcrect->left, lpcrect->top);
    

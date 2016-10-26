@@ -8,59 +8,61 @@ namespace macos
 {
 
 
-    CLASS_DECL_BASE LRESULT CALLBACK __send_message_hook(int32_t, WPARAM, LPARAM);
-    CLASS_DECL_BASE LRESULT CALLBACK __cbt_filter_hook(int32_t, WPARAM, LPARAM);
-    CLASS_DECL_BASE LRESULT __call_window_procedure(::user::interaction *   pWnd, oswindow hWnd, UINT nMsg, WPARAM wParam, LPARAM lParam);
+   CLASS_DECL_BASE LRESULT CALLBACK __send_message_hook(int32_t, WPARAM, LPARAM);
+   CLASS_DECL_BASE LRESULT CALLBACK __cbt_filter_hook(int32_t, WPARAM, LPARAM);
+   CLASS_DECL_BASE LRESULT __call_window_procedure(::user::interaction *   pWnd, oswindow hWnd, UINT nMsg, WPARAM wParam, LPARAM lParam);
 
 
-    class CLASS_DECL_BASE interaction_impl :
-        virtual public ::user::interaction_impl,
-        virtual public ::round_window
-    {
-    public:
+   class CLASS_DECL_BASE interaction_impl :
+      virtual public ::user::interaction_impl,
+      virtual public ::round_window
+   {
+   public:
 
 
-        spa(::user::interaction)        m_guieptraMouseHover;
-        string                          m_strWindowText;
-        ::user::interaction_base *      m_pbasewnd;
-        bool                            m_bNeedsUpdate;
+      spa(::user::interaction)         m_guieptraMouseHover;
+      string                           m_strWindowText;
+      ::user::interaction_base *       m_pbasewnd;
+      bool                             m_bNeedsUpdate;
+      ::thread *                       m_pthreadDraw;
+      rect64                           m_rectLastPos;
+      uint32_t                         m_dwLastPos;
 
 
-        interaction_impl();
-        interaction_impl(::aura::application * papp);
-        virtual ~interaction_impl();
+      interaction_impl();
+      interaction_impl(::aura::application * papp);
+      virtual ~interaction_impl();
 
 
-        virtual void construct(oswindow hwnd);
+      virtual void construct(oswindow hwnd);
 
 
-        virtual void mouse_hover_add(::user::interaction *   pinterface);
-        virtual void mouse_hover_remove(::user::interaction *   pinterface);
+      virtual void mouse_hover_add(::user::interaction *   pinterface);
+      virtual void mouse_hover_remove(::user::interaction *   pinterface);
 
-        virtual bool create_message_queue(::user::interaction * pui, const char * pszName);
+      virtual bool create_message_queue(::user::interaction * pui, const char * pszName);
 
 		static_function const MESSAGE* PASCAL GetCurrentMessage();
+      virtual void install_message_handling(::message::dispatch * pinterface);
 
-        virtual void install_message_handling(::message::dispatch * pinterface);
+      //bool operator==(const ::user::interaction & wnd) const;
+      //bool operator!=(const ::user::interaction & wnd) const;
 
-        //bool operator==(const ::user::interaction & wnd) const;
-        //bool operator!=(const ::user::interaction & wnd) const;
+      DWORD GetStyle() const;
+      DWORD GetExStyle() const;
+      bool ModifyStyle(DWORD dwRemove, DWORD dwAdd, UINT nFlags = 0);
+      bool ModifyStyleEx(DWORD dwRemove, DWORD dwAdd, UINT nFlags = 0);
 
-        DWORD GetStyle() const;
-        DWORD GetExStyle() const;
-        bool ModifyStyle(DWORD dwRemove, DWORD dwAdd, UINT nFlags = 0);
-        bool ModifyStyleEx(DWORD dwRemove, DWORD dwAdd, UINT nFlags = 0);
+      //virtual ::user::interaction *   GetOwner();
+      virtual ::user::interaction *  SetOwner(::user::interaction *   pOwnerWnd);
 
-        //virtual ::user::interaction *   GetOwner();
-        virtual ::user::interaction *  SetOwner(::user::interaction *   pOwnerWnd);
+      virtual ::user::interaction * get_wnd() const;
 
-        virtual ::user::interaction * get_wnd() const;
+      virtual bool _001OnCmdMsg(::aura::cmd_msg * pcmdmsg);
 
-        virtual bool _001OnCmdMsg(::aura::cmd_msg * pcmdmsg);
+      virtual bool BaseOnControlEvent(::user::control_event * pevent);
 
-        virtual bool BaseOnControlEvent(::user::control_event * pevent);
-
-        void _002OnDraw(::draw2d::dib * pdib);
+      void _002OnDraw(::draw2d::dib * pdib);
 
         DECL_GEN_SIGNAL(_001OnEraseBkgnd);
         DECL_GEN_SIGNAL(_001OnMove);

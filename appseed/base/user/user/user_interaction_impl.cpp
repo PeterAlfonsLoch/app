@@ -1881,7 +1881,7 @@ namespace user
 
          output_debug_string("interaction_impl m_spgraphics alloc");
 
-         m_spgraphics.alloc(allocer());
+         //m_spgraphics.alloc(allocer());
 
          m_spgraphics->on_create_window(this);
 

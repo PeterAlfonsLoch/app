@@ -47,7 +47,6 @@
 		07A36F771B25D18F00E4F888 /* macos_message_queue.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A36DA81B25D18E00E4F888 /* macos_message_queue.h */; };
 		07A36F781B25D18F00E4F888 /* macos_mm.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A36DA91B25D18E00E4F888 /* macos_mm.h */; };
 		07A36F7B1B25D18F00E4F888 /* macos_printer.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A36DAB1B25D18E00E4F888 /* macos_printer.h */; };
-		07A36F7E1B25D18F00E4F888 /* macos_window_draw.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A36DAD1B25D18E00E4F888 /* macos_window_draw.h */; };
 		07A36F7F1B25D18F00E4F888 /* round_window.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A36DAE1B25D18E00E4F888 /* round_window.h */; };
 		07A36F821B25D18F00E4F888 /* RoundWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A36DB01B25D18E00E4F888 /* RoundWindow.h */; };
 		07A36F851B25D18F00E4F888 /* RoundWindowApp.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A36DB21B25D18E00E4F888 /* RoundWindowApp.h */; };
@@ -293,7 +292,6 @@
 		07A36DA81B25D18E00E4F888 /* macos_message_queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macos_message_queue.h; sourceTree = "<group>"; };
 		07A36DA91B25D18E00E4F888 /* macos_mm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macos_mm.h; sourceTree = "<group>"; };
 		07A36DAB1B25D18E00E4F888 /* macos_printer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macos_printer.h; sourceTree = "<group>"; };
-		07A36DAD1B25D18E00E4F888 /* macos_window_draw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macos_window_draw.h; sourceTree = "<group>"; };
 		07A36DAE1B25D18E00E4F888 /* round_window.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = round_window.h; sourceTree = "<group>"; };
 		07A36DB01B25D18E00E4F888 /* RoundWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundWindow.h; sourceTree = "<group>"; };
 		07A36DB21B25D18E00E4F888 /* RoundWindowApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundWindowApp.h; sourceTree = "<group>"; };
@@ -590,7 +588,6 @@
 				07A36DA81B25D18E00E4F888 /* macos_message_queue.h */,
 				07A36DA91B25D18E00E4F888 /* macos_mm.h */,
 				07A36DAB1B25D18E00E4F888 /* macos_printer.h */,
-				07A36DAD1B25D18E00E4F888 /* macos_window_draw.h */,
 				07A36DAE1B25D18E00E4F888 /* round_window.h */,
 				07A36DB01B25D18E00E4F888 /* RoundWindow.h */,
 				07A36DB21B25D18E00E4F888 /* RoundWindowApp.h */,
@@ -1010,7 +1007,6 @@
 				07D967DB1B4C63E3004A3D2A /* install_starter_start.h in Headers */,
 				07A36F721B25D18F00E4F888 /* macos_interaction_impl.h in Headers */,
 				07D968A01B4C63E4004A3D2A /* user_view_creator.h in Headers */,
-				07A36F7E1B25D18F00E4F888 /* macos_window_draw.h in Headers */,
 				07D968701B4C63E4004A3D2A /* user_place_holder.h in Headers */,
 				07A36ED41B25D18F00E4F888 /* base_session.h in Headers */,
 				07A36F681B25D18F00E4F888 /* macos.h in Headers */,

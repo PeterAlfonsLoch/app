@@ -216,6 +216,7 @@ namespace sqlite
 
    bool set::query(const char *query)
    {
+    
       if(db == NULL)
       {
          TRACE("set::query: base is not Defined");
@@ -243,44 +244,75 @@ namespace sqlite
          return false;
       }
 
+      synch_lock sl(db->m_pmutex);
+      
       close();
 
       char * errmsg = NULL;
+      
+      int iResult =sqlite3_exec((sqlite3 *) handle(),query,&callback,&result,&errmsg);
+      
+      db->setErr(iResult);
 
-      if(db->setErr(sqlite3_exec((sqlite3 *) handle(),query,&callback,&result,&errmsg)) == SQLITE_OK)
+      if(iResult == SQLITE_OK)
       {
+         
          m_strQueryErrorMessage = "";
+         
          m_strDatabaseErrorMessage = "";
+         
          if (errmsg != NULL)
          {
+            
             sqlite3_free(errmsg);
+            
             errmsg = NULL;
+            
          }
 
          active = true;
+         
          ds_state = database::dsSelect;
+         
          first();
+         
          return true;
+         
       }
       else
       {
+         
          m_strQueryErrorMessage = errmsg;
+         
          if (errmsg != NULL)
          {
+            
             sqlite3_free(errmsg);
+            
             errmsg = NULL;
+            
          }
+         
          m_strDatabaseErrorMessage = db->getErrorMsg();
+         
          TRACE("set::query: Error: %s, %s", errmsg, db->getErrorMsg());
+         
          return false;
+         
       }
+      
    }
 
+   
    void set::open(const char * sql)
    {
+      
       set_select_sql(sql);
+      
       open();
+      
    }
+   
 
    void set::open()
    {
