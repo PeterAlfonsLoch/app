@@ -80,9 +80,9 @@ namespace draw2d_quartz2d
    bool brush::create()
    {
       
-      
-      if(m_etype == type_linear_gradient_point_color)
+      if(m_etype == type_linear_gradient_point_color || m_etype == type_radial_gradient_color)
       {
+         
          CGFloat locations[2];
          CGFloat components[8];
          
@@ -148,7 +148,7 @@ namespace draw2d_quartz2d
       {
          return NULL;
       }
-      else if(m_etype == type_linear_gradient_point_color)
+      else if(m_etype == type_linear_gradient_point_color || m_etype == type_radial_gradient_color)
       {
          return m_gradient;
       }

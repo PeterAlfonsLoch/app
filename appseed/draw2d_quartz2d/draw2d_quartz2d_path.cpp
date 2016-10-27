@@ -136,7 +136,7 @@ namespace draw2d_quartz2d
       
       CGContextSaveGState(p->m_pdc);
       
-      internal_show_text(p, spfont,NULL,NULL, x, y, strText, (int)strText.get_length(), kCGTextInvisible);
+      p->internal_show_text(spfont,NULL,NULL, x, y, strText, (int)strText.get_length(), kCGTextInvisible);
       
       CGPathAddPath(m_path, NULL, CGContextCopyPath(p->m_pdc));
 

@@ -12,7 +12,8 @@ namespace draw2d_quartz2d
    public:
       
       
-      
+      CGMutablePathRef        m_path;
+
       // xxx     Gdiplus::Region *       m_pregion;
       
       //static region * PASCAL from_handle(::base::application * papp, HRGN hRgn);
@@ -22,7 +23,7 @@ namespace draw2d_quartz2d
       virtual ~region();
       
       
-      //virtual void * get_os_data() const;
+      virtual void * get_os_data() const;
       
       
       /*bool CreateRectRgn(int32_t x1, int32_t y1, int32_t x2, int32_t y2);
@@ -58,10 +59,12 @@ namespace draw2d_quartz2d
     //  bool get_poly_polygon(cairo_t * pdc);
       //bool get_combine(cairo_t * pdc);
       
+      bool destroy();
       
+      bool create();
       
-
-
+      virtual void * detach();
+      
    };
 
 } // namespace draw2d_quartz2d

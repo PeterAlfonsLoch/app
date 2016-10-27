@@ -13,62 +13,10 @@
 #endif
 
 
-//static bool lock_file(const char *lfpath)
-//{
-//   unsigned attempt = 0;
-//   while (attempt < 3) {
-//      char lckcontents[12];
-//      int fd = open(lfpath, O_RDWR | O_CREAT | O_EXCL, S_IRWXU);
-//      if (fd==-1) {
-//         if (errno != EEXIST)
-//            break;
-//         fd = open(lfpath, O_RDONLY);
-//         if (fd==-1)
-//            break;
-//         bool ok = read_data(fd, lckcontents, sizeof(lckcontents)-1);
-//         close(fd);
-//         if (ok) {
-//            lckcontents[sizeof(lckcontents)-1] = 0;
-//            int pid = atoi(lckcontents);
-//            if (pid==getpid())
-//               return true;
-//            if (kill(pid, 0) == -1) {
-//               if (errno != ESRCH)
-//                  return false;
-//               unlink(lfpath);
-//               continue;
-//            }
-//         }
-//         Sleep(1000);
-//         attempt++;
-//      }
-//      else {
-//         sprintf(lckcontents,"%10d\n",(int)getpid());
-//         bool ok = write_data(fd, lckcontents, sizeof(lckcontents)-1);
-//         close(fd);
-//         if (!ok)
-//            break;
-//      }
-//   }
-//   return false;
-//}
-//
-//static void unlock_file(const char *lfpath)
-//{
-//   for (unsigned attempt=0;attempt<10;attempt++) {
-//      if (unlink(lfpath)>=0)
-//         return;
-//      attempt++;
-//      Sleep(500);
-//   }
-//   ERRLOG("NamedMutex cannot unlock file (%d)",errno);
-//}
-
 static int g_iMutex = 0;
 
-string str_md5_dup(const char * psz);
 
-mutex::mutex(::aura::application * papp, bool bInitiallyOwn, const char * pstrName, LPSECURITY_ATTRIBUTES lpsaAttribute /* = NULL */) :
+mutex::mutex(::aura::application * papp, bool bInitiallyOwn, const char * pstrName, LPSECURITY_ATTRIBUTES lpsaAttribute) :
    sync_object(pstrName)
 {
 
@@ -78,18 +26,16 @@ mutex::mutex(::aura::application * papp, bool bInitiallyOwn, const char * pstrNa
 
 #ifdef WINDOWS
 
-    m_object = ::CreateMutexExW(lpsaAttribute,pstrName == NULL ? NULL : (const unichar *) ::str::international::utf8_to_unicode(pstrName),bInitiallyOwn ?  CREATE_MUTEX_INITIAL_OWNER : 0,MUTEX_ALL_ACCESS);
+   m_object = ::CreateMutexExW(lpsaAttribute,pstrName == NULL ? NULL : (const unichar *) ::str::international::utf8_to_unicode(pstrName),bInitiallyOwn ?  CREATE_MUTEX_INITIAL_OWNER : 0,MUTEX_ALL_ACCESS);
 
-    DWORD dwLastError = ::GetLastError();
+   DWORD dwLastError = ::GetLastError();
 
-    m_bAlreadyExists = dwLastError == ERROR_ALREADY_EXISTS;
+   m_bAlreadyExists = dwLastError == ERROR_ALREADY_EXISTS;
 
    if(m_object == NULL)
    {
 
       DWORD dwError1 = ::GetLastError();
-
-
 
       if(pstrName != NULL)
       {
@@ -114,146 +60,74 @@ mutex::mutex(::aura::application * papp, bool bInitiallyOwn, const char * pstrNa
 
 #if defined(ANDROID)
 
-    m_psem = SEM_FAILED;
+   m_psem = SEM_FAILED;
 
-    if(pstrName != NULL && *pstrName != '\0')
-    {
+   if(pstrName != NULL && *pstrName != '\0')
+   {
 
-       m_pmutex = NULL;
+      m_pmutex = NULL;
 
-       m_psem = NULL;
+      m_psem = NULL;
 
-       return;
+      return;
 
-       //string strName(pstrName);
+      //string strName(pstrName);
 
-       ////if(str::begins_ci(pstrName, "Global"))
-       ////{
+      ////if(str::begins_ci(pstrName, "Global"))
+      ////{
 
-       ////   m_strName = ::file::path(::aura::system::g_p->m_pandroidinitdata->m_pszCacheDir) / "var" / "tmp"/ strName;
+      ////   m_strName = ::file::path(::aura::system::g_p->m_pandroidinitdata->m_pszCacheDir) / "var" / "tmp"/ strName;
 
-       ////   ::dir::mk(::file::path(m_strName).folder());
+      ////   ::dir::mk(::file::path(m_strName).folder());
 
-       ////}
-       ////else
-       ////{
+      ////}
+      ////else
+      ////{
 
-       ////   m_strName = ::file::path(getenv("HOME")) / strName;
+      ////   m_strName = ::file::path(getenv("HOME")) / strName;
 
-       ////}
+      ////}
 
-       //s
+      //s
 
-       //m_strName.replace("/", "_");
-       //m_strName.replace(":", "_");
-       //m_strName.replace("/", "_");
+      //m_strName.replace("/", "_");
+      //m_strName.replace(":", "_");
+      //m_strName.replace("/", "_");
 
-       ////::file_put_contents_dup(m_strName, m_strName);
+      ////::file_put_contents_dup(m_strName, m_strName);
 
-       ////string strTest = file_as_string_dup(m_strName);
+      ////string strTest = file_as_string_dup(m_strName);
 
-       ////int isCreator = 0;
+      ////int isCreator = 0;
 
-       //if ((m_psem = sem_open(m_strName, O_CREAT|O_EXCL, 0644, 1)) != SEM_FAILED)
-       //{
+      //if ((m_psem = sem_open(m_strName, O_CREAT|O_EXCL, 0644, 1)) != SEM_FAILED)
+      //{
 
-       //   // We got here first
+      //   // We got here first
 
-       //   //isCreator = 1;
+      //   //isCreator = 1;
 
-       //}
-       //else
-       //{
+      //}
+      //else
+      //{
 
-       //   int err = errno;
+      //   int err = errno;
 
-       //   if (err != EEXIST)
-       //      throw resource_exception(get_app());
+      //   if (err != EEXIST)
+      //      throw resource_exception(get_app());
 
-       //   // We're not first.  Try again
+      //   // We're not first.  Try again
 
-       //   m_psem = sem_open(m_strName, 0);
+      //   m_psem = sem_open(m_strName, 0);
 
-       //   if (m_psem == SEM_FAILED)
-       //      throw resource_exception(get_app());;
+      //   if (m_psem == SEM_FAILED)
+      //      throw resource_exception(get_app());;
 
-       //}
+      //}
 
-    }
+   }
 
 #elif defined(APPLEOS)
-   
-   //      if ((m_psem = sem_open(m_pszName, O_CREAT|O_EXCL, 0644, 1)) != SEM_FAILED)
-   //      {
-   //
-   //         m_bOwner = true;
-   //
-   //      }
-   //      else
-   //      {
-   //
-   //         int err = errno;
-   //
-   //         if (err != EEXIST)
-   //            throw resource_exception(get_app());
-   //
-   //
-   //         SetLastError(ERROR_ALREADY_EXISTS);
-   //
-   //         m_bOwner = false;
-   //
-   //         // We're not first.  Try again
-   //
-   //         m_psem = sem_open(m_pszName, 0);
-   //
-   //         if (m_psem == SEM_FAILED)
-   //            throw resource_exception(get_app());;
-   //         
-   //      }
-   
-
-//   m_psem = SEM_FAILED;
-//
-//   if(pstrName != NULL && *pstrName != '\0')
-//   {
-//
-//      m_pmutex = NULL;
-//
-//      SetLastError(0);
-//
-//      m_pszName = strdup(string("/") + str_md5_dup(pstrName).Left(24-1));
-//
-//      if ((m_psem = sem_open(m_pszName, O_CREAT|O_EXCL, 0644, 1)) != SEM_FAILED)
-//      {
-//
-//         m_bOwner = true;
-//
-//      }
-//      else
-//      {
-//
-//         int err = errno;
-//
-//         if (err != EEXIST)
-//            throw resource_exception(get_app());
-//
-//
-//         SetLastError(ERROR_ALREADY_EXISTS);
-//
-//         m_bOwner = false;
-//
-//         // We're not first.  Try again
-//
-//         m_psem = sem_open(m_pszName, 0);
-//
-//         if (m_psem == SEM_FAILED)
-//            throw resource_exception(get_app());;
-//
-//      }
-//
-//   }
-//
-//   m_psem = SEM_FAILED;
    
    m_count = 0;
    
@@ -266,16 +140,21 @@ mutex::mutex(::aura::application * papp, bool bInitiallyOwn, const char * pstrNa
       
       ::file::path path;
       
-#ifdef APPLEOS
+      if(str::begins_ci(pstrName, "Global"))
+      {
       
-      path = "/var/tmp/ca2/lock/mutex/named";
+         path = "/var/tmp/ca2/lock/mutex/named";
+         
+      }
+      else
+      {
+         
+         path = getenv("HOME");
+         
+         path /= "Library/Application Support/ca2/lock/mutex/named";
+         
+      }
       
-#else
-      
-      path = "/var/lock/ca2/mutex/named";
-      
-#endif
-
       path /= pstrName;
 
       dir::mk(path.folder());
@@ -311,25 +190,31 @@ mutex::mutex(::aura::application * papp, bool bInitiallyOwn, const char * pstrNa
    {
 
       m_pmutex = NULL;
-
+      
+      ::file::path path;
+      
       if(str::begins_ci(pstrName, "Global"))
       {
-
-         m_pszName = strdup(::file::path("/var/tmp") / pstrName);
-
+         
+         path = "/var/lock/ca2/mutex/named";
+         
       }
       else
       {
-
-         m_pszName = strdup(::file::path(getenv("HOME")) / pstrName);
-
+         
+         path = getenv("HOME");
+         
+         path /= ".config/ca2/lock/mutex/named";
+         
       }
+      
+      path /= pstrName;
+      
+      ::dir::mk(path.folder());
 
-      ::dir::mk(::dir::name(m_pszName));
+      ::file_put_contents_dup(path, m_pszName);
 
-      ::file_put_contents_dup(m_pszName, m_pszName);
-
-      m_key = ftok(m_pszName, 1); //Generate a unique key or supply a value
+      m_key = ftok(path, 1); //Generate a unique key or supply a value
 
       bool bAlreadyExists;
 
@@ -380,7 +265,13 @@ mutex::mutex(::aura::application * papp, bool bInitiallyOwn, const char * pstrNa
       }
 
       if(m_semid < 0)
+      {
+       
          throw resource_exception(get_app());
+         
+      }
+      
+      m_pszName = strdup(path);
 
       semun semctl_arg;
 
@@ -388,7 +279,6 @@ mutex::mutex(::aura::application * papp, bool bInitiallyOwn, const char * pstrNa
       semctl_arg.val = 1; //Setting semval to 1
 
       semctl(m_semid, 0, SETVAL, semctl_arg);
-
 
    }
 
@@ -519,13 +409,6 @@ mutex::~mutex()
       
       pthread_mutex_destroy(&m_mutex);
 
-      //if(m_bOwner)
-//      {
-//         sem_close(m_psem);
-//         sem_unlink(m_pszName);
-//
-//      }
-
    }
 
 #else
@@ -560,8 +443,6 @@ mutex::~mutex()
    }
 
 #endif
-   
-
 
 }
 
@@ -591,8 +472,6 @@ bool mutex::already_exists()
 //
 
 
-
-
 #if !defined(WINDOWS)
 
 wait_result mutex::wait(const duration & duration)
@@ -607,138 +486,122 @@ wait_result mutex::wait(const duration & duration)
 
 #if defined(APPLEOS)
    
-//   if(m_psem != SEM_FAILED)
-//   {
-//      
-//      uint32_t uiTimeout = duration.get_total_milliseconds();
-//      
-//      uint32_t uiStart = get_tick_count();
-//   
-//      while(true)
-//      {
-//         
-//         int rc = sem_trywait(m_psem);
-//         
-//         if(!rc)
-//         {
-//            
-//            return wait_result(wait_result::Event0);
-//            
-//         }
-//         else
-//         {
-//            
-//            int iError = errno;
-//            
-//            if(iError != EAGAIN)
-//            {
-//               
-//               return wait_result(wait_result::Failure);
-//               
-//            }
-//            
-//         }
-//         
-//         uint32_t uiElapsed = get_tick_count() - uiStart;
-//         
-//         if(uiElapsed >= uiTimeout)
-//         {
-//            
-//            return wait_result(wait_result::Timeout);
-//            
-//         }
-//         
-//         Sleep(MAX(1, MIN(1000, (uiTimeout - uiElapsed) / 50)));
-//         
-//      }
-//      
-//      return wait_result(wait_result::Failure);
-//      
-//   }
-//   else
-      if(m_pszName != NULL)
+   if(m_pszName != NULL)
+   {
+         
+      int rc = pthread_mutex_lock(&m_mutex);
+      
+      if(rc < 0)
       {
          
-         pthread_mutex_lock(&m_mutex);
+         return wait_result(wait_result::Failure);
          
-         uint32_t uiTimeout = duration.get_total_milliseconds();
+      }
          
-         uint32_t uiStart = get_tick_count();
+      uint32_t uiTimeout = (uint32_t) MIN(0xffffffffULL, duration.get_total_milliseconds());
+         
+      uint32_t uiStart = get_tick_count();
 
-         if(m_count > 0 && pthread_equal(m_thread, pthread_self()))
+      while(true)
+      {
+            
+         if(m_count > 0)
          {
             
-            m_count++;
-            
-            pthread_mutex_unlock(&m_mutex);
-            
-            return wait_result(wait_result::Event0);
+            if(pthread_equal(m_thread, pthread_self()))
+            {
+               
+               m_count++;
+               
+               int iError = pthread_mutex_unlock(&m_mutex);
+               
+               ASSERT(iError == 0);
+               
+               return wait_result(wait_result::Event0);
+               
+            }
             
          }
-
-         while(true)
+         else
          {
             
-            if(m_count > 0 && !pthread_equal(m_thread, pthread_self()))
+            int rc = lockf(m_iFd, F_LOCK, 0);
+            
+            if(rc == 0)
             {
-             
+                  
+               m_count++;
+                  
+               m_thread = pthread_self();
+                  
+               int iError = pthread_mutex_unlock(&m_mutex);
+               
+               ASSERT(iError == 0);
+               
+               return wait_result(wait_result::Event0);
+               
             }
             else
             {
-            
-               int rc = lockf(m_iFd, F_LOCK, 0);
-            
-               if(!rc)
+               
+               rc = errno;
+               
+               if(rc != EAGAIN && rc != EACCES)
                {
                   
-                  m_count++;
+                  int iError = pthread_mutex_unlock(&m_mutex);
                   
-                  m_thread = pthread_self();
-                  
-                  pthread_mutex_unlock(&m_mutex);
-               
-                  return wait_result(wait_result::Event0);
-               
-               }
-               else
-               {
-               
-                  int iError = errno;
-               
-                  if(iError != EAGAIN && iError != EACCES)
-                  {
-                  
-                     pthread_mutex_unlock(&m_mutex);
+                  ASSERT(iError == 0);
 
-                     return wait_result(wait_result::Failure);
+                  return wait_result(wait_result::Failure);
                   
-                  }
-               
                }
                
             }
             
+            int iError = pthread_mutex_unlock(&m_mutex);
+
+            if(iError < 0)
+            {
+               
+               ASSERT(FALSE);
+               
+               return wait_result(wait_result::Failure);
+               
+            }
+
             uint32_t uiElapsed = get_tick_count() - uiStart;
             
             if(uiElapsed >= uiTimeout)
             {
-               
-               pthread_mutex_unlock(&m_mutex);
                
                return wait_result(wait_result::Timeout);
                
             }
             
             Sleep(MAX(1, MIN(1000, (uiTimeout - uiElapsed) / 50)));
+
+            rc = pthread_mutex_lock(&m_mutex);
             
+            if(rc < 0)
+            {
+               
+               return wait_result(wait_result::Failure);
+               
+            }
+
          }
          
-         pthread_mutex_unlock(&m_mutex);
-
-         return wait_result(wait_result::Failure);
-         
       }
-      else
+      
+      int iError = pthread_mutex_unlock(&m_mutex);
+         
+      ASSERT(iError == 0);
+
+      return wait_result(wait_result::Failure);
+         
+   }
+   else
          
 
 #elif defined(ANDROID)
@@ -825,15 +688,22 @@ wait_result mutex::wait(const duration & duration)
 #ifdef APPLEOS
    {
    
-      pthread_mutex_lock(&m_mutex);
+      int rc = pthread_mutex_lock(&m_mutex);
+      
+      if(rc < 0)
+      {
+         
+         return wait_result(wait_result::Failure);
+         
+      }
       
       bool bFirst = true;
+      
+      timespec abs_time;
       
       while((m_thread != 0) && !pthread_equal(m_thread, pthread_self()))
       {
       
-         timespec abs_time;
-         
          if (bFirst)
          {
          
@@ -855,12 +725,14 @@ wait_result mutex::wait(const duration & duration)
             
          }
          
-         int rc = pthread_cond_timedwait(&m_cond, &m_mutex, &abs_time);
+         rc = pthread_cond_timedwait(&m_cond, &m_mutex, &abs_time);
          
          if(rc == ETIMEDOUT)
          {
             
-            pthread_mutex_unlock(&m_mutex);
+            int iError = pthread_mutex_unlock(&m_mutex);
+            
+            ASSERT(iError == 0);
             
             return wait_result(wait_result::Timeout);
             
@@ -868,20 +740,28 @@ wait_result mutex::wait(const duration & duration)
          else if(rc != 0)
          {
             
+            int iError = pthread_mutex_unlock(&m_mutex);
+            
+            ASSERT(iError == 0);
+            
             return wait_result(wait_result::Failure);
             
          }
 
       }
       
-      if (m_count++ == 0)
+      if (m_count == 0)
       {
       
          m_thread = pthread_self();
          
       }
       
-      pthread_mutex_unlock(&m_mutex);
+      m_count++;
+      
+      int iError = pthread_mutex_unlock(&m_mutex);
+      
+      ASSERT(iError == 0);
       
       return wait_result(wait_result::Event0);
       
@@ -940,26 +820,26 @@ bool mutex::lock()
 
 #if defined(ANDROID) || defined(APPLEOS)
 
-   //int32_t ret = sem_wait(m_psem);
-   
-   //if(ret < 0)
-   //{
-   
-   // return false;
-   
-   //}
-   
    if(m_pszName != NULL)
    {
 
-      pthread_mutex_lock(&m_mutex);
+      int rc = pthread_mutex_lock(&m_mutex);
+      
+      if(rc < 0)
+      {
+         
+         return false;
+         
+      }
       
       if(m_count > 0 && pthread_equal(m_thread, pthread_self()))
       {
          
          m_count++;
      
-         pthread_mutex_unlock(&m_mutex);
+         int iError = pthread_mutex_unlock(&m_mutex);
+         
+         ASSERT(iError == 0);
          
          return true;
          
@@ -968,16 +848,29 @@ bool mutex::lock()
       while(true)
       {
          
-         if(m_count > 0 && !pthread_equal(m_thread, pthread_self()))
+         if(m_count > 0)
          {
+            
+            if(pthread_equal(m_thread, pthread_self()))
+            {
+                   
+               m_count++;
+               
+               int iError = pthread_mutex_unlock(&m_mutex);
+               
+               ASSERT(iError == 0);
+               
+               return true;
+               
+            }
             
          }
          else
          {
             
-            int rc = lockf(m_iFd, F_LOCK, 0);
+            rc = lockf(m_iFd, F_LOCK, 0);
             
-            if(!rc)
+            if(rc == 0)
             {
                
                m_count++;
@@ -992,12 +885,14 @@ bool mutex::lock()
             else
             {
                
-               int iError = errno;
+               rc = errno;
                
-               if(iError != EAGAIN && iError != EACCES)
+               if(rc != EAGAIN && rc != EACCES)
                {
                   
-                  pthread_mutex_unlock(&m_mutex);
+                  int iError = pthread_mutex_unlock(&m_mutex);
+                  
+                  ASSERT(iError == 0);
                   
                   return false;
                   
@@ -1007,16 +902,36 @@ bool mutex::lock()
             
          }
          
+         int iError = pthread_mutex_unlock(&m_mutex);
+               
+         if(iError < 0)
+         {
+                  
+            ASSERT(FALSE);
+                  
+            return false;
+                  
+         }
+               
          Sleep(100);
+               
+         rc = pthread_mutex_lock(&m_mutex);
+               
+         if(rc < 0)
+         {
+                  
+            return false;
+                  
+         }
          
       }
       
-      pthread_mutex_unlock(&m_mutex);
+      int iError = pthread_mutex_unlock(&m_mutex);
+               
+      ASSERT(iError == 0);
       
       return false;
       
-
-
    }
 
 #else
@@ -1048,23 +963,47 @@ bool mutex::lock()
    else
    {
    
-      pthread_mutex_lock(&m_mutex);
+      int rc = pthread_mutex_lock(&m_mutex);
+      
+      if(rc < 0)
+      {
+         
+         return false;
+         
+      }
    
       while ((m_thread != 0) && !pthread_equal(m_thread, pthread_self()))
       {
          
-         pthread_cond_wait(&m_cond, &m_mutex);
+         rc = pthread_cond_wait(&m_cond, &m_mutex);
+         
+         if(rc < 0)
+         {
+            
+            int iError = pthread_mutex_unlock(&m_mutex);
+            
+            ASSERT(iError == 0);
+            
+            return false;
+            
+         }
          
       }
       
-      if(m_count++==0)
+      if(m_count == 0)
       {
          
          m_thread = pthread_self();
          
       }
       
-      pthread_mutex_unlock(&m_mutex);
+      m_count++;
+      
+      int iError = pthread_mutex_unlock(&m_mutex);
+      
+      ASSERT(iError == 0);
+      
+      return true;
       
    }
    
@@ -1136,7 +1075,14 @@ bool mutex::unlock()
    if(m_pszName != NULL)
    {
       
-      pthread_mutex_lock(&m_mutex);
+      int rc = pthread_mutex_lock(&m_mutex);
+      
+      if(rc < 0)
+      {
+         
+         return false;
+         
+      }
       
       if(!pthread_equal(m_thread, pthread_self()))
       {
@@ -1148,24 +1094,39 @@ bool mutex::unlock()
          
 #endif
          
-         pthread_mutex_unlock(&m_mutex);
+         int iError = pthread_mutex_unlock(&m_mutex);
+         
+         ASSERT(iError == 0);
          
          return false;
          
       }
 
-      m_count--;
-      
-      int rc = 0;
+      rc = 0;
 
-      if(m_count == 0)
+      if(m_count > 1)
+      {
+         
+         m_count--;
+         
+      }
+      else if(m_count == 1)
       {
       
          rc = lockf(m_iFd, F_ULOCK, 0);
          
+         if(rc == 0)
+         {
+            
+            m_count = 0;
+            
+         }
+         
       }
       
-      pthread_mutex_unlock(&m_mutex);
+      int iError = pthread_mutex_unlock(&m_mutex);
+      
+      ASSERT(iError == 0);
       
       return rc == 0;
       
@@ -1193,7 +1154,14 @@ bool mutex::unlock()
    else
    {
       
-      pthread_mutex_lock(&m_mutex);
+      int rc = pthread_mutex_lock(&m_mutex);
+      
+      if(rc < 0)
+      {
+       
+         return false;
+         
+      }
       
       if(!pthread_equal(m_thread, pthread_self()))
       {
@@ -1201,24 +1169,45 @@ bool mutex::unlock()
          
 #ifdef _DEBUG
       
-      ASSERT(FALSE);
+         ASSERT(FALSE);
       
 #endif
+         
+         int iError = pthread_mutex_unlock(&m_mutex);
+         
+         ASSERT(iError == 0);
          
          return false;
          
       }
       
-      if (--m_count == 0)
+      rc = 0;
+      
+      if(m_count > 1)
+      {
+         
+         m_count--;
+         
+      }
+      else if(m_count == 1)
       {
          
          m_thread = 0;
          
-         pthread_cond_signal(&m_cond);
+         rc = pthread_cond_signal(&m_cond);
+         
+         if(rc == 0)
+         {
+            
+            m_count = 0;
+            
+         }
          
       }
       
-      pthread_mutex_unlock(&m_mutex);
+      int iError = pthread_mutex_unlock(&m_mutex);
+      
+      ASSERT(iError == 0);
       
       return true;
       

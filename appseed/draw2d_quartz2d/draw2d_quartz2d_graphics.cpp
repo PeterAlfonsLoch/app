@@ -4,55 +4,10 @@
 #include <CoreFoundation/CFDictionary.h>
 
 
-void fill_with_brush(draw2d_quartz2d::graphics * p, ::draw2d::brush * pbrush)
-{
-   
-   CGContextRef pgraphics = p->m_pdc;
-   
-if(pbrush->m_etype == ::draw2d::brush::type_linear_gradient_point_color)
-{
-   
-   CGContextSaveGState(pgraphics);
-   
-   CGContextClip(pgraphics);
-   
-   CGPoint myStartPoint, myEndPoint;
-   
-   myStartPoint.x = pbrush->m_pt1.x;
-   
-   myStartPoint.y = pbrush->m_pt1.y;
-   
-   myEndPoint.x = pbrush->m_pt2.x;
-   
-   myEndPoint.y = pbrush->m_pt2.y;
-   
-   CGContextDrawLinearGradient(pgraphics, (CGGradientRef) pbrush->get_os_data(), myStartPoint, myEndPoint, 0);
-   
-   CGContextRestoreGState(pgraphics);
-   
-}
-   else if(pbrush->m_etype == ::draw2d::brush::type_pattern)
-   {
-      
-      CGContextSaveGState(pgraphics);
-      
-      CGContextClip(pgraphics);
-      
-      p->BitBlt(0, 0, pbrush->m_dib->m_size.cx, pbrush->m_dib->m_size.cy, pbrush->m_dib->get_graphics(), 0,0, 0);
-      
-      CGContextRestoreGState(pgraphics);
-      
-   }
-else
-{
-   
-   CGContextSetFillColorWithColor(pgraphics, (CGColorRef) pbrush->get_os_data());
-   
-   CGContextFillPath(pgraphics);
-   
-}
+extern "C"
+unsigned long ns_get_fonts(char *** p);
 
-}
+
 
 
 namespace draw2d_quartz2d
@@ -712,32 +667,38 @@ namespace draw2d_quartz2d
    bool graphics::Arc(int32_t x1, int32_t y1, int32_t x2, int32_t y2, int32_t x3, int32_t y3, int32_t x4, int32_t y4)
    {
 
-//      double centerx    = (x2 + x1) / 2.0;
-//      double centery    = (y2 + y1) / 2.0;
-//
-//      double radiusx    = abs(x2 - x1) / 2.0;
-//      double radiusy    = abs(y2 - y1) / 2.0;
-//
-//      if(radiusx == 0.0 || radiusy == 0.0)
-//         return false;
-//
-//      double start      = atan2(y3 - centery, x3 - centerx);
-//      double end        = atan2(y4 - centery, x4 - centerx);
-//
-//
-//      cairo_translate(m_pdc, centerx, centery);
-//
-//      cairo_scale(m_pdc, radiusx, radiusy);
-//
-//      cairo_arc(m_pdc, 0.0, 0.0, 1.0, start, end);
-//
-//      cairo_scale(m_pdc, 1.0 / radiusx, 1.0 / radiusy);
-//
-//      cairo_translate(m_pdc, -centerx,  -centery);
-//
-      return true;
+      return ::draw2d::graphics::Arc(x1, y1, x2, y2, x3, y3, x4, y4);
 
    }
+   
+   
+   bool graphics::Arc(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4)
+   {
+      
+      return ::draw2d::graphics::Arc(x1, y1, x2, y2, x3, y3, x4, y4);
+      
+   }
+   
+   
+   bool graphics::Arc(double x, double y, double w, double h, double start, double extends)
+   {
+      
+      double end = start + extends;
+   
+      CGContextSaveGState(m_pdc);
+      
+      CGContextTranslateCTM(m_pdc, x + w/2.0, y + h/2.0);
+      
+      CGContextScaleCTM(m_pdc, w/2.0, h/2.0);
+      
+      CGContextAddArc(m_pdc, 0.f, 0.f, 1.0f, start * 3.1415 / 180.0, end * 3.1415 / 180.0, end < 0.0);
+      
+      CGContextRestoreGState(m_pdc);
+      
+      return draw();
+      
+   }
+
 
    bool graphics::Arc(const RECT & lpRect, POINT ptStart, POINT ptEnd)
    {
@@ -1475,6 +1436,15 @@ namespace draw2d_quartz2d
    {
 
 //      cairo_rectangle(m_pdc, x1, y1, x2, y2);
+      
+      CGRect rect;
+      
+      rect.origin.x     = x1;
+      rect.origin.y     = y1;
+      rect.size.width   = x2 - x1;
+      rect.size.height  = y2 - y1;
+      
+      CGContextAddRect(m_pdc, rect);
 
       return fill();
 
@@ -5357,7 +5327,7 @@ namespace draw2d_quartz2d
    bool graphics::internal_show_text(double x, double y, const char * lpszString, int32_t nCount, CGTextDrawingMode emode, bool bDraw, CGFloat * pascent, CGFloat * pdescent, CGFloat * pleading, CGFloat * pwidth, ::draw2d::pen * ppen, ::draw2d::brush * pbrush, ::draw2d::font * pfont)
    {
 
-      return ::draw2d_quartz2d::internal_show_text(this, pfont == NULL ? m_spfont.m_p : pfont, pbrush == NULL ? m_spbrush.m_p : pbrush, ppen == NULL ? m_sppen.m_p : ppen, x, y, lpszString, nCount, emode, bDraw, pascent,pdescent, pleading, pwidth);
+      return internal_show_text(pfont == NULL ? m_spfont.m_p : pfont, pbrush == NULL ? m_spbrush.m_p : pbrush, ppen == NULL ? m_sppen.m_p : ppen, x, y, lpszString, nCount, emode, bDraw, pascent,pdescent, pleading, pwidth);
 
    }
 
@@ -5488,8 +5458,20 @@ namespace draw2d_quartz2d
    bool graphics::clip(const ::draw2d::region * pregion)
    {
       
-      CGContextBeginPath (m_pdc);
+      add_path(pregion);
       
+      CGContextEOClip(m_pdc);
+      
+      return true;
+      
+   }
+   
+   bool graphics::add_path(const ::draw2d::region * pregion)
+   {
+      
+      if(pregion == NULL)
+         return true;
+   
       if(pregion->m_etype == ::draw2d::region::type_rect)
       {
          
@@ -5506,7 +5488,11 @@ namespace draw2d_quartz2d
       else if(pregion->m_etype == ::draw2d::region::type_polygon)
       {
          
+         CGContextBeginPath (m_pdc);
+         
          set_polygon(pregion->m_lppoints, pregion->m_nCount);
+         
+         CGContextClosePath (m_pdc);
          
       }
       else if(pregion->m_etype == ::draw2d::region::type_oval)
@@ -5523,10 +5509,31 @@ namespace draw2d_quartz2d
          CGContextAddEllipseInRect(m_pdc, r);
          
       }
+      else if(pregion->m_etype == ::draw2d::region::type_combine)
+      {
+         
+         if(pregion->m_ecombine == ::draw2d::region::combine_intersect)
+         {
+            
+            //CGContextBeginPath (m_pdc);
+            add_path(pregion->m_pregion1);
+            CGContextEOClip(m_pdc);
+            add_path(pregion->m_pregion2);
+//            CGContextClosePath (m_pdc);
+//            
+//            
+//            add_path(pregion->m_pregion1);
+//            CGContextEOClip(m_pdc);
+//            add_path(pregion->m_pregion2);
+//            CGContextEOClip(m_pdc);
+
+         }
+         
+         
+      }
       
-      CGContextClosePath (m_pdc);
       
-      CGContextClip (m_pdc);
+      return true;
       
    }
 
@@ -5637,7 +5644,105 @@ namespace draw2d_quartz2d
       if(pbrush == NULL || pbrush->m_etype == ::draw2d::brush::type_null)
          return true;
       
-      fill_with_brush(this, pbrush);
+      CGContextRef pgraphics = m_pdc;
+      
+      if(pbrush->m_etype == ::draw2d::brush::type_radial_gradient_color)
+      {
+         
+         CGContextSaveGState(pgraphics);
+         
+         CGContextClip(pgraphics);
+         
+         clip(m_spregion);
+         
+         CGPoint myStartPoint, myEndPoint;
+         
+         CGContextTranslateCTM(pgraphics, pbrush->m_pt.x, pbrush->m_pt.y);
+         
+         CGContextScaleCTM(pgraphics, pbrush->m_size.cx, pbrush->m_size.cy);
+         
+         myStartPoint.x = 0;
+         
+         myStartPoint.y = 0;
+         
+         myEndPoint.x = 0;
+         
+         myEndPoint.y = 0;
+         
+         CGContextDrawRadialGradient(pgraphics, (CGGradientRef) pbrush->get_os_data(), myStartPoint, 0, myEndPoint, 1.0f, kCGGradientDrawsBeforeStartLocation);
+         
+         CGContextRestoreGState(pgraphics);
+         
+      }
+      else if(pbrush->m_etype == ::draw2d::brush::type_linear_gradient_point_color)
+      {
+         
+         CGContextSaveGState(pgraphics);
+         
+         CGContextClip(pgraphics);
+
+         clip(m_spregion);
+         
+         CGPoint myStartPoint, myEndPoint;
+         
+         myStartPoint.x = pbrush->m_pt1.x;
+         
+         myStartPoint.y = pbrush->m_pt1.y;
+         
+         myEndPoint.x = pbrush->m_pt2.x;
+         
+         myEndPoint.y = pbrush->m_pt2.y;
+         
+         CGContextDrawLinearGradient(pgraphics, (CGGradientRef) pbrush->get_os_data(), myStartPoint, myEndPoint, 0);
+         
+         CGContextRestoreGState(pgraphics);
+         
+      }
+      else if(pbrush->m_etype == ::draw2d::brush::type_pattern)
+      {
+         
+         CGContextSaveGState(pgraphics);
+         
+         CGContextClip(pgraphics);
+
+         clip(m_spregion);
+         
+         BitBlt(0, 0, pbrush->m_dib->m_size.cx, pbrush->m_dib->m_size.cy, pbrush->m_dib->get_graphics(), 0,0, 0);
+         
+         CGContextRestoreGState(pgraphics);
+         
+      }
+      else
+      {
+         
+         if(m_spregion.is_null())
+         {
+
+            CGContextSetFillColorWithColor(pgraphics, (CGColorRef) pbrush->get_os_data());
+         
+            CGContextFillPath(pgraphics);
+         
+         }
+         else
+         {
+            CGContextSetFillColorWithColor(pgraphics, (CGColorRef) pbrush->get_os_data());
+            
+            CGContextSaveGState(pgraphics);
+            
+            CGContextClip(pgraphics);
+            
+            clip(m_spregion);
+            
+            CGContextAddRect(pgraphics, CGContextGetClipBoundingBox(pgraphics));
+                             
+            CGContextFillPath(pgraphics);
+                             
+            CGContextRestoreGState(pgraphics);
+                             
+                             
+         }
+         
+      }
 
       return true;
 
@@ -5877,13 +5982,41 @@ namespace draw2d_quartz2d
    }
 
 
+   
+   void graphics::enum_fonts(stringa & straFile, stringa & stra)
+   {
+      
+      char ** p;
+      
+      unsigned long c = ns_get_fonts(&p);
+      
+      if(c >0)
+      {
+         
+         for(unsigned long ui = 0; ui < c; ui++)
+         {
+            
+            stra.add(p[ui]);
+            straFile.add(p[ui]);
+            
+            free(p[ui]);
+            
+         }
+         
+         
+         free(p);
+         
+      }
+      
+      
+   }
 
 
 
-   bool internal_show_text(::draw2d_quartz2d::graphics * p, ::draw2d::font_sp spfont,::draw2d::brush_sp spbrush,::draw2d::pen_sp sppen, double x, double y, const char * lpszString, int32_t nCount, CGTextDrawingMode emode, bool bDraw, CGFloat * pascent, CGFloat * pdescent, CGFloat * pleading, CGFloat * pwidth)
+   bool graphics::internal_show_text(::draw2d::font_sp spfont,::draw2d::brush_sp spbrush,::draw2d::pen_sp sppen, double x, double y, const char * lpszString, int32_t nCount, CGTextDrawingMode emode, bool bDraw, CGFloat * pascent, CGFloat * pdescent, CGFloat * pleading, CGFloat * pwidth)
 {
 
-   CGContextRef pgraphics = p->m_pdc;
+   CGContextRef pgraphics = m_pdc;
    string str(lpszString, nCount);
 
    CFStringRef string = CFStringCreateWithCString(NULL, str, kCFStringEncodingUTF8);
@@ -5959,6 +6092,7 @@ namespace draw2d_quartz2d
          
          if(spbrush.is_set() &&
             (spbrush->m_etype == ::draw2d::brush::type_linear_gradient_point_color
+             || spbrush->m_etype == ::draw2d::brush::type_radial_gradient_color
             || spbrush->m_etype == ::draw2d::brush::type_pattern))
          {
             
@@ -6048,10 +6182,11 @@ namespace draw2d_quartz2d
    }
    
    if(emode == kCGTextClip && (spbrush->m_etype == ::draw2d::brush::type_linear_gradient_point_color
+                               || spbrush->m_etype == ::draw2d::brush::type_radial_gradient_color
       || spbrush->m_etype == ::draw2d::brush::type_pattern))
    {
       
-      fill_with_brush(p, spbrush);
+      fill(spbrush);
       
    }
 

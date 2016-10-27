@@ -31,13 +31,13 @@ WINBOOL SetForegroundWindow(oswindow window)
    if(!::IsWindow(window))
       return FALSE;
    
-   [[NSApp dd_invokeOnMainThreadAndWaitUntilDone:TRUE] activateIgnoringOtherApps:YES];
+   [[NSApp dd_invokeOnMainThreadAndWaitUntilDone:FALSE] activateIgnoringOtherApps:YES];
    
 //   [NSApp setWindow : window->window()];
 
-   [[window->window() dd_invokeOnMainThreadAndWaitUntilDone:TRUE] makeKeyWindow];
+   [[window->window() dd_invokeOnMainThreadAndWaitUntilDone:FALSE] makeKeyWindow];
 
-   [[window->window() dd_invokeOnMainThreadAndWaitUntilDone:TRUE] makeMainWindow];
+   [[window->window() dd_invokeOnMainThreadAndWaitUntilDone:FALSE] makeMainWindow];
    
    SetActiveWindow(window);
    
@@ -52,9 +52,9 @@ WINBOOL BringWindowToTop(oswindow window)
    if(!::IsWindow(window))
       return FALSE;
    
-   [[window->window() dd_invokeOnMainThreadAndWaitUntilDone:TRUE] orderFront: NSApp];
+   [[window->window() dd_invokeOnMainThreadAndWaitUntilDone:FALSE] orderFront: NSApp];
    
-   [[window->window() dd_invokeOnMainThreadAndWaitUntilDone:TRUE] orderFrontRegardless];
+   [[window->window() dd_invokeOnMainThreadAndWaitUntilDone:FALSE] orderFrontRegardless];
    
    return TRUE;
    

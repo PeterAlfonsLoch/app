@@ -7,8 +7,6 @@ namespace draw2d_quartz2d
    
    class graphics;
 
-   bool internal_show_text(graphics * p, ::draw2d::font_sp spfont,::draw2d::brush_sp spbrush,::draw2d::pen_sp sppen,double x, double y, const char * lpszString, int32_t nCount, CGTextDrawingMode emode, bool bDraw = true, CGFloat * pascent = NULL, CGFloat * pdescent = NULL, CGFloat * pleading = NULL, CGFloat * pwidth = NULL);
-   
    
    class brush;
    class pen;
@@ -250,6 +248,8 @@ namespace draw2d_quartz2d
       bool LineTo(double x, double y);
       //  bool LineTo(POINT point);
       bool Arc(int32_t x1, int32_t y1, int32_t x2, int32_t y2, int32_t x3, int32_t y3, int32_t x4, int32_t y4);
+      bool Arc(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4);
+      bool Arc(double x, double y, double w, double h, double start, double end);
       bool Arc(const RECT & lpRect, POINT ptStart, POINT ptEnd);
       bool Polyline(const POINT* lpPoints, count nCount);
       
@@ -546,9 +546,12 @@ namespace draw2d_quartz2d
       // used for implementation of non-virtual SelectObject calls
       //static ::draw2d::object* PASCAL SelectGdiObject(::base::application * papp, HDC hDC, HGDIOBJ h);
       
+      bool internal_show_text(::draw2d::font_sp spfont,::draw2d::brush_sp spbrush,::draw2d::pen_sp sppen, double x, double y, const char * lpszString, int32_t nCount, CGTextDrawingMode emode, bool bDraw = true, CGFloat * pascent = NULL, CGFloat * pdescent = NULL, CGFloat * pleading = NULL, CGFloat * pwidth = NULL);
+     
       
       // platform-specific or platform-internals
       bool clip(const ::draw2d::region * pregion);
+      bool add_path(const ::draw2d::region * pregion);
       bool set(const ::draw2d::brush * pbrush);
       bool set(const ::draw2d::pen * ppen);
       bool set(const ::draw2d::font * pfont);
@@ -573,6 +576,9 @@ namespace draw2d_quartz2d
       
       
       void internal_set_fill_color(COLORREF cr);
+      
+      
+      virtual void enum_fonts(stringa & straFile, stringa & stra) override;
       
    };
    

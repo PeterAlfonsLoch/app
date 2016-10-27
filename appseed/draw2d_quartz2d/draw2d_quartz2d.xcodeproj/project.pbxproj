@@ -73,6 +73,7 @@
 		9ACE46D41D1FE40A00A1E0AD /* libaxis.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ACE46D31D1FE40A00A1E0AD /* libaxis.dylib */; };
 		9ACE46D71D1FE41100A1E0AD /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ACE46D61D1FE41100A1E0AD /* libaura.dylib */; };
 		9AE24E231904CF99001AEFFB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9AE24E211904CF99001AEFFB /* InfoPlist.strings */; };
+		9AEAFBD21DC1B4B00035AD42 /* draw2d_mm.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AEAFBD11DC1B4B00035AD42 /* draw2d_mm.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -157,6 +158,7 @@
 		9AE24E151904CF99001AEFFB /* draw2d_quartz2d_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = draw2d_quartz2d_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AE24E201904CF99001AEFFB /* draw2d_quartz2d_iosTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "draw2d_quartz2d_iosTests-Info.plist"; sourceTree = "<group>"; };
 		9AE24E221904CF99001AEFFB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		9AEAFBD11DC1B4B00035AD42 /* draw2d_mm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = draw2d_mm.m; sourceTree = "<group>"; };
 		A1CFD778154F5EAA007447E2 /* libdraw2d_quartz2d.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libdraw2d_quartz2d.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -284,6 +286,7 @@
 				9A6B40E317BBE291008391AD /* draw2d_quartz2d.h */,
 				9A1B496316A494A600875A94 /* framework.h */,
 				9A1B496616A4A10100875A94 /* framework.cpp */,
+				9AEAFBD11DC1B4B00035AD42 /* draw2d_mm.m */,
 			);
 			name = draw2d_quartz2d;
 			sourceTree = "<group>";
@@ -504,6 +507,7 @@
 				9A6B40EE17BBE291008391AD /* draw2d_quartz2d_graphics.cpp in Sources */,
 				9A6B40F017BBE291008391AD /* draw2d_quartz2d_object.cpp in Sources */,
 				9A6B40F217BBE291008391AD /* draw2d_quartz2d_palette.cpp in Sources */,
+				9AEAFBD21DC1B4B00035AD42 /* draw2d_mm.m in Sources */,
 				9A6B40F417BBE291008391AD /* draw2d_quartz2d_path.cpp in Sources */,
 				9A6B40F617BBE291008391AD /* draw2d_quartz2d_pen.cpp in Sources */,
 				9A6B40F817BBE291008391AD /* draw2d_quartz2d_preview_dc.cpp in Sources */,

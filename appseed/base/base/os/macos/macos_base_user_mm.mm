@@ -40,13 +40,13 @@ bool oswindow_data::show_window(int32_t nCmdShow)
    
 //   printf("\nhide window");
     
-      [[m_nswindow dd_invokeOnMainThreadAndWaitUntilDone:TRUE ]orderOut : nil];
+      [[m_nswindow dd_invokeOnMainThreadAndWaitUntilDone:FALSE ]orderOut : nil];
 
    }
    else if(nCmdShow == SW_SHOWNOACTIVATE)
    {
 
-      [[m_nswindow dd_invokeOnMainThreadAndWaitUntilDone:TRUE] orderFront : nil];
+      [[m_nswindow dd_invokeOnMainThreadAndWaitUntilDone:FALSE] orderFront : nil];
       
    }
    else
@@ -61,7 +61,7 @@ bool oswindow_data::show_window(int32_t nCmdShow)
       
       //[[m_nswindow dd_invokeOnMainThreadAndWaitUntilDone:FALSE ]showWindow: nil];
 
-      [[m_nswindow dd_invokeOnMainThreadAndWaitUntilDone:TRUE] makeKeyAndOrderFront : nil];
+      [[m_nswindow dd_invokeOnMainThreadAndWaitUntilDone:FALSE] makeKeyAndOrderFront : nil];
       
 //      [[m_nswindow dd_invokeOnMainThreadAndWaitUntilDone:FALSE ]display];
       
@@ -116,7 +116,7 @@ WINBOOL set_nswindow_frame(oswindow hwnd, LPCRECT lpcrect, int iDisplay)
 
    
    
-   [[hwnd->window() dd_invokeOnMainThreadAndWaitUntilDone:FALSE] setFrame : rect display : iDisplay];
+   [[hwnd->window() dd_invokeOnMainThreadAndWaitUntilDone:TRUE] setFrame : rect display : iDisplay];
    
    //move_nswindow(hwnd, lpcrect->left, lpcrect->top);
    

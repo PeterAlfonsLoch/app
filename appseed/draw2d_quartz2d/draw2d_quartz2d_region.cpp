@@ -17,7 +17,89 @@ namespace draw2d_quartz2d
       
    }
    
+   void * region::get_os_data() const
+   {
+      defer_update();
+      
+      return m_path;
+      
+      
+   }
    
+   bool region::destroy()
+   {
+      
+      if(m_path != NULL)
+      {
+         
+         CGPathRelease(m_path);
+         
+         m_path = NULL;
+         
+      }
+      
+      return true;
+      
+   }
+   
+   
+   bool region::create()
+   {
+      
+      m_path = CGPathCreateMutable();
+      
+      if(m_etype == ::draw2d::region::type_rect)
+      {
+         
+         CGRect r;
+         
+         r.origin.x = m_x1;
+         r.origin.y = m_y1;
+         r.size.width = m_x2 - m_x1;
+         r.size.height = m_y2 - m_y1;
+         
+         CGPathAddRect (m_path, NULL, r);
+         
+      }
+      else if(m_etype == ::draw2d::region::type_polygon)
+      {
+         
+         CGPathMoveToPoint(m_path, NULL, m_lppoints[0].x, m_lppoints[0].y);
+         
+         for(int32_t i = 1; i < m_nCount; i++)
+         {
+            
+            CGPathAddLineToPoint(m_path, NULL, m_lppoints[i].x, m_lppoints[i].y);
+            
+         }
+         
+      }
+      else if(m_etype == ::draw2d::region::type_oval)
+      {
+         
+         CGRect r;
+         
+         r.origin.x = m_x1;
+         r.origin.y = m_y1;
+         r.size.width = m_x2 - m_x1;
+         r.size.height = m_y2 - m_y1;
+         
+         
+         CGPathAddEllipseInRect(m_path, NULL, r);
+         
+      }
+      else if(m_etype == ::draw2d::region::type_combine)
+      {
+         
+         throw simple_exception(get_app(), "not supported");
+         
+      }
+      
+      CGPathCloseSubpath(m_path);
+      
+      return true;
+      
+   }
    
    /*   region::operator HRGN() const
     {
@@ -233,6 +315,17 @@ namespace draw2d_quartz2d
    */
    
 
+   
+   void * region::detach()
+   {
+      
+      void * ppath = get_os_data();
+      
+      m_path = NULL;
+      
+      return ppath;
+      
+   }
    
 } // namespace draw2d_quartz2d
 
