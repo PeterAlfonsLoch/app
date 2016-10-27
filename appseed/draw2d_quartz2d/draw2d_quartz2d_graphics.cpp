@@ -1125,11 +1125,11 @@ namespace draw2d_quartz2d
       rect.size.width   = x2 - x1;
       rect.size.height  = y2 - y1;
 
-      set(m_spbrush);
+      //set(m_spbrush);
 
-      CGContextFillEllipseInRect(m_pdc, rect);
+      CGContextAddEllipseInRect(m_pdc, rect);
 
-      return true;
+      return fill();
 
    }
 
@@ -1230,11 +1230,11 @@ namespace draw2d_quartz2d
       rect.size.width   = x2 - x1;
       rect.size.height  = y2 - y1;
 
-      set(m_spbrush);
+      //set(m_spbrush);
 
-      CGContextFillEllipseInRect(m_pdc, rect);
+      CGContextAddEllipseInRect(m_pdc, rect);
 
-      return true;
+      return fill();
 
    }
 
@@ -5458,9 +5458,38 @@ namespace draw2d_quartz2d
    bool graphics::clip(const ::draw2d::region * pregion)
    {
       
-      add_path(pregion);
+      if(pregion == NULL)
+      {
+         
+         return true;
+         
+      }
       
-      CGContextEOClip(m_pdc);
+      if(pregion->m_etype == ::draw2d::region::type_combine)
+      {
+
+         if(pregion->m_ecombine == ::draw2d::region::combine_intersect)
+         {
+         
+            add_path(pregion->m_pregion1);
+            
+            CGContextEOClip(m_pdc);
+            
+            add_path(pregion->m_pregion2);
+            
+            CGContextEOClip(m_pdc);
+         
+         }
+         
+      }
+      else
+      {
+      
+         add_path(pregion);
+      
+         CGContextEOClip(m_pdc);
+         
+      }
       
       return true;
       
@@ -5512,30 +5541,14 @@ namespace draw2d_quartz2d
       else if(pregion->m_etype == ::draw2d::region::type_combine)
       {
          
-         if(pregion->m_ecombine == ::draw2d::region::combine_intersect)
-         {
-            
-            //CGContextBeginPath (m_pdc);
-            add_path(pregion->m_pregion1);
-            CGContextEOClip(m_pdc);
-            add_path(pregion->m_pregion2);
-//            CGContextClosePath (m_pdc);
-//            
-//            
-//            add_path(pregion->m_pregion1);
-//            CGContextEOClip(m_pdc);
-//            add_path(pregion->m_pregion2);
-//            CGContextEOClip(m_pdc);
-
-         }
-         
+         throw simple_exception(get_app(), "not supported");
          
       }
-      
       
       return true;
       
    }
+   
 
    bool graphics::set(const ::draw2d::brush * pbrush)
    {
