@@ -2,6 +2,8 @@
 #define CA2_APP_BASE_USER_INTERACTION_H
 
 
+#define MESSAGE_POST_MESSAGE  14000
+
 namespace user
 {
 
@@ -80,6 +82,8 @@ namespace user
       bool                                m_bRectOk;
       sp(::axis::session)                 m_psession;
       bool                                m_bMessageWindow;
+      
+      bool                                m_bCreated;
 
       string                              m_strWindowText;
 

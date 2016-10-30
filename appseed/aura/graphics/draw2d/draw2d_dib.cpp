@@ -685,14 +685,26 @@ namespace draw2d
 
       if (yEnd < 0)
          return false;
+      
+      
 
       int32_t scanDst = pdibDst->m_iScan;
 
       int32_t scanSrc = pdibSrc->m_iScan;
+      
+#ifdef APPLEOS
 
+      byte * pdst = &((byte *)pdibDst->m_pcolorref)[scanDst * (pdibDst->m_size.cy - ptDst.y - 1) + ptDst.x * sizeof(COLORREF)] + 3;
+      
+      byte * psrc = &((byte *)pdibSrc->m_pcolorref)[scanSrc * (pdibSrc->m_size.cy - ptSrc.y - 1) + ptSrc.x * sizeof(COLORREF)] + 3;
+
+#else
+      
       byte * pdst = &((byte *)pdibDst->m_pcolorref)[scanDst * ptDst.y + ptDst.x * sizeof(COLORREF)] + 3;
 
       byte * psrc = &((byte *)pdibSrc->m_pcolorref)[scanSrc * ptSrc.y + ptSrc.x * sizeof(COLORREF)] + 3;
+      
+#endif
 
       byte * pdst2;
 
@@ -705,9 +717,19 @@ namespace draw2d
       for (int y = 0; y < yEnd; y++)
       {
 
-         pdst2 = (byte *) &pdst[scanDst * y];
+#ifdef APPLEOS
+         
+         pdst2 = (byte *) &pdst[scanDst * (-y)];
 
+         psrc2 = (byte *) &psrc[scanSrc * (-y)];
+         
+#else
+
+         pdst2 = (byte *) &pdst[scanDst * y];
+         
          psrc2 = (byte *) &psrc[scanSrc * y];
+         
+#endif
 
          for (int x = 0; x < xEnd; x++)
          {
@@ -993,15 +1015,31 @@ namespace draw2d
          return;
 
       int32_t scanDst = pdibDst->m_iScan;
+      
+#ifdef APPLEOS
 
+      byte * pdst = &((byte *)pdibDst->m_pcolorref)[scanDst * (m_size.cy - ptDst.y - 1) + ptDst.x * sizeof(COLORREF)];
+      
+#else
+      
       byte * pdst = &((byte *)pdibDst->m_pcolorref)[scanDst * ptDst.y + ptDst.x * sizeof(COLORREF)];
+      
+#endif
 
       byte * pdst2;
 
       for (int y = 0; y < yEnd; y++)
       {
+         
+#ifdef APPLEOS
 
+         pdst2 = (byte *)&pdst[scanDst * (-y)];
+         
+#else
+         
          pdst2 = (byte *)&pdst[scanDst * y];
+         
+#endif
 
          for (int x = 0; x < xEnd; x++)
          {
@@ -1130,15 +1168,31 @@ namespace draw2d
          return;
 
       int32_t scanDst = pdibDst->m_iScan;
+      
+#ifdef APPLEOS
+
+      byte * pdst = &((byte *)pdibDst->m_pcolorref)[scanDst * (m_size.cy - ptDst.y - 1) + ptDst.x * sizeof(COLORREF)];
+      
+#else
 
       byte * pdst = &((byte *)pdibDst->m_pcolorref)[scanDst * ptDst.y + ptDst.x * sizeof(COLORREF)];
+      
+#endif
 
       byte * pdst2;
 
       for (int y = 0; y < yEnd; y++)
       {
+         
+#ifdef APPLEOS
 
+         pdst2 = (byte *)&pdst[scanDst * (-y)];
+         
+#else
+         
          pdst2 = (byte *)&pdst[scanDst * y];
+         
+#endif
 
          for (int x = 0; x < xEnd; x++)
          {
@@ -1387,6 +1441,10 @@ namespace draw2d
    {
 
 //      int64_t size = area();
+      
+      map();
+      
+      pdib->map();
 
       LPBYTE lpb1 = (LPBYTE) get_data();
 
@@ -2496,6 +2554,7 @@ namespace draw2d
 
    void dib::horizontal_line(int32_t y, int32_t R, int32_t G, int32_t B, int32_t A, int32_t x1, int32_t x2)
    {
+      map();
       if(m_size.cx == 0)
          return;
       x1 %= m_size.cx;
@@ -2505,13 +2564,28 @@ namespace draw2d
       if(x1 < 0)
          x1 += m_size.cx;
       COLORREF color=RGB ( B, G, R ) | (A << 24);
+      
+#ifdef APPLEOS
+      
+      COLORREF * pdata = get_data() + (m_size.cy - y - 1) * (m_iScan / sizeof(COLORREF));
+      
+#else
+      
       COLORREF * pdata = get_data() + y * (m_iScan / sizeof(COLORREF));
+      
+#endif
+      
       for(int32_t x = x1; x <= x2; x++)
       {
+         
          *pdata = color;
+         
          pdata++;
+         
       }
+      
    }
+   
 
    void dib::Line ( int32_t x1, int32_t y1, int32_t x2, int32_t y2, int32_t R, int32_t G, int32_t B )
    {

@@ -38,8 +38,9 @@ namespace macos
 //      m_pui->m_nFlags    = 0;
       //m_pfnSuper         = NULL;
       m_bMouseHover        = false;
-      m_puiCapture       = NULL;
+      m_puiCapture         = NULL;
       m_oswindow           = NULL;
+      m_pmutex             = new mutex(::get_thread_app());
 
    }
 
@@ -52,26 +53,29 @@ namespace macos
 //      m_pui->m_nFlags    = 0;
       //m_pfnSuper         = NULL;
       m_bMouseHover        = false;
-      m_puiCapture       = NULL;
+      m_puiCapture         = NULL;
       m_oswindow           = NULL;
 
    }
 
 
-    interaction_impl::interaction_impl(::aura::application * papp) :
-        ::object(papp),
-   ::aura::timer_array(papp)
-    {
+   interaction_impl::interaction_impl(::aura::application * papp) :
+      ::object(papp),
+      ::aura::timer_array(papp)
+   {
 
-        //set_handle(NULL);
-//        m_pui->m_nFlags    = 0;
-        //m_pfnSuper         = NULL;
-        m_bMouseHover        = false;
-//        m_pfont              = NULL;
-        m_puiCapture       = NULL;
-        m_oswindow           = NULL;
-
-    }
+      //set_handle(NULL);
+      //m_pui->m_nFlags    = 0;
+      //m_pfnSuper         = NULL;
+      m_bMouseHover        = false;
+      //m_pfont              = NULL;
+      m_puiCapture         = NULL;
+      m_oswindow           = NULL;
+      
+      m_pmutex             = new mutex(papp);
+      
+       
+   }
 
 
    interaction_impl::~interaction_impl()
@@ -458,7 +462,7 @@ namespace macos
       //      oswindow hwndHandle = get_handle();
       /*      if(mac != get_handle())
        {
-       ASSERT(FALSE); // should have been set in send msg hook
+       ASSERT(FALSE); // should have been set in m_pui->send msg hook
        }*/
       m_pui->add_ref();
       return TRUE;
@@ -713,7 +717,7 @@ namespace macos
 
       }
 
-      // call special post-cleanup routine
+      // call special m_pui->send-cleanup routine
       PostNcDestroy();
 
       if(m_pui != NULL)
@@ -2216,7 +2220,7 @@ namespace macos
       /*for (oswindow hWndChild = ::GetTopWindow(hWnd); hWndChild != NULL;
        hWndChild = ::GetNextWindow(hWndChild, GW_HWNDNEXT))*/
       {
-         // if bOnlyPerm is TRUE, don't send to non-permanent windows
+         // if bOnlyPerm is TRUE, don't m_pui->send to non-permanent windows
          /*if (bOnlyPerm)
           {
           ::user::interaction * pWnd = ::macos::interaction_impl::FromHandlePermanent(hWndChild);
@@ -2230,7 +2234,7 @@ namespace macos
           {
           try
           {
-          // send message with oswindows SendMessage API
+          // m_pui->send message with oswindows SendMessage API
           ::SendMessage(hWndChild, message, wparam, lparam);
           }
           catch(...)
@@ -2239,7 +2243,7 @@ namespace macos
           }
           if (bDeep && ::GetTopWindow(hWndChild) != NULL)
           {
-          // send to child windows after parent
+          // m_pui->send to child windows after parent
           try
           {
           SendMessageToDescendants(hWndChild, message, wparam, lparam,
@@ -2755,7 +2759,7 @@ namespace macos
    bool interaction_impl::ReflectChildNotify(UINT uMsg, WPARAM wparam, LPARAM lparam, LRESULT* pResult)
    {
       UNREFERENCED_PARAMETER(wparam);
-      // Note: reflected messages are send directly to interaction_impl::OnWndMsg
+      // Note: reflected messages are m_pui->send directly to interaction_impl::OnWndMsg
       //  and interaction_impl::_001OnCommand for speed and because these messages are not
       //  routed by normal _001OnCommand routing (they are only dispatched)
 
@@ -3481,7 +3485,7 @@ namespace macos
 
    void interaction_impl::OnEnterIdle(UINT /*nWhy*/, ::user::interaction * /*pWho*/)
    {
-      // In some OLE inplace active scenarios, OLE will post a
+      // In some OLE inplace active scenarios, OLE will m_pui->send a
       // message instead of sending it.  This causes so many WM_ENTERIDLE
       // messages to be sent that tasks running in the background stop
       // running.  By dispatching the pending WM_ENTERIDLE messages
@@ -3664,7 +3668,7 @@ namespace macos
       //         }
       //      }
       //
-      //      // send update message to all controls after all other siblings loaded
+      //      // m_pui->send update message to all controls after all other siblings loaded
       //      if (bSuccess)
       //         SendMessageToDescendants(WM_INITIALUPDATE, 0, 0, FALSE, FALSE);
       //
@@ -3682,7 +3686,7 @@ namespace macos
       /* xxx   for (oswindow hWndChild = ::GetTopWindow(get_handle()); hWndChild != NULL;
        hWndChild = ::GetNextWindow(hWndChild, GW_HWNDNEXT))
        {
-       // send to buttons
+       // m_pui->send to buttons
        wndTemp.set_handle(hWndChild); // quick and dirty attach
        state.m_nID = __get_dialog_control_id(hWndChild);
        state.m_pOther = &wndTemp;
@@ -4829,7 +4833,7 @@ namespace macos
          }
          if (bDeep)
          {
-            // send to child windows after parent
+            // m_pui->send to child windows after parent
             try
             {
                pui->SendMessageToDescendants(message, wparam, lparam, bDeep, bOnlyPerm);
@@ -4908,7 +4912,7 @@ namespace macos
          
          unsigned long long uiNow = get_nanos();
          
-         if(m_uiLastUpdateEnd < m_uiLastUpdateBeg || uiNow - m_uiLastUpdateEnd < ((12 * 1000 * 1000) + (500 * 1000)))
+         if(uiNow - m_uiLastUpdateEnd < ((12 * 1000 * 1000) + (500 * 1000)))
          {
          
             return true;
@@ -5960,8 +5964,12 @@ namespace macos
          update_graphics_resources();
 
       }
+      
+      sl.unlock();
 
       _001UpdateWindow();
+      
+      sl.lock();
 
       cslock slDisplay(cs_display());
 
@@ -6015,7 +6023,7 @@ namespace macos
 
       spbase = pkey;
 
-      send(spbase);
+      m_pui->send(spbase);
 
       return spbase->m_bRet;
 
@@ -6034,7 +6042,7 @@ namespace macos
 
       spbase = pkey;
 
-      send(spbase);
+      m_pui->send(spbase);
 
       return spbase->m_bRet;
 
@@ -6053,7 +6061,7 @@ namespace macos
 
       spbase = pkey;
 
-      send(spbase);
+      m_pui->send(spbase);
 
       return spbase->m_bRet;
 
@@ -6072,7 +6080,7 @@ namespace macos
 
       spbase = pkey;
 
-      send(spbase);
+      m_pui->send(spbase);
 
       return spbase->m_bRet;
 
@@ -6096,7 +6104,7 @@ namespace macos
 
             spbase = pmouseactivate;
 
-            send(spbase);
+            m_pui->send(spbase);
 
             if(spbase->get_lresult() == MA_ACTIVATE || spbase->get_lresult() == MA_ACTIVATEANDEAT)
             {
@@ -6110,7 +6118,7 @@ namespace macos
 
                spbase = pactivate;
 
-               send(spbase);
+               m_pui->send(spbase);
 
             }
 
@@ -6140,7 +6148,7 @@ namespace macos
 
          spbase = pmouse;
 
-         send(spbase);
+         m_pui->send(spbase);
 
       }
 
@@ -6169,7 +6177,7 @@ namespace macos
 
       spbase = pmouse;
 
-      send(spbase);
+      m_pui->send(spbase);
 
    }
 
@@ -6189,7 +6197,7 @@ namespace macos
 
       spbase = pmouse;
 
-      send(spbase);
+      m_pui->send(spbase);
 
    }
 
@@ -6209,7 +6217,7 @@ namespace macos
 
       spbase = pmouse;
 
-      send(spbase);
+      m_pui->send(spbase);
 
    }
 
@@ -6342,7 +6350,7 @@ __handle_activate(::user::interaction * pWnd, WPARAM nState, ::user::interaction
    throw not_implemented(::get_thread_app());
    //   ASSERT(pWnd != NULL);
    //
-   //   // send WM_ACTIVATETOPLEVEL when top-level parents change
+   //   // m_pui->send WM_ACTIVATETOPLEVEL when top-level parents change
    //   if (!(MAC_WINDOW(pWnd)->GetStyle() & WS_CHILD))
    //   {
    //      ::user::interaction * pTopLevel= MAC_WINDOW(pWnd)->GetTopLevelParent();
@@ -6360,7 +6368,7 @@ __handle_activate(::user::interaction * pWnd, WPARAM nState, ::user::interaction
    //         {
    //            hWnd2[1] = MAC_WINDOW(pWndOther)->get_handle();
    //         }
-   //         // send it...
+   //         // m_pui->send it...
    //         pTopLevel->send_message(WM_ACTIVATETOPLEVEL, nState, (LPARAM)&hWnd2[0]);
    //      }
    //   }
@@ -6523,7 +6531,7 @@ __activation_window_procedure(oswindow hWnd, UINT nMsg, WPARAM wparam, LPARAM lp
          
       }
       
-      synch_lock sl(m_pui->m_pmutex);
+      synch_lock sl(m_pmutex);
       
       m_guieptraMouseHover.add_unique(pinterface);
       
@@ -6533,7 +6541,7 @@ __activation_window_procedure(oswindow hWnd, UINT nMsg, WPARAM wparam, LPARAM lp
    void interaction_impl::mouse_hover_remove(::user::interaction *  pinterface)
    {
       
-      synch_lock sl(m_pui->m_pmutex);
+      synch_lock sl(m_pmutex);
       
       m_guieptraMouseHover.remove(pinterface);
       

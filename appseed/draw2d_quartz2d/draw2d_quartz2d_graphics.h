@@ -366,9 +366,9 @@ namespace draw2d_quartz2d
       
       // Text Functions
       virtual bool internal_show_text(double x, double y, const char * lpszString, int32_t nCount, CGTextDrawingMode emode, bool bDraw = true, CGFloat * pascent = NULL, CGFloat * pdescent = NULL, CGFloat * pleading = NULL, CGFloat * pwidth = NULL, ::draw2d::pen * ppen=NULL, ::draw2d::brush * pbrush = NULL, ::draw2d::font * pfont = NULL);
-      virtual bool TextOut(int32_t x, int32_t y, const char * lpszString, int32_t nCount);
+      virtual bool TextOut(int32_t x, int32_t y, const char * lpszString, strsize nCount);
       virtual bool TextOut(int32_t x, int32_t y, const string & str);
-      virtual bool TextOut(double x, double y, const char * lpszString, int32_t nCount);
+      virtual bool TextOut(double x, double y, const char * lpszString, strsize nCount);
       virtual bool TextOut(double x, double y, const string & str);
       virtual bool ExtTextOut(int32_t x, int32_t y, UINT nOptions, const RECT & lpRect,
                               const char * lpszString, UINT nCount, LPINT lpDxWidths);

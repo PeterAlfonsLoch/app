@@ -683,7 +683,7 @@ namespace user
 
    void mesh::_001GetItemImage(::user::mesh_item * pitem)
    {
-
+      
       if(m_pmeshdata != NULL)
       {
 

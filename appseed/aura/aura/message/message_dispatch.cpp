@@ -81,14 +81,14 @@ namespace message
    void dispatch::_user_message_handler(signal_details * pbase)
    {
 
-      if(pbase->m_uiMessage == (WM_APP + 2014))
+      if(pbase->m_uiMessage == MESSAGE_POST_MESSAGE)
       {
          sp(::signal_details) pbase2 = pbase->m_lparam;
-         _user_message_handler(pbase2);
-         if(pbase2->m_wparam != 0)
-         {
-            delete pbase;
-         }
+         message_handler(pbase2);
+//         if(pbase2->m_wparam != 0)
+  //       {
+    //        delete pbase;
+      //   }
          return;
       }
       int i = 0;

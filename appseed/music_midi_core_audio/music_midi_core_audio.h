@@ -3,8 +3,8 @@
 
 #include "app-veriwell/appseed/multimedia/multimedia/multimedia.h"
 
-#include <CoreFoundation/CoreFoundation.h>
-#include <CoreFoundation/CFByteOrder.h>
+//#include <CoreFoundation/CoreFoundation.h>
+//#include <CoreFoundation/CFByteOrder.h>
 #ifdef MACOS
 #include <CoreServices/CoreServices.h>
 #else

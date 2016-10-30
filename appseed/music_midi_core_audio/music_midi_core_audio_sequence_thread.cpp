@@ -374,7 +374,7 @@ namespace music
             
          }
          
-         post_thread_message(sequence::message_run, 0, 0);
+         //post_thread_message(sequence::message_run, 0, 0);
          
       }
       

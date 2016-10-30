@@ -232,7 +232,7 @@
 			isa = PBXGroup;
 			children = (
 				078DD9811CA1F02D00290384 /* libcore.dylib */,
-				078DD9831CA1F02D00290384 /* libcore.dylib */,
+				078DD9831CA1F02D00290384 /* libios_core.dylib */,
 				078DD9851CA1F02D00290384 /* core_iosTests.xctest */,
 			);
 			name = Products;
@@ -433,7 +433,7 @@
 			remoteRef = 078DD9801CA1F02D00290384 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		078DD9831CA1F02D00290384 /* libcore.dylib */ = {
+		078DD9831CA1F02D00290384 /* libios_core.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libios_core.dylib;
@@ -681,7 +681,7 @@
 					"$(inherited)",
 					"\"$(TARGET_BUILD_DIR)\"",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -711,7 +711,7 @@
 					"$(inherited)",
 					"\"$(TARGET_BUILD_DIR)\"",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/core $(WorkspaceDir)/../../../app/appseed/base $(WorkspaceDir)/../../../app/appseed/axis $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../.. $(WorkspaceDir)/../../base/include $(WorkspaceDir)/../../../app/base/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/base";

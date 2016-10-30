@@ -899,8 +899,15 @@ namespace user
       }
 
       CacheHint();
+      
+      // user interface things should be done in main thread or separated thread...
+      // now I know why ms people told so much about using window\s only from main thread...
+      ::fork(get_app(), [&]()
+      {
 
-      on_layout();
+         layout();
+         
+      });
 
       TRACE("list::_001OnUpdateItemCount ItemCount %d\n", m_nItemCount);
 

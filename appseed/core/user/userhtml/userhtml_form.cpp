@@ -238,6 +238,8 @@ void html_form::_001OnMouseMove(signal_details * pobj)
    point pt(pmouse->m_pt);
 
    ScreenToClient(&pt);
+   
+   synch_lock sl(m_pmutex);
 
    html::elemental * pelemental = get_html_data()->m_elemental.hit_test(get_html_data(), pt);
 

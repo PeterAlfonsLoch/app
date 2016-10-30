@@ -141,3 +141,112 @@ _AFXMT_INLINE int_bool critical_section::Unlock()
 
 
 
+
+template <typename T>
+struct hold
+{
+public:
+   
+   T                    m_t;
+   bool                 m_bInitialized = false;
+   manual_reset_event   m_evReady;
+   string               m_strErrorMessage;
+   
+   
+   void wait()
+   {
+      
+      m_evReady.wait();
+      
+   }
+   
+   T & get()
+   {
+      
+      wait();
+      
+      if(m_bInitialized)
+      {
+         
+         return m_t;
+         
+      }
+      
+      throw ::simple_exception(::get_thread_app(), m_strErrorMessage);
+      
+   }
+   
+   template <typename U>
+   hold < T > &operator = (const U& value)
+   {
+      
+      m_t = value;
+      
+      m_bInitialized = true;
+      
+      m_evReady.set_event();
+      
+      return *this;
+      
+   }
+   
+   void set_error_message(const string & strErrorMessage)
+   {
+      
+      m_strErrorMessage = strErrorMessage;
+      
+      m_evReady.set_event();
+      
+   }
+   
+   
+   
+   hold(::aura::application * papp) :
+   m_evReady(papp)
+   {
+      
+   }
+   
+   ~hold()
+   {
+      
+   }
+   
+   
+   bool valid() const noexcept
+   {
+      
+      return m_bInitialized;
+      
+   }
+   
+   template < typename PRED >
+   void work(PRED pred)
+   {
+      
+      m_bInitialized = false;
+      
+      ::fork(m_evReady.get_app(), [this, &pred]()
+             {
+                
+                try
+                {
+                   
+                   operator =(pred());
+                   
+                }
+                catch(const ::exception::base & e)
+                {
+                   
+                   m_strErrorMessage = ((::exception::base &)e).get_message();
+                   
+                }
+                
+             });
+      
+   }
+   
+};
+
+
+

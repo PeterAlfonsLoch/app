@@ -82,8 +82,11 @@ namespace user
       return impact::_001OnCmdMsg(pcmdmsg);
    }
 
+   
    bool menu_list_view::LoadMenu(sp(::xml::node) pnode, sp(::user::interaction) puiNotify, UINT uiCallbackMessage)
    {
+      
+      destroy_menu();
       
       m_uiMessage = uiCallbackMessage;
       m_bAutoClose = false;
@@ -98,6 +101,7 @@ namespace user
       return true;
 
    }
+   
 
    void menu_list_view::PostNcDestroy()
    {

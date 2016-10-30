@@ -82,6 +82,7 @@ namespace core
       stringa                                m_straAppInterest;
       string_map < oswindow,oswindow >       m_mapAppInterest;
 
+      int32_t                                m_iGcomBackgroundUpdateMillis;
 
 
       application();

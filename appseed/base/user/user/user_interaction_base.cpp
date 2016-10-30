@@ -687,6 +687,13 @@ Restart:
 
    LRESULT interaction_base::send(::message::base * pbase)
    {
+      
+      if(pbase->m_pwnd.is_null())
+      {
+         
+         pbase->m_pwnd = this;
+         
+      }
 
       message_handler(pbase);
 

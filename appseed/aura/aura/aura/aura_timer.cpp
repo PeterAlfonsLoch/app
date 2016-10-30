@@ -166,9 +166,34 @@ namespace aura
 
 
       }
+      
+      ~Timer()
+      {
+         
+         if (m_queue != NULL)
+         {
+            
+            ReleaseDispatch(m_queue);
+            
+            m_queue = NULL;
+            
+         }
+          
+      }
 
       void stop(bool bWaitCompletion)
       {
+         
+         int iRetry = 10 * 10;
+         
+         while(iRetry >= 0 && m_ptimer->m_bDeal)
+         {
+            
+            Sleep(100);
+            
+            iRetry--;
+            
+         }
 
          if (m_timer != NULL)
          {
@@ -180,15 +205,8 @@ namespace aura
             m_timer = NULL;
 
          }
-
-         if (m_queue != NULL)
-         {
-
-            ReleaseDispatch(m_queue);
-
-            m_queue = NULL;
-
-         }
+               
+         m_ptimer->m_bSet = false;
 
       }
 
@@ -286,12 +304,13 @@ timer::timer(::aura::application * papp, uint_ptr uiTimer, PFN_TIMER pfnTimer, v
    m_bRet = false;
    m_bKill = false;
    m_bDeal = false;
+
 }
 
 timer::~timer()
 {
 
-   stop(false);
+   stop(true);
 
    ::aura::del(m_ptimer);
 
@@ -307,7 +326,7 @@ bool timer::start(int millis, bool bPeriodic)
       stop(true);
 
    }
-
+   
    m_bPeriodic = bPeriodic;
 
    m_dwMillis = millis;
@@ -353,7 +372,7 @@ bool timer::start(int millis, bool bPeriodic)
       {
 
          m_bSet = false;
-
+         
       }
 
    }
@@ -368,17 +387,29 @@ bool timer::start(int millis, bool bPeriodic)
    {
 
       m_bSet = false;
-
+      
       return false;
 
    }
 
 #elif defined(__APPLE__)
+   
+   
+   if(m_ptimer->m_queue == NULL)
+   {
+   
+      m_ptimer->m_queue = CreateDispatchQueue();
 
-   m_ptimer->m_queue = CreateDispatchQueue();
-
-   if (m_ptimer->m_queue == NULL)
-      return false;
+      if (m_ptimer->m_queue == NULL)
+      {
+         
+         m_bSet = false;
+         
+         return false;
+         
+      }
+      
+   }
 
    m_ptimer->m_bFirst = true;
 
@@ -390,7 +421,7 @@ bool timer::start(int millis, bool bPeriodic)
    {
 
       m_bSet = false;
-
+      
       return false;
 
    }
@@ -431,20 +462,31 @@ bool timer::start(int millis, bool bPeriodic)
    {
 
       m_bSet = false;
-
+      
       return false;
 
    }
 
 #endif
-
+   
    return true;
 
 }
 
 void timer::stop(bool bWaitCompletion)
 {
-
+   
+   try
+   {
+      
+      m_bKill = true;
+   
+   }
+   catch (...)
+   {
+      
+   }
+   
    try
    {
 
@@ -463,10 +505,14 @@ void timer::stop(bool bWaitCompletion)
 
 bool timer::call_on_timer()
 {
+   
    if(!g_bAura)
    {
+      
       output_debug_string("there is timer on (timer::call_on_timer) and aura has gone (!g_bAura)\n");
+      
       return  false;
+      
    }
 
    try
@@ -480,12 +526,16 @@ bool timer::call_on_timer()
          m_bRun = true;
 
       }
-
+      
       synch_lock sl(m_pmutex);
 
       if (m_bKill || m_bDestroying || m_bDeal)
-         return true;
+      {
 
+         return true;
+         
+      }
+      
       m_bDeal = true;
 
       m_bRet = false;
@@ -494,37 +544,45 @@ bool timer::call_on_timer()
 
       on_timer();
 
+      if(!m_bPeriodic)
+      {
+         
+         m_bRun = false;
+         
+      }
+      
       /// pump any messages in queue
-   MESSAGE msg;
+      MESSAGE msg;
 
-   while(::PeekMessage(&msg,NULL,0,0,PM_NOREMOVE) != FALSE)
-   {
-
-      // pump message, but quit on WM_QUIT
-      if(!m_bRun || !pump_message())
+      while(::PeekMessage(&msg,NULL,0,0,PM_NOREMOVE) != FALSE)
       {
 
+         // pump message, but quit on WM_QUIT
+         if(!m_bRun || !pump_message())
+         {
 
-//         ::output_debug_string("\n\n\nthread_impl::defer_pump_message (1) quitting (WM_QUIT? {PeekMessage->message : "+::str::from(msg.message == WM_QUIT?1:0)+"!}) : " + string(demangle(typeid(*m_pthread).name())) + " ("+::str::from((uint64_t)::GetCurrentThreadId())+")\n\n\n");
 
-         break;
+            //         ::output_debug_string("\n\n\nthread_impl::defer_pump_message (1) quitting (WM_QUIT? {PeekMessage->message : "+::str::from(msg.message == WM_QUIT?1:0)+"!}) : " + string(demangle(typeid(*m_pthread).name())) + " ("+::str::from((uint64_t)::GetCurrentThreadId())+")\n\n\n");
+
+            break;
+
+         }
 
       }
-
-   }
+      
       sl.lock();
 
       m_bDeal = false;
-
-      if (m_bKill || !m_bRun)
+      
+      if (!m_bPeriodic || m_bKill || !m_bRun)
       {
+         
+#ifdef APPLEOS
 
-//#ifndef METROWIN
-//
-//         sl.m_pobjectSync = NULL;
-//
-//#endif
-
+         stop(true);
+            
+#endif
+         
          if (!m_bDestroying)
          {
 
@@ -533,11 +591,11 @@ bool timer::call_on_timer()
             sl.unlock();
 
          }
-
+         
          return false;
 
       }
-
+      
 #if defined(WINDOWSEX)
 
       if (m_bPeriodic)
@@ -553,16 +611,6 @@ bool timer::call_on_timer()
       }
 
 #elif defined(__APPLE__)
-
-      if (!m_bPeriodic)
-      {
-
-         stop(true);
-
-         return false;
-
-      }
-
 
 #elif defined(METROWIN)
 

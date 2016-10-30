@@ -269,6 +269,8 @@ namespace filemanager
 
    void file_list::RenameFile(int32_t iLine, string &wstrNameNew, ::action::context actioncontext)
    {
+      
+      synch_lock sl(get_fs_mesh_data()->m_pmutex);
 
       ::file::path filepath = get_fs_mesh_data()->m_itema.get_item(iLine).m_filepath;
 
@@ -283,8 +285,13 @@ namespace filemanager
 
    void file_list::_001OnContextMenu(signal_details * pobj)
    {
+      
+
       //SCAST_PTR(::message::context_menu, pcontextmenu, pobj);
       SCAST_PTR(::message::mouse, pcontextmenu, pobj);
+      
+      synch_lock sl(get_fs_mesh_data()->m_pmutex);
+
       index iItem;
 //      HRESULT hr;
       point point = pcontextmenu->m_pt;
@@ -484,7 +491,11 @@ namespace filemanager
 
    void file_list::_001OnFileManagerItemUpdate(signal_details * pobj)
    {
+
       SCAST_PTR(::message::update_cmd_ui, pupdatecmdui, pobj);
+      
+      synch_lock sl(get_fs_mesh_data()->m_pmutex);
+
       ::fs::item_array itema;
       index iItemRange, iItem;
       range range;
@@ -885,6 +896,9 @@ namespace filemanager
 
    void file_list::_001OnSpafy2(signal_details * pobj)
    {
+      
+      synch_lock sl(get_fs_mesh_data()->m_pmutex);
+      
       sp(::userfs::list_data) pdata = get_fs_mesh_data();
       UNREFERENCED_PARAMETER(pobj);
       stringa stra;
@@ -1657,6 +1671,10 @@ namespace filemanager
 
    void file_list::_017OpenContextMenuSelected(::action::context actioncontext)
    {
+      
+      synch_lock sl(get_fs_mesh_data()->m_pmutex);
+
+      
       ::fs::item_array itema;
       index iItemRange, iItem;
       range range;
@@ -1748,6 +1766,9 @@ namespace filemanager
 
    void file_list::GetSelected(::fs::item_array &itema)
    {
+      
+      synch_lock sl(get_fs_mesh_data()->m_pmutex);
+      
       index iItemRange, iItem;
       range range;
       _001GetSelection(range);
@@ -1819,6 +1840,8 @@ namespace filemanager
 
    bool file_list::add_item(const char * pszPath, const char * pszTitle)
    {
+      
+      synch_lock sl(get_fs_mesh_data()->m_pmutex);
 
       ::userfs::list_item item(get_app());
 
@@ -1880,6 +1903,9 @@ namespace filemanager
 
    bool file_list::query_drop(index iDisplayDrop, index iDisplayDrag)
    {
+      
+      synch_lock sl(get_fs_mesh_data()->m_pmutex);
+
       if (iDisplayDrag < 0)
          return false;
       if (iDisplayDrop < 0)
@@ -1907,6 +1933,8 @@ namespace filemanager
 
    bool file_list::do_drop(index iDisplayDrop, index iDisplayDrag)
    {
+      
+      synch_lock sl(get_fs_mesh_data()->m_pmutex);
 
       index strict;
 

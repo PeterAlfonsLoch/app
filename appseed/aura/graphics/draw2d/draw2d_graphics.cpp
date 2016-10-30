@@ -1462,7 +1462,7 @@ namespace draw2d
 
       }
 
-      return false;
+      return TextOut((int)x, int(y),lpszString, nCount);
 
    }
 

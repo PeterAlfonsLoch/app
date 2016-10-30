@@ -17,6 +17,8 @@ static void MyMIDIReadProc(const MIDIPacketList *pktlist,
                            void *connRefCon) {
    ::music::midi_core_midi::sequence * pseq = (::music::midi_core_midi::sequence * )refCon;
    
+   
+   
    //if(!pseq->m_bStart)
    {
       
@@ -996,6 +998,8 @@ namespace music
             
          }
          
+         SetState(status_playing);
+         
          m_uiStart = get_tick_count();
          
          // Get length of track so that we know how long to kill time for
@@ -1514,8 +1518,9 @@ namespace music
                
                //m_posPlay = time = now * 1000;
                      
-                     m_posPlay = time = get_tick_count() - m_uiStart;
+                     m_posPlay =  get_tick_count() - m_uiStart;
                      
+                     time = m_posPlay;
                      //time = outHostTime;
                
                return ::multimedia::result_success;

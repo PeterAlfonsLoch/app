@@ -70,31 +70,32 @@ namespace user
 
       void layout_menu(point pt);
 
-      DECL_GEN_SIGNAL(_001OnLButtonDown);
 
+      virtual bool TrackPopupMenu(int32_t iFlags, POINT pt, ::user::interaction * oswindowParent) override;
+      virtual bool _TrackPopupMenu(int32_t iFlags, POINT pt, sp(::user::interaction) oswindowParent, menu * pmenuParent);
+
+      void _001OnTimer(::timer * ptimer);
       void _001OnDraw(::draw2d::graphics * pgraphics);
+
       DECL_GEN_SIGNAL(OnMessageDestroyWindow);
-
-
-      virtual bool BaseOnControlEvent(::user::control_event * pevent);
-
+      DECL_GEN_SIGNAL(_001OnLButtonDown);
       DECL_GEN_SIGNAL(_001OnCreate);
       DECL_GEN_SIGNAL(_001OnDestroy);
-      void _001OnTimer(::timer * ptimer);
       DECL_GEN_SIGNAL(_001OnIdleUpdateCmdUI);
       DECL_GEN_SIGNAL(_001OnNcActivate);
       DECL_GEN_SIGNAL(_001OnNcCalcSize);
       DECL_GEN_SIGNAL(_001OnEnable);
+      DECL_GEN_SIGNAL(_001OnShowWindow);
 
-      virtual bool TrackPopupMenu(int32_t iFlags, POINT pt, ::user::interaction * oswindowParent) override;
-      virtual bool _TrackPopupMenu(int32_t iFlags, POINT pt, sp(::user::interaction) oswindowParent, menu * pmenuParent);
+
+      virtual bool BaseOnControlEvent(::user::control_event * pevent);
+
       /*DECL_GEN_SIGNAL(OnMouseProc);*/
       bool pre_create_window(::user::create_struct& cs);
       //virtual void PostNcDestroy();
       ::user::front_end_schema::menu  * m_pschema;
       virtual void install_message_handling(::message::dispatch * pinterface);
 
-      DECL_GEN_SIGNAL(_001OnShowWindow);
 
 
       sp(::user::menu_item) get_item();

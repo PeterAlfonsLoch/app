@@ -16,8 +16,6 @@ namespace user
 
       sp(menu_base_item)      m_pitem;
 
-      //sp(menu_base) *         m_pmenubaseThis;
-
 
       menu_base();
       menu_base(::aura::application * papp);
@@ -28,12 +26,12 @@ namespace user
       virtual void install_message_handling(::message::dispatch * pdispatch);
 
 
-      bool create_menu(const stringa & straCommand, const stringa & straCommandTitle);
-      bool LoadMenu(sp(::xml::node) lpnode);
-      bool LoadXmlMenu(const char * pszMatter);
+      virtual bool create_menu(const stringa & straCommand, const stringa & straCommandTitle);
+      virtual bool LoadMenu(sp(::xml::node) lpnode);
+      virtual bool LoadXmlMenu(const char * pszMatter);
 
 
-      virtual void clear();
+      virtual void destroy_menu();
       virtual void layout_menu(point pt) = 0;
 
 

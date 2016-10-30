@@ -408,17 +408,9 @@ namespace visual
    int32_t font::GetMegaHeight()
    {
 
-#ifdef WINDOWS
-
       return m_tm.tmHeight +
              m_tm.tmInternalLeading +
              m_tm.tmExternalLeading;
-
-#else
-
-      return 23;
-
-#endif
 
    }
 

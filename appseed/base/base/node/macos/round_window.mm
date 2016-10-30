@@ -108,7 +108,7 @@ void round_window::round_window_close()
 void round_window::round_window_show()
 {
    
-   [[((__bridge RoundWindow *)m_proundwindow)->m_controller dd_invokeOnMainThreadAndWaitUntilDone:FALSE] showWindow : ((__bridge RoundWindow *)m_proundwindow)];
+   [[((__bridge RoundWindow *)m_proundwindow)->m_controller dd_invokeOnMainThreadAndWaitUntilDone:TRUE] showWindow : ((__bridge RoundWindow *)m_proundwindow)];
    
 }
 
@@ -116,14 +116,14 @@ void round_window::round_window_show()
 void round_window::round_window_hide()
 {
     
-   [[((__bridge RoundWindow *)m_proundwindow) dd_invokeOnMainThreadAndWaitUntilDone:FALSE] orderOut : ((__bridge RoundWindow *)m_proundwindow)];
+   [[((__bridge RoundWindow *)m_proundwindow) dd_invokeOnMainThreadAndWaitUntilDone:TRUE] orderOut : ((__bridge RoundWindow *)m_proundwindow)];
     
 }
 
 void round_window::round_window_order_front()
 {
    
-   [[((__bridge RoundWindow *)m_proundwindow) dd_invokeOnMainThreadAndWaitUntilDone:FALSE] orderFront : ((__bridge RoundWindow *)m_proundwindow)];
+   [[((__bridge RoundWindow *)m_proundwindow) dd_invokeOnMainThreadAndWaitUntilDone:TRUE] orderFront : ((__bridge RoundWindow *)m_proundwindow)];
    
 }
 
@@ -131,7 +131,7 @@ void round_window::round_window_order_front()
 void round_window::round_window_make_key_window()
 {
 
-   [[((__bridge RoundWindow *)m_proundwindow) dd_invokeOnMainThreadAndWaitUntilDone:FALSE] makeKeyWindow];
+   [[((__bridge RoundWindow *)m_proundwindow) dd_invokeOnMainThreadAndWaitUntilDone:TRUE] makeKeyWindow];
    
 }
 
@@ -139,7 +139,7 @@ void round_window::round_window_make_key_window()
 void round_window::round_window_make_key_window_and_order_front()
 {
    
-   [[((__bridge RoundWindow *)m_proundwindow) dd_invokeOnMainThreadAndWaitUntilDone:FALSE] makeKeyAndOrderFront: ((__bridge RoundWindow *)m_proundwindow)];
+   [[((__bridge RoundWindow *)m_proundwindow) dd_invokeOnMainThreadAndWaitUntilDone:TRUE] makeKeyAndOrderFront: ((__bridge RoundWindow *)m_proundwindow)];
    
 }
 
@@ -147,7 +147,7 @@ void round_window::round_window_make_key_window_and_order_front()
 void round_window::round_window_make_main_window()
 {
    
-   [[((__bridge RoundWindow *)m_proundwindow) dd_invokeOnMainThreadAndWaitUntilDone:FALSE] makeMainWindow];
+   [[((__bridge RoundWindow *)m_proundwindow) dd_invokeOnMainThreadAndWaitUntilDone:TRUE] makeMainWindow];
    
 }
 
@@ -155,7 +155,7 @@ void round_window::round_window_make_main_window()
 void round_window::round_window_redraw()
 {
 
-   [[((__bridge RoundWindow *)m_proundwindow) dd_invokeOnMainThreadAndWaitUntilDone:FALSE] display ];
+   [[((__bridge RoundWindow *)m_proundwindow) dd_invokeOnMainThreadAndWaitUntilDone:TRUE] display ];
    
 }
 
@@ -200,14 +200,14 @@ bool nsapp_activation_policy_is_accessory()
 void nsapp_activation_policy_regular()
 {
    
-   [[NSApp dd_invokeOnMainThreadAndWaitUntilDone:FALSE ]setActivationPolicy:NSApplicationActivationPolicyRegular];
+   [[NSApp dd_invokeOnMainThreadAndWaitUntilDone:TRUE ]setActivationPolicy:NSApplicationActivationPolicyRegular];
    
 }
 
 void nsapp_activation_policy_accessory()
 {
    
-   [[NSApp dd_invokeOnMainThreadAndWaitUntilDone:FALSE ]setActivationPolicy:NSApplicationActivationPolicyAccessory];
+   [[NSApp dd_invokeOnMainThreadAndWaitUntilDone:TRUE ]setActivationPolicy:NSApplicationActivationPolicyAccessory];
    
 }
 
@@ -215,7 +215,7 @@ void nsapp_activation_policy_accessory()
 void nsapp_activation_policy_prohibited()
 {
    
-   [[NSApp dd_invokeOnMainThreadAndWaitUntilDone:FALSE ]setActivationPolicy:NSApplicationActivationPolicyProhibited];
+   [[NSApp dd_invokeOnMainThreadAndWaitUntilDone:TRUE ]setActivationPolicy:NSApplicationActivationPolicyProhibited];
    
 }
 
@@ -226,13 +226,13 @@ void nsapp_activate_ignoring_other_apps(int i)
    if(i)
    {
       
-      [[NSApp dd_invokeOnMainThreadAndWaitUntilDone:FALSE ]activateIgnoringOtherApps:YES];
+      [[NSApp dd_invokeOnMainThreadAndWaitUntilDone:TRUE ]activateIgnoringOtherApps:YES];
       
    }
    else
    {
       
-      [[NSApp dd_invokeOnMainThreadAndWaitUntilDone:FALSE ]activateIgnoringOtherApps:NO];
+      [[NSApp dd_invokeOnMainThreadAndWaitUntilDone:TRUE ]activateIgnoringOtherApps:NO];
       
    }
    

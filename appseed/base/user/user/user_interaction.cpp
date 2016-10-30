@@ -99,6 +99,8 @@ namespace user
 
    void interaction::user_interaction_common_construct()
    {
+      
+      m_bCreated                 = false;
 
       m_bLockWindowUpdate        = false;
 
@@ -149,7 +151,7 @@ namespace user
       m_ptScrollPassword1.x               = 0;
       m_ptScrollPassword1.y               = 0;
       m_palphasource                      = NULL;
-
+      
    }
 
 
@@ -904,6 +906,8 @@ namespace user
                      || get_wnd()->m_pimpl.cast < ::user::interaction_impl >()==NULL ? NULL : get_wnd()->m_pimpl.cast < ::user::interaction_impl >()->draw_mutex(), true);
 
       //single_lock sl(m_pmutex,true);
+      
+      m_bCreated = false;
 
       user_interaction_on_hide();
 
@@ -1117,8 +1121,10 @@ namespace user
          return;
 
       }
-
-      synch_lock sl(m_pmutex);
+      
+      //single_lock slTop(get_wnd()->m_pmutex, true);
+      
+      single_lock sl(m_pmutex, true);
 
       on_layout();
 
@@ -1140,11 +1146,19 @@ namespace user
       pobj->previous();
 
       layout_tooltip();
+      
+      synch_lock sl(m_pmutex);
 
-      for(auto & pui : m_uiptraChild)
+      for(index i = 0; i < m_uiptraChild.get_size(); i++)
       {
+         
+         sp(::user::interaction) pui = m_uiptraChild[i];
+         
+         sl.unlock();
 
          pui->send_message(WM_MOVE);
+         
+         sl.lock();
 
       }
 
@@ -2169,7 +2183,7 @@ namespace user
    bool interaction::post(::message::base * pbase)
    {
 
-      return post_message(WM_APP + 2014,1,(LPARAM)(::signal_details *)pbase );
+      return post_message(MESSAGE_POST_MESSAGE,1,pbase );
 
    }
 
@@ -3274,6 +3288,8 @@ namespace user
       single_lock sl1(get_wnd() != NULL && get_wnd() != this ? get_wnd()->m_pmutex : NULL,true);
 
       //single_lock sl(m_pmutex,true);
+      
+      m_bCreated = false;
 
       if(!IsWindow())
       {

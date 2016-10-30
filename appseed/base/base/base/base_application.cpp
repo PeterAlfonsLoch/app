@@ -164,7 +164,9 @@ namespace base
       //return;
 
       case MSGF_MENU:
-         pMsgWnd = dynamic_cast <::user::interaction *> (pbase->m_pwnd);
+            
+         pMsgWnd = pbase->m_pwnd.cast < ::user::interaction > ();
+            
          if(pMsgWnd != NULL)
          {
             pTopFrameWnd = pMsgWnd->GetTopLevelFrame();

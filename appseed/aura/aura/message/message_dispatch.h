@@ -1,6 +1,8 @@
 #pragma once
 
 
+#define MESSAGE_POST_MESSAGE 14000
+
 namespace message
 {
 

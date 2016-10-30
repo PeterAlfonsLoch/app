@@ -15,7 +15,7 @@ namespace message
    public:
 
 
-      ::user::primitive *      m_pwnd;
+      sp(::user::primitive)      m_pwnd;
       bool                       m_bConditional;
       bool                       m_bReflect;
       bool                       m_bDestroyed;

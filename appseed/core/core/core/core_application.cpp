@@ -81,6 +81,8 @@ namespace core
       m_peventReady = NULL;
       m_strLocale = "_std";
       m_strSchema = "_std";
+      
+      m_iGcomBackgroundUpdateMillis = -1;
 
       //      m_pcalculator = NULL;
 

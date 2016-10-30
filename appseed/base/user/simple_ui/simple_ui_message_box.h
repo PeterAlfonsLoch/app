@@ -41,6 +41,8 @@ namespace simple_ui
       virtual void pre_translate_message(signal_details * pobj);
 
       //virtual void EndModalLoop(id nResult);
+      
+      virtual bool has_pending_graphical_update() override;
 
 
    };

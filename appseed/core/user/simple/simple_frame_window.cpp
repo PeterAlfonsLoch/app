@@ -306,7 +306,7 @@ void simple_frame_window::_001OnCreate(signal_details * pobj)
 
    m_puserschema = Session.m_puserschema;
 
-   data_get("transparent_frame",m_bTransparentFrame);
+   //data_get("transparent_frame",m_bTransparentFrame);
 
 
    sp(::user::place_holder) pplaceholder = GetParent();
@@ -2322,11 +2322,21 @@ void simple_frame_window::_011OnDraw(::draw2d::graphics * pgraphics)
 
 bool simple_frame_window::WfiOnMove(bool bTracking)
 {
+   
    if (!bTracking)
    {
-      WindowDataSaveWindowRect();
+      
+      ::fork(get_app(), [this]()
+      {
+         
+         WindowDataSaveWindowRect();
+         
+      });
+      
    }
+   
    return true;
+   
 }
 
 

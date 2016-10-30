@@ -17,8 +17,6 @@ namespace user
       ::object(papp)
    {
 
-      m_pitem = Application.alloc(System.type_info < menu_base_item > ());
-
    }
 
 
@@ -49,30 +47,45 @@ namespace user
    }
 
 
-   void menu_base::clear()
-   {
-
-      m_pitem = Application.alloc(System.type_info < menu_base_item >());
-
-   }
-
    bool menu_base::create_menu(const stringa & straCommand, const stringa & straCommandTitle)
    {
+      
+      if(m_pitem.is_null())
+      {
+         
+         m_pitem = Application.alloc(System.type_info < menu_base_item > ());
+         
+      }
 
       return m_pitem->create_menu(straCommand, straCommandTitle);
 
    }
 
+   
    bool menu_base::LoadMenu(sp(::xml::node) lpnode)
    {
 
+      if(m_pitem.is_null())
+      {
+         
+         m_pitem = Application.alloc(System.type_info < menu_base_item > ());
+         
+      }
+      
       return m_pitem->load_menu(lpnode);
 
    }
 
+
    bool menu_base::LoadXmlMenu(const char * pszMatter)
    {
 
+      if(m_pitem.is_null())
+      {
+         
+         m_pitem = Application.alloc(System.type_info < menu_base_item > ());
+         
+      }
 
       xml::document doc(get_app());
 
@@ -92,6 +105,14 @@ namespace user
 
    }
 
+
+   void menu_base::destroy_menu()
+   {
+      
+      m_pitem.release();
+      
+   }
+  
 
    bool menu_base::TrackPopupMenu(int32_t iFlags, POINT pt, ::user::interaction * oswindowParent)
    {

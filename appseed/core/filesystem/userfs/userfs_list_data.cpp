@@ -23,6 +23,9 @@ namespace userfs
 
    void list_data::_001GetItemText(::user::mesh_item * pitem)
    {
+      
+      synch_lock sl(m_pmutex);
+      
 //      if(is_locked())
 //         return;
 
@@ -101,6 +104,8 @@ namespace userfs
 
    void list_data::_001GetItemImage(::user::mesh_item * pitem)
    {
+      
+      synch_lock sl(m_pmutex);
 //      if(is_locked())
       //return;
       if(pitem->m_iSubItem == m_iNameSubItemText)

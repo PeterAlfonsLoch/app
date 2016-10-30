@@ -36,7 +36,7 @@ namespace user
 
       virtual bool get_color(COLORREF & cr,e_color ecolor);
 
-      virtual void clear();
+      virtual void destroy_menu();
 
       virtual bool TrackPopupMenu(sp(::user::interaction) pwndParent, sp(::user::interaction) pwndNotify);
 
@@ -44,6 +44,8 @@ namespace user
 
       DECL_GEN_SIGNAL(_001OnCreate);
       DECL_GEN_SIGNAL(_001OnDestroy);
+      DECL_GEN_SIGNAL(_001OnClose);
+      
       void _001OnTimer(::timer * ptimer);
 
       void _001OnDraw(::draw2d::graphics * pgraphics);

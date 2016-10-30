@@ -40,13 +40,13 @@ bool oswindow_data::show_window(int32_t nCmdShow)
    
 //   printf("\nhide window");
     
-      [[m_nswindow dd_invokeOnMainThreadAndWaitUntilDone:FALSE ]orderOut : nil];
+      [[m_nswindow dd_invokeOnMainThreadAndWaitUntilDone:TRUE ]orderOut : nil];
 
    }
    else if(nCmdShow == SW_SHOWNOACTIVATE)
    {
 
-      [[m_nswindow dd_invokeOnMainThreadAndWaitUntilDone:FALSE] orderFront : nil];
+      [[m_nswindow dd_invokeOnMainThreadAndWaitUntilDone:TRUE] orderFront : nil];
       
    }
    else
@@ -59,11 +59,11 @@ bool oswindow_data::show_window(int32_t nCmdShow)
       
       nsapp_activate_ignoring_other_apps(1);
       
-      //[[m_nswindow dd_invokeOnMainThreadAndWaitUntilDone:FALSE ]showWindow: nil];
+      //[[m_nswindow dd_invokeOnMainThreadAndWaitUntilDone:TRUE ]showWindow: nil];
 
-      [[m_nswindow dd_invokeOnMainThreadAndWaitUntilDone:FALSE] makeKeyAndOrderFront : nil];
+      [[m_nswindow dd_invokeOnMainThreadAndWaitUntilDone:TRUE] makeKeyAndOrderFront : nil];
       
-//      [[m_nswindow dd_invokeOnMainThreadAndWaitUntilDone:FALSE ]display];
+//      [[m_nswindow dd_invokeOnMainThreadAndWaitUntilDone:TRUE ]display];
       
    }
    
@@ -155,7 +155,7 @@ WINBOOL make_key_and_order_front_nswindow(oswindow hwnd)
 //   printf("\nmake_key_and_order_front_nswindow");
 
    
-   [[hwnd->window() dd_invokeOnMainThreadAndWaitUntilDone:FALSE] makeKeyAndOrderFront: nil];
+   [[hwnd->window() dd_invokeOnMainThreadAndWaitUntilDone:TRUE] makeKeyAndOrderFront: nil];
    
    return 1;
    
@@ -167,7 +167,7 @@ WINBOOL order_front_nswindow(oswindow hwnd)
 {
 //   printf("\norder_front_nswindow");
    
-   [[hwnd->window() dd_invokeOnMainThreadAndWaitUntilDone:FALSE] orderFront: nil];
+   [[hwnd->window() dd_invokeOnMainThreadAndWaitUntilDone:TRUE] orderFront: nil];
    
    return 1;
    
@@ -218,7 +218,7 @@ void on_end_thread()
 void ns_redraw_window(oswindow w)
 {
    
-   [[w->window() dd_invokeOnMainThreadAndWaitUntilDone:FALSE] display];
+   [[w->window() dd_invokeOnMainThreadAndWaitUntilDone:TRUE] display];
    
 }
 
