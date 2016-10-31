@@ -4,8 +4,8 @@
 #include <CoreFoundation/CFDictionary.h>
 
 
-extern "C"
-unsigned long ns_get_fonts(char *** p);
+//extern "C"
+unsigned long apple_get_fonts(char *** p);
 
 
 
@@ -5994,7 +5994,7 @@ namespace draw2d_quartz2d
       
       char ** p;
       
-      unsigned long c = ns_get_fonts(&p);
+      unsigned long c = apple_get_fonts(&p);
       
       if(c >0)
       {

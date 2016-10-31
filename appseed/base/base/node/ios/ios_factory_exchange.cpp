@@ -21,7 +21,7 @@ namespace ios
 //      System.factory().cloneable < application                >   (System.type_info < ::aura::application      > (), 1);
 //      System.factory().cloneable < dir                        >   (System.type_info < ::file::dir::system     > (), 1);
 //    System.factory().cloneable_small < folder_watch         >   (System.type_info < ::ca2::folder_watch     > ());
-      System.factory().creatable < window_draw                >   (System.type_info < ::user::window_draw     > (), 1);
+//      System.factory().creatable < window_draw                >   (System.type_info < ::user::window_draw     > (), 1);
 //      System.factory().creatable_large < thread               >   (System.type_info < ::thread_impl                > ());
       System.factory().creatable_large < interaction_impl               >   (System.type_info < ::user::interaction_impl          > ());
 //      System.factory().creatable < os                         >   (System.type_info < ::core::os              > (), 1);

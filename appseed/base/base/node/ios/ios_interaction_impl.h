@@ -24,6 +24,7 @@ namespace ios
       string                          m_strWindowText;
       ::user::interaction_base *      m_pbasewnd;
       bool                            m_bNeedsUpdate;
+      ::thread *                       m_pthreadDraw;
       
       
       interaction_impl();
@@ -682,7 +683,7 @@ namespace ios
       
       void _001OnTimer(::timer * ptimer);
       
-      void RedrawWindow();
+      //void RedrawWindow();
       
       virtual bool round_window_key_down(::user::e_key ekey);
       virtual bool round_window_key_up(::user::e_key ekey);

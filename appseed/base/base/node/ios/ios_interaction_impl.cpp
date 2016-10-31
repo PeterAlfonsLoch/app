@@ -563,7 +563,7 @@ namespace ios
       IGUI_WIN_MSG_LINK(WM_MOVE              , pinterface, this, &interaction_impl::_001OnMove);
       IGUI_WIN_MSG_LINK(WM_SIZE              , pinterface, this, &interaction_impl::_001OnSize);
 //      IGUI_WIN_MSG_LINK(WM_SHOWWINDOW        , pinterface, this, &interaction_impl::_001OnShowWindow);
-      IGUI_WIN_MSG_LINK(ca2m_PRODEVIAN_SYNCH , pinterface, this, &interaction_impl::_001OnProdevianSynch);
+//      IGUI_WIN_MSG_LINK(ca2m_PRODEVIAN_SYNCH , pinterface, this, &interaction_impl::_001OnProdevianSynch);
       //      //IGUI_WIN_MSG_LINK(WM_TIMER             , pinterface, this, &interaction_impl::_001OnTimer);
 
       prio_install_message_handling(pinterface);
@@ -2929,8 +2929,96 @@ namespace ios
 
       Default();
 
+      //{
+        // SetTimer(2049, 184, NULL);
+      //}
+
+      
+      if(m_pui->is_message_only_window())
       {
-         SetTimer(2049, 184, NULL);
+         
+         TRACE("good : opt out!");
+         
+      }
+      else
+      {
+         
+         m_pthreadDraw = ::fork(get_app(), [&]()
+                                {
+                                   
+                                   DWORD dwStart;
+                                   
+                                   while (::get_thread()->m_bRun)
+                                   {
+                                      
+                                      dwStart = ::get_tick_count();
+                                      
+                                      if (!m_pui->m_bLockWindowUpdate)
+                                      {
+                                         
+                                         if(m_pui->GetExStyle() & WS_EX_LAYERED)
+                                         {
+                                            
+                                            
+                                            if (m_rectLastPos != m_rectParentClient)
+                                            {
+                                               
+                                               m_dwLastPos = ::get_tick_count();
+                                               
+                                               m_rectLastPos = m_rectParentClient;
+                                               
+                                            }
+                                            else
+                                            {
+                                               
+                                               rect64 r2;
+                                               
+                                               GetWindowRect(r2);
+                                               
+                                               if (r2 != m_rectParentClient && ::get_tick_count() - m_dwLastPos > 400)
+                                               {
+                                                  
+                                                  ::SetWindowPos(m_oswindow, NULL,
+                                                                 m_rectParentClient.left,
+                                                                 m_rectParentClient.top,
+                                                                 m_rectParentClient.width(),
+                                                                 m_rectParentClient.height(),
+                                                                 SWP_NOZORDER
+                                                                 | SWP_NOREDRAW
+                                                                 | SWP_NOCOPYBITS
+                                                                 | SWP_NOACTIVATE
+                                                                 | SWP_NOOWNERZORDER
+                                                                 | SWP_NOSENDCHANGING
+                                                                 | SWP_DEFERERASE);
+                                                  
+                                               }
+                                               
+                                            }
+                                            
+                                         }
+                                         
+                                         if (m_pui->has_pending_graphical_update())
+                                         {
+                                            
+                                            RedrawWindow(NULL, NULL, RDW_INVALIDATE | RDW_UPDATENOW | RDW_NOERASE);
+                                            
+                                            m_pui->on_after_graphical_update();
+                                            
+                                         }
+                                         
+                                      }
+                                      
+                                      if (::get_tick_count() - dwStart < 5)
+                                      {
+                                         
+                                         Sleep(5);
+                                         
+                                      }
+                                      
+                                   }
+                                   
+                                });
+         
       }
 
    }
@@ -2941,22 +3029,22 @@ namespace ios
 
       ::user::interaction_impl::_001OnTimer(ptimer);;
 
-      if(ptimer->m_nIDEvent == 2049)
-      {
-
-         RedrawWindow();
-
-      }
-
-   }
-
-
-   void interaction_impl::RedrawWindow()
-   {
-
-      RedrawWindow();
+//      if(ptimer->m_nIDEvent == 2049)
+//      {
+//
+//         RedrawWindow();
+//
+//      }
 
    }
+
+
+//   void interaction_impl::RedrawWindow()
+//   {
+
+      //RedrawWindow();
+
+//   }
 
 
 //   bool interaction_impl::round_window_key_down(::user::e_key ekey)
@@ -5893,8 +5981,8 @@ namespace ios
             return;
 
          }
-
-         ::draw2d::dib_sp & spdib = pbuffer->m_spdibBuffer;
+         
+         ::draw2d::dib_sp & spdib = pbuffer->get_buffer();
 
          if(spdib.is_set() && spdib->area() > 0)
          {

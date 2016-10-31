@@ -406,7 +406,6 @@
 		07EDC5621B4F234300AF8928 /* ios_mm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios_mm.h; sourceTree = "<group>"; };
 		07EDC5641B4F234300AF8928 /* ios_os.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios_os.h; sourceTree = "<group>"; };
 		07EDC5681B4F234300AF8928 /* ios_printer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios_printer.h; sourceTree = "<group>"; };
-		07EDC5751B4F234300AF8928 /* ios_window_draw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios_window_draw.h; sourceTree = "<group>"; };
 		07EDC5771B4F234300AF8928 /* os.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = os.h; sourceTree = "<group>"; };
 		07EDC5781B4F234300AF8928 /* round_window.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = round_window.h; sourceTree = "<group>"; };
 		07EDC5791B4F234300AF8928 /* round_window.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = round_window.mm; sourceTree = "<group>"; };
@@ -835,7 +834,6 @@
 				07EDC5621B4F234300AF8928 /* ios_mm.h */,
 				07EDC5641B4F234300AF8928 /* ios_os.h */,
 				07EDC5681B4F234300AF8928 /* ios_printer.h */,
-				07EDC5751B4F234300AF8928 /* ios_window_draw.h */,
 				07EDC5771B4F234300AF8928 /* os.h */,
 				07EDC5781B4F234300AF8928 /* round_window.h */,
 				07EDC5791B4F234300AF8928 /* round_window.mm */,
@@ -1435,7 +1433,8 @@
 					"$(WorkspaceDir)/../../../nodeapp/thirdparty/include",
 				);
 				INSTALL_PATH = "@executable_path";
-				LD_RUNPATH_SEARCH_PATHS = "@loader_path /Library/Frameworks/ca2";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(TARGET_BUILD_DIR)",
@@ -1505,7 +1504,8 @@
 					"$(WorkspaceDir)/../../../nodeapp/thirdparty/include",
 				);
 				INSTALL_PATH = "@executable_path";
-				LD_RUNPATH_SEARCH_PATHS = "@loader_path /Library/Frameworks/ca2";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(TARGET_BUILD_DIR)",

@@ -2612,7 +2612,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "";
 				INSTALL_PATH = "@executable_path";
-				LD_RUNPATH_SEARCH_PATHS = "@loader_path /Library/Frameworks/ca2";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(TARGET_BUILD_DIR)",
@@ -2679,7 +2680,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "";
 				INSTALL_PATH = "@executable_path";
-				LD_RUNPATH_SEARCH_PATHS = "@loader_path /Library/Frameworks/ca2";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(TARGET_BUILD_DIR)",

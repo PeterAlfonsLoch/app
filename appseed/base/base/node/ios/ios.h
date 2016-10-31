@@ -68,7 +68,7 @@ CLASS_DECL_AURA void AfxResetMsgCache();
 #include "ios_implementation.h"
 //#include "ios_dir.h"
 #include "ios_factory_exchange.h"
-#include "ios_window_draw.h"
+//#include "ios_window_draw.h"
 //#include "ios_thread.h"
 #include "ios_interaction_impl.h"
 //#include "ios_os.h"
