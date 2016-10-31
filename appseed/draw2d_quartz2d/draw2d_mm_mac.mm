@@ -28,7 +28,7 @@ unsigned long apple_get_fonts(char ***p)
       
    }
    
-   *p = malloc(sizeof(char *) * c);
+   *p = (char **) malloc(sizeof(char *) * c);
    
    for(unsigned long ui = 0; ui < c; ui++)
    {
