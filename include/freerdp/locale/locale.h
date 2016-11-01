@@ -17,7 +17,7 @@
  * limitations under the License.
  */
 
-/* Detection of plausible keyboard on_layout id based on current locale (LANG) setting. */
+/* Detection of plausible keyboard layout id based on current locale (LANG) setting. */
 
 /*
  * Refer to "Windows XP/Server 2003 - List of Locale IDs, Input Locale, and Language Collection":

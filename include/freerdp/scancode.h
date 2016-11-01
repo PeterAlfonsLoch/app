@@ -24,7 +24,7 @@
 
 /* @msdn{cc240584} says:
  * "... (a scancode is an 8-bit value specifying a key location on the keyboard).
- * The server accepts a scancode value and translates it into the correct character depending on the language locale and keyboard on_layout used in the session."
+ * The server accepts a scancode value and translates it into the correct character depending on the language locale and keyboard layout used in the session."
  * The 8-bit value is later called "keyCode"
  * The extended flag is for all practical an important 9th bit with a strange encoding - not just a modifier.
  */

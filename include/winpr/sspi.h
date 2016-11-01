@@ -39,11 +39,7 @@
 #if !defined(_WIN32) || defined(_UWP)
 
 #ifndef SEC_ENTRY
-#if defined(_UWP)
-#define SEC_ENTRY WINAPI
-#else
 #define SEC_ENTRY
-#endif
 #endif
 
 typedef CHAR SEC_CHAR;
