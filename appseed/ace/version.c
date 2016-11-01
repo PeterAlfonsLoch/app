@@ -12,23 +12,6 @@
 
 #endif
 
-CLASS_DECL_ACE int _ca_is_basis()
-{
-#if CA2_PLATFORM_VERSION == CA2_BASIS
-   return TRUE;
-#else
-   return FALSE;
-#endif
-}
-
-CLASS_DECL_ACE int _ca_is_stage()
-{
-#if CA2_PLATFORM_VERSION == CA2_STAGE
-   return TRUE;
-#else
-   return FALSE;
-#endif
-}
 
 
 WINBOOL get_version_ex_a(LPOSVERSIONINFOA lpVersionInformation)
@@ -91,3 +74,22 @@ WINBOOL get_version_ex_a(LPOSVERSIONINFOA lpVersionInformation)
 
 }
 
+
+
+CLASS_DECL_ACE int _ca_is_basis()
+{
+#if CA2_PLATFORM_VERSION == CA2_BASIS
+	return TRUE;
+#else
+	return FALSE;
+#endif
+}
+
+CLASS_DECL_ACE int _ca_is_stage()
+{
+#if CA2_PLATFORM_VERSION == CA2_STAGE
+	return TRUE;
+#else
+	return FALSE;
+#endif
+}

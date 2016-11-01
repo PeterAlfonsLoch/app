@@ -612,16 +612,16 @@ void script_manager::clear_include_matches_folder_watch::handle_file_action(::fi
 
    // Thank you (casey)!! For tip for ever writing down every todo
    // todo (camilo) equal file comparison, for clearing include matching only changed files
-   //try
-   //{
+   try
+   {
 
-   //   m_pmanager->clear_include_matches();
+      m_pmanager->clear_include_matches();
 
-   //}
-   //catch(...)
-   //{
+   }
+   catch(...)
+   {
 
-   //}
+   }
 
    try
    {
