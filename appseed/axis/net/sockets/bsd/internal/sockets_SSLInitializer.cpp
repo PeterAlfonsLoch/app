@@ -56,6 +56,66 @@ extern "C" int32_t SSLInitializer_rand_status();
 namespace sockets
 {
 
+    static void *(*malloc_func)(size_t) = ace_memory_alloc;
+    static void *default_malloc_ex(size_t num, const char *file, int line)
+    {
+        return malloc_func(num);
+    }
+    static void *(*malloc_ex_func)(size_t, const char *file, int line)
+        = default_malloc_ex;
+
+    static void *(*realloc_func)(void *, size_t) = ace_memory_realloc;
+    static void *default_realloc_ex(void *str, size_t num,
+        const char *file, int line)
+    {
+        return realloc_func(str, num);
+    }
+    static void *(*realloc_ex_func)(void *, size_t, const char *file, int line)
+        = default_realloc_ex;
+
+    void crypto_memory_free_func(void * p)
+    {
+        if (p == NULL)
+            return;
+        ace_memory_free(p);
+    }
+    static void(*free_func)(void *) = crypto_memory_free_func;
+
+    static void *(*malloc_locked_func)(size_t) = ace_memory_alloc;
+    static void *default_malloc_locked_ex(size_t num, const char *file, int line)
+    {
+        return malloc_locked_func(num);
+    }
+    static void *(*malloc_locked_ex_func)(size_t, const char *file, int line)
+        = default_malloc_locked_ex;
+
+    static void(*free_locked_func)(void *) = ace_memory_free;
+
+
+
+    /* may be changed as long as 'allow_customize_debug' is set */
+    /* XXX use correct function pointer types */
+#ifdef CRYPTO_MDEBUG
+    /* use default functions from mem_dbg.c */
+    static void(*malloc_debug_func)(void *, int, const char *, int, int)
+        = CRYPTO_dbg_malloc;
+    static void(*realloc_debug_func)(void *, void *, int, const char *, int, int)
+        = CRYPTO_dbg_realloc;
+    static void(*free_debug_func)(void *, int) = CRYPTO_dbg_free;
+    static void(*set_debug_options_func)(long) = CRYPTO_dbg_set_options;
+    static long(*get_debug_options_func)(void) = CRYPTO_dbg_get_options;
+#else
+    /* applications can use CRYPTO_malloc_debug_init() to select above case
+    * at run-time */
+    static void(*malloc_debug_func)(void *, int, const char *, int, int) = NULL;
+    static void(*realloc_debug_func)(void *, void *, int, const char *, int, int)
+        = NULL;
+    static void(*free_debug_func)(void *, int) = NULL;
+    static void(*set_debug_options_func)(long) = NULL;
+    static long(*get_debug_options_func)(void) = NULL;
+#endif
+
+
 
    map < int32_t, int32_t, mutex *, mutex *>  * g_pmapMutex = NULL;
 
@@ -81,6 +141,7 @@ namespace sockets
       ::object(papp)
    {
 
+       CRYPTO_set_mem_functions(&default_malloc_ex, &default_realloc_ex, &crypto_memory_free_func);
 
       TRACE("SSLInitializer()\n");
 
