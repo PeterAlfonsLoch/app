@@ -355,6 +355,13 @@ void window_gdi::update_window(::draw2d::dib * pdib)
 
       bool bOk = ::UpdateLayeredWindow(m_pimpl->m_oswindow, m_hdcScreen, &pt, &sz, m_hdc, &ptSrc, RGB(0, 0, 0), &blendPixelFunction, ULW_ALPHA) != FALSE;
 
+      if(!bOk)
+      {
+      
+         output_debug_string("UpdateLayeredWindow failed");
+      
+      }
+
    }
    else
    {

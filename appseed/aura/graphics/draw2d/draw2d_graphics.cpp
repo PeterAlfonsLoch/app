@@ -1254,8 +1254,40 @@ namespace draw2d
    bool graphics::BitBlt(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, uint32_t dwRop)
    {
 
+      if (BitBltAlphaBlend(x, y, nWidth, nHeight, pgraphicsSrc, xSrc, ySrc, dwRop))
+      {
+
+         return true;
+
+      }
+
+      if (BitBltRaw(x, y, nWidth, nHeight, pgraphicsSrc, xSrc, ySrc, dwRop))
+      {
+
+         return true;
+
+      }
+
+      return false;
+
+   }
+
+   
+   bool graphics::BitBltRaw(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, uint32_t dwRop)
+   {
+
+      return false;
+
+   }
+
+
+   bool graphics::BitBltAlphaBlend(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, uint32_t dwRop)
+   {
+
       if (m_pdibAlphaBlend != NULL)
       {
+
+         // Reference implementation
 
          rect rectIntersect(m_ptAlphaBlend, m_pdibAlphaBlend->size());
 
@@ -1292,13 +1324,13 @@ namespace draw2d
 
                dib1->blend(point(0, 0), m_pdibAlphaBlend, point((int)MAX(0, x - m_ptAlphaBlend.x), (int)MAX(0, y - m_ptAlphaBlend.y)), rectBlt.size());
 
-               keep < ::draw2d::dib * > keep(&m_pdibAlphaBlend, NULL, m_pdibAlphaBlend, true);
-
-               return BitBlt(x, y, nWidth, nHeight, dib1->get_graphics(), 0, 0, dwRop);
+               BitBltRaw(x, y, nWidth, nHeight, dib1->get_graphics(), 0, 0, dwRop);
 
             }
 
          }
+
+         return true;
 
       }
 
@@ -1393,7 +1425,29 @@ namespace draw2d
    bool graphics::TextOut(double x, double y, const char * lpszString, strsize nCount)
    {
 
-      return TextOut((int)x, int(y),lpszString, nCount);
+      if (TextOutAlphaBlend(x, y, lpszString, nCount))
+      {
+
+         return true;
+
+      }
+
+      if (TextOutRaw(x, y, lpszString, nCount))
+      {
+
+         return true;
+
+      }
+
+      return false;
+
+   }
+
+
+   bool graphics::TextOutRaw(double x, double y, const char * lpszString, strsize nCount)
+   {
+
+      return false;
 
    }
 
@@ -1429,13 +1483,11 @@ namespace draw2d
 
             set_alpha_mode(::draw2d::alpha_mode_blend);
 
-            keep < ::draw2d::dib * > keep(&m_pdibAlphaBlend, NULL, m_pdibAlphaBlend, true);
-
-            BitBlt((int)x, (int)y, rectText.width(), rectText.height(), dib1->get_graphics(), 0, 0, SRCCOPY);
-
-            return true;
+            BitBltRaw((int)x, (int)y, rectText.width(), rectText.height(), dib1->get_graphics(), 0, 0, SRCCOPY);
 
          }
+
+         return true;
 
       }
 
@@ -3037,37 +3089,24 @@ namespace draw2d
 
    bool graphics::from(point ptDst, size size, ::draw2d::graphics * pgraphicsSrc, point ptSrc, uint32_t dwRop)
    {
+
       return BitBlt(ptDst.x, ptDst.y, size.cx, size.cy, pgraphicsSrc, ptSrc.x, ptSrc.y, dwRop) != FALSE;
+
    }
+
 
    bool graphics::from(size size, ::draw2d::graphics * pgraphicsSrc, point ptSrc, uint32_t dwRop)
    {
+
       return from(null_point(), size, pgraphicsSrc, ptSrc, dwRop);
+
    }
+
 
    bool graphics::from(size size, ::draw2d::graphics * pgraphicsSrc, uint32_t dwRop)
    {
+
       return from(size, pgraphicsSrc, null_point(), dwRop);
-   }
-
-
-   bool graphics::alpha_blend(int32_t xDest, int32_t yDest, int32_t nDestWidth, int32_t nDestHeight, ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight, double dOpacity)
-   {
-
-      UNREFERENCED_PARAMETER(xDest);
-      UNREFERENCED_PARAMETER(yDest);
-      UNREFERENCED_PARAMETER(nDestWidth);
-      UNREFERENCED_PARAMETER(nDestHeight);
-      UNREFERENCED_PARAMETER(pgraphicsSrc);
-      UNREFERENCED_PARAMETER(xSrc);
-      UNREFERENCED_PARAMETER(ySrc);
-      UNREFERENCED_PARAMETER(nSrcWidth);
-      UNREFERENCED_PARAMETER(nSrcHeight);
-      UNREFERENCED_PARAMETER(dOpacity);
-
-      throw interface_only_exception(get_app());
-
-      return false;
 
    }
 
@@ -3120,48 +3159,118 @@ namespace draw2d
    }
 
 
-   /*
-      bool graphics::alpha_blend(int32_t xDest, int32_t yDest, int32_t nDestWidth, int32_t nDestHeight,
-         ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight, BLENDFUNCTION blend)
-      {
-         UNREFERENCED_PARAMETER(xDest);
-         UNREFERENCED_PARAMETER(yDest);
-         UNREFERENCED_PARAMETER(nDestWidth);
-         UNREFERENCED_PARAMETER(nDestHeight);
-         UNREFERENCED_PARAMETER(pgraphicsSrc);
-         UNREFERENCED_PARAMETER(xSrc);
-         UNREFERENCED_PARAMETER(ySrc);
-         UNREFERENCED_PARAMETER(nSrcWidth);
-         UNREFERENCED_PARAMETER(nSrcHeight);
-         UNREFERENCED_PARAMETER(blend);
-         throw interface_only_exception(get_app());
-      }*/
+   bool graphics::alpha_blend(int32_t xDest, int32_t yDest, int32_t nDestWidth, int32_t nDestHeight, ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight, double dOpacity)
+   {
 
-   /*   bool graphics::alpha_blend(point ptDst, size szDst,::draw2d::graphics * pgraphicsSrc, point ptSrc, size szSrc, BLENDFUNCTION blend)
+      if (alpha_blendAlphaBlend(xDest, yDest, nDestWidth, nDestHeight, pgraphicsSrc, xSrc, ySrc, nSrcWidth, nSrcHeight, dOpacity))
       {
-         return alpha_blend(ptDst.x, ptDst.y, szDst.cx, szDst.cy, pgraphicsSrc, ptSrc.x, ptSrc.y, szSrc.cx, szSrc.cy, blend);
+
+         return true;
+
       }
 
-      bool graphics::alpha_blend(point ptDst, size size,::draw2d::graphics * pgraphicsSrc, point ptSrc, BLENDFUNCTION blend)
+      if (alpha_blendRaw(xDest, yDest, nDestWidth, nDestHeight, pgraphicsSrc, xSrc, ySrc, nSrcWidth, nSrcHeight, dOpacity))
       {
-         return alpha_blend(ptDst, size, pgraphicsSrc, ptSrc, size, blend);
+
+         return true;
+
       }
 
-      bool graphics::alpha_blend(point ptDst, size size,::draw2d::graphics * pgraphicsSrc, BLENDFUNCTION blend)
+      return false;
+
+   }
+
+
+
+
+   bool graphics::alpha_blendRaw(int32_t xDest, int32_t yDest, int32_t nDestWidth, int32_t nDestHeight, ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight, double dRate)
+   {
+
+      return false;
+
+   }
+
+
+   bool graphics::alpha_blendAlphaBlend(int32_t xDest, int32_t yDest, int32_t nDestWidth, int32_t nDestHeight, ::draw2d::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight, double dRate)
+   {
+
+      if (m_pdibAlphaBlend != NULL)
       {
-         return alpha_blend(ptDst, size, pgraphicsSrc, null_point(),blend);
+
+
+         rect rectIntersect(m_ptAlphaBlend, m_pdibAlphaBlend->size());
+
+
+         ::draw2d::dib * pdibWork = NULL;
+         ::draw2d::dib * pdibWork2 = NULL;
+         //         ::draw2d::dib * pdibWork3 = NULL;
+         ::draw2d::dib * pdibWork4 = NULL;
+
+
+         class point ptSrc(xSrc, ySrc);
+         class point ptDest(xDest, yDest);
+         class size size(nDestWidth, nDestHeight);
+
+
+
+         ::draw2d::dib_sp spdib;
+         if (pdibWork == NULL)
+         {
+            spdib.alloc(allocer());
+            pdibWork = spdib;
+         }
+         if (pdibWork == NULL)
+            return false;
+         if (!pdibWork->create(size))
+            return false;
+         if (!pdibWork->from(null_point(), pgraphicsSrc, ptSrc, size))
+            return false;
+
+
+
+
+         ::draw2d::dib_sp spdib2;
+         if (pdibWork2 == NULL)
+         {
+            spdib2.alloc(allocer());
+            pdibWork2 = spdib2;
+         }
+
+
+         ::draw2d::dib_sp spdib4;
+         if (pdibWork4 == NULL)
+         {
+            spdib4.alloc(allocer());
+            pdibWork4 = spdib4;
+         }
+         if (pdibWork4 == NULL)
+            return false;
+         if (!pdibWork4->create(size))
+            return false;
+
+
+         pdibWork4->Fill(255, 0, 0, 0);
+
+         pdibWork4->from(point(MAX(0, m_ptAlphaBlend.x - xDest), MAX(0, m_ptAlphaBlend.y - yDest)),
+            m_pdibAlphaBlend->get_graphics(), point(MAX(0, xDest - m_ptAlphaBlend.x), MAX(0, yDest - m_ptAlphaBlend.y)), size);
+
+         pdibWork->channel_multiply(visual::rgba::channel_alpha, pdibWork4);
+
+
+         keep < ::draw2d::dib * > keep(&m_pdibAlphaBlend, NULL, m_pdibAlphaBlend, true);
+
+
+         BitBltRaw(ptDest.x, ptDest.y, size.cx, size.cy, pdibWork->get_graphics(), ptSrc.x, ptSrc.y, SRCCOPY);
+
+         return true;
+
       }
 
-      bool graphics::alpha_blend(size size,::draw2d::graphics * pgraphicsSrc, point ptSrc, BLENDFUNCTION blend)
-      {
-         return alpha_blend(null_point(), size, pgraphicsSrc, ptSrc, blend);
-      }
+      return false;
 
-      bool graphics::alpha_blend(size size,::draw2d::graphics * pgraphicsSrc, BLENDFUNCTION blend)
-      {
-         return alpha_blend(size, pgraphicsSrc, null_point(), blend);
-      }*/
+   }
 
+   
    void graphics::set_alpha_mode(e_alpha_mode ealphamode)
    {
       m_ealphamode = ealphamode;
@@ -4956,6 +5065,8 @@ namespace draw2d
 
 
    }
+
+
 
 } // namespace draw2d
 
