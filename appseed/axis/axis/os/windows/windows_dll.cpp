@@ -53,7 +53,7 @@ BOOL WINAPI DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
    {
 
 
-      ERR_remove_state(::GetCurrentProcessId());
+//      ERR_remove_state(::GetCurrentProcessId());
 
 
    }

@@ -1,27 +1,27 @@
 #pragma once
 
 template < typename T >
-class auto_pointer
+class pointer
 {
 public:
 
    T * m_p;
 
-   auto_pointer()
+   pointer()
    {
       
       m_p = NULL;
 
    }
 
-   auto_pointer(T * p)
+   pointer(T * p)
    {
 
       m_p = p;
 
    }
 
-   ~auto_pointer()
+   ~pointer()
    {
 
       destroy();
@@ -121,7 +121,7 @@ public:
    }
 
 
-   auto_pointer & operator = (T * p)
+   pointer & operator = (T * p)
    {
       
       reset(p);
@@ -149,4 +149,4 @@ public:
 
 
 
-#define ap(x) ::auto_pointer < x >
+#define ap(x) ::pointer < x >

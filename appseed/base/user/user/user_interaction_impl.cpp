@@ -1881,9 +1881,7 @@ namespace user
 
          output_debug_string("interaction_impl m_spgraphics alloc");
 
-         //m_spgraphics.alloc(allocer());
-
-         m_spgraphics->on_create_window(this);
+         update_graphics_resources();
 
          output_debug_string("interaction_impl on _create_window");
 
@@ -2787,9 +2785,9 @@ namespace user
 
       }
 
-//      m_spgraphics.alloc(allocer());
+      m_spgraphics.alloc(allocer());
 
-  //    m_spgraphics->on_create_window(this);
+      m_spgraphics->on_create_window(this);
 
 
    }

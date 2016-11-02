@@ -138,7 +138,7 @@ namespace aura
 
       string_map < sp(::aura::library) >           m_mapLibrary;
 
-      string_map < auto_pointer < city > >         m_mapCity;
+      string_map < pointer < city > >              m_mapCity;
 
 
 

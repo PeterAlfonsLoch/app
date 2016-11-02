@@ -1184,8 +1184,7 @@ namespace sockets
 
             if(m_spsslclientcontext.is_set() &&
                iErrorSsl == SSL_ERROR_ZERO_RETURN
-               && (m_spsslclientcontext->m_pmethod == TLSv1_client_method()
-                  || m_spsslclientcontext->m_pmethod == SSLv3_client_method()))
+               && (m_spsslclientcontext->m_pmethod == TLS_client_method()))
             {
                TRACE("ssl_error_zero_return");
             }
@@ -1757,20 +1756,19 @@ skip:
                for (i = 0; i < san_names_nb; i++) {
                   const GENERAL_NAME *current_name = sk_GENERAL_NAME_value(san_names, i);
 
-                  if (current_name->type == GEN_DNS) {
+                  if (current_name->type == GEN_DNS)
+                  {
                      // Current name is a DNS name, let's check it
-                     char *dns_name = (char *)ASN1_STRING_data(current_name->d.dNSName);
 
-                     // Make sure there isn't an embedded NUL character in the DNS name
-                     if (ASN1_STRING_length(current_name->d.dNSName) != strlen(dns_name)) {
-                        break;
-                     }
-                     else { // Compare expected hostname with the DNS name
-                        if (strcasecmp(common_name, dns_name) == 0) {
+                     string strDnsName(ASN1_STRING_get0_data(current_name->d.dNSName), ASN1_STRING_length(current_name->d.dNSName));
+
+                     if(strDnsName.CompareNoCase(common_name) == 0)
+                     {
                            ok = true;
                            break;
-                        }
+
                      }
+                     
                   }
                }
                sk_GENERAL_NAME_pop_free(san_names, GENERAL_NAME_free);

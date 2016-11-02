@@ -177,7 +177,7 @@ public:
    }
    
    template <typename U>
-   hold < T > &operator = (const U& value)
+   void set_value(const U& value)
    {
       
       m_t = value;
@@ -185,8 +185,6 @@ public:
       m_bInitialized = true;
       
       m_evReady.set_event();
-      
-      return *this;
       
    }
    
@@ -226,13 +224,13 @@ public:
       
       m_bInitialized = false;
       
-      ::fork(m_evReady.get_app(), [this, &pred]()
+      ::fork(m_evReady.get_app(), [&]()
              {
                 
                 try
                 {
                    
-                   operator =(pred());
+                   set_value(pred());
                    
                 }
                 catch(const ::exception::base & e)

@@ -45,10 +45,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 extern "C" void SSLInitializer_SSL_locking_function(int32_t mode, int32_t n, const char * file, int32_t line);
 extern "C" unsigned long SSLInitializer_SSL_id_function();
-extern "C" void SSLInitializer_rand_seed(const void * buf, int32_t num);
+extern "C" int SSLInitializer_rand_seed(const void * buf, int32_t num);
 extern "C" int32_t SSLInitializer_rand_bytes(uchar * buf, int32_t num);
 extern "C" void SSLInitializer_rand_cleanup();
-extern "C" void SSLInitializer_rand_add(const void * buf, int32_t num, double entropy);
+extern "C" int SSLInitializer_rand_add(const void * buf, int num, double entropy);
 extern "C" int32_t SSLInitializer_rand_pseudorand(uchar * buf, int32_t num);
 extern "C" int32_t SSLInitializer_rand_status();
 
@@ -72,6 +72,11 @@ namespace sockets
     }
     static void *(*realloc_ex_func)(void *, size_t, const char *file, int line)
         = default_realloc_ex;
+    void default_free_ex(void * p, const char *file, int line) {
+       if (p == NULL)
+          return;
+       ace_memory_free(p);
+    }
 
     void crypto_memory_free_func(void * p)
     {
@@ -141,7 +146,7 @@ namespace sockets
       ::object(papp)
    {
 
-       CRYPTO_set_mem_functions(&default_malloc_ex, &default_realloc_ex, &crypto_memory_free_func);
+       //CRYPTO_set_mem_functions(&default_malloc_ex, &default_realloc_ex, &default_free_ex);
 
       TRACE("SSLInitializer()\n");
 
@@ -158,11 +163,22 @@ namespace sockets
       g_pmutexMap = new mutex(get_app());
 
       /* Global system initialization*/
-      SSL_library_init();
-      SSL_load_error_strings();
       //OpenSSL_add_all_algorithms();
       CRYPTO_set_locking_callback(SSLInitializer_SSL_locking_function);
       CRYPTO_set_id_callback(SSLInitializer_SSL_id_function);
+
+      SSL_load_error_strings();
+      SSL_library_init();
+
+
+      rand_meth.add = &SSLInitializer_rand_add;
+      rand_meth.bytes = &SSLInitializer_rand_bytes;
+      rand_meth.cleanup = &SSLInitializer_rand_cleanup;
+      rand_meth.pseudorand = &SSLInitializer_rand_pseudorand;
+      rand_meth.seed = &SSLInitializer_rand_seed;
+      rand_meth.status = &SSLInitializer_rand_status;
+
+      RAND_set_rand_method(&rand_meth);
 
       //ENGINE_load_openssl();
       //ENGINE_load_dynamic();
@@ -184,14 +200,6 @@ namespace sockets
       /* Ignore broken pipes which would cause our program to terminate
          prematurely */
 
-      rand_meth.add = &SSLInitializer_rand_add;
-      rand_meth.bytes = &SSLInitializer_rand_bytes;
-      rand_meth.cleanup = &SSLInitializer_rand_cleanup;
-      rand_meth.pseudorand = &SSLInitializer_rand_pseudorand;
-      rand_meth.seed = &SSLInitializer_rand_seed;
-      rand_meth.status = &SSLInitializer_rand_status;
-
-      RAND_set_rand_method(&rand_meth);
 
 //      bio_err = BIO_new_fp(stderr, BIO_NOCLOSE);
 
@@ -270,25 +278,25 @@ namespace sockets
       //ERR_free_strings();
       //EVP_cleanup();
 
-      ERR_remove_state(0);
+//      ERR_remove_state(0);
 
 
 
-      EVP_cleanup();
+      //EVP_cleanup();
 
-      ERR_free_strings();
+      //ERR_free_strings();
 
-      CRYPTO_cleanup_all_ex_data();
+      //CRYPTO_cleanup_all_ex_data();
 
-      ENGINE_cleanup();
+      //ENGINE_cleanup();
 
-      CONF_modules_unload(1);
+      //CONF_modules_unload(1);
 
-      CONF_modules_free();
+      //CONF_modules_free();
 
-      sk_SSL_COMP_free(SSL_COMP_get_compression_methods());
+      //sk_SSL_COMP_free(SSL_COMP_get_compression_methods());
 
-      RAND_cleanup();
+      //RAND_cleanup();
 
       //      TRACE("~SSLInitializer()\n");
             //DeleteRandFile();
@@ -403,10 +411,11 @@ extern "C" unsigned long SSLInitializer_SSL_id_function()
 //   
 }
 
-extern "C" void SSLInitializer_rand_seed(const void * buf, int32_t num)
+extern "C" int SSLInitializer_rand_seed(const void * buf, int32_t num)
 {
    UNREFERENCED_PARAMETER(buf);
    UNREFERENCED_PARAMETER(num);
+   return 1;
 }
 
 extern "C" int32_t SSLInitializer_rand_bytes(uchar * buf, int32_t num)
@@ -419,11 +428,12 @@ extern "C" void SSLInitializer_rand_cleanup()
 {
 }
 
-extern "C" void SSLInitializer_rand_add(const void * buf, int32_t num, double entropy)
+extern "C" int SSLInitializer_rand_add(const void * buf, int num, double entropy)
 {
    UNREFERENCED_PARAMETER(buf);
    UNREFERENCED_PARAMETER(num);
    UNREFERENCED_PARAMETER(entropy);
+   return 1;
 }
 
 extern "C" int32_t SSLInitializer_rand_pseudorand(uchar * buf, int32_t num)

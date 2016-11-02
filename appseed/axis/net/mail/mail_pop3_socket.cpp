@@ -431,11 +431,11 @@ namespace mail
 #if defined(HAVE_OPENSSL)
       if(m_bTls)
       {
-         InitializeContext("", TLSv1_method());
+         InitializeContext("", TLS_client_method());
       }
       else
       {
-         InitializeContext("", SSLv3_method());
+         InitializeContext("", TLS_client_method());
       }
 #endif
    }

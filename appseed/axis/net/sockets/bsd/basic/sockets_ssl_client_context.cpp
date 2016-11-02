@@ -84,7 +84,7 @@ namespace sockets
       free_ssl_client_context();
 
       //ERR_load_ERR_strings();
-      const SSL_METHOD *meth = meth_in != NULL ? meth_in : SSLv3_method();
+      const SSL_METHOD *meth = meth_in != NULL ? meth_in : TLS_client_method();
 
       m_pcontext = SSL_CTX_new(meth);
 

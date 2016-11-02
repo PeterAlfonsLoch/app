@@ -125,39 +125,37 @@ namespace crypto
 
       int32_t cipherlen,tmplen;
 
-      EVP_CIPHER_CTX ctx;
+      EVP_CIPHER_CTX * pctx = EVP_CIPHER_CTX_new();
 
-      EVP_CIPHER_CTX_init(&ctx);
+      EVP_EncryptInit(pctx,EVP_aes_256_ecb(),memSha1.get_data(),iv.get_data());
 
-      EVP_EncryptInit(&ctx,EVP_aes_256_ecb(),memSha1.get_data(),iv.get_data());
-
-      cipherlen = (int32_t)(storageDecrypt.get_size() + EVP_CIPHER_CTX_block_size(&ctx));
+      cipherlen = (int32_t)(storageDecrypt.get_size() + EVP_CIPHER_CTX_block_size(pctx));
 
       storageEncrypt.allocate(cipherlen);
 
       storageEncrypt.set(0);
 
-      if(!EVP_EncryptUpdate(&ctx,storageEncrypt.get_data(),&cipherlen,storageDecrypt.get_data(),plainlen))
+      if(!EVP_EncryptUpdate(pctx,storageEncrypt.get_data(),&cipherlen,storageDecrypt.get_data(),plainlen))
       {
 
          storageEncrypt.set(0);
 
          storageEncrypt.allocate(0);
 
-         EVP_CIPHER_CTX_cleanup(&ctx);
+         EVP_CIPHER_CTX_cleanup(pctx);
 
          return false;
 
       }
 
-      if(!EVP_EncryptFinal(&ctx,storageEncrypt.get_data() + cipherlen,&tmplen))
+      if(!EVP_EncryptFinal(pctx,storageEncrypt.get_data() + cipherlen,&tmplen))
       {
 
          storageEncrypt.set(0);
 
          storageEncrypt.allocate(0);
 
-         EVP_CIPHER_CTX_cleanup(&ctx);
+         EVP_CIPHER_CTX_cleanup(pctx);
 
          return false;
 
@@ -167,7 +165,7 @@ namespace crypto
 
       storageEncrypt.allocate(cipherlen);
 
-      EVP_CIPHER_CTX_cleanup(&ctx);
+      EVP_CIPHER_CTX_cleanup(pctx);
 
       return true;
 
@@ -527,40 +525,40 @@ namespace crypto
 
       int32_t plainlen, tmplen;
 
-      EVP_CIPHER_CTX ctx;
+      EVP_CIPHER_CTX * pctx = EVP_CIPHER_CTX_new();
 
-      EVP_CIPHER_CTX_init(&ctx);
+      
 
       int iKeyLen = EVP_CIPHER_key_length(EVP_aes_256_ecb());
       int iShaLen = memSha1.get_size();
 
-      EVP_DecryptInit(&ctx, EVP_aes_256_ecb(), memSha1.get_data(), iv.get_data());
+      EVP_DecryptInit(pctx, EVP_aes_256_ecb(), memSha1.get_data(), iv.get_data());
 
-      plainlen = (int32_t)storageEncrypt.get_size() + EVP_CIPHER_CTX_block_size(&ctx);
+      plainlen = (int32_t)storageEncrypt.get_size() + EVP_CIPHER_CTX_block_size(pctx);
 
       storageDecrypt.allocate(plainlen);
 
-      if (!EVP_DecryptUpdate(&ctx, storageDecrypt.get_data(), &plainlen, storageEncrypt.get_data(), cipherlen))
+      if (!EVP_DecryptUpdate(pctx, storageDecrypt.get_data(), &plainlen, storageEncrypt.get_data(), cipherlen))
       {
 
          storageDecrypt.set(0);
 
          storageDecrypt.allocate(0);
 
-         EVP_CIPHER_CTX_cleanup(&ctx);
+         EVP_CIPHER_CTX_free(pctx);
 
          return false;
 
       }
 
-      if (!EVP_DecryptFinal(&ctx, storageDecrypt.get_data() + plainlen, &tmplen))
+      if (!EVP_DecryptFinal(pctx, storageDecrypt.get_data() + plainlen, &tmplen))
       {
 
          storageDecrypt.set(0);
 
          storageDecrypt.allocate(0);
 
-         EVP_CIPHER_CTX_cleanup(&ctx);
+         EVP_CIPHER_CTX_free(pctx);
 
          return false;
 
@@ -570,7 +568,7 @@ namespace crypto
 
       storageDecrypt.allocate(plainlen);
 
-      EVP_CIPHER_CTX_cleanup(&ctx);
+      EVP_CIPHER_CTX_free(pctx);
 
       return true;
 
@@ -954,34 +952,69 @@ namespace crypto
 
       RSA * & prsa = rsa->m_prsa;
 
-      prsa = RSA_generate_key(1024, 65537, NULL, NULL);
+      prsa = RSA_new();
 
-      char * n      = BN_bn2hex(prsa->n);
-      char * e      = BN_bn2hex(prsa->e);
-      char * d      = BN_bn2hex(prsa->d);
-      char * p      = BN_bn2hex(prsa->p);
-      char * q      = BN_bn2hex(prsa->q);
-      char * dmp1   = BN_bn2hex(prsa->dmp1);
-      char * dmq1   = BN_bn2hex(prsa->dmq1);
-      char * iqmp   = BN_bn2hex(prsa->iqmp);
+      {
 
-      rsa->n = n;
-      rsa->e = e;
-      rsa->d = d;
-      rsa->p = p;
-      rsa->q = q;
-      rsa->dmp1 = dmp1;
-      rsa->dmq1 = dmq1;
-      rsa->iqmp = iqmp;
+         BIGNUM * e = BN_new();
 
-      OPENSSL_free(n);
-      OPENSSL_free(e);
-      OPENSSL_free(d);
-      OPENSSL_free(p);
-      OPENSSL_free(q);
-      OPENSSL_free(dmp1);
-      OPENSSL_free(dmq1);
-      OPENSSL_free(iqmp);
+         BN_set_word(e, 65537);
+
+         int ret = RSA_generate_key_ex(prsa, 1024, e, NULL);
+
+         if (ret != 1)
+         {
+
+            BN_free(e);
+
+
+            return NULL;
+
+         }
+
+         BN_free(e);
+
+      }
+
+      const BIGNUM * n = NULL;
+      const BIGNUM * e = NULL;
+      const BIGNUM * d = NULL;
+      const BIGNUM * p = NULL;
+      const BIGNUM * q = NULL;
+      const BIGNUM * dmp1 = NULL;
+      const BIGNUM * dmq1 = NULL;
+      const BIGNUM * iqmp = NULL;
+
+      RSA_get0_key(prsa, &n, &e, &d);
+      RSA_get0_factors(prsa, &p, &q);
+      RSA_get0_crt_params(prsa, &dmp1, &dmq1, &iqmp);
+
+      char * hexN       = BN_bn2hex(n);
+      char * hexE       = BN_bn2hex(e);
+      char * hexD       = BN_bn2hex(d);
+      char * hexP       = BN_bn2hex(p);
+      char * hexQ       = BN_bn2hex(q);
+      char * hexDmp1    = BN_bn2hex(dmp1);
+      char * hexDmq1    = BN_bn2hex(dmq1);
+      char * hexIqmp    = BN_bn2hex(iqmp);
+
+      rsa->n            = hexN;
+      rsa->e            = hexE;
+      rsa->d            = hexD;
+      rsa->p            = hexP;
+      rsa->q            = hexQ;
+      rsa->dmp1         = hexDmp1;
+      rsa->dmq1         = hexDmq1;
+      rsa->iqmp         = hexIqmp;
+
+      OPENSSL_free(hexN);
+      OPENSSL_free(hexE);
+      OPENSSL_free(hexD);
+      OPENSSL_free(hexP);
+      OPENSSL_free(hexQ);
+      OPENSSL_free(hexDmp1);
+      OPENSSL_free(hexDmq1);
+      OPENSSL_free(hexIqmp);
 
       return rsa;
 
@@ -1191,13 +1224,19 @@ namespace crypto
 
 #else
 
+      BIGNUM * n = BN_new();
+      BIGNUM * e = BN_new();
+
       m_prsa = RSA_new();
 
-      n = nParam;
-      e = "10001";
+      BN_hex2bn(&n, nParam);
+      BN_hex2bn(&e, "10001");
 
-      BN_hex2bn(&m_prsa->n, n);
-      BN_hex2bn(&m_prsa->e, e);
+      RSA_set0_key(m_prsa, n, e, NULL);
+
+      BN_free(n);
+      BN_free(e);
+
 
 #endif
 
@@ -1206,28 +1245,41 @@ namespace crypto
 #ifdef OPENSSL_CRYPTO
 
    rsa::rsa(::aura::application * papp,
-      const string & n,
-      const string & e,
-      const string & d,
-      const string & p,
-      const string & q,
-      const string & dmp1,
-      const string & dmq1,
-      const string & iqmp) :
+      const string & strN,
+      const string & strE,
+      const string & strD,
+      const string & strP,
+      const string & strQ,
+      const string & strDmp1,
+      const string & strDmq1,
+      const string & strIqmp) :
       ::object(papp),
       m_mutex(papp)
    {
 
       m_prsa = RSA_new();
 
-      BN_hex2bn(&m_prsa->n, n);
-      BN_hex2bn(&m_prsa->e, e);
-      BN_hex2bn(&m_prsa->d, d);
-      BN_hex2bn(&m_prsa->p, p);
-      BN_hex2bn(&m_prsa->q, q);
-      BN_hex2bn(&m_prsa->dmp1, dmp1);
-      BN_hex2bn(&m_prsa->dmq1, dmq1);
-      BN_hex2bn(&m_prsa->iqmp, iqmp);
+      BIGNUM * n = BN_new();
+      BIGNUM * e = BN_new();
+      BIGNUM * d = BN_new();
+      BIGNUM * p = BN_new();
+      BIGNUM * q = BN_new();
+      BIGNUM * dmp1 = BN_new();
+      BIGNUM * dmq1 = BN_new();
+      BIGNUM * iqmp = BN_new();
+
+      BN_hex2bn(&n, strN);
+      BN_hex2bn(&e, strE);
+      BN_hex2bn(&d, strD);
+      BN_hex2bn(&p, strP);
+      BN_hex2bn(&q, strQ);
+      BN_hex2bn(&dmp1, strDmp1);
+      BN_hex2bn(&dmq1, strDmq1);
+      BN_hex2bn(&iqmp, strIqmp);
+
+      RSA_set0_key(m_prsa, n, e, d);
+      RSA_set0_factors(m_prsa, p, q);
+      RSA_set0_crt_params(m_prsa, dmp1,dmq1, iqmp);
 
    }
 

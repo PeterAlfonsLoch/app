@@ -26,7 +26,7 @@ namespace sockets
    void tls_socket::InitSSLClient()
    {
 
-      InitializeContext(m_strCat, TLSv1_client_method());
+      InitializeContext(m_strCat, TLS_client_method());
 
    }
 

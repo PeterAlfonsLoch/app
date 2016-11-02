@@ -171,7 +171,7 @@ namespace sockets
    }
 
 
-   map < int, int, map < SSL_CTX *, SSL_CTX *, DH *, DH * >, map < SSL_CTX *, SSL_CTX *, DH *, DH * > & > g_dh;
+   map < int, int, DH *, DH * > g_dh;
 
    DH * tmp_dh_callback(SSL *ssl, int is_export, int keylength)
    {
@@ -181,7 +181,7 @@ namespace sockets
       case 1024:
       case 2048:
       case 4096:
-         return g_dh[keylength][ssl->ctx];
+         return g_dh[keylength];
          break;
       }
       return NULL;
@@ -224,28 +224,33 @@ namespace sockets
 
             int keylength = ia[i];
 
-            string strTitle = m_strCat.name();
-
-            if (strTitle.find_ci(".") >= 0)
+            if (g_dh[keylength] == NULL)
             {
 
-               strTitle = strTitle.Left(strTitle.reverse_find("."));
+               string strTitle = m_strCat.name();
 
-            }
+               if (strTitle.find_ci(".") >= 0)
+               {
+
+                  strTitle = strTitle.Left(strTitle.reverse_find("."));
+
+               }
 
 
-            string strFile = m_strCat.sibling(strTitle) + ".dh" + ::str::from(keylength) + ".pem";
+               string strFile = m_strCat.sibling(strTitle) + ".dh" + ::str::from(keylength) + ".pem";
 
-            FILE * paramfile = fopen(strFile, "r");
+               FILE * paramfile = fopen(strFile, "r");
 
-            if (paramfile)
-            {
+               if (paramfile)
+               {
 
-               DH * pdh = PEM_read_DHparams(paramfile, NULL, NULL, NULL);
+                  DH * pdh = PEM_read_DHparams(paramfile, NULL, NULL, NULL);
 
-               g_dh[keylength][m_ssl_ctx] = pdh;
+                  g_dh[keylength] = pdh;
 
-               fclose(paramfile);
+                  fclose(paramfile);
+
+               }
 
             }
 

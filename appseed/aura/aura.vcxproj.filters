@@ -1115,9 +1115,6 @@
     <ClInclude Include="aura\aura\aura_async.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
-    <ClInclude Include="aura\aura\aura_auto_pointer.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
     <ClInclude Include="aura\aura\aura_common.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
@@ -2208,6 +2205,9 @@
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
     <ClInclude Include="aura\aura\aura_heap.h">
+      <Filter>Header Files\aura\aura</Filter>
+    </ClInclude>
+    <ClInclude Include="aura\aura\aura_pointer.h">
       <Filter>Header Files\aura\aura</Filter>
     </ClInclude>
   </ItemGroup>

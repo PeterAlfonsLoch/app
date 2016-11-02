@@ -149,11 +149,11 @@ bool axis_term()
 
 //#ifndef WINDOWS
 
-#ifdef BSD_STYLE_SOCKETS
-   
-   ERR_remove_state(::GetCurrentProcessId());
-
-#endif
+//#ifdef BSD_STYLE_SOCKETS
+//   
+//   ERR_remove_state(::GetCurrentProcessId());
+//
+//#endif
 
    // todo (casey tips) : do real/explicit dynamic linking
    //throw todo(get_thread_app());
@@ -219,9 +219,9 @@ void axis_on_term_thread()
    {
     
       ERR_free_strings();
-      CRYPTO_THREADID tid;
-      CRYPTO_THREADID_current(&tid);
-      ERR_remove_thread_state(&tid);
+//      CRYPTO_THREADID tid;
+  //    CRYPTO_THREADID_current(&tid);
+      //ERR_remove_thread_state(&tid);
 
    }
 

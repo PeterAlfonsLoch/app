@@ -662,7 +662,7 @@ inline bool is_null(const TYPE & ref)
 #define NULL_REF(class) (*((class *) NULL))
 
 
-#include "aura/aura/aura/aura_auto_pointer.h"
+#include "aura/aura/aura/aura_pointer.h"
 
 #include "aura/aura/aura/aura_smart_pointer1.h"
 #include "aura/aura/aura/aura_smart_pointer2.h"
@@ -1519,7 +1519,7 @@ namespace std
    }
 
    template < typename T >
-   using auto_ptr = ::auto_pointer < T >;
+   using auto_ptr = ::pointer < T >;
 
    template < typename T >
    using stack = ::stack < T >;

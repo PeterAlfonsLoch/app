@@ -37,7 +37,7 @@ namespace sockets
    void ssl_server_context::InitializeContext(const string & context,const string & keyfile,const string & password,const SSL_METHOD *meth_in)
    {
       
-      const SSL_METHOD *meth = meth_in != NULL ? meth_in : SSLv3_method();
+      const SSL_METHOD *meth = meth_in != NULL ? meth_in : TLS_server_method();
 
       m_pcontext = SSL_CTX_new(meth);
       SSL_CTX_set_mode(m_pcontext,SSL_MODE_AUTO_RETRY);
@@ -71,7 +71,7 @@ namespace sockets
    {
 
       /* create our context*/
-         const SSL_METHOD *meth = meth_in != NULL ? meth_in : SSLv3_method();
+         const SSL_METHOD *meth = meth_in != NULL ? meth_in : TLS_client_method();
          m_pcontext = SSL_CTX_new(meth);
          SSL_CTX_set_mode(m_pcontext,SSL_MODE_AUTO_RETRY);
          // session id

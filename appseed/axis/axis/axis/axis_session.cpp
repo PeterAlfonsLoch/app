@@ -933,7 +933,7 @@ namespace axis
       if(m_bSystemSynchronizedScreen)
       {
 
-         if(m_iMainWkspace < 0 || m_iMainWkspace >= System.get_monitor_count())
+         if(m_iMainWkspace >= 0 && m_iMainWkspace < System.get_monitor_count())
          {
 
             return System.get_main_wkspace(lprect);

@@ -2948,39 +2948,51 @@ restart_mouse_hover_check:
 
       }
 
-      ::draw2d::graphics * pgraphics = m_spgraphics->on_begin_draw();
-
-      try
+      if (m_spgraphics.is_null())
       {
 
-         _001Print(pgraphics);
-
-      }
-      catch (...)
-      {
-
+         update_graphics_resources();
 
       }
 
-      ::draw2d::graphics_sp g(allocer());
-
-      try
+      if (m_spgraphics.is_set())
       {
 
-         if(pgraphics != NULL && g->Attach(hdc))
+         ::draw2d::graphics * pgraphics = m_spgraphics->on_begin_draw();
+
+         try
          {
 
-            pgraphics->SetViewportOrg(0,0);
+            _001Print(pgraphics);
 
-            g->BitBlt(rectPaint.left,rectPaint.top,rectPaint.width(),rectPaint.height(), pgraphics,rectUpdate.left,rectUpdate.top,SRCCOPY);
+         }
+         catch (...)
+         {
 
-            g->Detach();
 
          }
 
-      }
-      catch(...)
-      {
+         ::draw2d::graphics_sp g(allocer());
+
+         try
+         {
+
+            if (pgraphics != NULL && g->Attach(hdc))
+            {
+
+               pgraphics->SetViewportOrg(0, 0);
+
+               g->BitBlt(rectPaint.left, rectPaint.top, rectPaint.width(), rectPaint.height(), pgraphics, rectUpdate.left, rectUpdate.top, SRCCOPY);
+
+               g->Detach();
+
+            }
+
+         }
+         catch (...)
+         {
+
+         }
 
       }
 

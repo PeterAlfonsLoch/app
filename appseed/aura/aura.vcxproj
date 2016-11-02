@@ -435,7 +435,7 @@ copy $(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configur
     <ClInclude Include="aura\aura\aura_async.h" />
     <ClInclude Include="aura\aura\aura_aura.h" />
     <ClInclude Include="aura\aura\aura_auto.h" />
-    <ClInclude Include="aura\aura\aura_auto_pointer.h" />
+    <ClInclude Include="aura\aura\aura_pointer.h" />
     <ClInclude Include="aura\aura\aura_cmp.h" />
     <ClInclude Include="aura\aura\aura_command.h" />
     <ClInclude Include="aura\aura\aura_command_msg.h" />

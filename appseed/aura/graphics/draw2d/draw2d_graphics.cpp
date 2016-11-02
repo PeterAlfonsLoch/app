@@ -1373,6 +1373,7 @@ namespace draw2d
       return false;
    }
 
+
    bool graphics::TextOut(int32_t x, int32_t y, const char * lpszString, strsize nCount)
    {
 
@@ -1380,19 +1381,30 @@ namespace draw2d
 
    }
 
+
    bool graphics::TextOut(int32_t x, int32_t y, const string & str)
    {
-      UNREFERENCED_PARAMETER(x);
-      UNREFERENCED_PARAMETER(y);
-      UNREFERENCED_PARAMETER(str);
-      throw interface_only_exception(get_app());
-      return false;
+
+      return TextOut((double) x, (double) y, str);
+
    }
+
 
    bool graphics::TextOut(double x, double y, const char * lpszString, strsize nCount)
    {
+
+      return TextOut((int)x, int(y),lpszString, nCount);
+
+   }
+
+
+   bool graphics::TextOutAlphaBlend(double x, double y, const char * lpszString, strsize nCount)
+   {
+
       if (m_pdibAlphaBlend != NULL)
       {
+
+         // "Reference" implementation for TextOutAlphaBlend
 
          rect rectIntersect(m_ptAlphaBlend, m_pdibAlphaBlend->size());
 
@@ -1402,73 +1414,41 @@ namespace draw2d
          {
 
             ::draw2d::dib_sp dib1(allocer());
+
             dib1->create(rectText.size());
+
             dib1->Fill(0, 0, 0, 0);
+
             dib1->get_graphics()->SelectObject(get_current_font());
+
             dib1->get_graphics()->SelectObject(get_current_brush());
+            
             dib1->get_graphics()->TextOut(0, 0, lpszString, nCount);
 
+            dib1->blend(null_point(), m_pdibAlphaBlend, point((int)MAX(0, x - m_ptAlphaBlend.x), (int)MAX(0, y - m_ptAlphaBlend.y)), rectText.size());
 
-            // The following commented out code does not work well when there is clipping
-            // and some calculations are not precise
-            //::rect rectClip;
+            set_alpha_mode(::draw2d::alpha_mode_blend);
 
-            //GetClipBox(rectClip);
+            keep < ::draw2d::dib * > keep(&m_pdibAlphaBlend, NULL, m_pdibAlphaBlend, true);
 
-            //if (m_pdib != NULL && rectClip.is_null())
-            //{
-
-            //   point ptOff = GetViewportOrg();
-
-            //   x += ptOff.x;
-
-            //   y += ptOff.y;
-
-            //   m_pdib->blend(point((int)x, (int)y), dib1, point(0, 0), m_pdibAlphaBlend, point((int)(m_ptAlphaBlend.x - x), (int) (m_ptAlphaBlend.y - y)), rectText.size());
-
-            //}
-            //else
-            {
-
-               dib1->blend(null_point(), m_pdibAlphaBlend, point((int)MAX(0, x - m_ptAlphaBlend.x), (int)MAX(0, y - m_ptAlphaBlend.y)), rectText.size());
-
-               set_alpha_mode(::draw2d::alpha_mode_blend);
-
-               keep < ::draw2d::dib * > keep(&m_pdibAlphaBlend, NULL, m_pdibAlphaBlend, true);
-
-               BitBlt((int)x, (int)y, rectText.width(), rectText.height(), dib1->get_graphics(), 0, 0, SRCCOPY);
-
-            }
-
-            /*
-            ::draw2d::pen_sp p(allocer());
-
-            p->create_solid(1.0, ARGB(255, 255, 0, 0));
-            SelectObject(p);
-            MoveTo(0., y);
-            LineTo(500., y);
-            p->create_solid(1.0, ARGB(255, 0, 255, 0));
-            SelectObject(p);
-            MoveTo(0, m_ptAlphaBlend.y);
-            LineTo(500, m_ptAlphaBlend.y);
-            p->create_solid(1.0, ARGB(255, 0, 255, 255));
-            SelectObject(p);
-            MoveTo(0, m_ptAlphaBlend.y + m_pdibAlphaBlend->m_size.cy);
-            LineTo(500, m_ptAlphaBlend.y + m_pdibAlphaBlend->m_size.cy);
-            */
+            BitBlt((int)x, (int)y, rectText.width(), rectText.height(), dib1->get_graphics(), 0, 0, SRCCOPY);
 
             return true;
+
          }
 
       }
 
-      return TextOut((int)x, int(y),lpszString, nCount);
+      return false;
 
    }
 
+
    bool graphics::TextOut(double x, double y, const string & str)
    {
+
       return TextOut(x, y, str, (int32_t) str.get_length());
+
    }
 
 
