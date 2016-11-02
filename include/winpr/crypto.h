@@ -25,11 +25,11 @@
 
 #include <winpr/error.h>
 
-#ifdef _WIN32
+// #ifdef _WIN32
 
-#include <wincrypt.h>
+// #include <wincrypt.h>
 
-#endif
+// #endif
 
 #ifndef ALG_TYPE_RESERVED7
 #define ALG_TYPE_RESERVED7		(7 << 9)
