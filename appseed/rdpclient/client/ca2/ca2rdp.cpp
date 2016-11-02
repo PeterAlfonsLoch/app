@@ -42,17 +42,16 @@
 
 #define TAG CLIENT_TAG("axisrdpclient")
 
-int ca2rdp_context_new(freerdp* instance, rdpContext* context)
-{
-	context->channels = freerdp_channels_new();
-	return 0;
-}
-
-void ca2rdp_context_free(freerdp* instance, rdpContext* context)
-{
-
-}
-
+//FREERDP_LOCAL rdpChannels* freerdp_channels_new(freerdp* instance);
+//FREERDP_LOCAL UINT freerdp_channels_disconnect(rdpChannels* channels,
+//   freerdp* instance);
+//FREERDP_LOCAL void freerdp_channels_close(rdpChannels* channels,
+//   freerdp* instance);
+//FREERDP_LOCAL void freerdp_channels_free(rdpChannels* channels);
+//FREERDP_LOCAL UINT freerdp_channels_pre_connect(rdpChannels* channels,
+//   freerdp* instance);
+//FREERDP_LOCAL UINT freerdp_channels_post_connect(rdpChannels* channels,
+//   freerdp* instance);
 BOOL ca2rdp_begin_paint(rdpContext* context)
 {
 	rdpGdi* gdi = context->gdi;
@@ -62,10 +61,13 @@ BOOL ca2rdp_begin_paint(rdpContext* context)
 	return 1;
 }
 
+
 BOOL ca2rdp_end_paint(rdpContext* context)
 {
+
 	rdpGdi* gdi;
 	ca2rdpInfo* ca2rdpi;
+
 #ifdef _WIN32
 	gdi = context->gdi;
 	ca2rdpi = ((ca2rdpContext*) context)->ca2rdpi;
@@ -73,33 +75,18 @@ BOOL ca2rdp_end_paint(rdpContext* context)
 	if (gdi->primary->hdc->hwnd->invalid->null)
 		return 1;
 
-//#ifdef WINDOWSEX
-//	ca2rdpi->update_rect.left = gdi->primary->hdc->hwnd->invalid->x;
-//	ca2rdpi->update_rect.top = gdi->primary->hdc->hwnd->invalid->y;
-//   ca2rdpi->update_rect.right = gdi->primary->hdc->hwnd->invalid->x+gdi->primary->hdc->hwnd->invalid->w;
-//   ca2rdpi->update_rect.bottom = gdi->primary->hdc->hwnd->invalid->y +gdi->primary->hdc->hwnd->invalid->h;
-//#else
 	ca2rdpi->x = 0;
 	ca2rdpi->y = 0;
 	ca2rdpi->w = gdi->width;
 	ca2rdpi->h = gdi->height;
-//#endif
    ::draw2d::dib_copy(ca2rdpi->surface,ca2rdpi->primary);
 #endif
 
 
-/*#ifdef WINDOWS
-   ::draw2d::graphics_sp g(((ca2rdpContext*)context)->m_papp->allocer());
-   g->CreateCompatibleDC(NULL);
-   g->Attach(gdi->primary->hdc->alpha);
-   ca2rdpi->primary->get_graphics()->BitBlt(ca2rdpi->update_rect.left,ca2rdpi->update_rect.top,
-      ca2rdpi->update_rect.width(),ca2rdpi->update_rect.height,g,0, 0,SRCCOPY);
-   g->Detach();
-#else
-   ca2rdpi->primary->BitBlt(ca2rdpi->surface,SRCCOPY);
-#endif*/
-return 1;
+	return 1;
+
 }
+
 
 BOOL ca2rdp_get_fds(freerdp* instance, void** rfds, int* rcount, void** wfds, int* wcount)
 {
@@ -122,11 +109,10 @@ BOOL ca2rdp_check_fds(freerdp* instance, fd_set* set)
 	if (!FD_ISSET(ca2rdpi->read_fds, set))
 		return TRUE;
 
-//	if (read(ca2rdpi->read_fds, &(ca2rdpi->event), sizeof(ca2rdpi->event)) > 0)
-	//	ca2rdp_event_process(instance, &(ca2rdpi->event));
-
 	return TRUE;
+
 }
+
 
 BOOL ca2rdp_pre_connect(freerdp* instance)
 {
@@ -169,17 +155,17 @@ BOOL ca2rdp_pre_connect(freerdp* instance)
 	settings->OrderSupport[NEG_ELLIPSE_SC_INDEX] = FALSE;
 	settings->OrderSupport[NEG_ELLIPSE_CB_INDEX] = FALSE;
 
-	ca2rdpi->clrconv = (CLRCONV*) malloc(sizeof(CLRCONV));
-	ZeroMemory(ca2rdpi->clrconv, sizeof(CLRCONV));
+	//ca2rdpi->clrconv = (CLRCONV*) malloc(sizeof(CLRCONV));
+	//ZeroMemory(ca2rdpi->clrconv, sizeof(CLRCONV));
 
-	ca2rdpi->clrconv->alpha = 1;
-	ca2rdpi->clrconv->invert = 0;
-	ca2rdpi->clrconv->rgb555 = 0;
+	//ca2rdpi->clrconv->alpha = 1;
+	//ca2rdpi->clrconv->invert = 0;
+	//ca2rdpi->clrconv->rgb555 = 0;
 
-	ca2rdpi->clrconv->palette = (rdpPalette*) malloc(sizeof(rdpPalette));
-	ZeroMemory(ca2rdpi->clrconv->palette, sizeof(rdpPalette));
+	//ca2rdpi->clrconv->palette = (rdpPalette*) malloc(sizeof(rdpPalette));
+	//ZeroMemory(ca2rdpi->clrconv->palette, sizeof(rdpPalette));
 
-	freerdp_channels_pre_connect(instance->context->channels, instance);
+	//freerdp_channels_pre_connect(instance->context->channels, instance);
 
 	instance->context->cache = cache_new(instance->settings);
 
@@ -194,8 +180,6 @@ BOOL ca2rdp_post_connect(freerdp* instance)
 
 	context = ((ca2rdpContext*) instance->context);
 	ca2rdpi = context->ca2rdpi;
-   //gdi->width = instance->settings->DesktopWidth;
-   //gdi->height = instance->settings->DesktopHeight;
 
    ::draw2d::dib_alloc(context->m_pappRdp, ca2rdpi->primary);
    ::draw2d::dib_create(ca2rdpi->primary, instance->settings->DesktopWidth,instance->settings->DesktopHeight);
@@ -203,59 +187,26 @@ BOOL ca2rdp_post_connect(freerdp* instance)
    ::draw2d::dib_alloc(context->m_pappRdp, ca2rdpi->surface);
    ::draw2d::dib_create(ca2rdpi->surface, instance->settings->DesktopWidth,instance->settings->DesktopHeight);
 
-//   App(context->m_papp).alloc(ca2rdpi->primary);
-  // ca2rdpi->primary->create(instance->settings->DesktopWidth,instance->settings->DesktopHeight);
+//   gdi_init(instance,CLRCONV_ALPHA |  CLRBUF_32BPP,(BYTE*) ::draw2d::dib_get_data(ca2rdpi->primary));
+   if (!gdi_init(instance, PIXEL_FORMAT_BGRX32))
+   {
 
-   //App(context->m_papp).alloc(ca2rdpi->surface);
-   //ca2rdpi->surface->create(instance->settings->DesktopWidth,instance->settings->DesktopHeight);
+      return FALSE;
 
+   }
 
-   gdi_init(instance,CLRCONV_ALPHA |  CLRBUF_32BPP,(BYTE*) ::draw2d::dib_get_data(ca2rdpi->primary));
 	gdi = instance->context->gdi;
 
-//	ca2rdpi->err = DirectFBCreate(&(ca2rdpi->ca2rdpb));
-
-	//ca2rdpi->dsc.flags = DSDESC_CAPS;
-	//ca2rdpi->dsc.caps = DSCAPS_PRIMARY;
-	//ca2rdpi->err = ca2rdpi->ca2rdpb->CreateSurface(ca2rdpi->ca2rdpb, &(ca2rdpi->dsc), &(ca2rdpi->primary));
-	//ca2rdpi->err = ca2rdpi->primary->GetSize(ca2rdpi->primary, &(gdi->width), &(gdi->height));
-	//ca2rdpi->ca2rdpb->SetVideoMode(ca2rdpi->ca2rdpb, gdi->width, gdi->height, gdi->dstBpp);
-	//ca2rdpi->ca2rdpb->CreateInputEventBuffer(ca2rdpi->ca2rdpb, DICAPS_ALL, DFB_TRUE, &(ca2rdpi->event_buffer));
-	//ca2rdpi->event_buffer->CreateFileDescriptor(ca2rdpi->event_buffer, &(ca2rdpi->read_fds));
-
-	//ca2rdpi->ca2rdpb->GetDisplayLayer(ca2rdpi->ca2rdpb, 0, &(ca2rdpi->layer));
-	//ca2rdpi->layer->EnableCursor(ca2rdpi->layer, 1);
-
-	//ca2rdpi->dsc.flags = DSDESC_CAPS | DSDESC_WIDTH | DSDESC_HEIGHT | DSDESC_PREALLOCATED | DSDESC_PIXELFORMAT;
-	//ca2rdpi->dsc.caps = DSCAPS_SYSTEMONLY;
-	//ca2rdpi->dsc.width = gdi->width;
-	//ca2rdpi->dsc.height = gdi->height;
-
-	//if (gdi->dstBpp == 32 || gdi->dstBpp == 24)
-		//ca2rdpi->dsc.pixelformat = DSPF_AiRGB;
-	//else if (gdi->dstBpp == 16 || gdi->dstBpp == 15)
-//		ca2rdpi->dsc.pixelformat = DSPF_RGB16;
-//	else if (gdi->dstBpp == 8)
-	//	ca2rdpi->dsc.pixelformat = DSPF_RGB332;
-	//else
-		//ca2rdpi->dsc.pixelformat = DSPF_AiRGB;
-
-	//ca2rdpi->dsc.preallocated[0].data = gdi->primary_buffer;
-	//ca2rdpi->dsc.preallocated[0].pitch = gdi->width * gdi->bytesPerPixel;
-	//ca2rdpi->ca2rdpb->CreateSurface(ca2rdpi->ca2rdpb, &(ca2rdpi->dsc), &(ca2rdpi->surface));
-//
 	instance->update->BeginPaint = ca2rdp_begin_paint;
 	instance->update->EndPaint = ca2rdp_end_paint;
-
-	//ca2rdp_keyboard_init();
 
 	pointer_cache_register_callbacks(instance->update);
 	ca2rdp_register_graphics(instance->context->graphics);
 
-	//freerdp_channels_post_connect(instance->context->channels, instance);
-
 	return TRUE;
+
 }
+
 
 BOOL ca2rdp_verify_certificate(freerdp* instance, char* subject, char* issuer, char* fingerprint)
 {
@@ -429,8 +380,8 @@ int ca2rdpreerdp_run(freerdp* instance)
 //		ca2rdp_process_channel_event(channels, instance);
 	}
 
-	freerdp_channels_close(channels, instance);
-	freerdp_channels_free(channels);
+	//freerdp_channels_close(channels, instance);
+	//freerdp_channels_free(channels);
 	ca2rdp_free(ca2rdpi);
 	gdi_free(instance);
 	freerdp_disconnect(instance);
@@ -438,87 +389,6 @@ int ca2rdpreerdp_run(freerdp* instance)
 
 	return 0;
 }
-
-/*
-void* thread_func(void* param)
-
-{
-	struct thread_data* data;
-	data = (struct thread_data*) param;
-
-	ca2rdpreerdp_run(data->instance);
-
-	free(data);
-
-	pthread_detach(pthread_self());
-
-	g_thread_count--;
-
-        if (g_thread_count < 1)
-        	ReleaseSemaphore(g_sem, 1, NULL);
-
-	return NULL;
-}
-*/
-
-/*
-int main(int argc, char* argv[])
-{
-	int status;
-	pthread_t thread;
-	freerdp* instance;
-	ca2rdpContext* context;
-	rdpChannels* channels;
-	struct thread_data* data;
-
-	setlocale(LC_ALL, "");
-
-	g_sem = CreateSemaphore(NULL, 0, 1, NULL);
-
-	instance = freerdp_new();
-	instance->PreConnect = ca2rdp_pre_connect;
-	instance->PostConnect = ca2rdp_post_connect;
-	instance->VerifyCertificate = ca2rdp_verify_certificate;
-	instance->ReceiveChannelData = ca2rdp_receive_channel_data;
-
-	instance->ContextSize = sizeof(ca2rdpContext);
-	instance->ContextNew = ca2rdp_context_new;
-	instance->ContextFree = ca2rdp_context_free;
-	freerdp_context_new(instance);
-
-	context = (ca2rdpContext*) instance->context;
-	channels = instance->context->channels;
-
-	DirectFBInit(&argc, &argv);
-
-	instance->context->argc = argc;
-	instance->context->argv = argv;
-
-	status = freerdp_client_settings_parse_command_line(instance->settings, argc, argv);
-
-	if (status < 0)
-		exit(0);
-
-	freerdp_client_load_addins(instance->context->channels, instance->settings);
-
-	data = (struct thread_data*) malloc(sizeof(struct thread_data));
-	ZeroMemory(data, sizeof(sizeof(struct thread_data)));
-
-	data->instance = instance;
-
-	g_thread_count++;
-	pthread_create(&thread, 0, thread_func, data);
-
-	while (g_thread_count > 0)
-	{
-		WaitForSingleObject(g_sem, INFINITE);
-	}
-
-	return 0;
-}
-
-
-*/
 
 
 ::draw2d::graphics * ca2rdp_ctx_get_graphics(ca2rdp_context * pcontext)

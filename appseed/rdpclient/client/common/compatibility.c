@@ -48,7 +48,7 @@ COMMAND_LINE_ARGUMENT_A old_args[] =
 	{ "f", COMMAND_LINE_VALUE_FLAG, NULL, NULL, NULL, -1, NULL, "fullscreen mode" },
 	{ "g", COMMAND_LINE_VALUE_REQUIRED, NULL, NULL, NULL, -1, NULL, "set geometry, using format WxH or X%% or 'workarea', default is 1024x768" },
 	{ "h", COMMAND_LINE_VALUE_FLAG | COMMAND_LINE_PRINT_HELP, NULL, NULL, NULL, -1, "help", "print this help" },
-	{ "k", COMMAND_LINE_VALUE_REQUIRED, NULL, NULL, NULL, -1, NULL, "set keyboard on_layout ID" },
+	{ "k", COMMAND_LINE_VALUE_REQUIRED, NULL, NULL, NULL, -1, NULL, "set keyboard layout ID" },
 	{ "K", COMMAND_LINE_VALUE_FLAG, NULL, NULL, NULL, -1, NULL, "do not interfere with window manager bindings" },
 	{ "n", COMMAND_LINE_VALUE_REQUIRED, NULL, NULL, NULL, -1, NULL, "hostname" },
 	{ "o", COMMAND_LINE_VALUE_FLAG, NULL, NULL, NULL, -1, NULL, "console audio" },
@@ -448,7 +448,7 @@ int freerdp_client_parse_old_command_line_arguments(int argc, char** argv, rdpSe
 	DWORD flags;
 	COMMAND_LINE_ARGUMENT_A* arg;
 
-	freerdp_register_addin_provider((FREERDP_LOAD_CHANNEL_ADDIN_ENTRY_FN) freerdp_channels_load_static_addin_entry, 0);
+	freerdp_register_addin_provider(freerdp_channels_load_static_addin_entry, 0);
 
 	flags = COMMAND_LINE_SEPARATOR_SPACE;
 	flags |= COMMAND_LINE_SIGIL_DASH | COMMAND_LINE_SIGIL_DOUBLE_DASH;

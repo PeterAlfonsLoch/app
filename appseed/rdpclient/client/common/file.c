@@ -666,7 +666,7 @@ BOOL freerdp_client_parse_rdp_file(rdpFile* file, const char* name)
 	BYTE* buffer;
 	FILE* fp = NULL;
 	size_t read_size;
-	long int file_size_t;
+	long int file_size;
 
 	fp = fopen(name, "r");
 
@@ -674,27 +674,27 @@ BOOL freerdp_client_parse_rdp_file(rdpFile* file, const char* name)
 		return FALSE;
 
 	fseek(fp, 0, SEEK_END);
-	file_size_t = ftell(fp);
+	file_size = ftell(fp);
 	fseek(fp, 0, SEEK_SET);
 
-	if (file_size_t < 1)
+	if (file_size < 1)
 	{
 		fclose(fp);
 		return FALSE;
 	}
 
-	buffer = (BYTE*) malloc(file_size_t + 2);
+	buffer = (BYTE*) malloc(file_size + 2);
 	if (!buffer)
 	{
 		fclose(fp);
 		return FALSE;
 	}
-	read_size = fread(buffer, file_size_t, 1, fp);
+	read_size = fread(buffer, file_size, 1, fp);
 
 	if (!read_size)
 	{
 		if (!ferror(fp))
-			read_size = file_size_t;
+			read_size = file_size;
 	}
 	fclose(fp);
 
@@ -704,10 +704,10 @@ BOOL freerdp_client_parse_rdp_file(rdpFile* file, const char* name)
 		return FALSE;
 	}
 
-	buffer[file_size_t] = '\0';
-	buffer[file_size_t + 1] = '\0';
+	buffer[file_size] = '\0';
+	buffer[file_size + 1] = '\0';
 
-	status = freerdp_client_parse_rdp_file_buffer(file, buffer, file_size_t);
+	status = freerdp_client_parse_rdp_file_buffer(file, buffer, file_size);
 
 	free(buffer);
 
@@ -880,7 +880,7 @@ BOOL freerdp_client_populate_settings_from_rdp_file(rdpFile* file, rdpSettings* 
 		char* user = NULL;
 		char* domain = NULL;
 
-		if (freerdp_parse_username(file->Username, &user, &domain) != 0)
+		if (!freerdp_parse_username(file->Username, &user, &domain))
 			return FALSE;
 		if (freerdp_set_param_string(settings, FreeRDP_Username, user) != 0)
 			return FALSE;
@@ -900,7 +900,7 @@ BOOL freerdp_client_populate_settings_from_rdp_file(rdpFile* file, rdpSettings* 
 		int port = -1;
 		char* host = NULL;
 
-		if (freerdp_parse_hostname(file->FullAddress, &host, &port) != 0)
+		if (!freerdp_parse_hostname(file->FullAddress, &host, &port))
 			return FALSE;
 
 		if (freerdp_set_param_string(settings, FreeRDP_ServerHostname, host) != 0)
@@ -1022,7 +1022,7 @@ BOOL freerdp_client_populate_settings_from_rdp_file(rdpFile* file, rdpSettings* 
 		int port = -1;
 		char* host = NULL;
 
-		if (freerdp_parse_hostname(file->GatewayHostname, &host, &port) != 0)
+		if (!freerdp_parse_hostname(file->GatewayHostname, &host, &port))
 			return FALSE;
 
 		if (freerdp_set_param_string(settings, FreeRDP_GatewayHostname, host) != 0)
@@ -1178,8 +1178,8 @@ BOOL freerdp_client_populate_settings_from_rdp_file(rdpFile* file, rdpSettings* 
 		char* ConnectionFile = settings->ConnectionFile;
 
 		settings->ConnectionFile = NULL;
-		//if (freerdp_client_settings_parse_command_line(settings, file->argc, file->argv, FALSE) < 0)
-			//return FALSE;
+		if (freerdp_client_settings_parse_command_line(settings, file->argc, file->argv, FALSE) < 0)
+			return FALSE;
 		settings->ConnectionFile = ConnectionFile;
 	}
 

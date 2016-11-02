@@ -99,7 +99,7 @@ struct wf_context :
 	POINT diff;
 	HGDI_DC hdc;
 
-	HCLRCONV clrconv;
+	//HCLRCONV clrconv;
 	HCURSOR cursor;
 	HBRUSH brush;
 	HBRUSH org_brush;
