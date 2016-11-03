@@ -37,7 +37,7 @@
 
 
 #include <freerdp/client/cmdline.h>
-#include <freerdp/version.h>
+//#include <freerdp/version.h>
 
 #include "compatibility.h"
 
@@ -189,8 +189,8 @@ static COMMAND_LINE_ARGUMENT_A args[] =
 
 BOOL freerdp_client_print_version()
 {
-	printf("This is FreeRDP version %s (git %s)\n", FREERDP_VERSION_FULL,
-	       GIT_REVISION);
+//	printf("This is FreeRDP version %s (git %s)\n", FREERDP_VERSION_FULL,
+	//       GIT_REVISION);
 	return TRUE;
 }
 

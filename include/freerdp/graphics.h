@@ -26,6 +26,7 @@ typedef struct rdp_bitmap rdpBitmap;
 typedef struct rdp_pointer rdpPointer;
 typedef struct rdp_glyph rdpGlyph;
 
+
 #include <stdlib.h>
 #include <freerdp/api.h>
 #include <freerdp/types.h>

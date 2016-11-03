@@ -1,7 +1,11 @@
 #pragma once
 
+#if defined(_WIN32) && !defined(CINTERFACE)
+#include <WinSock2.h>
+#include <windows.h>
+#endif
 
-#include "rdpclient/client/common/rdpclient.h"
+//#include "rdpclient/client/common/rdpclient.h"
 
 #define FREERDP_DATA_PATH "${FREERDP_DATA_PATH}"
 #define FREERDP_KEYMAP_PATH "${FREERDP_KEYMAP_PATH}"

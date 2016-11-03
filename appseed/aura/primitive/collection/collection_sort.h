@@ -174,6 +174,84 @@ namespace sort
       }
 
    };
+
+
+   template <class TYPE, class ARG_TYPE, typename SWAP>
+   void quick_sort(
+      array<TYPE, ARG_TYPE> & a,
+      SWAP swap)
+   {
+      index_array stackLowerBound;
+      index_array stackUpperBound;
+      index iLowerBound;
+      index iUpperBound;
+      index iLPos, iUPos, iMPos;
+
+      if (a.get_size() >= 2)
+      {
+         stackLowerBound.push(0);
+         stackUpperBound.push(a.get_size() - 1);
+         while (true)
+         {
+            iLowerBound = stackLowerBound.pop();
+            iUpperBound = stackUpperBound.pop();
+            iLPos = iLowerBound;
+            iMPos = iLowerBound;
+            iUPos = iUpperBound;
+            while (true)
+            {
+               while (true)
+               {
+                  if (iMPos == iUPos)
+                     break;
+                  if (a.get_at(iMPos) <= a.get_at(iUPos))
+                     iUPos--;
+                  else
+                  {
+                     a.swap(iMPos, iUPos);
+                     swap(iUPos, iMPos);
+                     break;
+                  }
+               }
+               if (iMPos == iUPos)
+                  break;
+               iMPos = iUPos;
+               while (true)
+               {
+                  if (iMPos == iLPos)
+                     break;
+                  if (a.get_at(iLPos) <= a.get_at(iMPos))
+                     iLPos++;
+                  else
+                  {
+                     a.swap(iMPos, iLPos);
+                     swap(iLPos, iMPos);
+                     break;
+                  }
+               }
+               if (iMPos == iLPos)
+                  break;
+               iMPos = iLPos;
+            }
+            if (iLowerBound < iMPos - 1)
+            {
+               stackLowerBound.push(iLowerBound);
+               stackUpperBound.push(iMPos - 1);
+            }
+            if (iMPos + 1 < iUpperBound)
+            {
+               stackLowerBound.push(iMPos + 1);
+               stackUpperBound.push(iUpperBound);
+            }
+            if (stackLowerBound.get_size() == 0)
+               break;
+         }
+      }
+
+   }
+
+
+
    template <class TYPE, class ARG_TYPE>
    void quick_sort(
       array<TYPE, ARG_TYPE> & a,

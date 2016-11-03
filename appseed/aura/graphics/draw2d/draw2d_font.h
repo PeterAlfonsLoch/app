@@ -39,6 +39,29 @@ namespace draw2d
    {
    public:
 
+      enum e_cs
+      {
+         cs_ANSI,
+         cs_DEFAULT,
+         cs_SYMBOL,
+         cs_SHIFTJIS,
+         cs_HANGEUL,
+         cs_HANGUL,
+         cs_GB2312,
+         cs_CHINESEBIG5,
+         cs_JOHAB,
+         cs_HEBREW,
+         cs_ARABIC,
+         cs_GREEK, 
+         cs_TURKISH, 
+         cs_VIETNAMESE, 
+         cs_THAI, 
+         cs_EASTEUROPE, 
+         cs_RUSSIAN,
+         cs_MAC,
+         cs_BALTIC,
+         cs_count
+      };
 
       string      m_strFontFamilyName;
       double      m_dFontSize;
@@ -93,7 +116,11 @@ namespace draw2d
       virtual void set_italic(bool bItalic = true);
       virtual void set_underline(bool bUnderline = true);
       virtual void set_strikeout(bool bStrikeout = true);
+      
+      virtual e_cs get_cs(::draw2d::graphics * pgraphics);
+      virtual string get_sample_text(::draw2d::graphics * pgraphics);
 
+      static string get_sample_text(e_cs ecs);
 
    };
    

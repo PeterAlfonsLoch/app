@@ -4,32 +4,44 @@
     <ClCompile Include="dllmain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="client\ca2\ca2rdp_event.cpp">
-      <Filter>Source Files\client\ca2</Filter>
-    </ClCompile>
-    <ClCompile Include="client\ca2\ca2rdp_graphics.cpp">
-      <Filter>Source Files\client\ca2</Filter>
-    </ClCompile>
-    <ClCompile Include="client\ca2\ca2rdp.cpp">
-      <Filter>Source Files\client\ca2</Filter>
-    </ClCompile>
-    <ClCompile Include="client\common\cmdline.cpp">
+    <ClCompile Include="client\common\client.c">
       <Filter>Source Files\client\common</Filter>
     </ClCompile>
-    <ClCompile Include="client\common\compatibility.cpp">
+    <ClCompile Include="client\common\cmdline.c">
       <Filter>Source Files\client\common</Filter>
     </ClCompile>
-    <ClCompile Include="client\common\file.cpp">
+    <ClCompile Include="client\common\compatibility.c">
       <Filter>Source Files\client\common</Filter>
     </ClCompile>
-    <ClCompile Include="client\common\cf_client.cpp">
+    <ClCompile Include="client\common\file.c">
       <Filter>Source Files\client\common</Filter>
     </ClCompile>
-    <ClCompile Include="client\common\cf_channels.cpp">
-      <Filter>Source Files\client\common</Filter>
+    <ClCompile Include="client\Windows\wf_channels.c">
+      <Filter>Source Files\client\Windows</Filter>
     </ClCompile>
-    <ClCompile Include="client\ca2\ca2rdp_event_queue.cpp">
-      <Filter>Source Files\client\ca2</Filter>
+    <ClCompile Include="client\Windows\wf_client.c">
+      <Filter>Source Files\client\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="client\Windows\wf_cliprdr.c">
+      <Filter>Source Files\client\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="client\Windows\wf_event.c">
+      <Filter>Source Files\client\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="client\Windows\wf_floatbar.c">
+      <Filter>Source Files\client\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="client\Windows\wf_gdi.c">
+      <Filter>Source Files\client\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="client\Windows\wf_graphics.c">
+      <Filter>Source Files\client\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="client\Windows\wf_rail.c">
+      <Filter>Source Files\client\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="client\Windows\cli\wfreerdp.c">
+      <Filter>Source Files\client\Windows</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -53,9 +65,6 @@
     </Filter>
     <Filter Include="Header Files\client\ca2">
       <UniqueIdentifier>{09f730c3-2384-4bf7-b45c-323de7c08049}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\client\ca2">
-      <UniqueIdentifier>{a21b1435-2916-4b45-bfe1-5328cd24fcaf}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\client\Windows">
       <UniqueIdentifier>{59286ff8-248f-44e3-9d3f-3e933fc7cff4}</UniqueIdentifier>

@@ -448,7 +448,7 @@ int freerdp_client_parse_old_command_line_arguments(int argc, char** argv, rdpSe
 	DWORD flags;
 	COMMAND_LINE_ARGUMENT_A* arg;
 
-	freerdp_register_addin_provider(freerdp_channels_load_static_addin_entry, 0);
+	freerdp_register_addin_provider((FREERDP_LOAD_CHANNEL_ADDIN_ENTRY_FN) freerdp_channels_load_static_addin_entry, 0);
 
 	flags = COMMAND_LINE_SEPARATOR_SPACE;
 	flags |= COMMAND_LINE_SIGIL_DASH | COMMAND_LINE_SIGIL_DOUBLE_DASH;

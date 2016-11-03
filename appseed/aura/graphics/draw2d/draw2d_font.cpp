@@ -1,4 +1,4 @@
-//#include "framework.h"
+﻿//#include "framework.h"
 //#include "draw2d_object.h"
 //#include "draw2d_font.h"
 
@@ -173,6 +173,58 @@ namespace draw2d
       m_bUpdated     = false;
 
    }
+
+   font::e_cs font::get_cs(graphics * pgraphics)
+   {
+      
+      return cs_DEFAULT;
+
+   }
+
+    string font::get_sample_text(e_cs ecs)
+   {
+
+       if (ecs == cs_CHINESEBIG5)
+       {
+
+          return unitext("示例文本");
+
+       }
+       else if (ecs == cs_GB2312)
+       {
+
+          return unitext("示例文本");
+
+       }
+       else if (ecs == cs_SHIFTJIS)
+       {
+
+          return unitext("サンプルテキスト");
+
+       }
+
+       return "";
+
+   }
+
+   string font::get_sample_text(::draw2d::graphics * pgraphics)
+   {
+
+      auto ecs = get_cs(pgraphics);
+
+      string str = get_sample_text(ecs);
+
+      if (str.has_char())
+      {
+
+         return str;
+
+      }
+      
+      return m_strFontFamilyName;
+
+   }
+
 
 
 } // namespace draw2d

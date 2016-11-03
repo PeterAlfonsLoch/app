@@ -42,15 +42,10 @@
 
 typedef struct wf_context wfContext;
 
-#include "rdpclient/client/common/graphics.h"
-
 #include "wf_channels.h"
 #include "wf_floatbar.h"
 #include "wf_event.h"
 #include "wf_cliprdr.h"
-
-
-
 
 #ifdef __cplusplus
 extern "C" {
@@ -59,8 +54,7 @@ extern "C" {
 // System menu constants
 #define SYSCOMMAND_ID_SMARTSIZING 1000
 
-struct wf_bitmap :
-   public axisrdp_bitmap
+struct wf_bitmap
 {
 	rdpBitmap _bitmap;
 	HDC hdc;
@@ -77,14 +71,21 @@ struct wf_pointer
 };
 typedef struct wf_pointer wfPointer;
 
-struct wf_context :
-   public axisrdp_context
+struct wf_context
 {
-	
+	rdpContext context;
+	DEFINE_RDP_CLIENT_COMMON();
 
+	int offset_x;
+	int offset_y;
 	int fs_toggle;
 	int fullscreen;
 	int percentscreen;
+	char window_title[64];
+	int client_x;
+	int client_y;
+	int client_width;
+	int client_height;
 
 	HANDLE keyboardThread;
 
@@ -97,16 +98,15 @@ struct wf_context :
 
 	HWND hwnd;
 	POINT diff;
-	HGDI_DC hdc;
 
-	//HCLRCONV clrconv;
+	wfBitmap* primary;
+	wfBitmap* drawing;
 	HCURSOR cursor;
 	HBRUSH brush;
 	HBRUSH org_brush;
 	RECT update_rect;
 	RECT scale_update_rect;
 
-	wfBitmap* tile;
 	DWORD mainThreadId;
 	DWORD keyboardThreadId;
 
@@ -125,7 +125,7 @@ struct wf_context :
 	int yCurrentScroll;
 	int yMaxScroll;
 
-	wfClipboard* clipboard;
+	void* clipboard;
 	CliprdrClientContext* cliprdr;
 
 	FloatBar* floatbar;
@@ -139,8 +139,10 @@ struct wf_context :
  */
 
 FREERDP_API int RdpClientEntry(RDP_CLIENT_ENTRY_POINTS* pEntryPoints);
-FREERDP_API int freerdp_client_set_window_size(wfContext* wfc, int width, int height);
-FREERDP_API void wf_size_scrollbars(wfContext* wfc, UINT32 client_width, UINT32 client_height);
+FREERDP_API int freerdp_client_set_window_size(wfContext* wfc, int width,
+        int height);
+FREERDP_API void wf_size_scrollbars(wfContext* wfc, UINT32 client_width,
+                                    UINT32 client_height);
 
 #ifdef __cplusplus
 }

@@ -6405,7 +6405,7 @@ restart:
 
       bool bOk = false;
 
-      if(!(nFlags & SWP_NOZORDER) && z != 0)
+      if(!(nFlags & SWP_NOZORDER))
       {
 
          if(GetParent() != NULL)

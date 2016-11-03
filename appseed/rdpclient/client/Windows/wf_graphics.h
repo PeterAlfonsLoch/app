@@ -22,33 +22,13 @@
 
 #include "wf_client.h"
 
-#if defined(__cplusplus)
-
-
-#define DECL_EXTERN_C	   extern "C"
-#define BEGIN_EXTERN_C		extern "C" {
-#define END_EXTERN_C		   }
-
-
-#else
-
-
-#define DECL_EXTERN_C
-#define BEGIN_EXTERN_C
-#define END_EXTERN_C
-
-
-#endif
-
-BEGIN_EXTERN_C
-
-HBITMAP wf_create_dib(wfContext* wfc, int width, int height, int bpp, BYTE* data, BYTE** pdata);
-CLASS_DECL_AXIS_RDPCLIENT wfBitmap* wf_image_new(wfContext* wfc, int width, int height, int bpp, BYTE* data);
+HBITMAP wf_create_dib(wfContext* wfc, UINT32 width, UINT32 height,
+                      UINT32 format, const BYTE* data, BYTE** pdata);
+wfBitmap* wf_image_new(wfContext* wfc, UINT32 width, UINT32 height,
+                       UINT32 format, const BYTE* data);
 void wf_image_free(wfBitmap* image);
 
-void wf_register_pointer(rdpGraphics* graphics);
-void wf_register_graphics(rdpGraphics* graphics);
-
-END_EXTERN_C
+BOOL wf_register_pointer(rdpGraphics* graphics);
+BOOL wf_register_graphics(rdpGraphics* graphics);
 
 #endif /* WF_GRAPHICS */
