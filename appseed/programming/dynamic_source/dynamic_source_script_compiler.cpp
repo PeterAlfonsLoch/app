@@ -25,13 +25,14 @@ script_compiler::script_compiler(::aura::application * papp):
    ::object(papp),
 //      m_memfileLibError(papp),
     //    m_mutexLibrary(papp),
-    m_mutex(papp)//,
+    m_mutex(papp),
+   file_watcher(papp),
+   listener_thread(papp)//,
 //      m_libraryLib(papp)
 
 
 {
 
-   file_watcher_initialize_listener_thread(papp);
 
 #if MEMDLEAK
 
@@ -614,7 +615,7 @@ void script_compiler::compile(ds_script * pscript)
 
    string strLog;
 
-   while(true)
+   while(::get_thread()->m_bRun && m_bRun && m_bRun)
    {
 
       strLog += process->read();
@@ -740,7 +741,7 @@ void script_compiler::compile(ds_script * pscript)
 
       string strLog;
 
-      while(true)
+      while(::get_thread()->m_bRun && m_bRun)
       {
 
          strLog += process->read();
@@ -880,7 +881,7 @@ void script_compiler::cppize1(ds_script * pscript)
 
    int iTry = 0;
    
-   while ((strSource = Application.file().as_string(pscript->m_strSourcePath)).trimmed().is_empty())
+   while ((strSource = Application.file().as_string(pscript->m_strSourcePath)).trimmed().is_empty() && ::get_thread()->m_bRun && m_bRun)
    {
 
       Sleep(84);
@@ -1107,7 +1108,7 @@ void script_compiler::prepare1(const char * lpcszSource, const char * lpcszDest)
    //process->write("\n");
    uint32_t dwExitCode;
    DWORD dwStart = get_tick_count();
-   while(true)
+   while(::get_thread()->m_bRun && m_bRun)
    {
 
       strLog += process->read();
@@ -1502,7 +1503,7 @@ library & script_compiler::lib(const char * pszLibrary)
 
       string strLog;
 
-      while(true)
+      while(::get_thread()->m_bRun && m_bRun)
       {
 
          strLog += process->read();
@@ -1649,7 +1650,7 @@ library & script_compiler::lib(const char * pszLibrary)
 
    string strLog;
 
-   while(true)
+   while(::get_thread()->m_bRun && m_bRun)
    {
 
       strLog += process->read();

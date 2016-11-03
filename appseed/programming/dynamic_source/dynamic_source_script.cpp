@@ -462,8 +462,11 @@ script_instance * ds_script::create_instance()
          iRetry++;
 
       }
-      while((bHasTempError = HasTempError()) && iRetry < 8);
+      while((bHasTempError = HasTempError()) && iRetry < 8 && ::get_thread()->m_bRun);
 
+
+      if (!::get_thread()->m_bRun)
+         return NULL;
       m_dwLastBuildTime = ::get_tick_count();
 
       // Wait for finalization of build
@@ -478,6 +481,9 @@ script_instance * ds_script::create_instance()
       Load();
 
       Sleep(84);
+
+      if (!::get_thread()->m_bRun)
+         return NULL;
       // retried at least 8 times, give up any rebuild attemp until file is changed
       m_bShouldBuild = false;
 

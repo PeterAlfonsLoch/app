@@ -5,22 +5,76 @@ namespace file_watcher
 {
 
 
-   bool listener_thread::file_watcher_initialize_thread(::aura::application * papp)
+//   bool listener_thread::file_watcher_initialize_thread(::aura::application * papp)
+//   {
+//
+//      set_app(papp);
+//
+////      m_pthreadimpl.alloc(allocer());
+////
+////      if(m_pthreadimpl.is_null())
+////         return false;
+//
+//      return true;
+//
+//   }
+
+   void listener_thread::install_message_handling(::message::dispatch * pdispatch)
    {
 
-      set_app(papp);
+      ::thread::install_message_handling(pdispatch);
 
-//      m_pthreadimpl.alloc(allocer());
-//
-//      if(m_pthreadimpl.is_null())
-//         return false;
-
-      return true;
+      IGUI_WIN_MSG_LINK(WM_USER + 123, pdispatch, this, &listener_thread::_001OnUser123);
 
    }
 
+   void listener_thread::_001OnUser123(signal_details * pobj)
+   {
+
+      SCAST_PTR(::message::base, pbase, pobj);
+
+      listener_thread::op * pop = (listener_thread::op *) (LPARAM) pobj->m_lparam;
+
+      try
+      {
+
+         try
+         {
+
+            pop->m_id = add_watch(pop->m_str, pop->m_plistener, pop->m_bRecursive, pop->m_bOwn);
+
+         }
+         catch (...)
+         {
+
+            try
+            {
+
+               pop->m_id = -1;
+
+            }
+            catch (...)
+            {
+
+            }
+
+         }
+
+         pop->m_event.set_event();
+
+      }
+      catch (...)
+      {
+
+      }
+
+   }
+
+   
+
    int32_t listener_thread::run()
    {
+
 
 
 #ifndef METROWIN
@@ -31,62 +85,23 @@ namespace file_watcher
 
          MESSAGE msg;
 
-         while(true)
+         while(m_bRun)
          {
 
-            if(PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
+            if (PeekMessage(&msg, NULL, 0, 0, PM_NOREMOVE))
             {
-               switch(msg.message)
+             
+               if (!defer_pump_message())
                {
-               case WM_QUIT:
-                  goto quit;
-               case WM_USER + 123:
-                  {
 
-                     listener_thread::op * pop = (listener_thread::op *) msg.lParam;
-
-                     try
-                     {
-
-                        try
-                        {
-
-                           pop->m_id = add_watch(pop->m_str, pop->m_plistener, pop->m_bRecursive, pop->m_bOwn);
-
-                        }
-                        catch(...)
-                        {
-
-                           try
-                           {
-
-                              pop->m_id = -1;
-
-                           }
-                           catch(...)
-                           {
-
-                           }
-
-                        }
-
-                        pop->m_event.set_event();
-
-                     }
-                     catch(...)
-                     {
-
-                     }
-
-                  }
                   break;
+
                }
+
             }
 
             try
             {
-
-//               UINT ui = GetCurrentThreadId();
 
                update();
 

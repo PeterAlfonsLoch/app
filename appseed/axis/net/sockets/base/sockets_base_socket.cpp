@@ -847,6 +847,9 @@ namespace sockets
 
    bool base_socket::socket_thread::pre_run()
    {
+
+      if (!::thread::pre_run())
+         return false;
       
       socket_handler & h = *m_sphandler;
 
@@ -868,13 +871,13 @@ namespace sockets
 
       socket_handler & h = *m_sphandler;
 
-      while (h.get_count() && get_run())
+      while (get_run() && h.get_count())
       {
 
          try
          {
 
-            h.select(30, 0);
+            h.select(0, 100'000);
 
          }
          catch(...)

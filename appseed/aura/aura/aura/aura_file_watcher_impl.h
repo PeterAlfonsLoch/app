@@ -46,7 +46,8 @@ namespace file_watcher
 #endif
 
 
-	class file_watcher_impl
+	class file_watcher_impl :
+      virtual public ::object
 	{
 	public:
 
@@ -71,7 +72,7 @@ namespace file_watcher
       public:
 
          watch_struct * watch;
-         const char * filename;
+         string filename;
          uint32_t ulOsAction;
 
       };

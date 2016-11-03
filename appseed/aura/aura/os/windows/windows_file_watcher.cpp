@@ -97,25 +97,33 @@ namespace file_watcher
 
 #			if defined(UNICODE)
             {
-               lstrcpynW(szFile,pNotify->FileName,
-                  MIN(MAX_PATH,pNotify->FileNameLength / sizeof(WCHAR)+ 1));
+               lstrcpynW(szFile, pNotify->FileName,
+                  MIN(MAX_PATH, pNotify->FileNameLength / sizeof(WCHAR) + 1));
             }
 #			else
             {
-               int32_t count = WideCharToMultiByte(CP_ACP,0,pNotify->FileName,
+               int32_t count = WideCharToMultiByte(CP_ACP, 0, pNotify->FileName,
                   pNotify->FileNameLength / sizeof(WCHAR),
-                  szFile,MAX_PATH - 1,NULL,NULL);
+                  szFile, MAX_PATH - 1, NULL, NULL);
                szFile[count] = TEXT('\0');
             }
 #			endif
 
-            ::file_watcher::file_watcher_impl::action action;
+            string strFile = szFile;
 
-            action.watch = pWatch;
-            action.filename = szFile;
-            action.ulOsAction = pNotify->Action;
 
-            pWatch->m_pwatcher->handle_action(&action);
+            ::fork(pWatch->m_pwatcher->get_app(), [=]()
+            {
+
+               ::file_watcher::file_watcher_impl::action action;
+
+               action.watch = pWatch;
+               action.filename = strFile;
+               action.ulOsAction = pNotify->Action;
+
+               pWatch->m_pwatcher->handle_action(&action);
+
+            });
 
          } while(pNotify->NextEntryOffset != 0);
       }
@@ -192,8 +200,11 @@ namespace file_watcher
 
 #pragma endregion
 
-   os_file_watcher::os_file_watcher()
-      : m_idLast(0)
+   os_file_watcher::os_file_watcher(::aura::application * papp)
+      : 
+      ::object(papp),
+      m_idLast(0)
+
    {
    }
 
@@ -282,7 +293,7 @@ namespace file_watcher
       if(GetQueueStatus(QS_ALLINPUT) == 0)
       {
 
-         MsgWaitForMultipleObjectsEx(0,NULL,INFINITE,QS_ALLINPUT,MWMO_ALERTABLE);
+         MsgWaitForMultipleObjectsEx(0,NULL,100,QS_ALLINPUT,MWMO_ALERTABLE);
 
       }
 

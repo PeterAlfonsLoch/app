@@ -594,11 +594,13 @@ void script_manager::set_include_expand_md5(const string & strPath, const string
 }
 
 
-script_manager::clear_include_matches_folder_watch::clear_include_matches_folder_watch(::aura::application * papp)
+script_manager::clear_include_matches_folder_watch::clear_include_matches_folder_watch(::aura::application * papp) :
+   ::object(papp),
+
+file_watcher(papp),
+listener_thread(papp)
 {
 
-   if(!file_watcher_initialize_listener_thread(papp))
-      throw resource_exception(papp);
 
 }
 

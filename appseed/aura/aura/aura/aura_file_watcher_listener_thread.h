@@ -29,14 +29,12 @@ namespace file_watcher
       };
 
 
-      bool file_watcher_initialize_thread(::aura::application * papp);
+      listener_thread(::aura::application * papp);
 
 
       virtual int32_t run();
 
 
-
-      bool file_watcher_initialize_listener_thread(::aura::application * papp);
 
       id add_file_watch(const char * directory, bool bRecursive);
 
@@ -49,6 +47,10 @@ namespace file_watcher
          return add_file_watch(directory, new pred_file_watch_listener < PRED >(pred), bRecursive, true);
 
       }
+
+      virtual void install_message_handling(::message::dispatch * pdispatch) override;
+
+      DECL_GEN_SIGNAL(_001OnUser123);
 
    };
 

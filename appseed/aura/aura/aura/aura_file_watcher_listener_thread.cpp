@@ -4,13 +4,11 @@
 namespace file_watcher
 {
 
-   bool listener_thread::file_watcher_initialize_listener_thread(::aura::application * papp)
+   listener_thread::listener_thread(::aura::application * papp) :
+      ::object(papp),
+      ::file_watcher::file_watcher(papp)
    {
 
-      if(!file_watcher_initialize_thread(papp))
-         return false;
-
-      return true;
 
    }
 

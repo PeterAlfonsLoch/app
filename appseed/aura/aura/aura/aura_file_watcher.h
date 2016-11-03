@@ -137,7 +137,8 @@ namespace file_watcher
 	/// Listens to files and directories and dispatches events
 	/// to notify the parent program of the changes.
 	/// @class file_watcher
-	class CLASS_DECL_AURA file_watcher
+	class CLASS_DECL_AURA file_watcher :
+      virtual public object
 	{
 	private:
 		
@@ -150,7 +151,7 @@ namespace file_watcher
 
 
 
-		file_watcher();
+		file_watcher(::aura::application * papp);
 		virtual ~file_watcher();
 
 		/// Add a directory watch

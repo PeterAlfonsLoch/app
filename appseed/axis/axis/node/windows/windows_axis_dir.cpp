@@ -14,7 +14,9 @@ namespace windows
       ::object(papp),
       ::file::dir::system(papp),
       ::file::dir::axis::system(papp),
-      ::windows::dir(papp)
+      ::windows::dir(papp),
+      file_watcher(papp),
+      listener_thread(papp)
    {
       
 

@@ -300,6 +300,8 @@ void WINAPI service_base::ServiceHandler(DWORD control)
                 s_pservice->UpdateState(SERVICE_STOP_PENDING);
                 s_pservice->Stop(control);
                 s_pservice->UpdateState(SERVICE_STOPPED);
+
+                Sys(s_pservice->get_app()).post_quit();
                 break;
             }
         }
@@ -352,6 +354,18 @@ void service_base::call_server()
    try
    {
 
+      Application.signal_close_dependent_threads();
+
+   }
+   catch (...)
+   {
+
+   }
+
+
+   try
+   {
+
       Application.wait_close_dependent_threads(seconds(30));
 
    }
@@ -370,6 +384,6 @@ void service_base::call_server()
 
    m_stopped.SetEvent();
 
-   System.os_post_to_all_threads(WM_QUIT);
+   //System.os_post_to_all_threads(WM_QUIT);
 
 }

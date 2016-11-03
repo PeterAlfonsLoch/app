@@ -807,12 +807,28 @@ void thread::signal_close_dependent_threads()
       try
       {
 
-         synch_lock slThread(pthread->m_pmutex);
+         pthread->m_bRun = false;
+
+      }
+      catch(...)
+      {
+
+      }
+
+   }
+
+   for (index i = 0; i < threadptraDependent.get_count(); i++)
+   {
+
+      thread * pthread = threadptraDependent[i];
+
+      try
+      {
 
          pthread->set_end_thread();
 
       }
-      catch(...)
+      catch (...)
       {
 
       }

@@ -39,12 +39,13 @@ namespace file_watcher
 {
 
 
-	file_watcher::file_watcher()
+	file_watcher::file_watcher(::aura::application * papp) :
+      ::object(papp)
 	{
 
       m_bUpdating = false;
 
-		m_pimpl = new os_file_watcher();
+		m_pimpl = new os_file_watcher(papp);
 
 	}
 

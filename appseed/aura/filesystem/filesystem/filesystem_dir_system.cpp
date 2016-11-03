@@ -23,7 +23,10 @@ namespace file
       system::system(::aura::application * papp) :
          ::object(papp),
          m_isdirmap(papp),
-         m_mutex(papp)
+         m_mutex(papp),
+         ::file_watcher::file_watcher(papp),
+         ::file_watcher::listener_thread(papp)
+
       {
 
          m_isdirmap.m_dwTimeOut = 15000;
