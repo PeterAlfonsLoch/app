@@ -1677,7 +1677,11 @@ retry_session:
             if (domainFontopus.m_strRadix == "ca2")
             {
 
-               set["user"] = Session.fontopus()->get_user();
+               set["user"] = (::object *) NULL;
+
+               Session.fontopus()->m_puser = NULL;
+
+               // set["user"] = Session.fontopus()->get_user();
 
             }
 
