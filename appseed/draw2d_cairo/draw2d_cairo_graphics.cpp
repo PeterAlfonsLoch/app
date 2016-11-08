@@ -659,7 +659,7 @@ synch_lock ml(m_pmutex);
 
       cairo_scale(m_pdc, w / 2.0, h / 2.0);
 
-      if(extends < 0)
+      if(extends > 0)
       {
 
          cairo_arc(m_pdc, 0.0, 0.0, 1.0, start * 3.1415 / 180.0, end * 3.1415 / 180.0);
