@@ -665,6 +665,12 @@ void Free_check_pointer_in_cpp(void * p)
    {
       debug_print("hit hiptr");
    }
+   if ((dword_ptr)p == 0x0000000200000020LLU)
+   {
+
+      debug_print("hit 0x0000000200000020LLU");
+   }
+   
 
 }
 
