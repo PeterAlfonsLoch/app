@@ -107,6 +107,9 @@ namespace user
 
       virtual bool get_translucency(::user::ETranslucency & etranslucency);
 
+      virtual bool has_pending_graphical_update();
+
+
    };
 
 

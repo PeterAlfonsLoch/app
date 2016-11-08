@@ -1067,7 +1067,8 @@ namespace user
 
       ScreenToClient(rectWindow);
 
-      pholder->SetWindowPos(ZORDER_TOP, rectChild.left, rectChild.top, rectChild.width(), rectChild.height(), 0);
+      pholder->SetWindowPos(ZORDER_TOP, rectChild.left, rectChild.top, rectChild.width(), rectChild.height(), 
+         (bDisplay && !pholder->is_this_visible() ? 0 : SWP_NOZORDER ));
 
       if (bDisplay)
       {
@@ -2249,8 +2250,6 @@ namespace user
       }
 
       m_spcreatecontext = (sp(::create)) NULL;
-
-      layout();
 
       RedrawWindow();
 

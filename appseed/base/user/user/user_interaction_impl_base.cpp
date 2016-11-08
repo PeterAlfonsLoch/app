@@ -8,13 +8,14 @@ namespace user
 
    interaction_impl_base::interaction_impl_base() :
       ::aura::timer_array(get_app()),
-   m_rectParentClient(0,0,0,0)
+   m_rectParentClient(0,0,0,0),
+      m_rectParentClientRequest(0, 0, 0, 0)
    {
 
+      m_bZ                 = false;
       m_pui                = NULL;
       m_bIgnoreSizeEvent   = false;
       m_bIgnoreMoveEvent   = false;
-      m_pcsDisplay         = NULL;
 
    }
 
@@ -85,12 +86,74 @@ namespace user
    bool interaction_impl_base::check_need_layout()
    {
 
-      return false;
+      return m_rectParentClientRequest.size() != m_rectParentClient.size();
 
    }
 
 
    void interaction_impl_base::clear_need_layout()
+   {
+
+      m_rectParentClient = m_rectParentClientRequest;
+
+      m_bShowFlags = false;
+
+   }
+
+
+   bool interaction_impl_base::check_need_translation()
+   {
+
+      return m_rectParentClientRequest.top_left() != m_rectParentClient.top_left();
+
+   }
+
+
+   void interaction_impl_base::clear_need_translation()
+   {
+
+      m_rectParentClient = m_rectParentClientRequest;
+
+      m_bShowFlags = false;
+
+   }
+
+
+   bool interaction_impl_base::check_show_flags()
+   {
+
+      return m_bShowFlags;
+
+   }
+
+
+   void interaction_impl_base::clear_show_flags()
+   {
+
+      m_rectParentClient = m_rectParentClientRequest;
+
+      m_bShowFlags = false;
+
+   }
+
+
+   bool interaction_impl_base::check_need_zorder()
+   {
+
+      return m_bZ;
+
+   }
+
+
+   void interaction_impl_base::clear_need_zorder()
+   {
+
+      m_bZ = false;
+
+   }
+
+
+   void interaction_impl_base::on_zorder()
    {
 
    }
@@ -102,18 +165,176 @@ namespace user
    }
 
 
-//   void interaction_impl_base::_001UpdateScreen(bool bUpdateBuffer)
-//   {
-//
-//
-//   }
-//
-//   void interaction_impl_base::_001UpdateBuffer()
-//   {
-//
-//      TRACE("interaction_impl_base::_001UpdateBuffer Calling Empty Implementation");
-//
-//   }
+   void interaction_impl_base::on_layout()
+   {
+
+      ::rect64 rectOld = m_rectParentClient;
+
+      ::rect64 rectNew = m_rectParentClientRequest;
+
+      m_rectParentClient = m_rectParentClientRequest;
+
+      if (rectOld.top_left() != rectNew.top_left())
+      {
+
+         m_pui->message_call(WM_MOVE);
+         
+         sp(::user::interaction) pui;
+
+         while (m_pui->get_child(pui))
+         {
+
+            pui->on_translate();
+
+         }
+
+      }
+       
+      if (rectOld.size() != rectNew.size())
+      {
+
+         m_pui->message_call(WM_SIZE);
+
+      }
+
+      if (rectNew != rectOld)
+      {
+
+         m_pui->m_dwLastSizeMove = ::get_tick_count();
+
+         m_pui->m_bSizeMove = true;
+
+      }
+
+      if (m_bShowFlags && (m_iShowFlags & SWP_SHOWWINDOW))
+      { 
+         
+         ShowWindow(SW_SHOW);
+         
+      }
+      else if (m_bShowFlags && (m_iShowFlags & SWP_HIDEWINDOW))
+      {
+
+         ShowWindow(SW_HIDE);
+
+      }
+
+   }
+
+   
+   void interaction_impl_base::on_translate()
+   {
+
+      ::rect64 rectOld = m_rectParentClient;
+
+      ::rect64 rectNew = m_rectParentClientRequest;
+
+      m_rectParentClient = m_rectParentClientRequest;
+
+      if (rectOld.top_left() != rectNew.top_left())
+      {
+
+         m_pui->message_call(WM_MOVE);
+
+      }
+
+      if (rectOld.size() != rectNew.size())
+      {
+
+         m_pui->message_call(WM_SIZE);
+
+      }
+
+      if (rectNew != rectOld)
+      {
+
+         m_pui->m_dwLastSizeMove = ::get_tick_count();
+
+         m_pui->m_bSizeMove = true;
+
+      }
+
+      if (m_bShowFlags && (m_iShowFlags & SWP_SHOWWINDOW))
+      {
+
+         ShowWindow(SW_SHOW);
+
+      }
+      else if (m_bShowFlags && (m_iShowFlags & SWP_HIDEWINDOW))
+      {
+
+         ShowWindow(SW_HIDE);
+
+      }
+
+      sp(::user::interaction) pui;
+
+      while (m_pui->get_child(pui))
+      {
+
+         pui->on_translate();
+
+      }
+
+   }
+
+
+   void interaction_impl_base::on_do_show_flags()
+   {
+
+      ::rect64 rectOld = m_rectParentClient;
+
+      ::rect64 rectNew = m_rectParentClientRequest;
+
+      m_rectParentClient = m_rectParentClientRequest;
+
+      if (rectOld.top_left() != rectNew.top_left())
+      {
+
+         m_pui->message_call(WM_MOVE);
+
+      }
+
+      if (rectOld.size() != rectNew.size())
+      {
+
+         m_pui->message_call(WM_SIZE);
+
+      }
+
+      if (rectNew != rectOld)
+      {
+
+         m_pui->m_dwLastSizeMove = ::get_tick_count();
+
+         m_pui->m_bSizeMove = true;
+
+      }
+
+      if (m_bShowFlags && (m_iShowFlags & SWP_SHOWWINDOW))
+      {
+
+         ShowWindow(SW_SHOW);
+
+      }
+      else if (m_bShowFlags && (m_iShowFlags & SWP_HIDEWINDOW))
+      {
+
+         ShowWindow(SW_HIDE);
+
+      }
+
+      sp(::user::interaction) pui;
+
+      while (m_pui->get_child(pui))
+      {
+
+         pui->on_translate();
+
+      }
+
+   }
+
 
    void interaction_impl_base::_001WindowMinimize()
    {
@@ -128,6 +349,7 @@ namespace user
 
    }
 
+   
    void interaction_impl_base::_001WindowDock(::user::EAppearance eappearance)
    {
 
@@ -139,52 +361,20 @@ namespace user
          m_pui->make_zoneing(NULL, null_rect(), true, &eappearance);
 
       }
-      /*else
-      {
+
+   }
+
+
+   void interaction_impl_base::_001WindowMaximize()
+   {
+
+      m_pui->set_appearance(AppearanceZoomed);
 
       rect rectNormal;
 
       m_pui->GetWindowRect(rectNormal);
 
-      m_pui->best_zoneing(NULL,rectNormal,true);
-
-      }*/
-
-
-   }
-   void interaction_impl_base::_001WindowMaximize()
-   {
-
-      /*if(m_pui->get_appearance() == ::user::AppearanceLeft
-         || m_pui->get_appearance() == ::user::AppearanceTop
-         || m_pui->get_appearance() == ::user::AppearanceRight
-         || m_pui->get_appearance() == ::user::AppearanceBottom
-         || m_pui->get_appearance() == ::user::AppearanceTopLeft
-         || m_pui->get_appearance() == ::user::AppearanceTopRight
-         || m_pui->get_appearance() == ::user::AppearanceBottomRight
-         || m_pui->get_appearance() == ::user::AppearanceBottomLeft)*/
-      {
-
-         m_pui->set_appearance(AppearanceZoomed);
-
-         rect rectNormal;
-
-         m_pui->GetWindowRect(rectNormal);
-
-         m_pui->best_wkspace(NULL,rectNormal,true);
-
-      }
-      /*else
-      {
-
-         rect rectNormal;
-
-         m_pui->GetWindowRect(rectNormal);
-
-         m_pui->best_zoneing(NULL,rectNormal,true);
-
-      }*/
-
+      m_pui->best_wkspace(NULL,rectNormal,true);
 
    }
 
@@ -217,134 +407,116 @@ namespace user
    }
 
 
-   void interaction_impl_base::RepositionBars(UINT nIDFirst,UINT nIDLast,id nIdLeftOver, UINT nFlags,LPRECT lpRectParam,LPCRECT lpRectClient,bool bStretch)
+   void interaction_impl_base::RepositionBars(UINT nIDFirst,UINT nIDLast, id idLeft, UINT nFlags,LPRECT lpRectParam,LPCRECT lpRectClient,bool bStretch)
    {
-
-      synch_lock sl(m_pui->m_pmutex);
 
       UNREFERENCED_PARAMETER(nIDFirst);
       UNREFERENCED_PARAMETER(nIDLast);
 
-      ASSERT(nFlags == 0 || (nFlags & ~reposNoPosLeftOver) == reposQuery ||
-         (nFlags & ~reposNoPosLeftOver) == reposExtra);
+      ASSERT(nFlags == 0 || (nFlags & ~reposNoPosLeftOver) == reposQuery || (nFlags & ~reposNoPosLeftOver) == reposExtra);
 
-      // walk kids in order, control bars get the resize notification
-      //   which allow them to shrink the client area
-      // remaining size goes to the 'nIDLeftOver' pane
-      // NOTE: nIDFirst->nIDLast are usually 0->0xffff
+      SIZEPARENTPARAMS on_layout;
 
-      __SIZEPARENTPARAMS on_layout;
-      sp(::user::interaction) oswindow_LeftOver = NULL;
+      sp(::user::interaction) puiLeft = NULL;
 
       on_layout.bStretch = bStretch;
+
       on_layout.sizeTotal.cx = on_layout.sizeTotal.cy = 0;
+
       if(lpRectClient != NULL)
       {
-         on_layout.rect = *lpRectClient;    // starting rect comes from parameter
+
+         on_layout.rect = *lpRectClient;
+
       }
       else
       {
-         m_pui->GetClientRect(&on_layout.rect);    // starting rect comes from client rect
+
+         m_pui->GetClientRect(&on_layout.rect);
+
       }
 
-      if(::IsRectEmpty(on_layout.rect))
+      if (::IsRectEmpty(on_layout.rect))
+      {
+
          return;
-//#ifdef WINDOWSEX
-//      if((nFlags & ~reposNoPosLeftOver) != reposQuery)
-//         on_layout.hDWP = ::BeginDeferWindowPos(8); // reasonable guess
-//      else
-//#endif
-         on_layout.hDWP = NULL; // not actually doing on_layout
 
-      if(m_pui != NULL)
-      {
-/*         for(sp(::user::interaction) oswindow_Child = m_pui->GetTopWindow(); oswindow_Child != NULL;
-            oswindow_Child = oswindow_Child->GetNextWindow(GW_HWNDNEXT))
-         {
-            id id = oswindow_Child->GetDlgCtrlId();
-            sp(::user::interaction) pwindow = oswindow_Child;
-            if(id == (int32_t)nIdLeftOver)
-               oswindow_LeftOver = oswindow_Child;
-            else if(pwindow != NULL)
-               oswindow_Child->send_message(WM_SIZEPARENT,0,(LPARAM)&on_layout);
-         }*/
-         for(sp(::user::interaction) oswindow_Child = m_pui->top_child(); oswindow_Child != NULL;
-            oswindow_Child = oswindow_Child->under_sibling())
-         {
-            id id = oswindow_Child->GetDlgCtrlId();
-            sp(::user::interaction) pwindow = oswindow_Child;
-            if(id == nIdLeftOver)
-               oswindow_LeftOver = oswindow_Child;
-            else if(pwindow != NULL)
-               oswindow_Child->send_message(WM_SIZEPARENT,0,(LPARAM)&on_layout);
-         }
-      }
-      else
-      {
-/*         for(sp(::user::interaction) oswindow_Child = GetTopWindow(); oswindow_Child != NULL;
-            oswindow_Child = oswindow_Child->GetNextWindow(GW_HWNDNEXT))
-         {
-            id id = oswindow_Child->GetDlgCtrlId();
-            sp(::user::interaction) pwindow = oswindow_Child;
-            if(id == nIdLeftOver)
-               oswindow_LeftOver = oswindow_Child;
-            else if(pwindow != NULL)
-               oswindow_Child->send_message(WM_SIZEPARENT,0,(LPARAM)&on_layout);
-         }*/
-         for(sp(::user::interaction) oswindow_Child = m_pui->top_child(); oswindow_Child != NULL;
-            oswindow_Child = oswindow_Child->under_sibling())
-         {
-            id id = oswindow_Child->GetDlgCtrlId();
-            sp(::user::interaction) pwindow = oswindow_Child;
-            if(id == nIdLeftOver)
-               oswindow_LeftOver = oswindow_Child;
-            else if(pwindow != NULL)
-               oswindow_Child->send_message(WM_SIZEPARENT,0,(LPARAM)&on_layout);
-         }
       }
 
-      // if just getting the available rectangle, return it now...
-      if((nFlags & ~reposNoPosLeftOver) == reposQuery)
+      sp(::user::interaction) pui;
+
+      while(m_pui->get_child(pui))
       {
-         ASSERT(lpRectParam != NULL);
-         if(bStretch)
-            ::CopyRect(lpRectParam,&on_layout.rect);
+
+         id id = pui->GetDlgCtrlId();
+
+         if (id == idLeft)
+         {
+
+            puiLeft = pui;
+
+         }
          else
          {
+
+            pui->send_message(WM_SIZEPARENT, 0, (LPARAM)&on_layout);
+
+         }
+
+      }
+
+      
+      if((nFlags & ~reposNoPosLeftOver) == reposQuery)
+      {
+
+         ASSERT(lpRectParam != NULL);
+         
+         if (bStretch)
+         {
+
+            ::CopyRect(lpRectParam, &on_layout.rect);
+
+         }
+         else
+         {
+
             lpRectParam->left = lpRectParam->top = 0;
             lpRectParam->right = on_layout.sizeTotal.cx;
             lpRectParam->bottom = on_layout.sizeTotal.cy;
+
          }
+
          return;
+
       }
 
-      // the rest is the client size of the left-over pane
-      if(!nIdLeftOver.is_null() && oswindow_LeftOver != NULL)
+      
+      if(!idLeft.is_empty() && puiLeft != NULL)
       {
-         sp(::user::interaction) pLeftOver = oswindow_LeftOver;
-         // allow extra space as specified by lpRectBorder
+
          if((nFlags & ~reposNoPosLeftOver) == reposExtra)
          {
+
             ASSERT(lpRectParam != NULL);
+
             on_layout.rect.left += lpRectParam->left;
             on_layout.rect.top += lpRectParam->top;
             on_layout.rect.right -= lpRectParam->right;
             on_layout.rect.bottom -= lpRectParam->bottom;
+
          }
-         // reposition the interaction_impl
+         
          if((nFlags & reposNoPosLeftOver) != reposNoPosLeftOver)
          {
-            pLeftOver->CalcWindowRect(&on_layout.rect);
-            //__reposition_window(&on_layout,pLeftOver,&on_layout.rect);
-            pLeftOver->SetPlacement(on_layout.rect, SWP_SHOWWINDOW);
+
+            puiLeft->CalcWindowRect(&on_layout.rect);
+            
+            puiLeft->SetPlacement(on_layout.rect, SWP_SHOWWINDOW | SWP_NOZORDER);
+
          }
+
       }
 
-#ifdef WINDOWSEX
-      // move and resize all the windows at once!
-      if(on_layout.hDWP == NULL || !::EndDeferWindowPos(on_layout.hDWP))
-         TRACE(::aura::trace::category_AppMsg,0,"Warning: DeferWindowPos failed - low system resources.\n");
-#endif
    }
 
 
@@ -706,7 +878,56 @@ namespace user
    bool interaction_impl_base::SetWindowPos(int_ptr z,int32_t x,int32_t y,int32_t cx,int32_t cy,UINT nFlags)
    {
 
-      return m_pui->SetWindowPos(z,x,y,cx,cy,nFlags);
+
+      if (!(nFlags & SWP_NOZORDER))
+      {
+
+         m_bZ = true;
+         
+         m_iZ = z;
+
+      }
+
+      LONG lNoZ = ~(SWP_NOZORDER);
+
+      m_iShowFlags = nFlags & lNoZ;
+
+      bool bShowFlags = m_bShowFlags;
+
+      if (!(nFlags & SWP_NOREDRAW) && (IsWindowVisible() || (nFlags & SWP_SHOWWINDOW)))
+      {
+
+         bShowFlags = !is_this_visible();
+
+         m_pui->m_bRedraw = true;
+
+      }
+
+      ::rect64 rect = m_rectParentClientRequest;
+
+      if (!(nFlags & SWP_NOMOVE) && (rect.left != x || rect.top != y))
+      {
+
+         bShowFlags = true;
+
+         rect.move_to(x, y);
+
+      }
+
+      if (!(nFlags & SWP_NOSIZE) && (rect.width() != cx || rect.height() != cy))
+      {
+
+         bShowFlags = true;
+
+         rect.size(cx, cy);
+
+      }
+
+      m_rectParentClientRequest = rect;
+
+      m_bShowFlags = bShowFlags;
+
+      return true;
 
    }
 
@@ -844,8 +1065,18 @@ namespace user
 
    bool interaction_impl_base::ModifyStyle(uint32_t dwRemove,uint32_t dwAdd,UINT nFlags)
    {
+      
+      LONG l = GetStyle();
 
-      set_window_long(GWL_STYLE,(GetStyle() | dwAdd) & ~dwRemove);
+      LONG lAdd = dwAdd;
+
+      l |= dwAdd;
+
+      LONG lRemove = ~dwRemove;
+
+      l &= lRemove;
+
+      set_window_long(GWL_STYLE, l);
 
       return true;
 
@@ -881,7 +1112,7 @@ namespace user
    LONG_PTR interaction_impl_base::get_window_long_ptr(int32_t nIndex) const
    {
 
-      return (LONG_PTR) oprop("window_long:" + ::str::from(nIndex)).int64();
+      return (LONG_PTR)m_longptr[nIndex];
 
    }
 
@@ -889,7 +1120,11 @@ namespace user
    LONG_PTR interaction_impl_base::set_window_long_ptr(int32_t nIndex,LONG_PTR lValue)
    {
 
-      return (LONG_PTR) (oprop("window_long:" + ::str::from(nIndex)) = var((int64_t) lValue)).int64();
+      LONG_PTR valOld = m_longptr[nIndex];
+
+      m_longptr[nIndex] = lValue;
+
+      return lValue;
 
    }
 
@@ -1173,6 +1408,38 @@ namespace user
    }
 
 
+   LRESULT interaction_impl_base::message_call(UINT uiMessage, WPARAM wparam, lparam lparam)
+   {
+
+      smart_pointer < ::message::base > spbase;
+
+      spbase = m_pui->get_base(uiMessage, wparam, lparam);
+
+      if (m_pui->WfiIsMoving())
+      {
+         TRACE("moving: skip walk pre translate tree");
+      }
+      else if (m_pui->WfiIsSizing())
+      {
+         TRACE("sizing: skip walk pre translate tree");
+      }
+      else
+      {
+
+         m_pui->walk_pre_translate_tree(spbase);
+
+         if (spbase->m_bRet)
+            return spbase->get_lresult();
+
+      }
+
+      message_handler(spbase);
+
+      return spbase->get_lresult();
+
+   }
+
+
    void interaction_impl_base::SendMessageToDescendants(UINT message,WPARAM wparam,lparam lparam,bool bDeep,bool bOnlyPerm)
    {
 
@@ -1294,20 +1561,6 @@ namespace user
 
       }
 
-
-      //{
-
-      //   synch_lock sl(&m_pui->m_pauraapp->m_mutexUiPtra);
-
-      //   if(m_pui->m_pauraapp->m_spuiptra.is_set())
-      //   {
-
-      //      m_pui->m_pauraapp->m_spuiptra->remove(m_pui);
-
-      //   }
-
-      //}
-
       try
       {
 
@@ -1318,28 +1571,6 @@ namespace user
       {
 
       }
-
-      //try
-      //{
-
-      //   single_lock sl(m_pui->m_pauraapp->m_pmutex,TRUE);
-
-      //   try
-      //   {
-
-      //      m_pui->m_pauraapp->remove(m_pui);
-
-      //   }
-      //   catch(...)
-      //   {
-
-      //   }
-
-      //}
-      //catch(...)
-      //{
-
-      //}
 
       try
       {
@@ -1419,7 +1650,7 @@ namespace user
    bool interaction_impl_base::ShowWindow(int32_t nCmdShow)
    {
 
-      m_pui->send_message(WM_SHOWWINDOW, nCmdShow != SW_HIDE ? 1 : 0);
+      m_pui->message_call(WM_SHOWWINDOW, nCmdShow != SW_HIDE ? 1 : 0);
 
       RedrawWindow();
 
@@ -1433,7 +1664,20 @@ namespace user
 
       SCAST_PTR(::message::show_window, pshowwindow, pobj);
 
-      m_pui->m_bVisible = pshowwindow->m_bShow;
+      if (pshowwindow->m_bShow)
+      {
+
+         m_pui->ModifyStyle(0, WS_VISIBLE, 0);
+
+      }
+      else
+      {
+
+         m_pui->ModifyStyle(WS_VISIBLE, 0, 0);
+
+      }
+
+      RedrawWindow();
 
    }
 
@@ -1457,6 +1701,25 @@ namespace user
    {
 
       UNREFERENCED_PARAMETER(bShow);
+
+   }
+
+   void interaction_impl_base::redraw_add(::object * p)
+   {
+
+   }
+
+
+   void interaction_impl_base::redraw_remove(::object * p)
+   {
+
+   }
+
+
+   bool interaction_impl_base::has_redraw()
+   {
+
+      return false;
 
    }
 

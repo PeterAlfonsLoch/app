@@ -235,12 +235,15 @@ namespace user
    ETranslucency schema::_001GetTranslucency(ETranslucency etranslucencyDefault)
    {
 
-      ETranslucency etranslucency;
+      //ETranslucency etranslucency;
 
-      if(get_translucency(etranslucency))
-         return etranslucency;
+      //if(get_translucency(etranslucency))
+      //{ }
+      //   return etranslucency;
 
-      return etranslucencyDefault;
+//      return etranslucencyDefault;
+
+      return TranslucencyPresent;
 
 
    }

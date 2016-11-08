@@ -3,7 +3,8 @@
 
 namespace visual
 {
-template < typename PRED >
+      
+      template < typename PRED >
       bool visual::emboss_pred(
          ::draw2d::graphics * pgraphics,
          LPCRECT lpcrect,
@@ -13,7 +14,8 @@ template < typename PRED >
          int iSpreadRadius,
          int iBlurRadius,
          int iBlur,
-         bool bUpdate)
+         bool bUpdate,
+         double dAlpha)
       {
 
 
@@ -85,7 +87,8 @@ template < typename PRED >
          }
 
          pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
-         pgraphics->BitBlt(rectEmboss, dib2->get_graphics());
+
+         pgraphics->alpha_blend(rectEmboss, dib2->get_graphics(), dAlpha);
 
          //::draw2d::brush_sp brushText(allocer());
          //brushText->create_solid(crText);

@@ -189,6 +189,19 @@ namespace windows
       void GetWindowText(string & rString);
       strsize GetWindowTextLength();
 
+      virtual void on_layout() override;
+      virtual void on_translate() override;
+      virtual void on_do_show_flags() override;
+      virtual void on_zorder() override;
+
+      virtual void clear_need_layout() override;
+      virtual void clear_need_translation() override;
+      virtual void clear_show_flags() override;
+      virtual void clear_need_zorder() override;
+
+
+      //virtual bool SetWindowPos(int_ptr z, int32_t x, int32_t y, int32_t cx, int32_t cy, UINT nFlags = SWP_SHOWWINDOW);
+
 
       // Window size and position Functions
       virtual bool WfiIsIconic();
@@ -196,8 +209,6 @@ namespace windows
       //int32_t SetWindowRgn(HRGN hRgn,bool bRedraw);
       //int32_t GetWindowRgn(HRGN hRgn);
 
-      using ::user::interaction_impl::SetWindowPos;
-      virtual bool SetWindowPos(int_ptr z,int32_t x,int32_t y,int32_t cx,int32_t cy,UINT nFlags = SWP_SHOWWINDOW);
       virtual UINT ArrangeIconicWindows();
       virtual void BringToTop(int nCmdShow);
       virtual bool BringWindowToTop();

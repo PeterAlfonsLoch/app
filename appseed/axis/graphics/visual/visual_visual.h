@@ -49,6 +49,10 @@ namespace visual
 
       static uint32_t c_cdecl thread_proc_parallel_initialize(void * pparamThis);
 
+
+
+
+
       virtual bool embossed_text_out(
          ::draw2d::graphics * pgraphics, 
          LPCRECT lpcrect, 
@@ -61,7 +65,8 @@ namespace visual
          int iSpreadRadius,
          int iBlurRadius,
          int iBlur, 
-         bool bUpdate);
+         bool bUpdate,
+         double dAlpha = 1.0);
 
 
       template < typename PRED >
@@ -74,7 +79,8 @@ namespace visual
          int iSpreadRadius,
          int iBlurRadius,
          int iBlur,
-         bool bUpdate);
+         bool bUpdate,
+         double dAlpha = 1.0);
       
 
 

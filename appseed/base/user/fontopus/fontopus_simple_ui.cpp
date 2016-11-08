@@ -45,8 +45,6 @@ namespace fontopus
       IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN,pdispatch,this,&simple_ui::_001OnLButtonDown);
       IGUI_WIN_MSG_LINK(WM_LBUTTONUP,pdispatch,this,&simple_ui::_001OnLButtonUp);
       IGUI_WIN_MSG_LINK(WM_MOUSEMOVE,pdispatch,this,&simple_ui::_001OnMouseMove);
-      IGUI_WIN_MSG_LINK(WM_SIZE,pdispatch,this,&simple_ui::_001OnSize);
-//      //IGUI_WIN_MSG_LINK(WM_TIMER,pdispatch,this,&simple_ui::_001OnTimer);
 
    }
 
@@ -240,8 +238,6 @@ namespace fontopus
 
       SetWindowPos(ZORDER_TOP,rectFontopus,SWP_SHOWWINDOW);
 
-      layout();
-
       m_login.m_peditUser->SetFocus();
 
       //m_login.on_layout();
@@ -412,7 +408,7 @@ namespace fontopus
 
       m_login.SetPlacement(rectClient);
 
-      m_login.on_layout();
+      //m_login.on_layout();
 
    }
 

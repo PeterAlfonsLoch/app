@@ -288,6 +288,8 @@ public:
    void offset(POINT64 POINT64) throw();
    void normalize() throw();
 
+   void size(SIZE64 size) throw();
+   void rsize(SIZE64 size) throw();
    void size(int64_t cx,int64_t cy) throw();
    void rsize(int64_t cx,int64_t cy) throw();
 

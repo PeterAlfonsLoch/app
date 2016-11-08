@@ -210,6 +210,7 @@ namespace user
       int_ptr_map < string >           m_mapText;
       int_ptr_map < COLORREF >           m_mapBackColor;
       int_ptr_map < ::visual::fastblur > m_mapIconBlur;
+      double                           m_dIconSaturation;
       int                              m_iIconBlur;
       int                              m_iIconBlurRadius;
       int                              m_iTextSpreadRadius;

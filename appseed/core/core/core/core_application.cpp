@@ -3762,6 +3762,12 @@ namespace core
 
    }
 
+   sp(::user::document)  application::create_child_form(sp(::type) pt, sp(::user::interaction) pwndParent, var var)
+   {
+
+      return Sess(this).userex()->create_child_form(this, pt, pwndParent, var);
+
+   }
 
    sp(::user::document)   application::create_child_form(sp(::user::form) pview, ::user::form_callback * pcallback, sp(::user::interaction) pwndParent, var var)
    {

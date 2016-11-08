@@ -3844,7 +3844,7 @@ void var::consume_identifier(const char * & psz, const char * pszEnd)
    }
    else
    {
-      throw "not expected identifier";
+      throw_parsing_exception("not expected identifier");
    }
    psz = pszParse;
 }
@@ -3880,12 +3880,12 @@ void var::skip_identifier(const char * & psz, const char * pszEnd)
       }
       else
       {
-         throw "not expected identifier";
+         throw_parsing_exception("not expected identifier");
       }
    }
    else
    {
-      throw "not expected identifier";
+      throw_parsing_exception("not expected identifier");
    }
    psz = pszParse;
 }
@@ -3969,7 +3969,7 @@ void var::consume_number(const char * & psz, const char * pszEnd)
 end:
    if(pszParse == pszStart)
    {
-      throw "empty string : not a number";
+      throw_parsing_exception("empty string : not a number");
    }
    if(bFloat)
    {
@@ -4050,7 +4050,7 @@ void var::skip_number(const char * & psz, const char * pszEnd)
 end:
    if (pszParse == pszStart)
    {
-      throw "empty string : not a number";
+      throw_parsing_exception("empty string : not a number");
    }
    psz = pszParse;
 }
@@ -4208,10 +4208,15 @@ void var::parse_json(const char * & pszJson, const char * pszEnd)
          }
          else
          {
+            
             string str = "not expected character : ";
+         
             str += pszJson;
-            throw str;
+            
+            throw_json_parsing_exception(str);
+
          }
+
       }
 
    }

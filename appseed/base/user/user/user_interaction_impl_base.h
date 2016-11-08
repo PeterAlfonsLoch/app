@@ -11,16 +11,25 @@ namespace user
    {
    public:
 
+
+      rect64                              m_rectParentClientRequest;
+      bool                                m_bShowFlags;
+      int                                 m_iShowFlags;
+      bool                                m_bZ;
+      int_ptr                             m_iZ;
+
       rect64                              m_rectParentClient;
       ::user::interaction *               m_pui;
       bool                                m_bIgnoreSizeEvent;
       bool                                m_bIgnoreMoveEvent;
-      critical_section *                  m_pcsDisplay;
+      pointer < critical_section >        m_apcsDisplay;
+
+      int_ptr_to_int_ptr                  m_longptr;
 
       interaction_impl_base();
       virtual ~interaction_impl_base();
 
-      inline critical_section * cs_display() { return m_pcsDisplay; }
+      inline critical_section * cs_display() { return m_apcsDisplay; }
       virtual ::user::interaction_impl * get_user_interaction_impl();
       virtual ::user::interaction_child * get_user_interaction_child();
 
@@ -33,6 +42,19 @@ namespace user
       virtual bool check_need_layout();
       virtual void clear_need_layout();
       virtual void set_need_layout();
+      virtual void on_layout() override;
+
+      virtual bool check_need_translation();
+      virtual void clear_need_translation();
+      virtual void on_translate() override;
+
+      virtual bool check_show_flags();
+      virtual void clear_show_flags();
+      virtual void on_do_show_flags() override;
+
+      virtual bool check_need_zorder();
+      virtual void clear_need_zorder();
+      virtual void on_zorder();
 
 
 //      virtual void _001UpdateScreen(bool bUpdateBuffer = true);
@@ -102,9 +124,6 @@ namespace user
       virtual void draw_control_background(::draw2d::graphics * pgraphics);
 
 
-
-
-
       virtual ::user::interaction * get_wnd() const;
 
 
@@ -171,6 +190,9 @@ namespace user
       virtual ::user::frame_window * GetParentTopLevelFrame() const;
       virtual ::user::frame_window * EnsureParentFrame();
 
+      
+      virtual LRESULT message_call(UINT uiMessage, WPARAM wparam, lparam lparam) override;
+
 
       virtual void SendMessageToDescendants(UINT message,WPARAM wParam = 0,lparam lParam = 0,bool bDeep = TRUE,bool bOnlyPerm = FALSE);
 
@@ -215,6 +237,11 @@ namespace user
 
 
       virtual void show_task(bool bShow);
+
+      virtual void redraw_add(::object * p);
+      virtual void redraw_remove(::object * p);
+      virtual bool has_redraw();
+
 
    };
 

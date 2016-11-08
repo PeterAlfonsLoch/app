@@ -74,12 +74,6 @@ namespace hotplugin
       virtual void hotplugin_host_on_write();
 
 
-      // client should implement
-      //using plugin::SetWindowPos;
-      //virtual bool SetWindowPos(int_ptr z,int32_t x,int32_t y,int32_t cx,int32_t cy,UINT nFlags = SWP_SHOWWINDOW);
-
-
-      // implemented here
       virtual void   set_memory(void * puchMemory, ::count c);
       virtual void   append_memory(void * puchMemory, ::count c);
       virtual ::count get_memory_length();

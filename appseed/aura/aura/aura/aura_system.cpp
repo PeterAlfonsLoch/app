@@ -932,6 +932,8 @@ namespace aura
 
    mutex * system::get_city_mutex()
    {
+      
+      synch_lock sl(m_pmutex);
 
       if (m_spmutexCit.is_null())
       {

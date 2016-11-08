@@ -25,6 +25,8 @@ public:
    //virtual void on_layout(::html::data * phtmldata);
    virtual void on_layout();
 
+   virtual void on_update(::user::impact * pSender, LPARAM lHint, object* pHint);
+
    virtual void install_message_handling(::message::dispatch * pinterface);
 
    virtual string get_path();

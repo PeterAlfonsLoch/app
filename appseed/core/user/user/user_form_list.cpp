@@ -384,7 +384,7 @@ namespace user
             if(rectWindow != pdrawitem->m_rectClient)
             {
 
-               pcontrol->SetWindowPos(ZORDER_TOP,pdrawitem->m_rectClient,SWP_SHOWWINDOW);
+               pcontrol->SetWindowPos(0,pdrawitem->m_rectClient,SWP_SHOWWINDOW | SWP_NOZORDER);
 
             }
 

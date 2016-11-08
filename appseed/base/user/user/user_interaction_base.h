@@ -256,9 +256,7 @@ namespace user
       virtual bool on_keyboard_focus(::user::elemental * pfocus) override;
 
 
-      // virtual void _001UpdateScreen(bool bUpdateBuffer = true);
-      //virtual void _001UpdateBuffer();
-      virtual void _001UpdateWindow();
+      virtual void _001UpdateWindow(bool bUpdateBuffer = true);
 
 
       virtual void _001WindowMinimize();
@@ -270,6 +268,9 @@ namespace user
 
 
       virtual void on_layout();
+      virtual void on_translate();
+      virtual void on_do_show_flags();
+
 
       virtual void BringToTop(int32_t nCmdShow);
       virtual bool BringWindowToTop();
@@ -330,7 +331,9 @@ namespace user
 
       virtual LRESULT send(::message::base * pbase);
       virtual bool post(::message::base * pbase);
-      virtual LRESULT send_message(UINT uiMessage,WPARAM wparam = 0,lparam lparam = 0);
+      
+      virtual LRESULT send_message(UINT uiMessage, WPARAM wparam = 0, lparam lparam = 0);
+      virtual LRESULT message_call(UINT uiMessage, WPARAM wparam = 0, lparam lparam = 0);
 
 #ifdef LINUX
 
@@ -390,6 +393,7 @@ namespace user
 
 
       virtual bool IsWindowVisible();
+      virtual bool is_this_visible();
 
 
 
@@ -582,6 +586,8 @@ namespace user
 
       virtual bool has_pending_graphical_update();
       virtual void on_after_graphical_update();
+
+      
 
    };
 

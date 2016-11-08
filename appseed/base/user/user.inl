@@ -62,7 +62,28 @@ namespace user
    }
 
 
+   template < typename T >
+   inline void interaction::redraw_add(T * p)
+   {
 
+      get_wnd()->m_pimpl->redraw_add(dynamic_cast < ::object * > (p));
+
+   }
+
+   template < typename T >
+   inline void interaction::redraw_remove(T * p)
+   {
+
+      get_wnd()->m_pimpl->redraw_remove(dynamic_cast < ::object * > (p));
+
+   }
+
+   inline bool interaction::has_redraw()
+   {
+
+      return get_wnd()->m_pimpl->has_redraw();
+
+   }
 
 } //   namespace aura
 

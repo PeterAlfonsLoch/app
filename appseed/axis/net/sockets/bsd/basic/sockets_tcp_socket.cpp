@@ -770,7 +770,7 @@ namespace sockets
                struct timeval tv;
                tv.tv_sec = 1;
                tv.tv_usec = 0;
-               ::select(GetSocket() + 1, NULL, &w, &e, &tv);
+               ::select((int) (GetSocket() + 1), NULL, &w, &e, &tv);
                goto retry;
             }
 

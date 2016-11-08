@@ -100,7 +100,7 @@ namespace user
 {
 
 
-   CLASS_DECL_BASE void __reposition_window(__SIZEPARENTPARAMS* lpLayout,::user::interaction * pui,LPCRECT lpRect);
+   CLASS_DECL_BASE void __reposition_window(SIZEPARENTPARAMS * lpLayout,::user::interaction * pui,LPCRECT lpRect);
 
 
 } // namespace user

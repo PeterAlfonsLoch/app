@@ -2570,8 +2570,10 @@ namespace user
                   MacroRecord(psetsel);
                   MacroRecord(canew(plain_text_file_command()));
                   MacroEnd();
-                  _001OnUpdate(::action::source_user);
+                  //sl.unlock();
+                  //_001OnUpdate(::action::source_user);
                   //_001OnAfterChangeText(::action::source_user);
+                  bUpdate = true;
                }
             }
 

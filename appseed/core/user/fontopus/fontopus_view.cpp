@@ -458,7 +458,7 @@ namespace fontopus
       //simple_ui::interaction::_000OnDraw(pgraphics);
 
 
-      if (!m_bVisible)
+      if (!is_this_visible())
          return;
 
       _001DrawThis(pgraphics);
@@ -486,10 +486,10 @@ namespace fontopus
 
       //int i = 5;
 
-      sp(interaction) pui;
+      sp(::user::interaction) pui;
 
       //while((pui = get_child(pui)).is_set() && i > 0)
-      while ((pui = get_child(pui)).is_set())
+      while (get_child(pui))
       {
 
          //i--;
@@ -497,7 +497,7 @@ namespace fontopus
          try
          {
 
-            if (pui->m_bVisible && !pui->is_custom_draw())
+            if (pui->is_this_visible() && !pui->is_custom_draw())
             {
 
                pui->_000OnDraw(pgraphics);

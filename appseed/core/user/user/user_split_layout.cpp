@@ -467,12 +467,12 @@ namespace user
          }
 
          pwnd->SetWindowPos(
-            ZORDER_TOP,
+            0,
             rectBar.left,
             rectBar.top,
             rectBar.width(),
             rectBar.height(),
-            uiFlags);
+            uiFlags & ~(SWP_NOZORDER));
          
          if (bIsWindowVisible)
          {
@@ -514,7 +514,7 @@ namespace user
 
          }
 
-         pwnd->SetWindowPos(ZORDER_TOP, rectClient, uiFlags);
+         pwnd->SetWindowPos(0, rectClient, uiFlags & ~(SWP_NOZORDER));
 
          if (rectPane.area() > 0 && bIsWindowVisible)
          {

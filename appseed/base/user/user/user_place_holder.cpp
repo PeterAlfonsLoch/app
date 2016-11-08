@@ -111,7 +111,7 @@ namespace user
 
       pui->SetParent(this);
 
-      on_layout();
+      //on_layout();
       
       return true;
 
@@ -148,20 +148,9 @@ namespace user
 
       ScreenToClient(rectWindow);
 
-      if(rectWindow != rectClient)
-      {
+      puiHold->SetWindowPos(0, rectClient, SWP_NOZORDER);
 
-         puiHold->SetWindowPos(ZORDER_TOP, rectClient, 0);
-
-      }
-      else
-      {
-         
-         puiHold->on_layout();
-
-      }
-
-      if (m_bVisible)
+      if (is_this_visible())
       {
 
          puiHold->ShowWindow(SW_SHOW);

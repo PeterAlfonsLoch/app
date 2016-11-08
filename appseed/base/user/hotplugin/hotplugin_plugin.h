@@ -84,10 +84,6 @@ namespace hotplugin
       using ::simple_ui::interaction::ScreenToClient;
       virtual bool ScreenToClient(POINT * ppt);
 
-      // client should implement
-      //using ::simple_ui::interaction::SetWindowPos;
-      //virtual bool SetWindowPos(int_ptr z,int32_t x,int32_t y,int32_t cx,int32_t cy,UINT nFlags = SWP_SHOWWINDOW);
-
       using ::simple_ui::interaction::GetWindowRect;
       virtual bool GetWindowRect(RECT64 * prect);
 

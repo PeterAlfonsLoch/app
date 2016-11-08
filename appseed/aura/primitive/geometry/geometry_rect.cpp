@@ -1056,6 +1056,14 @@ void rect64::offset(int64_t x, int64_t y) throw()
    { ::offset(this, x, y); }
 void rect64::offset(POINT64 point64) throw()
    { ::offset(this, point64.x, point64.y); }
+void rect64::size(SIZE64 s) throw()
+{
+   this->size(s.cx, s.cy);
+}
+void rect64::rsize(SIZE64 s) throw()
+{
+   this->rsize(s.cx, s.cy);
+}
 void rect64::size(int64_t cx,int64_t cy) throw()
 {
    ::resize(this,cx,cy);

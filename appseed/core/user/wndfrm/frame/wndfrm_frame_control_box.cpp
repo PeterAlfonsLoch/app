@@ -343,21 +343,34 @@ namespace user
          void control_box::on_layout()
          {
 
+            ::rect rectWindow;
+
+            m_pworkset->GetWndDraw()->GetWindowRect(rectWindow);
+
+            ::rect rect;
+
+            GetWindowRect(rect);
+
+            m_pworkset->GetWndDraw()->ScreenToClient(rect);
+
+            m_pworkset->m_pframeschema->m_iControlBoxRight = rectWindow.width() - rect.right;
+
+            m_pworkset->m_pframeschema->m_bControlBoxAlignRight = rect.center().x > (rectWindow.width() / 2);
+
+            *m_pworkset->m_pframeschema->get_control_box_rect() = rect;
+
             reset_layout();
 
             appearance * pappearance = workset_get_appearance();
 
             size sizeButton = get_button_size(button_close);
-            rect rectMargin = get_button_margin(button_close);
+            ::rect rectMargin = get_button_margin(button_close);
 
             ::rect rectClient;
 
             GetClientRect(rectClient);
 
             int iWidth = rectClient.width();
-
-            ::rect rect;
-
 
 
             if(!has_button(button_close))
@@ -961,21 +974,7 @@ namespace user
          void control_box::_001OnSize(signal_details * pobj)
          {
 
-            ::rect rectWindow;
-
-            m_pworkset->GetWndDraw()->GetWindowRect(rectWindow);
-
-            ::rect rect;
-
-            GetWindowRect(rect);
-
-            m_pworkset->GetWndDraw()->ScreenToClient(rect);
-
-            m_pworkset->m_pframeschema->m_iControlBoxRight = rectWindow.width() - rect.right;
-
-            m_pworkset->m_pframeschema->m_bControlBoxAlignRight = rect.center().x > (rectWindow.width() / 2);
-
-            *m_pworkset->m_pframeschema->get_control_box_rect() = rect;
+          
 
          }
 

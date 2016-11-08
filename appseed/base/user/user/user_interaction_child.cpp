@@ -2,7 +2,7 @@
 //#include "base/user/user.h"
 
 
-void __reposition_window(__SIZEPARENTPARAMS* lpLayout,::user::interaction * pui,LPCRECT lpRect);
+void __reposition_window(SIZEPARENTPARAMS * lpLayout,::user::interaction * pui,LPCRECT lpRect);
 
 
 namespace user
@@ -305,37 +305,6 @@ namespace user
    }
 
 
-   LRESULT interaction_child::send_message(UINT uiMessage,WPARAM wparam,lparam lparam)
-   {
-
-      smart_pointer < ::message::base > spbase;
-
-      spbase = m_pui->get_base(uiMessage,wparam,lparam);
-
-      if(m_pui->WfiIsMoving())
-      {
-         TRACE("moving: skip walk pre translate tree");
-      }
-      else if(m_pui->WfiIsSizing())
-      {
-         TRACE("sizing: skip walk pre translate tree");
-      }
-      else
-      {
-
-         m_pui->walk_pre_translate_tree(spbase);
-
-         if(spbase->m_bRet)
-            return spbase->get_lresult();
-
-      }
-
-      message_handler(spbase);
-
-      return spbase->get_lresult();
-
-   }
-
 
 #ifdef LINUX
 
@@ -421,24 +390,18 @@ namespace user
    uint32_t interaction_child::GetStyle() const
    {
 
-      uint32_t dwStyle = 0;
-
-      if(m_pui->m_bVisible)
-      {
-
-         dwStyle |= WS_VISIBLE;
-
-      }
-
-      return dwStyle;
+      return get_window_long(GWL_STYLE);
 
    }
 
 
    uint32_t interaction_child::GetExStyle() const
    {
-      return 0;
+
+      return get_window_long(GWL_EXSTYLE);
+
    }
+
 
    LRESULT interaction_child::Default()
    {
@@ -446,11 +409,11 @@ namespace user
    }
 
 
-//   void __reposition_window(__SIZEPARENTPARAMS* lpLayout, ::user::interaction * pwnd,LPCRECT lpRect);
+//   void __reposition_window(SIZEPARENTPARAMS * lpLayout, ::user::interaction * pwnd,LPCRECT lpRect);
 //
 //
 //
-//   void __reposition_window(__SIZEPARENTPARAMS* lpLayout,::user::interaction * pwnd,LPCRECT lpRect)
+//   void __reposition_window(SIZEPARENTPARAMS * lpLayout,::user::interaction * pwnd,LPCRECT lpRect)
 //   {
 //#ifdef METROWIN
 //
@@ -683,7 +646,7 @@ namespace user
 
       }
 
-      if(!m_pui->m_bVisible)
+      if(!(m_pui->GetStyle() & WS_VISIBLE))
       {
 
          return false;
@@ -734,71 +697,73 @@ namespace user
    }
 
 
-   bool interaction_child::SetWindowPos(int_ptr z,int32_t x,int32_t y,int32_t cx,int32_t cy,UINT nFlags)
-   {
+   //bool interaction_child::SetWindowPos(int_ptr z,int32_t x,int32_t y,int32_t cx,int32_t cy,UINT nFlags)
+   //{
 
-      //synch_lock slUserMutex(&user_mutex());
+   //   ::
 
-      if(nFlags & SWP_NOMOVE)
-      {
+   //   synch_lock slUserMutex(&user_mutex());
 
-         if(nFlags & SWP_NOSIZE)
-         {
+   //   if(nFlags & SWP_NOMOVE)
+   //   {
 
-         }
-         else
-         {
-            m_rectParentClient.right   = m_rectParentClient.left + cx;
-            m_rectParentClient.bottom  = m_rectParentClient.top + cy;
-         }
-      }
-      else
-      {
-         point pt(x,y);
-         if(nFlags & SWP_NOSIZE)
-         {
-            m_rectParentClient.move_to(point64(pt));
-         }
-         else
-         {
-            m_rectParentClient.left    = pt.x;
-            m_rectParentClient.top     = pt.y;
-            m_rectParentClient.right   = pt.x + cx;
-            m_rectParentClient.bottom  = pt.y + cy;
-         }
-      }
+   //      if(nFlags & SWP_NOSIZE)
+   //      {
 
-      if(!(nFlags & SWP_NOSIZE))
-      {
+   //      }
+   //      else
+   //      {
+   //         m_rectParentClientReque.right   = m_rectParentClient.left + cx;
+   //         m_rectParentClient.bottom  = m_rectParentClient.top + cy;
+   //      }
+   //   }
+   //   else
+   //   {
+   //      point pt(x,y);
+   //      if(nFlags & SWP_NOSIZE)
+   //      {
+   //         m_rectParentClient.move_to(point64(pt));
+   //      }
+   //      else
+   //      {
+   //         m_rectParentClient.left    = pt.x;
+   //         m_rectParentClient.top     = pt.y;
+   //         m_rectParentClient.right   = pt.x + cx;
+   //         m_rectParentClient.bottom  = pt.y + cy;
+   //      }
+   //   }
 
-         send_message(WM_SIZE,0,MAKELONG(MAX(0,cx),MAX(0,cy)));
+   //   if(!(nFlags & SWP_NOSIZE))
+   //   {
 
-      }
+   //      send_message(WM_SIZE,0,MAKELONG(MAX(0,cx),MAX(0,cy)));
 
-      if(!(nFlags & SWP_NOMOVE))
-      {
+   //   }
 
-         send_message(WM_MOVE);
+   //   if(!(nFlags & SWP_NOMOVE))
+   //   {
 
-      }
+   //      send_message(WM_MOVE);
 
-      if(nFlags & SWP_SHOWWINDOW)
-      {
+   //   }
 
-         m_pui->ShowWindow(SW_SHOW);
+   //   if(nFlags & SWP_SHOWWINDOW)
+   //   {
 
-      }
+   //      m_pui->ShowWindow(SW_SHOW);
 
-      //if (!(nFlags & SWP_NOZORDER))
-      //{
-      //   synch_lock sl(GetParent()->m_pmutex);
-      //   GetParent()->m_uiptraChild.remove(m_pui);
-      //   GetParent()->m_uiptraChild.insert_at(0, m_pui);
-      //}
+   //   }
 
-      return true;
+   //   //if (!(nFlags & SWP_NOZORDER))
+   //   //{
+   //   //   synch_lock sl(GetParent()->m_pmutex);
+   //   //   GetParent()->m_uiptraChild.remove(m_pui);
+   //   //   GetParent()->m_uiptraChild.insert_at(0, m_pui);
+   //   //}
 
-   }
+   //   return true;
+
+   //}
 
 
    bool interaction_child::RedrawWindow(LPCRECT lpRectUpdate,::draw2d::region* prgnUpdate,UINT flags)

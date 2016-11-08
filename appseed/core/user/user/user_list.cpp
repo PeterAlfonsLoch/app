@@ -15,6 +15,8 @@ namespace user
    m_columna(get_app())
    {
 
+      m_dIconSaturation = 1.0;
+
       m_iIconBlur = 0;
 
       m_iIconBlurRadius = 0;
@@ -900,14 +902,6 @@ namespace user
 
       CacheHint();
       
-      // user interface things should be done in main thread or separated thread...
-      // now I know why ms people told so much about using window\s only from main thread...
-      ::fork(get_app(), [&]()
-      {
-
-         layout();
-         
-      });
 
       TRACE("list::_001OnUpdateItemCount ItemCount %d\n", m_nItemCount);
 
@@ -2522,7 +2516,8 @@ namespace user
 
          GetClientRect(&rectClient);
 
-         m_plistheader->SetWindowPos(ZORDER_TOP, 0, 0, (int)  MAX(m_iItemWidth + 10, rectClient.width()), (int) m_iItemHeight, SWP_SHOWWINDOW);
+         m_plistheader->SetWindowPos(ZORDER_TOP, 0, 0, (int)  MAX(m_iItemWidth + 10, rectClient.width()), (int) m_iItemHeight, 
+            SWP_SHOWWINDOW | SWP_NOZORDER);
 
       }
       else
@@ -5962,7 +5957,7 @@ namespace user
       {
          synch_lock sl(get_image_list()->m_pmutex);
 
-         if (m_plist->m_iIconBlur > 0 && m_plist->m_iIconBlurRadius > 0)
+         if (m_plist->m_iIconBlur > 0 && m_plist->m_iIconBlurRadius > 0 || m_plist->m_dIconSaturation < 1.0)
          {
 
             auto & dib = m_plist->m_mapIconBlur[m_iImage];
@@ -5979,7 +5974,18 @@ namespace user
             if (dib->area() <= 0)
             {
 
-               dib.initialize(m_rectImage.size() + size(m_plist->m_iIconBlurRadius * iRate * 2, m_plist->m_iIconBlurRadius * iRate * 2), m_plist->m_iIconBlurRadius);
+               if (m_plist->m_iIconBlur > 0 && m_plist->m_iIconBlurRadius > 0)
+               {
+
+                  dib.initialize(m_rectImage.size() + size(m_plist->m_iIconBlurRadius * iRate * 2, m_plist->m_iIconBlurRadius * iRate * 2), m_plist->m_iIconBlurRadius);
+
+               }
+               else
+               {
+
+                  dib->create(m_rectImage.size() + size(m_plist->m_iIconBlurRadius * iRate * 2, m_plist->m_iIconBlurRadius * iRate * 2));
+
+               }
 
                dib->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
 
@@ -5988,10 +5994,23 @@ namespace user
                get_image_list()->draw(dib->get_graphics(), (int32_t)m_iImage, 
                   point(m_plist->m_iIconBlurRadius*iRate, m_plist->m_iIconBlurRadius *iRate), m_rectImage.size(), point(0, 0), 0);
 
-               for (index i = 0; i < m_plist->m_iIconBlur; i++)
+               
+               if (m_plist->m_iIconBlur > 0 && m_plist->m_iIconBlurRadius > 0)
                {
 
-                  dib.blur();
+                  for (index i = 0; i < m_plist->m_iIconBlur; i++)
+                  {
+
+                     dib.blur();
+
+                  }
+
+               }
+
+               if (m_plist->m_dIconSaturation < 1.0)
+               {
+
+                  dib->saturation(m_plist->m_dIconSaturation);
 
                }
 

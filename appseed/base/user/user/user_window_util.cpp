@@ -21,16 +21,16 @@ namespace user
    // that all windows are siblings
    void oswindow_array::SortSiblingsByZOrder()
    {
-      
+
       oswindow oswindowSwap;
 
-      for(int32_t i = 0; i < this->get_size(); i++)
+      for (int32_t i = 0; i < this->get_size(); i++)
       {
 
-         for(int32_t j = i + 1; j < this->get_size(); j++)
+         for (int32_t j = i + 1; j < this->get_size(); j++)
          {
 
-            if(window_util::GetZOrder(this->element_at(i)) > window_util::GetZOrder(this->element_at(j)))
+            if (window_util::GetZOrder(this->element_at(i)) > window_util::GetZOrder(this->element_at(j)))
             {
 
                oswindowSwap = this->element_at(i);
@@ -54,7 +54,7 @@ namespace user
       int32_t iOrder = 0;
       oswindow oswindowOrder = ::GetDesktopWindow();
       oswindowOrder = ::GetWindow(oswindowOrder, GW_CHILD);
-      while(oswindowOrder != NULL
+      while (oswindowOrder != NULL
          && ::IsWindow(oswindowOrder))
       {
          add(oswindowOrder);
@@ -266,12 +266,12 @@ namespace user
 
       ::oswindow oswindow = m_oswindow;
 
-      if(!::IsWindow(oswindow))
+      if (!::IsWindow(oswindow))
          return;
 
       ::oswindow oswindowChild = ::GetTopWindow(oswindow);
 
-      while(oswindowChild != NULL)
+      while (oswindowChild != NULL)
       {
          m_oswindowtreea.add_new();
          oswindow_tree & oswindowtreeChild = m_oswindowtreea.last();
@@ -294,7 +294,7 @@ namespace user
    void oswindow_tree::Array::EnumDescendants()
    {
 
-      for(int32_t i = 0; i < this->get_size(); i++)
+      for (int32_t i = 0; i < this->get_size(); i++)
       {
 
          this->element_at(i)->EnumDescendants();
@@ -329,12 +329,12 @@ namespace user
    {
       m_oswindow = tree.m_oswindow;
       m_oswindowtreea.copy(&tree.m_oswindowtreea);
-      return * this;
+      return *this;
    }
 
    index oswindow_tree::compare_oswindow(const ::user::oswindow_tree * ptree1, const ::user::oswindow_tree * ptree2)
    {
-      return (index) ((byte *) (void *) ptree1->m_oswindow - (byte *) (void *) ptree2->m_oswindow);
+      return (index)((byte *)(void *)ptree1->m_oswindow - (byte *)(void *)ptree2->m_oswindow);
    }
 
    int_ptr oswindow_tree::Array::find(oswindow oswindow)
@@ -345,13 +345,13 @@ namespace user
 
    bool oswindow_tree::Array::remove(oswindow oswindow)
    {
-      if(oswindow == NULL)
+      if (oswindow == NULL)
          return true;
       int32_t i;
-      for(i = 0; i < this->get_size();)
+      for (i = 0; i < this->get_size();)
       {
          oswindow_tree & tree = *this->element_at(i);
-         if(tree.m_oswindow == oswindow)
+         if (tree.m_oswindow == oswindow)
          {
             remove_at(i);
             return true;
@@ -361,10 +361,10 @@ namespace user
             i++;
          }
       }
-      for(i = 0; i < this->get_size(); i++)
+      for (i = 0; i < this->get_size(); i++)
       {
          oswindow_tree & tree = *this->element_at(i);
-         if(tree.m_oswindowtreea.remove(oswindow))
+         if (tree.m_oswindowtreea.remove(oswindow))
          {
             return true;
          }
@@ -378,12 +378,12 @@ namespace user
    {
       remove_all();
       oswindow_tree oswindowtree;
-      for(int32_t i = 0; i < oswindowa.get_size(); i++)
+      for (int32_t i = 0; i < oswindowa.get_size(); i++)
       {
          oswindowtree.m_oswindow = oswindowa[i];
          add(new oswindow_tree(oswindowtree));
       }
-      return * this;
+      return *this;
    }
 
 
@@ -415,12 +415,12 @@ namespace user
 
 #ifdef WINDOWSEX
 
-      if(!::IsWindow(oswindow))
+      if (!::IsWindow(oswindow))
          return;
 
       ::oswindow oswindowChild = ::GetTopWindow(oswindow);
 
-      while(oswindowChild != NULL)
+      while (oswindowChild != NULL)
       {
 
          oswindowa.add(oswindowChild);
@@ -513,98 +513,98 @@ namespace user
 
    void window_util::ContraintPosToParent(oswindow oswindow)
    {
-//#if !defined(METROWIN) && !defined(APPLE_IOS)
-//      rect rectMajor;
-//      ::oswindow oswindowParent = ::GetParent(oswindow);
-//      if(oswindowParent == NULL)
-//      {
-//
-//#ifdef WINDOWSEX
-//
-//         rectMajor.left = 0;
-//         rectMajor.top = 0;
-//         rectMajor.right = GetSystemMetrics(SM_CXSCREEN);
-//         rectMajor.bottom = GetSystemMetrics(SM_CYSCREEN);
-//
-//#else
-//
-//         throw todo(get_thread_app());
-//
-//#endif
-//
-//      }
-//      else
-//      {
-//         ::GetClientRect(oswindowParent, rectMajor);
-//      }
-//
-//      rect rect;
-//      ::GetClientRect(oswindow, rect);
-//
-//#ifdef WINDOWSEX
-//
-//      ::ClientToScreen(oswindow, &rect.top_left());
-//
-//      ::ClientToScreen(oswindow, &rect.bottom_right());
-//
-//      if(oswindowParent != NULL)
-//      {
-//
-//         ::ScreenToClient(oswindowParent, &rect.top_left());
-//
-//         ::ScreenToClient(oswindowParent, &rect.bottom_right());
-//
-//      }
-//
-//#else
-//
-//      throw todo(get_thread_app());
-//
-//#endif
-//
-//      bool bModified = false;
-//
-//      if(rect.left > rectMajor.right)
-//      {
-//         rect.offset(- rect.width() - (rect.left - rectMajor.right), 0);
-//         bModified = true;
-//      }
-//      if(rect.right < rectMajor.left)
-//      {
-//         rect.offset(rect.width() + (rectMajor.left - rect.right), 0);
-//         bModified = true;
-//      }
-//      if(rect.top > rectMajor.bottom)
-//      {
-//         rect.offset(0, - rect.height() - (rect.top - rectMajor.bottom));
-//         bModified = true;
-//      }
-//
-//      if(rect.bottom < rectMajor.top)
-//      {
-//
-//         rect.offset(0, rect.height() + (rectMajor.top - rect.bottom));
-//
-//         bModified = true;
-//
-//      }
-//
-//
-//#ifdef WINDOWS
-//
-//      if(bModified)
-//      {
-//
-//         ::SetWindowPos(oswindow, HWND_TOP, rect.left, rect.top, rect.width(), rect.height(), 0);
-//
-//      }
-//
-//#else
-//
-//      throw todo(get_thread_app());
-//
-//#endif
-//#endif
+      //#if !defined(METROWIN) && !defined(APPLE_IOS)
+      //      rect rectMajor;
+      //      ::oswindow oswindowParent = ::GetParent(oswindow);
+      //      if(oswindowParent == NULL)
+      //      {
+      //
+      //#ifdef WINDOWSEX
+      //
+      //         rectMajor.left = 0;
+      //         rectMajor.top = 0;
+      //         rectMajor.right = GetSystemMetrics(SM_CXSCREEN);
+      //         rectMajor.bottom = GetSystemMetrics(SM_CYSCREEN);
+      //
+      //#else
+      //
+      //         throw todo(get_thread_app());
+      //
+      //#endif
+      //
+      //      }
+      //      else
+      //      {
+      //         ::GetClientRect(oswindowParent, rectMajor);
+      //      }
+      //
+      //      rect rect;
+      //      ::GetClientRect(oswindow, rect);
+      //
+      //#ifdef WINDOWSEX
+      //
+      //      ::ClientToScreen(oswindow, &rect.top_left());
+      //
+      //      ::ClientToScreen(oswindow, &rect.bottom_right());
+      //
+      //      if(oswindowParent != NULL)
+      //      {
+      //
+      //         ::ScreenToClient(oswindowParent, &rect.top_left());
+      //
+      //         ::ScreenToClient(oswindowParent, &rect.bottom_right());
+      //
+      //      }
+      //
+      //#else
+      //
+      //      throw todo(get_thread_app());
+      //
+      //#endif
+      //
+      //      bool bModified = false;
+      //
+      //      if(rect.left > rectMajor.right)
+      //      {
+      //         rect.offset(- rect.width() - (rect.left - rectMajor.right), 0);
+      //         bModified = true;
+      //      }
+      //      if(rect.right < rectMajor.left)
+      //      {
+      //         rect.offset(rect.width() + (rectMajor.left - rect.right), 0);
+      //         bModified = true;
+      //      }
+      //      if(rect.top > rectMajor.bottom)
+      //      {
+      //         rect.offset(0, - rect.height() - (rect.top - rectMajor.bottom));
+      //         bModified = true;
+      //      }
+      //
+      //      if(rect.bottom < rectMajor.top)
+      //      {
+      //
+      //         rect.offset(0, rect.height() + (rectMajor.top - rect.bottom));
+      //
+      //         bModified = true;
+      //
+      //      }
+      //
+      //
+      //#ifdef WINDOWS
+      //
+      //      if(bModified)
+      //      {
+      //
+      //         ::SetWindowPos(oswindow, HWND_TOP, rect.left, rect.top, rect.width(), rect.height(), 0);
+      //
+      //      }
+      //
+      //#else
+      //
+      //      throw todo(get_thread_app());
+      //
+      //#endif
+      //#endif
 
    }
 
@@ -648,14 +648,14 @@ namespace user
 
       // walk through HWNDs to avoid creating temporary interaction_impl objects
       // unless we need to call this function recursively
-      for(::oswindow oswindow_Child = ::GetTopWindow(oswindow); oswindow_Child != NULL; oswindow_Child = ::GetNextWindow(oswindow_Child, GW_HWNDNEXT))
+      for (::oswindow oswindow_Child = ::GetTopWindow(oswindow); oswindow_Child != NULL; oswindow_Child = ::GetNextWindow(oswindow_Child, GW_HWNDNEXT))
       {
          // send message with Windows SendMessage API
          try
          {
             ::SendMessage(oswindow_Child, message, wParam, lParam);
          }
-         catch(...)
+         catch (...)
          {
          }
 
@@ -669,7 +669,7 @@ namespace user
                SendMessageToDescendants(oswindow_Child, message, wParam, lParam, bDeep);
 
             }
-            catch(...)
+            catch (...)
             {
 
             }
@@ -693,29 +693,29 @@ namespace user
    // that all windows are siblings
    void window_util::SortByZOrder(oswindow_array & oswindowa)
    {
-      if(oswindowa.get_size() <= 0)
+      if (oswindowa.get_size() <= 0)
          return;
 
       int_array ia1;
       int_array ia2;
       oswindow oswindowSwap;
 
-      for(int32_t i = 0; i < oswindowa.get_size(); i++)
+      for (int32_t i = 0; i < oswindowa.get_size(); i++)
       {
-         for(int32_t j = i + 1; j < oswindowa.get_size(); j++)
+         for (int32_t j = i + 1; j < oswindowa.get_size(); j++)
          {
             try
             {
                GetZOrder(oswindowa[i], ia1);
                GetZOrder(oswindowa[j], ia2);
-               if(ia1.Cmp(ia2) > 0)
+               if (ia1.Cmp(ia2) > 0)
                {
                   oswindowSwap = oswindowa[i];
                   oswindowa[i] = oswindowa[j];
                   oswindowa[j] = oswindowSwap;
                }
             }
-            catch(...)
+            catch (...)
             {
             }
          }
@@ -734,31 +734,31 @@ namespace user
 
       ::oswindow oswindowOrder = NULL;
 
-      if(!::IsWindow(oswindow))
+      if (!::IsWindow(oswindow))
          return 0x7fffffff;
 
-      if(::GetParent(oswindow) == HWND_MESSAGE)
+      if (::GetParent(oswindow) == HWND_MESSAGE)
          return 0x7fffffff;
 
       try
       {
-         
+
          oswindowOrder = ::GetWindow(oswindow, GW_HWNDFIRST);
-         
+
       }
-      catch(...)
+      catch (...)
       {
-         
+
          return 0x7fffffff;
-         
+
       }
 
       int32_t iOrder = 0;
 
-      while(oswindowOrder != NULL && ::IsWindow(oswindowOrder))
+      while (oswindowOrder != NULL && ::IsWindow(oswindowOrder))
       {
 
-         if(oswindow == oswindowOrder)
+         if (oswindow == oswindowOrder)
             return iOrder;
 
          oswindowOrder = ::GetWindow(oswindowOrder, GW_HWNDNEXT);
@@ -777,7 +777,7 @@ namespace user
    void window_util::GetZOrder(oswindow oswindow, int_array & ia)
    {
 #ifdef METROWIN
-      if(!WinIsWindow(oswindow))
+      if (!WinIsWindow(oswindow))
          return;
 #else
       if (!IsWindow(oswindow))
@@ -786,16 +786,16 @@ namespace user
 
       int32_t iOrder;
       ia.remove_all();
-      while(true)
+      while (true)
       {
 #ifdef METROWIN
          if (oswindow == NULL || !::WinIsWindow(oswindow))
 #else
-         if(oswindow == NULL || !::IsWindow(oswindow))
+         if (oswindow == NULL || !::IsWindow(oswindow))
 #endif
             break;
          iOrder = GetZOrder(oswindow);
-         if(iOrder == 0x7fffffff)
+         if (iOrder == 0x7fffffff)
             break;
          ia.insert_at(0, iOrder);
          oswindow = ::GetParent(oswindow);
@@ -826,7 +826,7 @@ namespace user
 
       EnumChildren(oswindow, oswindowa);
 
-      for(int32_t i = 0; i < oswindowa.get_size(); i++)
+      for (int32_t i = 0; i < oswindowa.get_size(); i++)
       {
 
          ::oswindow oswindowChild = oswindowa[i];
@@ -875,7 +875,7 @@ namespace user
 
       HRGN hrgn = ::CreateRectRgnIndirect(rectWnd);
 
-      if(bExludeChildren)
+      if (bExludeChildren)
       {
 
          ExcludeChildren(oswindow, hrgn, ptOffset);
@@ -895,12 +895,12 @@ namespace user
    bool window_util::IsAscendant(oswindow oswindowAscendant, oswindow oswindowDescendant)
    {
 #ifndef METROWIN
-      while(true)
+      while (true)
       {
          oswindowDescendant = ::GetParent(oswindowDescendant);
-         if(oswindowDescendant == NULL)
+         if (oswindowDescendant == NULL)
             return false;
-         if(oswindowDescendant == oswindowAscendant)
+         if (oswindowDescendant == oswindowAscendant)
             return true;
       }
 #else
@@ -915,43 +915,43 @@ namespace user
 
 
 
-/*
-   interaction_ptra::interaction_ptra()
-   {
+   /*
+      interaction_ptra::interaction_ptra()
+      {
 
-   }
+      }
 
 
-   interaction_ptra::interaction_ptra(const interaction_ptra & a)
-   {
+      interaction_ptra::interaction_ptra(const interaction_ptra & a)
+      {
 
-      this->operator = (a);
+         this->operator = (a);
 
-   }
+      }
 
-   interaction_ptra::interaction_ptra(const ref_array < ::user::interaction > & a)
-   {
+      interaction_ptra::interaction_ptra(const ref_array < ::user::interaction > & a)
+      {
 
-      this->operator = (a);
+         this->operator = (a);
 
-   }*/
+      }*/
 
-   //interaction_ptra::interaction_ptra(const interaction_spa & a)
-   //{
+      //interaction_ptra::interaction_ptra(const interaction_spa & a)
+      //{
 
-   //   for(index i = 0; i < a.get_count(); i++)
-   //   {
+      //   for(index i = 0; i < a.get_count(); i++)
+      //   {
 
-   //      add(a[i]);
+      //      add(a[i]);
 
-   //   }
+      //   }
 
-   //}
+      //}
 
    interaction_ptra & interaction_ptra::operator=(const interaction_spa & a)
    {
 
-      for(index i = 0; i < a.get_count(); i++)
+      for (index i = 0; i < a.get_count(); i++)
       {
 
          add(a[i]);
@@ -963,42 +963,42 @@ namespace user
    }
 
 
-/*   interaction_ptra::interaction_ptra(interaction_ptra && a)
-   {
+   /*   interaction_ptra::interaction_ptra(interaction_ptra && a)
+      {
 
-      this->operator = (a);
+         this->operator = (a);
 
-   }
-
-
-   interaction_ptra & interaction_ptra::operator = (const interaction_ptra & a)
-   {
-
-      ref_array < ::user::interaction >::operator = (a);
-
-      return *this;
-
-   }
+      }
 
 
-   interaction_ptra & interaction_ptra::operator = (const ref_array < ::user::interaction > & a)
-   {
+      interaction_ptra & interaction_ptra::operator = (const interaction_ptra & a)
+      {
 
-      ref_array < ::user::interaction >::operator = (a);
+         ref_array < ::user::interaction >::operator = (a);
 
-      return *this;
+         return *this;
 
-   }
+      }
 
 
-   interaction_ptra & interaction_ptra::operator = (interaction_ptra && a)
-   {
+      interaction_ptra & interaction_ptra::operator = (const ref_array < ::user::interaction > & a)
+      {
 
-      ref_array < ::user::interaction >::operator = (a);
+         ref_array < ::user::interaction >::operator = (a);
 
-      return *this;
+         return *this;
 
-   }*/
+      }
+
+
+      interaction_ptra & interaction_ptra::operator = (interaction_ptra && a)
+      {
+
+         ref_array < ::user::interaction >::operator = (a);
+
+         return *this;
+
+      }*/
 
 
    oswindow_array interaction_ptra::get_hwnda()
@@ -1006,7 +1006,7 @@ namespace user
 
       oswindow_array oswindowa;
 
-      for(int32_t i = 0; i < this->get_size(); i++)
+      for (int32_t i = 0; i < this->get_size(); i++)
       {
 
          oswindowa.add(this->element_at(i)->get_handle());
@@ -1020,9 +1020,9 @@ namespace user
 
    ::user::interaction * interaction_ptra::find_first_typed(sp(type) info)
    {
-      for(int32_t i = 0; i < this->get_size(); i++)
+      for (int32_t i = 0; i < this->get_size(); i++)
       {
-         if(typeid(*this->element_at(i)).name() == info->name())
+         if (typeid(*this->element_at(i)).name() == info->name())
          {
             return this->element_at(i);
          }
@@ -1034,10 +1034,10 @@ namespace user
    ::user::interaction * interaction_ptra::find_first(oswindow oswindow)
    {
 
-      for(int32_t i = 0; i < this->get_size(); i++)
+      for (int32_t i = 0; i < this->get_size(); i++)
       {
 
-         if(this->element_at(i)->get_safe_handle() == oswindow)
+         if (this->element_at(i)->get_safe_handle() == oswindow)
          {
 
             return this->element_at(i);
@@ -1108,7 +1108,7 @@ namespace user
 
 
 
-      interaction_spa::interaction_spa(::aura::application * papp) :
+   interaction_spa::interaction_spa(::aura::application * papp) :
       ::object(papp)
    {
 
@@ -1117,20 +1117,20 @@ namespace user
    interaction_spa::interaction_spa(const ref_array < ::user::interaction > & ptra)
    {
 
-    for(index i = 0; i < ptra.get_count(); i++)
-    {
+      for (index i = 0; i < ptra.get_count(); i++)
+      {
 
-        add(ptra[i]);
+         add(ptra[i]);
 
-    }
+      }
 
    }
 
    sp(::user::interaction) interaction_spa::find_first_typed(sp(type) info)
    {
-      for(int32_t i = 0; i < this->get_size(); i++)
+      for (int32_t i = 0; i < this->get_size(); i++)
       {
-         if(typeid(*this->element_at(i)).name() == info->name())
+         if (typeid(*this->element_at(i)).name() == info->name())
          {
             return this->element_at(i);
          }
@@ -1141,10 +1141,10 @@ namespace user
    sp(::user::interaction) interaction_spa::find_first(oswindow oswindow)
    {
 
-      for(int32_t i = 0; i < this->get_size(); i++)
+      for (int32_t i = 0; i < this->get_size(); i++)
       {
 
-         if(this->element_at(i)->get_safe_handle() == oswindow)
+         if (this->element_at(i)->get_safe_handle() == oswindow)
          {
 
             return this->element_at(i);
@@ -1182,7 +1182,7 @@ namespace user
 
       oswindow_array oswindowa;
 
-      for(int32_t i = 0; i < this->get_size(); i++)
+      for (int32_t i = 0; i < this->get_size(); i++)
       {
 
          oswindowa.add(this->element_at(i)->get_handle());
@@ -1196,13 +1196,13 @@ namespace user
 
    void interaction_spa::send_message(UINT uiMessage, WPARAM wparam, LPARAM lparam)
    {
-      for(int32_t i = 0; i < this->get_size(); i++)
+      for (int32_t i = 0; i < this->get_size(); i++)
       {
          try
          {
             this->element_at(i)->send_message(uiMessage, wparam, lparam);
          }
-         catch(...)
+         catch (...)
          {
          }
       }
@@ -1210,71 +1210,19 @@ namespace user
 
    void interaction_spa::send_message_to_descendants(UINT uiMessage, WPARAM wparam, LPARAM lparam, bool bRecursive)
    {
-      for(int32_t i = 0; i < this->get_size(); i++)
+      for (int32_t i = 0; i < this->get_size(); i++)
       {
          try
          {
             this->element_at(i)->SendMessageToDescendants(uiMessage, wparam, lparam, bRecursive);
          }
-         catch(...)
+         catch (...)
          {
          }
       }
    }
 
-   ::user::interaction * interaction_spa::get_child(::user::interaction * pui)
-      {
-
-         synch_lock sl(m_pmutex);
-
-         if(get_count() <= 0)
-         {
-
-            return NULL;
-
-         }
-
-         if(pui == NULL)
-         {
-
-            return element_at(0);
-
-         }
-         else
-         {
-
-            for(index i = get_upper_bound(); i >= 0; i--)
-            {
-
-               if(element_at(i) == pui)
-               {
-
-                  i++;
-
-                  if(i < get_count())
-                  {
-
-                     return element_at(i);
-
-                  }
-                  else
-                  {
-
-                     return NULL;
-
-                  }
-
-               }
-
-            }
-
-         }
-
-         return NULL;
-
-      }
-
-   ::user::interaction * interaction_ptra::get_child(::user::interaction * pui)
+   bool interaction_spa::get_child(sp(::user::interaction) & pui)
    {
 
       synch_lock sl(m_pmutex);
@@ -1282,14 +1230,16 @@ namespace user
       if (get_count() <= 0)
       {
 
-         return NULL;
+         return false;
 
       }
 
-      if (pui == NULL)
+      if (pui.is_null())
       {
 
-         return element_at(0);
+         pui = element_at(0);
+
+         return true;
 
       }
       else
@@ -1306,13 +1256,15 @@ namespace user
                if (i < get_count())
                {
 
-                  return element_at(i);
+                  pui = element_at(i);
+
+                  return true;
 
                }
                else
                {
 
-                  return NULL;
+                  return false;
 
                }
 
@@ -1322,9 +1274,68 @@ namespace user
 
       }
 
-      return NULL;
+      return false;
+
+   }
+
+   bool interaction_ptra::get_child(sp(::user::interaction) & pui)
+   {
+
+      synch_lock sl(m_pmutex);
+
+      if (get_count() <= 0)
+      {
+
+         return false;
+
+      }
+
+      if (pui == NULL)
+      {
+
+         pui = element_at(0);
+
+         return true;
+
+      }
+      else
+      {
+
+         for (index i = get_upper_bound(); i >= 0; i--)
+         {
+
+            if (element_at(i) == pui)
+            {
+
+               i++;
+
+               if (i < get_count())
+               {
+
+                  pui = element_at(i);
+
+                  return true;
+
+               }
+               else
+               {
+
+                  return false;
+
+               }
+
+            }
+
+         }
+
+      }
+
+      return false;
 
    }
 
 
 } // namespace user
+
+
+

@@ -31,11 +31,6 @@ namespace user
 
       using ::user::interaction_base::message_handler;
       virtual void message_handler(signal_details * pobj);
-      //bool ShowWindow(int32_t nCmdShow);
-
-      using ::user::interaction_base::SetWindowPos;
-      virtual bool SetWindowPos(int_ptr z,int32_t x,int32_t y,int32_t cx,int32_t cy,UINT nFlags = SWP_SHOWWINDOW);
-
 
       virtual ::user::interaction * GetDescendantWindow(id id) const;
 
@@ -58,7 +53,7 @@ namespace user
       virtual uint32_t GetExStyle() const;
       virtual LRESULT Default();
 
-      virtual LRESULT send_message(UINT uiMessage,WPARAM wparam = 0,lparam lparam = 0);
+      //virtual LRESULT send_message(UINT uiMessage,WPARAM wparam = 0,lparam lparam = 0);
 
 #ifdef LINUX
 

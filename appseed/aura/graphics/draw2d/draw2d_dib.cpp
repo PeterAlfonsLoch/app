@@ -4351,6 +4351,37 @@ namespace draw2d
       }
 
    }
+
+   void dib::saturation(double dRate)
+   {
+
+      map();
+
+      BYTE *dst = (BYTE*)m_pcolorref;
+      int64_t size = scan_area();
+
+      int iDiv = 255 * 255;
+      int iMul = (int)(dRate * (double) iDiv);
+
+      //      int32_t i = 0;;
+
+      while (size > 0)
+      {
+         //dst[3] = dst[i];
+         int iMax = MAX(MAX(dst[0], dst[1]), dst[2]);
+         int iMin = MIN(MIN(dst[0], dst[1]), dst[2]);
+         int iMid = (iMax + iMin) / 2;
+         dst[0] = ((dst[0] - iMid) * iMul / iDiv) + iMid;
+         dst[1] = ((dst[1] - iMid) * iMul / iDiv) + iMid;
+         dst[2] = ((dst[2] - iMid) * iMul / iDiv) + iMid;
+         dst += 4;
+         size--;
+      }
+
+   }
+
+
+
    void dib::set_rgb_pre_alpha(int32_t R, int32_t G, int32_t B, int32_t A)
    {
 
@@ -5209,11 +5240,13 @@ namespace draw2d
 
       double r = diameter / 2.0;
 
-      double r2 = r * r;
+      double dBorder = 1.0;
 
-      double rlim = r2 - r;
+      double rmin = r - dBorder;
 
-      COLORREF crA;
+      double rmax = r;
+
+      int crA;
 
       COLORREF * pcolorref2;
 
@@ -5229,34 +5262,38 @@ namespace draw2d
 
             double dy = y;
 
-            double distance = (dx - r) * (dx - r) + (dy - r) * (dy - r);
+            double distance = sqrt((dx - r) * (dx - r) + (dy - r) * (dy - r));
 
-            if (distance < rlim)
-            {
+            crA = (int) ((rmin - distance) * 255.0 / dBorder);
 
-               crA = 255 << 24;
+            crA = MAX(MIN(crA, 255), 0);
 
-            }
-            else if (distance > r)
-            {
-
-               crA = 0;
-
-            }
-            else
-            {
-
-               crA = ((byte)((r - MIN(1.0, MAX(0.0, distance - r))) * 255.0 / r)) << 24;
-
-            }
-
-            *pcolorref2 = (*pcolorref2 & 0x00ffffff) | crA;
+            *pcolorref2 = (*pcolorref2 & 0x00ffffff) | (crA << 24);
 
             pcolorref2++;
 
          }
 
       }
+
+      return true;
+
+   }
+
+
+   bool dib::create_framed_square(::draw2d::dib * pdib, int inner, int outer, COLORREF cr)
+   {
+
+      if (!create(inner + outer * 2, inner + outer * 2))
+      {
+
+         return false;
+
+      }
+
+      Fill(cr);
+
+      get_graphics()->StretchBlt(outer, outer, inner, inner, pdib->get_graphics(), 0, 0, pdib->m_size.cx, pdib->m_size.cy, SRCCOPY);
 
       return true;
 

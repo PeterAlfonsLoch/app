@@ -44,7 +44,7 @@ namespace user
 
       GetClientRect(rectClient);
 
-      int32_t ifswp = SWP_SHOWWINDOW | SWP_NOCOPYBITS;
+      int32_t ifswp = SWP_SHOWWINDOW | SWP_NOCOPYBITS | SWP_NOZORDER;
 
       _001DeferCreateXScrollBar();
 
@@ -889,7 +889,7 @@ namespace user
 
       GetClientRect(rectClient);
 
-      int32_t ifswp = SWP_SHOWWINDOW | SWP_NOCOPYBITS;
+      int32_t ifswp = SWP_SHOWWINDOW | SWP_NOCOPYBITS | SWP_NOZORDER;
 
       _001DeferCreateYScrollBar();
 

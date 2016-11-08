@@ -834,6 +834,74 @@ namespace userex
    }
 
 
+   sp(::user::document) userex::create_child_form(::aura::application * papp, sp(::type) pt, sp(::user::interaction) pwndParent, var var)
+   {
+
+      if (pt == NULL)
+         return NULL;
+
+      ::user::impact_system * psystem = m_mapTemplate[pt];
+
+      if (psystem == NULL)
+      {
+
+         psystem = canew(::user::multiple_document_template(
+            papp,
+            m_ptemplateChildForm->m_strMatter,
+            m_ptemplateChildForm->m_typeinfoDocument,
+            m_ptemplateChildForm->m_typeinfoFrame,
+            pt));
+
+         m_mapTemplate[pt] = psystem;
+
+         App(papp).document_manager().add_document_template(psystem);
+
+      }
+
+      if (papp == NULL)
+      {
+
+         if (pwndParent.is_set())
+         {
+
+            papp = pwndParent->get_app();
+
+         }
+         else
+         {
+
+            papp = get_app();
+
+         }
+
+      }
+
+      sp(::create) createcontext(papp->allocer());
+
+      createcontext->m_bMakeVisible = false;
+
+      createcontext->m_puiParent = pwndParent;
+
+      sp(::user::document) pdoc = psystem->open_document_file(createcontext);
+
+      if (pdoc.is_null())
+         return NULL;
+
+      sp(::user::form_window) pform = pdoc->get_typed_view < ::user::form_window >();
+
+      //if (pform.is_set())
+      //{
+
+      //   pform->m_pcallback = pcallback;
+
+      //}
+
+      return pdoc;
+
+
+   }
+
+
    ::user::document * userex::hold(sp(::user::interaction) pui)
    {
 

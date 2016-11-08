@@ -32,6 +32,77 @@ namespace user
    }
 
 
+   void interaction::user_interaction_common_construct()
+   {
+
+      m_bNeedLayout = false;
+
+      m_bCreated = false;
+
+      m_bLockWindowUpdate = false;
+
+      m_bTransparentMouseEvents = false;
+
+      m_bRedrawing = false;
+      m_pparent = NULL;
+      m_bWorkspaceFullScreen = false;
+      m_bHideOnTransparentFrame = false;
+      m_pvoidUserInteraction = this;
+
+      m_eupdown = type_normal_frame;
+
+      m_bMayProDevian = true;
+      //m_pmutex                   = NULL;
+      m_eappearance = AppearanceNormal;
+      m_bCursorInside = false;
+      m_nFlags = 0;
+      m_puiOwner = NULL;
+      //m_pimpl                    = NULL;
+      m_ecursor = ::visual::cursor_default;
+      m_iModal = 0;
+      m_iModalCount = 0;
+      m_bRectOk = false;
+      m_bLayoutEnable = true;
+      //m_psession                 = NULL;
+      m_bMessageWindow = false;
+
+      m_bVoidPaint = false;
+      //m_pparent                  = NULL;
+      m_bBackgroundBypass = false;
+      m_bEnableSaveWindowRect = false;
+
+      m_puserschema = NULL;
+      m_bLockWindowUpdate = false;
+
+
+      m_bRedraw = false;
+
+      m_bDefaultWalkPreTranslateParentTree = false;
+
+      m_bMoving = false;
+      m_bMoveWindow = false;
+
+      m_bSizeMove = false;
+
+      m_ptScrollPassword1.x = 0;
+      m_ptScrollPassword1.y = 0;
+      m_palphasource = NULL;
+
+   }
+
+
+   interaction::~interaction()
+   {
+
+      TRACE("::user::interaction::~interaction interaction=0x%016x %s", this, typeid(*this).name());
+
+      m_uiptraChild.m_pmutex = NULL;
+
+      //user_interaction_on_destroy();
+
+   }
+
+
    //void interaction::delete_this()
    //{
 
@@ -47,8 +118,23 @@ namespace user
 
       synch_lock sl(m_pmutex);
 
-      if(!check_need_layout() || !m_bLayoutEnable)
-         return false;
+      if (!check_need_layout() || !m_bLayoutEnable)
+      {
+
+         if (m_bLayoutEnable)
+         {
+
+            return defer_check_translation();
+
+         }
+         else
+         {
+
+            return false;
+
+         }
+
+      }
 
       layout();
 
@@ -62,12 +148,14 @@ namespace user
    bool interaction::check_need_layout()
    {
 
-      ::user::interaction * pwnd = get_wnd();
-
-      if(pwnd == NULL)
+      if (m_pimpl.is_null())
+      {
+       
          return false;
 
-      return pwnd->m_pimpl->check_need_layout();
+      }
+
+      return m_pimpl->check_need_layout();
 
    }
 
@@ -75,12 +163,14 @@ namespace user
    void interaction::clear_need_layout()
    {
 
-      ::user::interaction * pwnd = get_wnd();
+      if (m_pimpl.is_null())
+      {
 
-      if(pwnd == NULL)
          return;
 
-      return pwnd->m_pimpl->clear_need_layout();
+      }
+
+      return m_pimpl->clear_need_layout();
 
    }
 
@@ -88,84 +178,171 @@ namespace user
    void interaction::set_need_layout()
    {
 
-      ::user::interaction * pwnd = get_wnd();
+      if (m_pimpl.is_null())
+      {
 
-      if(pwnd == NULL)
          return;
 
-      return pwnd->m_pimpl->set_need_layout();
+      }
+
+      return m_pimpl->set_need_layout();
 
    }
 
-   void interaction::user_interaction_common_construct()
-   {
-      
-      m_bCreated                 = false;
 
-      m_bLockWindowUpdate        = false;
-
-      m_bTransparentMouseEvents  = false;
-
-      m_bRedrawing               = false;
-      m_pparent                  = NULL;
-      m_bWorkspaceFullScreen     = false;
-      m_bHideOnTransparentFrame  = false;
-      m_pvoidUserInteraction     = this;
-
-      m_eupdown                  = type_normal_frame;
-
-      m_bMayProDevian            = true;
-      //m_pmutex                   = NULL;
-      m_eappearance              = AppearanceNormal;
-      m_bCursorInside            = false;
-      m_nFlags                   = 0;
-      m_puiOwner                 = NULL;
-      //m_pimpl                    = NULL;
-      m_ecursor                  = ::visual::cursor_default;
-      m_iModal                   = 0;
-      m_iModalCount              = 0;
-      m_bRectOk                  = false;
-      m_bVisible                 = false;
-      m_bLayoutEnable            = true;
-      //m_psession                 = NULL;
-      m_bMessageWindow           = false;
-
-      m_bVoidPaint               = false;
-      //m_pparent                  = NULL;
-      m_bBackgroundBypass        = false;
-      m_bEnableSaveWindowRect    = false;
-
-      m_puserschema              = NULL;
-      m_bLockWindowUpdate        = false;
-
-
-      m_bRedraw                  = false;
-
-      m_bDefaultWalkPreTranslateParentTree = false;
-
-      m_bMoving                  = false;
-      m_bMoveWindow              = false;
-
-      m_bSizeMove                = false;
-
-      m_ptScrollPassword1.x               = 0;
-      m_ptScrollPassword1.y               = 0;
-      m_palphasource                      = NULL;
-      
-   }
-
-
-   interaction::~interaction()
+   bool interaction::defer_check_translation()
    {
 
-      TRACE("::user::interaction::~interaction interaction=0x%016x %s", this, typeid(*this).name());
+      synch_lock sl(m_pmutex);
 
-      m_uiptraChild.m_pmutex  = NULL;
+      if (!check_need_translation() || !m_bLayoutEnable)
+      {
 
-      //user_interaction_on_destroy();
+         return defer_check_show_flags();
+
+      }
+
+      translate();
+
+      clear_need_translation();
+
+      return true;
 
    }
 
+
+   bool interaction::check_need_translation()
+   {
+
+      if (m_pimpl.is_null())
+      {
+
+         return false;
+
+      }
+
+      return m_pimpl->check_need_translation();
+
+   }
+
+
+   void interaction::clear_need_translation()
+   {
+
+      if (m_pimpl.is_null())
+      {
+
+         return;
+
+      }
+
+      return m_pimpl->clear_need_translation();
+
+   }
+
+
+   bool interaction::defer_check_show_flags()
+   {
+
+      synch_lock sl(m_pmutex);
+
+      if (!check_show_flags() || !m_bLayoutEnable)
+      {
+
+         return false;
+
+      }
+
+      do_show_flags();
+
+      clear_show_flags();
+
+      return true;
+
+   }
+
+
+   bool interaction::check_show_flags()
+   {
+
+      if (m_pimpl.is_null())
+      {
+
+         return false;
+
+      }
+
+      return m_pimpl->check_show_flags();
+
+   }
+
+
+   void interaction::clear_show_flags()
+   {
+
+      if (m_pimpl.is_null())
+      {
+
+         return;
+
+      }
+
+      return m_pimpl->clear_show_flags();
+
+   }
+
+
+   bool interaction::defer_check_zorder()
+   {
+
+      synch_lock sl(m_pmutex);
+
+      if (!check_need_zorder() || !m_bLayoutEnable)
+      {
+
+         return false;
+
+      }
+
+      zorder();
+
+      clear_need_zorder();
+
+      return true;
+
+   }
+
+
+   bool interaction::check_need_zorder()
+   {
+
+      if (m_pimpl.is_null())
+      {
+
+         return false;
+
+      }
+
+      return m_pimpl->check_need_zorder();
+
+   }
+
+
+   void interaction::clear_need_zorder()
+   {
+
+      if (m_pimpl.is_null())
+      {
+
+         return;
+
+      }
+
+      return m_pimpl->clear_need_zorder();
+
+   }
+
+   
 
    ::user::interaction * interaction::GetTopWindow() const
    {
@@ -278,19 +455,6 @@ namespace user
 
             iStyle &= ~WS_CHILD;
 
-            if(m_bVisible)
-            {
-
-               iStyle |= WS_VISIBLE;
-
-            }
-            else
-            {
-
-               iStyle &= ~WS_VISIBLE;
-
-            }
-
             rect rectWindow;
 
             GetWindowRect(rectWindow);
@@ -362,19 +526,6 @@ namespace user
             int32_t iStyle = get_window_long(GWL_STYLE);
 
             iStyle |= WS_CHILD;
-
-            if(m_bVisible)
-            {
-
-               iStyle |= WS_VISIBLE;
-
-            }
-            else
-            {
-
-               iStyle &= ~WS_VISIBLE;
-
-            }
 
             rect rectWindow;
 
@@ -1106,7 +1257,7 @@ namespace user
       else
       {
 
-         layout();
+         //layout();
 
       }
 
@@ -1115,27 +1266,99 @@ namespace user
    void interaction::layout()
    {
 
-      if (!m_bLayoutEnable)
-      {
-
-         return;
-
-      }
-      
-      //single_lock slTop(get_wnd()->m_pmutex, true);
+      m_pimpl->on_layout();
       
       single_lock sl(m_pmutex, true);
 
       on_layout();
 
-      //if (GetParent() == NULL)
-      //{
+   }
 
-      //   _001UpdateWindow();
+   
+   void interaction::translate()
+   {
 
-      //}
-      
-      RedrawWindow();
+      m_pimpl->on_translate();
+
+      single_lock sl(m_pmutex, true);
+
+      on_translate();
+
+   }
+
+
+   void interaction::do_show_flags()
+   {
+
+      m_pimpl->on_do_show_flags();
+
+      single_lock sl(m_pmutex, true);
+
+      on_do_show_flags();
+
+   }
+
+
+   void interaction::zorder()
+   {
+
+      if (GetParent() == NULL)
+      {
+
+         m_pimpl->on_zorder();
+
+         return;
+
+      }
+
+      single_lock sl(GetParent()->m_pmutex);
+
+      int_ptr z = m_pimpl->m_iZ;
+
+      if (z == ZORDER_TOP || z == ZORDER_TOPMOST)
+      {
+
+         if (GetParent()->m_uiptraChild.get_count() > 0 && GetParent()->m_uiptraChild.last_ptr() != this)
+         {
+
+            index iFind = GetParent()->m_uiptraChild.find_first(this);
+
+            if (iFind >= 0 && iFind < GetParent()->m_uiptraChild.get_upper_bound())
+            {
+
+               sp(::user::interaction) pui = this; // hold reference to ourselves/
+                                                   // because parent can be only holder
+                                                   // if the only reference is lost, this window is destroyed
+                                                   // and we are removing only to add just soon later
+                                                   // for reordering (z-order) purposes
+
+               try
+               {
+
+                  GetParent()->m_uiptraChild.remove(this);
+
+               }
+               catch (...)
+               {
+
+               }
+
+               try
+               {
+
+                  GetParent()->m_uiptraChild.add_unique(this);
+
+               }
+               catch (...)
+               {
+
+               }
+
+            }
+
+         }
+
+      }
 
    }
 
@@ -1145,22 +1368,24 @@ namespace user
 
       pobj->previous();
 
-      layout_tooltip();
+//      layout_tooltip();
       
-      synch_lock sl(m_pmutex);
 
-      for(index i = 0; i < m_uiptraChild.get_size(); i++)
-      {
-         
-         sp(::user::interaction) pui = m_uiptraChild[i];
-         
-         sl.unlock();
 
-         pui->send_message(WM_MOVE);
-         
-         sl.lock();
+      //synch_lock sl(m_pmutex);
 
-      }
+      //for(index i = 0; i < m_uiptraChild.get_size(); i++)
+      //{
+      //   
+      //   sp(::user::interaction) pui = m_uiptraChild[i];
+      //   
+      //   sl.unlock();
+
+      //   pui->send_message(WM_MOVE);
+      //   
+      //   sl.lock();
+
+      //}
 
    }
 
@@ -1369,15 +1594,15 @@ namespace user
    void interaction::_001DrawChildren(::draw2d::graphics * pgraphics)
    {
 
-      interaction * pui = NULL;
+      interaction_spa uia = m_uiptraChild;
 
-      while((pui = get_child(pui)) != NULL)
+      for(auto & pui : uia)
       {
 
          try
          {
 
-            if(pui->m_bVisible && !pui->is_custom_draw())
+            if(!pui->is_custom_draw())
             {
 
                pui->_000OnDraw(pgraphics);
@@ -1468,9 +1693,11 @@ namespace user
    void interaction::_000OnDraw(::draw2d::graphics * pgraphics)
    {
 
-      single_lock sl(m_pmutex, true);
+      defer_check_layout();
 
-      if(!IsWindowVisible())
+      defer_check_zorder();
+
+      if(!is_this_visible())
          return;
 
       _001DrawThis(pgraphics);
@@ -1798,7 +2025,7 @@ namespace user
       try
       {
 
-         if(!m_bVisible) // assume parent visibility already checked
+         if(!is_this_visible()) // assume parent visibility already checked
          {
 
             return;
@@ -1958,7 +2185,7 @@ namespace user
       if(bTestedIfParentVisible)
       {
 
-         if(!m_bVisible || !_001IsPointInside(pt)) // inline version - do not need pointer to the function
+         if(!is_this_visible() || !_001IsPointInside(pt)) // inline version - do not need pointer to the function
          {
 
             return NULL;
@@ -2191,27 +2418,6 @@ namespace user
    LRESULT interaction::send_message(UINT uiMessage,WPARAM wparam,lparam lparam)
    {
 
-      //if(uiMessage != WM_DESTROY && uiMessage != WM_NCDESTROY)
-      //{
-
-      //   ::user::interaction * pui = this;
-
-      //   while(pui != NULL)
-      //   {
-
-      //      if(pui->m_bDestroying)
-      //      {
-
-      //         return FALSE;
-
-      //      }
-
-      //      pui = pui->GetParent();
-
-      //   }
-
-      //}
-
       if(m_pimpl == NULL)
       {
 
@@ -2220,6 +2426,21 @@ namespace user
       }
 
       return m_pimpl->send_message(uiMessage,wparam,lparam);
+
+   }
+
+
+   LRESULT interaction::message_call(UINT uiMessage, WPARAM wparam, lparam lparam)
+   {
+
+      if (m_pimpl == NULL)
+      {
+
+         return 0;
+
+      }
+
+      return m_pimpl->message_call(uiMessage, wparam, lparam);
 
    }
 
@@ -3793,9 +4014,29 @@ namespace user
    void interaction::on_layout()
    {
 
+      layout_tooltip();
+
       on_change_view_size();
 
    }
+
+
+   void interaction::on_translate()
+   {
+
+      layout_tooltip();
+
+   }
+
+
+   void interaction::on_do_show_flags()
+   {
+
+      layout_tooltip();
+
+   }
+
+
 
    void interaction::ShowOwnedPopups(bool bShow)
    {
@@ -4256,7 +4497,7 @@ ExitModal:
 
 
 
-   void interaction::_001UpdateWindow()
+   void interaction::_001UpdateWindow(bool bUpdateBuffer)
    {
 
       if (m_bLockWindowUpdate)
@@ -4265,7 +4506,7 @@ ExitModal:
       if (m_pimpl == NULL)
          return;
 
-      m_pimpl->_001UpdateWindow();
+      m_pimpl->_001UpdateWindow(bUpdateBuffer);
 
    }
 
@@ -6222,9 +6463,9 @@ restart:
 
          }
 
-         send_message(WM_SIZE);
+         //send_message(WM_SIZE);
 
-         send_message(WM_MOVE);
+         //send_message(WM_MOVE);
 
 
 #elif defined WINDOWSEX
@@ -6403,115 +6644,14 @@ restart:
    bool interaction::SetWindowPos(int_ptr z,int32_t x,int32_t y,int32_t cx,int32_t cy,UINT nFlags)
    {
 
-      bool bOk = false;
-
-      if(!(nFlags & SWP_NOZORDER))
+      if (m_pimpl.is_null())
       {
 
-         if(GetParent() != NULL)
-         {
-
-            single_lock sl(GetParent() != NULL ? GetParent()->m_pmutex : NULL, false);
-
-            if(z == ZORDER_TOP || z == ZORDER_TOPMOST)
-            {
-
-               if(sl.lock())
-               {
-
-                  if(GetParent()->m_uiptraChild.get_count() > 0 && GetParent()->m_uiptraChild.last_ptr() != this)
-                  {
-
-                     index iFind = GetParent()->m_uiptraChild.find_first(this);
-
-                     if(iFind >= 0 && iFind < GetParent()->m_uiptraChild.get_upper_bound())
-                     {
-
-                        sp(::user::interaction) pui = this; // hold reference to ourselves/
-                        // because parent can be only holder
-                        // if the only reference is lost, this window is destroyed
-                        // and we are removing only to add just soon later
-                        // for reordering (z-order) purposes
-
-                        try
-                        {
-
-                           GetParent()->m_uiptraChild.remove(this);
-
-                        }
-                        catch(...)
-                        {
-
-                        }
-
-                        try
-                        {
-
-                           GetParent()->m_uiptraChild.add_unique(this);
-
-                        }
-                        catch(...)
-                        {
-
-                        }
-
-                     }
-
-                  }
-
-               }
-
-            }
-
-         }
+         return false;
 
       }
 
-
-      if(m_pimpl != NULL && (GetParent() == NULL || (!(nFlags & SWP_NOSIZE) || !(nFlags & SWP_NOMOVE))))
-      {
-
-         bOk = m_pimpl->SetWindowPos(z,x,y,cx,cy,nFlags);
-
-      }
-      else if(nFlags & SWP_SHOWWINDOW)
-      {
-
-         bOk = ShowWindow(SW_SHOW);
-
-      }
-
-      m_bRectOk = false;
-
-      if(!(nFlags & SWP_NOREDRAW) && IsWindowVisible())
-      {
-
-         //if(is_composite() & (nFlags & SWP_NOSIZE))
-         //{
-
-         //   _001UpdateScreen();
-
-         //}
-         //else
-         //{
-
-         RedrawWindow();
-
-         //}
-
-      }
-
-      if(bOk && (!(nFlags & SWP_NOMOVE) || !(nFlags & SWP_NOSIZE)))
-      {
-
-         m_dwLastSizeMove    = ::get_tick_count();
-
-         m_bSizeMove         = true;
-
-      }
-
-
-      return bOk;
+      return m_pimpl->SetWindowPos(z, x, y, cx, cy, nFlags);
 
    }
 
@@ -7391,7 +7531,7 @@ restart:
 
 
 
-   ::user::interaction * interaction::get_child(::user::interaction * pui)
+   bool interaction::get_child(sp(::user::interaction) & pui)
    {
 
       synch_lock sl(m_pmutex);

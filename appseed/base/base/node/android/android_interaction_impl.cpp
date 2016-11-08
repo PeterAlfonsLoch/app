@@ -3339,6 +3339,7 @@ bool interaction_impl::SetWindowPos(int_ptr z, int32_t x, int32_t y, int32_t cx,
 
 }
 
+
 void interaction_impl::MoveWindow(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, bool bRepaint)
 {
    ASSERT(::IsWindow((oswindow)get_handle()));

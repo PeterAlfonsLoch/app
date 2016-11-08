@@ -166,6 +166,8 @@ namespace draw2d
       virtual bool rgb_from(::draw2d::dib * pdib);
 
 
+      virtual void saturation(double dRate);
+
 
       virtual void SetIconMask(::visual::icon * picon, int32_t cx, int32_t cy);
       virtual void RadialFill(BYTE a, BYTE r, BYTE g, BYTE b, int32_t x, int32_t y, int32_t iRadius);
@@ -288,6 +290,7 @@ namespace draw2d
       virtual void xor_dib_frame2(void * lpdata, int32_t iFrame, int32_t iFrameCount);
 
       virtual bool create_circle(dib * pdib, int diameter);
+      virtual bool create_framed_square(dib * pdib, int inner, int outer, COLORREF cr);
 
 
       //virtual int32_t width();

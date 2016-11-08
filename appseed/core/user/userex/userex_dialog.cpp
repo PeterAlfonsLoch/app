@@ -74,7 +74,7 @@ bool dialog::show(const char * pszMatter, property_set  * ppropertyset)
 
    m_pframe =  (m_pdocument->get_view()->GetParentFrame());
    m_pframe->m_bWindowFrame         = true;
-   m_pframe->m_bblur_Background     = true;
+   //m_pframe->m_bblur_Background     = true;
 
    on_position_parent_frame();
 

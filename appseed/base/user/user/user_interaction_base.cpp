@@ -718,7 +718,12 @@ Restart:
    LRESULT interaction_base::send_message(UINT uiMessage,WPARAM wparam,lparam lparam)
    {
 
-//      ::exception::throw_interface_only(get_app());
+      return message_call(uiMessage, wparam, lparam);
+
+   }
+
+   LRESULT interaction_base::message_call(UINT uiMessage, WPARAM wparam, lparam lparam)
+   {
 
       return 0;
 
@@ -744,9 +749,15 @@ Restart:
    bool interaction_base::IsWindowVisible()
    {
 
-//      ::exception::throw_interface_only(get_app());
-
       return false;
+
+   }
+
+
+   bool interaction_base::is_this_visible()
+   {
+
+      return (GetStyle() & WS_VISIBLE) != 0;
 
    }
 
@@ -1690,6 +1701,22 @@ Restart:
    }
 
 
+   void interaction_base::on_translate()
+   {
+
+      ::exception::throw_interface_only(get_app());
+
+   }
+
+
+   void interaction_base::on_do_show_flags()
+   {
+
+      ::exception::throw_interface_only(get_app());
+
+   }
+
+
    void interaction_base::ShowOwnedPopups(bool bShow)
    {
 
@@ -1878,26 +1905,13 @@ Restart:
    }
 
 
-   //void interaction_base::_001UpdateScreen(bool bUpdateBuffer)
-   //{
-
-   //   ::exception::throw_interface_only(get_app());
-
-   //}
-
-   //void interaction_base::_001UpdateBuffer()
-   //{
-
-   //   ::exception::throw_interface_only(get_app());
-
-   //}
-
-   void interaction_base::_001UpdateWindow()
+   void interaction_base::_001UpdateWindow(bool bUpdateBuffer)
    {
 
-      //::exception::throw_interface_only(get_app());
+      UNREFERENCED_PARAMETER(bUpdateBuffer);
 
    }
+
 
    void interaction_base::_001WindowMinimize()
    {

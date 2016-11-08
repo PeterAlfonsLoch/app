@@ -61,28 +61,18 @@ namespace user
       bool                          m_bTranslateMouseMessageCursor;
       bool                          m_bComposite;
       bool                          m_bUpdateGraphics;
-      //sp(mutex)                     m_spmutexDisplay;
       
       point                         m_pt;
       size                          m_size;
 
-
-      //UINT m_nFlags;      // see WF_ flags above
-
       native_window *               m_pwindow;
 
-
       sp(window_graphics)           m_spgraphics;
-      //::visual::dib_sp              m_spdib;
-
-      sp(mutex)                     m_spmutexBuffer;
 
       ::user::interaction *         m_puiCapture;
 
-      bool                          m_bNeedLayout;
-
-      mutex *                       m_pmutexDraw;
-
+      pointer < mutex >             m_apmutexDraw; // auto pointer
+      pointer < mutex >             m_apmutexRedraw; // auto pointer
 
       interaction_impl();
 
@@ -718,7 +708,7 @@ namespace user
       //virtual void _001UpdateScreen(bool bUpdateBuffer = true);
       //virtual void _001UpdateBuffer();
 
-      virtual void _001UpdateWindow();
+      virtual void _001UpdateWindow(bool bUpdateBuffer = true);
 
 
       virtual void update_graphics_resources();
@@ -737,7 +727,10 @@ namespace user
       virtual ::user::interaction * get_focus_ui() override;
       virtual void set_focus_guie(::user::interaction * pguie) override;
 
-
+      virtual void redraw_add(::object * p);
+      virtual void redraw_remove(::object * p);
+      virtual bool has_redraw();
+      virtual mutex * mutex_redraw();
 
 
    };

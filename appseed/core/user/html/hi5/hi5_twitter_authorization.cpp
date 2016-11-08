@@ -168,7 +168,7 @@ namespace hi5
             
             m_etranslucency = ::user::TranslucencyPresent;
 
-            pframe->m_bblur_Background = true;
+            //pframe->m_bblur_Background = true;
 
          }
 

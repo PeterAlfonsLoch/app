@@ -1346,7 +1346,7 @@ void simple_frame_window::InitialFramePosition(bool bForceRestore)
 
    m_bLayoutEnable = true;
 
-   on_layout();
+   //on_layout();
 
    if (m_palphasource != NULL)
    {
@@ -1397,6 +1397,10 @@ void simple_frame_window::_001OnDeferPaintLayeredWindowBackground(::draw2d::grap
 
 void simple_frame_window::_000OnDraw(::draw2d::graphics * pgraphicsParam)
 {
+
+   defer_check_layout();
+
+   defer_check_zorder();
 
    if (!(IsWindowVisible() && (GetParent() == NULL || GetTopLevelFrame() == NULL || !GetTopLevelFrame()->WfiIsIconic())))
       return;
@@ -1731,7 +1735,7 @@ bool simple_frame_window::LoadToolBar(sp(::type) sptype, id idToolBar, const cha
 
    AddControlBar(ptoolbar);
 
-   on_layout();
+   //on_layout();
 
    return true;
 
@@ -2231,7 +2235,7 @@ void simple_frame_window::guserbaseOnInitialUpdate(signal_details * pobj)
 void simple_frame_window::_010OnDraw(::draw2d::graphics * pgraphics)
 {
 
-   if (!m_bVisible)
+   if (!is_this_visible())
       return;
 
    if(GetExStyle() & WS_EX_LAYERED)
@@ -2242,7 +2246,7 @@ void simple_frame_window::_010OnDraw(::draw2d::graphics * pgraphics)
       while (pui != NULL)
       {
 
-         if (pui->IsWindowVisible() && !base_class < ::user::wndfrm::frame::control_box > ::bases(pui))
+         if (!base_class < ::user::wndfrm::frame::control_box > ::bases(pui))
          {
 
             pui->_000OnDraw(pgraphics);

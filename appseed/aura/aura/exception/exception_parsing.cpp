@@ -57,3 +57,37 @@ avoid_parsing_exception::~avoid_parsing_exception()
 }
 
 
+
+
+
+json_parsing_exception::json_parsing_exception(::aura::application * papp, const string & strMessage) :
+   object(papp),
+   ::call_stack(get_app()),
+   ::exception::base(get_app()),
+   simple_exception(papp, strMessage),
+   parsing_exception(papp, strMessage)
+{
+
+   output_debug_string("parsing_exception");
+
+}
+
+
+json_parsing_exception::~json_parsing_exception()
+{
+
+}
+
+
+
+CLASS_DECL_AURA bool throw_json_parsing_exception(const string & strMessage)
+{
+
+   if (get_avoid_parsing_exception())
+      return false;
+
+   throw json_parsing_exception(::get_thread_app(), strMessage);
+
+   return true;
+
+}

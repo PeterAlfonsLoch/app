@@ -480,7 +480,9 @@ namespace user
             if(pwnd == NULL || pwnd->m_pimpl->m_bIgnoreSizeEvent)
                return false;
 
-            on_layout();
+            synch_lock sl(pwnd->m_pmutex);
+
+            //on_layout();
 
             return false;
 
@@ -730,7 +732,7 @@ namespace user
                   prectControlBox->left,
                   prectControlBox->top,
                   prectControlBox->width(),
-                  prectControlBox->height(),bShow ? SWP_SHOWWINDOW : 0);
+                  prectControlBox->height(),(bShow ? SWP_SHOWWINDOW : 0) | SWP_NOZORDER);
 
             }
             else
@@ -741,7 +743,7 @@ namespace user
                   prectControlBox->left,
                   prectControlBox->top,
                   prectControlBox->width(),
-                  prectControlBox->height(), bShow ? SWP_SHOWWINDOW : 0);
+                  prectControlBox->height(), (bShow ? SWP_SHOWWINDOW : 0) | SWP_NOZORDER);
 
                if(get_control_box()->m_eappearance != pappearance->GetAppearance())
                {

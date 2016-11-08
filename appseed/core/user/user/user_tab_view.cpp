@@ -736,8 +736,12 @@ namespace user
 
    void tab_view::_000OnDraw(::draw2d::graphics * pgraphics)
    {
+
+      defer_check_layout();
+
+      defer_check_zorder();
       
-      if(!m_bVisible)
+      if(!is_this_visible())
          return;
       
       _001DrawChildren(pgraphics);

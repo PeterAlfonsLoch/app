@@ -337,6 +337,7 @@ public:
     //Operations
     //Lookup and add if not there
    VALUE& operator[](ARG_KEY key);
+   const VALUE& operator[](ARG_KEY key) const;
 
    assoc * get_assoc(ARG_KEY key);
    assoc * get_assoc(ARG_KEY key) const { return ((map *) this)->get_assoc(key);  }
@@ -1335,6 +1336,14 @@ typename map < KEY, ARG_KEY, VALUE, ARG_VALUE, PAIR >::assoc * map < KEY, ARG_KE
 
 template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class PAIR >
 VALUE& map < KEY, ARG_KEY, VALUE, ARG_VALUE, PAIR >::operator[](ARG_KEY key)
+{
+
+   return get_assoc(key)->m_element2;  // return new reference
+
+}
+
+template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class PAIR >
+const VALUE & map < KEY, ARG_KEY, VALUE, ARG_VALUE, PAIR >::operator[](ARG_KEY key) const
 {
 
    return get_assoc(key)->m_element2;  // return new reference

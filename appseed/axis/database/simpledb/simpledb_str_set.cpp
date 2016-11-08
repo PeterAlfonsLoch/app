@@ -348,6 +348,8 @@ bool db_str_set::load(const char * lpKey, string & strValue)
 
       mutex * pmutex = pdatabase->m_pmutex;
 
+      sl.unlock();
+
       single_lock slDatabase(pmutex);
 
       string strKey;

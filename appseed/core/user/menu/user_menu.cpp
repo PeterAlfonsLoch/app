@@ -150,7 +150,8 @@ namespace user
 
       for (int32_t i = 0; i < spitema->get_size(); i++)
       {
-         class size size = pgraphics->GetTextExtent(spitema->element_at(i)->m_button.GetWindowText());
+         string strButtonText = spitema->element_at(i)->m_button.GetWindowText();
+         class size size = pgraphics->GetTextExtent(strButtonText);
          if (spitema->element_at(i)->IsPopup())
             size.cx += 12 + 16;
          if(size.cy > iMaxHeight)
@@ -174,7 +175,7 @@ namespace user
          ::user::menu_item * pitem = spitema->element_at(i);
          if(pitem->m_id == "separator")
          {
-            rect.bottom = rect.top + 3;
+            rect.bottom = rect.top + 5;
             iSeparatorCount--;
          }
          else
@@ -182,7 +183,7 @@ namespace user
             rect.bottom = rect.top + m_iItemHeight;
          }
          pitem->m_button.create_window(null_rect(), this, pitem->m_id);
-         pitem->m_button.SetWindowPos(0, rect.left, rect.top, rect.width(), rect.height(), 0);
+         pitem->m_button.SetWindowPos(0, rect.left, rect.top, rect.width(), rect.height(), SWP_SHOWWINDOW | SWP_NOZORDER);
          pitem->m_button.m_pschema = m_pschema->m_pschemaItemButton;
          pitem->m_button.m_pitem = pitem;
          pitem->m_pbase = this;
@@ -197,7 +198,7 @@ namespace user
             pta.add(point(rectPopupArrow.left, rectPopupArrow.bottom - 2));
             pgraphics->Polygon(pta.get_data(), pta.get_size());
          }*/
-         rect.top = rect.bottom;
+         rect.top = rect.bottom + 2;
       }
 
       m_size.cy = rect.bottom;
@@ -283,6 +284,10 @@ namespace user
 
       ::user::interaction::_001OnDraw(pgraphics);
 
+      //rect r;
+      //GetClientRect(r);
+
+      //pgraphics->FillSolidRect(r, ARBV)
    }
 
 
@@ -770,6 +775,14 @@ namespace user
       }
 
       return puiTarget;
+
+   }
+
+
+   bool menu::has_pending_graphical_update()
+   {
+
+      return true;
 
    }
 

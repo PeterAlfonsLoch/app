@@ -19,6 +19,8 @@ namespace userex
       ::user::impact_system *                   m_ptemplateChildForm;
       ::user::impact_system *                   m_ptemplatePlaceHolder;
 
+      map < ::type *, type *, ::user::impact_system *, ::user::impact_system * > m_mapTemplate;
+
 
       sp(filemanager::_shell::ImageSet)         m_pshellimageset;
 
@@ -103,6 +105,7 @@ namespace userex
       sp(::user::document)   create_form(::aura::application * papp, ::user::form_callback * pcallback, sp(::user::interaction) pwndParent, var var = ::var(::var::type_empty_argument));
       sp(::user::document)   create_form(::aura::application * papp, sp(::user::form) pview, ::user::form_callback * pcallback, sp(::user::interaction) pwndParent, var var = ::var(::var::type_empty_argument));
       sp(::user::document)   create_child_form(::aura::application * papp, ::user::form_callback * pcallback, sp(::user::interaction) pwndParent, var var = ::var(::var::type_empty_argument));
+      sp(::user::document)   create_child_form(::aura::application * papp, sp(::type) pt, sp(::user::interaction) pwndParent, var var = ::var(::var::type_empty_argument));
       sp(::user::document)   create_child_form(::aura::application * papp, sp(::user::form) pview, ::user::form_callback * pcallback, sp(::user::interaction) pwndParent, var var = ::var(::var::type_empty_argument));
       ::user::document * hold(sp(::user::interaction) pui);
 

@@ -356,7 +356,21 @@ namespace windows
 
    bool interaction_impl::ModifyStyle(oswindow oswindow,uint32_t dwRemove,uint32_t dwAdd,UINT nFlags)
    {
-      return __modify_style(oswindow,GWL_STYLE,dwRemove,dwAdd,nFlags);
+      
+      bool bOk = __modify_style(oswindow,GWL_STYLE,dwRemove,dwAdd,0);
+
+      if (nFlags != 0)
+      {
+
+         m_iShowFlags = nFlags;
+
+
+
+      }
+
+
+      return bOk;
+
    }
 
 
@@ -523,6 +537,13 @@ namespace windows
 
       if(oswindow == NULL)
          return FALSE;
+
+      //if (!m_pui->m_bMessageWindow)
+      //{
+
+      //   m_spgraphics.alloc
+
+      //}
 
       bool bUnicode = ::IsWindowUnicode(oswindow) != FALSE;
 
@@ -749,23 +770,23 @@ namespace windows
          return;
 
       }
-      else if(!(GetExStyle() & WS_EX_LAYERED))
-      {
+      //else if(!(GetExStyle() & WS_EX_LAYERED))
+      //{
 
-         ::rect r;
+      //   ::rect r;
 
-         ::GetWindowRect(get_handle(),r);
+      //   ::GetWindowRect(get_handle(),r);
 
-         ::copy(m_rectParentClient,r);
+      //   ::copy(m_rectParentClient,r);
 
-         if(GetParent() != NULL)
-         {
+      //   if(GetParent() != NULL)
+      //   {
 
-            GetParent()->ScreenToClient(m_rectParentClient);
+      //      GetParent()->ScreenToClient(m_rectParentClient);
 
-         }
+      //   }
 
-      }
+      //}
 
 
    }
@@ -1543,7 +1564,7 @@ namespace windows
 
             ref_array < ::user::interaction > uiptra;
 
-            while ((pui = m_guieptraMouseHover.get_child(pui)).is_set())
+            while (m_guieptraMouseHover.get_child(pui))
             {
 
                pui->GetWindowRect(rectUi);
@@ -1647,9 +1668,9 @@ restart_mouse_hover_check:
             if (m_pui->m_bTransparentMouseEvents)
             {
                
-               ::user::interaction * pui = NULL;
+               sp(::user::interaction) pui;
 
-               while ((pui = m_guieptraMouseHover.get_child(pui)) != NULL)
+               while (m_guieptraMouseHover.get_child(pui))
                {
 
                   if (!pui->_001IsPointInside(pmouse->m_pt))
@@ -2044,32 +2065,32 @@ restart_mouse_hover_check:
    void interaction_impl::ScrollWindow(int32_t xAmount,int32_t yAmount,
                                        LPCRECT lpRect,LPCRECT lpClipRect)
    {
-      ASSERT(::IsWindow(get_handle()));
+      //ASSERT(::IsWindow(get_handle()));
 
-      if(IsWindowVisible() || lpRect != NULL || lpClipRect != NULL)
-      {
-         // When visible, let Windows do the scrolling
-         ::ScrollWindow(get_handle(),xAmount,yAmount,lpRect,lpClipRect);
-      }
-      else
-      {
-         // Windows does not perform any scrolling if the interaction_impl is
-         // not visible.  This leaves child windows unscrolled.
-         // To ac::count for this oversight, the child windows are moved
-         // directly instead.
-         oswindow oswindow_Child = ::GetWindow(get_handle(),GW_CHILD);
-         if(oswindow_Child != NULL)
-         {
-            for(; oswindow_Child != NULL;
-                  oswindow_Child = ::GetNextWindow(oswindow_Child,GW_HWNDNEXT))
-            {
-               rect rect;
-               ::GetWindowRect(oswindow_Child,&rect);
-               ScreenToClient(&rect);
-               ::SetWindowPos(oswindow_Child,NULL,rect.left + xAmount,rect.top + yAmount,0,0,SWP_NOSIZE | SWP_NOACTIVATE | SWP_NOZORDER);
-            }
-         }
-      }
+      //if(IsWindowVisible() || lpRect != NULL || lpClipRect != NULL)
+      //{
+      //   // When visible, let Windows do the scrolling
+      //   ::ScrollWindow(get_handle(),xAmount,yAmount,lpRect,lpClipRect);
+      //}
+      //else
+      //{
+      //   // Windows does not perform any scrolling if the interaction_impl is
+      //   // not visible.  This leaves child windows unscrolled.
+      //   // To ac::count for this oversight, the child windows are moved
+      //   // directly instead.
+      //   oswindow oswindow_Child = ::GetWindow(get_handle(),GW_CHILD);
+      //   if(oswindow_Child != NULL)
+      //   {
+      //      for(; oswindow_Child != NULL;
+      //            oswindow_Child = ::GetNextWindow(oswindow_Child,GW_HWNDNEXT))
+      //      {
+      //         rect rect;
+      //         ::GetWindowRect(oswindow_Child,&rect);
+      //         ScreenToClient(&rect);
+      //         ::SetWindowPos(oswindow_Child,NULL,rect.left + xAmount,rect.top + yAmount,0,0,SWP_NOSIZE | SWP_NOACTIVATE | SWP_NOZORDER);
+      //      }
+      //   }
+      //}
 
    }
 
@@ -2466,6 +2487,7 @@ restart_mouse_hover_check:
       return (int32_t)Default();
    }
 
+
    void interaction_impl::_001OnCreate(signal_details * pobj)
    {
 
@@ -2498,53 +2520,20 @@ restart_mouse_hover_check:
                if (!m_pui->m_bLockWindowUpdate)
                {
 
-                  if(m_pui->GetExStyle() & WS_EX_LAYERED)
-                  {
-
-
-                     if (m_rectLastPos != m_rectParentClient)
-                     {
-
-                        m_dwLastPos = ::get_tick_count();
-
-                        m_rectLastPos = m_rectParentClient;
-
-                     }
-                     else
-                     {
-
-                        rect64 r2;
-
-                        GetWindowRect(r2);
-                        
-                        if (r2 != m_rectParentClient && ::get_tick_count() - m_dwLastPos > 400)
-                        {
-
-                           ::SetWindowPos(m_oswindow, NULL,
-                              m_rectParentClient.left,
-                              m_rectParentClient.top,
-                              m_rectParentClient.width(),
-                              m_rectParentClient.height(),
-                              SWP_NOZORDER
-                              | SWP_NOREDRAW
-                              | SWP_NOCOPYBITS
-                              | SWP_NOACTIVATE
-                              | SWP_NOOWNERZORDER
-                              | SWP_NOSENDCHANGING
-                              | SWP_DEFERERASE);
-
-                        }
-
-                     }
-
-                  }
-
-                  if (m_pui->has_pending_graphical_update())
+                  if (m_pui->has_pending_graphical_update()
+                  || m_pui->check_need_layout())
                   {
 
                      RedrawWindow(NULL, NULL, RDW_INVALIDATE | RDW_UPDATENOW | RDW_NOERASE);
 
                      m_pui->on_after_graphical_update();
+
+                  }
+                  else if (m_pui->check_need_translation()
+                     || m_pui->check_show_flags()
+                     || m_pui->check_need_zorder())
+                  {
+
 
                   }
 
@@ -3086,92 +3075,92 @@ restart_mouse_hover_check:
 
    void interaction_impl::CenterWindow(::user::interaction * pAlternateOwner)
    {
-      ASSERT(::IsWindow(get_handle()));
+      //ASSERT(::IsWindow(get_handle()));
 
-      // determine owner interaction_impl to center against
-      uint32_t dwStyle = GetStyle();
-      sp(::user::interaction) oswindow_Center = pAlternateOwner;
-      if(pAlternateOwner == NULL)
-      {
-         if(dwStyle & WS_CHILD)
-            oswindow_Center = GetParent();
-         else
-            oswindow_Center = GetWindow(GW_OWNER);
-         if(oswindow_Center != NULL)
-         {
-            // let parent determine alternate center interaction_impl
-            sp(::user::interaction) oswindow_Temp((lparam)oswindow_Center->send_message(WM_QUERYCENTERWND));
-            if(oswindow_Temp != NULL)
-               oswindow_Center = oswindow_Temp;
-         }
-      }
+      //// determine owner interaction_impl to center against
+      //uint32_t dwStyle = GetStyle();
+      //sp(::user::interaction) oswindow_Center = pAlternateOwner;
+      //if(pAlternateOwner == NULL)
+      //{
+      //   if(dwStyle & WS_CHILD)
+      //      oswindow_Center = GetParent();
+      //   else
+      //      oswindow_Center = GetWindow(GW_OWNER);
+      //   if(oswindow_Center != NULL)
+      //   {
+      //      // let parent determine alternate center interaction_impl
+      //      sp(::user::interaction) oswindow_Temp((lparam)oswindow_Center->send_message(WM_QUERYCENTERWND));
+      //      if(oswindow_Temp != NULL)
+      //         oswindow_Center = oswindow_Temp;
+      //   }
+      //}
 
-      // get coordinates of the interaction_impl relative to its parent
-      rect rcDlg;
-      GetWindowRect(&rcDlg);
-      rect rcArea;
-      rect rcCenter;
-      sp(::user::interaction) oswindow_Parent;
-      if(!(dwStyle & WS_CHILD))
-      {
-         // don't center against invisible or minimized windows
-         if(oswindow_Center != NULL)
-         {
-            uint32_t dwAlternateStyle = oswindow_Center->get_window_long(GWL_STYLE);
-            if(!(dwAlternateStyle & WS_VISIBLE) || (dwAlternateStyle & WS_MINIMIZE))
-               oswindow_Center = NULL;
-         }
+      //// get coordinates of the interaction_impl relative to its parent
+      //rect rcDlg;
+      //GetWindowRect(&rcDlg);
+      //rect rcArea;
+      //rect rcCenter;
+      //sp(::user::interaction) oswindow_Parent;
+      //if(!(dwStyle & WS_CHILD))
+      //{
+      //   // don't center against invisible or minimized windows
+      //   if(oswindow_Center != NULL)
+      //   {
+      //      uint32_t dwAlternateStyle = oswindow_Center->get_window_long(GWL_STYLE);
+      //      if(!(dwAlternateStyle & WS_VISIBLE) || (dwAlternateStyle & WS_MINIMIZE))
+      //         oswindow_Center = NULL;
+      //   }
 
-         /*
-         MONITORINFO mi;
-         mi.cbSize = sizeof(mi);
+      //   /*
+      //   MONITORINFO mi;
+      //   mi.cbSize = sizeof(mi);
 
-         // center within appropriate monitor coordinates
-         if(oswindow_Center == NULL)
-         {
+      //   // center within appropriate monitor coordinates
+      //   if(oswindow_Center == NULL)
+      //   {
 
-         :: GetMonitorInfo(::MonitorFromWindow(hwDefault,MONITOR_DEFAULTTOPRIMARY),&mi);
-         rcCenter = mi.rcWork;
-         rcArea = mi.rcWork;
-         }
-         else
-         {
-         oswindow_Center->GetWindowRect(&rcCenter);
-         ::GetMonitorInfo(::MonitorFromWindow(oswindow_Center->get_handle(),MONITOR_DEFAULTTONEAREST),&mi);
-         rcArea = mi.rcWork;
-         }
-         */
-      }
-      else
-      {
-         // center within parent client coordinates
-         oswindow_Parent = GetParent();
-         ASSERT(oswindow_Parent->IsWindow());
+      //   :: GetMonitorInfo(::MonitorFromWindow(hwDefault,MONITOR_DEFAULTTOPRIMARY),&mi);
+      //   rcCenter = mi.rcWork;
+      //   rcArea = mi.rcWork;
+      //   }
+      //   else
+      //   {
+      //   oswindow_Center->GetWindowRect(&rcCenter);
+      //   ::GetMonitorInfo(::MonitorFromWindow(oswindow_Center->get_handle(),MONITOR_DEFAULTTONEAREST),&mi);
+      //   rcArea = mi.rcWork;
+      //   }
+      //   */
+      //}
+      //else
+      //{
+      //   // center within parent client coordinates
+      //   oswindow_Parent = GetParent();
+      //   ASSERT(oswindow_Parent->IsWindow());
 
-         oswindow_Parent->GetClientRect(&rcArea);
-         ASSERT(oswindow_Center->IsWindow());
-         oswindow_Center->GetClientRect(&rcCenter);
-         ::MapWindowPoints(oswindow_Center->get_handle(),oswindow_Parent->get_handle(),(POINT*)&rcCenter,2);
-      }
+      //   oswindow_Parent->GetClientRect(&rcArea);
+      //   ASSERT(oswindow_Center->IsWindow());
+      //   oswindow_Center->GetClientRect(&rcCenter);
+      //   ::MapWindowPoints(oswindow_Center->get_handle(),oswindow_Parent->get_handle(),(POINT*)&rcCenter,2);
+      //}
 
-      // find dialog's upper left based on rcCenter
-      int32_t xLeft = (rcCenter.left + rcCenter.right) / 2 - rcDlg.width() / 2;
-      int32_t yTop = (rcCenter.top + rcCenter.bottom) / 2 - rcDlg.height() / 2;
+      //// find dialog's upper left based on rcCenter
+      //int32_t xLeft = (rcCenter.left + rcCenter.right) / 2 - rcDlg.width() / 2;
+      //int32_t yTop = (rcCenter.top + rcCenter.bottom) / 2 - rcDlg.height() / 2;
 
-      // if the dialog is outside the screen, move it inside
-      if(xLeft < rcArea.left)
-         xLeft = rcArea.left;
-      else if(xLeft + rcDlg.width() > rcArea.right)
-         xLeft = rcArea.right - rcDlg.width();
+      //// if the dialog is outside the screen, move it inside
+      //if(xLeft < rcArea.left)
+      //   xLeft = rcArea.left;
+      //else if(xLeft + rcDlg.width() > rcArea.right)
+      //   xLeft = rcArea.right - rcDlg.width();
 
-      if(yTop < rcArea.top)
-         yTop = rcArea.top;
-      else if(yTop + rcDlg.height() > rcArea.bottom)
-         yTop = rcArea.bottom - rcDlg.height();
+      //if(yTop < rcArea.top)
+      //   yTop = rcArea.top;
+      //else if(yTop + rcDlg.height() > rcArea.bottom)
+      //   yTop = rcArea.bottom - rcDlg.height();
 
-      // map screen coordinates to child coordinates
-      SetWindowPos(0,xLeft,yTop,-1,-1,
-                   SWP_NOSIZE | SWP_NOZORDER | SWP_NOACTIVATE);
+      //// map screen coordinates to child coordinates
+      //SetWindowPos(0,xLeft,yTop,-1,-1,
+      //             SWP_NOSIZE | SWP_NOZORDER | SWP_NOACTIVATE);
    }
 
    bool interaction_impl::CheckAutoCenter()
@@ -3491,186 +3480,170 @@ restart_mouse_hover_check:
    }
 
 
-   bool interaction_impl::SetWindowPos(int_ptr z,int32_t x,int32_t y,int32_t cx,int32_t cy,UINT nFlags)
+   void interaction_impl::on_layout()
    {
 
-      //single_lock sl(m_pui->m_spmutex, true);
+      ::rect64 rectOld = m_rectParentClient;
 
-      if(GetExStyle() & WS_EX_LAYERED)
+      ::rect64 rectNew = m_rectParentClientRequest;
+
+      m_rectParentClient = m_rectParentClientRequest;
+
+      if (rectOld.top_left() != rectNew.top_left())
       {
 
-         keep < bool > keepLockWindowUpdate(&m_pui->m_bLockWindowUpdate, true, false, true);
+         m_pui->message_call(WM_MOVE);
 
+         sp(::user::interaction) pui;
 
-         ::rect rectBefore = m_rectParentClient;
-
-         ::rect rect = m_rectParentClient;
-
-         if(!(nFlags & SWP_NOMOVE))
+         while (m_pui->get_child(pui))
          {
 
-            rect.move_to(x,y);
-
-         }
-
-         if(!(nFlags & SWP_NOSIZE))
-         {
-
-            rect.size(cx,cy);
-
-         }
-
-         if(rectBefore.size() != rect.size() || m_pui->get_appearance() != m_eapperanceLayout)
-         {
-
-            m_rectParentClient = rect;
-
-            m_eapperanceLayout = m_pui->get_appearance();
-
-            send_message(WM_SIZE,0,MAKELONG(MAX(0,rect.width()),MAX(0,rect.height())));
-
-            //keepLockWindowUpdate.KeepAway();
-
-            {
-
-               DWORD dwTime2 = ::get_tick_count();
-
-               //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
-               //TRACE("OnSize::WndImpl call timem= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
-
-            }
-
-
-            //::SetWindowPos(get_handle(), (oswindow)z,
-            //   x,
-            //   y,
-            //   cx,
-            //   cy,
-            //   nFlags | SWP_NOREDRAW | SWP_NOSENDCHANGING | SWP_NOREPOSITION | SWP_NOCOPYBITS | SWP_DEFERERASE);
-
-            //m_pui->_001UpdateBuffer();
-            //m_pui->_001UpdateWindow();
-            {
-
-               DWORD dwTime2 = ::get_tick_count();
-
-               //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
-               //TRACE("OnSize::WndImpl call timen= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
-
-            }
-
-
-            //m_pui->_001UpdateScreen();
-
-            {
-
-               DWORD dwTime2 = ::get_tick_count();
-
-               //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
-               //TRACE("OnSize::WndImpl call timeo= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
-
-            }
-
-         }
-         else if(rectBefore.top_left() != rect.top_left())
-         {
-
-
-            cslock cslDisplay(cs_display());
-
-            m_rectParentClient = rect;
-
-            //m_pui->_001UpdateScreen(false);
-
-            //m_pui->_001UpdateWindow(false);
-
-            //m_pui->_001UpdateWindow();
-
-
-         }
-
-//         ::SetWindowPos(get_handle(),(oswindow)z,x,y,cx,cy,nFlags | SWP_NOREDRAW);
-
-         //{
-
-         //   RECT r2;
-
-         //   GetWindowRect(m_pimpl->m_oswindow, &r2);
-
-         //   RECT64 r64;
-
-         //   ::copy(&r64, &r2);
-
-         //   if (!::is_equal(&r64, &m_pimpl->m_rectParentClient))
-         //   {
-
-               //::SetWindowPos(m_pimpl->m_oswindow, NULL,
-               //   m_pimpl->m_rectParentClient.left,
-               //   m_pimpl->m_rectParentClient.top,
-               //   m_pimpl->m_rectParentClient.width(),
-               //   m_pimpl->m_rectParentClient.height(),
-               //   SWP_NOZORDER
-               //   | SWP_NOREDRAW
-               //   | SWP_NOCOPYBITS
-               //   | SWP_NOACTIVATE
-               //   | SWP_NOOWNERZORDER
-               //   | SWP_NOSENDCHANGING
-               //   | SWP_DEFERERASE);
-
-//            }
-
-         //}
-
-
-
-
-         if(nFlags & SWP_SHOWWINDOW)
-         {
-
-            ShowWindow(SW_SHOW);
-
-         }
-
-         if (!(nFlags & SWP_NOREDRAW))
-         {
-
-            m_pui->RedrawWindow(NULL, NULL, RDW_UPDATENOW);
-
-         }
-
-
-
-      }
-      else
-      {
-
-         //sl.unlock();
-
-         if(z == -3)
-         {
-
-            ::SetWindowPos(get_handle(),(oswindow)0,x,y,cx,cy,nFlags);
-
-         }
-         else
-         {
-
-            ::SetWindowPos(get_handle(),(oswindow)z,x,y,cx,cy,nFlags);
+            pui->on_translate();
 
          }
 
       }
 
-      if (nFlags & SWP_SHOWWINDOW)
+      if (rectOld.size() != rectNew.size())
       {
 
-         m_pui->m_bVisible = true;
+         m_pui->message_call(WM_SIZE);
 
       }
 
-      m_bUpdateGraphics = true;
+      if (rectNew != rectOld)
+      {
 
-      return true;
+         m_pui->m_dwLastSizeMove = ::get_tick_count();
+
+         m_pui->m_bSizeMove = true;
+
+      }
+
+   }
+
+
+   void interaction_impl::clear_need_layout()
+   {
+
+      m_pui->m_bNeedLayout = false;
+
+   }
+
+
+   void interaction_impl::on_translate()
+   {
+
+      ::rect64 rectOld = m_rectParentClient;
+
+      ::rect64 rectNew = m_rectParentClientRequest;
+
+      m_rectParentClient = m_rectParentClientRequest;
+
+      if (rectOld.top_left() != rectNew.top_left())
+      {
+
+         m_pui->message_call(WM_MOVE);
+
+         sp(::user::interaction) pui;
+
+         while (m_pui->get_child(pui))
+         {
+
+            pui->on_translate();
+
+         }
+
+      }
+
+      if (rectOld.size() != rectNew.size())
+      {
+
+         m_pui->message_call(WM_SIZE);
+
+      }
+
+      if (rectNew != rectOld)
+      {
+
+         m_pui->m_dwLastSizeMove = ::get_tick_count();
+
+         m_pui->m_bSizeMove = true;
+
+      }
+
+   }
+
+
+   void interaction_impl::clear_need_translation()
+   {
+
+      m_pui->m_bNeedLayout = false;
+
+   }
+
+
+   void interaction_impl::on_do_show_flags()
+   {
+
+      ::rect64 rectOld = m_rectParentClient;
+
+      ::rect64 rectNew = m_rectParentClientRequest;
+
+      m_rectParentClient = m_rectParentClientRequest;
+
+      if (rectOld.top_left() != rectNew.top_left())
+      {
+
+         m_pui->message_call(WM_MOVE);
+
+         sp(::user::interaction) pui;
+
+         while (m_pui->get_child(pui))
+         {
+
+            pui->on_translate();
+
+         }
+
+      }
+
+      if (rectOld.size() != rectNew.size())
+      {
+
+         m_pui->message_call(WM_SIZE);
+
+      }
+
+      if (rectNew != rectOld)
+      {
+
+         m_pui->m_dwLastSizeMove = ::get_tick_count();
+
+         m_pui->m_bSizeMove = true;
+
+      }
+
+   }
+
+
+   void interaction_impl::clear_show_flags()
+   {
+
+      m_pui->m_bNeedLayout = false;
+
+   }
+
+
+   void interaction_impl::on_zorder()
+   {
+
+   }
+
+
+   void interaction_impl::clear_need_zorder()
+   {
 
    }
 
@@ -3853,33 +3826,33 @@ restart_mouse_hover_check:
 
       }
 
-      if(!(GetExStyle() & WS_EX_LAYERED))
-      {
+      //if(!(GetExStyle() & WS_EX_LAYERED))
+      //{
 
-         rect rect32;
+      //   rect rect32;
 
-         if(!::GetWindowRect(get_handle(),rect32))
-         {
+      //   if(!::GetWindowRect(get_handle(),rect32))
+      //   {
 
-            return false;
+      //      return false;
 
-         }
+      //   }
 
-         if(GetParent() != NULL)
-         {
+      //   if(GetParent() != NULL)
+      //   {
 
-            if(!GetParent()->ScreenToClient(rect32))
-            {
+      //      if(!GetParent()->ScreenToClient(rect32))
+      //      {
 
-               return false;
+      //         return false;
 
-            }
+      //      }
 
-         }
+      //   }
 
-         ::copy(m_rectParentClient,rect32);
+      //   ::copy(m_rectParentClient,rect32);
 
-      }
+      //}
 
       *lprect = m_rectParentClient;
 
@@ -3989,77 +3962,22 @@ restart_mouse_hover_check:
       if(!::IsWindow(get_handle()))
          return false;
 
-      //if(GetExStyle() & WS_EX_LAYERED)
-
-      if(true)
+      if(nCmdShow == SW_MAXIMIZE)
       {
 
-         if(nCmdShow == SW_HIDE)
-         {
+         m_pui->_001WindowMaximize();
 
-            /*if(GetStyle() & WS_VISIBLE)
-            {
+      }
+      else if(nCmdShow == SW_RESTORE)
+      {
 
-            ModifyStyle(get_handle(),WS_VISIBLE,0,0);
+         m_pui->_001WindowRestore();
 
-            }*/
+      }
+      else if(nCmdShow == SW_MINIMIZE)
+      {
 
-         }
-         else
-         {
-
-            //if(!(GetStyle() & WS_VISIBLE))
-            //{
-
-            //   ModifyStyle(get_handle(),0,WS_VISIBLE,0);
-
-            //}
-
-         }
-
-         if(nCmdShow == SW_MAXIMIZE)
-         {
-
-            m_pui->_001WindowMaximize();
-
-         }
-         else if(nCmdShow == SW_RESTORE)
-         {
-
-            m_pui->_001WindowRestore();
-
-         }
-         else if(nCmdShow == SW_MINIMIZE)
-         {
-
-            m_pui->_001WindowMinimize();
-
-         }
-         else
-         {
-
-            //            if(nCmdShow != SW_HIDE)
-            //            {
-            //
-            //               ::SetWindowPos(get_safe_handle(),0,(int)m_pui->m_rectParentClient.left,(int)m_pui->m_rectParentClient.top,
-            //                  (int)m_pui->m_rectParentClient.width(),(int)m_pui->m_rectParentClient.height(),SWP_SHOWWINDOW | SWP_NOZORDER);
-            //
-            //            }
-
-            ::ShowWindow(get_handle(),nCmdShow);
-
-         }
-
-         m_pui->m_bVisible = ::IsWindowVisible(get_handle()) != FALSE;
-
-         if((GetExStyle() & WS_EX_LAYERED) && (!m_pui->m_bVisible || m_pui->WfiIsIconic()))
-         {
-
-            ::UpdateLayeredWindow(get_handle(),NULL,NULL,NULL,NULL,NULL,0,NULL,0);
-
-         }
-
-         return m_pui->m_bVisible;
+         m_pui->_001WindowMinimize();
 
       }
       else
@@ -4067,9 +3985,16 @@ restart_mouse_hover_check:
 
          ::ShowWindow(get_handle(),nCmdShow);
 
-         return m_pui->IsWindowVisible();
+      }
+
+      if((GetExStyle() & WS_EX_LAYERED) && (!m_pui->IsWindowVisible() || m_pui->WfiIsIconic()))
+      {
+
+         ::UpdateLayeredWindow(get_handle(),NULL,NULL,NULL,NULL,NULL,0,NULL,0);
 
       }
+
+      return m_pui->IsWindowVisible();
 
    }
 
@@ -4616,52 +4541,52 @@ restart_mouse_hover_check:
    {
 
       ASSERT(::IsWindow(get_handle()));
-      //interaction_impl::SendMessageToDescendants(get_handle(), message, wParam, lParam, bDeep, bOnlyPerm);
+//interaction_impl::SendMessageToDescendants(get_handle(), message, wParam, lParam, bDeep, bOnlyPerm);
 
-      // walk through HWNDs to avoid creating temporary interaction_impl objects
-      // unless we need to call this function recursively
-      sp(::user::interaction) pui = m_pui->top_child();
-      while(pui != NULL)
+// walk through HWNDs to avoid creating temporary interaction_impl objects
+// unless we need to call this function recursively
+sp(::user::interaction) pui = m_pui->top_child();
+while (pui != NULL)
+{
+   try
+   {
+      pui->send_message(message, wParam, lParam);
+   }
+   catch (...)
+   {
+   }
+   if (bDeep)
+   {
+      // send to child windows after parent
+      try
       {
-         try
-         {
-            pui->send_message(message,wParam,lParam);
-         }
-         catch(...)
-         {
-         }
-         if(bDeep)
-         {
-            // send to child windows after parent
-            try
-            {
-               pui->SendMessageToDescendants(message,wParam,lParam,bDeep,bOnlyPerm);
-            }
-            catch(...)
-            {
-            }
-         }
-         try
-         {
-            pui = pui->next_sibling();
-         }
-         catch(...)
-         {
-            break;
-         }
+         pui->SendMessageToDescendants(message, wParam, lParam, bDeep, bOnlyPerm);
       }
+      catch (...)
+      {
+      }
+   }
+   try
+   {
+      pui = pui->next_sibling();
+   }
+   catch (...)
+   {
+      break;
+   }
+}
    }
 
 
 
-   ::draw2d::graphics * interaction_impl::GetDCEx(::draw2d::region* prgnClip,uint32_t flags)
+   ::draw2d::graphics * interaction_impl::GetDCEx(::draw2d::region* prgnClip, uint32_t flags)
    {
 
       ASSERT(::IsWindow(get_handle()));
 
       ::draw2d::graphics_sp g(allocer());
 
-      g->attach(::GetDCEx(get_handle(),(HRGN)prgnClip->get_os_data(),flags));
+      g->attach(::GetDCEx(get_handle(), (HRGN)prgnClip->get_os_data(), flags));
 
       return g.detach();
 
@@ -4694,16 +4619,40 @@ restart_mouse_hover_check:
       if (flags & RDW_UPDATENOW)
       {
 
-         _001UpdateWindow();
 
-         if (GetExStyle() & WS_EX_LAYERED)
+
+
+
+         //if (GetExStyle() & WS_EX_LAYERED)
          {
+
+            _001UpdateWindow();
 
             return true;
 
          }
+         //else
+         //{
 
-         return ::RedrawWindow(get_handle(), lpRectUpdate, prgnUpdate == NULL ? NULL : (HRGN)prgnUpdate->get_os_data(), flags) != FALSE;
+         //   if (!IsWindowVisible() && !m_bShowFlags)
+         //      return false;
+
+         //   if (!IsWindowVisible())
+         //   {
+
+         //      if (m_iShowFlags & SWP_SHOWWINDOW)
+         //      {
+
+         //         ShowWindow(SW_SHOW);
+
+         //      }
+
+         //   }
+
+         //   return ::RedrawWindow(get_handle(), lpRectUpdate, prgnUpdate == NULL ? NULL : (HRGN)prgnUpdate->get_os_data(),
+         //      flags | RDW_NOERASE | RDW_NOFRAME | RDW_INVALIDATE) != FALSE;
+
+         //}
 
       }
       else

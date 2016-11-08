@@ -428,8 +428,8 @@ namespace visual
       int iSpreadRadius,
       int iBlurRadius,
       int iBlur,
-      bool bUpdate)
-
+      bool bUpdate,
+      double dAlpha)
    {
 
       if (strText.is_empty())
@@ -456,10 +456,12 @@ namespace visual
          iSpreadRadius,
          iBlurRadius,
          iBlur,
-         bUpdate);
+         bUpdate,
+         dAlpha);
 
+      byte bA = (byte)(dAlpha * 255.0);
       ::draw2d::brush_sp brushText(allocer());
-      brushText->create_solid(crText);
+      brushText->create_solid((crText & 0x00ffffffu) | (bA << 24));
       pgraphics->SelectObject(brushText);
       pgraphics->SelectObject(pfont);
       pgraphics->_DrawText(strText, *lpcrect, iDrawTextFlags);

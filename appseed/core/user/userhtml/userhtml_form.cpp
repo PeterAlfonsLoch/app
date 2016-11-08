@@ -65,7 +65,7 @@ void html_form::_001DrawChildren(::draw2d::graphics * pgraphics)
       try
       {
 
-         if(pui->m_bVisible && (get_html_data() == NULL || !get_html_data()->contains(pui)))
+         if(pui->is_this_visible() && (get_html_data() == NULL || !get_html_data()->contains(pui)))
          {
 
             pui->_000OnDraw(pgraphics);
@@ -197,18 +197,33 @@ void html_form::_001OnCreate(signal_details * pobj)
    {
       pcreate->set_lresult(0);
       pcreate->m_bRet = true;
-      return;
+      
    }
-   if(m_strOpenOnCreate.has_char() && !open_document(m_strOpenOnCreate))
-   {
-      pcreate->set_lresult(-1);
-      pcreate->m_bRet = true;
-      return;
-   }
-   return;
+
 }
 
 
+void html_form::on_update(::user::impact * pSender, LPARAM lHint, object* pHint)
+{
+
+   ::user::form_view::on_update(pSender, lHint, pHint);
+
+   if (lHint == 123)
+   {
+    
+
+      if (m_strOpenOnCreate.has_char())
+      {
+         
+         get_document()->on_open_document(m_strOpenOnCreate);
+
+         m_strOpenOnCreate.Empty();
+
+      }
+
+   }
+
+}
 
 void html_form::_001OnLButtonDown(signal_details * pobj)
 {
@@ -455,9 +470,18 @@ html_document * html_form::get_document()
    if (m_phtmlform->m_sphtmldata == NULL)
    {
 
-      m_phtmlform->m_sphtmldata = get_document()->get_html_data();
+      html_document * pdocument = get_document();
 
-      m_phtmlform->m_sphtmldata->m_pui = this;
+      ASSERT(pdocument != NULL);
+
+      if (pdocument != NULL)
+      {
+
+         m_phtmlform->m_sphtmldata = pdocument->get_html_data();
+
+         m_phtmlform->m_sphtmldata->m_pui = this;
+
+      }
 
    }
 

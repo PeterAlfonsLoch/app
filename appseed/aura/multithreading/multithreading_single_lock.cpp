@@ -31,7 +31,7 @@ bool single_lock::lock()
    if(m_pobjectSync == NULL)
    {
 
-      return false;
+      return true;
 
    }
 
@@ -92,7 +92,7 @@ bool single_lock::unlock()
    if(m_pobjectSync == NULL)
    {
       
-      return false;
+      return true;
       
    }
 

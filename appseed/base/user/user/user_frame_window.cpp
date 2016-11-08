@@ -350,7 +350,7 @@ namespace user
                if(pimpl.is_set())
                {
                   
-                  synch_lock sl(pimpl->m_spmutexBuffer);
+                  synch_lock sl(pimpl->m_spgraphics->m_pmutex);
                   
                   ::visual::dib_sp dib(allocer());
                   
@@ -920,7 +920,7 @@ namespace user
          || !oprop("should_not_be_automatically_holded_on_initial_update_frame")))
       {
          GetParent()->place(this);
-         GetParent()->on_layout();
+         //GetParent()->on_layout();
       }
 
 
@@ -1744,7 +1744,7 @@ namespace user
          BringToTop(nCmdShow);
       }
 
-      _001UpdateWindow();
+      //_001UpdateWindow();
 
    }
 

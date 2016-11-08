@@ -381,15 +381,9 @@ class image_list;
 
 
 
-#ifndef WINDOWSEX
-typedef void * HDWP;
-#endif // WINDOWS
-
-// special struct for WM_SIZEPARENT
-struct __SIZEPARENTPARAMS
+struct SIZEPARENTPARAMS
 {
 
-   HDWP hDWP;       // handle for DeferWindowPos
    RECT rect;       // parent client rectangle (trim as appropriate)
    SIZE sizeTotal;  // total size on each side as on_layout proceeds
    bool bStretch;   // should stretch to fill all space

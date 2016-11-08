@@ -179,7 +179,7 @@ namespace user
 #endif
       virtual void DelayShow(bool bShow);
       virtual bool IsVisible();
-      virtual uint32_t RecalcDelayShow(__SIZEPARENTPARAMS* lpLayout);
+      virtual uint32_t RecalcDelayShow(SIZEPARENTPARAMS * lpLayout);
 
       virtual bool IsDockBar();
       virtual bool DestroyWindow();

@@ -648,7 +648,7 @@ namespace user
    }
 
 
-   uint32_t control_bar::RecalcDelayShow(__SIZEPARENTPARAMS* lpLayout)
+   uint32_t control_bar::RecalcDelayShow(SIZEPARENTPARAMS * lpLayout)
    {
       ASSERT(lpLayout != NULL);
 
@@ -693,7 +693,7 @@ namespace user
    void control_bar::_001OnSizeParent(signal_details * pobj)
    {
       SCAST_PTR(::message::base, pbase, pobj);
-      __SIZEPARENTPARAMS* lpLayout = (__SIZEPARENTPARAMS*) pbase->m_lparam.m_lparam;
+      SIZEPARENTPARAMS * lpLayout = (SIZEPARENTPARAMS *) pbase->m_lparam.m_lparam;
       uint32_t dwStyle = RecalcDelayShow(lpLayout);
 
       if ((dwStyle & WS_VISIBLE) && (dwStyle & CBRS_ALIGN_ANY) != 0)
@@ -764,9 +764,9 @@ namespace user
   //       m_nStateFlags |= delayShow;
     //  else if (!bShow && (GetStyle() & WS_VISIBLE) != 0)
       //   m_nStateFlags |= delayHide;*/
-      if (bShow && !m_bVisible)
+      if (bShow && !is_this_visible())
          m_nStateFlags |= delayShow;
-      else if (!bShow && m_bVisible)
+      else if (!bShow && is_this_visible())
          m_nStateFlags |= delayHide;
    }
 

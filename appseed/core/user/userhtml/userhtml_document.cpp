@@ -18,7 +18,7 @@ bool html_document::on_new_document()
    if (!::user::document::on_new_document())
       return FALSE;
 
-   update_all_views(NULL, 0);
+   update_all_views(NULL, 123);
 
 
    return TRUE;

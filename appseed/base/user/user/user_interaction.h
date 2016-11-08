@@ -40,12 +40,14 @@ namespace user
       bool                                m_bMoving;
       bool                                m_bMoveWindow;
       bool                                m_bMayProDevian;
-      bool                                m_bVisible;
       bool                                m_bVoidPaint;
       bool                                m_bRedrawing;
       bool                                m_bLockWindowUpdate;
       bool                                m_bEnableSaveWindowRect;
       bool                                m_bLayoutEnable;
+      bool                                m_bNeedLayout;
+
+
       alpha_source *                      m_palphasource;
 
 
@@ -117,6 +119,20 @@ namespace user
       virtual void set_need_layout();
       virtual void layout();
 
+      virtual bool defer_check_translation();
+      virtual bool check_need_translation();
+      virtual void clear_need_translation();
+      virtual void translate();
+
+      virtual bool defer_check_show_flags();
+      virtual bool check_show_flags();
+      virtual void clear_show_flags();
+      virtual void do_show_flags();
+
+      virtual bool defer_check_zorder();
+      virtual bool check_need_zorder();
+      virtual void clear_need_zorder();
+      virtual void zorder();
 
       virtual bool create_message_queue(const char * pszName) override;
 
@@ -207,7 +223,7 @@ namespace user
       virtual bool on_keyboard_focus(::user::elemental * pfocus) override;
 
 
-      virtual void _001UpdateWindow() override;
+      virtual void _001UpdateWindow(bool bUpdateBuffer = true) override;
 
 
       virtual void _001WindowMinimize() override;
@@ -245,6 +261,8 @@ namespace user
       //virtual int32_t GetWindowRgn(HRGN hRgn) override;
 
       virtual void on_layout() override;
+      virtual void on_translate() override;
+      virtual void on_do_show_flags() override;
 
       virtual void BringToTop(int32_t nCmdShow) override;
       virtual bool BringWindowToTop() override;
@@ -313,6 +331,7 @@ namespace user
       virtual LRESULT send(::message::base * pbase) override;
       virtual bool post(::message::base * pbase) override;
       virtual LRESULT send_message(UINT uiMessage,WPARAM wparam = 0,lparam lparam = 0) override;
+      virtual LRESULT message_call(UINT uiMessage, WPARAM wparam = 0, lparam lparam = 0) override;
 
 #ifdef LINUX
 
@@ -750,7 +769,7 @@ namespace user
       virtual bool keyboard_focus_OnKillFocus();
       virtual bool keyboard_focus_OnChildKillFocus();
 
-      virtual ::user::interaction * get_child(::user::interaction * pui);
+      virtual bool get_child(sp(::user::interaction) & pui);
 
 
       virtual ::user::interaction * get_focus_ui();
@@ -782,33 +801,12 @@ namespace user
       virtual void transparent_mouse_events();
 
       template < typename T >
-      void redraw_add(T * p)
-      {
-
-         synch_lock sl(m_pmutex);
-
-         m_ptraRedraw.add(dynamic_cast <object *> (p));
-
-      }
+      inline void redraw_add(T * p);
 
       template < typename T >
-      void redraw_remove(T * p)
-      {
+      inline void redraw_remove(T * p);
 
-         synch_lock sl(m_pmutex);
-
-         m_ptraRedraw.remove(dynamic_cast <object *> (p));
-
-      }
-
-      bool has_redraw()
-      {
-
-         synch_lock sl(m_pmutex);
-
-         return m_ptraRedraw.has_elements();
-
-      }
+      inline bool has_redraw();
 
    };
 

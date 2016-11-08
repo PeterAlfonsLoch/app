@@ -10,17 +10,12 @@ namespace user
       ::aura::timer_array(get_app())
    {
 
-      m_pmutexDraw = NULL;
-
       m_bScreenRelativeMouseMessagePosition  = true;
       m_bTranslateMouseMessageCursor         = true;
       m_bComposite                           = true;
       m_bUpdateGraphics                      = false;
       m_oswindow                             = NULL;
-      m_bNeedLayout                          = false;
-      m_pcsDisplay                           = NULL;
       m_puiFocus                             = NULL;
-
 
    }
 
@@ -28,27 +23,24 @@ namespace user
    interaction_impl::~interaction_impl()
    {
 
-      ::aura::del(m_pcsDisplay);
-
-
-      ::aura::del(m_pmutexDraw);
-
    }
 
 
    mutex * interaction_impl::draw_mutex()
    {
 
-      if (m_pmutexDraw == NULL)
+      if (m_apmutexDraw == NULL)
       {
 
-         m_pmutexDraw = new mutex(get_app());
+         m_apmutexDraw = new mutex(get_app());
 
       }
 
-      return m_pmutexDraw;
+      return m_apmutexDraw;
 
    }
+
+
    ::user::interaction_impl * interaction_impl::get_user_interaction_impl()
    {
 
@@ -60,7 +52,7 @@ namespace user
    bool interaction_impl::check_need_layout()
    {
 
-      return m_bNeedLayout;
+      return m_pui->m_bNeedLayout || ::user::interaction_impl_base::check_need_layout();
 
    }
 
@@ -68,7 +60,9 @@ namespace user
    void interaction_impl::clear_need_layout()
    {
 
-      m_bNeedLayout = false;
+      m_pui->m_bNeedLayout = false;
+
+      ::user::interaction_impl_base::clear_need_layout();
 
    }
 
@@ -76,7 +70,7 @@ namespace user
    void interaction_impl::set_need_layout()
    {
 
-      m_bNeedLayout = true;
+      m_pui->m_bNeedLayout = true;
 
    }
 
@@ -927,17 +921,11 @@ namespace user
    ::exception::throw_interface_only(get_app());
    }*/
 
+
    bool interaction_impl::SetWindowPos(int_ptr z,int32_t x,int32_t y,int32_t cx,int32_t cy,UINT nFlags)
    {
-      UNREFERENCED_PARAMETER(z);
-      UNREFERENCED_PARAMETER(x);
-      UNREFERENCED_PARAMETER(y);
-      UNREFERENCED_PARAMETER(cx);
-      UNREFERENCED_PARAMETER(cy);
-      UNREFERENCED_PARAMETER(nFlags);
-      ::exception::throw_interface_only(get_app());
-
-      return false;
+      
+      return ::user::interaction_impl_base::SetWindowPos(z, x, y, cx, cy, nFlags);
 
    }
 
@@ -1657,6 +1645,7 @@ namespace user
    {
 
       UNREFERENCED_PARAMETER(nFlag);
+
       ::exception::throw_interface_only(get_app());
 
       return NULL;
@@ -1669,22 +1658,9 @@ namespace user
 
       ::exception::throw_interface_only(get_app());
 
-
       return NULL;
 
    }
-
-
-   /*
-
-   ::user::interaction * interaction_impl::GetWindow(UINT nCmd)
-   {
-   UNREFERENCED_PARAMETER(nCmd);
-   ::exception::throw_interface_only(get_app());
-
-   }
-
-   */
 
 
    ::user::interaction * interaction_impl::GetLastActivePopup()
@@ -1697,22 +1673,13 @@ namespace user
    }
 
 
-   //::user::interaction * interaction_impl::set_parent(::user::interaction * pWndNewParent)
-   //{
-
-   //   UNREFERENCED_PARAMETER(pWndNewParent);
-   //   ::exception::throw_interface_only(get_app());
-
-   //   return NULL;
-
-   //}
-
-
    bool interaction_impl::FlashWindow(bool bInvert)
    {
 
       UNREFERENCED_PARAMETER(bInvert);
+      
       ::exception::throw_interface_only(get_app());
+      
       return false;
 
    }
@@ -1722,6 +1689,7 @@ namespace user
    {
 
       UNREFERENCED_PARAMETER(oswindow_Next);
+      
       ::exception::throw_interface_only(get_app());
 
       return false;
@@ -1751,123 +1719,118 @@ namespace user
 
    void interaction_impl::CreateCaret(::draw2d::bitmap* pBitmap)
    {
+      
       UNREFERENCED_PARAMETER(pBitmap);
+      
       ::exception::throw_interface_only(get_app());
+
    }
 
+   
    void interaction_impl::CreateSolidCaret(int32_t nWidth,int32_t nHeight)
    {
+      
       UNREFERENCED_PARAMETER(nWidth);
       UNREFERENCED_PARAMETER(nHeight);
+      
       ::exception::throw_interface_only(get_app());
+
    }
 
+   
    void interaction_impl::CreateGrayCaret(int32_t nWidth,int32_t nHeight)
    {
+      
       UNREFERENCED_PARAMETER(nWidth);
       UNREFERENCED_PARAMETER(nHeight);
+      
       ::exception::throw_interface_only(get_app());
+
    }
 
 
    void interaction_impl::HideCaret()
    {
+      
       ::exception::throw_interface_only(get_app());
+
    }
 
+   
    void interaction_impl::ShowCaret()
    {
+      
       ::exception::throw_interface_only(get_app());
+
    }
 
+   
    bool interaction_impl::SetForegroundWindow()
    {
+      
       ::exception::throw_interface_only(get_app());
+      
       return false;
+
    }
 
 
    bool interaction_impl::SendNotifyMessage(UINT message,WPARAM wParam,lparam lParam)
    {
+      
       UNREFERENCED_PARAMETER(message);
       UNREFERENCED_PARAMETER(wParam);
       UNREFERENCED_PARAMETER(lParam);
+      
       ::exception::throw_interface_only(get_app());
 
       return false;
+
    }
 
-   // Win4
 
    void interaction_impl::Print(::draw2d::graphics * pgraphics,uint32_t dwFlags) const
    {
+      
       UNREFERENCED_PARAMETER(pgraphics);
       UNREFERENCED_PARAMETER(dwFlags);
+      
       ::exception::throw_interface_only(get_app());
+
    }
 
+   
    void interaction_impl::PrintClient(::draw2d::graphics * pgraphics,uint32_t dwFlags) const
    {
+      
       UNREFERENCED_PARAMETER(pgraphics);
       UNREFERENCED_PARAMETER(dwFlags);
+      
       ::exception::throw_interface_only(get_app());
+
    }
+
 
    bool interaction_impl::SetWindowContextHelpId(uint32_t dwContextHelpId)
    {
+
       UNREFERENCED_PARAMETER(dwContextHelpId);
+
       ::exception::throw_interface_only(get_app());
+
       return false;
+
    }
 
+   
    uint32_t interaction_impl::GetWindowContextHelpId() const
    {
+      
       ::exception::throw_interface_only(get_app());
 
       return -1;
+
    }
-
-//   // Default message map implementations
-//   void interaction_impl::OnActivateApp(bool,uint32_t)
-//   {
-//      ::exception::throw_interface_only(get_app());
-//   }
-//
-//   void interaction_impl::OnActivate(UINT,::window_sp,bool)
-//   {
-//      ::exception::throw_interface_only(get_app());
-//   }
-//
-//   void interaction_impl::OnCancelMode()
-//   {
-//      ::exception::throw_interface_only(get_app());
-//   }
-//
-//   void interaction_impl::OnChildActivate()
-//   {
-//      ::exception::throw_interface_only(get_app());
-//   }
-//
-//   void interaction_impl::OnClose()
-//   {
-//      ::exception::throw_interface_only(get_app());
-//   }
-//
-//   void interaction_impl::OnContextMenu(::window_sp,point)
-//   {
-//      ::exception::throw_interface_only(get_app());
-//   }
-//
-//
-//#ifdef WINDOWSEX
-//
-//   bool interaction_impl::OnCopyData(::window_sp,COPYDATASTRUCT*)
-//   {
-//      ::exception::throw_interface_only(get_app());
-//   }
-//
-//#endif
-
 
    void interaction_impl::_001OnCreate(signal_details * pobj)
    {
@@ -1877,7 +1840,7 @@ namespace user
       if(!m_pui->m_bMessageWindow)
       {
 
-         m_pcsDisplay = new critical_section;
+         m_apcsDisplay = new critical_section;
 
          output_debug_string("interaction_impl m_spgraphics alloc");
 
@@ -1893,106 +1856,7 @@ namespace user
    }
 
 
-   //void interaction_impl::OnEnable(bool)
-   //{
-   //   ::exception::throw_interface_only(get_app());
-   //}
-
-   //void interaction_impl::OnEndSession(bool)
-   //{
-   //   ::exception::throw_interface_only(get_app());
-   //}
-
-   //bool interaction_impl::OnEraseBkgnd(::draw2d::graphics *)
-   //{
-   //   ::exception::throw_interface_only(get_app());
-   //}
-
-
-//#ifdef WINDOWSEX
-//
-//
-//   void interaction_impl::OnGetMinMaxInfo(MINMAXINFO*)
-//   {
-//
-//      ::exception::throw_interface_only(get_app());
-//
-//   }
-//
-//
-//#endif
-//
-//
-//   void interaction_impl::OnIconEraseBkgnd(::draw2d::graphics *)
-//   {
-//      ::exception::throw_interface_only(get_app());
-//   }
-//
-//   void interaction_impl::OnKillFocus(::window_sp)
-//   {
-//      ::exception::throw_interface_only(get_app());
-//   }
-//
-//   LRESULT interaction_impl::OnMenuChar(UINT,UINT,::user::menu*)
-//   {
-//      ::exception::throw_interface_only(get_app());
-//   }
-//
-//   void interaction_impl::OnMenuSelect(UINT,UINT,HMENU)
-//   {
-//      ::exception::throw_interface_only(get_app());
-//   }
-//   void interaction_impl::OnMove(int32_t,int32_t)
-//   {
-//      ::exception::throw_interface_only(get_app());
-//   }
-//
-//
-//   bool interaction_impl::OnQueryEndSession()
-//   {
-//      ::exception::throw_interface_only(get_app());
-//   }
-//
-//   bool interaction_impl::OnQueryNewPalette()
-//   {
-//      ::exception::throw_interface_only(get_app());
-//   }
-//
-//   bool interaction_impl::OnQueryOpen()
-//   {
-//      ::exception::throw_interface_only(get_app());
-//   }
-//
-//   bool interaction_impl::OnSetCursor(::window_sp,UINT,UINT)
-//   {
-//      ::exception::throw_interface_only(get_app());
-//   }
-//
-//   void interaction_impl::OnShowWindow(bool,UINT)
-//   {
-//      ::exception::throw_interface_only(get_app());
-//   }
-//
-//   void interaction_impl::OnSize(UINT,int32_t,int32_t)
-//   {
-//      ::exception::throw_interface_only(get_app());
-//   }
-//
-//   void interaction_impl::OnTCard(UINT,uint32_t)
-//   {
-//      ::exception::throw_interface_only(get_app());
-//   }
-//
-//
 #ifdef WINDOWSEX
-//
-//
-//   void interaction_impl::OnWindowPosChanging(WINDOWPOS*)
-//   {
-//
-//      ::exception::throw_interface_only(get_app());
-//
-//   }
 
 
    void interaction_impl::_001OnWindowPosChanged(signal_details * pobj)
@@ -2003,447 +1867,43 @@ namespace user
    }
 
 
-   //void interaction_impl::OnDropFiles(HDROP)
-   //{
-
-   //   ::exception::throw_interface_only(get_app());
-
-   //}
-
-
 #endif
 
 
-//   void interaction_impl::OnPaletteIsChanging(::window_sp)
-//   {
-//      ::exception::throw_interface_only(get_app());
-//   }
-//
-//   bool interaction_impl::OnNcActivate(bool)
-//   {
-//      ::exception::throw_interface_only(get_app());
-//   }
-//
-//
-//#ifdef WINDOWSEX
-//
-//
-//   void interaction_impl::OnNcCalcSize(bool,NCCALCSIZE_PARAMS*)
-//   {
-//
-//      ::exception::throw_interface_only(get_app());
-//
-//   }
-//
-//
-//#endif
-//
-//
-//   bool interaction_impl::OnNcCreate(::user::create_struct *)
-//   {
-//      ::exception::throw_interface_only(get_app());
-//   }
-//
-//   LRESULT interaction_impl::OnNcHitTest(point)
-//   {
-//      ::exception::throw_interface_only(get_app());
-//   }
-//
-//   void interaction_impl::OnNcLButtonDblClk(UINT,point)
-//   {
-//      ::exception::throw_interface_only(get_app());
-//   }
-//
-//   void interaction_impl::OnNcLButtonDown(UINT,point)
-//   {
-//      ::exception::throw_interface_only(get_app());
-//   }
-//
-//   void interaction_impl::OnNcLButtonUp(UINT,point)
-//   {
-//      ::exception::throw_interface_only(get_app());
-//   }
-//
-//   void interaction_impl::OnNcMButtonDblClk(UINT,point)
-//   {
-//      ::exception::throw_interface_only(get_app());
-//   }
-//
-//   void interaction_impl::OnNcMButtonDown(UINT,point)
-//   {
-//      ::exception::throw_interface_only(get_app());
-//   }
-//
-//   void interaction_impl::OnNcMButtonUp(UINT,point)
-//   {
-//      ::exception::throw_interface_only(get_app());
-//   }
-//
-//   void interaction_impl::OnNcMouseMove(UINT,point)
-//   {
-//      ::exception::throw_interface_only(get_app());
-//   }
-//
-//   void interaction_impl::OnNcPaint()
-//   {
-//      ::exception::throw_interface_only(get_app());
-//   }
-//
-//   void interaction_impl::OnNcRButtonDblClk(UINT,point)
-//   {
-//      ::exception::throw_interface_only(get_app());
-//   }
-//
-//   void interaction_impl::OnNcRButtonDown(UINT,point)
-//   {
-//      ::exception::throw_interface_only(get_app());
-//   }
-//
-//   void interaction_impl::OnNcRButtonUp(UINT,point)
-//   {
-//      ::exception::throw_interface_only(get_app());
-//   }
-//
-//   void interaction_impl::OnSysChar(UINT,UINT,UINT)
-//   {
-//      ::exception::throw_interface_only(get_app());
-//   }
-//
-//   void interaction_impl::OnSysCommand(UINT,LPARAM)
-//   {
-//      ::exception::throw_interface_only(get_app());
-//   }
-//
-//   void interaction_impl::OnSysDeadChar(UINT,UINT,UINT)
-//   {
-//      ::exception::throw_interface_only(get_app());
-//   }
-//
-//   void interaction_impl::OnSysKeyDown(UINT,UINT,UINT)
-//   {
-//      ::exception::throw_interface_only(get_app());
-//   }
-//
-//   void interaction_impl::OnSysKeyUp(UINT,UINT,UINT)
-//   {
-//      ::exception::throw_interface_only(get_app());
-//   }
-//
-//   void interaction_impl::OnCompacting(UINT)
-//   {
-//      ::exception::throw_interface_only(get_app());
-//   }
-//
-//   void interaction_impl::OnFontChange()
-//   {
-//      ::exception::throw_interface_only(get_app());
-//   }
-//
-//   void interaction_impl::OnPaletteChanged(::window_sp)
-//   {
-//      ::exception::throw_interface_only(get_app());
-//   }
-//
-//   void interaction_impl::OnSpoolerStatus(UINT,UINT)
-//   {
-//      ::exception::throw_interface_only(get_app());
-//   }
-//
-//   void interaction_impl::OnTimeChange()
-//   {
-//      ::exception::throw_interface_only(get_app());
-//   }
-//
-//   void interaction_impl::OnChar(UINT,UINT,UINT)
-//   {
-//      ::exception::throw_interface_only(get_app());
-//   }
-//
-//   void interaction_impl::OnDeadChar(UINT,UINT,UINT)
-//   {
-//      ::exception::throw_interface_only(get_app());
-//   }
-//
-//   void interaction_impl::OnKeyDown(UINT,UINT,UINT)
-//   {
-//      ::exception::throw_interface_only(get_app());
-//   }
-//
-//   void interaction_impl::OnKeyUp(UINT,UINT,UINT)
-//   {
-//      ::exception::throw_interface_only(get_app());
-//   }
-//
-//   void interaction_impl::OnLButtonDblClk(UINT,point)
-//   {
-//      ::exception::throw_interface_only(get_app());
-//   }
-//
-//   void interaction_impl::OnLButtonDown(UINT,point)
-//   {
-//      ::exception::throw_interface_only(get_app());
-//   }
-//
-//   void interaction_impl::OnLButtonUp(UINT,point)
-//   {
-//      ::exception::throw_interface_only(get_app());
-//   }
-//
-//   void interaction_impl::OnMButtonDblClk(UINT,point)
-//   {
-//      ::exception::throw_interface_only(get_app());
-//   }
-//
-//   void interaction_impl::OnMButtonDown(UINT,point)
-//   {
-//      ::exception::throw_interface_only(get_app());
-//   }
-//
-//   void interaction_impl::OnMButtonUp(UINT,point)
-//   {
-//      ::exception::throw_interface_only(get_app());
-//   }
-//
-//   int32_t interaction_impl::OnMouseActivate(::window_sp,UINT,UINT)
-//   {
-//      ::exception::throw_interface_only(get_app());
-//   }
-//
-//   void interaction_impl::OnMouseMove(UINT,point)
-//   {
-//      ::exception::throw_interface_only(get_app());
-//   }
-//
-//   bool interaction_impl::OnMouseWheel(UINT,int16_t,point)
-//   {
-//      ::exception::throw_interface_only(get_app());
-//   }
-//
-//   LRESULT interaction_impl::OnRegisteredMouseWheel(WPARAM,LPARAM)
-//   {
-//      ::exception::throw_interface_only(get_app());
-//   }
-//
-//   void interaction_impl::OnRButtonDblClk(UINT,point)
-//   {
-//      ::exception::throw_interface_only(get_app());
-//   }
-//
-//   void interaction_impl::OnRButtonDown(UINT,point)
-//   {
-//      ::exception::throw_interface_only(get_app());
-//   }
-//
-//   void interaction_impl::OnRButtonUp(UINT,point)
-//   {
-//      ::exception::throw_interface_only(get_app());
-//   }
-//
-//   void interaction_impl::OnTimer(uint_ptr)
-//   {
-//      ::exception::throw_interface_only(get_app());
-//   }
-//
-//   void interaction_impl::OnInitMenu(::user::menu*)
-//   {
-//      ::exception::throw_interface_only(get_app());
-//   }
-//
-//   void interaction_impl::OnInitMenuPopup(::user::menu*,UINT,bool)
-//   {
-//      ::exception::throw_interface_only(get_app());
-//   }
-//
-//
-//#ifdef WINDOWS
-//
-//
-//   void interaction_impl::OnAskCbFormatName(UINT nMaxCount,LPTSTR pszName)
-//   {
-//      UNREFERENCED_PARAMETER(nMaxCount);
-//      UNREFERENCED_PARAMETER(pszName);
-//      ::exception::throw_interface_only(get_app());
-//   }
-//
-//   void interaction_impl::OnChangeCbChain(oswindow,oswindow)
-//   {
-//      ::exception::throw_interface_only(get_app());
-//   }
-//
-//   void interaction_impl::OnDestroyClipboard()
-//   {
-//      ::exception::throw_interface_only(get_app());
-//   }
-//
-//   void interaction_impl::OnDrawClipboard()
-//   {
-//      ::exception::throw_interface_only(get_app());
-//   }
-//
-//   void interaction_impl::OnHScrollClipboard(::window_sp,UINT,UINT)
-//   {
-//      ::exception::throw_interface_only(get_app());
-//   }
-//
-//   void interaction_impl::OnPaintClipboard(::window_sp,HGLOBAL)
-//   {
-//      ::exception::throw_interface_only(get_app());
-//   }
-//
-//   void interaction_impl::OnRenderAllFormats()
-//   {
-//      ::exception::throw_interface_only(get_app());
-//   }
-//
-//   void interaction_impl::OnRenderFormat(UINT)
-//   {
-//      ::exception::throw_interface_only(get_app());
-//   }
-//
-//   void interaction_impl::OnSizeClipboard(::window_sp,HGLOBAL)
-//   {
-//      ::exception::throw_interface_only(get_app());
-//   }
-//
-//   void interaction_impl::OnVScrollClipboard(::window_sp,UINT,UINT)
-//   {
-//      ::exception::throw_interface_only(get_app());
-//   }
-//
-//#endif
-//
-//   UINT interaction_impl::OnGetDlgCode()
-//   {
-//      ::exception::throw_interface_only(get_app());
-//   }
-//
-//   void interaction_impl::OnMDIActivate(bool,::window_sp,::window_sp)
-//   {
-//      ::exception::throw_interface_only(get_app());
-//   }
-//
-//   void interaction_impl::OnEnterMenuLoop(bool)
-//   {
-//      ::exception::throw_interface_only(get_app());
-//   }
-//
-//   void interaction_impl::OnExitMenuLoop(bool)
-//   {
-//      ::exception::throw_interface_only(get_app());
-//   }
-//
-//
-//#ifdef WINDOWSEX
-//
-//
-//   // Win4 support
-//   void interaction_impl::OnStyleChanged(int32_t,LPSTYLESTRUCT)
-//   {
-//
-//      ::exception::throw_interface_only(get_app());
-//
-//   }
-//
-//
-//   void interaction_impl::OnStyleChanging(int32_t,LPSTYLESTRUCT)
-//   {
-//
-//      ::exception::throw_interface_only(get_app());
-//
-//   }
-//
-//
-//#endif
-
-
-   //void interaction_impl::OnSizing(UINT,LPRECT)
-   //{
-   //   ::exception::throw_interface_only(get_app());
-   //}
-
-   //void interaction_impl::OnMoving(UINT,LPRECT)
-   //{
-   //   ::exception::throw_interface_only(get_app());
-   //}
-
-   //void interaction_impl::OnCaptureChanged(::window_sp)
-   //{
-   //   ::exception::throw_interface_only(get_app());
-   //}
-
-   //bool interaction_impl::OnDeviceChange(UINT,uint_ptr)
-   //{
-   //   ::exception::throw_interface_only(get_app());
-   //}
-
-   //void interaction_impl::OnWinIniChange(const char *)
-   //{
-   //   ::exception::throw_interface_only(get_app());
-   //}
-
-   //void interaction_impl::OnChangeUIState(UINT,UINT)
-   //{
-   //   ::exception::throw_interface_only(get_app());
-   //}
-
-   //void interaction_impl::OnUpdateUIState(UINT,UINT)
-   //{
-   //   ::exception::throw_interface_only(get_app());
-   //}
-
-   //UINT interaction_impl::OnQueryUIState()
-   //{
-   //
-   //   ::exception::throw_interface_only(get_app());
-
-   //   return 0;
-
-   //}
-
-   // interaction_impl dialog data support
-   //   void interaction_impl::do_data_exchange(CDataExchange*)
-   // {
-   //  ::exception::throw_interface_only(get_app());
-   //}
-
-   // interaction_impl modality support
    void interaction_impl::BeginModalState()
    {
+
       ::exception::throw_interface_only(get_app());
+
    }
+
 
    void interaction_impl::EndModalState()
    {
+
       ::exception::throw_interface_only(get_app());
+
    }
 
-   /////////////////////////////////////////////////////////////////////////////
-   // Obsolete and non-portable
 
    void interaction_impl::CloseWindow()
    {
+
       ::exception::throw_interface_only(get_app());
+
    }
+
 
    bool interaction_impl::OpenIcon()
    {
+
       ::exception::throw_interface_only(get_app());
 
       return false;
 
    }
 
-   ///////////////////////////////////////////////////////////////////////////////
-   //// interaction_impl command handling
 
-   //bool interaction_impl::OnCommand(::message::base * pbase)
-   //{
-   //   UNREFERENCED_PARAMETER(pbase);
-   //   return FALSE;
-
-   //}
-
-   // Helper for radio buttons
    int32_t interaction_impl::GetCheckedRadioButton(int32_t nIDFirstButton,int32_t nIDLastButton)
    {
 
@@ -2455,6 +1915,7 @@ namespace user
       return 0;
 
    }
+
 
    bool interaction_impl::_EnableToolTips(bool bEnable,UINT nFlag)
    {
@@ -2469,145 +1930,98 @@ namespace user
    }
 
 
-
-   ////////////////////////////////////////////////////////////////////////////
-   // UI related interaction_impl functions
-   /*
-   oswindow interaction_impl::get_safe_owner(oswindow hParent, oswindow* pWndTop)
-   {
-   // get interaction_impl to start with
-   oswindow oswindow = hParent;
-   if (oswindow == NULL)
-   {
-   trans      sp(::user::frame_window) pFrame = command_target::GetRoutingFrame_();
-   if (pFrame != NULL)
-   oswindow = pFrame->GetSafeoswindow_();
-   else
-   oswindow = System.m_puiMain->GetSafeoswindow_();
-   }
-
-   // a popup interaction_impl cannot be owned by a child interaction_impl
-   while (oswindow != NULL && (::GetWindowLong(oswindow, GWL_STYLE) & WS_CHILD))
-   oswindow = ::GetParent;
-
-   // determine toplevel interaction_impl to disable as well
-   ::oswindow oswindow_Top = oswindow;
-   ::oswindow oswindow_Temp = oswindow;
-   for (;;)
-   {
-   if (oswindow_Temp == NULL)
-   break;
-   else
-   oswindow_Top = oswindow_Temp;
-   oswindow_Temp = ::get_parent(oswindow_Top);
-   }
-
-   // get last active popup of first non-child that was found
-   if (hParent == NULL && oswindow != NULL)
-   oswindow = ::GetLastActivePopup;
-
-   // disable and store top level parent interaction_impl if specified
-   if (pWndTop != NULL)
-   {
-   if (oswindow_Top != NULL && ::is_window_enabled(oswindow_Top) && oswindow_Top != oswindow)
-   {
-   *pWndTop = oswindow_Top;
-   ::enable_window(oswindow_Top, FALSE);
-   }
-   else
-   *pWndTop = NULL;
-   }
-
-   return oswindow;    // return the owner as oswindow
-   }*/
-
    void interaction_impl::_001BaseWndInterfaceMap()
    {
+
    }
 
 
 #define HARD_DEBUG 0
 
 
-   void interaction_impl::_001UpdateWindow()
+   void interaction_impl::_001UpdateWindow(bool bUpdateBuffer)
    {
 
-      synch_lock sl1(m_pui->m_pmutex);
+      m_pui->defer_check_layout();
+
+      m_pui->defer_check_zorder();
 
       update_graphics_resources();
 
-      synch_lock sl(m_spmutexBuffer);
-
-      if(m_spgraphics.is_null())
-         return;
-
-      //cslock csl(cs_display());
-
-      //output_debug_string("here?!111");
-
-      rect64 rectWindow;
-
-      m_pui->GetWindowRect(rectWindow);
-
-      //output_debug_string("interaction_impl _001UpdateWindow (width=" + ::str::from(width(rectWindow)) + ",height=" + ::str::from(height(rectWindow)) + ")");
-
-      ::draw2d::graphics * pgraphics = m_spgraphics->on_begin_draw();
-
-      if (pgraphics == NULL || pgraphics->get_os_data() == NULL)
+      if (bUpdateBuffer)
       {
 
-         //output_debug_string("on_begin_draw failed");
+         synch_lock sl(m_spgraphics->m_pmutex);
 
-         return;
-
-      }
-
-      if (m_pui->m_bMayProDevian)
-      {
-
-         if (!pgraphics->is_valid_update_window_thread())
-            return;
-
-      }
-
-      rect r;
-
-      r = rectWindow;
-
-      r.offset(-r.top_left());
-
-      pgraphics->set_alpha_mode(::draw2d::alpha_mode_set);
-
-      if(m_bComposite)
-      {
-
-         pgraphics->FillSolidRect(r, ARGB(0,0,0,0));
-
-      }
-      else
-      {
-
-         pgraphics->FillSolidRect(r, ARGB(255,184,184,177));
-
-      }
+         {
 
 
-      _001Print(pgraphics);
+            if (m_spgraphics.is_null())
+               return;
+
+            rect64 rectWindow;
+
+            m_pui->GetWindowRect(rectWindow);
+
+            ::draw2d::graphics * pgraphics = m_spgraphics->on_begin_draw();
+
+            if (pgraphics == NULL || pgraphics->get_os_data() == NULL)
+            {
+
+               return;
+
+            }
+
+            if (m_pui->m_bMayProDevian)
+            {
+
+               if (!pgraphics->is_valid_update_window_thread())
+               {
+
+                  return;
+
+               }
+
+            }
+
+            rect r;
+
+            r = rectWindow;
+
+            r.offset(-r.top_left());
+
+            pgraphics->set_alpha_mode(::draw2d::alpha_mode_set);
+
+            if (m_bComposite)
+            {
+
+               pgraphics->FillSolidRect(r, ARGB(0, 0, 0, 0));
+
+            }
+            else
+            {
+
+               pgraphics->FillSolidRect(r, ARGB(255, 184, 184, 177));
+
+            }
+
+            _001Print(pgraphics);
 
 #if HARD_DEBUG
 
-      ::draw2d::graphics_sp g(allocer());
+            ::draw2d::graphics_sp g(allocer());
 
-      g->debug();
+            g->debug();
 
-      m_size.cx = 0;
-      m_size.cy = 0;
+            m_size.cx = 0;
+
+            m_size.cy = 0;
 
 #endif
 
-      sl.unlock();
+         }
 
-      sl1.unlock();
+      }
 
       m_spgraphics->update_window();
 
@@ -2816,7 +2230,7 @@ namespace user
    }
 
 
-   void __reposition_window(__SIZEPARENTPARAMS* lpLayout,
+   void __reposition_window(SIZEPARENTPARAMS * lpLayout,
       ::user::interaction * oswindow,LPCRECT lpRect)
    {
       ASSERT(oswindow != NULL);
@@ -2998,7 +2412,48 @@ namespace user
 
    }
 
+   
+   void interaction_impl::redraw_add(::object * p)
+   {
 
+      synch_lock sl(mutex_redraw());
+
+      m_ptraRedraw.add(p);
+
+   }
+
+   
+   void interaction_impl::redraw_remove(::object * p)
+   {
+
+      synch_lock sl(mutex_redraw());
+
+      m_ptraRedraw.remove(p);
+
+   }
+
+   bool interaction_impl::has_redraw()
+   {
+
+      synch_lock sl(mutex_redraw());
+
+      return m_ptraRedraw.has_elements();
+
+   }
+
+   mutex * interaction_impl::mutex_redraw()
+   {
+
+      if (m_apmutexRedraw == NULL)
+      {
+
+         m_apmutexRedraw = new mutex(get_app());
+
+      }
+
+      return m_apmutexRedraw;
+
+   }
 
 } // namespace user
 
