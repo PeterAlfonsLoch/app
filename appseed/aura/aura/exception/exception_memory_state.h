@@ -28,7 +28,6 @@ struct CLASS_DECL_AURA memory_state :
                const memory_state& newState);  // fill with difference
    void update_data();
 
-   // Output to dumpcontext
    void dumpStatistics() const;
    void dumpAllObjectsSince() const;
 
