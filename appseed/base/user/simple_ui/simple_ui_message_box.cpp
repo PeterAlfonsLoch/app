@@ -196,7 +196,24 @@ namespace simple_ui
 
       GetClientRect(rectClient);
 
-      pgraphics->FillSolidRect(rectClient,ARGB(255,0xcc,0xcc,0xc5));
+      COLORREF crBk;
+
+      ::datetime::time timeNow = ::datetime::time::get_current_time();
+
+      if (timeNow.GetHour() >= 6 && timeNow.GetHour() <= 17)
+      {
+
+         crBk = ARGB(200, 0xdd, 0xdd, 0xd8);
+
+      }
+      else
+      {
+
+         crBk = ARGB(200, 0x80, 0x80, 0x78);
+
+      }
+
+      pgraphics->FillSolidRect(rectClient,crBk);
 
       sp(::draw2d::font) font(allocer());
 
@@ -212,7 +229,24 @@ namespace simple_ui
 
       int y = 10;
 
-      pgraphics->set_text_color(ARGB(255,49,49,42));
+      COLORREF crText;
+
+
+      if (timeNow.GetHour() >= 6 && timeNow.GetHour() <= 17)
+      {
+
+         crText = ARGB(255, 49, 49, 42);
+
+      }
+      else
+      {
+
+         crText = ARGB(255, 255, 255, 255);
+
+      }
+
+
+      pgraphics->set_text_color(crText);
 
       string strMessage = m_stra.implode("\n");
 

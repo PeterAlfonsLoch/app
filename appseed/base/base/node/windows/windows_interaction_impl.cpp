@@ -807,6 +807,9 @@ namespace windows
 
             m_pthreadDraw->m_bRun = false;
 
+
+            m_pthreadDraw->wait(seconds(10));
+
          }
 
       }

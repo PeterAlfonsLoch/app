@@ -209,19 +209,38 @@ namespace simple_ui
 
          GetClientRect(rectClient);
 
+         ::datetime::time timeNow = ::datetime::time::get_current_time();
 
          if (is_hover() || m_bDown || m_bMouseMove)
          {
 
 #if CA2_PLATFORM_VERSION == CA2_BASIS
 
-            crOut = ARGB(184 + 49, 255, 230, 255);
+            if (timeNow.GetHour() >= 6 && timeNow.GetHour() <= 17)
+            {
 
-            crIn = ARGB(255, 255, 133, 255);
+               crOut = ARGB(184 + 49, 255, 230, 255);
 
-            crBorderOut = ARGB(184, 150, 100, 150);
+               crIn = ARGB(255, 255, 133, 255);
 
-            crBorderIn = ARGB(184, 255, 240, 255);
+               crBorderOut = ARGB(184, 150, 100, 150);
+
+               crBorderIn = ARGB(184, 255, 240, 255);
+
+            }
+            else
+            {
+
+               crOut = ARGB(184 + 49, 205, 180, 205);
+
+               crIn = ARGB(255, 205, 83, 205);
+
+               crBorderOut = ARGB(184, 100, 50, 100);
+
+               crBorderIn = ARGB(184, 205, 190, 205);
+
+            }
+
 
 #else
 
@@ -241,13 +260,30 @@ namespace simple_ui
 
 #if CA2_PLATFORM_VERSION == CA2_BASIS
 
-            crOut = ARGB(184, 255, 210, 255);
+            if (timeNow.GetHour() >= 6 && timeNow.GetHour() <= 17)
+            {
 
-            crIn = ARGB(255, 255, 184 + 49, 255);
+               crOut = ARGB(184, 255, 210, 255);
 
-            crBorderOut = ARGB(184, 90, 20, 90);
+               crIn = ARGB(255, 255, 184 + 49, 255);
 
-            crBorderIn = ARGB(184, 255, 240, 255);
+               crBorderOut = ARGB(184, 90, 20, 90);
+
+               crBorderIn = ARGB(184, 255, 240, 255);
+
+            }
+            else
+            {
+
+               crOut = ARGB(184, 205, 120, 205);
+
+               crIn = ARGB(255, 205, 134, 205);
+
+               crBorderOut = ARGB(184, 40, 0, 40);
+
+               crBorderIn = ARGB(184, 205, 120, 205);
+
+            }
 
 #else
 
@@ -327,19 +363,35 @@ namespace simple_ui
 
       GetClientRect(rectClient);
 
-
+      ::datetime::time timeNow = ::datetime::time::get_current_time();
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
+      COLORREF crText;
+
 #if CA2_PLATFORM_VERSION == CA2_BASIS
 
-      ::draw2d::brush_sp b(allocer(), ARGB(223, 84, 49, 77));
+      if (timeNow.GetHour() >= 6 && timeNow.GetHour() <= 17)
+      {
+
+         crText = ARGB(223, 74, 39, 67);
+
+      }
+      else
+      { 
+      
+         crText = ARGB(223, 255, 255, 255);
+      
+      }
+      
 
 #else
 
-      ::draw2d::brush_sp b(allocer(), ARGB(223, 49, 84, 23));
+      crText = ARGB(223, 49, 84, 23);
 
 #endif
+
+      ::draw2d::brush_sp b(allocer(), crText);
 
       pgraphics->SelectObject(b);
 
