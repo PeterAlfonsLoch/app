@@ -4940,11 +4940,12 @@ namespace draw2d
    }
 
 
-   void graphics::enum_fonts(stringa & straFile, stringa & stra)
+   void graphics::enum_fonts(stringa & straFile, stringa & stra, font::csa & csa)
    {
 
       UNREFERENCED_PARAMETER(straFile);
       UNREFERENCED_PARAMETER(stra);
+      UNREFERENCED_PARAMETER(csa);
 
       throw not_implemented(get_app());
 

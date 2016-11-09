@@ -63,6 +63,8 @@ namespace draw2d
          cs_count
       };
 
+      using csa = array < e_cs >;
+
       string      m_strFontFamilyName;
       double      m_dFontSize;
       double      m_dFontWidth;
@@ -122,10 +124,18 @@ namespace draw2d
 
       static string get_sample_text(e_cs ecs);
 
+      
+
    };
    
    
    typedef smart_pointer < font > font_sp;
+
+#ifdef WINDOWS
+
+   CLASS_DECL_AURA font::e_cs wingdi_get_cs(int iCs);
+
+#endif
 
    
 } // namespace draw2d

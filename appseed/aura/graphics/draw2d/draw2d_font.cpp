@@ -202,10 +202,71 @@ namespace draw2d
           return unitext("サンプルテキスト");
 
        }
+       else if (ecs == cs_HEBREW)
+       {
+
+          return unitext("טקסט לדוגמה");
+
+       }
+       else if (ecs == cs_ARABIC)
+       {
+
+          return unitext("نص بسيط");
+
+       }
+       else if (ecs == font::cs_GREEK)
+       {
+
+          return unitext("Δείγμα κειμένου");
+
+       }
+       else if (ecs == font::cs_TURKISH)
+       {
+
+          return unitext("Örnek yazı");
+
+       }
+       else if (ecs == font::cs_VIETNAMESE)
+       {
+
+          return unitext("văn bản mẫu");
+
+       }
+       else if (ecs == font::cs_THAI)
+       {
+
+          return unitext("ตัวอย่างข้อความ");
+
+       }
+       else if (ecs == font::cs_EASTEUROPE)
+       {
+
+          return unitext("Sample Text");
+
+       }
+       else if (ecs == font::cs_RUSSIAN)
+       {
+
+          return unitext("Образец текста");
+
+       }
+       else if (ecs == font::cs_JOHAB)
+       {
+
+          return unitext("샘플 텍스트");
+
+       }
+       else if (ecs == font::cs_HANGUL)
+       {
+
+          return unitext("샘플 텍스트");
+
+       }
 
        return "";
 
    }
+
 
    string font::get_sample_text(::draw2d::graphics * pgraphics)
    {

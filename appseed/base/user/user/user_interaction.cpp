@@ -6125,9 +6125,9 @@ restart:
 
          }
 
-         send_message(WM_SIZE);
+         //send_message(WM_SIZE);
 
-         send_message(WM_MOVE);
+         //send_message(WM_MOVE);
 
 #elif defined WINDOWSEX
 
@@ -6240,9 +6240,9 @@ restart:
 
          }
 
-         send_message(WM_SIZE);
+         //send_message(WM_SIZE);
 
-         send_message(WM_MOVE);
+         //send_message(WM_MOVE);
 
 #elif defined WINDOWSEX
 
@@ -6358,9 +6358,9 @@ restart:
 
          }
 
-         send_message(WM_SIZE);
+         //send_message(WM_SIZE);
 
-         send_message(WM_MOVE);
+         //send_message(WM_MOVE);
 
 #elif defined WINDOWSEX
 

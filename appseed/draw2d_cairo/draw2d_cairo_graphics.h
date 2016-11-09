@@ -535,9 +535,9 @@ namespace draw2d_cairo
 
 #endif
 
-      void enum_fonts(stringa & straFile, stringa &stra);
+      virtual void enum_fonts(stringa & straFile, stringa &stra, font::csa & csa) override;
 
-      string get_font_path(string str);
+      virtual string get_font_path(string str);
 
    };
 

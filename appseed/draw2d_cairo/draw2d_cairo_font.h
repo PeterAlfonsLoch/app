@@ -29,6 +29,8 @@ namespace draw2d_cairo
       virtual void dump(dump_context & dumpcontext) const;
 
 
+      virtual ::draw2d::font::e_cs get_cs(::draw2d::graphics * pgraphics) override;
+
    };
 
 

@@ -4,6 +4,30 @@
 namespace draw2d_cairo
 {
 
+   class font_fam_c2
+   {
+   public:
+
+      ENUMLOGFONTW lf;
+
+   };
+
+   int CALLBACK EnumFamCallBack(
+      _In_ ENUMLOGFONTW   *lpelf,
+      _In_ NEWTEXTMETRICW *lpntm,
+      _In_ DWORD         FontType,
+      _In_ LPARAM        lParam
+   )
+   {
+
+      font_fam_c2 * pc2 = (font_fam_c2 *)lParam;
+
+      pc2->lf = *lpelf;
+
+      return TRUE;
+
+   }
+
 
    font::font(::aura::application * papp) :
    ::object(papp)
@@ -75,6 +99,33 @@ synch_lock ml(&cairo_mutex());
       return NULL;
 
    }
+
+
+   ::draw2d::font::e_cs font::get_cs(::draw2d::graphics * pgraphics)
+   {
+
+      font_fam_c2 c2;
+
+      HDC hdc = ::CreateCompatibleDC(NULL);
+
+      wstring wstr = m_strFontFamilyName;
+
+      if (!EnumFontFamiliesW(hdc, wstr, (FONTENUMPROCW)&EnumFamCallBack, (LPARAM)&c2))
+      {
+
+         ::DeleteDC(hdc);
+
+         return ::draw2d::font::cs_DEFAULT;
+
+      }
+
+      ::DeleteDC(hdc);
+
+      
+      return ::draw2d::wingdi_get_cs(c2.lf.elfLogFont.lfCharSet);
+
+   }
+
 
 
 } // namespace draw2d_cairo

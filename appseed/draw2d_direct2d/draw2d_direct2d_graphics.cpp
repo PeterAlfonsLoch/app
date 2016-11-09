@@ -5440,7 +5440,7 @@ namespace draw2d_direct2d
    }
 
 
-   void graphics::enum_fonts(stringa & straFile, stringa & stra)
+   void graphics::enum_fonts(stringa & straFile, stringa & stra, ::draw2d::font::csa & csa)
    {
 
       ::windows::comptr<IDWriteFontCollection> pFontCollection;
@@ -5531,6 +5531,8 @@ namespace draw2d_direct2d
             straFile.add(strName);
 
             stra.add(strName);
+
+            csa.add(::draw2d::font::cs_DEFAULT);
 
          }
 

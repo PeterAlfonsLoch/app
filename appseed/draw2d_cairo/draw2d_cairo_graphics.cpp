@@ -11,6 +11,84 @@ FcConfig *     g_fcConfig;
 
 string_to_string *      g_pmapFontPath;
 
+#elif defined(WINDOWS)
+
+class font_fam_callback
+{
+public:
+
+   stringa                    m_stra;
+   ::draw2d::font::csa        m_csa;
+
+};
+
+BOOL CALLBACK EnumFamCallBackW(LPLOGFONTW lplf, LPNEWTEXTMETRICW lpntm, DWORD dwFontType, LPVOID p)
+{
+
+   font_fam_callback * pc = (font_fam_callback *)p;
+
+   int iType = -1;
+   
+   if (dwFontType & RASTER_FONTTYPE)
+   {
+    
+      iType = 0;
+
+   }
+   else if (dwFontType & TRUETYPE_FONTTYPE)
+   {
+
+      iType = 1;
+
+   }
+   else
+   {
+
+      iType = 2;
+
+   }
+
+   if (iType == 1)
+   {
+
+      if (pc->m_stra.add_unique(lplf->lfFaceName))
+      {
+
+         if (wcsicmp(lplf->lfFaceName, L"Gulim") == 0)
+         {
+            output_debug_string("Gulim");
+         }
+         pc->m_csa.add(::draw2d::wingdi_get_cs(lplf->lfCharSet));
+
+      }
+
+   }
+
+   //int far * aiFontCount = (int far *) aFontCount;
+
+   //// Record the number of raster, TrueType, and vector  
+   //// fonts in the font-count array.  
+
+   //if (FontType & RASTER_FONTTYPE)
+   //   aiFontCount[0]++;
+   //else if (FontType & TRUETYPE_FONTTYPE)
+   //   aiFontCount[2]++;
+   //else
+   //   aiFontCount[1]++;
+
+   //if (aiFontCount[0] || aiFontCount[1] || aiFontCount[2])
+   //   return TRUE;
+   //else
+   //   return FALSE;
+
+   //UNREFERENCED_PARAMETER(lplf);
+   //UNREFERENCED_PARAMETER(lpntm);
+
+
+   return true;
+
+}
+
 
 #endif
 
@@ -4122,7 +4200,7 @@ synch_lock ml(m_pmutex);
 
    }
 
-//   typedef uint32_t (CALLBACK* __GDIGETLAYOUTPROC)(HDC);
+//   typedef uint32_t (CALLBACK* __GDI AYOUTPROC)(HDC);
 //   typedef uint32_t (CALLBACK* __GDISETLAYOUTPROC)(HDC, uint32_t);
 
    uint32_t graphics::GetLayout() const
@@ -5873,7 +5951,7 @@ synch_lock ml(m_pmutex);
 #endif // WINDOWS
 
 
-   void graphics::enum_fonts(stringa & straFile, stringa & stra)
+   void graphics::enum_fonts(stringa & straFile, stringa & stra, font::csa & csa)
    {
 
 #if defined(LINUX)
@@ -5955,6 +6033,8 @@ synch_lock ml(m_pmutex);
 
          stra.add(str);
 
+         csa.add(::draw2d::cs_DEFAULT);
+
          free(s);
 
       }
@@ -5965,6 +6045,28 @@ synch_lock ml(m_pmutex);
          FcFontSetDestroy(fs);
 
       }
+
+#elif defined(WINDOWS)
+
+      HDC hdc = ::CreateCompatibleDC(NULL);
+
+      font_fam_callback c;
+
+      LOGFONTW lf;
+
+      ZERO(lf);
+
+      lf.lfCharSet = DEFAULT_CHARSET;
+
+      EnumFontFamiliesExW(hdc, &lf, (FONTENUMPROCW)&EnumFamCallBackW, (LPARAM)&c, 0);
+
+      ::DeleteDC(hdc);
+
+      straFile       = c.m_stra;
+
+      stra           = c.m_stra;
+
+      csa            = c.m_csa;
 
 #else
 throw not_implemented(get_app());
@@ -6083,6 +6185,10 @@ string graphics::get_font_path(string str)
 
 
 } // namespace draw2d_cairo
+
+
+
+
 
 
 
