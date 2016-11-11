@@ -189,12 +189,12 @@ void simple_scroll_bar::_001OnLButtonUp(signal_details * pobj)
 
    pmouse->m_bRet = false;
 
-   simple_scroll_bar * pcapture = System.get_capture_uie().cast < simple_scroll_bar >();
+   simple_scroll_bar * pcapture = Session.GetCapture().cast < simple_scroll_bar >();
 
    if((pcapture != NULL && pcapture == this) || m_bTracking)
    {
 
-      System.release_capture_uie();
+      Session.ReleaseCapture();
 
       bool bWasTracking = m_bTracking;
 

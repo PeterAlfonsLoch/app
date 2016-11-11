@@ -440,8 +440,8 @@ namespace user
       }
 
       // release capture if this interaction_impl has it
-      if (System.get_capture_uie() == get_handle())
-      System.release_capture_uie();
+      if (Session.GetCapture() == get_handle())
+      Session.ReleaseCapture();
 
       sp(::user::frame_window) pFrameWnd = GetTopLevelFrame();
       ENSURE_VALID(pFrameWnd);

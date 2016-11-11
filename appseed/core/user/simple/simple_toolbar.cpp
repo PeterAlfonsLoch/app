@@ -1354,7 +1354,7 @@ int32_t simple_toolbar::_001HitTest(point pt)
       if(m_itema[iItem]->m_rect.contains(pt))
          return iItem;
    }
-   if(System.get_capture_uie() == this)
+   if(Session.GetCapture() == this)
       return -1;
    rect rectWindow;
    GetWindowRect(rectWindow);

@@ -121,7 +121,7 @@ namespace user
 
             pmouse->m_bRet = true;
 
-            sp(::user::interaction) puieCapture = System.get_capture_uie();
+            sp(::user::interaction) puieCapture = Session.GetCapture();
 
             if(puieCapture == NULL)
             {
@@ -147,9 +147,9 @@ namespace user
                if(puieCapture != NULL && puieCapture == GetEventWindow())
                {
 
-                  TRACE("DockManager::message_handler oswindow ReleaseCapture %x\n",System.get_capture_uie().m_p);
+                  TRACE("DockManager::message_handler oswindow ReleaseCapture %x\n",Session.GetCapture().m_p);
 
-                  System.release_capture_uie();
+                  Session.ReleaseCapture();
 
                }
 
@@ -353,7 +353,7 @@ namespace user
 
             if(pmouse->m_uiMessage == WM_LBUTTONUP || pmouse->m_uiMessage == WM_NCLBUTTONUP)
             {
-               TRACE("DockManager::message_handler oswindow ReleaseCapture 2 %x\n",System.get_capture_uie().m_p);
+               TRACE("DockManager::message_handler oswindow ReleaseCapture 2 %x\n",Session.GetCapture().m_p);
                index iMatchingMonitor = m_pworkset->GetWndDraw()->good_move(rectEvent,null_rect(),true);
 
                if(iMatchingMonitor >= 0)
@@ -377,7 +377,7 @@ namespace user
                   Session.m_ptCursor = ptCursor;
 
                }
-               System.release_capture_uie();
+               Session.ReleaseCapture();
                m_bDocking = false;
             }
             return true;
@@ -486,8 +486,8 @@ namespace user
             else if(pbase->m_uiMessage == WM_MOUSEMOVE ||
                pbase->m_uiMessage == WM_LBUTTONUP)
             {
-               sp(::user::interaction) pWndCapture = System.get_capture_uie();
-               TRACE("DockManager::message_handler oswindow Capture %x\n",System.get_capture_uie().m_p);
+               sp(::user::interaction) pWndCapture = Session.GetCapture();
+               TRACE("DockManager::message_handler oswindow Capture %x\n",Session.GetCapture().m_p);
                if(!m_bDocking ||
                   pWndCapture == NULL ||
                   pWndCapture->get_handle() != GetEventWindow()->get_handle())
@@ -495,7 +495,7 @@ namespace user
                   if(pWndCapture != NULL
                      && pWndCapture->get_handle() == GetEventWindow()->get_handle())
                   {
-                     System.release_capture_uie();
+                     Session.ReleaseCapture();
                   }
                   return;
                }
@@ -537,7 +537,7 @@ namespace user
                }
                if(pbase->m_uiMessage == WM_LBUTTONUP)
                {
-                  System.release_capture_uie();
+                  Session.ReleaseCapture();
                   m_bDocking = false;
                }
                pbase->m_bRet = true;

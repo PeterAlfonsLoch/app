@@ -96,53 +96,6 @@ namespace base
 
 
 
-   sp(::user::interaction) application::release_capture_uie()
-   {
-
-#ifdef METROWIN
-      oswindow oswindowCapture = ::WinGetCapture();
-#else
-      oswindow oswindowCapture = ::GetCapture();
-#endif
-
-      if(oswindowCapture == NULL)
-         return NULL;
-
-      ::user::interaction * pui = System.ui_from_handle(oswindowCapture);
-
-      if(pui == NULL)
-         return NULL;
-
-      return pui->ReleaseCapture();
-
-
-   }
-
-
-   sp(::user::interaction) application::get_capture_uie()
-   {
-
-#ifdef METROWIN
-      oswindow oswindowCapture = ::WinGetCapture();
-#else
-      oswindow oswindowCapture = ::GetCapture();
-#endif
-
-      if(oswindowCapture == NULL)
-         return NULL;
-
-      sp(::user::interaction) pui = System.ui_from_handle(oswindowCapture);
-
-      if(pui == NULL)
-         return NULL;
-
-      return pui->GetCapture();
-
-
-   }
-
-
-
    void application::process_message_filter(int32_t code,signal_details * pobj)
    {
 

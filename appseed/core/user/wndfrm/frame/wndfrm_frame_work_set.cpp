@@ -718,7 +718,7 @@ namespace user
                {
                if(m_bHoverActive)
                {
-               System.release_capture_uie();
+               Session.ReleaseCapture();
                Hover(false);
                }
                }

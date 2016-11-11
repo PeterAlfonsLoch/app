@@ -903,7 +903,7 @@ namespace user
          if (m_pauraapp != NULL && m_pauraapp->m_pbasesession != NULL)
          {
 
-            ::user::interaction * puiCapture = m_pauraapp->m_pbasesession->get_capture_uie();
+            ::user::interaction * puiCapture = m_pauraapp->m_pbasesession->GetCapture();
 
             if (puiCapture != NULL && puiCapture == this)
             {
@@ -2033,8 +2033,8 @@ namespace user
          }
 
          if(!_001IsPointInside(pmouse->m_pt)
-               && !(System.get_capture_uie() == this ||
-                    is_descendant(System.get_capture_uie())))
+               && !(Session.GetCapture() == this ||
+                    is_descendant(Session.GetCapture())))
          {
 
             return;

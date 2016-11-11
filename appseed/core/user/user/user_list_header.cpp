@@ -466,7 +466,7 @@ namespace user
          if(m_bTrack)
          {
             m_bTrack = false;
-            System.release_capture_uie();
+            Session.ReleaseCapture();
          }
          if(m_bHover)
          {

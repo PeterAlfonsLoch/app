@@ -105,7 +105,7 @@ namespace user
       if(m_pparent->m_iIndex == m_iIndex)
       {
          m_pparent->m_iState = split_layout::stateInitial;
-         System.release_capture_uie();
+         Session.ReleaseCapture();
          pmouse->m_bRet = true;
          pmouse->set_lresult(1);
       }

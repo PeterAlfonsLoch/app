@@ -327,7 +327,7 @@ namespace base
 
 
 
-   ::user::primitive * session::get_focus_ui()
+   ::user::primitive * session::GetFocus()
    {
 #ifdef METROWIN
       return System.ui_from_handle(::WinGetFocus());
@@ -337,7 +337,7 @@ namespace base
    }
 
 
-   ::user::primitive * session::get_active_ui()
+   ::user::primitive * session::GetActiveWindow()
    {
 #ifdef METROWIN
       return System.ui_from_handle(::WinGetActiveWindow());
@@ -451,6 +451,53 @@ namespace base
       return strResult;
 
    }
+
+
+
+   bool session::ReleaseCapture()
+   {
+
+#ifdef METROWIN
+      oswindow oswindowCapture = ::WinGetCapture();
+#else
+      oswindow oswindowCapture = ::GetCapture();
+#endif
+
+      if (oswindowCapture == NULL)
+         return false;
+
+      ::ReleaseCapture();
+
+      m_puiCapture = NULL;
+
+      return true;
+
+
+   }
+
+
+   sp(::user::interaction) session::GetCapture()
+   {
+
+#ifdef METROWIN
+      oswindow oswindowCapture = ::WinGetCapture();
+#else
+      oswindow oswindowCapture = ::GetCapture();
+#endif
+
+      if (oswindowCapture == NULL)
+         return NULL;
+
+      sp(::user::interaction) pui = System.ui_from_handle(oswindowCapture);
+
+      if (pui == NULL)
+         return NULL;
+
+      return pui->GetCapture();
+
+   }
+
+
 
 
 

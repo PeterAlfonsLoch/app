@@ -108,7 +108,7 @@ namespace user
                // currently, does not have priority with
                // mouse messages
                m_pworkset->m_bSizingCapture = false;
-               System.release_capture_uie();
+               Session.ReleaseCapture();
             }
             pmouse->m_ecursor = translate(ehittest);
             m_ehittestCursor = HitTestNone;
@@ -170,7 +170,7 @@ namespace user
                SizeWindow(GetSizingWindow(), pmouse->m_pt, false);
                m_ehittestMode = HitTestNone;
                m_pworkset->m_bSizingCapture = false;
-               System.release_capture_uie();
+               Session.ReleaseCapture();
                return true;
             }
             return false;
@@ -618,7 +618,7 @@ namespace user
                if(emode != HitTestNone)
                   GetEventWindow()->SetCapture();
                else
-                  System.release_capture_uie();
+                  Session.ReleaseCapture();
                pmouse->m_ecursor = translate(emode);
                m_ehittestCursor = HitTestNone;
                m_ehittestMode = emode;
@@ -644,7 +644,7 @@ namespace user
                if(m_ehittestMode == HitTestNone)
                {
                   bSize = false;
-                  sp(::user::interaction) pWndCapture = System.get_capture_uie();
+                  sp(::user::interaction) pWndCapture = Session.GetCapture();
                   if(pWndCapture == NULL ||
                      pWndCapture->get_handle() != GetEventWindow()->get_handle())
                   {
@@ -660,7 +660,7 @@ namespace user
                         return;
                      EHitTest emode = hit_test(ptCursor);
                      if(emode == HitTestNone)
-                        System.release_capture_uie();
+                        Session.ReleaseCapture();
                      if(emode != m_ehittestCursor)
                      {
                         pmouse->m_ecursor = translate(emode);
@@ -864,7 +864,7 @@ namespace user
                {
                   if(m_ehittestMode != HitTestNone)
                   {
-                     System.release_capture_uie();
+                     Session.ReleaseCapture();
                      m_ehittestMode = HitTestNone;
                      pbase->m_bRet = true;
                      return;

@@ -37,8 +37,6 @@ namespace base
 
 
 
-      virtual sp(::user::interaction) release_capture_uie();
-      virtual sp(::user::interaction) get_capture_uie();
 
 
 

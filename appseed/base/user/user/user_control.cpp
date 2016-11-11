@@ -944,9 +944,11 @@ namespace user
       e_element eelement;
 
       index iHover = hit_test(ptCursor, eelement);
+
       if(iHover != -1)
       {
-         if(m_iHover != iHover || System.get_capture_uie() != pwnd)
+
+         if(m_iHover != iHover || Session.GetCapture() != pwnd)
          {
             
             m_iHover = iHover;
@@ -956,6 +958,7 @@ namespace user
             pwnd->RedrawWindow();
             
          }
+
       }
       else
       {
@@ -965,7 +968,7 @@ namespace user
             
             m_iHover = -1;
 
-            System.release_capture_uie();
+            Session.ReleaseCapture();
 
             pwnd->RedrawWindow();
             

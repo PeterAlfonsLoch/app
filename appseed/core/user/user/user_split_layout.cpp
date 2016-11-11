@@ -226,7 +226,7 @@ namespace user
          if(m_iState != stateInitial)
          {
 
-            System.release_capture_uie();
+            Session.ReleaseCapture();
 
             m_iState = stateInitial;
 
@@ -996,7 +996,7 @@ namespace user
 //         int32_t yPos = splitRect.top + (int16_t) HIWORD(lParam);  // vertical position of cursor
          if(m_iState != stateInitial)
          {
-            System.release_capture_uie();
+            Session.ReleaseCapture();
             m_iState = stateInitial;
          }
       }

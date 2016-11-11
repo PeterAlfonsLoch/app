@@ -44,8 +44,12 @@ namespace base
 
       virtual void get_cursor_pos(LPPOINT lppoint);
 
-      virtual ::user::primitive * get_active_ui();
-      virtual ::user::primitive * get_focus_ui();
+      virtual ::user::primitive * GetActiveWindow();
+      virtual ::user::primitive * GetFocus();
+
+      virtual bool ReleaseCapture();
+      virtual sp(::user::interaction) GetCapture();
+
 
       ::user::elemental * get_keyboard_focus();
 

@@ -174,7 +174,7 @@ namespace user
                
                GetEventWindow()->m_bMoving = false;
 
-               System.release_capture_uie();
+               Session.ReleaseCapture();
                
 
                
@@ -384,8 +384,8 @@ namespace user
             else if(pbase->m_uiMessage == WM_MOUSEMOVE ||
                     pbase->m_uiMessage == WM_LBUTTONUP)
             {
-               sp(::user::interaction) pWndCapture = System.get_capture_uie();
-               TRACE("MoveManager::message_handler oswindow Capture %x\n", System.get_capture_uie().m_p);
+               sp(::user::interaction) pWndCapture = Session.GetCapture();
+               TRACE("MoveManager::message_handler oswindow Capture %x\n", Session.GetCapture().m_p);
                if(!m_bMoving ||
                      pWndCapture == NULL ||
                      pWndCapture->get_handle() != GetEventWindow()->get_handle())
@@ -393,7 +393,7 @@ namespace user
                   if(pWndCapture != NULL
                         && pWndCapture->get_handle() == GetEventWindow()->get_handle())
                   {
-                     System.release_capture_uie();
+                     Session.ReleaseCapture();
                   }
                   return;
                }
@@ -434,7 +434,7 @@ namespace user
                }
                if(pbase->m_uiMessage == WM_LBUTTONUP)
                {
-                  System.release_capture_uie();
+                  Session.ReleaseCapture();
                   m_bMoving = false;
                }
                pbase->m_bRet = true;
