@@ -948,20 +948,31 @@ namespace user
       {
          if(m_iHover != iHover || System.get_capture_uie() != pwnd)
          {
+            
             m_iHover = iHover;
-            pwnd->RedrawWindow(0, 0, RDW_INVALIDATE | RDW_ERASE | RDW_FRAME);
+            
             pwnd->SetCapture();
+
+            pwnd->RedrawWindow();
+            
          }
       }
       else
       {
+         
          if(m_iHover != -1)
          {
+            
             m_iHover = -1;
-            pwnd->RedrawWindow(0, 0, RDW_INVALIDATE | RDW_ERASE | RDW_FRAME);
+
             System.release_capture_uie();
+
+            pwnd->RedrawWindow();
+            
          }
+
       }
+
    }
 
 

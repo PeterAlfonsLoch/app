@@ -18,7 +18,6 @@ namespace metrowin
    public:
 
       directx_application ^                  m_xapp;
-      spa(::user::interaction)      m_guieptraMouseHover;
       ::user::message_queue_listener *   m_plistener;
       string                        m_strWindowText;
       //visual::dib_sp              m_spdib;
@@ -39,11 +38,6 @@ namespace metrowin
       //virtual oswindow get_handle() const;
 
       virtual ::user::interaction * get_wnd() const;
-
-      virtual void mouse_hover_add(::user::interaction *  pinterface);
-      virtual void mouse_hover_remove(::user::interaction *  pinterface);
-
-      //bool create_message_queue(const char * pszName, ::user::message_queue_listener* pcallback = NULL);
 
       bool create_message_queue(::user::interaction * pui, const char * pszName);
 
@@ -484,7 +478,6 @@ namespace metrowin
       void OnMove(int x, int y);
       DECL_GEN_SIGNAL(_001OnPaint);
       DECL_GEN_SIGNAL(_001OnPrint);
-      DECL_GEN_SIGNAL(_001OnCaptureChanged);
       void OnParentNotify(UINT message, LPARAM lParam);
       HCURSOR OnQueryDragIcon();
       bool OnQueryEndSession();

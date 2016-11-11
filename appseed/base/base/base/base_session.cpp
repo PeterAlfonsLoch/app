@@ -23,6 +23,8 @@ namespace base
 
       m_iMainMonitor                = -1;
 
+      m_puiCapture                  = NULL;
+
 #ifdef WINDOWS
 
       if(m_hinstance == NULL)

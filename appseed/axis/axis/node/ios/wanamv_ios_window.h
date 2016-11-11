@@ -21,26 +21,17 @@ namespace ios
    public:
 
 
-      spa(::user::interaction)      m_guieptraMouseHover;
       ::message_queue_listener *   m_pcallback;
       string                        m_strWindowText;
-//      oswindow                      m_oswindow;
       ::user::window_interface *    m_pbasewnd;
       sp(::user::interaction)       m_pguieCapture;
       bool                          m_bNeedsUpdate;
 
-      //visual::dib_sp              m_spdib;
-      //visual::dib_sp              m_spdibMultAlphaWork;
 
 
       window();
       window(sp(::aura::application) papp);
       virtual void construct(oswindow hwnd);
-
-//      virtual void on_delete(::ca2::ca2 * poc);
-
-      virtual void mouse_hover_add(sp(::user::interaction)  pinterface);
-      virtual void mouse_hover_remove(sp(::user::interaction)  pinterface);
 
       virtual bool create_message_queue(const char * pszName, ::message_queue_listener * pcallback = NULL);
 
@@ -487,7 +478,6 @@ namespace ios
       void OnMove(int32_t x, int32_t y);
       DECL_GEN_SIGNAL(_001OnPaint);
       DECL_GEN_SIGNAL(_001OnPrint);
-       DECL_GEN_SIGNAL(_001OnCaptureChanged);
       void OnParentNotify(UINT message, LPARAM lParam);
       bool OnQueryEndSession();
       bool OnQueryNewPalette();

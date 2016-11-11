@@ -10,18 +10,32 @@ namespace user
       ::aura::timer_array(get_app())
    {
 
-      m_bScreenRelativeMouseMessagePosition  = true;
-      m_bTranslateMouseMessageCursor         = true;
-      m_bComposite                           = true;
-      m_bUpdateGraphics                      = false;
-      m_oswindow                             = NULL;
-      m_puiFocus                             = NULL;
+      user_common_construct();
 
    }
 
 
    interaction_impl::~interaction_impl()
    {
+
+      m_guieptraMouseHover.m_pmutex = NULL;
+
+   }
+
+
+   void interaction_impl::user_common_construct()
+   {
+
+      m_pmutex                               = new mutex(get_app());
+      m_guieptraMouseHover.m_pmutex          = m_pmutex;
+      m_bScreenRelativeMouseMessagePosition  = true;
+      m_bTranslateMouseMessageCursor         = true;
+      m_bComposite                           = true;
+      m_bUpdateGraphics                      = false;
+      m_oswindow                             = NULL;
+      m_puiFocus                             = NULL;
+      m_bMouseHover                          = false;
+      
 
    }
 
@@ -86,25 +100,9 @@ namespace user
    }
 
 
-   void interaction_impl::mouse_hover_add(::user::interaction * pinterface)
-   {
-
-      UNREFERENCED_PARAMETER(pinterface);
-      ::exception::throw_interface_only(get_app());
-
-   }
-
-
-   void interaction_impl::mouse_hover_remove(::user::interaction * pinterface)
-   {
-
-      UNREFERENCED_PARAMETER(pinterface);
-      ::exception::throw_interface_only(get_app());
-
-   }
-
-
 #ifdef WINDOWSEX
+
+
    bool interaction_impl::GetWindowInfo(PWINDOWINFO pwi) const
    {
       UNREFERENCED_PARAMETER(pwi);
@@ -292,15 +290,202 @@ namespace user
    }
 
 
-   void interaction_impl::_001OnDestroy(signal_details * pobj)
+   void interaction_impl::_000OnMouseLeave(signal_details * pobj)
    {
 
-      UNREFERENCED_PARAMETER(pobj);
+      if (!m_pui->m_bTransparentMouseEvents)
+      {
+
+         m_bMouseHover = false;
+
+         sp(::user::interaction) pui;
+
+         rect rectUi;
+
+         point ptCursor;
+
+         Session.get_cursor_pos(ptCursor);
+
+         ref_array < ::user::interaction > uiptra;
+
+         while (m_guieptraMouseHover.get_child(pui))
+         {
+
+            pui->GetWindowRect(rectUi);
+
+            if (pui != m_pui)
+            {
+
+               pui->send_message(WM_MOUSELEAVE);
+
+            }
+
+         }
+
+         {
+
+            synch_lock sl(m_pmutex);
+
+            m_guieptraMouseHover.remove_all();
+
+         }
+
+      }
 
    }
 
 
+   void interaction_impl::_008OnMouse(::message::mouse * pmouse)
+   {
+
+   restart_mouse_hover_check:
+      {
+
+         if (m_pui->m_bTransparentMouseEvents)
+         {
+
+            sp(::user::interaction) pui;
+
+            while (m_guieptraMouseHover.get_child(pui))
+            {
+
+               if (!pui->_001IsPointInside(pmouse->m_pt))
+               {
+
+                  pui->send_message(WM_MOUSELEAVE);
+                  
+                  {
+
+                     synch_lock sl(m_pmutex);
+
+                     m_guieptraMouseHover.remove(pui);
+
+                  }
+
+                  goto restart_mouse_hover_check;
+
+               }
+
+            }
+
+         }
+
+      }
+
+      oswindow oswindow = ::GetCapture();
+
+      if (oswindow == NULL || oswindow == get_handle())
+      {
+
+         if (!m_bMouseHover)
+         {
+
+            m_pui->_001OnTriggerMouseInside();
+
+         }
+
+      }
+
+      if(oswindow != NULL)
+      {
+
+         ::user::interaction * puiCapture = Session.m_puiCapture;
+
+         if (puiCapture == NULL)
+         {
+
+            puiCapture = System.ui_from_handle(oswindow);
+
+            if (puiCapture == NULL)
+            {
+
+               puiCapture = m_pui;
+
+            }
+
+         }
+
+         try
+         {
+
+            (puiCapture->m_pimpl->*puiCapture->m_pimpl->m_pfnDispatchWindowProc)(dynamic_cast <::signal_details *> (pmouse));
+
+         }
+         catch (...)
+         {
+
+         }
+
+         return;
+
+      }
+      
+      m_pui->_000OnMouse(pmouse);
+
+      pmouse->set_lresult(DefWindowProc(pmouse->m_uiMessage, pmouse->m_wparam, pmouse->m_lparam));
+
+   }
+
+
+   void interaction_impl::mouse_hover_add(::user::interaction * pinterface)
+   {
+
+      if (m_pui->m_bTransparentMouseEvents)
+      {
+
+         return;
+
+      }
+
+      if (pinterface == NULL)
+      {
+
+         return;
+
+      }
+
+      synch_lock sl(m_pmutex);
+
+      m_guieptraMouseHover.add_unique(pinterface);
+
+   }
+
+
+   void interaction_impl::mouse_hover_remove(::user::interaction * pinterface)
+   {
+
+      synch_lock sl(m_pmutex);
+
+      m_guieptraMouseHover.remove(pinterface);
+
+   }
+
    void interaction_impl::_001OnCaptureChanged(signal_details * pobj)
+   {
+
+      UNREFERENCED_PARAMETER(pobj);
+
+      Session.m_puiCapture = NULL;
+
+   }
+
+
+   void interaction_impl::install_message_handling(::message::dispatch * pdispatch)
+   {
+
+      ::user::interaction_impl_base::install_message_handling(pdispatch);
+    
+      if (!m_pui->m_bMessageWindow)
+      {
+
+         IGUI_WIN_MSG_LINK(WM_CAPTURECHANGED, pdispatch, this, &interaction_impl::_001OnCaptureChanged);
+
+      }
+
+   }
+
+
+   void interaction_impl::_001OnDestroy(signal_details * pobj)
    {
 
       UNREFERENCED_PARAMETER(pobj);
@@ -1034,12 +1219,14 @@ namespace user
    }
 
 
-   ::user::interaction * interaction_impl::ReleaseCapture()
+   bool interaction_impl::ReleaseCapture()
    {
 
-      ::exception::throw_interface_only(get_app());
+      ::ReleaseCapture();
+            
+      Session.m_puiCapture = NULL;
 
-      return NULL;
+      return true;
 
    }
 
@@ -1047,9 +1234,68 @@ namespace user
    ::user::interaction * interaction_impl::GetCapture()
    {
 
-      ::exception::throw_interface_only(get_app());
+      oswindow oswindow = ::GetCapture();
+      
+      if (oswindow == NULL)
+      {
 
-      return NULL;
+         return NULL;
+
+      }
+
+      ::user::interaction * pui = System.ui_from_handle(oswindow);
+      if (pui != NULL)
+      {
+         
+         if (Session.m_puiCapture != NULL)
+         {
+
+            return Session.m_puiCapture;
+
+         }
+         else
+         {
+
+            return pui;
+
+         }
+
+      }
+
+      return interaction_impl_base::GetCapture();
+
+   }
+
+
+   bool interaction_impl::SetCapture(::user::interaction * pui)
+   {
+
+      if (pui == NULL)
+      {
+
+         pui = m_pui;
+
+      }
+
+      if (!IsWindow())
+      {
+
+         return NULL;
+
+      }
+
+      oswindow w = ::SetCapture(get_handle());
+
+      if (w != get_handle())
+      {
+
+         return false;
+
+      }
+
+      Session.m_puiCapture = pui;
+
+      return true;
 
    }
 
@@ -1448,24 +1694,10 @@ namespace user
    }
 
 
-   ::user::interaction * interaction_impl::SetCapture(::user::interaction * pinterface)
+   bool interaction_impl::SetFocus()
    {
 
-      UNREFERENCED_PARAMETER(pinterface);
-
-      ::exception::throw_interface_only(get_app());
-
-      return NULL;
-
-   }
-
-
-   ::user::interaction * interaction_impl::SetFocus()
-   {
-
-      ::exception::throw_interface_only(get_app());
-
-      return NULL;
+      return false;
 
    }
 

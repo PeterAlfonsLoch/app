@@ -52,15 +52,7 @@ WINBOOL GetMessage(
 namespace ios
 {
 
-   void window::mouse_hover_add(sp(::user::interaction) pinterface)
-   {
-      m_guieptraMouseHover.add_unique(pinterface);
-   }
 
-   void window::mouse_hover_remove(sp(::user::interaction) pinterface)
-   {
-      m_guieptraMouseHover.remove(pinterface);
-   }
 
 
    window::window()
@@ -589,7 +581,6 @@ namespace ios
       {
          m_pui->install_message_handling(pinterface);
       }
-      IGUI_WIN_MSG_LINK(WM_CAPTURECHANGED    , pinterface, this, &window::_001OnCaptureChanged);
       IGUI_WIN_MSG_LINK(WM_CREATE            , pinterface, this, &window::_001OnCreate);
       IGUI_WIN_MSG_LINK(WM_SETCURSOR         , pinterface, this, &window::_001OnSetCursor);
       IGUI_WIN_MSG_LINK(WM_ERASEBKGND        , pinterface, this, &window::_001OnEraseBkgnd);
@@ -670,11 +661,6 @@ namespace ios
       Default();
    }
 
-   void window::_001OnCaptureChanged(signal_details * pobj)
-   {
-      UNREFERENCED_PARAMETER(pobj);
-      m_pguieCapture = NULL;
-   }
 
    // WM_NCDESTROY is the absolute LAST message sent.
    void window::_001OnNcDestroy(signal_details * pobj)
@@ -1327,19 +1313,7 @@ namespace ios
        }*/
       pbase->set_lresult(0);
 
-      /*      if(pbase->m_uiMessage == WM_MOUSELEAVE)
-       {
-       m_bMouseHover = false;
-       for(int32_t i = 0; i < m_guieptraMouseHover.get_size(); i++)
-       {
-       if(m_guieptraMouseHover[i] == this
-       || m_guieptraMouseHover[i]->m_pimpl == this
-       || m_guieptraMouseHover[i]->m_pui == this)
-       continue;
-       m_guieptraMouseHover[i]->send_message(WM_MOUSELEAVE);
-       }
-       m_guieptraMouseHover.remove_all();
-       }*/
+
 
       if(pbase->m_uiMessage == WM_LBUTTONDOWN ||
          pbase->m_uiMessage == WM_LBUTTONUP ||
@@ -1437,17 +1411,6 @@ namespace ios
             // what forces, at the end of message processing, setting the bergedge cursor to the default cursor, if no other
             // handler has set it to another one.
             pmouse->m_ecursor = visual::cursor_default;
-         }
-      restart_mouse_hover_check:
-         for(int32_t i = 0; i < m_guieptraMouseHover.get_size(); i++)
-         {
-            if(!m_guieptraMouseHover[i]._001IsPointInside(pmouse->m_pt))
-            {
-               ::user::interaction * pui = &m_guieptraMouseHover[i];
-               //               pui->send_message(WM_MOUSELEAVE);
-               m_guieptraMouseHover.remove(pui);
-               goto restart_mouse_hover_check;
-            }
          }
          if(!m_bMouseHover)
          {

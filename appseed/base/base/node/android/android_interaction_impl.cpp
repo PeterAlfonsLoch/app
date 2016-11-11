@@ -24,11 +24,10 @@ namespace android
    interaction_impl::interaction_impl() :
       ::aura::timer_array(get_app())
    {
+
       m_bScreenRelativeMouseMessagePosition = true;
-//      m_bScreenRelativeMouseMessagePosition = false;
       m_oswindow           = NULL;
       m_bMouseHover        = false;
-      m_puiCapture         = NULL;
       m_bUpdateGraphics    = false;
       m_bEnabled           = true;
 
@@ -46,11 +45,10 @@ namespace android
 
    void interaction_impl::construct(oswindow oswindow)
    {
+
       m_bScreenRelativeMouseMessagePosition = true;
-  //    m_bScreenRelativeMouseMessagePosition = false;
       m_oswindow           = NULL;
       m_bMouseHover        = false;
-      m_puiCapture         = NULL;
       m_bUpdateGraphics    = false;
       m_bEnabled           = true;
 
@@ -70,8 +68,6 @@ namespace android
       m_bScreenRelativeMouseMessagePosition = true;
     //  m_bScreenRelativeMouseMessagePosition = false;
       m_oswindow           = NULL;
-      m_bMouseHover        = false;
-      m_puiCapture         = NULL;
       m_bUpdateGraphics    = false;
       m_bIgnoreSizeEvent   = false;
       m_bIgnoreMoveEvent   = false;
@@ -552,7 +548,6 @@ namespace android
       if(!m_pui->m_bMessageWindow)
       {
 
-         IGUI_WIN_MSG_LINK(WM_CAPTURECHANGED,pinterface,this,&interaction_impl::_001OnCaptureChanged);
          IGUI_WIN_MSG_LINK(WM_SETCURSOR,pinterface,this,&interaction_impl::_001OnSetCursor);
 
          //IGUI_WIN_MSG_LINK(WM_ERASEBKGND,pinterface,this,&interaction_impl::_001OnEraseBkgnd);
@@ -675,12 +670,6 @@ namespace android
 
    }
 
-
-   void interaction_impl::_001OnCaptureChanged(signal_details * pobj)
-   {
-      UNREFERENCED_PARAMETER(pobj);
-      m_puiCapture = NULL;
-   }
 
    // WM_NCDESTROY is the absolute LAST message sent.
    void interaction_impl::_001OnNcDestroy(signal_details * pobj)
@@ -1345,14 +1334,11 @@ namespace android
 
       if(pbase->m_uiMessage == WM_MOUSELEAVE)
       {
-         m_bMouseHover = false;
-         for (int32_t i = 0; i < m_guieptraMouseHover.get_size(); i++)
-         {
-            if(m_guieptraMouseHover.element_at(i) == m_pui)
-               continue;
-            m_guieptraMouseHover.element_at(i)->send_message(WM_MOUSELEAVE);
-         }
-         m_guieptraMouseHover.remove_all();
+         
+         _000OnMouseLeave(pbase);
+
+         return;
+
       }
 
       if(pbase->m_uiMessage == WM_LBUTTONDOWN ||
@@ -1431,71 +1417,8 @@ namespace android
             // handler has set it to another one.
             pmouse->m_ecursor = visual::cursor_default;
          }
-      restart_mouse_hover_check:
-         for(int32_t i = 0; i < m_guieptraMouseHover.get_size(); i++)
-         {
-            if(!m_guieptraMouseHover.element_at(i)->_001IsPointInside(pmouse->m_pt))
-            {
-               sp(::user::interaction) pui = m_guieptraMouseHover.element_at(i);
-               pui->send_message(WM_MOUSELEAVE);
-               m_guieptraMouseHover.remove(pui);
-               goto restart_mouse_hover_check;
-            }
-         }
-         if(::GetCapture() == m_oswindow && m_puiCapture != NULL)
-         {
-            if(m_puiCapture->m_pimpl != NULL)
-            {
-               //m_puiCapture->m_pimpl->SendMessage(pbase);
-               try
-               {
-                  (m_puiCapture->m_pimpl->*m_puiCapture->m_pimpl->m_pfnDispatchWindowProc)(dynamic_cast <signal_details *> (pmouse));
-                  if(pmouse->get_lresult() != 0)
-                     return;
-               }
-               catch(...)
-               {
-               }
-               return;
-            }
-            else
-            {
-               //m_puiCapture->SendMessage(pbase);
-               try
-               {
-                  (m_puiCapture->*m_puiCapture->m_pfnDispatchWindowProc)(dynamic_cast <signal_details *> (pmouse));
-                  if(pmouse->get_lresult() != 0)
-                     return;
-               }
-               catch(...)
-               {
-               }
-               return;
-            }
-         }
-         if(!m_bMouseHover)
-         {
-            m_pui->_001OnTriggerMouseInside();
-         }
 
-         for(int32_t i = m_pui->m_uiptraChild.get_upper_bound(); i >= 0; i--)
-         {
-
-            sp(::user::interaction) pui = m_pui->m_uiptraChild[i];
-
-            if(pui != NULL)
-            {
-
-               pui->_000OnMouse(pmouse);
-
-               if(pmouse->m_bRet)
-                  return;
-
-            }
-
-         }
-
-         pbase->set_lresult(DefWindowProc(pbase->m_uiMessage,pbase->m_wparam,pbase->m_lparam));
+         _008OnMouse(pmouse);
 
          return;
 
@@ -3670,68 +3593,6 @@ LONG interaction_impl::SetWindowLong(int32_t nIndex, LONG lValue)
 }
 
 
-::user::interaction * interaction_impl::ReleaseCapture()
-{
-   //throw not_implemented(get_app());
-   oswindow hwndcapture = ::GetCapture();
-   if (hwndcapture == NULL)
-      return NULL;
-   if (((void *)hwndcapture) == get_handle())
-   {
-      sp(::user::interaction) puiecapture = GetCapture();
-      if (::ReleaseCapture())
-      {
-         m_puicapture = NULL;
-         return puiecapture;
-      }
-      else
-      {
-         return NULL;
-      }
-   }
-   else
-   {
-      return interaction_impl::GetCapture()->ReleaseCapture();
-   }
-}
-
-::user::interaction * interaction_impl::GetCapture()
-{
-   //      throw not_implemented(get_app());
-   oswindow hwndcapture = ::GetCapture();
-   if (hwndcapture == NULL)
-      return NULL;
-   if (((void *)hwndcapture) == get_handle())
-   {
-      if (m_puicapture != NULL)
-      {
-         return m_puicapture;
-      }
-      else
-      {
-         if (m_pui != NULL)
-         {
-            if (m_pui->m_pimpl != NULL && m_pui->m_pimpl.cast < interaction_impl >()->m_puicapture != NULL)
-            {
-               return m_pui->m_pimpl.cast < interaction_impl >()->m_puicapture;
-            }
-            else
-            {
-               return m_pui;
-            }
-         }
-         else
-         {
-            return NULL;
-         }
-      }
-   }
-   else
-   {
-      return interaction_impl::GetCapture()->GetCapture();
-   }
-}
-
 
 
 // interaction_impl
@@ -4392,24 +4253,11 @@ bool interaction_impl::EnableWindow(bool bEnable)
 }
 
 
-::user::interaction * interaction_impl::SetCapture(::user::interaction * pinterface)
-{
-
-   ASSERT(::IsWindow((oswindow)get_handle()));
-
-   oswindow w = ::SetCapture(get_handle());
-
-   if (GetCapture() != NULL)
-   {
-
-      if (pinterface != NULL)
-         m_puicapture = pinterface;
-
-   }
-
-   return w->get_user_interaction();
-
-}
+//::user::interaction * interaction_impl::SetCapture(::user::interaction * pinterface)
+//{
+//
+//
+//}
 
 ::user::interaction * PASCAL interaction_impl::GetFocus()
 {
@@ -5526,15 +5374,7 @@ namespace android
       return  m_pui->get_next(bIgnoreChildren, piLevel);
 
    }
-   void interaction_impl::mouse_hover_add(::user::interaction * pinterface)
-   {
-      m_guieptraMouseHover.add_unique(pinterface);
-   }
 
-   void interaction_impl::mouse_hover_remove(::user::interaction * pinterface)
-   {
-      m_guieptraMouseHover.remove(pinterface);
-   }
 
    bool interaction_impl::on_keyboard_focus(::user::elemental * pfocus)
    {

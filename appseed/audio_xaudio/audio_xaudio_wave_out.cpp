@@ -85,7 +85,7 @@ namespace multimedia
       ::multimedia::e_result wave_out::wave_out_open(::thread * pthreadCallback, int32_t iBufferCount, int32_t iBufferSampleCount)
       {
 
-         single_lock sLock(&m_mutex, TRUE);
+         single_lock sLock(m_pmutex, TRUE);
 
 
          if(m_pxaudio != NULL && m_pvoice != NULL && m_psourcevoice != NULL && m_estate != state_initial)
@@ -231,7 +231,7 @@ namespace multimedia
       ::multimedia::e_result wave_out::wave_out_open_ex(thread * pthreadCallback, int32_t iBufferCount, int32_t iBufferSampleCount, uint32_t uiSamplesPerSec, uint32_t uiChannelCount, uint32_t uiBitsPerSample, ::multimedia::audio::e_purpose epurpose)
       {
 
-         single_lock sLock(&m_mutex, TRUE);
+         single_lock sLock(m_pmutex, TRUE);
 
          if(m_pxaudio != NULL && m_pvoice != NULL && m_psourcevoice != NULL && m_estate != state_initial)
             return ::multimedia::result_success;
@@ -354,7 +354,7 @@ namespace multimedia
       ::multimedia::e_result wave_out::wave_out_close()
       {
 
-         single_lock sLock(&m_mutex, TRUE);
+         single_lock sLock(m_pmutex, TRUE);
 
          if(m_estate == state_playing)
          {
@@ -508,7 +508,7 @@ namespace multimedia
          b.pAudioData = (const BYTE *)pbuffer->m_pData;
          b.Flags = m_bEOS ? XAUDIO2_END_OF_STREAM : 0;
 
-         //single_lock sLock(&m_mutex,TRUE);
+         //single_lock sLock(m_pmutex,TRUE);
 
          char sz[16];
 
@@ -546,7 +546,7 @@ namespace multimedia
       ::multimedia::e_result wave_out::wave_out_stop()
       {
 
-         single_lock sLock(&m_mutex, TRUE);
+         single_lock sLock(m_pmutex, TRUE);
 
          if(m_estate != state_playing && m_estate != state_paused)
             return ::multimedia::result_error;
@@ -579,7 +579,7 @@ namespace multimedia
       ::multimedia::e_result wave_out::wave_out_pause()
       {
 
-         single_lock sLock(&m_mutex, TRUE);
+         single_lock sLock(m_pmutex, TRUE);
 
          ASSERT(m_estate == state_playing);
 
@@ -608,7 +608,7 @@ namespace multimedia
       ::multimedia::e_result wave_out::wave_out_start(const imedia_position & position)
       {
 
-         single_lock sLock(&m_mutex,TRUE);
+         single_lock sLock(m_pmutex,TRUE);
 
          if(m_estate == state_playing)
             return result_success;
@@ -639,7 +639,7 @@ namespace multimedia
       ::multimedia::e_result wave_out::wave_out_restart()
       {
 
-         single_lock sLock(&m_mutex, TRUE);
+         single_lock sLock(m_pmutex, TRUE);
 
          ASSERT(m_estate == state_paused);
 
@@ -683,7 +683,7 @@ namespace multimedia
       imedia_time wave_out::wave_out_get_position_millis()
       {
 
-         single_lock sLock(&m_mutex, TRUE);
+         single_lock sLock(m_pmutex, TRUE);
 
 //         ::multimedia::e_result                mmr;
 
@@ -718,7 +718,7 @@ namespace multimedia
       imedia_position wave_out::wave_out_get_position()
       {
 
-         single_lock sLock(&m_mutex, TRUE);
+         single_lock sLock(m_pmutex, TRUE);
 
 //         ::multimedia::e_result                mmr;
 

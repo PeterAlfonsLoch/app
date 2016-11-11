@@ -18,6 +18,8 @@ namespace base
       sp(::user::user)              m_puser;
       sp(::user::schema)            m_pschemasimple;
 
+      ::user::interaction *         m_puiCapture;
+
 
       session(::aura::application * papp);
       virtual ~session_parent;

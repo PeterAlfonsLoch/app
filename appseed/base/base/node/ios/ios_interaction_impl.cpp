@@ -19,15 +19,6 @@ namespace ios
 {
 
 
-   void interaction_impl::mouse_hover_add(::user::interaction *  pinterface)
-   {
-      m_guieptraMouseHover.add_unique(pinterface);
-   }
-
-   void interaction_impl::mouse_hover_remove(::user::interaction *  pinterface)
-   {
-      m_guieptraMouseHover.remove(pinterface);
-   }
 
 
    interaction_impl::interaction_impl() :
@@ -38,7 +29,6 @@ namespace ios
       //      m_pui->m_nFlags    = 0;
       //m_pfnSuper         = NULL;
       m_bMouseHover        = false;
-      m_puiCapture       = NULL;
       m_oswindow           = NULL;
       m_proundwindow = NULL;
 
@@ -48,12 +38,8 @@ namespace ios
    void interaction_impl::construct(oswindow hWnd)
    {
 
-      m_oswindow           = hWnd;
-      //set_handle(hWnd);
-      //      m_pui->m_nFlags    = 0;
-      //m_pfnSuper         = NULL;
+      set_handle(hWnd);
       m_bMouseHover        = false;
-      m_puiCapture       = NULL;
       m_oswindow           = NULL;
       m_proundwindow = NULL;
 
@@ -65,13 +51,7 @@ namespace ios
    ::aura::timer_array(papp)
    {
 
-      //set_handle(NULL);
-      //        m_pui->m_nFlags    = 0;
-      //m_pfnSuper         = NULL;
-      m_bMouseHover        = false;
-      //        m_pfont              = NULL;
-      m_puiCapture       = NULL;
-      m_oswindow           = NULL;
+      set_handle(NULL);
       m_proundwindow = NULL;
 
    }
@@ -556,7 +536,6 @@ namespace ios
 
       }
 
-      IGUI_WIN_MSG_LINK(WM_CAPTURECHANGED    , pinterface, this, &interaction_impl::_001OnCaptureChanged);
       IGUI_WIN_MSG_LINK(WM_CREATE            , pinterface, this, &interaction_impl::_001OnCreate);
       IGUI_WIN_MSG_LINK(WM_SETCURSOR         , pinterface, this, &interaction_impl::_001OnSetCursor);
       IGUI_WIN_MSG_LINK(WM_ERASEBKGND        , pinterface, this, &interaction_impl::_001OnEraseBkgnd);
@@ -651,12 +630,6 @@ namespace ios
 
    }
 
-
-   void interaction_impl::_001OnCaptureChanged(signal_details * pobj)
-   {
-      UNREFERENCED_PARAMETER(pobj);
-      m_puiCapture = NULL;
-   }
 
    // WM_NCDESTROY is the absolute LAST message sent.
    void interaction_impl::_001OnNcDestroy(signal_details * pobj)
@@ -1213,19 +1186,14 @@ namespace ios
        }*/
       pbase->set_lresult(0);
 
-      /*      if(pbase->m_uiMessage == WM_MOUSELEAVE)
+       if(pbase->m_uiMessage == WM_MOUSELEAVE)
        {
-       m_bMouseHover = false;
-       for(int32_t i = 0; i < m_guieptraMouseHover.get_size(); i++)
-       {
-       if(m_guieptraMouseHover[i] == this
-       || m_guieptraMouseHover[i]->m_pimpl == this
-       || m_guieptraMouseHover[i]->m_pui == this)
-       continue;
-       m_guieptraMouseHover[i]->send_message(WM_MOUSELEAVE);
+
+          _000OnMouseLeave(pbase);
+
+          return;
+        
        }
-       m_guieptraMouseHover.remove_all();
-       }*/
 
       if(pbase->m_uiMessage == WM_LBUTTONDOWN ||
          pbase->m_uiMessage == WM_LBUTTONUP ||
@@ -1311,70 +1279,11 @@ namespace ios
             // handler has set it to another one.
             pmouse->m_ecursor = visual::cursor_default;
          }
-      restart_mouse_hover_check:
-         for(int32_t i = 0; i < m_guieptraMouseHover.get_size(); i++)
-         {
-            if(!m_guieptraMouseHover[i]->_001IsPointInside(pmouse->m_pt))
-            {
-               ::user::interaction * pui = m_guieptraMouseHover[i];
-               //               pui->send_message(WM_MOUSELEAVE);
-               m_guieptraMouseHover.remove(pui);
-               goto restart_mouse_hover_check;
-            }
-         }
-         if(!m_bMouseHover)
-         {
-            m_pui->_001OnTriggerMouseInside();
-         }
-         if(m_puiCapture != NULL)
-         {
-            if(m_puiCapture->m_pimpl != NULL)
-            {
-               //m_puiCapture->m_pimpl->SendMessage(pbase);
-               try
-               {
-                  (m_puiCapture->m_pimpl->*m_puiCapture->m_pimpl->m_pfnDispatchWindowProc)(dynamic_cast < signal_details * > (pmouse));
-                  if(pmouse->get_lresult() != 0)
-                     return;
-               }
-               catch(...)
-               {
-               }
-               return;
-            }
-            else
-            {
-               //m_puiCapture->SendMessage(pbase);
-               try
-               {
-                  (m_puiCapture->*m_puiCapture->m_pfnDispatchWindowProc)(dynamic_cast < signal_details * > (pmouse));
-                  if(pmouse->get_lresult() != 0)
-                     return;
-               }
-               catch(...)
-               {
-               }
-               return;
-            }
-         }
-//         user::oswindow_array hwnda;
-//         user::interaction_ptra wnda;
-//         wnda = System.m_uiptraFrame;
-//         hwnda = wnda.get_hwnda();
-//         user::window_util::SortByZOrder(hwnda);
-//         for(int32_t i = 0; i < hwnda.get_size(); i++)
-//         {
-//            ::user::interaction * pguie = wnda.find_first(hwnda[i]);
-//            if(pguie != NULL)
-//            {
-              // pguie->_000OnMouse(pmouse);
-          m_pui->_000OnMouse(pmouse);
-               if(pmouse->m_bRet)
-                  return;
-            //}
-         //}
-         pbase->set_lresult(DefWindowProc(pbase->m_uiMessage, pbase->m_wparam, pbase->m_lparam));
+
+         _008OnMouse(pmouse);
+
          return;
+
       }
       else if(pbase->m_uiMessage == WM_KEYDOWN ||
               pbase->m_uiMessage == WM_KEYUP ||
@@ -4373,65 +4282,6 @@ namespace ios
    }
 
 
-   ::user::interaction *  interaction_impl::ReleaseCapture()
-   {
-      oswindow hwndCapture = ::GetCapture();
-      if(hwndCapture == NULL)
-         return NULL;
-      if(hwndCapture == get_handle())
-      {
-         ::user::interaction * puieCapture = GetCapture();
-         if(::ReleaseCapture())
-         {
-            m_puiCapture = NULL;
-            return puieCapture;
-         }
-         else
-         {
-            return NULL;
-         }
-      }
-      else
-      {
-         return interaction_impl::GetCapture()->ReleaseCapture();
-      }
-   }
-
-   ::user::interaction *  interaction_impl::GetCapture()
-   {
-      oswindow hwndCapture = ::GetCapture();
-      if(hwndCapture == NULL)
-         return NULL;
-      if(hwndCapture == get_handle())
-      {
-         if(m_puiCapture != NULL)
-         {
-            return m_puiCapture;
-         }
-         else
-         {
-            if(m_pui != NULL)
-            {
-               if(get_wnd() != NULL && IOS_WINDOW(get_wnd())->m_puiCapture != NULL)
-               {
-                  return IOS_WINDOW(get_wnd())->m_puiCapture;
-               }
-               else
-               {
-                  return m_pui;
-               }
-            }
-            else
-            {
-               return NULL;
-            }
-         }
-      }
-      else
-      {
-         return interaction_impl::GetCapture()->GetCapture();
-      }
-   }
 
 
 
@@ -5026,18 +4876,6 @@ namespace ios
 
 
 
-
-   ::user::interaction *  interaction_impl::SetCapture(::user::interaction *  pinterface)
-   {
-
-      ASSERT(::IsWindow(get_handle()));
-
-      if(pinterface != NULL)
-         m_puiCapture = pinterface;
-
-      return from_handle(::SetCapture(get_handle()));
-
-   }
 
 
    ::user::interaction *  interaction_impl::GetFocus()

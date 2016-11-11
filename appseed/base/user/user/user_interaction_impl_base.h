@@ -200,12 +200,12 @@ namespace user
       virtual void pre_translate_message(signal_details * pobj);
 
 
-      virtual ::user::interaction * SetCapture(::user::interaction * pinterface = NULL);
-      virtual ::user::interaction * ReleaseCapture();
+      virtual bool SetCapture(::user::interaction * pui = NULL);
+      virtual bool ReleaseCapture();
       virtual ::user::interaction * GetCapture();
 
 
-      virtual ::user::interaction * SetFocus();
+      virtual bool SetFocus();
 
 
       virtual bool get_rect_normal(LPRECT lprect);

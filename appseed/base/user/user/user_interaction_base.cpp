@@ -1064,7 +1064,7 @@ Restart:
    }
 
 
-   ::user::interaction * interaction_base::SetFocus()
+   bool interaction_base::SetFocus()
    {
 
       sp(::user::interaction) pui = get_wnd();
@@ -1859,12 +1859,10 @@ Restart:
    }
 
 
-   ::user::interaction * interaction_base::SetCapture(::user::interaction * pinterface)
+   bool interaction_base::SetCapture(::user::interaction * pui)
    {
 
-      ::exception::throw_interface_only(get_app());
-
-      return NULL;
+      return false;
 
    }
 
@@ -1872,19 +1870,15 @@ Restart:
    ::user::interaction * interaction_base::GetCapture()
    {
 
-      ::exception::throw_interface_only(get_app());
-
       return NULL;
 
    }
 
 
-   ::user::interaction * interaction_base::ReleaseCapture()
+   bool interaction_base::ReleaseCapture()
    {
 
-      ::exception::throw_interface_only(get_app());
-
-      return NULL;
+      return false;
 
    }
 

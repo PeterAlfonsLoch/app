@@ -996,7 +996,7 @@ namespace user
       if(GetCapture() == this)
       {
 
-         SetCapture(NULL);
+         SetCapture();
 
       }
 
@@ -3176,13 +3176,22 @@ namespace user
          return m_pimpl->GetActiveWindow();
    }
 
-   ::user::interaction * interaction::SetFocus()
+   
+   bool interaction::SetFocus()
    {
 
-      if(m_pimpl == NULL)
-         return NULL;
+      if (m_pimpl == NULL)
+      {
+
+         return false;
+
+      }
       else
+      {
+
          return m_pimpl->SetFocus();
+
+      }
 
    }
 
@@ -4417,17 +4426,17 @@ ExitModal:
    }
 
 
-   ::user::interaction * interaction::SetCapture(::user::interaction * pinterface)
+   bool interaction::SetCapture(::user::interaction * pui)
    {
 
-      if(m_pimpl != NULL)
+      if(m_pimpl == NULL)
       {
 
-         return m_pimpl->SetCapture(pinterface == NULL ? this : pinterface);
+         return false;
 
       }
 
-      return get_wnd()->SetCapture(pinterface == NULL ? this : pinterface);
+      return m_pimpl->SetCapture(pui);
 
    }
 
@@ -4456,17 +4465,17 @@ ExitModal:
    }
 
 
-   ::user::interaction * interaction::ReleaseCapture()
+   bool interaction::ReleaseCapture()
    {
 
-      if(m_pimpl != NULL)
+      if (m_pimpl == NULL)
       {
 
-         return m_pimpl->ReleaseCapture();
+         return false;
 
       }
 
-      return get_wnd()->ReleaseCapture();
+      return m_pimpl->ReleaseCapture();
 
    }
 
@@ -7848,7 +7857,7 @@ restart:
 
 #endif
 
-         get_wnd()->send_message(WM_MOUSEMOVE, 0, ptCurrent);
+         get_wnd()->message_call(WM_MOUSEMOVE, 0, ptCurrent);
 
       }
 

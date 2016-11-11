@@ -1456,10 +1456,10 @@ namespace user
    }
 
 
-   ::user::interaction * interaction_impl_base::SetCapture(::user::interaction * pinterface)
+   bool interaction_impl_base::SetCapture(::user::interaction * pui)
    {
 
-      return get_wnd()->SetCapture(pinterface);
+      return get_wnd()->SetCapture(pui);
 
    }
 
@@ -1472,7 +1472,7 @@ namespace user
    }
 
 
-   ::user::interaction * interaction_impl_base::ReleaseCapture()
+   bool interaction_impl_base::ReleaseCapture()
    {
 
       return get_wnd()->ReleaseCapture();
@@ -1480,7 +1480,7 @@ namespace user
    }
 
 
-   ::user::interaction * interaction_impl_base::SetFocus()
+   bool interaction_impl_base::SetFocus()
    {
 
       return m_pui->SetFocus();

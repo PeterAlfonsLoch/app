@@ -39,7 +39,7 @@ namespace user
       enum AdjustType { adjustBorder = 0,adjustOutside = 1 };
       virtual void CalcWindowRect(LPRECT lpClientRect,UINT nAdjustType = adjustBorder);
 
-      virtual ::user::interaction * SetFocus();
+      virtual bool SetFocus();
 
       //void RepositionBars(UINT nIDFirst,UINT nIDLast,id nIDLeftOver,UINT nFlags,LPRECT lpRectParam,LPCRECT lpRectClient,bool bStretch);
 

@@ -20,7 +20,6 @@ namespace macos
    public:
 
 
-      spa(::user::interaction)         m_guieptraMouseHover;
       string                           m_strWindowText;
       ::user::interaction_base *       m_pbasewnd;
       bool                             m_bNeedsUpdate;
@@ -36,9 +35,6 @@ namespace macos
 
       virtual void construct(oswindow hwnd);
 
-
-      virtual void mouse_hover_add(::user::interaction *   pinterface);
-      virtual void mouse_hover_remove(::user::interaction *   pinterface);
 
       virtual bool create_message_queue(::user::interaction * pui, const char * pszName);
 
@@ -471,7 +467,6 @@ namespace macos
       void OnMove(int32_t x, int32_t y);
       DECL_GEN_SIGNAL(_001OnPaint);
       DECL_GEN_SIGNAL(_001OnPrint);
-       DECL_GEN_SIGNAL(_001OnCaptureChanged);
       void OnParentNotify(UINT message, LPARAM lParam);
       HCURSOR OnQueryDragIcon();
       bool OnQueryEndSession();

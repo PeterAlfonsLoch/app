@@ -371,13 +371,14 @@ namespace user
       virtual id GetDlgCtrlId() const;
       virtual id SetDlgCtrlId(class id id);
 
-      virtual ::user::interaction * SetCapture(::user::interaction * pinterface = NULL);
+      virtual bool SetCapture(::user::interaction * pui = NULL);
+      virtual bool ReleaseCapture();
       virtual ::user::interaction * GetCapture();
-      virtual ::user::interaction * ReleaseCapture();
+      
 
 
       virtual bool has_focus();
-      virtual ::user::interaction * SetFocus();
+      virtual bool SetFocus();
       virtual bool SetForegroundWindow();
       virtual ::user::interaction * GetActiveWindow();
       virtual ::user::interaction * SetActiveWindow();

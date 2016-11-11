@@ -370,13 +370,13 @@ namespace user
       virtual id SetDlgCtrlId(class id id) override;
 
 
-      virtual ::user::interaction * SetCapture(::user::interaction * pinterface = NULL) override;
+      virtual bool SetCapture(::user::interaction * pui = NULL) override;
+      virtual bool ReleaseCapture() override;
       virtual ::user::interaction * GetCapture() override;
-      virtual ::user::interaction * ReleaseCapture() override;
 
 
       virtual bool has_focus() override;
-      virtual ::user::interaction * SetFocus() override;
+      virtual bool SetFocus() override;
       virtual ::user::interaction * GetFocus() override;
       virtual bool SetForegroundWindow() override;
       virtual interaction * GetActiveWindow() override;

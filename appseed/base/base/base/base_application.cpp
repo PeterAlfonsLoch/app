@@ -262,6 +262,15 @@ namespace base
 
          pui = m_uiptraFrame[0];
 
+         if (pui == NULL)
+         {
+
+            m_uiptraFrame.remove_at(0);
+
+            return false;
+
+         }
+
          return true;
 
       }
@@ -314,16 +323,27 @@ namespace base
    {
 
 #if !defined(LINUX) && !defined(METROWIN) && !defined(APPLEOS) && !defined(VSNORD)
+      
       if (dynamic_cast <::base::system_interaction_impl *>(pwnd) != NULL)
+      {
+      
          return;
+
+      }
+
 #endif
+
+      if (pwnd == NULL)
+      {
+
+         return;
+
+      }
 
       synch_lock sl(&m_mutexFrame); // recursive lock (on m_framea.add(pwnd)) but m_puiMain is "cared" by m_frame.m_mutex
 
       if(m_uiptraFrame.add_unique(pwnd))
       {
-
-
 
          TRACE("::base::application::add_frame ::user::interaction = %0x016x (%s) app=%s", pwnd, typeid(*pwnd).name(), typeid(*this).name());
 

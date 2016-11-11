@@ -69,12 +69,19 @@ namespace user
 
       sp(window_graphics)           m_spgraphics;
 
-      ::user::interaction *         m_puiCapture;
-
       pointer < mutex >             m_apmutexDraw; // auto pointer
       pointer < mutex >             m_apmutexRedraw; // auto pointer
 
+      ::user::interaction_ptra      m_guieptraMouseHover;
+
+
       interaction_impl();
+
+
+      void user_common_construct();
+
+
+      virtual void install_message_handling(::message::dispatch * pdispatch) override;
 
 
       virtual mutex * draw_mutex();
@@ -91,6 +98,10 @@ namespace user
 #if defined(METROWIN) || defined(APPLE_IOS) || defined(ANDROID)
       virtual bool initialize(::user::native_window_initialize * pinitialize) = 0;
 #endif
+
+
+      virtual void _000OnMouseLeave(signal_details * pobj);
+      virtual void _008OnMouse(::message::mouse * pmouse);
 
 
       virtual void prio_install_message_handling(::message::dispatch * pinterface);
@@ -317,10 +328,10 @@ namespace user
 
 
       // capture and focus apply to all windows
-      virtual ::user::interaction * SetCapture(::user::interaction * pinterface = NULL);
-      virtual ::user::interaction * ReleaseCapture();
+      virtual bool SetCapture(::user::interaction * pui = NULL);
+      virtual bool ReleaseCapture();
       virtual ::user::interaction * GetCapture();
-      virtual ::user::interaction * SetFocus();
+      virtual bool SetFocus();
 
       // Obsolete and non-portable APIs - not recommended for new code
       virtual void CloseWindow();

@@ -115,17 +115,6 @@ namespace metrowin
    }
 
 
-   void interaction_impl::mouse_hover_add(::user::interaction *  pinterface)
-   {
-      m_guieptraMouseHover.add_unique(pinterface);
-   }
-
-   void interaction_impl::mouse_hover_remove(::user::interaction *  pinterface)
-   {
-      m_guieptraMouseHover.remove(pinterface);
-   }
-
-
    const MSG* interaction_impl::GetCurrentMessage()
    {
 
@@ -478,7 +467,6 @@ namespace metrowin
       {
          m_pui->install_message_handling(pinterface);
       }
-      IGUI_WIN_MSG_LINK(WM_CAPTURECHANGED,pinterface,this,&interaction_impl::_001OnCaptureChanged);
       IGUI_WIN_MSG_LINK(WM_CREATE,pinterface,this,&interaction_impl::_001OnCreate);
       IGUI_WIN_MSG_LINK(WM_SETCURSOR,pinterface,this,&interaction_impl::_001OnSetCursor);
       IGUI_WIN_MSG_LINK(WM_ERASEBKGND,pinterface,this,&interaction_impl::_001OnEraseBkgnd);
@@ -550,12 +538,6 @@ namespace metrowin
       //   //pdraw->m_wndpaOut.remove(this);
       //   pdraw->m_wndpaOut.remove(m_pui);
       //}
-   }
-
-   void interaction_impl::_001OnCaptureChanged(signal_details * pobj)
-   {
-      UNREFERENCED_PARAMETER(pobj);
-      m_pguieCapture = NULL;
    }
 
    // WM_NCDESTROY is the absolute LAST message sent.
@@ -1296,18 +1278,7 @@ namespace metrowin
       }*/
       pbase->set_lresult(0);
 
-      if(pbase->m_uiMessage == WM_MOUSELEAVE)
-      {
-         m_bMouseHover = false;
-         for(int i = 0; i < m_guieptraMouseHover.get_size(); i++)
-         {
-            if(m_guieptraMouseHover[i] == this
-                  || m_guieptraMouseHover[i]->m_pimpl == this)
-               continue;
-            m_guieptraMouseHover[i]->send_message(WM_MOUSELEAVE);
-         }
-         m_guieptraMouseHover.remove_all();
-      }
+      _000OnMouseLeave(pbase);
 
       if(pbase->m_uiMessage == WM_LBUTTONDOWN ||
             pbase->m_uiMessage == WM_LBUTTONUP ||
@@ -1384,65 +1355,11 @@ namespace metrowin
             // handler has set it to another one.
             pmouse->m_ecursor = visual::cursor_default;
          }
-restart_mouse_hover_check:
-         for(int i = 0; i < m_guieptraMouseHover.get_size(); i++)
-         {
-            if(!m_guieptraMouseHover[i]->_001IsPointInside(pmouse->m_pt))
-            {
-               ::user::interaction * pui = m_guieptraMouseHover[i];
-               pui->send_message(WM_MOUSELEAVE);
-               m_guieptraMouseHover.remove(pui);
-               goto restart_mouse_hover_check;
-            }
-         }
-         if(!m_bMouseHover)
-         {
-            m_pui->_001OnTriggerMouseInside();
-         }
-         if(m_pguieCapture != NULL)
-         {
-            if(m_pguieCapture->m_pimpl != NULL)
-            {
-               //m_pguieCapture->m_pimpl->SendMessage(pbase);
-               try
-               {
-                  (m_pguieCapture->m_pimpl->*m_pguieCapture->m_pimpl->m_pfnDispatchWindowProc)(dynamic_cast <signal_details *> (pmouse));
-                  if(pmouse->get_lresult() != 0)
-                     return;
-               }
-               catch(...)
-               {
-               }
-               return;
-            }
-            else
-            {
-               //m_pguieCapture->SendMessage(pbase);
-               try
-               {
-                  (m_pguieCapture->*m_pguieCapture->m_pfnDispatchWindowProc)(dynamic_cast <signal_details *> (pmouse));
-                  if(pmouse->get_lresult() != 0)
-                     return;
-               }
-               catch(...)
-               {
-               }
-               return;
-            }
-         }
-         /*for(int i = 0; i < m_pui->m_uiptraChild.get_size(); i++)
-         {
-            ::user::interaction * pguie = m_pui->m_uiptraChild[i];
-            if(pguie != NULL)*/
-         {
-            // pguie->_000OnMouse(pmouse);
-            m_pui->_000OnMouse(pmouse);
-            if(pmouse->m_bRet)
-               return;
-         }
-         //}
-         pbase->set_lresult(DefWindowProc(pbase->m_uiMessage,pbase->m_wparam,pbase->m_lparam));
+
+         _008OnMouse(pmouse);
+
          return;
+
       }
       else if(pbase->m_uiMessage == WM_KEYDOWN ||
               pbase->m_uiMessage == WM_KEYUP ||

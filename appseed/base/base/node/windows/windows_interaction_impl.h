@@ -15,8 +15,6 @@ namespace windows
    {
    public:
 
-      ::user::interaction_ptra                  m_guieptraMouseHover;
-
       bool                                      m_bUpdateGraphics;
 
       size                                      m_size;
@@ -40,10 +38,12 @@ namespace windows
       rect64                                    m_rectLastPos;
       DWORD                                     m_dwLastPos;
 
-
       interaction_impl();
       interaction_impl(::aura::application * papp);
       virtual ~interaction_impl();
+
+
+      void user_common_construct();
 
 
       virtual HRESULT STDMETHODCALLTYPE QueryInterface(REFIID riid,void **ppvObject);
@@ -78,9 +78,6 @@ namespace windows
       virtual void assert_valid() const;
       virtual void dump(dump_context & dumpcontext) const;
 
-
-      virtual void mouse_hover_add(::user::interaction * pinterface);
-      virtual void mouse_hover_remove(::user::interaction * pinterface);
 
       bool create_message_queue(::user::interaction * pui, const char * pszName);
 
@@ -312,12 +309,7 @@ namespace windows
 
 
 
-      // capture and focus apply to all windows
-//      virtual ::user::interaction * s_GetCapture();
-      virtual ::user::interaction * SetCapture(::user::interaction * pinterface = NULL);
-      virtual ::user::interaction * ReleaseCapture();
-      virtual ::user::interaction * GetCapture();
-      virtual ::user::interaction * SetFocus();
+      virtual bool SetFocus();
 
       virtual ::user::interaction * GetFocus();
 
@@ -488,7 +480,6 @@ namespace windows
       void OnMove(int32_t x,int32_t y);
       DECL_GEN_SIGNAL(_001OnPaint);
       DECL_GEN_SIGNAL(_001OnPrint);
-      DECL_GEN_SIGNAL(_001OnCaptureChanged);
       void OnParentNotify(UINT message,LPARAM lParam);
       HCURSOR OnQueryDragIcon();
       bool OnQueryEndSession();

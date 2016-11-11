@@ -762,39 +762,29 @@ namespace user
    }
 
 
-   /*bool list::pre_create_window(::user::create_struct& cs)
-   {
-
-   //cs.style |= LVS_NOSCROLL;
-
-   return window::pre_create_window(cs);
-   }*/
-
-   /*void list::OnSize(UINT nType, index cx, index cy)
-   {
-   window::OnSize(nType, cx, cy);
-
-   on_layout();
-   }*/
-
    void list::_001OnSize(signal_details * pobj)
    {
+
       SCAST_PTR(::message::size, psize, pobj);
-      //on_layout();
-      //psize->m_bRet = false;
+
    }
+
 
    void list::on_layout()
    {
 
       synch_lock sl(m_pmutex);
 
-      if(m_bTopText)
+      if (m_bTopText)
+      {
+
          _001LayoutTopText();
+
+      }
 
       if (m_eview == view_icon)
       {
-         //if(m_iconlayout.m_iWidth <= 0)
+
          {
             rect rectClient;
             GetClientRect(rectClient);
@@ -804,7 +794,7 @@ namespace user
             else
                iIconSize = 32;
             index iItemSize = iIconSize * 2;
-//            m_iconlayout.m_iWidth = (int32_t)(MAX(1, rectClient.width() / iItemSize));
+
          }
 
       }
@@ -846,9 +836,6 @@ namespace user
       update_icon_list_view_sort();
 
    }
-
-
-
 
 
    bool list::_001OnUpdateItemCount(uint32_t dwFlags)
@@ -2610,7 +2597,9 @@ namespace user
             RedrawWindow();
 
             _001OnSelectionChange();
+
          }
+
       }
       else if(pkey->m_ekey == ::user::key_delete)
       {
@@ -2741,11 +2730,16 @@ namespace user
          }
          m_ptLButtonDown = pt;
       }
+      
       RedrawWindow();
+
       if(!has_focus())
       {
+
          SetFocus();
+
       }
+
       Session.set_keyboard_focus(this);
       Session.user()->set_mouse_focus_LButtonDown(this);
       //GetParentFrame()->SetActiveView(this);
@@ -2852,8 +2846,11 @@ namespace user
                         }
 
                      }
+                     
                      RedrawWindow();
+
                   }
+
                   //if(m_iItemDrop != 0)
                   //{
                   //   if (!defer_drop(m_iItemDrop, m_iItemDrag))
@@ -3965,16 +3962,25 @@ namespace user
 
    void list::_001UpdateColumns()
    {
-   synch_lock sl(m_pmutex);
+      
+      synch_lock sl(m_pmutex);
+      
       _001RemoveAllColumns();
+      
       keep < bool > keepLockViewUpdate(&m_bLockViewUpdate, true, false, true);
+      
       _001InsertColumns();
+      
       keepLockViewUpdate.KeepAway();
+      
       DIDDXHeaderLayout(false);
+      
       _001OnColumnChange();
-      on_layout();
-      RedrawWindow(NULL, NULL, RDW_INVALIDATE | RDW_ERASE | RDW_ALLCHILDREN);
+   
+      RedrawWindow();
+
    }
+
 
    void list::_001InsertColumns()
    {
@@ -3982,58 +3988,57 @@ namespace user
 
    }
 
+
    void list::_001RemoveAllColumns()
    {
+
       m_columna.remove_all();
+
       _001OnColumnChange();
+
    }
 
 
-
-
-   //bool list::TwiHasTranslucency()
-   //{
-   //   return !m_scrolldata.m_bVScroll;
-   //}
-
    void list::_001SetBackBuffer(visual::CBuffer *ptwb)
    {
-      UNREFERENCED_PARAMETER(ptwb);
-      //   m_pgdibuffer = ptwb;
+
    }
 
 
    void list::PreSubClassWindow()
    {
-      //   ::user::interaction_base::PreSubClassWindow();
+
       if(IsWindowVisible())
       {
-         RedrawWindow(NULL, NULL, RDW_INVALIDATE);
+
+         RedrawWindow();
+
       }
+
    }
+
 
    void list::_001OnCreate(signal_details * pobj)
    {
 
       SCAST_PTR(::message::create, pcreate, pobj);
 
-
       pobj->previous();
-
 
       m_font->operator=(*System.visual().font_central().GetListCtrlFont());
 
       m_fontHover->operator=(*System.visual().font_central().GetListCtrlFont());
 
       m_fontHover->set_underline();
-      //m_fontHover->set_bold();
 
       if(pcreate->get_lresult() == -1)
       {
-         pobj->m_bRet = false;
-         return;
-      }
 
+         pobj->m_bRet = false;
+
+         return;
+
+      }
 
       if(m_bAutoCreateListHeader)
       {
@@ -4057,10 +4062,15 @@ namespace user
 
             if(!CreateHeaderCtrl())
             {
+
                pcreate->set_lresult(-1);
+
                pobj->m_bRet = true;
+
                return;
+
             }
+
          }
 
       }
@@ -4069,14 +4079,9 @@ namespace user
 
       rect.null();
 
-      //on_layout();
-
       pcreate->set_lresult(0);
 
-      if(IsWindowVisible())
-      {
-         RedrawWindow();
-      }
+      RedrawWindow();
 
       pobj->m_bRet = false;
 
@@ -4506,6 +4511,7 @@ namespace user
       return true;
    }
 
+
    void list::_001SetSingleColumnMode(bool bHeaderCtrl)
    {
 
@@ -4523,21 +4529,24 @@ namespace user
 
       _001InsertColumn(column);
 
-      on_layout();
-
-
+      RedrawWindow();
 
    }
 
+
    int32_t list::_001CalcItemWidth(index iItem, index iSubItem)
    {
+
       ::draw2d::memory_graphics pgraphics(allocer());
+
       ::draw2d::font * pfont = _001GetFont();
+
       index cx = _001CalcItemWidth(pgraphics, pfont, iItem, iSubItem);
 
       return (int32_t) cx;
 
    }
+
 
    int32_t list::_001CalcItemWidth(::draw2d::graphics * pgraphics, ::draw2d::font * pfont, index iItem, index iSubItem)
    {
@@ -4925,14 +4934,14 @@ namespace user
 
       on_change_view_size();
 
-      on_layout();
-
       RedrawWindow();
 
    }
 
+
    void list::FilterClose()
    {
+
       m_bFilter1 = false;
 
       KillTimer(0xfffffffe);
@@ -4963,23 +4972,29 @@ namespace user
 
       on_change_view_size();
 
-      on_layout();
-
       RedrawWindow();
 
    }
 
+
    void list::FilterExcludeAll()
    {
+
       if(m_eview == view_icon)
       {
+
          m_piaFilterIcon->remove_all();
+
       }
       else
       {
+
          m_piaFilterMesh->remove_all();
+
       }
+
    }
+
 
    void list::FilterInclude(index iItem)
    {
@@ -5071,8 +5086,6 @@ namespace user
 
       on_change_view_size();
 
-      on_layout();
-
       RedrawWindow();
 
 
@@ -5081,6 +5094,7 @@ namespace user
       TRACE("(delta) = %d\n", dwOut - dwIn);
 
       return m_nItemCount != iItemCount;
+
    }
 
 
@@ -5472,47 +5486,24 @@ namespace user
    }
 
 
-   /*list::range::range()
-   {
-
-   }
-
-   list::range::range(const range & range)
-   {
-      m_itemrangea = range.m_itemrangea;
-   }
-*/
-
-   //::user::mesh_data * list::GetDataInterface()
-   //{
-
-   //   return m_pmeshdata;
-
-   //}
-
-
-   //void list::_001SetView(EView eview, bool bLya)
-   //{
-   //   m_eview = eview;
-
-   //   data_get_DisplayToStrict();
-
-   //   on_layout();
-   //}
-
-
-
    void list::data_get_DisplayToStrict()
    {
+
       if(m_eview == view_icon)
       {
+
          data_get(data_get_current_sort_id() + "." + data_get_current_list_layout_id(), m_iconlayout);
+
       }
       else
       {
+
          data_get(data_get_current_sort_id() + "." + data_get_current_list_layout_id(), m_meshlayout);
+
       }
+
    }
+
 
    void list::data_set_DisplayToStrict()
    {
@@ -5760,9 +5751,13 @@ namespace user
          {
             m_iconlayout.m_iaDisplayToStrict.set(iStrict, iStrict);
          }
-         on_layout();
+         
+         RedrawWindow();
+
       }
+
    }
+
 
    bool list::get_auto_arrange()
    {
@@ -5804,12 +5799,19 @@ namespace user
 
    bool list::keyboard_focus_is_focusable()
    {
+      
       return true;
+
    }
+
 
    void list::_001OnSelectionChange()
    {
+      
+      RedrawWindow();
+
    }
+
 
    index list::set_cur_sel(index iSel)
    {

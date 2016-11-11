@@ -58,19 +58,8 @@ namespace windows
       ::aura::timer_array(get_app())
    {
 
-      //m_guieptraMouseHover = canew(::user::interaction_spa());
-      //      m_bRectParentClient  = false;
-      m_pfnSuper           = NULL;
-      m_bMouseHover        = false;
-      m_puiCapture         = NULL;
-      m_bUpdateGraphics    = false;
+      user_common_construct();
 
-      ZERO(m_rectParentClient);
-      ZERO(m_size);
-      ZERO(m_pt);
-
-      set_handle(NULL);
-      m_bUseDnDHelper = false;
    }
 
 
@@ -272,18 +261,26 @@ namespace windows
    void interaction_impl::construct(oswindow oswindow)
    {
 
-//      m_guieptraMouseHover = canew(ref_array < ::user::interaction >);
-      //      m_bRectParentClient  = false;
+      set_handle(oswindow);
+
+   }
+
+
+   void interaction_impl::user_common_construct()
+   {
+
       m_pfnSuper           = NULL;
-      m_bMouseHover        = false;
-      m_puiCapture         = NULL;
+      m_pthreadDraw        = NULL;
+      m_bUseDnDHelper      = false;
       m_bUpdateGraphics    = false;
+      m_bIgnoreSizeEvent   = false;
+      m_bIgnoreMoveEvent   = false;
+
+      set_handle(NULL);
 
       ZERO(m_rectParentClient);
       ZERO(m_size);
       ZERO(m_pt);
-
-      set_handle(oswindow);
 
    }
 
@@ -293,33 +290,13 @@ namespace windows
       ::aura::timer_array(papp)
    {
 
-      m_pthreadDraw = NULL;
-      //    m_guieptraMouseHover = canew(ref_array < ::user::interaction >);
-      //      m_bRectParentClient  = false;
-      m_pfnSuper           = NULL;
-      m_bMouseHover        = false;
-      m_puiCapture         = NULL;
-      m_bUpdateGraphics    = false;
-      m_bIgnoreSizeEvent   = false;
-      m_bIgnoreMoveEvent   = false;
-
-      ZERO(m_rectParentClient);
-      ZERO(m_size);
-      ZERO(m_pt);
-
-      set_handle(NULL);
+      user_common_construct();
 
    }
 
 
    interaction_impl::~interaction_impl()
    {
-      //if (m_pui != NULL)
-      //{
-      //   m_pui->release();
-      //}
-      m_guieptraMouseHover.m_pmutex = NULL;
-      m_pmutex = NULL;
 
    }
 
@@ -695,7 +672,6 @@ namespace windows
       IGUI_WIN_MSG_LINK(WM_CREATE,pinterface,this,&interaction_impl::_001OnCreate);
       if(!m_pui->m_bMessageWindow)
       {
-         IGUI_WIN_MSG_LINK(WM_CAPTURECHANGED,pinterface,this,&interaction_impl::_001OnCaptureChanged);
          IGUI_WIN_MSG_LINK(WM_SETCURSOR,pinterface,this,&interaction_impl::_001OnSetCursor);
          IGUI_WIN_MSG_LINK(WM_ERASEBKGND,pinterface,this,&interaction_impl::_001OnEraseBkgnd);
          IGUI_WIN_MSG_LINK(WM_NCCALCSIZE,pinterface,this,&interaction_impl::_001OnNcCalcSize);
@@ -835,12 +811,6 @@ namespace windows
 
    }
 
-
-   void interaction_impl::_001OnCaptureChanged(signal_details * pobj)
-   {
-      UNREFERENCED_PARAMETER(pobj);
-      m_puiCapture = NULL;
-   }
 
    // WM_NCDESTROY is the absolute LAST message sent.
    void interaction_impl::_001OnNcDestroy(signal_details * pobj)
@@ -1552,38 +1522,9 @@ namespace windows
       if(pbase->m_uiMessage == WM_MOUSELEAVE)
       {
 
-         if (!m_pui->m_bTransparentMouseEvents)
-         {
+         _000OnMouseLeave(pbase);
 
-            m_bMouseHover = false;
-
-            sp(::user::interaction) pui;
-
-            rect rectUi;
-
-            point ptCursor;
-
-            Session.get_cursor_pos(ptCursor);
-
-            ref_array < ::user::interaction > uiptra;
-
-            while (m_guieptraMouseHover.get_child(pui))
-            {
-
-               pui->GetWindowRect(rectUi);
-
-               if (pui != m_pui)
-               {
-
-                   pui->send_message(WM_MOUSELEAVE);
-
-               }
-
-            }
-
-            m_guieptraMouseHover.remove_all();
-
-         }
+         return;
 
       }
 
@@ -1665,82 +1606,13 @@ namespace windows
             // handler has set it to another one.
             pmouse->m_ecursor = visual::cursor_default;
          }
-restart_mouse_hover_check:
-         {
 
-            if (m_pui->m_bTransparentMouseEvents)
-            {
-               
-               sp(::user::interaction) pui;
+         _008OnMouse(pmouse);
 
-               while (m_guieptraMouseHover.get_child(pui))
-               {
-
-                  if (!pui->_001IsPointInside(pmouse->m_pt))
-                  {
-
-                     pui->send_message(WM_MOUSELEAVE);
-
-                     m_guieptraMouseHover.remove(pui);
-
-                     goto restart_mouse_hover_check;
-
-                  }
-
-               }
-
-            }
-
-
-         }
-         if(::GetCapture() == m_oswindow && m_puiCapture != NULL)
-         {
-            if(m_puiCapture->m_pimpl != NULL)
-            {
-               //m_puiCapture->m_pimpl->SendMessage(pbase);
-               try
-               {
-                  (m_puiCapture->m_pimpl->*m_puiCapture->m_pimpl->m_pfnDispatchWindowProc)(dynamic_cast <signal_details *> (pmouse));
-                  if(pmouse->get_lresult() != 0)
-                     return;
-               }
-               catch(...)
-               {
-               }
-               return;
-            }
-            else
-            {
-               //m_puiCapture->SendMessage(pbase);
-               try
-               {
-                  (m_puiCapture->*m_puiCapture->m_pfnDispatchWindowProc)(dynamic_cast <signal_details *> (pmouse));
-                  if(pmouse->get_lresult() != 0)
-                     return;
-               }
-               catch(...)
-               {
-               }
-               return;
-            }
-         }
-         if(!m_bMouseHover)
-         {
-            m_pui->_001OnTriggerMouseInside();
-         }
-         //for(int32_t i = 0; i < m_pui->m_uiptraChild.get_size(); i++)
-         {
-            // sp(::user::interaction) pui = m_pui->m_uiptraChild[i];
-            //if(pui != NULL)
-            {
-               m_pui->_000OnMouse(pmouse);
-               if(pmouse->m_bRet)
-                  return;
-            }
-         }
-         pbase->set_lresult(DefWindowProc(pbase->m_uiMessage,pbase->m_wparam,pbase->m_lparam));
          return;
+
       }
+
       if(pbase->m_uiMessage == MESSAGE_OLE_DRAGENTER ||
             pbase->m_uiMessage == MESSAGE_OLE_DRAGOVER ||
             pbase->m_uiMessage == MESSAGE_OLE_DRAGLEAVE ||
@@ -2497,9 +2369,6 @@ restart_mouse_hover_check:
       UNREFERENCED_PARAMETER(pobj);
 
       Default();
-
-      m_pmutex = m_pui->m_pmutex;
-      m_guieptraMouseHover.m_pmutex = m_pui->m_pmutex;
 
       if(m_pui->is_message_only_window())
       { 
@@ -4113,82 +3982,6 @@ restart_mouse_hover_check:
    }
 
 
-   ::user::interaction * interaction_impl::ReleaseCapture()
-   {
-      oswindow oswindowCapture = ::GetCapture();
-      if(oswindowCapture == NULL)
-      {
-         sp(::user::interaction) puieCapture = GetCapture();
-         if(puieCapture.is_set())
-         {
-            m_puiCapture = NULL;
-            return puieCapture;
-         }
-         else
-         {
-            return NULL;
-         }
-      }
-      else
-      {
-         if(oswindowCapture == get_handle())
-         {
-            sp(::user::interaction) puieCapture = GetCapture();
-            if(::ReleaseCapture())
-            {
-               m_puiCapture = NULL;
-               return puieCapture;
-            }
-            else
-            {
-               return NULL;
-            }
-         }
-         else
-         {
-
-            return interaction_impl::GetCapture()->ReleaseCapture();
-
-         }
-
-      }
-
-   }
-
-
-   ::user::interaction * interaction_impl::GetCapture()
-   {
-
-      oswindow oswindowCapture = ::GetCapture();
-
-      if(oswindowCapture == NULL)
-         return NULL;
-
-      if(oswindowCapture == get_handle())
-      {
-
-         if(m_puiCapture != NULL)
-         {
-
-            return m_puiCapture;
-
-         }
-         else
-         {
-
-            return m_pui;
-
-         }
-
-      }
-      else
-      {
-
-         return NULL;
-
-      }
-
-   }
 
 
    // interaction_impl
@@ -4772,21 +4565,6 @@ while (pui != NULL)
 
 
 
-
-   ::user::interaction * interaction_impl::SetCapture(::user::interaction * pinterface)
-   {
-
-      if(pinterface != NULL)
-         m_puiCapture = pinterface;
-
-      if(!::IsWindow(get_handle()))
-         return NULL;
-
-      return System.ui_from_handle(::SetCapture(get_handle()));
-
-   }
-
-
    ::user::interaction * interaction_impl::GetFocus()
    {
 
@@ -4795,28 +4573,26 @@ while (pui != NULL)
    }
 
 
-   ::user::interaction * interaction_impl::SetFocus()
+   bool interaction_impl::SetFocus()
    {
 
       if (!::IsWindow(get_handle()))
       {
 
-         return NULL;
+         return false;
 
       }
 
       if (!::IsWindowVisible(get_handle()))
       {
 
-         return NULL;
+         return false;
 
       }
 
       oswindow window = ::SetFocus(get_handle());
 
-      ::user::interaction * pui = System.ui_from_handle(window);
-
-      return pui;
+      return window != NULL;
 
    }
 
@@ -6183,21 +5959,6 @@ lCallNextHook:
 
    }
 
-
-   void interaction_impl::mouse_hover_add(::user::interaction * pinterface)
-   {
-
-      m_guieptraMouseHover.add_unique(pinterface);
-
-   }
-
-
-   void interaction_impl::mouse_hover_remove(::user::interaction * pinterface)
-   {
-
-      m_guieptraMouseHover.remove(pinterface);
-
-   }
 
    DWORD WINAPI drop_target(LPVOID lp)
    {

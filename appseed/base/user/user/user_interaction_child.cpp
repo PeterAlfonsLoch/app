@@ -354,7 +354,7 @@ namespace user
 #endif
 
 
-   ::user::interaction * interaction_child::SetFocus()
+   bool interaction_child::SetFocus()
    {
 
       if(m_pui->keyboard_focus_is_focusable())
@@ -364,7 +364,7 @@ namespace user
 
       }
 
-      return m_pui->GetFocus();
+      return true;
 
    }
 

@@ -2377,55 +2377,77 @@ namespace user
 
    }
 
+
    void tab::_000OnMouse(::message::mouse * pmouse)
    {
+      
       if(m_bShowTabs)
       {
+         
          // these try catchs are needed for multi threading supporting: multi threaded windows: an endeavour
          // Now I understand why Microsoft (TM) Windows (R) windows are single threaded.
          // to debug, enable catch exceptions in debugger
          try
          {
+
             (m_pimpl->*m_pimpl->m_pfnDispatchWindowProc)(dynamic_cast < signal_details * > (pmouse));
-            if(pmouse->get_lresult() != 0)
+
+            if (pmouse->get_lresult() != 0)
+            {
+
                return;
+
+            }
+
          }
          catch(...)
          {
+
          }
+
       }
       else if(pmouse->m_uiMessage == WM_MOUSEMOVE)
       {
+
       }
-      sp(::user::interaction) pui = top_child();
-//      int32_t iSize;
-      try
+      
+      sp(::user::interaction) pui;
+
+      
+      while(get_child(pui))
       {
-         while(pui != NULL)
+
+         try
          {
-            try
+
+            if(pui->IsWindowVisible() && pui->_001IsPointInside(pmouse->m_pt))
             {
-               if(pui->IsWindowVisible() && pui->_001IsPointInside(pmouse->m_pt))
+
+               try
                {
-                  try
+
+                  pui->_000OnMouse(pmouse);
+
+                  if (pmouse->m_bRet)
                   {
-                     pui->_000OnMouse(pmouse);
-                     if(pmouse->m_bRet)
-                        return;
+
+                     return;
+
                   }
-                  catch(...)
-                  {
-                  }
+
                }
-               pui = pui->under_sibling();
+               catch(...)
+               {
+
+               }
+
             }
-            catch(...)
-            {
-            }
+            
          }
-      }
-      catch(...)
-      {
+         catch(...)
+         {
+
+         }
 
       }
 
