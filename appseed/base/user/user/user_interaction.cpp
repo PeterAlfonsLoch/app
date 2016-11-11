@@ -7835,12 +7835,21 @@ restart:
    void interaction::defer_notify_mouse_move(point & ptLast)
    {
 
-      if(::GetCapture() != NULL)
+#ifdef METROWIN
+      if (::WinGetCapture() != NULL)
       {
 
          return;
 
       }
+#else
+      if (::GetCapture() != NULL)
+      {
+
+         return;
+
+      }
+#endif
 
       point ptCurrent;
 
@@ -7867,12 +7876,21 @@ restart:
    void interaction::defer_notify_mouse_move()
    {
 
-      if(::GetCapture() != NULL)
+#ifdef METROWIN
+      if (::WinGetCapture() != NULL)
       {
 
          return;
 
       }
+#else
+      if (::GetCapture() != NULL)
+      {
+
+         return;
+
+      }
+#endif
 
       point ptCurrent;
 

@@ -17,14 +17,16 @@ namespace metrowin
    {
    public:
 
-      directx_application ^                  m_xapp;
-      ::user::message_queue_listener *   m_plistener;
-      string                        m_strWindowText;
+      directx_application ^                     m_xapp;
+      ::user::message_queue_listener *          m_plistener;
+      string                                    m_strWindowText;
       //visual::dib_sp              m_spdib;
       //visual::dib_sp              m_spdibMultAlphaWork;
 
-      Agile < Windows::UI::Core::CoreWindow >  m_window;
-      ::thread *                    m_pthreadDraw;
+      Agile < Windows::UI::Core::CoreWindow >   m_window;
+      ::thread *                                m_pthreadDraw;
+
+      int_ptr_to_int_ptr                        m_mapLong;
 
       interaction_impl();
       interaction_impl(::aura::application * papp);
@@ -43,6 +45,9 @@ namespace metrowin
 
       virtual bool initialize(::user::native_window_initialize * pinitialize) override;
 
+
+      LONG_PTR get_window_long_ptr(int32_t nIndex) const;
+      LONG_PTR set_window_long_ptr(int32_t nIndex, LONG_PTR lValue);
 
       static_function const MSG* GetCurrentMessage();
 
@@ -292,12 +297,12 @@ namespace metrowin
 
 
       // capture and focus apply to all windows
-      virtual ::user::interaction *  GetCapture();
-      virtual ::user::interaction *  SetCapture(::user::interaction *  pinterface = NULL);
-      virtual ::user::interaction *  ReleaseCapture();
+      //virtual ::user::interaction *  GetCapture();
+      //virtual ::user::interaction *  SetCapture(::user::interaction *  pinterface = NULL);
+      //virtual ::user::interaction *  ReleaseCapture();
       //virtual ::user::interaction *  GetCapture();
       virtual ::user::interaction *  GetFocus();
-      virtual ::user::interaction *  SetFocus() override;
+      virtual bool  SetFocus() override;
 
       static_function ::user::interaction *  GetDesktopWindow();
 

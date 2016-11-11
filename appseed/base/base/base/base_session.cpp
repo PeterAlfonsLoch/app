@@ -466,7 +466,11 @@ namespace base
       if (oswindowCapture == NULL)
          return false;
 
+#ifdef METROWIN
+      ::WinReleaseCapture();
+#else
       ::ReleaseCapture();
+#endif
 
       m_puiCapture = NULL;
 

@@ -8,7 +8,9 @@ namespace metrowin
 
    dir::dir(::aura::application *  papp):
       ::object(papp),
-      ::file::dir::system(papp)
+      ::file::dir::system(papp),
+      file_watcher::file_watcher(papp),
+      ::file_watcher::listener_thread(papp)
    {
 
    }

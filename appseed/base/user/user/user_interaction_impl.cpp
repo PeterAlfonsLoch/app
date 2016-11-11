@@ -372,7 +372,11 @@ namespace user
 
       }
 
+#ifdef METROWIN
+      oswindow oswindow = ::WinGetCapture();
+#else
       oswindow oswindow = ::GetCapture();
+#endif
 
       if (oswindow == NULL || oswindow == get_handle())
       {
@@ -1180,21 +1184,16 @@ namespace user
    LONG interaction_impl::get_window_long(int32_t nIndex) const
    {
 
-      UNREFERENCED_PARAMETER(nIndex);
-      ::exception::throw_interface_only(get_app());
-
-      return 0;
+      return (LONG)get_window_long_ptr(nIndex);
 
    }
 
 
    LONG interaction_impl::set_window_long(int32_t nIndex,LONG lValue)
    {
-      UNREFERENCED_PARAMETER(nIndex);
-      UNREFERENCED_PARAMETER(lValue);
-      ::exception::throw_interface_only(get_app());
+      
+      return (LONG)set_window_long_ptr(nIndex, lValue);
 
-      return 0;
    }
 
 
@@ -1222,8 +1221,12 @@ namespace user
    bool interaction_impl::ReleaseCapture()
    {
 
+#ifdef METROWIN
+      ::WinReleaseCapture();
+#else
       ::ReleaseCapture();
-            
+#endif
+
       Session.m_puiCapture = NULL;
 
       return true;
@@ -1234,7 +1237,11 @@ namespace user
    ::user::interaction * interaction_impl::GetCapture()
    {
 
+#ifdef METROWIN
+      oswindow oswindow = ::WinGetCapture();
+#else
       oswindow oswindow = ::GetCapture();
+#endif
       
       if (oswindow == NULL)
       {
@@ -1284,7 +1291,11 @@ namespace user
 
       }
 
+#ifdef METROWIN
+      oswindow w = ::WinSetCapture(get_handle());
+#else
       oswindow w = ::SetCapture(get_handle());
+#endif
 
       if (w != get_handle())
       {

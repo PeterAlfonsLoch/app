@@ -231,7 +231,9 @@ namespace metrowin
       }
 
 
-      m_pui->m_bVisible = dwStyle & WS_VISIBLE;
+      set_window_long(GWL_STYLE, cs.style);
+
+      set_window_long(GWL_EXSTYLE, cs.dwExStyle);
 
       //m_pui->install_message_handling(dynamic_cast < ::message::dispatch * > (this));
 
@@ -354,7 +356,7 @@ namespace metrowin
 
       m_oswindow = oswindow_get(m_pui);
 
-      m_pui->m_bVisible = true;
+      ModifyStyle(0, WS_VISIBLE);
 
       m_pthreadDraw = ::fork(get_app(), [&]()
       {
@@ -4506,75 +4508,6 @@ ExitModal:
    }
 
 
-   ::user::interaction *  interaction_impl::ReleaseCapture()
-   {
-
-      oswindow hwndCapture = ::WinGetCapture();
-      if(hwndCapture == NULL)
-         return NULL;
-      if(hwndCapture == get_handle())
-      {
-         ::user::interaction * puieCapture = GetCapture();
-
-         if(::WinReleaseCapture())
-         {
-            m_pguieCapture = NULL;
-            return puieCapture;
-         }
-         else
-         {
-            return NULL;
-         }
-      }
-      else
-      {
-         return interaction_impl::GetCapture()->ReleaseCapture();
-      }
-
-   }
-
-   ::user::interaction *  interaction_impl::GetCapture()
-   {
-
-      oswindow hwndCapture = ::WinGetCapture();
-      if(hwndCapture == NULL)
-         return NULL;
-      if(hwndCapture == get_handle())
-      {
-         if(m_pguieCapture != NULL)
-         {
-            return m_pguieCapture;
-         }
-         else
-         {
-            if(m_pui != NULL)
-            {
-               if(WIN_WINDOW(m_pui->m_pimpl.m_p) != NULL && WIN_WINDOW(m_pui->m_pimpl.m_p)->m_pguieCapture != NULL)
-               {
-                  return WIN_WINDOW(m_pui->m_pimpl.m_p)->m_pguieCapture;
-               }
-               else
-               {
-                  return m_pui;
-               }
-            }
-            else
-            {
-               return NULL;
-            }
-         }
-      }
-      else
-      {
-
-         return ::user::interaction_impl::GetCapture()->GetCapture();
-
-      }
-
-   }
-
-
-
    // interaction_impl
    /* interaction_impl::operator oswindow() const
    { return this == NULL ? NULL : get_handle(); }*/
@@ -4587,6 +4520,23 @@ ExitModal:
    {
       return ((oswindow)WIN_WINDOW(const_cast <::user::interaction_impl *> (&wnd))->get_handle()) != get_handle();
    }
+
+
+   LONG_PTR interaction_impl::get_window_long_ptr(int32_t nIndex) const
+   {
+
+      return m_mapLong[nIndex];
+
+   }
+
+
+   LONG_PTR interaction_impl::set_window_long_ptr(int32_t nIndex, LONG_PTR lValue)
+   {
+
+      return m_mapLong[nIndex] = lValue;
+
+   }
+
 
    uint32_t interaction_impl::GetStyle()
    {
@@ -4951,7 +4901,7 @@ ExitModal:
       if(m_pui != NULL)
       {
 
-         if(!m_pui->m_bVisible)
+         if(!m_pui->is_this_visible())
             return false;
 
          if(m_pui->GetParent() != NULL && !m_pui->GetParent()->IsWindowVisible())
@@ -5190,20 +5140,6 @@ ExitModal:
 
    //}
 
-   ::user::interaction *  interaction_impl::SetCapture(::user::interaction *  pinterface)
-   {
-
-      //throw todo(get_app());
-
-      //ASSERT(::WinIsWindow(get_handle()));
-      //
-      if(pinterface != NULL)
-         m_pguieCapture = pinterface;
-
-      return ::WinSetCapture(oswindow_get(m_pui))->window();
-
-   }
-
    ::user::interaction *  interaction_impl::GetFocus()
    {
 
@@ -5211,11 +5147,13 @@ ExitModal:
 
    }
 
-   ::user::interaction *  interaction_impl::SetFocus()
+   bool interaction_impl::SetFocus()
    {
 
       //ASSERT(::WinIsWindow(get_handle()));
-      return ::WinSetFocus(m_pui->get_handle())->window();
+      ::WinSetFocus(m_pui->get_handle());
+
+      return true;
 
    }
 

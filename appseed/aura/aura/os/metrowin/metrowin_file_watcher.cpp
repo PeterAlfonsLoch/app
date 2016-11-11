@@ -165,10 +165,13 @@ namespace file_watcher
 #pragma endregion
 
 
-	os_file_watcher::os_file_watcher()
-		: m_idLast(0)
+	os_file_watcher::os_file_watcher(::aura::application * papp) :
+      ::object(papp),
+		m_idLast(0)
 	{
+
 	}
+
 
 	os_file_watcher::~os_file_watcher()
 	{
