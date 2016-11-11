@@ -73,9 +73,44 @@ public:
 
    comparable_eq_array operator -(const comparable_eq_array & a) const;
 
-   bool operator == (const comparable_eq_array  & a);
-   bool operator != (const comparable_eq_array  & a);
+   //bool operator == (const comparable_eq_array  & a);
+   //bool operator != (const comparable_eq_array  & a);
 
+
+   template < typename A >
+   bool operator == (const A & a) const
+   {
+
+      if (a.get_size() != this->get_size())
+      {
+
+         return false;
+
+      }
+
+      for (index i = 0; i < this->get_size(); i++)
+      {
+
+         if (this->element_at(i) != a.element_at(i))
+         {
+
+            return false;
+
+         }
+
+      }
+
+      return true;
+
+   }
+
+   template < typename A >
+   bool operator != (const A & a) const
+   {
+
+      return !operator==(a);
+
+   }
 
    comparable_eq_array & operator = (const comparable_eq_array & array)
    {
@@ -422,24 +457,24 @@ remove(const comparable_eq_array & a)
 }
 
 
-template <class TYPE, class ARG_TYPE, class ARRAY_TYPE >
-bool comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::operator == (const comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE > & a)
-{
-   if(this->get_size() != a.get_size())
-      return false;
-   for(index i = 0; i < this->get_size(); i++)
-   {
-      if(!(this->element_at(i) == a.element_at(i)))
-         return false;
-   }
-   return true;
-}
-
-template <class TYPE, class ARG_TYPE, class ARRAY_TYPE >
-bool comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::operator != (const comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE > & a)
-{
-   return !operator==(a);
-}
+//template <class TYPE, class ARG_TYPE, class ARRAY_TYPE >
+//bool comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::operator == (const comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE > & a)
+//{
+//   if(this->get_size() != a.get_size())
+//      return false;
+//   for(index i = 0; i < this->get_size(); i++)
+//   {
+//      if(!(this->element_at(i) == a.element_at(i)))
+//         return false;
+//   }
+//   return true;
+//}
+//
+//template <class TYPE, class ARG_TYPE, class ARRAY_TYPE >
+//bool comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::operator != (const comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE > & a)
+//{
+//   return !operator==(a);
+//}
 
 //template <class TYPE, class ARG_TYPE, class ARRAY_TYPE >
 //inline comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE > & comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::

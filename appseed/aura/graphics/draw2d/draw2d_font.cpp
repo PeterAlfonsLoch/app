@@ -18,6 +18,7 @@ namespace draw2d
       m_bItalic            = false;
       m_bUnderline         = false;
       m_bStrikeout         = false;
+      m_ecs                = cs_none;
 
    }
 
@@ -174,89 +175,106 @@ namespace draw2d
 
    }
 
+
    font::e_cs font::get_cs(graphics * pgraphics)
    {
-      
-      return cs_DEFAULT;
+
+      if (m_ecs == cs_none)
+      {
+
+         m_ecs = calc_cs(pgraphics);
+
+      }
+
+      return m_ecs;
 
    }
+
+
+   font::e_cs font::calc_cs(graphics * pgraphics)
+   {
+
+      return cs_default;
+
+   }
+
 
     string font::get_sample_text(e_cs ecs)
    {
 
-       if (ecs == cs_CHINESEBIG5)
+       if (ecs == cs_chinesebig5)
        {
 
           return unitext("示例文本");
 
        }
-       else if (ecs == cs_GB2312)
+       else if (ecs == cs_gb2312)
        {
 
           return unitext("示例文本");
 
        }
-       else if (ecs == cs_SHIFTJIS)
+       else if (ecs == cs_shiftjis)
        {
 
           return unitext("サンプルテキスト");
 
        }
-       else if (ecs == cs_HEBREW)
+       else if (ecs == cs_hebrew)
        {
 
           return unitext("טקסט לדוגמה");
 
        }
-       else if (ecs == cs_ARABIC)
+       else if (ecs == cs_arabic)
        {
 
           return unitext("نص بسيط");
 
        }
-       else if (ecs == font::cs_GREEK)
+       else if (ecs == font::cs_greek)
        {
 
           return unitext("Δείγμα κειμένου");
 
        }
-       else if (ecs == font::cs_TURKISH)
+       else if (ecs == font::cs_turkish)
        {
 
           return unitext("Örnek yazı");
 
        }
-       else if (ecs == font::cs_VIETNAMESE)
+       else if (ecs == font::cs_vietnamese)
        {
 
           return unitext("văn bản mẫu");
 
        }
-       else if (ecs == font::cs_THAI)
+       else if (ecs == font::cs_thai)
        {
 
           return unitext("ตัวอย่างข้อความ");
 
        }
-       else if (ecs == font::cs_EASTEUROPE)
+       else if (ecs == font::cs_easteurope)
        {
 
           return unitext("Sample Text");
 
        }
-       else if (ecs == font::cs_RUSSIAN)
+       else if (ecs == font::cs_russian)
        {
 
           return unitext("Образец текста");
 
        }
-       else if (ecs == font::cs_JOHAB)
+       else if (ecs == font::cs_johab)
        {
 
           return unitext("샘플 텍스트");
 
        }
-       else if (ecs == font::cs_HANGUL)
+       else if (ecs == font::cs_hangul)
        {
 
           return unitext("샘플 텍스트");

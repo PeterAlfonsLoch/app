@@ -41,38 +41,40 @@ namespace draw2d
 
       enum e_cs
       {
-         cs_ANSI,
-         cs_DEFAULT,
-         cs_SYMBOL,
-         cs_SHIFTJIS,
-         cs_HANGEUL,
-         cs_HANGUL,
-         cs_GB2312,
-         cs_CHINESEBIG5,
-         cs_JOHAB,
-         cs_HEBREW,
-         cs_ARABIC,
-         cs_GREEK, 
-         cs_TURKISH, 
-         cs_VIETNAMESE, 
-         cs_THAI, 
-         cs_EASTEUROPE, 
-         cs_RUSSIAN,
-         cs_MAC,
-         cs_BALTIC,
+         cs_none,
+         cs_ansi,
+         cs_default,
+         cs_symbol,
+         cs_shiftjis,
+         cs_hangeul,
+         cs_hangul,
+         cs_gb2312,
+         cs_chinesebig5,
+         cs_johab,
+         cs_hebrew,
+         cs_arabic,
+         cs_greek, 
+         cs_turkish, 
+         cs_vietnamese, 
+         cs_thai, 
+         cs_easteurope, 
+         cs_russian,
+         cs_mac,
+         cs_baltic,
          cs_count
       };
 
-      using csa = array < e_cs >;
+      using csa = numeric_array < e_cs >;
 
       string      m_strFontFamilyName;
       double      m_dFontSize;
       double      m_dFontWidth;
       e_unit      m_eunitFontSize;
-      int32_t         m_iFontWeight;
+      int32_t     m_iFontWeight;
       bool        m_bItalic;
       bool        m_bUnderline;
       bool        m_bStrikeout;
+      e_cs        m_ecs;
 
 
       font();
@@ -119,6 +121,7 @@ namespace draw2d
       virtual void set_underline(bool bUnderline = true);
       virtual void set_strikeout(bool bStrikeout = true);
       
+      virtual e_cs calc_cs(::draw2d::graphics * pgraphics);
       virtual e_cs get_cs(::draw2d::graphics * pgraphics);
       virtual string get_sample_text(::draw2d::graphics * pgraphics);
 
@@ -133,6 +136,8 @@ namespace draw2d
 
 #ifdef WINDOWS
 
+   CLASS_DECL_AURA void wingdi_enum_fonts(stringa & stra, ::draw2d::font::csa & csa, bool bRaster, bool bTrueType, bool bOther);
+//   CLASS_DECL_AURA void wingdi_enum_cs(string str, ::draw2d::font::csa & csa, bool bRaster, bool bTrueType, bool bOther);
    CLASS_DECL_AURA font::e_cs wingdi_get_cs(int iCs);
 
 #endif

@@ -101,7 +101,7 @@ synch_lock ml(&cairo_mutex());
    }
 
 
-   ::draw2d::font::e_cs font::get_cs(::draw2d::graphics * pgraphics)
+   ::draw2d::font::e_cs font::calc_cs(::draw2d::graphics * pgraphics)
    {
 
       font_fam_c2 c2;
@@ -115,7 +115,7 @@ synch_lock ml(&cairo_mutex());
 
          ::DeleteDC(hdc);
 
-         return ::draw2d::font::cs_DEFAULT;
+         return ::draw2d::font::cs_default;
 
       }
 

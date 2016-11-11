@@ -23,6 +23,7 @@ namespace draw2d
    enum e_text_rendering
    {
       
+      text_rendering_none,
       text_rendering_anti_alias,
       text_rendering_anti_alias_grid_fit,
       text_rendering_single_bit_per_pixel,

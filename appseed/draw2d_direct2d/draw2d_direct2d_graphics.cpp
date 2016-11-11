@@ -5532,7 +5532,7 @@ namespace draw2d_direct2d
 
             stra.add(strName);
 
-            csa.add(::draw2d::font::cs_DEFAULT);
+            csa.add(::draw2d::font::cs_default);
 
          }
 

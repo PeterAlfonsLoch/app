@@ -21,6 +21,7 @@ namespace simple_ui
       m_strTitle        = pszCaption;
       m_uiFlags         = uiFlags;
       m_iResult         = 0;
+      
 
    }
 
@@ -124,7 +125,7 @@ namespace simple_ui
 
       rectFontopus.bottom = rectFontopus.top + h;
 
-      if(!create_window_ex(0,NULL,NULL,0,rectFontopus,puiParent,"fontopus"))
+      if(!create_window_ex(WS_EX_LAYERED,NULL,NULL,0,rectFontopus,puiParent,"fontopus"))
          throw simple_exception(get_app(),"not excepted! Failing Message box!!");
 
       TRACE("(1) Just after create_window_ex for simple_message_box (m_pimpl.m_p) : %d",m_pimpl.m_p);
@@ -203,13 +204,13 @@ namespace simple_ui
       if (timeNow.GetHour() >= 6 && timeNow.GetHour() <= 17)
       {
 
-         crBk = ARGB(200, 0xdd, 0xdd, 0xd8);
+         crBk = ARGB(255, 0xcd, 0xcd, 0xc8);
 
       }
       else
       {
 
-         crBk = ARGB(200, 0x80, 0x80, 0x78);
+         crBk = ARGB(255, 0x50, 0x50, 0x58);
 
       }
 

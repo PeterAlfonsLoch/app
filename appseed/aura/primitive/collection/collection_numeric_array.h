@@ -230,6 +230,7 @@ public:
    numeric_array & operator += (const numeric_array & a);
 
 
+
    string & get_json(string & str, bool bNewLine = true) const;
 
 
