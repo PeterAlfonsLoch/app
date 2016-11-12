@@ -299,9 +299,9 @@ namespace sockets
          
          string str = outheader(__id(content_type)).get_string();
 
-         if(str.find_ci("text") >= 0 || str.find_ci("javascript") >= 0)
+         if (str.find_ci("text") >= 0 || str.find_ci("javascript") >= 0)
          {
-       
+
             m_response.m_propertysetHeader.set(__id(content_encoding), "gzip");
 
 
@@ -312,7 +312,30 @@ namespace sockets
 
             response().file().seek_to_begin();
 
-            gz.transfer_from(response().file());
+            if (response().m_strFile.has_char())
+            {
+
+               ::file::buffer_sp spfile(allocer());
+               try
+               {
+                  if (spfile->open(response().m_strFile, ::file::type_binary | ::file::mode_read | ::file::share_deny_none).failed())
+                  {
+                     return ;
+                  }
+               }
+               catch (...)
+               {
+                  return;
+               }
+               gz.transfer_from(*spfile);
+               response().m_strFile.Empty();
+            }
+            else
+            {
+               gz.transfer_from(response().file());
+            }
+
+
 
             gz.finish();
 

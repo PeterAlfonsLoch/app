@@ -359,8 +359,9 @@ namespace sockets
 			 {
 
 				 response().m_strFile = lpcsz;
-
-             
+             outattr(__id(http_status_code)) = 200;
+             outattr(__id(http_status)) = "OK";
+             //outattr(__id(content_length)) = Application.file().length(lpcsz);
 
 			 }
 			 else
