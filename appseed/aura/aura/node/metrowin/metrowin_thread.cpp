@@ -1248,15 +1248,6 @@ namespace core
 ////      */
 ////   }
 ////
-////   bool thread::post_thread_message(UINT message, WPARAM wParam, lparam lParam)
-////   {
-////
-////      ASSERT(m_hThread != NULL);
-////
-////      return ::PostThreadMessage(m_nThreadID, message, wParam, lParam) != FALSE;
-////
-////   }
-////
 ////   void thread::set_os_data(void * pvoidOsData)
 ////   {
 ////      m_hThread = (HTHREAD) pvoidOsData;

@@ -606,71 +606,6 @@
 //
 //
 //
-//void thread_impl::post_to_all_threads(UINT message,WPARAM wparam,LPARAM lparam)
-//{
-//
-//   //::count ca;
-//
-//   thread * pthread;
-//
-//   //ca = ::multithreading::s_pthreadptra->get_size();
-//
-//   //bool bOk;
-//
-//   if(message == WM_QUIT)
-//   {
-//
-//      single_lock sl(::multithreading::s_pmutex,true);
-//      ref_array < thread > threadptra = *::multithreading::s_pthreadptra;
-//
-//      for(index i = 0; i < threadptra.get_size(); i++)
-//      {
-//
-//         try
-//         {
-//            pthread = dynamic_cast < thread * >(threadptra[i]);
-//            pthread->set_end_thread();
-//         }
-//         catch(...)
-//         {
-//         }
-//
-//
-//      }
-//      sl.unlock();
-//
-//   }
-//
-//
-//   single_lock sl(::multithreading::s_pmutex);
-//
-//   for(index i = ::multithreading::s_piaThread->get_size(); i >= 0; i--)
-//   {
-//
-//      //bOk = true;
-//
-//      try
-//      {
-//
-//         if(::PostThreadMessage((IDTHREAD) ::multithreading::s_piaThread->element_at(i),message,wparam,lparam))
-//         {
-//
-//         }
-//
-//      }
-//      catch(...)
-//      {
-//
-//         //bOk = false;
-//
-//      }
-//
-//      sl.lock();
-//
-//
-//   }
-//
-//}
 //
 //
 //int32_t thread_impl::exit_instance()
@@ -747,37 +682,6 @@
 //
 //
 //
-//bool thread_impl::post_thread_message(UINT message,WPARAM wParam,lparam lParam)
-//{
-//
-//   if(m_hthread == (HTHREAD) NULL)
-//      return false;
-//
-//   if(message == WM_QUIT)
-//   {
-//
-//      string strName = demangle(typeid(*m_pthread).name());
-//      //::output_debug_string("\n\n\nWM_QUIT posted to thread "+strName+"(" + ::str::from((uint64_t)m_uiThread) + ")\n\n\n");
-//      if(strName == "::core::system")
-//      {
-//         ::output_debug_string("\n\n\nWM_QUIT at ::core::system\n\n\n");
-//      }
-//      if(strName == "multimedia::audio_core_audio::wave_out")
-//      {
-//         ::output_debug_string("\n\n\nWM_QUIT at multimedia::audio_core_audio::wave_out\n\n\n");
-//      }
-//      if(strName == "multimedia::audio::wave_out")
-//      {
-//         ::output_debug_string("\n\n\nWM_QUIT at multimedia::audio::wave_out\n\n\n");
-//      }
-//      if(strName == "multimedia::audio::wave_player")
-//      {
-//         ::output_debug_string("\n\n\nWM_QUIT at multimedia::audio::wave_player\n\n\n");
-//      }
-//   }
-//   return ::PostThreadMessage(m_uiThread,message,wParam,lParam) != FALSE;
-//
-//}
 //
 //
 //

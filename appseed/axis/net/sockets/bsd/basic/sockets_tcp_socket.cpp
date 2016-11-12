@@ -1760,7 +1760,11 @@ skip:
                   {
                      // Current name is a DNS name, let's check it
 
+#ifdef METROWIN
+                     string strDnsName(ASN1_STRING_data(current_name->d.dNSName), ASN1_STRING_length(current_name->d.dNSName));
+#else
                      string strDnsName(ASN1_STRING_get0_data(current_name->d.dNSName), ASN1_STRING_length(current_name->d.dNSName));
+#endif
 
                      if(strDnsName.CompareNoCase(common_name) == 0)
                      {

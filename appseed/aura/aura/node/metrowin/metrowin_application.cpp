@@ -285,10 +285,6 @@ namespace aura
    {
       return ::metrowin::thread::ResumeThread();
    }
-   bool application::PostThreadMessage(UINT message, WPARAM wParam, LPARAM lParam)
-   {
-      return ::metrowin::thread::PostThreadMessage(message, wParam, lParam);
-   }
    bool application::post_message(::user::interaction * pguie, UINT message, WPARAM wParam, LPARAM lParam)
    {
       return ::metrowin::thread::post_message(pguie, message, wParam, lParam);

@@ -3865,22 +3865,6 @@ ExitModal:
 
       throw todo(get_app());
 
-      //ASSERT(::WinIsWindow(get_handle()));
-
-      //// this result will be returned from interaction_impl::RunModalLoop
-      //m_nModalResult = (int) nResult;
-
-      //// make sure a message goes through to exit the modal loop
-      //if(m_iModalCount > 0)
-      //{
-      //   m_iModalCount--;
-      //   for(index i = 0; i < m_iaModalThread.get_count(); i++)
-      //   {
-      //      ::PostThreadMessage((uint32_t) m_iaModalThread[i], WM_NULL, 0, 0);
-      //   }
-      //   PostMessage(WM_NULL);
-      //   System.GetThread()->PostThreadMessage(WM_NULL, 0, 0);
-      //}
    }
 
    void interaction_impl::EndAllModalLoops(id nResult)

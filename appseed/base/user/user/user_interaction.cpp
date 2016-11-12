@@ -4262,20 +4262,13 @@ ExitModal:
       if(m_iModalCount > 0)
       {
          m_iModalCount--;
-         for(index i = 0; i < m_iaModalThread.get_count(); i++)
+         for (index i = 0; i < m_pui->m_threadptraModal.get_count(); i++)
          {
 
-            //#ifdef WINDOWSEX
-
-            ::PostThreadMessage((IDTHREAD)m_iaModalThread[i],WM_NULL,0,0);
-
-            //#else
-
-            //          ::exception::throw_not_implemented(get_app());
-
-            //#endif
+            m_threadptraModal[i]->post_thread_message(WM_NULL);
 
          }
+
 
          //post_message(WM_NULL);
 

@@ -364,19 +364,19 @@ WINPR_API HANDLE CreateFileW(LPCWSTR lpFileName, DWORD dwDesiredAccess, DWORD dw
 
 WINPR_API DWORD WINAPI GetFileSize(HANDLE hFile, LPDWORD lpFileSizeHigh);
 
-WINPR_API DWORD SetFilePointer(HANDLE hFile, LONG lDistanceToMove,
-	PLONG lpDistanceToMoveHigh, DWORD dwMoveMethod);
+//WINPR_API DWORD SetFilePointer(HANDLE hFile, LONG lDistanceToMove,
+	//PLONG lpDistanceToMoveHigh, DWORD dwMoveMethod);
 
-WINPR_API HANDLE FindFirstFileA(LPCSTR lpFileName, LPWIN32_FIND_DATAA lpFindFileData);
-WINPR_API HANDLE FindFirstFileW(LPCWSTR lpFileName, LPWIN32_FIND_DATAW lpFindFileData);
+//WINPR_API HANDLE FindFirstFileA(LPCSTR lpFileName, LPWIN32_FIND_DATAA lpFindFileData);
+//WINPR_API HANDLE FindFirstFileW(LPCWSTR lpFileName, LPWIN32_FIND_DATAW lpFindFileData);
 
 WINPR_API DWORD GetFullPathNameA(LPCSTR lpFileName, DWORD nBufferLength, LPSTR lpBuffer, LPSTR* lpFilePart);
 
-WINPR_API BOOL GetDiskFreeSpaceA(LPCSTR lpRootPathName, LPDWORD lpSectorsPerCluster,
-	LPDWORD lpBytesPerSector, LPDWORD lpNumberOfFreeClusters, LPDWORD lpTotalNumberOfClusters);
+//WINPR_API BOOL GetDiskFreeSpaceA(LPCSTR lpRootPathName, LPDWORD lpSectorsPerCluster,
+	//LPDWORD lpBytesPerSector, LPDWORD lpNumberOfFreeClusters, LPDWORD lpTotalNumberOfClusters);
 
-WINPR_API BOOL GetDiskFreeSpaceW(LPCWSTR lpRootPathName, LPDWORD lpSectorsPerCluster,
-	LPDWORD lpBytesPerSector, LPDWORD lpNumberOfFreeClusters, LPDWORD lpTotalNumberOfClusters);
+// WINPR_API BOOL GetDiskFreeSpaceW(LPCWSTR lpRootPathName, LPDWORD lpSectorsPerCluster,
+	//LPDWORD lpBytesPerSector, LPDWORD lpNumberOfFreeClusters, LPDWORD lpTotalNumberOfClusters);
 
 WINPR_API DWORD GetLogicalDriveStringsA(DWORD nBufferLength, LPSTR lpBuffer);
 

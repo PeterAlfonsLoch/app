@@ -29,6 +29,10 @@
 
 #else
 
+#ifdef _UWP
+#include <wincrypt.h>
+#endif
+
 #define SCHANNEL_NAME_A		"Schannel"
 #define SCHANNEL_NAME_W		L"Schannel"
 

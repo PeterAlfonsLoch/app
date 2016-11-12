@@ -923,39 +923,6 @@ extern thread_int_ptr < HTHREAD > currentThread;
 //}
 //
 //
-//BOOL WINAPI PostThreadMessageW(DWORD idThread, UINT message, WPARAM wparam, LPARAM lparam)
-//{
-//
-//   HTHREAD h = ::get_thread_handle(idThread);
-//
-//   if(h == NULL)
-//      return FALSE;
-//
-//
-//   mq * pmq = get_mq(h);
-//
-//   if(pmq == NULL)
-//      return FALSE;
-//
-//   synch_lock ml(&pmq->m_mutex);
-//
-//   MESSAGE msg;
-//
-//   msg.oswindow   = NULL;
-//   msg.message    = message;
-//   msg.wParam     = wparam;
-//   msg.lParam     = lparam;
-//   msg.pt.x       = 0x80000000;
-//   msg.pt.y       = 0x80000000;
-//   msg.time       = -1;
-//
-//   pmq->ma.add(msg);
-//
-//   pmq->m_eventNewMessage.set_event();
-//
-//   return true;
-//
-//}
 
 
 //CLASS_DECL_BASE WINBOOL WINAPI PostMessageW(oswindow oswindow, UINT Msg, WPARAM wParam, LPARAM lParam)

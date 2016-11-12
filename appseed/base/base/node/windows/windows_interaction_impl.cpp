@@ -3179,10 +3179,10 @@ namespace windows
 
          m_pui->m_iModalCount--;
 
-         for(index i = 0; i < m_pui->m_iaModalThread.get_count(); i++)
+         for(index i = 0; i < m_pui->m_threadptraModal.get_count(); i++)
          {
 
-            ::PostThreadMessageA((DWORD)m_pui->m_iaModalThread[i],WM_NULL,0,0);
+            m_threadptraModal[i]->post_thread_message(WM_NULL);
 
          }
 

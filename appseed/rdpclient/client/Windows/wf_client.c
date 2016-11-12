@@ -804,13 +804,13 @@ static rdpSettings* freerdp_client_get_settings(wfContext* wfc)
 
 static int freerdp_client_focus_in(wfContext* wfc)
 {
-	PostThreadMessage(wfc->mainThreadId, WM_SETFOCUS, 0, 1);
+	xxxpostthreadmessage(wfc->mainThreadId, WM_SETFOCUS, 0, 1);
 	return 0;
 }
 
 static int freerdp_client_focus_out(wfContext* wfc)
 {
-	PostThreadMessage(wfc->mainThreadId, WM_KILLFOCUS, 0, 1);
+	postthreadmessage(wfc->mainThreadId, WM_KILLFOCUS, 0, 1);
 	return 0;
 }
 
@@ -820,7 +820,7 @@ static int freerdp_client_set_window_size(wfContext* wfc, int width, int height)
 
 	if ((width != wfc->client_width) || (height != wfc->client_height))
 	{
-		PostThreadMessage(wfc->mainThreadId, WM_SIZE, SIZE_RESTORED,
+		postthreadmessage(wfc->mainThreadId, WM_SIZE, SIZE_RESTORED,
 		                  ((UINT) height << 16) | (UINT) width);
 	}
 
@@ -1036,7 +1036,7 @@ static int wfreerdp_client_stop(rdpContext* context)
 
 	if (wfc->thread)
 	{
-		PostThreadMessage(wfc->mainThreadId, WM_QUIT, 0, 0);
+      postthreadmessage(wfc->mainThreadId, WM_QUIT, 0, 0);
 		WaitForSingleObject(wfc->thread, INFINITE);
 		CloseHandle(wfc->thread);
 		wfc->thread = NULL;
@@ -1045,7 +1045,7 @@ static int wfreerdp_client_stop(rdpContext* context)
 
 	if (wfc->keyboardThread)
 	{
-		PostThreadMessage(wfc->keyboardThreadId, WM_QUIT, 0, 0);
+      postthreadmessage(wfc->keyboardThreadId, WM_QUIT, 0, 0);
 		WaitForSingleObject(wfc->keyboardThread, INFINITE);
 		CloseHandle(wfc->keyboardThread);
 		wfc->keyboardThread = NULL;

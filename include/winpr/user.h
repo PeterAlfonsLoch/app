@@ -200,7 +200,7 @@ typedef enum _ORIENTATION_PREFERENCE
 
 #endif
 
-#if !defined(_WIN32) || defined(_UWP)
+#if !defined(_WIN32) // || defined(_UWP)
 
 #pragma pack(push, 1)
 

@@ -5,6 +5,9 @@
 
 #if defined(BSD_STYLE_SOCKETS)
 #include "bsd/sockets_config.h"
+
+
+
 #elif defined(METROWIN)
 #include "winrt/sockets_config.h"
 #else
@@ -32,6 +35,15 @@
 
 #if defined(BSD_STYLE_SOCKETS)
 #include "bsd/sockets_bsd.h"
+#ifdef METROWIN 
+
+extern "C"
+CLASS_DECL_AXIS const SSL_METHOD * TLS_client_method();
+extern "C"
+CLASS_DECL_AXIS const SSL_METHOD * TLS_server_method();
+
+#endif
+
 #elif defined(METROWIN)
 #include "winrt/sockets.h"
 #else

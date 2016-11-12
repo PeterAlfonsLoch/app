@@ -1089,12 +1089,6 @@ namespace ios
 //   }
 //
 //
-//   bool thread::post_thread_message(UINT message, WPARAM wParam, lparam lParam)
-//   {
-//
-//      return ::PostThreadMessage(m_nID, message, wParam, lParam);
-//
-//   }
 //
 //
 //   void thread::set_os_data(void * pvoidOsData)

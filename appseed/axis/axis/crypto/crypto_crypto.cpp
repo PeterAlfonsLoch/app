@@ -985,18 +985,33 @@ namespace crypto
       const BIGNUM * dmq1 = NULL;
       const BIGNUM * iqmp = NULL;
 
+#ifdef METROWIN
+
+      char * hexN       = BN_bn2hex(prsa->n);
+      char * hexE       = BN_bn2hex(prsa->e);
+      char * hexD       = BN_bn2hex(prsa->d);
+      char * hexP       = BN_bn2hex(prsa->p);
+      char * hexQ       = BN_bn2hex(prsa->q);
+      char * hexDmp1    = BN_bn2hex(prsa->dmp1);
+      char * hexDmq1    = BN_bn2hex(prsa->dmq1);
+      char * hexIqmp    = BN_bn2hex(prsa->iqmp);
+
+#else
+
       RSA_get0_key(prsa, &n, &e, &d);
       RSA_get0_factors(prsa, &p, &q);
       RSA_get0_crt_params(prsa, &dmp1, &dmq1, &iqmp);
 
-      char * hexN       = BN_bn2hex(n);
-      char * hexE       = BN_bn2hex(e);
-      char * hexD       = BN_bn2hex(d);
-      char * hexP       = BN_bn2hex(p);
-      char * hexQ       = BN_bn2hex(q);
-      char * hexDmp1    = BN_bn2hex(dmp1);
-      char * hexDmq1    = BN_bn2hex(dmq1);
-      char * hexIqmp    = BN_bn2hex(iqmp);
+      char * hexN = BN_bn2hex(n);
+      char * hexE = BN_bn2hex(e);
+      char * hexD = BN_bn2hex(d);
+      char * hexP = BN_bn2hex(p);
+      char * hexQ = BN_bn2hex(q);
+      char * hexDmp1 = BN_bn2hex(dmp1);
+      char * hexDmq1 = BN_bn2hex(dmq1);
+      char * hexIqmp = BN_bn2hex(iqmp);
+
+#endif
 
       rsa->n            = hexN;
       rsa->e            = hexE;
@@ -1232,10 +1247,15 @@ namespace crypto
       BN_hex2bn(&n, nParam);
       BN_hex2bn(&e, "10001");
 
+#ifdef METROWIN
+      m_prsa->n = n;
+      m_prsa->e = e;
+#else
       RSA_set0_key(m_prsa, n, e, NULL);
+#endif
 
-      BN_free(n);
-      BN_free(e);
+      //BN_free(n);
+      //BN_free(e);
 
 
 #endif
@@ -1277,9 +1297,20 @@ namespace crypto
       BN_hex2bn(&dmq1, strDmq1);
       BN_hex2bn(&iqmp, strIqmp);
 
+#ifdef METROWIN
+      m_prsa->n = n;
+      m_prsa->e = e;
+      m_prsa->d = d;
+      m_prsa->p = p;
+      m_prsa->q = q;
+      m_prsa->dmp1 = dmp1;
+      m_prsa->dmq1 = dmq1;
+      m_prsa->iqmp = iqmp;
+#else
       RSA_set0_key(m_prsa, n, e, d);
       RSA_set0_factors(m_prsa, p, q);
-      RSA_set0_crt_params(m_prsa, dmp1,dmq1, iqmp);
+      RSA_set0_crt_params(m_prsa, dmp1, dmq1, iqmp);
+#endif
 
    }
 

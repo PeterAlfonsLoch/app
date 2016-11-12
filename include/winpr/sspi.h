@@ -38,9 +38,9 @@
 
 #if !defined(_WIN32) || defined(_UWP)
 
-#ifndef SEC_ENTRY
+#undef SEC_ENTRY
 #define SEC_ENTRY
-#endif
+
 
 typedef CHAR SEC_CHAR;
 typedef WCHAR SEC_WCHAR;

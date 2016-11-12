@@ -72,6 +72,12 @@ WINPR_API WCHAR* wcstok_s(WCHAR* strToken, const WCHAR* strDelimit,
 
 #endif
 
+#ifdef UNICODE
+#define IsCharAlpha	IsCharAlphaW
+#else
+#define IsCharAlpha	IsCharAlphaA
+#endif
+
 #if !defined(_WIN32) || defined(_UWP)
 
 WINPR_API LPSTR CharUpperA(LPSTR lpsz);

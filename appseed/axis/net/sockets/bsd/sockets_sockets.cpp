@@ -248,3 +248,34 @@ string ip_reverse(string str)
 
 
 
+
+#ifdef METROWIN
+
+
+#include <openssl/ssl.h>
+
+
+extern "C"
+CLASS_DECL_AXIS const SSL_METHOD * TLS_client_method()
+{
+
+   return TLSv1_2_client_method();
+
+}
+
+
+extern "C"
+CLASS_DECL_AXIS const SSL_METHOD * TLS_server_method()
+{
+   
+   return TLSv1_2_server_method();
+
+}
+
+
+#endif
+
+
+
+
+

@@ -1804,6 +1804,9 @@ void thread::post_to_all_threads(UINT message,WPARAM wparam,LPARAM lparam)
 
       }
       sl.unlock();
+      
+      return;
+
 
    }
 
@@ -1954,6 +1957,8 @@ bool thread::post_thread_message(UINT message,WPARAM wParam,lparam lParam)
       {
          ::output_debug_string("\n\n\nWM_QUIT at multimedia::audio::wave_player\n\n\n");
       }
+      set_end_thread();
+      return true;
    }
    return ::PostThreadMessage(m_uiThread,message,wParam,lParam) != FALSE;
 

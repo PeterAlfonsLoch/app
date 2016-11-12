@@ -45,10 +45,23 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 extern "C" void SSLInitializer_SSL_locking_function(int32_t mode, int32_t n, const char * file, int32_t line);
 extern "C" unsigned long SSLInitializer_SSL_id_function();
-extern "C" int SSLInitializer_rand_seed(const void * buf, int32_t num);
+extern "C"
+#ifdef METROWIN
+void
+#else
+int
+#endif
+SSLInitializer_rand_seed(const void * buf, int32_t num);
 extern "C" int32_t SSLInitializer_rand_bytes(uchar * buf, int32_t num);
 extern "C" void SSLInitializer_rand_cleanup();
-extern "C" int SSLInitializer_rand_add(const void * buf, int num, double entropy);
+extern "C" 
+extern "C"
+#ifdef METROWIN
+void
+#else
+int
+#endif
+SSLInitializer_rand_add(const void * buf, int num, double entropy);
 extern "C" int32_t SSLInitializer_rand_pseudorand(uchar * buf, int32_t num);
 extern "C" int32_t SSLInitializer_rand_status();
 
@@ -411,11 +424,20 @@ extern "C" unsigned long SSLInitializer_SSL_id_function()
 //   
 }
 
-extern "C" int SSLInitializer_rand_seed(const void * buf, int32_t num)
+extern "C"
+#ifdef METROWIN
+void
+#else
+int
+#endif
+SSLInitializer_rand_seed(const void * buf, int32_t num)
 {
    UNREFERENCED_PARAMETER(buf);
    UNREFERENCED_PARAMETER(num);
+#ifdef METROWIN
+#else
    return 1;
+#endif
 }
 
 extern "C" int32_t SSLInitializer_rand_bytes(uchar * buf, int32_t num)
@@ -428,12 +450,21 @@ extern "C" void SSLInitializer_rand_cleanup()
 {
 }
 
-extern "C" int SSLInitializer_rand_add(const void * buf, int num, double entropy)
+extern "C" 
+#ifdef METROWIN
+void
+#else
+int
+#endif
+SSLInitializer_rand_add(const void * buf, int num, double entropy)
 {
    UNREFERENCED_PARAMETER(buf);
    UNREFERENCED_PARAMETER(num);
    UNREFERENCED_PARAMETER(entropy);
+#ifdef METROWIN
+#else
    return 1;
+#endif
 }
 
 extern "C" int32_t SSLInitializer_rand_pseudorand(uchar * buf, int32_t num)
