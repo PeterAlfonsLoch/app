@@ -42,6 +42,7 @@ namespace visual
       m_pimaging = NULL;
       m_pfontcentral = NULL;
       m_pvisualapi = new ::visual::api(papp);
+      m_pmutex = new mutex(papp);
 
    }
 
@@ -86,6 +87,8 @@ namespace visual
       if (!::aura::department::initialize1())
          return false;
 
+      synch_lock sl(m_pmutex);
+
       if (m_pfontcentral == NULL)
       {
 
@@ -119,6 +122,8 @@ namespace visual
 
       if (!::aura::department::process_initialize())
          return false;
+
+      synch_lock sl(m_pmutex);
 
       if (!m_pvisualapi->open())
          return false;
@@ -161,6 +166,8 @@ namespace visual
    {
 
       bool bOk = true;
+
+      synch_lock sl(m_pmutex);
 
       try
       {
@@ -225,6 +232,8 @@ namespace visual
    cursor * visual::set_cursor_file(e_cursor ecursor, const ::file::path & psz, bool bFromCache)
    {
 
+      synch_lock sl(m_pmutex);
+
       cursor * pcursor = get_cursor(ecursor);
 
       if (System.visual().imaging().load_from_file(pcursor, psz, bFromCache))
@@ -245,6 +254,8 @@ namespace visual
 
    cursor * visual::get_cursor(e_cursor ecursor)
    {
+
+      synch_lock sl(m_pmutex);
 
       cursor * pcursor = NULL;
 

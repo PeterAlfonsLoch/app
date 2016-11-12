@@ -468,7 +468,6 @@ bool thread::pump_message()
    {
 
       MESSAGE msg;
-
       if(::GetMessage(&msg,NULL,0,0) == 0)
       {
 
