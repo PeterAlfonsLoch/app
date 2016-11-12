@@ -3544,7 +3544,12 @@ end:
 
 
 
-   // case insensitive, ignore white space - only in searched string
+   ///
+   /// \param[in] lpcsz Parsed string.
+   /// \param[in] lpcszPrefix Candidate prefix string.
+   /// \return True if \p lpcsz is prefixed with \p lpcszPrefix.
+   /// \note Case insensitive.
+   ///
    bool begins_ci(const unichar * lpcsz, const unichar * lpcszPrefix)
    {
       if(lpcsz == NULL || *lpcsz == L'\0')
