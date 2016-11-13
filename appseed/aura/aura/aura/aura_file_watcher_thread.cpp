@@ -33,7 +33,7 @@ namespace file_watcher
 
       SCAST_PTR(::message::base, pbase, pobj);
 
-      listener_thread::op * pop = (listener_thread::op *) (LPARAM) pobj->m_lparam;
+      sp(listener_thread::op) pop(pbase->m_lparam);
 
       try
       {

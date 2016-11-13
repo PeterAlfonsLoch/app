@@ -423,8 +423,13 @@ namespace user
          return;
 
       }
-      
-      m_pui->_000OnMouse(pmouse);
+
+      if (m_pui != NULL)
+      {
+
+         m_pui->_000OnMouse(pmouse);
+
+      }
 
       pmouse->set_lresult(DefWindowProc(pmouse->m_uiMessage, pmouse->m_wparam, pmouse->m_lparam));
 
