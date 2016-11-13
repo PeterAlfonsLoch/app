@@ -431,6 +431,13 @@ namespace user
 
       }
 
+      if (pmouse->m_bRet)
+      {
+
+         return;
+
+      }
+
       pmouse->set_lresult(DefWindowProc(pmouse->m_uiMessage, pmouse->m_wparam, pmouse->m_lparam));
 
    }
