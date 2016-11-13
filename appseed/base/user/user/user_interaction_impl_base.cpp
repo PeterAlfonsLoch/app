@@ -162,6 +162,15 @@ namespace user
    void interaction_impl_base::set_need_layout()
    {
 
+      m_pui->m_bNeedLayout = true;
+
+      if (m_pui->m_pparent != NULL)
+      {
+
+         m_pui->m_pparent->m_bNeedLayout = true;
+
+      }
+
    }
 
 

@@ -4388,6 +4388,37 @@ ExitModal:
    }
 
 
+   bool interaction::post_object(UINT uiMessage, WPARAM wparam, lparam lparam)
+   {
+
+      bool bIsWindow = m_pimpl.is_set() && IsWindow();
+
+      if (uiMessage == WM_QUIT || !bIsWindow)
+      {
+
+         {
+
+            // discards object
+            sp(::object) spo(lparam);
+
+         }
+
+         if (!bIsWindow)
+         {
+
+            return false;
+
+         }
+
+         return m_pimpl->post_message(uiMessage);
+
+      }
+
+      return m_pimpl->post_message(uiMessage, wparam, lparam);
+
+   }
+
+
    // timer Functions
    bool interaction::SetTimer(uint_ptr nIDEvent,UINT nElapse, PFN_TIMER pfnTimer)
    {
@@ -4426,6 +4457,13 @@ ExitModal:
       {
 
          return false;
+
+      }
+
+      if (pui == NULL)
+      {
+
+         pui = this;
 
       }
 

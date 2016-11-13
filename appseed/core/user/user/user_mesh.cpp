@@ -936,7 +936,8 @@ namespace user
       }
 
       CacheHint();
-      on_layout();
+      
+      on_change_view_size();
 
       TRACE("mesh::_001OnUpdateItemCount ItemCount %d\n",m_nItemCount);
       if(m_bGroup)

@@ -223,13 +223,13 @@ public:
    template < typename PRED >
    bool post_pred(sp(object) phold, PRED pred)
    {
-      return post_thread_message(message_system, system_message_pred, dynamic_cast < pred_holder_base *>(canew(pred_holder < PRED >(get_app(), phold, pred))));
+      return post_object(message_system, system_message_pred, dynamic_cast < pred_holder_base *>(canew(pred_holder < PRED >(get_app(), phold, pred))));
    }
 
    template < typename PRED >
    bool post_pred(PRED pred)
    {
-      return post_thread_message(message_system, system_message_pred, dynamic_cast < pred_holder_base *>(canew(pred_holder < PRED >(get_app(), pred))));
+      return post_object(message_system, system_message_pred, dynamic_cast < pred_holder_base *>(canew(pred_holder < PRED >(get_app(), pred))));
    }
 
    virtual bool pre_init_instance();

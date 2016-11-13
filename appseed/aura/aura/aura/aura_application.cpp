@@ -4769,7 +4769,7 @@ namespace aura
 
          synch_lock sl(m_pmutex);
 
-         file().add_contents(dir().userappdata() / "log_error.txt", strMessage);
+         file().add_contents(dir().userappdata() / (System.file().module().name() + "_log_error.txt"), strMessage);
 
       }
 
@@ -4797,7 +4797,7 @@ namespace aura
    void application::show_critical_error_log()
    {
 
-      string strFile = dir().userappdata() / "log_error.txt";
+      string strFile = dir().userappdata() / (System.file().module().name() + "_log_error.txt");
 
 #ifdef METROWIN
 

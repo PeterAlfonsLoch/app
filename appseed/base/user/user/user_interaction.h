@@ -340,6 +340,7 @@ namespace user
 #endif
 
       virtual bool post_message(UINT message,WPARAM wParam = 0,lparam lParam = 0) override;
+      virtual bool post_object(UINT message, WPARAM wParam, lparam lParam);
       virtual bool post_simple_command(e_simple_command ecommand,lparam lParam = 0) override;
 
       virtual bool ShowWindow(int32_t nCmdShow) override;

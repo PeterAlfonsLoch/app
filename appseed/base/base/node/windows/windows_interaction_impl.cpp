@@ -2370,7 +2370,8 @@ namespace windows
 
       Default();
 
-      if(m_pui->is_message_only_window())
+      if(m_pui->is_message_only_window()
+         || dynamic_cast < ::base::system_interaction_impl * >(m_pui) != NULL)
       { 
 
          TRACE("good : opt out!");

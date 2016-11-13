@@ -208,7 +208,10 @@ virtual      void load_string_table(const string & pszApp,const string & pszId);
       virtual bool post_user_message(::thread * pthread,::user::primitive * pui,UINT message,WPARAM wparam = 0,lparam lparam = 0);
 
       virtual bool is_window(::user::primitive * pui);
+
+      using ::thread::send_message;
       virtual LRESULT send_message(::user::primitive * pui, UINT message, WPARAM wparam = 0, lparam lparam = 0);
+
       virtual oswindow get_safe_handle(::user::primitive * pui);
       virtual void dispatch_user_message(::signal_details * pobj);
       virtual ::user::primitive * get_parent(::user::primitive * pui);

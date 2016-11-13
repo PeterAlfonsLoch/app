@@ -1297,13 +1297,6 @@ namespace user
       oswindow w = ::SetCapture(get_handle());
 #endif
 
-      if (w != get_handle())
-      {
-
-         return false;
-
-      }
-
       Session.m_puiCapture = pui;
 
       return true;

@@ -889,6 +889,10 @@ namespace user
 
       CacheHint();
       
+      //layout_scroll_bar();
+
+      on_change_view_size();
+
 
       TRACE("list::_001OnUpdateItemCount ItemCount %d\n", m_nItemCount);
 

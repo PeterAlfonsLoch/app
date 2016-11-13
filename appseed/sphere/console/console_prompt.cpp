@@ -34,7 +34,7 @@ namespace console
       if(m_pdoctemplate->get_document() == NULL)
       {
 
-         Application.send_thread_message(WM_APP + 3243,(bShow ? 1 : 0) | (bCreateMini ? 2 : 0));
+         Application.send_message(WM_APP + 3243,(bShow ? 1 : 0) | (bCreateMini ? 2 : 0));
 
       }
 

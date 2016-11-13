@@ -62,7 +62,10 @@ namespace base
       virtual bool on_thread_on_idle(::thread_impl * pimpl,LONG lCount);
 
       virtual bool is_window(::user::primitive * pui);
+
+      using ::aura::application::send_message;
       virtual LRESULT send_message(::user::primitive * pui,UINT message,WPARAM wparam = 0,lparam lparam = 0);
+
       virtual oswindow get_safe_handle(::user::primitive * pui);
       virtual void dispatch_user_message(::user::message * pmessage);
       virtual void dispatch_user_message_object(::object * pobject);
