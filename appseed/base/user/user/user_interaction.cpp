@@ -7624,6 +7624,14 @@ restart:
 
    }
 
+   
+   void interaction::kick()
+   {
+
+      post_message(message_null);
+
+   }
+
 
    bool interaction::has_action_hover()
    {
