@@ -383,12 +383,7 @@ void window_gdi::update_window(::draw2d::dib * pdib)
 
    }
 
-   rect r12;
-
-
-   ::GetWindowRect(m_pimpl->m_oswindow, r12);
-
-   if (r12 != rectWindow || m_pimpl->m_bZ || m_pimpl->m_bShowFlags)
+   if (m_rectLast != rectWindow || m_pimpl->m_bZ || m_pimpl->m_bShowFlags)
    {
 
       ::SetWindowPos(m_pimpl->m_oswindow, (m_pimpl->m_bZ ? (HWND)m_pimpl->m_iZ : 0),
@@ -402,8 +397,9 @@ void window_gdi::update_window(::draw2d::dib * pdib)
          | SWP_NOCOPYBITS
          | SWP_NOACTIVATE
          | SWP_NOOWNERZORDER
-         | SWP_NOSENDCHANGING
          | SWP_DEFERERASE);
+
+      m_rectLast = rectWindow;
 
       m_pimpl->m_bZ = false;
 

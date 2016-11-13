@@ -15,6 +15,7 @@ public:
    HDC                           m_hdcScreen;
    bool                          m_bOwnDC;
    HANDLE                        m_hmutex;
+   rect                          m_rectLast;
 
 
    window_gdi(::aura::application * papp);
