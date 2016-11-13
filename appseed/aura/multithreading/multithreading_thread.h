@@ -53,13 +53,19 @@ class thread_startup;
 
 namespace primitive { class command;  }
 
-
+///
+/// \author Camilo Sasuke Tsumanuma
+///
 class CLASS_DECL_AURA thread :
    virtual public command_target
 #ifdef WINDOWS
    ,virtual public ::exception::translator
 #endif
 {
+private:
+   
+   bool                                   m_bRunThisThread;
+
 public:
 
    class CLASS_DECL_AURA file_info
@@ -81,7 +87,6 @@ public:
    single_lock *                          m_pslUser;
    static bool                            s_bAllocReady;
    //mutex *                                m_pmutex;
-   bool                                   m_bRun;
 
    //thread_impl_sp                         m_pthreadimpl;
 
@@ -209,8 +214,10 @@ public:
    virtual bool set_thread_priority(int32_t epriority);
 
    virtual uint32_t ResumeThread();
-   virtual bool post_thread_message(UINT message, WPARAM wParam = 0, lparam lParam = 0);
-   virtual bool send_thread_message(UINT message,WPARAM wParam = 0,lparam lParam = 0, ::duration durWaitStep = millis(1));
+   virtual bool post_message(UINT message, WPARAM wParam = 0, lparam lParam = 0);
+   virtual bool send_message(UINT message,WPARAM wParam = 0,lparam lParam = 0, ::duration durWaitStep = millis(1));
+   virtual bool post_object(UINT message, WPARAM wParam, lparam lParam);
+   virtual bool send_object(UINT message, WPARAM wParam, lparam lParam, ::duration durWaitStep = millis(1));
    virtual bool post_message(::user::primitive * pui, UINT message, WPARAM wParam = 0, lparam lParam = 0);
 
    template < typename PRED >
@@ -257,8 +264,6 @@ public:
    //virtual void set_timer(::user::primitive * pui, uint_ptr nIDEvent, UINT nEllapse);
    //virtual void unset_timer(::user::primitive * pui, uint_ptr nIDEvent);
    virtual void set_auto_delete(bool bAutoDelete = true);
-   virtual void set_run(bool bRun = true);
-   virtual bool get_run();
    virtual ::user::primitive * get_active_ui();
    virtual ::user::primitive * set_active_ui(::user::primitive * pui);
    //virtual void step_timer();
@@ -303,8 +308,11 @@ public:
    virtual void do_events();
    virtual void do_events(const duration & duration);
 
-   virtual void set_run_thread(bool bRun = true);
-   virtual void set_end_thread();
+   virtual bool get_run_thread();
+   virtual bool should_enable_thread();
+   virtual bool post_quit();
+
+   virtual bool kick_thread();
 
    //virtual void defer_add_thread_run_wait(sync_object_ptra & soa);
 
@@ -321,8 +329,6 @@ public:
    virtual bool is_application();
    virtual bool is_session();
    virtual bool is_system();
-
-   virtual void post_quit();
 
    virtual void delete_this();
 
@@ -371,3 +377,15 @@ public:
 //   bool do_replace(::thread * pthread);
 //
 //};
+
+
+
+namespace aura
+{
+
+   
+   CLASS_DECL_AURA bool post_quit_thread();
+   CLASS_DECL_AURA bool post_quit_thread(::thread * pthread);
+
+
+} // namespace aura

@@ -195,7 +195,7 @@ namespace aura
    bool application::impl_initialize1()
    {
 
-      set_run();
+      //set_run();
 
       return true;
 
@@ -216,8 +216,6 @@ namespace aura
    {
 
       set_os_data(NULL);
-
-      set_run(false);
 
       //int32_t iRet = ::aura::application::exit_instance();
 

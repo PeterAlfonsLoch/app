@@ -2943,7 +2943,7 @@ return 0;
 
             DWORD dwStart;
 
-            while (::get_thread()->m_bRun)
+            while (::get_thread_run())
             {
 
                dwStart = ::get_tick_count();

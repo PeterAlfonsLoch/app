@@ -1483,7 +1483,7 @@ typedef struct tagSTYLESTRUCT
  * Window Messages
  */
 
-#define WM_NULL                         0x0000
+#define wm_null                         0x0000
 #define WM_CREATE                       0x0001
 #define WM_DESTROY                      0x0002
 #define WM_MOVE                         0x0003

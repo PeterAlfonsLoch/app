@@ -71,7 +71,7 @@ CLASS_DECL_AURA bool __wait_threading_count(::duration dur)
       for(index i = 0; i < ::multithreading::s_pthreadptra->get_count(); i++)
       {
 
-         ::multithreading::s_pthreadptra->element_at(i)->set_end_thread();
+         ::multithreading::s_pthreadptra->element_at(i)->post_quit();
 
       }
 
@@ -128,8 +128,7 @@ CLASS_DECL_AURA bool __wait_threading_count_except(::thread * pthread, ::duratio
             try
             {
 
-               ::multithreading::s_pthreadptra->element_at(i)->set_end_thread();
-               ::multithreading::s_pthreadptra->element_at(i)->post_thread_message(WM_QUIT);
+               ::multithreading::s_pthreadptra->element_at(i)->post_quit();
                
             }
             catch (...)

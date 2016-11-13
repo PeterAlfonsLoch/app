@@ -195,6 +195,44 @@ thread_pointer < ::thread > t_pthread;
 
 }
 
+bool get_thread_run()
+{
+
+   return t_pthread->get_run_thread();
+
+}
+
+namespace aura
+{
+
+   CLASS_DECL_AURA bool post_quit_thread()
+   {
+
+      return post_quit_thread(t_pthread);
+
+   }
+ 
+   CLASS_DECL_AURA bool post_quit_thread(::thread * pthread)
+   {
+
+      try
+      {
+
+         return pthread->post_quit();
+
+      }
+      catch (...)
+      {
+
+
+      }
+
+      return false;
+
+   }
+
+} // namespace aura
+
 
 
 void set_thread(::thread* pthread)

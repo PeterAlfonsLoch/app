@@ -298,7 +298,7 @@ namespace hotplugin
 
       plugin_message_handler(WM_CLOSE,0,0,false);
 
-      post_thread_message(WM_QUIT);
+      post_quit();
 
       return true;
 

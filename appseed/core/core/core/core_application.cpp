@@ -537,62 +537,9 @@ namespace core
 
       m_puserfs = NULL;
 
-      try
-      {
-
-         thread         * pthread = this;
-
-         if (pthread != NULL)
-         {
-
-            try
-            {
-               // avoid calling CloseHandle() on our own thread handle
-               // during the thread destructor
-               // avoid thread object data auto deletion on thread termination,
-               // letting thread function terminate
-               //pthread->m_bAutoDelete = false;
-
-               pthread->set_os_data(NULL);
-
-               pthread->set_run(false);
-
-            }
-            catch (...)
-            {
-
-            }
-
-         }
-
-      }
-      catch (...)
-      {
-
-      }
 
 
-      //try
-      //{
 
-      //   if(System.get_application_count() <= 1)
-      //   {
-
-      //      if(System.thread::get_os_data() != NULL)
-      //      {
-      //         System.post_thread_message(WM_QUIT);
-
-      //      }
-
-      //   }
-
-      //}
-      //catch(...)
-      //{
-      //   ::simple_message_box(NULL,"a","b",MB_OK);
-      //   m_iReturnCode = -1;
-
-      //}
 
       try
       {
@@ -2989,8 +2936,9 @@ namespace core
 
    void application::_001CloseApplication()
    {
-      set_run(false);
-      post_thread_message(WM_QUIT);
+      
+      post_quit();
+      
    }
 
 
@@ -3082,12 +3030,12 @@ namespace core
       {
          if (!directrix()->m_varTopicQuery.has_property("session_start"))
          {
-            System.post_thread_message(WM_QUIT);
+            ::aura::post_quit_thread(&System);
          }
       }
       else
       {
-         System.post_thread_message(WM_QUIT);
+         ::aura::post_quit_thread(&System);
       }
 
 
@@ -3116,12 +3064,12 @@ namespace core
       {
          if (!directrix()->m_varTopicQuery.has_property("session_start"))
          {
-            System.post_thread_message(WM_QUIT);
+            ::aura::post_quit_thread(&System);
          }
       }
       else
       {
-         System.post_thread_message(WM_QUIT);
+         ::aura::post_quit_thread(&System);
       }
 
       return true;
@@ -3408,30 +3356,6 @@ namespace core
    {
    }
 
-   if(!bRunning)
-   {
-
-   try
-   {
-   papp->m_pcoreapp->post_thread_message(WM_QUIT);
-   }
-   catch(...)
-   {
-   }
-   try
-   {
-   papp.release();
-   }
-   catch(...)
-   {
-   }
-
-   bCreate = true;
-
-   }
-
-
-   }
 
    if(bCreate)
    {
@@ -3672,6 +3596,7 @@ namespace core
                pwnd != pwndExcept &&
                pwnd->IsWindow() &&
                pwnd->IsWindowVisible() &&
+               pwnd->get_window_type() == ::user::interaction::type_frame &&
                !(pwnd->GetStyle() & WS_CHILD))
          {
             iCount++;

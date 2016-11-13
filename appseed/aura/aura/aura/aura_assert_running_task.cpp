@@ -26,7 +26,7 @@ namespace aura
    int32_t assert_running_task::run()
    {
 
-      while(get_run())
+      while(get_run_thread())
       {
 
          try
@@ -38,7 +38,7 @@ namespace aura
          catch(::exit_exception &)
          {
 
-            Application.post_to_all_threads(WM_QUIT,0,0);
+            ::aura::post_quit_thread(&System);
 
          }
          catch(::exception::exception &)

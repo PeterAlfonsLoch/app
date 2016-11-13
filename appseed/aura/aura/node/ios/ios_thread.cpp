@@ -220,7 +220,7 @@ namespace ios
 //      //m_nThreadID = 0;
 //
 //      m_nDisablePumpCount = 0;
-//      pState->m_nMsgLast = WM_NULL;
+//      pState->m_nMsgLast = wm_null;
 //      System.get_cursor_pos(&(pState->m_ptCursorLast));
 //
 //      // most threads are deleted when not needed
@@ -397,10 +397,6 @@ namespace ios
 //      return m_evFinish;
 //   }
 //
-//   bool thread::get_run()
-//   {
-//      return m_bRun;
-//   }
 //
 //   ::thread * thread::get_app_thread()
 //   {
@@ -590,108 +586,6 @@ namespace ios
 //      ASSERT_VALID(this);
 //
 //      return true;   // by default enter run loop
-//   }
-//
-//   // main running routine until thread exits
-//   int32_t thread::run()
-//   {
-//
-//      ASSERT_VALID(this);
-//
-//      // for tracking the idle time state
-//      WINBOOL bIdle = TRUE;
-//      LONG lIdleCount = 0;
-//
-//      // acquire and dispatch messages until a WM_QUIT message is received.
-//      MESSAGE msg;
-//
-//
-//
-//      while(m_bRun)
-//      {
-//
-//
-//         // phase1: check to see if we can do idle work
-//         while (bIdle && !::PeekMessage(&msg, NULL, 0, 0, PM_NOREMOVE))
-//         {
-//
-//
-//            // call on_idle while in bIdle state
-//            if (!on_idle(lIdleCount++))
-//               bIdle = FALSE; // assume "no idle" state
-//
-//            m_p->on_run_step();
-//
-//            try
-//            {
-//               if(!m_p->verb())
-//                  goto stop_run;
-//            }
-//            catch(::exit_exception & e)
-//            {
-//
-//               throw e;
-//
-//            }
-//            catch(::exception::exception & e)
-//            {
-//
-//               if(!Application.on_run_exception(e))
-//                  throw exit_exception(get_app());
-//
-//            }
-//            catch(...)
-//            {
-//            }
-//
-//         }
-//
-//         // phase2: pump messages while available
-//         do
-//         {
-//
-//
-//            // pump message, but quit on WM_QUIT
-//            if (!pump_message())
-//            {
-//               try
-//               {
-//                  return exit();
-//               }
-//               catch(...)
-//               {
-//                  return -1;
-//               }
-//            }
-//
-//            // reset "no idle" state after pumping "normal" message
-//            if (is_idle_message(&msg))
-//            {
-//               bIdle = TRUE;
-//               lIdleCount = 0;
-//            }
-//
-//            m_p->on_run_step();
-//
-//         }
-//         while (::PeekMessage(&msg, NULL, 0, 0, PM_NOREMOVE) != FALSE);
-//
-///*         timespec spec;
-//         spec.tv_sec = 0;
-//         spec.tv_nsec = 84000000;
-//         nanosleep(&spec, NULL);*/
-//
-//      }
-//   stop_run:
-//
-//      return 0;
-//   }
-//
-//   bool thread::is_idle_message(signal_details * pobj)
-//   {
-//
-//      return ::message::is_idle_message(pobj);
-//
 //   }
 //
 //
@@ -893,78 +787,6 @@ namespace ios
 //   // Access to GetMainWnd() & m_pActiveWnd
 //
 //
-//   /////////////////////////////////////////////////////////////////////////////
-//   // thread implementation helpers
-//
-//   bool thread::pump_message()
-//   {
-//      try
-//      {
-//         MESSAGE msg;
-//         if(!::GetMessage(&msg, NULL, 0, 0))
-//         {
-//            TRACE(::core::trace::category_AppMsg, 1, "thread::pump_message - Received WM_QUIT.\n");
-//            m_nDisablePumpCount++; // application must die
-//            // Note: prevents calling message loop things in 'exit_instance'
-//            // will never be decremented
-//            return FALSE;
-//         }
-//
-//         if(m_nDisablePumpCount != 0)
-//         {
-//            TRACE(::core::trace::category_AppMsg, 0, "Error: thread::pump_message called when not permitted.\n");
-//            ASSERT(FALSE);
-//         }
-//
-//         __trace_message("pump_message", &msg);
-//
-//         if(msg.message != WM_KICKIDLE)
-//         {
-//            {
-//               ::smart_pointer < ::message::aura > spbase;
-//
-//               spbase = get_base(&msg);
-//
-//               if(m_p != NULL)
-//               {
-//                  m_p->pre_translate_message(spbase);
-//                  if(spbase->m_bRet)
-//                     return TRUE;
-//               }
-//
-//               System.pre_translate_message(spbase);
-//               if(spbase->m_bRet)
-//                  return TRUE;
-//
-//               if(!Application.is_system())
-//               {
-//                  Application.pre_translate_message(spbase);
-//                  if(spbase->m_bRet)
-//                     return TRUE;
-//               }
-//
-//               __pre_translate_message(spbase);
-//               if(spbase->m_bRet)
-//                  return TRUE;
-//
-//            }
-//            {
-//               //             ::TranslateMessage(&msg);
-//               //             ::DispatchMessage(&msg);
-//            }
-//         }
-//         return TRUE;
-//      }
-//      catch(const ::exception::exception & e)
-//      {
-//         if(on_run_exception((::exception::exception &) e))
-//            return TRUE;
-//         // get_app() may be it self, it is ok...
-//         if(App(get_app()).final_handle_exception((::exception::exception & ) e))
-//            return TRUE;
-//         return FALSE;
-//      }
-//   }
 //
 //
 //   /////////////////////////////////////////////////////////////////////////////

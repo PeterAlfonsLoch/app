@@ -7,11 +7,8 @@ class CLASS_DECL_AURA go_thread :
 public:
 
 
-   bool m_bRelease;
-   bool m_bStartRelease;
 
-
-   go_thread(::aura::application * papp, bool bRelease = true);
+   go_thread(::aura::application * papp);
    virtual ~go_thread();
 
    virtual void start();

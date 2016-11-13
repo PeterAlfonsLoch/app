@@ -10,6 +10,7 @@ namespace message
    enum e_message
    {
 
+      message_null = WM_NULL,
       message_create = USER_MESSAGE,
       message_drag_and_drop,
       message_event = WM_APP + 1000,

@@ -86,7 +86,7 @@ namespace userstack
 
          sp(::aura::application) papp =  (pcaapp);
 
-         papp->m_pcoreapp->post_thread_message(WM_QUIT);
+         papp->m_pcoreapp->post_quit();
       }
 
       return 0;

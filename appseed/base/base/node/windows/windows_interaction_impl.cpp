@@ -781,7 +781,7 @@ namespace windows
          if (m_pthreadDraw != NULL)
          {
 
-            m_pthreadDraw->m_bRun = false;
+            m_pthreadDraw->post_quit();
 
 
             m_pthreadDraw->wait(seconds(10));
@@ -2379,48 +2379,55 @@ namespace windows
       else
       {
 
-         m_pthreadDraw = ::fork(get_app(), [&]()
+         if (m_pthreadDraw == NULL)
          {
 
-            DWORD dwStart;
-
-            while (::get_thread()->m_bRun)
+            m_pthreadDraw = ::fork(get_app(), [&]()
             {
 
-               dwStart = ::get_tick_count();
+               DWORD dwStart;
 
-               if (!m_pui->m_bLockWindowUpdate)
+               while (::get_thread_run())
                {
 
-                  if (m_pui->has_pending_graphical_update()
-                  || m_pui->check_need_layout())
+                  dwStart = ::get_tick_count();
+
+                  if (!m_pui->m_bLockWindowUpdate)
                   {
 
-                     RedrawWindow(NULL, NULL, RDW_INVALIDATE | RDW_UPDATENOW | RDW_NOERASE);
+                     if (m_pui->has_pending_graphical_update()
+                        || m_pui->check_need_layout())
+                     {
 
-                     m_pui->on_after_graphical_update();
+                        RedrawWindow(NULL, NULL, RDW_INVALIDATE | RDW_UPDATENOW | RDW_NOERASE);
+
+                        m_pui->on_after_graphical_update();
+
+                     }
+                     else if (m_pui->check_need_translation()
+                        || m_pui->check_show_flags()
+                        || m_pui->check_need_zorder())
+                     {
+
+
+                     }
 
                   }
-                  else if (m_pui->check_need_translation()
-                     || m_pui->check_show_flags()
-                     || m_pui->check_need_zorder())
+
+                  if (::get_tick_count() - dwStart < 5)
                   {
 
+                     Sleep(5);
 
                   }
 
                }
 
-               if (::get_tick_count() - dwStart < 5)
-               {
+               m_pthreadDraw = NULL;
 
-                  Sleep(5);
+            });
 
-               }
-
-            }
-
-         });
+         }
 
       }
 
@@ -3182,13 +3189,13 @@ namespace windows
          for(index i = 0; i < m_pui->m_threadptraModal.get_count(); i++)
          {
 
-            m_threadptraModal[i]->post_thread_message(WM_NULL);
+            m_pui->m_threadptraModal[i]->kick_thread();
 
          }
 
-         post_message(WM_NULL);
+         m_pui->kick_queue();
 
-         get_thread()->post_thread_message(WM_NULL);
+         get_thread()->kick_thread();
 
       }
 
@@ -3211,9 +3218,9 @@ namespace windows
 
          m_pui->m_iModalCount = 0;
 
-         post_message(WM_NULL);
+         m_pui->kick_queue();
 
-         get_thread()->post_thread_message(WM_NULL);
+         get_thread()->kick_thread();
 
          for(int32_t i = iLevel; i >= 0; i--)
          {
@@ -3223,7 +3230,7 @@ namespace windows
             try
             {
 
-               pthread->post_thread_message(WM_NULL);
+               pthread->kick_thread();
 
             }
             catch(...)

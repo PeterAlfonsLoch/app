@@ -615,7 +615,7 @@ void script_compiler::compile(ds_script * pscript)
 
    string strLog;
 
-   while(::get_thread()->m_bRun && m_bRun && m_bRun)
+   while(::get_thread_run() && get_run_thread())
    {
 
       strLog += process->read();
@@ -650,7 +650,7 @@ void script_compiler::compile(ds_script * pscript)
 
 #ifdef LINUX
 
-      //Sleep(1984);
+      //Sleep(2000);
 
 #endif
 
@@ -741,7 +741,7 @@ void script_compiler::compile(ds_script * pscript)
 
       string strLog;
 
-      while(::get_thread()->m_bRun && m_bRun)
+      while(::get_thread_run() && get_run_thread())
       {
 
          strLog += process->read();
@@ -771,7 +771,7 @@ void script_compiler::compile(ds_script * pscript)
 
 #ifdef LINUX
 
-         //Sleep(1984);
+         //Sleep(2000);
 
 #endif
 
@@ -881,7 +881,7 @@ void script_compiler::cppize1(ds_script * pscript)
 
    int iTry = 0;
    
-   while ((strSource = Application.file().as_string(pscript->m_strSourcePath)).trimmed().is_empty() && ::get_thread()->m_bRun && m_bRun)
+   while ((strSource = Application.file().as_string(pscript->m_strSourcePath)).trimmed().is_empty() && ::get_thread_run() && get_run_thread())
    {
 
       Sleep(84);
@@ -1108,7 +1108,7 @@ void script_compiler::prepare1(const char * lpcszSource, const char * lpcszDest)
    //process->write("\n");
    uint32_t dwExitCode;
    DWORD dwStart = get_tick_count();
-   while(::get_thread()->m_bRun && m_bRun)
+   while(::get_thread_run() && get_run_thread())
    {
 
       strLog += process->read();
@@ -1503,7 +1503,7 @@ library & script_compiler::lib(const char * pszLibrary)
 
       string strLog;
 
-      while(::get_thread()->m_bRun && m_bRun)
+      while(::get_thread_run() && get_run_thread())
       {
 
          strLog += process->read();
@@ -1540,7 +1540,7 @@ library & script_compiler::lib(const char * pszLibrary)
 
 #ifdef LINUX
 
-         //Sleep(1984);
+         //Sleep(2000);
 
 #endif
 
@@ -1629,7 +1629,7 @@ library & script_compiler::lib(const char * pszLibrary)
    str.replace("%TARGET_NAME%", strTargetName);
    Application.dir().mk(System.dir().element()/ m_strDynamicSourceStage / m_strStagePlatform /"library");
 //#ifdef LINUX
-//      //Sleep(1984);
+//      //Sleep(2000);
 //      strCmd = System.dir().element()/m_strDynamicSourceStage/ "front\\libl1.bash";
 //#else
 //      strCmd = System.dir().element()/ m_strDynamicSourceStage / "front\\libl1.bat";
@@ -1650,7 +1650,7 @@ library & script_compiler::lib(const char * pszLibrary)
 
    string strLog;
 
-   while(::get_thread()->m_bRun && m_bRun)
+   while(::get_thread_run() && get_run_thread())
    {
 
       strLog += process->read();
@@ -1690,7 +1690,7 @@ library & script_compiler::lib(const char * pszLibrary)
 
 #ifdef LINUX
 
-      //Sleep(1984);
+      //Sleep(2000);
 
 #endif
 

@@ -1294,11 +1294,11 @@ namespace core
 
       }
 
-      ::get_thread()->post_thread_message(WM_NULL);
+      ::get_thread()->kick_thread();
 
-      post_thread_message(WM_NULL);
+      kick_thread();
 
-      System.post_thread_message(WM_NULL);
+      System.kick_thread();
 
    }
 

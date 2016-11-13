@@ -32,7 +32,7 @@ simple_frame_window::helper_task::helper_task(simple_frame_window * pframe) :
 int simple_frame_window::helper_task::run()
 {
 
-   while(m_bRun)
+   while(get_run_thread())
    {
 
 

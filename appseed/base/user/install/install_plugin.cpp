@@ -389,10 +389,13 @@ namespace install
    {
 
 
-      while (m_bRun)
+      while (get_run_thread())
       {
+
          m_pplugin->thread_start_ca2_on_idle();
-         Sleep(584);
+
+         Sleep(500);
+
       }
 
       return true;
@@ -596,7 +599,7 @@ namespace install
 
          m_phost->open_link(strUrl, "");
 
-         m_startca2.set_end_thread();
+         m_startca2.post_quit();
 
          return;
 
@@ -618,7 +621,7 @@ namespace install
 
          //ca2logout(set);
 
-         m_startca2.set_end_thread();
+         m_startca2.post_quit();
 
          return;
 

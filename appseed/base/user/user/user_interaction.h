@@ -89,7 +89,7 @@ namespace user
 
       string                              m_strWindowText;
 
-      comparable_eq_array < IDTHREAD >    m_iaModalThread;
+      ref_array < ::thread >              m_threadptraModal;
 
       id                                  m_idModalResult; // for return values from interaction_impl::RunModalLoop
 
@@ -141,7 +141,7 @@ namespace user
       virtual bool has_text_input();
       virtual COLORREF get_action_hover_border_color();
 
-
+      virtual bool kick_queue();
 
 #if defined(METROWIN) || defined(APPLE_IOS) || defined(ANDROID)
       virtual bool initialize(::user::native_window_initialize * pinitialize);

@@ -69,7 +69,7 @@
 //      virtual void set_auto_delete(bool bAutoDelete = true);
 //      virtual void set_run(bool bRun = true);
 //      virtual event & get_finish_event();
-//      virtual bool get_run();
+//      virtual bool get_run_thread();
 //      virtual ::thread * get_app_thread();
 //      virtual sp(::user::interaction) get_active_ui();
 //      virtual sp(::user::interaction) set_active_ui(sp(::user::interaction) pui);

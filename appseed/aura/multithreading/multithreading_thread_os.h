@@ -59,7 +59,6 @@
 //
 //   static HTHREAD get();
 //   static void set(HTHREAD hthread);
-//   static bool get_run();
 //   static void stop_all(uint32_t millisMaxWait);
 //
 //
@@ -211,6 +210,8 @@ CLASS_DECL_AURA bool __wait_threading_count_except(::thread * pthread,::duration
 CLASS_DECL_AURA ::thread * get_thread();
 CLASS_DECL_AURA void set_thread(::thread * pthread);
 
+
+CLASS_DECL_AURA bool get_thread_run();
 
 CLASS_DECL_AURA void __node_init_multithreading();
 CLASS_DECL_AURA void __node_term_multithreading();

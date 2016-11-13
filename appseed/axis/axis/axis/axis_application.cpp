@@ -1144,7 +1144,6 @@ namespace axis
          dappy(string(typeid(*this).name()) + " : going to on_run : " + ::str::from(m_iReturnCode));
          m_iReturnCode = 0;
          m_bReady = true;
-         m_bRun = true;
          m_iReturnCode = on_run();
          if(m_iReturnCode != 0)
          {
@@ -1158,7 +1157,7 @@ namespace axis
 
          dappy(string(typeid(*this).name()) + " : on_run exit_exception");
 
-         System.post_thread_message(WM_QUIT,0,0);
+         ::aura::post_quit_thread(&System);
 
          goto exit_application;
 
@@ -1180,7 +1179,7 @@ namespace axis
 
             dappy(string(typeid(*this).name()) + " : quiting main");
 
-            //post_to_all_threads(WM_QUIT,0,0);
+            //::aura::post_quit_thread(&System);
 
             //Sleep(5000);
 
@@ -1204,7 +1203,7 @@ namespace axis
       catch(::exit_exception &)
       {
 
-         post_to_all_threads(WM_QUIT,0,0);
+         ::aura::post_quit_thread(&System);
 
          m_iReturnCode = -1;
 
@@ -1277,7 +1276,7 @@ namespace axis
 
          dappy(string(typeid(*this).name()) + " : main_start exit_exception");
 
-         post_to_all_threads(WM_QUIT,0,0);
+         ::aura::post_quit_thread(&System);
 
       }
 
@@ -2278,13 +2277,6 @@ namespace axis
 
                try
                {
-                  // avoid calling CloseHandle() on our own thread handle
-                  // during the thread destructor
-                  // avoid thread object data auto deletion on thread termination,
-                  // letting thread function terminate
-                  //m_bAutoDelete = false;
-
-                  set_run(false);
 
                   aura::application::exit_instance();
 
@@ -2313,28 +2305,6 @@ namespace axis
          */
 
 
-
-      //try
-      //{
-
-      //   if(Session.appptra().get_count() <= 1)
-      //   {
-
-      //      if(System.thread::get_os_data() != NULL)
-      //      {
-      //         System.post_thread_message(WM_QUIT);
-
-      //      }
-
-      //   }
-
-      //}
-      //catch(...)
-      //{
-
-      //   m_iReturnCode = -1;
-
-      //}
 
       return m_iReturnCode;
 
@@ -3559,7 +3529,7 @@ namespace axis
 
    //      dappy(string(typeid(*this).name()) + " : on_run exit_exception");
 
-   //      System.post_thread_message(WM_QUIT,0,0);
+   //      ::aura::post_quit_thread(&System);
 
    //      goto exit_application;
 
@@ -3581,7 +3551,7 @@ namespace axis
 
    //         dappy(string(typeid(*this).name()) + " : quiting main");
 
-   //         //post_to_all_threads(WM_QUIT,0,0);
+   //         //::aura::post_quit_thread(&System);
 
    //         //Sleep(5000);
 
@@ -3604,7 +3574,7 @@ namespace axis
    //   catch(::exit_exception &)
    //   {
 
-   //      post_to_all_threads(WM_QUIT,0,0);
+   //      ::aura::post_quit_thread(&System);
 
    //      m_iReturnCode = -1;
 
@@ -3674,7 +3644,7 @@ namespace axis
 
    //      dappy(string(typeid(*this).name()) + " : main_start exit_exception");
 
-   //      post_to_all_threads(WM_QUIT,0,0);
+   //      ::aura::post_quit_thread(&System);
 
    //   }
 

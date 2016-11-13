@@ -127,7 +127,7 @@ repeat:;
 
           if(m_itema.get_size() <= 0)
           {
-             Sleep(1984);
+             Sleep(2000);
              goto repeat;
           }
 
@@ -160,7 +160,7 @@ repeat:;
 
           if(!System.http().request(m_handler, m_phttpsession, strUrl, set) || ::http::status_failed(set["get_status"]))
           {
-             Sleep(1984);
+             Sleep(2000);
              goto repeat;
           }
 

@@ -59,7 +59,7 @@ public:
 
    virtual void SetServiceStatus();
 
-   virtual bool get_run();
+   virtual bool get_run_service();
 
    virtual void call_server();
 

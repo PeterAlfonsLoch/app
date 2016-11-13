@@ -175,7 +175,7 @@ namespace hotplugin
          if(g_paxissystem != NULL)
          {
 
-            g_paxissystem->post_thread_message(WM_QUIT);
+            g_paxissystem->post_quit();
 
             g_paxissystem = NULL;
 

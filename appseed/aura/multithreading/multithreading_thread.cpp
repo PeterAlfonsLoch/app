@@ -6,21 +6,22 @@ struct send_thread_message :
    virtual public object
 {
 
-   MESSAGE     m_message;
+   MESSAGE                 m_message;
 
-   bool        m_bOk;
+   manual_reset_event      m_ev;
 
-   send_thread_message();
+   send_thread_message(::aura::application * papp);
    virtual ~send_thread_message();
 
 };
 
-send_thread_message::send_thread_message()
+send_thread_message::send_thread_message(::aura::application * papp) :
+   m_ev(papp)
 {
 
    ZERO(m_message);
 
-   m_bOk = false;
+   m_ev.ResetEvent();
 
 }
 
@@ -28,6 +29,7 @@ send_thread_message::send_thread_message()
 send_thread_message::~send_thread_message()
 {
 
+   m_ev.SetEvent();
 
 }
 
@@ -146,7 +148,7 @@ void thread::CommonConstruct()
    //m_peventEvent = NULL;
 
    m_bReady = false;
-   m_bRun = true;
+   m_bRunThisThread = true;
    m_pevReady = NULL;
 
    m_puiActive = NULL;
@@ -296,44 +298,7 @@ int32_t thread::exit()
 }
 
 
-bool thread::send_thread_message(UINT message,WPARAM wParam,lparam lParam, ::duration durWaitStep)
-{
 
-   sp(::send_thread_message) pmessage =  canew(::send_thread_message);
-
-
-
-   pmessage->m_message.message = message;
-   pmessage->m_message.wParam = wParam;
-   pmessage->m_message.lParam = lParam;
-   pmessage->m_bOk = false;
-
-   post_thread_message(message_system,system_message_meta, (LPARAM) (uint_ptr) (object *) pmessage.m_p);
-
-   while(defer_pump_message())
-   {
-
-      if(pmessage->m_bOk)
-      {
-
-         break;
-
-      }
-
-      Sleep(durWaitStep);
-
-      if(pmessage->m_bOk)
-      {
-
-         break;
-
-      }
-
-   }
-
-   return true;
-
-}
 
 
 
@@ -412,10 +377,10 @@ int32_t thread::run()
 
    //multi_lock ml(soa);
 
-   ::output_debug_string("::thread::run " + string(demangle(typeid(*this).name())) + " m_bRun = "+::str::from((int)m_bRun)+"\n\n");
+   ::output_debug_string("::thread::run " + string(demangle(typeid(*this).name())) + " m_bRun = "+::str::from((int)get_run_thread())+"\n\n");
 
 
-   while(m_bRun)
+   while(get_run_thread())
    {
 
       //if(m_spuiptra.is_set() && m_spuiptra->get_count() > 0)
@@ -443,7 +408,7 @@ int32_t thread::run()
 
    string strThread = string(demangle(typeid(*this).name()));
 
-   string strRun = ::str::from((int)m_bRun);
+   string strRun = ::str::from((int)get_run_thread());
 
    string strRet = ::str::from(m_iReturnCode);
 
@@ -471,9 +436,9 @@ bool thread::pump_message()
       if(::GetMessage(&msg,NULL,0,0) == 0)
       {
 
-         TRACE(::aura::trace::category_AppMsg,1,"thread::pump_message - Received WM_QUIT.\n");
+         TRACE(::aura::trace::category_AppMsg,1,"thread::pump_message - Received wm_quit.\n");
 
-         ::output_debug_string("thread::pump_message - Received WM_QUIT.\n");
+         ::output_debug_string("thread::pump_message - Received wm_quit.\n");
 
          m_nDisablePumpCount++; // application must die
          // Note: prevents calling message loop things in 'exit_instance'
@@ -542,13 +507,13 @@ bool thread::defer_pump_message()
    //while(::PeekMessage(&msg,NULL,0,0,PM_NOREMOVE) != FALSE)
    {
 
-      // pump message, but quit on WM_QUIT
+      // pump message, but quit on wm_quit
      // if(!m_bRun || !pump_message())
       if (!pump_message())
       {
 
 
-         ::output_debug_string("\n\n\nthread::defer_pump_message (1) quitting (WM_QUIT? {PeekMessage->message : "+::str::from(msg.message == WM_QUIT?1:0)+"!}) : " + string(demangle(typeid(*this).name())) + " ("+::str::from((uint64_t)::GetCurrentThreadId())+")\n\n\n");
+         ::output_debug_string("\n\n\nthread::defer_pump_message (1) quitting (wm_quit? {PeekMessage->message : "+::str::from(msg.message == WM_QUIT?1:0)+"!}) : " + string(demangle(typeid(*this).name())) + " ("+::str::from((uint64_t)::GetCurrentThreadId())+")\n\n\n");
 
          return false;
 
@@ -598,22 +563,6 @@ void thread::set_auto_delete(bool bAutoDelete)
 
 }
 
-
-void thread::set_run(bool bRun)
-{
-
-   m_bRun = bRun;
-
-}
-
-
-
-bool thread::get_run()
-{
-
-   return m_bRun;
-
-}
 
 
 
@@ -780,7 +729,7 @@ void thread::on_unregister_dependent_thread(::thread * pthreadDependent)
    }
    // the system may do some extra processing (like quitting system in case pthreadDependent is the last thread virgin in America (North, most especifically US) ?!?!), so do a kick
    // (do not apply virgin to your self...)
-   post_thread_message(WM_NULL);
+   kick_thread();
 
 }
 
@@ -806,7 +755,7 @@ void thread::signal_close_dependent_threads()
       try
       {
 
-         pthread->m_bRun = false;
+         pthread->post_quit();
 
       }
       catch(...)
@@ -816,23 +765,6 @@ void thread::signal_close_dependent_threads()
 
    }
 
-   for (index i = 0; i < threadptraDependent.get_count(); i++)
-   {
-
-      thread * pthread = threadptraDependent[i];
-
-      try
-      {
-
-         pthread->set_end_thread();
-
-      }
-      catch (...)
-      {
-
-      }
-
-   }
 
 }
 
@@ -970,43 +902,61 @@ void thread::do_events(const duration & duration)
 }
 
 
-void thread::set_run_thread(bool bRun)
+bool thread::should_enable_thread()
 {
 
-   if(bRun)
-   {
+    m_bRunThisThread = true;
 
-      m_bRun = true;
-
-   }
-   else
-   {
-
-      //m_durationRunLock = millis(7);
-
-      //if(m_peventEvent != NULL)
-      //{
-
-      //   m_peventEvent->SetEvent();
-
-      //}
-
-      m_bRun = false;
-
-      post_quit();
-
-
-   }
+    return true;
 
 }
 
-void thread::set_end_thread()
+
+bool thread::post_quit()
 {
 
-   set_run_thread(false);
+   string strName = demangle(typeid(*this).name());
+
+   if (strName == "::core::system")
+   {
+
+      ::output_debug_string("\n\n\nWM_QUIT at ::core::system\n\n\n");
+
+   }
+   else if (strName == "multimedia::audio_core_audio::wave_out")
+   {
+
+      ::output_debug_string("\n\n\nWM_QUIT at multimedia::audio_core_audio::wave_out\n\n\n");
+
+   }
+   else if (strName == "multimedia::audio::wave_out")
+   {
+
+      ::output_debug_string("\n\n\nWM_QUIT at multimedia::audio::wave_out\n\n\n");
+
+   }
+   else if (strName == "multimedia::audio::wave_player")
+   {
+         
+      ::output_debug_string("\n\n\nWM_QUIT at multimedia::audio::wave_player\n\n\n");
+
+   }
+
+   m_bRunThisThread = false;
+
+   ::PostThreadMessage(m_uiThread, WM_QUIT, 0, 0);
+
+   return true;
 
 }
 
+
+bool thread::get_run_thread()
+{
+
+   return m_bRunThisThread;
+
+}
 
 //void thread::defer_add_thread_run_wait(sync_object_ptra & soa)
 //{
@@ -1087,25 +1037,6 @@ void thread::delete_this()
 
 }
 
-void thread::post_quit()
-{
-
-   try
-   {
-
-      set_run(false);
-
-      // post to ensure that quiting is done at the task and for the task and not in this fiber/thread/task
-      post_thread_message(WM_QUIT);
-
-   }
-   catch(...)
-   {
-
-
-   }
-
-}
 
 
 bool thread::is_application()
@@ -1795,7 +1726,7 @@ void thread::post_to_all_threads(UINT message,WPARAM wparam,LPARAM lparam)
          try
          {
             pthread = dynamic_cast < thread * >(threadptra[i]);
-            pthread->set_end_thread();
+            pthread->post_quit();
          }
          catch(...)
          {
@@ -1813,7 +1744,7 @@ void thread::post_to_all_threads(UINT message,WPARAM wparam,LPARAM lparam)
 
    single_lock sl(::multithreading::s_pmutex);
 
-   for(index i = ::multithreading::s_piaThread->get_size(); i >= 0; i--)
+   for(index i = ::multithreading::s_pthreadptra->get_size(); i >= 0; i--)
    {
 
       //bOk = true;
@@ -1821,7 +1752,7 @@ void thread::post_to_all_threads(UINT message,WPARAM wparam,LPARAM lparam)
       try
       {
 
-         if(::PostThreadMessage((IDTHREAD) ::multithreading::s_piaThread->element_at(i),message,wparam,lparam))
+         if(::multithreading::s_pthreadptra->element_at(i)->post_message(message,wparam,lparam))
          {
 
          }
@@ -1910,25 +1841,25 @@ bool thread::post_message(::user::primitive * pui,UINT uiMessage,WPARAM wparam,l
 }
 
 
-
-
-
-bool thread::post_thread_message(UINT message,WPARAM wParam,lparam lParam)
+bool thread::post_object(UINT message, WPARAM wParam, lparam lParam)
 {
 
-   if (m_hthread == (HTHREAD)NULL || (!m_bRun && message != WM_QUIT))
+   if (message == WM_QUIT)
    {
 
-      if (message == message_system)
+      post_quit();
+
+      return true;
+
+   }
+
+   if (m_hthread == (HTHREAD)NULL || !get_run_thread())
+   {
+
+      if (lParam != NULL)
       {
 
-         if (wParam == system_message_command)
-         {
-
-            // destruct the object in lparam (thread is either destroyed or quitting : it cannot process the object anymore)
-            sp(object) spo((lparam) lParam);
-
-         }
+         sp(object) spo((lparam)lParam);
 
       }
 
@@ -1936,35 +1867,91 @@ bool thread::post_thread_message(UINT message,WPARAM wParam,lparam lParam)
 
    }
 
+   return post_message(message, wParam, lParam);
+
+}
+
+
+bool thread::post_message(UINT message,WPARAM wParam,lparam lParam)
+{
+
    if(message == WM_QUIT)
    {
-      m_bRun = false;
-      string strName = demangle(typeid(*this).name());
-      //::output_debug_string("\n\n\nWM_QUIT posted to thread "+strName+"(" + ::str::from((uint64_t)m_uiThread) + ")\n\n\n");
-      if(strName == "::core::system")
-      {
-         ::output_debug_string("\n\n\nWM_QUIT at ::core::system\n\n\n");
-      }
-      if(strName == "multimedia::audio_core_audio::wave_out")
-      {
-         ::output_debug_string("\n\n\nWM_QUIT at multimedia::audio_core_audio::wave_out\n\n\n");
-      }
-      if(strName == "multimedia::audio::wave_out")
-      {
-         ::output_debug_string("\n\n\nWM_QUIT at multimedia::audio::wave_out\n\n\n");
-      }
-      if(strName == "multimedia::audio::wave_player")
-      {
-         ::output_debug_string("\n\n\nWM_QUIT at multimedia::audio::wave_player\n\n\n");
-      }
-      set_end_thread();
+
+      post_quit();
+
       return true;
+
    }
+
    return ::PostThreadMessage(m_uiThread,message,wParam,lParam) != FALSE;
 
 }
 
 
+
+bool thread::send_object(UINT message, WPARAM wParam, lparam lParam, ::duration durWaitStep)
+{
+
+   if (message == WM_QUIT)
+   {
+
+      post_quit();
+
+      wait(durWaitStep);
+
+      return true;
+
+   }
+
+   if (m_hthread == (HTHREAD)NULL || !get_run_thread())
+   {
+
+      if (lParam != NULL)
+      {
+
+         sp(object) spo((lparam)lParam);
+
+      }
+
+      return false;
+
+   }
+
+   send_message(message, wParam, lParam, durWaitStep);
+
+   return true;
+
+}
+
+
+bool thread::send_message(UINT message, WPARAM wParam, lparam lParam, ::duration durWaitStep)
+{
+
+   if (message == WM_QUIT)
+   {
+
+      post_quit();
+
+      wait(durWaitStep);
+
+      return true;
+
+   }
+
+   sp(::send_thread_message) pmessage = canew(::send_thread_message(get_app()));
+
+   pmessage->m_message.message = message;
+   pmessage->m_message.wParam = wParam;
+   pmessage->m_message.lParam = lParam;
+
+   post_message(message_system, system_message_meta, pmessage);
+
+   pmessage->m_ev.wait(durWaitStep);
+
+   return true;
+
+}
 
 
 
@@ -2089,7 +2076,6 @@ int32_t thread::main()
    DWORD nResult = 0;
    if(m_pfnThreadProc != NULL)
    {
-      m_bRun = true;
       nResult = (*m_pfnThreadProc)(m_pThreadParams);
    }
    // else -- check for thread with message loop
@@ -2103,7 +2089,6 @@ int32_t thread::main()
       try
       {
          m_bReady = true;
-         m_bRun = true;
          nResult = run();
       }
       catch(::exit_exception & e)
@@ -2408,109 +2393,7 @@ void thread::message_handler(signal_details * pobj)
 }
 
 
-//bool thread::defer_pump_message()
-//{
-//
-//   MESSAGE msg;
-//
-//   while(::PeekMessage(&msg,NULL,0,0,PM_NOREMOVE) != FALSE)
-//   {
-//
-//      // pump message, but quit on WM_QUIT
-//      if(!m_bRun || !pump_message())
-//      {
-//
-//
-//         ::output_debug_string("\n\n\nthread::defer_pump_message (1) quitting (WM_QUIT? {PeekMessage->message : "+::str::from(msg.message == WM_QUIT?1:0)+"!}) : " + string(demangle(typeid(*m_pthread).name())) + " ("+::str::from((uint64_t)::GetCurrentThreadId())+")\n\n\n");
-//
-//         return false;
-//
-//      }
-//
-//   }
-//
-//   // reset "no idle" state after pumping "normal" message
-//   //if (is_idle_message(&m_msgCur))
-//   if(is_idle_message(&msg))
-//   {
-//
-//      //m_bIdle = true;
-//
-//      //m_lIdleCount = 0;
-//
-//   }
-//
-//   if(!on_run_step())
-//   {
-//
-//      ::output_debug_string("defer_pump_message (2) quitting : " + string(demangle(typeid(*m_pthread).name())) + "\n\n");
-//
-//      return false;
-//
-//   }
-//
-//
-//   on_idle(0);
-//
-//   return true;
-//
-//
-//}
 
-//bool thread::pump_message()
-//{
-//
-//   try
-//   {
-//
-//      MESSAGE msg;
-//
-//      if(!::GetMessage(&msg,NULL,0,0))
-//      {
-//
-//         TRACE(::aura::trace::category_AppMsg,1,"thread::pump_message - Received WM_QUIT.\n");
-//
-//         ::output_debug_string("thread::pump_message - Received WM_QUIT.\n");
-//
-//         m_nDisablePumpCount++; // application must die
-//         // Note: prevents calling message loop things in 'exit_instance'
-//         // will never be decremented
-//         return false;
-//
-//      }
-//
-//      process_message(&msg);
-//
-//      return true;
-//
-//   }
-//   catch(exit_exception & e)
-//   {
-//
-//      throw e;
-//
-//   }
-//   catch(const ::exception::exception & e)
-//   {
-//
-//      if(on_run_exception((::exception::exception &) e))
-//         return true;
-//
-//      // get_app() may be it self, it is ok...
-//      if(App(get_app()).final_handle_exception((::exception::exception &) e))
-//         return true;
-//
-//      return false;
-//
-//   }
-//   catch(...)
-//   {
-//
-//      return false;
-//
-//   }
-//
-//}
 
 
 bool thread::process_message(LPMESSAGE lpmessage)
@@ -2558,13 +2441,11 @@ bool thread::process_message(LPMESSAGE lpmessage)
          else if (msg.wParam == system_message_meta)
          {
 
-            ::send_thread_message * pmessage = dynamic_cast <::send_thread_message *>((object *)(uint_ptr)msg.lParam);
+            sp(::send_thread_message) pmessage(msg.lParam);
 
             MESSAGE & message = pmessage->m_message;
 
             process_message(&message);
-
-            pmessage->m_bOk = true;
 
          }
          else if (msg.wParam == system_message_register_dependent_thread)
@@ -2985,80 +2866,28 @@ void thread::do_events()
 
 
 
+///
+/// Single step the thread message queue.
+/// \author tst Camilo Sasuke Tsumanuma
+///
+
+bool thread::kick_thread()
+{
+
+   if (!post_message(::message::message_null))
+   {
+
+      return false;
+
+   }
+
+   return true;
+
+}
 
 
 
-//bool replace_thread::do_replace(::thread * pthread)
-//{
-//
-//   single_lock sl(&m_mutex,true);
-//
-//   if(m_pthreadNew == NULL)
-//      return true;
-//
-//   if(m_pthreadNew != pthread)
-//      return false;
-//
-//   while(m_spthread.is_set())
-//   {
-//
-//      if(m_pthreadNew != pthread)
-//         return false;
-//
-//      try
-//      {
-//
-//         m_spthread->set_end_thread();
-//
-//      }
-//      catch(...)
-//      {
-//
-//      }
-//
-//      sl.unlock();
-//
-//      sl.lock();
-//
-//      if(m_pthreadNew != pthread)
-//         return false;
-//
-//   }
-//
-//   if(m_pthreadNew != pthread)
-//      return false;
-//
-//   m_spthread = pthread;
-//
-//   return true;
-//
-//}
-//
-//
-//
-//
 
-//void thread::message_queue_message_handler(::signal_details * pobj)
-//{
-//
-//    try
-//    {
-//
-//        message_queue_message_handler(pobj);
-//
-//    }
-//    catch(exit_exception & e)
-//    {
-//
-//        throw e;
-//
-//    }
-//    catch(...)
-//    {
-//
-//    }
-//
-//}
 
 
 

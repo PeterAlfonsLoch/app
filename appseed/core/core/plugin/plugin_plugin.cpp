@@ -1040,7 +1040,7 @@ namespace plugin
       try
       {
 
-         ::get_thread()->post_to_all_threads(WM_QUIT, 0, 0);
+         ::aura::post_quit_thread(&System);
 
       }
       catch(...)
@@ -1048,18 +1048,18 @@ namespace plugin
 
       }
 
-      Sleep(1984);
+      Sleep(2000);
 
       try
       {
 
          thread * pthread = &System;
 
-         if(pthread->get_run())
+         if(pthread->get_run_thread())
          {
             m_evReady.ResetEvent();
             pthread->m_pevReady = &m_evReady;
-            pthread->set_end_thread();
+            pthread->post_quit();
             int iRepeat = 0;
             while(!m_evReady.lock(millis(284)) && iRepeat < 49)
             {

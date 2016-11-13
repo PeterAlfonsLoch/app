@@ -61,13 +61,13 @@ namespace simpledb
             pthread->m_strIp = stra[i];
             pthread->m_iPort = 443;
             pthread->m_pservice = this;
-            pthread->post_thread_message(WM_APP);
+            pthread->post_message(WM_APP);
 
          }
 
       }
 
-      while (get_run())
+      while (get_run_service())
       {
 
          Sleep(1000);

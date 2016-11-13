@@ -240,7 +240,7 @@ namespace install
       return -201;
       }*/
 
-      //Sleep(584);
+      //Sleep(500);
 
       if(System.install().is_installing_ca2())
          return -1;
@@ -538,7 +538,7 @@ install_begin:;
          {
             System.install().trace().rich_trace("Failed to download file list!");
             System.install().trace().rich_trace("Going to retry host...");
-            Sleep(584);
+            Sleep(500);
             goto RetryHost;
          }
 
@@ -875,7 +875,7 @@ install_begin:;
             if(!ignit_phase2())
             {
                System.install().trace().rich_trace("***Going to ebing!!");
-               Sleep(1984);
+               Sleep(2000);
                goto install_begin;
             }
          }

@@ -712,7 +712,7 @@ namespace turboc
 
          sp(view) pview = pviewParam;
 
-         while(::get_thread()->m_bRun && pview->IsWindow())
+         while(::get_thread_run() && pview->IsWindow())
          {
 
             try

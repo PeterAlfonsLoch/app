@@ -216,7 +216,7 @@ namespace aura
             
             int iSubStep;
 
-            while(iStep < 8 && ::get_thread()->m_bRun)
+            while(iStep < 8 && ::get_thread_run())
             {
 
                iStep++;
@@ -230,7 +230,7 @@ namespace aura
 
                }
 
-               for(iSubStep = 0; (iSubStep < (iStep + 1) * 10) && ::get_thread()->m_bRun; iSubStep++)
+               for(iSubStep = 0; (iSubStep < (iStep + 1) * 10) && ::get_thread_run(); iSubStep++)
                {
                   
                   Sleep(84);

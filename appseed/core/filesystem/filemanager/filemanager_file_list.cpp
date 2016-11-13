@@ -1243,10 +1243,10 @@ namespace filemanager
    {
       int32_t iStepSetCount = 84;
 //      int32_t iStepSetSleep = 23;
-      while (get_run())
+      while (get_run_thread())
       {
          int32_t i = iStepSetCount;
-         while (i > 0 && get_run())
+         while (i > 0 && get_run_thread())
          {
             if (!m_plist->_001CreateImageListStep())
                goto endloop;

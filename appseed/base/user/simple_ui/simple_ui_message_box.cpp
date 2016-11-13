@@ -494,11 +494,6 @@ UINT c_cdecl thread_proc_simple_ui_message_box(LPVOID lpvoid)
 int32_t simple_ui_message_box(oswindow interaction_impl,const char * lpText,const char * lpCaption,uint32_t uiFlags)
 {
 
-   // may be in another thread than application thread
-
-   // we remove WM_QUIT because if it is in the queue then the message box won't display
-
-   //::MessageBox(NULL, "", "", MB_OK);
 
 #ifdef WINDOWSEX
 

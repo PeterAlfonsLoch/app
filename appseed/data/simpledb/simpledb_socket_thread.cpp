@@ -90,7 +90,7 @@ namespace simpledb
       if(pbase->m_wparam == 0)
       {
 
-         while(m_pservice->get_run())
+         while(m_pservice->get_run_thread())
          {
             try
             {
@@ -117,10 +117,10 @@ namespace simpledb
                   while (true)
                   {
                      select(8,0);
-                     if(!m_pservice-get_run())
+                     if(!m_pservice-get_run_thread())
                         break;
                   }
-                  if(!m_pservice->get_run())
+                  if(!m_pservice->get_run_thread())
                      break;
                }
             }

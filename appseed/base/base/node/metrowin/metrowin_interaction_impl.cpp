@@ -363,7 +363,7 @@ namespace metrowin
 
          DWORD dwLastRedraw;
 
-         while (::get_thread()->m_bRun)
+         while (::get_thread_run())
          {
 
             dwLastRedraw = ::get_tick_count();
@@ -3791,7 +3791,6 @@ return TRUE;
             if(!ContinueModal(iLevel))
                goto ExitModal;
 
-            // pump message, but quit on WM_QUIT
             if(!get_thread()->pump_message())
             {
                __post_quit_message(0);
@@ -3882,14 +3881,14 @@ ExitModal:
       {
          int iLevel = m_pui->m_iModalCount - 1;
          m_pui->m_iModalCount = 0;
-         post_message(WM_NULL);
-         ::get_thread()->post_thread_message(WM_NULL);
+         kick();
+         ::get_thread()->kick();
          for(int i = iLevel; i >= 0; i--)
          {
             ::thread * pthread = oprop(string("RunModalLoop.thread(") + ::str::from(i) + ")").cast < ::thread >();
             try
             {
-               pthread->post_thread_message(WM_NULL);
+               pthread->kick();
             }
             catch(...)
             {

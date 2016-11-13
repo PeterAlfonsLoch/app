@@ -50,7 +50,7 @@ int32_t machine_event_central::run()
 
 #if 0
 
-   while(get_run())
+   while(get_run_thread())
    {
 
       {

@@ -630,11 +630,6 @@ HTHREAD start_thread(uint32_t ( * pfn)(void *), void * pv, int iPriority)
 //
 //   }
 //
-//   if(msg.message == WM_QUIT)
-//   break;
-//
-//   TranslateMessage(&msg);
-//   DispatchMessage(&msg);
 //
 //   }
 //
@@ -778,43 +773,6 @@ void attach_thread_input_to_main_thread(int_bool bAttach)
 //
 //   if(wMsgFilterMax == 0)
 //      wMsgFilterMax = (UINT) -1;
-//
-//restart:
-//
-//   ml.lock();
-//
-//   for(int i = 0; i < pmq->ma.get_count(); i++)
-//   {
-//      MESSAGE & msg = pmq->ma[i];
-//
-//
-//      if(msg.message == WM_QUIT)
-//      {
-//         return FALSE;
-//      }
-//
-//
-//      if((oswindow == NULL || msg.hwnd == oswindow) && msg.message >= wMsgFilterMin && msg.message <= wMsgFilterMax)
-//      {
-//         *lpMsg = msg;
-//         pmq->ma.remove_at(i);
-//         return TRUE;
-//      }
-//   }
-//
-//   ml.unlock();
-//
-//   //while(!pmq->m_eventNewMessage.wait(millis(84)).signaled())
-//   //{
-//
-//   //   if(::get_thread() != NULL)
-//   //   {
-//
-//   //      ::get_thread()->step_timer();
-//
-//   //   }
-//
-//   //}
 //
 //   pmq->m_eventNewMessage.ResetEvent();
 //

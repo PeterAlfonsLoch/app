@@ -94,9 +94,9 @@ namespace aura
 
          UINT uiMessage = WM_APP + 2043;
 
-         papp->post_thread_message(uiMessage,2,pcreatecontext);
+         papp->post_object(uiMessage,2,pcreatecontext);
 
-         while(get_run())
+         while(get_run_thread())
          {
 
             if(pcreatecontext->m_spCommandLine->m_eventReady.wait(millis(84)).signaled())
@@ -104,7 +104,7 @@ namespace aura
 
          }
 
-         if(!get_run())
+         if(!get_run_thread())
          {
             try
             {

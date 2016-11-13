@@ -122,13 +122,6 @@
 //
 //}
 //
-//bool hthread::get_run()
-//{
-//
-//   return get()->m_bRun;
-//
-//}
-//
 //void hthread::stop_all(uint32_t millisMaxWait)
 //{
 //
@@ -247,9 +240,6 @@
 //            continue;
 //
 //         }
-//
-//         if(msg.message == WM_QUIT)
-//            break;
 //
 //         TranslateMessage(&msg);
 //

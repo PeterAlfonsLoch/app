@@ -534,7 +534,7 @@ namespace hotplugin
       if(m_pcomposersystem != NULL)
       {
 
-         m_pcomposersystem->post_thread_message(WM_QUIT);
+         m_pcomposersystem->post_quit();
 
          m_pcomposersystem = NULL;
 

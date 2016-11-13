@@ -88,7 +88,7 @@ namespace aura
                int k = 40;
                while (k > 0)
                {
-                  if (!get_thread()->m_bRun)
+                  if (!get_thread_run())
                   {
                      return false;
                   }

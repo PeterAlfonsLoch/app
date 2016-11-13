@@ -95,7 +95,7 @@ namespace simpledb
       if(pbase->m_wparam == 0)
       {
 
-         while(m_pservice->get_run())
+         while(m_pservice->get_run_service())
          {
             try
             {
@@ -122,10 +122,10 @@ namespace simpledb
                   while (true)
                   {
                      select(8,0);
-                     if(!m_pservice-get_run())
+                     if(!m_pservice-get_run_thread())
                         break;
                   }
-                  if(!m_pservice->get_run())
+                  if(!m_pservice->get_run_service())
                      break;
                }
             }
@@ -142,15 +142,7 @@ namespace simpledb
       else if(pbase->m_wparam == 1)
       {
 
-//#ifdef WINDOWSEX
-//
-//         ::PostThreadMessageA(m_pi.dwThreadId, WM_APP, 1, 0);
-//
-//#else
-
          ::exception::throw_not_implemented(get_app());
-
-//#endif
 
       }
 

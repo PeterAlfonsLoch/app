@@ -46,67 +46,6 @@ HTHREAD create_thread(LPSECURITY_ATTRIBUTES lpsa, DWORD cbStack, DWORD (WINAPI *
 
 
 
-thread_layer::~thread_layer()
-{
-
-
-}
-
-
-int thread_layer::run()
-{
-
-   MSG msg;
-
-   while(true)
-   {
-
-//      if(!PeekMessage(&msg, NULL, 0, 0xffffffffu, TRUE))
-      {
-
-         if(!on_idle())
-         {
-
-            Sleep(m_iSleepiness);
-
-         }
-
-
-         continue;
-
-      }
-
-      if(msg.message == WM_QUIT)
-         break;
-
-//      TranslateMessage(&msg);
-//      DispatchMessage(&msg);
-
-   }
-
-   return m_iResult;
-
-}
-
-bool thread_layer::on_idle()
-{
-
-   return false;
-
-}
-
-
-void thread_layer::wait_thread(DWORD dwMillis)
-{
-   
-   throw "not implemented";
-
-   
-}
-
-
-
-
 DWORD WINAPI thread_layer::proc(LPVOID lp)
 {
    

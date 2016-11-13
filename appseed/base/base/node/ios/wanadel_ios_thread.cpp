@@ -220,7 +220,7 @@ namespace ios
       //m_nThreadID = 0;
 
       m_nDisablePumpCount = 0;
-      pState->m_nMsgLast = WM_NULL;
+      pState->m_nMsgLast = wm_null;
       System.get_cursor_pos(&(pState->m_ptCursorLast));
 
       // most threads are deleted when not needed
@@ -395,11 +395,6 @@ namespace ios
    event & thread::get_finish_event()
    {
       return m_evFinish;
-   }
-
-   bool thread::get_run()
-   {
-      return m_bRun;
    }
 
    ::thread * thread::get_app_thread()

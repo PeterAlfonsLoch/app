@@ -25,6 +25,46 @@ namespace html
    elemental::~elemental()
    {
 
+      try
+      {
+
+         if (m_pdata != NULL)
+         {
+
+            if (m_pdata->m_pform != NULL)
+            {
+
+               if (m_pdata->m_pform->m_phtmlform.is_set())
+               {
+
+                  if (m_pdata->m_pform->m_phtmlform->m_pelementalHover == this)
+                  {
+
+                     m_pdata->m_pform->m_phtmlform->m_pelementalHover = NULL;
+
+                  }
+
+                  if (m_pdata->m_pform->m_phtmlform->m_pelementalLButtonDown == this)
+                  {
+
+                     m_pdata->m_pform->m_phtmlform->m_pelementalLButtonDown = NULL;
+
+                  }
+
+               }
+
+            }
+
+         }
+
+
+      }
+      catch (...)
+      {
+
+
+      }
+
    }
 
 

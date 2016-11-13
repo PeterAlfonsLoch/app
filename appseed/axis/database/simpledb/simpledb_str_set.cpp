@@ -129,17 +129,15 @@ int32_t db_str_sync_queue::run()
 
    single_lock sl(&m_mutex, false);
 
-   m_bRun = true;
-
    try
    {
 
-      while(get_run())
+      while(get_run_thread())
       {
 
 repeat:;
 
-      if(!get_run())
+      if(!get_run_thread())
          break;
        {
 
@@ -148,7 +146,7 @@ repeat:;
           if(m_itema.get_size() <= 0)
           {
              sl.unlock();
-             Sleep(1984);
+             Sleep(2000);
              goto repeat;
           }
 
@@ -195,7 +193,7 @@ repeat:;
 
              if(!System.http().request(m_handler, m_phttpsession, strUrl, set) || ::http::status_failed(set["get_status"]))
              {
-                Sleep(1984);
+                Sleep(2000);
                 System.dir().m_strApiCc = "";
                 goto repeat;
              }

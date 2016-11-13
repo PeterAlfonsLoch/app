@@ -48,7 +48,7 @@ namespace sockets
 
       m_ready = true;
 
-      while (!m_quit && get_run())
+      while (!m_quit && get_run_thread())
       {
 
          h.select(0, 500000);

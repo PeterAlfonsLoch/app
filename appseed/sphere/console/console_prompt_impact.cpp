@@ -83,7 +83,7 @@ namespace console
 
       if(m_strCommand == ":q")
       {
-         System.post_thread_message(WM_QUIT);
+         ::aura::post_quit_thread(&System);
 
       }
       else

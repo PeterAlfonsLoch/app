@@ -42,8 +42,7 @@ namespace file_watcher
     //  {
   //       Sleep(100);
 //      }
-      LPARAM lparam = (LPARAM)(int_ptr)(void *)(listener_thread::op *)pop;
-      post_thread_message(WM_USER + 123, 0, lparam);
+      post_object(WM_USER + 123, 0, pop);
 
       pop->m_event.wait();
 

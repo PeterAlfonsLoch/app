@@ -391,7 +391,7 @@ UINT system_main(LPVOID lp)
       }
       if(m_psystem->is_system())
       {
-         m_psystem->post_thread_message(WM_QUIT, 0, 0);
+         m_psystem->post_quit();
       }
       try
       {
@@ -406,7 +406,7 @@ UINT system_main(LPVOID lp)
    catch(::exit_exception &)
    {
 
-      m_psystem->post_thread_message(WM_QUIT, 0, 0);
+      m_psystem->post_quit();
 
    }
 

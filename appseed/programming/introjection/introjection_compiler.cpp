@@ -1045,7 +1045,7 @@ namespace introjection
 
 
 
-      while(::get_thread()->m_bRun)
+      while(::get_thread_run())
       {
 
          strLog += process->read();
@@ -1086,7 +1086,7 @@ namespace introjection
 
 #ifdef LINUX
 
-         //Sleep(1984);
+         //Sleep(2000);
 
 #endif
 
@@ -1246,7 +1246,7 @@ namespace introjection
 
 #ifdef LINUX
 
-            //Sleep(1984);
+            //Sleep(2000);
 
 #endif
 

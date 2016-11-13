@@ -755,12 +755,6 @@ int32_t WINAPI GetThreadPriority(HTHREAD  hthread)
 //
 //}
 //
-//bool os_thread::get_run()
-//{
-//
-//   return get()->m_bRun;
-//
-//}
 //
 //void os_thread::stop_all(uint32_t millisMaxWait)
 //{
@@ -980,48 +974,6 @@ int_bool WINAPI thread_set_data(HTHREAD hthread,DWORD dwIndex,LPVOID lpTlsValue)
 //
 //   ml.lock();
 //
-//   for(int32_t i = 0; i < pmq->ma.get_count(); i++)
-//   {
-//      MESSAGE & msg = pmq->ma[i];
-//
-//
-//      if(msg.message == WM_QUIT)
-//      {
-//         *lpMsg = msg;
-//         //pmq->ma.remove_at(i);
-//
-//         pmq->ma.remove_all();
-//
-////         __clear_mq();
-//
-//         return FALSE;
-//      }
-//
-//
-//      if((oswindow == NULL || msg.hwnd == oswindow) && msg.message >= wMsgFilterMin && msg.message <= wMsgFilterMax)
-//      {
-//         *lpMsg = msg;
-//         pmq->ma.remove_at(i);
-//         return TRUE;
-//      }
-//   }
-//
-//   ml.unlock();
-//
-//#if defined(LINUX) // || defined(ANDROID)
-//   if(::get_thread() != NULL)
-//   {
-//
-//      if(!::get_thread()->get_run())
-//         return FALSE;
-//
-////      ::get_thread()->step_timer();
-//
-//      if(!::get_thread()->get_run())
-//         return FALSE;
-//
-//   }
-//
 //   if(aura_defer_process_x_message(hthread,lpMsg,oswindow,false))
 //      return TRUE;
 //
@@ -1137,8 +1089,8 @@ int_bool WINAPI thread_set_data(HTHREAD hthread,DWORD dwIndex,LPVOID lpTlsValue)
 //
 //}
 
-DWORD dwDebugPostThreadMessageTime;
-int iDebugPostThreadMessageTime;
+DWORD g_dwDebug_post_thread_msg_time;
+int g_iDebug_post_thread_msg_time;
 
 CLASS_DECL_AURA int_bool WINAPI PostThreadMessageW(IDTHREAD iThreadId,UINT Msg,WPARAM wParam,LPARAM lParam)
 {
@@ -1168,19 +1120,19 @@ CLASS_DECL_AURA int_bool WINAPI PostThreadMessageW(IDTHREAD iThreadId,UINT Msg,W
 
    DWORD dwNow = get_tick_count();
 
-   if(dwNow - dwDebugPostThreadMessageTime < 1)
+   if(dwNow - g_dwDebug_post_thread_msg_time < 1)
    {
 
-      if(iDebugPostThreadMessageTime > 10)
+      if(g_iDebug_post_thread_msg_time > 10)
       {
 
-//         writeln("PostThreadMessage flooded?");
+//         writeln("PostThreadMessage" flooded?");
 
       }
       else
       {
 
-         iDebugPostThreadMessageTime++;
+         g_iDebug_post_thread_msg_time++;
 
       }
 
@@ -1188,11 +1140,11 @@ CLASS_DECL_AURA int_bool WINAPI PostThreadMessageW(IDTHREAD iThreadId,UINT Msg,W
    else
    {
 
-      iDebugPostThreadMessageTime = 0;
+      g_iDebug_post_thread_msg_time = 0;
 
    }
 
-   dwDebugPostThreadMessageTime = dwNow;
+   g_dwDebug_post_thread_msg_time = dwNow;
 
 
 
@@ -1247,51 +1199,6 @@ CLASS_DECL_AURA int_bool WINAPI PostThreadMessageW(IDTHREAD iThreadId,UINT Msg,W
 //
 //}
 //
-//
-//int32_t thread_layer::run()
-//{
-//
-//   MESSAGE msg;
-//
-//   ZERO(msg);
-//
-//   while(m_bRun)
-//   {
-//
-//      if(m_bRun && !PeekMessage(&msg,NULL,0,0xffffffffu,TRUE))
-//      {
-//
-//         if(m_bRun && !on_idle())
-//         {
-//
-//            Sleep(m_iSleepiness);
-//
-//         }
-//
-//         continue;
-//
-//      }
-//
-//      if(msg.message == WM_QUIT)
-//         break;
-//
-//
-//      TranslateMessage(&msg);
-//
-//      DispatchMessage(&msg);
-//
-//   }
-//
-//   return m_iResult;
-//
-//}
-//
-//bool thread_layer::on_idle()
-//{
-//
-//   return false;
-//
-//}
 //
 
 

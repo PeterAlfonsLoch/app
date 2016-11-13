@@ -955,7 +955,7 @@ retry:
 
          TRACE("Higher Level Diagnosis : iNTERTIMe system::request time(%d) = %d, %d, %d\n", iIteration, dw1, dw2, dw2 - dw1);
 
-         while((handler.get_count() > 0 && !psession->m_bRequestComplete) && (::get_thread() == NULL || ::get_thread()->m_bRun))
+         while((handler.get_count() > 0 && !psession->m_bRequestComplete) && (::get_thread() == NULL || ::get_thread_run()))
             //while(psession->m_phandler->get_count() > 0 && !psession->m_bRequestComplete) // should only exit in case of process exit signal
          {
             dw1 = ::get_tick_count();
@@ -1560,7 +1560,7 @@ retry_session:
 
 //      ::file::timeout_buffer * ptimeoutbuffer = set["file_out"].cast < ::file::timeout_buffer >();
 
-      while(handler.get_count() > 0 && (::get_thread() == NULL || ::get_thread()->m_bRun))
+      while(handler.get_count() > 0 && (::get_thread() == NULL || ::get_thread_run()))
       {
          dw1 = ::get_tick_count();
          handler.select(iTimeout, 0);

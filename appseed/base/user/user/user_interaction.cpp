@@ -4119,7 +4119,7 @@ namespace user
 
       //bool bAttach = AttachThreadInput(get_wnd()->get_os_int(), ::GetCurrentThreadId(), TRUE);
 
-      m_iaModalThread.add(::get_current_thread_id());
+      m_threadptraModal.add(::get_thread());
       sp(::aura::application) pappThis1 = (m_pimpl);
       sp(::aura::application) pappThis2 = (::get_thread());
       // acquire and dispatch messages until the modal state is done
@@ -4193,7 +4193,7 @@ namespace user
             if(!ContinueModal(iLevel))
                goto ExitModal;
 
-            // pump message, but quit on WM_QUIT
+            
             if(::get_thread() != NULL && !::get_thread()->pump_message())
             {
                __post_quit_message(0);
@@ -4232,7 +4232,7 @@ ExitModal:
 
       //#ifdef WINDOWS
 
-      m_iaModalThread.remove_first(::GetCurrentThreadId());
+      m_threadptraModal.remove_first(::get_thread());
 
       //#else
 
@@ -4248,7 +4248,7 @@ ExitModal:
 
    bool interaction::ContinueModal(int32_t iLevel)
    {
-      return iLevel < m_iModalCount && (::get_thread() == NULL || ::get_thread()->m_bRun) && m_pauraapp->m_bRun;
+      return iLevel < m_iModalCount && (::get_thread() == NULL || ::get_thread_run()) && m_pauraapp->get_run_thread();
    }
 
    void interaction::EndModalLoop(id nResult)
@@ -4262,15 +4262,15 @@ ExitModal:
       if(m_iModalCount > 0)
       {
          m_iModalCount--;
-         for (index i = 0; i < m_pui->m_threadptraModal.get_count(); i++)
+         for (index i = 0; i < m_threadptraModal.get_count(); i++)
          {
 
-            m_threadptraModal[i]->post_thread_message(WM_NULL);
+            m_threadptraModal[i]->kick_thread();
 
          }
 
 
-         //post_message(WM_NULL);
+         kick_queue();
 
          try
          {
@@ -4280,7 +4280,7 @@ ExitModal:
             if(pthread.is_set())
             {
 
-               pthread->post_thread_message(WM_NULL);
+               pthread->kick_thread();
 
             }
 
@@ -4298,7 +4298,7 @@ ExitModal:
             if(pthread.is_set())
             {
 
-               pthread->post_thread_message(WM_NULL);
+               pthread->kick_thread();
 
             }
 
@@ -4329,9 +4329,9 @@ ExitModal:
 
          m_iModalCount = 0;
 
-         post_message(WM_NULL);
+         kick_queue();
 
-         ::get_thread()->post_thread_message(WM_NULL);
+         ::get_thread()->kick_thread();
 
          for(int32_t i = iLevel; i >= 0; i--)
          {
@@ -4341,7 +4341,7 @@ ExitModal:
             try
             {
 
-               pthread->post_thread_message(WM_NULL);
+               pthread->kick_thread();
 
             }
             catch(...)
@@ -5850,7 +5850,7 @@ restart:
       catch(::exit_exception &)
       {
 
-         System.post_quit();
+         ::aura::post_quit_thread(&System);
 
          return -1;
 
@@ -5861,7 +5861,7 @@ restart:
          if(!Application.on_run_exception((::exception::exception &) e))
          {
 
-            System.post_thread_message(WM_QUIT,0,0);
+            ::aura::post_quit_thread(&System);
 
             return -1;
 
@@ -7811,7 +7811,7 @@ restart:
 
          point pt;
 
-         while (get_thread()->m_bRun)
+         while (get_thread_run())
          {
 
             defer_notify_mouse_move(pt);
@@ -7911,6 +7911,21 @@ restart:
    void alpha_source::on_alpha_target_initial_frame_position()
    {
 
+
+   }
+
+
+   bool interaction::kick_queue()
+   {
+
+      if (!::get_thread()->kick_thread())
+      {
+
+         return false;
+
+      }
+
+      return true;
 
    }
 

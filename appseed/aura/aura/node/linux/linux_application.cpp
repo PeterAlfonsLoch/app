@@ -196,7 +196,6 @@ namespace aura
       // during the thread destructor
       set_os_data(NULL);
 
-      set_run(false);
       //m_pimpl->m_bRun = false;
       //LNX_THREAD(m_pimpl->::thread_sp::m_p)->m_bRun = false;
 

@@ -261,7 +261,7 @@ void ds_script::Load()
    while(!Application.file().exists(m_strScriptPath) && iRetry > 0)
    {
 
-       Sleep(584);
+       Sleep(500);
        iRetry--;
    }*/
 #endif
@@ -299,7 +299,7 @@ void ds_script::Load()
 //         str2 += ".pdb";
 //         ::file_copy_dup(str2,str1,true);
 //#else
-//         //Sleep(584);
+//         //Sleep(500);
 //
 //#endif
 //
@@ -462,10 +462,10 @@ script_instance * ds_script::create_instance()
          iRetry++;
 
       }
-      while((bHasTempError = HasTempError()) && iRetry < 8 && ::get_thread()->m_bRun);
+      while((bHasTempError = HasTempError()) && iRetry < 8 && ::get_thread_run());
 
 
-      if (!::get_thread()->m_bRun)
+      if (!::get_thread_run())
          return NULL;
       m_dwLastBuildTime = ::get_tick_count();
 
@@ -482,7 +482,7 @@ script_instance * ds_script::create_instance()
 
       Sleep(84);
 
-      if (!::get_thread()->m_bRun)
+      if (!::get_thread_run())
          return NULL;
       // retried at least 8 times, give up any rebuild attemp until file is changed
       m_bShouldBuild = false;

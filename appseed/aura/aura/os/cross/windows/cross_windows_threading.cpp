@@ -110,18 +110,6 @@ restart:
    }
 
 #if defined(LINUX) // || defined(ANDROID)
-//   if(::get_thread() != NULL)
-//   {
-//
-//      if(!::get_thread()->get_run())
-//         return FALSE;
-//
-//      //      ::get_thread()->step_timer();
-//
-//      if(!::get_thread()->get_run())
-//         return FALSE;
-//
-//   }
 
    //if(aura_defer_process_x_message(hthread,lpMsg,oswindow,false))
      // return TRUE;

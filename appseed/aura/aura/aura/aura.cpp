@@ -66,7 +66,7 @@ void __post_quit_message(int32_t nExitCode)
 
 #else
 
-   ::get_thread_app()->post_quit();
+   ::aura::post_quit_thread(get_thread_app());
 
 #endif
 

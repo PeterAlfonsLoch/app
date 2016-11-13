@@ -131,7 +131,7 @@ namespace core
 //      ___THREAD_STATE* pState = __get_thread_state();
 //      // initialize message pump
 //      m_nDisablePumpCount = 0;
-//      pState->m_nMsgLast = WM_NULL;
+//      pState->m_nMsgLast = wm_null;
 //
 //      // most threads are deleted when not needed
 //      m_bAutoDelete  = TRUE;
@@ -408,10 +408,6 @@ namespace core
 ////      return m_evFinish;
 ////   }
 ////
-////   bool thread::get_run()
-////   {
-////      return m_bRun;
-////   }
 ////
 ////   ::thread * thread::get_app_thread()
 ////   {
@@ -597,76 +593,6 @@ namespace core
 ////      ::aura::application * pappThis1 = dynamic_cast < ::aura::application * > (this);
 ////      ::aura::application * pappThis2 = dynamic_cast < ::aura::application * > (m_p.m_p);
 ////
-////      // acquire and dispatch messages until a WM_QUIT message is received.
-////      MESSAGE msg;
-////      while(m_bRun)
-////      {
-////         // phase1: check to see if we can do idle work
-////         while (bIdle && !::PeekMessage(&msg, NULL, NULL, NULL, PM_NOREMOVE))
-////         {
-////            // call on_idle while in bIdle state
-////            if (!on_idle(lIdleCount++))
-////               bIdle = FALSE; // assume "no idle" state
-////            step_timer();
-////            m_p->m_dwAlive = m_dwAlive = ::get_tick_count();
-////            if(pappThis1 != NULL)
-////            {
-////               pappThis1->m_pcoreapp->m_dwAlive = m_dwAlive;
-////            }
-////            if(pappThis2 != NULL)
-////            {
-////               pappThis2->m_pcoreapp->m_dwAlive = m_dwAlive;
-////            }
-////            try
-////            {
-////               if(!m_p->verb())
-////                  goto stop_run;
-////            }
-////            catch(...)
-////            {
-////            }
-////
-////         }
-////
-////         // phase2: pump messages while available
-////         do
-////         {
-////
-////            // pump message, but quit on WM_QUIT
-////            if (!pump_message())
-////            {
-////               try
-////               {
-////                  return exit();
-////               }
-////               catch(...)
-////               {
-////                  return -1;
-////               }
-////            }
-////
-////            // reset "no idle" state after pumping "normal" message
-////            //if (is_idle_message(&m_msgCur))
-////            if (is_idle_message(&msg))
-////            {
-////               bIdle = TRUE;
-////               lIdleCount = 0;
-////            }
-////
-////            step_timer();
-////            m_p->m_dwAlive = m_dwAlive = ::get_tick_count();
-////            if(pappThis1 != NULL)
-////            {
-////               pappThis1->m_pcoreapp->m_dwAlive = m_dwAlive;
-////            }
-////            if(pappThis2 != NULL)
-////            {
-////               pappThis2->m_pcoreapp->m_dwAlive = m_dwAlive;
-////            }
-////         }
-////         while (::PeekMessage(&msg, NULL, NULL, NULL, PM_NOREMOVE) != FALSE);
-////
-////      }
 ////stop_run:
 ////      return 0;
 ////   }
@@ -961,14 +887,6 @@ namespace core
 ////
 ////         ZERO(msg);
 ////
-////         if(!::GetMessage(&msg, NULL, NULL, NULL))
-////         {
-////            TRACE(::core::trace::category_AppMsg, 1, "thread::pump_message - Received WM_QUIT.\n");
-////            m_nDisablePumpCount++; // application must die
-////            // Note: prevents calling message loop things in 'exit_instance'
-////            // will never be decremented
-////            return FALSE;
-////         }
 ////
 ////         if(m_nDisablePumpCount != 0)
 ////         {
@@ -1560,16 +1478,6 @@ namespace core
 //////{
 //////___THREAD_STATE *pState = __get_thread_state();
 //////
-//////if (!::GetMessage(&(pState->m_msgCur), NULL, NULL, NULL))
-//////{
-//////#ifdef DEBUG
-//////TRACE(::core::trace::category_AppMsg, 1, "thread::pump_message - Received WM_QUIT.\n");
-//////pState->m_nDisablePumpCount++; // application must die
-//////#endif
-//////// Note: prevents calling message loop things in 'exit_instance'
-//////// will never be decremented
-//////return FALSE;
-//////}
 //////
 //////#ifdef DEBUG
 //////if (pState->m_nDisablePumpCount != 0)
@@ -1895,35 +1803,8 @@ namespace core
 //////bool bIdle = TRUE;
 //////LONG lIdleCount = 0;
 //////
-//////// acquire and dispatch messages until a WM_QUIT message is received.
-//////while(m_bRun)
-//////{
-//////// phase1: check to see if we can do idle work
-//////while (bIdle &&
-//////!::PeekMessage(&(pState->m_msgCur), NULL, NULL, NULL, PM_NOREMOVE))
-//////{
-//////// call on_idle while in bIdle state
-//////if (!on_idle(lIdleCount++))
-//////bIdle = FALSE; // assume "no idle" state
-//////}
 //////
 //////// phase2: pump messages while available
-//////do
-//////{
-//////// pump message, but quit on WM_QUIT
-//////if (!pump_message())
-//////return exit_instance();
-//////
-//////// reset "no idle" state after pumping "normal" message
-////////if (is_idle_message(&m_msgCur))
-//////if (is_idle_message(&(pState->m_msgCur)))
-//////{
-//////bIdle = TRUE;
-//////lIdleCount = 0;
-//////}
-//////
-//////
-//////} while (::PeekMessage(&(pState->m_msgCur), NULL, NULL, NULL, PM_NOREMOVE));
 //////
 //////m_ptimera->check();
 //////}

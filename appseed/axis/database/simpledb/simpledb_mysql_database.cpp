@@ -154,7 +154,7 @@ namespace mysql
       if(m_pmysql == NULL)
       {
 
-         Sleep(1984);
+         Sleep(2000);
          if(!initialize() || m_pmysql == NULL)
          {
 
@@ -171,7 +171,7 @@ namespace mysql
             if(m_pmysql == NULL
             || mysql_errno(m_pmysql) == 2006) // MySQL server has gone away
             {
-               Sleep(1984);
+               Sleep(2000);
                if(!initialize() || m_pmysql == NULL)
                {
                   trace_error1("Could not execute statement");

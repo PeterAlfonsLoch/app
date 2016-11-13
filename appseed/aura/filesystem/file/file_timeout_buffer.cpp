@@ -92,7 +92,7 @@ namespace file
          (const_cast < timeout_buffer * > (this))->m_dwLastCall = ::get_tick_count();
          while (m_uiExpectedSize == (uint64_t)-1)
          {
-            if (::get_thread() != NULL && !::get_thread()->m_bRun)
+            if (::get_thread() != NULL && !::get_thread_run())
             {
                return 0;
             }
@@ -160,7 +160,7 @@ namespace file
                 m_uiExpectedSize != ((uint64_t)-1)
                 && m_uiExpectedSize != ((uint64_t)-2)))
             break;
-         if (::get_thread() != NULL && !::get_thread()->m_bRun)
+         if (::get_thread() != NULL && !::get_thread_run())
             break;
          Sleep(MAX(11, m_dwSleep));
       }

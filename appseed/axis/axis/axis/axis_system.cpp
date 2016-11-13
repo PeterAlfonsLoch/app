@@ -469,10 +469,14 @@ namespace axis
 
       try
       {
+         
          if(m_pmachineeventcentral != NULL)
          {
-            m_pmachineeventcentral->set_run(false);
+
+            m_pmachineeventcentral->post_quit();
+
          }
+
       }
       catch(...)
       {

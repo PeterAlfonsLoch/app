@@ -197,7 +197,7 @@ namespace windows
       
          DWORD dwLastError = ::GetLastError();
 
-         if(dwLastError == ERROR_SHARING_VIOLATION && ::get_thread()->m_bRun &&  (::get_tick_count() - dwStart) < dwFileSharingViolationRetryTimeout)
+         if(dwLastError == ERROR_SHARING_VIOLATION && ::get_thread_run() &&  (::get_tick_count() - dwStart) < dwFileSharingViolationRetryTimeout)
          {
          
             Sleep(dwWaitSharingViolation);

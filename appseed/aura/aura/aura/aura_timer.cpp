@@ -515,17 +515,20 @@ bool timer::call_on_timer()
       
    }
 
+   ::thread thread(get_app());
+
+   ::set_thread(&thread);
+
    try
    {
 
       //if (::get_thread() == NULL)
-      {
+      //{
+      //   ::set_thread(this);
 
-         ::set_thread(this);
+      //   set_run(true);
 
-         m_bRun = true;
-
-      }
+      //}
       
       synch_lock sl(m_pmutex);
 
@@ -547,7 +550,7 @@ bool timer::call_on_timer()
       if(!m_bPeriodic)
       {
          
-         m_bRun = false;
+         post_quit();
          
       }
       
@@ -557,12 +560,9 @@ bool timer::call_on_timer()
       while(::PeekMessage(&msg,NULL,0,0,PM_NOREMOVE) != FALSE)
       {
 
-         // pump message, but quit on WM_QUIT
-         if(!m_bRun || !pump_message())
+         if(!get_run_thread() || !pump_message())
          {
 
-
-            //         ::output_debug_string("\n\n\nthread_impl::defer_pump_message (1) quitting (WM_QUIT? {PeekMessage->message : "+::str::from(msg.message == WM_QUIT?1:0)+"!}) : " + string(demangle(typeid(*m_pthread).name())) + " ("+::str::from((uint64_t)::GetCurrentThreadId())+")\n\n\n");
 
             break;
 
@@ -574,7 +574,7 @@ bool timer::call_on_timer()
 
       m_bDeal = false;
       
-      if (!m_bPeriodic || m_bKill || !m_bRun)
+      if (!m_bPeriodic || m_bKill || !get_run_thread())
       {
          
 #ifdef APPLEOS

@@ -302,7 +302,7 @@ namespace aura
 
                check_install();
 
-               System.post_quit();
+               ::aura::post_quit_thread(&System);
 
             }
             else
@@ -1048,7 +1048,6 @@ namespace aura
          dappy(string(typeid(*this).name()) + " : going to on_run : " + ::str::from(m_iReturnCode));
          m_iReturnCode = 0;
          m_bReady = true;
-         m_bRun = true;
          m_iReturnCode = on_run();
          if(m_iReturnCode != 0)
          {
@@ -1062,7 +1061,7 @@ namespace aura
 
          dappy(string(typeid(*this).name()) + " : on_run exit_exception");
 
-         System.post_thread_message(WM_QUIT);
+         ::aura::post_quit_thread(&System);
 
          goto exit_application;
 
@@ -1084,9 +1083,6 @@ namespace aura
 
             dappy(string(typeid(*this).name()) + " : quiting main");
 
-            //post_to_all_threads(WM_QUIT,0,0);
-
-            //Sleep(5000);
 
          }
 
@@ -1107,7 +1103,7 @@ namespace aura
       catch(::exit_exception &)
       {
 
-         post_to_all_threads(WM_QUIT,0,0);
+         ::aura::post_quit_thread(&System);
 
          m_iReturnCode = -1;
 
@@ -1180,7 +1176,7 @@ namespace aura
 
          dappy(string(typeid(*this).name()) + " : main_start exit_exception");
 
-         post_to_all_threads(WM_QUIT,0,0);
+         ::aura::post_quit_thread(&System);
 
       }
 
@@ -1444,7 +1440,7 @@ namespace aura
                dappy(string(typeid(*this).name()) + " : initialize_instance failure : " + ::str::from(m_iReturnCode));
                if(System.directrix()->m_varTopicQuery["app"] == m_strAppName)
                {
-                  System.post_quit();
+                  ::aura::post_quit_thread(&System);
                }
                try
                {
@@ -1467,7 +1463,7 @@ namespace aura
                   if (System.directrix()->m_varTopicQuery["app"] == m_strAppName)
                   {
 
-                     System.post_quit();
+                     ::aura::post_quit_thread(&System);
 
                   }
                   try
@@ -2571,7 +2567,7 @@ namespace aura
                   // letting thread function terminate
                   //m_bAutoDelete = false;
 
-                  set_run(false);
+                  post_quit();
 
                   ::thread::exit_instance();
 
@@ -2651,7 +2647,7 @@ namespace aura
 
             if(System.thread::get_os_data() != NULL)
             {
-               System.post_thread_message(WM_QUIT);
+               ::aura::post_quit_thread(&System);
 
             }
 
@@ -2909,7 +2905,7 @@ namespace aura
             catch(...)
             {
             }
-            //System.post_quit();
+            //::aura::post_quit_thread(&System);
             return false;
          }
          if(m_eexclusiveinstance == ExclusiveInstanceLocalId)
@@ -3349,7 +3345,7 @@ namespace aura
       try
       {
 
-         papp->post_thread_message(WM_QUIT);
+         papp->post_quit();
 
       }
       catch(...)

@@ -532,7 +532,7 @@ namespace base
       pmessage->m_wparam            = wparam;
       pmessage->m_lparam            = lparam;
 
-      return pthread->post_thread_message(message_system,system_message_user,pmessage) != FALSE;
+      return pthread->post_object(message_system,system_message_user,pmessage) != FALSE;
 
    }
 

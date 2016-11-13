@@ -74,7 +74,7 @@ namespace fontopus
 
          sp(::fontopus::user) puser;
 
-         while(iRetry > 0 && (::get_thread() == NULL || ::get_thread()->m_bRun))
+         while(iRetry > 0 && (::get_thread() == NULL || ::get_thread_run()))
          {
 
             try
@@ -313,7 +313,7 @@ namespace fontopus
             if(!bSynch)
                return m_puser;
 
-            while(m_pthreadCreatingUser != NULL && m_pthreadCreatingUser->m_bRun && ::get_thread()->m_bRun)
+            while(m_pthreadCreatingUser != NULL && m_pthreadCreatingUser->get_run_thread() && ::get_thread_run())
             {
 
                do_events(millis(84));
@@ -348,7 +348,7 @@ namespace fontopus
          if(!bSynch)
             return m_puser;
 
-         while(m_pthreadCreatingUser != NULL && m_pthreadCreatingUser->m_bRun && ::get_thread()->m_bRun)
+         while(m_pthreadCreatingUser != NULL && m_pthreadCreatingUser->get_run_thread() && ::get_thread_run())
          {
 
             do_events(millis(84));

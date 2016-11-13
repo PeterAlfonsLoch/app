@@ -57,7 +57,6 @@ namespace aura
 
 #endif
 
-      m_bRun = true;
       if (g_p == NULL)
       {
 
@@ -732,7 +731,7 @@ namespace aura
          if(m_pmachineeventcentral != NULL)
          {
 
-            m_pmachineeventcentral->set_run(false);
+            m_pmachineeventcentral->post_quit();
 
          }
 

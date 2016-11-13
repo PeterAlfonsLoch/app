@@ -85,7 +85,7 @@ namespace file_watcher
 
          MESSAGE msg;
 
-         while(m_bRun)
+         while(get_run_thread())
          {
 
             if (PeekMessage(&msg, NULL, 0, 0, PM_NOREMOVE))
@@ -115,7 +115,6 @@ namespace file_watcher
 
 
          }
-quit:;
 
       }
       catch(...)

@@ -317,7 +317,7 @@ void WINAPI service_base::ServiceHandler(DWORD control)
 #endif
 
 
-bool service_base::get_run()
+bool service_base::get_run_service()
 {
 
    return !m_bStopping;
@@ -342,7 +342,7 @@ void service_base::call_server()
    serve();
 
 
-   while (get_run())
+   while (get_run_service())
    {
 
       Sleep(100);
@@ -384,6 +384,5 @@ void service_base::call_server()
 
    m_stopped.SetEvent();
 
-   //System.os_post_to_all_threads(WM_QUIT);
 
 }
