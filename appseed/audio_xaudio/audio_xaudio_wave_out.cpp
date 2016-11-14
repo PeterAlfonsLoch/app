@@ -41,10 +41,10 @@ namespace multimedia
       }
 
 
-      bool wave_out::initialize_instance()
+      bool wave_out::initialize_thread()
       {
 
-         if(!::multimedia::audio::wave_out::initialize_instance())
+         if(!::multimedia::audio::wave_out::initialize_thread())
             return false;
 
          set_thread_priority(::multithreading::priority_time_critical);

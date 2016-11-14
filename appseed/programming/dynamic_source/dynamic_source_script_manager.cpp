@@ -112,16 +112,20 @@ script_manager::~script_manager()
       delete m_pcache;
       m_pcache  = NULL;
    }
+
    if(m_pcompiler != NULL)
    {
+
       delete m_pcompiler;
+
       m_pcompiler = NULL;
+
    }
+
 }
 
 
-
-bool script_manager::initialize_instance()
+bool script_manager::initialize_thread()
 {
 
    //m_spqueue->create_message_queue("::core::netnode::ca2");

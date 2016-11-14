@@ -7625,10 +7625,12 @@ restart:
    }
 
    
-   void interaction::kick()
+   bool interaction::kick_queue()
    {
 
-      post_message(message_null);
+      post_message(::message::message_null);
+
+      return true;
 
    }
 
@@ -7957,21 +7959,6 @@ restart:
    void alpha_source::on_alpha_target_initial_frame_position()
    {
 
-
-   }
-
-
-   bool interaction::kick_queue()
-   {
-
-      if (!::get_thread()->kick_thread())
-      {
-
-         return false;
-
-      }
-
-      return true;
 
    }
 

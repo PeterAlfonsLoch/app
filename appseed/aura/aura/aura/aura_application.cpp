@@ -1132,13 +1132,6 @@ namespace aura
 
          }
 
-         if (!initialize_application())
-         {
-
-            return false;
-
-         }
-
       }
       catch (...)
       {

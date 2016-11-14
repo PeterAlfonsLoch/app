@@ -23,25 +23,40 @@ namespace multimedia
 
       }
 
+      
       wave_in::~wave_in()
       {
+
       }
 
-      bool wave_in::initialize_instance()
+
+      bool wave_in::initialize_thread()
       {
+         
          TRACE("wave_in::initialize_instance %X\n", get_os_int());
+         
          //SetMainWnd(NULL);
+
          //ASSERT(GetMainWnd() == NULL);
+
          set_thread_priority(::multithreading::priority_highest);
+
          m_evInitialized.SetEvent();
+
          return true;
+
       }
+
 
       int32_t wave_in::exit_thread()
       {
+
          m_eventExitInstance.SetEvent();
+
          return thread::exit_thread();
+
       }
+
 
       void wave_in::pre_translate_message(::signal_details * pobj)
       {
